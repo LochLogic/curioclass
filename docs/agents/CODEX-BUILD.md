@@ -8,11 +8,11 @@ A tool that passes every check and is dull has failed. The first two Codex build
 but the owner found the graphics very simple and the play underwhelming. Correct is the floor here. The goal is a tool a
 student would open again on their own.
 
-The tool id is in the prompt that sent you here. `<id>` below means that id. Scratch means
-`S:/CurioClass-codex-scratch/<id>`. The repo root is this worktree.
+The tool id, the worktree and the Scratch folder are in the prompt that sent you here. `<id>` below means that id, and
+Scratch means the folder the prompt names. The repo root is the worktree. Run every command from there.
 
 **This run is Build only.** When the report is written, stop and wait. Do not start a polish round, and do not commit.
-The tool holds on this branch until review.
+A cold Codex review comes next (`docs/agents/CODEX-REVIEW.md`), in another chat. The tool holds on this branch until then.
 
 ## Ground rules
 
@@ -20,11 +20,7 @@ The tool holds on this branch until review.
 - If a kit engine needs a change, do not make it. Work around it in the tool and list the change in `handoff.md` under
   `## Engine changes wanted`: the file, the function, the exact change and why.
 - If the spec is wrong or impossible, build everything else and say so in `handoff.md` and the report. Do not improvise.
-- Do not draw, generate, download or record anything. `art/prompts.json` and any images already there stay as they are.
-  If the tool has no `art/prompts.json`, write it from the spec's Art section, in the format of
-  `tools/calm-corner/art/prompts.json`. Use `art:<name>` tokens for the names in prompts.json; draft builds show labeled
-  placeholders for missing images, and the paintings arrive after your build. Lay out each image at its final size, and
-  make the scene look finished around it.
+- You make the graphics yourself, during the build. See Images, below. Do not download anything or record audio.
 - Write readable code: normal line breaks and one statement per line, about 160 characters a line at most. Never
   compress `src.html`. The next person has to change it.
 - Write "Curio Class", never "Curio" alone. Never use an em dash anywhere: code comments, UI text, notes, lines, reports.
@@ -58,7 +54,8 @@ code" or "Art: none" never means plain.
   chips on a die, the grain on a desk). A plain rounded rectangle with a label is not finished art.
 - Small life: something quietly moves while the tool waits, such as a blinking light, a drifting cloud or a ticking
   needle. It stops with Motion off.
-- Use every painted image the spec lists, large enough to enjoy. Do not shrink art into a thumbnail.
+- Use every painted image the spec lists, large enough to enjoy. Do not shrink art into a thumbnail. Art and layout are
+  built together, so fit the scene to the picture you actually drew.
 - Panels and buttons belong to the scene's world (a clipboard, a control desk, a field notebook), not a default web form.
 
 **Gameplay**
@@ -86,6 +83,43 @@ respect and a sharp result, not confetti. K-2 stays teacher led. Hard history ha
 section, write down the best moment, the two flattest moments and what you changed to fix them, and put one frame of
 your tool beside one from a bar tool. If yours looks plainer, keep going.
 
+## Images
+
+You have an image generation tool. Use it as you build, so the art is real from the first playable version. Try hard:
+the owner would rather dial back rich art than add it later. Never leave a labeled placeholder for an image you can make.
+
+1. Write `art/prompts.json` first, from the spec's Art section, in the format of `tools/calm-corner/art/prompts.json`. If
+   it already exists it may be older than the spec: keep what it has and add what is missing. `docs/ART.md` has the style
+   rules and the options. Set a `house_style` that fits the grade. Keep one style across the whole set.
+2. Make each missing image with the full prompt: house style, then the asset's prompt. Pictures have no text, letters,
+   numbers or logos. Anything that must cut out from its background is drawn on flat pure green (#00FF00), or magenta for
+   green subjects, with `"cutout": true` (and `"key": "magenta"`) in its asset.
+3. Copy the image into `tools/<id>/art/raw/<name>.png`. New images land under `~/.codex/generated_images/`. Add
+   `"drawn_by": "codex"` to the asset.
+4. Run `python scripts/art.py <id> --rekey <name>`. It cuts out, sizes and writes `art/<name>.webp`, free, and it is the
+   only art.py form you may run: without `--rekey` it calls a paid service.
+5. Look at the finished image at its final size. Redraw it, up to twice, if it is wrong, ugly or untrue to what the tool
+   teaches. A real species, tool or place has to look like the real one.
+
+Beyond the spec's list: "Art: none" means no art was planned, not that none is allowed. Where a painted backdrop or
+object would make the scene richer, add it to prompts.json and make it. Where exact drawing matters (a graph, a moving
+simulation, a precise diagram), draw in SVG or canvas, which stays the better picture. Images already in `art/` stay;
+match new ones to them.
+
+**People.** Do not draw people, faces or body parts, even if the spec asks. Those go to another painter with the owner
+checking each one. Add the asset with `"people": true`, use its `art:<name>` token, make the scene work with a tasteful
+faceless silhouette drawn in code until then, and list it in the report under Art still to paint.
+
+**Size.** The bundle stays under 2 MB, and the art drives that: about 30 to 80 KB for a character or object and 100 to
+150 KB for a background. Set `width` in the asset to the largest size it shows at. If you are over, lower `quality` to
+about 72, then the width of the backgrounds, before you drop any image.
+
+If image generation fails or hits a usage limit, finish the tool with art drawn in code, list the missing images under
+Art still to paint, and carry on.
+
+Credit: when you used any generated image, add this to `sources` in `tool.draft.json`:
+`Illustrations generated with OpenAI gpt-image, edited for Curio Class`.
+
 ## Do not hang
 
 Past builds lost hours to one stuck command and to re-running every check at the end. So:
@@ -112,7 +146,8 @@ The limits below are for commands and checks. They are never a reason to cut the
 2. `tools/<id>/spec.md`, every line, before you write anything. It is the source of truth. Build what it says, nothing more.
 3. `docs/agents/BUILD.md`, all of it, including its wave lessons. Those are the repeat review findings, so each one is a
    check you must do. It lists the files to make.
-4. `docs/agents/decisions/BASELINE.md`, `docs/TOOL-CONTRACT.md`, `docs/KIT.md` (above all "Voice: Curio.voice") and `docs/POLISH.md`.
+4. `docs/agents/decisions/BASELINE.md`, `docs/TOOL-CONTRACT.md`, `docs/KIT.md` (above all "Voice: Curio.voice"), `docs/POLISH.md`
+   and `docs/ART.md`.
 5. `kit/starter/src.html`: start from a copy. Skim `kit/curio.js` and `kit/curio.css`, and use them instead of re-implementing anything.
 6. If the spec names a family: `docs/families/<family>.md` and its engine file, in full. Use the engine, do not rewrite it.
 7. `python scripts/neighbors.py <id>`: open one built neighbor (`src.html`, `handoff.md`, `refine.md`) to see the level of
@@ -124,7 +159,7 @@ trust the computation, say what differs in the report, and leave the spec alone.
 ## Files to make in `tools/<id>/`
 
 As BUILD.md lists: `src.html`, `tool.draft.json` (`"stage": "built"`), `notes.md`, `voice/lines.json`,
-`audit-states.json`, `handoff.md`, plus `codex-report.md`. Keep `art/prompts.json` as it is if it already exists.
+`audit-states.json`, `handoff.md`, `art/prompts.json` and `art/<name>.webp`, plus `codex-report.md`.
 `notes.md` opens with `## What it teaches`, `## Key skills` and `## Support at home`, as BUILD.md says. The bundle
 `<id>.html` is generated and git-ignored. Delete `host.html` when you finish, or say you could not.
 
@@ -151,6 +186,8 @@ As BUILD.md lists: `src.html`, `tool.draft.json` (`"stage": "built"`), `notes.md
 ## Wave lessons       (each BUILD.md lesson: PASS or FAIL, and how you checked)
 ## Audit leads        (each lead: fixed, or why not; or "audit not finished")
 ## Frames looked at
+## Art made           (image count, total art KB, bundle KB, what was redrawn)
+## Art still to paint (people and anything image generation could not make)
 ## Engine changes wanted
 ## Left open
 ```

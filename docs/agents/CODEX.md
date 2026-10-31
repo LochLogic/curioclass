@@ -10,6 +10,12 @@ One shared brief, docs/agents/CODEX-BUILD.md, needs no per-tool writing and adds
 interactively in the tool's own worktree, one tool at a time; the tool holds there, uncommitted, until a Claude session
 has the budget for Refine. Polish is the costly round, so leave Codex budget for it.
 
+Since 2026-10-30 Codex makes the images during the build, not after it, so art and layout fit together and later work
+dials back rather than adds; people stay out and go to Gemini. Each tool then gets a cold review in a new Codex chat
+(docs/agents/CODEX-REVIEW.md) that fixes what the lenses would find, one pass, to shrink Refine. Worktrees are made ahead
+under S:\CurioClass-codex, since the sandbox can't make them, and Cory pastes one block per new chat to watch it work.
+Compare Refine's finding counts on these tools with the two pilots before deciding the review step stays.
+
 ## Set up
 
 - Its own worktree and branch off main: `git worktree add S:/CurioClass-codex-<id> -b codex/<id> origin/main`.
@@ -93,6 +99,6 @@ blockers and should fix in round 1, exit rounds to PASS and integrator fixes aga
 - About 14M input tokens to build and 30M a polish round, almost all cached; 37 minutes to build.
 - Its states file and scratch habits are the two things to brief harder.
 
-Cory's queue: docs/agents/codex-prompts-40.txt, started with `scripts/codex-start.cmd <tool-id>`. Left out on purpose:
+Cory's queue: docs/agents/codex-prompts-40.txt, from `scripts/codex_queue.py`. Left out on purpose:
 tools waiting on desk answers, tools needing a kit engine that doesn't exist yet, sensitive or cultural topics, and the
 three super tools with unanswered cards.

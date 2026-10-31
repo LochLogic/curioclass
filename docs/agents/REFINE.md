@@ -11,6 +11,7 @@ Each lens agent is fresh and cold: you did not build the tool and you owe it not
 reads `tools/<id>/spec.md`, then `src.html`, `notes.md`, `art/prompts.json` and `voice/lines.json`, bundles with
 `CURIO_DRAFT=1 python scripts/bundle_tool.py <id>`, and works in its own scratch folder with its own Chrome profile
 and port (RUNBOOK, Agent Chrome hygiene). Write `tools/<id>/refine/<lens>.md` only.
+Do not read `codex-report.md` or `codex-review.md`: a lens judges the tool, not what its makers said about it.
 
 **Audit once, shared (Cory 2026-10-28; tuned after BR2 and the network-help-desk test).** Before the lenses start,
 the integrator runs `python scripts/audit_tool.py <id> <scratch>/audit-r<round> --port <port> --profile <absolute dir>`

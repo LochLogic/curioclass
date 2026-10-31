@@ -1,614 +1,1109 @@
-CURIO CLASS: 40 CODEX BUILD PROMPTS
+CURIO CLASS: 40 CODEX TOOLS, PASTE AND WATCH
 
-Each tool has two steps.
-1. In a terminal, run the START line. It makes the tool's worktree from the latest main, then opens Codex there.
-2. Paste the PROMPT block into Codex.
+SET UP, ONCE
+Open S:\CurioClass-codex as the project in Codex. All 40 worktrees are already made inside it.
 
-Each build holds in S:\CurioClass-codex-<tool-id>, uncommitted, until Refine. When Codex says "Build done", mark [x] here.
+EACH TOOL IS TWO PASTES, EACH IN ITS OWN NEW CHAT
+1. BUILD. Paste it, watch it work. It makes the art as it goes. It ends with "Build done".
+2. REVIEW. Paste it in a NEW chat, never the build chat: a reviewer who did not build it catches more. It fixes what it
+   finds and ends with "Review done".
 
-Up to three can run at once if you pick one from each group: A, B and C use different ports.
+The work holds uncommitted in S:\CurioClass-codex\<tool-id> until Claude's Refine. Mark [x] as each step finishes.
+
+HOW MANY AT ONCE
+Up to three builds and three reviews, one of each from each group. Groups A, B and C use different ports, and reviews
+use their own, so a build and a review never clash. Never run two builds, or two reviews, from the same group.
+
+IF IT STICKS
 If a command hangs for about 20 minutes, press Esc and paste:
 
-That command hung, so I stopped it. Close any Chrome or server you started, note it under Left open in the report, and carry on with the next step. Do not rerun it with no time limit.
+That command hung, so I stopped it. Close any Chrome or server you started, note it under Left open in the report, and carry on with the next step.
 
 If it says it is reconnecting, wait. If the model is at capacity, send: carry on
 
 ==============================================================================
-[ ] 1 of 40: Game Day Fuel  (health-pe, grade 9-12)  group A
+REVIEWS FOR THE FOUR TOOLS ALREADY BUILT
 ==============================================================================
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd game-day-fuel
+These four sit at the old paths. For each one, open its own folder as the project in a new Codex chat, once its
+build has said "Build done". They had no images made during the build, so the review makes them.
 
-PROMPT:
-Build the Curio Class tool game-day-fuel. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/game-day-fuel/, use S:/CurioClass-codex-scratch/game-day-fuel for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+[ ] Image Transformer  group A   Project folder: S:\CurioClass-codex-image-transformer
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+--- REVIEW: image-transformer ---
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/game-day-fuel/codex-report.md is written, say "Build done" and stop.
+Review the Curio Class tool image-transformer cold. You did not build it. Your worktree is S:/CurioClass-codex-image-transformer: every command runs from there, and you write only inside tools/image-transformer/. Read S:/CurioClass-media/docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in S:/CurioClass-media/docs/agents/CODEX-BUILD.md. Scratch is C:/Users/Cory/AppData/Local/Temp/curio-codex/image-transformer. Make no git commits. Use Chrome ports 9960 to 9967 and host port 8765.
 
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/image-transformer/codex-review.md is written, say "Review done" and stop.
 
+--- end ---
+
+[ ] Pocket Universe  group B   Project folder: S:\CurioClass-codex-pocket-universe
+
+--- REVIEW: pocket-universe ---
+
+Review the Curio Class tool pocket-universe cold. You did not build it. Your worktree is S:/CurioClass-codex-pocket-universe: every command runs from there, and you write only inside tools/pocket-universe/. Read S:/CurioClass-media/docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in S:/CurioClass-media/docs/agents/CODEX-BUILD.md. Scratch is C:/Users/Cory/AppData/Local/Temp/curio-codex/pocket-universe. Make no git commits. Use Chrome ports 9950 to 9957 and host port 8755.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/pocket-universe/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
+[ ] Span and Spire  group C   Project folder: S:\CurioClass-codex-span-and-spire
+
+--- REVIEW: span-and-spire ---
+
+Review the Curio Class tool span-and-spire cold. You did not build it. Your worktree is S:/CurioClass-codex-span-and-spire: every command runs from there, and you write only inside tools/span-and-spire/. Read S:/CurioClass-media/docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in S:/CurioClass-media/docs/agents/CODEX-BUILD.md. Scratch is C:/Users/Cory/AppData/Local/Temp/curio-codex/span-and-spire. Make no git commits. Use Chrome ports 9940 to 9947 and host port 8745.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/span-and-spire/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
+[ ] Near and Far  group A   Project folder: S:\CurioClass-codex-near-and-far
+
+--- REVIEW: near-and-far ---
+
+Review the Curio Class tool near-and-far cold. You did not build it. Your worktree is S:/CurioClass-codex-near-and-far: every command runs from there, and you write only inside tools/near-and-far/. Read S:/CurioClass-media/docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in S:/CurioClass-media/docs/agents/CODEX-BUILD.md. Scratch is C:/Users/Cory/AppData/Local/Temp/curio-codex/near-and-far. Make no git commits. Use Chrome ports 9960 to 9967 and host port 8765.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/near-and-far/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 2 of 40: Art Style Match  (arts, grade 3-5)  group B
+1 of 40: Game Day Fuel  (health-pe, grade 9-12)  group A
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: game-day-fuel ---
+
+Build the Curio Class tool game-day-fuel. Your worktree is S:/CurioClass-codex/game-day-fuel: every command runs from there, and you write only inside tools/game-day-fuel/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/game-day-fuel. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/game-day-fuel/codex-report.md is written, say "Build done" and stop.
+
+--- end ---
+
+[ ] REVIEW, in a new chat
+
+--- REVIEW: game-day-fuel ---
+
+Review the Curio Class tool game-day-fuel cold. You did not build it. Your worktree is S:/CurioClass-codex/game-day-fuel: every command runs from there, and you write only inside tools/game-day-fuel/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/game-day-fuel. Make no git commits. Use Chrome ports 9960 to 9967 and host port 8765.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/game-day-fuel/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
+==============================================================================
+2 of 40: Art Style Match  (arts, grade 3-5)  group B
+==============================================================================
+
+[ ] BUILD
+
+--- BUILD: art-style-match ---
+
+Build the Curio Class tool art-style-match. Your worktree is S:/CurioClass-codex/art-style-match: every command runs from there, and you write only inside tools/art-style-match/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/art-style-match. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd art-style-match
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-PROMPT:
-Build the Curio Class tool art-style-match. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/art-style-match/, use S:/CurioClass-codex-scratch/art-style-match for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/art-style-match/codex-report.md is written, say "Build done" and stop.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+--- end ---
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/art-style-match/codex-report.md is written, say "Build done" and stop.
+[ ] REVIEW, in a new chat
 
+--- REVIEW: art-style-match ---
 
+Review the Curio Class tool art-style-match cold. You did not build it. Your worktree is S:/CurioClass-codex/art-style-match: every command runs from there, and you write only inside tools/art-style-match/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/art-style-match. Make no git commits. Use Chrome ports 9950 to 9957 and host port 8755.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/art-style-match/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 3 of 40: Virtual Gallery  (arts, grade 9-12)  group C
+3 of 40: Virtual Gallery  (arts, grade 9-12)  group C
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: virtual-gallery ---
+
+Build the Curio Class tool virtual-gallery. Your worktree is S:/CurioClass-codex/virtual-gallery: every command runs from there, and you write only inside tools/virtual-gallery/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/virtual-gallery. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/virtual-gallery/codex-report.md is written, say "Build done" and stop.
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd virtual-gallery
+--- end ---
 
-PROMPT:
-Build the Curio Class tool virtual-gallery. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/virtual-gallery/, use S:/CurioClass-codex-scratch/virtual-gallery for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+[ ] REVIEW, in a new chat
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+--- REVIEW: virtual-gallery ---
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/virtual-gallery/codex-report.md is written, say "Build done" and stop.
+Review the Curio Class tool virtual-gallery cold. You did not build it. Your worktree is S:/CurioClass-codex/virtual-gallery: every command runs from there, and you write only inside tools/virtual-gallery/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/virtual-gallery. Make no git commits. Use Chrome ports 9940 to 9947 and host port 8745.
 
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/virtual-gallery/codex-review.md is written, say "Review done" and stop.
 
+--- end ---
+
 ==============================================================================
-[ ] 4 of 40: Biome Atlas  (science, grade 12)  group A
+4 of 40: Biome Atlas  (science, grade 12)  group A
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: biome-atlas ---
+
+Build the Curio Class tool biome-atlas. Your worktree is S:/CurioClass-codex/biome-atlas: every command runs from there, and you write only inside tools/biome-atlas/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/biome-atlas. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd biome-atlas
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-PROMPT:
-Build the Curio Class tool biome-atlas. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/biome-atlas/, use S:/CurioClass-codex-scratch/biome-atlas for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/biome-atlas/codex-report.md is written, say "Build done" and stop.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+--- end ---
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/biome-atlas/codex-report.md is written, say "Build done" and stop.
+[ ] REVIEW, in a new chat
 
+--- REVIEW: biome-atlas ---
 
+Review the Curio Class tool biome-atlas cold. You did not build it. Your worktree is S:/CurioClass-codex/biome-atlas: every command runs from there, and you write only inside tools/biome-atlas/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/biome-atlas. Make no git commits. Use Chrome ports 9960 to 9967 and host port 8765.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/biome-atlas/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 5 of 40: Workplace Scenarios  (cte, grade 6-8)  group B
+5 of 40: Workplace Scenarios  (cte, grade 6-8)  group B
 ==============================================================================
+
+[ ] BUILD
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd workplace-scenarios
+--- BUILD: workplace-scenarios ---
 
-PROMPT:
-Build the Curio Class tool workplace-scenarios. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/workplace-scenarios/, use S:/CurioClass-codex-scratch/workplace-scenarios for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+Build the Curio Class tool workplace-scenarios. Your worktree is S:/CurioClass-codex/workplace-scenarios: every command runs from there, and you write only inside tools/workplace-scenarios/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/workplace-scenarios. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/workplace-scenarios/codex-report.md is written, say "Build done" and stop.
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/workplace-scenarios/codex-report.md is written, say "Build done" and stop.
 
+--- end ---
 
+[ ] REVIEW, in a new chat
+
+--- REVIEW: workplace-scenarios ---
+
+Review the Curio Class tool workplace-scenarios cold. You did not build it. Your worktree is S:/CurioClass-codex/workplace-scenarios: every command runs from there, and you write only inside tools/workplace-scenarios/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/workplace-scenarios. Make no git commits. Use Chrome ports 9950 to 9957 and host port 8755.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/workplace-scenarios/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 6 of 40: Up the Watershed  (science, grade 12)  group C
+6 of 40: Up the Watershed  (science, grade 12)  group C
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: up-the-watershed ---
+
+Build the Curio Class tool up-the-watershed. Your worktree is S:/CurioClass-codex/up-the-watershed: every command runs from there, and you write only inside tools/up-the-watershed/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/up-the-watershed. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd up-the-watershed
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-PROMPT:
-Build the Curio Class tool up-the-watershed. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/up-the-watershed/, use S:/CurioClass-codex-scratch/up-the-watershed for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/up-the-watershed/codex-report.md is written, say "Build done" and stop.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+--- end ---
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/up-the-watershed/codex-report.md is written, say "Build done" and stop.
+[ ] REVIEW, in a new chat
 
+--- REVIEW: up-the-watershed ---
 
+Review the Curio Class tool up-the-watershed cold. You did not build it. Your worktree is S:/CurioClass-codex/up-the-watershed: every command runs from there, and you write only inside tools/up-the-watershed/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/up-the-watershed. Make no git commits. Use Chrome ports 9940 to 9947 and host port 8745.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/up-the-watershed/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 7 of 40: Reserve Designer  (science, grade 9)  group A
+7 of 40: Reserve Designer  (science, grade 9)  group A
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: reserve-designer ---
+
+Build the Curio Class tool reserve-designer. Your worktree is S:/CurioClass-codex/reserve-designer: every command runs from there, and you write only inside tools/reserve-designer/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/reserve-designer. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/reserve-designer/codex-report.md is written, say "Build done" and stop.
+
+--- end ---
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd reserve-designer
+[ ] REVIEW, in a new chat
 
-PROMPT:
-Build the Curio Class tool reserve-designer. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/reserve-designer/, use S:/CurioClass-codex-scratch/reserve-designer for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+--- REVIEW: reserve-designer ---
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Review the Curio Class tool reserve-designer cold. You did not build it. Your worktree is S:/CurioClass-codex/reserve-designer: every command runs from there, and you write only inside tools/reserve-designer/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/reserve-designer. Make no git commits. Use Chrome ports 9960 to 9967 and host port 8765.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/reserve-designer/codex-report.md is written, say "Build done" and stop.
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/reserve-designer/codex-review.md is written, say "Review done" and stop.
 
+--- end ---
 
 ==============================================================================
-[ ] 8 of 40: First Aid Responder  (health-pe, grade 9-12)  group B
+8 of 40: First Aid Responder  (health-pe, grade 9-12)  group B
 ==============================================================================
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd first-aid-responder
+[ ] BUILD
 
-PROMPT:
-Build the Curio Class tool first-aid-responder. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/first-aid-responder/, use S:/CurioClass-codex-scratch/first-aid-responder for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+--- BUILD: first-aid-responder ---
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Build the Curio Class tool first-aid-responder. Your worktree is S:/CurioClass-codex/first-aid-responder: every command runs from there, and you write only inside tools/first-aid-responder/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/first-aid-responder. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/first-aid-responder/codex-report.md is written, say "Build done" and stop.
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/first-aid-responder/codex-report.md is written, say "Build done" and stop.
 
+--- end ---
+
+[ ] REVIEW, in a new chat
+
+--- REVIEW: first-aid-responder ---
+
+Review the Curio Class tool first-aid-responder cold. You did not build it. Your worktree is S:/CurioClass-codex/first-aid-responder: every command runs from there, and you write only inside tools/first-aid-responder/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/first-aid-responder. Make no git commits. Use Chrome ports 9950 to 9957 and host port 8755.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/first-aid-responder/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 9 of 40: Data Policy Council  (computer-science, grade 9-12)  group C
+9 of 40: Data Policy Council  (computer-science, grade 9-12)  group C
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: data-policy-council ---
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd data-policy-council
+Build the Curio Class tool data-policy-council. Your worktree is S:/CurioClass-codex/data-policy-council: every command runs from there, and you write only inside tools/data-policy-council/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/data-policy-council. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
 
-PROMPT:
-Build the Curio Class tool data-policy-council. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/data-policy-council/, use S:/CurioClass-codex-scratch/data-policy-council for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/data-policy-council/codex-report.md is written, say "Build done" and stop.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/data-policy-council/codex-report.md is written, say "Build done" and stop.
+--- end ---
 
+[ ] REVIEW, in a new chat
 
+--- REVIEW: data-policy-council ---
+
+Review the Curio Class tool data-policy-council cold. You did not build it. Your worktree is S:/CurioClass-codex/data-policy-council: every command runs from there, and you write only inside tools/data-policy-council/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/data-policy-council. Make no git commits. Use Chrome ports 9940 to 9947 and host port 8745.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/data-policy-council/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 10 of 40: Act It Out  (arts, grade k-2)  group A
+10 of 40: Act It Out  (arts, grade k-2)  group A
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: act-it-out ---
+
+Build the Curio Class tool act-it-out. Your worktree is S:/CurioClass-codex/act-it-out: every command runs from there, and you write only inside tools/act-it-out/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/act-it-out. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd act-it-out
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/act-it-out/codex-report.md is written, say "Build done" and stop.
 
-PROMPT:
-Build the Curio Class tool act-it-out. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/act-it-out/, use S:/CurioClass-codex-scratch/act-it-out for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+--- end ---
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+[ ] REVIEW, in a new chat
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/act-it-out/codex-report.md is written, say "Build done" and stop.
+--- REVIEW: act-it-out ---
 
+Review the Curio Class tool act-it-out cold. You did not build it. Your worktree is S:/CurioClass-codex/act-it-out: every command runs from there, and you write only inside tools/act-it-out/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/act-it-out. Make no git commits. Use Chrome ports 9960 to 9967 and host port 8765.
 
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/act-it-out/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 11 of 40: Research Quest  (library, grade 6-8)  group B
+11 of 40: Research Quest  (library, grade 6-8)  group B
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: research-quest ---
+
+Build the Curio Class tool research-quest. Your worktree is S:/CurioClass-codex/research-quest: every command runs from there, and you write only inside tools/research-quest/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/research-quest. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/research-quest/codex-report.md is written, say "Build done" and stop.
+
+--- end ---
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd research-quest
+[ ] REVIEW, in a new chat
 
-PROMPT:
-Build the Curio Class tool research-quest. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/research-quest/, use S:/CurioClass-codex-scratch/research-quest for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+--- REVIEW: research-quest ---
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Review the Curio Class tool research-quest cold. You did not build it. Your worktree is S:/CurioClass-codex/research-quest: every command runs from there, and you write only inside tools/research-quest/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/research-quest. Make no git commits. Use Chrome ports 9950 to 9957 and host port 8755.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/research-quest/codex-report.md is written, say "Build done" and stop.
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/research-quest/codex-review.md is written, say "Review done" and stop.
 
+--- end ---
 
 ==============================================================================
-[ ] 12 of 40: Design Challenge Studio  (science, grade 12)  group C
+12 of 40: Design Challenge Studio  (science, grade 12)  group C
 ==============================================================================
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd design-challenge-studio
+[ ] BUILD
 
-PROMPT:
-Build the Curio Class tool design-challenge-studio. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/design-challenge-studio/, use S:/CurioClass-codex-scratch/design-challenge-studio for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+--- BUILD: design-challenge-studio ---
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Build the Curio Class tool design-challenge-studio. Your worktree is S:/CurioClass-codex/design-challenge-studio: every command runs from there, and you write only inside tools/design-challenge-studio/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/design-challenge-studio. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/design-challenge-studio/codex-report.md is written, say "Build done" and stop.
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/design-challenge-studio/codex-report.md is written, say "Build done" and stop.
 
+--- end ---
+
+[ ] REVIEW, in a new chat
+
+--- REVIEW: design-challenge-studio ---
+
+Review the Curio Class tool design-challenge-studio cold. You did not build it. Your worktree is S:/CurioClass-codex/design-challenge-studio: every command runs from there, and you write only inside tools/design-challenge-studio/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/design-challenge-studio. Make no git commits. Use Chrome ports 9940 to 9947 and host port 8745.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/design-challenge-studio/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 13 of 40: Brand Builder  (arts, grade 9-12)  group A
+13 of 40: Brand Builder  (arts, grade 9-12)  group A
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: brand-builder ---
+
+Build the Curio Class tool brand-builder. Your worktree is S:/CurioClass-codex/brand-builder: every command runs from there, and you write only inside tools/brand-builder/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/brand-builder. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd brand-builder
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-PROMPT:
-Build the Curio Class tool brand-builder. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/brand-builder/, use S:/CurioClass-codex-scratch/brand-builder for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/brand-builder/codex-report.md is written, say "Build done" and stop.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+--- end ---
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/brand-builder/codex-report.md is written, say "Build done" and stop.
+[ ] REVIEW, in a new chat
 
+--- REVIEW: brand-builder ---
 
+Review the Curio Class tool brand-builder cold. You did not build it. Your worktree is S:/CurioClass-codex/brand-builder: every command runs from there, and you write only inside tools/brand-builder/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/brand-builder. Make no git commits. Use Chrome ports 9960 to 9967 and host port 8765.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/brand-builder/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 14 of 40: Speech Coach  (ela, grade 12)  group B
+14 of 40: Speech Coach  (ela, grade 12)  group B
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: speech-coach ---
+
+Build the Curio Class tool speech-coach. Your worktree is S:/CurioClass-codex/speech-coach: every command runs from there, and you write only inside tools/speech-coach/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/speech-coach. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/speech-coach/codex-report.md is written, say "Build done" and stop.
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd speech-coach
+--- end ---
 
-PROMPT:
-Build the Curio Class tool speech-coach. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/speech-coach/, use S:/CurioClass-codex-scratch/speech-coach for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+[ ] REVIEW, in a new chat
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+--- REVIEW: speech-coach ---
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/speech-coach/codex-report.md is written, say "Build done" and stop.
+Review the Curio Class tool speech-coach cold. You did not build it. Your worktree is S:/CurioClass-codex/speech-coach: every command runs from there, and you write only inside tools/speech-coach/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/speech-coach. Make no git commits. Use Chrome ports 9950 to 9957 and host port 8755.
 
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/speech-coach/codex-review.md is written, say "Review done" and stop.
 
+--- end ---
+
 ==============================================================================
-[ ] 15 of 40: Design for a Friend  (computer-science, grade 5)  group C
+15 of 40: Design for a Friend  (computer-science, grade 5)  group C
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: design-for-a-friend ---
+
+Build the Curio Class tool design-for-a-friend. Your worktree is S:/CurioClass-codex/design-for-a-friend: every command runs from there, and you write only inside tools/design-for-a-friend/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/design-for-a-friend. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd design-for-a-friend
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-PROMPT:
-Build the Curio Class tool design-for-a-friend. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/design-for-a-friend/, use S:/CurioClass-codex-scratch/design-for-a-friend for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/design-for-a-friend/codex-report.md is written, say "Build done" and stop.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+--- end ---
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/design-for-a-friend/codex-report.md is written, say "Build done" and stop.
+[ ] REVIEW, in a new chat
 
+--- REVIEW: design-for-a-friend ---
 
+Review the Curio Class tool design-for-a-friend cold. You did not build it. Your worktree is S:/CurioClass-codex/design-for-a-friend: every command runs from there, and you write only inside tools/design-for-a-friend/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/design-for-a-friend. Make no git commits. Use Chrome ports 9940 to 9947 and host port 8745.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/design-for-a-friend/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 16 of 40: Credit Card Builder  (library, grade 3-5)  group A
+16 of 40: Credit Card Builder  (library, grade 3-5)  group A
 ==============================================================================
+
+[ ] BUILD
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd credit-card-builder
+--- BUILD: credit-card-builder ---
 
-PROMPT:
-Build the Curio Class tool credit-card-builder. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/credit-card-builder/, use S:/CurioClass-codex-scratch/credit-card-builder for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+Build the Curio Class tool credit-card-builder. Your worktree is S:/CurioClass-codex/credit-card-builder: every command runs from there, and you write only inside tools/credit-card-builder/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/credit-card-builder. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/credit-card-builder/codex-report.md is written, say "Build done" and stop.
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/credit-card-builder/codex-report.md is written, say "Build done" and stop.
 
+--- end ---
 
+[ ] REVIEW, in a new chat
+
+--- REVIEW: credit-card-builder ---
+
+Review the Curio Class tool credit-card-builder cold. You did not build it. Your worktree is S:/CurioClass-codex/credit-card-builder: every command runs from there, and you write only inside tools/credit-card-builder/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/credit-card-builder. Make no git commits. Use Chrome ports 9960 to 9967 and host port 8765.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/credit-card-builder/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 17 of 40: Captain's Choices  (health-pe, grade 9-12)  group B
+17 of 40: Captain's Choices  (health-pe, grade 9-12)  group B
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: captain-s-choices ---
+
+Build the Curio Class tool captain-s-choices. Your worktree is S:/CurioClass-codex/captain-s-choices: every command runs from there, and you write only inside tools/captain-s-choices/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/captain-s-choices. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd captain-s-choices
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-PROMPT:
-Build the Curio Class tool captain-s-choices. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/captain-s-choices/, use S:/CurioClass-codex-scratch/captain-s-choices for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/captain-s-choices/codex-report.md is written, say "Build done" and stop.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+--- end ---
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/captain-s-choices/codex-report.md is written, say "Build done" and stop.
+[ ] REVIEW, in a new chat
 
+--- REVIEW: captain-s-choices ---
 
+Review the Curio Class tool captain-s-choices cold. You did not build it. Your worktree is S:/CurioClass-codex/captain-s-choices: every command runs from there, and you write only inside tools/captain-s-choices/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/captain-s-choices. Make no git commits. Use Chrome ports 9950 to 9957 and host port 8755.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/captain-s-choices/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 18 of 40: Model Mechanic  (computer-science, grade 6-8)  group C
+18 of 40: Model Mechanic  (computer-science, grade 6-8)  group C
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: model-mechanic ---
+
+Build the Curio Class tool model-mechanic. Your worktree is S:/CurioClass-codex/model-mechanic: every command runs from there, and you write only inside tools/model-mechanic/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/model-mechanic. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/model-mechanic/codex-report.md is written, say "Build done" and stop.
+
+--- end ---
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd model-mechanic
+[ ] REVIEW, in a new chat
 
-PROMPT:
-Build the Curio Class tool model-mechanic. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/model-mechanic/, use S:/CurioClass-codex-scratch/model-mechanic for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+--- REVIEW: model-mechanic ---
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Review the Curio Class tool model-mechanic cold. You did not build it. Your worktree is S:/CurioClass-codex/model-mechanic: every command runs from there, and you write only inside tools/model-mechanic/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/model-mechanic. Make no git commits. Use Chrome ports 9940 to 9947 and host port 8745.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/model-mechanic/codex-report.md is written, say "Build done" and stop.
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/model-mechanic/codex-review.md is written, say "Review done" and stop.
 
+--- end ---
 
 ==============================================================================
-[ ] 19 of 40: Grid Operator  (science, grade 12)  group A
+19 of 40: Grid Operator  (science, grade 12)  group A
 ==============================================================================
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd grid-operator
+[ ] BUILD
 
-PROMPT:
-Build the Curio Class tool grid-operator. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/grid-operator/, use S:/CurioClass-codex-scratch/grid-operator for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+--- BUILD: grid-operator ---
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Build the Curio Class tool grid-operator. Your worktree is S:/CurioClass-codex/grid-operator: every command runs from there, and you write only inside tools/grid-operator/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/grid-operator. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/grid-operator/codex-report.md is written, say "Build done" and stop.
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/grid-operator/codex-report.md is written, say "Build done" and stop.
 
+--- end ---
+
+[ ] REVIEW, in a new chat
+
+--- REVIEW: grid-operator ---
+
+Review the Curio Class tool grid-operator cold. You did not build it. Your worktree is S:/CurioClass-codex/grid-operator: every command runs from there, and you write only inside tools/grid-operator/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/grid-operator. Make no git commits. Use Chrome ports 9960 to 9967 and host port 8765.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/grid-operator/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 20 of 40: Work Rate Crew  (math, grade 11)  group B
+20 of 40: Work Rate Crew  (math, grade 11)  group B
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: work-rate-crew ---
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd work-rate-crew
+Build the Curio Class tool work-rate-crew. Your worktree is S:/CurioClass-codex/work-rate-crew: every command runs from there, and you write only inside tools/work-rate-crew/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/work-rate-crew. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
 
-PROMPT:
-Build the Curio Class tool work-rate-crew. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/work-rate-crew/, use S:/CurioClass-codex-scratch/work-rate-crew for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/work-rate-crew/codex-report.md is written, say "Build done" and stop.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/work-rate-crew/codex-report.md is written, say "Build done" and stop.
+--- end ---
 
+[ ] REVIEW, in a new chat
 
+--- REVIEW: work-rate-crew ---
+
+Review the Curio Class tool work-rate-crew cold. You did not build it. Your worktree is S:/CurioClass-codex/work-rate-crew: every command runs from there, and you write only inside tools/work-rate-crew/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/work-rate-crew. Make no git commits. Use Chrome ports 9950 to 9957 and host port 8755.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/work-rate-crew/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 21 of 40: Spot the AI  (computer-science, grade 1)  group C
+21 of 40: Spot the AI  (computer-science, grade 1)  group C
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: spot-the-ai ---
+
+Build the Curio Class tool spot-the-ai. Your worktree is S:/CurioClass-codex/spot-the-ai: every command runs from there, and you write only inside tools/spot-the-ai/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/spot-the-ai. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd spot-the-ai
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/spot-the-ai/codex-report.md is written, say "Build done" and stop.
 
-PROMPT:
-Build the Curio Class tool spot-the-ai. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/spot-the-ai/, use S:/CurioClass-codex-scratch/spot-the-ai for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+--- end ---
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+[ ] REVIEW, in a new chat
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/spot-the-ai/codex-report.md is written, say "Build done" and stop.
+--- REVIEW: spot-the-ai ---
 
+Review the Curio Class tool spot-the-ai cold. You did not build it. Your worktree is S:/CurioClass-codex/spot-the-ai: every command runs from there, and you write only inside tools/spot-the-ai/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/spot-the-ai. Make no git commits. Use Chrome ports 9940 to 9947 and host port 8745.
 
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/spot-the-ai/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 22 of 40: Shadow Measure  (math, grade 10)  group A
+22 of 40: Shadow Measure  (math, grade 10)  group A
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: shadow-measure ---
+
+Build the Curio Class tool shadow-measure. Your worktree is S:/CurioClass-codex/shadow-measure: every command runs from there, and you write only inside tools/shadow-measure/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/shadow-measure. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/shadow-measure/codex-report.md is written, say "Build done" and stop.
+
+--- end ---
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd shadow-measure
+[ ] REVIEW, in a new chat
 
-PROMPT:
-Build the Curio Class tool shadow-measure. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/shadow-measure/, use S:/CurioClass-codex-scratch/shadow-measure for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+--- REVIEW: shadow-measure ---
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Review the Curio Class tool shadow-measure cold. You did not build it. Your worktree is S:/CurioClass-codex/shadow-measure: every command runs from there, and you write only inside tools/shadow-measure/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/shadow-measure. Make no git commits. Use Chrome ports 9960 to 9967 and host port 8765.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/shadow-measure/codex-report.md is written, say "Build done" and stop.
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/shadow-measure/codex-review.md is written, say "Review done" and stop.
 
+--- end ---
 
 ==============================================================================
-[ ] 23 of 40: Rules Referee  (health-pe, grade 6-8)  group B
+23 of 40: Rules Referee  (health-pe, grade 6-8)  group B
 ==============================================================================
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd rules-referee
+[ ] BUILD
 
-PROMPT:
-Build the Curio Class tool rules-referee. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/rules-referee/, use S:/CurioClass-codex-scratch/rules-referee for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+--- BUILD: rules-referee ---
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Build the Curio Class tool rules-referee. Your worktree is S:/CurioClass-codex/rules-referee: every command runs from there, and you write only inside tools/rules-referee/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/rules-referee. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/rules-referee/codex-report.md is written, say "Build done" and stop.
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/rules-referee/codex-report.md is written, say "Build done" and stop.
 
+--- end ---
+
+[ ] REVIEW, in a new chat
+
+--- REVIEW: rules-referee ---
+
+Review the Curio Class tool rules-referee cold. You did not build it. Your worktree is S:/CurioClass-codex/rules-referee: every command runs from there, and you write only inside tools/rules-referee/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/rules-referee. Make no git commits. Use Chrome ports 9950 to 9957 and host port 8755.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/rules-referee/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 24 of 40: pH Mystery Liquids  (science, grade 10)  group C
+24 of 40: pH Mystery Liquids  (science, grade 10)  group C
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: ph-mystery-liquids ---
+
+Build the Curio Class tool ph-mystery-liquids. Your worktree is S:/CurioClass-codex/ph-mystery-liquids: every command runs from there, and you write only inside tools/ph-mystery-liquids/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/ph-mystery-liquids. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd ph-mystery-liquids
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-PROMPT:
-Build the Curio Class tool ph-mystery-liquids. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/ph-mystery-liquids/, use S:/CurioClass-codex-scratch/ph-mystery-liquids for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/ph-mystery-liquids/codex-report.md is written, say "Build done" and stop.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+--- end ---
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/ph-mystery-liquids/codex-report.md is written, say "Build done" and stop.
+[ ] REVIEW, in a new chat
 
+--- REVIEW: ph-mystery-liquids ---
 
+Review the Curio Class tool ph-mystery-liquids cold. You did not build it. Your worktree is S:/CurioClass-codex/ph-mystery-liquids: every command runs from there, and you write only inside tools/ph-mystery-liquids/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/ph-mystery-liquids. Make no git commits. Use Chrome ports 9940 to 9947 and host port 8745.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/ph-mystery-liquids/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 25 of 40: Packaging Challenge  (math, grade 10)  group A
+25 of 40: Packaging Challenge  (math, grade 10)  group A
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: packaging-challenge ---
+
+Build the Curio Class tool packaging-challenge. Your worktree is S:/CurioClass-codex/packaging-challenge: every command runs from there, and you write only inside tools/packaging-challenge/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/packaging-challenge. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/packaging-challenge/codex-report.md is written, say "Build done" and stop.
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd packaging-challenge
+--- end ---
 
-PROMPT:
-Build the Curio Class tool packaging-challenge. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/packaging-challenge/, use S:/CurioClass-codex-scratch/packaging-challenge for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+[ ] REVIEW, in a new chat
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+--- REVIEW: packaging-challenge ---
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/packaging-challenge/codex-report.md is written, say "Build done" and stop.
+Review the Curio Class tool packaging-challenge cold. You did not build it. Your worktree is S:/CurioClass-codex/packaging-challenge: every command runs from there, and you write only inside tools/packaging-challenge/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/packaging-challenge. Make no git commits. Use Chrome ports 9960 to 9967 and host port 8765.
 
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/packaging-challenge/codex-review.md is written, say "Review done" and stop.
 
+--- end ---
+
 ==============================================================================
-[ ] 26 of 40: Me vs the Counter  (computer-science, grade k)  group B
+26 of 40: Me vs the Counter  (computer-science, grade k)  group B
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: me-vs-the-counter ---
+
+Build the Curio Class tool me-vs-the-counter. Your worktree is S:/CurioClass-codex/me-vs-the-counter: every command runs from there, and you write only inside tools/me-vs-the-counter/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/me-vs-the-counter. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd me-vs-the-counter
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-PROMPT:
-Build the Curio Class tool me-vs-the-counter. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/me-vs-the-counter/, use S:/CurioClass-codex-scratch/me-vs-the-counter for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/me-vs-the-counter/codex-report.md is written, say "Build done" and stop.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+--- end ---
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/me-vs-the-counter/codex-report.md is written, say "Build done" and stop.
+[ ] REVIEW, in a new chat
 
+--- REVIEW: me-vs-the-counter ---
 
+Review the Curio Class tool me-vs-the-counter cold. You did not build it. Your worktree is S:/CurioClass-codex/me-vs-the-counter: every command runs from there, and you write only inside tools/me-vs-the-counter/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/me-vs-the-counter. Make no git commits. Use Chrome ports 9950 to 9957 and host port 8755.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/me-vs-the-counter/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 27 of 40: Launch Pad  (math, grade 9)  group C
+27 of 40: Launch Pad  (math, grade 9)  group C
 ==============================================================================
+
+[ ] BUILD
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd launch-pad
+--- BUILD: launch-pad ---
 
-PROMPT:
-Build the Curio Class tool launch-pad. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/launch-pad/, use S:/CurioClass-codex-scratch/launch-pad for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+Build the Curio Class tool launch-pad. Your worktree is S:/CurioClass-codex/launch-pad: every command runs from there, and you write only inside tools/launch-pad/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/launch-pad. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/launch-pad/codex-report.md is written, say "Build done" and stop.
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/launch-pad/codex-report.md is written, say "Build done" and stop.
 
+--- end ---
 
+[ ] REVIEW, in a new chat
+
+--- REVIEW: launch-pad ---
+
+Review the Curio Class tool launch-pad cold. You did not build it. Your worktree is S:/CurioClass-codex/launch-pad: every command runs from there, and you write only inside tools/launch-pad/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/launch-pad. Make no git commits. Use Chrome ports 9940 to 9947 and host port 8745.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/launch-pad/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 28 of 40: Keyword Fishing  (library, grade 3-5)  group A
+28 of 40: Keyword Fishing  (library, grade 3-5)  group A
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: keyword-fishing ---
+
+Build the Curio Class tool keyword-fishing. Your worktree is S:/CurioClass-codex/keyword-fishing: every command runs from there, and you write only inside tools/keyword-fishing/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/keyword-fishing. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd keyword-fishing
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-PROMPT:
-Build the Curio Class tool keyword-fishing. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/keyword-fishing/, use S:/CurioClass-codex-scratch/keyword-fishing for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/keyword-fishing/codex-report.md is written, say "Build done" and stop.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+--- end ---
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/keyword-fishing/codex-report.md is written, say "Build done" and stop.
+[ ] REVIEW, in a new chat
 
+--- REVIEW: keyword-fishing ---
 
+Review the Curio Class tool keyword-fishing cold. You did not build it. Your worktree is S:/CurioClass-codex/keyword-fishing: every command runs from there, and you write only inside tools/keyword-fishing/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/keyword-fishing. Make no git commits. Use Chrome ports 9960 to 9967 and host port 8765.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/keyword-fishing/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 29 of 40: Is the Historian Right?  (eld, grade 9-12)  group B
+29 of 40: Is the Historian Right?  (eld, grade 9-12)  group B
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: is-the-historian-right ---
+
+Build the Curio Class tool is-the-historian-right. Your worktree is S:/CurioClass-codex/is-the-historian-right: every command runs from there, and you write only inside tools/is-the-historian-right/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/is-the-historian-right. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/is-the-historian-right/codex-report.md is written, say "Build done" and stop.
+
+--- end ---
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd is-the-historian-right
+[ ] REVIEW, in a new chat
 
-PROMPT:
-Build the Curio Class tool is-the-historian-right. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/is-the-historian-right/, use S:/CurioClass-codex-scratch/is-the-historian-right for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+--- REVIEW: is-the-historian-right ---
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Review the Curio Class tool is-the-historian-right cold. You did not build it. Your worktree is S:/CurioClass-codex/is-the-historian-right: every command runs from there, and you write only inside tools/is-the-historian-right/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/is-the-historian-right. Make no git commits. Use Chrome ports 9950 to 9957 and host port 8755.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/is-the-historian-right/codex-report.md is written, say "Build done" and stop.
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/is-the-historian-right/codex-review.md is written, say "Review done" and stop.
 
+--- end ---
 
 ==============================================================================
-[ ] 30 of 40: Input or Output?  (computer-science, grade 2)  group C
+30 of 40: Input or Output?  (computer-science, grade 2)  group C
 ==============================================================================
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd input-or-output
+[ ] BUILD
 
-PROMPT:
-Build the Curio Class tool input-or-output. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/input-or-output/, use S:/CurioClass-codex-scratch/input-or-output for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+--- BUILD: input-or-output ---
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Build the Curio Class tool input-or-output. Your worktree is S:/CurioClass-codex/input-or-output: every command runs from there, and you write only inside tools/input-or-output/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/input-or-output. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/input-or-output/codex-report.md is written, say "Build done" and stop.
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/input-or-output/codex-report.md is written, say "Build done" and stop.
 
+--- end ---
+
+[ ] REVIEW, in a new chat
+
+--- REVIEW: input-or-output ---
+
+Review the Curio Class tool input-or-output cold. You did not build it. Your worktree is S:/CurioClass-codex/input-or-output: every command runs from there, and you write only inside tools/input-or-output/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/input-or-output. Make no git commits. Use Chrome ports 9940 to 9947 and host port 8745.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/input-or-output/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 31 of 40: Fire Lookout Triangles  (math, grade 12)  group A
+31 of 40: Fire Lookout Triangles  (math, grade 12)  group A
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: fire-lookout-triangles ---
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd fire-lookout-triangles
+Build the Curio Class tool fire-lookout-triangles. Your worktree is S:/CurioClass-codex/fire-lookout-triangles: every command runs from there, and you write only inside tools/fire-lookout-triangles/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/fire-lookout-triangles. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
 
-PROMPT:
-Build the Curio Class tool fire-lookout-triangles. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/fire-lookout-triangles/, use S:/CurioClass-codex-scratch/fire-lookout-triangles for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/fire-lookout-triangles/codex-report.md is written, say "Build done" and stop.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/fire-lookout-triangles/codex-report.md is written, say "Build done" and stop.
+--- end ---
 
+[ ] REVIEW, in a new chat
 
+--- REVIEW: fire-lookout-triangles ---
+
+Review the Curio Class tool fire-lookout-triangles cold. You did not build it. Your worktree is S:/CurioClass-codex/fire-lookout-triangles: every command runs from there, and you write only inside tools/fire-lookout-triangles/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/fire-lookout-triangles. Make no git commits. Use Chrome ports 9960 to 9967 and host port 8765.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/fire-lookout-triangles/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 32 of 40: Fair Dice Investigation  (math, grade 12)  group B
+32 of 40: Fair Dice Investigation  (math, grade 12)  group B
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: fair-dice-investigation ---
+
+Build the Curio Class tool fair-dice-investigation. Your worktree is S:/CurioClass-codex/fair-dice-investigation: every command runs from there, and you write only inside tools/fair-dice-investigation/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/fair-dice-investigation. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd fair-dice-investigation
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/fair-dice-investigation/codex-report.md is written, say "Build done" and stop.
 
-PROMPT:
-Build the Curio Class tool fair-dice-investigation. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/fair-dice-investigation/, use S:/CurioClass-codex-scratch/fair-dice-investigation for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+--- end ---
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+[ ] REVIEW, in a new chat
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/fair-dice-investigation/codex-report.md is written, say "Build done" and stop.
+--- REVIEW: fair-dice-investigation ---
 
+Review the Curio Class tool fair-dice-investigation cold. You did not build it. Your worktree is S:/CurioClass-codex/fair-dice-investigation: every command runs from there, and you write only inside tools/fair-dice-investigation/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/fair-dice-investigation. Make no git commits. Use Chrome ports 9950 to 9957 and host port 8755.
 
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/fair-dice-investigation/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 33 of 40: Design the Study  (math, grade 12)  group C
+33 of 40: Design the Study  (math, grade 12)  group C
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: design-the-study ---
+
+Build the Curio Class tool design-the-study. Your worktree is S:/CurioClass-codex/design-the-study: every command runs from there, and you write only inside tools/design-the-study/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/design-the-study. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/design-the-study/codex-report.md is written, say "Build done" and stop.
+
+--- end ---
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd design-the-study
+[ ] REVIEW, in a new chat
 
-PROMPT:
-Build the Curio Class tool design-the-study. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/design-the-study/, use S:/CurioClass-codex-scratch/design-the-study for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+--- REVIEW: design-the-study ---
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Review the Curio Class tool design-the-study cold. You did not build it. Your worktree is S:/CurioClass-codex/design-the-study: every command runs from there, and you write only inside tools/design-the-study/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/design-the-study. Make no git commits. Use Chrome ports 9940 to 9947 and host port 8745.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/design-the-study/codex-report.md is written, say "Build done" and stop.
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/design-the-study/codex-review.md is written, say "Review done" and stop.
 
+--- end ---
 
 ==============================================================================
-[ ] 34 of 40: Courtroom Statistics  (math, grade 12)  group A
+34 of 40: Courtroom Statistics  (math, grade 12)  group A
 ==============================================================================
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd courtroom-statistics
+[ ] BUILD
 
-PROMPT:
-Build the Curio Class tool courtroom-statistics. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/courtroom-statistics/, use S:/CurioClass-codex-scratch/courtroom-statistics for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+--- BUILD: courtroom-statistics ---
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Build the Curio Class tool courtroom-statistics. Your worktree is S:/CurioClass-codex/courtroom-statistics: every command runs from there, and you write only inside tools/courtroom-statistics/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/courtroom-statistics. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/courtroom-statistics/codex-report.md is written, say "Build done" and stop.
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/courtroom-statistics/codex-report.md is written, say "Build done" and stop.
 
+--- end ---
+
+[ ] REVIEW, in a new chat
+
+--- REVIEW: courtroom-statistics ---
+
+Review the Curio Class tool courtroom-statistics cold. You did not build it. Your worktree is S:/CurioClass-codex/courtroom-statistics: every command runs from there, and you write only inside tools/courtroom-statistics/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/courtroom-statistics. Make no git commits. Use Chrome ports 9960 to 9967 and host port 8765.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/courtroom-statistics/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 35 of 40: Code Kitchen  (computer-science, grade 6-8)  group B
+35 of 40: Code Kitchen  (computer-science, grade 6-8)  group B
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: code-kitchen ---
+
+Build the Curio Class tool code-kitchen. Your worktree is S:/CurioClass-codex/code-kitchen: every command runs from there, and you write only inside tools/code-kitchen/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/code-kitchen. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd code-kitchen
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-PROMPT:
-Build the Curio Class tool code-kitchen. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/code-kitchen/, use S:/CurioClass-codex-scratch/code-kitchen for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/code-kitchen/codex-report.md is written, say "Build done" and stop.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+--- end ---
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/code-kitchen/codex-report.md is written, say "Build done" and stop.
+[ ] REVIEW, in a new chat
 
+--- REVIEW: code-kitchen ---
 
+Review the Curio Class tool code-kitchen cold. You did not build it. Your worktree is S:/CurioClass-codex/code-kitchen: every command runs from there, and you write only inside tools/code-kitchen/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/code-kitchen. Make no git commits. Use Chrome ports 9950 to 9957 and host port 8755.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/code-kitchen/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 36 of 40: Zipline Energy  (science, grade 11)  group C
+36 of 40: Zipline Energy  (science, grade 11)  group C
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: zipline-energy ---
+
+Build the Curio Class tool zipline-energy. Your worktree is S:/CurioClass-codex/zipline-energy: every command runs from there, and you write only inside tools/zipline-energy/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/zipline-energy. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/zipline-energy/codex-report.md is written, say "Build done" and stop.
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd zipline-energy
+--- end ---
 
-PROMPT:
-Build the Curio Class tool zipline-energy. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/zipline-energy/, use S:/CurioClass-codex-scratch/zipline-energy for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+[ ] REVIEW, in a new chat
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+--- REVIEW: zipline-energy ---
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/zipline-energy/codex-report.md is written, say "Build done" and stop.
+Review the Curio Class tool zipline-energy cold. You did not build it. Your worktree is S:/CurioClass-codex/zipline-energy: every command runs from there, and you write only inside tools/zipline-energy/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/zipline-energy. Make no git commits. Use Chrome ports 9940 to 9947 and host port 8745.
 
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/zipline-energy/codex-review.md is written, say "Review done" and stop.
 
+--- end ---
+
 ==============================================================================
-[ ] 37 of 40: Water Shapes Earth  (science, grade 9)  group A
+37 of 40: Water Shapes Earth  (science, grade 9)  group A
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: water-shapes-earth ---
+
+Build the Curio Class tool water-shapes-earth. Your worktree is S:/CurioClass-codex/water-shapes-earth: every command runs from there, and you write only inside tools/water-shapes-earth/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/water-shapes-earth. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd water-shapes-earth
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-PROMPT:
-Build the Curio Class tool water-shapes-earth. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/water-shapes-earth/, use S:/CurioClass-codex-scratch/water-shapes-earth for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/water-shapes-earth/codex-report.md is written, say "Build done" and stop.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+--- end ---
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/water-shapes-earth/codex-report.md is written, say "Build done" and stop.
+[ ] REVIEW, in a new chat
 
+--- REVIEW: water-shapes-earth ---
 
+Review the Curio Class tool water-shapes-earth cold. You did not build it. Your worktree is S:/CurioClass-codex/water-shapes-earth: every command runs from there, and you write only inside tools/water-shapes-earth/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/water-shapes-earth. Make no git commits. Use Chrome ports 9960 to 9967 and host port 8765.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/water-shapes-earth/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 38 of 40: Theory Gym  (arts, grade 9-12)  group B
+38 of 40: Theory Gym  (arts, grade 9-12)  group B
 ==============================================================================
+
+[ ] BUILD
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd theory-gym
+--- BUILD: theory-gym ---
 
-PROMPT:
-Build the Curio Class tool theory-gym. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/theory-gym/, use S:/CurioClass-codex-scratch/theory-gym for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+Build the Curio Class tool theory-gym. Your worktree is S:/CurioClass-codex/theory-gym: every command runs from there, and you write only inside tools/theory-gym/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/theory-gym. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/theory-gym/codex-report.md is written, say "Build done" and stop.
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/theory-gym/codex-report.md is written, say "Build done" and stop.
 
+--- end ---
 
+[ ] REVIEW, in a new chat
+
+--- REVIEW: theory-gym ---
+
+Review the Curio Class tool theory-gym cold. You did not build it. Your worktree is S:/CurioClass-codex/theory-gym: every command runs from there, and you write only inside tools/theory-gym/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/theory-gym. Make no git commits. Use Chrome ports 9950 to 9957 and host port 8755.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/theory-gym/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 39 of 40: Storyboard Studio  (arts, grade 9-12)  group C
+39 of 40: Storyboard Studio  (arts, grade 9-12)  group C
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: storyboard-studio ---
+
+Build the Curio Class tool storyboard-studio. Your worktree is S:/CurioClass-codex/storyboard-studio: every command runs from there, and you write only inside tools/storyboard-studio/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/storyboard-studio. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd storyboard-studio
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-PROMPT:
-Build the Curio Class tool storyboard-studio. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/storyboard-studio/, use S:/CurioClass-codex-scratch/storyboard-studio for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/storyboard-studio/codex-report.md is written, say "Build done" and stop.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+--- end ---
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/storyboard-studio/codex-report.md is written, say "Build done" and stop.
+[ ] REVIEW, in a new chat
 
+--- REVIEW: storyboard-studio ---
 
+Review the Curio Class tool storyboard-studio cold. You did not build it. Your worktree is S:/CurioClass-codex/storyboard-studio: every command runs from there, and you write only inside tools/storyboard-studio/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/storyboard-studio. Make no git commits. Use Chrome ports 9940 to 9947 and host port 8745.
+
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/storyboard-studio/codex-review.md is written, say "Review done" and stop.
+
+--- end ---
+
 ==============================================================================
-[ ] 40 of 40: Traffic Light Coder  (computer-science, grade 3)  group A
+40 of 40: Traffic Light Coder  (computer-science, grade 3)  group A
 ==============================================================================
+
+[ ] BUILD
+
+--- BUILD: traffic-light-coder ---
+
+Build the Curio Class tool traffic-light-coder. Your worktree is S:/CurioClass-codex/traffic-light-coder: every command runs from there, and you write only inside tools/traffic-light-coder/. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Scratch is S:/CurioClass-codex/_scratch/traffic-light-coder. This is Build only: make no git commits and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/traffic-light-coder/codex-report.md is written, say "Build done" and stop.
+
+--- end ---
 
-START:
-S:\CurioClass-media\scripts\codex-start.cmd traffic-light-coder
+[ ] REVIEW, in a new chat
 
-PROMPT:
-Build the Curio Class tool traffic-light-coder. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/traffic-light-coder/, use S:/CurioClass-codex-scratch/traffic-light-coder for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+--- REVIEW: traffic-light-coder ---
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Review the Curio Class tool traffic-light-coder cold. You did not build it. Your worktree is S:/CurioClass-codex/traffic-light-coder: every command runs from there, and you write only inside tools/traffic-light-coder/. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Scratch is S:/CurioClass-codex/_scratch/traffic-light-coder. Make no git commits. Use Chrome ports 9960 to 9967 and host port 8765.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/traffic-light-coder/codex-report.md is written, say "Build done" and stop.
+Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/traffic-light-coder/codex-review.md is written, say "Review done" and stop.
 
+--- end ---
