@@ -4,14 +4,14 @@ You are a fresh, cold reviewer of ONE Curio Class tool that another Codex chat j
 owe it nothing. After you finish, three blind Claude lenses check the same tool, and every finding they raise costs far
 more to fix than the same finding fixed now. Your job is to find what they would find, fix it, and leave them little to do.
 
-The tool id, the worktree and the Scratch folder are in the prompt that sent you here. `<id>` below means that id, and
-Scratch means the folder the prompt names. The repo root is the worktree. Run every command from there.
+The tool id is in the prompt that sent you here, and `<id>` below means that id. The repo root is `S:\CurioClass-codex`,
+shared with other chats. Run every command from there. Scratch means `_scratch/<id>` in it.
 
 ## Rules
 
 Every rule in `docs/agents/CODEX-BUILD.md` holds here: Ground rules, Do not hang (a time limit on every command), Images
-and the people rule. Read that brief first. In short: write only inside `tools/<id>/`, no git commits, use only the ports
-your prompt names, and put shots and temporary files in Scratch.
+and the people rule. Read that brief first. In short: write only inside `tools/<id>/` and Scratch, no git commits, use only
+the ports your prompt names, and keep the tool folder tidy.
 
 - Keep what is strong. You are here to fix faults and lift weak spots, not to restyle the tool or strip it down. Do not
   make the graphics or the play plainer to clear a check.
@@ -52,7 +52,7 @@ If you disagree with the spec, or a fix would need a new feature or a kit change
 
 ## 4. Check
 
-Re-shoot only what your fixes touched. Then run the audit once, last, with the same 30 minute limit:
+Re-shoot only what your fixes touched. Then run the audit once, last, with the same 40 minute limit:
 `python scripts/audit_tool.py <id> <Scratch>/review-audit --port <your second port> --profile <Scratch>/chrome-prof-review`.
 Fix what it confirms, re-shoot those frames, and stop. If the audit does not finish, say so and stop.
 

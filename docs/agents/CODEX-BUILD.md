@@ -8,15 +8,19 @@ A tool that passes every check and is dull has failed. The first two Codex build
 but the owner found the graphics very simple and the play underwhelming. Correct is the floor here. The goal is a tool a
 student would open again on their own.
 
-The tool id, the worktree and the Scratch folder are in the prompt that sent you here. `<id>` below means that id, and
-Scratch means the folder the prompt names. The repo root is the worktree. Run every command from there.
+The tool id is in the prompt that sent you here, and `<id>` below means that id. Every Codex chat shares one checkout,
+`S:\CurioClass-codex`, and that is the repo root. Run every command from there. Scratch means `_scratch/<id>` in it.
+If your working folder is anything else, say so and stop: nothing you make there will reach the tool.
 
 **This run is Build only.** When the report is written, stop and wait. Do not start a polish round, and do not commit.
 A cold Codex review comes next (`docs/agents/CODEX-REVIEW.md`), in another chat. The tool holds on this branch until then.
 
 ## Ground rules
 
-- Write only inside `tools/<id>/`. Not `kit/`, `docs/`, `scripts/` or other tools. No git commits, branch changes or stash.
+- Write only inside `tools/<id>/` and Scratch. Other chats are working in this same checkout at the same time, so never
+  touch `kit/`, `docs/`, `scripts/` or another tool, and no git commits, branch changes, stash, reset or clean.
+- Keep the tool folder tidy. It holds the files listed under Files to make, plus a data file only if `src.html` loads it.
+  Plans, evidence, audit notes, previews, contact sheets and anything else you made for yourself go in Scratch.
 - If a kit engine needs a change, do not make it. Work around it in the tool and list the change in `handoff.md` under
   `## Engine changes wanted`: the file, the function, the exact change and why.
 - If the spec is wrong or impossible, build everything else and say so in `handoff.md` and the report. Do not improvise.
@@ -128,14 +132,14 @@ The limits below are for commands and checks. They are never a reason to cut the
 
 1. **Start the report early.** Create `tools/<id>/codex-report.md` as soon as the first version bundles, and fill each
    section as its check finishes. Keep it under 200 lines.
-2. **Put a time limit on every command** you run: 2 minutes for a bundle, 5 for a drive.py batch, 30 for the audit.
+2. **Put a time limit on every command** you run: 2 minutes for a bundle, 5 for a drive.py batch, 40 for the audit.
    A command that hits its limit is stopped and retried once, smaller. If it stops again, write it under Left open and
    move on. Never wait on a command with no limit.
 3. **Nothing long-lived in the foreground.** The `--host` server starts in the background and stops right after its
    shots. Keep drive.py batches to about 12 shots.
 4. **Shoot once, late.** Work in small checks on the size you are fixing. Do the full run of every size only once, near
    the end. After that, re-shoot only what a fix touched. Do not re-run the whole set after a small fix.
-5. **Run the audit once, last.** Answer its leads in the report. If it has not finished in 30 minutes, stop it, say so
+5. **Run the audit once, last.** Answer its leads in the report. If it has not finished in 40 minutes, stop it, say so
    in the report and finish. The reviewer can run it.
 6. **Close every Chrome and server you start**, each time, before the next step.
 7. **If you are stuck on one problem for more than about 20 minutes,** write it under Left open and go on to the next.
