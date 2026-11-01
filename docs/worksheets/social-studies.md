@@ -316,7 +316,7 @@ Covers Kindergarten through Grade 5 Social Studies by grade, the three middle sc
 | 11 | River Valley Map Study | Map | Mesopotamia and Egypt | Label the Tigris, Euphrates and Nile, the Fertile Crescent and key cities, then explain why each civilization grew there. |
 | 12 | Hammurabi's Code: Fair or Not? | Source analysis | Mesopotamia and Egypt | Read 8 laws from the Code of Hammurabi and note what each reveals about social classes, property and justice in Babylon. |
 | 13 | From Pictures to Cuneiform | Diagram | Mesopotamia and Egypt | Trace how 4 signs changed from pictographs to cuneiform wedges, then explain why writing helped trade and government. |
-| 14 | Mesopotamia and Egypt Compare | Organizer | Mesopotamia and Egypt | Compare the two civilizations in a chart: geography, government, religion, writing and achievements. |
+| 14 | Fix the Mistakes: Ancient Travel Brochure | Critique | Mesopotamia and Egypt | Fix the mistakes: find and correct 8 planted errors in a travel brochure for Ur and Thebes, citing evidence for each fix. |
 | 15 | Nile Flood Calendar | Data and graphs | Mesopotamia and Egypt | Read a chart of the Nile's yearly flood levels and Egypt's three seasons, then explain how farmers planned around it. |
 | 16 | The Rosetta Stone Puzzle | Puzzle | Mesopotamia and Egypt | Decode 6 cartouche names using a simplified hieroglyph key, the same way Champollion used names on the Rosetta Stone. |
 | 17 | Read a Real Museum Label | Critique | Museum Label Writer | Evaluate 3 museum labels for ancient artifacts on clarity, accuracy and audience, scoring each on a short rubric. |
@@ -336,7 +336,7 @@ Covers Kindergarten through Grade 5 Social Studies by grade, the three middle sc
 | 31 | The Twelve Tables | Source analysis | Ancient Rome | Read 6 laws from the Twelve Tables and explain why writing laws down mattered to plebeians. |
 | 32 | Republic to Empire Timeline | Timeline | Ancient Rome | Order 10 events from the Punic Wars to Augustus becoming emperor, and mark when the republic effectively ended. |
 | 33 | Pliny Watches Vesuvius | Source analysis | Ancient Rome | Read Pliny the Younger's letter on the eruption of Vesuvius and separate what he saw from what he was told. |
-| 34 | Ancient Civilizations Checkpoint | Review | Ancient Rome | Answer 15 mixed questions on Mesopotamia, Egypt, India, China, Greece and Rome. |
+| 34 | Ancient World Task-Card Strips | Review | Ancient Rome | Task-card strips: cut apart 12 strips, one skill per civilization (read a map, date a dynasty, restate a law), and solve each. |
 | 35 | Population Pyramids | Data and graphs | World Regions Today | Compare population pyramids for Niger, Japan and the US and explain what each shape predicts about schools and jobs. |
 | 36 | World Regions Map | Map | World Regions Today | Label 10 world regions on a map and add one fact about climate, language or economy for each. |
 | 37 | Development Data Compare | Data and graphs | World Regions Today | Read a table of GDP per person, life expectancy and literacy for 6 countries and rank them, explaining what the data misses. |
@@ -370,10 +370,10 @@ Covers Kindergarten through Grade 5 Social Studies by grade, the three middle sc
 | 12 | Islamic Civilizations Checkpoint | Review | Islamic Civilizations | Answer 10 questions on Byzantium, the rise of Islam, the caliphates and the golden age. |
 | 13 | Trans-Saharan Trade Routes | Map | Medieval Africa | Trace salt and gold routes between Taghaza, Timbuktu and the Mediterranean, labeling goods carried each way. |
 | 14 | Mansa Musa on the Catalan Atlas | Source analysis | Medieval Africa | Analyze the 1375 Catalan Atlas image of Mansa Musa and explain what Europeans knew and believed about Mali. |
-| 15 | Ghana, Mali, Songhai Compare | Organizer | Medieval Africa | Compare the three empires on dates, rulers, wealth, religion and reasons for decline in one chart. |
+| 15 | Cairo Gazette, 1324: Front Page | Writing frame | Medieval Africa | Newspaper front page: write a headline, lead story and map box on Mansa Musa's visit to Cairo, using al-Umari's account as evidence. |
 | 16 | Ibn Battuta in Mali | Source analysis | Medieval Africa | Read Ibn Battuta's 1352 account of Mali and sort his observations into praise, criticism and description. |
 | 17 | Great Zimbabwe and Swahili Coast | Read and respond | Medieval Africa | Read about Great Zimbabwe and Kilwa and answer 5 questions on how trade across the Indian Ocean built their wealth. |
-| 18 | Tang and Song Innovations | Organizer | Medieval Asia | Chart 6 Chinese innovations (printing, gunpowder, compass, paper money) with when they appeared and how they spread. |
+| 18 | Tang and Song Invention Trading Cards | Organizer | Medieval Asia | Trading cards: fill 6 cards (printing, gunpowder, compass, paper money, porcelain, canal locks) with date, use, how it spread and impact. |
 | 19 | Mongol Empire Map | Map | Medieval Asia | Shade the Mongol Empire at its height, mark the four khanates, and trace Marco Polo's route across it. |
 | 20 | Mongols: Destroyers or Connectors? | Source analysis | Medieval Asia | Compare a Persian chronicle of a Mongol siege with an account of the Pax Mongolica trade and weigh both views. |
 | 21 | Feudal Japan Pyramid | Diagram | Medieval Asia | Complete a diagram of feudal Japan's social structure from emperor and shogun to peasants and merchants, and compare it to Europe's. |
@@ -424,7 +424,7 @@ Covers Kindergarten through Grade 5 Social Studies by grade, the three middle sc
 | 12 | How Groups Decide | Organizer | Motion on the Floor | Compare majority vote, consensus, ranked choice and a leader deciding on speed, fairness and buy-in, using a class trip scenario. |
 | 13 | A Day Shaped by Institutions | Diagram | Shaping Our Week | Map a sample student's week and label where government, companies, unions and nonprofits shape each part, from bus routes to food labels. |
 | 14 | Who Provides It? | Organizer | Shaping Our Week | Sort 12 services (libraries, overtime pay, food banks, phone plans) by government, business, union or nonprofit, explaining 3 choices. |
-| 15 | Hamilton vs. Jefferson | Organizer | The Early Republic | Compare Hamilton's and Jefferson's views on the national bank, the economy, the Constitution and who should govern. |
+| 15 | Letters to the Editor, 1791 | Writing frame | The Early Republic | Letters to the editor: write one letter as a Hamiltonian and one as a Jeffersonian on the national bank, each quoting the real leader. |
 | 16 | Washington's Farewell Address | Source analysis | The Early Republic | Read excerpts of Washington's Farewell Address and list his warnings about parties and alliances, then judge if they came true. |
 | 17 | Marbury v. Madison Case Brief | Writing frame | The Early Republic | Complete a case brief for Marbury v. Madison: facts, question, decision, reasoning and why judicial review matters. |
 | 18 | The Election of 1828 Map | Map | The Early Republic | Read the 1828 electoral map and voter turnout data, then explain how expanded voting helped Jackson win. |
@@ -438,7 +438,7 @@ Covers Kindergarten through Grade 5 Social Studies by grade, the three middle sc
 | 26 | Lowell Mill Workers | Source analysis | Reform and the Industrial North | Read a letter from a Lowell mill worker and a mill rule sheet and describe hours, pay and how workers organized. |
 | 27 | Immigration Data, 1820 to 1860 | Data and graphs | Reform and the Industrial North | Graph immigration from Ireland and Germany by decade and connect the spikes to the famine and the 1848 revolutions. |
 | 28 | Declaration of Sentiments | Source analysis | Reform and the Industrial North | Compare the 1848 Declaration of Sentiments with the Declaration of Independence line by line and explain its strategy. |
-| 29 | Reform Movements Chart | Organizer | Reform and the Industrial North | Chart 5 reform movements (abolition, women's rights, education, temperance, prisons) with leaders, goals and results. |
+| 29 | Reform Convention Program | Organizer | Reform and the Industrial North | Event program: build a program for an 1840s reform convention with 5 speaker bios, goals, a real quotation and results for each. |
 | 30 | Cotton and Slavery Data | Data and graphs | Slavery and Sectionalism | Graph cotton production and the enslaved population from 1800 to 1860 and explain how the cotton gin tied them together. |
 | 31 | What to the Slave Is the Fourth of July? | Source analysis | Slavery and Sectionalism | Read excerpts of Frederick Douglass's 1852 speech and analyze his audience, his use of the nation's founding ideals and his tone. |
 | 32 | Harriet Jacobs in Her Own Words | Source analysis | Slavery and Sectionalism | Read an excerpt from Incidents in the Life of a Slave Girl and identify how Jacobs resisted and why she wrote for Northern women. |
@@ -538,7 +538,7 @@ Covers Kindergarten through Grade 5 Social Studies by grade, the three middle sc
 | 18 | Buying on Margin | Apply | Roaring Twenties and the Great Depression | Calculate gains and losses for 4 investors who bought stock on 10 percent margin before and after the 1929 crash. |
 | 19 | Unemployment and the New Deal | Data and graphs | Roaring Twenties and the Great Depression | Graph unemployment from 1929 to 1941, mark major New Deal programs, and judge what the data says about their effect. |
 | 20 | Migrant Mother, Read Closely | Source analysis | Roaring Twenties and the Great Depression | Analyze Dorothea Lange's 1936 Migrant Mother photo and the story of Florence Owens Thompson, including what Lange left out. |
-| 21 | New Deal Alphabet Chart | Organizer | Roaring Twenties and the Great Depression | Sort 10 New Deal programs into relief, recovery and reform and note one lasting program still in use. |
+| 21 | Alphabet Agency Secret Code | Puzzle | Roaring Twenties and the Great Depression | Secret code: match 10 New Deal agencies to their purpose and relief, recovery or reform; answer letters spell a Roosevelt phrase. |
 | 22 | Executive Order 9066 | Source analysis | World War II and the Home Front | Read Executive Order 9066 and Fred Korematsu's statements and explain how the order was applied and later judged. |
 | 23 | Double V Campaign | Source analysis | World War II and the Home Front | Analyze the 1942 Pittsburgh Courier Double V campaign and explain how Black Americans linked victory abroad with rights at home. |
 | 24 | Mobilizing the Home Front | Data and graphs | World War II and the Home Front | Read data on women in the workforce, war production and rationing from 1940 to 1945 and write 3 claims. |
@@ -587,7 +587,7 @@ Covers Kindergarten through Grade 5 Social Studies by grade, the three middle sc
 | 16 | Executive Orders and Their Limits | Source analysis | Congress, the President and the Courts | Read Youngstown Sheet and Tube v. Sawyer excerpts and explain Justice Jackson's three categories of presidential power. |
 | 17 | How a Case Reaches the Supreme Court | Diagram | Congress, the President and the Courts | Diagram the federal court system and trace one landmark case from trial court to certiorari and decision. |
 | 18 | Majority and Dissent | Source analysis | Congress, the President and the Courts | Compare the majority opinion and dissent in a landmark case and identify the constitutional reasoning in each. |
-| 19 | Three Branches Checkpoint | Review | Congress, the President and the Courts | Answer 15 mixed questions on founding principles, federalism and the three branches. |
+| 19 | Fix the Mistakes: Civics Explainer | Critique | Congress, the President and the Courts | Fix the mistakes: find and correct 10 errors about federalism and the branches in a fictional news explainer, citing the Constitution. |
 | 20 | First Amendment Cases | Apply | Civil Rights and Liberties | Apply Tinker, Morse v. Frederick and Mahanoy v. B.L. to 6 student speech scenarios and predict each outcome. |
 | 21 | Search and Seizure Scenarios | Apply | Civil Rights and Liberties | Decide whether 6 searches are reasonable under the Fourth Amendment using Mapp, New Jersey v. T.L.O. and Riley v. California. |
 | 22 | Due Process Rights Chart | Organizer | Civil Rights and Liberties | Chart the Fifth, Sixth and Eighth Amendment rights with Gideon v. Wainwright and Miranda v. Arizona as anchor cases. |
@@ -644,10 +644,10 @@ Covers Kindergarten through Grade 5 Social Studies by grade, the three middle sc
 | 24 | Calculating GDP | Practice | Macroeconomics | Calculate GDP using the expenditure approach from a sample country's data and identify items that do not count. |
 | 25 | Real vs. Nominal | Practice | Macroeconomics | Convert 6 nominal values to real values with a price index and explain why it matters for comparing wages over time. |
 | 26 | Building a CPI Basket | Apply | Macroeconomics | Calculate a price index and inflation rate from a 5-item basket over 3 years and discuss substitution bias. |
-| 27 | Unemployment Types | Organizer | Macroeconomics | Classify 10 people as frictionally, structurally or cyclically unemployed, or not in the labor force, with reasons. |
+| 27 | Job Center Case Files | Apply | Macroeconomics | Case files: classify 10 fictional job seekers as frictionally, structurally or cyclically unemployed, or not in the labor force, with reasons. |
 | 28 | Reading the Business Cycle | Data and graphs | Macroeconomics | Label peaks, troughs and recessions on a real GDP graph from 1990 to today and connect them to major events. |
 | 29 | BLS Jobs Report Reading | Source analysis | Macroeconomics | Read a summary of a Bureau of Labor Statistics jobs report and explain the unemployment rate, payrolls and participation. |
-| 30 | Macro Checkpoint | Review | Macroeconomics | Answer 15 mixed questions on supply and demand, market structures, GDP, inflation and unemployment. |
+| 30 | Macro Crossword | Puzzle | Macroeconomics | Crossword with real clues: solve 16 clues that require calculations and concepts from supply and demand, market structures, GDP, inflation and unemployment. |
 | 31 | Functions of Money | Vocabulary | Money and the Federal Reserve | Classify 8 items (gold, cigarettes in a prison, gift cards, digital currency) by how well they serve the functions of money. |
 | 32 | The Money Multiplier | Practice | Money and the Federal Reserve | Trace a 1,000 dollar deposit through 5 banks with a 10 percent reserve requirement and calculate new money created. |
 | 33 | The Fed's Toolbox | Organizer | Money and the Federal Reserve | Chart open market operations, interest on reserves and the discount rate: how each works and its effect on the economy. |
@@ -693,7 +693,7 @@ Covers Kindergarten through Grade 5 Social Studies by grade, the three middle sc
 | 26 | Asch Conformity Data | Data and graphs | Social Psychology and Mental Health | Graph conformity rates from Asch's line studies by group size and explain what increases or decreases conformity. |
 | 27 | Milgram and Research Ethics | Source analysis | Social Psychology and Mental Health | Read a summary of Milgram's obedience study and the APA ethics principles and judge whether it could be run today. |
 | 28 | The Bystander Effect | Read and respond | Social Psychology and Mental Health | Read about Darley and Latane's 1968 study and the later reporting corrections on the Kitty Genovese case, then answer 6 questions. |
-| 29 | Attribution Errors | Practice | Social Psychology and Mental Health | Identify the fundamental attribution error, self-serving bias or actor-observer bias in 8 fictional scenarios. |
+| 29 | Spot the Bias Comic Strip | Practice | Social Psychology and Mental Health | Comic strip: label the attribution error, self-serving bias or actor-observer bias in 8 panels about fictional characters, then redraw one fairly. |
 | 30 | Stanford Prison Experiment Critique | Critique | Social Psychology and Mental Health | Evaluate the Stanford Prison Experiment's design, ethics and replication problems using 3 short critiques. |
 | 31 | Ethical Study Proposal | Planner | Social Psychology and Mental Health | Design a harmless study on helping behavior with informed consent, debriefing and an IRB checklist. |
 | 32 | Big Five Traits Profiles | Apply | Personality, Intelligence and Motivation | Rate 5 fictional characters on the Big Five traits using evidence from short descriptions. |
