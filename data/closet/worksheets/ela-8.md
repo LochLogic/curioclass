@@ -100,8 +100,3 @@ choice: Question 4: Why does the author include Bessie Coleman?
 write: Explain why your choice is strongest and answer question 4.
   lines: 3
   key: It is the only evidence about Coleman herself, and it shows that like the Wrights she succeeded despite obstacles; the author includes her to show that flight's history also includes people who were shut out and found another way.
-
-## Stretch
-write: Write one claim about the Wright brothers' approach to problems. Support it with the two strongest pieces of evidence from different paragraphs, and explain each.
-  lines: 5
-  key: Claim: The Wrights solved problems by testing instead of trusting others. Evidence: they "tested about 200 tiny wing shapes" when the published numbers failed [3]; they tested wing warping "on hundreds of glider flights before they added an engine" [4]. Both show step-by-step testing before risk.

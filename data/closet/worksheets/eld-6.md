@@ -28,19 +28,13 @@ sort: Glue each sentence card under the right heading.
 
 ## Explain
 write: Choose one key detail. Explain how it supports the main idea.
-  lines: 3
+  lines: 2
   starter: The detail "___" is a key detail because it shows ___.
   key: Example: The detail "Guard bees stand at the entrance and keep out bees from other hives" is a key detail because it shows one job a bee does to keep the whole colony safe.
 write: Choose one extra detail. Explain why it does not support the main idea.
-  lines: 3
+  lines: 2
   starter: The detail "___" is an extra detail because ___.
   key: Example: The detail "A honeybee beats its wings more than 200 times a second" is an extra detail because it is about one bee's body, not about how the bees share work to keep the colony alive.
-
-## Stretch: Say it your way
-write: Write the main idea in your own words, using two key details.
-  lines: 3
-  starter: The passage is mainly about ___. For example, ___ and ___.
-  key: The passage is mainly about how honeybees share jobs so the colony can survive. For example, the queen lays the eggs, and older workers collect nectar and pollen for food.
 
 # 21. Lab Reports and Claims Check
 minutes: 35

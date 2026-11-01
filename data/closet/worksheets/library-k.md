@@ -46,4 +46,4 @@ picword:
 text: (Read aloud.) 1. Are there clouds in the sky right now? 2. How far away are the stars? 3. What time do we go to lunch today? 4. How does a seed grow into a flower? 5. Is the sun shining right now?
 
 ## Stretch: My question
-draw: Draw something you wonder about. Write A, B or C to show where you could find out. | 2
+draw: Draw something you wonder about. Write A, B or C to show where you could find out. | 1.2

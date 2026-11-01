@@ -13,11 +13,11 @@ text: **Certificate program.** Time: a few weeks to 2 years at a community or te
 text: **Military service.** Time: usually a commitment of about 4 years of active duty, starting with basic training and then job training. Cost: no tuition; food, housing and health care are provided. Pay while training: yes, from the first day. Outcomes: job training and experience, plus education benefits for college later; requires meeting age, health, fitness and test standards and can include deployment.
 
 ## Main: Comparison chart
-table: Path | Time | Cost | Paid while training? | Outcome
-  - College | {about 4 years} | {thousands to tens of thousands a year} | {no (part-time work possible)} | {bachelor's degree, professional jobs}
-  - Apprenticeship | {1 to 6 years} | {little or none} | {yes} | {credential in a skilled trade}
-  - Certificate | {weeks to 2 years} | {low} | {no} | {certificate for a specific job}
-  - Military | {about 4 years of service} | {none; food and housing provided} | {yes} | {training, experience, college benefits}
+table: Path | Time | Cost | Paid? | Outcome
+  - College | {about 4 years} | {high, varies} | {no} | {bachelor's degree}
+  - Apprenticeship | {1 to 6 years} | {little or none} | {yes} | {trade credential}
+  - Certificate | {weeks to 2 years} | {low} | {no} | {job certificate}
+  - Military | {about 4 years} | {no tuition} | {yes} | {training, benefits}
 
 ## Questions
 choice: Which two paths pay you while you train?

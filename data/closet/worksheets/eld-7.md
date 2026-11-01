@@ -43,12 +43,6 @@ write: Rewrite: "Rosa Medina is an amazing librarian who cares more than anyone 
   starter: Objective: ...
   key: Librarian Rosa Medina started the tool shelf after many visitors asked for help with home projects.
 
-## Stretch: Write the summary
-write: Write a 2 or 3 sentence objective summary of the article.
-  lines: 4
-  starter: According to the article, ...
-  key: According to the article, the Maple Hill Public Library began lending tools such as drills and ladders last spring. The collection grew from 40 to 112 items and tools were checked out more than 900 times, with only six needing repair. The librarian plans a tool safety class next year.
-
 # 21. Lab Reports and Claims Check
 minutes: 35
 materials: pencil, ruler

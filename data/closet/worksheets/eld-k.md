@@ -48,7 +48,7 @@ minutes: 20
 materials: pencil, crayons
 ican: I can count, name shapes and say which group has more or fewer.
 directions: (Read aloud.) Listen to each question. Count, circle or write the number. Then say the answer with the sentence frame.
-mistakes: Watch for children who count a picture twice or skip one: have them touch each picture and cross it off lightly. "Fewer" is a new word for many children; they often circle the bigger group. Line the two groups up side by side with counters to show which group has fewer.
+mistakes: Watch for children who count a picture twice or skip one: have them touch each picture and cross it off lightly. "Fewer" is a new word for many children; they often mark the bigger group. Line the two groups up side by side with counters to show which group has fewer.
 notes: Read every frame aloud and have students say it back in a full sentence, pointing to the picture ("I see 5 apples."). The numbers in the frames are blanks on the student copy; students can write the number or just say it. Name the four shapes together before item 3. Students who answer by pointing or holding up fingers are showing the math; keep coaching the words.
 
 ## Warm up: Count and say
@@ -81,20 +81,11 @@ write: (Read aloud.) Touch each side of the **rectangle** and count.
   key: A rectangle has 4 sides.
 
 ## Main: More or fewer
-count: (Read aloud.) Count each box. Circle the box with **more**.
-  - 3 ball
-  - 6 ball
-write: (Read aloud.) Say it with the frame.
+write: (Read aloud.) Look back at the apples and the fish. Circle the box with **more**.
   lines: 0
-  starter: {6} is more than {3}.
-  key: Circle the box with 6 balls. "6 is more than 3."
-count: (Read aloud.) Count each box. Circle the box with **fewer**.
-  - 8 flower
-  - 4 flower
-write: (Read aloud.) Say it with the frame.
+  starter: {9} is more than {5}.
+  key: Circle the box with 9 fish. "9 is more than 5."
+write: (Read aloud.) Put an X on the box with **fewer**.
   lines: 0
-  starter: {4} flowers are fewer than {8} flowers.
-  key: Circle the box with 4 flowers. "4 flowers are fewer than 8 flowers."
-
-## Stretch: Draw it
-draw: Draw 2 circles and 1 square. | 1.6
+  starter: {5} apples are fewer than {9} fish.
+  key: X on the box with 5 apples. "5 apples are fewer than 9 fish."

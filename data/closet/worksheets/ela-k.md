@@ -33,23 +33,20 @@ materials: pencil, crayons
 ican: I can draw and tell a story with a beginning, a middle and an end.
 directions: (Read aloud.) Make up a story about a lost puppy. Draw what happens first, next and last. Under each box, write a word or a sentence, or tell your words to a grown-up who writes them.
 mistakes: Children often draw three pictures of the same moment (the puppy, the puppy, the puppy). Ask: "What happens first? Then what? How does it end?" Accept dictated words: the goal is a story in order, not spelling. Watch for stories that stop before the puppy is found or safe; ask how the story ends.
-notes: Tell the class a quick sample first (A puppy runs out the gate. A girl looks in the park. She finds it under a slide!). Let children tell their story to a partner before they draw. Accept invented spelling and labels (puppy, park, home). The model answers in the key are only one possible story.
-
-## Warm up: Talk it out
-example: (Read aloud.) Who loses the puppy? Where does the puppy go? Who finds it, and how?
+notes: Tell the class a quick sample first (A puppy runs out the gate. A girl looks in the park. She finds it under a slide!). Let children tell their story to a partner before they draw, using three questions: Who loses the puppy? Where does the puppy go? Who finds it, and how? Accept invented spelling and labels (puppy, park, home). The model answers in the key are only one possible story.
 
 ## Main: Draw your story
-draw: 1. First: the puppy gets lost | 1.6
+draw: 1. First: the puppy gets lost | 1.3
 write: (Read aloud.) Write or tell: what happens first?
   starter: First, ...
   lines: 1
   key: First, the puppy runs out the gate.
-draw: 2. Next: someone looks for the puppy | 1.6
+draw: 2. Next: someone looks for the puppy | 1.3
 write: (Read aloud.) Write or tell: what happens next?
   starter: Next, ...
   lines: 1
   key: Next, Mia looks in the park.
-draw: 3. Last: the puppy is found | 1.6
+draw: 3. Last: the puppy is found | 1.3
 write: (Read aloud.) Write or tell: how does it end?
   starter: Last, ...
   lines: 1

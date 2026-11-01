@@ -36,12 +36,6 @@ write: Choose a **logos** card. Explain how it persuades.
   starter: The line "___" appeals to logos because it uses ___ to show ___.
   key: Example: The line "A survey of 400 local students found that 62 percent would use the park every week" appeals to logos because it uses survey data to show many students would actually use the park.
 
-## Stretch: Balance the appeals
-write: A speaker used only pathos lines. Why might that be weak with a city council, and what should the speaker add?
-  lines: 3
-  starter: Using only pathos may be weak because ___. The speaker should add ___.
-  key: Using only pathos may be weak because council members must justify spending and safety with facts. The speaker should add logos, like the cost and survey data, and ethos, like support from the parks department.
-
 # 21. Explaining Models and Data Check
 minutes: 40
 materials: pencil, calculator if available

@@ -59,14 +59,12 @@ mistakes: Students often connect the dots in a scatter plot; it shows separate m
 notes: The data are sample data for this sheet, close to Dolbear's law (Amos Dolbear, "The Cricket as a Thermometer," 1897), which links the chirp rate of snowy tree crickets to air temperature. Crickets cannot control their body temperature the way mammals do, so their muscles work faster when the air is warmer. Students plot the dots; check them against the table (the graph key is left blank on purpose, since a scatter plot is not connected).
 
 ## The study
-text: A science club recorded the chirps of snowy tree crickets in a park on 8 different evenings. Each evening they measured the air temperature and counted how many times one cricket chirped in one minute.
+text: A science club recorded the chirps of snowy tree crickets in a park on 6 different evenings. Each evening they measured the air temperature and counted how many times one cricket chirped in one minute.
 table: Air temperature (°C) | Chirps per minute
   - 15 | 72
-  - 17 | 90
   - 19 | 105
   - 21 | 118
   - 23 | 134
-  - 25 | 146
   - 27 | 162
   - 29 | 175
 text: **Word bank:** claim, evidence, reasoning, counterclaim, rebuttal, source of error, scatter plot, positive, negative, strong, weak, linear, trend, as ___ increases
@@ -79,13 +77,13 @@ choice: What kind of pattern does the scatter plot show?
   - No pattern at all
   - A pattern that goes up and then down
 write: Describe the scatter plot. Use numbers.
-  lines: 3
+  lines: 2
   starter: As the air temperature increases from ___ to ___, the chirps per minute ___. The points ___.
   key: As the air temperature increases from 15 °C to 29 °C, the chirps per minute increase from 72 to 175. The points form a strong positive, nearly straight-line pattern: about 7 more chirps for each degree.
 
 ## Main: CER with a counterclaim
 write: **Claim:** Answer the question "Does air temperature affect how fast crickets chirp?"
-  lines: 2
+  lines: 1
   starter: The data show that ...
   key: The data show that snowy tree crickets chirp faster when the air is warmer.
 write: **Evidence:** Give two data points.
@@ -93,16 +91,16 @@ write: **Evidence:** Give two data points.
   starter: At ___ °C, the cricket chirped ___ times per minute, but at ___ °C it chirped ___ times.
   key: At 15 °C, the cricket chirped 72 times per minute, but at 29 °C it chirped 175 times.
 write: **Reasoning:** Explain why, using a science idea.
-  lines: 3
+  lines: 2
   starter: This happens because ...
   key: This happens because crickets cannot keep their body temperature steady, so in warmer air their bodies are warmer and their muscles move faster, which makes them chirp more often.
 write: **Counterclaim and rebuttal:** Someone says, "The crickets chirped more because it was later in the summer, not because it was warmer." Answer them.
-  lines: 3
+  lines: 2
   starter: Some might argue that ___. However, ___.
   key: Some might argue that the time of year caused the change. However, the chirp rate rose steadily with every rise in temperature, which matches the link scientists such as Dolbear have reported. To test the time-of-year idea, the club could compare warm and cool evenings in the same week.
 
 ## Stretch: Source of error
 write: Name one source of error in this study and how to reduce it.
-  lines: 3
+  lines: 2
   starter: One source of error is ___. To reduce it, the club could ___.
   key: One source of error is miscounting chirps by ear or counting two crickets at once. To reduce it, the club could record the sound and count twice, or have two people count and average.

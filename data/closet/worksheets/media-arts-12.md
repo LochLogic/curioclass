@@ -48,13 +48,8 @@ table: Criterion | Concept A | Concept B | Concept C
 
 ## Choose
 write: Which concept will you make? Defend your choice with your scores and your theme, and explain how you will handle its hardest part.
-  lines: 7
+  lines: 6
   key: Answers vary. A strong answer names the concept, cites the total and the most important scores, explains why the theme matters to the filmmaker or audience, and gives a concrete plan for the hardest part (for example, shooting the bus stop scene early on a Sunday with permission, using two friends as actors).
-
-## Stretch
-write: Rewrite the logline for your chosen concept in 30 words or fewer, making the goal and obstacle sharper.
-  lines: 3
-  key: Answers vary. The revised logline names a specific character, a clear goal and a concrete obstacle, with stakes, in one sentence of 30 words or fewer.
 
 # 21. Portfolio Selection
 minutes: 50
@@ -90,31 +85,16 @@ choice: Why cut piece 4?
   * It nearly repeats piece 3, so it adds nothing new
   - Posters are not allowed
   - It is too new
-choice: Why cut piece 6?
-  * It is copied from a tutorial, so it does not show Rosa's own ideas
-  - It is too neat
-  - Famous posters are boring
-  - It is too large
 choice: Where should piece 2, the sketch page, go?
   - First, to open the portfolio
   - Last, to end it
   * Right after the bakery rebrand it explains
   - It should be cut
-choice: What makes a strong first piece?
-  - The newest piece
-  * A complete, polished project that shows her best work
-  - The smallest piece
-  - An unfinished piece, to show growth
 
 ## Main: Select and order
 chart: Order (1 to 10) | Piece # | Why it is in | Why it goes here
   rows: 10
   key: One strong order: 1, 2, 15 (or 9), 7, 5, 3, 12, 8, 11, 16. The bakery rebrand opens as the strongest complete project, the sketch page and animated logo stay beside it, the middle shows range (book covers, infographic, poster, zine, app, icons) and the polished tea packaging closes.
 write: Which six pieces did you cut? Give a short reason for each.
-  lines: 5
+  lines: 4
   key: Cut 4 (near-duplicate of 3), 6 (copied from a tutorial), 10 (a photo, not design), 13 (unfinished, placeholder text), 14 (old, weaker work). The sixth is a judgment call: 9 (plain presentation) or 15 (overlaps the bakery project). One strong order: 1 bakery rebrand, 2 sketch page, 15 animated logo (or 9), 7 book covers, 5 infographic, 3 jazz poster, 12 zine, 8 app mockups, 11 wayfinding icons, 16 tea packaging. It opens and closes with polished projects and keeps process beside its project.
-
-## Stretch
-write: Rosa then applies for a summer job designing signs for a city park. Which two pieces would you move higher in her order, and why?
-  lines: 3
-  key: The wayfinding icon set (11) and the recycling infographic (5), because they show clear public information design and system thinking, which is what a sign job needs.

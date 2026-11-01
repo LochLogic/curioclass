@@ -18,16 +18,16 @@ example: Panel 1: A girl holds a kite on a windy hill.
 
 ## Main: Panels 1 to 3
 text: My story is about: ________________________________
-draw: Panel 1 | 1.5
-draw: Panel 2 | 1.5
-draw: Panel 3 | 1.5
+draw: Panel 1 | 1.2
+draw: Panel 2 | 1.2
+draw: Panel 3 | 1.2
 chart: Panel (1 to 3) | Sound cue | Line of dialogue
   rows: 3
 
 ## Main: Panels 4 to 6
-draw: Panel 4 | 1.5
-draw: Panel 5 | 1.5
-draw: Panel 6 | 1.5
+draw: Panel 4 | 1.2
+draw: Panel 5 | 1.2
+draw: Panel 6 | 1.2
 chart: Panel (4 to 6) | Sound cue | Line of dialogue
   rows: 3
 

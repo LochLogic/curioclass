@@ -40,11 +40,6 @@ write: Which theory reveals the most about this dance? Defend your choice with e
   lines: 6
   key: Answers vary. Model for Lamentation: Expression reveals the most, because the dancer straining against the fabric makes grief visible and the viewer feels the pull in their own body. Formalism adds the sculptural diagonals the fabric makes and the stillness of the seated position; cultural context adds that Graham made it in 1930 as American modern dance broke away from ballet. Expression misses how carefully the shapes are designed, which formalism explains.
 
-## Stretch
-write: Choose a dance from a social or community setting (a wedding dance, a powwow dance, a school dance). Which theory would you start with, and why?
-  lines: 3
-  key: Answers vary. Most strong answers start with cultural context, because the dance's purpose and meaning depend on the occasion and community, and then use formal or expressive analysis to describe the movement itself.
-
 # 21. Eight-Rehearsal Schedule and Log
 minutes: 30
 materials: pencil, a calendar, your issue piece and cast

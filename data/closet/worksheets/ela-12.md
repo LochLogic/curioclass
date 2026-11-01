@@ -28,9 +28,7 @@ source: Beowulf, translated by Francis B. Gummere (first published 1909): [1] an
   foe against foe. [...]"
   [3] "Of force in fight no feebler I count me,
   in grim war-deeds, than Grendel deems him.
-  Not with the sword, then, to sleep of death
-  his life will I give, though it lie in my power.
-  No skill is his to strike against me,
+  [...] No skill is his to strike against me,
   my shield to hew though he hardy be,
   bold in battle; we both, this night,
   shall spurn the sword, if he seek me here,
@@ -40,7 +38,6 @@ source: Beowulf, translated by Francis B. Gummere (first published 1909): [1] an
 
 ## Warm up: Word help
 match: Match each old word to its meaning.
-  - boon = a favor asked of someone
   - recks not = does not care about
   - brand = a sword
   - targe = a small round shield
@@ -50,7 +47,7 @@ match: Match each old word to its meaning.
 fill:
   - Three kennings in passage 2 that name King Hrothgar: {Scyldings'-bulwark}, {Friend-of-the-folk}, {Warriors'-shield}
 write: Choose one kenning. Explain what it literally says and what it reveals about what a king should be.
-  lines: 3
+  lines: 2
   key: "Warriors'-shield": a king is pictured as the shield that protects his fighters, so a good king guards his people. ("Scyldings'-bulwark" works the same way: he is the wall of his people. "Friend-of-the-folk": he is generous and loyal to them.)
 
 ## Main: Caesuras
@@ -61,24 +58,19 @@ fill:
   - "No skill is his to strike against me," pause after {his}; alliteration on {s}
   - "bold in battle; we both, this night," pause after {battle}; alliteration on {b}
 write: Why would a poem first performed aloud use a pause in the middle of every line and repeated first sounds?
-  lines: 3
+  lines: 2
   key: The pause and alliteration give each line a steady, chant-like beat that a scop (poet) could perform and an audience could follow and remember; they also make key words, like force and fight, stand out.
 
 ## Main: What the boast reveals
 write: In passage 1, how does Beowulf introduce himself? What does this show the culture valued?
-  lines: 3
+  lines: 2
   key: He names his lord and kinsman, Hygelac, and his "Fame." Identity comes from loyalty to a lord and family and from a reputation earned by deeds.
 write: In passage 2 and 3, Beowulf vows to fight without a sword or shield. Why? What value does this show?
-  lines: 3
+  lines: 2
   key: Because Grendel "of weapons recks not," Beowulf will meet him "foe against foe" and "spurn the sword." It shows that honor demands a fair fight and that glory is greater when won by one's own strength.
 write: The vaunt ends by leaving the outcome to God ("doom decree as he deemeth right"). What does this add to the picture of a hero?
-  lines: 3
+  lines: 2
   key: A hero is confident but accepts that fate or God decides who lives; courage means fighting anyway. The poem mixes the warrior code with Christian faith.
-
-## Stretch: Build a boast
-write: Write a four-line boast in the Beowulf style for a modern challenge (a final exam, a big game, a hard climb). Use one kenning and alliteration in every line, and mark each caesura.
-  lines: 5
-  key: Example: Hear me, test-giver, / I take your trial; / the night-lamp's friend / has fought these figures; / no notes, no net, / my knowledge alone; / let the grade-giver / judge as is just. (Kennings: night-lamp's friend for a student who studies late; grade-giver for the teacher.)
 # 22. Doublets: Kingly, Royal, Regal
 minutes: 40
 materials: pencil, a dictionary with etymologies (print or class set)

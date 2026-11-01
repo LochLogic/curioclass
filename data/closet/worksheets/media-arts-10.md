@@ -84,11 +84,6 @@ table: Element | Stays the same on all three | Changes for each night
   - Text (date, time, place) | |
 
 ## Main: Sketch the series
-draw: Poster 1: Animation Night | 2.6
-draw: Poster 2: Documentary Night | 2.6
-draw: Poster 3: Comedy Shorts Night | 2.6
-
-## Stretch
-write: Explain how your three posters show one identity while still telling each night apart. Name at least two things that repeat and one that changes.
-  lines: 4
-  key: Answers vary. A strong answer names repeating elements (logo in the top left, same bold sans-serif headline, same three-column grid, the same dark background) and one changing element (a different accent color and icon for each night: a pencil for animation, a camera for documentary, a laughing mask for comedy).
+draw: Poster 1: Animation Night | 2.2
+draw: Poster 2: Documentary Night | 2.2
+draw: Poster 3: Comedy Shorts Night | 2.2

@@ -71,7 +71,7 @@ choice: Which animal in the text is a predator?
 write: Meaning in my own words
   lines: 1
   key: The home where a plant or animal lives and gets food, water, shelter and space.
-draw: Picture of a habitat | 1.3
+draw: Picture of a habitat | 1.0
 write: Example (one habitat or one animal and its habitat)
   lines: 1
   key: A pond is a frog's habitat (also: a forest, a desert, the ocean, a field).
@@ -83,7 +83,7 @@ write: My sentence
 write: Meaning in my own words
   lines: 1
   key: An animal that hunts and eats other animals.
-draw: Picture of a predator | 1.3
+draw: Picture of a predator | 1.0
 write: Example
   lines: 1
   key: A heron (also: a hawk, a big fish, a fox, a frog that eats insects).
@@ -95,15 +95,10 @@ write: My sentence
 write: Meaning in my own words
   lines: 1
   key: A color or pattern that helps an animal blend in so it is hard to see.
-draw: Picture of camouflage | 1.3
+draw: Picture of camouflage | 1.0
 write: Example
   lines: 1
   key: A green frog among green plants (also: a brown turtle shell like a rock, a white rabbit in snow).
 write: My sentence
   lines: 2
   key: The brown moth's camouflage made it look just like the tree bark.
-
-## Stretch
-write: Explain how camouflage helps an animal live in its habitat when a predator is near. Use all three words.
-  lines: 3
-  key: Camouflage helps an animal blend into its habitat, so a predator cannot see it and cannot catch it; for example, a green frog among the pond plants is hidden from a heron.

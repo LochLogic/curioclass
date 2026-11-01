@@ -45,10 +45,6 @@ write: Passage 6 says Mathilde bore her new life "with sudden heroism." How does
   lines: 5
   key: She works heroically to protect her honor, but the necklace was "paste," worth only five hundred francs. Her sacrifice was for an appearance, the same thing she valued too much at the start, so the ending exposes how empty the class standards were that ruled her choices.
 
-## Stretch: The writer's view
-write: Does Maupassant blame Mathilde, her society, or both? Make a claim and support it with three passages.
-  lines: 7
-  key: Strong answers argue for both. Society: passage 1 shows a world where a woman without a dowry has "no way" upward, and passages 3 and 4 show that looking poor brings humiliation. Mathilde: passage 2 shows she feels "born to enjoy all delicacies," and her pride keeps her from confessing [5]. The paste necklace [7] mocks a society that cares only for appearances and a heroine who believed in them.
 # 23. Peer Review: Style and Syntax
 minutes: 40
 materials: pencil, two colors of pen

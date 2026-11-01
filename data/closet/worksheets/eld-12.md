@@ -49,12 +49,6 @@ write: **Negative:** "Higher parking rates will hurt downtown shops." Write your
   starter: Although ___, the evidence suggests ___.
   key: Although some drivers may park less downtown, the plan would bring more shoppers by bus at no cost to them, and a $0.50 increase is small; the pilot could track downtown sales to test the concern.
 
-## Stretch: Weigh it
-write: Which negative argument is the strongest, and why? Be honest about your own side.
-  lines: 4
-  starter: The strongest negative argument is ___ because ___. Our best answer is ___.
-  key: Answers vary. Example: The strongest negative argument is the funding gap because the case file shows only $4.5 million of $6 million is replaced. Our best answer is that the gap is small compared to the full budget and the pilot is temporary, so the city can stop if results are poor.
-
 # 21. Explaining Models and Data Check
 minutes: 45
 materials: pencil, calculator if available

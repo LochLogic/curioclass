@@ -4,13 +4,7 @@ materials: pencil
 ican: I can write a multiplication equation for equal groups.
 directions: Each box is one group. Count how many groups there are and how many are in each group. Then write the multiplication equation. Last, explain one picture in words.
 mistakes: Students often write the factors in the wrong roles (5 groups of 2 for 2 groups of 5). In this unit, the first factor is the number of groups and the second is the number in each group, though both give the same product. Some students add the groups (5 + 5 = 10): that is correct, so connect it: "two fives, 2 x 5".
-notes: Write "groups" and "in each group" on the board with arrows to the two factors. Before the sheet, show 4 bags of 6 apples (the example) with real objects or a drawing. For picture 8, accept 6 x 3 = 18 with any clear explanation; students who write 3 x 6 should say which number is the groups.
-
-## Warm up
-example: 4 bags with 6 apples in each bag. 4 groups of 6. 4 x 6 = 24 apples.
-fill:
-  - 3 groups of 2 is {3} x {2} = {6}
-  - 2 groups of 4 is {2} x {4} = {8}
+notes: Write "groups" and "in each group" on the board with arrows to the two factors. Before the sheet, show 4 bags of 6 apples with real objects or a drawing: 4 groups of 6, 4 x 6 = 24 apples. For picture 8, accept 6 x 3 = 18 with any clear explanation; students who write 3 x 6 should say which number is the groups.
 
 ## Main: Count the groups
 count: Picture 1. How many in each group?
@@ -57,10 +51,8 @@ count: Picture 8. How many in each group?
   - 3 star
 fill: {6} groups of {3}: {6} x {3} = {18} stars
 
-## Stretch: Explain one
 write: Pick one picture. Explain how your equation matches it. Tell what each number means.
-  lines: 3
-  starter: In picture ___, the first number tells ...
+  lines: 2
   key: Sample for picture 8: There are 6 boxes, so 6 is the number of groups. Each box has 3 stars, so 3 is the number in each group. 6 x 3 = 18 means 6 groups of 3 make 18 stars in all.
 
 # 11. Odd and Even Products Color by Code

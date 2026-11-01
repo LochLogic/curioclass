@@ -39,8 +39,3 @@ cards: (Read aloud.) Draw 1 bundle and the loose sticks. Write how many loose st
   - 16 is 1 bundle and {6} loose.
   - 18 is 1 bundle and {8} loose.
   - 19 is 1 bundle and {9} loose.
-
-## Stretch: What number?
-count: (Read aloud.) How many loose sticks?
-  - 7 stick
-fill: (Read aloud.) 1 bundle and 7 loose sticks make {17}.

@@ -114,9 +114,3 @@ write: Cite a line from the story that shows the theme, and explain how it shows
 write: The poem tells the reader the lesson directly in its last two lines. Does the story ever state the lesson directly? How does the reader learn it instead?
   lines: 3
   key: The story never states it outright; readers infer the theme from Rosa's actions (rebuilding, adding rubber bands), her dialogue with Mateo, and her pride in the notebook of failures at the end.
-
-## Stretch: Write the comparison
-write: Write a paragraph comparing how the two texts develop the theme of perseverance. Use at least one quotation from each text.
-  lines: 7
-  starter: Both "Stone and Seed" and "The Eleventh Try" show that ...
-  key: Both texts show that steady effort through failure can break through an obstacle. The poem develops this through one image: a seed that "did not quit" and "grew a little every night" until the stone split; its last line speaks to the reader directly. The story develops the theme through Rosa's ten failed tries, her careful redesigns, and her answer to Mateo, "I'm not done learning from it." The poem compresses the idea into a symbol, while the story lets readers watch a character earn it.
