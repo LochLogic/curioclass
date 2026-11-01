@@ -111,7 +111,9 @@ Night, Word check, closet search, Take home, words CSV. What is left, in order:
      get the fresh review).
    - **Pilot done 2026-11-01:** the shelf (`/closet/worksheets/`, a page for each of the 215 classes, one shared viewer
      with student copy and answer key) and 10 built sheets across K-Algebra I, checked by `scripts/worksheets.py`.
-   - **Then:** Cory reviews the pilot sheets and the layout, then build waves (core subjects first).
+   - **Wave 1 done 2026-11-01:** 398 more sheets (two per class: the first and one mid-year), 408 built in all across
+     204 classes (world languages held). Every student copy prints within its limit (K 1 page, others 2).
+   - **Wave 2 under way:** 700 more, three or four per class spread through the year (about 1,108 when done).
 
 7. **The Map** (Phase F, last): regions, trails and a standards view. Research is done (docs/MAP-RESEARCH.md);
    drafting is next when its turn comes.

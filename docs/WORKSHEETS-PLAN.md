@@ -224,6 +224,19 @@ Ten sheets built end to end, one per band and format family, live on the shelf w
 3. The viewer needs JavaScript to show a sheet; class pages work without it. Fine for teachers, or also pre-render
    the most used sheets as plain pages later?
 
+## Build waves
+
+| Wave | Sheets | Which | Status |
+|---|---|---|---|
+| Pilot | 10 | one per band and format family | done 2026-11-01 |
+| 1 | 398 | each class's first sheet and one from mid-year (world languages held) | done 2026-11-01 |
+| 2 | 700 | three or four more per class, spread through the year | under way |
+
+Each wave: writers grouped by subject build from a shared brief, check with `scripts/worksheets.py`, measure the real
+printed length (kindergarten 1 page, others 2), look at their renders, and report adaptations and facts to verify.
+Format problems found in a wave are fixed before the next one (after wave 1: equal-width blanks, taller tables, chart
+row labels, the staff, graphs that print for students, code listings, teacher-only notes, italics and escapes).
+
 ## Order (proposed)
 
 1. **Concept lists** for all 215 units (this step). Cory reviews the lists.
