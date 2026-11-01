@@ -63,7 +63,8 @@ section, in course order:
 6. **Paper is the product.** Nothing needs a device. Sheets that pair with a Curio Class tool say so in the Students
    line ("after the tool", "while using").
 7. **No busywork.** Word searches and coloring-only sheets are out. A Puzzle sheet must make students use the
-   skill (a cross-number with real computation, a logic grid built on the content).
+   skill: a color by code where each space's color comes from solving its problem, a cross-number with real
+   computation, a maze you escape by choosing right answers, a logic grid built on the content.
 8. **Vocabulary sheets sparingly** (at most 3 per unit): Word check on the Word Wall shelf already does matching.
    A Vocabulary sheet here does something more (sort, use in context, draw it, word map).
 9. **House rules:** no em dashes, "Curio Class" never "Curio" alone, hard history and health guardrails
@@ -108,13 +109,62 @@ Not part of the concept lists; this is the layout every built sheet will share.
 8. **Check yourself:** a short self-rating ("I can do this: on my own / with help / not yet").
 9. Footer: "Curio Class, CC BY 4.0, curioclass.org/..." like every closet item.
 
-**Teacher page:** answer key (or a model answer and a short rubric for open tasks), the module and its standard
+**Teacher page** (the same page with the key switched on): answer key (or a model answer and a short rubric for open tasks), the module and its standard
 codes, time (10 to 30 minutes), materials (scissors, glue, crayons), the tool it pairs with, and one line on common
 mistakes to watch for.
 
-**Data:** one file per sheet, `data/closet/worksheets/<unit-id>/<nn>-<slug>.md`, `key: value` header lines (title,
-type, module, minutes, pairs) then the parts, like the other closet shelves. A checker verifies every answer key
-(computed for math, looked up for facts, a human pass for open answers).
+## Formats teachers love
+
+Every sheet is built from a small set of item formats, each drawn by the shared viewer from a few lines of text. A
+writer picks formats; the viewer handles layout, lines, boxes and the answer key.
+
+| Format | Looks like | Good for |
+|---|---|---|
+| Fill in the blank | Sentences with blank lines; optional word bank box | Vocabulary in context, grammar, science and history facts, math facts |
+| Cloze passage | A short passage with every so often a word missing | Reading, spelling patterns, content review |
+| Short passage and questions | An original passage (K-2: 40-80 words, 3-5: 120-250, 6-8: 250-400, 9-12: 400-700) with multiple choice, short answer and "find the sentence that shows" | ELA reading, content-area reading, ELD |
+| Color by code | A line drawing split into numbered spaces; solve each problem, its answer picks the color from a key | Math facts, parts of speech, sorting (noun = blue). Key uses color names, and the answer key shows numbers, so it works on a black and white printer |
+| Draw and label | Empty frames, shape outlines or a partly drawn diagram | Science diagrams, story scenes, art planning |
+| Shapes and geometry | Generated shapes, grids, dot paper, tangram pieces, symmetry halves to finish | Geometry, patterns, art, early math |
+| Cut and sort / cut and glue | Cards with dashed cut lines and labeled sorting columns | K-5 sorting (living or not), sequencing, matching |
+| Match | Two columns to connect with lines | Terms and pictures, cause and effect |
+| Circle, mark, trace | Pictures or words to circle, X out or trace on dotted lines | K-1 letters, numbers, beginning sounds |
+| Maze | A maze whose turns are answers; right answers lead out | Any skill with clear right answers |
+| Number line, ten frame, clock, place-value chart, coordinate grid, fraction strip, hundred chart, music staff, map outline, timeline | Generated from one line of spec | Math, music, social studies |
+| Cross-number, crossword with real clues, secret code, riddle | Answers fill a grid or spell a message | Review that checks itself |
+| Organizer | Venn, T-chart, story map, frames | Thinking and writing |
+| Write it | Lines with sentence starters, word count box | Writing at every grade |
+
+**Pictures:** one shared library of a few hundred simple black line-art SVG icons (animals, food, objects, people,
+tools, science gear), named so a sheet can say `count: 7 apple`. Color by code drawings are vector line art with
+numbered spaces, kept in the same library, so a new picture is added once and reused across grades. Everything is
+outline art with no fill, which prints clean and leaves room to color.
+
+**Passages:** short originals written for Curio Class and stored as plain text inside the sheet, or public-domain
+texts by name. Each passage is checked for grade-level readability and never reused across grades.
+
+## Size and delivery
+
+Agreed 2026-11-01 (Cory): keep the collection light by storing text, not pages, images or PDFs.
+
+- **Source is text.** One file per unit, `data/closet/worksheets/<unit-id>.md`, holding its 40 to 50 sheets as
+  `key: value` headers and format blocks (above), with answers inline. About 2 to 4 KB per sheet, so 25 to 40 MB for
+  the whole collection, and an edit is a one-line diff.
+- **No raster images and no PDFs.** Pictures come from the shared SVG icon library and generated diagrams. A teacher
+  makes a PDF with the browser's Save as PDF if they want one.
+- **About 450 deployed files, not 10,000.** One static page per unit lists its sheets (indexable: every title and
+  description), one compact data file per unit (about 20 to 40 KB compressed), and one shared viewer page
+  (`/closet/worksheets/sheet/#<unit-id>/<n>`) that draws a sheet in the print layout. This keeps the site far under
+  the host's file-count limit (Cloudflare static assets: check the current cap, about 20,000 files on the free plan).
+- **One page, two copies.** "Show answer key" flips the same page between the student copy and the teacher page.
+  Print defaults to the student copy, so a key never goes out by accident.
+- **Print sets.** "Print all sheets for this module" sends several sheets in one print job.
+- **No new libraries or fonts.** The viewer is one small shared script with the site's print CSS, nothing from other
+  hosts.
+- **Search:** the unit pages carry search. If single sheets need to rank later, the most used few hundred can be
+  pre-rendered as static pages and still stay well under the limit.
+
+A checker verifies every answer key (computed for math, looked up for facts, a human pass for open answers).
 
 ## Order (proposed)
 
