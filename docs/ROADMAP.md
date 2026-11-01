@@ -102,8 +102,13 @@ Night, Word check, closet search, Take home, words CSV. What is left, in order:
    - **Then:** move the sheets into `data/closet/breaks/`, build the shelf pages (`/closet/break-box/`), Spanish,
      and the extras in the plan (a "pick for me" filter, a printable break-week pack).
 6. **Worksheets** (new 2026-10-31, Cory): printable student worksheets to go with tools and modules, as a Supply Closet
-   shelf. To scope: which modules first, how they pair with a tool, and how answer keys reach only the teacher. Paper is
-   fine here, since paper is the product.
+   shelf. Paper is fine here, since paper is the product. Scoped 2026-11-01: 40 to 50 authored sheets per class (a
+   grade of a subject, a high school course, or a language level), 215 classes, about 9,700 sheets, each with a teacher
+   page and answer key. Detail: docs/WORKSHEETS-PLAN.md; concept lists in docs/worksheets/, checked by
+   `scripts/check_worksheets.py`.
+   - **Now:** the concept lists for all 215 classes, then Cory's review.
+   - **Then:** a pilot of about 10 built sheets across bands and types, then build waves (core subjects first) and the
+     shelf pages.
 
 7. **The Map** (Phase F, last): regions, trails and a standards view. Research is done (docs/MAP-RESEARCH.md);
    drafting is next when its turn comes.
