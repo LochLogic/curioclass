@@ -103,10 +103,10 @@ Night, Word check, closet search, Take home, words CSV. What is left, in order:
      and the extras in the plan (a "pick for me" filter, a printable break-week pack).
 6. **Worksheets** (new 2026-10-31, Cory): printable student worksheets to go with tools and modules, as a Supply Closet
    shelf. Paper is fine here, since paper is the product. Scoped 2026-11-01: 40 to 50 authored sheets per class (a
-   grade of a subject, a high school course, or a language level), 215 classes, about 9,700 sheets, each with a teacher
+   grade of a subject, a high school course, or a language level), 215 classes, about 9,000 sheets, each with a teacher
    page and answer key. Detail: docs/WORKSHEETS-PLAN.md; concept lists in docs/worksheets/, checked by
    `scripts/check_worksheets.py`.
-   - **Done 2026-11-01:** concept lists for all 215 classes (9,792 sheets), checker clean.
+   - **Done 2026-11-01:** concept lists for all 215 classes (8,947 sheets), checker clean.
    - **Now:** Cory reviews the lists (French has no modules yet; ASL waits on the ASL decision; hard history sheets
      get the fresh review).
    - **Then:** a pilot of about 10 built sheets across bands and types, then build waves (core subjects first) and the
