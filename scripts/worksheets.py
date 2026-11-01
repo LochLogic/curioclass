@@ -996,6 +996,9 @@ def problems(unit):
         for kind, eq, ans in c['checks']:
             if kind == 'equation' and not check_equation(eq, ans):
                 out.append(f'{unit} #{s["n"]}: x = {ans} does not solve {eq}')
+        tid = s.get('pairs')
+        if tid and not (ROOT / 'tools' / tid / f'{tid}.html').exists():
+            out.append(f'{unit} #{s["n"]}: pairs: {tid} is not a built tool (no tools/{tid}/{tid}.html)')
         ch = c['choices']
         if len(ch) >= 4 and max(ch.count(k) for k in set(ch)) > 0.6 * len(ch):
             out.append(f'{unit} #{s["n"]}: {len(ch)} multiple-choice answers, most of them the same letter; spread them out')

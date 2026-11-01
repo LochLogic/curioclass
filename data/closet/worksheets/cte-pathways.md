@@ -52,7 +52,6 @@ minutes: 45
 materials: pencil, calculator
 ican: I can use a business model canvas to plan how a small business creates value and makes money.
 directions: Read about the invented Saturday market booth, Spoke and Chain Bike Fix. Fill in the business model canvas, then do the math on costs and revenue.
-pairs: startup-booth
 mistakes: Students often confuse value (why customers come: fast, cheap repairs on the spot) with channels (how customers find and reach you: the booth, flyers). Revenue is all the money coming in; profit is what is left after costs. Watch for the $120 tool kit counted every week; it is a one-time cost.
 notes: The booth is invented for this sheet. The business model canvas (developed by Alexander Osterwalder) has nine boxes: key partners, key activities, key resources, value propositions, customer relationships, channels, customer segments, cost structure and revenue streams. The canvas answers in the key are models; the math answers are exact.
 
