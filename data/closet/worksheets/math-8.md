@@ -40,6 +40,71 @@ write: Use the same method on x = 0.999... What do you find? Do you believe it? 
   lines: 4
   key: 10x = 9.999..., so 10x - x = 9, 9x = 9 and x = 1. So 0.999... equals 1 exactly; they are two names for the same number (there is no number between them).
 
+# 5. Fix the Exponent Mistakes
+minutes: 30
+materials: pencil, red pen or colored pencil
+ican: I can use zero and negative exponents correctly and explain common mistakes with them.
+directions: Each problem was worked by a student, and each answer is wrong. Find the mistake, write the correct answer, and say in a few words what went wrong.
+mistakes: Watch for students who "fix" a negative exponent by making the answer negative, which is the very mistake on the sheet. A negative exponent means a reciprocal: 2⁻³ = 1/2³. Students also mix up the product rule (add exponents) and the power rule (multiply exponents), and forget that in 2x⁰ only the x is raised to the 0 power.
+notes: Answers may be written as fractions or decimals (10⁻³ = 1/1,000 = 0.001). The warm-up pattern is the reason for the rules: each step down divides by 2, so 2⁰ = 1 and 2⁻¹ = 1/2. Problems 1, 3 and 6 show the "negative answer" mistake; 5, 7 and 8 mix up the rules; 2, 4 and 10 are zero exponents; 9 moves a negative exponent from the denominator.
+
+## Warm up: Follow the pattern
+table: 2³ | 2² | 2¹ | 2⁰ | 2⁻¹ | 2⁻² | 2⁻³
+  - 8 | 4 | {2} | {1} | {1/2} | {1/4} | {1/8}
+fill: Each step to the right {divides} by 2.
+
+## Main: Find and fix
+table: Problem | Student's answer | Correct answer | What went wrong
+  - 1. 2⁻³ | -8 | {1/8} | {a negative exponent means a reciprocal, not a negative number}
+  - 2. 5⁰ | 0 | {1} | {any nonzero number to the 0 power is 1}
+  - 3. 4⁻² | 1/8 | {1/16} | {multiplied 4 × 2 instead of 4 × 4}
+  - 4. (-7)⁰ | -1 | {1} | {the base is -7, and any nonzero base to the 0 power is 1}
+  - 5. 3⁻¹ · 3⁴ | 3⁻⁴ | {3³ = 27} | {multiplied the exponents; same base means add them: -1 + 4 = 3}
+  - 6. 10⁻³ | -1,000 | {1/1,000 = 0.001} | {made the answer negative instead of taking the reciprocal}
+  - 7. 6⁵ ÷ 6⁷ | 6² | {6⁻² = 1/36} | {subtracted in the wrong order: 5 - 7 = -2}
+  - 8. (2⁻¹)³ | 2² | {2⁻³ = 1/8} | {added the exponents; a power of a power multiplies them: -1 × 3}
+  - 9. 1/5⁻² | 1/25 | {25} | {1/5⁻² = 5², so the answer is 25, not 1/25}
+  - 10. 2x⁰ (x is not 0) | 1 | {2} | {only x has the 0 exponent: 2 · 1 = 2}
+  height: 0.55
+
+## Stretch
+write: Use the quotient rule on 5³ ÷ 5³ to explain why 5⁰ must equal 1.
+  lines: 2
+  key: 5³ ÷ 5³ = 5³⁻³ = 5⁰. But any nonzero number divided by itself is 1, so 5⁰ = 1.
+write: Write your own wrong worked problem with a negative exponent, then fix it.
+  lines: 2
+  key: Possible answer: 3⁻² = -9 is wrong; 3⁻² = 1/3² = 1/9.
+
+# 15. Substitution and Elimination
+minutes: 40
+materials: pencil
+ican: I can solve a system of linear equations by substitution or elimination and choose the method that fits.
+directions: Solve each system. Choose substitution (S) when one equation already says y = or x =, and elimination (E) when the x terms or the y terms can be added or subtracted away. Write your choice, a reason and the solution, then check it in both equations.
+mistakes: In substitution, students forget parentheses: 2x + (3y - 2) is wrong for 2(3y - 2) + y. In elimination, subtracting a negative term trips students up (2y - (-y) = 3y). In systems 7 and 8, students multiply only one side of an equation. Remind students to find the second variable and check both equations.
+notes: Solutions: 1) (3, 7) S. 2) (7, 3) E, add. 3) (3, 2) E, subtract. 4) (4, 2) S. 5) (2, 5) E, add. 6) (4, 1) S, or set the two expressions equal. 7) (4, 3) E, multiply the second equation by 2 and subtract. 8) (2, 1) E, multiply by 3 and by 2, then add. Either method works for every system; accept any reasonable reason. Stretch: the second equation is 2 times the first, so every point on the line is a solution.
+
+## Warm up
+example: y = x + 1 and 2x + y = 7. Substitution: 2x + (x + 1) = 7, so 3x = 6 and x = 2, then y = 3. Solution (2, 3). Check: 3 = 2 + 1 and 2(2) + 3 = 7.
+example: x + y = 9 and x - y = 1. Elimination: add the equations to get 2x = 10, so x = 5, then y = 4. Solution (5, 4).
+
+## Main
+table: System | S or E? | Why? | Solution (x, y)
+  - 1. y = 2x + 1 and 3x + y = 16 | {S} | {y is already alone} | {(3, 7)}
+  - 2. x + y = 10 and x - y = 4 | {E} | {adding cancels y} | {(7, 3)}
+  - 3. 2x + 3y = 12 and 2x - y = 4 | {E} | {subtracting cancels 2x} | {(3, 2)}
+  - 4. x = 3y - 2 and 2x + y = 10 | {S} | {x is already alone} | {(4, 2)}
+  - 5. 3x + 2y = 16 and 5x - 2y = 0 | {E} | {adding cancels 2y} | {(2, 5)}
+  - 6. y = -x + 5 and y = 2x - 7 | {S} | {both say y =, so set them equal} | {(4, 1)}
+  - 7. 4x + 3y = 25 and 2x + 5y = 23 | {E} | {double the second, then subtract to cancel x} | {(4, 3)}
+  - 8. 3x - 2y = 4 and 2x + 3y = 7 | {E} | {multiply by 3 and 2, then add to cancel y} | {(2, 1)}
+draw: Work for systems 1 to 4 | 2.6
+draw: Work for systems 5 to 8 | 2.6
+
+## Stretch
+write: Solve 2x + y = 5 and 4x + 2y = 10. What happens, and what does it mean about the two lines?
+  lines: 3
+  key: Doubling the first equation gives 4x + 2y = 10, so subtracting gives 0 = 0. The equations are the same line, so there are infinitely many solutions: every point on y = -2x + 5.
+
 # 21. Taxi Fare Models
 minutes: 35
 materials: pencil
@@ -80,3 +145,91 @@ write: What do m and b mean for the tank? When will it be empty?
 write: Taxi A charges $3.50 plus $2.25 per mile. Taxi B charges $6.00 plus $1.75 per mile. Write both equations. For what trip length do they cost the same? Which is cheaper for a 12-mile trip?
   lines: 4
   key: A: y = 2.25x + 3.50. B: y = 1.75x + 6. Equal when 0.5x = 2.5, at 5 miles ($14.75 each). For 12 miles, A costs $30.50 and B costs $27.00, so B is cheaper; B is cheaper for any trip longer than 5 miles.
+
+# 26. Dilations and Similar Figures
+minutes: 35
+materials: pencil, ruler, protractor
+ican: I can dilate a figure about the origin and explain why the image is similar to the original.
+directions: Dilate each figure about the origin by multiplying both coordinates of every vertex by the scale factor. Draw the images on the grids. Then compare the side lengths and the angles of each figure and its image.
+mistakes: Students sometimes add the scale factor instead of multiplying ((1, 1) becomes (3, 3) for a factor of 2). With a factor of 1/2 the image is smaller and closer to the origin. Slanted sides cannot be counted on the grid: use the ruler or the Pythagorean theorem. Some students think angles grow with the figure; they stay the same.
+notes: Figure 1 (solid on the first grid): A(1, 1), B(2, 1), C(1, 3), factor 2 → (2, 2), (4, 2), (2, 6). Sides 1, 2, √5 become 2, 4, 2√5; angle A stays 90°. Figure 2 (dashed): D(10, 4), E(16, 4), F(16, 8), G(10, 8), factor 1/2 → (5, 2), (8, 2), (8, 4), (5, 4); 6 by 4 becomes 3 by 2. Figure 3: P(1, 1), Q(3, 1), R(4, 2), S(2, 2), factor 3 → (3, 3), (9, 3), (12, 6), (6, 6). The base 2 becomes 6 and the slanted side √2 becomes 3√2 (about 1.4 to 4.2); the angles stay 45° and 135°. Figure 4: sides 4, 3 and 5 become 10, 7.5 and 12.5. In every case, image length ÷ original length = the scale factor.
+
+## Warm up
+fill:
+  - Dilate (4, 6) about the origin by a scale factor of 2: {(8, 12)}
+  - Dilate (4, 6) about the origin by a scale factor of 1/2: {(2, 3)}
+  - A scale factor greater than 1 makes the image {larger}; between 0 and 1, {smaller}.
+
+## Main: Figures 1 and 2
+text: Figure 1 (solid): triangle A(1, 1), B(2, 1), C(1, 3), scale factor 2. Figure 2 (dashed): rectangle D(10, 4), E(16, 4), F(16, 8), G(10, 8), scale factor 1/2.
+graph: x | 0 17 1 | y | 0 9 1
+  minor: off
+  line: 1,1 2,1 1,3 1,1
+  line2: 10,4 16,4 16,8 10,8 10,4
+  key: 2,2 4,2 2,6 2,2
+  key2: 5,2 8,2 8,4 5,4 5,2
+fill:
+  - Figure 1 image: A'{(2, 2)}, B'{(4, 2)}, C'{(2, 6)}
+  - Figure 2 image: D'{(5, 2)}, E'{(8, 2)}, F'{(8, 4)}, G'{(5, 4)}
+
+## Main: Figure 3
+text: Parallelogram P(1, 1), Q(3, 1), R(4, 2), S(2, 2), scale factor 3.
+graph: x | 0 17 1 | y | 0 9 1
+  minor: off
+  line: 1,1 3,1 4,2 2,2 1,1
+  key: 3,3 9,3 12,6 6,6 3,3
+fill: Figure 3 image: P'{(3, 3)}, Q'{(9, 3)}, R'{(12, 6)}, S'{(6, 6)}
+
+## Main: Figure 4 without a grid
+fill: Triangle J(0, 0), K(4, 0), L(0, 3) is dilated by a scale factor of 2.5. J'{(0, 0)}, K'{(10, 0)}, L'{(0, 7.5)}
+
+## Main: Compare
+table: Figure | A side of the original | The same side of the image | Image ÷ original | Angles the same? (Y or N)
+  - 1 | AC = {2} | A'C' = {4} | {2} | {Y}
+  - 2 | DE = {6} | D'E' = {3} | {1/2} | {Y}
+  - 3 | PQ = {2} | P'Q' = {6} | {3} | {Y}
+  - 4 | KL = {5} | K'L' = {12.5} | {2.5} | {Y}
+
+## Stretch
+write: Explain why every figure on this sheet is similar to its image. Use side lengths and angles.
+  lines: 3
+  key: Each image has the same angles as the original, and every side is multiplied by the same scale factor (for example, every side of figure 1 doubles). Equal angles and proportional sides make the figures similar.
+
+# 36. Same Height, Same Radius
+minutes: 35
+materials: pencil, calculator
+ican: I can find and compare the volumes of a cylinder, a cone and a sphere that fit the same space.
+directions: A cylinder, a cone and a sphere all have radius r. The cylinder and the cone have height 2r, so the sphere fits exactly inside the cylinder. Find each volume, then find the ratio of the three volumes.
+mistakes: Students often use h = r instead of h = 2r, or forget the 1/3 in the cone formula. When r = 2, r³ = 8, not 6. In the ratio, students may write 2 : 2/3 : 4/3 and stop; multiply by 3 to get whole numbers, 6 : 2 : 4, then simplify to 3 : 1 : 2.
+notes: With h = 2r: cylinder πr²(2r) = 2πr³; cone (1/3)πr²(2r) = (2/3)πr³; sphere (4/3)πr³. The ratio is 2 : 2/3 : 4/3 = 6 : 2 : 4 = 3 : 1 : 2, and cone + sphere = cylinder. Archimedes proved that the sphere is 2/3 of the cylinder around it; Cicero wrote that he found Archimedes' tomb by a carving of a sphere and a cylinder. Rounded values use the π key.
+
+## Warm up: The formulas
+fill:
+  - Cylinder: V = πr²h. With h = 2r, V = {2}πr³
+  - Cone: V = (1/3)πr²h. With h = 2r, V = {2/3}πr³
+  - Sphere: V = (4/3)πr³
+
+## Main: Find the volumes
+table: Radius r | Height 2r | Cylinder | Cone | Sphere
+  - 1 | {2} | {2π} | {(2/3)π} | {(4/3)π}
+  - 2 | {4} | {16π} | {(16/3)π} | {(32/3)π}
+  - 3 | {6} | {54π} | {18π} | {36π}
+  - 5 | {10} | {250π ≈ 785.4} | {(250/3)π ≈ 261.8} | {(500/3)π ≈ 523.6}
+fill:
+  - For r = 3, cylinder : cone : sphere = 54π : 18π : 36π = {3} : {1} : {2}
+  - The cone holds {1/3} of the cylinder, and the sphere holds {2/3} of the cylinder.
+  - The cone and the sphere together hold {the same as} the cylinder.
+choice: A sphere fits exactly inside a can (a cylinder with height 2r). How much of the can is empty space?
+  - 2/3 of the can
+  * 1/3 of the can
+  - 1/2 of the can
+  - None of it
+draw: Work space | 1.6
+
+## Stretch
+write: A sphere has a volume of 36π cubic cm. Find its radius, then the volume of the cylinder and the cone that fit around it (height 2r).
+  lines: 3
+  key: (4/3)πr³ = 36π, so r³ = 27 and r = 3 cm. Cylinder: 54π ≈ 169.6 cubic cm. Cone: 18π ≈ 56.5 cubic cm.
+write: Use algebra to show that the ratio is 3 : 1 : 2 for any radius r.
+  lines: 3
+  key: Cylinder πr²(2r) = 2πr³, cone (1/3)πr²(2r) = (2/3)πr³, sphere (4/3)πr³. Divide each by (2/3)πr³: 3 : 1 : 2.
