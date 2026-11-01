@@ -48,6 +48,95 @@ write: What does Ada believe about her job? Quote the story, then explain what y
   lines: 4
   starter: Ada says, "..." (para. __). This shows ...
   key: Ada says, "That is what a light is for" (para. 7). She believes keeping ships safe is simply her duty, so she does not need thanks or praise; she has done it every night for thirty years.
+# 6. Simile or Metaphor? Sort and Explain
+minutes: 30
+materials: pencil, highlighter
+ican: I can tell similes from metaphors and explain what a comparison suggests.
+directions: A simile compares two things using "like" or "as." A metaphor says one thing is another. For each sentence, highlight the two things being compared, write S for simile or M for metaphor, and explain what the comparison tells you about the thing described.
+mistakes: Students may call any sentence with "like" a simile, even "I like pizza." Check that two different things are being compared. Watch for explanations that repeat the sentence ("the snow is a blanket"); ask what a blanket is like (it covers everything, thick, smooth) and carry that over.
+notes: There are 6 similes and 6 metaphors. Accept any explanation that names a fair shared quality; the key gives the most likely ones. "My brother is a night owl" is a metaphor that has also become an everyday idiom.
+
+## Warm up
+example: "The lake was as smooth as glass." Simile (uses "as"). It suggests the lake was flat and still, with no waves.
+fill:
+  - "Time is a thief" is a {metaphor} because it says time IS a thief.
+  - "He ran like the wind" is a {simile} because it uses "like."
+
+## Main: Sort and explain
+table: Sentence | S or M | What the comparison suggests
+  - The classroom was a zoo after the fire drill. | {M} | {It was noisy and wild, out of control.}
+  - Her voice was as soft as a feather. | {S} | {Her voice was quiet and gentle.}
+  - The thunder sounded like a giant drum. | {S} | {It was loud and booming.}
+  - My brother is a night owl. | {M} | {He stays up late at night.}
+  - The snow was a white blanket over the town. | {M} | {It covered everything thickly and smoothly.}
+  - The baby's cheeks were like ripe peaches. | {S} | {They were soft, round and pink.}
+  - Her backpack was as heavy as a sack of bricks. | {S} | {It was very heavy and hard to carry.}
+  - The stars were diamonds in the night sky. | {M} | {They sparkled and were bright and beautiful.}
+  - The coach's words were fuel for the team. | {M} | {They gave the team energy to keep going.}
+  - The kitten's fur was as soft as silk. | {S} | {The fur was smooth and soft.}
+  - My little sister is a chatterbox. | {M} | {She talks a lot.}
+  - The hallway was as quiet as a library. | {S} | {It was silent and calm.}
+  height: 0.5
+
+## Stretch
+write: Write one simile and one metaphor about the same thing (rain, a dog, the sun, or your choice). Tell what each one suggests.
+  lines: 4
+  key: Example: The rain fell like tiny drumsticks on the roof (simile: loud, quick tapping). The rain was a gray curtain across the field (metaphor: thick, hard to see through).
+# 18. Dialogue That Does Work
+minutes: 35
+materials: pencil
+ican: I can write dialogue with tags and actions that shows a conflict between characters.
+directions: Good dialogue does more than chat: it shows what characters want and how they feel. Study the model, plan your two friends and their conflict, then write a scene of 6 lines of dialogue. Give each line a tag (said, asked, muttered) or an action (she crossed her arms).
+mistakes: Watch for every line tagged "said" with no actions, and for characters who state their feelings outright ("I am angry at you"). An action such as "He kicked a pebble" shows the feeling instead. Check punctuation: the comma or question mark goes inside the closing quotation mark, and each new speaker starts a new paragraph.
+notes: Tags tell who is speaking and how (whispered, snapped). Actions are beats of movement next to the words that show feeling. Six lines is enough for a beginning, a rising argument and a turn. The model scene is original to Curio Class.
+
+## Warm up: Study the model
+example: "You said you'd help with the poster," Nia said, holding up the blank board.
+  Sam stared at his shoes. "Soccer practice ran late."
+  "It always runs late," Nia snapped.
+choice: In the model, what does Sam staring at his shoes show?
+  - He is looking for his soccer cleats.
+  * He feels guilty.
+  - He is excited about the poster.
+choice: Which part of the model is a dialogue **tag**?
+  - holding up the blank board
+  - Sam stared at his shoes.
+  * Nia snapped
+choice: What is the conflict in the model?
+  * Sam did not help with the poster as he promised.
+  - Nia and Sam both want to play soccer.
+  - The poster board is the wrong color.
+
+## Plan your scene
+chart: Friend 1 | Friend 2
+  labels: Name; What they want; How they feel; An action that shows it
+  height: 0.48
+  key: Example: Friend 1, Lena: wants Ray to save her a seat on the field trip bus; feels left out; crosses her arms. Friend 2, Ray: wants to sit with his new neighbor; feels torn; fiddles with his backpack strap.
+
+## Write your scene: 6 lines
+write: Line 1 (Friend 1 starts the conflict)
+  lines: 1
+  key: "You promised I could sit with you on the bus," Lena said, crossing her arms.
+write: Line 2 (Friend 2 answers, with an action)
+  lines: 1
+  key: Ray fiddled with his backpack strap. "I told Marco he could sit with me. He doesn't know anyone yet."
+write: Line 3 (the argument grows)
+  lines: 1
+  key: "So I'm supposed to sit alone?" Lena asked, her voice rising.
+write: Line 4
+  lines: 1
+  key: "That's not what I meant," Ray mumbled.
+write: Line 5
+  lines: 1
+  key: Lena looked at Marco, who sat by himself at the end of the bench. "Maybe," she said slowly, "we could all sit in the back row."
+write: Line 6 (end on a turn or a choice)
+  lines: 1
+  key: Ray grinned and waved Marco over. "Three seats. Deal."
+
+## Stretch
+write: Which line in your scene shows a feeling without naming it? Explain how.
+  lines: 2
+  key: Example: "Ray fiddled with his backpack strap" shows he feels nervous and torn without the word "nervous."
 # 25. Two Main Ideas, One Summary
 minutes: 40
 materials: pencil, highlighter if you have one
@@ -91,3 +180,84 @@ write: Copy one exact sentence from the article that best supports main idea 2. 
 write: Write a summary of the article in 4 to 6 sentences. State both main ideas, use the most important details, and include at least one exact quotation. Leave out opinions.
   lines: 8
   key: Bicycles changed a great deal over time. The first one, built by Karl Drais in 1817, had no pedals, and later boneshakers and high-wheelers were bumpy or dangerous. In 1885 the Rover "safety bicycle" with nearly equal wheels and a chain made riding safe. Bicycles also changed how people lived: "Safety bicycles changed daily life" (para. 4), letting workers ride to jobs and giving many women new freedom. Riders even pushed for smoother roads.
+# 30. Multimedia Elements Chart
+minutes: 35
+materials: pencil
+ican: I can explain how pictures and sound add to the meaning and mood of a story.
+directions: First read the story to yourself. Next look at the illustrated version. Then listen as your teacher reads the story aloud. Fill in the chart to show what each version adds, and answer the questions.
+mistakes: Students often say a version is "better" without saying what it adds. Push for specific evidence: which picture, which pause, which change in voice. Watch for the illustrations column filled with plot events; ask what the pictures show that the words do not, such as a face or a crowded room.
+notes: The story is original to Curio Class (about 200 words). The text never names Mara's feelings; the illustrations show her worried face and then her proud smile, and the read-aloud adds suspense through pace and silence.
+
+## Read: The story
+note: Read-aloud directions. Read the first paragraph a little fast, and read "She opened it, closed it, and opened it again" slowly, one action at a time. Whisper Mr. Hale's line. Pause for three full seconds before "She placed her fingers on the keys." Start the music paragraph slowly and speed up as the music grows. Pause again after "The last chord rang out" before the clapping. Read the teacher's last line warmly.
+passage: Backstage
+  Mara sat on a folding chair behind the red curtain. Through a gap, she could see rows and rows of people. Her music folder rested on her knees. She opened it, closed it, and opened it again.
+  "You're next," whispered Mr. Hale, the stage manager.
+  Mara walked to the piano. The bench creaked when she sat down. For a moment the room was so quiet she could hear the clock ticking at the back of the hall.
+  She placed her fingers on the keys and began. The first notes were soft and careful. Then the music grew faster, and her hands seemed to know the way on their own. When she missed one note near the end, she kept going.
+  The last chord rang out. There was a pause, and then the room filled with clapping. Mara stood, bowed and walked back behind the curtain, where her teacher was waiting with a thumbs-up.
+  "One wrong note," Mara said.
+  "One wrong note," her teacher agreed, "and two hundred right ones."
+
+## Look: The illustrated version
+picword:
+  - face-worried | 1. Backstage: Mara's worried face
+  - people | 2. The crowded hall
+  - clock | 3. The clock in the silent hall
+  - piano | 4. Her hands on the keys
+  - face-proud | 5. Mara's proud bow
+
+## Main: What each version adds
+chart: Text alone | Illustrations | Teacher read-aloud
+  labels: Mara's feelings; Mood or suspense; One detail I noticed most
+  height: 0.85
+  key: Feelings: the text only hints (opening and closing the folder); the pictures show a worried face, then a proud smile; the read-aloud's slow, careful voice makes her nervousness felt. Mood: the text tells of rows of people and a ticking clock; the pictures show how crowded and silent the hall is; the read-aloud's long pauses build suspense before she plays and before the clapping. Detail: text, the folder opened and closed again; pictures, her face changing from panel 1 to panel 5; read-aloud, the whisper and the speeding up during the music.
+write: Which version helped you understand how Mara felt at the start? Give one specific detail from that version.
+  lines: 3
+  key: Example: The illustration, because panel 1 shows her worried face. The text only says she opened and closed her folder, so I had to guess.
+write: How did the read-aloud change the moment before Mara played?
+  lines: 3
+  key: Example: The teacher paused for three seconds before "She placed her fingers on the keys," so the room went quiet like the hall in the story and I felt the suspense too.
+
+## Stretch
+write: If you made this story into a short film, what sound or picture would you add, and what would it add to the meaning?
+  lines: 3
+  key: Example: I would add the sound of the clock ticking louder and louder before she plays, to show how nervous and alone she feels.
+# 42. Presentation Self-Assessment
+minutes: 20
+materials: pencil
+ican: I can judge my own presentation with clear criteria and set a goal for the next one.
+directions: Fill this in soon after you present. Circle one score for each skill, then give evidence from your presentation. Finish with one strength and one goal.
+mistakes: Fifth graders tend to rate generously and give no evidence. Ask for one moment that proves each score ("I looked at my notes during the whole second fact" proves a 2 for eye contact). Watch for goals with no plan; a goal needs a step to practice it.
+notes: Scores: 4 = strong throughout, 3 = mostly, 2 = sometimes, 1 = not yet. Have a listener fill in the "audience said" line, or collect one comment from the class. The warm up checks the criteria; the key shows a model reflection for the rest.
+
+## Warm up: Know the criteria
+match: Match each skill to what it looks like at its best.
+  - Clarity = Ideas are in order and each word can be understood.
+  - Pace = A steady speed, with pauses before important points.
+  - Eye contact = Looking at different parts of the audience, not the notes.
+  - Use of visuals = The visual is shown at the right moment and explained.
+
+## Main: Score and prove it
+table: Skill | Circle a score | Evidence from my presentation
+  - Clarity | 1   2   3   4 | 
+  - Pace | 1   2   3   4 | 
+  - Eye contact | 1   2   3   4 | 
+  - Use of visuals | 1   2   3   4 | 
+  height: 0.7
+note: Model evidence: Clarity 3, "I followed my order, but I mumbled the name of the scientist." Pace 2, "I rushed my last fact because I was nervous." Eye contact 4, "I looked at both sides of the room." Visuals 3, "I showed my chart but forgot to point to the key part."
+write: What did your audience say about your presentation?
+  lines: 2
+  key: Example: My partner said my chart was easy to understand but I talked fast at the end.
+
+## Strength and goal
+write: One strength (what went well, with proof):
+  lines: 2
+  key: Example: Eye contact. I looked up after every sentence and saw people nodding during my second fact.
+write: One goal for my next presentation:
+  starter: Next time I will ...
+  lines: 2
+  key: Example: Next time I will slow down during my last point.
+write: How will you practice your goal?
+  lines: 2
+  key: Example: I will mark a pause // before my last point and practice with a timer twice before I present.
