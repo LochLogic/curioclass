@@ -106,7 +106,9 @@ Night, Word check, closet search, Take home, words CSV. What is left, in order:
    grade of a subject, a high school course, or a language level), 215 classes, about 9,700 sheets, each with a teacher
    page and answer key. Detail: docs/WORKSHEETS-PLAN.md; concept lists in docs/worksheets/, checked by
    `scripts/check_worksheets.py`.
-   - **Now:** the concept lists for all 215 classes, then Cory's review.
+   - **Done 2026-11-01:** concept lists for all 215 classes (9,792 sheets), checker clean.
+   - **Now:** Cory reviews the lists (French has no modules yet; ASL waits on the ASL decision; hard history sheets
+     get the fresh review).
    - **Then:** a pilot of about 10 built sheets across bands and types, then build waves (core subjects first) and the
      shelf pages.
 
