@@ -23,6 +23,8 @@ import check_words  # noqa: E402
 import check_games  # noqa: E402
 import qr  # noqa: E402
 import check_charts  # noqa: E402
+import check_worksheets  # noqa: E402
+import worksheets as ws  # noqa: E402
 import charts as chart_svg  # noqa: E402
 
 bundle_all()  # tools with src.html get their art inlined first
@@ -388,6 +390,8 @@ CLOSET = [  # slug, label, what it holds
     ('anchor-charts', 'Posters and Anchor Charts', 'The big idea of each module on one page, finished or fill-in, and posters '
      'that stay up all year. Print on one page or tile them big.'),
     ('game-night', 'Family Game Night', 'Games to play at home with paper, pencils, cards or dice. Nothing to buy.'),
+    ('worksheets', 'Worksheets', 'Printable practice sheets for every class, K-12: 40 to 50 a year per class, each with '
+     'an answer key and a teacher page.'),
 ]
 # Word Wall: one page per grade span a module is written for (K to 12, and spans like 3-5 or K-12), grouped by subject.
 # The shelf page is a grade picker: a card per band with its grades and its whole-band span, then a card for World Languages.
@@ -480,6 +484,53 @@ for gr in GRADES:
 for g in games.values():
     render('closet/game.html', g['url'], g=g, subject=subjects[g['subject']], subject_es=SUBJECT_ES[g['subject']],
            tools=[t for mid in g['module_ids'] for t in by_module[mid] if t['built']])
+# Worksheets (docs/WORKSHEETS-PLAN.md): a page per class listing its year of sheets from the concept lists, one data file
+# per class holding its built sheets as HTML fragments, and one viewer page that shows a sheet (#unit/n) and its key.
+ws_units = check_worksheets.units()
+ws_rows = {u: r for f in check_worksheets.FILES for u, r in check_worksheets.rows(f).items()}
+ws_bad = ws.icon_problems() + [p for u in ws.built_units() for p in ws.problems(u)]
+(DIST / 'assets' / 'ws-icons.svg').write_text(ws.sprite(), encoding='utf-8')
+if ws_bad:
+    sys.exit('Worksheets: ' + '; '.join(ws_bad[:5]))
+tool_titles = {t['tool_id']: t['title'] for t in tools}
+mod_by_title = {(m['course_id'], m['title']): m for m in modules.values()}
+ws_built, ws_index = {}, []
+for u in ws.built_units():
+    label, sheets = ws.load(u)
+    data = {}
+    for sh, row in sheets:
+        mod = mod_by_title.get((ws_units[u]['course'], row['module']))
+        frag, _ = ws.build(u, sh, row, label, mod, tool_titles)
+        data[sh['n']] = dict(title=sh['title'], type=row['type'], minutes=sh['minutes'], html=frag)
+        ws_index.append(dict(t=f"Worksheet: {sh['title']}", u=f'/closet/worksheets/sheet/#{u}/{sh["n"]}', g=label, s='Supply Closet',
+                             f='Worksheet', m=row['module'], c=' '.join(mod['codes']) if mod else '', d=row['does'], b=True))
+    ws_built[u] = data
+    out = DIST / 'closet' / 'worksheets' / 'data' / f'{u}.json'
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(dict(unit=u, label=label, url=f'/closet/worksheets/{u}/', order=[r['n'] for r in ws_rows[u]],
+                                  sheets=data), ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+
+
+def ws_grade_key(u):
+    g = str(ws_units[u]['grade']).split('-')[0]
+    return GRADES.index(g) if g in GRADES else 99
+
+
+ws_sections = []
+for gr in GRADES:  # a class sits under its grade; a high school course under its usual grade
+    us = [u for u, d in ws_units.items() if 'level' not in d and ws_grade_key(u) == GRADES.index(gr)]
+    if us:
+        ws_sections.append(dict(id=f'grade-{gr}', label=grade_label(gr), units=us))
+ws_sections.append(dict(id='languages', label='World Languages', units=[u for u, d in ws_units.items() if 'level' in d]))
+for u, d in ws_units.items():
+    groups = []
+    for r in ws_rows[u]:
+        if not groups or groups[-1]['module'] != r['module']:
+            groups.append(dict(module=r['module'], mod=mod_by_title.get((d['course'], r['module'])), rows=[]))
+        groups[-1]['rows'].append(dict(r, built=r['n'] in ws_built.get(u, {})))
+    render('closet/ws-unit.html', f'/closet/worksheets/{u}/', u=u, d=d, groups=groups, rows=ws_rows[u], ready=len(ws_built.get(u, {})))
+render('closet/ws-sheet.html', '/closet/worksheets/sheet/', index=False)
+counts['worksheets'] = f"{sum(len(v) for v in ws_built.values())} ready of {sum(len(v) for v in ws_rows.values()):,} planned"
 render('closet/home.html', '/closet/', shelves=CLOSET, counts=counts)
 for sid, label, what in CLOSET:
     if sid == 'word-wall' and wall:
@@ -488,6 +539,9 @@ for sid, label, what in CLOSET:
         render('closet/sub-day.html', '/closet/sub-day/', label=label, what=what, sections=sub_sections)
     elif sid == 'anchor-charts' and charts:
         render('closet/anchor-charts.html', '/closet/anchor-charts/', label=label, what=what, sections=chart_sections, modules=modules)
+    elif sid == 'worksheets':
+        render('closet/worksheets.html', '/closet/worksheets/', label=label, what=what, sections=ws_sections, units=ws_units,
+               rows=ws_rows, built=ws_built)
     elif sid == 'game-night' and games:
         render('closet/game-night.html', '/closet/game-night/', label=label, what=what, sections=game_sections)
     else:
@@ -685,6 +739,7 @@ if CLOSET_LIVE:  # Supply Closet items, so "fractions vocabulary" or "photosynth
     index += [{'t': f"Family game: {g['title']}", 'u': g['url'], 'g': grade_label(g['grade']), 's': subjects[g['subject']]['short'],
                'f': 'Game Night', 'm': ', '.join(x['title'] for x in g['mods']), 'c': '', 'd': g['learn'], 'b': True}
               for g in games.values()]
+    index += ws_index
 (DIST / 'search-index.json').write_text(json.dumps(index, separators=(',', ':')), encoding='utf-8')
 render('search.html', '/search/', index=False)
 for name in ['about', 'teachers', 'privacy', 'accessibility', 'license']:
