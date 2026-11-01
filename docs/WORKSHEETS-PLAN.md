@@ -115,8 +115,10 @@ mistakes to watch for.
 
 ## Formats teachers love
 
-Every sheet is built from a small set of item formats, each drawn by the shared viewer from a few lines of text. A
-writer picks formats; the viewer handles layout, lines, boxes and the answer key.
+Sheets are built from item formats, each drawn by the shared viewer from a few lines of text; the viewer handles
+layout, lines, boxes and the answer key. The table is a starting set of examples, **not a limit** (Cory, 2026-11-01):
+variety is the goal, and any format a teacher would enjoy that prints well gets added to the viewer when a sheet
+needs it.
 
 | Format | Looks like | Good for |
 |---|---|---|
