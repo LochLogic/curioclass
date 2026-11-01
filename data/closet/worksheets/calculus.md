@@ -48,6 +48,87 @@ write: Is g continuous at x = 2? Is h continuous at x = 1? For each, name the ki
   lines: 4
   key: Neither is continuous. g has a removable discontinuity at 2: the limit is 3 but g(2) = 1; redefining g(2) = 3 makes it continuous. h has a jump discontinuity at 1: the one-sided limits (1 and 3) differ, so no single value of h(1) can fix it.
 
+# 5. Limits at Infinity
+minutes: 35
+materials: pencil, calculator
+ican: I can find limits at infinity and use them to find horizontal asymptotes.
+directions: Find each limit. Write ∞ or -∞ if the values grow without bound. Then give the horizontal asymptote that the limit shows, or write "none." Show your work: for rational functions, divide every term by the highest power of x in the denominator.
+mistakes: For √(9x² + 1), students write √(9x²) = 3x for every x; it is 3|x|, which is -3x when x is negative, so the limit at -∞ is -3/2, not 3/2. Students say "the degree of the top is bigger, so the limit is 0"; that rule is backward. A limit of ∞ means there is no horizontal asymptote on that side, not that the asymptote is y = ∞.
+notes: Rules for rational functions: if the degree of the numerator is less than the degree of the denominator, the limit is 0; if the degrees are equal, it is the ratio of the leading coefficients; if the numerator's degree is greater, there is no horizontal asymptote. Warm-up values: f(10) = 21/7 = 3, f(100) = 201/97 ≈ 2.0722, f(1,000) = 2,001/997 ≈ 2.0070, f(10,000) = 20,001/9,997 ≈ 2.0007. The sin x / x limit uses the squeeze theorem: -1/x ≤ sin x / x ≤ 1/x for x > 0.
+
+## Warm up: Watch it settle
+text: f(x) = (2x + 1)/(x - 3). Round to four decimal places.
+table: x | 10 | 100 | 1,000 | 10,000
+  - f(x) | {3} | {2.0722} | {2.0070} | {2.0007}
+fill: As x → ∞, f(x) → {2}, so the line y = {2} is a horizontal asymptote.
+
+## Main: Eight limits
+example: lim as x → ∞ of (6x² + x)/(2x² - 5) = lim (6 + 1/x)/(2 - 5/x²) = 6/2 = 3. Horizontal asymptote: y = 3.
+fill: lim as x → ∞ of (3x² - 5x + 1)/(6x² + 2) = {1/2}. Asymptote: {y = 1/2}
+fill: lim as x → ∞ of (4x + 7)/(x² - 3) = {0}. Asymptote: {y = 0}
+fill: lim as x → ∞ of (x³ + 1)/(2x² - x) = {∞}. Asymptote: {none}
+fill: lim as x → -∞ of (5 - 2x)/(3x + 4) = {-2/3}. Asymptote: {y = -2/3}
+fill: lim as x → ∞ of √(9x² + 1)/(2x - 5) = {3/2}. Asymptote: {y = 3/2}
+fill: lim as x → -∞ of √(9x² + 1)/(2x - 5) = {-3/2}. Asymptote: {y = -3/2}
+fill: lim as x → -∞ of (eˣ + 3) = {3}. Asymptote: {y = 3}
+fill: lim as x → ∞ of (sin x)/x = {0}. Asymptote: {y = 0}
+
+## Stretch
+choice: Which function has two different horizontal asymptotes?
+  - (3x² - 5x + 1)/(6x² + 2)
+  - (x³ + 1)/(2x² - x)
+  * √(9x² + 1)/(2x - 5)
+  - (4x + 7)/(x² - 3)
+write: Can the graph of a function cross its horizontal asymptote? Use (sin x)/x to explain.
+  lines: 3
+  key: Yes. (sin x)/x approaches its asymptote y = 0 as x → ∞, but it equals 0 every time sin x = 0 (x = π, 2π, 3π, ...), so it crosses the asymptote over and over. A horizontal asymptote describes the end behavior only.
+
+# 16. Motion on a Line
+minutes: 45
+materials: pencil
+ican: I can use velocity and acceleration to describe a particle's motion, including when it speeds up or slows down.
+pairs: motion-graph-match
+directions: Each particle moves along a horizontal line; t is in seconds and position s is in meters, with t ≥ 0. Velocity is v = s′(t) and acceleration is a = v′(t). Positive velocity means moving right. A particle speeds up when v and a have the same sign, and slows down when they have opposite signs.
+mistakes: Students say "acceleration is negative, so it slows down." That is only true when the velocity is positive: in particle A on 1 < t < 2, v and a are both negative, so it speeds up while moving left. For total distance, students subtract s(4) - s(0) and get 4; the particle turns around twice, so add the distance of each leg: 4 + 4 + 4 = 12. On a velocity graph, speed is the distance from the t-axis, so speeding up means the graph moves away from the axis.
+notes: Particle A: v = 3(t - 1)(t - 3), a = 6(t - 2); s(0) = 0, s(1) = 4, s(3) = 0, s(4) = 4. Particle B: s(2) = -3 is its leftmost point. Particle C: v(2) = 0 and a(t) = -2t < 0 for t > 0. Particle D's graph has v = 0 at t = 1 (on the line from (0, -3) to (2, 3)) and at t = 5.5 (on the line from (4, 3) to (6, -1)); its acceleration is the slope of each segment: 3, 0, -2 and 0. The Motion Graph Match tool shows position, velocity and acceleration graphs drawing together.
+
+## Warm up: Signs
+fill:
+  - v > 0 and a > 0: speeding up or slowing down? {speeding up}
+  - v > 0 and a < 0: {slowing down}
+  - v < 0 and a < 0: {speeding up}
+
+## Main: Particle A
+text: s(t) = t³ - 6t² + 9t
+fill: v(t) = {3t² - 12t + 9}, and a(t) = {6t - 12}
+fill: The particle is at rest when t = {1 and 3}, and a(t) = 0 when t = {2}.
+table: Interval | Sign of v | Sign of a | Speeding up or slowing down?
+  - 0 < t < 1 | {+} | {-} | {slowing down}
+  - 1 < t < 2 | {-} | {-} | {speeding up}
+  - 2 < t < 3 | {-} | {+} | {slowing down}
+  - t > 3 | {+} | {+} | {speeding up}
+fill: Total distance traveled from t = 0 to t = 4: {12} m. Displacement: {4} m.
+
+## Main: Particles B and C
+text: **Particle B:** s(t) = 2t² - 8t + 5
+fill: v(t) = {4t - 8}, a(t) = {4}. B moves left when {0 ≤ t < 2}, slows down when {0 < t < 2}, and speeds up when {t > 2}.
+text: **Particle C:** v(t) = 4 - t² for 0 ≤ t ≤ 4
+fill: a(t) = {-2t}. C changes direction at t = {2}, slows down when {0 < t < 2}, and speeds up when {2 < t ≤ 4}.
+
+## Main: Particle D
+text: The graph shows the velocity of particle D.
+graph: t (seconds) | 0 8 1 | v (m/s) | -4 4 1
+  line: 0,-3 2,3 4,3 6,-1 8,-1
+  minor: off
+fill: D is at rest at t = {1} and t = {5.5}.
+fill: a(3) = {0} m/s², and a(5) = {-2} m/s².
+fill: D speeds up when {1 < t < 2} and {5.5 < t < 6}, and slows down when {0 < t < 1} and {4 < t < 5.5}.
+
+## Stretch
+write: At t = 1.5, particle A has negative acceleration, but it is speeding up. Explain how that can be.
+  lines: 3
+  key: At t = 1.5, v = 3(0.5)(-1.5) = -2.25 and a = 6(1.5) - 12 = -3. Both are negative, so the acceleration points the same way the particle is moving (left). The velocity is getting more negative, so the speed |v| is increasing.
+
 # 22. Cooling Cup Rates
 minutes: 40
 materials: pencil, calculator
@@ -89,3 +170,80 @@ choice: The graph of T is
 write: What value does T(t) approach as t grows large? What happens to T′(t)? Explain why this makes sense for a cup in a 20 °C room.
   lines: 4
   key: T(t) approaches 20 °C, the room temperature, and T′(t) approaches 0. The cocoa cools faster when it is much hotter than the room; as the difference shrinks, it cools more and more slowly and levels off at room temperature.
+
+# 26. Definite Integral Properties
+minutes: 35
+materials: pencil
+ican: I can evaluate definite integrals using their properties and the areas of geometric shapes.
+directions: Use the given values and the properties of definite integrals for Part A. In Part B, sketch the graph of each integrand and use area formulas (triangles, rectangles, trapezoids, circles); area below the x-axis counts as negative.
+mistakes: Students forget that reversing the limits changes the sign. In 2f - 3g they multiply only one of the integrals by its constant. For ∫ from 1 to 6 of (3 - x) dx, many add the two triangle areas (2 + 4.5) instead of counting the part below the axis as negative. For √(9 - x²), students need to recognize the top half of a circle of radius 3.
+notes: Properties used: ∫ from a to a = 0; ∫ from b to a = -∫ from a to b; ∫ from a to b + ∫ from b to c = ∫ from a to c; ∫ (kf ± g) = k∫f ± ∫g; ∫ from a to b of a constant c = c(b - a). Item 10 is 0 because x³ is odd and the interval is symmetric about 0. Stretch graph: from 0 to 2, area 4; from 2 to 4 the line crosses at x = 3, so +1 and -1 cancel; from 4 to 6, -4; from 6 to 8, a triangle of -2.
+
+## Part A: Use the properties
+text: Given: ∫ from 0 to 3 of f(x) dx = 5, ∫ from 3 to 7 of f(x) dx = -2, and ∫ from 0 to 7 of g(x) dx = 4.
+example: ∫ from 3 to 0 of 2f(x) dx = -2 · ∫ from 0 to 3 of f(x) dx = -2(5) = -10.
+fill: ∫ from 0 to 7 of f(x) dx = {3}
+fill: ∫ from 3 to 0 of f(x) dx = {-5}
+fill: ∫ from 0 to 7 of [2f(x) - 3g(x)] dx = {-6}
+fill: ∫ from 7 to 7 of f(x) dx = {0}
+fill: ∫ from 0 to 3 of [f(x) + 4] dx = {17}
+
+## Part B: Use geometry
+fill: ∫ from -3 to 3 of √(9 - x²) dx = {9π/2}
+fill: ∫ from 0 to 4 of (2x + 1) dx = {20}
+fill: ∫ from -2 to 3 of |x| dx = {13/2}
+fill: ∫ from 1 to 6 of (3 - x) dx = {-5/2}
+fill: ∫ from -2 to 2 of x³ dx = {0}
+
+## Stretch: Read the graph
+text: The graph of f is made of line segments.
+graph: x | 0 8 1 | y | -3 3 1
+  line: 0,2 2,2 4,-2 6,-2 8,0
+  minor: off
+fill: ∫ from 0 to 8 of f(x) dx = {-2}
+fill: ∫ from 8 to 0 of f(x) dx = {2}
+fill: ∫ from 0 to 8 of |f(x)| dx = {12}
+
+# 37. Average Value
+minutes: 40
+materials: pencil, calculator
+ican: I can find the average value of a function on an interval and explain what it means in context.
+directions: The average value of f on [a, b] is 1/(b - a) times the integral of f from a to b. Give exact answers and decimals rounded to three places. In Part B, explain each answer in a sentence with units.
+mistakes: Students compute (f(a) + f(b))/2, the average of the endpoint values; that works only for linear functions like 2x + 1, not for x² or sin x. Some forget to divide by b - a, giving the integral instead of the average. In context, the average rate is not the total: 30 liters per minute is an average rate, while 300 liters is the total amount.
+notes: Part A work: x² gives (1/3)(27/3) = 3; 2x + 1 gives (1/4)(30 - 2) = 7; sin x gives (1/π)(2) = 2/π; 1/x gives (1/(e - 1))(ln e - ln 1) = 1/(e - 1); √x gives (1/4)(2/3)(8) = 4/3; eˣ gives (1/ln 3)(3 - 1) = 2/ln 3. Temperature: the integral of sin(πt/12) from 0 to 12 is 24/π, so the average is 60 + (10)(24/π)/12 = 60 + 20/π ≈ 66.37 °F. The stretch is the Mean Value Theorem for integrals: a continuous function equals its average value somewhere on the interval.
+
+## Warm up: Two ways to average
+fill: The average of f(x) = 2x + 1 at x = 1 and x = 5 is {7}.
+fill: The average of f(x) = x² at x = 0 and x = 3 is {4.5}.
+text: Keep these numbers. You will compare them with the first two average values in Part A.
+
+## Part A: Six average values
+example: Average value of f(x) = 3x² on [0, 2]: (1/2) ∫ from 0 to 2 of 3x² dx = (1/2)(8) = 4.
+fill:
+  - f(x) = x² on [0, 3]: {3}
+  - f(x) = 2x + 1 on [1, 5]: {7}
+  - f(x) = sin x on [0, π]: {2/π ≈ 0.637}
+  - f(x) = 1/x on [1, e]: {1/(e - 1) ≈ 0.582}
+  - f(x) = √x on [0, 4]: {4/3 ≈ 1.333}
+  - f(x) = eˣ on [0, ln 3]: {2/ln 3 ≈ 1.820}
+choice: For which function did the average of the endpoint values in the warm up equal the true average value?
+  - f(x) = x², because it is a polynomial
+  * f(x) = 2x + 1, because it is linear
+  - Both of them
+  - Neither of them
+
+## Part B: In context
+fill: The temperature t hours after 8 a.m. is T(t) = 60 + 10 sin(πt/12) °F. Its average value from 8 a.m. to 8 p.m. (0 ≤ t ≤ 12) is {60 + 20/π ≈ 66.37} °F.
+write: Explain what your answer means.
+  lines: 2
+  key: Over the 12 hours from 8 a.m. to 8 p.m., the temperature averaged about 66.4 °F. A steady temperature of 66.4 °F for those 12 hours would have the same integral as the real temperature.
+fill: Water flows into a tank at r(t) = 40 - 2t liters per minute for 0 ≤ t ≤ 10. The average rate is {30} liters per minute, and the total that flows in is {300} liters.
+write: Explain what the average rate means.
+  lines: 2
+  key: If water had flowed in at a steady 30 liters per minute for the 10 minutes, the same 300 liters would have entered the tank.
+
+## Stretch
+fill: f(x) = x² equals its average value on [0, 3] at x = c. c = {√3 ≈ 1.732}
+write: Why must a continuous function equal its average value at least once on the interval?
+  lines: 3
+  key: A continuous function on [a, b] has a smallest value m and a largest value M, and its average value is between them. By the Intermediate Value Theorem it takes on every value between m and M, so it takes on its average value somewhere. This is the Mean Value Theorem for integrals.
