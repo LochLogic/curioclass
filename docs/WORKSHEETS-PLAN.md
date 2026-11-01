@@ -168,11 +168,65 @@ Agreed 2026-11-01 (Cory): keep the collection light by storing text, not pages, 
 
 A checker verifies every answer key (computed for math, looked up for facts, a human pass for open answers).
 
+## Pilot (2026-11-01)
+
+Ten sheets built end to end, one per band and format family, live on the shelf with `--closet`:
+
+| Class | Sheet | Tests |
+|---|---|---|
+| Kindergarten Math #1 | Count the Caterpillar | trace, number chain, read-aloud directions |
+| Grade 1 ELA #1 | Blend Builders | icon pictures, word blanks, cut and sort |
+| Grade 3 Math #11 | Odd and Even Products Color by Code | computed color by code |
+| Grade 3 SEL #7 | Comic Strip Choices | comic panels, cut-and-glue replies |
+| Grade 4 ELA #1 | Theme Hunt | original passage, multiple choice, written response |
+| Grade 4 Math #48 | Lines of Symmetry: Find and Finish | vector shapes, dot-paper halves |
+| Grade 5 CS #22 | Binary Mystery Picture | computed hidden picture |
+| Grade 7 Science #11 | Melting Ice Temperature Log | lab data table, graph grid with a sample key line |
+| Grade 8 US History #31 | What to the Slave Is the Fourth of July? | primary source, hard history |
+| Algebra I #19 | Spot the Solving Mistake | fix the mistake, answers checked by substitution |
+
+**How it works now**
+
+- **Source:** `data/closet/worksheets/<unit-id>.md` holds a class's built sheets. A sheet is a `# N. Title` heading
+  (matching its concept-list row), header lines (minutes, materials, ican, directions, mistakes, notes, pairs), then
+  `## Part` sections of blocks. The block kinds and their syntax are documented in `scripts/worksheets.py`: text,
+  example, fill, choice, write, lines, draw, trace, chain, picword, sort, table, graph, passage, source, colorcode,
+  binary, symmetry, halves, comic, replies, fixit, rate. `{answer}` anywhere is a blank on the student copy and the
+  answer on the key.
+- **Check:** `python scripts/worksheets.py` (also run by the build, which stops on a bad sheet): titles match the
+  concept list, required headers, every choice has one right answer, every written prompt has a model answer,
+  color-by-code and binary keys are computed, fix-the-mistake answers are substituted into the equation or
+  inequality, passage length is in range for the grade, no em dashes.
+- **Site:** `/closet/worksheets/` (classes by grade, ready counts), `/closet/worksheets/<unit-id>/` (all 215 class
+  pages: the year in teaching order, ready sheets linked), `/closet/worksheets/sheet/#<unit-id>/<n>` (the viewer:
+  Student copy or Answer key and teacher page, Print, previous and next). Data: one JSON file per class with built
+  sheets. Pictures: `site/assets/ws-icons.svg` (12 icons so far). The shelf adds 227 files.
+- **Print:** student copies print on 1 or 2 Letter pages (kindergarten 1, the rest 2); the key prints the same pages
+  with answers in red, then the teacher page. Checked in headless Chrome, not yet on a real printer.
+
+**What the pilot taught**
+
+- Rendering found real bugs a checker could not: a doubled trace numeral that read as "11", accepted answers printed
+  on the student copy, smiling faces on a sad comic character, two icons nobody could name (clam, flashlight). Every
+  new format needs one look at the printed page before it scales.
+- Picture words for K-1 need unambiguous icons. The word's printed ending helps ("__am"), but each new icon should be
+  checked by someone who has not seen its label.
+- Most sheets run 2 pages. That suits grades 3-12 (front and back); if Cory wants one page as the norm, trim Part C
+  or tighten spacing.
+- Facts in keys need sources: the Douglass excerpts follow the 1852 pamphlet and carry a note to check them against
+  a scan before printing; one unverified claim was cut from the key.
+
+**For Cory**
+
+1. Look at the ten sheets (both copies) and say what to change in the layout before more are built.
+2. One page or two as the norm?
+3. The viewer needs JavaScript to show a sheet; class pages work without it. Fine for teachers, or also pre-render
+   the most used sheets as plain pages later?
+
 ## Order (proposed)
 
 1. **Concept lists** for all 215 units (this step). Cory reviews the lists.
-2. **Pilot:** about 10 built sheets across bands and types (one K math, one grade 3 ELA, one grade 7 science lab, one
-   high school history source analysis, and so on) to set the build format, the print CSS and the time per sheet.
+2. **Pilot:** DONE 2026-11-01, ten sheets (above). Cory's review of them comes next.
 3. **Build waves** by subject and band, core subjects first, with the answer-key check.
 4. **Site:** `/closet/worksheets/` by grade and subject, a sheet page that prints the student pages, and a separate
    teacher page with the key (the key never prints on the student copy). Module pages get a Worksheets row.

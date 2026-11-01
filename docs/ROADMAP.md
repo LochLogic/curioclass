@@ -109,8 +109,9 @@ Night, Word check, closet search, Take home, words CSV. What is left, in order:
    - **Done 2026-11-01:** concept lists for all 215 classes (8,947 sheets), checker clean.
    - **Now:** Cory reviews the lists (French has no modules yet; ASL waits on the ASL decision; hard history sheets
      get the fresh review).
-   - **Then:** a pilot of about 10 built sheets across bands and types, then build waves (core subjects first) and the
-     shelf pages.
+   - **Pilot done 2026-11-01:** the shelf (`/closet/worksheets/`, a page for each of the 215 classes, one shared viewer
+     with student copy and answer key) and 10 built sheets across K-Algebra I, checked by `scripts/worksheets.py`.
+   - **Then:** Cory reviews the pilot sheets and the layout, then build waves (core subjects first).
 
 7. **The Map** (Phase F, last): regions, trails and a standards view. Research is done (docs/MAP-RESEARCH.md);
    drafting is next when its turn comes.

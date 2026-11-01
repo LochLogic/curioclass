@@ -71,26 +71,41 @@ def units():
             c = courses[cid]
             mine = [m for m in mods if m['course_id'] == cid]
             if mode == 'course':
-                out[cid] = dict(label=c['title'], file=f, modules=[m['title'] for m in mine])
+                out[cid] = dict(label=c['title'], file=f, course=cid, grade=c['typical_grade'] or c['grades'],
+                                modules=[m['title'] for m in mine])
             elif mode == 'grades':
                 stem = cid.split('-k')[0] if cid.endswith(('-k12', '-k5', '-k8')) else cid
                 for g in sorted(span(c['grades']), key=GRADES.index):
                     title = c['title'] if cid not in ('math-k8', 'science-k5', 'ss-k5') else \
                         {'math-k8': 'Math', 'science-k5': 'Science', 'ss-k5': 'Social Studies'}[cid]
-                    out[f'{stem}-{g}'] = dict(label=f'{LABEL[g]} {title}', file=f,
+                    out[f'{stem}-{g}'] = dict(label=f'{LABEL[g]} {title}', file=f, course=cid, grade=g,
                                               modules=[m['title'] for m in mine if g in span(m['grade'])])
             else:
                 name = c['title'].split(' (')[0]
                 for key, label, strand, grades in LEVELS:
                     if cid == 'french' and key == 'novice-k5':
                         continue
-                    out[f'{cid}-{key}'] = dict(label=f'{name}, {label}', file=f,
+                    out[f'{cid}-{key}'] = dict(label=f'{name}, {label}', file=f, course=cid, grade=grades, level=label,
                                                modules=[m['title'] for m in mine if m['strand'] == strand])
     return out
 
 
 SECTION = re.compile(r'^## ([a-z0-9-]+): (.+)$', re.M)
 ROW = re.compile(r'^\|\s*(\d+)\s*\|(.+)\|\s*$')
+
+
+def rows(f):
+    """All concept rows of one file -> {unit id: [dict(n, title, type, module, does)]}"""
+    out, unit = {}, None
+    for line in (DIR / f'{f}.md').read_text().splitlines():
+        if m := SECTION.match(line):
+            unit = m.group(1)
+            out[unit] = []
+        elif unit and (r := ROW.match(line)):
+            cells = [c.strip() for c in r.group(2).split('|')]
+            if len(cells) == 4:
+                out[unit].append(dict(n=int(r.group(1)), title=cells[0], type=cells[1], module=cells[2], does=cells[3]))
+    return out
 
 
 def check_file(f, U):

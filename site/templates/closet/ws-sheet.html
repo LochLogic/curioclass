@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Worksheet · Curio Class{% endblock %}
+{% block description %}A printable Curio Class worksheet with its answer key and teacher page.{% endblock %}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
+{% block main %}
+<div class="wrap ws-viewer" id="ws-viewer">
+  <div class="no-print ws-bar">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/closet/">Supply Closet</a> › <a href="/closet/worksheets/">Worksheets</a> › <a id="ws-class" href="/closet/worksheets/">Class</a></nav>
+    <form class="word-controls" onsubmit="return false">
+      <fieldset>
+        <legend>Copy</legend>
+        <label><input type="radio" name="copy" value="student" checked> Student copy</label>
+        <label><input type="radio" name="copy" value="key"> Answer key and teacher page</label>
+      </fieldset>
+      <button class="btn primary" type="button" onclick="print()">Print</button>
+    </form>
+    <p class="game-hint" id="ws-hint">The student copy prints without answers. The answer key prints the same sheet with answers filled in, then the teacher page.</p>
+    <p class="ws-nav"><a id="ws-prev" hidden>&larr; Previous ready sheet</a> <a id="ws-next" hidden>Next ready sheet &rarr;</a></p>
+  </div>
+  <div id="ws-view" class="ws-view" aria-live="polite"><p class="ws-msg">Loading the worksheet…</p></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(() => {
+  const view = document.getElementById('ws-view'), root = document.getElementById('ws-viewer'), cache = {};
+  const radios = document.querySelectorAll('input[name="copy"]');
+  const setCopy = v => { root.classList.toggle('show-key', v === 'key'); };
+  radios.forEach(r => r.addEventListener('change', () => setCopy(r.value)));
+  if (new URLSearchParams(location.search).get('copy') === 'key') { radios[1].checked = true; setCopy('key'); }
+  const say = (msg, href) => { view.innerHTML = '<p class="ws-msg"></p>'; const p = view.firstChild; p.textContent = msg + ' ';
+    if (href) { const a = document.createElement('a'); a.href = href; a.textContent = 'See the class list.'; p.append(a); } };
+  async function show() {
+    const [unit, n] = decodeURIComponent(location.hash.slice(1)).split('/');
+    if (!/^[a-z0-9-]+$/.test(unit || '')) return say('Pick a class on the Worksheets shelf to open a sheet.', '/closet/worksheets/');
+    let data = cache[unit];
+    if (!data) {
+      const res = await fetch('/closet/worksheets/data/' + unit + '.json').catch(() => null);
+      if (!res || !res.ok) return say('No sheets for this class are ready yet.', '/closet/worksheets/' + unit + '/');
+      data = cache[unit] = await res.json();
+    }
+    const cls = document.getElementById('ws-class');
+    cls.href = data.url; cls.textContent = data.label;
+    const sheet = data.sheets[n];
+    if (!sheet) return say('That sheet is planned but not ready yet.', data.url);
+    view.innerHTML = sheet.html;
+    document.title = sheet.title + ': ' + data.label + ' worksheet · Curio Class';
+    const ready = data.order.filter(k => data.sheets[k]), i = ready.indexOf(+n);
+    for (const [id, k] of [['ws-prev', ready[i - 1]], ['ws-next', ready[i + 1]]]) {
+      const a = document.getElementById(id); a.hidden = k === undefined;
+      if (k !== undefined) a.href = '#' + unit + '/' + k;
+    }
+    scrollTo(0, 0);
+  }
+  addEventListener('hashchange', show);
+  show();
+})();
+</script>
+{% endblock %}
