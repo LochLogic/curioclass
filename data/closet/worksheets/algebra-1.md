@@ -1,3 +1,40 @@
+# 1. Roots as Exponents
+minutes: 30
+materials: pencil
+ican: I can rewrite expressions between radical form and rational exponent form and simplify them with the properties of exponents.
+directions: In this sheet x^(m/n) means x raised to the power m/n. Rewrite each expression in the other form, then simplify the numerical ones. In Part C, use the properties of exponents and write each answer with one exponent.
+mistakes: The numerator and denominator trade places easily: x^(2/3) is the cube root of x², not the square root of x³. Remember: the denominator is the root (the "index"), the numerator is the power. For 16^(3/4), taking the root first (⁴√16 = 2, then 2³ = 8) keeps the numbers small. A negative exponent means a reciprocal, not a negative number: 25^(-1/2) = 1/5, not -5.
+notes: Accept either radical form when rewriting (∛x)⁴ and x^(3/4): ∛(x⁴) or (∛x)⁴, and ⁴√(x³) or (⁴√x)³. Variables are positive throughout. In Part C, 1/2 + 1/3 = 5/6 needs a common denominator, which is where most errors happen.
+
+## Warm up: Match the forms
+match: Match each radical to its exponent form.
+  - √x = x^(1/2)
+  - ∛x = x^(1/3)
+  - ∛(x²) = x^(2/3)
+  - (√x)³ = x^(3/2)
+
+## Main: Rewrite
+example: The cube root of x is x^(1/3), because (x^(1/3))³ = x^(3/3) = x. In the same way, ⁵√(a²) = a^(2/5): the root is the denominator and the power is the numerator.
+fill: y^(1/4) = {⁴√y}
+fill: ⁵√(a²) = {a^(2/5)}
+fill: (∛x)⁴ = {x^(4/3)}
+fill: x^(3/4) = {⁴√(x³)}
+fill: 7^(1/2) = {√7}
+fill: 27^(1/3) = {∛27} = {3}
+fill: 16^(3/4) = {(⁴√16)³} = {8}
+fill: 8^(2/3) = {(∛8)²} = {4}
+
+## Part C: Simplify with exponent rules
+fill: x^(1/2) · x^(1/3) = {x^(5/6)}
+fill: (x^(2/3))^(3/2) = {x}
+fill: 25^(-1/2) = {1/5}
+fill: x^(5/4) ÷ x^(1/4) = {x}
+
+## Stretch: Why it works
+write: Explain why 8^(1/3) must equal 2. Use the power of a power rule, (a^m)^n = a^(mn).
+  lines: 3
+  key: (8^(1/3))³ = 8^((1/3)(3)) = 8¹ = 8. So 8^(1/3) is a number whose cube is 8, which is the cube root of 8, and 2³ = 8, so 8^(1/3) = 2.
+
 # 19. Spot the Solving Mistake
 minutes: 30
 materials: pencil
