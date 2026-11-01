@@ -15,9 +15,9 @@ picword:
   - flower | {3}
   - seed | {1}
   - sprout | {2}
-draw: 1 First | 1.25
-draw: 2 Next | 1.25
-draw: 3 Last | 1.25
+draw: 1 First | 1.0
+draw: 2 Next | 1.0
+draw: 3 Last | 1.0
 
 ## Stretch: Trace
 trace: 1 2 3

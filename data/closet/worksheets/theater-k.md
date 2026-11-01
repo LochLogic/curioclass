@@ -17,10 +17,10 @@ choice: (Read aloud.) Lena lays a long blue scarf on the floor. She jumps over i
   - A cup
 
 ## Main: Draw 4 ideas
-draw: 1. My scarf could be... | 1.3
-draw: 2. My scarf could be... | 1.3
-draw: 3. My scarf could be... | 1.3
-draw: 4. My scarf could be... | 1.3
+draw: 1. My scarf could be... | 0.8
+draw: 2. My scarf could be... | 0.8
+draw: 3. My scarf could be... | 0.8
+draw: 4. My scarf could be... | 0.8
 
 ## Stretch: Act it out
 text: (Read aloud.) Circle the picture you will act out. Use your scarf and your body to show it. Can your friends guess?

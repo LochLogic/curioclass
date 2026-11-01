@@ -32,21 +32,21 @@ choice: Linda Nochlin argued that the lack of famous women artists was mainly ca
 
 ## Apply each lens to the painting
 write: Formalist reading:
-  lines: 3
+  lines: 2
   key: The leaning figure and raised arm form a strong diagonal, giving the painting energy. Light falls on her face, arm and sleeve against a dark background, focusing attention on the act of painting. The pushed-up sleeves and twisting pose create movement.
 write: Contextual reading:
-  lines: 3
+  lines: 2
   key: Painted in the 1630s, when few women could train as painters. Gentileschi had been the first woman in the Florence academy; the allegory of Painting was a standard figure in Italian art, often a woman with a chain and mask, so viewers would recognize it.
 write: Psychological reading:
-  lines: 3
+  lines: 2
   key: She appears absorbed and concentrated, looking away from us toward her work, not posing for the viewer. The pose suggests confidence and total focus on the act of making.
 write: Feminist reading:
-  lines: 3
+  lines: 2
   key: Only a woman could paint herself as the female figure of Painting, so she claims the role of the art itself and of the artist at once. She is shown working, not posing to be looked at, which reverses the usual way women appear in paintings.
 
 ## Stretch
 write: Which lens revealed the most about this painting, and what did it miss that another lens caught?
-  lines: 4
+  lines: 3
   key: Answers vary. Strong answers name one lens, give a specific insight it produced, and identify a limit, for example the feminist lens explains the significance of the pose but the formalist lens explains why the composition feels so energetic.
 
 # 21. Inquiry Question

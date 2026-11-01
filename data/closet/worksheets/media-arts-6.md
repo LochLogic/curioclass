@@ -16,11 +16,11 @@ match: Write the letter next to each shot size.
 
 ## Main: Sketch the five sizes
 text: Subject: a student reading on a park bench under a tree. Keep the subject and setting the same in every frame.
-draw: 1. Extreme wide shot | 1.6
-draw: 2. Wide shot | 1.6
-draw: 3. Medium shot | 1.6
-draw: 4. Close-up | 1.6
-draw: 5. Extreme close-up | 1.6
+draw: 1. Extreme wide shot | 1.3
+draw: 2. Wide shot | 1.3
+draw: 3. Medium shot | 1.3
+draw: 4. Close-up | 1.3
+draw: 5. Extreme close-up | 1.3
 
 ## Main: Choose the shot
 choice: Which shot best shows a character's fear?
@@ -46,7 +46,7 @@ choice: Two characters talk while sitting side by side. Which shot shows both of
 
 ## Stretch
 write: Put three of your shots in order to open a short film about the reader. Explain why you chose that order.
-  lines: 4
+  lines: 2
   key: Answers vary. A common strong order: extreme wide (show the park), medium (meet the reader), close-up (see the reaction to the book). This moves the audience from place to person to feeling. Starting close and pulling back can also work if the student says it builds mystery.
 
 # 21. One Story, Four Media

@@ -85,16 +85,16 @@ graph: Year | 1940 1945 1 | Aircraft produced (thousands) | 0 100 10
 
 ## Claims
 write: Claim 1, about women's work. State the claim and cite a number.
-  lines: 3
+  lines: 2
   key: The war pulled millions more women into paid work: the women's labor force grew by over 6 million between 1940 and July 1944, and women's share of all workers rose from about one-fourth to over one-third.
 write: Claim 2, about war production. State the claim and cite a number.
-  lines: 3
+  lines: 2
   key: American factories converted to war production at enormous speed: aircraft production rose from about 6,000 in 1940 to about 96,300 in 1944, about 16 times as many.
 write: Claim 3, about rationing and daily life. State the claim and cite a date or item.
-  lines: 3
+  lines: 2
   key: The war reached every kitchen and car: by March 1943 Americans needed ration stamps for tires, sugar, coffee, gasoline, meat, cheese and butter, so families changed how they cooked, shopped and traveled.
 
 ## Stretch: Limits of the data
 write: These numbers describe the whole country. Name one group whose wartime experience the totals hide, and what other source you could use to learn about it.
-  lines: 4
+  lines: 3
   key: Examples: Black women, who moved from domestic work into factories but faced discrimination in hiring and pay (sources: Black newspapers like the Pittsburgh Courier, oral histories); Mexican American workers in the Bracero Program; Japanese Americans, who were forced into incarceration camps (sources: camp newspapers, Densho oral histories). Accept any group with a fitting source.

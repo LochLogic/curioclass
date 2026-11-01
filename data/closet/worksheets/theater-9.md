@@ -29,13 +29,13 @@ choice: According to the passage, what did drama grow out of?
   - Puppet shows in the market
   - Poems read aloud by a single storyteller
 write: What does the story of Thespis show about the change from ritual to drama? (Paragraph 3)
-  lines: 3
+  lines: 2
   key: Drama began when a performer stopped singing about a hero with the chorus and instead spoke as a character, answering the chorus; storytelling became pretending to be someone.
 write: Describe how the playwriting competition worked. Include who chose, who presented, and who judged. (Paragraph 5)
-  lines: 4
+  lines: 3
   key: A city official chose three tragic playwrights; each presented three tragedies and a satyr play on one day; a wealthy choregos paid for each chorus; judges chosen by lot voted, and winners were honored and recorded.
 write: Give two jobs the chorus did in a tragedy. (Paragraph 6)
-  lines: 3
+  lines: 2
   key: Any two: sang and danced in the orchestra; commented on the action; asked questions; reacted as ordinary citizens might.
 choice: Only three actors played every speaking role in a tragedy. What made this possible?
   - The plays had only three characters.
@@ -43,12 +43,12 @@ choice: Only three actors played every speaking role in a tragedy. What made thi
   - The chorus spoke all the other lines.
   - Each actor played one role per day.
 write: Give three reasons masks were useful in Greek theater. (Paragraph 7)
-  lines: 3
+  lines: 2
   key: They let a few actors play many roles; they let men play women and gods; they could be seen from far up the hillside; they showed age, gender and type at a glance; they turned attention to the character, words and body.
 
 ## Stretch
 write: The last paragraph says religion, citizenship and art met in the theater. Choose one modern event that also mixes community, ritual and performance. How is it like the Dionysia, and how is it different?
-  lines: 4
+  lines: 3
   key: Answers vary: a parade, a graduation, a holiday concert or a sports opening ceremony. A strong answer names a shared feature (a whole community gathers, ritual opening, competition or honoring) and a real difference (no god being honored, performers are not competing, the audience is not judging).
 
 # 21. Where Is the Light Coming From?
@@ -57,19 +57,19 @@ materials: pencil
 ican: I can choose a motivated light source for a scene and describe its angle, color and intensity.
 directions: A motivated light source is the light that seems to come from something in the world of the play: a window, a lamp, a fire, the moon. For each scene, name the source and describe its angle, color and intensity. Use the example.
 mistakes: Students often name a stage instrument ("a spotlight") instead of the source in the story. Watch for angle answers like "from above" for every scene: low sun, a candle on a table and a streetlight all come from very different angles. Color is often left as "white"; push for warm or cool and a reason.
-notes: Angle words to accept: high, low, steep, from the side (side light), from behind (back light), from below. Intensity: low, medium, high, or a percentage. The key gives model answers; accept any answer that is believable for the scene. Stage lighting does not have to copy the source exactly: it suggests it, so the actors' faces can still be seen.
+notes: Angle words to accept: high, low, steep, from the side (side light), from behind (back light), from below. Intensity: low, medium, high, or a percentage. The key gives short model answers; accept any answer that is believable for the scene. Fuller versions: the campfire and the TV flicker; the desk lamp and the streetlight each make a small pool of light; the moon comes from the side or behind, fairly high; the setting sun fades as the scene goes on; the streetlight may read cool or sodium orange. Stage lighting does not have to copy the source exactly: it suggests it, so the actors' faces can still be seen.
 
 ## Example
 example: A classroom at 8 a.m. on a sunny day: **Source:** windows on the stage left wall. **Angle:** from the side, fairly low. **Color:** warm pale yellow. **Intensity:** high.
 
 ## Main
 table: Scene | Source | Angle | Color | Intensity
-  - 1. Two friends tell ghost stories around a campfire | {the campfire} | {low, from below} | {warm orange, flickering} | {low to medium}
-  - 2. A detective's office at midnight, one desk lamp on | {the desk lamp} | {low, from the side} | {warm yellow} | {low, a small pool}
-  - 3. A city sidewalk at night under a streetlight | {the streetlight} | {steep, from above} | {cool or sodium orange} | {medium in one pool}
-  - 4. A kitchen at sunset, light through a west window | {the setting sun through the window} | {low, from the side} | {deep amber or orange} | {medium, fading}
-  - 5. A bedroom at night, the moon through the window | {the moon} | {from the side or behind, fairly high} | {pale blue} | {low}
-  - 6. A family watching a movie in a dark living room | {the TV or screen} | {low, straight on from the front} | {cool blue, flickering} | {low, changing}
+  - 1. Two friends tell ghost stories around a campfire | {campfire} | {low, below} | {warm orange} | {low-medium}
+  - 2. A detective's office at midnight, one desk lamp on | {desk lamp} | {low, side} | {warm yellow} | {low}
+  - 3. A city sidewalk at night under a streetlight | {streetlight} | {steep, above} | {cool or amber} | {medium}
+  - 4. A kitchen at sunset, light through a west window | {setting sun} | {low, side} | {deep amber} | {medium}
+  - 5. A bedroom at night, the moon through the window | {moon} | {high, side} | {pale blue} | {low}
+  - 6. A family watching a movie in a dark living room | {TV screen} | {low, front} | {cool blue} | {changing}
 
 ## Stretch
 write: Choose scene 1 or scene 4. The audience still needs to see the actors' faces clearly. What extra light would you add that does not ruin the effect? Explain.

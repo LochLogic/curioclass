@@ -2,7 +2,7 @@
 minutes: 50
 materials: pencil, eraser
 ican: I can name, sketch and choose shot types to tell a story.
-directions: Match each shot type to a use. Then make your own reference sheet: sketch each of the 10 shot types in its box, using the same two characters (a coach and a player in a gym) for every sketch. Under each sketch, note where the frame cuts the body. Finish with a short sequence.
+directions: Match each shot type to a use. Then make your own reference sheet: sketch each of the 10 shot types in its box, using the same two characters (a coach and a player in a gym) for every sketch. Under each sketch, note where the frame cuts the body. Finish with the check questions.
 mistakes: Medium wide, medium and medium close-up blur together: check the frame lines (mid-thigh, waist, chest). Over-the-shoulder shots need the foreground shoulder and the back of a head in frame, not just two faces. An insert is a close shot of an object or detail that matters to the story (a stopwatch, a note), not a close-up of a face.
 notes: Shot names vary a little between crews and textbooks; the medium wide is also called the "cowboy shot" because westerns framed it to show a holstered gun. A useful check: hold up a phone-sized paper frame and walk through the sizes on a classmate. Students can keep this sheet as a reference all year.
 
@@ -20,16 +20,16 @@ match: Write the letter of the best use next to each shot.
   - Insert shot = Show an object or detail the audience must notice
 
 ## Main: Sketch the reference
-draw: 1. Extreme wide | 1.2
-draw: 2. Wide | 1.2
-draw: 3. Full | 1.2
-draw: 4. Medium wide (frame at mid-thigh) | 1.2
-draw: 5. Medium (frame at the waist) | 1.2
-draw: 6. Medium close-up (frame at the chest) | 1.2
-draw: 7. Close-up | 1.2
-draw: 8. Extreme close-up | 1.2
-draw: 9. Over-the-shoulder | 1.2
-draw: 10. Insert | 1.2
+draw: 1. Extreme wide | 0.9
+draw: 2. Wide | 0.9
+draw: 3. Full | 0.9
+draw: 4. Medium wide (frame at mid-thigh) | 0.9
+draw: 5. Medium (frame at the waist) | 0.9
+draw: 6. Medium close-up (frame at the chest) | 0.9
+draw: 7. Close-up | 0.9
+draw: 8. Extreme close-up | 0.9
+draw: 9. Over-the-shoulder | 0.9
+draw: 10. Insert | 0.9
 
 ## Check
 choice: In which shot do you see the back of one character's head and shoulder in the foreground?
@@ -42,11 +42,6 @@ choice: The coach checks a stopwatch, and the audience needs to read the time. W
   - Wide shot
   * Insert
   - Over-the-shoulder
-
-## Stretch
-write: Plan a 4-shot sequence: the player misses a free throw, then the coach reacts. Name each shot type and say what it shows.
-  lines: 5
-  key: Answers vary. Example: 1) wide: the player at the line in the quiet gym; 2) close-up: the player's face as they shoot; 3) insert: the ball rolling off the rim; 4) medium close-up: the coach, calm, nodding. A strong plan changes shot size for a reason and ends on the reaction.
 
 # 21. Color Associations
 minutes: 45
@@ -78,11 +73,6 @@ choice: According to the passage, why was purple linked to royalty?
   * A famous purple dye made from sea snails was very expensive.
   - Purple is the color of gold.
   - It was the color of traffic signs.
-choice: Which example shows that context changes a color's meaning?
-  - Blue is often a favorite color.
-  * Red feels playful on candy but means emergency on a hospital sign.
-  - Green leaves grow in spring.
-  - Paper dollars in the United States are green.
 choice: A website shows correct answers in green and wrong answers in red, with no words or icons. Based on the passage, who might have trouble?
   - Nobody; red and green are opposites
   * People with color vision deficiency, who may not tell red from green
@@ -98,12 +88,12 @@ write: Main color (about 60%): name it and tell why it fits the business and its
   lines: 2
   key: Answers vary. Example for Tide Pool Swim School: deep navy, which suggests calm, safe water and trust for parents.
 write: Support color (about 30%): name it and tell why.
-  lines: 2
+  lines: 1
   key: Answers vary. Example: sandy beige, which suggests the beach and keeps the design light and friendly.
 write: Accent color (about 10%): name it and tell what it will highlight.
-  lines: 2
+  lines: 1
   key: Answers vary. Example: bright coral for the "Sign up" button and class times, so they stand out against navy and beige.
-draw: Swatches and a quick sign for the business using the palette | 1.8
+draw: Swatches and a quick sign for the business using the palette | 1.0
 write: How did you make sure your palette works for someone with color vision deficiency and in black and white?
-  lines: 3
+  lines: 2
   key: Answers vary. A strong answer names light and dark contrast between colors, avoids relying on red versus green alone and adds words or icons. Example for Tide Pool: deep navy main, sandy beige support, bright coral accent, with navy text on beige for strong contrast.

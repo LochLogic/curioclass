@@ -26,9 +26,9 @@ choice: A filmmaker wants viewers to notice a person in the far background while
 
 ## Main: One scene, three focus settings
 text: Scene: a cat sits on a windowsill. Outside the window, a tree and a house across the street.
-draw: 1. Shallow focus | 2.2
-draw: 2. Medium focus | 2.2
-draw: 3. Deep focus | 2.2
+draw: 1. Shallow focus | 1.8
+draw: 2. Medium focus | 1.8
+draw: 3. Deep focus | 1.8
 table: Version | What is sharp | What is blurred
   - Shallow | {the cat} | {the windowsill edges, the tree and the house}
   - Medium | {the cat and the windowsill} | {the far tree and house, a little}
@@ -36,7 +36,7 @@ table: Version | What is sharp | What is blurred
 
 ## Think about it
 write: Which version makes the cat feel most important? Explain how the blur does that.
-  lines: 3
+  lines: 2
   key: The shallow version, because the background blur removes distracting detail, so the eye goes straight to the one sharp thing, the cat.
 write: When would a storyteller choose the deep focus version instead?
   lines: 2
@@ -44,7 +44,7 @@ write: When would a storyteller choose the deep focus version instead?
 
 ## Stretch
 write: In a "focus pull" the sharp area moves during a shot. Plan one: what is sharp at the start, what is sharp at the end, and what story moment does it show?
-  lines: 3
+  lines: 2
   key: Answers vary. Example: start sharp on the cat, then shift focus to a dog appearing outside the window; it shows the cat noticing a threat.
 
 # 21. Story World Map

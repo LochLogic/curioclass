@@ -21,7 +21,7 @@ picword:
   - sun | wear a hat in the sun {O}
 
 ## Stretch: Draw one more
-draw: Draw one more safe choice on the playground. | 2.4
+draw: Draw one more safe choice on the playground. | 1.9
 write: (Read aloud.) Tell a grown-up about your picture. They can write your words here.
   lines: 1
   key: Any safe choice, such as holding the rail on the climber, sitting on the swing, sharing the ball or staying inside the fence.

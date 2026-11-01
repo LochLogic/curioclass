@@ -64,7 +64,7 @@ picword:
   - apple | {|}
 
 ## Stretch: Make your own
-draw: Draw 4 pictures in a row, apples or cherries. Write the sticks under them. Clap it for a friend. | 1.8
+draw: Draw 4 pictures in a row, apples or cherries. Write the sticks under them. Clap it for a friend. | 1.0
 
 # 21. Family Sound Secret Word
 minutes: 20

@@ -72,11 +72,8 @@ table: Interval | Size | Half steps | Quality | Label
 
 ## Stretch: Explain
 write: Intervals 1 and 2 are both 3rds, but one is major and one is minor. Explain why, using the keyboard.
-  lines: 3
-  key: C to E covers 4 half steps (C, C#, D, D#, E), a major 3rd. D to F covers only 3 (D, D#, E, F), because E to F is a half step with no black key between, so it is a minor 3rd.
-write: How could you change interval 2 (D up to F) into a major 3rd?
   lines: 2
-  key: Raise the top note to F# (D to F# is 4 half steps), or lower the bottom note to Db (Db to F is 4 half steps).
+  key: C to E covers 4 half steps (C, C#, D, D#, E), a major 3rd. D to F covers only 3 (D, D#, E, F), because E to F is a half step with no black key between, so it is a minor 3rd.
 
 # 21. Seating and Roles Chart
 minutes: 30

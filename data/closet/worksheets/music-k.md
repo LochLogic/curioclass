@@ -11,9 +11,6 @@ notes: Each line of Twinkle Twinkle Little Star (a traditional melody; the words
 text: (Read aloud.) Sing the first line of Twinkle Twinkle Little Star. Touch one heart for each beat. Count the hearts. Write the number.
 count: Sing line 1. Touch the hearts.
   - 8 heart
-text: (Read aloud.) Now sing the second line, "How I wonder what you are." Touch one heart for each beat.
-count: Sing line 2. Touch the hearts.
-  - 8 heart
 
 ## Main: Mark the claps
 text: (Read aloud.) Listen. I will clap slowly. Draw an X on one heart for each clap. How many claps? Write the number.
@@ -24,7 +21,7 @@ count: Fast claps
   - 8 heart
 
 ## Stretch: Your own beat
-draw: Draw 4 hearts in a row. Pat each one as you say "1, 2, 3, 4." | 1.4
+draw: Draw 4 hearts in a row. Pat each one as you say "1, 2, 3, 4." | 1.0
 
 # 21. Who Is Playing?
 minutes: 15

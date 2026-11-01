@@ -28,7 +28,7 @@ picword:
   - face-blank | scared
 
 ## Stretch: A feeling for a puppy
-draw: (Read aloud.) A puppy lost its ball. Draw the puppy's face. | 1.6
+draw: (Read aloud.) A puppy lost its ball. Draw the puppy's face. | 1.2
 
 # 21. Calm Corner Picture Hunt
 minutes: 15

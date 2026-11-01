@@ -55,11 +55,11 @@ notes: The grid is a plain latitude and longitude grid with no coastlines, so st
 
 ## Warm up: Know the places
 match: Match each place to its description.
-  - Athens = City on the Attica peninsula, famous for early democracy
-  - Sparta = Inland city in the Peloponnese, famous for its army
-  - Corinth = Trading city on the narrow isthmus that joins the Peloponnese to the mainland
-  - Troy = City across the Aegean Sea in Anatolia, setting of Homer's Iliad
-  - Mount Olympus = Highest mountain in Greece, said to be home of the gods
+  - Athens = City in Attica, famous for early democracy
+  - Sparta = Inland Peloponnese city, famous for its army
+  - Corinth = Trading city on the isthmus to the Peloponnese
+  - Troy = City in Anatolia, setting of Homer's Iliad
+  - Mount Olympus = Highest peak in Greece, home of the gods in myth
 
 ## Main: Build the map
 table: Place | Latitude (°N) | Longitude (°E)

@@ -50,7 +50,7 @@ write: In 1609 Johannes Kepler showed that planets move in ellipses (ovals), not
 minutes: 45
 materials: pencil, calculator, colored pencils
 ican: I can use economic data to explain how the Great Depression spread from country to country.
-directions: Study the two data tables. Answer the questions, graph world trade, and write an explanation of how the crash spread, citing numbers.
+directions: Study the two data tables. Graph world trade, answer the questions and write an explanation of how the crash spread, citing numbers.
 mistakes: Students often compare raw numbers across countries that were counted differently: the German figure is a count of registered unemployed people, not a percentage, and the British and American rates come from different sources. Ask them to compare change over time within each country. Another trap: reading the trade spiral as a fall in the amount of goods only; it is value in gold dollars, so falling prices make up part of the drop.
 notes: Sources. US unemployment, percent of the civilian labor force: Stanley Lebergott's estimates (Historical Statistics of the United States). UK unemployment, percent of the workforce: Bank of England "A millennium of macroeconomic data," via FRED series UNRTUKA (insured-worker rates of the time were higher, about 22 percent in 1932). Germany, registered unemployed, yearly average in millions, rounded (the official count peaked at about 5.6 million in 1932). World trade: total imports of 75 countries in January of each year, millions of gold dollars, from Charles Kindleberger, The World in Depression, 1929 to 1939. Change 1929 to 1932: Blum, Cameron and Barnes, The European World (1970), as reported in many textbooks. Teach France as the exception: unemployment there stayed low in percentage terms even as trade fell.
 
@@ -65,6 +65,10 @@ table: Change from 1929 to 1932 | United States | United Kingdom | France | Germ
   - Industrial production | -46% | -23% | -24% | -41%
   - Foreign trade | -70% | -60% | -54% | -61%
 
+## Graph: The trade spiral
+graph: Year | 1929 1933 1 | World imports (millions of gold dollars) | 0 3000 500
+  key: 1929,2998 1930,2739 1931,1839 1932,1206 1933,992
+
 ## Read the data
 fill:
   - In which year was US unemployment highest? {1933}
@@ -73,10 +77,6 @@ fill:
   - By how many million did registered unemployment in Germany rise from 1929 to 1932? {3.7}
   - About what percent did world imports fall from January 1929 to January 1933? (Round to the nearest whole percent.) {67}%
   - Which country's foreign trade fell the most from 1929 to 1932? {United States}
-
-## Graph: The trade spiral
-graph: Year | 1929 1933 1 | World imports (millions of gold dollars) | 0 3000 500
-  key: 1929,2998 1930,2739 1931,1839 1932,1206 1933,992
 
 ## Explain: How the crash spread
 choice: Which statement does the data support best?

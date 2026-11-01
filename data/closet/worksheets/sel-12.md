@@ -18,27 +18,27 @@ passage: Between One Life and the Next
 
 ## Questions
 write: Why does the author begin with Aisha and Marcus being "surprised" by how they felt? Quote and explain.
-  lines: 3
+  lines: 2
   key: "Neither had done anything wrong. They were living through a transition" (paragraph 1). The author shows that stress after a big change is normal and expected, even when the change was wanted.
 write: What is the central insight of the Holmes and Rahe scale? Quote the sentence that states it.
-  lines: 3
+  lines: 2
   key: "Change itself is stressful, whether it is welcome or not" (paragraph 2). Even happy events like marriage or an achievement require readjustment, which takes energy.
 write: How does Bridges separate change from transition? Quote and explain.
-  lines: 3
+  lines: 2
   key: "A change is the outside event... A transition is the inner process of adjusting to it, and it often takes far longer" (paragraph 3). The event happens on one day, but adjusting inside can take months.
 write: Name Bridges' three phases in order, and quote the description of the phase where the author says most stress lives.
-  lines: 4
+  lines: 3
   key: Ending, neutral zone, new beginning. The neutral zone is "an uncomfortable in-between time when the old life is gone but the new one does not yet feel real" (paragraph 3); paragraph 4 says "Much of the stress of a transition lives in that neutral zone."
 write: Choose two of Schlossberg's four S's and show how each one helped Aisha or Marcus by the end of the passage. Quote the passage.
-  lines: 5
+  lines: 4
   key: Support: Marcus "found a coworker who remembered his own rough first year" (paragraph 7). Strategies: Aisha "joined a study group that met every Tuesday" (paragraph 7), which matches "Joining one group... speeds up the search for new support" (paragraph 6).
 write: The author ends by saying Aisha and Marcus were "carried less by luck than by the slow, ordinary work of building a new life." What is the author's message? Support it with one more quotation.
-  lines: 4
+  lines: 3
   key: Getting through a transition is a process people can work at, not a matter of luck. Support: "Building small routines... restores a sense of control" (paragraph 6), or "These feelings are a normal part of the process, not proof that the decision was a mistake" (paragraph 4).
 
 ## Stretch
 write: A fictional friend, Leo, is three weeks into a new job in a new city and says, "I think I made a huge mistake." Using two ideas from the passage, write what you could say to him.
-  lines: 4
+  lines: 3
   key: Answers vary. Example: "What you're feeling sounds like the neutral zone. The passage says these feelings are normal and not proof the decision was a mistake. Could you try one small routine, like a weekly call home, or join one group at work?"
 
 # 21. Running for Local Office

@@ -23,7 +23,7 @@ choice: Which detail best shows that Maya's stress is acute?
   - Her mind feels sharp.
   - She has a basketball final.
 write: Describe the order of events in the acute stress response, from the brain's alarm to the release of cortisol. Cite the paragraph.
-  lines: 4
+  lines: 3
   key: The hypothalamus sounds an alarm; within seconds the sympathetic nervous system signals the adrenal glands to release adrenaline, raising heart rate and breathing and releasing sugar; over several minutes the HPA axis raises cortisol to keep energy available (paragraph 2).
 choice: According to paragraph 3, why does acute stress usually cause no lasting harm?
   - It only happens to athletes.
@@ -31,18 +31,18 @@ choice: According to paragraph 3, why does acute stress usually cause no lasting
   * The response is built to switch off when the challenge passes.
   - Cortisol is never released.
 write: What makes stress chronic rather than acute? Give two examples of chronic stressors from the passage.
-  lines: 3
+  lines: 2
   key: Stress is chronic when stressors last weeks, months or longer, or when the alarm keeps firing after the threat is gone, so stress signals stay high (paragraph 4). Examples: caring for a sick relative, money problems, ongoing bullying, an unsafe neighborhood.
 write: Explain how two of Jordan's symptoms connect to the effects of chronic stress. Use evidence from paragraph 5.
-  lines: 4
+  lines: 3
   key: He catches every cold because chronic stress can weaken the immune system so people get sick more often; he finds it hard to remember what he read because chronic stress is connected to memory and concentration problems; his poor sleep matches the link to trouble sleeping (paragraph 5).
 write: The author says stress cannot and should not be avoided entirely. What is the author's goal instead, and what supports does the passage name? Why does the author mention communities and schools?
-  lines: 5
+  lines: 3
   key: The goal is recovery, giving the body chances to switch off the alarm (paragraph 6). Supports: physical activity, sleep, slow deep breathing and strong relationships. The author mentions communities, schools and health professionals because some stress comes from problems, like poverty or an unsafe home, that a person cannot fix alone.
 
 ## Stretch
 write: Reread the last sentence. Explain the author's point about "the same system" in your own words.
-  lines: 3
+  lines: 2
   key: The stress response is helpful when it turns on briefly and then off, but when it never gets to rest, the same changes that help in a challenge start to damage the body.
 
 # 21. Testimony to the Town Council
