@@ -1,3 +1,45 @@
+# 1. Ball-and-Stick Molecules
+minutes: 35
+materials: pencil, colored pencils (black, red, blue; leave hydrogen white)
+ican: I can model molecules with balls and sticks and count the atoms in each one.
+directions: Draw a ball-and-stick model of each molecule in its box. Use the color key: carbon black, oxygen red, nitrogen blue, hydrogen white (just an outline). Each stick is a bond; draw a double bond as two sticks. Then count each kind of atom.
+mistakes: Students often read the small number in a formula as belonging to the next atom (reading CO2 as two carbons). The subscript counts the atom just before it. Another common slip: drawing O2 as a single oxygen atom; oxygen in air is a molecule of two atoms.
+notes: Shapes for reference: water is bent; carbon dioxide is a straight line with double bonds, O=C=O; methane has a carbon in the middle with 4 hydrogens; ammonia has a nitrogen with 3 hydrogens in a low pyramid; oxygen gas is two oxygens joined by a double bond; hydrogen peroxide is H-O-O-H. Exact 3D angles are not expected; correct atoms and connections are. Modeling clay and toothpicks make a good hands-on version.
+
+## Warm up
+example: Water, H2O: one red oxygen ball in the middle, a stick to each of 2 white hydrogen balls, in a bent (V) shape.
+  Atoms: H = 2, O = 1. Total = 3.
+
+## Main: Draw and count
+draw: 1. Water, H2O (draw the example) | 1.0
+draw: 2. Oxygen gas, O2 | 1.0
+draw: 3. Carbon dioxide, CO2 | 1.0
+draw: 4. Methane, CH4 | 1.0
+draw: 5. Ammonia, NH3 | 1.0
+draw: 6. Hydrogen peroxide, H2O2 | 1.0
+table: Molecule | Formula | Carbon | Hydrogen | Oxygen | Nitrogen | Total atoms
+  - water | H2O | 0 | 2 | 1 | 0 | 3
+  - oxygen gas | O2 | {0} | {0} | {2} | {0} | {2}
+  - carbon dioxide | CO2 | {1} | {0} | {2} | {0} | {3}
+  - methane | CH4 | {1} | {4} | {0} | {0} | {5}
+  - ammonia | NH3 | {0} | {3} | {0} | {1} | {4}
+  - hydrogen peroxide | H2O2 | {0} | {2} | {2} | {0} | {4}
+
+## Think
+choice: Which molecule is made of only one kind of atom?
+  - water
+  * oxygen gas
+  - methane
+  - ammonia
+write: Water and hydrogen peroxide are made of the same two elements. Why are they different substances?
+  lines: 2
+  key: They have different numbers and arrangements of atoms: water has one oxygen (H2O), hydrogen peroxide has two (H2O2) joined to each other. A different molecule means a different substance with different properties.
+
+## Stretch
+write: Methane burns with oxygen to make carbon dioxide and water: CH4 + 2O2 makes CO2 + 2H2O. Count the atoms of each element on both sides. What do you notice?
+  lines: 3
+  key: Left: C 1, H 4, O 4. Right: C 1, H 4 (2 x 2), O 4 (2 + 2). The same atoms are on both sides, only rearranged into new molecules.
+
 # 11. Melting Ice Temperature Log
 minutes: 45
 materials: crushed ice, a clear cup, a larger bowl of warm tap water, a thermometer (digital or alcohol), a timer, safety goggles, pencil
