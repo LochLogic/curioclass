@@ -848,7 +848,17 @@ p.ws-keyonly { color: #b03020; margin: 4px 0; font-size: 14px; }
 }
 @media print {
   .ws-viewer { max-width: none; padding: 0; }
-  .ws-sheet, .ws-teacher { box-shadow: none; margin: 0; padding: 0; max-width: none; font-size: 10.5pt; }
+  .ws-sheet, .ws-teacher { box-shadow: none; margin: 0; padding: 0; max-width: none; font-size: 10pt; line-height: 1.35; }
+  .ws-head h1 { font-size: 20pt; margin: 2px 0 4px; }
+  .ws-name { margin-bottom: 8px; }
+  .ws-name span { padding-bottom: 10px; }
+  .ws-section { margin: 9px 0; }
+  .ws-part { margin-bottom: 5px; }
+  .ws-lines span { height: 0.3in; }
+  .ws-q { margin: 6px 0 9px; }
+  .ws-fill li { margin-bottom: 6px; }
+  .ws-passage p, .ws-source p { line-height: 1.4; margin-bottom: 4px; }
+  .ws-rate { margin-top: 10px; }
   .show-key .ws-teacher { break-before: page; }
   .ws-section { break-inside: auto; }
   .ws-comic, .ws-q, .ws-pics, .ws-shapes { break-inside: avoid; }
