@@ -47,6 +47,102 @@ write: The passage says, "A famous author can make a mistake, and a new website 
   lines: 3
   key: To warn that no single clue proves a source good or bad; a researcher should ask all five questions together and check other sources instead of trusting fame or rejecting something just because it is new.
 
+# 7. Ad or Article?
+minutes: 30
+materials: pencil, highlighter
+ican: I can tell news articles, ads and sponsored content apart on a news website and explain the clues.
+directions: Read the eight items from a printed news homepage. Label each one News, Ad or Sponsored. Then write the clue that told you. Answer the questions at the end.
+mistakes: Students often label sponsored content as news because it looks like an article, with a headline and a photo. The clue is in the small words: "Sponsored," "Paid post," "Presented by," "Promoted." Others call every item with a company name an ad; a news story can mention a company and still be news if a reporter wrote it to inform.
+notes: The website, reporters and companies are made up, and companies have letter names so they cannot be confused with real brands. Definitions used here: **News** is written by the publication's reporters to inform readers. An **Ad** is a paid message from a company that is clearly selling something, usually set apart in a box. **Sponsored content** (also called native advertising) is paid for by a company but made to look like an article; it must carry a label such as "Sponsored." Item 8, "promoted" links, is paid placement, so the key counts it as an ad; accept Sponsored with a good reason.
+
+## The homepage
+source: The Riverside Daily (a made-up news website), homepage, Tuesday
+  [1] **City Council Votes to Add Bike Lanes on Main Street.** By Dana Ruiz, Staff Reporter. The 5-2 vote follows months of public meetings.
+  [2] SPONSORED. **5 Reasons Every Kid Needs Product S Sneakers.** Paid post by Company S.
+  [3] (Box with a picture of a backpack) **SUMMER SALE! 50% off all backpacks. Shop now!**
+  [4] **Storm Knocks Out Power to 2,000 Homes.** By Marcus Lee, Staff Reporter. Crews expect to restore power by Wednesday.
+  [5] Presented by Snack Company K. **Our Favorite After-School Snacks, Ranked.**
+  [6] **Riverside Robotics Team Heads to State Finals.** By Priya Shah, Staff Reporter.
+  [7] (Box with a game picture) **Download Game Z free today! INSTALL**
+  [8] Promoted links. **You Won't Believe What This Cat Did Next!**
+
+## Warm up
+choice: Which words are the best clue that an item is sponsored content?
+  - A headline in large letters
+  * "Paid post" or "Presented by"
+  - A photo next to the headline
+  - A reporter's name
+choice: Who writes the news articles on a news website?
+  - The companies that buy ads
+  - Anyone who visits the site
+  * The publication's own reporters and editors
+
+## Main: Label each item
+table: Item | News, Ad or Sponsored? | The clue
+  - 1 | {News} | {staff reporter's byline; informs about a vote}
+  - 2 | {Sponsored} | {"Sponsored" and "Paid post by Company S"}
+  - 3 | {Ad} | {sale box, "Shop now," selling backpacks}
+  - 4 | {News} | {staff reporter's byline; facts about the storm}
+  - 5 | {Sponsored} | {"Presented by Snack Company K"}
+  - 6 | {News} | {staff reporter's byline; local event}
+  - 7 | {Ad} | {box telling you to download; "INSTALL" button}
+  - 8 | {Ad} | {"Promoted links," paid placement; clickbait headline}
+
+## Think about it
+write: Why might Company S pay for an item that looks like an article instead of a regular ad?
+  lines: 3
+  key: Readers trust articles more than ads and often skip ads, so an item that looks like news can persuade people to buy without them noticing it is advertising.
+write: Item 2 lists "5 reasons." How should a reader treat those reasons, compared with facts in item 4?
+  lines: 3
+  key: With caution: Company S wrote or paid for them to sell its sneakers, so the reasons are one-sided; item 4 was written by a reporter to inform, so it is more likely to be balanced and checked.
+
+## Stretch
+write: Should news websites have to label sponsored content in large, clear letters? Give one reason.
+  lines: 3
+  key: Answers vary. Sample: Yes, because readers have a right to know when a company paid for what they are reading, so they can judge how much to trust it. (In the United States, the Federal Trade Commission says ads that look like articles must be clearly labeled.)
+
+# 20. Rabbit Hole Notebook Starter
+minutes: 35
+materials: pencil, highlighter
+ican: I can notice the questions that come up while I read and log where each one could lead my research.
+directions: Read the article about volcanoes. Each time you wonder something, put a small ? in the margin. Then log 5 of your questions in the notebook page: the paragraph that sparked it, and where the question could lead.
+mistakes: Students often write questions the article already answers ("What is lava?"). A rabbit hole question goes past the article. Others write "Google it" for every lead; push for a specific kind of source or a next topic (a geologist's site, a library book on Mount St. Helens, a map of the Ring of Fire).
+notes: The article is original to Curio Class (about 330 words). Facts are checked against the US Geological Survey and the Smithsonian Global Volcanism Program: about 1,350 potentially active volcanoes on land worldwide; most lie around the Pacific Ring of Fire; magma is called lava once it reaches the surface; Mount St. Helens erupted on May 18, 1980, and 57 people died; Kilauea erupted almost without stopping from 1983 to 2018; Paricutin in Mexico began in a farmer's cornfield in 1943; Olympus Mons on Mars is one of the largest volcanoes known. Any 5 questions that go beyond the text and name a lead are correct; the key shows samples.
+
+## Read
+passage: Windows Into the Earth | numbered
+  Deep under your feet, rock is so hot that some of it melts. This melted rock, called magma, is lighter than the solid rock around it, so it slowly rises. When magma breaks through the surface, it is called lava, and the opening where it escapes is a volcano.
+  Scientists count about 1,350 volcanoes on land that could erupt again. Most of them sit in a giant horseshoe around the Pacific Ocean known as the Ring of Fire. There, the huge plates of rock that make up Earth's outer layer push and slide against each other.
+  Not all eruptions look the same. Some volcanoes ooze rivers of runny lava. Kilauea, in Hawaii, did this almost without stopping from 1983 to 2018. Other volcanoes explode. On May 18, 1980, Mount St. Helens in Washington State blasted away the top of the mountain and sent ash high into the sky. Fifty-seven people died.
+  Volcanoes can appear where nobody expects them. In 1943, a farmer in Mexico noticed smoke rising from a crack in his cornfield. Within a week, a cone of rock taller than a five-story building stood there. The volcano, called Paricutin, kept growing for nine years.
+  Volcanoes destroy, but they also build. Every Hawaiian island was made by volcanoes. Ash breaks down into rich soil, which is why farms often grow on a volcano's slopes. Many eruptions happen on the ocean floor, out of sight, slowly making new crust.
+  Earth is not the only place with volcanoes. Olympus Mons on Mars is one of the largest volcanoes known, about two and a half times as tall as Mount Everest. Scientists study volcanoes on other worlds to learn how planets change over time.
+  Today, scientists watch active volcanoes with instruments that sense tiny earthquakes and changes in the ground. Their warnings can give people time to leave before an eruption.
+
+## Warm up: Answered or rabbit hole?
+choice: Which question does the article already answer?
+  - How do scientists predict exactly when a volcano will erupt?
+  * Where are most of Earth's volcanoes?
+  - What happened to the farmer after Paricutin appeared?
+  - Are there volcanoes on Jupiter's moons?
+
+## Main: My rabbit hole notebook
+example: Model: Paragraph 4. **Question:** Did the farmer lose his whole farm? **Where it could lead:** the history of Paricutin and the town nearby; a geology book or a museum site about Mexican volcanoes.
+chart: Para. | My question (one that goes past the article) | Where it could lead (a topic, a source, an expert)
+  rows: 5
+  height: 0.7
+  key: Samples. Paragraph 2: Why do the plates move? Leads to plate tectonics, a geology book or the US Geological Survey site. Paragraph 3: Why was Mount St. Helens so deadly when Kilauea was not? Leads to explosive vs. runny lava, a volcanologist's explanation. Paragraph 5: How long does it take ash to become good soil? Leads to soil science, a farming or university extension site. Paragraph 6: Are there volcanoes erupting on other worlds right now? Leads to NASA mission pages about Jupiter's moon Io. Paragraph 7: How do the instruments sense tiny earthquakes? Leads to seismometers, a volcano observatory site.
+
+## Choose a path
+write: Star the question you most want to follow. Why does it interest you, and what would be your first search?
+  lines: 3
+  key: Sample: I starred "Why was Mount St. Helens so deadly?" because I want to know if it could happen again. My first search: Mount St. Helens 1980 eruption causes, on the US Geological Survey site.
+
+## Stretch
+write: Two of your questions might lead to the same place. Which two, and what bigger topic connects them?
+  lines: 2
+  key: Sample: "Why do the plates move?" and "Why are most volcanoes around the Pacific?" both lead to plate tectonics.
+
 # 21. Question Growth Tree
 minutes: 30
 materials: pencil, colored pencil
@@ -82,3 +178,49 @@ draw: Draw your tree: the trunk question at the bottom, six branches with a shor
 write: Which starred branch will you follow first? Explain why it is worth following and where you could look for answers.
   lines: 3
   key: Sample for "Why do birds migrate?": I will follow "How do birds find their way?" because it surprises me that they travel thousands of miles, and I can look in bird books in the 598s and on a bird research website.
+
+# 33. Evaluating Sources Review
+minutes: 40
+materials: pencil, highlighter
+ican: I can corroborate a claim, spot clues of a fake website, and tell primary sources from secondary sources.
+directions: Part 1: decide whether a claim is corroborated by the sources. Part 2: find 3 clues that a website is not reliable. Part 3: label 4 sources as primary or secondary and give a reason.
+mistakes: In Part 1, students often count every source that agrees, including the unreliable one. Corroboration means independent, reliable sources agree. In Part 3, students often call any old or famous source primary; a primary source was made by someone who was there or at the time. A modern encyclopedia article about 1963 is secondary.
+notes: Octopus fact checked: octopuses have three hearts (two pump blood through the gills, one pumps it to the rest of the body). The Great Wall claim is a well-known myth: astronauts report the wall is not visible with the naked eye from the Moon, and it is very hard to see even from low Earth orbit. All websites in Parts 1 and 2 are made up. Part 3 sources are described, not printed.
+
+## Part 1: Corroborate a claim
+text: **Claim:** An octopus has three hearts.
+source: Source A: City Aquarium (made up), "Meet the Octopus," 2025
+  "An octopus has three hearts: two move blood through the gills, and one pumps it around the body."
+source: Source B: University marine biology department (made up), "Octopus Anatomy," 2023
+  "Octopuses have a systemic heart and two branchial hearts, one at each gill." The page lists two research articles.
+source: Source C: a social media post by FunFacts4U, no date
+  "Octopuses have NINE hearts, one in each arm and one in the head!!"
+choice: Is the claim corroborated?
+  - No, because Source C disagrees
+  * Yes, because two independent, reliable sources agree
+  - No, because only one source is a university
+  - Yes, because three sources talk about octopus hearts
+write: Why should Source C not change your answer?
+  lines: 2
+  key: It has no named author, no date and no sources, and its claim (nine hearts) is not supported by any reliable source; one unreliable source does not outweigh two reliable ones that agree.
+
+## Part 2: Spot the fake site
+source: amazingfacts-247.example.com (no author, no date)
+  **SHOCKING!!! You Can See the Great Wall of China From the MOON!** Every astronaut agrees! Scientists hate this fact. Share now before it disappears! (Ads for three games fill the side of the page.)
+table: Clue | Why it is a warning sign
+  - 1 | {No author or date, so we cannot check who made it or when.}
+  - 2 | {"Every astronaut agrees" with no names or sources.}
+  - 3 | {Emotional, all-caps headline and "share now" push you to react, not think.}
+note: Also accept: ads fill the page (made to earn clicks); an odd web address; "scientists hate this fact"; the claim itself is a known myth.
+
+## Part 3: Primary or secondary?
+table: Source | Primary or secondary? | Reason
+  - A diary kept by a soldier during the Civil War | {primary} | {written by someone who was there, at the time}
+  - A textbook chapter on the Civil War, written in 2020 | {secondary} | {written later by someone who studied other sources}
+  - A photograph taken at the 1963 March on Washington | {primary} | {made at the event, at the time}
+  - An encyclopedia article about the March on Washington | {secondary} | {sums up the event later, from other sources}
+
+## Stretch
+write: A primary source can still be unreliable. Explain how, using one of the Part 3 sources.
+  lines: 3
+  key: Sample: The soldier's diary shows only what one person saw and believed; he may have had wrong information or strong feelings about the enemy, so a historian would compare it with other sources.
