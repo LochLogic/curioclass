@@ -54,7 +54,7 @@ def inline(s, answers=None):
             if answers is not None:
                 answers.append(part)
             w = max(2.2, min(10, 0.62 * len(part) + 1.4))
-            out.append(f'<span class="ws-blank" style="min-width:{w:.1f}em"><span class="ws-ans">{esc(part)}</span></span>')
+            out.append(f'<span class="ws-blank" style="min-width:{w:.1f}em"><span class="ws-ans">{esc(part) or "&#8203;"}</span></span>')
         else:
             t = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', esc(part))
             t = re.sub(r'(?<![*\w])\*(?!\s)(.+?)(?<!\s)\*(?![*\w])', r'<i>\1</i>', t)
@@ -154,8 +154,8 @@ def b_draw(a, body, c):
 
 def b_trace(a, body, c):
     """trace: 1 2 3 4 5   big dotted numerals or letters to trace, each with a box to write it after"""
-    cells = ''.join(f'<span class="ws-trace-cell"><span class="ws-trace">{esc(t)}</span><span class="ws-trace-try"></span></span>'
-                    for t in a.split())
+    cells = ''.join(f'<span class="ws-trace-cell"><span class="ws-trace">{esc(t)}</span><span class="ws-trace-try" '
+                    f'style="width:{max(44, 30 * len(t))}px"></span></span>' for t in a.split())
     return f'<div class="ws-trace-row">{cells}</div>'
 
 
@@ -217,14 +217,17 @@ def b_sort(a, body, c):
 
 
 def b_table(a, body, c):
-    """table: Head | Head | Head   then "- cell | {answer} | cell" rows (empty cells are blank boxes)"""
+    """table: Head | Head | Head   then "- cell | {answer} | cell" rows (empty cells are blank boxes).
+    "height: 0.6" sets the row height in inches, for writing or gluing in cells."""
+    d, body = opts(body)
     cells = lambda t: [x.strip().replace('\\|', '|') for x in re.split(r'(?<!\\)\|', t)]
     heads = cells(a)
     rows = [cells(t) for _, t in items(body)]
     if any(len(r) != len(heads) for r in rows):
         raise SheetError(f'table {a!r} has rows of the wrong width')
     th = ''.join(f'<th>{esc(h)}</th>' for h in heads)
-    tr = ''.join('<tr>' + ''.join(f'<td>{inline(x, c["answers"]) if x else ""}</td>' for x in r) + '</tr>' for r in rows)
+    h = f' style="height:{float(d["height"]):.2f}in"' if 'height' in d else ''
+    tr = ''.join(f'<tr{h}>' + ''.join(f'<td>{inline(x, c["answers"]) if x else ""}</td>' for x in r) + '</tr>' for r in rows)
     return f'<table class="ws-table"><thead><tr>{th}</tr></thead><tbody>{tr}</tbody></table>'
 
 
@@ -273,8 +276,12 @@ def b_graph(a, body, c):
 
 
 def b_passage(a, body, c):
-    """passage: Title   then the text, one paragraph per indented line; lines are numbered for citing"""
-    paras = ''.join(f'<p>{inline(p)}</p>' for p in body)
+    """passage: Title   then the text, one paragraph per indented line. "passage: Title | numbered" numbers the
+    paragraphs in the margin for citing."""
+    title, _, flag = a.partition('|')
+    a = title.strip()
+    num = flag.strip() == 'numbered'
+    paras = ''.join(f'<p>{f"<span class=ws-pnum>{i}</span>" if num else ""}{inline(p)}</p>' for i, p in enumerate(body, 1))
     words = sum(len(p.split()) for p in body)
     c['passage_words'].append(words)
     return f'<div class="ws-passage"><h3>{inline(a)}</h3>{paras}</div>'
@@ -630,12 +637,17 @@ def b_venn(a, body, c):
 
 
 def b_chart(a, body, c):
-    """chart: Head | Head | Head   then "rows: 5" and optional "key: ..." : an empty organizer table (T-chart, KWL, cause and effect)"""
+    """chart: Head | Head | Head   then "rows: 5" and optional "key: ..." : an empty organizer table (T-chart, KWL, cause and effect).
+    "labels: First; Second; Third" prints a label at the start of each row (and sets the number of rows);
+    "height: 0.8" sets the row height in inches."""
     heads = [h.strip() for h in a.split('|')]
     d, _ = opts(body)
-    n = int(d.get('rows', 4))
-    th = ''.join(f'<th>{esc(h)}</th>' for h in heads)
-    tr = ('<tr>' + '<td></td>' * len(heads) + '</tr>') * n
+    labels = [x.strip() for x in d['labels'].split(';')] if 'labels' in d else []
+    n = len(labels) or int(d.get('rows', 4))
+    h = f' style="height:{float(d["height"]):.2f}in"' if 'height' in d else ''
+    th = ''.join(f'<th>{esc(x)}</th>' for x in ([''] if labels else []) + heads)
+    tr = ''.join(f'<tr{h}>' + (f'<th class="ws-rowlabel">{inline(labels[i])}</th>' if labels else '') + '<td></td>' * len(heads) + '</tr>'
+                 for i in range(n))
     return f'<table class="ws-table ws-chart"><thead><tr>{th}</tr></thead><tbody>{tr}</tbody></table>' + key(d.get('key', ''))
 
 
@@ -741,37 +753,58 @@ def b_code(a, body, c):
             f'<table class="ws-table ws-decoder"><tr>{table}</tr></table><p class="ws-tag">The message</p><div class="ws-codeboxes">{boxes}</div>'), len(rows)
 
 
-STAFF = {'treble': 'E4 F4 G4 A4 B4 C5 D5 E5 F5 G5 A5'.split() + [], 'bass': 'G2 A2 B2 C3 D3 E3 F3 G3 A3 B3 C4'.split()}
-LOW = {'treble': ['C4', 'D4'], 'bass': ['E2', 'F2']}
+LETTERS = 'CDEFGAB'
+BOTTOM = {'treble': ('E', 4), 'bass': ('G', 2)}  # the note on the bottom line
+
+
+def staff_step(note, clef):
+    """'F#4' -> (steps above the bottom line, letter, accidental)"""
+    m = re.fullmatch(r'([A-G])([#b]?)(\d)', note)
+    if not m:
+        raise SheetError(f'staff: note {note!r} should look like E4, F#4 or Bb3')
+    l, acc, octv = m.group(1), m.group(2), int(m.group(3))
+    bl, bo = BOTTOM[clef]
+    return (octv * 7 + LETTERS.index(l)) - (bo * 7 + LETTERS.index(bl)), l, acc
 
 
 def b_staff(a, body, c):
-    """staff: treble (or bass)   then "- E4" note lines: whole notes on a staff; students write each letter name.
-    Notes run from middle C (C4, one ledger line) up to A5 in treble, E2 to C4 in bass."""
-    clef = a.strip() or 'treble'
-    seq = LOW[clef] + STAFF[clef]
-    notes = [t.strip() for _, t in items(body)]
-    W = 70 + 58 * len(notes)
-    g = [f'<svg class="ws-staff" viewBox="0 0 {W} 130" role="img" aria-label="{esc(clef)} staff">']
+    """staff: treble (or bass)   then "- E4" note lines (sharps and flats: "- F#4", "- Bb3"): whole notes on a staff;
+    students write each name. Up to two ledger lines below or above (treble A3 to E6, bass C2 to G4).
+    "staff: treble | blank" prints an empty staff to write notes on."""
+    clef, _, flag = a.partition('|')
+    clef = clef.strip() or 'treble'
+    if clef not in BOTTOM:
+        raise SheetError(f'staff: clef {clef!r} is treble or bass')
+    notes = [] if flag.strip() == 'blank' else [t.strip() for _, t in items(body)]
+    n = max(len(notes), 8)
+    W, top, gap = 70 + 58 * n, 46, 14  # lines at top + 0..4 * gap, bottom line at top + 56
+    bot = top + 4 * gap
+    g = [f'<svg class="ws-staff" viewBox="0 0 {W} 150" style="max-width:{W * 0.9:.0f}px" role="img" aria-label="{esc(clef)} staff">']
     for i in range(5):
-        y = 90 - i * 14
+        y = top + i * gap
         g.append(f'<line x1="6" y1="{y}" x2="{W - 6}" y2="{y}" stroke="#222" stroke-width="1.4"/>')
-    g.append(f'<text x="12" y="{86 if clef == "treble" else 62}" font-size="{64 if clef == "treble" else 44}" font-family="serif">'
-             f'{"&#x1D11E;" if clef == "treble" else "&#x1D122;"}</text>')
-    for i, n in enumerate(notes):
-        if n not in seq:
-            raise SheetError(f'staff: note {n!r} is outside {seq[0]} to {seq[-1]}')
-        step = seq.index(n) - len(LOW[clef])  # 0 = bottom line
-        y, x = 90 - step * 7, 80 + 58 * i
-        if step <= -2:
-            g.append(f'<line x1="{x - 16}" y1="104" x2="{x + 16}" y2="104" stroke="#222" stroke-width="1.4"/>')
+    if clef == 'treble':
+        g.append(f'<text x="10" y="{bot + 14}" font-size="76" font-family="serif">&#x1D11E;</text>')
+    else:
+        g.append(f'<text x="12" y="{top + 2 * gap + 4}" font-size="54" font-family="serif">&#x1D122;</text>')
+    for i, note in enumerate(notes):
+        step, letter, acc = staff_step(note, clef)
+        if not -4 <= step <= 12:
+            raise SheetError(f'staff: {note} is more than two ledger lines off the staff')
+        y, x = bot - step * gap / 2, 84 + 58 * i
+        for ls in range(-2, step - 1, -2) if step <= -2 else range(10, step + 1, 2):
+            ly = bot - ls * gap / 2
+            g.append(f'<line x1="{x - 16}" y1="{ly}" x2="{x + 16}" y2="{ly}" stroke="#222" stroke-width="1.4"/>')
+        if acc:
+            g.append(f'<text x="{x - 22}" y="{y + 7}" font-size="22" font-family="serif" text-anchor="middle">{"&#9839;" if acc == "#" else "&#9837;"}</text>')
+        name = letter + ('-sharp' if acc == '#' else '-flat' if acc == 'b' else '')
         g.append(f'<ellipse cx="{x}" cy="{y}" rx="10" ry="7" fill="none" stroke="#222" stroke-width="2.4" transform="rotate(-20 {x} {y})"/>'
-                 f'<line class="ws-staff-blank" x1="{x - 16}" y1="124" x2="{x + 16}" y2="124" stroke="#222" stroke-width="1.2"/>'
-                 f'<text class="ws-keyonly" x="{x}" y="120" font-size="16" font-weight="700" fill="#b03020" text-anchor="middle">{n[0]}</text>')
-        c['answers'].append(n[0])
+                 f'<line x1="{x - 20}" y1="142" x2="{x + 20}" y2="142" stroke="#222" stroke-width="1.2"/>'
+                 f'<text class="ws-keyonly" x="{x}" y="139" font-size="{16 if not acc else 12}" font-weight="700" fill="#b03020" '
+                 f'text-anchor="middle">{esc(name)}</text>')
+        c['answers'].append(name)
     g.append('</svg>')
     return ''.join(g)
-
 
 KINDS = {'text': b_text, 'example': b_example, 'fill': b_fill, 'choice': b_choice, 'write': b_write, 'lines': b_lines,
          'draw': b_draw, 'trace': b_trace, 'chain': b_chain, 'picword': b_picword, 'sort': b_sort, 'table': b_table,
@@ -847,6 +880,13 @@ def parse(text, unit):
     return sheets
 
 
+def even_blanks(html_):
+    """Every blank in one block gets the width of the longest, so a blank's length never hints at its answer."""
+    pat = r'(<span class="ws-blank" style="min-width:)([\d.]+)(em">)'
+    widths = [float(m[1]) for m in re.findall(pat, html_)]
+    return re.sub(pat, lambda m: f'{m.group(1)}{max(widths):.1f}{m.group(3)}', html_) if widths else html_
+
+
 def render(sheet, unit):
     """-> (student html with key-only parts marked, answers list, checks list, passage word counts)"""
     c = dict(rng=None, block=0, answers=[], checks=[], words=[], passage_words=[], choices=[], n=1)
@@ -863,7 +903,7 @@ def render(sheet, unit):
             if isinstance(r, tuple):
                 r, used = r
                 c['n'] += used
-            body.append(r)
+            body.append(even_blanks(r))
         label = name.split(':', 1)
         head = f'<h2 class="ws-part"><span>{esc(label[0])}</span>{(" " + esc(label[1].strip())) if len(label) > 1 else ""}</h2>'
         out.append(f'<section class="ws-section">{head}{"".join(body)}</section>')

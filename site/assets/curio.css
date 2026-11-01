@@ -905,3 +905,11 @@ p.ws-keyonly { color: #b03020; margin: 4px 0; font-size: 14px; }
 .ws-program { font: 13px/1.5 ui-monospace, Menlo, Consolas, monospace; border: 1.5px solid #333; border-radius: 6px; padding: 8px 12px; margin: 6px 0; white-space: pre; overflow: hidden; }
 p.ws-note { border-left: 3px solid #b03020; padding-left: 8px; }
 .ws-card .ws-icon-sm { display: block; }
+.ws-table { width: 100%; }
+.ws-binary { width: auto; }
+.ws-decoder { width: auto; }
+.ws-rowlabel { text-align: left; font-size: 13px; width: 1%; white-space: nowrap; }
+.ws-pnum { display: inline-block; min-width: 1.5em; margin-left: -1.4em; font: 700 11px var(--sans); color: #666; text-indent: 0; }
+.ws-passage p:has(.ws-pnum) { text-indent: 0; padding-left: 1.4em; }
+.ws-pic svg { display: block; margin: 0 auto; }
+.ws-table td .ws-blank { min-width: 0 !important; display: block; width: 88%; margin: 0 auto; }

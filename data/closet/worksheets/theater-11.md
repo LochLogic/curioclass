@@ -37,11 +37,6 @@ write: Why did realism require a new kind of acting? Name one thing Stanislavski
   lines: 3
   key: In a real-looking room, big poses and speeches to the audience looked false, so actors had to behave like real people. Stanislavski asked actors to know what the character wants, what happened before the scene, and what lies under the words.
 
-## Stretch
-write: The passage says melodrama "did not disappear." Choose a recent movie or show and identify one melodrama convention it uses. Do you think the convention still works? Explain.
-  lines: 4
-  key: Answers vary. A strong answer names a convention from the passage (a clearly evil villain, a last-second rescue, music that tells you how to feel, a hero rewarded) and argues with a reason, for example that it gives clear stakes but can make characters feel flat.
-
 # 21. Final Scene Cue List
 minutes: 45
 materials: pencil
