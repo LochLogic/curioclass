@@ -57,6 +57,83 @@ write: The music teacher rejects your song one week before the assembly. What is
   lines: 2
   key: Answers vary. Strong plans: pick a backup instrumental track with the same tempo now, or choreograph to counts so any approved song at about 120 beats per minute will fit.
 
+# 7. Six-Dancer Formations Map
+minutes: 45
+materials: pencil, colored pencils, open floor space, a group of 6
+ican: I can map formations for 6 dancers with pathways and transition counts.
+directions: Solve the transition math. Then map 8 formations for 6 dancers. Number the dancers 1 to 6 and keep the same numbers in every formation. Draw an arrow for each dancer's pathway to the next formation, and write how many counts each transition takes.
+mistakes: Dancers get renumbered from frame to frame, so the pathways no longer make sense; dancer 3 must stay dancer 3. Transitions are often given too few counts for the distance: a dancer crossing the whole stage in 2 counts has to sprint. Watch for pathways that collide in the middle.
+notes: Have the group walk each transition at the planned counts before writing them down, and adjust. A quick test: if anyone has to run, add counts or shorten the pathway. Formation names: line, diagonal, V, wedge, circle, cluster, two groups, staggered rows, scattered.
+
+## Warm up: Transition math
+fill:
+  - 8 formations have {7} transitions between them.
+  - Each formation is held for 8 counts and each transition takes 4 counts. The whole section takes {92} counts.
+  - Dancer 6 must travel 6 steps in a transition. At 1 step per count, the transition needs {6} counts.
+  - If that transition gets only 3 counts, dancer 6 must take {2} steps per count.
+choice: In a transition, dancers 2 and 5 cross the center of the stage on the same count. What is the best fix?
+  - tell them to run faster
+  * stagger their timing or curve one pathway around the other
+  - cut dancer 5 from the dance
+
+## Main: Our 8 formations
+text: In "Counts," write how many counts the transition into that formation takes.
+table: # | Formation name | Map: X1 to X6 with arrows to the next formation (audience at the bottom) | Counts
+  height: 0.95
+  - 1 | | | start
+  - 2 | | |
+  - 3 | | |
+  - 4 | | |
+  - 5 | | |
+  - 6 | | |
+  - 7 | | |
+  - 8 | | |
+note: Maps are each group's own. Check that all six dancers appear in every frame with the same numbers, that every dancer has an arrow to the next frame, and that the counts are realistic when the group walks them.
+
+## Stretch
+write: Which transition is the hardest to perform cleanly? What did you change to fix it?
+  lines: 3
+  key: Answers vary, for example "From the wedge to the circle, dancers 1 and 6 had the farthest to go, so we gave that transition 8 counts and curved their pathways so they did not cut through the center."
+
+# 20. Common Dance Injuries
+minutes: 35
+materials: pencil, highlighter (optional)
+ican: I can explain common dance injuries and the habits that help prevent them.
+directions: Read the passage. Answer the questions. Then list prevention habits for each injury in the chart, using the passage.
+mistakes: Students list treatments instead of prevention: "ice it" happens after an injury; "warm up" and "build up gradually" prevent one. Others treat pain as something to push through; the passage says to report it early.
+notes: The passage is written for Curio Class and gives general information, not medical advice. Keep the focus on dancers in general, not on students' own injuries or bodies. A student with an injury should follow advice from a doctor or athletic trainer.
+
+## Warm up: Read
+passage: Dancing Smart: Three Common Injuries
+  Dancers are athletes, and like other athletes they can get hurt. Three of the most common dance injuries are ankle sprains, shin splints and overuse injuries. Most of them can be prevented with good habits.
+  An **ankle sprain** happens when the ligaments, the tough bands that hold the ankle bones together, are stretched or torn. Dancers often sprain an ankle by landing a jump on the outside edge of the foot, so the ankle rolls. Strong muscles around the ankle and good balance help the joint stay steady. Dancers can build them with calf raises and by balancing on one foot. Landing through the toes, the ball of the foot and then the heel, with the knees bent over the toes, also protects the ankle.
+  **Shin splints** are pain along the inner edge of the shinbone. They come from repeated pounding, especially on hard floors such as concrete, and from adding a lot of jumping too quickly. Dancing on a floor with some give, landing softly, and increasing practice time a little at a time all lower the risk.
+  **Overuse injuries** build up slowly from doing the same movement again and again without enough rest. Examples include sore, swollen tendons (tendinitis) and tiny cracks in a bone called stress fractures. Rest days, mixing different kinds of training, and warming up and cooling down every time help prevent them.
+  For every kind of injury, one habit matters most: tell a teacher or coach about pain early. Pain is a signal, and a small problem caught early is much easier to fix than one a dancer has ignored for weeks.
+choice: What are ligaments?
+  - muscles in the calf
+  * tough bands that hold bones together at a joint
+  - cracks in a bone
+choice: Which situation raises the risk of shin splints the most?
+  - dancing on a sprung wooden floor with soft landings
+  * doubling the amount of jumping on a concrete floor in one week
+  - resting one day a week
+choice: Why does the passage say to report pain early?
+  - so the dancer can skip class
+  - because all pain means a broken bone
+  * because a small problem caught early is easier to fix
+
+## Main: Prevention chart
+chart: What it is | Prevention habits (at least 2)
+  labels: Ankle sprain; Shin splints; Overuse injuries
+  height: 1
+  key: Ankle sprain: ligaments around the ankle stretched or torn, often from landing on the outside edge of the foot. Prevent: calf raises and one-foot balance work; land toes, ball, heel with knees bent over toes. Shin splints: pain along the inner edge of the shinbone from repeated pounding. Prevent: dance on floors with some give, land softly, increase jumping gradually. Overuse injuries: tendinitis and stress fractures from repeating a movement without rest. Prevent: rest days, cross-training, warm up and cool down every time. All: report pain early.
+
+## Stretch
+write: A dancer's company adds an extra two hours of jump rehearsal every day the week before a show, on a concrete stage. Which injuries is she at risk for, and what should the company do?
+  lines: 3
+  key: Shin splints and overuse injuries such as stress fractures, from a sudden increase in pounding on a hard floor (and ankle sprains if tired landings get sloppy). The company should add rehearsal time gradually, mark jumps at low energy, use a floor with some give or a portable sprung floor, build in rest, and have dancers report pain early.
+
 # 21. Cool Down and Recovery Plan
 minutes: 30
 materials: pencil
@@ -102,3 +179,41 @@ write: Why does the team need water and rest after rehearsal?
 write: The team has a show tomorrow. What one thing would you add to the plan for tonight, and why?
   lines: 2
   key: Answers vary. Strong answers: a full night of sleep, a healthy meal and water, or a light walk-through instead of more hard dancing, so muscles recover before the show.
+
+# 33. Breaking Terms in Use
+minutes: 35
+materials: pencil
+ican: I can use breaking vocabulary to describe a routine in words and pictures.
+directions: Match each term to its meaning. Use the terms in sentences. Then describe a breaking routine in 4 steps, each with a stick figure and a sentence that uses a term.
+mistakes: Students mix up toprock and downrock: toprock is danced standing up; downrock is footwork on the floor, with the hands supporting the body. A freeze is a held pose, not any move on the floor. Power moves are named here to describe them, not to try: they need trained coaching and mats.
+notes: Breaking began in the Bronx, New York, in the 1970s, when dancers called b-boys and b-girls danced to the "breaks" of songs that DJs played and extended. It was part of hip hop culture and became an Olympic event at the 2024 Paris Games. In class, students should stick to toprock and simple, supported downrock; no power moves, head spins or freezes on the head or neck without a trained coach and mats.
+
+## Warm up: The terms
+match: Match each term to its meaning.
+  - toprock = dance steps done standing up, often to start a set
+  - downrock = fast footwork on the floor with the hands holding up the body
+  - freeze = a pose held perfectly still, often on the hands, to stop on the beat
+  - power move = a continuous spinning or acrobatic move, like a windmill or a headspin
+
+## Main: Use the terms
+fill:
+  - The b-girl starts her set standing, crossing and kicking her feet to the beat in her {toprock}.
+  - She drops to the floor, hands down, and her legs circle around her in fast {downrock}.
+  - When the beat stops, she balances on one hand with her legs in the air and holds a {freeze}.
+  - Her opponent spins on his back and shoulders again and again in a {power move}.
+  - Breaking began in the 1970s in the {Bronx}, New York.
+  - Breaking became an Olympic event at the 2024 Games in {Paris}.
+
+## Main: A routine in 4 steps
+table: Step | Stick figure | My sentence using a term
+  height: 1.15
+  - 1. Toprock | |
+  - 2. Downrock | |
+  - 3. Power move | |
+  - 4. Freeze | |
+note: Sentences vary. Each must use its term correctly, for example "3. He spins into a windmill, a power move, rolling across his shoulders with his legs in a wide V." Stick figures should match: standing for toprock, hands down for downrock, a held pose for the freeze.
+
+## Stretch
+write: Why might a b-girl end her routine with a freeze exactly on the last beat of the music?
+  lines: 2
+  key: A freeze on the last beat shows control and musicality: the sudden stillness hits the end of the music, which makes a strong, clear finish that impresses judges and the crowd.
