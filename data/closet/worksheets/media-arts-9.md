@@ -43,6 +43,100 @@ choice: The coach checks a stopwatch, and the audience needs to read the time. W
   * Insert
   - Over-the-shoulder
 
+# 7. Continuity Error Hunt
+minutes: 35
+materials: pencil
+ican: I can find continuity errors between shots and explain how a crew prevents them.
+directions: Read about continuity. Compare each pair of frames: shot A is followed directly by shot B in the edited scene. Find the one detail that changed, solve the code to reveal the crew job that catches these errors, then explain how to prevent each one.
+mistakes: Students list every difference, including ones that are supposed to change (a different shot size shows a different part of the room). Only details that should match from one shot to the next are continuity errors. Also watch for students who only say "be careful"; a prevention should be a real crew practice.
+notes: The scene and frames are described in words so the sheet prints cleanly; if you like, have students act out a pair and photograph both shots to see the error. The message spells SCRIPT: the script supervisor tracks continuity on set with notes and reference photos. Scenes are usually shot out of order and over many takes, which is why props, costumes and hair drift between shots.
+
+## Warm up
+choice: What is a continuity error?
+  - A shot that is too dark
+  * A detail that changes between shots when it should stay the same
+  - A scene that is shot outside
+  - A mistake in the script's spelling
+choice: Why do continuity errors happen so often?
+  - Cameras change colors on their own
+  - Actors refuse to wear costumes
+  - Films are always shot in a single take
+  * Scenes are shot out of order and over many takes, so details drift between setups
+
+## Main: Compare the frames
+text: **The scene:** Maya and Leo talk at a kitchen table in the afternoon. Each pair below is two shots that play one after the other.
+table: Pair | Shot A (wide) | Shot B (next shot, closer)
+  - 1 | Maya in a red scarf; a full glass of juice; her phone face down | Maya in a red scarf; a half-empty glass of juice; her phone face down. She has not taken a sip.
+  - 2 | Leo in a cap worn forward; watch on his left wrist; pencil in his right hand | Leo in a cap worn forward; watch on his right wrist; pencil in his right hand
+  - 3 | Wall clock reads 3:10; daylight in the window; a bowl of 3 apples | Wall clock reads 4:25; daylight in the window; a bowl of 3 apples
+  - 4 | Maya's hair in a ponytail; red scarf; elbows on the table | Maya's hair loose on her shoulders; red scarf; elbows on the table
+  - 5 | Leo's sleeves rolled up; cap forward; both hands on the table | Leo's sleeves rolled down; cap forward; both hands on the table
+  - 6 | A notebook lies open to the left of Maya's plate; window behind her | The notebook is closed, to the left of Maya's plate; window behind her
+code: What changed? Find your answer in the decoder and write its letter in the box.
+  decoys: scarf cap phone pencil apples window
+  - Pair 1 | juice | S
+  - Pair 2 | watch | C
+  - Pair 3 | clock | R
+  - Pair 4 | hair | I
+  - Pair 5 | sleeves | P
+  - Pair 6 | notebook | T
+fill: The message names the crew member who watches for these errors: the {script} supervisor.
+
+## Main: Prevent it
+chart: The error | How a crew can prevent it
+  labels: Pair 1; Pair 2; Pair 3; Pair 4; Pair 5; Pair 6
+  height: 0.5
+  key: 1: Mark the juice level and refill it to the mark before every take; note when the actor drinks. 2: Take reference photos of costumes and props, including which wrist the watch is on. 3: Stop the prop clock or set it to the same time before each take, or keep it out of the shot. 4: Photograph hair at the start of the scene and check it before each take. 5: Note costume details (sleeves) in the continuity log and check before rolling. 6: Note the position and state of props (open or closed) and reset them after every take.
+
+## Stretch
+write: Not every change is a mistake. Describe a change between two shots that a director might allow or even want, and explain why the audience would not notice or would accept it.
+  lines: 3
+  key: Answers vary. Example: a cup moves a little between a wide shot and a close-up because the actor's performance in the close-up was much better; editors often choose the best performance over perfect continuity, and audiences watching the faces rarely notice small prop shifts. Changes the story explains, like a clock moving forward after a cut to later, are also accepted.
+
+# 20. Bakery Logo Thumbnails
+minutes: 50
+materials: pencil, eraser; optional: a fine black marker for the refined logos
+ican: I can generate many logo ideas quickly and refine the strongest ones to fit a client brief.
+directions: Read the client brief. Match the logo types in the warm up. Sketch 20 fast thumbnails, each a different idea. Then choose 3 and draw them larger and cleaner, and explain how each one fits the brief.
+mistakes: Students draw 20 versions of the same idea (one croissant, twenty angles). Each thumbnail should be a different idea: type, symbol, shape or combination. Others spend ten minutes polishing thumbnail 1. Set a timer: about one minute per thumbnail. In refining, students often add detail that disappears when the logo is small; check every refined logo at the size of a stamp.
+notes: Hearth and Honey Bakery is a made-up client. Thumbnails are small, rough sketches; quantity first is the point, because the best idea is rarely the first. A refined logo should work in one color, so ask for black only, no shading. If time is short, cut to 12 thumbnails.
+
+## Warm up
+example: **Client brief.** Hearth and Honey Bakery is a small neighborhood bakery known for honey wheat bread and opening at 6 a.m. Customers are families and people on their way to work. The owners want the logo to feel warm, handmade and friendly. It must work in one color, printed on a paper bag, and as a tiny app icon.
+match: Write the letter of each logo type.
+  - Wordmark = The name in a special lettering style, with no symbol
+  - Lettermark = Just the initials, such as "H and H"
+  - Pictorial mark = A picture or symbol on its own
+  - Combination mark = A symbol and the name used together
+  - Emblem = The name placed inside a badge, seal or shape
+choice: Why do designers sketch many small thumbnails before refining any?
+  - Small drawings print better
+  * Fast, rough ideas help them explore many directions before committing to one
+  - Clients only pay for thumbnails
+  - Thumbnails are the final logo
+
+## Main: 20 thumbnails
+text: About one minute each. Every box is a different idea. Number them 1 to 20.
+table: | | | |
+  height: 0.95
+  - | | | |
+  - | | | |
+  - | | | |
+  - | | | |
+
+## Main: Refine 3
+table: Refined A | Refined B | Refined C
+  height: 1.8
+  - | |
+write: For each refined logo, write its thumbnail number, its logo type and one way it fits the brief.
+  lines: 3
+  key: Answers vary. A strong answer names the type (for example, "combination mark: a beehive-shaped oven with the name below") and ties it to the brief: warm and handmade (rounded hand-drawn letters, a hearth or honey symbol), and simple enough to work in one color and at icon size.
+
+## Stretch
+write: Shrink test: imagine your best logo printed the size of a postage stamp. What details would disappear, and what would you change so it still works as an app icon?
+  lines: 3
+  key: Answers vary. Thin lines, small text and fine textures disappear when small. A strong answer simplifies, such as keeping only the symbol (or the initials) for the icon, thickening lines, and dropping the tagline, while keeping the full logo for the bag.
+
 # 21. Color Associations
 minutes: 45
 materials: pencil, colored pencils or markers
@@ -97,3 +191,44 @@ draw: Swatches and a quick sign for the business using the palette | 1.0
 write: How did you make sure your palette works for someone with color vision deficiency and in black and white?
   lines: 2
   key: Answers vary. A strong answer names light and dark contrast between colors, avoids relying on red versus green alone and adds words or icons. Example for Tide Pool: deep navy main, sandy beige support, bright coral accent, with navy text on beige for strong contrast.
+
+# 33. Interview Setup
+minutes: 45
+materials: pencil, ruler
+ican: I can plan the framing, eyeline and three-point lighting for a seated documentary interview.
+directions: Answer the warm up on eyeline and lighting. Draw an overhead plan of the interview setup and label every part. Then sketch the shot the camera will see and fill in the framing notes.
+mistakes: Students put the interviewer directly behind the camera and have the subject stare into the lens; that reads like a news anchor, not a documentary interview. Others place the subject in the center of the frame with no look room, or seat them in front of a bright window, which turns them into a silhouette. Check that the key light and the subject's look are planned together, not by accident.
+notes: The standard documentary setup: the interviewer sits right beside the camera lens, so the subject looks just off camera. If the interviewer sits to the camera's left, the subject looks toward the left side of the frame, so the subject is framed on the right third with look room (nose room) on the left. Three-point lighting: the key light is the main, brightest light, often about 45 degrees to one side; the fill light is softer, on the other side, to lighten shadows; the back light is behind the subject to separate them from the background. A practical lamp or window can serve as one of the lights.
+
+## Warm up
+choice: Where does the interviewer usually sit in a documentary interview?
+  - Behind the subject
+  - Far across the room
+  * Right beside the camera lens, so the subject looks just off camera
+  - In the shot, facing away
+match: Write the letter of the job each light does.
+  - Key light = The main, brightest light, often about 45 degrees to one side of the subject
+  - Fill light = A softer light on the other side that lightens the shadows
+  - Back light = A light behind the subject that outlines the head and shoulders
+choice: The only good spot for the chair puts a bright window behind the subject. What is the best fix?
+  - Turn the camera's brightness all the way up and hope
+  * Turn the setup so the window is beside the subject and use it as a key or fill light
+  - Shoot it anyway; viewers like silhouettes
+  - Ask the subject to wear white
+
+## Main: Overhead plan
+draw: Overhead plan (looking down from the ceiling). Draw and label: subject's chair, interviewer, camera, key light, fill light, back light, the background, and an arrow for the subject's eyeline. | 3.2
+note: Look for: the camera facing the subject; the interviewer right beside the lens (on one side); the eyeline arrow from subject to interviewer, just off the lens; the key light about 45 degrees to one side of the subject, the fill light on the opposite side, the back light behind the subject and out of the shot; the subject set a few feet in front of the background for depth.
+
+## Main: The frame
+draw: Sketch the shot the camera sees: a medium close-up of the seated subject, placed on a third, with look room. | 2
+fill:
+  - The interviewer sits on the camera's left, so the subject looks toward the {left} side of the frame.
+  - The subject is placed on the {right} third of the frame.
+  - The empty space in front of the subject's face is called {look room} (or nose room).
+  - To keep the subject's eyes in the upper part of the frame, line them up with the {top} third line.
+
+## Stretch
+write: Your interview is in a busy school library at 3 p.m. List two problems for picture or sound and how you would solve each.
+  lines: 4
+  key: Answers vary. Examples: noise from people and the air system (record after hours, post a quiet sign, use a lavalier microphone close to the subject); harsh overhead lights or bright windows (turn off some lights, use the window as a key light from the side, add a lamp as fill); a busy background of people walking (choose a corner with shelves and depth, ask for permission and a closed area).
