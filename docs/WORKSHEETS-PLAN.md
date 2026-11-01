@@ -190,8 +190,9 @@ Ten sheets built end to end, one per band and format family, live on the shelf w
 - **Source:** `data/closet/worksheets/<unit-id>.md` holds a class's built sheets. A sheet is a `# N. Title` heading
   (matching its concept-list row), header lines (minutes, materials, ican, directions, mistakes, notes, pairs), then
   `## Part` sections of blocks. The block kinds and their syntax are documented in `scripts/worksheets.py`: text,
-  example, fill, choice, write, lines, draw, trace, chain, picword, sort, table, graph, passage, source, colorcode,
-  binary, symmetry, halves, comic, replies, fixit, rate. `{answer}` anywhere is a blank on the student copy and the
+  example, fill, choice, write, lines, draw, trace, chain, picword, count, sort, table, chart, graph, passage, source,
+  colorcode, binary, symmetry, halves, comic, replies, fixit, match, numberline, tenframe, clock, venn, timeline, cards,
+  maze, code, staff, rate. `python scripts/worksheets.py --preview <unit> out.html` renders a class's sheets to check by eye. `{answer}` anywhere is a blank on the student copy and the
   answer on the key.
 - **Check:** `python scripts/worksheets.py` (also run by the build, which stops on a bad sheet): titles match the
   concept list, required headers, every choice has one right answer, every written prompt has a model answer,
@@ -200,7 +201,7 @@ Ten sheets built end to end, one per band and format family, live on the shelf w
 - **Site:** `/closet/worksheets/` (classes by grade, ready counts), `/closet/worksheets/<unit-id>/` (all 215 class
   pages: the year in teaching order, ready sheets linked), `/closet/worksheets/sheet/#<unit-id>/<n>` (the viewer:
   Student copy or Answer key and teacher page, Print, previous and next). Data: one JSON file per class with built
-  sheets. Pictures: `site/assets/ws-icons.svg` (12 icons so far). The shelf adds 227 files.
+  sheets. Pictures: one file per icon in `data/closet/worksheets/icons/`, joined by the build into `/assets/ws-icons.svg`. The shelf adds 227 files.
 - **Print:** student copies print on 1 or 2 Letter pages (kindergarten 1, the rest 2); the key prints the same pages
   with answers in red, then the teacher page. Checked in headless Chrome, not yet on a real printer.
 
