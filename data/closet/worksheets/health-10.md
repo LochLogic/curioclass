@@ -40,6 +40,103 @@ write: Ezra has a 90-minute practice after school. Using the passage, plan what 
   lines: 3
   key: Before: a meal with carbohydrate a few hours earlier (like pasta or a sandwich and fruit). During: water, and since it lasts over an hour, a sports drink or small carbohydrate snack. After: a meal or snack with carbohydrate and protein (like yogurt and fruit, or rice and beans) plus water.
 
+# 7. Clean, Separate, Cook, Chill
+minutes: 30
+materials: pencil
+ican: I can find food safety mistakes and name the step that prevents foodborne illness.
+directions: Study the four steps. Read each kitchen scenario. In the chart, write the mistake and the food safety step that would prevent illness. Each step is used twice.
+mistakes: Students often think rinsing raw chicken makes it cleaner. It does not kill germs and splashes them onto the sink and counters, so FoodSafety.gov says not to wash raw meat or poultry. Watch for "it looked done" in scenario 3: color is not a safe test; only a food thermometer shows a safe temperature.
+notes: Facts follow FoodSafety.gov and the USDA: wash hands with soap for 20 seconds; refrigerator at 40 °F or below; poultry and reheated leftovers to 165 °F; ground beef to 160 °F; refrigerate leftovers within 2 hours (1 hour above 90 °F); thaw in the refrigerator, in cold water or in the microwave, never on the counter. Scenario 6 could also be fixed by boiling the used marinade before using it on cooked food; accept Cook with that explanation. Characters are made up for Curio Class.
+
+## Warm up: The four steps
+match: Match each step to what it means.
+  - Clean = Wash hands, surfaces and produce often
+  - Separate = Keep raw meat, poultry, seafood and eggs away from ready-to-eat food
+  - Cook = Heat food to a safe inside temperature, checked with a thermometer
+  - Chill = Refrigerate food quickly and thaw it safely
+fill:
+  - The refrigerator should be at {40} °F or below.
+  - Chicken is safe when it reaches {165} °F inside.
+
+## Main: Eight kitchen scenarios
+text: **1.** Lena cuts raw chicken on a cutting board, then uses the same board and knife to slice tomatoes for a salad.
+text: **2.** Theo rinses raw chicken breasts in the sink before he cooks them.
+text: **3.** Ray cooks burger patties until they look brown in the middle, then serves them.
+text: **4.** Mia leaves a frozen turkey on the counter all day to thaw.
+text: **5.** After a party, the leftover pizza sits on the counter overnight. Dev eats it for breakfast.
+text: **6.** Jada pours the marinade that held raw chicken over the cooked chicken as a sauce.
+text: **7.** Owen takes out the trash, pets the dog, then makes sandwiches without washing his hands.
+text: **8.** Kim microwaves leftover chili for one minute. It is warm on the edges and still cold in the middle, and she eats it.
+table: # | The mistake | Step that prevents illness
+  height: 0.5
+  - 1 | {Raw chicken germs move to tomatoes on the same board and knife} | {Separate}
+  - 2 | {Rinsing raw chicken splashes germs around the sink and kitchen} | {Clean}
+  - 3 | {Color does not show if ground beef is safe; check for 160 °F} | {Cook}
+  - 4 | {The outside warms up and germs grow while the inside thaws} | {Chill}
+  - 5 | {Pizza sat out more than 2 hours, so germs could grow} | {Chill}
+  - 6 | {Marinade from raw chicken carries its germs onto cooked food} | {Separate}
+  - 7 | {Germs from the trash and the dog get onto the food} | {Clean}
+  - 8 | {Cold spots may not be hot enough to kill germs; reheat to 165 °F and stir} | {Cook}
+
+## Check it
+choice: What is a safe way to thaw a frozen turkey?
+  * In the refrigerator, allowing about one day for every 4 to 5 pounds
+  - On the counter overnight
+  - In a warm oven with the door open
+choice: How long should you wash your hands with soap?
+  - 5 seconds
+  - 10 seconds
+  * 20 seconds
+
+## Stretch
+write: Theo says, "My family has always washed chicken and nobody ever got sick." How would you answer him respectfully?
+  lines: 3
+  key: Example: "Lots of people do it, and you can't always tell when food made you sick. Experts say rinsing doesn't kill the germs and splashes them around the sink. Cooking to 165 °F is what kills them, so you can skip the rinse."
+
+# 20. Comparing Clinic Options
+minutes: 35
+materials: pencil, highlighter
+ican: I can compare health care options on cost, hours, distance, services and reviews to choose one that fits a person's needs.
+directions: Read about Dani and the three clinics. Fill in the comparison chart. Then decide which clinic fits Dani best and explain why.
+mistakes: Students often choose the clinic with the best reviews without checking if Dani can actually get there in time. Push them to check each option against Dani's real limits first (deadline, schedule, transportation, money), then compare the rest. Watch for students who treat star ratings as facts; a few reviews may not be typical, and reviews rarely say anything about quality of care.
+notes: Dani and the three clinics are made up for Curio Class. School-based health centers exist in many U.S. districts and often offer physicals, sick visits, vaccines and counseling at low or no cost; check whether your school has one or a nearby community health center, and share it with students. A sports physical (preparticipation exam) is often required before a school sports season.
+
+## Warm up: Meet Dani
+text: Dani is 16 and needs a sports physical before basketball tryouts on Monday. Today is Wednesday. Dani has school from 7:45 a.m. to 2:45 p.m., works at a grocery store from 3:30 to 6:00 p.m. on weekdays, has no car but has a bus pass, and has $30 saved. Dani's family has health insurance with a $25 copay for doctor visits.
+
+## Read: Three clinics
+text: **Clinic A: Riverside Urgent Care.** Walk-in, open every day 8:00 a.m. to 8:00 p.m. Sports physical: $85 (not covered by Dani's insurance at urgent care). 6 miles away, 35 minutes by bus. Also offers x-rays and stitches. Online rating: 3.8 out of 5 stars from 410 reviews; many say "long waits in the evening."
+text: **Clinic B: Teen Health Center at Dani's high school.** Open Monday to Friday, 8:00 a.m. to 3:30 p.m.; students can come during lunch or study hall with a pass. Sports physicals are free for students. In the school building. Also offers sick visits, vaccines and counseling. Rating: 4.6 out of 5 stars from 38 reviews.
+text: **Clinic C: Downtown Family Practice.** Appointments only. Next open appointment: in 2 weeks. Sports physical: $25 copay with insurance. 3 miles away, 15 minutes by bus. Full family medicine. Rating: 4.9 out of 5 stars from 12 reviews.
+
+## Main: The comparison chart
+table: | Clinic A: Urgent care | Clinic B: School health center | Clinic C: Family practice
+  - **Cost for Dani** | {$85} | {free} | {$25 copay}
+  - **Hours** | {every day, 8 a.m. to 8 p.m., walk-in} | {Mon to Fri, 8 a.m. to 3:30 p.m.} | {appointments only, next in 2 weeks}
+  - **Distance** | {6 miles, 35 min by bus} | {in the school} | {3 miles, 15 min by bus}
+  - **Services** | {physicals, x-rays, stitches} | {physicals, sick visits, vaccines, counseling} | {full family medicine}
+  - **Reviews** | {3.8 stars, 410 reviews} | {4.6 stars, 38 reviews} | {4.9 stars, 12 reviews}
+  - **Before Monday?** | {yes} | {yes} | {no}
+  - **Within $30?** | {no} | {yes} | {yes}
+
+## Decide
+choice: Which clinic should Dani choose?
+  - Clinic A, because it is open the longest hours
+  * Clinic B, because it is free, can see Dani before Monday and needs no bus
+  - Clinic C, because it has the best rating
+choice: Clinic C has the highest rating. Why should Dani not rely on that number alone?
+  - High ratings are always fake
+  * It comes from only 12 reviews, and it cannot get Dani a physical before Monday
+  - Ratings only matter for restaurants
+write: Explain Dani's choice in 3 to 4 sentences. Use at least three factors from the chart.
+  lines: 4
+  key: Dani should go to Clinic B, the school health center. It is free, which fits the $30 budget, and it is in the school, so no bus is needed. Dani can go during lunch or study hall on Thursday or Friday, before Monday's tryouts, without missing work. Clinic A costs $85 and Clinic C cannot see Dani for 2 weeks.
+
+## Stretch
+write: Suppose the Teen Health Center is closed this week. What should Dani do now? Explain.
+  lines: 3
+  key: Clinic A is the only one open before Monday. Dani could go Saturday or Sunday morning, when Dani is not working and waits are shorter, and ask a family member to help with the $85 or ask the coach if the deadline can be extended for a Clinic C appointment.
+
 # 21. Quackery Red Flags
 minutes: 30
 materials: pencil, highlighter
@@ -74,3 +171,43 @@ write: Why is "all natural" (red flag 5) not proof that a product is safe?
 write: Pick one quackery claim. Rewrite it as an honest, valid claim, or explain why it cannot be made honest.
   lines: 3
   key: Example: claim 3 cannot be made honest because foot pads do not pull toxins from the body; the liver and kidneys do that. Or claim 4: "A warm, caffeine-free tea some people find relaxing at bedtime. Ask a doctor if you take medicines."
+
+# 33. Nicotine Dependence Cycle
+minutes: 30
+materials: pencil
+ican: I can explain the nicotine dependence cycle and where withdrawal and cravings appear in it.
+directions: Read about how nicotine works. Put the six stages of the cycle in order on the line. Then draw the cycle, mark where withdrawal (W) and cravings (C) appear, and answer the questions.
+mistakes: Students often think a vape or cigarette relieves stress. What it mostly relieves is the withdrawal caused by the last dose, so the "relief" is part of the cycle. Watch for the idea that dependence takes years: teens can show signs of dependence after a short time, even with occasional use.
+notes: Facts follow the National Institute on Drug Abuse (NIDA), the CDC and the U.S. Surgeon General. Nicotine reaches the brain within seconds of being inhaled and triggers the release of dopamine; its effects fade within a few hours. Withdrawal can include irritability, anxiety, trouble concentrating, restlessness and strong urges to use; it is usually worst in the first few days and eases over a few weeks, though cravings can come back with triggers for much longer. Free help: 1-800-QUIT-NOW and smokefree.gov (including SmokefreeTeen). If students mention someone at home who smokes or vapes, keep the talk free of blame.
+
+## Read: How nicotine hooks the brain
+text: When someone vapes or smokes, nicotine reaches the brain within seconds. It makes the brain release **dopamine**, a chemical that brings a quick feeling of pleasure or relief. Within a few hours, the nicotine level drops. The brain, which has adjusted to having nicotine, now feels off: the person may be irritable, anxious or unable to focus. This is **withdrawal**. Soon comes a strong urge to use again, called a **craving**. Using again brings quick relief, and the cycle starts over. Over time the brain needs more nicotine to feel the same, which is called **tolerance**.
+
+## Main: Put the cycle in order
+timeline: 1 6 1
+  - 1 | Uses nicotine (vapes or smokes)
+  - 2 | Nicotine reaches the brain in seconds; dopamine brings pleasure or relief
+  - 3 | Within a few hours, the nicotine level in the body drops
+  - 4 | Feels irritable, anxious, restless and cannot focus
+  - 5 | Feels a strong urge to use nicotine again
+  - 6 | Uses again to feel relief, and the cycle repeats
+draw: Draw the six stages as a circle with arrows. Write W next to the stage where withdrawal appears and C next to the stage where cravings appear. | 2.6
+note: Withdrawal (W) is stage 4 (irritable, anxious, cannot focus). Cravings (C) are stage 5 (strong urge to use again). Stage 6 leads back to stage 1.
+
+## Check it
+fill:
+  - The brain chemical that brings a quick feeling of pleasure is {dopamine}.
+  - Needing more nicotine over time to feel the same effect is called {tolerance}.
+choice: Why do many people who vape say it calms their stress?
+  - Nicotine cures anxiety
+  - Vapes contain only water vapor
+  * It relieves the withdrawal symptoms caused by the last dose of nicotine
+choice: Which statement about teens and nicotine is true?
+  * Teens can show signs of dependence after a short time, even with occasional use
+  - Teens cannot become dependent until they have used nicotine for years
+  - Nicotine only affects adults' brains
+
+## Stretch
+write: Where in the cycle could a person break it? Name one stage and one action that would help.
+  lines: 3
+  key: Example: at stage 5, cravings. The person could use a plan for urges (wait 10 minutes, drink water, take a walk, text a friend), get support from a doctor or a quit program like 1-800-QUIT-NOW, and avoid triggers. Not starting at stage 1 is the surest way.
