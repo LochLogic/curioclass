@@ -17,10 +17,33 @@ RULE = '=' * 78
 QUEUE = """image-transformer near-and-far game-day-fuel art-style-match virtual-gallery biome-atlas workplace-scenarios
 up-the-watershed reserve-designer first-aid-responder data-policy-council act-it-out research-quest
 design-challenge-studio brand-builder speech-coach design-for-a-friend credit-card-builder captain-s-choices
-model-mechanic grid-operator work-rate-crew spot-the-ai shadow-measure rules-referee ph-mystery-liquids
-packaging-challenge me-vs-the-counter launch-pad keyword-fishing is-the-historian-right input-or-output
-fire-lookout-triangles fair-dice-investigation design-the-study courtroom-statistics code-kitchen zipline-energy
-water-shapes-earth theory-gym storyboard-studio traffic-light-coder pocket-universe span-and-spire""".split()
+traffic-light-coder pocket-universe span-and-spire design-fixer art-through-time gallery-critique
+city-skyline-studio world-music-map band-practice theory-gym music-history-radio character-voice-booth
+director-s-chair levels-and-pathways dance-pattern-puzzle choreography-board dance-styles-explorer flipbook-studio
+storyboard-studio weekend-drawing-share hallway-art-museum traveling-art-show place-mood-makeover school-wall-mural
+sketchbook-process-journal parade-and-bedtime-music name-song-practice recorder-concert-rehearsal
+cartoon-soundtrack-mixer folk-song-arranger cover-version-review recital-practice-plan puppet-show-feelings
+moon-base-drama neighborhood-issue-play audience-talkback three-viewpoints-scene scene-staging-comparison
+stage-lighting-plot monologue-rehearsal feeling-scarf-dance family-dance-night poem-to-movement
+recital-stage-directions dancers-on-tour dance-hall-decades choreography-for-a-cause museum-courtyard-performance
+sound-and-picture-book field-trip-slideshow cereal-ad-questions stop-motion-clay-shoot toy-ad-reality-check
+morning-show-crew viral-video-breakdown mini-documentary-crew model-mechanic grid-operator work-rate-crew
+spot-the-ai shadow-measure rules-referee ph-mystery-liquids packaging-challenge me-vs-the-counter launch-pad
+keyword-fishing is-the-historian-right input-or-output fire-lookout-triangles fair-dice-investigation
+design-the-study courtroom-statistics code-kitchen zipline-energy water-shapes-earth""".split()
+DANCE = ("Owner's decision: this tool should end up with painted dancers, not the code figure. Use the kit's figure for now, "
+         "keep it easy to swap, and add the poses it will need to art/prompts.json with \"people\": true for the next painter.")
+NOTES = {  # desk answers the spec does not hold yet (docs/agents/decisions/DESK-ANSWERS.md)
+    'music-history-radio': "Owner's decision: add one station from outside the European and American line, with sourced facts.",
+    'director-s-chair': "Owner's decision: the 5 masks are objects, not people, so paint them yourself. The masked actors stay figures in code.",
+    'neighborhood-issue-play': "Owner's decision: restore the idea card's third problem, a new family who speaks another language, in place "
+                               "of the empty lot. Write it as neighbors who can't yet talk to each other, never the family as the problem. "
+                               "Its puppets are people, so list them with \"people\": true for the next painter.",
+}
+for _t in ("levels-and-pathways dance-pattern-puzzle choreography-board dance-styles-explorer feeling-scarf-dance family-dance-night "
+           "poem-to-movement recital-stage-directions dancers-on-tour dance-hall-decades choreography-for-a-cause "
+           "museum-courtyard-performance").split():
+    NOTES[_t] = DANCE
 BUILD_PORTS = {'A': (9990, 8795), 'B': (9980, 8785), 'C': (9970, 8775)}
 REVIEW_PORTS = {'A': (9960, 8765), 'B': (9950, 8755), 'C': (9940, 8745)}
 
@@ -38,7 +61,7 @@ did not build it catches more.
 
 HOW MANY AT ONCE
 Up to three builds and three reviews, one of each from each group (A, B, C). Never two builds, or two reviews, from the
-same group.
+same group. A refresh changes the groups, so let running chats finish first.
 
 IF IT STICKS
 If a command hangs for about 20 minutes, press Esc and paste:
@@ -69,7 +92,8 @@ def ports(table, g):
 
 
 def block(kind, t, text):
-    return f'--- {kind}: {t} ---\n\n{text}\n\n--- end ---\n'
+    note = f'\n\n{NOTES[t]}' if t in NOTES else ''
+    return f'--- {kind}: {t} ---\n\n{text}{note}\n\n--- end ---\n'
 
 
 def state(t):
@@ -88,14 +112,14 @@ def prompts():
              '', 'Done: ' + (', '.join(reviewed) or 'none'), '']
     if waiting:
         parts += [RULE, 'REVIEWS TO PASTE', RULE, '']
-    for t in waiting:
-        g = group(QUEUE.index(t))
+    for i, t in enumerate(waiting):
+        g = group(i)
         c, h = ports(REVIEW_PORTS, g)
         parts += [f'{rows[t]["title"]}  group {g}\n', block('REVIEW', t, REVIEW.format(t=t, c=c, h=h))]
     if unbuilt:
         parts += [RULE, 'BUILDS TO PASTE (the review for each one appears here after you refresh)', RULE, '']
-    for t in unbuilt:
-        r, g = rows[t], group(QUEUE.index(t))
+    for i, t in enumerate(unbuilt):
+        r, g = rows[t], group(i)
         c, h = ports(BUILD_PORTS, g)
         parts += [f'{r["title"]}  ({r["subject"]}, grade {r["grade"]})  group {g}\n', block('BUILD', t, BUILD.format(t=t, c=c, h=h))]
     text = '\n'.join(parts)

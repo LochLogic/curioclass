@@ -101,7 +101,11 @@ Night, Word check, closet search, Take home, words CSV. What is left, in order:
    - **Next:** Cory reads the drafts (all K-2 and anything with heat, tools or going out; one in four of the rest).
    - **Then:** move the sheets into `data/closet/breaks/`, build the shelf pages (`/closet/break-box/`), Spanish,
      and the extras in the plan (a "pick for me" filter, a printable break-week pack).
-6. **The Map** (Phase F, last): regions, trails and a standards view. Research is done (docs/MAP-RESEARCH.md);
+6. **Worksheets** (new 2026-10-31, Cory): printable student worksheets to go with tools and modules, as a Supply Closet
+   shelf. To scope: which modules first, how they pair with a tool, and how answer keys reach only the teacher. Paper is
+   fine here, since paper is the product.
+
+7. **The Map** (Phase F, last): regions, trails and a standards view. Research is done (docs/MAP-RESEARCH.md);
    drafting is next when its turn comes.
 
 **Still owed, any time:** a real-printer test of every print format, the Spanish native review, family game
@@ -140,6 +144,13 @@ Detail: docs/funding/ (one-pager, cost sheet, prospect list).
 
 The repo (LochLogic/curioclass) goes public once development is much further along (Cory, 2026-10-28). Before that:
 a clean README, the license files, and no private data in history.
+
+## Track 7: Full curriculum (new 2026-10-31, Cory)
+
+Grow from single tools into complete courses a teacher can run start to finish: a scope and sequence for each subject and
+grade, built from the tools, lesson plans, Word Walls, charts, worksheets and Reading Room stories, with assessments and
+pacing. To plan once tools, plans and worksheets are far enough along: which subject and grade comes first, and what
+counts as a full course.
 
 ## Late and far back
 
