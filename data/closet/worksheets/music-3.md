@@ -44,6 +44,97 @@ fill:
   - Line 1 is {E}. Space 1 is {F}. Line 3 is {B}.
   - Space 3 is {C}. Line 5 is {F}. Space 2 is {A}.
 
+# 7. Color by Beats: Measure Math
+minutes: 25
+materials: pencil; yellow, red and light blue crayons
+ican: I can add the beats of quarter, eighth, half, dotted half and whole notes and rests.
+directions: Add the beats in each numbered space and write the total. Then color every square in the picture by its space's total: 2 beats yellow, 3 beats red, 4 beats light blue.
+pairs: note-ninja
+mistakes: The most common slip is counting two eighth notes as 2 beats: a pair of eighths (ti-ti) fills one beat. Watch for the dotted half note counted as 2 (the dot adds half the note's value: 2 + 1 = 3) and for a quarter rest skipped as if it were nothing: a rest still takes a beat.
+notes: Rhythms are written in words and rhythm syllables so the sheet prints without music fonts; draw the same notes on the board (quarter, beamed eighths, half, dotted half, whole, quarter rest) and have students point to each as they add. Totals: 1 = 3, 2 = 2, 3 = 4, 4 = 2, 5 = 3, 6 = 4, 7 = 3, 8 = 2, 9 = 4. Colored correctly, the picture shows two yellow drumsticks crossed over a red drum, on a light blue background.
+
+## Warm up: How many beats?
+fill:
+  - A quarter note (ta) gets {1} beat.
+  - Two eighth notes (ti-ti) get {1} beat together.
+  - A half note (ta-a) gets {2} beats.
+  - A dotted half note (ta-a-a) gets {3} beats.
+  - A whole note (ta-a-a-a) gets {4} beats.
+  - A quarter rest gets {1} beat of silence.
+
+## Main: Add the beats
+table: Space | Notes in the space | Total beats
+  - 1 | half note + quarter note | {3}
+  - 2 | quarter note + quarter note | {2}
+  - 3 | half note + half note | {4}
+  - 4 | two eighth notes + quarter note | {2}
+  - 5 | quarter note + two eighth notes + quarter note | {3}
+  - 6 | whole note | {4}
+  - 7 | dotted half note | {3}
+  - 8 | two eighth notes + two eighth notes | {2}
+  - 9 | quarter note + quarter rest + two eighth notes + quarter note | {4}
+
+## Main: Color the picture
+text: Color each square by the total of its space number. 2 beats = **yellow**, 3 beats = **red**, 4 beats = **light blue**.
+table: A | B | C | D | E | F | G | H
+  - 4 | 3 | 6 | 9 | 3 | 3 | 9 | 2
+  - 6 | 8 | 3 | 9 | 3 | 3 | 2 | 6
+  - 6 | 3 | 2 | 3 | 9 | 4 | 3 | 9
+  - 1 | 1 | 7 | 7 | 7 | 1 | 7 | 7
+  - 5 | 1 | 1 | 1 | 7 | 1 | 5 | 5
+  - 1 | 7 | 1 | 7 | 5 | 7 | 7 | 1
+  - 3 | 7 | 7 | 7 | 1 | 5 | 1 | 9
+  height: 0.38
+note: Yellow (2 beats): spaces 2, 4 and 8, the crossed drumsticks in the top three rows. Red (3 beats): spaces 1, 5 and 7, the drum. Light blue (4 beats): spaces 3, 6 and 9, the background.
+
+## Stretch: Make a space
+write: Write a new space that adds up to 4 beats. Use at least 3 different kinds of notes or rests.
+  lines: 2
+  key: Answers vary. Example: half note + quarter rest + two eighth notes = 2 + 1 + 1 = 4 beats.
+
+# 20. Pentatonic Melody Composer
+minutes: 35
+materials: pencil; a xylophone, glockenspiel or metallophone with the F and B bars removed (or a keyboard)
+ican: I can compose an 8-measure melody in C pentatonic that ends on do.
+directions: Review the C pentatonic notes. Plan an 8-measure melody that follows the rules, write it on the staff, and play it on a barred instrument.
+pairs: melody-maker
+mistakes: Students often end measure 8 on whatever note they land on; check that the very last note is C (do). Watch for F and B creeping in when students write on the staff: a note on the bottom line is E, and the line above it is G, so there is no note to write in the space between (that space is F). Measures with 3 or 5 beats are common: have students tap 4 beats under every measure.
+notes: C pentatonic: C D E G A (do re mi so la). With the F and B bars off the instrument, students cannot play a wrong note, so the composing choices are about shape and ending. Rules: each measure has 4 beats (a note held for 2 beats is written with a dash, as in "E D D -"); measure 4 ends on D, E, G or A so it sounds like a question; measure 8 ends on C so it sounds like an answer. Model melody: | C D E G | A G E D | E G A G | E D D - | C D E G | A G E G | A G E D | C - - - |. On the staff, middle C sits on a ledger line below the staff; students may write the ending on high C (third space) instead.
+
+## Warm up: The five notes
+text: Write the letter name under each note.
+staff: treble
+  - C4
+  - D4
+  - E4
+  - G4
+  - A4
+  - C5
+fill:
+  - In solfege, C D E G A are do, re, {mi}, {so}, {la}.
+  - The two notes missing from C pentatonic are {F} and {B}.
+choice: Which measure is NOT in C pentatonic?
+  - C D E G
+  * G A B A
+  - E D C D
+
+## Main: Plan your melody
+text: **Rules:** 4 beats in each measure (use "-" to hold a note one more beat). Use only C D E G A. End measure 4 on D, E, G or A (a question). End measure 8 on C (the answer).
+chart: Notes (4 beats) | Tap and count: 4 beats?
+  labels: Measure 1; Measure 2; Measure 3; Measure 4 (question); Measure 5; Measure 6; Measure 7; Measure 8 (ends on C)
+  height: 0.35
+  key: Answers vary. Model: C D E G / A G E D / E G A G / E D D - / C D E G / A G E G / A G E D / C - - -. Every measure has 4 beats, only C D E G A appear, measure 4 ends on D and measure 8 ends on C.
+
+## Main: Write it on the staff
+text: Write measures 1 to 4 on the first staff and 5 to 8 on the second. Draw a bar line after every 4 beats. Use filled notes for 1 beat and open notes with stems for 2 beats.
+staff: treble | blank
+staff: treble | blank
+
+## Stretch: Play and revise
+write: Play your melody two times. Which measure did you change after hearing it, and why?
+  lines: 2
+  key: Answers vary. For example: "Measure 7 jumped from C up to A, which was hard to sing, so I changed it to E G A G to move by steps."
+
 # 21. Melody Partner Critique
 minutes: 30
 materials: pencil; a xylophone, glockenspiel or keyboard with C D E G A (or a recorder)
@@ -92,3 +183,45 @@ write: Suggest one change. Say exactly which note or measure to change and why.
 write: Play your partner's melody again with your change. Did it sound better? Explain.
   lines: 2
   key: Answers vary. A good answer says what changed in the sound, for example: "Yes, ending on C made it sound done instead of stopping in the middle."
+
+# 33. Melody and Accompaniment Roles
+minutes: 25
+materials: pencil
+ican: I can tell the role of each part in a class arrangement.
+directions: Read the parts of our class arrangement and sort each one by writing its role. Then tell what each role adds to the music.
+mistakes: Students often put any repeating part in the Ostinato column, including the hand drum. On this sheet, Ostinato is for a short pitched pattern on a barred instrument, and Percussion is for unpitched instruments like drums and triangles (though percussion parts often repeat too). Watch for the bordun sorted as melody because it is played on a xylophone: a bordun only uses do and so (C and G).
+notes: An arrangement for a pentatonic song in C, the way many Orff classrooms build one: melody (voices and a glockenspiel), a bordun on the bass xylophone (C and G, played together or one after the other), ostinatos on the alto barred instruments, and unpitched percussion for color. Sort answers: Melody: voices, soprano glockenspiel. Ostinato: alto xylophone E G E G, alto metallophone C D E. Bordun: bass xylophone C and G together, bass bars C then G. Percussion: hand drum, triangle. If time allows, build the arrangement one layer at a time: bordun first, then ostinatos, then melody, then percussion.
+
+## Warm up: The four roles
+fill:
+  - The {melody} is the tune: the part you would sing or hum.
+  - A {bordun} plays do and so, C and G, as a low, steady base.
+  - An {ostinato} is a short pattern that repeats over and over.
+  - {Percussion} instruments like drums and triangles add rhythm and color without a tune.
+
+## Main: Sort the parts
+text: Sort each part of our class arrangement: write melody, ostinato, bordun or percussion.
+table: Part of the arrangement | Role
+  - Bass xylophone plays low C and G together on beat 1 | {bordun}
+  - Voices sing the words of the song | {melody}
+  - Triangle rings once at the start of each phrase | {percussion}
+  - Alto xylophone repeats E G E G every measure | {ostinato}
+  - Soprano glockenspiel plays the tune with the singers | {melody}
+  - Hand drum taps the steady beat | {percussion}
+  - Alto metallophone plays C D E over and over | {ostinato}
+  - Bass bars play low C, then G, back and forth | {bordun}
+
+## Main: What does each role add?
+chart: What it adds to the music
+  labels: Melody; Ostinato; Bordun; Percussion
+  height: 0.55
+  key: Answers vary. Melody: the tune and words that the listener follows. Ostinato: a repeating pattern that fills the middle and keeps things moving. Bordun: a low, steady base that holds the song in C and keeps the beat. Percussion: rhythm, energy and special sounds, like the triangle marking each new phrase.
+choice: The bass xylophone player is absent, so the bordun is missing. What will the class notice most?
+  - The words are harder to understand.
+  * The low, steady base under the song is gone.
+  - The melody is now in a different key.
+
+## Stretch: Add a part
+write: Invent one more part for the arrangement. Name its instrument and role, and tell what it would add.
+  lines: 2
+  key: Answers vary. For example: "A woodblock plays ti-ti ta on every measure. It is percussion, and it adds a clip-clop sound like a horse."
