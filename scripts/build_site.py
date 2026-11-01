@@ -488,7 +488,8 @@ for g in games.values():
 # per class holding its built sheets as HTML fragments, and one viewer page that shows a sheet (#unit/n) and its key.
 ws_units = check_worksheets.units()
 ws_rows = {u: r for f in check_worksheets.FILES for u, r in check_worksheets.rows(f).items()}
-ws_bad = [p for u in ws.built_units() for p in ws.problems(u)]
+ws_bad = ws.icon_problems() + [p for u in ws.built_units() for p in ws.problems(u)]
+(DIST / 'assets' / 'ws-icons.svg').write_text(ws.sprite(), encoding='utf-8')
 if ws_bad:
     sys.exit('Worksheets: ' + '; '.join(ws_bad[:5]))
 tool_titles = {t['tool_id']: t['title'] for t in tools}

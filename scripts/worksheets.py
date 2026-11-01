@@ -3,6 +3,7 @@ to an HTML fragment for the shared viewer, and check every answer key.
 
     python scripts/worksheets.py            check every built sheet, exit 1 on any problem
     python scripts/worksheets.py math-3     check one unit's file
+    python scripts/worksheets.py --preview math-3 out.html   every built sheet of a unit, student copy then key, in one page
 
 A unit file holds the built sheets of one class, each matching its row in the concept list (docs/worksheets/):
 
@@ -27,7 +28,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DIR = ROOT / 'data' / 'closet' / 'worksheets'
-ICONS = ROOT / 'site' / 'assets' / 'ws-icons.svg'
+ICON_DIR = DIR / 'icons'  # one <symbol id="i-<name>" viewBox="0 0 64 64"> per file; the build joins them into /assets/ws-icons.svg
 HEAD_KEYS = {'minutes', 'materials', 'ican', 'directions', 'pairs', 'mistakes', 'notes'}
 NEED = {'minutes', 'materials', 'ican', 'directions'}
 ROMAN = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -180,8 +181,8 @@ def b_picword(a, body, c):
     cells = []
     for _, t in items(body):
         name, _, word = (x.strip() for x in t.partition('|'))
-        if not re.search(rf'id="i-{re.escape(name)}"', ICONS.read_text()):
-            raise SheetError(f'no icon {name!r} in ws-icons.svg')
+        if not (ICON_DIR / f'{name}.svg').exists():
+            raise SheetError(f'no icon {name!r} in data/closet/worksheets/icons/')
         for piece in re.split(r'\{[^{}]*\}', word):
             if UNSAFE.search(piece):
                 raise SheetError(f'picword {word!r}: the part students see, {piece!r}, reads as a rude word; pick another word')
@@ -452,6 +453,19 @@ def b_fixit(a, body, c):
             f'<p class="ws-explain">What went wrong?</p>{lines(1)}{key(d.get("why", ""))}</div>'), 1
 
 
+def b_count(a, body, c):
+    """count: How many?   then "- 7 apple" lines: that many icons in a box, and a blank for the number"""
+    cells = []
+    for _, t in items(body):
+        n, name = t.split(None, 1)
+        if not (ICON_DIR / f'{name.strip()}.svg').exists():
+            raise SheetError(f'count: no icon {name!r}')
+        pics = icon(name.strip(), 'ws-icon-sm') * int(n)
+        cells.append(f'<div class="ws-count"><div>{pics}</div><p><span class="ws-blank" style="min-width:2.4em"><span class="ws-ans">{int(n)}</span></span></p></div>')
+        c['answers'].append(n)
+    return f'<p class="ws-sub">{inline(a)}</p><div class="ws-counts">{"".join(cells)}</div>'
+
+
 def b_rate(a, body, c):
     """rate: I can ...   the check-yourself strip (one is added at the end of every sheet automatically)"""
     return rate(a)
@@ -462,10 +476,262 @@ def rate(text):
             '<span>On my own</span><span>With a little help</span><span>Not yet</span></p></div>')
 
 
+def b_match(a, body, c):
+    """match: Title   then "- left = right" lines. Students match each numbered left item to a lettered right item."""
+    pairs = [tuple(x.strip() for x in t.split('=', 1)) for _, t in items(body)]
+    if any(len(p) != 2 for p in pairs) or len(pairs) < 3:
+        raise SheetError(f'match {a!r} needs 3 or more "left = right" lines')
+    order = list(range(len(pairs)))
+    c['rng'].shuffle(order)
+    letter = {j: ROMAN[k] for k, j in enumerate(order)}
+    left = ''.join(f'<li><span class="ws-blank" style="min-width:2em"><span class="ws-ans">{letter[i]}</span></span> {inline(l)}</li>'
+                   for i, (l, _) in enumerate(pairs))
+    right = ''.join(f'<li><b>{ROMAN[k]}</b> {inline(pairs[j][1])}</li>' for k, j in enumerate(order))
+    c['answers'] += [letter[i] for i in range(len(pairs))]
+    return (f'<p class="ws-sub">{inline(a)}</p><div class="ws-match"><ol start="{c["n"]}">{left}</ol><ul>{right}</ul></div>',
+            len(pairs))
+
+
+def b_numberline(a, body, c):
+    """numberline: 0 20 1   start, end, step
+      show: 0 5 10 15 20      the tick labels printed (others blank)
+      mark: A=7 B=13.5        lettered points; students write each value, the key fills them in"""
+    x0, x1, st = (Fraction(v) for v in a.split())
+    d, _ = opts(body)
+    ticks = int((x1 - x0) / st)
+    if ticks < 1 or ticks > 40:
+        raise SheetError(f'numberline {a!r}: 1 to 40 steps')
+    show = {Fraction(v) for v in d.get('show', f'{x0} {x1}').split()}
+    marks = [(m.split('=')[0], Fraction(m.split('=')[1]), m.split('=')[1]) for m in d.get('mark', '').split()]
+    W, L = 640, 26
+    X = lambda v: L + float((v - x0) / (x1 - x0)) * (W - 2 * L)
+    g = [f'<svg class="ws-nl" viewBox="0 0 {W} 92" role="img" aria-label="Number line"><line x1="{L - 14}" y1="50" x2="{W - L + 14}" y2="50" '
+         'stroke="#222" stroke-width="2"/><path d="M{0} 44 l-10 6 10 6 M{1} 44 l10 6 -10 6" fill="none" stroke="#222" stroke-width="2"/>'.format(L - 4, W - L + 4)]
+    for i in range(ticks + 1):
+        v = x0 + i * st
+        g.append(f'<line x1="{X(v):.1f}" y1="42" x2="{X(v):.1f}" y2="58" stroke="#222" stroke-width="1.6"/>')
+        if v in show:
+            g.append(f'<text x="{X(v):.1f}" y="78" font-size="15" text-anchor="middle">{fmt(v)}</text>')
+    for name, v, _ in marks:
+        if not x0 <= v <= x1:
+            raise SheetError(f'numberline mark {name}={v} is off the line')
+        g.append(f'<circle cx="{X(v):.1f}" cy="50" r="5" fill="#222"/><text x="{X(v):.1f}" y="30" font-size="16" font-weight="700" '
+                 f'text-anchor="middle">{esc(name)}</text>')
+    g.append('</svg>')
+    blanks = ''.join(f'<span class="ws-nl-ans"><b>{esc(n)}</b> = <span class="ws-blank" style="min-width:3em"><span class="ws-ans">{esc(raw)}</span></span></span>'
+                     for n, v, raw in marks)
+    c['answers'] += [raw for _, _, raw in marks]
+    return ''.join(g) + (f'<p class="ws-nl-row">{blanks}</p>' if marks else '')
+
+
+def fmt(v):
+    v = Fraction(v)
+    return str(v.numerator) if v.denominator == 1 else f'{v.numerator}/{v.denominator}'
+
+
+def b_tenframe(a, body, c):
+    """tenframe: How many?   then "- 7" lines (or "- 13" for two frames): dots in ten frames, a blank for the count"""
+    cells = []
+    for _, t in items(body):
+        n = int(t)
+        if not 0 <= n <= 20:
+            raise SheetError('tenframe counts are 0 to 20')
+        frames = []
+        for f in range(2 if n > 10 else 1):
+            k = min(10, n - 10 * f)
+            dots = ''.join(f'<rect x="{4 + (i % 5) * 34}" y="{4 + (i // 5) * 34}" width="34" height="34" fill="none" stroke="#222" stroke-width="2"/>'
+                           + (f'<circle cx="{21 + (i % 5) * 34}" cy="{21 + (i // 5) * 34}" r="11" fill="#222"/>' if i < k else '')
+                           for i in range(10))
+            frames.append(f'<svg viewBox="0 0 178 76" aria-hidden="true">{dots}</svg>')
+        cells.append(f'<div class="ws-tf">{"".join(frames)}<p><span class="ws-blank" style="min-width:2.4em"><span class="ws-ans">{n}</span></span></p></div>')
+        c['answers'].append(str(n))
+    return f'<p class="ws-sub">{inline(a)}</p><div class="ws-tfs">{"".join(cells)}</div>'
+
+
+def b_clock(a, body, c):
+    """clock: Title   then "- 3:30" (hands drawn, students write the time) or "- draw 3:30" (students draw the hands)"""
+    cells = []
+    for _, t in items(body):
+        draw = t.startswith('draw ')
+        hh, mm = (int(x) for x in t.removeprefix('draw ').split(':'))
+        if not (1 <= hh <= 12 and 0 <= mm < 60):
+            raise SheetError(f'clock {t!r}')
+        import math
+        ang_m, ang_h = math.radians(mm * 6), math.radians((hh % 12) * 30 + mm * 0.5)
+        hand = lambda ang, r, w: f'<line x1="60" y1="60" x2="{60 + r * math.sin(ang):.1f}" y2="{60 - r * math.cos(ang):.1f}" stroke="#222" stroke-width="{w}" stroke-linecap="round"/>'
+        nums = ''.join(f'<text x="{60 + 40 * math.sin(math.radians(k * 30)):.1f}" y="{65 - 40 * math.cos(math.radians(k * 30)):.1f}" '
+                       f'font-size="13" text-anchor="middle">{k}</text>' for k in range(1, 13))
+        hands = hand(ang_m, 38, 2.5) + hand(ang_h, 24, 4)
+        hands = f'<g class="ws-keyonly">{hands}</g>' if draw else hands
+        face = f'<svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="#222" stroke-width="2.5"/>{nums}{hands}<circle cx="60" cy="60" r="3"/></svg>'
+        label = (f'<p>{hh}:{mm:02d}</p>' if draw else
+                 f'<p><span class="ws-blank" style="min-width:3.4em"><span class="ws-ans">{hh}:{mm:02d}</span></span></p>')
+        cells.append(f'<div class="ws-clock">{face}{label}</div>')
+        c['answers'].append(f'{hh}:{mm:02d}')
+    return f'<p class="ws-sub">{inline(a)}</p><div class="ws-clocks">{"".join(cells)}</div>'
+
+
+def b_venn(a, body, c):
+    """venn: Left label | Right label   then optional "both: Middle label" and "key: what a good answer holds" """
+    lft, rgt = (x.strip() for x in a.split('|'))
+    d, _ = opts(body)
+    mid = d.get('both', 'Both')
+    svg = ('<svg class="ws-venn" viewBox="0 0 620 300" role="img" aria-label="Venn diagram"><circle cx="230" cy="160" r="135" fill="none" '
+           'stroke="#222" stroke-width="2.4"/><circle cx="390" cy="160" r="135" fill="none" stroke="#222" stroke-width="2.4"/>'
+           f'<text x="160" y="18" font-size="17" font-weight="700" text-anchor="middle">{esc(lft)}</text>'
+           f'<text x="460" y="18" font-size="17" font-weight="700" text-anchor="middle">{esc(rgt)}</text>'
+           f'<text x="310" y="18" font-size="15" text-anchor="middle">{esc(mid)}</text></svg>')
+    return svg + key(d.get('key', ''))
+
+
+def b_chart(a, body, c):
+    """chart: Head | Head | Head   then "rows: 5" and optional "key: ..." : an empty organizer table (T-chart, KWL, cause and effect)"""
+    heads = [h.strip() for h in a.split('|')]
+    d, _ = opts(body)
+    n = int(d.get('rows', 4))
+    th = ''.join(f'<th>{esc(h)}</th>' for h in heads)
+    tr = ('<tr>' + '<td></td>' * len(heads) + '</tr>') * n
+    return f'<table class="ws-table ws-chart"><thead><tr>{th}</tr></thead><tbody>{tr}</tbody></table>' + key(d.get('key', ''))
+
+
+def b_timeline(a, body, c):
+    """timeline: 1800 1900 10   start, end, tick step (years or any numbers)
+      then "- 1820 | event" lines. Events print as lettered cards; students write each letter at its place on the line.
+      The key shows the letters in place."""
+    y0, y1, st = (int(v) for v in a.split())
+    evs = [(int(t.split('|')[0]), t.split('|', 1)[1].strip()) for _, t in items(body)]
+    if any(not y0 <= y <= y1 for y, _ in evs):
+        raise SheetError('timeline event outside its range')
+    W, L = 680, 30
+    X = lambda v: L + (v - y0) / (y1 - y0) * (W - 2 * L)
+    order = list(range(len(evs)))
+    c['rng'].shuffle(order)
+    letter = {j: ROMAN[k] for k, j in enumerate(order)}
+    g = [f'<svg class="ws-timeline" viewBox="0 0 {W} 96" role="img" aria-label="Timeline"><line x1="{L}" y1="60" x2="{W - L}" y2="60" stroke="#222" stroke-width="2.4"/>']
+    for v in range(y0, y1 + 1, st):
+        g.append(f'<line x1="{X(v):.1f}" y1="54" x2="{X(v):.1f}" y2="66" stroke="#222" stroke-width="1.6"/>'
+                 f'<text x="{X(v):.1f}" y="86" font-size="13" text-anchor="middle">{v}</text>')
+    for i, (y, _) in enumerate(evs):
+        g.append(f'<g class="ws-keyonly"><line x1="{X(y):.1f}" y1="34" x2="{X(y):.1f}" y2="58" stroke="#b03020" stroke-width="1.6"/>'
+                 f'<text x="{X(y):.1f}" y="28" font-size="16" font-weight="700" fill="#b03020" text-anchor="middle">{letter[i]}</text></g>')
+    g.append('</svg>')
+    cards = ''.join(f'<li><b>{ROMAN[k]}</b> {inline(evs[j][1])} <span class="ws-keyonly">({evs[j][0]})</span></li>' for k, j in enumerate(order))
+    c['answers'] += [letter[i] for i in range(len(evs))]
+    return ''.join(g) + f'<ul class="ws-events">{cards}</ul>'
+
+
+def b_cards(a, body, c):
+    """cards: Title   then "- question {answer}" lines: cut-apart task cards, 2 across, each numbered, answers on the key"""
+    cs = ''.join(f'<div class="ws-taskcard"><b>{c["n"] + i}</b> {inline(t, c["answers"])}</div>' for i, (_, t) in enumerate(items(body)))
+    k = len(items(body))
+    return f'<p class="ws-sub">{inline(a)}</p><div class="ws-taskcards">{cs}</div>', k
+
+
+def b_maze(a, body, c):
+    """maze: Title   then "* true item" lines (on the path) and "- false item" lines (dead ends).
+    The grid is the smallest one whose start-to-finish path (right and down from the top left) uses every * item;
+    every other square holds a - item. Students shade the true squares to find the way out; the key shades the path."""
+    its = items(body)
+    good = [t for m, t in its if m]
+    bad = [t for m, t in its if not m]
+    for rows in range(2, 7):
+        for cols in range(2, 7):
+            if rows + cols - 1 == len(good) and rows * cols - len(good) <= len(bad):
+                break
+        else:
+            continue
+        break
+    else:
+        raise SheetError(f'maze {a!r}: need rows + cols - 1 true items and enough false ones (have {len(good)} true, {len(bad)} false)')
+    moves = ['R'] * (cols - 1) + ['D'] * (rows - 1)
+    while True:  # a path that turns at least twice, so it is not just the edge
+        c['rng'].shuffle(moves)
+        if sum(moves[i] != moves[i + 1] for i in range(len(moves) - 1)) >= 2 or len(moves) < 3:
+            break
+    path, r, k = [(0, 0)], 0, 0
+    for mv in moves:
+        r, k = (r, k + 1) if mv == 'R' else (r + 1, k)
+        path.append((r, k))
+    filler = bad[:]
+    c['rng'].shuffle(filler)
+    gi = iter(good)
+    cells = ''
+    for y in range(rows):
+        for x in range(cols):
+            on = (y, x) in path
+            t = next(gi) if on else filler.pop()
+            tag = ' ws-start' if (y, x) == (0, 0) else ' ws-finish' if (y, x) == (rows - 1, cols - 1) else ''
+            cells += f'<div class="ws-cell{" ws-path" if on else ""}{tag}">{inline(t)}</div>'
+    good_in_order = [path.index((y, x)) for y in range(rows) for x in range(cols) if (y, x) in path]
+    if sorted(good_in_order) != list(range(len(path))):
+        raise SheetError('maze path error')
+    return (f'<p class="ws-sub">{inline(a)}</p><div class="ws-maze" style="--cols:{cols}">{cells}</div>'
+            '<p class="ws-maze-note">Start at the top left. Move right or down onto true squares only to reach the finish.</p>')
+
+
+def b_code(a, body, c):
+    """code: Title   then "- problem | answer | letter" lines. Students solve each, find the answer in the decoder, and
+    write its letter in the numbered box; the letters spell the message. Decoys: "decoys: 12 15 22" adds wrong answers."""
+    d, rest = opts(body)
+    rows = [tuple(x.strip() for x in t.split('|')) for _, t in items(rest)]
+    if any(len(r) != 3 or len(r[2]) != 1 for r in rows):
+        raise SheetError(f'code {a!r}: lines are "problem | answer | letter"')
+    lookup = {}
+    for _, ans, let in rows:
+        if lookup.setdefault(ans, let) != let:
+            raise SheetError(f'code {a!r}: answer {ans} maps to two letters')
+    decoys = d.get('decoys', '').split()
+    spare = [l for l in ROMAN if l not in lookup.values()]
+    c['rng'].shuffle(spare)
+    dec = list(lookup.items()) + [(x, spare[i]) for i, x in enumerate(decoys) if x not in lookup]
+    c['rng'].shuffle(dec)
+    table = ''.join(f'<td><b>{esc(l)}</b><br>{esc(x)}</td>' for x, l in dec)
+    probs = ''.join(f'<li>{inline(p)} = <span class="ws-blank" style="min-width:3em"><span class="ws-ans">{esc(x)}</span></span></li>' for p, x, _ in rows)
+    boxes = ''.join(f'<span class="ws-codebox"><span class="ws-ans">{esc(l)}</span><i>{i + 1}</i></span>' for i, (_, _, l) in enumerate(rows))
+    c['answers'] += [x for _, x, _ in rows]
+    return (f'<p class="ws-sub">{inline(a)}</p><ol class="ws-fill ws-cols" start="1">{probs}</ol><p class="ws-tag">Decoder</p>'
+            f'<table class="ws-table ws-decoder"><tr>{table}</tr></table><p class="ws-tag">The message</p><div class="ws-codeboxes">{boxes}</div>')
+
+
+STAFF = {'treble': 'E4 F4 G4 A4 B4 C5 D5 E5 F5 G5 A5'.split() + [], 'bass': 'G2 A2 B2 C3 D3 E3 F3 G3 A3 B3 C4'.split()}
+LOW = {'treble': ['C4', 'D4'], 'bass': ['E2', 'F2']}
+
+
+def b_staff(a, body, c):
+    """staff: treble (or bass)   then "- E4" note lines: whole notes on a staff; students write each letter name.
+    Notes run from middle C (C4, one ledger line) up to A5 in treble, E2 to C4 in bass."""
+    clef = a.strip() or 'treble'
+    seq = LOW[clef] + STAFF[clef]
+    notes = [t.strip() for _, t in items(body)]
+    W = 70 + 58 * len(notes)
+    g = [f'<svg class="ws-staff" viewBox="0 0 {W} 130" role="img" aria-label="{esc(clef)} staff">']
+    for i in range(5):
+        y = 90 - i * 14
+        g.append(f'<line x1="6" y1="{y}" x2="{W - 6}" y2="{y}" stroke="#222" stroke-width="1.4"/>')
+    g.append(f'<text x="12" y="{86 if clef == "treble" else 62}" font-size="{64 if clef == "treble" else 44}" font-family="serif">'
+             f'{"&#x1D11E;" if clef == "treble" else "&#x1D122;"}</text>')
+    for i, n in enumerate(notes):
+        if n not in seq:
+            raise SheetError(f'staff: note {n!r} is outside {seq[0]} to {seq[-1]}')
+        step = seq.index(n) - len(LOW[clef])  # 0 = bottom line
+        y, x = 90 - step * 7, 80 + 58 * i
+        if step <= -2:
+            g.append(f'<line x1="{x - 16}" y1="104" x2="{x + 16}" y2="104" stroke="#222" stroke-width="1.4"/>')
+        g.append(f'<ellipse cx="{x}" cy="{y}" rx="10" ry="7" fill="none" stroke="#222" stroke-width="2.4" transform="rotate(-20 {x} {y})"/>'
+                 f'<line class="ws-staff-blank" x1="{x - 16}" y1="124" x2="{x + 16}" y2="124" stroke="#222" stroke-width="1.2"/>'
+                 f'<text class="ws-keyonly" x="{x}" y="120" font-size="16" font-weight="700" fill="#b03020" text-anchor="middle">{n[0]}</text>')
+        c['answers'].append(n[0])
+    g.append('</svg>')
+    return ''.join(g)
+
+
 KINDS = {'text': b_text, 'example': b_example, 'fill': b_fill, 'choice': b_choice, 'write': b_write, 'lines': b_lines,
          'draw': b_draw, 'trace': b_trace, 'chain': b_chain, 'picword': b_picword, 'sort': b_sort, 'table': b_table,
          'graph': b_graph, 'passage': b_passage, 'source': b_source, 'colorcode': b_colorcode, 'binary': b_binary,
-         'symmetry': b_symmetry, 'halves': b_halves, 'comic': b_comic, 'replies': b_replies, 'fixit': b_fixit, 'rate': b_rate}
+         'symmetry': b_symmetry, 'halves': b_halves, 'comic': b_comic, 'replies': b_replies, 'fixit': b_fixit, 'rate': b_rate,
+         'match': b_match, 'numberline': b_numberline, 'tenframe': b_tenframe, 'clock': b_clock, 'venn': b_venn,
+         'chart': b_chart, 'timeline': b_timeline, 'cards': b_cards, 'maze': b_maze, 'code': b_code, 'staff': b_staff,
+         'count': b_count}
 
 
 def evaluate(expr, x=None):
@@ -652,14 +918,52 @@ def problems(unit):
     return out
 
 
+def icon_problems():
+    """Each icon file: one symbol named for its file, a 64 x 64 viewBox, black outline only, nothing external."""
+    out = []
+    for f in sorted(ICON_DIR.glob('*.svg')):
+        t = f.read_text()
+        if not re.fullmatch(r'\s*<symbol id="i-' + re.escape(f.stem) + r'" viewBox="0 0 64 64">.*</symbol>\s*', t, re.S):
+            out.append(f'icon {f.name}: must be one <symbol id="i-{f.stem}" viewBox="0 0 64 64">')
+        if re.search(r'<image|href=|<script|<style|url\(', t):
+            out.append(f'icon {f.name}: no images, links, scripts or styles')
+        if set(re.findall(r'(?:fill|stroke)="([^"]+)"', t)) - {'none', '#222', '#fff'}:
+            out.append(f'icon {f.name}: black outline only (#222, none, #fff)')
+    return out
+
+
+def sprite():
+    return ('<svg xmlns="http://www.w3.org/2000/svg">' + ''.join(f.read_text() for f in sorted(ICON_DIR.glob('*.svg'))) + '</svg>')
+
+
 def built_units():
     return sorted(p.stem for p in DIR.glob('*.md')) if DIR.exists() else []
 
 
+def preview(unit, out):
+    """A standalone page with every built sheet of a unit, student copy then key, for checking by eye or screenshot."""
+    label, sheets = load(unit)
+    css = (ROOT / 'site' / 'assets' / 'curio.css').read_text()
+    sprite = ''.join(f.read_text() for f in sorted(ICON_DIR.glob('*.svg')))
+    parts = []
+    for sh, row in sheets:
+        frag, _ = build(unit, sh, row, label, None, {})
+        frag = frag.replace('/assets/ws-icons.svg#', '#')
+        parts.append(f'<h2 class="pv">#{sh["n"]} {esc(sh["title"])}: student copy</h2><div class="ws-view">{frag}</div>'
+                     f'<h2 class="pv">#{sh["n"]}: answer key and teacher page</h2><div class="ws-view show-key">{frag}</div>')
+    Path(out).write_text(f'<!doctype html><meta charset="utf-8"><title>{esc(unit)} preview</title><style>{css}\n'
+                         f'body{{padding:20px}} .pv{{font:700 16px sans-serif;margin:30px 0 0}}</style>'
+                         f'<svg width="0" height="0" style="position:absolute">{sprite}</svg>{"".join(parts)}', encoding='utf-8')
+    return len(sheets)
+
+
 def main(args):
     sys.path.insert(0, str(Path(__file__).parent))
+    if args[:1] == ['--preview']:
+        print(f'{preview(args[1], args[2])} sheets written to {args[2]}')
+        return 0
     units = args or built_units()
-    errs, n = [], 0
+    errs, n = ([] if args else icon_problems()), 0
     for u in units:
         errs += problems(u)
         try:
