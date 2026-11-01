@@ -35,15 +35,15 @@ choice: You want a waterfall to look silky and smooth, with the camera on a trip
   - A high ISO, like 3200
   - A flash
 choice: In a dark gym with no flash, your action photos are blurry. Which change helps, and what is the cost?
-  - Slower shutter; the cost is less blur
   * Raise the ISO; the cost is more grain
+  - Slower shutter; the cost is less blur
   - Smaller aperture; the cost is more light
   - Lower the ISO; the cost is a brighter photo
 choice: You want a portrait with a soft, blurred background. What do you choose?
   - f/16
-  * f/2
   - ISO 3200
   - 1/15 second
+  * f/2
 
 ## Stretch
 write: A friend's night photo of a city street is too dark. Give two different ways to brighten it and the side effect of each.
@@ -69,12 +69,12 @@ choice: Which place gives the maker the most control over who watches and when?
   - None of them
 choice: Why might posting a film online first be a problem for a student filmmaker?
   - Online videos are always low quality
-  * Some festivals only accept films that have not been shown publicly
   - Libraries will not show films
+  * Some festivals only accept films that have not been shown publicly
   - It is against the law to post films
 choice: Once a video is posted publicly online, what is true?
-  - Deleting it always removes every copy
   * Others may copy, share or comment on it even if you take it down later
+  - Deleting it always removes every copy
   - Only your friends can see it
   - It cannot be shared
 choice: What should you have before sharing a film that shows other people?

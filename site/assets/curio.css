@@ -899,3 +899,9 @@ p.ws-keyonly { color: #b03020; margin: 4px 0; font-size: 14px; }
 .ws-count > div { display: flex; flex-wrap: wrap; gap: 2px; }
 .ws-icon-sm { width: 0.48in; height: 0.48in; }
 .ws-count p { margin: 0; font-size: 18px; }
+.ws-taskcard > b { all: unset; }
+.ws-taskcard > b.ws-cardnum { display: inline-grid; place-items: center; width: 1.6em; height: 1.6em; border-radius: 50%; border: 1.5px solid #333; font-size: 12px; margin-right: 6px; font-weight: 700; }
+.ws-taskcard b:not(.ws-cardnum) { font-weight: 700; }
+.ws-program { font: 13px/1.5 ui-monospace, Menlo, Consolas, monospace; border: 1.5px solid #333; border-radius: 6px; padding: 8px 12px; margin: 6px 0; white-space: pre; overflow: hidden; }
+p.ws-note { border-left: 3px solid #b03020; padding-left: 8px; }
+.ws-card .ws-icon-sm { display: block; }

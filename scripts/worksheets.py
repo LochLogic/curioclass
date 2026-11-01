@@ -45,7 +45,9 @@ def esc(s):
 
 
 def inline(s, answers=None):
-    """Escape text, then turn {answer} into a blank and **x** into bold. answers collects the blanks."""
+    """Escape text, then turn {answer} into a blank, **x** into bold, *x* into italics and ~~x~~ into strikethrough.
+    \\{ and \\} print real braces. answers collects the blanks."""
+    s = s.replace('\\{', '\x00').replace('\\}', '\x01')
     out = []
     for i, part in enumerate(re.split(r'\{([^{}]*)\}', s)):
         if i % 2:
@@ -54,8 +56,10 @@ def inline(s, answers=None):
             w = max(2.2, min(10, 0.62 * len(part) + 1.4))
             out.append(f'<span class="ws-blank" style="min-width:{w:.1f}em"><span class="ws-ans">{esc(part)}</span></span>')
         else:
-            out.append(re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', esc(part)))
-    return ''.join(out)
+            t = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', esc(part))
+            t = re.sub(r'(?<![*\w])\*(?!\s)(.+?)(?<!\s)\*(?![*\w])', r'<i>\1</i>', t)
+            out.append(re.sub(r'~~(.+?)~~', r'<s>\1</s>', t))
+    return ''.join(out).replace('\x00', '{').replace('\x01', '}')
 
 
 def icon(name, cls='ws-icon'):
@@ -85,7 +89,7 @@ def opts(body):
     """'key: value' body lines -> dict, others -> list"""
     d, rest = {}, []
     for l in body:
-        m = re.match(r'([a-z]+):\s*(.*)', l)
+        m = re.match(r'([a-z]+[0-9]?):\s*(.*)', l)
         if m:
             d[m.group(1)] = m.group(2)
         else:
@@ -121,6 +125,7 @@ def b_choice(a, body, c):
     if len(right) != 1:
         raise SheetError(f'choice {a!r} needs exactly one * option')
     c['answers'].append(ROMAN[right[0]])
+    c['choices'].append(right[0])
     lis = ''.join(f'<li class="{"ws-right" if m else ""}"><span class="ws-bubble">{ROMAN[i]}</span> {inline(t)}</li>'
                   for i, (m, t) in enumerate(its))
     return f'<div class="ws-q"><p><span class="ws-num">{c["n"]}.</span> {inline(a)}</p><ul class="ws-choice">{lis}</ul></div>', 1
@@ -192,17 +197,20 @@ def b_picword(a, body, c):
 
 
 def b_sort(a, body, c):
-    """sort: Title   then "- Column: card, card" lines. Students get empty columns and shuffled cards to cut."""
-    cols = [(h.strip(), [x.strip() for x in cards.split(',')]) for _, t in items(body) for h, _, cards in [t.partition(':')]]
-    if 'words' in c and c['words']:
-        missing = {w for h, cs in cols for w in cs} ^ set(c['words'])
-        if missing:
-            raise SheetError(f'sort cards and picture words differ: {sorted(missing)}')
+    """sort: Title   then "- Column: card, card" lines (use ";" between cards when a card has a comma in it).
+    A card written "icon:apple" is that picture. Students get empty columns and shuffled cards to cut."""
+    split = lambda t: [x.strip() for x in t.split(';' if ';' in t else ',')]
+    cols = [(h.strip(), split(cards)) for _, t in items(body) for h, _, cards in [t.partition(':')]]
+    for _, cs in cols:
+        for x in cs:
+            if x.startswith('icon:') and not (ICON_DIR / f'{x[5:]}.svg').exists():
+                raise SheetError(f'sort: no icon {x[5:]!r}')
+    show = lambda x: x[5:] if x.startswith('icon:') else x
     heads = ''.join(f'<div class="ws-sort-col"><p class="ws-sort-head">{esc(h)}</p><div class="ws-sort-drop">'
-                    f'<span class="ws-keyonly">{esc(", ".join(cs))}</span></div></div>' for h, cs in cols)
+                    f'<span class="ws-keyonly">{esc(", ".join(show(x) for x in cs))}</span></div></div>' for h, cs in cols)
     cards = [x for _, cs in cols for x in cs]
     c['rng'].shuffle(cards)
-    strip = ''.join(f'<span class="ws-card">{esc(x)}</span>' for x in cards)
+    strip = ''.join(f'<span class="ws-card">{icon(x[5:], "ws-icon-sm") if x.startswith("icon:") else esc(x)}</span>' for x in cards)
     title = f'<p class="ws-sub">{inline(a)}</p>' if a else ''
     return (f'{title}<div class="ws-sort" style="--cols:{len(cols)}">{heads}</div>'
             f'<div class="ws-cut"><p class="ws-tag">Cut out the cards</p><div class="ws-cards">{strip}</div></div>')
@@ -210,8 +218,9 @@ def b_sort(a, body, c):
 
 def b_table(a, body, c):
     """table: Head | Head | Head   then "- cell | {answer} | cell" rows (empty cells are blank boxes)"""
-    heads = [h.strip() for h in a.split('|')]
-    rows = [[x.strip() for x in t.split('|')] for _, t in items(body)]
+    cells = lambda t: [x.strip().replace('\\|', '|') for x in re.split(r'(?<!\\)\|', t)]
+    heads = cells(a)
+    rows = [cells(t) for _, t in items(body)]
     if any(len(r) != len(heads) for r in rows):
         raise SheetError(f'table {a!r} has rows of the wrong width')
     th = ''.join(f'<th>{esc(h)}</th>' for h in heads)
@@ -220,13 +229,17 @@ def b_table(a, body, c):
 
 
 def b_graph(a, body, c):
-    """graph: x label | 0 10 1 | y label | 0 100 10   then optional "key: x,y x,y ..." points drawn on the key only"""
+    """graph: x label | 0 10 1 | y label | 0 100 10   then any of:
+      show: x,y x,y ...    points printed for students (a scatter plot or data to read)
+      line: x,y x,y ...    a line printed for students (a graph to read; several: line2:, line3:)
+      key: x,y x,y ...     a line on the key only (several: key2:, key3:); "dots: yes" plots key points without lines
+      minor: off           no half-step grid lines"""
     xl, xr, yl, yr = (p.strip() for p in a.split('|'))
     x0, x1, xs = (float(v) for v in xr.split())
     y0, y1, ys = (float(v) for v in yr.split())
     d, _ = opts(body)
     nx, ny = round((x1 - x0) / xs), round((y1 - y0) / ys)
-    W, H, L, B, sub = 600, 330, 56, 40, 2
+    W, H, L, B, sub = 600, 330, 56, 40, 1 if d.get('minor') == 'off' else 2
     cw, ch = (W - L - 14) / (nx * sub), (H - B - 10) / (ny * sub)
     g = [f'<svg class="ws-graph" viewBox="0 0 {W} {H}" role="img" aria-label="Graph grid">']
     for i in range(nx * sub + 1):
@@ -242,12 +255,19 @@ def b_graph(a, body, c):
     g.append(f'<text x="{(L + W) / 2:.0f}" y="{H - 6}" font-size="13" text-anchor="middle" font-weight="700">{esc(xl)}</text>')
     g.append(f'<text x="14" y="{(H - B) / 2:.0f}" font-size="13" text-anchor="middle" font-weight="700" '
              f'transform="rotate(-90 14 {(H - B) / 2:.0f})">{esc(yl)}</text>')
-    if 'key' in d:
-        pts = [tuple(float(v) for v in p.split(',')) for p in d['key'].split()]
-        xy = [(L + (px - x0) / xs * sub * cw, H - B - (py - y0) / ys * sub * ch) for px, py in pts]
-        g.append('<g class="ws-keyonly">' + f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in xy)}" fill="none" '
-                 'stroke="#c0392b" stroke-width="2"/>' + ''.join(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.5" fill="#c0392b"/>'
-                                                                 for x, y in xy) + '</g>')
+    def xy(val):
+        pts = [tuple(float(v) for v in p.split(',')) for p in val.split()]
+        return [(L + (px - x0) / xs * sub * cw, H - B - (py - y0) / ys * sub * ch) for px, py in pts]
+    dash = ['', ' stroke-dasharray="7 4"', ' stroke-dasharray="2 4"']
+    for i, k in enumerate(k for k in ('line', 'line2', 'line3') if k in d):
+        g.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in xy(d[k]))}" fill="none" stroke="#222" stroke-width="2"{dash[i]}/>')
+    if 'show' in d:
+        g.append(''.join(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.5" fill="#222"/>' for x, y in xy(d['show'])))
+    for i, k in enumerate(k for k in ('key', 'key2', 'key3') if k in d):
+        pts = xy(d[k])
+        path = '' if d.get('dots') == 'yes' else (f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in pts)}" fill="none" '
+                                                  f'stroke="#c0392b" stroke-width="2"{dash[i]}/>')
+        g.append(f'<g class="ws-keyonly">{path}' + ''.join(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.5" fill="#c0392b"/>' for x, y in pts) + '</g>')
     g.append('</svg>')
     return ''.join(g)
 
@@ -466,6 +486,24 @@ def b_count(a, body, c):
     return f'<p class="ws-sub">{inline(a)}</p><div class="ws-counts">{"".join(cells)}</div>'
 
 
+def b_note(a, body, c):
+    """note: Text for the teacher only. It shows on the answer key, never on the student copy."""
+    return f'<p class="ws-keyonly ws-note"><b>For the teacher:</b> {inline(" ".join([a] + body))}</p>'
+
+
+def b_program(a, body, c):
+    """program: Title   then code lines, each starting "| " so its indentation is kept, {blanks} allowed:
+      | for i in range(3):
+      |     print({i})"""
+    code = []
+    for l in body:
+        if not l.startswith('|'):
+            raise SheetError(f'program {a!r}: every code line starts with "| "')
+        code.append(inline(l[2:] if l.startswith('| ') else l[1:], c['answers']))
+    title = f'<p class="ws-sub">{inline(a)}</p>' if a else ''
+    return f'{title}<pre class="ws-program">' + '\n'.join(code) + '</pre>'
+
+
 def b_rate(a, body, c):
     """rate: I can ...   the check-yourself strip (one is added at the end of every sheet automatically)"""
     return rate(a)
@@ -476,13 +514,20 @@ def rate(text):
             '<span>On my own</span><span>With a little help</span><span>Not yet</span></p></div>')
 
 
+def deranged(rng, n):
+    """A shuffled order 0..n-1 with nothing left in its own place, so a key never reads A, B, C in order."""
+    order = list(range(n))
+    while n > 1 and any(i == j for i, j in enumerate(order)):
+        rng.shuffle(order)
+    return order
+
+
 def b_match(a, body, c):
     """match: Title   then "- left = right" lines. Students match each numbered left item to a lettered right item."""
     pairs = [tuple(x.strip() for x in t.split('=', 1)) for _, t in items(body)]
     if any(len(p) != 2 for p in pairs) or len(pairs) < 3:
         raise SheetError(f'match {a!r} needs 3 or more "left = right" lines')
-    order = list(range(len(pairs)))
-    c['rng'].shuffle(order)
+    order = deranged(c['rng'], len(pairs))
     letter = {j: ROMAN[k] for k, j in enumerate(order)}
     left = ''.join(f'<li><span class="ws-blank" style="min-width:2em"><span class="ws-ans">{letter[i]}</span></span> {inline(l)}</li>'
                    for i, (l, _) in enumerate(pairs))
@@ -604,8 +649,7 @@ def b_timeline(a, body, c):
         raise SheetError('timeline event outside its range')
     W, L = 680, 30
     X = lambda v: L + (v - y0) / (y1 - y0) * (W - 2 * L)
-    order = list(range(len(evs)))
-    c['rng'].shuffle(order)
+    order = deranged(c['rng'], len(evs))
     letter = {j: ROMAN[k] for k, j in enumerate(order)}
     g = [f'<svg class="ws-timeline" viewBox="0 0 {W} 96" role="img" aria-label="Timeline"><line x1="{L}" y1="60" x2="{W - L}" y2="60" stroke="#222" stroke-width="2.4"/>']
     for v in range(y0, y1 + 1, st):
@@ -621,9 +665,13 @@ def b_timeline(a, body, c):
 
 
 def b_cards(a, body, c):
-    """cards: Title   then "- question {answer}" lines: cut-apart task cards, 2 across, each numbered, answers on the key"""
-    cs = ''.join(f'<div class="ws-taskcard"><b>{c["n"] + i}</b> {inline(t, c["answers"])}</div>' for i, (_, t) in enumerate(items(body)))
-    k = len(items(body))
+    """cards: Title   then "- question {answer}" lines: cut-apart task cards, 2 across, each numbered, answers on the key.
+    "plain: yes" drops the numbers (for cut-out labels)."""
+    d, rest = opts(body)
+    plain = d.get('plain') == 'yes'
+    cs = ''.join(f'<div class="ws-taskcard">{"" if plain else f"<b class=ws-cardnum>{c[chr(110)] + i}</b> "}{inline(t, c["answers"])}</div>'
+                 for i, (_, t) in enumerate(items(rest)))
+    k = 0 if plain else len(items(rest))
     return f'<p class="ws-sub">{inline(a)}</p><div class="ws-taskcards">{cs}</div>', k
 
 
@@ -687,10 +735,10 @@ def b_code(a, body, c):
     c['rng'].shuffle(dec)
     table = ''.join(f'<td><b>{esc(l)}</b><br>{esc(x)}</td>' for x, l in dec)
     probs = ''.join(f'<li>{inline(p)} = <span class="ws-blank" style="min-width:3em"><span class="ws-ans">{esc(x)}</span></span></li>' for p, x, _ in rows)
-    boxes = ''.join(f'<span class="ws-codebox"><span class="ws-ans">{esc(l)}</span><i>{i + 1}</i></span>' for i, (_, _, l) in enumerate(rows))
+    boxes = ''.join(f'<span class="ws-codebox"><span class="ws-ans">{esc(l)}</span><i>{c["n"] + i}</i></span>' for i, (_, _, l) in enumerate(rows))
     c['answers'] += [x for _, x, _ in rows]
-    return (f'<p class="ws-sub">{inline(a)}</p><ol class="ws-fill ws-cols" start="1">{probs}</ol><p class="ws-tag">Decoder</p>'
-            f'<table class="ws-table ws-decoder"><tr>{table}</tr></table><p class="ws-tag">The message</p><div class="ws-codeboxes">{boxes}</div>')
+    return (f'<p class="ws-sub">{inline(a)}</p><ol class="ws-fill ws-cols" start="{c["n"]}">{probs}</ol><p class="ws-tag">Decoder</p>'
+            f'<table class="ws-table ws-decoder"><tr>{table}</tr></table><p class="ws-tag">The message</p><div class="ws-codeboxes">{boxes}</div>'), len(rows)
 
 
 STAFF = {'treble': 'E4 F4 G4 A4 B4 C5 D5 E5 F5 G5 A5'.split() + [], 'bass': 'G2 A2 B2 C3 D3 E3 F3 G3 A3 B3 C4'.split()}
@@ -731,7 +779,7 @@ KINDS = {'text': b_text, 'example': b_example, 'fill': b_fill, 'choice': b_choic
          'symmetry': b_symmetry, 'halves': b_halves, 'comic': b_comic, 'replies': b_replies, 'fixit': b_fixit, 'rate': b_rate,
          'match': b_match, 'numberline': b_numberline, 'tenframe': b_tenframe, 'clock': b_clock, 'venn': b_venn,
          'chart': b_chart, 'timeline': b_timeline, 'cards': b_cards, 'maze': b_maze, 'code': b_code, 'staff': b_staff,
-         'count': b_count}
+         'count': b_count, 'note': b_note, 'program': b_program}
 
 
 def evaluate(expr, x=None):
@@ -801,11 +849,13 @@ def parse(text, unit):
 
 def render(sheet, unit):
     """-> (student html with key-only parts marked, answers list, checks list, passage word counts)"""
-    c = dict(rng=random.Random(f'{unit}/{sheet["n"]}'), answers=[], checks=[], words=[], passage_words=[], n=1)
+    c = dict(rng=None, block=0, answers=[], checks=[], words=[], passage_words=[], choices=[], n=1)
     out = []
     for name, blocks in sheet['parts']:
         body = []
         for kind, args, lines_ in blocks:
+            c['rng'] = random.Random(f'{unit}/{sheet["n"]}/{c["block"]}')
+            c['block'] += 1
             try:
                 r = KINDS[kind](args, lines_, c)
             except SheetError as e:
@@ -884,7 +934,7 @@ def load(unit):
 
 
 PASSAGE = {'k': (30, 90), '1': (40, 90), '2': (40, 120), '3': (100, 260), '4': (120, 260), '5': (120, 280),
-           '6': (200, 420), '7': (220, 420), '8': (220, 450)}
+           '6': (200, 420), '7': (220, 420), '8': (220, 450), '9': (150, 720), '10': (150, 720), '11': (150, 720), '12': (150, 720)}
 
 
 def problems(unit):
@@ -906,6 +956,9 @@ def problems(unit):
         for kind, eq, ans in c['checks']:
             if kind == 'equation' and not check_equation(eq, ans):
                 out.append(f'{unit} #{s["n"]}: x = {ans} does not solve {eq}')
+        ch = c['choices']
+        if len(ch) >= 4 and max(ch.count(k) for k in set(ch)) > 0.6 * len(ch):
+            out.append(f'{unit} #{s["n"]}: {len(ch)} multiple-choice answers, most of them the same letter; spread them out')
         if not c['answers'] and 'ws-keyonly' not in html_:
             out.append(f'{unit} #{s["n"]}: no answer key at all')
         if grade and grade.group(1) in PASSAGE:
