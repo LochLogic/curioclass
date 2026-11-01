@@ -758,7 +758,7 @@ section.block { padding: 56px 0 8px; }
 .show-key .ws-keyonly { display: revert; }
 p.ws-keyonly { color: #b03020; margin: 4px 0; font-size: 14px; }
 .ws-num { font-weight: 700; }
-.ws-fill { margin: 6px 0 10px; padding-left: 1.2em; }
+.ws-fill { margin: 6px 0 10px; padding-left: 1.9em; }
 .ws-fill li::marker { font-weight: 700; }
 .ws-fill li { margin: 0 0 10px; }
 .ws-fill.ws-cols { columns: 2; column-gap: 28px; }
