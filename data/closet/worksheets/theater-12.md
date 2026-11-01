@@ -39,6 +39,60 @@ write: Design one expressionist moment. A student is called to the front of the 
   lines: 5
   key: Answers vary. A strong answer distorts each element for a reason: desks tilted and the board towering overhead (she feels small); a hard, white spotlight with her shadow huge on the wall (exposure, panic); her lines in single clipped words while the class whispers in rhythm (thoughts racing, the crowd pressing in).
 
+# 7. Choosing a One-Act
+minutes: 40
+materials: pencil
+ican: I can evaluate plays for cast size, technical demands and audience fit to choose one for a production.
+directions: Read the profiles of three public-domain one-acts. Rate each play from 1 (poor fit) to 5 (great fit) for our company on each criterion, with a reason. Then choose one and defend it.
+mistakes: Students often choose the play they like best and then fill the chart to match. Rate each criterion honestly first. Watch for cast size scored without checking the company: a play with ten roles is a poor fit for six actors unless doubling works, and a play with three roles leaves most of a large company with nothing to do.
+notes: All three plays are in the public domain. Trifles by Susan Glaspell (1916): five speaking roles (three men, two women), one farmhouse kitchen, serious, about 30 to 40 minutes. The Proposal by Anton Chekhov (written 1888, first staged 1889): three roles, one drawing room, a fast farce, about 25 minutes. Spreading the News by Lady Gregory (first performed on the opening night of the Abbey Theatre, December 1904): about ten roles, an outdoor fair with an apple stall, a comedy about gossip in Irish country speech, about 30 minutes. The company profile is invented; ratings in the key are models.
+
+## Read: The company and the plays
+text: **Our company:** 7 actors (4 who want large roles), a small black box with no fly space, a budget for one simple set, and an audience of students and families for an evening of one-acts.
+text: **Trifles (1916).** Five roles. Officials search a farmhouse kitchen after a death, while two women notice small domestic details that the men miss. One realistic kitchen with a stove, a table, cupboards, a sewing basket and a bird cage. Serious and suspenseful.
+text: **The Proposal (1888).** Three roles. A nervous neighbor comes to propose but argues with the woman over a meadow and then a dog. One drawing room. Fast physical comedy that needs strong comic timing.
+text: **Spreading the News (1904).** About ten roles. At a country fair, a rumor grows from a small misunderstanding about a hayfork into a story of a crime. An outdoor fair with an apple stall. A comedy in Irish country speech that needs work on dialect.
+
+## Main: Rate each play (1 to 5) with a reason
+chart: Trifles | The Proposal | Spreading the News
+  labels: Cast size (7 actors); Technical demands; Audience fit; Challenge and growth for actors
+  height: 1.0
+  key: Model. Cast size: Trifles 4 (five roles, two actors could assist as crew or understudy); Proposal 2 (only three roles); Spreading the News 3 (ten roles for 7 actors means doubling the smaller parts). Technical: Trifles 4 (one realistic kitchen, needs detailed props); Proposal 5 (one room, simple furniture); Spreading the News 3 (an outdoor fair look in a black box, many props and costumes). Audience fit: Trifles 4 (gripping, but a death at the center; fine for families with a note); Proposal 5 (fast and funny for all ages); Spreading the News 4 (funny, but dialect may be hard to follow without strong diction). Challenge: Trifles 5 (subtext and stillness); Proposal 4 (comic timing); Spreading the News 4 (dialect and ensemble work).
+write: Which play will you choose? Defend your choice with evidence from at least two criteria, and say how you would handle its weakest point.
+  lines: 5
+  key: Answers vary. Model: Trifles. It gives five strong roles to a 7-person company, and the two extra actors can understudy and run props; it needs only one kitchen set, which suits our small black box. Its weakest point for families is the death at its center, which is never shown; we would mention it in the program and keep the focus on the women's discoveries.
+
+## Stretch
+write: Your company could perform two of the plays on one evening. Which pair makes the best program, and why?
+  lines: 3
+  key: Answers vary. Model: Trifles and The Proposal: one serious and one comic, with casts that add up to eight roles, so most actors appear once and one doubles; both use a simple interior, so the change between them is quick.
+
+# 20. Expressionist Lighting Study
+minutes: 45
+materials: pencil, colored pencils
+ican: I can design lighting for an expressionist moment, using angle, shadow and color to show a character's inner world.
+directions: Read the moment. Plan the light for each of its 4 beats: the angle, the shadows it throws, the color and the reason. Then sketch the stage picture for the beat you find strongest.
+mistakes: Students often light every beat the same way and change only the color. Expressionism uses angle and shadow as boldly as color: very steep top light, light from below, long shadows on walls. Watch for designs where the clerk's face can never be seen; strange is good, but the audience still needs to find him at key lines.
+notes: The moment is original to Curio Class, written in the style of 1920s expressionist plays such as Elmer Rice's The Adding Machine (1923), in which an office worker learns he has been replaced by a machine. Expressionist staging showed the world as the main character feels it: distorted, threatening, jagged. Light was a main tool: harsh angles, deep shadows, sudden changes and color used for feeling rather than realism. The key is a model; accept any plan whose choices connect to the clerk's inner state.
+
+## Read: The moment
+text: A clerk has added numbers at the same desk for 25 years. **Beat 1:** He works alone at his desk; the office is quiet. **Beat 2:** The boss enters and, without looking at him, says a machine will now do his job. **Beat 3:** The numbers he has added all his life seem to roar around him, louder and louder. **Beat 4:** Silence. He stands alone, very small, in the dark office.
+
+## Main: Light plan
+chart: Angle (direction of the light) | Shadows | Color | Why (what the clerk feels)
+  labels: Beat 1; Beat 2; Beat 3; Beat 4
+  height: 1.0
+  key: Model. Beat 1: steep top light on the desk only; small hard shadow under him; flat gray-white; his world has shrunk to the desk. Beat 2: strong light from low front on the boss so his shadow towers up the back wall; the clerk in shadow; cold blue-white; the boss looms like a giant. Beat 3: flashing light from the sides and below, crossing at sharp angles; jagged shadows that jump; red and harsh white; his mind is spinning out of control. Beat 4: one narrow, steep top light on the clerk; a long shadow at his feet, the rest of the stage black; a single cold blue; he feels tiny and alone.
+draw: Sketch the stage picture for your strongest beat, with the light's direction drawn as arrows and the shadows shaded. | 2.8
+write: Explain how your strongest beat shows the clerk's inner world instead of a real office.
+  lines: 3
+  key: Answers vary. Model: In beat 2, the boss's huge shadow on the wall is not realistic, but it shows how powerful and frightening the boss feels to the clerk, which is the goal of expressionism.
+
+## Stretch
+write: A realist designer would light this scene differently. Describe one realist choice for beat 2 and what would be lost.
+  lines: 3
+  key: Answers vary. Model: A realist would light the office with overhead fluorescent light, even and white, motivated by ceiling fixtures. The audience would see an ordinary office, and lose the sense of the boss towering over the clerk.
+
 # 21. Light From Three Sides
 minutes: 45
 materials: pencil, ruler, colored pencils (2 colors)
@@ -75,3 +129,37 @@ write: Explain your plan for one area: where each light hangs and which audience
 write: The back wall of the thrust has a doorway where actors make entrances. What lighting problem might this area have, and how would you solve it?
   lines: 3
   key: Answers vary: an actor in the doorway faces all three sections at once but is far from the side audiences, and there is no room for a back light behind the wall; add a light from over the center section and two steep side lights so the actor is lit from where each section sits, and keep beams off the wall so they do not throw distracting shadows.
+
+# 33. One Speech, Three Spaces
+minutes: 40
+materials: pencil, your monologue
+ican: I can adapt a performance for different spaces while keeping its meaning.
+directions: Plan how you would adapt your monologue for three spaces. For each, describe your voice, the size of your movement, where your focus goes and one staging change. Then name what must stay the same in all three.
+mistakes: Students often say "louder" for every bigger space. Projection is about support, clear consonants and energy, not shouting; outdoors also has wind, traffic and no walls to bounce sound back. Watch for black box plans that shrink everything; a close audience sees every small choice, so truthfulness matters most, but the energy still has to fill the room.
+notes: Typical spaces: a black box seats perhaps 50 to 150 people close to the actor, often on more than one side; a large proscenium auditorium may seat 800 or more, with the back row far away; an outdoor stage has open air, changing light and noise, and often no microphone. The key is a model for an invented monologue; accept any plan that adapts thoughtfully and protects the core.
+
+## Warm up
+choice: Why does speaking outdoors need extra care even for a small audience?
+  - Audiences outdoors do not listen.
+  * Sound does not bounce back from walls, and wind and noise compete with the voice.
+  - Outdoor stages are always larger.
+  - Microphones are not allowed outdoors.
+choice: In a black box with the audience a few feet away, what matters most?
+  - Big, wide gestures so everyone sees
+  - Shouting to show emotion
+  * Small, truthful choices, since every detail can be seen
+  - Facing only the front row
+
+## Main: Adapting the speech
+chart: Voice | Movement size | Focus (where the eyes go) | One staging change
+  labels: Black box; Large auditorium; Outdoor stage
+  height: 1.2
+  key: Model. Black box: near-conversational, supported, quiet moments truly quiet; small, contained gestures; focus on a point just over the audience's heads, sometimes on one person; play on a low platform with audience on two sides, turning to share. Large auditorium: full support and crisp consonants, slower rate so words reach the back; gestures larger and held longer; focus lifted to the back of the house; stay downstage to be closer and use the center for the climax. Outdoor stage: strongest support, slower rate, pause for noise; bold, clear shapes readable from far away; focus wide and out to the crowd; place the speech downwind, with a back wall or set piece behind to reflect sound.
+write: What must stay the same in all three spaces? Explain why.
+  lines: 3
+  key: Answers vary. Model: My objective and the turning point of the speech. Whatever the space, the character still wants to convince her sister to stay, and the moment she gives up must land, or the speech loses its meaning.
+
+## Stretch
+write: Which space would be hardest for your monologue, and how will you rehearse for it?
+  lines: 3
+  key: Answers vary. A strong answer names the space and a specific rehearsal plan, such as rehearsing outdoors with a partner at the farthest seat calling out any word they miss.

@@ -37,6 +37,80 @@ write: Why did realism require a new kind of acting? Name one thing Stanislavski
   lines: 3
   key: In a real-looking room, big poses and speeches to the audience looked false, so actors had to behave like real people. Stanislavski asked actors to know what the character wants, what happened before the scene, and what lies under the words.
 
+# 7. Modern Drama Timeline, 1879 to 1920
+minutes: 40
+materials: pencil
+ican: I can place key events of early modern drama in order and explain the innovation each one brought.
+directions: Write each card's letter at its year on the timeline. Then fill in the chart with the innovation each milestone brought to the theater.
+mistakes: Students often see these events as one movement. Some pushed realism further (Theatre Libre, the Moscow Art Theatre), while others broke away from it (Ubu Roi). Watch for 1887, 1888 and 1889 crowded together: the letters can sit above and below the line. Innovation answers should say what was new, not just summarize the plot.
+notes: Dates: A Doll's House premiered in Copenhagen in December 1879. Andre Antoine founded the Theatre Libre in Paris in 1887. Strindberg wrote Miss Julie and its preface on naturalism in 1888. Otto Brahm's Freie Buhne (Free Stage) opened in Berlin in 1889. Jarry's Ubu Roi opened in Paris in December 1896, and its first word caused an uproar. The Moscow Art Theatre was founded in 1898 and staged Chekhov's The Seagull that December, after its failed premiere elsewhere in 1896. The Abbey Theatre opened in Dublin in December 1904. Synge's The Playboy of the Western World caused protests at the Abbey in January 1907. The Provincetown Players formed in 1915 and staged Glaspell's Trifles in 1916.
+
+## Main: Place the milestones
+timeline: 1875 1920 5
+  - 1879 | Ibsen's A Doll's House premieres
+  - 1887 | Andre Antoine founds the Theatre Libre in Paris
+  - 1888 | Strindberg writes Miss Julie and its preface on naturalism
+  - 1889 | The Freie Buhne opens in Berlin
+  - 1896 | Jarry's Ubu Roi causes an uproar in Paris
+  - 1898 | The Moscow Art Theatre stages Chekhov's The Seagull
+  - 1904 | The Abbey Theatre opens in Dublin
+  - 1907 | The Playboy of the Western World sparks protests
+  - 1915 | The Provincetown Players form
+  - 1916 | Glaspell's Trifles premieres
+table: Milestone | The innovation
+  - A Doll's House (1879) | {a realistic problem play about an ordinary marriage, with no neat happy ending}
+  - Theatre Libre (1887) | {a small subscription theater for new realist and naturalist plays, with real objects and natural acting}
+  - Miss Julie (1888) | {naturalism: characters shaped by heredity and environment, a short play with no act breaks}
+  - Freie Buhne (1889) | {Berlin's free stage for banned or new realist plays, by subscription}
+  - Ubu Roi (1896) | {broke with realism: crude, puppet-like characters and shocking language; a forerunner of the absurd}
+  - Moscow Art Theatre (1898) | {ensemble acting and Stanislavski's search for truthful acting, saving The Seagull}
+  - Abbey Theatre (1904) | {a national theater for Irish plays, Irish speech and Irish life}
+  - Playboy riots (1907) | {a play that challenged audiences' image of their own nation; art versus public outrage}
+  - Provincetown Players (1915) | {a small American group staging new American writers such as O'Neill and Glaspell}
+  - Trifles (1916) | {a one-act that told its story through small domestic objects and women's point of view}
+
+## Stretch
+write: Three of these theaters (Theatre Libre, Freie Buhne, Provincetown Players) were small and independent. Why might new kinds of drama start in small theaters instead of big commercial ones?
+  lines: 3
+  key: Small theaters with subscribers did not need to sell huge numbers of tickets or please everyone, and private subscription could sometimes avoid censorship, so they could take risks on new, shocking or uncommercial plays; once those plays proved themselves, larger theaters followed.
+
+# 20. Beam Angle and Throw
+minutes: 35
+materials: pencil, calculator
+ican: I can use beam angle and throw distance to calculate the size of a pool of light and choose a lens.
+directions: Pool diameter = 2 x throw x tan(half the beam angle). Use the tangent table. Round to the nearest tenth of a foot. Then choose the right lens for each job.
+mistakes: Students often use the whole beam angle instead of half. Another common error is measuring throw along the floor; throw is the straight-line distance from the instrument to the actor's head height, which is longer than the floor distance. Watch for answers that confuse a bigger angle with a longer throw: a wide lens makes a big pool from close, a narrow lens a small pool from far.
+notes: Calculations use the tangent values printed on the sheet. The multiplying factor some designers use is 2 x tan(half the angle): about 0.17 for 10 degrees, 0.34 for 19, 0.46 for 26, 0.65 for 36 and 0.93 for 50; throw x factor = pool diameter. Manufacturers list a field angle (where the light falls to 10 percent of the center); the pool edge you see is close to it. Answers: 7.0, 10.0, 11.5, 13.0 and 14.0 feet. Lens choices: a 12-foot pool at 30 feet needs about 22.6 degrees, so the 26 (13.9 feet) is the smallest that covers it; for the 8-foot special at 24 feet, 19 degrees gives 8.0 feet; a 36 at 30 feet gives 19.5 feet.
+
+## Example
+example: A 26-degree lens at a 30-foot throw: half angle 13 degrees, tan 13 = 0.2309. Pool = 2 x 30 x 0.2309 = 13.854, about **13.9 feet** across.
+table: Half angle | 5 | 9.5 | 13 | 18 | 25
+  - tan | 0.0875 | 0.1673 | 0.2309 | 0.3249 | 0.4663
+
+## Main: Five instruments
+table: Instrument | Beam angle | Throw (feet) | Pool diameter (feet)
+  - 1. Special on a podium | 10 | 40 | {7.0}
+  - 2. Front light from the balcony rail | 19 | 30 | {10.0}
+  - 3. Box boom side light | 26 | 25 | {11.5}
+  - 4. First electric top light | 36 | 20 | {13.0}
+  - 5. Low side light from a boom | 50 | 15 | {14.0}
+choice: You need a 12-foot pool from a 30-foot throw. Which lens is the best choice?
+  - 19 degrees
+  * 26 degrees
+  - 36 degrees
+  - 50 degrees
+choice: You need an 8-foot special on a chair from a 24-foot throw. Which lens fits?
+  * 19 degrees
+  - 26 degrees
+  - 36 degrees
+  - 50 degrees
+fill: A 36-degree lens at a 30-foot throw makes a pool {19.5} feet across.
+
+## Stretch
+write: The director wants instrument 1's special to be a tight 4-foot pool, but you only own the 10-degree lens. What could you change, and what are the trade-offs?
+  lines: 3
+  key: Move the instrument closer: at 10 degrees, a 4-foot pool needs a throw of about 4 / (2 x 0.0875) = 22.9 feet. Or shutter or iris the beam down to 4 feet from the same position. Moving closer changes the angle on the actor; shuttering wastes light but keeps the angle.
+
 # 21. Final Scene Cue List
 minutes: 45
 materials: pencil
@@ -60,3 +134,35 @@ write: Which cue is the most important in your list, and why?
 write: Some directors leave the light unchanged when Nora leaves, so the room looks the same but is suddenly empty. Argue for or against this choice.
   lines: 3
   key: Answers vary. For: stillness makes the emptiness and the sound do the work, and it avoids telling the audience how to feel. Against: a final change helps mark the turning point and gives the ending a clear visual button.
+
+# 33. Physical Score
+minutes: 40
+materials: pencil, your monologue
+ican: I can build a physical score that sets gestures, stillness and movement beat by beat with a reason for each.
+directions: Divide your monologue into 6 beats. For each beat, chart the gesture, the moments of stillness and any movement across the stage, and the reason behind them. Rehearse until the score is set, then test it.
+mistakes: Students often plan a gesture for every line, which makes the body busy and the words hard to hear. Stillness is a choice; the strongest moments are often still. Watch for movement with no reason ("I cross because I have been standing too long"); each move should come from a change in thought or tactic.
+notes: A physical score sets the actor's physical life the way a musical score sets notes, so it can be repeated in every performance and adjusted on purpose. Beats are units of thought, often marked by a change in tactic. The key shows a model score for an invented monologue: a teenager asking a coach for one more chance to join a team. Students' scores will differ.
+
+## Example
+example: **Beat 1** ("Coach, wait. Please."): Gesture: one hand reaches out, then drops. Stillness: freeze after the hand drops. Movement: two quick steps toward the coach. Why: she has to stop the coach from leaving before she loses her nerve.
+
+## Warm up
+choice: Why is stillness part of a physical score?
+  - Because the actor has forgotten the lines
+  * Because a still moment focuses attention on a key thought or line
+  - Because movement is not allowed in monologues
+  - To give the lighting team time to change cues
+
+## Main: The score
+chart: Line it starts on | Gesture | Stillness | Movement (from where to where) | Why
+  labels: Beat 1; Beat 2; Beat 3; Beat 4; Beat 5; Beat 6
+  height: 0.85
+  key: Model (continuing the example): Beat 2, "I know I missed tryouts": hands open, palms up; still while admitting the mistake; none, stays center; she is being honest. Beat 3, "My brother was sick": no gesture; still, looking down; none; it is hard to say. Beat 4, "But watch this": mimes a free throw; none; crosses downstage right toward an imagined court; she switches tactic from explaining to proving. Beat 5, "I practiced every day": counts off on her fingers; brief pause after each count; small steps back to center; building her case. Beat 6, "Just one chance.": arms at her sides; long stillness, eyes on the coach; none; she has said everything and waits.
+write: Which beat uses stillness most powerfully? Explain why it works better than a gesture there.
+  lines: 3
+  key: Answers vary. Model: Beat 6, where she says "Just one chance" and stands completely still; any gesture would look like more begging, while stillness shows she has said it all and makes the audience wait for the answer with her.
+
+## Stretch
+write: Perform your score for a partner. Record one moment they noticed and one moment that felt unclear. What will you change?
+  lines: 3
+  key: Answers vary. A strong answer names a specific beat for each and a concrete change, such as cutting a repeated gesture in beat 2 or moving the cross to start on a new line.

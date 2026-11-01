@@ -49,6 +49,100 @@ write: Sanskrit drama almost never ends in tragedy. Using the background, predic
   lines: 4
   key: The king's memory returns, and Shakuntala and the king are reunited (with their son). Because the audience expects a happy ending, they can enjoy the sorrow of separation without dread; the pleasure is in how the reunion happens, a feeling (rasa) the play builds toward.
 
+# 7. Moliere and the Rules
+minutes: 45
+materials: pencil, highlighter
+ican: I can explain the neoclassical unities and use evidence to decide whether a scene follows them.
+directions: Read about the rules of neoclassical drama, then the adapted scene from Tartuffe. Highlight evidence of time, place and action in the scene. Then decide, with evidence, whether it follows the unities.
+mistakes: Students often think a scene breaks the unity of place if characters talk about somewhere else. Reported events are how neoclassical plays kept the unities: the trip to the country and the illness happen offstage and are described, not shown. Watch for "unity of action" confused with "a lot of action"; it means one main story, with no unrelated subplots.
+notes: The background is original to Curio Class. The scene is adapted and condensed by Curio Class from Moliere's Tartuffe, Act 1, Scene 4 (final version 1669, public domain), paraphrased rather than quoted from a translation; in the original, Orgon's "Poor man!" is "Le pauvre homme!" Moliere sets the whole play in Orgon's house in Paris, and the action fits within one day. The ending, where an officer of the King suddenly arrives to arrest Tartuffe, is often debated: some critics see it as a forced rescue; others note that it is prepared for and flatters the King who allowed the play. Passages about 380 words in all.
+
+## Read
+passage: The Rules and the Scene | numbered
+  In his Poetics, written in the 300s BCE, Aristotle said that a tragedy should imitate one complete action, with a beginning, a middle and an end, and he noted that tragedy tends to keep its story within about one day. Many centuries later, Italian critics of the 1500s turned these observations into three firm rules, called the unities. The unity of action: one main plot, with nothing unrelated. The unity of time: the story takes place within one day. The unity of place: the story stays in one location.
+  In seventeenth-century France, the unities became a test of a serious play. When Pierre Corneille's hit Le Cid crowded many events into a single day in 1637, the new French Academy criticized it. Writers believed the rules made a play believable: an audience sitting for two or three hours in one theater would accept a story that happened in one place over about one day.
+  Moliere wrote comedies for this world. In Tartuffe, a wealthy man named Orgon has taken a smooth-talking, falsely religious stranger, Tartuffe, into his home, and admires him so much that he ignores his own family. In this scene, Orgon has just come home from two days in the country. He asks the maid, Dorine, for the news.
+  ORGON: Anything happen while I was away? Is everyone well?
+  DORINE: Two days ago, your wife had a fever, and a terrible headache.
+  ORGON: And Tartuffe?
+  DORINE: Tartuffe? He is wonderfully well: fat, rosy-cheeked, glowing with health.
+  ORGON: The poor man!
+  DORINE: That evening your wife felt so ill she could not eat any supper. Tartuffe sat across from her and ate two partridges and half a leg of mutton.
+  ORGON: The poor man!
+  DORINE: She did not sleep a minute all night. Tartuffe went straight from the table to his warm bed and slept soundly until morning.
+  ORGON: The poor man!
+  DORINE: In the end we persuaded her to let the doctor treat her, and she felt better. Tartuffe bravely drank four large glasses of wine at breakfast, to make up for what she had suffered.
+  ORGON: The poor man!
+  DORINE: They are both well now. I will go and tell your wife how glad you are that she has recovered. (She goes.)
+
+## Warm up
+match: The three unities
+  - Unity of action = one main plot, with nothing unrelated
+  - Unity of time = the story takes place within about one day
+  - Unity of place = the story stays in one location
+choice: Why did seventeenth-century French writers believe the unities mattered? (Paragraph 2)
+  - The King made them law.
+  - They saved money on scenery.
+  * They made a play believable to an audience sitting in one theater for a few hours.
+  - Aristotle required them for comedy.
+
+## Main: Does the scene follow the rules?
+table: Unity | Evidence from the scene | Follows it? (yes or no)
+  - Place | {all in Orgon's home; the trip to the country happens offstage} | {yes}
+  - Time | {Orgon has just come home; the illness of the past two days is reported, not shown} | {yes}
+  - Action | {every line shows Orgon's blindness about Tartuffe, the main plot} | {yes}
+write: How does Moliere use reported events to keep the unities? Give an example.
+  lines: 3
+  key: Events that happened elsewhere or earlier are told in dialogue rather than staged: Dorine describes the wife's fever, the supper and the sleepless night from the past two days, so the scene stays in one place and one day.
+write: The scene follows the rules but is still very funny. What makes it funny?
+  lines: 3
+  key: The repeated pattern: Dorine reports the wife's suffering, Orgon ignores it and asks only about Tartuffe, and every time he answers "The poor man!" about a man who is eating and sleeping well. The repetition shows how blind Orgon is and builds laughter each time.
+
+## Stretch
+write: At the end of Tartuffe, an officer of the King suddenly arrives and arrests Tartuffe, rescuing the family. Does this ending fit the neoclassical idea of a believable play? Argue one side with a reason.
+  lines: 3
+  key: Answers vary. Against: the rescue comes from outside the main action, so it feels forced and less believable. For: the King's power has been mentioned before, and the ending stays in one place and one day, so it keeps the unities while showing justice restored.
+
+# 20. Design Your Own Gobos
+minutes: 40
+materials: pencil, black paper or card, scissors (optional for a practice cutout)
+ican: I can design gobo patterns and explain where each adds texture to a scene.
+directions: A gobo is a thin metal or glass plate with a pattern cut into it. It slides into a spotlight and throws that pattern as light. Design three gobo templates inside the circles you draw: a window, leaves and an abstract pattern. Shade the parts that block light; leave open the parts that let light through.
+mistakes: The most common design mistake is an "island": a solid piece with open space all around it, like the middle of an O or the panes of a window, which would fall out of a real gobo. Every solid part must connect to the edge with a bridge (a thin strip). Watch for designs where most of the circle is open; a gobo with too little solid metal throws a pattern that is hard to see.
+notes: Safety: paper templates are for design only. Never put paper, card or plastic into a stage light; real gobos are steel or glass because the inside of an ellipsoidal spotlight gets very hot. A gobo goes into the gate of an ellipsoidal reflector spotlight (ERS), which has a lens that focuses a sharp image; the lens flips the image upside down and left to right, so text or an off-center design must go in flipped. Focusing the lens soft blurs the pattern into texture. Optional: hold a cutout in front of a flashlight in a dark room to see the shadow pattern, keeping the paper away from any hot bulb.
+
+## Warm up
+choice: On a gobo, which parts let light through?
+  - The solid parts
+  * The open, cut-out parts
+  - Only the edge
+  - All of it, evenly
+choice: In a window gobo, what are the bars between the panes?
+  * Bridges: the solid parts that block light and hold the gobo together
+  - Holes that let the most light through
+  - Lenses
+  - Color filters
+choice: Which instrument is used to project a sharp gobo pattern?
+  - A Fresnel
+  * An ellipsoidal reflector spotlight (ERS)
+  - A work light
+  - A floodlight
+
+## Main: Three templates
+text: In each box, draw a circle about 2 inches across, then your design inside it. Shade what blocks light. Check for islands.
+draw: 1. Window | 2.3
+draw: 2. Leaves | 2.3
+draw: 3. Abstract (shapes, lines or a texture) | 2.3
+chart: Where in a scene this gobo adds texture | Angle and color you would use | Soft or sharp focus, and why
+  labels: Window; Leaves; Abstract
+  height: 0.8
+  key: Model. Window: a bedroom at dawn, the pattern stretched across the floor; low side angle, warm pale amber; fairly sharp so the panes read clearly. Leaves: a forest or park scene, breaking up the floor and actors; high angle from above, pale green or blue for moonlight; soft so it reads as dappled light, not cut shapes. Abstract: a dream or memory scene on a back wall; from the front at a steep angle, a strong color such as deep blue or violet; sharp to look strange and deliberate.
+
+## Stretch
+write: Your window gobo has the word EXIT painted on one pane. Why would it project backward and upside down, and how would you fix it?
+  lines: 2
+  key: The spotlight's lens flips the image both upside down and left to right, so the gobo must be made with the word already reversed and put in upside down so the projection reads correctly.
+
 # 21. Sunset in Five Cues
 minutes: 35
 materials: pencil
@@ -75,3 +169,30 @@ write: Why should the fade times in cues 2 to 4 be long?
 write: In your cue 4, a character turns on the porch lamp. Why is it useful to tie a cue to an action in the scene?
   lines: 3
   key: The action motivates the change, so it feels natural; the stage manager can call the cue exactly on the actor's move; and the brighter lamp gives the actors a believable source of face light as the sky goes dark.
+
+# 33. Breath and Verse Log
+minutes: 10
+materials: pencil, your monologue in verse
+ican: I can track my breath support and verse speaking over time and set goals from the results.
+directions: After each of 6 sessions, log the breath exercise, the lines you worked on and the longest phrase you spoke on one breath, counted in words, with clear sound to the end. Then graph your longest phrase across the sessions.
+mistakes: Students often push for a longer count by rushing or letting the last words fade. A phrase only counts if the final word is as clear and supported as the first. Watch for breath taken high in the chest with lifted shoulders; the breath should be low and easy, with the ribs and belly expanding.
+notes: Verse speaking: a line of iambic pentameter has ten syllables and five stressed beats (da-DUM five times), and actors often try to carry a full thought through to the end of a line or to the punctuation. Sample breath exercises: slow counting on a hiss; breathe in for 4, out on "sss" for 8, then 12; a long phrase on one breath; panting to find the belly. Never practice to the point of dizziness; stop and breathe normally if light-headed. The key's log is a model; logs will differ.
+
+## Warm up
+fill:
+  - A line of iambic pentameter has {10} syllables.
+  - It has {5} stressed beats.
+  - A good breath for speaking is taken {low}, with ribs and belly expanding, not lifted shoulders.
+
+## Main: Session log
+chart: Breath exercise | Lines worked on | Longest phrase (words) | Note for next time
+  labels: 1; 2; 3; 4; 5; 6
+  height: 0.6
+  key: Model: 1 hiss for 8 counts; lines 1 to 4; 11 words; I ran out before "night". 2 hiss for 12; lines 1 to 6; 13; breathe at the comma in line 3. 3 counting to 15 on one breath; lines 5 to 10; 15; keep the end of the line strong. 4 panting then long "ah"; lines 1 to 10; 16; shoulders lifted, relax. 5 hiss for 16; whole speech; 19; carried line 7 through to the end. 6 full speech twice; whole speech; 21; ready for the longest thought in line 9.
+graph: Session | 0 6 1 | Longest phrase (words) | 0 30 5
+  key: 1,11 2,13 3,15 4,16 5,19 6,21
+
+## Stretch
+write: Look at your graph. What helped your longest phrase grow, or what got in the way? Set one goal for your next session.
+  lines: 3
+  key: Answers vary. Model: My count grew from 11 to 21 words once I breathed low and stopped lifting my shoulders. Goal: speak the long thought in line 9 on one breath with a strong final word.
