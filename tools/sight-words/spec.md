@@ -27,9 +27,8 @@ px), one small flourish in the top bar, nothing moving near the word.
 ## Content
 Use only tools/sight-words/words.json (built from the teacher's three lists in docs/Return/Lists). Embed it as is.
 - Dolch sets, in level order: Pre-primer (40), Primer (52), Grade 1 (41), Grade 2 (46), Grade 3 (41), Nouns (95).
-- Fry sets: the 1,000 words in ten alphabetical sets of 100, named by letter range. The supplied Fry list has no
-  frequency ranks, so the sets are alphabetical for now. Keep the set loader generic, so a ranked list ("First 100",
-  "Second 100", ...) can replace it later by editing data only.
+- Fry sets: the 1,000 words in their ten frequency hundreds, "First 100" (the most common) to "Tenth 100", in that
+  order. Within a hundred the words are alphabetical; Shuffle and Mix reorder them.
 - on_both: words found on a Dolch list and on Fry. In a Dolch set such a word shows a small quiet "also Fry" tag under
   it; in a Fry set, "also Dolch". The tag is small and grey, never competing with the word.
 
