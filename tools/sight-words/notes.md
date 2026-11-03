@@ -48,3 +48,9 @@ Picks, flags, mode and best scores remain on this device in localStorage, where 
 Content is embedded unchanged from the teacher-supplied words.json: six Dolch sets and ten Fry hundreds. Artwork is limited to quiet parchment and one still top-bar quill, as requested.
 
 On a shared computer, tap Reset in the top bar to clear the flags, choices and best scores saved in that browser. In Practice test and Challenge the instructions are spoken once before Start; once a run begins the voice stays quiet so the reader can focus.
+
+## One catalog (2026-11-03)
+Cory: take out the Dolch and Fry split. The picker now shows one catalog of 1,042 words in ten levels: the Fry 1000 by
+frequency hundred, plus every Dolch word not on Fry, placed by its Dolch level (see words.json note). The supplied lists
+are kept unchanged in words-supplied.json. "All flagged" in the top bar opens every flagged word as an Explore run.
+After a Challenge, Try again is the large centered button.

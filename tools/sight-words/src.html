@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:,">
 <title>Sight Words · Curio Class</title>
-<meta name="description" content="Quiet Dolch and Fry sight word practice. Read aloud with a teacher or partner. Three modes, one word at a time. Works offline.">
+<meta name="description" content="Quiet sight word practice from one catalog of over a thousand common words. Read aloud with a teacher or partner. Three modes, one word at a time. Works offline.">
 <!--
-Sight Words, Curio Class. Grade 2, CCSS RF.2.3f. Supplied words.json embedded unchanged.
+Sight Words, Curio Class. Grade 2, CCSS RF.2.3f. words.json is one catalog built from the supplied Dolch and Fry lists (words-supplied.json).
 Instructions use browser speech, never the target words. No microphone or automatic assessment.
 Illustrations generated with OpenAI gpt-image, edited for Curio Class.
 Content CC BY 4.0, code MIT. One offline file, no network requests.
@@ -52,7 +52,7 @@ p { margin:0; }
 #picker { display:flex; flex-direction:column; gap:12px; }
 .list-tabs { display:flex; gap:8px; }
 .list-tabs button { min-width:120px; }
-.set-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.set-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
 .set-grid.fry { grid-template-columns:repeat(5,1fr); }
 .set-choice { text-align:left; padding:10px 16px; position:relative; }
 .set-choice span { display:block; font-size:13px; color:var(--muted); font-weight:400; margin-top:4px; }
@@ -201,6 +201,9 @@ dialog { border-radius:18px; }
 #reset-dialog p { margin:8px 0 18px; line-height:1.5; }
 .reset-actions { display:flex; gap:10px; justify-content:flex-end; }
 
+.result-actions.again-first { justify-content:center; }
+.result-actions.again-first #again { order:-1; flex:0 0 auto; width:min(380px,100%); margin:0 calc(50% - min(190px,50%)) 6px; min-height:68px; font-size:26px; }
+.result-actions.again-first:has(#again) { flex-wrap:wrap; }
 /* Card look (Curio Class): match the card art. The word sits on a framed card; buttons get a navy edge and a lip. */
 #word { display:inline-block; position:relative; min-width:4.4em; padding:.16em .7em .2em; background:#fffaf0;
   border:4px solid var(--brand); border-radius:30px; box-shadow:0 10px 26px #1c2c4029, 0 2px 0 #1c2c4014; }
@@ -227,17 +230,14 @@ button:disabled { box-shadow:none; }
   <div class="utilities">
     <button id="sound" aria-pressed="true">Sound</button>
     <button id="motion" aria-pressed="true">Motion</button>
+    <button id="my-flags" title="Explore every word you have flagged">⚑ All flagged (0)</button>
     <button id="reset" title="Clear saved flags, choices and best scores on this device">Reset</button>
   </div>
 </header>
 <main>
   <section class="screen" id="picker" aria-labelledby="picker-title">
     <h2 id="picker-title">Choose your words</h2>
-    <div class="list-tabs" role="group" aria-label="Word list">
-      <button id="list-dolch" aria-pressed="true">Dolch</button>
-      <button id="list-fry" aria-pressed="false">Fry</button>
-    </div>
-    <div class="set-grid" id="sets" role="group" aria-label="Choose one or more sets"></div>
+    <div class="set-grid" id="sets" role="group" aria-label="Choose one or more levels"></div>
     <div class="picker-bottom">
       <button id="mix" role="switch" aria-checked="false">Mix: off</button>
       <span id="selection-count"></span>
@@ -261,7 +261,7 @@ button:disabled { box-shadow:none; }
     </div>
     <div class="actions" id="secondary-actions">
       <button id="shuffle">⇄ Shuffle</button><button id="flag" aria-pressed="false">⚑ Flag</button>
-      <button id="flagged">⚑ Flagged (0)</button><button id="change-sets">Sets</button>
+      <button id="flagged">⚑ Flagged (0)</button><button id="change-sets">Levels</button>
     </div>
     <div class="actions" id="test-actions" hidden>
       <button id="skip">→ Skip</button><button id="test-flag" aria-pressed="false">⚑ Flag</button><button id="end">End</button>
@@ -273,7 +273,7 @@ button:disabled { box-shadow:none; }
       <option value="10">10</option><option value="20" selected>20</option><option value="30">30</option>
       <option value="all">The whole set</option>
     </select></label>
-    <div class="ready-actions"><button id="begin" class="primary">Start</button><button id="ready-sets">Choose sets</button></div>
+    <div class="ready-actions"><button id="begin" class="primary">Start</button><button id="ready-sets">Choose levels</button></div>
   </section>
   <section class="screen" id="results" hidden>
     <h2 id="result-title">Practice complete</h2>
@@ -281,7 +281,7 @@ button:disabled { box-shadow:none; }
     <p id="result-score"></p><p id="best"></p><p id="review-label"></p><p id="review-words"></p>
     <div class="result-actions">
       <button id="practice-these" class="primary">Practice these</button>
-      <button id="again">Try again</button><button id="result-sets">Choose sets</button>
+      <button id="again">Try again</button><button id="result-sets">Choose levels</button>
     </div>
   </section>
 </main>
@@ -305,10 +305,10 @@ button:disabled { box-shadow:none; }
   'use strict';
   const $ = id => document.getElementById(id);
   const DATA = "json:words";
-  const BOTH = new Set(DATA.on_both);
+  const CASE = new Map(DATA.sets.flatMap(set => set.words).map(w => [w.toLowerCase(), w]));
   const STORAGE = 'curio-sight-words-v1';
   const L = {
-    picker:'Choose Dolch or Fry. Tap one or more sets, then tap Start.',
+    picker:'Tap one or more levels, then tap Start. Level 1 has the most common words.',
     explore:'Read the word out loud. Tap Next for another word. Tap Flag to save a word for later.',
     practice:'Read each word out loud. Tap Right or Not yet to move on. The timer never skips a word.',
     practiceReady:'Read each word out loud, then tap Right or Not yet. The timer never skips a word. Choose how many words, then tap Start when you are ready.',
@@ -321,7 +321,6 @@ button:disabled { box-shadow:none; }
   try { saved = JSON.parse(localStorage.getItem(STORAGE) || '{}') || {}; } catch {}
   const state = {
     mode:['explore','practice','challenge'].includes(saved.mode) ? saved.mode : 'explore', view:'picker',
-    list:saved.list === 'Fry' ? 'Fry' : 'Dolch',
     picks:Array.isArray(saved.picks) ? saved.picks.filter(i => Number.isInteger(i) && DATA.sets[i]) : [0],
     mix:!!saved.mix,
     flags:new Set(Array.isArray(saved.flags) ? saved.flags.filter(w => typeof w === 'string') : []),
@@ -341,7 +340,7 @@ button:disabled { box-shadow:none; }
   });
   function save() {
     try {
-      localStorage.setItem(STORAGE, JSON.stringify({mode:state.mode, list:state.list, picks:state.picks,
+      localStorage.setItem(STORAGE, JSON.stringify({mode:state.mode, picks:state.picks,
         mix:state.mix, flags:[...state.flags], best:state.best}));
     } catch { document.querySelector('.privacy').hidden = false; document.querySelector('.privacy').textContent = 'Saving is unavailable. Choices last until this page closes.'; }
   }
@@ -372,23 +371,20 @@ button:disabled { box-shadow:none; }
         if (seen.has(word.toLowerCase())) return false;
         seen.add(word.toLowerCase());
         return true;
-      }).map(word => ({word, list:set.list, set:set.name}));
+      }).map(word => ({word, set:set.name}));
     });
   }
   function key() { return state.picks.slice().sort((a,b) => a - b).join(','); }
   function updatePicker() {
-    for (const list of ['Dolch','Fry']) $('list-' + list.toLowerCase()).setAttribute('aria-pressed', state.list === list);
-    $('sets').classList.toggle('fry', state.list === 'Fry');
     for (const button of $('sets').children) {
       const i = Number(button.dataset.set);
-      button.hidden = DATA.sets[i].list !== state.list;
       button.setAttribute('aria-pressed', state.picks.includes(i));
     }
     $('mix').setAttribute('aria-checked', state.mix);
     $('mix').textContent = 'Mix: ' + (state.mix ? 'on' : 'off');
-    $('selection-count').textContent = state.picks.length + ' set' + (state.picks.length === 1 ? '' : 's') + ' · ' + pool().length + ' words';
+    $('selection-count').textContent = state.picks.length + ' level' + (state.picks.length === 1 ? '' : 's') + ' · ' + pool().length + ' words';
     $('open').disabled = !state.picks.length;
-    $('hint').textContent = state.picks.length ? L.picker : 'Tap one or more sets to choose your words.';
+    $('hint').textContent = state.picks.length ? L.picker : 'Tap one or more levels to choose your words.';
   }
   DATA.sets.forEach((set,i) => {
     const button = document.createElement('button');
@@ -408,7 +404,7 @@ button:disabled { box-shadow:none; }
   });
   function showPicker(moveFocus = true) {
     state.active = false;
-    screen('picker', moveFocus ? 'list-' + state.list.toLowerCase() : null);
+    screen('picker', moveFocus ? 'set-0' : null);
     updatePicker();
   }
   function setMode(mode, moveFocus = true) {
@@ -458,7 +454,7 @@ button:disabled { box-shadow:none; }
     if (!item) return;
     const explore = state.mode === 'explore';
     $('word').textContent = item.word;
-    $('set-label').textContent = item.list + ' · ' + item.set;
+    $('set-label').textContent = item.set;
     $('counter').textContent = (state.index + 1) + ' of ' + state.deck.length;
     $('timer').hidden = state.mode !== 'challenge';
     $('hourglass').hidden = state.mode !== 'practice';
@@ -474,7 +470,7 @@ button:disabled { box-shadow:none; }
     tick();
   }
   function exploreHint() {
-    if (state.deck.length === 1) return 'Read this word aloud. Tap Flag to save it, or Sets for more words.';
+    if (state.deck.length === 1) return 'Read this word aloud. Tap Flag to save it, or Levels for more words.';
     if (state.index === state.deck.length - 1) return 'Last word. Tap Back, Shuffle, or Flagged to keep practicing.';
     return L.explore;
   }
@@ -502,12 +498,26 @@ button:disabled { box-shadow:none; }
     const count = state.deck.filter(item => state.flags.has(item.word.toLowerCase())).length;
     $('flagged').textContent = '⚑ Flagged (' + count + ')';
   }
+  function paintMyFlags() { $('my-flags').textContent = '⚑ All flagged (' + state.flags.size + ')'; }
+  function openAllFlagged() {
+    if (!state.flags.size) { showFlags(); return; }
+    state.active = false;
+    state.mode = 'explore';
+    for (const mode of ['explore','practice','challenge']) $('m-' + mode).setAttribute('aria-pressed', mode === 'explore');
+    state.deck = [...state.flags].sort().map(w => ({word:CASE.get(w) || w, set:'All flagged words'}));
+    state.index = 0;
+    state.done = false;
+    screen('reader', state.deck.length > 1 ? 'next' : 'flag');
+    renderWord();
+    save();
+  }
   function toggleFlag() {
     const word = state.deck[state.index]?.word.toLowerCase();
     if (!word) return;
     if (state.flags.has(word)) state.flags.delete(word);
     else state.flags.add(word);
     updateFlag();
+    paintMyFlags();
     save();
   }
   function navigate(delta) {
@@ -549,14 +559,17 @@ button:disabled { box-shadow:none; }
     $('result-title').textContent = state.mode === 'practice' ? 'Practice complete' : 'Challenge complete';
     $('result-score').textContent = state.right + ' of ' + state.deck.length + ' right';
     $('best').textContent = state.mode === 'challenge'
-      ? 'Best for these sets: ' + state.best[state.runKey] + ' of 30 right.' : 'A little more practice, at your own pace.';
+      ? 'Best for these levels: ' + state.best[state.runKey] + ' of 30 right.' : 'A little more practice, at your own pace.';
     $('review-label').textContent = state.review.length
       ? 'Try again: Not yet, skipped, and any words left.' : 'Every word marked Right. Nicely read!';
     $('review-words').textContent = state.review.map(item => item.word).join(' · ');
     $('practice-these').hidden = !state.review.length;
+    const big = state.mode === 'challenge';
+    $('again').closest('.result-actions').classList.toggle('again-first', big);
+    $('again').classList.toggle('primary', big); $('practice-these').classList.toggle('primary', !big);
     $('celebration').hidden = !perfect;
-    screen('results',state.review.length ? 'practice-these' : 'again');
-    if (!state.review.length) $('hint').textContent = 'Tap Try again for a new session, or Choose sets for different words.';
+    screen('results',state.review.length && !big ? 'practice-these' : 'again');
+    if (!state.review.length) $('hint').textContent = 'Tap Try again for a new session, or Choose levels for different words.';
     if (perfect) {
       Curio.yes();
       if (!Curio.reduce) {
@@ -614,11 +627,6 @@ button:disabled { box-shadow:none; }
     V.how('flags');
   }
   for (const mode of ['explore','practice','challenge']) $('m-' + mode).onclick = () => setMode(mode);
-  for (const list of ['Dolch','Fry']) $('list-' + list.toLowerCase()).onclick = () => {
-    state.list = list;
-    updatePicker();
-    save();
-  };
   $('mix').onclick = () => { state.mix = !state.mix; updatePicker(); save(); };
   $('open').onclick = () => openMode();
   $('begin').onclick = start;
@@ -638,6 +646,8 @@ button:disabled { box-shadow:none; }
     $('hint').textContent = 'Words shuffled. Read aloud, then tap Next.';
   };
   $('flagged').onclick = showFlags;
+  $('my-flags').onclick = openAllFlagged;
+  paintMyFlags();
   $('reset').onclick = () => $('reset-dialog').showModal();
   $('reset-cancel').onclick = () => $('reset-dialog').close();
   $('reset-yes').onclick = () => { try { localStorage.removeItem(STORAGE); } catch {} location.reload(); };
@@ -652,7 +662,7 @@ button:disabled { box-shadow:none; }
     for (const mode of ['explore','practice','challenge']) $('m-' + mode).setAttribute('aria-pressed',mode === 'explore');
     screen('reader',state.deck.length > 1 ? 'next' : 'flag');
     renderWord();
-    if (state.deck.length === 1) $('hint').textContent = 'Read this word aloud. Tap Flag to save it, or Sets for more words.';
+    if (state.deck.length === 1) $('hint').textContent = 'Read this word aloud. Tap Flag to save it, or Levels for more words.';
     save();
   };
   addEventListener('keydown',event => {

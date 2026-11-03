@@ -239,6 +239,8 @@ dialog { border-radius:18px; }
 #reset-dialog p { margin:8px 0 18px; line-height:1.5; }
 .reset-actions { display:flex; gap:10px; justify-content:flex-end; }
 
+main:has(#results:not([hidden])) .actions { flex-wrap:wrap; }
+main:has(#results:not([hidden])) #again { order:-1; flex:0 0 auto; width:min(380px,100%); margin:0 calc(50% - min(190px,50%)); min-height:68px; font-size:26px; }
 /* Card look (Curio Class): match the card art. The word sits on a framed card; buttons get a navy edge and a lip. */
 #word { display:inline-block; position:relative; min-width:4.4em; padding:.16em .7em .2em; background:#fffaf0;
   border:4px solid var(--brand); border-radius:30px; box-shadow:0 10px 26px #1c2c4029, 0 2px 0 #1c2c4014; }
@@ -265,6 +267,7 @@ button:disabled { box-shadow:none; }
   <div class="utilities">
     <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
     <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+    <button class="icon-btn" id="my-flags" title="Explore every word you have flagged">⚑ All flagged (0)</button>
     <button class="icon-btn" id="reset" title="Clear saved flags, choices and best scores on this device">Reset</button>
   </div>
 </header>
@@ -311,7 +314,7 @@ button:disabled { box-shadow:none; }
     <button id="back">← Back</button><button id="next" class="primary">Next →</button>
     <button id="start" class="primary" hidden>▶ Start</button>
     <button id="notyet" class="notyet" hidden>✕ Not yet</button><button id="right" class="right" hidden>✓ Right</button>
-    <button id="again" class="primary" hidden>↻ Again</button>
+    <button id="again" class="primary" hidden>↻ Try again</button>
     <button id="practice-these" hidden>↗ Practice these</button>
   </div>
   <div class="bottom">
@@ -598,7 +601,7 @@ button:disabled { box-shadow:none; }
   function bestKey() { return state.kinds.slice().sort().join('+'); }
   function hint() {
     if (state.phase === 'done') {
-      $('hint').textContent = state.lastResult.missed.length ? 'Tap Practice these to read the words that need another try.' : 'Tap Again for a new set.';
+      $('hint').textContent = state.lastResult.missed.length ? 'Tap Practice these to read the words that need another try.' : 'Tap Try again for a new set.';
     } else if (state.phase === 'ready') {
       $('hint').textContent = L[state.mode === 'practice' ? 'startPractice' : 'startChallenge'];
     } else if (state.mode === 'explore') {
@@ -646,6 +649,7 @@ button:disabled { box-shadow:none; }
     $('back').disabled = state.index === 0;
     $('next').disabled = state.index >= state.deck.length - 1;
     $('flagged').textContent = `⚑ Flagged (${pool().filter(w => state.flags.has(w.word)).length})`;
+    $('my-flags').textContent = `⚑ All flagged (${state.flags.size})`;
     if (explore || active) {
       $('word').textContent = current().word;
       $('count').textContent = `${state.index + 1} of ${state.deck.length}${state.review ? ' · practice words' : ''}`;
@@ -848,6 +852,12 @@ button:disabled { box-shadow:none; }
       return b;
     }));
     $('flags').showModal();
+  };
+  $('my-flags').onclick = () => {
+    const words = BANK.filter(w => state.flags.has(w.word));
+    if (!words.length) { $('flagged').onclick(); return; }
+    setMode('explore', {review: words});
+    $('next').disabled ? $('flag').focus({preventScroll: true}) : $('next').focus({preventScroll: true});
   };
   $('reset').onclick = () => $('reset-dialog').showModal();
   $('reset-cancel').onclick = () => $('reset-dialog').close();
