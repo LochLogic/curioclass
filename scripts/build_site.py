@@ -163,7 +163,19 @@ if DIST.exists():
     shutil.rmtree(DIST)
 shutil.copytree(SITE / 'assets', DIST / 'assets')
 
-render('home.html', '/', built=built, bands=bands)
+# Home shows a small rotating pick, one tool per subject in turn, reshuffled each build (Cory, 2026-11-03).
+_rng = __import__('random').Random(date.today().toordinal())
+_by_subj = {}
+_pool = [t for t in built if t.get('preview')] or built
+for _t in _rng.sample(_pool, len(_pool)):
+    _by_subj.setdefault(_t['module']['subject'], []).append(_t)
+picks = []
+while len(picks) < 8 and any(_by_subj.values()):
+    for _k in list(_by_subj):
+        if _by_subj[_k] and len(picks) < 8:
+            picks.append(_by_subj[_k].pop())
+render('home.html', '/', built=built, bands=bands, picks=picks)
+
 
 def browse_page(path, title, lede, trail, sections, nav_label, fit=(), **extra):
     """Grade, band and subject pages: sticky section nav, modules in two columns, ready tools first.

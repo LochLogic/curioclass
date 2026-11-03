@@ -148,6 +148,14 @@ section.block { padding: 56px 0 8px; }
 .style-card span { font-size: 14px; color: var(--muted); }
 .style-card.free { background: var(--teal); color: #fff; border-color: var(--teal); }
 .style-card.free span { color: #ffffffcc; }
+.doors { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.door { display: block; padding: 18px 18px 20px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line);
+  border-top: 5px solid var(--door); text-decoration: none; color: var(--ink); transition: transform .15s, box-shadow .15s; }
+.door:hover { transform: translateY(-2px); box-shadow: 0 8px 22px #0000001a; }
+.door .kicker { display: block; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--door); }
+.door b { display: block; font: 600 22px var(--serif); margin: 6px 0 6px; }
+.door span:last-child { font-size: 15px; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .door { transition: none; } .door:hover { transform: none; } }
 
 /* Subjects */
 .subjects { display: flex; flex-wrap: wrap; gap: 10px; }
