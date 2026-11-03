@@ -34,6 +34,95 @@ write: Rewrite response 8, "Well, at least there's always next year," so it show
   lines: 2
   key: You worked so hard for this. I'd be disappointed too. I'm here for you.
 
+# 7. Greetings Around the World
+minutes: 30
+materials: pencil, highlighter
+ican: I can explain how different greeting customs could lead to a misunderstanding, and how to handle one with respect.
+directions: Read about greeting customs in three countries. Fill in the chart. Then read each mix-up and explain what each person was thinking and how they could clear it up.
+mistakes: Students sometimes decide one custom is "normal" and the others are "weird." Every custom makes sense to the people who grew up with it; the goal is to understand, not judge. Others overgeneralize ("everyone in France kisses everyone"); customs vary by person, family, region and setting, and many people adjust when they meet visitors.
+notes: The passage is original to Curio Class and describes common customs in general terms. In Japan, bowing is a common greeting, and a deeper bow shows more respect; handshakes are also used, especially in business and with visitors. In France, friends and family often greet with la bise, light cheek-to-cheek kisses, and the number varies by region; handshakes are usual in business and with strangers. In Thailand, the wai (palms pressed together, a small bow) is a common greeting, and higher hands and a deeper bow show more respect. If students have greeting customs from their own families, they may share them, but nobody has to.
+
+## Read
+passage: Hello, Three Ways
+  In many countries, people shake hands when they meet. But that is only one way to say hello.
+  In **Japan**, people often greet each other with a bow. A small nod of the head is friendly. A deeper, slower bow shows more respect, for example to a teacher or an older person. Many people greet without touching at all.
+  In **France**, close friends and family often greet with *la bise*: they touch cheeks lightly and make a small kissing sound, first on one side, then the other. In some parts of France, people give three or even four. When people meet for business, they usually shake hands instead.
+  In **Thailand**, a common greeting is the *wai*. People press their palms together near the chest or face, as if praying, and bow a little. Raising the hands higher and bowing deeper shows more respect, so a student greeting a teacher might raise their hands to the nose.
+  Each custom says the same thing: "I see you, and I respect you." But when people with different customs meet, the same hello can be read in different ways.
+
+## Main: Compare the customs
+table: Country | The greeting | One more detail from the passage
+  height: 0.55
+  - Japan | {a bow} | {a deeper, slower bow shows more respect}
+  - France | {la bise: light cheek kisses for friends and family} | {the number varies by region; handshakes for business}
+  - Thailand | {the wai: palms together, small bow} | {higher hands and a deeper bow show more respect}
+
+## Mix-ups
+write: Maya visits a family friend from Japan and reaches out for a big hug. Her host steps back and bows. What might each person be thinking?
+  lines: 3
+  key: Maya thinks a hug shows warmth and friendship. The host may feel surprised or uncomfortable with touching, and bows to show respect. Neither is being rude.
+write: Lucas, who just moved from France, leans in to greet a new friend with la bise. The friend backs away, laughing nervously. How could Lucas and his friend clear this up?
+  lines: 3
+  key: They can talk about it: Lucas can explain that in France friends greet with cheek kisses, and his friend can say they would rather high-five or wave. They pick a greeting both are comfortable with.
+write: A visitor from Thailand greets a teacher with a wai. The teacher holds out a hand to shake, and the visitor looks confused. What is one respectful thing the teacher could do?
+  lines: 2
+  key: Return the wai, or smile and wait to follow the visitor's lead, then ask how they like to greet people.
+
+## Stretch
+write: Write two or three sentences of advice for a new student who is not sure how classmates will greet them.
+  lines: 3
+  key: Sample: Watch how others greet each other first, and follow their lead. If you're not sure, a smile and a wave work almost everywhere. If someone greets you in a way you don't expect, ask about it kindly instead of guessing they meant something bad.
+
+# 20. Perspective Taking Review
+minutes: 40
+materials: pencil, highlighter
+ican: I can analyze a community debate for stakeholders, assumptions and empathy.
+directions: Read about the debate in the town of Maple Creek. Then answer the eight questions. Use details from the passage.
+mistakes: Students often list only the loudest groups as stakeholders and forget people who are affected but not at the meeting (the neighbors who wrote in, the younger kids). An assumption is something a person believes without checking; students sometimes label any opinion an assumption. Ask "What is this person taking for granted?"
+notes: The town, people and debate are made up. Answers: 1 C, 3 D, 5 A, 7 B. Both plans have real benefits and costs; the review is about understanding each side, not picking the winner. If time allows, run a short role-play of the meeting where students argue the side they disagree with.
+
+## Read
+passage: The Empty Lot on Pine Street
+  The town of Maple Creek owns an empty lot on Pine Street, and the town council must decide what to do with it. Two groups have come forward.
+  A group of teenagers wants a small skate park. "There's nowhere for us to go after school," said Ava, 14. "Kids skate in store parking lots and get yelled at. We just want a safe place."
+  A group of older residents wants a community garden. "Many of us live in apartments with no yard," said Mr. Delgado, 72. "A garden would let us grow food and meet our neighbors."
+  At the meeting, one gardener said, "A skate park will just bring noise and trouble." A skater answered, "Gardens are only for old people who don't want kids around." Both sides got angry.
+  Then Ms. Kim, who owns the shop next to the lot, spoke. "I'd welcome more people walking by, but I worry about trash." Three families on Pine Street wrote letters asking for something quiet. A council member pointed out that the lot is big enough for a small skate area and a few garden beds, but only if both groups share the cost of a fence and cleanup.
+
+## Questions
+choice: Which list names stakeholders in this decision?
+  - Only the teenagers and the gardeners
+  - Only the town council
+  * The teens, the gardeners, Ms. Kim, the Pine Street families and the town council
+  - Only the people who spoke at the meeting
+write: What does Ava need from the lot? What does Mr. Delgado need? Use their words.
+  lines: 3
+  key: Ava needs a safe place to skate after school ("nowhere for us to go," "a safe place"). Mr. Delgado needs a place to grow food and meet neighbors ("no yard," "meet our neighbors").
+choice: Which statement from the meeting is an assumption about the other group?
+  - "Many of us live in apartments with no yard."
+  - "I'd welcome more people walking by."
+  - "The lot is big enough for both."
+  * "A skate park will just bring noise and trouble."
+write: Find a second assumption in the passage and explain why it is an assumption.
+  lines: 2
+  key: "Gardens are only for old people who don't want kids around." The skater has not checked; gardens can be for anyone, and the gardeners never said they don't want kids around.
+choice: Which group is affected by the decision but did not speak at the meeting?
+  * The families on Pine Street
+  - The teenagers
+  - The gardeners
+  - The town council
+write: Write one sentence Ava could say that shows empathy for the gardeners.
+  lines: 2
+  key: Sample: "I get that a garden would mean a lot to people who don't have a yard, and we don't want to take that away."
+choice: What makes the council member's idea a possible win-win?
+  - It gives the whole lot to the larger group.
+  * Both groups get part of what they need and share the costs.
+  - It delays the decision for a year.
+  - It lets Ms. Kim decide.
+write: Pick one stakeholder who might still be unhappy with the shared plan. What could be added to address their concern?
+  lines: 3
+  key: Sample: The Pine Street families want quiet; the plan could set skate hours (for example, closing at 8 p.m.) and put the garden beds on the side near their homes. Or Ms. Kim worries about trash; both groups could take turns on a weekly cleanup.
+
 # 21. Short-Term and Long-Term Goals
 minutes: 30
 materials: pencil
@@ -68,3 +157,53 @@ table: Long-term goal | Step 1 (from the list) | Step 2 (from the list) | Step 3
 write: Which short-term goal did not fit any long-term goal? Why is it still a goal?
   lines: 2
   key: Clean out my backpack tonight. It is a short-term goal on its own; it does not have to be a step toward a bigger goal.
+
+# 33. Test Day Strategy Choices
+minutes: 30
+materials: pencil
+ican: I can choose a study or calming strategy that fits a test-day problem and explain why it helps.
+directions: Read the strategy bank. Then read each test-day scenario, choose the strategy that fits the character's problem best, and explain why it would help.
+mistakes: Students often pick "study more" for every problem. The fix should match the problem: a racing heart needs a calming strategy, getting stuck needs a test-taking strategy, and forgetting what you read needs a better way to study, not just more of the same. Rereading notes feels like studying, but quizzing yourself builds memory better.
+notes: Characters and scenarios are made up. The strategy bank draws on study research (practice testing and spacing study over several days help memory more than rereading in one long session) and on calm-down strategies taught earlier in this unit. Answers: Jamal B, Rosa D, Kai A, Lily C. Accept a different strategy when the reason truly fits the problem.
+
+## Warm up: Strategy bank
+example: **Practice test:** quiz yourself or have someone quiz you, instead of rereading. **Space it out:** study a little each day for several days, not all the night before. **Slow breathing:** breathe in for 4, out for 6, a few times. **Encouraging self-talk:** replace "I'll fail" with a true, helpful thought. **Skip and return:** mark a hard question, move on, come back later. **Sleep and breakfast:** a rested body thinks better.
+
+## Main: Four scenarios
+choice: **Jamal** reads his science notes over and over the night before the test. He feels ready, but during the test he cannot remember the words. Which strategy fits best?
+  - Slow breathing
+  * Practice test, spaced over several days
+  - Skip and return
+  - Encouraging self-talk
+write: Why would that strategy help Jamal?
+  lines: 2
+  key: Quizzing himself on several days forces him to pull the words from memory, which is exactly what the test asks; rereading only made the notes feel familiar.
+choice: **Rosa** knows her math facts. But when the test is handed out, her heart pounds and her mind goes blank. Which strategy fits best?
+  - Practice test
+  - Space it out
+  - Skip and return
+  * Slow breathing
+write: Why would that strategy help Rosa?
+  lines: 2
+  key: Slow breathing calms her body, so her racing heart slows down and she can think clearly and use what she already knows.
+choice: **Kai** gets stuck on question 3 and spends 15 minutes on it. He runs out of time and leaves the last five questions blank. Which strategy fits best?
+  * Skip and return
+  - Sleep and breakfast
+  - Practice test
+  - Slow breathing
+write: Why would that strategy help Kai?
+  lines: 2
+  key: Moving on lets him answer the questions he knows, then use any leftover time on question 3, so one hard question does not cost him the rest of the test.
+choice: **Lily** opens her fraction test and thinks, "I'm terrible at fractions. I'm going to fail." Which strategy fits best?
+  - Space it out
+  - Skip and return
+  * Encouraging self-talk
+  - Practice test
+write: Write the encouraging self-talk Lily could use.
+  lines: 2
+  key: Sample: "Fractions are hard for me, but I practiced. I'll start with the ones I know and take it one step at a time."
+
+## Stretch
+write: Make a test-week plan for a character with a test on Friday. Name at least two strategies and when to use them.
+  lines: 4
+  key: Sample: Monday to Thursday, quiz myself for 15 minutes each day (practice test, spaced). Thursday night, go to bed on time. Friday morning, eat breakfast. During the test, take three slow breaths at the start and skip hard questions to come back to later.
