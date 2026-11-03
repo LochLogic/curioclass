@@ -17,7 +17,7 @@ Students practice recognizing and reading familiar and irregularly spelled words
 
 ## A 5-minute start
 
-1. Choose Dolch and one level, or Fry and one hundred. First 100 contains Fry's most common words; within each hundred the supplied order is alphabetical.
+1. Choose one or more levels. Level 1 holds the most common words; each level is alphabetical.
 2. Tap Start in Explore. Ask the child to read aloud. Use Next and Back freely. Flag useful words to revisit.
 3. Try a ten-word Practice test. Mark Right or Not yet together. The pie timer is only a quiet pace cue.
 4. At the end, tap Practice these to return to the words needing another try.
