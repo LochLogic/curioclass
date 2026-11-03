@@ -236,6 +236,8 @@ dialog { border-radius:18px; }
 .ring-timer svg { width:28px; height:28px; }
 .ring-track { fill:none; stroke:#23304a1a; stroke-width:4; }
 #ring { fill:none; stroke:var(--brand); stroke-width:4; stroke-linecap:round; opacity:.75; }
+#reset-dialog p { margin:8px 0 18px; line-height:1.5; }
+.reset-actions { display:flex; gap:10px; justify-content:flex-end; }
 </style>
 </head>
 <body>
@@ -249,6 +251,7 @@ dialog { border-radius:18px; }
   <div class="utilities">
     <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
     <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+    <button class="icon-btn" id="reset" title="Clear saved flags, choices and best scores on this device">Reset</button>
   </div>
 </header>
 <main>
@@ -309,6 +312,11 @@ dialog { border-radius:18px; }
 <dialog id="flags" aria-labelledby="flags-title">
   <div class="dialog-top"><h2 id="flags-title">Flagged words</h2><button id="close-flags">✕ Close</button></div>
   <p id="flags-help">Tap a word to open it in Explore.</p><div id="flag-list"></div>
+</dialog>
+<dialog id="reset-dialog" aria-labelledby="reset-title">
+  <h2 id="reset-title">Reset this device?</h2>
+  <p>This clears the flags, choices and best scores saved in this browser, so the next reader starts fresh.</p>
+  <div class="reset-actions"><button id="reset-cancel">Cancel</button><button id="reset-yes" class="primary">Reset</button></div>
 </dialog>
 <div class="confetti" id="confetti" aria-hidden="true"></div>
 <script src="kit:curio"></script>
@@ -522,8 +530,8 @@ dialog { border-radius:18px; }
     explore: 'Read the word aloud. Tap Next for another word, or Back to read it again.',
     practice: 'Read each word aloud. Tap Right or Not yet. The timer never skips a word.',
     challenge: 'Read each word aloud. Tap Right or Not yet. Try thirty words in one minute.',
-    startPractice: 'Tap Start when you and your reading partner are ready.',
-    startChallenge: 'Tap Start when you are ready for one minute of reading.',
+    startPractice: 'Read each word aloud, then tap Right or Not yet. The timer never skips a word. Tap Start when you and your reading partner are ready.',
+    startChallenge: 'Read each word aloud, then tap Right or Not yet. Try thirty words in one minute. Tap Start when you are ready.',
     cheer: 'Thirty out of thirty! You did it!'
   };
   const MODES = ['explore', 'practice', 'challenge'];
@@ -552,7 +560,7 @@ dialog { border-radius:18px; }
       if (state.mode === 'explore' && !$('next').disabled) return ['explore', {needs: '#next'}];
       if (state.mode === 'explore') return null;
       if (state.phase === 'ready') return [state.mode === 'practice' ? 'startPractice' : 'startChallenge', {needs: '#start'}];
-      return [state.mode, {valid: () => state.phase === 'running', needs: ['#right', '#notyet']}];
+      return null; // quiet once a run starts: the reader focuses
     }
   });
   function save() {
@@ -683,7 +691,6 @@ dialog { border-radius:18px; }
     $('confetti').replaceChildren();
     render();
     $('right').focus({preventScroll: true});
-    V.how(state.mode, {valid: () => state.phase === 'running', needs: ['#right', '#notyet']});
   }
   function mark(value) {
     if (state.phase !== 'running') return;
@@ -828,6 +835,9 @@ dialog { border-radius:18px; }
     }));
     $('flags').showModal();
   };
+  $('reset').onclick = () => $('reset-dialog').showModal();
+  $('reset-cancel').onclick = () => $('reset-dialog').close();
+  $('reset-yes').onclick = () => { try { localStorage.removeItem(STORE); } catch {} location.reload(); };
   $('close-flags').onclick = () => $('flags').close();
   $('flags').addEventListener('close', () => {
     $('flagged').focus({preventScroll: true});

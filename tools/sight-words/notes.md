@@ -46,3 +46,5 @@ Sound and the speaker button beside the instructions speak instructions only, ne
 Picks, flags, mode and best scores remain on this device in localStorage, where available. No information is sent anywhere. The file works offline. Sound uses the browser's available English voice until the planned voice recording session.
 
 Content is embedded unchanged from the teacher-supplied words.json: six Dolch sets and ten Fry hundreds. Artwork is limited to quiet parchment and one still top-bar quill, as requested.
+
+On a shared computer, tap Reset in the top bar to clear the flags, choices and best scores saved in that browser. In Practice test and Challenge the instructions are spoken once before Start; once a run begins the voice stays quiet so the reader can focus.

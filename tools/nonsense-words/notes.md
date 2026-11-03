@@ -37,3 +37,5 @@ Flags, last mode, word kinds and best Challenge scores stay in localStorage on t
 Sound controls brief instructions and the perfect-run cheer. The Read button reads instructions only and can be used even with Sound off. No tool voice reads a target word or word list. Browser narration is the approved temporary voice until voice night. Motion off removes confetti but keeps all reading timings. During a word, the page and flourish stay still.
 
 The short flagged and results lists are the spec's exceptions to one target word at a time. Practice these opens only attempted Not yet and skipped words. All returns to the selected kinds. At least one kind must remain selected. Flags are stored by word and displayed only within the current selected kinds.
+
+On a shared computer, tap Reset in the top bar to clear the flags, choices and best scores saved in that browser. In Practice test and Challenge the instructions are spoken once before Start; once a run begins the voice stays quiet so the reader can focus.
