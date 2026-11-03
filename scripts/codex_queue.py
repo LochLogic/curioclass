@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parent.parent
 BASE = Path('S:/CurioClass-codex')
 OUT = BASE / '_queue.txt'
 RULE = '=' * 78
-QUEUE = """nonsense-words sight-words desk-dock image-transformer near-and-far game-day-fuel art-style-match virtual-gallery biome-atlas workplace-scenarios
+QUEUE = """nonsense-words sight-words image-transformer near-and-far game-day-fuel art-style-match virtual-gallery biome-atlas workplace-scenarios
 up-the-watershed reserve-designer first-aid-responder data-policy-council act-it-out research-quest
 design-challenge-studio brand-builder speech-coach design-for-a-friend credit-card-builder captain-s-choices
 traffic-light-coder pocket-universe span-and-spire design-fixer art-through-time gallery-critique
@@ -44,10 +44,7 @@ PLAIN = ("Owner's decision: this tool is plain on purpose, for a grade 2 teacher
          "and gameplay above: parchment, a blue border, one quiet word at a time, one small flourish in the top bar. Build it as a sibling "
          "of the other word tool (nonsense-words and sight-words share a layout).")
 NOTES['nonsense-words'] = NOTES['sight-words'] = PLAIN
-NOTES['desk-dock'] = ("Owner's decision: this is a teacher utility for the Supply Closet's Teacher Desk shelf, not a lesson. It has no "
-                      "module, standards, lesson plan, exit file or voice, so skip those steps of the brief. Readability from the back of "
-                      "a room and calm come before rich art.")
-EXTRA = {'desk-dock': {'title': 'Desk Dock', 'subject': 'teacher desk', 'grade': 'K-12'}}  # tools outside the catalog
+EXTRA = {}  # tools outside the catalog, as {'id': {'title': ..., 'subject': ..., 'grade': ...}}
 for _t in ("levels-and-pathways dance-pattern-puzzle choreography-board dance-styles-explorer feeling-scarf-dance family-dance-night "
            "poem-to-movement recital-stage-directions dancers-on-tour dance-hall-decades choreography-for-a-cause "
            "museum-courtyard-performance").split():
