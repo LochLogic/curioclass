@@ -67,10 +67,5 @@
     </div>
   </section>
 
-  <section class="block" aria-labelledby="bench-h">
-    <div class="block-head"><h2 id="bench-h">On the bench</h2><a href="/bench/">See all {{ n_bench }} →</a></div>
-    <p style="margin:-10px 0 20px;color:var(--muted);max-width:60ch">Tools we've sketched but haven't built yet. They show up here first.</p>
-    <div class="bench">{% for t in bench_sample %}{{ card(t) }}{% endfor %}</div>
-  </section>
 </div>
 {% endblock %}

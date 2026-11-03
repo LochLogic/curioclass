@@ -13,7 +13,8 @@ import markdown
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA, SITE, TOOLS, DIST = ROOT / 'data', ROOT / 'site', ROOT / 'tools', ROOT / 'dist'
+DATA, SITE, TOOLS = ROOT / 'data', ROOT / 'site', ROOT / 'tools'
+DIST = Path(__import__('os').environ.get('CURIO_DIST') or ROOT / 'dist')  # CURIO_DIST: build somewhere else (tests)
 BASE_URL = 'https://curioclass.org'
 sys.path.insert(0, str(Path(__file__).parent))
 from standards import validate  # noqa: E402
@@ -162,8 +163,7 @@ if DIST.exists():
     shutil.rmtree(DIST)
 shutil.copytree(SITE / 'assets', DIST / 'assets')
 
-render('home.html', '/', built=built, bench_sample=[t for t in bench if t['title'] in
-       ('Bug Hunt', 'Balance the Beam', 'Fed Chair', 'Fair Use Court')], bands=bands)
+render('home.html', '/', built=built, bands=bands)
 
 def browse_page(path, title, lede, trail, sections, nav_label, fit=(), **extra):
     """Grade, band and subject pages: sticky section nav, modules in two columns, ready tools first.
@@ -353,9 +353,7 @@ for m in modules.values():
 # tools
 render('list.html', '/tools/', title='Ready to use', lede='Every built tool. Each one is a single file that works offline.',
        items=built, crumb=None)
-render('list.html', '/bench/', title='On the bench',
-       lede=f'{len(bench)} tools sketched but not built yet. They move to the shelf one at a time.',
-       items=bench, crumb=None, index=False)
+# The /bench/ list page was retired 2026-11-03 (Cory): sketched tools still show on their module pages.
 for t in tools:
     related = [x for x in tools if x['module']['subject'] == t['module']['subject'] and x is not t
                and set(x['module']['grades']) & set(t['module']['grades'])][:3]
@@ -392,6 +390,41 @@ CLOSET = [  # slug, label, what it holds
     ('game-night', 'Family Game Night', 'Games to play at home with paper, pencils, cards or dice. Nothing to buy.'),
     ('worksheets', 'Worksheets', 'Printable practice sheets for every class, K-12: 40 to 50 a year per class, each with '
      'an answer key and a teacher page.'),
+    ('printables', 'Printables', 'Everyday paper for the classroom: handwriting and graph paper, graphic organizers, '
+     'number lines, hundreds charts, name plates and certificates.'),
+    ('teacher-desk', 'Teacher Desk', 'Helpers for running the room, made for the projector: a timer, classroom sounds, a '
+     'noise meter and a group maker.'),
+]
+# Printables shelf: each item is one page drawn by site/assets/printables.js (data-kind = id). Add a kind there first.
+PRINTABLES = [  # heading, blurb, [(id, title, blurb)]
+    ('Paper', 'Plain paper with the lines your class needs.', [
+        ('handwriting', 'Handwriting Paper', 'Solid top and bottom lines with a dashed middle line, in three sizes for K to grade 2. Add a picture box for draw-and-write.'),
+        ('lined', 'Lined Paper', 'Extra wide, wide or college ruled, with a margin line and a name and date line.'),
+        ('graph', 'Graph Paper', 'Quarter inch, half inch, centimeter or 5 millimeter squares, with darker lines every five if you want them.'),
+        ('dots', 'Dot Paper', 'Square or isometric dot grids for geometry, area, arrays and drawing 3D shapes.'),
+    ]),
+    ('Math and letters', 'Charts and strips for counting, number sense and the alphabet.', [
+        ('numberline', 'Number Lines', 'Pick the start, end and count-by. Show every number, only the ends, or none for students to fill in.'),
+        ('hundreds', 'Hundreds Chart', '1 to 100, 0 to 99 or 1 to 120. Full, partly filled, or blank.'),
+        ('alphabet', 'Alphabet Strips and Cards', 'Desk strips, three to a page, or a full page of letter cards. Uppercase, lowercase or both.'),
+    ]),
+    ('Graphic organizers', 'Thinking on paper, for any subject. English, Spanish or both.', [
+        ('venn', 'Venn Diagram', 'Two or three circles for comparing. Type the labels or leave them blank.'),
+        ('kwl', 'KWL Chart', 'What I know, what I want to know and what I learned, with an optional "how I will find out" column.'),
+        ('storymap', 'Story Map', 'Title, characters, setting, problem, beginning, middle, end and solution.'),
+        ('causeeffect', 'Cause and Effect', 'One cause with three effects, or a chain of four.'),
+        ('mainidea', 'Main Idea and Details', 'A main idea on top with three or four details below.'),
+        ('tchart', 'T-Chart', 'Two columns with your own headings: facts and opinions, before and after, pros and cons.'),
+        ('sequence', 'Sequence Chart', 'First, next, then, last, or six numbered steps, with room to draw.'),
+        ('frayer', 'Word Map (Frayer Model)', 'A word in the middle with definition, characteristics, examples and non-examples.'),
+    ]),
+    ('Classroom', 'For the first day and the good days.', [
+        ('nameplate', 'Name Plates', 'Type your class list for desk plates with the alphabet and a 0 to 20 number line, or folded tent cards.'),
+        ('certificate', 'Certificates', 'An award with your own heading, name, reason and signature line. Print in color or black.'),
+    ]),
+]
+DESK_COMING = [  # planned Teacher Desk pieces (docs/ROADMAP.md, Track 2 item 7)
+    ('Classroom Music', 'Music for work time, quiet time and clean-up, plus a quiz-show board for review games.'),
 ]
 # Word Wall: one page per grade span a module is written for (K to 12, and spans like 3-5 or K-12), grouped by subject.
 # The shelf page is a grade picker: a card per band with its grades and its whole-band span, then a card for World Languages.
@@ -530,6 +563,8 @@ for u, d in ws_units.items():
         groups[-1]['rows'].append(dict(r, built=r['n'] in ws_built.get(u, {})))
     render('closet/ws-unit.html', f'/closet/worksheets/{u}/', u=u, d=d, groups=groups, rows=ws_rows[u], ready=len(ws_built.get(u, {})))
 render('closet/ws-sheet.html', '/closet/worksheets/sheet/', index=False)
+counts['teacher-desk'] = 'Desk Dock ready'
+counts['printables'] = f"{sum(len(x[2]) for x in PRINTABLES)} printables"
 counts['worksheets'] = f"{sum(len(v) for v in ws_built.values())} ready of {sum(len(v) for v in ws_rows.values()):,} planned"
 render('closet/home.html', '/closet/', shelves=CLOSET, counts=counts)
 for sid, label, what in CLOSET:
@@ -542,6 +577,15 @@ for sid, label, what in CLOSET:
     elif sid == 'worksheets':
         render('closet/worksheets.html', '/closet/worksheets/', label=label, what=what, sections=ws_sections, units=ws_units,
                rows=ws_rows, built=ws_built)
+    elif sid == 'printables':
+        render('closet/printables.html', '/closet/printables/', label=label, what=what,
+               groups=[(h, bl, [dict(id=i, title=ti, blurb=b) for i, ti, b in items]) for h, bl, items in PRINTABLES])
+        for h, bl, items in PRINTABLES:
+            for i, ti, b in items:
+                render('closet/printable.html', f'/closet/printables/{i}/', p=dict(id=i, title=ti, blurb=b))
+    elif sid == 'teacher-desk':
+        render('closet/teacher-desk.html', '/closet/teacher-desk/', label=label, what=what, coming=DESK_COMING)
+        render('closet/desk-dock.html', '/closet/teacher-desk/dock/')
     elif sid == 'game-night' and games:
         render('closet/game-night.html', '/closet/game-night/', label=label, what=what, sections=game_sections)
     else:
@@ -749,13 +793,17 @@ render('404.html', '/404.html', index=False)
 (DIST / 'sitemap.xml').write_text(
     '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     + ''.join(f'  <url><loc>{BASE_URL}{p}</loc></url>\n' for p in sitemap) + '</urlset>\n', encoding='utf-8')
-# Cloudflare Pages headers. No X-Frame-Options: embedding tools in an LMS is a feature.
+# Cloudflare Pages headers. microphone=(self): the Desk Dock noise meter and Beat Lab ask for it (the browser still
+# asks the person first); other sites framing us cannot. No X-Frame-Options: embedding tools in an LMS is a feature.
 (DIST / '_headers').write_text(
     '/*\n  Link: </sitemap.xml>; rel="sitemap"\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n'
-    '  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()\n'
+    '  Permissions-Policy: camera=(), microphone=(self), geolocation=(), interest-cohort=()\n'
     '/assets/fonts/*\n  Cache-Control: public, max-age=31536000, immutable\n', encoding='utf-8')
 # Renamed or moved pages (data/redirects.csv: old,new) become permanent redirects; Workers static assets read _redirects.
 (DIST / '_redirects').write_text(''.join(f"{r['old']} {r['new']} 301\n" for r in read('redirects.csv')), encoding='utf-8')
 # Content Signals (contentsignals.org): Cory allows search, AI answers and AI training (2026-10-28).
 (DIST / 'robots.txt').write_text(f'User-agent: *\nContent-Signal: search=yes, ai-input=yes, ai-train=yes\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n', encoding='utf-8')
+# Pictures are served from R2 by worker/index.js (the static-asset file limit); keep them out of the asset upload.
+# scripts/sync_media.py uploads the same two patterns. Keep the patterns here, there and in the Worker in step.
+(DIST / '.assetsignore').write_text('.assetsignore\nlibrary/*/art/*.jpg\nmodules/*/words/art/*.webp\n', encoding='utf-8')
 print(f'{pages} pages, {len(built)} built tools, {len(bench)} on the bench, {len(sitemap)} in sitemap -> dist/')

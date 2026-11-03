@@ -1,13 +1,20 @@
-// Curio Class: static site served by Cloudflare Workers static assets (no Worker code).
-// Build first: python scripts/build_site.py --library --closet (both flags, or the live site loses those pages) ; then: npx wrangler deploy
+// Curio Class: static assets plus a small Worker (worker/index.js) that serves the pictures from R2.
+// Deploy: python scripts/build_site.py --library --closet (both flags, or the live site loses those pages);
+//         python scripts/sync_media.py (uploads new pictures to R2); npx wrangler deploy
 {
   "name": "curioclass",
+  "main": "worker/index.js",
   "compatibility_date": "2026-10-19",
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
     "not_found_handling": "404-page",
-    "html_handling": "auto-trailing-slash"
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": ["/library/*/art/*", "/modules/*/words/art/*"]
   },
+  "r2_buckets": [
+    { "binding": "MEDIA", "bucket_name": "curioclass-media" }
+  ],
   "routes": [
     { "pattern": "curioclass.org", "custom_domain": true }
   ],

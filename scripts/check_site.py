@@ -2,7 +2,7 @@
 import re, sys
 from pathlib import Path
 
-DIST = Path(__file__).resolve().parent.parent / 'dist'
+DIST = Path(__import__('os').environ.get('CURIO_DIST') or Path(__file__).resolve().parent.parent / 'dist')
 broken, external, pages = {}, set(), 0
 
 

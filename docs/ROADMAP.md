@@ -135,9 +135,16 @@ Night, Word check, closet search, Take home, words CSV. What is left, in order:
    - **Wave 2 mostly done:** 600 of 700 written (1,008 in all). The rest is a later batch.
    - **Live 2026-11-03** (Cory: the site is not announced, so he reviews it live).
 
-7. **Teacher Desk** (new 2026-11-03): a sound board (clap, cheer, buzzer, chimes), timers, a noise meter and a group
-   maker, made in code; then classroom music in up-beat, quiet time and game-show sets (original or CC0 only, with a
+7. **Teacher Desk** (new 2026-11-03): **shelf live 2026-11-03** at /closet/teacher-desk/ with the **Desk Dock**
+   (/closet/teacher-desk/dock/): a timer, a 12-sound board, a noise meter and a group maker on one projector screen,
+   all sound made in code. Claude built it by hand as its own page, not through the tool pipeline (Cory: purpose built
+   for its job). Not yet checked: how the sounds and the noise meter behave on a real classroom laptop. Next: classroom music in up-beat, quiet time and game-show sets (original or CC0 only, with a
    license file), and a game-show quiz board.
+   **Printables shelf** (built 2026-11-03, /closet/printables/): 17 settable, print-ready pages drawn by one engine,
+   site/assets/printables.js (paper: handwriting, lined, graph, dot; math and letters: number lines, hundreds chart,
+   alphabet strips and cards; organizers in English, Spanish or both: Venn, KWL, story map, cause and effect, main idea,
+   T-chart, sequence, Frayer word map; classroom: name plates, certificates). Spanish labels checked by a fresh agent.
+   Next ideas: Word Wall bingo and flash cards, a quiz-show board and scoreboard for the Teacher Desk.
 8. **Learning Supports** (new 2026-11-03): tools for learners who need extra support, worded carefully but
    confidently. Each says what approach it follows (for example decodable nonsense words used in structured
    literacy) and that it is practice, not a diagnosis or treatment; a fresh agent reviews the wording. Nonsense Words
@@ -160,8 +167,11 @@ Detail: docs/LIBRARY-PLAN.md. About 700 stories are curated and processed into r
 
 ## Track 4: The site
 
-Detail: docs/SITE.md. Watch: the deploy holds 17,866 files of the 20,000 limit (2026-11-03); the next worksheet waves
-and units need a plan for it (one page per class rather than per sheet, or fewer asset files). Open items: the www.curioclass.org redirect, dark mode, preview images for bench tools, and a
+Detail: docs/SITE.md. File limit (static assets cap at 20,000 files): solved 2026-11-03 by moving the pictures
+(Reading Room and Word Wall art, about 10,200 files) to the R2 bucket curioclass-media, served at the same URLs by
+worker/index.js. Before each deploy run scripts/sync_media.py, which uploads new pictures. The "On the bench" tab and
+/bench/ page were removed 2026-11-03 (Cory: not useful); sketched tools still show on module pages. Open items: the
+www.curioclass.org redirect, dark mode, and a
 request page for teachers (the About page email does this for now).
 
 ## Track 5: Outreach and funding (new 2026-10-28)

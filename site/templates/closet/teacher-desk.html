@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% block title %}{{ label }}: Supply Closet · Curio Class{% endblock %}
+{% block description %}{{ what }}{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([('Supply Closet', '/closet/'), (label, None)]) }}
+  <div class="page-head"><h1>{{ label }}</h1><p>{{ what }}</p></div>
+  <div class="module-grid">
+    <article class="module-card">
+      <h3><a href="/closet/teacher-desk/dock/">Desk Dock</a></h3>
+      <p class="desc">A big timer, a sound board, a noise meter and a group maker on one screen. Put it on the projector and switch between them with one tap or the keys 1 to 4. The timer keeps running while you use the others.</p>
+      <p class="desc">The noise meter only listens when you turn it on, and nothing is recorded or sent. Names for groups stay on your computer.</p>
+      <p><a class="btn primary" href="/closet/teacher-desk/dock/">Open the Desk Dock</a></p>
+    </article>
+    {% for t, d in coming %}
+    <article class="module-card">
+      <h3>{{ t }}</h3>
+      <p class="desc">{{ d }}</p>
+      <span class="tag">Coming soon</span>
+    </article>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
