@@ -1,10 +1,11 @@
 ## What it teaches
-Children practice sounding out unfamiliar, made-up words with short vowels, silent e, and the letter pairs sh, ch, and th. They read aloud to a grown-up or partner who can help mark each attempt.
+Children practice sounding out unfamiliar, made-up words across seven phonics patterns: short vowels (CVC), silent e (CVCe), digraphs, blends, vowel teams, diphthongs and r-controlled vowels. A Words menu picks one pattern or a ready mix. They read aloud to a grown-up or partner who can help mark each attempt.
 
 ## Key skills
 - Blend letter sounds into one spoken word.
 - Notice the difference between short vowels and silent-e patterns.
-- Read sh, ch, and th together as letter pairs.
+- Read digraphs (sh, ch, th, wh, ck, ng) and blends (bl, st, -mp, -nd) as one chunk.
+- Read vowel teams, diphthongs and r-controlled vowels (ai, ee, oi, ow, ar, ur) as one sound.
 - Return to words that need another try.
 
 ## Support at home
@@ -13,7 +14,7 @@ Children practice sounding out unfamiliar, made-up words with short vowels, sile
 - Keep practice brief and kind. After a tricky word, try it together and return to it later.
 
 ## A five-minute start
-Open Explore with a child and a reading partner. Choose the word kinds already taught in class. Read a few words aloud, using Next and Back. Flag a word to revisit. Try a 10-word Practice test together, then use Practice these for any Not yet or skipped words.
+Open Explore with a child and a reading partner. Choose the pattern or mix already taught in class from the Words menu. Read a few words aloud, using Next and Back. Flag a word to revisit. Try a 10-word Practice test together, then use Practice these for any Not yet or skipped words.
 
 ## Modes
 - Explore: stable bank order, Back, Next, Shuffle, Flag and a flagged-word picker. Arrow keys navigate; F flags.
@@ -32,7 +33,7 @@ CCSS RF.2.3a is the focus specified for this tool. The bank has exactly 114 CVC,
 
 Decodable nonsense words are a common structured-literacy practice, including for children with dyslexia. This is practice, not a diagnosis or treatment. There is no microphone and no automatic reading assessment.
 
-Flags, last mode, word kinds and best Challenge scores stay in localStorage on the current device. Best scores are separate for each combination of word kinds. The first visit opens Explore. Later visits restore the last mode, with timed modes waiting for Start. Settings cannot change during a timed run; a mode button can leave it. Nothing is sent anywhere.
+Flags, last mode, the Words choice and best Challenge scores stay in localStorage on the current device. Best scores are separate for each Words choice. The first visit opens Explore. Later visits restore the last mode, with timed modes waiting for Start. Settings cannot change during a timed run; a mode button can leave it. Nothing is sent anywhere.
 
 Sound controls brief instructions and the perfect-run cheer. The Read button reads instructions only and can be used even with Sound off. No tool voice reads a target word or word list. Browser narration is the approved temporary voice until voice night. Motion off removes confetti but keeps all reading timings. During a word, the page and flourish stay still.
 
