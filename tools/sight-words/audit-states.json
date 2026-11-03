@@ -1,0 +1,132 @@
+{
+  "states": [
+    {
+      "name": "fry-picker",
+      "steps": [
+        {
+          "click": "#list-fry"
+        }
+      ],
+      "keep": [
+        "#sets",
+        "#open"
+      ]
+    },
+    {
+      "name": "explore",
+      "steps": [
+        {
+          "click": "#open"
+        }
+      ],
+      "keep": [
+        "#word",
+        "#explore-actions",
+        "#secondary-actions"
+      ]
+    },
+    {
+      "name": "flag-list",
+      "steps": [
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#flag"
+        },
+        {
+          "click": "#flagged"
+        }
+      ],
+      "keep": [
+        "#flags-dialog"
+      ]
+    },
+    {
+      "name": "practice",
+      "steps": [
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#m-practice"
+        },
+        {
+          "click": "#begin"
+        }
+      ],
+      "keep": [
+        "#word",
+        "#hourglass",
+        "#mark-actions",
+        "#test-actions"
+      ]
+    },
+    {
+      "name": "practice-results",
+      "steps": [
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#m-practice"
+        },
+        {
+          "click": "#begin"
+        },
+        {
+          "click": "#not-yet"
+        },
+        {
+          "click": "#end"
+        }
+      ],
+      "keep": [
+        "#result-score",
+        ".result-actions"
+      ]
+    },
+    {
+      "name": "challenge",
+      "steps": [
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#m-challenge"
+        },
+        {
+          "click": "#begin"
+        }
+      ],
+      "keep": [
+        "#word",
+        "#timer",
+        "#mark-actions"
+      ]
+    },
+    {
+      "name": "perfect",
+      "steps": [
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#m-challenge"
+        },
+        {
+          "click": "#begin"
+        },
+        {
+          "click": "#right",
+          "times": 30,
+          "gap": 0.02
+        }
+      ],
+      "keep": [
+        "#celebration",
+        ".result-actions"
+      ]
+    }
+  ]
+}

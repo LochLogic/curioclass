@@ -1,0 +1,13 @@
+{
+  "target": 60,
+  "keep": ["#stage", "#hint"],
+  "states": [
+    {"name":"explore-next-flagged","steps":[{"click":"#m-explore"},{"click":"#next"},{"click":"#flag"}],"keep":["#next","#flag"]},
+    {"name":"flags-open","steps":[{"click":"#m-explore"},{"click":"#flag"},{"click":"#flagged"}],"keep":["#close-flags"]},
+    {"name":"practice-running","steps":[{"click":"#m-practice"},{"click":"#start"},{"click":"#right"},{"click":"#notyet"}],"keep":["#right","#notyet","#skip"]},
+    {"name":"practice-results","steps":[{"click":"#m-practice"},{"click":"#len-10"},{"click":"#start"},{"click":"#notyet","times":10,"gap":0.05}],"keep":["#results","#practice-these","#again"]},
+    {"name":"review-subset","steps":[{"click":"#m-practice"},{"click":"#len-10"},{"click":"#start"},{"click":"#skip","times":10,"gap":0.05},{"click":"#practice-these"}],"keep":["#word","#all"]},
+    {"name":"challenge-running","steps":[{"click":"#m-challenge"},{"click":"#start"},{"click":"#right"}],"keep":["#clock","#right","#notyet"]},
+    {"name":"perfect-results","steps":[{"click":"#m-challenge"},{"click":"#start"},{"click":"#right","times":30,"gap":0.04},{"wait":3000}],"keep":["#perfect","#again"]}
+  ]
+}

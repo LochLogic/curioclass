@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Nonsense Words · Curio Class</title>
+<meta name="description" content="A quiet, offline decoding drill for grades 1 to 3. Read made-up words aloud with a partner in Explore, Practice test, or Challenge.">
+<!--
+Nonsense Words, Curio Class. Grade 2, CCSS RF.2.3a.
+The owner-provided words.txt is embedded exactly, in its listed order. Human-supported self-scoring.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. One offline file, no network requests.
+Based on kit/starter/src.html; the owner requested a quiet shared layout with sight-words.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper: #f6efdf;
+  --ink: #222e3a;
+  --muted: #515e68;
+  --brand: #234d77;
+  --line: #b2b8b7;
+  --focus: #ae4b12;
+  --btn: #fcf8ee;
+  --btn-line: #6e8191;
+  --head-ink: #234d77;
+  --panel: #f6efdf;
+}
+body {
+  height: 100dvh;
+  min-height: 100%;
+  border: 7px solid var(--brand);
+  overflow: hidden;
+  background: var(--paper) url(art:parchment) center / 640px;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+button, select { min-height: 60px; min-width: 60px; }
+button {
+  border: 1.5px solid var(--btn-line);
+  border-radius: 7px;
+  padding: 0 19px;
+  background: #fcf8ee;
+  font-weight: 650;
+  font-size: 18px;
+}
+button:hover:not(:disabled) { background: #eee8d9; }
+button:active:not(:disabled) { background: #dce5ed; }
+button:disabled { opacity: .45; cursor: default; }
+button[aria-pressed="true"] { background: var(--brand); color: #fff; border-color: var(--brand); }
+button[aria-pressed="true"]:not(.icon-btn):hover:not(:disabled) { background: #173d62; color: #fff; }
+header {
+  display: grid;
+  grid-template-columns: minmax(215px, 1fr) auto auto;
+  gap: 16px;
+  background: transparent;
+  color: var(--brand);
+  border-bottom: 1px solid #234d7740;
+  padding: 14px 24px;
+}
+.identity { display: flex; align-items: center; gap: 12px; }
+.identity img { width: 46px; height: 46px; object-fit: contain; }
+h1 { font: 700 25px/1.15 'Segoe UI', sans-serif; }
+h1 small { font: 400 13px/1.6 'Segoe UI', sans-serif; letter-spacing: .035em; }
+.seg { border: 0; border-radius: 0; gap: 6px; overflow: visible; }
+.seg button { border: 1.5px solid var(--btn-line); border-radius: 7px; padding: 0 16px; min-height: 60px; }
+.seg button[aria-pressed="true"] { background: var(--brand); color: #fff; }
+.utilities { display: flex; gap: 6px; }
+.icon-btn { border: 1px solid #8b969f; border-radius: 7px; font-size: 14px; min-height: 60px; padding: 0 10px; }
+.utilities button[aria-pressed="true"] { background: transparent; color: var(--brand); border-color: #8b969f; }
+main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(80px, 1fr) auto auto auto;
+  width: min(1080px, 100%);
+  margin: 0 auto;
+  padding: 16px 24px 10px;
+  gap: 12px;
+}
+.settings { grid-row: 1; display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.kinds, .length { display: flex; align-items: center; gap: 6px; }
+.settings button { font-size: 16px; padding: 0 14px; }
+.settings .label { font-size: 14px; color: var(--muted); margin-right: 4px; }
+.length button { width: 60px; padding: 0; }
+.stage {
+  grid-row: 2;
+  min-height: 0;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: transparent;
+}
+.word-row { display: flex; align-items: center; justify-content: center; gap: 32px; position: relative; }
+#reading { text-align: center; }
+#word { font: 500 clamp(64px, 7vw, 96px)/1.2 'Century Gothic', 'Trebuchet MS', sans-serif; letter-spacing: .025em; }
+#word-flag { position: absolute; right: -40px; top: 0; font-size: 24px; color: var(--brand); }
+#count { margin: 16px 0 0; font-size: 15px; color: var(--muted); }
+#clock { position: absolute; top: 6px; right: 8px; color: var(--muted); font-size: 16px; font-variant-numeric: tabular-nums; }
+.hourglass { width: 44px; height: 44px; flex: none; }
+#pace { min-width: 120px; font-size: 14px; color: var(--muted); text-align: center; margin: 8px 0 0; }
+.ready { text-align: center; max-width: 460px; }
+.ready h2 { font-size: 26px; margin: 8px 0 12px; font-weight: 600; }
+.ready p { color: var(--muted); line-height: 1.5; font-size: 17px; margin: 0; }
+.hint { grid-row: 3; text-align: center; min-height: 42px; margin: 0; font-size: 17px; line-height: 1.4; color: var(--muted); }
+.actions { grid-row: 4; display: flex; justify-content: center; gap: 10px; }
+.actions button { min-width: 124px; }
+.primary { background: var(--brand); color: #fff; border-color: var(--brand); }
+.primary:hover:not(:disabled) { background: #173d62; }
+.right { color: #215a39; border-color: #447759; background: #e8efdf; }
+.notyet { color: #893d32; border-color: #9e6559; background: #f8e9df; }
+.right:hover:not(:disabled) { background: #d6e5cf; }
+.notyet:hover:not(:disabled) { background: #efd6c7; }
+.secondary { display: flex; justify-content: center; gap: 8px; align-items: center; }
+.secondary:not(:has(button:not([hidden]))) { display: none; }
+.secondary button { font-size: 16px; padding: 0 16px; }
+.bottom { grid-row: 5; display: grid; gap: 10px; }
+.privacy { text-align: center; margin: 0; font-size: 12px; color: var(--muted); }
+.result { width: min(600px, 100%); max-height: 100%; overflow: auto; text-align: center; padding: 6px; }
+.result h2 { font-size: 30px; color: var(--brand); margin: 4px 0 10px; }
+.result p { margin: 8px 0; }
+#score { font-size: 28px; color: var(--ink); }
+.review-words { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px 15px; font-size: 19px; margin: 12px 0; }
+#missed { max-height: 105px; overflow: auto; }
+#perfect { background: var(--brand); color: #fff; padding: 18px; width: 100%; font-size: 28px; border-radius: 16px; }
+.result .detail { font-size: 14px; color: var(--muted); }
+dialog { width: min(660px, calc(100vw - 30px)); max-height: calc(100dvh - 30px); border: 3px solid var(--brand);
+  border-radius: 9px; background: var(--paper) url(art:parchment) center / 640px; padding: 18px; color: var(--ink); }
+dialog::backdrop { background: #152a3d80; }
+.dialog-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.dialog-top h2 { margin: 0; font-size: 23px; }
+#flag-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(94px, 1fr)); gap: 8px; margin-top: 15px; }
+#flag-list button { font-size: 24px; padding: 0 10px; }
+.confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 10; }
+.confetti i { position: absolute; width: 9px; height: 16px; top: -25px; animation: fall 2400ms ease-in forwards; }
+@keyframes fall { to { transform: translate(var(--drift), 105vh) rotate(540deg); } }
+.calm .confetti { display: none; }
+@media (max-width: 1120px) {
+  header { grid-template-columns: 1fr auto; gap: 8px; padding: 8px 16px; }
+  .seg { grid-column: 1 / -1; grid-row: 2; justify-content: center; }
+  h1 { font-size: 22px; }
+  h1 small { display: block; }
+}
+@media (max-height: 650px) and (min-width: 600px) {
+  body { border-width: 5px; }
+  header { padding: 5px 12px; gap: 5px; }
+  h1 { font-size: 21px; }
+  h1 small { display: none; }
+  .identity img { width: 34px; height: 34px; }
+  .icon-btn { min-height: 44px; }
+  main { padding: 6px 16px; gap: 5px; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    grid-template-rows: auto minmax(90px, 1fr) auto auto auto; }
+  .settings, .stage, .hint, .hint-row { grid-column: 1 / -1; }
+  .actions { grid-column: 1; grid-row: 4; gap: 6px; }
+  .actions button { min-width: 100px; }
+  .bottom { display: contents; }
+  .secondary { grid-column: 2; grid-row: 4; gap: 6px; }
+  .secondary button { padding: 0 10px; font-size: 14px; }
+  .privacy { grid-column: 1 / -1; grid-row: 5; }
+  main:has(#start:not([hidden])) .actions, main:has(#results:not([hidden])) .actions { grid-column: 1 / -1; }
+  .settings { gap: 12px; }
+  .settings .label { display: none; }
+  .settings button { padding: 0 12px; }
+  #word { font-size: 60px; }
+  #count { margin-top: 0; font-size: 12px; }
+  #pace { margin: 0; font-size: 12px; }
+  .hint { min-height: 24px; font-size: 14px; }
+  .actions button { padding: 0 14px; }
+  .secondary button { min-height: 60px; }
+  .bottom { gap: 3px; }
+  .privacy { font-size: 10px; }
+  .ready h2 { font-size: 22px; margin: 0 0 5px; }
+  .ready p { font-size: 14px; }
+  .result h2 { font-size: 22px; margin: 0 0 4px; }
+  #score { font-size: 23px; }
+  #missed { max-height: 50px; margin: 4px; }
+  .result p { margin: 3px; }
+  .result { font-size: 13px; }
+  .result .detail { font-size: 12px; }
+  #perfect { padding: 9px; font-size: 22px; }
+}
+@media (max-width: 599px) {
+  body { border-width: 5px; }
+  header { grid-template-columns: 1fr; padding: 8px; gap: 8px; }
+  .identity { justify-content: center; gap: 8px; }
+  h1 { font-size: 21px; margin: 0; }
+  h1 small { display: none; }
+  .identity img { height: 32px; width: 32px; }
+  .utilities { grid-row: 3; justify-content: center; }
+  .utilities button { min-height: 44px; }
+  .seg { grid-row: 2; gap: 5px; }
+  .seg button { padding: 0 10px; font-size: 15px; }
+  main { padding: 8px 10px; gap: 8px; grid-template-rows: auto minmax(105px, 1fr) auto auto auto; }
+  .settings { gap: 8px; }
+  .settings .label { display: none; }
+  .settings button { padding: 0 13px; font-size: 15px; }
+  #word { font-size: 72px; }
+  #count { margin-top: 10px; }
+  .hint { font-size: 15px; min-height: 42px; }
+  .actions { flex-wrap: wrap; gap: 6px; }
+  .actions button { padding: 0 12px; min-width: 100px; font-size: 18px; }
+  .secondary { flex-wrap: wrap; gap: 6px; }
+  .secondary button { padding: 0 12px; font-size: 15px; }
+  .privacy { font-size: 10px; }
+  .ready h2 { font-size: 24px; }
+  .ready p { font-size: 16px; }
+  #clock { top: 0; right: 2px; }
+  .word-row { gap: 17px; }
+  #word-flag { right: -27px; font-size: 20px; }
+  .result h2 { font-size: 25px; }
+  #perfect { padding: 10px; font-size: 23px; }
+}
+
+/* Polish (Curio Class): rounder, softly lit controls, pie countdown, ring timer */
+button, select { border-radius:14px; box-shadow:inset 0 1px 0 #ffffffc8, inset 0 -2px 0 #1c2c400d, 0 2px 5px #1c2c401f;
+  transition:background-color .15s, box-shadow .15s, transform .08s; }
+button:hover:not(:disabled) { box-shadow:inset 0 1px 0 #ffffffc8, inset 0 -2px 0 #1c2c400d, 0 4px 11px #1c2c402b; }
+button:active:not(:disabled) { transform:translateY(1px); box-shadow:inset 0 2px 3px #1c2c4026; }
+button.primary, button[aria-pressed="true"] { box-shadow:inset 0 1px 0 #ffffff40, inset 0 -2px 0 #0000001f, 0 2px 6px #1c2c4033; }
+.seg button, .modes button, .utilities button, .list-tabs button { border-radius:999px; }
+.calm button { transition:none; } .calm button:active:not(:disabled) { transform:none; }
+dialog { border-radius:18px; }
+.hint-row { grid-row:3; display:flex; align-items:center; justify-content:center; gap:10px; }
+.speak { min-width:52px; min-height:52px; width:52px; height:52px; padding:0; border-radius:50%; flex:none;
+  display:inline-grid; place-items:center; color:var(--brand); }
+.speak svg { width:24px; height:24px; }
+#hourglass svg { width:44px; height:44px; display:block; margin:0 auto; }
+.pie-face { fill:#fffaf0; stroke:#9aa3a9; stroke-width:1.5; }
+#pie { fill:none; stroke-width:20; stroke:#3f8158; }
+#hourglass[data-phase="yellow"] #pie { stroke:#c19225; }
+#hourglass[data-phase="red"] #pie { stroke:#b46a5c; opacity:.55; }
+.ring-timer { display:inline-flex; align-items:center; gap:7px; color:var(--muted); font-variant-numeric:tabular-nums; }
+.ring-timer[hidden] { display:none; }
+.ring-timer svg { width:28px; height:28px; }
+.ring-track { fill:none; stroke:#23304a1a; stroke-width:4; }
+#ring { fill:none; stroke:var(--brand); stroke-width:4; stroke-linecap:round; opacity:.75; }
+</style>
+</head>
+<body>
+<header>
+  <div class="identity"><img src="art:quill" alt=""><h1>Nonsense Words<small>CURIO CLASS · READ IT SOUND BY SOUND</small></h1></div>
+  <nav class="seg" aria-label="Mode">
+    <button id="m-explore" aria-pressed="true">Explore</button>
+    <button id="m-practice" aria-pressed="false">Practice test</button>
+    <button id="m-challenge" aria-pressed="false">Challenge</button>
+  </nav>
+  <div class="utilities">
+    <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+    <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  </div>
+</header>
+<main>
+  <div class="settings" id="settings">
+    <div class="kinds" role="group" aria-label="Word kinds">
+      <span class="label">Word kinds</span>
+      <button id="kind-cvc" aria-pressed="true" title="Short vowel, consonant vowel consonant">CVC</button>
+      <button id="kind-cvce" aria-pressed="true" title="Long vowel with silent e">CVCe</button>
+      <button id="kind-pairs" aria-pressed="true" title="Letter pairs sh, ch, th">sh ch th</button>
+    </div>
+    <div id="length" class="length" role="group" aria-label="Practice session length" hidden>
+      <span class="label">Words</span>
+      <button id="len-10" aria-pressed="false">10</button>
+      <button id="len-20" aria-pressed="true">20</button>
+      <button id="len-30" aria-pressed="false">30</button>
+    </div>
+  </div>
+  <section class="stage" id="stage" aria-label="Reading area">
+    <span id="clock" class="ring-timer" hidden><svg viewBox="0 0 36 36" aria-hidden="true"><circle class="ring-track" cx="18" cy="18" r="15"/><circle id="ring" cx="18" cy="18" r="15" pathLength="100" stroke-dasharray="100 100" transform="rotate(-90 18 18)"/></svg><span id="clock-text">1:00</span></span>
+    <div id="reading">
+      <div class="word-row">
+        <div id="word"></div><span id="word-flag" aria-label="Flagged" hidden>⚑</span>
+        <div class="hourglass" id="hourglass" hidden>
+          <svg viewBox="0 0 44 44" aria-hidden="true"><circle class="pie-face" cx="22" cy="22" r="20.5"/><circle id="pie" cx="22" cy="22" r="10" pathLength="100" stroke-dasharray="100 100" transform="rotate(-90 22 22)"/></svg>
+        </div>
+      </div>
+      <p id="pace" hidden>Read aloud</p>
+      <p id="count"></p>
+    </div>
+    <div class="ready" id="ready" hidden>
+      <h2 id="ready-title"></h2><p id="ready-copy"></p>
+    </div>
+    <div class="result" id="results" tabindex="-1" hidden>
+      <div id="perfect" hidden>30 out of 30. You did it!</div>
+      <h2 id="result-title">Nicely done.</h2>
+      <p id="score"></p><p id="result-copy"></p><p id="best" class="detail"></p>
+      <p id="review-label" class="detail"></p><div id="missed" class="review-words"></div>
+      <p id="unseen" class="detail"></p>
+    </div>
+  </section>
+  <div class="hint-row"><p class="hint" id="hint"></p><button id="read" class="speak" aria-label="Read the instructions aloud" title="Read the instructions"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></button></div>
+  <div class="actions">
+    <button id="back">← Back</button><button id="next" class="primary">Next →</button>
+    <button id="start" class="primary" hidden>▶ Start</button>
+    <button id="notyet" class="notyet" hidden>✕ Not yet</button><button id="right" class="right" hidden>✓ Right</button>
+    <button id="again" class="primary" hidden>↻ Again</button>
+    <button id="practice-these" hidden>↗ Practice these</button>
+  </div>
+  <div class="bottom">
+    <div class="secondary">
+      <button id="shuffle">⤨ Shuffle</button><button id="skip" hidden>↷ Skip</button>
+      <button id="flag" aria-pressed="false">⚑ Flag</button><button id="flagged">⚑ Flagged (0)</button>
+      <button id="all" hidden>↩ All</button>
+    </div>
+    <p class="privacy" id="privacy" hidden>Flags, settings and best scores stay on this device.</p>
+  </div>
+</main>
+<dialog id="flags" aria-labelledby="flags-title">
+  <div class="dialog-top"><h2 id="flags-title">Flagged words</h2><button id="close-flags">✕ Close</button></div>
+  <p id="flags-help">Tap a word to open it in Explore.</p><div id="flag-list"></div>
+</dialog>
+<div class="confetti" id="confetti" aria-hidden="true"></div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const BANK = [
+    {"word": "vam", "kind": "cvc"},
+    {"word": "peb", "kind": "cvc"},
+    {"word": "tib", "kind": "cvc"},
+    {"word": "nog", "kind": "cvc"},
+    {"word": "jum", "kind": "cvc"},
+    {"word": "vab", "kind": "cvc"},
+    {"word": "mep", "kind": "cvc"},
+    {"word": "hib", "kind": "cvc"},
+    {"word": "pog", "kind": "cvc"},
+    {"word": "vup", "kind": "cvc"},
+    {"word": "jal", "kind": "cvc"},
+    {"word": "zem", "kind": "cvc"},
+    {"word": "vib", "kind": "cvc"},
+    {"word": "jom", "kind": "cvc"},
+    {"word": "nup", "kind": "cvc"},
+    {"word": "pag", "kind": "cvc"},
+    {"word": "leb", "kind": "cvc"},
+    {"word": "jip", "kind": "cvc"},
+    {"word": "zog", "kind": "cvc"},
+    {"word": "vud", "kind": "cvc"},
+    {"word": "maf", "kind": "cvc"},
+    {"word": "jeg", "kind": "cvc"},
+    {"word": "fid", "kind": "cvc"},
+    {"word": "rof", "kind": "cvc"},
+    {"word": "zut", "kind": "cvc"},
+    {"word": "taf", "kind": "cvc"},
+    {"word": "feg", "kind": "cvc"},
+    {"word": "pid", "kind": "cvc"},
+    {"word": "dob", "kind": "cvc"},
+    {"word": "juf", "kind": "cvc"},
+    {"word": "baf", "kind": "cvc"},
+    {"word": "pef", "kind": "cvc"},
+    {"word": "lig", "kind": "cvc"},
+    {"word": "vum", "kind": "cvc"},
+    {"word": "paf", "kind": "cvc"},
+    {"word": "bep", "kind": "cvc"},
+    {"word": "tig", "kind": "cvc"},
+    {"word": "lom", "kind": "cvc"},
+    {"word": "jul", "kind": "cvc"},
+    {"word": "daf", "kind": "cvc"},
+    {"word": "gep", "kind": "cvc"},
+    {"word": "pib", "kind": "cvc"},
+    {"word": "fod", "kind": "cvc"},
+    {"word": "tuf", "kind": "cvc"},
+    {"word": "naf", "kind": "cvc"},
+    {"word": "vep", "kind": "cvc"},
+    {"word": "mip", "kind": "cvc"},
+    {"word": "lof", "kind": "cvc"},
+    {"word": "zul", "kind": "cvc"},
+    {"word": "jat", "kind": "cvc"},
+    {"word": "sef", "kind": "cvc"},
+    {"word": "bip", "kind": "cvc"},
+    {"word": "mof", "kind": "cvc"},
+    {"word": "vuf", "kind": "cvc"},
+    {"word": "laf", "kind": "cvc"},
+    {"word": "tep", "kind": "cvc"},
+    {"word": "fip", "kind": "cvc"},
+    {"word": "gop", "kind": "cvc"},
+    {"word": "vub", "kind": "cvc"},
+    {"word": "pam", "kind": "cvc"},
+    {"word": "fep", "kind": "cvc"},
+    {"word": "nid", "kind": "cvc"},
+    {"word": "jop", "kind": "cvc"},
+    {"word": "zug", "kind": "cvc"},
+    {"word": "vad", "kind": "cvc"},
+    {"word": "teb", "kind": "cvc"},
+    {"word": "bim", "kind": "cvc"},
+    {"word": "fom", "kind": "cvc"},
+    {"word": "rup", "kind": "cvc"},
+    {"word": "vaf", "kind": "cvc"},
+    {"word": "heg", "kind": "cvc"},
+    {"word": "mib", "kind": "cvc"},
+    {"word": "nol", "kind": "cvc"},
+    {"word": "vap", "kind": "cvc"},
+    {"word": "jeb", "kind": "cvc"},
+    {"word": "mif", "kind": "cvc"},
+    {"word": "vod", "kind": "cvc"},
+    {"word": "zaf", "kind": "cvc"},
+    {"word": "nem", "kind": "cvc"},
+    {"word": "vig", "kind": "cvc"},
+    {"word": "jod", "kind": "cvc"},
+    {"word": "fab", "kind": "cvc"},
+    {"word": "meb", "kind": "cvc"},
+    {"word": "hig", "kind": "cvc"},
+    {"word": "vom", "kind": "cvc"},
+    {"word": "pab", "kind": "cvc"},
+    {"word": "gef", "kind": "cvc"},
+    {"word": "jid", "kind": "cvc"},
+    {"word": "pof", "kind": "cvc"},
+    {"word": "vef", "kind": "cvc"},
+    {"word": "jol", "kind": "cvc"},
+    {"word": "neg", "kind": "cvc"},
+    {"word": "pif", "kind": "cvc"},
+    {"word": "bof", "kind": "cvc"},
+    {"word": "vem", "kind": "cvc"},
+    {"word": "gom", "kind": "cvc"},
+    {"word": "pem", "kind": "cvc"},
+    {"word": "vob", "kind": "cvc"},
+    {"word": "teg", "kind": "cvc"},
+    {"word": "gof", "kind": "cvc"},
+    {"word": "veb", "kind": "cvc"},
+    {"word": "pob", "kind": "cvc"},
+    {"word": "jep", "kind": "cvc"},
+    {"word": "vof", "kind": "cvc"},
+    {"word": "bef", "kind": "cvc"},
+    {"word": "jof", "kind": "cvc"},
+    {"word": "zef", "kind": "cvc"},
+    {"word": "vog", "kind": "cvc"},
+    {"word": "tef", "kind": "cvc"},
+    {"word": "rop", "kind": "cvc"},
+    {"word": "mef", "kind": "cvc"},
+    {"word": "vop", "kind": "cvc"},
+    {"word": "sog", "kind": "cvc"},
+    {"word": "fot", "kind": "cvc"},
+    {"word": "vame", "kind": "cvce"},
+    {"word": "bime", "kind": "cvce"},
+    {"word": "hobe", "kind": "cvce"},
+    {"word": "zube", "kind": "cvce"},
+    {"word": "jome", "kind": "cvce"},
+    {"word": "fipe", "kind": "cvce"},
+    {"word": "toge", "kind": "cvce"},
+    {"word": "vuge", "kind": "cvce"},
+    {"word": "bafe", "kind": "cvce"},
+    {"word": "sibe", "kind": "cvce"},
+    {"word": "vone", "kind": "cvce"},
+    {"word": "fube", "kind": "cvce"},
+    {"word": "hafe", "kind": "cvce"},
+    {"word": "vite", "kind": "cvce"},
+    {"word": "mofe", "kind": "cvce"},
+    {"word": "jube", "kind": "cvce"},
+    {"word": "zade", "kind": "cvce"},
+    {"word": "pibe", "kind": "cvce"},
+    {"word": "fope", "kind": "cvce"},
+    {"word": "mufe", "kind": "cvce"},
+    {"word": "jage", "kind": "cvce"},
+    {"word": "fime", "kind": "cvce"},
+    {"word": "pode", "kind": "cvce"},
+    {"word": "tupe", "kind": "cvce"},
+    {"word": "dafe", "kind": "cvce"},
+    {"word": "jite", "kind": "cvce"},
+    {"word": "fode", "kind": "cvce"},
+    {"word": "duge", "kind": "cvce"},
+    {"word": "bame", "kind": "cvce"},
+    {"word": "hibe", "kind": "cvce"},
+    {"word": "sobe", "kind": "cvce"},
+    {"word": "jufe", "kind": "cvce"},
+    {"word": "tade", "kind": "cvce"},
+    {"word": "zife", "kind": "cvce"},
+    {"word": "gobe", "kind": "cvce"},
+    {"word": "puge", "kind": "cvce"},
+    {"word": "jafe", "kind": "cvce"},
+    {"word": "bive", "kind": "cvce"},
+    {"word": "sode", "kind": "cvce"},
+    {"word": "zufe", "kind": "cvce"},
+    {"word": "mafe", "kind": "cvce"},
+    {"word": "zode", "kind": "cvce"},
+    {"word": "buve", "kind": "cvce"},
+    {"word": "lafe", "kind": "cvce"},
+    {"word": "zite", "kind": "cvce"},
+    {"word": "roge", "kind": "cvce"},
+    {"word": "buge", "kind": "cvce"},
+    {"word": "labe", "kind": "cvce"},
+    {"word": "nibe", "kind": "cvce"},
+    {"word": "zobe", "kind": "cvce"},
+    {"word": "dach", "kind": "pairs"},
+    {"word": "neth", "kind": "pairs"},
+    {"word": "lish", "kind": "pairs"},
+    {"word": "chof", "kind": "pairs"},
+    {"word": "thub", "kind": "pairs"},
+    {"word": "lach", "kind": "pairs"},
+    {"word": "vish", "kind": "pairs"},
+    {"word": "poch", "kind": "pairs"},
+    {"word": "shug", "kind": "pairs"},
+    {"word": "zash", "kind": "pairs"},
+    {"word": "peth", "kind": "pairs"},
+    {"word": "thim", "kind": "pairs"},
+    {"word": "shog", "kind": "pairs"},
+    {"word": "zuch", "kind": "pairs"},
+    {"word": "jach", "kind": "pairs"},
+    {"word": "pesh", "kind": "pairs"},
+    {"word": "zith", "kind": "pairs"},
+    {"word": "thod", "kind": "pairs"},
+    {"word": "shub", "kind": "pairs"},
+    {"word": "vash", "kind": "pairs"},
+    {"word": "jeth", "kind": "pairs"},
+    {"word": "thit", "kind": "pairs"},
+    {"word": "foth", "kind": "pairs"},
+    {"word": "luch", "kind": "pairs"},
+    {"word": "thaf", "kind": "pairs"},
+    {"word": "nesh", "kind": "pairs"},
+    {"word": "fith", "kind": "pairs"},
+    {"word": "joch", "kind": "pairs"},
+    {"word": "thup", "kind": "pairs"},
+    {"word": "dush", "kind": "pairs"},
+    {"word": "gesh", "kind": "pairs"},
+    {"word": "hith", "kind": "pairs"},
+    {"word": "jich", "kind": "pairs"},
+    {"word": "nuch", "kind": "pairs"},
+    {"word": "puth", "kind": "pairs"},
+    {"word": "ruch", "kind": "pairs"}
+  ];
+  const L = {
+    explore: 'Read the word aloud. Tap Next for another word, or Back to read it again.',
+    practice: 'Read each word aloud. Tap Right or Not yet. The timer never skips a word.',
+    challenge: 'Read each word aloud. Tap Right or Not yet. Try thirty words in one minute.',
+    startPractice: 'Tap Start when you and your reading partner are ready.',
+    startChallenge: 'Tap Start when you are ready for one minute of reading.',
+    cheer: 'Thirty out of thirty! You did it!'
+  };
+  const MODES = ['explore', 'practice', 'challenge'];
+  const STORE = 'curio-nonsense-words-v1';
+  function stored() {
+    try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch { return {}; }
+  }
+  const saved = stored();
+  const validKinds = ['cvc', 'cvce', 'pairs'];
+  const kinds = Array.isArray(saved.kinds) ? saved.kinds.filter(k => validKinds.includes(k)) : validKinds.slice();
+  const state = {
+    mode: MODES.includes(saved.mode) ? saved.mode : 'explore',
+    kinds: kinds.length ? kinds : validKinds.slice(),
+    flags: new Set(Array.isArray(saved.flags) ? saved.flags.filter(w => BANK.some(b => b.word === w)) : []),
+    bests: saved.bests && typeof saved.bests === 'object' ? saved.bests : {},
+    length: 20, phase: 'explore', deck: [], index: 0, marks: [], review: null,
+    started: 0, wordStarted: 0, storageOK: true, lastResult: null
+  };
+  const V = Curio.voice({
+    lines: L,
+    scope: () => state.mode,
+    hint: false,
+    read: () => $('hint').textContent,
+    welcome: () => {
+      if (state.phase === 'done' || $('flags').open) return null;
+      if (state.mode === 'explore' && !$('next').disabled) return ['explore', {needs: '#next'}];
+      if (state.mode === 'explore') return null;
+      if (state.phase === 'ready') return [state.mode === 'practice' ? 'startPractice' : 'startChallenge', {needs: '#start'}];
+      return [state.mode, {valid: () => state.phase === 'running', needs: ['#right', '#notyet']}];
+    }
+  });
+  function save() {
+    try {
+      localStorage.setItem(STORE, JSON.stringify({mode: state.mode, kinds: state.kinds, flags: [...state.flags], bests: state.bests}));
+    } catch {
+      state.storageOK = false;
+      $('privacy').hidden = false; $('privacy').textContent = 'Saving is unavailable. Your choices last until this page closes.';
+    }
+  }
+  function pool() { return BANK.filter(w => state.kinds.includes(w.kind)); }
+  function shuffled(words) {
+    const copy = words.slice();
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  }
+  function current() { return state.deck[state.index]; }
+  function bestKey() { return state.kinds.slice().sort().join('+'); }
+  function hint() {
+    if (state.phase === 'done') {
+      $('hint').textContent = state.lastResult.missed.length ? 'Tap Practice these to read the words that need another try.' : 'Tap Again for a new set.';
+    } else if (state.phase === 'ready') {
+      $('hint').textContent = L[state.mode === 'practice' ? 'startPractice' : 'startChallenge'];
+    } else if (state.mode === 'explore') {
+      $('hint').textContent = state.deck.length === 1
+        ? 'Read aloud. Tap All to return to your selected word kinds.'
+        : state.index === state.deck.length - 1 ? 'Read aloud. Tap Back to read again, or Shuffle for a new order.' : L.explore;
+    } else {
+      $('hint').textContent = 'Read aloud. Tap ✓ Right or ✕ Not yet. Tap Skip to move on.';
+    }
+  }
+  function show(id, visible) { $(id).hidden = !visible; }
+  function render() {
+    const explore = state.mode === 'explore';
+    const active = state.phase === 'running';
+    const done = state.phase === 'done';
+    show('settings', !done);
+    for (const m of MODES) $('m-' + m).setAttribute('aria-pressed', m === state.mode);
+    for (const k of validKinds) {
+      $('kind-' + k).setAttribute('aria-pressed', state.kinds.includes(k));
+      $('kind-' + k).disabled = active;
+    }
+    show('length', state.mode === 'practice' && !done);
+    for (const n of [10, 20, 30]) {
+      $('len-' + n).setAttribute('aria-pressed', n === state.length);
+      $('len-' + n).disabled = active;
+    }
+    show('reading', explore || active);
+    show('ready', state.phase === 'ready');
+    show('results', done);
+    show('back', explore);
+    show('next', explore);
+    show('start', state.phase === 'ready');
+    show('right', active);
+    show('notyet', active);
+    show('skip', active);
+    show('flag', explore || active);
+    show('flagged', explore);
+    show('shuffle', explore);
+    show('all', explore && !!state.review);
+    show('again', done);
+    show('practice-these', done && state.lastResult.missed.length > 0);
+    show('clock', state.mode === 'challenge' && active);
+    show('hourglass', state.mode === 'practice' && active);
+    show('pace', state.mode === 'practice' && active);
+    $('back').disabled = state.index === 0;
+    $('next').disabled = state.index >= state.deck.length - 1;
+    $('flagged').textContent = `⚑ Flagged (${pool().filter(w => state.flags.has(w.word)).length})`;
+    if (explore || active) {
+      $('word').textContent = current().word;
+      $('count').textContent = `${state.index + 1} of ${state.deck.length}${state.review ? ' · practice words' : ''}`;
+      const flagged = state.flags.has(current().word);
+      show('word-flag', flagged);
+      $('flag').setAttribute('aria-pressed', flagged);
+      $('flag').textContent = flagged ? '⚑ Unflag' : '⚑ Flag';
+    }
+    if (state.phase === 'ready') {
+      $('ready-title').textContent = state.mode === 'practice' ? 'A little practice.' : 'Ready for a challenge?';
+      $('ready-copy').textContent = state.mode === 'practice'
+        ? `${state.length} words. No time limit. Read with a partner who can help you mark each word.`
+        : '30 words. One minute. Read aloud with a partner, then mark each word together.';
+    }
+    hint();
+    tick();
+  }
+  function setMode(mode, options = {}) {
+    if (!MODES.includes(mode)) return;
+    V.hush();
+    $('confetti').replaceChildren();
+    state.mode = mode;
+    state.phase = mode === 'explore' ? 'explore' : 'ready';
+    state.review = options.review || null;
+    state.deck = (state.review || pool()).slice();
+    state.index = Math.max(0, options.index || 0);
+    state.marks = [];
+    save();
+    render();
+    V.welcome();
+  }
+  function move(delta) {
+    if (state.mode !== 'explore') return;
+    state.index = Math.max(0, Math.min(state.deck.length - 1, state.index + delta));
+    render();
+    if ($('next').disabled && document.activeElement === $('next')) $('back').focus({preventScroll: true});
+    if ($('back').disabled && document.activeElement === $('back')) $('next').focus({preventScroll: true});
+  }
+  function flag() {
+    if (!['explore', 'running'].includes(state.phase)) return;
+    const word = current().word;
+    if (state.flags.has(word)) state.flags.delete(word);
+    else state.flags.add(word);
+    save();
+    render();
+  }
+  function start() {
+    if (state.phase !== 'ready' && state.phase !== 'done') return;
+    V.hush();
+    state.deck = shuffled(pool()).slice(0, state.mode === 'challenge' ? 30 : state.length);
+    state.phase = 'running';
+    state.review = null;
+    state.index = 0;
+    state.marks = [];
+    state.started = performance.now();
+    state.wordStarted = state.started;
+    $('confetti').replaceChildren();
+    render();
+    $('right').focus({preventScroll: true});
+    V.how(state.mode, {valid: () => state.phase === 'running', needs: ['#right', '#notyet']});
+  }
+  function mark(value) {
+    if (state.phase !== 'running') return;
+    if (state.mode === 'challenge' && performance.now() - state.started >= 60000) return finish(true);
+    state.marks.push({word: current().word, kind: current().kind, mark: value});
+    state.index++;
+    state.wordStarted = performance.now();
+    if (state.index === state.deck.length) finish(false);
+    else render();
+  }
+  function finish(timedOut) {
+    if (state.phase !== 'running') return;
+    V.hush();
+    const right = state.marks.filter(w => w.mark === 'right').length;
+    const missed = state.marks.filter(w => w.mark !== 'right');
+    const unseen = state.deck.slice(state.index);
+    const perfect = state.mode === 'challenge' && right === 30 && !timedOut;
+    state.lastResult = {right, missed, unseen, timedOut, perfect, total: state.deck.length};
+    state.phase = 'done';
+    $('result-title').textContent = perfect ? 'Every word, read aloud.' : 'Nicely done.';
+    $('score').textContent = `${right} of ${state.deck.length} right`;
+    $('result-copy').textContent = state.mode === 'challenge'
+      ? `${right} right ${timedOut ? 'in one minute' : 'within one minute'}. Try again when you are ready.`
+      : 'A little practice goes a long way.';
+    $('review-label').textContent = missed.length ? 'Not yet and skipped words' : 'No words marked Not yet or skipped.';
+    $('missed').replaceChildren(...missed.map(w => {
+      const el = document.createElement('span');
+      el.textContent = w.word + (w.mark === 'skip' ? ' (skipped)' : '');
+      return el;
+    }));
+    $('unseen').textContent = unseen.length ? `${unseen.length} words not reached before time ended.` : '';
+    $('best').textContent = '';
+    if (state.mode === 'challenge') {
+      const previous = Number(state.bests[bestKey()]) || 0;
+      state.bests[bestKey()] = Math.max(previous, right);
+      $('best').textContent = `Best for these word kinds: ${state.bests[bestKey()]} of 30`;
+      save();
+    }
+    show('perfect', perfect);
+    render();
+    $('again').focus({preventScroll: true});
+    if (perfect) {
+      Curio.yes();
+      V.say('cheer', {valid: () => state.phase === 'done' && state.lastResult.perfect});
+      confetti();
+    }
+  }
+  function confetti() {
+    if (Curio.reduce) return;
+    for (let i = 0; i < 45; i++) {
+      const bit = document.createElement('i');
+      bit.style.left = `${Math.random() * 100}%`;
+      bit.style.background = ['#234d77', '#bf9240', '#558768', '#f7fafb'][i % 4];
+      bit.style.setProperty('--drift', `${Math.random() * 160 - 80}px`);
+      bit.style.animationDelay = `${Math.random() * 350}ms`;
+      $('confetti').append(bit);
+    }
+    setTimeout(() => $('confetti').replaceChildren(), 2900);
+  }
+  function pie(f) { $('pie').style.strokeDasharray = (Math.max(0, Math.min(1, f)) * 100).toFixed(1) + ' 100'; }
+  function ring(left) { $('ring').style.strokeDasharray = (left / 60000 * 100).toFixed(1) + ' 100'; }
+  function tick() {
+    if (state.phase !== 'running') return;
+    const now = performance.now();
+    if (state.mode === 'challenge') {
+      const left = Math.max(0, 60000 - (now - state.started));
+      if (!left) return finish(true);
+      const seconds = Math.ceil(left / 1000);
+      ring(left); $('clock-text').textContent = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
+      $('clock').setAttribute('aria-label', `${seconds} seconds left`);
+    } else {
+      const elapsed = now - state.wordStarted;
+      const phase = elapsed < 2000 ? 'green' : elapsed < 4000 ? 'yellow' : 'red';
+      $('hourglass').dataset.phase = phase;
+      pie(phase === 'green' ? 1 - elapsed / 2000 : phase === 'yellow' ? 1 - (elapsed - 2000) / 2000 : 1);
+      $('pace').textContent = {green: 'Read aloud', yellow: 'Keep trying', red: 'Take your time and try'}[phase];
+    }
+  }
+  for (const mode of MODES) $('m-' + mode).onclick = () => {
+    if (state.mode !== mode) setMode(mode);
+  };
+  for (const kind of validKinds) $('kind-' + kind).onclick = () => {
+    if (state.phase === 'running') return;
+    if (state.kinds.includes(kind)) {
+      if (state.kinds.length === 1) {
+        $('hint').textContent = 'Keep one word kind on. Tap another kind to add it.';
+        return;
+      }
+      state.kinds = state.kinds.filter(k => k !== kind);
+    } else state.kinds.push(kind);
+    state.review = null;
+    state.deck = pool();
+    state.index = 0;
+    state.marks = [];
+    save();
+    render();
+    V.welcome();
+  };
+  for (const n of [10, 20, 30]) $('len-' + n).onclick = () => {
+    if (state.phase === 'running') return;
+    state.length = n;
+    render();
+  };
+  $('next').onclick = () => move(1);
+  $('back').onclick = () => move(-1);
+  $('flag').onclick = flag;
+  $('shuffle').onclick = () => {
+    state.deck = shuffled(state.deck);
+    state.index = 0;
+    render();
+  };
+  $('start').onclick = start;
+  $('right').onclick = () => mark('right');
+  $('notyet').onclick = () => mark('notyet');
+  $('skip').onclick = () => mark(state.mode === 'challenge' ? 'notyet' : 'skip');
+  $('again').onclick = () => {
+    setMode(state.mode);
+    $('start').focus({preventScroll: true});
+  };
+  $('practice-these').onclick = () => {
+    const review = state.lastResult.missed.map(w => BANK.find(b => b.word === w.word));
+    setMode('explore', {review});
+    $('next').disabled ? $('shuffle').focus({preventScroll: true}) : $('next').focus({preventScroll: true});
+  };
+  $('all').onclick = () => {
+    setMode('explore');
+    $('next').focus({preventScroll: true});
+  };
+  $('flagged').onclick = () => {
+    V.hush();
+    const words = pool().filter(w => state.flags.has(w.word));
+    $('flags-help').textContent = words.length ? 'Tap a word to open it in Explore.' : 'No flags yet. Close this list, then tap Flag under a word.';
+    $('flag-list').replaceChildren(...words.map(w => {
+      const b = document.createElement('button');
+      b.textContent = w.word;
+      b.onclick = () => {
+        $('flags').close();
+        setMode('explore', {review: words, index: words.indexOf(w)});
+        $('flag').focus({preventScroll: true});
+      };
+      return b;
+    }));
+    $('flags').showModal();
+  };
+  $('close-flags').onclick = () => $('flags').close();
+  $('flags').addEventListener('close', () => {
+    $('flagged').focus({preventScroll: true});
+    V.welcome();
+  });
+  addEventListener('keydown', e => {
+    if (e.repeat || e.altKey || e.ctrlKey || e.metaKey || $('flags').open) return;
+    if (['INPUT', 'SELECT', 'TEXTAREA'].includes(e.target.tagName)) return;
+    const k = e.key.toLowerCase();
+    if (k === 'f' && ['running', 'explore'].includes(state.phase)) {
+      e.preventDefault();
+      flag();
+    } else if (state.mode === 'explore' && ['ArrowLeft', 'ArrowRight'].includes(e.key)) {
+      e.preventDefault();
+      move(e.key === 'ArrowRight' ? 1 : -1);
+    } else if (state.phase === 'running' && ['ArrowRight', 'ArrowLeft', 'r', 'n'].includes(e.key)) {
+      e.preventDefault();
+      mark(['ArrowRight', 'r'].includes(e.key) ? 'right' : 'notyet');
+    }
+  });
+  Curio.onMotion(reduce => { if (reduce) $('confetti').replaceChildren(); });
+  Curio.init({clips: "voice:*", rate: .9});
+  setInterval(tick, 100);
+  addEventListener('visibilitychange', tick);
+  window.__tool = {state, setMode, allLines: V.allLines, vlog: V.log, get vq() { return V.queue; }};
+  setMode(state.mode);
+})();
+</script>
+</body>
+</html>
