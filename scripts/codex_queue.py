@@ -49,7 +49,7 @@ for _t in ("levels-and-pathways dance-pattern-puzzle choreography-board dance-st
            "museum-courtyard-performance").split():
     NOTES[_t] = DANCE
 BUILD_PORTS = {'A': (9990, 8795), 'B': (9980, 8785), 'C': (9970, 8775)}
-REVIEW_PORTS = {'A': (9960, 8765), 'B': (9950, 8755), 'C': (9940, 8745)}
+REVIEW_PORTS = {'A': (9960, 8765), 'B': (9950, 8755), 'C': (9940, 8745), 'D': (9930, 8735)}
 
 HEADER = r"""CURIO CLASS: CODEX QUEUE
 
@@ -64,8 +64,8 @@ BUILD ends with "Build done". REVIEW ends with "Review done". Never paste a revi
 did not build it catches more.
 
 HOW MANY AT ONCE
-Up to three builds and three reviews, one of each from each group (A, B, C). Never two builds, or two reviews, from the
-same group. A refresh changes the groups, so let running chats finish first.
+Up to three builds (groups A, B, C) and four reviews (groups A, B, C, D) at once. Never two builds, or two reviews, from
+the same group. A refresh changes the groups, so let running chats finish first.
 
 IF IT STICKS
 If a command hangs for about 20 minutes, press Esc and paste:
@@ -86,8 +86,8 @@ REVIEW = """Review the Curio Class tool {t} cold. You did not build it. Read doc
 Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/{t}/codex-review.md is written, say "Review done" and stop."""
 
 
-def group(i):
-    return 'ABC'[i % 3]
+def group(i, groups='ABC'):
+    return groups[i % len(groups)]
 
 
 def ports(table, g):
@@ -117,7 +117,7 @@ def prompts():
     if waiting:
         parts += [RULE, 'REVIEWS TO PASTE', RULE, '']
     for i, t in enumerate(waiting):
-        g = group(i)
+        g = group(i, 'ABCD')  # four reviews at once, three builds (Cory, 2026-11-03)
         c, h = ports(REVIEW_PORTS, g)
         parts += [f'{rows[t]["title"]}  group {g}\n', block('REVIEW', t, REVIEW.format(t=t, c=c, h=h))]
     if unbuilt:
