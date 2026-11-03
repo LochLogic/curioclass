@@ -36,7 +36,7 @@ If the spec is wrong or impossible, stop and report it rather than improvising.
 
 ## Rules
 
-- One file, no network requests, under 2 MB. All shapes, charts and diagrams drawn in SVG or canvas.
+- One file, no network requests, 2 MB as the goal (over 6 MB needs a `Size:` reason in notes.md). All shapes, charts and diagrams drawn in SVG or canvas.
 - Use the kit for motion, sound, speech, chimes and fitting the stage. Never re-implement them.
 - Images use `art:<name>` tokens only for names in prompts.json. Draft builds show labeled placeholders.
 - Pace for a teacher reading aloud (POLISH.md). Calm mode removes movement, never time.

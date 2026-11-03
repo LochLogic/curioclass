@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parent.parent
 BASE = Path('S:/CurioClass-codex')
 OUT = BASE / '_queue.txt'
 RULE = '=' * 78
-QUEUE = """image-transformer near-and-far game-day-fuel art-style-match virtual-gallery biome-atlas workplace-scenarios
+QUEUE = """nonsense-words sight-words image-transformer near-and-far game-day-fuel art-style-match virtual-gallery biome-atlas workplace-scenarios
 up-the-watershed reserve-designer first-aid-responder data-policy-council act-it-out research-quest
 design-challenge-studio brand-builder speech-coach design-for-a-friend credit-card-builder captain-s-choices
 traffic-light-coder pocket-universe span-and-spire design-fixer art-through-time gallery-critique
@@ -31,15 +31,19 @@ morning-show-crew viral-video-breakdown mini-documentary-crew model-mechanic gri
 spot-the-ai shadow-measure rules-referee ph-mystery-liquids packaging-challenge me-vs-the-counter launch-pad
 keyword-fishing is-the-historian-right input-or-output fire-lookout-triangles fair-dice-investigation
 design-the-study courtroom-statistics code-kitchen zipline-energy water-shapes-earth""".split()
-DANCE = ("Owner's decision: this tool should end up with painted dancers, not the code figure. Use the kit's figure for now, "
-         "keep it easy to swap, and add the poses it will need to art/prompts.json with \"people\": true for the next painter.")
+DANCE = ("Owner's decision: this tool gets painted dancers, not the code figure. Paint them yourself, marked \"people\": true, "
+         "with a natural range of dancers. Draw the fewest poses that teach the moves well, and keep the figure easy to swap.")
 NOTES = {  # desk answers the spec does not hold yet (docs/agents/decisions/DESK-ANSWERS.md)
     'music-history-radio': "Owner's decision: add one station from outside the European and American line, with sourced facts.",
     'director-s-chair': "Owner's decision: the 5 masks are objects, not people, so paint them yourself. The masked actors stay figures in code.",
     'neighborhood-issue-play': "Owner's decision: restore the idea card's third problem, a new family who speaks another language, in place "
                                "of the empty lot. Write it as neighbors who can't yet talk to each other, never the family as the problem. "
-                               "Its puppets are people, so list them with \"people\": true for the next painter.",
+                               "Its puppets are people: paint them yourself, marked \"people\": true.",
 }
+PLAIN = ("Owner's decision: this tool is plain on purpose, for a grade 2 teacher. The spec's Look section wins over the push for rich art "
+         "and gameplay above: parchment, a blue border, one quiet word at a time, one small flourish in the top bar. Build it as a sibling "
+         "of the other word tool (nonsense-words and sight-words share a layout).")
+NOTES['nonsense-words'] = NOTES['sight-words'] = PLAIN
 for _t in ("levels-and-pathways dance-pattern-puzzle choreography-board dance-styles-explorer feeling-scarf-dance family-dance-night "
            "poem-to-movement recital-stage-directions dancers-on-tour dance-hall-decades choreography-for-a-cause "
            "museum-courtyard-performance").split():
@@ -73,9 +77,9 @@ If it says it is reconnecting, wait. If the model is at capacity, send: carry on
 
 BUILD = """Build the Curio Class tool {t}. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Your folder must be S:\\CurioClass-codex; if it is not, say so and stop. Write only in tools/{t}/ and _scratch/{t}/. This is Build only: make no git commits and do not start a polish round. Use Chrome ports {c} and host port {h}.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. No people in generated images. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. You may draw people where the scene needs them; mark each one \"people\": true. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
 
-Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which images you will make. Then go ahead without waiting for me. Put a time limit on every command. When tools/{t}/codex-report.md is written, say "Build done" and stop."""
+Before you build anything, tell me in seven lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, which images you will make, your size budget (images and voice, in KB, against the 2 MB goal), and any place the spec contradicts itself or the brief. Then go ahead without waiting for me. Put a time limit on every command. When tools/{t}/codex-report.md is written, say "Build done" and stop."""
 
 REVIEW = """Review the Curio Class tool {t} cold. You did not build it. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Your folder must be S:\\CurioClass-codex; if it is not, say so and stop. Write only in tools/{t}/ and _scratch/{t}/. Make no git commits. Use Chrome ports {c} and host port {h}.
 

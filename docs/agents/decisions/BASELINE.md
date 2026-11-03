@@ -33,6 +33,19 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     spec wave. Queued: "fact-check a chatbot" (generative AI, from ai-evaluator); a resume builder, near term (w1-02,
     w2-12).
 
+11. **People art is drawn, and checked** (2026-11-03). Codex may draw people. Every people asset carries
+    `"people": true`, every people image is on a contact sheet Cory sees before the tool ships, and a fresh agent
+    checks each set for stereotypes and representation. Reviews add people where a scene needs them.
+12. **2 MB is a goal, not a blocker** (2026-11-03). Over 6 MB, notes.md says why in a `Size:` line
+    (`scripts/check_tools.py` enforces only that).
+13. **Shared code is grown, not planned** (2026-11-03). A kit engine is promoted only after three finished tools use
+    the same code. Older tools pick it up later and only when needed: they work today, and the gain is efficiency,
+    not capability.
+14. **Finish before scaling** (2026-11-03). At most about 10 Codex tools built and not yet reviewed. Finish a small
+    cohort end to end before a new wave, and log repeat problems in the issue ledger.
+15. **Public copy names no companies** (2026-11-03). The ambition in docs/VISION.md (replace paid curriculum) stays
+    inside the vision; the site says "a free, complete classroom toolkit".
+
 ## One module Cory reviews personally
 
 **growing-up-q-a** (grade 4-5 puberty). It opens on a splash cover page that makes the educational purpose clear,

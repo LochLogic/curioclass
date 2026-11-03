@@ -442,6 +442,8 @@ class Audit:
                 ctls = [c for c in ctls if not (c[1].startswith('#') and c[1].split(' ')[0][1:] in skip)]
                 rows.append({'mode': ml})
             await self.walk_mode(mode, ctls, rows, speakers)
+            if getattr(self, 'progress', None):
+                self.progress(f'one held click per control, after mode {ml or "first screen"}', rows)
         return await self.repeats(rows, speakers)
 
     async def walk_mode(self, mode, ctls, rows, speakers):
@@ -714,22 +716,37 @@ async def run(tool, out, walk, states_file=None, tool_file=None):
     drive.ensure_chrome(Path(drive.PROFILE).resolve() if drive.PROFILE else out.resolve() / 'chrome-prof')
     hosturl = f'http://127.0.0.1:{hp}/host.html'
     every = [(w, h, None, f'{w}x{h}') for w, h in SIZES] + [(395, 832, hosturl, '375x812 (iframe host)')]
+    sizes, states, calm, rows, reps, quick, shaken = [], [], [], None, None, None, []
+
+    def save(doing, part=None):
+        # write what is found so far after every stage, so a stopped or timed-out audit still leaves its leads
+        try:
+            L = report(a, sizes, calm, part if part is not None else rows, reps or [], quick or [], states, shaken).split('\n')
+            L.insert(4, f'**Not finished: saved while the audit was still running ({doing}).** Every lead below is real; '
+                        'later sections are missing or partial, and a "clean" line there may only mean not checked yet.\n')
+            (out / 'audit.md').write_text('\n'.join(L), encoding='utf-8')
+        except Exception as e:  # a partial save must never stop the audit
+            (out / 'audit.md').write_text(f'# Audit: {tool}\n\nNot finished ({doing}); the partial save failed: {e}\n', encoding='utf-8')
+    a.progress = save
     try:
-        sizes = [await a.size(w, h, url=u, label=lb, keep=keep) for w, h, u, lb in every]
+        for w, h, u, lb in every:
+            sizes.append(await a.size(w, h, url=u, label=lb, keep=keep))
+            save(f'sizes, done to {lb}')
         t = await a.tab(1366, 768)
         a.modes = await a.ev(t, MODES_JS) or []
         await a.close(t)
         plan = [(f'mode {lab or mid}', f'click #{mid}', [{'click': '#' + mid}], keep, None) for mid, lab, pressed in a.modes if not pressed]
         plan += [(s['name'], 'audit-states.json', s.get('steps', []), keep + s.get('keep', []), s.get('sizes')) for s in spec.get('states', [])]
-        states = []
         for name, how, steps, kp, only in plan:
             slug = re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
             res = [await a.size(w, h, url=u, label=lb, steps=steps, keep=kp, shot=f'state-{slug}-{lb.split(" ")[0]}')
                    for w, h, u, lb in every if not only or lb.split(' ')[0] in only]
             states.append((name, how, res))
+            save(f'states, done to {name}')
         calm = await a.calm()
+        save('Motion off done')
         rows, reps, quick = (await a.walk()) if walk else (None, None, None)
-        shaken = []
+        save('clicks done, stress checks next')
         for (name, how, steps, kp, only), (_, _, res) in zip(plan, states):
             if how != 'audit-states.json':
                 continue
@@ -737,6 +754,7 @@ async def run(tool, out, walk, states_file=None, tool_file=None):
             s = await a.stress(name, steps, base)
             if s['errors'] or s['stuck']:
                 shaken.append(s)
+                save(f'stress checks, done to {name}')
         if rows:
             shaken += await a.shake(rows)
     finally:

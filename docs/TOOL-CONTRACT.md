@@ -45,7 +45,7 @@ tools/<tool-id>/
 2. **Make no automatic network requests.** No external `src=`, stylesheets, `@import`, `url(http...)` or fonts. Plain outbound `<a href>` links that a person clicks are fine.
 3. **Collect nothing.** No analytics or cookies. `localStorage` only for per-device conveniences (settings, a saved drawing), wrapped in try/catch.
 4. **Have** `<html lang>`, `<meta charset>`, `<meta name="viewport">`, a `<title>` and a `<meta name="description">`.
-5. **Stay under 2 MB.** (Elements Inspector, with Three.js inside, is 0.8 MB.)
+5. **Aim for 2 MB or less.** 2 MB is a goal, not a blocker (Cory, 2026-11-03). Over 6 MB, notes.md needs a line starting `Size:` saying why. (Elements Inspector, with Three.js inside, is 0.8 MB.)
 6. **Work embedded and full screen.** It must be usable in a 16:10 iframe on the tool page and fill the window when opened alone.
 
 ## The HTML file should

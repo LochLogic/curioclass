@@ -36,7 +36,7 @@ Walk all three lenses, as written in REFINE.md, plus these. Open the frames and 
   notes open with `## What it teaches`, `## Key skills` and `## Support at home`.
 - **Play.** Hold it to the Gameplay list in CODEX-BUILD.md. Name the flattest moment.
 - **Graphics.** Look at every image at its final size, and hold the scenes to the Graphics list in CODEX-BUILD.md. Is the
-  set one style? Is any picture untrue to what the tool teaches? Does any picture show a person? Is any image in
+  set one style? Is any picture untrue to what the tool teaches? Is a person missing where the scene needs one (a classroom, a job, a family), or drawn with a stereotype? Is every people image marked `"people": true`? Is any image in
   `art:<name>` still missing that could be made?
 - **Craft.** Every STANDARDS size, Motion off, grayscale, keyboard only, the voice checks, every extreme in POLISH.md.
 
@@ -54,7 +54,7 @@ If you disagree with the spec, or a fix would need a new feature or a kit change
 
 Re-shoot only what your fixes touched. Then run the audit once, last, with the same 40 minute limit:
 `python scripts/audit_tool.py <id> <Scratch>/review-audit --port <your second port> --profile <Scratch>/chrome-prof-review`.
-Fix what it confirms, re-shoot those frames, and stop. If the audit does not finish, say so and stop.
+Fix what it confirms, re-shoot those frames, and stop. If the audit does not finish, its partial `audit.md` still holds every lead it found: fix those, say it did not finish, and stop.
 
 ## Report: `tools/<id>/codex-review.md`
 

@@ -53,7 +53,7 @@ check gets a fresh run on the polished bundle the same way.
 4. Feel: where did you get bored, lost or unsure? Where is a moment flat that could land? These are polish items.
 
 **Craft lens: is it built right?**
-1. Contract: one file, no network requests, under 2 MB, kit used (not re-implemented), no console errors.
+1. Contract: one file, no network requests, 2 MB goal (6 MB needs a reason), kit used (not re-implemented), no console errors.
 2. Access: keyboard, visible focus, 44 px targets (60 px for K-2), color never the only signal; Motion, Sound and
    Read work.
 3. Lines: every spoken line is in `voice/lines.json` and `allLines()`, word for word; each line matches the state.
@@ -124,7 +124,7 @@ and the frames tied to each fix). Then check the gate. **All must hold:**
 3. the defaults work for a solo student (rule 4);
 4. the sensitivity agent passed, where rule 5 applies;
 5. no blocker or should-fix is open;
-6. the bundle is clean, under 2 MB, no console errors, no network requests;
+6. the bundle is clean, at the 2 MB goal or with a reason, no console errors, no network requests;
 7. the voice check counts are right.
 Write the verdict as the first line of `refine.md`, `PASS` or `ROUND 2` with the open items, and append the
 check below the merged list.
@@ -164,7 +164,7 @@ Read refine.md and handoff.md first, so you know what was already settled; then 
    text matches `voice/lines.json`); flag a take that sounds wrong for the moment from the liveliness reading.
 4. **A full run as a solo student and as a teacher projecting it** (the Play lens, step 2 and 4), start to finish.
    Where does the finished tool feel flat, slow or confusing now that it looks and sounds real?
-5. **Contract again:** bundle under 2 MB with the art and clips in, no console errors, no network requests.
+5. **Contract again:** bundle at the 2 MB goal (or a `Size:` reason over 6 MB) with the art and clips in, no console errors, no network requests.
 Write `tools/<id>/final.md`: findings with the same levels and tags as the lenses, frames named.
 
 **Fix (a fresh fix agent, or the builder if it is still around).** It reads handoff.md, refine.md and final.md and

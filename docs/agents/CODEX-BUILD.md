@@ -110,13 +110,17 @@ object would make the scene richer, add it to prompts.json and make it. Where ex
 simulation, a precise diagram), draw in SVG or canvas, which stays the better picture. Images already in `art/` stay;
 match new ones to them.
 
-**People.** Do not draw people, faces or body parts, even if the spec asks. Those go to another painter with the owner
-checking each one. Add the asset with `"people": true`, use its `art:<name>` token, make the scene work with a tasteful
-faceless silhouette drawn in code until then, and list it in the report under Art still to paint.
+**People.** You may draw people (owner's decision, 2026-11-03). Draw them where the spec or the scene calls for them:
+classrooms, jobs, families, dancers, players. Show a natural range of skin tones, ages, bodies and abilities across the
+set, with no stereotypes and nothing a child could find frightening or mocking. Add `"people": true` to every asset that
+shows a person, so the owner's contact sheet and the cultural review find it. Where one figure appears in many poses,
+draw the fewest poses that teach the idea well. If a people image fails or hits a limit, use a tasteful faceless
+silhouette drawn in code and list it under Art still to paint.
 
-**Size.** The bundle stays under 2 MB, and the art drives that: about 30 to 80 KB for a character or object and 100 to
-150 KB for a background. Set `width` in the asset to the largest size it shows at. If you are over, lower `quality` to
-about 72, then the width of the backgrounds, before you drop any image.
+**Size.** 2 MB is the goal, not a wall. The art drives it: about 30 to 80 KB for a character or object and 100 to
+150 KB for a background. Set `width` in the asset to the largest size it shows at. If you are over 2 MB, lower `quality` to
+about 72, then the width of the backgrounds, and stop there: never drop an image that teaches to reach 2 MB. Over 6 MB,
+add a line to notes.md starting `Size:` that says why.
 
 If image generation fails or hits a usage limit, finish the tool with art drawn in code, list the missing images under
 Art still to paint, and carry on.
@@ -140,7 +144,7 @@ The limits below are for commands and checks. They are never a reason to cut the
 4. **Shoot once, late.** Work in small checks on the size you are fixing. Do the full run of every size only once, near
    the end. After that, re-shoot only what a fix touched. Do not re-run the whole set after a small fix.
 5. **Run the audit once, last.** Answer its leads in the report. If it has not finished in 40 minutes, stop it, say so
-   in the report and finish. The reviewer can run it.
+   in the report and finish. It saves `audit.md` after every stage, so answer every lead in the partial report too. The reviewer can run it.
 6. **Close every Chrome and server you start**, each time, before the next step.
 7. **If you are stuck on one problem for more than about 20 minutes,** write it under Left open and go on to the next.
 
@@ -169,7 +173,7 @@ As BUILD.md lists: `src.html`, `tool.draft.json` (`"stage": "built"`), `notes.md
 
 ## Check your work (from the repo root)
 
-1. `$env:CURIO_DRAFT=1; python scripts/bundle_tool.py <id>`: bundles cleanly, under 2 MB.
+1. `$env:CURIO_DRAFT=1; python scripts/bundle_tool.py <id>`: bundles cleanly (2 MB is the goal; over 6 MB needs a `Size:` line in notes.md).
 2. `python scripts/drive.py <id> <Scratch>/shots.json <Scratch>/frames --port 9990 --profile <Scratch>/chrome-prof`. The header
    of `scripts/drive.py` gives the shots format. Use held clicks (`"hold": 0.12`) for anything with voice and real drags
    for dragging. There must be no console errors, warnings or exceptions.

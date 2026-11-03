@@ -6,7 +6,8 @@ sys.path.insert(0, str(Path(__file__).parent))
 from bundle_tool import bundle_all  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-MAX_BYTES = 2 * 1024 * 1024
+GOAL_BYTES = 2 * 1024 * 1024  # the goal: over it prints a note, never a failure (Cory, 2026-11-03)
+REASON_BYTES = 6 * 1024 * 1024  # over this, notes.md must say why in a line starting "Size:"
 NOTES_SECTIONS = ['## What it teaches', '## Key skills', '## Support at home']
 BACKFILL = set((ROOT / 'docs/agents/notes-backfill.txt').read_text(encoding='utf-8').split())
 REQUIRED_JSON = ['id', 'status', 'hook', 'outcome', 'driver', 'minutes', 'modes', 'grades_label', 'sources', 'third_party', 'updated']
@@ -46,8 +47,13 @@ def check(folder):
         if data.get('driver') not in ('teacher', 'students', 'students or teacher'):
             problems.append('driver must be teacher, students, or "students or teacher"')
     text = html.read_text(encoding='utf-8', errors='replace')
-    if html.stat().st_size > MAX_BYTES:
-        problems.append(f'{html.stat().st_size / 1e6:.1f} MB is over the 2 MB limit')
+    size = html.stat().st_size
+    if size > REASON_BYTES:
+        notes = ROOT / 'tools' / tid / 'notes.md'
+        if not (notes.exists() and re.search(r'^Size:', notes.read_text(encoding='utf-8'), re.M)):
+            problems.append(f'{size / 1e6:.1f} MB is over 6 MB with no "Size:" line in notes.md saying why')
+    elif size > GOAL_BYTES:
+        print(f'note: {tid} is {size / 1e6:.1f} MB, over the 2 MB goal (fine; trim if it is easy)')
     for rx, label in NETWORK:
         for m in re.finditer(rx, text, re.I):
             problems.append(f'{label}: {text[m.start():m.start() + 90]!r}')
