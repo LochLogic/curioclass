@@ -138,8 +138,12 @@ Night, Word check, closet search, Take home, words CSV. What is left, in order:
 7. **Teacher Desk** (new 2026-11-03): **shelf live 2026-11-03** at /closet/teacher-desk/ with the **Desk Dock**
    (/closet/teacher-desk/dock/): a timer, a 12-sound board, a noise meter and a group maker on one projector screen,
    all sound made in code. Claude built it by hand as its own page, not through the tool pipeline (Cory: purpose built
-   for its job). Not yet checked: how the sounds and the noise meter behave on a real classroom laptop. Next: classroom music in up-beat, quiet time and game-show sets (original or CC0 only, with a
-   license file), and a game-show quiz board.
+   for its job). Not yet checked: how the sounds and the noise meter behave on a real classroom laptop.
+   **Classroom Music** (live 2026-11-03, /closet/teacher-desk/music/): eight original pieces in four sets (work time,
+   quiet time, clean-up, game show), every note generated in the browser as it plays (motif melodies from a seeded
+   random source, so each run differs), so there is no recording to license: it ships under the site's own licence.
+   Stop-after timer with a fade and an end chime, volume, keys 1 to 8, dark screen. Levels checked offline (no
+   clipping); Cory to judge by ear. Next: a game-show quiz board.
    **Printables shelf** (built 2026-11-03, /closet/printables/): 17 settable, print-ready pages drawn by one engine,
    site/assets/printables.js (paper: handwriting, lined, graph, dot; math and letters: number lines, hundreds chart,
    alphabet strips and cards; organizers in English, Spanish or both: Venn, KWL, story map, cause and effect, main idea,

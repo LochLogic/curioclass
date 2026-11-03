@@ -436,7 +436,7 @@ PRINTABLES = [  # heading, blurb, [(id, title, blurb)]
     ]),
 ]
 DESK_COMING = [  # planned Teacher Desk pieces (docs/ROADMAP.md, Track 2 item 7)
-    ('Classroom Music', 'Music for work time, quiet time and clean-up, plus a quiz-show board for review games.'),
+    ('Quiz Show Board', 'A projector game board for review games: teams, points and a big reveal for each question.'),
 ]
 # Word Wall: one page per grade span a module is written for (K to 12, and spans like 3-5 or K-12), grouped by subject.
 # The shelf page is a grade picker: a card per band with its grades and its whole-band span, then a card for World Languages.
@@ -575,7 +575,7 @@ for u, d in ws_units.items():
         groups[-1]['rows'].append(dict(r, built=r['n'] in ws_built.get(u, {})))
     render('closet/ws-unit.html', f'/closet/worksheets/{u}/', u=u, d=d, groups=groups, rows=ws_rows[u], ready=len(ws_built.get(u, {})))
 render('closet/ws-sheet.html', '/closet/worksheets/sheet/', index=False)
-counts['teacher-desk'] = 'Desk Dock ready'
+counts['teacher-desk'] = 'Desk Dock and Classroom Music ready'
 counts['printables'] = f"{sum(len(x[2]) for x in PRINTABLES)} printables"
 counts['worksheets'] = f"{sum(len(v) for v in ws_built.values())} ready of {sum(len(v) for v in ws_rows.values()):,} planned"
 render('closet/home.html', '/closet/', shelves=CLOSET, counts=counts)
@@ -598,6 +598,7 @@ for sid, label, what in CLOSET:
     elif sid == 'teacher-desk':
         render('closet/teacher-desk.html', '/closet/teacher-desk/', label=label, what=what, coming=DESK_COMING)
         render('closet/desk-dock.html', '/closet/teacher-desk/dock/')
+        render('closet/music.html', '/closet/teacher-desk/music/')
     elif sid == 'game-night' and games:
         render('closet/game-night.html', '/closet/game-night/', label=label, what=what, sections=game_sections)
     else:
