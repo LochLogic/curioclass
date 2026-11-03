@@ -113,7 +113,11 @@ Night, Word check, closet search, Take home, words CSV. What is left, in order:
      with student copy and answer key) and 10 built sheets across K-Algebra I, checked by `scripts/worksheets.py`.
    - **Wave 1 done 2026-11-01:** 398 more sheets (two per class: the first and one mid-year), 408 built in all across
      204 classes (world languages held). Every student copy prints within its limit (K 1 page, others 2).
-   - **Wave 2 under way:** 700 more, three or four per class spread through the year (about 1,108 when done).
+   - **Wave 2 done 2026-11-03:** 700 more, three or four per class spread through the year: 1,108 built in all, five or
+     six per class from the start, middle and end of the year. All 1,108 student copies print within their limits.
+   - **Next:** Cory's review (K-2, health, hard history and the flagged facts in teacher notes), then the format fixes
+     queued from wave 2 (a real map block from the poster map data, crossword, word-answer color by code, plain comic
+     frame, picture cards in tables and draw boxes) before wave 3.
 
 7. **The Map** (Phase F, last): regions, trails and a standards view. Research is done (docs/MAP-RESEARCH.md);
    drafting is next when its turn comes.
