@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% block title %}{{ label }}: free printable worksheets for every class, K-12 · Curio Class{% endblock %}
+{% block description %}{{ what }} Free, no sign-up, print from the browser.{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([('Supply Closet', '/closet/'), (label, None)]) }}
+  <div class="page-head"><h1>{{ label }}</h1><p>{{ what }} Pick your class to see its year of sheets in teaching order. Sheets marked ready open in the viewer, where you can print the student copy or switch on the answer key.</p></div>
+  <div class="browse">
+    <aside class="browse-nav" aria-label="Grades">
+      <p class="eyebrow">Grades</p>
+      <nav id="browse-links">
+        {% for s in sections %}<a href="#{{ s.id }}" data-target="{{ s.id }}"><i style="background:var(--ink)"></i><span>{{ s.label }}</span><b>{{ s.units | length }}</b></a>{% endfor %}
+      </nav>
+    </aside>
+    <div class="browse-main">
+      <label class="jump"><span class="sr-only">Grades</span>
+        <select id="jump"><option value="">Grades…</option>{% for s in sections %}<option value="{{ s.id }}">{{ s.label }}</option>{% endfor %}</select>
+      </label>
+      {% for s in sections %}
+      <section class="group browse-group" id="{{ s.id }}">
+        <div class="group-head"><h2>{{ s.label }}</h2></div>
+        <div class="ws-classes">
+          {% for u in s.units %}{% set n = built.get(u, {}) | length %}
+          <a class="ws-class{% if n %} has-ready{% endif %}" href="/closet/worksheets/{{ u }}/">
+            <span class="ws-class-name">{{ units[u].label }}</span>
+            <span class="ws-class-count">{{ rows[u] | length }} sheets{% if n %} · <b>{{ n }} ready</b>{% endif %}</span>
+          </a>
+          {% endfor %}
+        </div>
+      </section>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(() => {
+  const links = [...document.querySelectorAll('#browse-links a')];
+  const byId = Object.fromEntries(links.map(a => [a.dataset.target, a]));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { links.forEach(a => a.removeAttribute('aria-current')); byId[e.target.id]?.setAttribute('aria-current', 'true'); } });
+  }, {rootMargin: '-90px 0px -70% 0px'});
+  document.querySelectorAll('.browse-group').forEach(g => io.observe(g));
+  document.getElementById('jump').addEventListener('change', e => {
+    if (e.target.value) document.getElementById(e.target.value).scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+  });
+})();
+</script>
+{% endblock %}

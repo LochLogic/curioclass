@@ -15,6 +15,7 @@ It is organized like a real supply closet, as shelves:
 | **Family Game Night** | Low-materials games to play at home, 2-3 per subject per grade | grade + subject | E |
 | **Break Box** | Screen-free 1-2 hour projects for kids home on school breaks, 30 per grade (docs/BREAK-BOX-PLAN.md) | grade | Draft |
 | **The Map** | A visual map of modules, with tools and closet items as pins, and suggested unit trails | module | F |
+| **Worksheets** | Authored print sheets, 40-50 per class, with keys (docs/WORKSHEETS-PLAN.md) | class | Pilot |
 | Worksheet Generator | Generated practice sheets with answer keys (late roadmap) | module | Late |
 
 ## What the site already has (checked 2026-10-26)

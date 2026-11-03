@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% block title %}{{ d.label }} worksheets: {{ rows | length }} printable sheets · Curio Class{% endblock %}
+{% block description %}{{ rows | length }} printable {{ d.label }} worksheets in teaching order, each with an answer key: {{ rows[:4] | map(attribute='title') | join(', ') }} and more.{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([('Supply Closet', '/closet/'), ('Worksheets', '/closet/worksheets/'), (d.label, None)]) }}
+  <div class="page-head">
+    <h1>{{ d.label }} worksheets</h1>
+    <p>{{ rows | length }} sheets for the year, in teaching order. {% if ready %}<b>{{ ready }} ready to print</b>; the rest are planned and arrive in build waves.{% else %}All planned; they arrive in build waves.{% endif %} Every sheet comes with an answer key and a teacher page.</p>
+  </div>
+  {% for g in groups %}
+  <section class="ws-module">
+    <h2>{% if g.mod %}<a href="{{ g.mod.url }}">{{ g.module }}</a>{% else %}{{ g.module if g.module != '-' else 'Sheets' }}{% endif %}</h2>
+    <ol class="ws-rows">
+      {% for r in g.rows %}
+      <li class="ws-row{% if r.built %} ready{% endif %}" value="{{ r.n }}">
+        <div>
+          <p class="ws-row-title">{% if r.built %}<a href="/closet/worksheets/sheet/#{{ u }}/{{ r.n }}">{{ r.title }}</a>{% else %}{{ r.title }}{% endif %} <span class="tag">{{ r.type }}</span></p>
+          <p class="ws-row-does">{{ r.does }}</p>
+        </div>
+        {% if r.built %}<a class="btn ws-open" href="/closet/worksheets/sheet/#{{ u }}/{{ r.n }}">Open and print</a>{% else %}<span class="ws-soon">Planned</span>{% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+  {% endfor %}
+</div>
+{% endblock %}
