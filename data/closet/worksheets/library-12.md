@@ -67,6 +67,113 @@ write: Name three kinds of sources you would need to answer Draft 2, and one per
   lines: 3
   key: Sample: government pay data (US Bureau of Labor Statistics), research studies on the pay gap, the text and history of the Equal Pay Act; interview a labor economist or a human resources manager.
 
+# 7. Literature Review Sources
+minutes: 45
+materials: pencil, two highlighters
+ican: I can analyze abstracts for a literature review and group sources by theme and by method to find gaps in the research.
+directions: Your capstone question is: How does time in green spaces (parks, gardens, green schoolyards) affect teenagers? Read the four abstracts. Fill in the chart, then group the sources by theme and by method, and use the groups to find a gap and draft a synthesis sentence.
+mistakes: Students often summarize each source in turn ("Source A says... Source B says...") instead of grouping them; a literature review is organized by idea, not by source. Others group by finding only (positive or negative) and miss method, which is what tells you how much weight a finding can carry. Watch for students who treat the systematic review (D) as one more study; it is a summary of 31 studies, so its finding about weak designs speaks to the whole field.
+notes: All four studies, their numbers and the journals are made up for practice; real research on green space and young people exists and could replace them once students search a database. Grouping in the key: theme 1, well-being and stress (A and C); theme 2, attention and learning (B and D). Methods: survey (A), experiment (B), interviews (C), systematic review (D). Gaps a student can name: no experiment on well-being, no long-term study, every setting is a city or a school.
+
+## Read: Four abstracts
+source: Abstract A. "Park Visits and Perceived Stress in Urban Adolescents." *Journal of Youth Environments* (made up), 2024.
+  A survey of 2,310 students aged 13 to 18 in three large cities asked how many hours they spent in parks each week and measured stress with a standard questionnaire. Students who spent two or more hours a week in parks reported lower stress than those who spent none, after accounting for age, gender and family income. Because the survey was taken at one time, the direction of the link is unknown: calmer teens may simply visit parks more.
+source: Abstract B. "A Walk in the Park: Attention After Green and Urban Walks." *Cognition in Schools* (made up), 2025.
+  Ninety-six high school students were randomly assigned to a 20-minute walk either through a large park or along a busy downtown street, then took a standard attention test. Park walkers scored higher on the test, and the difference was largest for students who began with the lowest scores. The effect was measured only within an hour of the walk.
+source: Abstract C. "'It's Where I Breathe': Teens Describe a New Neighborhood Park." *Community Health Voices* (made up), 2023.
+  Researchers interviewed 22 teenagers in one neighborhood about a park opened two years earlier. Three themes stood out: the park as a calm place away from home and school, a sense of belonging when teens helped plan its programs, and worries about safety after dark. The study describes one neighborhood and does not measure stress or health.
+source: Abstract D. "Green Schoolyards and Academic Outcomes: A Systematic Review." *Review of Learning Spaces* (made up), 2026.
+  This review screened 412 studies and included 31 that measured green schoolyards and test scores or attention. Most found small positive links, but only four used experiments, and most followed students for less than one school year. The authors call for long-term and experimental studies.
+
+## Main: Analyze and group
+chart: Theme | Method | Main finding | Limit
+  labels: A; B; C; D
+  height: 0.6
+  key: A: well-being and stress / survey, 2,310 teens, three cities / 2+ hours a week in parks linked to lower stress / one point in time, direction unknown. B: attention / randomized experiment, 96 students / park walk raised attention scores, most for low scorers / short-term only. C: well-being and belonging / interviews, 22 teens, one neighborhood / calm, belonging, safety worries / one place, no health measure. D: attention and learning / systematic review of 31 studies / mostly small positive links / few experiments, short studies.
+table: Group by theme | Sources
+  - Well-being and stress | {A and C}
+  - Attention and learning | {B and D}
+table: Group by method | Sources
+  - Numbers from many people at one time (survey) | {A}
+  - Random assignment to conditions (experiment) | {B}
+  - People's own words (interviews) | {C}
+  - Summary of many studies (review) | {D}
+
+## Questions
+choice: Which pair of sources together gives the strongest case that green space improves attention?
+  - A and C
+  - A and B
+  * B and D
+  - C and D
+choice: Abstracts A and C both connect parks to feeling calmer. What does C add that A cannot?
+  - A larger sample
+  - Proof that parks cause lower stress
+  * Teens' own reasons for why the park feels calming, plus a concern (safety) A did not measure
+  - Test scores
+write: Use your groups to name one gap in this research that your own capstone could address.
+  lines: 3
+  key: Sample: No source tests well-being with an experiment or follows teens over time; a study could compare stress before and after a new park or garden program opens. (Also accept: no rural settings, no study longer than a school year.)
+
+## Stretch: Draft a synthesis sentence
+write: Write two sentences for your literature review that combine at least three sources by theme, citing them by letter, for example (A, C).
+  lines: 4
+  key: Sample: Studies of teen well-being link time in parks to lower stress (A) and describe parks as calm places where teens feel they belong (C), though neither can show that parks cause these benefits. Evidence on attention is stronger: a randomized walk study found short-term gains (B), and a review of 31 studies found mostly small positive links while noting that few were experiments (D).
+
+# 20. Portfolio Synthesis Map
+minutes: 50
+materials: pencil, colored pencils (optional)
+ican: I can map many sources by theme and viewpoint to show where they agree and where they conflict.
+directions: Your city is deciding whether to close four downtown blocks to cars and make them a pedestrian street. Read the ten source summaries. Place each source number in the map by its main theme and its viewpoint. Then use the map to find agreement, conflict and a possible common ground.
+mistakes: Students often sort by viewpoint only, making a simple "for and against" list; the map shows that the sides argue about different things (business, safety, air, access) and that some disagreements are about evidence, not values. Others place the "mixed" sources (4, 6 and 9) on the side they lean toward; these sources set conditions, and conditions are where common ground usually lies. A blank cell is a finding too: no source opposes the plan on safety or air quality grounds.
+notes: The city, sources and numbers are all made up. Each source has one main theme; if a student argues a second theme for a source with evidence from the summary, give credit and ask them to mark it with a dashed line. Map in the key: business: support 2 and 8, oppose 1; safety: support 3, mixed 4; air and noise: support 5, mixed 9; access: mixed 6, oppose 7 and 10. The business conflict pits a survey of fears (1) against measured sales (2, 8); the access conflict is about real needs that design could meet.
+
+## Read: Ten sources
+source: The portfolio
+  **1.** Downtown merchants' association survey, 2026: 62% of member shop owners say they fear losing customers who arrive by car.
+  **2.** City economic office study of three pedestrian streets in other cities: retail sales on those blocks rose 8 to 12% in the two years after they closed to cars.
+  **3.** City traffic safety report: on 12 car-free Sundays last summer, the downtown blocks had no pedestrian injuries, compared with 9 on ordinary Sundays the year before.
+  **4.** Fire department memo: supports the plan only if a clear lane for emergency vehicles stays open at all times.
+  **5.** State air quality monitors: nitrogen dioxide on the downtown blocks was about 20% lower on car-free days.
+  **6.** Disability rights group statement: removing parking would block people who cannot walk far; it supports the plan only with accessible drop-off zones and a free shuttle.
+  **7.** Delivery drivers' union letter: opposes the plan, since a short morning delivery window would not give drivers enough time.
+  **8.** Op-ed by a restaurant owner on a car-free street in a nearby city: outdoor seating doubled her summer business.
+  **9.** Residents' survey on the car-free Sundays: traffic noise fell, but many reported more late-night crowd noise.
+  **10.** Senior center newsletter: members oppose the plan because buses to downtown run only once an hour.
+
+## Main: The synthesis map
+table: Theme | Supports the plan | Mixed (supports with conditions) | Opposes the plan
+  height: 0.45
+  - Local business | {2, 8} | {none} | {1}
+  - Safety | {3} | {4} | {none}
+  - Air and noise | {5} | {9} | {none}
+  - Access (people with disabilities, older adults, deliveries) | {none} | {6} | {7, 10}
+
+## Questions
+choice: On which theme do the sources come closest to agreeing that the plan helps?
+  - Local business
+  * Air and noise
+  - Access
+  - They agree on none of them
+write: Explain the conflict on local business. Is it mainly a disagreement about values or about evidence? How could it be settled?
+  lines: 3
+  key: Mostly evidence: source 1 reports owners' fears, while 2 and 8 report measured sales gains elsewhere. It could be settled with data, such as a trial closure with sales counted before and after on these blocks.
+choice: Which group of sources best points to common ground?
+  - 1, 7 and 10, because they oppose the plan
+  - 2, 3 and 5, because they give numbers
+  * 4, 6 and 9, because they name the conditions under which the plan could work
+  - 3, 8 and 9, because they describe car-free days
+write: Sources 6, 7 and 10 raise access problems. Write one design change that answers at least two of them.
+  lines: 2
+  key: Sample: keep accessible drop-off zones and a free shuttle loop at each end of the street (sources 6 and 10), and allow deliveries until 11 a.m. through the emergency lane (source 7).
+write: Name one source you would weigh less in your synthesis, and explain why.
+  lines: 2
+  key: Sample: source 8, one owner's experience in another city, a single case with a reason to tell a good story; or source 1, since it measures fears rather than results.
+
+## Stretch: Write the synthesis
+write: Write a synthesis paragraph (4 to 5 sentences) that groups sources by theme, cites them by number, and states where they agree, where they conflict, and what a balanced plan would include.
+  lines: 6
+  key: Sample: Sources agree that a car-free street would make the blocks safer and cleaner: injuries fell to zero on car-free Sundays (3) and nitrogen dioxide dropped about 20% (5), though late-night noise rose (9). The sharpest conflict is over business, where owners' fears (1) run against measured sales gains in other cities (2, 8). Access is the most serious concern, raised by disability advocates, delivery drivers and older residents (6, 7, 10). A balanced plan would keep an emergency and delivery lane (4, 7), add drop-off zones and a shuttle (6, 10), and test the change with a trial that measures sales.
+
 # 21. Authority and Funding Audit
 minutes: 50
 materials: pencil, highlighter
@@ -112,3 +219,49 @@ write: Explain why a conflict of interest does not by itself make a source wrong
 write: You may cite only three of these sources in a balanced paper. Which three, and why?
   lines: 4
   key: Sample: Source 1 (strongest original research), Source 5 (independent summary of both sides and real costs), and the studies behind Source 3 or Source 2's cost argument once confirmed elsewhere; leave out Source 4, whose conflict and lack of an author make it the least trustworthy.
+
+# 33. Credit in Collaborative Work
+minutes: 40
+materials: pencil
+ican: I can decide how to credit team members, advisors and sources fairly in a collaborative project.
+directions: Read the four scenarios from capstone teams. For each, decide who gets credit and in what form: author, a contribution statement, an acknowledgment, or a citation or attribution. Use the credit guide, then answer the questions.
+mistakes: Students often treat every helper as an author, or leave out a teammate whose work was less visible (data cleaning, editing). Authorship goes with substantial work on the project and responsibility for it; help that shaped the work but was not part of it (feedback, a librarian's search tips) goes in acknowledgments. Others think a free image needs no credit; a CC BY license requires attribution, and a teammate's own photo deserves a credit line too.
+notes: The credit guide is a classroom version of common practice: authorship as substantial contribution plus responsibility for the work (as in many journal authorship guidelines), contribution statements in the style of the CRediT contributor roles used by many journals, and the Creative Commons advice to attribute with title, author, source and license (TASL). Schools may set their own rules for group grades; this sheet is about honest credit, not grading. All names and works are made up.
+
+## Warm up: The credit guide
+example: **Author:** did substantial work on the project and can explain and stand behind it.
+  **Contribution statement:** a line that says who did what ("Ana: survey design and data analysis").
+  **Acknowledgment:** thanks for help that shaped the work but was not part of doing it (advice, feedback, access).
+  **Citation or attribution:** credit for a source: a text, image, data set, tool or someone else's earlier work.
+
+## Main: Four scenarios
+source: Scenario 1: The silent analyst
+  Team Delta has three members. Ana designed the survey and analyzed all the data. Ben wrote most of the final paper. Chris made the slides and gave most of the presentation. The draft title page lists only Ben and Chris, since "they did the writing and the talking."
+write: How should Team Delta credit its members? Write a contribution statement.
+  lines: 3
+  key: All three are authors. Contribution statement: Ana: survey design and data analysis. Ben: writing the final paper. Chris: slides and presentation. Ana's analysis is substantial work the paper depends on, so leaving her off is unfair.
+source: Scenario 2: Advisors and helpers
+  Ms. Ruiz, the team's faculty advisor, met with them four times and suggested a stronger research question. A librarian showed them how to search two databases. A city engineer answered interview questions that appear in the paper.
+write: How should each of the three helpers be credited?
+  lines: 3
+  key: Ms. Ruiz and the librarian: acknowledgments (their help shaped the work but they did not do it). The city engineer: cite the interview as a source wherever it is quoted or used, and thank her in the acknowledgments if you like.
+source: Scenario 3: Three images
+  A team's slideshow uses (a) a photo taken by teammate Dev, (b) a chart from a city report, and (c) a photo from a sharing site under a CC BY 4.0 license, titled "River at Dawn," by user R. Moss.
+write: Write a credit line for image (c), then say how to credit (a) and (b).
+  lines: 3
+  key: (c) "River at Dawn" by R. Moss, from the sharing site, licensed under CC BY 4.0 (with links to the source and license). (a) A credit line such as "Photo by Dev, team member" (a teammate's work is still credited). (b) Cite the city report as the source of the chart, under the chart and in the references.
+source: Scenario 4: Building on last year
+  This year's team wants to reuse the survey questions that last year's team wrote, and to compare their new results with last year's data, which are stored in the school's capstone archive.
+choice: What is the best way to handle last year's work?
+  - Use it without credit, since it belongs to the school
+  - Rewrite the questions slightly so they count as new
+  * Ask permission if possible, then cite last year's team for both the survey questions and the data
+  - Make last year's team members co-authors of this year's paper
+write: Why is answer C better than making last year's team co-authors?
+  lines: 2
+  key: Last year's team did not work on this project or take responsibility for it, so authorship would not fit; a citation credits their earlier work as a source, which is what it is.
+
+## Stretch
+write: Your team member did almost no work all semester but wants to be listed as an author. Write what you would say to them and to your teacher, using the credit guide.
+  lines: 4
+  key: Sample: To the teammate: "Authors are people who did substantial work and can explain it. Can you take on the editing and the reference list this week so your name fits?" To the teacher: share the contribution statement showing who did what, and ask how the class handles uneven work, rather than quietly removing a name or quietly adding one.

@@ -36,6 +36,102 @@ write: Choose one extra detail. Explain why it does not support the main idea.
   starter: The detail "___" is an extra detail because ___.
   key: Example: The detail "A honeybee beats its wings more than 200 times a second" is an extra detail because it is about one bee's body, not about how the bees share work to keep the colony alive.
 
+# 7. Summarizing and Citing Check
+minutes: 35
+materials: pencil, highlighter if you have one
+ican: I can find the main idea of a passage, paraphrase sentences and cite evidence with a paragraph number.
+directions: Read the passage. Choose the main idea. Paraphrase two sentences in your own words. Then answer a question and cite your evidence with the paragraph number.
+mistakes: Students often pick a detail (trees use water) as the main idea. The main idea covers the whole passage. In paraphrases, watch for swapping one or two words and keeping the rest; push students to change the sentence structure too. Citations need the paragraph number, not "the passage says."
+notes: The passage is original to Curio Class (about 290 words). Shade and evaporation from leaves are the two main ways trees cool cities, and heat-related illness is a real risk on very hot days. Accept any paraphrase that keeps the meaning, changes the wording and structure, and adds no new ideas.
+
+## Read
+passage: Cool Streets: Why Cities Plant Trees | numbered
+  On a hot summer afternoon, a city street can feel like an oven. Dark pavement and roofs soak up sunlight all day and give off heat long after sunset. Scientists call a city that is warmer than the land around it an urban heat island. To cool these hot spots, many cities are planting more trees.
+  Trees cool a street in two main ways. First, their leaves block sunlight, so the sidewalk and the buildings underneath stay cooler. Second, trees pull water up from the soil and release it into the air through tiny openings in their leaves. When that water evaporates, it carries heat away, much like sweat cools a runner.
+  Shade helps people as well as streets. On very hot days, people who wait for buses or walk to work can get sick from the heat. A shady sidewalk gives them a safer place to be. Trees also cool nearby buildings, so people may need less air conditioning, which saves energy and money.
+  Planting trees in a city is not easy. Young trees need water for their first few years, and their roots need room to grow under sidewalks. Some neighborhoods have far fewer trees than others, and they are often the ones with the hottest streets. For that reason, some cities now plant first in the neighborhoods that need shade the most.
+  A tree takes years to grow tall enough to shade a street. However, each tree planted today can help keep a city cooler for decades.
+
+## Warm up
+text: **Word bank:** main idea, detail, paraphrase, in my own words, cite, evidence, according to, paragraph, urban heat island, evaporate, shade
+choice: Which sentence states the main idea of the whole passage?
+  - Dark pavement soaks up sunlight all day.
+  - Young trees need water for their first few years.
+  * Cities plant trees because trees cool hot streets and help people, though planting them takes care and planning.
+  - Some neighborhoods have fewer trees than others.
+
+## Main: Paraphrase
+write: Paraphrase: "Dark pavement and roofs soak up sunlight all day and give off heat long after sunset." (paragraph 1)
+  lines: 2
+  starter: In other words, ...
+  key: In other words, black roads and rooftops take in the sun's heat during the day and keep releasing it into the night.
+write: Paraphrase: "Young trees need water for their first few years, and their roots need room to grow under sidewalks." (paragraph 4)
+  lines: 2
+  starter: In other words, ...
+  key: In other words, a newly planted tree has to be watered for a few years and needs space under the pavement for its roots.
+
+## Main: Cite the evidence
+write: How do trees help people, not just streets? Cite one piece of evidence.
+  lines: 3
+  starter: According to the text, "___" (paragraph ___). This shows that ___.
+  key: According to the text, "A shady sidewalk gives them a safer place to be" (paragraph 3). This shows that trees protect people who must be outside on very hot days. (Also accepted: trees cool buildings so people need less air conditioning, paragraph 3.)
+choice: Which paragraph explains HOW trees cool a street?
+  - Paragraph 1
+  * Paragraph 2
+  - Paragraph 4
+  - Paragraph 5
+
+## Stretch: Short summary
+write: Write a 2-sentence summary of the passage. Use no opinions.
+  lines: 4
+  starter: The passage explains that ___. It also says ___.
+  key: The passage explains that cities plant trees to cool hot streets, because leaves give shade and water evaporating from leaves carries heat away. It also says trees protect people from heat and save energy, but they need care, so some cities plant first where shade is needed most.
+
+# 20. Procedure Steps in Order
+minutes: 30
+materials: pencil
+ican: I can put lab steps in order and write them as clear commands with sequence words.
+directions: A student wrote the steps of a ramp lab out of order and as a story. Write the letter of each step at its place on the line, 1 to 8. Then rewrite the steps as commands that start with a verb, adding a sequence word to each.
+mistakes: Students often keep "we" in the command ("First we gather ..."). A command starts with the verb: "First, gather ..." Watch for steps that are out of order because measuring comes before letting go; ask, "Can you measure before the car rolls?"
+notes: The lab asks how ramp height affects how far a toy car rolls. Order: 1 gather, 2 make the ramp, 3 mark the start line, 4 let the car go, 5 measure, 6 repeat three times and record, 7 add a book and repeat, 8 find averages and compare. Accept any sequence words that fit (first, next, then, after that, finally). Command verbs: gather, place, mark, release, measure, repeat, add, calculate.
+
+## Warm up: Command verbs
+example: **Story:** We poured 100 mL of water into the cup.
+  **Command with a sequence word:** First, **pour** 100 mL of water into the cup.
+text: **Word bank:** first, next, then, after that, finally, gather, place, mark, release, measure, record, repeat, add, calculate, compare
+fill:
+  - A command starts with a {verb}.
+  - "We wrote the time in the table" becomes "{Record} the time in the table."
+
+## Main: Put the steps in order
+timeline: 1 8 1
+  - 1 | We gathered a toy car, a board, two books, a meter stick and tape.
+  - 2 | We put one end of the board on a book to make a ramp.
+  - 3 | We put a piece of tape at the top of the ramp as a start line.
+  - 4 | We set the car on the start line and let it go without pushing it.
+  - 5 | We measured how far the car rolled from the bottom of the ramp, in centimeters.
+  - 6 | We did it three times and wrote each distance in the table.
+  - 7 | We added the second book to make the ramp higher and did the same steps again.
+  - 8 | We found the average distance for each ramp height and compared them.
+
+## Main: Rewrite as commands
+table: Step | Command with a sequence word
+  height: 0.5
+  - 1 | {First, gather a toy car, a board, two books, a meter stick and tape.}
+  - 2 | {Next, place one end of the board on a book to make a ramp.}
+  - 3 | {Then, mark a start line at the top of the ramp with tape.}
+  - 4 | {After that, place the car on the start line and release it without pushing.}
+  - 5 | {Next, measure how far the car rolls from the bottom of the ramp in centimeters.}
+  - 6 | {Then, repeat three times and record each distance in the table.}
+  - 7 | {After that, add a second book and repeat steps 4 to 6.}
+  - 8 | {Finally, calculate the average distance for each height and compare.}
+
+## Stretch: Why order matters
+write: Why does a procedure need clear steps in order? Name one problem that could happen if steps 4 and 5 were switched.
+  lines: 3
+  starter: A procedure needs clear steps so that ___. If steps 4 and 5 were switched, ___.
+  key: A procedure needs clear steps so that anyone can repeat the test the same way and get fair results. If steps 4 and 5 were switched, you would try to measure before the car had rolled, so there would be nothing to measure.
+
 # 21. Lab Reports and Claims Check
 minutes: 35
 materials: pencil
@@ -83,3 +179,48 @@ write: Why did the class stir every cup 10 times and use the same size of sugar 
   lines: 2
   starter: They kept these the same so that ___.
   key: They kept these the same so that only the water temperature changed, and they could tell the temperature caused the difference (a fair test with controlled variables).
+
+# 33. Casual to Formal
+minutes: 30
+materials: pencil
+ican: I can rewrite casual sentences with idioms as formal sentences for a school report.
+directions: Match each idiom to its meaning. Then rewrite six casual sentences as formal sentences for a school report. Replace each idiom with clear, exact words.
+mistakes: Students often keep part of the idiom ("The project was very much a piece of cake"). Have them say the meaning first, then write it. Watch for contractions and slang (gonna, kinda, super) that stay behind; a formal report spells words out.
+notes: Accept any formal rewrite that keeps the meaning, removes the idiom and uses no contractions or slang. "Blew us away" means amazed us; "a drop in the bucket" means a very small amount compared with what is needed; "buckle down" means start working hard.
+
+## Warm up: What does it mean?
+match: Match each idiom to its meaning.
+  - a piece of cake = very easy
+  - all ears = listening carefully
+  - back to the drawing board = start over with a new plan
+  - blew us away = amazed us
+  - a drop in the bucket = a very small amount compared with what is needed
+  - hit the books = study
+example: **Casual:** Our team was over the moon when we won.
+  **Formal:** Our team was extremely happy when we won.
+
+## Main: Make it formal
+write: "The science fair project was a piece of cake for our team."
+  lines: 2
+  key: Our team found the science fair project easy to complete.
+write: "We were all ears when the scientist talked about volcanoes."
+  lines: 2
+  key: We listened carefully when the scientist spoke about volcanoes.
+write: "Our first bridge design fell apart, so we went back to the drawing board."
+  lines: 2
+  key: Our first bridge design failed, so we started over with a new plan.
+write: "The test results totally blew us away."
+  lines: 2
+  key: The test results amazed us.
+write: "Picking up trash at the park is a drop in the bucket, but it's still worth it."
+  lines: 2
+  key: Collecting litter at the park removes only a small amount of the pollution, but it is still worthwhile.
+write: "Our teacher said to hit the books before the test, so we buckled down."
+  lines: 2
+  key: Our teacher advised us to study before the test, so we began working hard.
+
+## Stretch: Your turn
+write: Write one casual sentence with an idiom about a school event. Then write the formal version.
+  lines: 4
+  starter: Casual: ___. Formal: ___.
+  key: Example: Casual: The talent show was a blast, and everyone was on cloud nine. Formal: The talent show was very enjoyable, and everyone was extremely happy.

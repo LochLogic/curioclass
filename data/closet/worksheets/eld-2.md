@@ -51,6 +51,91 @@ write: Write a three-step direction for a partner. Use first, next and last. You
   key: Answers vary. Example: "First, draw a circle in the middle of the box. Next, draw two eyes in the circle. Last, draw a hat above the circle." Each step has an action word and a place word.
 draw: Partner's box | 1.8
 
+# 7. Classroom Language Review
+minutes: 25
+materials: pencil, crayons
+ican: I can follow written directions, ask questions when I don't understand and build on what a classmate says.
+directions: (Read aloud.) Read and follow the directions on the picture page. Then choose the best question to ask when you don't understand, and finish the sentence frames for building on a classmate's idea.
+mistakes: Students pick "What?" as a clarifying question because it is short; it does not tell the speaker what to explain. Push for questions that name the confusing part. In build-on frames, watch for students who only repeat the classmate's idea; the frame needs a new idea or reason after "and."
+notes: Read the directions aloud for students still building reading, but let them track the words with a finger. The clarifying questions and build-on frames match ones posted in most classrooms; post them if they are not up yet. For the build-on frames, read the classmate's idea aloud and have partners say their sentence before writing it.
+
+## Warm up: Read and do
+picword:
+  - book | {book}
+  - apple | {apple}
+  - pencil | {pencil}
+  - clock | {clock}
+write: First, write the name of each picture on its line. Next, circle the apple. Last, draw a line from the pencil to the book.
+  lines: 0
+  key: Each picture is labeled (book, apple, pencil, clock); the apple is circled; a line joins the pencil and the book.
+write: First, put an X on the clock. Next, draw a small star above the book.
+  lines: 0
+  key: The clock has an X, and a star is drawn above the book.
+
+## Main: Ask when you don't understand
+choice: Your teacher says, "Find the area of the rug." You don't know what "area" means. What do you ask?
+  - What?
+  * What does "area" mean?
+  - Can I go to the library?
+choice: Your partner explains a game too fast. What do you ask?
+  - Why are you talking?
+  - Is it lunch time?
+  * Can you say that again more slowly, please?
+choice: The directions say "Underline the verb," and you are not sure which word is the verb. What do you ask?
+  * Can you show me an example of a verb?
+  - Do I have to do this?
+  - Where is my eraser?
+
+## Main: Build on an idea
+text: **Word bank:** agree, add, also, because, different
+write: Maya says, "Dogs make good pets because they are friendly."
+  lines: 2
+  starter: I {agree} with Maya, and I want to {add} that ...
+  key: I agree with Maya, and I want to add that dogs can learn tricks.
+write: Leo says, "Winter is the best season because you can play in the snow."
+  lines: 2
+  starter: I have a {different} idea. I think ... {because} ...
+  key: I have a different idea. I think summer is the best season because we can swim.
+write: Ana says, "We should plant flowers by the school door."
+  lines: 2
+  starter: Ana's idea makes me think we could {also} ...
+  key: Ana's idea makes me think we could also put a bench by the flowers.
+
+# 20. First I, Then I, So
+minutes: 25
+materials: pencil
+ican: I can explain how I solved an addition problem with first, then and so.
+directions: (Read aloud.) Read the example. Solve each problem. Then explain your steps with the frame: "First I ___. Then I ___. So the answer is ___."
+mistakes: Students write the answer only, or write "First I added. Then I added." Push for the numbers in each step. In problem 2, watch for children who add 2 to make 40 and then forget that only 3 of the 5 are left. In problem 3, some add 20 and then add 2 tens again.
+notes: Each problem uses a different strategy so students practice the language of each: tens and ones (problem 1), make a ten (problem 2) and jump on a number line (problem 3). Accept a correct explanation with a different strategy as long as the steps and the answer are right. Have partners read their frames to each other before writing.
+
+## Warm up: The frame
+example: **14 + 25.** First I added the tens: 10 + 20 = 30. Then I added the ones: 4 + 5 = 9. So the answer is 39.
+text: **Word bank:** tens, ones, make a ten, jump, added, left
+fill: 32 + 6 = {38}
+
+## Main: Explain three problems
+write: **Problem 1:** 23 + 14 = ? Add the tens, then the ones.
+  lines: 2
+  starter: First I added the tens: 20 + 10 = {30}. Then I added the ones: 3 + 4 = {7}. So the answer is {37}.
+  key: First I added the tens: 20 + 10 = 30. Then I added the ones: 3 + 4 = 7. So the answer is 37.
+write: **Problem 2:** 38 + 5 = ? Make a ten.
+  lines: 2
+  starter: First I added 2 to 38 to make {40}. Then I added the {3} that were left. So the answer is {43}.
+  key: First I added 2 to 38 to make 40. Then I added the 3 that were left (5 = 2 + 3). So the answer is 43.
+write: **Problem 3:** 46 + 27 = ? Jump on a number line.
+  lines: 2
+  starter: First I jumped 20 from 46 to {66}. Then I jumped {7} more to {73}. So the answer is {73}.
+  key: First I jumped 20 from 46 to 66. Then I jumped 7 more to 73. So the answer is 73.
+numberline: 40 80 1
+  show: 40 50 60 70 80
+
+## Stretch: Your way
+write: Sam has 29 stickers. He gets 16 more. How many stickers does he have? Solve it your way and explain.
+  lines: 3
+  starter: First I ... Then I ... So the answer is ...
+  key: 45 stickers. Example: First I added 1 to 29 to make 30. Then I added the 15 that were left: 30 + 15 = 45. So the answer is 45. (Tens and ones also works: 20 + 10 = 30, 9 + 6 = 15, 30 + 15 = 45.)
+
 # 21. Math Talk Review
 minutes: 25
 materials: pencil
@@ -97,3 +182,42 @@ write: Lena says 52 + 19 = 61. Do you agree? Explain.
   lines: 3
   starter: I {disagree} because ...
   key: I disagree because 50 + 10 = 60 and 2 + 9 = 11, and 60 + 11 = 71. Lena forgot the ten she made from the ones.
+
+# 33. Mail Carriers Long Ago and Today
+minutes: 25
+materials: pencil, crayons
+ican: I can compare how mail carriers worked long ago and today with "Long ago ___. Today ___."
+directions: (Read aloud.) Look at each pair of pictures. Talk about what is different. Then finish each sentence frame: "Long ago, mail carriers ___. Today, mail carriers ___."
+mistakes: Students mix up the order and write today's picture in the "Long ago" part. Have them touch the first picture of the pair and say "long ago" before they write. Some write single words ("horse"); push for a full idea ("rode in a wagon pulled by a horse").
+notes: "Long ago" here means the early 1900s. Facts behind the pictures: city letter carriers in the early 1900s walked their routes with leather satchels, and rural carriers, who began getting free delivery around 1900, often used a horse and wagon or buggy. Packages were delivered by the Post Office only after Parcel Post began in 1913, so before then carriers brought mostly letters. Today carriers drive mail trucks, deliver many packages and scan them with a handheld scanner to track them. Many cities had more than one home delivery a day until 1950, when home delivery was cut to once a day. Share old photos from the Smithsonian's National Postal Museum if you can.
+
+## Warm up: Long ago or today?
+picword:
+  - mail-buggy | long ago
+  - mail-truck | today
+  - envelope | long ago
+  - package | today
+text: **Word bank:** horse, wagon, truck, letters, packages, bag, scanner, walked, drive
+
+## Main: Compare
+write: Picture pair 1: the wagon and the truck.
+  lines: 1
+  starter: Long ago, mail carriers {rode in a wagon pulled by a horse}. Today, mail carriers {drive trucks}.
+  key: Long ago, mail carriers rode in a wagon pulled by a horse (or walked). Today, mail carriers drive trucks.
+write: Picture pair 2: the letter and the package.
+  lines: 1
+  starter: Long ago, mail carriers brought mostly {letters}. Today, mail carriers bring {many packages}.
+  key: Long ago, mail carriers brought mostly letters. Today, mail carriers bring letters and many packages.
+picword:
+  - satchel | long ago
+  - scanner | today
+write: Picture pair 3: the leather bag and the scanner.
+  lines: 1
+  starter: Long ago, mail carriers carried a big leather {bag}. Today, mail carriers also use a {scanner}.
+  key: Long ago, mail carriers carried a big leather bag. Today, mail carriers also use a scanner to keep track of packages.
+
+## Stretch: What stayed the same?
+write: What do mail carriers do that is the same long ago and today?
+  lines: 2
+  starter: Long ago and today, mail carriers ...
+  key: Long ago and today, mail carriers bring mail to people's homes (they still carry a bag and walk part of the route).
