@@ -4,17 +4,19 @@ The one plan for Curio Class: what is done, what comes next, and in what order. 
 "Later phases" section of docs/PHASE0-PLAN.md, the Supply Closet roadmap, docs/agents/SCALE-PLAN.md,
 docs/LIBRARY-PLAN.md, docs/SITE.md ("Not done yet") and docs/agents/roadmap/.
 
-This file holds the order and the status. The design detail stays in each track's own plan, linked from its section.
+Why and where: docs/VISION.md (the north star, 2026-11-03). This file holds the order and the status. The design detail stays in each track's own plan, linked from its section.
 When a roadmap item starts, finishes or moves, update it here first, then post it to the Review Desk's Roadmap tab
 (`python scripts/desk_roadmap.py <out.json>`, then ArtifactData set stats/roadmap).
 
-## Where it stands (2026-10-30)
+## Where it stands (2026-11-03)
 
 | | Count |
 |---|---|
-| Tool concepts in the catalog | 798 |
+| Tool concepts in the catalog | 800 |
 | Live tools | 81 |
 | Specs written | 238 more, plus 11 built and waiting on voice |
+| Built by Codex, waiting on review | about 80 (8 reviewed) |
+| Worksheets live | 1,008 of 8,947 planned (live 2026-11-03) |
 | Modules with Word Wall cards | all, English and Spanish |
 | Anchor charts / posters / Game Night games | 74 / 54 / 104 |
 | Sub Day packets | 76 (one per live tool) |
@@ -27,6 +29,19 @@ When a roadmap item starts, finishes or moves, update it here first, then post i
 Reach and craft together (Cory, 2026-10-28). As many teachers as possible should know Curio Class exists; nobody
 needs to use a tool that does not fit their class, but every tool must be really good. Free for good: no paywall,
 no accounts, no ads, no tracking.
+
+## Now (set 2026-11-03, Review Desk q-plan cards)
+
+1. **Codex:** Nonsense Words and Sight Words (grade 2 teacher request) first, then keyword-fishing and input-or-output.
+   Cory reads tools/nonsense-words/words.txt (the 200 words) before Nonsense Words ships.
+2. **Finish a cohort before more builds** (BASELINE rule 14): Credit Card Builder, Image Transformer, Data Policy
+   Council, Puppet Show Feelings, World Music Map and Near and Far, end to end under the new review (people art,
+   audit that saves as it goes, preflight). Repeat problems go in an issue ledger and become kit or brief fixes. A
+   preflight and the ledger are adopted now; a per-tool learning contract and readiness-as-a-checklist are tried on
+   this cohort and kept only if Refine counts fall.
+3. **Then scale back up:** Codex builds resume with at most about 10 built and unreviewed. People art is filled for the
+   11 tools missing it (314 images), each set on a contact sheet for Cory plus a fresh representation check.
+4. **Worksheets:** Cory reviews the live shelf; then the rest of wave 2 (about 100 sheets) and wave 3.
 
 ## Track 1: Tools (the main work)
 
@@ -51,6 +66,10 @@ session runs it), docs/agents/decisions/BASELINE.md (Cory's standing rules).
    the way Codex does (docs/agents/CODEX.md); Refine, merging and deploys stay in the main session. One simple tool
    first, in its own worktree, with Cory starting each round in Antigravity. The first run shows whether it can run
    the project's scripts and drive Chrome, and how far its usage limits reach. Judge it on Refine counts, next to Codex.
+
+Shared code is grown from finished tools: a kit engine is promoted only after three finished tools use the same code
+(BASELINE rule 13; the meta analysis names art-museum, rhythm and instruments as the first candidates). Older tools pick
+it up later and only when needed.
 
 ### Held-back collections (their own waves)
 
@@ -113,9 +132,18 @@ Night, Word check, closet search, Take home, words CSV. What is left, in order:
      with student copy and answer key) and 10 built sheets across K-Algebra I, checked by `scripts/worksheets.py`.
    - **Wave 1 done 2026-11-01:** 398 more sheets (two per class: the first and one mid-year), 408 built in all across
      204 classes (world languages held). Every student copy prints within its limit (K 1 page, others 2).
-   - **Wave 2 under way:** 700 more, three or four per class spread through the year (about 1,108 when done).
+   - **Wave 2 mostly done:** 600 of 700 written (1,008 in all). The rest is a later batch.
+   - **Live 2026-11-03** (Cory: the site is not announced, so he reviews it live).
 
-7. **The Map** (Phase F, last): regions, trails and a standards view. Research is done (docs/MAP-RESEARCH.md);
+7. **Teacher Desk** (new 2026-11-03): a sound board (clap, cheer, buzzer, chimes), timers, a noise meter and a group
+   maker, made in code; then classroom music in up-beat, quiet time and game-show sets (original or CC0 only, with a
+   license file), and a game-show quiz board.
+8. **Learning Supports** (new 2026-11-03): tools for learners who need extra support, worded carefully but
+   confidently. Each says what approach it follows (for example decodable nonsense words used in structured
+   literacy) and that it is practice, not a diagnosis or treatment; a fresh agent reviews the wording. Nonsense Words
+   is its first tool. A site-wide accessibility bar (dyslexia-friendly font, high contrast, reduced motion) follows
+   the cohort kit fixes. An IEP goal bank is parked until a special-education reviewer is found.
+9. **The Map** (Phase F, last): regions, trails and a standards view. Research is done (docs/MAP-RESEARCH.md);
    drafting is next when its turn comes.
 
 **Still owed, any time:** a real-printer test of every print format, the Spanish native review, family game
@@ -132,7 +160,8 @@ Detail: docs/LIBRARY-PLAN.md. About 700 stories are curated and processed into r
 
 ## Track 4: The site
 
-Detail: docs/SITE.md. Open items: the www.curioclass.org redirect, dark mode, preview images for bench tools, and a
+Detail: docs/SITE.md. Watch: the deploy holds 17,866 files of the 20,000 limit (2026-11-03); the next worksheet waves
+and units need a plan for it (one page per class rather than per sheet, or fewer asset files). Open items: the www.curioclass.org redirect, dark mode, preview images for bench tools, and a
 request page for teachers (the About page email does this for now).
 
 ## Track 5: Outreach and funding (new 2026-10-28)
@@ -150,24 +179,41 @@ Detail: docs/funding/ (one-pager, cost sheet, prospect list).
    listings that point back here, teacher subreddits and groups, ed social media. First users: Cory's family of
    teachers.
 
-## Track 6: Going public
+## Track 6: Going public (done)
 
-The repo (LochLogic/curioclass) goes public once development is much further along (Cory, 2026-10-28). Before that:
-a clean README, the license files, and no private data in history.
+The repo (LochLogic/curioclass) has been public since 2026-10-28. The site is live but not announced; outreach is
+Track 5.
 
-## Track 7: Full curriculum (new 2026-10-31, Cory)
+## Track 7: Curriculum (merged 2026-11-03: units, then Tracks, then the Binder)
 
-Grow from single tools into complete courses a teacher can run start to finish: a scope and sequence for each subject and
-grade, built from the tools, lesson plans, Word Walls, charts, worksheets and Reading Room stories, with assessments and
-pacing. To plan once tools, plans and worksheets are far enough along: which subject and grade comes first, and what
-counts as a full course.
+From single tools to complete courses a teacher can run start to finish, one ladder:
+
+1. **Units** (the capstone, Cory 2026-11-03): worksheets, handouts, topics and ready-made prompts packaged into a 1 to
+   5 day, mostly non-tech unit, with daily plans, a partner game, a short assessment and optional practice drills
+   (math facts and the like). Projector slides (warm-up, launch, turn and talk, exit ticket) are one part of a unit day.
+   **Pilot:** grade 4 area and perimeter and a grade 6 argument essay; Cory reviews both before a unit wave.
+2. **Tracks:** units in a year's order with pacing for each subject and grade (the vision's "Curio Tracks"; the public
+   name is to be workshopped when it ships, keeping "Curio Class" whole).
+3. **The Binder:** export a course as a link, a zip or an LMS course cartridge.
+
+Later: score codes (a code and QR a student shows the teacher, scanned on the teacher's own device; never called
+proof or cryptographic) and the state standards crosswalk.
+
+## Track 8: Beyond School (new 2026-11-03, late)
+
+Modules past K-12: ACT/SAT-style practice first, then one trade (electrical, plumbing or automotive), then
+certification prep such as security fundamentals. Titles never use trademarks or branded material; bar exam prep
+comes last and needs expert review.
 
 ## Late and far back
 
 - **Worksheet Generator** (late, parked 2026-10-26): click-only practice sheets per module with checked answer keys.
-  Design in docs/SUPPLY-CLOSET-PLAN.md. Comes after the closet shelves. Word check was its first slice.
+  Design in docs/SUPPLY-CLOSET-PLAN.md. Comes after the closet shelves, as extra practice for the authored
+  worksheets' concepts (it is the vision's "procedural worksheet factory"). Word check was its first slice.
 - **Classroom projects by standard** (future input): an off-screen project per module from Cory's notes.
   docs/agents/roadmap/CLASSROOM-PROJECTS.md.
+- **Class Cast** (parked 2026-11-03): live class sync through a relay. Only with funding and someone to keep a server
+  running.
 - **Read-aloud for grades 3-12** in the Reading Room (end of the roadmap).
 - **Instrument learning paths** (far back, parked 2026-10-25): one tool per instrument with 10 to 12 levels on a shared
   engine (mic pitch detection, Web MIDI, Note Ninja staff). Recorder first, then keyboard, ukulele, guitar, voice;
