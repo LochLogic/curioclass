@@ -13,13 +13,13 @@ When a roadmap item starts, finishes or moves, update it here first, then post i
 | | Count |
 |---|---|
 | Tool concepts in the catalog | 800 |
-| Live tools | 81 |
+| Live tools | 83 |
 | Specs written | 238 more, plus 11 built and waiting on voice |
 | Built by Codex, waiting on review | about 80 (8 reviewed) |
 | Worksheets live | 1,008 of 8,947 planned (live 2026-11-03) |
-| Modules with Word Wall cards | all, English and Spanish |
+| Modules with Word Wall cards | 762 of 797 (4,413 cards), English and Spanish |
 | Anchor charts / posters / Game Night games | 74 / 54 / 104 |
-| Sub Day packets | 76 (one per live tool) |
+| Sub Day packets | 79 |
 | Reading Room stories curated and processed | about 700, not live yet |
 
 `python scripts/board.py` gives the live tool counts (docs/BUILD-BOARD.md).
@@ -125,16 +125,16 @@ Night, Word check, closet search, Take home, words CSV. What is left, in order:
    Written to the child's reading level from grade 3; K-2 sheets are run by a grown-up. Detail and the sheet
    framework: docs/BREAK-BOX-PLAN.md; drafts in docs/break-box/, checked by `scripts/check_breaks.py`.
    - **Done:** the framework and the draft sheets for all 13 grades.
-   - **Next:** Cory reads the drafts (all K-2 and anything with heat, tools or going out; one in four of the rest).
-   - **Then:** move the sheets into `data/closet/breaks/`, build the shelf pages (`/closet/break-box/`), Spanish,
-     and the extras in the plan (a "pick for me" filter, a printable break-week pack).
+   - **Done 2026-11-03:** shelf live with 390 sheets (`data/closet/breaks/`, `/closet/break-box/`).
+   - **Still open:** Cory's read (all K-2 and anything with heat, tools or going out; one in four of the rest),
+     Spanish, and the extras in the plan (a "pick for me" filter, a printable break-week pack).
 6. **Worksheets** (new 2026-10-31, Cory): printable student worksheets to go with tools and modules, as a Supply Closet
    shelf. Paper is fine here, since paper is the product. Scoped 2026-11-01: 40 to 50 authored sheets per class (a
-   grade of a subject, a high school course, or a language level), 215 classes, about 9,000 sheets, each with a teacher
+   grade of a subject, a high school course, or a language level), 215 classes, 8,947 sheets, each with a teacher
    page and answer key. Detail: docs/WORKSHEETS-PLAN.md; concept lists in docs/worksheets/, checked by
    `scripts/check_worksheets.py`.
    - **Done 2026-11-01:** concept lists for all 215 classes (8,947 sheets), checker clean.
-   - **Now:** Cory reviews the lists (French has no modules yet; ASL waits on the ASL decision; hard history sheets
+   - **Now:** Cory reviews the lists (French has no modules yet; ASL waits on the ASL sign-strip sample; hard history sheets
      get the fresh review).
    - **Pilot done 2026-11-01:** the shelf (`/closet/worksheets/`, a page for each of the 215 classes, one shared viewer
      with student copy and answer key) and 10 built sheets across K-Algebra I, checked by `scripts/worksheets.py`.
@@ -231,12 +231,13 @@ From single tools to complete courses a teacher can run start to finish, one lad
    5 day, mostly non-tech unit, with daily plans, a partner game, a short assessment and optional practice drills
    (math facts and the like). Projector slides (warm-up, launch, turn and talk, exit ticket) are one part of a unit day.
    **Pilot:** grade 4 area and perimeter and a grade 6 argument essay; Cory reviews both before a unit wave.
-2. **Tracks:** units in a year's order with pacing for each subject and grade (the vision's "Curio Tracks"; the public
+2. **Tracks:** units in a year's order with pacing for each subject and grade (the vision's Tracks idea; the public
    name is to be workshopped when it ships, keeping "Curio Class" whole).
 3. **The Binder:** export a course as a link, a zip or an LMS course cartridge.
 
 Later: score codes (a code and QR a student shows the teacher, scanned on the teacher's own device; never called
-proof or cryptographic) and the state standards crosswalk.
+proof or cryptographic) and the state standards crosswalk. Also open (from PHASE1-SCOPE): a second reader (a
+teacher) checks best-fit standards alignment for one subject.
 
 ## Track 8: Beyond School (new 2026-11-03, late)
 
@@ -246,7 +247,7 @@ comes last and needs expert review.
 
 ## Late and far back
 
-- **Worksheet Generator** (late, parked 2026-10-26): click-only practice sheets per module with checked answer keys.
+- **Worksheet Generator** (15-generator test group live 2026-11-03, /closet/worksheets/make/): click-only practice sheets per module with checked answer keys.
   Design in docs/SUPPLY-CLOSET-PLAN.md. Comes after the closet shelves, as extra practice for the authored
   worksheets' concepts (it is the vision's "procedural worksheet factory"). Word check was its first slice.
 - **Classroom projects by standard** (future input): an off-screen project per module from Cory's notes.

@@ -62,7 +62,8 @@ Rules by subject:
 
 - The Grade 3 pilot stays: math first (strongest evidence), then science, ELA and social studies.
 - Draft math for all grades right after the pilot, since its basis is the most solid.
-- A small checker (`scripts/check_sequence.py`) should confirm every module appears exactly once, `order` has no
+- A small checker (planned as `scripts/check_sequence.py`, not created; `scripts/teaching_map.py` loads the sequence
+  and returns warnings) should confirm every module appears exactly once, `order` has no
   gaps within a region, every `builds_on` id exists and points to the same or an earlier grade, and `basis` is from
   the list.
 - The `/map/` about section names the CC BY sources with attribution and links to their licenses.

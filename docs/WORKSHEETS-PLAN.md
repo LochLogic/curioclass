@@ -1,7 +1,7 @@
 # Worksheets: printable practice sheets (plan)
 
-Status: CONCEPT LISTS, started 2026-11-01 (Cory). Track 2, Supply Closet, item 6 in docs/ROADMAP.md. Nothing is built
-or on the site yet.
+Status: LIVE 2026-11-03, 1,008 sheets built across 204 units; concept lists for all 215 classes (8,947 sheets).
+Started 2026-11-01 (Cory). Track 2, Supply Closet, item 6 in docs/ROADMAP.md.
 
 ## What it is
 
@@ -9,7 +9,7 @@ A Supply Closet shelf of print-ready student worksheets a teacher can hand out t
 every class Curio Class covers, K-12. Each worksheet is hand-designed around one skill or idea from a module, prints
 on US Letter in black and white, and comes with a teacher page (answer key and notes).
 
-This is not the parked Worksheet Generator (docs/SUPPLY-CLOSET-PLAN.md, "Late roadmap"). The generator makes endless
+This is not the Worksheet Generator (docs/SUPPLY-CLOSET-PLAN.md, "Late roadmap"). The generator makes endless
 random practice from templates; these are authored sheets, each one designed. The two fit together later: an
 authored sheet can carry a "more like this" link to the generator for its module when the generator exists.
 The first 15 generators went live as a test group on 2026-11-03 (/closet/worksheets/make/, docs/SUPPLY-CLOSET-PLAN.md
@@ -26,7 +26,7 @@ Cory chose "by class" (2026-11-01): a list for each class a teacher actually tea
 | High school courses | course: Algebra I, Geometry, Algebra II, Precalculus, Statistics, Calculus; Earth and Space, Biology, Chemistry, Physics, Environmental; World History, US History since 1877, Government, Economics, Psychology | 16 |
 | CTE | grade 6-8 (Career Exploration), then course: Career Pathways, Personal Finance | 5 |
 | World Languages | proficiency level, not grade: Spanish and ASL Novice (K-5), Novice (6-12), Intermediate, Advanced; French Novice, Intermediate, Advanced | 11 |
-| **Total** | | **215 units, about 9,700 worksheets** |
+| **Total** | | **215 units, 8,947 worksheets** |
 
 `python scripts/check_worksheets.py --units` lists them all; `--modules <unit-id>` lists the modules a unit covers.
 The units come from `data/courses.csv` and `data/modules.csv`, so a new module shows up in its units automatically.
@@ -247,5 +247,5 @@ row labels, the staff, graphs that print for students, code listings, teacher-on
 4. **Site:** `/closet/worksheets/` by grade and subject, a sheet page that prints the student pages, and a separate
    teacher page with the key (the key never prints on the student copy). Module pages get a Worksheets row.
 5. **Spanish** for the student pages, then the native-speaker review (closet rule 6).
-6. **Held collections** keep their holds: ASL sheets wait for the ASL design decision, hard history sheets get the
+6. **Held collections** keep their holds: ASL sheets wait for the ASL sign-strip sample, hard history sheets get the
    fresh review, Spanish-language sheets the native review.

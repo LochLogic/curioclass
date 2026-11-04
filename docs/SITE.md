@@ -47,7 +47,6 @@ Needs Python with `jinja2` and `markdown`. `dist/` is generated and not committe
 | `/tools/<id>/sub/` | Sub Day packet (Phase B): five Letter pages, shown when `tools/<id>/exit.md` exists; built only with `--closet` | no (noindex; it repeats the plan) |
 | `/tools/<id>/` | On the bench page (unbuilt) | no (noindex) |
 | `/tools/<id>/<id>.html` | The tool file itself: play and download | n/a |
-| `/bench/` | All unbuilt concepts | no |
 | `/search/` | Client-side search over `search-index.json` | no |
 
 ## How a concept becomes a built tool

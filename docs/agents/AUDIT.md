@@ -1,7 +1,7 @@
 # Overlap and Gap Audit
 
 Cory's step 2 of the 2026-10-27 plan: after every catalog tool has at least an idea card, review the whole catalog
-(live, specced and idea tools, 762 in all) for overlap between tools and for standards no tool teaches well. It reruns
+(live, specced and idea tools, 762 in all at the time; 800 today) for overlap between tools and for standards no tool teaches well. It reruns
 the first overlap pass (docs/agents/overlap/method.md) on the new concept lines and adds the gap work the idea pass
 raised. Output goes in docs/agents/audit/.
 
@@ -50,7 +50,7 @@ The gap agent never edits data/. The orchestrator applies the changes.
 
 The orchestrator merges the tag files into tags.csv and runs `python scripts/overlap/rule.py`. One or two judge agents
 then group the hits into clusters and judge each by hand, the way clusters.md did. They also take the overlap risks the
-idea cards named (in IDEA-PASS-LOG.md). Their output is docs/agents/audit/clashes.md, with these fixes:
+idea cards named (in IDEA-PASS-LOG.md). Their output is docs/agents/audit/clashes-k8.md and docs/agents/audit/clashes-9-12.md, with these fixes:
 
 - **Live tools never move.** A planned tool changes instead.
 - **Reshape** (a new concept line in the same module) is the default fix.

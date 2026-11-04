@@ -19,9 +19,9 @@ vocabulary cards in English and Spanish, and a family game for home.
 
 ## Where it stands (live since October 2026)
 
-- **76 tools live,** from a kindergarten computer builder to a high school fact-check lab. Open any of them now.
-- **797 tools planned** across every grade and subject. The 721 still to build are on the site already, as cards on
-  "the bench" at curioclass.org/bench, so you can see exactly what your support finishes.
+- **83 tools live,** from a kindergarten computer builder to a high school fact-check lab. Open any of them now.
+- **800 tools planned** across every grade and subject. The 717 still to build are on the site already, as sketches
+  on each module page, so you can see exactly what your support finishes.
 - **Supply Closet live:** 4,400+ vocabulary cards in English and Spanish, 104 family games, anchor charts and posters.
 - **Reading Room in progress:** about 700 public domain stories, curated and processed.
 - Every tool goes through a written build process: a spec, a build, three independent quality reviews (teaching,
@@ -35,7 +35,7 @@ builds and reviews each tool, and the hardware that runs art, voice and builds s
 | Gift | What it does |
 |---|---|
 | $5,000 | A year of uninterrupted AI compute |
-| $10,000 | Compute plus hardware: the fastest path to all 797 tools |
+| $10,000 | Compute plus hardware: the fastest path to all 800 tools |
 | $16,000 | The full first-year budget, including native-speaker Spanish review, paid teacher pilots and outreach |
 
 I put in about 15 hours a week myself (about $45,000 a year of in-kind work). Full budget: docs/funding/COSTS.md.

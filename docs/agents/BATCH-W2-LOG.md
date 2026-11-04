@@ -132,7 +132,7 @@ Open questions:
 - No renames.
 - Family engines: catalog-column-rules uses data-desk and asks for `t.validate(dictionary)` (engine and
   docs/families/data-desk.md in the same change); Seattle Public Library checkout data pulled at build by
-  scripts/spl_checkouts.py. computing-team-stories adds 11 careers to careers.json through scripts/careers_data.py.
+  scripts/spl_checkouts.py (not created). computing-team-stories adds 11 careers to careers.json through scripts/careers_data.py.
 
 Open questions:
 - [emerging-tech-pitch] The "late buses" brief became "Town meetings" so it doesn't repeat sprint-board's bus app:

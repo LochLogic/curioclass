@@ -5,8 +5,8 @@ Free, open, interactive K-12 tools for teachers. curioclass.org
 - No accounts, no ads, no tracking. Every tool is one offline HTML file.
 - Content CC BY 4.0, code MIT.
 
-Start here: `docs/ROADMAP.md` (the one plan: status, what's next, in what order). Background: `docs/PHASE0-PLAN.md`,
-then PHASE1-SCOPE, PHASE2-CONCEPTS, TOOL-CONTRACT and SITE. Funding: `docs/funding/`.
+Start here: `docs/ROADMAP.md` (the one plan: status, what's next, in what order). Background: `docs/VISION.md`,
+then TOOL-CONTRACT and SITE; history in `docs/archive/`. Funding: `docs/funding/`.
 
 Build the site: `python scripts/build_site.py` (see docs/SITE.md).
 

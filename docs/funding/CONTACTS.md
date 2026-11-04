@@ -16,7 +16,7 @@ should know about Curio Class, and the people funders listen to.
 
 - **Submit a session proposal:** https://bit.ly/InnEdCOCFP27 (first-time presenters welcome). Closes 2026-11-01.
 - Email: info@innedco.org · President: Becca Skiver · Mail: 6547 N Academy Blvd #444, Colorado Springs, CO 80918
-- Session idea: "797 free tools, zero logins: building a no-tracking K-12 library" (live demo of 3 tools, the Sub
+- Session idea: "800 free tools, zero logins: building a no-tracking K-12 library" (live demo of 3 tools, the Sub
   Day packet, Word Wall prints).
 - Later: booth sponsorships run $2,000 to $3,000, a good line for a funder to pay for.
 
@@ -112,11 +112,11 @@ an educator group that would use the tools.
 ## A 30-second opener for every call
 
 "Hi, I'm Cory. I build Curio Class, a free library of interactive K-12 tools at curioclass.org: no paywall, no
-logins, no student data, and every tool works offline. 76 tools are live and 721 more are planned and visible on the
+logins, no student data, and every tool works offline. 83 tools are live and 717 more are planned and visible on the
 site. I'm looking for [an introductory conversation / a fiscal sponsor / a speaking slot] and would love 20 minutes to
 show you. Could I send a link and set up a time?"
 
-Then send: the site, one great tool for their grade focus, the bench page, and the one-pager (ONE-PAGER.md).
+Then send: the site, one great tool for their grade focus, a module page, and the one-pager (ONE-PAGER.md).
 
 ## Log
 

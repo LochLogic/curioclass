@@ -49,7 +49,8 @@ formats per subject, no three of a format in a row within a grade, unique titles
   verifier's catch rate and how often Cory sends one back. Decide the wave size after it.
 - **Then waves of 30 to 50**, grouped by family and grade band so engines land before their siblings.
 
-Held back from early waves: ASL (needs video by Deaf signers and Deaf educator review), Spanish (needs a
+Held back from early waves: ASL (graphics only, no video or photos; design path docs/agents/roadmap/ASL-SIGN-STRIP.md; needs Deaf
+educator review), Spanish (needs a
 native-speaker review), and hard history (needs extra care and teacher guidance). They get their own waves.
 
 ## Review tiers

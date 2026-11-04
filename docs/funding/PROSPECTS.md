@@ -83,7 +83,7 @@ That donor exists, but the research is clear that they are reached through peopl
 
 - **Warm introductions:** family teachers, school administrators they know, the derby community, LinkedIn
   connections in tech. One forwarded email from someone they trust beats a hundred cold ones.
-- **Show, don't tell:** the strongest pitch is a link to one great tool plus the bench page showing the 721 to go.
+- **Show, don't tell:** the strongest pitch is a link to one great tool plus a module page showing tools still to build.
 - **Public posts** where tech philanthropists read (a Show HN style launch post, education subreddits) create the
   inbound version of the same thing.
 

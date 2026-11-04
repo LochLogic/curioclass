@@ -1,6 +1,6 @@
 # Phase 0: Plan, Name, Verbiage, Structure
 
-Status: DRAFT for Cory's review, 2026-10-22.
+Status: Superseded as a plan by docs/ROADMAP.md (consolidated 2026-10-28); kept for background. Drafted 2026-10-22.
 Scope: Phase 0 only. Phases 1-3 are listed at the end so the structure is built to receive them.
 
 ---

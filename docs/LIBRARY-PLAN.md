@@ -166,13 +166,14 @@ One HTML file per story, offline, under the tool size cap:
 ## Data and files
 
 ```
-data/library/stories.csv        one row per story: id, title, author, year, kind, origin, grades, level, status, decision
+data/library/stories-pd.csv     one row per public domain story: id, title, author, source, grades, kind, origin, decision, note, find
+data/library/stories-sw.csv     one row per StoryWeaver book: id, sw_id, title, publisher, grades, kind, license, decision, note
 library/<id>/story.json         source edition, url, translator, credits, curation decision + reason, codes
 library/<id>/text.md            the cleaned text (paragraphs, simple markup for glosses)
 library/<id>/art/               cleaned public domain plates
 library/<id>/voice/             later
 library/<id>/<id>.html          the bundled reader (made by a script, like bundle_tool.py)
-scripts/library.py              build, level, check (source fields present, no Gutenberg branding left, size cap)
+scripts/library_*.py            fetch, sw (StoryWeaver split), cuts, process, check (source fields present, no Gutenberg branding left, size cap)
 ```
 
 `kind` = fable, fairy tale, folk tale, myth, short story, picture book, poem, play, speech or document. Longer books

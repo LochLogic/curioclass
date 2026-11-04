@@ -1,6 +1,7 @@
 # Break Box: school-break activities (plan)
 
-Status: DRAFT content, added 2026-10-31 (Cory). Track 2, Supply Closet, in docs/ROADMAP.md. Not on the site yet.
+Status: LIVE 2026-11-03 (commit c4210abb), 390 sheets on the Break Box shelf. Added 2026-10-31 (Cory). Track 2,
+Supply Closet, in docs/ROADMAP.md.
 "Break Box" is a working name.
 
 ## Why

@@ -1,7 +1,7 @@
 # Supply Closet: teacher resources (plan)
 
 Status: concepts AGREED by Cory 2026-10-26 (decisions at the bottom). This file is the implementation plan.
-Phase A and Phase C's words (all 586 modules) went LIVE 2026-10-27; deploy builds now use `--library --closet`.
+Phase A and Phase C's words (all 586 modules at the time; 762 of 797 today) went LIVE 2026-10-27; deploy builds now use `--library --closet`.
 Phases B, D and E went LIVE 2026-10-27 overnight (status notes under each phase). Phase F, The Map, was built 2026-11-03 (status under Phase F).
 
 The Supply Closet is the teacher-resources side of Curio Class: things to print and put up that go with the tools.
@@ -20,10 +20,11 @@ It is organized like a real supply closet, as shelves:
 
 ## What the site already has (checked 2026-10-26)
 
-- **586 modules** in `data/modules.csv`, about 10 per subject and grade (252 subject-grade rows). Each module lists
+- **797 modules** in `data/modules.csv` (586 when this plan was written, with about 10 per subject and grade in 252
+  subject-grade rows). Each module lists
   its standard codes at the **cluster** level (`3.NF.A`, not `3.NF.A.1`): 836 distinct codes across CCSS Math and ELA,
   NGSS, C3, NCAS, CSTA, WIDA, NHES and others.
-- **Tools map to modules** through `data/tools-concepts.csv` (586 concepts, 74 built, 72 with lesson plans).
+- **Tools map to modules** through `data/tools-concepts.csv` (800 concepts, 83 built; 586 concepts and 74 built when this plan was written).
 - **Standards pages exist**: `/standards/` lists codes by framework, `/standards/<code>/` lists the tools for one code.
   The code pages are noindex "until more tools are built", and most of them show only bench tools today.
 - **There are no module pages.** The tool page crumb shows the module title with no link. Every closet shelf is keyed
@@ -440,7 +441,7 @@ Part 2) every tool page links back to its module's closet items.
 A pass over the four shelves asking "what does a teacher or family still have to do by hand?" Numbers are from the
 2026-10-27 build. Ranked by value for effort; nothing here is started.
 
-**Coverage today.** Word Wall covers all 762 modules (4413 cards). Anchor charts cover 74 modules, Game Night 104
+**Coverage today.** Word Wall covers 762 of 797 modules (4,413 cards). Anchor charts cover 74 modules, Game Night 104
 games, Sub Day 76 packets: all three follow the built tools, so a module without a tool gets words and nothing else.
 1411 cards still print "Draw it" (779 of them in 9-12), waiting for the GPU or for more diagrams.
 
@@ -474,7 +475,7 @@ main roadmap: docs/ROADMAP.md, Track 2.
 
 ---
 
-## Late roadmap: Worksheet Generator (parked 2026-10-26)
+## Late roadmap: Worksheet Generator (15-generator test group live 2026-11-03, /closet/worksheets/make/)
 
 **Update 2026-11-03: test group built.** Cory asked for 15 full generators covering every area and generator type, live for
 his review before deciding the build-out. They are organized by skill and grade rather than one recipe per module:
@@ -533,7 +534,7 @@ A Foundation ──> B Sub Day ──> (ships with every new tool from here on; 
 | Phase | Pilot | Measure before scaling |
 |---|---|---|
 | B | Sub Day for 10 tools across bands, then the backfill | print quality on a real printer, minutes per `exit.md`, Cory's send-back rate |
-| C | Grade 3 word wall, all subjects (done; words now cover all 762 modules) | minutes per module for pictures and review, picture reject rate |
+| C | Grade 3 word wall, all subjects (done; words now cover 762 of 797 modules) | minutes per module for pictures and review, picture reject rate |
 | D | Anchor charts for the 72 modules with plans | which layouts cover which subjects, tile print alignment |
 | E | 10 games | play-test notes, how often a game needed a rewrite |
 | F | Grade 3 regions for the four core subjects | does the trail read right to a teacher, phone layout |
@@ -551,7 +552,7 @@ A Foundation ──> B Sub Day ──> (ships with every new tool from here on; 
 ## Decisions (Cory, 2026-10-26)
 
 - Name: **Supply Closet**.
-- Worksheet Generator: agreed as a concept, moved to the late roadmap.
+- Worksheet Generator: agreed as a concept, moved to the late roadmap; a 15-generator test group went live 2026-11-03.
 - Sub Day comes with each new tool. The packet is: cover page, lesson plan, teacher notes, exit ticket sheet, and a
   generic "do the worksheet instead" fallback.
 - Word Wall, Posters and Anchor Charts, and Family Game Night (2-3 per subject per grade): agreed as concepts.
