@@ -404,6 +404,8 @@ CLOSET = [  # slug, label, what it holds
      'an answer key and a teacher page.'),
     ('printables', 'Printables', 'Everyday paper for the classroom: handwriting and graph paper, graphic organizers, '
      'number lines, hundreds charts, name plates and certificates.'),
+    ('research-cards', 'Research Cards', 'A first taste of research for grades K to 2: a person, place, thing or animal '
+     'on two printed pages, a short read with facts on the first and a page for the young researcher on the second.'),
     ('teacher-desk', 'Teacher Desk', 'Helpers for running the room, made for the projector: a timer, classroom sounds, a '
      'noise meter and a group maker.'),
 ]
@@ -576,6 +578,8 @@ for u, d in ws_units.items():
     render('closet/ws-unit.html', f'/closet/worksheets/{u}/', u=u, d=d, groups=groups, rows=ws_rows[u], ready=len(ws_built.get(u, {})))
 render('closet/ws-sheet.html', '/closet/worksheets/sheet/', index=False)
 counts['teacher-desk'] = 'Desk Dock and Classroom Music ready'
+RESEARCH = json.loads((DATA / 'research-cards.json').read_text(encoding='utf-8'))
+counts['research-cards'] = f"{len(RESEARCH['cards'])} cards and a blank one"
 counts['printables'] = f"{sum(len(x[2]) for x in PRINTABLES)} printables"
 counts['worksheets'] = f"{sum(len(v) for v in ws_built.values())} ready of {sum(len(v) for v in ws_rows.values()):,} planned"
 render('closet/home.html', '/closet/', shelves=CLOSET, counts=counts)
@@ -595,6 +599,12 @@ for sid, label, what in CLOSET:
         for h, bl, items in PRINTABLES:
             for i, ti, b in items:
                 render('closet/printable.html', f'/closet/printables/{i}/', p=dict(id=i, title=ti, blurb=b))
+    elif sid == 'research-cards':
+        kinds = dict(RESEARCH['kinds'])
+        render('closet/research-cards.html', '/closet/research-cards/', label=label, what=what,
+               groups=[(name, [c for c in RESEARCH['cards'] if c['kind'] == k]) for k, name in RESEARCH['kinds']])
+        for c in RESEARCH['cards'] + [dict(id='my-own', kind='', title='', emoji='', read=[], facts=[], words=[], questions=[])]:
+            render('closet/research-card.html', f"/closet/research-cards/{c['id']}/", c=c, kind=kinds.get(c['kind'], ''))
     elif sid == 'teacher-desk':
         render('closet/teacher-desk.html', '/closet/teacher-desk/', label=label, what=what, coming=DESK_COMING)
         render('closet/desk-dock.html', '/closet/teacher-desk/dock/')

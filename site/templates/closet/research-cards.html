@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% block title %}{{ label }}: Supply Closet · Curio Class{% endblock %}
+{% block description %}{{ what }}{% endblock %}
+{% block head %}
+<style>
+.rc-card h3 { display: flex; align-items: center; gap: 10px; }
+.rc-emoji { font-size: 34px; line-height: 1; }
+.rc-how { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 18px; margin: 4px 0 18px; }
+.rc-how ol { margin: 6px 0 0; padding-left: 22px; }
+</style>
+{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([('Supply Closet', '/closet/'), (label, None)]) }}
+  <div class="page-head"><h1>{{ label }}</h1><p>{{ what }} Free to print on plain letter paper, front and back.</p></div>
+  <div class="rc-how">
+    <strong>How to use a research card</strong>
+    <ol>
+      <li>Read page 1 together. Point to each picture word and talk about the words to know.</li>
+      <li>On page 2, the child finds each answer on page 1 and writes or draws it. That is research: finding facts in a source.</li>
+      <li>Finish with "I wonder" and where to look next: a library book, a grown-up, a museum or a trusted website.</li>
+    </ol>
+  </div>
+  {% for heading, items in groups %}
+  <section class="group">
+    <h2>{{ heading }}</h2>
+    <div class="module-grid">
+      {% for c in items %}
+      <article class="module-card rc-card">
+        <h3><span class="rc-emoji" aria-hidden="true">{{ c.emoji }}</span><a href="/closet/research-cards/{{ c.id }}/">{{ c.title }}</a></h3>
+        <p class="desc">{{ c.read[0] }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+  <section class="group">
+    <h2>Your own topic</h2>
+    <div class="module-grid">
+      <article class="module-card rc-card">
+        <h3><span class="rc-emoji" aria-hidden="true">🔎</span><a href="/closet/research-cards/my-own/">My Own Research Card</a></h3>
+        <p class="desc">A blank card for any person, place, thing or animal a child picks. They fill in facts from a library book or a grown-up.</p>
+      </article>
+    </div>
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% set name = c.title or 'My Own Research Card' %}
+{% block title %}{{ name }}: research card · Curio Class{% endblock %}
+{% block description %}{% if c.title %}A two-page research card for grades K to 2: {{ c.read[0] }}{% else %}A blank two-page research card for grades K to 2: pick any topic and fill in the facts.{% endif %} Free to print.{% endblock %}
+{% block head %}
+<style>
+.rc-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 4px 0 18px; }
+.rc-sheet { display: flex; flex-direction: column; gap: 24px; align-items: center; }
+.rc-page { background: #fff; color: #1d2733; box-shadow: var(--shadow); border: 1px solid var(--line); width: 100%; max-width: 760px;
+  aspect-ratio: 8.5 / 11; padding: 40px 44px; display: flex; flex-direction: column; gap: 14px; font-size: 17px; line-height: 1.45; }
+.rc-top { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 3px solid #234d77; padding-bottom: 6px; }
+.rc-top b { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #234d77; }
+.rc-top span { font-size: 13px; color: #5b6673; }
+.rc-head { display: flex; gap: 18px; align-items: center; }
+.rc-pic { flex: 0 0 auto; width: 120px; height: 120px; border: 3px solid #234d77; border-radius: 22px; display: grid; place-items: center; font-size: 76px; line-height: 1; background: #fffaf0; }
+.rc-head h1 { font-size: 38px; margin: 0; line-height: 1.1; color: #1d2733; }
+.rc-kind { display: inline-block; margin-top: 6px; font-size: 14px; font-weight: 700; color: #234d77; border: 2px solid #234d77; border-radius: 999px; padding: 1px 12px; }
+.rc-read p { margin: 0 0 10px; font-size: 22px; line-height: 1.5; }
+.rc-box li, .rc-words div { font-size: 19px; }
+.rc-talk { margin-top: auto; background: #fffaf0; }
+.rc-talk p { margin: 2px 0; font-size: 18px; }
+.rc-box { border: 2px solid #234d77; border-radius: 16px; padding: 10px 16px; }
+.rc-box h2 { font-size: 16px; margin: 0 0 6px; color: #234d77; text-transform: uppercase; letter-spacing: .06em; }
+.rc-box ul { margin: 0; padding-left: 22px; }
+.rc-box li { margin: 2px 0; }
+.rc-words dt { font-weight: 700; display: inline; }
+.rc-words dd { display: inline; margin: 0; }
+.rc-words div { margin: 3px 0; }
+.rc-q { margin: 0 0 4px; font-weight: 700; }
+.rc-lines { height: 58px; background: repeating-linear-gradient(to bottom, transparent 0 27px, #9aa6b2 27px 28px); margin-bottom: 8px; }
+.rc-draw { flex: 1; min-height: 150px; border: 2px dashed #234d77; border-radius: 16px; padding: 8px 14px; font-weight: 700; color: #234d77; }
+.rc-checks { display: flex; gap: 18px; flex-wrap: wrap; }
+.rc-checks span::before { content: ""; display: inline-block; width: 15px; height: 15px; border: 2px solid #234d77; border-radius: 4px; margin-right: 6px; vertical-align: -2px; }
+.rc-fill { display: inline-block; min-width: 260px; border-bottom: 1.5px solid #9aa6b2; height: 1.2em; }
+@media (max-width: 640px) { .rc-page { aspect-ratio: auto; padding: 22px 18px; } .rc-head h1 { font-size: 30px; } .rc-pic { width: 90px; height: 90px; font-size: 56px; } }
+@media print {
+  @page { size: letter; margin: 0.45in; }
+  .crumbs, .page-head, .rc-bar, .site-head, .site-foot, .skip { display: none !important; }
+  .wrap, main { padding: 0 !important; margin: 0 !important; max-width: none !important; }
+  .rc-sheet { display: block; }
+  .rc-page { box-shadow: none; border: 0; padding: 0; max-width: none; aspect-ratio: auto; height: 10in; break-after: page; page-break-after: always; }
+  .rc-page:last-child { break-after: auto; page-break-after: auto; }
+}
+</style>
+{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([('Supply Closet', '/closet/'), ('Research Cards', '/closet/research-cards/'), (name, None)]) }}
+  <div class="page-head"><h1>{{ name }}</h1><p>Two pages: read and learn, then my research. Print both, or front and back on one sheet.</p></div>
+  <div class="rc-bar"><button type="button" class="btn primary" onclick="window.print()">Print</button><a class="btn" href="/closet/research-cards/">All research cards</a></div>
+  <div class="rc-sheet">
+    <section class="rc-page" aria-label="Page 1: read and learn">
+      <div class="rc-top"><b>Research Card · Page 1</b><span>Name <span class="rc-fill" style="min-width:180px"></span></span></div>
+      {% if c.title %}
+      <div class="rc-head"><div class="rc-pic" aria-hidden="true">{{ c.emoji }}</div><div><h1>{{ c.title }}</h1><span class="rc-kind">{{ c.kind|capitalize }}</span></div></div>
+      <div class="rc-read">{% for p in c.read %}<p>{{ p }}</p>{% endfor %}</div>
+      <div class="rc-box"><h2>Quick facts</h2><ul>{% for f in c.facts %}<li>{{ f }}</li>{% endfor %}</ul></div>
+      <div class="rc-box"><h2>Words to know</h2><dl class="rc-words">{% for w, m in c.words %}<div><dt>{{ w }}:</dt> <dd>{{ m }}</dd></div>{% endfor %}</dl></div>
+      <div class="rc-box rc-talk"><h2>Talk about it</h2><p>Tell a partner one fact you learned.</p><p>Which fact surprised you the most? Why?</p></div>
+      {% else %}
+      <div class="rc-head"><div class="rc-pic" style="font-size:15px;font-weight:700;color:#234d77;text-align:center">Draw<br>it here</div><div><h1>My topic: <span class="rc-fill" style="min-width:300px"></span></h1>
+        <div class="rc-checks" style="margin-top:8px"><span>Person</span><span>Place</span><span>Thing</span><span>Animal</span></div></div></div>
+      <div class="rc-box"><h2>What it is</h2><div class="rc-lines" style="height:84px"></div></div>
+      <div class="rc-box"><h2>Facts I found</h2>{% for i in range(5) %}<div style="display:flex;gap:8px"><b style="padding-top:18px">{{ i + 1 }}.</b><div class="rc-lines" style="flex:1;height:56px;margin:0"></div></div>{% endfor %}</div>
+      <div class="rc-box"><h2>Words to know</h2><div class="rc-lines" style="height:84px"></div></div>
+      <div class="rc-box rc-talk"><h2>Talk about it</h2><p>Tell a partner one fact you found. Which fact surprised you the most?</p></div>
+      {% endif %}
+    </section>
+    <section class="rc-page" aria-label="Page 2: my research">
+      <div class="rc-top"><b>Research Card · Page 2</b><span>My research{% if c.title %}: {{ c.title }}{% endif %}</span></div>
+      {% if c.title %}
+      <div class="rc-box"><h2>Find it on page 1</h2>
+        {% for q in c.questions %}<p class="rc-q">{{ loop.index }}. {{ q }}</p><div class="rc-lines"></div>{% endfor %}
+      </div>
+      {% else %}
+      <div class="rc-box"><h2>My questions</h2>{% for i in range(2) %}<p class="rc-q">{{ i + 1 }}.</p><div class="rc-lines"></div>{% endfor %}</div>
+      {% endif %}
+      <div class="rc-draw">Draw it and label two parts.</div>
+      <div class="rc-box"><h2>I wonder</h2><div class="rc-lines" style="height:30px"></div></div>
+      <div class="rc-box"><h2>Where I found my facts</h2>
+        <div class="rc-checks">{% if c.title %}<span>This card</span>{% endif %}<span>A book</span><span>A grown-up</span><span>A website</span><span>A museum or trip</span></div>
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock %}

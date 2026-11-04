@@ -1,0 +1,599 @@
+{
+ "note": "Research Cards (Supply Closet). Grades K-2 intro to research: page 1 is a short read with quick facts and words to know; page 2 is the child's research page. Facts checked by a fresh agent before publishing.",
+ "kinds": [
+  [
+   "person",
+   "People"
+  ],
+  [
+   "place",
+   "Places"
+  ],
+  [
+   "thing",
+   "Things"
+  ],
+  [
+   "animal",
+   "Animals"
+  ]
+ ],
+ "cards": [
+  {
+   "id": "harriet-tubman",
+   "kind": "person",
+   "title": "Harriet Tubman",
+   "emoji": "⭐",
+   "read": [
+    "Harriet Tubman was born around 1822 in Maryland. She was enslaved, which means she was not free. In 1849 she escaped and walked north to freedom.",
+    "Harriet did not stop there. She went back about 13 times to lead family and friends to freedom on the Underground Railroad. It was not a train. It was a secret path of safe houses and helpers."
+   ],
+   "facts": [
+    "She helped about 70 people escape.",
+    "She said she never lost a passenger.",
+    "In the Civil War she was a nurse, a scout and a spy.",
+    "She helped lead a raid that freed more than 700 people.",
+    "She later lived in Auburn, New York, and cared for people in need."
+   ],
+   "words": [
+    [
+     "freedom",
+     "being able to choose how you live"
+    ],
+    [
+     "enslaved",
+     "owned by another person and forced to work without pay"
+    ],
+    [
+     "Underground Railroad",
+     "a secret path of people who helped others escape to freedom"
+    ]
+   ],
+   "questions": [
+    "Where was Harriet Tubman born?",
+    "What was the Underground Railroad?",
+    "Name one job she did in the Civil War."
+   ]
+  },
+  {
+   "id": "mae-jemison",
+   "kind": "person",
+   "title": "Mae Jemison",
+   "emoji": "🚀",
+   "read": [
+    "Mae Jemison was born in 1956 in Alabama and grew up in Chicago. As a girl she loved science, space and dance.",
+    "Mae became a doctor and an engineer. Then she became an astronaut. In 1992 she flew on the Space Shuttle Endeavour. She was the first African American woman to go to space."
+   ],
+   "facts": [
+    "Her space trip lasted about 8 days.",
+    "She did science tests in space.",
+    "Before space, she was a Peace Corps doctor in West Africa.",
+    "She started college at age 16.",
+    "In space, the shuttle circled Earth in orbit."
+   ],
+   "words": [
+    [
+     "astronaut",
+     "a person trained to travel in space"
+    ],
+    [
+     "engineer",
+     "a person who designs and builds things"
+    ],
+    [
+     "orbit",
+     "the path something takes around a planet"
+    ]
+   ],
+   "questions": [
+    "What did Mae Jemison love as a girl?",
+    "What year did she go to space?",
+    "Name two jobs she had."
+   ]
+  },
+  {
+   "id": "wright-brothers",
+   "kind": "person",
+   "title": "The Wright Brothers",
+   "emoji": "✈️",
+   "read": [
+    "Wilbur and Orville Wright were brothers from Dayton, Ohio. They ran a bicycle shop. They also dreamed about flying.",
+    "They built gliders and tested them again and again. On December 17, 1903, at Kitty Hawk, North Carolina, they made the first successful flight of an airplane with an engine and a pilot on board. Orville flew first, for 12 seconds."
+   ],
+   "facts": [
+    "The first flight went 120 feet, about the length of 3 school buses.",
+    "They flew 4 times that day.",
+    "The longest flight that day lasted 59 seconds.",
+    "They used ideas from fixing bicycles.",
+    "Their airplane is in a museum in Washington, D.C."
+   ],
+   "words": [
+    [
+     "glider",
+     "a plane with no engine that floats on the wind"
+    ],
+    [
+     "engine",
+     "a machine that makes something move"
+    ],
+    [
+     "pilot",
+     "the person who flies a plane"
+    ]
+   ],
+   "questions": [
+    "What kind of shop did the brothers run?",
+    "Where did they fly the first airplane?",
+    "How long was the first flight?"
+   ]
+  },
+  {
+   "id": "jackie-robinson",
+   "kind": "person",
+   "title": "Jackie Robinson",
+   "emoji": "⚾",
+   "read": [
+    "Jackie Robinson was born in 1919 in Georgia and grew up in California. In college he played four sports: baseball, football, basketball and track.",
+    "Before 1947, Black players were not allowed in the major leagues. That year Jackie joined the Brooklyn Dodgers and broke that rule. Some people were mean and unfair to him because he was Black, but Jackie showed courage and played great baseball."
+   ],
+   "facts": [
+    "He was Rookie of the Year in 1947.",
+    "He wore number 42.",
+    "Every Major League team stopped giving out number 42 to new players, to honor him.",
+    "Every April 15 is Jackie Robinson Day, when every player wears 42 to honor him.",
+    "He helped open the door for many players."
+   ],
+   "words": [
+    [
+     "league",
+     "a group of teams that play each other"
+    ],
+    [
+     "rookie",
+     "a player in the first year"
+    ],
+    [
+     "courage",
+     "being brave when something is hard"
+    ]
+   ],
+   "questions": [
+    "What team did Jackie Robinson join in 1947?",
+    "What number did he wear?",
+    "What happens every April 15?"
+   ]
+  },
+  {
+   "id": "grand-canyon",
+   "kind": "place",
+   "title": "The Grand Canyon",
+   "emoji": "🏞️",
+   "read": [
+    "The Grand Canyon is a giant, deep valley in Arizona. The Colorado River runs along the bottom.",
+    "Over millions of years, the river cut through the rock little by little. Now you can see layers of red, orange and tan rock, like stripes in a cake. The oldest layers are at the bottom."
+   ],
+   "facts": [
+    "It is about 277 miles long.",
+    "At its deepest, it is more than a mile deep.",
+    "It became a national park in 1919.",
+    "Native American nations, like the Havasupai and the Hualapai, have lived in and near the canyon for a very long time, and they still do.",
+    "Millions of people visit every year."
+   ],
+   "words": [
+    [
+     "canyon",
+     "a deep valley with steep sides"
+    ],
+    [
+     "river",
+     "a long stream of moving water"
+    ],
+    [
+     "layer",
+     "one flat part on top of another"
+    ]
+   ],
+   "questions": [
+    "What state is the Grand Canyon in?",
+    "What river made the canyon?",
+    "Where are the oldest rock layers?"
+   ]
+  },
+  {
+   "id": "antarctica",
+   "kind": "place",
+   "title": "Antarctica",
+   "emoji": "🐧",
+   "read": [
+    "Antarctica is a continent at the bottom of the world. The South Pole is there. It is the coldest, windiest and driest continent on Earth.",
+    "Almost all of Antarctica is covered by thick ice. No families live there. Scientists and workers stay for a while to study the ice, the weather and the animals."
+   ],
+   "facts": [
+    "The ice is more than a mile thick in many places.",
+    "Penguins and seals live on the coast.",
+    "Most of Earth's fresh water is frozen there.",
+    "In winter the sun does not rise for weeks or months in many places.",
+    "The coldest air ever measured was there."
+   ],
+   "words": [
+    [
+     "continent",
+     "one of Earth's seven big pieces of land"
+    ],
+    [
+     "ice sheet",
+     "a huge layer of ice that covers land"
+    ],
+    [
+     "scientist",
+     "a person who studies the world to learn how it works"
+    ]
+   ],
+   "questions": [
+    "What is Antarctica covered by?",
+    "Who stays in Antarctica, and why?",
+    "Name one animal that lives there."
+   ]
+  },
+  {
+   "id": "amazon-rainforest",
+   "kind": "place",
+   "title": "The Amazon Rainforest",
+   "emoji": "🌳",
+   "read": [
+    "The Amazon is the biggest rainforest in the world. It is in South America, and most of it is in Brazil. It rains a lot there.",
+    "The Amazon River winds through the forest. Tall trees make a roof of leaves called the canopy. Millions of kinds of plants, insects and animals live there. So do many Indigenous peoples."
+   ],
+   "facts": [
+    "The Amazon reaches into 9 countries and territories, like Brazil, Peru and Colombia.",
+    "Sloths, jaguars and toucans live there.",
+    "The Amazon River carries more water than any other river.",
+    "Many medicines come from rainforest plants.",
+    "It is warm all year."
+   ],
+   "words": [
+    [
+     "rainforest",
+     "a thick forest where it rains a lot"
+    ],
+    [
+     "canopy",
+     "the roof of leaves at the top of a forest"
+    ],
+    [
+     "Indigenous",
+     "people whose families have lived in a place since long before others came"
+    ]
+   ],
+   "questions": [
+    "What continent is the Amazon on?",
+    "What is the canopy?",
+    "Name two animals that live in the Amazon."
+   ]
+  },
+  {
+   "id": "great-barrier-reef",
+   "kind": "place",
+   "title": "The Great Barrier Reef",
+   "emoji": "🐠",
+   "read": [
+    "The Great Barrier Reef is in the ocean near Australia. It is the biggest coral reef system in the world. Aboriginal and Torres Strait Islander peoples have cared for this sea for a very long time.",
+    "Coral looks like rock or plants, but it is made of tiny animals. They build hard homes that grow into reefs over many years. Fish, sea turtles and sharks find food and shelter there."
+   ],
+   "facts": [
+    "It is made of about 3,000 reefs.",
+    "It is about 1,400 miles long.",
+    "Astronauts can see parts of it from space.",
+    "More than 1,500 kinds of fish live there.",
+    "Warm water can make coral sick and turn white."
+   ],
+   "words": [
+    [
+     "coral",
+     "tiny sea animals that build hard homes"
+    ],
+    [
+     "reef",
+     "a long ridge of coral or rock under the sea"
+    ],
+    [
+     "shelter",
+     "a safe place to stay"
+    ]
+   ],
+   "questions": [
+    "What country is the reef near?",
+    "What is coral made of?",
+    "Name two animals that live on the reef."
+   ]
+  },
+  {
+   "id": "the-moon",
+   "kind": "thing",
+   "title": "The Moon",
+   "emoji": "🌕",
+   "read": [
+    "The Moon moves around Earth. It takes about a month to go all the way around. The Moon does not make its own light. It shines because sunlight bounces off it.",
+    "As the Moon moves, we see different amounts of its sunny side. These shapes are called phases. In 1969, astronaut Neil Armstrong became the first person to walk on the Moon."
+   ],
+   "facts": [
+    "The Moon is about 239,000 miles away.",
+    "Twelve astronauts have walked on it.",
+    "It is covered with holes called craters.",
+    "You would weigh much less on the Moon.",
+    "Footprints there can last a very long time, because there is no wind or rain."
+   ],
+   "words": [
+    [
+     "orbit",
+     "the path something takes around another thing"
+    ],
+    [
+     "crater",
+     "a round hole made when a space rock hits"
+    ],
+    [
+     "phase",
+     "the shape of the lit part of the Moon we see"
+    ]
+   ],
+   "questions": [
+    "Why does the Moon shine?",
+    "What are the Moon's shapes called?",
+    "Who was the first person to walk on the Moon?"
+   ]
+  },
+  {
+   "id": "volcanoes",
+   "kind": "thing",
+   "title": "Volcanoes",
+   "emoji": "🌋",
+   "read": [
+    "Deep under the ground, it is so hot that rock melts. This melted rock is called magma. A volcano is an opening where magma can come up.",
+    "When a volcano erupts, the melted rock pours out. Then it is called lava. When lava cools, it turns into new rock. Some islands, like Hawaii, were built by volcanoes."
+   ],
+   "facts": [
+    "There are volcanoes on land and under the sea.",
+    "Lava can be hotter than an oven.",
+    "Some volcanoes are quiet for many years.",
+    "Mauna Loa in Hawaii is one of the biggest volcanoes on Earth.",
+    "Scientists who study volcanoes are called volcanologists."
+   ],
+   "words": [
+    [
+     "magma",
+     "melted rock under the ground"
+    ],
+    [
+     "lava",
+     "melted rock that has come out of the ground"
+    ],
+    [
+     "erupt",
+     "to burst out"
+    ]
+   ],
+   "questions": [
+    "What is magma?",
+    "What is melted rock called when it comes out?",
+    "Name a place that volcanoes built."
+   ]
+  },
+  {
+   "id": "rainbows",
+   "kind": "thing",
+   "title": "Rainbows",
+   "emoji": "🌈",
+   "read": [
+    "Sunlight looks white, but it is really made of many colors mixed together. When sunlight shines into raindrops, the drops bend the light and split it into its colors.",
+    "To see a rainbow, stand with the sun behind you and the rain in front of you. The colors always come in the same order: red, orange, yellow, green, blue, indigo and violet."
+   ],
+   "facts": [
+    "A rainbow is really a circle. From the ground we see only part.",
+    "Sometimes you can see two rainbows at once.",
+    "In a double rainbow, the colors of the second one are flipped.",
+    "You can make a rainbow with a garden hose on a sunny day.",
+    "Red is at the top, on the outside edge."
+   ],
+   "words": [
+    [
+     "light",
+     "what lets us see; it comes from the sun and lamps"
+    ],
+    [
+     "bend",
+     "to turn from a straight line"
+    ],
+    [
+     "indigo",
+     "a deep blue-purple color"
+    ]
+   ],
+   "questions": [
+    "What is sunlight really made of?",
+    "Where should the sun be when you look for a rainbow?",
+    "What color is at the top of a rainbow?"
+   ]
+  },
+  {
+   "id": "bicycles",
+   "kind": "thing",
+   "title": "Bicycles",
+   "emoji": "🚲",
+   "read": [
+    "A bicycle has two wheels, a seat, handlebars and pedals. When you push the pedals, a chain turns the back wheel, and the bike rolls forward.",
+    "The first bike was made in 1817 in Germany. It had no pedals at all. Riders pushed it along with their feet, like a balance bike."
+   ],
+   "facts": [
+    "There are about a billion bikes in the world.",
+    "Bikes do not need gas to go.",
+    "Riding is great exercise for your heart and legs.",
+    "Always wear a helmet when you ride. It protects your head if you fall.",
+    "Some bikes are built for two riders."
+   ],
+   "words": [
+    [
+     "pedal",
+     "the part you push with your foot"
+    ],
+    [
+     "chain",
+     "metal links that turn the wheel"
+    ],
+    [
+     "balance",
+     "staying steady without falling"
+    ]
+   ],
+   "questions": [
+    "What turns the back wheel?",
+    "What was missing from the first bike?",
+    "Why should you wear a helmet?"
+   ]
+  },
+  {
+   "id": "octopus",
+   "kind": "animal",
+   "title": "Octopus",
+   "emoji": "🐙",
+   "read": [
+    "An octopus lives in the ocean. It has eight arms covered with suckers. The suckers can grab, feel and even taste.",
+    "An octopus has no bones, so it can squeeze through tiny spaces. To hide, it uses camouflage: it changes its color and even the bumps on its skin. If a hungry fish comes close, it can squirt a cloud of ink and swim away."
+   ],
+   "facts": [
+    "An octopus has three hearts.",
+    "Its blood is blue.",
+    "It is very smart and can solve puzzles.",
+    "It eats crabs, clams and fish.",
+    "Some octopuses carry shells to hide in."
+   ],
+   "words": [
+    [
+     "sucker",
+     "a round cup that sticks to things"
+    ],
+    [
+     "camouflage",
+     "colors or shapes that help an animal hide"
+    ],
+    [
+     "ink",
+     "a dark liquid an octopus squirts to escape"
+    ]
+   ],
+   "questions": [
+    "How many arms does an octopus have?",
+    "Name one way an octopus hides.",
+    "How many hearts does it have?"
+   ]
+  },
+  {
+   "id": "honeybee",
+   "kind": "animal",
+   "title": "Honeybee",
+   "emoji": "🐝",
+   "read": [
+    "Honeybees live together in a home called a hive. One hive can have thousands of bees. There is one queen, who lays the eggs. Worker bees do most of the other jobs.",
+    "Worker bees fly to flowers and drink a sweet juice called nectar. Back at the hive, they turn nectar into honey. As they visit flowers, they carry pollen from one flower to the next, which helps plants make seeds and fruit."
+   ],
+   "facts": [
+    "Bees do a waggle dance to show other bees where flowers are.",
+    "A bee has five eyes.",
+    "Bees help grow many foods we eat, like apples.",
+    "Wax for the hive comes from the bees' bodies.",
+    "A bee buzzes because its wings beat very fast."
+   ],
+   "words": [
+    [
+     "hive",
+     "the home where a big group of bees lives"
+    ],
+    [
+     "nectar",
+     "a sweet juice inside flowers"
+    ],
+    [
+     "pollen",
+     "a tiny, dusty powder that plants need to make seeds"
+    ]
+   ],
+   "questions": [
+    "Who lays the eggs in a hive?",
+    "What do bees make honey from?",
+    "How do bees help plants?"
+   ]
+  },
+  {
+   "id": "polar-bear",
+   "kind": "animal",
+   "title": "Polar Bear",
+   "emoji": "🐻‍❄️",
+   "read": [
+    "Polar bears live in the Arctic, the cold land and sea near the North Pole. They spend much of their lives on sea ice and hunt seals.",
+    "A polar bear's fur looks white, but each hair is really clear. Under the fur, its skin is black, which helps soak up the sun's warmth. A thick layer of fat keeps it warm too."
+   ],
+   "facts": [
+    "Polar bears are great swimmers.",
+    "A big male can weigh more than 1,000 pounds.",
+    "Their big paws help them walk on ice and paddle in water.",
+    "Cubs are born in a snow den.",
+    "They need sea ice to hunt."
+   ],
+   "words": [
+    [
+     "Arctic",
+     "the cold area around the North Pole"
+    ],
+    [
+     "sea ice",
+     "frozen ocean water"
+    ],
+    [
+     "predator",
+     "an animal that hunts other animals for food"
+    ]
+   ],
+   "questions": [
+    "Where do polar bears live?",
+    "What color is a polar bear's skin?",
+    "What do polar bears hunt?"
+   ]
+  },
+  {
+   "id": "african-elephant",
+   "kind": "animal",
+   "title": "African Elephant",
+   "emoji": "🐘",
+   "read": [
+    "The African elephant is the biggest animal that lives on land. It lives in Africa, in grasslands and forests.",
+    "An elephant's trunk is its nose and upper lip together. It uses its trunk to smell, drink, eat, lift things and say hello. Elephants live in family groups called herds. An older female usually leads the herd."
+   ],
+   "facts": [
+    "A big elephant can weigh as much as three or four cars.",
+    "Its trunk has thousands of muscles.",
+    "Big ears help it cool off.",
+    "It can eat more than 300 pounds of plants a day.",
+    "Elephants use their tusks to dig and to lift things."
+   ],
+   "words": [
+    [
+     "trunk",
+     "an elephant's long nose and upper lip"
+    ],
+    [
+     "herd",
+     "a group of animals that live together"
+    ],
+    [
+     "tusk",
+     "a long tooth that grows out of the mouth"
+    ]
+   ],
+   "questions": [
+    "Where do African elephants live?",
+    "Name two things an elephant does with its trunk.",
+    "Who leads the herd?"
+   ]
+  }
+ ]
+}

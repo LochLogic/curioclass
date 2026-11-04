@@ -148,6 +148,10 @@ Night, Word check, closet search, Take home, words CSV. What is left, in order:
    site/assets/printables.js (paper: handwriting, lined, graph, dot; math and letters: number lines, hundreds chart,
    alphabet strips and cards; organizers in English, Spanish or both: Venn, KWL, story map, cause and effect, main idea,
    T-chart, sequence, Frayer word map; classroom: name plates, certificates). Spanish labels checked by a fresh agent.
+   **Research Cards** (live 2026-11-03, /closet/research-cards/): a K-2 intro to research, 16 two-page cards (4 people,
+   4 places, 4 things, 4 animals) from data/research-cards.json plus a blank "my own topic" card. Page 1 is a short read,
+   quick facts, words to know and a talk prompt; page 2 has find-it questions, draw and label, I wonder and sources.
+   Facts and sensitivity checked by a fresh agent. Pictures are emoji for now; real art can come on an art night.
    Next ideas: Word Wall bingo and flash cards, a quiz-show board and scoreboard for the Teacher Desk.
 8. **Learning Supports** (new 2026-11-03): tools for learners who need extra support, worded carefully but
    confidently. Each says what approach it follows (for example decodable nonsense words used in structured
