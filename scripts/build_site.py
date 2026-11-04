@@ -665,7 +665,8 @@ for sid, label, what in CLOSET:
     elif sid == 'research-cards':
         kinds = dict(RESEARCH['kinds'])
         render('closet/research-cards.html', '/closet/research-cards/', label=label, what=what,
-               groups=[(name, [c for c in RESEARCH['cards'] if c['kind'] == k]) for k, name in RESEARCH['kinds']])
+               groups=[(name, sorted((c for c in RESEARCH['cards'] if c['kind'] == k), key=lambda c: c['title'].removeprefix('The ').lower()))
+                       for k, name in sorted(RESEARCH['kinds'], key=lambda kn: kn[1])])  # A to Z, ignoring a leading 'The'
         for c in RESEARCH['cards'] + [dict(id='my-own', kind='', title='', emoji='', read=[], facts=[], words=[], questions=[])]:
             render('closet/research-card.html', f"/closet/research-cards/{c['id']}/", c=c, kind=kinds.get(c['kind'], ''))
     elif sid == 'teacher-desk':

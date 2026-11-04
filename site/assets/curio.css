@@ -405,7 +405,9 @@ section.block { padding: 56px 0 8px; }
 .module-list a { text-decoration: none; font: 600 18px var(--serif); }
 .module-list a:hover { text-decoration: underline; }
 .module-list span { color: var(--muted); font-size: 14px; }
-.closet-shelves { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); margin: 20px 0 40px; }
+.closet-shelves { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin: 20px 0 40px; }
+.closet-shelves > .closet-shelf { flex: 0 1 280px; }  /* fixed-width cards: a short last row sits centered */
+@media (max-width: 620px) { .closet-shelves > .closet-shelf { flex-basis: 100%; } }
 .closet-shelf { display: block; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; text-decoration: none; }
 .closet-shelf:hover { border-color: var(--ink); }
 .closet-shelf h2 { font-size: 22px; }
