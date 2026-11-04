@@ -2,7 +2,8 @@
 // log, practice log, science observation log, weekly reflection, exit reflection, goal setting) and a grade band; the band sets
 // the layout, the size of the writing space and the wording. Prompts come from banks, so New sheet gives fresh ones.
 // Also a design and engineering planner (problem, criteria, constraints, three ideas, chosen idea with a labeled sketch,
-// materials, test plan, results, improve) and a trial, week or day log: a table with 4 to 10 numbered entries and a summary.
+// materials, test plan, results, improve) and a trial, week, day, session or rehearsal log: a table with 3 to 12 numbered
+// entries (10 at most for K-2) and a summary, with the teacher's own typed columns in place of the middle ones if given.
 (() => {
 const { esc } = Gen.h;
 
@@ -228,7 +229,10 @@ const BUILD = {
   trial(b, r, K, topic, o) {
     const n = o.entries, unit = o.unit;
     const head = topic ? '' : K.fields(K.field(b === 'k2' ? 'What I am testing:' : 'What I am testing or tracking:'));
-    const cols = b === 'k2' ? [[unit, '13%'], ['Date', '15%'], ['What I did', ''], ['What I saw', '30%']]
+    // the teacher's own columns, when typed, replace the middle ones (the row label and date stay)
+    const own = String(o.cols || '').split(/[,;]/).map(x => x.replace(/\s+/g, ' ').trim().slice(0, 30)).filter(Boolean).slice(0, 6);
+    const cols = own.length ? [[unit, b === 'k2' ? '13%' : '10%'], [unit === 'Week' ? 'Week of' : 'Date', b === 'k2' ? '15%' : '11%'], ...own.map(x => [x, ''])]
+      : b === 'k2' ? [[unit, '13%'], ['Date', '15%'], ['What I did', ''], ['What I saw', '30%']]
       : [[unit, '9%'], [unit === 'Week' ? 'Week of' : 'Date', '12%'], ['What I did', ''], ['What I measured or saw', '27%'], ['Notes', '20%']];
     // rows share the table space, so 4 entries get tall rows and 10 still fit on the page
     const rh = Math.max(b === 'k2' ? 0.95 : 1.1, Math.min(b === 'k2' ? 2.2 : 2.4, { k2: 3.8, 35: 4.9, 68: 5.1, 912: 5.2 }[b] / (n * RH[b] * K.g)));
@@ -284,7 +288,7 @@ const USE = {
   exit: 'Two slips per page: print, cut, and hand out in the last five minutes. Sort them into three piles by the rating to plan tomorrow\'s small groups.',
   goal: 'Model one goal out loud first. Revisit the page at each check-in date; a goal no one looks at again does not get met.',
   design: 'Fits any build challenge: a bridge from straws, a boat that floats, a marble run, a phone stand. Have students write criteria and constraints before they sketch, and keep the page through the test and the redesign.',
-  trial: 'One page per experiment, habit or project. Choose Trial for repeated tests, Week for something tracked over weeks, and Day for a daily log. Pick the number of entries to match your plan.',
+  trial: 'One page per experiment, habit or project. Choose Trial for repeated tests, Week for something tracked over weeks, Day for a daily log, or Session, Rehearsal, Round or Entry. Pick the number of entries to match your plan, and type your own columns (Load, Reps, Effort) to replace the middle ones.',
 };
 
 /* ---------- filled-in models for the teacher page ---------- */
@@ -368,13 +372,14 @@ Gen.add('planner-log', {
     { id: 'kind', label: 'Kind', type: 'select', options: KINDS, def: 'reading' },
     { id: 'band', label: 'Grade band', type: 'select', options: BANDS, def: '35' },
     { id: 'topic', label: 'Title, skill or topic (optional)', type: 'text', def: '' },
-    { id: 'entries', label: 'Entries (rows)', type: 'select', options: [['4', '4'], ['6', '6'], ['8', '8'], ['10', '10']], def: '6', show: v => v.kind === 'trial' },
-    { id: 'unit', label: 'Each row is a', type: 'select', options: [['Trial', 'Trial'], ['Week', 'Week'], ['Day', 'Day']], def: 'Trial', show: v => v.kind === 'trial' },
+    { id: 'entries', label: 'Entries (rows)', type: 'select', options: v => [['3', '3'], ['4', '4'], ['6', '6'], ['8', '8'], ['10', '10'], ...(v.band === 'k2' ? [] : [['12', '12']])], def: '6', show: v => v.kind === 'trial' },
+    { id: 'unit', label: 'Each row is a', type: 'select', options: [['Trial', 'Trial'], ['Week', 'Week'], ['Day', 'Day'], ['Session', 'Session'], ['Rehearsal', 'Rehearsal'], ['Round', 'Round'], ['Entry', 'Entry']], def: 'Trial', show: v => v.kind === 'trial' },
+    { id: 'cols', label: 'Your own columns (optional), comma separated: Load, Reps, Effort 1 to 10', type: 'text', def: '', show: v => v.kind === 'trial' },
   ],
   make(v, r) {
     const b = v.band, kind = v.kind, topic = String(v.topic || '').trim(), young = b === 'k2' || b === '35';
     const K = kit(b, GROW[`${kind}-${b}`] || 1);
-    const body = BUILD[kind](b, r, K, topic, { entries: +v.entries || 6, unit: v.unit || 'Trial' });
+    const body = BUILD[kind](b, r, K, topic, { entries: +v.entries || 6, unit: v.unit || 'Trial', cols: v.cols });
     const short = topic && topic.length <= 40;
     const name = kind === 'trial' ? `${v.unit || 'Trial'} Log` : NAME[kind];
     const title = short ? `${name}: ${topic}` : name;

@@ -60,6 +60,40 @@ def links(m, has_words):
             out.append(link('graph-reading', 'Tables, bar graphs, line graphs and plots to read.', grade=str(clamp(n, 1, 8))))
         if strand == 'Ratios and Proportional Relationships':
             out.append(link('word-problems', 'Rate and percent story problems.', grade='6', topic='rates'))
+            out.append(link('finance', 'Unit prices, sales tax, discounts and tips, worked on the key.', grade=str(clamp(n, 5, 12)), area='spend'))
+        if n <= 2 and strand in ('Counting and Cardinality', 'Number and Operations in Base Ten', 'Measurement and Data', 'Operations and Algebraic Thinking'):
+            out.append(link('early-number', 'Ten frames, number lines, base-ten blocks, clocks, coins and rulers, drawn on the page.', grade=g))
+        if 'Statistics' in strand and n >= 5:
+            out.append(link('statistics', 'Center, spread, probability and data displays for this grade.', grade=str(n)))
+        hs_skip = ('trigonometric', 'vectors', 'polar', 'limits', 'units-and-quantities')
+        if (strand in ('Algebra', 'Functions', 'Number and Quantity') and n >= 9 and not any(x in m['module_id'] for x in hs_skip)) or (strand == 'Functions' and n == 8):
+            course = {8: 'g8', 9: 'alg1', 10: 'geo', 11: 'alg2'}.get(n, 'pre')
+            out.append(link('algebra', 'Lines, systems, functions and more for this course, with exact keys.', course=course))
+    if subj == 'computer-science' and n is not None:
+        out.append(link('code-logic', 'Coding and logic practice for this grade, each answer worked.', grade=g))
+        if strand == 'Data and Analysis' and n >= 1:
+            out.append(link('statistics', 'Survey plans, tallies and data summaries.', grade=g))
+    if (subj == 'cte' and strand in ('Personal Finance', 'Economics', 'Career Exploration')) or (subj == 'social-studies' and strand == 'Economics' and n is not None and n >= 6):
+        out.append(link('finance', 'Paychecks, budgets, interest, credit and economics, worked on the key.', grade=str(clamp(n or 9, 5, 12)), area='econ' if strand == 'Economics' else ''))
+    if subj == 'arts' and n is not None:
+        art = {'Dance': 'dance', 'Music': 'music', 'Theater': 'theater', 'Visual Arts': 'visual', 'Media Arts': 'media'}.get(strand, 'general')
+        if strand == 'Music':
+            out.append(link('music-notation', 'Rhythm, note names, scales and chords drawn as real notation.', grade=g))
+        frame = {'Dance': 'counts', 'Theater': 'script', 'Media Arts': 'storyboard', 'Visual Arts': 'art'}.get(strand)
+        if frame:
+            out.append(link('project-frames', 'A project page for this module: plan, sketch or score the work.', kind=frame, band=band_of(m['grade']), topic=title))
+        out.append(link('rubric-checklist', 'A rubric or feedback form for this art form.', **({'kind': 'faces'} if n <= 2 else {}), grade=g, subject=art))
+    if subj == 'health-pe' and strand == 'Physical Education' and n is not None:
+        out.append(link('rubric-checklist', 'Skill-cue checklists for partner or self checks.', kind='skill', grade=g))
+    if subj == 'ela' and n is not None and n >= 1 and strand in ('Language', 'Foundational Skills'):
+        out.append(link('grammar-words', 'Grammar, mechanics and word-study practice for this grade.', grade=str(clamp(n, 1, 12))))
+    if subj == 'eld' and n is not None and n >= 1:
+        out.append(link('grammar-words', 'Sentence frames by English level, plus grammar practice.', grade=str(clamp(n, 1, 12)), skill='frames'))
+    if subj == 'library' and strand == 'Research' or subj == 'ela' and strand == 'Speaking and Listening':
+        out.append(link('project-frames', 'A research or presentation planner for this module.', kind='research' if subj == 'library' else 'present', band=band_of(m['grade']), topic=title))
+    if subj == 'world-languages' and not any(x in m['module_id'] for x in ('asl', 'sign', 'fingerspelling', 'deaf', 'classifiers')):
+        out.append(link('world-language', 'Spanish or French practice: verbs, numbers, agreement, dates and more.', level=strand.lower()))
+        out.append(link('rubric-checklist', 'Can-do self-checks for this level.', kind='cando', level=strand.lower()))
     if subj == 'science' and n is not None:
         if strand in ('Physical Science', 'Energy') and n >= 6:
             out.append(link('science-calc', 'Formula practice with units and the worked answer.', grade=str(clamp(n, 6, 12))))

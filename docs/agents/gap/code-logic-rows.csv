@@ -1,0 +1,74 @@
+unit,n,family,unit_title,worksheet,type,module,students
+cs-1,17,logic-code,Grade 1 Computer Science,Name That Box: Apple Count,Practice,Signs and Changing Values,"Track a box named Apples as a story adds and takes away apples in 5 steps, writing the number each time."
+cs-1,19,logic-code,Grade 1 Computer Science,Secret Shape Code,Puzzle,Signs and Changing Values,Use a key of 6 shapes that stand for letters to decode 4 short words and draw what each word says.
+cs-1,2,logic-code,Grade 1 Computer Science,"Short Path, Long Path",Apply,Code a Path,Write two arrow programs to the same goal and circle the one with fewer steps.
+cs-1,20,logic-code,Grade 1 Computer Science,Pixel Picture by Code,Puzzle,Signs and Changing Values,"Follow row codes like ""2 white, 3 black"" to fill an 8 by 8 grid and reveal a hidden animal."
+cs-1,21,logic-code,Grade 1 Computer Science,Where Does the Frog Stop?,Practice,What the Code Does,Read 5 short picture programs and write the number of the lily pad where the frog stops.
+cs-1,23,logic-code,Grade 1 Computer Science,Explain It to a Friend,Writing frame,What the Code Does,"Finish a First, Then, Last frame that explains what a printed 3-step picture program does."
+cs-1,3,logic-code,Grade 1 Computer Science,Bug Hunt: Fix the Arrows,Critique,Code a Path,"Find the one wrong arrow in 5 programs that miss the treasure, cross it out, and draw the fix."
+cs-1,4,logic-code,Grade 1 Computer Science,Obstacle Course Program,Apply,Code a Path,"Program a robot through a grid with walls and puddles, using arrows and a pick-up symbol to collect 3 stars."
+cs-1,6,logic-code,Grade 1 Computer Science,Path Coder Check,Review,Code a Path,"Write one arrow program, fix one buggy program, and circle the shorter of two programs."
+cs-10,14,logic-code,Grade 10 Computer Science,Routing Tables,Diagram,Networks of Networks,Use printed routing tables on a 6-router map to trace the path of 4 packets.
+cs-10,18,logic-code,Grade 10 Computer Science,Public Key With Small Numbers,Puzzle,Cybersecurity,Use small-number public key math to encrypt and decrypt 3 numbers and explain why the method works.
+cs-10,2,logic-code,Grade 10 Computer Science,Sorting Race: Bubble vs Insertion,Data and graphs,Data Structures and Algorithms,"Count comparisons for bubble and insertion sort on lists of 5, 10 and 20 and graph the results."
+cs-10,29,logic-code,Grade 10 Computer Science,Randomized Algorithm Trace,Practice,Minds and Machines,Trace a randomized quicksort pivot choice with dice rolls and compare 3 runs on the same list.
+cs-10,3,logic-code,Grade 10 Computer Science,Stacks and Queues,Practice,Data Structures and Algorithms,"Trace 8 push, pop, enqueue and dequeue operations and draw the structure after each one."
+cs-10,5,logic-code,Grade 10 Computer Science,Objects and Methods Trace,Practice,Modular Programs and APIs,"Trace a printed program that creates 3 objects and calls their methods, recording each object's state."
+cs-10,7,logic-code,Grade 10 Computer Science,Search and Objects Check,Review,Modular Programs and APIs,"Trace one binary search, one queue, and one object method call."
+cs-11,2,logic-code,Grade 11 Computer Science,Recursion Trace,Practice,Data Structures and Algorithms,"Trace 4 recursive procedures, like factorial and countdown, drawing the call stack for each."
+cs-11,3,logic-code,Grade 11 Computer Science,Hash Table by Hand,Practice,Data Structures and Algorithms,Insert 10 keys into a printed hash table with a simple hash rule and resolve each collision.
+cs-11,30,logic-code,Grade 11 Computer Science,Game Tree for Tic-Tac-Toe,Diagram,Minds and Machines,Draw the game tree from a printed tic-tac-toe position and find the move a minimax search would choose.
+cs-12,2,logic-code,Grade 12 Computer Science,Shortest Path by Hand,Practice,Data Structures and Algorithms,"Find shortest paths on a printed weighted city map with Dijkstra's algorithm, filling a distance table."
+cs-12,3,logic-code,Grade 12 Computer Science,Dynamic Programming: Making Change,Practice,Data Structures and Algorithms,Fill a dynamic programming table to find the fewest coins for 6 amounts with 3 coin values.
+cs-2,17,logic-code,Grade 2 Computer Science,Bake Sale Value Boxes,Practice,Signs and Changing Values,"Update named boxes for Cookies and Money through 6 story steps of a bake sale, writing each new value."
+cs-2,2,logic-code,Grade 2 Computer Science,Loop Path Grids,Practice,Loops and Events,"Write short programs with repeat blocks for 4 grid paths, then count how many arrows the loops saved."
+cs-2,20,logic-code,Grade 2 Computer Science,Two-Color Bead Code,Puzzle,Signs and Changing Values,"Use a black and white bead code key to decode 4 letters, then encode a 3-letter animal word."
+cs-2,21,logic-code,Grade 2 Computer Science,Predict the Program,Practice,What the Code Does,Read 5 programs with loops and events and draw where the car ends up or what it says.
+cs-2,24,logic-code,Grade 2 Computer Science,Code Explainer Review,Review,What the Code Does,"Predict one program, comment one program, and track one named value through 4 steps."
+cs-2,6,logic-code,Grade 2 Computer Science,Loops and Events Check,Review,Loops and Events,"Shorten 2 programs with loops, name 3 events, and fix one loop that repeats too many times."
+cs-3,11,logic-code,Grade 3 Computer Science,Score Tracker Trace,Practice,Variables in Programs,Follow a 10-step game program and record the score variable after each step in a table.
+cs-3,13,logic-code,Grade 3 Computer Science,Coin Collector Program,Apply,Variables in Programs,"Write a paper program that adds 1 to coins each time a character touches a coin, then test it on a printed map."
+cs-3,14,logic-code,Grade 3 Computer Science,What Was the Starting Value?,Puzzle,Variables in Programs,Solve 6 puzzles that give the steps and the final value of a variable and ask for its starting value.
+cs-3,15,logic-code,Grade 3 Computer Science,Choices and Variables Check,Review,Variables in Programs,"Trace one if-else program, one variable program, and fix one bug that mixes both."
+cs-3,16,logic-code,Grade 3 Computer Science,Read a Teammate's Code,Critique,Code as a Team,"Read a printed program by a pretend teammate, write 2 glows and 1 grow comment, and predict what it does."
+cs-3,5,logic-code,Grade 3 Computer Science,Conditional Grid Robot,Practice,"If This, Then That","Follow a program with if-then rules, like ""if on a blue square, turn right,"" and mark the final square for 4 runs."
+cs-3,7,logic-code,Grade 3 Computer Science,Loops Plus Choices,Practice,"If This, Then That",Trace 4 programs that combine repeat and if blocks and draw what the character makes or says.
+cs-3,8,logic-code,Grade 3 Computer Science,Debug the Combined Code,Critique,"If This, Then That","Find and fix the bug in 5 printed programs that mix loops and conditionals, explaining each fix in a sentence."
+cs-4,33,logic-code,Grade 4 Computer Science,Passphrase Builder,Puzzle,"Wired, Wireless and Login","Rate 8 passwords with a strength rubric, then build 2 passphrases from random word cards."
+cs-4,4,logic-code,Grade 4 Computer Science,Trace Table Basics,Practice,Trace the Code,"Fill a trace table that tracks 2 variables through a 6-line program, one row per line."
+cs-4,5,logic-code,Grade 4 Computer Science,Loop Trace: Counting Sheep,Practice,Trace the Code,Trace a loop that runs 5 times and record the counter and the running total after each pass.
+cs-4,7,logic-code,Grade 4 Computer Science,Document My Program,Writing frame,Trace the Code,"Write a header comment (purpose, inputs, outputs, credit) and 4 line comments for a printed 10-line program."
+cs-4,8,logic-code,Grade 4 Computer Science,Trace the Bug,Critique,Trace the Code,Use a trace table to find the line where a printed program's total goes wrong and rewrite that line.
+cs-4,9,logic-code,Grade 4 Computer Science,Code Review Checklist,Critique,Code as a Team,"Review a printed teammate program with a 6-point checklist covering names, comments, testing and results."
+cs-5,19,logic-code,Grade 5 Computer Science,Caesar Cipher Secrets,Puzzle,The CIA Triad,Encode and decode 5 messages with a shift cipher and explain how it protects confidentiality.
+cs-5,20,logic-code,Grade 5 Computer Science,Checksum Check,Practice,The CIA Triad,Use a digit-sum checksum to find which of 6 number messages were changed on the way.
+cs-5,7,logic-code,Grade 5 Computer Science,Debug Log,Log,Remix a Program,"Record 4 bugs found in a printed program: the symptom, the cause, the fix and the test result."
+cs-6,10,logic-code,Grade 6 Computer Science,Test Cases Table,Practice,Code You Did Not Write,"Write 6 test cases with input and expected output for a printed grade-averaging procedure, then run them by hand."
+cs-6,2,logic-code,Grade 6 Computer Science,Flowchart to Pseudocode Translator,Practice,Flowcharts and Pseudocode,Translate 4 printed flowcharts with loops and choices into numbered pseudocode lines.
+cs-6,32,logic-code,Grade 6 Computer Science,The Internet Phone Book,Practice,Packets and the Internet,Match 8 domain names to IP addresses using a printed name server table and explain what DNS does.
+cs-6,35,logic-code,Grade 6 Computer Science,Password Math,Practice,Cyber Attacks and Defense,Count possible combinations for 5 password rules and decide which rule makes guessing hardest.
+cs-6,4,logic-code,Grade 6 Computer Science,Data Type Sort,Organizer,"Variables, Data Types and Procedures","Sort 15 values, like 42, 3.5, ""hello"" and true, into integer, decimal, string and Boolean, with a use for each."
+cs-6,5,logic-code,Grade 6 Computer Science,Be the Computer: Memory Boxes,Practice,"Variables, Data Types and Procedures","Be the computer: run 3 printed programs line by line, crossing out and updating score, lives and name memory boxes."
+cs-6,7,logic-code,Grade 6 Computer Science,Algorithms and Data Types Check,Review,"Variables, Data Types and Procedures","Translate one flowchart, trace one program, and type 6 values."
+cs-6,8,logic-code,Grade 6 Computer Science,Read Someone Else's Code,Critique,Code You Did Not Write,"Annotate a printed 15-line program from a stranger, labeling what each section does and one question you have."
+cs-7,2,logic-code,Grade 7 Computer Science,Count Loop or Condition Loop?,Practice,Flowcharts and Pseudocode,Rewrite 4 algorithms between repeat-a-number loops and repeat-until loops and explain which fits better.
+cs-7,32,logic-code,Grade 7 Computer Science,Redundant Routes,Diagram,Packets and the Internet,Find alternate paths on a printed mesh network when 2 routers fail and count the hops for each route.
+cs-7,34,logic-code,Grade 7 Computer Science,Keyword Cipher Lab,Puzzle,Cyber Attacks and Defense,Encode and decode 4 messages with a keyword cipher and compare its strength to a shift cipher.
+cs-7,4,logic-code,Grade 7 Computer Science,Lists in Pseudocode,Practice,"Variables, Data Types and Procedures","Trace 6 list operations, like append, remove and index, on a printed list and write its contents after each."
+cs-7,5,logic-code,Grade 7 Computer Science,Type Mismatch Bugs,Critique,"Variables, Data Types and Procedures","Find 6 data type bugs, like adding ""5"" to 3, in printed code and rewrite each line correctly."
+cs-7,7,logic-code,Grade 7 Computer Science,Lists and Procedures Check,Review,"Variables, Data Types and Procedures","Trace one nested loop, one list, and one procedure call, and fix one type bug."
+cs-8,2,logic-code,Grade 8 Computer Science,Procedures With Parameters,Practice,Flowcharts and Pseudocode,"Write a procedure with parameters that draws any polygon, then trace 4 calls on grid paper."
+cs-8,34,logic-code,Grade 8 Computer Science,Hashing by Hand,Practice,Cyber Attacks and Defense,"Use a simple hash rule to hash 6 passwords, then explain why stored hashes protect users."
+cs-8,4,logic-code,Grade 8 Computer Science,Scope Detective,Puzzle,"Variables, Data Types and Procedures",Trace 4 programs with local and global variables and predict each printed value.
+cs-9,19,logic-code,Grade 9 Computer Science,Password Entropy,Practice,Cybersecurity,Calculate entropy in bits for 6 password policies and rank them from weakest to strongest.
+cs-9,2,logic-code,Grade 9 Computer Science,Selection Sort With Cards,Practice,Data Structures and Algorithms,"Sort 8 number cards with selection sort, recording the list after every pass in a trace table."
+cs-9,20,logic-code,Grade 9 Computer Science,Encryption Basics,Practice,Cybersecurity,Encrypt and decrypt 3 messages with a substitution cipher and use letter frequencies to crack a fourth.
+cs-9,43,logic-code,Grade 9 Computer Science,Count the Steps,Practice,Device Limits and Optimization,Count loop steps in 4 printed algorithms for a battery-powered device and find the most wasteful one.
+cs-k,11,logic-code,Kindergarten Computer Science,Where Will the Bunny Hop?,Practice,What the Code Does,Listen to 5 short arrow programs read aloud and circle the carrot the bunny lands on each time.
+cs-k,13,logic-code,Kindergarten Computer Science,Tell the Steps Back,Writing frame,What the Code Does,"Look at a 4-arrow program and draw each move in a story strip, then tell a partner what the code does."
+cs-k,3,logic-code,Kindergarten Computer Science,Robot Says: Follow the Arrows,Practice,Step-by-Step,"Follow arrow cards with a finger on a 4 by 4 picture grid and circle the animal the robot reaches, 6 paths."
+cs-k,4,logic-code,Kindergarten Computer Science,Bug Maze: Draw the Code,Apply,Step-by-Step,"Trace the way through 3 picture mazes, then draw the arrow program the bug follows to reach the apple."
+dance-5,9,logic-code,Grade 5 Dance,Variation Logic Grid,Puzzle,Patterns in Dance,"Use clues to match 5 dancers to their variation (tempo, level, size, direction, body part) in a logic grid."
+health-4,40,logic-code,Grade 4 Health,Password Strength Puzzle,Puzzle,Safety at Home and Online,"Rate 6 made-up passwords from weak to strong using 4 rules, then build a strong passphrase from a word bank."
+science-ms-8,18,logic-code,Grade 8 Middle School Science,Binary Pixel Pictures,Puzzle,Analog and Digital Signals,"Decode a grid of 1s and 0s into a picture, then encode a simple shape for a partner to decode."
+world-geo-6,16,cipher-decode,World Geography and Ancient Civilizations,The Rosetta Stone Puzzle,Puzzle,Mesopotamia and Egypt,"Decode 6 cartouche names using a simplified hieroglyph key, the same way Champollion used names on the Rosetta Stone."

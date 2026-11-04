@@ -29,7 +29,8 @@ for (const id of ids) {
   const file = path.join(ROOT, 'site/assets/gen', id + '.js');
   const out = [];
   if (!fs.existsSync(file)) { console.log(`${id}: MISSING ${file}`); bad++; continue; }
-  try { load(file); } catch (e) { console.log(`${id}: does not load: ${e.message}`); bad++; continue; }
+  const pre = path.join(ROOT, 'site/assets/gen', id + '-data.js');   // an optional word or fact bank, loaded first
+  try { if (fs.existsSync(pre)) load(pre); load(file); } catch (e) { console.log(`${id}: does not load: ${e.message}`); bad++; continue; }
   const def = Gen.defs[id];
   if (!def) { console.log(`${id}: the file does not call Gen.add('${id}', ...)`); bad++; continue; }
   let d = null;

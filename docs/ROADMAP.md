@@ -48,9 +48,10 @@ no accounts, no ads, no tracking.
    the year, its link opens the generator preset): the first sift kept 26 of 746 math, science and social studies rows,
    which said the generators rarely replaced a written sheet as they stood. 2026-11-04: the settings the reviewers
    wished for were built (and a coordinate-plane generator, 16 in all), a second sift took the backed rows to 83; the
-   remaining wish list is in docs/SUPPLY-CLOSET-PLAN.md, Generators. Next: about 10 more generators where the lists are thickest and really procedural (place value, decimals and percents, ratios,
-   integers and order of operations, angles and coordinates, statistics, phonics and spelling, grammar, unit
-   conversions, balancing equations). Authored waves
+   remaining wish list is in docs/SUPPLY-CLOSET-PLAN.md, Generators. Later 2026-11-04: an assessment of every unwritten
+   row (docs/agents/WORKSHEET-GAPS.md) chose 10 more generators where the gaps are biggest (arts rubrics and frames,
+   world languages, music, statistics, algebra, finance, code, K-2 number, grammar), 26 in all, and a strict sift took
+   the backed rows to 676. About 4,900 rows need a writer whatever we build. Authored waves
    continue for K-2 and the interpretive subjects. Cory still reviews the live shelf; the rest of wave 2 and wave 3
    follow at a slower pace.
 5. **Housekeeping (from the 2026-11-03 cleanup):** after 2026-11-07, delete the staged temp folder

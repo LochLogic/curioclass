@@ -22,6 +22,8 @@ const list = opts => opts.map(([v, l]) => `${v} (${l})`).join(', ');
 const MODULE_FIELDS = new Set(['mod']);
 
 for (const g of reg.generators) {
+  const pre = path.join(ROOT, 'site/assets/gen', g.id + '-data.js');
+  if (fs.existsSync(pre)) load(pre);
   load(path.join(ROOT, 'site/assets/gen', g.id + '.js'));
   const def = Gen.defs[g.id];
   let d = null;

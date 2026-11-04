@@ -16,7 +16,7 @@ It is organized like a real supply closet, as shelves:
 | **Break Box** | Screen-free 1-2 hour projects for kids home on school breaks, 30 per grade (docs/BREAK-BOX-PLAN.md) | grade | Draft |
 | **The Map** | A visual map of modules, with tools and closet items as pins, and suggested unit trails | module | F |
 | **Worksheets** | Authored print sheets, 40-50 per class, with keys (docs/WORKSHEETS-PLAN.md) | class | Pilot |
-| Worksheet Generator | Generated practice sheets with answer keys; 15-generator test group built 2026-11-03 at /closet/worksheets/make/ | skill and grade | Test group |
+| Worksheet Generator | Generated practice sheets with answer keys; 26 generators live 2026-11-04 at /closet/worksheets/make/ | skill and grade | Test group |
 
 ## What the site already has (checked 2026-10-26)
 
@@ -475,7 +475,7 @@ main roadmap: docs/ROADMAP.md, Track 2.
 
 ---
 
-## Generators: the Worksheet Generator (16 live 2026-11-04, /closet/worksheets/make/)
+## Generators: the Worksheet Generator (26 live 2026-11-04, /closet/worksheets/make/)
 
 **Reviewed 2026-11-03 (Cory): better than expected; the generators come first for procedural practice from here**
 (docs/ROADMAP.md, Now, item 4; docs/WORKSHEETS-PLAN.md says what that does to the authored lists). Decisions and
@@ -524,6 +524,18 @@ rules from that review:
   separate cause and effect labels; timeline Reconstruction, Road to Revolution and Holocaust sets; graph-reading custom
   data up to 12 pairs with decimals and teacher-typed questions; coordinate-plane rigid-only transformations and
   shapes at grade 6; punnett dihybrid to 4 or 6; vocabulary cloze from a typed word list.
+
+- **Ten more generators, 2026-11-04 (Cory: assess, then build 10 at the biggest gaps):** the assessment is
+  docs/agents/WORKSHEET-GAPS.md (all 7,856 unwritten rows classified; about 4,900 need a writer whatever we build). Built
+  from it: **statistics**, **algebra** (grade 8 to precalculus), **finance**, **early-number** (K-2 ten frames, dot
+  cards, blocks, clocks, coins), **grammar-words** (with an English-learner frames mode), **world-language** (Spanish and
+  French; ASL stays with writers), **music-notation**, **code-logic**, **rubric-checklist** and **project-frames**, plus
+  typed columns, more units and 12 entries on planner-log trial logs. A generator may load a word or fact bank from
+  `<id>-data.js` before its own file. gen_links.py has rules for all ten. A strict sift kept 593 rows (rubric-checklist
+  138, project-frames 122, finance 67, statistics 48, algebra 46, grammar-words 44, code-logic 38, early-number 30,
+  music-notation 30, world-language 30), 676 backed in all. The build brief and per-generator target rows are in
+  docs/agents/gap/. Next by the same data: fitness and health calculations, unit reviews mixed from other generators,
+  angles and geometry, calculus and trig, chemistry calculations, drawing drills, citations and library skills.
 
 **Update 2026-11-03: test group built.** Cory asked for 15 full generators covering every area and generator type, live for
 his review before deciding the build-out. They are organized by skill and grade rather than one recipe per module:

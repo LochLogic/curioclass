@@ -669,6 +669,7 @@ if CLOSET_LIVE:
     for g in GENS['generators']:
         if not (SITE / 'assets' / 'gen' / f"{g['id']}.js").exists():
             sys.exit(f"Generators: site/assets/gen/{g['id']}.js is missing")
+        g['data_js'] = (SITE / 'assets' / 'gen' / f"{g['id']}-data.js").exists()   # an optional word or fact bank, loaded first
         render('closet/gen.html', f"/closet/worksheets/make/{g['id']}/", g=g,
                more=[m for m in GENS['generators'] if m['group'] == g['group'] and m['id'] != g['id']])
     gen_words = [dict(id=mid, title=modules[mid]['title'], subject=modules[mid]['subject'], s=subjects[modules[mid]['subject']]['label'],

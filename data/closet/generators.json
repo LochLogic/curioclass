@@ -4,6 +4,7 @@
     ["math", "Math", "Number, fractions, equations, shapes and word problems. Every answer is worked out by the generator."],
     ["science", "Science", "Calculations and genetics with the steps shown on the key."],
     ["words", "Words, maps and time", "Vocabulary and puzzles built from the Word Wall, plus map skills and timelines."],
+    ["subjects", "Languages, music and computer science", "Spanish and French practice, music notation and rhythm, and code and logic puzzles, with keys."],
     ["frames", "Thinking and writing pages", "Organizers, writing frames, planners, logs and reflections for any topic you type in."]
   ],
   "generators": [
@@ -38,6 +39,26 @@
     {"id": "writing-frame", "group": "frames", "title": "Writing Frames", "grades": "1-12", "types": ["Writing frame"],
      "blurb": "Opinion, informative, narrative, science claim-evidence-reasoning, compare and summary frames, built for the grade, with fresh starters and a standards checklist."},
     {"id": "planner-log", "group": "frames", "title": "Planners, Logs and Reflections", "grades": "K-12", "types": ["Planner", "Log", "Reflection"],
-     "blurb": "Project planners, reading, practice and science logs, weekly and exit reflections, and goal setting (SMART from grade 6), sized for the grade."}
+     "blurb": "Project planners, reading, practice and science logs, weekly and exit reflections, and goal setting (SMART from grade 6), sized for the grade."},
+    {"id": "statistics", "group": "math", "title": "Statistics and Probability", "grades": "K-12", "types": ["Practice", "Review"],
+     "blurb": "Survey plans and tallies, mean, median, MAD and box plots, probability bags and spinners, scatter plots and lines of fit, two-way tables, normal curves, regression, confidence intervals, chi-square tests and classifier accuracy, with keys that draw the graphs in red."},
+    {"id": "algebra", "group": "math", "title": "Algebra and Functions", "grades": "8-12", "types": ["Practice", "Review"],
+     "blurb": "Algebra 1 through precalculus practice: lines, systems, functions, quadratics, logs, sequences, rational functions, matrices and conics, each with an exact checked key."},
+    {"id": "finance", "group": "math", "title": "Money and Finance", "grades": "5-12", "types": ["Practice", "Apply"],
+     "blurb": "Paychecks, budgets, unit prices, sales tax and discounts, simple and compound interest, credit cards and loans, insurance and investing, and economics from supply and demand to GDP, with every number invented and every answer worked on the key."},
+    {"id": "early-number", "group": "math", "title": "Early Number", "grades": "K-2", "types": ["Practice"],
+     "blurb": "Ten frames, counting pictures, number lines, base-ten blocks, clocks, coins and rulers, all drawn on the page, with the answers in red on the key."},
+    {"id": "grammar-words", "group": "words", "title": "Grammar and Word Study", "grades": "1-12", "types": ["Practice", "Review"],
+     "blurb": "Grammar, mechanics, spelling and word-study practice from parts of speech and commas to Greek and Latin roots, plus English-learner sentence frames by level, each with an answer key."},
+    {"id": "world-language", "group": "subjects", "title": "Spanish and French Practice", "grades": "K-12", "types": ["Practice", "Review"],
+     "blurb": "Spanish and French practice with answer keys: verb charts and sentences in every tense from present to subjunctive, numbers in words, agreement, articles, dates, clocks, si clauses and mood choice, plus picture-light K-5 sheets."},
+    {"id": "music-notation", "group": "subjects", "title": "Music Notation and Rhythm", "grades": "K-12", "types": ["Practice"],
+     "blurb": "Rhythm, pitch and theory sheets drawn as real notation: count and clap rhythms, add bar lines, name and draw notes, build scales, key signatures, intervals and chords, plus staff paper for composing."},
+    {"id": "code-logic", "group": "subjects", "title": "Code and Logic", "grades": "K-12", "types": ["Practice", "Puzzle"],
+     "blurb": "Arrow programs, loops, if-then robots, trace tables, predicting Python output, lists, scope, ciphers, checksums, hashing, sorting, stacks, recursion, RSA, shortest paths and more, each with a worked answer key."},
+    {"id": "rubric-checklist", "group": "frames", "title": "Rubrics and Checklists", "grades": "K-12", "types": ["Rubric", "Checklist"],
+     "blurb": "Rubrics, single-point rubrics, peer feedback forms, can-do self-checks and skill-cue checklists for the arts, PE and world languages, from your own criteria or a built-in list."},
+    {"id": "project-frames", "group": "frames", "title": "Project Frames", "grades": "K-12", "types": ["Planner", "Organizer"],
+     "blurb": "Project pages for any topic: research and presentation planners, storyboards, shot lists, script pages, dance count sheets, stage plans, art planners, decision matrices, interview and debate prep, and coaching plans."}
   ]
 }
