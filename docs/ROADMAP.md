@@ -33,7 +33,8 @@ no accounts, no ads, no tracking.
 ## Now (set 2026-11-03, Review Desk q-plan cards)
 
 1. **Codex:** Nonsense Words and Sight Words (grade 2 teacher request) first, then keyword-fishing and input-or-output.
-   Cory reads tools/nonsense-words/words.txt (the 200 words) before Nonsense Words ships.
+   Nonsense Words is live with a pattern picker (short vowels to word endings, plus mixes) over an 894-word bank
+   checked by fresh agents.
 2. **Finish a cohort before more builds** (BASELINE rule 14): Credit Card Builder, Image Transformer, Data Policy
    Council, Puppet Show Feelings, World Music Map and Near and Far, end to end under the new review (people art,
    audit that saves as it goes, preflight). Repeat problems go in an issue ledger and become kit or brief fixes. A
@@ -84,6 +85,13 @@ it up later and only when needed.
 
 "Fact-check a chatbot" (generative AI) and a resume builder (near term), from BASELINE rule 10. Road Trip Atlas (Cory, 2026-11-03): travel point A to B past landmarks, with hours and days and miles compared with familiar distances; queued in data/concepts/social-studies.txt. New ideas go into
 data/concepts/*.txt for a later spec wave.
+
+### Cross-linking (standing, from 2026-11-03)
+
+Every build ends by cross-linking (docs/BUILD-PLAN.md step 5): new tools, closet items, word wall additions and future
+collections are linked from where people look and link onward to what they pair with. Each major milestone on this
+roadmap closes with a cohesion pass: walk the site from the home page, grade and subject pages, module pages and the
+Supply Closet, and fix dead ends, orphans and missing links before the milestone counts as done.
 
 ## Track 2: Supply Closet
 
@@ -148,10 +156,14 @@ Night, Word check, closet search, Take home, words CSV. What is left, in order:
    site/assets/printables.js (paper: handwriting, lined, graph, dot; math and letters: number lines, hundreds chart,
    alphabet strips and cards; organizers in English, Spanish or both: Venn, KWL, story map, cause and effect, main idea,
    T-chart, sequence, Frayer word map; classroom: name plates, certificates). Spanish labels checked by a fresh agent.
-   **Research Cards** (live 2026-11-03, /closet/research-cards/): a K-2 intro to research, 16 two-page cards (4 people,
-   4 places, 4 things, 4 animals) from data/research-cards.json plus a blank "my own topic" card. Page 1 is a short read,
-   quick facts, words to know and a talk prompt; page 2 has find-it questions, draw and label, I wonder and sources.
-   Facts and sensitivity checked by a fresh agent. Pictures are emoji for now; real art can come on an art night.
+   **Research Cards** (live 2026-11-03, grown to 50 the same day, /closet/research-cards/): a K-2 intro to research,
+   50 two-page cards (13 people, 13 places, 12 things, 12 animals) from data/research-cards.json plus a blank "my own
+   topic" card. Page 1 is a three-paragraph read, quick facts, words to know and a talk prompt; page 2 has find-it
+   questions, draw and label, I wonder and sources. Hard history is stated plainly but briefly, and each card stays
+   positive. Facts and sensitivity checked by fresh agents. Photos are public domain or CC0 only
+   (site/assets/research/, source and licence in CREDITS.json, listed in docs/ART-STATUS.md); a card without one shows
+   its emoji. Cross-linked: each card lists its module ids, so K-5 module pages show a Research Cards row, and the
+   Library and Research Skills modules show the whole set.
    Next ideas: Word Wall bingo and flash cards, a quiz-show board and scoreboard for the Teacher Desk.
 8. **Learning Supports** (new 2026-11-03): tools for learners who need extra support, worded carefully but
    confidently. Each says what approach it follows (for example decodable nonsense words used in structured
@@ -178,7 +190,11 @@ Detail: docs/LIBRARY-PLAN.md. About 700 stories are curated and processed into r
 Detail: docs/SITE.md. File limit (static assets cap at 20,000 files): solved 2026-11-03 by moving the pictures
 (Reading Room and Word Wall art, about 10,200 files) to the R2 bucket curioclass-media, served at the same URLs by
 worker/index.js. Before each deploy run scripts/sync_media.py, which uploads new pictures. The "On the bench" tab and
-/bench/ page were removed 2026-11-03 (Cory: not useful); sketched tools still show on module pages. Open items: the
+/bench/ page were removed 2026-11-03 (Cory: not useful); sketched tools still show on module pages. Classrooms (2026-11-03): the Grades and Subjects
+pages are combined into one page, /classrooms/ ("Pick a classroom": grade rooms and subject wings, every chip and tile
+a direct link); /grades/ and /subjects/ redirect there, and the grade and subject pages crumb back to it. The top nav
+is Classrooms, Supply Closet, Search, About; the Reading Room left the nav and stays in the footer and the Supply
+Closet. The home eyebrow now reads "Free for everyone, always". Open items: the
 www.curioclass.org redirect, dark mode, and a
 request page for teachers (the About page email does this for now).
 

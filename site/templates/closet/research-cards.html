@@ -5,6 +5,7 @@
 {% block head %}
 <style>
 .rc-card h3 { display: flex; align-items: center; gap: 10px; }
+.rc-thumb { width: 64px; height: 48px; object-fit: cover; border-radius: 10px; flex: 0 0 auto; }
 .rc-emoji { font-size: 34px; line-height: 1; }
 .rc-how { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 18px; margin: 4px 0 18px; }
 .rc-how ol { margin: 6px 0 0; padding-left: 22px; }
@@ -28,7 +29,7 @@
     <div class="module-grid">
       {% for c in items %}
       <article class="module-card rc-card">
-        <h3><span class="rc-emoji" aria-hidden="true">{{ c.emoji }}</span><a href="/closet/research-cards/{{ c.id }}/">{{ c.title }}</a></h3>
+        <h3>{% if c.photo %}<img class="rc-thumb" src="{{ c.photo.src }}" alt="" loading="lazy">{% else %}<span class="rc-emoji" aria-hidden="true">{{ c.emoji }}</span>{% endif %}<a href="/closet/research-cards/{{ c.id }}/">{{ c.title }}</a></h3>
         <p class="desc">{{ c.read[0] }}</p>
       </article>
       {% endfor %}

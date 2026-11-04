@@ -199,21 +199,34 @@ def subject_sections(mods):
                  note=s['primary_standards'], mods=ms) for s, ms in module_groups(mods)]
 
 
+RESEARCH = json.loads((DATA / 'research-cards.json').read_text(encoding='utf-8'))
+_rc_dir = SITE / 'assets' / 'research'
+_rc_credits = json.loads((_rc_dir / 'CREDITS.json').read_text(encoding='utf-8')) if (_rc_dir / 'CREDITS.json').exists() else {}
+for _c in RESEARCH['cards']:  # a public-domain photo when one is on file, else the emoji
+    if (_rc_dir / f"{_c['id']}.jpg").exists() and _c['id'] in _rc_credits:
+        _c['photo'] = dict(_rc_credits[_c['id']], src=f"/assets/research/{_c['id']}.jpg")
+# Browse: one page that picks a grade, a subject, or both (replaces the separate Grades and Subjects pages)
+mx = {g: {sid: 0 for sid in subjects} for g in GRADES}
+for m in modules.values():
+    for g in m['grades']:
+        mx[g][m['subject']] += len(by_module[m['module_id']])
+mxb = {bid: {sid: sum(len(by_module[m['module_id']]) for m in modules.values() if m['subject'] == sid and set(m['grades']) & set(b['grade_list']))
+              for sid in subjects} for bid, b in bands.items()}
+render('find.html', '/classrooms/', bands=bands, subjects=subjects, mx=mx, mxb=mxb,
+       subject_total={sid: sum(mx[g][sid] for g in GRADES) for sid in subjects}, grade_total={g: sum(mx[g].values()) for g in GRADES})
 # grades and bands
-render('grades.html', '/grades/', bands=bands, grades=grades)
 for g in GRADES:
     lede = ('Teacher-led on the big screen. ' if grades[g]['band'] == 'k2' else '') + '{count} tools across {n} subjects.'
-    browse_page(f'/grades/{g}/', grade_label(g), lede, [('Grades', '/grades/'), (grade_label(g), None)],
+    browse_page(f'/grades/{g}/', grade_label(g), lede, [('Classrooms', '/classrooms/'), (grade_label(g), None)],
                 subject_sections([m for m in modules.values() if g in m['grades']]), 'Subjects',
                 fit=[g], subtitle='for every subject')
 for bid, b in bands.items():
     browse_page(f'/grades/{BAND_SLUG[bid]}/', b['label'], b['blurb'] + ' {count} tools across {n} subjects.',
-                [('Grades', '/grades/'), (b['label'], None)],
+                [('Classrooms', '/classrooms/'), (b['label'], None)],
                 subject_sections([m for m in modules.values() if set(m['grades']) & set(b['grade_list'])]), 'Subjects',
                 fit=b['grade_list'], subtitle='for every subject', show_grade=True)
 
 # subjects
-render('subjects.html', '/subjects/', counts={s: sum(1 for t in tools if t['module']['subject'] == s) for s in subjects})
 for sid, s in subjects.items():
     by_grade = defaultdict(list)
     for m in modules.values():
@@ -226,7 +239,7 @@ for sid, s in subjects.items():
     used = {m['course_id'] for ms in by_grade.values() for m in ms}
     langs = [(c, courses[c]['title'].split(' (')[0]) for c in courses if c in used] if sid == 'world-languages' else []
     browse_page(f'/subjects/{sid}/', s['label'], s['covers'] + '. Aligned to ' + s['primary_standards'] + '. {count} tools.',
-                [('Subjects', '/subjects/'), (s['label'], None)], sections, 'Grades', subtitle='K-12', color=s['color'],
+                [('Classrooms', '/classrooms/'), (s['label'], None)], sections, 'Grades', subtitle='K-12', color=s['color'],
                 langs=langs if len(langs) > 1 else [])
 
 # play styles and collections
@@ -338,7 +351,8 @@ for m in modules.values():
     mt = by_module[m['module_id']]
     plans = [t for t in mt if t['built'] and t['plan']]
     cards = words.get(m['module_id'], [])
-    render('module.html', m['url'], m=m, items=mt, plans=plans, words=cards, subject=subjects[m['subject']],
+    rcards = [c for c in RESEARCH['cards'] if m['module_id'] in c['modules']] or (RESEARCH['cards'] if m['module_id'] in RESEARCH['for_all'] else [])
+    render('module.html', m['url'], m=m, items=mt, plans=plans, words=cards, subject=subjects[m['subject']], rcards=rcards, rc_all=m['module_id'] in RESEARCH['for_all'],
            games=games_by_module.get(m['module_id'], []), course=courses.get(m['course_id']), chart=charts.get(m['module_id']),
            index=any(t['built'] for t in mt) or bool(cards))
     if m['module_id'] in charts:
@@ -578,7 +592,6 @@ for u, d in ws_units.items():
     render('closet/ws-unit.html', f'/closet/worksheets/{u}/', u=u, d=d, groups=groups, rows=ws_rows[u], ready=len(ws_built.get(u, {})))
 render('closet/ws-sheet.html', '/closet/worksheets/sheet/', index=False)
 counts['teacher-desk'] = 'Desk Dock and Classroom Music ready'
-RESEARCH = json.loads((DATA / 'research-cards.json').read_text(encoding='utf-8'))
 counts['research-cards'] = f"{len(RESEARCH['cards'])} cards and a blank one"
 counts['printables'] = f"{sum(len(x[2]) for x in PRINTABLES)} printables"
 counts['worksheets'] = f"{sum(len(v) for v in ws_built.values())} ready of {sum(len(v) for v in ws_rows.values()):,} planned"

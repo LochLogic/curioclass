@@ -14,6 +14,8 @@
 .rc-top span { font-size: 13px; color: #5b6673; }
 .rc-head { display: flex; gap: 18px; align-items: center; }
 .rc-pic { flex: 0 0 auto; width: 120px; height: 120px; border: 3px solid #234d77; border-radius: 22px; display: grid; place-items: center; font-size: 76px; line-height: 1; background: #fffaf0; }
+.rc-photo { width: 190px; height: 150px; object-fit: cover; padding: 0; }
+.rc-credit { font-size: 11px; color: #5b6673; margin: -4px 0 0; }
 .rc-head h1 { font-size: 38px; margin: 0; line-height: 1.1; color: #1d2733; }
 .rc-kind { display: inline-block; margin-top: 6px; font-size: 14px; font-weight: 700; color: #234d77; border: 2px solid #234d77; border-radius: 999px; padding: 1px 12px; }
 .rc-read p { margin: 0 0 10px; font-size: 22px; line-height: 1.5; }
@@ -53,7 +55,7 @@
     <section class="rc-page" aria-label="Page 1: read and learn">
       <div class="rc-top"><b>Research Card · Page 1</b><span>Name <span class="rc-fill" style="min-width:180px"></span></span></div>
       {% if c.title %}
-      <div class="rc-head"><div class="rc-pic" aria-hidden="true">{{ c.emoji }}</div><div><h1>{{ c.title }}</h1><span class="rc-kind">{{ c.kind|capitalize }}</span></div></div>
+      <div class="rc-head">{% if c.photo %}<img class="rc-pic rc-photo" src="{{ c.photo.src }}" alt="{{ c.photo.alt }}">{% else %}<div class="rc-pic" aria-hidden="true">{{ c.emoji }}</div>{% endif %}<div><h1>{{ c.title }}</h1><span class="rc-kind">{{ c.kind|capitalize }}</span></div></div>
       <div class="rc-read">{% for p in c.read %}<p>{{ p }}</p>{% endfor %}</div>
       <div class="rc-box"><h2>Quick facts</h2><ul>{% for f in c.facts %}<li>{{ f }}</li>{% endfor %}</ul></div>
       <div class="rc-box"><h2>Words to know</h2><dl class="rc-words">{% for w, m in c.words %}<div><dt>{{ w }}:</dt> <dd>{{ m }}</dd></div>{% endfor %}</dl></div>
@@ -81,6 +83,7 @@
       <div class="rc-box"><h2>Where I found my facts</h2>
         <div class="rc-checks">{% if c.title %}<span>This card</span>{% endif %}<span>A book</span><span>A grown-up</span><span>A website</span><span>A museum or trip</span></div>
       </div>
+      {% if c.photo %}<p class="rc-credit">Photo: {{ c.photo.author }}, {{ c.photo.license }}. {{ c.photo.source }}</p>{% endif %}
     </section>
   </div>
 </div>

@@ -71,3 +71,8 @@ children's tools and are not used. See docs/POLISH.md (Sound and voice) and docs
 3. Build agents, then Refine (lenses, polish, exit check), then plan agents for each PASS, one tool each. Builds only touch their own tool folder, so they can run in
    parallel; a family's first tool runs before its siblings (it writes the engine).
 4. Integrate: check_tools, commit, board, queue art and voice, add to the Review Desk when art and voice are in.
+5. Cross-link (every build, not just tools): link the new piece from where a teacher or child would look for it, and
+   link out from it to what it pairs with. A tool links to its module, word wall, anchor chart, games, research cards and
+   worksheets; a Supply Closet item (word wall words, research cards, games, printables) is mapped to the modules it
+   serves so module pages show it; a new collection links to and from its members. Ask: where would someone expect to
+   find this, and where should they go next? Check the module page and the closet shelf both show it.

@@ -27,7 +27,7 @@ for page in DIST.rglob('*.html'):
 rfile = DIST / '_redirects'
 redirects = [l.split() for l in rfile.read_text(encoding='utf-8').splitlines() if l.strip()] if rfile.exists() else []
 for old, new, *_ in redirects:
-    if not resolves(new):
+    if not resolves(new.split('#')[0]):
         broken.setdefault(new, '_redirects')
     if resolves(old):
         broken.setdefault(old + ' (redirected, but still built)', '_redirects')

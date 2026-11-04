@@ -36,6 +36,15 @@
   </section>
   {% endif %}
 
+  {% if rcards %}
+  <section class="group">
+    <h2>Research Cards</h2>
+    <p>{% if rc_all %}A first taste of research for young learners: a two-page card on a person, place, thing or animal. Children read, then find facts and write them down.{% else %}Two-page research cards that go with this module. Children read, then find facts and write them down.{% endif %}</p>
+    <ul class="module-list">{% for c in rcards[:6] %}<li><a href="/closet/research-cards/{{ c.id }}/"><b>{{ c.emoji }} {{ c.title }}</b></a></li>{% endfor %}</ul>
+    <p><a class="btn" href="/closet/research-cards/">All research cards</a></p>
+  </section>
+  {% endif %}
+
   {% if chart %}
   <section class="group">
     <h2>Anchor chart</h2>
