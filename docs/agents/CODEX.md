@@ -1,4 +1,7 @@
-# Codex as builder (pilot)
+# Codex as builder
+
+**2026-11-04 (Cory): Codex is the primary builder and the phase 1 reviewer** (the cold CODEX-REVIEW.md pass in a new
+chat); Claude's Refine lenses come after. The pilot notes below are history.
 
 Codex does Build (step 1) and Polish (step 5) only. Everything else stays as REFINE.md: the integrator (the main Claude
 session) writes the brief, three blind Claude lenses review, the integrator merges, fresh Claude agents run the exit
@@ -18,6 +21,19 @@ meant 46 repo copies and each chat writes only its own tool. Cory pastes from S:
 what is on disk by `python scripts/codex_queue.py prompts`. A chat opened outside that project lands in Documents\Codex
 and can't reach the tool, so every block tells it to stop there.
 Compare Refine's finding counts on these tools with the two pilots before deciding the review step stays.
+
+## Unattended runs (2026-11-04)
+
+`python scripts/codex_runner.py` (Start Menu: "Codex Queue", scripts\Start-Codex-Queue.bat) does Cory's pasting while he
+is away: each build and review block from _queue.txt runs as its own fresh `codex exec` session in S:\CurioClass-codex,
+the same as a new chat. Reviews go first; a finished build makes its review eligible. Same limits as the paste file
+(3 builds, 4 reviews, ports by slot); `--builds N --reviews N` runs fewer. Sessions start 2 minutes apart: two that
+started at the same moment both failed the sandbox handshake on the first test and gave up within 3 minutes. One that
+ends that fast without its file gets one fresh restart; a stall of 20 minutes gets the hung-command message and a
+dropped turn gets "carry on" (both as resumes, at most 3), then it is logged FAILED for a person. A usage-limit
+message stops new starts. Tools touched in the last 20 minutes and slots whose ports are busy are skipped, so it can
+run beside hand-pasted chats, but it is meant for when nobody is pasting. Stop gently with an empty file
+S:\CurioClass-codex\_runner\STOP. Log: _runner\summary.txt, one events file per session under _runner\<date>\.
 
 ## Set up
 

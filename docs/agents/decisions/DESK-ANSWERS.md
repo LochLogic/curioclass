@@ -48,7 +48,8 @@ before that tool is built.
 **Codex test tools (q-codex-tests):** yes to 1 to 3, Claude's pick on 4 and 5.
 - Network Help Desk and Half-Life Dice get a graphics and gameplay pass with the new brief rules before voice and Final
   look.
-- Codex stays an extra builder when budget is spare, not the default; judge the next builds on Cory's play test too.
+- Corrected by Cory the same day: Codex IS the primary builder and the phase 1 reviewer (the cold CODEX-REVIEW.md pass
+  in a new chat), with Claude's Refine lenses after it. Judge the builds on Cory's play test too.
 - Half-Life Dice: add a student action on the energy ladder (tap the rung where a balanced card's energy lands).
 - Half-Life Dice keeps 5,730 years for carbon-14 and mentions 5,700 in the teacher notes.
 - The audit stops flagging "welcome not heard after a first tap".
