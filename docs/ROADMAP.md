@@ -43,6 +43,10 @@ no accounts, no ads, no tracking.
 3. **Then scale back up:** Codex builds resume with at most about 10 built and unreviewed. People art is filled for the
    11 tools missing it (314 images), each set on a contact sheet for Cory plus a fresh representation check.
 4. **Worksheets:** Cory reviews the live shelf; then the rest of wave 2 (about 100 sheets) and wave 3.
+5. **Housekeeping (from the 2026-11-03 cleanup):** after 2026-11-07, delete the staged temp folder
+   `C:\Users\Cory\AppData\Local\Temp\claude\_to_delete-2026-11-03` (about 1 GB of old session scratch). Also delete
+   the merged branches (`git push origin --delete audit/states codex/biased-bot`, `git branch -D audit/states`) and
+   merge `claude/hopeful-dirac-qck82o` (worksheets wave 2) when that session finishes.
 
 ## Track 1: Tools (the main work)
 
