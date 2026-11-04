@@ -42,7 +42,14 @@ no accounts, no ads, no tracking.
    this cohort and kept only if Refine counts fall.
 3. **Then scale back up:** Codex builds resume with at most about 10 built and unreviewed. People art is filled for the
    11 tools missing it (314 images), each set on a contact sheet for Cory plus a fresh representation check.
-4. **Worksheets:** Cory reviews the live shelf; then the rest of wave 2 (about 100 sheets) and wave 3.
+4. **Worksheets, generator first (Cory, 2026-11-03):** the 15 generators reviewed well. Module pages and Sub Day pages
+   now link the generators that fit each module with its settings filled in (scripts/gen_links.py), and the authored
+   sheets a module has. Next: concept-list rows that a generator can make are backed by it (the row keeps its title and
+   place in the year, its link opens the generator preset), then about 10 more generators where the lists are thickest
+   and really procedural (place value, decimals and percents, ratios, integers and order of operations, angles and
+   coordinates, statistics, phonics and spelling, grammar, unit conversions, balancing equations). Authored waves
+   continue for K-2 and the interpretive subjects. Cory still reviews the live shelf; the rest of wave 2 and wave 3
+   follow at a slower pace.
 5. **Housekeeping (from the 2026-11-03 cleanup):** after 2026-11-07, delete the staged temp folder
    `C:\Users\Cory\AppData\Local\Temp\claude\_to_delete-2026-11-03` (about 1 GB of old session scratch). Also delete
    the merged branches (`git push origin --delete audit/states codex/biased-bot`, `git branch -D audit/states`) and
@@ -251,9 +258,7 @@ comes last and needs expert review.
 
 ## Late and far back
 
-- **Worksheet Generator** (15-generator test group live 2026-11-03, /closet/worksheets/make/): click-only practice sheets per module with checked answer keys.
-  Design in docs/SUPPLY-CLOSET-PLAN.md. Comes after the closet shelves, as extra practice for the authored
-  worksheets' concepts (it is the vision's "procedural worksheet factory"). Word check was its first slice.
+- **Worksheet Generator**: no longer late. Live since 2026-11-03 and now the first path for procedural practice (see Now, item 4). Design in docs/SUPPLY-CLOSET-PLAN.md.
 - **Classroom projects by standard** (future input): an off-screen project per module from Cory's notes.
   docs/agents/roadmap/CLASSROOM-PROJECTS.md.
 - **Class Cast** (parked 2026-11-03): live class sync through a relay. Only with funding and someone to keep a server

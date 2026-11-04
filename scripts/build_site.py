@@ -27,6 +27,8 @@ import qr  # noqa: E402
 import check_charts  # noqa: E402
 import check_worksheets  # noqa: E402
 import worksheets as ws  # noqa: E402
+import gen_links  # noqa: E402
+import ws_generated  # noqa: E402
 import charts as chart_svg  # noqa: E402
 import teaching_map as tmap  # noqa: E402
 
@@ -387,6 +389,48 @@ def word_check(seed, cards):
         cards[i]['fill_rank'] = pos
 
 
+# Worksheets (docs/WORKSHEETS-PLAN.md): a page per class listing its year of sheets from the concept lists, one data file
+# per class holding its built sheets as HTML fragments, and one viewer page that shows a sheet (#unit/n) and its key.
+ws_units = check_worksheets.units()
+ws_rows = {u: r for f in check_worksheets.FILES for u, r in check_worksheets.rows(f).items()}
+ws_bad = ws.icon_problems() + [p for u in ws.built_units() for p in ws.problems(u)]
+(DIST / 'assets' / 'ws-icons.svg').write_text(ws.sprite(), encoding='utf-8')
+if ws_bad:
+    sys.exit('Worksheets: ' + '; '.join(ws_bad[:5]))
+tool_titles = {t['tool_id']: t['title'] for t in tools}
+mod_by_title = {(m['course_id'], m['title']): m for m in modules.values()}
+ws_built, ws_index = {}, []
+for u in ws.built_units():
+    label, sheets = ws.load(u)
+    data = {}
+    for sh, row in sheets:
+        mod = mod_by_title.get((ws_units[u]['course'], row['module']))
+        frag, _ = ws.build(u, sh, row, label, mod, tool_titles)
+        data[sh['n']] = dict(title=sh['title'], type=row['type'], minutes=sh['minutes'], html=frag)
+        ws_index.append(dict(t=f"Worksheet: {sh['title']}", u=f'/closet/worksheets/sheet/#{u}/{sh["n"]}', g=label, s='Supply Closet',
+                             f='Worksheet', m=row['module'], c=' '.join(mod['codes']) if mod else '', d=row['does'], b=True))
+    ws_built[u] = data
+    out = DIST / 'closet' / 'worksheets' / 'data' / f'{u}.json'
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(dict(unit=u, label=label, url=f'/closet/worksheets/{u}/', order=[r['n'] for r in ws_rows[u]],
+                                  sheets=data), ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+# rows a generator makes (data/closet/worksheets/generated.csv): ready on the class page, link opens the generator preset
+ws_gen = ws_generated.load()
+ws_gen_bad = ws_generated.problems(ws_rows, ws_built)
+if ws_gen_bad:
+    sys.exit('Worksheets: ' + '; '.join(ws_gen_bad[:5]))
+
+# worksheets of a module: the concept rows naming it, in the units of its course, with a link when the sheet is built
+ws_by_module = defaultdict(list)
+for u, rows_ in ws_rows.items():
+    cid = ws_units[u]['course']
+    for row in rows_:
+        mod = mod_by_title.get((cid, row['module']))
+        if mod:
+            g = ws_gen.get(u, {}).get(row['n'])
+            ws_by_module[mod['module_id']].append(dict(row, unit=u, label=ws_units[u]['label'], built=row['n'] in ws_built.get(u, {}) or bool(g), gen=g,
+                                                       url=f'/closet/worksheets/sheet/#{u}/{row["n"]}' if row['n'] in ws_built.get(u, {}) else g['url'] if g else f'/closet/worksheets/{u}/'))
+
 # modules: the hub for everything one module has (tools, then Supply Closet shelves as they ship)
 for m in modules.values():
     mt = by_module[m['module_id']]
@@ -395,6 +439,7 @@ for m in modules.values():
     rcards = [c for c in RESEARCH['cards'] if m['module_id'] in c['modules']] or (RESEARCH['cards'] if m['module_id'] in RESEARCH['for_all'] else [])
     render('module.html', m['url'], m=m, items=mt, plans=plans, words=cards, subject=subjects[m['subject']], rcards=rcards, rc_all=m['module_id'] in RESEARCH['for_all'],
            games=games_by_module.get(m['module_id'], []), course=courses.get(m['course_id']), chart=charts.get(m['module_id']),
+           sheets=ws_by_module.get(m['module_id'], []) if CLOSET_LIVE else [], gens=gen_links.links(m, bool(cards)) if CLOSET_LIVE else [],
            index=any(t['built'] for t in mt) or bool(cards))
     if m['module_id'] in charts:
         chart_page(charts[m['module_id']], CSS_HEX[subjects[m['subject']]['color']], m=m, subject=subjects[m['subject']],
@@ -442,7 +487,8 @@ for t in tools:
                 render('subday.html', t['url'] + 'sub/', index=False, t=t, ex=t['exit'],
                        qr=qr.svg('https://curioclass.org' + t['url'], f'QR code for curioclass.org{t["url"]}'),
                        sections=[(title, mins, markdown.markdown(text)) for title, mins, text in plan['sections']],
-                       band=check_words.band(t['module']['grade']), words=words.get(t['module']['module_id'], []))
+                       band=check_words.band(t['module']['grade']), words=words.get(t['module']['module_id'], []),
+                       gens=gen_links.links(t['module'], bool(words.get(t['module']['module_id']))))
     else:
         render('bench.html', t['url'], t=t, related=related, collection=collection, index=False)
 
@@ -595,33 +641,6 @@ if breaks:
 for g in games.values():
     render('closet/game.html', g['url'], g=g, subject=subjects[g['subject']], subject_es=SUBJECT_ES[g['subject']],
            tools=[t for mid in g['module_ids'] for t in by_module[mid] if t['built']])
-# Worksheets (docs/WORKSHEETS-PLAN.md): a page per class listing its year of sheets from the concept lists, one data file
-# per class holding its built sheets as HTML fragments, and one viewer page that shows a sheet (#unit/n) and its key.
-ws_units = check_worksheets.units()
-ws_rows = {u: r for f in check_worksheets.FILES for u, r in check_worksheets.rows(f).items()}
-ws_bad = ws.icon_problems() + [p for u in ws.built_units() for p in ws.problems(u)]
-(DIST / 'assets' / 'ws-icons.svg').write_text(ws.sprite(), encoding='utf-8')
-if ws_bad:
-    sys.exit('Worksheets: ' + '; '.join(ws_bad[:5]))
-tool_titles = {t['tool_id']: t['title'] for t in tools}
-mod_by_title = {(m['course_id'], m['title']): m for m in modules.values()}
-ws_built, ws_index = {}, []
-for u in ws.built_units():
-    label, sheets = ws.load(u)
-    data = {}
-    for sh, row in sheets:
-        mod = mod_by_title.get((ws_units[u]['course'], row['module']))
-        frag, _ = ws.build(u, sh, row, label, mod, tool_titles)
-        data[sh['n']] = dict(title=sh['title'], type=row['type'], minutes=sh['minutes'], html=frag)
-        ws_index.append(dict(t=f"Worksheet: {sh['title']}", u=f'/closet/worksheets/sheet/#{u}/{sh["n"]}', g=label, s='Supply Closet',
-                             f='Worksheet', m=row['module'], c=' '.join(mod['codes']) if mod else '', d=row['does'], b=True))
-    ws_built[u] = data
-    out = DIST / 'closet' / 'worksheets' / 'data' / f'{u}.json'
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(dict(unit=u, label=label, url=f'/closet/worksheets/{u}/', order=[r['n'] for r in ws_rows[u]],
-                                  sheets=data), ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
-
-
 def ws_grade_key(u):
     g = str(ws_units[u]['grade']).split('-')[0]
     return GRADES.index(g) if g in GRADES else 99
@@ -638,8 +657,8 @@ for u, d in ws_units.items():
     for r in ws_rows[u]:
         if not groups or groups[-1]['module'] != r['module']:
             groups.append(dict(module=r['module'], mod=mod_by_title.get((d['course'], r['module'])), rows=[]))
-        groups[-1]['rows'].append(dict(r, built=r['n'] in ws_built.get(u, {})))
-    render('closet/ws-unit.html', f'/closet/worksheets/{u}/', u=u, d=d, groups=groups, rows=ws_rows[u], ready=len(ws_built.get(u, {})))
+        groups[-1]['rows'].append(dict(r, built=r['n'] in ws_built.get(u, {}), gen=ws_gen.get(u, {}).get(r['n'])))
+    render('closet/ws-unit.html', f'/closet/worksheets/{u}/', u=u, d=d, groups=groups, rows=ws_rows[u], ready=len(ws_built.get(u, {})) + len(ws_gen.get(u, {})))
 render('closet/ws-sheet.html', '/closet/worksheets/sheet/', index=False)
 # Worksheet Generators (data/closet/generators.json): one page each, drawn by site/assets/gen/<id>.js, plus the word
 # list the vocabulary and puzzle generators read (every Word Wall module with its words and meanings).
@@ -661,7 +680,7 @@ if CLOSET_LIVE:
 counts['teacher-desk'] = 'Desk Dock and Classroom Music ready'
 counts['research-cards'] = f"{len(RESEARCH['cards'])} cards and a blank one"
 counts['printables'] = f"{sum(len(x[2]) for x in PRINTABLES)} printables"
-counts['worksheets'] = f"{sum(len(v) for v in ws_built.values())} ready of {sum(len(v) for v in ws_rows.values()):,} planned"
+counts['worksheets'] = f"{sum(len(v) for v in ws_built.values()) + sum(len(v) for v in ws_gen.values())} ready of {sum(len(v) for v in ws_rows.values()):,} planned"
 render('closet/home.html', '/closet/', shelves=CLOSET, counts=counts)
 for sid, label, what in CLOSET:
     if sid == 'word-wall' and wall:
@@ -672,7 +691,7 @@ for sid, label, what in CLOSET:
         render('closet/anchor-charts.html', '/closet/anchor-charts/', label=label, what=what, sections=chart_sections, modules=modules)
     elif sid == 'worksheets':
         render('closet/worksheets.html', '/closet/worksheets/', label=label, what=what, sections=ws_sections, units=ws_units,
-               rows=ws_rows, built=ws_built)
+               rows=ws_rows, built={u: {**ws_built.get(u, {}), **ws_gen.get(u, {})} for u in ws_units})
     elif sid == 'printables':
         render('closet/printables.html', '/closet/printables/', label=label, what=what,
                groups=[(h, bl, [dict(id=i, title=ti, blurb=b) for i, ti, b in items]) for h, bl, items in PRINTABLES])

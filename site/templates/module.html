@@ -45,6 +45,24 @@
   </section>
   {% endif %}
 
+  {% if sheets or gens %}
+  <section class="group">
+    <h2>Worksheets</h2>
+    {% if sheets %}
+    <p>{% set ready = sheets | selectattr('built') | list %}{% if ready %}{{ ready | length }} ready to print{% if sheets | length > ready | length %}, {{ sheets | length - ready | length }} more planned{% endif %}{% else %}{{ sheets | length }} planned, not written yet{% endif %}. Each has a student copy and an answer key.</p>
+    <ul class="module-list">
+      {% for s in sheets if s.built %}<li><a href="{{ s.url }}"><b>{{ s.title }}</b></a><span>{{ s.type }} · {{ s.label }}</span></li>{% endfor %}
+    </ul>
+    {% endif %}
+    {% if gens %}
+    <p><b>Make a sheet:</b> a new one with its answer key every time, settings already picked for this module.</p>
+    <ul class="module-list">
+      {% for g in gens %}<li><a href="{{ g.url }}"><b>{{ g.title }}</b></a><span>{{ g.note }}</span></li>{% endfor %}
+    </ul>
+    {% endif %}
+  </section>
+  {% endif %}
+
   {% if chart %}
   <section class="group">
     <h2>Anchor chart</h2>

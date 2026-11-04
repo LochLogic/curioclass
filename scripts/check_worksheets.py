@@ -63,8 +63,8 @@ def span(g):
 
 def units():
     """unit id -> dict(label, file, modules=[titles])"""
-    courses = {r['course_id']: r for r in csv.DictReader(open(ROOT / 'data' / 'courses.csv'))}
-    mods = list(csv.DictReader(open(ROOT / 'data' / 'modules.csv')))
+    courses = {r['course_id']: r for r in csv.DictReader(open(ROOT / 'data' / 'courses.csv', encoding='utf-8'))}
+    mods = list(csv.DictReader(open(ROOT / 'data' / 'modules.csv', encoding='utf-8')))
     out = {}
     for f, parts in FILES.items():
         for cid, mode in parts:
@@ -97,7 +97,7 @@ ROW = re.compile(r'^\|\s*(\d+)\s*\|(.+)\|\s*$')
 def rows(f):
     """All concept rows of one file -> {unit id: [dict(n, title, type, module, does)]}"""
     out, unit = {}, None
-    for line in (DIR / f'{f}.md').read_text().splitlines():
+    for line in (DIR / f'{f}.md').read_text(encoding='utf-8').splitlines():
         if m := SECTION.match(line):
             unit = m.group(1)
             out[unit] = []
@@ -112,7 +112,7 @@ def check_file(f, U):
     path = DIR / f'{f}.md'
     if not path.exists():
         return [f'{f}: missing {path.relative_to(ROOT)}'], []
-    text = path.read_text()
+    text = path.read_text(encoding='utf-8')
     problems, titles = [], []
     say = problems.append
     heads = list(SECTION.finditer(text))

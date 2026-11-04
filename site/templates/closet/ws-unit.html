@@ -14,12 +14,12 @@
     <h2>{% if g.mod %}<a href="{{ g.mod.url }}">{{ g.module }}</a>{% else %}{{ g.module if g.module != '-' else 'Sheets' }}{% endif %}</h2>
     <ol class="ws-rows">
       {% for r in g.rows %}
-      <li class="ws-row{% if r.built %} ready{% endif %}" value="{{ r.n }}">
+      <li class="ws-row{% if r.built or r.gen %} ready{% endif %}" value="{{ r.n }}">
         <div>
-          <p class="ws-row-title">{% if r.built %}<a href="/closet/worksheets/sheet/#{{ u }}/{{ r.n }}">{{ r.title }}</a>{% else %}{{ r.title }}{% endif %} <span class="tag">{{ r.type }}</span></p>
-          <p class="ws-row-does">{{ r.does }}</p>
+          <p class="ws-row-title">{% if r.built %}<a href="/closet/worksheets/sheet/#{{ u }}/{{ r.n }}">{{ r.title }}</a>{% elif r.gen %}<a href="{{ r.gen.url }}">{{ r.title }}</a>{% else %}{{ r.title }}{% endif %} <span class="tag">{{ r.type }}</span></p>
+          <p class="ws-row-does">{{ r.does }}{% if r.gen %} <span class="ws-gen-note">A generator makes this one: a new sheet with its key each time.</span>{% endif %}</p>
         </div>
-        {% if r.built %}<a class="btn ws-open" href="/closet/worksheets/sheet/#{{ u }}/{{ r.n }}">Open and print</a>{% else %}<span class="ws-soon">Planned</span>{% endif %}
+        {% if r.built %}<a class="btn ws-open" href="/closet/worksheets/sheet/#{{ u }}/{{ r.n }}">Open and print</a>{% elif r.gen %}<a class="btn ws-open" href="{{ r.gen.url }}">Make and print</a>{% else %}<span class="ws-soon">Planned</span>{% endif %}
       </li>
       {% endfor %}
     </ol>

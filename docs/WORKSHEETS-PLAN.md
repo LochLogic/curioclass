@@ -9,11 +9,15 @@ A Supply Closet shelf of print-ready student worksheets a teacher can hand out t
 every class Curio Class covers, K-12. Each worksheet is hand-designed around one skill or idea from a module, prints
 on US Letter in black and white, and comes with a teacher page (answer key and notes).
 
-This is not the Worksheet Generator (docs/SUPPLY-CLOSET-PLAN.md, "Late roadmap"). The generator makes endless
-random practice from templates; these are authored sheets, each one designed. The two fit together later: an
-authored sheet can carry a "more like this" link to the generator for its module when the generator exists.
+This is not the Worksheet Generator (docs/SUPPLY-CLOSET-PLAN.md, "Generators"). The generator makes endless
+random practice from templates; these are authored sheets, each one designed. Since 2026-11-03 (Cory, after reviewing
+the 15 generators) the generators come first for procedural practice: a concept-list row a generator can make is
+backed by it rather than written (the row keeps its title and its place in the year; its link opens the generator with
+the right settings), and writers spend their time on the sheets a generator cannot make: K-2 picture sheets, passages,
+sources, hard history, arts, health and SEL. By type, about one planned sheet in six is a generator candidate; the
+layout types (organizers, planners, frames, logs, reflections) are covered when they do not name a particular text.
 The first 15 generators went live as a test group on 2026-11-03 (/closet/worksheets/make/, docs/SUPPLY-CLOSET-PLAN.md
-"Late roadmap"); the worksheets shelf links to them.
+"Generators"); the worksheets shelf links to them.
 
 ## A class is a unit
 
@@ -245,7 +249,8 @@ row labels, the staff, graphs that print for students, code listings, teacher-on
 2. **Pilot:** DONE 2026-11-01, ten sheets (above). Cory's review of them comes next.
 3. **Build waves** by subject and band, core subjects first, with the answer-key check.
 4. **Site:** `/closet/worksheets/` by grade and subject, a sheet page that prints the student pages, and a separate
-   teacher page with the key (the key never prints on the student copy). Module pages get a Worksheets row.
+   teacher page with the key (the key never prints on the student copy). Module pages get a Worksheets row (done
+   2026-11-03: the module's authored sheets, ready ones linked, plus up to four generators preset for it).
 5. **Spanish** for the student pages, then the native-speaker review (closet rule 6).
 6. **Held collections** keep their holds: ASL sheets wait for the ASL sign-strip sample, hard history sheets get the
    fresh review, Spanish-language sheets the native review.

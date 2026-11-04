@@ -14,10 +14,8 @@ const TOPICS = {
 const BYGRADE = { 1: ['join', 'time', 'measure'], 2: ['join', 'money', 'time', 'measure', 'groups'], 3: ['money', 'time', 'measure', 'groups', 'multi'],
   4: ['money', 'time', 'measure', 'groups', 'multi'], 5: ['money', 'time', 'measure', 'groups', 'multi', 'frac'], 6: ['money', 'time', 'measure', 'multi', 'frac', 'rates'] };
 
-const NAMES = ['Aaliyah', 'Amara', 'Ana', 'Arjun', 'Ava', 'Ben', 'Carlos', 'Chidi', 'Chloe', 'Dante', 'Diego', 'Elena', 'Emma', 'Ethan', 'Fatima',
-  'Grace', 'Hana', 'Hiro', 'Imani', 'Isaac', 'Jamal', 'Jin', 'Kai', 'Keoni', 'Kiona', 'Kofi', 'Lena', 'Leo', 'Liam', 'Lucia', 'Malik', 'Maya', 'Mei',
-  'Nadia', 'Ngozi', 'Nia', 'Noah', 'Olivia', 'Omar', 'Priya', 'Rafael', 'Ravi', 'Rosa', 'Samir', 'Sofia', 'Tariq', 'Tenzin', 'Theo', 'Valentina',
-  'Wyatt', 'Xavier', 'Yara', 'Yusuf', 'Zara', 'Zoe', 'Ayumi', 'Lupe', 'Mateo', 'Owen', 'Esther'];
+const NAMES = ['Ava', 'Ben', 'Carlos', 'Chloe', 'Diego', 'Elena', 'Emma', 'Ethan', 'Grace', 'Isaac', 'Jamal', 'Kai', 'Leo', 'Liam', 'Lucia', 'Maya',
+  'Mia', 'Noah', 'Olivia', 'Omar', 'Owen', 'Priya', 'Rosa', 'Sam', 'Sofia', 'Theo', 'Zoe', 'Mateo', 'Nina', 'Jack', 'Ruby', 'Eli'];
 const THINGS = [['sticker', 'stickers'], ['marble', 'marbles'], ['crayon', 'crayons'], ['seashell', 'seashells'], ['bead', 'beads'], ['baseball card', 'baseball cards'],
   ['stamp', 'stamps'], ['rock', 'rocks'], ['pencil', 'pencils'], ['button', 'buttons'], ['acorn', 'acorns'], ['toy car', 'toy cars'], ['leaf', 'leaves']];
 const FOOD = [['cookie', 'cookies'], ['strawberry', 'strawberries'], ['cracker', 'crackers'], ['grape', 'grapes'], ['muffin', 'muffins'], ['orange slice', 'orange slices'], ['carrot stick', 'carrot sticks']];
@@ -122,7 +120,7 @@ add(['measure'], 2, 2, (r, g, A) => { const a = r.int(12, 50), b = r.int(12, 45)
   return { text: `${A} walks ${a} ${u} to the swings and then ${b} ${u} to the slide. How far does ${A} walk?`, ans: a + b, unit: u, f: 'a+b', vals: { a, b }, steps: `${a} + ${b} = ${a + b}` }; });
 add(['measure'], 3, 3, (r, g, A) => { const n = r.int(2, 9), each = r.int(2, 9), c = r.pick([['pitcher', 'liters of water'], ['bag', 'kilograms of rice'], ['bucket', 'liters of paint']]);
   return { text: `${A} has ${n} ${c[0]}s. Each ${c[0]} holds ${each} ${c[1]}. How many ${c[1].split(' ')[0]} is that in all?`, ans: n * each, unit: c[1].split(' ')[0], f: 'n*each', vals: { n, each }, steps: `${n} × ${each} = ${n * each}` }; });
-add(['measure'], 3, 3, (r, g, A) => { const a = r.int(200, 900), b = r.int(100, a - 50), m = r.pick(['a backpack', 'a box of books', 'a pumpkin']); if (a % 10 || b % 10) return null;
+add(['measure'], 3, 3, (r, g, A) => { const a = 10 * r.int(20, 90), b = 10 * r.int(10, a / 10 - 5), m = r.pick(['a backpack', 'a box of books', 'a pumpkin']);  // tens, so the subtraction stays friendly
   return { text: `${m[0].toUpperCase() + m.slice(1)} has a mass of ${a} grams. ${A} takes out something with a mass of ${b} grams. What is the mass now?`, ans: a - b, unit: 'grams', f: 'a-b', vals: { a, b }, steps: `${a} − ${b} = ${a - b}` }; });
 const CONV = [['feet', 'inches', 12], ['yards', 'feet', 3], ['meters', 'centimeters', 100], ['kilograms', 'grams', 1000], ['liters', 'milliliters', 1000], ['hours', 'minutes', 60], ['pounds', 'ounces', 16], ['gallons', 'quarts', 4]];
 const CONVOBJ = { feet: 'board', yards: 'rope', meters: 'garden hose', kilograms: 'bag of flour', liters: 'jug of juice', hours: 'car trip', pounds: 'watermelon', gallons: 'fish tank' };

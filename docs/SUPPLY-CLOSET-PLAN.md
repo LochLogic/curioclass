@@ -475,7 +475,24 @@ main roadmap: docs/ROADMAP.md, Track 2.
 
 ---
 
-## Late roadmap: Worksheet Generator (15-generator test group live 2026-11-03, /closet/worksheets/make/)
+## Generators: the Worksheet Generator (15 live 2026-11-03, /closet/worksheets/make/)
+
+**Reviewed 2026-11-03 (Cory): better than expected; the generators come first for procedural practice from here**
+(docs/ROADMAP.md, Now, item 4; docs/WORKSHEETS-PLAN.md says what that does to the authored lists). Decisions and
+rules from that review:
+
+- **Names in problems** are short, common classroom names a child reads at sight (word-problems.js, fractions.js). A
+  mix is fine; reaching for variety is not the point of a math sheet.
+- **Print length is checked**, not assumed: `python scripts/check_gen_print.py` (after a `--closet` build) opens every
+  generator's real page in headless Chrome, tries each setting alone and the highest item count with every other
+  setting, prints the student copy to PDF and counts pages. The limit is the worksheets' own: kindergarten 1 page,
+  everything else 2. `--quick` tries the defaults and the top count only. Run it before adding a generator to the
+  shelf; `node scripts/check_generators.mjs` still checks the answers.
+- **Found from the module:** every module page lists the generators that fit it, settings filled in
+  (`scripts/gen_links.py`: by subject, strand and grade, at most four, skills first, then the module's Word Wall words,
+  then an organizer with the module as its title), and its Sub Day page links the same. A new generator gets a rule
+  there, or nobody finds it.
+- **Next:** concept-list rows backed by a generator, then about 10 more generators (the list is in the roadmap).
 
 **Update 2026-11-03: test group built.** Cory asked for 15 full generators covering every area and generator type, live for
 his review before deciding the build-out. They are organized by skill and grade rather than one recipe per module:

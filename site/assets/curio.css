@@ -802,6 +802,7 @@ section.block { padding: 56px 0 8px; }
 .ws-row > div { flex: 1; }
 .ws-row-title { margin: 0; font-weight: 700; }
 .ws-row-does { margin: 2px 0 0; color: var(--muted); font-size: 15px; }
+.ws-gen-note { font-style: italic; }
 .ws-row .tag { margin-left: 6px; font-weight: 600; }
 .ws-open { padding: 8px 14px; font-size: 14px; white-space: nowrap; }
 .ws-soon { font-size: 13px; color: var(--muted); white-space: nowrap; }

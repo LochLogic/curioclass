@@ -147,7 +147,7 @@ function steps(p) {
 }
 
 /* ---------- stretch: one short story per grade ---------- */
-const NAMES = ['Ana', 'Kai', 'Lena', 'Omar', 'Mei', 'Diego', 'Amara', 'Ravi', 'Sofia', 'Jamal', 'Yuki', 'Nia', 'Mateo', 'Priya', 'Owen', 'Zara'];
+const NAMES = ['Ana', 'Kai', 'Lena', 'Omar', 'Mia', 'Diego', 'Emma', 'Leo', 'Sofia', 'Jamal', 'Noah', 'Nina', 'Mateo', 'Priya', 'Owen', 'Zoe'];
 function stretch(r, g) {
   const nm = r.pick(NAMES);
   if (g === '3') {
