@@ -170,8 +170,13 @@ Night, Word check, closet search, Take home, words CSV. What is left, in order:
    literacy) and that it is practice, not a diagnosis or treatment; a fresh agent reviews the wording. Nonsense Words
    is its first tool. A site-wide accessibility bar (dyslexia-friendly font, high contrast, reduced motion) follows
    the cohort kit fixes. An IEP goal bank is parked until a special-education reviewer is found.
-9. **The Map** (Phase F, last): regions, trails and a standards view. Research is done (docs/MAP-RESEARCH.md);
-   drafting is next when its turn comes.
+9. **The Map** (Phase F): BUILT 2026-11-03. A teaching map for teachers and admins, tucked away as "Teaching map" in
+   the footer's Browse column, not the top nav: /map/ (regions by subject and grade, shaded by how much is ready), a
+   page per region (/map/<subject>/<grade>/, a trail of stops with pins, planned stops drawn as outlines, a plain list
+   below, a vertical trail on phones) and a "where this sits" strip on /standards/<code>/ pages. Upkeep: one row per
+   new module in data/sequence.csv (order, builds_on, basis); the build warns, and does not fail, when a module has
+   none, and draws it at the end of its region. Everything else is derived from existing data at build time
+   (scripts/teaching_map.py). Cory spot-checks one region per subject.
 
 **Still owed, any time:** a real-printer test of every print format, the Spanish native review, family game
 play-tests.

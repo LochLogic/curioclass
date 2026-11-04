@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% block title %}Teaching map · Curio Class{% endblock %}
+{% block description %}A suggested teaching order for every Curio Class module, K-12, by subject and grade, with what is ready to use at each stop.{% endblock %}
+{% block head %}
+<style>
+.map-scroll { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; margin: 18px 0 8px; }
+.map-grid { display: block; width: 100%; min-width: 760px; height: auto; font-family: inherit; }
+.map-grid .col { font: 650 13px var(--serif); fill: var(--muted); }
+.map-grid .subj { font-size: 13px; font-weight: 650; }
+.map-grid .cell { font-size: 12px; font-weight: 600; pointer-events: none; }
+.map-grid .band { fill: var(--paper-2); }
+.map-grid a:hover rect, .map-grid a:focus rect { stroke-width: 3; }
+.map-key { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; color: var(--muted); margin: 0 0 22px; }
+.map-key span { display: inline-flex; align-items: center; gap: 6px; }
+.map-key i { display: inline-block; width: 26px; height: 14px; border-radius: 4px; border: 1px solid var(--teal); }
+.map-list { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); margin: 10px 0 0; padding: 0; list-style: none; }
+.map-list li { background: var(--card); border: 1px solid var(--line); border-left: 6px solid var(--c); border-radius: var(--radius); padding: 10px 14px; }
+.map-list b { display: block; margin-bottom: 4px; }
+.map-list a { display: inline-block; margin: 2px 10px 2px 0; font-size: 15px; }
+.map-list small { color: var(--muted); }
+.map-about { max-width: 760px; }
+.map-about li { margin-bottom: 6px; }
+</style>
+{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([('Teaching map', None)]) }}
+  <div class="page-head"><h1>Teaching map</h1><p>A suggested order for the year in every subject and grade: {{ n_stops }} modules in {{ n_regions }} regions. Open a region to walk its trail. {{ n_ready }} stops have a tool ready today, and the rest are planned.</p></div>
+
+  <div class="map-scroll">{{ grid | safe }}</div>
+  <p class="map-key"><span><i style="background:var(--teal)"></i>Darker: more stops ready</span><span><i style="background:#fff;border-style:dashed"></i>Dashed: planned, nothing ready yet</span><span>Numbers: stops ready / stops in the region</span></p>
+
+  <section class="group" aria-labelledby="regions-h">
+    <h2 id="regions-h">Every region</h2>
+    <ul class="map-list">
+      {% for sid, label, regs in rows %}
+      <li style="--c: var(--{{ subjects[sid].color }})"><b>{{ label }}</b>{% for r in regs %}<a href="{{ r.url }}">{{ r.short }} <small>{{ r.ready }}/{{ r.total }}</small></a>{% endfor %}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="group map-about" id="about" aria-labelledby="about-h">
+    <h2 id="about-h">About this order</h2>
+    <p>The order is our own suggestion for arranging our own modules. It is not a pacing guide or a requirement, and it is not endorsed by the authors of any standards or curriculum named here. Move stops to fit your school's calendar. The map shows standard codes and our own module titles only, never the standards' text.</p>
+    <p>Each region page says where its order came from:</p>
+    <ul>
+      <li><b>Math K-11:</b> the unit order of Illustrative Mathematics K-12 Math, first edition, by Illustrative Mathematics, licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, used as a reference for which topics come first. "Builds on" links follow each math domain from one grade to the next, as described in the Progressions for the Common Core State Standards for Mathematics (Common Core Standards Writing Team, 2023 edition, licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>). Grade 12 courses follow their framework's unit order.</li>
+      <li><b>Science 6-8:</b> based on the grade placements in NGSS Appendix K (Conceptual Progressions model). Kindergarten to grade 5 and high school follow what each topic needs first.</li>
+      <li><b>English language arts:</b> foundational skills early, then reading modules, each followed by the writing or speaking module that uses it, with language modules spread through the year.</li>
+      <li><b>Social studies:</b> expanding horizons in the early grades (self, family, school, community, state), then chronological order, with skills, civics and economics modules next to the era or topic they serve.</li>
+      <li><b>Every other subject:</b> the framework's own order, course by course.</li>
+    </ul>
+  </section>
+</div>
+{% endblock %}

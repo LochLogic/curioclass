@@ -76,3 +76,4 @@ children's tools and are not used. See docs/POLISH.md (Sound and voice) and docs
    worksheets; a Supply Closet item (word wall words, research cards, games, printables) is mapped to the modules it
    serves so module pages show it; a new collection links to and from its members. Ask: where would someone expect to
    find this, and where should they go next? Check the module page and the closet shelf both show it.
+   A new module also gets a row in data/sequence.csv (its stop on the teaching map; the build warns until it has one).

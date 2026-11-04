@@ -2,6 +2,7 @@
 {% from "macros.html" import shelf, crumbs %}
 {% block title %}{{ code }} ({{ framework }}) · Curio Class{% endblock %}
 {% block robots %}<meta name="robots" content="noindex">{% endblock %}
+{% block head %}<style>.map-spots { list-style: none; padding: 0; display: grid; gap: 8px; } .map-spots li { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; } .map-spots svg { max-width: 100%; height: auto; }</style>{% endblock %}
 {% block main %}
 <div class="wrap">
   {{ crumbs([('Standards', '/standards/'), (code, None)]) }}
@@ -14,6 +15,16 @@
       {% for m in mods %}<li><a href="{{ m.url }}"><b>{{ m.title }}</b></a><span>{{ grade_label(m.grade) }} · {{ subjects[m.subject].short }} · {{ m.description }}</span>{% if m.module_id in walls %}<a class="wall-link" href="{{ m.url }}words/">Word Wall</a>{% endif %}</li>{% endfor %}
     </ul>
   </section>
+
+  {% if map_spots %}
+  <section class="group">
+    <h2>On the teaching map</h2>
+    <p>Where these modules sit in a suggested order for the year. Filled dots teach {{ code }}.</p>
+    <ul class="map-spots">
+      {% for sp in map_spots %}<li><a href="{{ sp.url }}">{{ sp.label }}</a>{{ sp.svg | safe }}</li>{% endfor %}
+    </ul>
+  </section>
+  {% endif %}
 
   <section class="group">
     <h2>Tools</h2>

@@ -28,6 +28,7 @@ import check_charts  # noqa: E402
 import check_worksheets  # noqa: E402
 import worksheets as ws  # noqa: E402
 import charts as chart_svg  # noqa: E402
+import teaching_map as tmap  # noqa: E402
 
 bundle_all()  # tools with src.html get their art inlined first
 
@@ -124,6 +125,38 @@ for m in modules.values():
     for code in m['codes']:
         standards[code].extend(by_module[m['module_id']])
 std_framework = {code: validate(code) for code in standards}
+CSS_HEX = dict(re.findall(r'--([a-z]+): (#[0-9a-f]{6});', (ROOT / 'site' / 'assets' / 'curio.css').read_text(encoding='utf-8')))
+
+# The Map (docs/SUPPLY-CLOSET-PLAN.md, Phase F): stops in teaching order per subject-grade region, from data/sequence.csv.
+# Upkeep is one sequence.csv row per new module; a missing row only warns (the module joins the end of its region).
+map_regions, map_warn = tmap.load(modules, GRADES)
+for _w in map_warn:
+    print('Map warning:', _w)
+map_at = {}
+for _k, _stops in map_regions.items():
+    for _s in _stops:
+        _s['ready'] = any(t['built'] for t in by_module[_s['m']['module_id']])
+        map_at[_s['m']['module_id']] = _k
+
+
+def map_url(k):
+    return f'/map/{k[0]}/{k[1]}/'
+
+
+def map_title(k):
+    return f"{grade_label(k[1])} {subjects[k[0]]['short']}"
+
+
+def map_spots(mods):
+    """Where a standard's modules sit on the Map: a small strip per region, its stops filled."""
+    hits, spots = {m['module_id'] for m in mods}, []
+    for k in dict.fromkeys(map_at[m['module_id']] for m in mods):
+        stops = map_regions[k]
+        nums = [s['n'] for s in stops if s['m']['module_id'] in hits]
+        label = f"{map_title(k)}: stop{'s' if len(nums) > 1 else ''} {', '.join(map(str, nums))} of {len(stops)}"
+        spots.append(dict(title=map_title(k), url=map_url(k), label=label,
+                          svg=tmap.strip(stops, hits, CSS_HEX[subjects[k[0]]['color']], label)))
+    return spots
 
 
 def module_groups(mods):
@@ -278,7 +311,8 @@ for code, items in standards.items():
             seen.add(t['tool_id'])
             uniq.append(t)
     render('standard.html', f'/standards/{slug(code)}/', code=code, framework=std_framework[code], items=uniq,
-           mods=sorted(code_modules[code], key=lambda m: GRADES.index(m['grades'][0])), walls=words, index=False)
+           mods=sorted(code_modules[code], key=lambda m: GRADES.index(m['grades'][0])), walls=words, index=False,
+           map_spots=map_spots(code_modules[code]))
 
 # Family Game Night (Phase E): each game links to its modules, and to their built tools as "Loved it at school?"
 games = check_games.load() if CLOSET_LIVE else {}
@@ -306,7 +340,6 @@ for c in list(charts.values()) + list(posters.values()):
     bad = check_charts.problems(c, modules)
     if bad:
         sys.exit('; '.join(bad) + ' (python scripts/check_charts.py)')
-CSS_HEX = dict(re.findall(r'--([a-z]+): (#[0-9a-f]{6});', (ROOT / 'site' / 'assets' / 'curio.css').read_text(encoding='utf-8')))
 
 
 def chart_page(c, color, **ctx):
@@ -648,6 +681,52 @@ for sid, label, what in CLOSET:
         render('closet/break.html', '/closet/break-box/my-own-idea/', b=dict(id='my-own-idea', url='/closet/break-box/my-own-idea/'))
     else:
         render('closet/shelf.html', f'/closet/{sid}/', label=label, what=what, groups=[], index=False)
+
+# ---------- the map ----------
+# Drawn here, once the closet shelves are loaded, so each stop's pins show what a teacher can pick up for it.
+map_rows = []
+for sid, subj in subjects.items():
+    keys = [k for k in map_regions if k[0] == sid]
+    lanes, regs = [], []
+    for k in sorted(keys, key=lambda k: (GRADES.index(expand(k[1])[0]), -len(expand(k[1])))):
+        x0, x1 = GRADES.index(expand(k[1])[0]), GRADES.index(expand(k[1])[-1])
+        lane = next((i for i, end in enumerate(lanes) if end < x0), len(lanes))
+        lanes[lane:lane + 1] = [x1]
+        stops = map_regions[k]
+        regs.append(dict(x0=x0, x1=x1, lane=lane, url=map_url(k), title=map_title(k), short=grade_label(k[1]),
+                         ready=sum(s['ready'] for s in stops), total=len(stops)))
+    if regs:
+        map_rows.append((sid, subj['short'], regs))
+for k, stops in map_regions.items():
+    for s in stops:
+        mid = s['m']['module_id']
+        s['tools'] = [t for t in by_module[mid] if t['built']]
+        s['planned'] = len(by_module[mid]) - len(s['tools'])
+        sub = [t for t in s['tools'] if t.get('exit')] if CLOSET_LIVE else []
+        s['closet'] = (([('Word Wall', s['m']['url'] + 'words/')] if words.get(mid) else [])
+                       + ([('Anchor chart', charts[mid]['url'])] if mid in charts else [])
+                       + [(f"Game: {g['title']}", g['url']) for g in games_by_module.get(mid, [])]
+                       + [(f"Sub Day: {t['title']}", t['url'] + 'sub/') for t in sub])
+        s['pins'] = [p for p, on in (('tool', s['tools']), ('words', words.get(mid)), ('chart', mid in charts),
+                                     ('game', games_by_module.get(mid)), ('sub', sub)) if on]
+        s['links'] = [dict(m=b, region=map_title(map_at[b['module_id']])) for b in s['builds_on']]
+render('map.html', '/map/', rows=map_rows, basis=tmap.BASIS,
+       grid=tmap.overview(map_rows, [grade_short(g) for g in GRADES], lambda sid: CSS_HEX[subjects[sid]['color']],
+                          'Every subject and grade, shaded by how many stops have a tool ready'),
+       n_regions=len(map_regions), n_stops=sum(len(v) for v in map_regions.values()),
+       n_ready=sum(s['ready'] for v in map_regions.values() for s in v))
+for sid, _, regs in map_rows:
+    keys = [k for k in map_regions if k[0] == sid]
+    keys.sort(key=lambda k: (GRADES.index(expand(k[1])[0]), -len(expand(k[1]))))
+    for i, k in enumerate(keys):
+        stops, color = map_regions[k], CSS_HEX[subjects[sid]['color']]
+        label = f'{map_title(k)}: {len(stops)} stops in teaching order'
+        render('map-region.html', map_url(k), title=map_title(k), subject=subjects[sid], g=k[1], stops=stops,
+               wide=tmap.trail(stops, color, label), phone=tmap.trail(stops, color, label, phone=True),
+               ready=sum(s['ready'] for s in stops), color=color,
+               bases=[(b, tmap.BASIS[b]) for b in tmap.BASIS if any(s['basis'] == b for s in stops)],
+               prev=(map_title(keys[i - 1]), map_url(keys[i - 1])) if i else None,
+               next=(map_title(keys[i + 1]), map_url(keys[i + 1])) if i + 1 < len(keys) else None)
 
 # ---------- reading room ----------
 # Rows come from data/library/*.csv (reserve rows stay off the site). A story is ready once library/<id>/text.md exists;

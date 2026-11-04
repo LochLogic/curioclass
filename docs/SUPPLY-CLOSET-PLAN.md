@@ -2,7 +2,7 @@
 
 Status: concepts AGREED by Cory 2026-10-26 (decisions at the bottom). This file is the implementation plan.
 Phase A and Phase C's words (all 586 modules) went LIVE 2026-10-27; deploy builds now use `--library --closet`.
-Phases B, D and E went LIVE 2026-10-27 overnight (status notes under each phase). Only Phase F, The Map, is left.
+Phases B, D and E went LIVE 2026-10-27 overnight (status notes under each phase). Phase F, The Map, was built 2026-11-03 (status under Phase F).
 
 The Supply Closet is the teacher-resources side of Curio Class: things to print and put up that go with the tools.
 It is organized like a real supply closet, as shelves:
@@ -352,6 +352,13 @@ words caps per section, no teacher jargon, no em dashes, K-1 games have no readi
 ---
 
 ## Phase F: The Map (last)
+
+**Status (2026-11-03): built.** Tucked away for teachers and admins: "Teaching map" in the footer (Browse), not the
+top nav. 94 pages: /map/ plus one page per region (93). `data/sequence.csv` holds a drafted order for all 797 modules
+(math from the IM first-edition unit order, science 6-8 from Appendix K, the rest by the rules in MAP-RESEARCH.md),
+with `builds_on` computed from the standards codes for math, science and ELA. Drawn by `scripts/teaching_map.py`.
+The standards view is a small strip of the region's stops on each /standards/<code>/ page. A module with no row is
+drawn at the end of its region and the build prints a warning. Waiting on Cory: a spot-check of one region per subject.
 
 ### What it shows
 
