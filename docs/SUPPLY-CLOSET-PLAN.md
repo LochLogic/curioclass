@@ -16,7 +16,7 @@ It is organized like a real supply closet, as shelves:
 | **Break Box** | Screen-free 1-2 hour projects for kids home on school breaks, 30 per grade (docs/BREAK-BOX-PLAN.md) | grade | Draft |
 | **The Map** | A visual map of modules, with tools and closet items as pins, and suggested unit trails | module | F |
 | **Worksheets** | Authored print sheets, 40-50 per class, with keys (docs/WORKSHEETS-PLAN.md) | class | Pilot |
-| Worksheet Generator | Generated practice sheets with answer keys (late roadmap) | module | Late |
+| Worksheet Generator | Generated practice sheets with answer keys; 15-generator test group built 2026-11-03 at /closet/worksheets/make/ | skill and grade | Test group |
 
 ## What the site already has (checked 2026-10-26)
 
@@ -475,6 +475,15 @@ main roadmap: docs/ROADMAP.md, Track 2.
 ---
 
 ## Late roadmap: Worksheet Generator (parked 2026-10-26)
+
+**Update 2026-11-03: test group built.** Cory asked for 15 full generators covering every area and generator type, live for
+his review before deciding the build-out. They are organized by skill and grade rather than one recipe per module:
+`site/assets/gen/engine.js` (seeded random, ws-* sheet style, student/key switch, a sheet code in the URL) plus one file
+per generator, listed in `data/closet/generators.json`, checked by `node scripts/check_generators.mjs` (thousands of
+sheets each: every answer re-worked, no blanks without answers, same code gives the same sheet). Math (5), science (2),
+data, vocabulary and puzzles from the Word Wall, map skills, timelines, and three layout generators (organizers,
+writing frames, planners/logs/reflections). Next: Cory's review, then decide how far to build out and what it does to
+the authored worksheet backlog (docs/WORKSHEETS-PLAN.md). The design notes below are the earlier parked plan.
 
 Agreed as a concept, held until the shelves above are in place. The design so far, so it is ready when its turn
 comes:

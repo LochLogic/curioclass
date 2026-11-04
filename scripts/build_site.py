@@ -641,6 +641,23 @@ for u, d in ws_units.items():
         groups[-1]['rows'].append(dict(r, built=r['n'] in ws_built.get(u, {})))
     render('closet/ws-unit.html', f'/closet/worksheets/{u}/', u=u, d=d, groups=groups, rows=ws_rows[u], ready=len(ws_built.get(u, {})))
 render('closet/ws-sheet.html', '/closet/worksheets/sheet/', index=False)
+# Worksheet Generators (data/closet/generators.json): one page each, drawn by site/assets/gen/<id>.js, plus the word
+# list the vocabulary and puzzle generators read (every Word Wall module with its words and meanings).
+gidx = lambda g: next((GRADES.index(x) for x in expand(g) if x in GRADES), 99)
+GENS = json.loads((ROOT / 'data' / 'closet' / 'generators.json').read_text(encoding='utf-8'))
+if CLOSET_LIVE:
+    render('closet/gens.html', '/closet/worksheets/make/', groups=GENS['groups'], gens=GENS['generators'])
+    for g in GENS['generators']:
+        if not (SITE / 'assets' / 'gen' / f"{g['id']}.js").exists():
+            sys.exit(f"Generators: site/assets/gen/{g['id']}.js is missing")
+        render('closet/gen.html', f"/closet/worksheets/make/{g['id']}/", g=g,
+               more=[m for m in GENS['generators'] if m['group'] == g['group'] and m['id'] != g['id']])
+    gen_words = [dict(id=mid, title=modules[mid]['title'], subject=modules[mid]['subject'], s=subjects[modules[mid]['subject']]['label'],
+                      grade=modules[mid]['grade'], band=check_words.band(modules[mid]['grade']),
+                      words=[[c['word'], c['definition']] for c in cards if c['word'] and c['definition']])
+                 for mid, cards in words.items() if mid in modules]
+    gen_words.sort(key=lambda m: (m['s'], gidx(m['grade']), m['title']))
+    (DIST / 'closet' / 'worksheets' / 'make' / 'words.json').write_text(json.dumps(dict(modules=gen_words), ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
 counts['teacher-desk'] = 'Desk Dock and Classroom Music ready'
 counts['research-cards'] = f"{len(RESEARCH['cards'])} cards and a blank one"
 counts['printables'] = f"{sum(len(x[2]) for x in PRINTABLES)} printables"

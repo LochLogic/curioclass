@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% block title %}Worksheet generators: a new sheet and answer key every time · Curio Class{% endblock %}
+{% block description %}Free worksheet generators for K-12: number operations, fractions, equations, science calculations, graphs, vocabulary, puzzles, maps, timelines, organizers and writing frames. Every sheet comes with its answer key.{% endblock %}
+{% block main %}
+<div class="wrap gen-shelf">
+  {{ crumbs([('Supply Closet', '/closet/'), ('Worksheets', '/closet/worksheets/'), ('Generators', None)]) }}
+  <div class="page-head"><h1>Worksheet Generators</h1><p>Each generator makes a fresh sheet every time you press New sheet, with an answer key and a teacher page. Pick the grade and the skill, print a class set, and make another one for the next day. Every sheet has a code, so the same link always prints the same sheet.</p></div>
+  {% for gid, name, blurb in groups %}
+  <section class="group">
+    <h2>{{ name }}</h2>
+    <p class="desc" style="color:var(--muted);margin-top:-6px">{{ blurb }}</p>
+    <div class="module-grid">
+      {% for g in gens if g.group == gid %}
+      <article class="module-card">
+        <h3><a href="/closet/worksheets/make/{{ g.id }}/">{{ g.title }}</a></h3>
+        <p class="desc">{{ g.blurb }}</p>
+        <p class="desc"><span class="tag">Grades {{ g.grades }}</span>{% for t in g.types %}<span class="tag">{{ t }}</span>{% endfor %}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+  <p class="desc">Looking for a sheet written for one class and module? <a href="/closet/worksheets/">Browse the worksheets by class</a>.</p>
+</div>
+{% endblock %}

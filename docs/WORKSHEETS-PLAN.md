@@ -12,6 +12,8 @@ on US Letter in black and white, and comes with a teacher page (answer key and n
 This is not the parked Worksheet Generator (docs/SUPPLY-CLOSET-PLAN.md, "Late roadmap"). The generator makes endless
 random practice from templates; these are authored sheets, each one designed. The two fit together later: an
 authored sheet can carry a "more like this" link to the generator for its module when the generator exists.
+The first 15 generators went live as a test group on 2026-11-03 (/closet/worksheets/make/, docs/SUPPLY-CLOSET-PLAN.md
+"Late roadmap"); the worksheets shelf links to them.
 
 ## A class is a unit
 
