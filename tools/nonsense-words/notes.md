@@ -1,11 +1,12 @@
 ## What it teaches
-Children practice sounding out unfamiliar, made-up words across seven phonics patterns: short vowels (CVC), silent e (CVCe), digraphs, blends, vowel teams, diphthongs and r-controlled vowels. A Words menu picks one pattern or a ready mix. They read aloud to a grown-up or partner who can help mark each attempt.
+Children practice sounding out unfamiliar, made-up words across seven phonics patterns: short vowels (CVC), silent e (CVCe), digraphs, blends, vowel teams, diphthongs, r-controlled vowels and word endings. A Words menu picks one pattern or a ready mix. They read aloud to a grown-up or partner who can help mark each attempt.
 
 ## Key skills
 - Blend letter sounds into one spoken word.
 - Notice the difference between short vowels and silent-e patterns.
 - Read digraphs (sh, ch, th, wh, ck, ng) and blends (bl, st, -mp, -nd) as one chunk.
 - Read vowel teams, diphthongs and r-controlled vowels (ai, ee, oi, ow, ar, ur) as one sound.
+- Read a word ending (-s, -ed, -ing, -er, -est, -ly, -ful, -less, -ness, -tion) as one chunk, after the base word.
 - Return to words that need another try.
 
 ## Support at home

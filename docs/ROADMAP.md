@@ -82,7 +82,7 @@ it up later and only when needed.
 
 ### Queued tool ideas
 
-"Fact-check a chatbot" (generative AI) and a resume builder (near term), from BASELINE rule 10. New ideas go into
+"Fact-check a chatbot" (generative AI) and a resume builder (near term), from BASELINE rule 10. Road Trip Atlas (Cory, 2026-11-03): travel point A to B past landmarks, with hours and days and miles compared with familiar distances; queued in data/concepts/social-studies.txt. New ideas go into
 data/concepts/*.txt for a later spec wave.
 
 ## Track 2: Supply Closet
