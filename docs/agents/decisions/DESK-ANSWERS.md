@@ -29,3 +29,40 @@ tools, then move the 25 grade 6 and up specs and the 5 neighbor pairs onto them.
 - neighborhood-issue-play: Cory asked for whichever teaches better, even if harder. That is the new family who speaks
   another language, with people puppets (Gemini) and a fresh sensitivity review. To apply: restore the third problem
   from the idea card. Write the problem as neighbors who can't yet talk to each other, never the family as the problem.
+
+## 2026-11-04
+
+**Super tool specs: Claude's picks on every question.** To apply: write each pick into the spec (tools/<id>/spec.md)
+before that tool is built.
+- pocket-universe: exaggerated sandbox masses with a line saying so; the Figure eight goal nudges a ready-made
+  three-body dance; keep the Gravity dial; keep the black hole in the grade 6 tray; Real Solar System starts 1 Jan 2000.
+- living-pond: retire Food Web Wobble fully; label the minnow color drift "sped up" on screen; keep the fish food
+  winterkill; if art pushes past 2 MB, cut to two shore backdrops and tint seasons in code, keep the creature poses.
+- molecule-forge: keep the FDA caffeine range; keep the sodium metal crystal; unfound Book pages keep the silhouette and
+  atom-count hint.
+- span-and-spire: add one real earthquake record if a public record checks out at build; game prices; the Old farm
+  bridge sample shows only after the first save.
+- cipher-vault: Mary, Queen of Scots' trial stays a plain fact; keep the Leeson gravestone quote; doors open in order
+  with a confirm-gated Open all doors for teachers.
+
+**Codex test tools (q-codex-tests):** yes to 1 to 3, Claude's pick on 4 and 5.
+- Network Help Desk and Half-Life Dice get a graphics and gameplay pass with the new brief rules before voice and Final
+  look.
+- Codex stays an extra builder when budget is spare, not the default; judge the next builds on Cory's play test too.
+- Half-Life Dice: add a student action on the energy ladder (tap the rung where a balanced card's energy lands).
+- Half-Life Dice keeps 5,730 years for carbon-14 and mentions 5,700 in the teacher notes.
+- The audit stops flagging "welcome not heard after a first tap".
+
+**Worksheet backlog (q-worksheet-backlog): Claude's picks.**
+- Trim to about 30 authored sheets per unit (about 6,450 in all), cutting first where rows repeat a type. A fresh agent
+  proposes the cuts per unit; Cory sees the list before anything is removed.
+- Next writing waves favor world languages, SEL and English learners, then science and social studies. Math waits for
+  its generators.
+- Arts lists stay; arts rows a generator makes are backed after a strict sift (done 2026-11-04).
+
+**Ten new generators (q-new-generators): Claude's picks.**
+- Spanish vosotros is off by default (Latin American usage); the setting stays. Applied 2026-11-04.
+- Can-do and ACTFL statements ship as paraphrases with the note; ask a world-language and an ASL teacher to check them
+  when a contact turns one up.
+- Stage areas from the performer's view and the class count-sheet key stay.
+- Statistics thresholds stay, labeled as classroom rules on the key.

@@ -519,7 +519,7 @@ Spanish and French practice with answer keys: verb charts and sentences in every
   - when lang=fr: def (Definite (the)), indef (Indefinite (a, some)), mix (Both), part (Partitive (du, de la, des))
 - **theme** (Theme, only in some modes; default "family"): family (Family), food (Food), school (School things), subjects (School subjects), body (The body), clothes (Clothes), house (The house), animals (Animals), weather (Weather)
 - **sitype** (Kind of si clause, only in some modes; default "unreal"): unreal (Hypothetical (if I had... I would)), real (Real (if I have... I will)), mix (Both, mixed)
-- **vosotros** (Include vosotros (Spain), only in some modes; default on): 1 (on) or 0 (off)
+- **vosotros** (Include vosotros (Spain), only in some modes; default off): 1 (on) or 0 (off)
 - **count** (Length; default "m"): s (Fewer (8)), m (Standard (10)), l (More (12))
   - when level=k5: s (Fewer (6)), m (Standard (8)), l (More (10))
   - when skill=numbers: s (Fewer (10)), m (Standard (14)), l (More (20))

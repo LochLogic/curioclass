@@ -1085,7 +1085,7 @@ Gen.add('world-language', {
     { id: 'art', label: 'Articles', type: 'select', options: v => [['def', 'Definite (the)'], ['indef', 'Indefinite (a, some)'], ['mix', 'Both']].concat(v.lang === 'fr' ? [['part', 'Partitive (du, de la, des)']] : []), def: 'def', show: v => v.skill === 'articles' },
     { id: 'theme', label: 'Theme', type: 'select', options: THEMES, def: 'family', show: v => v.skill === 'vocab' },
     { id: 'sitype', label: 'Kind of si clause', type: 'select', options: [['unreal', 'Hypothetical (if I had... I would)'], ['real', 'Real (if I have... I will)'], ['mix', 'Both, mixed']], def: 'unreal', show: v => v.skill === 'si' },
-    { id: 'vosotros', label: 'Include vosotros (Spain)', type: 'check', def: true, show: v => v.lang === 'es' && v.level !== 'k5' },
+    { id: 'vosotros', label: 'Include vosotros (Spain)', type: 'check', def: false, show: v => v.lang === 'es' && v.level !== 'k5' },
     { id: 'count', label: 'Length', type: 'select', def: 'm', options: v => { const k = SIZES[sizeKey(v)] || SIZES.conjboth; return [['s', `Fewer (${k[0]})`], ['m', `Standard (${k[1]})`], ['l', `More (${k[2]})`]]; } },
   ],
   make(v, r) {

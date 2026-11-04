@@ -781,7 +781,7 @@ S.twoway = c => {
         : 'Write each probability as a fraction in simplest form. Two events are independent when P(B | A) = P(B).',
     minutes: 30, parts: [part('Practice', blocks.join(''))], items,
     mistakes: G === 10 ? 'Dividing by the grand total for a conditional probability: P(B | A) divides by the number in A only.' : 'Dividing by the grand total when the question asks about one row ("of the students who...").',
-    notes: G === 10 ? 'Some tables are exactly independent and some are not. A vertical bar | is read "given".' : 'The key calls it an association when the two row percents differ by 10 points or more. The tables are made up for practice.',
+    notes: G === 10 ? 'Some tables are exactly independent and some are not. A vertical bar | is read "given".' : 'The key calls it an association when the two row percents differ by 10 points or more, a classroom rule, not a formal test. The tables are made up for practice.',
   };
 };
 
@@ -997,7 +997,7 @@ S.compare = c => {
     directions: 'Find the mean and MAD of each group (round the MAD to the nearest tenth). Then compare the difference in means to the larger MAD (round to the nearest tenth).',
     minutes: 35, parts: [part('Practice', blocks.join(''))], items,
     mistakes: 'Comparing only the means. A difference of 5 means a lot when the MAD is 1 and very little when the MAD is 10.',
-    notes: 'A difference of 2 MADs or more is the usual sign that two groups are clearly different (7.SP.3).',
+    notes: 'A difference of 2 MADs or more is the classroom rule this key uses for two groups being clearly different (7.SP.3); it is a rule of thumb, not a formal test.',
   } : {
     title: 'Compare Two Distributions', ican: 'I can compare two data sets with box plots, using the median, IQR and outliers.',
     directions: 'Find each five-number summary, IQR and any outliers (outside Q1 − 1.5 × IQR or Q3 + 1.5 × IQR). Draw both box plots on the shared scale, with outliers as separate dots. Then compare.',
