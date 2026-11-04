@@ -657,7 +657,7 @@ for u, d in ws_units.items():
     for r in ws_rows[u]:
         if not groups or groups[-1]['module'] != r['module']:
             groups.append(dict(module=r['module'], mod=mod_by_title.get((d['course'], r['module'])), rows=[]))
-        groups[-1]['rows'].append(dict(r, built=r['n'] in ws_built.get(u, {}), gen=ws_gen.get(u, {}).get(r['n'])))
+        groups[-1]['rows'].append(dict(r, pos=sum(len(g['rows']) for g in groups) + 1, built=r['n'] in ws_built.get(u, {}), gen=ws_gen.get(u, {}).get(r['n'])))
     render('closet/ws-unit.html', f'/closet/worksheets/{u}/', u=u, d=d, groups=groups, rows=ws_rows[u], ready=len(ws_built.get(u, {})) + len(ws_gen.get(u, {})))
 render('closet/ws-sheet.html', '/closet/worksheets/sheet/', index=False)
 # Worksheet Generators (data/closet/generators.json): one page each, drawn by site/assets/gen/<id>.js, plus the word

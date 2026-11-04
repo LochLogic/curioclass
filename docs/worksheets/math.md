@@ -12,32 +12,26 @@ Math worksheets for Kindergarten through Grade 8 Math, then the high school cour
 | 4 | Dot-to-Dot Rocket to 50 | Puzzle | Counting to 100 | Connect dots numbered 1 to 50 to reveal a rocket, then write the three numbers that come after 47. |
 | 5 | Trace and Write Numerals 0 to 20 | Practice | Counting to 100 | Trace and write each numeral 0 to 20, then draw a matching number of dots beside six chosen numerals. |
 | 6 | Count and Circle the Number | Practice | How Many? | Count pictured objects in 10 boxes of up to 10 items and circle the correct numeral from three choices. |
-| 7 | Ladybug Spots: One Touch per Dot | Practice | How Many? | Cross out each ladybug spot while counting, write how many, then draw spots on two blank ladybugs to match given numbers. |
 | 8 | In a Line, in a Circle, Scattered | Apply | How Many? | Count six sets of 8 to 12 objects shown in a row, a circle and scattered, noticing the arrangement never changes how many. |
 | 9 | Count Out 20: Apple Tree Cut and Glue | Apply | How Many? | Cut out apple pictures and glue the right number onto four trees labeled 5, 9, 14 and 20. |
 | 10 | One More Block Towers | Diagram | How Many? | Draw one more block on each tower in a row of towers from 1 to 10 and write each new count. |
 | 11 | Who Has More Cookies? | Practice | More, Less, Same | Draw lines to match cookies one to one on 8 pairs of plates, then circle the plate with more or mark "same." |
-| 12 | Greater Number Maze | Puzzle | More, Less, Same | Maze: at each fork pick the greater of two numerals from 1 to 10, shown with dots, to lead a mouse to its cheese. |
 | 13 | Fish Tank Fair Share: Make Them the Same | Apply | More, Less, Same | Draw fish in the second tank so both tanks hold the same number, for six pairs of tanks. |
 | 14 | Counting and Comparing Check | Review | More, Less, Same | Count 4 groups, fill a missing-number path to 20, count by tens to 100 and circle the greater number in 4 pairs. |
 | 15 | Ten Frame Snack Stories | Apply | Putting Together and Taking Apart | Listen to 6 read-aloud snack stories, draw counters on ten frames to act each one out, and write how many. |
 | 16 | Birds Fly Away | Practice | Putting Together and Taking Apart | Cross out birds that fly away in 8 pictures and write the matching subtraction sentence, such as 7 - 3 = 4. |
 | 17 | Shake and Spill: Ways to Make 5 | Diagram | Putting Together and Taking Apart | Color two-sided counters to show every way to split 5 into two parts and record each split as a number bond. |
 | 18 | Make 10 Domino Partners | Puzzle | Putting Together and Taking Apart | Cut out number cards 0 to 10, glue partner pairs that make 10 onto domino outlines, and draw dots to check. |
-| 19 | Story to Equation Picture Match | Practice | Putting Together and Taking Apart | Draw lines to match 8 picture stories to the addition or subtraction equation that tells each one. |
 | 20 | Color by Code: Facts Within 5 Garden | Puzzle | Putting Together and Taking Apart | Color by code: solve 16 addition and subtraction facts within 5; each answer picks the color for one space of a garden picture. |
 | 21 | Ten and Some More: Teen Ten Frames | Practice | Teen Numbers | Look at a full ten frame plus extra dots for 8 teen numbers and write 10 + ___ and the number. |
 | 22 | Bundles and Loose Sticks | Diagram | Teen Numbers | Draw one bundle of ten sticks and loose ones to show six teen numbers from 11 to 19. |
-| 23 | Teen Number Match-Up Cards | Puzzle | Teen Numbers | Cut out 9 cards and glue each teen numeral beside its ten frame picture and its 10 + ones sentence. |
 | 24 | Egg Carton Teens | Apply | Teen Numbers | Solve 5 read-aloud problems about one full carton of 10 eggs plus extra eggs, drawing and writing each total. |
 | 25 | Longer or Shorter? Line-Up | Practice | Longer, Heavier, Bigger | Compare 8 pairs of pictured objects lined up at the same starting edge and circle the longer one. |
 | 26 | Balance Scale Heavy and Light | Diagram | Longer, Heavier, Bigger | Circle the heavier object on 6 balance scales, then draw something heavier than a feather on an empty scale. |
 | 27 | Paper Strip Length Hunt | Apply | Longer, Heavier, Bigger | Hold a cut paper strip against 6 classroom objects and draw each one in the longer, shorter or same column. |
-| 28 | What Can We Measure? | Practice | Longer, Heavier, Bigger | For 6 pictured objects, circle the measuring words that fit, such as tall, long, heavy or holds more. |
 | 29 | Button Sort by Color | Practice | Sort and Count | Cut out 15 button pictures, sort them into three color bins, glue them down and write how many in each. |
 | 30 | Pet Store Count and Show | Data and graphs | Sort and Count | Count pictured pets by kind, fill one box per pet in a simple box graph, and circle the kind with the most. |
 | 31 | Toy Box: Sort It Two Ways | Apply | Sort and Count | Sort 12 pictured toys first by size and then by kind, writing the count in each group both times. |
-| 32 | Sock Drawer: Fewest to Most | Data and graphs | Sort and Count | Count socks in 3 sorted groups, order the groups from fewest to most, and answer 3 read-aloud questions. |
 | 33 | Shape Detective in the Kitchen | Practice | Shapes All Around | Find and circle circles, squares, triangles and rectangles hidden in a kitchen scene, then tally how many of each. |
 | 34 | Flat or Solid? Shape Sort | Practice | Shapes All Around | Cut out 12 pictures such as a ball, box, can, sign and cracker and glue each under flat or solid. |
 | 35 | Above, Below, Beside: Park Picture | Diagram | Shapes All Around | Follow 6 read-aloud position directions, such as "draw a sun above the tree," to finish a park picture. |
@@ -45,7 +39,6 @@ Math worksheets for Kindergarten through Grade 8 Math, then the high school cour
 | 37 | Sides and Corners Count | Practice | Build a Shape | Count sides and corners on 6 flat shapes, write the numbers, and tell how a square and a triangle differ. |
 | 38 | Pattern Block Robot | Puzzle | Build a Shape | Fill a robot outline with cut-out triangles, squares and hexagons, then count how many of each shape they used. |
 | 39 | Two Triangles Make a Square | Diagram | Build a Shape | Glue cut triangles to show two triangles making a square and two squares making a rectangle, then draw the lines. |
-| 40 | Draw It From the Clue | Apply | Build a Shape | Draw shapes from 4 read-aloud clues such as "3 sides, 3 corners," then build a house picture from at least 4 shapes. |
 | 41 | Shape Review: Spot, Sort and Build | Review | Build a Shape | Name 6 shapes, sort flat and solid pictures, and glue two small shapes together to make a bigger one. |
 | 42 | Kindergarten Number Check | Review | Putting Together and Taking Apart | Year-end check: count by tens to 100, show a teen number, solve 4 story problems with drawings and compare two numbers. |
 
@@ -61,9 +54,7 @@ Math worksheets for Kindergarten through Grade 8 Math, then the high school cour
 | 6 | Doubles Color by Code | Puzzle | Fact Strategies | Color by code: solve 18 doubles and near-doubles facts; each sum colors a space of a hot air balloon picture. |
 | 7 | Fact Family Triangles | Diagram | Fact Strategies | Complete 6 fact family triangles and write all four related addition and subtraction equations for each. |
 | 8 | Think Addition to Subtract | Practice | Fact Strategies | Solve 12 subtraction facts by finding the missing addend, writing 13 - 8 as 8 + ? = 13. |
-| 9 | Facts Within 20 Cross-Number | Puzzle | Fact Strategies | Fill a small cross-number grid where every across and down clue is an addition or subtraction fact within 20. |
 | 10 | True or False Equations | Practice | The Equal Sign | Decide whether 10 equations like 6 + 2 = 5 + 3 and 7 = 7 are true or false, then fix the false ones. |
-| 11 | Balance the Seesaw | Diagram | The Equal Sign | Draw cubes on the empty side of 6 balance seesaws so both sides are equal, then write each equation. |
 | 12 | Mystery Number Boxes | Practice | The Equal Sign | Find the unknown in 12 equations with the box in different spots, such as 8 + ? = 11 and 5 = ? - 3. |
 | 13 | Stories and Facts Checkpoint | Review | The Equal Sign | Solve 3 word problems, 4 strategy facts, 3 true-or-false equations and 2 missing-number equations. |
 | 14 | 120 Chart Puzzle Pieces | Puzzle | Counting to 120 | Fill in missing numbers on 8 cut-apart pieces of a 120 chart, then glue each piece onto the blank chart. |
@@ -73,24 +64,19 @@ Math worksheets for Kindergarten through Grade 8 Math, then the high school cour
 | 18 | Bundles of Ten Straws | Diagram | Tens and Ones | Draw tens rods and ones cubes for 8 two-digit numbers and fill in a tens and ones chart. |
 | 19 | Same Number, Different Look | Practice | Tens and Ones | Show 6 numbers like 34 two ways, as 3 tens 4 ones and as 2 tens 14 ones, with drawings. |
 | 20 | Greater, Less or Equal Signs | Practice | Tens and Ones | Compare 12 pairs of two-digit numbers by tens and ones, writing >, = or < and explaining one choice. |
-| 21 | Place Value Riddles | Puzzle | Tens and Ones | Solve 8 riddles such as "I have 4 tens and 2 more ones than tens. What number am I?" |
 | 22 | Ten More, Ten Less | Practice | Adding Tens and Ones | Find 10 more and 10 less than 10 numbers on a hundred chart path without counting by ones. |
 | 23 | Add a Two-Digit and a One-Digit | Practice | Adding Tens and Ones | Solve 10 sums like 47 + 6 with tens and ones drawings, noticing when ten ones make a new ten. |
 | 24 | Add Tens to Any Number | Practice | Adding Tens and Ones | Add multiples of 10 to two-digit numbers in 10 problems, like 36 + 20, using drawings or an open number line. |
 | 25 | Subtract Tens Maze | Puzzle | Adding Tens and Ones | Maze: solve problems like 80 - 30 at each fork and follow the correct difference to get the dog home. |
-| 26 | School Garden Harvest | Apply | Adding Tens and Ones | Solve 6 word problems about vegetables picked in a school garden, adding tens and ones within 100. |
 | 27 | Place Value Review | Review | Adding Tens and Ones | Count to 120, show tens and ones, compare numbers, find ten more or less and add within 100. |
 | 28 | Line Up by Length | Practice | Measuring Length | Order 3 pictured objects from longest to shortest in 6 sets, then use a third object to compare two indirectly. |
 | 29 | Paper Clip Measure | Practice | Measuring Length | Measure 8 pictured objects with a printed paper clip ruler, laying units end to end with no gaps or overlaps. |
-| 30 | Cube Measure Hunt | Apply | Measuring Length | Measure 6 classroom objects in connecting cubes, record the lengths in a table and name the longest object. |
 | 31 | What Went Wrong With the Measuring? | Critique | Measuring Length | Look at 4 pictures of measuring with gaps or overlaps, explain each mistake and draw it measured correctly. |
 | 32 | Where Is the Hour Hand? | Diagram | Telling Time to the Half Hour | Draw the hour hand on 6 clocks and write the time, noticing the hand sits between numbers at half past. |
-| 33 | Match Clock to Clock | Practice | Telling Time to the Half Hour | Draw lines matching 10 analog clocks to digital times on the hour and half hour. |
 | 34 | Draw the Hands | Practice | Telling Time to the Half Hour | Draw both hands on 8 blank clocks for times like 3:30 and 7:00. |
 | 35 | A Day at School in Order | Apply | Telling Time to the Half Hour | Write the time shown for 6 school-day events, then cut and glue the event cards in time order. |
 | 36 | Tally the Birds | Data and graphs | Picture Graphs and Tallies | Make tally marks for three kinds of birds in a picture, fill a tally chart and find the total. |
 | 37 | Favorite Fruit Picture Graph | Data and graphs | Picture Graphs and Tallies | Read a picture graph of 3 fruits and answer 6 questions, including how many more chose apples than pears. |
-| 38 | Our Month of Weather | Data and graphs | Picture Graphs and Tallies | Turn a month of weather pictures into a picture graph of sunny, cloudy and rainy days and answer 4 questions. |
 | 39 | Ask the Class a Question | Apply | Picture Graphs and Tallies | Ask 10 classmates a three-choice question about animals, record tallies, draw a picture graph and write one fact it shows. |
 | 40 | Fair Shares Cut and Sort | Practice | Halves and Fourths | Cut and sort 12 shape cards into equal shares and not equal shares, then label each glued equal shape halves or fourths. |
 | 41 | Sandwich Halves and Pizza Quarters | Diagram | Halves and Fourths | Draw lines to cut 8 circles and rectangles into halves or fourths and label one share "half of" or "quarter of." |
@@ -127,7 +113,6 @@ Math worksheets for Kindergarten through Grade 8 Math, then the high school cour
 | 21 | Add Up to Four Numbers | Practice | Adding and Subtracting to 1000 | Add 6 sets of up to four two-digit numbers, grouping friendly pairs that make tens first. |
 | 22 | Open Number Line to 1000 | Diagram | Adding and Subtracting to 1000 | Add and subtract 8 three-digit problems on open number lines by jumping hundreds, tens and ones. |
 | 23 | Secret Code: 10 and 100 More or Less | Puzzle | Adding and Subtracting to 1000 | Secret code: find 10 more, 10 less, 100 more or 100 less for 12 numbers; each answer gives a letter of a riddle's answer. |
-| 24 | School Library Book Count | Apply | Adding and Subtracting to 1000 | Solve 6 word problems about books in a school library, adding and subtracting three-digit numbers. |
 | 25 | Two Ways, Same Answer | Writing frame | Adding and Subtracting to 1000 | Explain with a sentence frame and drawings why two different strategies for 352 + 147 give the same answer. |
 | 26 | Inches and Centimeters | Practice | Rulers and Units | Measure 8 printed lines with an inch ruler and a centimeter ruler, record both and explain which number is bigger. |
 | 27 | Estimate, Then Measure | Apply | Rulers and Units | Estimate 6 classroom objects in inches or feet, measure them, and find how far off each estimate was. |
@@ -136,7 +121,6 @@ Math worksheets for Kindergarten through Grade 8 Math, then the high school cour
 | 30 | Five-Minute Clocks | Practice | Time and Money | Read 8 analog clocks to the nearest five minutes and draw hands on 4 blank clocks for given times. |
 | 31 | A.M. or P.M. Cut and Sort | Practice | Time and Money | Cut and sort 10 pictured daily events into a.m. and p.m. columns, then write a sensible time under each. |
 | 32 | Coin Count Up | Practice | Time and Money | Count 8 pictured mixes of quarters, dimes, nickels and pennies and write each total with the cent sign. |
-| 33 | Bake Sale Money | Apply | Time and Money | Solve 6 bake sale problems with dollar bills and coins, finding totals and how much money is left. |
 | 34 | Make 75 Cents Three Ways | Puzzle | Time and Money | Find three coin combinations for 4 amounts like 75 cents, marking which one uses the fewest coins. |
 | 35 | Measure and Plot Pencils | Data and graphs | Line Plots and Bar Graphs | Measure 10 printed pencils to the nearest inch, make a line plot of the lengths and answer 3 questions. |
 | 36 | Lunch Choices Bar Graph | Data and graphs | Line Plots and Bar Graphs | Answer 8 put-together, take-apart and compare questions about a bar graph with four categories. |
@@ -154,30 +138,24 @@ Math worksheets for Kindergarten through Grade 8 Math, then the high school cour
 |---|---|---|---|---|
 | 1 | Equal Groups Everywhere | Practice | Meaning of Multiplication and Division | Write a multiplication equation for 8 pictures of equal groups, like 4 bags of 6 apples, and explain one. |
 | 2 | Array Builder | Diagram | Meaning of Multiplication and Division | Draw arrays for 8 facts and write two multiplication equations for each to show the turnaround property. |
-| 3 | Sharing or Grouping? | Apply | Meaning of Multiplication and Division | Solve 6 division stories, deciding first whether each asks how many groups or how many in each group. |
 | 4 | Unknown Factor Hunt | Practice | Meaning of Multiplication and Division | Find the unknown in 12 equations like 6 × ? = 42 and 48 ÷ 8 = ?, writing the related fact. |
 | 5 | Write the Story | Writing frame | Meaning of Multiplication and Division | Write word problems to match 4 equations, two multiplication and two division, using a story frame. |
 | 6 | Break Apart Hard Facts | Practice | Times Tables Fluency | Split 8 hard facts like 7 × 8 into 5 × 8 + 2 × 8 using arrays, then solve 8 more mentally. |
-| 7 | Times Table Cross-Number | Puzzle | Times Tables Fluency | Solve a cross-number grid whose clues are multiplication facts and missing factors within 100. |
 | 8 | Fact Fluency Tracker | Log | Times Tables Fluency | Take the same 40-fact quiz once a week for four weeks, logging the score and listing facts still tricky. |
 | 9 | Division Fact Maze | Puzzle | Times Tables Fluency | Find a path through a maze by stepping only on squares where the division fact is correct. |
 | 10 | Patterns on the Times Table | Diagram | Patterns and Two-Step Problems | Shade multiples of 4 on a multiplication table, describe 4 patterns and explain why 4 times any number is even. |
 | 11 | Odd and Even Products Color by Code | Puzzle | Patterns and Two-Step Problems | Color by code: find 20 products, coloring odd products one color and even products another to reveal a picture, then write the rule. |
-| 12 | Two-Step Story Problems | Apply | Patterns and Two-Step Problems | Solve 6 two-step problems with any of the four operations, writing an equation with a letter for the unknown. |
 | 13 | Is the Answer Reasonable? | Critique | Patterns and Two-Step Problems | Estimate 6 two-step answers by rounding, judge whether the given answers make sense and fix the wrong ones. |
 | 14 | Multiplication Checkpoint | Review | Patterns and Two-Step Problems | Solve 10 facts, draw 2 arrays, solve 2 division stories and 2 two-step problems. |
 | 15 | Rounding Hills | Diagram | Rounding and Multi-Digit Operations | Place 10 numbers on number lines to round each to the nearest 10 and the nearest 100. |
 | 16 | Add and Subtract Within 1000 | Practice | Rounding and Multi-Digit Operations | Solve 12 problems within 1000 with partial sums or the standard algorithm, checking each with an estimate. |
 | 17 | Times Tens | Practice | Rounding and Multi-Digit Operations | Multiply 12 one-digit numbers by multiples of 10, like 6 × 40, and explain one with place value. |
-| 18 | Fundraiser Totals | Apply | Rounding and Multi-Digit Operations | Solve 6 problems about a school fundraiser within 1000, rounding first to predict each answer. |
 | 19 | Unit Fractions Build Fractions | Practice | Fractions as Numbers | Name the shaded fraction in 10 shapes and write each as copies of a unit fraction, like 3/4 as three 1/4s. |
 | 20 | Fractions on a Number Line | Diagram | Fractions as Numbers | Mark 8 fractions on number lines from 0 to 1 and 0 to 2 split into halves, thirds, fourths, sixths and eighths. |
 | 21 | Equivalent Fraction Strips | Diagram | Fractions as Numbers | Use fraction strips to find 8 equivalent pairs and explain why 2/4 and 1/2 name the same point. |
 | 22 | Whole Numbers as Fractions | Practice | Fractions as Numbers | Write 8 whole numbers as fractions like 3/1 and 4/4 and place each one on a number line. |
 | 23 | Same Top or Same Bottom Compare | Practice | Fractions as Numbers | Compare 12 fraction pairs with the same numerator or denominator using >, = or <, giving a reason each time. |
-| 24 | Fraction Riddle Cards | Puzzle | Fractions as Numbers | Solve 8 riddles like "I am more than 1/2 and my denominator is 4" to name each fraction. |
 | 25 | Elapsed Time Number Line | Diagram | Time, Volume and Mass | Solve 6 elapsed time problems to the minute by drawing jumps on a time number line. |
-| 26 | Saturday at the Park Schedule | Apply | Time, Volume and Mass | Use a park events schedule to answer 6 questions about start times, end times and how long events last. |
 | 27 | Liters or Grams? Best Estimate | Practice | Time, Volume and Mass | Choose the reasonable liquid volume or mass for 10 pictured items, like 1 liter or 100 liters. |
 | 28 | Kitchen Measure Problems | Apply | Time, Volume and Mass | Solve 6 one-step problems about liquid volume and mass using all four operations, such as 4 bags of 3 kg. |
 | 29 | Picture Graph: Each Book Means 5 | Data and graphs | Scaled Graphs | Read a picture graph where each icon equals 5 books and answer 6 how-many-more and how-many-fewer questions. |
@@ -185,16 +163,13 @@ Math worksheets for Kindergarten through Grade 8 Math, then the high school cour
 | 31 | Leaf Lengths Line Plot | Data and graphs | Scaled Graphs | Measure 12 printed leaves to the nearest quarter inch and build a line plot with fraction marks. |
 | 32 | Fractions, Time and Graphs Review | Review | Scaled Graphs | Solve 3 fraction items, 2 elapsed time problems, 1 mass problem and 3 questions about a scaled bar graph. |
 | 33 | Count the Square Units | Practice | Area | Find the area of 8 shapes drawn on a grid by counting unit squares, labeling each in square units. |
-| 34 | Tile It, Then Multiply | Practice | Area | Find the area of 8 rectangles by tiling and then by multiplying side lengths, showing both ways match. |
 | 35 | L-Shaped Rooms | Apply | Area | Find the area of 6 rectilinear floor plans by splitting each into rectangles and adding. |
 | 36 | Area Model Split | Diagram | Area | Split 6 rectangles like 6 by 7 into 6 by 5 and 6 by 2 to show how area models break apart a product. |
 | 37 | Garden Plot Designer | Planner | Area | Design a garden with an area of 36 square units on grid paper, giving three crops assigned areas. |
 | 38 | Walk the Fence | Practice | Perimeter | Find the perimeter of 8 polygons with labeled sides, including 2 with one unknown side length. |
 | 39 | Same Perimeter, Different Area | Apply | Perimeter | Draw every rectangle with perimeter 16 on grid paper, record each area in a table and circle the largest. |
 | 40 | Same Area, Different Perimeter | Apply | Perimeter | Draw 3 rectangles with area 12, compare their perimeters, then solve 3 fencing problems. |
-| 41 | Area or Perimeter Task Cards | Practice | Perimeter | Task cards: solve 12 cut-apart cards about carpet, fences, borders and tiles, first deciding whether each needs area or perimeter. |
 | 42 | Quadrilateral Family Sort | Practice | Quadrilaterals | Sort 12 quadrilaterals into rhombus, rectangle, square and other in a diagram, showing where groups overlap. |
-| 43 | Draw the Odd One Out | Diagram | Quadrilaterals | Draw a quadrilateral that is not a rhombus, rectangle or square for 4 clues and explain why each fits. |
 | 44 | Equal Area Parts | Diagram | Quadrilaterals | Partition 6 shapes into parts with equal area and label each part as a unit fraction of the whole. |
 | 45 | Third Grade Math Review | Review | Quadrilaterals | Year-end review with facts, two-step problems, fractions on a number line, area, perimeter and shapes. |
 
@@ -205,43 +180,32 @@ Math worksheets for Kindergarten through Grade 8 Math, then the high school cour
 | 1 | Ten Times Greater | Practice | Place Value to a Million | Compare digit values in 8 numbers, showing that the 7 in 7,000 is ten times the 7 in 700. |
 | 2 | Standard, Word and Expanded Form | Practice | Place Value to a Million | Write 8 numbers up to 1,000,000 in all three forms in a table, then compare 4 pairs with >, = or <. |
 | 3 | Round the City Populations | Data and graphs | Place Value to a Million | Round 8 city populations to the nearest thousand and ten thousand in a table, then order the cities by size. |
-| 4 | Six-Digit Mystery Numbers | Puzzle | Place Value to a Million | Find 6 mystery numbers from place value clues like "the ten thousands digit is twice the hundreds digit." |
 | 5 | Column Addition and Subtraction | Practice | Adding and Subtracting Multi-Digit Numbers | Solve 12 multi-digit problems with the standard algorithm, including subtraction that regroups across zeros. |
 | 6 | Find the Regrouping Mistake | Critique | Adding and Subtracting Multi-Digit Numbers | Find and correct the error in 6 worked problems and explain each mistake in one sentence. |
-| 7 | Mountain Heights | Apply | Adding and Subtracting Multi-Digit Numbers | Use a table of 6 mountain heights in feet to answer 6 how-much-taller and combined-height questions. |
 | 8 | Times as Many Tape Diagrams | Diagram | Multiplicative Comparison | Draw tape diagrams for 6 statements like "24 is 3 times as many as 8" and write each equation. |
 | 9 | More Than or Times As Many? | Practice | Multiplicative Comparison | Sort 8 comparison problems as additive or multiplicative, then solve each with an equation. |
 | 10 | Remainders That Matter | Apply | Multiplicative Comparison | Solve 6 division word problems and decide what the remainder means: drop it, round up or report it. |
 | 11 | Area Model Multiplication | Diagram | Multi-Digit Multiplication and Division | Multiply 8 problems, 4-digit by 1-digit and 2-digit by 2-digit, with area models and matching partial products. |
 | 12 | Partial Products Practice | Practice | Multi-Digit Multiplication and Division | Solve 10 multiplication problems with partial products and check 3 of them with rounded estimates. |
 | 13 | Partial Quotients Division | Practice | Multi-Digit Multiplication and Division | Divide 8 three- and four-digit numbers by one-digit divisors using place value drawings and partial quotients. |
-| 14 | Orchard Packing Problems | Apply | Multi-Digit Multiplication and Division | Solve 6 problems about packing apples into crates and trays, using multiplication and division with remainders. |
-| 15 | Big Product Cross-Number | Puzzle | Multi-Digit Multiplication and Division | Fill a cross-number grid whose clues are 2-by-2-digit products and 4-digit-by-1-digit quotients. |
 | 16 | Whole Number Operations Review | Review | Multi-Digit Multiplication and Division | Solve mixed items on place value, rounding, column addition, comparison, 3 multiplication and 2 division problems. |
 | 17 | Factor Pair Rectangles | Diagram | Factors and Multiples | Find every factor pair for 8 numbers up to 100 by drawing all possible rectangles on grid paper. |
 | 18 | Prime Number Sieve | Puzzle | Factors and Multiples | Cross out multiples on a 1 to 100 chart to reveal the primes, then answer 4 questions about the patterns. |
 | 19 | When Do the Buses Meet? | Apply | Factors and Multiples | Solve 5 problems like buses leaving every 6 and 8 minutes by listing multiples to find when they match. |
-| 20 | Rule Machines | Practice | Number Patterns | Extend 8 number and shape patterns from a given rule and describe one feature the rule does not state. |
 | 21 | Why Does It Alternate? | Writing frame | Number Patterns | Explain with a frame why "start at 1, add 3" alternates odd and even, then test and explain 3 other rules. |
 | 22 | Factors and Patterns Checkpoint | Review | Number Patterns | Solve 2 comparison problems, list factor pairs, sort 6 numbers as prime or composite and extend one pattern. |
 | 23 | Same Amount, More Pieces | Diagram | Equivalent Fractions and Comparing | Draw area models to show why 2/3 = 8/12 for 6 pairs, then generate equivalents by multiplying. |
 | 24 | Fraction Compare Maze | Puzzle | Equivalent Fractions and Comparing | Maze: at each fork choose the greater of two unlike fractions using benchmarks or common denominators to reach the exit. |
 | 25 | Who Ate More Pie? | Apply | Equivalent Fractions and Comparing | Solve 5 comparison stories with unlike fractions and explain why both fractions must refer to the same whole. |
-| 26 | Fraction Line-Up | Practice | Equivalent Fractions and Comparing | Place 6 sets of four fractions on a number line and order each set from least to greatest. |
-| 27 | Unit Fraction Building Blocks | Practice | Adding and Multiplying Fractions | Decompose 8 fractions into sums of unit fractions two ways, like 3/8 = 1/8 + 1/8 + 1/8 = 1/8 + 2/8. |
 | 28 | Mixed Number Add and Subtract | Practice | Adding and Multiplying Fractions | Add and subtract 10 mixed numbers with like denominators, regrouping a whole when needed. |
 | 29 | Whole Times Fraction Jumps | Diagram | Adding and Multiplying Fractions | Show 6 products like 4 × 3/5 as equal jumps on a number line and write each product. |
-| 30 | Trail Mix Recipe | Apply | Adding and Multiplying Fractions | Solve 6 recipe problems that add fractions and multiply a fraction by a whole number, like 5 × 2/3 cup. |
 | 31 | Fraction Checkpoint | Review | Adding and Multiplying Fractions | Solve mixed items on equivalence, comparing, adding mixed numbers and 2 fraction word problems. |
 | 32 | Tenths and Hundredths Grids | Diagram | Decimals | Shade hundredths grids for 8 amounts and write each as a fraction and as a decimal. |
 | 33 | Tenths Plus Hundredths | Practice | Decimals | Rewrite tenths as hundredths and add 8 pairs like 3/10 + 4/100, writing the sum as a decimal. |
 | 34 | Decimals on a Meter Stick | Practice | Decimals | Place 8 decimals on a meter-stick number line, then compare 6 pairs with >, = or <. |
-| 35 | Swim Race Results | Apply | Decimals | Rank 6 swimmers by times given in hundredths of a second and explain how they compared the two closest times. |
 | 36 | Conversion Tables | Data and graphs | Measurement Conversions | Complete conversion tables for feet to inches, hours to minutes, kilograms to grams and pounds to ounces. |
-| 37 | Measurement Conversion Cross-Number | Puzzle | Measurement Conversions | Cross-number: fill a grid whose 14 clues are unit conversions within one system, like 7 feet in inches and 3 kilograms in grams. |
 | 38 | Recipe and Road Trip Units | Apply | Measurement Conversions | Solve 6 problems that mix units, like liters and milliliters or hours and minutes, answering in the smaller unit. |
 | 39 | Missing Side Detectives | Practice | Area and Perimeter Formulas | Find unknown side lengths for 8 rectangles when the area or perimeter is given. |
-| 40 | Fence the Dog Run | Apply | Area and Perimeter Formulas | Solve 5 fencing and flooring problems with the area and perimeter formulas, labeling units. |
 | 41 | Design a Classroom Rug | Planner | Area and Perimeter Formulas | Test 3 rectangular rug designs with area 48 square feet in a table and choose one with perimeter under 30 feet. |
 | 42 | Turns of a Circle | Diagram | Angles and Line Plots | Show 8 angles as fractions of a full turn and convert each to degrees, like 1/4 turn = 90 degrees. |
 | 43 | Protractor Practice | Practice | Angles and Line Plots | Measure 8 printed angles with a protractor, then draw 4 angles of given measures. |
@@ -264,7 +228,6 @@ Math worksheets for Kindergarten through Grade 8 Math, then the high school cour
 | 6 | Two Savings Plans | Apply | Patterns and Relationships | Compare two weekly savings plans by building tables and find the week when one total is twice the other. |
 | 7 | Times 10, Divided by 10 | Practice | Powers of Ten and Decimals | Multiply and divide 12 numbers by powers of 10 written with exponents and explain how the digits shift. |
 | 8 | Thousandths Place Value Chart | Diagram | Powers of Ten and Decimals | Write 8 decimals to thousandths in a place value chart, in expanded form and in word form. |
-| 9 | Decimal Rounding Color by Code | Puzzle | Powers of Ten and Decimals | Color by code: round 20 decimals to the nearest tenth or hundredth; each answer colors a space of a sailboat picture. |
 | 10 | Long Jump Results | Data and graphs | Powers of Ten and Decimals | Order 10 long jump distances given in meters to thousandths and round them to answer 4 questions. |
 | 11 | Standard Algorithm Multiplication | Practice | Operations with Whole Numbers and Decimals | Multiply 10 multi-digit numbers with the standard algorithm and check each with an estimate. |
 | 12 | Two-Digit Divisors | Practice | Operations with Whole Numbers and Decimals | Divide 8 four-digit dividends by two-digit divisors using area models or partial quotients. |
@@ -274,12 +237,10 @@ Math worksheets for Kindergarten through Grade 8 Math, then the high school cour
 | 16 | Decimal Operations Review | Review | Operations with Whole Numbers and Decimals | Solve mixed items on expressions, powers of ten, rounding decimals and 4 whole number and decimal operations. |
 | 17 | Common Denominator Builder | Practice | Adding Unlike Fractions | Add and subtract 10 fractions with unlike denominators by rewriting them as equivalent fractions. |
 | 18 | Mixed Numbers, Unlike Denominators | Practice | Adding Unlike Fractions | Add and subtract 8 mixed numbers with unlike denominators, regrouping when needed. |
-| 19 | Hiking Trail Distances | Apply | Adding Unlike Fractions | Solve 6 trail problems that add and subtract fractional miles, checking each with benchmark estimates. |
 | 20 | Is That Answer Reasonable? | Critique | Adding Unlike Fractions | Judge 6 worked answers like 2/5 + 1/2 = 3/7 with benchmark fractions and correct the wrong ones. |
 | 21 | Fraction of a Fraction | Diagram | Multiplying and Dividing Fractions | Draw area models for 8 products like 2/3 × 3/4 and write each product in simplest form. |
 | 22 | Would You Rather: Scaling Deals | Apply | Multiplying and Dividing Fractions | Would you rather: pick between 6 pairs of offers like 3/4 of $20 or 5/4 of $12, predicting by scaling, then checking. |
 | 23 | Rectangles With Fraction Sides | Practice | Multiplying and Dividing Fractions | Find areas of 6 rectangles with fractional side lengths by tiling with unit squares and by multiplying. |
-| 24 | Recipe Scaling | Apply | Multiplying and Dividing Fractions | Scale a 6-ingredient recipe by 1/2, 3/4 and 2 1/2, multiplying fractions and mixed numbers. |
 | 25 | Share the Sandwiches | Apply | Fractions as Division | Solve 6 sharing problems like 3 sandwiches among 4 people, writing each answer as a fraction or mixed number. |
 | 26 | Unit Fractions and Whole Numbers | Practice | Fractions as Division | Solve 10 problems like 1/3 ÷ 4 and 5 ÷ 1/2 with drawings, checking each with multiplication. |
 | 27 | Ribbon and Pan Problems | Apply | Fractions as Division | Solve 6 word problems that divide unit fractions by whole numbers or whole numbers by unit fractions. |
@@ -296,7 +257,6 @@ Math worksheets for Kindergarten through Grade 8 Math, then the high school cour
 | 38 | Plant Growth on the Grid | Data and graphs | The Coordinate Plane | Graph a plant's height over 8 days as ordered pairs and answer 4 questions about how it changed. |
 | 39 | Shape Family Tree | Diagram | Classifying 2D Figures | Complete a hierarchy diagram of quadrilaterals and triangles, writing the property that defines each branch. |
 | 40 | Always, Sometimes, Never | Practice | Classifying 2D Figures | Decide always, sometimes or never for 10 statements like "a rectangle is a square," sketching an example. |
-| 41 | Who Am I? Shape Clues | Puzzle | Classifying 2D Figures | Identify 8 shapes from property clues, writing every name that fits each one. |
 | 42 | Fifth Grade Year Review | Review | Classifying 2D Figures | Solve mixed items on expressions, decimals, fraction operations, volume, coordinates and the shape hierarchy. |
 
 ## math-6: Grade 6 Math
@@ -306,38 +266,31 @@ Math worksheets for Kindergarten through Grade 8 Math, then the high school cour
 | 1 | Ratio Language at the Animal Shelter | Practice | Ratios and Rates | Write 8 ratios from an animal shelter picture in three forms, both part to part and part to whole. |
 | 2 | Lemonade Ratio Tables | Data and graphs | Ratios and Rates | Complete 5 ratio tables for lemonade recipes and decide which mix tastes most lemony. |
 | 3 | Double Number Lines | Diagram | Ratios and Rates | Use double number lines to solve 6 problems about speed, prices and recipe amounts. |
-| 4 | Unit Price Showdown | Apply | Ratios and Rates | Compare unit prices for 6 pairs of grocery package sizes and decide which is the better buy. |
 | 5 | Percent as a Rate per 100 | Practice | Ratios and Rates | Find 10 percents like 30% of 80 and find a whole from a part using tape diagrams. |
 | 6 | Convert With Ratios | Apply | Ratios and Rates | Convert 6 measurements, such as miles to feet and cups to quarts, using ratio reasoning and unit rates. |
 | 7 | How Many Fit? Fraction Division Models | Diagram | Dividing Fractions | Draw models for 6 problems like 3/4 ÷ 1/8, explaining how many groups fit. |
-| 8 | Fraction Division Maze | Puzzle | Dividing Fractions | Maze: divide fractions and mixed numbers at each of 12 stops, following the correct quotient to the exit. |
 | 9 | Laps and Quilt Squares | Apply | Dividing Fractions | Solve 6 word problems dividing fractions, such as how many 3/4-mile laps make 6 miles. |
 | 10 | Long Division Workout | Practice | Multi-Digit and Decimal Fluency | Divide 10 multi-digit numbers with the standard algorithm, writing 2 quotients as decimals. |
 | 11 | Decimal Four Operations | Practice | Multi-Digit and Decimal Fluency | Solve 12 decimal problems with all four operations using standard algorithms. |
 | 12 | Snack Bags and Hot Dog Buns | Apply | Multi-Digit and Decimal Fluency | Solve 6 problems like making identical snack bags (GCF) or matching package counts (LCM). |
-| 13 | Factor Out the GCF | Practice | Multi-Digit and Decimal Fluency | Rewrite 8 sums like 36 + 8 as 4(9 + 2) using the greatest common factor. |
 | 14 | Number System Checkpoint | Review | Multi-Digit and Decimal Fluency | Solve mixed items: a ratio table, a unit rate, a percent, fraction division, decimal operations and a GCF. |
 | 15 | Above and Below Zero | Practice | Negative Numbers | Write integers for 8 situations like 20 feet below sea level and explain what zero means in each. |
 | 16 | Thermometer Number Lines | Diagram | Negative Numbers | Place 10 rational numbers on vertical and horizontal number lines and order them. |
 | 17 | Distance From Zero | Practice | Negative Numbers | Find absolute values and explain 8 statements like why -30 < -5 even though -30 is farther from zero than -5. |
 | 18 | Four-Quadrant Town Map | Map | Negative Numbers | Plot 10 places on a four-quadrant town map and find distances between points that share a coordinate. |
 | 19 | Exponent Power-Up | Practice | Expressions and Exponents | Evaluate 12 expressions with whole-number exponents using the order of operations. |
-| 20 | Words to Algebra | Practice | Expressions and Exponents | Translate 10 phrases into expressions and label each part as a sum, term, product, factor, quotient or coefficient. |
 | 21 | Equivalent Expression Match | Puzzle | Expressions and Exponents | Match 12 expression cards into equivalent pairs using the distributive property and combining like terms. |
 | 22 | Formula Plug-In | Apply | Expressions and Exponents | Evaluate formulas like A = s² and V = s³ for 6 given values in real situations. |
 | 23 | Hanger Balance Puzzles | Diagram | One-Step Equations and Inequalities | Solve 6 hanger diagrams and write the matching equation for each, like 3x = 12. |
-| 24 | One-Step Equation Color by Code | Puzzle | One-Step Equations and Inequalities | Color by code: solve 20 one-step equations with whole numbers, fractions and decimals; each solution colors a space of a mosaic. |
 | 25 | Inequality Number Lines | Practice | One-Step Equations and Inequalities | Write and graph 8 inequalities like x > 4 for real limits such as ride height minimums. |
 | 26 | Equation Stories | Apply | One-Step Equations and Inequalities | Write and solve equations for 6 word problems, defining the variable each time. |
 | 27 | Hourly Pay: Table, Graph, Equation | Data and graphs | Dependent and Independent Variables | Build a table, graph and equation for earnings at $12 per hour, then answer 4 questions. |
 | 28 | Which Depends on Which? | Practice | Dependent and Independent Variables | Name the independent and dependent variables in 8 scenarios and write an equation for 4 of them. |
 | 29 | Expressions and Equations Review | Review | Dependent and Independent Variables | Solve mixed items on exponents, equivalent expressions, one-step equations, inequalities and a table-graph-equation set. |
 | 30 | Cut and Rearrange: Area Formulas | Diagram | Area of Polygons | Cut and rearrange printed parallelograms and triangles to derive their area formulas, gluing each step. |
-| 31 | Triangle and Trapezoid Areas | Practice | Area of Polygons | Find areas of 10 triangles, parallelograms and trapezoids, marking the base and height on each. |
 | 32 | Composite Floor Plans | Apply | Area of Polygons | Find areas of 5 composite polygons such as a house floor plan by decomposing them into simpler shapes. |
 | 33 | Polygons From Coordinates | Practice | Area of Polygons | Draw 4 polygons from vertex coordinates, find side lengths from the coordinates and compute each area. |
 | 34 | Nets to Solids | Diagram | Area, Surface Area and Volume | Match 6 nets to prisms and pyramids, then find each solid's surface area from its net. |
-| 35 | Gift Wrap Surface Area | Apply | Area, Surface Area and Volume | Find how much wrapping paper covers 5 boxes using nets and surface area. |
 | 36 | Half-Unit Cube Packing | Practice | Area, Surface Area and Volume | Find volumes of 6 prisms with fractional edges by packing 1/2-unit cubes and by using V = lwh. |
 | 37 | Statistical Question Cut and Sort | Practice | Statistical Variability | Cut and sort 12 question cards into statistical and not statistical, then rewrite 3 so they expect variability. |
 | 38 | Describe the Distribution | Data and graphs | Statistical Variability | Describe the center, spread and overall shape of 4 dot plots of real data like bus wait times. |
@@ -354,34 +307,26 @@ Math worksheets for Kindergarten through Grade 8 Math, then the high school cour
 | 1 | Complex Unit Rates | Practice | Proportional Relationships | Compute 8 unit rates involving fractions, like 1/2 mile walked in 1/4 hour. |
 | 2 | Proportional or Not? | Data and graphs | Proportional Relationships | Test 6 tables and graphs for proportionality and find the constant k where it exists. |
 | 3 | Writing y = kx | Practice | Proportional Relationships | Write y = kx for 6 situations and explain what the point (1, k) means in each context. |
-| 4 | Percent Increase and Decrease | Practice | Proportional Relationships | Find 10 percent changes, markups, discounts and sales tax amounts using equations or tape diagrams. |
 | 5 | Sales, Tips and Interest | Apply | Proportional Relationships | Solve 6 multi-step percent problems including simple interest, tips and percent error. |
 | 6 | Integer Chip Models | Diagram | Operations with Rational Numbers | Add and subtract 8 integers with chip and number line models, circling zero pairs. |
 | 7 | Signed Number Rules | Practice | Operations with Rational Numbers | Multiply and divide 16 signed integers and fractions, then write the sign rules in their own words. |
-| 8 | Dive Depths and Cold Fronts | Apply | Operations with Rational Numbers | Solve 6 real problems with signed numbers such as temperature drops, dive depths and bank balances. |
 | 9 | Rational Number Cross-Number | Puzzle | Operations with Rational Numbers | Solve a cross-number grid where every clue uses one of the four operations with negative numbers. |
 | 10 | Long Division Reveals the Decimal | Practice | Terminating and Repeating Decimals | Convert 10 fractions to decimals by long division and classify each as terminating or repeating. |
 | 11 | Why Do Some Decimals Repeat? | Writing frame | Terminating and Repeating Decimals | Explain with a frame, using remainders, why 1/7 repeats and 1/8 ends, then test 4 more fractions. |
 | 12 | Rational Numbers Checkpoint | Review | Terminating and Repeating Decimals | Solve mixed items on unit rates, percents, signed number operations and fraction-to-decimal conversions. |
-| 13 | Like Terms Task Cards | Practice | Equivalent Expressions | Task cards: simplify 12 cut-apart linear expressions with rational coefficients, recording each answer on a grid. |
 | 14 | Expand and Factor | Practice | Equivalent Expressions | Expand 6 and factor 6 linear expressions, such as 4x - 12 = 4(x - 3). |
 | 15 | Same Price, Different Form | Apply | Equivalent Expressions | Explain how pairs like a + 0.05a and 1.05a describe the same quantity in 4 contexts such as tax and growth. |
 | 16 | Two-Step Tape Diagrams | Diagram | Multi-Step Equations and Inequalities | Solve 6 problems of the form px + q = r with tape diagrams, then again with algebra. |
-| 17 | Two-Step Equation Secret Code | Puzzle | Multi-Step Equations and Inequalities | Secret code: solve 12 equations like px + q = r with rational numbers; each solution matches a letter that answers a riddle. |
 | 18 | Two-Step Inequalities | Practice | Multi-Step Equations and Inequalities | Solve and graph 8 inequalities, including ones where multiplying by a negative flips the sign. |
-| 19 | Field Trip Budget | Apply | Multi-Step Equations and Inequalities | Write and solve equations and inequalities for 6 trip planning limits like bus cost and ticket budget. |
 | 20 | Expressions and Equations Review | Review | Multi-Step Equations and Inequalities | Solve mixed items on like terms, factoring, two-step equations and inequalities with graphs. |
-| 21 | Floor Plan Scale | Apply | Scale Drawings and Constructions | Use a floor plan's scale to find 6 actual lengths and 2 actual areas. |
 | 22 | Redraw the Park Map | Diagram | Scale Drawings and Constructions | Redraw a park map at a new scale on grid paper and compare the areas of the two drawings. |
 | 23 | Will It Make a Triangle? | Diagram | Scale Drawings and Constructions | Try to draw triangles from 6 sets of side lengths and angles, recording which give one, many or no triangle. |
 | 24 | Slice the Solid | Diagram | Cross Sections of Solids | Sketch the cross section for 8 slices of right rectangular prisms and pyramids. |
 | 25 | Cheese Block and Tent Cuts | Apply | Cross Sections of Solids | Predict and sketch the cross section for 6 ways of slicing a cheese block or a pyramid tent. |
 | 26 | Discover Pi | Lab | Circles, Angles, Area and Volume | Measure the circumference and diameter of 5 printed circles with string, compute the ratios and compare them to pi. |
 | 27 | Circumference and Area | Practice | Circles, Angles, Area and Volume | Find the circumference and area of 10 circles given a radius or diameter, in terms of pi and rounded. |
-| 28 | Pizza Value Check | Apply | Circles, Angles, Area and Volume | Compare the price per square inch for 3 pizza sizes and decide which is the best deal. |
 | 29 | Angle Pair Sort | Practice | Angle Relationships | Name every supplementary, complementary, vertical and adjacent pair in 4 diagrams. |
 | 30 | Write and Solve Angle Equations | Practice | Angle Relationships | Write and solve equations to find 8 unknown angles from angle relationships. |
-| 31 | Angle Equation Maze | Puzzle | Angle Relationships | Solve for x in each angle diagram to choose the correct path through a maze. |
 | 32 | Prism Surface Area | Practice | Surface Area and Volume of Prisms | Find the surface area of 6 right prisms with triangular and rectangular bases. |
 | 33 | Composite Prism Volume | Practice | Surface Area and Volume of Prisms | Find the volume of 6 composite solids made of cubes and right prisms. |
 | 34 | Raised Garden Bed Planner | Planner | Surface Area and Volume of Prisms | Choose dimensions for a raised garden bed, then compute the soil volume and the wood surface area needed. |
@@ -494,42 +439,34 @@ Math worksheets for Kindergarten through Grade 8 Math, then the high school cour
 | # | Worksheet | Type | Module | Students |
 |---|---|---|---|---|
 | 1 | Transformations as Functions | Practice | Rigid Motions and Congruence | Apply 8 transformations as input-output rules to points and decide which preserve distance and angle. |
-| 2 | Carry It Onto Itself | Diagram | Rigid Motions and Congruence | Find every rotation and reflection that carries 5 figures, including regular polygons and a rectangle, onto itself. |
 | 3 | Define It Precisely | Vocabulary | Rigid Motions and Congruence | Write precise definitions of rotation, reflection and translation using angles, circles, perpendicular lines and segments. |
 | 4 | Congruence by Rigid Motion | Apply | Rigid Motions and Congruence | Describe a sequence of rigid motions that proves each of 4 pairs of figures congruent. |
 | 5 | Congruence Criteria Card Sort | Practice | Rigid Motions and Congruence | Cut and sort 12 cards of marked triangle pairs under SSS, SAS, ASA, AAS, HL or not enough information. |
 | 6 | Two-Column Proof Starters | Writing frame | Proofs and Constructions | Complete 4 partly finished proofs about vertical angles and angles formed by parallel lines. |
 | 7 | Flowchart Proofs: Triangle Theorems | Organizer | Proofs and Constructions | Build flowchart proofs for 3 triangle theorems: angle sum, isosceles base angles and the midsegment. |
-| 8 | Parallelogram Properties | Apply | Proofs and Constructions | Prove 3 parallelogram properties, then use them to find 6 unknown lengths and angles. |
 | 9 | Compass and Straightedge Basics | Diagram | Proofs and Constructions | Construct a copied segment and angle, a bisector, a perpendicular and a parallel line with compass and straightedge. |
 | 10 | Inscribed Polygon Constructions | Diagram | Proofs and Constructions | Construct an equilateral triangle, a square and a regular hexagon inscribed in circles, explaining each step. |
 | 11 | Congruence and Proof Review | Review | Proofs and Constructions | Solve mixed items on rigid motions, triangle congruence, a short proof and one construction. |
 | 12 | Dilation Properties | Practice | Similarity | Dilate 4 figures and verify that dilations send lines to parallel lines and scale every segment by k. |
 | 13 | AA Similarity | Practice | Similarity | Prove 4 pairs of triangles similar by AA and find 8 missing side lengths with proportions. |
 | 14 | Shadow Heights | Lab | Similarity | Measure shadows outdoors to compute the height of a flagpole or tree with similar triangles, recording all data. |
-| 15 | Side-Splitter Proportions | Practice | Similarity | Use the triangle proportionality theorem and the geometric mean in 8 problems. |
 | 16 | Ratios Stay the Same | Data and graphs | Right Triangle Trigonometry | Measure the sides of 4 similar right triangles and compute side ratios to discover sine, cosine and tangent. |
 | 17 | Missing Sides and Angles | Practice | Right Triangle Trigonometry | Find missing sides and angles in 10 right triangles using sine, cosine, tangent and their inverses. |
 | 18 | Angles of Elevation and Depression | Apply | Right Triangle Trigonometry | Solve 6 problems with angles of elevation and depression such as wheelchair ramps and lighthouse sightings. |
-| 19 | Sine and Cosine of Complements | Practice | Right Triangle Trigonometry | Show that sin x = cos(90° - x) for 6 angles and solve 4 equations using this relationship. |
 | 20 | Similarity and Trig Checkpoint | Review | Right Triangle Trigonometry | Solve mixed items on dilations, similar triangles and right triangle trigonometry. |
-| 21 | Circle Angle Maze | Puzzle | Circles | Maze: find 12 angle measures using central, inscribed and tangent relationships, following each correct answer to the exit. |
 | 22 | Chords, Secants and Tangents | Diagram | Circles | Find unknown segment lengths in 6 circle diagrams using chord, secant and tangent relationships. |
 | 23 | What Is a Radian? | Diagram | Circles | Lay string along arcs of 3 circles to define a radian, then convert 8 angles between degrees and radians. |
 | 24 | Arc Length and Sector Area | Practice | Circles | Find arc lengths and sector areas for 8 sectors given in degrees or radians. |
-| 25 | Sprinklers and Pizza Slices | Apply | Circles | Solve 5 sector problems like lawn sprinkler coverage and the crust length of a pizza slice. |
 | 26 | Circle Equations | Practice | Coordinate Geometry | Complete the square to find the center and radius of 8 circles, then write 2 equations from a graph. |
 | 27 | Parabola From Focus and Directrix | Diagram | Coordinate Geometry | Derive the equations of 3 parabolas from a focus and directrix and graph each one. |
 | 28 | Prove It With Coordinates | Apply | Coordinate Geometry | Use slope and distance to prove 4 quadrilaterals are parallelograms, rectangles, rhombuses or squares. |
 | 29 | Partition a Segment | Practice | Coordinate Geometry | Find the point that divides 6 segments in given ratios, like 2 : 3 from A to B. |
-| 30 | Perimeter and Area From Vertices | Practice | Coordinate Geometry | Compute the perimeter and area of 4 polygons from vertex coordinates. |
 | 31 | Cavalieri's Coin Stacks | Diagram | Volume and Cross Sections | Use Cavalieri's principle to explain why right and oblique stacks have equal volume, then solve 4 problems. |
 | 32 | Volume Formulas | Practice | Volume and Cross Sections | Find the volume of 10 cylinders, pyramids, cones and spheres, giving exact and rounded answers. |
 | 33 | Solids of Rotation | Diagram | Volume and Cross Sections | Sketch the solid made by rotating 6 two-dimensional shapes about an axis and identify their cross sections. |
 | 34 | Solids Review | Review | Volume and Cross Sections | Solve mixed items on circles, coordinate proofs, volume and cross sections. |
 | 35 | Density in the Real World | Apply | Modeling with Geometry | Solve 5 density problems such as people per square mile and the mass of a wooden beam. |
 | 36 | Design a Better Can | Planner | Modeling with Geometry | Design a 355 mL can using the least material, testing 5 radius options in a table of height and surface area. |
-| 37 | Model the Object | Apply | Modeling with Geometry | Model 6 real objects with geometric shapes, such as a tree trunk as a cylinder, and estimate their measures. |
 | 38 | Pocket Park Design | Planner | Modeling with Geometry | Design a small park on grid paper that meets area, path length and shade constraints, showing all calculations. |
 | 39 | Venn Diagrams and the Addition Rule | Diagram | Probability Rules | Use 4 Venn diagrams to compute P(A or B) and explain why the overlap is subtracted. |
 | 40 | Two-Way Tables and Conditional Probability | Data and graphs | Probability Rules | Compute conditional probabilities from 2 real two-way tables and test the events for independence. |
@@ -595,20 +532,16 @@ Math worksheets for Kindergarten through Grade 8 Math, then the high school cour
 | 6 | Which Function Fits the Data? | Data and graphs | Functions and Their Graphs | Choose linear, quadratic, exponential or logarithmic models for 4 real data sets and justify with residuals. |
 | 7 | Shrinking Intervals | Practice | Limits and Rates of Change | Compute average rates on shrinking intervals to estimate the instantaneous rate at a point for 4 functions. |
 | 8 | Approaching a Value | Practice | Limits and Rates of Change | Estimate 8 limits from tables and graphs, including functions with holes and jumps. |
-| 9 | Reading the Speedometer | Apply | Limits and Rates of Change | Estimate a car's instantaneous speed at 3 times from a table of distance and time data. |
 | 10 | Functions and Limits Checkpoint | Review | Limits and Rates of Change | Solve mixed items on function families, composition, inverses, asymptotes and intuitive limits. |
 | 11 | Identity Toolkit | Practice | Trigonometric Identities and Equations | Verify 8 identities using Pythagorean, reciprocal and quotient identities, showing each step. |
 | 12 | Sum and Difference Formulas | Practice | Trigonometric Identities and Equations | Find exact values like sin 75° and simplify 6 expressions with sum, difference and double-angle formulas. |
-| 13 | Inverse Trig Values | Practice | Trigonometric Identities and Equations | Evaluate 10 inverse trigonometric expressions and explain why each inverse needs a restricted domain. |
 | 14 | Solve Trig Equations | Practice | Trigonometric Identities and Equations | Solve 8 trigonometric equations on [0, 2π) and write the general solution for 3 of them. |
 | 15 | Ferris Wheel Timing | Apply | Trigonometric Identities and Equations | Model a Ferris wheel rider's height and find the time intervals when the rider is above 30 meters. |
 | 16 | Scrambled Identity Proofs | Puzzle | Trigonometric Identities and Equations | Cut apart the scrambled steps of 4 identity proofs and glue each proof in a valid order with reasons. |
 | 17 | Law of Sines | Practice | Solving Any Triangle | Solve 6 triangles with the law of sines, including ambiguous SSA cases with zero, one or two triangles. |
 | 18 | Law of Cosines | Practice | Solving Any Triangle | Solve 6 triangles with the law of cosines given SAS or SSS information. |
-| 19 | Across the Lake | Apply | Solving Any Triangle | Find distances across a lake, a canyon and a field from 5 sets of surveyor's measurements. |
 | 20 | Area of Any Triangle | Practice | Solving Any Triangle | Find 8 triangle areas using one-half ab sin C, including 2 where they first find an angle. |
 | 21 | Trigonometry Review | Review | Solving Any Triangle | Solve mixed items on identities, trig equations, inverse trig and oblique triangles. |
-| 22 | Vector Scavenger Hunt | Practice | Vectors | Scavenger hunt: solve 10 vector cards posted around the room; each magnitude or direction answer names the next card to find. |
 | 23 | Head-to-Tail Addition | Diagram | Vectors | Add 6 pairs of vectors graphically with head-to-tail drawings and confirm with components. |
 | 24 | Plane in the Wind | Apply | Vectors | Find the ground speed and true heading for 4 airplanes flying through wind vectors. |
 | 25 | Forces in Balance | Apply | Vectors | Find the tension in two ropes holding up a hanging sign in 3 problems with different angles. |
@@ -621,7 +554,6 @@ Math worksheets for Kindergarten through Grade 8 Math, then the high school cour
 | 32 | Roses and Limaçons | Diagram | Polar Coordinates and Complex Plane | Graph 4 polar equations from tables of values and describe the symmetry of each curve. |
 | 33 | Complex Numbers on the Plane | Practice | Polar Coordinates and Complex Plane | Plot 8 complex numbers and write each in polar form with its modulus and argument. |
 | 34 | Multiply by Rotating | Practice | Polar Coordinates and Complex Plane | Multiply complex numbers in polar form and find powers with De Moivre's theorem in 8 problems. |
-| 35 | Polar Graph Match-Up | Puzzle | Polar Coordinates and Complex Plane | Match 8 polar equations to their graphs by checking r at key angles like 0, π/2 and π. |
 | 36 | Slice the Cone | Diagram | Conic Sections | Identify the conic made by 4 plane slices of a double cone and sketch each curve. |
 | 37 | Ellipses and Hyperbolas From Equations | Practice | Conic Sections | Find the center, vertices and foci of 8 ellipses and hyperbolas and sketch 2 of them. |
 | 38 | Complete the Square to Classify | Practice | Conic Sections | Rewrite 6 general second-degree equations in standard form and classify each conic. |
@@ -681,43 +613,33 @@ Math worksheets for Kindergarten through Grade 8 Math, then the high school cour
 |---|---|---|---|---|
 | 1 | Limits From Tables and Graphs | Practice | Limits and Continuity | Estimate 10 limits, including one-sided limits, from tables and graphs. |
 | 2 | Limit Laws and Algebra | Practice | Limits and Continuity | Evaluate 12 limits algebraically by direct substitution, factoring and rationalizing. |
-| 3 | Squeeze Theorem | Diagram | Limits and Continuity | Use bounding graphs and the squeeze theorem to find the limit of sin x / x and 2 others. |
 | 4 | Continuity Check | Practice | Limits and Continuity | Test 8 functions for continuity with the three conditions and classify each discontinuity. |
 | 5 | Limits at Infinity | Practice | Limits and Continuity | Find 8 limits at infinity and connect each to a horizontal asymptote. |
 | 6 | Intermediate Value Theorem | Apply | Limits and Continuity | Use the intermediate value theorem in 4 contexts, such as proving a temperature reached a given value. |
 | 7 | Limits Checkpoint | Review | Limits and Continuity | Solve mixed items on limits from graphs, algebraic limits, continuity and asymptotes. |
-| 8 | Secant to Tangent | Data and graphs | The Derivative | Compute secant slopes approaching a point in a table to estimate the tangent slope for 3 functions. |
 | 9 | Derivative From the Definition | Practice | The Derivative | Find the derivative of 6 functions using the limit definition of the derivative. |
 | 10 | Sketch the Derivative Graph | Diagram | The Derivative | Sketch the graph of f' beneath each of 6 graphs of f, marking where f' is zero. |
 | 11 | Power, Product and Quotient Rules | Practice | The Derivative | Differentiate 15 functions using the power, product and quotient rules. |
 | 12 | Chain Rule Maze | Puzzle | The Derivative | Maze: differentiate 12 composite functions, following the correct derivative at each fork to reach the exit. |
 | 13 | Implicit and Inverse Derivatives | Practice | The Derivative | Find dy/dx for 8 implicit equations and derivatives of 4 inverse trigonometric functions. |
-| 14 | Derivative Relay | Puzzle | The Derivative | Solve a chain of 8 derivative problems where each answer, evaluated at a point, feeds the next problem. |
 | 15 | Derivative Review | Review | The Derivative | Solve mixed items on the definition, derivative rules, implicit differentiation and graphs of f and f'. |
 | 16 | Motion on a Line | Apply | Applications of Derivatives | Analyze position, velocity and acceleration for 4 particles, including when each speeds up or slows down. |
 | 17 | Related Rates | Apply | Applications of Derivatives | Solve 5 related rates problems such as a sliding ladder and a filling cone-shaped tank. |
 | 18 | Linearization and L'Hospital's Rule | Practice | Applications of Derivatives | Estimate 6 values with tangent line approximations and evaluate 4 indeterminate limits with L'Hospital's rule. |
 | 19 | Curve Sketching Sign Charts | Organizer | Applications of Derivatives | Use sign charts for f' and f'' to find extrema and inflection points and sketch 3 functions. |
-| 20 | Mean Value Theorem | Practice | Applications of Derivatives | Verify the hypotheses and find c for 6 functions, then apply the theorem to a toll road speeding case. |
 | 21 | Optimization: Fences and Boxes | Apply | Applications of Derivatives | Solve 5 optimization problems such as the largest pen for a fixed fence length. |
 | 22 | Cooling Cup Rates | Data and graphs | Applications of Derivatives | Estimate derivatives from a table of a cooling cup's temperatures and interpret their units and meaning. |
 | 23 | Applications Checkpoint | Review | Applications of Derivatives | Solve mixed items on motion, related rates, optimization and curve sketching. |
 | 24 | Riemann Sum Rectangles | Diagram | The Integral | Approximate the area under 3 curves with left, right, midpoint and trapezoid sums, drawing each. |
-| 25 | Water Flow Accumulation | Data and graphs | The Integral | Estimate the total water that flowed into a tank from a table of rates using a Riemann sum. |
 | 26 | Definite Integral Properties | Practice | The Integral | Evaluate 10 definite integrals using properties and areas of geometric shapes. |
 | 27 | The Fundamental Theorem | Practice | The Integral | Evaluate 10 definite integrals with antiderivatives and differentiate 4 accumulation functions. |
-| 28 | Antiderivative Match-Up | Practice | The Integral | Match: connect 15 functions to their antiderivatives among cards that include 3 decoys with common sign or constant errors. |
 | 29 | U-Substitution | Practice | The Integral | Integrate 12 functions using substitution, including 4 definite integrals with changed limits. |
-| 30 | Integral Cross-Number | Puzzle | The Integral | Fill a cross-number grid whose clues are values of definite integrals. |
 | 31 | Integration Review | Review | The Integral | Solve mixed items on Riemann sums, the Fundamental Theorem, antiderivatives and substitution. |
 | 32 | Slope Field Sketch | Diagram | Differential Equations | Sketch slope fields for 4 differential equations and trace the solution curve through a given point. |
 | 33 | Separation of Variables | Practice | Differential Equations | Solve 8 separable differential equations with initial conditions. |
-| 34 | Cooling Coffee Model | Apply | Differential Equations | Model a cooling cup of coffee with Newton's law of cooling from given data and predict a future temperature. |
 | 35 | Growth and Decay Models | Apply | Differential Equations | Solve 5 problems with dy/dt = ky, such as bacteria growth and radioactive decay. |
-| 36 | Match the Slope Field | Puzzle | Differential Equations | Match 6 slope fields to their differential equations by checking slopes at key points. |
 | 37 | Average Value | Practice | Applications of Integrals | Find the average value of 6 functions over given intervals and interpret 2 in context. |
 | 38 | Area Between Curves | Practice | Applications of Integrals | Find the area between curves for 6 regions, integrating with respect to x or y. |
 | 39 | Disks and Washers | Practice | Applications of Integrals | Find the volume of 6 solids of revolution about horizontal and vertical axes. |
 | 40 | Known Cross Sections | Diagram | Applications of Integrals | Find volumes of solids with square and semicircle cross sections on 4 given bases. |
-| 41 | Displacement or Total Distance? | Apply | Applications of Integrals | Find the displacement and total distance traveled for 4 particles from their velocity functions. |
 | 42 | Calculus Year Review | Review | Applications of Integrals | Solve mixed items across the course: limits, derivatives, applications, integrals and differential equations. |

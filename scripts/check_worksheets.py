@@ -27,8 +27,8 @@ LABEL = {g: 'Kindergarten' if g == 'k' else f'Grade {g}' for g in GRADES}
 TYPES = {'Practice', 'Apply', 'Read and respond', 'Organizer', 'Diagram', 'Data and graphs', 'Lab', 'Map',
          'Timeline', 'Source analysis', 'Writing frame', 'Vocabulary', 'Review', 'Planner', 'Reflection', 'Log',
          'Critique', 'Puzzle'}
-COUNT = (40, 50)
-MIN_PER_MODULE = 2
+COUNT = (30, 45)  # trimmed 2026-11-04: about 30 hand-written sheets a class, generator sheets on top
+MIN_PER_MODULE = 1  # was 2; the trim left 97 ELA modules with one sheet (docs/ROADMAP.md, thin areas after the trim)
 WORDS = 30  # max words in the Students cell
 
 # file -> [(course_id, mode)]; mode: 'grades' (one unit per grade), 'course' (one unit), 'levels' (language levels)
@@ -131,8 +131,8 @@ def check_file(f, U):
         rows = [ROW.match(l) for l in body.splitlines()]
         rows = [r for r in rows if r]
         nums = [int(r.group(1)) for r in rows]
-        if nums != list(range(1, len(rows) + 1)):
-            say(f'{uid}: rows not numbered 1..{len(rows)}')
+        if nums != sorted(set(nums)) or (nums and nums[0] < 1):
+            say(f'{uid}: rows not numbered in rising order (gaps are fine: numbers are ids since the 2026-11-04 trim)')
         if not COUNT[0] <= len(rows) <= COUNT[1]:
             say(f'{uid}: {len(rows)} worksheets, want {COUNT[0]}-{COUNT[1]}')
         mods = U[uid]['modules']

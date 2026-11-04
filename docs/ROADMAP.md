@@ -16,7 +16,7 @@ When a roadmap item starts, finishes or moves, update it here first, then post i
 | Live tools | 83 |
 | Specs written | 238 more, plus 11 built and waiting on voice |
 | Built by Codex, waiting on review | about 80 (8 reviewed) |
-| Worksheets live | 1,008 of 8,947 planned (live 2026-11-03) |
+| Worksheets live | 1,008 of 7,116 planned (live 2026-11-03; trimmed from 8,947 on 2026-11-04) |
 | Modules with Word Wall cards | 762 of 797 (4,413 cards), English and Spanish |
 | Anchor charts / posters / Game Night games | 74 / 54 / 104 |
 | Sub Day packets | 79 |
@@ -149,6 +149,11 @@ Night, Word check, closet search, Take home, words CSV. What is left, in order:
    page and answer key. Detail: docs/WORKSHEETS-PLAN.md; concept lists in docs/worksheets/, checked by
    `scripts/check_worksheets.py`.
    - **Done 2026-11-01:** concept lists for all 215 classes (8,947 sheets), checker clean.
+   - **Trimmed 2026-11-04 (Cory):** 1,831 unwritten rows cut to about 30 hand-written sheets a class, generator sheets on
+     top (7,116 rows left). Fresh agents proposed the cuts (docs/agents/trim/, rules in BRIEF.md, checked by
+     `scripts/trim_check.py`), Cory approved them as proposed, `scripts/trim_apply.py` removed them. Row numbers are
+     ids (sheet links use them), so lists now have gaps; the class page shows 1..N. Thin areas it left: end of this
+     roadmap.
    - **Now:** Cory reviews the lists (French has no modules yet; ASL waits on the ASL sign-strip sample; hard history sheets
      get the fresh review).
    - **Pilot done 2026-11-01:** the shelf (`/closet/worksheets/`, a page for each of the 215 classes, one shared viewer
@@ -272,3 +277,18 @@ comes last and needs expert review.
   engine (mic pitch detection, Web MIDI, Note Ninja staff). Recorder first, then keyboard, ukulele, guitar, voice;
   band instruments only partly (a browser can't see the player's hands or hear mouthpiece shape well enough to
   correct it). Own shelf under Arts and Music.
+
+## Thin areas after the worksheet trim (2026-11-04, deal with later)
+
+Cory approved the trim as proposed and set these aside for later. Each is a list to look at again, not a decision.
+
+- **ELA, one-sheet modules:** 97 ELA modules (spread across K-8, 6 to 13 a grade; only one in grades 9-12) now have a single sheet, because ELA
+  units have many small modules. The checker floor dropped from 2 sheets a module to 1 so the trim could land
+  (`MIN_PER_MODULE` in scripts/check_worksheets.py). Choose: give those modules a second sheet back (about 97 rows,
+  from the cut lists in docs/agents/trim/ela.csv), or accept one and set the floor back to 2 elsewhere.
+- **Read and respond cuts:** the reading sheets took heavy cuts outside ELA: health 39, dance 22, science 20,
+  computer science 18, media arts 18, world languages 16. Check that each unit still has some reading in it.
+- **Source analysis cuts:** 12 in social studies (plus a few elsewhere), though no unit lost its only one.
+- **ASL culture readings:** 33 ASL rows cut, some of them Deaf culture readings. Review with the ASL work (sign-strip
+  sample) before those units are built.
+- The cut rows stay in docs/agents/trim/<subject>.csv (title, type, module, reason) for any of these to come back.
