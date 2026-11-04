@@ -492,7 +492,33 @@ rules from that review:
   (`scripts/gen_links.py`: by subject, strand and grade, at most four, skills first, then the module's Word Wall words,
   then an organizer with the module as its title), and its Sub Day page links the same. A new generator gets a rule
   there, or nobody finds it.
-- **Next:** concept-list rows backed by a generator, then about 10 more generators (the list is in the roadmap).
+- **Backed rows, done 2026-11-03:** a concept-list row a generator truly makes is listed in
+  `data/closet/worksheets/generated.csv` (unit, n, generator, query, note; `python scripts/ws_generated.py` checks it,
+  the build refuses a bad row). The class page keeps the row's title and place in the year and its link opens the
+  generator preset. `scripts/ws_gen_propose.py` sifts candidates by type and keywords for a reviewer.
+- **What the first sift found:** three reviewers read 746 candidate rows in math, science and social studies against
+  GEN-OPTIONS.md and the generator code and kept 26 (math 14, science 10, social studies 2: about one row in thirty).
+  Almost every planned row names a specific scenario, data set, text, place, criteria list or picture task, so the
+  generators as they stand rarely replace a written sheet. The remaining 14 subject files were not sifted: the rate
+  would be lower still. The gain is on the other side: settings the reviewers wished for, each of which would back
+  several rows at once. Build these before building new generators from scratch:
+  - number-ops: an "estimate first" blank beside each problem; a within-100 cap for grade 2; a missing-number skill;
+    grade 6 long division with decimal quotients.
+  - fractions: mixed-numbers-only for addunlike; grade 3 "copies of a unit fraction".
+  - word-problems: a grade 4 remainders topic (what does the remainder mean).
+  - measure-shapes: perimeter with one unknown side; grid-count area; cones and spheres; nets.
+  - graph-reading: a custom title, categories and values (or science data packs: plant heights, shadow length,
+    daylight hours, temperature by season); a choosable picture-graph key; build-the-graph-from-a-table.
+  - equations: exponent-focused evaluate; like terms, expand and factor; no-solution and identity cases.
+  - science-calc: two or more topics on one sheet; wave speed, momentum conservation, series and parallel circuits.
+  - punnett: mono count up to 8; a listed count for dihybrid.
+  - organizer: preset criteria row labels and a 3- or 4-subject compare chart; a T-chart sort with a cards list.
+  - writing-frame: a letter genre (persuasive letter) and a case-brief frame (facts, question, ruling, reasoning).
+  - timeline: a year range or era filter inside a set; a custom-events set; geologic time.
+  - vocabulary: a cloze-passage mode; word-puzzles: crosswords of 12 or more.
+  - planner-log: a design and engineering planner (criteria, constraints, sketch, materials, test plan); a trial or
+    week log with a chosen number of entries.
+  - new: a coordinate-plane generator (map-skills is a lettered town grid, not a coordinate plane).
 
 **Update 2026-11-03: test group built.** Cory asked for 15 full generators covering every area and generator type, live for
 his review before deciding the build-out. They are organized by skill and grade rather than one recipe per module:

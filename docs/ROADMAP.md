@@ -44,10 +44,13 @@ no accounts, no ads, no tracking.
    11 tools missing it (314 images), each set on a contact sheet for Cory plus a fresh representation check.
 4. **Worksheets, generator first (Cory, 2026-11-03):** the 15 generators reviewed well. Module pages and Sub Day pages
    now link the generators that fit each module with its settings filled in (scripts/gen_links.py), and the authored
-   sheets a module has. Next: concept-list rows that a generator can make are backed by it (the row keeps its title and
-   place in the year, its link opens the generator preset), then about 10 more generators where the lists are thickest
-   and really procedural (place value, decimals and percents, ratios, integers and order of operations, angles and
-   coordinates, statistics, phonics and spelling, grammar, unit conversions, balancing equations). Authored waves
+   sheets a module has. Concept-list rows a generator can make are backed by it (the row keeps its title and place in
+   the year, its link opens the generator preset): the first sift kept 26 of 746 math, science and social studies rows,
+   which says the generators rarely replace a written sheet as they stand. Next, in this order: the settings the
+   reviewers wished for, each backing several rows (list in docs/SUPPLY-CLOSET-PLAN.md, Generators), then about 10
+   more generators where the lists are thickest and really procedural (place value, decimals and percents, ratios,
+   integers and order of operations, angles and coordinates, statistics, phonics and spelling, grammar, unit
+   conversions, balancing equations). Authored waves
    continue for K-2 and the interpretive subjects. Cory still reviews the live shelf; the rest of wave 2 and wave 3
    follow at a slower pace.
 5. **Housekeeping (from the 2026-11-03 cleanup):** after 2026-11-07, delete the staged temp folder
