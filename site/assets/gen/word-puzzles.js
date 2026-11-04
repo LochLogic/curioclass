@@ -2,6 +2,8 @@
 // (and an optional second module), then a word search or a crossword. The word search hides the words in a grid whose
 // size and directions grow with the grade; the crossword is laid out by code so every word crosses another, with the
 // meanings as numbered clues. Words with spaces or hyphens go in the grid as letters only, and the clue says so.
+// Crosswords (grades 3-12) also offer 12 and 15 words when the chosen modules have that many; the bigger grids use
+// smaller boxes so the page still fits.
 (() => {
 const { part, example, esc, blank } = Gen.h;
 
@@ -206,13 +208,19 @@ Gen.add('word-puzzles', {
     { id: 'kind', label: 'Puzzle', type: 'select', options: [['search', 'Word search'], ['cross', 'Crossword']], def: 'search' },
     { id: 'list', label: 'Word search list', type: 'select', def: 'words', show: v => v.kind === 'search' && v.band !== 'k2',
       options: [['words', 'Words with their meanings'], ['clues', 'Meanings only (students work out each word)']] },
-    { id: 'count', label: 'Words', type: 'select', options: v => COUNTS[v.band] || COUNTS['35'], def: '8' },
+    { id: 'count', label: 'Words', type: 'select', def: '8', options: (v, d) => {
+      const base = COUNTS[v.band] || COUNTS['35'];
+      if (v.kind !== 'cross' || v.band === 'k2') return base;
+      // bigger crosswords when the modules have the words for them (usable words, both modules together)
+      const have = pool(v, d, 17).length;
+      return base.concat([['12', '12 words'], ['15', '15 words']].filter(([c]) => +c <= have && !base.some(b => b[0] === c)));
+    } },
   ],
   make(v, r, d) {
     const band = BANDS.find(b => b[0] === v.band) ? v.band : '35', bandName = BANDS.find(b => b[0] === band)[1];
     const m1 = byId(d, v.mod), m2 = v.mod2 ? byId(d, v.mod2) : null;
     const search_ = v.kind !== 'cross';
-    const maxDim = band === 'k2' ? 11 : +v.count <= 8 ? 13 : 15;   // crossword size limit
+    const maxDim = band === 'k2' ? 11 : +v.count <= 8 ? 13 : +v.count <= 12 ? 15 : 17;   // crossword size limit
     const maxLen = search_ ? CAP[band] : maxDim;
     let all = pool(v, d, maxLen);
     // in a word search a word hidden inside another (ART in ARTIST) would show up twice, so keep only the longer one
@@ -269,7 +277,7 @@ Gen.add('word-puzzles', {
       const placed = cw.placed.map(p => ({ ...p, num: num[p.r + ',' + p.c] }));
       const cell = (y, x) => { const ch = g[y][x]; if (!ch) return '<td class="gen-cw-x"></td>';
         const n = num[y + ',' + x]; return `<td>${n ? `<i>${n}</i>` : ''}<span class="ws-ans">${ch}</span></td>`; };
-      const table = `<table class="gen-cw${cw.cols <= 9 && cw.rows <= 9 ? ' gen-cw-big' : ''}" aria-label="Crossword grid, ${cw.rows} rows by ${cw.cols} columns">` +
+      const table = `<table class="gen-cw${cw.cols <= 9 && cw.rows <= 9 ? ' gen-cw-big' : cw.cols > 13 || cw.rows > 13 ? ' gen-cw-small' : ''}" aria-label="Crossword grid, ${cw.rows} rows by ${cw.cols} columns">` +
         g.map((row, y) => `<tr>${row.map((_, x) => cell(y, x)).join('')}</tr>`).join('') + '</table>';
       const list = dir => placed.filter(p => p.dir === dir).sort((a, b) => a.num - b.num);
       const clueLi = p => `<li><b>${p.num}.</b> ${esc(mask(p.w, p.df))} ${note(p.w) ? `<i>${note(p.w)}</i>` : ''}<span class="ws-keyonly gen-cwans"> ${esc(p.w)}</span></li>`;
@@ -372,6 +380,8 @@ Gen.add('word-puzzles', {
 .gen-cw { border-collapse: collapse; margin: 4px auto; }
 .gen-cw td { width: 0.3in; height: 0.3in; border: 1.5px solid #222; position: relative; text-align: center; vertical-align: middle; padding: 0; font: 700 15px var(--sans); }
 .gen-cw-big td { width: 0.38in; height: 0.38in; font-size: 18px; }
+.gen-cw-small td { width: 0.25in; height: 0.25in; font-size: 13px; }
+.gen-cw-small td i { font-size: 7.5px; }
 .gen-cw td.gen-cw-x { border: 0; }
 .gen-cw td i { position: absolute; top: 1px; left: 2px; font: 600 8.5px/1 var(--sans); font-style: normal; }
 .gen-cwclues { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; font-size: 14px; }
@@ -381,6 +391,6 @@ Gen.add('word-puzzles', {
 .gen-cwans { color: #b03020; font-weight: 700; }
 @media print { .gen-wslist, .gen-wsclues, .gen-cwclues { font-size: 9.5pt; }
   .gen-ws td { width: 0.26in; height: 0.26in; font-size: 11.5pt; } .gen-ws-big td { width: 0.36in; height: 0.36in; font-size: 15pt; }
-  .gen-cw td { width: 0.28in; height: 0.28in; } .gen-cw-big td { width: 0.34in; height: 0.34in; } }`,
+  .gen-cw td { width: 0.28in; height: 0.28in; } .gen-cw-big td { width: 0.34in; height: 0.34in; } .gen-cw-small td { width: 0.23in; height: 0.23in; font-size: 10pt; } }`,
 });
 })();

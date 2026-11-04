@@ -2,6 +2,9 @@
 // and a source). Students place lettered events on an SVG timeline, then answer questions about order, years between
 // events and centuries. Grade sets how many events, and whether BCE years and centuries appear. "My own life" is a
 // blank timeline of the student's own years. Years: negative numbers are BCE (-490 prints as 490 BCE).
+// Settings: a year range (From, To) keeps only events inside it (fewer than 5 left falls back to the whole set), and
+// "Your own events" (year=event; year=event, 4 to 10 of them) replaces the set, titled by the Topic field. The geo set
+// (Geologic time and fossils) counts in millions of years ago; civil (Civil rights) and ww2 (World War II) are new sets.
 (() => {
 const { blank, part, example, esc, svg, lines } = Gen.h;
 
@@ -281,29 +284,104 @@ const SETS = {
     [1993, 'The European Union is formed.', 'European Union (european-union.europa.eu)'],
     [1994, 'Nelson Mandela is elected the first Black president of South Africa.', 'Nelson Mandela Foundation'],
   ] },
+  geo: { name: 'Geologic time and fossils (millions of years ago)', mya: true, ev: [
+    [-4600, 'Earth forms from dust and rock circling the young Sun.', 'U.S. Geological Survey (usgs.gov)'],
+    [-4000, 'The Archean Eon begins; the oldest known rocks on Earth date from about this time.', 'International Commission on Stratigraphy'],
+    [-3500, 'Stromatolites, mounds built by microbes, are among the oldest widely accepted fossils of life.', SI],
+    [-2500, 'The Proterozoic Eon begins.', 'International Commission on Stratigraphy'],
+    [-2400, 'The Great Oxidation Event: oxygen made by microbes starts to build up in the air and oceans.', SI],
+    [-540, 'The Cambrian Period and the Paleozoic Era begin; many kinds of animals with shells and hard parts appear.', 'International Commission on Stratigraphy'],
+    [-485, 'The Ordovician Period begins.', 'International Commission on Stratigraphy'],
+    [-470, 'The first plants grow on land, in about this time.', B],
+    [-419, 'The Devonian Period, often called the Age of Fishes, begins.', 'International Commission on Stratigraphy'],
+    [-370, 'The first four-legged animals (tetrapods) move onto land, in about this time.', B],
+    [-359, 'The Carboniferous Period begins; its swamp forests later become coal.', 'International Commission on Stratigraphy'],
+    [-310, 'The first reptiles appear, in about this time.', B],
+    [-252, 'The largest mass extinction ends the Permian Period and the Paleozoic Era; the Mesozoic Era begins.', 'International Commission on Stratigraphy'],
+    [-230, 'The first dinosaurs appear, in about this time.', SI],
+    [-201, 'The Jurassic Period begins.', 'International Commission on Stratigraphy'],
+    [-150, 'Archaeopteryx, an early bird with feathers and teeth, lives in what is now Germany.', B],
+    [-145, 'The Cretaceous Period begins.', 'International Commission on Stratigraphy'],
+    [-66, 'An asteroid impact ends the Cretaceous Period; the non-bird dinosaurs die out, and the Cenozoic Era begins.', SI],
+    [-56, 'The Eocene Epoch begins, a time of warm climate and early horses, whales and primates.', B],
+    [-23, 'The Neogene Period begins; grasslands spread across the continents.', 'International Commission on Stratigraphy'],
+  ] },
+  civil: { name: 'Civil rights in the United States, 1865 to 1968', ev: [
+    [1865, 'The 13th Amendment ends slavery in the United States.', NA],
+    [1868, 'The 14th Amendment makes everyone born in the U.S. a citizen and promises equal protection of the laws.', NA],
+    [1870, 'The 15th Amendment says a man cannot be denied the vote because of his race.', NA],
+    [1896, 'In Plessy v. Ferguson, the Supreme Court allows racial segregation as "separate but equal."', NA],
+    [1909, 'The NAACP is founded to work for the rights of Black Americans.', LOC],
+    [1948, 'President Harry Truman orders an end to segregation in the U.S. armed forces.', NA],
+    [1954, 'In Brown v. Board of Education, the Supreme Court rules that school segregation is unconstitutional.', NA],
+    [1955, 'Rosa Parks is arrested, and the Montgomery Bus Boycott begins.', LOC],
+    [1957, 'Nine Black students, the Little Rock Nine, enter Central High School in Arkansas under federal troop protection.', NPS],
+    [1960, 'Four college students begin the sit-ins at a Woolworth\'s lunch counter in Greensboro, North Carolina.', SI],
+    [1961, 'Freedom Riders ride buses through the South to test the desegregation of bus stations.', NPS],
+    [1963, 'About 250,000 people join the March on Washington, where Martin Luther King Jr. gives his "I Have a Dream" speech.', NPS],
+    [1964, 'The Civil Rights Act outlaws discrimination based on race, color, religion, sex or national origin.', NA],
+    [1965, 'Marchers walk from Selma to Montgomery, Alabama, and the Voting Rights Act becomes law.', NPS],
+    [1967, 'Thurgood Marshall becomes the first Black justice of the Supreme Court.', LOC],
+    [1968, 'Martin Luther King Jr. is assassinated in Memphis; days later, the Fair Housing Act becomes law.', NPS],
+  ] },
+  ww2: { name: 'World War II, 1933 to 1945', ev: [
+    [1933, 'Adolf Hitler becomes chancellor of Germany.', 'U.S. Holocaust Memorial Museum'],
+    [1934, 'After President Hindenburg dies, Hitler takes full power in Germany as Fuhrer.', 'U.S. Holocaust Memorial Museum'],
+    [1935, 'Germany passes the Nuremberg Laws, which strip Jewish people of their rights as citizens.', 'U.S. Holocaust Memorial Museum'],
+    [1936, 'German troops march into the Rhineland, breaking the treaty that ended World War I.', 'Imperial War Museums'],
+    [1937, 'Japan invades China, and full-scale war begins in Asia.', B],
+    [1938, 'Germany takes over Austria; later that year, the Munich Agreement hands part of Czechoslovakia to Germany.', 'U.S. Holocaust Memorial Museum'],
+    [1939, 'Germany invades Poland on September 1, and Britain and France declare war on Germany.', 'Imperial War Museums'],
+    [1940, 'Germany defeats France, and the Battle of Britain is fought in the air.', 'Imperial War Museums'],
+    [1941, 'Germany invades the Soviet Union; Japan attacks Pearl Harbor, and the United States enters the war.', NA],
+    [1942, 'The U.S. Navy defeats a Japanese fleet at the Battle of Midway.', 'Naval History and Heritage Command'],
+    [1943, 'The German army surrenders at Stalingrad after a long battle in the Soviet Union.', 'Imperial War Museums'],
+    [1944, 'On D-Day, June 6, Allied troops land on the beaches of Normandy, France.', NA],
+    [1945, 'Germany surrenders in May; after atomic bombs fall on Hiroshima and Nagasaki, Japan surrenders, and the war ends.', NA],
+  ] },
 };
 // the "all eras" sets combine the era sets
 SETS.usall = { name: 'U.S. history: all eras', ev: [...SETS.us1.ev, ...SETS.us2.ev, ...SETS.us3.ev] };
 SETS.wall = { name: 'World history: all eras', ev: [...SETS.w1.ev, ...SETS.w2.ev, ...SETS.w3.ev] };
-const ORDER = ['inv', 'space', 'sci', 'us1', 'us2', 'us3', 'usall', 'w1', 'w2', 'w3', 'wall'];
+const ORDER = ['inv', 'space', 'sci', 'us1', 'us2', 'us3', 'usall', 'w1', 'w2', 'w3', 'wall', 'geo', 'civil', 'ww2'];
 const GRADES = Array.from({ length: 11 }, (_, i) => [String(i + 2), `Grade ${i + 2}`]);
 const COUNT = g => g <= 3 ? 6 : g === 4 ? 7 : g <= 8 ? 8 : 10;
 const LET = 'ABCDEFGHIJ';
 
 // year helpers: negative is BCE; there is no year 0
-const yr = y => y < 0 ? `${-y} BCE` : (y < 1000 ? `${y} CE` : String(y));
+let MYA = false;   // true while the sheet counts in millions of years ago (years are stored as negative numbers)
+const yr = y => MYA ? `${-y} million years ago` : y < 0 ? `${-y} BCE` : (y < 1000 ? `${y} CE` : String(y));
 const between = (a, b) => { const [x, y] = a < b ? [a, b] : [b, a]; return x < 0 && y > 0 ? y - x - 1 : y - x; };
 const ord = n => n + (n % 100 >= 11 && n % 100 <= 13 ? 'th' : ['th', 'st', 'nd', 'rd'][n % 10] || 'th');
 const century = y => y < 0 ? `${ord(Math.ceil(-y / 100))} century BCE` : `${ord(Math.ceil(y / 100))} century`;
 const pos = y => y;   // place on the line (the missing year 0 is one year out of hundreds, too small to see)
-const events = (key, g) => (SETS[key] ? SETS[key].ev : []).filter(e => g >= 6 || e[0] > 0);
+const events = (key, g) => (SETS[key] ? SETS[key].ev : []).filter(e => g >= 6 || e[0] > 0 || SETS[key].mya);
+const clampYear = x => Math.max(-5000, Math.min(2100, x));
+// "Your own events": "year=event; year=event", 4 to 10 events with whole-number years (negative or BCE = before CE) and
+// short text. Returns the event list, or null when the text does not fit the format.
+function parseCustom(text, g) {
+  if (!text || !/=/.test(text)) return null;
+  const out = [], years = new Set();
+  for (const piece of String(text).split(';')) {
+    if (!piece.trim()) continue;
+    const m = piece.match(/^\s*(-?\d{1,4})\s*(BCE?|BC)?\s*=\s*(.+?)\s*$/i);
+    if (!m) return null;
+    let y = +m[1];
+    if (m[2] && y > 0) y = -y;
+    const t = m[3].replace(/\s+/g, ' ').slice(0, 40);
+    if (y === 0 || y < -5000 || y > 2100 || years.has(y)) return null;
+    years.add(y); out.push([y, t, 'Teacher-supplied']);
+  }
+  const kept = out.filter(e => g >= 6 || e[0] > 0);
+  return out.length >= 4 && out.length <= 10 && kept.length >= 4 ? kept : null;
+}
 
 // a nice tick step for a span of years
 function step(span) {
   for (const s of [1, 2, 5, 10, 20, 25, 50, 100, 200, 250, 500, 1000]) if (span / s <= 10) return s;
   return 1000;
 }
-const tick = t => t === 0 ? 'BCE | CE' : t < 0 ? `${-t} BCE` : String(t);
+const tick = t => MYA ? String(-t) : t === 0 ? 'BCE | CE' : t < 0 ? `${-t} BCE` : String(t);
 function drawLine(evs, showKey) {
   const W = 720, H = 132, L = 34, R = 686, Y = 78;
   const lo = Math.min(...evs.map(e => pos(e.y))), hi = Math.max(...evs.map(e => pos(e.y)));
@@ -330,8 +408,9 @@ function drawLine(evs, showKey) {
     key += `<line x1="${ex.toFixed(1)}" y1="${Y}" x2="${ex.toFixed(1)}" y2="${ty + 3}" stroke="#b03020" stroke-width="1.2"/><circle cx="${ex.toFixed(1)}" cy="${Y}" r="3.5" fill="#b03020"/>` +
       `<text x="${ex.toFixed(1)}" y="${ty}" text-anchor="middle" font-size="14" font-weight="700" font-family="sans-serif" fill="#b03020">${e.letter}</text>`;
   }
+  if (MYA) body += `<text x="${(L + R) / 2}" y="${Y + 44}" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#222">million years ago</text>`;
   if (showKey !== false) body += `<g class="ws-keyonly">${key}</g>`;
-  return { html: svg(W, H, body, `Timeline from ${tick(a)} to ${tick(b)}, with tick marks every ${st} years`), a, b, st, x };
+  return { html: svg(W, H, body, `Timeline from ${tick(a)} to ${tick(b)}${MYA ? ' million years ago' : ''}, with tick marks every ${st} ${MYA ? 'million ' : ''}years`), a, b, st, x };
 }
 
 const LIFE = ['I was born.', 'I learned to walk.', 'I started school.', 'I lost my first tooth.', 'I learned to ride a bike or a scooter.',
@@ -344,6 +423,10 @@ Gen.add('timeline', {
     { id: 'grade', label: 'Grade', type: 'select', options: GRADES, def: '5' },
     { id: 'set', label: 'Events', type: 'select', def: 'inv',
       options: v => ORDER.filter(k => +v.grade >= (SETS[k].minGrade || 0)).map(k => [k, SETS[k].name]).concat([['life', 'My own life (a blank timeline)']]) },
+    { id: 'from', label: 'From year (blank = whole set; negative = BCE)', type: 'number', def: '', show: v => v.set !== 'life' },
+    { id: 'to', label: 'To year (blank = whole set)', type: 'number', def: '', show: v => v.set !== 'life' },
+    { id: 'custom', label: 'Your own events: year=event; year=event (4 to 10)', type: 'text', def: '', show: v => v.set !== 'life' },
+    { id: 'topic', label: 'Title for your own events', type: 'text', def: '', show: v => v.set !== 'life' },
   ],
   make(v, r) {
     const g = +v.grade, items = [], parts = [];
@@ -368,8 +451,17 @@ Gen.add('timeline', {
         mistakes: 'Placing letters by the order they are listed instead of by age, and mixing up ages with years.',
         notes: 'There is no key: every student\'s timeline is different. Students may ask a family member for dates, or estimate; "about age 4" is fine. Let students skip any event they would rather not share and add their own instead.' };
     }
-    const all = events(v.set, g);
-    const n = COUNT(g);
+    const custom = parseCustom(v.custom, g);
+    MYA = !custom && !!(SETS[v.set] && SETS[v.set].mya);
+    let all = custom || events(v.set, g), rangeNote = '';
+    const from = v.from === '' || isNaN(+v.from) ? null : clampYear(+v.from), to = v.to === '' || isNaN(+v.to) ? null : clampYear(+v.to);
+    if (!custom && !MYA && (from != null || to != null)) {
+      const [lo, hi] = [from ?? -Infinity, to ?? Infinity].sort((a, b) => a - b);
+      const inRange = all.filter(e => e[0] >= lo && e[0] <= hi);
+      if (inRange.length >= 5) { all = inRange; rangeNote = ` Only events from ${yr(lo === -Infinity ? all[0][0] : lo)} to ${yr(hi === Infinity ? all[all.length - 1][0] : hi)} are used.`; }
+      else rangeNote = ' The year range left fewer than 5 events, so the whole set is used.';
+    }
+    const n = Math.min(COUNT(g), all.length);
     // pick events with different years, spread out enough to place
     let evs = null;
     for (let t = 0; t < 400 && !evs; t++) {
@@ -385,7 +477,7 @@ Gen.add('timeline', {
     const tl = drawLine(list);
     for (const e of list) items.push({ q: `Place ${e.letter}: ${e.text}`, a: yr(e.y), letter: e.letter, y: e.y, text: e.text, kind: 'place' });
     const byY = list.slice().sort((p, q) => p.y - q.y);
-    const hasBCE = list.some(e => e.y < 0);
+    const hasBCE = !MYA && list.some(e => e.y < 0);
     // questions
     const qs = [];
     qs.push({ html: 'Write the letters in order, from the earliest event to the most recent.', a: byY.map(e => e.letter).join(', '), kind: 'order', em: n * 1.6 });
@@ -411,53 +503,69 @@ Gen.add('timeline', {
         if (picked.includes(c) || (pass === 0 && busy(c))) continue;
         picked.push(c);
       }
-      for (const [p, q] of picked) qs.push({ html: `How many years passed between ${p.letter} and ${q.letter}?`, a: String(between(p.y, q.y)), kind: 'yrs', p: p.letter, q2: q.letter });
+      for (const [p, q] of picked) qs.push({ html: `How many ${MYA ? 'million ' : ''}years passed between ${p.letter} and ${q.letter}?`, a: String(between(p.y, q.y)), kind: 'yrs', p: p.letter, q2: q.letter });
     }
-    if (g >= 4) {
+    if (g >= 4 && !MYA) {
       const cs = r.sample(list.filter(e => e.y % 100 !== 0), 2);
       for (const e of cs) qs.push({ html: `In which century did ${e.letter} happen?`, a: century(e.y), kind: 'cent', p: e.letter });
     }
     qs.forEach((q, i) => items.push({ q: `${i + 1}. ${q.html}`, a: q.a, kind: q.kind, p: q.p, q2: q.q2 }));
     // a model, from an event in the set that is not on this sheet
     const spare = all.filter(e => !list.some(x => x.y === e[0]));
-    const m = spare.length ? r.pick(spare) : all[0];
-    const cnote = g >= 4 ? ` It happened in the ${century(m[0])}${m[0] > 0 ? `: the ${ord(Math.ceil(m[0] / 100))} century is the years ${Math.ceil(m[0] / 100) * 100 - 99} to ${Math.ceil(m[0] / 100) * 100}` : ''}.` : '';
+    // with the teacher's own events the model is a made-up year inside the sheet's span, so it gives nothing away
+    const m = custom ? [byY[Math.floor(byY.length / 2)].y === -1 ? 1 : byY[Math.floor(byY.length / 2)].y + 1, 'An example event, not on your list.'] : spare.length ? r.pick(spare) : all[0];
+    const cnote = g >= 4 && !MYA ? ` It happened in the ${century(m[0])}${m[0] > 0 ? `: the ${ord(Math.ceil(m[0] / 100))} century is the years ${Math.ceil(m[0] / 100) * 100 - 99} to ${Math.ceil(m[0] / 100) * 100}` : ''}.` : '';
     parts.push(part('', example(`<b>${yr(m[0])}:</b> ${esc(m[1])}`,
       `Find ${yr(m[0])} between the tick marks on the timeline and write the event's letter just above that spot.${cnote}`)));
     parts.push(part('The timeline', tl.html));
     parts.push(part('Events', `<ul class="gen-tlist">${list.map(e => `<li><b class="gen-tlet">${e.letter}</b><b class="gen-tyr">${yr(e.y)}</b><span>${esc(e.text)}</span></li>`).join('')}</ul>`));
+    const unitNote = MYA ? '<p class="ws-sub">The timeline counts in millions of years ago, so bigger numbers are earlier. 540 million years ago comes before 66 million years ago.</p>' : '';
     parts.push(part('Questions', `<ol class="ws-fill gen-tq">${qs.map(q => `<li>${q.html} ${blank(q.a, q.em)}</li>`).join('')}</ol>` +
-      (hasBCE ? '<p class="ws-sub">BCE years count down toward year 1, so 500 BCE comes before 400 BCE. There was no year 0: 1 BCE is followed by 1 CE.</p>' : '')));
-    const setName = SETS[v.set].name;
+      (hasBCE ? '<p class="ws-sub">BCE years count down toward year 1, so 500 BCE comes before 400 BCE. There was no year 0: 1 BCE is followed by 1 CE.</p>' : '') + unitNote));
+    const setName = custom ? (v.topic.trim() || 'My timeline') : SETS[v.set].name;
     const teacher = '<h3>Events and sources</h3><ul>' + byY.map(e => `<li><b>${e.letter}</b>, ${yr(e.y)}: ${esc(e.text)} <i>Source: ${esc(e.src)}.</i></li>`).join('') + '</ul>' +
       (qs.some(q => q.kind === 'yrs') ? '<h3>Years between</h3><ul>' + qs.filter(q => q.kind === 'yrs').map(q => {
         const p = list.find(e => e.letter === q.p), w = list.find(e => e.letter === q.q2);
         const [x1, x2] = p.y < w.y ? [p, w] : [w, p];
-        return `<li>${q.p} to ${q.q2}: ${x1.y < 0 && x2.y > 0 ? `${-x1.y} + ${x2.y} − 1 = ${q.a} (no year 0)` : x1.y < 0 ? `${-x1.y} − ${-x2.y} = ${q.a}` : `${x2.y} − ${x1.y} = ${q.a}`}</li>`; }).join('') + '</ul>' : '');
+        return `<li>${q.p} to ${q.q2}: ${x1.y < 0 && x2.y > 0 ? `${-x1.y} + ${x2.y} − 1 = ${q.a} (no year 0)` : x1.y < 0 ? `${-x1.y} − ${-x2.y} = ${q.a}` : `${x2.y} − ${x1.y} = ${q.a}`}${MYA ? ' million years' : ''}</li>`; }).join('') + '</ul>' : '');
     return {
       title: `${setName}: Timeline`, level: `Grade ${g}, ${n} events`,
-      ican: `I can put events in order on a timeline${g >= 3 ? ' and find the years between them' : ''}${g >= 4 ? ' and name the century' : ''}.`,
+      ican: `I can put events in order on a timeline${g >= 3 ? ' and find the years between them' : ''}${g >= 4 && !MYA ? ' and name the century' : ''}.`,
       directions: 'Read each event. Write its letter above the timeline where its year belongs. Then answer the questions on the lines.',
       minutes: g <= 3 ? 20 : 25, materials: 'pencil, ruler (optional)', parts, items, teacher,
-      mistakes: (g >= 4 ? 'Naming the century by its first two digits (1969 is in the 20th century, not the 19th). ' : '') +
+      mistakes: (g >= 4 && !MYA ? 'Naming the century by its first two digits (1969 is in the 20th century, not the 19th). ' : '') +
         (hasBCE ? 'Treating BCE years like CE years: 300 BCE is earlier than 200 BCE, and the years between 50 BCE and 50 CE are 99 because there was no year 0. ' : '') +
+        (MYA ? 'Reading the scale left to right as if it counted up: on this timeline the numbers get smaller toward today. ' : '') +
         'Placing letters evenly along the line instead of by the scale.',
-      notes: 'Press New sheet for a different set of events from the same group. Every event comes with a source on this page. Descriptions are short and neutral; hard history is stated plainly, and is worth a class conversation.',
+      notes: (custom ? 'The events are the ones typed into "Your own events"; check them, since the sheet cannot. '
+        : 'Press New sheet for a different set of events from the same group. Every event comes with a source on this page. Descriptions are short and neutral; hard history is stated plainly, and is worth a class conversation.') +
+        rangeNote + (MYA ? ' Years are rounded to whole millions; the start of each period follows the International Commission on Stratigraphy chart, and "in about this time" marks a fossil date that is approximate.' : '') +
+        (custom && (v.from !== '' || v.to !== '') ? ' The year range is ignored when your own events are used.' : ''),
     };
   },
   verify(s, v) {
     const out = [];
     if (v.set === 'life') return out;
-    const g = +v.grade, data = events(v.set, g);
+    const g = +v.grade, custom = parseCustom(v.custom, g), mya = !custom && !!SETS[v.set].mya, data = custom || events(v.set, g);
     const place = s.items.filter(i => i.kind === 'place');
     const yOf = {};
+    // the year range, re-read from the settings: when it keeps 5 or more events, every placed event must be inside it
+    let lo = -Infinity, hi = Infinity;
+    if (!custom && !mya && (v.from !== '' || v.to !== '')) {
+      const a = v.from === '' ? -Infinity : Math.max(-5000, Math.min(2100, +v.from)), b = v.to === '' ? Infinity : Math.max(-5000, Math.min(2100, +v.to));
+      [lo, hi] = a <= b ? [a, b] : [b, a];
+      if (data.filter(e => e[0] >= lo && e[0] <= hi).length < 5) { lo = -Infinity; hi = Infinity; }
+    }
     for (const it of place) {
       const e = data.find(x => x[1] === it.text);
       if (!e) { out.push(`${it.letter}: event not in the set`); continue; }
-      if (it.a !== (e[0] < 0 ? `${-e[0]} BCE` : e[0] < 1000 ? `${e[0]} CE` : String(e[0]))) out.push(`${it.letter}: year ${it.a}, data says ${e[0]}`);
-      if (e[0] < 0 && g < 6) out.push(`${it.letter}: BCE year at grade ${g}`);
+      if (it.a !== (mya ? `${-e[0]} million years ago` : e[0] < 0 ? `${-e[0]} BCE` : e[0] < 1000 ? `${e[0]} CE` : String(e[0]))) out.push(`${it.letter}: year ${it.a}, data says ${e[0]}`);
+      if (e[0] < 0 && g < 6 && !mya) out.push(`${it.letter}: BCE year at grade ${g}`);
+      if (e[0] < lo || e[0] > hi) out.push(`${it.letter}: year ${e[0]} is outside the range ${lo} to ${hi}`);
       yOf[it.letter] = e[0];
     }
+    if (custom && place.length < Math.min(custom.length, COUNT(g))) out.push(`only ${place.length} of the custom events placed`);
+    if (s.items.some(i => i.kind === 'cent') && mya) out.push('century question on a millions-of-years sheet');
     if (new Set(Object.values(yOf)).size !== place.length) out.push('two events share a year');
     for (const it of s.items) {
       if (it.kind === 'order') { const want = Object.keys(yOf).sort((a, b) => yOf[a] - yOf[b]).join(', '); if (it.a !== want) out.push(`order ${it.a}, should be ${want}`); }
@@ -466,7 +574,7 @@ Gen.add('timeline', {
       if (it.kind === 'yrs') {
         let a = yOf[it.p], b = yOf[it.q2]; if (a > b) [a, b] = [b, a];
         // count year by year from a to b; the step from 1 BCE (-1) to 1 CE is one year, since there was no year 0
-        let want = 0; for (let y = a; y !== b;) { y = y === -1 ? 1 : y + 1; want++; }
+        let want = 0; for (let y = a; y !== b;) { y = y === -1 && !mya ? 1 : y + 1; want++; }
         if (it.a !== String(want)) out.push(`${it.q}: ${it.a}, should be ${want}`);
         if (want < 0) out.push(`${it.q}: negative`);
       }

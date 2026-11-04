@@ -98,15 +98,18 @@ Gen.values = (def, given = {}, d) => {   // fill defaults and coerce types; give
     if (f.type === 'check') x = x == null ? !!f.def : (x === true || x === '1' || x === 'true');
     else if (f.type === 'number') { x = x == null || x === '' || isNaN(+x) ? f.def : +x; if (f.min != null) x = Math.max(f.min, x); if (f.max != null) x = Math.min(f.max, x); }
     else if (f.type === 'select') { const opts = Gen.opts(f, v, d); x = opts.some(o => String(o[0]) === String(x)) ? x : (opts.some(o => String(o[0]) === String(f.def)) ? f.def : opts[0]?.[0]); }
-    else x = x == null ? (f.def ?? '') : String(x).slice(0, 120);
+    else x = x == null ? (f.def ?? '') : String(x).slice(0, 240);
     v[f.id] = x;
   }
   return v;
 };
 Gen.opts = (f, v, d) => (typeof f.options === 'function' ? f.options(v, d) : f.options) || [];
 
+// the rng is seeded from the sheet code and the settings that differ from their defaults, in id order, so a generator
+// can gain a setting without changing the sheets old links print
+Gen.seedKey = (def, v) => JSON.stringify(def.fields.filter(f => String(v[f.id]) !== String(f.def ?? '')).map(f => [f.id, v[f.id]]).sort());
 Gen.make = (id, v, seed, d) => {
-  const def = Gen.defs[id], s = def.make(v, Gen.rng(id + ':' + seed + ':' + JSON.stringify(v)), d);
+  const def = Gen.defs[id], s = def.make(v, Gen.rng(id + ':' + seed + ':' + Gen.seedKey(def, v)), d);
   s.seed = seed;
   return s;
 };
@@ -149,7 +152,7 @@ G.addEventListener('DOMContentLoaded', () => {
       const fid = 'gen-' + f.id;
       if (f.type === 'check') wrap.innerHTML = `<label><input type="checkbox" id="${fid}"${v[f.id] ? ' checked' : ''}> ${esc(f.label)}</label>`;
       else if (f.type === 'select') wrap.innerHTML = `<label for="${fid}">${esc(f.label)}</label><select id="${fid}">${Gen.opts(f, v, d).map(([val, lab]) => `<option value="${esc(val)}"${String(val) === String(v[f.id]) ? ' selected' : ''}>${esc(lab)}</option>`).join('')}</select>`;
-      else wrap.innerHTML = `<label for="${fid}">${esc(f.label)}</label><input id="${fid}" type="${f.type === 'number' ? 'number' : 'text'}"${f.min != null ? ` min="${f.min}"` : ''}${f.max != null ? ` max="${f.max}"` : ''} maxlength="120" value="${esc(v[f.id])}">`;
+      else wrap.innerHTML = `<label for="${fid}">${esc(f.label)}</label><input id="${fid}" type="${f.type === 'number' ? 'number' : 'text'}"${f.min != null ? ` min="${f.min}"` : ''}${f.max != null ? ` max="${f.max}"` : ''} maxlength="240" value="${esc(v[f.id])}">`;
       const input = wrap.querySelector('input,select');
       input.addEventListener(f.type === 'text' || f.type === 'number' ? 'input' : 'change', () => {
         v[f.id] = f.type === 'check' ? input.checked : input.value;

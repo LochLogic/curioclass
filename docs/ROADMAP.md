@@ -46,9 +46,9 @@ no accounts, no ads, no tracking.
    now link the generators that fit each module with its settings filled in (scripts/gen_links.py), and the authored
    sheets a module has. Concept-list rows a generator can make are backed by it (the row keeps its title and place in
    the year, its link opens the generator preset): the first sift kept 26 of 746 math, science and social studies rows,
-   which says the generators rarely replace a written sheet as they stand. Next, in this order: the settings the
-   reviewers wished for, each backing several rows (list in docs/SUPPLY-CLOSET-PLAN.md, Generators), then about 10
-   more generators where the lists are thickest and really procedural (place value, decimals and percents, ratios,
+   which said the generators rarely replaced a written sheet as they stood. 2026-11-04: the settings the reviewers
+   wished for were built (and a coordinate-plane generator, 16 in all), a second sift took the backed rows to 83; the
+   remaining wish list is in docs/SUPPLY-CLOSET-PLAN.md, Generators. Next: about 10 more generators where the lists are thickest and really procedural (place value, decimals and percents, ratios,
    integers and order of operations, angles and coordinates, statistics, phonics and spelling, grammar, unit
    conversions, balancing equations). Authored waves
    continue for K-2 and the interpretive subjects. Cory still reviews the live shelf; the rest of wave 2 and wave 3

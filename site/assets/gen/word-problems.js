@@ -1,6 +1,7 @@
 // Word Problems generator, grades 1-6. Short everyday stories with clear numbers: joining and taking apart (1.OA.1,
 // 2.OA.1), money (2.MD.8, 4.MD.2), elapsed time (3.MD.1, 4.MD.2), measurement and conversion (2.MD.5, 3.MD.2, 4.MD.1-2,
-// 5.MD.1), equal groups and sharing (2.OA.4, 3.OA.3, 4.OA.3), multi-step problems, fractions of amounts (5.NF.4, 5.NF.6)
+// 5.MD.1), equal groups and sharing (2.OA.4, 3.OA.3, 4.OA.3), interpreting remainders (4.OA.3: round up, drop it or
+// report it, with a "What does the remainder mean?" line), multi-step problems, fractions of amounts (5.NF.4, 5.NF.6)
 // and rates and percents (6.RP.3). Every story is built from its numbers, and every answer has a unit.
 (() => {
 const H = Gen.h, { part, example, esc } = H;
@@ -9,10 +10,10 @@ const { fmt } = Gen.m;
 const GRADES = [['1', 'Grade 1'], ['2', 'Grade 2'], ['3', 'Grade 3'], ['4', 'Grade 4'], ['5', 'Grade 5'], ['6', 'Grade 6']];
 const TOPICS = {
   join: 'Adding and subtracting', money: 'Money', time: 'Time', measure: 'Measurement', groups: 'Equal groups and sharing',
-  multi: 'Multi-step', frac: 'Fractions of amounts', rates: 'Rates and percents',
+  multi: 'Multi-step', frac: 'Fractions of amounts', rates: 'Rates and percents', remainders: 'Interpreting remainders',
 };
 const BYGRADE = { 1: ['join', 'time', 'measure'], 2: ['join', 'money', 'time', 'measure', 'groups'], 3: ['money', 'time', 'measure', 'groups', 'multi'],
-  4: ['money', 'time', 'measure', 'groups', 'multi'], 5: ['money', 'time', 'measure', 'groups', 'multi', 'frac'], 6: ['money', 'time', 'measure', 'multi', 'frac', 'rates'] };
+  4: ['money', 'time', 'measure', 'groups', 'multi', 'remainders'], 5: ['money', 'time', 'measure', 'groups', 'multi', 'frac'], 6: ['money', 'time', 'measure', 'multi', 'frac', 'rates'] };
 
 const NAMES = ['Ava', 'Ben', 'Carlos', 'Chloe', 'Diego', 'Elena', 'Emma', 'Ethan', 'Grace', 'Isaac', 'Jamal', 'Kai', 'Leo', 'Liam', 'Lucia', 'Maya',
   'Mia', 'Noah', 'Olivia', 'Omar', 'Owen', 'Priya', 'Rosa', 'Sam', 'Sofia', 'Theo', 'Zoe', 'Mateo', 'Nina', 'Jack', 'Ruby', 'Eli'];
@@ -160,6 +161,59 @@ add(['groups'], 5, 5, (r, g) => { const groups = r.int(12, 32), each = r.int(11,
   const [who, what] = r.pick([['teams', 'players'], ['buses', 'riders'], ['classrooms', 'students'], ['boxes', 'oranges']]);
   return { text: `${fmt(total, 0)} ${what} are split equally into ${groups} ${who}. How many ${what} are in each of the ${who}?`, ans: each, unit: what, f: 'total/groups', vals: { total, groups }, show: [fmt(total, 0), String(groups)], steps: `${fmt(total, 0)} ÷ ${groups} = ${each}` }; });
 
+// interpreting remainders, grade 4: every story divides with a remainder; the student says what to do with it
+// (round up, drop it, or report it). meaning is the line the key shows under "What does the remainder mean?"
+const rem = (r, lo, hi, per) => { for (let t = 0; t < 40; t++) { const n = r.int(lo, hi); if (n % per) return n; } return null; };
+const remText = (n, per) => `${n} ÷ ${per} = ${Math.floor(n / per)} R ${n % per}`;
+add(['remainders'], 4, 4, (r, g) => { const per = r.int(4, 9), v = r.pick([['van', 'students', 'go on a field trip'], ['bus', 'campers', 'ride to the lake'], ['boat', 'hikers', 'cross the river'], ['car', 'players', 'ride to a game']]), n = rem(r, 30, 99, per);
+  if (!n) return null; const q = Math.floor(n / per), rr = n % per;
+  return { text: `${n} ${v[1]} ${v[2]}. Each ${v[0]} holds ${per} ${v[1]}. How many ${v[0]}s are needed so everyone goes?`, ans: q + 1, ansText: `${q + 1} ${v[0]}s`, unit: `${v[0]}s`, f: 'ceil(n/per)', vals: { n, per },
+    meaning: `Round up: the ${rr} left over need one more ${v[0]}.`, steps: `${remText(n, per)}; the ${rr} left over need one more ${v[0]}, so ${q + 1}` }; });
+add(['remainders'], 4, 4, (r, g, A) => { const per = r.pick([4, 5, 6, 8, 10, 12]), [it, box, many] = r.pick([['photos', 'album page', 'album pages'], ['cupcakes', 'box', 'boxes'], ['books', 'shelf', 'shelves'], ['toy cars', 'bin', 'bins']]), n = rem(r, 40, 150, per);
+  if (!n) return null; const q = Math.floor(n / per), rr = n % per;
+  return { text: `${A} has ${n} ${it} to put away. Each ${box} holds ${per} ${it}. How many ${many} does ${A} need for all of them?`, ans: q + 1, ansText: `${q + 1} ${many}`, unit: many, f: 'ceil(n/per)', vals: { n, per },
+    meaning: `Round up: the last ${rr} ${it} need a ${box} too.`, steps: `${remText(n, per)}; the last ${rr} ${it} need one more ${box}, so ${q + 1}` }; });
+add(['remainders'], 4, 4, (r, g) => { const per = r.int(3, 9), [ride, what] = r.pick([['ferry', 'cars'], ['elevator', 'people'], ['ski lift', 'skiers'], ['raft', 'riders']]), n = rem(r, 20, 80, per);
+  if (!n) return null; const q = Math.floor(n / per), rr = n % per;
+  return { text: `A ${ride} carries ${per} ${what} at a time. ${n} ${what} are waiting. How many trips does the ${ride} make to carry them all?`, ans: q + 1, ansText: `${q + 1} trips`, unit: 'trips', f: 'ceil(n/per)', vals: { n, per },
+    meaning: `Round up: the last ${rr} ${what} still need a trip.`, steps: `${remText(n, per)}; the last ${rr} ${what} need one more trip, so ${q + 1}` }; });
+add(['remainders'], 4, 4, (r, g, A) => { const per = r.pick([4, 5, 6, 8, 10, 12]), [it, box, many, verb] = r.pick([['cookies', 'box', 'boxes', 'bakes'], ['eggs', 'carton', 'cartons', 'collects'], ['pencils', 'pack', 'packs', 'has'], ['muffins', 'tray', 'trays', 'bakes']]), n = rem(r, 40, 150, per);
+  if (!n) return null; const q = Math.floor(n / per), rr = n % per;
+  return { text: `${A} ${verb} ${n} ${it} and packs them ${per} to a ${box}. How many ${many} can ${A} fill all the way?`, ans: q, ansText: `${q} full ${many}`, unit: `full ${many}`, f: 'floor(n/per)', vals: { n, per },
+    meaning: `Drop it: the ${rr} left over do not fill a ${box}.`, steps: `${remText(n, per)}; only ${q} ${many} are full, the ${rr} left over do not fill one` }; });
+add(['remainders'], 4, 4, (r, g) => { const per = r.int(3, 9), [team, who] = r.pick([['team', 'players'], ['relay team', 'runners'], ['reading group', 'students'], ['band', 'musicians']]), n = rem(r, 20, 70, per);
+  if (!n) return null; const q = Math.floor(n / per), rr = n % per;
+  return { text: `${n} ${who} sign up. Each ${team} needs exactly ${per} ${who}. How many full ${team}s can be made?`, ans: q, ansText: `${q} full ${team}s`, unit: `full ${team}s`, f: 'floor(n/per)', vals: { n, per },
+    meaning: `Drop it: the ${rr} left over are not enough for another ${team}.`, steps: `${remText(n, per)}; ${q} full ${team}s, and ${rr} ${who} are not enough for another` }; });
+add(['remainders'], 4, 4, (r, g, A) => { const per = r.int(3, 9), [thing, u] = r.pick([['ribbon', 'inches'], ['rope', 'feet'], ['string', 'centimeters'], ['board', 'inches']]), n = rem(r, 30, 99, per);
+  if (!n) return null; const q = Math.floor(n / per), rr = n % per;
+  return { text: `${A} has ${n} ${u} of ${thing} and cuts it into pieces that are each ${per} ${u} long. How many whole pieces does ${A} get?`, ans: q, ansText: `${q} whole pieces`, unit: 'whole pieces', f: 'floor(n/per)', vals: { n, per },
+    meaning: `Drop it: the ${rr} ${u} left over are too short for a piece.`, steps: `${remText(n, per)}; ${q} whole pieces, with ${rr} ${u} too short for another` }; });
+add(['remainders'], 4, 4, (r, g, A) => { const per = r.int(3, 9), [it, one] = r.pick([['tickets', 'ticket'], ['comic books', 'comic book'], ['snacks', 'snack'], ['sticker packs', 'sticker pack']]), n = rem(r, 20, 80, per);
+  if (!n) return null; const q = Math.floor(n / per), rr = n % per;
+  return { text: `${A} has $${n}. Each ${one} costs $${per}. How many ${it} can ${A} buy?`, ans: q, ansText: `${q} ${it}`, unit: it, f: 'floor(n/per)', vals: { n, per },
+    meaning: `Drop it: the $${rr} left over is not enough for another ${one}.`, steps: `${remText(n, per)}; ${q} ${it}, and $${rr} is not enough for one more` }; });
+add(['remainders'], 4, 4, (r, g, A) => { const per = r.int(3, 9), it = r.pick(THINGS), n = rem(r, 30, 99, per);
+  if (!n) return null; const q = Math.floor(n / per), rr = n % per;
+  return { text: `${A} shares ${n} ${it[1]} equally among ${per} friends. How many ${it[1]} are left over?`, ans: rr, ansText: `${rr} ${plural(rr, it)} left over`, unit: it[1], f: 'n-floor(n/per)*per', vals: { n, per },
+    meaning: `Report it: each friend gets ${q}, and the remainder is the answer.`, steps: `${remText(n, per)}; each friend gets ${q} and ${rr} ${rr === 1 ? 'is' : 'are'} left over` }; });
+add(['remainders'], 4, 4, (r, g, A) => { const per = r.int(4, 9) * 2, n = rem(r, 40, 150, per);
+  if (!n) return null; const q = Math.floor(n / per), rr = n % per;
+  return { text: `A book has ${n} pages. ${A} reads ${per} pages every day until the book is done. How many pages does ${A} read on the last day?`, ans: rr, ansText: `${rr} pages on the last day`, unit: 'pages', f: 'n-floor(n/per)*per', vals: { n, per },
+    meaning: `Report it: after ${q} full days, the ${rr} pages left are the last day.`, steps: `${remText(n, per)}; ${q} full days of ${per} pages, then ${rr} pages on the last day` }; });
+add(['remainders'], 4, 4, (r, g) => { const per = r.pick([6, 8, 10, 12]), [it, box, many] = r.pick([['eggs', 'carton', 'cartons'], ['juice boxes', 'pack', 'packs'], ['crayons', 'box', 'boxes'], ['bottles', 'crate', 'crates']]), n = rem(r, 40, 150, per);
+  if (!n) return null; const q = Math.floor(n / per), rr = n % per;
+  return { text: `A store gets ${n} ${it} and puts them in ${many} of ${per}. How many ${it} do not fit in a full ${box}?`, ans: rr, ansText: `${rr} ${it} left out`, unit: it, f: 'n-floor(n/per)*per', vals: { n, per },
+    meaning: `Report it: ${q} ${many} are full, and the remainder is what is left out.`, steps: `${remText(n, per)}; ${q} full ${many}, and ${rr} ${it} are left out` }; });
+add(['remainders'], 4, 4, (r, g, A) => { const n = rem(r, 15, 90, 7);
+  if (!n) return null; const q = Math.floor(n / 7), rr = n % 7;
+  return { text: `${A}'s trip is ${n} days long. How many whole weeks is that, and how many extra days?`, ans: q, ansText: `${q} weeks and ${rr} ${rr === 1 ? 'day' : 'days'}`, unit: 'weeks', f: 'floor(n/7)', vals: { n }, show: [String(n)],
+    meaning: `Report it: the remainder is the ${rr} extra ${rr === 1 ? 'day' : 'days'}.`, steps: `${remText(n, 7)}; ${q} weeks and ${rr} extra ${rr === 1 ? 'day' : 'days'}` }; });
+add(['remainders'], 4, 4, (r, g) => { const per = r.int(3, 9), [who, row] = r.pick([['students', 'row'], ['singers', 'row'], ['plants', 'row'], ['cars', 'row']]), n = rem(r, 25, 90, per);
+  if (!n) return null; const q = Math.floor(n / per), rr = n % per;
+  return { text: `${n} ${who} line up in ${row}s of ${per}. How many ${row}s are there if the last ${row} can be short?`, ans: q + 1, ansText: `${q + 1} ${row}s`, unit: `${row}s`, f: 'ceil(n/per)', vals: { n, per },
+    meaning: `Round up: the ${rr} left over make a short last ${row}.`, steps: `${remText(n, per)}; ${q} full ${row}s plus a short ${row} of ${rr}, so ${q + 1}` }; });
+
 // multi-step
 add(['multi'], 3, 6, (r, g, A) => { const packs = r.int(2, 6), per = r.int(4, 10), give = r.int(2, packs * per - 2), it = r.pick(THINGS);
   return { text: `${A} buys ${packs} packs of ${it[1]}. Each pack has ${per} ${it[1]}. ${A} gives ${give} ${it[1]} to friends. How many ${it[1]} does ${A} have left?`, ans: packs * per - give, unit: it[1], f: 'packs*per-give', vals: { packs, per, give },
@@ -254,7 +308,9 @@ Gen.add('word-problems', {
 .wp-g1 .wp-card > p, .wp-g2 .wp-card > p{font-size:16.5px;line-height:1.4}
 .wp-card .ws-draw{min-height:.8in}
 .wp-steps{margin:4px 0;padding-left:1.8em;font-size:14px}
-.wp-steps li{margin-bottom:5px}`,
+.wp-steps li{margin-bottom:5px}
+.wp-why{text-align:left;margin-top:6px}
+.wp-why .ws-blank{display:block;width:100%;min-width:0!important;text-align:left;margin:4px 0 0}`,
   fields: [
     { id: 'grade', label: 'Grade', type: 'select', options: GRADES, def: '3' },
     { id: 'topic', label: 'Topic', type: 'select', def: 'mix', options: v => [['mix', 'A mix of topics']].concat(BYGRADE[v.grade].map(t => [t, TOPICS[t]])) },
@@ -290,21 +346,22 @@ Gen.add('word-problems', {
       if (preUnit && p.type === 'num') ansLine = `Answer: ${H.blank(big(p.ans), 3)} ${esc(p.unit)}`;
       else if (preUnit && p.type === 'cents') ansLine = `Answer: ${H.blank(String(p.ans), 3)} ¢`;
       else ansLine = `Answer: ${H.blank(a, Math.max(7, a.length * .6 + 1.5))}`;
+      if (p.meaning) ansLine += `</p><p class="wp-ans wp-why">What does the remainder mean? ${H.blank(p.meaning, 10)}`;
       cards.push(`<div class="wp-card"><p><span class="ws-num">${i + 1}.</span> ${esc(p.text)}</p>${H.work(+g <= 2 ? 0.8 : 0.95, +g <= 2 ? 'Draw or write to show your thinking' : 'Show your work')}<p class="wp-ans">${ansLine}</p></div>`);
     });
     const exAns = answerText(ex, g);
-    const parts = [part('', example(esc(ex.text), `${esc(ex.steps)}. <b>Answer: ${esc(exAns)}</b>`)), part('Practice', `<div class="wp-grid wp-g${g}">${cards.join('')}</div>`)];
-    const teacher = `<h3>Solutions</h3><ol class="wp-steps">${ps.map((p, i) => `<li>${esc(p.steps)}. Answer: <b>${esc(items[i].a)}</b></li>`).join('')}</ol>`;
+    const parts = [part('', example(esc(ex.text), `${esc(ex.steps)}. <b>Answer: ${esc(exAns)}</b>` + (ex.meaning ? ` ${esc(ex.meaning)}` : ''))), part('Practice', `<div class="wp-grid wp-g${g}">${cards.join('')}</div>`)];
+    const teacher = `<h3>Solutions</h3><ol class="wp-steps">${ps.map((p, i) => `<li>${esc(p.steps)}. Answer: <b>${esc(items[i].a)}</b>${p.meaning ? ` ${esc(p.meaning)}` : ''}</li>`).join('')}</ol>`;
     const tl = v.topic === 'mix' ? 'Word Problems' : TOPICS[v.topic];
     return {
       title: `${tl}: ${GRADES.find(x => x[0] === g)[1]}`, level: GRADES.find(x => x[0] === g)[1] + (v.topic === 'mix' ? ', mixed topics' : ''),
       ican: +g <= 2 ? 'I can read a story, find the numbers and solve it.' : 'I can read a story problem, plan my steps and answer with the right unit.',
       directions: preUnit ? 'Read each story. Draw or write to show your thinking. Write the number on the answer line.'
-        : 'Read each story. Show your work in the box. Write the answer with its unit, like 12 cm or $3.50.',
+        : 'Read each story. Show your work in the box. Write the answer with its unit, like 12 cm or $3.50.' + (topics.includes('remainders') ? ' Then tell what the remainder means: round up, drop it, or report it.' : ''),
       minutes: n > 6 ? 35 : 25, materials: 'pencil' + (+g <= 2 ? ', counters if you like' : ''),
       parts, items, teacher,
       mistakes: +g <= 2 ? 'Adding every time two numbers show up. Ask: is the amount getting bigger or smaller? In "how many more" stories, students often add.'
-        : 'Answering a different question than the one asked (the total instead of the change), and leaving off units. ' + (topics.includes('groups') ? 'With remainders, read whether the story needs to round up (vans) or down (full boxes). ' : '') + (topics.includes('time') ? 'With time, counting by 100 instead of 60 across the hour. ' : ''),
+        : 'Answering a different question than the one asked (the total instead of the change), and leaving off units. ' + (topics.includes('remainders') ? 'Writing the quotient with R and stopping: the story decides whether to round up, drop the remainder, or report it. ' : '') + (topics.includes('groups') ? 'With remainders, read whether the story needs to round up (vans) or down (full boxes). ' : '') + (topics.includes('time') ? 'With time, counting by 100 instead of 60 across the hour. ' : ''),
       notes: 'Every story is built from its numbers and checked: no fractional people, no change bigger than the money paid, and every answer has a unit. Names and settings change with each sheet. Read the first story aloud together for younger readers.',
     };
   },

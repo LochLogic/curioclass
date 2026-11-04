@@ -54,6 +54,8 @@ def links(m, has_words):
             out.append(link('equations', 'Expressions and equations at this grade, every answer checked.', grade=str(clamp(n, 6, 9))))
         if strand in ('Measurement and Data', 'Geometry') and 2 <= n <= 8:
             out.append(link('measure-shapes', 'Perimeter, area and volume problems drawn to scale.', grade=str(clamp(n, 2, 8))))
+        if (strand == 'Geometry' and 5 <= n <= 8) or (strand == 'The Number System' and n == 6):
+            out.append(link('coordinate-plane', 'Plot, name and move points on a drawn plane.', grade=str(n)))
         if strand in ('Statistics and Probability', 'Measurement and Data') and 1 <= n <= 8 and ('Data' in strand or 'Statistics' in strand):
             out.append(link('graph-reading', 'Tables, bar graphs, line graphs and plots to read.', grade=str(clamp(n, 1, 8))))
         if strand == 'Ratios and Proportional Relationships':

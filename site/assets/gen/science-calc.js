@@ -3,6 +3,9 @@
 // quantitative use waits for grade 8); Ohm's law, momentum and kinetic energy start at grade 9 (high school physics). Each problem gives two values and asks for the third. Grades 6-8
 // get values that come out even (at most two decimal places); grades 9-12 get lab-style values and round to three
 // significant figures. The key shows the formula, the substitution and the answer with units in each problem box.
+// Wave speed (v = f × λ) starts at grade 8; conservation of momentum (carts that stick, or two things pushing apart)
+// and series and parallel circuits (total resistance, then current) are high school. A second topic can be chosen;
+// the sheet then alternates between the two.
 (() => {
 const { part, example, lines, keyline, esc } = Gen.h;
 const { fmt } = Gen.m;
@@ -151,7 +154,74 @@ const TOPICS = {
     forms: { KE: '0.5 × {m} × {v}²', m: '2 × {KE} ÷ {v}²', v: '√(2 × {KE} ÷ {m})' },
     ctx: [],
   },
+  wave: {
+    label: 'Wave speed', prod: ['v', 'f', 'lam'],
+    sym: { v: 'v', f: 'f', lam: 'λ' }, name: { v: 'wave speed', f: 'frequency', lam: 'wavelength' }, unit: { v: 'm/s', f: 'Hz', lam: 'm' },
+    formula: 'v = f × λ', also: 'f = v ÷ λ and λ = v ÷ f', units: 'v in m/s, f in hertz (Hz), λ (wavelength) in m',
+    forms: { v: '{f} × {lam}', f: '{v} ÷ {lam}', lam: '{v} ÷ {f}' },
+    ctx: [
+      // f and λ in half steps (grade 8) so the speed comes out even; tenths in high school
+      ...[['wave on a rope', 1, 5, 0.5, 3], ['wave on a long spring', 1, 4, 0.5, 2.5], ['water wave in a pool', 0.5, 2, 0.5, 4]].map(([who, flo, fhi, llo, lhi]) => ({
+        gen: (r, H) => ({ f: H ? tenth(r, flo, fhi) : half(r, flo, fhi), lam: H ? tenth(r, llo, lhi) : half(r, llo, lhi) }),
+        q: { v: f => `A ${who} has a frequency of ${f('f')} and a wavelength of ${f('lam')}. What is the speed of the wave?`,
+          f: f => `A ${who} travels at ${f('v')} and has a wavelength of ${f('lam')}. What is its frequency?`,
+          lam: f => `A ${who} travels at ${f('v')} with a frequency of ${f('f')}. What is its wavelength?` } })),
+      { gen: r => ({ f: tenth(r, 0.1, 0.5), lam: r.int(5, 40) }),
+        q: { v: f => `An ocean wave has a frequency of ${f('f')} and a wavelength of ${f('lam')}. What is the speed of the wave?`,
+          f: f => `An ocean wave travels at ${f('v')} and has a wavelength of ${f('lam')}. What is its frequency?`,
+          lam: f => `An ocean wave travels at ${f('v')} with a frequency of ${f('f')}. What is its wavelength?` } },
+      // sound in air at 20 °C is about 343 m/s
+      { hsOnly: true, gen: r => { const f = r.int(2, 40) * 50; return { f, lam: sf3(343 / f) }; },
+        q: { v: f => `A sound wave in air has a frequency of ${f('f')} and a wavelength of ${f('lam')}. What is the speed of sound in the air?`,
+          f: f => `Sound travels through air at ${f('v')}. A note has a wavelength of ${f('lam')}. What is its frequency?`,
+          lam: f => `Sound travels through air at ${f('v')}. What is the wavelength of a ${f('f')} note?` } },
+    ],
+  },
+  momcons: {
+    label: 'Conservation of momentum', special: 'momcons', hsOnly: true,
+    sym: { m1: 'm<sub>1</sub>', v1: 'v<sub>1</sub>', m2: 'm<sub>2</sub>', v2: 'v<sub>2</sub>', vf: 'v′', u: 'v<sub>2</sub>' },
+    name: { m1: 'mass', v1: 'speed', m2: 'mass', v2: 'speed', vf: 'speed after a collision', u: 'recoil speed' },
+    unit: { m1: 'kg', v1: 'm/s', m2: 'kg', v2: 'm/s', vf: 'm/s', u: 'm/s' },
+    formula: 'm₁v₁ + m₂v₂ = (m₁ + m₂)v′ (they stick together) &nbsp; 0 = m₁v₁ − m₂v₂ (they push apart from rest)',
+    also: 'total momentum before = total momentum after', units: 'm in kg, v in m/s, momentum in kg·m/s; v′ is the shared speed after the collision',
+    forms: { vf: '({m1} × {v1} + {m2} × {v2}) ÷ ({m1} + {m2})', u: '{m1} × {v1} ÷ {m2}' },
+    ctx: [
+      // sticking together: the second object is at rest or moving the same way more slowly
+      ...[['cart', 'cart', 0.5, 3, 1, 4], ['train car', 'train car', 10, 30, 1, 4], ['clay ball', 'wooden block', 0.1, 0.5, 2, 8], ['football player', 'player', 70, 110, 2, 7]].map(([a, b, mlo, mhi, vlo, vhi]) => ({
+        gen: r => { const m1 = a === 'train car' ? r.int(mlo, mhi) * 1000 : a === 'clay ball' ? tenth(r, mlo, mhi) : a === 'cart' ? tenth(r, mlo, mhi) : r.int(mlo, mhi);
+          const m2 = a === 'train car' ? r.int(mlo, mhi) * 1000 : a === 'clay ball' ? tenth(r, 0.5, 2) : a === 'cart' ? tenth(r, mlo, mhi) : r.int(mlo, mhi);
+          const v1 = tenth(r, vlo, vhi), v2 = r.chance(.6) ? 0 : tenth(r, 0.5, Math.max(0.5, v1 - 0.5));
+          return v2 >= v1 ? null : { m1, v1, m2, v2 }; },
+        q: { vf: f => `A ${f('m1')} ${a} moving at ${f('v1')} ${a === 'football player' ? 'tackles' : 'runs into'} a ${f('m2')} ${b} ${f('v2', 'at rest', 'moving the same way at ')}. They ${a === 'football player' ? 'hold on to each other' : 'stick together'}. What is their speed right after?` } })),
+      // pushing apart from rest
+      { gen: r => ({ m1: r.int(40, 70), v1: tenth(r, 1, 4), m2: r.int(50, 90) }),
+        q: { u: f => `Two skaters stand still on the ice and push off each other. The ${f('m1')} skater moves away at ${f('v1')}. How fast does the ${f('m2')} skater move in the other direction?` } },
+      { gen: r => ({ m1: r.int(2, 10), v1: tenth(r, 2, 8), m2: r.int(80, 120) }),
+        q: { u: f => `An astronaut floating at rest throws a ${f('m1')} tool at ${f('v1')}. The astronaut and suit have a mass of ${f('m2')}. How fast does the astronaut drift the other way?` } },
+      { gen: r => ({ m1: r.int(2, 10), v1: r.int(10, 30) * 10, m2: r.int(5, 15) * 100 }),
+        q: { u: f => `A ${f('m2')} cannon at rest on wheels fires a ${f('m1')} ball at ${f('v1')}. How fast does the cannon roll backward?` } },
+    ],
+  },
+  circuit: {
+    label: 'Series and parallel circuits', special: 'circuit', hsOnly: true,
+    sym: { V: 'V', R1: 'R<sub>1</sub>', R2: 'R<sub>2</sub>', R3: 'R<sub>3</sub>', Rt: 'R<sub>T</sub>', I: 'I' },
+    name: { V: 'voltage', R1: 'resistance', R2: 'resistance', R3: 'resistance', Rt: 'total resistance', I: 'current' },
+    unit: { V: 'V', R1: 'Ω', R2: 'Ω', R3: 'Ω', Rt: 'Ω', I: 'A' },
+    formula: 'Series: R<sub>T</sub> = R₁ + R₂ + … &nbsp; Parallel: 1 ÷ R<sub>T</sub> = 1 ÷ R₁ + 1 ÷ R₂ + … &nbsp; then I = V ÷ R<sub>T</sub>',
+    also: 'I = V ÷ R', units: 'R in ohms (Ω), V in volts (V), I in amperes (A)',
+    forms: { Rt: '{R1} + {R2}', I: '{V} ÷ {Rt}' },
+    ctx: [{ gen: r => { const ser = r.chance(.5) ? 'series' : 'parallel', n = r.chance(.35) ? 3 : 2;
+        const Rs = r.distinct(n, () => r.pick([10, 20, 30, 40, 50, 60, 100, 120, 150, 200, 300])).sort((a, b) => a - b);
+        if (Rs.length < n) return null;
+        const g = { V: r.pick([6, 9, 12, 24]), R1: Rs[0], R2: Rs[1], ser }; if (n === 3) g.R3 = Rs[2];
+        return g; },
+      q: { Rt: f => `${rlist(f)} are connected in ${f.g.ser}. What is the total resistance of the circuit?`,
+        I: f => `${rlist(f)} are connected in ${f.g.ser} to ${src(f('V'))}. Find the total resistance, then the current from the battery.` } }],
+  },
 };
+// "A 10 Ω resistor and a 20 Ω resistor" or "10 Ω, 20 Ω and 30 Ω resistors"
+const rlist = f => f.g.R3 != null ? `${f('R1')}, ${f('R2')} and ${f('R3')} resistors` : `A ${f('R1')} resistor and a ${f('R2')} resistor`;
+const totalR = g => { const Rs = [g.R1, g.R2, g.R3].filter(x => x != null); return g.ser === 'series' ? Rs.reduce((a, b) => a + b, 0) : 1 / Rs.reduce((a, b) => a + 1 / b, 0); };
 // moving objects shared by momentum and kinetic energy (a baseball is about 0.145 kg, a size 5 soccer ball about 0.43 kg)
 const MOVERS = [['baseball', () => 0.145, 20, 45], ['soccer ball', () => 0.43, 5, 30], ['bowling ball', r => tenth(r, 4, 7), 2, 8],
   ['runner', r => r.int(50, 90), 3, 9], ['car', r => r.int(18, 40) * 50, 5, 30], ['cyclist and bike', r => r.int(60, 100), 4, 12]];
@@ -168,18 +238,21 @@ TOPICS.ke.ctx = MOVERS.map(([obj, m, lo, hi]) => ({
 
 // a battery for the usual cell voltages, a lab power supply otherwise
 function src(V, cap) { const t = /^(1\.5|3|4\.5|6|9|12) V$/.test(V) ? `a ${V} battery` : `a power supply set to ${V}`; return cap ? t[0].toUpperCase() + t.slice(1) : t; }
-// F = m × a from grade 8; Ohm's law, momentum and kinetic energy from grade 9
-const topicsFor = g => ['density', 'speed', 'accel'].concat(+g >= 8 ? ['force'] : [], ['weight', 'work', 'power'], hs(g) ? ['ohm', 'momentum', 'ke'] : []);
+// F = m × a and wave speed from grade 8; Ohm's law, momentum, kinetic energy, conservation of momentum and circuits from grade 9
+const topicsFor = g => ['density', 'speed', 'accel'].concat(+g >= 8 ? ['force'] : [], ['weight', 'work', 'power'], hs(g) ? ['ohm', 'momentum', 'ke'] : [], +g >= 8 ? ['wave'] : [], hs(g) ? ['momcons', 'circuit'] : []);
 
 // solve one unknown from the other values (the make side; verify checks with the forward relation instead)
 function solve(tp, unk, g) {
   const T = TOPICS[tp];
   if (T.special === 'accel') return { a: () => (g.vf - g.vi) / g.t, t: () => (g.vf - g.vi) / g.a, vf: () => g.vi + g.a * g.t }[unk]();
   if (T.special === 'ke') return { KE: () => 0.5 * g.m * g.v * g.v, m: () => 2 * g.KE / (g.v * g.v), v: () => Math.sqrt(2 * g.KE / g.m) }[unk]();
+  if (T.special === 'momcons') return { vf: () => (g.m1 * g.v1 + g.m2 * g.v2) / (g.m1 + g.m2), u: () => g.m1 * g.v1 / g.m2 }[unk]();
+  if (T.special === 'circuit') return { Rt: () => totalR(g), I: () => g.V / totalR(g) }[unk]();
   const [X, Y, Z] = T.prod;
   return unk === X ? g[Y] * g[Z] : unk === Y ? g[X] / g[Z] : g[X] / g[Y];
 }
-const derivedKey = tp => TOPICS[tp].special === 'accel' ? 'vf' : TOPICS[tp].special === 'ke' ? 'KE' : TOPICS[tp].prod[0];
+const derivedKey = (tp, base) => { const sp = TOPICS[tp].special;
+  return sp === 'accel' ? 'vf' : sp === 'ke' ? 'KE' : sp === 'momcons' ? ('v2' in base ? 'vf' : 'u') : sp === 'circuit' ? ('V' in base ? 'I' : 'Rt') : TOPICS[tp].prod[0]; };
 
 // one problem: values for every variable, an unknown, the question text
 function problem(r, tp, H, grade) {
@@ -187,19 +260,24 @@ function problem(r, tp, H, grade) {
   const ctxs = T.ctx.filter(c => H || !c.hsOnly);
   const c = r.pick(ctxs);
   const base = c.gen(r, H, !H && +grade <= 7);
-  const dk = derivedKey(tp);
+  if (!base) return null;
+  const dk = derivedKey(tp, base);
   const all = { ...base };
   if (!(dk in base)) all[dk] = H ? sf3(solve(tp, dk, base)) : r2(solve(tp, dk, base));
   const unks = c.only ? [c.only] : Object.keys(c.q);
-  const unk = r.pick(unks);
+  let unk = r.pick(unks);
+  if (tp === 'circuit') { unk = r.chance(.3) ? 'Rt' : 'I'; if (unk === 'Rt') { delete all.V; delete all.I; } }
   if (!H && Math.abs(all[dk] - solve(tp, dk, all)) > 1e-9) return null;   // grades 6-8 stay exact
   const g = { ...all }; delete g[unk];
   if (tp === 'accel' && unk !== 'vf' && all.vf <= all.vi) return null;
   const raw = solve(tp, unk, g);
   const ans = H ? sf3(raw) : r2(raw);
   if (!(ans > 0)) return null;
+  // high school: skip a value that sits right on a rounding boundary (33.65 -> 33.7), where float noise could flip the key
+  if (H && Math.abs(raw - ans) > 0.45 * 10 ** (Math.floor(Math.log10(ans)) - 2)) return null;
   if (tp === 'accel' && all.vf > (c.vmax || 45)) return null;
-  const f = (k, zero, pre = '') => (k === 'vi' && !g.vi) ? zero : pre + `${show(g[k])} ${T.unit[k]}`;
+  const f = (k, zero, pre = '') => ((k === 'vi' || k === 'v2') && !g[k]) ? zero : pre + `${show(g[k])} ${T.unit[k]}`;
+  f.g = g;
   return { kind: 'calc', topic: tp, unk, g, ans, H, q: art(c.q[unk](f)), a: `${H ? show3(ans) : show(ans)} ${T.unit[unk]}` };
 }
 
@@ -209,7 +287,18 @@ const formHtml = (tp, unk, vals) => {
   const body = T.forms[unk].replace(/\{(\w+)\}/g, (_, k) => vals ? show(vals[k]) : symH(tp, k));
   return `${symH(tp, unk)} = ${body}`;
 };
-const solution = it => ({ formula: formHtml(it.topic, it.unk), sub: formHtml(it.topic, it.unk, it.g), ans: `${symH(it.topic, it.unk)} = ${it.H ? '≈ ' : ''}${esc(it.a)}`.replace('= ≈', '≈') });
+const solution = it => {
+  if (it.topic === 'circuit') {
+    const Rs = [it.g.R1, it.g.R2, it.g.R3].filter(x => x != null), ser = it.g.ser === 'series', RT = symH('circuit', 'Rt');
+    const rsum = ser ? `${RT} = ${Rs.map(show).join(' + ')}` : `1 ÷ ${RT} = ${Rs.map(x => `1 ÷ ${show(x)}`).join(' + ')}`;
+    const Rt = show3(sf3(totalR(it.g)));
+    const formula = ser ? `${RT} = <i>R</i><sub>1</sub> + <i>R</i><sub>2</sub>${Rs.length > 2 ? ' + <i>R</i><sub>3</sub>' : ''}` : `1 ÷ ${RT} = 1 ÷ <i>R</i><sub>1</sub> + 1 ÷ <i>R</i><sub>2</sub>${Rs.length > 2 ? ' + 1 ÷ <i>R</i><sub>3</sub>' : ''}`;
+    const eq = ser ? '=' : '≈';
+    if (it.unk === 'Rt') return { formula, sub: rsum, ans: `${RT} ${eq} ${esc(it.a)}` };
+    return { formula: `${formula}; <i>I</i> = <i>V</i> ÷ ${RT}`, sub: `${rsum}, so ${RT} ${eq} ${Rt} Ω; <i>I</i> = ${show(it.g.V)} ÷ ${Rt}`, ans: `<i>I</i> ≈ ${esc(it.a)}` };
+  }
+  return { formula: formHtml(it.topic, it.unk), sub: formHtml(it.topic, it.unk, it.g), ans: `${symH(it.topic, it.unk)} = ${it.H ? '≈ ' : ''}${esc(it.a)}`.replace('= ≈', '≈') };
+};
 
 // one reasoning question per sheet, on the sheet's first topic
 function reasoning(r, tp, H) {
@@ -274,6 +363,21 @@ function reasoning(r, tp, H) {
       return { kind: 'mom2', v1, m2, v2, q: `Which has more momentum: a 0.145 kg baseball thrown at ${show(v1)} m/s, or a ${show(m2)} kg bowling ball rolling at ${show(v2)} m/s? Show both.`,
         a: `The ${p1 > p2 ? 'baseball' : 'bowling ball'} (baseball ${show(p1)} kg·m/s, bowling ball ${show(p2)} kg·m/s)` };
     }
+    case 'wave': {
+      const fA = r.int(1, 3), v = 2 * fA * r.int(1, 4), lamB = v / (2 * fA), lamA = 2 * lamB;
+      return { kind: 'wave2', fA, v, q: `Two waves travel along the same rope at the same speed, ${v} m/s. Wave A has a frequency of ${fA} Hz and wave B has a frequency of ${2 * fA} Hz. Which wave has the longer wavelength, and how many times longer? Show both.`,
+        a: `Wave A, 2 times longer (A: ${show(lamA)} m, B: ${show(lamB)} m)` };
+    }
+    case 'momcons': {
+      const m1 = r.int(40, 60), m2 = m1 + r.int(10, 40);
+      return { kind: 'push2', m1, m2, q: `A ${m1} kg skater and a ${m2} kg skater stand still, then push off each other. Which skater moves away faster? Explain using momentum.`,
+        a: `The ${m1} kg skater. Total momentum stays 0, so the two momenta are equal and opposite, and the smaller mass needs the larger speed.` };
+    }
+    case 'circuit': {
+      const R = r.pick([10, 20, 30, 40, 60]), V = r.pick([6, 12, 24]);
+      return { kind: 'circ2', R, V, q: `Two ${R} Ω resistors are connected to a ${V} V battery, first in series and then in parallel. Which arrangement draws more current from the battery? Give both currents.`,
+        a: `Parallel (series: ${show(nm(V / (2 * R)))} A, parallel: ${show(nm(V / (R / 2)))} A)` };
+    }
     case 'ke': {
       const m = r.int(50, 90), v = r.int(2, 5);
       const k1 = 0.5 * m * v * v, k2 = 0.5 * m * 4 * v * v;
@@ -291,6 +395,8 @@ Gen.add('science-calc', {
     { id: 'topic', label: 'Topic', type: 'select', def: 'density',
       options: v => topicsFor(v.grade).map(t => [t, TOPICS[t].label]).concat([['mix', 'Mixed review']]) },
     { id: 'count', label: 'Problems', type: 'select', options: [['4', '4'], ['6', '6'], ['8', '8']], def: '6' },
+    { id: 'topic2', label: 'Second topic (the sheet alternates between the two)', type: 'select', def: 'none', show: v => v.topic !== 'mix',
+      options: v => [['none', 'No second topic']].concat(topicsFor(v.grade).filter(t => t !== v.topic).map(t => [t, TOPICS[t].label])) },
   ],
   css: `
 .sc-box { border: 1.5px solid #333; border-radius: 6px; padding: 6px 12px; margin: 6px 0 8px; }
@@ -312,7 +418,8 @@ Gen.add('science-calc', {
 `,
   make(v, r) {
     const g = v.grade, H = hs(g), n = +v.count;
-    const pool = v.topic === 'mix' ? r.sample(topicsFor(g), n > 6 ? 4 : 3) : [v.topic];
+    const two = v.topic !== 'mix' && v.topic2 !== 'none' && v.topic2 !== v.topic && topicsFor(g).includes(v.topic2) ? v.topic2 : null;
+    const pool = v.topic === 'mix' ? r.sample(topicsFor(g), n > 6 ? 4 : 3) : two ? [v.topic, two] : [v.topic];
     let i = 0;
     const items = r.distinct(n, () => problem(r, pool[(i++) % pool.length], H, g), p => p.q);
     const used = pool.filter(t => items.some(it => it.topic === t));
@@ -344,11 +451,11 @@ Gen.add('science-calc', {
       rq.q = art(rq.q);
       all.push(rq);
     }
-    const label = v.topic === 'mix' ? 'Mixed review' : TOPICS[v.topic].label;
+    const label = v.topic === 'mix' ? 'Mixed review' : two ? `${TOPICS[v.topic].label} and ${TOPICS[two].label.toLowerCase()}` : TOPICS[v.topic].label;
     const gl = GRADES.find(x => x[0] === g)[1];
     return {
       title: `${label}: ${gl}`, level: `${gl}, ${H ? 'three significant figures' : 'answers come out even'}`,
-      ican: `I can use a formula to find ${v.topic === 'mix' ? 'a missing quantity' : 'the ' + Object.keys(TOPICS[v.topic].forms).filter(k => H || k !== 'g').map(k => TOPICS[v.topic].name[k]).join(', ')} and give my answer with the right unit.`.replace(/, ([^,]*) and give/, ' or $1 and give'),
+      ican: `I can use a formula to find ${v.topic === 'mix' || two ? 'a missing quantity' : 'the ' + Object.keys(TOPICS[v.topic].forms).filter(k => H || k !== 'g').map(k => TOPICS[v.topic].name[k]).join(', ')} and give my answer with the right unit.`.replace(/, ([^,]*) and give/, ' or $1 and give'),
       directions: 'For each problem, write the formula you need, write it again with the numbers put in, and solve. Write the answer with its unit on the Answer line.',
       minutes: n > 6 ? 35 : 25, materials: 'pencil, calculator',
       parts, items: all,
@@ -362,10 +469,16 @@ Gen.add('science-calc', {
     // forward relations, written independently of the solved forms in make: each returns left - right
     const FWD = { density: x => x.m - x.D * x.V, speed: x => x.d - x.v * x.t, accel: x => (x.vf - x.vi) - x.a * x.t, force: x => x.F - x.m * x.a,
       weight: x => x.W - x.m * x.g, work: x => x.W - x.F * x.d, power: x => x.W - x.P * x.t, ohm: x => x.V - x.I * x.R,
-      momentum: x => x.p - x.m * x.v, ke: x => x.KE - 0.5 * x.m * x.v * x.v };
+      momentum: x => x.p - x.m * x.v, ke: x => x.KE - 0.5 * x.m * x.v * x.v, wave: x => x.v - x.f * x.lam,
+      // momentum before = momentum after; a push-off from rest gives equal and opposite momenta
+      momcons: x => 'u' in x ? x.m1 * x.v1 - x.m2 * x.u : x.m1 * x.v1 + x.m2 * x.v2 - (x.m1 + x.m2) * x.vf,
+      // series adds resistances; parallel adds conductances (1/R)
+      circuit: x => { const Rs = [x.R1, x.R2, x.R3].filter(y => y != null); const tot = x.ser === 'series' ? Rs.reduce((a, b) => a + b, 0) : 1 / Rs.reduce((a, b) => a + 1 / b, 0);
+        return 'I' in x ? x.I * tot - x.V : x.Rt - tot; } };
     const UNIT = { density: { D: 'g/cm³', m: 'g', V: 'cm³' }, speed: { v: 'm/s', d: 'm', t: 's' }, accel: { a: 'm/s²', vf: 'm/s', t: 's' }, force: { F: 'N', m: 'kg', a: 'm/s²' },
       weight: { W: 'N', m: 'kg', g: 'm/s²' }, work: { W: 'J', F: 'N', d: 'm' }, power: { P: 'W', W: 'J', t: 's' }, ohm: { V: 'V', I: 'A', R: 'Ω' },
-      momentum: { p: 'kg·m/s', m: 'kg', v: 'm/s' }, ke: { KE: 'J', m: 'kg', v: 'm/s' } };
+      momentum: { p: 'kg·m/s', m: 'kg', v: 'm/s' }, ke: { KE: 'J', m: 'kg', v: 'm/s' }, wave: { v: 'm/s', f: 'Hz', lam: 'm' },
+      momcons: { vf: 'm/s', u: 'm/s' }, circuit: { Rt: 'Ω', I: 'A' } };
     const num = a => parseFloat(String(a).replace(/,/g, ''));
     for (const it of s.items) {
       if (it.kind === 'calc') {
@@ -383,7 +496,8 @@ Gen.add('science-calc', {
           if (Number(a.toPrecision(3)) !== a) out.push(`${it.q}: ${it.a} has more than three significant figures`);
         }
         // the question must state every given value
-        for (const [k, val] of Object.entries(it.g)) if (!(it.topic === 'weight' && k === 'g' && it.unk !== 'g') && !(it.topic === 'accel' && k === 'vi' && !val) && !it.q.includes(fmt(val, 6) + ' ')) out.push(`${it.q}: does not state ${k}`);
+        for (const [k, val] of Object.entries(it.g)) if (typeof val === 'number' && !(it.topic === 'weight' && k === 'g' && it.unk !== 'g') && !(it.topic === 'accel' && k === 'vi' && !val) && !(it.topic === 'momcons' && k === 'v2' && !val) && !it.q.includes(fmt(val, 6) + ' ')) out.push(`${it.q}: does not state ${k}`);
+        if (it.topic === 'circuit' && !it.q.includes(' in ' + it.g.ser)) out.push(`${it.q}: does not say ${it.g.ser}`);
         continue;
       }
       if (it.kind === 'float') {
@@ -405,6 +519,14 @@ Gen.add('science-calc', {
         if (!it.a.includes(`${fmt(it.V / it.R, 2)} A becomes ${fmt(it.V / it.R / 2, 2)} A`)) out.push(`ohm2: key ${it.a}`);
       } else if (it.kind === 'mom2') {
         if (!it.a.startsWith(`The ${0.145 * it.v1 > it.m2 * it.v2 ? 'baseball' : 'bowling ball'}`)) out.push(`mom2: key ${it.a}`);
+      } else if (it.kind === 'wave2') {
+        const lamA = it.v / it.fA, lamB = it.v / (2 * it.fA);
+        if (lamA !== 2 * lamB || !it.a.startsWith(`Wave A, 2 times longer (A: ${fmt(lamA, 2)} m, B: ${fmt(lamB, 2)} m)`)) out.push(`wave2: key ${it.a}`);
+      } else if (it.kind === 'push2') {
+        if (!it.a.startsWith(`The ${Math.min(it.m1, it.m2)} kg skater`)) out.push(`push2: key ${it.a}`);
+      } else if (it.kind === 'circ2') {
+        const Is = it.V / (2 * it.R), Ip = it.V / (it.R / 2);
+        if (!(Ip > Is) || !it.a.includes(`series: ${fmt(Number(Is.toPrecision(3)), 6)} A, parallel: ${fmt(Number(Ip.toPrecision(3)), 6)} A`)) out.push(`circ2: key ${it.a}`);
       } else if (it.kind === 'ke2') {
         if (!it.a.startsWith(`${fmt(it.m * it.v * it.v / 2, 2)} J becomes ${fmt(2 * it.m * it.v * it.v, 2)} J, 4 times`)) out.push(`ke2: key ${it.a}`);
       }

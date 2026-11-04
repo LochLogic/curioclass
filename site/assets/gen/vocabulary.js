@@ -1,6 +1,8 @@
 // Vocabulary Practice generator, grades K-12. Reads the Word Wall list (words.json): pick a subject, a grade band and a
 // module (and an optional second module for small lists). Part 1 matches words to meanings, Part 2 writes the word that
-// fits each meaning from a word bank, Part 3 (grades 3-12) uses words in the student's own sentences.
+// fits each meaning from a word bank, Part 3 (grades 3-12) uses words in the student's own sentences. The "Fill the
+// passage" mode (grades 3-12) turns the meanings into a short passage with one blank per word, 4 to 6 sentences a
+// passage, with the words in a box; the key fills the blanks.
 (() => {
 const { blank, part, example, esc, lines } = Gen.h;
 
@@ -43,6 +45,16 @@ function pool(v, d) {
   return out;
 }
 
+// a passage sentence built from a word's meaning, with the word as a blank: "The word for ... is ___." or
+// "To ... is to ___." (meanings that start with "to")
+function clozeFrame(w, df, blankHtml) {
+  const md = esc(mask(w, df)).replace(/\.\s*$/, '');
+  if (/^to /i.test(df)) return `To ${md.slice(3)} is to ${blankHtml}.`;
+  return `The word for ${md} is ${blankHtml}.`;
+}
+// split n words into passages of 4 to 6 sentences each (8 -> 4 + 4, 10 -> 5 + 5, 12 -> 6 + 6)
+const chunks = n => { const k = Math.ceil(n / 6), out = []; for (let i = 0; i < k; i++) out.push(Math.floor(n / k) + (i < n % k ? 1 : 0)); return out; };
+
 Gen.add('vocabulary', {
   title: 'Vocabulary Practice', type: 'Vocabulary', data: 'words',
   fields: [
@@ -53,6 +65,8 @@ Gen.add('vocabulary', {
     { id: 'mod2', label: 'Add a second module (optional)', type: 'select', def: '',
       options: (v, d) => [['', 'None']].concat(inBand(v, d).filter(m => m.id !== v.mod).map(m => [m.id, m.title + gradeNote(m)])) },
     { id: 'count', label: 'Words', type: 'select', options: v => COUNTS[v.band] || COUNTS['35'], def: '6' },
+    { id: 'mode', label: 'Sheet', type: 'select', def: 'std',
+      options: v => [['std', 'Match, fill in and use']].concat(v.band === 'k2' ? [] : [['cloze', 'Fill the passage']]) },
   ],
   make(v, r, d) {
     const k2 = v.band === 'k2', band = BANDS.find(b => b[0] === v.band) || BANDS[1];
@@ -60,6 +74,7 @@ Gen.add('vocabulary', {
     const all = pool(v, d);
     const n = Math.min(+v.count, all.length);
     const words = r.sample(all, n);                       // [word, definition]
+    if (v.mode === 'cloze' && !k2) return this.cloze(v, r, d, words, m1, m2, band);
     // Part 1: match. Words in a numbered list, meanings lettered in a shuffled order.
     const defs = r.shuffle(words.map(w => w[1]));
     const items = words.map(([w, df], i) => ({ q: `Match: ${w}`, a: LET[defs.indexOf(df)], word: w, opts: defs, part: 1, n: i + 1 }));
@@ -111,6 +126,42 @@ Gen.add('vocabulary', {
       notes: 'Part 2 asks for the same words from the other direction, meaning to word. For a harder check, fold the sheet so Part 1 is hidden. If the word appears inside its own meaning it is shown as a blank. Add a second module when one module has only a few words.',
     };
   },
+  // Fill the passage: the meanings become sentences with the word blanked, 4 to 6 sentences a passage
+  cloze(v, r, d, words, m1, m2, band) {
+    const n = words.length;
+    const order = r.shuffle(words);
+    const bank = r.shuffle(words.map(w => w[0]));
+    const wide = Math.min(11, Math.max(...words.map(([w]) => w.length)) * 0.62 + 1.6);
+    const items = order.map(([w, df], i) => ({ q: `Passage: ${df}`, a: w, word: w, def: df, part: 4, n: i + 1 }));
+    const sizes = chunks(n);
+    const passages = [];
+    let at = 0;
+    for (const k of sizes) {
+      const ws = order.slice(at, at + k);
+      passages.push(`<p class="ws-text gen-vcloze">${ws.map(([w, df], i) => `<span class="ws-num">${at + i + 1}.</span> ${clozeFrame(w, df, blank(w, wide))}`).join(' ')}</p>`);
+      at += k;
+    }
+    const ex = ['tool', 'something you use to help you do a job'];
+    const exHtml = example(`The word for ${esc(ex[1])} is <b>${esc(ex[0])}</b>.`,
+      'Read the whole sentence. Pick the word from the box that fits the meaning, and write it on the line. Use each word once.');
+    const k = v.band === '35' ? 1 : 2;
+    const own = Array.from({ length: k }, (_, i) => ({ q: `Own sentence ${i + 1}`, a: 'Answers vary: the sentence uses a word from the box correctly and shows what it means.', part: 3 }));
+    const parts = [part('', exHtml),
+      part(sizes.length > 1 ? 'Part 1: Fill the passages' : 'Part 1: Fill the passage', `<div class="gen-wordbank">${bank.map(w => `<span>${esc(w)}</span>`).join('')}</div>${passages.join('')}`),
+      part('Part 2: Use it in a sentence',
+        `<p class="ws-text">${k === 1 ? 'Choose one word from the box. Write a sentence that uses the word and shows what it means.' : 'Choose two different words from the box. Write one sentence for each that uses the word and shows what it means.'}</p>` +
+        Array.from({ length: k }, (_, i) => `<p class="ws-text gen-vown">${i + 1 + n}. Word: ${'<span class="ws-blank" style="min-width:9em"></span>'}</p>${lines(2)}`).join(''))];
+    const title = `${m1 ? m1.title : 'Vocabulary'}${m2 ? ' and ' + m2.title : ''}: Fill the Passage`;
+    return {
+      title, level: `${band[1]}, ${m1 ? m1.s : ''}${n < +v.count ? `, ${n} words (all the module has)` : ''}`,
+      ican: 'I can use the meaning of a sentence to choose the vocabulary word that fits.',
+      directions: 'Part 1: read each sentence and write the word from the box that fits on the line. Use each word once. Part 2: write your own sentence.',
+      minutes: n > 8 ? 25 : 20, materials: 'pencil',
+      parts, items: items.concat(own),
+      mistakes: 'Choosing a word that shares one idea with the sentence instead of the whole meaning, and using a word twice. Cross off each word in the box as it is used.',
+      notes: `Each sentence is a Word Wall meaning turned into a sentence frame, with the word as the blank${sizes.length > 1 ? `; the ${n} words are split into ${sizes.length} short passages` : ''}. If the word appears inside its own meaning it is shown as a blank. Add a second module when one module has only a few words.`,
+    };
+  },
   verify(s, v, d) {
     const out = [];
     const dict = new Map();
@@ -123,17 +174,31 @@ Gen.add('vocabulary', {
         if (!want) out.push(`${it.word}: not in the chosen modules`);
         else if (it.opts[i] !== want) out.push(`${it.word}: key letter ${it.a} points to "${it.opts[i]}", should be "${want}"`);
         if (letters.has(it.a)) out.push(`letter ${it.a} used twice`); letters.add(it.a);
-      } else if (it.part === 2) {
+      } else if (it.part === 2 || it.part === 4) {
         if (dict.get(it.a.toLowerCase()) !== it.def) out.push(`fill "${it.def}": key ${it.a} does not match the module`);
         if (mask(it.a, it.def).toLowerCase().includes(it.a.toLowerCase()) && it.a.length > 2) out.push(`fill "${it.def}": the clue shows the answer`);
       }
     }
-    const p1 = s.items.filter(i => i.part === 1).length, p2 = s.items.filter(i => i.part === 2).length;
+    const p1 = s.items.filter(i => i.part === 1).length, p2 = s.items.filter(i => i.part === 2).length, p4 = s.items.filter(i => i.part === 4).length;
+    if (p4) {   // Fill the passage
+      if (v.mode !== 'cloze' || v.band === 'k2') out.push('a passage sheet at the wrong setting');
+      if (p1 || p2) out.push('a passage sheet also has match or fill items');
+      if (p4 < 4) out.push(`only ${p4} words`);
+      const ws = s.items.filter(i => i.part === 4).map(i => i.a);
+      if (new Set(ws.map(w => w.toLowerCase())).size !== ws.length) out.push('a word is blanked twice');
+      // the passage html must hold every answer exactly once and no sentence longer than 6 per passage
+      const html = s.parts.map(p => p[1]).join('');
+      for (const w of ws) { const hits = html.split(`<span class="ws-ans">${esc(w)}</span>`).length - 1; if (hits !== 1) out.push(`${w} appears ${hits} times as an answer`); }
+      for (const m of html.matchAll(/<p class="ws-text gen-vcloze">(.*?)<\/p>/g)) { const c = (m[1].match(/class="ws-num"/g) || []).length; if (c < 4 || c > 6) out.push(`a passage has ${c} sentences`); }
+      return out;
+    }
     if (p1 !== p2) out.push(`part 1 has ${p1} words, part 2 has ${p2}`);
     if (p1 < 4) out.push(`only ${p1} words`);
     return out;
   },
-  css: `.gen-vexl { display: inline-block; min-width: 2.4em; border-bottom: 1.5px solid #222; text-align: center; font-weight: 700; }
+  css: `.gen-vcloze { line-height: 2.1; margin: 10px 0; }
+.gen-vcloze .ws-num { font-weight: 700; }
+.gen-vexl { display: inline-block; min-width: 2.4em; border-bottom: 1.5px solid #222; text-align: center; font-weight: 700; }
 .gen-vmatch ol li { margin-bottom: 12px; }
 .gen-vmatch ul li { margin-bottom: 8px; }
 .gen-vfill li { margin-bottom: 12px; }
@@ -142,6 +207,7 @@ Gen.add('vocabulary', {
 .gen-vk2 .gen-wordbank { font-size: 22px; }
 .gen-vdraw { height: 1.7in; }
 @media print { .gen-vk2 { font-size: 13pt; } .gen-vk2 .gen-wordbank { font-size: 15pt; } .gen-vdraw { height: 1.15in; }
+  .gen-vcloze { line-height: 1.9; }
   .gen-vmatch ol li, .gen-vmatch ul li { margin-bottom: 5px; } .gen-vfill li { margin-bottom: 7px; } .gen-vown { margin: 4px 0 0; }
   .gen-vk2 .gen-vmatch ol li, .gen-vk2 .gen-vfill li { margin-bottom: 9px; } }`,
 });

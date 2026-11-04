@@ -3,7 +3,8 @@
 // blood type), sex-linked traits and two-trait (dihybrid) crosses on a 4 x 4 square. Every trait is a real, correctly
 // described one: Mendel's pea traits, fruit fly body color, snapdragon flower color, roan shorthorn cattle, ABO blood
 // type, red-green color blindness and white eyes in fruit flies. The student fills each square and gives the ratios
-// and a probability; the key fills everything in.
+// and a probability; the key fills everything in. One-trait sheets can hold 3 to 8 crosses (6 and 8 use a smaller
+// square); dihybrid sheets hold 1 or 2.
 (() => {
 const { part, example, esc } = Gen.h;
 
@@ -188,7 +189,8 @@ Gen.add('punnett', {
   fields: [
     { id: 'grade', label: 'Grade', type: 'select', options: GRADES, def: '7' },
     { id: 'cross', label: 'Kind of cross', type: 'select', def: 'mono', options: v => crossesFor(v.grade).map(k => [k, CROSSES[k]]) },
-    { id: 'count', label: 'Crosses', type: 'select', options: v => v.cross === 'di' ? [['2', '2']] : [['3', '3'], ['4', '4']], def: '3' },
+    { id: 'count', label: 'Crosses', type: 'select', def: '3',
+      options: v => v.cross === 'di' ? [['2', '2'], ['1', '1']] : v.cross === 'mono' ? [['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8']] : [['3', '3'], ['4', '4']] },
     { id: 'edges', label: 'Print the parent alleles on each square (easier)', type: 'check', def: false },
   ],
   css: `
@@ -204,6 +206,7 @@ Gen.add('punnett', {
 .pn-sq th.pn-c { background: transparent; border-top: 0; border-left: 0; }
 .pn-2 td, .pn-2 th { width: 0.7in; height: 0.42in; }
 .pn-4 td, .pn-4 th { width: 0.66in; height: 0.36in; font-size: 13px; }
+.pn-2s td, .pn-2s th { width: 0.56in; height: 0.33in; font-size: 14px; }
 .pn-qs { min-width: 0; }
 .pn-l { display: flex; align-items: flex-end; gap: 6px; min-height: 0.34in; }
 .pn-l > span { font: 600 12px var(--sans); color: #333; white-space: nowrap; padding-bottom: 2px; width: 7.4em; flex: none; }
@@ -211,11 +214,11 @@ Gen.add('punnett', {
 .pn-ex { display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; align-items: center; }
 .pn-ex .pn-sq td .ws-ans, .pn-ex .pn-sq th .ws-ans { visibility: visible; color: inherit; font-weight: 600; }
 @media (max-width: 700px) { .pn-card, .pn-ex { grid-template-columns: 1fr; } }
-@media print { .pn-card > p { font-size: 9.5pt; } .pn-l { min-height: 0.29in; } .pn-l > span { font-size: 8.5pt; } .pn-card { margin-bottom: 6px; padding: 4px 8px 6px; } .pn-2 td, .pn-2 th { height: 0.34in; width: 0.6in; } .pn-4 td, .pn-4 th { height: 0.3in; } .pn-ex .pn-2 td, .pn-ex .pn-2 th { height: 0.27in; width: 0.5in; } }
+@media print { .pn-card > p { font-size: 9.5pt; } .pn-l { min-height: 0.29in; } .pn-l > span { font-size: 8.5pt; } .pn-card { margin-bottom: 6px; padding: 4px 8px 6px; } .pn-2 td, .pn-2 th { height: 0.34in; width: 0.6in; } .pn-4 td, .pn-4 th { height: 0.3in; } .pn-2s td, .pn-2s th { height: 0.26in; width: 0.5in; } .pn-many .pn-card { margin-bottom: 4px; padding: 3px 8px 4px; } .pn-many .pn-l { min-height: 0.25in; } .pn-ex .pn-2 td, .pn-ex .pn-2 th { height: 0.27in; width: 0.5in; } }
 `,
   make(v, r) {
     const g = v.grade, H = hs(g), kind = v.cross;
-    const n = kind === 'di' ? 2 : +v.count;
+    const n = +v.count;
     const words = () => +g >= 8 && r.chance(.5);
     const one = k => k === 'mono' ? monoCross(r, words()) : k === 'incomplete' ? blendCross(r, 'incomplete', words())
       : k === 'codom' ? (r.chance(.5) ? blendCross(r, 'codom', words()) : aboCross(r)) : k === 'sex' ? sexCross(r, words()) : diCross(r, words());
@@ -242,7 +245,7 @@ Gen.add('punnett', {
       } else qs.push(line('Genotype ratio:', sol.gratio));
       qs.push(line('Phenotype ratio:', sol.pratio));
       qs.push(line('Chance:', pq.ans));
-      const sz = c.spec.kind === 'di' ? 4 : 2;
+      const sz = c.spec.kind === 'di' ? 4 : n >= 6 ? '2s' : 2;   // 6 or 8 one-trait crosses use a smaller square to stay on two pages
       cards.push(`<div class="pn-card"><p><span class="ws-num">${k + 1}.</span> ${c.text} Find the ${pq.text.replace(/^Chance /, 'chance that ')}.</p>${square(c, sol, v.edges, sz)}<div class="pn-qs">${qs.join('')}</div></div>`);
       items.push({ q: plain(c.text), a: plain(`${pg}; ${c.countG ? c.countG.cnt + ' ' + c.countG.geno : sol.gratio}; ${sol.pratio}; ${pq.ans}`),
         kind: c.spec.kind, P: c.P, trait: c.trait, top: sol.top, side: sol.side, cells: sol.cells.map(row => row.map(x => plain(genoHtml(c.spec, x)))),
@@ -273,7 +276,7 @@ Gen.add('punnett', {
         : 'I can use a Punnett square to predict the genotypes and phenotypes of offspring and the chance of each.',
       directions: `${v.edges ? 'Fill' : 'Write each parent\'s alleles on the edges of the square and fill'} every box with an offspring genotype. Answer beside the square. Write ratios like 1 TT : 2 Tt : 1 tt and chances as a fraction and a percent.`,
       minutes: kind === 'di' ? 30 : 25, materials: 'pencil',
-      parts: [part('', ex), part('Crosses', cards.join(''))], items,
+      parts: [part('', ex), part('Crosses', n >= 6 ? `<div class="pn-many">${cards.join('')}</div>` : cards.join(''))], items,
       mistakes: 'Writing both alleles from one parent in a box, or forgetting that a homozygous parent still gives two (identical) gametes. Mixing up genotype (letters) and phenotype (what the organism looks like). For incomplete and codominance, calling the heterozygote the dominant color.' +
         (H ? ' For sex-linked crosses, giving a son an X from his father; sons get their X from their mother and a Y from their father. For two-trait crosses, putting two alleles of the same gene in one gamete.' : ''),
       notes: 'Every trait is a real one: Mendel\'s pea traits (seed shape, seed color, plant height, flower color, pod color, flower position), fruit fly body color (gray over ebony), snapdragon and four o\'clock flower color (incomplete dominance), roan shorthorn cattle and ABO blood type (codominance), and red-green color blindness and white eyes in fruit flies (sex-linked recessive). ' +

@@ -1,7 +1,9 @@
 // Area, Perimeter and Volume generator, grades 2-8. Drawn shapes with labeled measurements, roughly to scale:
-// perimeter (2-3, 3.MD.8), rectangle and composite rectilinear area (3.MD.7, 4.MD.3), volume of rectangular prisms
-// (5.MD.5), area of triangles, parallelograms and trapezoids and surface area of prisms (6.G.1, 6.G.4), circles
-// (7.G.4), cylinders (8.G.9). Every answer carries its unit: units, square units or cubic units.
+// perimeter, perimeter with a missing side and area by counting grid squares (2-3, 3.MD.6-8), rectangle and composite
+// rectilinear area (3.MD.7, 4.MD.3), volume of rectangular prisms (5.MD.5), area of triangles, parallelograms and
+// trapezoids and surface area of rectangular prisms (6.G.1, 6.G.4), circles and surface area of triangular prisms
+// (7.G.4, 7.G.6), cylinders, and cylinders, cones and spheres rounded to the nearest tenth (8.G.9).
+// Every answer carries its unit: units, square units or cubic units.
 (() => {
 const H = Gen.h, { part, example, svg, esc } = H;
 const { fmt } = Gen.m;
@@ -9,15 +11,16 @@ const { fmt } = Gen.m;
 const GRADES = [['2', 'Grade 2'], ['3', 'Grade 3'], ['4', 'Grade 4'], ['5', 'Grade 5'], ['6', 'Grade 6'], ['7', 'Grade 7'], ['8', 'Grade 8']];
 const SKILLS = {
   2: [['perim', 'Perimeter of shapes']],
-  3: [['perim', 'Perimeter of polygons'], ['area', 'Area of rectangles'], ['compo', 'Area of L-shapes'], ['mix3', 'Area and perimeter']],
+  3: [['perim', 'Perimeter of polygons'], ['area', 'Area of rectangles'], ['compo', 'Area of L-shapes'], ['mix3', 'Area and perimeter'], ['unknown', 'Perimeter with a missing side'], ['grid', 'Area by counting squares']],
   4: [['ap', 'Area and perimeter of rectangles'], ['compo', 'Composite shapes'], ['missing', 'Find the missing side'], ['mix4', 'Mixed review']],
   5: [['vol', 'Volume of rectangular prisms'], ['volc', 'Volume of two joined boxes']],
   6: [['tri', 'Area of triangles'], ['para', 'Area of parallelograms'], ['trap', 'Area of trapezoids'], ['poly', 'Triangles, parallelograms and trapezoids'], ['sa', 'Surface area of rectangular prisms']],
-  7: [['circ', 'Circumference of circles'], ['carea', 'Area of circles'], ['circles', 'Circumference and area']],
-  8: [['cyl', 'Volume of cylinders'], ['vol8', 'Prisms and cylinders']],
+  7: [['circ', 'Circumference of circles'], ['carea', 'Area of circles'], ['circles', 'Circumference and area'], ['prismsa', 'Surface area of triangular prisms']],
+  8: [['cyl', 'Volume of cylinders'], ['vol8', 'Prisms and cylinders'], ['round', 'Volume of cylinders, cones and spheres']],
 };
 const UNITS = [['metric', 'Metric (cm, m)'], ['customary', 'Customary (in, ft)'], ['both', 'Some of each']];
-const usesPi = v => v.grade === '7' || v.grade === '8';
+const usesPi = v => (v.grade === '7' || v.grade === '8') && v.skill !== 'prismsa';
+const piChoice = v => usesPi(v) && v.skill !== 'round';   // the round mode always uses 3.14
 const COUNTS = [6, 9, 12];
 
 /* ---------- units and answer text ---------- */
@@ -62,15 +65,28 @@ function drawPoly(pts, labels, u, desc, inner) {
     const onBox = (Math.abs(p[0] - q[0]) < .5 && (Math.abs(p[0] - bx[0]) < .5 || Math.abs(p[0] - bx[1]) < .5)) || (Math.abs(p[1] - q[1]) < .5 && (Math.abs(p[1] - by[0]) < .5 || Math.abs(p[1] - by[1]) < .5));
     if (inner && !onBox) { nx = -nx; ny = -ny; }
     const side = Math.abs(nx) > .6;
-    out += lab(mx + nx * (side ? 6 : 12), my + ny * (side ? 6 : 12) + (side ? 5 : ny > 0 ? 9 : 1), `${labels[i]} ${u}`, side ? (nx > 0 ? 'start' : 'end') : 'middle'); });
+    out += lab(mx + nx * (side ? 6 : 12), my + ny * (side ? 6 : 12) + (side ? 5 : ny > 0 ? 9 : 1), labels[i] === '?' ? '?' : `${labels[i]} ${u}`, side ? (nx > 0 ? 'start' : 'end') : 'middle'); });
   return pic(W, h * s + 56, out, desc);
 }
-function drawL(Wd, Ht, cw, ch, u, corner) {
-  // a W by H rectangle with a cw by ch notch cut from one corner; all six sides labeled
+function drawL(Wd, Ht, cw, ch, u, corner, hide = -1) {
+  // a W by H rectangle with a cw by ch notch cut from one corner; all six sides labeled (side hide gets a ? instead)
   const pts = corner === 'tr' ? [[0, 0], [Wd - cw, 0], [Wd - cw, ch], [Wd, ch], [Wd, Ht], [0, Ht]]
     : [[0, 0], [Wd, 0], [Wd, Ht - ch], [Wd - cw, Ht - ch], [Wd - cw, Ht], [0, Ht]];
   const len = pts.map((p, i) => { const q = pts[(i + 1) % 6]; return Math.abs(q[0] - p[0]) + Math.abs(q[1] - p[1]); });
-  return drawPoly(pts, len, u, `L-shaped figure made of rectangles. Sides: ${len.map(x => x + ' ' + u).join(', ')}`, true);
+  const labels = len.map((x, i) => i === hide ? '?' : x);
+  return drawPoly(pts, labels, u, `L-shaped figure made of rectangles. Sides: ${labels.map(x => x === '?' ? 'unknown' : x + ' ' + u).join(', ')}`, true);
+}
+// a rectangle or L-shape on a grid of unit squares, one square of grid showing around it
+function drawGrid(w, h, cw, ch) {
+  const s = Math.min(185 / (w + 2), 115 / (h + 2), 20), ox = (W - (w + 2) * s) / 2, oy = 8;
+  const pts = cw ? [[0, 0], [w - cw, 0], [w - cw, ch], [w, ch], [w, h], [0, h]] : [[0, 0], [w, 0], [w, h], [0, h]];
+  const P = pts.map(([a, b]) => `${(ox + (a + 1) * s).toFixed(1)},${(oy + (b + 1) * s).toFixed(1)}`).join(' ');
+  let o = `<polygon points="${P}" fill="#dcdcdc" stroke="none"/>`;
+  for (let i = 0; i <= w + 2; i++) o += `<line x1="${(ox + i * s).toFixed(1)}" y1="${oy}" x2="${(ox + i * s).toFixed(1)}" y2="${(oy + (h + 2) * s).toFixed(1)}" stroke="#aaa" stroke-width="1"/>`;
+  for (let j = 0; j <= h + 2; j++) o += `<line x1="${ox.toFixed(1)}" y1="${(oy + j * s).toFixed(1)}" x2="${(ox + (w + 2) * s).toFixed(1)}" y2="${(oy + j * s).toFixed(1)}" stroke="#aaa" stroke-width="1"/>`;
+  o += `<polygon points="${P}" fill="none" stroke="#222" stroke-width="2.4"/>`;
+  const cells = w * h - (cw || 0) * (ch || 0);
+  return pic(W, (h + 2) * s + 16, o, `${cw ? 'L-shaped figure' : 'Rectangle'} drawn on a grid of unit squares, covering ${cells} squares`);
 }
 function drawBox(l, w, h, u) {
   const s = Math.min(120 / (l + w * .5), 90 / (h + w * .4), 22), L = l * s, D = w * s * .5, Hh = h * s, x = 30, y = 14 + D * .8;
@@ -127,6 +143,36 @@ function drawCyl(rad, h, useD, u) {
   o += lab(cx + R + 6, top + Hh / 2 + 5, `${h} ${u}`, 'start');
   return pic(W, top + Hh + ry + 10, o, `Cylinder with ${useD ? `diameter ${rad * 2}` : `radius ${rad}`} ${u} and height ${h} ${u}`);
 }
+function drawCone(rad, h, useD, u) {
+  const R = 64, ry = 24, Hh = Math.max(60, Math.min(125, 110 * h / (rad * 2 + h) * 1.6)), cx = W / 2, top = 14, base = top + Hh;
+  let o = `<path d="M${cx} ${top} L${cx - R} ${base} a${R} ${ry} 0 0 0 ${2 * R} 0 Z" ${ST}/>` +
+    `<path d="M${cx - R} ${base} a${R} ${ry} 0 0 1 ${2 * R} 0" fill="none" ${DASH}/>` +
+    `<line x1="${cx}" y1="${top}" x2="${cx}" y2="${base}" ${DASH}/><circle cx="${cx}" cy="${base}" r="2.5" fill="#222"/>`;
+  if (useD) o += `<line x1="${cx - R}" y1="${base}" x2="${cx + R}" y2="${base}" ${THIN}/>` + lab(cx, base + ry + 17, `${rad * 2} ${u}`, 'middle', 15);
+  else o += `<line x1="${cx}" y1="${base}" x2="${cx + R}" y2="${base}" ${THIN}/>` + lab(cx + R / 2, base + ry + 17, `${rad} ${u}`, 'middle', 15);
+  o += lab(cx + 6, top + Hh / 2 + 5, `${h} ${u}`, 'start', 15);
+  return pic(W, base + ry + 30, o, `Cone with ${useD ? `diameter ${rad * 2}` : `radius ${rad}`} ${u} and height ${h} ${u}`);
+}
+function drawSphere(rad, useD, u) {
+  const R = 58, ry = 18, cx = W / 2, cy = 72;
+  let o = `<circle cx="${cx}" cy="${cy}" r="${R}" ${ST}/><path d="M${cx - R} ${cy} a${R} ${ry} 0 0 0 ${2 * R} 0" fill="none" ${THIN}/>` +
+    `<path d="M${cx - R} ${cy} a${R} ${ry} 0 0 1 ${2 * R} 0" fill="none" ${DASH}/><circle cx="${cx}" cy="${cy}" r="3" fill="#222"/>`;
+  if (useD) o += `<line x1="${cx - R}" y1="${cy}" x2="${cx + R}" y2="${cy}" ${THIN}/>` + lab(cx, cy - ry - 7, `${rad * 2} ${u}`, 'middle', 16);
+  else o += `<line x1="${cx}" y1="${cy}" x2="${cx + R}" y2="${cy}" ${THIN}/>` + lab(cx + R / 2, cy - ry - 7, `${rad} ${u}`, 'middle', 16);
+  return pic(W, 150, o, `Sphere with ${useD ? `diameter ${rad * 2}` : `radius ${rad}`} ${u}`);
+}
+function drawTriPrism(a, b, c, L, u) {
+  // right-triangle end at the front (leg a along the bottom, leg b up the right side, hypotenuse c on the left),
+  // stretched L back and to the right; the hypotenuse face and the right face show, the bottom is dashed
+  const s = Math.min(135 / (a + L * .5), 95 / (b + L * .4), 18), A = a * s, B = b * s, D = L * s * .5, dy = -D * .8, x = 30, base = 16 + D * .8 + B;
+  const F = [[x, base], [x + A, base], [x + A, base - B]], Bk = F.map(([px, py]) => [px + D, py + dy]);
+  const pt = p => p.map(q => q.toFixed(1)).join(',');
+  let o = `<polygon points="${pt(F[0])} ${pt(F[2])} ${pt(Bk[2])} ${pt(Bk[0])}" ${ST}/><polygon points="${pt(F[1])} ${pt(F[2])} ${pt(Bk[2])} ${pt(Bk[1])}" ${ST}/><polygon points="${F.map(pt).join(' ')}" ${ST}/>` +
+    `<path d="M${pt(F[0])} L${pt(Bk[0])} L${pt(Bk[1])}" fill="none" ${DASH}/>` + rightMark(x + A, base - 9, -9, 9);
+  o += lab(x + A / 2, base + 18, `${a} ${u}`) + lab(x + A + D + 6, base - B / 2 + dy + 5, `${b} ${u}`, 'start') +
+    lab((F[0][0] + F[2][0]) / 2 - 12 * B / Math.hypot(A, B), (F[0][1] + F[2][1]) / 2 - 12 * A / Math.hypot(A, B) + 5, `${c} ${u}`, 'end') + lab(x + A + D / 2 + 8, base + dy / 2 + 16, `${L} ${u}`, 'start');
+  return `<svg class="gen-svg" viewBox="-34 0 ${W + 50} ${base + 26}" role="img" aria-label="${esc(`Triangular prism, ${L} ${u} long, with right-triangle ends: legs ${a} and ${b} ${u}, hypotenuse ${c} ${u}`)}" style="max-width:${((W + 50) / 96).toFixed(2)}in">${o}</svg>`;
+}
 function drawTwoBoxes(a, b, u) {
   // two boxes side by side, front view as an L: box A (l1 w h1) and box B (l2 w h2) share the depth w
   const l = a.l + b.l, hmax = Math.max(a.h, b.h), s = Math.min(130 / (l + a.w * .5), 90 / (hmax + a.w * .4), 20);
@@ -177,6 +223,34 @@ function makeShape(r, g, kind, umode, pimode) {
     return { kind: 'miss', ask: 'side', u, w, h, byArea, ans: h, given: byArea ? w * h : 2 * (w + h), key: `M ${w} ${h} ${byArea}`,
       text: byArea ? `A rectangle has an area of ${w * h} ${sq(u, g)}. One side is ${w} ${u}. How long is the other side?` : `A rectangle has a perimeter of ${2 * (w + h)} ${u}. One side is ${w} ${u}. How long is the other side?` };
   }
+  if (kind === 'unknown') {
+    // perimeter given, one side marked ?: a rectangle or an L-shape
+    if (r.chance(.5)) { const w = r.int(3, 20), h = r.int(2, 20); if (w === h) return null;
+      const sides = [w, h, w, h], hide = r.int(0, 3), labels = sides.map((x, i) => i === hide ? '?' : x);
+      return { kind: 'unk', ask: 'unknown', u, sides, hide, given: 2 * (w + h), ans: sides[hide], key: `U rect ${w} ${h} ${hide}`,
+        draw: `<p>Perimeter = ${2 * (w + h)} ${u}</p>` + drawPoly([[0, 0], [w, 0], [w, h], [0, h]], labels, u, `Rectangle with perimeter ${2 * (w + h)} ${u}; sides ${labels.map(x => x === '?' ? 'unknown' : x + ' ' + u).join(', ')}`) }; }
+    const w = r.int(6, 14), h = r.int(5, 10), cw = r.int(Math.ceil(w / 3), w - 3), ch = r.int(Math.ceil(h / 3), h - 2), hide = r.int(0, 5);
+    const sides = [w - cw, ch, cw, h - ch, w, h];
+    return { kind: 'unk', ask: 'unknown', u, sides, hide, given: 2 * (w + h), ans: sides[hide], key: `U L ${w} ${h} ${cw} ${ch} ${hide}`,
+      draw: `<p>Perimeter = ${2 * (w + h)} ${u}</p>` + drawL(w, h, cw, ch, u, 'tr', hide) };
+  }
+  if (kind === 'grid') {
+    const w = r.int(2, 8), h = r.int(2, 6);
+    if (r.chance(.4) && w >= 4 && h >= 3) { const cw = r.int(1, w - 2), ch = r.int(1, h - 1);
+      return { kind: 'grid', ask: 'area', u, w, h, cw, ch, ans: w * h - cw * ch, draw: drawGrid(w, h, cw, ch), key: `G ${w} ${h} ${cw} ${ch}` }; }
+    if (w === h && r.chance(.5)) return null;
+    return { kind: 'grid', ask: 'area', u, w, h, cw: 0, ch: 0, ans: w * h, draw: drawGrid(w, h, 0, 0), key: `G ${w} ${h}` };
+  }
+  if (kind === 'prismsa') {
+    const [a, b, c] = r.pick(TRIPLES), L = r.int(2, 12);
+    return { kind: 'tprism', ask: 'surface', u, a, b, c, L, ans: a * b + (a + b + c) * L, draw: drawTriPrism(a, b, c, L, u), key: `TP ${a} ${b} ${c} ${L}` };
+  }
+  if (kind === 'round') {
+    const shape = r.pick(['cyl', 'cone', 'sphere']), rad = r.int(2, 10), h = shape === 'sphere' ? 0 : r.int(2, 15), useD = r.chance(.4);
+    const exact = shape === 'cyl' ? 3.14 * rad * rad * h : shape === 'cone' ? 3.14 * rad * rad * h / 3 : 4 / 3 * 3.14 * rad * rad * rad;
+    return { kind: 'solid', shape, ask: 'volume', u, rad, h, useD, pimode: '3.14', exact, ans: Gen.m.round(exact, 1), key: `V ${shape} ${rad} ${h} ${useD}`,
+      draw: shape === 'cyl' ? drawCyl(rad, h, useD, u) : shape === 'cone' ? drawCone(rad, h, useD, u) : drawSphere(rad, useD, u) };
+  }
   if (kind === 'vol') {
     const l = r.int(2, 12), w = r.int(2, 8), h = r.int(2, 10);
     return { kind: 'box', ask: 'volume', u, l, w, h, ans: l * w * h, draw: drawBox(l, w, h, u), key: `B ${l} ${w} ${h}` };
@@ -222,10 +296,11 @@ function answerText(p, g) {
     const pow = p.ask === 'area' ? '²' : p.ask === 'volume' ? '³' : '';
     return piText(p.ans, p.pimode, u, pow);
   }
-  const unit = p.ask === 'area' || p.ask === 'both' ? sq(u, g) : p.ask === 'volume' ? cu(u, g) : p.ask === 'surface' ? sq(u, g) : u;
+  if (p.kind === 'solid') return `${fmt(p.ans, 1)} ${cu(u, g)}`;
+  const unit = p.kind === 'grid' ? 'square units' : p.ask === 'area' || p.ask === 'both' ? sq(u, g) : p.ask === 'volume' ? cu(u, g) : p.ask === 'surface' ? sq(u, g) : u;
   return `${fmt(p.ans)} ${unit}`;
 }
-const ASK = { perimeter: 'Perimeter', area: 'Area', volume: 'Volume', surface: 'Surface area', circumference: 'Circumference', side: 'Other side' };
+const ASK = { perimeter: 'Perimeter', area: 'Area', volume: 'Volume', surface: 'Surface area', circumference: 'Circumference', side: 'Other side', unknown: 'Missing side' };
 function formula(p, g) {   // the worked line for the teacher page
   const u = p.u, A = answerText(p, g), pi = p.pimode === 'pi' ? 'π' : '3.14';
   switch (p.kind) {
@@ -240,11 +315,16 @@ function formula(p, g) {   // the worked line for the teacher page
     case 'trap': return `½ × (${p.b1} + ${p.b2}) × ${p.h} = ${A}`;
     case 'circle': return (p.ask === 'area' ? `${pi} × ${p.rad}² = ${A}` : `2 × ${pi} × ${p.rad} = ${A}`);
     case 'cyl': return `${pi} × ${p.rad}² × ${p.h} = ${A}`;
+    case 'unk': { const known = p.sides.filter((x, i) => i !== p.hide); return `${p.given} − (${known.join(' + ')}) = ${p.given} − ${known.reduce((x, y) => x + y, 0)} = ${A}`; }
+    case 'grid': return p.cw ? `${p.w} × ${p.h} − ${p.cw} × ${p.ch} = ${p.w * p.h} − ${p.cw * p.ch} = ${A}` : `${p.h} rows of ${p.w} squares: ${p.w} × ${p.h} = ${A}`;
+    case 'tprism': return `2 × (½ × ${p.a} × ${p.b}) + (${p.a} + ${p.b} + ${p.c}) × ${p.L} = ${p.a * p.b} + ${(p.a + p.b + p.c) * p.L} = ${A}`;
+    case 'solid': { const ex = `${fmt(p.exact, 3)}`;
+      return (p.shape === 'cyl' ? `3.14 × ${p.rad}² × ${p.h} = ${ex}` : p.shape === 'cone' ? `3.14 × ${p.rad}² × ${p.h} ÷ 3 = ${ex}` : `4 × 3.14 × ${p.rad}³ ÷ 3 = ${ex}`) + `, rounded to the nearest tenth: ${A}`; }
   }
   return A;
 }
 void UNAME;
-const rNote = p => (p.kind === 'circle' || p.kind === 'cyl') && p.useD ? `r = ${p.rad * 2} ÷ 2 = ${p.rad} ${p.u}. ` : '';
+const rNote = p => (p.kind === 'circle' || p.kind === 'cyl' || p.kind === 'solid') && p.useD ? `r = ${p.rad * 2} ÷ 2 = ${p.rad} ${p.u}. ` : '';
 
 Gen.add('measure-shapes', {
   title: 'Area, Perimeter and Volume', type: 'Diagram',
@@ -263,11 +343,11 @@ Gen.add('measure-shapes', {
     { id: 'grade', label: 'Grade', type: 'select', options: GRADES, def: '4' },
     { id: 'skill', label: 'Skill', type: 'select', options: v => SKILLS[v.grade], def: 'ap' },
     { id: 'units', label: 'Units', type: 'select', options: UNITS, def: 'both' },
-    { id: 'pi', label: 'Pi', type: 'select', options: [['3.14', 'Use 3.14'], ['pi', 'Answer in terms of π']], def: '3.14', show: usesPi },
+    { id: 'pi', label: 'Pi', type: 'select', options: [['3.14', 'Use 3.14'], ['pi', 'Answer in terms of π']], def: '3.14', show: piChoice },
     { id: 'count', label: 'Problems', type: 'select', options: COUNTS.map(c => [String(c), String(c)]), def: '9' },
   ],
   make(v, r) {
-    const g = v.grade, skill = v.skill, n = +v.count, pimode = usesPi(v) ? v.pi : '3.14';
+    const g = v.grade, skill = v.skill, n = +v.count, pimode = piChoice(v) ? v.pi : '3.14';
     const label = SKILLS[g].find(s => s[0] === skill)[1], gname = GRADES.find(x => x[0] === g)[1];
     let kinds = skill;
     const pick = () => {
@@ -299,14 +379,19 @@ Gen.add('measure-shapes', {
         box: ex.ask === 'volume' ? 'multiply length × width × height' : 'add the areas of all six faces', box2: 'find the volume of each box and add them',
         tri: 'area = ½ × base × height', para: 'area = base × height', trap: 'area = ½ × (base 1 + base 2) × height',
         circle: ex.ask === 'area' ? `area = π × r × r${ex.useD ? ' (halve the diameter to get r)' : ''}` : `circumference = 2 × π × r, or π × d`,
-        cyl: `volume = π × r × r × height${ex.useD ? ' (halve the diameter to get r)' : ''}` }[ex.kind];
-      const head = ex.kind === 'miss' ? `${esc(ex.text)} To find it,` : `How to find the ${what} of ${{ perim: 'a shape', rect: 'a rectangle', L: 'an L-shape', box: 'a box', box2: 'two joined boxes', tri: 'a triangle', para: 'a parallelogram', trap: 'a trapezoid', circle: 'a circle', cyl: 'a cylinder' }[ex.kind]}:`;
+        cyl: `volume = π × r × r × height${ex.useD ? ' (halve the diameter to get r)' : ''}`,
+        unk: 'add the sides you know, then subtract that total from the perimeter', grid: 'count the squares inside, or count the rows and multiply by the squares in each row',
+        tprism: 'add the two triangle ends (½ × base × height each) and the three rectangle faces (each side of the triangle × the length)',
+        solid: { cyl: 'volume = 3.14 × r × r × height', cone: 'volume = 3.14 × r × r × height ÷ 3', sphere: 'volume = 4 × 3.14 × r × r × r ÷ 3' }[ex.shape] + `${ex.useD ? ' (halve the diameter to get r)' : ''}, then round to the nearest tenth` }[ex.kind];
+      const head = ex.kind === 'miss' ? `${esc(ex.text)} To find it,` : ex.kind === 'unk' ? `The perimeter is ${ex.given} ${ex.u} and one side is marked ?. To find it,`
+        : `How to find the ${what} of ${{ perim: 'a shape', rect: 'a rectangle', L: 'an L-shape', box: 'a box', box2: 'two joined boxes', tri: 'a triangle', para: 'a parallelogram', trap: 'a trapezoid', circle: 'a circle', cyl: 'a cylinder',
+          grid: 'a shape on a grid', tprism: 'a triangular prism', solid: { cyl: 'a cylinder', cone: 'a cone', sphere: 'a sphere' }[ex.shape] }[ex.kind]}:`;
       return example(`${head} ${desc}.`, `${rNote(ex)}${ASK[ex.ask === 'both' ? 'area' : ex.ask]} = ${formula(ex.ask === 'both' ? { ...ex, ask: 'area' } : ex, g)}`);
     })();
     const parts = [part('', exText), part('Practice', `<div class="ms-grid">${cells.join('')}</div>`)];
     const usesSq = ps.some(p => ['area', 'surface', 'both'].includes(p.ask)), usesCu = ps.some(p => p.ask === 'volume');
     const unitWord = +g >= 6 ? `square units (cm²)${usesCu ? ' and cubic units (cm³)' : ''}` : `square units${usesCu ? ' and cubic units' : ''}`;
-    const piWord = usesPi(v) ? (pimode === 'pi' ? ' Leave π in your answer, like 16π cm².' : ' Use 3.14 for π.') : '';
+    const piWord = usesPi(v) ? (pimode === 'pi' ? ' Leave π in your answer, like 16π cm².' : ' Use 3.14 for π.') + (skill === 'round' ? ' Round each answer to the nearest tenth.' : '') : '';
     const directions = `Find each measurement. Write the number and the unit on the line${usesSq || usesCu ? `, using ${unitWord} where they belong` : ''}.${piWord}`;
     const teacher = `<h3>Worked answers</h3><ol class="ms-steps">${ps.map(p => `<li>${p.ask === 'both' ? `Area: ${esc(formula({ ...p, ask: 'area' }, g))}. Perimeter: ${esc(formula({ ...p, ask: 'perimeter', ans: p.ans2 }, g))}` : esc(rNote(p) + formula(p, g))}</li>`).join('')}</ol>`;
     const mistakes = {
@@ -324,10 +409,12 @@ Gen.add('measure-shapes', {
         mix4: 'I can solve area and perimeter problems.', vol: 'I can find the volume of a rectangular prism.', volc: 'I can find the volume of a solid made of two boxes.',
         tri: 'I can find the area of a triangle.', para: 'I can find the area of a parallelogram.', trap: 'I can find the area of a trapezoid.', poly: 'I can find the area of triangles, parallelograms and trapezoids.',
         sa: 'I can find the surface area of a rectangular prism.', circ: 'I can find the circumference of a circle.', carea: 'I can find the area of a circle.', circles: 'I can find the circumference and area of a circle.',
-        cyl: 'I can find the volume of a cylinder.', vol8: 'I can find the volume of prisms and cylinders.' }[skill],
+        cyl: 'I can find the volume of a cylinder.', vol8: 'I can find the volume of prisms and cylinders.',
+        unknown: 'I can find a missing side when I know the perimeter.', grid: 'I can find area by counting unit squares.',
+        prismsa: 'I can find the surface area of a triangular prism.', round: 'I can find the volume of cylinders, cones and spheres.' }[skill],
       directions, minutes: n > 9 ? 30 : 25, materials: 'pencil' + (+g >= 6 ? ', calculator optional' : ''),
       parts, items, teacher, mistakes,
-      notes: `Shapes are drawn roughly to scale, so students can sense when an answer is far off, but they should use the labels, not a ruler.${['tri', 'para', 'trap', 'poly'].includes(skill) ? ' Some parallelograms show the slanted side as well: it is there on purpose, to check that students use the height.' : ''}${usesPi(v) && pimode !== 'pi' ? ' Answers with 3.14 are exact to the hundredth, so a calculator answer should match.' : ''}`,
+      notes: `Shapes are drawn roughly to scale, so students can sense when an answer is far off, but they should use the labels, not a ruler.${['tri', 'para', 'trap', 'poly'].includes(skill) ? ' Some parallelograms show the slanted side as well: it is there on purpose, to check that students use the height.' : ''}${skill === 'round' ? ' Answers use 3.14 for π and are rounded to the nearest tenth; the teacher page shows the unrounded value.' : usesPi(v) && pimode !== 'pi' ? ' Answers with 3.14 are exact to the hundredth, so a calculator answer should match.' : ''}${skill === 'grid' ? ' Grid answers are in square units with no length unit, since the squares have no size given.' : ''}`,
     };
   },
   verify(s, v) {
@@ -348,6 +435,12 @@ Gen.add('measure-shapes', {
         case 'trap': want = (p.b1 + p.b2) / 2 * p.h; break;
         case 'circle': want = p.ask === 'area' ? p.rad * p.rad : p.rad * 2; break;
         case 'cyl': want = p.rad * p.rad * p.h; break;
+        case 'unk': { let known = 0; p.sides.forEach((x, i) => { if (i !== p.hide) known += x; }); want = p.given - known; break; }
+        case 'grid': want = p.cw ? (p.w - p.cw) * p.h + p.cw * (p.h - p.ch) : p.w * p.h; break;
+        case 'tprism': want = p.a * p.b / 2 + p.a * p.b / 2 + p.a * p.L + p.b * p.L + p.c * p.L; break;
+        case 'solid': {   // in whole hundredths of a cubic unit, then to the nearest tenth
+          const hund = p.shape === 'cyl' ? 314 * p.rad * p.rad * p.h : p.shape === 'cone' ? 314 * p.rad * p.rad * p.h / 3 : 4 * 314 * p.rad * p.rad * p.rad / 3;
+          want = Math.round(hund / 10) / 10; break; }
       }
       const m = String(it.a).match(/^([\d,.]*)(π?) (.+)$/);
       if (!m) { out.push(`${it.q}: cannot read ${it.a}`); continue; }
@@ -356,7 +449,9 @@ Gen.add('measure-shapes', {
         if (p.pimode === 'pi') { if (!m[2] || Math.abs(got - want) > 1e-9) out.push(`${it.q}: key says ${it.a}, want ${want}π`); }
         else if (Math.abs(got - want * 3.14) > 0.004) out.push(`${it.q}: key says ${it.a}, want ${(want * 3.14).toFixed(2)}`);
       } else if (Math.abs(got - want) > 1e-9) out.push(`${it.q}: key says ${it.a}, want ${want}`);
-      if (!(want > 0) || (p.kind === 'miss' && !Number.isInteger(want))) out.push(`${it.q}: bad measurement ${want}`);
+      if (!(want > 0) || ((p.kind === 'miss' || p.kind === 'unk') && !Number.isInteger(want))) out.push(`${it.q}: bad measurement ${want}`);
+      if (p.kind === 'unk' && p.sides.reduce((x, y) => x + y, 0) !== p.given) out.push(`${it.q}: sides do not add to the given perimeter`);
+      if (p.kind === 'tprism' && p.a * p.a + p.b * p.b !== p.c * p.c) out.push(`${it.q}: not a right triangle`);
       // the unit must match the question: plain, square or cubic
       const unit = m[3], sqU = /square|²/.test(unit), cuU = /cubic|³/.test(unit);
       const needSq = ['area', 'surface'].includes(p.ask) || p.ask === 'both', needCu = p.ask === 'volume';

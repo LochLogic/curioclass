@@ -2,6 +2,9 @@
 // sentence starters and the idea lines are drawn from banks, so New sheet gives a fresh wording of the same organizer.
 // The topic goes in the heading (and, for Venn and compare layouts, "A and B" fills the circle and column names).
 // Grade band sets the box count, the writing space and the wording; the teacher page holds a filled-in model.
+// Optional settings: row labels (fill the rows of the compare chart, the steps, the chain links and the cause and effect
+// boxes; extra labels add rows, up to 8), 2 to 4 subjects with typed column headers for the compare chart, and a T-chart
+// (two-column sort) with its own headers and a cut-out strip of cards to sort.
 (() => {
 const { esc } = Gen.h;
 
@@ -10,7 +13,7 @@ const LAYOUTS = [
   ['venn2', 'Venn diagram, 2 circles'], ['venn3', 'Venn diagram, 3 circles'], ['compare', 'Compare and contrast chart'],
   ['cause', 'Cause and effect'], ['chain', 'Cause chain'], ['main', 'Main idea and details'], ['sequence', 'Sequence / flow chart'],
   ['cer', 'Claim, evidence, reasoning'], ['kwl', 'KWL chart'], ['problem', 'Problem and solution'], ['web', 'Concept web'],
-  ['story', 'Story map'], ['frayer', 'Frayer model'],
+  ['story', 'Story map'], ['frayer', 'Frayer model'], ['tchart', 'T-chart (two-column sort)'],
 ];
 const NAME = Object.fromEntries(LAYOUTS);
 const GROW = /*GROW*/{"venn2-k2":2.17,"venn2-35":2.07,"venn2-68":1.82,"venn2-912":2.4,"venn3-k2":1.07,"venn3-68":0.86,"venn3-912":0.82,"compare-k2":1.23,"compare-35":1.35,"compare-68":1.31,"compare-912":1.22,"cause-k2":1.31,"cause-35":2.16,"cause-68":1.89,"cause-912":1.72,"chain-k2":1.3,"chain-68":1.24,"chain-912":1.24,"main-k2":1.32,"main-35":1.72,"main-68":1.96,"main-912":1.09,"sequence-k2":1.24,"sequence-35":1.23,"sequence-912":1.15,"cer-k2":1.14,"cer-35":1.35,"cer-68":1.37,"cer-912":1.15,"kwl-k2":1.54,"kwl-35":1.2,"kwl-68":1.25,"kwl-912":1.22,"problem-k2":0.96,"problem-35":1.13,"problem-68":0.93,"problem-912":1.14,"web-k2":0.98,"web-35":0.88,"web-68":0.78,"web-912":0.81,"story-k2":1.48,"story-35":1.24,"story-68":1.49,"story-912":1.15,"frayer-k2":1.03,"frayer-35":0.9,"frayer-68":0.98,"frayer-912":1.08,"venn3-35":0.98,"sequence-68":0.87}/*GROW*/;   // per layout and band: how much to stretch the writing space to fill the page (tuned by print tests)
@@ -44,6 +47,10 @@ function names(topic, n) {
   return parts.length === n && parts.every(p => p.length <= 28) ? parts : [];
 }
 const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+// "size, color, where it lives" -> up to max short labels; text with no commas is one label (none when blank)
+function list(text, max = 8, maxLen = 40) {
+  return String(text || '').split(',').map(x => x.trim()).filter(Boolean).map(x => x.length > maxLen ? x.slice(0, maxLen - 1).trim() + '.' : x).slice(0, max);
+}
 
 /* ---------- the layouts: each returns the organizer html ---------- */
 const BUILD = {
@@ -84,37 +91,62 @@ const BUILD = {
   venn3: (b, K, c) => BUILD.venn(b, K, names(c.topic, 3), 3),
 
   compare(b, K, c) {
-    const nm = names(c.topic, 2), A = nm[0] ? esc(cap(nm[0])) : '', B = nm[1] ? esc(cap(nm[1])) : '';
+    const n = Math.min(4, Math.max(2, +c.subjects || 2));
+    const typed = list(c.cols, n, 28), nm = typed.length ? typed : names(c.topic, n);
+    const subj = Array.from({ length: n }, (_, i) => nm[i] ? esc(cap(nm[i])) : '');
     const head = s => s || '<span class="org-hblank"></span>';
-    const set = { k2: { rows: 3, h: 1.35, cols: ['Look at', head(A), head(B)], w: '24% 38% 38%' },
-      35: { rows: 4, h: 1.0, cols: ['What we compare', head(A), head(B), 'Same or different?'], w: '22% 30% 30% 18%' },
-      68: { rows: 5, h: 0.86, cols: ['Point of comparison', head(A), head(B), 'Alike or different? How?'], w: '20% 28% 28% 24%' },
-      912: { rows: 6, h: 0.78, cols: ['Criterion', head(A), head(B), 'Why the difference matters'], w: '18% 27% 27% 28%' } }[b];
+    const set = { k2: { rows: 3, h: 1.35, first: 'Look at', last: '', w: [24, 0] },
+      35: { rows: 4, h: 1.0, first: 'What we compare', last: 'Same or different?', w: [22, 18] },
+      68: { rows: 5, h: 0.86, first: 'Point of comparison', last: 'Alike or different? How?', w: [20, 24] },
+      912: { rows: 6, h: 0.78, first: 'Criterion', last: 'Why the difference matters', w: [18, 28] } }[b];
+    const cols = [set.first, ...subj.map(head), ...(set.last ? [set.last] : [])];
+    const share = (100 - set.w[0] - set.w[1]) / n;
+    const widths = [set.w[0], ...subj.map(() => share), ...(set.last ? [set.w[1]] : [])];
     const ideas = { k2: [['size', 'color', 'where it lives', 'what it eats'], ['how it looks', 'how it moves', 'where it is', 'what it does'], ['shape', 'sound', 'where you find it', 'how we use it']],
       35: [['looks', 'where or when', 'how it works', 'what it needs'], ['size', 'parts', 'uses', 'good and bad points'], ['characters', 'setting', 'problem', 'lesson']],
       68: [['purpose', 'structure', 'causes', 'effects', 'who it affects'], ['features', 'time and place', 'strengths', 'weaknesses', 'impact'], ['process', 'inputs', 'outputs', 'uses', 'limits']],
       912: [['purpose', 'structure', 'causes', 'consequences', 'scale', 'perspective'], ['origins', 'key features', 'strengths', 'limitations', 'evidence', 'long-term impact'], ['assumptions', 'methods', 'outcomes', 'costs', 'who benefits', 'significance']] }[b];
+    const labels = c.rows || [], nRows = Math.max(set.rows, labels.length);
+    const h = set.h * set.rows / nRows;   // extra rows share the same space, so the sheet stays one page
     const lastCell = b === '35' ? '<p class="org-circle">same &nbsp; / &nbsp; different</p>' : '';
-    const rows = Array.from({ length: set.rows }, () => `<tr>${set.cols.map((_, i) => `<td style="height:${(set.h * K.g).toFixed(2)}in">${i === 3 && lastCell ? lastCell : K.lines(set.h - 0.12)}</td>`).join('')}</tr>`).join('');
-    const table = `<table class="org-table"><colgroup>${set.w.split(' ').map(w => `<col style="width:${w}">`).join('')}</colgroup><thead><tr>${set.cols.map(x => `<th>${x}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table>`;
-    const idea = `<p class="org-ideas"><b>${b === 'k2' ? 'Things to look at' : 'Ideas for rows'}:</b> ${K.pk(ideas).join(', ')}${b === 'k2' ? '' : ', or your own'}.</p>`;
+    const last = cols.length - 1;
+    const rows = Array.from({ length: nRows }, (_, ri) => `<tr>${cols.map((_, i) => `<td style="height:${(h * K.g).toFixed(2)}in">` +
+      (i === 0 && labels[ri] ? `<b class="org-rowlab">${esc(cap(labels[ri]))}</b>` : i === last && lastCell ? lastCell : K.lines(h - 0.12)) + '</td>').join('')}</tr>`).join('');
+    const table = `<table class="org-table"><colgroup>${widths.map(w => `<col style="width:${w.toFixed(1)}%">`).join('')}</colgroup><thead><tr>${cols.map(x => `<th>${x}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table>`;
+    const idea = labels.length ? '' : `<p class="org-ideas"><b>${b === 'k2' ? 'Things to look at' : 'Ideas for rows'}:</b> ${K.pk(ideas).join(', ')}${b === 'k2' ? '' : ', or your own'}.</p>`;
     const sum = K.box(b === 'k2' ? 'My sentence' : 'Sum it up', { q: b === 'k2' ? ['Tell one way they are the same and one way they are different.', 'What is the biggest difference?']
       : ['Overall, are they more alike or more different? Use one row of your chart as proof.', 'Which difference matters most? Explain why.', 'Write a sentence that compares them on your most important row.'],
       h: b === 'k2' ? 0.9 : 0.68, st: b === 'k2' ? ['They are the same because', 'They are different because'] : ['Overall,', 'The most important difference is', 'While both', 'Unlike'] });
     return idea + table + sum;
   },
 
-  cause(b, K) {
+  tchart(b, K, c) {
+    const typed = list(c.cols, 2, 28), nm = typed.length ? typed : names(c.topic, 2);
+    const head = s => s ? esc(cap(s)) : '<span class="org-hblank"></span>';
+    const cards = c.cards || [];
+    const per = b === 'k2' ? 3 : 4, strip = cards.length ? Math.ceil(cards.length / per) * (b === 'k2' ? 0.5 : 0.42) + 0.3 : 0;
+    const h = Math.max(1.6, { k2: 5.0, 35: 5.9, 68: 6.2, 912: 6.3 }[b] - strip);
+    const table = `<table class="org-table org-t"><thead><tr><th>${head(nm[0])}</th><th>${head(nm[1])}</th></tr></thead><tbody><tr>` +
+      [0, 1].map(() => `<td style="height:${(h * K.g).toFixed(2)}in">${cards.length ? '' : K.lines(h - 0.12)}</td>`).join('') + '</tr></tbody></table>';
+    const sum = K.box(b === 'k2' ? 'My sentence' : 'Sum it up', { q: b === 'k2' ? ['How did you know where each one goes?', 'Tell about one thing in each side.']
+      : ['What rule did you use to sort? Was anything hard to place?', 'Which item was hardest to place? Why?', 'Write one sentence about each column.'],
+      h: b === 'k2' ? 0.88 : 0.6, st: b === 'k2' ? ['I put', 'I know because'] : ['I sorted by', 'The hardest one was', 'Everything on the left'] });
+    const cut = cards.length ? `<p class="org-cut">cut out the cards and sort them</p><div class="org-cards" style="--n:${per}">${cards.map(x => `<span>${esc(x)}</span>`).join('')}</div>` : '';
+    return table + sum + cut;
+  },
+
+  cause(b, K, c) {
+    const lab = (i, dflt) => c.rows && c.rows[i] ? esc(cap(c.rows[i])) : dflt;   // typed labels fill the boxes in order
     if (b === 'k2') {
       const pair = i => K.grid('1fr auto 1fr', [
-        K.box(`${i}. Why did it happen?`, { q: ['This is the cause.', 'This is the cause. Ask: why?'], draw: 1.25, h: 0.44, st: ['Because', 'First,'] }),
+        K.box(lab(i - 1, `${i}. Why did it happen?`), { q: ['This is the cause.', 'This is the cause. Ask: why?'], draw: 1.25, h: 0.44, st: ['Because', 'First,'] }),
         K.right,
         K.box(`${i}. What happened?`, { q: ['This is the effect.', 'This is the effect. Ask: what happened?'], draw: 1.25, h: 0.44, st: ['So', 'Then'] })]);
       return pair(1) + `<div class="org-gap"></div>` + pair(2) + K.box('My sentence', { q: ['Put one pair together in a sentence.', 'Use the word <b>because</b> in a sentence.'], h: 0.88, st: ['This happened because', 'Because of this,'] });
     }
     if (b === '35') {
-      const eff = i => K.box(`Effect ${i}`, { q: ['What happened because of the cause?', 'What was one result?', 'What changed?'], h: 0.68, st: ['As a result,', 'So', 'Because of this,'] });
-      const cause = K.box('Cause', { q: ['Why did it happen? What made it happen?', 'What happened first that led to the effects?'], h: 2.4, st: ['It started when', 'The cause was'], cls: 'org-main' });
+      const eff = i => K.box(lab(i, `Effect ${i}`), { q: ['What happened because of the cause?', 'What was one result?', 'What changed?'], h: 0.68, st: ['As a result,', 'So', 'Because of this,'] });
+      const cause = K.box(lab(0, 'Cause'), { q: ['Why did it happen? What made it happen?', 'What happened first that led to the effects?'], h: 2.4, st: ['It started when', 'The cause was'], cls: 'org-main' });
       return `<div class="org-ce">${cause}<div class="org-ce-arrows" aria-hidden="true">&#8594;<br>&#8594;<br>&#8594;</div><div class="org-stack">${eff(1)}${eff(2)}${eff(3)}</div></div>` +
         K.box('Sum it up', { q: ['Which effect is the most important? Why?', 'Write one sentence that links the cause to an effect.'], h: 0.68, st: ['The most important effect was', 'Because', 'This led to'] });
     }
@@ -124,27 +156,32 @@ const BUILD = {
     const ez = older ? [['Short-term effect', 'What happened right away?'], ['Short-term effect', 'Another immediate result'], ['Long-term effect', 'What changed for years after?']]
       : [['Effect 1', ['What happened as a result?', 'What changed?']], ['Effect 2', ['What else happened as a result?', 'Name another result.']]];
     const h = older ? 0.72 : 1.05;
-    const side = (list, sts) => `<div class="org-stack">${list.map(([l, q]) => K.box(l, { q, h, st: sts })).join('')}</div>`;
+    const side = (boxes, sts, at) => `<div class="org-stack">${boxes.map(([l, q], i) => K.box(lab(at + i, l), { q, h, st: sts })).join('')}</div>`;
     const ev = K.box(older ? 'Event' : 'The event', { q: ['What happened? Write it in a few words.', 'Name the event or change.'], h: older ? 1.4 : 1.2, cls: 'org-main', st: ['The event was'] });
-    return `<div class="org-ce3">${side(cz, ['One cause was', 'This happened because', 'Before the event,'])}<div class="org-right" aria-hidden="true">&#8594;</div>${ev}<div class="org-right" aria-hidden="true">&#8594;</div>${side(ez, ['As a result,', 'Consequently,', 'This led to'])}</div>` +
+    return `<div class="org-ce3">${side(cz, ['One cause was', 'This happened because', 'Before the event,'], 0)}<div class="org-right" aria-hidden="true">&#8594;</div>${ev}<div class="org-right" aria-hidden="true">&#8594;</div>${side(ez, ['As a result,', 'Consequently,', 'This led to'], cz.length)}</div>` +
       K.box(older ? 'Weigh the causes' : 'Explain', { q: older ? ['Which cause mattered most? Defend your answer with evidence.', 'Could the event have happened without the immediate cause? Explain.', 'Which effect lasted longest, and why?']
         : ['Which cause do you think mattered most? Why?', 'How do you know? Name a source or a detail.', 'Which effect was biggest, and why?'],
       h: older ? 0.84 : 0.9, st: ['The most important cause was', 'The evidence shows', 'Without'] });
   },
 
-  chain(b, K) {
-    const n = { k2: 3, 35: 4, 68: 5, 912: 5 }[b];
-    const labs = { k2: ['First this happened', 'So this happened', 'Then this happened'], 35: ['It starts here', 'That caused', 'That caused', 'In the end'],
+  chain(b, K, c) {
+    const n0 = { k2: 3, 35: 4, 68: 5, 912: 5 }[b], typed = c.rows || [], n = Math.max(n0, typed.length);
+    const labs0 = { k2: ['First this happened', 'So this happened', 'Then this happened'], 35: ['It starts here', 'That caused', 'That caused', 'In the end'],
       68: ['Starting event', 'Which led to', 'Which led to', 'Which led to', 'Final effect'], 912: ['Initial cause', 'Which led to', 'Which led to', 'Which led to', 'Outcome'] }[b];
-    const h = { k2: 0.44, 35: 0.95, 68: 0.6, 912: 0.56 }[b];
+    const labs = Array.from({ length: n }, (_, i) => typed[i] ? esc(cap(typed[i])) : i === 0 ? labs0[0] : i === n - 1 ? labs0[n0 - 1] : labs0[1]);
+    // more links than the default go in a grid (the numbers give the order); k2 shrinks its boxes by the number of grid rows
+    const gridCols = n > n0 ? (b === 'k2' && n > 4 ? 3 : 2) : 0, gridRows = gridCols ? Math.ceil(n / gridCols) : 0;
+    const sc = b === 'k2' ? [1, 1, 1, 0.75][gridRows] || 0.75 : (gridCols ? Math.min(1, 2 * n0 / n) : 1);
+    const h = { k2: 0.44, 35: 0.95, 68: 0.6, 912: 0.56 }[b] * sc;
     const qs = [['What happened first?', 'Where does the chain begin?'], ['What happened next because of that?', 'What did that cause?', 'What was the result?'], ['How did that lead to the end?', 'What did that change?']];
     const sts = b === 'k2' ? [['First,'], ['So', 'Then'], ['So', 'At last,']] : [['It began when', 'First,'], ['Because of this,', 'As a result,', 'This caused', 'This led to'], ['In the end,', 'Finally,', 'Ultimately,']];
     const out = [];
     for (let i = 0; i < n; i++) {
       const pos = i === 0 ? 0 : i === n - 1 ? 2 : 1;
-      out.push(K.box(`${i + 1}. ${labs[i]}`, { q: qs[pos], h, st: sts[pos], draw: b === 'k2' ? 1.05 : 0, cls: i === 0 || i === n - 1 ? 'org-main' : '' }));
-      if (i < n - 1) out.push(K.down(b === 'k2' ? '' : 'led to'));
+      out.push(K.box(`${i + 1}. ${labs[i]}`, { q: qs[pos], h, st: sts[pos], draw: b === 'k2' ? 1.05 * sc : 0, cls: i === 0 || i === n - 1 ? 'org-main' : '' }));
+      if (i < n - 1 && !gridCols) out.push(K.down(b === 'k2' ? '' : 'led to'));
     }
+    if (gridCols) out.splice(0, out.length, K.grid(`repeat(${gridCols}, 1fr)`, out));
     if (b !== 'k2') out.push(K.box(b === '912' ? 'Analyze the chain' : 'Think about it', { q: b === '912' ? ['Where could the chain have been broken? What would have changed?', 'Which link was the turning point? Explain.']
       : ['What would happen if one link were missing?', 'Which link surprised you? Why?', 'Why does this chain matter?'], h: b === '35' ? 0.6 : 0.6, st: ['If', 'The turning point was', 'This matters because'] }));
     return out.join('');
@@ -167,23 +204,26 @@ const BUILD = {
     return top + `<div class="org-ties" aria-hidden="true">${'<span></span>'.repeat(n === 4 ? 2 : n)}</div>` + K.grid(cols, Array.from({ length: n }, (_, i) => det(i + 1))) + end;
   },
 
-  sequence(b, K) {
+  sequence(b, K, c) {
+    const typed = c.rows || [];
     if (b === 'k2') {
-      const words = ['First', 'Next', 'Then', 'Last'];
-      return K.grid('1fr 1fr', words.map((w, i) => K.box(`${i + 1}. ${w}`, { q: ['What happens?', 'Draw and write this step.'], draw: 1.85, h: 0.88, st: [w + ','] })), 'org-steps4');
+      const n = Math.max(4, typed.length), cols = n > 4 ? 3 : 2, sc = [1, 1, 0.75, 0.5][Math.ceil(n / cols)] || 0.5;
+      const w = i => typed[i] ? cap(typed[i]) : i === 0 ? 'First' : i === n - 1 ? 'Last' : i % 2 ? 'Next' : 'Then';
+      return K.grid(`repeat(${cols}, 1fr)`, Array.from({ length: n }, (_, i) => K.box(`${i + 1}. ${esc(w(i))}`, { q: ['What happens?', 'Draw and write this step.'], draw: 1.85 * sc, h: 0.88 * sc, st: [w(i) + ','] })), n === 4 ? 'org-steps4' : '');
     }
-    const n = { 35: 5, 68: 6, 912: 6 }[b];
+    const n0 = { 35: 5, 68: 6, 912: 6 }[b], n = Math.max(n0, typed.length), two = n > n0, sc = two ? Math.min(1, 2 * n0 / n) : 1;
     const trans = { 35: [['First,', 'To begin,'], ['Next,', 'Then,'], ['After that,', 'Next,'], ['Then,', 'Soon,'], ['Finally,', 'Last,']],
       68: [['First,', 'To begin,'], ['Next,', 'Second,'], ['Then,', 'After that,'], ['Meanwhile,', 'Following this,'], ['Later,', 'Subsequently,'], ['Finally,', 'In the end,']],
       912: [['Initially,', 'To begin,'], ['Next,', 'Following this,'], ['Subsequently,', 'Then,'], ['At the same time,', 'After this,'], ['Later,', 'Eventually,'], ['Ultimately,', 'Finally,']] }[b];
-    const h = { 35: 0.68, 68: 0.6, 912: 0.56 }[b];
+    const h = { 35: 0.68, 68: 0.6, 912: 0.56 }[b] * sc;
     const rows = [];
     for (let i = 0; i < n; i++) {
-      rows.push(`<div class="org-step"><span class="org-num">${i + 1}</span>${K.box(i === 0 ? 'Step 1' : i === n - 1 ? `Step ${n}` : `Step ${i + 1}`, {
+      rows.push(`<div class="org-step"><span class="org-num">${i + 1}</span>${K.box(typed[i] ? esc(cap(typed[i])) : i === 0 ? 'Step 1' : i === n - 1 ? `Step ${n}` : `Step ${i + 1}`, {
         q: i === 0 ? ['What happens first?', 'Where does it start?'] : i === n - 1 ? ['How does it end?', 'What is the last step or result?'] : ['What happens next?', 'What comes after the step above?', 'What is the next step?'],
-        h, st: trans[i] })}</div>`);
-      if (i < n - 1) rows.push(K.down());
+        h, st: trans[Math.min(i, trans.length - 1)] })}</div>`);
+      if (i < n - 1 && !two) rows.push(K.down());
     }
+    if (two) rows.splice(0, rows.length, K.grid('1fr 1fr', rows));   // more steps than the default: two columns, numbered
     if (b === '912') rows.push(K.box('Turning point', { q: ['Star the step that changed things most. Why does the order matter here?', 'Which step could not be moved? Explain.'], h: 0.56, st: ['The key step is', 'The order matters because'] }));
     else rows.push(K.box('Check it', { q: ['Read your steps in order. Could someone follow them? What would go wrong if two steps switched?', 'Which step is the most important? Why?'], h: b === '35' ? 0.68 : 0.6, st: ['The most important step is', 'If two steps switched,'] }));
     return rows.join('');
@@ -339,6 +379,8 @@ const TIPS = {
     o: ['Choose only the events that move the plot forward.', 'Use character names and page numbers.', 'The climax is a turning point, not just the most exciting part.', 'A theme is a full sentence about life, not one word.'] },
   frayer: { y: ['Use your own words, like you are explaining to a friend.', 'A good non-example is something close, but different.', 'Draw if it helps.', 'Check a glossary if you are stuck.'],
     o: ['Write the definition in your own words; do not copy.', 'Characteristics are always true; examples are specific cases.', 'The strongest non-examples are close calls.', 'Check the word in more than one source.'] },
+  tchart: { y: ['Read each card and ask: which side does it fit?', 'Put one thing on each line.', 'If you are not sure, set the card aside and come back to it.', 'Check: does everything on one side have the same thing in common?'],
+    o: ['Decide the rule for each column before you sort.', 'Use short phrases, one per line.', 'An item that fits neither side is worth a note at the bottom.', 'Count your items: both columns should be full.'] },
 };
 TIPS.venn2 = TIPS.venn;
 
@@ -357,6 +399,7 @@ const DIR = {
   web: { k2: 'Write your topic in the middle. Write or draw one idea in each box.', d: 'Write the topic in the center. Name a subtopic on the top line of each box, then add details on the lines below it.' },
   story: { k2: 'Draw and write about the story in each box.', d: 'Fill in each box as you read or after you finish. Use details from the story.' },
   frayer: { k2: 'Write the word in the middle. Fill in each box.', d: 'Write the word in the oval. Fill in all four boxes, then use the word in a sentence.' },
+  tchart: { k2: 'Write or draw each thing on the side where it belongs.', d: 'Write the two headings. Sort each item into the column where it belongs, then answer below.' },
 };
 const ICAN = {
   venn2: { k2: 'I can tell how two things are the same and different.', d: 'I can compare and contrast two things using details.' },
@@ -372,8 +415,10 @@ const ICAN = {
   web: { k2: 'I can tell ideas that go with my topic.', d: 'I can organize a topic into subtopics and details.' },
   story: { k2: 'I can tell who, where, the problem and the ending of a story.', d: 'I can map the parts of a story and explain how they connect.' },
   frayer: { k2: 'I can show what a word means.', d: 'I can define a word and show what it is and is not.' },
+  tchart: { k2: 'I can sort things into two groups.', d: 'I can sort ideas into two groups and explain my rule.' },
 };
 const pickB = (o, b) => o[b] || o.d;
+const ROWED = ['compare', 'cause', 'sequence', 'chain'];   // layouts whose rows or boxes take typed labels
 const MISTAKES = {
   venn2: 'Putting a shared trait in one circle only, and writing opposites in the middle ("one is big, one is small" belongs in the two outer parts, not the overlap).',
   venn3: 'Leaving the pairwise overlaps empty when a trait fits two, or forcing something into every region. Some regions can honestly stay blank.',
@@ -388,6 +433,7 @@ const MISTAKES = {
   web: 'Details that belong under a different subtopic, and subtopics that are really details (too narrow to hold more).',
   story: 'Retelling every event instead of choosing the key ones, and a theme written as one word ("friendship") instead of a sentence.',
   frayer: 'A definition copied word for word, and non-examples that are random. The best non-examples are close calls.',
+  tchart: 'Sorting by a guess instead of a rule, and columns that are really the same group in different words. Ask students to say the rule out loud.',
 };
 const USE = {
   venn2: 'Model one fact in each part with the class first. Students can work in pairs, then write the sum-up on their own. A Venn suits two things that share a lot; for point-by-point comparison use the compare chart.',
@@ -403,6 +449,7 @@ const USE = {
   web: 'Use it to brainstorm before writing, or to review a unit. Each box can become one paragraph of a report.',
   story: 'Use during or after reading a story, novel, film or play. Partners can compare maps and argue about the climax or theme.',
   frayer: 'One word per sheet. Put finished Frayer models on the wall as a word bank, or have partners trade and quiz each other.',
+  tchart: 'Type the two headings and, if you like, a comma-separated list of items to sort: they print as a cut-out strip at the bottom. Without a list, students write their own items on the lines.',
 };
 
 /* ---------- filled-in models for the teacher page (sample topics; facts checked) ---------- */
@@ -481,6 +528,10 @@ const MODELS = {
     ['Examples', 'Ancient Athens (direct democracy, for male citizens only). The United States (a representative democracy and constitutional republic).'],
     ['Non-examples', 'An absolute monarchy. A dictatorship. A one-party state with no real elections.'], ['Word origin', 'Greek <i>demos</i> (people) + <i>kratos</i> (power, rule).']] } },
 };
+MODELS.tchart = { y: { topic: 'Living and nonliving', rows: [['Living', 'dog, tree, mushroom, ant, grass'], ['Nonliving', 'rock, water, chair, cloud, bike'],
+    ['My sentence', 'I put the tree with living things because it grows and needs water.']] },
+  o: { topic: 'Physical and chemical changes', rows: [['Physical change', 'ice melting, paper torn, sugar dissolving in water, glass breaking'], ['Chemical change', 'wood burning, iron rusting, bread baking, a nail turning green in vinegar'],
+    ['Sum it up', 'I sorted by whether a new substance forms. Sugar dissolving was the hardest: it looks like it disappears, but it is still sugar, so it is physical.']] } };
 MODELS.venn = MODELS.venn2;
 
 function modelHtml(m) {
@@ -539,6 +590,14 @@ const CSS = `
 .org-word b { font-size: 20px; overflow-wrap: anywhere; }
 .org-word span { color: #888; font-size: 12px; border-top: 1.5px solid #222; width: 70%; margin-top: .22in; padding-top: 2px; }
 .org-steps4 .org-box { min-height: 3.3in; }
+.org-rowlab { display: block; font: 700 13px/1.25 var(--sans); position: absolute; left: 6px; top: 5px; right: 6px; }
+.org-k2 .org-rowlab { font-size: 15px; }
+.org-t td { vertical-align: top; }
+.org-cut { display: flex; align-items: center; gap: 8px; margin: .1in 0 .04in; font-size: 10.5px; color: #555; }
+.org-cut::before, .org-cut::after { content: ''; flex: 1; border-top: 1.5px dashed #555; }
+.org-cards { display: grid; grid-template-columns: repeat(var(--n), 1fr); }
+.org-cards span { border: 1.5px dashed #555; padding: 6px 8px; min-height: .3in; display: grid; place-items: center; text-align: center; font-size: 13px; }
+.org-k2 .org-cards span { font-size: 15px; min-height: .38in; }
 .org-model th { text-align: left; white-space: nowrap; width: 1%; vertical-align: top; }
 .org-model td { text-align: left; height: auto; }
 `;
@@ -550,22 +609,28 @@ Gen.add('organizer', {
     { id: 'band', label: 'Grade band', type: 'select', options: BANDS, def: '35' },
     { id: 'topic', label: 'Topic or title (optional)', type: 'text', def: '' },
     { id: 'starters', label: 'Add sentence starters', type: 'check', def: false },
+    { id: 'rows', label: 'Row labels, comma separated (compare, cause and effect, sequence, chain)', type: 'text', def: '', show: v => ROWED.includes(v.layout) },
+    { id: 'subjects', label: 'Things to compare (columns)', type: 'select', options: [['2', '2'], ['3', '3'], ['4', '4']], def: '2', show: v => v.layout === 'compare' },
+    { id: 'cols', label: 'Column headers, comma separated (compare, T-chart)', type: 'text', def: '', show: v => v.layout === 'compare' || v.layout === 'tchart' },
+    { id: 'cards', label: 'Cards to sort, comma separated (T-chart; prints a cut-out strip)', type: 'text', def: '', show: v => v.layout === 'tchart' },
   ],
   make(v, r) {
     const b = v.band, L = v.layout, topic = String(v.topic || '').trim();
     const K = kit(b, r, v.starters, GROW[L + "-" + b] || 1);
     const longTopic = topic.length > 55;
+    const rows = ROWED.includes(L) ? list(v.rows, 8, 40) : [], cards = L === 'tchart' ? list(v.cards, 16, 36) : [];
     const tip = (longTopic ? `<p class="org-tip"><b>Topic:</b> ${esc(topic)}</p>` : '') + `<p class="org-tip"><b>Tip:</b> ${esc(r.pick(TIPS[L][young(b) ? 'y' : 'o']))}</p>`;
-    const html = `<div class="org org-${b}">${tip}${BUILD[L](b, K, { topic })}</div>`;
+    const html = `<div class="org org-${b}">${tip}${BUILD[L](b, K, { topic, rows, subjects: v.subjects, cols: v.cols, cards })}</div>`;
     const yo = young(b) ? 'y' : 'o', m = MODELS[L][yo];
     const band = BANDS.find(x => x[0] === b)[1];
+    const many = L === 'compare' && +v.subjects > 2 ? s => s.replace('two things', ['three', 'four'][v.subjects - 3] + ' things') : s => s;
     const tips = { k2: 'Read each box aloud with the class before students start. Students may draw first and then write a word or a sentence.',
       35: 'Model the first box aloud. Students who finish early can add a detail to every box.',
       68: 'Ask students to cite where each detail came from (page, paragraph, source).', 912: 'Expect academic vocabulary and cited evidence in every box.' }[b];
     return {
-      title: (!longTopic && topic) || NAME[L].replace(/,.*$/, '').replace(' / flow chart', ''), eyebrow: 'Graphic organizer · ' + NAME[L], level: band,
-      ican: pickB(ICAN[L], b), directions: pickB(DIR[L], b) + (v.starters ? ' Sentence starters are on the first line of each box; you can use them or start your own way.' : ''),
-      minutes: b === 'k2' ? 20 : 25, materials: 'pencil' + (b === 'k2' ? ', crayons' : '') + (L === 'cer' ? ', your data or notes' : ''),
+      title: (!longTopic && topic) || NAME[L].replace(/,.*$/, '').replace(' / flow chart', '').replace(' (two-column sort)', ''), eyebrow: 'Graphic organizer · ' + NAME[L], level: band,
+      ican: many(pickB(ICAN[L], b)), directions: many(pickB(DIR[L], b)) + (cards.length ? ' Cut out the cards at the bottom and sort them into the two columns.' : '') + (v.starters ? ' Sentence starters are on the first line of each box; you can use them or start your own way.' : ''),
+      minutes: b === 'k2' ? 20 : 25, materials: 'pencil' + (b === 'k2' ? ', crayons' : '') + (L === 'cer' ? ', your data or notes' : '') + (cards.length ? ', scissors, glue' : ''),
       parts: [['', html]], items: [],
       mistakes: MISTAKES[L],
       notes: `${USE[L]} ${tips} The guiding questions${v.starters ? ' and sentence starters' : ''} change with each New sheet, so neighbors can get different wording of the same organizer.`,

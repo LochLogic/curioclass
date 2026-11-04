@@ -1,15 +1,17 @@
 // Planners, Logs and Reflections, K-12. A layout generator: no computed answers (noKey). Pick a kind (project planner, reading
 // log, practice log, science observation log, weekly reflection, exit reflection, goal setting) and a grade band; the band sets
 // the layout, the size of the writing space and the wording. Prompts come from banks, so New sheet gives fresh ones.
+// Also a design and engineering planner (problem, criteria, constraints, three ideas, chosen idea with a labeled sketch,
+// materials, test plan, results, improve) and a trial, week or day log: a table with 4 to 10 numbered entries and a summary.
 (() => {
 const { esc } = Gen.h;
 
 const BANDS = [['k2', 'Grades K-2'], ['35', 'Grades 3-5'], ['68', 'Grades 6-8'], ['912', 'Grades 9-12']];
 const KINDS = [['project', 'Project planner'], ['reading', 'Reading log'], ['practice', 'Practice log'], ['science', 'Science observation log'],
-  ['weekly', 'Weekly reflection'], ['exit', 'Exit reflection (2 slips)'], ['goal', 'Goal setting']];
+  ['weekly', 'Weekly reflection'], ['exit', 'Exit reflection (2 slips)'], ['goal', 'Goal setting'], ['design', 'Design and engineering planner'], ['trial', 'Trial, week or day log']];
 const LH = { k2: 0.44, 35: 0.34, 68: 0.3, 912: 0.28 };
 const RH = { k2: 0.5, 35: 0.4, 68: 0.36, 912: 0.34 };
-const GROW = /*GROW*/{"project-k2":1.03,"project-35":0.92,"project-68":0.76,"project-912":0.7,"reading-k2":1.15,"reading-35":1.16,"reading-68":1.17,"reading-912":1.13,"practice-k2":1.19,"practice-35":1.39,"practice-68":1.39,"practice-912":1.51,"science-k2":1.19,"science-35":1.15,"science-68":1.05,"science-912":0.99,"weekly-k2":1.3,"exit-k2":1.18,"goal-k2":1.29,"goal-35":0.95,"weekly-35":0.96,"exit-35":1.09,"exit-68":1.09,"exit-912":1.1,"goal-68":0.83,"weekly-68":2.15,"weekly-912":2.15,"goal-912":0.71}/*GROW*/;   // per kind and band: stretch the writing space to fill the page (tuned by print tests)
+const GROW = /*GROW*/{"project-k2":1.03,"project-35":0.92,"project-68":0.76,"project-912":0.7,"reading-k2":1.15,"reading-35":1.16,"reading-68":1.17,"reading-912":1.13,"practice-k2":1.19,"practice-35":1.39,"practice-68":1.39,"practice-912":1.51,"science-k2":1.19,"science-35":1.15,"science-68":1.05,"science-912":0.99,"weekly-k2":1.3,"exit-k2":1.18,"goal-k2":1.29,"goal-35":0.95,"weekly-35":0.96,"exit-35":1.09,"exit-68":1.09,"exit-912":1.1,"goal-68":0.83,"weekly-68":2.15,"weekly-912":2.15,"goal-912":0.71,"design-k2":.78,"design-35":.68,"design-68":.64,"design-912":.66,"trial-k2":1,"trial-35":1,"trial-68":1,"trial-912":1}/*GROW*/;   // per kind and band: stretch the writing space to fill the page (tuned by print tests)
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 /* ---------- prompt banks ---------- */
@@ -53,6 +55,22 @@ const P = {
   goal_why: ['Why does this goal matter to you?', 'How will reaching this goal help you?', 'Why did you choose this goal?'],
   goal_block: ['What might get in your way? What will you do then?', 'What could make this hard? What is your plan?', 'If you get stuck, what will you do?'],
   goal_help: ['Who can help you? How?', 'Who will you tell about your goal?', 'What tools or people will help?'],
+  des_prob_y: ['What is the problem? Who needs it solved?', 'What needs to be made or fixed, and for whom?', 'What are you trying to solve?'],
+  des_prob_o: ['Define the problem: who has it, what they need, and why it matters.', 'What problem are you solving, and for whom?', 'State the problem without naming a solution yet.'],
+  des_crit: ['What must it do to be a success?', 'List what a good solution has to do.', 'How will you know it works?'],
+  des_con_y: ['What limits do you have? (time, materials, size, cost)', 'What can you not use or do?'],
+  des_con_o: ['Limits on materials, time, size, cost or safety.', 'What rules, budget or materials limit your design?'],
+  des_why: ['Why this idea? How does it meet the criteria?', 'Which criteria does it meet best? What is the trade-off?', 'What made you choose this one over the others?'],
+  des_test: ['What will you measure, and in what units?', 'What will you count, time or measure?', 'What result would show the design works?'],
+  des_how: ['How will you test it? Steps, number of trials, what stays the same.', 'Describe the test so someone else could repeat it.', 'How many trials? What will you keep the same each time?'],
+  des_res_y: ['What happened when you tested it?', 'Did it work? What did you see or measure?'],
+  des_res_o: ['Record what you measured. Did it meet each criterion?', 'Results, with numbers. Which criteria did it meet? Which did it miss?'],
+  des_imp_y: ['What would you change to make it better?', 'What will you try next time?'],
+  des_imp_o: ['What would you change, and why? What would you test next?', 'Name one improvement and the evidence that it would help.', 'What failed, and what is your next version?'],
+  tri_sum_y: ['What did you find out?', 'What changed from the first one to the last?', 'What happened most of the time?'],
+  tri_sum_o: ['What pattern do you see across the entries?', 'Compare the first and last entries: what changed, and why?', 'What do the results suggest? What is still unclear?', 'Which entry stands out? What was different that time?'],
+  tri_next_y: ['What will you try next?', 'What would you do differently?', 'What do you wonder now?'],
+  tri_next_o: ['What would you change next time, and why?', 'What is one thing you would keep the same and one you would change?', 'What should the next test or week look like?'],
 };
 const WK_FEEL = ['happy', 'proud', 'tired', 'excited', 'worried', 'calm', 'curious', 'frustrated'];
 
@@ -189,11 +207,41 @@ const BUILD = {
       sec('Action steps') + K.table([['#', '5%'], ['Step', ''], ['By when', '14%'], ['Done', '9%']], 3, { fill: (i, j) => j === 0 ? i + 1 : j === 3 ? '<i class="pl-cb"></i>' : '' }) +
       K.box('If-then plan', r.pick(P.goal_block), { h: 0.5, st: 'If' }) + sec('Check-ins') + K.table([['Date', '11%'], ['Progress (with evidence)', ''], ['Adjustment', '']], 2, { rh: 1.4 });
   },
+  design(b, r, K, topic) {
+    const head = topic ? '' : K.fields(K.field(b === 'k2' ? 'We are making:' : 'Design challenge:'));
+    if (b === 'k2') {
+      return head + K.box('The problem', r.pick(P.des_prob_y), { h: 0.66 }) + K.box('What it must do', r.pick(['What does it need to do?', 'How will you know it works?']), { h: 0.66 }) +
+        sec('Ideas') + K.grid('1fr 1fr 1fr', ['Idea 1', 'Idea 2', 'Idea 3'].map(x => K.box(x, '', { draw: 0.95 }))) +
+        K.box('My idea', 'Draw it and label the parts.', { draw: 1.4 }) +
+        K.grid('1fr 1fr', [K.box('What I need', '', { h: 0.88 }), K.box('Test it', r.pick(P.des_res_y), { h: 0.88 })]) + K.box('Make it better', r.pick(P.des_imp_y), { h: 0.66 });
+    }
+    const old = b !== '35';
+    const prob = K.box('The problem', r.pick(old ? P.des_prob_o : P.des_prob_y), { h: 0.5 });
+    const cc = K.grid('1fr 1fr', [K.box('Criteria', r.pick(P.des_crit), { h: old ? 0.68 : 0.72 }), K.box('Constraints', r.pick(old ? P.des_con_o : P.des_con_y), { h: old ? 0.68 : 0.72 })]);
+    const ideas = sec('Ideas') + K.grid('1fr 1fr 1fr', [1, 2, 3].map(i => K.box(`Idea ${i}`, '', { draw: old ? 0.75 : 0.85, h: 0.34 })));
+    const chosen = sec('Chosen idea') + K.grid('1.25fr 1fr', [K.box('Labeled sketch', old ? 'Name the parts, materials and sizes.' : 'Label the parts.', { draw: old ? 1.75 : 1.6 }),
+      K.box('Why this one', r.pick(P.des_why), { h: old ? 0.56 : 0.5, extra: `<p class="pl-sec" style="margin-top:4px">Materials</p>` + K.lines(old ? 0.84 : 0.8) })]);
+    const test = sec('Test plan') + K.grid('1fr 1.3fr', [K.box('What I will measure', r.pick(P.des_test), { h: 0.68 }), K.box('How I will test it', r.pick(P.des_how), { h: 0.68 })]);
+    const end = K.grid('1fr 1fr', [K.box('Results', r.pick(old ? P.des_res_o : P.des_res_y), { h: old ? 0.84 : 0.9 }), K.box('Improve', r.pick(old ? P.des_imp_o : P.des_imp_y), { h: old ? 0.84 : 0.9 })]);
+    return head + prob + cc + ideas + chosen + test + end;
+  },
+  trial(b, r, K, topic, o) {
+    const n = o.entries, unit = o.unit;
+    const head = topic ? '' : K.fields(K.field(b === 'k2' ? 'What I am testing:' : 'What I am testing or tracking:'));
+    const cols = b === 'k2' ? [[unit, '13%'], ['Date', '15%'], ['What I did', ''], ['What I saw', '30%']]
+      : [[unit, '9%'], [unit === 'Week' ? 'Week of' : 'Date', '12%'], ['What I did', ''], ['What I measured or saw', '27%'], ['Notes', '20%']];
+    // rows share the table space, so 4 entries get tall rows and 10 still fit on the page
+    const rh = Math.max(b === 'k2' ? 0.95 : 1.1, Math.min(b === 'k2' ? 2.2 : 2.4, { k2: 3.8, 35: 4.9, 68: 5.1, 912: 5.2 }[b] / (n * RH[b] * K.g)));
+    const table = K.table(cols, n, { rh, fill: (i, j) => j === 0 ? `${unit} ${i + 1}` : '' });
+    const sum = K.box(b === 'k2' ? 'What I found out' : 'Summary', r.pick(b === 'k2' ? P.tri_sum_y : P.tri_sum_o), { h: b === 'k2' ? 0.88 : b === '35' ? 0.72 : 0.6 });
+    const next = K.box('Next time', r.pick(b === 'k2' ? P.tri_next_y : P.tri_next_o), { h: b === 'k2' ? 0.44 : 0.5 });
+    return head + table + sum + next;
+  },
 };
 
 /* ---------- words for each kind ---------- */
-const NAME = { project: 'Project Planner', reading: 'Reading Log', practice: 'Practice Log', science: 'Science Observation Log', weekly: 'Weekly Reflection', exit: 'Exit Reflection', goal: 'Goal Setting' };
-const TOPIC_LAB = { project: 'Project', reading: 'Reading', practice: 'Skill', science: 'Investigation', weekly: 'Class', exit: 'Lesson', goal: 'Goal area' };
+const NAME = { project: 'Project Planner', reading: 'Reading Log', practice: 'Practice Log', science: 'Science Observation Log', weekly: 'Weekly Reflection', exit: 'Exit Reflection', goal: 'Goal Setting', design: 'Design Planner', trial: 'Trial Log' };
+const TOPIC_LAB = { project: 'Project', reading: 'Reading', practice: 'Skill', science: 'Investigation', weekly: 'Class', exit: 'Lesson', goal: 'Goal area', design: 'Design challenge', trial: 'Testing' };
 const ICAN = {
   project: ['I can plan the steps of a project and check my progress.', 'I can break a project into steps, share the work and check my progress.'],
   reading: ['I can keep track of my reading and tell about a book.', 'I can track my reading and respond thoughtfully to what I read.'],
@@ -202,6 +250,8 @@ const ICAN = {
   weekly: ['I can think about my week and plan what to do next.', 'I can reflect on my learning and set a goal for next week.'],
   exit: ['I can tell what I learned today.', 'I can explain what I learned and what I still need.'],
   goal: ['I can set a goal and plan steps to reach it.', 'I can set a SMART goal and plan the steps to reach it.'],
+  design: ['I can plan something to make, test it and make it better.', 'I can define a problem, compare ideas against criteria and constraints, test a design and improve it.'],
+  trial: ['I can write down what I did and what I saw each time.', 'I can record each trial the same way and look for a pattern across them.'],
 };
 const DIR = {
   project: { k2: 'Draw what you will make. List what you need. Draw each step and color the box when it is done.', x: 'Fill in the goal first. List the steps in order, then who does each and by when. Check off each step when it is done, and fill in a check-in row each time you meet.' },
@@ -211,6 +261,8 @@ const DIR = {
   weekly: { k2: 'Draw and write about your week. Finish each sentence.', x: 'Answer each question in full sentences. Rate your effort, then set one goal for next week.' },
   exit: { k2: 'Finish each sentence. Color how you feel about today\'s lesson.', x: 'Answer each question in a sentence or two, then circle how well you understand. Hand it in on your way out.' },
   goal: { k2: 'Draw your goal and finish the sentence. Draw or write three steps.', x: 'Write your goal, then fill in each part. Check off steps as you finish them and fill in a check-in row each time you look back.' },
+  design: { k2: 'Write the problem. Draw three ideas, then pick one and draw it big with labels. Test it and tell what you would change.', x: 'Define the problem, then list the criteria and constraints before you draw. Sketch three ideas, choose one and label it. Plan the test, record the results, then say what you would improve.' },
+  trial: { k2: 'Each time, write the date, what you did and what you saw. At the end, tell what you found out.', x: 'Fill in one row each time. Record what you measured with units, the same way every time. When the rows are full, write the summary.' },
 };
 const MISTAKES = {
   project: 'Steps that are too big ("do the project") and no dates. A good step can be finished in one sitting. Watch for one student holding every job.',
@@ -220,6 +272,8 @@ const MISTAKES = {
   weekly: 'One-word answers ("good", "math"). Ask for a reason or an example after every answer.',
   exit: 'Copying the lesson title as "what I learned". Look for answers in the student\'s own words and an honest rating.',
   goal: 'Goals that are wishes ("be better at math") with no number, date or first step. The first step should be something they can do this week.',
+  design: 'Jumping to a favorite idea before the criteria are written, and a test that only checks whether it "works" instead of measuring something. Criteria say what it must do; constraints say what limits you.',
+  trial: 'Rows that change what is measured from one entry to the next, and results with no units. The point of a log is doing the same thing the same way each time.',
 };
 const USE = {
   project: 'Hand out at the start of the project and keep it in a folder. Hold short check-ins (5 minutes) at set points; the check-in rows are for those.',
@@ -229,6 +283,8 @@ const USE = {
   weekly: 'Friday is a natural time. Read a few aloud (with permission) to celebrate effort, and look back at last week\'s goal before setting a new one.',
   exit: 'Two slips per page: print, cut, and hand out in the last five minutes. Sort them into three piles by the rating to plan tomorrow\'s small groups.',
   goal: 'Model one goal out loud first. Revisit the page at each check-in date; a goal no one looks at again does not get met.',
+  design: 'Fits any build challenge: a bridge from straws, a boat that floats, a marble run, a phone stand. Have students write criteria and constraints before they sketch, and keep the page through the test and the redesign.',
+  trial: 'One page per experiment, habit or project. Choose Trial for repeated tests, Week for something tracked over weeks, and Day for a daily log. Pick the number of entries to match your plan.',
 };
 
 /* ---------- filled-in models for the teacher page ---------- */
@@ -248,6 +304,10 @@ const MODEL = {
   goal: { y: ['A grades 3-5 goal', [['My goal', 'I will read for 20 minutes five nights a week.'], ['Steps', '1. Pick two books from the library by Friday. 2. Set a timer each night. 3. Log my minutes.'], ['How will I know?', 'My log will show 100 minutes each week.']]],
     o: ['A SMART goal (grades 6-12)', [['Specific', 'Lower my mile time.'], ['Measurable', 'From 9:30 to 8:45.'], ['Achievable', 'I improved by 30 seconds last season with less training.'], ['Relevant', 'I want to make the cross-country team.'], ['Time-bound', 'By the spring fitness test, April 15.'], ['SMART goal', 'By April 15, I will run a mile in 8:45 by running three times a week and doing one interval workout each week.']]] },
 };
+MODEL.design = { y: ['A boat that floats (grades K-5)', [['The problem', 'Make a boat from foil that holds the most pennies without sinking.'], ['Criteria', 'Floats. Holds at least 10 pennies. Made only from one sheet of foil.'], ['Constraints', 'One 15 cm square of foil. Ten minutes to build.'], ['Chosen idea', 'A wide flat boat with low sides, because a wide bottom spreads the weight.'], ['Test', 'Added pennies one at a time. It held 23 before water came over the side.'], ['Improve', 'Make the sides a little taller and fold the corners tighter so water does not leak in.']]],
+  o: ['A straw bridge (grades 6-12)', [['The problem', 'Build a bridge that spans a 30 cm gap and holds a 500 g load for 10 seconds.'], ['Criteria', 'Spans 30 cm. Holds 500 g at the center. Weighs under 40 g.'], ['Constraints', '30 straws, 1 m of tape, 25 minutes.'], ['Chosen idea', 'A truss of triangles, because triangles do not change shape under load; a flat beam would sag.'], ['Test plan', 'Measure: mass held before failure, in grams. Three trials, adding 100 g at a time, same load point each time.'], ['Results', 'Trial 1: 600 g. Trial 2: 700 g. Trial 3: 650 g. Mass 36 g. Met all criteria.'], ['Improve', 'The deck sagged first each time, so double the deck straws rather than the sides.']]] };
+MODEL.trial = { y: ['Which paper airplane flies farthest? (grades K-5)', [['Trial 1', 'Oct 4. Threw the dart plane. It went 6 big steps.'], ['Trial 2', 'Oct 4. Threw the glider. It went 9 big steps.'], ['Trial 3', 'Oct 5. Threw the dart plane again. 7 big steps.'], ['What I found out', 'The glider went farther both times. It has bigger wings.']]],
+  o: ['Dissolving sugar at different temperatures (grades 6-12)', [['Trial 1', 'Mar 3. 1 tsp sugar in 200 mL water at 20 °C, stirred 1 turn per second. Dissolved in 95 s.'], ['Trial 2', 'Mar 3. Same, water at 40 °C. 50 s.'], ['Trial 3', 'Mar 3. Same, water at 60 °C. 28 s. Note: thermometer read 58 °C by the end.'], ['Summary', 'Warmer water dissolved the sugar faster every time, and the drop from 20 to 40 °C was bigger than from 40 to 60 °C. Next: repeat each temperature three times to check the pattern.']]] };
 const modelHtml = ([title, rows]) => `<h3>Model: ${esc(title)}</h3><table class="ws-table"><tbody>${rows.map(([a, b]) => `<tr><th>${esc(a)}</th><td>${esc(b)}</td></tr>`).join('')}</tbody></table>`;
 
 const CSS = `
@@ -308,23 +368,26 @@ Gen.add('planner-log', {
     { id: 'kind', label: 'Kind', type: 'select', options: KINDS, def: 'reading' },
     { id: 'band', label: 'Grade band', type: 'select', options: BANDS, def: '35' },
     { id: 'topic', label: 'Title, skill or topic (optional)', type: 'text', def: '' },
+    { id: 'entries', label: 'Entries (rows)', type: 'select', options: [['4', '4'], ['6', '6'], ['8', '8'], ['10', '10']], def: '6', show: v => v.kind === 'trial' },
+    { id: 'unit', label: 'Each row is a', type: 'select', options: [['Trial', 'Trial'], ['Week', 'Week'], ['Day', 'Day']], def: 'Trial', show: v => v.kind === 'trial' },
   ],
   make(v, r) {
     const b = v.band, kind = v.kind, topic = String(v.topic || '').trim(), young = b === 'k2' || b === '35';
     const K = kit(b, GROW[`${kind}-${b}`] || 1);
-    const body = BUILD[kind](b, r, K, topic);
+    const body = BUILD[kind](b, r, K, topic, { entries: +v.entries || 6, unit: v.unit || 'Trial' });
     const short = topic && topic.length <= 40;
-    const title = short ? `${NAME[kind]}: ${topic}` : NAME[kind];
+    const name = kind === 'trial' ? `${v.unit || 'Trial'} Log` : NAME[kind];
+    const title = short ? `${name}: ${topic}` : name;
     const topicLine = topic && !short ? `<p class="pl-topic"><b>${esc(TOPIC_LAB[kind])}:</b> ${esc(topic)}</p>` : '';
-    const eyebrowKind = kind === 'weekly' || kind === 'exit' ? 'Reflection' : kind === 'project' || kind === 'goal' ? 'Planner' : 'Log';
+    const eyebrowKind = kind === 'weekly' || kind === 'exit' ? 'Reflection' : kind === 'project' || kind === 'goal' || kind === 'design' ? 'Planner' : 'Log';
     return {
       title, eyebrow: eyebrowKind, level: BANDS.find(x => x[0] === b)[1],
       ican: ICAN[kind][b === 'k2' ? 0 : 1], directions: DIR[kind][b === 'k2' ? 'k2' : 'x'],
-      minutes: { project: 20, reading: 10, practice: 10, science: 15, weekly: 15, exit: 5, goal: 20 }[kind],
-      materials: kind === 'science' ? 'pencil, ruler' : kind === 'exit' ? 'pencil, scissors (teacher)' : 'pencil' + (b === 'k2' ? ', crayons' : ''),
+      minutes: { project: 20, reading: 10, practice: 10, science: 15, weekly: 15, exit: 5, goal: 20, design: 25, trial: 10 }[kind],
+      materials: kind === 'science' || kind === 'design' ? 'pencil, ruler' : kind === 'exit' ? 'pencil, scissors (teacher)' : 'pencil' + (b === 'k2' ? ', crayons' : ''),
       parts: [['', `<div class="pl pl-${b}">${topicLine}${body}</div>`]], items: [],
       mistakes: MISTAKES[kind],
-      notes: `${USE[kind]} The prompts change with each New sheet, so a class can use a fresh page every week.${kind === 'reading' && b !== 'k2' ? ' Count pages or minutes, whichever your class tracks; the other column can stay blank.' : ''}`,
+      notes: `${USE[kind]} The prompts change with each New sheet, so a class can use a fresh page every week.${kind === 'reading' && b !== 'k2' ? ' Count pages or minutes, whichever your class tracks; the other column can stay blank.' : ''}${kind === 'trial' ? ` This sheet has ${v.entries} rows; the row height shrinks as you add entries so it stays one page.` : ''}`,
       teacher: modelHtml(MODEL[kind][young ? 'y' : 'o']) + `<p>Share the model, or fill one in together on the board, before students start their own.</p>`,
     };
   },

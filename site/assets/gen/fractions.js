@@ -1,20 +1,21 @@
-// Fractions generator, grades 3-7. Grade 3 works from pictures and number lines (3.NF.1-3); grade 4 equivalence,
-// comparing, like-denominator sums and mixed numbers (4.NF.1-4); grade 5 unlike denominators, multiplying and unit
-// fraction division (5.NF.1-7); grade 6 dividing fractions by fractions (6.NS.1); grade 7 negative fractions (7.NS.1-3).
+// Fractions generator, grades 3-7. Grade 3 works from pictures and number lines, and builds fractions from unit
+// fractions (3.NF.1-3); grade 4 equivalence, comparing, like-denominator sums and mixed numbers (4.NF.1-4); grade 5
+// unlike denominators, including mixed numbers, multiplying and unit fraction division (5.NF.1-7); grade 6 dividing
+// fractions by fractions (6.NS.1); grade 7 negative fractions (7.NS.1-3).
 (() => {
 const H = Gen.h, { part, example, svg } = H;
 const { gcd, lcm } = Gen.m;
 
 const GRADES = [['3', 'Grade 3'], ['4', 'Grade 4'], ['5', 'Grade 5'], ['6', 'Grade 6'], ['7', 'Grade 7']];
 const SKILLS = {
-  3: [['line', 'Fractions on a number line'], ['pic', 'Name the shaded fraction'], ['equiv', 'Equivalent fractions with pictures'], ['compare', 'Compare fractions with pictures']],
+  3: [['line', 'Fractions on a number line'], ['pic', 'Name the shaded fraction'], ['equiv', 'Equivalent fractions with pictures'], ['compare', 'Compare fractions with pictures'], ['unit', 'Build fractions from unit fractions']],
   4: [['equiv', 'Equivalent fractions'], ['compare', 'Compare fractions'], ['addlike', 'Add and subtract, like denominators'], ['mixed', 'Add and subtract mixed numbers'], ['mulwhole', 'Multiply a fraction by a whole number']],
-  5: [['addunlike', 'Add and subtract, unlike denominators'], ['mul', 'Multiply fractions'], ['divunit', 'Divide unit fractions and whole numbers'], ['mix5', 'Mixed review']],
+  5: [['addunlike', 'Add and subtract, unlike denominators'], ['mul', 'Multiply fractions'], ['divunit', 'Divide unit fractions and whole numbers'], ['mix5', 'Mixed review'], ['mixedunlike', 'Add and subtract mixed numbers, unlike denominators']],
   6: [['div', 'Divide fractions by fractions'], ['all6', 'All four operations']],
   7: [['negas', 'Add and subtract with negatives'], ['negmd', 'Multiply and divide with negatives'], ['negall', 'All four operations with negatives']],
 };
 // how many problems: fewer / standard / more, by the kind of problem
-const COUNTS = { line: [6, 8, 10], pic: [8, 12, 16], equiv3: [4, 6, 8], compare3: [6, 8, 10], equiv: [12, 16, 20], compare: [12, 16, 20], ops: [8, 12, 16] };
+const COUNTS = { line: [6, 8, 10], pic: [8, 12, 16], equiv3: [4, 6, 8], compare3: [6, 8, 10], equiv: [12, 16, 20], compare: [12, 16, 20], ops: [8, 12, 16], unit: [6, 8, 10] };
 const countKey = (g, s) => g === '3' ? (s === 'equiv' ? 'equiv3' : s === 'compare' ? 'compare3' : s) : (s === 'equiv' || s === 'compare' ? s : 'ops');
 
 /* ---------- fraction values: {n, d} with d > 0; n is the signed improper numerator ---------- */
@@ -95,6 +96,10 @@ function makeOp(r, kind) {
     op = r.pick(['+', '−']);
     const mx = r.chance(.3);
     x = mx ? mixedOf(r, D5, 1, 4) : proper(r, D5); y = mx && r.chance(.5) ? mixedOf(r, D5, 1, 3) : proper(r, D5);
+    if (x.d === y.d || lcm(x.d, y.d) > 60) return null;
+  } else if (kind === 'mixedunlike') {
+    op = r.pick(['+', '−']);
+    x = mixedOf(r, D5, 1, 5); y = r.chance(.6) ? mixedOf(r, D5, 1, 4) : proper(r, D5);
     if (x.d === y.d || lcm(x.d, y.d) > 60) return null;
   } else if (kind === 'mul') {
     op = '×'; const t = r.int(1, 4);
@@ -258,6 +263,21 @@ Gen.add('fractions', {
       directions = 'Look at the shaded parts. Write &lt;, &gt; or = in each circle.';
       ican = 'I can compare fractions that have the same top number or the same bottom number.';
       mistakes = 'Thinking a bigger bottom number means a bigger fraction. With the same top number, more parts means smaller parts, so 1/8 &lt; 1/4.';
+    } else if (g === '3' && skill === 'unit') {
+      const mk = () => { const d = r.pick([2, 3, 4, 6, 8]); return { mode: r.chance(.5) ? 'count' : 'build', d, k: r.int(1, d) }; };
+      const ps = r.distinct(n + 1, mk, p => `${p.mode}${p.k}/${p.d}`), ex = ps.pop();
+      const draw = p => svg(300, 40, bar(10, 3, 280, 32, p.d, p.k), `A bar cut into ${p.d} equal parts with ${p.k} shaded`);
+      exHtml = example(draw(ex), ex.mode === 'count' ? `${fr(ex.k, ex.d)} = <b>${ex.k}</b> copies of ${fr(1, ex.d)}. Each part is ${fr(1, ex.d)}, and ${ex.k} parts are shaded.`
+        : `${ex.k} copies of ${fr(1, ex.d)} = ${fr(`<b>${ex.k}</b>`, ex.d)}. Each part is ${fr(1, ex.d)}, so ${ex.k} parts make ${fr(ex.k, ex.d)}.`);
+      parts.push(part('', exHtml));
+      parts.push(part('Practice', `<div class="fr-wide">${ps.map((p, i) => {
+        if (p.mode === 'count') { items.push({ q: `${p.k}/${p.d} = ? copies of 1/${p.d}`, a: String(p.k), kind: 'unit', mode: p.mode, k: p.k, d: p.d });
+          return `<div><p><span class="ws-num">${i + 1}.</span> ${fr(p.k, p.d)} = ${numBlank(p.k)} copies of ${fr(1, p.d)}</p>${draw(p)}</div>`; }
+        items.push({ q: `${p.k} copies of 1/${p.d} = ?`, a: `${p.k}/${p.d}`, kind: 'unit', mode: p.mode, k: p.k, d: p.d });
+        return `<div><p><span class="ws-num">${i + 1}.</span> ${p.k} copies of ${fr(1, p.d)} = <span class="fr-box"><span class="ws-ans">${fr(p.k, p.d)}</span></span></p>${draw(p)}</div>`; }).join('')}</div>`));
+      directions = 'Each bar is cut into equal parts. Use the shaded parts to fill in the missing number or fraction.';
+      ican = 'I can build a fraction from copies of a unit fraction.';
+      mistakes = 'Counting all the parts instead of the shaded parts, and writing the number of copies as the bottom number. The bottom number tells the size of each part, not how many copies.';
     } else if (skill === 'compare') {
       const mk = () => { if (r.chance(.2)) { const b = r.pick([2, 3, 4, 5, 6]), a = r.int(1, b - 1), k = r.int(2, Math.floor(12 / b)); if (k < 2) return null; return r.chance(.5) ? { x: { n: a, d: b }, y: { n: a * k, d: b * k } } : { x: { n: a * k, d: b * k }, y: { n: a, d: b } }; }
         const x = proper(r, D4), y = proper(r, D4); return x.d === y.d ? null : { x, y }; };
@@ -304,6 +324,7 @@ Gen.add('fractions', {
         mul: 'Multiply the numerators, multiply the denominators, then simplify. Write a whole number as a fraction over 1.',
         divunit: 'Dividing by a number is multiplying by its reciprocal: ÷ 3 is × 1/3, and ÷ 1/3 is × 3.',
         mix5: 'Read each sign first. Add and subtract with a common denominator; multiply straight across; divide by multiplying by the reciprocal.',
+        mixedunlike: 'Change each mixed number to a fraction greater than 1, find a common denominator, then add or subtract the numerators. Write the answer as a mixed number in simplest form.',
         div: 'Keep the first fraction, change ÷ to ×, and flip the second fraction. Then multiply and simplify.',
         all6: 'Read each sign first. Change mixed numbers to fractions greater than 1 before you multiply or divide.',
         negas: 'Use a common denominator. Then add or subtract the numerators using integer rules.',
@@ -317,6 +338,7 @@ Gen.add('fractions', {
       teacher = `<h3>Worked solutions</h3><ol class="fr-steps">${ps.map(p => `<li>${steps(p)}</li>`).join('')}</ol>`;
       directions = 'Solve each problem. Write the answer in the box in simplest form.' + (kind === 'divunit' ? '' : ' Write an answer greater than 1 as a mixed number.') + (g === '7' ? ' Remember the sign.' : '');
       ican = { addlike: 'I can add and subtract fractions with like denominators.', mixed: 'I can add and subtract mixed numbers with like denominators.',
+        mixedunlike: 'I can add and subtract mixed numbers with unlike denominators.',
         mulwhole: 'I can multiply a fraction by a whole number.', addunlike: 'I can add and subtract fractions with unlike denominators.', mul: 'I can multiply fractions and mixed numbers.',
         divunit: 'I can divide a unit fraction by a whole number and a whole number by a unit fraction.', mix5: 'I can add, subtract, multiply and divide with fractions.',
         div: 'I can divide fractions by fractions.', all6: 'I can use all four operations with fractions and mixed numbers.',
@@ -328,6 +350,7 @@ Gen.add('fractions', {
         mul: 'Finding a common denominator first (not needed), and forgetting to change mixed numbers to fractions before multiplying.',
         divunit: 'Expecting division to make the answer smaller: 4 ÷ 1/3 = 12 because there are 12 thirds in 4.',
         mix5: 'Using the rule for one operation on another, like flipping a fraction when multiplying.',
+        mixedunlike: 'Renaming only the fraction parts and forgetting the whole numbers, and subtracting the smaller fraction from the bigger one when the bigger one is on the bottom.',
         div: 'Flipping the first fraction instead of the second, or flipping a mixed number before changing it to a fraction.',
         all6: 'Multiplying mixed numbers part by part (1 1/2 × 2 1/3 is not 2 1/6).',
         negas: 'Losing the sign when renaming, and treating subtracting a negative as subtracting.',
@@ -351,7 +374,7 @@ Gen.add('fractions', {
         : 'Answers are in simplest form' + (skill === 'equiv' || skill === 'compare' ? '' : ', with mixed numbers for answers greater than 1') + '. The teacher page lists the steps for each problem where steps help. Press New sheet for another set at the same level.'),
     };
   },
-  verify(s) {
+  verify(s, v) {
     const out = [];
     const parse = t => { t = String(t).replace(/−/g, '-').trim();
       let m = t.match(/^(-?)(\d+) (\d+)\/(\d+)$/); if (m) { const d = +m[4]; return { n: (m[1] ? -1 : 1) * (+m[2] * d + +m[3]), d, w: +m[2], r: +m[3] }; }
@@ -370,6 +393,7 @@ Gen.add('fractions', {
         if (p.n * D !== N * p.d) out.push(`${it.q}: key says ${it.a}, should be ${N}/${D}`);
         if (p.d > 1 && (p.r >= p.d || gcd(p.r, p.d) !== 1)) out.push(`${it.q}: ${it.a} is not in simplest mixed form`);
         if (x.n >= 0 && y.n >= 0 && N < 0) out.push(`${it.q}: negative answer from positive numbers`);
+        if (v.skill === 'mixedunlike' && (it.op === '+' || it.op === '−') && (!(x.mx || y.mx) || x.d === y.d)) out.push(`${it.q}: needs a mixed number and unlike denominators`);
       } else if (it.kind === 'cmp') {
         const L = it.x.n * it.y.d, R = it.y.n * it.x.d, want = L > R ? '>' : L < R ? '<' : '=';
         if (it.a !== want) out.push(`${it.q}: key says ${it.a}, should be ${want}`);
@@ -378,6 +402,11 @@ Gen.add('fractions', {
         if (!p || p.n !== it.k || p.d !== it.d) out.push(`${it.q}: key says ${it.a}`);
         if (it.kind === 'line' && (it.k <= 0 || it.k >= it.W * it.d)) out.push(`${it.q}: point off the line`);
         if (it.kind === 'pic' && it.k > it.d) out.push(`${it.q}: more shaded than parts`);
+      } else if (it.kind === 'unit') {
+        // k copies of 1/d is k/d, unreduced; count mode asks for k
+        if (!(it.k >= 1 && it.k <= it.d)) out.push(`${it.q}: ${it.k} copies does not fit ${it.d} parts`);
+        if (it.mode === 'count') { if (+it.a !== it.k || !/^\d+$/.test(it.a)) out.push(`${it.q}: key says ${it.a}, should be ${it.k}`); }
+        else if (it.a !== `${it.k}/${it.d}`) out.push(`${it.q}: key says ${it.a}, should be ${it.k}/${it.d}`);
       } else if (it.kind === 'eq3' || (it.kind === 'eq4' && it.t !== 'simp')) {
         // left fraction L.n/L.d equals top/bottom, with the missing number filled in from the key
         const m = +it.a, top = it.miss === 'bottom' ? it.c : m, bottom = it.miss === 'bottom' ? m : it.c;

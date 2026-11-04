@@ -15,6 +15,8 @@
      "blurb": "Evaluate expressions, then solve one-step, two-step and both-sides equations and inequalities. The key shows each step."},
     {"id": "measure-shapes", "group": "math", "title": "Area, Perimeter and Volume", "grades": "2-8", "types": ["Diagram", "Practice"],
      "blurb": "Drawn shapes with their measurements: rectangles, triangles, circles, composite shapes, boxes and cylinders."},
+    {"id": "coordinate-plane", "group": "math", "title": "Coordinate Plane", "grades": "5-8", "types": ["Practice", "Diagram"],
+     "blurb": "A drawn coordinate plane with lettered points: plot and name points, find distances, reflect across an axis, draw shapes and find their sides, then translate, rotate and dilate figures."},
     {"id": "word-problems", "group": "math", "title": "Word Problems", "grades": "1-6", "types": ["Apply"],
      "blurb": "Everyday stories about money, time, measurement and sharing, plus fractions, rates and percents for older grades, with room to show the work."},
     {"id": "science-calc", "group": "science", "title": "Science Calculations", "grades": "6-12", "types": ["Apply", "Practice"],

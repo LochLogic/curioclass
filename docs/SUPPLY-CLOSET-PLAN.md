@@ -475,7 +475,7 @@ main roadmap: docs/ROADMAP.md, Track 2.
 
 ---
 
-## Generators: the Worksheet Generator (15 live 2026-11-03, /closet/worksheets/make/)
+## Generators: the Worksheet Generator (16 live 2026-11-04, /closet/worksheets/make/)
 
 **Reviewed 2026-11-03 (Cory): better than expected; the generators come first for procedural practice from here**
 (docs/ROADMAP.md, Now, item 4; docs/WORKSHEETS-PLAN.md says what that does to the authored lists). Decisions and
@@ -500,25 +500,30 @@ rules from that review:
   GEN-OPTIONS.md and the generator code and kept 26 (math 14, science 10, social studies 2: about one row in thirty).
   Almost every planned row names a specific scenario, data set, text, place, criteria list or picture task, so the
   generators as they stand rarely replace a written sheet. The remaining 14 subject files were not sifted: the rate
-  would be lower still. The gain is on the other side: settings the reviewers wished for, each of which would back
-  several rows at once. Build these before building new generators from scratch:
-  - number-ops: an "estimate first" blank beside each problem; a within-100 cap for grade 2; a missing-number skill;
-    grade 6 long division with decimal quotients.
-  - fractions: mixed-numbers-only for addunlike; grade 3 "copies of a unit fraction".
-  - word-problems: a grade 4 remainders topic (what does the remainder mean).
-  - measure-shapes: perimeter with one unknown side; grid-count area; cones and spheres; nets.
-  - graph-reading: a custom title, categories and values (or science data packs: plant heights, shadow length,
-    daylight hours, temperature by season); a choosable picture-graph key; build-the-graph-from-a-table.
-  - equations: exponent-focused evaluate; like terms, expand and factor; no-solution and identity cases.
-  - science-calc: two or more topics on one sheet; wave speed, momentum conservation, series and parallel circuits.
-  - punnett: mono count up to 8; a listed count for dihybrid.
-  - organizer: preset criteria row labels and a 3- or 4-subject compare chart; a T-chart sort with a cards list.
-  - writing-frame: a letter genre (persuasive letter) and a case-brief frame (facts, question, ruling, reasoning).
-  - timeline: a year range or era filter inside a set; a custom-events set; geologic time.
-  - vocabulary: a cloze-passage mode; word-puzzles: crosswords of 12 or more.
-  - planner-log: a design and engineering planner (criteria, constraints, sketch, materials, test plan); a trial or
-    week log with a chosen number of entries.
-  - new: a coordinate-plane generator (map-skills is a lettered town grid, not a coordinate plane).
+  would be lower still. The gain was on the other side: settings the reviewers wished for, each backing several rows.
+- **Settings built 2026-11-04 (Cory: settings first):** number-ops estimate-first, within-100 at grade 2, a
+  missing-number skill, grade 6 decimal division and multiplication; word-problems grade 4 remainders; fractions
+  mixed numbers with unlike denominators and grade 3 unit-fraction copies; measure-shapes missing side, grid-count
+  area, cylinders-cones-spheres, triangular prism surface area; equations exponents, like terms, expand and factor,
+  no-solution and identity cases; science-calc a second topic on one sheet, wave speed, momentum conservation,
+  circuits; punnett counts to 8; graph-reading a data-set picker with science packs, teacher-typed data, picture-graph
+  key, build-the-graph; organizer typed row labels and column headers, 3- and 4-subject compares, T-chart with cut-out
+  cards; writing-frame persuasive letter and case brief; planner-log design planner and trial/week/day log; timeline
+  year range, custom events, geologic time, civil rights and World War II sets; vocabulary cloze passages; crosswords
+  of 12. Plus a new **coordinate-plane** generator (grades 5-8: plot and name, distance, reflect, shapes,
+  transformations). Every setting and value: docs/agents/GEN-OPTIONS.md, written by `node scripts/gen_options.mjs`.
+  The engine now seeds a sheet from the sheet code and the non-default settings only, so a generator can gain a
+  setting without changing the sheets old links print (a one-time break on 2026-11-04 for links made the day before).
+- **Second sift, same day:** with the new settings, reviewers kept 57 more rows (math 11, science 12, social studies
+  32, ELA 3), 83 in all. Social studies compare charts carry the row's own subjects and criteria through the organizer's
+  typed labels, which is where most of the gain came from. ELA rows almost always name a text, so they stay authored.
+  Still wished for, in rough order of rows unlocked: a reading log with genre, difficulty and strategy columns and a
+  week count; trial logs with typed column headers; a presentation planner and self-check; writing-frame reason
+  count, counterclaim toggle, heading lines on 6-12 informative bodies, a single-scene narrative mode, single-paragraph
+  argument frames; organizer compare without the band's extra column and capped at the typed rows, a three-column sort,
+  separate cause and effect labels; timeline Reconstruction, Road to Revolution and Holocaust sets; graph-reading custom
+  data up to 12 pairs with decimals and teacher-typed questions; coordinate-plane rigid-only transformations and
+  shapes at grade 6; punnett dihybrid to 4 or 6; vocabulary cloze from a typed word list.
 
 **Update 2026-11-03: test group built.** Cory asked for 15 full generators covering every area and generator type, live for
 his review before deciding the build-out. They are organized by skill and grade rather than one recipe per module:

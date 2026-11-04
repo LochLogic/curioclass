@@ -3,15 +3,18 @@
 // grades 6-8 a five-part essay frame; grades 9-12 an argument-style frame with counterclaim and rebuttal (where the genre
 // has one). Starters and transition words are drawn from banks, so New sheet gives fresh ones. A checklist matched to the
 // Common Core writing standard for the grade sits at the bottom; the teacher page has a model written for a sample topic.
+// Also a persuasive letter (date, greeting, problem, proposal, reasons, call to action, sign-off) at every grade, and a
+// case brief (facts, question, ruling, reasoning, why it matters) for grades 6-12.
 (() => {
 const { esc } = Gen.h;
 
 const GRADES = Array.from({ length: 12 }, (_, i) => [String(i + 1), `Grade ${i + 1}`]);
 const GENRES = [['opinion', 'Opinion / argument'], ['informative', 'Informative / explanatory'], ['narrative', 'Narrative'],
-  ['cer', 'Claim, evidence, reasoning (science)'], ['compare', 'Compare and contrast'], ['summary', 'Summary']];
+  ['cer', 'Claim, evidence, reasoning (science)'], ['compare', 'Compare and contrast'], ['summary', 'Summary'],
+  ['letter', 'Persuasive letter'], ['brief', 'Case brief (grades 6-12)']];
 const bandOf = g => g <= 2 ? 'p' : g === 3 ? 'g3' : g <= 5 ? 'g45' : g <= 8 ? 'g68' : 'g912';
 const LH = { p: 0.44, g3: 0.36, g45: 0.34, g68: 0.3, g912: 0.28 };
-const GROW = /*GROW*/{"opinion-p1-plan":0.8,"opinion-p-plan":0.87,"opinion-g3-plan":0.83,"opinion-g45-plan":0.93,"opinion-g68-plan":1.51,"opinion-g912-plan":0.92,"informative-p1-plan":0.61,"informative-p-plan":0.67,"informative-g3-plan":0.83,"informative-g45-plan":1.36,"informative-g68-plan":1.51,"informative-g912-plan":0.87,"narrative-p1-plan":0.89,"narrative-p-plan":0.95,"narrative-g3-plan":0.83,"narrative-g45-plan":1.09,"narrative-g68-plan":1.43,"narrative-g912-plan":0.97,"cer-p1-plan":0.61,"cer-p-plan":0.95,"cer-g3-plan":0.87,"cer-g45-plan":0.93,"cer-g68-plan":1.15,"cer-g912-plan":1.12,"compare-p1-plan":0.69,"compare-p-plan":1.03,"compare-g3-plan":1.11,"compare-g45-plan":1.48,"compare-g68-plan":1.66,"compare-g912-plan":1.06,"summary-p1-plan":0.73,"summary-p-plan":1.07,"summary-g3-plan":1.14,"summary-g45-plan":1.16,"summary-g68-plan":1.34,"summary-g912-plan":1.19,"opinion-p1-draft":1.16,"opinion-p-draft":1.03,"opinion-g3-draft":1.26,"opinion-g45-draft":1.49,"opinion-g68-draft":1.6,"opinion-g912-draft":1.6,"informative-p1-draft":0.77,"informative-p-draft":0.71,"informative-g3-draft":1.33,"informative-g45-draft":1.47,"informative-g68-draft":1.59,"informative-g912-draft":1.57,"narrative-p1-draft":1.16,"narrative-p-draft":1.03,"narrative-g3-draft":1.33,"narrative-g45-draft":1.78,"narrative-g68-draft":1.64,"narrative-g912-draft":1.66,"cer-p1-draft":0.77,"cer-p-draft":1.03,"cer-g3-draft":1.23,"cer-g45-draft":1.36,"cer-g68-draft":1.72,"cer-g912-draft":1.84,"compare-p1-draft":0.83,"compare-p-draft":1.24,"compare-g3-draft":1.61,"compare-g45-draft":1.51,"compare-g68-draft":1.64,"compare-g912-draft":1.73,"summary-p1-draft":0.89,"summary-p-draft":1.23,"summary-g3-draft":1.61,"summary-g45-draft":1.74,"summary-g68-draft":1.88,"summary-g912-draft":1.85}/*GROW*/;   // per genre, band and length: stretch the writing space to fill the page (tuned by print tests)
+const GROW = /*GROW*/{"opinion-p1-plan":0.8,"opinion-p-plan":0.87,"opinion-g3-plan":0.83,"opinion-g45-plan":0.93,"opinion-g68-plan":1.51,"opinion-g912-plan":0.92,"informative-p1-plan":0.61,"informative-p-plan":0.67,"informative-g3-plan":0.83,"informative-g45-plan":1.36,"informative-g68-plan":1.51,"informative-g912-plan":0.87,"narrative-p1-plan":0.89,"narrative-p-plan":0.95,"narrative-g3-plan":0.83,"narrative-g45-plan":1.09,"narrative-g68-plan":1.43,"narrative-g912-plan":0.97,"cer-p1-plan":0.61,"cer-p-plan":0.95,"cer-g3-plan":0.87,"cer-g45-plan":0.93,"cer-g68-plan":1.15,"cer-g912-plan":1.12,"compare-p1-plan":0.69,"compare-p-plan":1.03,"compare-g3-plan":1.11,"compare-g45-plan":1.48,"compare-g68-plan":1.66,"compare-g912-plan":1.06,"summary-p1-plan":0.73,"summary-p-plan":1.07,"summary-g3-plan":1.14,"summary-g45-plan":1.16,"summary-g68-plan":1.34,"summary-g912-plan":1.19,"opinion-p1-draft":1.16,"opinion-p-draft":1.03,"opinion-g3-draft":1.26,"opinion-g45-draft":1.49,"opinion-g68-draft":1.6,"opinion-g912-draft":1.6,"informative-p1-draft":0.77,"informative-p-draft":0.71,"informative-g3-draft":1.33,"informative-g45-draft":1.47,"informative-g68-draft":1.59,"informative-g912-draft":1.57,"narrative-p1-draft":1.16,"narrative-p-draft":1.03,"narrative-g3-draft":1.33,"narrative-g45-draft":1.78,"narrative-g68-draft":1.64,"narrative-g912-draft":1.66,"cer-p1-draft":0.77,"cer-p-draft":1.03,"cer-g3-draft":1.23,"cer-g45-draft":1.36,"cer-g68-draft":1.72,"cer-g912-draft":1.84,"compare-p1-draft":0.83,"compare-p-draft":1.24,"compare-g3-draft":1.61,"compare-g45-draft":1.51,"compare-g68-draft":1.64,"compare-g912-draft":1.73,"summary-p1-draft":0.89,"summary-p-draft":1.23,"summary-g3-draft":1.61,"summary-g45-draft":1.74,"summary-g68-draft":1.88,"summary-g912-draft":1.85,"letter-p1-plan":0.6,"letter-p-plan":0.65,"letter-g3-plan":0.7,"letter-g45-plan":0.93,"letter-g68-plan":1.0,"letter-g912-plan":0.92,"letter-p1-draft":0.8,"letter-p-draft":0.75,"letter-g3-draft":1.1,"letter-g45-draft":1.49,"letter-g68-draft":1.3,"letter-g912-draft":1.2,"brief-g68-plan":1.25,"brief-g912-plan":1.05,"brief-g68-draft":1.6,"brief-g912-draft":1.6}/*GROW*/;   // per genre, band and length: stretch the writing space to fill the page (tuned by print tests)
 
 /* ---------- starter banks (each section draws two or three, so New sheet changes them) ---------- */
 const S = {
@@ -62,6 +65,16 @@ const S = {
   sum_first: ['First,', 'At the beginning,', 'The text begins with', 'To start,'],
   sum_detail: ['Next,', 'Then,', 'After that,', 'The author also explains', 'Later,'],
   sum_end: ['In the end,', 'Overall,', 'The main idea is', 'The author\'s main point is'],
+  lt_prob_p: ['I am writing because', 'There is a problem.', 'I do not like'], lt_fix_p: ['I think we should', 'We could', 'My idea is'], lt_ask_p: ['Please', 'Will you', 'Can you'],
+  lt_open: ['I am writing to you because', 'I am writing about', 'My name is', 'As a student at', 'I am concerned about', 'I want to tell you about a problem with'],
+  lt_fix: ['I propose that', 'I am asking you to', 'One way to fix this is', 'My idea is to', 'We could solve this by', 'The best solution is'],
+  lt_close: ['Please', 'I hope you will', 'Thank you for', 'Will you consider', 'I would be glad to', 'I look forward to'],
+  br_facts: ['In this case,', 'The case began when', 'The parties were', 'The facts are that', 'The lower court had'],
+  br_issue: ['The question was whether', 'The court had to decide whether', 'Did', 'The issue was'],
+  br_hold: ['The court ruled that', 'The court held that', 'By a vote of', 'The answer was'],
+  br_reason: ['The court reasoned that', 'The majority argued that', 'Relying on', 'The court pointed to', 'According to the opinion,'],
+  br_dissent: ['The dissent argued that', 'A concurring justice wrote', 'Those who disagreed said'],
+  br_matter: ['Because of this case,', 'Today,', 'This ruling set a precedent that', 'This case matters because', 'Later courts'],
 };
 const TRANS = {
   opinion: { g3: ['because', 'therefore', 'since', 'for example', 'also', 'another reason', 'so', 'first', 'finally', 'in conclusion'],
@@ -85,6 +98,12 @@ const TRANS = {
   summary: { g3: ['first', 'next', 'then', 'after that', 'finally', 'in the end'], g45: ['first', 'next', 'then', 'after that', 'later', 'finally', 'in the end', 'the author explains'],
     g68: ['first', 'next', 'then', 'later', 'as a result', 'finally', 'the author explains', 'the author argues'],
     g912: ['the author argues', 'the author contends', 'initially', 'subsequently', 'ultimately', 'in turn', 'the speaker asserts', 'the text concludes'] },
+  letter: { g3: ['because', 'so', 'also', 'for example', 'first', 'another reason', 'please', 'in conclusion'],
+    g45: ['for instance', 'in addition', 'as a result', 'most importantly', 'specifically', 'in order to', 'therefore', 'finally'],
+    g68: ['furthermore', 'moreover', 'as a result', 'for this reason', 'in addition', 'although', 'consequently', 'therefore'],
+    g912: ['nevertheless', 'consequently', 'admittedly', 'furthermore', 'in light of', 'to be sure', 'thus', 'notably'] },
+  brief: { g68: ['therefore', 'however', 'according to', 'in other words', 'as a result', 'for example', 'because', 'in contrast'],
+    g912: ['consequently', 'nevertheless', 'whereas', 'in light of', 'thus', 'notably', 'by contrast', 'moreover'] },
 };
 
 /* ---------- frames: rows of sections. sec = [label, prompts, starter bank, writing weight] ---------- */
@@ -176,6 +195,36 @@ function frame(genre, band, grade, r) {
       [sec('Point 3', ['Criterion, both subjects, analysis.', 'The most revealing criterion.'], 'cmp_diff', 1.3), sec('Synthesis', ['What does the pattern of likeness and difference reveal?', 'Go beyond the list: what does it mean?'], 'arg_explain', 1.3)],
       [sec('Conclusion', ['State the significance of the comparison.', 'Why should a reader care how these compare?'], 'cmp_end')]];
   }
+  if (genre === 'letter') {
+    if (band === 'p') return [[sec('The problem', ['What is wrong? Tell the person.', 'What do you want to change?'], 'lt_prob_p')], [sec('My idea', ['How could we fix it?', 'What should happen?'], 'lt_fix_p')],
+      [sec('My reason', ['Why is your idea good?', 'Tell one reason.'], 'op_reason_p')],
+      [sec('Please', ['Ask the person to do something.', 'What do you want them to do?'], 'lt_ask_p')]];
+    if (band === 'g3') return [[sec('Opening: the problem', ['Say why you are writing and what the problem is.', 'Tell the reader the problem in one or two sentences.'], 'lt_open')],
+      [sec('My idea', ['Tell what you want done about it.', 'Say how to fix it.'], 'lt_fix')], [sec('Reason 1', ['Give a reason, then an example.', 'Why is this a good fix?'], 'op_r1', 1, { sub: 'op_ex' })],
+      [sec('Reason 2', ['Give another reason and an example.', 'What else makes this a good fix?'], 'op_rn', 1, { sub: 'op_ex' })],
+      [sec('Closing: ask for action', ['Ask the reader to do something, and say thank you.', 'What exactly should the reader do next?'], 'lt_close')]];
+    if (band === 'g45') return [[sec('Paragraph 1: The problem', ['Say who you are, why you are writing, and what the problem is.', 'Introduce yourself and the problem.'], 'lt_open')],
+      [sec('Paragraph 2: What I propose', ['Tell what you want done. Be specific.', 'Describe the fix you want and how it would work.'], 'lt_fix')],
+      [sec('Paragraph 3: First reason', ['A reason, plus facts and details.', 'Reason, then facts and details.'], 'op_r1', 1.3, { sub: 'op_ex' }), sec('Paragraph 4: Second reason', ['Another reason, with facts and details.', 'Your next reason and its support.'], 'op_rn', 1.3, { sub: 'op_ex' })],
+      [sec('Paragraph 5: Ask for action', ['Say exactly what you want the reader to do, and thank them.', 'Restate the fix and ask for a reply or a decision.'], 'lt_close')]];
+    if (band === 'g68') return [[sec('Opening: the problem', ['Who you are, why you are writing, and the problem in clear terms.', 'Introduce yourself and state the problem with a fact or two.'], 'lt_open')],
+      [sec('What I propose', ['A specific fix: what would change, who would do it, and what it would take.', 'Describe your proposal so the reader could act on it.'], 'lt_fix')],
+      [sec('Reason 1', ['Reason, evidence, explanation.', 'Why this fix works, with evidence.'], 'arg_reason', 1.3, { sub: 'arg_ev' }), sec('Reason 2', ['Reason, evidence, explanation.', 'A second reason with evidence.'], 'arg_reason', 1.3, { sub: 'arg_ev' })],
+      [sec('Closing: call to action', ['Restate the fix, say what you want the reader to do and by when, and thank them.', 'Ask for a specific action and a reply.'], 'lt_close')]];
+    return [[sec('Opening: the problem', ['Establish who you are, your purpose, and the problem with precise facts.', 'State the problem and why it needs the reader\'s attention now.'], 'lt_open')],
+      [sec('What I propose', ['A specific, workable proposal: what, who, and the cost or effort involved.', 'Make the proposal concrete enough to say yes to.'], 'lt_fix')],
+      [sec('Reason 1', ['Reason, evidence (cite it), analysis.', 'Why the proposal works, with evidence the reader will respect.'], 'arg_reason', 1.2, { sub: 'arg_ev' }), sec('Reason 2', ['Reason, evidence (cite it), analysis.', 'A second reason, aimed at what the reader cares about.'], 'arg_reason', 1.2, { sub: 'arg_ev' })],
+      [sec('Objection and answer', ['Name the strongest objection the reader might raise and answer it.', 'What will the reader worry about? Address it honestly.'], 'arg_counter', 1.1, { sub: 'arg_rebut' }),
+        sec('Closing: call to action', ['Restate the proposal, ask for a specific action by a date, and thank the reader.', 'End with exactly what you want done, and by when.'], 'lt_close', 1.1)]];
+  }
+  if (genre === 'brief') {
+    const old = band === 'g912';
+    return [[sec('Facts', ['Who did what to whom? Only the facts that matter to the decision.', 'The key facts of the case, in order: what happened, and how it reached this court.'], 'br_facts', 1.2)],
+      [sec('Question (issue)', ['The legal question the court had to answer, as a yes-or-no question.', 'What did the court have to decide? Name the law or amendment involved.'], 'br_issue', 0.8), sec('Ruling (holding)', ['The court\'s answer to the question, and the vote if you know it.', 'How did the court answer? Who won?'], 'br_hold', 0.8)],
+      old ? [sec('Reasoning', ['Why the court decided that way: the rule, the text, or the earlier cases it relied on.', 'The main reasons the majority gave, in your own words.'], 'br_reason', 1.3), sec('Dissent or concurrence', ['What did the justices who disagreed, or agreed for other reasons, say?', 'The strongest point on the other side.'], 'br_dissent', 1.3)]
+        : [sec('Reasoning', ['Why the court decided that way: the rule, the text, or the earlier cases it relied on.', 'The main reasons the court gave, in your own words.'], 'br_reason', 1.3)],
+      [sec('Why it matters', ['What changed because of this ruling? Who is affected today?', 'How did this case shape later cases or daily life?'], 'br_matter')]];
+  }
   // summary
   if (band === 'p') return [[sec('Title', ['What is the story or book called?'], null, 0.5)], [sec('Beginning', ['What happened first?', 'Who is in it, and what happens at the start?'], 'sum_beg_p')],
     [sec('Middle', ['What happened next?', 'What was the problem?'], 'sum_mid_p')], [sec('End', ['How did it end? What is the lesson?', 'What happened last? What is the big idea?'], 'sum_end_p')]];
@@ -235,6 +284,13 @@ const CHECK = {
     g45: ['I name the title, the author and the main idea.', 'I include only the most important details.', 'I keep the details in order.', 'I use my own words.', 'I leave out my opinions.'],
     g68: ['My first sentence names the title, author and central idea.', 'I include the key points in a logical order.', 'I paraphrase in my own words.', 'I stay objective: no opinions or judgments.', 'My summary is much shorter than the original.'],
     g912: ['My first sentence names the author, title and central idea or claim.', 'I show how the central idea develops across the text.', 'I paraphrase accurately; any quotation is short and exact.', 'I stay objective: no opinions or judgments.', 'My summary is much shorter than the original.'] },
+  letter: { p: ['I have a date and a greeting.', 'I tell the problem and my idea.', 'I give a reason.', 'I ask the person to do something.', 'I sign my name.'],
+    g3: ['I have a date, a greeting and a sign-off.', 'My opening says what the problem is.', 'I say what I want done and give reasons with examples.', 'I use linking words like because, so and for example.', 'My closing asks the reader to do something.'],
+    g45: ['I have a date, a greeting and a sign-off.', 'My opening says who I am and what the problem is.', 'My proposal is specific.', 'Each reason is backed by facts and details.', 'I use polite, formal language.', 'My closing asks for a specific action.'],
+    g68: ['I use letter format: date, greeting, paragraphs, sign-off.', 'I state the problem clearly and propose a specific fix.', 'Each reason is supported with evidence and explained.', 'I use transitions to connect my reasons.', 'I keep a formal, respectful tone.', 'My closing asks for a specific action.'],
+    g912: ['I use letter format: date, greeting, paragraphs, sign-off.', 'I state the problem precisely and propose a workable fix.', 'My reasons use evidence the reader will respect.', 'I address the reader\'s likely objection fairly.', 'I keep a formal, respectful tone and precise language.', 'My closing asks for a specific action by a date.'] },
+  brief: { g68: ['My facts are only the ones that matter to the decision.', 'My question is a yes-or-no question about the law.', 'My ruling answers the question.', 'My reasoning gives the court\'s reasons, not my opinion.', 'I explain why the case matters today.', 'I use the names and dates correctly.'],
+    g912: ['My facts are the ones the decision turned on, with how the case reached the court.', 'My question names the law or constitutional provision at issue.', 'My ruling states the holding and the vote.', 'My reasoning traces the rule the court applied and the sources it relied on.', 'I summarize the dissent or concurrence fairly.', 'I explain the precedent and its effect today.'] },
 };
 function checklist(genre, grade, band) {
   const pickKey = (o, keys) => { for (const k of keys) if (o[k]) return o[k]; };
@@ -249,6 +305,7 @@ function checklist(genre, grade, band) {
     items = CHECK[genre][k] || CHECK[genre].g3;
     const gs = grade <= 8 ? grade : grade <= 10 ? '9-10' : '11-12';
     code = genre === 'cer' ? (grade <= 5 ? `Common Core W.${gs}.1, used in science` : `Common Core WHST.${grade <= 8 ? '6-8' : gs}.1`) + '; NGSS practice: arguing from evidence'
+      : genre === 'letter' ? `Common Core W.${gs}.1` : genre === 'brief' ? `Common Core RH.${grade <= 8 ? '6-8' : gs}.1-2 and WHST.${grade <= 8 ? '6-8' : gs}.2`
       : genre === 'compare' ? `Common Core W.${gs}.2` : (grade <= 2 ? `Common Core RL.${gs}.2 and W.${gs}.2` : `Common Core RL.${gs}.2 or RI.${gs}.2, and W.${gs}.2`);
   }
   return { items, code };
@@ -290,6 +347,30 @@ const MODELS = {
     g68: { topic: 'The Ant and the Grasshopper (Aesop)', text: ['Aesop\'s fable "The Ant and the Grasshopper" shows the importance of preparing for the future. During the summer, a grasshopper spends his days singing and playing while an ant works hard to store food. The grasshopper teases the ant for working instead of enjoying the warm weather. When winter comes, the grasshopper has nothing to eat and asks the ant for food. The ant reminds him that he chose to play while she worked. The fable concludes that those who plan ahead are ready when hard times come.'] },
     g912: { topic: 'The Gettysburg Address (Abraham Lincoln, November 19, 1863)', text: ['In the Gettysburg Address, delivered at the dedication of a soldiers\' cemetery in Gettysburg, Pennsylvania, President Abraham Lincoln argues that the best way to honor the Union dead is to finish the work they died for. He opens by recalling that the nation was founded on liberty and the proposition that all men are created equal, and he frames the Civil War as a test of whether such a nation can last. He then states that the living cannot truly consecrate the ground, because the soldiers\' sacrifice has already done so. Lincoln closes by turning the ceremony into a charge: the audience must dedicate itself to the unfinished task so that government of the people, by the people, for the people does not perish. The speech moves from past to present to future, using a brief dedication to redefine the purpose of the war.'] } },
 };
+MODELS.letter = { p: { topic: 'A longer recess', text: ['October 3', 'Dear Principal Diaz,', 'I am writing because recess is too short. I think we should have five more minutes. One reason is that we need time to run and play. Please make recess longer. Thank you!', 'From, Maya'] },
+  m: { topic: 'A crosswalk near the school', text: ['March 12', 'Dear Mayor Lee,', 'My name is Jordan Park, and I am in fourth grade at Pine Street School. I am writing because there is no crosswalk on Elm Street, where many of us walk to school every day.',
+    'I am asking you to add a crosswalk and a sign at the corner of Elm Street and Third Avenue.',
+    'One reason is that cars drive fast on Elm Street. For example, last week a car did not stop when my friend was crossing. Another reason is that more kids would walk to school if it were safe, and that would mean less traffic in front of the school in the morning.',
+    'Please add a crosswalk this year. Thank you for reading my letter.', 'Sincerely, Jordan Park'] },
+  g68: { topic: 'A later start to the school day', note: 'The opening, the proposal and one reason paragraph.', text: ['September 18', 'Dear Dr. Alvarez,', 'I am an eighth grader at Lincoln Middle School, and I am writing about our 7:25 a.m. start time. On the bus I see students asleep every morning, and in first period many of us struggle to focus.',
+    'I propose that the school board move the start of the day to 8:15 a.m. and shorten passing periods by two minutes so that dismissal changes by less than half an hour.',
+    'One reason is that teenagers are built to fall asleep later. During puberty the sleep cycle shifts, and the American Academy of Pediatrics has recommended since 2014 that middle and high schools start no earlier than 8:30 a.m. This means a later start is not about laziness; it matches how our bodies work, and it would give most students close to an hour more sleep.',
+    'Sincerely, Priya Nair'] },
+  g912: { topic: 'Recycling bins in the cafeteria', note: 'The proposal paragraph plus the objection and answer, the part that is new at this level.', text: ['Dear Ms. Okafor,',
+    'I propose that the school place one labeled recycling bin beside each of the six trash cans in the cafeteria and ask the environmental club to empty them twice a week. The bins cost about $30 each, so the whole program would cost under $200, which the club can raise at its spring plant sale.',
+    'You may be concerned that students will put trash in the bins and contaminate the recycling, which is a real problem in many schools. It is true that a careless first month could undo the effort. However, two things make this unlikely here: the club will post simple picture signs above each bin, and club members will stand by the bins during the first two weeks of lunch to help. Schools in our district that did both reported contamination low enough for their hauler to accept the loads.',
+    'I would be glad to meet with you and the custodial staff to work out the details. Could we have a decision before the plant sale on April 20, so the club knows whether to raise the money? Thank you for your time.', 'Sincerely, Marcus Bell'] } };
+MODELS.brief = { g68: { topic: 'Brown v. Board of Education (1954)', text: ['Facts: Linda Brown, a Black third grader in Topeka, Kansas, had to travel across town to a segregated school even though a white school was a few blocks from her home. Her family and others sued the school board. The Supreme Court combined the case with similar cases from South Carolina, Virginia and Delaware.',
+    'Question: Does segregating public schools by race violate the Equal Protection Clause of the Fourteenth Amendment, even if the schools are otherwise equal?',
+    'Ruling: Yes. The Court ruled unanimously (9-0) for the students on May 17, 1954.',
+    'Reasoning: The Court held that separate educational facilities are inherently unequal. Separating children by race, Chief Justice Warren wrote, creates a feeling of inferiority that can affect their hearts and minds in a way that may never be undone. For public education, this rejected the separate but equal rule of Plessy v. Ferguson (1896).',
+    'Why it matters: Brown ended legal segregation in public schools and became a foundation of the civil rights movement, though many districts took years to comply.'] },
+  g912: { topic: 'Tinker v. Des Moines (1969)', text: ['Facts: In December 1965, Mary Beth Tinker, her brother John and their friend Christopher Eckhardt wore black armbands to their Des Moines, Iowa, schools to protest the Vietnam War. The district had adopted a rule against armbands two days earlier. The students were suspended until they returned without them, and their families sued. The lower courts sided with the school.',
+    'Question: Does a public school violate the First Amendment when it punishes students for silent, symbolic speech that does not disrupt school?',
+    'Ruling: Yes. The Court ruled 7-2 for the students on February 24, 1969.',
+    'Reasoning: Justice Fortas, for the majority, wrote that students do not shed their constitutional rights to freedom of speech at the schoolhouse gate. A school may limit student expression only when it can show the expression would materially and substantially interfere with school operation or the rights of others; fear of disruption is not enough, and the armbands caused none.',
+    'Dissent: Justice Black argued that the Constitution does not give students a right to protest during school hours and that the armbands did distract from schoolwork; Justice Harlan also dissented.',
+    'Why it matters: Tinker set the substantial disruption test that courts still use for student speech, later narrowed by cases on lewd speech, school newspapers and drug messages.'] } };
 const modelKey = band => band === 'p' ? 'p' : band === 'g68' ? 'g68' : band === 'g912' ? 'g912' : 'm';
 
 const MISTAKES = {
@@ -299,6 +380,8 @@ const MISTAKES = {
   cer: 'A claim that is really a guess written before looking at the data, evidence with no numbers or units, and reasoning that restates the evidence instead of naming the science idea.',
   compare: 'Writing all about one subject, then all about the other, with no direct comparison. Each point should mention both subjects.',
   summary: 'Retelling every detail, copying sentences, and adding opinions ("I loved this part"). A summary should be much shorter than the text.',
+  letter: 'A complaint with no proposal, and a closing with no ask. Every letter should say exactly what the reader should do. Watch for a tone that scolds the reader instead of persuading them.',
+  brief: 'Retelling the whole story instead of the facts that mattered, a question that is not a question, and reasoning that gives the student\'s opinion instead of the court\'s reasons.',
 };
 const USE = {
   opinion: 'Have students talk through their opinion and reasons with a partner first. The starters are a menu: they can pick one, change it, or write their own.',
@@ -307,8 +390,10 @@ const USE = {
   cer: 'Use after a lab or with a provided data table. The question can be yours or the class\'s. Model the reasoning section aloud the first time.',
   compare: 'Pair it with the Venn or compare-and-contrast organizer from the Graphic Organizer Maker as a planning step.',
   summary: 'Use after reading a short text the whole class knows. Have students underline the key points in the text first, then write.',
+  letter: 'Choose a real reader when you can: a principal, a mayor, a company. Decide the audience first; the reasons should be ones that reader cares about. A real reply is the best lesson.',
+  brief: 'Give students a short plain-language account of the case first (an oyez.org summary works). The question and ruling are the hardest boxes: model them. A brief fits on one side; longer is not better.',
 };
-const NAMES = { opinion: 'Opinion Writing', informative: 'Informative Writing', narrative: 'Narrative Writing', cer: 'Claim, Evidence, Reasoning', compare: 'Compare and Contrast Writing', summary: 'Summary Writing' };
+const NAMES = { opinion: 'Opinion Writing', informative: 'Informative Writing', narrative: 'Narrative Writing', cer: 'Claim, Evidence, Reasoning', compare: 'Compare and Contrast Writing', summary: 'Summary Writing', letter: 'Persuasive Letter', brief: 'Case Brief' };
 
 const CSS = `
 .wf-sec { border: 1.5px solid #222; border-radius: 8px; padding: .05in .1in .07in; break-inside: avoid; display: flex; flex-direction: column; background: #fff; }
@@ -343,13 +428,17 @@ const CSS = `
 .wf-model { border-left: 4px solid #333; padding: 2px 0 2px 12px; margin: 6px 0; }
 .wf-model p { margin: 0 0 6px; line-height: 1.5; }
 .wf-cont { break-before: page; }
+.wf-lt { margin: 0 0 4px; font-size: 14px; display: flex; gap: 8px; align-items: baseline; }
+.wf-lt span { border-bottom: 1.5px solid #222; height: 1.1em; }
+.wf-lt small { color: #555; font-size: 11.5px; margin-left: 4px; }
+.wf-p .wf-lt { font-size: 16px; }
 `;
 
 Gen.add('writing-frame', {
   title: 'Writing Frames', type: 'Writing frame', noKey: true, css: CSS,
   fields: [
     { id: 'grade', label: 'Grade', type: 'select', options: GRADES, def: '4' },
-    { id: 'genre', label: 'Kind of writing', type: 'select', options: GENRES, def: 'opinion' },
+    { id: 'genre', label: 'Kind of writing', type: 'select', options: v => +v.grade >= 6 ? GENRES : GENRES.filter(g => g[0] !== 'brief'), def: 'opinion' },
     { id: 'topic', label: 'Topic or prompt (optional)', type: 'text', def: '' },
     { id: 'space', label: 'Writing space', type: 'select', options: [['plan', 'Planning frame (1 page)'], ['draft', 'Drafting frame (2 pages)']], def: 'plan' },
   ],
@@ -387,28 +476,35 @@ Gen.add('writing-frame', {
       for (let i = 1; i < est.length; i++) { cum += est[i - 1]; const worst = Math.max(2.4 + cum, 1.2 + tot - cum); if (worst < best) { best = worst; at = i; } }
       html[at] = html[at].replace(/^<div class="wf-(row|sec)"/, '<div class="wf-$1 wf-cont"');
     }
+    if (genre === 'letter') {   // date and greeting above the frame, sign-off below it
+      html.unshift(`<p class="wf-lt"><b>Date:</b><span style="flex:0 0 1.5in"></span><b style="margin-left:.25in">Dear</b><span style="flex:1"></span><b>,</b></p>`);
+      html.push(`<p class="wf-lt"><b>${band === 'p' ? 'From,' : 'Sincerely,'}</b><span style="flex:0 0 2.6in"></span><small>your name</small></p>`);
+    }
     const tb = TRANS[genre][band === 'g45' ? 'g45' : band];
     const bank = tb ? `<div class="wf-bank"><b>${genre === 'narrative' ? 'Time words' : 'Linking words'}:</b> ${r.sample(tb, band === 'g3' ? 6 : 8).map(esc).join(' · ')}</div>` : '';
     const topicLine = topic ? (topic.length > 55 ? `<p class="wf-topic"><b>Topic:</b> ${esc(topic)}</p>` : '')
-      : `<p class="wf-topic"><b>${genre === 'summary' ? 'Text I am summarizing' : genre === 'cer' ? 'Investigation' : 'My topic'}:</b><span></span></p>`;
+      : genre === 'letter' ? '' : `<p class="wf-topic"><b>${genre === 'summary' ? 'Text I am summarizing' : genre === 'cer' ? 'Investigation' : genre === 'brief' ? 'Case name and year' : 'My topic'}:</b><span></span></p>`;
     const ck = checklist(genre, grade, band);
     const check = `<div class="wf-check"><p class="wf-check-h">Checklist <span>(${esc(ck.code)})</span></p><ul>${ck.items.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>`;
 
-    const genreLabel = genre === 'opinion' && grade >= 6 ? 'Argument' : genre === 'summary' && grade <= 2 ? 'Retell' : GENRES.find(x => x[0] === genre)[1].replace(/ \/.*$/, '').replace(' (science)', '');
-    const structure = { p: 'a few sentences', g3: 'one paragraph', g45: 'a short multi-paragraph piece', g68: 'a five-part essay', g912: 'a full essay' }[band];
+    const genreLabel = genre === 'opinion' && grade >= 6 ? 'Argument' : genre === 'summary' && grade <= 2 ? 'Retell' : GENRES.find(x => x[0] === genre)[1].replace(/ \/.*$/, '').replace(/ \((science|grades.*)\)$/, '');
+    const structure = genre === 'letter' ? (band === 'p' ? 'a short letter' : 'a persuasive letter') : genre === 'brief' ? 'a one-page case brief'
+      : { p: 'a few sentences', g3: 'one paragraph', g45: 'a short multi-paragraph piece', g68: 'a five-part essay', g912: 'a full essay' }[band];
     const m = MODELS[genre][modelKey(band)];
     const directions = band === 'p' ? `${grade === 1 ? 'Draw your idea first. Then write' : 'Write'} a sentence in each box. You can use the words on the first line to start.`
-      : `Plan ${structure}: write in each box, in order.${band === 'g3' ? ' Then copy your sentences as one paragraph.' : ''} Pick a starter from "Try" or begin your own way. Check the list at the bottom when you finish.`;
+      : `Plan ${structure}: write in each box, in order.${band === 'g3' ? (genre === 'letter' ? ' Then copy your sentences into a letter.' : ' Then copy your sentences as one paragraph.') : ''} Pick a starter from "Try" or begin your own way. Check the list at the bottom when you finish.`;
     const ican = { opinion: grade >= 6 ? 'I can write an argument that supports a claim with reasons and evidence.' : 'I can write my opinion and give reasons.',
       informative: 'I can write to teach a reader about a topic.', narrative: 'I can write a story with events in order and details that show what happens.',
       cer: 'I can answer a science question with a claim, evidence and reasoning.', compare: 'I can write about how two things are alike and different.',
-      summary: grade <= 2 ? 'I can retell the important parts of a story.' : 'I can summarize a text in my own words.' }[genre];
+      summary: grade <= 2 ? 'I can retell the important parts of a story.' : 'I can summarize a text in my own words.',
+      letter: grade <= 5 ? 'I can write a letter that asks someone to fix a problem and gives reasons.' : 'I can write a persuasive letter that proposes a fix and supports it with reasons and evidence.',
+      brief: 'I can brief a court case: facts, question, ruling, reasoning and why it matters.' }[genre];
     const teacher = `<h3>Model: ${esc(m.topic)}</h3><p>Written for this level${m.note ? '. ' + esc(m.note) : ''}. Read it aloud and have students find each part of the frame in it.</p>` +
       `<div class="wf-model">${m.text.map(p => `<p>${esc(p)}</p>`).join('')}</div>`;
     return {
       title: (topic && topic.length <= 55) ? topic : `${genreLabel === 'Argument' ? 'Argument Writing' : genreLabel === 'Retell' ? 'Retell' : NAMES[genre]} Frame`,
       eyebrow: `Writing frame · ${genreLabel}`, level: `Grade ${grade}`,
-      ican, directions, minutes: band === 'p' ? 20 : draft ? 45 : 30, materials: 'pencil' + (genre === 'cer' ? ', your data or notes' : genre === 'summary' ? ', the text' : ''),
+      ican, directions, minutes: band === 'p' ? 20 : draft ? 45 : 30, materials: 'pencil' + (genre === 'cer' ? ', your data or notes' : genre === 'summary' ? ', the text' : genre === 'brief' ? ', the case summary or opinion' : ''),
       parts: [['', `<div class="wf wf-${band}">${topicLine}${bank}${html.join('')}${check}</div>`]], items: [],
       mistakes: MISTAKES[genre],
       notes: `${USE[genre]} This frame builds ${structure}; the checklist matches ${esc(ck.code)}. The starters and linking words change with each New sheet. ${draft ? 'The drafting frame gives room for full sentences across two pages.' : 'Choose the drafting frame for more room to write.'}`,
