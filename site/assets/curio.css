@@ -600,6 +600,67 @@ section.block { padding: 56px 0 8px; }
   .gcard .print-foot { margin-top: 10pt; }
 }
 
+/* Break Box: shelf with grade chips and a "pick for me" filter, and a sheet that prints on one Letter page (two at most) */
+.bb-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; }
+.bb-chips a { display: grid; place-items: center; min-width: 46px; height: 46px; padding: 0 10px; border-radius: 12px; background: var(--paper-2); text-decoration: none; font: 650 18px var(--serif); color: var(--ink); }
+.bb-chips a:hover { background: var(--ink); color: #fff; }
+.bb-pick { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 18px; margin: 0 0 22px; }
+.bb-pick .eyebrow { margin: 0 0 10px; }
+.bb-fields { display: flex; flex-wrap: wrap; gap: 10px 18px; }
+.bb-fields label { display: grid; gap: 4px; font: 600 13px var(--sans); color: var(--muted); }
+.bb-fields select { font: 16px var(--sans); padding: 8px 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); min-width: 0; max-width: 100%; }
+.bb-status { margin: 12px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.bb-status .btn { padding: 9px 16px; font-size: 15px; }
+.bb-card[hidden], .bb-group[hidden] { display: none; }
+.bb-card.bb-picked { outline: 3px solid var(--accent); outline-offset: 2px; }
+.bb-meta .tag { margin-right: 4px; }
+.bb-page .game-hint .btn { margin-right: 10px; }
+.bbsheet { background: var(--card); border: 1px solid var(--line); border-top: 10px solid var(--band); border-radius: var(--radius); padding: 22px 26px; margin: 22px 0; max-width: 860px; }
+.bbsheet .eyebrow { margin: 0; }
+.bbsheet h2 { font-size: 34px; margin: 4px 0 12px; }
+.bbsheet h3 { font-size: 18px; margin: 14px 0 6px; }
+.bbsheet p, .bbsheet li { line-height: 1.45; }
+.bbsheet ul, .bbsheet ol { margin: 0; padding-left: 22px; }
+.bbsheet li { margin: 3px 0; }
+.bbsheet section > p { margin: 0 0 6px; }
+.bbfacts { grid-template-columns: repeat(5, auto); }
+.bbidea p { font-size: 18px; margin: 0; }
+.bbneed { margin-top: 12px; padding: 8px 16px; background: var(--paper-2); border-radius: 12px; }
+.bbneed p { margin: 4px 0; }
+.bbflow { columns: 2 320px; column-gap: 28px; }
+.bbflow section { break-inside: avoid-column; }
+.bbflow section:first-child h3 { margin-top: 10px; }
+.bbflow .bbgrown { break-inside: avoid; }
+.bbgrown { margin-top: 14px; padding: 4px 16px 10px; border: 1px dashed var(--line); border-radius: 12px; }
+.bbgrown p { margin: 0; }
+.bb-hint { color: var(--muted); font-size: 14px; }
+.bb-line { display: inline-block; border-bottom: 1px solid var(--ink); min-width: 4em; height: 1.1em; vertical-align: bottom; }
+.bb-line.wide { min-width: 0; width: 70%; }
+.bb-lines { height: calc(var(--n) * 30px); background: repeating-linear-gradient(transparent 0 29px, var(--line) 29px 30px); }
+.bb-steps li { margin: 10px 0; }
+.bb-steps .bb-line.wide { width: 92%; }
+@media (max-width: 600px) { .bbfacts { grid-template-columns: 1fr 1fr; } .bbsheet { padding: 18px 16px; } .bbsheet h2 { font-size: 28px; } }
+@media print {
+  .bb-page { max-width: none; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .bbsheet { border: 0; border-top: 0.16in solid var(--band); border-radius: 0; padding: 0.12in 0 0; margin: 0; max-width: none; font-size: 9.8pt; }
+  .bbsheet h2 { font-size: 20pt; margin: 1pt 0 5pt; }
+  .bbsheet h3 { font-size: 11pt; margin: 5pt 0 1.5pt; break-after: avoid; }
+  .bbsheet p, .bbsheet li { line-height: 1.22; }
+  .bbsheet li { margin: 1pt 0; }
+  .bbsheet section > p { margin: 0 0 3pt; }
+  .bbfacts { border: 1px solid #999; padding: 4pt 9pt; gap: 3pt 14pt; grid-template-columns: repeat(5, auto); }
+  .bbidea p { font-size: 11pt; line-height: 1.25; }
+  .bbneed { border: 1px solid #999; padding: 3pt 9pt; margin-top: 6pt; font-size: 10pt; }
+  .bbneed p { margin: 2pt 0; }
+  .bbflow { columns: 2; column-gap: 0.3in; }
+  .bbflow section { break-inside: auto; }
+  .bbflow .bb-keep { break-inside: avoid; }
+  .bbgrown { border: 1px solid #999; padding: 1pt 8pt 5pt; margin-top: 6pt; break-inside: avoid; }
+  .bb-lines { height: calc(var(--n) * 0.3in); background: repeating-linear-gradient(transparent 0 calc(0.3in - 1px), #999 calc(0.3in - 1px) 0.3in); }
+  .bb-steps li { margin: 9pt 0; }
+  .bbsheet .print-foot { margin-top: 4pt; }
+}
+
 /* Sub Day packet (/tools/<id>/sub/): five parts, each its own printed page */
 .sub-page { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 .sub-toc { display: flex; flex-wrap: wrap; gap: 6px 18px; padding-left: 20px; margin: 10px 0 0; color: var(--muted); }

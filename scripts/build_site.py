@@ -22,6 +22,7 @@ from bundle_tool import bundle_all  # noqa: E402
 import check_plans  # noqa: E402
 import check_words  # noqa: E402
 import check_games  # noqa: E402
+import check_breaks  # noqa: E402
 import qr  # noqa: E402
 import check_charts  # noqa: E402
 import check_worksheets  # noqa: E402
@@ -290,6 +291,13 @@ for g in games.values():
     g['tools'] = [t for mid in g['module_ids'] for t in by_module[mid] if t['built']]
     for mid in g['module_ids']:
         games_by_module[mid].append(g)
+# Break Box (docs/BREAK-BOX-PLAN.md): projects for a school break, one printed sheet each; a bad sheet stops a closet build
+breaks = check_breaks.load() if CLOSET_LIVE else {}
+_bad = [p for b in breaks.values() for p in check_breaks.problems(b)] + check_breaks.grade_problems(breaks)
+if _bad:
+    sys.exit('; '.join(_bad[:5]) + ' (python scripts/check_breaks.py)')
+for b in breaks.values():
+    b['html'] = {name: markdown.markdown(text) for name, text in b['parts']}
 
 # Posters and Anchor Charts (Phase D): a chart per module, and posters by band; a bad or overfull chart stops the build
 charts = check_charts.load('chart') if CLOSET_LIVE else {}
@@ -414,6 +422,8 @@ CLOSET = [  # slug, label, what it holds
     ('anchor-charts', 'Posters and Anchor Charts', 'The big idea of each module on one page, finished or fill-in, and posters '
      'that stay up all year. Print on one page or tile them big.'),
     ('game-night', 'Family Game Night', 'Games to play at home with paper, pencils, cards or dice. Nothing to buy.'),
+    ('break-box', 'Break Box', 'Projects for a school break, K to 12: build, make, cook, play or explore for an hour or two. '
+     'One printed sheet each, written for the child, with a note for the grown-up.'),
     ('worksheets', 'Worksheets', 'Printable practice sheets for every class, K-12: 40 to 50 a year per class, each with '
      'an answer key and a teacher page.'),
     ('printables', 'Printables', 'Everyday paper for the classroom: handwriting and graph paper, graphic organizers, '
@@ -542,6 +552,13 @@ for gr in GRADES:
     gs = sorted((g for g in games.values() if g['grade'] == gr), key=lambda g: (list(subjects).index(g['subject']), g['title']))
     if gs:
         game_sections.append(dict(id=f'grade-{gr}', label=grade_label(gr), games=gs))
+# Break Box: one shelf page with a section per grade (sheets in plan order), a print page per sheet and a blank one
+break_sections = [dict(id=f'grade-{gr}', g=gr, label=grade_label(gr),
+                       sheets=sorted((b for b in breaks.values() if b['grade'] == gr), key=lambda b: int(b['order'])))
+                  for gr in GRADES]
+break_sections = [s for s in break_sections if s['sheets']]
+if breaks:
+    counts['break-box'] = f'{len(breaks)} projects and a blank one'
 for g in games.values():
     render('closet/game.html', g['url'], g=g, subject=subjects[g['subject']], subject_es=SUBJECT_ES[g['subject']],
            tools=[t for mid in g['module_ids'] for t in by_module[mid] if t['built']])
@@ -624,6 +641,11 @@ for sid, label, what in CLOSET:
         render('closet/music.html', '/closet/teacher-desk/music/')
     elif sid == 'game-night' and games:
         render('closet/game-night.html', '/closet/game-night/', label=label, what=what, sections=game_sections)
+    elif sid == 'break-box' and breaks:
+        render('closet/break-box.html', '/closet/break-box/', label=label, what=what, sections=break_sections)
+        for b in breaks.values():
+            render('closet/break.html', b['url'], b=b)
+        render('closet/break.html', '/closet/break-box/my-own-idea/', b=dict(id='my-own-idea', url='/closet/break-box/my-own-idea/'))
     else:
         render('closet/shelf.html', f'/closet/{sid}/', label=label, what=what, groups=[], index=False)
 
@@ -819,6 +841,8 @@ if CLOSET_LIVE:  # Supply Closet items, so "fractions vocabulary" or "photosynth
     index += [{'t': f"Family game: {g['title']}", 'u': g['url'], 'g': grade_label(g['grade']), 's': subjects[g['subject']]['short'],
                'f': 'Game Night', 'm': ', '.join(x['title'] for x in g['mods']), 'c': '', 'd': g['learn'], 'b': True}
               for g in games.values()]
+    index += [{'t': f"Break Box: {b['title']}", 'u': b['url'], 'g': grade_label(b['grade']), 's': 'Supply Closet',
+               'f': 'Break Box', 'm': b['kind'], 'c': '', 'd': b['idea'], 'b': True} for b in breaks.values()]
     index += ws_index
 (DIST / 'search-index.json').write_text(json.dumps(index, separators=(',', ':')), encoding='utf-8')
 render('search.html', '/search/', index=False)

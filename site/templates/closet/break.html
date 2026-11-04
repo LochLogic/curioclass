@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% set COLOR = {'Build': 'cte', 'Story': 'ela', 'Art': 'arts', 'Pretend': 'sel', 'Science': 'science', 'Game': 'math',
+                'Puzzle': 'math', 'Music': 'arts', 'Move': 'health', 'Outside': 'health', 'Kitchen': 'cte', 'Kindness': 'sel'} %}
+{% set WHO = {'1': 'On your own', '1+': 'Alone or with others', '2+': 'With others'} %}
+{% set WHERE = {'Indoors': 'Indoors', 'Outdoors': 'Outdoors', 'Either': 'Indoors or out'} %}
+{% set blank = not b.title %}
+{% set FLOW = ['Goals', 'Objectives', 'Get ready', 'Steps', 'Make it yours', 'Stuck?', 'Show it off', 'Clean up'] %}
+{% block title %}{% if blank %}My own idea: a blank Break Box sheet{% else %}{{ b.title }}: a break project for {{ grade_label(b.grade) | lower }}{% endif %} · Curio Class{% endblock %}
+{% block description %}{% if blank %}A blank Break Box sheet to plan your own project for a school break, in the same layout as the others.{% else %}A {{ b.time }} {{ b.kind | lower }} project for a school break. {{ b.idea }}{% endif %}{% endblock %}
+{% block main %}
+<div class="wrap bb-page" style="--band: var(--{{ COLOR.get(b.kind, 'ink') }})">
+  <div class="no-print">
+    {{ crumbs([('Supply Closet', '/closet/'), ('Break Box', '/closet/break-box/')] + ([] if blank else [(grade_label(b.grade), '/closet/break-box/#grade-' ~ b.grade)]) + [('My own idea' if blank else b.title, None)]) }}
+    <p class="game-hint"><button class="btn primary" type="button" onclick="print()">Print</button>
+      {% if blank %}Plan your own break project. Fill it in by hand, then do it.{% else %}Prints on one page, two for the longest ones. The steps are written for your child; the last box is for you.{% endif %}</p>
+  </div>
+  <article class="bbsheet">
+    <header>
+      <p class="eyebrow">Break Box{% if not blank %} · {{ grade_label(b.grade) }} · {{ b.kind }}{% endif %}</p>
+      {% if blank %}<h2>My own idea: <span class="bb-line wide"></span></h2>{% else %}<h2>{{ b.title }}</h2>{% endif %}
+      <dl class="gfacts bbfacts">
+        {% if blank %}
+        <div><dt>Time</dt><dd><span class="bb-line"></span> min</dd></div>
+        <div><dt>Where</dt><dd>Indoors / Outdoors</dd></div>
+        <div><dt>Mess</dt><dd>Low / Medium / High</dd></div>
+        <div><dt>Grown-up</dt><dd>With me / Nearby / On my own</dd></div>
+        <div><dt>Who</dt><dd>Just me / With others</dd></div>
+        {% else %}
+        <div><dt>Time</dt><dd>{{ b.time }}</dd></div>
+        <div><dt>Where</dt><dd>{{ WHERE[b.where] }}</dd></div>
+        <div><dt>Mess</dt><dd>{{ b.mess }}</dd></div>
+        <div><dt>Grown-up</dt><dd>{{ b.grownup }}</dd></div>
+        <div><dt>Who</dt><dd>{{ WHO[b.players] }}</dd></div>
+        {% endif %}
+      </dl>
+    </header>
+    {% if blank %}
+    <section class="bbidea"><h3>The big idea</h3><div class="bb-lines" style="--n:3"></div></section>
+    <div class="bbneed"><p><b>Materials:</b></p><div class="bb-lines" style="--n:2"></div></div>
+    <div class="bbflow">
+      <section><h3>Goals</h3><p class="bb-hint">What will be finished at the end?</p><div class="bb-lines" style="--n:2"></div></section>
+      <section><h3>Get ready</h3><div class="bb-lines" style="--n:2"></div></section>
+      <section class="bb-keep"><h3>Steps</h3><ol class="bb-steps">{% for i in range(7) %}<li><span class="bb-line wide"></span></li>{% endfor %}</ol></section>
+      <section><h3>Make it yours</h3><div class="bb-lines" style="--n:2"></div></section>
+      <section><h3>Stuck?</h3><p class="bb-hint">What could go wrong, and what will I try?</p><div class="bb-lines" style="--n:2"></div></section>
+      <section><h3>Show it off</h3><div class="bb-lines" style="--n:2"></div></section>
+      <section><h3>Clean up</h3><div class="bb-lines" style="--n:1"></div></section>
+    </div>
+    <section class="bbgrown bbgrown-wide"><h3>For the grown-up</h3><p>Look the plan over together before starting: the materials, anything sharp or hot, and where it will happen. <b>Ask at dinner:</b> "What happened that you did not plan?"</p></section>
+    {% else %}
+    <section class="bbidea"><h3>The big idea</h3>{{ b.html['The big idea'] | safe }}</section>
+    <div class="bbneed">
+      <p><b>Materials:</b> {{ b.materials }}</p>
+      {% if b.nice %}<p><b>Nice to have:</b> {{ b.nice }}</p>{% endif %}
+      {% if b.night_before %}<p><b>Get ready the night before:</b> {{ b.night_before }}</p>{% endif %}
+    </div>
+    <div class="bbflow">
+      {% for name in FLOW %}<section><h3>{{ name }}</h3>{{ b.html[name] | safe }}</section>{% endfor %}
+      <section class="bbgrown"><h3>For the grown-up</h3>{{ b.html['For the grown-up'] | safe }}</section>
+    </div>
+    {% endif %}
+    <p class="print-foot">{{ 'My own idea' if blank else b.title }} · Break Box · Curio Class, curioclass.org{{ b.url }} · free under CC BY 4.0</p>
+  </article>
+</div>
+{% endblock %}
