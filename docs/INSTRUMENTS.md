@@ -6,6 +6,19 @@ second shape". This file holds the concepts and the open choices. Nothing here i
 Each concept names the real thing it is, the first two minutes, where the depth comes from, the real material (with
 its licence status), and where it sits on the map: the anchor module it fills and the other modules it reaches.
 
+## Cory's first read (2026-11-04)
+
+| Concept | Verdict | Next |
+|---|---|---|
+| Voice Lab | Fun | Ahead |
+| Living Earth | Good foundation; needs more for the user to do | Boosted below ("Things to do") |
+| Sky Dome | A bit simple, still fits | Ahead as is |
+| Microscope Bench | Worried it feels like a regular tool; potential if done right | Reshaped below ("Things to do") |
+| Circuit Bench | Caught Cory's eye: super cool to just play with | Ahead |
+| Graph Studio | Graphing calculator days: fun | Ahead |
+| Compass and Straightedge | Can't picture it yet; trust it and let it build out | Ahead, judged once built |
+| Poet's Workbench | Hits for literary folks | Ahead |
+
 ## The concepts
 
 ### 1. Voice Lab (a live spectrogram)
@@ -33,8 +46,22 @@ its licence status), and where it sits on the map: the anchor module it fills an
   (public domain). Plate boundaries (Bird 2003) and the Smithsonian volcano list need their terms checked.
 - **Map:** anchor science-6-plate-tectonics. Also reaches science-4-earth-s-features-on-maps,
   science-8-natural-hazards-and-human-impact, science-9-orbits-and-earth-s-history.
+- **Things to do** (Cory asked for more, 2026-11-04). Each is something a seismologist really does:
+  - **Find the quake.** Drop three seismometer stations anywhere; a real past quake strikes; each station's
+    squiggle shows the P wave, then the S wave. Read the gap, draw a circle from each station, and the circles
+    meet at the epicentre. Then reveal where it really was.
+  - **Send a wave through the Earth.** Tap anywhere to start a quake and watch the P and S waves travel through
+    the crust, mantle and core in a cut-away globe. S waves stop at the liquid core, leaving a shadow zone on the
+    far side, which is how we learned the core is liquid.
+  - **Slice the Earth.** Drag a line across a trench and the cross-section drops open: the quakes trace the
+    sinking plate down hundreds of kilometres.
+  - **Rewind the continents.** Drag time back 200 million years and the continents slide back into Pangaea, with
+    the matching fossils and rock belts lighting up on both shores.
+  - **Pin your town.** Drop a pin on any place and see its quake and volcano history around it, the nearest plate
+    edge, and how fast that plate moves (a few centimetres a year, about how fast fingernails grow).
 - **Watch:** the 2 MB budget (thin the catalog to magnitude 5 and up, about 600 KB packed); real disasters
-  shown as data, without gore or casualty counts as spectacle.
+  shown as data, without gore or casualty counts as spectacle. Plate reconstructions for Rewind need a licensed
+  source (GPlates models are openly licensed; check which).
 
 ### 3. Sky Dome (a planetarium)
 
@@ -60,7 +87,19 @@ its licence status), and where it sits on the map: the anchor module it fills an
   government sources), checked image by image. Focus and depth are layered images, so the blur is honest.
 - **Map:** anchor science-6-cells-and-body-systems. Also reaches science-9-cell-structure-and-function,
   science-9-cell-division-and-differentiation.
-- **Watch:** finding enough public-domain images at matching magnifications; motion (swimming) may need short clips.
+- **What keeps it from feeling like a regular tool** (Cory's worry, 2026-11-04). A regular tool shows picture 1,
+  then picture 2, then asks a question. This one is a bench and a box of things to look at, and the student hunts:
+  - **Make your own slide.** Pick from a tray: a drop of pond water, onion skin, a cheek swab, a hair, salt, sugar,
+    sand, a leaf, a feather, a fly's wing. Add a stain or not, drop the cover slip. Every choice changes what you see.
+  - **Scan the whole slide.** Each slide is a huge stitched image, far bigger than the eyepiece. Pan around it like
+    a real stage, with the light and focus knobs working, and hunt: a rotifer hiding in the debris, one cell caught
+    mid-division among hundreds.
+  - **A sketchbook beside the eyepiece.** Sketch what you found, label it, note the magnification. The sketchbook
+    keeps on this device and prints. That is what scientists actually did with microscopes for 300 years.
+  - **No questions from the tool.** It never asks "What is this?". Tapping something you found names it only after
+    you've zoomed in on it, like a field guide.
+- **Watch:** finding enough public-domain images at matching magnifications, and big enough to stitch into a slide
+  to scan; motion (swimming) may need short clips.
 
 ### 5. Circuit Bench
 
@@ -114,6 +153,26 @@ its licence status), and where it sits on the map: the anchor module it fills an
   ela-k-rhymes-and-sounds.
 - **Watch:** Poetry Soundboard (planned studio in the same module) is the neighbour; this may take its card or sit
   beside it.
+
+## Pivoting the super tools (Cory, 2026-11-04)
+
+Cory asked whether the five super tools (docs/agents/SUPER.md) could pivot into instruments. Most can, because they
+already share three of the qualities (the toy comes first, the concept is the mechanic, the model is honest). What
+makes each one a game is its goal ladder, its sticker book, or a fixed order of rooms. The pivot is the same move
+each time: **free play becomes the front door, the goals leave the frame, and the real material moves to the
+centre.** Goals that teach something can stay as an optional book to browse, never a ladder to climb.
+
+| Super tool | Where it stands | The instrument it becomes | Size of the pivot |
+|---|---|---|---|
+| Span and Spire | Built and reviewed by Codex (12 Tags with budgets) | **Span and Spire, the engineer's yard.** Build any bridge or tower; choose your own truck, wind and shake; every member glows with its real force and the weakest buckles in slow motion. Budget becomes a dial you can turn on, not a gate. Tags become an optional logbook of tested designs. | Small: a Codex fix round with a pivot brief |
+| Pocket Universe | Built and reviewed by Codex (goals and Wonders) | **Pocket Universe, a gravity sandbox.** Fling, rewind, scrub time; the real Solar System as a load. Goals leave the screen; Wonders stay as a book of famous setups to load and break. | Small: a Codex fix round |
+| Cipher Vault | Spec only; held out of the Codex queue 2026-11-04 | **Cipher Workbench.** A codebreaker's bench: a frequency counter, a cipher wheel, a Vigenère square, a small rotor machine, all working on any message. Crack real historical messages or stump a partner. The six rooms become an optional case file to open in any order. | Medium: a spec revision before building |
+| Molecule Forge | Spec only | **Molecule Forge.** Atoms snap only where real bonding allows; the discovery book stays, but as a field guide that names what you built, not a checklist to fill. | Small: a spec revision |
+| Living Pond | Spec only | **Living Pond, an ecosystem tank.** Add and remove species, change the seasons and the light, and watch the populations and the graph respond over years. No goals; the winters and the heron are the drama. | Small: a spec revision |
+
+Each passes the short test once pivoted. Span and Spire is the strongest: a real engineer's structural analysis
+you can just play with, exactly like Circuit Bench. Nothing is pivoted yet; the two built ones need Cory's go-ahead
+before a fix round changes them.
 
 ## Open choices for Cory
 
