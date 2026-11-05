@@ -2,7 +2,9 @@ r"""Run Cory's Codex queue unattended: each build and each review is its own fre
 pasting a block from _queue.txt into a new Codex chat.
 
     python scripts/codex_runner.py                  run until the queue is empty, the usage limit is hit, or STOP
-    python scripts/codex_runner.py --builds 2 --reviews 2      fewer at once (defaults 3 and 4, as the paste file)
+    python scripts/codex_runner.py --builds 2 --reviews 2      fewer at once (defaults 3 builds, 4 reviews, 2 fixes)
+    python scripts/codex_runner.py --fixes 0                                no fixes this run
+    python scripts/codex_runner.py --max-builds 15 --max-reviews 15         stop starting each kind after this many
     python scripts/codex_runner.py --max-jobs 1 --reviews 1 --builds 0      one review only (a test)
     python scripts/codex_runner.py --only nonsense-words                    only these tools
     python scripts/codex_runner.py --dry                                    print what it would start, start nothing
@@ -10,8 +12,10 @@ pasting a block from _queue.txt into a new Codex chat.
 Start Menu: "Codex Queue" runs it in a window (scripts\Start-Codex-Queue.bat). To stop it gently, create the file
 S:\CurioClass-codex\_runner\STOP: nothing new starts, running sessions finish. Closing the window stops everything.
 
-What is done comes from the disk, as in codex_queue.py: codex-report.md means built, codex-review.md means reviewed.
-A finished build makes its review eligible in a new session. Reviews go first, oldest built first.
+What is done comes from the disk, as in codex_queue.py: codex-report.md means built, codex-review.md means reviewed,
+polish.md means fixed (a fix is wanted only for tools in codex_queue.FIX with an OPEN or ROUND 2 refine.md; see
+docs/agents/CODEX-FIX.md). A finished build makes its review eligible in a new session. Fixes go first, then reviews,
+oldest built first, then builds.
 
 Watchdog (docs/agents/CODEX.md, "Run"): a session whose events log stops growing for 20 minutes gets the hung-command
 message as a resume of the same session; a "model at capacity" or dropped turn gets "carry on". At most 3 resumes and
@@ -75,9 +79,12 @@ def recently_touched(t):
     return False
 
 
+TABLES = {'build': (cq.BUILD_PORTS, cq.BUILD), 'review': (cq.REVIEW_PORTS, cq.REVIEW), 'fix': (cq.FIX_PORTS, cq.FIXP)}
+
+
 def port_busy(kind, slot):
     """True when a hand-pasted chat (or anything else) is using this slot's host or Chrome ports right now."""
-    c, h = (cq.BUILD_PORTS if kind == 'build' else cq.REVIEW_PORTS)[slot]
+    c, h = TABLES[kind][0][slot]
     for port in [h, *range(c, c + 8)]:
         with socket.socket() as s:
             s.settimeout(0.2)
@@ -96,10 +103,10 @@ def codex_exe():
 class Job:
     def __init__(self, kind, t, slot, day):
         self.kind, self.t, self.slot = kind, t, slot
-        table = cq.BUILD_PORTS if kind == 'build' else cq.REVIEW_PORTS
+        table, template = TABLES[kind]
         c, h = cq.ports(table, slot)
-        text = (cq.BUILD if kind == 'build' else cq.REVIEW).format(t=t, c=c, h=h)
-        if t in cq.NOTES:
+        text = template.format(t=t, c=c, h=h)
+        if t in cq.NOTES and kind != 'fix':
             text += '\n\n' + cq.NOTES[t]
         text += ('\n\nThis session runs unattended: nobody will answer questions. Where you would ask, take the option the '
                  'spec or brief leans toward and note it in the report.')
@@ -165,6 +172,8 @@ class Job:
                     self.failed_turn = line[:300]
 
     def done(self):
+        if self.kind == 'fix':
+            return (cq.BASE / 'tools' / self.t / 'polish.md').exists()
         built, reviewed = cq.state(self.t)
         return built if self.kind == 'build' else reviewed
 
@@ -173,20 +182,26 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--builds', type=int, default=3)
     ap.add_argument('--reviews', type=int, default=4)
+    ap.add_argument('--fixes', type=int, default=2)
+    for k in ('builds', 'reviews', 'fixes'):
+        ap.add_argument(f'--max-{k}', type=int, default=0, help=f'stop starting {k} after this many (0 = no limit)')
     ap.add_argument('--max-jobs', type=int, default=0, help='stop starting new jobs after this many (0 = no limit)')
     ap.add_argument('--only', nargs='*')
     ap.add_argument('--dry', action='store_true')
     a = ap.parse_args()
-    a.builds, a.reviews = min(a.builds, 3), min(a.reviews, 4)
+    a.builds, a.reviews, a.fixes = min(a.builds, 3), min(a.reviews, 4), min(a.fixes, 2)
 
     day = RUN / dt.date.today().isoformat()
     day.mkdir(parents=True, exist_ok=True)
     if STOP.exists():
         STOP.unlink()
     queue = [t for t in cq.QUEUE if not a.only or t in a.only]
+    fixq = [t for t in cq.FIX if not a.only or t in a.only]
     running, tried, started, stop_reason, last_start = [], set(), 0, None, 0.0
+    cap_of = {'build': a.max_builds, 'review': a.max_reviews, 'fix': a.max_fixes}
+    count = {'build': 0, 'review': 0, 'fix': 0}
     keep_awake(True)
-    log(f'runner start: up to {a.builds} builds and {a.reviews} reviews at once')
+    log(f'runner start: up to {a.builds} builds, {a.reviews} reviews and {a.fixes} fixes at once')
     try:
         while True:
             if STOP.exists() and not stop_reason:
@@ -195,14 +210,16 @@ def main():
             waiting = False
             if not stop_reason and not (a.max_jobs and started >= a.max_jobs):
                 busy = {j.t for j in running}
-                for kind, cap, slots in (('review', a.reviews, 'ABCD'), ('build', a.builds, 'ABC')):
+                for kind, cap, slots, tools in (('fix', a.fixes, 'AB', fixq), ('review', a.reviews, 'ABCD', queue),
+                                                ('build', a.builds, 'ABC', queue)):
                     free = [s for s in slots[:cap] if s not in {j.slot for j in running if j.kind == kind}
                             and (a.dry or not port_busy(kind, s))]
-                    for t in queue:
-                        if not free or (a.max_jobs and started >= a.max_jobs):
+                    for t in tools:
+                        if not free or (a.max_jobs and started >= a.max_jobs) or (cap_of[kind] and count[kind] >= cap_of[kind]):
                             break
                         built, reviewed = cq.state(t)
-                        want = (kind == 'review' and built and not reviewed) or (kind == 'build' and not built)
+                        want = ((kind == 'review' and built and not reviewed) or (kind == 'build' and not built)
+                                or (kind == 'fix' and cq.fix_wanted(t)))
                         if not want or t in busy or (kind, t) in tried:
                             continue
                         if recently_touched(t):
@@ -213,6 +230,7 @@ def main():
                             waiting = True
                             break
                         tried.add((kind, t))
+                        count[kind] += 1
                         if a.dry:
                             log(f'would start {kind} {t} (slot {free[0]})')
                             free.pop(0)

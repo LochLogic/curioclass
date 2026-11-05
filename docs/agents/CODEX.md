@@ -50,6 +50,22 @@ scratch evidence (screenshots, audit output) is kept until the tool ships, then 
 
 Merge main into codex/queue after a pull so new builds use current engines.
 
+## Fixes after Refine, and the brief upgrades (2026-11-04)
+
+Measure first (docs/agents/MEASURE-FIRST.md): 4 Codex-reviewed tools still had 3 blockers and 6 to 14 should fix each
+under a full Claude Refine, so Refine stays. What Codex's review missed was happy-path testing: a CPR score that rewarded
+pausing, gamelan dated 1889, how-to lines never heard on the main path, a phone fix that still tangled. So, on Cory's
+call, CODEX-BUILD.md and CODEX-REVIEW.md now ask for a Break it pass on every score and check, a main-path voice walk,
+facts held to a named source, a Sensitivity flag, and every fix re-shot at the sizes it was seen at.
+
+Fixes run in Codex too: `docs/agents/CODEX-FIX.md`, a third job kind in codex_runner.py (`--fixes`, two at once, ports
+9920 and 9910). The tools are listed in `codex_queue.FIX`. Hand over: commit the merged refine.md in main, merge main
+into codex/queue. Codex writes `polish.md`. Pull the tool back and run one Claude exit check, which re-tests every item:
+Codex has claimed fixes that were not made. Round 2 renames polish.md to polish-r1.md.
+
+Sensitivity: when a codex-review.md names something under `## Sensitivity`, run the Claude sensitivity agent before the
+lenses (about 117k tokens on music-history-radio), and merge its findings with theirs.
+
 ## Set up
 
 - Its own worktree and branch off main: `git worktree add S:/CurioClass-codex-<id> -b codex/<id> origin/main`.
