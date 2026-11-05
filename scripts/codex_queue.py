@@ -35,7 +35,8 @@ spot-the-ai shadow-measure rules-referee ph-mystery-liquids packaging-challenge 
 keyword-fishing is-the-historian-right input-or-output fire-lookout-triangles fair-dice-investigation
 design-the-study courtroom-statistics code-kitchen zipline-energy water-shapes-earth
 energy-accountant medical-test-paradox data-table-builder personal-essay-studio usage-panel body-thermostat
-algebra-tile-studio cipher-vault""".split()
+algebra-tile-studio""".split()
+# cipher-vault held 2026-11-04: Cory is weighing a pivot of the super tools into instruments (docs/INSTRUMENTS.md).
 # Refined tools whose fixes Codex makes (Cory, 2026-11-04). The merged list is tools/<id>/refine.md, brought over from main.
 # sight-words left the queue 2026-11-04: it is live on the site, so a Codex review would rework a live tool (Cory).
 FIX = """city-skyline-studio levels-and-pathways first-aid-responder music-history-radio""".split()
