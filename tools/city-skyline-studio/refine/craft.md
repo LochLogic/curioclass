@@ -1,175 +1,127 @@
-# Craft lens: city-skyline-studio (round 1, 2026-10-28)
+# Craft lens: city-skyline-studio (round 1)
 
-Cold read of spec.md, src.html, notes.md, handoff.md, art/prompts.json, voice/lines.json, kit/perspective.js and
-docs/families/perspective.md. Bundled with `CURIO_DRAFT=1` (130,896 bytes). Driven with `scripts/drive.py` (held
-clicks 0.12 s, Sound on, Motion on unless stated) at 680x425, 800x500, 1000x625, 1280x720, 1366x768, 1920x1080,
-760x900 and 375x812 (iframe host served from my scratch folder). Frames and logs are in my scratch folder
-(`lens-css-craft/out`, `outv`, `out3`, `out4`, `out5`).
+Cold read of spec.md, src.html, notes.md, art/prompts.json, voice/lines.json and the CURIO_DRAFT=1 bundle. Driven with
+`scripts/drive.py` (held clicks 0.12 s, Sound on, Motion on, real keys) in three runs of 37 fresh pages at 1366x768.
+Frames and logs: the craft scratch folder (`refine/city-skyline-studio/craft/out-rep`, `out-run2`, `out-run3`, with
+rep.log, run2.log, run3.log). Shared audit: `audit-r1/audit.md` and its frames.
 
-Counts: blockers 0, should fix 5 (general 5, family 0), polish 4 (general 3, family 1), nits 6 (general 3, family 3).
+Counts: blockers 0, should fix 5, polish 3, nit 3.
 
-## Contract
+## Contract and access (clean)
 
-- One file, 128 KB, well under 2 MB. No network requests: `performance.getEntriesByType('resource')` is 0 at every
-  size and mode.
-- No console errors, warnings or exceptions in about 40 driven shots (every size, every mode, voice runs, ink,
-  keyboard drawing, Find matches).
-- Kit used, not re-implemented: `Curio.voice` for all narration (no copied queue), `kit:perspective` for every
-  projection, VP, box, divide, snap, shade and hatch. One small duplicate, see nit N2.
-- No art tokens; `art/prompts.json` is empty, which matches the spec ("drawn in code").
-
-## Engine vs the spec's family description, and the family doc vs the code
-
-Checked function by function. Every function the spec asks for exists with the asked-for shape: `camera`, `project`,
-`ground` (null above the horizon), `vps` (off-page values kept, VP 3 with pitch), `box` (visible faces with screen
-points, normal, depth and VP, in draw order), `divide` (projective), `snap`, `shade`. The doc's API block matches the
-code's export list and each signature, return shape and default (`maxDeg = 6`, `y = 0`, `y0 = 0`, `near = 1`, shade
-thresholds .25 and -.25, tops mid, bottoms dark). Recomputed in node from kit/perspective.js:
-- W = 1200, 35 mm: f = 1166.7; turn 45 VPs -566.7 and 1766.7; turn 30 -73.6 and 2620.7; 85 mm at 45 apart 5666.7.
-- FOV 73.7, 54.4, 39.6, 23.9 degrees for 24, 35, 50, 85 mm.
-- Box edges meet their VPs (and VP 3) within 3e-12 px at pitch 0, 15 and -10; VP 3 at f / tan p (2488 px at 15,
-  3781 px at -10); the horizon moves f tan p the other way; an eye-height point lands on the horizon.
-- `ground` round-trips `project` at pitch 0, 15 and -10, and is null on the sky side.
-- `divide` on a box face and on its screen quad alone (homography) agree to 6e-14 px.
-Small doc gaps are nit N1.
-
-## Access
-
-- Keyboard: Tab order is header, the view, then the panel with Camera first. Arrow keys move the selected building
-  (Build) and a cursor (Ink, Enter starts and ends a line). Sliders, the sun dial and every button work from the keys.
-- Visible focus: the kit ring shows on buttons and sliders (frame c-tab); the view's ring is fine on the dark Build
-  stage but weak in Ink (S3).
-- 44 px targets: no visible control under 44 px at any size, including 375 wide.
-- Color never the only signal: VPs carry labels, fills carry names, the match has a percent, the selected building
-  has a dashed outline and the Selected list.
-- Motion off: the view jumps straight to the new camera (eye 400 at once; with Motion on it was still at 158 m after
-  50 ms). Sound off silences lines; Read still speaks (v6b). Read speaks the hint as recorded lines.
-
-## Lines
-
-`__tool.allLines()` equals `voice/lines.json` word for word (25 lines, same order). Every spoken call goes through a
-key of `L` (the matched settings are keys in `L.matchedSet`); the local `say()` only writes the aria-live region.
-No line over 200 characters, no unit abbreviations in spoken lines ("meters", "millimeter lens", "degrees").
-
-## Standard voice check
-
-Held clicks, gap 4.5 s for repeats, 0.2 s for the stale run. Headless browser voice (the cap, not `ended`, sometimes
-ends a line, so real clips will run tighter).
-
-| Line | Kind | Action (x5) | Expected | Spoken |
-|---|---|---|---|---|
-| welcomeBuild | welcome | first plain tap (stage, Tab key, lens button) | 1 | 1 (126 ms after the tap) |
-| turnHow | how | Eye height stop x5 | 1 | 1 |
-| guidesNext | how | Turn x5 | 1 | 1 |
-| guidesHow | how | Guides x5 | 1 | 1 |
-| buildNext | how | (chained after guidesHow) | 1 | 1 in v1c; lost in v4 and v6c (P2) |
-| tiltHow | how | Tilt 0, 1, 0, 1, 0, 1 (three starts) | 1 | 1, then silent x2 |
-| (no line) | | Lens x5 | 0 | 0 |
-| offPage | event, once a session by spec | Turn, Lens | 1 | 1 (v1b, v1e, v3); dropped "newer" in v4 (P1) |
-| welcomeInk | welcome | Ink tab | 1 | 1 |
-| inkHatch | how | Hatch x5 | 1 | 1 (then dropped newer 1, silent 3) |
-| inkFill | how | Fill x5 | 1 | 1 (silent 4) |
-| inkErase | how | Erase x5 | 1 | 1 (silent 4) |
-| inkMore | how | 5 keyboard lines | 1 | 1 |
-| inkAsk | how | camera change with ink | 1 | 1 |
-| welcomeFind | welcome | Find tab | 1 | 1 |
-| matched | event | match reached x5 (35 mm, 50 mm, ...) | 5 | 5 |
-| "Eye height 1.6 meters, turn 45 degrees, 35 millimeter lens." | event | same | 5 | 5 |
-| findNext | how | after a match | 1 while still matched | 1 (v7); dropped stale x5 in v3, correctly, as each match was undone first |
-
-1. Repeats: right (table).
-2. Stale lines (v4, taps 0.2 s apart, then Ink, then Build): every line was cut or dropped when its step passed;
-   guidesNext cut turnHow, guidesHow cut guidesNext, Ink dropped buildNext (hush), back in Build welcomeBuild was
-   dropped as stale (eye already moved). Nothing played after its moment. Lines naming a control carry `needs`
-   (`#turn`, `#ov-guides`, `#keepInk`, `#nextT2`, `#hor`, `#tilt`).
-3. First-tap timing (one fresh page each): stage tap, welcome in 126 ms; Eye height stop, only turnHow; Ink tab, only
-   welcomeInk; Read, the hint only; Sound, nothing, and Sound on again brought the welcome once; Tab key, the welcome;
-   Sound off, Find, Sound on, welcomeFind once.
-4. Read: Read during welcomeInk stopped it and spoke the hint; with Sound off Read still spoke; a mode change right
-   after Read started welcomeFind at once; a line triggered during Read (guidesHow) waited for it.
-5. Order: spoken lines followed the actions in every run.
-
-Each spoken line was compared with the state at its time; the misses are S2 and P4.
+- One file, 1,009,411 bytes (under the 2 MB goal). No network requests (Resource Timing empty after all three modes;
+  no http(s) reference in the page). No console errors, warnings or exceptions in any of the 37 pages.
+- Kit used: `Curio.voice`, `Curio.init`, theme-912, `kit:perspective`; nothing re-implemented that I could see.
+- Keyboard: Tab reaches the mode buttons, header, the stage (visible cyan focus ring, out-run3/focus-tab2.png) and the
+  panel; arrows step sliders, Page Up/Down jump eye stops, arrows move a building, Enter draws in Ink. Targets: the
+  audit's 44 px check is clean at every size and my frames agree. Color is never the only signal (red misses are also
+  dashed and counted; VPs are labeled; pressed buttons fill). Motion off is clean (audit). Sound off, Read still
+  speaks (run2 read-soundoff).
+- `voice/lines.json` matches `__tool.allLines()` word for word: 40 and 40, none missing either way.
+- Art: one asset, `art:dusk-sky`, has its prompts.json entry, no people (none needed). Words: no em or en dashes on
+  screen in any mode, in src.html, notes.md or lines.json; "Curio Class" only, never "Curio" alone; classroom-safe;
+  privacy stated in every mode ("saved in this browser on this device only", the reflection note included).
 
 ## Findings
 
-### Should fix
+1. **should fix, general.** src.html `hintNow()` (Build branch, about line 1500) against the spoken lines. The Build
+   hint is a fixed ladder (eye, then turn, then guides), so when a student does the steps in another order the voice
+   moves on but the hint and Read stay on the first rung. Seen: run1 rep-turn (first action Turn: spoken "Turn on
+   Guides under Overlays...", hint and Read still "Drag the eye height slider..."); run2 read-during (Guides first:
+   guidesHow then buildNext spoken, Read then says "Drag the eye height slider..."); run3 tilt-how (tiltHow spoken, hint
+   unchanged). STANDARDS: the hint changes when the state changes, and the spoken line matches it. Better: pick the
+   hint rung by what is still undone and let it follow the line a step just queued.
+2. **should fix, general.** Ink with Check my drawing on (`commit()` line 2046 and the check branch of `hintNow`). The
+   first line drawn during a check speaks inkMore, "Keep drawing, or try Hatch and Fill. Then press Check my
+   drawing...", while the button already reads "Stop checking" and the hint shows checkHow or checkFix. And checkFix
+   ("Fix the dashed red lines...") is never queued anywhere, so a student with red lines hears nothing about fixing
+   them. Seen: run1 rep-check (five missing lines: inkMore 1, checkFix 0), run3 reflect. Better: no inkMore while
+   `S.check`; checkFix as a how-to the first time a line turns red.
+3. **should fix, general.** Find, `checkCamera()` miss branch. A missed Check camera is a result, but only its reading
+   hint is voiced, as a how-to: the first miss speaks findEye and every later miss on the same setting is silent (no
+   line, no tone), though the panel shows a fresh "Not yet: N settings are off" each time. Seen: run1 rep-findmiss (5
+   presses: findEye spoken 1, then `silent heard` 4). A student pressing Check camera again hears nothing happen.
+   Better: a short event line per miss ("Not yet. Two settings are off.") with the reading how-to kept to once.
+4. **should fix, general.** `L.findLens` "Read the lens: the farther apart the outline's vanishing points, the longer
+   the lens. Close together means a wide lens." is the only Find reading line that names no action or control (the
+   others say Press Extend outline edges, turn until, Tilt until). Cory's rule: every waiting moment names the next
+   action and the control. Better: end with "Pick a lens, then press Check camera."
+5. **should fix, general.** Build after Clear city (run3 clearcity). With Clear city as the first tap, the welcome then
+   played "Drag the eye height slider and watch the horizon stay with your eyes." over an empty stage while the hint
+   showed addFirst ("Your city is empty. Tap Tower..."); addFirst itself is never spoken. The welcome's `valid` only
+   checks `!S.eyeMoved`. Better: the welcome needs a city, and addFirst is spoken once when the city empties.
+6. **polish, general.** offPage on entering Find (run2 ft-find): "One vanishing point just went off the page" plays
+   five seconds after the Find welcome with no student action; the target's camera simply starts that way. Better: in
+   Find, arm offPage only after the first camera change.
+7. **polish, general.** offCity line and hint, "Move Horizon on page, or pick a wider lens." (out-run3/offcity.png,
+   Horizon at 600% above). A wider lens does not bring that horizon back, and the one-tap fix, Auto, is not named.
+   Better: "Your city is off the page. Press Auto, or move Horizon on page."
+8. **polish, family:perspective.** Find at 375 wide (audit state-mode-find-the-camera-375x812.png): the "VP (off the
+   page)", "VP R: infinitely far" and horizon chips sit on top of the small amber outline, the thing the student has to
+   read. Better: on narrow stages keep VP chips at the stage edge or shorten them so the outline stays clear.
+9. **nit, general.** The stage chip button reads "Extend" while the hint and lines say "Press Extend outline edges"
+   (audit state-find-missed-check-1366x768.png); only its aria-label has the full name. "Extend edges" would match.
+10. **nit, general.** Clear drawing stays enabled on an empty drawing and does nothing (audit "nothing changed"),
+    while Undo and Redo show disabled. Could match them.
+11. **nit, general.** src.html has scrambled indentation through most functions (statements after `;` pushed to new
+    deeply indented lines, for example `checkCamera()` and `syncCam()`), which makes the source hard to review.
 
-**S1. Find the Camera with Plan on shows the wrong city.** src.html:538 (`drawPlan` loops `S.city`). In Find the view,
-the target and the match all use the Example city (`cityFor('find')`), but the Plan inset draws the student's own
-Build city. Seen: frame c-plan-find, a Build city of one tower; Find shows nine buildings on the view and one square on
-the Plan. A student using the Plan to reason about the hidden camera is misled. Draw the plan from `cityFor(S.mode)`.
-*general*
+## Standard voice check
 
-**S2. welcomeInk (and the Line hint) can say the wrong thing.** src.html:744 and :766. The welcome's `valid` only
-checks for an empty drawing, but pen and Snap are saved. Seen (c-welcomeink-fill): pen Fill and Snap off saved; on
-entering Ink it spoke "Drag to draw. Your lines snap to the vanishing points." while the panel shows Fill (a tap, not
-a drag) and Snap off. With Snap off the Line hint (also what Read says) still reads "It snaps to a vanishing
-point...". Make the welcome valid only for pen Line with Snap on (or pick a line for the pen), and give the Line hint
-a Snap-off version. *general*
+Repeats (run1, five actions, gaps longer than the lines):
 
-**S3. The view's focus ring is close to invisible in Ink.** src.html:43. `.stage.kfocus::after` draws a 3 px
-`--focus` (#8fe3ff) ring inset on the canvas; in Ink the canvas is cream and light gray, so the ring is about 1.2:1
-against both sides. Seen: frame f-ink-focus (7 Tabs to the view in Ink). Fine on the dark Build stage (f-build-focus).
-Use a dark ring (or a dark plus light double ring) in Ink. *general*
+| line | kind | expected | spoken |
+|---|---|---|---|
+| turnHow (5 eye stops) | how | 1 | 1 |
+| offPage (same run, at 150 m) | event, once per session by spec | 1 | 1 |
+| guidesNext (5 Turn key steps) | how | 1 | 1 |
+| guidesHow (Guides on and off x5) | how | 1 | 1 (buildNext follows once, as a sequence) |
+| welcomeBuild (5 lens taps, no own line) | welcome | 1 | 1 |
+| inkMore (5 lines, Snap on) | how | 1 | 1 |
+| checkFix (5 missing lines, check on) | how | 1 | **0** (inkMore spoken instead; finding 2) |
+| findEye (5 missed Check camera) | how | 1 | 1 |
+| miss result (same 5) | event | 5 | **0** (finding 3) |
+| matched + settings (5 matched checks) | event | 5 + 5 | 5 + 5 |
+| findNext (same) | how | 1 | 1 (then `silent heard` 4) |
 
-**S4. The privacy line shows only in Ink.** src.html:186. The city, camera and overlays are saved to localStorage from
-Build and Find too (src.html:339-347), but "saved in this browser on this device only" sits in the Ink section, so a
-student who stays in Build or Find never sees it (BASELINE rule 7). Add a short line where Build stores things (the
-Buildings section) or under the panel in every mode. *general*
+Stale lines (run2 stale-build, stale-find, stale-ink: taps 0.35 s apart, then a mode switch): no line played after its
+moment. Superseded lines were dropped (`newer`, `hush`, `stale`); welcomeBuild was dropped `stale` once the eye had
+moved; nothing named a hidden control.
 
-**S5. At 760x900 three camera controls are below the fold.** Stack layout (frame build-760x900): Eye height and Turn
-show, but Lens, Horizon on page and Tilt need a scroll; STANDARDS asks main controls visible without scrolling at every
-size and Done-when 7 names the camera sliders. handoff.md says all camera sliders were visible at 760x900; they were
-not here (stage 502 px tall). Shorter stage in stack or a tighter Camera block. The Play lens may also report this.
-*general*
+First-tap timing (fresh page each): stage tap, welcome at 150 ms; a stop, only turnHow (the welcome is later dropped as
+stale because the eye moved, which fits the state); 85 mm, only offPage, then Sound off and on brought welcomeBuild
+once; Guides, only guidesHow, then Ink brought welcomeInk; Ink and Find buttons, their welcome within 150 ms; Read
+first, the hint only; Sound first, nothing, then Sound on brought the welcome once; a key (eye slider ArrowRight),
+turnHow only. Nothing spoke before a tap. Clear city first: finding 5.
 
-### Polish
+Read: Read during guidesHow cut it and spoke the hint (the queued buildNext dropped `hush`, unmarked); Read with Sound
+off spoke; a mode change 0.7 s after Read started welcomeInk 140 ms later; an event during Read (offPage) waited for Read
+to end. What Read says is wrong when the hint is stale (finding 1).
 
-**P1. A how-to cutting in drops a queued event.** src.html:750 (`how()` passes `now`), with the kit's `say(now)`
-dropping the whole queue. Seen (v4): offPage was queued, guidesHow cut in and offPage was logged "dropped newer". It
-is a once-a-session line, so the student may not hear it until a VP comes back and leaves again. Better: when cutting
-in, keep queued events (or requeue offPage when it is dropped for "newer"). *general*
+Order (run2 order-build, 1.5 s apart): turnHow, guidesHow, buildNext in action order; no older line after a newer one.
 
-**P2. The bridge to Ink is easy to lose.** src.html:981. buildNext ("...Then press Ink to draw over your city.") only
-rides behind guidesHow, and `guidesSeen` stops it from coming back: lost in v4 (Ink pressed during guidesHow, "hush")
-and v6c ("chain"). Same pattern for turnHow when inkAsk replaces it (c-ask, "dropped newer"). The hint still shows the
-text. Better: queue buildNext again on the next Build action when it was never said. *general*
+## Audit pilot
 
-**P3. With Tilt, upright strokes can snap to "vertical" instead of VP 3.** kit/perspective.js:204 (`targets` always adds
-a screen vertical), used at src.html:1178. In three-point the building edges run to VP 3, but a hand-drawn upright line
-near the middle of the page is within 6 degrees of both and often lands on "vertical", which is the one-point/two-point
-answer. The spec lists vertical among the targets, so this is a step up, not a bug: drop the screen vertical when the
-camera is pitched (or let VP 3 win ties). *family:perspective*
+Confirmed on my frames or runs:
+- Held-click table: a first tap on a stop, 50/85 mm or Guides skips the welcome. Confirmed, but right for those taps
+  (each has its own line); the welcome comes back on Sound off and on or the next mode entry while it still fits. Not a
+  finding by itself.
+- "#clearInk nothing changed" on an empty drawing: confirmed, nit 10.
+- 760x900 and 375: Overlays, Buildings, Show render, Save, Check my drawing below the fold. Confirmed, but the camera
+  sliders, pens, values and Undo/Redo (the every-few-seconds controls) are on screen, as STANDARDS asks. Not reported
+  by Craft.
 
-**P4. guidesHow says "two dots" when there are three.** src.html:287 and :981. With Tilt already set, turning on
-Guides speaks "Every edge runs to one of the two dots. That's two-point perspective." while VP 3 and its guides are on
-screen. A Tilt-aware variant ("...the up-and-down edges run to the third") would match. *general*
+Wrong leads:
+- "#cv / #hint overlap" and "#hint keep region covered" at 680x425 and 800x500: in compact layout the hint band sits
+  over the top of the stage on purpose and is fully readable (size-680x425.png).
+- "#cv / #fchipT, #fchipM, #checkCam2, #extendQuick overlap": the Find chip is a deliberate stage overlay on the sky,
+  clear of the outline at 1366x768 and 680x425.
+- "#cv nothing changed" in Ink and Find: a plain tap draws nothing in Line mode, and Find's stage is not a control.
+- "choices cut short by a scroll panel" naming Check camera at 680x425 and 800x500: Check camera is also on the stage
+  chip, on screen.
 
-### Nits
-
-**N1. Family doc gaps.** docs/families/perspective.md: `camera()` also returns `focalLengths(px)`; `snap()` takes
-`cam` but does not use it; `baseY` and `size` assume a level camera (they ignore pitch), which the doc should say.
-*family:perspective*
-
-**N2. One engine helper re-written in the tool.** src.html:1064-1072 (`hitOnFace`) repeats the engine's private
-`fromCamDir` rotation. Export a `ray(cam, u, v)` from the engine so siblings don't copy it. *family:perspective*
-
-**N3. Engine `vp` naming at turn 0.** At turn 0 the single one-point VP is labeled "VP L" and VP R shows "infinitely
-far" (frame c-plan-find, Find's start camera). Correct per the doc, but a one-point label ("VP") would read better for
-vanishing-point-studio when it moves on. *family:perspective*
-
-**N4. Small panel type.** src.html:73 (turn tick "45" at 10 px), :108-109 (compact stop labels 10.5 and 10 px), :71
-(notes 11 px). Readable but under the stage's own 11 px floor. *general*
-
-**N5. Contrast comment is off.** src.html:29 says --brand-ink on --brand is 10.6:1 (spec says 11.0); it computes to
-9.4:1. Still passes AA; fix the number. *general*
-
-**N6. Small code tidy.** src.html:616-618 repeat the off-page comment twice (one stale); `#hatchSp` has no
-`aria-valuetext` ("8 px" is read as "8"). *general*
-
-## Words
-
-No em dashes in src.html, notes.md, handoff.md, tool.draft.json, voice/lines.json, kit/perspective.js or the family
-doc. "Curio Class" is never shortened in student-facing text (the only bare "Curio" are `Curio.*` calls). Language is
-classroom-safe. Privacy is stated in Ink, see S4.
+Missed by the audit:
+- Hint and Read stuck on the first Build rung when steps are done out of order (finding 1).
+- Check-mode voice: inkMore in the wrong state, checkFix never spoken (finding 2).
+- A repeated missed Check camera is silent (finding 3); the five-click rows did not include Check camera.
+- The welcome playing over an emptied city (finding 5), and the wording items (4, 6, 7, 9).
