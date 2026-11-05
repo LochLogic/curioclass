@@ -88,6 +88,7 @@ def recently_touched(t):
 
 LIMITS = RUN / 'LIMITS.json'
 LIMIT_KEYS = {'builds': 3, 'reviews': 4, 'fixes': 2, 'max_builds': None, 'max_reviews': None, 'max_fixes': None, 'max_jobs': None}
+# "no_new_after": "YYYY-MM-DD HH:MM" in LIMITS.json: start nothing new after then; running sessions finish (empty = no limit)
 TABLES = {}
 
 
@@ -99,7 +100,7 @@ load_tables()
 
 
 def write_limits(a):
-    LIMITS.write_text(json.dumps({k: getattr(a, k) for k in LIMIT_KEYS}, indent=2) + '\n', encoding='utf-8')
+    LIMITS.write_text(json.dumps({**{k: getattr(a, k) for k in LIMIT_KEYS}, 'no_new_after': a.no_new_after}, indent=2) + '\n', encoding='utf-8')
 
 
 def read_limits(a, seen):
@@ -122,6 +123,12 @@ def read_limits(a, seen):
             if v != getattr(a, k):
                 log(f'LIMITS.json: {k} {getattr(a, k)} -> {v}')
                 setattr(a, k, v)
+        cut = str(new.get('no_new_after', a.no_new_after) or '').strip().replace('T', ' ')
+        if cut:
+            dt.datetime.strptime(cut, '%Y-%m-%d %H:%M')
+        if cut != a.no_new_after:
+            log(f'LIMITS.json: no_new_after {a.no_new_after or "none"} -> {cut or "none"}')
+            a.no_new_after = cut
         seen.pop('limits', None)
     except FileNotFoundError:
         write_limits(a)
@@ -248,6 +255,7 @@ def main():
     ap.add_argument('--builds', type=int, default=3)
     ap.add_argument('--reviews', type=int, default=4)
     ap.add_argument('--fixes', type=int, default=2)
+    ap.add_argument('--no-new-after', default='', help='"YYYY-MM-DD HH:MM": start nothing new after this time')
     for k in ('builds', 'reviews', 'fixes'):
         ap.add_argument(f'--max-{k}', type=int, default=0, help=f'stop starting {k} after this many (0 = no limit)')
     ap.add_argument('--max-jobs', type=int, default=0, help='stop starting new jobs after this many (0 = no limit)')
@@ -255,6 +263,9 @@ def main():
     ap.add_argument('--dry', action='store_true')
     a = ap.parse_args()
     a.builds, a.reviews, a.fixes = min(a.builds, 3), min(a.reviews, 4), min(a.fixes, 2)
+    a.no_new_after = a.no_new_after.strip().replace('T', ' ')
+    if a.no_new_after:
+        dt.datetime.strptime(a.no_new_after, '%Y-%m-%d %H:%M')  # fail now, not at midnight
 
     day = RUN / dt.date.today().isoformat()
     day.mkdir(parents=True, exist_ok=True)
@@ -276,6 +287,9 @@ def main():
             cap_of = {'build': a.max_builds, 'review': a.max_reviews, 'fix': a.max_fixes}
             if STOP.exists() and not stop_reason:
                 stop_reason = 'STOP file'
+            if a.no_new_after and not stop_reason and now() >= a.no_new_after:
+                stop_reason = f'no new starts after {a.no_new_after}'
+                log(f'{stop_reason}: running sessions finish')
             # start new work (one start per STAGGER; waiting = there was work to start but the stagger held it back)
             waiting = False
             if not stop_reason and not (a.max_jobs and started >= a.max_jobs):
