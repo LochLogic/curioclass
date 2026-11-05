@@ -25,8 +25,13 @@ ports are in use waits.
 
 Logs: S:\CurioClass-codex\_runner\<date>\ (one events .jsonl and last-message .md per session) and
 _runner\summary.txt (one line per job). The PC is kept awake while it runs. _queue.txt is refreshed at the end.
+
+Change a run while it runs: the runner writes _runner\LIMITS.json at start (how many at once, and the caps per kind) and
+re-reads it every 30 seconds, so editing a number there (say "max_reviews": 15 to 25) takes effect without a restart.
+It also re-reads scripts/codex_queue.py each time, so tools added to QUEUE or FIX there join the run. A bad edit is
+logged and ignored; the last good values stay. Lowering a number never stops a running session.
 """
-import argparse, ctypes, datetime as dt, json, os, shutil, socket, subprocess, sys, time
+import argparse, ctypes, datetime as dt, importlib, json, os, shutil, socket, subprocess, sys, time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -79,7 +84,49 @@ def recently_touched(t):
     return False
 
 
-TABLES = {'build': (cq.BUILD_PORTS, cq.BUILD), 'review': (cq.REVIEW_PORTS, cq.REVIEW), 'fix': (cq.FIX_PORTS, cq.FIXP)}
+LIMITS = RUN / 'LIMITS.json'
+LIMIT_KEYS = {'builds': 3, 'reviews': 4, 'fixes': 2, 'max_builds': None, 'max_reviews': None, 'max_fixes': None, 'max_jobs': None}
+TABLES = {}
+
+
+def load_tables():
+    TABLES.update({'build': (cq.BUILD_PORTS, cq.BUILD), 'review': (cq.REVIEW_PORTS, cq.REVIEW), 'fix': (cq.FIX_PORTS, cq.FIXP)})
+
+
+load_tables()
+
+
+def write_limits(a):
+    LIMITS.write_text(json.dumps({k: getattr(a, k) for k in LIMIT_KEYS}, indent=2) + '\n', encoding='utf-8')
+
+
+def read_limits(a, seen):
+    """Apply LIMITS.json and a fresh codex_queue.py; log what changed. `seen` keeps the last bad-edit message, so it logs once."""
+    global cq
+    try:
+        cq = importlib.reload(cq)
+        load_tables()
+    except Exception as e:  # a half-saved edit: keep the module already loaded
+        if seen.get('queue') != str(e):
+            log(f'codex_queue.py did not load ({e}); keeping the last good queue')
+            seen['queue'] = str(e)
+    else:
+        seen.pop('queue', None)
+    try:
+        new = json.loads(LIMITS.read_text(encoding='utf-8'))
+        for k, top in LIMIT_KEYS.items():
+            v = int(new.get(k, getattr(a, k)))
+            v = max(0, min(v, top) if top else v)
+            if v != getattr(a, k):
+                log(f'LIMITS.json: {k} {getattr(a, k)} -> {v}')
+                setattr(a, k, v)
+        seen.pop('limits', None)
+    except FileNotFoundError:
+        write_limits(a)
+    except (ValueError, TypeError, AttributeError) as e:
+        if seen.get('limits') != str(e):
+            log(f'LIMITS.json did not read ({e}); keeping {", ".join(f"{k}={getattr(a, k)}" for k in LIMIT_KEYS)}')
+            seen['limits'] = str(e)
 
 
 def port_busy(kind, slot):
@@ -195,15 +242,20 @@ def main():
     day.mkdir(parents=True, exist_ok=True)
     if STOP.exists():
         STOP.unlink()
-    queue = [t for t in cq.QUEUE if not a.only or t in a.only]
-    fixq = [t for t in cq.FIX if not a.only or t in a.only]
+    if not a.dry:
+        write_limits(a)
+    seen = {}
     running, tried, started, stop_reason, last_start = [], set(), 0, None, 0.0
-    cap_of = {'build': a.max_builds, 'review': a.max_reviews, 'fix': a.max_fixes}
     count = {'build': 0, 'review': 0, 'fix': 0}
     keep_awake(True)
     log(f'runner start: up to {a.builds} builds, {a.reviews} reviews and {a.fixes} fixes at once')
     try:
         while True:
+            if not a.dry:
+                read_limits(a, seen)
+            queue = [t for t in cq.QUEUE if not a.only or t in a.only]
+            fixq = [t for t in cq.FIX if not a.only or t in a.only]
+            cap_of = {'build': a.max_builds, 'review': a.max_reviews, 'fix': a.max_fixes}
             if STOP.exists() and not stop_reason:
                 stop_reason = 'STOP file'
             # start new work (one start per STAGGER; waiting = there was work to start but the stagger held it back)
