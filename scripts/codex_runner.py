@@ -151,6 +151,9 @@ def port_busy(kind, slot):
 
 def codex_exe():
     exe = shutil.which('codex') or shutil.which('codex.cmd')
+    npm = Path(os.environ.get('APPDATA', str(Path.home() / 'AppData' / 'Roaming'))) / 'npm' / 'codex.cmd'
+    if not exe and npm.exists():  # a scheduled task's PATH can miss the npm folder (2026-11-04)
+        exe = str(npm)
     if not exe:
         sys.exit('codex is not on PATH')
     return exe
