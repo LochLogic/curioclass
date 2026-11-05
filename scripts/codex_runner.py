@@ -20,8 +20,9 @@ oldest built first, then builds.
 Watchdog (docs/agents/CODEX.md, "Run"): a session whose events log stops growing for 20 minutes gets the hung-command
 message as a resume of the same session; a "model at capacity" or dropped turn gets "carry on". At most 3 resumes and
 3 hours per job, then it is logged as failed and left for a person. A usage or rate limit message stops new starts.
-A tool someone touched in the last 20 minutes is skipped, in case a hand-pasted chat is working on it, and a slot whose
-ports are in use waits.
+A tool someone touched in the last 20 minutes waits (looked at again every pass), in case a hand-pasted chat is working
+on it, unless this run just finished it. A slot whose ports are in use waits; when a job ends, the runner kills whatever
+still listens on that slot's ports. codex_queue.REDO adds a note to a rebuild's prompt.
 
 Logs: S:\CurioClass-codex\_runner\<date>\ (one events .jsonl and last-message .md per session) and
 _runner\summary.txt (one line per job). The PC is kept awake while it runs. _queue.txt is refreshed at the end.
@@ -149,6 +150,25 @@ def port_busy(kind, slot):
     return False
 
 
+def free_ports(kind, slot):
+    """Kill whatever still listens on a finished job's host and Chrome ports: a session's drive.py server or Chrome can
+    outlive it and hold the slot (reviews stalled 05:05 to 10:31 on 2026-11-05)."""
+    c, h = TABLES[kind][0][slot]
+    ports = {h, *range(c, c + 8)}
+    # netstat does not list sockets made inside the Codex sandbox; Get-NetTCPConnection does (2026-11-05)
+    cmd = ('Get-NetTCPConnection -LocalPort ' + ','.join(map(str, sorted(ports))) +
+           ' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique')
+    try:
+        out = subprocess.run(['powershell', '-NoProfile', '-Command', cmd], capture_output=True, text=True, timeout=60).stdout
+    except (OSError, subprocess.SubprocessError):
+        return
+    pids = {p for p in out.split() if p.isdigit() and int(p) not in (0, 4, os.getpid())}
+    for pid in pids:
+        subprocess.run(['taskkill', '/T', '/F', '/PID', pid], capture_output=True)
+    if pids:
+        log(f'freed {kind} slot {slot}: ended {len(pids)} leftover process(es) on its ports')
+
+
 def codex_exe():
     exe = shutil.which('codex') or shutil.which('codex.cmd')
     npm = Path(os.environ.get('APPDATA', str(Path.home() / 'AppData' / 'Roaming'))) / 'npm' / 'codex.cmd'
@@ -171,6 +191,8 @@ class Job:
         text = template.format(t=t, c=c, h=h)
         if t in cq.NOTES and kind != 'fix':
             text += '\n\n' + cq.NOTES[t]
+        if kind == 'build' and t in getattr(cq, 'REDO', {}):
+            text += '\n\n' + cq.REDO[t]
         text += ('\n\nThis session runs unattended: nobody will answer questions. Where you would ask, take the option the '
                  'spec or brief leans toward and note it in the report.')
         self.prompt = text
@@ -282,9 +304,14 @@ def main():
         write_limits(a)
     seen = {}
     running, tried, started, stop_reason, last_start = [], set(), 0, None, 0.0
+    ours, noted = set(), set()  # tools this run just finished (their fresh files are ours); waits already logged
     count = {'build': 0, 'review': 0, 'fix': 0}
     keep_awake(True)
     log(f'runner start: up to {a.builds} builds, {a.reviews} reviews and {a.fixes} fixes at once')
+    if not a.dry:  # leftovers from an earlier run hold slots until killed
+        for kind, (table, _) in list(TABLES.items()):
+            for slot in table:
+                free_ports(kind, slot)
     try:
         while True:
             if not a.dry:
@@ -313,9 +340,10 @@ def main():
                                 or (kind == 'fix' and cq.fix_wanted(t)))
                         if not want or t in busy or (kind, t) in tried:
                             continue
-                        if recently_touched(t):
-                            tried.add((kind, t))
-                            log(f'skip {kind} {t}: touched in the last 20 minutes (a hand-pasted chat?)')
+                        if t not in ours and recently_touched(t):
+                            if (kind, t) not in noted:  # wait for now; looked at again every pass
+                                noted.add((kind, t))
+                                log(f'wait {kind} {t}: touched in the last 20 minutes (a hand-pasted chat?)')
                             continue
                         if not a.dry and time.time() - last_start < STAGGER:
                             waiting = True
@@ -349,6 +377,8 @@ def main():
                     j.scan()
                 if exited and j.done():
                     running.remove(j)
+                    ours.add(j.t)
+                    free_ports(j.kind, j.slot)
                     log(f'done {j.kind} {j.t} in {int((time.time() - j.started) / 60)} min, {j.resumes} resumes')
                     continue
                 stalled = not exited and time.time() - j.grew > STALL
@@ -356,6 +386,7 @@ def main():
                 if over or (exited or stalled) and (j.limit or not j.thread or j.resumes >= MAX_RESUMES):
                     j.kill()
                     running.remove(j)
+                    free_ports(j.kind, j.slot)
                     why = 'timebox' if over else 'usage limit' if j.limit else 'no session id' if not j.thread else 'resumes used up'
                     log(f'FAILED {j.kind} {j.t}: {why}; left for a person ({j.events.name})')
                     continue

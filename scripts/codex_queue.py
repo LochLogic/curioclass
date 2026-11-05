@@ -70,6 +70,26 @@ PLAIN = ("Owner's decision: this tool is plain on purpose, for a grade 2 teacher
          "and gameplay above: parchment, a blue border, one quiet word at a time, one small flourish in the top bar. Build it as a sibling "
          "of the other word tool (nonsense-words and sight-words share a layout).")
 NOTES['nonsense-words'] = NOTES['sight-words'] = PLAIN
+# Rebuilds (Cory, 2026-11-05: "go back to the data starved ones and do them right"). The runner adds these to the build
+# prompt only. The first build's report was renamed codex-report-1.md, so the tool counts as unbuilt again.
+_REDO = ("Second build (owner's decision, Cory, 2026-11-05). The first build of this Curiosity ran before the sandbox had "
+         "network access, so it came out without its real material. Its report is tools/{t}/codex-report-1.md: read it, "
+         "above all Left open, before you plan. Keep what works in the existing files and do it right this time: gather the "
+         "real material the spec names, as \"Gathering data\" in the brief says (network is on now, and for this build the "
+         "gathering cap is 75 minutes, not 45), then build the parts that were left out for lack of it. The instrument "
+         "should feel finished, not a frame waiting for data. Write a fresh tools/{t}/codex-report.md covering the whole "
+         "tool; under Built, say what changed from the first build. Leave codex-report-1.md where it is.")
+REDO = {t: _REDO.format(t=t) + ' ' + more for t, more in {
+    'living-earth': "First build's gaps: the earthquake catalogue (M5.0, or the spec's M5.5 fallback), ETOPO relief, Natural "
+                    "Earth, NOAA volcanoes and licensed plate material, and the layers, city search, plate and volcano "
+                    "readouts and Rewind that depend on them.",
+    'sky-dome': "First build's gaps: the full star catalogue fields (including B-V colour), the Natural Earth place list, "
+                "checked distances, the full constellation figure set and the deep-sky markers, each confirmed against two "
+                "sources.",
+    'microscope-bench': "First build's gaps: genuinely scaled real micrographs under PD, CC0 or CC BY with their scale, the "
+                        "specimen and prepared-slide tray, stains and mounts, pond motion and focal stacks. This is the heart "
+                        "of the instrument: without real images it is not a microscope.",
+}.items()}
 EXTRA = {}  # tools outside the catalog, as {'id': {'title': ..., 'subject': ..., 'grade': ...}}
 for _t in ("levels-and-pathways dance-pattern-puzzle choreography-board dance-styles-explorer feeling-scarf-dance family-dance-night "
            "poem-to-movement recital-stage-directions dancers-on-tour dance-hall-decades choreography-for-a-cause "
