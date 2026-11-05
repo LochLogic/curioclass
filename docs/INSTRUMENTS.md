@@ -154,6 +154,59 @@ its licence status), and where it sits on the map: the anchor module it fills an
 - **Watch:** Poetry Soundboard (planned studio in the same module) is the neighbour; this may take its card or sit
   beside it.
 
+## The look (proposed 2026-11-04, for Cory)
+
+**What makes the regular tools look familiar.** They share one frame (kit/curio.css): a slate header with the title on
+the left and a row of pills on the right (modes, Motion, Sound, Read), the picture in the middle, a right-hand panel of
+uppercase section labels and rounded pill buttons, and a hint bar along the bottom. City Skyline Studio, Span and Spire
+and Pocket Universe all wear it. It is a good frame for lessons: a teacher who has used one tool can run any of them.
+
+**What Beat Lab and Elements Inspector do instead.** Neither wears the frame. Beat Lab looks like a real production
+studio: a transport bar, knobs, lit step pads and channel strips, dense and dark. Elements Inspector looks like a lab
+instrument: a glowing atom in the middle, monospace readouts, data panels with thin rules, the whole periodic table
+as a working surface. Each one borrows the visual language of the real tool it stands for. That is the rule.
+
+**The rule: each instrument looks like the real instrument it is.** Not a photo of one, but its visual grammar:
+
+| Instrument | Its real grammar |
+|---|---|
+| Voice Lab | An audio analyser: black glass, a scrolling heat-map ribbon, a level meter, a frequency ruler down the side |
+| Living Earth | A seismograph station: a slowly turning globe, drum traces scratching ink, a time dial, survey labels |
+| Sky Dome | An observatory: a dark dome, a brass horizon ring, a date wheel and a lat-long setting circle |
+| Microscope Bench | A lab bench: the round eyepiece view, coarse and fine focus knobs, a stage with a slide, a lamp dimmer |
+| Circuit Bench | An electronics bench: a breadboard, components that look like parts, a multimeter with a needle or LCD |
+| Graph Studio | A plotter: graph paper, a pen that draws the curve, an equation tape, sliders like a slide rule |
+| Compass and Straightedge | A drafting table: cream paper, pencil lines that stay, a real compass that swings |
+| Poet's Workbench | A writer's desk: a typewriter page, stress marks above the line like a printer's proof, a rhyme drawer |
+| Span and Spire (pivot) | An engineer's test yard: blueprint paper, members glowing in stress colours, load gauges with needles |
+| Pocket Universe (pivot) | Mission control: dark telemetry, orbit plots, a time dial in place of the speed pills |
+
+**What makes them one family, not eight one-offs.** The family is in the grammar, never in one colour:
+
+1. **The object is the stage.** It fills the screen. There is no right-hand pill panel; controls sit where the real
+   ones would (knobs on the body, a tray of parts, a toolbelt).
+2. **Real controls.** A small shared set, drawn for instruments: knob, fader, toggle switch, lit pad, dial, needle
+   gauge, readout. They turn and click with a small sound (with Sound on), move with a little weight, and each still
+   works by keyboard.
+3. **Readouts, not prose.** Live numbers with units in a monospace face, the way instruments speak. Explanations live
+   in a fold-out **Manual**, a drawer every instrument has in the same place, written like a good field guide.
+4. **A maker's plate.** Every instrument carries the same small engraved nameplate in a corner: "Curio Class
+   Instruments · No. 07 · Circuit Bench". It is the family mark, and the numbers make them collectable.
+5. **Each picks its own material.** Studio black, lab-glass cyan, blueprint blue, observatory brass, breadboard green,
+   cream drafting paper. The palette comes from the real thing, so no two look alike.
+
+**What does not change.** Everything in BASELINE still holds: keyboard play, contrast, reduced motion, the Read voice,
+one offline file, school Chromebook speed. Motion, Sound and Read stay, gathered on the instrument's own power panel
+(styled like the instrument) instead of the header pills.
+
+**On the site.** The Instruments shelf gets its own presentation: dark, like a cabinet of instruments, each one shown
+by its nameplate and a short live preview (the atom turning, the ribbon scrolling), not the regular tool card. In a
+module the instrument still sits in the normal list, with its nameplate as the badge.
+
+**How it gets built.** The shared controls (knob, fader, dial, gauge, readout, nameplate, Manual drawer) become a small
+instruments kit, grown the usual way: from the first three instruments that need it (rule 13). Span and Spire and
+Pocket Universe, pivoted first, are where it starts.
+
 ## Pivoting the super tools (Cory, 2026-11-04)
 
 Cory asked whether the five super tools (docs/agents/SUPER.md) could pivot into instruments. Most can, because they
