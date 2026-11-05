@@ -9,6 +9,12 @@ The lenses do not read codex-report.md or codex-review.md.
 |---|---|---|---|---|---|---|
 | city-skyline-studio | 11-01 | 1 | 10 | 8 | 657k | 0 / 14 / 14 |
 | levels-and-pathways | 11-01 | 0 | 6 | 11 | 707k | 2 / 10 / 8 |
+| first-aid-responder | 10-31 | 1 | 13 | 10 | 563k | none |
+| music-history-radio | 11-01 | 1 | 14 | 18 | 748k (incl. sensitivity 117k) | none |
 
 Batch 1 (look and merge only, plus a 20 minute shared audit per tool): 1.36M lens tokens for two tools, about 20 to
 25 minutes of wall time with all six lenses at once. Polish and exit check not yet run.
+
+Batch 2: 1.31M lens tokens for two tools (music-history-radio also needed the sensitivity agent, which FAILED it on
+gamelan's date and how Black musicians are credited). Both blockers are teaching errors a student would carry away
+(a CPR score that rewards pausing; a living tradition dated by when Europeans heard it).
