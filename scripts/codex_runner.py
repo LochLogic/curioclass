@@ -154,6 +154,10 @@ def codex_exe():
     npm = Path(os.environ.get('APPDATA', str(Path.home() / 'AppData' / 'Roaming'))) / 'npm' / 'codex.cmd'
     if not exe and npm.exists():  # a scheduled task's PATH can miss the npm folder (2026-11-04)
         exe = str(npm)
+    if not exe:  # installed from inside the Claude app: its private AppData copy, unseen by tasks
+        local = Path(os.environ.get('LOCALAPPDATA', str(Path.home() / 'AppData' / 'Local')))
+        hits = sorted(local.glob('Packages/Claude_*/LocalCache/Roaming/npm/codex.cmd'))
+        exe = str(hits[0]) if hits else None
     if not exe:
         sys.exit('codex is not on PATH')
     return exe
