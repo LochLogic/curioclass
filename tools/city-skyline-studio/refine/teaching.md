@@ -1,121 +1,130 @@
-# city-skyline-studio: Teaching lens (Refine, 2026-10-28)
+# Teaching lens: city-skyline-studio (round 1, 2026-11-04)
 
-Cold read of spec.md, src.html, notes.md, art/prompts.json, voice/lines.json and kit/perspective.js. Bundled with
-CURIO_DRAFT=1, driven with scripts/drive.py (port 9650, own profile). Frames and scripts are in the lens scratch folder
-(out/: eye-1.6, eye-10, eye-60, eye-150, eye-400, eye-400-hor20, guides-tilt, plan, find-t2-start, find-t5-start,
-find-t5-eye400, find-t6-matched, ink-default, turn-0, turn-45-lens, pic).
+Fresh cold read of spec.md (with its Refine changes), src.html, notes.md, tool.draft.json, voice/lines.json and
+kit/perspective.js, against REFINE.md, STANDARDS.md, BASELINE.md and the BUILD.md wave lessons. Shared audit:
+`audit-r1/audit.md` and its frames. My own frames and scripts are in the scratch folder `teaching/` (f1/, f2/,
+shots1.json, shots2.json, dw.js).
 
-**Counts: 0 blockers, 4 should fix, 6 polish, 1 nit.**
+Counts: blockers 1, should fix 3, polish 3, nit 1.
 
-## Numbers recomputed (Python, then in the app)
+## Standards (module arts-9-12-two-point-perspective-and-composition: VA:Cr2, VA:Cr3)
 
-- Field of view 2 atan(18 / lens): 24 mm 73.74, 35 mm 54.43, 50 mm 39.60, 85 mm 23.91 degrees. Spec and readout agree.
-- Worked check, W = 1200: 35 mm f = 1166.7 px; turn 45: VP L -566.7, VP R 1766.7; turn 30: VP L -73.6, VP R 2620.7;
-  85 mm at 45: 5666.7 px apart (= 2f / sin 2t). All match the spec.
-- In the app (1366x768, stage W = 1006): 35 mm f = 978.06; turn 30 VP L -61.68, VP R 2197.04, both on the horizon
-  (v 411.6); turn 45 apart 1956.11 = 2f; 85 mm apart 4750.56 = 2f. Each equals the formula to 1e-12 px. Readout "2.00
-  focal lengths" at 45 degrees and "2.31" at 30 degrees (2 / sin 60 = 2.309): right.
-- Tilt 15 at 24 mm, W 1006: f = 670.7; VP 3 2503.0 px above center = f / tan 15; horizon moves 179.7 px = f tan 15;
-  VPs apart grows to 1603 px (1549 / cos 15). Readout "VP 3 2503 px above center": right.
-- Eye standoff D = 120 + 6 (e - 1.6) m: 120, 170, 470, 1010, 2510 m at the five stops; look-down angle to the block
-  atan(e / D) = 0.76, 3.36, 7.27, 8.44, 9.05 degrees (see S1).
-- Find the Camera, the six targets: each gives 100% at its listed settings. A scan of every stop x lens x turn 0 to 90
-  (tilt as listed) finds no other setting at 92% or more except the target's own turn plus or minus 1 degree; the best
-  wrong eye/lens pair reaches 71% (target 1), 29%, 21%, 62%, 9%, 48%. Target 6 without Tilt: 33%. Unique and reachable.
+- **VA:Cr2 (organize and develop artistic ideas and work): taught.** The student sets up a construction (eye height,
+  turn, lens, tilt), places and sizes buildings on a lot grid and reads the result through Guides and Plan. That is
+  real skill building through experiment. The "composition" half of the module title is thin (polish 2).
+- **VA:Cr3 (refine and complete): taught in design, undermined in practice.** Ink, Check my drawing, the reflection
+  note and Save picture make a real revise-and-finish loop, but the check accepts the most common two-point error
+  (blocker 1), so a student can pass the revise step without revising anything.
 
 ## Done when
 
-1. Pass. Eye 60 m: the 60 m point on the 34, 52 and 40 floor buildings projects to v = 411.6 = the horizon row.
-2. Pass (formulas exact at W 1006 in the app; Python at W 1200 matches the spec's numbers).
-3. Pass. Every unclipped wall's horizontal edges pass through its VP within 1e-10 px at three cameras (60 m / 30 / 35 mm;
-   1.6 m / 15 / 24 mm / tilt 15; 10 m / 60 / 50 mm / tilt -10); verticals pass through VP 3 within 2e-11 px.
-4. Pass (above).
-5. Pass for the parts tested: a real drag 3 degrees off the line to VP L snapped onto it (line passes VP L within 1e-13
-   px), said "to VP L" and "Last line: to VP L."; the stroke survived a new tab (localStorage); Save picture draws the
-   render and ink only (frame pic). Clear drawing not re-tested.
-6. Pass (scan above).
-7, 8: sizes, frame rate and voice counts belong to the Play and Craft lenses.
+| # | Check | Result | How |
+|---|---|---|---|
+| 1 | Horizon at eye level; crosses buildings at the eye's real height (60 m) | pass | dw.js: points at y = 60 m, z = 150 and 400 project exactly to the horizon row; "Horizon crosses N of 9" counts buildings taller than the eye |
+| 2 | Worked check at W = 1200 | pass | 35 mm: f 1166.7; t 30: VP L -73.6, VP R 2620.7; t 45: -566.7, 1766.7; 85 mm at 45: 5666.7 px apart. FOV 73.7, 54.4, 39.6, 23.9 |
+| 3 | Guides meet at the VPs within 1 px | pass | worst edge-line distance to its VP 5e-13 px; f1/t1 frame shows guides converging on VP L |
+| 4 | Tilt 15: VP 3 at f / tan 15; verticals meet there | pass | 4354.06 px both ways; a projected upright passes through VP 3 (u 600.000); horizon shift = f tan 15 |
+| 5 | Ink snaps and says which; PNG without guides; survives reload; Clear empties | pass | f2/saved.png has render and ink, no guides, horizon or VPs; 2 strokes after a new tab; Clear drawing then 0 with "Undo brings it back" |
+| 6 | Each target matched with its listed settings; no stop matches a target | pass | every target scores 1.000 and says "Matched."; best stop score per target 0.82, 0.73, 0.82, 0.70, 0.88, 0.81 (all under 0.95) |
+| 7 | Camera and stage above the fold at every size; 60 fps with 20 buildings at 1920x1080 | pass | audit size rows (only Overlays and Buildings fall below the fold at 760 and 375); 2.1 ms per draw with 20 buildings, Guides and Windows on |
+| 8 | How lines once in five slider moves; matched every time | pass (cited) | audit "Five held clicks" clean on the stops; Matched plus the settings line played on each of six matches (t8). The counts table is Craft's |
 
 ## Findings
 
+### Blocker
+
+1. **Check my drawing passes flat lines, and Snap teaches them.** Where: Ink, `misses()` (src.html:1102) and
+   `lineEnd()` (src.html:2212), both using `Persp.targets()` with its default `horizontal` target
+   (kit/perspective.js `targets`). What: at Turn 30 no building edge is level on the page (edges on the horizon aim at
+   the VPs anyway), yet any screen-level line counts as a hit. I drew three flat lines across the towers with Check on:
+   "All 3 lines hit their vanishing points." and the reflection opened, asking what I changed (f1/t1-check-level-lines.png).
+   Drawing a roof edge flat is the classic two-point mistake, and this is the tool's one revise step (VA:Cr3). With
+   Snap on, a roof edge 300 px above the horizon drawn 3 degrees off level snapped to "horizontal" and the status
+   read "Last line: horizontal." (f1/t2), so the pen itself rewards the error. With Tilt 15 the same flat lines still
+   pass (f2/t11). The check's message is a meter that misleads when its assumption fails, so this is a blocker
+   (REFINE, Rounds). Better: drop the level target in this tool (snap and check). It is never needed: when Turn is 0
+   or 90 the far VP comes back from `vps()` as an infinite direction whose angle is already level, so one-point views
+   still snap and pass. Keep the upright only when Tilt is 0, as now. Tag: **family:perspective** (the engine's
+   default target list).
+
 ### Should fix
 
-**S1. The eye stands back so fast that Drone and Helicopter look like a shrunken Rooftop.** src.html:240 (`standoff`),
-frames eye-60, eye-150, eye-400. Seen by computing atan(e / D) and looking at the frames. The spec's one idea is that
-lifting the eye from the sidewalk to a helicopter "redraws the whole skyline". With D = 120 + 6 (e - 1.6) the look-down
-angle only goes from 7.3 degrees (Rooftop) to 8.4 (Drone) to 9.1 (Helicopter), so a student sees about the same view
-getting smaller: the 52-floor tower is 258 px tall at 60 m and 48 px at 400 m (24 mm, f 670), a smudge in an empty
-plain. Nothing new about tops, streets or the grid appears above 60 m. Better: a slower standoff, for example
-120 + 1.5 (e - 1.6) m (400 m gives D 718 m and 29 degrees down; the block base sits 373 px below the horizon, which fits
-with Horizon on page at 20 to 30 percent), raising the default horizon as the eye climbs, or a Helicopter hint that
-invites Tilt down (real aerial shots look down and are three-point). The builder flagged this choice for Cory
-(handoff "For Cory"); the teaching evidence says the current rate loses the tool's main idea. Tag: family:perspective
-(how the camera is placed for high eyes).
+2. **Find the Camera can be solved from the scores, not the picture.** Where: Find, `showScores()` (src.html:1356)
+   and the miss message (src.html:1422). What: after each Check the panel shows an exact percent per setting, and each
+   score is a straight line toward the answer (turn 1 - |diff| / 40, eye 1 - |ln ratio| / ln 10). From Turn 0 the
+   turn reads 25%, so the answer is 30; one check per lens button finds the lens. I matched target 1 in five checks
+   without looking at the outline (f1/t3: turn 0, lens 24, eye 10, turn 30, eye 40). Checks cost nothing, so this is
+   "trying every option for free" (BUILD.md wave lessons, No giveaways), and the round 2 change that took the live
+   meter away only slowed the sweep down. Better: after a check show per setting only "matches" or "not yet" (no
+   percent), keep the "read the X next" hint, and let the overall meter move in coarse steps; or count tries per
+   target and offer Extend outline edges as the help instead of numbers. Tag: **general**.
 
-**S2. A teacher-note question plants a misconception.** notes.md line 23: "Which show their bottoms when you tilt up?"
-Seen by reading kit/perspective.js box(): which faces show depends on where the eye is, not where it points, so tilting
-never reveals a bottom. Buildings on the ground never show a bottom; only the water tower's raised tank does, and only
-when the eye is below it, tilted or not. Better: "Tilt up. Do the building edges still stand straight? Where do they
-meet?" or "From the sidewalk, which thing shows its underside? (the water tower's tank)". Tag: general.
+3. **The two street-level targets ask for a precision the picture can't show.** Where: Find targets 2 (3 m) and 6
+   (2.5 m), eye tolerance 95% = within 12%. What: at target 2 with eye 2.4 m (Turn and Lens right) the student's
+   render and the amber outline are almost the same picture, the outline's horizon a few pixels off (f2/t8t9.png, top
+   2.4 m, bottom 3.0 m), yet the eye scores 90% and the target is "Not yet". The outline has no floor lines, so 3 m
+   cannot be told from 2.5 m or 3.4 m by reading; the student can only nudge the slider and press Check until the
+   percent passes, which is finding 2 again. The hint for both says "Roofs below eye level are visible", but at 3 m
+   no roof is. Better: give the eye score a tolerance tied to what shows on the page (for example the outline's
+   horizon within a few pixels of the student's, or within 0.6 m below 10 m), or raise these two targets to heights
+   that read clearly (for example 6 m and 4 m, still off every stop), and give low targets a hint about where the
+   horizon cuts the nearest building's base. Tag: **general**.
 
-**S3. VA:Cr3 (refine and complete) is mentioned more than taught.** Ink (src.html:1114-1258), notes.md "Standards".
-Seen by walking Ink: the student can draw, erase, undo and save, but nothing asks them to judge the drawing against
-criteria and revise it, which is what Cr3 asks at high school (apply criteria, reflect, plan revisions). With Snap on
-and the render showing, the tool does the aiming for them. Rule 2 (taught well, above the minimum). Activity that would
-teach it: a "Check my drawing" step: turn Snap off, draw, then the tool marks each line that misses its nearest VP or
-vertical by more than a few degrees and counts them; the student fixes the marked lines and sees the count fall, with
-one short "what I changed" prompt saved with the drawing on this device. Otherwise move VA:Cr3 off the module. Tag:
-general.
-
-**S4. Find the Camera rewards sweeping the sliders, not reading the picture.** Hint and voice (src.html:298, 770),
-frames find-t2-start, find-t5-eye400. Seen by playing targets 2 and 5: the only guidance is "Move the eye height, turn
-and lens until your city matches the outline", and the match meter works as hot and cold. The cues a real camera
-match uses are already on screen: the outline is drawn on the student's horizon row, so the horizon crosses the target
-buildings at the hidden eye height (count floors x 3.5 m); the outline's edges, extended, meet at the hidden VPs (turn);
-how far apart they are in focal lengths gives the lens (2 / sin 2t). Better: a hint per step (horizon first, then
-turn, then lens), a short "How to find a camera" note in notes.md, and a toggle that extends the outline's edges
-(this shows the method, not the answer). Tag: family:perspective.
+4. **A fact on screen says tiers show undersides; they don't.** Where: Build fact line, `FACTS.bottoms`
+   (src.html:346) and `bottomsShown()` (src.html:1691); notes.md "Things to talk about". What: the fact "Tiers above
+   your eye show their undersides: above the horizon you see bottoms." came up at the sidewalk (f1/t4 tips), because
+   `bottomsShown()` counts any bottom face projected on the page. The stepped tower's tiers sit on the wider tier
+   below, so their undersides are hidden: the zoomed frame shows only walls at both setbacks (f1/t4-crop.png). The
+   only real underside on screen is the water tank between its legs. notes.md asks "Which tiers show their
+   undersides", which sends a class looking for something that is not there. Better: say "Things above your eye
+   show their undersides, like the water tank on its legs: above the horizon you see bottoms.", show it only when a
+   bottom face is actually drawn uncovered (the tank), and fix the notes question to the tank. Tag: **general**
+   (a fact keyed to geometry, not to what the student sees).
 
 ### Polish
 
-**P1. Eye height in Find is a five-way pick.** src.html:235, 266, 844. The five stops are exactly the target heights
-and the slider snaps to a stop within 8 of its 1000 steps, so with S4 a student can solve each target by trying five
-heights. Better: some targets between stops (with an eye tolerance in the match), or no snapping in Find. Tag:
-family:perspective.
+5. **The reflection asks "What did you change" when nothing changed.** Where: Ink, Check my drawing, `#reflect`
+   (src.html:246). After three lines that all hit with no red line ever (f1/t1), the question reads as a trick. Better:
+   when `checkHadRed` is false ask "How did you aim each line at its vanishing point?" and keep the current question for
+   a real fix. Tag: **general**.
 
-**P2. "Horizon on page" stops meaning the horizon once Tilt is on.** src.html:152-155, frame guides-tilt. At 70% with
-tilt 15 the horizon draws at 96% of the stage (moved f tan 15 = 180 px), but the slider still says 70%. The spec's Tilt
-fact (the horizon moves f tan p the other way) is never shown. Better: a readout row with Tilt, "Horizon moved 180 px
-down (f tan 15 degrees)", or name the slider "Picture center" while tilted. Tag: family:perspective.
+6. **Composition is one recipe line.** Where: Build, `composeGoal` (src.html:365). The module is "Two-Point
+   Perspective and Composition", but the only composition moment is one hint that gives the answer with the goal ("a
+   low eye, a wide lens, the horizon low"). Better: two or three short briefs to pick from (make the tower feel huge,
+   a calm wide street, a map-like view from above), each saved with the drawing, and let the student find the settings.
+   This touches what the tool teaches, so it may belong in the spec's open questions. Tag: **general**.
 
-**P3. A fact line with nothing on screen to match it.** src.html:271, 883; frames eye-60, eye-150. "Above the horizon
-you see bottoms, below it you see tops" shows at 60 m and 150 m, where no bottom is visible (the only raised thing, the
-water tank, is below the eye). Better, from what the screen shows: "Buildings shorter than your eye show their roofs;
-taller ones hide theirs." Tag: general.
-
-**P4. Ink still offers "vertical" in three-point.** kit/perspective.js targets(); src.html:1178. With Tilt, building
-verticals run to VP 3 (the tiltHow line says so), yet a near-vertical stroke away from the center can snap to "vertical"
-and be labeled that way. Better: drop the vertical target when pitch is not 0 (VP 3 takes its place). Tag:
-family:perspective.
-
-**P5. "Focal lengths" is never explained.** src.html:872. The readout says "1549 px = 2.31 focal lengths" while the
-lens buttons are in mm. Better: a note under the readout, "1 focal length = lens / 36 x page width = 670 px now", which
-also shows the spec's f formula and why the number in focal lengths does not change with the lens. Tag: general.
-
-**P6. Composition (the module's second word, VA:Cr2) has no goal.** Build gives full camera control but never asks the
-student to choose a view for an effect. Better: one or two prompts in Build, for example "Make the tallest tower feel
-huge: low eye, wide lens, horizon low. Now make the city feel small." Tag: general.
+7. **"Looking 48 degrees down" with parallel uprights needs one sentence.** Where: Readouts, Eye height
+   (src.html:1675), audit frame state-helicopter-guides-plan-1366x768.png. From the Helicopter stop the readout says the
+   block is 48 degrees down, but the camera stays level (the page is shifted), so uprights stay parallel. A student who
+   knows real aerial photos lean will wonder why. Better: a readout note "The picture stays upright, like a drafting
+   view; Tilt shows the real lean (three-point)." and the same line in notes.md "Good to know". Tag:
+   **family:perspective**.
 
 ### Nit
 
-**N1.** src.html:718. A match at turn 29 says "Matched. ... turn 30 degrees". It is the hidden camera's setting; "The
-hidden camera: eye height 60 m, turn 30 degrees, 35 mm" would match the state. Tag: general.
+8. **Check my drawing tests direction, not place.** A line in empty sky aimed at VP R passes. Fine for a first
+   check; a later version could ask that each line start on a building corner. Tag: **family:perspective**.
 
-## Other checks
+## Other checks (nothing found)
 
-- Facts on screen are all in the spec's Content and Sources; settings (3.5 m floors, lots, example city, standoff) are
-  labeled as settings in notes and the source comment.
-- Nothing in Find shows the hidden camera's horizon, VPs or numbers before the match; the readouts describe only the
-  student's camera.
-- Language is plain and right for 9-12. No sensitive topics; no cultural, Native or hard-history content, so no
-  sensitivity review is needed. No em dashes in src.html, notes.md or voice/lines.json.
+- Facts recomputed: stand-back 155 m, 209 m, 359 m and 21, 36, 48 degrees down; "1 focal length = lens / 36 x page
+  width"; VPs 2 / sin 2t focal lengths apart (the same number for every lens, as notes.md says); VP 3 and tilt-shift
+  directions (looking up: VP 3 above center, center above the horizon). All match the spec's Sources.
+- Hidden information: no target value is in the DOM before a match; the eye stops do not settle in Find; target 6
+  says only "looks up". The giveaway is the scores (finding 2), not leaked text.
+- Language is plain and right for 9-12. What it teaches, Key skills and Support at home describe this tool; the home
+  ideas (a box from a low seat, receding room edges, a ruled box sketch) are doable tonight. No sensitive topics.
+- Guardrails: no timers, no points beyond "Found N of 6". Nothing cultural, Native or hard-history: no sensitivity
+  review needed.
+
+## Audit pilot
+
+- **Confirmed:** the size rows I leaned on for Done when 7 (camera section and stage above the fold everywhere;
+  Overlays and Buildings below it at 760 and 375); the five-held-clicks rows for Done when 8.
+- **Wrong or by design:** "#clearInk nothing changed" (a fresh page has no ink; with two strokes it clears and says
+  Undo brings it back, f2/t6); "#cv nothing changed" in Find (the stage takes no clicks in Find by design); the
+  #cv / #checkCam2 overlap "at every size" is the stage chip, and the outline is fitted under it (f2/t8t9).
+- **Missed (it can't see these):** the level-line pass in Check my drawing and the "horizontal" snap (blocker 1); Find
+  solved from the per-setting percents (2); street-level targets that can't be read at the tolerance (3); the false
+  underside fact (4); the reflection wording (5).

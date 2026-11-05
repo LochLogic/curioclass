@@ -135,7 +135,7 @@ Past builds lost hours to one stuck command and to re-running every check at the
 The limits below are for commands and checks. They are never a reason to cut the graphics or the play.
 
 1. **Start the report early.** Create `tools/<id>/codex-report.md` as soon as the first version bundles, and fill each
-   section as its check finishes. Keep it under 200 lines.
+   section as its check finishes. Keep it under 230 lines.
 2. **Put a time limit on every command** you run: 2 minutes for a bundle, 5 for a drive.py batch, 40 for the audit.
    A command that hits its limit is stopped and retried once, smaller. If it stops again, write it under Left open and
    move on. Never wait on a command with no limit.
@@ -164,6 +164,13 @@ The limits below are for commands and checks. They are never a reason to cut the
 Before building, recompute every number in the spec's Sources in a small script in Scratch. If your numbers differ,
 trust the computation, say what differs in the report, and leave the spec alone.
 
+Check every fact the student sees against a named source: for health, safety, first aid, law, money and science, the
+current guidance of a named body (for example the American Red Cross or American Heart Association for first aid); for
+history, music and culture, dates, credits and who is named. Write the source beside each fact in the report. If the
+tool touches a culture other than the student's own, Native or Indigenous peoples, religion, hard history or people's
+bodies, say so in `handoff.md` under `## Sensitivity`, with what a cultural reviewer should look at. Never date a
+tradition by when Europeans first heard it.
+
 ## Files to make in `tools/<id>/`
 
 As BUILD.md lists: `src.html`, `tool.draft.json` (`"stage": "built"`), `notes.md`, `voice/lines.json`,
@@ -180,8 +187,14 @@ As BUILD.md lists: `src.html`, `tool.draft.json` (`"stage": "built"`), `notes.md
 3. 375 wide: `python scripts/drive.py <id> --host 8795` in the background, then shots at `http://127.0.0.1:8795/host.html?w=375&h=812`.
 4. Cover every STANDARDS size, every mode, each extreme in POLISH.md, Motion off, a grayscale frame and a keyboard-only run.
 5. Open and look at every PNG you shot. Fix overlaps, clipping, unreadable text and any "Done when" that fails.
-6. Voice: at a 2 s tap pace with held clicks, read `__tool.vlog` and check the STANDARDS voice rules.
-7. Last: `python scripts/audit_tool.py <id> <Scratch>/audit --port 9991 --profile <Scratch>/chrome-prof-audit`.
+6. Voice: walk the main path the welcome describes, in its order and with the default settings (if the welcome says to
+   turn something on first, do that first), at a 2 s tap pace with held clicks. Read `__tool.vlog` and check the STANDARDS
+   voice rules. Every mode's how-to line must be heard on that path. Then walk one side path the same way.
+7. Break it: for every score, meter, check, quiz or reflection gate, write down the cheapest way to pass without the
+   skill (a tap rhythm with pauses, sweeping a slider, every option in turn, reading a percent or badge, easy inputs
+   where the check wants hard ones) and run it. If it passes, fix the check, and run it again. A "best" or saved score a
+   cheat can set is the same fault. The reviewer will try this too.
+8. Last: `python scripts/audit_tool.py <id> <Scratch>/audit --port 9991 --profile <Scratch>/chrome-prof-audit`.
 
 ## Report: `tools/<id>/codex-report.md`
 
@@ -189,6 +202,9 @@ As BUILD.md lists: `src.html`, `tool.draft.json` (`"stage": "built"`), `notes.md
 # Codex report: <id>
 ## Built
 ## Numbers check
+## Facts checked     (each fact the student sees, with its source)
+## Break it           (each score, check or meter: the cheats tried, what happened, what you changed)
+## Voice walk         (the main path, the lines heard in order)
 ## Feel check         (best moment, two flattest moments, what you changed, frames compared with a bar tool)
 ## Done when          (each spec item: PASS or FAIL, with evidence)
 ## Wave lessons       (each BUILD.md lesson: PASS or FAIL, and how you checked)

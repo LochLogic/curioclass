@@ -1,118 +1,137 @@
-# levels-and-pathways: Teaching lens (round 1)
+# Teaching lens: levels-and-pathways (round 1)
 
-Cold read of spec.md, src.html, notes.md, art/prompts.json, voice/lines.json; bundled with `CURIO_DRAFT=1`; driven with
-`scripts/drive.py` (port 9561, own profile). Scratch frames: `C:\Users\Cory\AppData\Local\Temp\claude\S--\98b8b046-f7f2-48d0-a719-c61ce01237be\scratchpad\lens-lp-teaching\r1`.
-Standards text checked against the NCAS "Dance at a Glance" handout (nationalartsstandards.org, the source named in
-data/standards/ncas-performance-standards.txt). Module arts-k-2-moving-bodies: DA:Cr1; DA:Pr4; DA:Re7; DA:Cr3; DA:Pr5;
-SHAPE.S2. This is the module's only tool.
+Cold read of spec.md, src.html, notes.md, tool.draft.json, art/prompts.json and voice/lines.json, then the bundled
+draft (CURIO_DRAFT=1) driven in muted headless Chrome (port 9761/9762, own profile) with real held clicks, real drags
+and keys. Frames and logs: `scratchpad/refine/levels-and-pathways/teaching/` (f/, poses/, poses-sheet.png).
 
-Counts: blockers 1 (general 0, family 1), should fix 3 (general 2, family 1), polish 5, nit 2.
+Counts: blockers 0, should fix 1, polish 7, nit 3.
 
-## Blocker
+## Findings
 
-1. **Draw a path calls a big zigzag "straight, straight, straight, straight".** src.html:731 (`ZIG_LEG = 40`) and
-   analyze() 784-839. How I saw it: a real mouse drag from the star through (30,8), (50,50), (70,8), (90,50) in floor
-   units, a deep full-floor zigzag, came back as 4 straight parts. The panel said "Then straight." and the stage showed 4
-   numbered straight-line badges (frame `draw-deepzig.png`). With analyze() directly: a 3-leg zigzag across the floor
-   (legs 43 to 48 units) came back "straight+straight+straight", and so did corners at (35,15), (60,50), (85,15). Smaller
-   zigzags pass (legs 36 or less, the tool's own zigzag, a 5-leg one). On a projector a child's zigzag is most likely
-   big and deep. The tool then tells the class that a zigzag is four straight pathways, which contradicts what Pathways
-   and Mystery path just taught. The spec's own rule (legs under 30) is stricter still, so the rule itself needs
-   fixing, not only the number. Better: two or more sharp corners in a row that **alternate turn direction** (left,
-   right, left) make a zigzag at any leg length up to about 60 units. Corners that turn the same way (an L, a box)
-   stay separate straight parts (`lThen` = straight+straight, still right). Tag: **family:dance** (the pathway
-   classifier will come back in the dance siblings).
+### Should fix
 
-## Should fix
+1. **DA:Pr4.1.2a is cited for pathways only** (spec "Who and how"; notes.md line 49; src.html header comment).
+   general. The repo holds codes only (`data/standards/ncas-performance-standards.txt`), so I checked against the NCAS
+   text as I know it: the grade 2 expectation is clear directionality and intent in locomotor and nonlocomotor moves
+   that change body shapes, facings and pathways, plus symmetrical and asymmetrical shapes and circling versus turning.
+   The tool gives grade 2 the same straight, curved and zigzag pathways it gives grade 1 (DA:Pr4.1.1a); facings,
+   symmetry and circling versus turning are not done by any student activity. Under rule 2 and the K-2 span call
+   (gf-04), either move the code to a dance sibling that can teach it well (choreography-board is the likely home) or
+   have the integrator confirm the official wording first and record why pathways alone carry it. Don't add a thin
+   activity just to keep the code. How seen: read the code list against every mode played below.
 
-2. **Wrong code for Mystery path, and Re7 is not taught for grades 1 and 2.** spec.md "Who and how", src.html:10-11.
-   How I saw it: the standards text. DA:Re7.1.Ka is "Find a movement that repeats in a dance." Mystery path
-   (watch, then describe the pathway and level) teaches **DA:Re7.1.Kb** (demonstrate or describe observed or performed
-   dance movements), and it teaches it well. Re7.1.1a and 2a (patterns) and Re7.1.1b and 2b (movements from a genre or
-   culture) are not taught here, and this is the module's only tool, so DA:Re7 has no grade 1 or 2 coverage. Fix the
-   citation to Re7.1.Kb. For grades 1 and 2, follow BASELINE rule 2 and the K-2 span rule (gf-04): send Re7.1.1a/2a to
-   dance-pattern-puzzle and Re7.1.1b/2b to dance-styles-explorer, which teach those well, and don't add a thin activity
-   here. Same kind of slip: the spec's text for DA:Cr1.1.Ka ("explore ... by changing an element") is the wording of
-   **Cr1.1.Kb**. Kb is taught (every move at three levels), and Ka (respond in movement to stimuli: music, an observed
-   dance) is taught by copying the dancer, so cite both. Tag: **general**.
+### Polish
 
-3. **Draw a path doesn't teach the grade 1 and 2 Cr3 and Cr1 codes it claims.** spec.md cites DA:Cr3.1.Kb to 2b. How I
-   saw it: the standards text against what the student does. Cr3.1.Kb (depict a movement by drawing or a symbol) is
-   taught well: the child draws the pathway. Cr3.1.2b asks the child to "depict the levels of movements ... using
-   symbols (for example, high, middle, low)", and Cr1.1.2b asks them to "combine a variety of movements while
-   manipulating the elements of dance". In Draw a path, the drawing carries only the pathway. The level and the way
-   are one button choice for the whole path, so the child never puts a level symbol into their map or combines
-   movements. Cr3.1.1b (depict types of movement: jump, turn, slide, bend, reach) is not taught either. Better: let each
-   drawn part carry its own level and way. Tap a part's number badge to cycle its level icon (cloud, table, grass),
-   then Dance it changes level and way part by part. That teaches 2b of both anchors and gives grade 2 real depth.
-   This changes the spec, so it goes to open questions. Until then, cite only Cr3.1.Kb. Tag: **general**.
+2. **"Middle level. Stay in the middle." gives no body cue** (src.html line 266, `atMiddle`; voice/lines.json).
+   general. High says "Reach up to the sky!" and Low says "Get close to the floor.", but "the middle" of what? A
+   kindergartner copying the dancer gets nothing to do. Better: "Middle level. Feet on the floor, between the sky and
+   the ground." (a new clip; the spec voice table changes with it). How seen: line list and run logs.
+3. **High reads only by the arms** (family:dance; poses-sheet.png, mid-after-high.png). Every High keyframe is
+   "on tiptoes", but from the front the painted shoes look flat and the head rises only about 16 px on a 320 px figure
+   (head y 194 at High against 210 at Middle, 1366x768). Twist, Bend and Shake High differ from Middle mostly by arms
+   up, so the class can learn "high = arms up" rather than "the whole body rises". Better: a visible heel lift (a
+   small rise of the whole figure, or a three-quarter turn of the feet), or a tiny hop in Shake High.
+4. **Locomotor and nonlocomotor are never named to the class** (header subtitle; notes "Talk about it"). general.
+   The topic line promises the distinction, and the modes split it cleanly (Levels stays in place, Pathways travels),
+   but nothing spoken or shown says "these moves stay in your bubble space, these moves travel". Better: one how line
+   in each welcome ("These moves stay in one place." / "Now we travel!") and a matching notes line.
+5. **Support at home is thin and not about this tool** (notes.md lines 16 to 18). general. "Make a high shape and a low
+   shape together using comfortable arm movements" is vague, and no idea uses pathways on the floor or a drawn map,
+   the heart of Pathways and Draw a path. Better, all doable tonight: "Draw a pathway on paper (straight, then
+   zigzag), then walk it across the room." / "Call sky, table or grass and freeze in a shape at that level." / "Walk a
+   curved pathway around a chair, then a straight one back."
+6. **Notes say low is on the floor; the traveling dancer crouches** (notes.md line 47). general. In Levels every Low
+   keyframe sits, kneels or lies, but in Pathways and Mystery the Low walk, gallop and slide are a deep crouch
+   (paths-trip4.png, mys4-travel, mys6-travel). A teacher reading the note then watching a crouched trip sees a
+   mismatch. Better: "Low level is close to the floor: on the floor for moves in place, a deep crouch when traveling."
+7. **Older ribbons lose their end badges** (family:dance; paths-trip3.png). All three pathways end at x 90, z 50, so
+   the newest badge covers the older two: three ribbons on the floor, one badge. The pattern still carries the level,
+   but the class can't read an older ribbon's icon pair when the teacher asks "which one was the zigzag?". Better:
+   stagger older badges (or put each at its ribbon's start or middle).
+8. **Round 7's circle is answered "Curved" with no word on why** (Mystery round 7; mys7 frames and the gallery).
+   general. A full circle back to the star is a good stretch, but the answer button shows an arch and the class may
+   hesitate. A one-time line after the right answer ("A circle is a curved pathway too!") turns it into a teaching
+   moment.
 
-4. **Some low-level freeze poses read as standing, not low.** src.html:216 (stretch low), 224 (bend low), 237 (curl
-   low). How I saw it: each move posed at its count-8 hold (keyframe B) at each level, at 800x500 (frames
-   `pose-*-*.png`, `grid-low.png`, `low-compare.png`). Low Curl's held pose is the "open" star lying on the floor.
-   Seen from the front, the legs run toward the class, so it looks like a standing star whose head is nearly as high as
-   the Middle figure. The class copies the freeze, so many children will stand in a star at "Low level". Low Stretch
-   and Low Bend hold almost the same seated forward fold (lean 52 against 62, the same arms), so two moves look like
-   one. The pose numbers differ (no duplicate among the 18), but Done when 1 asks for a shape of their own. Better: for
-   floor poses, face the dancer about 60 degrees (side-ish) so the legs read as lying along the floor. Hold Low Curl on
-   the small ball (keyframe A) at count 8, or end the loop on A. Make Low Bend a seated side bend. Tag:
-   **family:dance** (Dance.level and the studio view decide how floor poses read; the handoff already lists "low ...
-   can read as sitting").
+### Nit
 
-## Polish
+9. **"Which level was the dancer?"** (src.html line 280, `askLevel`). general. Reads oddly aloud; "Which level did the
+   dancer dance at?" or "Was the dancer high, middle or low?" Needs a new clip.
+10. **Small zigzags and clipped loops read wrong** (family:dance, `Dance.readPath`). A screen zigzag of 30 px corners
+    (about a child's quick scribble at 1366x768) read as one curved part (draw-scr-small-zig.png); 40 px read zigzag.
+    A loop drawn around the star runs off the left edge, is clamped to a straight edge and reads curved, straight,
+    curved (draw-big-circle.png); the same loop drawn to the right of the star reads one curved part. A shallow
+    diagonal zigzag (74 degree turns on the floor, flatter on screen) read as four straight parts (draw-diag-zig.png),
+    which is defensible from how it looks. Edge cases only.
+11. **The spec's open question is already settled** (spec.md "Open questions"). general. BASELINE "Specific calls"
+    says levels-and-pathways must not share one dancer figure with PE (w1-21); the question asking whether to share it
+    should be closed in the spec.
 
-5. **"Stay in place" and "travel" are never named.** Cr1.1.Kb/1b and Pr5.1.Ka/1a/2a are about locomotor and
-   non-locomotor movement, and the tool does both well (Levels in place, Pathways traveling), but the class never
-   hears the difference. Better: wLevels "These moves stay in one place..." and wPaths "Now we travel!", plus a Talk
-   about it prompt in notes.md: "Which moves stayed in your bubble? Which ones traveled?". Tag: general.
-6. **Round 7's circle could teach Pr4.1.2a.** Pr4.1.2a asks children to "differentiate between circling and turning".
-   Mystery round 7 (a full circle back to the star) is the natural moment. Add a notes prompt: "The dancer made a
-   circle on the floor. Now turn around in your bubble. How is that different?". Tag: general.
-7. **Cite DA:Pr5.1.2a.** It asks for dance sequences "moving through space using a variety of pathways", which
-   Pathways and Draw a path teach directly. Add it to the spec's codes (it gives grade 2 a code the tool teaches
-   fully). Tag: general.
-8. **No inclusion note.** notes.md "Good to know" could add: a child who can't kneel, sit or go on tiptoe shows the
-   level with the arms and the head (high reach, middle out, low near the lap), and a seated class can trace the
-   pathway with a hand. Tag: general.
-9. **The sides of a big curve get called straight.** analyze(): a drawn half-sine hump from the star (20 units high,
-   80 wide) came back "straight+curved+straight". A child who drew one curve hears three parts. Better: split a straight
-   end off a curve only when the curve's middle turns at least 90 degrees and the straight end is at least 30 units.
-   Tag: family:dance.
+## Teaching checklist
 
-## Nits
+**1. Standards taught by something the student does.**
 
-10. A drawing that doesn't start at the star gets an extra part 1 from the star (spec, Interactions). Then "First,
-    straight." names a line the child didn't draw. A softer line would fit better ("From the star, ... then ...").
-11. notes.md Mystery path: "A right pathway paints the ribbon in". It paints in gold first and takes the level's
-    look only after the level answer. One more sentence helps the teacher see why.
+| Code | Taught by | Verdict |
+|---|---|---|
+| DA:Cr1.1.Ka (respond in movement to a cue) | copying the narrator, the count-in and the music in every mode | taught |
+| DA:Cr1.1.Kb (change one element) | Levels: same move at three levels; Pathways: path, way and level | taught |
+| DA:Cr1.1.2b (combine, changing elements) | Draw a path: levels per part, Dance it (trace changed level at count 5) | taught |
+| DA:Pr4.1.Ka (levels) | Levels, Up and down | taught |
+| DA:Pr4.1.1a (straight, curved, zigzag pathways) | Pathways, Mystery, Draw a path | taught |
+| DA:Pr4.1.2a | pathways only | finding 1 |
+| DA:Re7.1.Kb (demonstrate or describe observed movement) | Mystery: draw it in the air, name it, then the level | taught |
+| DA:Cr3.1.Kb and 2b (symbol or map for a pathway) | Draw a path: the class draws the map; ribbons and badges as symbols | taught |
+| DA:Pr5.1.Kb (start and stop on cue, own space) | count-in, "And freeze!", bubble space line | taught |
+| SHAPE.S2 (movement concepts) | levels and pathways throughout | taught |
 
-## Checked and right
+**2. Done when.**
 
-- **Facts recomputed (Python):**
-  - Contrast: white on accent 5.10, accent on paper 4.79, ink on paper 14.43, muted on paper 6.04, ink on wood 10.55,
-    and white on High, Middle and Low 5.75, 5.13 and 5.02. All match the spec.
-  - Tempos: Walk 100, Skip 120, Gallop 120, Slide 100, Levels 96. Code matches the spec.
-  - Pathways: the zigzag legs are 36.06 units with corners at x 30, 50 and 70; the curved pathway is a half circle
-    (r 40) bulging to the back.
-  - Round 7 circle: r 26.25, spans x 3.75 to 56.25 and z 6.75 to 59.25, so it stays on the floor.
-  - Draw a path counts: a line 80 units long gets 13 counts and a half circle 125.7 units long gets 20, as the
-    16-per-100 rule gives.
-  - The 8 Mystery rounds match Content.
-- **Done when 2:** a level tap after count 3 switched on count 4 (trace `1m 2m 3m 4h ... 8h`), and Up and down ran 40
-  counts, 8 each at H M L M H.
-- **Done when 3:** three trips (straight high, curved middle, zigzag low) each left the right shape, pattern and color
-  (frame `paths-3ribbons.png`).
-- **Done when 4:**
-  - The answers are disabled during the trip.
-  - Nothing gives the answer away: the level guide shows no band, the stage description names no level, the level
-    buttons stay hidden until the pathway is right, and the right-pathway ribbon is a neutral gold (frame
-    `mys-trip-mid.png`).
-- **Done when 5:** a plain line, a smooth arc and a three-corner scribble (real drag, frame `draw-real.png`) came back
-  right, both clean and with 1.2-unit jitter. A 10-unit line got tooShort.
-- **Language:** plain and right for K-2 (the subtitle "Locomotor and nonlocomotor movement" is for the teacher).
-- **Guardrails:** teacher led, no points or timers, 8 dots and no wrong count.
-- **Rule 8:** the dance standards cover no sensitive topic here.
-- **Sensitivity (rule 5):** no cultural, Native or hard-history content, so no sensitivity review is needed.
+| # | Check | Result |
+|---|---|---|
+| 1 | 36 keyframes shot (6 moves, 3 levels, A and B; poses-sheet.png): every one its own shape, Low all on the floor; guide band = `shownLevel` = chosen level on every count; the call ("Stretch!", "Low level...") logs at 3.0 to 4.3 s and the pose tween waits for it | pass (finding 3 on how High reads) |
+| 2 | High tapped at count 3 of Twist: trace middle, middle, middle, high x5; Up and down: 40 counts, 8 each High, Middle, Low, Middle, High, each level line on its count | pass |
+| 3 | Four trips (zigzag skip high, curved gallop low, straight slide middle, zigzag walk low): ribbon shape per path, level color and pattern, icon at the end; after trip 4 the first ribbon is gone, two older at half | pass (finding 7) |
+| 4 | All 8 rounds played: rounds match Content; answer buttons dimmed and disabled in every travel sample (572 samples); wrong path replays once without ribbon; right path paints in; wrong level replays; gallery after round 8 with the bow | pass |
+| 5 | Real drags: straight line one straight; half-circle arc curved; three-corner zigzag zigzag; tiny line tooShort; S wave one curved; straight then zigzag two parts; off-star start gets a lead straight part. Keyboard only: focus Surprise path, Enter, then Dance it, Enter | pass (finding 10) |
+| 6 | Twist tapped at count 3 of Stretch: old counts stop at 3, only the new run counts; mode switch mid-Bend: no new counts, no music, no lines in 6 s | pass |
+| 7 | Three moves in a row: copyMe spoken 1, silent 2; wLevels spoken once; move, level and freeze lines spoken every time | pass |
+| 8 | Not re-shot: the audit's size rows are clean at all eight sizes (60 px targets, fold, 375 host) | pass on the audit |
+| 9 | Curved walk trip measured 12000 ms with Motion on, 11999 ms Motion off, 11999 ms Sound off (4 + 16 counts at 100 bpm = 12.0 s); localStorage holds only `curio-motion`, stated in notes | pass |
 
-Not run by this lens: Done when 6 to 9 (stale lines, voice counts, sizes, Motion and Sound timing) belong to the Play
-and Craft lenses. The real-speed hand-off from round 8 to the gallery was checked only by reading the code.
+**3. Facts.** Recomputed: tempos (walk and slide 100, skip and gallop 120 swung, Levels 96) match the spec; a trip is
+4 + 16 counts; Draw counts 16 per 100 units clamped 8 to 32; zigzag corners at x 30, 50, 70; round 7 circle center
+(25, 35.5), radius 20.86, so z 14.6 to 56.4 on the floor, as the code comment says. Notes and tool.draft.json match
+the spec's Sources and the tool's behavior, apart from finding 6.
+
+**4. Giveaways.** None. In Mystery the level guide stays blank through every trip (`shownLevel` null in all 572
+samples, the stage description names no level), the hidden ribbon is invisible until a right path answer, the painted
+ribbon is plain (no level pattern) until the level is answered, every trip ends at the same spot (x 90) except the
+circle, and the dancer ends in a plain stand. Level answers only show after the path is right.
+
+**5. Language and notes.** Plain and short for K-2, every line voiced. Findings 2, 4, 5, 6, 9. No sensitive topics
+in these standards; the notes' adaptation line for children who can't kneel or go on tiptoe is good.
+
+**6. Guardrails.** Teacher led, no points or timers; Mystery's 8 dots and gallery are fine for this topic.
+
+**7. Sensitivity.** Nothing cultural, Native or hard-history; rule 5 does not apply. The painted guides are people art
+(rule 11), marked `people: true` with a recorded review; that is Craft's check.
+
+## Audit pilot
+
+Leads confirmed:
+- Welcome not heard on a first tap of a level, a move, Up and down or Surprise: confirmed, but the premise comes back:
+  wLevels is logged `silent, early` on load and then spoken right after the first move's freeze (19.6 s in the Low
+  Stretch run). Not a teaching gap.
+- Size and state rows clean: my own frames at 1366x768 in every mode agree; I cited the audit for Done when 8.
+
+Leads that were wrong:
+- "Stretch: event line lost (spoken 0 of 5, dropped 5: stale)". Five held taps 2 s apart: "Stretch!" spoken 5 of 5,
+  each followed by "Middle level". The 5 dropped entries are the tool's empty-key barrier item (`key: ""`), not the
+  Stretch line; the audit counted them as the event.
+
+Not checked by me: the `#d-surprise` left disabled after a mid-action resize (Craft and Play's area).
+
+What it missed (teaching, outside what it can see): the grade 2 code covered only by pathways (1), the middle-level
+line with no body cue (2), High reading by arms only (3), locomotor and nonlocomotor never named (4), the home ideas
+(5), the low-level note against the crouched trips (6), hidden older badges (7), and the drawn-path edge readings
+(10).

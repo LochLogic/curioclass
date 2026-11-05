@@ -1,112 +1,128 @@
-# levels-and-pathways: Play lens (round 1, 2026-10-28)
+# Play lens: levels-and-pathways (round 1)
 
-Played cold from the draft bundle (`CURIO_DRAFT=1`, 149 KB), as a teacher projecting to a K-2 class moving along,
-and as a child alone at home. Real held clicks (120 ms) and drags over CDP, Sound on, Motion on unless noted. All
-four modes at real speed, including all 8 Mystery rounds with a wrong path (round 2) and a wrong level (round 3), and
-the round 8 to gallery hand-off at real speed (frames at 0.3, 1.0, 1.8, 2.6, 4, 6 and 9 s after the last tap).
-No console errors or exceptions in any run.
+Fresh, cold run on the CURIO_DRAFT=1 bundle (levels-and-pathways.html, 2026-11-04). Played twice: as a K-2 student alone
+at home (taps only, listening to the narrator, reading nothing), and as a teacher projecting it at 1366x768 and 1920x1080.
+Frames: the shared audit (audit-r1/) plus my own in the scratch folder
+`scratchpad/refine/levels-and-pathways/play/frames/` (driven by play/run.py and run2.py with held clicks and real drags,
+ports 9771/9772, own profiles). Every frame named below was looked at.
 
-Limit of this run: headless Chrome lists 22 voices but its utterances never end, so each line ran to the kit's cap
-(2.5 s + 80 ms a character). Line order and drop/silent logic come from `V.log`; voice durations were not measured,
-and nothing below rests on them.
+**Counts: blockers 0, should fix 5, polish 3, nit 2.**
 
-Frames looked at (scratch, `lens-lp-play/`): default screen at 1366x768, 1920x1080, 1280x720, 1000x625, 800x500,
-680x425, 760x900, 520x900; every mode at 1366x768, 1000x625 and 680x425; 375 wide in the iframe host (Levels,
-Pathways, Mystery); calm mode mid-trip and Mystery; Levels (first tap, count-in, mid-move, freeze, level change
-mid-move, Up and down at each level change, Surprise, Read mid-line); all 36 move keyframes (6 moves x 3 levels x A/B)
-and the move icon rows at each level; Pathways (4 trips, all ways, all levels, fourth trip clearing the oldest,
-Clean floor); Mystery (every round: travel, ask, paint, ask level, solved, next; wrong answers; gallery; Play again);
-Draw (a drawn multi-part line, Dance it, end, too-short line, three Surprise paths, a drag starting off the star).
+## What works
 
-## Blocker
+- The first screen says what to do (hint and welcome name "Tap a move"), every mode's welcome names its control, and
+  the hint moves on to the next action after each waiting moment: after a freeze it returns to the Levels how line
+  (ms-late), after a trip to the Pathways how line (ms-pathlate), after a drawn path to "Now tap Dance it"
+  (dr-zz-settled), after a right answer to "Tap Next" (my-solved). Read reads the current hint.
+- Don't-nag holds: how lines go silent on repeat (Copy me, askPath after a replay), event lines speak every time
+  ("Stretch!" 5 of 5 at a 2 s pace, st5 log).
+- Mystery path gives nothing away: no ribbon, no level-guide glow and no spoken pathway or way during the trip
+  (my-trip, my-r2trip); the ribbon painted in after a right path answer stays a neutral cream until the level is
+  answered (audit state-mystery-level-question). Answer buttons dim while the dancer travels and during a replay
+  (my-wrong).
+- Draw a path reads real drags well: a jittery three-corner scribble is one zigzag (dr-zz-settled), a half-circle
+  drag is one curved part (dr-arc), a 5-unit stub gets tooShort and its hint (dr-tiny). Part badges cycle levels and
+  the ribbon changes per part (db-badge1, db-badge2).
+- Pathways: the dotted preview of the chosen pathway before Go is a good teaching touch; a fourth trip clears the
+  oldest ribbon and older ones fade (pa-t4end). Calm mode keeps the count timing (calm-mid at 9 s is on count 6, as
+  with Motion on).
+- The Ribbon gallery is a real payoff: eight ribbons in cells with their badges and a bow (gal-end).
 
-1. **Low level reads tall in the front view; Curl at Low freezes standing tall.** Levels mode, `MOVES.curl.low[1]`
-   (and the `sit` keyframes of Stretch and Bend at Low). Seen in `poses/grid-low.png`: Curl Low's B frame (the pose
-   held on count 8, "And freeze!") is a spread-arm figure with long legs reaching to the bottom of the mat, taller on
-   screen than any Middle pose. Stretch Low A and Bend Low A (sitting, legs forward) project as legs hanging straight
-   down, so the dancer looks like someone standing (`lev/l2-low-idle.png`: head lower, but the figure is as tall as at
-   Middle). The class is told "Low level. Get close to the floor." and then freezes copying a tall shape: the one
-   concept this mode teaches is shown wrong at the freeze. Better: keep every Low keyframe visibly low from the front
-   (Curl Low "open" as a wide shape lying or kneeling, sitting legs foreshortened or the body turned three-quarter for
-   sit poses), and check all 18 B frames against the level guide. **family:dance**
+## Findings
 
-## Should fix
+### Should fix
 
-2. **After Next, the hint says "Tap Next for a new mystery" while Next is off and Go is the move.** Mystery,
-   `nextRound()`: `V.how('wMystery', {valid: ... && !state.busy})` is queued right after `newRun('return')` sets busy,
-   so it is dropped stale every round (`V.log`: wMystery dropped stale after each Next) and the hint never updates.
-   Frame `pd/y1-after-next.png`; Read at that moment speaks "Yes! That's the level. Tap Next for a new mystery."
-   Rounds 2 to 8 all open on this wrong hint. Better: set the hint (silently, how-to already heard) once the walk back
-   ends, as `playAgain()` does. **general**
-3. **Round 8 to gallery hand-off: stale hint, no praise, a silent gap.** Mystery, `answerLevel()` r = 7. At real speed
-   the right level gets the chime, then for about 4 s (frames `m7-hand-1.8`, `-2.6`, `-4`) the gallery is on screen,
-   the answer buttons are gone, and the hint still reads "Which level was the dancer? Tap high, middle or low." The
-   last right answer gets no "Yes!" (rightLevel is skipped for round 8), and nothing is spoken until "Eight mysteries
-   solved!" about 4 s after the tap, after the walk and bow. For a class, the biggest moment of the mode is the flattest.
-   Better: speak a short praise (or allDone) as the ribbons gather, and set the hint to allDone when the gallery starts.
-   **general** (hint) / tool (pacing)
-4. **Idle hints after a run don't name the next action.** Levels ends on "And freeze!" (`lev/l5-after.png`),
-   Pathways on "Look at the floor! The ribbon shows our pathway." (`pd/p1-end.png`); that is what Read says while the
-   tool waits. STANDARDS "Say how to act": the waiting hint names the control. Better: after the event line, the hint
-   returns silently to the mode's how-to ("Tap a move...", "Tap a pathway, then tap Go"). Draw already does this
-   ("Draw a new one, or dance it again."). **general**
-5. **Move icons can't be told apart.** Levels move grid, `drawMoveIcons()`. At High, five of six icons are the same
-   tiny tiptoe figure with arms up (`poses/icons-all.png`); at Middle, Stretch and Twist are identical. The figure is
-   about 30 px tall in a 72 px tile. For a child who can't read, the icon is the label (rule 4, K-2 "reads nothing").
-   Better: one fixed, distinct icon per move (not level-dependent), drawn larger, with a motion mark (twist arrows,
-   shake lines, swing arc). **family:dance**
-6. **Ribbon gallery is crowded.** Mystery gallery (`mys/m8-gallery-end.png`): the end badges of rounds 6 and 7
-   overlap each other; the bowing dancer stands on the front row and covers most of round 6's zigzag and round 7's
-   circle. The gallery is the payoff the class looks at together. Better: place the dancer in front of the floor edge or beside the grid, and give each cell's
-   badge its own spot (the known "badges overlap" gap shows here worst). **general**
-7. **A drawn straight + zigzag + arch is named as one zigzag.** Draw, `analyze()` (frame `pd/d1-drawn.png`): a 20-unit
-   straight run from the star, four 27-unit zigzag legs, then a half arch were one part, "First, zigzag." The lead-in
-   and the arch join the zigzag because `reach = min(40, 1.5 x median leg)` is longer than both. A child who drew three
-   kinds hears one. Better: an end leg joins a zigzag only when it is itself about as long as the zigzag legs and
-   straight; a curved stretch never joins. **family:dance** (the splitter is the engine's drawn-path rule)
+1. **Draw a path, four parts at small sizes: badge leader lines tangle across the drawing.** Mode Draw a path, the
+   four-part drawn path at 680x425 and 375 wide. The four badges stack in a 2x2 block over the back of the floor and
+   their black elbow leader lines run across the path and across each other (badge 1, the front straight part, sits
+   over the back part; badge 4's leader runs under badge 3 and down the right side). A teacher on the tool-page preview,
+   or a student on a phone, cannot tell which badge belongs to which part, and tapping a badge is how a part's level
+   changes. At 1366x768 the same path puts each badge next to its part (audit state-four-part-drawn-path-1366x768).
+   Seen: audit state-four-part-drawn-path-680x425.png and -375x812.png, zoomed in play/frames/z-375parts.png and
+   z-680parts.png. Better: on small stages put each badge on or right beside its own part (a smaller badge over the
+   floor near the part's midpoint), with short straight leaders that never cross another part. **family:dance**
+   (part-badge placement in Draw a path).
+2. **The painted dancer breaks apart in kneeling Low poses.** Mode Levels, Low level, Bend, Twist and Swing (kneeling
+   back on the heels). The leggings end at the knee with orange skin-colored patches showing at both knee joints, the
+   shins vanish so the legs read as stumps, and the elbows show jagged cut edges; in Low Swing the head sinks into the
+   shoulders. On a projector the dancer looks broken, not kneeling (POLISH, Art: never crop a character mid-body, hard
+   edges read as broken). Seen: lv-bendtolow.png (zoom z-bendlow.png), lowm-twist.png and lowm-swing.png (strip
+   z-low-strip.png). The same cut-arm look shows, milder, on the Mystery dancer's shoulders while walking
+   (z-mytrip.png). Better: a kneeling leg piece (thigh with the folded shin and foot behind) or a joint overlap so no
+   gap shows, and a neck limit in Low Swing. **family:dance** (painted cutout figure on the dance pose engine).
+3. **The level guide looks like three big buttons but does nothing.** Stage left, every mode. High, Middle and Low are
+   tall rounded cards with borders, an icon and a word, the active one filled and pointed at: they look just like the
+   level buttons in the panel and are the biggest targets on screen. A K-2 child alone taps Low there and nothing
+   happens (the tap only plays the welcome). Seen: guide run, a held tap at (60, 225) left the level on middle;
+   frame guide-tapguide.png. Better: make each band set the level (same as the panel button), or restyle it so it no
+   longer looks like a control (no card border, one scale strip). **general** (a display that looks like a control).
+4. **The end of Mystery path does not say how to go on.** Mode Mystery path after round 8, the Ribbon gallery. The hint
+   and line are "Eight mysteries solved! Look at all our ribbons." and Play again is the only control; nothing names
+   it, so a non-reader alone is left at a still screen (STANDARDS, Say how to act). Seen: gal-end.png, gal-end680.png,
+   gal-end760.png; hint text in the gal log. Better: after the bow, the hint (and a once-only how line) says "Tap Play
+   again for new mysteries." **general**.
+5. **The Mystery hint names a dimmed control during the trip.** Mode Mystery path, after Go, while the dancer travels
+   (16 counts, more than 10 s). The hint still reads "The magic floor hides the pathway. Tap Go, watch the dancer, then
+   draw the pathway in the air with one finger." while Go is dimmed; the same in round 2 (STANDARDS: the hint changes
+   when the state changes; no line names a disabled control). Seen: my-trip.png, my-r2trip.png. Better: on Go the hint
+   becomes the watching step, for example "Watch the dancer. Draw the pathway in the air with your finger."
+   **general**.
 
-## Polish
+### Polish
 
-8. **"Yes!" comes late when the class answers during the question.** Mystery: tapping a level while askLevel is still
-   playing queues rightLevel behind it (`answerLevel` drops queued lines but lets the current how-to finish); frame
-   `m05-solved` 0.6 s after the tap still shows the question. Better: an answer cuts the question line (`now: true`).
-   **general**
-9. **Leftover phrase boxes in the count strip.** After a run, small rounded boxes stay to the right of the 8 count dots
-   in idle (2 after a 16-count trip, 3 after a longer Draw dance: `pd/d3-dance-end.png`). They mean nothing to a K-2
-   class at rest. Better: hide them when the clock stops. **family:dance**
-10. **Low end pose on the travel floors looks like a fall.** Pathways and Draw: after a Low trip the dancer sprawls
-    with one leg kicked out sideways (`pd/p4-end.png`, `pd/d6-offstar.png`). Better: a low crouch facing the class.
-    **family:dance**
-11. **Surprise path can tangle.** Draw, `surprisePath()`: one of three tries made a zigzag then a curve that loops back
-    across itself, with part badges 1 and 3 stacked (`pd/d5-surprise2.png`). Hard for a class to follow in the room.
-    Better: reject paths that cross themselves or bring two badges within a badge width. tool
-12. **Round 7 circle spills off the floor.** Mystery round 7 (Low, full circle): the wide striped ribbon runs past the
-    front edge of the floor onto the count dots (`mys/m65-solved.png`). Better: shrink the circle a little or move its
-    center back. tool
-13. **High ribbons almost vanish in the gallery.** At gallery scale (0.27) the high ribbon's dotted footprints and thin
-    line are faint next to the solid bands (`mys/m8-gallery-end.png`, rounds 2 and 5). Better: thicker prints at small
-    scale. **family:dance**
-14. **Read mid-call lets the move start under it.** Levels: Read during "Twist!" hushes the call chain, the move's
-    `say(..., {wait: true})` resolves dropped, and the count-in clicks and music start while Read is speaking. Better:
-    wait for Read before the count-in. **general**
+6. **"Middle level. Stay in the middle." is unclear for K-2.** Levels, Pathways and Draw a path, the atMiddle line. To
+   a five-year-old "stay in the middle" means the middle of the room, not a body height, and it is the line heard most
+   (Middle is the default level). High and Low each name a body action ("Reach up to the sky", "Get close to the
+   floor"). Better: a body cue such as "Middle level. Stand up, not too high and not too low." Seen: lv and ud logs
+   (spoken on every Middle move and every Middle step of Up and down). **general** (needs a new clip).
+7. **The first move takes about 8 s from tap to motion.** Levels, the first move on a fresh page: "Stretch!", the level
+   line and "Copy me! Stay in your own bubble space." play in turn, then a 4-click count-in, and the dancer stands still
+   in her idle pose the whole time (tap at 1.3 s, Copy me ends near 9 s; lv-countin.png and lv-mid.png show the same
+   pose). Middle Stretch also starts from almost the idle pose, so the first move a class sees barely changes
+   (z-ms-strip.png). For K-2 this first wait is where attention drops. Better: fold Copy me into the Levels welcome so
+   the first move has two short calls, not three, or let the dancer take the move's first shape as the call ends.
+   **general**.
+8. **The gallery star covers a ribbon.** Mystery path, Ribbon gallery: the start star sits on the left end of the
+   fifth ribbon (curved, high), hiding its first prints at 1366x768 and 680x425. Better: hide the star in the gallery or
+   move the second row right. Seen: gal-end.png, gal-end680.png. **family:dance** (gallery layout).
 
-## Nits
+### Nit
 
-15. 680x425 compact: the hint's last line is cut off at the bottom (known gap; `f1/paths-680x425.png`). general
-16. 375 wide (host): Pathways' Level row is below the fold (Go and the pathway row are visible; all buttons stay 60 px).
-    general
-17. Calm mode: the curved ribbon starts a little off the star rather than at it (`f2/calm-trip.png`). family:dance
+9. **A ribbon's end badge touches the dancer.** Pathways, a Low trip that ends at the right: the pathway badge at the
+   ribbon's end sits on the crouched dancer's arm (audit state-ribbon-finished-1366x768, pa-t4end.png).
+   **family:dance**.
+10. **760x900 leaves the stage short.** In Draw a path at 760x900 the stage is about 225 px tall with about 120 px of
+    empty space under the panel (db-n760.png); drawing in that strip is cramped. Let the stage take the spare height.
+    **general**.
 
-## What worked (for the merge, not findings)
+## Not findings (checked)
 
-- Mystery is the best mode: answers are disabled while the dancer travels, the gold "magic" ribbon keeps the level
-  hidden, the guide stays dark, wrong answers replay once, the 8 rounds match Content, Play again resets cleanly.
-  Each round runs about 11 to 13 s of travel; all 8 with talk fit in about 4 minutes.
-- Pathways: four trips leave three ribbons (oldest cleared), pattern + badge carry the level, Clean floor works.
-- Calm mode keeps the timing and still paints the ribbon; 1366x768 and 1920x1080 show floor, dancer and the main
-  buttons together; 375 wide keeps 60 px targets.
-- Event lines (moves, levels, answers) speak every time; how-to lines (copyMe, askPath, askLevel) speak once, then
-  stay silent.
+- Low Shake is a lying-on-the-back shake with legs and arms up (z-shake-strip.png): it reads as a real low shape, not a
+  fall, and the reflection matches. The spec's Content table still says "crouching"; that is for the Teaching lens.
+- The low slide (a wide squat, arms out) and the low walk end pose read as low, and the mirror matches (z-slide.png).
+- Mirror reflections matched the dancer in every frame I checked.
+- Pathways: after a trip the hint moves from the ribbon line to the Pathways how line once the line ends (about 3 s);
+  frames taken sooner show the ribbon line, which is right for that moment.
 
-Counts: blocker 1 (general 0, family 1), should fix 6 (general 4: items 2, 3, 4, 6; family 2: items 5, 7),
-polish 7, nit 3.
+## Audit pilot
+
+Leads confirmed:
+- Welcome "not heard" after a first tap on a level or move button: true, but by design and not a finding. A first tap
+  on High speaks the level, then the short how "Tap a move, and copy the dancer!" (first-high log); a first tap on
+  Stretch brings the full welcome back right after the freeze (lv log, 17.5 s). The student is never left without the
+  next action.
+- Its clean rows for sizes and states (overlap, fold, targets) held in every frame I re-shot.
+
+Leads that were wrong:
+- "#d-surprise left disabled after a resize mid-action": not reproduced. Surprise path, then 1366 to 760x900 and back
+  mid-narration: no control or part badge is aria-disabled afterwards, the same as the plain run (rs and plain logs).
+  The source never disables d-surprise.
+- "Stretch: event line lost, spoken 0 of 5": wrong. Five held taps 2 s apart spoke "Stretch!" five times (st5 log); the
+  "dropped, stale" rows it counted are the tool's blank stopper entries (an empty V.say with valid false).
+
+What it missed:
+- The leader-line tangle in Draw a path at 680x425 and 375 (finding 1): its "lines drawn across labels" check passed
+  because the lines cross the drawn path and each other, not a label.
+- The painted-figure seams in kneeling poses (finding 2), the level guide that looks like buttons (finding 3), the
+  gallery end with no next action (finding 4) and the hint naming a dimmed Go during a Mystery trip (finding 5): none
+  are in its states or checks.

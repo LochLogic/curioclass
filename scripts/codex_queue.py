@@ -6,6 +6,9 @@ r"""Cory's Codex queue. Every chat works in one shared checkout, S:\CurioClass-c
 
 What is done comes from the disk: codex-report.md means built, codex-review.md means reviewed. So the text file never
 needs hand tidying. A build and a review use different ports, so they can overlap.
+
+Fixes (docs/agents/CODEX-FIX.md): a tool in FIX with a refine.md whose first line is OPEN or ROUND 2 and no polish.md
+wants a fix. Its own ports, so a fix overlaps builds and reviews too.
 """
 import csv, shutil, subprocess, sys
 from pathlib import Path
@@ -30,7 +33,10 @@ sound-and-picture-book field-trip-slideshow cereal-ad-questions stop-motion-clay
 morning-show-crew viral-video-breakdown mini-documentary-crew model-mechanic grid-operator work-rate-crew
 spot-the-ai shadow-measure rules-referee ph-mystery-liquids packaging-challenge me-vs-the-counter launch-pad
 keyword-fishing is-the-historian-right input-or-output fire-lookout-triangles fair-dice-investigation
-design-the-study courtroom-statistics code-kitchen zipline-energy water-shapes-earth""".split()
+design-the-study courtroom-statistics code-kitchen zipline-energy water-shapes-earth
+energy-accountant medical-test-paradox data-table-builder""".split()
+# Refined tools whose fixes Codex makes (Cory, 2026-11-04). The merged list is tools/<id>/refine.md, brought over from main.
+FIX = """city-skyline-studio levels-and-pathways first-aid-responder music-history-radio""".split()
 DANCE = ("Owner's decision: this tool gets painted dancers, not the code figure. Paint them yourself, marked \"people\": true, "
          "with a natural range of dancers. Draw the fewest poses that teach the moves well, and keep the figure easy to swap.")
 NOTES = {  # desk answers the spec does not hold yet (docs/agents/decisions/DESK-ANSWERS.md)
@@ -51,6 +57,7 @@ for _t in ("levels-and-pathways dance-pattern-puzzle choreography-board dance-st
     NOTES[_t] = DANCE
 BUILD_PORTS = {'A': (9990, 8795), 'B': (9980, 8785), 'C': (9970, 8775)}
 REVIEW_PORTS = {'A': (9960, 8765), 'B': (9950, 8755), 'C': (9940, 8745), 'D': (9930, 8735)}
+FIX_PORTS = {'A': (9920, 8725), 'B': (9910, 8715)}
 
 HEADER = r"""CURIO CLASS: CODEX QUEUE
 
@@ -82,13 +89,18 @@ If it says it is reconnecting, wait. If the model is at capacity, send: carry on
 
 BUILD = """Build the Curio Class tool {t}. Read docs/agents/CODEX-BUILD.md first and follow it exactly. Your folder must be S:\\CurioClass-codex; if it is not, say so and stop. Write only in tools/{t}/ and _scratch/{t}/. This is Build only: make no git commits and do not start a polish round. Use Chrome ports {c} and host port {h}.
 
-Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. You may draw people where the scene needs them; mark each one \"people\": true. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed. Make the images yourself with your image tool as you build, and try hard: use rich art wherever it lifts the tool. The owner can dial it back later. You may draw people where the scene needs them; mark each one \"people\": true. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md. Try to cheat every score and check you build, and fix any cheat that passes.
 
 Before you build anything, tell me in seven lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, which images you will make, your size budget (images and voice, in KB, against the 2 MB goal), and any place the spec contradicts itself or the brief. Then go ahead without waiting for me. Put a time limit on every command. When tools/{t}/codex-report.md is written, say "Build done" and stop."""
 
 REVIEW = """Review the Curio Class tool {t} cold. You did not build it. Read docs/agents/CODEX-REVIEW.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Your folder must be S:\\CurioClass-codex; if it is not, say so and stop. Write only in tools/{t}/ and _scratch/{t}/. Make no git commits. Use Chrome ports {c} and host port {h}.
 
-Play it before you read what the builder said. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/{t}/codex-review.md is written, say "Review done" and stop."""
+Play it before you read what the builder said. Try to break every score and check the cheap way, walk the main path with the voice on, and hold every fact to a named source. Find what three blind reviewers would find, fix every blocker and should fix, and lift the flattest moment and the weakest art. Keep what is strong, and do not make it plainer. One pass only. Put a time limit on every command. When tools/{t}/codex-review.md is written, say "Review done" and stop."""
+
+
+FIXP = """Fix the Curio Class tool {t} from its Claude Refine. Read docs/agents/CODEX-FIX.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Your folder must be S:\\CurioClass-codex; if it is not, say so and stop. Write only in tools/{t}/ and _scratch/{t}/. Make no git commits and do not edit refine.md. Use Chrome ports {c} and host port {h}.
+
+The list is tools/{t}/refine.md. Reproduce each blocker and should fix before you fix it, fix the cause, and prove every fix with a frame or a number at the size the item names. For every score, check or meter an item touches, try the cheapest way to pass without the skill after your fix. Mark an item FIXED only when you saw it fixed. Put a time limit on every command. When tools/{t}/polish.md is written, say "Fix done" and stop."""
 
 
 def group(i, groups='ABC'):
@@ -110,6 +122,15 @@ def state(t):
     return (folder / 'codex-report.md').exists(), (folder / 'codex-review.md').exists()
 
 
+def fix_wanted(t):
+    folder = BASE / 'tools' / t
+    if t not in FIX or (folder / 'polish.md').exists() or not (folder / 'refine.md').exists():
+        return False
+    with open(folder / 'refine.md', encoding='utf-8') as f:
+        first = f.readline().strip()
+    return first.startswith(('OPEN', 'ROUND 2'))
+
+
 def prompts():
     with open(ROOT / 'data' / 'tools-concepts.csv', encoding='utf-8', newline='') as f:
         rows = {r['tool_id']: r for r in csv.DictReader(f)}
@@ -118,8 +139,15 @@ def prompts():
     reviewed = [t for t, (_, v) in states.items() if v]
     waiting = [t for t, (b, v) in states.items() if b and not v]
     unbuilt = [t for t, (b, _) in states.items() if not b]
-    parts = [HEADER, RULE, f'{len(reviewed)} reviewed, {len(waiting)} built and waiting for review, {len(unbuilt)} to build', RULE,
-             '', 'Done: ' + (', '.join(reviewed) or 'none'), '']
+    fixes = [t for t in FIX if fix_wanted(t)]
+    parts = [HEADER, RULE, f'{len(reviewed)} reviewed, {len(waiting)} built and waiting for review, {len(unbuilt)} to build, '
+             f'{len(fixes)} to fix', RULE, '', 'Done: ' + (', '.join(reviewed) or 'none'), '']
+    if fixes:
+        parts += [RULE, 'FIXES TO PASTE (from a Claude Refine; each ends with "Fix done")', RULE, '']
+    for i, t in enumerate(fixes):
+        g = group(i, 'AB')
+        c, h = ports(FIX_PORTS, g)
+        parts += [f'{rows[t]["title"]}  group {g}\n', block('FIX', t, FIXP.format(t=t, c=c, h=h))]
     if waiting:
         parts += [RULE, 'REVIEWS TO PASTE', RULE, '']
     for i, t in enumerate(waiting):
@@ -135,7 +163,7 @@ def prompts():
     text = '\n'.join(parts)
     assert '\u2014' not in text
     OUT.write_text(text, encoding='utf-8', newline='\r\n')
-    print(f'{OUT}: {len(reviewed)} reviewed, {len(waiting)} to review, {len(unbuilt)} to build')
+    print(f'{OUT}: {len(reviewed)} reviewed, {len(waiting)} to review, {len(unbuilt)} to build, {len(fixes)} to fix')
 
 
 def git(*args):

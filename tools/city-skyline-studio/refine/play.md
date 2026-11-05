@@ -1,114 +1,141 @@
-# city-skyline-studio: Play lens (2026-10-28)
+# Play lens: city-skyline-studio (round 1)
 
-Played cold, twice: as a grade 10 student alone at home on a 1366x768 laptop (built and inked a city, then all six
-Find the Camera targets at a real pace, held clicks, real slider drags and arrow keys, about 0.25 to 3 s between
-actions), and as a teacher projecting at 1920x1080. Bundle: `CURIO_DRAFT=1`, 125 KB. Own headless Chrome on port
-9660 with a persistent tab (state carried across steps), iframe host on 9661 for 375 wide. Frames in
-`C:\Users\Cory\AppData\Local\Temp\claude\S--\98b8b046-f7f2-48d0-a719-c61ce01237be\scratchpad\lens-css-play\out`
-(01 to 55, plus `sz-*` for 1920x1080, 1280x720, 1000x625, 800x500, 680x425, 760x900 and 375). No console errors or
-exceptions in any step.
+Fresh and cold. Played twice: as a grade 9-12 student alone at home on a 1366x768 laptop, and as a teacher projecting
+at 1920x1080. Bundle: `city-skyline-studio.html` (CURIO_DRAFT=1, as handed over). Frames are in
+`C:\Users\Cory\AppData\Local\Temp\claude\912539a76ace91d0\c55c8920-4b50-4aa7-8632-31d061e89e76\scratchpad\refine\city-skyline-studio\play\`
+(f1 Build extremes, f2 Ink, f3 Check my drawing, f4 Find the Camera, f5 voice walks as JSON, f6 empty states), plus the
+shared audit frames in `audit-r1\`. Voice was walked with a real first tap and the kit's `V.log` (f5/w1-walk.json,
+f5/w2-find.json).
 
-Counts: **0 blockers, 8 should fix, 10 polish, 4 nits.**
+**Counts: blockers 0, should fix 3, polish 6, nit 6.**
 
-## What works
+## Should fix
 
-- The core idea lands. Dragging Eye height from Sidewalk to Rooftop is a real "oh" moment (frames 01, 03): the
-  horizon label follows, "Horizon crosses 5 of 9 buildings" updates, and at 35 mm with Windows on the sidewalk view
-  (frame 21, 55) looks like a real street.
-- Ink feels like a drafting tool: lines snap with a live "to VP R" chip at the pen tip (frame 28z), the panel says
-  "Last line: to VP L / vertical / free", hatch aims at the face's VP, fill and Undo/Redo behave, and the drawing and
-  city survive a reload. Privacy line is on screen.
-- Find targets 2, 3 and 5 are good puzzles: pick the stop, pick the lens, then the meter climbs steadily as Turn
-  closes in (target 2: 43, 44, 47 ... 84, 92, 100 from 45 down to 30 degrees). Matched is spoken once with the
-  settings, then "Press Next target" is spoken and Next target appears on the stage too. Target 6 tells you to use
-  Tilt, and 24 mm, turn 15, tilt 15 reaches 100%.
-- Voice order was right in every run: welcomeBuild, turnHow after the first eye move, guidesNext, guidesHow, buildNext,
-  tiltHow, welcomeInk, inkMore, pen how-tos once each, inkAsk, welcomeFind, matched + settings, findNext. Read logged as
-  read. The offCity line was dropped when its moment passed.
+1. **Build, 1366x768: the Buildings section the hints name is below the fold, with no cue.** (general)
+   The panel order is Camera, Overlays, Readouts, Buildings (src.html:253-257). At 1366x768 the panel ends at the
+   Readouts heading; Tower, Block, Slab, Stepped, Water tower, Example city and Clear city all need a panel scroll.
+   Three lines send the student there: `addFirst` ("Your city is empty. Tap Tower, Block... under Buildings"),
+   `buildNext` ("...or add one from Buildings") and `composeGoal`. Seen: f6/e1-empty.png (empty city, hint names
+   Buildings, nothing of Buildings on screen), f1/01..16 at 1366, audit "off screen at load" rows 21-27. A solo student
+   who clears the city is told to tap something they cannot see. Better: put Readouts after Buildings (or fold Readouts
+   to a one-line summary with a toggle), so the palette sits under Overlays at 1366x768; the fact tip (src.html:275)
+   would then also come closer to view (see polish 1).
 
-## Findings
+2. **Ink, Check my drawing passes on any three upright lines anywhere, then asks "What did you change?" when nothing
+   was ever red.** (family:perspective)
+   I turned the check on and drew three short vertical strokes in the empty street (keyboard cursor, Enter, ArrowDown
+   x10, Enter). Result: "All 3 lines hit their vanishing points." and the reflection opened: "What did you change to make
+   your lines hit their vanishing points?" Seen: f3/c4-three-hits-no-miss.png. The check only measures direction
+   (src.html:2131: ready when no misses and either a red line was seen or three lines were drawn), so the cheap way
+   through the revise step is three verticals or three level lines, none on a building edge. And when no line was ever
+   red, the question assumes a fix that never happened: words do not match the state. Better: count only lines that
+   are not upright or level (receding edges) toward the three, or require at least one receding line; and when nothing
+   was red, ask a different question ("Which vanishing point did your slanted lines aim at?") or open nothing.
 
-### Should fix
+3. **Find the Camera: the per-setting scores let a student solve any target without reading the outline.** (general)
+   After each Check camera the panel lists Eye height, Turn, Lens (and Tilt) as percents with check marks. Each score
+   is a plain distance: turn 1 - |difference| / 40, eye 1 - |ln ratio| / ln 10. Target 1, eye only: 10 m gave 39%, 20 m
+   69%, 80 m 69%; turn 20 and 40 both 75%, so the answer is 30. Two or three checks per setting pin each one, and the
+   check marks say which are already right (f4/f2-miss "Eye height 39%, Turn ✓ 100%, Lens ✓ 100%", f3b, f3c). The
+   reading hints are good, but the numbers make them optional. Better: after a missed check, show only which settings
+   are off (no percent) and the reading hint for the first one; keep the meter for the overall match, or show coarse
+   words ("close", "far") without direction-free exact distances.
 
-1. **Clear city's confirm press runs away** (src.html:965-966, Build, 1366x768; frame 14). The first press changes the
-   label to "Sure? Clear city"; the wider label wraps the button onto a new row, below the panel's fold. The student's
-   second press lands on empty panel and the 3 s arm times out; I needed two tries and a scroll. Keep the button the
-   same width (fixed width, or "Sure?" in a tooltip/second button beside it). **general**
-2. **The high stops fall flat** (src.html:240 standoff; Build; frames 04, 07, 08). At Helicopter with the default
-   24 mm lens the whole city is a ~50 px speck; even at 85 mm with Horizon on page at 20% it is about 150 px tall in a
-   1006 px stage. The ground there is two thin crossed strips of street lines on an empty dark plain, which reads as a
-   glitch. The spec's promise "lifting the eye ... to a helicopter redraws the whole skyline" is the reason to touch
-   the slider, and its top end is the least rewarding view in the tool. Options: a gentler standoff above Rooftop, or
-   a lens or horizon that follows the stop, plus ground drawn beyond the lot grid. (The standoff itself is already on
-   Cory's list in handoff.md; this is the student-side cost.) **family:perspective**
-3. **Tilt up in Build gets "Your city is off the page"** (src.html:620-632; Build at Sidewalk, 35 mm, tilt 17; frame
-   22). Looking up is what Tilt is for; the buildings fill the whole stage, yet the hint and the stage chip say "your
-   city is below the page. Move Horizon on page, or pick a wider lens." Words don't match the state (POLISH,
-   Consistency), and they push the student to undo the move. Count a building as seen when any part of it is on the
-   page, or skip the check while Tilt is not 0. Same frame: the "horizon = eye level, 1.6 m (below the page)" label
-   sits under the "VP L (off the page)" chip at the bottom left (frame 22z); stack or offset them. **family:perspective**
-4. **Find starts with street-level targets cropped and buried** (src.html:314 `findCam ... hor: 35`; Find; frames 31,
-   32, 42). At horizon 35% the tops of the street-level targets (1, 4, 6) run off the top of the stage and the bottom
-   60% is empty ground, so there is no skyline outline to read, only a forest of vertical dashes. Guides and Windows
-   carry over from Build, and the target's white dashed outline is then lost among cyan dashed guides and the white
-   dashed horizon (frame 31). Start Find with the horizon low enough to show the targets' tops (or per target), and
-   hide or quiet Guides and Windows in Find (or draw the target in a style nothing else uses). **family:perspective**
-5. **The match meter has false peaks on street-level targets** (Find; turn swept with arrow keys). Target 1 (answer
-   45): 0 to 20 degrees climbs 37, 42, 49, 51, 52%, then falls to 40% at 25 to 35, then 71% at 45. Target 4 (answer
-   60): 47% at 35, down to 25% at 45, 39% at 50. Target 6: picking the right lens (85 to 24 mm) dropped the meter from
-   40% to 19%. A student following the meter stops at the false peak and decides the tool is broken. Smooth the score
-   (for example blend in VP position or edge-direction agreement) so it rises toward the answer from either side.
-   **family:perspective**
-6. **The whole panel jumps when the hint changes length** (wide layout, `#hint` above the panel sections; frames 23,
-   26, 27). The hint is one, two or three lines; every control below moves about 23 px each time. Switching Ink pens
-   moved the pen buttons up under the pointer (Fill to Erase: 320 to 297 px); the Tilt slider moved from y 443 to 466
-   between two Build steps and my drag missed it. Reserve three lines for the hint (or let it overflow into a fixed
-   box). **general**
-7. **At 760x900 Horizon on page and Tilt are below the fold** (stack layout; frame sz-760x900-build; measured eye
-   730-774, lenses 866-910, hor 910-954, tilt 954-998). Done when 7 asks for every camera slider without scrolling at
-   every STANDARDS size; at 760 wide the header also wraps to two rows (Sound and Read alone on row 2), costing
-   about 65 px. **general**
-8. **A new building can land completely hidden** (src.html:918 addBuilding; Build at Rooftop, turn 45; frame 16).
-   After Clear city I added Tower, Tower, Slab, Water tower, Stepped: the Stepped went to the lot straight behind the
-   first tower, so tapping Stepped showed nothing new except a dashed selection outline through the tower. Prefer the
-   free lot that is most visible from the current camera (or nearest the front). **family:perspective**
+## Polish
 
-### Polish
+1. **The facts tip sits at the very bottom of the panel, out of view at 1366x768.** (general) `#tip` (src.html:275)
+   changes with the state ("Where the horizon crosses a building, it marks your real eye height.", "Above the horizon
+   you see bottoms", "Nearly one-point perspective") but is only seen after scrolling the whole panel (f1/15, f6/e2).
+   These are the spec's "Facts shown on screen". Better: show the current fact under the hint, or as a small chip on
+   the stage near the horizon label.
 
-1. **Windows can do nothing with no word why** (Build at Rooftop 24 mm; frame 19). Faces are under 40 px, so pressing
-   Windows changes nothing. Better: the hint (silently) says "Windows show on bigger faces. Try a longer lens or a
-   lower eye." **family:perspective**
-2. **The first screen is a gray wall** (Build default, frames 01, 54). Sidewalk, 24 mm, horizon 60%: the near block
-   covers the left half, every top is cut off, Windows are off and the bottom 37% is empty ground. Projected, it does
-   not look like a skyline. Opening with Windows on and the horizon lower (about 80% at Sidewalk) would sell the tool
-   in one glance. **family:perspective**
-3. **No record of the six targets** (Find; frame 52). After target 6, Next target silently wraps to target 1 with
-   Tilt still at 15, the target-1 hint does not mention Tilt, and nothing shows which targets were matched. A quiet
-   "Found 6 of 6" or a tick per target fits 9-12; on wrap, either reset Tilt or say "This one is level: set Tilt to 0."
-   **family:perspective**
-4. **Empty city hint** (Build after Clear city; frame 15). The hint still says "Turn on Guides under Overlays..." and
-   the readout says "0 of 0 buildings". Better: "Tap Tower, Block, Slab, Stepped or Water tower to add a building."
-   **general**
-5. **Keep it / Clear it is asked about ink you can't see** (Build after inking; frame 29). The ask appears in Build,
-   where the ink is hidden, and the buttons wrap (Keep it beside the text, Clear it alone below). Show a small
-   preview of the ink or ask on entering Ink; keep both buttons on one row. **family:perspective**
-6. **"Add one from Buildings" points below the fold** (Build at 1366x768). buildNext names Buildings, which starts at
-   y 840 in a 768 px window. Fine once you scroll, but a "Buildings below" cue or moving the palette up would help a
-   solo student. **general**
-7. **Selected building blends with Guides** (Build with Guides on; frame 13). The selection is a dashed cyan outline,
-   the same look as the guides. Use a solid outline or a different color. **family:perspective**
-8. **Fast erase swipes miss** (src.html:1197 eraseAt tests sampled points only). A coarse drag (about 30 px between
-   samples) crossed the free line without erasing it; a dense one worked. A real flick on a trackpad can do the same.
-   Test the segment between samples. **general**
-9. **Small Find targets at Drone and Helicopter** (targets 3 and 5; frames 40, 45). The outline is about 130 px tall,
-   so comparing by eye is hard and the meter does all the work. Same cause as should-fix 2. **family:perspective**
-10. **680x425 preview, Find:** the "VP 3 (off the page)" chip sits half under the hint dock (frame
-    sz-680x425-find). **general**
+2. **760x900 and 375: a blank band under the hint pushes Overlays below the fold.** (general) The hint keeps a reserved
+   height (src.html:106-107, `min-height: calc(4 * 1.45em)` when stacked) but holds one line, leaving about 90 px of
+   empty panel (audit size-760x900.png, f4/f14-760.png). `guidesNext` says "Turn on Guides under Overlays", and at
+   760x900 Overlays starts at 928 px. Better: let the stacked hint size to its text (keep the reserve only for the
+   side-by-side layout), which brings Overlays above the fold at 760x900.
 
-### Nits
+3. **Drone or Helicopter with an 85 mm lens: "Your city is off the page" while a building fills the stage.**
+   (family:perspective) With Auto on, Drone + 85 mm shows one or two buildings filling the left of the stage, yet the
+   hint and the stage chip say "Your city is off the page" and "your city is above the page" (f1/10-drone-85.png,
+   f1/13-add-all.png, where a slab roof fills the stage). The test is "fewer than a third of the buildings show"
+   (src.html:1199-1209), so the words overstate it, and the advice "Move Horizon on page" switches Auto off.
+   Better: "Most of your city is off the page" and, while Auto is on, lead with "pick a wider lens".
 
-1. Floors, Width and Depth look enabled when no building is selected (bright thumbs, no value). Dim them. **general**
-2. "Tap a building to pick i" is cut off in the Selected box at 1920x1080 (frame 54). **general**
-3. The Plan inset's "90°" label crowds the picture-plane line and the eye mark (frame 19z). **family:perspective**
-4. Dragging a building past the lot grid's edge stops it silently, about 80 px short of the pointer (frame 18). A
-   brief edge flash would explain it. **family:perspective**
+4. **Find, after a match the big panel button is still Check camera.** (general) The stage chip swaps to Next target,
+   but in the panel the wide primary button stays "Check camera" and Next target is the small button beside the target
+   number (f4/f4-match.png, f7-last-match.png). The hint says "Press Next target". Better: after a match, the big
+   button becomes Next target (Start over on target 6), like the chip.
+
+5. **Find: the Build-only `offPage` line plays in Find before `findCheck`.** (family:perspective) In the Find walk
+   (f5/w2-find.json) the first eye change in Find spoke "One vanishing point just went off the page. The lines still
+   aim at it." at 10.4 s and pushed "When you think your camera matches, press Check camera..." to 14.8 s. Find starts
+   at Turn 0, so a VP is "infinitely far" from the first frame; the line adds nothing to the Find task and delays the
+   how-to the student needs. Better: keep `offPage` to Build.
+
+6. **Projected at 1920x1080, the stage labels are small.** (general) The horizon label, VP L / VP R chips and "the
+   outline's horizon" are about 11-12 px bold (audit size-1920x1080.png, f4/f15-1920.png). Fine on a laptop, hard to
+   read from the back of a room. Better: scale stage label type with the stage width above about 1400 px (13-15 px at
+   1920).
+
+## Nit
+
+1. **Water tower:** it is sized in "Floors" ("1. Water tower, 6 floors"), and its Width and Depth read "8 m" while the
+   sliders' minimum is 10, so the thumbs sit at 10 (f6/e2-water.png; src.html:1781-1786). Say "Height" for the water
+   tower, or let the sliders reach 8.
+2. **Empty city readout:** "Horizon crosses 0 of 0 buildings" (f6/e1-empty). Hide the row or say "No buildings yet".
+3. **Selection outline shows through nearer buildings.** The amber outline of the selected building is drawn on top
+   of everything, so at the sidewalk it reads as a box floating on the front slab (f1/16-example-drag.png,
+   f2/i11). A thinner or dashed line where it is hidden would read as "behind".
+4. **Undo is off after a reload** although the strokes are back (f2/i5-fill.png: 3 strokes, Undo greyed). Either keep
+   the undo list with the drawing or let Undo remove saved strokes.
+5. **Fill on empty sky does nothing, silently** (f2/i5: tap at 800,300 in the sky, no fill, no message). A short
+   "Tap a face of a building" status would help.
+6. **`buildNext` is cut after 0.2 s** when a building is added just as it starts (f5/w1-walk.json: buildNext spoken
+   40.8 s, composeGoal 41.0 s). Drop `buildNext` from the queue as soon as a building is added or moved, before it can
+   start.
+
+## What worked (checked, no finding)
+
+- First screen at every size says what to do and names the control; the welcome is spoken once, then each next step
+  (turnHow, guidesNext, guidesHow, buildNext, composeGoal, tiltHow) is spoken once and only updates the hint after
+  (f5/w1-walk.json: five more eye moves, no repeat). Read speaks the current hint.
+- Extremes hold up: Turn 0 and 90 ("VP R: infinitely far", the one-point fact), Tilt +25 and -25 (VP 3 above or
+  below, labels clear), Horizon 600% above ("your city is above the page"), 80 floors at 80 m, 20 buildings, empty city
+  (f1, f6).
+- Ink: snapping labels the line ("horizontal", "vertical"), Hatch aims at the face's VP, the drawing survives a reload,
+  Save picture gives a PNG without guides (f2/i10), and changing the camera in Build asks Keep it or Clear it (f2/i11).
+  Clear city and Clear drawing take two presses ("Really clear?").
+- Find: every target's outline sits whole under the chip at 1366, 1920, 1000, 760 and 680 (f4/f9 to f15); Extend
+  outline edges draws the outline's own horizon and VPs, which makes the eye height easy to read (f4/f3-extend.png);
+  matching lines the render up with the outline, which is a satisfying moment; Start over resets Tilt and says so.
+- Motion off: the audit's calm run is clean.
+
+## Audit pilot
+
+**Confirmed on my own frames:**
+- Build controls below the fold at 1366x768 (rows 21-27, "off screen at load"): confirmed, and it matters because the
+  empty-city and buildNext hints name Buildings (should fix 1).
+- 760x900 and 375: Overlays and Buildings below the fold: confirmed; the reserved hint height is the cause of most of it
+  (polish 2).
+- Find, "others moved 4-5 of 25" after Check camera: confirmed, the scores list opens and pushes Overlays down; all
+  below the fold, harmless.
+
+**Leads that were wrong, or right but not a problem:**
+- Every `#cv` overlap with `#hint` (680x425, 800x500), `#fchipT`, `#fchipM`, `#checkCam2`, `#extendQuick`: by design.
+  The hint docks over the stage top in the compact layout and the Find chip sits on the stage; no outline or label is
+  covered (Find shrinks the outline under the chip).
+- "choices cut short by a scroll panel" in Find (680x425, 800x500, 1366x768): the hint names Check camera and Extend
+  outline edges, and both are on the stage chip, visible. The only gap is the chip's label "Extend" against the hint's
+  "Extend outline edges" (the chip's aria-label and title say the full name); fine.
+- "Welcome not heard" after a first tap on an eye stop, 50 mm, 85 mm or Guides: the tap queued its own line, so the
+  welcome is skipped by rule, and the hint still shows the welcome until the eye moves, so Read gives it. Not a problem.
+- "nothing changed" for `#cv` in Ink and Find and `#clearInk`: a tap without a drag draws nothing, Find's canvas has no
+  tap action, and Clear drawing on an empty drawing has nothing to clear. Expected.
+
+**What it missed:**
+- The cheap pass in Check my drawing and its reflection question that assumes a fix (should fix 2).
+- The per-setting scores that let Find be solved by trial (should fix 3).
+- The "city off the page" wording at Drone + 85 mm (polish 3), the fact tip out of view (polish 1), the panel's primary
+  button after a match (polish 4), `offPage` in Find (polish 5), projector label size (polish 6).
+- A real first tap matters for its voice rows: my first walk without one logged every line as silent "early".
