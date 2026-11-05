@@ -1,0 +1,140 @@
+{
+  "keep": [
+    "#lab",
+    "#go"
+  ],
+  "states": [
+    {
+      "name": "both-found",
+      "steps": [
+        {
+          "click": "#p-touchscreen"
+        }
+      ],
+      "keep": [
+        "#board"
+      ]
+    },
+    {
+      "name": "game-run",
+      "steps": [
+        {
+          "click": "#g-game"
+        },
+        {
+          "click": "#go"
+        },
+        {
+          "wait": 2500
+        }
+      ]
+    },
+    {
+      "name": "speaker-volume-covered",
+      "steps": [
+        {
+          "click": "#m-cover"
+        },
+        {
+          "click": "#g-speaker"
+        },
+        {
+          "click": "#sticky"
+        },
+        {
+          "click": "#p-volume"
+        },
+        {
+          "click": "#guess-in"
+        },
+        {
+          "click": "#go"
+        },
+        {
+          "wait": 5400
+        }
+      ],
+      "keep": [
+        "#board",
+        "#guess-in",
+        "#guess-out"
+      ]
+    },
+    {
+      "name": "microwave-door-covered",
+      "steps": [
+        {
+          "click": "#m-cover"
+        },
+        {
+          "click": "#g-microwave"
+        },
+        {
+          "click": "#sticky"
+        },
+        {
+          "click": "#p-door"
+        },
+        {
+          "click": "#guess-in"
+        },
+        {
+          "click": "#go"
+        },
+        {
+          "wait": 6100
+        }
+      ],
+      "keep": [
+        "#board",
+        "#guess-in",
+        "#guess-out"
+      ]
+    },
+    {
+      "name": "microwave-heater-refusal",
+      "steps": [
+        {
+          "click": "#m-cover"
+        },
+        {
+          "click": "#g-microwave"
+        },
+        {
+          "click": "#sticky"
+        },
+        {
+          "click": "#p-heater"
+        }
+      ]
+    },
+    {
+      "name": "tablet-output-covered",
+      "steps": [
+        {
+          "click": "#m-cover"
+        },
+        {
+          "click": "#sticky"
+        },
+        {
+          "click": "#p-speaker"
+        },
+        {
+          "click": "#guess-out"
+        },
+        {
+          "click": "#go"
+        },
+        {
+          "wait": 5400
+        }
+      ],
+      "keep": [
+        "#board",
+        "#guess-in",
+        "#guess-out"
+      ]
+    }
+  ]
+}

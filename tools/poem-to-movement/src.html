@@ -1,0 +1,1720 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Poem to Movement · Curio Class</title>
+<meta name="description" content="Turn a poem, painting or sound into a dance, draw its pathway and revise from a Viewer's guess. Grades 3-5. Offline.">
+<!--
+Poem to Movement, Curio Class. Grades 3-5 dance: DA:Cr1, DA:Cr3, DA:Cn10.
+Sources: Rossetti, Sing-Song (1872); Stevenson, A Child's Garden of Verses (1885), Project Gutenberg.
+Gilbert, Creative Dance for All Ages, second edition (2015); NCAS Dance, grades 3-5.
+Original paintings in woodblock and Romantic landscape styles. Original Viewer model, disclosed on screen.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+One offline file, no requests. Content CC BY 4.0, code MIT. Started from kit/starter/src.html.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --brand:#4a3ca8; --paper:#faf6f0; --ink:#231f33; --muted:#5f5a6e; --line:#d8cfe3;
+  --focus:#b45c13; --btn:#3c308e; --btn-line:#9d91d9; --head-ink:#fff; --panel:#faf6f0;
+}
+body {overflow:hidden; grid-template-rows:auto auto minmax(0,1fr); grid-template-columns:minmax(0,1fr)}
+header {padding:12px 22px; gap:8px; background:linear-gradient(105deg,#352b7d,#4a3ca8 65%,#6250bd)}
+h1 {font-size:27px; letter-spacing:-.6px}
+h1 small {font-size:13px; margin-top:4px; opacity:1; color:#f0eaff}
+header .icon-btn {min-height:44px; padding:0 12px; font-size:13px}
+button,select,textarea {touch-action:manipulation}
+button:disabled {cursor:default; opacity:.45}
+button:focus-visible,select:focus-visible,textarea:focus-visible {outline:3px solid var(--focus); outline-offset:2px}
+#steps {display:flex; background:#eee7f3; border-bottom:1px solid #cabedb; padding:0 20px; gap:6px}
+.step {min-height:46px; border:0; padding:0 22px; background:none; color:#5f5a6e; font-weight:750; font-size:14px}
+.step span {font-size:11px; padding-right:9px}
+.step[aria-selected=true] {color:#3b2d8f; box-shadow:inset 0 -4px #4a3ca8; background:#faf6f0}
+main {grid-template-columns:minmax(0,1fr) 326px; min-height:0; min-width:0}
+.panel {grid-column:2; grid-row:1; padding:15px; gap:11px; border-left:1px solid #c8bdd8;
+  background:linear-gradient(100deg,#eee7f0,#faf6f0 8%); min-height:0; min-width:0}
+.stage {grid-column:1; grid-row:1; min-height:0; min-width:0; background:#ece5dd; display:flex; flex-direction:column; padding:18px; gap:12px}
+.hint {font-size:14px; line-height:1.4; min-height:68px; margin:0; padding:9px 11px; border-left:3px solid #4a3ca8;
+  background:#eee8fc; border-radius:0 8px 8px 0; flex:none}
+.actions {display:flex; gap:6px; flex-wrap:wrap}
+.btn {border:1px solid #baadc9; background:linear-gradient(#fffefb,#f3ebf1); border-radius:9px;
+  padding:6px 11px; min-height:44px; font-weight:700; font-size:13px; box-shadow:0 2px 0 #4c315417}
+.btn:hover {background:#eee7fc; border-color:#4a3ca8}
+.primary {background:linear-gradient(#5b4ab9,#4a3ca8); border-color:#3b2f8a; color:#fff; flex:1; font-size:16px}
+.primary:hover {background:#3d308e}
+.gold {background:#ffe7a3; color:#231f33; border-color:#b79136}
+.eyebrow {font-size:11px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; color:#5f5a6e}
+h2 {margin:3px 0 0; font:750 clamp(20px,2.6vw,32px)/1.15 Georgia,serif}
+.byline {font-size:12px; color:#5f5a6e; margin:5px 0 0}
+.stage-head {display:flex; align-items:center; justify-content:space-between; gap:12px; flex:none}
+.stage-head .btn {flex:none}
+.source-grid {display:grid; grid-template-columns:1fr 1fr; gap:7px}
+.source-card {min-height:86px; border:1px solid #bdb0cb; border-radius:9px; padding:8px; text-align:left;
+  position:relative; overflow:hidden; isolation:isolate; background:#fffaf2; box-shadow:0 3px 0 #49325d12}
+.source-card::before {content:''; position:absolute; inset:0; z-index:-1; opacity:.7; background:var(--image) center/cover}
+.source-card strong {display:block; font:800 18px Georgia,serif; position:relative; width:max-content;
+  background:#faf6f0ee; padding:3px 6px; border-radius:4px}
+.source-card small {display:block; font-size:10px; font-weight:700; color:#4e435e; background:#faf6f0ee;
+  padding:3px 6px; width:max-content; border-radius:4px; margin-top:5px}
+.source-card[data-id=wind],.source-card[data-id=train] {--image:url('art:poem-card')}
+.source-card[data-id=river] {--image:url('art:painting-river')}
+.source-card[data-id=storm] {--image:url('art:painting-storm')}
+.source-card[data-id=rain] {background:repeating-linear-gradient(110deg,#d8e3f6 0 12px,#bacce5 13px 14px,#e4e9f4 15px 26px)}
+.source-card[data-id=drum] {background:radial-gradient(ellipse at 80% 90%,#826858 0 20%,#d6b898 21% 23%,#ead7c4 24% 36%,#f5eadf 37%)}
+.source-card[aria-pressed=true] {outline:3px solid #4a3ca8; outline-offset:-3px}
+#selection-count {margin:0; font-weight:750; font-size:14px}
+.privacy {font-size:11px; color:#5f5a6e; line-height:1.3; margin:0}
+.panel-bottom {margin-top:auto; display:flex; align-items:center; gap:8px; justify-content:space-between}
+#source-screen {min-height:0; flex:1; display:flex; flex-direction:column; gap:10px}
+#source-art {position:relative; min-height:0; flex:1; display:grid; place-items:center;
+  border-radius:13px; overflow:hidden; box-shadow:0 8px 24px #34234825; background:#e5daca}
+#source-art.painting {background:#302b3f}
+#painting {width:100%; height:100%; object-fit:contain; position:absolute; inset:0}
+#spot-layer {position:absolute}
+.spot {position:absolute; transform:translate(-50%,-50%); background:#201c32b8; color:#fff;
+  min-height:44px; min-width:44px; border:2px solid #fff8e4; border-radius:24px; padding:5px 10px;
+  font-size:12px; font-weight:700; box-shadow:0 2px 10px #17112666}
+.spot[aria-pressed=true] {background:#ffe7a3; color:#231f33; border:3px solid #8d6311; text-decoration:underline}
+#poem {position:relative; padding:22px 30px; width:100%; height:100%; overflow:auto; display:flex;
+  flex-direction:column; justify-content:safe center; background:url('art:poem-card') center/100% 100%; text-align:center}
+.poem-line {font:clamp(15px,1.8vw,25px)/1.6 Georgia,serif; margin:0; color:#231f33}
+.word {display:inline-block; min-width:44px; vertical-align:middle; border:0; border-radius:4px;
+  background:transparent; text-decoration:underline;
+  text-decoration-color:#9e89b2; text-underline-offset:4px; padding:0 3px; min-height:44px;
+  font:inherit; color:#231f33}
+.word[aria-pressed=true] {background:#ffe7a3; text-decoration-color:#231f33; text-decoration-thickness:2px}
+#sound-source {width:100%; height:100%; background:radial-gradient(at 60% 20%,#51436e,#2d2a3e 70%);
+  display:flex; flex-direction:column; justify-content:center; padding:24px; color:#f3eefc}
+#sound-source h3 {font:700 30px Georgia,serif; margin:0 0 22px}
+#wave {width:100%; height:140px; display:block}
+#moments {display:grid; grid-template-columns:repeat(4,1fr); gap:7px}
+.moment {color:#f3eefc; background:#433b59; border:1px solid #b2a2c8; min-height:64px;
+  border-radius:8px; padding:8px 4px; font-weight:700; font-size:12px}
+.moment small {display:block; font-size:11px; margin-bottom:6px; color:#ece1fb}
+.moment[aria-pressed=true] {background:#ffe7a3; color:#231f33; outline:2px solid #fff4d4}
+.moment[aria-pressed=true] small {color:#231f33}
+#studio-screen {flex:1; min-height:0; display:flex; flex-direction:column; gap:9px}
+#studio-layout {display:flex; flex:1; gap:12px; min-height:0}
+body[data-step=map] .studio-tag {display:none}
+#theatre {position:relative; flex:1; min-width:0; min-height:0; border-radius:13px; overflow:hidden;
+  background:#2d2a3e; box-shadow:0 7px 15px #2d1d3c24; border:1px solid #51465e}
+#floor {display:block; width:100%; height:calc(100% - 70px)}
+.studio-tag {position:absolute; left:15px; top:13px; font-size:10px; letter-spacing:.2em; font-weight:800; color:#ded3ed}
+.breath {width:6px; height:6px; display:inline-block; background:#ffe7a3; border-radius:50%;
+  margin-right:7px; box-shadow:0 0 10px #ffe7a377; animation:breathe 4s ease-in-out infinite alternate}
+@keyframes breathe {to {opacity:.4}}
+.calm .breath {animation:none}
+#live-caption {position:absolute; left:12px; right:12px; bottom:13px; color:#f3eefc; text-align:center;
+  background:#2d2a3eea; border:1px solid #a392b344; border-radius:9px; padding:7px; pointer-events:none}
+#move-name {font:750 clamp(21px,2.9vw,39px) Georgia,serif; text-transform:capitalize}
+#quality-words {font-size:13px; margin-top:4px; letter-spacing:.04em}
+.dance-along #quality-words {font-size:clamp(14px,1.7vw,23px); font-weight:800}
+#count-label {position:absolute; right:15px; top:10px; color:#ffe7a3; font:750 24px Georgia,serif}
+#count-label,#beat-strip {z-index:2}
+#beat-strip {position:absolute; top:40px; right:10px; width:120px; height:25px}
+#viewer-seat {position:absolute; left:18px; bottom:14px; background:#f9f3df; border:2px solid #a899b9;
+  color:#231f33; width:52px; height:42px; display:grid; place-items:center; border-radius:50%; font-size:28px}
+#viewer-seat svg {width:30px; height:23px}
+#map-board {position:relative; width:58%; min-width:0; min-height:0; background:#f7f0e2;
+  border:2px solid #baa6c9; border-radius:12px; box-shadow:0 5px 0 #a395a433; display:grid; place-items:center}
+#map-svg {width:100%; height:100%; touch-action:none; cursor:crosshair}
+#map-title {position:absolute; top:9px; left:14px; color:#5a476a; font-size:11px; letter-spacing:.12em; font-weight:800}
+#draw-status {position:absolute; left:10px; right:10px; bottom:1px; text-align:center; font-size:10px; line-height:1.1;
+  color:#5f5a6e; background:#f7f0e2dd; padding:1px; border-radius:5px; pointer-events:none}
+#strip {display:flex; gap:8px; overflow-x:auto; padding:5px 3px 7px; flex:none; scrollbar-width:thin}
+.move-card {flex:1 0 112px; min-width:0; min-height:77px; max-width:240px; background:linear-gradient(125deg,#fffdf9,#f3e9f1);
+  border:1px solid #b3a1c1; border-radius:8px; padding:8px; display:flex; gap:8px; align-items:center; text-align:left;
+  box-shadow:0 3px 0 #9c8aa333; position:relative}
+.move-card[aria-pressed=true] {background:#eee6ff; border:2px solid #4a3ca8; padding:7px}
+.move-card.active {background:#ffe7a3; outline:3px solid #8f6214; outline-offset:-3px}
+.move-card.flagged {border:3px dashed #ae4e16; padding:6px}
+.move-card svg {width:36px; height:52px; flex:none; pointer-events:none}
+.move-card strong {font-size:14px; text-transform:capitalize; display:block; width:max-content; max-width:100%; pointer-events:none}
+.move-card small {display:block; font-size:10px; color:#5f5a6e; margin-top:4px; pointer-events:none}
+.move-card .number {position:absolute; top:3px; right:5px; font-size:10px; font-weight:800; color:#5f5a6e}
+.move-card>span {pointer-events:none}
+#editor {display:flex; flex-direction:column; gap:10px}
+#editor-head {border-bottom:1px solid #d5c8db; padding-bottom:7px}
+#editor-title {font:750 22px Georgia,serif; margin:4px 0}
+#editor-word {font-size:12px; color:#5f5a6e}
+.quality-grid {display:grid; grid-template-columns:1fr 1fr; gap:7px}
+.quality {min-height:63px; background:#fffaf3; border:1px solid #c9b8d1; border-radius:9px;
+  text-align:left; padding:8px 10px; position:relative}
+.quality::after {content:'↻'; position:absolute; right:9px; top:24px; font-size:18px; color:#675686}
+.quality .eyebrow {display:block; font-size:10px; margin-bottom:4px; letter-spacing:.05em}
+.quality b {font-size:17px; font-weight:750}
+.quality:hover {background:#eee6fc; border-color:#4a3ca8}
+.select-row {display:flex; align-items:center; gap:9px; font-size:12px; font-weight:750}
+.select-row label {width:32px; flex:none}
+select {min-height:44px; flex:1; min-width:0; border:1px solid #b7a8c7; border-radius:7px; background:#fffaf5;
+  color:#231f33; padding:4px 8px; font:650 14px 'Segoe UI',sans-serif}
+#revision-note {color:#843d16; font-size:12px; margin:0; min-height:17px}
+#reorder-note {font-size:11px; color:#5f5a6e; margin:0}
+#viewer-panel {display:flex; flex-direction:column; gap:10px}
+#bubble {background:#fffaf2; border:2px solid #b8a5c7; border-radius:13px 13px 13px 2px; padding:12px;
+  font:650 17px/1.35 Georgia,serif; min-height:95px; margin:0}
+#meters {display:grid; grid-template-columns:1fr 1fr; gap:7px}
+.meter {font-size:11px; color:#5f5a6e}
+.meter .track {height:7px; background:#d9cee3; border-radius:5px; margin-top:4px; overflow:hidden}
+.meter .fill {height:100%; background:#4a3ca8}
+#main-path {font-size:12px; margin:0; color:#5f5a6e}
+#viewer-cards {display:grid; grid-template-columns:repeat(3,1fr); gap:5px}
+.guess-card {min-height:44px; padding:4px; background:#fffaf2; border:1px solid #b8a6c7;
+  border-radius:6px; text-align:center; font-weight:750; font-size:12px}
+.guess-card.guessed {outline:3px solid #4a3ca8; outline-offset:-3px; border-radius:18px}
+.guess-card small {display:block; font-size:10px; color:#68577e}
+#connection label {display:block; font-size:13px; font-weight:750; line-height:1.35; margin-bottom:6px}
+textarea {width:100%; min-height:68px; resize:vertical; border:1px solid #b6a2c6; border-radius:7px; padding:9px;
+  font:14px 'Segoe UI',sans-serif; color:#231f33; background:#fffdf7}
+#viewer-model {font-size:10px; margin:0; color:#5f5a6e; line-height:1.3}
+body:is([data-step=moves],[data-step=viewer]) #live-caption {padding-right:136px}
+body:is([data-step=moves],[data-step=viewer]) #count-label {
+  top:auto; bottom:29px; right:30px; font-size:20px; line-height:23px;
+}
+body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px; right:10px}
+#studio-screen>#viewer-cards {grid-template-columns:repeat(6,minmax(0,1fr)); flex:none; padding:3px 1px}
+.compact-viewer #strip {display:none}
+@media(min-width:1600px) {
+  main {grid-template-columns:minmax(0,1fr) 385px}
+  .panel {padding:23px; gap:15px}
+  .stage {padding:28px; gap:18px}
+  .source-card {min-height:115px}
+  .quality {min-height:80px}
+  .move-card {min-height:110px}
+  .move-card svg {width:53px; height:75px}
+}
+@media(max-height:680px) and (min-width:600px) {
+  header {padding:5px 12px}
+  h1 {font-size:20px}
+  h1 small {display:none}
+  header .icon-btn {font-size:11px; padding:0 9px}
+  #steps {padding:0 10px}
+  .step {min-height:44px; padding:0 13px; font-size:12px}
+  main {grid-template-columns:minmax(0,1fr) 267px}
+  .stage {padding:9px; gap:6px}
+  h2 {font-size:19px}
+  .eyebrow {font-size:10px}
+  .byline {font-size:10px; margin:2px 0 0}
+  .panel {padding:8px; gap:6px}
+  .hint {font-size:11px; min-height:49px; padding:6px 8px}
+  .source-grid {gap:5px}
+  .source-card {min-height:55px; padding:4px}
+  .source-card strong {font-size:15px; padding:0 4px}
+  .source-card small {margin-top:1px; padding:1px 4px}
+  .panel-bottom {gap:4px}
+  .privacy {font-size:10px}
+  #selection-count {font-size:12px}
+  #editor {gap:5px}
+  #editor-head {padding-bottom:2px}
+  #editor-title {font-size:18px; margin:0}
+  #editor-word {font-size:10px}
+  .quality-grid {gap:5px}
+  .quality {min-height:47px; padding:4px 8px}
+  .quality b {font-size:14px}
+  .quality .eyebrow {margin-bottom:1px}
+  .quality::after {top:20px; font-size:14px}
+  .select-row {font-size:11px}
+  select {font-size:12px}
+  #reorder-note {display:none}
+  .move-card {min-height:55px; padding:5px; flex-basis:105px}
+  .move-card[aria-pressed=true] {padding:4px}
+  .move-card svg {height:36px; width:26px}
+  .move-card strong {font-size:12px}
+  .move-card small {font-size:10px; margin-top:1px}
+  #strip {gap:5px; padding:3px 2px 5px}
+  #live-caption {bottom:6px; padding:4px}
+  #floor {height:calc(100% - 51px)}
+  #move-name {font-size:22px}
+  #quality-words {font-size:11px; margin-top:2px}
+  #poem {padding:4px 6px}
+  .poem-line {font-size:11px; line-height:1.1}
+  body[data-step=source] .stage {padding:5px; gap:4px}
+  body[data-step=source] #stage-kicker,body[data-step=source] #source-byline {display:none}
+  body[data-step=map] .studio-tag {display:none}
+  .spot {font-size:10px; padding:4px 6px}
+  #sound-source {padding:10px}
+  #sound-source h3 {font-size:21px; margin-bottom:8px}
+  #wave {height:82px}
+  #moments {grid-template-columns:1fr 1fr; gap:5px}
+  .moment {min-height:44px; padding:3px; font-size:10px}
+  .moment small {margin:0; font-size:10px}
+  #viewer-panel {gap:5px}
+  #bubble {font-size:13px; min-height:60px; padding:7px}
+  #meters {gap:4px}
+  #viewer-model {font-size:10px}
+  #connection label {font-size:11px; margin-bottom:3px}
+  textarea {min-height:44px; height:44px; font-size:12px; padding:5px}
+  .btn {font-size:11px; padding:4px 7px}
+  .primary {font-size:13px}
+  #revision-note {font-size:10px; min-height:0}
+  #editor-head {display:none}
+  #selects {display:flex; gap:5px}
+  #selects .select-row {width:50%; gap:3px}
+  #selects label {width:25px; font-size:10px}
+  #selects select {padding:2px; width:100%; font-size:11px}
+  #play-actions {display:grid; grid-template-columns:1.5fr .65fr .85fr; gap:4px}
+  .source-card {min-height:44px}
+  #source-panel .source-grid {margin-top:4px}
+}
+@media(max-width:599px) {
+  body {overflow:auto; min-height:100dvh; height:auto; grid-template-rows:auto auto 1fr}
+  header {padding:8px 10px; gap:5px}
+  h1 {font-size:22px; flex-basis:100%; margin:0 0 3px}
+  h1 small {display:none}
+  header .icon-btn {flex:1; font-size:12px; padding:0 6px}
+  #steps {padding:0 5px; gap:0}
+  .step {flex:1; font-size:12px; padding:0 4px}
+  .step span {padding-right:4px}
+  main {display:flex; flex-direction:column; min-height:0}
+  .stage {padding:10px; gap:7px; flex:none; height:355px; overflow:hidden; order:0}
+  body[data-step=source] .stage {height:385px}
+  .stage-head {gap:7px}
+  h2 {font-size:20px}
+  .byline {font-size:10px}
+  .stage-head .eyebrow {font-size:10px}
+  #source-art {border-radius:8px}
+  #poem {padding:8px}
+  .poem-line {font-size:13px; line-height:1.35}
+  .word {padding:0 1px}
+  .spot {font-size:10px; padding:3px 5px}
+  .panel {padding:9px 10px 12px; gap:8px; overflow:visible; border-left:0; border-top:1px solid #c8bdd8; order:1}
+  .hint {min-height:48px; font-size:12px; padding:6px 9px}
+  .source-grid {grid-template-columns:repeat(3,1fr); gap:5px}
+  .source-card {min-height:62px; padding:4px}
+  .source-card strong {font-size:15px; padding:2px 4px}
+  .source-card small {font-size:10px; padding:2px 4px; margin-top:2px}
+  .panel-bottom {margin-top:4px}
+  .privacy {font-size:10px}
+  .studio-tag {font-size:10px; top:9px; left:10px}
+  #studio-screen {gap:5px}
+  #live-caption {bottom:6px; left:6px; right:6px; padding:4px}
+  #floor {height:calc(100% - 53px)}
+  #move-name {font-size:24px}
+  #quality-words {font-size:11px; margin-top:2px}
+  #strip {padding:4px 2px 5px; gap:5px}
+  .move-card {flex-basis:103px; min-height:54px; padding:4px}
+  .move-card[aria-pressed=true] {padding:3px}
+  .move-card svg {height:35px; width:24px}
+  .move-card strong {font-size:12px}
+  .move-card small {font-size:10px; margin-top:1px}
+  #editor {gap:6px}
+  #editor-head {display:none}
+  .quality {min-height:48px; padding:5px 9px}
+  .quality .eyebrow {margin-bottom:1px}
+  .quality b {font-size:14px}
+  .quality::after {top:17px}
+  #editor .select-row {width:calc(50% - 4px); display:inline-flex}
+  #selects {display:flex; gap:7px}
+  #editor select {font-size:12px; padding:2px; width:100%}
+  #reorder-note {font-size:10px}
+  #revision-note {min-height:0; font-size:11px}
+  #sound-source {padding:12px}
+  #sound-source h3 {font-size:23px; margin-bottom:8px}
+  #wave {height:80px}
+  #moments {grid-template-columns:1fr 1fr; gap:5px}
+  .moment {min-height:44px; padding:3px}
+  .moment small {display:inline; margin-right:5px}
+  #map-board {width:69%}
+  body[data-step=map] #theatre {flex:0 0 96px}
+  body[data-step=map] #map-board {flex:1; width:auto}
+  body[data-step=map] .studio-tag,body[data-step=map] #quality-words,body[data-step=map] #beat-strip {display:none}
+  body[data-step=map] #move-name {font-size:14px}
+  body[data-step=map] #count-label {font-size:16px; top:8px; right:8px}
+  #map-title {font-size:10px; left:8px}
+  #draw-status {font-size:10px}
+  #bubble {font-size:15px; min-height:0}
+  #viewer-panel {gap:8px}
+  #viewer-seat {width:39px; height:31px; bottom:62px; left:9px}
+}
+</style>
+</head>
+<body data-step="source">
+<header>
+  <h1>Poem to Movement <small>Making a dance from a poem, a painting or a sound</small></h1>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+</header>
+<nav id="steps" aria-label="Dance steps" role="tablist">
+  <button class="step" id="m-source" role="tab" aria-selected="true"><span>01</span>Source</button>
+  <button class="step" id="m-moves" role="tab" aria-selected="false" disabled><span>02</span>Moves</button>
+  <button class="step" id="m-map" role="tab" aria-selected="false" disabled><span>03</span>Map</button>
+  <button class="step" id="m-viewer" role="tab" aria-selected="false" disabled><span>04</span>Viewer</button>
+</nav>
+<main>
+  <aside class="panel">
+    <p id="hint" class="hint" aria-live="polite"></p>
+    <div class="actions" id="source-actions">
+      <button id="make" class="btn primary" disabled>Make moves →</button>
+    </div>
+    <div class="actions" id="play-actions" hidden>
+      <button id="play" class="btn primary">▶ Play phrase</button>
+      <button id="stop" class="btn">■ Stop</button>
+      <button id="dance" class="btn gold">Dance it</button>
+    </div>
+    <div class="actions" id="map-actions" hidden>
+      <button id="draw" class="btn">✎ Draw path</button>
+      <button id="clear-map" class="btn">Clear map</button>
+    </div>
+    <div id="source-panel">
+      <p id="selection-count">0 of 4 to 6 highlighted</p>
+      <div class="source-grid" id="sources" aria-label="Choose a source"></div>
+    </div>
+    <div id="editor" hidden>
+      <div id="editor-head">
+        <span class="eyebrow">Your movement choices</span><h3 id="editor-title"></h3><span id="editor-word"></span>
+      </div>
+      <div class="quality-grid">
+        <button class="quality" id="q-speed"><span class="eyebrow">Speed</span><b>Slow</b></button>
+        <button class="quality" id="q-weight"><span class="eyebrow">Weight</span><b>Light</b></button>
+        <button class="quality" id="q-flow"><span class="eyebrow">Flow</span><b>Smooth</b></button>
+        <button class="quality" id="q-level"><span class="eyebrow">Level</span><b>Low</b></button>
+      </div>
+      <div id="selects">
+        <div class="select-row"><label for="verb">Verb</label><select id="verb"></select></div>
+        <div class="select-row"><label for="path">Path</label><select id="path"></select></div>
+      </div>
+      <p id="revision-note"></p>
+      <p id="reorder-note">Drag cards to reorder. Keyboard: Alt + arrows. Space plays or stops.</p>
+    </div>
+    <div id="viewer-panel" hidden>
+      <div class="actions"><button id="show" class="btn primary">Show the Viewer</button><button id="partner" class="btn">Partner guess</button></div>
+      <p id="bubble">I will watch only your movement qualities.</p>
+      <div id="meters" hidden></div>
+      <p id="main-path" hidden></p>
+      <div id="viewer-cards" hidden></div>
+      <button id="revise" class="btn gold" hidden>Revise →</button>
+      <div id="connection" hidden>
+        <label for="sentence">What does this idea remind you of in your own life?</label>
+        <textarea id="sentence" maxlength="500" aria-label="What does this idea remind you of in your own life?"
+          placeholder="This reminds me of..."></textarea>
+      </div>
+      <p id="viewer-model">The Viewer's way of seeing: a model that compares four average qualities and the main traveling path. Other viewers may read a dance differently.</p>
+    </div>
+    <div class="panel-bottom"><p class="privacy" id="saved">Saved here. Never leaves this device.</p><button id="reset" class="btn">Start over</button></div>
+  </aside>
+  <section class="stage" id="stage" aria-label="Dance inspiration and studio">
+    <div class="stage-head">
+      <div><span class="eyebrow" id="stage-kicker">Find an idea to move</span><h2 id="source-title"></h2><p class="byline" id="source-byline"></p></div>
+      <button class="btn" id="listen">♫ Listen</button>
+    </div>
+    <div id="source-screen">
+      <div id="source-art">
+        <img id="painting" alt="" hidden>
+        <div id="spot-layer" hidden></div>
+        <div id="poem"></div>
+        <div id="sound-source" hidden><h3>Listen for movement</h3><svg id="wave" aria-label="Twelve-second waveform"></svg><div id="moments"></div></div>
+      </div>
+    </div>
+    <div id="studio-screen" hidden>
+      <div id="studio-layout">
+        <div id="map-board" hidden>
+          <span id="map-title">YOUR FLOOR MAP</span>
+          <svg id="map-svg" viewBox="0 0 400 400" role="img" aria-label="Floor map with start, numbered moves and audience"></svg>
+          <span id="draw-status">X start · arrows travel · circles stay</span>
+        </div>
+        <div id="theatre">
+          <svg id="floor" role="img" aria-label="A dancer performing your phrase on the studio floor"></svg>
+          <div class="studio-tag"><i class="breath"></i>MOVEMENT STUDIO</div>
+          <span id="count-label">Ready</span><svg id="beat-strip" aria-hidden="true"></svg>
+          <div id="live-caption"><div id="move-name">Your phrase</div><div id="quality-words"></div></div>
+          <div id="viewer-seat" hidden>
+            <svg viewBox="0 0 40 28" aria-label="Viewer's eye">
+              <path d="M2 14Q20 -6 38 14Q20 34 2 14Z" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="20" cy="14" r="6" fill="currentColor"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div id="strip" aria-label="Your movement phrase"></div>
+    </div>
+  </section>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:dance"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  const DATA = "json:content";
+  const VERBS = ['float','shiver','glide','sink','rush','stomp','leap','scatter','freeze','reach','sway','roll','melt'];
+  const QUALITIES = {speed:['Slow','Quick'], weight:['Light','Strong'], flow:['Smooth','Sharp'], level:['Low','Middle','High']};
+  const PATHS = ['In place','Straight','Curved','Zigzag'];
+  const ART = {river:'art:painting-river', storm:'art:painting-storm',studio:'art:studio-light'};
+  // Reserved art tokens for the next painter. The current actor uses the shared kit figure.
+  const PAINTED_POSES = {
+    'dancer-float-low-a':'art:dancer-float-low-a',
+    'dancer-float-low-b':'art:dancer-float-low-b',
+    'dancer-float-middle-a':'art:dancer-float-middle-a',
+    'dancer-float-middle-b':'art:dancer-float-middle-b',
+    'dancer-float-high-a':'art:dancer-float-high-a',
+    'dancer-float-high-b':'art:dancer-float-high-b',
+    'dancer-shiver-low-a':'art:dancer-shiver-low-a',
+    'dancer-shiver-low-b':'art:dancer-shiver-low-b',
+    'dancer-shiver-middle-a':'art:dancer-shiver-middle-a',
+    'dancer-shiver-middle-b':'art:dancer-shiver-middle-b',
+    'dancer-shiver-high-a':'art:dancer-shiver-high-a',
+    'dancer-shiver-high-b':'art:dancer-shiver-high-b',
+    'dancer-glide-low-a':'art:dancer-glide-low-a',
+    'dancer-glide-low-b':'art:dancer-glide-low-b',
+    'dancer-glide-middle-a':'art:dancer-glide-middle-a',
+    'dancer-glide-middle-b':'art:dancer-glide-middle-b',
+    'dancer-glide-high-a':'art:dancer-glide-high-a',
+    'dancer-glide-high-b':'art:dancer-glide-high-b',
+    'dancer-sink-low-a':'art:dancer-sink-low-a',
+    'dancer-sink-low-b':'art:dancer-sink-low-b',
+    'dancer-sink-middle-a':'art:dancer-sink-middle-a',
+    'dancer-sink-middle-b':'art:dancer-sink-middle-b',
+    'dancer-sink-high-a':'art:dancer-sink-high-a',
+    'dancer-sink-high-b':'art:dancer-sink-high-b',
+    'dancer-rush-low-a':'art:dancer-rush-low-a',
+    'dancer-rush-low-b':'art:dancer-rush-low-b',
+    'dancer-rush-middle-a':'art:dancer-rush-middle-a',
+    'dancer-rush-middle-b':'art:dancer-rush-middle-b',
+    'dancer-rush-high-a':'art:dancer-rush-high-a',
+    'dancer-rush-high-b':'art:dancer-rush-high-b',
+    'dancer-stomp-low-a':'art:dancer-stomp-low-a',
+    'dancer-stomp-low-b':'art:dancer-stomp-low-b',
+    'dancer-stomp-middle-a':'art:dancer-stomp-middle-a',
+    'dancer-stomp-middle-b':'art:dancer-stomp-middle-b',
+    'dancer-stomp-high-a':'art:dancer-stomp-high-a',
+    'dancer-stomp-high-b':'art:dancer-stomp-high-b',
+    'dancer-leap-low-a':'art:dancer-leap-low-a',
+    'dancer-leap-low-b':'art:dancer-leap-low-b',
+    'dancer-leap-middle-a':'art:dancer-leap-middle-a',
+    'dancer-leap-middle-b':'art:dancer-leap-middle-b',
+    'dancer-leap-high-a':'art:dancer-leap-high-a',
+    'dancer-leap-high-b':'art:dancer-leap-high-b',
+    'dancer-scatter-low-a':'art:dancer-scatter-low-a',
+    'dancer-scatter-low-b':'art:dancer-scatter-low-b',
+    'dancer-scatter-middle-a':'art:dancer-scatter-middle-a',
+    'dancer-scatter-middle-b':'art:dancer-scatter-middle-b',
+    'dancer-scatter-high-a':'art:dancer-scatter-high-a',
+    'dancer-scatter-high-b':'art:dancer-scatter-high-b',
+    'dancer-freeze-low-a':'art:dancer-freeze-low-a',
+    'dancer-freeze-low-b':'art:dancer-freeze-low-b',
+    'dancer-freeze-middle-a':'art:dancer-freeze-middle-a',
+    'dancer-freeze-middle-b':'art:dancer-freeze-middle-b',
+    'dancer-freeze-high-a':'art:dancer-freeze-high-a',
+    'dancer-freeze-high-b':'art:dancer-freeze-high-b',
+    'dancer-reach-low-a':'art:dancer-reach-low-a',
+    'dancer-reach-low-b':'art:dancer-reach-low-b',
+    'dancer-reach-middle-a':'art:dancer-reach-middle-a',
+    'dancer-reach-middle-b':'art:dancer-reach-middle-b',
+    'dancer-reach-high-a':'art:dancer-reach-high-a',
+    'dancer-reach-high-b':'art:dancer-reach-high-b',
+    'dancer-sway-low-a':'art:dancer-sway-low-a',
+    'dancer-sway-low-b':'art:dancer-sway-low-b',
+    'dancer-sway-middle-a':'art:dancer-sway-middle-a',
+    'dancer-sway-middle-b':'art:dancer-sway-middle-b',
+    'dancer-sway-high-a':'art:dancer-sway-high-a',
+    'dancer-sway-high-b':'art:dancer-sway-high-b',
+    'dancer-roll-low-a':'art:dancer-roll-low-a',
+    'dancer-roll-low-b':'art:dancer-roll-low-b',
+    'dancer-roll-middle-a':'art:dancer-roll-middle-a',
+    'dancer-roll-middle-b':'art:dancer-roll-middle-b',
+    'dancer-roll-high-a':'art:dancer-roll-high-a',
+    'dancer-roll-high-b':'art:dancer-roll-high-b',
+    'dancer-melt-low-a':'art:dancer-melt-low-a',
+    'dancer-melt-low-b':'art:dancer-melt-low-b',
+    'dancer-melt-middle-a':'art:dancer-melt-middle-a',
+    'dancer-melt-middle-b':'art:dancer-melt-middle-b',
+    'dancer-melt-high-a':'art:dancer-melt-high-a',
+    'dancer-melt-high-b':'art:dancer-melt-high-b',
+    'dancer-float-low-strong-a':'art:dancer-float-low-strong-a',
+    'dancer-float-low-strong-b':'art:dancer-float-low-strong-b',
+    'dancer-float-middle-strong-a':'art:dancer-float-middle-strong-a',
+    'dancer-float-middle-strong-b':'art:dancer-float-middle-strong-b',
+    'dancer-float-high-strong-a':'art:dancer-float-high-strong-a',
+    'dancer-float-high-strong-b':'art:dancer-float-high-strong-b',
+    'dancer-shiver-low-strong-a':'art:dancer-shiver-low-strong-a',
+    'dancer-shiver-low-strong-b':'art:dancer-shiver-low-strong-b',
+    'dancer-shiver-middle-strong-a':'art:dancer-shiver-middle-strong-a',
+    'dancer-shiver-middle-strong-b':'art:dancer-shiver-middle-strong-b',
+    'dancer-shiver-high-strong-a':'art:dancer-shiver-high-strong-a',
+    'dancer-shiver-high-strong-b':'art:dancer-shiver-high-strong-b',
+    'dancer-glide-low-strong-a':'art:dancer-glide-low-strong-a',
+    'dancer-glide-low-strong-b':'art:dancer-glide-low-strong-b',
+    'dancer-glide-middle-strong-a':'art:dancer-glide-middle-strong-a',
+    'dancer-glide-middle-strong-b':'art:dancer-glide-middle-strong-b',
+    'dancer-glide-high-strong-a':'art:dancer-glide-high-strong-a',
+    'dancer-glide-high-strong-b':'art:dancer-glide-high-strong-b',
+    'dancer-sink-low-strong-a':'art:dancer-sink-low-strong-a',
+    'dancer-sink-low-strong-b':'art:dancer-sink-low-strong-b',
+    'dancer-sink-middle-strong-a':'art:dancer-sink-middle-strong-a',
+    'dancer-sink-middle-strong-b':'art:dancer-sink-middle-strong-b',
+    'dancer-sink-high-strong-a':'art:dancer-sink-high-strong-a',
+    'dancer-sink-high-strong-b':'art:dancer-sink-high-strong-b',
+    'dancer-rush-low-strong-a':'art:dancer-rush-low-strong-a',
+    'dancer-rush-low-strong-b':'art:dancer-rush-low-strong-b',
+    'dancer-rush-middle-strong-a':'art:dancer-rush-middle-strong-a',
+    'dancer-rush-middle-strong-b':'art:dancer-rush-middle-strong-b',
+    'dancer-rush-high-strong-a':'art:dancer-rush-high-strong-a',
+    'dancer-rush-high-strong-b':'art:dancer-rush-high-strong-b',
+    'dancer-stomp-low-strong-a':'art:dancer-stomp-low-strong-a',
+    'dancer-stomp-low-strong-b':'art:dancer-stomp-low-strong-b',
+    'dancer-stomp-middle-strong-a':'art:dancer-stomp-middle-strong-a',
+    'dancer-stomp-middle-strong-b':'art:dancer-stomp-middle-strong-b',
+    'dancer-stomp-high-strong-a':'art:dancer-stomp-high-strong-a',
+    'dancer-stomp-high-strong-b':'art:dancer-stomp-high-strong-b',
+    'dancer-leap-low-strong-a':'art:dancer-leap-low-strong-a',
+    'dancer-leap-low-strong-b':'art:dancer-leap-low-strong-b',
+    'dancer-leap-middle-strong-a':'art:dancer-leap-middle-strong-a',
+    'dancer-leap-middle-strong-b':'art:dancer-leap-middle-strong-b',
+    'dancer-leap-high-strong-a':'art:dancer-leap-high-strong-a',
+    'dancer-leap-high-strong-b':'art:dancer-leap-high-strong-b',
+    'dancer-scatter-low-strong-a':'art:dancer-scatter-low-strong-a',
+    'dancer-scatter-low-strong-b':'art:dancer-scatter-low-strong-b',
+    'dancer-scatter-middle-strong-a':'art:dancer-scatter-middle-strong-a',
+    'dancer-scatter-middle-strong-b':'art:dancer-scatter-middle-strong-b',
+    'dancer-scatter-high-strong-a':'art:dancer-scatter-high-strong-a',
+    'dancer-scatter-high-strong-b':'art:dancer-scatter-high-strong-b',
+    'dancer-freeze-low-strong-a':'art:dancer-freeze-low-strong-a',
+    'dancer-freeze-low-strong-b':'art:dancer-freeze-low-strong-b',
+    'dancer-freeze-middle-strong-a':'art:dancer-freeze-middle-strong-a',
+    'dancer-freeze-middle-strong-b':'art:dancer-freeze-middle-strong-b',
+    'dancer-freeze-high-strong-a':'art:dancer-freeze-high-strong-a',
+    'dancer-freeze-high-strong-b':'art:dancer-freeze-high-strong-b',
+    'dancer-reach-low-strong-a':'art:dancer-reach-low-strong-a',
+    'dancer-reach-low-strong-b':'art:dancer-reach-low-strong-b',
+    'dancer-reach-middle-strong-a':'art:dancer-reach-middle-strong-a',
+    'dancer-reach-middle-strong-b':'art:dancer-reach-middle-strong-b',
+    'dancer-reach-high-strong-a':'art:dancer-reach-high-strong-a',
+    'dancer-reach-high-strong-b':'art:dancer-reach-high-strong-b',
+    'dancer-sway-low-strong-a':'art:dancer-sway-low-strong-a',
+    'dancer-sway-low-strong-b':'art:dancer-sway-low-strong-b',
+    'dancer-sway-middle-strong-a':'art:dancer-sway-middle-strong-a',
+    'dancer-sway-middle-strong-b':'art:dancer-sway-middle-strong-b',
+    'dancer-sway-high-strong-a':'art:dancer-sway-high-strong-a',
+    'dancer-sway-high-strong-b':'art:dancer-sway-high-strong-b',
+    'dancer-roll-low-strong-a':'art:dancer-roll-low-strong-a',
+    'dancer-roll-low-strong-b':'art:dancer-roll-low-strong-b',
+    'dancer-roll-middle-strong-a':'art:dancer-roll-middle-strong-a',
+    'dancer-roll-middle-strong-b':'art:dancer-roll-middle-strong-b',
+    'dancer-roll-high-strong-a':'art:dancer-roll-high-strong-a',
+    'dancer-roll-high-strong-b':'art:dancer-roll-high-strong-b',
+    'dancer-melt-low-strong-a':'art:dancer-melt-low-strong-a',
+    'dancer-melt-low-strong-b':'art:dancer-melt-low-strong-b',
+    'dancer-melt-middle-strong-a':'art:dancer-melt-middle-strong-a',
+    'dancer-melt-middle-strong-b':'art:dancer-melt-middle-strong-b',
+    'dancer-melt-high-strong-a':'art:dancer-melt-high-strong-a',
+    'dancer-melt-high-strong-b':'art:dancer-melt-high-strong-b',
+  };
+  const POSES = {
+    float:['reach-up','arms-wide'], shiver:['arms-wide','arms-wide'], glide:['step',Dance.mirror('step')],
+    sink:['stand','curl'], rush:['step',Dance.mirror('step')], stomp:['stamp','stand'], leap:['stand','star-jump'],
+    scatter:['hop',Dance.mirror('hop')], freeze:['stand','stand'], reach:['point','reach-up'],
+    sway:['bend-side',Dance.mirror('bend-side')], roll:['twist',Dance.mirror('twist')], melt:['stand','sit']
+  };
+  const L = {
+    welcomeSource:'Pick a poem, a painting or a sound to dance.',
+    highlightHow:'Tap four to six words, spots or moments that make you want to move.',
+    makeHow:'Tap Make moves to turn your highlights into a dance.',
+    welcomeMoves:'Each word is now a move. Tap Play phrase, then change the speed, weight, flow or level.',
+    mapHow:'Show where the dancer travels. Tap a path on a move, or tap Draw path and drag across the floor.',
+    welcomeViewer:'Tap Show the Viewer. The Viewer only sees how you move, not your source.',
+    guessRight:'The Viewer read your source. What does this idea remind you of?',
+    partnerHow:'Tap Play phrase for your partner. Then ask them to tap the source they think it carries.',
+    drawHow:'Drag one line across the map. Its bends become the traveling moves, in order.',
+    tieRevise:'Tap Revise to change the moves that pulled the guess away.',
+    poemWind:DATA[0].poem.join('\n').replace(/[\[\]]/g,''),
+    poemTrain:DATA[1].poem.join('\n').replace(/[\[\]]/g,'')
+  };
+  for (const s of DATA) {
+    L['wrong-'+s.id] = 'The Viewer guessed the '+s.name.toLowerCase()+'. Tap Revise to change the moves that pulled it there.';
+  }
+  for (let mask=1;mask<64;mask++) {
+    const tied=DATA.filter((s,i)=>mask&(1<<i));
+    if (tied.length<2) continue;
+    L['tie-'+tied.map(s=>s.id).join('-')]='It could be the '+tied.map(s=>s.name.toLowerCase()).join(' or the ')+'.';
+  }
+  const state = {step:'source', mode:'source', source:'wind', highlights:[], cards:[], selected:0,
+    reached:0, playing:false, count:0, danceAlong:false, draw:false, map:[], result:null, partnerMode:false,
+    partnerGuess:null, sentence:'', flagged:[], pending:false, restartSlot:null, activeSnapshot:null};
+  let saves = {};
+  try { saves = JSON.parse(localStorage.getItem('poem-to-movement') || '{}') || {}; } catch {}
+  let clock = null;
+  let music = null;
+  let runToken = 0;
+  let currentPhrase = null;
+  let lastBeat = -1;
+  let soundNodes = [];
+  let soundFrame = 0;
+  let rawPath = null;
+  let dragCard = null;
+  let soloIndex = null;
+  const V = Curio.voice({
+    lines:L, scope:() => state.step+':'+state.source,
+    hint:false, read:() => $('hint').textContent,
+    welcome:() => {
+      if (state.playing) return null;
+      if (state.step === 'source') return [state.highlights.length ? 'makeHow' : 'welcomeSource',
+        {valid:() => !state.playing && (state.highlights.length === 0 || state.highlights.length >= 4)}];
+      return [{moves:'welcomeMoves',map:'mapHow',viewer:'welcomeViewer'}[state.step],
+        {valid:() => !state.playing && !(state.step==='moves'&&state.moveTouched) && !(state.step==='map'&&state.mapTouched)}];
+    },
+    speaks:'#play,#dance,#show,.move-card,.word,.spot,.moment,#listen'
+  });
+  function mk(tag,attrs,parent) {
+    const el = document.createElementNS(NS,tag);
+    for (const [k,v] of Object.entries(attrs || {})) el.setAttribute(k,v);
+    if (parent) parent.appendChild(el);
+    return el;
+  }
+  const source = () => DATA.find(s => s.id === state.source);
+  const clone = value => JSON.parse(JSON.stringify(value));
+  const clamp = (x,a,b) => Math.max(a,Math.min(b,x));
+  function save() {
+    saves[state.source] = {highlights:state.highlights, cards:state.cards, map:state.map,
+      sentence:state.sentence, reached:state.reached};
+    try { localStorage.setItem('poem-to-movement', JSON.stringify(saves)); }
+    catch { $('saved').textContent = 'Device storage unavailable. Keep this tab open.'; }
+  }
+  function restore(id) {
+    const s = DATA.find(s => s.id === id);
+    const saved = saves[id];
+    state.highlights = Array.isArray(saved?.highlights) ? [...new Set(saved.highlights)].filter(i => s.items[i]).slice(0,6) : [];
+    state.cards = Array.isArray(saved?.cards) ? saved.cards.filter(c => s.items[c.item] && VERBS.includes(c.verb)
+      && PATHS.includes(c.path) && Object.entries(QUALITIES).every(([k,v]) => v.includes(c[k]))).slice(0,6) : [];
+    state.map = Array.isArray(saved?.map) ? saved.map.filter(a => Array.isArray(a) && a.length>1).map(a => a.map(p =>
+      ({x:clamp(Number(p.x)||50,8,92),z:clamp(Number(p.z)||30,8,52)}))) : [];
+    state.sentence = typeof saved?.sentence === 'string' ? saved.sentence.slice(0,500) : '';
+    state.reached = state.cards.length >= 4 ? clamp(saved?.reached || 1,1,3) : 0;
+    state.selected = 0;
+    state.result = null;
+    state.flagged = [];
+    state.partnerMode = false;
+    state.partnerGuess = null;
+  }
+  function hint() {
+    let text;
+    if (state.step === 'source') text = state.highlights.length >= 4 ? L.makeHow :
+      state.highlights.length ? 'Highlight at least four. Tap underlined words, picture spots or sound moments.' : L.highlightHow;
+    if (state.step === 'moves') text = state.playing ? 'Change any quality now. It takes effect on the next count. Tap Stop to finish.' : L.welcomeMoves;
+    if (state.step === 'map') text = state.draw ? L.drawHow : L.mapHow;
+    if (state.step === 'viewer') text = state.partnerMode ? L.partnerHow : state.playing ?
+      'Watch your phrase. The Viewer will speak after the dance ends.' : state.result ?
+      state.result.right ? 'Write what the idea reminds you of, or tap Moves to try another interpretation.' :
+        'Tap Revise. The outlined moves show which qualities pulled the guess away.' : L.welcomeViewer;
+    $('hint').textContent = text;
+  }
+  function feedback() { Curio.tone(540,.07,.035,'sine'); }
+  function chooseSource(id) {
+    if (id === state.source) return;
+    stop();
+    save();
+    V.hush();
+    state.source = id;
+    restore(id);
+    render();
+    feedback();
+    V.how('highlightHow',{valid:() => !state.highlights.length});
+  }
+  function toggleHighlight(i) {
+    const at = state.highlights.indexOf(i);
+    if (at >= 0) state.highlights.splice(at,1);
+    else if (state.highlights.length >= 6) {
+      $('hint').textContent = 'Six is the most. Tap one to remove it.';
+      return;
+    } else state.highlights.push(i);
+    syncHighlights();
+    save();
+    feedback();
+    hint();
+    if (state.highlights.length >= 4) V.how('makeHow',{needs:'#make',valid:() => state.highlights.length>=4});
+  }
+  function syncHighlights() {
+    document.querySelectorAll('[data-highlight]').forEach(el => {
+      el.setAttribute('aria-pressed',state.highlights.includes(+el.dataset.highlight));
+    });
+    $('selection-count').textContent = state.highlights.length+' of 4 to 6 highlighted';
+    $('make').disabled = state.highlights.length < 4;
+  }
+  function makeMoves() {
+    if (state.highlights.length < 4) return;
+    const old = state.cards;
+    state.cards = state.highlights.map(i => old.find(c => c.item === i) || {...clone(source().items[i]),item:i});
+    state.map = [];
+    state.result = null;
+    state.reached = 3;
+    setMode('moves');
+    $('play').focus({preventScroll:true});
+    save();
+  }
+  function setMode(step) {
+    const index = ['source','moves','map','viewer'].indexOf(step);
+    if (index < 0 || (index > 0 && state.cards.length < 4)) return;
+    if (state.step === step) return;
+    stop();
+    V.hush();
+    state.step = state.mode = step;
+    state.reached = Math.max(state.reached,index);
+    state.draw = false;
+    state.moveTouched=false;
+    state.mapTouched=false;
+    state.partnerMode = false;
+    render();
+    save();
+    V.welcome();
+  }
+  function renderSources() {
+    const box = $('sources');
+    if (box.children.length) {
+      box.querySelectorAll('[data-id]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.id===state.source));
+      return;
+    }
+    box.replaceChildren();
+    for (const s of DATA) {
+      const b = document.createElement('button');
+      b.className = 'source-card';
+      b.dataset.id = s.id;
+      b.id = 'source-'+s.id;
+      b.setAttribute('aria-pressed',state.source === s.id);
+      b.innerHTML = '<strong>'+s.name+'</strong><small>'+s.kind+'</small>';
+      b.onclick = () => chooseSource(s.id);
+      box.appendChild(b);
+    }
+  }
+  function renderSource() {
+    const s = source();
+    $('source-art').classList.toggle('painting',s.kind==='painting');
+    $('painting').hidden = s.kind !== 'painting';
+    $('spot-layer').hidden = s.kind !== 'painting';
+    $('poem').hidden = s.kind !== 'poem';
+    $('sound-source').hidden = s.kind !== 'sound';
+    if (s.kind === 'poem') {
+      $('poem').replaceChildren();
+      for (const line of s.poem) {
+        const p = document.createElement('p');
+        p.className = 'poem-line';
+        for (const part of line.split(/(\[[^\]]+\])/g)) {
+          if (!part.startsWith('[')) { p.append(document.createTextNode(part)); continue; }
+          const word = part.slice(1,-1);
+          const i = s.items.findIndex(c => c.word === word.replace('thro’','through'));
+          const b = document.createElement('button');
+          b.className = 'word';
+          b.textContent = word;
+          b.dataset.highlight = i;
+          b.id = 'highlight-'+i;
+          b.onclick = () => toggleHighlight(i);
+          p.append(b);
+        }
+        $('poem').append(p);
+      }
+    }
+    if (s.kind === 'painting') {
+      $('painting').src = ART[s.id];
+      $('painting').alt = s.id === 'river' ? 'Still river at dusk, a heron, drifting mist and a low moon.' :
+        'Lightning above green hills, bending trees, rolling clouds and pouring rain.';
+      $('spot-layer').replaceChildren();
+      s.items.forEach((c,i) => {
+        const b = document.createElement('button');
+        b.className = 'spot';
+        b.style.left = c.spot[0]*100+'%';
+        b.style.top = c.spot[1]*100+'%';
+        b.textContent = c.word;
+        b.id = 'highlight-'+i;
+        b.dataset.highlight = i;
+        b.onclick = () => toggleHighlight(i);
+        $('spot-layer').append(b);
+      });
+      layoutSpots();
+    }
+    if (s.kind === 'sound') {
+      $('moments').replaceChildren();
+      s.items.forEach((c,i) => {
+        const b = document.createElement('button');
+        b.className = 'moment';
+        b.innerHTML = '<small>'+[1,4,7,10][i]+' s</small>'+c.word;
+        b.id = 'highlight-'+i;
+        b.dataset.highlight = i;
+        b.onclick = () => toggleHighlight(i);
+        $('moments').append(b);
+      });
+      drawWave();
+    }
+    syncHighlights();
+  }
+  function layoutSpots() {
+    const box = $('source-art').getBoundingClientRect();
+    const w = Math.min(box.width,box.height*16/9);
+    const h = w*9/16;
+    Object.assign($('spot-layer').style,{width:w+'px',height:h+'px',left:(box.width-w)/2+'px',top:(box.height-h)/2+'px'});
+  }
+  function render() {
+    const isSource = state.step === 'source';
+    const isViewer = state.step === 'viewer';
+    document.body.dataset.step = state.step;
+    $('source-screen').hidden = !isSource;
+    $('studio-screen').hidden = isSource;
+    $('source-panel').hidden = !isSource;
+    $('source-actions').hidden = !isSource;
+    $('editor').hidden = isSource || isViewer;
+    $('viewer-panel').hidden = !isViewer;
+    $('play-actions').hidden = isSource;
+    $('map-actions').hidden = state.step !== 'map';
+    $('map-board').hidden = state.step !== 'map';
+    $('viewer-seat').hidden = !isViewer || state.partnerMode;
+    $('listen').hidden = !isSource || source().kind === 'painting';
+    $('listen').textContent = '♫ Listen';
+    $('source-title').textContent = isSource ? source().title : isViewer ? 'What will your dance say?' :
+      state.step === 'map' ? 'Give your phrase a pathway' : 'Make the idea move';
+    $('source-byline').textContent = isSource ? source().author :
+      state.partnerMode ? 'Partner session · source hidden' : state.cards.length+' moves · 4 counts each · 96 beats a minute';
+    $('stage-kicker').textContent = isSource ? 'Find an idea to move' : 'Your dance, your choices';
+    ['source','moves','map','viewer'].forEach((m,i) => {
+      $('m-'+m).disabled = i > state.reached;
+      $('m-'+m).setAttribute('aria-selected',state.step === m);
+    });
+    renderSources();
+    if (isSource) renderSource();
+    else {
+      renderStrip();
+      renderEditor();
+      renderViewer();
+      layout();
+      idlePose();
+    }
+    hint();
+  }
+  function cardLabel(c,i) { return 'Move '+(i+1)+': '+c.verb+', '+c.word; }
+  function renderStrip() {
+    const active = document.activeElement?.dataset?.card;
+    $('strip').replaceChildren();
+    state.cards.forEach((c,i) => {
+      const b = document.createElement('button');
+      b.className = 'move-card';
+      b.dataset.card = i;
+      b.id = 'card-'+i;
+      b.setAttribute('aria-label',state.partnerMode ? 'Move '+(i+1)+': '+c.verb : cardLabel(c,i));
+      b.setAttribute('aria-pressed',i === state.selected);
+      b.classList.toggle('flagged',state.flagged.includes(i));
+      const icon = mk('svg',{'aria-hidden':'true'});
+      Dance.icon(icon,basePose(c,.5),{top:'#ffb3a7',bottom:'#4a3ca8',badge:'circle'});
+      b.append(icon);
+      const span = document.createElement('span');
+      const verb = document.createElement('strong');
+      verb.textContent = c.verb;
+      const word = document.createElement('small');
+      word.textContent = state.partnerMode ? c.speed+' · '+c.flow : c.word;
+      span.append(verb,word);
+      const n = document.createElement('span');
+      n.className = 'number';
+      n.textContent = i+1;
+      b.append(span,n);
+      b.onclick = () => {
+        state.selected = i;
+        syncCards();
+        renderEditor();
+        feedback();
+        if (!state.playing) play(false,false,i);
+      };
+      b.onpointerdown = e => {
+        if (e.button !== 0) return;
+        dragCard = {index:i,x:e.clientX,y:e.clientY,moved:false};
+      };
+      b.onkeydown = e => {
+        if (!e.altKey || !['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) return;
+        e.preventDefault();
+        const j = clamp(i+(['ArrowLeft','ArrowUp'].includes(e.key)?-1:1),0,state.cards.length-1);
+        reorder(i,j);
+        $('card-'+j)?.focus({preventScroll:true});
+      };
+      $('strip').append(b);
+    });
+    if (active != null) $('card-'+state.selected)?.focus({preventScroll:true});
+    syncCards();
+  }
+  addEventListener('pointermove',e => {
+    if (dragCard && Math.hypot(e.clientX-dragCard.x,e.clientY-dragCard.y)>12) dragCard.moved = true;
+  });
+  addEventListener('pointerup',e => {
+    if (!dragCard) return;
+    const drag = dragCard;
+    dragCard = null;
+    if (!drag.moved) return;
+    const target = document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-card]');
+    if (target) reorder(drag.index,+target.dataset.card);
+  });
+  function reorder(i,j) {
+    if (i === j) return;
+    const [card] = state.cards.splice(i,1);
+    state.cards.splice(j,0,card);
+    const [map] = state.map.splice(i,1);
+    if (map) state.map.splice(j,0,map);
+    state.selected = j;
+    state.restartSlot = state.playing ? j : null;
+    state.pending = true;
+    state.result = null;
+    state.flagged = [];
+    renderStrip();
+    renderEditor();
+    drawMap();
+    if (!state.playing) idlePose();
+    save();
+    feedback();
+  }
+  function syncCards() {
+    document.querySelectorAll('[data-card]').forEach(b => {
+      const i = +b.dataset.card;
+      b.setAttribute('aria-pressed',i === state.selected);
+      b.classList.toggle('active',state.playing && i === state.liveIndex);
+      b.classList.toggle('flagged',state.flagged.includes(i));
+    });
+  }
+  function renderEditor() {
+    const c = state.cards[state.selected];
+    if (!c) return;
+    $('editor-title').textContent = (state.selected+1)+'. '+c.verb;
+    $('editor-word').textContent = 'From “'+c.word+'”';
+    for (const key of Object.keys(QUALITIES)) {
+      $('q-'+key).querySelector('b').textContent = c[key];
+      $('q-'+key).setAttribute('aria-label',key+': '+c[key]+'. Tap to change.');
+    }
+    $('verb').value = c.verb;
+    $('path').value = c.path;
+    $('revision-note').textContent = state.flagged.includes(state.selected) ? revisionReason(c) : '';
+    caption(c);
+  }
+  function updateCard(key,value) {
+    const c = state.cards[state.selected];
+    c[key] = value;
+    state.moveTouched=true;
+    if (key==='path') state.mapTouched=true;
+    if (key === 'path') state.map = [];
+    state.pending = true;
+    state.result = null;
+    renderEditor();
+    const b = $('card-'+state.selected);
+    b.querySelector('strong').textContent = c.verb;
+    Dance.icon(b.querySelector('svg'),basePose(c,.5),{top:'#ffb3a7',bottom:'#4a3ca8',badge:'circle'});
+    b.setAttribute('aria-label',cardLabel(c,state.selected));
+    drawMap();
+    if (!state.playing) idlePose();
+    hint();
+    feedback();
+    save();
+  }
+  function vector(c) {
+    return [+(c.speed==='Quick'),+(c.weight==='Strong'),+(c.flow==='Sharp'),{Low:0,Middle:.5,High:1}[c.level]];
+  }
+  function evaluate(cards=state.cards) {
+    const avg = [0,1,2,3].map(i => cards.reduce((v,c) => v+vector(c)[i],0)/cards.length);
+    const counts = {};
+    for (const c of cards) if (c.path !== 'In place') counts[c.path] = (counts[c.path]||0)+1;
+    const path = Object.keys(counts).sort((a,b) => counts[b]-counts[a] || PATHS.indexOf(a)-PATHS.indexOf(b))[0] || 'In place';
+    const scores = DATA.map(s => ({id:s.id,score:s.profile.reduce((v,x,i) => v+Math.abs(x-avg[i]),0)+.75*(s.path!==path)}));
+    const best = Math.min(...scores.map(s => s.score));
+    const ids = scores.filter(s => Math.abs(s.score-best)<1e-7).map(s => s.id);
+    return {avg,path,ids,scores,right:ids.includes(state.source)};
+  }
+  function revisionReason(c) {
+    const d = vector(c).map((v,i) => v-source().profile[i]);
+    if (Math.max(...d.map(Math.abs))<1e-8) return 'Try the '+source().path.toLowerCase()+' Path for '+source().name.toLowerCase()+'.';
+    const index = d.map(Math.abs).indexOf(Math.max(...d.map(Math.abs)));
+    const word = [['slow','quick'],['light','strong'],['smooth','sharp'],['low','high']][index][+(d[index]>0)];
+    return 'Too '+word+' for '+source().name.toLowerCase()+'. Try '+['Speed','Weight','Flow','Level'][index]+'.';
+  }
+  function revise() {
+    if (!state.result) return;
+    const profile = source().profile;
+    state.flagged = state.cards.map((c,i) => ({i,d:vector(c).reduce((v,x,j) => v+Math.abs(x-profile[j]),0)}))
+      .sort((a,b) => b.d-a.d || a.i-b.i).slice(0,2).map(c => c.i);
+    const flags = state.flagged.slice();
+    setMode('moves');
+    state.flagged = flags;
+    state.selected = flags[0]||0;
+    renderEditor();
+    syncCards();
+    hint();
+    $('card-'+state.selected)?.focus({preventScroll:true});
+  }
+  function renderViewer() {
+    const r = state.result;
+    $('show').textContent = state.partnerMode ? 'Show both guesses' : 'Show the Viewer';
+    $('bubble').textContent = state.partnerMode ? 'Your partner sees the dance, without the source or my guess.' :
+      r ? resultText(r) : 'I will watch only your movement qualities.';
+    $('meters').hidden = !r || state.partnerMode;
+    $('main-path').hidden = !r || state.partnerMode;
+    $('viewer-cards').hidden = state.step!=='viewer' || (!r && !state.partnerMode);
+    $('revise').hidden = !r || r.right || state.partnerMode;
+    $('connection').hidden = !r || !r.right || state.partnerMode;
+    $('sentence').value = state.sentence;
+    if (r && !state.partnerMode) {
+      $('meters').innerHTML = r.avg.map((v,i) => '<div class="meter">'+
+        ['Speed · slow → quick','Weight · light → strong','Flow · smooth → sharp','Level · low → high'][i]+
+        '<div class="track"><div class="fill" style="width:'+v*100+'%"></div></div></div>').join('');
+      $('main-path').textContent = 'Main path: '+pathSymbol(r.path)+' '+r.path;
+    }
+    $('viewer-cards').replaceChildren();
+    for (const s of DATA) {
+      const b = document.createElement(state.partnerMode?'button':'div');
+      b.className = 'guess-card';
+      b.id = 'guess-'+s.id;
+      b.textContent = s.name;
+      if (state.partnerMode) {
+        b.setAttribute('aria-pressed',state.partnerGuess===s.id);
+        b.onclick = () => {
+          state.partnerGuess = s.id;
+          b.setAttribute('aria-pressed','true');
+          b.classList.add('guessed');
+          feedback();
+          if (state.playing) {
+            state.partnerRevealPending = true;
+            $('bubble').textContent = 'Partner chose '+s.name+'. Both guesses appear after the dance.';
+          } else revealPartner();
+        };
+      } else if (r) {
+        b.classList.toggle('guessed',r.ids.includes(s.id));
+        const marks = [];
+        if (s.id === state.source) marks.push('yours');
+        if (s.id === state.partnerGuess) marks.push('partner');
+        if (marks.length) {
+          const small = document.createElement('small');
+          small.textContent = marks.join(' · ');
+          b.append(small);
+        }
+      }
+      $('viewer-cards').append(b);
+    }
+    placeViewerCards();
+    if (state.step==='viewer') requestAnimationFrame(layout);
+  }
+  function placeViewerCards() {
+    const compact=state.step==='viewer' && innerWidth>=600 && innerWidth<=1000 && innerHeight<=680;
+    document.body.classList.toggle('compact-viewer',compact);
+    const parent=compact?$('studio-screen'):$('viewer-panel');
+    if ($('viewer-cards').parentElement!==parent) {
+      if (compact) parent.append($('viewer-cards'));
+      else parent.insertBefore($('viewer-cards'),$('revise'));
+      requestAnimationFrame(layout);
+    }
+  }
+  function pathSymbol(path) { return {'Straight':'→','Curved':'⌒','Zigzag':'↯','In place':'○'}[path]; }
+  function resultText(r) {
+    const qualities = [r.avg[0]>=.5?'quick':'slow',r.avg[1]>=.5?'strong':'light',r.avg[2]>=.5?'sharp':'smooth'];
+    const names = r.ids.map(id => DATA.find(s => s.id===id).name.toLowerCase());
+    const guess = names.length>1 ? 'It could be the '+names.join(' or the ')+'.' : 'I think it is the '+names[0]+'.';
+    const travel={'In place':'in place',Straight:'on a straight path',Curved:'on a curve',Zigzag:'on a zigzag'}[r.path];
+    return (state.cards.length===1?'One move is hard to read. Add more. ':'')+
+      'Mostly '+qualities.join(', ')+', '+travel+'. '+guess+' '+
+      (r.right?'The Viewer read your source.':'Try revising your movement choices.');
+  }
+  function finishViewer() {
+    if (state.playing) return;
+    state.result = evaluate();
+    if (state.result.right) {
+      state.flagged=[];
+      syncCards();
+    }
+    renderViewer();
+    hint();
+    const r = state.result;
+    if (r.right) {
+      Curio.yes();
+      V.say(r.ids.length>1?['tie-'+r.ids.join('-'),'guessRight']:'guessRight',{valid:() => !state.playing && state.result === r});
+    } else if (r.ids.length>1) {
+      V.say(['tie-'+r.ids.join('-'),'tieRevise'],{valid:() => !state.playing && state.result===r});
+    } else V.say('wrong-'+r.ids[0],{valid:() => !state.playing && state.result===r});
+  }
+  function revealPartner() {
+    const moveFocus=!!document.activeElement?.closest('#viewer-cards');
+    state.partnerMode=false;
+    state.partnerRevealPending=false;
+    $('viewer-seat').hidden=false;
+    finishViewer();
+    renderStrip();
+    $('source-byline').textContent=state.cards.length+' moves · both guesses shown';
+    if (moveFocus) $('show').focus({preventScroll:true});
+  }
+  // Actor adapter: replace only this factory for painted poses. Engine timing and floor coordinates stay shared.
+  // All 156 verb/level/weight/keyframe assets are in prompts.json for the next painter. No generated people in this build.
+  function createActor(floor) {
+    return Dance.dancer(floor.layers.actors,{floor,top:'#ffb3a7',bottom:'#4a3ca8',skin:'#bf8b73',
+      hair:'#332637',shoe:'#f8e9d5',badge:'circle',scale:1});
+  }
+  function poseArt(c,q) {
+    const direct=['float','sway','melt'].includes(c.verb) || (c.speed==='Slow' && ['sink','reach'].includes(c.verb));
+    const phase=direct?q:(q<.5?q*2:2-q*2);
+    const weight=c.weight==='Strong'?'-strong':'';
+    return {artKey:'dancer-'+c.verb+'-'+c.level.toLowerCase()+weight+'-'+(phase<.5?'a':'b'),
+      artPhase:phase,verb:c.verb,weight:c.weight,level:c.level,flow:c.flow};
+  }
+  const floor = Dance.floor($('floor'),'studio',{colors:{wall:'#2d2a3e',wall2:'#3c354b',mirror:'#3a3650',
+    wood:'#a5a1ad',wood2:'#8b8794',plank:'#7d7889'},dancerFrac:.68});
+  const dancer = createActor(floor);
+  const counts = Dance.counts($('beat-strip'),null,{n:4,mode:'numbers',off:'#d5cadf',offLine:'#655972',on:'#ffe7a3'});
+  function decorateFloor() {
+    // Studio has marley rather than planks, with no barre. Remove the engine's optional studio decoration locally.
+    floor.back.replaceChildren();
+    floor.layers.bg.replaceChildren();
+    mk('image',{href:ART.studio,x:0,y:0,width:floor.w,height:floor.h,preserveAspectRatio:'xMidYMid slice'},floor.layers.bg);
+    const polygons = floor.layers.bg.querySelectorAll('polygon');
+    polygons.forEach(p => p.setAttribute('fill','#302c40'));
+    const marks = [...floor.layers.floor.children];
+    marks.slice(1).forEach(el => el.remove());
+    marks[0].setAttribute('fill','#928c9c');
+    marks[0].setAttribute('opacity','.27');
+    for (const x of [25,50,75]) {
+      const a = floor.project(x,0,0), b = floor.project(x,0,60);
+      mk('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:'#716c7e','stroke-width':1,opacity:.24},floor.layers.floor);
+    }
+    mk('polygon',{points:floor.quad(15,0,35,53),fill:'#f6e9d6',opacity:.10},floor.layers.floor);
+    const mirror = floor.layers.bg.querySelector('rect[rx]');
+    if (mirror) mirror.setAttribute('stroke','#63576d');
+    const back = floor.project(0,0,0), right = floor.project(100,0,0);
+    mk('line',{x1:back[0],y1:back[1],x2:right[0],y2:right[1],stroke:'#d1bdc8','stroke-width':2,opacity:.45},floor.layers.floor);
+  }
+  function layout() {
+    layoutSpots();
+    placeViewerCards();
+    if ($('studio-screen').hidden) return;
+    const r = $('floor').getBoundingClientRect();
+    if (r.width<2 || r.height<2) return;
+    $('floor').setAttribute('viewBox','0 0 '+r.width+' '+r.height);
+    floor.resize(r.width,r.height,{x0:r.width*.02,x1:r.width*.98,yBack:r.height*.73,yFront:r.height*.98});
+    decorateFloor();
+    // Engine minimum height is 18 world units. Scale down only when the real-pixel stage needs it.
+    dancer.scale = Math.min(1,(r.height*.68)/(floor.dancerHeight*floor.scale(40)));
+    dancer.render();
+    counts.layout({x:2,y:0,w:116,h:24});
+    drawMap();
+  }
+  new ResizeObserver(layout).observe($('stage'));
+  function basePose(c,q,previous) {
+    // Sharp flow moves rapidly into each quarter of the action, then holds that shape.
+    if (c.flow==='Sharp') {
+      const quarter=q*4;
+      q=(Math.floor(quarter)+Dance.dyn.sharp.ease(quarter%1))/4;
+    }
+    const pair = POSES[c.verb] || POSES.float;
+    let A;
+    let B;
+    if (c.verb==='freeze' && previous) A=Dance.pose(previous);
+    else if (['glide','rush','scatter'].includes(c.verb)) {
+      const gait = Dance.gaits[{glide:'walk',rush:'run',scatter:'hop'}[c.verb]].pose(q);
+      A = Dance.pose(gait.pose);
+      A.lift = gait.lift;
+      if (c.verb === 'glide') { A.lArm = Dance.pose('arms-wide').lArm; A.rArm = Dance.pose('arms-wide').rArm; }
+    } else {
+      A = Dance.pose(pair[0]);
+      B = Dance.pose(pair[1]);
+      const dyn = c.flow === 'Sharp' ? Dance.dyn.sharp : Dance.dyn.smooth;
+      const u = q<.5?q*2:2-q*2;
+      A = Dance.mix(A,B,dyn.ease(clamp(u,0,1)));
+      if (c.verb === 'shiver') {
+        const shake = Dance.dyn.shake.jitter*Math.sin(q*Math.PI*16);
+        A.lArm[0] += shake;
+        A.rArm[0] -= shake;
+        A.side+=shake*.4;
+      }
+      if (c.verb === 'sway') A = Dance.mix(Dance.pose(pair[0]),Dance.pose(pair[1]),Dance.dyn.swing.ease(q));
+      if (c.verb === 'melt') A = Dance.mix(Dance.pose('stand'),Dance.pose('sit'),Dance.dyn.collapse.ease(q));
+      if (c.verb === 'float') A = Dance.mix(Dance.pose(pair[0]),Dance.pose(pair[1]),Dance.dyn.suspend.ease(q));
+      if (c.speed==='Slow' && ['sink','reach'].includes(c.verb)) {
+        const ease=c.flow==='Sharp'?Dance.dyn.sharp:Dance.dyn.smooth;
+        A=Dance.mix(Dance.pose(pair[0]),Dance.pose(pair[1]),ease.ease(q));
+      }
+      if (c.verb === 'roll') A.yaw = q*360;
+    }
+    if (c.weight === 'Strong') {
+      const plie = Dance.pose('plie');
+      A.lLeg = A.lLeg.map((x,i) => x*.6+plie.lLeg[i]*.4);
+      A.rLeg = A.rLeg.map((x,i) => x*.6+plie.rLeg[i]*.4);
+    } else { A.lToe=1; A.rToe=1; }
+    // Dedicated low/high versions avoid a generic upright low pose.
+    if (c.level === 'Low') {
+      const low = c.verb==='melt' ? Dance.mix(Dance.pose('crouch'),Dance.pose('sit'),Dance.dyn.collapse.ease(q)) :
+        Dance.pose('crouch');
+      A.lLeg = low.lLeg;
+      A.rLeg = low.rLeg;
+      A.lean = Math.max(18,A.lean);
+      A.lift *= .35;
+    } else if (c.level === 'High') { A.lToe=1; A.rToe=1; }
+    return Dance.level({...A,low:A},c.level.toLowerCase());
+  }
+  function caption(c) {
+    if (!c) return;
+    $('move-name').textContent = c.verb;
+    $('quality-words').textContent = [c.speed,c.weight,c.flow,c.level].join(' · ');
+  }
+  function idlePose() {
+    const c = state.cards[state.selected];
+    if (!c || state.playing) return;
+    dancer.set({pose:basePose(c,.5),x:50,z:40,facing:0,lift:0,...poseArt(c,.5)});
+    caption(c);
+    $('count-label').textContent = 'Ready';
+  }
+  function mapSegments() {
+    let position = state.map.find(a => a?.length>1)?.[0] || {x:24,z:38};
+    return state.cards.map((c,i) => {
+      if (c.path === 'In place') return {points:[{...position},{...position}],path:PATHS[0]};
+      const custom = state.map[i];
+      let pts;
+      if (custom?.length>1) pts = custom;
+      else {
+        const direction = i%2 ? -1 : 1;
+        let end = {x:clamp(position.x+direction*35,12,88),z:clamp(position.z+(i%2?-14:10),12,48)};
+        if (Math.abs(end.x-position.x)<12) end.x = position.x<50?80:20;
+        const middle = {x:(position.x+end.x)/2,z:clamp((position.z+end.z)/2-13,8,52)};
+        if (c.path === 'Straight') pts = [position,end];
+        if (c.path === 'Curved') pts = Dance.spline([position,middle,end],16);
+        if (c.path === 'Zigzag') pts = [position,{x:position.x+(end.x-position.x)/3,z:clamp(position.z-13,8,52)},
+          {x:position.x+(end.x-position.x)*2/3,z:clamp(position.z+9,8,52)},end];
+      }
+      pts = pts.map(p => ({x:clamp(p.x,8,92),z:clamp(p.z,8,52)}));
+      position = {...pts[pts.length-1]};
+      return {points:pts,path:c.path};
+    });
+  }
+  function buildPhrase(cards,solo) {
+    const segments = mapSegments();
+    const steps = cards.map((c,j) => {
+      const i = solo == null ? j : solo;
+      const geo = Dance.path(segments[i].points);
+      return {counts:4,poses:[basePose(c,0),basePose(c,.5)],level:'middle',dyn:c.flow.toLowerCase(),
+        travel:c.path==='In place'?null:geo,at:segments[i].points[0],facing:'front'};
+    });
+    return Dance.phrase(steps);
+  }
+  function stopSound() {
+    cancelAnimationFrame(soundFrame);
+    soundFrame=0;
+    for (const n of soundNodes) { try { n.stop(); } catch {} }
+    soundNodes=[];
+    $('listen').textContent='♫ Listen';
+  }
+  function stop() {
+    runToken++;
+    clock?.stop();
+    music?.stop();
+    clock=null;
+    music=null;
+    stopSound();
+    state.playing=false;
+    state.pending=false;
+    state.restartSlot=null;
+    state.liveIndex=-1;
+    soloIndex=null;
+    counts.set(null);
+    syncCards();
+    $('count-label').textContent='Ready';
+    $('theatre').classList.remove('dance-along');
+    hint();
+  }
+  function keepOnFloor(frame) {
+    const joints=Dance.skeleton(frame.pose);
+    const angle=(frame.facing??dancer.facing)*Math.PI/180;
+    const height=floor.dancerHeight*dancer.scale;
+    const points=Object.entries(joints).filter(([k])=>!['fwd','up','hfwd','hup'].includes(k)).map(([,p])=>({
+      x:(p[0]*Math.cos(angle)+p[2]*Math.sin(angle))*height,
+      z:(p[2]*Math.cos(angle)-p[0]*Math.sin(angle))*height
+    }));
+    frame.x=clamp(frame.x??dancer.x,2-Math.min(...points.map(p=>p.x)),98-Math.max(...points.map(p=>p.x)));
+    frame.z=clamp(frame.z??dancer.z,2-Math.min(...points.map(p=>p.z)),58-Math.max(...points.map(p=>p.z)));
+  }
+  function play(danceAlong=false,viewer=false,solo=null) {
+    if (!state.cards.length) return;
+    stop();
+    V.hush();
+    const token = runToken;
+    state.playing=true;
+    state.danceAlong=danceAlong;
+    state.activeSnapshot=clone(state.cards);
+    state.pending=false;
+    state.result=null;
+    soloIndex=solo;
+    $('theatre').classList.toggle('dance-along',danceAlong);
+    if (state.step==='viewer') renderViewer();
+    hint();
+    let cards = solo==null?state.activeSnapshot:[state.activeSnapshot[solo]];
+    state.selected=solo??0;
+    renderEditor();
+    syncCards();
+    currentPhrase=buildPhrase(cards,solo);
+    const initial={...currentPhrase.at(0),pose:basePose(cards[0],0),...poseArt(cards[0],0)};
+    keepOnFloor(initial);
+    dancer.set(initial);
+    clock=Dance.clock(96,{meter:4,countIn:solo==null?4:0});
+    music=Dance.music({len:8,sub:1,vol:.2,parts:{wood:'x...x...',pad:[[48,55,60],null,null,null,null,null,null,null]}},clock);
+    lastBeat=-99;
+    counts.bind(clock);
+    clock.onCount((n) => {
+      if (token!==runToken) return;
+      if (state.restartSlot!=null && n>0) {
+        const slot=state.restartSlot;
+        state.restartSlot=null;
+        state.activeSnapshot=clone(state.cards);
+        cards=state.activeSnapshot;
+        soloIndex=null;
+        currentPhrase=buildPhrase(cards,null);
+        state.pending=false;
+        // Seek after the current clock tick finishes, so a backward reorder cannot replay old count callbacks.
+        const activeClock=clock;
+        queueMicrotask(()=>{if (token===runToken && activeClock===clock) activeClock.seek(slot*4);});
+        return;
+      }
+      if (state.pending) {
+        state.activeSnapshot=clone(state.cards);
+        cards=soloIndex==null?state.activeSnapshot:[state.activeSnapshot[soloIndex]];
+        currentPhrase=buildPhrase(cards,soloIndex);
+        state.pending=false;
+      }
+      if (n>currentPhrase.total) { end(); return; }
+      const i=soloIndex==null?Math.max(0,Math.floor((n-1)/4)):soloIndex;
+      state.liveIndex=i;
+      state.count=n;
+      state.selected=i;
+      if (n>0) caption(state.activeSnapshot[i]);
+      $('count-label').textContent=n<=0?'In '+(n+4):'Count '+((n-1)%4+1);
+      if (n>0) renderEditor();
+      syncCards();
+    });
+    clock.onFrame(pos => {
+      if (token!==runToken) return;
+      if (pos>=currentPhrase.total) { end(); return; }
+      if (pos<0) return;
+      const sample = Curio.reduce ? Math.floor(pos)+.5 : pos;
+      if (Curio.reduce && lastBeat===Math.floor(pos)) return;
+      lastBeat=Math.floor(pos);
+      const ix=Math.min(cards.length-1,Math.floor(sample/4));
+      const c=cards[ix];
+      const local=sample-ix*4;
+      const q=c.speed==='Quick'?local%1:local/4;
+      const frame=currentPhrase.at(Math.min(sample,currentPhrase.total-.0001));
+      let previous=ix-1;
+      while (previous>=0 && cards[previous].verb==='freeze') previous--;
+      const held=previous>=0?basePose(cards[previous],.999):Dance.pose('stand');
+      frame.pose=basePose(c,q,held);
+      Object.assign(frame,poseArt(c,q));
+      if (c.weight==='Strong') {
+        const accent=12*(1-Math.min(1,(local%1)*4));
+        frame.pose.lLeg[2]+=accent;
+        frame.pose.rLeg[2]+=accent;
+      }
+      if (!floor.inside(frame.x??dancer.x,frame.z??dancer.z,8)) {
+        frame.x=clamp(frame.x??dancer.x,8,92);
+        frame.z=clamp(frame.z??dancer.z,8,52);
+      }
+      keepOnFloor(frame);
+      dancer.set(frame);
+      const mark=$('map-dancer');
+      if (mark) { mark.setAttribute('cx',mapX(dancer.x)); mark.setAttribute('cy',mapY(dancer.z)); }
+    });
+    function end() {
+      if (token!==runToken) return;
+      clock?.stop();
+      music?.stop();
+      state.playing=false;
+      state.liveIndex=-1;
+      counts.set(null);
+      $('count-label').textContent='Finished';
+      syncCards();
+      hint();
+      if (state.partnerRevealPending) revealPartner();
+      else if (viewer && !state.partnerMode) finishViewer();
+    }
+    clock.start();
+    feedback();
+  }
+  const mapX=x=>35+x*3.3;
+  const mapY=z=>48+z*4.5;
+  // The top-down map supplies an affine floor interface to the shared path reader.
+  const mapFloor={project:(x,y,z)=>[mapX(x),mapY(z),1],scale:()=>3.3,
+    unmap:(x,y)=>({x:(x-35)/3.3,z:(y-48)/4.5})};
+  function drawMap() {
+    const svg=$('map-svg');
+    svg.replaceChildren();
+    const unit=Math.max(.2,Math.min(svg.clientWidth,svg.clientHeight)/400);
+    const labelSize=Math.max(14,10/unit);
+    const defs=mk('defs',{},svg);
+    const marker=mk('marker',{id:'arrow',viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:6,markerHeight:6,orient:'auto-start-reverse'},defs);
+    mk('path',{d:'M0 1L9 5L0 9Z',fill:'#4a3ca8'},marker);
+    mk('rect',{x:35,y:48,width:330,height:270,rx:3,fill:'#eee3d0',stroke:'#a78fb5','stroke-width':2},svg);
+    for (let x=10;x<100;x+=10) mk('line',{x1:mapX(x),y1:48,x2:mapX(x),y2:318,stroke:'#c8b6a9',opacity:.4},svg);
+    for (let z=10;z<60;z+=10) mk('line',{x1:35,y1:mapY(z),x2:365,y2:mapY(z),stroke:'#c8b6a9',opacity:.4},svg);
+    mk('text',{x:200,y:348,'text-anchor':'middle',fill:'#574467','font-size':Math.max(14,11/unit),'font-weight':750},svg).textContent='AUDIENCE';
+    const segments=mapSegments();
+    const start=segments[0]?.points[0] || {x:24,z:38};
+    const startOffset=state.cards[0]?.path==='In place'?Math.max(28,16/unit):0;
+    if (startOffset) mk('line',{x1:mapX(start.x)-startOffset+Math.max(10,5/unit),y1:mapY(start.z),
+      x2:mapX(start.x)-Math.max(13,9/unit),y2:mapY(start.z),stroke:'#6c401d','stroke-width':1.5},svg);
+    mk('text',{x:mapX(start.x)-startOffset,y:mapY(start.z)+5,'text-anchor':'middle',fill:'#6c401d',
+      'font-size':Math.max(20,13/unit),'font-weight':800},svg).textContent='X';
+    segments.forEach((seg,i) => {
+      const pts=seg.points;
+      const end=pts[pts.length-1];
+      if (seg.path==='In place') {
+        mk('circle',{cx:mapX(end.x),cy:mapY(end.z),r:Math.max(13,9/unit),fill:'#faf6f0',stroke:'#4a3ca8','stroke-width':2},svg);
+      } else mk('polyline',{points:pts.map(p=>mapX(p.x)+','+mapY(p.z)).join(' '),fill:'none',stroke:'#4a3ca8',
+        'stroke-width':3,'stroke-linecap':'round','stroke-linejoin':'round','marker-end':'url(#arrow)'},svg);
+      if (seg.path!=='In place') {
+        const line=Dance.path(pts);
+        const a=line.at(.66),b=line.at(.79);
+        mk('line',{x1:mapX(a.x),y1:mapY(a.z),x2:mapX(b.x),y2:mapY(b.z),stroke:'#4a3ca8',
+          'stroke-width':3,'marker-end':'url(#arrow)'},svg);
+      }
+      const inPlace=seg.path==='In place';
+      mk('text',{x:mapX(end.x)+(inPlace?0:12),y:mapY(end.z)+(inPlace?labelSize*.35:-12-i*2),
+        'text-anchor':inPlace?'middle':'start',fill:'#3b286b','font-size':labelSize,'font-weight':800,
+        'paint-order':'stroke',stroke:'#f7f0e2','stroke-width':4},svg).textContent=i+1;
+      if (state.cards[i].verb==='roll') {
+        mk('path',{d:'M'+(mapX(end.x)-12)+' '+(mapY(end.z)-10)+'a14 14 0 1 1 21 5',fill:'none',
+          stroke:'#835628','stroke-width':2,'marker-end':'url(#arrow)'},svg);
+      }
+    });
+    mk('circle',{id:'map-dancer',cx:mapX(dancer.x),cy:mapY(dancer.z),r:6,fill:'#c05d3b',stroke:'#fff','stroke-width':2},svg);
+    if (rawPath?.length>1) mk('polyline',{points:rawPath.map(p=>mapX(p.x)+','+mapY(p.z)).join(' '),fill:'none',
+      stroke:'#b45c13','stroke-width':4,'stroke-linecap':'round'},svg);
+  }
+  function mapPoint(e) {
+    const svg=$('map-svg');
+    const p=new DOMPoint(e.clientX,e.clientY).matrixTransform(svg.getScreenCTM().inverse());
+    return {x:clamp((p.x-35)/3.3,8,92),z:clamp((p.y-48)/4.5,8,52)};
+  }
+  function applyPath(points) {
+    const read=Dance.readPath(points,{floor:mapFloor,bounds:{x0:8,x1:92,z0:8,z1:52}});
+    if (read.tooShort) { $('draw-status').textContent='Try a longer line across the floor.'; return read; }
+    const parts=read.parts.map(p => ({kind:p.kind,geo:p.geo}));
+    const traveling=state.cards.filter(c=>c.path!=='In place').length;
+    if (!traveling) {
+      $('draw-status').textContent='All moves stay in place. Set a Path to travel, then draw.';
+      return read;
+    }
+    // Split the longest part until each traveling move has its own continuous part.
+    while (parts.length<traveling) {
+      const lengths=parts.map(p=>Dance.path(p.geo).length);
+      const at=lengths.indexOf(Math.max(...lengths));
+      const p=parts[at];
+      const geo=Dance.path(p.geo);
+      const split=Array.from({length:41},(_,i)=>geo.pointAt(i*geo.length/40));
+      parts.splice(at,1,{kind:p.kind,geo:split.slice(0,21)},{kind:p.kind,geo:split.slice(20)});
+    }
+    if (parts.length>traveling) parts.length=traveling;
+    let travelIndex=0;
+    state.map=state.cards.map(c => {
+      if (c.path==='In place') return null;
+      const p=parts[Math.min(travelIndex++,parts.length-1)];
+      c.path=p.kind[0].toUpperCase()+p.kind.slice(1);
+      return clone(p.geo);
+    });
+    state.pending=true;
+    state.mapTouched=true;
+    state.draw=false;
+    $('draw').setAttribute('aria-pressed','false');
+    $('draw-status').textContent=parts.map(p=>p.kind).join(' → ')+'. Traveling moves follow these parts.';
+    renderEditor();
+    drawMap();
+    save();
+    feedback();
+    hint();
+    return read;
+  }
+  $('map-svg').onpointerdown=e=>{
+    if (!state.draw) return;
+    rawPath=[mapPoint(e)];
+    $('map-svg').setPointerCapture(e.pointerId);
+  };
+  $('map-svg').onpointermove=e=>{
+    if (!rawPath) return;
+    rawPath.push(mapPoint(e));
+    drawMap();
+  };
+  $('map-svg').onpointerup=e=>{
+    if (!rawPath) return;
+    const points=rawPath;
+    rawPath=null;
+    applyPath(points);
+  };
+  $('map-svg').onpointercancel=()=>{rawPath=null;drawMap();};
+  function drawWave(playhead=0) {
+    const svg=$('wave');
+    svg.replaceChildren();
+    svg.setAttribute('viewBox','0 0 720 150');
+    const drum=state.source==='drum';
+    const pts=[];
+    for (let x=0;x<=720;x+=3) {
+      const sec=x/60;
+      const pulse=drum?[1,7,7.6,8.2].reduce((v,t)=>v+(sec>=t?Math.exp(-(sec-t)*5):0),0):.3+.2*Math.sin(sec*2);
+      const y=75+Math.sin(x*1.7)*Math.min(55,10+pulse*48);
+      pts.push(x+','+y);
+    }
+    mk('polyline',{points:pts.join(' '),fill:'none',stroke:'#cfb7e4','stroke-width':2},svg);
+    [1,4,7,10].forEach(t=>mk('line',{x1:t*60,y1:10,x2:t*60,y2:140,stroke:'#ffe7a3','stroke-dasharray':'3 5'},svg));
+    mk('line',{x1:playhead*60,y1:0,x2:playhead*60,y2:150,stroke:'#fff3c6','stroke-width':4},svg);
+  }
+  function listen() {
+    if (state.step!=='source') return;
+    if (soundNodes.length || soundFrame) { stopSound(); return; }
+    const s=source();
+    if (s.kind==='poem') {
+      V.say(s.id==='wind'?'poemWind':'poemTrain',{now:true,valid:()=>state.step==='source'&&state.source===s.id,hold:45000});
+      return;
+    }
+    if (s.kind==='painting') return;
+    V.hush();
+    const a=Curio.audio();
+    if (!a) return;
+    const bus=a.createGain();
+    bus.gain.value=Curio.sound?.35:0;
+    bus.connect(a.destination);
+    const t=a.currentTime;
+    if (s.id==='rain') {
+      const buffer=a.createBuffer(1,a.sampleRate*12,a.sampleRate);
+      const d=buffer.getChannelData(0);
+      for (let i=0;i<d.length;i++) {
+        const sec=i/a.sampleRate;
+        const strength=sec<3?.025:sec<6?.15:sec<9?.25+.10*Math.sin((sec-6)*Math.PI/3):.02;
+        d[i]=(Math.random()*2-1)*strength;
+      }
+      const noise=a.createBufferSource();
+      noise.buffer=buffer;
+      const filter=a.createBiquadFilter();
+      filter.type='highpass';
+      filter.frequency.value=1800;
+      noise.connect(filter).connect(bus);
+      noise.start(t);
+      noise.stop(t+12);
+      soundNodes.push(noise);
+      const drips=[1,1.9,2.7,...Array.from({length:32},(_,i)=>3+i*6/32),10,11.3];
+      for (const sec of drips) {
+        const when=t+sec;
+        const o=a.createOscillator();
+        const g=a.createGain();
+        o.frequency.value=600+Math.random()*1700;
+        g.gain.setValueAtTime(.0001,when);
+        g.gain.exponentialRampToValueAtTime(.12,when+.004);
+        g.gain.exponentialRampToValueAtTime(.0001,when+.06);
+        o.connect(g).connect(bus);
+        o.start(when);
+        o.stop(when+.08);
+        soundNodes.push(o);
+      }
+    } else for (const sec of [1,7,7.6,8.2]) {
+      const o=a.createOscillator();
+      const g=a.createGain();
+      o.frequency.setValueAtTime(100,t+sec);
+      o.frequency.exponentialRampToValueAtTime(60,t+sec+.08);
+      o.frequency.exponentialRampToValueAtTime(38,t+sec+1.2);
+      g.gain.setValueAtTime(.0001,t+sec);
+      g.gain.exponentialRampToValueAtTime(.8,t+sec+.006);
+      g.gain.exponentialRampToValueAtTime(.0001,t+sec+2);
+      o.connect(g).connect(bus);
+      o.start(t+sec);
+      o.stop(t+sec+2.1);
+      soundNodes.push(o);
+      const noise=a.createBuffer(1,Math.floor(a.sampleRate*.04),a.sampleRate);
+      const nd=noise.getChannelData(0);
+      for (let j=0;j<nd.length;j++) nd[j]=(Math.random()*2-1)*.12*(1-j/nd.length);
+      const attack=a.createBufferSource();
+      attack.buffer=noise;
+      attack.connect(bus);
+      attack.start(t+sec);
+      soundNodes.push(attack);
+    }
+    $('listen').textContent='■ Stop listening';
+    const started=performance.now();
+    const frame=()=>{
+      const sec=(performance.now()-started)/1000;
+      drawWave(Math.min(sec,12));
+      if (sec<12) soundFrame=requestAnimationFrame(frame);
+      else { stopSound(); bus.disconnect(); }
+    };
+    frame();
+    Curio.onSound(on=>{if (bus.context.state!=='closed') bus.gain.value=on?.35:0;});
+  }
+  $('listen').onclick=listen;
+  $('make').onclick=makeMoves;
+  $('play').onclick=()=>play(false,false);
+  $('stop').onclick=()=>{stop();feedback();};
+  $('dance').onclick=()=>play(true,false);
+    $('show').onclick=()=>{
+    if (state.partnerMode && state.partnerGuess) {state.partnerMode=false;finishViewer();return;}
+    play(false,true);
+  };
+  $('partner').onclick=()=>{
+    stop();
+    V.hush();
+    state.partnerMode=true;
+    state.partnerGuess=null;
+    state.result=null;
+    renderViewer();
+    renderStrip();
+    $('source-byline').textContent='Partner session · source hidden';
+    $('viewer-seat').hidden=true;
+    hint();
+    V.how('partnerHow',{valid:()=>state.partnerMode});
+  };
+  $('revise').onclick=revise;
+  $('sentence').oninput=()=>{state.sentence=$('sentence').value;save();};
+  $('draw').onclick=()=>{
+    state.draw=!state.draw;
+    $('draw').setAttribute('aria-pressed',state.draw);
+    hint();
+    feedback();
+    if (state.draw) V.how('drawHow',{valid:()=>state.draw});
+  };
+  $('clear-map').onclick=()=>{
+    state.map=[];
+    state.cards.forEach(c=>{c.path=source().items[c.item].path;});
+    state.pending=true;
+    state.draw=false;
+    $('draw').setAttribute('aria-pressed','false');
+    $('draw-status').textContent='X start · arrows travel · circles stay';
+    renderEditor();
+    drawMap();
+    save();
+    feedback();
+    hint();
+  };
+  $('reset').onclick=()=>{
+    const empty=state.step==='source' && !state.highlights.length && !state.cards.length && !state.sentence;
+    const currentHow=!V.playing || ['welcomeSource','highlightHow','makeHow'].some(k=>L[k]===V.playing);
+    if (empty && !soundFrame && currentHow) {
+      hint();
+      feedback();
+      return;
+    }
+    stop();
+    V.hush();
+    delete saves[state.source];
+    try {localStorage.setItem('poem-to-movement',JSON.stringify(saves));} catch {}
+    restore(state.source);
+    state.step=state.mode='source';
+    render();
+    feedback();
+    V.how('highlightHow',{valid:()=>state.highlights.length===0});
+  };
+  for (const [key,values] of Object.entries(QUALITIES)) $('q-'+key).onclick=()=>{
+    const c=state.cards[state.selected];
+    updateCard(key,values[(values.indexOf(c[key])+1)%values.length]);
+  };
+  for (const [id,options] of [['verb',VERBS],['path',PATHS]]) {
+    for (const value of options) {
+      const o=document.createElement('option');
+      o.value=o.textContent=value;
+      $(id).append(o);
+    }
+    $(id).onchange=()=>updateCard(id,$(id).value);
+  }
+  ['source','moves','map','viewer'].forEach(m=>{$('m-'+m).onclick=()=>setMode(m);});
+  addEventListener('keydown',e=>{
+    if (e.code==='Space' && !/INPUT|TEXTAREA|SELECT/.test(e.target.tagName) && state.step!=='source' && !e.target.closest('header')) {
+      e.preventDefault();
+      state.playing?stop():play();
+    }
+  });
+  Curio.init({clips:"voice:*",rate:.9});
+  Curio.onMotion(()=>{lastBeat=-1;});
+  restore('wind');
+  render();
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,evaluate,applyPath,chooseSource,toggleHighlight,
+    makeMoves,play,stop,updateCard,reorder,source,DATA,basePose,floor,dancer,paintedPoses:PAINTED_POSES,get clock(){return clock;},
+    get vq(){return V.queue;}};
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "measure-record",
+      "steps": [
+        {
+          "click": "#m-measure"
+        },
+        {
+          "click": "[data-loud=soft]"
+        },
+        {
+          "click": "#check"
+        }
+      ],
+      "sizes": [
+        "1366x768"
+      ],
+      "keep": [
+        ".transport",
+        "#hint"
+      ]
+    },
+    {
+      "name": "review-empty-pin",
+      "steps": [
+        {
+          "click": "#m-review"
+        },
+        {
+          "click": "#line-3"
+        }
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425"
+      ],
+      "keep": [
+        ".transport",
+        "#hint"
+      ]
+    },
+    {
+      "name": "reset-confirm",
+      "steps": [
+        {
+          "click": "#reset"
+        }
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ],
+      "keep": [
+        "#reset-dialog"
+      ]
+    },
+    {
+      "name": "playing-flip",
+      "steps": [
+        {
+          "click": "#play-line"
+        },
+        {
+          "click": "#flip"
+        }
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425"
+      ],
+      "keep": [
+        ".transport",
+        "#hint"
+      ]
+    },
+    {
+      "name": "compact-checked-record",
+      "sizes": [
+        "680x425"
+      ],
+      "steps": [
+        {
+          "click": "#m-measure"
+        },
+        {
+          "click": "#measure-selector"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "[data-loud=soft]"
+        },
+        {
+          "click": "#check"
+        }
+      ],
+      "keep": [
+        ".transport",
+        "#hint"
+      ]
+    },
+    {
+      "name": "taste-card",
+      "steps": [
+        {
+          "click": "#m-review"
+        },
+        {
+          "click": "#taste-button"
+        }
+      ],
+      "keep": [
+        ".transport",
+        "#hint"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    }
+  ]
+}

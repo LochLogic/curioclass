@@ -9,7 +9,7 @@
       "width": 800,
       "quality": 74,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "teapot",
@@ -20,7 +20,7 @@
       "quality": 74,
       "sd": "A colored pencil still life drawing of a round blue teapot sitting on a red and white checked cloth, soft pencil shading, the drawing fills the whole picture edge to edge with clean plain paper margins.",
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "creek",
@@ -28,9 +28,9 @@
       "aspect": "4:3",
       "cutout": false,
       "width": 800,
-      "quality": 36,
+      "quality": 10,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "busstop",
@@ -40,7 +40,7 @@
       "width": 600,
       "quality": 74,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "crows",
@@ -50,7 +50,7 @@
       "width": 800,
       "quality": 74,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "laundromat",
@@ -61,7 +61,7 @@
       "quality": 74,
       "sd": "An ink and gray wash drawing of a long row of front-loading washing machines with round glass doors in a laundromat, tiled floor, the drawing fills the whole picture edge to edge with clean plain paper margins.",
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "tidepool",
@@ -71,7 +71,7 @@
       "width": 800,
       "quality": 74,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "seeds",
@@ -81,7 +81,7 @@
       "width": 800,
       "quality": 74,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "bowl",
@@ -90,10 +90,10 @@
       "cutout": true,
       "key": "magenta",
       "width": 800,
-      "quality": 62,
+      "quality": 40,
       "house_style": "A photograph of a real high school student's ceramic piece, evenly lit studio photo. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
       "source": "gpt-image-2 (Codex)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "fireescape",
@@ -103,7 +103,7 @@
       "width": 600,
       "quality": 74,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "rainglass",
@@ -113,7 +113,7 @@
       "width": 800,
       "quality": 74,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "blockmap",
@@ -121,19 +121,20 @@
       "aspect": "1:1",
       "cutout": false,
       "width": 800,
-      "quality": 64,
+      "quality": 50,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "tomatoes",
-      "prompt": "A charcoal drawing of tall tomato plants in a garden.",
+      "prompt": "A strictly monochrome charcoal drawing of tall tomato plants in an August garden, clusters of tomatoes, branching stems, serrated leaves, support stakes and soil. Dark charcoal accents, gray shading, smudges and warm white paper tooth.",
       "aspect": "3:4",
       "cutout": false,
       "width": 600,
-      "quality": 68,
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "quality": 10,
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "drawn_by": "codex"
     },
     {
       "name": "nightpool",
@@ -144,7 +145,31 @@
       "quality": 74,
       "sd": "An acrylic painting of a calm empty outdoor swimming pool at night, glowing turquoise water lit from below, a concrete deck, dark trees and a deep blue night sky, the painting fills the whole picture edge to edge.",
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
+    },
+    {
+      "name": "vg-wall",
+      "prompt": "A seamless texture of smooth warm white gallery wall plaster, very faint soft shading, evenly lit, filling the frame.",
+      "house_style": "Photorealistic architectural material texture for a refined student gallery. Straight on, flat, evenly lit. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 800,
+      "quality": 72,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "vg-floor",
+      "prompt": "A seamless top-down texture of honey oak floor planks running in one direction, soft satin finish, evenly lit, filling the frame.",
+      "house_style": "Photorealistic architectural material texture for a refined student gallery. Straight on, flat, evenly lit. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 800,
+      "quality": 72,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
     }
   ]
 }

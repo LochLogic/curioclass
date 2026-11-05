@@ -1,0 +1,596 @@
+{
+  "works": [
+    {
+      "id": "hatshepsut",
+      "title": "Seated Statue of Hatshepsut",
+      "short": "Hatshepsut",
+      "attribution": "Egypt",
+      "date": "about 1479 to 1458 BCE",
+      "year": -1470,
+      "museum": "The Met",
+      "museumId": "544450",
+      "kind": "object",
+      "around": "Hatshepsut ruled Egypt as king. Her statues show her with a king's headcloth.",
+      "img": "art:pd-met-544450",
+      "url": "https://www.metmuseum.org/art/collection/search/544450",
+      "made": "",
+      "alt": "Seated Statue of Hatshepsut, authentic museum image"
+    },
+    {
+      "id": "amphora",
+      "title": "Neck-amphora (storage jar)",
+      "short": "Neck-amphora",
+      "attribution": "Exekias, Athens",
+      "date": "about 530 BCE",
+      "year": -530,
+      "museum": "The Met",
+      "museumId": "246725",
+      "kind": "object",
+      "around": "Black-figure painting: figures painted in black on red clay, with lines scratched in.",
+      "img": "art:pd-met-246725",
+      "url": "https://www.metmuseum.org/art/collection/search/246725",
+      "made": "",
+      "alt": "Terracotta neck-amphora (jar), authentic museum image"
+    },
+    {
+      "id": "boscoreale",
+      "title": "Bedroom from a villa at Boscoreale",
+      "short": "Boscoreale room",
+      "attribution": "Near Pompeii",
+      "date": "about 50 to 40 BCE",
+      "year": -45,
+      "museum": "The Met",
+      "museumId": "247017",
+      "kind": "flat",
+      "around": "Painted walls make a small room look like it opens onto buildings and gardens.",
+      "img": "art:pd-met-247017",
+      "url": "https://www.metmuseum.org/art/collection/search/247017",
+      "made": "",
+      "alt": "Cubiculum (bedroom) from the Villa of P. Fannius Synistor at Boscoreale, authentic museum image"
+    },
+    {
+      "id": "maya",
+      "title": "Vessel with mythological scene",
+      "short": "Maya vessel",
+      "attribution": "Maya artists",
+      "date": "600 to 800 CE",
+      "year": 700,
+      "museum": "The Met",
+      "museumId": "662967",
+      "kind": "object",
+      "around": "Maya painters told stories around the sides of cups and vessels.",
+      "img": "art:pd-met-662967",
+      "url": "https://www.metmuseum.org/art/collection/search/662967",
+      "made": "",
+      "alt": "Vessel with mythological scene, authentic museum image"
+    },
+    {
+      "id": "summer",
+      "title": "Summer Mountains (a section of a handscroll)",
+      "short": "Summer Mountains",
+      "attribution": "Attributed to Qu Ding, China",
+      "date": "about 1050",
+      "year": 1050,
+      "museum": "The Met",
+      "museumId": "39915",
+      "kind": "flat",
+      "around": "You unroll it bit by bit and travel through the mountains.",
+      "img": "art:pd-met-39915",
+      "url": "https://www.metmuseum.org/art/collection/search/39915",
+      "made": "",
+      "alt": "Summer Mountains, authentic museum image"
+    },
+    {
+      "id": "nataraja",
+      "title": "Shiva as Lord of Dance (Nataraja)",
+      "short": "Nataraja",
+      "attribution": "Chola dynasty, India",
+      "date": "late 1000s",
+      "year": 1090,
+      "museum": "The Met",
+      "museumId": "39328",
+      "kind": "object",
+      "around": "Cast in metal by the lost-wax method and carried in festival processions.",
+      "img": "art:pd-met-39328",
+      "url": "https://www.metmuseum.org/art/collection/search/39328",
+      "made": "",
+      "alt": "Shiva as Lord of Dance (Nataraja), authentic museum image"
+    },
+    {
+      "id": "duccio",
+      "title": "Madonna and Child",
+      "short": "Madonna and Child",
+      "attribution": "Duccio di Buoninsegna, Siena",
+      "date": "about 1290 to 1300",
+      "year": 1295,
+      "museum": "The Met",
+      "museumId": "438754",
+      "kind": "flat",
+      "around": "A gold background and a painted parapet in front: an early step toward real space.",
+      "img": "art:pd-met-438754",
+      "url": "https://www.metmuseum.org/art/collection/search/438754",
+      "made": "",
+      "alt": "Madonna and Child, authentic museum image"
+    },
+    {
+      "id": "mihrab",
+      "title": "Mihrab (prayer niche)",
+      "short": "Mihrab",
+      "attribution": "Isfahan, Iran",
+      "date": "1354 to 1355",
+      "year": 1354,
+      "museum": "The Met",
+      "museumId": "449537",
+      "kind": "object",
+      "around": "Thousands of cut glazed tiles fit together into patterns and writing.",
+      "img": "art:pd-met-449537",
+      "url": "https://www.metmuseum.org/art/collection/search/449537",
+      "made": "",
+      "alt": "Mihrab (Prayer Niche), authentic museum image"
+    },
+    {
+      "id": "carnevale",
+      "title": "The Birth of the Virgin",
+      "short": "Birth of the Virgin",
+      "attribution": "Fra Carnevale, Italy",
+      "date": "1467",
+      "year": 1467,
+      "museum": "The Met",
+      "museumId": "435848",
+      "kind": "flat",
+      "around": "Lines of the buildings run back to one vanishing point.",
+      "img": "art:pd-met-435848",
+      "url": "https://www.metmuseum.org/art/collection/search/435848",
+      "made": "",
+      "alt": "The Birth of the Virgin, authentic museum image"
+    },
+    {
+      "id": "rhino",
+      "title": "The Rhinoceros",
+      "short": "The Rhinoceros",
+      "attribution": "Albrecht Durer",
+      "date": "1515",
+      "year": 1515,
+      "museum": "The Met",
+      "museumId": "356497",
+      "kind": "flat",
+      "around": "Durer never saw the animal. He worked from a letter and a sketch, and printed thousands of copies.",
+      "img": "art:pd-met-356497",
+      "url": "https://www.metmuseum.org/art/collection/search/356497",
+      "made": "",
+      "alt": "The Rhinoceros, authentic museum image"
+    },
+    {
+      "id": "benin",
+      "title": "Plaque with Warrior Chief",
+      "short": "Benin plaque",
+      "attribution": "Edo artists of the brass-casters' guild, Benin (Nigeria)",
+      "date": "about 1540 to 1570",
+      "year": 1555,
+      "museum": "The Met",
+      "museumId": "312302",
+      "kind": "object",
+      "around": "Plaques like this covered pillars in the royal palace and recorded the court.",
+      "img": "art:pd-met-312302",
+      "url": "https://www.metmuseum.org/art/collection/search/312302",
+      "made": "",
+      "alt": "Plaque with Warrior Chief, authentic museum image"
+    },
+    {
+      "id": "esther",
+      "title": "Esther before Ahasuerus",
+      "short": "Esther",
+      "attribution": "Artemisia Gentileschi",
+      "date": "1620s",
+      "year": 1625,
+      "museum": "The Met",
+      "museumId": "436453",
+      "kind": "flat",
+      "around": "Strong light out of darkness, a way of painting that spread from Caravaggio.",
+      "img": "art:pd-met-436453",
+      "url": "https://www.metmuseum.org/art/collection/search/436453",
+      "made": "",
+      "alt": "Esther before Ahasuerus, authentic museum image"
+    },
+    {
+      "id": "mishima",
+      "title": "Mishima: Morning Mist",
+      "short": "Morning Mist",
+      "attribution": "Utagawa Hiroshige",
+      "date": "about 1833 to 1834",
+      "year": 1833,
+      "museum": "Art Institute of Chicago",
+      "museumId": "10926",
+      "kind": "flat",
+      "around": "One of 55 prints of stops on the road from Edo to Kyoto, sold cheaply to many people.",
+      "img": "art:pd-aic-10926",
+      "url": "https://www.artic.edu/artworks/10926",
+      "made": "",
+      "alt": "Mishima: Morning Mist (Mishima, asagiri), from the series \"Fifty-three Stations of the Tokaido Road (Tokaido gojusan tsugi no uchi),\" also known as the Hoeido Tokaido, authentic museum image"
+    },
+    {
+      "id": "whalers",
+      "title": "Whalers",
+      "short": "Whalers",
+      "attribution": "J. M. W. Turner",
+      "date": "about 1845",
+      "year": 1845,
+      "museum": "The Met",
+      "museumId": "437854",
+      "kind": "flat",
+      "around": "Storm, sea and mist matter more here than the boats.",
+      "img": "art:pd-met-437854",
+      "url": "https://www.metmuseum.org/art/collection/search/437854",
+      "made": "",
+      "alt": "Whalers, authentic museum image"
+    },
+    {
+      "id": "daguerre",
+      "title": "Still life with a cockatoo",
+      "short": "Cockatoo still life",
+      "attribution": "T. R. Williams",
+      "date": "1850s",
+      "year": 1855,
+      "museum": "The Met",
+      "museumId": "291846",
+      "kind": "flat",
+      "around": "An early photograph: one sharp, one-of-a-kind picture on a silvered plate.",
+      "img": "art:pd-met-291846",
+      "url": "https://www.metmuseum.org/art/collection/search/291846",
+      "made": "",
+      "alt": "[Still-Life with Cockatoo, Ornamental Ball, Lace, Statuette], authentic museum image"
+    },
+    {
+      "id": "courbet",
+      "title": "Young Ladies of the Village",
+      "short": "Village life",
+      "attribution": "Gustave Courbet",
+      "date": "1851 to 1852",
+      "year": 1851,
+      "museum": "The Met",
+      "museumId": "438820",
+      "kind": "flat",
+      "around": "Ordinary country people, painted as big as a history painting.",
+      "img": "art:pd-met-438820",
+      "url": "https://www.metmuseum.org/art/collection/search/438820",
+      "made": "",
+      "alt": "Young Ladies of the Village, authentic museum image"
+    },
+    {
+      "id": "train",
+      "title": "Arrival of the Normandy Train, Gare Saint-Lazare",
+      "short": "Normandy Train",
+      "attribution": "Claude Monet",
+      "date": "1877",
+      "year": 1877,
+      "museum": "Art Institute of Chicago",
+      "museumId": "16571",
+      "kind": "flat",
+      "around": "Steam, iron and glass: modern life as a subject.",
+      "img": "art:pd-aic-16571",
+      "url": "https://www.artic.edu/artworks/16571",
+      "made": "",
+      "alt": "Arrival of the Normandy Train, Gare Saint-Lazare, authentic museum image"
+    },
+    {
+      "id": "mucha",
+      "title": "The Seasons",
+      "short": "The Seasons",
+      "attribution": "Alphonse Mucha",
+      "date": "1897",
+      "year": 1897,
+      "museum": "Art Institute of Chicago",
+      "museumId": "97439",
+      "kind": "flat",
+      "around": "Printed in color from stone, for decoration and sale.",
+      "img": "art:pd-aic-97439",
+      "url": "https://www.artic.edu/artworks/97439",
+      "made": "",
+      "alt": "The Seasons, authentic museum image"
+    },
+    {
+      "id": "victoire",
+      "title": "Mont Sainte-Victoire",
+      "short": "Sainte-Victoire",
+      "attribution": "Paul Cezanne",
+      "date": "about 1902 to 1906",
+      "year": 1904,
+      "museum": "The Met",
+      "museumId": "435878",
+      "kind": "flat",
+      "around": "Cezanne built the mountain from patches of color, like blocks.",
+      "img": "art:pd-met-435878",
+      "url": "https://www.metmuseum.org/art/collection/search/435878",
+      "made": "",
+      "alt": "Mont Sainte-Victoire, authentic museum image"
+    },
+    {
+      "id": "kandinsky",
+      "title": "Improvisation No. 30 (Cannons)",
+      "short": "Improvisation 30",
+      "attribution": "Vasily Kandinsky",
+      "date": "1913",
+      "year": 1913,
+      "museum": "Art Institute of Chicago",
+      "museumId": "8991",
+      "kind": "flat",
+      "around": "Color and line come first. The cannons are almost hidden.",
+      "img": "art:pd-aic-8991",
+      "url": "https://www.artic.edu/artworks/8991",
+      "made": "",
+      "alt": "Improvisation No. 30 (Cannons), authentic museum image"
+    },
+    {
+      "id": "mondrian",
+      "title": "Lozenge Composition with Yellow, Black, Blue, Red, and Gray",
+      "short": "Lozenge Composition",
+      "attribution": "Piet Mondrian",
+      "date": "1921",
+      "year": 1921,
+      "museum": "Art Institute of Chicago",
+      "museumId": "109819",
+      "kind": "flat",
+      "around": "Only straight lines and a few colors, on a square turned on its point.",
+      "img": "art:pd-aic-109819",
+      "url": "https://www.artic.edu/artworks/109819",
+      "made": "",
+      "alt": "Lozenge Composition with Yellow, Black, Blue, Red, and Gray, authentic museum image"
+    }
+  ],
+  "events": [
+    {
+      "id": "perspective",
+      "title": "One vanishing point",
+      "line": "Florence: artists work out how lines meet at one vanishing point (about 1415 to 1435).",
+      "year": 1425,
+      "img": "art:perspective"
+    },
+    {
+      "id": "press",
+      "title": "Printing press",
+      "line": "Printing presses spread across Europe (from the 1450s).",
+      "year": 1455,
+      "img": "art:press"
+    },
+    {
+      "id": "portugal",
+      "title": "Brass by sea",
+      "line": "Portuguese ships trade with the Kingdom of Benin (from the 1480s), bringing brass.",
+      "year": 1485,
+      "img": "art:portugal"
+    },
+    {
+      "id": "caravaggio",
+      "title": "Light from darkness",
+      "line": "Caravaggio paints with strong light out of deep shadow (1590s).",
+      "year": 1597,
+      "img": "art:caravaggio"
+    },
+    {
+      "id": "photo",
+      "title": "Photography",
+      "line": "Photography is announced to the world (1839).",
+      "year": 1839,
+      "img": "art:photo"
+    },
+    {
+      "id": "tube",
+      "title": "Paint in a tube",
+      "line": "A squeezable metal paint tube is patented (1841). Painters can carry oil paint outside.",
+      "year": 1841,
+      "img": "art:tube"
+    },
+    {
+      "id": "rail",
+      "title": "Railways",
+      "line": "Railways reach Paris and the countryside (1830s to 1840s).",
+      "year": 1840,
+      "img": "art:rail"
+    },
+    {
+      "id": "japan",
+      "title": "Prints reach Paris",
+      "line": "Japan opens trade with the West (1854 to 1858). Japanese prints reach Paris.",
+      "year": 1858,
+      "img": "art:japan"
+    },
+    {
+      "id": "litho",
+      "title": "Color lithography",
+      "line": "Color printing from stone (lithography) makes big posters cheap (1880s to 1890s).",
+      "year": 1885,
+      "img": "art:litho"
+    },
+    {
+      "id": "lostwax",
+      "title": "Lost-wax casting",
+      "line": "Lost-wax casting: a wax model is covered in clay, melted out, and metal is poured in.",
+      "year": null,
+      "img": "art:lostwax"
+    },
+    {
+      "id": "cezanne",
+      "title": "Nature as shapes",
+      "line": "Cezanne paints nature as shapes and patches (1880s to 1900s).",
+      "year": 1895,
+      "img": "art:cezanne"
+    },
+    {
+      "id": "abstraction",
+      "title": "Abstraction",
+      "line": "Artists paint pictures with no objects at all (1910s).",
+      "year": 1912,
+      "img": "art:abstraction"
+    }
+  ],
+  "threads": [
+    {
+      "id": "t0",
+      "source": "perspective",
+      "target": "carnevale",
+      "type": "Invention",
+      "line": "The new perspective method lets Fra Carnevale build a deep, believable street."
+    },
+    {
+      "id": "t1",
+      "source": "press",
+      "target": "rhino",
+      "type": "Invention",
+      "line": "Printed in many copies, Durer's rhino became the picture of a rhinoceros in Europe for about 200 years."
+    },
+    {
+      "id": "t2",
+      "source": "portugal",
+      "target": "benin",
+      "type": "Trade and travel",
+      "line": "Brass from European trade was melted down and cast into palace plaques."
+    },
+    {
+      "id": "t3",
+      "source": "lostwax",
+      "target": "benin",
+      "type": "Compare",
+      "line": "Two places, one method: both were cast by the lost-wax process."
+    },
+    {
+      "id": "t4",
+      "source": "lostwax",
+      "target": "nataraja",
+      "type": "Compare",
+      "line": "Two places, one method: both were cast by the lost-wax process."
+    },
+    {
+      "id": "t5",
+      "source": "caravaggio",
+      "target": "esther",
+      "type": "Learned from",
+      "line": "Gentileschi learned from Caravaggio's light, as did many painters of her time."
+    },
+    {
+      "id": "t6",
+      "source": "photo",
+      "target": "daguerre",
+      "type": "Invention",
+      "line": "A photograph could record a scene exactly."
+    },
+    {
+      "id": "t7",
+      "source": "photo",
+      "target": "train",
+      "type": "Invention",
+      "line": "Once cameras could record exactly, painters like Monet painted light and feeling instead."
+    },
+    {
+      "id": "t8",
+      "source": "tube",
+      "target": "victoire",
+      "type": "Invention",
+      "line": "Paint in tubes let Cezanne paint his mountain outdoors, again and again."
+    },
+    {
+      "id": "t9",
+      "source": "rail",
+      "target": "train",
+      "type": "Invention",
+      "line": "Monet paints the new railway station itself."
+    },
+    {
+      "id": "t10",
+      "source": "japan",
+      "target": "mishima",
+      "type": "Trade and travel",
+      "line": "Prints like this one reached Paris after trade opened."
+    },
+    {
+      "id": "t11",
+      "source": "japan",
+      "target": "mucha",
+      "type": "Trade and travel",
+      "line": "Flat color and flowing outlines from Japanese prints show up in Paris posters."
+    },
+    {
+      "id": "t12",
+      "source": "litho",
+      "target": "mucha",
+      "type": "Invention",
+      "line": "Mucha's designs were printed in color from stone in large numbers."
+    },
+    {
+      "id": "t13",
+      "source": "cezanne",
+      "target": "victoire",
+      "type": "Learned from",
+      "line": "This is the way of seeing that the next painters built on."
+    },
+    {
+      "id": "t14",
+      "source": "cezanne",
+      "target": "mondrian",
+      "type": "Learned from",
+      "line": "Cezanne's shapes led to Cubism, and Mondrian passed through Cubism on his way to pure grids."
+    },
+    {
+      "id": "t15",
+      "source": "abstraction",
+      "target": "kandinsky",
+      "type": "Learned from",
+      "line": "Kandinsky was one of the first to paint with no objects."
+    },
+    {
+      "id": "t16",
+      "source": "abstraction",
+      "target": "mondrian",
+      "type": "Learned from",
+      "line": "Mondrian reduced painting to lines and a few colors."
+    },
+    {
+      "id": "t17",
+      "source": "courbet",
+      "target": "train",
+      "type": "Learned from",
+      "line": "Courbet's real, everyday subjects opened the door for modern-life painting."
+    },
+    {
+      "id": "t18",
+      "source": "boscoreale",
+      "target": "carnevale",
+      "type": "Compare",
+      "line": "1,500 years apart, both paint buildings to make space look deep."
+    },
+    {
+      "id": "t19",
+      "source": "summer",
+      "target": "carnevale",
+      "type": "Compare",
+      "line": "Two ways to show space: a traveling view in China, one fixed viewpoint in Italy."
+    },
+    {
+      "id": "t20",
+      "source": "amphora",
+      "target": "maya",
+      "type": "Compare",
+      "line": "Painted pots that tell stories, an ocean and centuries apart."
+    },
+    {
+      "id": "t21",
+      "source": "mihrab",
+      "target": "mondrian",
+      "type": "Compare",
+      "line": "Geometry as the whole design, 570 years apart."
+    },
+    {
+      "id": "t22",
+      "source": "duccio",
+      "target": "carnevale",
+      "type": "Learned from",
+      "line": "From flat gold to deep space: Italian painting changed in about 170 years."
+    },
+    {
+      "id": "t23",
+      "source": "whalers",
+      "target": "courbet",
+      "type": "Compare",
+      "line": "Same years, two directions: Turner's stormy feeling and Courbet's plain real life."
+    }
+  ]
+}

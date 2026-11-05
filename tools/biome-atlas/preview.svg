@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="625" viewBox="0 0 1000 625">
+<defs>
+  <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#20332b"/><stop offset="1" stop-color="#0e1520"/></linearGradient>
+  <linearGradient id="bar" x2="0" y2="1"><stop stop-color="#77bbff"/><stop offset="1" stop-color="#347cb9"/></linearGradient>
+  <radialGradient id="light"><stop stop-color="#5cbf2a" stop-opacity=".2"/><stop offset="1" stop-color="#5cbf2a" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="1000" height="625" fill="url(#bg)"/>
+<ellipse cx="200" cy="50" rx="650" ry="400" fill="url(#light)"/>
+<text x="45" y="64" fill="#b9e9a2" font-family="Segoe UI,sans-serif" font-size="14" letter-spacing="4">CURIO CLASS · FIELD STUDIES</text>
+<text x="43" y="125" fill="#e8edf3" font-family="Segoe UI,sans-serif" font-size="48" font-weight="600">Biome Atlas</text>
+<text x="45" y="160" fill="#a6b3c4" font-family="Segoe UI,sans-serif" font-size="19">Climate predicts. Nature has the last word.</text>
+<rect x="45" y="195" width="615" height="380" rx="16" fill="#0e1520" stroke="#39493d"/>
+<text x="72" y="233" fill="#e8edf3" font-family="Segoe UI,sans-serif" font-size="20">A year in Manaus</text>
+<g stroke="#ffffff12">
+  <path d="M85 280H625M85 345H625M85 410H625M85 475H625M85 540H625"/>
+</g>
+<g fill="url(#bar)">
+  <rect x="95" y="322" width="29" height="218" rx="3"/>
+  <rect x="139" y="328" width="29" height="212" rx="3"/>
+  <rect x="183" y="311" width="29" height="229" rx="3"/>
+  <rect x="227" y="304" width="29" height="236" rx="3"/>
+  <rect x="271" y="373" width="29" height="167" rx="3"/>
+  <rect x="315" y="456" width="29" height="84" rx="3"/>
+  <rect x="359" y="492" width="29" height="48" rx="3"/>
+  <rect x="403" y="500" width="29" height="40" rx="3"/>
+  <rect x="447" y="484" width="29" height="56" rx="3"/>
+  <rect x="491" y="459" width="29" height="81" rx="3"/>
+  <rect x="535" y="406" width="29" height="134" rx="3"/>
+  <rect x="579" y="359" width="29" height="181" rx="3"/>
+</g>
+<path d="M109 286L153 286L197 286L241 285L285 284L329 282L373 281L417 278L461 276L505 277L549 279L593 283"
+ fill="none" stroke="#ff8a8a" stroke-width="4"/>
+<g font-family="Segoe UI,sans-serif" fill="#a6b3c4" font-size="12">
+<text x="97" y="560">Jan</text><text x="228" y="560">Apr</text><text x="360" y="560">Jul</text><text x="492" y="560">Oct</text>
+</g>
+<g font-family="Segoe UI,sans-serif">
+<text x="710" y="235" fill="#5cbf2a" font-size="15" letter-spacing="2">01 / READ</text>
+<text x="710" y="273" fill="#e8edf3" font-size="21">13 real climates.</text>
+<text x="710" y="330" fill="#5cbf2a" font-size="15" letter-spacing="2">02 / KEY</text>
+<text x="710" y="368" fill="#e8edf3" font-size="21">Make a prediction.</text>
+<text x="710" y="425" fill="#5cbf2a" font-size="15" letter-spacing="2">03 / CHANGE</text>
+<text x="710" y="463" fill="#e8edf3" font-size="21">Watch land recover.</text>
+</g>
+<path d="M754 564C750 520 785 503 815 505C814 544 790 571 754 564Z" fill="#5cbf2a" opacity=".35"/>
+<path d="M750 575L802 520M771 551V530M779 542H800" stroke="#b9e9a2" fill="none" stroke-width="2"/>
+</svg>

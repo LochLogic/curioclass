@@ -1,0 +1,1980 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Research, hang and focus theatrical lights, record cues, and rehearse the final scene of A Doll's House. Grades 9-12.">
+<link rel="icon" href="data:,">
+<title>Stage Lighting Plot · Curio Class</title>
+<!--
+Stage Lighting Plot, Curio Class. Based on kit/starter/src.html. NCAS TH:Cr1, TH:Cr3, TH:Pr5.
+A Doll's House, Henrik Ibsen, R. Farquharson Sharp translation, Project Gutenberg 2542, public domain.
+Instrument geometry, display gels and light energies are a simple educational model, not photometric data.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Content CC BY 4.0, code MIT.
+One offline file. Designs stay on this device. No network requests. No recorded speech in this build.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {--brand:#ee6ff0;--brand-ink:#1c1203;--floor:#1a1a20}
+body {grid-template-rows:64px minmax(0,1fr) 52px;min-height:0;overflow:hidden}
+header {gap:12px;padding:8px 18px;flex-wrap:nowrap;border-bottom:1px solid #68416c}
+h1 {font-size:23px;letter-spacing:-.6px;white-space:nowrap}
+h1 small {font-size:11px;letter-spacing:.04em;margin-top:4px}
+.seg {border:1px solid #516071;border-radius:6px;flex-shrink:0}
+.seg button {min-height:44px;padding:0 17px;font-size:13px;min-width:44px}
+.utilities {display:flex;gap:6px}
+.icon-btn {min-height:44px;min-width:44px;padding:0 10px;font-size:12px;border-width:1px;border-radius:5px}
+button,input,select {touch-action:manipulation}
+button:active {filter:brightness(1.2)}
+button:focus-visible,input:focus-visible,select:focus-visible,canvas:focus-visible {outline:3px solid #8fe3ff;outline-offset:2px}
+.btn {font-size:12px;padding:0 12px;border-radius:5px;min-height:44px;flex-shrink:0}
+.primary {background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+select,input[type=number],input[type=text] {min-height:44px;border:1px solid #62789a;border-radius:4px;background:#0d141e;
+  color:#e8edf3;padding:0 9px;font:13px 'Segoe UI',sans-serif;min-width:0}
+label {font-size:12px;color:var(--muted)}
+label>select,label>input {display:block;width:100%;margin-top:4px}
+main {display:block;min-height:0;overflow:hidden}
+.workspace {height:100%;min-height:0}
+.hang-layout {display:grid;grid-template-columns:minmax(0,1fr) 306px}
+.plan-wrap {min-height:0;display:grid;grid-template-rows:46px minmax(0,1fr) 34px;background:#0b0e14;position:relative}
+.barline {display:flex;align-items:center;gap:8px;padding:0 12px;border-bottom:1px solid #30333e;min-width:0}
+.eyebrow {font:11px Consolas,monospace;letter-spacing:.12em;color:#ee6ff0;text-transform:uppercase}
+.barline .spacer {margin-left:auto}
+#plan {width:100%;height:100%;display:block;touch-action:none;cursor:crosshair}
+.plan-status {padding:7px 14px;font:12px Consolas,monospace;color:#b9c5d4;border-top:1px solid #30333e}
+.panel {padding:12px;gap:10px;border-left:1px solid #374050;overflow:auto;min-height:0}
+.panel h2,.section-title {margin:0;font-size:11px;font-weight:600;letter-spacing:.12em;color:#a6b3c4;text-transform:uppercase}
+.shelf {display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.lantern {min-width:44px;min-height:90px;padding:5px 2px;border:1px solid #485567;background:linear-gradient(#28313d,#171c25);
+  border-radius:5px;font-size:10px;touch-action:none;position:relative}
+.lantern img {display:block;width:100%;height:49px;object-fit:contain;pointer-events:none;filter:drop-shadow(0 3px 2px #0008)}
+.lantern strong {display:block;font-size:10px;font-weight:600}
+.lantern span {color:#bdc9d7;font-size:10px}
+.lantern[aria-pressed=true] {border-color:#ee6ff0;box-shadow:inset 0 0 12px #ee6ff020}
+.two {display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.full {grid-column:1/-1}
+.settings {display:grid;gap:10px;padding:12px;background:linear-gradient(135deg,#222936,#151b25);border:1px solid #3a4657;
+  border-radius:6px;box-shadow:0 8px 22px #0003}
+.settings h3 {margin:0;font:500 23px Georgia,serif}
+.swatches {display:flex;gap:4px;height:8px;margin-top:5px}
+.swatches i {flex:1;background:var(--gel);border:1px solid #ffffff60}
+.metrics {font:12px/1.7 Consolas,monospace;color:#e8edf3;min-height:44px}
+.metrics span {color:#a6b3c4}
+.muted {font-size:12px;line-height:1.45;color:#a6b3c4;margin:0}
+#emptySettings {padding:12px;background:radial-gradient(at 50% 35%,#35404e,#171e29);border:1px solid #374455;border-radius:5px}
+#emptyPortrait {display:block;width:100%;height:160px;object-fit:contain;margin-bottom:14px;filter:drop-shadow(0 8px 8px #0006)}
+.tiny {font-size:10px;color:#a6b3c4;line-height:1.5}
+.footnote {margin-top:auto;padding-top:8px;border-top:1px solid #374050}
+.preview {position:absolute;right:12px;bottom:45px;width:33%;aspect-ratio:16/9;border:1px solid #ee6ff080;border-radius:4px;
+  background:#050507;box-shadow:0 6px 25px #0009;pointer-events:none;overflow:hidden}
+.preview canvas {width:100%;height:100%;display:block}
+.preview b {position:absolute;left:5px;top:5px;font:10px Consolas;background:#000b;padding:3px;color:#e8edf3}
+footer {display:flex;align-items:center;gap:12px;padding:4px 18px;background:#111821;border-top:1px solid #374050}
+#hint {font-size:13px;line-height:1.35;flex:1;min-height:35px;display:flex;align-items:center;margin:0}
+.save-status {font:10px Consolas,monospace;max-width:150px;color:#a6b3c4}
+.research {display:grid;grid-template-rows:minmax(0,1fr) 110px 58px;padding:16px 24px;gap:10px;background:radial-gradient(at 25% 35%,#342b29,#0d1219 70%)}
+.research-card {display:grid;grid-template-columns:minmax(220px,42%) 1fr;max-width:1100px;width:100%;margin:auto;height:100%;
+  min-height:0;border:1px solid #5a5052;background:#191b21;box-shadow:0 12px 60px #0006;overflow:hidden}
+.research-card img {width:100%;height:100%;min-height:0;object-fit:contain;background:#090b0f}
+.facts {padding:clamp(12px,3vw,40px);overflow:auto;display:flex;flex-direction:column;justify-content:center;gap:18px}
+.facts h2 {font:500 clamp(24px,3vw,38px)/1.1 Georgia,serif;margin:0}
+.facts p {font-size:15px;line-height:1.6;margin:0;max-width:540px}
+.facts p::before {content:attr(data-n);font:12px Consolas;color:#ee6ff0;margin-right:12px}
+.tiles {display:grid;grid-template-columns:repeat(5,1fr);gap:10px;max-width:1100px;width:100%;margin:auto;height:110px}
+.tile {padding:0;overflow:hidden;border:1px solid #586071;border-radius:5px;background:#171d27;min-width:44px;position:relative}
+.tile img {width:100%;height:76px;object-fit:cover;display:block;filter:brightness(.85)}
+.tile span {display:block;padding:6px;font-size:11px}
+.tile[aria-pressed=true] {border:2px solid #ee6ff0}
+.motivation {display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.motivation .btn {font-size:12px}
+.cue-workspace {display:grid;grid-template-rows:48px 50px minmax(0,1fr);background:#10151e}
+.beat-strip {display:flex;gap:5px;padding:2px 12px;align-items:center}
+.beat-strip button {min-height:44px;min-width:44px;flex:1;border:1px solid #4e5b6b;background:#1b2430;color:#c9d3df;
+  font:14px Consolas,monospace;border-radius:4px;position:relative}
+.beat-strip button[aria-pressed=true] {border-color:#ee6ff0;background:#3d2541;color:white}
+.beat-strip button.turn::after {content:'';position:absolute;bottom:3px;left:35%;right:35%;height:2px;background:#ee6ff0}
+.cue-toolbar {display:flex;gap:7px;align-items:center;padding:3px 12px;border-block:1px solid #364052;min-width:0}
+.cue-toolbar label {display:flex;align-items:center;gap:5px;white-space:nowrap}
+.cue-toolbar input {width:62px;margin:0}
+#cueLabel {width:180px;flex:1;max-width:280px}
+.cue-layout {min-height:0;display:grid;grid-template-columns:230px minmax(0,1fr) 255px;gap:1px;background:#354050}
+.script {padding:14px;background:#181c25;overflow:auto;min-height:0}
+.script h2 {font:500 24px Georgia,serif;margin:8px 0 14px}
+.script p {font:14px/1.7 Georgia,serif;white-space:pre-line;margin:0;color:#d5d9df}
+.script button {margin-top:12px}
+.board-area {min-height:0;position:relative;background:linear-gradient(#202835,#131922);display:grid;
+  grid-template-rows:38px minmax(0,1fr) 32px}
+.board-area .preview {bottom:40px;width:35%;max-width:220px}
+.board-area:has(.preview:not([hidden])) .board {margin-right:calc(35% + 20px)}
+.board-label {font:11px Consolas;padding:12px 14px;color:#bac8d8;letter-spacing:.1em}
+.board {display:flex;gap:2px;overflow-x:auto;min-height:0;padding:0 10px 12px;align-items:stretch}
+.fader {display:flex;align-items:center;flex-direction:column;min-width:69px;padding:8px 4px 5px;border:1px solid #303b4a;
+  background:linear-gradient(90deg,#222b39,#151c27);border-radius:4px;min-height:150px}
+.fader .position {font:10px Consolas;color:#a6b3c4;white-space:nowrap}
+.fader b {font:16px Consolas;margin:7px 0 0}
+.fader i {height:4px;width:32px;margin:5px;background:var(--gel);box-shadow:0 0 8px var(--gel)}
+.fader input[type=range] {writing-mode:vertical-lr;direction:rtl;width:44px;height:100%;min-height:65px;flex:1}
+.fader output {font:15px Consolas;margin-top:6px}
+.fader small {font-size:10px;color:#bac8d8;margin-top:4px}
+.cue-list {padding:12px;background:#171d27;overflow:auto;min-height:0}
+.cue-list h2 {font:11px Consolas;letter-spacing:.1em;color:#a6b3c4;margin:0 0 10px}
+.cue-list button {display:grid;grid-template-columns:42px 1fr;gap:4px;width:100%;min-height:62px;padding:8px;margin-bottom:6px;
+  border:1px solid #495769;border-radius:4px;background:#202a38;text-align:left}
+.cue-list button[aria-pressed=true] {border-color:#ee6ff0;background:#35283c}
+.cue-list b {grid-row:span 2;font:21px Consolas;color:#ee6ff0}
+.cue-list span {font-size:12px;overflow-wrap:anywhere}
+.cue-list small {font:10px Consolas;color:#b2bfd0}
+.run-workspace {display:grid;grid-template-rows:48px minmax(100px,1fr) 156px auto;min-height:0;background:#080a0f}
+.transport {display:flex;align-items:center;gap:7px;padding:2px 14px;border-bottom:1px solid #384251;background:#141b25}
+.transport .btn {min-width:58px}
+.transport output {margin-left:auto;font:12px Consolas;color:#c6cddd;white-space:nowrap}
+.run-view {min-height:0;position:relative;display:flex;justify-content:center;overflow:hidden;background:radial-gradient(#242026,#06070a)}
+#runCanvas {width:100%;height:100%;display:block;object-fit:contain}
+.caption {position:absolute;bottom:0;left:0;right:0;padding:9px 16px;background:linear-gradient(transparent,#000e 22%);
+  font:14px/1.45 Georgia,serif;white-space:pre-line;text-align:center;color:#f0ede8;pointer-events:none}
+.black-warning {position:absolute;left:14px;top:12px;color:#ffd0bb;background:#211812e8;padding:8px 12px;border:1px solid #9d6c52;
+  font-size:12px;border-radius:4px}
+.graph-wrap {position:relative;border-block:1px solid #394050;background:#101620;min-height:120px;padding:5px 10px 0}
+.graph-head {display:flex;align-items:center;gap:18px;padding:0 5px;font:11px Consolas;height:26px}
+.graph-head span::before {content:'';display:inline-block;width:20px;border-top:2px solid var(--c);margin:0 6px 3px 0}
+.graph-head .warm::before {border-top-style:dashed}
+.graph-head .focus::before {border-top-style:dotted}
+.graph-head button {min-height:44px;position:absolute;right:8px;top:4px;z-index:2}
+#graph {width:100%;height:calc(100% - 26px);display:block}
+.observations {display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:16px;padding:10px 20px;background:#141922}
+.observations p {font-size:12px;line-height:1.5;margin:0;color:#cbd2de}
+dialog {background:#19212e;color:#e8edf3;border:1px solid #ae69b1;border-radius:8px;max-width:min(650px,94vw);
+  max-height:90vh;overflow:auto;padding:22px;box-shadow:0 16px 80px #000a}
+dialog::backdrop {background:#05070caa}
+dialog h2 {font:500 27px Georgia,serif;margin:0 0 12px}
+dialog p {font-size:14px;line-height:1.6}
+.turn-row {display:grid;grid-template-columns:70px minmax(0,1fr) 44px;gap:8px;margin:7px 0}
+.dialog-actions {display:flex;gap:8px;margin-top:16px;justify-content:flex-end}
+.drag-ghost {position:fixed;z-index:40;pointer-events:none;width:100px;height:80px;object-fit:contain;filter:drop-shadow(0 5px 10px #000b)}
+.heartbeat {width:5px;height:5px;background:#ee6ff0;border-radius:50%;box-shadow:0 0 7px #ee6ff0;animation:pulse 3s ease-in-out infinite}
+@keyframes pulse {50% {opacity:.3}}
+.calm .heartbeat {animation:none}
+@media (max-width:1050px) {
+  header {gap:7px;padding:6px 10px} h1 {font-size:20px} .seg button {padding:0 10px}
+  .icon-btn {padding:0 7px;font-size:11px} .hang-layout {grid-template-columns:minmax(0,1fr) 260px}
+  .panel {padding:9px;gap:8px} .settings {padding:9px;gap:7px}
+  .cue-layout {grid-template-columns:180px minmax(0,1fr) 190px}
+  .research {padding:12px;gap:8px} .facts {padding:18px;gap:10px} .facts p {font-size:13px;line-height:1.5}
+}
+@media (max-height:600px) and (min-width:601px) {
+  body {grid-template-rows:52px minmax(0,1fr) 44px} h1 {font-size:17px} h1 small {display:none}
+  header {gap:5px;padding:4px 8px} .seg button {padding:0 9px;font-size:12px} .icon-btn {font-size:10px;padding:0 5px}
+  .hang-layout {grid-template-columns:minmax(0,1fr) 236px} .plan-wrap {grid-template-rows:44px minmax(0,1fr) 28px}
+  .plan-status {font-size:10px;padding:6px} .panel {padding:6px;gap:6px} .lantern {min-height:69px}
+  .lantern img {height:31px} .settings {padding:6px;gap:5px} .settings h3 {font-size:19px}
+  .panel h2,.footnote,.hang-access {display:none} .metrics {min-height:28px;line-height:1.4}
+  .settings .two {gap:5px} .settings label {font-size:10px} .settings label>select,.settings label>input {margin-top:1px}
+  #emptyPortrait {height:105px;margin-bottom:8px}
+  .settings input,.settings select {font-size:11px;padding:0 4px} .settings .btn {padding:0 8px}
+  .research {grid-template-rows:minmax(0,1fr) 76px 44px;padding:8px;gap:5px}
+  .research-card {grid-template-columns:32% 1fr} .facts {padding:10px;gap:5px} .facts h2 {font-size:23px}
+  .facts p {font-size:11px;line-height:1.35} .tiles {height:76px;gap:6px} .tile img {height:50px} .tile span {padding:3px}
+  .motivation {gap:5px} .motivation .btn {padding:0 8px;font-size:11px}
+  .cue-layout {grid-template-columns:154px minmax(0,1fr) 150px} .script {padding:9px} .script h2 {font-size:18px}
+  .script p {font-size:12px;line-height:1.5} .cue-workspace {grid-template-rows:44px 48px minmax(0,1fr)}
+  .cue-toolbar {padding:2px 7px;gap:4px} .cue-toolbar .btn {padding:0 7px;font-size:11px}
+  .cue-toolbar input {width:48px;padding:0 3px} .cue-toolbar label {font-size:10px}
+  #cueLabel {width:90px;max-width:140px}
+  .board-area {grid-template-rows:27px minmax(0,1fr) 23px} .board-label {font-size:10px;padding:7px}
+  .fader {min-width:60px;min-height:125px;padding:4px 2px}.fader b {margin:3px 0}.fader i {margin:3px}
+  .cue-list {padding:7px}.cue-list button {min-height:60px;padding:6px}.cue-list h2 {font-size:10px}
+  .run-workspace {grid-template-rows:46px minmax(90px,1fr) 120px 27px}
+  .graph-head {height:22px;gap:10px;font-size:10px} #graph {height:calc(100% - 22px)}
+  .graph-head .btn {font-size:10px;padding:0 8px;background:#1c2532}
+  .caption {font-size:10px;line-height:1.3;padding:5px 10px;max-height:64px;overflow:auto;pointer-events:auto}
+  .observations {padding:5px 10px;gap:10px;overflow:auto;grid-template-columns:1.4fr 1fr}
+  .observations p {font-size:10px;line-height:1.4}.observations p:last-child {display:none}
+  footer {padding:2px 9px;gap:8px} #hint {font-size:11px;min-height:34px}.save-status {font-size:10px;max-width:100px}
+}
+@media (max-width:600px) {
+  body {grid-template-rows:100px minmax(0,1fr) 58px} header {flex-wrap:wrap;gap:4px;padding:4px 8px}
+  h1 {font-size:17px;flex:1;order:0} h1 small {display:none}.utilities {order:1;gap:3px}
+  .icon-btn {font-size:10px;padding:0 5px}.seg {order:2;width:100%;display:flex}.seg button {flex:1;font-size:12px}
+  .hang-layout {grid-template-columns:1fr;grid-template-rows:minmax(210px,1fr) 252px}
+  .plan-wrap {grid-template-rows:44px minmax(0,1fr) 29px}.plan-status {font-size:10px;padding:7px}
+  .panel {border-left:0;border-top:1px solid #374050;display:grid;grid-template-columns:84px 1fr;gap:7px;padding:8px}
+  .panel>h2,.footnote,.hang-access {display:none}.shelf {grid-template-columns:1fr 1fr;gap:4px;align-self:start}
+  .lantern {min-height:90px}.lantern img {height:49px}.settings {gap:4px;padding:7px;align-self:start}
+  .settings h3 {font-size:19px}.settings label {font-size:10px}.settings label>input,.settings label>select {margin-top:1px}
+  .settings input,.settings select {font-size:11px;padding:0 3px}.settings .two {gap:4px}
+  .settings .btn {font-size:11px;padding:0 6px}.metrics {font-size:10px;line-height:1.4;min-height:28px}
+  #emptySettings {grid-column:2}.barline {padding:0 8px;font-size:10px}.barline .eyebrow {font-size:10px}
+  #emptyPortrait {height:115px;margin-bottom:8px}
+  .barline .btn {font-size:10px;padding:0 7px}.preview {width:40%;right:6px;bottom:36px}
+  footer {padding:3px 9px;gap:7px} #hint {font-size:11px;min-height:45px}.save-status {font-size:10px;max-width:70px}
+  .research {grid-template-rows:minmax(0,1fr) 85px 96px;padding:8px;gap:8px}
+  .research-card {grid-template-columns:1fr;grid-template-rows:45% minmax(0,1fr)}
+  .facts {padding:12px;gap:8px;justify-content:flex-start}.facts h2 {font-size:24px}.facts p {font-size:12px;line-height:1.4}
+  .tiles {height:85px;gap:4px}.tile img {height:51px}.tile span {font-size:10px;padding:3px}
+  .motivation {gap:4px;display:grid;grid-template-columns:1fr 1fr}.motivation .eyebrow {display:none}
+  .cue-workspace {grid-template-rows:48px 96px minmax(0,1fr)}.beat-strip {padding:2px 4px;gap:1px}
+  .beat-strip button {min-width:44px;padding:0;font-size:13px}
+  .cue-toolbar {padding:2px 6px;gap:4px;flex-wrap:wrap;align-content:center}
+  .cue-toolbar .btn {font-size:11px;padding:0 8px}.cue-toolbar label {font-size:11px}
+  .cue-toolbar input {width:56px}.cue-toolbar #cueLabel {width:135px;max-width:135px;flex:0 0 135px}
+  .cue-layout {grid-template-columns:minmax(0,1fr) 131px;grid-template-rows:minmax(0,1fr) 114px}
+  .board-area {grid-column:1;grid-row:1}.cue-list {grid-column:2;grid-row:1;padding:7px}
+  .script {grid-column:1/-1;grid-row:2;padding:8px}.script h2 {font-size:17px;margin:0 0 5px}
+  .script .eyebrow {display:none}.script p {font-size:12px;line-height:1.45}
+  .board-area .preview {width:35%;bottom:39px}.board-label {font-size:10px;padding:12px 7px}
+  .fader {min-width:64px}.cue-list button {padding:5px;grid-template-columns:42px 1fr}.cue-list b {font-size:17px}
+  .cue-list span {font-size:10px}.cue-list small {font-size:10px}
+  .run-workspace {grid-template-rows:92px minmax(150px,1fr) 154px 85px}
+  .transport {padding:2px 7px;gap:4px;flex-wrap:wrap;align-content:center}.transport .btn {font-size:11px;min-width:55px}
+  .transport output {font-size:11px}.caption {font-size:11px;padding:7px;max-height:95px;overflow:auto;pointer-events:auto}
+  .graph-head {font-size:10px;gap:6px;flex-wrap:wrap;height:40px;padding-right:65px;align-content:center}
+  .graph-head span::before {width:12px;margin-right:4px}.graph-head .btn {position:absolute;right:6px;top:5px;font-size:10px;padding:0 5px}
+  #graph {height:calc(100% - 40px)}.observations {display:block;padding:6px 10px;overflow:auto}
+  .observations p {font-size:11px;line-height:1.4;margin-bottom:4px}
+}
+@media (max-height:700px) and (min-width:601px),(max-width:600px) {
+  .settings {grid-template-columns:1fr 1fr}
+  .settings>.two:first-child {grid-column:2;grid-row:1;display:block}
+  .settings h3 {display:none}
+  .settings>.two:nth-child(2),.settings>.two:last-child {grid-column:1/-1}
+  .settings #selection {width:100%;height:44px}
+  .settings #goboLabel,.settings #floodLabel {grid-column:1/-1}
+  .settings .metrics {grid-column:1;grid-row:1;align-self:center;font-size:10px;line-height:1.35}
+  .settings .metricPosition {display:none}
+  .settings #rotationLabel,.settings #heightLabel {min-width:0}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Stage Lighting Plot<small>Lighting design for a scene · Curio Class</small></h1>
+  <nav class="seg" aria-label="Mode">
+    <button id="m-research" aria-pressed="false">Research</button>
+    <button id="m-hang" aria-pressed="true">Hang</button>
+    <button id="m-cues" aria-pressed="false">Cues</button>
+    <button id="m-run" aria-pressed="false">Run</button>
+  </nav>
+  <div class="utilities">
+    <button id="read" class="icon-btn">Read</button>
+    <button id="motion" class="icon-btn" aria-pressed="true">Motion</button>
+    <button id="sound" class="icon-btn" aria-pressed="true">Sound</button>
+  </div>
+</header>
+<main>
+  <section id="hang" class="workspace hang-layout" aria-label="Hang and aim">
+    <div class="plan-wrap">
+      <div class="barline"><span class="heartbeat"></span><span class="eyebrow">Ground plan · meters</span>
+        <span class="spacer"></span><button id="preview" class="btn" aria-pressed="false">Preview</button>
+        <button id="clear" class="btn">Clear design</button></div>
+      <canvas id="plan" tabindex="0" role="application"
+        aria-label="Lighting ground plan. Choose a light, then click a pipe. Arrow keys aim the selected light; Shift arrows move it along its pipe."></canvas>
+      <div class="plan-status" id="planStatus">10 m × 7 m stage · FOH height 8 m · electrics 6.5 m</div>
+      <div id="hangPreview" class="preview" hidden><canvas id="hangPreviewCanvas"></canvas><b>LIVE · BEAT <span id="hpBeat">1</span></b></div>
+    </div>
+    <aside class="panel">
+      <h2>Instrument shelf · drag to a pipe</h2>
+      <div class="shelf" id="shelf">
+        <button class="lantern" id="shelf-ers19" data-type="ers19" aria-pressed="false">
+          <img src="art:slp-ers" alt="Ellipsoidal spotlight"><strong>ERS 19°</strong><span id="left-ers19">4 left</span></button>
+        <button class="lantern" id="shelf-ers36" data-type="ers36" aria-pressed="false">
+          <img src="art:slp-ers" alt="Ellipsoidal spotlight"><strong>ERS 36°</strong><span id="left-ers36">8 left</span></button>
+        <button class="lantern" id="shelf-fresnel" data-type="fresnel" aria-pressed="false">
+          <img src="art:slp-fresnel" alt="Fresnel lantern"><strong>Fresnel</strong><span id="left-fresnel">8 left</span></button>
+        <button class="lantern" id="shelf-par" data-type="par" aria-pressed="false">
+          <img src="art:slp-par" alt="PAR can"><strong>PAR</strong><span id="left-par">4 left</span></button>
+      </div>
+      <div class="two hang-access">
+        <label>Pipe<select id="pipe"><option value="0">FOH</option><option value="1">1st electric</option>
+          <option value="2">2nd electric</option><option value="3">SL boom</option><option value="4">SR boom</option></select></label>
+        <button id="hangButton" class="btn" style="align-self:end">Hang on pipe</button>
+      </div>
+      <div id="emptySettings" class="muted"><img id="emptyPortrait" src="art:slp-ers" alt="Selected ellipsoidal spotlight">
+        Choose an instrument, then tap a pipe. Drag its ring to focus the beam.</div>
+      <div class="settings" id="settings" hidden>
+        <div class="two"><h3 id="instrumentTitle">ERS 36°</h3><select id="selection" aria-label="Selected instrument"></select></div>
+        <div class="two">
+          <label>Channel<input id="channel" type="number" min="1" max="40" step="1"></label>
+          <label>Gel<select id="gel"></select><span class="swatches" id="swatches" aria-hidden="true"></span></label>
+        </div>
+        <label id="goboLabel">Gobo<select id="gobo"><option value="none">None</option>
+          <option value="window">Window panes</option><option value="leaf">Leaf breakup</option></select></label>
+        <label id="floodLabel" hidden>Spot / Flood<select id="flood"><option value="20">Spot · 20°</option>
+          <option value="50">Flood · 50°</option></select></label>
+        <label id="rotationLabel" hidden>PAR long-axis handle<input id="rotation" type="range" min="0" max="180" step="5"></label>
+        <label id="heightLabel" hidden>Boom height<input id="height" type="range" min="1" max="3" step="0.5"></label>
+        <div class="metrics" id="metrics"></div>
+        <div class="two"><button class="btn" id="remove">Remove</button><button class="btn" id="lightNote">How light works</button></div>
+      </div>
+      <div class="footnote"><p class="muted">N = Nora · H = Helmer<br>Ring: focus at 1.6 m. Arrow keys aim; Shift arrows move a lantern.</p>
+        <p class="tiny">A Doll's House · Act III · Ibsen, 1879<br>Sharp translation · fixed blocking</p></div>
+    </aside>
+  </section>
+  <section id="research" class="workspace research" aria-label="Research sources" hidden>
+    <article class="research-card"><img id="researchImage" src="art:rs-lamp" alt="Brass kerosene lamp">
+      <div class="facts" id="facts"></div></article>
+    <div class="tiles" id="tiles"></div>
+    <div class="motivation" id="motivation"><span class="eyebrow">Motivation</span></div>
+  </section>
+  <section id="cues" class="workspace cue-workspace" aria-label="Lighting cue board" hidden>
+    <div class="beat-strip" id="cueBeats" aria-label="Script beats"></div>
+    <div class="cue-toolbar">
+      <button id="record" class="btn primary">Record cue</button><button id="update" class="btn">Update cue</button>
+      <button id="deleteCue" class="btn">Delete cue</button>
+      <label>Fade <input id="fade" type="number" min="0" max="10" step="0.5" value="2"> s</label>
+      <input id="cueLabel" aria-label="Cue label" type="text" maxlength="48" placeholder="Cue label">
+      <button id="allZero" class="btn">All to 0</button><button id="cuePreview" class="btn" aria-pressed="false">Preview</button>
+    </div>
+    <div class="cue-layout">
+      <article class="script"><span class="eyebrow">A Doll's House · Act III</span><h2 id="scriptTitle"></h2><p id="scriptText"></p></article>
+      <div class="board-area"><div class="board-label">LIVE LEVELS · 0 TO 100</div><div id="board" class="board"></div>
+        <div class="board-label">Gels and energy are model approximations.</div>
+        <div id="cueInset" class="preview" hidden><canvas id="cuePreviewCanvas"></canvas><b>LIVE PREVIEW</b></div></div>
+      <aside class="cue-list"><h2>Cue stack · holds until next</h2><div id="cueList"></div>
+        <label>Window backing gel<select id="windowGel"></select></label></aside>
+    </div>
+  </section>
+  <section id="run" class="workspace run-workspace" aria-label="Run scene and light graph" hidden>
+    <div class="transport"><button id="runScene" class="btn primary">▶ Run scene</button><button id="back" class="btn">Back</button>
+      <button id="step" class="btn">Step</button><button id="stop" class="btn">Stop</button>
+      <button id="editTurns" class="btn" aria-controls="turnDialog">Edit turns</button>
+      <output id="runStatus">BEAT 1 / 8 · STOPPED</output></div>
+    <div class="run-view"><canvas id="runCanvas" aria-label="The Helmers' room relit by the current lighting design"></canvas>
+      <div class="black-warning" id="darkWarning" hidden>Nobody can see the actors</div><div class="caption" id="caption"></div></div>
+    <div class="graph-wrap"><div class="graph-head">
+      <span style="--c:#e8edf3">Brightness [0, 1]</span><span class="warm" style="--c:#ffb46b">Warmth [−2.5, +2.5]</span>
+      <span class="focus" style="--c:#8fe3ff">Nora − Helmer [−1, +1]</span></div>
+      <canvas id="graph" role="img" aria-label="Light graph across eight beats. Brightness, warmth, and Nora minus Helmer."></canvas>
+    </div>
+    <div class="observations" id="observations"></div>
+  </section>
+</main>
+<footer><p id="hint" class="hint"></p><span class="save-status" id="saveStatus">Saved only on this device</span></footer>
+<dialog id="clearDialog"><h2>Clear this lighting design?</h2><p>This removes the instruments, cues and research motivations saved on this device.</p>
+  <div class="dialog-actions"><button class="btn" id="cancelClear">Keep design</button>
+    <button class="btn primary" id="confirmClear">Clear design</button></div></dialog>
+<dialog id="noteDialog"><h2>How the light works</h2>
+  <p>A simple model, not a photometric prediction. Throw is the distance to the focus ring, 1.6 m above the floor.
+    Pool radius is throw × tan(half the beam angle). Oblique pools stretch into ellipses.</p>
+  <p>Center energy = level × output ÷ pool area × gel transmission. Level runs from 0 to 1. Outputs are 10 model units,
+    or 14 for PAR. Edges soften by type. Shown brightness is 1 − exp(−energy), with ambient 0.03.</p>
+  <p>Gels, transmissions and warmth scores are approximations. Brightness is a floor average; warmth is energy weighted.
+    The face line compares head-point brightness. Graphs show each beat's completed look, rather than live fade samples.</p>
+  <p>The floor and back wall are mapped to the painting. Furniture uses that surface light, without cast shadows.
+    Gobos are modeled as a pattern inside a beam. The focus ring projects onto the floor in this simplified view.</p>
+  <div class="dialog-actions"><button id="closeNote" class="btn primary">Back to design</button></div></dialog>
+<dialog id="turnDialog"><h2>Your reading of the scene</h2>
+  <p>Move a story turn to another beat, edit its label, or add one. These marks guide observation, never a score.</p>
+  <div id="turnRows"></div><div class="dialog-actions"><button id="addTurn" class="btn">Add turn</button>
+    <button id="closeTurns" class="btn primary">Done</button></div></dialog>
+<img id="setArt" src="art:slp-set" alt="" hidden>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+  const lerp = (a, b, u) => a + (b - a) * u;
+  const TYPES = {
+    ers19: {name:'ERS 19°', max:4, beam:19, output:10, edge:.1, art:'slp-ers'},
+    ers36: {name:'ERS 36°', max:8, beam:36, output:10, edge:.1, art:'slp-ers'},
+    fresnel: {name:'Fresnel', max:8, beam:50, output:10, edge:.5, art:'slp-fresnel'},
+    par: {name:'PAR', max:4, beam:12, output:14, edge:.3, art:'slp-par'}
+  };
+  const PIPES = [
+    {name:'FOH',x1:-4,x2:4,y1:-6,y2:-6,z:8},
+    {name:'1st electric',x1:-5,x2:5,y1:1.5,y2:1.5,z:6.5},
+    {name:'2nd electric',x1:-5,x2:5,y1:4.5,y2:4.5,z:6.5},
+    {name:'SL boom',x1:-6,x2:-6,y1:.5,y2:5,z:2},
+    {name:'SR boom',x1:6,x2:6,y1:.5,y2:5,z:2}
+  ];
+  const GELS = [
+    {name:'No color · open white',w:0,c:'#fff4e0',t:1},
+    {name:'R02 · Bastard Amber',w:1,c:'#ffd9a8',t:.8},
+    {name:'R33 · No Color Pink',w:.5,c:'#ffd6dc',t:.8},
+    {name:'R60 · No Color Blue',w:-.5,c:'#d6e6ff',t:.85},
+    {name:'Lee 204 · Full CT Orange',w:2,c:'#ffb46b',t:.6},
+    {name:'Lee 201 · Full CT Blue',w:-2,c:'#a9c6ff',t:.45},
+    {name:'R26 · Light Red',w:2,c:'#ff5b5b',t:.3},
+    {name:'R80 · Primary Blue',w:-2.5,c:'#3b6bff',t:.15}
+  ].map(g => ({...g,rgb:[1,3,5].map(n => parseInt(g.c.slice(n,n+2),16)/255)}));
+  const SOURCES = [
+    {name:'Table lamp',x:0,y:3.4,dx:0,dy:-1,art:'rs-lamp'},
+    {name:'Stove',x:4.2,y:1.8,dx:-1,dy:0,art:'rs-stove'},
+    {name:'Window',x:-5,y:3,dx:1,dy:0,art:'rs-window'},
+    {name:'Hall door',x:2.6,y:7,dx:0,dy:-1,art:'rs-hall'}
+  ];
+  const RESEARCH = [
+    {name:'Kerosene lamp',art:'rs-lamp',facts:[
+      "Ibsen's stage direction for Act III: a lamp is burning on the table.",
+      'In 1870s homes, evening light came from oil and kerosene lamps and candles.',
+      'Flame light is very warm in color, about 1,800 to 2,000 kelvin; daylight is far bluer, about 5,500 to 6,500 kelvin.']},
+    {name:'The stove',art:'rs-stove',facts:[
+      'Act I describes a stove downstage right, with a fire burning. It is winter.',
+      'A fire glows low and flickers; it lights from below, not above.',
+      'Low light on a face reads very differently from light from above.']},
+    {name:'Winter window',art:'rs-window',facts:[
+      'In late December the sun sets in Oslo (then Christiania) about 3:15 in the afternoon, after about six hours of daylight.',
+      'This scene is late at night, after a costume party upstairs.',
+      'Any light through the window is moonlight, snow glow or a street lamp: cool and dim.']},
+    {name:'The hall door',art:'rs-hall',facts:[
+      'Act III opens with the door into the hall standing open.',
+      "Nora leaves through the hall; the last sound of the play is a door shutting below.",
+      'Light spilling from a doorway can show where people come from and go.']},
+    {name:'The 1879 stage',art:'rs-gaslit',facts:[
+      "A Doll's House opened at the Royal Danish Theatre in Copenhagen on 21 December 1879.",
+      "Stages then were lit by gas; London's Savoy Theatre was the first theater lit fully by electricity, in 1881.",
+      "Today's designers keep the period's sources but light with modern instruments."]}
+  ];
+  const BEATS = [
+    "Helmer: \"What is this? Not gone to bed? Have you changed your things?\" Nora (in everyday dress): \"Yes, Torvald, I " +
+      "have changed my things now.\" Helmer: \"But what for? So late as this.\" Nora: \"I shall not sleep tonight.\"",
+    "Nora (looking at her watch): \"It is not so very late. Sit down here, Torvald. You and I have much to say to one " +
+      "another.\" (She sits down at one side of the table.) [...] \"Torvald, this is a settling of accounts.\"",
+    "Nora: \"We have been married now eight years. Does it not occur to you that this is the first time we two, you and " +
+      "I, husband and wife, have had a serious conversation?\"",
+    "Nora: \"But our home has been nothing but a playroom. I have been your doll-wife, just as at home I was papa's " +
+      "doll-child; and here the children have been my dolls.\"",
+    "Nora (getting up): \"Torvald, it was then it dawned upon me that for eight years I had been living here with a " +
+      "strange man, and had borne him three children. Oh, I can't bear to think of it!\"",
+    "Nora (putting on her cloak): \"I cannot spend the night in a strange man's room.\"",
+    "Nora: \"See, here is your ring back. Give me mine.\" Helmer: \"That too?\" Nora: \"That too.\" Helmer: \"Here it is.\"",
+    "Nora: \"That our life together would be a real wedlock. Goodbye.\" (She goes out through the hall.) Helmer: \"Nora! " +
+      "Nora! Empty. She is gone. The most wonderful thing of all...?\" (The sound of a door shutting is heard from below.)"
+  ];
+  const TITLES = ['Changed things','Settling of accounts','Eight years','A playroom','A strange man','The cloak','The rings','Goodbye'];
+  const MARKS = [
+    [[-1.5,4.2,1.6],[-2.4,6,1.6]], [[-.9,3.4,1.2],[.9,3.4,1.2]],
+    [[-.9,3.4,1.2],[.9,3.4,1.2]], [[-.9,3.4,1.2],[.9,3.4,1.2]],
+    [[-1.8,2.6,1.6],[.9,3.4,1.2]], [[1.6,5,1.6],[.4,3,1.6]],
+    [[.2,3.9,1.6],[.8,3.6,1.6]], [[2.6,6.8,1.6],[2,5.8,1.2]]
+  ];
+  const DEFAULT_TURNS = [
+    {beat:1,label:'She sits: the settling of accounts'},
+    {beat:4,label:'She stands: she sees the marriage'}, {beat:7,label:'She is gone'}
+  ];
+  const L = {
+    welcomeHang:'Drag a light from the shelf onto a pipe. Then drag its ring to aim it.',
+    aimHow:'Drag the ring to where you want the light to land.',
+    gelHow:'Tap Gel to color it. Warm reads like the lamp, cool like the window.',
+    welcomeCues:'Tap a beat, set the faders, then tap Record cue.',
+    welcomeRun:'Tap Run scene, and watch the graph under the stage.',
+    researchHow:'Tap a research picture, then choose where the light should seem to come from.',
+    allTurns:'Every turn in the story has a turn in the light.', dark:"We can't see them.",
+    ...Object.fromEntries(Array.from({length:8},(_,i) => ['noTurn'+i,`The story turns at beat ${i+1}, but your light holds still.`]))
+  };
+  const state = {
+    mode:'hang',instruments:[],levels:{41:30,42:20,43:15},motivations:[false,false,false,false],cues:[],
+    turns:structuredClone(DEFAULT_TURNS),windowGel:5,selected:null,type:'ers36',beat:0,preview:false,
+    selectedCue:null,fade:2,running:false,elapsed:0,aimed:false,research:0,nextId:1,live:false
+  };
+  let saveOkay = true;
+  try {
+    const s = JSON.parse(localStorage.getItem('curio-lighting-plot') || 'null');
+    if (s && Array.isArray(s.instruments) && Array.isArray(s.cues)) {
+      for (const k of ['instruments','levels','motivations','cues','turns','windowGel','nextId']) {
+        if (s[k] !== undefined) state[k] = s[k];
+      }
+      state.instruments = state.instruments.filter(i => TYPES[i.type] && PIPES[i.pipe]);
+      state.selected = state.instruments[0]?.id ?? null;
+    }
+  } catch { saveOkay = false;
+   }
+  const V = Curio.voice({
+    lines:L,scope:() => state.mode,hint:false,read:() => $('hint').textContent,
+    welcome:() => {
+      if (state.mode === 'hang' && !state.instruments.length) return ['welcomeHang',{valid:() => !state.instruments.length}];
+      if (state.mode === 'cues' && !state.cues.length) return ['welcomeCues',{valid:() => !state.cues.length}];
+      if (state.mode === 'run' && !state.running && !runHasStarted) {
+        return ['welcomeRun',{valid:() => !state.running && !runHasStarted}];
+      }
+      if (state.mode === 'research') return 'researchHow';
+      return null;
+    }
+  });
+  let dirty = true;
+  let graphDirty = true;
+  let stats = [];
+  let runLevels = {};
+  let transition = null;
+  let manualOverrides = {};
+  let previousTime = 0;
+  let runBeatAt = 0;
+  let crossFrom = null;
+  let frozenPose = null;
+  let frozenTime = 0;
+  let runHasStarted = false;
+  let lastDarkBeat = -1;
+  let shelfDrag = null;
+  let planDrag = null;
+  let suppressShelfClick = false;
+  let lastPaint = 0;
+  const selected = () => state.instruments.find(i => i.id === state.selected);
+  const channels = () => [
+    ...[...state.instruments].sort((a,b) => a.pipe-b.pipe || a.channel-b.channel).map(i => ({
+      channel:i.channel,name:TYPES[i.type].name,pos:PIPES[i.pipe].name,gel:i.gel})),
+    {channel:41,name:'Lamp',pos:'Practical',gel:1}, {channel:42,name:'Stove',pos:'Practical',gel:4},
+    {channel:43,name:'Window',pos:'Practical',gel:state.windowGel}
+  ];
+  const emptyLook = () => Object.fromEntries(channels().map(c => [c.channel,0]));
+  function save() {
+    const data = {};
+    for (const k of ['instruments','levels','motivations','cues','turns','windowGel','nextId']) data[k] = state[k];
+    try { localStorage.setItem('curio-lighting-plot',JSON.stringify(data));
+     saveOkay = true;
+     }
+    catch { saveOkay = false;
+     }
+    $('saveStatus').textContent = saveOkay ? 'Saved only on this device' : 'Storage unavailable · keep this tab open';
+  }
+  function changed(rebuild = false) {
+    if (state.mode!=='run' && !state.running) frozenPose=null;
+    dirty = true;
+    graphDirty = true;
+    if (rebuild) buildBoard();
+    save();
+  }
+  function hint(text) { $('hint').textContent = text;
+   }
+  function how(key, valid, needs) {
+    hint(L[key]);
+    V.how(key,{valid,needs,hint:false});
+  }
+  function setMode(mode) {
+    if (mode === state.mode && document.querySelector('#'+mode)?.hidden === false) return;
+    V.hush();
+    state.mode = mode;
+    for (const m of ['research','hang','cues','run']) {
+      $(m).hidden = m !== mode;
+      $('m-'+m).setAttribute('aria-pressed',m === mode);
+    }
+    if (mode === 'hang') {
+      hint(state.instruments.length ? 'Select a lantern or drag its ring. Open Cues to set levels and record a look.' : L.welcomeHang);
+      syncSettings();
+    }
+    if (mode === 'research') hint(L.researchHow);
+    if (mode === 'cues') { hint(L.welcomeCues);
+     if (state.running || frozenPose) state.levels={...runLevels};
+     buildBoard();
+     renderCues();
+     }
+    if (mode === 'run') {
+      hint('Tap Run scene, Step, or a beat number under the graph. Revise your cues after watching the scene.');
+      if (!state.running && !frozenPose) runLevels = lookAt(state.beat);
+      renderObservations();
+    }
+    V.welcome();
+    dirty = true;
+    requestAnimationFrame(resize);
+  }
+  function geometry(i) {
+    const t = TYPES[i.type];
+    const throwM = Math.hypot(i.x-i.fx,i.y-i.fy,i.z-1.6);
+    const radius = throwM * Math.tan((i.type === 'fresnel' ? i.beam : t.beam)*Math.PI/360);
+    const other = i.type === 'par' ? throwM*Math.tan(14*Math.PI/180) : radius;
+    const azimuth = Math.atan2(i.fy-i.y,i.fx-i.x);
+    const stretch = Math.min(6,throwM/Math.max(.35,Math.abs(i.z-1.6)));
+    return {t:throwM,r:radius,r2:other,angle:azimuth,stretch,diameter:2*radius};
+  }
+  function compile(levels) {
+    return state.instruments.map(i => {
+      const g = geometry(i);
+      const gel = GELS[i.gel];
+      const angle = i.type === 'par' ? (i.rotation||0)*Math.PI/180 : g.angle;
+      return {...i,...g,cos:Math.cos(angle),sin:Math.sin(angle),gel,
+        throwCos:Math.cos(g.angle),throwSin:Math.sin(g.angle),
+        a:g.r*(i.type === 'par' ? 1 : g.stretch),b:g.r2,
+        energy:(levels[i.channel]||0)/100*TYPES[i.type].output/(Math.PI*g.r*g.r2)*gel.t,
+        edge:TYPES[i.type].edge};
+    });
+  }
+  function pointLight(x,y,z,beams,levels) {
+    let r=.03, g=.03, b=.03, sum=0, warm=0;
+    for (const s of beams) {
+      let dx=x-s.fx,dy=y-s.fy;
+      if (s.type==='par') {
+        const along=(dx*s.throwCos+dy*s.throwSin)/s.stretch;
+        const across=-dx*s.throwSin+dy*s.throwCos;
+        dx=along*s.throwCos-across*s.throwSin;
+        dy=along*s.throwSin+across*s.throwCos;
+      }
+      const u=(dx*s.cos+dy*s.sin)/Math.max(.02,s.a);
+      const v=(-dx*s.sin+dy*s.cos)/Math.max(.02,s.b);
+      const d=Math.hypot(u,v);
+      if (d>=1) continue;
+      let edge=clamp((1-d)/s.edge,0,1);
+      if (s.type === 'fresnel') edge=edge*edge*(3-2*edge);
+      if (s.gobo === 'window') {
+        if (Math.abs(u)<.06 || Math.abs(v)<.06) edge*=.12;
+      } else if (s.gobo === 'leaf') {
+        edge*=.35+.65*Math.pow(Math.sin(u*18+Math.sin(v*13))*Math.cos(v*16),2);
+      }
+      // Head height changes the spread; focus projects to the same plan ring in this simple model.
+      const headFactor=z>0 ? clamp((s.z-1.6)**2/Math.max(.2,(s.z-z)**2),.2,3) : 1;
+      const e=s.energy*edge*headFactor;
+      r+=e*s.gel.rgb[0];
+      g+=e*s.gel.rgb[1];
+      b+=e*s.gel.rgb[2];
+      sum+=e;
+      warm+=e*s.gel.w;
+    }
+    const practicals = [
+      [41,0,3.4,1.2,1,2.2], [42,4.2,1.8,.8,4,2.4], [43,-4.8,3,2.1,state.windowGel,1.5]
+    ];
+    for (const [ch,px,py,radius,gelIndex,strength] of practicals) {
+      const d=Math.hypot(x-px,y-py)/radius;
+      if (d>=1) continue;
+      const e=(levels[ch]||0)/100*strength*(1-d)**2;
+      const gel=GELS[gelIndex];
+      r+=e*gel.rgb[0];
+      g+=e*gel.rgb[1];
+      b+=e*gel.rgb[2];
+      sum+=e;
+      warm+=e*gel.w;
+    }
+    const rgb=[1-Math.exp(-r),1-Math.exp(-g),1-Math.exp(-b)];
+    return {rgb,brightness:(rgb[0]+rgb[1]+rgb[2])/3,energy:sum,warm:sum ? warm/sum : 0};
+  }
+  function lookAt(beat) {
+    const cues=orderedCues().filter(c => c.beat<=beat);
+    return cues.length ? {...cues[cues.length-1].levels} : emptyLook();
+  }
+  const orderedCues = () => [...state.cues].sort((a,b) => a.beat-b.beat || a.order-b.order);
+  function cueNumber(c) {
+    const list=orderedCues();
+    const beats=[...new Set(list.map(q => q.beat))];
+    let nextWhole=1;
+    for (const beat of beats) {
+      const same=list.filter(q => q.beat===beat);
+      if (beat===c.beat) return String(nextWhole+.5*same.findIndex(q => q.id===c.id));
+      nextWhole=Math.floor(nextWhole+.5*(same.length-1))+1;
+    }
+    return '';
+  }
+  function buildStats() {
+    stats=Array.from({length:8},(_,beat) => {
+      const levels=lookAt(beat),beams=compile(levels);
+      let brightness=0,warm=0,energy=0;
+      for (let y=0;y<14;y++) for (let x=0;x<20;x++) {
+        const p=pointLight(-5+(x+.5)/2,(y+.5)/2,0,beams,levels);
+        brightness+=p.brightness;
+        warm+=p.warm*p.energy;
+        energy+=p.energy;
+      }
+      const n=beat===7 ? 0 : pointLight(...MARKS[beat][0],beams,levels).brightness;
+      const h=pointLight(...MARKS[beat][1],beams,levels).brightness;
+      return {brightness:brightness/280,warmth:energy ? warm/energy : 0,focus:n-h,n,h};
+    });
+    graphDirty=false;
+  }
+  const changeBeats = () => stats.map((s,i) => i && (
+    Math.abs(s.brightness-stats[i-1].brightness)>=.08 || Math.abs(s.warmth-stats[i-1].warmth)>=.08 ||
+    Math.abs(s.focus-stats[i-1].focus)>=.08) ? i : -1).filter(i => i>=0);
+  function renderObservations() {
+    if (graphDirty) buildStats();
+    const changes=changeBeats();
+    const missing=state.turns.filter(t => !changes.includes(t.beat));
+    let a=changes.length ? `Your light changes at ${changes.length===1 ? 'beat' : 'beats'} ${changes.map(i => i+1).join(', ')}.` : 'Your light holds still.';
+    if (missing.length) a+=` The story also turns at ${missing.map(t => t.beat+1).join(', ')}.`;
+    const s=stats[state.beat];
+    const diff=s.focus;
+    let b=state.beat===7 ? 'At beat 8 Nora is offstage; her face brightness counts as 0.' :
+      `At beat ${state.beat+1} Nora is lit ${Math.abs(diff).toFixed(2)} ${diff>=0 ? 'brighter' : 'dimmer'} than Helmer.`;
+    const look=lookAt(state.beat);
+    const motivated=SOURCES.filter(source => state.instruments.some(i => {
+      const px=i.x-source.x,py=i.y-source.y;
+      const along=clamp(px*source.dx+py*source.dy,0,1.6);
+      const dist=Math.hypot(px-source.dx*along,py-source.dy*along);
+      return dist<=2 && (look[i.channel]||0)>=30;
+    })).map(s => s.name.toLowerCase());
+    let c='The light seems to come from: '+(motivated.join(', ')||'no matched source yet')+'.';
+    if (!state.cues.some(q => q.beat===7)) c+=' No cue at beat 8: the light holds still as she leaves.';
+    if (!state.cues.some(q => q.beat===0)) c+=' No cue at beat 1: the scene starts dark.';
+    $('observations').replaceChildren(...[a,b,c].map(text => {
+      const p=document.createElement('p');
+      p.textContent=text;
+      return p;
+    }));
+  }
+  function createInstrument(type,pipe,x,y) {
+    if (!TYPES[type]) return false;
+    if (state.instruments.filter(i => i.type===type).length>=TYPES[type].max) {
+      hint('None left: remove one to move it.');
+      Curio.tone(130,.1,.04);
+      return false;
+    }
+    const p=PIPES[pipe];
+    const slots=[];
+    const vertical=p.x1===p.x2;
+    for (let q=vertical ? p.y1 : p.x1;q<=(vertical ? p.y2 : p.x2);q+=.5) {
+      const xx=vertical ? p.x1 : q, yy=vertical ? q : p.y1;
+      if (!state.instruments.some(i => i.pipe===pipe && i.x===xx && i.y===yy)) slots.push({x:xx,y:yy});
+    }
+    slots.sort((a,b) => Math.hypot(a.x-x,a.y-y)-Math.hypot(b.x-x,b.y-y));
+    if (!slots.length) { hint('This pipe is full. Choose another hanging position.');
+    return false;
+     }
+    const used=state.instruments.map(i => i.channel);
+    const channel=Array.from({length:40},(_,i) => i+1).find(n => !used.includes(n));
+    const i={id:state.nextId++,type,pipe,...slots[0],z:p.z,fx:0,fy:3.4,channel,gel:0,gobo:'none',beam:50,rotation:0};
+    state.instruments.push(i);
+    state.selected=i.id;
+    state.levels[channel]=70;
+    state.aimed=false;
+    syncSettings();
+    changed(true);
+    Curio.tone(370,.08,.045);
+    how('aimHow',() => !!selected() && !state.aimed,'#plan');
+    return i;
+  }
+  function syncSettings() {
+    const i=selected();
+    $('settings').hidden=!i;
+    $('emptySettings').hidden=!!i;
+    for (const [key,t] of Object.entries(TYPES)) {
+      const left=t.max-state.instruments.filter(i => i.type===key).length;
+      $('left-'+key).textContent=left ? `${left} left` : 'None left';
+      $('shelf-'+key).setAttribute('aria-pressed',state.type===key);
+      $('shelf-'+key).title=left ? `Choose ${t.name}, then tap a pipe` : 'None left: remove one to move it';
+    }
+    $('emptyPortrait').src=$('shelf-'+state.type).querySelector('img').src;
+    $('emptyPortrait').alt=TYPES[state.type].name;
+    if (!i) {
+      $('selection').replaceChildren();
+      $('planStatus').textContent='10 m × 7 m stage · FOH height 8 m · electrics 6.5 m';
+      return;
+    }
+    $('instrumentTitle').textContent=TYPES[i.type].name;
+    $('selection').replaceChildren(...state.instruments.map(n => {
+      const o=new Option('CH '+n.channel+' · '+TYPES[n.type].name,n.id);
+      o.selected=n.id===i.id;
+      return o;
+    }));
+    $('channel').value=i.channel;
+    $('gel').value=i.gel;
+    $('gobo').value=i.gobo;
+    $('flood').value=i.beam;
+    $('rotation').value=i.rotation;
+    $('height').value=i.z;
+    $('goboLabel').hidden=!i.type.startsWith('ers');
+    $('floodLabel').hidden=i.type!=='fresnel';
+    $('rotationLabel').hidden=i.type!=='par';
+    $('heightLabel').hidden=i.pipe<3;
+    syncMetrics();
+  }
+  function syncMetrics() {
+    const i=selected();
+    if (!i) return;
+    const g=geometry(i);
+    $('metrics').innerHTML=`<span>throw</span> ${g.t.toFixed(2)} m<br><span>pool</span> ${(2*g.r).toFixed(2)}`+
+      (i.type==='par' ? `×${(2*g.r2).toFixed(2)}` : '')+` m<br>`+
+      `<span class="metricPosition">${PIPES[i.pipe].name} · </span><span>height</span> ${i.z.toFixed(1)} m`;
+    $('planStatus').textContent=`CH ${i.channel} · focus (${i.fx.toFixed(1)}, ${i.fy.toFixed(1)}) m · ${GELS[i.gel].name}`;
+  }
+  function gelOptions(el) {
+    el.replaceChildren(...GELS.map((g,i) => new Option(g.name,i)));
+  }
+  gelOptions($('gel'));
+  gelOptions($('windowGel'));
+  $('windowGel').value=state.windowGel;
+  $('swatches').innerHTML=GELS.map(g => `<i style="--gel:${g.c}"></i>`).join('');
+  function buildBoard() {
+    const focus=document.activeElement?.id;
+    $('board').replaceChildren(...channels().map(c => {
+      const label=document.createElement('label');
+      label.className='fader';
+      label.style.setProperty('--gel',GELS[c.gel].c);
+      const pos=document.createElement('span');
+      pos.className='position';
+      pos.textContent=c.pos.replace('electric','elec');
+      pos.title=c.pos;
+      const b=document.createElement('b');
+      b.textContent=c.channel;
+      const swatch=document.createElement('i');
+      swatch.setAttribute('aria-hidden','true');
+      const input=document.createElement('input');
+      input.type='range';
+      input.min=0;
+      input.max=100;
+      input.step=1;
+      input.value=state.levels[c.channel]||0;
+      input.id='fader-'+c.channel;
+      input.setAttribute('aria-label',`Channel ${c.channel}, ${c.name}, ${c.pos}`);
+      const output=document.createElement('output');
+      output.textContent=input.value;
+      output.htmlFor=input.id;
+      const small=document.createElement('small');
+      small.textContent=c.name;
+      input.oninput=() => {
+        state.levels[c.channel]=+input.value;
+        output.textContent=input.value;
+        state.live=true;
+        changed();
+        if (state.running) {
+          manualOverrides[c.channel]=+input.value;
+          runLevels[c.channel]=+input.value;
+        }
+      };
+      input.onchange=() => Curio.tone(200+(+input.value)*3,.045,.02);
+      label.append(pos,b,swatch,input,output,small);
+      return label;
+    }));
+    if (focus && $(focus)) $(focus).focus({preventScroll:true});
+  }
+  function renderBeatStrips() {
+    $('cueBeats').replaceChildren(...BEATS.map((_,i) => {
+      const b=document.createElement('button');
+      b.id='beat-'+i;
+      b.textContent=i+1;
+      b.title=`Beat ${i+1}: ${TITLES[i]}`;
+      b.setAttribute('aria-label',b.title);
+      b.setAttribute('aria-pressed',i===state.beat);
+      b.classList.toggle('turn',state.turns.some(t => t.beat===i));
+      b.onclick=() => {jump(i);
+      hint(`Beat ${i+1}. Set the faders, then tap Record cue.`);
+      };
+      return b;
+    }));
+  }
+  function syncBeat() {
+    document.querySelectorAll('#cueBeats button').forEach((b,i) => b.setAttribute('aria-pressed',i===state.beat));
+    $('scriptTitle').textContent=`${state.beat+1} · ${TITLES[state.beat]}`;
+    $('scriptText').textContent=BEATS[state.beat];
+    $('caption').textContent=BEATS[state.beat];
+    $('hpBeat').textContent=state.beat+1;
+    $('runStatus').textContent=`BEAT ${state.beat+1} / 8 · ${state.running ? 'RUNNING' : 'STOPPED'}`;
+  }
+  function renderCues() {
+    const list=orderedCues();
+    $('cueList').replaceChildren(...list.map(c => {
+      const b=document.createElement('button');
+      b.id='cue-'+c.id;
+      b.setAttribute('aria-pressed',c.id===state.selectedCue);
+      const n=document.createElement('b');
+      n.textContent=cueNumber(c);
+      n.style.fontSize=Math.max(10,Math.min(21,64/n.textContent.length))+'px';
+      const name=document.createElement('span');
+      name.textContent=c.label||TITLES[c.beat];
+      const note=document.createElement('small');
+      note.textContent=`Beat ${c.beat+1} · ${c.fade.toFixed(1)} s`;
+      b.append(n,name,note);
+      b.onclick=() => {
+        state.selectedCue=c.id;
+        state.beat=c.beat;
+        state.levels={...c.levels};
+        state.fade=c.fade;
+        $('fade').value=c.fade;
+        $('cueLabel').value=c.label;
+        runLevels={...c.levels};
+        stopRun();
+        syncBeat();
+        buildBoard();
+        document.querySelectorAll('#cueList button').forEach(n => n.setAttribute('aria-pressed',n.id==='cue-'+c.id));
+        hint(`Cue ${cueNumber(c)} loaded. Adjust faders, then tap Update cue.`);
+        changed();
+      };
+      return b;
+    }));
+    if (!list.length) {
+      const p=document.createElement('p');
+      p.className='muted';
+      p.textContent='No cues yet. A cue holds until the next one.';
+      $('cueList').append(p);
+    }
+    // Keep these controls usable so keyboard focus stays stable after record or delete.
+    $('update').setAttribute('aria-description',state.selectedCue ? 'Update the selected cue' : 'Select a recorded cue first');
+    syncBeat();
+  }
+  function recordCue() {
+    const c={id:state.nextId++,beat:state.beat,order:state.nextId,fade:clamp(+$('fade').value,0,10),
+      label:$('cueLabel').value.trim(),levels:{...state.levels}};
+    state.cues.push(c);
+    state.selectedCue=c.id;
+    renderCues();
+    changed();
+    Curio.tone(520,.09,.05);
+    hint(`Cue ${cueNumber(c)} recorded at beat ${c.beat+1}. Tap another beat, change the faders, and record its look.`);
+  }
+  function updateCue() {
+    const c=state.cues.find(q => q.id===state.selectedCue);
+    if (!c) {hint('Select a recorded cue in the cue stack, then tap Update cue.');
+    return;
+    }
+    c.beat=state.beat;
+    c.fade=clamp(+$('fade').value,0,10);
+    c.label=$('cueLabel').value.trim();
+    c.levels={...state.levels};
+    renderCues();
+    changed();
+    Curio.tone(470,.07,.04);
+    hint(`Cue ${cueNumber(c)} updated. Run the scene to see the change.`);
+  }
+  function jump(beat) {
+    stopRun();
+    state.beat=clamp(beat,0,7);
+    state.elapsed=0;
+    crossFrom=null;
+    frozenPose=null;
+    transition=null;
+    manualOverrides={};
+    state.live=false;
+    lastDarkBeat=-1;
+    runLevels=lookAt(state.beat);
+    syncBeat();
+    dirty=true;
+    renderObservations();
+  }
+  function enterBeat(beat,now) {
+    crossFrom=MARKS[state.beat].map(p => [...p]);
+    state.beat=beat;
+    runBeatAt=now;
+    state.elapsed=0;
+    const cues=orderedCues().filter(c => c.beat===beat);
+    if (cues.length) {
+      manualOverrides={};
+      const cue=cues[cues.length-1];
+      transition={from:{...runLevels},to:{...cue.levels},start:now,duration:cue.fade*1000};
+      if (!cue.fade) {runLevels={...cue.levels};
+      transition=null;
+      }
+    }
+    syncBeat();
+    renderObservations();
+    checkDark();
+    dirty=true;
+  }
+  function startRun() {
+    V.dropQueued();
+    manualOverrides={};
+    frozenPose=null;
+    state.running=true;
+    runHasStarted=true;
+    lastDarkBeat=-1;
+    state.beat=0;
+    runLevels=emptyLook();
+    runBeatAt=performance.now();
+    state.elapsed=0;
+    crossFrom=null;
+    state.live=false;
+    enterBeat(0,runBeatAt);
+    Curio.tone(270,.1,.03);
+    hint('Watch the light at the story turns. Stop freezes the current fade; Step and Back jump to completed looks.');
+  }
+  function stopRun() {
+    if (state.running) {
+      frozenPose=actorPose();
+      frozenTime=performance.now();
+    }
+    state.running=false;
+    transition=null;
+    syncBeat();
+    dirty=true;
+  }
+  function checkDark() {
+    if (state.beat===lastDarkBeat) return;
+    const beams=compile(runLevels);
+    const n=state.beat===7 ? 0 : pointLight(...MARKS[state.beat][0],beams,runLevels).brightness;
+    const h=pointLight(...MARKS[state.beat][1],beams,runLevels).brightness;
+    if (n<.1 && h<.1) {
+      lastDarkBeat=state.beat;
+      const beat=state.beat;
+      V.say('dark',{valid:() => state.beat===beat && state.mode==='run',maxAge:4900,hint:false});
+    }
+  }
+  function finishRun() {
+    stopRun();
+    if (graphDirty) buildStats();
+    const changes=changeBeats().filter(beat => state.cues.some(c => c.beat===beat));
+    const missed=state.turns.find(t => !changes.some(b => Math.abs(t.beat-b)<=1));
+    const key=missed ? 'noTurn'+missed.beat : 'allTurns';
+    V.say(key,{valid:() => state.mode==='run' && !state.running,hint:false});
+    hint('Rehearsal complete. Read your observations, then return to Cues or Hang to revise this design.');
+  }
+  function researchCard(index) {
+    state.research=index;
+    const card=RESEARCH[index];
+    $('researchImage').src=document.querySelector('#research-tile-'+index+' img').src;
+    $('researchImage').alt=card.name;
+    const title=document.createElement('h2');
+    title.textContent=card.name;
+    $('facts').replaceChildren(title,...card.facts.map((fact,i) => {
+      const p=document.createElement('p');
+      p.dataset.n=String(i+1).padStart(2,'0');
+      p.textContent=fact;
+      return p;
+    }));
+    document.querySelectorAll('.tile').forEach((b,i) => b.setAttribute('aria-pressed',i===index));
+    hint('Choose a motivation below to draw its direction on your plan. Then open Hang to work from that source.');
+    Curio.tone(220+index*40,.06,.025);
+  }
+  const artSrc = {
+    'rs-lamp':'art:rs-lamp','rs-stove':'art:rs-stove','rs-window':'art:rs-window',
+    'rs-hall':'art:rs-hall','rs-gaslit':'art:rs-gaslit'
+  };
+  RESEARCH.forEach((r,i) => {
+    const b=document.createElement('button');
+    b.className='tile';
+    b.id='research-tile-'+i;
+    b.setAttribute('aria-pressed',i===0);
+    const img=document.createElement('img');
+    img.src=artSrc[r.art];
+    img.alt='';
+    const text=document.createElement('span');
+    text.textContent=r.name;
+    b.append(img,text);
+    b.onclick=() => researchCard(i);
+    $('tiles').append(b);
+  });
+  SOURCES.forEach((source,i) => {
+    const b=document.createElement('button');
+    b.className='btn';
+    b.id='motivation-'+i;
+    b.textContent=source.name;
+    b.setAttribute('aria-pressed',!!state.motivations[i]);
+    b.onclick=() => {state.motivations[i]=!state.motivations[i];
+    b.setAttribute('aria-pressed',state.motivations[i]);
+    changed();
+      hint(`${source.name} direction ${state.motivations[i] ? 'marked' : 'removed'}. Open Hang to aim from the sources you chose.`);
+      };
+    $('motivation').append(b);
+  });
+  function turnsEditor() {
+    $('turnRows').replaceChildren(...state.turns.map((t,i) => {
+      const row=document.createElement('div');
+      row.className='turn-row';
+      const select=document.createElement('select');
+      select.setAttribute('aria-label','Story turn beat');
+      select.replaceChildren(...BEATS.map((_,b) => new Option(String(b+1),b)));
+      select.value=t.beat;
+      select.onchange=() => {t.beat=+select.value;
+      renderBeatStrips();
+      changed();
+      };
+      const input=document.createElement('input');
+      input.type='text';
+      input.maxLength=70;
+      input.value=t.label;
+      input.setAttribute('aria-label','Story turn label');
+      input.oninput=() => {t.label=input.value;
+      changed();
+      };
+      const remove=document.createElement('button');
+      remove.className='btn';
+      remove.textContent='×';
+      remove.setAttribute('aria-label','Remove turn');
+      remove.onclick=() => {state.turns.splice(i,1);
+      turnsEditor();
+      renderBeatStrips();
+      changed();
+      $('addTurn').focus({preventScroll:true});
+      };
+      row.append(select,input,remove);
+      return row;
+    }));
+  }
+  function previewToggle() {
+    state.preview=!state.preview;
+    for (const id of ['preview','cuePreview']) $(id).setAttribute('aria-pressed',state.preview);
+    $('hangPreview').hidden=!state.preview;
+    $('cueInset').hidden=!state.preview;
+    dirty=true;
+  }
+  function clearDesign() {
+    stopRun();
+    V.hush();
+    runHasStarted=false;
+    manualOverrides={};
+    Object.assign(state,{instruments:[],levels:{41:0,42:0,43:0},cues:[],turns:structuredClone(DEFAULT_TURNS),
+      motivations:[false,false,false,false],windowGel:5,selected:null,selectedCue:null,nextId:1,beat:0});
+    $('windowGel').value=5;
+    $('cueLabel').value='';
+    $('fade').value=2;
+    state.fade=2;
+    SOURCES.forEach((_,i) => $('motivation-'+i).setAttribute('aria-pressed',false));
+    syncSettings();
+    renderCues();
+    renderBeatStrips();
+    changed(true);
+    $('clearDialog').close();
+    hint('Design cleared. Choose a light and tap a pipe to start again.');
+  }
+  for (const m of ['research','hang','cues','run']) $('m-'+m).onclick=() => setMode(m);
+  $('preview').onclick=previewToggle;
+  $('cuePreview').onclick=previewToggle;
+  $('clear').onclick=() => $('clearDialog').showModal();
+  $('cancelClear').onclick=() => $('clearDialog').close();
+  $('confirmClear').onclick=clearDesign;
+  $('lightNote').onclick=() => $('noteDialog').showModal();
+  $('closeNote').onclick=() => $('noteDialog').close();
+  $('editTurns').onclick=() => {turnsEditor();
+  $('turnDialog').showModal();
+  };
+  $('addTurn').onclick=() => {state.turns.push({beat:state.beat,label:'My story turn'});
+  turnsEditor();
+  renderBeatStrips();
+  changed();
+  };
+  $('closeTurns').onclick=() => {$('turnDialog').close();
+  renderObservations();
+  };
+  $('record').onclick=recordCue;
+  $('update').onclick=updateCue;
+  $('deleteCue').onclick=() => {
+    if (!state.cues.some(c => c.id===state.selectedCue)) {hint('Select a cue in the cue stack, then tap Delete cue.');
+    return;
+    }
+    state.cues=state.cues.filter(c => c.id!==state.selectedCue);
+    state.selectedCue=null;
+    renderCues();
+    changed();
+    hint('Cue deleted. The previous cue now holds until the next one.');
+    Curio.tone(170,.07,.03);
+  };
+  $('allZero').onclick=() => {
+    state.levels=emptyLook();
+    state.live=true;
+    document.querySelectorAll('.fader input').forEach(input => {input.value=0;
+    input.nextElementSibling.textContent='0';
+    });
+    if (state.running) {
+      manualOverrides={...state.levels};
+      runLevels={...state.levels};
+    }
+    changed();
+    hint('All channels are at 0. Record or update a cue to keep this blackout.');
+  };
+  $('fade').onchange=() => {$('fade').value=Math.round(clamp(+$('fade').value,0,10)*2)/2;
+  state.fade=+$('fade').value;
+  };
+  $('windowGel').onchange=() => {state.windowGel=+$('windowGel').value;
+  changed(true);
+  };
+  $('runScene').onclick=startRun;
+  $('stop').onclick=() => {stopRun();
+  hint('Stopped on this frame. Step or tap a beat number to jump to a completed look.');
+  };
+  $('step').onclick=() => {runHasStarted=true;
+  jump(state.beat===7 ? 0 : state.beat+1);
+  checkDark();
+  Curio.tone(330,.06,.025);
+  };
+  $('back').onclick=() => {
+    const atStart=state.beat===0;
+    jump(state.beat-1);
+    hint(atStart ? 'Already at beat 1. Tap Run scene or Step to move forward.' :
+      `Beat ${state.beat+1}: completed look. Tap Back again, Step, or Run scene.`);
+    Curio.tone(250,.06,.025);
+  };
+  $('selection').onchange=() => {state.selected=+$('selection').value;
+  syncSettings();
+  dirty=true;
+  };
+  $('channel').onchange=() => {
+    const i=selected();
+    if (!i) return;
+    const ch=Math.round(clamp(+$('channel').value,1,40));
+    if (ch===i.channel) {
+      $('channel').value=ch;
+      return;
+    }
+    if (state.instruments.some(n => n!==i && n.channel===ch)) {
+      $('channel').value=i.channel;
+      hint('That channel is already in use. Choose an unused channel from 1 to 40.');
+      return;
+    }
+    const old=i.channel;
+    for (const look of [runLevels,manualOverrides,transition?.from,transition?.to]) {
+      if (!look || !(old in look)) continue;
+      look[ch]=look[old];
+      delete look[old];
+    }
+    state.levels[ch]=state.levels[old]||0;
+    delete state.levels[old];
+    state.cues.forEach(c => {c.levels[ch]=c.levels[old]||0;
+    delete c.levels[old];
+    });
+    i.channel=ch;
+    syncSettings();
+    changed(true);
+  };
+  $('gel').onchange=() => {const i=selected();
+  if (!i) return;
+  i.gel=+$('gel').value;
+  changed(true);
+  syncMetrics();
+    hint('Gel changed. Open Cues to record this color in a look. Gels belong to instruments throughout the scene.');
+    Curio.tone(440,.06,.03);
+    };
+  for (const [id,key] of [['gobo','gobo'],['flood','beam'],['rotation','rotation'],['height','z']]) {
+    $(id).oninput=() => {const i=selected();
+    if (!i) return;
+    i[key]=id==='gobo' ? $(id).value : +$(id).value;
+    syncMetrics();
+    changed();
+    };
+  }
+  $('remove').onclick=() => {
+    const i=selected();
+    if (!i) return;
+    state.instruments=state.instruments.filter(n => n.id!==i.id);
+    delete state.levels[i.channel];
+    delete runLevels[i.channel];
+    delete manualOverrides[i.channel];
+    if (transition) {
+      delete transition.from[i.channel];
+      delete transition.to[i.channel];
+    }
+    state.cues.forEach(c => delete c.levels[i.channel]);
+    state.selected=state.instruments[0]?.id ?? null;
+    syncSettings();
+    changed(true);
+    if (!state.selected) $('shelf-'+state.type).focus({preventScroll:true});
+    hint('Instrument removed and returned to the shelf. Choose another light or edit your cues.');
+  };
+  $('hangButton').onclick=() => {
+    const pipe=+$('pipe').value;
+    const p=PIPES[pipe];
+    createInstrument(state.type,pipe,(p.x1+p.x2)/2,(p.y1+p.y2)/2);
+  };
+  // Real-pixel plan, never a fixed-size layout scaled down to unreadable labels.
+  let planTransform={scale:1,cx:0,cy:0,fohGap:50};
+  const planXY = (x,y) => [planTransform.cx+x*planTransform.scale,
+    planTransform.cy-(y<0 ? y/6*planTransform.fohGap : y*planTransform.scale)];
+  function planPoint(event) {
+    const r=$('plan').getBoundingClientRect();
+    const dy=planTransform.cy-(event.clientY-r.top);
+    return {x:(event.clientX-r.left-planTransform.cx)/planTransform.scale,
+      y:dy<0 ? dy/planTransform.fohGap*6 : dy/planTransform.scale};
+  }
+  function nearestPipe(p) {
+    let nearest=0,dist=Infinity;
+    PIPES.forEach((bar,i) => {
+      const x=clamp(p.x,bar.x1,bar.x2),y=clamp(p.y,bar.y1,bar.y2);
+      const d=Math.hypot(p.x-x,p.y-y);
+      if (d<dist) {dist=d;
+      nearest=i;
+      }
+    });
+    return {index:nearest,dist};
+  }
+  function aim(i,p) {
+    i.fx=clamp(p.x,-5,5);
+    i.fy=clamp(p.y,0,7);
+    state.aimed=true;
+    syncMetrics();
+    dirty=true;
+    graphDirty=true;
+  }
+  function moveInstrument(i,p) {
+    const pipe=nearestPipe(p).index;
+    const bar=PIPES[pipe];
+    const x=Math.round(clamp(p.x,bar.x1,bar.x2)*2)/2;
+    const y=Math.round(clamp(p.y,bar.y1,bar.y2)*2)/2;
+    if (state.instruments.some(n => n!==i && n.pipe===pipe && n.x===x && n.y===y)) return;
+    i.pipe=pipe;
+    i.x=x;
+    i.y=y;
+    i.z=pipe<3 ? bar.z : clamp(i.z,1,3);
+    syncMetrics();
+    dirty=true;
+    graphDirty=true;
+  }
+  $('plan').onpointerdown=event => {
+    $('plan').focus({preventScroll:true});
+    const p=planPoint(event);
+    const i=selected();
+    const target=state.instruments.find(n => Math.hypot(n.x-p.x,n.y-p.y)*planTransform.scale<20);
+    if (i && Math.hypot(i.fx-p.x,i.fy-p.y)*planTransform.scale<25) planDrag={i,kind:'aim'};
+    else if (target) {state.selected=target.id;
+    syncSettings();
+    planDrag={i:target,kind:'move'};
+    }
+    else {
+      const near=nearestPipe(p);
+      if (near.dist*planTransform.scale<26) {createInstrument(state.type,near.index,p.x,p.y);
+      dirty=true;
+      }
+      else if (i) {aim(i,p);
+      planDrag={i,kind:'aim'};
+      }
+    }
+    $('plan').setPointerCapture(event.pointerId);
+    event.preventDefault();
+  };
+  $('plan').onpointermove=event => {
+    if (!planDrag) return;
+    const p=planPoint(event);
+    if (planDrag.kind==='aim') aim(planDrag.i,p);
+    else moveInstrument(planDrag.i,p);
+  };
+  $('plan').onpointerup=() => {
+    if (!planDrag) return;
+    const aimed=planDrag.kind==='aim';
+    planDrag=null;
+    syncSettings();
+    changed();
+    Curio.tone(410,.04,.025);
+    if (aimed && selected()?.gel===0) how('gelHow',() => !!selected() && selected().gel===0,'#gel');
+  };
+  $('plan').onpointercancel=() => {planDrag=null;
+  changed();
+  };
+  $('plan').onkeydown=event => {
+    if (/^[1-5]$/.test(event.key)) {
+      $('pipe').value=+event.key-1;
+      hint(`${PIPES[+event.key-1].name} selected. Press Enter on the plan to hang a light.`);
+      event.preventDefault();
+      return;
+    }
+    if (event.key==='Enter') {
+      const pipe=+$('pipe').value,p=PIPES[pipe];
+      createInstrument(state.type,pipe,(p.x1+p.x2)/2,(p.y1+p.y2)/2);
+      event.preventDefault();
+      return;
+    }
+    const i=selected();
+    if (!i) return;
+    const delta={ArrowLeft:[-.1,0],ArrowRight:[.1,0],ArrowUp:[0,.1],ArrowDown:[0,-.1]}[event.key];
+    if (!delta) return;
+    event.preventDefault();
+    if (event.shiftKey) moveInstrument(i,{x:i.x+delta[0]*5,y:i.y+delta[1]*5});
+    else aim(i,{x:i.fx+delta[0],y:i.fy+delta[1]});
+    changed();
+    if (!event.shiftKey && i.gel===0) how('gelHow',() => selected()?.gel===0,'#gel');
+  };
+  for (const button of document.querySelectorAll('.lantern')) {
+    button.onclick=() => {
+      if (suppressShelfClick) {suppressShelfClick=false;
+      return;
+      }
+      state.type=button.dataset.type;
+      syncSettings();
+      dirty=true;
+      if (state.instruments.filter(i => i.type===state.type).length>=TYPES[state.type].max) {
+        hint('None left: remove one to move it.');
+      } else if ($('hangButton').getClientRects().length) {
+        hint(`${TYPES[state.type].name} selected. Tap a pipe on the plan, or choose Pipe and tap Hang on pipe.`);
+      } else hint(`${TYPES[state.type].name} selected. Tap a pipe, or focus the plan and press Enter. Keys 1 to 5 choose a pipe.`);
+      Curio.tone(240,.05,.03);
+    };
+    button.onpointerdown=event => {
+      shelfDrag={type:button.dataset.type,x:event.clientX,y:event.clientY,moved:false,src:button.querySelector('img').src};
+      button.setPointerCapture(event.pointerId);
+    };
+    button.onpointermove=event => {
+      if (!shelfDrag) return;
+      if (Math.hypot(event.clientX-shelfDrag.x,event.clientY-shelfDrag.y)>6) shelfDrag.moved=true;
+      if (!shelfDrag.moved) return;
+      let ghost=$('dragGhost');
+      if (!ghost) {ghost=document.createElement('img');
+      ghost.id='dragGhost';
+      ghost.className='drag-ghost';
+        ghost.src=shelfDrag.src;
+        ghost.alt='';
+        document.body.append(ghost);
+        }
+      ghost.style.left=event.clientX-50+'px';
+      ghost.style.top=event.clientY-40+'px';
+    };
+    button.onpointerup=event => {
+      if (!shelfDrag) return;
+      if (shelfDrag.moved) {
+        const r=$('plan').getBoundingClientRect();
+        if (event.clientX>=r.left && event.clientX<=r.right && event.clientY>=r.top && event.clientY<=r.bottom) {
+          const p=planPoint(event);
+          const near=nearestPipe(p);
+          state.type=shelfDrag.type;
+          createInstrument(state.type,near.index,p.x,p.y);
+        }
+        suppressShelfClick=true;
+      }
+      $('dragGhost')?.remove();
+      shelfDrag=null;
+    };
+    button.onpointercancel=() => {$('dragGhost')?.remove();
+    shelfDrag=null;
+    };
+  }
+  const floorBuffer=document.createElement('canvas');
+  floorBuffer.width=160;
+  floorBuffer.height=90;
+  const roomBuffer=document.createElement('canvas');
+  roomBuffer.width=160;
+  roomBuffer.height=90;
+  const floorContext=floorBuffer.getContext('2d');
+  const roomContext=roomBuffer.getContext('2d');
+  let cachedLook=null;
+  let cachedBeams=[];
+  function lightBuffers(levels) {
+    const beams=compile(levels);
+    cachedBeams=beams;
+    cachedLook=levels;
+    const floor=floorContext.createImageData(160,90),room=roomContext.createImageData(160,90);
+    for (let py=0;py<90;py++) for (let px=0;px<160;px++) {
+      const j=(py*160+px)*4;
+      const x=(px+.5)/160*10-5,y=(1-(py+.5)/90)*7;
+      const p=pointLight(x,y,0,beams,levels);
+      for (let c=0;c<3;c++) floor.data[j+c]=Math.round(p.rgb[c]*255);
+      floor.data[j+3]=255;
+      const u=(px+.5)/160,v=(py+.5)/90;
+      let rx,ry,rz=0;
+      if (v>=.565) {
+        const depth=clamp((v-.565)/(.99-.565),0,1);
+        const left=lerp(.20,0,depth),right=lerp(.80,1,depth);
+        rx=(u-left)/(right-left)*10-5;
+        ry=(1-depth)*7;
+      } else {
+        rx=(u-.2)/.6*10-5;
+        ry=7;
+        rz=(.565-v)/.49*6;
+      }
+      const q=pointLight(rx,ry,rz,beams,levels);
+      const masking=Math.abs(rx)>5 ? .3 : 1;
+      for (let c=0;c<3;c++) room.data[j+c]=Math.round(clamp(q.rgb[c]*masking,.02,1)*255);
+      room.data[j+3]=255;
+    }
+    floorContext.putImageData(floor,0,0);
+    roomContext.putImageData(room,0,0);
+  }
+  function setupCanvas(canvas) {
+    const r=canvas.getBoundingClientRect();
+    const w=Math.round(r.width),h=Math.round(r.height);
+    if (!w || !h) return null;
+    if (canvas.width!==w || canvas.height!==h) {canvas.width=w;
+    canvas.height=h;
+    }
+    return canvas.getContext('2d');
+  }
+  function roundRect(ctx,x,y,w,h,r,fill,stroke) {
+    ctx.beginPath();
+    ctx.roundRect(x,y,w,h,r);
+    if (fill) {ctx.fillStyle=fill;
+    ctx.fill();
+    }if (stroke) {ctx.strokeStyle=stroke;
+    ctx.stroke();
+    }
+  }
+  function planLine(ctx,a,b,color,width=1,dash=[]) {
+    const p=planXY(...a),q=planXY(...b);
+    ctx.beginPath();
+    ctx.setLineDash(dash);
+    ctx.moveTo(...p);
+    ctx.lineTo(...q);
+    ctx.strokeStyle=color;
+    ctx.lineWidth=width;
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+  function drawPlan() {
+    const ctx=setupCanvas($('plan'));
+    if (!ctx) return;
+    const w=ctx.canvas.width,h=ctx.canvas.height;
+    const fohGap=Math.min(55,h*.2);
+    const scale=Math.min((w-70)/14,(h-fohGap-38)/7.8);
+    planTransform={scale,cx:w/2,cy:(h+7*scale-fohGap)/2,fohGap};
+    ctx.clearRect(0,0,w,h);
+    ctx.fillStyle='#0b0d12';
+    ctx.fillRect(0,0,w,h);
+    const [left,top]=planXY(-5,7),[right,bottom]=planXY(5,0);
+    const floor=ctx.createLinearGradient(left,top,right,bottom);
+    floor.addColorStop(0,'#29262c');
+    floor.addColorStop(1,'#171a21');
+    ctx.fillStyle=floor;
+    ctx.fillRect(left,top,right-left,bottom-top);
+    ctx.save();
+    ctx.globalCompositeOperation='screen';
+    ctx.globalAlpha=.78;
+    ctx.drawImage(floorBuffer,left,top,right-left,bottom-top);
+    ctx.restore();
+    for (let x=-5;x<=5;x+=.5) planLine(ctx,[x,0],[x,7],x%1===0 ? '#ffffff12' : '#ffffff07');
+    for (let y=0;y<=7;y+=.5) planLine(ctx,[-5,y],[5,y],y%1===0 ? '#ffffff12' : '#ffffff07');
+    planLine(ctx,[-5,0],[-5,7],'#8a8a94',4);
+    planLine(ctx,[-5,7],[-3,7],'#8a8a94',4);
+    planLine(ctx,[-1.8,7],[2,7],'#8a8a94',4);
+    planLine(ctx,[3.2,7],[5,7],'#8a8a94',4);
+    planLine(ctx,[5,7],[5,0],'#8a8a94',4);
+    planLine(ctx,[-5,0],[5,0],'#6c536c',3);
+    planLine(ctx,[-5,2],[-5,4],'#8fe3ff',4);
+    for (const x of [-2.4,2.6]) {
+      const p=planXY(x-.6,7);
+      ctx.strokeStyle='#aeb2ba';
+      ctx.lineWidth=1;
+      ctx.beginPath();
+      ctx.moveTo(...p);
+      ctx.lineTo(p[0]+1.2*scale,p[1]-1.2*scale);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(p[0],p[1],1.2*scale,-Math.PI/2,0);
+      ctx.stroke();
+    }
+    const [tx,ty]=planXY(0,3.4);
+    ctx.shadowColor='#000b';
+    ctx.shadowBlur=6;
+    ctx.shadowOffsetY=3;
+    const wood=ctx.createRadialGradient(tx-5,ty-6,0,tx,ty,.65*scale);
+    wood.addColorStop(0,'#9b795a');
+    wood.addColorStop(1,'#48372f');
+    ctx.beginPath();
+    ctx.arc(tx,ty,.55*scale,0,Math.PI*2);
+    ctx.fillStyle=wood;
+    ctx.fill();
+    ctx.strokeStyle='#c1a783';
+    ctx.stroke();
+    ctx.shadowBlur=0;
+    ctx.shadowOffsetY=0;
+    for (const x of [-.9,.9]) {const p=planXY(x,3.4);
+    roundRect(ctx,p[0]-.25*scale,p[1]-.25*scale,.5*scale,.5*scale,3,'#4a433c','#9e896e');
+    }
+    const stove=planXY(4.2,1.8);
+    roundRect(ctx,stove[0]-.4*scale,stove[1]-.5*scale,.8*scale,scale,3,'#b1a995','#e5dbc5');
+    const piano=planXY(-.6,6.45);
+    roundRect(ctx,piano[0],piano[1]-.3*scale,1.9*scale,.6*scale,2,'#3d302d','#958473');
+    for (let k=0;k<9;k++) {ctx.fillStyle=k%3 ? '#aaa291' : '#48423d';
+    ctx.fillRect(piano[0]+k*.2*scale,piano[1],.15*scale,.18*scale);
+    }
+    const lamp=planXY(0,3.4);
+    ctx.beginPath();
+    ctx.arc(...lamp,Math.max(2,.1*scale),0,Math.PI*2);
+    ctx.fillStyle='#ffd39b';
+    ctx.fill();
+    ctx.font='10px Consolas';
+    ctx.fillStyle='#d0cad4';
+    ctx.textAlign='center';
+    ctx.fillText('HALL',...planXY(2.6,7.3));
+    ctx.fillText('STUDY',...planXY(-2.4,7.3));
+    ctx.fillText('AUDIENCE',w/2,planTransform.cy+fohGap+18);
+    ctx.fillStyle='#7e899a';
+    ctx.fillText('House gap compressed · FOH y = −6 m',w/2,planTransform.cy+fohGap*.45);
+    for (let i=0;i<PIPES.length;i++) {
+      const p=PIPES[i];
+      planLine(ctx,[p.x1,p.y1],[p.x2,p.y2],'#000',8);
+      planLine(ctx,[p.x1,p.y1],[p.x2,p.y2],'#b0b4c1',3);
+      const a=planXY(p.x1,p.y1),b=planXY(p.x2,p.y2);
+      ctx.font='11px Consolas';
+      ctx.fillStyle='#d1d1dd';
+      if (i<3) {ctx.textAlign='left';
+      ctx.fillText(p.name,a[0]+5,a[1]-9);
+      }
+      else {
+        ctx.save();
+        ctx.translate(a[0]+(i===3 ? -13 : 17),(a[1]+b[1])/2);
+        ctx.rotate(-Math.PI/2);
+        ctx.textAlign='center';
+        ctx.fillText(p.name,0,0);
+        ctx.restore();
+      }
+      ctx.fillStyle='#5d616e';
+      ctx.fillRect(a[0]-4,a[1]-4,8,8);
+      ctx.fillRect(b[0]-4,b[1]-4,8,8);
+    }
+    state.instruments.forEach(i => {
+      const p=planXY(i.x,i.y),f=planXY(i.fx,i.fy),active=i.id===state.selected;
+      planLine(ctx,[i.x,i.y],[i.fx,i.fy],active ? '#ee6ff0aa' : '#ffffff25',active ? 1.5 : 1,[4,4]);
+      ctx.save();
+      ctx.translate(...p);
+      ctx.rotate(Math.atan2(f[1]-p[1],f[0]-p[0])-Math.PI/2);
+      roundRect(ctx,-6,-9,12,19,2,active ? '#68496e' : '#353e4c',active ? '#ee6ff0' : '#9ba5b4');
+      ctx.fillStyle=GELS[i.gel].c;
+      ctx.fillRect(-4,7,8,3);
+      ctx.restore();
+      ctx.fillStyle='#e8edf3';
+      ctx.font='bold 11px Consolas';
+      ctx.textAlign='left';
+      ctx.fillText(i.channel,p[0]+10,p[1]+4);
+      if (active) {
+        ctx.beginPath();
+        ctx.arc(...f,13,0,Math.PI*2);
+        ctx.strokeStyle='#ee6ff0';
+        ctx.lineWidth=2;
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(...f,3,0,Math.PI*2);
+        ctx.fillStyle='#ee6ff0';
+        ctx.fill();
+        ctx.font='10px Consolas';
+        ctx.fillStyle='#ffbbff';
+        ctx.textAlign='center';
+        ctx.fillText('FOCUS',f[0],f[1]+26);
+      }
+    });
+    for (let a=0;a<2;a++) {
+      if (state.beat===7 && a===0) continue;
+      const p=planXY(...MARKS[state.beat][a]);
+      ctx.beginPath();
+      ctx.arc(...p,10,0,Math.PI*2);
+      ctx.fillStyle='#1a2230';
+      ctx.fill();
+      ctx.strokeStyle=a ? '#ffb46b' : '#8fe3ff';
+      ctx.lineWidth=2;
+      ctx.stroke();
+      ctx.fillStyle='#fff';
+      ctx.font='bold 11px Consolas';
+      ctx.textAlign='center';
+      ctx.fillText(a ? 'H' : 'N',p[0],p[1]+4);
+    }
+    drawMotivations(ctx,(x,y) => planXY(x,y),false);
+  }
+  // Four-corner floor mapping in the painting's 1600 × 900 pixel frame:
+  // floor [0,891], [1600,891], [1280,508.5], [320,508.5]; back [320,67.5]..[1280,508.5].
+  function project(x,y,z=0) {
+    const depth=1-y/7;
+    const left=lerp(.20,0,depth),right=lerp(.80,1,depth);
+    const u=left+(x+5)/10*(right-left),v=lerp(.565,.99,depth);
+    const scale=lerp(.055,.15,depth);
+    return [u,v-z*scale,scale];
+  }
+  function drawMotivations(ctx,projector,room) {
+    SOURCES.forEach((s,i) => {
+      if (!state.motivations[i]) return;
+      const a=projector(s.x,s.y),b=projector(s.x+s.dx*1.6,s.y+s.dy*1.6);
+      ctx.save();
+      ctx.strokeStyle='#ffe3a488';
+      ctx.fillStyle='#ffe3a4';
+      ctx.lineWidth=1.5;
+      ctx.setLineDash([5,4]);
+      ctx.beginPath();
+      ctx.moveTo(a[0],a[1]);
+      ctx.lineTo(b[0],b[1]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      const angle=Math.atan2(b[1]-a[1],b[0]-a[0]);
+      ctx.translate(b[0],b[1]);
+      ctx.rotate(angle);
+      ctx.beginPath();
+      ctx.moveTo(0,0);
+      ctx.lineTo(-7,-4);
+      ctx.lineTo(-7,4);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+      if (!room) {ctx.font='10px Consolas';
+      ctx.fillStyle='#ffe3a4';
+      ctx.textAlign='center';
+      ctx.fillText(s.name,b[0],b[1]-9);
+      }
+    });
+  }
+  function actor(ctx,which,mark,frame,beams,levels,alpha=1) {
+    const [ox,oy,ww,hh]=frame;
+    const head=project(mark[0],mark[1],mark[2]);
+    const feet=project(mark[0],mark[1],0);
+    const x=ox+feet[0]*ww,y=oy+feet[1]*hh;
+    const height=(feet[1]-head[1])*hh;
+    const light=pointLight(...mark,beams,levels).rgb;
+    const color=light.map(v => Math.round(25+v*195));
+    ctx.save();
+    ctx.globalAlpha=alpha;
+    ctx.translate(x,y);
+    ctx.scale(height/100,height/100);
+    ctx.fillStyle='#0007';
+    ctx.beginPath();
+    ctx.ellipse(0,1,25,6,0,0,Math.PI*2);
+    ctx.fill();
+    const fill=ctx.createLinearGradient(-25,-60,25,-30);
+    fill.addColorStop(0,`rgb(${color.map(c => Math.round(c*.6)).join(',')})`);
+    fill.addColorStop(1,`rgb(${color.join(',')})`);
+    ctx.fillStyle=fill;
+    ctx.strokeStyle=`rgba(${color.join(',')},.8)`;
+    ctx.lineWidth=1.3;
+    ctx.beginPath();
+    ctx.ellipse(0,-91,7,9,0,0,Math.PI*2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(-7,-82);
+    ctx.lineTo(-14,-74);
+    if (which===0) {
+      ctx.lineTo(-12,-54);
+      ctx.lineTo(-25,0);
+      ctx.quadraticCurveTo(0,6,25,0);
+      ctx.lineTo(12,-54);
+      ctx.lineTo(14,-74);
+      ctx.lineTo(7,-82);
+    } else {
+      ctx.lineTo(-17,-42);
+      ctx.lineTo(-10,-22);
+      ctx.lineTo(-11,0);
+      ctx.lineTo(-2,0);
+      ctx.lineTo(0,-29);
+      ctx.lineTo(5,0);
+      ctx.lineTo(14,0);
+      ctx.lineTo(10,-26);
+      ctx.lineTo(18,-43);
+      ctx.lineTo(14,-74);
+      ctx.lineTo(7,-82);
+    }
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(-12,-72);
+    ctx.lineTo(-23,-43);
+    ctx.lineTo(-18,-39);
+    ctx.lineTo(-7,-60);
+    ctx.moveTo(12,-72);
+    ctx.lineTo(23,-43);
+    ctx.lineTo(18,-39);
+    ctx.lineTo(7,-60);
+    ctx.fill();
+    ctx.stroke();
+    if (which===0 && state.beat>=5) {
+      ctx.fillStyle=`rgb(${color.map(c => Math.round(c*.7)).join(',')})`;
+      ctx.beginPath();
+      ctx.moveTo(-9,-82);
+      ctx.lineTo(-24,-13);
+      ctx.lineTo(21,-10);
+      ctx.lineTo(9,-82);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillRect(-14,-102,28,4);
+      ctx.fillRect(-8,-109,16,9);
+    }
+    if (which===1) {ctx.strokeStyle='#d3d6d05a';
+    ctx.beginPath();
+    ctx.moveTo(-7,-81);
+    ctx.lineTo(0,-64);
+    ctx.lineTo(7,-81);
+    ctx.stroke();
+    }
+    ctx.restore();
+    ctx.save();
+    ctx.globalAlpha=alpha;
+    ctx.fillStyle='#e8edf3';
+    ctx.font='10px Consolas';
+    ctx.textAlign='center';
+    ctx.fillText(which ? 'H' : 'N',x,y-height*1.16);
+    ctx.restore();
+  }
+  function actorPose() {
+    if (!state.running && frozenPose) return frozenPose;
+    const marks=MARKS[state.beat].map(p => [...p]);
+    if (state.running && crossFrom && !Curio.reduce) {
+      const u=clamp(state.elapsed/1200,0,1),ease=u*u*(3-2*u);
+      marks.forEach((mark,a) => mark.forEach((value,c) => {mark[c]=lerp(crossFrom[a][c],value,ease);}));
+    }
+    let noraAlpha=1;
+    if (state.beat===7) {
+      noraAlpha=!state.running || state.elapsed>=1500 ? 0 : Curio.reduce ? 1 : 1-clamp(state.elapsed/1500,0,1);
+    }
+    return {marks,noraAlpha};
+  }
+  function drawRoom(canvas,levels,now) {
+    if (!state.running && frozenPose) now=frozenTime;
+    const ctx=setupCanvas(canvas);
+    if (!ctx || !$('setArt').complete || !$('setArt').naturalWidth) return;
+    const w=ctx.canvas.width,h=ctx.canvas.height;
+    const ww=Math.min(w,h*16/9),hh=ww*9/16,ox=(w-ww)/2,oy=(h-hh)/2;
+    ctx.fillStyle='#07080c';
+    ctx.fillRect(0,0,w,h);
+    ctx.drawImage($('setArt'),ox,oy,ww,hh);
+    ctx.save();
+    ctx.globalCompositeOperation='multiply';
+    ctx.filter='blur(2px)';
+    ctx.drawImage(roomBuffer,ox-2,oy-2,ww+4,hh+4);
+    ctx.restore();
+    const practicals=[{ch:41,u:.5,v:.49,r:.08,color:'#ffd79b'}, {ch:42,u:.918,v:.566,r:.09,color:'#ff9e56'},
+      {ch:43,u:.08,v:.30,r:.18,color:GELS[state.windowGel].c}];
+    ctx.save();
+    ctx.globalCompositeOperation='screen';
+    for (const p of practicals) {
+      let level=(levels[p.ch]||0)/100;
+      if (p.ch===42 && !Curio.reduce) level*=.94+.06*Math.sin(now/140);
+      if (!level) continue;
+      const x=ox+p.u*ww,y=oy+p.v*hh,r=p.r*ww;
+      const glow=ctx.createRadialGradient(x,y,0,x,y,r);
+      glow.addColorStop(0,p.color);
+      glow.addColorStop(1,p.color+'00');
+      ctx.globalAlpha=level*.7;
+      ctx.fillStyle=glow;
+      ctx.fillRect(x-r,y-r,2*r,2*r);
+      if (p.ch===41) {ctx.globalAlpha=level;
+      ctx.fillStyle='#ffe9b6';
+      ctx.beginPath();
+      ctx.ellipse(x,y,ww*.011,hh*.009,0,0,Math.PI*2);
+      ctx.fill();
+      }
+    }
+    ctx.restore();
+    const pose=actorPose();
+    const marks=pose.marks;
+    const drawOrder=[0,1].sort((a,b) => marks[b][1]-marks[a][1]);
+    for (const a of drawOrder) {
+      const alpha=a===0 ? pose.noraAlpha : 1;
+      if (alpha<=0) continue;
+      actor(ctx,a,marks[a],[ox,oy,ww,hh],cachedBeams,levels,alpha);
+    }
+    drawMotivations(ctx,(x,y) => {const p=project(x,y);
+    return [ox+p[0]*ww,oy+p[1]*hh];
+    },true);
+    if (canvas.id==='runCanvas') {
+      const n=pose.noraAlpha<=0 ? 0 : pointLight(...marks[0],cachedBeams,levels).brightness;
+      const helmer=pointLight(...marks[1],cachedBeams,levels).brightness;
+      $('darkWarning').hidden=!(n<.1 && helmer<.1);
+    }
+  }
+  function drawGraph() {
+    const ctx=setupCanvas($('graph'));
+    if (!ctx) return;
+    if (graphDirty) buildStats();
+    const w=ctx.canvas.width,h=ctx.canvas.height;
+    const left=34,right=w-22,top=21,bottom=h-29;
+    const xx=i => lerp(left,right,i/7);
+    const yy=v => lerp(bottom,top,clamp(v,0,1));
+    ctx.clearRect(0,0,w,h);
+    ctx.font='10px Consolas';
+    for (let i=0;i<=4;i++) {
+      const y=yy(i/4);
+      ctx.strokeStyle='#ffffff13';
+      ctx.beginPath();
+      ctx.moveTo(left,y);
+      ctx.lineTo(right,y);
+      ctx.stroke();
+      ctx.fillStyle='#97a4b5';
+      ctx.textAlign='right';
+      ctx.fillText(i===0 ? '0' : i===4 ? '1' : '',left-9,y+3);
+    }
+    for (const t of state.turns) {
+      const x=xx(t.beat);
+      ctx.strokeStyle='#ee6ff055';
+      ctx.setLineDash([3,3]);
+      ctx.beginPath();
+      ctx.moveTo(x,top-12);
+      ctx.lineTo(x,bottom);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle='#ee6ff0';
+      ctx.textAlign=t.beat===7 ? 'right' : 'center';
+      const label=t.label.split(':')[0];
+      const clippedLabel=label.length>17 ? label.slice(0,14)+'...' : label;
+      const short=w<1100 ? `Turn ${t.beat+1}` : `${t.beat+1} · ${clippedLabel}`;
+      ctx.fillText(short,t.beat===7 ? x-3 : x,11);
+    }
+    const lines=[['brightness','#e8edf3',[],v => v],['warmth','#ffb46b',[7,4],v => (v+2.5)/5],
+      ['focus','#8fe3ff',[2,4],v => (v+1)/2]];
+    for (const [key,color,dash,normalize] of lines) {
+      ctx.strokeStyle=color;
+      ctx.lineWidth=2;
+      ctx.setLineDash(dash);
+      ctx.beginPath();
+      stats.forEach((s,i) => {const x=xx(i),y=yy(normalize(s[key]));
+      if (!i) ctx.moveTo(x,y);
+      else ctx.lineTo(x,y);
+      });
+      ctx.stroke();
+      ctx.setLineDash([]);
+      stats.forEach((s,i) => {ctx.beginPath();
+      ctx.arc(xx(i),yy(normalize(s[key])),2.5,0,Math.PI*2);
+      ctx.fillStyle=color;
+      ctx.fill();
+      });
+    }
+    const x=xx(state.beat);
+    ctx.strokeStyle='#ffffff90';
+    ctx.lineWidth=1;
+    ctx.beginPath();
+    ctx.moveTo(x,top);
+    ctx.lineTo(x,bottom+5);
+    ctx.stroke();
+    for (let i=0;i<8;i++) {
+      ctx.fillStyle=i===state.beat ? '#ee6ff0' : '#bac4d2';
+      ctx.textAlign='center';
+      ctx.font='12px Consolas';
+      ctx.fillText(i+1,xx(i),h-9);
+    }
+    $('graph').setAttribute('aria-label','Beat graph. Brightness 0 to 1. Warmth minus 2.5 to plus 2.5. Face difference minus 1 to plus 1. '+
+      stats.map((s,i) => `Beat ${i+1}: brightness ${s.brightness.toFixed(2)}, warmth ${s.warmth.toFixed(2)}, `+
+        `Nora minus Helmer ${s.focus.toFixed(2)}.`).join(' '));
+  }
+  // Beat scrubber is an accessible set of actual buttons, aligned under the graph canvas.
+  const scrubber=document.createElement('div');
+  scrubber.id='scrubber';
+  scrubber.className='beat-strip';
+  scrubber.style.cssText='position:absolute;left:12px;right:8px;bottom:0;height:44px;padding:0;gap:0;opacity:1';
+  BEATS.forEach((_,i) => {
+    const b=document.createElement('button');
+    b.textContent=String(i+1);
+    b.title=TITLES[i];
+    b.setAttribute('aria-label',`Jump to beat ${i+1}`);
+    b.style.cssText='min-height:44px;height:44px;background:transparent;border:0;color:transparent';
+    b.onclick=() => {jump(i);
+    checkDark();
+    hint(`Beat ${i+1}: completed look. Tap Run scene to rehearse from the start.`);
+    };
+    scrubber.append(b);
+  });
+  $('graph').parentElement.append(scrubber);
+  function resize() {dirty=true;
+  }
+  addEventListener('resize',resize);
+  new ResizeObserver(resize).observe(document.querySelector('main'));
+  function tick(now) {
+    const dt=previousTime ? now-previousTime : 0;
+    previousTime=now;
+    if (state.running) {
+      state.elapsed=now-runBeatAt;
+      if (transition) {
+        const u=transition.duration ? clamp((now-transition.start)/transition.duration,0,1) : 1;
+        for (const c of channels()) runLevels[c.channel]=lerp(transition.from[c.channel]||0,transition.to[c.channel]||0,u);
+        if (u===1) transition=null;
+      }
+      Object.assign(runLevels,manualOverrides);
+      if (state.mode==='cues') {
+        state.levels={...runLevels};
+        for (const c of channels()) {
+          const input=$('fader-'+c.channel);
+          if (!input) continue;
+          input.value=Math.round(runLevels[c.channel]||0);
+          input.nextElementSibling.textContent=input.value;
+        }
+      }
+      if (state.elapsed>=5000) {
+        if (state.beat<7) enterBeat(state.beat+1,runBeatAt+5000);
+        else finishRun();
+      }
+      if (state.elapsed>1200) checkDark();
+      dirty=true;
+    }
+    const idleGlow=!Curio.reduce && !frozenPose && state.mode==='run' && (runLevels[42]||0)>0;
+    if ((dirty || idleGlow) && now-lastPaint>32) {
+      lastPaint=now;
+      const levels=state.mode==='run' ? runLevels : state.levels;
+      if (dirty || !cachedLook) lightBuffers(levels);
+      if (state.mode==='hang') {
+        drawPlan();
+        if (state.preview) drawRoom($('hangPreviewCanvas'),levels,now);
+      } else if (state.mode==='cues') {
+        if (state.preview) drawRoom($('cuePreviewCanvas'),levels,now);
+      } else if (state.mode==='run') {
+        drawRoom($('runCanvas'),levels,now);
+        drawGraph();
+      }
+      dirty=false;
+    }
+    requestAnimationFrame(tick);
+  }
+  Curio.onMotion(() => {dirty=true;
+  });
+  Curio.init({clips:"voice:*",rate:.9,readFallback:() => $('hint').textContent});
+  researchCard(0);
+  renderBeatStrips();
+  renderCues();
+  syncSettings();
+  buildBoard();
+  hint(state.instruments.length ? 'Select a lantern or drag its ring. Open Cues to record your first look.' : L.welcomeHang);
+  $('saveStatus').textContent=saveOkay ? 'Saved only on this device' : 'Storage unavailable · keep this tab open';
+  requestAnimationFrame(tick);
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq() {return V.queue;
+  },
+    geometry,compile,pointLight,lookAt,createInstrument,recordCue,updateCue,jump,startRun,stopRun,finishRun,actorPose,enterBeat,
+    buildStats,get stats() {if (graphDirty) buildStats();
+    return stats;
+    },changeBeats,renderObservations,changed,save,
+    get runLevels() {return runLevels;
+    },get planTransform() {return planTransform;
+    },clearDesign,
+    TYPES,PIPES,GELS,MARKS,BEATS,project,runHasStarted:() => runHasStarted};
+})();
+</script>
+</body>
+</html>

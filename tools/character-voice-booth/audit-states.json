@@ -1,0 +1,208 @@
+{
+  "states": [
+    {
+      "name": "all-line-chips",
+      "steps": [
+        {
+          "click": "#line"
+        }
+      ],
+      "keep": [
+        "#line-dialog",
+        "#line-chips"
+      ]
+    },
+    {
+      "name": "feelings",
+      "steps": [
+        {
+          "click": "#feelings"
+        },
+        {
+          "click": "#cards [data-card=surprised]"
+        }
+      ],
+      "keep": [
+        "#line",
+        "#cards",
+        "#record",
+        "#hint"
+      ]
+    },
+    {
+      "name": "plan-high",
+      "steps": [
+        {
+          "click": "#m-plan"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#dial-0').getBoundingClientRect();return [[r.x+r.width/2,r.y+r.height/2],[r.right-3,r.y+r.height/2]]})()"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#dial-1').getBoundingClientRect();return [[r.x+r.width/2,r.y+r.height/2],[r.right-3,r.y+r.height/2]]})()"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#dial-2').getBoundingClientRect();return [[r.x+r.width/2,r.y+r.height/2],[r.right-3,r.y+r.height/2]]})()"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#dial-3').getBoundingClientRect();return [[r.x+3,r.y+r.height/2],[r.right-3,r.y+r.height/2]]})()"
+        }
+      ],
+      "keep": [
+        "#plan-controls",
+        "#perform",
+        "#cards"
+      ]
+    },
+    {
+      "name": "plan-longest",
+      "steps": [
+        {
+          "click": "#m-plan"
+        },
+        {
+          "click": "#line"
+        },
+        {
+          "click": "[data-line='1']"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#dial-0').getBoundingClientRect();return [[r.x+r.width/2,r.y+r.height/2],[r.x+3,r.y+r.height/2]]})()"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#dial-1').getBoundingClientRect();return [[r.x+r.width/2,r.y+r.height/2],[r.x+3,r.y+r.height/2]]})()"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#dial-2').getBoundingClientRect();return [[r.x+r.width/2,r.y+r.height/2],[r.x+3,r.y+r.height/2]]})()"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#dial-3').getBoundingClientRect();return [[r.x+3,r.y+r.height/2],[r.right-3,r.y+r.height/2]]})()"
+        }
+      ],
+      "keep": [
+        "#plan-controls",
+        "#perform",
+        "#cards"
+      ]
+    },
+    {
+      "name": "perform-mouse",
+      "steps": [
+        {
+          "click": "#m-plan"
+        },
+        {
+          "click": "#cards [data-card=mouse]"
+        },
+        {
+          "click": "#perform"
+        }
+      ],
+      "keep": [
+        "#perform-overlay",
+        "#back-plan"
+      ]
+    },
+    {
+      "name": "fair-test-ready",
+      "steps": [
+        {
+          "click": "#challenge"
+        }
+      ],
+      "keep": [
+        "#record",
+        "#hint",
+        "#cards"
+      ]
+    },
+    {
+      "name": "review-six-takes",
+      "steps": [
+        {
+          "js": "const ac = new AudioContext({sampleRate:48000});\nwindow.reviewAudio = ac;\nwindow.reviewTake = (hz=220, seconds=2, db=-20, pauses=[], card='usual', line='Who left this door open?') => {\n  const rate=48000;\n  const samples=new Float32Array(Math.round(rate*seconds));\n  const gain=Math.sqrt(2)*10**(db/20);\n  for(let i=0;i<samples.length;i++) {\n    const time=i/rate;\n    if(!pauses.some(p=>time>=p[0] && time<p[1])) samples[i]=gain*Math.sin(2*Math.PI*hz*time);\n  }\n  const result=__tool.analyze(samples,rate,line);\n  if(!result) return null;\n  const buffer=ac.createBuffer(1,samples.length,rate);\n  buffer.copyToChannel(samples,0);\n  __tool.shelfTake(result,buffer,{line,card});\n  return __tool.state.takes.at(-1);\n};\nreviewTake();\nreviewTake(330,1.2,-10,[],'mouse');\nreviewTake(180,3,-25,[[1,1.5]],'wizard');\nreviewTake(250,2,-20,[],'robot');reviewTake(190,2,-20,[],'boot');reviewTake(280,2,-20,[],'crown');"
+        },
+        {
+          "wait": 800
+        }
+      ],
+      "keep": [
+        "#take-list .newest",
+        "#record"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "review-populated-compare",
+      "steps": [
+        {
+          "js": "const ac = new AudioContext({sampleRate:48000});\nwindow.reviewAudio = ac;\nwindow.reviewTake = (hz=220, seconds=2, db=-20, pauses=[], card='usual', line='Who left this door open?') => {\n  const rate=48000;\n  const samples=new Float32Array(Math.round(rate*seconds));\n  const gain=Math.sqrt(2)*10**(db/20);\n  for(let i=0;i<samples.length;i++) {\n    const time=i/rate;\n    if(!pauses.some(p=>time>=p[0] && time<p[1])) samples[i]=gain*Math.sin(2*Math.PI*hz*time);\n  }\n  const result=__tool.analyze(samples,rate,line);\n  if(!result) return null;\n  const buffer=ac.createBuffer(1,samples.length,rate);\n  buffer.copyToChannel(samples,0);\n  __tool.shelfTake(result,buffer,{line,card});\n  return __tool.state.takes.at(-1);\n};\nreviewTake();\nreviewTake(330,1.2,-10,[],'mouse');\nreviewTake(180,3,-25,[[1,1.5]],'wizard');\n"
+        },
+        {
+          "click": "#m-compare"
+        }
+      ],
+      "keep": [
+        "#compare-stage",
+        "#play-ab"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "review-mystery-guesses",
+      "steps": [
+        {
+          "js": "const ac = new AudioContext({sampleRate:48000});\nwindow.reviewAudio = ac;\nwindow.reviewTake = (hz=220, seconds=2, db=-20, pauses=[], card='usual', line='Who left this door open?') => {\n  const rate=48000;\n  const samples=new Float32Array(Math.round(rate*seconds));\n  const gain=Math.sqrt(2)*10**(db/20);\n  for(let i=0;i<samples.length;i++) {\n    const time=i/rate;\n    if(!pauses.some(p=>time>=p[0] && time<p[1])) samples[i]=gain*Math.sin(2*Math.PI*hz*time);\n  }\n  const result=__tool.analyze(samples,rate,line);\n  if(!result) return null;\n  const buffer=ac.createBuffer(1,samples.length,rate);\n  buffer.copyToChannel(samples,0);\n  __tool.shelfTake(result,buffer,{line,card});\n  return __tool.state.takes.at(-1);\n};\nreviewTake();\nreviewTake(330,1.2,-10,[],'mouse');\nreviewTake(180,3,-25,[[1,1.5]],'wizard');\nreviewTake(250,2,-20,[],'robot');reviewTake(190,2,-20,[],'boot');reviewTake(280,2,-20,[],'crown');"
+        },
+        {
+          "click": "#m-compare"
+        },
+        {
+          "click": "#mystery"
+        }
+      ],
+      "keep": [
+        "#guess-cards",
+        "#reveal"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "review-mystery-reveal",
+      "steps": [
+        {
+          "js": "const ac = new AudioContext({sampleRate:48000});\nwindow.reviewAudio = ac;\nwindow.reviewTake = (hz=220, seconds=2, db=-20, pauses=[], card='usual', line='Who left this door open?') => {\n  const rate=48000;\n  const samples=new Float32Array(Math.round(rate*seconds));\n  const gain=Math.sqrt(2)*10**(db/20);\n  for(let i=0;i<samples.length;i++) {\n    const time=i/rate;\n    if(!pauses.some(p=>time>=p[0] && time<p[1])) samples[i]=gain*Math.sin(2*Math.PI*hz*time);\n  }\n  const result=__tool.analyze(samples,rate,line);\n  if(!result) return null;\n  const buffer=ac.createBuffer(1,samples.length,rate);\n  buffer.copyToChannel(samples,0);\n  __tool.shelfTake(result,buffer,{line,card});\n  return __tool.state.takes.at(-1);\n};\nreviewTake();\nreviewTake(330,1.2,-10,[],'mouse');\nreviewTake(180,3,-25,[[1,1.5]],'wizard');\nreviewTake(250,2,-20,[],'robot');reviewTake(190,2,-20,[],'boot');reviewTake(280,2,-20,[],'crown');"
+        },
+        {
+          "click": "#m-compare"
+        },
+        {
+          "click": "#mystery"
+        },
+        {
+          "click": "#reveal"
+        }
+      ],
+      "keep": [
+        "#compare-stage"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

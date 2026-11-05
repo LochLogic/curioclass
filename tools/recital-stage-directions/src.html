@@ -1,0 +1,1437 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Recital Stage Directions · Curio Class</title>
+<meta name="description" content="Flip the stage, place three dancers, light a recital and read its movement clues. Grades 3-5 dance. Works offline.">
+<!--
+Curio Class. Grades 3-5 dance: DA:Pr4, DA:Pr6, DA:Re8, DA:Re9.
+Started from kit/starter/src.html. Kit supplies figures, floor, phrases, clock, music, counts, voice and settings.
+Sources: Educational Theatre Association; National Core Arts Standards; Library of Congress ballet overview;
+Gail Grant, Technical Manual and Dictionary of Classical Ballet (1982); Jacob's Pillow Dance Interactive.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Content CC BY 4.0; code MIT.
+One offline file. Choices stay on this device. No network requests, recording or collection.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#121a2b; --panel:#1f2a40; --ink:#eef3fa; --muted:#a9b6c8; --line:#465672;
+  --brand:#7fd1ff; --focus:#ffd27a; --btn:#25344b; --btn-line:#667c98; --head-ink:#eef3fa;
+}
+body {overflow:hidden}
+header {background:linear-gradient(110deg,#18243a,#101827); border-bottom:1px solid #52627b; gap:8px; padding:12px 18px}
+h1 {font-size:26px; letter-spacing:-.6px; color:#fff3d3}
+h1 small {font-size:13px; color:var(--muted); letter-spacing:.5px; margin-top:5px}
+button {min-width:44px; min-height:44px; border:1px solid #62748e; border-radius:8px; background:#2a3a54;
+  padding:7px 11px; font-weight:700; font-size:14px; box-shadow:inset 0 1px #ffffff12,0 2px 0 #0004}
+button:hover {background:#354d6b; border-color:#b6e5ff}
+button[aria-pressed=true],.primary {background:var(--brand); color:#121a2b; border-color:#a9e1ff}
+button:focus-visible {outline-offset:1px; position:relative; z-index:8}
+button:disabled {opacity:.5; cursor:default}
+.seg button,.icon-btn {min-height:44px; padding:0 11px; font-size:13px}
+.seg button[aria-pressed=true] {background:#7fd1ff; color:#121a2b}
+main {grid-template-columns:minmax(0,1fr) 326px; min-height:0}
+.panel {grid-column:2; grid-row:1; padding:14px; gap:10px; border-left:1px solid #63718a;
+  background:linear-gradient(105deg,#28334a,#1c283d 9%,#172237); scrollbar-width:thin}
+.hint {font-size:15px; line-height:1.4; margin:0; height:83px; min-height:83px; padding:10px;
+  border-left:3px solid #ffd27a; background:#101c30; border-radius:3px 8px 8px 3px}
+.panel section {display:grid; gap:9px}
+.eyebrow {text-transform:uppercase; letter-spacing:1.8px; font-size:11px; color:#d4bb82; font-weight:800; margin:0}
+h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
+.row {display:flex; gap:6px; flex-wrap:wrap}
+.row>button {flex:1}
+.stack {display:grid; gap:6px}
+.selected {border-color:#ffd27a!important; box-shadow:0 0 0 2px #ffd27a88}
+.dancer-choice {display:flex; align-items:center; gap:6px; padding:4px 8px; text-align:left}
+.dancer-choice svg {width:26px; height:45px; pointer-events:none}
+.dancer-choice span {pointer-events:none}
+.callbox {border:1px solid #a58a58; background:linear-gradient(110deg,#3d372c,#222a38); padding:10px;
+  min-height:66px; border-radius:8px; line-height:1.35; font-size:15px}
+#feedback {font-size:13px; line-height:1.4; min-height:32px; margin:0; color:#ffe1a2}
+.privacy {margin:auto 0 0; color:var(--muted); font-size:11px; line-height:1.4}
+.privacy button {background:transparent; border:0; box-shadow:none; text-decoration:underline; font-size:11px; padding:4px}
+.stage {grid-column:1; grid-row:1; min-height:0; isolation:isolate; background:#080e1a; overflow:hidden}
+#theater {width:100%; height:100%; display:block; touch-action:none}
+#view-switch {position:absolute; top:12px; left:50%; transform:translateX(-50%); display:flex; z-index:4;
+  white-space:nowrap; border:1px solid #d8be83; border-radius:10px; padding:3px; background:#101a2bee; box-shadow:0 6px 18px #0008}
+#view-switch button {box-shadow:none; font-size:13px; padding:5px 12px}
+#plan-wrap {position:absolute; top:77px; right:17px; width:158px; padding:9px; background:#0c1729e8;
+  border:1px solid #7187a1; border-radius:8px; z-index:3; box-shadow:0 4px 20px #0006}
+#plan-wrap .eyebrow {font-size:10px; letter-spacing:1px; text-align:center; margin-bottom:5px}
+#plan {display:grid; grid-template-columns:repeat(3,1fr); gap:3px}
+#plan button {min-height:44px; padding:2px; font-size:11px; position:relative; border-radius:4px}
+#plan .marks {display:block; font-size:10px; height:12px; line-height:12px}
+#plan button.lit {background:#78623c; border-color:#ffd27a; color:#fff3d2}
+#plan button.target {outline:3px solid #ffd27a; background:#8a6935}
+#plan button:disabled {opacity:1; cursor:default}
+#plan-audience {text-align:center; font-size:10px; letter-spacing:2px; color:#b7c6d9; margin-top:5px}
+#scene-caption {position:absolute; top:79px; left:4%; width:67%; pointer-events:none; z-index:2;
+  font:700 16px 'Trebuchet MS',sans-serif; text-shadow:0 2px 4px #000; color:#f5dfac}
+#scene-caption small {display:block; font:500 12px 'Segoe UI',sans-serif; color:#c9d7e7; margin-top:5px}
+.footlight {position:absolute; bottom:0; width:100%; height:5px; background:linear-gradient(90deg,#5d4832,#fce6a3,#5d4832);
+  box-shadow:0 -5px 30px #ffc66d55; pointer-events:none}
+.clues {display:grid; grid-template-columns:1fr 1fr; gap:5px}
+.clues button {font-size:12px; line-height:1.2; text-align:left; min-height:50px; padding:6px}
+.clues button[aria-pressed=true]::before {content:'✓ '; font-weight:900}
+.mini-label {font-size:12px; color:#c7d4e5; margin:0}
+.ideas button {text-align:left; line-height:1.25; min-height:52px}
+.swatch {border-top:7px solid var(--swatch); padding-top:3px}
+#turn-call {font:700 22px/1.3 'Trebuchet MS',sans-serif; color:#fff0c7; min-height:105px}
+#turn-count {font-size:46px; font-weight:900; color:#ffd27a; text-align:center; line-height:1.1}
+#setup {font-size:14px; line-height:1.5; padding:10px; background:#101b2d; border-radius:8px}
+#setup svg {display:block; height:65px; width:100%}
+#compare-board {position:absolute; inset:70px 16px 16px; z-index:6; display:grid; grid-template-rows:1fr auto; gap:10px;
+  padding:12px; background:#111d32f5; border:1px solid #c1a573; border-radius:10px}
+#bins {display:grid; grid-template-columns:1fr .72fr 1fr; gap:8px; min-height:0}
+.bin {display:flex; flex-direction:column; gap:5px; border:1px dashed #9aa8bd; border-radius:7px; padding:9px; overflow:auto}
+.bin h3 {font-size:16px; color:#ffe0a2; margin:0 0 5px}
+.bin>button {flex:none; width:100%; font-size:11px; text-align:left; min-height:44px}
+.bin .history {margin:auto 0 0; padding-top:8px; font-size:12px; line-height:1.4; color:#c7d5e6}
+#traits {display:grid; grid-template-columns:repeat(4,1fr); gap:6px}
+#traits button {font-size:12px; line-height:1.2; min-height:60px; text-align:left}
+#compare-board.playing {background:transparent; grid-template-rows:1fr auto; pointer-events:none; z-index:3}
+#compare-board.playing #bins {visibility:hidden}
+#compare-board.playing #traits {pointer-events:auto; opacity:.35}
+#compare-board.playing #traits:focus-within {opacity:1}
+#compare-summary {font-size:14px; line-height:1.4; color:#ffe0a2}
+.area-label {paint-order:stroke; stroke:#111a2b; stroke-width:5px; stroke-linejoin:round; fill:#eff4fc; font-weight:800}
+.tile {cursor:pointer; touch-action:none}
+.tile.passive {cursor:default}
+.tile:focus-visible {outline:none; stroke:#fff6b8; stroke-width:5}
+.idle-glow {animation:breathe 4s ease-in-out infinite alternate}
+@keyframes breathe {from {opacity:.4} to {opacity:.7}}
+.calm .idle-glow {animation:none}
+@media (max-width:1050px) {
+  h1 {font-size:21px}
+  header {padding:8px 12px}
+  main {grid-template-columns:minmax(0,1fr) 292px}
+  .panel {padding:10px; gap:7px}
+  #plan-wrap {width:150px; right:9px}
+}
+@media (max-height:700px) and (min-width:600px) {
+  header {padding:5px 9px; gap:5px}
+  h1 {font-size:18px}
+  h1 small {display:none}
+  header .seg {order:2}
+  header button {font-size:12px!important; padding:0 9px!important}
+  main {grid-template-columns:minmax(0,1fr) 270px}
+  .panel {padding:7px; gap:6px}
+  .hint {height:55px; min-height:55px; font-size:12px; padding:6px; line-height:1.3}
+  h2 {font-size:16px}
+  .panel section {gap:5px}
+  .panel button {font-size:12px; padding:5px 6px; min-height:44px; height:44px}
+  #compare {font-size:11px}
+  #dress-controls .mini-label {display:none}
+  .panel .eyebrow {display:none}
+  .dancer-choice {font-size:12px; padding:1px 5px}
+  .dancer-choice svg {height:34px; width:18px}
+  .callbox {min-height:44px; padding:6px; font-size:12px}
+  #feedback {font-size:11px; min-height:16px}
+  .privacy {font-size:10px; line-height:1.2}
+  .privacy button {min-height:44px}
+  #plan-wrap {top:66px; bottom:auto; right:7px; width:145px; padding:5px}
+  #plan-wrap .eyebrow {display:none}
+  #scene-caption {top:61px; bottom:auto; font-size:12px; width:58%}
+  #scene-caption small {font-size:10px}
+  #view-switch {top:8px}
+  #view-switch button {font-size:11px; padding:3px 7px}
+  .clues button {min-height:44px; font-size:11px; padding:4px}
+  .clues {position:fixed; left:8px; bottom:10px; width:calc(100vw - 286px); z-index:5;
+    grid-template-columns:repeat(4,minmax(0,1fr)); padding:6px; background:#101b2ef5; border:1px solid #9aacc3; border-radius:8px}
+  .clues button {height:64px}
+  #setup {font-size:12px; line-height:1.3; padding:6px}
+  #setup svg {height:35px}
+  #turn-call {font-size:15px; min-height:60px}
+  #turn-count {font-size:30px}
+  body:has(#turn-panel:not([hidden]) #setup:not([hidden])) #turn-call,
+  body:has(#turn-panel:not([hidden]) #setup:not([hidden])) #turn-count,
+  body:has(#turn-panel:not([hidden]) #setup:not([hidden])) #bow {display:none}
+  #compare-board {inset:60px 6px 6px; padding:6px; gap:5px}
+  #traits {gap:4px; grid-template-columns:repeat(2,1fr)}
+  #traits button {min-height:44px; font-size:10px; padding:3px}
+  .bin {padding:4px}
+  .bin h3 {font-size:11px}
+  .bin .history {font-size:10px}
+}
+@media (max-width:599px) {
+  body {overflow:auto; display:block}
+  header {padding:7px; gap:5px}
+  h1 {width:100%; font-size:21px; margin-bottom:3px}
+  h1 small {display:none}
+  header .seg {width:100%; justify-content:stretch; order:2}
+  header .seg button {flex:1}
+  header .icon-btn {flex:1}
+  main {display:flex; flex-direction:column}
+  .stage {order:0; height:280px; min-height:280px; overflow:visible; margin-bottom:154px}
+  .panel {order:1; border-left:0; border-top:1px solid #536681; padding:10px; overflow:visible}
+  .hint {height:63px; min-height:63px; font-size:14px}
+  #view-switch {top:8px}
+  #view-switch button {font-size:12px}
+  #plan-wrap {top:285px; bottom:auto; left:10px; right:10px; width:auto; height:146px; padding:4px}
+  #plan-wrap .eyebrow {display:none}
+  #plan {gap:3px}
+  #plan button {min-height:44px; padding:0; font-size:12px}
+  #plan .marks {position:absolute; right:6px; top:15px}
+  #plan-audience {margin-top:2px}
+  #scene-caption {font-size:12px; top:61px; bottom:auto; width:90%}
+  #scene-caption small {font-size:10px}
+  #compare-board {inset:61px 5px 5px; overflow:auto; padding:5px}
+  #traits {grid-template-columns:repeat(2,1fr)}
+  #traits button {min-height:44px; font-size:10px; padding:3px}
+  .bin {padding:4px; min-height:100px}
+  .bin h3 {font-size:11px}
+  .bin .history {font-size:10px}
+  .privacy {margin-top:4px}
+  .panel .eyebrow,.panel h2 {display:none}
+  body.center-shared #scene-caption small {display:none}
+  body:has(#map-panel:not([hidden]) #call-controls:not([hidden])) .hint {
+    height:53px; min-height:53px; font-size:13px; line-height:1.3; padding:8px;
+  }
+  .panel {padding-bottom:70px}
+  #check,#next-call,#watch,#stop-recital,#show,#main-idea,#start,#stop-turn,#slower,#bow {
+    position:fixed; bottom:7px; z-index:10; height:48px; min-height:48px; box-shadow:0 0 0 5px #101a2be8;
+  }
+  #check,#show {left:8px; width:calc(50% - 12px)}
+  #next-call,#main-idea {right:8px; width:calc(50% - 12px)}
+  #watch {left:8px; width:calc(67% - 12px)}
+  #stop-recital {right:8px; width:calc(33% - 12px)}
+  #recital-panel:has(#clue-controls:not([hidden])) #stop-recital,
+  #recital-panel:has(#idea-controls:not([hidden])) #stop-recital {position:static; width:auto; box-shadow:none}
+  #recital-panel:has(#clue-controls:not([hidden])) #stop-recital {
+    position:fixed; left:auto; right:7px; width:calc(33.333% - 10px); box-shadow:0 0 0 5px #101a2be8;
+  }
+  #show {width:calc(33.333% - 10px); left:7px}
+  #main-idea {width:calc(33.333% - 10px); left:calc(33.333% + 3px); right:auto}
+  #start,#stop-turn,#slower,#bow {width:calc(25% - 10px); font-size:12px; padding:4px}
+  #start {left:7px} #stop-turn {left:calc(25% + 3px)} #slower {left:calc(50% + 1px)} #bow {right:7px}
+  #compare-board {position:fixed; top:149px; bottom:67px; left:5px; right:5px; padding:6px; overflow:hidden;
+    grid-template-rows:minmax(0,1fr) auto}
+  #compare-check,#back-recital {position:fixed; bottom:7px; z-index:10; width:calc(50% - 12px); height:48px;
+    box-shadow:0 0 0 5px #101a2be8}
+  #compare-check {left:8px} #back-recital {right:8px}
+  body:has(#recital-panel:not([hidden]) #clue-controls:not([hidden])) .stage,
+  body:has(#recital-panel:not([hidden]) #idea-controls:not([hidden])) .stage {height:220px; min-height:220px; margin-bottom:0}
+  body:has(#recital-panel:not([hidden]) #clue-controls:not([hidden])) #plan-wrap,
+  body:has(#recital-panel:not([hidden]) #idea-controls:not([hidden])) #plan-wrap {display:none}
+  body:has(#recital-panel:not([hidden]) #clue-controls:not([hidden])) #scene-caption small,
+  body:has(#recital-panel:not([hidden]) #idea-controls:not([hidden])) #scene-caption small {display:none}
+  .clues {position:static; width:auto; padding:0; border:0; grid-template-columns:1fr 1fr; background:none}
+  .clues button {font-size:11px; min-height:44px; height:44px; padding:4px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Recital Stage Directions<small>Stage areas and watching a recital · Curio Class</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-map" aria-pressed="true">Stage map</button>
+    <button id="m-recital" aria-pressed="false">Recital</button>
+    <button id="m-turn" aria-pressed="false">Your turn</button>
+  </div>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+</header>
+<main>
+  <aside class="panel">
+    <p class="hint" id="hint"></p>
+    <section id="map-panel">
+      <p class="eyebrow">Choose a dancer from the wings</p>
+      <h2>Three dancers. Your stage.</h2>
+      <div class="row" id="dancer-choices"></div>
+      <div class="row"><button id="calls" aria-pressed="false">Calls</button><button id="clear">Clear stage</button></div>
+      <div id="call-controls" hidden>
+        <div class="callbox" id="call-text"></div>
+        <div class="row"><button class="primary" id="check">Check</button><button id="next-call">Next call</button></div>
+      </div>
+      <p id="feedback" role="status"></p>
+    </section>
+    <section id="recital-panel" hidden>
+      <p class="eyebrow">Recital program</p>
+      <div class="row"><button id="piece-0" aria-pressed="true">Autumn Leaves</button><button id="piece-1" aria-pressed="false">Rush Hour</button></div>
+      <div class="row"><button id="dress-tab" aria-pressed="true">Dress &amp; light</button><button id="clues-tab" aria-pressed="false">Clues</button></div>
+      <div id="dress-controls" class="stack">
+        <p class="mini-label" id="style-name">Ballet · 72 beats a minute</p>
+        <div class="row" id="costumes"></div>
+        <p class="mini-label">Light color · tap plan areas to light them</p>
+        <div class="row" id="light-colors"></div>
+        <button class="primary" id="watch">▶ Watch from your seat</button>
+      </div>
+      <div id="clue-controls" class="stack" hidden>
+        <div id="clues" class="clues"></div>
+        <div class="row"><button id="show" class="primary">Show me</button><button id="main-idea">Main idea</button></div>
+      </div>
+      <div id="idea-controls" class="stack ideas" hidden></div>
+      <div class="row"><button id="stop-recital">Stop</button><button id="compare">Compare</button></div>
+      <p id="recital-result" role="status" class="mini-label"></p>
+    </section>
+    <section id="turn-panel" hidden>
+      <p class="eyebrow">Your room is the stage</p>
+      <div id="setup">Mark nine squares on the floor with paper, three by three.
+        Stand the laptop where the audience would sit, facing you. Your right is stage right.
+        <svg viewBox="0 0 240 65" aria-label="Nine floor squares with a laptop at the audience edge">
+          <g fill="#34465f" stroke="#b1cbe5"><path d="M50 3h120v42H50zM90 3v42M130 3v42M50 17h120M50 31h120"/></g>
+          <path d="M99 51h22v10H99zM94 62h32" fill="#83d4ff" stroke="#e3efff" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="row">
+        <button id="phrase-0" aria-pressed="true">Leaf Fall</button>
+        <button id="phrase-1" aria-pressed="false">Rush Hour</button>
+        <button id="phrase-2" aria-pressed="false">Explorer</button>
+      </div>
+      <div id="turn-call">Choose a phrase, then tap Start.</div>
+      <div id="turn-count" aria-live="off">Ready</div>
+      <div class="row"><button id="start" class="primary">Start</button><button id="stop-turn">Stop</button><button id="slower">Slower</button></div>
+      <button id="bow">Bow</button>
+    </section>
+    <section id="compare-panel" hidden>
+      <h2>Two ways to move</h2>
+      <p class="mini-label">Drag a trait to a column, or tap a trait then a column. Each placement plays two counts.</p>
+      <p id="compare-summary" role="status">Place all eight traits, then check your board.</p>
+      <button id="compare-check" class="primary">Check board</button>
+      <button id="back-recital">Back to recital</button>
+    </section>
+    <p class="privacy">Choices saved only on this device. <button id="reset">Start over</button></p>
+  </aside>
+  <div class="stage" id="stage">
+    <svg id="theater" role="img" aria-label="Recital stage with nine named areas"></svg>
+    <div id="view-switch" role="group" aria-label="Viewpoint">
+      <button id="seats" aria-pressed="true">From the seats</button>
+      <button id="reverse" aria-pressed="false">From the stage</button>
+    </div>
+    <div id="plan-wrap">
+      <p class="eyebrow">Stage plan</p><div id="plan"></div><div id="plan-audience">AUDIENCE</div>
+    </div>
+    <div id="scene-caption">Whose left is stage left?<small>Flip the view. The dancer keeps their own left and right.</small></div>
+    <div id="compare-board" hidden>
+      <div id="bins"></div><div id="traits"></div>
+    </div>
+    <div class="footlight"></div>
+  </div>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:dance"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  const ART = {house:'art:house-from-stage', backdrop:'art:recital-backdrop'};
+  // The next painter supplies these full pose sets. The adapter below is the only figure integration point.
+  const POSE_ART = {
+    stand:'art:dancer-stand', releve:'art:dancer-releve', arms:'art:dancer-arms-wide', walk:'art:dancer-walk',
+    arabesque:'art:dancer-arabesque', curl:'art:dancer-sink-curl', stamp:'art:dancer-stamp', point:'art:dancer-point',
+    kick:'art:dancer-kick', clap:'art:dancer-clap', jump:'art:dancer-star-jump', freeze:'art:dancer-sharp-freeze',
+    run:'art:dancer-run', reach:'art:dancer-reach', bow:'art:dancer-bow'
+  };
+  const areas = [];
+  for (const [r, row] of [['U','Upstage'],['C','Center'],['D','Downstage']]) {
+    for (const [c, col] of [['R','right'],['C','center'],['L','left']]) {
+      const ri = ['U','C','D'].indexOf(r);
+      const ci = ['R','C','L'].indexOf(c);
+      const id = r === 'C' && c === 'C' ? 'C' : r + c;
+      const name = id === 'C' ? 'Center stage' : row + ' ' + col;
+      areas.push({id, name, r:ri, c:ci, x:(ci+.5)*100/3, z:(ri+.5)*20});
+    }
+  }
+  const byId = id => areas.find(a => a.id === id);
+  const names = ['Circle','Square','Triangle'];
+  const badges = ['circle','square','triangle'];
+  const marks = ['●','■','▲'];
+  const defaults = [['#ff9fb2','#f3eefc'],['#9fe3c7','#2b3a4f'],['#ffd27a','#6b4f9a']];
+  const calls = [
+    'Circle, center stage.', 'Square, downstage right.', 'Triangle, upstage left.',
+    'Two dancers downstage left, one upstage center.', 'Everyone in a line across center: right, center, left.',
+    'Circle downstage center, square and triangle behind her, upstage right and upstage left.',
+    'A diagonal from upstage right to downstage left.', "Everyone on the audience's right."
+  ];
+  const clues = [
+    ['Smooth, flowing arms',0,3], ['Straight paths that cross',1,5], ['Starts high and ends low',0,20],
+    ['Quick timing with surprise accents',1,10.9], ['Curved paths',0,11], ['Ends in a frozen shape',1,22],
+    ['Slow, soft timing',0,6], ['Sharp, punchy moves',1,7]
+  ];
+  const traits = [
+    ['Rising onto the toes (releve)',0,2], ['Sharp hits on the beat',1,7],
+    ['Dancers move in formations',2,10], ['Long balanced line on one leg (arabesque)',0,14],
+    ['Accents just off the beat (syncopation)',1,11], ['Arms that flow from shape to shape (port de bras)',0,5],
+    ['They use high, middle and low levels',2,19], ['Kicks and claps',1,12]
+  ];
+  const ideas = [
+    ['A race to the finish','Leaves drifting down and settling','Waking up in the morning'],
+    ['Floating in the sea','A sleepy afternoon','A busy city where everyone hurries past each other']
+  ];
+  const correctIdea = [1,2];
+  const pieceNames = ['Autumn Leaves','Rush Hour'];
+  const bpm = [72,104];
+  const histories = [
+    'Ballet grew in the royal courts of Italy and France in the 1500s and 1600s. Its steps still have French names.',
+    'Jazz dance grew from African American social dances and jazz music in the early 1900s, and later moved onto Broadway stages and into dance studios.'
+  ];
+  const phraseCalls = [
+    [
+      ['Start upstage left. Rise high and open your arms, eyes up.',8,'UL','releve'],
+      ['Walk a curved path to center stage, looking at your hands.',8,'C','walk'],
+      ['Sink slowly to the floor, eyes down.',8,'C','curl'], ['Stand and bow.',4,'C','bow']
+    ],
+    [
+      ['Start downstage right. Eight sharp steps straight across to downstage left, looking ahead.',8,'DL','step'],
+      ['Turn and walk straight to upstage center, look at the audience.',8,'UC','walk'],
+      ['Four kicks in place.',8,'UC','kick'], ['Freeze, then bow.',4,'UC','bow']
+    ],
+    [
+      ['Start upstage right. Tiptoe to upstage center, looking around.',8,'UC','releve'],
+      ['Zigzag to center stage.',8,'C','walk'],
+      ['Run to downstage left and reach out to the audience.',8,'DL','run'], ['Bow.',4,'DL','bow']
+    ]
+  ];
+  const L = {
+    welcomeMap:'Tap From the stage, then From the seats. Watch which side stage left is on.',
+    flipHow:"Stage left is always the dancer's left. Now drag a dancer onto the stage.",
+    placeHow:'Tap a dancer, then tap an area. Or drag the dancer onto the stage or plan.',
+    checkRight:'Right where I called them.',
+    checkWrong:"Not quite. Remember: it's the dancer's left and right.",
+    welcomeRecital:'Pick costumes and lights for the piece. Then tap Watch from your seat.',
+    cluesHow:'Which of these did you see? Tap them, then pick the main idea.',
+    ideaRight:'Yes. The moves tell that story.',
+    ideaOther:'Watch again: what do the shapes, levels and timing say?',
+    welcomeTurn:'Mark your nine squares, face the laptop, and tap Start. Your right is stage right.',
+    bow:'And bow. Nice work on stage.',
+    compareHow:'Tap a trait, then tap a column. Or drag a trait into its column. Then tap Check board.',
+    ideaHow:'Tap the main idea that the movement clues support.',
+    ...Object.fromEntries(calls.map((v,i) => ['call'+i,v])),
+    ...Object.fromEntries(phraseCalls.flatMap((p,i) => p.map((s,j) => ['turn'+i+'_'+j,s[0]])))
+  };
+  const state = {
+    mode:'map', view:'seats', selected:0, placed:[null,null,null], calls:false, call:0, checked:null,mapTouched:false,
+    piece:0, tab:'dress', costume:[0,0], light:[0,0], lit:[areas.map(a=>a.id),areas.map(a=>a.id)],
+    clues:[[],[]], answers:[null,null], watched:[false,false], board:Array(8).fill(null), trait:null,
+    phrase:0, tempo:100, playing:false, runKind:'', count:0, target:null, compare:false, segment:-1
+  };
+  const savedKeys = ['costume','light','lit','clues','answers','watched','board'];
+  function save() {
+    try {
+      localStorage.setItem('recital-stage-directions',JSON.stringify(Object.fromEntries(savedKeys.map(k=>[k,state[k]]))));
+    } catch {}
+  }
+  function load() {
+    try {
+      const s = JSON.parse(localStorage.getItem('recital-stage-directions'));
+      if (!s || typeof s !== 'object') return;
+      for (let p=0;p<2;p++) {
+        if ([0,1,2].includes(s.costume?.[p])) state.costume[p]=s.costume[p];
+        if ([0,1,2,3].includes(s.light?.[p])) state.light[p]=s.light[p];
+        if (Array.isArray(s.lit?.[p])) state.lit[p]=s.lit[p].filter(id=>byId(id));
+        if (Array.isArray(s.clues?.[p])) state.clues[p]=[...new Set(s.clues[p].filter(i=>Number.isInteger(i)&&i>=0&&i<8))];
+        if ([0,1,2].includes(s.answers?.[p])) state.answers[p]=s.answers[p];
+        state.watched[p]=s.watched?.[p]===true;
+      }
+      if (Array.isArray(s.board)&&s.board.length===8) state.board=s.board.map(v=>[0,1,2].includes(v)?v:null);
+    } catch {}
+  }
+  load();
+  const V = Curio.voice({
+    lines:L, scope:()=>state.mode, hint:false,
+    read:()=>state.mode==='map'&&state.calls?[calls[state.call],$('hint').textContent]:$('hint').textContent,
+    welcome:()=> {
+      if (state.playing) return null;
+      if (state.mode==='map') {
+        return ['welcomeMap',{valid:()=>!state.calls&&!state.mapTouched&&state.view==='seats'&&state.placed.every(a=>a===null)}];
+      }
+      if (state.mode==='recital') {
+        if(state.compare) return null;
+        const tab=state.tab;
+        const key=tab==='dress'?'welcomeRecital':tab==='clues'?'cluesHow':'ideaHow';
+        const needs=tab==='dress'?'#watch':tab==='clues'?'#show':'#idea-0';
+        return [key,{valid:()=>state.tab===tab&&!state.compare,needs}];
+      }
+      if (state.mode==='turn'&&!$('setup').hidden&&state.segment<0) return 'welcomeTurn';
+      return null;
+    },
+    speaks:'#seats,#reverse,.dancer-choice,#calls,#check,#next-call,#watch,#start,#slower,#bow,#compare'
+  });
+  function hint(text) {$('hint').textContent=text;}
+  function how(key, opts={}) {
+    hint(L[key]);
+    V.how(key,{hint:false,...opts});
+  }
+  function mk(tag, attrs={}, parent) {
+    const el=document.createElementNS(NS,tag);
+    for (const [k,v] of Object.entries(attrs)) el.setAttribute(k,v);
+    if(parent) parent.appendChild(el);
+    return el;
+  }
+  const svg=$('theater');
+  const sceneRoots=[mk('g',{},svg),mk('g',{},svg)];
+  const floors=sceneRoots.map((g,i)=>Dance.floor(g,i?'square':'stage',{backdrop:i?ART.house:undefined,dancerFrac:.26}));
+  let camera=0;
+  for (const floor of floors) {
+    const project=floor.project.bind(floor);
+    floor.nativeProject=project;
+    floor.project=(x,y,z)=>project(50+(x-50)*Math.cos(camera)+(z-30)*Math.sin(camera)*.65,y,z);
+  }
+  const tiles=floors.map(f=>mk('g',{},f.layers.marks));
+  const labels=floors.map(f=>mk('g',{'pointer-events':'none'},f.layers.front));
+  const strips=floors.map(f=>Dance.counts(f.layers.front,null,{mode:'numbers',on:'#ffd27a',off:'#24344d',offLine:'#6b829f'}));
+  const snapshots=Array.from({length:3},()=>({pose:Dance.pose('stand'),x:50,z:30,facing:0,lift:0}));
+  let actors=[];
+  let guides=[];
+  function makeFigure(f,options) {
+    let dancer;
+    const shadowGroup=options.noShadow?null:mk('g',{},f.layers.shadow);
+    const projection=Object.create(f);
+    projection.project=(x,y,z)=> {
+      if(!dancer) return f.project(x,y,z);
+      const center=50+(dancer.x-50)*Math.cos(camera)+(dancer.z-30)*Math.sin(camera)*.65;
+      return f.nativeProject(center+x-dancer.x,y,z);
+    };
+    dancer=Dance.dancer(f.layers.actors,{floor:projection,...options,shadowLayer:shadowGroup});
+    dancer.shadowGroup=shadowGroup;
+    const remove=dancer.remove;
+    dancer.remove=()=> {remove();shadowGroup?.remove();};
+    return dancer;
+  }
+  // Renderer contract: set canonical floor-unit samples, recolor, resize, show/hide. Replace here with painted sprites.
+  const renderer={
+    extra(f,p,i) {
+      const [top,bottom]=colors(i,p);
+      return makeFigure(f,{badge:badges[i],top,bottom,skin:'#bd835e',scale:.62});
+    },
+    frame(i,sample) {
+      snapshots[i]={...snapshots[i],...Object.fromEntries(Object.entries(sample).filter(([,v])=>v!=null))};
+      actors.forEach(set=>set[i].set({...snapshots[i],facing:snapshots[i].facing+camera*180/Math.PI}));
+    },
+    rebuild() {
+      actors.flat().forEach(d=>d.remove());
+      guides.forEach(d=>d.remove());
+      actors=floors.map(f=>badges.map((badge,i)=> {
+        const [top,bottom]=colors(i);
+        const d=makeFigure(f,{badge,top,bottom,skin:['#bd835e','#915c40','#d9a67a'][i],scale:.94});
+        d.g.style.cursor='grab';
+        d.g.onpointerdown=e=>dragStart(e,i);
+        return d;
+      }));
+      guides=floors.map(f=>makeFigure(f,{top:'#c4d7ec',bottom:'#647d9b',skin:'#c4d7ec',scale:.8,noShadow:true}));
+      snapshots.forEach((s,i)=>renderer.frame(i,s));
+      renderPositions();
+    },
+    icon(el,i) {
+      const [top,bottom]=defaults[i];
+      Dance.icon(el,'stand',{badge:badges[i],top,bottom,skin:['#bd835e','#915c40','#d9a67a'][i]});
+    }
+  };
+  const playbackActors=names.map((_,i)=>({set:s=>renderer.frame(i,s)}));
+  function colors(i,p=state.piece) {
+    if(state.mode==='map') return defaults[i];
+    const sets=p===0?[['#b5532a','#e0a83a'],['#90b49d','#f4ead6'],['#d9d7cd','#455772']]:
+      [['#1b1b1b','#ffd400'],['#c53340','#f7f3ec'],['#d9d7cd','#455772']];
+    return sets[state.costume[p]];
+  }
+  let width=900,height=600;
+  function relayout() {
+    const box=$('stage').getBoundingClientRect();
+    width=box.width;
+    height=box.height;
+    svg.setAttribute('viewBox',`0 0 ${width} ${height}`);
+    const currentCamera=camera;
+    camera=0;
+    floors.forEach((f,j)=> {
+      const span=j?.85:1.19;
+      const compact=width<600&&height<500&&innerWidth>=600;
+      const center=compact?(width-164)/2+9:width/2;
+      const fw=compact?(width-164)*(j?1:1.4):width*span;
+      f.resize(width,height,{x0:center-fw/2,x1:center+fw/2,yBack:height*.47,yFront:height*.87});
+      if(!j) mk('image',{href:ART.backdrop,x:width*.06,y:height*.08,width:width*.88,height:height*.43,
+        preserveAspectRatio:'xMidYMid slice'},f.layers.bg);
+      if(j) {
+        f.layers.floor.querySelectorAll('polygon').forEach(p=>p.setAttribute('fill','#242b39'));
+        f.layers.floor.querySelectorAll('line').forEach(p=>p.setAttribute('stroke','#536074'));
+      }
+      const defs=mk('defs',{},f.layers.bg);
+      const floorShade=mk('linearGradient',{id:'floor-shade-'+j,x1:0,y1:0,x2:.3,y2:1},defs);
+      mk('stop',{offset:0,'stop-color':'#192332'},floorShade);
+      mk('stop',{offset:.45,'stop-color':'#2a303c'},floorShade);
+      mk('stop',{offset:1,'stop-color':'#3b3d47'},floorShade);
+      f.layers.floor.querySelector('polygon')?.setAttribute('fill',`url(#floor-shade-${j})`);
+      const grain=mk('g',{'pointer-events':'none',opacity:.25},f.layers.floor);
+      for(let x=0;x<=100;x+=8) {
+        const a=f.project(x,0,0),b=f.project(x,0,60);
+        mk('path',{d:`M${a[0]} ${a[1]}L${b[0]} ${b[1]}`,stroke:'#85919e','stroke-width':.6},grain);
+        for(const z of [8+(x%3)*3,31+(x%5),52-(x%4)]) {
+          const p=f.project(x+.4,0,z),q=f.project(Math.min(100,x+7.5),0,z);
+          mk('path',{d:`M${p[0]} ${p[1]}L${q[0]} ${q[1]}`,stroke:'#0b1421','stroke-width':1},grain);
+          for(const t of [x+1,x+6]) {
+            const n=f.project(Math.min(99,t),0,z+.5);
+            mk('circle',{cx:n[0],cy:n[1],r:.7,fill:'#a3a7ab'},grain);
+          }
+        }
+      }
+      if(!j) {
+        const velvet=mk('linearGradient',{id:'velvet',x1:0,y1:0,x2:1,y2:0},defs);
+        for(const [offset,color] of [[0,'#3b1024'],[.3,'#7e223b'],[.52,'#a8424b'],[.74,'#6b1c33'],[1,'#2c1021']]) {
+          mk('stop',{offset,'stop-color':color},velvet);
+        }
+        f.deco.querySelectorAll('rect').forEach(r=>r.setAttribute('fill','url(#velvet)'));
+      }
+      const glow=mk('radialGradient',{id:'stage-glow-'+j},defs);
+      mk('stop',{offset:0,'stop-color':'#ffd27a','stop-opacity':.15},glow);
+      mk('stop',{offset:1,'stop-color':'#ffd27a','stop-opacity':0},glow);
+      mk('ellipse',{cx:width*.32,cy:height*.4,rx:width*.48,ry:height*.43,
+        fill:`url(#stage-glow-${j})`,class:'idle-glow'},f.layers.bg);
+      if(!j) {
+        const folds=mk('g',{},f.deco);
+        for(let x=0;x<width*.075;x+=Math.max(5,width*.012)) {
+          mk('path',{d:`M${x} 0 Q${x+9} ${height*.35} ${x+3} ${height*.86}`,stroke:'#b44643',
+            'stroke-width':3,fill:'none',opacity:.45},folds);
+          mk('path',{d:`M${width-x} 0 Q${width-x-9} ${height*.35} ${width-x-3} ${height*.86}`,
+            stroke:'#b44643','stroke-width':3,fill:'none',opacity:.45},folds);
+        }
+        if(state.mode==='recital') for(const x of [width*.18,width*.72]) {
+          mk('path',{d:`M${x} ${height+20}v-42q0-34 38-34h${width*.13}q38 0 38 34v42`,
+            fill:'#5f1f33',stroke:'#a55460','stroke-width':4},f.deco);
+        }
+      }
+      strips[j].layout({x:width*.18,y:height*.9,w:width*.64,h:Math.min(34,height*.07)});
+    });
+    camera=currentCamera;
+    renderPositions();
+    drawTiles();
+  }
+  function renderPositions() {
+    if(!actors.length) return;
+    document.body.classList.toggle('center-shared',state.mode==='map'&&state.placed.includes('C'));
+    guides.forEach((d,j)=> {
+      d.g.style.display=state.mode==='map'?'':'none';
+      const shared=state.placed.includes('C');
+      d.scale=shared?.5:.8;
+      d.set({pose:'arms-wide',x:shared?63:50,z:shared?22:30,facing:camera*180/Math.PI});
+    });
+    actors.forEach(set=>set.forEach(d=> {
+      const hidden=state.mode==='turn'||state.runKind==='both';
+      d.g.style.display=hidden?'none':'';
+      if(d.shadowGroup) d.shadowGroup.style.display=hidden?'none':'';
+    }));
+    if(state.mode==='map') {
+      state.placed.forEach((id,i)=> {
+        const a=byId(id);
+        const same=state.placed.map((v,k)=>v===id?k:-1).filter(k=>k>=0);
+        const offset=a?(same.indexOf(i)-(same.length-1)/2)*9:0;
+        renderer.frame(i,{pose:'stand',x:a?a.x+offset:6+i*6,z:a?a.z:18,facing:0,lift:0});
+        actors.forEach(set=> {
+          set[i].g.style.display=a?'':'none';
+          if(set[i].shadowGroup) set[i].shadowGroup.style.display=a?'':'none';
+        });
+      });
+    } else snapshots.forEach((s,i)=>actors.forEach(set=>set[i].set({...s,facing:s.facing+camera*180/Math.PI})));
+    updateLights();
+    drawLabels();
+  }
+  function drawLabels() {
+    floors.forEach((f,j)=> {
+      labels[j].textContent='';
+      const text=(x,y,s,size=13,color='#e8f2ff',anchor='middle')=> {
+        const t=mk('text',{x,y,'text-anchor':anchor,'font-size':size,fill:color,'font-weight':700,
+          'paint-order':'stroke',stroke:'#101827','stroke-width':4},labels[j]);
+        t.textContent=s;
+      };
+      const right=f.project(2,0,32);
+      const left=f.project(98,0,32);
+      text(right[0],height*.46,'Stage right',width<500?11:15);
+      text(left[0],height*.46,'Stage left',width<500?11:15);
+      if(!j) {
+        text(width*.2,height*.985,"audience's left",Math.max(10,Math.min(13,width/65)),'#bdcbe0');
+        text(width*.8,height*.985,"audience's right",Math.max(10,Math.min(13,width/65)),'#bdcbe0');
+      }
+      if(state.mode==='map'&&guides[j]) {
+        const d=guides[j];
+        for(const [joint,label] of [['rHa','my right'],['lHa','my left']]) {
+          const p=d.sj[joint];
+          const dir=Math.sign(p[0]-d.sj.chest[0])||(label==='my right'?-1:1);
+          const lift=state.placed.includes('C')?Math.min(70,height*.14):5;
+          mk('path',{d:`M${p[0]} ${p[1]-5}V${p[1]-lift}h${dir*23}m${-dir*6} -4l${dir*6} 4l${-dir*6} 4`,
+            stroke:'#ffdf9a','stroke-width':2,fill:'none'},labels[j]);
+          text(p[0]+dir*30,p[1]-lift-7,label,width<500?10:13,'#ffdf9a',dir>0?'start':'end');
+        }
+      }
+      if(state.mode==='turn'&&state.segment>=0) {
+        const call=phraseCalls[state.phrase][state.segment][0];
+        const words=call.split(' ');
+        const lines=[''];
+        for(const word of words) {
+          if((lines[lines.length-1]+' '+word).length>(width<500?42:68)) lines.push('');
+          lines[lines.length-1]+=(lines[lines.length-1]?' ':'')+word;
+        }
+        lines.forEach((line,i)=>text(width*.5,height*.3+i*(width<500?16:24),line,width<500?12:19,'#ffdf9a'));
+      }
+    });
+  }
+  function tileClick(id) {
+    if(state.mode==='recital') {
+      const a=state.lit[state.piece];
+      const i=a.indexOf(id);
+      if(i<0) a.push(id); else a.splice(i,1);
+      save();
+      how('welcomeRecital',{valid:()=>!state.playing});
+      drawTiles();
+      updateLights();
+      Curio.tone(440,.06,.07);
+    } else if(state.mode==='map') place(state.selected,id);
+  }
+  function drawTiles() {
+    floors.forEach((f,j)=> {
+      for(const a of areas) {
+        const occupied=state.mode==='map'&&state.placed.includes(a.id);
+        const lit=state.mode==='recital'&&state.lit[state.piece].includes(a.id);
+        const target=state.target===a.id&&state.mode==='turn';
+        const color=['#ffd27a','#8bb7ff','#f299c4','#eef3fa'][state.light[state.piece]];
+        let g=tiles[j].querySelector(`[data-tile="${a.id}"]`);
+        if(!g) {
+          g=mk('g',{'data-tile':a.id},tiles[j]);
+          const tile=mk('polygon',{class:'tile',role:'button','aria-label':a.name,'data-area':a.id},g);
+          mk('title',{},tile).textContent=a.name;
+          tile.onclick=()=>tileClick(a.id);
+          tile.onkeydown=e=> {if(e.key==='Enter'||e.key===' ') {e.preventDefault();tileClick(a.id);}};
+          mk('text',{'text-anchor':'middle',class:'area-label','pointer-events':'none'},g);
+          mk('text',{'text-anchor':'middle','font-size':11,'paint-order':'stroke',stroke:'#121a2b','stroke-width':3},g);
+        }
+        const tile=g.children[0];
+        const attrs={points:f.quad(a.c*100/3,a.r*20,(a.c+1)*100/3,(a.r+1)*20),
+          fill:target?'#ffd27a':occupied?'#7fd1ff':lit?color:'#161e2e',
+          'fill-opacity':target?.6:occupied?.25:lit?.17:.6,stroke:target?'#ffedae':'#879bb6',
+          'stroke-opacity':target?1:.45,'stroke-width':target?3:1,
+          class:state.mode==='turn'?'tile passive':'tile',role:state.mode==='turn'?'img':'button',
+          tabindex:j===(state.view==='stage'?1:0)&&state.mode!=='turn'?'0':'-1'};
+        for(const [k,v] of Object.entries(attrs)) tile.setAttribute(k,v);
+        if(state.mode==='recital') tile.setAttribute('aria-pressed',lit);
+        else tile.removeAttribute('aria-pressed');
+        const p=f.project(a.x-10,0,a.z+7);
+        const label=g.children[1];
+        label.setAttribute('x',p[0]);label.setAttribute('y',p[1]);label.setAttribute('font-size',width<500?13:17);
+        label.textContent=a.id;
+        const result=g.children[2];
+        result.textContent='';
+        if(occupied&&state.checked) {
+          const ids=state.placed.map((v,i)=>v===a.id?i:-1).filter(i=>i>=0);
+          const good=ids.every(i=>state.checked[i]);
+          result.setAttribute('x',p[0]);result.setAttribute('y',p[1]+16);
+          result.setAttribute('fill',good?'#c8ffe1':'#ffe0aa');
+          result.textContent=good?'✓ Right':'× Try again';
+        }
+      }
+    });
+    const order=areas.slice().sort((a,b)=>a.r-b.r||(state.view==='stage'?b.c-a.c:a.c-b.c));
+    for(const [index,a] of order.entries()) {
+      let b=$('plan').querySelector(`[data-plan="${a.id}"]`);
+      if(!b) {
+        b=document.createElement('button');
+        b.dataset.plan=a.id;b.title=a.name;b.setAttribute('aria-label',a.name);b.textContent=a.id;
+        const span=document.createElement('span');span.className='marks';b.appendChild(span);
+        b.onclick=()=>tileClick(a.id);$('plan').appendChild(b);
+      }
+      b.style.order=index;
+      const span=b.querySelector('.marks');
+      span.textContent=state.mode==='map'?state.placed.map((v,i)=>v===a.id?marks[i]:'').join(''):'';
+      b.classList.toggle('lit',state.mode==='recital'&&state.lit[state.piece].includes(a.id));
+      b.classList.toggle('target',state.target===a.id&&state.mode==='turn');
+      b.disabled=state.mode==='turn';
+      const occupants=state.placed.map((v,i)=>v===a.id?names[i]:null).filter(Boolean).join(', ');
+      const description=state.mode==='map'?(occupants?'. '+occupants:''):state.mode==='recital'?
+        (state.lit[state.piece].includes(a.id)?'. Lit':'. Dim'):(state.target===a.id?'. Target':'');
+      b.setAttribute('aria-label',a.name+description);
+      if(state.mode==='recital') b.setAttribute('aria-pressed',state.lit[state.piece].includes(a.id));
+      else b.removeAttribute('aria-pressed');
+    }
+  }
+  function updateLights() {
+    if(!actors.length) return;
+    actors.forEach(set=>set.forEach((d,i)=> {
+      let opacity=1;
+      if(state.mode==='recital') {
+        const s=snapshots[i];
+        const area=areaAt(s.x,s.z);
+        opacity=area&&state.lit[state.piece].includes(area.id)?1:.25;
+      }
+      d.g.setAttribute('opacity',opacity);
+    }));
+  }
+  function areaAt(x,z) {
+    if(x<0||x>100||z<0||z>60) return null;
+    return areas.find(a=>a.c===Math.min(2,Math.floor(x*3/100))&&a.r===Math.min(2,Math.floor(z/20)));
+  }
+  let flipToken=0;
+  function flip(view) {
+    if(view===state.view) return;
+    state.view=view;
+    state.mapTouched=true;
+    sceneRoots.forEach((g,i)=>g.setAttribute('aria-hidden',i!==(view==='stage'?1:0)));
+    $('seats').setAttribute('aria-pressed',view==='seats');
+    $('reverse').setAttribute('aria-pressed',view==='stage');
+    const token=++flipToken;
+    const focusedArea=document.activeElement?.dataset?.area;
+    const from=camera,to=view==='stage'?Math.PI:0,t0=performance.now();
+    function frame() {
+      if(token!==flipToken) return;
+      const u=Curio.reduce?1:Math.min(1,(performance.now()-t0)/800);
+      camera=from+(to-from)*(1-Math.cos(u*Math.PI))/2;
+      sceneRoots[0].setAttribute('opacity',Math.max(0,Math.cos(camera/2)**2));
+      sceneRoots[1].setAttribute('opacity',Math.sin(camera/2)**2);
+      sceneRoots.forEach((g,i)=>g.style.pointerEvents=i===(view==='stage'?1:0)?'':'none');
+      drawTiles();
+      renderPositions();
+      if(u<1) requestAnimationFrame(frame);
+      else if(focusedArea) tiles[view==='stage'?1:0].querySelector(`[data-area="${focusedArea}"]`)?.focus({preventScroll:true});
+    }
+    frame();
+    if(state.mode==='map') how('flipHow',{valid:()=>state.placed.every(v=>v===null)});
+    Curio.tone(320,.12,.07);
+  }
+  function place(i,id) {
+    state.placed[i]=id;
+    state.checked=null;
+    renderPositions();
+    drawTiles();
+    const text=id?`${names[i]}: ${byId(id).name.toLowerCase()}.`:`${names[i]} is in the wings.`;
+    $('feedback').textContent=text;
+    hint(text+' Tap another dancer or area, or tap Check for the current call.');
+    if(!state.calls) hint(text+' Tap another dancer or area.');
+    V.dropQueued();
+    Curio.tone(id?550:240,.08,.08);
+  }
+  function callFits(n,positions) {
+    const p=positions;
+    if(n===0) return [p[0]==='C',true,true];
+    if(n===1) return [true,p[1]==='DR',true];
+    if(n===2) return [true,true,p[2]==='UL'];
+    if(n===3) {
+      const good=p.filter(v=>v==='DL').length===2&&p.filter(v=>v==='UC').length===1;
+      return p.map(()=>good);
+    }
+    if(n===4) return p.map(v=>['CR','C','CL'].includes(v)&&new Set(p).size===3);
+    if(n===5) return [p[0]==='DC',['UR','UL'].includes(p[1])&&p[1]!==p[2],['UR','UL'].includes(p[2])&&p[1]!==p[2]];
+    if(n===6) return p.map(v=>['UR','C','DL'].includes(v)&&new Set(p).size===3);
+    return p.map(v=>['UL','CL','DL'].includes(v));
+  }
+  function showCall() {
+    state.checked=null;
+    $('feedback').textContent='';
+    $('call-text').textContent=`${state.call+1} / 8 · ${calls[state.call]}`;
+    hint(`Place dancers for Call ${state.call+1}, then tap Check. Tap Next call for another.`);
+    $('scene-caption').textContent=calls[state.call];
+    const n=state.call;
+    V.say('call'+n,{now:true,valid:()=>state.calls&&state.call===n});
+    drawTiles();
+  }
+  function checkCall() {
+    const n=state.call;
+    state.checked=callFits(n,state.placed);
+    const right=state.checked.every(Boolean);
+    const expected=[['C',null,null],[null,'DR',null],[null,null,'UL'],['DL','DL','UC'],['CR','C','CL'],
+      ['DC','UR','UL'],['UR','C','DL'],['CL','CL','CL']][n];
+    const lines=state.checked.map((ok,i)=> {
+      if(ok) return `${names[i]}: ✓ Right`;
+      const actual=byId(state.placed[i])?.name.toLowerCase()||'in the wings';
+      if(n===7) return `${names[i]}: × ${actual}. Audience right means a stage left area.`;
+      return `${names[i]}: × ${actual}. Try ${byId(expected[i])?.name.toLowerCase()||'the called formation'}.`;
+    });
+    $('feedback').textContent=lines.join(' · ');
+    hint((right?L.checkRight:L.checkWrong)+' Tap Next call, or move a dancer and Check again.');
+    V.say(right?'checkRight':'checkWrong',{valid:()=>state.call===n&&state.checked!==null});
+    if(right) Curio.yes(); else Curio.tone(180,.14,.07);
+    drawTiles();
+  }
+  let token=0,clock=null,player=null,music=null;
+  let extras=[];
+  function stop(hush=true) {
+    token++;
+    if(player) player.stop();
+    if(clock) clock.stop();
+    if(music) music.stop();
+    extras.flat().forEach(d=>d.remove());
+    extras=[];
+    player=clock=music=null;
+    state.playing=false;
+    state.runKind='';
+    if(turnResolve) {turnResolve();turnResolve=null;}
+    $('compare-board').classList.remove('playing');
+    strips.forEach(s=>s.g.style.display='none');
+    if(hush) V.hush();
+    renderPositions();
+  }
+  const softArmA={...Dance.poses.releve,arms:[125,20,145,55]};
+  const softArmB={...Dance.poses.releve,arms:[88,0,105,25]};
+  const lowCurl={...Dance.poses.sit,lean:45,head:35,arms:[65,75,82,155],lLeg:[105,8,120],rLeg:[105,8,120]};
+  function piecePhrase(p,i) {
+    if(p===0) {
+      const x=[24,50,76][i];
+      const endx=[22,50,78][i];
+      return Dance.phrase([
+        {counts:8,poses:['stand',softArmA,softArmB,softArmA,softArmB,softArmA,softArmB,softArmA,softArmB],
+          at:{x,z:10},dyn:'smooth'},
+        {counts:5,gait:'walk',level:'high',facing:'front',travel:Dance.paths.smooth([[x,10],[x-10,18],[x+7,24],[endx,31]])},
+        {counts:3,poses:i===1?['arabesque']:['arms-wide',softArmB],at:{x:endx,z:31},dyn:'smooth'},
+        {counts:i+1,poses:['stand'],at:{x:endx,z:31}},
+        {counts:3,poses:['stand',Dance.mix(Dance.pose('stand'),Dance.pose(lowCurl),.5),lowCurl,lowCurl],
+          at:{x:endx,z:31},dyn:'smooth'},
+        {counts:4-i,poses:[lowCurl],at:{x:endx,z:31}}
+      ]);
+    }
+    const starts=[[15,49],[83,45],[24,56]][i];
+    const ends=[[80,49],[17,45],[69,56]][i];
+    const lineX=[24,50,76][i];
+    const steps=[
+      {counts:3,gait:'walk',travel:Dance.paths.line(starts,[(starts[0]+ends[0])*.5,starts[1]]),dyn:'sharp'},
+      {counts:1,poses:['stamp','point'],at:{x:(starts[0]+ends[0])*.5,z:starts[1]},dyn:'sharp'},
+      {counts:3,gait:'walk',travel:Dance.paths.line([(starts[0]+ends[0])*.5,starts[1]],ends),dyn:'sharp'},
+      {counts:1,poses:['stamp','point'],at:{x:ends[0],z:ends[1]},dyn:'sharp'},
+      {counts:3,poses:['kick','clap'],travel:Dance.paths.line(ends,[lineX,30]),dyn:'sharp'},
+      {counts:1,poses:['clap','kick'],at:{x:lineX,z:30},dyn:'sharp'},
+      {counts:3,poses:['kick','clap'],at:{x:lineX,z:30},dyn:'sharp'},
+      {counts:1,poses:['clap','kick'],at:{x:lineX,z:30},dyn:'sharp'},
+      {counts:3,poses:['crouch','star-jump','stand','stand'],at:{x:lineX,z:30},dyn:'sharp'},
+      {counts:5,poses:[i===0?'point':i===1?'crouch':'arms-wide'],at:{x:lineX,z:30},facing:[-70,0,90][i],dyn:'sharp'}
+    ];
+    const ph=Dance.phrase(steps);
+    const at=ph.at.bind(ph);
+    ph.at=c=> {
+      const s=at(c);
+      // The anticipation lands a quarter-count before 12 and 16, and holds across the numbered beat.
+      if((c>=10.75&&c<11.25)||(c>=14.75&&c<15.25)) s.pose=Dance.pose('clap');
+      return s;
+    };
+    return ph;
+  }
+  function track(p) {
+    if(p===0) return {len:6,sub:2,vol:.35,parts:{
+      piano:[[60,64,67],null,67,null,64,null,[57,60,64],null,64,null,60,null],
+      pad:[[48,55],null,null,null,null,null,[45,52],null,null,null,null,null]}};
+    const clap=Array(64).fill('.');
+    clap[43]='X';
+    clap[59]='X';
+    return {len:16,sub:4,vol:.4,parts:{kick:Array.from({length:64},(_,i)=>i%16===0?'X':'.').join(''),
+      hat:Array.from({length:64},(_,i)=>i%4===0?'x':'.').join(''),clap:clap.join(''),
+      bass:Array.from({length:64},(_,i)=>i%8===0?[43,43,46,41][Math.floor(i/16)]:null)}};
+  }
+  async function watch() {
+    stop();
+    const me=token,p=state.piece;
+    state.playing=true;
+    state.runKind='watch';
+    strips.forEach(s=>s.g.style.display='');
+    state.count=0;
+    hint('Watch the paths, shapes, levels and timing. You can change costumes or lights and tap clues while they dance.');
+    $('scene-caption').innerHTML=`${pieceNames[p]}<small>${p===0?'Ballet · 72 beats a minute':'Jazz · 104 beats a minute'}</small>`;
+    clock=Dance.clock(bpm[p],{countIn:0,meter:p===0?3:4});
+    music=Dance.music(track(p),clock);
+    floors.forEach((_,j)=>strips[j].bind(clock,3));
+    clock.onCount(n=> {state.count=n;});
+    player=Dance.play(playbackActors,[0,1,2].map(i=>piecePhrase(p,i)),{clock,onFrame:()=>updateLights()});
+    clock.start();
+    await player.done;
+    if(me!==token) return;
+    stop(false);
+    state.watched[p]=true;
+    save();
+    showTab('clues');
+    how('cluesHow',{valid:()=>state.tab==='clues'&&!state.playing});
+    $('recital-result').textContent='The piece is yours to read. Pick the clues you noticed.';
+  }
+  function setPiece(p) {
+    if(state.piece===p) return;
+    stop();
+    state.piece=p;
+    state.tab='dress';
+    $('recital-result').textContent='';
+    $('scene-caption').innerHTML=`${pieceNames[p]}<small>${p===0?'Ballet · 72 beats a minute':'Jazz · 104 beats a minute'}</small>`;
+    updateRecital();
+    renderer.rebuild();
+    posePreview();
+    drawTiles();
+    how('welcomeRecital');
+  }
+  function posePreview() {
+    for(let i=0;i<3;i++) renderer.frame(i,piecePhrase(state.piece,i).at(state.piece===0?3:12));
+  }
+  function updateRecital() {
+    for(let p=0;p<2;p++) $('piece-'+p).setAttribute('aria-pressed',state.piece===p);
+    $('style-name').textContent=state.piece===0?'Ballet · 72 beats a minute':'Jazz · 104 beats a minute';
+    const labels=state.piece===0?['Rust / gold','Sage / cream','Neutral']:['Black / yellow','Red / white','Neutral'];
+    $('costumes').querySelectorAll('button').forEach((b,i)=> {
+      b.textContent=labels[i];
+      b.setAttribute('aria-pressed',state.costume[state.piece]===i);
+    });
+    $('light-colors').querySelectorAll('button').forEach((b,i)=>b.setAttribute('aria-pressed',state.light[state.piece]===i));
+    $('clues').querySelectorAll('button').forEach((b,i)=>b.setAttribute('aria-pressed',state.clues[state.piece].includes(i)));
+    $('compare').textContent=state.answers.every(a=>a!==null)?'Compare':'Compare after both ideas';
+    showTab(state.tab,false);
+  }
+  function showTab(tab,speak=true) {
+    const active=document.activeElement;
+    state.tab=tab;
+    $('dress-controls').hidden=tab!=='dress';
+    $('clue-controls').hidden=tab!=='clues';
+    $('idea-controls').hidden=tab!=='idea';
+    $('dress-tab').setAttribute('aria-pressed',tab==='dress');
+    $('clues-tab').setAttribute('aria-pressed',tab!=='dress');
+    if(tab==='idea') {
+      $('idea-controls').querySelectorAll('button').forEach((b,i)=> {
+        b.textContent=ideas[state.piece][i];
+        b.setAttribute('aria-pressed',state.answers[state.piece]===i);
+      });
+    }
+    if(speak&&!state.playing) how(tab==='dress'?'welcomeRecital':tab==='idea'?'ideaHow':'cluesHow');
+    if(active!==document.body&&active.getClientRects().length===0) {
+      $(tab==='idea'?'idea-0':tab==='clues'?'clues-tab':'dress-tab').focus({preventScroll:true});
+    }
+  }
+  function pickClue(i) {
+    const list=state.clues[state.piece],j=list.indexOf(i);
+    if(j<0) list.push(i); else list.splice(j,1);
+    $('clue-'+i).setAttribute('aria-pressed',j<0);
+    save();
+    hint('Tap more clues you noticed, then tap Show me to replay them or Main idea to read the dance.');
+    V.dropQueued();
+    Curio.tone(j<0?660:350,.06,.06);
+  }
+  async function replayClues() {
+    stop();
+    const me=token,p=state.piece;
+    const list=state.clues[p].slice();
+    if(!list.length) {hint('Tap at least one clue card, then tap Show me.');return;}
+    state.playing=true;
+    state.runKind='clues';
+    for(const i of list) {
+      if(me!==token) return;
+      const [text,owner,c]=clues[i];
+      const detail=owner===p?'A moment in this piece':'This clue belongs to the other piece. Look for different movement here.';
+      $('scene-caption').innerHTML=`${text}<small>${detail}</small>`;
+      hint(`${text}. ${owner===p?'Look at the frozen moment.':'This clue is not in this piece.'} Tap Stop to end the replay.`);
+      if(owner===p) {
+        clock=Dance.clock(bpm[p],{countIn:0});
+        music=Dance.music(track(p),clock);
+        player=Dance.play(playbackActors,[0,1,2].map(k=>piecePhrase(p,k)),{clock,onFrame:()=>updateLights()});
+        clock.start(Math.max(0,c-1));
+        await Curio.wait(60000/bpm[p]);
+        if(me!==token) return;
+        player.stop();clock.stop();music.stop();
+        [0,1,2].forEach(k=>renderer.frame(k,piecePhrase(p,k).at(c)));
+      } else {
+        [0,1,2].forEach(k=>renderer.frame(k,piecePhrase(p,k).at(c)));
+      }
+      await Curio.wait(1600);
+    }
+    if(me!==token) return;
+    stop(false);
+    hint('Tap Main idea and choose the story you read in the movement.');
+  }
+  function pickIdea(i) {
+    state.answers[state.piece]=i;
+    save();
+    showTab('idea',false);
+    const good=i===correctIdea[state.piece];
+    $('recital-result').textContent=good?'✓ The movement supports that idea.':'× Try watching the shapes, levels and timing again.';
+    hint((good?L.ideaRight:L.ideaOther)+(state.answers.every(v=>v!==null)?' Tap Compare to compare the two pieces.':' Tap the other piece to read its dance.'));
+    V.say(good?'ideaRight':'ideaOther',{valid:()=>state.tab==='idea'});
+    if(good) Curio.yes();
+  }
+  function openCompare() {
+    if(!state.answers.every(v=>v!==null)) {
+      hint('Read both pieces first. Tap Main idea for each piece, then tap Compare.');
+      return;
+    }
+    stop();
+    state.compare=true;
+    $('recital-panel').hidden=true;
+    $('compare-panel').hidden=false;
+    $('compare-board').hidden=false;
+    $('plan-wrap').hidden=true;
+    $('scene-caption').textContent='';
+    renderBoard();
+    how('compareHow');
+    $('compare-check').focus({preventScroll:true});
+  }
+  function renderBoard() {
+    for(const p of [0,2,1]) {
+      let bin=$('bins').querySelector(`[data-bin="${p}"]`);
+      if(!bin) {
+        bin=document.createElement('div');
+        bin.className='bin';bin.dataset.bin=p;
+        const b=document.createElement('button');
+        b.id='bin-'+p;b.textContent=p===2?'Both':pieceNames[p];
+        b.onclick=()=> {if(state.trait!==null) placeTrait(state.trait,p);else hint('Tap a trait first, then tap this column.');};
+        bin.appendChild(b);
+        if(p!==2) {
+          const h=document.createElement('p');h.className='history';h.textContent=histories[p];bin.appendChild(h);
+        }
+        bin.ondragover=e=>e.preventDefault();
+        bin.ondrop=e=> {
+          e.preventDefault();const i=Number(e.dataTransfer.getData('text/plain'));if(i>=0&&i<8) placeTrait(i,p);
+        };
+        $('bins').appendChild(bin);
+      }
+      state.board.forEach((v,i)=> {
+        if(v!==p) return;
+        let card=$('bins').querySelector(`[data-placed-trait="${i}"]`);
+        if(!card) {
+          card=document.createElement('button');card.dataset.placedTrait=i;card.textContent=traits[i][0];
+          card.onclick=()=>selectTrait(i);
+        }
+        if(card.parentElement!==bin) bin.insertBefore(card,bin.querySelector('.history'));
+      });
+    }
+    $('bins').querySelectorAll('[data-placed-trait]').forEach(b=> {
+      if(state.board[Number(b.dataset.placedTrait)]===null) b.remove();
+    });
+    $('traits').querySelectorAll('button').forEach((b,i)=> {
+      b.classList.toggle('selected',state.trait===i);
+      b.setAttribute('aria-label',traits[i][0]+(state.board[i]===null?'':'. Placed in '+(state.board[i]===2?'Both':pieceNames[state.board[i]])));
+    });
+  }
+  function selectTrait(i) {
+    state.trait=i;
+    renderBoard();
+    hint('Now tap Autumn Leaves, Both, or Rush Hour to place this trait.');
+  }
+  async function placeTrait(i,p) {
+    stop();
+    state.board[i]=p;
+    state.trait=null;
+    save();
+    renderBoard();
+    const me=token;
+    state.playing=true;state.runKind='trait';
+    $('compare-board').classList.add('playing');
+    $('scene-caption').textContent=traits[i][0];
+    hint('Watch two counts of the trait. Then place another card or tap Check board.');
+    // A Both trait shows each piece on its own half of the same canonical stage.
+    const source=traits[i][1];
+    const c=traits[i][2];
+    const mode=source===2?2:source;
+    if(mode===2) {
+      state.runKind='both';
+      extras=floors.map(f=>Array.from({length:6},(_,k)=>renderer.extra(f,k<3?0:1,k%3)));
+      actors.flat().forEach(d=> {
+        d.g.style.display='none';
+        if(d.shadowGroup) d.shadowGroup.style.display='none';
+      });
+    }
+    clock=Dance.clock(mode===1?104:72,{countIn:0});
+    music=Dance.music(track(mode===1?1:0),clock);
+    clock.onFrame(pos=> {
+      if(mode===2) {
+        for(let k=0;k<6;k++) {
+          const actual=k<3?0:1;
+          const sampleCount=i===6?(actual===0?[3,12,22]:[16.7,12,22])[Math.min(2,Math.floor(pos*1.5))]:c+Math.min(pos,1.999);
+          const sample=piecePhrase(actual,k%3).at(sampleCount);
+          const lit=state.lit[actual].includes(areaAt(sample.x,sample.z)?.id);
+          sample.x=sample.x*.42+(actual?54:4);
+          extras.forEach(set=> {
+            set[k].g.setAttribute('opacity',lit?1:.25);
+            set[k].set({...sample,facing:(sample.facing||0)+camera*180/Math.PI});
+          });
+        }
+        return;
+      }
+      for(let k=0;k<3;k++) {
+        const actual=mode===2?(k===2?1:0):mode;
+        const sampleCount=i===6?(actual===0?[3,12,22]:[16.7,12,22])[Math.min(2,Math.floor(pos*1.5))]:c+Math.min(pos,1.999);
+        const sample=piecePhrase(actual,k).at(sampleCount);
+        if(mode===2) sample.x=k===2?76:18+k*20;
+        renderer.frame(k,sample);
+      }
+      updateLights();
+    });
+    clock.start();
+    await Curio.wait(120000/(mode===1?104:72));
+    if(me!==token) return;
+    stop(false);
+    renderPositions();
+    $('scene-caption').textContent='';
+  }
+  async function yourTurn(slower=false) {
+    stop();
+    state.tempo=slower?80:100;
+    const me=token,p=state.phrase;
+    state.playing=true;
+    state.runKind='turn';
+    $('setup').hidden=true;
+    $('start').textContent='Again';
+    $('scene-caption').innerHTML=`${['Leaf Fall','Rush Hour','Explorer'][p]}<small>${state.tempo} beats a minute · Your right is stage right</small>`;
+    for(let i=0;i<4;i++) {
+      if(me!==token) return;
+      state.segment=i;
+      state.count=0;
+      strips.forEach(s=>s.g.style.display='none');
+      const [text,n,target]=phraseCalls[p][i];
+      state.target=target;
+      $('turn-call').textContent=text;
+      $('turn-count').textContent='Listen';
+      hint(text+' Listen to the call, then follow the four lead-in counts. Tap Stop to stop.');
+      drawTiles();
+      const callStart=performance.now();
+      await V.say('turn'+p+'_'+i,{wait:true,valid:()=>me===token,now:true,hint:false});
+      if(me!==token) return;
+      if(!Curio.sound) {
+        await Curio.wait(Math.max(0,600+62*text.length-(performance.now()-callStart)));
+        if(me!==token) return;
+      }
+      await new Promise(resolve=> {
+        clock=Dance.clock(state.tempo,{countIn:4});
+        strips.forEach(s=>s.g.style.display='');
+        floors.forEach((_,j)=>strips[j].bind(clock,1));
+        music=Dance.music({len:4,sub:1,vol:.25,parts:{wood:'Xxxx'}},clock);
+        clock.onCount(k=> {
+          if(me!==token) {resolve();return;}
+          if(k>n) {clock.stop();music.stop();resolve();return;}
+          state.count=k;
+          $('turn-count').textContent=k<=0?'Ready '+(k+4):k+' / '+n;
+        });
+        clock.start();
+        // Stop resolves this wait too; stale loops always exit at the next token check.
+        turnResolve=resolve;
+      });
+    }
+    if(me!==token) return;
+    stop(false);
+    $('turn-count').textContent='Bow';
+    $('turn-call').textContent='Your phrase is complete. Take a bow.';
+    hint('Tap Again to repeat, Slower for 80 beats a minute, or choose another phrase.');
+    V.say('bow');
+    Curio.yes();
+  }
+  let turnResolve=null;
+  function stopAll() {
+    stop();
+    if(turnResolve) {turnResolve();turnResolve=null;}
+    if(state.mode==='turn') {
+      $('turn-count').textContent='Stopped';
+      hint(`Tap ${$('start').textContent} to restart the phrase, or choose another phrase and tap Start.`);
+    } else if(state.mode==='recital') {
+      if(state.compare) hint(L.compareHow);
+      else if(state.tab==='clues') hint('Tap clue cards, then tap Show me or Main idea.');
+      else if(state.tab==='idea') hint('Tap a main idea, or tap Dress & light to watch again.');
+      else hint('Tap Watch from your seat to play, or choose costumes and lights.');
+    } else hint(L.placeHow);
+  }
+  function setMode(m) {
+    if(state.mode===m&&document.body.dataset.ready) return;
+    stopAll();
+    state.mode=m;
+    state.compare=false;
+    state.target=null;
+    $('map-panel').hidden=m!=='map';
+    $('recital-panel').hidden=m!=='recital';
+    $('turn-panel').hidden=m!=='turn';
+    $('compare-panel').hidden=true;
+    $('compare-board').hidden=true;
+    $('plan-wrap').hidden=false;
+    for(const k of ['map','recital','turn']) $('m-'+k).setAttribute('aria-pressed',m===k);
+    $('scene-caption').innerHTML=m==='map'?'Whose left is stage left?<small>Flip the view. The dancer keeps their own left and right.</small>':
+      m==='recital'?'Tonight’s recital<small>Two pieces. Your costumes. Your lights. Your reading.</small>':
+      'Your room is the stage<small>Face the laptop. Your right is stage right.</small>';
+    if(m==='turn') {
+      state.segment=-1;
+      state.tempo=100;
+      $('start').textContent='Start';
+      $('turn-call').textContent='Choose a phrase, then tap Start.';
+      $('turn-count').textContent='Ready';
+      state.view='stage';camera=Math.PI;
+      $('seats').setAttribute('aria-pressed',false);$('reverse').setAttribute('aria-pressed',true);
+    } else if(m==='recital') {
+      state.view='seats';camera=0;
+      $('seats').setAttribute('aria-pressed',true);$('reverse').setAttribute('aria-pressed',false);
+    }
+    $('seats').setAttribute('aria-pressed',state.view==='seats');
+    $('reverse').setAttribute('aria-pressed',state.view==='stage');
+    sceneRoots[0].setAttribute('opacity',state.view==='seats'?1:0);
+    sceneRoots[1].setAttribute('opacity',state.view==='stage'?1:0);
+    sceneRoots.forEach((g,i)=>g.setAttribute('aria-hidden',i!==(state.view==='stage'?1:0)));
+    sceneRoots.forEach((g,i)=>g.style.pointerEvents=i===(state.view==='stage'?1:0)?'':'none');
+    renderer.rebuild();
+    if(m==='recital') {updateRecital();posePreview();}
+    if(m==='turn') {$('setup').hidden=false;}
+    relayout();
+    hint(L[m==='map'?'welcomeMap':m==='recital'?'welcomeRecital':'welcomeTurn']);
+    if(m==='map'&&state.calls) showCall(); else V.welcome();
+    document.body.dataset.ready='true';
+  }
+  function pointFromEvent(e) {
+    const b=svg.getBoundingClientRect();
+    const f=floors[state.view==='stage'?1:0];
+    const p=f.unmap(e.clientX-b.x,e.clientY-b.y);
+    // unmap is the engine's original perspective inverse; apply the current camera's horizontal inverse.
+    const c=Math.cos(camera);
+    const x=Math.abs(c)<.08?50:50+(p.x-50-(p.z-30)*Math.sin(camera)*.65)/c;
+    return areaAt(x,p.z);
+  }
+  let drag=null;
+  function dragStart(e,i) {
+    if(state.mode!=='map') return;
+    state.selected=i;
+    selectDancer(i,false);
+    drag={i,x:e.clientX,y:e.clientY,moved:false};
+    e.currentTarget.setPointerCapture?.(e.pointerId);
+  }
+  window.addEventListener('pointermove',e=> {
+    if(!drag) return;
+    if(Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>6) drag.moved=true;
+    if(drag.moved) {
+      const a=pointFromEvent(e);
+      $('feedback').textContent=a?`${names[drag.i]} → ${a.name}`:'Release outside the stage to return to the wings.';
+    }
+  });
+  window.addEventListener('pointerup',e=> {
+    if(!drag) return;
+    const d=drag;drag=null;
+    if(!d.moved) return;
+    const hit=document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-plan]');
+    place(d.i,hit?hit.dataset.plan:pointFromEvent(e)?.id||null);
+  });
+  window.addEventListener('pointercancel',()=>drag=null);
+  function selectDancer(i,speak=true) {
+    state.selected=i;
+    state.mapTouched=true;
+    $('dancer-choices').querySelectorAll('button').forEach((b,j)=>b.setAttribute('aria-pressed',i===j));
+    if(speak) how('placeHow');
+  }
+  names.forEach((name,i)=> {
+    const b=document.createElement('button');
+    b.id='dancer-'+i;b.className='dancer-choice';b.setAttribute('aria-pressed',i===0);
+    b.innerHTML=`<svg viewBox="0 0 80 130" aria-hidden="true"></svg><span>${marks[i]} ${name}</span>`;
+    renderer.icon(b.querySelector('svg'),i);
+    b.onclick=()=>selectDancer(i);
+    b.onpointerdown=e=>dragStart(e,i);
+    b.onkeydown=e=> {
+      if(!e.key.startsWith('Arrow')) return;
+      e.preventDefault();
+      const a=byId(state.placed[i])||byId('C');
+      const dir=state.view==='stage'?-1:1;
+      const c=Math.max(0,Math.min(2,a.c+(e.key==='ArrowRight'?dir:e.key==='ArrowLeft'?-dir:0)));
+      const r=Math.max(0,Math.min(2,a.r+(e.key==='ArrowDown'?1:e.key==='ArrowUp'?-1:0)));
+      const next=areas.find(v=>v.c===c&&v.r===r);
+      place(i,next.id);
+      $('feedback').setAttribute('aria-live','polite');
+    };
+    $('dancer-choices').appendChild(b);
+  });
+  for(let i=0;i<3;i++) {
+    const b=document.createElement('button');
+    b.id='costume-'+i;
+    b.onclick=()=> {
+      state.costume[state.piece]=i;save();updateRecital();renderer.rebuild();
+      if(!state.playing) how('welcomeRecital');
+      Curio.tone(530,.05,.06);
+    };
+    $('costumes').appendChild(b);
+  }
+  ['Warm amber','Cool blue','Rose','Clear white'].forEach((text,i)=> {
+    const b=document.createElement('button');
+    b.id='light-'+i;b.textContent=text;b.className='swatch';
+    b.style.setProperty('--swatch',['#ffd27a','#8bb7ff','#f299c4','#eef3fa'][i]);
+    b.onclick=()=> {
+      state.light[state.piece]=i;save();updateRecital();drawTiles();
+      if(!state.playing) how('welcomeRecital');
+      Curio.tone(420+i*50,.06,.05);
+    };
+    $('light-colors').appendChild(b);
+  });
+  clues.forEach(([text],i)=> {
+    const b=document.createElement('button');b.id='clue-'+i;b.textContent=text;
+    b.setAttribute('aria-pressed',false);b.onclick=()=>pickClue(i);$('clues').appendChild(b);
+  });
+  for(let i=0;i<3;i++) {
+    const b=document.createElement('button');b.id='idea-'+i;b.onclick=()=>pickIdea(i);$('idea-controls').appendChild(b);
+  }
+  traits.forEach(([text],i)=> {
+    const b=document.createElement('button');b.id='trait-'+i;b.textContent=text;b.draggable=true;
+    b.onclick=()=>selectTrait(i);
+    b.ondragstart=e=> {state.trait=i;e.dataTransfer.setData('text/plain',String(i));};
+    $('traits').appendChild(b);
+  });
+  for(const m of ['map','recital','turn']) $('m-'+m).onclick=()=>setMode(m);
+  $('seats').onclick=()=>flip('seats');
+  $('reverse').onclick=()=>flip('stage');
+  window.addEventListener('keydown',e=> {if(e.key.toLowerCase()==='v'&&!e.ctrlKey&&!e.altKey) flip(state.view==='seats'?'stage':'seats');});
+  $('calls').onclick=()=> {
+    state.calls=!state.calls;$('calls').setAttribute('aria-pressed',state.calls);
+    $('call-controls').hidden=!state.calls;
+    if(state.calls) showCall();
+    else {
+      V.hush();how('placeHow');
+      $('scene-caption').innerHTML='Whose left is stage left?<small>Flip the view. The dancer keeps their own left and right.</small>';
+    }
+  };
+  $('clear').onclick=()=> {state.placed=[null,null,null];state.checked=null;renderPositions();drawTiles();
+    $('feedback').textContent='All three dancers are back in the wings.';how('placeHow');};
+  $('check').onclick=checkCall;
+  $('next-call').onclick=()=> {state.call=(state.call+1)%8;showCall();};
+  $('piece-0').onclick=()=>setPiece(0);
+  $('piece-1').onclick=()=>setPiece(1);
+  $('dress-tab').onclick=()=>showTab('dress');
+  $('clues-tab').onclick=()=>showTab('clues');
+  $('main-idea').onclick=()=>showTab('idea');
+  $('watch').onclick=watch;
+  $('show').onclick=replayClues;
+  $('stop-recital').onclick=stopAll;
+  $('compare').onclick=openCompare;
+  $('compare-check').onclick=()=> {
+    const done=state.board.every(v=>v!==null);
+    const right=state.board.filter((v,i)=>v===traits[i][1]).length;
+    $('compare-summary').textContent=!done?'Place each of the eight traits before checking.':
+      right===8?'✓ Eight traits supported by movement. Your board connects both pieces.':
+      `${right} of 8 placements fit. Try another column for a trait, and watch its clip again.`;
+    hint($('compare-summary').textContent+' Tap a trait to change its column, or tap Back to recital.');
+    if(right===8&&done) Curio.yes();
+  };
+  $('back-recital').onclick=()=> {
+    stopAll();state.compare=false;$('compare-board').hidden=true;$('compare-panel').hidden=true;
+    $('recital-panel').hidden=false;$('plan-wrap').hidden=false;updateRecital();posePreview();how('welcomeRecital');
+    $('scene-caption').textContent=pieceNames[state.piece];
+    $('dress-tab').focus({preventScroll:true});
+  };
+  for(let i=0;i<3;i++) $('phrase-'+i).onclick=()=> {
+    stopAll();state.phrase=i;state.segment=-1;state.target=null;$('setup').hidden=false;
+    state.tempo=100;
+    $('scene-caption').textContent=['Leaf Fall','Rush Hour','Explorer'][i];
+    for(let j=0;j<3;j++) $('phrase-'+j).setAttribute('aria-pressed',j===i);
+    $('turn-call').textContent='Choose a clear space, then tap Start.';$('turn-count').textContent='Ready';
+    $('start').textContent='Start';drawTiles();how('welcomeTurn');
+  };
+  $('start').onclick=()=>yourTurn(state.tempo===80);
+  $('slower').onclick=()=>yourTurn(true);
+  $('stop-turn').onclick=stopAll;
+  $('bow').onclick=()=> {
+    stopAll();$('turn-call').textContent='Take your bow.';$('turn-count').textContent='Bow';
+    hint(`Tap ${$('start').textContent} to repeat, or pick a new phrase and tap Start.`);V.say('bow');Curio.yes();
+  };
+  $('reset').onclick=()=> {
+    stopAll();
+    try {localStorage.removeItem('recital-stage-directions');} catch {}
+    state.costume=[0,0];state.light=[0,0];state.lit=[areas.map(a=>a.id),areas.map(a=>a.id)];
+    state.clues=[[],[]];state.answers=[null,null];state.watched=[false,false];state.board=Array(8).fill(null);
+    state.placed=[null,null,null];state.checked=null;state.calls=false;state.call=0;
+    state.mapTouched=false;
+    state.view='seats';camera=0;state.count=0;state.segment=-1;
+    $('feedback').textContent='';$('recital-result').textContent='';
+    $('compare-summary').textContent='Place all eight traits, then check your board.';
+    $('call-controls').hidden=true;$('calls').setAttribute('aria-pressed',false);
+    document.body.dataset.ready='';setMode('map');
+    hint('Your saved choices are cleared. Tap a dancer, then tap an area to begin again.');
+  };
+  Curio.init({clips:"voice:*",rate:.95,readFallback:()=>$('hint').textContent});
+  $('read').onclick=()=> {
+    if(state.mode==='turn'&&state.playing) stopAll();
+    V.read();
+  };
+  Curio.onMotion(()=> {if(Curio.reduce) {camera=state.view==='stage'?Math.PI:0;relayout();}});
+  new ResizeObserver(relayout).observe($('stage'));
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,callFits,piecePhrase,renderer,flip,place,
+    watch,yourTurn,stop:stopAll,areas,traits,clues,POSE_ART,openCompare,placeTrait,
+    inspect:()=>({camera,guide:guides.map(d=>({left:d.sj.lHa,right:d.sj.rHa})),
+      positions:snapshots.map(s=>({x:s.x,z:s.z}))}),
+    get vq(){return V.queue;},get clock(){return clock;}};
+  setMode('map');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "id": "moon-base-drama",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Join Commander Ada's crew. Speak a choice, then rewind and change the story.",
+  "outcome": "Speak in role, use moon science in a drama, and explain how revising a choice changes the story.",
+  "driver": "teacher",
+  "minutes": "20-30",
+  "modes": [
+    "Crew",
+    "Mission"
+  ],
+  "grades_label": "Grades K-2",
+  "sources": [
+    "National Core Arts Standards: TH:Cr3, TH:Re9, TH:Cn11",
+    "Heathcote and Bolton (1995), Drama for Learning, Heinemann",
+    "NASA Science, Moon Facts: https://science.nasa.gov/moon/facts/",
+    "NASA Moon Fact Sheet: https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html",
+    "Colaprete et al. (2010), Science 330, 463-468; NASA, Ice Confirmed at the Moon's Poles (2018)",
+    "Gaier, The Effects of Lunar Dust, NASA/TM-2005-213610",
+    "US Department of Energy, How Does Solar Work?",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-02"
+}

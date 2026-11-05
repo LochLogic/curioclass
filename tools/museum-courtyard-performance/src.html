@@ -1,0 +1,1604 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Produce a site-specific dance in a museum courtyard over six weeks. Grades 9-12. Works offline.">
+<link rel="icon" href="data:,">
+<title>Museum Courtyard Performance · Curio Class</title>
+<!--
+Based on kit/starter/src.html. Curio Class. Code MIT, content CC BY 4.0.
+NCAS DA:Pr4, DA:Pr5, DA:Pr6. Safe Dance Practice (Quin, Rafferty and Tomlinson, 2015);
+IADMS Dance Floors; Site Dance (Kloetzel and Pavlik, 2009). Sources and model assumptions in notes.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Offline, saved on this device only.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --paper:#f3efe6; --panel:#fbf9f4; --ink:#23211c; --muted:#5f5a4e; --line:#d8d0bf;
+  --brand:#4d6b14; --brand-ink:#fff; --focus:#9a3412; --btn:#f4f0e5; --btn-line:#a79e87;
+  --head-ink:#23211c; --head-bg:#fbf9f4; --tip-bg:#eae5d7; --sec-bg:#f4f0e5;
+  --warn:#9a3412; --ok:#4d6b14; color-scheme:light;
+}
+body {grid-template-rows:74px 48px minmax(0,1fr) 55px;min-height:0;overflow:hidden}
+header {padding:10px 22px;gap:14px;flex-wrap:nowrap;border-bottom:1px solid var(--line)}
+h1 {font:500 25px/1.05 Georgia,serif;letter-spacing:-.5px}
+h1 small {font:12px/1.4 'Segoe UI',sans-serif;margin-top:5px;letter-spacing:.02em}
+.seg {border:1px solid var(--line);border-radius:5px;flex-shrink:0}
+.seg button {min-height:44px;min-width:44px;font-size:13px;padding:0 15px}
+.icon-btn {border:1px solid var(--line);border-radius:4px;min-height:44px;min-width:44px;padding:0 10px;font-size:12px}
+.utilities {display:flex;gap:5px}
+button {touch-action:manipulation}
+button:active:not(:disabled) {filter:brightness(.9)}
+button:disabled {cursor:not-allowed;opacity:.5}
+.stats {display:flex;align-items:center;gap:24px;padding:4px 22px;background:#e9e3d5;border-bottom:1px solid #cfc5af}
+.stat {font:12px/1.3 'Segoe UI',sans-serif;white-space:nowrap;color:var(--muted)}
+.stat b {font:600 18px/1.2 Consolas,monospace;color:var(--ink);margin-left:7px}
+.forecast {margin-left:auto;font-size:12px;font-weight:600;color:#70401d}
+main {display:block;min-height:0;overflow:hidden}
+.workspace {height:100%;display:grid;grid-template-columns:minmax(0,1fr) 306px;grid-template-rows:minmax(0,1fr);min-height:0}
+.site-stage {display:grid;grid-template-rows:124px 50px minmax(0,1fr);min-height:0;background:#ddd4bd}
+.hero {position:relative;background:url('art:mcp-hero') 50% 56%/cover;overflow:hidden}
+.hero::after {content:'';position:absolute;inset:0;background:linear-gradient(90deg,#211c17c9,transparent 70%)}
+.hero-copy {position:absolute;z-index:1;left:24px;bottom:17px;color:#fff8e7;text-shadow:0 1px 4px #0005}
+.eyebrow {font:600 10px/1.4 Consolas,monospace;letter-spacing:.16em;text-transform:uppercase}
+.hero h2 {font:italic 36px/1.05 Georgia,serif;margin:3px 0}
+.hero p {font-size:12px;margin:6px 0 0}
+.zone-tabs {display:flex;gap:4px;align-items:center;padding:3px 12px;background:var(--panel);border-bottom:1px solid var(--line)}
+.zone-tabs button {flex:1;min-width:44px;min-height:44px;background:transparent;border:1px solid transparent;
+  border-bottom:3px solid var(--zone);font-size:12px;font-weight:650;border-radius:3px}
+.zone-tabs button[aria-pressed=true] {background:#e7e0d1;border-color:var(--zone)}
+.map-wrap {position:relative;min-height:0;overflow:hidden}
+canvas {width:100%;height:100%;display:block;touch-action:none}
+.map-instruction {position:absolute;left:14px;bottom:8px;font-size:11px;padding:5px 8px;background:#fcf8eddf;
+  border:1px solid #cfc3aa;pointer-events:none}
+.map-warning {display:none;position:absolute;top:7px;left:7px;margin:0;max-width:31%;padding:5px 7px;
+  font:10px/1.35 'Segoe UI',sans-serif;color:#9a3412;background:#fff8e5ed;border-left:2px solid #9a3412;pointer-events:none}
+.seat-inset {position:absolute;right:12px;bottom:12px;width:36%;height:43%;min-height:125px;background:#ece1c7;
+  border:3px solid #fcf8ee;box-shadow:0 6px 24px #30271966;overflow:hidden}
+.seat-inset svg {height:100%;width:100%}
+.seat-caption {position:absolute;left:7px;top:5px;font:600 10px/1.4 'Segoe UI',sans-serif;background:#fbf9f4e8;padding:3px 6px}
+.panel {padding:18px 18px 12px;border-left:1px solid #c9bda7;gap:11px;overflow:auto;min-height:0}
+.panel h2 {font:500 29px/1.1 Georgia,serif;margin:0}
+.panel h3 {font-size:12px;margin:0 0 5px;text-transform:uppercase;letter-spacing:.08em}
+.panel p {margin:0;font-size:12px;line-height:1.45}
+.section-head {display:flex;align-items:center;gap:10px}
+.section-no {font:26px Georgia,serif;width:44px;height:44px;display:grid;place-items:center;background:var(--zone);color:#fff;border-radius:50%}
+.description {color:var(--muted);min-height:36px}
+.metrics {display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.metric {border-top:1px solid var(--line);padding-top:8px;font-size:11px;color:var(--muted)}
+.metric b {display:block;font:500 29px/1.1 Consolas,monospace;color:var(--ink);margin-top:4px}
+.metric .bar {height:4px;background:#d7cfbe;margin-top:7px}
+.metric .bar i {display:block;height:100%;background:var(--brand);width:0}
+.dots {letter-spacing:3px;font-size:16px;color:var(--brand)}
+.warning {color:var(--warn);min-height:37px}
+label {display:block;font-size:12px;color:var(--muted)}
+select {font:12px 'Segoe UI',sans-serif;color:var(--ink);background:#fffdf7;border:1px solid #a69c85;border-radius:4px;
+  min-height:44px;padding:0 7px;width:100%;margin-top:4px}
+.btn {border-radius:4px;font-size:12px;padding:0 10px;min-height:44px}
+.btn.primary {background:var(--brand);color:white;border-color:var(--brand)}
+.pair {display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.tiny {font-size:10px!important;color:var(--muted);line-height:1.4}
+.panel-bottom {margin-top:auto;display:grid;gap:7px}
+#floor-label:not([hidden]) {display:block}
+.seat-mode #site-panel .description,.seat-mode #site-panel .tiny {display:none}
+.floor-mode #site-panel .description,.floor-mode #site-panel .tiny {display:none}
+.seat-mode .map-warning {display:none!important}
+footer {display:flex;gap:14px;align-items:center;padding:5px 20px;border-top:1px solid var(--line);background:var(--panel)}
+#hint {margin:0;flex:1;font-size:12px;line-height:1.35;min-width:0}
+.save {font:10px/1.35 Consolas,monospace;max-width:186px;color:var(--muted)}
+.week-board {height:100%;min-height:0;display:grid;grid-template-rows:56px minmax(0,1fr) 58px;background:#d7cbb0;
+  background-image:linear-gradient(25deg,#fff2,transparent),url('art:mcp-stone');background-size:auto,500px}
+.meeting-title {display:flex;align-items:center;justify-content:space-between;padding:5px 18px;background:#fbf8edd9}
+.meeting-title h2 {font:500 25px Georgia,serif;margin:0}
+.week-tabs {display:flex;gap:4px}
+.week-tabs button {min-width:44px;min-height:44px;border:1px solid #ad9e80;border-radius:50%;background:#fffaf0;font-weight:650}
+.week-tabs button[aria-pressed=true] {background:var(--brand);color:white}
+.cards {padding:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));
+  gap:12px;min-height:0;overflow:auto;align-content:start}
+.action {position:relative;text-align:left;padding:12px 11px;background:#fffdf6;border:1px solid #b6a584;
+  box-shadow:2px 4px 7px #574c342b;min-height:100px;display:flex;flex-direction:column;gap:6px;overflow:hidden;border-radius:2px}
+.action::before {content:'';position:absolute;width:30px;height:9px;background:#bca57770;top:0;left:calc(50% - 15px)}
+.action img {position:absolute;right:0;bottom:0;width:50%;height:70%;object-fit:contain;opacity:.32;pointer-events:none}
+.action strong {font:600 14px/1.2 'Segoe UI',sans-serif;position:relative;z-index:1}
+.action .cost {font:12px Consolas,monospace;color:#4e4b40;z-index:1}
+.action .effect {font:11px/1.35 'Segoe UI',sans-serif;z-index:1;max-width:95%}
+.action .status {margin-top:auto;font:600 10px/1.2 'Segoe UI',sans-serif;color:var(--brand);z-index:1}
+.action[aria-pressed=true] {background:#eaf0d8;border:2px solid var(--brand);padding:11px 10px}
+.action:disabled {opacity:.62;background:#e8e2d6}
+.week-footer {display:flex;gap:8px;align-items:center;padding:6px 16px;background:#fcf9ef;border-top:1px solid #c7b99b}
+#end-week {margin-left:auto;min-width:115px}
+#week-total {font-size:12px;line-height:1.4}
+.mini-map {height:160px;min-height:110px;background:#d9cdb4;border:1px solid #c6b99b;flex-shrink:0}
+.rehearse-options {display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.rehearse-options button {min-height:44px;background:#f5f0e5;border:1px solid #b3a58b;border-radius:3px;font-size:12px}
+.rehearse-options button[aria-pressed=true] {background:#4d6b14;color:white}
+.load-wrap {position:relative;background:#d8d0bf;height:12px;margin-top:6px}
+.load-wrap i {display:block;background:#4d6b14;height:100%;max-width:100%}
+.load-wrap::after {content:'';position:absolute;top:-4px;bottom:-4px;left:55.55%;border-left:2px solid #9a3412}
+.week-report {background:#f0eadb;border-left:3px solid var(--brand);padding:9px;font-size:12px;line-height:1.4}
+.week-report p {margin-top:4px}
+.night-stage {display:grid;grid-template-rows:78px minmax(0,1fr) 40%;min-height:0;background:#c9bea6}
+.night-stage .hero h2 {font-size:28px}
+.night-stage .hero-copy {bottom:12px}
+.seat-pair {display:grid;grid-template-columns:1fr 1fr;gap:2px;min-height:0;background:#b7a88a}
+.seat-box {position:relative;min-height:0;overflow:hidden;background:#ded0ae}
+.seat-box svg {height:100%;width:100%}
+.show-progress {height:6px;background:#ddd4c1;width:100%}
+.show-progress i {display:block;background:#4d6b14;height:100%;width:0}
+.night-title {font:italic 28px Georgia,serif}
+.cue {font-size:20px!important;font-family:Georgia,serif;margin:4px 0!important}
+dialog {border:1px solid #b7a78a;border-radius:5px;padding:0;box-shadow:0 20px 90px #211a1466;
+  background:var(--panel);color:var(--ink);max-height:92vh;max-width:min(960px,94vw)}
+dialog::backdrop {background:#231e1599}
+dialog[open] {display:flex;flex-direction:column}
+.dialog-body {min-height:0;flex:1}
+.dialog-actions,.sheet-hero {flex-shrink:0}
+.dialog-body {padding:22px;overflow:auto;max-height:calc(90vh - 64px)}
+.dialog-actions {display:flex;gap:8px;justify-content:flex-end;padding:10px 18px;background:#eae3d4;border-top:1px solid var(--line)}
+dialog h2 {font:500 30px Georgia,serif;margin:0 0 12px}
+dialog h3 {font:500 21px Georgia,serif;margin:18px 0 7px}
+dialog p {font-size:13px;line-height:1.55}
+.sheet-hero {height:135px;background:url('art:mcp-hero') center 55%/cover;position:relative}
+.sheet-hero h2 {position:absolute;bottom:0;left:20px;color:white;text-shadow:0 2px 6px black}
+table {border-collapse:collapse;width:100%;font-size:12px;font-variant-numeric:tabular-nums}
+th,td {border-bottom:1px solid var(--line);text-align:left;padding:8px 5px}
+th {font-size:11px;color:var(--muted)}
+.sheet-facts {display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
+.sheet-facts div {padding:12px;background:#eee8d9;font-size:12px;line-height:1.6}
+@media (max-width:1000px) {
+  header {padding:7px 12px;gap:7px} h1 {font-size:21px} h1 small {font-size:10px}
+  .seg button {padding:0 10px;font-size:12px}.icon-btn {font-size:11px;padding:0 7px}
+  .workspace {grid-template-columns:minmax(0,1fr) 250px}.panel {padding:12px;gap:8px}
+  .cards {gap:8px;padding:10px}.action {padding:10px 7px}.action strong {font-size:12px}
+  .meeting-title h2 {font-size:21px}.week-tabs button {border-radius:3px}.meeting-title {padding:5px 10px}
+}
+@media (max-height:650px) and (min-width:601px) {
+  body {grid-template-rows:56px 37px minmax(0,1fr) 48px}header h1 {font-size:19px}header h1 small {display:none}
+  header {padding:5px 10px;gap:6px}.seg button {padding:0 8px;font-size:11px}.icon-btn {font-size:11px;padding:0 6px}
+  .stats {padding:3px 12px;gap:15px}.stat {font-size:10px}.stat b {font-size:15px}.forecast {font-size:10px}
+  .workspace {grid-template-columns:minmax(0,1fr) 225px}.site-stage {grid-template-rows:57px 48px minmax(0,1fr)}
+  .hero-copy {left:13px;bottom:7px}.hero h2 {font-size:25px}.hero p,.hero .eyebrow {display:none}
+  .panel {padding:8px 10px;gap:6px}.panel h2 {font-size:20px}.description {min-height:0;font-size:10px!important}
+  .section-no {font-size:18px;width:30px;height:30px}.section-head {gap:6px}.metric {padding-top:4px;font-size:10px}
+  .metric b {font-size:20px}.metric .bar {margin-top:4px}.warning {min-height:0;font-size:10px!important}
+  .panel label {font-size:10px}select {font-size:11px;margin-top:2px}.panel .dots,.panel .description {display:none}
+  .site-secondary {display:none}.zone-tabs {padding:2px 6px}.zone-tabs button {font-size:10px}
+  .map-instruction {max-width:140px;font-size:10px;padding:4px 6px}
+  .seat-mode #floor-label {display:none!important}
+  #site-panel .warning {display:none}.map-warning:not(:empty) {display:block}
+  .seat-inset {inset:0;width:100%;height:100%;min-height:0;border:0}.map-wrap.seat-open canvas {visibility:hidden}
+  .map-wrap.seat-open .map-instruction {display:none}.week-board {grid-template-rows:48px minmax(0,1fr) 52px}
+  .meeting-title h2 {display:none}.week-tabs {gap:3px}.cards {gap:5px;padding:6px}
+  .action {min-height:0;gap:3px;padding:8px 5px}.action[aria-pressed=true] {padding:7px 4px}
+  .action strong {font-size:10px;line-height:1.15}.action .cost,.action .effect,.action .status {font-size:10px}
+  .action .effect {display:none}.action img {height:62%;width:45%;opacity:.28}
+  .mini-map {height:85px;min-height:65px}.week-side .tiny {display:none}.week-side {gap:5px}
+  .week-report {padding:5px;font-size:10px}.week-report p {font-size:10px}.week-side label {font-size:10px}
+  .night-stage {grid-template-rows:48px minmax(0,1fr) 42%}.night-stage .hero h2 {font-size:22px}
+  .night-stage .hero-copy {bottom:8px}.panel .cue {font-size:17px!important}
+  .night-panel .night-title {display:none}
+  .seat-mode #site-panel .metrics,.seat-mode #site-panel .warning {display:none}
+  .seat-mode #seat-pick-label {display:block!important}
+  .seat-mode #floor-label,.seat-mode #site-panel .section-head {display:none!important}
+  .seat-mode #site-panel .section-head {display:none}.seat-mode .map-warning {display:none}
+  .sheet-hero {height:70px}.sheet-hero h2 {font-size:22px}
+  footer {padding:4px 12px}.save {font-size:10px;max-width:135px}#hint {font-size:11px}
+}
+@media (max-width:600px) {
+  body {grid-template-rows:108px 54px minmax(0,1fr) 65px}header {display:grid;grid-template-columns:1fr auto;gap:4px;padding:7px 9px}
+  h1 {font-size:20px}h1 small {display:none}.seg {grid-column:1}.utilities {grid-column:2;grid-row:1/3;flex-direction:column;gap:2px}
+  header h1 {grid-column:1/3;grid-row:1}
+  .seg {grid-column:1;grid-row:2}
+  .utilities {grid-column:2;grid-row:2;flex-direction:row;gap:3px}
+  .utilities .icon-btn {min-height:44px;height:44px;font-size:10px;padding:0 4px}.seg button {min-height:44px;padding:0 8px;font-size:11px}
+  .stats {gap:12px;flex-wrap:wrap;padding:4px 10px;align-content:center}.stat {font-size:10px}.stat b {font-size:14px;margin-left:3px}
+  .forecast {font-size:10px;width:100%;margin:0}.workspace {grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) 226px}
+  .site-stage {grid-template-rows:55px 48px minmax(0,1fr)}.hero-copy {left:12px;bottom:8px}.hero h2 {font-size:25px}
+  .hero .eyebrow,.hero p {display:none}.zone-tabs {padding:2px 5px}.zone-tabs button {font-size:10px}
+  .panel {border-left:0;border-top:1px solid var(--line);padding:8px 10px;display:grid;grid-template-columns:1fr 1fr;gap:6px 10px;
+    overflow:auto;align-content:start}.section-head {grid-column:1}.section-no {width:28px;height:28px;font-size:17px}
+  .panel h2 {font-size:20px}.description,.site-secondary,.panel-bottom .tiny {display:none}
+  .metrics {grid-column:2;grid-row:1/3;gap:8px}.metric {font-size:10px;padding-top:0;border:0}.metric b {font-size:20px}
+  .metric .bar {margin-top:3px}.dots {font-size:12px}.warning {grid-column:1/3;min-height:16px;font-size:10px!important}
+  .panel label {font-size:10px}.panel select {font-size:10px}.panel-bottom {grid-column:1/3;display:block;margin:0}
+  .map-warning:not(:empty) {display:block;max-width:44%}#site-panel .warning {display:none}
+  .panel-bottom .pair {grid-template-columns:1fr 1fr}.btn {font-size:11px}.map-instruction {font-size:10px;bottom:5px;left:5px}
+  .seat-inset {inset:0;width:100%;height:100%;min-height:0;border:0}.map-wrap.seat-open canvas {visibility:hidden}
+  .map-wrap.seat-open .map-instruction {display:none}.week-workspace {grid-template-rows:minmax(0,1fr) 240px}
+  .week-board {grid-template-rows:54px minmax(0,1fr) 54px}.meeting-title {padding:4px 9px}.meeting-title h2 {display:none}
+  .week-tabs {width:100%;justify-content:space-between}.cards {display:flex;overflow-x:auto;overflow-y:hidden;padding:10px;gap:10px;
+    scroll-snap-type:x mandatory}.action {flex:0 0 172px;min-height:0;scroll-snap-align:start;padding:14px 10px;gap:7px}
+  .action {flex:0 0 172px}
+  .action strong {font-size:16px}.action .effect {font-size:12px}.action img {height:65%;width:80%;opacity:.3}
+  .week-footer {padding:5px 10px}.week-side {display:block;padding:7px 10px;overflow:auto}.week-side h3 {margin:0}
+  .mini-map {width:44%;height:110px;float:left;margin-right:10px;margin-bottom:5px}.week-side .tiny {display:none}
+  .rehearse-options {gap:3px}.rehearse-options button {font-size:10px}.week-side label {margin-top:3px}
+  .week-report {clear:both;margin-top:5px;font-size:10px;padding:6px}.week-report p {font-size:10px}
+  .night-workspace {grid-template-rows:minmax(0,1fr) 200px}.night-stage {grid-template-rows:52px minmax(0,1fr) 42%}
+  .night-panel #show-detail {display:none}
+  .night-stage .hero h2 {font-size:24px}.night-panel {display:block}.night-panel .night-title {display:none}
+  .night-panel .cue {font-size:19px!important}.night-panel .pair {margin-top:5px}.night-panel .tiny {display:none}
+  .night-panel #sheet-button {margin-top:5px;width:100%}.show-progress {margin:5px 0}.seat-caption {font-size:10px}
+  footer {padding:5px 10px;gap:7px}.save {max-width:85px;font-size:10px}#hint {font-size:11px}
+  .sheet-facts {grid-template-columns:1fr}.dialog-body {padding:13px}th,td {padding:6px 3px;font-size:10px}
+  .seat-mode #site-panel .metrics,.seat-mode #site-panel .warning {display:none}
+  .seat-mode #seat-pick-label {display:block!important}
+  .sheet-hero {height:80px}.sheet-hero h2 {font-size:22px}
+  .seat-mode #floor-label,.seat-mode #site-panel .section-head {display:none!important}
+  .seat-mode #adaptation-dots {display:none}
+}
+@media print {
+  body>*:not(#sheet) {display:none!important}body {display:block;height:auto;overflow:visible}
+  #sheet {display:block!important;position:static;max-height:none;max-width:none;width:100%;border:0;box-shadow:none}
+  #sheet .dialog-body {overflow:visible;max-height:none}#sheet .dialog-actions {display:none}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Museum Courtyard Performance<small>Producing a dance in an unusual venue · Curio Class</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-site" aria-pressed="true">Site</button>
+    <button id="m-week" aria-pressed="false">Week</button>
+    <button id="m-night" aria-pressed="false" disabled>Opening night</button>
+  </div>
+  <div class="utilities">
+    <button class="icon-btn" id="read">Read</button>
+    <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+    <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  </div>
+</header>
+<div class="stats">
+  <div class="stat">PRODUCTION <b id="week-stat">WEEK 1 / 6</b></div>
+  <div class="stat">BUDGET <b id="money-stat">$3,000</b></div>
+  <div class="stat">CREW LEFT <b id="hours-stat">10 h</b></div>
+  <span class="forecast" id="forecast">Museum rehearsals: Mondays only</span>
+</div>
+<main>
+  <section class="workspace" id="site-view">
+    <div class="site-stage">
+      <div class="hero"><div class="hero-copy">
+        <div class="eyebrow">A site-specific production</div><h2>Water Over Stone</h2><p>Six dancers. Four sections. One place that changes everything.</p>
+      </div></div>
+      <div class="zone-tabs" id="zone-tabs"></div>
+      <div class="map-wrap" id="site-map-wrap">
+        <canvas id="site-map" aria-label="Courtyard floor plan. Select a section above, then use arrow keys to move it." tabindex="0"></canvas>
+        <p class="map-warning" id="map-warning"></p>
+        <span class="map-instruction" id="map-label">Drag a zone · Arrow keys move selected zone</span>
+        <div class="seat-inset" id="seat-inset" hidden>
+          <svg id="site-seat" role="img" aria-label="View from the chosen seat"></svg><span class="seat-caption" id="site-seat-caption"></span>
+        </div>
+      </div>
+    </div>
+    <aside class="panel" id="site-panel">
+      <div class="section-head"><span class="section-no" id="section-no">1</span><h2 id="section-name">Arrival</h2></div>
+      <p class="description" id="description"></p>
+      <p id="adaptation-dots" class="dots"></p>
+      <div class="metrics">
+        <div class="metric">Seen from ground<b id="ground-seen">0%</b><div class="bar"><i id="ground-bar"></i></div></div>
+        <div class="metric">Seen from balcony<b id="balcony-seen">0%</b><div class="bar"><i id="balcony-bar"></i></div></div>
+      </div>
+      <p class="warning" id="warning"></p>
+      <label>Adaptation<select id="adaptation"></select></label>
+      <label>Fountain<select id="fountain"></select></label>
+      <div class="panel-bottom">
+        <div class="pair"><button class="btn" id="seat-toggle" aria-pressed="false">Seat view</button>
+          <button class="btn primary" id="to-week">Plan week</button></div>
+        <label class="site-secondary" id="floor-label" hidden>Move installed floor<select id="floor-pick"></select></label>
+        <label class="site-secondary" id="seat-pick-label" hidden>Choose seat<select id="seat-pick"></select></label>
+        <p class="tiny">A made-up museum, piece, prices and model. Zone: 6 × 4 m. Two site rehearsals per section steady the spacing.</p>
+      </div>
+    </aside>
+  </section>
+  <section class="workspace week-workspace" id="week-view" hidden>
+    <div class="week-board">
+      <div class="meeting-title"><h2>Production meeting</h2><div class="week-tabs" id="week-tabs" aria-label="Week"></div></div>
+      <div class="cards" id="cards"></div>
+      <div class="week-footer"><div id="week-total"></div><button class="btn" id="undo-week" disabled>Undo week</button>
+        <button class="btn primary" id="end-week">End week</button></div>
+    </div>
+    <aside class="panel week-side">
+      <div class="mini-map"><canvas id="week-map" aria-label="Production plan preview"></canvas></div>
+      <h3>Monday site rehearsal</h3>
+      <p class="tiny">Add Site rehearsal, then choose two sections. The first selected section gets the lobby rehearsal if it rains.</p>
+      <div class="rehearse-options" id="rehearse-options"></div>
+      <label>Rise in rehearsal<select id="rehearsal-jumps"><option value="full">Full jumps · 24</option>
+        <option value="half">Half jumps · 12</option><option value="mark">Mark the jumps · 7.2 equivalent</option></select></label>
+      <div id="load-preview"></div>
+      <div class="week-report" id="week-report" aria-live="polite">Choose this week's production actions.</div>
+    </aside>
+  </section>
+  <section class="workspace night-workspace" id="night-view" hidden>
+    <div class="night-stage">
+      <div class="hero"><div class="hero-copy"><div class="eyebrow">Opening night</div><h2>Water Over Stone</h2></div></div>
+      <div class="map-wrap"><canvas id="night-map" aria-label="Opening-night plan. Tap a ground or balcony seat to change the view."></canvas></div>
+      <div class="seat-pair">
+        <div class="seat-box"><svg id="ground-view" role="img" aria-label="View from the ground"></svg>
+          <span class="seat-caption" id="ground-caption"></span></div>
+        <div class="seat-box"><svg id="balcony-view" role="img" aria-label="View from the balcony"></svg>
+          <span class="seat-caption" id="balcony-caption"></span></div>
+      </div>
+    </div>
+    <aside class="panel night-panel">
+      <div class="night-title">The courtyard<br>becomes the stage.</div>
+      <p class="cue" id="show-cue">Ready at the west arcade.</p>
+      <p id="show-detail">Four sections, ten seconds each. Watch what both audiences actually receive.</p>
+      <div class="show-progress"><i id="show-progress"></i></div>
+      <div class="pair"><button class="btn primary" id="begin">Begin</button><button class="btn" id="stop" disabled>Stop</button></div>
+      <div class="pair"><button class="btn" id="skip" disabled>Skip section</button><button class="btn" id="night-site">Change plan</button></div>
+      <button class="btn" id="sheet-button">Program sheet</button>
+      <label class="site-secondary">Ground seat<select id="night-ground-pick"></select></label>
+      <label class="site-secondary">Balcony seat<select id="night-balcony-pick"></select></label>
+      <p class="tiny">The original piece lasts six minutes. This 40-second rendering compresses time. S3 and S4 are after dusk.</p>
+    </aside>
+  </section>
+</main>
+<footer><p id="hint"></p><button class="btn" id="model-button" aria-label="How the model works">Model</button>
+  <span class="save" id="save-note">Fictional museum. Saved only on this device.</span></footer>
+<dialog id="sheet" aria-labelledby="sheet-heading">
+  <div class="sheet-hero"><h2 id="sheet-heading">Water Over Stone · Program sheet</h2></div>
+  <div class="dialog-body" id="sheet-body"></div>
+  <div class="dialog-actions"><button class="btn" id="start-over">Start over</button><button class="btn" id="print-sheet">Print sheet</button>
+    <button class="btn primary" id="close-sheet">Close sheet</button></div>
+</dialog>
+<dialog id="model" aria-labelledby="model-heading"><div class="dialog-body">
+  <h2 id="model-heading">How the model works</h2>
+  <p>A simple model, not a law. The museum, dance, prices and numerical rules are made up for this tool.</p>
+  <h3>Seen</h3><p>A 9 by 9 grid clipped to each 6 by 4 meter ellipse samples the zone. Rays from 60 ground seats test columns
+  and the running spray. Ground sightlines are averaged, then multiplied by level, light and spacing.</p>
+  <p>For floor work, row 1 sees 100%; rows 2 and 3 see 50%, or 90% with risers. Kneeling and sitting use 75%.
+  Standing uses 100%. The balcony sees only zone samples at y 13 meters or less. Below two adaptation dots, spacing is 85%.</p>
+  <p>S3 and S4 receive 40% light after dusk, or 100% with LED wash. Column uplights add ten visibility points for S3 in an arcade,
+  capped at 100%. A floor pattern reads from above when S1, S2 or S3 has balcony Seen of at least 70%.</p>
+  <h3>Heard</h3><table><thead><tr><th>Fountain</th><th>Without speakers, ground / balcony</th><th>With speakers</th></tr></thead>
+  <tbody><tr><td>Running</td><td>70% / 45%</td><td>95% / 90%</td></tr><tr><td>Off</td><td>90% / 80%</td><td>100% / 100%</td></tr>
+  <tr><td>Part of score</td><td>90% / 85%</td><td>100% / 95%</td></tr></tbody></table>
+  <h3>Dancer load</h3><p>Jumps × three runs × floor factor: stone 3, vinyl marley 2, sprung 1. The warm-up plan reduces later
+  weeks' loads to 80%. Marking counts as 30% of jumps. Over 120 is a sore week. Two consecutive sore weeks injure one dancer;
+  Rise then has five dancers. Studio rehearsal on a sprung floor is not counted.</p>
+  <p>The floor factor is taken at the center of the Rise zone. This version does not model landings across a floor edge.</p>
+  <p>Vinyl over stone gives grip, not cushioning. These simplified load factors are teaching assumptions, not medical advice
+  or real injury probabilities. Here the fountain basin radius is 0.75 meters; spray radius is 1.5 meters.
+  Rain in week 6 cancels site rehearsal; a booked lobby backup gives one section a dot.</p>
+  <h3>The site</h3><p>The floor is 20 by 16 meters. Columns stand at x 3 and 17, and y 4, 7, 10 and 13. Ground seats have a
+  1.2 meter eye height. Balcony floor height is 5 meters. This fictional museum permits Monday rehearsals only and a show
+  starting 30 minutes before sunset. Keep zones and floors clear of the basin and audience.</p>
+  <p>Sources: NCAS Dance DA:Pr4, DA:Pr5 and DA:Pr6; Quin, Rafferty and Tomlinson, Safe Dance Practice (2015);
+  International Association for Dance Medicine and Science, Dance Floors; Kloetzel and Pavlik, Site Dance (2009).</p>
+  </div><div class="dialog-actions"><button class="btn primary" id="close-model">Close model</button></div>
+</dialog>
+<dialog id="confirm" aria-labelledby="confirm-heading"><div class="dialog-body"><h2 id="confirm-heading">Change the plan for the show?</h2>
+  <p id="confirm-copy">You can move zones and change section or fountain choices. Production actions are closed.</p></div>
+  <div class="dialog-actions"><button class="btn" id="confirm-no">Cancel</button><button class="btn primary" id="confirm-yes">Change plan</button></div>
+</dialog>
+<script src="kit:curio"></script>
+<script src="kit:dance"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const clamp = (n,a,b) => Math.max(a,Math.min(b,n));
+  const money = n => '$' + n.toLocaleString('en-US');
+  const clone = o => JSON.parse(JSON.stringify(o));
+  const STORAGE = 'curio-museum-courtyard';
+  const COLORS = ['#b45309','#1d4ed8','#7e22ce','#be123c'];
+  const SECTIONS = [
+    {name:'Arrival',text:'90 s · A straight procession across the courtyard. Middle level, no jumps.',
+      options:['Enter from the west arcade','Enter from the east arcade']},
+    {name:'Pool',text:'90 s · Rolling and sliding close to the stone. Low work can disappear behind an audience.',
+      options:['Floor work','Kneeling and sitting','Standing version']},
+    {name:'Columns',text:'90 s · Weaving between columns. An arcade can be a partner or an obstruction.',
+      options:['In an arcade','Open floor']},
+    {name:'Rise',text:'90 s · The finale: 24 jumps and two lifts. Choose the impact the dancers can sustain.',
+      options:['Full jumps','Half jumps']}
+  ];
+  const ACTIONS = [
+    ['marley','Marley floor · 8 × 8 m',900,4,'Grip over stone. Load factor 2.','mcp-marley'],
+    ['sprung','Sprung panels · 6 × 6 m',1800,6,'Giving landings. Load factor 1.',''],
+    ['risers','Risers for rows 2 + 3',600,4,'Floor-work factor rises to 90%.','mcp-risers'],
+    ['sound','Sound system',500,3,'Two speakers reach both audiences.','mcp-speaker'],
+    ['record','Record the fountain',0,3,'Unlock fountain as part of the score.',''],
+    ['off','Ask to turn fountain off',0,1,'Permission for the show only.',''],
+    ['led','LED wash lights',700,4,'Late sections lit at 100%.',''],
+    ['uplights','Column uplights',400,3,'Arcade S3: +10 Seen at dusk.','mcp-uplight'],
+    ['rehearsal','Site rehearsal',150,2,'Choose two sections. Add adaptation dots.',''],
+    ['warm','Warm-up + cool-down',0,1,'Later weekly loads × 0.8.',''],
+    ['safety','Balcony safety',200,2,'Ushers and railing check: 40 seats.',''],
+    ['rain','Rain backup in the lobby',300,2,'Rain rehearsal saves one section.','']
+  ];
+  const ART = {
+    hero:'art:mcp-hero',stone:'art:mcp-stone',column:'art:mcp-column',fountain:'art:mcp-fountain',
+    still:'art:mcp-fountain-still',marley:'art:mcp-marley',speaker:'art:mcp-speaker',uplight:'art:mcp-uplight',risers:'art:mcp-risers'
+  };
+  const PAINTED_POSES = {
+    procession:'art:dancer-procession',floor:'art:dancer-floor-roll',kneel:'art:dancer-kneel-sit',
+    standing:'art:dancer-standing-pool',weave:'art:dancer-weave',rise:'art:dancer-rise'
+  };
+  const cardArt = {'mcp-marley':ART.marley,'mcp-speaker':ART.speaker,'mcp-uplight':ART.uplight,'mcp-risers':ART.risers};
+  const L = {
+    welcomeSite:'Drag a section onto the courtyard floor and watch what each audience can see.',
+    seatHow:'Tap Seat view, then tap any seat to sit there.',
+    welcomeWeek:'Tap action cards for this week, then tap End week.',
+    sore:'Your dancers are sore this week. Their landings were too hard.',
+    injured:'A dancer is hurt. Rise goes on with five.',
+    rain:'Rain on Monday. The courtyard was closed for rehearsal.',
+    welcomeNight:'Tap Begin. Tap any seat on the plan to watch from there.',
+    siteAll:'You used the fountain, the columns and the balcony. The courtyard became part of the dance.',
+    nextWeek:'Choose action cards for the next week, then tap End week.',
+    openNow:'Six weeks are complete. Tap Opening night to present your production.',
+    chooseSeat:'Tap a ground or balcony seat on the plan. Use the seat menu for keyboard selection.',
+    sheetHow:'Compare the ground and balcony on your program sheet. Tap Close sheet to return to the courtyard.',
+    reviewWeek:'Tap the next week number to plan another Monday, or tap Undo week.'
+  };
+  const fresh = () => ({version:1,mode:'site',week:1,money:3000,used:{},pending:[],dots:[0,0,0,0],
+    zones:[{x:7,y:5.4},{x:14,y:7},{x:3,y:8.5},{x:12.5,y:4.9}],choices:[0,0,0,0],
+    fountain:'running',floors:{},reports:[],soreStreak:0,injured:false,selected:0,rehearse:[0,3],jump:'full',
+    groundSeat:10,balconySeat:19,seatView:false,seatKind:'ground',showFinished:false});
+  let state = fresh();
+  let undo = null;
+  try {
+    const data = JSON.parse(localStorage.getItem(STORAGE));
+    if (data && data.state && data.state.version === 1 && data.state.week >= 1 && data.state.week <= 7) {
+      state = {...fresh(),...data.state};
+      undo = data.undo || null;
+    }
+  } catch {}
+  let viewingWeek = Math.min(state.week,6);
+  let dragging = null;
+  let floorPick = '';
+  let showClock = null;
+  let showMusic = null;
+  let fountainSource = null;
+  let fountainGain = null;
+  let running = false;
+  let showPosition = 0;
+  let drawQueued = false;
+  let changedPlan = state.week < 7;
+  let confirmAction = null;
+  const images = {};
+  const mapFrames = new Map();
+  const seatViews = new Map();
+  let metricCache = [];
+  const V = Curio.voice({lines:L,scope:() => state.mode,hint:false,read:() => $('hint').textContent,
+    welcome:() => {
+      if (document.querySelector('dialog[open]')) return null;
+      if (state.mode === 'site') return ['welcomeSite',{valid:() => !dragging}];
+      if (state.mode === 'week' && state.week < 7) return ['welcomeWeek',{valid:() => !state.pending.length,needs:'#end-week'}];
+      if (state.mode === 'night') return ['welcomeNight',{valid:() => !running,needs:'#begin'}];
+      return null;
+    }
+  });
+  function hint(text) { $('hint').textContent = text;
+  }
+  function save() {
+    try { localStorage.setItem(STORAGE,JSON.stringify({state,undo}));
+    }
+    catch { $('save-note').textContent = 'Saving unavailable. Keep this page open.';
+    }
+  }
+  const columns = [3,17].flatMap(x => [4,7,10,13].map(y => ({x,y,r:.3})));
+  const seats = [.6,1.5,2.4].flatMap((y,row) => Array.from({length:20},(_,i) => ({x:1+18*i/19,y,row})));
+  const balconySeats = Array.from({length:40},(_,i) => ({x:1+18*i/39,y:16}));
+  const samples = [];
+  for (let i=-4;i<=4;i++) for (let j=-4;j<=4;j++) {
+    if ((i/4)**2+(j/4)**2 <= 1) samples.push({x:3*i/4,y:2*j/4});
+  }
+  function rayHit(a,b,c) {
+    const dx=b.x-a.x,dy=b.y-a.y;
+    const t=clamp(((c.x-a.x)*dx+(c.y-a.y)*dy)/(dx*dx+dy*dy || 1),0,1);
+    return Math.hypot(a.x+t*dx-c.x,a.y+t*dy-c.y) < c.r;
+  }
+  function rawSight(zone,spray) {
+    const blockers = spray ? [...columns,{x:10,y:10,r:1.5}] : columns;
+    const pts=samples.map(p => ({x:p.x+zone.x,y:p.y+zone.y}));
+    const byRow=[0,0,0];
+    for (const seat of seats) {
+      byRow[seat.row] += pts.filter(p => !blockers.some(c => rayHit(seat,p,c))).length / pts.length / 20;
+    }
+    return {byRow,ground:byRow.reduce((a,b) => a+b)/3,balcony:pts.filter(p => p.y<=13).length/pts.length};
+  }
+  const fountainRuns = (rehearsal=false) => rehearsal || state.fountain !== 'off';
+  const inArcade = z => z.x-3 <= 3.3 || z.x+3 >= 16.7;
+  function zoneDistance(z,x=10,y=10) {
+    if (((x-z.x)/3)**2+((y-z.y)/2)**2 <= 1) return 0;
+    let d=Infinity;
+    for (let i=0;i<180;i++) {
+      const a=i*Math.PI/90;
+      d=Math.min(d,Math.hypot(z.x+3*Math.cos(a)-x,z.y+2*Math.sin(a)-y));
+    }
+    return d;
+  }
+  function heard() {
+    const table={running:[[70,45],[95,90]],off:[[90,80],[100,100]],score:[[90,85],[100,95]]};
+    return table[state.fountain][state.used.sound ? 1 : 0];
+  }
+  function metrics(i) {
+    const z=state.zones[i],raw=rawSight(z,fountainRuns());
+    const lit=i>=2 && !state.used.led ? .4 : 1;
+    const spacing=state.dots[i]<2 ? .85 : 1;
+    let factors=[1,1,1];
+    if (i===1 && state.choices[1]===0) factors=[1,state.used.risers ? .9 : .5,state.used.risers ? .9 : .5];
+    if (i===1 && state.choices[1]===1) factors=[.75,.75,.75];
+    let ground=raw.byRow.reduce((s,v,row) => s+v*factors[row],0)/3*lit*spacing*100;
+    let balcony=raw.balcony*lit*spacing*100;
+    if (i===2 && state.choices[2]===0 && inArcade(z) && state.used.uplights) {
+      ground=Math.min(100,ground+10);
+      balcony=Math.min(100,balcony+10);
+    }
+    return {ground,balcony,lit:lit*100,pattern:i<3 && balcony>=70,
+      slip:fountainRuns() && zoneDistance(z)<1.75,raw};
+  }
+  function recalc() { metricCache=SECTIONS.map((_,i) => metrics(i));
+  }
+  function activeFloor(z) {
+    for (const name of ['sprung','marley']) {
+      const f=state.floors[name];
+      if (f && Math.abs(z.x-f.x)<=f.size/2 && Math.abs(z.y-f.y)<=f.size/2) return name;
+    }
+    return 'stone';
+  }
+  function weekLoad(useWarm=!!state.used.warm) {
+    if (!state.pending.includes('rehearsal') || !state.rehearse.includes(3)) return 0;
+    if (state.week===6) {
+      if (!state.used.rain && !state.pending.includes('rain')) return 0;
+      if (state.rehearse[0]!==3) return 0;
+      return (state.jump==='full' ? 24 : state.jump==='half' ? 12 : 7.2)*3*(useWarm ? .8 : 1);
+    }
+    let surface=activeFloor(state.zones[3]);
+    for (const name of ['marley','sprung']) if (state.pending.includes(name) && !state.floors[name]) {
+      const f={x:4,y:name==='marley' ? 6.7 : 6,size:name==='marley' ? 8 : 6},z=state.zones[3];
+      if (Math.abs(z.x-f.x)<=f.size/2 && Math.abs(z.y-f.y)<=f.size/2) surface=name;
+    }
+    const factor={stone:3,marley:2,sprung:1}[surface];
+    return (state.jump==='full' ? 24 : state.jump==='half' ? 12 : 7.2)*3*factor*(useWarm ? .8 : 1);
+  }
+  function pendingTotals() {
+    return ACTIONS.reduce((s,a) => state.pending.includes(a[0]) ? {cost:s.cost+a[2],hours:s.hours+a[3]} : s,{cost:0,hours:0});
+  }
+  function setMode(mode) {
+    if (mode==='night' && state.week<7) return;
+    if (mode===state.mode && !$(mode+'-view').hidden) return;
+    const oldFocus=document.activeElement;
+    const focusWasInView=!!oldFocus.closest('main');
+    stopShow(false);
+    V.hush();
+    state.mode=mode;
+    for (const m of ['site','week','night']) {
+      $(m+'-view').hidden=m!==mode;
+      $('m-'+m).setAttribute('aria-pressed',String(m===mode));
+    }
+    const text=mode==='site' ? L.welcomeSite : mode==='week' ? (state.week<7 ? L.welcomeWeek : L.openNow) : L.welcomeNight;
+    hint(text);
+    render();
+    if (focusWasInView && !oldFocus.getClientRects().length) $('m-'+mode).focus({preventScroll:true});
+    V.welcome();
+    save();
+  }
+  function renderStats() {
+    const p=pendingTotals();
+    $('week-stat').textContent=state.week<7 ? 'WEEK '+state.week+' / 6' : 'SHOW READY';
+    $('money-stat').textContent=money(state.money-p.cost);
+    $('hours-stat').textContent=state.week<7 ? (10-p.hours)+' h' : (60-state.reports.reduce((n,r) => n+r.hours,0))+' h total';
+    $('forecast').textContent=state.week>=5 ? 'Forecast: rain Monday, week 6' : 'Museum rehearsals: Mondays only';
+    $('m-night').disabled=state.week<7;
+  }
+  function renderSite() {
+    const i=state.selected,s=SECTIONS[i],m=metricCache[i];
+    $('section-no').textContent=i+1;
+    $('section-no').style.setProperty('--zone',COLORS[i]);
+    $('section-name').textContent=s.name;
+    $('description').textContent=s.text;
+    $('adaptation-dots').textContent='●'.repeat(Math.min(2,state.dots[i]))+'○'.repeat(Math.max(0,2-state.dots[i]));
+    $('adaptation-dots').setAttribute('aria-label',state.dots[i]+' adaptation dots, two needed');
+    $('ground-seen').textContent=Math.round(m.ground)+'%';
+    $('balcony-seen').textContent=Math.round(m.balcony)+'%';
+    $('ground-bar').style.width=m.ground+'%';
+    $('balcony-bar').style.width=m.balcony+'%';
+    const warnings=[];
+    if (m.slip) warnings.push('△ Slip risk: within 1 m of the basin edge while the fountain runs.');
+    if (i===2 && state.choices[2]===0 && !inArcade(state.zones[i])) warnings.push('△ Move Columns into an arcade to weave.');
+    if (i>=2 && !state.used.led) warnings.push('△ After dusk: only 40% lit.');
+    if (state.dots[i]<2) warnings.push('Spacing slips: fewer than two adaptation dots.');
+    $('warning').textContent=warnings.join(' ');
+    $('map-warning').textContent=warnings.join(' ');
+    if ($('adaptation').dataset.section!==String(i)) {
+      $('adaptation').innerHTML=s.options.map((text,j) => '<option value="'+j+'">'+text+'</option>').join('');
+      $('adaptation').dataset.section=i;
+    }
+    $('adaptation').value=state.choices[i];
+    const fountainOptions=[['running','Running']];
+    if (state.used.off) fountainOptions.push(['off','Off for the show']);
+    if (state.used.record) fountainOptions.push(['score','Part of the score']);
+    const html=fountainOptions.map(o => '<option value="'+o[0]+'">'+o[1]+'</option>').join('');
+    if ($('fountain').innerHTML!==html) $('fountain').innerHTML=html;
+    $('fountain').value=state.fountain;
+    $('seat-toggle').setAttribute('aria-pressed',String(state.seatView));
+    document.body.classList.toggle('seat-mode',state.seatView);
+    $('seat-inset').hidden=!state.seatView;
+    $('site-map-wrap').classList.toggle('seat-open',state.seatView);
+    $('seat-pick-label').hidden=!state.seatView;
+    const installed=Object.keys(state.floors);
+    document.body.classList.toggle('floor-mode',!!installed.length);
+    $('floor-label').hidden=!installed.length || state.week>=7;
+    const floorOptions='<option value="">Dance sections</option>'+installed.map(k => '<option value="'+k+'">'+k+' floor</option>').join('');
+    if ($('floor-pick').innerHTML!==floorOptions) $('floor-pick').innerHTML=floorOptions;
+    $('floor-pick').value=floorPick;
+    const compact=innerWidth<=1000 || innerHeight<=650;
+    $('map-label').textContent=compact ? (floorPick ? 'Drag floor · Arrows move' : 'Drag zone · Arrows move') :
+      floorPick ? 'Drag floor square · Arrow keys move floor' : 'Drag a zone · Arrow keys move selected zone';
+    document.querySelectorAll('#zone-tabs button').forEach((b,j) => b.setAttribute('aria-pressed',String(i===j)));
+  }
+  function renderWeek() {
+    const historical=viewingWeek<state.week;
+    const report=state.reports[viewingWeek-1];
+    for (let w=1;w<=6;w++) {
+      const b=$('w-'+w);
+      b.disabled=w>state.week;
+      b.setAttribute('aria-pressed',String(viewingWeek===w));
+    }
+    const totals=pendingTotals();
+    for (const a of ACTIONS) {
+      const [id,,cost,hours]=a,b=$('a-'+id),isPending=state.pending.includes(id);
+      const done=id!=='rehearsal' && state.used[id];
+      const oldSelected=historical && report && report.actions.includes(id);
+      b.disabled=historical || state.week>=7 || !!done;
+      b.setAttribute('aria-pressed',String(historical ? oldSelected : isPending));
+      let status=isPending ? '✓ Booked · tap to remove' : 'Add to this week';
+      if (done) status='Done in week '+done;
+      else if (historical) status=oldSelected ? 'Used this week' : 'Not used this week';
+      else if (!isPending && hours>10-totals.hours) status='Needs '+hours+' h, '+(10-totals.hours)+' h left';
+      else if (!isPending && cost>state.money-totals.cost) status='Needs '+money(cost)+', '+money(state.money-totals.cost)+' left';
+      b.querySelector('.status').textContent=status;
+    }
+    $('week-total').innerHTML=historical ? 'Week '+viewingWeek+' report' : money(totals.cost)+' booked<br>'+totals.hours+' / 10 crew hours';
+    $('end-week').disabled=historical || state.week>=7;
+    $('undo-week').disabled=!undo;
+    const load=historical && report ? report.load : weekLoad();
+    $('load-preview').innerHTML='<span class="tiny">'+(historical ? 'Week load ' : 'Projected load ')+load.toFixed(1)+' · sore above 120</span>'+
+      '<div class="load-wrap"><i style="width:'+clamp(load/216*100,0,100)+'%;background:'+(load>120 ? '#9a3412' : '#4d6b14')+'"></i></div>';
+    document.querySelectorAll('#rehearse-options button').forEach((b,i) => {
+      b.setAttribute('aria-pressed',String(state.rehearse.includes(i)));
+      b.disabled=historical || state.week>=7;
+    });
+    $('rehearsal-jumps').value=state.jump;
+    $('rehearsal-jumps').disabled=historical || state.week>=7;
+    if (report) {
+      const dotText=SECTIONS.map((s,i) => s.name+' '+report.dots[i]+'/2').join(' · ');
+      $('week-report').innerHTML='<b>Week '+report.week+' · '+(report.actions.length ? 'Production report' : 'A quiet week')+'</b>'+
+        '<p>'+money(report.money)+' left · '+report.hours+' / 10 h used · load '+report.load.toFixed(1)+'</p>'+
+        '<p>'+dotText+'</p><p>'+report.message+'</p>';
+    } else {
+      $('week-report').textContent=state.week===6 ? 'Rain Monday. A lobby backup preserves one section’s rehearsal.' :
+        'Choose actions. Rehearsal dots steady spacing; safe floors and jump choices protect dancers.';
+    }
+  }
+  function renderNight() {
+    const sec=clamp(Math.floor(showPosition/16),0,3);
+    $('begin').disabled=running;
+    $('stop').disabled=!running;
+    $('skip').disabled=!running;
+    $('night-site').disabled=running;
+    $('show-cue').textContent=running ? 'S'+(sec+1)+' · '+SECTIONS[sec].name : state.showFinished ? 'The performance is yours.' : 'Ready in the courtyard.';
+    $('show-detail').textContent=running ? (sec>=2 ? 'After dusk · ' : 'Late sun · ')+(sec===3 && state.injured ? 'Five dancers in Rise.' : 'Six dancers.') :
+      'Four sections, ten seconds each. Tap seats to compare your audiences.';
+    $('show-progress').style.width=(showPosition/64*100)+'%';
+    $('ground-caption').textContent='GROUND · row '+(seats[state.groundSeat].row+1)+', seat '+(state.groundSeat%20+1);
+    $('balcony-caption').textContent='BALCONY · seat '+(state.balconySeat+1)+' · '+(state.used.safety ? 40 : 20)+' admitted';
+    $('night-ground-pick').value=state.groundSeat;
+    $('night-balcony-pick').value=state.balconySeat;
+  }
+  function render() {
+    recalc();
+    renderStats();
+    renderSite();
+    renderWeek();
+    renderNight();
+    drawAll();
+  }
+  function moveAllowed() {
+    if (state.week<7 || changedPlan) return true;
+    askConfirm('Change the plan for the show?','You can move zones and change choices. No new production cards.',() => {
+      changedPlan=true;
+      hint('Drag zones or change adaptations, then return to Opening night.');
+    });
+    return false;
+  }
+  function placeZone(i,x,y) {
+    const old={...state.zones[i]};
+    const candidate={x:clamp(x,3,17),y:clamp(y,4.7,14)};
+    if (zoneDistance(candidate)<.8) {
+      // Slide one coordinate at a time along the basin clearance instead of teleporting through it.
+      const horizontal={x:candidate.x,y:old.y},vertical={x:old.x,y:candidate.y};
+      if (zoneDistance(horizontal)>=.8) candidate.y=old.y;
+      else if (zoneDistance(vertical)>=.8) candidate.x=old.x;
+      else return false;
+    }
+    state.zones[i]=candidate;
+    state.showFinished=false;
+    return true;
+  }
+  function placeFloor(name,x,y) {
+    const f=state.floors[name];
+    if (!f || state.week>=7) return false;
+    const pad=f.size/2;
+    const n={...f,x:clamp(x,pad,20-pad),y:clamp(y,2.7+pad,16-pad)};
+    const d=Math.hypot(Math.max(0,Math.abs(n.x-10)-pad),Math.max(0,Math.abs(n.y-10)-pad));
+    if (d < (name==='marley' ? 1.75 : .8)) return false;
+    state.floors[name]=n;
+    state.showFinished=false;
+    return true;
+  }
+  function chooseSection(i) {
+    state.selected=i;
+    floorPick='';
+    hint('Drag '+SECTIONS[i].name+' on the plan, or use arrow keys on the plan. Choose its adaptation in the panel.');
+    Curio.tone(240+i*65,.12,.025);
+    renderSite();
+    drawAll();
+    save();
+  }
+  function toggleCard(id) {
+    if (state.week>=7 || viewingWeek!==state.week) return;
+    const a=ACTIONS.find(c => c[0]===id),p=pendingTotals();
+    if (state.pending.includes(id)) state.pending=state.pending.filter(k => k!==id);
+    else {
+      if (a[3]>10-p.hours || a[2]>state.money-p.cost) {
+        hint(a[3]>10-p.hours ? 'Needs '+a[3]+' h, '+(10-p.hours)+' h left. Remove a booked action to make room.' :
+          'Needs '+money(a[2])+', '+money(state.money-p.cost)+' left. Remove an action or choose a smaller cost.');
+        Curio.tone(130,.16,.03);
+        return;
+      }
+      state.pending.push(id);
+    }
+    hint(id==='rehearsal' && state.pending.includes(id) ? 'Choose two sections under Monday site rehearsal, then tap End week.' :
+      'Choose more action cards, or tap End week to apply this plan.');
+    Curio.tone(490,.12,.025);
+    renderStats();
+    renderWeek();
+    save();
+  }
+  function endWeek() {
+    if (state.week>=7 || viewingWeek!==state.week) return;
+    if (state.pending.includes('rehearsal') && state.rehearse.length!==2) {
+      hint('Choose two sections under Monday site rehearsal, then tap End week.');
+      return;
+    }
+    const p=pendingTotals();
+    if (p.hours>10 || p.cost>state.money) return;
+    const advanceFocus=document.activeElement===$('end-week');
+    if (V.playing) V.hush();
+    else V.dropQueued();
+    undo=clone(state);
+    const w=state.week,warmBefore=!!state.used.warm;
+    // Warm-up affects later weeks, not the week in which the plan is made.
+    state.money-=p.cost;
+    for (const id of state.pending) if (id!=='rehearsal') state.used[id]=w;
+    for (const name of ['marley','sprung']) if (state.pending.includes(name)) {
+      state.floors[name]={x:4,y:name==='marley' ? 6.7 : 6,size:name==='marley' ? 8 : 6};
+    }
+    const load=weekLoad(warmBefore);
+    let rehearsed=[];
+    if (state.pending.includes('rehearsal')) {
+      rehearsed=w===6 ? (state.used.rain ? state.rehearse.slice(0,1) : []) : state.rehearse.slice();
+      rehearsed.forEach(i => state.dots[i]++);
+    }
+    const sore=load>120;
+    state.soreStreak=sore ? state.soreStreak+1 : 0;
+    const newInjury=state.soreStreak>=2 && !state.injured;
+    if (newInjury) state.injured=true;
+    const message=[];
+    if (rehearsed.length) message.push('Adapted '+rehearsed.map(i => SECTIONS[i].name).join(' + ')+'.');
+    if (sore) message.push('Sore week: hard landings exceeded 120.');
+    if (newInjury) message.push('A dancer is injured. Rise now has five.');
+    if (w===6) message.push(state.used.rain ? 'Rain Monday: one section rehearsed in the lobby on sprung flooring.' :
+      'Rain Monday: no site rehearsal.');
+    if (!message.length) message.push('No sore dancers this week.');
+    const report={week:w,money:state.money,hours:p.hours,load,sore,injured:state.injured,dots:state.dots.slice(),
+      actions:state.pending.slice(),message:message.join(' '),rehearsed};
+    state.reports.push(report);
+    state.pending=[];
+    state.week++;
+    viewingWeek=w;
+    state.showFinished=false;
+    render();
+    if (advanceFocus) {
+      if (state.week<7) $('w-'+state.week).focus({preventScroll:true});
+      else $('m-night').focus({preventScroll:true});
+    }
+    hint(w===6 ? L.openNow : 'Review week '+w+'. Tap week '+state.week+' to plan the next Monday, or tap Undo week.');
+    Curio.tone(sore ? 170 : 620,.25,.035);
+    const valid=() => viewingWeek===w && state.mode==='week';
+    if (sore) V.say('sore',{valid});
+    if (newInjury) V.say('injured',{valid});
+    if (w===6) V.say('rain',{valid});
+    if (w===6) V.how('openNow',{valid,needs:'#m-night'});
+    else V.how('reviewWeek',{valid,needs:'#undo-week'});
+    save();
+  }
+  function undoWeek() {
+    if (!undo) return;
+    V.hush();
+    const restored=clone(undo);
+    Object.keys(state).forEach(k => delete state[k]);
+    Object.assign(state,restored,{mode:'week'});
+    undo=null;
+    viewingWeek=state.week;
+    changedPlan=state.week<7;
+    hint('Week restored. Change its action cards, then tap End week.');
+    render();
+    save();
+  }
+  function mapPoint(canvas,x,y) {
+    const r=mapFrames.get(canvas),b=canvas.getBoundingClientRect();
+    return {x:(x-b.left-r.x)/r.k,y:16-(y-b.top-r.y)/r.k};
+  }
+  function configureMap(canvas,interactive) {
+    canvas.addEventListener('pointerdown',e => {
+      const p=mapPoint(canvas,e.clientX,e.clientY);
+      if (p.y>15) {
+        state.balconySeat=clamp(Math.round((p.x-1)/18*39),0,39);
+        state.seatKind='balcony';
+        renderNight();
+        drawAll();
+        save();
+        return;
+      }
+      if (p.y<2.9) {
+        const row=clamp(Math.round((p.y-.6)/.9),0,2);
+        state.groundSeat=row*20+clamp(Math.round((p.x-1)/18*19),0,19);
+        state.seatKind='ground';
+        renderNight();
+        drawAll();
+        save();
+        return;
+      }
+      if (!interactive || !moveAllowed()) return;
+      if (floorPick) dragging={kind:'floor',id:floorPick,dx:state.floors[floorPick].x-p.x,dy:state.floors[floorPick].y-p.y};
+      else {
+        const hits=state.zones.map((z,i) => ({i,d:((p.x-z.x)/3)**2+((p.y-z.y)/2)**2})).filter(o => o.d<=1);
+        hits.sort((a,b) => a.d-b.d);
+        if (!hits.length) {
+          const floorHit=Object.entries(state.floors).find(([,f]) => Math.abs(p.x-f.x)<=f.size/2 && Math.abs(p.y-f.y)<=f.size/2);
+          if (!floorHit || state.week>=7) return;
+          floorPick=floorHit[0];
+          dragging={kind:'floor',id:floorPick,dx:floorHit[1].x-p.x,dy:floorHit[1].y-p.y};
+          canvas.setPointerCapture(e.pointerId);
+          renderSite();
+          drawAll();
+          return;
+        }
+        chooseSection(hits[0].i);
+        const z=state.zones[state.selected];
+        dragging={kind:'zone',id:state.selected,dx:z.x-p.x,dy:z.y-p.y};
+      }
+      canvas.setPointerCapture(e.pointerId);
+      V.dropQueued();
+    });
+    canvas.addEventListener('pointermove',e => {
+      if (!dragging) return;
+      const p=mapPoint(canvas,e.clientX,e.clientY);
+      if (dragging.kind==='floor') placeFloor(dragging.id,p.x+dragging.dx,p.y+dragging.dy);
+      else placeZone(dragging.id,p.x+dragging.dx,p.y+dragging.dy);
+      if (!drawQueued) {
+        drawQueued=true;
+        requestAnimationFrame(() => {
+          drawQueued=false;
+          recalc();
+          renderSite();
+          renderWeek();
+          drawAll();
+        });
+      }
+    });
+    const release=() => {
+      if (!dragging) return;
+      const movedZone=dragging.kind==='zone';
+      dragging=null;
+      hint(movedZone ? L.seatHow : 'Floor position updated. Select a section above to move its zone.');
+      if (movedZone) V.how('seatHow',{valid:() => !state.seatView,needs:'#seat-toggle'});
+      Curio.tone(400,.1,.02);
+      save();
+    };
+    canvas.addEventListener('pointerup',release);
+    canvas.addEventListener('pointercancel',release);
+    if (interactive) canvas.addEventListener('keydown',e => {
+      const delta={ArrowLeft:[-.25,0],ArrowRight:[.25,0],ArrowUp:[0,.25],ArrowDown:[0,-.25]}[e.key];
+      if (!delta) return;
+      e.preventDefault();
+      if (!moveAllowed()) return;
+      const z=floorPick ? state.floors[floorPick] : state.zones[state.selected];
+      if (floorPick) placeFloor(floorPick,z.x+delta[0],z.y+delta[1]);
+      else placeZone(state.selected,z.x+delta[0],z.y+delta[1]);
+      recalc();
+      renderSite();
+      renderWeek();
+      drawAll();
+      save();
+    });
+  }
+  function drawMap(canvas,mini=false,night=false) {
+    if (!canvas.getClientRects().length) return;
+    const box=canvas.getBoundingClientRect(),w=box.width,h=box.height;
+    if (!w || !h) return;
+    const ratio=window.devicePixelRatio || 1;
+    if (canvas.width!==Math.round(w*ratio) || canvas.height!==Math.round(h*ratio)) {
+      canvas.width=Math.round(w*ratio);
+      canvas.height=Math.round(h*ratio);
+    }
+    const c=canvas.getContext('2d');
+    c.setTransform(ratio,0,0,ratio,0,0);
+    c.clearRect(0,0,w,h);
+    c.fillStyle='#d7cbb1';
+    c.fillRect(0,0,w,h);
+    if (!mini && images.hero && images.hero.naturalWidth) {
+      c.save();
+      c.globalAlpha=.18;
+      c.drawImage(images.hero,0,0,w,h);
+      c.restore();
+    }
+    const margin=mini ? 8 : 23;
+    const k=Math.min((w-margin*2)/20,(h-margin*2)/16);
+    const ox=(w-20*k)/2,oy=(h-16*k)/2;
+    mapFrames.set(canvas,{x:ox,y:oy,k});
+    const X=x => ox+x*k,Y=y => oy+(16-y)*k;
+    c.save();
+    c.shadowColor='#4b3e3155';
+    c.shadowBlur=12;
+    c.shadowOffsetY=5;
+    c.fillStyle='#e7dabb';
+    c.fillRect(ox,oy,20*k,16*k);
+    c.restore();
+    if (images.stone && images.stone.complete && images.stone.naturalWidth) {
+      const pat=c.createPattern(images.stone,'repeat');
+      if (pat) { pat.setTransform(new DOMMatrix().scale(.32));
+      c.fillStyle=pat;
+      c.fillRect(ox,oy,20*k,16*k);
+      }
+    }
+    const light=c.createLinearGradient(ox,oy,ox+20*k,oy+16*k);
+    light.addColorStop(0,'#fff5c622');
+    light.addColorStop(1,'#4b37252c');
+    c.fillStyle=light;
+    c.fillRect(ox,oy,20*k,16*k);
+    const active=clamp(Math.floor(showPosition/16),0,3);
+    if (night && active>=2) { c.fillStyle='#131c3a77';
+    c.fillRect(ox,oy,20*k,16*k);
+    }
+    c.fillStyle='#514d4b35';
+    c.fillRect(ox,oy,20*k,3*k);
+    c.strokeStyle='#877a6266';
+    c.setLineDash([4,3]);
+    c.beginPath();
+    c.moveTo(X(0),Y(13));
+    c.lineTo(X(20),Y(13));
+    c.stroke();
+    c.setLineDash([]);
+    if (!mini) {
+      c.font='10px Segoe UI';
+      c.textAlign='center';
+      c.fillStyle='#463e31';
+      c.fillText('NORTH · BALCONY · 5 m UP',X(10),oy-8);
+      c.fillText('under the balcony · 3 m',X(10),Y(14.7));
+      c.save();
+      c.translate(ox-9,Y(8));
+      c.rotate(-Math.PI/2);
+      c.fillText('16 m',0,0);
+      c.restore();
+      c.fillText('20 m',X(10),oy+16*k+17);
+    }
+    for (const [name,f] of Object.entries(state.floors)) {
+      c.fillStyle=name==='marley' ? '#6b6b6ad9' : '#a77c48e8';
+      c.strokeStyle=floorPick===name ? '#fff' : '#473a2b';
+      c.lineWidth=floorPick===name ? 3 : 1;
+      c.fillRect(X(f.x-f.size/2),Y(f.y+f.size/2),f.size*k,f.size*k);
+      c.strokeRect(X(f.x-f.size/2),Y(f.y+f.size/2),f.size*k,f.size*k);
+      c.fillStyle='white';
+      c.font='10px Segoe UI';
+      c.textAlign='left';
+      if (!mini) c.fillText(name.toUpperCase(),X(f.x-f.size/2)+4,Y(f.y+f.size/2)+13);
+    }
+    for (const col of columns) {
+      c.beginPath();
+      c.moveTo(X(col.x-.3),Y(col.y));
+      c.lineTo(X(col.x+1.7),Y(col.y-1));
+      c.lineTo(X(col.x+2.3),Y(col.y-1));
+      c.lineTo(X(col.x+.3),Y(col.y));
+      c.closePath();
+      c.fillStyle='#51433130';
+      c.fill();
+    }
+    const showZones=night ? [active] : [0,1,2,3];
+    for (const i of showZones) {
+      const z=state.zones[i],color=COLORS[i];
+      c.save();
+      c.beginPath();
+      c.ellipse(X(z.x),Y(z.y),3*k,2*k,0,0,2*Math.PI);
+      c.fillStyle=color+'59';
+      c.fill();
+      c.strokeStyle=color;
+      c.lineWidth=state.selected===i && !night ? 3 : 1.5;
+      c.setLineDash(state.dots[i]<2 ? [5,3] : []);
+      c.stroke();
+      c.setLineDash([]);
+      c.beginPath();
+      for (let j=0;j<=30;j++) {
+        const u=j/30;
+        const p=actorPosition(i,u,0);
+        if (!j) c.moveTo(X(p.x),Y(p.y));
+        else c.lineTo(X(p.x),Y(p.y));
+      }
+      c.strokeStyle=color;
+      c.lineWidth=1.5;
+      c.stroke();
+      c.fillStyle=color;
+      c.beginPath();
+      c.arc(X(z.x),Y(z.y),mini ? 6 : 10,0,Math.PI*2);
+      c.fill();
+      c.fillStyle='white';
+      c.font=(mini ? '10' : '12')+'px Segoe UI';
+      c.textAlign='center';
+      c.fillText(i+1,X(z.x),Y(z.y)+4);
+      if (!mini) {
+        c.font='600 10px Segoe UI';
+        c.fillStyle='#fcfaf2';
+        const text=SECTIONS[i].name,tw=c.measureText(text).width;
+        c.fillRect(X(z.x)-tw/2-4,Y(z.y)+14,tw+8,15);
+        c.fillStyle=color;
+        c.fillText(text,X(z.x),Y(z.y)+25);
+      }
+      if (metricCache[i].slip && !mini) {
+        c.fillStyle='#9a3412';
+        c.font='bold 13px Segoe UI';
+        c.fillText('△',X(z.x+2),Y(z.y+1));
+      }
+      if (night) {
+        for (let d=0;d<(i===3 && state.injured ? 5 : 6);d++) {
+          const p=actorPosition(i,(showPosition%16)/16,d),rr=Math.max(2.3,k*.12);
+          c.beginPath();
+          c.arc(X(p.x),Y(p.y),rr,0,2*Math.PI);
+          c.fillStyle=color;
+          c.fill();
+          c.strokeStyle='#fff7e0';
+          c.lineWidth=1;
+          c.stroke();
+        }
+      }
+      c.restore();
+    }
+    if (fountainRuns()) {
+      c.beginPath();
+      c.arc(X(10),Y(10),1.75*k,0,2*Math.PI);
+      c.fillStyle='#2879a91c';
+      c.fill();
+      c.strokeStyle='#23678a88';
+      c.setLineDash([3,4]);
+      c.stroke();
+      c.setLineDash([]);
+    }
+    const water=c.createRadialGradient(X(9.8),Y(10.2),0,X(10),Y(10),.85*k);
+    water.addColorStop(0,'#a6d2d4');
+    water.addColorStop(.7,'#397b88');
+    water.addColorStop(1,'#25525f');
+    c.beginPath();
+    c.arc(X(10),Y(10),.85*k,0,Math.PI*2);
+    c.fillStyle='#d6bd85';
+    c.lineWidth=3;
+    c.strokeStyle='#8c744b';
+    c.fill();
+    c.stroke();
+    c.beginPath();
+    c.arc(X(10),Y(10),.68*k,0,Math.PI*2);
+    c.fillStyle=water;
+    c.fill();
+    if (fountainRuns()) {
+      const t=Curio.reduce ? 0 : performance.now()/900;
+      for (let j=0;j<3;j++) {
+        c.beginPath();
+        c.arc(X(10),Y(10),(.18+((t+j/3)%1)*1.3)*k,0,Math.PI*2);
+        c.strokeStyle='#e2fcff77';
+        c.lineWidth=1;
+        c.stroke();
+      }
+    }
+    for (const col of columns) {
+      const grad=c.createRadialGradient(X(col.x-.1),Y(col.y+.1),0,X(col.x),Y(col.y),.4*k);
+      grad.addColorStop(0,'#fff2cc');
+      grad.addColorStop(.65,'#d5be86');
+      grad.addColorStop(1,'#7d6847');
+      c.fillStyle=grad;
+      c.strokeStyle='#7e6b49';
+      c.lineWidth=1;
+      c.beginPath();
+      c.arc(X(col.x),Y(col.y),Math.max(3,.3*k),0,Math.PI*2);
+      c.fill();
+      c.stroke();
+    }
+    for (let i=0;i<60;i++) {
+      const s=seats[i],selected=i===state.groundSeat;
+      c.fillStyle=selected ? '#4d6b14' : '#423e367a';
+      const r=Math.max(mini ? 1 : 2,k*.12);
+      c.beginPath();
+      c.arc(X(s.x),Y(s.y),selected ? r+2 : r,0,Math.PI*2);
+      c.fill();
+      if (selected) { c.strokeStyle='#fff7e0';
+      c.lineWidth=1;
+      c.stroke();
+      }
+    }
+    for (let i=0;i<40;i++) {
+      const s=balconySeats[i],selected=i===state.balconySeat;
+      c.fillStyle=selected ? '#4d6b14' : '#59564c';
+      c.beginPath();
+      c.arc(X(s.x),Y(15.7),Math.max(mini ? .8 : 1.5,k*.08)+(selected ? 2 : 0),0,Math.PI*2);
+      c.fill();
+    }
+    if (state.seatView && !mini && !night) {
+      const s=state.seatKind==='ground' ? seats[state.groundSeat] : balconySeats[state.balconySeat],z=state.zones[state.selected];
+      c.strokeStyle='#4d6b1477';
+      c.lineWidth=1;
+      c.beginPath();
+      c.moveTo(X(s.x),Y(s.y));
+      c.lineTo(X(z.x),Y(z.y));
+      c.stroke();
+    }
+  }
+  function actorPosition(section,u,index) {
+    const z=state.zones[section],spread=(index-2.5)*.42;
+    if (section===0) return {x:z.x+(state.choices[0] ? 1 : -1)*(1.4-2.8*u)+spread,y:z.y+(index%2 ? .18 : -.18)};
+    if (section===1) return {x:z.x+spread,y:z.y+Math.sin(u*Math.PI*2+index)*.7};
+    if (section===2) return {x:z.x+Math.sin(u*Math.PI*4+index*.6)*1.4,y:z.y-1.4+2.8*u};
+    return {x:z.x+spread,y:z.y+(index%2 ? .65 : -.65)};
+  }
+  const phrases = [
+    Dance.phrase([{gait:'walk',counts:16,level:'middle'}]),
+    Dance.phrase([{poses:['lie','sit','lie','sit'],counts:16}]),
+    Dance.phrase([{poses:['lunge','twist','step','arms-wide'],counts:16}]),
+    Dance.phrase([{poses:['plie',{...Dance.poses['star-jump'],lift:.32}],counts:16}])
+  ];
+  const NS='http://www.w3.org/2000/svg';
+  function svgEl(tag,attrs,parent) {
+    const e=document.createElementNS(NS,tag);
+    Object.entries(attrs || {}).forEach(([k,v]) => e.setAttribute(k,v));
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  // All provisional figures pass through this adapter. A painted-pose renderer can replace it without changing the model.
+  // Pose assets are listed with people:true in art/prompts.json and intentionally remain ungenerated in this build.
+  function makeDancer(parent,projector,color,index) {
+    return Dance.dancer(parent,{floor:projector,height:1.7,top:color,bottom:'#383830',skin:'#b88d69',hair:'#302b24',
+      shoe:'#dfd5bc',badge:['circle','square','triangle','diamond'][index%4],noShadow:true,lineScale:.65});
+  }
+  function initSeatView(svg) {
+    svg.textContent='';
+    const bg=svgEl('g',{},svg),floor=svgEl('g',{},svg),world=svgEl('g',{},svg),overlay=svgEl('g',{},svg);
+    const view={svg,bg,floor,world,overlay,actors:[],camera:cameraFor(svg.clientWidth,svg.clientHeight,'ground')};
+    const projector={
+      project:(x,y,z) => view.camera.project(x,y,z),
+      scale:z => view.camera.scale(z),
+      map:(x,z) => { const p=view.camera.project(x,0,z);
+      return {x:p[0],y:p[1],s:view.camera.scale(z)};
+      }
+    };
+    for (let i=0;i<6;i++) view.actors.push(makeDancer(world,projector,COLORS[0],i));
+    seatViews.set(svg,view);
+    return view;
+  }
+  function cameraFor(w,h,kind,section=state.selected) {
+    const seat=kind==='balcony' ? balconySeats[state.balconySeat] : seats[state.groundSeat];
+    const eye=kind==='balcony' ? 6.2 : 1.2+(state.used.risers ? seat.row*.5 : 0);
+    const zone=state.zones[section];
+    const target={x:zone.x,y:zone.y,z:section===3 ? 1.25 : section===1 && state.choices[1]!==2 ? .35 : .8};
+    const fx=target.x-seat.x,fy=target.y-seat.y,fz=target.z-eye;
+    const fl=Math.hypot(fx,fy,fz),f=[fx/fl,fy/fl,fz/fl];
+    const rl=Math.hypot(f[0],f[1]),r=[f[1]/rl,-f[0]/rl,0];
+    const u=[-f[2]*r[1],f[2]*r[0],f[0]*r[1]-f[1]*r[0]].map(v => -v);
+    const focus=w*(section===3 ? .48 : .6);
+    const project=(x,height,y) => {
+      const v=[x-seat.x,y-seat.y,height-eye],d=Math.max(.18,v[0]*f[0]+v[1]*f[1]+v[2]*f[2]);
+      const sx=v[0]*r[0]+v[1]*r[1],sy=v[0]*u[0]+v[1]*u[1]+v[2]*u[2];
+      return [w/2+sx*focus/d,h*.47-sy*focus/d,d];
+    };
+    return {project,scale:y => focus/Math.max(.3,(10-seat.x)*f[0]+(y-seat.y)*f[1]-eye*f[2]),seat,eye};
+  }
+  function drawSeat(svg,kind,night=false) {
+    if (!svg.getClientRects().length) return;
+    const w=svg.clientWidth,h=svg.clientHeight;
+    if (!w || !h) return;
+    const view=seatViews.get(svg) || initSeatView(svg);
+    const section=night ? clamp(Math.floor(showPosition/16),0,3) : state.selected;
+    view.camera=cameraFor(w,h,kind,section);
+    svg.setAttribute('viewBox','0 0 '+w+' '+h);
+    const {bg,floor,world,overlay}=view,P=view.camera.project;
+    bg.textContent='';
+    floor.textContent='';
+    overlay.textContent='';
+    world.querySelectorAll('.scenery').forEach(e => e.remove());
+    const m=metricCache[section],dusk=night && section>=2;
+    svgEl('rect',{width:w,height:h,fill:dusk ? '#333747' : '#e8d9b8'},bg);
+    const quad=(x0,y0,x1,y1,height=0) => [[x0,y0],[x1,y0],[x1,y1],[x0,y1]].map(([x,y]) => P(x,height,y).slice(0,2).join(',')).join(' ');
+    const defs=svgEl('defs',{},floor),patId=svg.id+'-stone',pattern=svgEl('pattern',{id:patId,width:180,height:180,patternUnits:'userSpaceOnUse'},defs);
+    svgEl('image',{href:ART.stone,width:180,height:180},pattern);
+    svgEl('polygon',{points:quad(0,kind==='ground' ? 2.8 : 0,20,kind==='ground' ? 16 : 13),fill:'url(#'+patId+')'},floor);
+    for (const f of Object.values(state.floors)) {
+      svgEl('polygon',{points:quad(f.x-f.size/2,f.y-f.size/2,f.x+f.size/2,f.y+f.size/2),fill:'#7a756aaa',stroke:'#eee3ca'},floor);
+    }
+    for (let y=3;y<=16;y+=2) {
+      const a=P(0,0,y),b=P(20,0,y);
+      svgEl('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:'#8e79514d','stroke-width':1},floor);
+    }
+    const secZone=state.zones[section];
+    const zonePoints=Array.from({length:41},(_,j) => {
+      const a=j/40*Math.PI*2;
+      return P(secZone.x+3*Math.cos(a),.015,secZone.y+2*Math.sin(a)).slice(0,2).join(',');
+    }).join(' ');
+    svgEl('polygon',{points:zonePoints,fill:COLORS[section]+'28',stroke:COLORS[section],'stroke-width':1},floor);
+    const objects=[];
+    const addPicture=(image,x,y,height,width) => {
+      if (kind==='balcony' && y>13) return;
+      const p=P(x,0,y),top=P(x,height,y),hh=Math.abs(p[1]-top[1]);
+      const ww=hh*width/height;
+      const e=svgEl('image',{class:'scenery',href:image,x:p[0]-ww/2,y:Math.min(top[1],p[1]),width:ww,height:hh,
+        preserveAspectRatio:'xMidYMax meet'},world);
+      objects.push({el:e,depth:p[2]});
+    };
+    columns.forEach(c => addPicture(ART.column,c.x,c.y,4.3,.85));
+    addPicture(fountainRuns() ? ART.fountain : ART.still,10,10,fountainRuns() ? 1.8 : 1,2);
+    const pos=Curio.reduce ? Math.floor(showPosition) : showPosition;
+    for (let i=0;i<6;i++) {
+      const d=view.actors[i],p=actorPosition(section,night ? (pos%16)/16 : .4,i);
+      const hide=(section===3 && state.injured && i===5) || (kind==='balcony' && p.y>13);
+      d.g.style.display=hide ? 'none' : '';
+      const phrase=section===1 && state.choices[1]!==0 ? Dance.phrase([{poses:state.choices[1]===1 ? ['sit','kneel'] : ['stand','release'],counts:16}]) :
+        phrases[section];
+      const finaleU=(pos%16)/16;
+      const phrasePos=section===3 ? (Math.min(finaleU/.75,1)*(state.choices[3]===0 ? 48 : 24))%16 : pos%16;
+      const st=phrase.at(night ? phrasePos : 1);
+      if (section===3 && night && finaleU>=.75) {
+        const liftPhase=((finaleU-.75)/.125)%1;
+        st.pose=Dance.pose(i%2 ? 'reach-up' : 'plie');
+        const lifted=finaleU<.875 ? i===1 : i===3;
+        st.lift=lifted ? Math.sin(liftPhase*Math.PI)*.45 : 0;
+      }
+      d.set({pose:st.pose,lift:st.lift,x:p.x,z:p.y,facing:kind==='balcony' ? 180 : 0});
+      d.g.querySelectorAll('path').forEach(el => {
+        if (el===d.parts.torso.top) el.setAttribute('fill',COLORS[section]);
+      });
+      objects.push({el:d.g,depth:P(p.x,0,p.y)[2]});
+    }
+    objects.sort((a,b) => b.depth-a.depth).forEach(o => world.appendChild(o.el));
+    if (dusk) svgEl('rect',{width:w,height:h,fill:'#121829',opacity:state.used.led ? .08 : .42},overlay);
+    if (dusk && state.used.uplights && section===2 && inArcade(secZone)) {
+      svgEl('rect',{width:w,height:h,fill:'#ffb54c',opacity:.09},overlay);
+    }
+    if (kind==='balcony') {
+      svgEl('rect',{x:0,y:h-5,width:w,height:5,fill:'#8d7957'},overlay);
+      svgEl('line',{x1:0,y1:h-8,x2:w,y2:h-8,stroke:'#dfca9c','stroke-width':3},overlay);
+    }
+    if (!night) {
+      $('site-seat-caption').textContent=(kind==='ground' ? 'GROUND · row '+(seats[state.groundSeat].row+1) : 'BALCONY')+
+        ' · S'+(section+1)+' Seen '+Math.round(kind==='ground' ? m.ground : m.balcony)+'%';
+    }
+  }
+  function drawAll() {
+    if (state.mode==='site') {
+      drawMap($('site-map'));
+      if (state.seatView) drawSeat($('site-seat'),state.seatKind);
+    }
+    if (state.mode==='week') drawMap($('week-map'),true);
+    if (state.mode==='night') {
+      drawMap($('night-map'),false,true);
+      drawSeat($('ground-view'),'ground',true);
+      drawSeat($('balcony-view'),'balcony',true);
+    }
+  }
+  function noiseStart() {
+    noiseStop();
+    if (!fountainRuns() || !Curio.sound) return;
+    const a=Curio.audio();
+    const buffer=a.createBuffer(1,a.sampleRate*2,a.sampleRate),data=buffer.getChannelData(0);
+    for (let i=0;i<data.length;i++) data[i]=(Math.random()*2-1)*.3;
+    fountainSource=a.createBufferSource();
+    fountainSource.buffer=buffer;
+    fountainSource.loop=true;
+    const filter=a.createBiquadFilter();
+    filter.type='lowpass';
+    filter.frequency.value=1200;
+    fountainGain=a.createGain();
+    fountainGain.gain.value=state.fountain==='score' ? .055 : .10;
+    fountainSource.connect(filter).connect(fountainGain).connect(a.destination);
+    fountainSource.start();
+  }
+  function noiseStop() {
+    if (fountainSource) { try { fountainSource.stop();
+    fountainSource.disconnect();
+    } catch {} }
+    fountainSource=null;
+    if (fountainGain) fountainGain.disconnect();
+    fountainGain=null;
+  }
+  function beginShow() {
+    if (state.week<7) return;
+    const moveFocus=document.activeElement===$('begin');
+    stopShow(false);
+    V.hush();
+    running=true;
+    showPosition=0;
+    state.showFinished=false;
+    hint('Watch both seat views. Tap a seat, Stop, or Skip section at any moment.');
+    showClock=Dance.clock(96,{countIn:0});
+    showMusic=Dance.music({len:8,sub:2,vol:state.used.sound ? .34 : .22,countIn:false,parts:{
+      piano:[60,null,64,null,67,null,62,null,57,null,60,null,65,null,64,null],
+      pad:[[48,55],null,null,null,null,null,null,null,[45,52],null,null,null,null,null,null,null],
+      wood:'x...x...x...x...'
+    }},showClock);
+    showClock.onFrame(pos => {
+      if (!running) return;
+      showPosition=Math.min(64,pos);
+      renderNight();
+      drawAll();
+      if (pos>=64) finishShow();
+    });
+    renderNight();
+    if (moveFocus) $('stop').focus({preventScroll:true});
+    drawAll();
+    noiseStart();
+    showClock.start(0);
+  }
+  function stopShow(update=true) {
+    const moveFocus=document.activeElement===$('stop');
+    running=false;
+    if (showMusic) showMusic.stop();
+    if (showClock) showClock.stop();
+    showMusic=null;
+    showClock=null;
+    noiseStop();
+    if (update) { hint('Performance stopped. Tap Begin to run the full piece, or open Program sheet.');
+    renderNight();
+    if (moveFocus) $('begin').focus({preventScroll:true});
+    drawAll();
+    }
+  }
+  function finishShow() {
+    stopShow(false);
+    state.showFinished=true;
+    showPosition=64;
+    renderNight();
+    openSheet();
+    save();
+  }
+  function skipSection() {
+    if (!running) return;
+    const next=(Math.floor(showPosition/16)+1)*16;
+    if (next>=64) { finishShow();
+    return;
+    }
+    showPosition=next;
+    showClock.seek(next);
+    renderNight();
+    drawAll();
+  }
+  function siteUse() {
+    const fountain=state.fountain==='score' || (state.fountain==='off' && zoneDistance(state.zones[1])<=3.75);
+    const columnsUsed=state.choices[2]===0 && inArcade(state.zones[2]);
+    const balcony=metricCache.filter(m => m.pattern).length>=2;
+    return {fountain,columns:columnsUsed,balcony};
+  }
+  function buildSheet() {
+    recalc();
+    const hear=heard(),use=siteUse();
+    const table=aud => '<table><thead><tr><th>Section</th><th>Seen</th><th>Heard</th><th>Lit</th><th>What shaped it</th></tr></thead><tbody>'+
+      SECTIONS.map((s,i) => {
+        const m=metricCache[i],reasons=[];
+        if (m.raw[aud]<.97) reasons.push(aud==='ground' ? 'columns / spray' : 'under balcony');
+        if (i===1 && state.choices[1]!==2 && aud==='ground') reasons.push('low level');
+        if (m.lit<100) reasons.push('after dusk');
+        if (state.dots[i]<2) reasons.push('spacing slips');
+        if (m.slip) reasons.push('△ slip risk');
+        if (aud==='balcony' && i<3) reasons.push('Floor patterns read from above: '+(m.pattern ? 'yes' : 'no'));
+        return '<tr><td>S'+(i+1)+' '+s.name+'</td><td>'+Math.round(m[aud])+'%</td><td>'+hear[aud==='ground' ? 0 : 1]+'%</td>'+
+          '<td>'+m.lit+'%</td><td>'+(reasons.join('; ') || 'clear zone, steady spacing')+'</td></tr>';
+      }).join('')+'</tbody></table>';
+    const sore=state.reports.filter(r => r.sore).map(r => r.week);
+    const hours=state.reports.reduce((n,r) => n+r.hours,0);
+    $('sheet-body').innerHTML='<p>Original Curio Class dance · 6 minutes · 4 sections of 90 seconds. A fictional museum and a simple model.</p>'+
+      '<h3>Ground audience · 60 seats</h3>'+table('ground')+
+      '<h3>Balcony audience · '+(state.used.safety ? 40 : 20)+' seats admitted</h3>'+table('balcony')+
+      '<div class="sheet-facts"><div><b>Site use</b><br>Fountain: '+
+      (use.fountain ? (state.fountain==='score' ? 'recorded into the score' : 'dancing by the still pool') : 'not used')+
+      '<br>Columns: '+(use.columns ? 'weaving in an arcade'+(state.used.uplights ? ', lit at night' : '') : 'not used')+
+      '<br>Balcony: '+(use.balcony ? 'at least two floor patterns read from above' : 'fewer than two patterns read')+'</div>'+
+      '<div><b>Dancers and production</b><br>Sore weeks: '+(sore.join(', ') || 'none')+'<br>'+
+      (state.injured ? 'One dancer injured. Rise danced by five.' : 'No injury. Six dancers in every section.')+
+      '<br>Money left: '+money(state.money)+'<br>Crew used: '+hours+' h; '+(60-hours)+' h left across six weeks.</div></div>'+
+      '<h3>Your adaptations</h3><p>'+SECTIONS.map((s,i) => s.name+': '+s.options[state.choices[i]]+'; '+state.dots[i]+' adaptation dots.').join('<br>')+
+      '</p><p>Saved only on this device. This sheet uses final show positions, recorded production choices, geometric sightlines and the stated model.</p>';
+    return use;
+  }
+  function openSheet() {
+    stopShow(false);
+    renderNight();
+    const use=buildSheet();
+    if (!$('sheet').open) $('sheet').showModal();
+    hint(L.sheetHow);
+    if (use.fountain && use.columns && use.balcony) V.say('siteAll',{valid:() => $('sheet').open});
+  }
+  function askConfirm(title,text,fn) {
+    confirmAction=fn;
+    $('confirm-heading').textContent=title;
+    $('confirm-copy').textContent=text;
+    $('confirm-yes').textContent=title.startsWith('Start') ? 'Start over' : 'Change plan';
+    if (!$('confirm').open) $('confirm').showModal();
+  }
+  function initializeControls() {
+    $('zone-tabs').innerHTML=SECTIONS.map((s,i) => '<button id="s-'+i+'" style="--zone:'+COLORS[i]+'" aria-pressed="'+(state.selected===i)+'">'+
+      (i+1)+' · '+s.name+'</button>').join('');
+    SECTIONS.forEach((s,i) => $('s-'+i).onclick=() => chooseSection(i));
+    $('cards').innerHTML=ACTIONS.map(a => '<button class="action" id="a-'+a[0]+'" aria-pressed="false">'+
+      (a[5] ? '<img alt="" src="'+cardArt[a[5]]+'">' : '')+'<strong>'+a[1]+'</strong><span class="cost">'+money(a[2])+' · '+a[3]+' h</span>'+
+      '<span class="effect">'+a[4]+'</span><span class="status">Add to this week</span></button>').join('');
+    ACTIONS.forEach(a => $('a-'+a[0]).onclick=() => toggleCard(a[0]));
+    $('week-tabs').innerHTML=Array.from({length:6},(_,i) => '<button id="w-'+(i+1)+'" aria-label="Week '+(i+1)+'">'+(i+1)+'</button>').join('');
+    for (let w=1;w<=6;w++) $('w-'+w).onclick=() => {
+      if (w>state.week) return;
+      if (viewingWeek!==w) V.hush();
+      viewingWeek=w;
+      hint(w===state.week ? (state.week<7 ? L.welcomeWeek : L.openNow) : 'Read this week’s report. Tap the current week to continue planning.');
+      renderWeek();
+    };
+    $('rehearse-options').innerHTML=SECTIONS.map((s,i) => '<button id="r-'+i+'" aria-pressed="false">'+(i+1)+' '+s.name+'</button>').join('');
+    SECTIONS.forEach((s,i) => $('r-'+i).onclick=() => {
+      if (state.rehearse.includes(i)) {
+        if (state.rehearse.length<=1) return;
+        state.rehearse=state.rehearse.filter(n => n!==i);
+      } else {
+        if (state.rehearse.length===2) state.rehearse.shift();
+        state.rehearse.push(i);
+      }
+      hint('Selected '+state.rehearse.map(n => SECTIONS[n].name).join(' and ')+'. Choose two sections, then tap End week.');
+      renderWeek();
+      save();
+      Curio.tone(380+i*45,.1,.02);
+    });
+    const groundOptions=seats.map((s,i) => '<option value="'+i+'">Ground row '+(s.row+1)+', seat '+(i%20+1)+'</option>').join('');
+    const balconyOptions=balconySeats.map((s,i) => '<option value="'+i+'">Balcony seat '+(i+1)+'</option>').join('');
+    $('seat-pick').innerHTML='<optgroup label="Ground">'+groundOptions.replaceAll('value="','value="g')+'</optgroup>'+
+      '<optgroup label="Balcony">'+balconyOptions.replaceAll('value="','value="b')+'</optgroup>';
+    $('seat-pick').value=(state.seatKind==='ground' ? 'g'+state.groundSeat : 'b'+state.balconySeat);
+    $('night-ground-pick').innerHTML=groundOptions;
+    $('night-balcony-pick').innerHTML=balconyOptions;
+    $('seat-pick').onchange=e => {
+      const v=e.target.value;
+      state.seatKind=v[0]==='g' ? 'ground' : 'balcony';
+      state[state.seatKind==='ground' ? 'groundSeat' : 'balconySeat']=Number(v.slice(1));
+      drawAll();
+      save();
+    };
+    for (const kind of ['ground','balcony']) $('night-'+kind+'-pick').onchange=e => {
+      state[kind+'Seat']=Number(e.target.value);
+      renderNight();
+      drawAll();
+      save();
+    };
+    for (const mode of ['site','week','night']) $('m-'+mode).onclick=() => setMode(mode);
+    $('to-week').onclick=() => { viewingWeek=Math.min(state.week,6);
+    setMode('week');
+    };
+    $('night-site').onclick=() => {
+      askConfirm('Change the plan for the show?','Move zones or change adaptations and fountain choices. Production cards are closed.',() => {
+        changedPlan=true;
+        setMode('site');
+      });
+    };
+    $('seat-toggle').onclick=() => {
+      state.seatView=!state.seatView;
+      hint(state.seatView ? L.chooseSeat : L.welcomeSite);
+      renderSite();
+      drawAll();
+      save();
+    };
+    $('adaptation').onchange=e => {
+      if (!moveAllowed()) { renderSite();
+      return;
+      }
+      state.choices[state.selected]=Number(e.target.value);
+      state.showFinished=false;
+      hint(state.selected===1 && state.choices[1]===2 ? 'Standing makes Pool easier to see, but loses the slide. Drag its zone or choose another adaptation.' :
+        'Adaptation updated. Drag its zone to compare the two audiences.');
+      render();
+      save();
+      Curio.tone(520,.12,.02);
+    };
+    $('fountain').onchange=e => {
+      if (!moveAllowed()) { renderSite();
+      return;
+      }
+      state.fountain=e.target.value;
+      state.showFinished=false;
+      hint(state.fountain==='off' ? 'Fountain off for the show. It still runs during Monday site rehearsals.' :
+        'Fountain choice updated. Compare sound on the program sheet and watch the wet-stone warning.');
+      render();
+      save();
+      Curio.tone(450,.12,.02);
+    };
+    $('floor-pick').onchange=e => { floorPick=e.target.value;
+    renderSite();
+    drawAll();
+    };
+    $('rehearsal-jumps').onchange=e => { state.jump=e.target.value;
+    renderWeek();
+    save();
+    };
+    $('end-week').onclick=endWeek;
+    $('undo-week').onclick=undoWeek;
+    $('begin').onclick=beginShow;
+    $('stop').onclick=() => stopShow();
+    $('skip').onclick=skipSection;
+    $('sheet-button').onclick=openSheet;
+    $('close-sheet').onclick=() => { $('sheet').close();
+    hint(L.welcomeNight);
+    };
+    $('print-sheet').onclick=() => window.print();
+    $('model-button').onclick=() => $('model').showModal();
+    $('close-model').onclick=() => $('model').close();
+    $('confirm-no').onclick=() => { confirmAction=null;
+    $('confirm').close();
+    };
+    $('confirm-yes').onclick=() => { const fn=confirmAction;
+    confirmAction=null;
+    $('confirm').close();
+    if (fn) fn();
+    };
+    $('start-over').onclick=() => askConfirm('Start over?','Clear this production from this device and return to week 1?',() => {
+      stopShow(false);
+      V.hush();
+      Object.keys(state).forEach(k => delete state[k]);
+      Object.assign(state,fresh());
+      undo=null;
+      viewingWeek=1;
+      changedPlan=true;
+      floorPick='';
+      showPosition=0;
+      try { localStorage.removeItem(STORAGE);
+      } catch {}
+      $('sheet').close();
+      $('adaptation').dataset.section='';
+      setMode('site');
+      render();
+    });
+  }
+  initializeControls();
+  configureMap($('site-map'),true);
+  configureMap($('night-map'),false);
+  Curio.onMotion(() => drawAll());
+  Curio.onSound(on => { if (!on) noiseStop();else if (running) noiseStart(); });
+  recalc();
+  Curio.init({clips:"voice:*",rate:.95});
+  for (const [name,url] of Object.entries(ART)) {
+    const img=new Image();
+    images[name]=img;
+    img.onload=drawAll;
+    img.src=url;
+  }
+  new ResizeObserver(() => drawAll()).observe(document.querySelector('main'));
+  setInterval(() => { if (!Curio.reduce && !running && document.visibilityState==='visible') drawAll(); },240);
+  window.addEventListener('pagehide',() => { stopShow(false);save(); });
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq() { return V.queue;
+  },rawSight,metrics,heard,
+    endWeek,undoWeek,placeZone,placeFloor,weekLoad,pendingTotals,buildSheet,siteUse,
+    get metricsNow() { recalc();
+    return metricCache;
+    },get running() { return running;
+    },
+    get showPosition() { return showPosition;
+    },get viewingWeek() { return viewingWeek;
+    },
+    render,chooseSection,toggleCard,beginShow,stopShow,skipSection,save,openSheet,paintedPoses:PAINTED_POSES};
+  const initialMode=state.mode;
+  state.mode='';
+  setMode(initialMode);
+})();
+</script>
+</body>
+</html>

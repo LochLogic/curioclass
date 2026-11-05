@@ -1,0 +1,25 @@
+{
+  "id": "image-transformer",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Four numbers move every pixel. Transform a picture, compare matrix order, and recover what was changed.",
+  "outcome": "Use matrix columns, determinants, products and inverses to transform pictures and recover pixel positions and colors",
+  "driver": "students",
+  "minutes": "25-40",
+  "modes": [
+    "Studio",
+    "Order matters",
+    "Undo it"
+  ],
+  "grades_label": "Grade 12",
+  "sources": [
+    "OpenStax Precalculus 2e, sections 9.5 and 9.7",
+    "College Board AP Precalculus Course and Exam Description, topics 4.10 to 4.14",
+    "CCSS N-VM.C and A-REI.C.9",
+    "Matrices and sample pixels are invented examples from spec.md",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Lighthouse and fox illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-10-30"
+}

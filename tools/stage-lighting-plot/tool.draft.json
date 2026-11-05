@@ -1,0 +1,27 @@
+{
+  "id": "stage-lighting-plot",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Hang a light, focus a pool, and let Nora's final scene change your cues.",
+  "outcome": "Research, build and refine a lighting design that supports a scene",
+  "driver": "students",
+  "minutes": "30-50",
+  "modes": [
+    "Research",
+    "Hang",
+    "Cues",
+    "Run"
+  ],
+  "grades_label": "Grades 9-12",
+  "sources": [
+    "Henrik Ibsen, A Doll's House (1879), R. Farquharson Sharp translation (1910), Project Gutenberg 2542, public domain",
+    "NCAS Theatre TH:Cr1, TH:Cr3, TH:Pr5",
+    "Rosco Roscolux and Lee Filters gel names; colors, transmissions and warmth scores are educational approximations",
+    "ETC Source Four and typical Fresnel and PAR64 beam descriptions; model outputs are arbitrary units",
+    "NOAA solar equations for Oslo, 26 December, 59.91 N, 10.75 E",
+    "Encyclopaedia Britannica, A Doll's House and Savoy Theatre, for premiere and electric stage dates",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-02"
+}

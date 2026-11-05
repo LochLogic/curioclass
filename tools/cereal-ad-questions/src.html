@@ -1,0 +1,939 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cereal Ad Questions · Curio Class</title>
+<meta name="description" content="Take a made-up cereal ad apart, compare your class votes, and find ads in everyday places. A K-2 media arts tool that works offline.">
+<link rel="icon" href="data:,">
+<!--
+Cereal Ad Questions, Curio Class. Teacher led, grades K-2, Media Messages.
+NCAS MA:Re7, MA:Re8, MA:Re9, MA:Cn11. Sources and limits are in notes.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Original music synthesized in code. Content CC BY 4.0; code MIT. No network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#fff8ef; --ink:#26190f; --muted:#6b5546; --brand:#9a3412;
+  --line:#dcc9b3; --focus:#146aa1; --btn:#82300f; --btn-line:#cb7955; --panel:#fffdf7;
+}
+body { grid-template-rows:76px 68px 1fr; overflow:hidden; }
+button { min-height:60px; min-width:60px; border:2px solid var(--line); border-radius:13px; font-weight:750; }
+button:active { box-shadow:inset 0 3px 8px #26190f24; }
+button:disabled { opacity:.5; cursor:default; }
+header { padding:8px 20px; flex-wrap:nowrap; gap:10px; }
+h1 { font-size:27px; letter-spacing:-.7px; }
+h1 small { font-size:13px; letter-spacing:.5px; margin-top:4px; }
+.icon-btn { min-height:60px; padding:0 15px; }
+.navigation { display:flex; align-items:center; gap:16px; padding:4px 20px; border-bottom:1px solid var(--line); }
+.seg { border:0; flex:none; border-radius:14px; gap:4px; overflow:visible; }
+.seg button { min-height:60px; color:var(--muted); background:#eee2d1; border:0; padding:0 18px; }
+.seg button[aria-pressed=true] { background:var(--brand); color:white; }
+.hint { margin:0; min-height:44px; font-size:16px; line-height:1.3; display:flex; align-items:center; max-width:610px; }
+main { display:block; min-height:0; padding:14px 20px; }
+.mode { height:100%; min-height:0; }
+#ad { display:grid; grid-template-rows:minmax(180px,1fr) 68px 118px; gap:10px; }
+.watch { display:grid; grid-template-columns:minmax(0,1fr) 248px; gap:18px; min-height:0; }
+.tv { position:relative; min-height:0; border-radius:25px; background:linear-gradient(135deg,#4c4038,#211d19 70%);
+  padding:11px 13px 24px; box-shadow:0 8px 0 #b8a28c,0 12px 22px #3b25191f; overflow:hidden; }
+.screen { position:relative; height:100%; overflow:hidden; border-radius:15px; background:#f8c333; isolation:isolate; }
+.tv::after { content:'ZOOM-O’S  •  A MADE-UP AD'; position:absolute; bottom:6px; left:0; right:0; text-align:center;
+  color:#e1c7a7; font-size:10px; letter-spacing:2px; font-weight:750; }
+.screen::after { content:''; position:absolute; inset:0; z-index:9; pointer-events:none;
+  box-shadow:inset 0 0 28px #0002; border-radius:inherit; }
+.backdrop { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
+.ambient { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:blur(16px); transform:scale(1.1); }
+.rainbow { position:absolute; inset:-70%; background:repeating-conic-gradient(from 0deg,#ffe14d 0deg 20deg,#ff934f 20deg 40deg,
+  #ff4fa3 40deg 60deg,#a079ff 60deg 80deg,#3fb3ff 80deg 100deg,#54d7b1 100deg 120deg); }
+.rainbow::after { content:''; position:absolute; inset:0; background:radial-gradient(circle,#fff5,transparent 55%); }
+.idle .rainbow { animation:turn 80s linear infinite; }
+@keyframes turn { to { transform:rotate(360deg); } }
+.product { position:absolute; height:81%; max-width:46%; object-fit:contain; left:27%; bottom:6%;
+  filter:drop-shadow(6px 12px 4px #562c3933); }
+.box-title { position:absolute; top:34%; left:28%; width:19%; text-align:center; transform:rotate(-5deg);
+  color:#9a3412; font:900 clamp(17px,3vw,44px)/.95 'Trebuchet MS',sans-serif; text-shadow:1px 2px white; }
+.mascot { position:absolute; left:25%; bottom:14%; height:82%; width:51%; object-fit:contain; transform-origin:50% 100%; }
+.trampoline { position:absolute; left:32%; bottom:7%; width:37%; height:10%; border:7px solid #3b2a69; border-radius:50%;
+  background:radial-gradient(ellipse,#7855b3,#2a1a50); box-shadow:0 10px 0 -3px #ece3fa,0 17px 0 -5px #5e4469; }
+.toy { position:absolute; left:49%; bottom:12%; height:45%; max-width:45%; object-fit:contain; filter:drop-shadow(3px 8px 4px #0002); }
+.adwords { position:absolute; z-index:5; top:5%; left:3%; right:3%; text-align:center; font:900 clamp(24px,4.1vw,62px)/1.04 'Trebuchet MS',sans-serif;
+  color:#fff; text-shadow:0 3px #742b63,3px 0 #742b63,-3px 0 #742b63,0 -2px #742b63;
+  animation:word-pop .32s ease-out; }
+@keyframes word-pop { 0% { transform:scale(.87); } 65% { transform:scale(1.04); } 100% { transform:scale(1); } }
+.idle-label { position:absolute; bottom:10%; left:5%; right:5%; color:#fff; text-shadow:0 2px 3px #542409;
+  text-align:center; font:900 clamp(22px,3vw,42px) 'Trebuchet MS',sans-serif; z-index:6; }
+.sparkles { position:absolute; inset:0; z-index:4; pointer-events:none; }
+.sparkles i { position:absolute; color:#fff7af; font-size:clamp(18px,3vw,40px); text-shadow:0 2px 5px #b1492d;
+  animation:twinkle 1.7s ease-in-out infinite alternate; }
+@keyframes twinkle { to { opacity:.25; transform:scale(.6) rotate(25deg); } }
+.progress { position:absolute; bottom:0; height:5px; left:0; background:#fff8be; z-index:10; }
+.clock { position:absolute; right:10px; bottom:10px; z-index:10; background:#fffdf5ed; border-radius:10px;
+  padding:7px 10px; color:var(--ink); font-size:15px; font-variant-numeric:tabular-nums; }
+.parts { display:flex; flex-direction:column; justify-content:center; gap:10px; }
+.parts h2 { margin:0 0 2px; font-size:19px; }
+.part { display:grid; grid-template-columns:32px 1fr 46px; align-items:center; text-align:left; padding:6px 12px;
+  background:#f1e6d7; box-shadow:0 3px 0 #dfccba; font-size:20px; }
+.part[aria-pressed=true] { color:white; background:var(--brand); border-color:#8e3011; box-shadow:0 3px 0 #6a240f; }
+.part small { font-size:14px; text-align:right; }
+.part .order { font-size:13px; opacity:.75; margin-right:5px; }
+.version { font-size:15px; font-weight:750; color:var(--muted); min-height:20px; }
+.toolbar { display:flex; align-items:stretch; gap:8px; padding-top:4px; min-width:0; }
+.toolbar>button { padding:0 17px; background:#fffdf7; }
+#play { background:var(--brand); color:white; border-color:#7f2a0e; box-shadow:0 3px #68260e; }
+.vote { display:flex; align-items:stretch; gap:0; border-radius:13px; margin-left:auto; }
+.vote + .vote { margin-left:0; }
+.vote button { background:#fffdf7; border-radius:0 13px 13px 0; padding:0 8px; }
+.vote .add { border-radius:13px 0 0 13px; border-right:0; padding:0 13px; min-width:135px; }
+.vote strong { margin-left:8px; font-size:23px; }
+.vote .minus { color:var(--muted); font-size:13px; }
+.vote .minus b { display:block; font-size:23px; line-height:1; }
+#reset { font-size:14px; padding:0 12px; }
+.chart { border-top:1px solid var(--line); display:flex; gap:8px; padding-top:9px; min-height:0; }
+.chart-intro { width:126px; flex:none; font-size:13px; line-height:1.35; color:var(--muted); padding-top:4px; }
+.chart-intro b { display:block; color:var(--ink); font-size:16px; }
+.bars { display:flex; flex:1; gap:10px; min-width:0; }
+.bars svg { width:100%; height:100%; display:block; overflow:visible; }
+.chart-empty { margin:auto; color:var(--muted); font-size:16px; }
+.bar-group { display:flex; flex:1; min-width:0; flex-direction:column; align-items:center; }
+.bar-pair { flex:1; display:flex; align-items:flex-end; justify-content:center; width:100%; gap:5px; padding-top:16px; }
+.bar { width:28%; max-width:45px; background:var(--brand); position:relative; border-radius:4px 4px 0 0; min-height:2px; }
+.bar.sure { background:#8a8a8a; }
+.bar span { position:absolute; bottom:100%; width:100%; text-align:center; font-size:13px; font-weight:800; color:var(--ink); }
+.bar-label { text-align:center; font-size:12px; line-height:1.15; margin-top:5px; min-height:26px; overflow-wrap:anywhere; }
+.calm *, body.calm .idle .rainbow { animation:none!important; transition:none!important; }
+#messages { display:grid; grid-template-columns:minmax(0,1fr) minmax(400px,.85fr); grid-template-rows:1fr 70px; gap:14px; }
+.message-tv { grid-row:1; }
+.message-cards { display:grid; grid-template-columns:1fr 1fr; gap:9px; align-content:center; }
+.message-card { display:flex; gap:0; min-width:0; background:#fffdf7; border-radius:14px; box-shadow:0 3px #e4d3bf; }
+.message-card .choose { flex:1; min-width:0; border-radius:14px 0 0 14px; text-align:left; padding:10px; border-right:0; background:transparent;
+  font-size:17px; }
+.choose img { width:40px; height:34px; object-fit:contain; vertical-align:middle; }
+.message-card .truth { border-radius:0 14px 14px 0; min-width:66px; background:#efe1cd; font-size:14px; }
+.message-card:has([aria-pressed=true]) { background:#ffe5b1; outline:3px solid var(--brand); }
+.evidence { grid-column:1/-1; display:flex; align-items:center; justify-content:center; gap:10px; }
+.evidence p { margin:0 10px 0 0; font-size:17px; font-weight:700; }
+.evidence button { min-width:125px; background:#fffdf7; padding:0 14px; }
+.evidence button[aria-pressed=true] { background:var(--brand); color:white; }
+#day { display:grid; grid-template-rows:64px minmax(0,1fr) 70px; gap:8px; }
+.places { display:flex; gap:8px; align-items:center; }
+.places button { background:#fffdf7; min-width:140px; padding:0 16px; }
+.places button[aria-pressed=true] { background:var(--brand); color:white; border-color:var(--brand); }
+.counter { margin-left:auto; font-weight:800; font-size:20px; }
+.day-scene { position:relative; width:auto; max-width:100%; height:100%; aspect-ratio:16/10; justify-self:center;
+  align-self:center; overflow:hidden; border-radius:20px; background:#d8c8b6; }
+.day-painting { position:absolute; inset:0; width:100%; height:100%; object-fit:fill; }
+.hotspot { position:absolute; width:17%; height:25%; min-width:60px; min-height:60px; transform:translate(-50%,-50%);
+  background:transparent; border:3px solid transparent; border-radius:16px; padding:0; z-index:1; }
+.hotspot:hover,.hotspot:focus-visible { background:#fff5; border-color:#fff; }
+.hotspot.found { background:#ffec8d22; border-color:#fff3b6; box-shadow:0 0 0 3px #9a3412,0 0 25px #ffe14d; }
+.hotspot span { position:absolute; right:-4px; top:-5px; border-radius:50%; background:#fff7c4; color:var(--brand); width:27px; height:27px;
+  display:grid; place-items:center; font-size:18px; }
+.sign { position:absolute; transform:translate(-50%,-50%); background:#fff9dc; color:#42251b; border:2px solid #bd9671;
+  padding:3px 7px; font-weight:800; font-size:clamp(11px,1.5vw,20px); pointer-events:none; text-align:center; border-radius:3px; z-index:2; }
+.sign { width:max-content; white-space:pre-line; }
+.day-card { background:#fffdf7; border-left:6px solid var(--brand); border-radius:8px; display:flex; align-items:center; gap:12px;
+  padding:8px 16px; font-size:18px; }
+.day-card b { flex:none; color:var(--brand); }
+dialog { border:3px solid var(--brand); border-radius:22px; background:var(--paper); color:var(--ink); max-width:560px;
+  width:calc(100% - 30px); padding:25px; box-shadow:0 20px 80px #26190f55; }
+dialog::backdrop { background:#26190f99; }
+dialog h2 { font:800 27px 'Trebuchet MS',sans-serif; margin:0 0 16px; }
+dialog p { font-size:22px; line-height:1.45; }
+.dialog-buttons { display:flex; gap:10px; justify-content:flex-end; }
+dialog button { background:var(--brand); color:white; padding:0 18px; }
+.sr { position:absolute; width:1px; height:1px; clip-path:inset(50%); overflow:hidden; }
+@media (min-width:1500px) { main { padding:20px 45px; } #ad { grid-template-rows:minmax(180px,1fr) 75px 160px; }
+  .watch { grid-template-columns:minmax(0,1fr) 300px; } .part { min-height:80px; font-size:25px; } .parts { gap:18px; }
+  .bar-label { font-size:16px; } .chart-intro { width:160px; font-size:16px; } }
+@media (max-width:1050px) { header { padding:5px 10px; } h1 { font-size:23px; } h1 small { display:none; }
+  body { grid-template-rows:70px 68px 1fr; } .navigation { padding:4px 10px; gap:10px; }
+  .seg button { padding:0 10px; font-size:14px; } .hint { font-size:14px; }
+  main { padding:8px 10px; } .watch { grid-template-columns:minmax(0,1fr) 185px; gap:10px; }
+  .parts h2 { font-size:16px; } .part { font-size:16px; grid-template-columns:25px 1fr 30px; padding:4px 7px; }
+  .part small { font-size:12px; } .parts { gap:7px; } .toolbar { gap:5px; }
+  .toolbar>button { padding:0 10px; font-size:14px; } .vote .add { min-width:106px; padding:0 7px; font-size:14px; }
+  .vote strong { margin-left:3px; font-size:19px; } .vote .minus { padding:0; } #reset { padding:0 5px; font-size:12px; }
+  #messages { grid-template-columns:minmax(0,1fr) 360px; gap:10px; } .message-card .choose { font-size:14px; padding:6px; }
+  .message-card .truth { min-width:60px; font-size:12px; } .message-cards { gap:7px; } .evidence p { font-size:14px; }
+}
+@media (min-width:600px) and (max-height:550px) {
+  body { grid-template-rows:60px 60px 1fr; } header { padding:0 10px; } h1 { font-size:20px; }
+  .icon-btn { padding:0 9px; font-size:14px; } .navigation { padding:0 10px; gap:8px; }
+  .seg button { padding:0 7px; font-size:12px; border-radius:8px; } .seg { gap:3px; }
+  .hint { font-size:12px; min-height:48px; } main { padding:5px 10px; }
+  #ad { grid-template-rows:minmax(180px,1fr) 60px 48px; gap:4px; overflow-y:auto; }
+  .parts h2,.version { display:none; } .parts { gap:0; justify-content:start; } .part { border-radius:9px; box-shadow:none; }
+  .tv { padding:7px 8px 20px; border-radius:17px; box-shadow:0 3px #b8a28c; }
+  .tv::after { font-size:10px; letter-spacing:1px; bottom:5px; } .chart { padding-top:3px; gap:3px; }
+  .chart-intro { font-size:10px; width:104px; padding:0; } .chart-intro b { font-size:12px; }
+  .bar-label { font-size:10px; min-height:12px; margin-top:1px; } .bar-pair { padding-top:12px; }
+  .bar span { font-size:10px; } .chart-empty { font-size:13px; } .toolbar { padding:0; }
+  .toolbar>button { padding:0 6px; font-size:12px; } .vote .add { min-width:91px; font-size:12px; }
+  #reset { min-width:66px; font-size:11px; } .vote .minus { font-size:10px; }
+  #messages { grid-template-rows:1fr 60px; gap:5px; } .message-cards { gap:3px; }
+  .message-card .choose { font-size:12px; } .message-card .truth { font-size:11px; }
+  .evidence { gap:5px; } .evidence button { min-width:100px; padding:0 6px; font-size:13px; }
+  #day { grid-template-rows:60px minmax(150px,1fr) 60px; gap:3px; }
+  .day-card { padding:5px 9px; font-size:14px; } .counter { font-size:16px; }
+}
+@media (min-width:600px) and (max-width:850px) and (min-height:650px) {
+  #messages { grid-template-columns:1fr; grid-template-rows:minmax(220px,1fr) auto 70px; }
+  .message-cards { grid-row:2; }
+  .evidence { grid-row:3; }
+}
+@media (max-width:599px) {
+  body { display:block; height:auto; overflow:auto; } header { display:flex; flex-wrap:wrap; gap:4px; padding:7px; }
+  h1 { width:100%; font-size:22px; text-align:center; margin:0 0 4px; } .icon-btn { flex:1; padding:0 8px; font-size:14px; }
+  .navigation { display:block; padding:6px; } .seg { display:grid; grid-template-columns:repeat(3,1fr); width:100%; }
+  .seg button { padding:4px; font-size:12px; } .hint { min-height:52px; padding:5px 3px; font-size:14px; }
+  main { padding:6px; } #ad { display:grid; grid-template-rows:auto auto 110px; gap:7px; }
+  .watch { grid-template-columns:1fr; gap:7px; } .tv { height:205px; padding:7px 8px 21px; border-radius:18px; box-shadow:0 4px #b8a28c; }
+  .parts { display:grid; grid-template-columns:repeat(3,1fr); gap:5px; } .parts h2,.version { display:none; }
+  .part { display:flex; flex-wrap:wrap; justify-content:center; gap:3px; padding:2px 3px; font-size:14px; }
+  .part small { width:100%; text-align:center; font-size:11px; } .order { display:none; }
+  .toolbar { display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; padding:0; }
+  .vote { grid-column:span 1; margin:0; min-width:0; } .vote .add { min-width:0; width:100%; padding:0 4px; font-size:12px; }
+  .vote .minus { min-width:60px; } .vote { grid-row:2; } .vote.want { grid-column:1/3; width:calc(75% - 3px); }
+  .vote.unsure { grid-column:2/4; width:calc(75% - 3px); justify-self:end; }
+  #reset { grid-column:3; grid-row:1; } .chart-intro { width:78px; font-size:10px; } .chart-intro b { font-size:13px; }
+  .bars { gap:4px; } .bar-label { font-size:10px; } .bar span { font-size:11px; }
+  #messages { display:flex; flex-direction:column; gap:10px; } .message-tv { height:180px; }
+  .message-cards { gap:5px; } .message-card .choose { font-size:12px; padding:4px; } .message-card .truth { min-width:60px; }
+  .evidence { flex-wrap:wrap; gap:5px; } .evidence p { width:100%; text-align:center; margin:3px 0; }
+  .evidence button { flex:1; min-width:100px; padding:0 4px; font-size:14px; }
+  #day { grid-template-rows:90px 275px minmax(80px,auto); gap:8px; }
+  .places { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-rows:60px 24px; gap:4px; }
+  .day-scene { width:100%; }
+  .places button { min-width:90px; padding:0 4px; font-size:12px; }
+  .counter { position:static; grid-column:1/-1; justify-self:end; margin:0; background:#fffdf4;
+    border-radius:8px; padding:0 5px; font-size:14px; }
+  .day-card { font-size:15px; padding:8px; gap:7px; } .hotspot { width:23%; height:27%; }
+  .sign { font-size:11px; padding:2px; } dialog { padding:18px; } dialog p { font-size:19px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Cereal Ad Questions <small>CURIO CLASS · MEDIA MESSAGES · K–2</small></h1>
+  <button class="icon-btn" id="read">🔊 Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<div class="navigation">
+  <nav class="seg" aria-label="Mode">
+    <button id="m-ad" aria-pressed="true">▣ The ad</button>
+    <button id="m-messages" aria-pressed="false">☁ What it wants</button>
+    <button id="m-day" aria-pressed="false">☀ Ads in my day</button>
+  </nav>
+  <p class="hint" id="hint" aria-live="polite"></p>
+</div>
+<main>
+  <section class="mode" id="ad" aria-label="The ad">
+    <div class="watch">
+      <div class="tv" id="main-tv"><div class="screen idle" id="screen" role="img" aria-label="Made-up cereal ad"></div></div>
+      <aside class="parts" aria-label="Ad parts">
+        <h2>Take a part away</h2>
+        <button class="part" id="part-music" aria-pressed="true"><span>♫</span><span><span class="order">1 →</span>Music</span><small>on</small></button>
+        <button class="part" id="part-pictures" aria-pressed="true"><span>✦</span><span><span class="order">2 →</span>Pictures</span><small>on</small></button>
+        <button class="part" id="part-words" aria-pressed="true"><span>💬</span><span><span class="order">3 →</span>Words</span><small>on</small></button>
+        <div class="version" id="version">Full ad</div>
+      </aside>
+    </div>
+    <div class="toolbar">
+      <button id="play">▶ Play ad</button>
+      <button id="stop" disabled>■ Stop</button>
+      <div class="vote want">
+        <button class="add" id="want-add" aria-label="Add one Want it vote" disabled>＋ Want it! <strong id="want-count">0</strong></button>
+        <button class="minus" id="want-minus" aria-label="Remove one Want it vote" disabled><b>−</b> Want it</button>
+      </div>
+      <div class="vote unsure">
+        <button class="add" id="sure-add" aria-label="Add one Not sure vote" disabled>＋ Not sure <strong id="sure-count">0</strong></button>
+        <button class="minus" id="sure-minus" aria-label="Remove one Not sure vote" disabled><b>−</b> Not sure</button>
+      </div>
+      <button id="reset">↺ Start over</button>
+    </div>
+    <div class="chart" id="chart" role="img" aria-label="Class vote comparison">
+      <div class="chart-intro"><b>Our class votes</b>☝ Want it! &nbsp; ☞ Not sure<br>Each bar: number of hands</div>
+      <div class="bars" id="bars"><p class="chart-empty">Play, vote, then take a part away.</p></div>
+    </div>
+  </section>
+  <section class="mode" id="messages" aria-label="What it wants" hidden>
+    <div class="tv message-tv"><div class="screen" id="message-screen" role="img" aria-label="Comet the kangaroo holding cereal"></div></div>
+    <div class="message-cards" id="message-cards"></div>
+    <div class="evidence" id="evidence">
+      <p id="evidence-label">Tap a message card first.</p>
+      <button id="clip-music" disabled>♫ Music</button>
+      <button id="clip-pictures" disabled>✦ Pictures</button>
+      <button id="clip-words" disabled>💬 Words</button>
+    </div>
+  </section>
+  <section class="mode" id="day" aria-label="Ads in my day" hidden>
+    <div class="places" aria-label="Day scene">
+      <button id="place-breakfast" aria-pressed="true">◉ Breakfast</button>
+      <button id="place-street" aria-pressed="false">▰ Street</button>
+      <button id="place-store" aria-pressed="false">🛒 Store</button>
+      <div class="counter" id="counter">0 of 4 ads found</div>
+    </div>
+    <div class="day-scene" id="day-scene"></div>
+    <div class="day-card" id="day-card" aria-live="polite"><b>Look closely</b><span>Tap something you think is an ad.</span></div>
+  </section>
+</main>
+<dialog id="truth-dialog" aria-labelledby="truth-title">
+  <h2 id="truth-title"></h2><p id="truth-copy"></p>
+  <div class="dialog-buttons"><button id="close-truth">✓ Back to cards</button></div>
+</dialog>
+<dialog id="reset-dialog" aria-labelledby="reset-title">
+  <h2 id="reset-title">Start the ad votes over?</h2>
+  <p>This clears the class votes and turns every part back on.</p>
+  <div class="dialog-buttons"><button id="keep">✓ Keep it</button><button id="confirm-reset">↺ Yes, start over</button></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const ART = {
+    box:'art:ad-box', splash:'art:ad-splash', up:'art:comet-up', down:'art:comet-down', car:'art:toy-car',
+    table:'art:ad-table', plain:'art:plain-bowl', breakfast:'art:day-breakfast', street:'art:day-street', store:'art:day-store'
+  };
+  const SLOGANS = ["NEW! Zoom-O's!",'So crunchy! So fun!',"Comet loves Zoom-O's!",'Free toy inside!',
+    "Everybody loves Zoom-O's! Part of a happy breakfast!"];
+  const MESSAGES = [
+    {icon:'🎉',title:"It's the most fun",truth:'Cereal is food. The fun in the ad came from the music, the bouncing and the sparkles.'},
+    {icon:'🏎',title:'You get a toy',truth:'Some boxes have a small toy. The toy is not the cereal.'},
+    {icon:'◉◉',title:'Everybody has it',truth:'The ad says everybody loves it. Did the ad ask everybody? Ads say this to make you want to join in.'},
+    {icon:'💪',title:'It makes you strong',truth:'The ad never said that! Did you think it anyway? Pictures can make us think things nobody said.'},
+    {icon:'🥄',title:'It tastes great',truth:"Only a taste can tell you that. An ad can't."}
+  ];
+  const DAY = {
+    breakfast:[
+      ['Cereal box',true,'The box itself is an ad. The mascot wants you to pick it.',18,69],
+      ['Tablet game',true,'Ads pop up in games.',49,72],
+      ['Yogurt cup',true,"Cartoons on food are there to catch kids' eyes.",80,72],
+      ['Pizza shop magnet',true,'It wants you to order pizza.',20,27],
+      ['School lunch menu',false,"A menu tells you what's for lunch. It isn't selling anything.",49,27],
+      ['Family photo',false,'A family photo helps us remember. It is not selling anything.',81,28]
+    ],
+    street:[
+      ['Bus poster',true,'Ads ride on buses.',27,75],
+      ['Billboard',true,'Billboards are big ads for people driving by.',22,25],
+      ['Shirt logo',true,'A logo on a shirt is an ad you can wear.',56,28],
+      ['Sneaker store sign',true,'It wants you to come in and buy.',83,12],
+      ['Stop sign',false,'A stop sign keeps us safe.',51,63],
+      ['Library poster',false,'It tells us about a free story time.',89,65]
+    ],
+    store:[
+      ['Low cereal shelf',true,'Cereals for kids often sit low, right at kid eye level.',19,70],
+      ['Mascot balloon',true,'The mascot balloon wants you to notice the cereal.',49,26],
+      ['Checkout candy',true,'Candy waits by the checkout, where kids wait too.',82,72],
+      ['Two for one sign',true,'It wants you to buy two.',81,25],
+      ['Aisle number',false,'An aisle number helps us find our way.',19,25],
+      ['Wet floor sign',false,'It keeps us from slipping.',50,73]
+    ]
+  };
+  const L = {
+    welcomeAd:"Here's an ad for a cereal called Zoom-O's. Tap Play ad and watch closely.",
+    welcomeMessages:'What did the ad want you to think? Tap a card.',
+    welcomeDay:'Ads are all around us. Tap things you think are ads.',
+    vote:'Who wants it? Count the hands, then tap Want it or Not sure.',
+    wantFull:'Want it has forty votes. Tap Not sure, or tap a minus to correct a count.',
+    sureFull:'Not sure has forty votes. Tap Want it, or tap a minus to correct a count.',
+    bothFull:'Both counts are forty. Tap a minus to correct a count, or tap a part switch.',
+    remove:'Now take a part out. Tap Music to turn it off, then play the ad again.',
+    plain:'Only a plain bowl is left.',
+    question:'When did you want it most? What part was doing the selling?',
+    card:'Which part made you think that? Tap Music, Pictures or Words.',
+    found:'You found every ad here! Try another place.',
+    ready:'Tap Play ad to watch this version.',
+    stopped:'The ad stopped. Tap Play ad to watch it from the start.',
+    clipDone:'Tap another part to compare, or tap True? on a message card.',
+    musicOff:'Music is off.', musicOn:'Music is back.', picturesOff:'Pictures are off.', picturesOn:'Pictures are back.',
+    wordsOff:'Words are off.', wordsOn:'Words are back.',
+    reset:'Tap Yes, start over to clear the votes, or tap Keep it.',
+    titles:MESSAGES.map(m => m.title), truths:MESSAGES.map(m => m.truth),
+    hotspots:Object.values(DAY).flat().map(h => h[2]), slogans:SLOGANS
+  };
+  const state = {
+    mode:'ad', parts:{music:true,pictures:true,words:true}, playing:false, clip:null, elapsed:0, shot:0,
+    started:0, finishedKey:null, votes:{want:0,sure:0}, chart:{}, chartOrder:[], selected:null, place:'breakfast',
+    found:{breakfast:[],street:[],store:[]}, lastHotspot:null, revision:0, wordsLine:-1, wordsFromShot:0
+  };
+  let tick = 0;
+  let audio = null;
+  let bus = null;
+  let scheduled = [];
+  let lastBeat = -1;
+  let readDuringRun = false;
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode, hint:false, read:() => {
+      if ($('truth-dialog').open) return $('truth-copy').textContent;
+      if ($('reset-dialog').open) return L.reset;
+      return $('hint').textContent;
+    },
+    welcome:() => {
+      if (state.playing) return null;
+      if (state.mode === 'ad') return ['welcomeAd',{valid:() => !state.playing && !state.finishedKey}];
+      if (state.mode === 'messages') return ['welcomeMessages',{valid:() => state.selected === null}];
+      return ['welcomeDay',{valid:() => state.lastHotspot === null}];
+    },
+    speaks:'#play, .choose, .truth, .hotspot, .part, #clip-music, #clip-pictures, #clip-words'
+  });
+  function hint(text) { $('hint').textContent = text; }
+  function host(line, opts = {}) {
+    const valid = opts.valid;
+    return V.say(line,{...opts, valid:() => !state.playing && (!valid || valid())});
+  }
+  function how(line, opts = {}) {
+    const valid = opts.valid;
+    return V.how(line,{...opts, valid:() => !state.playing && (!valid || valid())});
+  }
+  function key() { return ['music','pictures','words'].map(p => state.parts[p] ? '1' : '0').join(''); }
+  function version(k = key()) {
+    const labels = {'111':'Full ad','011':'No music','101':'No pictures','110':'No words','001':'Words only',
+      '010':'Pictures only','100':'Music only','000':'Plain bowl'};
+    return labels[k];
+  }
+  function commitVotes() {
+    if (state.finishedKey !== null) {
+      if (!state.chartOrder.includes(state.finishedKey)) state.chartOrder.push(state.finishedKey);
+      state.chart[state.finishedKey] = {...state.votes};
+    }
+    drawChart();
+  }
+  function voteControls() {
+    const canVote = state.finishedKey !== null;
+    for (const [name,id] of [['want','want'],['sure','sure']]) {
+      $(id+'-count').textContent = state.votes[name];
+      $(id+'-add').disabled = !canVote || state.votes[name] >= 40;
+      $(id+'-minus').disabled = !canVote || state.votes[name] <= 0;
+    }
+  }
+  function votePrompt() {
+    if (state.votes.want === 40 && state.votes.sure === 40) return ['bothFull','#want-minus'];
+    if (state.votes.want === 40) return ['wantFull','#sure-add'];
+    if (state.votes.sure === 40) return ['sureFull','#want-add'];
+    return ['vote','#want-add'];
+  }
+  function vote(name, amount) {
+    if (state.finishedKey === null) return;
+    const old = state.votes[name];
+    state.votes[name] = Math.max(0,Math.min(40,old+amount));
+    if (old === state.votes[name]) return;
+    Curio.tone(amount > 0 ? 640 : 370,.06,.04);
+    voteControls();
+    const active = document.activeElement;
+    if (active && active.disabled && /^(want|sure)-(add|minus)$/.test(active.id)) {
+      const alternate = $(name+(amount > 0 ? '-minus' : '-add'));
+      alternate.focus({preventScroll:true});
+    }
+    drawChart(true);
+    if (state.playing) return;
+    if (state.finishedKey === '000') {
+      hint(L.question+' Tap Play ad to compare again.');
+      host('question',{valid:() => state.finishedKey === '000'});
+    } else if (state.parts.music && !V.heard('remove')) {
+      const revision = state.revision;
+      hint(L.remove);
+      how('remove',{needs:'#part-music',valid:() => state.parts.music && state.revision === revision});
+    } else {
+      hint('Tap a part switch, then tap Play ad to compare. Your votes belong to '+version(state.finishedKey)+'.');
+    }
+  }
+  function drawChart(live = false) {
+    const data = {...state.chart};
+    if (live && state.finishedKey !== null) data[state.finishedKey] = {...state.votes};
+    const keys = [...state.chartOrder];
+    if (live && state.finishedKey !== null && !keys.includes(state.finishedKey)) keys.push(state.finishedKey);
+    if (!keys.length) {
+      $('bars').innerHTML = '<p class="chart-empty">Play, vote, then take a part away.</p>';
+      return;
+    }
+    const scale = Math.max(10,...keys.flatMap(k => [data[k].want,data[k].sure]));
+    const bounds = $('bars').getBoundingClientRect();
+    if (bounds.width < 1 || bounds.height < 1) return;
+    const width = Math.floor(bounds.width);
+    const height = Math.floor(bounds.height);
+    const font = height < 60 || width < 400 ? 10 : 13;
+    const labelHeight = font*2.2;
+    const plotHeight = Math.max(4,height-labelHeight-font-6);
+    const baseline = font+3+plotHeight;
+    const column = width/keys.length;
+    const barWidth = Math.min(45,column*.23);
+    const gap = Math.min(6,column*.05);
+    let drawing = '';
+    keys.forEach((k,i) => {
+      const center = column*(i+.5);
+      for (const [name,x,fill] of [['want',center-gap/2-barWidth,'#9a3412'],['sure',center+gap/2,'#8a8a8a']]) {
+        const h = plotHeight*data[k][name]/scale;
+        drawing += `<rect x="${x}" y="${baseline-Math.max(1,h)}" width="${barWidth}" height="${Math.max(1,h)}"
+          rx="3" fill="${fill}"/><text x="${x+barWidth/2}" y="${baseline-h-3}" text-anchor="middle"
+          fill="#26190f" font-size="${font}" font-weight="800">${data[k][name]}</text>`;
+      }
+      const words = version(k).split(' ');
+      words.forEach((word,j) => {
+        const fitted = word.length*font*.58 > column-3 ? `textLength="${Math.max(10,column-3)}" lengthAdjust="spacingAndGlyphs"` : '';
+        drawing += `<text x="${center}" y="${baseline+font*(j+1)+2}" text-anchor="middle"
+          fill="#26190f" font-size="${font}" ${fitted}>${word}</text>`;
+      });
+    });
+    $('bars').innerHTML = `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true" focusable="false">${drawing}</svg>`;
+    $('chart').setAttribute('aria-label','Class votes. '+keys.map(k =>
+      `${version(k)}: Want it ${data[k].want}, Not sure ${data[k].sure}`).join('. ')+'. Scale maximum '+scale+' hands.');
+  }
+  function stopMusic() {
+    if (bus && audio) {
+      bus.gain.cancelScheduledValues(audio.currentTime);
+      bus.gain.value = 0;
+      bus.disconnect();
+    }
+    for (const node of scheduled) {
+      try { node.stop(); } catch {}
+      try { node.disconnect(); } catch {}
+    }
+    scheduled = [];
+  }
+  function soundNode(frequency, when, duration, volume, type = 'triangle', bend = null) {
+    if (!audio || !bus) return;
+    const oscillator = audio.createOscillator();
+    const gain = audio.createGain();
+    oscillator.type = type;
+    oscillator.frequency.setValueAtTime(frequency,when);
+    if (bend) oscillator.frequency.exponentialRampToValueAtTime(bend,when+duration);
+    gain.gain.setValueAtTime(.001,when);
+    gain.gain.exponentialRampToValueAtTime(volume,when+.008);
+    gain.gain.exponentialRampToValueAtTime(.001,when+duration);
+    oscillator.connect(gain).connect(bus);
+    oscillator.start(when);
+    oscillator.stop(when+duration+.02);
+    scheduled.push(oscillator);
+    oscillator.onended = () => {
+      scheduled = scheduled.filter(n => n !== oscillator);
+      gain.disconnect();
+      oscillator.disconnect();
+    };
+  }
+  const BEAT = 60/132;
+  const NOTES = [523.251,659.255,783.991,659.255,698.456,880,783.991,null,
+    659.255,783.991,1046.502,783.991,880,783.991,1046.502,null];
+  function musicAllowed() { return state.playing && Curio.sound && (state.clip ? state.clip === 'music' : state.parts.music); }
+  function startMusic() {
+    stopMusic();
+    if (!musicAllowed()) return;
+    audio = Curio.audio();
+    if (!audio) return;
+    bus = audio.createGain();
+    bus.gain.value = .45;
+    bus.connect(audio.destination);
+    audio.resume();
+    lastBeat = Math.floor(state.elapsed/1000/BEAT)-1;
+    scheduleMusic();
+  }
+  function scheduleMusic() {
+    if (!musicAllowed() || !audio) return;
+    const currentBeat = Math.floor(state.elapsed/1000/BEAT);
+    while (lastBeat < currentBeat) {
+      lastBeat++;
+      const beat = lastBeat % 16;
+      const when = audio.currentTime+.004;
+      if (NOTES[beat]) soundNode(NOTES[beat],when,BEAT*(beat === 6 || beat === 14 ? 1.85 : .78),.15);
+      soundNode([130.813,130.813,130.813,130.813,174.614,174.614,195.998,195.998][beat%8],when,.2,.13);
+      if (beat%4 === 1 || beat%4 === 3) {
+        soundNode(1400,when,.035,.035,'square',650);
+        soundNode(1920,when+.012,.04,.025,'triangle',900);
+      }
+    }
+  }
+  function adLine(index) {
+    if (readDuringRun || !Curio.sound || !(state.clip === 'words' || (!state.clip && state.parts.words))) return;
+    Curio.say(SLOGANS[index]);
+    state.wordsLine = index;
+  }
+  function clearRun() {
+    cancelAnimationFrame(tick);
+    stopMusic();
+    Curio.stop();
+    state.playing = false;
+    state.clip = null;
+    state.wordsLine = -1;
+    readDuringRun = false;
+    $('stop').disabled = true;
+    $('version').textContent = version();
+    for (const p of ['music','pictures','words']) $('clip-'+p).setAttribute('aria-pressed','false');
+  }
+  function finishRun() {
+    const wasClip = state.clip;
+    clearRun();
+    if (wasClip) {
+      paintTV($('message-screen'),2,{music:false,pictures:true,words:false},false);
+      hint(L.clipDone);
+      how('clipDone');
+      return;
+    }
+    commitVotes();
+    state.finishedKey = key();
+    state.votes = {want:0,sure:0};
+    voteControls();
+    drawChart(true);
+    paintTV($('screen'),4,state.parts,false);
+    const [line,needs] = votePrompt();
+    hint(L[line]+' You watched '+version()+'.');
+    host(line,{needs,valid:() => state.finishedKey === key()});
+    $('version').textContent = version()+' · ready to vote';
+  }
+  function frame(now) {
+    if (!state.playing) return;
+    state.elapsed = Math.min(now-state.started,state.clip ? 3000 : 15000);
+    const shot = state.clip ? (state.clip === 'pictures' ? 2 : 0) : Math.min(4,Math.floor(state.elapsed/3000));
+    const target = state.clip ? $('message-screen') : $('screen');
+    const parts = state.clip ? {music:state.clip === 'music',pictures:state.clip === 'pictures',words:state.clip === 'words'} : state.parts;
+    if (shot !== state.shot || !target.querySelector('.progress')) {
+      state.shot = shot;
+      paintTV(target,shot,parts,true);
+      if (!state.clip || state.clip === 'words') adLine(shot);
+      if (musicAllowed() && audio) {
+        soundNode(150,audio.currentTime,.11,.05,'sine',800);
+        if (shot === 2) soundNode(150,audio.currentTime,.28,.16,'sine',570);
+        if (shot === 3) soundNode(220,audio.currentTime,.2,.11,'sawtooth',1200);
+      }
+    }
+    scheduleMusic();
+    const local = state.elapsed%3000/3000;
+    const comet = target.querySelector('.mascot');
+    if (comet && !Curio.reduce && state.playing) {
+      const bounce = Math.abs(Math.sin(state.elapsed/1000*Math.PI*2/BEAT/2));
+      comet.style.transform = `translateY(${-bounce*12}%) rotate(${Math.sin(state.elapsed/300)*3}deg)`;
+      const src = bounce > .45 ? ART.up : ART.down;
+      if (comet.src !== src) comet.src = src;
+    }
+    const product = target.querySelector('.product');
+    if (product && !Curio.reduce) product.style.transform = `scale(${.75+Math.min(1,local*5)*.25}) rotate(${-9+local*4}deg)`;
+    const splash = target.querySelector('.splash');
+    if (splash && !Curio.reduce) splash.style.transform = `scale(${1+local*.12})`;
+    const toy = target.querySelector('.toy');
+    if (toy && !Curio.reduce) toy.style.transform = `translateX(${(1-Math.min(1,local*4))*60}%) rotate(${-local*8}deg)`;
+    const progress = target.querySelector('.progress');
+    if (progress) progress.style.width = 100*state.elapsed/(state.clip ? 3000 : 15000)+'%';
+    const clock = target.querySelector('.clock');
+    if (clock) clock.textContent = '◷ '+Math.ceil(((state.clip ? 3000 : 15000)-state.elapsed)/1000)+' s';
+    if (state.elapsed >= (state.clip ? 3000 : 15000)) return finishRun();
+    tick = requestAnimationFrame(frame);
+  }
+  function play(clip = null) {
+    commitVotes();
+    V.hush();
+    clearRun();
+    state.playing = true;
+    state.clip = clip;
+    state.elapsed = 0;
+    state.shot = -1;
+    state.wordsFromShot = 0;
+    state.started = performance.now();
+    state.revision++;
+    if (!clip) $('stop').disabled = false;
+    if (clip) {
+      $('clip-'+clip).setAttribute('aria-pressed','true');
+      hint(clip === 'words' ? 'Listen to the first ad line. Tap another part to compare.' : 'Watch and listen. Tap another part to compare.');
+    } else {
+      hint('Watch '+version()+'. Tap Stop or a part switch at any time.');
+      $('version').textContent = version()+' · playing';
+    }
+    startMusic();
+    frame(performance.now());
+  }
+  function stop() {
+    if (!state.playing) return;
+    const fromStop = document.activeElement === $('stop');
+    clearRun();
+    if (fromStop) $('play').focus({preventScroll:true});
+    if (state.mode === 'ad') {
+      paintTV($('screen'),0,state.parts,false);
+      $('version').textContent = version()+' · stopped';
+      hint(L.stopped);
+      host('stopped');
+    } else {
+      paintTV($('message-screen'),2,{music:false,pictures:true,words:false},false);
+      hint(L.clipDone);
+    }
+    voteControls();
+  }
+  function togglePart(part) {
+    if (!state.playing) commitVotes();
+    state.revision++;
+    state.parts[part] = !state.parts[part];
+    const button = $('part-'+part);
+    button.setAttribute('aria-pressed',state.parts[part]);
+    button.querySelector('small').textContent = state.parts[part] ? 'on' : 'off';
+    $('version').textContent = version()+(state.playing ? ' · playing' : '');
+    Curio.tone(state.parts[part] ? 520 : 310,.07,.04);
+    if (part === 'music') {
+      if (state.parts.music && state.playing) startMusic();
+      else stopMusic();
+    }
+    if (part === 'words' && !state.parts.words) Curio.stop();
+    if (part === 'words' && state.parts.words && state.playing) state.wordsFromShot = state.shot+1;
+    const visibleParts = {...state.parts,words:state.parts.words && (!state.playing || state.shot >= state.wordsFromShot)};
+    paintTV($('screen'),state.shot < 0 ? 0 : state.shot,visibleParts,state.playing);
+    if (state.playing) hint('Watch '+version()+'. Tap Stop or another part switch.');
+    else hint('Tap Play ad for '+version()+'.'+(state.finishedKey ? ' Votes still belong to '+version(state.finishedKey)+'.' : ''));
+    const line = part+(state.parts[part] ? 'On' : 'Off');
+    host(line,{valid:() => !state.playing && state.parts[part] === line.endsWith('On')});
+  }
+  function paintTV(target,shot,parts,running) {
+    target.classList.toggle('idle',!running && parts.pictures);
+    let html = '';
+    const painting = (src,alt,extra = '') => `<img class="ambient" src="${src}" alt="" aria-hidden="true">
+      <img class="backdrop ${extra}" src="${src}" alt="${alt}">`;
+    if (!parts.pictures) html = painting(ART.plain,'Plain bowl of brown cereal flakes on a wooden table');
+    else if (shot === 0 || shot === 3) {
+      html = `<div class="rainbow"></div><img class="product" src="${ART.box}" alt="Bright cereal box">`;
+      if (parts.words) html += '<div class="box-title">Zoom<br>O’s!</div>';
+      if (shot === 3) html += `<img class="toy" src="${ART.car}" alt="Red toy race car">`;
+    } else if (shot === 1) html = painting(ART.splash,'Milk splashing over colorful cereal rings','splash');
+    else if (shot === 2) html = `<div class="rainbow"></div><div class="trampoline"></div>
+      <img class="mascot" src="${ART.up}" alt="Comet the kangaroo holding a bowl of cereal">`;
+    else html = `${painting(ART.table,'Colorful cereal on a sunny table')}
+      <img class="product" src="${ART.box}" alt="Cereal box" style="left:6%;height:78%;max-width:35%">`;
+    if (parts.pictures) {
+      html += '<div class="sparkles" aria-hidden="true">'+[[-1,15,20],[.3,78,32],[.8,12,70],[1.3,85,75],[.5,63,15]].map(s =>
+        `<i style="animation-delay:${s[0]}s;left:${s[1]}%;top:${s[2]}%">✦</i>`).join('')+'</div>';
+    }
+    if (parts.words) html += `<div class="adwords">${SLOGANS[shot]}</div>`;
+    if (!running && parts.words && target === $('screen') && !state.finishedKey) html += '<div class="idle-label">What makes you want it?</div>';
+    if (running) html += '<div class="progress"></div><div class="clock">◷ 15 s</div>';
+    target.innerHTML = html;
+    target.setAttribute('aria-label',parts.pictures ? 'Ad shot '+(shot+1)+(parts.words ? ': '+SLOGANS[shot] : '') : 'Plain bowl, still.');
+  }
+  function selectCard(i) {
+    clearRun();
+    V.hush();
+    state.selected = i;
+    for (let j=0;j<MESSAGES.length;j++) $('message-'+j).setAttribute('aria-pressed',i === j);
+    for (const p of ['music','pictures','words']) $('clip-'+p).disabled = false;
+    $('evidence-label').textContent = 'Which part gave you that idea?';
+    paintTV($('message-screen'),2,{music:false,pictures:true,words:false},false);
+    hint(L.card);
+    Curio.tone(590,.08,.05);
+    host([MESSAGES[i].title,'card'],{valid:() => state.selected === i});
+  }
+  function showTruth(i) {
+    clearRun();
+    V.hush();
+    $('truth-title').textContent = MESSAGES[i].title+' · True?';
+    $('truth-copy').textContent = MESSAGES[i].truth;
+    $('truth-dialog').showModal();
+    hint(MESSAGES[i].truth);
+    host(MESSAGES[i].truth,{valid:() => $('truth-dialog').open});
+  }
+  function makeCards() {
+    MESSAGES.forEach((m,i) => {
+      const card = document.createElement('div');
+      card.className = 'message-card';
+      const icon = i === 1 ? `<img src="${ART.car}" alt="">` : m.icon;
+      card.innerHTML = `<button class="choose" id="message-${i}" aria-pressed="false">${icon} ${m.title}</button>
+        <button class="truth" id="truth-${i}" aria-label="True? ${m.title}">? True?</button>`;
+      card.querySelector('.choose').onclick = () => selectCard(i);
+      card.querySelector('.truth').onclick = () => showTruth(i);
+      $('message-cards').append(card);
+    });
+  }
+  function renderDay() {
+    const place = state.place;
+    const scene = $('day-scene');
+    scene.innerHTML = `<img class="day-painting" src="${ART[place]}" alt="A painted ${place} scene. Find the advertisements.">`;
+    const labels = {
+      breakfast:[['LUNCH MENU',49,27],['PIZZA',20,27]],
+      street:[['SHOES',83,11],['STORY\nTIME',89,56],['STOP',51,58],['★',56,31]],
+      store:[['2 for 1',85,20],['AISLE 3',22,17],['WET FLOOR',50,74]]
+    };
+    for (const [text,x,y] of labels[place]) {
+      const sign = document.createElement('span');
+      sign.className = 'sign';
+      sign.style.left = x+'%';
+      sign.style.top = y+'%';
+      sign.textContent = text;
+      scene.append(sign);
+    }
+    DAY[place].forEach((h,i) => {
+      const button = document.createElement('button');
+      button.className = 'hotspot'+(state.found[place].includes(i) ? ' found' : '');
+      button.id = 'spot-'+i;
+      button.style.left = h[3]+'%';
+      button.style.top = h[4]+'%';
+      button.setAttribute('aria-label',h[0]);
+      button.innerHTML = '<span class="sr">'+h[0]+'</span>';
+      button.onclick = () => tapHotspot(i);
+      scene.append(button);
+    });
+    updateCounter();
+  }
+  function fitDay() {
+    const day = $('day');
+    if (!day.clientWidth || !day.clientHeight) return;
+    const gap = parseFloat(getComputedStyle(day).rowGap) || 0;
+    const controls = day.querySelector('.places').getBoundingClientRect().height;
+    const card = $('day-card').getBoundingClientRect().height;
+    const available = Math.max(100,day.clientHeight-controls-card-gap*2);
+    const width = Math.min(day.clientWidth,available*1.6);
+    $('day-scene').style.width = width+'px';
+    $('day-scene').style.height = width/1.6+'px';
+  }
+  function updateCounter() {
+    const count = state.found[state.place].filter(i => DAY[state.place][i][1]).length;
+    $('counter').textContent = count+' of 4 ads found';
+    return count;
+  }
+  function tapHotspot(i) {
+    const place = state.place;
+    const h = DAY[place][i];
+    state.lastHotspot = i;
+    const fresh = !state.found[place].includes(i);
+    if (fresh) state.found[place].push(i);
+    const button = $('spot-'+i);
+    button.classList.add('found');
+    button.setAttribute('aria-label',h[0]+'. Explored.');
+    $('day-card').innerHTML = `<b>${h[1] ? 'An ad!' : 'Not an ad'}</b><span>${h[2]}</span>`;
+    hint(h[2]+' Tap another object or a place button.');
+    Curio.tone(h[1] ? 660 : 430,.1,.04);
+    host(h[2],{valid:() => state.place === place && state.lastHotspot === i});
+    if (updateCounter() === 4 && h[1] && fresh) {
+      host('found',{valid:() => state.place === place,needs:'#place-'+(place === 'breakfast' ? 'street' : 'breakfast')});
+    }
+  }
+  function setPlace(place) {
+    if (place === state.place) {
+      hint('Tap an object in '+place+' to look for an ad.');
+      return;
+    }
+    V.hush();
+    state.place = place;
+    state.lastHotspot = null;
+    for (const p of Object.keys(DAY)) $('place-'+p).setAttribute('aria-pressed',p === place);
+    renderDay();
+    $('day-card').innerHTML = '<b>Look closely</b><span>Tap something you think is an ad.</span>';
+    hint(L.welcomeDay);
+    how('welcomeDay');
+    Curio.tone(500,.06,.04);
+  }
+  function setMode(mode) {
+    if (mode === state.mode) return;
+    commitVotes();
+    clearRun();
+    V.hush();
+    state.mode = mode;
+    for (const m of ['ad','messages','day']) {
+      $(m).hidden = m !== mode;
+      $('m-'+m).setAttribute('aria-pressed',m === mode);
+    }
+    if (mode === 'ad') {
+      hint(state.finishedKey === null ? L.welcomeAd : 'Votes: '+version(state.finishedKey)+'. Tap Play ad to watch '+version()+'.');
+      paintTV($('screen'),state.finishedKey === null ? 0 : 4,state.parts,false);
+    } else if (mode === 'messages') {
+      hint(state.selected === null ? L.welcomeMessages : L.card);
+      paintTV($('message-screen'),2,{music:false,pictures:true,words:false},false);
+    } else hint(state.lastHotspot === null ? L.welcomeDay : DAY[state.place][state.lastHotspot][2]+' Tap another object.');
+    V.welcome();
+  }
+  function reset() {
+    clearRun();
+    V.hush();
+    state.parts = {music:true,pictures:true,words:true};
+    state.finishedKey = null;
+    state.votes = {want:0,sure:0};
+    state.chart = {};
+    state.chartOrder = [];
+    state.elapsed = 0;
+    state.shot = 0;
+    for (const p of ['music','pictures','words']) {
+      $('part-'+p).setAttribute('aria-pressed','true');
+      $('part-'+p).querySelector('small').textContent = 'on';
+    }
+    $('version').textContent = 'Full ad';
+    drawChart();
+    voteControls();
+    paintTV($('screen'),0,state.parts,false);
+    hint(L.welcomeAd);
+    $('reset-dialog').close();
+    $('play').focus({preventScroll:true});
+  }
+  makeCards();
+  renderDay();
+  new ResizeObserver(() => drawChart(true)).observe($('bars'));
+  new ResizeObserver(fitDay).observe($('day'));
+  for (const m of ['ad','messages','day']) $('m-'+m).onclick = () => setMode(m);
+  for (const p of ['music','pictures','words']) {
+    $('part-'+p).onclick = () => togglePart(p);
+    $('clip-'+p).onclick = () => play(p);
+  }
+  for (const p of Object.keys(DAY)) $('place-'+p).onclick = () => setPlace(p);
+  $('play').onclick = () => play();
+  $('stop').onclick = stop;
+  for (const name of ['want','sure']) {
+    $(name+'-add').onclick = () => vote(name,1);
+    $(name+'-minus').onclick = () => vote(name,-1);
+  }
+  $('reset').onclick = () => {
+    clearRun();
+    V.hush();
+    $('reset-dialog').showModal();
+    hint(L.reset);
+    host('reset');
+  };
+  $('confirm-reset').onclick = reset;
+  $('keep').onclick = () => {
+    $('reset-dialog').close();
+    hint(state.finishedKey === null ? L.ready : L[votePrompt()[0]]);
+  };
+  $('close-truth').onclick = () => {
+    $('truth-dialog').close();
+    V.hush();
+    hint(state.selected === null ? L.welcomeMessages : L.card);
+  };
+  $('truth-dialog').addEventListener('close',() => {
+    V.hush();
+    hint(state.selected === null ? L.welcomeMessages : L.card);
+  });
+  $('reset-dialog').addEventListener('close',() => {
+    V.hush();
+    hint(state.finishedKey === null ? L.ready : L[votePrompt()[0]]);
+  });
+  document.addEventListener('keydown',e => {
+    if ($('truth-dialog').open || $('reset-dialog').open || e.ctrlKey || e.altKey || e.metaKey) return;
+    if (state.mode !== 'ad') return;
+    const p = {m:'music',p:'pictures',w:'words'}[e.key.toLowerCase()];
+    if (p) { e.preventDefault(); togglePart(p); }
+    else if (e.code === 'Space') {
+      e.preventDefault();
+      state.playing ? stop() : play();
+    }
+    else if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      vote('want',e.key === 'ArrowUp' ? 1 : -1);
+    }
+  });
+  Curio.init({clips:"voice:*",rate:1,readFallback:() => $('hint').textContent});
+  Curio.onSound(on => {
+    if (!on) stopMusic();
+    else if (state.playing) startMusic();
+  });
+  Curio.onMotion(() => {
+    const target = state.clip ? $('message-screen') : $('screen');
+    for (const el of target.querySelectorAll('.product,.mascot,.splash,.toy')) el.style.transform = '';
+  });
+  const kitRead = $('read').onclick;
+  $('read').onclick = e => {
+    if (state.playing) stop();
+    kitRead(e);
+  };
+  window.__tool = {state,setMode,allLines:V.allLines,vlog:V.log,version,
+    get diagnostics() { return {musicNodes:scheduled.length,musicGain:bus ? bus.gain.value : 0}; },
+    get vq() { return V.queue; }};
+  hint(L.welcomeAd);
+  paintTV($('screen'),0,state.parts,false);
+  paintTV($('message-screen'),2,{music:false,pictures:true,words:false},false);
+  voteControls();
+})();
+</script>
+</body>
+</html>

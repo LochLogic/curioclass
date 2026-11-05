@@ -1,0 +1,224 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "copyright",
+      "steps": [
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#source",
+        "#test"
+      ]
+    },
+    {
+      "name": "web-card",
+      "steps": [
+        {
+          "click": "#pieces [data-piece='1']"
+        }
+      ],
+      "keep": [
+        "#source",
+        "#test"
+      ]
+    },
+    {
+      "name": "photo-card",
+      "steps": [
+        {
+          "click": "#pieces [data-piece='2']"
+        }
+      ],
+      "keep": [
+        "#source",
+        "#test"
+      ]
+    },
+    {
+      "name": "undated",
+      "steps": [
+        {
+          "click": "#project-2"
+        },
+        {
+          "click": "#pieces [data-piece='1']"
+        }
+      ],
+      "keep": [
+        "#access-date",
+        "#test"
+      ]
+    },
+    {
+      "name": "trail-stuck",
+      "steps": [
+        {
+          "click": "#pieces [data-piece='0']"
+        },
+        {
+          "click": "#pieces [data-piece='1']"
+        },
+        {
+          "click": "#pieces [data-piece='2']"
+        },
+        {
+          "click": "#test"
+        },
+        {
+          "click": "#trail-pieces [data-piece='0']"
+        }
+      ],
+      "keep": [
+        "#back",
+        "#trail-pieces"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "no-credit",
+      "steps": [
+        {
+          "click": "#m-corner"
+        },
+        {
+          "click": "[data-creator='2']"
+        },
+        {
+          "click": "#no-credit"
+        }
+      ],
+      "keep": [
+        "#no-credit"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "confirm-clear",
+      "steps": [
+        {
+          "click": "#reset"
+        }
+      ],
+      "keep": [
+        "#reset-question",
+        "#reset-yes"
+      ]
+    },
+    {
+      "name": "found-photo",
+      "steps": [
+        {
+          "click": "#pieces [data-piece='0']"
+        },
+        {
+          "click": "#pieces [data-piece='1']"
+        },
+        {
+          "click": "#pieces [data-piece='2']"
+        },
+        {
+          "click": "#slot-0"
+        },
+        {
+          "click": "[data-chip='Sam Okafor']"
+        },
+        {
+          "click": "#slot-1"
+        },
+        {
+          "click": "[data-chip='Snowy Owl at Dawn']"
+        },
+        {
+          "click": "#slot-2"
+        },
+        {
+          "click": "[data-chip='Open Nature Photos']"
+        },
+        {
+          "click": "#test"
+        },
+        {
+          "click": "#trail-pieces [data-piece='2']"
+        }
+      ],
+      "keep": [
+        "#back",
+        "#trail-pieces",
+        ".result-paper"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "team-no-credit",
+      "steps": [
+        {
+          "click": "#m-corner"
+        },
+        {
+          "click": "[data-creator='9']"
+        },
+        {
+          "click": "#no-credit"
+        }
+      ],
+      "keep": [
+        "#no-credit"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "slot-from-trail",
+      "steps": [
+        {
+          "click": "#pieces [data-piece='0']"
+        },
+        {
+          "click": "#pieces [data-piece='1']"
+        },
+        {
+          "click": "#pieces [data-piece='2']"
+        },
+        {
+          "click": "#test"
+        },
+        {
+          "click": "#slot-1"
+        }
+      ],
+      "keep": [
+        "#source",
+        "#slot-1",
+        "#test"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

@@ -10,8 +10,9 @@
       "height": 420,
       "quality": 82,
       "source": "flux1-schnell (local)",
-      "review": "pending",
-      "holes": true
+      "review": "ok",
+      "holes": true,
+      "people": false
     },
     {
       "name": "oak",
@@ -22,7 +23,8 @@
       "height": 380,
       "quality": 82,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok",
+      "people": false
     },
     {
       "name": "barn",
@@ -33,19 +35,22 @@
       "width": 420,
       "quality": 82,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok",
+      "people": false
     },
     {
       "name": "mill",
-      "prompt": "A white farm windmill with four sails on a wooden tower.",
+      "prompt": "One white farm windmill with four cloth-covered wooden sails and a wooden timber tower. Full object from its small timber base to all four sail tips. Soft painted storybook gouache, warm upper-left light, gentle shading, weathered wooden struts, visible wood grain and small joinery details. Pale ivory painted timber panels and brown timber braces; clear open structure rather than a masonry tower. Isolated on pure green #00FF00, no shadows on the background. No text, letters, numbers, logos, people, faces or body parts.",
       "aspect": "3:4",
       "cutout": true,
       "key": "green",
       "height": 420,
       "quality": 82,
-      "source": "flux1-schnell (local)",
-      "review": "pending",
-      "holes": true
+      "source": "OpenAI gpt-image, Codex image tool",
+      "review": "ok",
+      "holes": true,
+      "people": false,
+      "drawn_by": "codex"
     },
     {
       "name": "hay",
@@ -56,7 +61,8 @@
       "width": 320,
       "quality": 82,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok",
+      "people": false
     },
     {
       "name": "cow",
@@ -67,7 +73,8 @@
       "width": 400,
       "quality": 82,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok",
+      "people": false
     },
     {
       "name": "fox",
@@ -78,8 +85,9 @@
       "width": 360,
       "quality": 82,
       "source": "flux1-schnell (local)",
-      "review": "pending",
-      "holes": true
+      "review": "ok",
+      "holes": true,
+      "people": false
     },
     {
       "name": "post",
@@ -90,7 +98,8 @@
       "height": 360,
       "quality": 82,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok",
+      "people": false
     },
     {
       "name": "boat",
@@ -102,7 +111,8 @@
       "quality": 82,
       "holes": true,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok",
+      "people": false
     },
     {
       "name": "balloon",
@@ -114,20 +124,38 @@
       "quality": 82,
       "holes": true,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok",
+      "people": false
     },
     {
       "name": "hills",
-      "prompt": "A wide band of gentle rolling green hills seen from the side, spanning the whole width, with a flat straight bottom edge.",
+      "prompt": "A wide shallow continuous band of gentle rolling meadow hills seen from the side, five times wider than tall. Soft painted gouache and colored-pencil texture, sage green slopes, blue-green distant ridges, subtle meadow details, upper-left warm light. Natural rounded hill silhouettes taper gently down at both ends into a narrow base; flat straight bottom edge. One isolated scenic cutout on flat pure magenta #FF00FF. Rich painterly shading, three layered ridges. No sky, text, letters, numbers, logos, people or animals.",
       "aspect": "4:1",
       "cutout": true,
       "key": "magenta",
       "width": 1600,
       "quality": 78,
       "local_note": "laid along the horizon; the top edge of the hills is the cut line",
-      "source": "flux1-schnell (local)",
-      "review": "pending",
-      "despill": true
+      "source": "OpenAI gpt-image, Codex image tool",
+      "review": "ok",
+      "despill": true,
+      "people": false,
+      "drawn_by": "codex",
+      "holes": true
+    },
+    {
+      "name": "valley",
+      "prompt": "A wide empty green valley under a soft blue sky. Exact 16:10 composition. A low straight horizon is precisely 42 percent down from the top, with a thin line of distant blue hills. Flat open meadow reaches the horizon. A calm blue lake fills the right third, narrow at the horizon, widening toward the lower-right foreground and reaching the bottom edge. Smooth open lawn left and center for placing separate farm objects. Small grasses and yellow meadow flowers only at the very bottom edge. Layered soft drifting clouds high in the sky. Quiet beautiful summer afternoon, luminous yet gentle.",
+      "aspect": "16:10",
+      "cutout": false,
+      "people": false,
+      "width": 1440,
+      "quality": 78,
+      "drawn_by": "codex",
+      "review": "ok",
+      "source": "OpenAI gpt-image, Codex image tool",
+      "placement_note": "Rendered 2.35 percent lower, clipped, to align the painted horizon at 42 percent."
     }
-  ]
+  ],
+  "house_style": "Soft painted storybook gouache and colored-pencil texture for a grade 4 art lesson. Gentle shading, rich meadow greens, pale blue sky, warm upper-left light. No people, faces, body parts, text, letters, numbers, logos, watermark, frame or border."
 }

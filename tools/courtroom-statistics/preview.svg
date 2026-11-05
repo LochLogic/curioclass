@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" role="img" aria-label="Courtroom Statistics: a statistical claim on trial">
+ <defs>
+  <linearGradient id="oak" x2="0" y2="1"><stop stop-color="#956b40"/><stop offset="1" stop-color="#4a3322"/></linearGradient>
+  <linearGradient id="paper" x2="1" y2="1"><stop stop-color="#fffaf2"/><stop offset="1" stop-color="#e9dcc6"/></linearGradient>
+  <filter id="shadow"><feDropShadow dx="0" dy="6" stdDeviation="6" flood-opacity=".25"/></filter>
+ </defs>
+ <path fill="url(#oak)" d="M0 0H640V400H0z"/>
+ <g stroke="#b18b5a" opacity=".4"><path d="M20 0V400M100 0V400M180 0V400M260 0V400M340 0V400M420 0V400M500 0V400M580 0V400"/></g>
+ <path fill="#4a3322" d="M0 0H640V68H0z"/>
+ <text x="28" y="43" fill="#f8f1e4" font-family="Georgia,serif" font-size="30" font-weight="700">Courtroom Statistics</text>
+ <g filter="url(#shadow)">
+  <rect x="30" y="90" width="580" height="280" fill="url(#paper)" stroke="#bca57e"/>
+  <rect x="39" y="99" width="562" height="262" fill="none" stroke="#d6c4a4"/>
+ </g>
+ <text x="55" y="133" fill="#6b5a48" font-family="Arial,sans-serif" font-size="13" letter-spacing="2">THE EVIDENCE</text>
+ <path d="M65 270C140 270 171 268 205 235S264 171 314 171 377 205 420 240 482 270 570 270" fill="none" stroke="#4a3322" stroke-width="4"/>
+ <path d="M65 270C118 270 151 268 177 255L177 270Z" fill="#1d6b47" opacity=".55"/>
+ <path d="M65 270H570M314 157V286" fill="none" stroke="#8c7656" stroke-width="1.5" stroke-dasharray="4 4"/>
+ <text x="70" y="200" fill="#1d6b47" font-family="Georgia,serif" font-size="26" font-weight="700">p = 0.0087</text>
+ <text x="314" y="305" fill="#6b5a48" font-family="Arial,sans-serif" font-size="13" text-anchor="middle">H₀: p = 0.85</text>
+ <g transform="translate(421 324) rotate(-5)">
+  <rect x="-80" y="-20" width="160" height="36" fill="none" stroke="#1d6b47" stroke-width="2"/>
+  <text x="0" y="6" fill="#1d6b47" font-family="Georgia,serif" font-size="22" font-weight="700" text-anchor="middle">■ Guilty</text>
+ </g>
+</svg>

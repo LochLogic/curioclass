@@ -1,0 +1,282 @@
+{
+  "states": [
+    {
+      "name": "four-piece-program",
+      "steps": [
+        {
+          "click": "#add-minuet"
+        },
+        {
+          "click": "#add-prelude"
+        },
+        {
+          "click": "#add-gymnopedie"
+        },
+        {
+          "click": "#add-nightbus"
+        }
+      ],
+      "keep": [
+        "#program"
+      ]
+    },
+    {
+      "name": "rubric-five",
+      "steps": [
+        {
+          "click": "#m-rubric"
+        },
+        {
+          "click": "#criterion-notes"
+        },
+        {
+          "click": "#criterion-beat"
+        },
+        {
+          "click": "#criterion-tempo"
+        },
+        {
+          "click": "#criterion-dynamics"
+        },
+        {
+          "click": "#criterion-shape"
+        }
+      ],
+      "keep": [
+        "#criterion-choices"
+      ]
+    },
+    {
+      "name": "four-piece-board",
+      "steps": [
+        {
+          "click": "#add-minuet"
+        },
+        {
+          "click": "#add-prelude"
+        },
+        {
+          "click": "#add-gymnopedie"
+        },
+        {
+          "click": "#add-nightbus"
+        },
+        {
+          "click": "#m-rubric"
+        },
+        {
+          "click": "#criterion-notes"
+        },
+        {
+          "click": "#criterion-beat"
+        },
+        {
+          "click": "#criterion-tempo"
+        },
+        {
+          "click": "#m-practice"
+        }
+      ],
+      "keep": [
+        "#practice-week",
+        "#board"
+      ]
+    },
+    {
+      "name": "week-one-listen",
+      "steps": [
+        {
+          "click": "#add-minuet"
+        },
+        {
+          "click": "#add-prelude"
+        },
+        {
+          "click": "#add-gymnopedie"
+        },
+        {
+          "click": "#add-nightbus"
+        },
+        {
+          "click": "#m-rubric"
+        },
+        {
+          "click": "#criterion-notes"
+        },
+        {
+          "click": "#criterion-beat"
+        },
+        {
+          "click": "#criterion-tempo"
+        },
+        {
+          "click": "#m-practice"
+        },
+        {
+          "click": "#practice-week"
+        },
+        {
+          "wait": 950
+        }
+      ],
+      "keep": [
+        "#play-take",
+        "#roll",
+        "#meter"
+      ]
+    },
+    {
+      "name": "take-playing",
+      "steps": [
+        {
+          "click": "#add-minuet"
+        },
+        {
+          "click": "#add-prelude"
+        },
+        {
+          "click": "#add-gymnopedie"
+        },
+        {
+          "click": "#add-nightbus"
+        },
+        {
+          "click": "#m-rubric"
+        },
+        {
+          "click": "#criterion-notes"
+        },
+        {
+          "click": "#criterion-beat"
+        },
+        {
+          "click": "#criterion-tempo"
+        },
+        {
+          "click": "#m-practice"
+        },
+        {
+          "click": "#practice-week"
+        },
+        {
+          "wait": 950
+        },
+        {
+          "click": "#play-take"
+        }
+      ],
+      "keep": [
+        "#play-take",
+        "#stop-take"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425"
+      ]
+    },
+    {
+      "name": "recital-prepared",
+      "steps": [
+        {
+          "click": "#add-minuet"
+        },
+        {
+          "click": "#add-prelude"
+        },
+        {
+          "click": "#add-gymnopedie"
+        },
+        {
+          "click": "#add-nightbus"
+        },
+        {
+          "click": "#m-rubric"
+        },
+        {
+          "click": "#criterion-notes"
+        },
+        {
+          "click": "#criterion-beat"
+        },
+        {
+          "click": "#criterion-tempo"
+        },
+        {
+          "click": "#m-practice"
+        },
+        {
+          "click": "#practice-week"
+        },
+        {
+          "wait": 950
+        },
+        {
+          "click": "#close-listen"
+        },
+        {
+          "click": "#week-2"
+        },
+        {
+          "click": "#practice-week"
+        },
+        {
+          "wait": 950
+        },
+        {
+          "click": "#close-listen"
+        },
+        {
+          "click": "#week-3"
+        },
+        {
+          "click": "#practice-week"
+        },
+        {
+          "wait": 950
+        },
+        {
+          "click": "#close-listen"
+        },
+        {
+          "click": "#week-4"
+        },
+        {
+          "click": "#practice-week"
+        },
+        {
+          "wait": 950
+        },
+        {
+          "click": "#m-recital"
+        }
+      ],
+      "keep": [
+        "#begin-recital",
+        "#recital-stage"
+      ]
+    },
+    {
+      "name": "program-notes-open",
+      "steps": [
+        {
+          "click": "#add-minuet"
+        },
+        {
+          "click": "#add-prelude"
+        },
+        {
+          "click": "#add-gymnopedie"
+        },
+        {
+          "click": "#add-nightbus"
+        },
+        {
+          "click": "#program-notes"
+        }
+      ],
+      "keep": [
+        "#dialog-close"
+      ]
+    }
+  ]
+}

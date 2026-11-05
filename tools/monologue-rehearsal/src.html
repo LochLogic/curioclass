@@ -1,0 +1,1262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Monologue Rehearsal · Curio Class</title>
+<meta name="description" content="Score a monologue, rehearse choices and compare them with a real partner's response. Grades 9-12 theater. Works offline.">
+<!--
+Monologue Rehearsal, Curio Class. Based on kit/starter/src.html. NCAS TH:Pr4, TH:Pr6, TH:Cn10.
+Texts: Project Gutenberg 1526, 1522, 1514 and 10623, public domain. Stated cuts and dash changes only.
+Tactics and wants are suggestions written for this tool. Matching window: two words before to six after.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. No microphone or camera. Saved work stays on this device.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --brand:#3ccfbf;
+  --brand-ink:#1c1203;
+  --gold:#ffd27a;
+  --ghost:url('art:mr-ghost');
+}
+body {grid-template-rows:68px 50px minmax(0,1fr) 55px;min-height:0;overflow:hidden}
+header {padding:10px 28px;flex-wrap:nowrap;gap:8px;border-bottom:1px solid #34454a}
+h1 {font:400 27px/1 Georgia,serif;letter-spacing:-.4px}
+h1 span {color:var(--brand)}
+h1 small {font:11px/1.6 'Segoe UI',sans-serif;letter-spacing:.09em}
+.icon-btn {min-height:44px;height:44px;min-width:90px;font-size:12px;border-radius:5px;border-width:1px;padding:0 9px}
+button {touch-action:manipulation}
+button:active:not(:disabled) {filter:brightness(1.25)}
+.btn {font-size:13px;border-radius:4px;min-height:44px;flex-shrink:0}
+.primary {background:var(--brand);color:var(--brand-ink);border-color:var(--brand);font-weight:750}
+.quiet {background:transparent}
+.eyebrow {font:11px/1.4 Consolas,monospace;letter-spacing:.15em;text-transform:uppercase;color:var(--brand)}
+.muted {color:var(--muted)}
+.modebar {display:flex;align-items:stretch;justify-content:space-between;border-bottom:1px solid #2b3646;background:#10161f;padding:0 28px}
+.seg {border:0;border-radius:0;overflow:visible;gap:22px}
+.seg button {font:600 13px 'Segoe UI',sans-serif;min-height:44px;padding:0 4px;background:none;border-bottom:2px solid transparent}
+.seg button[aria-pressed=true] {background:none;color:var(--brand);border-color:var(--brand)}
+.seg button:disabled {color:#a6b3c4;opacity:.5;cursor:default}
+.saved {align-self:center;font:11px Consolas,monospace;color:var(--muted)}
+main {display:block;min-height:0;overflow:hidden;position:relative}
+footer {display:flex;align-items:center;gap:18px;padding:7px 28px;border-top:1px solid #34454a;background:#10161f}
+#hint {font-size:13px;line-height:1.35;flex:1;margin:0;min-height:36px;display:flex;align-items:center}
+.privacy {font:10px/1.4 Consolas,monospace;max-width:190px;color:var(--muted)}
+#app {height:100%;min-height:0}
+.choose {height:100%;display:grid;grid-template-rows:auto minmax(0,1fr);padding:24px 28px;gap:20px;
+  background:radial-gradient(ellipse at 50% 0,#24333366,transparent 70%),#0d1219}
+.intro {display:flex;align-items:end;justify-content:space-between;gap:16px}
+.intro h2 {font:400 clamp(24px,3vw,40px)/1.1 Georgia,serif;margin:4px 0 0}
+.intro p {font-size:13px;color:#b9c5d2;margin:0;max-width:360px;line-height:1.5}
+.cards {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;min-height:0}
+.piece {padding:0;display:grid;grid-template-rows:minmax(0,1fr) auto;text-align:left;background:#141b25;border:1px solid #3b4959;
+  border-radius:7px;overflow:hidden;min-width:0;box-shadow:0 12px 25px #0005;transition:transform .2s,border-color .2s}
+.piece:hover {transform:translateY(-4px);border-color:var(--brand)}
+.paint {min-height:0;position:relative;overflow:hidden;background:#202b30}
+.paint img {width:100%;height:100%;object-fit:cover;display:block}
+.paint::after {content:'';position:absolute;inset:0;background:linear-gradient(transparent 65%,#141b2599)}
+.piece-number {position:absolute;left:12px;top:12px;border:1px solid #eee7c170;background:#0b0f15b8;color:#f4e9cf;
+  font:12px Consolas,monospace;padding:5px 8px;z-index:1}
+.caption {padding:18px 17px;position:relative}
+.caption::before {content:'';height:2px;width:34px;background:var(--brand);position:absolute;top:0}
+.caption h3 {font:400 28px/1.1 Georgia,serif;margin:0 0 5px}
+.caption .play {font-size:12px;color:#e5ded2;display:block;min-height:32px;line-height:1.35}
+.caption .credit {font-size:10px;color:var(--muted);display:block;margin:5px 0 10px}
+.caption .length {font:11px Consolas,monospace;color:var(--brand);display:block}
+.caption p {font-size:12px;line-height:1.4;color:#c3ceda;margin:10px 0 0}
+.content-note {font-size:10px;line-height:1.35;color:#ffd7a1;display:block;margin-top:8px}
+.piece .open-label {display:block;font-size:11px;color:var(--brand);margin-top:15px}
+dialog {padding:0;border:1px solid #637b83;border-radius:7px;background:#141b25;color:var(--ink);
+  width:min(1000px,94vw);height:min(680px,90vh);max-height:90vh;box-shadow:0 25px 100px #000b}
+dialog::backdrop {background:#05090dd9}
+.reader {height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto}
+.reader-head {display:flex;align-items:center;gap:15px;padding:14px 20px;border-bottom:1px solid #3c4956}
+.reader-head h2 {font:400 27px Georgia,serif;margin:0;flex:1}
+.reader-body {overflow:auto;display:grid;grid-template-columns:220px minmax(0,1fr);min-height:0}
+.reader-setting {position:relative;min-height:100%}
+.reader-setting img {position:absolute;width:100%;height:100%;object-fit:cover}
+.reader-text {white-space:pre-line;font:21px/1.65 Georgia,serif;padding:24px 30px;margin:0}
+.reader-foot {display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 20px;border-top:1px solid #3c4956}
+.reader-foot p {font-size:12px;line-height:1.35;max-width:65%;margin:0;color:var(--muted)}
+.workspace {height:100%;display:grid;grid-template-columns:minmax(0,1fr) 330px;min-height:0}
+.script-area {display:grid;grid-template-rows:auto auto minmax(0,1fr);min-height:0;min-width:0;background:#0b0f15;position:relative}
+.script-area::before {content:'';position:absolute;inset:0;pointer-events:none;background:var(--ghost) center/cover;opacity:.15}
+.script-area>* {position:relative}
+.script-head {display:flex;gap:12px;align-items:center;padding:13px 24px 8px;min-width:0}
+.setting-strip {width:110px;height:50px;object-fit:cover;border-radius:3px;border:1px solid #546260}
+.script-title {flex:1;min-width:0}
+.script-title h2 {font:400 24px/1.2 Georgia,serif;margin:2px 0}
+.script-title small {font-size:11px;color:var(--muted)}
+.toolbar {display:flex;align-items:center;gap:8px;padding:6px 24px 12px;flex-wrap:wrap}
+.versions {display:flex;gap:5px}
+.versions .btn {min-width:84px}
+.copy {margin-left:0}
+.copy:first-of-type {margin-left:auto}
+.script-scroll {overflow:auto;min-height:0;scroll-behavior:auto;padding:10px 32px 55px;scrollbar-color:#46565e #10161f}
+.script {font:28px/1.8 Georgia,serif;color:#e8edf3;position:relative}
+.verse {display:block;min-height:1.8em}
+.plain-text {white-space:pre-line;font:28px/1.8 Georgia,serif;margin:0}
+.side {padding:16px 18px;display:flex;flex-direction:column;gap:12px;border-left:1px solid #34454a;background:#141b25;
+  min-height:0;min-width:0;overflow:auto}
+.side h2 {font:400 25px Georgia,serif;margin:0}
+.side p {font-size:13px;line-height:1.5;margin:0}
+.tabs {display:flex;gap:5px;flex-shrink:0}
+.tabs .btn {flex:1;padding:0 9px;font-size:12px}
+label {font-size:12px;line-height:1.4;color:#cbd6df;display:block}
+input,textarea,select {border:1px solid #62788a;border-radius:4px;color:#e8edf3;background:#0d141d;
+  min-height:44px;padding:9px;font:14px/1.4 'Segoe UI',sans-serif;width:100%;min-width:0}
+textarea {resize:vertical;min-height:67px}
+label input,label textarea,label select {margin-top:5px}
+.field {display:flex;flex-direction:column;gap:4px}
+.fact {font-size:12px;color:#d3e4dc;border-left:2px solid var(--brand);padding:7px 10px;background:#20312d}
+details summary {min-height:44px;font-size:12px;color:var(--brand);cursor:pointer;display:flex;align-items:center}
+details:not([open]) .fact {display:none}
+.sheet-trigger {display:none}
+.mark-tools {display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+.mark-tools .btn {font-size:11px;padding:0 8px}
+.selected-word {font:italic 16px Georgia,serif;color:var(--gold);min-height:22px;display:block;overflow-wrap:anywhere}
+.score-script {font-size:24px;line-height:2.8}
+.token {display:inline-flex;align-items:center;position:relative;vertical-align:middle;min-height:48px}
+.word {display:inline-block;position:relative;background:transparent;border:0;min-height:44px;min-width:44px;
+  padding:0 2px;color:inherit;font:inherit;line-height:1.55;border-radius:3px}
+.word:hover {background:#35434480}
+.word.selected {background:#3ccfbf25;box-shadow:inset 0 -2px var(--gold)}
+.word.stress {text-decoration:underline;text-decoration-color:var(--brand);text-underline-offset:5px;text-decoration-thickness:2px}
+.pause {color:var(--brand);font:18px Consolas,monospace;letter-spacing:-3px;margin:0 5px 0 1px}
+.gap {width:44px;height:44px;min-width:44px;position:relative;background:transparent;border:0;padding:0;color:var(--brand);
+  font:24px Georgia,serif;border-radius:3px;vertical-align:middle}
+.gap::after {content:'·';opacity:.35}
+.gap:hover {background:#3ccfbf22}
+.gap.marked::after {content:'/';opacity:1;font-size:32px}
+.beat-list {display:flex;flex-direction:column;gap:5px}
+.beat-row {display:flex;align-items:center;gap:8px;text-align:left;border:1px solid #384654;background:#18202b;padding:6px 9px;
+  min-height:44px;border-radius:3px;font-size:12px}
+.beat-row b {font:12px Consolas,monospace;color:var(--brand)}
+.beat-row[aria-pressed=true] {border-color:var(--brand);background:#1b3435}
+.beat-row small {margin-left:auto;color:#b4c7ce}
+.beat-editor {display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px;border:1px solid #3d555b;border-radius:4px;background:#17252c}
+.beat-editor h3 {grid-column:1/-1;font:13px Consolas,monospace;color:var(--brand);margin:0}
+.beat-editor label {font-size:11px}
+.beat-editor select {font-size:12px;padding:6px}
+.beat-editor .full {grid-column:1/-1}
+.side .small {font-size:11px;color:var(--muted)}
+.rehearse-controls {display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.time {font:18px Consolas,monospace;color:var(--brand);margin-left:auto;min-width:60px}
+.rehearsal-beat {padding:12px 12px 20px 64px;border-left:3px solid #2b4146;margin:0 0 22px;position:relative;opacity:.48}
+.rehearsal-beat.active {opacity:1;border-color:var(--brand);background:linear-gradient(90deg,#3ccfbf12,transparent)}
+.rehearsal-beat .margin {position:absolute;left:10px;top:18px;writing-mode:vertical-rl;transform:rotate(180deg);
+  font:11px Consolas,monospace;color:var(--brand);max-height:150px;overflow:hidden}
+.rehearsal-beat .beat-meta {display:block;font:11px Consolas,monospace;color:#bacbd2;margin-bottom:8px}
+.rword.stress {text-decoration:underline;text-decoration-color:var(--brand);text-underline-offset:5px}
+.rmark {color:var(--brand);margin-right:8px}
+.big-tactic {font:400 34px/1.1 Georgia,serif;color:var(--brand);margin:0}
+.choice-readouts {display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.choice-readouts label {color:var(--muted);font:11px Consolas,monospace;text-transform:uppercase}
+.choice-readouts strong {display:block;color:#e8edf3;font:20px Georgia,serif;margin-top:6px;text-transform:none}
+.tip-card {border-top:1px solid #455456;padding-top:15px}
+.breath-light {width:9px;height:9px;background:var(--brand);border-radius:50%;box-shadow:0 0 18px #3ccfbf99;
+  display:inline-block;animation:breathe 5s ease-in-out infinite}
+@keyframes breathe {50% {opacity:.4;box-shadow:0 0 4px #3ccfbf44}}
+body.calm .breath-light {animation:none}
+.audience-setup {height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding:20px 28px;gap:16px}
+.audience-grid {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;min-height:0}
+.audience {display:grid;grid-template-rows:minmax(0,1fr) auto;text-align:left;border:1px solid #4c5963;border-radius:5px;
+  padding:0;overflow:hidden;background:#141b25;min-width:0}
+.audience img {width:100%;height:100%;min-height:0;object-fit:cover}
+.audience[aria-pressed=true] {outline:2px solid var(--brand);outline-offset:1px}
+.audience .caption {padding:14px}
+.audience h3 {font:400 22px Georgia,serif;margin:0}
+.audience p {font-size:12px;line-height:1.4}
+.setup-bottom {display:flex;align-items:center;gap:16px;justify-content:space-between}
+.setup-bottom p {font-size:12px;color:var(--muted);margin:0}
+.partner {height:100%;display:grid;grid-template-rows:auto minmax(0,1fr);background:#0b0f15}
+.partner-top {display:flex;gap:18px;align-items:center;padding:14px 28px;border-bottom:1px solid #3c4956;background:#171e28}
+.partner-top h2 {font:400 24px Georgia,serif;margin:0}
+.partner-top p {font-size:13px;color:#c9d4e0;margin:3px 0}
+.partner-top .btn {margin-left:auto}
+.partner-script {max-width:1100px;width:100%;margin:auto;font-size:28px}
+.partner-script .word {margin-right:4px}
+.flag::after {content:'▲';color:var(--gold);font:14px Consolas,monospace;position:absolute;bottom:-17px;left:40%}
+.partner-script .verse {margin-bottom:14px}
+.response {display:grid;grid-template-columns:minmax(0,1fr) 340px;height:100%;min-height:0}
+.response-copy {padding:30px;background:var(--ghost) center/cover;display:flex;flex-direction:column;justify-content:end;position:relative}
+.response-copy::before {content:'';position:absolute;inset:0;background:#0b0f1580}
+.response-copy>* {position:relative}
+.response-copy h2 {font:400 42px Georgia,serif;max-width:450px;margin:0 0 12px}
+.response-copy p {font-size:14px;color:#c9d4df;max-width:400px;line-height:1.5}
+.want-grid {display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.want-grid .btn {font-size:12px;white-space:normal;text-align:left;padding:8px;line-height:1.3;min-height:58px}
+.want-grid .other {grid-column:1/-1;min-height:44px}
+.response-fields {display:flex;flex-direction:column;gap:12px}
+.legend {display:flex;gap:15px;font:12px Consolas,monospace;color:#c9d5df;flex-wrap:wrap}
+.legend b {color:var(--brand)}
+.legend i {color:var(--gold);font-style:normal}
+.overlay-token {display:inline-block;position:relative;white-space:nowrap;margin-right:.2em;padding:16px 2px 20px;line-height:1.5}
+.actor-bar {position:absolute;top:0;left:-4px;color:var(--brand);font:700 22px Consolas,monospace;line-height:1}
+.partner-flag {position:absolute;bottom:0;left:35%;color:var(--gold);font:15px Consolas,monospace;line-height:1}
+.match-svg {position:absolute;inset:0;pointer-events:none;overflow:visible;width:100%;height:100%}
+.match-svg path {stroke:#e8edf3;fill:none;stroke-width:1.5;opacity:.8}
+.result-number {font:400 45px/1 Georgia,serif;color:var(--brand)}
+.result-copy {font-size:14px!important;line-height:1.5!important}
+.want-result {padding:12px;border-left:2px solid var(--gold);background:#2b2923;font-size:13px;line-height:1.5}
+.performance-list {display:flex;flex-direction:column;gap:5px}
+.performance-list .btn {font-size:11px;text-align:left;white-space:normal;padding:8px;line-height:1.4}
+.reflections {border-top:1px solid #3b4b54;padding-top:12px;display:flex;flex-direction:column;gap:12px}
+.reflections h3 {font:400 23px Georgia,serif;margin:0}
+.danger {color:#ffc0b3;border-color:#9b6b60}
+.confirm-box {padding:20px;display:flex;flex-direction:column;gap:15px;height:100%;justify-content:center}
+.confirm-box h2 {font:28px Georgia,serif;margin:0}
+.confirm-actions {display:flex;gap:10px;justify-content:end}
+.toast {position:fixed;left:50%;bottom:65px;transform:translateX(-50%);z-index:30;background:#29332b;color:#e8edf3;
+  border:1px solid #9da86c;border-radius:5px;padding:12px 18px;max-width:90vw;font-size:13px;box-shadow:0 8px 25px #0007}
+@media (min-width:1500px) {
+  .choose {padding:35px 5%;gap:30px}
+  .caption {padding:23px}
+  .caption h3 {font-size:34px}
+  .caption p {font-size:14px}
+  .caption .play {font-size:15px}
+  .workspace {grid-template-columns:minmax(0,1fr) 390px}
+  .script-scroll {padding-left:6%;padding-right:6%}
+}
+@media (max-width:1050px) {
+  body {grid-template-rows:59px 48px minmax(0,1fr) 53px}
+  header {padding:6px 16px}
+  h1 {font-size:24px}
+  h1 small {font-size:10px}
+  .modebar {padding:0 16px}
+  .seg {gap:16px}
+  .choose {padding:16px;gap:14px}
+  .cards {gap:12px}
+  .caption {padding:13px 12px}
+  .caption h3 {font-size:24px}
+  .caption p {font-size:11px}
+  .caption .credit {font-size:10px}
+  .workspace {grid-template-columns:minmax(0,1fr) 280px}
+  .side {padding:12px}
+  .script-head {padding:10px 16px 5px}
+  .script-scroll {padding:10px 18px 40px}
+  .toolbar {padding:5px 16px 8px;gap:5px}
+  .versions .btn {min-width:67px;padding:0 8px;font-size:11px}
+  .copy {margin-left:0}
+  .audience-setup {padding:16px;gap:12px}
+  .audience-grid {gap:10px}
+  .audience h3 {font-size:20px}
+  .audience .caption {padding:12px}
+  .response {grid-template-columns:minmax(0,1fr) 310px}
+  footer {padding:6px 16px}
+  .privacy {max-width:155px}
+}
+@media (max-height:650px) and (min-width:600px) {
+  body {grid-template-rows:52px 46px minmax(0,1fr) 47px}
+  h1 {font-size:22px}
+  h1 small {display:none}
+  .intro h2 {font-size:26px}
+  .intro p {display:none}
+  .intro .eyebrow {display:none}
+  .choose {padding:10px 14px;gap:9px}
+  .cards {grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:1fr 1fr;gap:9px}
+  .piece {grid-template-columns:38% minmax(0,1fr);grid-template-rows:1fr}
+  .piece-number {font-size:10px;left:7px;top:7px}
+  .caption {padding:9px 10px;overflow:auto}
+  .caption h3 {font-size:22px;margin:0 0 2px}
+  .caption .play {font-size:10px;min-height:0}
+  .caption .credit {font-size:10px;margin:2px 0 4px}
+  .caption .length {font-size:10px}
+  .caption p {font-size:10px;margin-top:4px;line-height:1.25}
+  .piece .open-label {display:none}
+  .content-note {font-size:10px;margin-top:4px}
+  .workspace {grid-template-columns:minmax(0,1fr) 240px}
+  .script-head {padding:4px 14px;height:48px}
+  .script-title .eyebrow {display:block;font-size:10px;line-height:12px}
+  .script-title h2 {font-size:21px}
+  .script-title small {display:none}
+  .setting-strip {width:65px;height:40px}
+  .toolbar {padding:2px 14px 5px}
+  .versions .btn {min-width:44px;width:44px;padding:0;font-size:12px}
+  .version-long {display:none}
+  .copy {font-size:10px;padding:0 7px}
+  .rehearse-controls .btn {font-size:11px;padding:0 9px}
+  .script,.plain-text,.partner-script {font-size:20px}
+  .score-script {font-size:20px}
+  .side {padding:8px 10px;gap:8px}
+  .side h2 {font-size:21px}
+  .side p {font-size:12px}
+  .tabs .btn {font-size:11px}
+  .script-scroll {padding:4px 15px 30px}
+  .rehearsal-beat {padding:10px 8px 15px 43px}
+  .big-tactic {font-size:27px}
+  .choice-readouts strong {font-size:17px}
+  .choice-readouts {gap:9px}
+  #hint {font-size:11px;min-height:30px}
+  .audience-setup {padding:10px 14px;gap:8px}
+  .audience-grid {grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:1fr 1fr;gap:8px}
+  .audience {grid-template-columns:38% minmax(0,1fr);grid-template-rows:1fr}
+  .audience .caption {padding:9px}
+  .audience h3 {font-size:18px}
+  .audience p {font-size:10px;margin-top:5px}
+  .setup-bottom {gap:8px}
+  .setup-bottom p {font-size:10px;max-width:160px}
+  .partner-top {padding:6px 16px;gap:10px}
+  .partner-top h2 {font-size:20px}
+  .partner-top p {font-size:11px;max-width:460px}
+  .response {grid-template-columns:minmax(0,1fr) 300px}
+  .response-copy {padding:20px}
+  .response-copy h2 {font-size:30px}
+  .response-copy p {font-size:12px}
+  .want-grid .btn {min-height:48px;font-size:11px;padding:6px}
+  .response {grid-template-columns:1fr}
+  .response-copy {display:none}
+  .response .side {display:grid;grid-template-columns:minmax(0,1fr) 175px;grid-template-rows:28px minmax(0,1fr) 44px;
+    gap:8px;overflow:hidden}
+  .response .side>h2 {grid-column:1/-1}
+  .response .want-grid {grid-column:1;grid-row:2/4;align-content:start}
+  .response-fields {grid-column:2;grid-row:2;gap:8px}
+  #save-performance {grid-column:2;grid-row:3}
+  .response .side>.small {display:none}
+}
+@media (max-width:599px) {
+  body {grid-template-rows:62px 47px minmax(0,1fr) 76px}
+  header {padding:6px 10px;gap:4px}
+  h1 {font-size:19px;line-height:1.05;max-width:145px}
+  h1 small {display:none}
+  .icon-btn {min-width:52px;width:56px;font-size:10px;padding:0 2px}
+  .modebar {padding:0 8px}
+  .seg {width:100%;justify-content:space-between;gap:0}
+  .seg button {font-size:11px;padding:0 5px}
+  .saved {display:none}
+  footer {padding:7px 12px;flex-direction:column;align-items:stretch;gap:2px}
+  #hint {font-size:11px;min-height:0;line-height:1.3}
+  .privacy {display:block;max-width:none;font-size:10px;line-height:1.2}
+  .privacy-brand {display:none}
+  .choose {padding:12px;gap:12px}
+  .intro h2 {font-size:26px}
+  .intro p {display:none}
+  .intro .eyebrow {font-size:10px}
+  .cards {grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px}
+  .piece {grid-template-rows:minmax(45px,1fr) auto}
+  .piece-number {font-size:10px;left:7px;top:7px;padding:3px 5px}
+  .caption {padding:10px}
+  .caption h3 {font-size:22px}
+  .caption .play {font-size:10px;min-height:0}
+  .caption .credit {font-size:10px;margin:2px 0 7px}
+  .caption .length {font-size:10px;line-height:1.5}
+  .piece .caption p {display:block;font-size:10px;line-height:1.25;margin:5px 0 0}
+  .piece .open-label {display:none}
+  .content-note {font-size:10px}
+  .reader-body {grid-template-columns:1fr}
+  .reader-setting {display:none}
+  .reader-text {font-size:20px;padding:15px}
+  .reader-head {padding:10px 12px}
+  .reader-head h2 {font-size:24px}
+  .reader-foot {padding:10px;align-items:start}
+  .reader-foot p {font-size:10px;max-width:48%}
+  .workspace {grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto}
+  .script-head {padding:9px 12px 3px}
+  .script-title h2 {font-size:22px}
+  .setting-strip {height:42px;width:75px}
+  .script-title small {font-size:10px}
+  .toolbar {padding:5px 12px 8px;gap:5px}
+  .versions {gap:4px}
+  .versions .btn {min-width:60px;padding:0 6px;font-size:10px}
+  .copy {font-size:10px;padding:0 7px}
+  .script-scroll {padding:5px 13px 35px}
+  .script,.plain-text,.partner-script {font-size:22px}
+  .score-script {font-size:20px}
+  .side {border-left:0;border-top:1px solid #3e555b;max-height:215px;padding:10px 12px}
+  .circ-side {max-height:240px}
+  .score-side {max-height:116px;overflow:hidden}
+  .score-side .score-fields {display:none}
+  .score-side.sheet-open {position:absolute;bottom:0;left:0;right:0;z-index:10;max-height:66%;box-shadow:0 -12px 30px #000b;overflow:auto}
+  .score-side.sheet-open .score-fields {display:flex;flex-direction:column;gap:10px}
+  .sheet-trigger {display:block}
+  .side h2 {font-size:22px}
+  .rehearse-side {max-height:165px;display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .rehearse-side .eyebrow {grid-column:1/-1}
+  .big-tactic {font-size:27px}
+  .choice-readouts {gap:8px}
+  .choice-readouts strong {font-size:16px}
+  .tip-card {grid-column:1/-1;padding-top:7px}
+  .rehearsal-beat {padding-left:43px}
+  .rehearse-controls {gap:5px}
+  .rehearse-controls .btn {font-size:11px;padding:0 8px}
+  .time {font-size:14px}
+  .audience-setup {padding:12px;gap:12px}
+  .audience-grid {grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px}
+  .audience {grid-template-rows:minmax(45px,1fr) auto}
+  .audience .caption {padding:10px}
+  .audience h3 {font-size:20px}
+  .audience p {font-size:10px;line-height:1.35;margin-top:6px}
+  .setup-bottom {flex-wrap:wrap;gap:8px}
+  .setup-bottom p {font-size:10px;order:3;max-width:none;width:100%}
+  #hand {font-size:12px;padding:0 10px}
+  .partner-top {padding:10px 12px;gap:7px}
+  .partner-top h2 {font-size:21px}
+  .partner-top p {font-size:11px;line-height:1.35}
+  .partner-top .btn {padding:0 9px;font-size:12px}
+  .response {grid-template-columns:1fr;grid-template-rows:90px minmax(0,1fr)}
+  .response-copy {padding:12px 15px}
+  .response-copy h2 {font-size:25px;margin:0 0 4px}
+  .response-copy p {margin:0;font-size:11px}
+  .response .side {max-height:none;border:0;gap:10px}
+  .want-grid .btn {min-height:54px}
+  .compare-side {max-height:205px}
+  .result-number {font-size:32px}
+  .compare-side .result-copy {font-size:12px!important}
+  .legend {font-size:10px;gap:8px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Monologue <span>Rehearsal</span><small>PREPARING AND PERFORMING A MONOLOGUE</small></h1>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+</header>
+<nav class="modebar" aria-label="Rehearsal modes">
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-choose" aria-pressed="true">Choose</button>
+    <button id="m-prepare" aria-pressed="false" disabled>Prepare</button>
+    <button id="m-rehearse" aria-pressed="false" disabled>Rehearse</button>
+    <button id="m-perform" aria-pressed="false" disabled>Perform</button>
+    <button id="m-compare" aria-pressed="false" disabled>Compare</button>
+  </div>
+  <span class="saved" id="saved">Work stays on this device</span>
+</nav>
+<main><div id="app"></div></main>
+<footer>
+  <p id="hint" class="hint" aria-live="polite"></p>
+  <div class="privacy"><span class="privacy-brand">Curio Class · Grades 9-12<br></span>Work stays on this device</div>
+</footer>
+<dialog id="reader-dialog" aria-labelledby="reader-title"></dialog>
+<dialog id="clear-dialog" aria-labelledby="clear-title" style="max-width:440px;height:240px">
+  <div class="confirm-box">
+    <h2 id="clear-title">Clear all saved work?</h2>
+    <p>This removes every script plan, version, performance and reflection on this device.</p>
+    <div class="confirm-actions">
+      <button class="btn" id="cancel-clear">Keep work</button>
+      <button class="btn danger" id="confirm-clear">Clear all</button>
+    </div>
+  </div>
+</dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const D = "json:content";
+  const ART = {
+    viola:'art:mr-viola', marullus:'art:mr-marullus', helena:'art:mr-helena', hale:'art:mr-hale',
+    panel:'art:mr-panel', class:'art:mr-class', young:'art:mr-young', community:'art:mr-community'
+  };
+  const TACTICS = [
+    ['to beg','Lower, closer, smaller.'],
+    ['to scold','Short sentences, hard consonants.'],
+    ['to tease','Lift the ends of lines.'],
+    ['to warn','Slow down on the danger word.'],
+    ['to shame','Let silence do the work after the question.'],
+    ['to charm','Smile into the vowels.'],
+    ['to puzzle out','Let the thought arrive on the line, not before.'],
+    ['to reassure','Warm and steady; no rush.'],
+    ['to accuse','Point the words at one person.'],
+    ['to confess',"Quiet, and don’t look away."],
+    ['to rally','Build each line bigger than the last.'],
+    ['to dare','Stillness, then a push.'],
+    ['to mock','Copy their voice, then drop it.'],
+    ['to plead','Reach with the voice and the hands.'],
+    ['to comfort','Soften the ends of lines.'],
+    ['to challenge','Lean in; make them answer.']
+  ];
+  const AUDIENCES = [
+    ['panel','Audition panel',"Three strangers at a table. Say your name and the piece, then begin. They’re deciding."],
+    ['class','Your class',"People who know you. Commit fully; they’ll notice if you hold back."],
+    ['young','Younger students','Grade 6 visitors. Say who the character is and what just happened before you start.'],
+    ['community','Community night','Families in a school theater. Speak to the back row.']
+  ];
+  const L = {
+    welcomeChoose:'Tap a monologue to read it. Then tap Choose this one.',
+    welcomeCirc:'Answer the six questions. Tap What the play says to check yourself.',
+    scoreHow:'Tap between two words where your character changes tactics.',
+    welcomeRehearse:'Tap Start, then say it out loud. Tap Next beat as you go.',
+    singleRehearse:'Tap Start, then say the monologue aloud. To plan changes, open Prepare and Score.',
+    breath:'Breathe out first. Then begin.',
+    handHow:'Pick an audience and a version, then tap Hand to partner.',
+    partnerHow:'Listen. Tap a word whenever you feel the actor change.',
+    landed:'Every change you planned, they felt.',
+    wantRead:'They heard exactly what you wanted.'
+  };
+  const KEY = 'curio-monologue-rehearsal';
+  const fresh = () => ({choice:null, works:{}, performances:[]});
+  const newBeat = () => ({tactic:6,pace:'middle',volume:'middle',body:'still'});
+  const newVersion = () => ({marks:[],stress:[],pauses:[],beats:{0:newBeat()},closest:null});
+  const newWork = () => ({circ:['','','','','',''],versions:[newVersion(),newVersion(),newVersion()]});
+  let saved = fresh();
+  let storageReady = true;
+  try {
+    const raw = JSON.parse(localStorage.getItem(KEY));
+    if (raw && typeof raw.works === 'object' && Array.isArray(raw.performances)) saved = raw;
+    if (saved.choice !== null && !D[saved.choice]) saved.choice = null;
+  } catch {storageReady = false;}
+  const state = {
+    mode:'choose',tab:'circ',version:0,beat:0,word:null,running:false,startedAt:0,elapsed:0,
+    phase:'setup',audience:0,flags:[],heardWant:null,otherWant:'',feeling:'',take:null,order:[],
+    performance:saved.performances.length-1,sheet:false,reader:null
+  };
+  const esc = s => String(s).replace(/[&<>"']/g,c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const piece = () => D[saved.choice];
+  const work = () => saved.works[saved.choice] || (saved.works[saved.choice] = newWork());
+  const version = () => work().versions[state.version];
+  const words = text => text.trim().split(/\s+/);
+  const starts = v => [0,...v.marks.slice().sort((a,b) => a-b)];
+  const selectedStart = () => starts(version())[Math.min(state.beat,starts(version()).length-1)];
+  let toastTimer;
+  let resizeTimer;
+  function toast(text) {
+    $('toast').textContent = text;
+    $('toast').hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {$('toast').hidden = true;},4500);
+  }
+  function save() {
+    try {
+      localStorage.setItem(KEY,JSON.stringify(saved));
+      storageReady = true;
+      $('saved').textContent = 'Saved on this device';
+    } catch {
+      storageReady = false;
+      $('saved').textContent = 'Could not save on this device';
+      toast('Device storage is unavailable. Keep this page open to keep your work.');
+    }
+  }
+  function hint(text) {$('hint').textContent = text;}
+  function welcome() {
+    if (state.reader !== null) return null;
+    if (state.mode === 'choose') return ['welcomeChoose',{valid:() => state.reader === null}];
+    if (state.mode === 'prepare' && state.tab === 'circ' && work().circ.every(x => !x)) {
+      return ['welcomeCirc',{valid:() => state.tab === 'circ' && work().circ.every(x => !x)}];
+    }
+    if (state.mode === 'prepare' && state.tab === 'score') {
+      return ['scoreHow',{valid:() => state.tab === 'score' && !version().marks.length}];
+    }
+    if (state.mode === 'rehearse' && !state.running) {
+      const key = starts(version()).length === 1 ? 'singleRehearse' : 'welcomeRehearse';
+      return [key,{valid:() => !state.running,needs:'#start'}];
+    }
+    if (state.mode === 'perform' && state.phase === 'setup') {
+      return ['handHow',{valid:() => state.phase === 'setup',needs:'#hand'}];
+    }
+    if (state.mode === 'perform' && state.phase === 'partner' && !state.flags.length) {
+      return ['partnerHow',{valid:() => state.phase === 'partner' && !state.flags.length}];
+    }
+    return null;
+  }
+  const V = Curio.voice({lines:L,scope:() => state.mode,hint:false,read:() => $('hint').textContent,welcome});
+  function feedback() {Curio.tone(420,.045,.025,'sine');}
+  function setMode(m) {
+    if (m !== 'choose' && saved.choice === null) return;
+    if (m === 'compare' && !saved.performances.length) return;
+    V.hush();
+    state.mode = m;
+    state.running = false;
+    state.sheet = false;
+    if (m === 'perform') state.phase = 'setup';
+    render();
+    if (document.activeElement === document.body) $('m-'+m).focus({preventScroll:true});
+    V.welcome();
+    if (m === 'compare') compareVoice();
+  }
+  function navigation() {
+    for (const m of ['choose','prepare','rehearse','perform','compare']) {
+      const b = $('m-'+m);
+      b.setAttribute('aria-pressed',state.mode === m);
+      b.disabled = m === 'compare' ? !saved.performances.length : m !== 'choose' && saved.choice === null;
+    }
+  }
+  function length(p) {
+    const n = words(p.text).filter(w => w !== '[...]').length;
+    const seconds = Math.round(n/150*60);
+    return `${n} words · ~${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;
+  }
+  function title(p=piece()) {
+    return `<div class="script-head"><img class="setting-strip" src="${ART[p.id]}" alt="Painted ${esc(p.name)} setting">
+      <div class="script-title"><span class="eyebrow">${esc(p.play)}</span><h2>${esc(p.name)}</h2>
+      <small>${esc(p.author)} · ${p.year}</small></div></div>`;
+  }
+  function versionButtons() {
+    return `<div class="versions" role="group" aria-label="Version">${['A','B','C'].map((x,i) =>
+      `<button class="btn" data-version="${i}" aria-label="Version ${x}" aria-pressed="${state.version === i}">
+      <span class="version-long">Version </span>${x}</button>`).join('')}</div>`;
+  }
+  function setVersion(i) {
+    state.version = i;
+    state.word = null;
+    state.beat = Math.min(state.beat,starts(version()).length-1);
+    feedback();
+    render();
+    document.querySelector(`[data-version="${i}"]`)?.focus({preventScroll:true});
+    if (state.mode === 'rehearse' && state.running) scrollBeat();
+  }
+  function wireVersions() {
+    document.querySelectorAll('[data-version]').forEach(b => {
+      b.onclick = () => setVersion(Number(b.dataset.version));
+    });
+  }
+  function choose() {
+    hint(L.welcomeChoose);
+    $('app').innerHTML = `<section class="choose"><div class="intro"><div><span class="eyebrow">The actor’s studio / 01</span>
+      <h2>Whose words will you make your own?</h2></div><p>Four speeches. Your choices. One real listener.
+      <br>Open a setting to read the full monologue.</p></div>
+      <div class="cards">${D.map((p,i) => `<button class="piece" id="piece-${i}" aria-label="Read ${esc(p.name)}, ${esc(p.play)}">
+      <div class="paint"><img src="${ART[p.id]}" alt="${esc(p.id === 'viola' ? 'A sunlit seaside street with a gold ring on cobbles' :
+        p.id === 'marullus' ? 'A Roman street strewn with flowers' : p.id === 'helena' ? 'An Athenian palace garden at dusk' :
+        'A cold farmhouse kitchen with bread and preserves')}"><span class="piece-number">0${i+1}</span></div>
+      <div class="caption"><h3>${esc(p.name)}</h3><span class="play">${esc(p.play)}</span>
+      <span class="credit">${esc(p.author)} · ${p.year}</span><span class="length">${length(p)}</span>
+      <p>${esc(p.situation)}</p>${i === 3 ? `<small class="content-note">The play is about a woman held for her husband’s death;
+      this speech is about loneliness and neighbors.</small>` : ''}
+      <span class="open-label">Read the monologue ↗</span></div></button>`).join('')}</div></section>`;
+    D.forEach((p,i) => {$('piece-'+i).onclick = () => openReader(i);});
+  }
+  function openReader(i) {
+    V.hush();
+    state.reader = i;
+    const p = D[i];
+    $('reader-dialog').innerHTML = `<div class="reader"><div class="reader-head"><h2 id="reader-title">${esc(p.name)}</h2>
+      <button class="btn" id="close-reader">Close</button></div><div class="reader-body"><div class="reader-setting">
+      <img src="${ART[p.id]}" alt="Painted setting for ${esc(p.name)}"></div><p class="reader-text">${esc(p.text)}</p></div>
+      <div class="reader-foot"><p>${esc(p.play)} · ${esc(p.author)} · ${p.year}<br>${length(p)} at 150 words per minute</p>
+      <button class="btn primary" id="choose-piece">Choose this one</button></div></div>`;
+    hint('Read the monologue, then tap Choose this one. The student speaks the text aloud; Read speaks instructions only.');
+    $('close-reader').onclick = () => $('reader-dialog').close();
+    $('choose-piece').onclick = () => {
+      saved.choice = i;
+      work();
+      save();
+      $('reader-dialog').close();
+      state.reader = null;
+      state.version = 0;
+      state.tab = 'circ';
+      state.beat = 0;
+      state.word = null;
+      state.elapsed = 0;
+      setMode('prepare');
+    };
+    $('reader-dialog').showModal();
+    feedback();
+  }
+  $('reader-dialog').addEventListener('close',() => {
+    const i = state.reader;
+    state.reader = null;
+    if (state.mode === 'choose') {
+      hint(L.welcomeChoose);
+      $('piece-'+i)?.focus({preventScroll:true});
+    }
+  });
+  function tabs() {
+    return `<div class="tabs" role="group" aria-label="Prepare tab">
+      <button id="tab-circ" class="btn" aria-pressed="${state.tab === 'circ'}">Circumstances</button>
+      <button id="tab-score" class="btn" aria-pressed="${state.tab === 'score'}">Score</button></div>`;
+  }
+  function prepare() {
+    const scoring = state.tab === 'score';
+    hint(scoring ? 'Tap a space dot to add a beat change. Tap a word, then Stress or Pause after; tap again to remove.' : L.welcomeCirc);
+    const questions = ['Who am I?','Where am I?','When is it?','Who am I talking to?','What do I want?','What is in my way?'];
+    const side = scoring ? scorePanel() : questions.map((q,i) => `<div class="field"><label>${q}
+      <textarea id="circ-${i}" aria-label="${q}" maxlength="200" data-circ="${i}">${esc(work().circ[i])}</textarea></label>
+      ${i < 4 ? `<details><summary>What the play says</summary><div class="fact">${esc(piece().facts[i])}</div></details>` : ''}</div>`).join('');
+    $('app').innerHTML = `<section class="workspace"><div class="script-area">${title()}<div class="toolbar">
+      ${versionButtons()}${scoring ? [0,1,2].filter(i => i !== state.version).map(i =>
+        `<button class="btn copy" data-copy="${i}">Copy ${'ABC'[state.version]} to ${'ABC'[i]}</button>`).join('') : ''}</div>
+      <div class="script-scroll" id="script-scroll">${scoring ? scoreScript() : `<p class="plain-text">${esc(piece().text)}</p>`}</div></div>
+      <aside class="side ${scoring ? 'score-side' : 'circ-side'} ${state.sheet ? 'sheet-open' : ''}" id="prepare-side">
+      ${tabs()}${side}</aside></section>`;
+    $('tab-circ').onclick = () => changeTab('circ');
+    $('tab-score').onclick = () => changeTab('score');
+    wireVersions();
+    if (scoring) wireScore();
+    else document.querySelectorAll('[data-circ]').forEach(el => {
+      el.oninput = () => {
+        work().circ[Number(el.dataset.circ)] = el.value;
+        save();
+        V.dropQueued(x => x.key === 'welcomeCirc');
+      };
+    });
+  }
+  function changeTab(t) {
+    V.hush();
+    state.tab = t;
+    state.sheet = false;
+    feedback();
+    prepare();
+    V.welcome();
+    $('tab-'+t).focus({preventScroll:true});
+  }
+  function scoreScript() {
+    let i = 0;
+    const v = version();
+    return `<div class="script score-script" id="score-script">${piece().text.split('\n').map(line =>
+      `<span class="verse">${words(line).map(w => {
+        const n = i++;
+        return `<span class="token">${n ? `<button class="gap ${v.marks.includes(n) ? 'marked' : ''}" id="gap-${n}" data-gap="${n}"
+          tabindex="-1" aria-label="${v.marks.includes(n) ? 'Remove' : 'Add'} beat change before ${esc(w)}"
+          aria-pressed="${v.marks.includes(n)}"></button>` : ''}
+          <button class="word ${v.stress.includes(n) ? 'stress' : ''} ${state.word === n ? 'selected' : ''}" id="word-${n}" data-word="${n}"
+          tabindex="${n === 0 ? 0 : -1}" aria-label="Mark word ${n+1}, ${esc(w)}" aria-pressed="${state.word === n}">${esc(w)}</button>
+          <span class="pause" id="pause-${n}" ${!v.pauses.includes(n) ? 'hidden' : ''}>//</span></span>`;
+      }).join('')}</span>`).join('')}</div>`;
+  }
+  function options(list, value) {
+    return list.map((x,i) => `<option value="${typeof value === 'number' ? i : esc(x)}"
+      ${value === i || value === x ? 'selected' : ''}>${esc(x)}</option>`).join('');
+  }
+  function scorePanel() {
+    const v = version();
+    const list = starts(v);
+    state.beat = Math.min(state.beat,list.length-1);
+    const start = selectedStart();
+    const b = v.beats[start] || (v.beats[start] = newBeat());
+    return `<button class="btn sheet-trigger primary" id="open-sheet">${state.sheet ? 'Close beat sheet' : 'Edit beat '+(state.beat+1)+' / marks'}</button>
+      <div class="score-fields"><span class="eyebrow">Version ${'ABC'[state.version]} / actor’s score</span>
+      <div><span class="selected-word" id="selected-word">${state.word === null ? 'Tap a word to mark it' : esc(words(piece().text)[state.word])}</span>
+      <div class="mark-tools"><button class="btn" id="stress" ${state.word === null ? 'disabled' : ''}>Stress</button>
+      <button class="btn" id="pause" ${state.word === null ? 'disabled' : ''}>Pause after</button>
+      <button class="btn" id="clear-marks">Clear marks</button></div></div>
+      <div class="beat-editor"><h3 id="beat-heading">BEAT ${state.beat+1} / ${list.length}</h3>
+      <label class="full">Tactic<select id="tactic">${options(TACTICS.map(x => x[0]),b.tactic)}</select></label>
+      <label>Pace<select id="pace">${options(['slow','middle','fast'],b.pace)}</select></label>
+      <label>Volume<select id="volume">${options(['quiet','middle','full'],b.volume)}</select></label>
+      <label class="full">Body<select id="body">${options(['still','move toward','move away','sit','stand','turn away'],b.body)}</select></label>
+      </div><div class="beat-list" aria-label="Beats">${list.map((s,i) => `<button class="beat-row" data-beat="${i}" aria-pressed="${state.beat === i}">
+      <b>${String(i+1).padStart(2,'0')}</b> ${esc(TACTICS[(v.beats[s] || newBeat()).tactic][0])}
+      <small>word ${s+1}</small></button>`).join('')}</div>
+      <label>Want, in your words<input id="want" aria-label="Want, in your words" maxlength="200" value="${esc(work().circ[4])}"></label>
+      <label>Main obstacle<input id="obstacle" aria-label="Main obstacle" maxlength="200" value="${esc(work().circ[5])}"></label>
+      <label>Closest want<select id="closest"><option value="">Choose the closest want</option>
+      ${piece().wants.map((x,i) => `<option value="${i}" ${v.closest === i ? 'selected' : ''}>${esc(x)}</option>`).join('')}</select></label>
+      <p class="small">A beat starts when the character changes what they are doing. Space dots place changes;
+      the beginning is already beat 1. Keyboard: arrow keys move between words and spaces; Enter toggles a mark.</p></div>`;
+  }
+  function panelOnly() {
+    const side = $('prepare-side');
+    const scroll = side.scrollTop;
+    side.innerHTML = tabs()+scorePanel();
+    side.classList.toggle('sheet-open',state.sheet);
+    $('tab-circ').onclick = () => changeTab('circ');
+    $('tab-score').onclick = () => changeTab('score');
+    wirePanel();
+    side.scrollTop = scroll;
+  }
+  function wireScore() {
+    document.querySelectorAll('[data-copy]').forEach(el => {el.onclick = () => {
+      const target = Number(el.dataset.copy);
+      work().versions[target] = structuredClone(version());
+      save();
+      feedback();
+      toast(`Version ${'ABC'[state.version]} copied to ${'ABC'[target]}.`);
+    };});
+    document.querySelectorAll('[data-gap]').forEach(el => {
+      el.onclick = () => toggleBeat(Number(el.dataset.gap));
+    });
+    document.querySelectorAll('[data-word]').forEach(el => {
+      el.onclick = () => {
+        const old = state.word;
+        state.word = Number(el.dataset.word);
+        if (old !== null) {
+          $('word-'+old)?.classList.remove('selected');
+          $('word-'+old)?.setAttribute('aria-pressed','false');
+        }
+        el.classList.add('selected');
+        el.setAttribute('aria-pressed','true');
+        state.beat = starts(version()).filter(s => s <= state.word).length-1;
+        if (innerWidth < 600) state.sheet = true;
+        panelOnly();
+        feedback();
+        hint('Tap Stress to underline this word, or Pause after to leave silence. Tap the same control again to remove the mark.');
+      };
+    });
+    wirePanel();
+    wireRoving('#score-script');
+  }
+  function wireRoving(selector) {
+    const container = document.querySelector(selector);
+    if (!container) return;
+    const controls = [...container.querySelectorAll('button')];
+    container.onkeydown = event => {
+      if (!['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Home','End'].includes(event.key)) return;
+      const i = controls.indexOf(event.target);
+      if (i < 0) return;
+      event.preventDefault();
+      let next = i + (event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : -1);
+      if (event.key === 'Home') next = 0;
+      if (event.key === 'End') next = controls.length-1;
+      const target = controls[Math.max(0,Math.min(controls.length-1,next))];
+      controls.forEach(el => {el.tabIndex = el === target ? 0 : -1;});
+      target.focus({preventScroll:true});
+      target.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});
+    };
+  }
+  function toggleBeat(n) {
+    if (n <= 0 || n >= words(piece().text).length) return;
+    const v = version();
+    if (v.marks.includes(n)) {
+      v.marks = v.marks.filter(x => x !== n);
+      delete v.beats[n];
+    } else {
+      v.marks.push(n);
+      v.marks.sort((a,b) => a-b);
+      v.beats[n] = newBeat();
+    }
+    state.beat = starts(v).filter(x => x <= n).length-1;
+    const el = $('gap-'+n);
+    if (el) {
+      el.classList.toggle('marked',v.marks.includes(n));
+      el.setAttribute('aria-pressed',v.marks.includes(n));
+      el.setAttribute('aria-label',`${v.marks.includes(n) ? 'Remove' : 'Add'} beat change before ${words(piece().text)[n]}`);
+    }
+    panelOnly();
+    save();
+    feedback();
+    V.dropQueued(x => x.key === 'scoreHow');
+    hint('Choose a tactic, pace, volume and body for this beat. Keep scoring the script, or tap Rehearse.');
+  }
+  function wirePanel() {
+    $('open-sheet').onclick = () => {
+      state.sheet = !state.sheet;
+      $('prepare-side').classList.toggle('sheet-open',state.sheet);
+      $('open-sheet').textContent = state.sheet ? 'Close beat sheet' : 'Edit beat '+(state.beat+1)+' / marks';
+    };
+    for (const [id,index] of [['want',4],['obstacle',5]]) {
+      $(id).oninput = () => {work().circ[index] = $(id).value;save();};
+    }
+    $('closest').onchange = () => {
+      version().closest = $('closest').value === '' ? null : Number($('closest').value);
+      save();
+      feedback();
+    };
+    for (const id of ['tactic','pace','volume','body']) {
+      $(id).onchange = () => {
+        version().beats[selectedStart()][id] = id === 'tactic' ? Number($(id).value) : $(id).value;
+        if (id === 'tactic') {
+          const row = document.querySelector(`[data-beat="${state.beat}"]`);
+          row.childNodes[2].textContent = ' '+TACTICS[Number($(id).value)][0]+' ';
+        }
+        save();
+        feedback();
+      };
+    }
+    document.querySelectorAll('[data-beat]').forEach(el => {
+      el.onclick = () => {
+        state.beat = Number(el.dataset.beat);
+        panelOnly();
+        document.querySelector(`[data-beat="${state.beat}"]`)?.focus({preventScroll:true});
+        const n = selectedStart();
+        $('word-'+n)?.scrollIntoView({block:'center',behavior:'instant'});
+        feedback();
+      };
+    });
+    for (const [id,prop] of [['stress','stress'],['pause','pauses']]) {
+      $(id).setAttribute('aria-pressed',state.word !== null && version()[prop].includes(state.word));
+      $(id).onclick = () => {
+        if (state.word === null) return;
+        const list = version()[prop];
+        const i = list.indexOf(state.word);
+        if (i < 0) list.push(state.word);
+        else list.splice(i,1);
+        $('word-'+state.word).classList.toggle('stress',version().stress.includes(state.word));
+        $('pause-'+state.word).hidden = !version().pauses.includes(state.word);
+        $(id).setAttribute('aria-pressed',i < 0);
+        save();
+        feedback();
+      };
+    }
+    $('clear-marks').onclick = () => {
+      const v = version();
+      v.marks = [];
+      v.stress = [];
+      v.pauses = [];
+      v.beats = {0:v.beats[0] || newBeat()};
+      state.beat = 0;
+      save();
+      const pos = $('script-scroll').scrollTop;
+      $('score-script').outerHTML = scoreScript();
+      panelOnly();
+      wireScore();
+      $('script-scroll').scrollTop = pos;
+      $('clear-marks').focus({preventScroll:true});
+      feedback();
+      hint('Marks cleared for this version. Tap a space dot to place a new change.');
+    };
+  }
+  function rehearsalScript() {
+    const v = version();
+    const list = starts(v);
+    const tokens = words(piece().text);
+    const lineEnds = [];
+    let offset = 0;
+    piece().text.split('\n').forEach(line => {offset += words(line).length;lineEnds.push(offset-1);});
+    return `<div class="script" id="prompter">${list.map((s,i) => {
+      const b = v.beats[s] || newBeat();
+      const end = list[i+1] || tokens.length;
+      return `<section class="rehearsal-beat ${state.running && state.beat === i ? 'active' : ''}" id="rbeat-${i}">
+        <span class="margin">${esc(TACTICS[b.tactic][0])}</span><span class="beat-meta">BEAT ${i+1} ·
+        ${b.pace === 'slow' ? '◁' : b.pace === 'fast' ? '▷▷' : '▷'} ${b.pace} ·
+        ${b.volume === 'quiet' ? '◌' : b.volume === 'full' ? '●' : '◐'} ${b.volume}</span>
+        ${tokens.slice(s,end).map((w,j) => {
+          const n = s+j;
+          return `${j === 0 && i ? '<span class="rmark">/</span>' : ''}<span class="rword ${v.stress.includes(n) ? 'stress' : ''}">${esc(w)}</span>
+            ${v.pauses.includes(n) ? '<span class="pause">//</span>' : ''}${lineEnds.includes(n) ? '<br>' : ' '}`;
+        }).join('')}</section>`;
+    }).join('')}</div>`;
+  }
+  function rehearse() {
+    const list = starts(version());
+    state.beat = Math.min(state.beat,list.length-1);
+    const b = version().beats[list[state.beat]] || newBeat();
+    if (list.length === 1) {
+      hint(state.running ? 'Finish this beat aloud. Switch version, or tap Perform to try it for a listener.' : L.singleRehearse);
+    } else {
+      hint(state.running ? 'Say the highlighted beat aloud. Tap Next beat or press Space; use Back or Shift+Space to return.' :
+        L.welcomeRehearse);
+    }
+    $('app').innerHTML = `<section class="workspace"><div class="script-area">${title()}<div class="toolbar">
+      ${versionButtons()}<div class="rehearse-controls"><button class="btn primary" id="start">${state.running ? 'Restart' : 'Start'}</button>
+      <button class="btn" id="back" ${!state.running || state.beat === 0 ? 'disabled' : ''}>Back</button>
+      <button class="btn" id="next" ${!state.running || state.beat >= list.length-1 ? 'disabled' : ''}>Next beat</button></div>
+      <span class="time" id="timer">${formatTime(state.elapsed)}</span></div>
+      <div class="script-scroll" id="script-scroll">${rehearsalScript()}</div></div>
+      <aside class="side rehearse-side"><span class="eyebrow"><span class="breath-light"></span> LIVE REHEARSAL /
+      <span id="beat-count">${state.beat+1} OF ${list.length}</span></span>
+      <h2 class="big-tactic" id="live-tactic">${esc(TACTICS[b.tactic][0])}</h2>
+      <div class="choice-readouts"><label>Pace<strong id="live-pace">${b.pace}</strong></label>
+      <label>Volume<strong id="live-volume">${b.volume}</strong></label><label>Body<strong id="live-body">${b.body}</strong></label></div>
+      <div class="tip-card"><p id="live-tip">${esc(TACTICS[b.tactic][1])}</p></div>
+      <p class="small">No time limit. No score. Speak the words yourself.</p></aside></section>`;
+    wireVersions();
+    $('start').onclick = () => {
+      V.hush();
+      state.running = true;
+      state.beat = 0;
+      state.elapsed = 0;
+      state.startedAt = Date.now();
+      $('start').textContent = 'Restart';
+      updateBeat();
+      feedback();
+      V.dropQueued(x => x.key === 'welcomeRehearse');
+      V.how('breath',{valid:() => state.running && state.beat === 0});
+    };
+    $('next').onclick = () => moveBeat(1);
+    $('back').onclick = () => moveBeat(-1);
+  }
+  function formatTime(ms) {
+    const s = Math.floor(ms/1000);
+    return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+  }
+  function updateBeat() {
+    const list = starts(version());
+    const b = version().beats[list[state.beat]] || newBeat();
+    document.querySelectorAll('.rehearsal-beat').forEach((el,i) => el.classList.toggle('active',state.beat === i));
+    $('beat-count').textContent = `${state.beat+1} OF ${list.length}`;
+    $('live-tactic').textContent = TACTICS[b.tactic][0];
+    $('live-pace').textContent = b.pace;
+    $('live-volume').textContent = b.volume;
+    $('live-body').textContent = b.body;
+    $('live-tip').textContent = TACTICS[b.tactic][1];
+    $('back').disabled = state.beat === 0;
+    $('next').disabled = state.beat >= list.length-1;
+    if (list.length === 1) {
+      hint('Finish this beat aloud. Switch version, or tap Perform to try it for a listener.');
+    } else {
+      hint(state.beat === list.length-1 ?
+        'Finish this beat aloud. Tap Back to revisit a choice, switch version, or tap Perform to try it for a listener.' :
+        'Speak the highlighted beat aloud. Tap Next beat or press Space; use Back or Shift+Space to return.');
+    }
+    scrollBeat();
+  }
+  function scrollBeat() {
+    const scroll = $('script-scroll');
+    const beat = $('rbeat-'+state.beat);
+    if (!scroll || !beat) return;
+    const r = beat.getBoundingClientRect();
+    const c = scroll.getBoundingClientRect();
+    scroll.scrollTop += r.top-c.top-scroll.clientHeight/3;
+  }
+  function moveBeat(delta) {
+    if (!state.running) return;
+    const old = state.beat;
+    state.beat = Math.max(0,Math.min(starts(version()).length-1,state.beat+delta));
+    updateBeat();
+    if (old !== state.beat) feedback();
+    V.dropQueued(x => x.key === 'breath');
+  }
+  setInterval(() => {
+    if (state.mode === 'rehearse' && state.running) {
+      state.elapsed = Date.now()-state.startedAt;
+      if ($('timer')) $('timer').textContent = formatTime(state.elapsed);
+    }
+  },250);
+  function perform() {
+    if (state.phase === 'partner') return partner();
+    if (state.phase === 'response') return response();
+    hint(L.handHow);
+    $('app').innerHTML = `<section class="audience-setup"><div class="intro"><div><span class="eyebrow">Perform / choose your audience</span>
+      <h2>Same words. A different room.</h2></div><p>Your actor’s score stays hidden from the listener.
+      <br>Nothing is recorded: no microphone, no camera.</p></div>
+      <div class="audience-grid">${AUDIENCES.map((a,i) => `<button class="audience" id="audience-${i}" aria-pressed="${state.audience === i}">
+      <img src="${ART[a[0]]}" alt="Empty setting: ${esc(a[1])}"><div class="caption"><h3>${a[1]}</h3><p>${esc(a[2])}</p></div></button>`).join('')}</div>
+      <div class="setup-bottom">${versionButtons()}<p>Nothing is recorded. Plans and partner taps stay on this device.</p>
+      <button class="btn primary" id="hand">Hand to partner →</button></div></section>`;
+    wireVersions();
+    AUDIENCES.forEach((a,i) => {$('audience-'+i).onclick = () => {
+      state.audience = i;
+      AUDIENCES.forEach((x,j) => $('audience-'+j).setAttribute('aria-pressed',i === j));
+      feedback();
+    };});
+    $('hand').onclick = () => {
+      V.hush();
+      state.phase = 'partner';
+      state.flags = [];
+      state.heardWant = null;
+      state.otherWant = '';
+      state.feeling = '';
+      state.take = {
+        choice:saved.choice,version:state.version,audience:state.audience,plan:structuredClone(version()),want:work().circ[4],
+        obstacle:work().circ[5],date:new Date().toISOString()
+      };
+      partner();
+      $('done').focus({preventScroll:true});
+      feedback();
+      V.welcome();
+    };
+  }
+  function partner() {
+    hint(L.partnerHow);
+    let i = 0;
+    $('app').innerHTML = `<section class="partner"><div class="partner-top"><div><span class="eyebrow">Listener’s script / ${esc(piece().name)}</span>
+      <h2>Listen for a change.</h2><p>Listen. Tap any word where you feel the actor change what they’re doing.</p>
+      <p class="muted">Nothing is recorded: no microphone, no camera. <span id="flag-count">${state.flags.length} / 30 flags</span></p></div>
+      <button class="btn primary" id="done">Done</button></div><div class="script-scroll" id="script-scroll"><div class="script partner-script">
+      ${piece().text.split('\n').map(line => `<span class="verse">${words(line).map(w => {
+        const n = i++;
+        return `<button class="word ${state.flags.includes(n) ? 'flag' : ''}" data-flag="${n}" aria-label="Flag word ${n+1}, ${esc(w)}"
+          tabindex="${n === 0 ? 0 : -1}" aria-pressed="${state.flags.includes(n)}">${esc(w)}</button>`;
+      }).join(' ')}</span>`).join('')}</div></div></section>`;
+    document.querySelectorAll('[data-flag]').forEach(el => {
+      el.onclick = () => {
+        const n = Number(el.dataset.flag);
+        const found = state.flags.indexOf(n);
+        if (found >= 0) state.flags.splice(found,1);
+        else if (state.flags.length >= 30) {
+          toast('That’s a lot of flags; pick the strongest moments.');
+          return;
+        } else state.flags.push(n);
+        el.classList.toggle('flag',state.flags.includes(n));
+        el.setAttribute('aria-pressed',state.flags.includes(n));
+        $('flag-count').textContent = `${state.flags.length} / 30 flags`;
+        V.dropQueued(x => x.key === 'partnerHow');
+        feedback();
+      };
+    });
+    $('done').onclick = () => {
+      V.hush();
+      state.phase = 'response';
+      state.order = [0,1,2,3,4,5];
+      for (let i = 5; i > 0; i--) {
+        const j = Math.floor(Math.random()*(i+1));
+        [state.order[i],state.order[j]] = [state.order[j],state.order[i]];
+      }
+      response();
+      document.querySelector('[data-want]')?.focus({preventScroll:true});
+      feedback();
+    };
+    wireRoving('.partner-script');
+  }
+  function response() {
+    hint('Pick what you think the character wanted, add one word for how it felt, then tap Save.');
+    $('app').innerHTML = `<section class="response"><div class="response-copy"><span class="eyebrow">Your response / ${state.flags.length} flags</span>
+      <h2>What reached you?</h2><p>There is no answer key here. Name the intention you heard, then hand the laptop back to the actor.</p></div>
+      <aside class="side"><h2>What did they want?</h2><div class="want-grid">${state.order.map(i =>
+      `<button class="btn" data-want="${i}" aria-pressed="${state.heardWant === i}">${esc(piece().wants[i])}</button>`).join('')}
+      <button class="btn other" data-want="other" aria-pressed="${state.heardWant === 'other'}">Something else</button></div>
+      <div class="response-fields"><label id="other-label" ${state.heardWant !== 'other' ? 'hidden' : ''}>Your own words
+      <input id="other-want" aria-label="Your own words for the character’s want" maxlength="200" value="${esc(state.otherWant)}"></label>
+      <label>One word for how it felt<input id="feeling" aria-label="One word for how it felt" maxlength="20"
+      value="${esc(state.feeling)}" autocomplete="off"></label></div>
+      <button class="btn primary" id="save-performance" ${state.heardWant === null ? 'disabled' : ''}>Save</button>
+      <p class="small">Saved on this device. Nothing is recorded.</p></aside></section>`;
+    document.querySelectorAll('[data-want]').forEach(el => {
+      el.onclick = () => {
+        state.heardWant = el.dataset.want === 'other' ? 'other' : Number(el.dataset.want);
+        document.querySelectorAll('[data-want]').forEach(b => b.setAttribute('aria-pressed',b === el));
+        $('other-label').hidden = state.heardWant !== 'other';
+        $('save-performance').disabled = state.heardWant === 'other' && !state.otherWant.trim();
+        feedback();
+      };
+    });
+    $('other-want').oninput = () => {
+      state.otherWant = $('other-want').value;
+      $('save-performance').disabled = state.heardWant === 'other' && !state.otherWant.trim();
+    };
+    $('feeling').oninput = () => {state.feeling = $('feeling').value;};
+    $('save-performance').onclick = () => {
+      if (state.heardWant === null || state.heardWant === 'other' && !state.otherWant.trim()) return;
+      const result = {...state.take,flags:[...state.flags],heard:state.heardWant,other:state.otherWant,
+        feeling:state.feeling,reflections:['','','']};
+      saved.performances.push(result);
+      state.performance = saved.performances.length-1;
+      save();
+      feedback();
+      setMode('compare');
+    };
+  }
+  function match(marks, flags) {
+    const pairs = [];
+    const extra = [];
+    flags.forEach(f => {
+      const candidates = marks.filter(m => f >= m-2 && f <= m+6).sort((a,b) => Math.abs(a-f)-Math.abs(b-f) || a-b);
+      if (candidates.length) pairs.push({mark:candidates[0],flag:f});
+      else extra.push(f);
+    });
+    return {pairs,extra,matched:[...new Set(pairs.map(p => p.mark))]};
+  }
+  function currentPerformance() {
+    state.performance = Math.max(0,Math.min(saved.performances.length-1,state.performance));
+    return saved.performances[state.performance];
+  }
+  function compareVoice() {
+    const p = currentPerformance();
+    const m = match(p.plan.marks,p.flags);
+    const selected = state.performance;
+    const valid = () => state.mode === 'compare' && state.performance === selected;
+    const lines = [];
+    if (p.plan.marks.length && m.matched.length === p.plan.marks.length) lines.push('landed');
+    if (p.plan.closest !== null && p.plan.closest === p.heard) lines.push('wantRead');
+    if (lines.length) V.say(lines,{valid});
+  }
+  function compare() {
+    const p = currentPerformance();
+    const text = D[p.choice];
+    const m = match(p.plan.marks,p.flags);
+    const planned = p.plan.marks.length;
+    let i = 0;
+    const summary = !planned ? `You planned no changes. Your partner felt ${p.flags.length}.` : !p.flags.length ?
+      'Your partner didn’t feel a change. Try bigger contrasts between beats.' :
+      `Your partner felt ${m.matched.length} of your ${planned} changes.`;
+    hint('Read the overlay: bars are your plan; triangles are the listener’s flags. Choose a performance, or scroll the panel to Connect.');
+    const heard = p.heard === 'other' ? p.other : text.wants[p.heard];
+    const wanted = p.want.trim() || (p.plan.closest !== null ? text.wants[p.plan.closest] : 'No want entered');
+    $('app').innerHTML = `<section class="workspace"><div class="script-area">${title(text)}<div class="toolbar">
+      <div class="legend"><span><b>┃</b> Your planned change</span><span><i>▲</i> Partner felt a change</span><span>⌜ Matched</span></div></div>
+      <div class="script-scroll" id="script-scroll"><div class="script" id="overlay-script">${text.text.split('\n').map(line =>
+      `<span class="verse">${words(line).map(w => {
+        const n = i++;
+        return `<span class="overlay-token" id="overlay-${n}">${p.plan.marks.includes(n) ? '<span class="actor-bar">┃</span>' : ''}
+        ${esc(w)}${p.flags.includes(n) ? '<span class="partner-flag">▲</span>' : ''}</span>`;
+      }).join(' ')}</span>`).join('')}<svg class="match-svg" id="brackets" aria-hidden="true"></svg></div></div></div>
+      <aside class="side compare-side"><span class="eyebrow">The listener’s evidence / Version ${'ABC'[p.version]}</span>
+      <div><span class="result-number">${m.matched.length}<span class="muted" style="font-size:24px"> / ${planned}</span></span>
+      <p class="result-copy" id="result-summary">${summary}</p></div>
+      ${m.extra.length ? `<p id="extra-flags">They also felt ${m.extra.length === 1 ? 'a change' : 'changes'} at
+      ${m.extra.map(n => '“'+esc(words(text.text)[n])+'”').join(', ')} that you didn’t plan.</p>` : ''}
+      <div class="want-result">You wanted: ${esc(wanted)}.<br>They heard: ${esc(heard)}.
+      <br><strong>${p.plan.closest === null ? 'No closest want was chosen for this take.' : p.plan.closest === p.heard ?
+        'The closest want matched.' : 'The closest want differed.'}</strong></div>
+      ${p.feeling ? `<p>One word: <strong>${esc(p.feeling)}</strong></p>` : ''}
+      <label>Performance<select id="performance-select">${saved.performances.map((q,j) => `<option value="${j}" ${state.performance === j ? 'selected' : ''}>
+      ${new Date(q.date).toLocaleDateString()} ${new Date(q.date).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})} ·
+      ${esc(D[q.choice].name)} · ${AUDIENCES[q.audience][1]} · ${'ABC'[q.version]}</option>`).join('')}</select></label>
+      <div class="reflections"><h3>Connect</h3>${['What does your character believe?','Where do you agree or disagree with them?',
+      'What did this audience change about how you played it?'].map((q,j) => `<label>${q}
+      <textarea maxlength="300" aria-label="${q}" data-reflection="${j}">${esc(p.reflections[j])}</textarea></label>`).join('')}</div>
+      <p class="small">Matching allows 2 words before to 6 after your mark. Each flag goes to its nearest mark. This is listener evidence, not a grade.</p>
+      <button class="btn danger" id="clear-all">Clear all</button><p class="small">Save on this device is automatic.</p></aside></section>`;
+    $('performance-select').onchange = () => {
+      V.hush();
+      state.performance = Number($('performance-select').value);
+      compare();
+      $('performance-select').focus({preventScroll:true});
+      compareVoice();
+      feedback();
+    };
+    document.querySelectorAll('[data-reflection]').forEach(el => {
+      el.oninput = () => {p.reflections[Number(el.dataset.reflection)] = el.value;save();};
+    });
+    $('clear-all').onclick = () => $('clear-dialog').showModal();
+    requestAnimationFrame(drawBrackets);
+  }
+  function drawBrackets() {
+    if (state.mode !== 'compare' || !$('brackets')) return;
+    const p = currentPerformance();
+    const parent = $('overlay-script').getBoundingClientRect();
+    const paths = match(p.plan.marks,p.flags).pairs.map(pair => {
+      const a = $('overlay-'+pair.mark).getBoundingClientRect();
+      const b = $('overlay-'+pair.flag).getBoundingClientRect();
+      const x1 = a.left-parent.left+3;
+      const x2 = b.left-parent.left+b.width/2;
+      const y1 = a.top-parent.top+3;
+      const y2 = b.bottom-parent.top-3;
+      if (Math.abs(a.top-b.top) < 8) {
+        const y = Math.max(a.bottom,b.bottom)-parent.top+3;
+        return `<path d="M ${x1} ${a.bottom-parent.top-3} V ${y} H ${x2} V ${y2}"/>`;
+      }
+      return `<path d="M ${x1-5} ${y1} h -5 v -5 h 12 M ${x2-5} ${y2} v 5 h 10 v -5"/>`;
+    });
+    $('brackets').innerHTML = paths.join('');
+  }
+  function render() {
+    navigation();
+    if (state.mode === 'choose') choose();
+    if (state.mode === 'prepare') prepare();
+    if (state.mode === 'rehearse') rehearse();
+    if (state.mode === 'perform') perform();
+    if (state.mode === 'compare') compare();
+  }
+  for (const m of ['choose','prepare','rehearse','perform','compare']) {
+    $('m-'+m).onclick = () => {
+      if (state.mode === m) V.welcome();
+      else setMode(m);
+    };
+  }
+  $('cancel-clear').onclick = () => $('clear-dialog').close();
+  $('confirm-clear').onclick = () => {
+    V.hush();
+    saved = fresh();
+    try {localStorage.removeItem(KEY);} catch {}
+    state.performance = -1;
+    state.version = 0;
+    state.beat = 0;
+    state.word = null;
+    state.tab = 'circ';
+    $('clear-dialog').close();
+    $('saved').textContent = 'Work stays on this device';
+    setMode('choose');
+  };
+  document.addEventListener('keydown',event => {
+    if (state.mode !== 'rehearse' || event.code !== 'Space' || /INPUT|TEXTAREA|SELECT/.test(event.target.tagName)) return;
+    event.preventDefault();
+    if (event.repeat) return;
+    if (!state.running) $('start').click();
+    else moveBeat(event.shiftKey ? -1 : 1);
+  });
+  addEventListener('resize',() => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (state.mode === 'compare') drawBrackets();
+      if (state.mode === 'rehearse' && state.running) scrollBeat();
+    },80);
+  });
+  Curio.init({clips:"voice:*",rate:.88,readFallback:() => $('hint').textContent});
+  window.__tool = {
+    state,setMode,allLines:V.allLines,vlog:V.log,match,
+    get data() {return saved;}, get content() {return D;}, get vq() {return V.queue;},
+    get heard() {return [...V.said];}
+  };
+  render();
+  if (!storageReady) toast('Saved work could not be read. This session is still available while the page stays open.');
+})();
+</script>
+</body>
+</html>

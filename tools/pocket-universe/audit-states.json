@@ -1,0 +1,168 @@
+{
+  "keep": [
+    "#timebar",
+    "#tray"
+  ],
+  "states": [
+    {
+      "name": "goals-book",
+      "steps": [
+        {
+          "click": "#goals"
+        }
+      ],
+      "keep": [
+        "#close-overlay"
+      ]
+    },
+    {
+      "name": "rescue-slower",
+      "steps": [
+        {
+          "click": "#wonders"
+        },
+        {
+          "click": "[data-load='Rescue the moon']"
+        },
+        {
+          "click": "#pause"
+        },
+        {
+          "click": "#slower",
+          "times": 5,
+          "gap": 0.15
+        }
+      ]
+    },
+    {
+      "name": "world-zero",
+      "steps": [
+        {
+          "click": "#pause"
+        },
+        {
+          "click": "#gravity"
+        },
+        {
+          "key": "ArrowLeft"
+        },
+        {
+          "key": "ArrowLeft"
+        },
+        {
+          "key": "ArrowLeft"
+        },
+        {
+          "key": "ArrowLeft"
+        },
+        {
+          "key": "ArrowLeft"
+        },
+        {
+          "key": "ArrowLeft"
+        },
+        {
+          "key": "ArrowLeft"
+        },
+        {
+          "key": "ArrowLeft"
+        },
+        {
+          "key": "ArrowLeft"
+        },
+        {
+          "key": "ArrowLeft"
+        },
+        {
+          "key": "ArrowLeft"
+        }
+      ]
+    },
+    {
+      "name": "real-true-size-all",
+      "steps": [
+        {
+          "click": "#m-real"
+        },
+        {
+          "click": "#pause"
+        },
+        {
+          "click": "#fit",
+          "times": 2
+        },
+        {
+          "click": "#true-size"
+        },
+        {
+          "click": "#trail-forever"
+        }
+      ]
+    },
+    {
+      "name": "saved-universe",
+      "steps": [
+        {
+          "click": "#save"
+        },
+        {
+          "click": "#my-universes"
+        }
+      ],
+      "keep": [
+        "#close-overlay"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812 (iframe host)"
+      ]
+    },
+    {
+      "name": "clear-confirmation",
+      "steps": [
+        {
+          "js": "document.querySelector('#clear').scrollIntoView({block:'center'});"
+        },
+        {
+          "click": "#clear"
+        }
+      ],
+      "keep": [
+        "#confirmation-cancel",
+        "#confirmation-accept"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812 (iframe host)"
+      ]
+    },
+    {
+      "name": "real-cleared",
+      "steps": [
+        {
+          "click": "#m-real"
+        },
+        {
+          "js": "document.querySelector('#clear').scrollIntoView({block:'center'});"
+        },
+        {
+          "click": "#clear"
+        },
+        {
+          "click": "#confirmation-accept"
+        },
+        {
+          "click": "#chip-1"
+        },
+        {
+          "key": "Enter"
+        }
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    }
+  ]
+}

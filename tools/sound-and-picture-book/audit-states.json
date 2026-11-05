@@ -1,0 +1,10 @@
+{
+  "keep":[],
+  "states":[
+    {"name":"sample-make","steps":[{"click":"#sample"},{"click":"#m-make"}],"keep":["#page-canvas","#sound-bg","#sound-fx"]},
+    {"name":"sound-tray","steps":[{"click":"#sample"},{"click":"#m-make"},{"click":"#sound-fx"}],"keep":["#chooser","#dialog-hint"],"sizes":["680x425","1366x768","375x812"]},
+    {"name":"swapped","steps":[{"click":"#sample"},{"click":"#m-swap"},{"click":"#chip-fx-1"},{"click":"#chip-fx-2"}],"keep":["#swap-play","#undo"]},
+    {"name":"the-end","steps":[{"click":"#sample"},{"click":"#m-play"},{"click":"#next"},{"click":"#next"},{"click":"#next"}],"keep":["#end-swap","#end-restart"],"sizes":["680x425","1366x768","375x812"]},
+    {"name":"new-book-dialog","steps":[{"click":"#new-book"}],"keep":["#confirm-new","#keep-book","#dialog-hint"],"sizes":["680x425","1366x768","375x812"]}
+  ]
+}

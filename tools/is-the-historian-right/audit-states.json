@@ -1,0 +1,438 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "clues",
+      "steps": [
+        {
+          "click": "#clear"
+        },
+        {
+          "click": "#do-clear"
+        },
+        {
+          "click": "#folder-0"
+        },
+        {
+          "click": "#claim-cause"
+        },
+        {
+          "click": "#claim-effect"
+        },
+        {
+          "click": "#to-clues"
+        },
+        {
+          "click": "#clue-0"
+        },
+        {
+          "click": "#tray-0"
+        }
+      ],
+      "keep": [
+        "#steps",
+        "#scale"
+      ]
+    },
+    {
+      "name": "key",
+      "steps": [
+        {
+          "click": "#clear"
+        },
+        {
+          "click": "#do-clear"
+        },
+        {
+          "click": "#folder-0"
+        },
+        {
+          "click": "#claim-cause"
+        },
+        {
+          "click": "#claim-effect"
+        },
+        {
+          "click": "#to-clues"
+        },
+        {
+          "click": "#clue-0"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#clue-1"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#clue-2"
+        },
+        {
+          "click": "#tray-2"
+        },
+        {
+          "click": "#clue-3"
+        },
+        {
+          "click": "#tray-2"
+        },
+        {
+          "click": "#clue-4"
+        },
+        {
+          "click": "#tray-2"
+        },
+        {
+          "click": "#clue-5"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#check-scale"
+        }
+      ],
+      "sizes": [
+        "1000x625",
+        "1366x768"
+      ],
+      "keep": [
+        "#steps",
+        "#scale"
+      ]
+    },
+    {
+      "name": "stamp",
+      "steps": [
+        {
+          "click": "#clear"
+        },
+        {
+          "click": "#do-clear"
+        },
+        {
+          "click": "#folder-0"
+        },
+        {
+          "click": "#claim-cause"
+        },
+        {
+          "click": "#claim-effect"
+        },
+        {
+          "click": "#to-clues"
+        },
+        {
+          "click": "#clue-0"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#clue-1"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#clue-2"
+        },
+        {
+          "click": "#tray-2"
+        },
+        {
+          "click": "#clue-3"
+        },
+        {
+          "click": "#tray-2"
+        },
+        {
+          "click": "#clue-4"
+        },
+        {
+          "click": "#tray-2"
+        },
+        {
+          "click": "#clue-5"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#to-verdict"
+        },
+        {
+          "click": "#stamp-1"
+        },
+        {
+          "click": "#wording-2"
+        }
+      ],
+      "keep": [
+        "#steps",
+        "#to-write"
+      ]
+    },
+    {
+      "name": "writing",
+      "steps": [
+        {
+          "click": "#clear"
+        },
+        {
+          "click": "#do-clear"
+        },
+        {
+          "click": "#folder-0"
+        },
+        {
+          "click": "#claim-cause"
+        },
+        {
+          "click": "#claim-effect"
+        },
+        {
+          "click": "#to-clues"
+        },
+        {
+          "click": "#clue-0"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#clue-1"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#clue-2"
+        },
+        {
+          "click": "#tray-2"
+        },
+        {
+          "click": "#clue-3"
+        },
+        {
+          "click": "#tray-2"
+        },
+        {
+          "click": "#clue-4"
+        },
+        {
+          "click": "#tray-2"
+        },
+        {
+          "click": "#clue-5"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#to-verdict"
+        },
+        {
+          "click": "#stamp-1"
+        },
+        {
+          "click": "#wording-2"
+        },
+        {
+          "click": "#to-write"
+        }
+      ],
+      "keep": [
+        "#steps",
+        "#file"
+      ]
+    },
+    {
+      "name": "filed",
+      "steps": [
+        {
+          "click": "#clear"
+        },
+        {
+          "click": "#do-clear"
+        },
+        {
+          "click": "#help"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#folder-0"
+        },
+        {
+          "click": "#claim-cause"
+        },
+        {
+          "click": "#claim-effect"
+        },
+        {
+          "click": "#to-clues"
+        },
+        {
+          "click": "#clue-0"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#clue-1"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#clue-2"
+        },
+        {
+          "click": "#tray-2"
+        },
+        {
+          "click": "#clue-3"
+        },
+        {
+          "click": "#tray-2"
+        },
+        {
+          "click": "#clue-4"
+        },
+        {
+          "click": "#tray-2"
+        },
+        {
+          "click": "#clue-5"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#to-verdict"
+        },
+        {
+          "click": "#stamp-1"
+        },
+        {
+          "click": "#wording-2"
+        },
+        {
+          "click": "#to-write"
+        },
+        {
+          "click": "#support-clue"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#support-reason"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#complicate-clue"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#complicate-reason"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#overall-reason"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#file"
+        }
+      ],
+      "sizes": [
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#steps",
+        "#filed-seal"
+      ]
+    },
+    {
+      "name": "frontier",
+      "steps": [
+        {
+          "click": "#clear"
+        },
+        {
+          "click": "#do-clear"
+        },
+        {
+          "click": "#folder-2"
+        }
+      ],
+      "keep": [
+        "#steps"
+      ]
+    },
+    {
+      "name": "pair",
+      "steps": [
+        {
+          "click": "#m-tools"
+        },
+        {
+          "click": "#drawer-4"
+        },
+        {
+          "click": "[data-answer=\"0\"]"
+        }
+      ],
+      "keep": [
+        "#pair-choices"
+      ]
+    },
+    {
+      "name": "clear-dialog",
+      "steps": [
+        {
+          "click": "#clear"
+        }
+      ],
+      "keep": [
+        "#confirm-clear"
+      ]
+    }
+  ]
+}

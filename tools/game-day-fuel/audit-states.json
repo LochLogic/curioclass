@@ -1,0 +1,17 @@
+{
+  "states": [
+    {"name":"flag-after-edit","steps":[{"click":"#flag-0"},{"click":"#food-5"}],
+      "sizes":["1366x768","1920x1080"],"keep":["#flag-detail","#energy-scroll"]},
+    {"name":"empty-week","steps":[{"click":"#clear"}],
+      "sizes":["1366x768","1920x1080"],"keep":["#flag-summary","#energy-scroll"]},
+    {"name":"revised-forecast","steps":[{"click":"#m-game"},{"click":"#speed"},{"click":"#play"},
+      {"until":"__tool.state.finished","max":9000},{"click":"#food-0"}],
+      "sizes":["680x425","1366x768","375x812"],"keep":["#play","#result"]},
+    {"name":"food-added","steps":[{"click":"#food-0"}],"keep":["#target-label","#energy-scroll"]},
+    {"name":"game-result","steps":[{"click":"#m-game"},{"click":"#speed"},{"click":"#play"},
+      {"until":"__tool.state.finished","max":9000}],"keep":["#play","#result"]},
+    {"name":"meal-moving","steps":[{"click":"#m-game"},{"click":"#move"}],"keep":["#meal-time","#play"]},
+    {"name":"morning-game","steps":[{"click":"#athlete-2"},{"click":"#m-game"}],"keep":["#play","#meal-0"]},
+    {"name":"fuel-notes","steps":[{"click":"#m-game"},{"click":"#game-notes"}],"keep":["#dialog-title","#close-dialog"]}
+  ]
+}

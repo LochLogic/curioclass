@@ -1,0 +1,189 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "cell-editor",
+      "steps": [
+        {
+          "click": "#cell-p0-s1"
+        }
+      ],
+      "keep": [
+        "#picker"
+      ]
+    },
+    {
+      "name": "player-palette",
+      "steps": [
+        {
+          "click": "#add-player"
+        }
+      ],
+      "keep": [
+        "#picker"
+      ]
+    },
+    {
+      "name": "section-palette",
+      "steps": [
+        {
+          "click": "#add-section"
+        }
+      ],
+      "keep": [
+        "#picker"
+      ]
+    },
+    {
+      "name": "revised-plan",
+      "steps": [
+        {
+          "click": "#check-Range"
+        },
+        {
+          "click": "#check-Balance"
+        },
+        {
+          "click": "#check-Length"
+        },
+        {
+          "click": "#check-Fit"
+        },
+        {
+          "click": "#add-section"
+        },
+        {
+          "click": "[data-type=minor]"
+        }
+      ],
+      "keep": [
+        "#checks"
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "playing",
+      "steps": [
+        {
+          "click": "#play"
+        },
+        {
+          "wait": 500
+        }
+      ],
+      "keep": [
+        "#play",
+        "#checks"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "intro-preset",
+      "steps": [
+        {
+          "click": "#cell-p0-s0"
+        }
+      ],
+      "keep": [
+        "#picker"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "empty-players-limit",
+      "steps": [
+        {
+          "click": "#player-p1"
+        },
+        {
+          "click": "#remove-player"
+        },
+        {
+          "click": "#player-p0"
+        }
+      ],
+      "keep": [
+        "#picker"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "column-boundary",
+      "steps": [
+        {
+          "click": "#section-s0"
+        }
+      ],
+      "keep": [
+        "#picker"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "unanswered-call",
+      "steps": [
+        {
+          "click": "#add-section"
+        },
+        {
+          "click": "[data-type=call]"
+        }
+      ],
+      "keep": [
+        "#checks"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "revision-reason-dialog",
+      "steps": [
+        {
+          "click": "#check-Range"
+        },
+        {
+          "click": "#check-Balance"
+        },
+        {
+          "click": "#check-Length"
+        },
+        {
+          "click": "#check-Fit"
+        },
+        {
+          "click": "#add-section"
+        },
+        {
+          "click": "[data-type=minor]"
+        }
+      ],
+      "keep": [
+        "#picker"
+      ],
+      "sizes": [
+        "680x425",
+        "375x812"
+      ]
+    }
+  ]
+}

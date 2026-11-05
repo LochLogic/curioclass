@@ -1,0 +1,21 @@
+{
+  "id":"design-fixer",
+  "status":"beta",
+  "stage":"built",
+  "hook":"Squint at a broken poster. Repair what your eye sees first.",
+  "outcome":"Revise a poster using balance, contrast, emphasis, rhythm and unity",
+  "driver":"students",
+  "minutes":"15-30",
+  "modes":["Studio","Fix"],
+  "grades_label":"Grades 6-8",
+  "sources":[
+    "NCAS Visual Arts VA:Cr1, VA:Cr2, VA:Re8, VA:Cr3",
+    "W3C WCAG 2.1 Success Criterion 1.4.3",
+    "CIE 15:2004 Colorimetry, D65 sRGB conversion",
+    "Rudolf Arnheim, Art and Visual Perception, chapter 1, Balance",
+    "Robin Williams, The Non-Designer's Design Book, fourth edition",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party":[],
+  "updated":"2026-11-01"
+}

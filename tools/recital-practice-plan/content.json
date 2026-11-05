@@ -1,0 +1,1663 @@
+{
+  "pieces": [
+    {
+      "id": "minuet",
+      "short": "Minuet in G",
+      "title": "Minuet in G major, BWV Anh. 114",
+      "composer": "Christian Petzold",
+      "year": "c. 1725",
+      "bars": 64,
+      "beats": 3,
+      "tempo": 116,
+      "hard": 60,
+      "rest": 80,
+      "passage": "bars 1 to 8",
+      "passageBeats": 24,
+      "detail": "Long credited to J. S. Bach. Both halves repeated.",
+      "notes": [
+        {
+          "pitch": 55,
+          "beat": 0,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 59,
+          "beat": 0,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 62,
+          "beat": 0,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 74,
+          "beat": 0,
+          "duration": 1,
+          "hand": "R"
+        },
+        {
+          "pitch": 67,
+          "beat": 1,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 69,
+          "beat": 1.5,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 57,
+          "beat": 2,
+          "duration": 1,
+          "hand": "L"
+        },
+        {
+          "pitch": 71,
+          "beat": 2.0,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 2.5,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 59,
+          "beat": 3,
+          "duration": 3,
+          "hand": "L"
+        },
+        {
+          "pitch": 74,
+          "beat": 3,
+          "duration": 1,
+          "hand": "R"
+        },
+        {
+          "pitch": 67,
+          "beat": 4,
+          "duration": 1,
+          "hand": "R"
+        },
+        {
+          "pitch": 67,
+          "beat": 5,
+          "duration": 1,
+          "hand": "R"
+        },
+        {
+          "pitch": 60,
+          "beat": 6,
+          "duration": 3,
+          "hand": "L"
+        },
+        {
+          "pitch": 76,
+          "beat": 6,
+          "duration": 1,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 7,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 74,
+          "beat": 7.5,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 76,
+          "beat": 8.0,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 78,
+          "beat": 8.5,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 59,
+          "beat": 9,
+          "duration": 3,
+          "hand": "L"
+        },
+        {
+          "pitch": 79,
+          "beat": 9,
+          "duration": 1,
+          "hand": "R"
+        },
+        {
+          "pitch": 67,
+          "beat": 10,
+          "duration": 1,
+          "hand": "R"
+        },
+        {
+          "pitch": 67,
+          "beat": 11,
+          "duration": 1,
+          "hand": "R"
+        },
+        {
+          "pitch": 57,
+          "beat": 12,
+          "duration": 3,
+          "hand": "L"
+        },
+        {
+          "pitch": 72,
+          "beat": 12,
+          "duration": 1,
+          "hand": "R"
+        },
+        {
+          "pitch": 74,
+          "beat": 13,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 13.5,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 71,
+          "beat": 14.0,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 69,
+          "beat": 14.5,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 55,
+          "beat": 15,
+          "duration": 3,
+          "hand": "L"
+        },
+        {
+          "pitch": 71,
+          "beat": 15,
+          "duration": 1,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 16,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 71,
+          "beat": 16.5,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 69,
+          "beat": 17.0,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 67,
+          "beat": 17.5,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 62,
+          "beat": 18,
+          "duration": 1,
+          "hand": "L"
+        },
+        {
+          "pitch": 66,
+          "beat": 18,
+          "duration": 1,
+          "hand": "R"
+        },
+        {
+          "pitch": 59,
+          "beat": 19,
+          "duration": 1,
+          "hand": "L"
+        },
+        {
+          "pitch": 67,
+          "beat": 19,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 69,
+          "beat": 19.5,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 55,
+          "beat": 20,
+          "duration": 1,
+          "hand": "L"
+        },
+        {
+          "pitch": 71,
+          "beat": 20.0,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 67,
+          "beat": 20.5,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 62,
+          "beat": 21,
+          "duration": 1,
+          "hand": "L"
+        },
+        {
+          "pitch": 69,
+          "beat": 21,
+          "duration": 3,
+          "hand": "R"
+        },
+        {
+          "pitch": 50,
+          "beat": 22,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 52,
+          "beat": 22.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 54,
+          "beat": 23.0,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 55,
+          "beat": 23.5,
+          "duration": 0.5,
+          "hand": "L"
+        }
+      ]
+    },
+    {
+      "id": "prelude",
+      "short": "Prelude in C",
+      "title": "Prelude in C major, BWV 846",
+      "composer": "J. S. Bach",
+      "year": "1722",
+      "bars": 35,
+      "beats": 4,
+      "tempo": 66,
+      "hard": 90,
+      "rest": 120,
+      "passage": "bars 1 to 4",
+      "passageBeats": 16,
+      "detail": "The Well-Tempered Clavier, Book 1. Keep the broken chords even.",
+      "notes": [
+        {
+          "pitch": 60,
+          "beat": 0.0,
+          "duration": 0.25,
+          "hand": "L"
+        },
+        {
+          "pitch": 64,
+          "beat": 0.25,
+          "duration": 0.25,
+          "hand": "L"
+        },
+        {
+          "pitch": 67,
+          "beat": 0.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 0.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 76,
+          "beat": 1.0,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 67,
+          "beat": 1.25,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 1.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 76,
+          "beat": 1.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 60,
+          "beat": 2.0,
+          "duration": 0.25,
+          "hand": "L"
+        },
+        {
+          "pitch": 64,
+          "beat": 2.25,
+          "duration": 0.25,
+          "hand": "L"
+        },
+        {
+          "pitch": 67,
+          "beat": 2.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 2.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 76,
+          "beat": 3.0,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 67,
+          "beat": 3.25,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 3.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 76,
+          "beat": 3.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 60,
+          "beat": 4.0,
+          "duration": 0.25,
+          "hand": "L"
+        },
+        {
+          "pitch": 62,
+          "beat": 4.25,
+          "duration": 0.25,
+          "hand": "L"
+        },
+        {
+          "pitch": 69,
+          "beat": 4.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 74,
+          "beat": 4.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 77,
+          "beat": 5.0,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 69,
+          "beat": 5.25,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 74,
+          "beat": 5.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 77,
+          "beat": 5.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 60,
+          "beat": 6.0,
+          "duration": 0.25,
+          "hand": "L"
+        },
+        {
+          "pitch": 62,
+          "beat": 6.25,
+          "duration": 0.25,
+          "hand": "L"
+        },
+        {
+          "pitch": 69,
+          "beat": 6.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 74,
+          "beat": 6.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 77,
+          "beat": 7.0,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 69,
+          "beat": 7.25,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 74,
+          "beat": 7.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 77,
+          "beat": 7.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 59,
+          "beat": 8.0,
+          "duration": 0.25,
+          "hand": "L"
+        },
+        {
+          "pitch": 62,
+          "beat": 8.25,
+          "duration": 0.25,
+          "hand": "L"
+        },
+        {
+          "pitch": 67,
+          "beat": 8.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 74,
+          "beat": 8.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 77,
+          "beat": 9.0,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 67,
+          "beat": 9.25,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 74,
+          "beat": 9.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 77,
+          "beat": 9.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 59,
+          "beat": 10.0,
+          "duration": 0.25,
+          "hand": "L"
+        },
+        {
+          "pitch": 62,
+          "beat": 10.25,
+          "duration": 0.25,
+          "hand": "L"
+        },
+        {
+          "pitch": 67,
+          "beat": 10.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 74,
+          "beat": 10.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 77,
+          "beat": 11.0,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 67,
+          "beat": 11.25,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 74,
+          "beat": 11.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 77,
+          "beat": 11.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 60,
+          "beat": 12.0,
+          "duration": 0.25,
+          "hand": "L"
+        },
+        {
+          "pitch": 64,
+          "beat": 12.25,
+          "duration": 0.25,
+          "hand": "L"
+        },
+        {
+          "pitch": 67,
+          "beat": 12.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 12.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 76,
+          "beat": 13.0,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 67,
+          "beat": 13.25,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 13.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 76,
+          "beat": 13.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 60,
+          "beat": 14.0,
+          "duration": 0.25,
+          "hand": "L"
+        },
+        {
+          "pitch": 64,
+          "beat": 14.25,
+          "duration": 0.25,
+          "hand": "L"
+        },
+        {
+          "pitch": 67,
+          "beat": 14.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 14.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 76,
+          "beat": 15.0,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 67,
+          "beat": 15.25,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 15.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 76,
+          "beat": 15.75,
+          "duration": 0.25,
+          "hand": "R"
+        }
+      ]
+    },
+    {
+      "id": "gymnopedie",
+      "short": "Gymnopédie No. 1",
+      "title": "Gymnopédie No. 1",
+      "composer": "Erik Satie",
+      "year": "1888",
+      "bars": 78,
+      "beats": 3,
+      "tempo": 72,
+      "hard": 70,
+      "rest": 100,
+      "passage": "bars 5 to 12",
+      "passageBeats": 24,
+      "detail": "Lent et douloureux. Melody over quiet, rocking chords.",
+      "notes": [
+        {
+          "pitch": 43,
+          "beat": 0,
+          "duration": 3,
+          "hand": "L"
+        },
+        {
+          "pitch": 59,
+          "beat": 1,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 62,
+          "beat": 1,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 66,
+          "beat": 1,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 78,
+          "beat": 1,
+          "duration": 1,
+          "hand": "R"
+        },
+        {
+          "pitch": 81,
+          "beat": 2,
+          "duration": 1,
+          "hand": "R"
+        },
+        {
+          "pitch": 38,
+          "beat": 3,
+          "duration": 3,
+          "hand": "L"
+        },
+        {
+          "pitch": 79,
+          "beat": 3,
+          "duration": 1,
+          "hand": "R"
+        },
+        {
+          "pitch": 57,
+          "beat": 4,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 61,
+          "beat": 4,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 66,
+          "beat": 4,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 78,
+          "beat": 4,
+          "duration": 1,
+          "hand": "R"
+        },
+        {
+          "pitch": 73,
+          "beat": 5,
+          "duration": 1,
+          "hand": "R"
+        },
+        {
+          "pitch": 43,
+          "beat": 6,
+          "duration": 3,
+          "hand": "L"
+        },
+        {
+          "pitch": 71,
+          "beat": 6,
+          "duration": 1,
+          "hand": "R"
+        },
+        {
+          "pitch": 59,
+          "beat": 7,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 62,
+          "beat": 7,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 66,
+          "beat": 7,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 73,
+          "beat": 7,
+          "duration": 1,
+          "hand": "R"
+        },
+        {
+          "pitch": 74,
+          "beat": 8,
+          "duration": 1,
+          "hand": "R"
+        },
+        {
+          "pitch": 38,
+          "beat": 9,
+          "duration": 3,
+          "hand": "L"
+        },
+        {
+          "pitch": 69,
+          "beat": 9,
+          "duration": 3,
+          "hand": "R"
+        },
+        {
+          "pitch": 57,
+          "beat": 10,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 61,
+          "beat": 10,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 66,
+          "beat": 10,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 43,
+          "beat": 12,
+          "duration": 3,
+          "hand": "L"
+        },
+        {
+          "pitch": 66,
+          "beat": 12,
+          "duration": 12,
+          "hand": "R"
+        },
+        {
+          "pitch": 59,
+          "beat": 13,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 62,
+          "beat": 13,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 66,
+          "beat": 13,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 38,
+          "beat": 15,
+          "duration": 3,
+          "hand": "L"
+        },
+        {
+          "pitch": 57,
+          "beat": 16,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 61,
+          "beat": 16,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 66,
+          "beat": 16,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 43,
+          "beat": 18,
+          "duration": 3,
+          "hand": "L"
+        },
+        {
+          "pitch": 59,
+          "beat": 19,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 62,
+          "beat": 19,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 66,
+          "beat": 19,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 38,
+          "beat": 21,
+          "duration": 3,
+          "hand": "L"
+        },
+        {
+          "pitch": 57,
+          "beat": 22,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 61,
+          "beat": 22,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 66,
+          "beat": 22,
+          "duration": 2,
+          "hand": "L"
+        }
+      ]
+    },
+    {
+      "id": "entertainer",
+      "short": "The Entertainer",
+      "title": "The Entertainer",
+      "composer": "Scott Joplin",
+      "year": "1902",
+      "bars": 152,
+      "beats": 2,
+      "tempo": 76,
+      "hard": 200,
+      "rest": 260,
+      "passage": "A section bars 5 to 8",
+      "passageBeats": 8,
+      "detail": "Not fast. Syncopated melody with left-hand stride.",
+      "notes": [
+        {
+          "pitch": 48,
+          "beat": 0.0,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 64,
+          "beat": 0,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 0.25,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 52,
+          "beat": 0.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 55,
+          "beat": 0.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 60,
+          "beat": 0.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 64,
+          "beat": 0.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 43,
+          "beat": 1.0,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 55,
+          "beat": 1.0,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 72,
+          "beat": 1.0,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 55,
+          "beat": 1.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 58,
+          "beat": 1.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 60,
+          "beat": 1.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 64,
+          "beat": 1.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 1.75,
+          "duration": 1.75,
+          "hand": "R"
+        },
+        {
+          "pitch": 41,
+          "beat": 2.0,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 53,
+          "beat": 2.0,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 57,
+          "beat": 2.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 60,
+          "beat": 2.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 40,
+          "beat": 3.0,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 52,
+          "beat": 3.0,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 39,
+          "beat": 3.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 51,
+          "beat": 3.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 69,
+          "beat": 3.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 3.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 81,
+          "beat": 3.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 67,
+          "beat": 3.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 3.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 79,
+          "beat": 3.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 38,
+          "beat": 4.0,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 50,
+          "beat": 4.0,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 66,
+          "beat": 4.0,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 4.0,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 78,
+          "beat": 4.0,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 69,
+          "beat": 4.25,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 81,
+          "beat": 4.25,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 50,
+          "beat": 4.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 54,
+          "beat": 4.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 57,
+          "beat": 4.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 60,
+          "beat": 4.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 72,
+          "beat": 4.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 84,
+          "beat": 4.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 76,
+          "beat": 4.75,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 88,
+          "beat": 4.75,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 50,
+          "beat": 5.0,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 74,
+          "beat": 5.25,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 86,
+          "beat": 5.25,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 54,
+          "beat": 5.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 57,
+          "beat": 5.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 60,
+          "beat": 5.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 72,
+          "beat": 5.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 84,
+          "beat": 5.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 69,
+          "beat": 5.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 81,
+          "beat": 5.75,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 55,
+          "beat": 6.0,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 59,
+          "beat": 6.0,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 74,
+          "beat": 6.0,
+          "duration": 1.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 77,
+          "beat": 6.0,
+          "duration": 1.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 86,
+          "beat": 6.0,
+          "duration": 1.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 43,
+          "beat": 6.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 55,
+          "beat": 6.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 45,
+          "beat": 7.0,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 57,
+          "beat": 7.0,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 47,
+          "beat": 7.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 59,
+          "beat": 7.5,
+          "duration": 0.5,
+          "hand": "L"
+        },
+        {
+          "pitch": 62,
+          "beat": 7.5,
+          "duration": 0.25,
+          "hand": "R"
+        },
+        {
+          "pitch": 63,
+          "beat": 7.75,
+          "duration": 0.25,
+          "hand": "R"
+        }
+      ]
+    },
+    {
+      "id": "nightbus",
+      "short": "Night Bus",
+      "title": "Night Bus",
+      "composer": "Curio Class original",
+      "year": "2026",
+      "bars": 32,
+      "beats": 4,
+      "tempo": 104,
+      "hard": 110,
+      "rest": 60,
+      "passage": "bars 9 to 12",
+      "passageBeats": 16,
+      "detail": "An original A minor piano piece written for this tool.",
+      "notes": [
+        {
+          "pitch": 45,
+          "beat": 0,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 69,
+          "beat": 0.0,
+          "duration": 1.0,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 1.0,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 76,
+          "beat": 1.5,
+          "duration": 1.0,
+          "hand": "R"
+        },
+        {
+          "pitch": 45,
+          "beat": 2,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 74,
+          "beat": 2.5,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 3.0,
+          "duration": 1.0,
+          "hand": "R"
+        },
+        {
+          "pitch": 43,
+          "beat": 4,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 71,
+          "beat": 4.0,
+          "duration": 1.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 67,
+          "beat": 5.5,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 43,
+          "beat": 6,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 69,
+          "beat": 6.0,
+          "duration": 2.0,
+          "hand": "R"
+        },
+        {
+          "pitch": 41,
+          "beat": 8,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 69,
+          "beat": 8.0,
+          "duration": 1.0,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 9.0,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 76,
+          "beat": 9.5,
+          "duration": 1.0,
+          "hand": "R"
+        },
+        {
+          "pitch": 41,
+          "beat": 10,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 79,
+          "beat": 10.5,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 77,
+          "beat": 11.0,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 76,
+          "beat": 11.5,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 40,
+          "beat": 12,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 74,
+          "beat": 12.0,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 76,
+          "beat": 12.5,
+          "duration": 0.5,
+          "hand": "R"
+        },
+        {
+          "pitch": 72,
+          "beat": 13.0,
+          "duration": 1.0,
+          "hand": "R"
+        },
+        {
+          "pitch": 45,
+          "beat": 14,
+          "duration": 2,
+          "hand": "L"
+        },
+        {
+          "pitch": 69,
+          "beat": 14.0,
+          "duration": 2.0,
+          "hand": "R"
+        }
+      ]
+    }
+  ],
+  "criteria": [
+    {
+      "id": "notes",
+      "name": "Right notes",
+      "high": "Every note right.",
+      "low": "Many wrong notes.",
+      "meter": true
+    },
+    {
+      "id": "beat",
+      "name": "Steady beat",
+      "high": "The beat never wobbles.",
+      "low": "The beat drifts and stumbles.",
+      "meter": true
+    },
+    {
+      "id": "tempo",
+      "name": "Tempo",
+      "high": "At the target tempo.",
+      "low": "Much slower than the target.",
+      "meter": true
+    },
+    {
+      "id": "dynamics",
+      "name": "Dynamics",
+      "high": "Clear louds and softs.",
+      "low": "All one loudness.",
+      "meter": true
+    },
+    {
+      "id": "shape",
+      "name": "Shape",
+      "high": "Phrases rise and fall like speech.",
+      "low": "Every note the same weight.",
+      "meter": false
+    },
+    {
+      "id": "keeps",
+      "name": "Keeps going",
+      "high": "Slips never stop the music.",
+      "low": "Stops after slips.",
+      "meter": false
+    }
+  ],
+  "venues": [
+    {
+      "name": "Library at lunch",
+      "description": "An upright piano in the library corner. Students come and go; it's never fully quiet.",
+      "notes": {
+        "minuet": "Short and bright: good for people passing through.",
+        "prelude": "Even and calm; it may blend into the noise.",
+        "gymnopedie": "Very quiet. In a busy room, the soft melody may get lost.",
+        "entertainer": "Catchy; people stop to listen.",
+        "nightbus": "Your own discovery piece; say where the name came from."
+      }
+    },
+    {
+      "name": "Senior center afternoon",
+      "description": "A digital piano in the community room. A seated audience of about 25 that listens closely.",
+      "notes": {
+        "minuet": "Many listeners learned it as children.",
+        "prelude": "A quiet room suits it.",
+        "gymnopedie": "A quiet room is where it works best.",
+        "entertainer": "Many in this audience know it from the 1973 film The Sting.",
+        "nightbus": "Tell them a little about how a new piece is made."
+      }
+    },
+    {
+      "name": "Coffee shop open mic",
+      "description": "A stage keyboard with a sustain pedal, a small speaker and an espresso machine.",
+      "notes": {
+        "minuet": "Light; fine as an opener.",
+        "prelude": "Needs the sustain pedal working well.",
+        "gymnopedie": "Quiet; ask for the grinder to wait.",
+        "entertainer": "Lively and loud enough for the room.",
+        "nightbus": "Its rhythm fits the room."
+      }
+    }
+  ],
+  "provenance": {
+    "minuet": "IMSLP532968, Waldersee 1894, bars 1-8; right hand follows spec without ornaments.",
+    "prelude": "Spec attack pattern for BWV 846 bars 1-4, both hands.",
+    "gymnopedie": "IMSLP08284 page 1 bars 5-12; cross-checked Mutopia gymnopedie_1.ly, public domain.",
+    "entertainer": "IMSLP02607 page 2, A-section bars 5-8, printed bars 9-12; Mutopia entertainer.ly cross-check.",
+    "nightbus": "Original Curio Class piece, exact spec eighth-note slots and left-hand half notes."
+  }
+}

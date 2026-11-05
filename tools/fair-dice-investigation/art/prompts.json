@@ -1,6 +1,6 @@
 {
-  "house_style": "Flat illustration for a high school statistics mystery, noir mood: moody night lighting, deep shadows, one warm lamp, muted colors, clean shapes, empty room. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
-  "style": "Used dimmed behind the title card and case picker.",
+  "house_style": "Sophisticated painted gouache illustration for a high school statistics mystery. Moody noir, deep green felt, walnut wood, warm amber lamp light from upper left, tactile brushwork and rich shading. No people, faces, body parts, text, letters, numbers, logos or watermarks.",
+  "style": "One consistent late-night board game cafe world.",
   "assets": [
     {
       "name": "cafe-after-hours",
@@ -10,7 +10,92 @@
       "width": 1280,
       "quality": 70,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
+    },
+    {
+      "name": "felt-table",
+      "prompt": "Top-down green felt game table surface, dark walnut rim only along the outer edges, empty broad center for charts, warm lamp light pooling at center, delicate felt fibers and scuffed wood.",
+      "aspect": "16:10",
+      "width": 1200,
+      "quality": 76,
+      "cutout": false,
+      "drawn_by": "codex",
+      "review": "ok"
+    },
+    {
+      "name": "die-red",
+      "prompt": "Single translucent ruby red resin cube die, softly rounded corners, all faces perfectly smooth and blank, seen slightly from above with the front face nearly square. Entire object centered with margin. Flat pure green background #00FF00.",
+      "aspect": "1:1",
+      "width": 180,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "review": "ok"
+    },
+    {
+      "name": "die-blue",
+      "prompt": "Single translucent sapphire blue resin cube die, softly rounded corners, all faces perfectly smooth and blank, seen slightly from above with the front face nearly square. Entire object centered with margin. Flat pure green background #00FF00.",
+      "aspect": "1:1",
+      "width": 180,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "review": "ok"
+    },
+    {
+      "name": "die-green",
+      "prompt": "Single translucent emerald green resin cube die, softly rounded corners, all faces perfectly smooth and blank, seen slightly from above with the front face nearly square. Entire object centered with margin. Flat pure magenta background #FF00FF.",
+      "aspect": "1:1",
+      "width": 180,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "key": "magenta",
+      "review": "ok"
+    },
+    {
+      "name": "die-white",
+      "prompt": "Single ivory white resin cube die, softly rounded corners, all faces perfectly smooth and blank, seen slightly from above with the front face nearly square. Entire object centered with margin. Flat pure green background #00FF00.",
+      "aspect": "1:1",
+      "width": 180,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "review": "ok"
+    },
+    {
+      "name": "case2-file",
+      "prompt": "Three closed board game boxes with completely blank lids stacked on a walnut table beside a clipboard of blank score sheets and a pencil. Intimate still life, warm lamp pool, green felt foreground.",
+      "aspect": "4:3",
+      "width": 640,
+      "quality": 76,
+      "cutout": false,
+      "drawn_by": "codex",
+      "review": "ok"
+    },
+    {
+      "name": "case3-file",
+      "prompt": "Small walnut workbench with a hand drill, dish of tiny metal weights, accurate calipers and a transparent evidence bag containing blank dice, under a warm desk lamp. Intimate forensic still life.",
+      "aspect": "4:3",
+      "width": 640,
+      "quality": 76,
+      "cutout": false,
+      "drawn_by": "codex",
+      "review": "ok"
+    },
+    {
+      "name": "librarian",
+      "prompt": "Portrait deferred for owner review. Use a faceless silhouette.",
+      "people": true,
+      "cutout": true,
+      "width": 180
+    },
+    {
+      "name": "suspect",
+      "prompt": "Portrait deferred for owner review. Use a faceless silhouette.",
+      "people": true,
+      "cutout": true,
+      "width": 180
     }
   ]
 }

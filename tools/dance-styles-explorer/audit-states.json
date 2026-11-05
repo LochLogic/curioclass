@@ -1,0 +1,242 @@
+{
+  "keep": [
+    "#transport",
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "ballet-trace",
+      "steps": [
+        {
+          "click": "#trace"
+        },
+        {
+          "click": "#next",
+          "times": 7,
+          "gap": 0.13
+        }
+      ]
+    },
+    {
+      "name": "breaking-end",
+      "steps": [
+        {
+          "click": "#style-breaking"
+        },
+        {
+          "wait": 9500
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "compare-overlay",
+      "steps": [
+        {
+          "click": "#m-compare"
+        },
+        {
+          "click": "#trace"
+        },
+        {
+          "click": "#overlay"
+        },
+        {
+          "click": "#next",
+          "times": 8,
+          "gap": 0.13
+        }
+      ]
+    },
+    {
+      "name": "critique-note",
+      "steps": [
+        {
+          "click": "#m-critique"
+        },
+        {
+          "click": "#note"
+        }
+      ],
+      "keep": [
+        "#noteDialog"
+      ]
+    },
+    {
+      "name": "critique-draft",
+      "steps": [
+        {
+          "click": "#m-critique"
+        },
+        {
+          "js": "const p=document.getElementById('panelScroll');p.scrollTop+=document.getElementById('checks').getBoundingClientRect().top-p.getBoundingClientRect().top-1"
+        }
+      ],
+      "keep": [
+        "#checks"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "count-low",
+      "steps": [
+        {
+          "click": "#prev"
+        }
+      ]
+    },
+    {
+      "name": "count-high",
+      "steps": [
+        {
+          "click": "#next",
+          "times": 16,
+          "gap": 0.1
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "painted-pataka",
+      "steps": [
+        {
+          "click": "#style-bharatanatyam"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "click": "#next",
+          "times": 11,
+          "gap": 0.1
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "painted-lotus",
+      "steps": [
+        {
+          "click": "#style-bharatanatyam"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "click": "#next",
+          "times": 13,
+          "gap": 0.1
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "painted-pataka-phone",
+      "sizes": [
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#mobileStyle"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "click": "#next",
+          "times": 11,
+          "gap": 0.1
+        }
+      ],
+      "keep": [
+        "#gestureDetail"
+      ]
+    },
+    {
+      "name": "painted-lotus-phone",
+      "sizes": [
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#mobileStyle"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "click": "#next",
+          "times": 13,
+          "gap": 0.1
+        }
+      ],
+      "keep": [
+        "#gestureDetail"
+      ]
+    }
+  ]
+}

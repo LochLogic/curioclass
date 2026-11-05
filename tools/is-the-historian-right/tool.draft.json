@@ -1,0 +1,28 @@
+{
+  "id":"is-the-historian-right",
+  "stage":"built",
+  "status":"beta",
+  "hook":"Open a case file. Put a historian's claim to the test.",
+  "outcome":"Identify causal language, weigh historical evidence and write an evaluation with a counter-point.",
+  "driver":"students",
+  "minutes":"25-40",
+  "modes":["Cases","Language tools"],
+  "grades_label":"Grades 9-12",
+  "content_notes":"The Titanic and Chicago fire cases mention deaths; the frontier case names the forced removal of Native nations and laws used to stop Black men from voting.",
+  "sources":[
+    "United States Senate Report 806, 28 May 1912, Titanic Inquiry Project transcription",
+    "Chicago History Museum and Northwestern University, The O'Leary Legend",
+    "Encyclopedia of Chicago, Fire of 1871",
+    "Frederick Jackson Turner, The Significance of the Frontier in American History, 1893",
+    "Indian Removal Act, 1830, 4 Stat. 411",
+    "National Archives, Homestead Act, 1862",
+    "Wyoming State Library, Women's Suffrage Act, 1869",
+    "Mississippi Department of Archives and History, Constitution of 1890",
+    "National Park Service, Historic Jamestowne, The First Legislative Assembly",
+    "Art Institute of Chicago, artwork 59281, attributed to George N. Barnard, 1871, CC0",
+    "WIDA ELD Standards Framework, 2020 Edition",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party":[],
+  "updated":"2026-11-03"
+}

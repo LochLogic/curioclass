@@ -1,0 +1,526 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "die-tested",
+      "steps": [
+        {
+          "click": "#roll100"
+        },
+        {
+          "wait": 750
+        },
+        {
+          "click": "#test-die"
+        }
+      ],
+      "keep": [
+        "#bars",
+        "#die-card",
+        "#roll100"
+      ]
+    },
+    {
+      "name": "three-cells",
+      "steps": [
+        {
+          "js": "__tool.seed(42)"
+        },
+        {
+          "click": "#die2"
+        },
+        {
+          "click": "#accuse"
+        },
+        {
+          "click": "#next-case"
+        },
+        {
+          "click": "#close-dialog"
+        },
+        {
+          "click": "#row0"
+        },
+        {
+          "click": "#col0"
+        },
+        {
+          "click": "#cell0"
+        },
+        {
+          "click": "#row0"
+        },
+        {
+          "click": "#col1"
+        },
+        {
+          "click": "#cell1"
+        },
+        {
+          "click": "#row0"
+        },
+        {
+          "click": "#col2"
+        },
+        {
+          "click": "#cell2"
+        }
+      ],
+      "keep": [
+        "#wins-table",
+        "#table-card"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "table-complete",
+      "steps": [
+        {
+          "js": "__tool.seed(42)"
+        },
+        {
+          "click": "#die2"
+        },
+        {
+          "click": "#accuse"
+        },
+        {
+          "click": "#next-case"
+        },
+        {
+          "click": "#close-dialog"
+        },
+        {
+          "click": "#row0"
+        },
+        {
+          "click": "#col0"
+        },
+        {
+          "click": "#cell0"
+        },
+        {
+          "click": "#row0"
+        },
+        {
+          "click": "#col1"
+        },
+        {
+          "click": "#cell1"
+        },
+        {
+          "click": "#row0"
+        },
+        {
+          "click": "#col2"
+        },
+        {
+          "click": "#cell2"
+        },
+        {
+          "click": "#fill-rest"
+        }
+      ],
+      "keep": [
+        "#wins-table",
+        "#table-card"
+      ],
+      "sizes": [
+        "800x500",
+        "1000x625",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "slopes-tested",
+      "steps": [
+        {
+          "js": "__tool.seed(42)"
+        },
+        {
+          "click": "#die2"
+        },
+        {
+          "click": "#accuse"
+        },
+        {
+          "click": "#next-case"
+        },
+        {
+          "click": "#close-dialog"
+        },
+        {
+          "click": "#row0"
+        },
+        {
+          "click": "#col0"
+        },
+        {
+          "click": "#cell0"
+        },
+        {
+          "click": "#row0"
+        },
+        {
+          "click": "#col1"
+        },
+        {
+          "click": "#cell1"
+        },
+        {
+          "click": "#row0"
+        },
+        {
+          "click": "#col2"
+        },
+        {
+          "click": "#cell2"
+        },
+        {
+          "click": "#fill-rest"
+        },
+        {
+          "click": "#point-cell"
+        },
+        {
+          "click": "#cell8"
+        },
+        {
+          "click": "#next-case"
+        },
+        {
+          "click": "#close-dialog"
+        },
+        {
+          "click": "#test-slope"
+        },
+        {
+          "click": "#plot-temp"
+        },
+        {
+          "click": "#test-slope"
+        }
+      ],
+      "keep": [
+        "#plots",
+        "#slope-card"
+      ],
+      "sizes": [
+        "680x425",
+        "1000x625",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "shuffle",
+      "steps": [
+        {
+          "js": "__tool.seed(42)"
+        },
+        {
+          "click": "#die2"
+        },
+        {
+          "click": "#accuse"
+        },
+        {
+          "click": "#next-case"
+        },
+        {
+          "click": "#close-dialog"
+        },
+        {
+          "click": "#row0"
+        },
+        {
+          "click": "#col0"
+        },
+        {
+          "click": "#cell0"
+        },
+        {
+          "click": "#row0"
+        },
+        {
+          "click": "#col1"
+        },
+        {
+          "click": "#cell1"
+        },
+        {
+          "click": "#row0"
+        },
+        {
+          "click": "#col2"
+        },
+        {
+          "click": "#cell2"
+        },
+        {
+          "click": "#fill-rest"
+        },
+        {
+          "click": "#point-cell"
+        },
+        {
+          "click": "#cell8"
+        },
+        {
+          "click": "#next-case"
+        },
+        {
+          "click": "#close-dialog"
+        },
+        {
+          "click": "#shuffle"
+        },
+        {
+          "wait": 1500
+        }
+      ],
+      "keep": [
+        "#plots"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "lab-result",
+      "steps": [
+        {
+          "click": "#m-lab"
+        },
+        {
+          "click": "#lab-run"
+        },
+        {
+          "wait": 1500
+        }
+      ],
+      "keep": [
+        "#lab-result",
+        "#lab-card"
+      ]
+    },
+    {
+      "name": "lab-loaded",
+      "steps": [
+        {
+          "click": "#m-lab"
+        },
+        {
+          "click": "#loaded"
+        },
+        {
+          "click": "#lab-run"
+        },
+        {
+          "wait": 1500
+        }
+      ],
+      "keep": [
+        "#lab-result",
+        "#lab-card"
+      ],
+      "sizes": [
+        "680x425",
+        "1000x625",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "weight-limit",
+      "steps": [
+        {
+          "click": "#m-lab"
+        },
+        {
+          "click": "#w0"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "click": "#lab-once"
+        }
+      ],
+      "keep": [
+        "#lab-card"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "briefing",
+      "steps": [
+        {
+          "click": ".briefing"
+        }
+      ],
+      "keep": [
+        ".modal"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "lab-small-n",
+      "steps": [
+        {
+          "click": "#m-lab"
+        },
+        {
+          "click": "#lab-n"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#lab-run"
+        },
+        {
+          "wait": 1500
+        }
+      ],
+      "keep": [
+        "#lab-result",
+        "#lab-card"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "lab-large-n",
+      "steps": [
+        {
+          "click": "#m-lab"
+        },
+        {
+          "click": "#loaded"
+        },
+        {
+          "click": "#lab-n"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#lab-run"
+        },
+        {
+          "wait": 1500
+        }
+      ],
+      "keep": [
+        "#lab-result",
+        "#lab-card"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    }
+  ]
+}

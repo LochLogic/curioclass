@@ -1,0 +1,1235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Near and Far · Perspective and space in art · Curio Class</title>
+<meta name="description"
+  content="Build a painted valley, solve eight depth postcards, and find Hogarth's deliberate perspective mistakes. Grades 3-5. Works offline.">
+<link rel="icon" href="data:,">
+<!--
+Near and Far, Curio Class. Grades 3-5 visual arts. NCAS VA:Cr2 and VA:Re7.
+Camera and scene settings follow spec.md. All distances are for this imaginary valley.
+Met Open Access, CC0: Luke Sullivan after William Hogarth, Satire on False Perspective, February 1754, object 365241.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Supplied cutouts drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class.
+One offline file. No network requests. Code MIT; original learning content CC BY 4.0.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f3f6ee; --ink:#1f2a1c; --muted:#55614f; --line:#c8d4bd; --focus:#8a3d08;
+  --brand:#2e6440; --btn:#2e6440; --btn-line:#95b79a; --head-ink:#fff; --panel:#f8f6e9;
+}
+body { overflow:hidden; }
+header { padding:10px 18px; gap:8px; border-bottom:4px solid #224d31; }
+h1 { font:700 clamp(23px,2.5vw,34px)/1 Georgia,serif; letter-spacing:-.5px; }
+h1 small { font-size:13px; margin-top:5px; letter-spacing:.2px; }
+.seg button,.icon-btn { min-height:44px; padding:0 12px; font-size:14px; }
+.seg { border-radius:9px; }
+.seg button[aria-pressed="true"] { background:#f0deb0; color:#263e25; }
+main { grid-template-columns:minmax(0,1fr) 306px; overflow:hidden; }
+button:active { translate:0 1px; }
+.stage {
+  min-height:0; display:flex; flex-direction:column; padding:12px 20px 10px; gap:7px;
+  background:radial-gradient(ellipse at 20% 0%,#fff9ddaa,transparent 65%),
+    repeating-linear-gradient(94deg,#b9c6a6 0,#b9c6a6 2px,#becbae 3px,#bac6a9 11px);
+}
+.stage-head { display:flex; justify-content:space-between; gap:10px; font-size:12px; letter-spacing:1.4px; font-weight:800; }
+.stage-head span:last-child { letter-spacing:0; color:#43543a; }
+.post-space { position:relative; flex:1; min-height:0; display:flex; align-items:center; justify-content:center; }
+.postcard {
+  position:relative; flex:none; overflow:hidden; isolation:isolate; background:linear-gradient(#bfe0f2 42%,#8cc274 42%);
+  outline:7px solid #fffbee; box-shadow:0 10px 24px #27352150,0 0 0 8px #b0a785;
+  touch-action:none; transition:box-shadow .2s;
+}
+.postcard.solved { outline-color:#e0b43a; box-shadow:0 10px 24px #27352150,0 0 0 10px #8b6a20; }
+.landscape { position:absolute; top:2.35%; left:0; width:100%; height:100%; pointer-events:none; }
+.sky-life {
+  position:absolute; top:5%; left:18%; width:16%; height:9%; border-radius:50%; opacity:.13;
+  background:radial-gradient(ellipse,#fff 25%,transparent 65%); animation:drift 14s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+@keyframes drift { to { transform:translateX(25px); opacity:.22; } }
+.calm .sky-life { animation:none; }
+.horizon { position:absolute; top:42%; width:100%; border-top:2px dashed #294f53a6; pointer-events:none; z-index:70; }
+.horizon span { position:absolute; right:8px; top:-25px; font-size:12px; color:#1f2a1c; padding:3px 7px; white-space:nowrap;
+  background:#fffffff0; border-radius:4px; pointer-events:auto; }
+.empty-note {
+  position:absolute; top:14%; left:8%; width:56%; color:#254a37; font:italic clamp(16px,2.4vw,30px)/1.25 Georgia,serif;
+  text-shadow:0 1px #fff9; pointer-events:auto;
+}
+.empty-note small { display:block; font:600 13px/1.4 'Segoe UI',sans-serif; margin-top:8px; }
+.object { position:absolute; border:0; padding:0; background:transparent; min-width:44px; min-height:44px; touch-action:none; }
+.object img { position:absolute; pointer-events:none; max-width:none; filter:drop-shadow(0 2px 1px #26371b24); }
+.object.selected::after { content:''; position:absolute; inset:0; border:2px dashed #214b36; border-radius:5px; pointer-events:none; }
+.object:focus-visible { outline:3px solid #8a3d08; outline-offset:2px; }
+.handle { position:absolute; width:44px; height:44px; border:0; background:transparent; padding:0; z-index:80; touch-action:none; }
+.handle::after { content:'↗'; display:grid; place-items:center; width:24px; height:24px; margin:10px; border-radius:50%;
+  background:#fff6d3; border:2px solid #2e6440; box-shadow:0 2px 4px #0004; font-size:17px; }
+.target { position:absolute; border:2px dotted #fff; outline:1px solid #2e6440; pointer-events:none; z-index:71; }
+.selection-tag { position:absolute; left:8px; bottom:7px; background:#fffffff0; padding:3px 7px; font-size:12px; border-radius:4px; z-index:72; }
+.toolbar { display:flex; justify-content:center; align-items:center; gap:5px; flex:none; min-height:44px; }
+.toolbar button,.paper-btn {
+  min-height:44px; min-width:44px; border:1px solid #a0b18b; border-radius:7px; background:linear-gradient(#fffef5,#eeeeda);
+  box-shadow:0 2px 0 #849478; font-weight:700; padding:0 11px; font-size:14px;
+}
+.toolbar button:disabled { opacity:.45; cursor:default; }
+.toolbar .fade-btn { min-width:100px; }
+.side-wrap { height:22%; min-height:90px; max-height:165px; position:relative; background:#f6f6e8; border:1px solid #879a79;
+  border-radius:5px; box-shadow:0 3px 6px #25332422; overflow:hidden; }
+.side-head { position:absolute; top:7px; left:10px; font-size:11px; font-weight:800; letter-spacing:.8px; z-index:1; }
+#side { width:100%; height:100%; display:block; }
+.side-summary { position:absolute; left:10px; right:6px; top:25px; font-size:12px; line-height:1.2; pointer-events:none; }
+.panel { padding:12px; gap:8px; border-left:3px solid #9fad8b; position:relative;
+  background:repeating-linear-gradient(0deg,transparent 0,transparent 27px,#6f876711 28px),#f8f6e9; }
+.panel::before { content:''; position:absolute; left:8px; top:0; bottom:0; border-left:1px solid #bc8f7040; pointer-events:none; }
+.panel>* { flex-shrink:0; }
+.panel h2 { margin:0; font:700 22px Georgia,serif; }
+.eyebrow { font-size:11px; font-weight:800; letter-spacing:1.5px; color:#55614f; margin:0 0 2px; }
+.hint { margin:0; min-height:70px; font-size:15px; line-height:1.35; background:#fffdf2; padding:9px 11px; border-left:3px solid #6c8b53; }
+.shelf { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }
+.shelf button { min-height:83px; padding:4px 2px; background:linear-gradient(#fffdf7,#e7e8d0); border:1px solid #acb798;
+  border-bottom:4px solid #8c9a71; border-radius:7px; display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
+  gap:2px; font-size:12px; font-weight:650; touch-action:none; }
+.shelf img { width:100%; height:53px; object-fit:contain; pointer-events:none; }
+.shelf button:hover { background:#fff2c9; border-color:#58764b; }
+.panel-actions { display:flex; gap:6px; }
+.panel-actions>* { flex:1; }
+.paper-btn.primary { background:var(--brand); color:#fff; border-color:#204d30; }
+.paper-btn.gold { background:#f0d282; border-color:#b9973c; }
+.privacy { font-size:11px; color:#55614f; margin:0; }
+.valley-options { display:flex; align-items:center; justify-content:space-between; gap:5px; }
+.setting { display:flex; align-items:center; gap:8px; font-size:13px; min-height:44px; cursor:pointer; }
+.setting input { width:44px; height:44px; margin:0; flex-shrink:0; accent-color:#2e6440; }
+.readout { min-height:64px; background:#e6eddc; border:1px solid #bccaaa; padding:7px 10px; border-radius:5px;
+  font-size:13px; line-height:1.3; }
+.readout strong { display:block; font-size:14px; margin-bottom:2px; }
+.scene-setting { color:#55614f; font-size:11px; margin-top:3px; }
+.puzzle-top { display:flex; align-items:center; gap:5px; }
+select { min-width:0; width:100%; min-height:44px; background:#fffdf1; border:1px solid #9aac86; border-radius:6px;
+  color:#1f2a1c; font:700 14px 'Segoe UI',sans-serif; }
+.brief { margin:5px 0; font-size:15px; line-height:1.35; }
+.goals { list-style:none; padding:0; margin:5px 0; display:grid; gap:5px; }
+.goals li { background:#fffdf3; border:1px solid #d2d7bf; border-radius:5px; padding:6px 8px; font-size:14px; line-height:1.2; }
+.goals li::before { content:'○'; font-weight:800; margin-right:7px; }
+.goals li.met { background:#dfebd2; border-color:#7e9a65; }
+.goals li.met::before { content:'✓'; }
+.solved-line { min-height:24px; color:#37532a; font-weight:800; font-size:15px; }
+.solved-line:empty { min-height:0; }
+#compare { position:absolute; right:8px; bottom:8px; z-index:76; }
+.puzzle-nav { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.progress-row { display:flex; align-items:center; justify-content:space-between; font-size:12px; gap:5px; }
+.text-btn { border:0; text-decoration:underline; background:transparent; min-height:44px; padding:0 4px; font-size:12px; }
+.mixed-stage { position:absolute; inset:10px 18px; display:flex; flex-direction:column; gap:8px; align-items:center; }
+.print-space { flex:1; width:100%; min-height:0; display:grid; place-items:center; }
+.print-frame { position:relative; overflow:hidden; box-shadow:0 5px 20px #1e2a1955; background:#f9f1d9; touch-action:none; }
+.print-frame img { position:absolute; inset:0; width:100%; height:100%; transform-origin:0 0;
+  transition:transform .9s ease; user-select:none; pointer-events:none; }
+.print-frame.fast img { transition:none; }
+.dim { position:absolute; inset:0; pointer-events:none; }
+.found-marker { position:absolute; width:22px; height:22px; border:2px solid #fffbe2; border-radius:50%;
+  background:#2e6440; color:#fff; display:grid; place-items:center; font-size:12px; pointer-events:none; }
+.caption { font-size:13px; text-align:center; margin:0; }
+.found-counter { font:700 29px Georgia,serif; margin:5px 0; }
+.cue-icons { display:flex; gap:5px; }
+.cue-icons span { border:1px solid #aabb98; border-radius:5px; background:#fffbed; font-size:12px; padding:7px; }
+.find-list { margin:4px 0; padding:0; list-style:none; display:grid; gap:5px; }
+.find-list li { font-size:13px; border-left:3px solid #819b6f; padding:3px 6px; background:#fff9e9; }
+.mixed-message { min-height:70px; font-size:16px; line-height:1.35; margin:7px 0; }
+.teacher-note { font-size:12px; line-height:1.4; color:#55614f; }
+.wipe { position:absolute; inset:0; pointer-events:none; z-index:69; background:transparent; overflow:hidden; }
+.wipe .before-label { position:absolute; top:8px; left:8px; background:#fff6d2; border-radius:3px; font-size:12px; padding:5px; }
+.wipe-edge { position:absolute; top:0; bottom:0; width:3px; background:#fff9da; box-shadow:0 0 5px #33452d; }
+.flat-image { position:absolute; pointer-events:none; }
+.grab-preview { position:fixed; width:80px; height:80px; object-fit:contain; pointer-events:none; z-index:200; filter:drop-shadow(0 4px 4px #0005); }
+@media (max-width:1100px) {
+  header { padding:7px 10px; gap:6px; }
+  h1 { font-size:24px; }
+  h1 small { font-size:11px; }
+  .seg button,.icon-btn { padding:0 8px; font-size:12px; }
+  main { grid-template-columns:minmax(0,1fr) 250px; }
+  .stage { padding:9px 12px; gap:5px; }
+  .panel { padding:9px; gap:6px; }
+  .shelf button { min-height:68px; }
+  .shelf img { height:41px; }
+  .hint { font-size:13px; min-height:65px; padding:7px; }
+}
+@media (min-width:1101px) and (min-height:641px) and (max-height:750px) {
+  .panel { gap:6px; }
+  .hint { min-height:60px; }
+  .shelf button { min-height:72px; padding:3px 2px; }
+  .shelf img { height:46px; }
+}
+@media (max-height:640px) and (min-width:561px) {
+  header { flex-wrap:nowrap; padding:5px 8px; gap:5px; }
+  h1 { font-size:21px; }
+  h1 small { display:none; }
+  .seg button,.icon-btn { padding:0 7px; font-size:12px; }
+  main { grid-template-columns:minmax(0,1fr) 224px; }
+  .stage { padding:7px 11px; gap:4px; }
+  .stage-head { font-size:10px; }
+  .empty-note { top:7%; width:70%; font-size:16px; line-height:1.15; }
+  .empty-note small { font-size:11px; line-height:1.2; margin-top:5px; }
+  .empty-note .opening-line { display:none; }
+  .side-wrap { height:16%; min-height:72px; }
+  .side-head { top:3px; font-size:10px; }
+  .side-summary { top:17px; font-size:11px; }
+  .panel { padding:7px; gap:4px; }
+  .panel h2 { font-size:18px; }
+  .eyebrow { display:none; }
+  .hint { min-height:44px; font-size:12px; padding:5px; }
+  .shelf { gap:3px; }
+  .shelf button { min-height:44px; padding:1px; font-size:10px; line-height:11px; border-bottom-width:2px; gap:0; }
+  .shelf img { height:26px; }
+  .readout { min-height:48px; padding:4px 7px; font-size:11px; }
+  .readout strong { font-size:12px; margin:0; }
+  .setting { min-height:44px; font-size:11px; }
+  .toolbar { gap:3px; }
+  .toolbar button { font-size:11px; padding:0 5px; }
+  .toolbar .fade-btn { min-width:85px; }
+  .paper-btn { font-size:12px; padding:0 5px; }
+  .brief { font-size:12px; margin:3px 0; }
+  .goals { gap:3px; margin:3px 0; }
+  .goals li { font-size:12px; padding:4px 5px; }
+  .privacy { font-size:10px; }
+  .puzzle-nav { gap:4px; }
+  .solved-line { min-height:18px; font-size:12px; }
+  .progress-row { font-size:10px; }
+  body[data-mode="puzzles"] .panel>div:first-child { display:none; }
+  body[data-mode="valley"] .panel>div:first-child { display:none; }
+  body[data-mode="valley"] .panel { gap:3px; padding:6px; }
+  body[data-mode="valley"] .hint { min-height:40px; }
+  body[data-mode="puzzles"] .hint { min-height:0; margin:3px 0; font-size:11px; padding:4px; }
+  body[data-mode="puzzles"] .panel { gap:3px; }
+  body[data-mode="puzzles"] .brief { font-size:11px; }
+  body[data-mode="puzzles"] .progress-row { min-height:14px; }
+  .puzzle-top .text-btn { max-width:65px; font-size:10px; }
+  .mixed-message { font-size:13px; min-height:40px; margin:3px 0; }
+  .find-list li { font-size:11px; padding:2px 5px; }
+  .find-list { gap:2px; }
+  .found-counter { font-size:22px; margin:3px 0; }
+  .teacher-note { font-size:10px; margin:3px 0; }
+}
+@media (max-width:560px) {
+  body { overflow:auto; height:auto; min-height:100vh; }
+  header { padding:7px 10px; gap:5px; }
+  h1 { width:100%; font-size:25px; margin-bottom:2px; }
+  h1 small { display:block; font-size:11px; }
+  .seg { width:100%; }
+  .seg button { flex:1; }
+  .icon-btn { flex:1; min-width:44px; }
+  main { display:flex; flex-direction:column; overflow:visible; }
+  .stage { height:358px; flex:none; padding:7px 11px; order:0; }
+  .panel { order:1; }
+  .stage-head { font-size:10px; }
+  .empty-note { top:7%; width:70%; font-size:16px; line-height:1.15; }
+  .empty-note small { font-size:11px; line-height:1.2; margin-top:5px; }
+  .empty-note .opening-line { display:none; }
+  .side-wrap { min-height:62px; height:62px; }
+  .side-head { font-size:10px; top:3px; }
+  .side-summary { font-size:10px; top:18px; }
+  .horizon span { font-size:10px; top:-21px; right:3px; }
+  .toolbar { gap:3px; }
+  .toolbar button { font-size:11px; padding:0 5px; }
+  .toolbar .fade-btn { min-width:87px; }
+  .panel { border-left:0; border-top:3px solid #9fad8b; padding:9px 11px; overflow:visible; gap:5px; }
+  .panel h2 { font-size:20px; }
+  body[data-mode="valley"] .panel>div:first-child { display:none; }
+  body[data-mode="valley"] .panel { gap:3px; }
+  .eyebrow { display:none; }
+  .hint { min-height:49px; font-size:13px; padding:6px 8px; }
+  .shelf { grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; }
+  .shelf button { min-height:51px; font-size:10px; padding:1px; gap:0; border-bottom-width:2px; }
+  .shelf img { height:33px; }
+  .readout { min-height:48px; padding:5px 8px; }
+  .readout strong { display:inline; margin-right:5px; }
+  .scene-setting { display:block; }
+  .valley-options { display:flex; align-items:center; gap:8px; }
+  .valley-options .paper-btn { margin-left:auto; }
+  .setting { min-height:44px; font-size:12px; }
+  .brief { font-size:13px; }
+  .goals { gap:3px; }
+  .goals li { font-size:12px; padding:4px 7px; }
+  .mixed-stage { inset:5px 8px; }
+  .caption { font-size:10px; }
+  .mixed-message { font-size:14px; min-height:40px; }
+  .found-counter { font-size:24px; }
+  .find-list li { font-size:12px; }
+  h1 { width:auto; min-width:140px; flex:1; font-size:22px; margin:0; }
+  h1 small { font-size:10px; }
+  .seg { order:2; }
+  .icon-btn { order:1; flex:none; padding:0 4px; font-size:10px; min-width:44px; }
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="fade-soft" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values=".4 0 0 0 .5106 0 .4 0 0 .5412 0 0 .4 0 .56 0 0 0 1 0"/>
+      <feGaussianBlur stdDeviation=".45"/>
+    </filter>
+    <filter id="fade-misty" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values=".15 0 0 0 .7233 0 .15 0 0 .7667 0 0 .15 0 .7933 0 0 0 1 0"/>
+      <feGaussianBlur stdDeviation=".9"/>
+    </filter>
+  </defs>
+</svg>
+<header>
+  <h1>Near and Far<small>perspective and space in art</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-valley" data-mode="valley" aria-pressed="true">Valley</button>
+    <button id="m-puzzles" data-mode="puzzles" aria-pressed="false">Puzzles</button>
+    <button id="m-mixed" data-mode="mixed" aria-pressed="false">Mixed-Up Picture</button>
+  </div>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+</header>
+<main>
+  <!-- Panel comes first in keyboard order, while CSS keeps the postcard on the left. -->
+  <aside class="panel" id="panel" style="grid-column:2;grid-row:1">
+    <div><p class="eyebrow">THE LOOKOUT NOTEBOOK</p><h2 id="panel-title">Make a little distance.</h2></div>
+    <div id="puzzle-panel" hidden>
+      <div class="puzzle-top">
+        <select id="puzzle-list" aria-label="Choose postcard"></select>
+        <button class="text-btn" id="clear-progress">Clear progress</button>
+      </div>
+      <p class="brief" id="brief"></p>
+      <ul class="goals" id="goals"></ul>
+      <div class="solved-line" id="solved-line" aria-live="polite"></div>
+      <div class="puzzle-nav">
+        <button class="paper-btn" id="previous">Previous</button>
+        <button class="paper-btn primary" id="next">Next postcard</button>
+        <button class="paper-btn" id="restart">Start over</button>
+        <button class="paper-btn" id="puzzle-hint">Hint</button>
+      </div>
+      <div class="progress-row"><span id="progress"></span></div>
+    </div>
+    <p class="hint" id="hint" aria-live="polite">Tap a picture on the shelf to put it in the valley.</p>
+    <div id="valley-panel">
+      <div class="shelf" id="shelf" role="group" aria-label="Object shelf"></div>
+      <div class="valley-options">
+        <label class="setting"><input id="horizon-toggle" type="checkbox" checked>Show horizon</label>
+        <button class="paper-btn" id="clear-valley">Clear valley</button>
+      </div>
+    </div>
+    <div class="readout" id="readout"><strong>Your valley, your choices.</strong>Try a cow first. It is as tall as your eyes.</div>
+    <div id="mixed-panel" hidden>
+      <div class="found-counter" id="found-counter">Found 0 of 8</div>
+      <div class="cue-icons"><span>↕ Size</span><span>▧ Overlap</span><span>⌖ Place</span></div>
+      <p class="teacher-note">Hogarth made this in 1754 for a book that taught perspective.</p>
+      <div class="panel-actions">
+        <button class="paper-btn primary" id="show-one">Show me one</button>
+        <button class="paper-btn" id="whole">Whole picture</button>
+      </div>
+      <p class="mixed-message" id="mixed-message">Tap something on the print that looks wrong.</p>
+      <ul class="find-list" id="find-list"></ul>
+    </div>
+    <p class="privacy">Your valley and solved postcards stay on this device. Nothing leaves it.</p>
+  </aside>
+  <section class="stage" id="stage" style="grid-column:1;grid-row:1" aria-label="Valley postcard and side view">
+    <div class="stage-head" id="stage-head"><span id="post-title">A POSTCARD FROM YOUR VALLEY</span><span id="post-status">MAKE IT LOOK DEEP</span></div>
+    <div class="post-space" id="post-space">
+      <div class="postcard" id="postcard" aria-label="Perspective postcard">
+        <img class="landscape" src="art:valley" alt="Empty green meadow with a blue lake on the right and a low, straight horizon">
+        <div class="sky-life"></div>
+        <div id="objects"></div>
+        <div class="horizon" id="horizon"><span>horizon: your eye level</span></div>
+        <div class="empty-note" id="empty-note"><span class="opening-line">A whole valley.<br></span>
+          A little imagination.<small>Pick a picture from the shelf →</small></div>
+        <div class="target" id="target" hidden></div>
+        <button class="handle" id="handle" aria-label="Resize selected object. Drag the corner or use plus and minus." hidden></button>
+        <div class="selection-tag" id="selection-tag" hidden></div>
+        <div class="wipe" id="wipe" hidden></div>
+        <button class="paper-btn gold" id="compare" hidden>Before and after</button>
+      </div>
+    </div>
+    <div class="toolbar" id="toolbar" role="group" aria-label="Selected object controls">
+      <button id="smaller" aria-label="Make selected object smaller">−</button>
+      <button id="larger" aria-label="Make selected object larger">+</button>
+      <button id="front">Front</button>
+      <button id="back">Back</button>
+      <button class="fade-btn" id="fade">Fade: crisp</button>
+      <button id="remove">Remove</button>
+    </div>
+    <div class="side-wrap" id="side-wrap">
+      <div class="side-head">SIDE VIEW · NEAR → FAR</div>
+      <div class="side-summary" id="side-summary">Place a picture. See what its depth cues say.</div>
+      <svg id="side" role="img" aria-label="Side view of the depth your picture tells"></svg>
+    </div>
+    <div class="mixed-stage" id="mixed-stage" hidden>
+      <div class="print-space" id="print-space"><div class="print-frame" id="print-frame" tabindex="0" role="button"
+        aria-label="Hogarth print. Tap a mistake, or use Show me one.">
+        <img id="print" src="art:pd-met-365241"
+          alt="Hogarth's deliberately mixed-up perspective: impossible sizes, overlapping trees, fishing lines and a barrel">
+        <div class="dim" id="dim"></div><div id="found-markers"></div>
+      </div></div>
+      <p class="caption">Hogarth drew this on purpose to be full of depth mistakes.<br>
+        Luke Sullivan after William Hogarth · 1754 · The Met · Public domain</p>
+    </div>
+  </section>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const ART = {
+    pine:'art:pine', oak:'art:oak', barn:'art:barn', mill:'art:mill', hay:'art:hay', cow:'art:cow',
+    fox:'art:fox', post:'art:post', boat:'art:boat', balloon:'art:balloon', hill:'art:hills'
+  };
+  const TYPES = {
+    pine:{name:'pine tree', R:12, z:0, aspect:.55}, oak:{name:'round tree', R:9, z:0, aspect:.91},
+    barn:{name:'barn', R:8, z:0, aspect:1.11}, mill:{name:'windmill', R:16, z:0, aspect:.70},
+    hay:{name:'haystack', R:2.5, z:0, aspect:1.70}, cow:{name:'cow', R:1.5, z:0, aspect:1.48},
+    fox:{name:'fox', R:.6, z:0, aspect:1.23}, post:{name:'fence post', R:1.5, z:0, aspect:.47},
+    boat:{name:'sailboat', R:6, z:0, aspect:.62}, balloon:{name:'hot air balloon', R:18, z:40, aspect:.59},
+    hill:{name:'far hills', R:300, z:0, aspect:8.66}
+  };
+  const PUZZLES = [
+    {name:'Two Trees', brief:'One pine is near you. One pine is far away.', types:['pine','pine'],
+      goals:['Both trees are solid.','One closer than 40 m; one farther than 100 m.'],
+      hints:['Make size and place agree for both trees.','Far things are smaller and closer to the horizon.']},
+    {name:'Fence Line', brief:'Make the fence run back into the distance.', types:Array(5).fill('post'),
+      goals:['All five posts are solid.','Each post is farther than the one to its left.'],
+      hints:['Each post is as tall as your eyes. Its top touches the horizon.','Make each post to the right smaller and higher.']},
+    {name:'Who Is in Front', brief:'The haystack is in front of the barn.', types:['barn','hay'],
+      goals:['Both objects are solid.','The haystack overlaps the barn.','Haystack covers the barn and is closer.'],
+      hints:['Move and size both until the Side View shows solid.','Move the haystack across part of the barn.','Tap the haystack, then Front.']},
+    {name:'Cow Parade', brief:'Three cows: one near, one in the middle, one far.', types:['cow','cow','cow'],
+      goals:['All three cows are solid.','One under 15 m, one 30 to 80 m, one over 150 m.'],
+      hints:["The cow's back touches the horizon wherever she stands.",'Make one big, one medium and one tiny. Move their backs to the horizon.']},
+    {name:'Barnyard', brief:'The fox is closest. The windmill is farthest. The round tree is in front of the barn.',
+      types:['fox','oak','barn','mill'], goals:['All four objects are solid.','Fox, tree, barn, windmill: near to far.',
+        'The tree overlaps and covers the barn.'],
+      hints:['Each kind of object has its own height in this valley.','Use the Side View to compare distances.',
+        'Move the tree over part of the barn. Tap the tree, then Front.']},
+    {name:'Misty Hills', brief:'The hills are far. The pine is near. Make the far things misty.', types:['hill','pine','barn'],
+      goals:['All are solid; hills meet the horizon.','Hills far, pine near; fade matches each distance.'],
+      hints:['Move the TOP of the hills to the horizon. Size the pine and barn to match their place.',
+        'Tap Fade: crisp under 40 m, soft 40 to 150 m, misty beyond 150 m.']},
+    {name:'On the Lake', brief:'A sailboat is far out on the lake. Another is near the shore.', types:['boat','boat'],
+      goals:['Both boats are solid and on the lake.','One under 30 m; one over 150 m.'],
+      hints:['Drag a boat. It stays on the water. Size it to match its place.','A far boat is small and very close to the horizon.']},
+    {name:'Up in the Air', brief:'All the balloons fly at the same height. Put one near and one far.',
+      types:['balloon','balloon','balloon'], goals:['All three balloons are solid.','One closer than 250 m; one farther than 600 m.'],
+      hints:['All baskets fly 40 m above the ground. Size and place must agree.',
+        'Up in the sky, far things are lower, closer to the horizon.']}
+  ];
+  const FINDS = [
+    {x:.278,y:.698,r:.105,cue:'size',text:'These sheep get bigger as they go farther away.'},
+    {x:.408,y:.275,r:.054,cue:'size',text:'This bird is huge next to the tree it sits on.'},
+    {x:.642,y:.223,r:.050,cue:'size',text:'The man on the far hill is taller than the trees.'},
+    {x:.380,y:.625,r:.055,cue:'size',text:'The swan is bigger than the men in the boat.'},
+    {x:.564,y:.320,r:.054,cue:'overlap',text:'The far trees are in front of the near sign.'},
+    {x:.582,y:.528,r:.057,cue:'overlap',text:"The near fisherman's line goes behind the far fisherman's line."},
+    {x:.688,y:.224,r:.040,cue:'place',text:'The woman in a near window holds a candle up to a man on a far hill.'},
+    {x:.743,y:.715,r:.081,cue:'place',text:'You can see the top and the bottom of this barrel at once.'}
+  ];
+  const L = {
+    welcomeValley:'Welcome to the lookout. Tap a picture on the shelf to put it in the valley.',
+    dragHow:'Drag it to move it. Pull the round corner to make it bigger or smaller.',
+    sideHow:'Look at the side view. It shows how far away your picture says it is.',
+    ghost:"Size and place don't agree yet. Drag it up or down, or pull the round corner.",
+    solid:'Solid. Now they agree.',
+    welcomePuzzles:"Read the postcard's note. Drag and size things until every goal has a tick.",
+    frontHow:'Tap the haystack, then tap Front.',
+    fadeHow:'Tap the hills, then tap Fade until they look misty.',
+    solved:"It looks deep now. Tap Next postcard when you're ready.",
+    welcomeMixed:'Hogarth drew this picture full of mistakes on purpose. Tap something that looks wrong.',
+    miss:'Look again. Try something that is too big or too small.',
+    allFound:'You found all eight. Every one breaks a rule of near and far.',
+    mixedNext:'Tap another mistake, or tap Whole picture to look again.',
+    clear:'The valley is empty. Tap a picture on the shelf to begin again.',
+    overlap:'These pictures overlap. Tap Front or Back so the closer object covers the farther one.',
+    finishedMixed:'You found every mistake. Tap a marked spot to look again, or choose Valley or Puzzles.',
+    readHints:[
+      'Drag it again, or use Front, Back and Fade to change its depth cues.',
+      'Drag another object, or use Front, Back and Fade.',
+      'Almost. A little higher.',
+      'Almost. A little lower.',
+      'Drag to move it. Pull the round corner to change its size.',
+      'Tap another picture on the shelf to add it.',
+      'Progress cleared. Drag and size the pictures, or choose another postcard.',
+      'Drag a cow so its back meets the horizon.',
+      'Drag or size an object. Tap Show horizon to see your eye level again.',
+      'Your flat start becomes your deep postcard. Tap Before and after to look again.',
+      'Tap a mistake on the print, or tap Show me one.',
+      'Tap another mistake on the print, or tap Show me one.',
+      'Tap something too big or too small, or tap Show me one.'
+    ],
+    briefs:PUZZLES.map(p=>p.brief), hints:PUZZLES.flatMap(p=>p.hints), finds:FINDS.map(f=>f.text)
+  };
+  const state = {mode:'valley', puzzle:0, valley:[], puzzles:[], selected:null, solved:[], found:[], zoom:-1,
+    horizon:true, drag:null, comparison:false, status:'', hintGoal:0};
+  let serial = 0;
+  let cardW = 800;
+  let cardH = 500;
+  let actionSerial = 0;
+  let initialized = false;
+  let wipeAnimation = null;
+  const solidSaid = new Set();
+  const nodes = new Map();
+  const FADE = ['crisp','soft','misty'];
+  const V = Curio.voice({
+    lines:L, scope:()=>state.mode+':'+state.puzzle, hint:false, read:()=>$('hint').textContent,
+    welcome:()=>state.mode === 'valley' ? (!state.valley.length ? ['welcomeValley',{valid:()=>!state.valley.length}] : null)
+      : state.mode === 'puzzles' ? ['welcomePuzzles',{valid:()=>!state.drag}]
+      : ['welcomeMixed',{valid:()=>state.found.length===0}], speaks:'.shelf button,#show-one,#print-frame'
+  });
+  function hint(text) { $('hint').textContent = L[text] || text; }
+  function speak(key, kind='event', valid=()=>true) {
+    return kind === 'how' ? V.how(key,{valid,hint:false}) : V.say(key,{valid,hint:false});
+  }
+  function readSaved(key,fallback) {
+    try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; }
+  }
+  const savedValley = readSaved('near-and-far-valley',[]);
+  if (Array.isArray(savedValley)) {
+    state.valley = savedValley.filter(o=>TYPES[o.type] && ['x','yb','h'].every(k=>Number.isFinite(o[k])))
+      .slice(0,40).map(o=>({...o,id:++serial,fade:Math.max(0,Math.min(2,Math.round(o.fade||0)))}));
+  }
+  const savedSolved = readSaved('near-and-far-solved',[]);
+  state.solved = Array.isArray(savedSolved) ? savedSolved.filter(i=>Number.isInteger(i)&&i>=0&&i<8) : [];
+  function save() {
+    try {
+      if (state.mode === 'valley' && state.valley.length) {
+        localStorage.setItem('near-and-far-valley',JSON.stringify(state.valley));
+      }
+      if (state.solved.length) localStorage.setItem('near-and-far-solved',JSON.stringify(state.solved));
+    } catch {}
+  }
+  const list = ()=>state.mode === 'puzzles' ? state.puzzles[state.puzzle].objects : state.valley;
+  const selected = ()=>list().find(o=>o.id===state.selected);
+  const clamp = (v,a,b)=>Math.max(a,Math.min(b,v));
+  const round = d=>Math.round(d)+' m';
+  // A fixed 16:10 camera: focal length / postcard height = .9 * 1.6 = 1.44.
+  function project(type,d,x=.4) {
+    const t = TYPES[type];
+    return {id:++serial,type,x,yb:.42+1.44*(1.5-t.z)/d,h:1.44*t.R/d,fade:0};
+  }
+  function cues(o) {
+    const t = TYPES[o.type];
+    const ds = 1.44*t.R/o.h;
+    const hill = o.type === 'hill';
+    const dp = hill ? 2.16/Math.max(.00216,o.yb-o.h-.42) : 1.44*(1.5-t.z)/(o.yb-.42);
+    const solid = hill ? Math.abs(o.yb-o.h-.42)<=.02 : dp>0 && ds>0 && Math.max(dp,ds)/Math.min(dp,ds)<=1.25;
+    return {dp:clamp(dp,4,1000),ds:clamp(ds,4,1000),d:hill?clamp(dp,4,1000):(clamp(dp,4,1000)+clamp(ds,4,1000))/2,solid};
+  }
+  function box(o) {
+    const width = o.h*TYPES[o.type].aspect/1.6;
+    return {l:o.x-width/2,r:o.x+width/2,t:o.yb-o.h,b:o.yb,w:width,h:o.h};
+  }
+  function overlap(a,b) {
+    const A=box(a), B=box(b);
+    const area=Math.max(0,Math.min(A.r,B.r)-Math.max(A.l,B.l))*Math.max(0,Math.min(A.b,B.b)-Math.max(A.t,B.t));
+    return area/Math.min(A.w*A.h,B.w*B.h)>=.1;
+  }
+  function conflicts() {
+    const out=[];
+    const objects=list();
+    for (let i=0;i<objects.length;i++) for (let j=i+1;j<objects.length;j++) {
+      if (overlap(objects[i],objects[j]) && cues(objects[j]).d>=cues(objects[i]).d) out.push([objects[i],objects[j]]);
+    }
+    return out;
+  }
+  // Painted shoreline traced after the generated valley was inspected, including its 2.35% vertical offset.
+  const lake = [[.767,.42],[1,.42],[1,1],[.63,1],[.657,.85],[.665,.67],[.688,.54],[.712,.48]];
+  function lakeLeft(y) {
+    const edge = [[.42,.767],[.48,.712],[.54,.688],[.67,.665],[.85,.657],[1,.63]];
+    for(let i=1;i<edge.length;i++) {
+      if(y<=edge[i][0]) {
+        const a=edge[i-1],b=edge[i],t=(y-a[0])/(b[0]-a[0]);
+        return a[1]+(b[1]-a[1])*t;
+      }
+    }
+    return .63;
+  }
+  function onLake(o) { return o.yb>=.42 && o.yb<=1 && o.x>=lakeLeft(o.yb) && o.x<=1; }
+  function overlapWords(pair) {
+    if(Math.abs(cues(pair[0]).d-cues(pair[1]).d)<.001) return 'These overlap at the same distance.';
+    return TYPES[pair[1].type].name+' covers '+TYPES[pair[0].type].name+', but is farther.';
+  }
+  function constrain(o,from='move') {
+    const t=TYPES[o.type];
+    state.status='';
+    const minH=o.type==='hill'?2/cardH:Math.max(2/cardH,1.44*t.R/1000);
+    if(o.h<minH) state.status='Too far to see.';
+    o.h=clamp(o.h,minH,o.type==='hill'?.9:Math.min(.9,1.44*t.R/4));
+    o.x=clamp(o.x,.025,.975);
+    const low=t.z ? .42+1.44*(1.5-t.z)/4 : .42+Math.max(1/cardH,1.44*1.5/1000);
+    const high=t.z ? .42+1.44*(1.5-t.z)/1000 : Math.min(.99,.42+1.44*1.5/4);
+    if((t.z===0 && o.yb<=.42)||(t.z>0 && o.yb>=.42)) state.status='That is past the horizon.';
+    if((t.z===0 && o.yb<low)||(t.z>0 && o.yb>high)) state.status='Too far to see.';
+    o.yb=clamp(o.yb,low,high);
+    if(o.type==='boat') o.x=clamp(o.x,lakeLeft(o.yb)+.012,.975);
+  }
+  function flatPuzzle(i) {
+    const p=PUZZLES[i];
+    const objects=p.types.map((type,k)=>({id:++serial,type,x:.17+.66*k/Math.max(1,p.types.length-1),yb:.72,h:.18,fade:0}));
+    if(i===7) objects.forEach(o=>o.yb=.30);
+    // Boats start in a flat row within the water; near and far still have to be made.
+    if(i===6) objects.forEach((o,k)=>o.x=.76+k*.17);
+    return {objects,before:JSON.parse(JSON.stringify(objects)),achieved:false};
+  }
+  state.puzzles=PUZZLES.map((_,i)=>flatPuzzle(i));
+  function goalsFor(i=state.puzzle) {
+    const a=state.puzzles[i].objects;
+    const c=a.map(cues), d=c.map(v=>v.d), solid=c.every(v=>v.solid);
+    if(i===0) return [solid,Math.min(...d)<40 && Math.max(...d)>100];
+    if(i===1) {
+      const ordered=a.slice().sort((x,y)=>x.x-y.x);
+      return [solid,ordered.every((o,k)=>!k||(o.x>ordered[k-1].x&&cues(o).d>cues(ordered[k-1]).d))];
+    }
+    if(i===2) return [solid,overlap(a[0],a[1]),overlap(a[0],a[1]) && a.findIndex(o=>o.type==='hay')>a.findIndex(o=>o.type==='barn') &&
+      cues(a.find(o=>o.type==='hay')).d<cues(a.find(o=>o.type==='barn')).d];
+    if(i===3) return [solid,d.some(v=>v<15)&&d.some(v=>v>=30&&v<=80)&&d.some(v=>v>150)];
+    if(i===4) {
+      const get=t=>a.find(o=>o.type===t), dist=t=>cues(get(t)).d;
+      return [solid,dist('fox')<dist('oak')&&dist('oak')<dist('barn')&&dist('barn')<dist('mill'),
+        overlap(get('oak'),get('barn')) && a.indexOf(get('oak'))>a.indexOf(get('barn'))];
+    }
+    if(i===5) return [solid,cues(a.find(o=>o.type==='hill')).d>150 && cues(a.find(o=>o.type==='pine')).d<40 &&
+      a.every(o=>o.fade===(cues(o).d<40?0:cues(o).d<=150?1:2))];
+    if(i===6) return [solid&&a.every(onLake),Math.min(...d)<30&&Math.max(...d)>150];
+    return [solid,Math.min(...d)<250&&Math.max(...d)>600];
+  }
+  function selectObject(id,announce=false) {
+    stopWipe();
+    if(state.selected!==id) {
+      if(V.playing===L.dragHow) V.dropQueued(); else V.hush();
+      state.selected=id;
+    }
+    hint(L.dragHow);
+    if(announce) speak('dragHow','how',()=>state.selected===id&&!state.drag);
+    render();
+  }
+  function addObject(type,x,y) {
+    if(state.mode!=='valley') return;
+    stopWipe();
+    if(V.playing===L.dragHow) V.dropQueued(); else V.hush();
+    const d=type==='balloon'?320:type==='hill'?450: type==='pine'||type==='mill'?65:40;
+    const o=project(type,d,x ?? (type==='boat'?.82:.35+Math.random()*.22));
+    if(type==='hill') { o.h=.06; o.yb=.48; o.x=.5; }
+    if(y!==undefined) o.yb=y;
+    constrain(o);
+    state.valley.push(o);
+    state.selected=o.id;
+    actionSerial++;
+    hint('dragHow');
+    speak('dragHow','how',()=>state.selected===o.id&&!state.drag);
+    Curio.tone(390,.13,.05,'sine');
+    render();
+    save();
+  }
+  function createObjectNode(o) {
+    const el=document.createElement('button');
+    el.className='object';
+    el.dataset.id=o.id;
+    el.setAttribute('aria-label',TYPES[o.type].name+'. Arrow keys move. Plus and minus resize. F front, B back, M fade.');
+    const img=document.createElement('img');
+    img.src=ART[o.type];
+    img.alt='';
+    img.draggable=false;
+    el.appendChild(img);
+    el.addEventListener('pointerdown',e=>startDrag(e,o.id,false));
+    el.addEventListener('click',()=>{
+      if(el.dataset.dragged==='yes') { delete el.dataset.dragged; return; }
+      selectObject(o.id,true);
+    });
+    el.addEventListener('focus',()=>{ if(state.selected!==o.id) selectObject(o.id); });
+    el.addEventListener('keydown',e=>objectKey(e,o.id));
+    $('objects').appendChild(el);
+    nodes.set(o.id,el);
+    return el;
+  }
+  function drawObjects() {
+    const objects=list();
+    const ids=new Set(objects.map(o=>o.id));
+    for(const [id,node] of nodes) if(!ids.has(id)) { node.remove(); nodes.delete(id); }
+    objects.forEach((o,i)=>{
+      const b=box(o), h=o.h*cardH, w=b.w*cardW;
+      const visibleTop=Math.max(0,b.t*cardH),visibleBottom=Math.min(cardH,o.yb*cardH);
+      const visibleH=Math.max(0,visibleBottom-visibleTop);
+      const hitH=Math.max(44,visibleH),hitW=Math.max(44,w);
+      const left=clamp(o.x*cardW-hitW/2,0,Math.max(0,cardW-hitW));
+      const top=clamp((visibleTop+visibleBottom)/2-hitH/2,0,Math.max(0,cardH-hitH));
+      const el=nodes.get(o.id)||createObjectNode(o);
+      Object.assign(el.style,{left:left+'px',top:top+'px',width:hitW+'px',height:hitH+'px',zIndex:i+2});
+      el.classList.toggle('selected',state.selected===o.id);
+      const img=el.firstChild;
+      Object.assign(img.style,{width:w+'px',height:h+'px',left:(b.l*cardW-left)+'px',top:(b.t*cardH-top)+'px',
+        opacity:'1',filter:o.fade?'url(#fade-'+(o.fade===1?'soft':'misty')+')':'drop-shadow(0 2px 1px #26371b24)'});
+    });
+    $('empty-note').hidden=objects.length>0;
+    const o=selected();
+    $('handle').hidden=!o;
+    $('selection-tag').hidden=!o;
+    if(o) {
+      const b=box(o);
+      const hit=nodes.get(o.id);
+      const hitLeft=parseFloat(hit.style.left),hitTop=parseFloat(hit.style.top),hitWidth=parseFloat(hit.style.width);
+      let hx=hitLeft+hitWidth+3;
+      if(hx+44>cardW) hx=hitLeft-47;
+      const hy=hx<0?Math.max(0,hitTop-44):clamp(hitTop,0,cardH-44);
+      if(hx<0) hx=clamp(b.r*cardW-22,0,cardW-44);
+      $('handle').style.left=hx+'px';
+      $('handle').style.top=hy+'px';
+      $('selection-tag').textContent=TYPES[o.type].name+' · '+FADE[o.fade];
+    }
+    for(const id of ['smaller','larger','front','back','fade']) $(id).disabled=!o;
+    $('remove').hidden=state.mode!=='valley';
+    $('remove').disabled=!o;
+    $('fade').textContent='Fade: '+(o?FADE[o.fade]:'crisp');
+    $('horizon').hidden=!state.horizon;
+    placeHorizonLabel();
+  }
+  function placeHorizonLabel() {
+    const label=$('horizon').firstElementChild;
+    const width=label.offsetWidth,height=label.offsetHeight;
+    if(!state.horizon||!width) return;
+    const blockers=[...nodes.values(),...(!$('handle').hidden?[$('handle')]:[])].map(el=>({
+      l:parseFloat(el.style.left),t:parseFloat(el.style.top),w:el.offsetWidth,h:el.offsetHeight
+    }));
+    for(const dy of [-25,-50,5,-75]) {
+      const y=.42*cardH+dy;
+      if(y<3||y+height>cardH-3) continue;
+      const candidates=[cardW-width-8,8,(cardW-width)/2];
+      for(let x=8;x+width<cardW-8;x+=12) candidates.push(x);
+      for(const x of candidates) {
+        if(x<3||x+width>cardW-3) continue;
+        if(blockers.every(b=>x+width<b.l-3||x>b.l+b.w+3||y+height<b.t-3||y>b.t+b.h+3)) {
+          label.style.left=x+'px';
+          label.style.right='auto';
+          label.style.top=dy+'px';
+          return;
+        }
+      }
+    }
+  }
+  function drawReadout() {
+    const o=selected();
+    if(!o) {
+      $('readout').innerHTML='<strong>Your valley, your choices.</strong>Try a cow first. It is as tall as your eyes.';
+      return;
+    }
+    const t=TYPES[o.type], c=cues(o);
+    let message=o.type==='hill' ? (c.solid?'The hill band meets the horizon. Solid.':'Move the top of the hill band to the horizon.')
+      : 'Place says '+round(c.dp)+'. Size says '+round(c.ds)+'. '+(c.solid?'✓ Solid.':'Two different distances.');
+    const badOverlap=conflicts().find(pair=>pair.includes(o));
+    if(badOverlap) message+=' '+overlapWords(badOverlap);
+    const expectedFade=c.d<40?0:c.d<=150?1:2;
+    if((state.mode==='valley'||state.puzzle===5)&&o.fade!==expectedFade) {
+      message+=' Try '+FADE[expectedFade]+' fade here.';
+    }
+    if(state.status) message=state.status+' '+message;
+    const settingName=o.type==='hill'?'far hills are':'a '+t.name+' is';
+    $('readout').innerHTML='<strong>'+t.name+'</strong>'+message+
+      '<div class="scene-setting">In this valley, '+settingName+' '+t.R+' m tall.'+(t.z?' Basket bottom: 40 m up.':'')+'</div>';
+  }
+  function drawSide() {
+    const W=$('side').clientWidth,H=$('side').clientHeight;
+    if(!W||!H) return;
+    const base=H-19;
+    const sx=d=>45+Math.log(clamp(d,4,1000)/4)/Math.log(250)*(W-68);
+    const maxHeight=Math.max(3,...list().filter(o=>o.type!=='hill').map(o=>TYPES[o.type].R+TYPES[o.type].z));
+    const heightScale=Math.max(10,H-65)/maxHeight;
+    const sy=h=>base-h*heightScale;
+    const eyeY=sy(1.5);
+    const defs='<defs><linearGradient id="ground-fill" x2="0" y2="1"><stop stop-color="#dce8ca"/>'+
+      '<stop offset="1" stop-color="#bfceaa"/></linearGradient></defs>';
+    let svg=defs+'<path d="M0 '+base+'H'+W+'V'+H+'H0Z" fill="url(#ground-fill)"/>'+
+      '<line x1="26" y1="'+base+'" x2="'+W+'" y2="'+base+'" stroke="#71855d"/>'+
+      '<path d="M10 '+eyeY+'Q20 '+(eyeY-6)+' 30 '+eyeY+'Q20 '+(eyeY+6)+' 10 '+eyeY+'Z" fill="#fff" stroke="#476147"/>'+
+      '<circle cx="20" cy="'+eyeY+'" r="2.5" fill="#2e6440"/>';
+    for(const d of [5,20,100,500]) svg+='<line x1="'+sx(d)+'" y1="'+base+'" x2="'+sx(d)+'" y2="'+(base+4)+'" stroke="#476147"/>'+
+      '<text x="'+sx(d)+'" y="'+(H-5)+'" text-anchor="middle" font-size="10" fill="#30432a">'+d+' m</text>';
+    const conflict=conflicts();
+    const labels=[];
+    const sideObstacles=[];
+    list().forEach((o,i)=>{
+      const c=cues(o),t=TYPES[o.type],size=o.type==='hill'?6:t.R*heightScale,isSel=o.id===state.selected;
+      const x=sx(c.d),bottom=sy(t.z),top=bottom-size;
+      for(const ox of (c.solid?[x]:[sx(c.dp),sx(c.ds)])) {
+        sideObstacles.push({l:ox-size*t.aspect/2,r:ox+size*t.aspect/2,t:top,b:bottom});
+      }
+      const groupOpacity=isSel?'1':'.65';
+      if(c.solid) {
+        svg+='<path d="M20 '+eyeY+'L'+x+' '+top+'M20 '+eyeY+'L'+x+' '+bottom+'" stroke="#a4b799" stroke-width=".7"/>'+
+          '<g data-side-object="'+o.id+'" data-x="'+x+'" opacity="'+groupOpacity+'">'+
+          '<image href="'+ART[o.type]+'" x="'+(x-size*t.aspect/2)+'" y="'+top+'" width="'+(size*t.aspect)+'" height="'+size+'"/>'+
+          '<text x="'+x+'" y="'+Math.max(H<110?base-1:0,top-3)+
+          '" font-size="11" text-anchor="middle" fill="#29482d">✓</text></g>';
+      } else {
+        const xp=sx(c.dp),xs=sx(c.ds);
+        svg+='<g data-side-object="'+o.id+'" data-x="'+x+'" opacity="'+groupOpacity+'">'+
+          '<path d="M'+xp+' '+(base-5)+'V'+(base-12)+'H'+xs+'V'+(base-5)+'" fill="none" stroke="#795d40" stroke-dasharray="3 2"/>'+
+          [xp,xs].map(xx=>'<image href="'+ART[o.type]+'" x="'+(xx-size*t.aspect/2)+'" y="'+top+'" width="'+
+            (size*t.aspect)+'" height="'+size+'" opacity=".4"/>').join('')+'</g>';
+      }
+      if(conflict.some(pair=>pair.includes(o))) svg+='<path d="M'+(x-5)+' '+(base-5)+'l10 -10m-10 0l10 10" stroke="#8d3e1d" stroke-width="2"/>';
+      if(H>=110 && o.id!==state.selected) {
+        labels.push({x,text:t.name+', '+(c.solid?round(c.d):'size '+round(c.ds)+', place '+round(c.dp))});
+      }
+    });
+    const labelRows=[[],[],[]];
+    for(const label of labels) {
+      const width=Math.min(W-20,label.text.length*5.5+10),left=clamp(label.x-width/2,8,W-width-8);
+      const row=labelRows.findIndex((items,k)=>{
+        const y=44+k*14;
+        return items.every(([l,r])=>left+width+5<l||left>r+5)&&
+          sideObstacles.every(b=>left+width<b.l-2||left>b.r+2||y+13<b.t-2||y>b.b+2);
+      });
+      if(row<0) continue;
+      labelRows[row].push([left,left+width]);
+      const y=44+row*14;
+      svg+='<rect x="'+left+'" y="'+y+'" width="'+width+'" height="13" rx="3" fill="#fffbed" stroke="#c1cdb4"/>'+
+        '<text x="'+(left+5)+'" y="'+(y+10)+'" font-size="10" fill="#30432a">'+label.text+'</text>';
+    }
+    $('side').setAttribute('viewBox','0 0 '+W+' '+H);
+    // Retain the image groups so changing distance can slide without locking input.
+    const previous=new Map([...$('side').querySelectorAll('[data-side-object]')].map(g=>[g.dataset.sideObject,g]));
+    $('side').innerHTML=svg;
+    for(const g of $('side').querySelectorAll('[data-side-object]')) {
+      const old=previous.get(g.dataset.sideObject);
+      if(!old||Curio.reduce||state.drag) continue;
+      const dx=Number(old.dataset.x)-Number(g.dataset.x);
+      if(Math.abs(dx)>.1) g.animate([{transform:'translateX('+dx+'px)'},{transform:'translateX(0)'}],{duration:200});
+    }
+    const o=selected();
+    if(!o) $('side-summary').textContent='Place a picture. See what its depth cues say.';
+    else {
+      const c=cues(o);
+      $('side-summary').textContent=c.solid ? '✓ '+TYPES[o.type].name+', '+round(c.d)+' · solid' :
+        'Size says '+round(c.ds)+', place says '+round(c.dp)+'.';
+      const badOverlap=conflict.find(pair=>pair.includes(o));
+      if(badOverlap) $('side-summary').textContent+=' '+overlapWords(badOverlap);
+    }
+  }
+  function updateGoals() {
+    if(state.mode!=='puzzles') return;
+    const result=goalsFor();
+    [...$('goals').children].forEach((el,k)=>el.classList.toggle('met',result[k]));
+    const solved=result.every(Boolean);
+    $('postcard').classList.toggle('solved',solved);
+    $('solved-line').textContent=solved?'✓ It looks deep now.':'';
+    $('compare').hidden=!solved;
+    if(solved && !state.puzzles[state.puzzle].wasSolved) {
+      state.puzzles[state.puzzle].achieved=true;
+      if(!state.solved.includes(state.puzzle)) state.solved.push(state.puzzle);
+      const p=state.puzzle;
+      hint('solved');
+      speak('solved','event',()=>state.mode==='puzzles'&&state.puzzle===p&&goalsFor().every(Boolean));
+      Curio.yes();
+      save();
+    }
+    state.puzzles[state.puzzle].wasSolved=solved;
+    $('progress').textContent=state.solved.length+' of 8 postcards solved';
+    $('post-status').textContent=solved?'✓ DEPTH FOUND':result.filter(Boolean).length+' / '+result.length+' GOALS';
+    [...$('puzzle-list').options].forEach((o,i)=>o.textContent=(i+1)+'. '+PUZZLES[i].name+(state.solved.includes(i)?' ✓':''));
+  }
+  function render() {
+    if(state.mode==='mixed') return;
+    drawObjects();
+    drawReadout();
+    drawSide();
+    updateGoals();
+  }
+  function feedback(o) {
+    const c=cues(o),id=o.id,at=actionSerial;
+    if(c.solid && !solidSaid.has(id)) {
+      Curio.yes();
+      hint('Drag it again, or use Front, Back and Fade to change its depth cues.');
+      V.say('solid',{key:'solid:'+id,valid:()=>selected()?.id===id&&actionSerial===at,hint:false,wait:'detail'})
+        .then(result=>{ if(result.as==='spoken') solidSaid.add(id); });
+    } else if(!c.solid) {
+      hint('ghost');
+      speak('ghost','event',()=>selected()?.id===id && !cues(o).solid && actionSerial===at);
+      Curio.tone(180,.1,.04,'sine');
+    } else {
+      hint('Drag another object, or use Front, Back and Fade.');
+      if(!V.heard('sideHow')) speak('sideHow','how',()=>actionSerial===at&&!state.drag);
+    }
+    if(conflicts().some(pair=>pair.includes(o))) {
+      hint(L.overlap);
+      if(state.mode==='puzzles' && state.puzzle===2) speak('frontHow','how',()=>conflicts().length>0);
+    }
+    if(state.mode==='puzzles'&&state.puzzle===5) {
+      const hills=list().find(v=>v.type==='hill');
+      if(cues(hills).solid&&hills.fade!==2) speak('fadeHow','how',()=>hills.fade!==2);
+    }
+    updateGoals();
+    if(state.mode==='puzzles'&&goalsFor().every(Boolean)) hint('solved');
+  }
+  function point(e) {
+    const r=$('postcard').getBoundingClientRect();
+    return {x:(e.clientX-r.left)/r.width,y:(e.clientY-r.top)/r.height};
+  }
+  function startDrag(e,id,resize) {
+    if(e.button!==0) return;
+    stopWipe();
+    if(state.selected!==id) V.hush();
+    state.selected=id;
+    nodes.get(id)?.focus({preventScroll:true});
+    actionSerial++;
+    const o=selected(),p=point(e);
+    state.drag={id,resize,startX:p.x,startY:p.y,ox:o.x,oy:o.yb,oh:o.h,moved:false};
+    e.currentTarget.setPointerCapture(e.pointerId);
+    e.preventDefault();
+    render();
+  }
+  function moveDrag(e) {
+    if(!state.drag) return;
+    const drag=state.drag,o=selected(),p=point(e);
+    if(!o) return;
+    const dx=p.x-drag.startX,dy=p.y-drag.startY;
+    const moved=Math.abs(dx)+Math.abs(dy)>.002;
+    if(moved&&!drag.moved) V.hush();
+    drag.moved=drag.moved||moved;
+    if(drag.resize) o.h=drag.oh-dy+dx*1.6;
+    else { o.x=drag.ox+dx; o.yb=drag.oy+dy; }
+    constrain(o,drag.resize?'resize':'move');
+    const targetY=o.type==='hill'?.42+o.h:.42+o.h*(1.5-TYPES[o.type].z)/TYPES[o.type].R;
+    const almost=Math.abs(o.yb-targetY)<.04 && !cues(o).solid;
+    $('target').hidden=!almost;
+    if(almost) {
+      const b=box(o);
+      Object.assign($('target').style,{left:b.l*cardW+'px',top:(targetY-o.h)*cardH+'px',width:b.w*cardW+'px',height:o.h*cardH+'px'});
+      hint(o.yb>targetY?'Almost. A little higher.':'Almost. A little lower.');
+    } else hint('Drag to move it. Pull the round corner to change its size.');
+    render();
+  }
+  function endDrag() {
+    if(!state.drag) return;
+    const moved=state.drag.moved,o=selected();
+    state.drag=null;
+    $('target').hidden=true;
+    if(o && moved) {
+      const el=nodes.get(o.id);
+      if(el) el.dataset.dragged='yes';
+      const at=actionSerial;
+      if(!V.heard('sideHow')) speak('sideHow','how',()=>actionSerial===at&&!state.drag);
+      feedback(o);
+    } else if(o) { hint('dragHow'); speak('dragHow','how',()=>selected()?.id===o.id&&!state.drag); }
+    save();
+  }
+  $('handle').addEventListener('pointerdown',e=>{ const o=selected(); if(o) startDrag(e,o.id,true); });
+  addEventListener('pointermove',moveDrag);
+  addEventListener('pointerup',endDrag);
+  addEventListener('pointercancel',endDrag);
+  function edit(action) {
+    const o=selected();
+    if(!o) return;
+    stopWipe();
+    V.hush();
+    actionSerial++;
+    if(action==='front'||action==='back') {
+      const objects=list();
+      objects.splice(objects.indexOf(o),1);
+      if(action==='front') objects.push(o); else objects.unshift(o);
+      Curio.tone(action==='front'?540:320,.08,.04,'sine');
+    }
+    if(action==='fade') { o.fade=(o.fade+1)%3; Curio.tone(420-o.fade*65,.1,.04,'sine'); }
+    if(action==='smaller') o.h*=.95;
+    if(action==='larger') o.h*=1.05;
+    if(action==='remove'&&state.mode==='valley') {
+      state.valley.splice(state.valley.indexOf(o),1);
+      state.selected=null;
+      hint('Tap another picture on the shelf to add it.');
+      $('clear-valley').focus({preventScroll:true});
+      if(!state.valley.length) try { localStorage.removeItem('near-and-far-valley'); } catch {}
+      render();
+      save();
+      return;
+    }
+    constrain(o);
+    render();
+    feedback(o);
+    save();
+  }
+  function objectKey(e,id) {
+    const keys=['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','=','-','f','F','b','B','m','M','Delete'];
+    if(!keys.includes(e.key)) return;
+    e.preventDefault();
+    state.selected=id;
+    const o=selected();
+    if(['+','=','-','f','F','b','B','m','M','Delete'].includes(e.key)) {
+      const map={'+':'larger','=':'larger','-':'smaller',f:'front',b:'back',m:'fade',Delete:'remove'};
+      edit(map[e.key]||map[e.key.toLowerCase()]);
+      return;
+    }
+    stopWipe();
+    V.hush();
+    actionSerial++;
+    const step=e.shiftKey?.05:.01;
+    if(e.key==='ArrowLeft') o.x-=step;
+    if(e.key==='ArrowRight') o.x+=step;
+    if(e.key==='ArrowUp') o.yb-=step;
+    if(e.key==='ArrowDown') o.yb+=step;
+    constrain(o);
+    render();
+    feedback(o);
+    save();
+  }
+  ['smaller','larger','front','back','fade','remove'].forEach(id=>$(id).onclick=()=>edit(id));
+  $('handle').addEventListener('keydown',e=>{ if(selected()) objectKey(e,selected().id); });
+  function loadPuzzle(i) {
+    V.hush();
+    stopWipe();
+    state.puzzle=(i+8)%8;
+    state.selected=state.puzzles[state.puzzle].objects[0].id;
+    state.hintGoal=0;
+    state.status='';
+    const p=PUZZLES[state.puzzle];
+    $('puzzle-list').value=state.puzzle;
+    $('brief').textContent=p.brief;
+    $('goals').innerHTML=p.goals.map(g=>'<li>'+g+'</li>').join('');
+    $('post-title').textContent='POSTCARD '+(state.puzzle+1)+' · '+p.name.toUpperCase();
+    hint('welcomePuzzles');
+    const pi=state.puzzle;
+    if(!V.welcome()) speak(p.brief,'how',()=>state.mode==='puzzles'&&state.puzzle===pi);
+    render();
+  }
+  function setMode(m) {
+    if(initialized&&m===state.mode) return;
+    initialized=true;
+    V.hush();
+    stopWipe();
+    state.drag=null;
+    state.mode=m;
+    document.body.dataset.mode=m;
+    state.status='';
+    state.selected=m==='valley'?(state.valley[0]?.id??null):null;
+    document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===m));
+    $('valley-panel').hidden=m!=='valley';
+    $('puzzle-panel').hidden=m!=='puzzles';
+    $('mixed-panel').hidden=m!=='mixed';
+    $('mixed-stage').hidden=m!=='mixed';
+    $('compare').hidden=m!=='puzzles';
+    if(m==='puzzles') $('brief').after($('hint'));
+    else $('panel').insertBefore($('hint'),$('valley-panel'));
+    ['stage-head','post-space','toolbar','side-wrap','readout'].forEach(id=>$(id).hidden=m==='mixed');
+    $('panel-title').textContent=m==='valley'?'Make a little distance.':m==='puzzles'?'Eight little ahas.':'Something looks wrong.';
+    if(m==='puzzles') loadPuzzle(state.puzzle);
+    else if(m==='mixed') {
+      hint(state.found.length?'Tap a mistake on the print, or tap Show me one.':L.welcomeMixed);
+      updateFinds();
+      unzoom(false);
+      V.welcome();
+    } else {
+      $('post-title').textContent='A POSTCARD FROM YOUR VALLEY';
+      $('post-status').textContent='MAKE IT LOOK DEEP';
+      $('postcard').classList.remove('solved');
+      hint(state.valley.length?L.dragHow:L.welcomeValley);
+      V.welcome()||speak(state.valley.length?'dragHow':'welcomeValley','how',()=>!state.drag);
+      render();
+    }
+    fit();
+  }
+  document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>setMode(b.dataset.mode));
+  $('puzzle-list').innerHTML=PUZZLES.map((p,i)=>'<option value="'+i+'">'+(i+1)+'. '+p.name+'</option>').join('');
+  $('puzzle-list').onchange=()=>loadPuzzle(+$('puzzle-list').value);
+  $('previous').onclick=()=>loadPuzzle(state.puzzle-1);
+  $('next').onclick=()=>loadPuzzle(state.puzzle+1);
+  $('restart').onclick=()=>{
+    state.puzzles[state.puzzle]=flatPuzzle(state.puzzle);
+    loadPuzzle(state.puzzle);
+  };
+  $('puzzle-hint').onclick=()=>{
+    V.hush();
+    const p=PUZZLES[state.puzzle],g=goalsFor(),remaining=g.map((v,i)=>v?-1:i).filter(i=>i>=0);
+    const k=remaining.length?remaining[state.hintGoal++%remaining.length]:0;
+    hint(p.hints[k]);
+    speak(p.hints[k],'how',()=>state.mode==='puzzles');
+  };
+  $('clear-progress').onclick=()=>{
+    state.solved=[];
+    try { localStorage.removeItem('near-and-far-solved'); } catch {}
+    updateGoals();
+    hint('Progress cleared. Drag and size the pictures, or choose another postcard.');
+  };
+  $('clear-valley').onclick=()=>{
+    V.hush();
+    state.valley=[];
+    state.selected=null;
+    try { localStorage.removeItem('near-and-far-valley'); } catch {}
+    hint('clear');
+    speak('clear','event',()=>!state.valley.length);
+    render();
+  };
+  $('horizon-toggle').onchange=()=>{
+    state.horizon=$('horizon-toggle').checked;
+    $('horizon').hidden=!state.horizon;
+    placeHorizonLabel();
+    hint(state.horizon?'Drag a cow so its back meets the horizon.':'Drag or size an object. Tap Show horizon to see your eye level again.');
+  };
+  for(const type of Object.keys(TYPES)) {
+    const b=document.createElement('button');
+    b.id='add-'+type;
+    b.type='button';
+    b.innerHTML='<img src="'+ART[type]+'" alt="" draggable="false"><span>'+TYPES[type].name+'</span>';
+    b.setAttribute('aria-label','Add '+TYPES[type].name);
+    let start=null,preview=null,dragged=false;
+    b.onpointerdown=e=>{
+      if(e.button!==0) return;
+      start={x:e.clientX,y:e.clientY};
+      dragged=false;
+      b.setPointerCapture(e.pointerId);
+    };
+    b.onpointermove=e=>{
+      if(!start) return;
+      if(Math.hypot(e.clientX-start.x,e.clientY-start.y)<7&&!dragged) return;
+      dragged=true;
+      if(!preview) { preview=document.createElement('img'); preview.src=ART[type]; preview.className='grab-preview'; document.body.appendChild(preview); }
+      preview.style.left=e.clientX-40+'px';
+      preview.style.top=e.clientY-60+'px';
+    };
+    b.onpointerup=e=>{
+      if(dragged) {
+        const p=point(e);
+        if(p.x>=0&&p.x<=1&&p.y>=0&&p.y<=1) addObject(type,p.x,p.y);
+      }
+      start=null;
+      preview?.remove();
+      preview=null;
+    };
+    b.onpointercancel=()=>{ start=null; preview?.remove(); preview=null; dragged=false; };
+    b.onclick=()=>{ if(!dragged) addObject(type); dragged=false; };
+    $('shelf').appendChild(b);
+  }
+  function stopWipe() {
+    if(wipeAnimation) wipeAnimation.cancel();
+    wipeAnimation=null;
+    state.comparison=false;
+    $('wipe').hidden=true;
+  }
+  $('compare').onclick=()=>{
+    if(state.comparison) { stopWipe(); return; }
+    V.hush();
+    state.comparison=true;
+    const w=$('wipe');
+    w.innerHTML='<img class="landscape" src="'+$('postcard').querySelector('.landscape').src+'" alt="">'+
+      state.puzzles[state.puzzle].before.map(o=>{
+        const b=box(o);
+        return '<img class="flat-image" alt="" src="'+ART[o.type]+'" style="left:'+b.l*100+'%;top:'+b.t*100+'%;width:'+b.w*100+'%;height:'+o.h*100+'%">';
+      }).join('')+'<span class="before-label">BEFORE</span>';
+    w.hidden=false;
+    hint('Your flat start becomes your deep postcard. Tap Before and after to look again.');
+    if(Curio.reduce) { w.style.clipPath='inset(0 50% 0 0)'; return; }
+    w.style.clipPath='';
+    wipeAnimation=w.animate([{clipPath:'inset(0 0% 0 0)'},{clipPath:'inset(0 100% 0 0)'}],
+      {duration:1800,easing:'ease-in-out',fill:'forwards'});
+    wipeAnimation.onfinish=()=>{ w.hidden=true; state.comparison=false; wipeAnimation=null; };
+  };
+  function updateFinds() {
+    $('found-counter').textContent='Found '+state.found.length+' of 8';
+    $('find-list').innerHTML=state.found.map(i=>'<li>✓ '+FINDS[i].text+'</li>').join('');
+    $('found-markers').innerHTML=state.found.map(i=>'<span class="found-marker" style="left:calc('+FINDS[i].x*100+
+      '% - 11px);top:calc('+FINDS[i].y*100+'% - 11px)">✓</span>').join('');
+    $('found-markers').hidden=state.zoom>=0;
+    $('show-one').textContent=state.found.length===8?'Revisit a mistake':'Show me one';
+  }
+  function zoomTo(i) {
+    V.hush();
+    const wasZoomed=state.zoom>=0;
+    state.zoom=i;
+    const spot=FINDS[i],frame=$('print-frame'),w=frame.clientWidth,h=frame.clientHeight,z=2.4;
+    frame.classList.toggle('fast',wasZoomed||Curio.reduce);
+    const tx=clamp(w/2-spot.x*w*z,w-w*z,0),ty=clamp(h/2-spot.y*h*z,h-h*z,0);
+    $('print').style.transform='translate('+tx+'px,'+ty+'px) scale('+z+')';
+    const cx=spot.x*w*z+tx,cy=spot.y*h*z+ty;
+    placeZoomRing(cx,cy,w,h);
+    const newlyFound=!state.found.includes(i);
+    if(newlyFound) state.found.push(i);
+    $('mixed-message').textContent=spot.text+' Cue: '+spot.cue+'.';
+    hint(state.found.length===8?'finishedMixed':'mixedNext');
+    speak(spot.text,'event',()=>state.mode==='mixed'&&state.zoom===i);
+    Curio.tone(600,.11,.04,'sine');
+    updateFinds();
+    if(newlyFound&&state.found.length===8) speak('allFound','event',()=>state.mode==='mixed'&&state.found.length===8);
+  }
+  function unzoom(announce=true) {
+    V.hush();
+    state.zoom=-1;
+    $('print-frame').classList.add('fast');
+    $('print').style.transform='';
+    $('dim').style.background='';
+    $('found-markers').hidden=false;
+    if(announce) {
+      hint(state.found.length===8?'finishedMixed':'Tap another mistake on the print, or tap Show me one.');
+      $('mixed-message').textContent=state.found.length===8?
+        'Eight impossible clues, all found. Tap a check mark to revisit its mistake.':'Look at size, overlap and place. What looks impossible?';
+    }
+  }
+  $('whole').onclick=()=>unzoom();
+  $('show-one').onclick=()=>zoomTo(FINDS.findIndex((_,i)=>!state.found.includes(i))<0?0:FINDS.findIndex((_,i)=>!state.found.includes(i)));
+  $('print-frame').onclick=e=>{
+    const r=$('print-frame').getBoundingClientRect(),p={x:(e.clientX-r.left)/r.width,y:(e.clientY-r.top)/r.height};
+    let x=p.x,y=p.y;
+    if(state.zoom>=0) {
+      const s=FINDS[state.zoom],z=2.4;
+      const tx=clamp(.5-s.x*z,1-z,0),ty=clamp(.5-s.y*z,1-z,0);
+      x=(p.x-tx)/z;
+      y=(p.y-ty)/z;
+    }
+    const candidates=FINDS.map((f,i)=>({i,d:Math.hypot(x-f.x,(y-f.y)*1.22)/f.r})).filter(v=>v.d<=1.3).sort((a,b)=>a.d-b.d);
+    if(candidates.length) zoomTo(candidates[0].i);
+    else {
+      V.hush();
+      $('mixed-message').textContent=L.miss;
+      hint('Tap something too big or too small, or tap Show me one.');
+      const at=++actionSerial;
+      speak('miss','event',()=>actionSerial===at&&state.mode==='mixed');
+    }
+  };
+  $('print-frame').onkeydown=e=>{
+    if(e.key==='Enter'||e.key===' ') { e.preventDefault(); $('show-one').click(); }
+  };
+  addEventListener('keydown',e=>{ if(e.key==='Escape') { stopWipe(); if(state.mode==='mixed') unzoom(); } });
+  function placeZoomRing(cx,cy,w,h) {
+    $('dim').style.background='radial-gradient(circle at '+cx+'px '+cy+'px,transparent '+Math.min(w,h)*.19+
+      'px,#15231caa '+Math.min(w,h)*.35+'px)';
+  }
+  function fit() {
+    if(state.mode==='mixed') {
+      const space=$('print-space'),ratio=702/859;
+      const w=Math.min(space.clientWidth,space.clientHeight*ratio);
+      $('print-frame').style.width=w+'px';
+      $('print-frame').style.height=w/ratio+'px';
+      if(state.zoom>=0) {
+        const spot=FINDS[state.zoom],h=w/ratio,z=2.4;
+        $('print-frame').classList.add('fast');
+        $('print').style.transform='translate('+clamp(w/2-spot.x*w*z,w-w*z,0)+'px,'+
+          clamp(h/2-spot.y*h*z,h-h*z,0)+'px) scale('+z+')';
+        placeZoomRing(spot.x*w*z+clamp(w/2-spot.x*w*z,w-w*z,0),
+          spot.y*h*z+clamp(h/2-spot.y*h*z,h-h*z,0),w,h);
+      }
+      return;
+    }
+    const space=$('post-space');
+    cardW=Math.max(16,Math.min(space.clientWidth-18,(space.clientHeight-18)*1.6));
+    cardH=cardW/1.6;
+    $('postcard').style.width=cardW+'px';
+    $('postcard').style.height=cardH+'px';
+    render();
+  }
+  Curio.init({clips:"voice:*",rate:.9});
+  Curio.onMotion(reduce=>{
+    if(reduce) { stopWipe(); $('print-frame').classList.add('fast'); }
+  });
+  new ResizeObserver(fit).observe($('stage'));
+  for(const [type,src] of Object.entries(ART)) {
+    const im=new Image();
+    im.onload=()=>{ TYPES[type].aspect=im.naturalWidth/im.naturalHeight; render(); };
+    im.src=src;
+  }
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},TYPES,PUZZLES,FINDS,
+    project,cues,goalsFor,overlap,conflicts,loadPuzzle,render,fit,zoomTo,unzoom,addObject,selectObject,edit,
+    get card(){return {w:cardW,h:cardH};},get lake(){return lake;}};
+  setMode('valley');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1028 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Feeling Scarf Dance · Curio Class</title>
+<meta name="description" content="Build a three-part dance about a feeling. Watch a flowing scarf, dance your own version and share what you saw. K-2 dance. Offline.">
+<!--
+Feeling Scarf Dance, Curio Class. K-2, teacher led. DA:Cr2, DA:Pr6, DA:Cn10.
+Based on Gilbert (2015), Creative Dance for All Ages, and Laban-based movement qualities in the spec.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Original music synthesized by the Dance family engine. Content CC BY 4.0, code MIT.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper: #fcf6fa; --ink: #2a1626; --muted: #6a5464; --line: #dfc8da;
+  --brand: #a0197e; --btn: #851466; --btn-line: #cf77b7; --head-ink: #fff;
+  --panel: #fffafc; --focus: #164f9b; --feeling: #f2b632;
+}
+body { grid-template-rows: auto auto minmax(0, 1fr) auto; height: 100dvh; min-height: 425px; overflow: hidden; }
+button { min-width: 60px; min-height: 60px; touch-action: manipulation; }
+header { padding: 8px 18px; gap: 8px; }
+h1 { font-size: clamp(22px, 2.5vw, 32px); }
+h1 small { font-size: 14px; }
+.icon-btn { min-height: 60px; padding: 0 15px; }
+.modes { display: flex; justify-content: center; padding: 5px 12px; background: #f8e9f3; border-bottom: 1px solid var(--line); }
+.seg { border-color: #c58cb6; border-radius: 18px; }
+.seg button { min-height: 60px; background: #fff9fd; color: var(--brand); min-width: 145px; }
+.seg button[aria-pressed="true"] { background: var(--brand); color: white; }
+main { display: block; position: relative; min-height: 0; overflow: hidden; }
+.painted { background: #c2dce6 url('art:hilltop') center / cover; }
+.wash { position: absolute; inset: 0; background: var(--feeling); opacity: .25; pointer-events: none; }
+.compose { height: 100%; display: grid; grid-template-rows: 66px minmax(75px, 1fr) auto 66px; gap: 7px; padding: 10px 20px; position: relative; }
+.feeling-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; position: relative; }
+.choice { border: 2px solid #c9acc0; background: #fffaf7; border-radius: 15px; padding: 3px 8px;
+  box-shadow: 0 3px 0 #68435c30; font-weight: 750; font-size: clamp(14px, 1.4vw, 20px); }
+.choice[aria-pressed="true"] { border: 3px solid var(--brand); background: #ffedfa; box-shadow: inset 0 0 0 2px white, 0 3px 0 #68435c30; }
+.face { display: inline-block; font-size: 27px; vertical-align: middle; margin-right: 5px; }
+.strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(8px, 2vw, 25px); align-items: center;
+  width: min(1100px, 100%); justify-self: center; position: relative; }
+.part { position: relative; background: #fff9efed; border: 3px solid #c8adaf; border-radius: 23px; padding: 7px;
+  height: min(100%, 270px); min-height: 75px; display: flex; flex-direction: column; align-items: center;
+  box-shadow: 0 6px 0 #72544633, 0 12px 26px #27483920; color: var(--ink); }
+.part.active { border-color: var(--brand); box-shadow: 0 0 0 3px #fff8, 0 6px 0 #72544633; }
+.part .part-label { font: 850 clamp(16px, 2vw, 25px) 'Trebuchet MS', sans-serif; }
+.part .part-choice { font-weight: 750; font-size: clamp(14px, 1.7vw, 23px); }
+.part svg { width: 100%; flex: 1; min-height: 0; max-height: 170px; }
+.part .empty { font: 900 clamp(24px, 6vw, 72px) 'Trebuchet MS', sans-serif; color: #ad829b; flex: 1; }
+.choice-area { position: relative; border-radius: 18px; padding: 4px 10px 8px; background: #fff9f1ee; }
+.choice-title { display: block; color: var(--brand); font-size: 15px; font-weight: 800; margin: 0 0 3px 5px; }
+.options { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 7px; }
+.options.five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.options .choice { display: flex; align-items: center; justify-content: center; gap: 4px; }
+.options svg { height: 48px; width: 48px; flex: none; }
+.actions { display: flex; gap: 9px; justify-content: center; align-items: stretch; position: relative; }
+.action { border: 2px solid #c5a1b9; border-radius: 17px; padding: 8px 20px; background: #fffaf7;
+  font-size: clamp(16px, 1.8vw, 23px); font-weight: 850; box-shadow: 0 4px 0 #6b3e5f25; }
+.action.gold { background: #ffdb68; border-color: #b9812c; color: #3a2710; }
+.action[aria-pressed="true"] { background: #f3d4e9; border-color: var(--brand); }
+button:disabled { opacity: .52; cursor: default; box-shadow: none; }
+button:not(:disabled):active { translate: 0 2px; }
+.run-pane { height: 100%; display: grid; grid-template-columns: minmax(0, 1fr) 285px; }
+.performance { display: grid; grid-template-rows: minmax(0, 1fr) 34px 72px; min-height: 0; background: #fcf4ed; }
+.viewport { min-height: 0; position: relative; overflow: hidden; }
+#dance-scene { display: block; width: 100%; height: 100%; }
+.dz-floor { opacity: 0; }
+.dz-bg image { height: 100%; }
+.scene-wash { opacity: .25; pointer-events: none; }
+.feeling-badge { position: absolute; top: 12px; left: 15px; border: 2px solid #fff9; background: #fff7ebea;
+  border-radius: 20px; padding: 7px 15px; font-size: 20px; font-weight: 850; }
+.part-word { position: absolute; top: 12px; right: 18px; font: 900 clamp(30px, 5vw, 65px) 'Trebuchet MS', sans-serif;
+  color: var(--ink); text-shadow: 0 2px 0 white; background: #fff9; padding: 2px 16px; border-radius: 22px; }
+.turn .part-word { left: 0; right: 0; top: 10px; text-align: center; margin: auto; width: max-content; max-width: 96%; }
+.counts { display: block; width: 100%; height: 34px; }
+.mini-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 5px 10px; }
+.mini { display: flex; align-items: center; justify-content: center; gap: 7px; border: 2px solid #cfb6c5;
+  border-radius: 15px; background: #fffaf6; font-weight: 750; padding: 3px; }
+.mini svg { width: 40px; height: 48px; flex: none; }
+.mini span { font-size: 16px; }
+.mini b { display: block; font-size: 14px; color: var(--muted); }
+.mini.playing { border: 3px solid var(--brand); background: #f9d9ed; }
+.control-desk { padding: 14px; display: flex; flex-direction: column; gap: 10px;
+  background: linear-gradient(140deg, #fff9f0, #f5e4ef); border-left: 2px solid #d3b5c6; }
+.control-desk h2 { margin: 0; font: 850 27px 'Trebuchet MS', sans-serif; }
+.control-desk p { color: var(--muted); margin: 0; line-height: 1.4; }
+.control-desk .actions { display: grid; grid-template-columns: 1fr 1fr; }
+.control-desk .action { padding: 6px; font-size: 18px; }
+#play, #go { grid-column: 1 / -1; }
+.note { font-size: 15px; margin-top: auto !important; }
+.share { position: relative; height: 100%; display: flex; align-items: center; justify-content: center; padding: 12px; }
+.audience-card { position: relative; background: #fff8f0ee; border: 3px solid #d6b19e; border-radius: 28px;
+  box-shadow: 0 10px 0 #8a635725; width: min(900px, 100%); padding: 18px; }
+.audience-card h2 { margin: 0 0 12px; text-align: center; font: 850 clamp(23px, 3vw, 38px) 'Trebuchet MS', sans-serif; }
+.chips { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
+.chip { text-align: left; min-height: 90px; font-size: clamp(16px, 2vw, 25px); padding: 12px; }
+.chip[aria-pressed="true"] { background: #f3d7eb; border-color: var(--brand); }
+.chip .tick { display: inline-block; font-size: 28px; width: 38px; color: var(--brand); }
+footer { padding: 9px 18px; background: #fffafc; border-top: 1px solid var(--line); min-height: 57px; }
+#hint { margin: 0; min-height: 36px; display: flex; align-items: center; font-size: 17px; line-height: 1.3; color: var(--ink); }
+dialog { border: 3px solid #a77695; border-radius: 25px; width: min(900px, calc(100% - 24px)); padding: 15px;
+  background: #fff9f4; color: var(--ink); box-shadow: 0 12px 45px #3f213860; }
+dialog::backdrop { background: #311b3338; }
+.dialog-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 12px; }
+.dialog-head h2 { margin: 0; font-size: 24px; }
+dialog .options .choice { flex-direction: column; }
+dialog .options svg { height: 55px; }
+.breeze { position: absolute; left: 6%; bottom: 8%; width: 25px; height: 7px; border-radius: 50%; background: #fff6;
+  animation: drift 7s ease-in-out infinite alternate; pointer-events: none; }
+@keyframes drift { to { transform: translate(80px, -20px) rotate(15deg); } }
+.calm .breeze { animation: none !important; }
+@media (max-height: 650px) and (min-width: 601px) {
+  header { padding: 0 10px; height: 60px; }
+  h1 { font-size: 22px; }
+  h1 small { display: none; }
+  .icon-btn { padding: 0 9px; font-size: 14px; }
+  .modes { padding: 0 8px; }
+  .seg { border: 0; border-radius: 0; }
+  .seg button { min-width: 130px; }
+  .compose { gap: 3px; padding: 4px 10px; grid-template-rows: 60px minmax(65px, 1fr) 63px 60px; }
+  .part { border-radius: 15px; padding: 2px; min-height: 60px; max-height: 170px;
+    display: grid; grid-template-columns: 40% 1fr; }
+  .part svg, .part .empty { grid-row: 1 / 3; width: 100%; height: 100%; max-height: 130px; }
+  .part .part-label, .part .part-choice { font-size: 16px; }
+  .choice-title { display: none; }
+  .choice-area { padding: 0; }
+  .options .choice { font-size: 14px; padding: 2px; flex-direction: column; gap: 0; line-height: 1; }
+  .options svg { width: 30px; height: 30px; }
+  .run-pane { grid-template-columns: minmax(0, 1fr) 215px; }
+  .control-desk { padding: 6px; gap: 5px; }
+  .control-desk h2, .control-desk .intro { display: none; }
+  .control-desk .action { font-size: 16px; }
+  .control-desk .actions { gap: 5px; }
+  .control-desk .note { font-size: 13px; }
+  .performance { grid-template-rows: minmax(0, 1fr) 26px 64px; }
+  .mini-strip { padding: 2px 4px; gap: 3px; }
+  .mini svg { width: 28px; height: 42px; }
+  .mini span { font-size: 13px; }
+  .mini b { font-size: 12px; }
+  .part-word { font-size: 28px; padding: 0 9px; top: 6px; right: 7px; }
+  .feeling-badge { font-size: 14px; top: 6px; left: 7px; padding: 5px 8px; }
+  .feeling-badge .face { font-size: 20px; margin-right: 2px; }
+  .audience-card { padding: 8px 12px; }
+  .audience-card h2 { font-size: 23px; margin-bottom: 6px; }
+  .chips { gap: 6px; margin-bottom: 6px; }
+  .chip { min-height: 60px; padding: 5px; font-size: 18px; }
+  footer { min-height: 40px; padding: 3px 12px; }
+  #hint { min-height: 34px; font-size: 15px; }
+}
+@media (max-width: 600px) {
+  body { min-height: 700px; }
+  header { padding: 5px 9px; gap: 5px; justify-content: center; }
+  h1 { width: 100%; text-align: center; font-size: 23px; }
+  h1 small { display: none; }
+  .icon-btn { flex: 1; padding: 0 4px; font-size: 14px; }
+  .modes { padding: 0; }
+  .seg { width: 100%; border: 0; border-radius: 0; }
+  .seg button { flex: 1; min-width: 60px; padding: 0 4px; font-size: 14px; }
+  .compose { padding: 6px; grid-template-rows: 126px minmax(90px, 1fr) auto 60px; gap: 6px; }
+  .feeling-row { grid-template-columns: repeat(3, 1fr); gap: 5px; }
+  .feeling-row .choice { font-size: 14px; padding: 3px; }
+  .face { font-size: 24px; margin-right: 1px; }
+  .strip { gap: 5px; }
+  .part { border-radius: 14px; padding: 3px; height: 100%; }
+  .part .part-label { font-size: 17px; }
+  .part .part-choice { font-size: 14px; }
+  .part svg { max-height: 100px; }
+  .options, .options.five { grid-template-columns: repeat(3, 1fr); gap: 5px; }
+  .options .choice { font-size: 14px; padding: 2px; gap: 0; }
+  .options svg { width: 34px; height: 45px; }
+  .choice-area { padding: 4px; }
+  .choice-title { font-size: 14px; }
+  .action { padding: 5px 10px; font-size: 17px; }
+  .run-pane { grid-template-columns: 1fr; grid-template-rows: minmax(220px, 1fr) auto; }
+  .performance { grid-template-rows: minmax(0, 1fr) 28px 64px; }
+  .control-desk { padding: 6px; border-left: 0; gap: 6px; display: grid; grid-template-columns: 1fr 2fr; }
+  .control-desk h2, .control-desk .intro, .control-desk .note { display: none; }
+  .control-desk .actions { gap: 5px; grid-template-columns: 1fr 1fr; }
+  .control-desk .action { padding: 3px; font-size: 15px; }
+  #play, #go { grid-column: auto; }
+  .control-desk #feeling-menu { font-size: 15px; }
+  .mini { gap: 3px; }
+  .mini svg { width: 28px; height: 42px; }
+  .mini b { font-size: 12px; }
+  .mini span { font-size: 13px; }
+  .part-word { font-size: 28px; }
+  .feeling-badge { padding: 5px; font-size: 14px; }
+  .turn .feeling-badge { top: auto; bottom: 8px; }
+  .share { padding: 6px; }
+  .audience-card { padding: 12px; }
+  .chips { grid-template-columns: 1fr; gap: 7px; }
+  .chip { min-height: 65px; font-size: 17px; }
+  footer { padding: 6px 10px; min-height: 61px; }
+  #hint { min-height: 48px; font-size: 15px; }
+  dialog .options .choice { min-height: 90px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Feeling Scarf Dance <small>Make a feeling move through the air.</small></h1>
+  <button class="icon-btn" id="read">🔊 Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<nav class="modes" aria-label="Dance modes">
+  <div class="seg">
+    <button id="m-build" aria-pressed="true">▦ Build</button>
+    <button id="m-watch" aria-pressed="false">◉ Watch</button>
+    <button id="m-turn" aria-pressed="false">〰 Your turn</button>
+    <button id="m-share" aria-pressed="false">👏 Share</button>
+  </div>
+</nav>
+<main>
+  <section id="build" class="compose painted" aria-label="Build a three-part dance">
+    <div class="wash"></div>
+    <div id="feelings" class="feeling-row" role="group" aria-label="Feeling"></div>
+    <div id="build-strip" class="strip" role="group" aria-label="Dance parts"></div>
+    <div class="choice-area">
+      <span class="choice-title" id="choice-title">Start shape</span>
+      <div id="choices" class="options five" role="group" aria-labelledby="choice-title"></div>
+    </div>
+    <div class="actions">
+      <button id="idea" class="action">💡 Feeling idea</button>
+      <button id="watch-it" class="action gold" disabled>▶ Watch it</button>
+    </div>
+    <i class="breeze" aria-hidden="true"></i>
+  </section>
+  <section id="run-pane" class="run-pane" hidden aria-label="Dance performance">
+    <div class="performance">
+      <div class="viewport" id="stage">
+        <svg id="dance-scene" role="img" aria-label="A dancer holding a flowing scarf on a painted grassy hilltop"></svg>
+        <div id="feeling-badge" class="feeling-badge"></div>
+        <div id="part-word" class="part-word">Start</div>
+      </div>
+      <svg id="counts" class="counts" role="img" aria-label="Sixteen counts in groups of four, eight and four"></svg>
+      <div id="mini-strip" class="mini-strip" role="group" aria-label="Change a dance part"></div>
+    </div>
+    <aside class="control-desk">
+      <h2 id="run-title">Follow the silk</h2>
+      <p class="intro" id="run-intro">A start, a moving middle, an end.</p>
+      <button id="feeling-menu" class="action">☺ Feeling</button>
+      <div class="actions" id="watch-actions">
+        <button id="play" class="action gold" disabled>▶ Play</button>
+        <button id="again" class="action" disabled>↻ Again</button>
+        <button id="slow" class="action" aria-pressed="false">🐢 Slow</button>
+      </div>
+      <div class="actions" id="turn-actions" hidden>
+        <button id="go" class="action gold" disabled>▶ Go</button>
+        <button id="stop" class="action">■ Stop</button>
+        <button id="mirror" class="action" aria-pressed="false">↔ Mirror</button>
+      </div>
+      <p class="note" id="run-note">Tap a part card to change it, even while it plays.</p>
+    </aside>
+  </section>
+  <section id="share" class="share painted" hidden aria-label="Audience feedback">
+    <div class="wash"></div>
+    <div class="audience-card">
+      <h2>👏 Audience, I saw...</h2>
+      <div id="chips" class="chips"></div>
+      <div class="actions">
+        <button id="swap" class="action">⇄ Swap</button>
+        <button id="go-again" class="action gold">▶ Go again</button>
+      </div>
+    </div>
+  </section>
+</main>
+<footer><p class="hint" id="hint" aria-live="polite"></p></footer>
+<dialog id="edit-dialog" aria-labelledby="edit-title">
+  <div class="dialog-head">
+    <h2 id="edit-title">Choose a part</h2>
+    <button id="editor-read" class="action">🔊 Read</button>
+    <button id="close-editor" class="action">✓ Done</button>
+  </div>
+  <div id="edit-choices" class="options"></div>
+</dialog>
+<script src="kit:curio"></script>
+<script src="kit:dance"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, attrs, parent) => {
+    const node = document.createElementNS(NS, tag);
+    for (const key in attrs) node.setAttribute(key, attrs[key]);
+    if (parent) parent.appendChild(node);
+    return node;
+  };
+  const names = ['Start', 'Middle', 'End'];
+  const shapes = ['Tiny ball', 'Tall tower', 'Wide star', 'Twisty', 'Lean'];
+  const moves = ['Float', 'Swirl', 'Zap', 'Melt', 'Shiver', 'Leap'];
+  const poseFor = index => [Dance.level('curl', 'low'), Dance.level('reach-up', 'high'),
+    Dance.pose('arms-wide'), Dance.pose('twist'), Dance.pose('bend-side')][index];
+  const feelings = [
+    {name: 'Happy', face: '☺', color: '#f2b632', pattern: 'dots', bpm: 112, meter: 4, idea: [2, 5, 1]},
+    {name: 'Sad', face: '☹', color: '#4f7fbf', pattern: 'stripes', bpm: 66, meter: 4, idea: [4, 3, 0]},
+    {name: 'Calm', face: '😌', color: '#4aa38a', pattern: 'waves', bpm: 72, meter: 3, idea: [1, 0, 2]},
+    {name: 'Mad', face: '😠', color: '#c43c2c', pattern: 'zigzags', bpm: 100, meter: 4, idea: [3, 2, 0]},
+    {name: 'Surprised', face: '😮', color: '#8a5cc6', pattern: 'stars', bpm: 96, meter: 4, idea: [0, 2, 2]}
+  ];
+  const state = {mode: 'build', feeling: null, parts: [null, null, null], selected: 0,
+    running: false, still: false, slow: false, mirror: false, count: null, freeze: false, checked: [false, false, false, false]};
+  const L = {
+    wBuild: "Let's make a dance about a feeling. First, tap a feeling.",
+    happy: 'Happy.', sad: 'Sad.', calm: 'Calm.', mad: 'Mad.', surprised: 'Surprised.',
+    feelingHow: 'How does your body show that feeling? Tap a start shape.',
+    startHow: 'Now tap Middle and pick a middle move. How does the feeling move?',
+    middleHow: 'Last, tap End and pick an end shape. How does the feeling finish?',
+    complete: 'Your dance has a start, a middle and an end. Tap Watch it.',
+    idea: 'Here is one idea. You can change any part.',
+    wWatch: 'Watch the scarf. Tap Play.', watchEnd: 'Did the scarf show the feeling? How?',
+    wTurn: 'Get your scarf, or use your hand. Find your start shape. Tap Go.',
+    freeze: 'Freeze! Hold your end shape. And breathe.',
+    wShare: 'Audience, what did you see? Tell the dancers.',
+    chipStart: 'A clear start!', chipMiddle: 'The middle move!', chipEnd: 'A clear end!', chipFeeling: 'You felt it!',
+    swap: 'Swap! Dancers, sit down. Audience, find your start shape.',
+    startReady: 'Start shape chosen. Tap Middle to choose a middle move.',
+    middleReady: 'Middle move chosen. Tap End to choose an end shape.',
+    endReady: 'End shape chosen. Tap a feeling to finish your dance.',
+    pickFeeling: 'Tap a feeling, then tap Feeling idea, or choose your three parts.',
+    pickStart: 'Tap Start, then tap a start shape.', pickMiddle: 'Tap Middle, then tap a middle move.',
+    pickEnd: 'Tap End, then tap an end shape.',
+    stoppedWatch: 'Tap Play to watch, or tap a part card to change your dance.',
+    stoppedTurn: 'Find your start shape. Tap Go to dance with the scarf.',
+    shareHow: 'Tap the I saw chips that match what your audience noticed. Tap Swap for new dancers.',
+    watchRun: 'Watch the scarf. Tap Stop to stop the dance, or tap a part card to change it.',
+    turnRun: 'Follow the scarf. Tap Stop to stop, or tap Mirror to flip the view.',
+    chooseStart: 'Tap a start shape. Tap Done to return to the dance.',
+    chooseMiddle: 'Tap a middle move. Tap Done to return to the dance.',
+    chooseEnd: 'Tap an end shape. Tap Done to return to the dance.',
+    chooseFeeling: 'Tap a feeling. Tap Done to return to the dance.',
+    buildStart: 'Tap a start shape. Tap Middle to choose the moving part.',
+    buildMiddle: 'Tap a middle move. Tap End to choose the ending shape.',
+    buildEnd: 'Tap an end shape. Tap Start or Middle to change another part.',
+    afterWatch: 'Did the scarf show the feeling? Tap Your turn to dance it yourself.',
+    swapHint: 'New dancers, find your start shape. Tap Go again when you are ready.',
+    finishBuild: 'Tap Build to finish your dance. Choose a feeling, a start shape, a middle move and an end shape.',
+    freezeHint: 'Hold your end shape. Then tap Share to tell what you saw.'
+  };
+  const ready = () => state.feeling !== null && state.parts.every(value => value !== null);
+  const currentFeeling = () => feelings[state.feeling ?? 0];
+  const missingHint = () => state.feeling === null ? L.pickFeeling : state.parts[0] === null ? L.pickStart :
+    state.parts[1] === null ? L.pickMiddle : state.parts[2] === null ? L.pickEnd : '';
+  let session = 0;
+  let clock = null;
+  let run = null;
+  let music = null;
+  let phrase = null;
+  let editorPart = null;
+  let editOpener = null;
+  let freezeTimer = null;
+  let musicFeeling = null;
+  let changedAt = 0;
+  let transitionFrom = null;
+  let feelingEvent = 0;
+  let modeInitialized = false;
+  const V = Curio.voice({lines: L, scope: () => state.mode, hint: false, read: () => $('hint').textContent,
+    welcome: () => {
+      if (state.running || state.freeze || $('edit-dialog').open) return null;
+      const key = {build: 'wBuild', watch: 'wWatch', turn: 'wTurn', share: 'wShare'}[state.mode];
+      if (state.mode === 'build' && state.feeling !== null) return null;
+      if (['watch', 'turn'].includes(state.mode) && !ready()) return null;
+      return [key, {valid: () => !state.running && !state.freeze}];
+    }, speaks: '#play, #go, #again, #watch-it, #idea, #editor-read, .chip, .feeling-choice, .option-choice'});
+  function hint(text) { $('hint').textContent = text; }
+  function updateHint() {
+    if ($('edit-dialog').open) {
+      hint(editorPart === 'feeling' ? L.chooseFeeling : L[['chooseStart', 'chooseMiddle', 'chooseEnd'][editorPart]]);
+    } else if (state.freeze) hint(L.freezeHint);
+    else if (state.mode === 'share') hint(L.shareHow);
+    else if (!ready()) hint(state.mode === 'build' ? missingHint() : L.finishBuild);
+    else if (state.running) hint(state.mode === 'watch' ? L.watchRun : L.turnRun);
+    else if (state.mode === 'build') hint(L.complete);
+    else hint(state.mode === 'watch' ? L.stoppedWatch : L.stoppedTurn);
+  }
+  function event(key, valid = () => true) {
+    if (!state.running) V.say(key, {valid: () => !state.running && valid()});
+  }
+  function icon(svg, part, value) {
+    svg.textContent = '';
+    if (value === null) return;
+    if (part !== 1) {
+      Dance.icon(svg, poseFor(value), {top: '#5b4a6e', bottom: '#2f2a3a', facing: 15});
+      return;
+    }
+    svg.setAttribute('viewBox', '0 0 100 70');
+    const paths = [
+      'M8 48 Q25 2 48 30 T92 23',
+      'M87 49 C15 76 8 2 61 10 C99 13 94 57 55 51 C30 47 39 25 62 30',
+      'M8 52 L30 12 L43 55 L65 13 L88 51',
+      'M12 15 Q55 3 50 34 T88 57',
+      'M8 36 L18 22 L27 45 L36 23 L46 47 L56 23 L66 44 L77 25 L91 37',
+      'M8 55 Q30 -12 50 45 Q72 -5 92 45'
+    ];
+    mk('path', {d: paths[value], fill: 'none', stroke: '#a0197e', 'stroke-width': 9,
+      'stroke-linecap': 'round', 'stroke-linejoin': 'round'}, svg);
+    mk('path', {d: paths[value], fill: 'none', stroke: '#f7d6eb', 'stroke-width': 2}, svg);
+  }
+  function button(label, className, click) {
+    const b = document.createElement('button');
+    b.className = className;
+    b.innerHTML = label;
+    b.onclick = click;
+    return b;
+  }
+  const buildCards = [];
+  const miniCards = [];
+  for (let i = 0; i < 3; i++) {
+    const card = button(`<span class="part-label">${names[i]}</span><svg aria-hidden="true"></svg>` +
+      '<span class="part-choice">Choose</span>', 'part', () => selectPart(i));
+    card.id = 'part-' + i;
+    card.setAttribute('aria-pressed', i === 0);
+    $('build-strip').appendChild(card);
+    buildCards.push(card);
+    const mini = button(`<svg aria-hidden="true"></svg><span><b>${names[i]}</b><i>Choose</i></span>`, 'mini', () => openEditor(i, mini));
+    mini.id = 'mini-' + i;
+    $('mini-strip').appendChild(mini);
+    miniCards.push(mini);
+  }
+  const feelingButtons = feelings.map((f, i) => {
+    const b = button(`<span class="face" aria-hidden="true">${f.face}</span>${f.name}`, 'choice feeling-choice', () => chooseFeeling(i));
+    b.id = 'feeling-' + i;
+    b.setAttribute('aria-pressed', 'false');
+    $('feelings').appendChild(b);
+    return b;
+  });
+  // Reuse stable option controls. Changes to selection never rebuild a focused control.
+  const buildOptions = [];
+  const editorOptions = [];
+  for (const [parent, collection, prefix] of [['choices', buildOptions, 'option-'], ['edit-choices', editorOptions, 'edit-']]) {
+    for (let i = 0; i < 6; i++) {
+      const b = button('<svg aria-hidden="true"></svg><span></span>', 'choice option-choice', () => {
+        const part = parent === 'choices' ? state.selected : editorPart;
+        if (part === 'feeling') chooseFeeling(i);
+        else choosePart(part, i);
+        if (parent === 'edit-choices') closeEditor();
+      });
+      b.id = prefix + i;
+      b.setAttribute('aria-pressed', 'false');
+      $(parent).appendChild(b);
+      collection.push(b);
+    }
+  }
+  function drawOptions(part, controls, container) {
+    const isFeeling = part === 'feeling';
+    const list = isFeeling ? feelings.map(f => f.name) : part === 1 ? moves : shapes;
+    container.classList.toggle('five', list.length === 5);
+    controls.forEach((b, i) => {
+      b.hidden = i >= list.length;
+      if (b.hidden) return;
+      b.querySelector('span').textContent = list[i];
+      b.setAttribute('aria-pressed', String((isFeeling ? state.feeling : state.parts[part]) === i));
+      const svg = b.querySelector('svg');
+      if (isFeeling) {
+        svg.textContent = '';
+        svg.setAttribute('viewBox', '0 0 60 60');
+        mk('text', {x: 30, y: 43, 'font-size': 39, 'text-anchor': 'middle'}, svg).textContent = feelings[i].face;
+      } else icon(svg, part, i);
+    });
+  }
+  function selectPart(part) {
+    state.selected = part;
+    renderChoices();
+    const key = ['buildStart', 'buildMiddle', 'buildEnd'][part];
+    hint(L[key]);
+    if (!state.running) V.how(key, {valid: () => state.selected === part});
+    Curio.tone(350 + part * 100, .07, .035);
+  }
+  function renderChoices() {
+    buildCards.forEach((card, i) => {
+      card.classList.toggle('active', state.selected === i);
+      card.setAttribute('aria-pressed', String(state.selected === i));
+    });
+    $('choice-title').textContent = names[state.selected] + (state.selected === 1 ? ' move' : ' shape');
+    drawOptions(state.selected, buildOptions, $('choices'));
+  }
+  function refreshCards() {
+    [buildCards, miniCards].forEach((cards, group) => cards.forEach((card, i) => {
+      const value = state.parts[i];
+      const label = value === null ? 'Choose' : (i === 1 ? moves : shapes)[value];
+      card.querySelector(group ? 'i' : '.part-choice').textContent = label;
+      icon(card.querySelector('svg'), i, value);
+      if (value === null) {
+        const svg = card.querySelector('svg');
+        svg.setAttribute('viewBox', '0 0 100 100');
+        mk('text', {x: 50, y: 74, 'font-size': 78, fill: '#9b728c', 'text-anchor': 'middle'}, svg).textContent = '+';
+      }
+      card.setAttribute('aria-label', names[i] + ': ' + label + '. Change ' + names[i].toLowerCase());
+    }));
+    for (const id of ['watch-it', 'play', 'go', 'again']) $(id).disabled = !ready();
+  }
+  function chooseFeeling(index, suggestion = false) {
+    if (index > 4) return;
+    state.feeling = index;
+    document.documentElement.style.setProperty('--feeling', currentFeeling().color);
+    feelingButtons.forEach((b, i) => b.setAttribute('aria-pressed', String(i === index)));
+    $('feeling-badge').innerHTML = `<span class="face">${currentFeeling().face}</span> ${currentFeeling().name}`;
+    $('feeling-menu').textContent = currentFeeling().face + ' ' + currentFeeling().name + ' ▾';
+    sceneWash.setAttribute('fill', currentFeeling().color);
+    paintPattern();
+    updateChips();
+    refreshCards();
+    updateHint();
+    if (clock && state.running) clock.setBpm(currentFeeling().bpm * (state.slow ? .7 : 1));
+    if (!state.running && !suggestion) {
+      V.say(currentFeeling().name.toLowerCase(), {key: 'feeling-event-' + (++feelingEvent),
+        valid: () => !state.running && state.feeling === index});
+      if (state.mode === 'build' && state.parts[0] === null) {
+        V.how('feelingHow', {valid: () => state.parts[0] === null && state.mode === 'build'});
+      }
+    }
+    Curio.tone([523, 294, 392, 220, 622][index], .1, .035);
+  }
+  function choosePart(part, value) {
+    const wasReady = ready();
+    transitionFrom = {pose: dancer.pose, x: dancer.x, z: dancer.z, facing: dancer.facing};
+    changedAt = performance.now();
+    state.parts[part] = value;
+    rebuildPhrase();
+    refreshCards();
+    renderChoices();
+    if (!state.running) {
+      dancer.set(phrase.at(part === 0 ? 0 : part === 1 ? 4.3 : 12));
+      resetRibbon();
+      if (state.mode === 'build') {
+        const key = part === 0 && state.parts[1] === null ? 'startHow' :
+          part === 1 && state.parts[2] === null ? 'middleHow' : null;
+        if (key) V.how(key, {valid: () => !state.running && state.mode === 'build' &&
+          (key === 'startHow' ? state.parts[1] === null : state.parts[2] === null)});
+        if (!wasReady && ready()) event('complete');
+      }
+    }
+    updateHint();
+    Curio.tone(440 + value * 42, .06, .025);
+  }
+  function feelingIdea() {
+    if (state.feeling === null) chooseFeeling(0, true);
+    state.parts = currentFeeling().idea.slice();
+    state.selected = 0;
+    rebuildPhrase();
+    refreshCards();
+    renderChoices();
+    dancer.set(phrase.at(0));
+    resetRibbon();
+    hint(L.complete);
+    event('idea');
+    Curio.yes();
+  }
+  function openEditor(part, opener) {
+    editorPart = part;
+    editOpener = opener;
+    $('edit-title').textContent = part === 'feeling' ? 'Choose a feeling' : 'Change ' + names[part].toLowerCase();
+    drawOptions(part, editorOptions, $('edit-choices'));
+    $('edit-dialog').showModal();
+    updateHint();
+  }
+  function closeEditor() {
+    $('edit-dialog').close();
+    editOpener?.focus({preventScroll: true});
+    updateHint();
+  }
+  $('edit-dialog').addEventListener('close', updateHint);
+  $('close-editor').onclick = closeEditor;
+  $('editor-read').onclick = () => {
+    if (state.running || state.freeze) stopRun();
+    V.read();
+  };
+  $('feeling-menu').onclick = () => openEditor('feeling', $('feeling-menu'));
+  $('idea').onclick = feelingIdea;
+  $('watch-it').onclick = () => setMode('watch');
+  for (const mode of ['build', 'watch', 'turn', 'share']) $('m-' + mode).onclick = () => setMode(mode);
+
+  // Renderer boundary: keep the engine dancer as the pose and hand-position model.
+  // A future painted atlas can subscribe to onMove, hide model.g, and draw in the same floor layer.
+  const svg = $('dance-scene');
+  const floor = Dance.floor(svg, 'square', {backdrop: 'art:hilltop', dancerFrac: .55});
+  const sceneWash = mk('rect', {width: '100%', height: '100%', fill: '#f2b632', class: 'scene-wash'}, floor.layers.bg);
+  const createDancerRenderer = () => Dance.dancer(floor.layers.actors,
+    {floor, top: '#5b4a6e', bottom: '#2f2a3a', badge: 'circle', noShadow: false});
+  const dancer = createDancerRenderer();
+  const ribbonLayer = mk('g', {'aria-hidden': 'true'}, floor.layers.front);
+  const ribbonDefs = mk('defs', {}, ribbonLayer);
+  const silkPattern = mk('pattern', {id: 'silk-texture', patternUnits: 'userSpaceOnUse', width: 200, height: 200}, ribbonDefs);
+  mk('image', {href: 'art:silk', width: 200, height: 200}, silkPattern);
+  const shadeGradient = mk('linearGradient', {id: 'silk-shine', x1: 0, y1: 0, x2: 1, y2: 0}, ribbonDefs);
+  for (const [offset, color, opacity] of [[0, '#32152c', .4], [.35, '#fff', .05], [.6, '#fff', .6], [1, '#32152c', .3]]) {
+    mk('stop', {offset, 'stop-color': color, 'stop-opacity': opacity}, shadeGradient);
+  }
+  const ribbonOutline = mk('path', {fill: '#f2b632', stroke: '#654321', 'stroke-width': 1.2}, ribbonLayer);
+  const ribbonSilk = mk('path', {fill: 'url(#silk-texture)', opacity: .38, style: 'mix-blend-mode:soft-light'}, ribbonLayer);
+  const ribbonShine = mk('path', {fill: 'url(#silk-shine)'}, ribbonLayer);
+  const ribbonClip = mk('clipPath', {id: 'ribbon-clip'}, ribbonDefs);
+  const clipPath = mk('path', {}, ribbonClip);
+  const patternLayer = mk('g', {'clip-path': 'url(#ribbon-clip)', opacity: .7}, ribbonLayer);
+  const handGhost = mk('circle', {r: 8, fill: '#5b4a6e', opacity: .12}, ribbonLayer);
+  let ribbon = [];
+  let lastRibbonAt = 0;
+  let lastIdle = 0;
+  const dots = Dance.counts($('counts'), null, {n: 16, on: '#a0197e', onLine: '#6b0e51', past: '#efd1e4', offLine: '#a87e96'});
+  function paintPattern() {
+    ribbonOutline.setAttribute('fill', currentFeeling().color);
+    ribbonOutline.setAttribute('stroke', Dance.shade(currentFeeling().color, .4));
+    patternLayer.textContent = '';
+    const pattern = currentFeeling().pattern;
+    for (let i = 0; i < 23; i++) {
+      if (pattern === 'dots') mk('circle', {r: 2.3, fill: '#fffbe8'}, patternLayer);
+      else if (pattern === 'stars') mk('path', {d: 'M0 -4 L1 -1 L4 0 L1 1 L0 4 L-1 1 L-4 0 L-1 -1Z', fill: '#fff8f0'}, patternLayer);
+      else mk('path', {d: pattern === 'waves' ? 'M-7 0 Q-3 -4 0 0 T7 0' :
+        pattern === 'zigzags' ? 'M-7 2 L-3 -2 L1 2 L5 -2 L8 2' : 'M-8 0 L8 0',
+        stroke: '#fff8ef', 'stroke-width': pattern === 'stripes' ? 2 : 1.5, fill: 'none'}, patternLayer);
+    }
+  }
+  function resetRibbon() {
+    const hand = dancer.world('rHa');
+    if (!hand) return;
+    const p = floor.project(...hand);
+    const length = dancer.height * floor.scale(dancer.z) * 1.1;
+    ribbon = Array.from({length: 24}, (_, i) => ({x: p[0] + i * .8, y: p[1] + length * i / 23,
+      px: p[0] + i * .8, py: p[1] + length * i / 23}));
+    lastRibbonAt = 0;
+    drawRibbon(0, true);
+  }
+  function drawRibbon(time, forceStraight = false) {
+    const hand = dancer.world('rHa');
+    if (!hand || ribbon.length !== 24) return;
+    const [hx, hy] = floor.project(...hand);
+    const bodyHeight = dancer.height * floor.scale(dancer.z);
+    const segment = bodyHeight * 1.1 / 23;
+    const edgeInset = Math.max(4, bodyHeight * .031 + 1);
+    const straight = Curio.reduce || forceStraight;
+    if (straight) {
+      ribbon.forEach((p, i) => { p.x = hx; p.y = hy + i * segment; p.px = p.x; p.py = p.y; });
+    } else {
+      const dt = Math.min(2, Math.max(.25, (time - (lastRibbonAt || time - 16.67)) / 16.67));
+      for (let i = 1; i < 24; i++) {
+        const p = ribbon[i];
+        const vx = (p.x - p.px) * .975;
+        const vy = (p.y - p.py) * .975;
+        p.px = p.x;
+        p.py = p.y;
+        p.x += vx + Math.sin(time / 900 + i * .19) * .065 * dt * dt;
+        p.y += vy + bodyHeight * .00095 * dt * dt;
+      }
+      for (let pass = 0; pass < 6; pass++) {
+        ribbon[0].x = hx;
+        ribbon[0].y = hy;
+        for (let i = 1; i < 24; i++) {
+          const a = ribbon[i - 1];
+          const b = ribbon[i];
+          const dx = b.x - a.x;
+          const dy = b.y - a.y;
+          const length = Math.hypot(dx, dy) || 1;
+          const correction = (length - segment) / length;
+          if (i > 1) { a.x += dx * correction * .5; a.y += dy * correction * .5; }
+          b.x -= dx * correction * (i === 1 ? 1 : .5);
+          b.y -= dy * correction * (i === 1 ? 1 : .5);
+          // The long soft cloth settles on the visible grass instead of falling out of the painting.
+          if (b.y > floor.h * .97) {
+            b.y = floor.h * .97;
+            b.x += .3;
+          }
+        }
+      }
+      // Remove residual stretch after the six passes, preserving the exact chain length.
+      for (let i = 1; i < 24; i++) {
+        const a = ribbon[i - 1];
+        const b = ribbon[i];
+        const dx = b.x - a.x;
+        const dy = b.y - a.y;
+        const length = Math.hypot(dx, dy) || 1;
+        b.x = a.x + dx / length * segment;
+        b.y = a.y + dy / length * segment;
+        if (b.y > floor.h * .97) {
+          b.y = floor.h * .97;
+          const vertical = b.y - a.y;
+          b.x = a.x + (dx < 0 ? -1 : 1) * Math.sqrt(Math.max(0, segment * segment - vertical * vertical));
+        }
+        if (b.y < edgeInset) {
+          b.y = edgeInset;
+          const vertical = b.y - a.y;
+          b.x = a.x + (dx < 0 ? -1 : 1) * Math.sqrt(Math.max(0, segment * segment - vertical * vertical));
+        }
+        if (b.x < edgeInset || b.x > floor.w - edgeInset) {
+          b.x = Math.max(edgeInset, Math.min(floor.w - edgeInset, b.x));
+          const horizontal = b.x - a.x;
+          const vertical = Math.sqrt(Math.max(0, segment * segment - horizontal * horizontal));
+          b.y = a.y + (dy < 0 ? -1 : 1) * vertical;
+          if (b.y < edgeInset || b.y > floor.h * .97) b.y = a.y + (dy < 0 ? 1 : -1) * vertical;
+        }
+      }
+    }
+    lastRibbonAt = time;
+    const left = [];
+    const right = [];
+    ribbon.forEach((p, i) => {
+      const a = ribbon[Math.max(0, i - 1)];
+      const b = ribbon[Math.min(23, i + 1)];
+      const dx = b.x - a.x;
+      const dy = b.y - a.y;
+      const n = Math.hypot(dx, dy) || 1;
+      const width = bodyHeight * .03 * (1 - i / 23 * .65);
+      left.push([p.x - dy / n * width, p.y + dx / n * width]);
+      right.push([p.x + dy / n * width, p.y - dx / n * width]);
+      if (i < 23) patternLayer.children[i]?.setAttribute('transform',
+        `translate(${p.x} ${p.y}) rotate(${Math.atan2(dy, dx) * 180 / Math.PI + 90})`);
+    });
+    const path = 'M' + left.concat(right.reverse()).map(p => p.map(v => v.toFixed(1)).join(' ')).join(' L') + ' Z';
+    for (const node of [ribbonOutline, ribbonSilk, ribbonShine, clipPath]) node.setAttribute('d', path);
+    handGhost.setAttribute('cx', hx);
+    handGhost.setAttribute('cy', hy);
+    applyMirror();
+  }
+  function middleStep(index) {
+    const at = {x: 50, z: 43};
+    if (index === 5) return {counts: 8, gait: 'leap', facing: 'front', dyn: 'smooth',
+      travel: Dance.path([[50, 43], [69, 43], [50, 43]])};
+    const armPose = (a, f = 0) => Dance.pose({arms: [a * .6, 0, a * .65, 0], rArm: [a, f, a + 5, f], lLeg: [0, 6, 0], rLeg: [0, 6, 0]});
+    if (index === 0) return {counts: 8, poses: [armPose(35), armPose(95), armPose(160), armPose(95)], dyn: 'smooth',
+      travel: Dance.path([[50, 43], [57, 43], [50, 43]])};
+    if (index === 1) return {counts: 8, poses: [armPose(100)], dyn: 'swing', at};
+    if (index === 2) return {counts: 8, poses: [armPose(165), armPose(92), armPose(8), armPose(90, 155)], dyn: 'sharp', at};
+    if (index === 3) {
+      const A = Dance.pose('stand');
+      const B = Dance.pose({legs: [65, 9, 85], lean: 17, arms: [40, 0, 30, 0]});
+      const C = Dance.pose('sit');
+      const poses = Array.from({length: 9}, (_, i) => i < 4 ? Dance.mix(A, B, i / 4) : Dance.mix(B, C, (i - 4) / 4));
+      return {counts: 8, poses, dyn: 'collapse', at};
+    }
+    return {counts: 8, poses: [armPose(82), armPose(94)], dyn: 'shake', at};
+  }
+  function rebuildPhrase() {
+    const raw = Dance.phrase([
+      {counts: 4, poses: [poseFor(state.parts[0] ?? 2)], at: {x: 50, z: 43}, facing: 0},
+      middleStep(state.parts[1] ?? 0),
+      {counts: 4, poses: [poseFor(state.parts[2] ?? 1)], at: {x: 50, z: 43}, facing: 0}
+    ]);
+    const originalAt = raw.at;
+    raw.at = count => {
+      const s = originalAt(count);
+      // Dynamic facing belongs to the tool's Swirl, while pose interpolation remains in Dance.phrase.
+      if (s.step === 1 && state.parts[1] === 1) s.facing = (count - 4) * 90;
+      if (!Curio.reduce && (s.step === 0 || s.step === 2)) {
+        s.pose.lean += Math.sin(count * Math.PI / 2) * 1.1;
+      }
+      if (!Curio.reduce && transitionFrom) {
+        const t = Math.min(1, (performance.now() - changedAt) / 180);
+        if (t < 1) {
+          s.pose = Dance.mix(transitionFrom.pose, s.pose, t);
+          if (s.x !== null) s.x = transitionFrom.x + (s.x - transitionFrom.x) * t;
+          if (s.z !== null) s.z = transitionFrom.z + (s.z - transitionFrom.z) * t;
+        } else transitionFrom = null;
+      }
+      return s;
+    };
+    phrase = raw;
+  }
+  const phraseProxy = {total: 16, at: count => phrase.at(count)};
+  function trackFor(index) {
+    const tracks = [
+      {len: 4, sub: 2, vol: .48, parts: {pluck: [60, null, 64, 67, 72, null, 67, 64], clap: '..x...x.'}},
+      {len: 8, sub: 1, vol: .45, parts: {piano: [62, 65, 69, null, 65, 64, 62, null],
+        pad: [[50, 57, 62], null, null, null, [53, 57, 62], null, null, null]}},
+      {len: 6, sub: 1, vol: .38, parts: {pad: [[60, 64, 67], null, null, [57, 60, 64], null, null],
+        piano: [79, null, null, 76, null, null]}},
+      {len: 4, sub: 1, vol: .52, parts: {stamp: 'X.X.', bass: [45, null, 40, null]}},
+      {len: 4, sub: 1, vol: .42, parts: {pluck: [60, 76, 67, null]}}
+    ];
+    return tracks[index ?? 0];
+  }
+  function stopRun(keepPose = true) {
+    session++;
+    clearTimeout(freezeTimer);
+    run?.stop();
+    clock?.stop();
+    music?.stop();
+    run = null;
+    clock = null;
+    music = null;
+    state.running = false;
+    state.still = true;
+    state.freeze = false;
+    V.hush();
+    $('play').textContent = '▶ Play';
+    if (!keepPose) dancer.set(phrase.at(0));
+    updateHint();
+  }
+  function endRun(token) {
+    if (token !== session) return;
+    clock?.stop();
+    music?.stop();
+    run = null;
+    state.running = false;
+    state.still = true;
+    state.count = 16;
+    $('play').textContent = '▶ Play';
+    dots.set(16);
+    if (state.mode === 'turn') {
+      state.freeze = true;
+      $('part-word').textContent = 'Freeze!';
+      updateHint();
+      // Three silent seconds first; the spoken freeze line follows the quiet hold.
+      freezeTimer = setTimeout(() => {
+        if (token !== session) return;
+        state.freeze = false;
+        event('freeze', () => token === session && state.mode === 'turn');
+        hint(L.freezeHint);
+      }, 3000);
+    } else {
+      $('part-word').textContent = 'End';
+      hint(L.afterWatch);
+      event('watchEnd', () => token === session);
+    }
+  }
+  function startRun() {
+    if (!ready()) { updateHint(); return; }
+    stopRun(false);
+    const token = session;
+    rebuildPhrase();
+    state.running = true;
+    state.still = false;
+    state.count = state.mode === 'turn' ? -3 : 1;
+    state.freeze = false;
+    transitionFrom = null;
+    const f = currentFeeling();
+    clock = Dance.clock(f.bpm * (state.slow ? .7 : 1), {meter: f.meter, countIn: state.mode === 'turn' ? 4 : 0});
+    musicFeeling = state.feeling;
+    music = Dance.music(trackFor(state.feeling), null);
+    music.clock = clock;
+    clock.onCount(n => {
+      if (n > 16 || token !== session) return;
+      state.count = n;
+      if (musicFeeling !== state.feeling) {
+        music.stop();
+        music = Dance.music(trackFor(state.feeling), null);
+        music.clock = clock;
+        musicFeeling = state.feeling;
+        clock.meter = currentFeeling().meter;
+      }
+      // Stop Surprised exactly on count four, including the tail of its third pluck.
+      music.mute(!Curio.sound || (state.feeling === 4 && n > 0 && n % 4 === 0));
+      music.count(n);
+      showCount(n);
+      const part = n <= 4 ? 0 : n <= 12 ? 1 : 2;
+      $('part-word').textContent = n <= 0 ? 'Ready ' + (n + 4) : names[part];
+      miniCards.forEach((card, i) => card.classList.toggle('playing', n > 0 && i === part));
+    });
+    run = Dance.play(dancer, phraseProxy, {clock, onEnd: () => endRun(token),
+      onFrame: () => drawRibbon(performance.now())});
+    resetRibbon();
+    $('play').textContent = '■ Stop';
+    updateHint();
+    clock.start();
+  }
+  function setMode(mode) {
+    if (modeInitialized && state.mode === mode) {
+      updateHint();
+      return;
+    }
+    modeInitialized = true;
+    stopRun();
+    if ($('edit-dialog').open) closeEditor();
+    state.mode = mode;
+    state.still = false;
+    $('build').hidden = mode !== 'build';
+    $('run-pane').hidden = !['watch', 'turn'].includes(mode);
+    $('share').hidden = mode !== 'share';
+    $('run-pane').classList.toggle('turn', mode === 'turn');
+    $('watch-actions').hidden = mode !== 'watch';
+    $('turn-actions').hidden = mode !== 'turn';
+    for (const m of ['build', 'watch', 'turn', 'share']) $('m-' + m).setAttribute('aria-pressed', String(m === mode));
+    dancer.g.setAttribute('opacity', mode === 'turn' ? 0 : 1);
+    floor.layers.shadow.setAttribute('opacity', mode === 'turn' ? 0 : 1);
+    handGhost.setAttribute('visibility', mode === 'turn' ? 'visible' : 'hidden');
+    $('dance-scene').setAttribute('aria-label', mode === 'turn' ? 'A scarf alone follows your dance, with a faint mark at the hand.' :
+      'A dancer holding a flowing scarf on a painted grassy hilltop.');
+    $('run-title').textContent = mode === 'turn' ? 'Your feeling, your dance' : 'Follow the silk';
+    $('run-note').textContent = mode === 'turn' ? 'A scarf, a tissue, a towel or your hand all work.' :
+      'Tap a part card to change it, even while it plays.';
+    $('part-word').textContent = ready() ? 'Start' : 'Build first';
+    if (state.feeling === null) $('feeling-badge').textContent = '◇ Choose a feeling';
+    miniCards.forEach(card => card.classList.remove('playing'));
+    dots.set(null);
+    updateChips();
+    refreshCards();
+    updateHint();
+    if (document.activeElement?.closest('[hidden]')) $('m-' + mode).focus({preventScroll: true});
+    V.welcome();
+    if (['watch', 'turn'].includes(mode) && !ready()) {
+      V.how('finishBuild', {valid: () => !ready(), needs: '#m-build'});
+    }
+    requestAnimationFrame(relayout);
+  }
+  $('play').onclick = () => state.running ? stopRun() : startRun();
+  $('again').onclick = startRun;
+  $('go').onclick = startRun;
+  $('stop').onclick = () => stopRun();
+  $('slow').onclick = () => {
+    state.slow = !state.slow;
+    $('slow').setAttribute('aria-pressed', String(state.slow));
+    if (clock && state.running) clock.setBpm(currentFeeling().bpm * (state.slow ? .7 : 1));
+    Curio.tone(state.slow ? 330 : 440, .06, .03);
+  };
+  $('mirror').onclick = () => {
+    state.mirror = !state.mirror;
+    $('mirror').setAttribute('aria-pressed', String(state.mirror));
+    applyMirror();
+    Curio.tone(440, .06, .03);
+  };
+  function applyMirror() {
+    const hand = dancer.world('rHa');
+    const handY = hand ? floor.project(...hand)[1] : 0;
+    const length = dancer.height * floor.scale(dancer.z) * 1.1;
+    const dy = Curio.reduce ? Math.min(0, floor.h * .96 - handY - length) : 0;
+    const transform = state.mode === 'turn' && state.mirror ?
+      `translate(${floor.w}, ${dy}) scale(-1, 1)` : `translate(0, ${dy})`;
+    for (const layer of [floor.layers.actors, floor.layers.shadow, ribbonLayer]) layer.setAttribute('transform', transform);
+  }
+  const chipKeys = ['chipStart', 'chipMiddle', 'chipEnd', 'chipFeeling'];
+  const chipButtons = chipKeys.map((key, index) => {
+    const b = button('<span class="tick" aria-hidden="true">○</span><span class="chip-label"></span>', 'choice chip', () => {
+      state.checked[index] = !state.checked[index];
+      updateChips();
+      event(key);
+      Curio.yes();
+      updateHint();
+    });
+    b.id = 'chip-' + index;
+    $('chips').appendChild(b);
+    return b;
+  });
+  function updateChips() {
+    const labels = ['I saw a clear start', 'I saw the middle move', 'I saw a clear end',
+      'I felt it: ' + (state.feeling === null ? 'our feeling' : currentFeeling().face + ' ' + currentFeeling().name)];
+    chipButtons.forEach((b, i) => {
+      b.setAttribute('aria-pressed', String(state.checked[i]));
+      b.querySelector('.tick').textContent = state.checked[i] ? '✓' : '○';
+      b.querySelector('.chip-label').textContent = labels[i];
+    });
+  }
+  $('swap').onclick = () => {
+    state.checked.fill(false);
+    updateChips();
+    event('swap');
+    hint(L.swapHint);
+    Curio.tone(523, .1, .04);
+  };
+  $('go-again').onclick = () => setMode('turn');
+  function relayout() {
+    if ($('run-pane').hidden) return;
+    const box = $('stage').getBoundingClientRect();
+    if (!box.width || !box.height) return;
+    svg.setAttribute('viewBox', `0 0 ${box.width} ${box.height}`);
+    floor.resize(box.width, box.height,
+      {x0: box.width * .03, x1: box.width * .97, yBack: box.height * .68, yFront: box.height * .91});
+    const backdrop = floor.layers.bg.querySelector('image');
+    backdrop.setAttribute('height', box.height);
+    floor.layers.bg.appendChild(sceneWash);
+    // Leave room for a full-length hanging scarf at the hand's highest point.
+    dancer.scale = 1;
+    floor.dancerHeight = box.height * .55 / floor.scale(43);
+    dancer.render();
+    const countWidth = $('counts').clientWidth;
+    $('counts').setAttribute('viewBox', `0 0 ${countWidth} 30`);
+    dots.layout({x: 4, y: 2, w: Math.max(100, countWidth - 28), h: 25});
+    showCount(state.count);
+    resetRibbon();
+    applyMirror();
+  }
+  function showCount(n) {
+    dots.set(n);
+    [...dots.g.children].forEach((circle, i) => {
+      circle.setAttribute('transform', `translate(${i >= 12 ? 20 : i >= 4 ? 10 : 0} 0)`);
+    });
+  }
+  new ResizeObserver(relayout).observe($('stage'));
+  Curio.onMotion(() => {
+    if (Curio.reduce && phrase) dancer.set(phrase.at(Math.max(0, (state.count ?? 1) - 1)));
+    resetRibbon();
+  });
+  // Read always stops the clock before it speaks, including during count-in or a quiet freeze.
+  $('read').addEventListener('click', () => { if (state.running || state.freeze) stopRun(); }, true);
+  // Turning Sound on during a run must not queue a welcome over the music.
+  Curio.onSound(() => {
+    if (state.running) {
+      V.dropQueued();
+      music?.mute(!Curio.sound || (state.feeling === 4 && state.count > 0 && state.count % 4 === 0));
+    }
+  });
+  document.addEventListener('keydown', e => {
+    if ($('edit-dialog').open || e.altKey || e.ctrlKey || e.metaKey) return;
+    if (e.code === 'Space' && e.target.tagName !== 'BUTTON') {
+      e.preventDefault();
+      if (['watch', 'turn'].includes(state.mode)) state.running ? stopRun() : startRun();
+    }
+    if (/^[1-5]$/.test(e.key)) chooseFeeling(Number(e.key) - 1);
+    const part = {s: 0, m: 1, e: 2}[e.key.toLowerCase()];
+    if (part !== undefined) {
+      e.preventDefault();
+      if (state.mode !== 'build') setMode('build');
+      selectPart(part);
+      buildOptions[0].focus({preventScroll: true});
+    }
+  });
+  function idleFrame(time) {
+    if (!state.running && !state.still && !state.freeze && !Curio.reduce && !$('run-pane').hidden && time - lastIdle >= 30) {
+      drawRibbon(time);
+      lastIdle = time;
+    }
+    requestAnimationFrame(idleFrame);
+  }
+  Curio.init({clips: "voice:*", rate: .9});
+  rebuildPhrase();
+  dancer.set(phrase.at(0));
+  paintPattern();
+  renderChoices();
+  refreshCards();
+  updateChips();
+  setMode('build');
+  requestAnimationFrame(idleFrame);
+  window.__tool = {state, setMode, allLines: V.allLines, vlog: V.log, get vq() { return V.queue; },
+    feelings, shapes, moves, chooseFeeling, choosePart, feelingIdea, startRun, stopRun, dancer, floor,
+    get clock() { return clock; }, get phrase() { return phrase; }, get ribbon() { return ribbon; }, relayout};
+})();
+</script>
+</body>
+</html>

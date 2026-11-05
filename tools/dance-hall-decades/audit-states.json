@@ -1,0 +1,87 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "playing",
+      "steps": [
+        {
+          "click": "#play"
+        },
+        {
+          "wait": 1200
+        }
+      ],
+      "keep": [
+        "#hall",
+        "#play"
+      ]
+    },
+    {
+      "name": "room",
+      "steps": [
+        {
+          "click": "#tab-room"
+        }
+      ],
+      "keep": [
+        "#story-room"
+      ]
+    },
+    {
+      "name": "credit",
+      "steps": [
+        {
+          "click": "#tab-people"
+        }
+      ],
+      "keep": [
+        "#story-people"
+      ]
+    },
+    {
+      "name": "last-hall",
+      "steps": [
+        {
+          "click": "#next",
+          "times": 7,
+          "gap": 0.15
+        }
+      ],
+      "keep": [
+        "#hall",
+        "#play"
+      ]
+    },
+    {
+      "name": "moving-work",
+      "steps": [
+        {
+          "click": "#m-moving"
+        },
+        {
+          "click": "#me-0"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "click": "#judge-a .strengths button"
+        },
+        {
+          "click": "#judge-a .reasons button"
+        }
+      ],
+      "keep": [
+        "#chart"
+      ],
+      "sizes": [
+        "1366x768",
+        "1920x1080",
+        "680x425",
+        "375x812"
+      ]
+    }
+  ]
+}

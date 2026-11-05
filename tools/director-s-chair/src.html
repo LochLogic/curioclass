@@ -1,0 +1,2061 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Director's Chair · Curio Class</title>
+<meta name="description" content="Direct Antigone in five theater traditions. Change the staging, change seats, and compare your productions. Grades 9-12. Works offline.">
+<!--
+Director's Chair, Curio Class. Grades 9-12 theater. NCAS TH:Re8, TH:Cn11, TH:Cr2, TH:Re7, TH:Re9.
+Adapted from the kit starter. Stage engine: kit/stage.js. Scene: Sophocles, Antigone, F. Storr (1912), public domain.
+Historical sources and simplifications are documented in notes.md. Content CC BY 4.0, code MIT.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Two retained venue illustrations drawn with FLUX.1-schnell (Apache 2.0), edited for Curio Class.
+No network requests. Choices and a note are saved only on this device, on request.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{--brand:#ff9e5e;--brand-ink:#1c1203;--st-ink:#15141a;--st-sel:#fff5d8;--st-spike:#ff9e5e;
+  --st-label:#e9dfcf;--st-house:#17212b;--st-floor:#bfa77e;--st-piece:#b99b6b;--st-back:#74614a;
+  --st-lines:#67583e;--st-pool:#fff1c6;--st-seat:#aec1ce;--st-bad:#ffb8a8;--st-part:#ffd590;--st-dark:#14212b}
+body{grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden}
+header{padding:10px 20px;gap:10px}
+h1{font-family:Georgia,serif;font-weight:500;font-size:29px}
+h1 small{font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-top:5px}
+button{touch-action:manipulation}
+.icon-btn,.seg button{min-height:44px;min-width:44px;font-size:14px;padding:0 13px}
+main{display:block;min-height:0;position:relative}
+#workspace{height:100%;min-height:0}
+.page{height:100%;min-height:0}
+.eyebrow{font:700 11px/1.4 'Segoe UI',sans-serif;letter-spacing:.17em;text-transform:uppercase;color:var(--brand)}
+h2,h3,p{margin:0}
+.tour{display:flex;flex-direction:column;padding:26px 28px 24px;gap:22px;
+  background:radial-gradient(ellipse at 50% 0,#3c2b25 0,transparent 65%),#0d1219}
+.tour-intro{display:flex;align-items:end;justify-content:space-between;gap:20px}
+.tour h2{font:400 clamp(28px,3vw,46px)/1.1 Georgia,serif;margin:6px 0 10px}
+.tour-intro p{font-size:15px;color:var(--muted);max-width:480px;line-height:1.5}
+.tour-count{white-space:nowrap;border:1px solid #6b4838;border-radius:6px;padding:10px 16px;color:#f0d7bd;font-size:14px}
+.houses{flex:1;min-height:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:13px}
+.house-card{position:relative;text-align:left;border:1px solid #6c5140;background:#141b25;padding:0;overflow:hidden;
+  border-radius:4px 4px 16px 16px;display:flex;flex-direction:column;box-shadow:0 18px 28px #0005;min-width:0}
+.house-card img{width:100%;height:64%;min-height:0;object-fit:cover;transition:filter .2s;filter:saturate(.85)}
+.house-card:hover img{filter:saturate(1.15) brightness(1.1)}
+.card-copy{padding:16px 15px;display:flex;flex-direction:column;flex:1;gap:9px;border-top:2px solid #ab7656}
+.house-card h3{font:400 clamp(19px,1.8vw,28px)/1.12 Georgia,serif;color:#fff0d9}
+.house-card .date{color:#b7c0cc;font-size:12px;line-height:1.45}
+.status{color:#ffb37c;font-size:12px;margin-top:auto;padding-top:9px}
+.house-card::after{content:'↗';position:absolute;top:12px;right:12px;background:#10161fbd;border:1px solid #c8b89a80;
+  border-radius:50%;width:32px;height:32px;display:grid;place-items:center;color:#fff5de}
+.arrival{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(340px,1fr);gap:0;background:#10161f}
+.arrival-art{position:relative;overflow:hidden;min-width:0}
+.arrival-art>img{width:100%;height:100%;object-fit:cover}
+.arrival-caption{position:absolute;bottom:0;left:0;right:0;padding:65px 32px 28px;
+  background:linear-gradient(transparent,#0d1219f5);text-shadow:0 2px 5px #000}
+.arrival-caption h2{font:400 clamp(30px,4vw,58px)/1.1 Georgia,serif;margin:5px 0 12px}
+.arrival-caption p{font-size:14px;line-height:1.5}
+.arrival-panel{padding:22px 25px;display:flex;flex-direction:column;gap:15px;overflow:auto}
+.arrival-actions{display:flex;gap:8px;order:-1}
+.arrival-actions button{flex:1}
+.rules{padding:0 0 0 20px;margin:0;color:#dbe1ea;font-size:14px;line-height:1.5}
+.rules li{margin-bottom:8px;padding-left:3px}
+.cast-list{display:grid;gap:6px}
+.cast-role{display:flex;align-items:center;gap:13px;min-height:74px;border-top:1px solid #33404f;padding-top:5px}
+.cast-role img{width:72px;height:72px;object-fit:contain;filter:drop-shadow(2px 4px 3px #0008)}
+.cast-role p{font-size:13px;color:#b4c0ce;line-height:1.4}
+.cast-role strong{display:block;font-size:15px;color:#f5e4cc;margin-bottom:3px}
+.scene-page{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,35%);height:100%}
+.scene-stage{position:relative;min-width:0;min-height:0;overflow:hidden;background:#15212a}
+#houseView{position:absolute;inset:50px 0 56px}
+.house-heading{position:absolute;z-index:2;top:15px;left:20px;right:15px;display:flex;justify-content:space-between;gap:10px;
+  font-size:13px;color:#e9d9c0;pointer-events:none}
+.house-heading strong{font:400 22px Georgia,serif}
+.house-heading span{align-self:center;font-size:11px;color:#c4c9ca}
+.scene-tools{position:absolute;left:12px;right:12px;bottom:7px;display:flex;gap:6px;align-items:center}
+.scene-tools .btn{background:#101923ed;font-size:12px;padding:0 10px;border-color:#68798a}
+.scene-tools .btn[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.scene-tools .light-indicator{font-size:11px;color:#bcc6cd;margin-left:auto}
+.inset{position:absolute;right:14px;bottom:72px;width:30%;height:27%;min-width:190px;min-height:135px;
+  background:#111a24;border:1px solid #a99b7a;box-shadow:0 6px 20px #0008;border-radius:7px;overflow:hidden}
+.inset label{position:absolute;top:5px;left:8px;z-index:2;font-size:10px;color:#f2e4cc;pointer-events:none;
+  background:#111923d9;padding:3px 5px;border-radius:3px}
+#plan{position:absolute;inset:25px 6px 4px}
+.inset:not(.adjust) #plan text{display:none}
+.inset.adjust{width:51%;height:55%;min-width:285px}
+.mask-legend{position:absolute;bottom:72px;left:15px;display:flex;gap:8px;pointer-events:none}
+.mask-legend figure{margin:0;width:72px;text-align:center;background:#101923db;border:1px solid #4c5764;border-radius:6px}
+.mask-legend img{height:64px;width:64px;object-fit:contain}
+.mask-legend figcaption{font-size:10px;color:#ecdfcb;padding-bottom:5px}
+.focus-guide{position:absolute;top:53px;left:20px;font-size:10px;color:#e8dcca;background:#14212bcc;padding:5px 8px;
+  border:1px solid #596169;border-radius:4px;pointer-events:none}
+.live-lamp{display:inline-block;width:6px;height:6px;background:var(--brand);border-radius:50%;margin-right:7px;
+  box-shadow:0 0 8px #ff9e5e;animation:breathe 4s ease-in-out infinite}
+@keyframes breathe{50%{opacity:.4;box-shadow:0 0 2px #ff9e5e}}
+body.calm .live-lamp{animation:none}
+.directing-panel{background:#141b25;border-left:1px solid #765642;padding:14px;min-height:0;min-width:0;
+  display:grid;grid-template-rows:44px minmax(65px,1fr) 44px minmax(165px,1.25fr);gap:10px}
+.seatbar{display:flex;gap:8px;align-items:center;min-width:0}
+#seat{width:100%;font-size:13px;text-align:left;border-color:#778a9e;white-space:normal;line-height:1.2}
+.script-wrap{position:relative;min-height:0;border:1px solid #3a4351;background:#0e141d;border-radius:7px;overflow:auto;
+  scrollbar-width:thin;padding:8px 10px}
+.script-wrap .setup{font-size:12px;color:#d2bc9d;line-height:1.5;margin-bottom:12px;border-bottom:1px solid #3a4351;padding-bottom:8px}
+.script-beat{padding:9px;border-left:2px solid transparent;opacity:.52;font:14px/1.5 Georgia,serif;margin-bottom:4px}
+.script-beat.active{opacity:1;background:#282a2c;border-color:#ff9e5e;border-radius:0 4px 4px 0}
+.script-beat strong{font:700 10px 'Segoe UI',sans-serif;color:#ffc38f;letter-spacing:.08em;text-transform:uppercase}
+.script-beat p{margin-top:5px}
+.nav{display:grid;grid-template-columns:1fr 1fr 1.16fr;gap:5px}
+.nav .btn{padding:0 4px;font-size:12px}
+#play[aria-pressed=true]{background:#693725;color:#fff1da}
+.decision{min-height:0;min-width:0;display:flex;flex-direction:column;gap:8px;overflow:auto;overflow-x:hidden;scrollbar-width:thin}
+.decision>*{min-width:0;flex-shrink:0;overflow-wrap:break-word}
+.adaptation{font-size:12px;line-height:1.4;color:#c7cfd9;border-left:2px solid #a47a5c;padding-left:9px}
+.decision h3{font:400 20px Georgia,serif;color:#ffe0bd}
+.decision .question{font-size:13px;color:var(--muted);line-height:1.4}
+.options{display:grid;gap:8px}
+.option{display:block;text-align:left;background:linear-gradient(110deg,#352b25,#1b2531);border:1px solid #a47a5c;
+  border-radius:7px;padding:13px 14px;min-height:68px;width:100%}
+.option strong{display:block;color:#ffe2c1;font-size:15px;font-weight:650}
+.option span{display:block;color:#bdc6d1;font-size:12px;line-height:1.4;margin-top:5px}
+.option:hover{border-color:#ffbe8f;background:#413126}
+.notice{border-left:3px solid #ff9e5e;background:linear-gradient(135deg,#3a2a23,#1c2530);padding:13px;border-radius:0 8px 8px 0}
+.notice p{font:15px/1.5 Georgia,serif;color:#f8ead8}
+.leader{font:12px/1.45 'Segoe UI',sans-serif!important;color:#bce3ff!important;margin-top:12px}
+.change-row{display:flex;gap:6px;flex-wrap:wrap;position:sticky;top:0;z-index:2;background:#141b25;
+  padding:3px 0;flex-shrink:0}
+.change-row .btn{font-size:12px;padding:0 10px}
+.program{border:1px solid #8b6e50;border-radius:5px;padding:0 10px;background:#20252a}
+.program summary{min-height:44px;display:flex;align-items:center;font-size:13px;color:#ffcc9d;cursor:pointer}
+.program ol{padding:0 0 0 17px;font-size:12px;line-height:1.5;color:#e6d4bd}
+.program li{margin:0 0 10px}
+.adjust-controls{position:absolute;top:58px;right:14px;z-index:3;width:min(360px,90%);background:#111b28ed;
+  border:1px solid #798fa3;padding:9px;border-radius:8px;display:flex;flex-wrap:wrap;gap:5px}
+.adjust-controls select{background:#1c2532;color:#f4e5cc;border:1px solid #8196aa;min-height:44px;min-width:120px;flex:1}
+.adjust-controls .btn{font-size:12px}
+.rule-note{flex-basis:100%;font-size:12px;color:#ffd5ae;line-height:1.4}
+.lights{display:flex;gap:6px;flex-basis:100%}
+.lights .btn{flex:1;min-width:0;padding:0 3px}
+.compare-page{padding:16px 22px;display:grid;grid-template-rows:44px minmax(0,1fr) auto;gap:12px;background:#10161f}
+.compare-top{display:flex;gap:8px;align-items:center}
+.compare-top h2{font:400 24px Georgia,serif;margin-right:auto}
+.compare-top .btn{min-width:44px;padding:0 8px}
+.compare-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;min-height:0;
+  grid-auto-rows:minmax(215px,1fr);overflow:auto;scrollbar-width:thin}
+.compare-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.production{display:grid;grid-template-rows:auto minmax(85px,1fr) auto;border:1px solid #635447;border-radius:8px;overflow:hidden;
+  background:#141b25;min-height:0;min-width:0}
+.production h3{font:400 19px Georgia,serif;padding:9px 12px;color:#ffe1c2;border-bottom:1px solid #4a4641}
+.compare-view{position:relative;min-height:0}
+.production p{font-size:12px;line-height:1.4;color:#bdc6d1;padding:8px 12px}
+.production p strong{display:block;color:#ffbc89;margin-bottom:4px}
+.director-note{display:grid;grid-template-columns:230px minmax(0,1fr) 175px;gap:12px;align-items:center;background:#1d232a;
+  border:1px solid #665344;padding:12px 16px;border-radius:7px}
+.director-note label{font:400 21px Georgia,serif;color:#ffe1bf}
+.director-note label small{display:block;font:12px/1.4 'Segoe UI',sans-serif;color:#b6c0ce;margin-top:5px}
+textarea{width:100%;height:74px;resize:none;background:#101720;color:#f2e4d2;border:1px solid #8193a8;border-radius:6px;
+  padding:9px;font:14px/1.4 'Segoe UI',sans-serif}
+.save-actions{display:grid;grid-template-columns:1fr 60px;gap:6px}
+.save-actions .btn{font-size:12px;padding:0 6px}
+.privacy{font-size:10px;color:#b8c3d0;grid-column:1/-1}
+footer{background:#10161f;border-top:1px solid #4d4039;padding:10px 22px;display:flex;align-items:center;gap:15px;min-height:52px}
+#hint{font-size:13px;line-height:1.4;margin:0;flex:1;color:#d6dce5}
+.brandmark{font-size:10px;color:#9da9b8;white-space:nowrap;letter-spacing:.07em}
+.sr{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+@media(max-height:650px) and (min-width:601px){
+  header{padding:3px 10px;gap:7px;flex-wrap:nowrap}
+  h1{font-size:20px}h1 small{display:none}
+  .icon-btn,.seg button{font-size:12px;padding:0 9px}
+  footer{min-height:38px;padding:5px 12px}#hint{font-size:11px}
+  .tour{padding:12px 16px;gap:10px}.tour h2{font-size:27px;margin:3px 0}.tour-intro p{font-size:12px}
+  .tour-count{font-size:11px;padding:6px 9px}.houses{gap:8px}.card-copy{padding:9px;gap:4px}
+  .house-card h3{font-size:18px}.house-card .date{font-size:10px}.status{font-size:10px;padding-top:3px}
+  .arrival{grid-template-columns:minmax(0,1.1fr) minmax(300px,1fr)}.arrival-panel{padding:10px 13px;gap:8px}
+  .rules{font-size:12px}.rules li{margin-bottom:4px}.cast-role{min-height:55px}.cast-role img{height:55px;width:55px}
+  .cast-role strong{font-size:13px}.cast-role p{font-size:11px}.arrival-caption{padding:45px 18px 18px}
+  .scene-page{grid-template-columns:minmax(0,1fr) 300px}
+  .directing-panel{padding:6px;gap:5px;grid-template-rows:44px minmax(40px,.5fr) 44px minmax(128px,1fr)}
+  .script-wrap{padding:2px 4px}.script-beat{font-size:11px;padding:4px}.script-wrap .setup{font-size:10px;margin-bottom:4px}
+  .decision{gap:5px}.decision h3{font-size:16px}.decision .question{font-size:11px}
+  .option{padding:7px;min-height:50px}.option strong{font-size:12px}.option span{font-size:10px;margin-top:2px}
+  .options{gap:5px}.notice{padding:7px}.notice p{font-size:12px;line-height:1.3}.leader{font-size:10px!important;margin-top:6px}
+  .house-heading{top:10px;left:10px}.house-heading strong{font-size:17px}.house-heading span{font-size:10px}
+  #houseView{inset:35px 0 51px}.focus-guide{top:37px;left:10px;font-size:10px}
+  .scene-tools{left:6px;right:6px;gap:4px}.scene-tools .btn{font-size:10px;padding:0 6px}
+  .light-indicator{display:none}.inset{right:8px;bottom:60px;min-width:140px;min-height:110px;width:40%;height:35%}
+  .mask-legend{bottom:60px;left:7px;gap:3px}.mask-legend figure{width:40px}.mask-legend img{width:36px;height:36px}
+  .mask-legend figcaption{font-size:10px}.compare-page{padding:6px 10px;gap:6px;grid-template-rows:44px minmax(0,1fr) auto}
+  .production h3{font-size:14px;padding:5px}.production p{font-size:10px;padding:5px}
+  .compare-grid{gap:6px;grid-auto-rows:minmax(190px,1fr)}
+  .director-note{grid-template-columns:150px minmax(0,1fr) 150px;gap:7px;padding:6px}.director-note label{font-size:16px}
+  .director-note label small{font-size:10px}textarea{height:60px;font-size:12px}
+}
+@media(max-width:850px) and (min-height:651px){
+  header{padding:6px 10px;gap:7px}h1{font-size:23px}h1 small{font-size:10px}
+  .icon-btn,.seg button{font-size:12px;padding:0 9px}
+  .tour{padding:18px;overflow:auto}.houses{flex:none;grid-template-columns:1fr;gap:12px}
+  .house-card{min-height:190px;display:grid;grid-template-columns:48% 1fr}.house-card img{height:100%;min-height:190px}
+  .card-copy{border-top:0;border-left:2px solid #ab7656}.house-card h3{font-size:26px}
+  .arrival{grid-template-columns:1fr;grid-template-rows:39% 61%}.arrival-panel{padding:12px 18px;gap:10px}
+  .arrival-caption{padding:35px 18px 15px}.arrival-caption h2{font-size:30px}.arrival-caption p{font-size:11px}
+  .cast-list{grid-template-columns:repeat(3,minmax(0,1fr))}.cast-role{display:block}.cast-role strong{font-size:13px}
+  .scene-page{grid-template-columns:1fr;grid-template-rows:42% 58%}
+  .directing-panel{grid-template-rows:44px minmax(45px,.65fr) 44px minmax(130px,1fr);padding:7px 12px;gap:6px}
+  .options{grid-template-columns:1fr 1fr}.option{min-height:62px;padding:8px}.option strong{font-size:13px}
+  .option span{font-size:11px}.decision h3{font-size:18px}.notice{padding:8px}.notice p{font-size:13px}
+  .leader{font-size:11px!important;margin-top:6px}.decision{gap:5px}.script-beat{font-size:12px;padding:5px}
+  .script-wrap .setup{font-size:11px}.house-heading{top:10px}.house-heading strong{font-size:19px}
+  #houseView{inset:35px 0 50px}.focus-guide{top:37px;font-size:10px}.inset{bottom:60px;min-width:150px;min-height:105px}
+  .mask-legend{bottom:60px}.mask-legend figure{width:42px}.mask-legend img{height:35px;width:35px}
+  .scene-tools .light-indicator{display:none}.scene-tools .btn{font-size:11px}
+  .compare-page{padding:10px;grid-template-rows:44px minmax(0,1fr) auto}.compare-grid{overflow:auto;grid-template-columns:1fr 1fr}
+  .production{min-height:210px}.director-note{grid-template-columns:1fr 1.6fr;padding:8px}
+  .director-note label{font-size:18px}.save-actions{grid-column:1/-1;grid-template-columns:1fr 80px auto}
+  .privacy{grid-column:auto;align-self:center}.brandmark{display:none}footer{padding:7px 12px;min-height:49px}#hint{font-size:12px}
+}
+@media(max-width:600px){
+  header{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;padding:5px 8px}
+  h1{grid-column:1/3;font-size:21px}.seg{grid-column:3;grid-row:1;border-radius:7px}
+  h1 small{display:none}.seg button{font-size:11px;padding:0 5px;width:50%}.icon-btn{font-size:12px;padding:0 4px}
+  .tour-intro{display:block}.tour-count{display:none}.tour h2{font-size:29px}.tour-intro p{font-size:13px}
+  .tour{padding:14px;gap:12px}.house-card h3{font-size:23px}.house-card .date{font-size:11px}
+  .house-card{min-height:165px}.house-card img{min-height:165px}.card-copy{padding:12px}
+  .scene-page{grid-template-rows:35% 65%}.directing-panel{padding:5px 8px;gap:4px;
+    grid-template-rows:44px minmax(40px,.45fr) 44px minmax(128px,1fr)}
+  .house-heading{top:7px;left:10px}.house-heading span{display:none}.focus-guide{left:10px;top:31px}
+  #houseView{inset:25px 0 47px}.inset{bottom:54px;right:8px;min-width:130px;min-height:90px;width:38%;height:45%}
+  .scene-tools{bottom:3px;left:6px;right:6px;gap:4px}.scene-tools .btn{font-size:10px;padding:0 7px}
+  .mask-legend{left:8px;bottom:54px}.mask-legend figure{width:32px}.mask-legend img{width:28px;height:28px}
+  .mask-legend figcaption{font-size:10px}.option{padding:7px}.option strong{font-size:12px}.option span{font-size:10px}
+  .notice p{font-size:12px;line-height:1.35}.decision .question{font-size:11px}.decision h3{font-size:16px}
+  .change-row .btn{font-size:11px}.leader{font-size:10px!important}.inset.adjust{min-width:265px;width:85%;height:75%}
+  .adjust-controls{top:35px;right:8px}.arrival-panel{padding:10px 14px}.rules{font-size:12px}.rules li{margin-bottom:4px}
+  .cast-role img{height:65px;width:65px}.cast-role p{font-size:11px}.cast-list{gap:5px}
+  .compare-top h2{font-size:17px}.compare-top{gap:4px}.compare-top>span{display:none}.compare-top .btn{padding:0 4px}
+  .compare-grid,.compare-grid.two{grid-template-columns:1fr}.production{min-height:225px}
+  .director-note{grid-template-columns:1fr;gap:7px}.director-note label small{font-size:11px}.director-note label{font-size:17px}
+  .save-actions{grid-template-columns:1fr 70px}.privacy{grid-column:1/-1}.brandmark{display:none}
+}
+@media(max-height:650px),(max-width:850px){
+  .scene-stage.adjusting .adjust-controls{top:36px;left:8px;right:8px;width:auto;padding:6px;gap:5px}
+  .scene-stage.adjusting .rule-note{display:none}
+  .scene-stage.adjusting .inset.adjust{top:calc(42px + var(--adjust-controls-h,107px));left:8px;right:8px;
+    bottom:54px;width:auto;height:auto;min-width:0;min-height:0}
+  .scene-stage.adjusting .focus-guide,.scene-stage.adjusting .mask-legend{display:none}
+  .scene-stage.adjusting .house-heading{left:10px;top:8px}
+  .scene-stage.adjusting .adjust-controls .btn{font-size:10px;padding:0 3px}
+  .scene-stage.adjusting .adjust-controls select{font-size:12px;min-width:100px}
+}
+@media(max-width:850px) and (min-height:651px){
+  .scene-page:has(.scene-stage.adjusting){grid-template-rows:50% 50%}
+}
+@media(max-width:600px){
+  .scene-page:has(.scene-stage.adjusting){grid-template-rows:55% 45%}
+  .scene-page:has(.scene-stage.adjusting) .directing-panel{
+    grid-template-rows:44px minmax(44px,.45fr) 44px minmax(128px,1fr)}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Director's Chair <small>theater traditions and directing</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-tour" aria-pressed="true">Tour</button>
+    <button id="m-compare" aria-pressed="false" disabled>Compare</button>
+  </div>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+</header>
+<main><div id="workspace"></div></main>
+<footer><p id="hint" class="hint" aria-live="polite"></p><span class="brandmark">CURIO CLASS · THEATER</span></footer>
+<script src="kit:curio"></script>
+<script src="kit:stage"></script>
+<script>
+(() => {
+'use strict';
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const DATA = {
+  "houses": {
+    "greek": {
+      "name": "Greek theater",
+      "art": "greek-theatre",
+      "date": "Athens, 400s BC (stage drawn after Epidauros, about 330 BC)",
+      "rules": [
+        "Every actor wears a mask, and there are no more than three speaking actors.",
+        "The chorus is part of the action: it stays in the round orchestra and answers as a group.",
+        "Actors come on by the side roads or through the stage building's door."
+      ],
+      "castText": "Guard, Creon (masks); the Chorus of Theban elders, shown as seven masked figures, the leader marked CL.",
+      "choices": [
+        {
+          "beat": 0,
+          "options": [
+            {
+              "name": "Long side road",
+              "detail": "enters by the right road and crosses the orchestra while speaking",
+              "notice": "The long walk plays the Guard's dread before Creon says a word. His line about the road becomes something you watch."
+            },
+            {
+              "name": "Skene door",
+              "detail": "appears in the door and stops at (3, 21.5) beside Creon",
+              "notice": "He appears at the king's elbow, so his fear is about Creon, not the road. The long road lives only in his words."
+            }
+          ]
+        },
+        {
+          "beat": 4,
+          "options": [
+            {
+              "name": "Draw together",
+              "detail": "the elders close to radius 3 around (0, 15), all facing Creon; CL at (0, 17",
+              "notice": "Masks cannot change expression, so the group's bodies carry the worry: the whole city leans toward the palace."
+            },
+            {
+              "name": "Turn to the audience",
+              "detail": "the elders face the front row; CL steps to (0, 6",
+              "notice": "Turned to the seats, the elders share their doubt with the people watching, and the audience joins the council."
+            }
+          ]
+        },
+        {
+          "beat": 5,
+          "options": [
+            {
+              "name": "From the stage",
+              "detail": "Creon stays at (0, 21.5",
+              "notice": "Above the orchestra, before his own door, Creon speaks from the seat of power, and the elders look up at him."
+            },
+            {
+              "name": "Down into the orchestra",
+              "detail": "Creon crosses to (0, 12) among the elders, facing the Guard",
+              "notice": "Down among the elders, the oath happens inside the city, and the chorus around him becomes the crowd he threatens."
+            }
+          ]
+        }
+      ]
+    },
+    "noh": {
+      "name": "Noh",
+      "art": "noh-stage",
+      "date": "Japan, from the 1300s (today's Noh stage)",
+      "rules": [
+        "The main actor, the shite, wears a mask; the pillars help him find his place.",
+        "Entrances and exits come along the bridgeway, the hashigakari.",
+        "The chorus sits at the side and sings; the pine painted on the back wall never changes.",
+        "Actors move with a slow sliding walk."
+      ],
+      "castText": "Guard as the shite (mask); Creon as the waki (unmasked), seated by the front-right pillar; the Chorus line sung " +
+        "by the seated chorus (eight figures, the tool's drawing); four musicians at the back.",
+      "choices": [
+        {
+          "beat": 0,
+          "options": [
+            {
+              "name": "The whole bridge",
+              "detail": "the Guard slides the whole bridgeway at 0.4 m a second to (-2.2, 4.8",
+              "notice": "The bridge is the road: the slow slide makes 'a furlong to a league' happen in front of you."
+            },
+            {
+              "name": "Stop on the bridge",
+              "detail": "he stops at (-8, 7) and speaks beats 1 and 2 from there",
+              "notice": "Stopped on the bridge he is between two worlds, not yet before the king, small against the bare wall."
+            }
+          ]
+        },
+        {
+          "beat": 3,
+          "options": [
+            {
+              "name": "The Guard speaks it",
+              "detail": "The Guard speaks it",
+              "notice": "In his own voice the report stays personal: a frightened man explaining himself."
+            },
+            {
+              "name": "The chorus sings it",
+              "detail": "the chorus takes his words; he moves to (-1, 1.5), stops, faces front, then turns to Creon",
+              "notice": "When the chorus sings his words and he only moves, the report becomes the story itself, and you watch the mask, not a mouth."
+            }
+          ]
+        },
+        {
+          "beat": 7,
+          "options": [
+            {
+              "name": "At the eye-fixing pillar",
+              "detail": "the Guard at (-2.1, 0.7) facing the front seats",
+              "notice": "At the front pillar the mask faces the front seats, where masks read best, and his relief is shared with you."
+            },
+            {
+              "name": "Leaving on the bridge",
+              "detail": "he speaks while sliding away to the curtain",
+              "notice": "Spoken while he slides away, his relief trails off down the bridge; the scene ends in the distance."
+            }
+          ]
+        }
+      ]
+    },
+    "commedia": {
+      "name": "Commedia dell'arte",
+      "art": "commedia-piazza",
+      "date": "Italy, from 1545 (the earliest known company)",
+      "rules": [
+        "Stock characters wear half masks; only the young lovers and Pedrolino go without.",
+        "Actors improvise around a scenario and drop in lazzi, rehearsed comic bits.",
+        "Masks hide faces, so gesture and voice carry the character.",
+        "A trestle stage and a painted backcloth in the open air."
+      ],
+      "castText": "Guard as a zanni, the servant clown; Creon as the Capitano, the boasting soldier; the Chorus line given to the " +
+        "Dottore, the know-it-all scholar. All in half masks.",
+      "choices": [
+        {
+          "beat": 0,
+          "options": [
+            {
+              "name": "Lazzo of the long road",
+              "detail": "the zanni starts, stops, turns back and starts again three times between x -3 and -1; caption \"lazzo\"",
+              "notice": "The crowd laughs before a word of news: the dread becomes a joke you are in on, and the zanni owns the stage."
+            },
+            {
+              "name": "Straight in",
+              "detail": "Straight in",
+              "notice": "Without the lazzo the scene starts on the plot, and the crowd waits to see who this masked servant is."
+            }
+          ]
+        },
+        {
+          "beat": 3,
+          "options": [
+            {
+              "name": "Tell the crowd",
+              "detail": "he goes to the front edge (0, 0.4) and faces the crowd for \"drew the prize\"",
+              "notice": "Told to the crowd, his bad luck is a complaint shared with you, so you take his side."
+            },
+            {
+              "name": "Tell the Capitano",
+              "detail": "Tell the Capitano",
+              "notice": "Told to the Capitano, it is a servant pleading with a master, and you watch the master."
+            }
+          ]
+        },
+        {
+          "beat": 5,
+          "options": [
+            {
+              "name": "Boast and mock",
+              "detail": "Capitano at (0, 1) facing the crowd; the zanni behind him at (0, 2.6) copying every gesture",
+              "notice": "Behind the boaster's back the copying zanni steals the focus, and the threat turns into a laugh at the man making it."
+            },
+            {
+              "name": "Played straight",
+              "detail": "Capitano faces the zanni, who kneels at (-0.5, 1.5",
+              "notice": "Played straight, the threat lands: the crowd goes quiet, and the comedy has a moment of real danger."
+            }
+          ]
+        }
+      ]
+    },
+    "globe": {
+      "name": "Elizabethan playhouse",
+      "art": "globe-playhouse",
+      "date": "London, the Globe, 1599",
+      "rules": [
+        "Plays run in the afternoon, by daylight.",
+        "Groundlings stand in the yard around three sides of the stage.",
+        "Almost no scenery: the words tell you where you are.",
+        "Doors at the back for entrances, a balcony above."
+      ],
+      "castText": "Guard, Creon, and an old counsellor speaks the Chorus line.",
+      "choices": [
+        {
+          "beat": 0,
+          "options": [
+            {
+              "name": "To the groundlings",
+              "detail": "the Guard comes to the front edge (-2, 0.8) and faces the yard",
+              "notice": "In daylight he can see the people standing an arm's length away, and his slow journey is told to them as friends."
+            },
+            {
+              "name": "To Creon",
+              "detail": "he stops at (-2, 4) facing Creon",
+              "notice": "Played to Creon, the journey is an excuse to a king, and the yard watches a private fear from close by."
+            }
+          ]
+        },
+        {
+          "beat": 5,
+          "options": [
+            {
+              "name": "From the balcony",
+              "detail": "Creon leaves by the center opening at beat 5 and swears from the balcony",
+              "notice": "From the balcony the oath comes from above everyone, like a law."
+            },
+            {
+              "name": "At the edge of the yard",
+              "detail": "Creon at (1, 1) facing the Guard at (-2, 3",
+              "notice": "At the edge of the thrust the groundlings are almost inside his threat; the yard sees his face, the far side his back."
+            }
+          ]
+        },
+        {
+          "beat": 7,
+          "options": [
+            {
+              "name": "To the yard",
+              "detail": "the Guard at (0, 0.8) facing the yard",
+              "notice": "Alone at the edge, 'thou never shalt see me here' lands on the crowd as a shared joke."
+            },
+            {
+              "name": "To the door",
+              "detail": "at (0, 5) facing the center opening Creon left by",
+              "notice": "Said to the empty doorway, the line is aimed at the absent king, and the yard hears a man still afraid."
+            }
+          ]
+        }
+      ]
+    },
+    "box": {
+      "name": "Realist box set",
+      "art": "box-set-study",
+      "date": "Europe, late 1800s (the fourth wall idea: Diderot, 1758)",
+      "rules": [
+        "The room has three walls; the fourth is where the audience sits, and the actors act as if it were solid.",
+        "Real furniture and objects; light seems to come from lamps and windows.",
+        "Nobody speaks to the audience."
+      ],
+      "castText": "Guard as a night watchman with a cap; Creon as the head of state at his desk; an aide speaks the Chorus line.",
+      "choices": [
+        {
+          "beat": 0,
+          "options": [
+            {
+              "name": "Creon keeps writing",
+              "detail": "seated, head down; the Guard waits at (0, 5) with his cap in his hands",
+              "notice": "Making him wait says everything about power without a word, and you watch like a fly on the wall."
+            },
+            {
+              "name": "Creon stands",
+              "detail": "at (0.5, 3.5) facing the Guard",
+              "notice": "Standing to meet him, Creon is polite and dangerous at once, and the room feels like a real office."
+            }
+          ]
+        },
+        {
+          "beat": 3,
+          "options": [
+            {
+              "name": "Offered a chair",
+              "detail": "the Guard sits on the chair at (-1, 2.5), facing Creon",
+              "notice": "On the edge of a chair he is a tired working man, and the ordinary room makes his fear real."
+            },
+            {
+              "name": "At attention",
+              "detail": "stands stiffly at (-0.5, 4",
+              "notice": "At attention every line is a report to a superior, and you read the gap between his words and his stiffness."
+            }
+          ]
+        },
+        {
+          "beat": 7,
+          "options": [
+            {
+              "name": "Alone, to himself",
+              "detail": "at (0.5, 5), back to the house, quiet",
+              "notice": "Back to us, his relief is private; we overhear it through the fourth wall."
+            },
+            {
+              "name": "Cheated out",
+              "detail": "at (-1.5, 1.5) facing the window, in profile",
+              "notice": "Turned toward the window we see his face without being spoken to, and the fourth wall still holds."
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "script": [
+    [
+      {
+        "role": "Guard",
+        "text": "My lord, I will not make pretense to pant / And puff as some light-footed messenger. / In sooth my soul beneath " +
+          "its pack of thought / Made many a halt and turned and turned again; [...] Thus leisurely I hastened on my road; " +
+          "/ Much thought extends a furlong to a league."
+      }
+    ],
+    [
+      {
+        "role": "Creon",
+        "text": "What is thy news? Why this despondency?"
+      },
+      {
+        "role": "Guard",
+        "text": "Let me premise a word about myself? / I neither did the deed nor saw it done, / Nor were it just that I should come to harm."
+      }
+    ],
+    [
+      {
+        "role": "Creon",
+        "text": "Then, sirrah, shoot thy bolt and get thee gone."
+      },
+      {
+        "role": "Guard",
+        "text": "Well, it must out; the corpse is buried; someone / E'en now besprinkled it with thirsty dust, / Performed the " +
+          "proper ritual, and was gone."
+      }
+    ],
+    [
+      {
+        "role": "Creon",
+        "text": "What say'st thou? Who hath dared to do this thing?"
+      },
+      {
+        "role": "Guard",
+        "text": "I cannot tell, for there was ne'er a trace / Of pick or mattock, hard unbroken ground, [...] so lots were cast, " +
+          "/ And I, unlucky scapegoat, drew the prize. / So here I am unwilling and withal / Unwelcome; no man cares to " +
+          "hear ill news."
+      }
+    ],
+    [
+      {
+        "role": "Chorus",
+        "text": "I had misgivings from the first, my liege, / Of something more than natural at work."
+      }
+    ],
+    [
+      {
+        "role": "Creon",
+        "text": "O cease, you vex me with your babblement; / I am like to think you dote in your old age. [...] By Zeus I swear, " +
+          "except ye find and bring / Before my presence here the very man / Who carried out this lawless burial, / Death " +
+          "for your punishment shall not suffice."
+      }
+    ],
+    [
+      {
+        "role": "Guard",
+        "text": "May I not speak, or must I turn and go / Without a word?"
+      },
+      {
+        "role": "Creon",
+        "text": "Begone! canst thou not see / That e'en this question irks me?"
+      },
+      {
+        "role": "Guard",
+        "text": "Where, my lord? / Is it thy ears that suffer, or thy heart?"
+      },
+      {
+        "role": "Creon",
+        "text": "What an inveterate babbler! get thee gone!"
+      },
+      {
+        "role": "Guard",
+        "text": "Babbler perchance, but innocent of the crime."
+      }
+    ],
+    [
+      {
+        "role": "Guard",
+        "text": "I pray he may be found. But caught or not / (And fortune must determine that) thou never / Shalt see me here " +
+          "returning; that is sure. / For past all hope or thought I have escaped, / And for my safety owe the gods much " +
+          "thanks."
+      }
+    ]
+  ]
+};
+const IDS = ['greek','noh','commedia','globe','box'];
+const ART = {
+  greek:'art:greek-theatre-v2', noh:'art:noh-stage-v2', commedia:'art:commedia-piazza',
+  globe:'art:globe-playhouse-v2', box:'art:box-set-study',
+};
+const MASK = {
+  greek:'art:mask-greek-review', noh:'art:mask-noh-review', zanni:'art:mask-zanni-review',
+  capitano:'art:mask-capitano-review', dottore:'art:mask-dottore-review',
+};
+const L = {
+  welcomeTour:'Welcome, guest director. Five theaters, one scene. Tap a theater to begin.',
+  'arrive.greek':'The Greek theater: the chorus lives in the round orchestra. Read the rules, then tap Begin.',
+  'arrive.noh':'The Noh stage: a bridge, four pillars and a painted pine. Read the rules, then tap Begin.',
+  'arrive.commedia':'A commedia stage in the square: masks, tricks and a crowd. Read the rules, then tap Begin.',
+  'arrive.globe':'The Globe, by daylight, with the crowd on three sides. Read the rules, then tap Begin.',
+  'arrive.box':'A realist room with its fourth wall. Read the rules, then tap Begin.',
+  sceneHow:'Read the beat, then tap Next beat to move on, or Play scene to watch it run.',
+  choiceHow:'Tap one of the two choices. Then watch from a seat and read what the audience notices.',
+  seatHow:'Tap Seat to watch the same moment from somewhere else.',
+  programNote:'Program note written. Tap Back to tour for the next theater.',
+  compareReady:'Two theaters staged. Tap Compare to see them side by side.',
+  allStaged:"You've directed all five. Tap Compare to see them side by side.",
+  welcomeCompare:'Tap a beat number. Every theater you staged shows that moment side by side.',
+};
+const state = {
+  mode:'tour', page:'tour', house:null, beat:0, seat:0, compareBeat:0,
+  choices:Object.fromEntries(IDS.map(k => [k,{}])), note:'', playing:false, adjust:false, selected:'guard',
+  editingChoice:false, notice:false, rule:'', light:{lamp:2,window:1,ceiling:1},
+};
+const SAVE_KEY = 'curio-directors-chair';
+try {
+  const saved = JSON.parse(localStorage.getItem(SAVE_KEY) || 'null');
+  if (saved && typeof saved === 'object') {
+    for (const id of IDS) for (const c of DATA.houses[id].choices) {
+      const v = saved.choices?.[id]?.[c.beat];
+      if (v === 0 || v === 1) state.choices[id][c.beat] = v;
+    }
+    state.note = String(saved.note || '').slice(0,600);
+  }
+} catch {}
+let view = null;
+let plan = null;
+let beats = [];
+let shown = null;
+let player = null;
+let playToken = 0;
+let moving = false;
+const pendingVoice = [];
+const staged = id => DATA.houses[id].choices.every(c => [0,1].includes(state.choices[id][c.beat]));
+const stagedIds = () => IDS.filter(staged);
+const houseData = () => DATA.houses[state.house];
+const V = Curio.voice({
+  lines:L, scope:() => state.mode + ':' + state.house,
+  welcome:() => {
+    if (state.playing) return null;
+    if (state.page === 'tour') return ['welcomeTour',{valid:() => state.page === 'tour'}];
+    if (state.page === 'arrival') return ['arrive.'+state.house,{valid:() => state.page === 'arrival'}];
+    if (state.page === 'compare') return ['welcomeCompare',{valid:() => state.page === 'compare'}];
+    return null;
+  },
+  hint:false,
+  read:() => state.playing ? [] : $('hint').textContent,
+  speaks:'.house-card, #begin, .option, #play',
+});
+function hint(text) { $('hint').textContent = text; }
+function how(key, valid = () => true) {
+  if (state.playing) return;
+  V.how(key,{hint:false,valid:() => !state.playing && valid()});
+}
+function event(key, valid = () => true) {
+  if (state.playing) { pendingVoice.push({key,valid}); return; }
+  V.say(key,{hint:false,valid:() => !state.playing && valid()});
+}
+function flushVoice() {
+  for (const item of pendingVoice.splice(0)) if (item.valid()) event(item.key,item.valid);
+}
+const rect = (x0,y0,x1,y1) => [[x0,y0],[x1,y0],[x1,y1],[x0,y1]];
+const circle = (x,y,r,n=72) => Array.from({length:n},(_,i) => [x+r*Math.cos(i*2*Math.PI/n),y+r*Math.sin(i*2*Math.PI/n)]);
+const block = (id,x,y,w,d,h,color) => ({id,poly:rect(x-w/2,y-d/2,x+w/2,y+d/2),h,color});
+const seats = rows => rows.map(([label,x,y,eye],i) => ({id:'s'+i,label,x,y,eye}));
+const HOUSES = {
+  greek:Stage.house({id:'greek',name:'Greek theater',outline:circle(0,10,10),frame:'arc',light:'daylight',
+    levels:[{id:'stage',poly:rect(-10,20,10,23),h:1}],
+    blockers:[block('skeneLeft',-6,23,8,.3,6,'#a29174'),block('skeneRight',6,23,8,.3,6,'#a29174')],
+    entrances:[{id:'right',label:'Side road',at:[15,12],quiet:true},{id:'left',label:'Side road',at:[-15,12],quiet:true},
+      {id:'door',label:'Skene door',at:[0,23],quiet:true}],
+    seats:seats([['Front row',0,-1,1.2],['Side wedge',-14,4,4],['Top row',0,-45,22]]),
+    backWall:{y:23.2,x0:-10,x1:10,h:6},look:[0,13,1.3],
+    fitPts:[[-10,12,0],[10,12,0],[-10,23,6],[10,23,6]],planBox:{x0:-17,x1:17,y0:-9,y1:25},
+  }),
+  noh:Stage.house({id:'noh',name:'Noh',outline:rect(-2.7,0,2.7,5.4),frame:'open',light:'even',
+    levels:[{id:'main',poly:rect(-2.7,0,2.7,7.4),h:.9},
+      {id:'bridge',poly:[[-2.5,4.9],[-14.2,6.9],[-13.8,9.1],[-2.5,7.1]],h:.9},
+      {id:'chorus',poly:rect(2.7,1,4.2,4.5),h:.9}],
+    blockers:[[-2.7,0],[2.7,0],[-2.7,5.4],[2.7,5.4]].map(([x,y],i) => block('pillar'+i,x,y,.24,.24,5.4,'#8a623a')),
+    entrances:[{id:'bridge',label:'Bridgeway',at:[-14,8],quiet:true}],
+    seats:seats([['Front, shomen',0,-5,1.2],['Corner, naka-shomen',-6,-5,1.2],['Side, waki-shomen',-8,2.7,1.2]]),
+    backWall:{y:7.5,x0:-3,x1:4.3,h:4.6},look:[-2,3.5,1.6],
+    fitPts:[[-14,8,.9],[-2.7,0,.9],[4.2,0,.9],[-2.7,0,5.5],[2.7,0,5.5],
+      [4.2,7.4,5.5],[-3,7.4,5.5]],planBox:{x0:-16,x1:5.5,y0:-7,y1:10},
+  }),
+  commedia:Stage.house({id:'commedia',name:"Commedia dell'arte",outline:rect(-3,0,3,4),stageH:1.5,frame:'open',light:'daylight',
+    blockers:[block('backcloth',0,4.15,6,.1,4,'#c9873a')],
+    entrances:[{id:'left',label:'Left entrance',at:[-3,4],quiet:true},{id:'right',label:'Right entrance',at:[3,4],quiet:true},
+      {id:'slit',label:'Center slit',at:[0,4],quiet:true}],
+    seats:seats([['Front of the crowd',0,-2,1.6],['Side of the crowd',-6,1,1.6],['Back of the crowd',0,-12,1.6]]),
+    backWall:{y:4.3,x0:-4,x1:4,h:4.2},look:[0,2,1],fitPts:[[-3,1,0],[3,1,0],[-3,4,4],[3,4,4]],
+    planBox:{x0:-7.5,x1:4,y0:-5,y1:5.5},
+  }),
+  globe:Stage.house({id:'globe',name:'Elizabethan playhouse',outline:rect(-6.5,0,6.5,8),stageH:1.5,frame:'thrust',light:'daylight',
+    levels:[{id:'balcony',poly:rect(-3,8,3,9),h:5}],
+    blockers:[block('pillarL',-4,6,.5,.5,8,'#9a6750'),block('pillarR',4,6,.5,.5,8,'#9a6750')],
+    entrances:[{id:'left',label:'Left door',at:[-4,8],quiet:true},{id:'right',label:'Right door',at:[4,8],quiet:true},
+      {id:'center',label:'Center opening',at:[0,8],quiet:true}],
+    seats:seats([['Yard, at the stage',0,-1.5,1.6],['Yard, at the side',-9,3,1.6],['Middle gallery',0,-12,6]]),
+    backWall:{y:9.2,x0:-7,x1:7,h:8},look:[0,4,1.9],
+    fitPts:[[-2.5,.8,0],[2.5,1,1.8],[-5,8,0],[5,8,8],[0,8.5,6.8]],planBox:{x0:-11,x1:8,y0:-5,y1:11},
+  }),
+  box:Stage.house({id:'box',name:'Realist box set',outline:rect(-5,0,5,7),stageH:.6,frame:'proscenium',light:'areas',
+    areas:[{id:'window',label:'Window',poly:rect(-5,0,0,7),row:'center'},
+      {id:'lamp',label:'Desk lamp',poly:rect(0,1.5,3,4.5),row:'center'},
+      {id:'ceiling',label:'Ceiling light',poly:[[0,0],[5,0],[5,7],[0,7],[0,4.5],[3,4.5],[3,1.5],[0,1.5]],row:'up'}],
+    blockers:[block('leftWall',-5,3.25,.2,6.5,4,'#5d6b4f'),block('rightWall',5,3.25,.2,6.5,4,'#5d6b4f')],
+    entrances:[{id:'door',label:'Back door',at:[1.5,6.5],quiet:true}],
+    seats:seats([['Stalls, center',0,-6,1.1],['Stalls, side',-6,-4,1.1],['Gallery',0,-14,6]]),
+    backWall:{y:6.6,x0:-5,x1:5,h:4.2},look:[0,3.3,1.2],opening:{x0:-5,x1:5,y:0,h:4.5},curtainY:0,
+    fitPts:[[-5,0,0],[5,0,0],[-5,6.5,4.5],[5,6.5,4.5]],planBox:{x0:-7,x1:6,y0:-5,y1:8},
+  }),
+};
+// Seat markers are compressed on the plan only. The view and analysis use true world coordinates.
+HOUSES.greek.seats[2].planAt = [[0,-6]];
+for (const id of ['commedia','globe','box']) HOUSES[id].seats[2].planAt = [[0,-3.7]];
+HOUSES.box.seats[0].planAt = [[0,-2.2]];
+Stage.addPieces({
+  desk:{label:'Desk',w:2,d:1,h:.85,color:'#705338',plan:'#705338',parts:[
+    {w:2,d:1,z0:.72,z1:.85,color:'#956a3f'},
+    ...[-.8,.8].flatMap(ox => [-.35,.35].map(oy => ({w:.12,d:.12,ox,oy,z0:0,z1:.72,color:'#503a28'})))
+  ]},
+  chair:{label:'Chair',w:.6,d:.65,h:.95,sit:true,color:'#79604b',plan:'#79604b',parts:[
+    {w:.6,d:.65,z0:.4,z1:.5},{w:.6,d:.1,oy:.3,z0:.5,z1:.95},
+    ...[-.23,.23].flatMap(ox => [-.25,.25].map(oy => ({w:.08,d:.08,ox,oy,z0:0,z1:.4})))
+  ]},
+  lamp:{label:'Green desk lamp',w:.4,d:.3,h:1.35,color:'#2c6040',parts:[
+    {w:.3,d:.25,z0:.85,z1:.91,color:'#b09a55'},{w:.05,d:.05,z0:.9,z1:1.3,color:'#9f8b4c'},
+    {w:.48,d:.28,z0:1.25,z1:1.4,color:'#36784a'}
+  ]},
+});
+const names = {
+  greek:['Guard','Creon','Chorus leader'], noh:['Guard (shite)','Creon (waki)','The chorus'],
+  commedia:['Zanni (Guard)','Capitano (Creon)','Dottore'], globe:['Guard','Creon','Counsellor'],
+  box:['Night watchman (Guard)','Head of state (Creon)','Aide'],
+};
+const actor = (id,name,x,y,facing,color,extra={}) => ({id,name,x,y,facing,color,initials:Stage.initials(name),pose:'stand',off:false,...extra});
+const face = (a,x,y) => a.facing = (Math.atan2(x-a.x,a.y-y)*180/Math.PI+360)%360;
+function initialSnap(id) {
+  const ns = names[id];
+  const cast = [actor('guard',ns[0],0,2,180,'#ffd84d',{initials:'G'}),
+    actor('creon',ns[1],0,4,0,'#5ec8ff',{initials:'C'}),
+    actor('chorus',ns[2],2,4,0,'#d9a3ff',{initials:id==='greek'?'CL':id==='commedia'?'D':'Ch'})];
+  const snap = {cast,pieces:[],lights:{...state.light},spot:null};
+  const [g,c,ch] = cast;
+  if (id === 'greek') {
+    Object.assign(g,{x:2,y:16,mask:'full'});
+    Object.assign(c,{x:0,y:21.5,on:'stage',mask:'full'});
+    Object.assign(ch,{x:0,y:9,facing:180,mask:'full',isChorus:true});
+    for (let i=0;i<6;i++) {
+      const t = (i/5)*Math.PI;
+      cast.push(actor('elder'+i,'Elder '+(i+1),4*Math.cos(t),12+4*Math.sin(t),180,'#d9a3ff',
+        {initials:'E'+(i+1),mask:'full',isChorus:true}));
+    }
+  }
+  if (id === 'noh') {
+    Object.assign(g,{x:0,y:2.7,on:'main',mask:'full'});
+    Object.assign(c,{x:2,y:.8,pose:'kneel',on:'main'});
+    cast.splice(2,1);
+    for (let i=0;i<8;i++) cast.push(actor(i?'singer'+i:'chorus',i?'Chorus '+(i+1):'The chorus',
+      3.3+(i%2)*.5,1.2+Math.floor(i/2)*.9,270,'#d9a3ff',
+      {initials:i?'S'+(i+1):'Ch',pose:'kneel',on:'chorus',isChorus:true}));
+    for (let i=0;i<4;i++) cast.push(actor('musician'+i,'Musician '+(i+1),-1.8+i*1.2,6.6,0,'#b49abf',
+      {initials:'M'+(i+1),pose:'kneel',on:'main'}));
+    face(c,0,2.7);
+  }
+  if (id === 'commedia') {
+    Object.assign(g,{x:-1,y:1.5,mask:'half',initials:'Z'});
+    Object.assign(c,{x:1,y:2,mask:'half',initials:'Ca'});
+    Object.assign(ch,{x:2.3,y:2.8,mask:'half',initials:'D'});
+    face(c,g.x,g.y);
+  }
+  if (id === 'globe') {
+    Object.assign(g,{x:-2,y:4});
+    Object.assign(c,{x:0,y:5});
+    Object.assign(ch,{x:3,y:5.5});
+  }
+  if (id === 'box') {
+    Object.assign(g,{x:-.5,y:4.5});
+    Object.assign(c,{x:1.5,y:3.8,pose:'sit',sitOn:'deskChair'});
+    Object.assign(ch,{x:3.3,y:4.5});
+    snap.pieces = [{id:'desk',type:'desk',x:1.5,y:3,rot:0},
+      {id:'deskChair',type:'chair',x:1.5,y:3.8,rot:0},
+      {id:'chair1',type:'chair',x:-1,y:2.5,rot:45},{id:'chair2',type:'chair',x:-2,y:4,rot:30},
+      {id:'lamp',type:'lamp',x:2.1,y:3,rot:0}];
+    face(ch,c.x,c.y);
+  }
+  face(g,c.x,c.y);
+  return snap;
+}
+function applyChoice(id, snap, beat, choice) {
+  const g = snap.cast.find(a => a.id==='guard');
+  const c = snap.cast.find(a => a.id==='creon');
+  const ch = snap.cast.find(a => a.id==='chorus');
+  const move = (a,x,y,extra={}) => Object.assign(a,{x,y,...extra});
+  g.address = false;
+  c.address = false;
+  if (id === 'greek') {
+    if (beat===0) choice===0 ? move(g,2,16,{on:null}) : move(g,3,21.5,{on:'stage'});
+    if (beat===4) {
+      if (choice===0) {
+        snap.cast.filter(a => a.isChorus && a.id!=='chorus').forEach((a,i) => {
+          const t=i/5*Math.PI;
+          move(a,3*Math.cos(t),15+3*Math.sin(t));
+          face(a,c.x,c.y);
+        });
+        move(ch,0,17);
+        face(ch,c.x,c.y);
+      } else {
+        for (const a of snap.cast.filter(a => a.isChorus)) a.facing=0;
+        move(ch,0,6);
+      }
+    }
+    if (beat===5) choice===0 ? move(c,0,21.5,{on:'stage',facing:0}) : move(c,0,12,{on:null});
+  }
+  if (id === 'noh') {
+    if (beat===0) choice===0 ? move(g,-2.2,4.8,{on:'main'}) : move(g,-8,7,{on:'bridge'});
+    if (beat===3 && choice===1) move(g,-1,1.5,{on:'main',facing:0});
+    if (beat===7) choice===0 ? move(g,-2.1,.7,{on:'main',facing:0}) : move(g,-14,8,{on:'bridge',facing:270});
+  }
+  if (id === 'commedia') {
+    if (beat===0) move(g,-1,1.5);
+    if (beat===3) choice===0 ? move(g,0,.4,{facing:0,address:true}) : face(g,c.x,c.y);
+    if (beat===5) {
+      if (choice===0) {
+        move(c,0,1,{facing:0});
+        move(g,0,2.6,{facing:0});
+      } else {
+        move(g,-.5,1.5,{pose:'kneel'});
+        face(c,g.x,g.y);
+      }
+    }
+  }
+  if (id === 'globe') {
+    if (beat===0) choice===0 ? move(g,-2,.8,{facing:0,address:true}) : move(g,-2,4);
+    if (beat===5) choice===0 ? move(c,0,8.5,{on:'balcony',facing:0,off:false}) :
+      (move(c,1,1,{on:null,off:false}),move(g,-2,3));
+    if (beat===7) choice===0 ? move(g,0,.8,{facing:0,address:true}) : move(g,0,5,{facing:180});
+  }
+  if (id === 'box') {
+    if (beat===0) {
+      if (choice===0) move(g,0,5);
+      else move(c,.5,3.5,{pose:'stand',sitOn:null});
+    }
+    if (beat===3) choice===0 ? move(g,-1,2.5,{pose:'sit',sitOn:'chair1'}) :
+      move(g,-.5,4,{pose:'stand',sitOn:null});
+    if (beat===7) choice===0 ? move(g,.5,5,{pose:'stand',sitOn:null,facing:180}) :
+      move(g,-1.5,1.5,{pose:'stand',sitOn:null,facing:270});
+  }
+  if (!(g.address || (id==='noh' && beat===7) || (id==='globe' && beat===7) ||
+    (id==='box' && beat===7) || (id==='commedia' && beat===5 && choice===0))) face(g,c.x,c.y);
+  if ((id==='greek' || id==='globe') && beat===5 && choice===1) face(c,g.x,g.y);
+  if (id==='box' && beat===0 && choice===1) face(c,g.x,g.y);
+}
+function makeBeats(id) {
+  let snap = initialSnap(id);
+  const result = [];
+  for (let i=0;i<8;i++) {
+    snap = Stage.clone(snap);
+    const g = snap.cast.find(a => a.id==='guard');
+    const c = snap.cast.find(a => a.id==='creon');
+    if (id==='noh' && i===2) Object.assign(g,{x:0,y:2.7,on:'main',facing:Stage.angleTo(g,c.x,c.y)});
+    const choice = DATA.houses[id].choices.find(q => q.beat===i);
+    if (choice) applyChoice(id,snap,i,state.choices[id][i] ?? 0);
+    if (id==='globe' && i===4 && (state.choices[id][5] ?? 0)===0) c.off=true;
+    if (i===6) c.off=true;
+    if (id==='noh' && i===2) face(g,c.x,c.y);
+    let speaker = ['guard','creon','guard','guard','chorus','creon','guard','guard'][i];
+    if (id==='noh' && i===3 && (state.choices.noh[3] ?? 0)===1) speaker='chorus';
+    result.push({speaker,to:speaker==='creon'?'guard':'creon',line:'',notes:[],snap,changed:!!choice});
+  }
+  return result;
+}
+// Default body-position terms are replaced so the mask correction cannot accidentally retain profile points.
+const WEIGHTS = {
+  pos:Object.fromEntries(Stage.POS.map(p => [p,0])),gaze:0,
+  terms:[
+    {id:'bodyPosition',fn:(a,ctx) => {
+      const pos = Stage.bodyPos(a,ctx.seat);
+      const score = a.mask ? ({'full front':2,'one-quarter':1.5}[pos] || 0) : Stage.WEIGHTS.pos[pos];
+      return {score,reason:pos+(a.mask?' (mask)':'')};
+    }},
+    {id:'chorusGaze',fn:(a,ctx) => {
+      if (!['greek','noh'].includes(ctx.house.id)) return null;
+      const n=ctx.snap.cast.filter(b => b.isChorus && !b.off && b.id!==a.id && Stage.angleTo(b,a.x,a.y)<=30).length;
+      return {score:Math.min(3,n*.5),reason:'chorus gaze'};
+    }},
+    {id:'address',fn:(a,ctx) => {
+      if (!['commedia','globe'].includes(ctx.house.id) || !a.address || ctx.beat.speaker!==a.id) return null;
+      return {score:Stage.angleTo(a,ctx.seat.x,ctx.seat.y)<=45?2:0,reason:'addressing the audience'};
+    }},
+  ],
+};
+function vstate(snap=shown) {
+  return {snap,beat:beats[state.beat],beatIndex:state.beat,prev:state.beat?beats[state.beat-1].snap:null,
+    weights:WEIGHTS,focus:true,seat:'s'+state.seat,sel:state.adjust?{kind:'actor',id:state.selected}:null,
+    areas:false,flags:false,rays:false};
+}
+function navStatus() {
+  $('m-compare').disabled = stagedIds().length<2;
+  $('m-tour').setAttribute('aria-pressed',state.mode==='tour');
+  $('m-compare').setAttribute('aria-pressed',state.mode==='compare');
+}
+function maskRoles(id) {
+  if (id==='greek') return [['greek','Guard','G'],['greek','Creon','C'],['greek','Chorus','CL']];
+  if (id==='noh') return [['noh','Guard as shite','G']];
+  if (id==='commedia') return [['zanni','Guard as zanni','Z'],['capitano','Creon as Capitano','Ca'],['dottore','Chorus as Dottore','D']];
+  return [];
+}
+function stop() {
+  playToken++;
+  state.playing=false;
+  moving=false;
+  if (player) player.stop();
+  player=null;
+  if (state.page==='scene' && beats.length) {
+    shown=Stage.clone(beats[state.beat].snap);
+    if ($('play')) { $('play').textContent='Play scene'; $('play').setAttribute('aria-pressed','false'); }
+    draw();
+  }
+}
+function setMode(mode) {
+  if (mode==='compare' && stagedIds().length<2) return;
+  if (state.mode===mode && state.page===mode && $('workspace').firstElementChild) {
+    V.welcome();
+    return;
+  }
+  stop();
+  V.hush();
+  pendingVoice.length=0;
+  state.mode=mode;
+  state.page=mode;
+  state.adjust=false;
+  state.house=null;
+  view=null;
+  plan=null;
+  if (mode==='tour') renderTour(); else renderCompare();
+  navStatus();
+  V.welcome();
+}
+function renderTour() {
+  $('workspace').innerHTML=`<section class="page tour"><div class="tour-intro"><div>
+    <div class="eyebrow">A guest director's tour</div><h2>Five theaters. One scene.</h2>
+    <p>The Guard brings news the king does not want to hear.<br>Choose a house. Decide how its audience will see him.</p></div>
+    <div class="tour-count">${stagedIds().length} of 5 productions staged</div></div>
+    <div class="houses">${IDS.map((id,i) => `<button class="house-card" id="house-${id}" data-house="${id}">
+      <img src="${ART[id]}" alt="Empty ${esc(DATA.houses[id].name)}">
+      <div class="card-copy"><span class="eyebrow">House 0${i+1}</span><h3>${esc(DATA.houses[id].name)}</h3>
+      <span class="date">${esc(DATA.houses[id].date)}</span><span class="status">${staged(id)?'✓ Staged':'Not staged'} · Enter →</span></div>
+    </button>`).join('')}</div></section>`;
+  for (const b of document.querySelectorAll('[data-house]')) b.onclick=() => arrive(b.dataset.house);
+  hint(L.welcomeTour);
+}
+function arrive(id) {
+  stop();
+  V.hush();
+  state.mode='tour';
+  state.page='arrival';
+  state.house=id;
+  state.beat=0;
+  state.seat=0;
+  state.adjust=false;
+  state.selected='guard';
+  const d=houseData();
+  const masks=maskRoles(id);
+  const roleDetails = {
+    greek:['A masked messenger','A masked king','Seven masked Theban elders; leader marked CL'],
+    noh:['The main actor wears the mask. Creon is the unmasked waki.'],
+    commedia:['The servant clown','The boasting soldier','The know-it-all scholar'],
+  };
+  $('workspace').innerHTML=`<section class="page arrival"><div class="arrival-art">
+    <img src="${ART[id]}" alt="${esc(d.name)}, empty venue architectural illustration">
+    <div class="arrival-caption"><div class="eyebrow">Your next house</div><h2>${esc(d.name)}</h2><p>${esc(d.date)}</p></div></div>
+    <aside class="arrival-panel"><div class="arrival-actions"><button id="begin" class="big-btn">Begin →</button>
+      <button id="arrival-back" class="btn">Back to tour</button></div>
+    <div class="eyebrow">The house rules</div><ul class="rules">${d.rules.map(r => `<li>${esc(r)}</li>`).join('')}</ul>
+    <p class="adaptation">A directing adaptation of Antigone, not a reconstruction of a historical performance.</p>
+    <div class="eyebrow">Here the Guard is played by...</div>
+    <div class="cast-list">${masks.length?masks.map(([m,role],i) => `<div class="cast-role">
+      <img src="${MASK[m]}" alt="${esc(m)} theater mask object"><div><strong>${esc(role)}</strong>
+      <p>${esc(roleDetails[id][i])}</p></div></div>`).join(''):`<p class="rules">${esc(d.castText)}</p>`}</div>
+    ${id==='noh'?'<p class="rules">Eight seated chorus figures sing; four musicians sit at the back.</p>':''}
+    </aside></section>`;
+  $('begin').onclick=begin;
+  $('arrival-back').onclick=() => { setMode('tour'); $('house-'+id).focus({preventScroll:true}); };
+  hint(L['arrive.'+id]);
+  navStatus();
+  V.welcome();
+  $('begin').focus({preventScroll:true});
+  Curio.tone(330,.09,.04,'sine');
+}
+function begin() {
+  V.hush();
+  state.page='scene';
+  state.editingChoice=false;
+  state.notice=[0,1].includes(state.choices[state.house][0]);
+  state.rule='';
+  beats=makeBeats(state.house);
+  shown=Stage.clone(beats[0].snap);
+  renderScene();
+  hint(state.notice?currentNotice():L.choiceHow);
+  how(state.notice?'sceneHow':'choiceHow',() => state.page==='scene');
+  $(state.notice?'next':'option-0').focus({preventScroll:true});
+}
+function scriptMarkup(id) {
+  return `<p class="setup">Creon, the new king of Thebes, has forbidden anyone to bury the rebel Polynices. A guard arrives with news.</p>`+
+    DATA.script.map((parts,i) => `<div class="script-beat" id="beat-${i}" aria-current="${i===state.beat?'step':'false'}">
+      <strong>Beat ${i+1}</strong>${parts.map((part,j) => {
+        const key=part.role==='Guard'?0:part.role==='Creon'?1:2;
+        const name=id==='noh' && i===3 && key===0 && (state.choices.noh[3] ?? 0)===1 ? 'The chorus (Guard’s words)' : names[id][key];
+        return `<p><b>${esc(name)}${i===7?' (alone)':''}:</b> ${esc(part.text)}</p>${i===6 && j===2?'<p>[...]</p>':''}`;
+      }).join('')}${i===6?'<p><i>Creon exits.</i></p>':''}</div>`).join('');
+}
+function renderScene() {
+  const id=state.house;
+  const d=houseData();
+  $('workspace').innerHTML=`<section class="page scene-page">
+    <aside class="directing-panel" style="grid-column:2;grid-row:1">
+      <div class="seatbar"><button id="seat" class="btn"></button></div>
+      <div id="script" class="script-wrap" tabindex="0" aria-label="Eight-beat script">${scriptMarkup(id)}</div>
+      <div class="nav"><button id="prev" class="btn">← Prev beat</button><button id="next" class="btn">Next beat →</button>
+        <button id="play" class="btn" aria-pressed="false">Play scene</button></div>
+      <div class="decision" id="decision">
+        <div id="choice"><div class="eyebrow" id="choice-number"></div><h3 id="choice-title"></h3>
+          <div class="options"><button class="option" id="option-0"><strong></strong><span></span></button>
+          <button class="option" id="option-1"><strong></strong><span></span></button></div></div>
+        <div id="notice" class="notice"><div class="eyebrow" id="notice-heading">What the audience notices</div><p id="notice-text"></p>
+          <p class="leader" id="focus-line"></p></div>
+        <div class="change-row"><button id="change" class="btn">Change choice</button><button id="program-button" class="btn">Program note</button></div>
+        <details id="program" class="program"><summary>Your three directing choices</summary><ol id="program-list"></ol></details>
+        <div id="between"><h3>Watch the relationship.</h3><p class="question">Change seats, or tap Next beat to reach the next directing choice.</p></div>
+      </div>
+    </aside>
+    <div class="scene-stage" style="grid-column:1;grid-row:1" id="sceneStage">
+      <div class="house-heading"><strong>${esc(d.name)}</strong><span id="beat-label"></span></div>
+      <div id="houseView"></div><div class="focus-guide"><i class="live-lamp"></i>Audience focus: a rough guide</div>
+      <div class="mask-legend">${maskRoles(id).map(([m,role,initial]) => `<figure><img src="${MASK[m]}" alt="${esc(role)} mask">
+        <figcaption>${initial}</figcaption></figure>`).join('')}</div>
+      <div class="inset" id="inset"><label id="plan-label">Ground plan · tap a seat</label><div id="plan"></div></div>
+      <div class="adjust-controls" id="adjust-controls" hidden>
+        <label class="sr" for="actor">Actor to adjust</label><select id="actor"></select>
+        <button class="btn" id="turn-left" aria-label="Turn actor left">↶ 45°</button>
+        <button class="btn" id="turn-right" aria-label="Turn actor right">↷ 45°</button>
+        <p class="rule-note" id="rule-note">Drag a figure, or focus the plan and use arrow keys. Q and E turn.</p>
+        ${id==='box'?'<div class="lights"><button class="btn" id="light-lamp">Desk lamp</button><button class="btn" id="light-window">Window</button><button class="btn" id="light-ceiling">Ceiling</button></div>':''}
+      </div>
+      <div class="scene-tools"><button id="back" class="btn">Back to tour</button><button id="restart" class="btn">Restart house</button>
+        <button id="adjust" class="btn" aria-pressed="false">Adjust</button><span class="light-indicator">${id==='box'?'Room sources':'Fixed '+HOUSES[id].light+' light'}</span></div>
+    </div></section>`;
+  // Panel is first in DOM for keyboard order; CSS keeps the House view on the left.
+  relayout();
+  const h=HOUSES[id];
+  applyPalette($('houseView'),id);
+  applyPalette($('plan'),id,true);
+  view=Stage.view.house($('houseView'),vstate(),h.seats[state.seat],{house:h,tags:false,margin:.055});
+  mountPlan();
+  new ResizeObserver(() => requestAnimationFrame(() => draw())).observe($('houseView'));
+  $('actor').innerHTML=shown.cast.map(a => `<option value="${a.id}">${esc(a.name)}</option>`).join('');
+  $('actor').value=state.selected;
+  $('actor').onchange=() => { state.selected=$('actor').value; draw(); };
+  $('seat').onclick=() => changeSeat((state.seat+1)%3);
+  $('prev').onclick=() => jump(Math.max(0,state.beat-1));
+  $('next').onclick=() => jump(Math.min(7,state.beat+1));
+  $('play').onclick=playScene;
+  $('option-0').onclick=() => choose(0);
+  $('option-1').onclick=() => choose(1);
+  $('change').onclick=() => {
+    stop();
+    V.dropQueued();
+    state.editingChoice=true;
+    state.notice=false;
+    updatePanel();
+    hint(L.choiceHow);
+    how('choiceHow',() => state.editingChoice);
+    $('option-0').focus({preventScroll:true});
+  };
+  $('program-button').onclick=() => {
+    $('program').open=!$('program').open;
+    if ($('program').open) {
+      const box=$('decision');
+      const controls=document.querySelector('.change-row');
+      box.scrollTop += $('program').getBoundingClientRect().top-box.getBoundingClientRect().top-controls.offsetHeight-4;
+    }
+    hint($('program').open?'Read your three choices below. Tap Back to tour to direct another house.':currentNotice() || L.sceneHow);
+    Curio.tone(392,.08,.03);
+  };
+  $('back').onclick=() => {
+    const id=state.house;
+    setMode('tour');
+    $('house-'+id).focus({preventScroll:true});
+  };
+  $('restart').onclick=restart;
+  $('adjust').onclick=toggleAdjust;
+  $('turn-left').onclick=() => turnActor(state.selected,selectedActor().facing+45);
+  $('turn-right').onclick=() => turnActor(state.selected,selectedActor().facing-45);
+  if (id==='box') for (const light of ['lamp','window','ceiling']) $('light-'+light).onclick=() => {
+    stop();
+    state.light[light]=(state.light[light]+1)%3;
+    for (const b of beats.slice(state.beat)) b.snap.lights={...state.light};
+    shown=Stage.clone(beats[state.beat].snap);
+    updateLights();
+    draw();
+    hint('Room light changed. Change seats to see what the room sources reveal.');
+    Curio.tone(200+state.light[light]*100,.07,.03);
+  };
+  updatePanel();
+  draw();
+}
+function mountPlan() {
+  $('plan').replaceChildren();
+  const h=HOUSES[state.house];
+  plan=Stage.view.plan($('plan'),vstate(),{house:h,mini:!state.adjust,minR:state.adjust?10:4,hitR:22,
+    pad:{left:14,right:14,top:12,bottom:12},
+    onSeat:s => changeSeat(Number(s.slice(1))),
+    onPick:sel => { if (state.adjust && sel?.kind==='actor') { state.selected=sel.id; $('actor').value=sel.id; draw(); } },
+    onDrag:(sel,x,y) => { if (state.adjust && sel.kind==='actor') adjustActor(sel.id,x,y); },
+    onDrop:(sel,x,y) => { if (state.adjust && sel.kind==='actor') adjustActor(sel.id,x,y,true); },
+    onTurn:(id,f) => { if (state.adjust) turnActor(id,f); },
+  });
+  plan.svg.setAttribute('tabindex','0');
+  plan.svg.setAttribute('role','application');
+  plan.svg.setAttribute('aria-label','Ground plan. When Adjust is on, arrows move the selected actor; Q and E turn.');
+  plan.svg.onkeydown=planKeys;
+}
+function relayout() {
+  const narrow=innerWidth<=850 && innerHeight>650;
+  const panel=document.querySelector('.directing-panel');
+  const stage=$('sceneStage');
+  if (panel && stage) {
+    stage.classList.toggle('adjusting',state.adjust);
+    panel.style.gridColumn=narrow?'1':'2';
+    panel.style.gridRow=narrow?'2':'1';
+    stage.style.gridColumn='1';
+    stage.style.gridRow='1';
+    if (state.adjust && $('adjust-controls')) {
+      stage.style.setProperty('--adjust-controls-h',$('adjust-controls').offsetHeight+'px');
+    }
+  }
+}
+function updateLights() {
+  if (state.house!=='box' || !$('light-lamp')) return;
+  for (const key of ['lamp','window','ceiling']) {
+    const b=$('light-'+key);
+    b.textContent=({lamp:'Desk lamp',window:'Window',ceiling:'Ceiling'})[key]+': '+['off','half','full'][state.light[key]];
+  }
+}
+function activeChoice() {
+  return houseData().choices.find(c => c.beat===state.beat);
+}
+function lastChoice(id=state.house,beat=state.beat) {
+  return DATA.houses[id].choices.filter(c => c.beat<=beat).at(-1);
+}
+function currentNotice() {
+  const c=lastChoice();
+  if (!c || ![0,1].includes(state.choices[state.house][c.beat])) return '';
+  return c.options[state.choices[state.house][c.beat]].notice;
+}
+function updatePanel() {
+  if (!$('seat')) return;
+  const c=activeChoice();
+  const answered=c && [0,1].includes(state.choices[state.house][c.beat]);
+  const showChoice=!!c && (!answered || state.editingChoice);
+  $('seat').textContent='Seat: '+HOUSES[state.house].seats[state.seat].label+' ↻';
+  $('beat-label').textContent='ANTIGONE · BEAT '+(state.beat+1)+' / 8';
+  $('prev').disabled=state.beat===0;
+  $('next').disabled=state.beat===7;
+  $('choice').hidden=!showChoice;
+  $('notice').hidden=showChoice || !currentNotice();
+  $('change').hidden=!c || !answered || showChoice;
+  $('between').hidden=!!c || !!currentNotice();
+  $('program-button').hidden=!staged(state.house);
+  $('program').hidden=!staged(state.house);
+  if (!staged(state.house)) $('program').open=false;
+  if (showChoice) {
+    $('choice-number').textContent='Directing choice '+(houseData().choices.indexOf(c)+1)+' of 3';
+    $('choice-title').textContent=['The entrance','The relationship','The final image'][houseData().choices.indexOf(c)];
+    for (let i=0;i<2;i++) {
+      const b=$('option-'+i);
+      b.querySelector('strong').textContent=c.options[i].name;
+      b.querySelector('span').textContent=shortDetail(state.house,c.beat,i);
+    }
+  }
+  $('notice-text').textContent=currentNotice();
+  const priorChoice=lastChoice();
+  $('notice-heading').textContent=priorChoice && priorChoice.beat!==state.beat ?
+    'Your choice at beat '+(priorChoice.beat+1)+' carried forward' : 'What the audience notices';
+  $('program-list').innerHTML=houseData().choices.map(c => {
+    const o=c.options[state.choices[state.house][c.beat]];
+    return o?`<li><b>${esc(o.name)}</b><br>${esc(firstSentence(o.notice))}</li>`:'';
+  }).join('');
+  for (const node of document.querySelectorAll('.script-beat')) {
+    const active=node.id==='beat-'+state.beat;
+    node.classList.toggle('active',active);
+    node.setAttribute('aria-current',active?'step':'false');
+  }
+  const node=$('beat-'+state.beat);
+  if (node) $('script').scrollTop=Math.max(0,node.offsetTop-$('script').offsetTop-8);
+  updateLights();
+  navStatus();
+}
+const DETAIL = {
+  greek:[['Cross the orchestra from the right road.','Appear beside Creon at the palace door.'],
+    ['Close the elders around the palace.','Let the elders share their doubt with the seats.'],
+    ['Speak the oath above the city.','Bring the threat among the elders.']],
+  noh:[['Slide the whole bridgeway into the stage.','Hold the first two beats on the bridge.'],
+    ['Keep the report in the Guard’s own voice.','Let the chorus sing while the mask moves.'],
+    ['Share relief from the front pillar.','Let relief recede down the bridgeway.']],
+  commedia:[['Start, stop and turn back three times.','Let the news lead the entrance.'],
+    ['Confide “drew the prize” to the crowd.','Make a servant’s plea to a master.'],
+    ['Let the zanni copy the Capitano behind his back.','Kneel before a threat that lands.']],
+  globe:[['Tell the journey to the nearby yard.','Explain the delay to the king.'],
+    ['Speak the oath above the whole company.','Put the threat at the edge of the thrust.'],
+    ['Share the last words with the groundlings.','Aim the relief at the absent king.']],
+  box:[['Make the watchman wait with his cap.','Meet the watchman in the room.'],
+    ['Seat the watchman in an ordinary chair.','Keep him standing stiffly at attention.'],
+    ['Let the audience overhear private relief.','Turn to the window, open in profile.']],
+};
+function shortDetail(id,beat,index) {
+  return DETAIL[id][DATA.houses[id].choices.findIndex(c => c.beat===beat)][index];
+}
+function firstSentence(text) { return text.match(/^.*?[.!?](?:\s|$)/)?.[0].trim() || text; }
+function focusLine() {
+  const h=HOUSES[state.house];
+  const seat=h.seats[state.seat];
+  const f=Stage.focus(shown,beats[state.beat],h,seat,WEIGHTS,state.beat?beats[state.beat-1].snap:null);
+  const lead=Stage.leader(f);
+  const who=lead.id?shown.cast.find(a => a.id===lead.id).name:lead.tie?'a shared focus':'no visible actor';
+  const sight=Stage.sight(shown,h,seat);
+  const g=sight.cast.guard;
+  return 'From '+seat.label+', the eye goes to '+who+'.'+(g?.status!=='clear'?
+    ' The Guard is '+g?.status+' from this seat. Dashed figures show hidden blocking; tap Seat for another view.':'');
+}
+function draw(snap) {
+  if (snap) shown=Curio.reduce && moving ? Stage.clone(beats[state.beat].snap) : snap;
+  if (!view || !shown || state.page!=='scene') return;
+  const st=vstate();
+  view.update({...st,focus:false},HOUSES[state.house].seats[state.seat]);
+  decorate(view,HOUSES[state.house],st,HOUSES[state.house].seats[state.seat]);
+  if (plan) {
+    plan.update({...st,focus:false});
+    clarifyPlanLabels();
+  }
+  if ($('focus-line')) $('focus-line').textContent=focusLine();
+}
+function clarifyPlanLabels() {
+  if (!state.adjust || (innerWidth>850 && innerHeight>650)) return;
+  const svg=plan.svg, positions=plan.last().actors;
+  const texts=[...svg.querySelectorAll('text')];
+  const labels=shown.cast.map(a => {
+    const p=positions[a.id];
+    const node=texts.find(t => t.textContent===a.initials && Math.abs(Number(t.getAttribute('x'))-p.x)<.2);
+    const pose=texts.find(t => t.textContent===a.initials+' kneeling' || t.textContent===a.initials+' sitting');
+    return node?{a,p,node,pose,box:node.getBBox()}:null;
+  }).filter(Boolean);
+  const crowded=labels.some(l => labels.some(other => {
+    if (l===other) return false;
+    const dx=Math.max(l.box.x-other.p.x,0,other.p.x-l.box.x-l.box.width);
+    const dy=Math.max(l.box.y-other.p.y,0,other.p.y-l.box.y-l.box.height);
+    return Math.hypot(dx,dy)<other.p.r+1;
+  }));
+  if (!crowded) return;
+  // Keep every name, linked to its true token. Compact maps need labels outside a dense chorus.
+  const W=svg.clientWidth,H=svg.clientHeight;
+  const ordered=labels.sort((a,b) => a.p.x-b.p.x);
+  const columns=[ordered.slice(0,Math.ceil(ordered.length/2)),ordered.slice(Math.ceil(ordered.length/2))];
+  const ns='http://www.w3.org/2000/svg';
+  const boxes=[];
+  const moved=[];
+  columns.forEach((column,side) => {
+    column.sort((a,b) => a.p.y-b.p.y);
+    column.forEach((l,i) => {
+      const label=l.pose?l.pose.textContent:l.a.initials;
+      const width=Math.max(26,label.length*6+8);
+      const x=side?W-width/2-4:width/2+4,y=13+(H-26)*(i+.5)/column.length;
+      const edge=side?x-width/2-2:x+width/2+2;
+      const line=document.createElementNS(ns,'path');
+      line.setAttribute('d',`M ${edge} ${y} L ${l.p.x+(side?l.p.r:-l.p.r)} ${l.p.y}`);
+      line.setAttribute('stroke',l.a.id===state.selected?'#fff5d8':l.a.color);
+      line.setAttribute('stroke-width','1');
+      line.setAttribute('opacity','.75');
+      line.setAttribute('fill','none');
+      line.setAttribute('pointer-events','none');
+      svg.append(line);
+      const box=document.createElementNS(ns,'rect');
+      for (const [key,value] of Object.entries({x:x-width/2,y:y-9,width,height:18,rx:4,fill:'#111b28',stroke:l.a.color})) {
+        box.setAttribute(key,String(value));
+      }
+      box.setAttribute('pointer-events','none');
+      boxes.push(box);
+      l.node.setAttribute('x',String(x));
+      l.node.setAttribute('y',String(y+4));
+      l.node.setAttribute('font-size','11');
+      l.node.setAttribute('fill','#f5ead8');
+      l.node.textContent=label;
+      if (l.pose) {
+        const background=l.pose.previousElementSibling;
+        if (background?.tagName.toLowerCase()==='rect') background.remove();
+        l.pose.remove();
+      }
+      moved.push(l.node);
+    });
+  });
+  svg.append(...boxes,...moved);
+  const seatLabel=texts.find(t => t.textContent===HOUSES[state.house].seats[state.seat].label);
+  if (seatLabel) {
+    seatLabel.setAttribute('x',String(W/2));
+    seatLabel.setAttribute('y',String(H-4));
+    seatLabel.setAttribute('text-anchor','middle');
+    seatLabel.setAttribute('font-size','11');
+    svg.append(seatLabel);
+  }
+}
+function changeSeat(n) {
+  state.seat=n;
+  V.dropQueued();
+  if ($('seat')) $('seat').textContent='Seat: '+HOUSES[state.house].seats[n].label+' ↻';
+  draw();
+  hint(currentNotice()?currentNotice()+' '+focusLine():'Seat changed. Tap Next beat or choose a directing option.');
+  Curio.tone(260+n*80,.08,.035,'sine');
+}
+function jump(i) {
+  const wasPlaying=state.playing;
+  stop();
+  V.dropQueued();
+  state.beat=i;
+  state.editingChoice=false;
+  state.notice=[0,1].includes(state.choices[state.house][i]);
+  shown=Stage.clone(beats[i].snap);
+  updatePanel();
+  draw();
+  const c=activeChoice();
+  const unanswered=c && ![0,1].includes(state.choices[state.house][i]);
+  hint(unanswered?L.choiceHow:currentNotice() || (i===7?'Scene complete. Change seats, revisit a beat, or tap Back to tour.':L.sceneHow));
+  if (unanswered) how('choiceHow',() => state.beat===i && !state.notice);
+  else if (!wasPlaying && i<7) how('sceneHow',() => state.beat===i);
+  if (i===7 && document.activeElement===$('next')) $('prev').focus({preventScroll:true});
+  if (i===0 && document.activeElement===$('prev')) $('next').focus({preventScroll:true});
+  Curio.tone(330+i*25,.06,.035);
+  flushVoice();
+}
+async function choose(index) {
+  stop();
+  V.dropQueued();
+  const c=activeChoice();
+  if (!c) return;
+  const beforeCount=stagedIds().length;
+  const start=entrySnapshot(state.house,state.beat,shown,index);
+  state.choices[state.house][state.beat]=index;
+  state.editingChoice=false;
+  state.notice=true;
+  beats=makeBeats(state.house);
+  $('script').innerHTML=scriptMarkup(state.house);
+  updatePanel();
+  $('change').focus({preventScroll:true});
+  hint(c.options[index].notice);
+  Curio.tone(index?440:330,.12,.045,'triangle');
+  const token=++playToken;
+  await animate(start,beats[state.beat].snap,state.beat,token,false);
+  if (token!==playToken) return;
+  if (staged(state.house)) {
+    event('programNote',() => state.page==='scene' && staged(state.house) && !state.editingChoice);
+    if (beforeCount<2 && stagedIds().length===2) event('compareReady',() => state.mode!=='compare');
+    if (beforeCount<5 && stagedIds().length===5) event('allStaged',() => state.mode!=='compare');
+  } else {
+    const house=state.house, beat=state.beat, seat=state.seat;
+    how('seatHow',() => state.page==='scene' && state.house===house && state.beat===beat &&
+      state.seat===seat && !state.editingChoice);
+  }
+}
+function entrySnapshot(id,beat,snap,index) {
+  const start=Stage.clone(snap);
+  if (beat!==0) return start;
+  const g=start.cast.find(a => a.id==='guard');
+  if (id==='greek') Object.assign(g,index===0?{x:15,y:12,on:null}:{x:0,y:23,on:'stage'});
+  if (id==='noh') Object.assign(g,{x:-14,y:8,on:'bridge'});
+  if (id==='commedia') Object.assign(g,{x:-3,y:1.5});
+  if (id==='globe') Object.assign(g,{x:-4,y:8});
+  if (id==='box') Object.assign(g,{x:1.5,y:6.5});
+  return start;
+}
+async function animate(start,end,beat,token,fullPlay) {
+  const id=state.house;
+  moving=true;
+  let paths=[end];
+  if (id==='commedia' && beat===0 && (state.choices[id][0] ?? 0)===0) {
+    paths=[];
+    for (const x of [-1,-2.7,-1,-2.7,-1]) {
+      const p=Stage.clone(end);
+      const g=p.cast.find(a => a.id==='guard');
+      g.x=x;
+      g.facing=x===-1?90:270;
+      paths.push(p);
+    }
+    paths.push(end);
+    $('beat-label').textContent='ANTIGONE · BEAT 1 / 8 · lazzo';
+  }
+  if (id==='noh' && beat===0 && (state.choices[id][0] ?? 0)===0) {
+    const bridgeEnd=Stage.clone(end);
+    Object.assign(bridgeEnd.cast.find(a => a.id==='guard'),{x:-2.7,y:6,on:'bridge'});
+    paths=[bridgeEnd,end];
+  }
+  if (id==='noh' && (beat===2 || beat===7) &&
+    (start.cast.find(a => a.id==='guard').x<-2.7 || end.cast.find(a => a.id==='guard').x<-2.7)) {
+    const turn=Stage.clone(end);
+    Object.assign(turn.cast.find(a => a.id==='guard'),{x:-2.7,y:6,on:'bridge'});
+    paths=[turn,end];
+  }
+  if (id==='noh' && beat===3 && (state.choices[id][3] ?? 0)===1) {
+    const front=Stage.clone(end);
+    front.cast.find(a => a.id==='guard').facing=0;
+    paths=[front,end];
+  }
+  let prior=start;
+  for (const dest of paths) {
+    if (token!==playToken) return;
+    const g=dest.cast.find(a => a.id==='guard');
+    const p=prior.cast.find(a => a.id==='guard');
+    const distance=Math.hypot(g.x-p.x,g.y-p.y);
+    const cross=id==='noh' && distance>.01?distance/.4*1000:(paths.length>2?420:900);
+    player=Stage.play([{snap:prior},{snap:dest}],snap => {
+      if (token===playToken) draw(snap);
+    },{cross,fade:350,reduce:Curio.reduce});
+    await player.beat(1);
+    prior=dest;
+  }
+  if (token!==playToken) return;
+  moving=false;
+  draw(Stage.clone(end));
+  if (!fullPlay) updatePanel();
+}
+async function playScene() {
+  if (state.playing) {
+    stop();
+    hint('Scene stopped. Tap Next beat, change a choice, or tap Play scene to start again.');
+    flushVoice();
+    return;
+  }
+  stop();
+  V.hush();
+  state.playing=true;
+  const token=++playToken;
+  $('play').textContent='Stop scene';
+  $('play').setAttribute('aria-pressed','true');
+  hint('Playing all eight beats. Seat changes the view; Next beat finishes this cross and moves on. Tap Stop scene to stop.');
+  const h=state.house;
+  for (let i=0;i<8;i++) {
+    if (token!==playToken) return;
+    state.beat=i;
+    state.editingChoice=false;
+    updatePanel();
+    let start=i?beats[i-1].snap:entrySnapshot(h,0,beats[0].snap,state.choices[h][0] ?? 0);
+    await animate(start,beats[i].snap,i,token,true);
+    if (token!==playToken) return;
+    await Curio.wait(2000);
+  }
+  if (token!==playToken) return;
+  state.playing=false;
+  moving=false;
+  $('play').textContent='Play scene';
+  $('play').setAttribute('aria-pressed','false');
+  hint('Scene complete. Tap Prev beat to revisit a choice, or Back to tour for another house.');
+  flushVoice();
+}
+function restart() {
+  stop();
+  V.hush();
+  state.choices[state.house]={};
+  state.beat=0;
+  state.editingChoice=false;
+  state.notice=false;
+  beats=makeBeats(state.house);
+  shown=Stage.clone(beats[0].snap);
+  updatePanel();
+  draw();
+  hint(L.choiceHow);
+  how('choiceHow',() => state.beat===0);
+  $('option-0').focus({preventScroll:true});
+}
+function toggleAdjust() {
+  stop();
+  state.adjust=!state.adjust;
+  $('adjust').setAttribute('aria-pressed',state.adjust);
+  $('inset').classList.toggle('adjust',state.adjust);
+  $('adjust-controls').hidden=!state.adjust;
+  $('plan-label').textContent=state.adjust?'Adjust · drag figures; arrows move; Q / E turn':'Ground plan · tap a seat';
+  hint(state.adjust?'Choose an actor, then drag on the plan. Arrow keys move; Q and E turn. House rules give notes, never block a move.':
+    currentNotice() || L.sceneHow);
+  relayout();
+  mountPlan();
+  plan.layout();
+  draw();
+}
+const selectedActor = () => shown.cast.find(a => a.id===state.selected) || shown.cast[0];
+function softRule(a) {
+  const id=state.house;
+  if (id==='greek' && a.isChorus && Math.hypot(a.x,a.y-10)>10) return 'In Greek theater, the chorus stays inside the round orchestra.';
+  if (id==='noh') {
+    if (a.isChorus && a.pose!=='kneel') return 'In Noh, the chorus stays seated at the side.';
+    if (a.id==='guard' && (state.beat===0 || state.beat===7) && a.x<-2.7 &&
+      !Stage.inPoly(HOUSES.noh.levels.find(l => l.id==='bridge').poly,a.x,a.y)) return 'In Noh, entrances and exits come along the bridgeway.';
+    if (a.isChorus && (a.x<2.7 || a.x>4.2 || a.y<1 || a.y>4.5)) return 'In Noh, the chorus stays seated at the side.';
+  }
+  if (id==='box' && beats[state.beat].speaker===a.id && Stage.bodyPos(a,HOUSES.box.seats[0])==='full front') {
+    return 'This reads as talking to the audience.';
+  }
+  return 'Position adjusted. House rules are a guide; your move is kept.';
+}
+function adjustActor(id,x,y,done=false) {
+  if (!state.adjust) return;
+  if (state.playing || moving) stop();
+  state.selected=id;
+  const change=snap => {
+    const a=snap.cast.find(a => a.id===id);
+    a.x=Math.round(x*100)/100;
+    a.y=Math.round(y*100)/100;
+    const level=HOUSES[state.house].levels.find(l => Stage.inPoly(l.poly,a.x,a.y));
+    a.on=level?.id || null;
+  };
+  Stage.edit(beats,state.beat,change);
+  shown=Stage.clone(beats[state.beat].snap);
+  const a=shown.cast.find(a => a.id===id);
+  state.rule=softRule(a);
+  $('actor').value=id;
+  $('rule-note').textContent=state.rule;
+  draw();
+  hint(state.rule+' Adjust again, or tap Adjust to return to the House view.');
+  if (done) Curio.tone(220,.07,.03);
+}
+function turnActor(id,facing) {
+  if (!state.adjust) return;
+  if (state.playing || moving) stop();
+  const a=shown.cast.find(a => a.id===id);
+  a.facing=(facing+360)%360;
+  Stage.edit(beats,state.beat,snap => snap.cast.find(b => b.id===id).facing=a.facing);
+  shown=Stage.clone(beats[state.beat].snap);
+  $('rule-note').textContent=softRule(shown.cast.find(a => a.id===id));
+  draw();
+  hint($('rule-note').textContent+' Use Q or E to turn again.');
+  Curio.tone(250,.06,.025);
+}
+function planKeys(e) {
+  if (!state.adjust) return;
+  const a=selectedActor();
+  const moves={ArrowLeft:[-.25,0],ArrowRight:[.25,0],ArrowUp:[0,.25],ArrowDown:[0,-.25]};
+  if (moves[e.key]) {
+    e.preventDefault();
+    const [dx,dy]=moves[e.key];
+    adjustActor(a.id,a.x+dx,a.y+dy,true);
+  }
+  if (e.key.toLowerCase()==='q' || e.key.toLowerCase()==='e') {
+    e.preventDefault();
+    turnActor(a.id,a.facing+(e.key.toLowerCase()==='q'?45:-45));
+  }
+}
+function applyPalette(el,id,planOnly=false) {
+  const palettes={
+    greek:['#d8cdb8','#a99678','#bbab8d','#a9c4c9'],
+    noh:['#d9b77a','#b18c51','#d9bc87','#1c2928'],
+    commedia:['#a57543','#c9873a','#7d5436','#9cb5ba'],
+    globe:['#8a5a34','#b39770','#60422c','#889eaa'],
+    box:['#78654b','#5d6b4f','#60452f','#11151b'],
+  };
+  const p=palettes[id];
+  for (const [key,val] of Object.entries({'--st-floor':p[0],'--st-back':p[1],'--st-piece':p[2],'--st-dark':p[3],
+    '--st-house':planOnly?'#18222d':p[3],'--st-frame':p[2]})) el.style.setProperty(key,val);
+}
+// Tool-specific architectural finishes use the engine's camera, followed by code figures at their projected positions.
+function decorate(v,h,st,seat) {
+  const cv=v.canvas;
+  const W=cv.clientWidth,H=cv.clientHeight;
+  if (!W || !H) return;
+  const ctx=cv.getContext('2d');
+  const dpr=cv.width/W;
+  const cam=Stage.view.camera(h,seat,W,H,.055,st.fit);
+  ctx.save();
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.beginPath();
+  ctx.rect(0,0,W,H);
+  ctx.clip();
+  const line=(pts,color,width=1) => {
+    const pp=pts.map(p => cam.proj(p));
+    if (pp.some(p => !p)) return;
+    ctx.beginPath();
+    pp.forEach(([x,y],i) => i?ctx.lineTo(x,y):ctx.moveTo(x,y));
+    ctx.strokeStyle=color;
+    ctx.lineWidth=width;
+    ctx.stroke();
+  };
+  const poly=(pts,color,stroke=null) => {
+    const pp=cam.clipPoly(pts);
+    if (pp.length<3) return;
+    ctx.beginPath();
+    pp.forEach(([x,y],i) => i?ctx.lineTo(x,y):ctx.moveTo(x,y));
+    ctx.closePath();
+    ctx.fillStyle=color;
+    ctx.fill();
+    if (stroke) { ctx.strokeStyle=stroke; ctx.lineWidth=1; ctx.stroke(); }
+  };
+  const wallRect=(x0,x1,y,z0,z1,col,stroke) => poly([[x0,y,z0],[x1,y,z0],[x1,y,z1],[x0,y,z1]],col,stroke);
+  const id=h.id;
+  const yBack=h.backWall.y-.35;
+  if (id==='greek') {
+    const wallTop=cam.proj([0,23,6]);
+    if (wallTop) {
+      const horizon=Math.max(20,wallTop[1]);
+      const sky=ctx.createLinearGradient(0,0,0,horizon);
+      sky.addColorStop(0,'#b7cfd5');
+      sky.addColorStop(1,'#d6ded3');
+      ctx.fillStyle=sky;
+      ctx.fillRect(0,0,W,horizon-1);
+      for (let layer=0;layer<3;layer++) {
+        ctx.beginPath();
+        ctx.moveTo(0,horizon);
+        for (let x=0;x<=W+20;x+=20) {
+          const y=horizon-25-layer*13-Math.sin(x/(94+layer*30)+layer)*22-Math.sin(x/41)*5;
+          ctx.lineTo(x,y);
+        }
+        ctx.lineTo(W,horizon);
+        ctx.fillStyle=['#94a896','#8a9a7d','#738466'][layer];
+        ctx.fill();
+      }
+    }
+    for (let z=.7;z<6;z+=.65) line([[-10,23.01,z],[10,23.01,z]],'#796c563f');
+    for (let z=.1;z<6;z+=.65) for (let x=-10+(Math.round(z*10)%2);x<10;x+=2) {
+      line([[x,23,z],[x,23,z+.6]],'#e9dec667');
+    }
+    wallRect(-1.7,1.7,22.98,1,4.6,'#413c31','#caba95');
+    for (const x of [-8,-4,4,8]) {
+      wallRect(x-.18,x+.18,22.7,1,5.4,'#d8c8a2','#948469');
+      wallRect(x-.32,x+.32,22.65,5.2,5.5,'#e4d8b7');
+    }
+    for (let r=2;r<=10;r+=2) {
+      const pts=Array.from({length:73},(_,i) => [r*Math.cos(i*Math.PI*2/72),10+r*Math.sin(i*Math.PI*2/72),.01]);
+      line(pts,'#8d7e5d26');
+    }
+  } else {
+    const b=h.box;
+    const floorZ=id==='noh'?.91:.01;
+    for (let x=b.x0;x<=b.x1;x+=id==='globe'?.55:.35) line([[x,b.y0,floorZ],[x,b.y1,floorZ]],'#39261535');
+    for (let y=b.y0+.5;y<b.y1;y+=.8) {
+      for (let x=b.x0;x<b.x1;x+=1.4) line([[x,y,floorZ],[x+.25,y+.04,floorZ]],'#f2d8a229',.8);
+    }
+  }
+  if (id==='noh') {
+    wallRect(-2.65,2.65,yBack,1,4.5,'#c4ac78');
+    for (let x=-2.6;x<=2.7;x+=.4) line([[x,yBack-.01,1],[x,yBack-.01,4.5]],'#77512f2b');
+    const pineY=yBack-.025;
+    line([[.8,pineY,1],[.4,pineY,1.8],[.65,pineY,2.4],[.25,pineY,3.2]],'#594833',8);
+    for (let j=0;j<7;j++) {
+      const z=1.8+j*.32;
+      const x=.45+(j%2?-1:1)*(.7+j*.15);
+      line([[.5,pineY,z],[x,pineY,z+.15]],'#594833',3);
+      const pp=cam.proj([x,pineY-.01,z+.18]);
+      if (pp) {
+        ctx.fillStyle=j%2?'#2f5d3a':'#3c6841';
+        ctx.beginPath();
+        ctx.ellipse(pp[0],pp[1],Math.max(5,cam.s/pp[2]*.75),Math.max(3,cam.s/pp[2]*.17),-.1,0,7);
+        ctx.fill();
+      }
+    }
+    for (const y of [0,5.4]) line([[-3,y,5.5],[3,y,5.5]],'#4d3928',8);
+    for (let x=-2.7;x<=2.7;x+=.6) line([[x,0,5.55],[x,5.4,5.55]],'#554332',2);
+    for (let t=0;t<1;t+=.08) {
+      const x=-14+11.3*t,y=8-2*t;
+      line([[x,y-1,.91],[x,y+1,.91]],'#8b693b88');
+    }
+  }
+  if (id==='commedia') {
+    // A painted town on cloth, with a visible center slit and timber frame.
+    for (let i=0;i<6;i++) {
+      const x=-3+i;
+      const ht=1.6+(i%3)*.55;
+      wallRect(x,x+.85,3.98,.2,ht,'#d7ae70','#815734');
+      poly([[x-.1,3.96,ht],[x+.42,3.96,ht+.65],[x+.95,3.96,ht]],'#7c5238');
+      wallRect(x+.3,x+.52,3.94,.4,1,'#654b38');
+      wallRect(x+.2,x+.4,3.94,ht-.5,ht-.2,'#526761');
+    }
+    line([[0,3.92,0],[0,3.92,4]],'#51351eb3',2);
+    for (let x=-3;x<3;x+=.3) line([[x,3.9,0],[x+.05,3.9,4]],'#f8d49a14');
+    for (const x of [-3,3]) line([[x,0,-1.5],[x,4,-1.5]],'#4b3425',7);
+  }
+  if (id==='globe') {
+    for (let x=-7;x<=7;x+=1.5) line([[x,yBack,0],[x,yBack,8]],'#4a301f',5);
+    for (const z of [1,4.3,7.5]) line([[-7,yBack,z],[7,yBack,z]],'#583b28',7);
+    for (const x of [-4,0,4]) wallRect(x-.85,x+.85,8.6,.05,3.2,'#372d28','#be9763');
+    wallRect(-3,3,8.9,5,6.7,'#372d28','#be9763');
+    for (let x=-3;x<=3;x+=.35) line([[x,8.0,5],[x,8.0,5.8]],'#dab77a',2);
+    line([[-3,8,5.8],[3,8,5.8]],'#d2ae70',3);
+    poly([[-4.5,5.7,8],[4.5,5.7,8],[4.5,8.8,8.5],[-4.5,8.8,8.5]],'#455361');
+    for (let x=-4;x<=4;x+=1) line([[x,5.7,8],[x,8.8,8.5]],'#b59358',2);
+  }
+  if (id==='box') {
+    wallRect(-5,5,yBack,0,.85,'#384337','#b4a179');
+    for (let x=-4.7;x<5;x+=.5) for (let z=1.2;z<4;z+=.5) {
+      line([[x,yBack,z-.12],[x+.1,yBack,z],[x,yBack,z+.12],[x-.1,yBack,z],[x,yBack,z-.12]],'#cfcc9c34');
+    }
+    wallRect(.8,2.2,6.24,0,2.8,'#453e30','#c3ad7d');
+    wallRect(.95,2.05,6.22,.2,2.6,'#6a6247','#b39c6e');
+    const knob=cam.proj([1.94,6.2,1.2]);
+    if (knob) {ctx.fillStyle='#e3bc69';ctx.beginPath();ctx.arc(knob[0],knob[1],2.3,0,7);ctx.fill();}
+    poly([[-4.88,2.5,1.1],[-4.88,4.4,1.1],[-4.88,4.4,3.2],[-4.88,2.5,3.2]],'#a2b6a1','#ddd5ad');
+    line([[-4.85,3.45,1.1],[-4.85,3.45,3.2]],'#e6d9b3',3);
+    line([[-4.85,2.5,2.15],[-4.85,4.4,2.15]],'#e6d9b3',3);
+  }
+  // Soft vignette gives the view a foreground while keeping its center clear.
+  const grad=ctx.createRadialGradient(W*.5,H*.35,Math.min(W,H)*.18,W*.5,H*.5,Math.max(W,H)*.7);
+  grad.addColorStop(0,'#0000');
+  grad.addColorStop(1,'#080d1570');
+  ctx.fillStyle=grad;
+  ctx.fillRect(0,0,W,H);
+  ctx.restore();
+  paintFigures(v,h,st,seat,cam);
+}
+function paintFigures(v,h,st,seat,cam) {
+  const ctx=v.canvas.getContext('2d');
+  const ratio=v.canvas.width/v.canvas.clientWidth;
+  const last=v.last();
+  last.focus=Stage.focus(st.snap,st.beat,h,seat,WEIGHTS,st.prev);
+  last.leader=Stage.leader(last.focus);
+  ctx.save();
+  ctx.setTransform(ratio,0,0,ratio,0,0);
+  const cast=st.snap.cast.filter(a => !a.off).sort((a,b) => {
+    const ah=last.sight.cast[a.id]?.status==='hidden';
+    const bh=last.sight.cast[b.id]?.status==='hidden';
+    return Number(ah)-Number(bh) || Math.hypot(b.x-seat.x,b.y-seat.y)-Math.hypot(a.x-seat.x,a.y-seat.y);
+  });
+  for (const a of cast) {
+    const b=last.figs?.[a.id];
+    if (!b) continue;
+    const r=b.w*.13/.46;
+    const cx=b.cx,hy=b.top+r,bodyTop=hy+r*.3;
+    const hidden=last.sight.cast[a.id]?.status==='hidden';
+    const light=h.light==='areas'?Stage.lightAt(st.snap,h,a.x,a.y):2;
+    const col=light<.5?'#65717c':a.color;
+    ctx.save();
+    ctx.lineWidth=1;
+    ctx.strokeStyle='#1b2029';
+    if (hidden) {
+      ctx.setLineDash([3,3]);
+      ctx.strokeStyle='#ffd2b0';
+      ctx.globalAlpha=.75;
+    }
+    ctx.fillStyle='#1b202930';
+    ctx.beginPath();
+    ctx.ellipse(cx,b.bottom+1,b.w*.8,Math.max(1,b.w*.17),0,0,7);
+    if (!hidden) ctx.fill();
+    const gradient=ctx.createLinearGradient(cx-b.w/2,0,cx+b.w/2,0);
+    gradient.addColorStop(0,col);
+    gradient.addColorStop(.4,col);
+    gradient.addColorStop(1,'#555255');
+    ctx.fillStyle=gradient;
+    ctx.beginPath();
+    ctx.roundRect(cx-b.w/2,bodyTop,b.w,Math.max(4,b.bottom-bodyTop),b.w*.4);
+    if (!hidden) ctx.fill();
+    ctx.stroke();
+    // Clothing remains symbolic, but shoulders, sleeves and folds read as bodies rather than counters.
+    const bodyH=b.bottom-bodyTop;
+    const robe=['greek','noh'].includes(h.id);
+    const shoulderY=bodyTop+bodyH*.08;
+    const waistY=bodyTop+bodyH*.48;
+    ctx.beginPath();
+    ctx.moveTo(cx-b.w*.28,bodyTop);
+    ctx.lineTo(cx-b.w*.58,shoulderY);
+    ctx.lineTo(cx-b.w*.42,robe?b.bottom-1:waistY);
+    ctx.lineTo(cx+b.w*.42,robe?b.bottom-1:waistY);
+    ctx.lineTo(cx+b.w*.58,shoulderY);
+    ctx.lineTo(cx+b.w*.28,bodyTop);
+    ctx.closePath();
+    if (!hidden) ctx.fill();
+    ctx.stroke();
+    if (!hidden) {
+      ctx.strokeStyle='#29262e80';
+      ctx.lineWidth=Math.max(.6,b.w*.035);
+      if (robe) {
+        for (const dx of [-.25,0,.25]) {
+          ctx.beginPath();
+          ctx.moveTo(cx+dx*b.w*.55,waistY);
+          ctx.quadraticCurveTo(cx+dx*b.w,bodyTop+bodyH*.76,cx+dx*b.w,b.bottom-2);
+          ctx.stroke();
+        }
+        ctx.beginPath();
+        ctx.moveTo(cx-b.w*.29,bodyTop+bodyH*.08);
+        ctx.lineTo(cx+b.w*.16,waistY);
+        ctx.stroke();
+      } else {
+        ctx.fillStyle=light<.5?'#303c45':'#35404d';
+        ctx.fillRect(cx-b.w*.37,bodyTop+bodyH*.65,b.w*.74,Math.max(2,bodyH*.33));
+        ctx.strokeStyle='#0d1722';
+        ctx.lineWidth=Math.max(1,b.w*.06);
+        ctx.beginPath();
+        ctx.moveTo(cx,bodyTop+bodyH*.68);
+        ctx.lineTo(cx,b.bottom-1);
+        ctx.stroke();
+      }
+      ctx.strokeStyle=light<.5?'#7b8790':'#4b3d32';
+      ctx.lineWidth=Math.max(1,b.w*.07);
+      ctx.beginPath();
+      ctx.moveTo(cx-b.w*.4,waistY);
+      ctx.lineTo(cx+b.w*.4,waistY);
+      ctx.stroke();
+      // Sleeves and hands keep the facing silhouette clear at small projected sizes.
+      ctx.lineCap='round';
+      ctx.strokeStyle=col;
+      ctx.lineWidth=Math.max(1.5,b.w*.18);
+      for (const sign of [-1,1]) {
+        ctx.beginPath();
+        ctx.moveTo(cx+sign*b.w*.48,shoulderY+bodyH*.05);
+        ctx.lineTo(cx+sign*b.w*.63,bodyTop+bodyH*.44);
+        ctx.lineTo(cx+sign*b.w*.45,bodyTop+bodyH*.55);
+        ctx.stroke();
+      }
+      if (h.id==='commedia' && a.id==='guard' && b.w>12) {
+        ctx.fillStyle='#5e594b88';
+        for (const dy of [.38,.55]) {
+          ctx.beginPath();
+          ctx.moveTo(cx-b.w*.25,bodyTop+bodyH*dy);
+          ctx.lineTo(cx-b.w*.12,bodyTop+bodyH*dy-b.w*.18);
+          ctx.lineTo(cx,bodyTop+bodyH*dy);
+          ctx.lineTo(cx-b.w*.12,bodyTop+bodyH*dy+b.w*.18);
+          ctx.fill();
+        }
+      }
+    }
+    ctx.beginPath();
+    ctx.ellipse(cx,hy,r,r*1.05,0,0,7);
+    if (!hidden) {
+      const skins=['#c69a78','#956e56','#dfbb94','#aa7c5f'];
+      ctx.fillStyle=a.mask?col:light<.5?'#6f6b66':skins[(a.id.length+a.initials.length)%skins.length];
+      ctx.fill();
+    }
+    ctx.stroke();
+    const angle=Stage.angleTo(a,seat.x,seat.y);
+    if (a.mask && angle<112.5 && !hidden) {
+      const breadth=Math.max(.2,Math.cos(angle*Math.PI/180));
+      ctx.beginPath();
+      ctx.ellipse(cx,hy-(a.mask==='half'?r*.25:0),r*.86*breadth,r*(a.mask==='half'?.5:1),0,0,7);
+      ctx.fillStyle='#eee4ce';
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle='#4c4740';
+      for (const sign of [-1,1]) {
+        ctx.beginPath();
+        ctx.ellipse(cx+sign*r*.32*breadth,hy-r*.15,Math.max(.45,r*.13*breadth),Math.max(.4,r*.12),0,0,7);
+        ctx.fill();
+      }
+    }
+    if (!hidden) {
+      const fs=Math.max(10,Math.min(22,b.w*.43));
+      ctx.font='800 '+fs+'px Segoe UI, sans-serif';
+      ctx.textAlign='center';
+      ctx.textBaseline='middle';
+      ctx.fillStyle='#1b2029';
+      ctx.fillText(a.initials,cx,bodyTop+Math.min((b.bottom-bodyTop)*.35,fs*1.1));
+      if (h.id==='commedia' && st.beatIndex===5 && (state.choices.commedia[5] ?? 0)===0 &&
+        ['guard','creon'].includes(a.id)) {
+        const wave=Curio.reduce?-.5:Math.sin(performance.now()/170)*.7;
+        ctx.strokeStyle=col;
+        ctx.lineWidth=Math.max(2,b.w*.16);
+        for (const sign of [-1,1]) {
+          ctx.beginPath();
+          ctx.moveTo(cx+sign*b.w*.3,bodyTop+b.w*.4);
+          ctx.lineTo(cx+sign*b.w*(.8+wave*.2),bodyTop+b.w*(.35+wave));
+          ctx.stroke();
+        }
+      }
+      if (h.id==='box' && a.id==='guard' && st.beatIndex===0 && (state.choices.box[0] ?? 0)===0) {
+        ctx.fillStyle='#343d46';
+        ctx.beginPath();
+        ctx.ellipse(cx+b.w*.4,bodyTop+b.w*1.1,b.w*.45,b.w*.15,-.2,0,7);
+        ctx.fill();
+      }
+    }
+    if (hidden && h.id==='commedia' && st.beatIndex===5 &&
+      (state.choices.commedia[5] ?? 0)===0 && ['guard','creon'].includes(a.id)) {
+      for (const sign of [-1,1]) {
+        ctx.beginPath();
+        ctx.moveTo(cx+sign*b.w*.3,bodyTop+b.w*.4);
+        ctx.lineTo(cx+sign*b.w*.8,bodyTop-b.w*.1);
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+  if (last.leader?.id) {
+    const b=last.figs[last.leader.id];
+    if (b) {
+      ctx.beginPath();
+      ctx.ellipse(b.cx,b.top-14,10,5,0,0,7);
+      ctx.fillStyle='#fff5d8';
+      ctx.fill();
+      ctx.strokeStyle='#272b30';
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(b.cx,b.top-14,3,0,7);
+      ctx.fillStyle='#272b30';
+      ctx.fill();
+    }
+  }
+  ctx.restore();
+}
+function renderCompare() {
+  const ids=stagedIds();
+  $('workspace').innerHTML=`<section class="page compare-page"><div class="compare-top"><h2>Your productions</h2><span class="eyebrow">Beat</span>
+    ${[0,3,5,7].map(n => `<button class="btn" data-beat="${n}" aria-label="Compare beat ${n+1}"
+      aria-pressed="${state.compareBeat===n}">${n+1}</button>`).join('')}</div>
+    <div id="compare-grid" class="compare-grid ${ids.length===2?'two':''}"></div>
+    <div class="director-note"><label for="note">Director's note<small>Which theater made the Guard most sympathetic, and how?</small></label>
+    <textarea id="note" aria-label="Director's note" maxlength="600"
+      placeholder="Point to a staging choice and what the audience could see."></textarea>
+    <div class="save-actions"><button id="save" class="btn">Save on this device</button><button id="clear" class="btn">Clear</button>
+    <p class="privacy" id="save-status" aria-live="polite">Your choices and note never leave this device.</p></div></div></section>`;
+  $('note').value=state.note;
+  $('note').oninput=() => state.note=$('note').value;
+  $('save').onclick=() => {
+    try {
+      localStorage.setItem(SAVE_KEY,JSON.stringify({choices:state.choices,note:state.note}));
+      $('save-status').textContent='Saved here. Your choices and note never leave this device.';
+      hint('Saved on this device. Tap a beat number to compare another moment.');
+      Curio.tone(523,.15,.04,'triangle');
+    } catch {
+      $('save-status').textContent='This browser could not save. Your work is still open.';
+    }
+  };
+  $('clear').onclick=() => {
+    try { localStorage.removeItem(SAVE_KEY); } catch {}
+    state.choices=Object.fromEntries(IDS.map(id => [id,{}]));
+    state.note='';
+    setMode('tour');
+    hint('Choices and note cleared on this device. Tap a theater to begin again.');
+    $('house-greek').focus({preventScroll:true});
+  };
+  for (const b of document.querySelectorAll('[data-beat]')) b.onclick=() => {
+    state.compareBeat=Number(b.dataset.beat);
+    for (const x of document.querySelectorAll('[data-beat]')) x.setAttribute('aria-pressed',x===b);
+    renderProductions();
+    hint('Beat '+(state.compareBeat+1)+'. Compare the same words across your productions, then write your Director’s note.');
+    Curio.tone(300+state.compareBeat*30,.07,.03);
+  };
+  renderProductions();
+  hint(L.welcomeCompare);
+}
+function renderProductions() {
+  const ids=stagedIds();
+  $('compare-grid').innerHTML=ids.map(id => {
+    const c=lastChoice(id,state.compareBeat);
+    const option=c?.options[state.choices[id][c.beat]];
+    return `<article class="production"><h3>${esc(DATA.houses[id].name)}</h3><div class="compare-view" id="compare-${id}"></div>
+      <p><strong>${esc(option?.name || 'House default')}</strong>${esc(option?firstSentence(option.notice):'No directing choice yet.')}</p></article>`;
+  }).join('');
+  for (const id of ids) {
+    const el=$('compare-'+id);
+    applyPalette(el,id);
+    const bs=makeBeats(id);
+    const st={snap:bs[state.compareBeat].snap,beat:bs[state.compareBeat],beatIndex:state.compareBeat,
+      prev:state.compareBeat?bs[state.compareBeat-1].snap:null,
+      focus:false,weights:WEIGHTS};
+    const h=HOUSES[id];
+    const v=Stage.view.house(el,st,h.seats[0],{house:h,mini:true,margin:.055});
+    decorate(v,h,st,h.seats[0]);
+    new ResizeObserver(() => requestAnimationFrame(() => { v.layout(); decorate(v,h,st,h.seats[0]); })).observe(el);
+  }
+}
+$('m-tour').onclick=() => setMode('tour');
+$('m-compare').onclick=() => setMode('compare');
+window.addEventListener('resize',() => {
+  relayout();
+  if (state.page==='scene') requestAnimationFrame(() => { view?.layout(); plan?.layout(); draw(); });
+});
+Curio.onMotion(() => {
+  if (moving) {
+    // Restarting only the visual tween would alter timing. Engine pacing stays in control.
+    if (Curio.reduce) draw(Stage.clone(beats[state.beat].snap));
+  }
+});
+Curio.init({clips:"voice:*",rate:.95,readFallback:() => state.playing?'':$('hint').textContent});
+window.__tool={state,setMode,arrive,begin,jump,choose,makeBeats,initialSnap,applyChoice,HOUSES,WEIGHTS,
+  allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},get beats(){return beats;},get shown(){return shown;},
+  plan:() => plan,house:() => view,stop,softRule,adjustActor,turnActor};
+setMode('tour');
+})();
+</script>
+</body>
+</html>

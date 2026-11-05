@@ -1,0 +1,140 @@
+{
+  "keep": [
+    "#band",
+    "#part-grid",
+    "#trace-shell",
+    "#pad",
+    "#play",
+    "#parts"
+  ],
+  "states": [
+    {
+      "name": "calibration-offer",
+      "steps": [
+        {
+          "click": "#play"
+        }
+      ],
+      "keep": [
+        "#cal-offer"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "after-take",
+      "steps": [
+        {
+          "click": "#play"
+        },
+        {
+          "click": "#skip"
+        },
+        {
+          "wait": 3300
+        },
+        {
+          "key": " "
+        },
+        {
+          "click": "#play"
+        }
+      ],
+      "keep": [
+        ".take-desk"
+      ],
+      "sizes": [
+        "1366x768",
+        "1280x720"
+      ]
+    },
+    {
+      "name": "solo-running",
+      "steps": [
+        {
+          "click": "#m-break"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "click": "#skip"
+        },
+        {
+          "wait": 3500
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "ghost-running",
+      "steps": [
+        {
+          "click": "#m-ghost"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "click": "#skip"
+        },
+        {
+          "wait": 3500
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "waltz-bass",
+      "steps": [
+        {
+          "click": "#part-bass"
+        },
+        {
+          "js": "document.getElementById('song').value='waltz';document.getElementById('song').dispatchEvent(new Event('change'))"
+        }
+      ]
+    },
+    {
+      "name": "speed-min",
+      "steps": [
+        {
+          "drag": "const r=document.getElementById('speed').getBoundingClientRect();return [[r.x+r.width/2,r.y+r.height/2],[r.x+2,r.y+r.height/2]];"
+        }
+      ]
+    },
+    {
+      "name": "speed-max",
+      "steps": [
+        {
+          "drag": "const r=document.getElementById('speed').getBoundingClientRect();return [[r.x+r.width/2,r.y+r.height/2],[r.right-2,r.y+r.height/2]];"
+        }
+      ]
+    },
+    {
+      "name": "solo-payoff",
+      "steps": [
+        {
+          "js": "(()=>{const u=__tool,s=u.state;\nu.setMode('break');\ndocument.querySelector('#part-shaker').click();\ndocument.querySelector('#count-in').checked=false;\nu.start(true);\nconst d=4*60/s.bpm;\ns.anchorBar=0;s.anchorTime=u.context.currentTime-12*d-.01;\ns.expected.forEach(e=>e.time=s.anchorTime+e.bar*d);\nfor(const e of s.expected) {\n  const delay=e.bar>=4&&e.bar<8?-(e.bar-4)*100:8;\n  u.receiveTap(e.time+delay/1000);\n}\nu.stop(true);u.draw();\nreturn {status:document.querySelector('#status').innerText,detail:document.querySelector('#live-detail').innerText,\n  landing:document.querySelector('#feedback').innerText,summary:s.summary,regions:\n  ['band','part-grid','trace-shell','pad','play','parts'].map(id=>{\n    const r=document.getElementById(id).getBoundingClientRect();return {id,x:r.x,y:r.y,w:r.width,h:r.height};\n  })};\n})()"
+        }
+      ],
+      "keep": [
+        ".take-desk"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

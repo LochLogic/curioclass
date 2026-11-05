@@ -2,14 +2,81 @@
   "assets": [
     {
       "name": "festival-square",
-      "prompt": "An open-air town square at golden hour, a low wooden dance platform in the center foreground, strings of round paper lanterns and plain cloth bunting overhead, whitewashed walls with plain blank shutters, potted plants, warm light, flat painterly style with soft shapes, an empty square.",
+      "prompt": "An open-air town square at golden hour, a low wooden dance platform in the center foreground, strings of round paper lanterns and plain cloth bunting overhead, whitewashed walls with plain blank shutters, potted plants, warm light, flat painterly style with soft shapes, an empty square. No people.",
       "aspect": "16:9",
       "cutout": false,
-      "width": 1600,
+      "width": 1280,
       "quality": 72,
       "local_note": "dimmed 20 percent behind the dancer",
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "source": "OpenAI gpt-image",
+      "review": "ok: inspected finished WebP, no people or lettering",
+      "drawn_by": "codex"
+    },
+    {
+      "name": "bamboo-pole",
+      "prompt": "One long straight green and tan bamboo pole lying horizontally, side view, distinct bamboo nodes, isolated on flat pure magenta #FF00FF. No people.",
+      "aspect": "5:1",
+      "width": 900,
+      "quality": 76,
+      "cutout": true,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "people": false,
+      "review": "ok: inspected finished WebP, no people or lettering",
+      "source": "OpenAI gpt-image",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "culture-mayim",
+      "prompt": "A round stone water well in a sunny green field with young olive trees and a clear blue sky. No people.",
+      "aspect": "16:10",
+      "width": 640,
+      "quality": 76,
+      "cutout": false,
+      "drawn_by": "codex",
+      "people": false,
+      "review": "ok: inspected finished WebP, no people or lettering",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "culture-syvspring",
+      "prompt": "A white Danish farmhouse with a red tile roof beside a green village meadow in summer light. No people.",
+      "aspect": "16:10",
+      "width": 640,
+      "quality": 76,
+      "cutout": false,
+      "drawn_by": "codex",
+      "people": false,
+      "review": "ok: inspected finished WebP, no people or lettering",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "culture-tikling",
+      "prompt": "A barred rail bird with a brown back and black and white barred chest and flanks stepping through short grass near two bamboo poles lying on the ground. No people.",
+      "aspect": "16:10",
+      "width": 640,
+      "quality": 76,
+      "cutout": false,
+      "drawn_by": "codex",
+      "people": false,
+      "review": "ok: inspected finished WebP, no people or lettering",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "dancer-cast",
+      "prompt": "A production sprite sheet of three friendly dancers for a grade 3 to 5 dance teaching tool. Nine full-body figures in an exact 3 by 3 grid of equally sized square cells. Each row is one person: row one a dark-skinned girl age 11 with short natural curls and a sturdy build; row two a tan-skinned boy age 10 with straight dark hair and a slim build; row three a fair-skinned adult woman with short silver hair and a fuller build. All wear cobalt blue short-sleeved shirts, cream trousers and dark navy dance sneakers. Column one is straight front view in a precise T pose, both arms straight horizontally out to the sides, palms down, legs straight separated by a clear gap. Column two is the same dancer in right-facing profile, arms relaxed down, feet clearly separated. Column three is the same dancer seen straight from behind in T pose. All figures equal height within their cells, centered, with clear space around every hand, head and foot. Warm hand-painted gouache with colored pencil texture, gentle dimensional shading, realistic friendly proportions, clean silhouettes and clearly drawn hands. Every figure entirely inside its cell, no crossing cells. Perfectly flat pure green #00FF00 background, no shadows, grid lines, text, letters, numbers or logos. These front, profile and back paintings will be articulated as paper puppets to teach all moves, so limbs must be straight.",
+      "aspect": "1:1",
+      "cutout": true,
+      "width": 1536,
+      "quality": 85,
+      "people": true,
+      "drawn_by": "codex",
+      "holes": true,
+      "despill": true,
+      "local_note": "Three views per dancer, articulated locally using the engine skeleton. One swappable atlas.",
+      "review": "Painted cast and articulated proof reviewed by fresh sensitivity agent; placed frames checked in cold review."
     }
-  ]
+  ],
+  "house_style": "Flat painterly gouache with soft shapes, colored-pencil texture, warm golden light, rich cobalt and ochre details. No text, letters, numbers, logos."
 }

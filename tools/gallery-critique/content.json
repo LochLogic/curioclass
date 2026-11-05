@@ -1,0 +1,718 @@
+{
+  "rain": {
+    "id": "rain",
+    "img": "art:pd-aic-20684",
+    "title": "Paris Street; Rainy Day",
+    "artist": "Gustave Caillebotte",
+    "attribution": "Gustave Caillebotte",
+    "date": "1877",
+    "made": "oil on canvas",
+    "museum": "Art Institute of Chicago",
+    "url": "https://www.artic.edu/artworks/20684",
+    "alt": "Paris Street; Rainy Day by Gustave Caillebotte",
+    "spots": [
+      {
+        "key": 1,
+        "label": "the couple under one umbrella, front right",
+        "x": 0.68,
+        "y": 0.58,
+        "elements": [
+          "shape",
+          "pattern"
+        ]
+      },
+      {
+        "key": 2,
+        "label": "the lamppost in the middle",
+        "x": 0.49,
+        "y": 0.28,
+        "elements": [
+          "line",
+          "space"
+        ]
+      },
+      {
+        "key": 3,
+        "label": "wet paving stones",
+        "x": 0.26,
+        "y": 0.83,
+        "elements": [
+          "pattern",
+          "light"
+        ]
+      },
+      {
+        "key": 4,
+        "label": "the wide square and buildings running far back on the left",
+        "x": 0.27,
+        "y": 0.29,
+        "elements": [
+          "line",
+          "space"
+        ]
+      },
+      {
+        "key": 5,
+        "label": "the man cut off at the right edge",
+        "x": 0.94,
+        "y": 0.59,
+        "elements": [
+          "shape",
+          "space"
+        ]
+      },
+      {
+        "key": 6,
+        "label": "small figures far away",
+        "x": 0.21,
+        "y": 0.44,
+        "elements": [
+          "space",
+          "shape"
+        ]
+      },
+      {
+        "key": 7,
+        "label": "gray sky and soft light",
+        "x": 0.63,
+        "y": 0.12,
+        "elements": [
+          "color",
+          "light"
+        ]
+      }
+    ],
+    "claims": [
+      {
+        "id": "rain-0",
+        "round": 0,
+        "role": "Critic",
+        "text": "Two people share one umbrella and walk toward us on the right.",
+        "support": [
+          1
+        ]
+      },
+      {
+        "id": "rain-1",
+        "round": 0,
+        "role": "Curator",
+        "text": "A green lamppost stands right in the middle of the picture.",
+        "support": [
+          2
+        ]
+      },
+      {
+        "id": "rain-2",
+        "round": 0,
+        "role": "Artist",
+        "text": "This is a lonely, sad painting.",
+        "flaw": "Wrong round",
+        "reply": "Fair. I'll save that for interpreting.",
+        "support": []
+      },
+      {
+        "id": "rain-3",
+        "round": 1,
+        "role": "Artist",
+        "text": "The lamppost and its shadow cut the picture into two halves.",
+        "support": [
+          2
+        ]
+      },
+      {
+        "id": "rain-4",
+        "round": 1,
+        "role": "Curator",
+        "text": "The lines of the buildings run far back, so the square feels huge.",
+        "support": [
+          4
+        ]
+      },
+      {
+        "id": "rain-5",
+        "round": 1,
+        "role": "Critic",
+        "text": "The man at the right edge is cut off, like a quick photo.",
+        "support": [
+          5
+        ]
+      },
+      {
+        "id": "rain-6",
+        "round": 2,
+        "role": "Curator",
+        "text": "The city is crowded, but no one talks to anyone.",
+        "support": [
+          1,
+          6
+        ]
+      },
+      {
+        "id": "rain-7",
+        "round": 2,
+        "role": "Critic",
+        "text": "Caillebotte hated the new Paris.",
+        "flaw": "A fact that needs a source",
+        "reply": "You're right, the picture alone can't tell us what he felt.",
+        "support": []
+      },
+      {
+        "id": "rain-8",
+        "round": 2,
+        "role": "Artist",
+        "text": "The wet stones and gray light make it feel quiet and cool.",
+        "support": [
+          3,
+          7
+        ]
+      },
+      {
+        "id": "rain-9",
+        "round": 3,
+        "role": "Critic",
+        "text": "It works because every part is placed so carefully.",
+        "support": [
+          2,
+          4
+        ],
+        "lens": 1
+      },
+      {
+        "id": "rain-10",
+        "round": 3,
+        "role": "Curator",
+        "text": "This is the greatest painting of the 1800s.",
+        "flaw": "No evidence in the picture",
+        "reply": "Too big a claim. I'll narrow it.",
+        "support": []
+      },
+      {
+        "id": "rain-11",
+        "round": 3,
+        "role": "Artist",
+        "text": "It feels real enough to step into.",
+        "support": [
+          3,
+          4
+        ],
+        "lens": 0
+      }
+    ],
+    "meanings": {
+      "people alone in a crowd": [
+        1,
+        5,
+        6
+      ],
+      "a new, modern city": [
+        2,
+        4
+      ],
+      "a quiet, cool moment": [
+        3,
+        7
+      ],
+      "wealth and comfort": [
+        1
+      ]
+    },
+    "lenses": {
+      "Looks real": [
+        3,
+        4,
+        7
+      ],
+      "Well designed": [
+        2,
+        4,
+        5
+      ],
+      "Strong feeling": [
+        1,
+        6,
+        7
+      ],
+      "Does a job": [
+        4,
+        6
+      ]
+    }
+  },
+  "gulf": {
+    "id": "gulf",
+    "img": "art:pd-met-11122",
+    "title": "The Gulf Stream",
+    "artist": "Winslow Homer",
+    "attribution": "Winslow Homer",
+    "date": "1899; reworked by 1906",
+    "made": "oil on canvas",
+    "museum": "The Metropolitan Museum of Art",
+    "url": "https://www.metmuseum.org/art/collection/search/11122",
+    "alt": "The Gulf Stream by Winslow Homer",
+    "spots": [
+      {
+        "key": 1,
+        "label": "the man lying on the deck",
+        "x": 0.56,
+        "y": 0.51,
+        "elements": [
+          "shape",
+          "line"
+        ]
+      },
+      {
+        "key": 2,
+        "label": "the sharks",
+        "x": 0.46,
+        "y": 0.77,
+        "elements": [
+          "shape",
+          "color"
+        ]
+      },
+      {
+        "key": 3,
+        "label": "the waterspout",
+        "x": 0.83,
+        "y": 0.16,
+        "elements": [
+          "shape",
+          "line"
+        ]
+      },
+      {
+        "key": 4,
+        "label": "the broken mast",
+        "x": 0.37,
+        "y": 0.49,
+        "elements": [
+          "line"
+        ]
+      },
+      {
+        "key": 5,
+        "label": "the ship on the horizon",
+        "x": 0.25,
+        "y": 0.23,
+        "elements": [
+          "space"
+        ]
+      },
+      {
+        "key": 6,
+        "label": "stalks of sugar cane spilling from the boat",
+        "x": 0.47,
+        "y": 0.59,
+        "elements": [
+          "color",
+          "line"
+        ]
+      },
+      {
+        "key": 7,
+        "label": "the tilt of the boat in the swell",
+        "x": 0.58,
+        "y": 0.62,
+        "elements": [
+          "line",
+          "space"
+        ]
+      }
+    ],
+    "claims": [
+      {
+        "id": "gulf-0",
+        "round": 0,
+        "role": "Curator",
+        "text": "A man lies on the deck of a small boat with a broken mast.",
+        "support": [
+          1,
+          4
+        ]
+      },
+      {
+        "id": "gulf-1",
+        "round": 0,
+        "role": "Critic",
+        "text": "Sharks circle the boat.",
+        "support": [
+          2
+        ]
+      },
+      {
+        "id": "gulf-2",
+        "round": 0,
+        "role": "Artist",
+        "text": "Homer is warning us about the sea.",
+        "flaw": "Wrong round",
+        "reply": "That's an interpretation. I'll hold it.",
+        "support": []
+      },
+      {
+        "id": "gulf-3",
+        "round": 1,
+        "role": "Artist",
+        "text": "The boat tilts on a diagonal, so nothing feels steady.",
+        "support": [
+          7
+        ]
+      },
+      {
+        "id": "gulf-4",
+        "round": 1,
+        "role": "Critic",
+        "text": "The waterspout and the far ship sit on opposite sides, pulling the eye across.",
+        "support": [
+          3,
+          5
+        ]
+      },
+      {
+        "id": "gulf-5",
+        "round": 1,
+        "role": "Curator",
+        "text": "The man lies at the center, with every danger placed around him.",
+        "support": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "id": "gulf-6",
+        "round": 2,
+        "role": "Critic",
+        "text": "The far ship could be rescue, or it could be passing by. Homer leaves it open.",
+        "support": [
+          5
+        ]
+      },
+      {
+        "id": "gulf-7",
+        "round": 2,
+        "role": "Curator",
+        "text": "The man is calm while danger closes in from every side.",
+        "support": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "id": "gulf-8",
+        "round": 2,
+        "role": "Artist",
+        "text": "The sugar cane tells us this was a working boat.",
+        "support": [
+          6
+        ]
+      },
+      {
+        "id": "gulf-9",
+        "round": 3,
+        "role": "Curator",
+        "text": "It is powerful because it makes me fear for him.",
+        "support": [
+          1,
+          2
+        ],
+        "lens": 2
+      },
+      {
+        "id": "gulf-10",
+        "round": 3,
+        "role": "Artist",
+        "text": "The painting was ruined when Homer reworked it.",
+        "flaw": "A fact that needs a source",
+        "reply": "I can't show that in the picture. The label only says he reworked it.",
+        "support": []
+      },
+      {
+        "id": "gulf-11",
+        "round": 3,
+        "role": "Critic",
+        "text": "It's the best sea painting ever made.",
+        "flaw": "No evidence in the picture",
+        "reply": "I'll argue the case, not the trophy.",
+        "support": []
+      }
+    ],
+    "meanings": {
+      "danger from every side": [
+        2,
+        3,
+        7
+      ],
+      "calm in the face of danger": [
+        1
+      ],
+      "uncertain rescue": [
+        5
+      ],
+      "hard work at sea": [
+        4,
+        6
+      ]
+    },
+    "lenses": {
+      "Looks real": [
+        2,
+        3,
+        7
+      ],
+      "Well designed": [
+        1,
+        3,
+        5
+      ],
+      "Strong feeling": [
+        1,
+        2,
+        5
+      ],
+      "Does a job": [
+        6
+      ]
+    }
+  },
+  "bath": {
+    "id": "bath",
+    "img": "art:pd-aic-111442",
+    "title": "The Child's Bath",
+    "artist": "Mary Cassatt",
+    "attribution": "Mary Cassatt",
+    "date": "1893",
+    "made": "oil on canvas",
+    "museum": "Art Institute of Chicago",
+    "url": "https://www.artic.edu/artworks/111442",
+    "alt": "The Child's Bath by Mary Cassatt",
+    "spots": [
+      {
+        "key": 1,
+        "label": "the woman's hand holding the child's foot in the basin",
+        "x": 0.26,
+        "y": 0.76,
+        "elements": [
+          "shape",
+          "line"
+        ]
+      },
+      {
+        "key": 2,
+        "label": "both faces looking down at the water",
+        "x": 0.49,
+        "y": 0.23,
+        "elements": [
+          "line",
+          "shape"
+        ]
+      },
+      {
+        "key": 3,
+        "label": "the patterned rug",
+        "x": 0.18,
+        "y": 0.91,
+        "elements": [
+          "pattern",
+          "color"
+        ]
+      },
+      {
+        "key": 4,
+        "label": "the striped dress",
+        "x": 0.21,
+        "y": 0.38,
+        "elements": [
+          "pattern",
+          "line"
+        ]
+      },
+      {
+        "key": 5,
+        "label": "the view from above, floor tilted up",
+        "x": 0.94,
+        "y": 0.55,
+        "elements": [
+          "space",
+          "line"
+        ]
+      },
+      {
+        "key": 6,
+        "label": "the water pitcher",
+        "x": 0.81,
+        "y": 0.87,
+        "elements": [
+          "shape",
+          "color"
+        ]
+      },
+      {
+        "key": 7,
+        "label": "the patterned chest and wallpaper",
+        "x": 0.83,
+        "y": 0.14,
+        "elements": [
+          "pattern",
+          "color"
+        ]
+      }
+    ],
+    "claims": [
+      {
+        "id": "bath-0",
+        "round": 0,
+        "role": "Artist",
+        "text": "A woman washes a child's feet in a basin.",
+        "support": [
+          1
+        ]
+      },
+      {
+        "id": "bath-1",
+        "round": 0,
+        "role": "Critic",
+        "text": "Both of them look down at the water.",
+        "support": [
+          2
+        ]
+      },
+      {
+        "id": "bath-2",
+        "round": 0,
+        "role": "Curator",
+        "text": "This is about how much she loves the child.",
+        "flaw": "Wrong round",
+        "reply": "Agreed, that's for later.",
+        "support": []
+      },
+      {
+        "id": "bath-3",
+        "round": 1,
+        "role": "Curator",
+        "text": "We look down from above, so the floor tilts up and fills the picture.",
+        "support": [
+          5
+        ]
+      },
+      {
+        "id": "bath-4",
+        "round": 1,
+        "role": "Artist",
+        "text": "Stripes, rug and wallpaper make patterns everywhere.",
+        "support": [
+          3,
+          4,
+          7
+        ]
+      },
+      {
+        "id": "bath-5",
+        "round": 1,
+        "role": "Critic",
+        "text": "Their two heads and the basin form a tight triangle.",
+        "support": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "bath-6",
+        "round": 2,
+        "role": "Critic",
+        "text": "Their shared downward look makes a small, quiet moment feel important.",
+        "support": [
+          2
+        ]
+      },
+      {
+        "id": "bath-7",
+        "round": 2,
+        "role": "Artist",
+        "text": "Cassatt copied this pose from a Japanese print.",
+        "flaw": "A fact that needs a source",
+        "reply": "Influence, maybe, but I can't prove copying from the picture.",
+        "support": []
+      },
+      {
+        "id": "bath-8",
+        "round": 2,
+        "role": "Curator",
+        "text": "The pitcher and basin make it an everyday task, not a special event.",
+        "support": [
+          6,
+          1
+        ]
+      },
+      {
+        "id": "bath-9",
+        "round": 3,
+        "role": "Artist",
+        "text": "It's well designed: the patterns and the tilted floor hold together.",
+        "support": [
+          3,
+          5
+        ],
+        "lens": 1
+      },
+      {
+        "id": "bath-10",
+        "round": 3,
+        "role": "Curator",
+        "text": "It does a job: it shows care as real work worth painting.",
+        "support": [
+          1,
+          6
+        ],
+        "lens": 3
+      },
+      {
+        "id": "bath-11",
+        "round": 3,
+        "role": "Critic",
+        "text": "Women's art is always gentler.",
+        "flaw": "No evidence in the picture",
+        "reply": "That's a generalization, not a reading of this painting. Withdrawn.",
+        "support": []
+      }
+    ],
+    "meanings": {
+      "care as daily work": [
+        1,
+        6
+      ],
+      "closeness": [
+        1,
+        2
+      ],
+      "a private moment": [
+        2,
+        5
+      ],
+      "everyday life as worth painting": [
+        3,
+        6,
+        7
+      ]
+    },
+    "lenses": {
+      "Looks real": [
+        1,
+        5
+      ],
+      "Well designed": [
+        3,
+        5,
+        7
+      ],
+      "Strong feeling": [
+        1,
+        2
+      ],
+      "Does a job": [
+        1,
+        6
+      ]
+    }
+  }
+}

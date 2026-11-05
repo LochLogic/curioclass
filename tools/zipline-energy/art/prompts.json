@@ -1,0 +1,130 @@
+{
+  "house_style": "Atmospheric precision naturalist gouache for a Grade 11 physics field laboratory. Rich dusk blues, pine greens and warm low sunlight from upper left. Tactile rock, timber and brushed steel, believable engineering materials, restrained cinematic detail. No text, letters, numbers, logos or people.",
+  "assets": [
+    {
+      "name": "zl-valley",
+      "prompt": "Wide side view across a deep green valley at dusk. Layered forested hills recede into blue violet haze, a thin winding river glints on the valley floor. Open clear central sky and valley for a simulated cable. Close dark grasses frame the bottom. No cliffs or foreground trees in the middle. Full bleed landscape.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 75,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)"
+    },
+    {
+      "name": "zl-cliff",
+      "prompt": "Tall gray rock cliff with stratified ledges, a small wooden launch platform and safety railing along its top, viewed exactly from the side. Warm light from upper left. Entire cliff fully visible, platform near upper right. Isolated on flat pure green #00FF00.",
+      "aspect": "9:16",
+      "width": 320,
+      "cutout": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "holes": true,
+      "despill": true
+    },
+    {
+      "name": "zl-tree",
+      "prompt": "One very tall mature Scots pine, straight long gray brown trunk and full irregular evergreen crown. Deep forest green and blue green needle clusters, whole tree and roots visible. Warm light only on left edges. Isolated on flat pure magenta #FF00FF.",
+      "aspect": "9:16",
+      "width": 400,
+      "cutout": true,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "holes": true,
+      "despill": true,
+      "redraws": 1
+    },
+    {
+      "name": "zl-platform",
+      "prompt": "Small wooden zipline landing platform viewed exactly from the side, timber planks, bolts and safety railing, thick red padded bumper on its left front edge. Entire object isolated on flat pure green #00FF00.",
+      "aspect": "16:9",
+      "width": 300,
+      "cutout": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "holes": true,
+      "despill": true
+    },
+    {
+      "name": "zl-trolley",
+      "prompt": "Steel zipline trolley viewed exactly from the side, two grooved pulley wheels side by side inside a compact silver frame, one carabiner hanging below. Precise machined metal, axle bolts, warm highlights. Object isolated on flat pure green #00FF00.",
+      "aspect": "1:1",
+      "width": 170,
+      "cutout": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "holes": true,
+      "despill": true
+    },
+    {
+      "name": "zl-pad",
+      "prompt": "Compact spring loaded zipline brake block, red steel box with visible black rubber pad, spring and mounting bolts. Viewed exactly from the side, isolated on flat pure green #00FF00.",
+      "aspect": "4:3",
+      "width": 180,
+      "cutout": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "holes": true,
+      "despill": true
+    },
+    {
+      "name": "zl-magnet",
+      "prompt": "Compact magnetic zipline generator brake unit, dark gray finned metal housing with a short straight cable running horizontally through it, small copper coil visible behind a vent, mounting bolts. Side view isolated on flat pure green #00FF00.",
+      "aspect": "4:3",
+      "width": 180,
+      "cutout": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "holes": true,
+      "despill": true
+    },
+    {
+      "name": "zl-rider-light-up",
+      "prompt": "Slim young teen in helmet, gloves and zipline harness, side view facing right hanging upright from short strap.",
+      "aspect": "3:4",
+      "height": 180,
+      "cutout": true,
+      "people": true
+    },
+    {
+      "name": "zl-rider-light-tuck",
+      "prompt": "Same slim young teen in helmet, gloves and zipline harness, side view facing right, knees tucked to chest.",
+      "aspect": "3:4",
+      "height": 180,
+      "cutout": true,
+      "people": true
+    },
+    {
+      "name": "zl-rider-mid-up",
+      "prompt": "Average build adult in helmet, gloves and zipline harness, side view facing right hanging upright from short strap.",
+      "aspect": "3:4",
+      "height": 180,
+      "cutout": true,
+      "people": true
+    },
+    {
+      "name": "zl-rider-mid-tuck",
+      "prompt": "Same average build adult in helmet, gloves and zipline harness, side view facing right, knees tucked to chest.",
+      "aspect": "3:4",
+      "height": 180,
+      "cutout": true,
+      "people": true
+    },
+    {
+      "name": "zl-rider-heavy-up",
+      "prompt": "Tall heavyset adult in helmet, gloves and zipline harness, side view facing right hanging upright from short strap.",
+      "aspect": "3:4",
+      "height": 180,
+      "cutout": true,
+      "people": true
+    },
+    {
+      "name": "zl-rider-heavy-tuck",
+      "prompt": "Same tall heavyset adult in helmet, gloves and zipline harness, side view facing right, knees tucked to chest.",
+      "aspect": "3:4",
+      "height": 180,
+      "cutout": true,
+      "people": true
+    }
+  ]
+}

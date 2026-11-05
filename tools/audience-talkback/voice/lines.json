@@ -1,0 +1,60 @@
+{
+  "bank": "knowing-guide",
+  "voice": "Sadaltager",
+  "style": "Say in a knowledgeable, friendly way, like a museum curator",
+  "lines": [
+    "Here are two versions of the same scene. Tap Play Version A, then Play Version B.",
+    "How did each one feel? Tap up to two feelings for each version.",
+    "Flip one switch, then tap Play. Change one thing at a time, so you know what did it.",
+    "Did that swap change the feeling? Tap A lot, A little or Not at all.",
+    "Two things changed. Which one did it? Try them one at a time.",
+    "Pick three things to judge by. Then rate each version.",
+    "Now write your verdict, and one reason from your own life.",
+    "Same scene, three people, three reasons. Each one is right about their own experience.",
+    "Flip another switch, or tap Show my results to see your fair tests.",
+    "Listen to the scene. Tap Stop to end it, or tap a numbered tick to replay a line.",
+    "Flip Costumes, Lights, Voices or Music while the scene plays. Tap Stop when you have enough evidence.",
+    "Tap the other Play Version button to compare the same scene.",
+    "You have two feelings selected. Tap one of your selected feelings to replace it.",
+    "You have three criteria selected. Tap a selected criterion to replace it.",
+    "Rate Version A and Version B for each of your three chosen criteria.",
+    "Your notes are clear. Tap Play Version A to start again.",
+    "Stop the scene before changing Base. You can still flip the four staging switches.",
+    "Tap another feeling, or tap Go to the lab to test one staging choice.",
+    "Tap Stop before Read, so the host does not speak over the actors.",
+    "A. R. preferred A. My grandma has things from when she was little. If I broke one, I'd talk quiet like Kit in A.",
+    "L. M. preferred B. When I'm in trouble I talk too fast and laugh, like Kit in B. That felt real to me.",
+    "S. T. preferred A for the ending, B for the start. B was funnier at first, but when she asked if Kit got hurt, I wanted the sad music."
+  ],
+  "scene_deliveries": {
+    "Kit A": {
+      "voice": "Autonoe",
+      "style": "Say quietly and slowly, a little shaky, like a scared kid owning up"
+    },
+    "Kit B": {
+      "voice": "Autonoe",
+      "style": "Say fast and too loud with a nervous laugh, like a kid trying to make it no big deal"
+    },
+    "Holloway A": {
+      "voice": "Gacrux",
+      "style": "Say softly and slowly, like a kind old neighbor who is sad but gentle"
+    },
+    "Holloway B": {
+      "voice": "Gacrux",
+      "style": "Say briskly and surprised, like a busy gardener who just heard odd news"
+    }
+  },
+  "scene_lines": [
+    "Mrs. Holloway? It's Kit.",
+    "Kit! Did you bring my bike back?",
+    "I did. Sort of.",
+    "Sort of?",
+    "The chain came off on the big hill. And then the wheel... bent.",
+    "Oh. I rode that bike when I was your age.",
+    "I'm sorry. I'll fix it. I'll save my allowance. I'll...",
+    "Kit. Did you get hurt?",
+    "Just my knee.",
+    "Then come in. We'll look at that wheel together."
+  ],
+  "open_question": "Make an acted sample before a full set. No clips recorded during this Build under CODEX-BUILD.md."
+}

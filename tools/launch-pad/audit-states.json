@@ -1,0 +1,192 @@
+{
+  "keep": [
+    "#range",
+    "#graph",
+    "#hint",
+    "#go"
+  ],
+  "states": [
+    {
+      "name": "factor-work",
+      "steps": [
+        {
+          "click": "#m-missions"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#target"
+        },
+        {
+          "js": "document.querySelector('#target').value='0';"
+        },
+        {
+          "click": "#check"
+        }
+      ],
+      "keep": [
+        "#methods",
+        "#fields",
+        "#check"
+      ]
+    },
+    {
+      "name": "square-work",
+      "steps": [
+        {
+          "click": "#m-missions"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#target"
+        },
+        {
+          "js": "document.querySelector('#target').value='0';"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "[data-method=\"Complete the square\"]"
+        }
+      ],
+      "keep": [
+        "#methods",
+        "#fields",
+        "#check"
+      ]
+    },
+    {
+      "name": "formula-coefficients",
+      "steps": [
+        {
+          "click": "#m-missions"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#target"
+        },
+        {
+          "js": "document.querySelector('#target').value='0';"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "[data-method=\"Formula\"]"
+        }
+      ],
+      "keep": [
+        "#methods",
+        "#fields",
+        "#check"
+      ]
+    },
+    {
+      "name": "answer-and-flight",
+      "steps": [
+        {
+          "click": "#m-missions"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#target"
+        },
+        {
+          "js": "document.querySelector('#target').value='0';"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#p"
+        },
+        {
+          "js": "document.querySelector('#p').value='0';"
+        },
+        {
+          "click": "#q"
+        },
+        {
+          "js": "document.querySelector('#q').value='4';"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#answer-input"
+        },
+        {
+          "js": "document.querySelector('#answer-input').value='4';"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#go"
+        },
+        {
+          "until": "!__tool.state.running",
+          "max": 8000
+        }
+      ],
+      "keep": [
+        "#work",
+        "#go",
+        "#telemetry"
+      ]
+    },
+    {
+      "name": "speed-upper-limit",
+      "steps": [
+        {
+          "click": "#slider-v"
+        },
+        {
+          "drag": "const r=document.querySelector('#slider-v').getBoundingClientRect();return [[r.x+10,r.y+r.height/2],[r.right-2,r.y+r.height/2]];"
+        }
+      ],
+      "keep": [
+        "#explore",
+        "#go"
+      ]
+    },
+    {
+      "name": "height-upper-limit",
+      "steps": [
+        {
+          "click": "#slider-h"
+        },
+        {
+          "drag": "const r=document.querySelector('#slider-h').getBoundingClientRect();return [[r.x+10,r.y+r.height/2],[r.right-2,r.y+r.height/2]];"
+        }
+      ],
+      "keep": [
+        "#explore",
+        "#go"
+      ]
+    },
+    {
+      "name": "line-upper-limit",
+      "steps": [
+        {
+          "click": "#slider-H"
+        },
+        {
+          "drag": "const r=document.querySelector('#slider-H').getBoundingClientRect();return [[r.x+10,r.y+r.height/2],[r.right-2,r.y+r.height/2]];"
+        }
+      ],
+      "keep": [
+        "#explore",
+        "#go"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "voice": "Iapetus",
+  "style": "Say clearly and kindly, like a patient elementary school teacher",
+  "lines": [
+    "Tap a case folder to open it. Then pick the charge and lock your standard of proof before you see any evidence.",
+    "Tap less than, greater than, or not equal to for the charge against the claim.",
+    "Tap a standard of proof. Then press Lock standard before opening the evidence.",
+    "Read each condition and its numbers. Tap Yes or No for each check.",
+    "The three conditions are checked. Press Admit evidence to open the evidence.",
+    "Compare the shaded tail with the locked standard. Press Make a verdict when you have weighed the evidence.",
+    "Tap Guilty or Not guilty. Then build the conclusion and press File sentence.",
+    "The standard was set before the evidence. Changing it now isn't fair to the defendant.",
+    "This court never finds a claim innocent. Not guilty means the evidence fell short. Tap Guilty or Not guilty.",
+    "Now the sentence: the interval of values the evidence supports. Compare it with the claim marker on the line.",
+    "Drag the claim slider along the line. Watch which claims this court would convict.",
+    "Pick a sample size and a true p, then press Hold 1,000 trials.",
+    "No random sample, no trial. Tap Case files, then open another folder.",
+    "Read the claim again. Tap the direction that matches what the case asks.",
+    "Charge entered. Press Set standard to continue.",
+    "That condition is not supported by this case. Check the numbers and try Yes or No again.",
+    "These are the same runners in both shoes. Use the twelve paired differences, not two independent samples.",
+    "That verdict does not follow the standard. Compare the p-value with alpha, then choose again.",
+    "Verdict entered. Choose the evidence conclusion and direction, then press File sentence.",
+    "Conclusion filed. Press View interval to hand down the confidence interval.",
+    "Check the evidence conclusion and direction against your verdict and charge. Then press File sentence.",
+    "The trials are filed. Compare simulated shares with the exact values, then change a control to test another court."
+  ],
+  "bank": "clear-teacher"
+}

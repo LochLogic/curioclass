@@ -1,0 +1,1444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Art Through Time · Curio Class</title>
+<meta name="description" content="Pull threads between 21 museum works, inventions, trade and artistic ideas. Grades 6-8 visual arts. Works offline.">
+<!--
+Art Through Time, Curio Class. Grades 6-8 visual arts, NCAS VA:Re7 and VA:Cn11.
+Authentic works supplied from The Met Open Access and Art Institute of Chicago, public domain / CC0.
+Object links and credits: art/public-domain.json. Context and source checks: notes.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+One self-contained offline file. No automatic network requests. Content CC BY 4.0, code MIT.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper: #f4ecdc;
+  --ink: #2a2118;
+  --muted: #6a5c4c;
+  --line: #cdbb9d;
+  --focus: #ffcf77;
+  --brand: #8a2a2b;
+  --btn: #712023;
+  --btn-line: #b76662;
+  --head-ink: #fff;
+  --panel: #f4ecdc;
+  --wood: #3b2a20;
+}
+body { height: 100dvh; min-height: 0; overflow: hidden; }
+header { padding: 12px 20px; gap: 10px; border-bottom: 4px solid #672222; }
+h1 { font: 700 clamp(23px, 2.5vw, 34px)/1.05 Georgia, serif; letter-spacing: -.04em; }
+h1 small { font-size: 13px; letter-spacing: .02em; margin-top: 5px; opacity: 1; }
+button { min-width: 44px; min-height: 44px; }
+.seg { border-width: 1px; border-radius: 6px; }
+.seg button { font-size: 14px; min-height: 44px; padding: 0 13px; }
+.seg button[aria-pressed=true] { background: var(--paper); color: var(--brand); }
+.icon-btn { font-size: 12px; min-height: 44px; padding: 0 9px; border-width: 1px; border-radius: 6px; }
+#motion { width: 92px; }
+#sound { width: 84px; }
+main { grid-template-columns: minmax(0, 1fr) 320px; gap: 0; }
+.panel { grid-column: 2; grid-row: 1; padding: 14px; gap: 9px; border-left: 1px solid #b8a385; }
+.stage { grid-column: 1; grid-row: 1; min-height: 0; display: flex; flex-direction: column; background: var(--paper); }
+.eyebrow { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); }
+.gallery-top { display: flex; align-items: end; justify-content: space-between; padding: 15px 22px 8px; }
+.gallery-top h2 { margin: 0; font: 25px Georgia, serif; }
+.gallery-top span { font-size: 12px; color: var(--muted); }
+.toolbar { display: flex; gap: 5px; padding: 4px 14px 9px; align-items: center; }
+.toolbar button, .control { border: 1px solid #b9a181; border-radius: 4px; background: #fff9ed; padding: 5px 9px; }
+.toolbar button { font-size: 12px; font-weight: 650; }
+.era-buttons { display: flex; gap: 4px; flex: 1; }
+.era-buttons button { flex: 1; }
+.era-buttons button[aria-pressed=true] { background: var(--wood); color: var(--paper); }
+.zoom { display: flex; gap: 4px; }
+.minimap { height: 48px; min-height: 48px; margin: 0 16px 12px; position: relative; }
+#mini { width: 100%; height: 48px; display: block; background: #e5d6bd; border: 1px solid #b59b77; border-radius: 3px; touch-action: none; }
+#mini:focus-visible { outline-color: var(--brand); }
+.band-wrap {
+  position: relative; flex: 1; min-height: 0; overflow: hidden;
+  border-block: 8px solid #4c3425; box-shadow: inset 0 8px 20px #160e0a88, 0 4px 8px #52351933;
+  background: radial-gradient(ellipse at 35% 0, #79523655, transparent 65%),
+    repeating-linear-gradient(2deg, #ffffff02 0 1px, transparent 1px 11px),
+    repeating-linear-gradient(178deg, transparent 0 25px, #110b071e 25px 26px), #3b2a20;
+}
+#band-scroll { width: 100%; height: 100%; overflow-x: auto; overflow-y: hidden; scrollbar-color: #b49b71 #2c1e17; touch-action: pan-y; }
+#band { position: relative; height: 100%; min-height: 240px; color: var(--paper); user-select: none; }
+#threads { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 1; }
+.axis { position: absolute; left: 0; right: 0; height: 2px; background: #d6c09b; pointer-events: none; }
+.tick { position: absolute; height: 12px; border-left: 1px solid #d6c09b; }
+.tick span { position: absolute; top: 10px; left: 4px; white-space: nowrap; font-size: 11px; color: #f4ecdc; }
+.break { position: absolute; font: 700 23px Georgia, serif; background: #3b2a20; padding-inline: 4px; }
+.card {
+  position: absolute; width: 76px; border-radius: 2px; z-index: 2; padding: 3px;
+  border: 2px solid #ae8c51; color: var(--paper); background: linear-gradient(120deg, #c5a56e, #655032 45%, #d0ac68);
+  box-shadow: 0 4px 9px #0008, inset 0 0 0 1px #e8c78b; touch-action: pan-y;
+}
+.card img { display: block; width: 100%; height: calc(100% - 19px); object-fit: contain; background: #1f1812; pointer-events: none; }
+.card .year { font-size: 11px; display: block; line-height: 17px; background: #2b2018; white-space: nowrap; }
+.card .card-name { position: absolute; inset: auto -12px -20px; text-align: center; font-size: 11px; line-height: 13px; color: #f4ecdc; }
+.card[data-kind=object] img { background: #ece6da; }
+.card.selected { outline: 3px solid #ffdb93; outline-offset: 4px; }
+.card.opened::after { content: '✓'; position: absolute; right: -8px; top: -8px; border-radius: 50%; background: var(--paper); color: var(--brand); font-weight: 800; width: 20px; height: 20px; }
+.card.candidate { outline: 3px dashed #ffdc9c; outline-offset: 4px; z-index: 5; }
+.card.wrong { outline: 4px solid #ffbaa5; }
+.card.right { outline: 4px double #c1e5ae; }
+.event-tag {
+  position: absolute; width: 76px; min-height: 44px; z-index: 2; border: 1px solid #dbc095;
+  border-radius: 3px 10px 3px 3px; background: linear-gradient(140deg, #fff3d9, #d9bf91);
+  color: #362619; padding: 2px 4px; box-shadow: 0 4px 7px #0007; font-size: 11px;
+}
+.event-tag img { width: 36px; height: 36px; object-fit: contain; float: left; pointer-events: none; }
+.event-tag span { display: block; line-height: 16px; }
+.event-tag .event-name { font-size: 10px; line-height: 11px; max-height: 24px; overflow: hidden; }
+.event-tag.placed::after { content: '✓'; position: absolute; top: -4px; right: 0; color: #245d30; font-size: 16px; }
+.stem { position: absolute; width: 1px; background: #d2b88855; pointer-events: none; }
+.cluster { position: absolute; min-height: 48px; min-width: 48px; border: 2px solid #c9aa73; border-radius: 24px; background: #473022; color: #fff2da; z-index: 3; font-weight: 750; }
+.cluster.event-cluster { background: #e9d4ae; color: #3b2a20; }
+.cluster small { display: block; font-size: 11px; font-weight: 500; }
+.thread-path { fill: none; stroke-width: 3px; }
+.thread-path.fresh { animation: thread-reveal .4s ease-out; }
+@keyframes thread-reveal {
+  from { opacity: .1; clip-path: inset(0 100% 0 0); }
+  to { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+.thread-word { font-size: 12px; font-weight: 700; paint-order: stroke; stroke: #3b2a20; stroke-width: 5px; stroke-linejoin: round; }
+.band-legend { padding: 12px 20px; display: flex; gap: 18px; flex-wrap: wrap; align-items: center; color: var(--muted); font-size: 12px; }
+.legend-item { display: flex; align-items: center; gap: 4px; }
+.type-icon { width: 18px; height: 18px; display: inline-block; vertical-align: middle; flex-shrink: 0; }
+.band-legend .line { display: inline-block; width: 24px; border-top: 2px solid currentColor; }
+.band-legend .invention .line { border-top-style: dashed; }
+.band-legend .trade .line { border-top-style: dotted; }
+.band-legend .compare .line { height: 5px; border-block: 1px solid currentColor; }
+.hint { margin: 0; font-size: 14px; line-height: 1.4; min-height: 61px; padding: 10px 0; border-bottom: 1px solid var(--line); flex-shrink: 0; }
+#detail { display: flex; flex-direction: column; gap: 9px; min-height: 0; flex-shrink: 0; }
+.panel:has(.work-context) { overflow: hidden; }
+#detail:has(.work-context) { display: flex; flex: 1; min-height: 0; overflow: hidden; }
+.work-context { display: flex; flex-direction: column; gap: 9px; flex: 1; min-height: 0; overflow: auto; }
+.work-context > * { flex-shrink: 0; }
+#detail > .thread-buttons { flex-shrink: 0; }
+#detail > .benin-note { flex-shrink: 0; }
+.intro-title { font: 28px/1.1 Georgia, serif; margin: 6px 0 0; }
+.intro-art { height: 155px; flex-shrink: 0; position: relative; display: grid; place-items: center; border-bottom: 1px solid var(--line); }
+.intro-art img { position: absolute; left: 5%; top: 5%; width: 90%; height: 90%; object-fit: contain; filter: drop-shadow(0 7px 6px #402a2244); }
+.intro-text { margin: 0; font-size: 14px; line-height: 1.45; }
+.intro-note { padding: 12px; border-left: 3px solid var(--brand); font-size: 13px; background: #fffbf0; margin: 0; }
+.detail-head { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+.detail-head span { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; font-weight: 750; }
+#close-detail { padding: 3px; background: transparent; border: 1px solid var(--line); border-radius: 3px; }
+.museum-frame { height: 225px; flex-shrink: 0; position: relative; display: grid; place-items: center; background: #e7d9bf; border-radius: 3px; }
+.art-viewport { position: relative; overflow: hidden; outline: 5px ridge #c4a36b; box-shadow: 0 5px 12px #3c211a44; }
+.museum-frame.object .art-viewport { outline: 4px solid #fffaf2; border-radius: 6px; }
+.picture-target { display: block; width: 100%; height: 100%; padding: 0; border: 0; background: #fffaf2; transition: transform .9s ease; }
+.picture-target img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.zoom-ring { position: absolute; width: 58px; height: 58px; border: 2px solid #f4dc95; border-radius: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 0 500px #0003; pointer-events: none; }
+.wall-label h2 { margin: 0 0 4px; font: italic 20px/1.1 Georgia, serif; }
+.wall-label p { font-size: 12px; line-height: 1.3; margin: 3px 0; }
+.wall-label a { display: inline-flex; min-height: 44px; align-items: center; font-size: 11px; color: var(--brand); }
+.around { font-size: 13px; line-height: 1.4; margin: 0; }
+.benin-note { margin: 0; padding: 9px; background: #e5d7bc; border-left: 3px solid var(--brand); font-size: 12px; line-height: 1.4; }
+.thread-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+.thread-button { display: flex; gap: 6px; align-items: center; text-align: left; font-size: 12px; line-height: 1.2; padding: 5px 7px; }
+.thread-button strong { display: block; font-size: 11px; }
+#recap { grid-template-columns: 1fr; }
+.recap .thread-button { min-height: 64px; gap: 8px; }
+.recap .thread-button span { min-width: 0; overflow-wrap: anywhere; }
+.recap img { width: 52px; height: 48px; object-fit: contain; flex-shrink: 0; }
+.recap img:first-child { width: 38px; }
+.recap .thread-button[aria-pressed=true] { border: 2px solid var(--brand); background: #ead8b9; }
+.recap-caption { margin: 0; font-size: 13px; line-height: 1.4; }
+.filter-rack { margin-top: auto; padding-top: 8px; border-top: 1px solid var(--line); flex-shrink: 0; }
+.filter-top { display: flex; gap: 5px; margin-bottom: 5px; }
+.filter-top button { flex: 1; font-size: 12px; }
+.filters { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+.filters button { display: flex; align-items: center; gap: 4px; font-size: 11px; text-align: left; padding: 4px; }
+.filters button[aria-pressed=false] { text-decoration: line-through; opacity: .7; }
+#all[aria-pressed=true] { color: white; background: var(--brand); }
+.privacy { margin: 4px 0 0; color: var(--muted); font-size: 11px; }
+.progress { display: flex; align-items: center; gap: 6px; font-size: 13px; }
+.progress-track { display: flex; gap: 3px; flex: 1; }
+.progress-track i { height: 7px; flex: 1; background: #ccbda2; border-radius: 2px; }
+.progress-track i.done { background: var(--brand); }
+.deal { border: 1px solid #baa078; box-shadow: 0 6px 12px #4a281926; border-radius: 4px; background: linear-gradient(120deg, #fff7e7, #e8d4ae); padding: 12px; touch-action: none; cursor: grab; }
+.deal img { display: block; width: 100%; height: 150px; object-fit: contain; pointer-events: none; filter: drop-shadow(0 5px 3px #3b2a2033); }
+.deal h2 { margin: 3px 0; font: 23px Georgia, serif; }
+.deal p { margin: 5px 0 0; font-size: 13px; line-height: 1.4; }
+.deal .date { display: block; color: var(--brand); font-size: 12px; font-weight: 800; }
+.deal.dragging { outline: 3px dashed var(--brand); }
+.deal.settled { box-shadow: inset 0 0 0 3px #699453; }
+.challenge-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+.challenge-controls button { font-size: 12px; }
+#place { background: var(--brand); color: white; grid-column: 1 / -1; font-weight: 750; }
+.selection { min-height: 35px; font-size: 12px; margin: 0; line-height: 1.3; }
+.selection img { width: 40px; height: 32px; object-fit: contain; float: left; margin-right: 6px; }
+.result { padding: 9px; background: #fff9ec; border-left: 3px solid #7d903e; font-size: 13px; line-height: 1.35; }
+.result:empty { display: none; }
+button[aria-disabled=true] { opacity: .5; cursor: default; }
+@media (min-height: 701px) {
+  .panel:has(.benin-note) .museum-frame,
+  .panel:has(.thread-button:nth-child(3)) .museum-frame { height: 170px; }
+}
+.drag-ghost { position: fixed; width: 100px; height: 100px; object-fit: contain; pointer-events: none; z-index: 30; filter: drop-shadow(0 10px 8px #0006); }
+.idle-glint { animation: glint 5s ease-in-out infinite; }
+@keyframes glint { 50% { opacity: .55; } }
+.calm .idle-glint { animation: none; }
+.calm .thread-path { animation: none; }
+@media (max-height: 700px) {
+  header { padding: 6px 12px; }
+  .gallery-top { padding: 7px 16px 4px; }
+  .gallery-top h2 { font-size: 19px; }
+  .gallery-top span { display: none; }
+  .minimap { margin-bottom: 7px; }
+  .band-legend { padding: 7px 14px; gap: 8px; font-size: 11px; }
+  .museum-frame { height: 140px; }
+  .intro-art { height: 150px; }
+  .intro-note { display: none; }
+  .panel { padding: 9px; gap: 5px; }
+  .deal img { height: 115px; }
+  .deal h2 { font-size: 20px; }
+}
+@media (max-width: 1000px) {
+  main { grid-template-columns: minmax(0, 1fr) 255px; }
+  header { gap: 5px; }
+  h1 { font-size: 24px; }
+  .seg button { padding: 0 9px; font-size: 12px; }
+  .toolbar { padding-inline: 7px; gap: 4px; }
+  .toolbar button { padding-inline: 4px; font-size: 11px; }
+  .band-legend .line { display: none; }
+  .band-legend { gap: 7px; }
+  .gallery-top h2 { font-size: 20px; }
+  .gallery-top span { display: none; }
+  .thread-button { font-size: 11px; }
+  .museum-frame { height: 155px; }
+  .wall-label h2 { font-size: 17px; }
+}
+@media (max-height: 520px) and (min-width: 601px) {
+  main { grid-template-columns: minmax(0, 1fr) 225px; }
+  header { padding: 0 8px; gap: 4px; border-bottom-width: 2px; }
+  h1 { font-size: 20px; }
+  h1 small { display: none; }
+  .icon-btn { font-size: 11px; padding-inline: 3px; }
+  #motion { width: 79px; }
+  #sound { width: 72px; }
+  .seg button { padding-inline: 7px; }
+  .gallery-top, .band-legend { display: none; }
+  .minimap { margin: 0 8px; height: 44px; min-height: 44px; }
+  #mini { height: 44px; }
+  .toolbar { padding-block: 0; }
+  .band-wrap { border-block-width: 3px; }
+  .era-buttons button { font-size: 11px; }
+  .era-buttons button[data-era="1000"], .era-buttons button[data-era="1500"] { font-size: 10px; }
+  .zoom button { font-size: 16px; }
+  .zoom-label { display: none; }
+  .panel { padding: 6px 8px; gap: 4px; }
+  .hint { font-size: 12px; min-height: 48px; padding: 3px 0 6px; }
+  .intro-title { font-size: 20px; margin-top: 2px; }
+  .intro-art { height: 78px; }
+  .intro-text { display: none; }
+  .intro-note { display: none; }
+  .filter-rack { padding-top: 4px; }
+  .privacy { display: none; }
+  .museum-frame { height: 82px; }
+  #detail { gap: 4px; }
+  .wall-label h2 { font-size: 14px; margin-bottom: 2px; }
+  .wall-label p { font-size: 11px; margin: 0; }
+  .wall-label a { display: none; }
+  .around { font-size: 11px; line-height: 1.25; }
+  .thread-buttons { grid-template-columns: 1fr 1fr; gap: 4px; }
+  .thread-button { font-size: 11px; padding: 3px; }
+  .thread-button strong { font-size: 10px; }
+  .thread-button .type-icon { width: 15px; height: 15px; }
+  .detail-head { position: absolute; right: 9px; z-index: 4; }
+  .detail-head span { display: none; }
+  #close-detail { background: #fff9ed; }
+  .deal { padding: 5px 8px; }
+  .deal img { height: 90px; }
+  .deal h2 { font-size: 17px; }
+  .deal p { font-size: 11px; line-height: 1.25; }
+  .selection { min-height: 29px; font-size: 11px; }
+  .result { font-size: 11px; padding: 5px; }
+  .challenge-controls { grid-template-columns: repeat(3, 1fr); }
+  #place { grid-column: auto; }
+  .result { display: none; }
+  .benin-note { font-size: 11px; padding: 5px; }
+  .panel:has(.benin-note) .museum-frame { height: 60px; }
+}
+@media (max-width: 600px) {
+  header { padding: 6px 8px; gap: 5px; }
+  h1 { flex: 1 1 calc(100% - 60px); width: auto; font-size: 23px; }
+  h1 small { display: none; }
+  .seg { order: 2; flex: 0 0 calc(100% - 160px); min-width: 0; }
+  .seg button { flex: 1; font-size: 11px; padding-inline: 4px; }
+  #read { margin-left: auto; }
+  #motion, #sound { order: 3; width: 75px; }
+  .icon-btn { font-size: 11px; }
+  main { grid-template-columns: 1fr; grid-template-rows: 280px minmax(0, 1fr); }
+  main:has(.benin-note) { grid-template-rows: min(340px, 44vh) minmax(0, 1fr); }
+  .panel { grid-column: 1; grid-row: 1; border: 0; border-bottom: 1px solid var(--line); overflow-y: auto; padding: 7px 10px; }
+  .stage { grid-column: 1; grid-row: 2; }
+  .gallery-top, .band-legend { display: none; }
+  .hint { min-height: 40px; padding: 0 0 4px; font-size: 12px; }
+  #detail { display: block; }
+  #detail:has(.intro-art) { position: relative; min-height: 110px; }
+  .intro-title { font-size: 20px; width: 52%; }
+  .intro-art { position: absolute; right: 0; top: 6px; height: 100px; width: 45%; border: 0; }
+  .intro-note { display: none; }
+  .intro-text { font-size: 12px; }
+  .filter-rack { margin-top: 0; }
+  .filters { grid-template-columns: repeat(4, 1fr); }
+  .filters button { font-size: 10px; }
+  .privacy { display: none; }
+  .museum-frame { float: left; width: 125px; height: 115px; margin: 0 10px 5px 0; }
+  #detail:has(.museum-frame) { display: grid; grid-template-columns: 125px minmax(0, 1fr) 44px; gap: 6px; }
+  #detail:has(.work-context) { display: flex; }
+  .work-context:has(.museum-frame) {
+    display: grid; grid-template-columns: 125px minmax(0, 1fr) 44px; gap: 6px; align-content: start;
+  }
+  #detail:has(.museum-frame) .museum-frame { grid-column: 1; grid-row: 1 / 3; float: none; margin: 0; }
+  #detail:has(.museum-frame) .detail-head { grid-column: 3; grid-row: 1; float: none; }
+  #detail:has(.museum-frame) .wall-label { grid-column: 2; grid-row: 1; }
+  #detail:has(.museum-frame) .around { grid-column: 2 / 4; grid-row: 2; }
+  #detail:has(.museum-frame) .thread-buttons,
+  #detail:has(.museum-frame) .benin-note { grid-column: 1 / -1; }
+  .wall-label h2 { font-size: 16px; }
+  .wall-label p { font-size: 11px; }
+  .wall-label a { display: none; }
+  .around { font-size: 12px; }
+  .thread-buttons { clear: both; display: grid; grid-template-columns: 1fr 1fr; padding-top: 5px; }
+  .detail-head { float: right; }
+  .detail-head span { display: none; }
+  .deal { float: left; width: 100%; padding: 5px 8px; }
+  .deal img { width: 110px; height: 120px; float: left; margin-right: 8px; }
+  .deal h2 { font-size: 20px; }
+  .deal p { font-size: 12px; }
+  .challenge-controls { clear: both; grid-template-columns: 1fr 1fr 1fr; }
+  #place { grid-column: auto; }
+  .selection { clear: both; min-height: 27px; }
+  .result { clear: both; font-size: 12px; }
+  .minimap { margin: 0 8px 4px; }
+  .toolbar { padding: 4px; }
+  .toolbar button { font-size: 10px; }
+  .zoom button { font-size: 16px; }
+  .zoom-label { display: none; }
+  .benin-note { clear: both; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Art Through Time <small>art history and what changed it</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-timeline" aria-pressed="true">Timeline</button>
+    <button id="m-changed" aria-pressed="false">What Changed?</button>
+  </div>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+</header>
+<main>
+  <aside class="panel" aria-label="Museum desk">
+    <p id="hint" class="hint" aria-live="polite"></p>
+    <div id="detail"></div>
+    <div class="filter-rack" id="filters-rack">
+      <div class="filter-top">
+        <button class="control" id="all" aria-pressed="false">All threads</button>
+        <button class="control" id="spotlight">Spotlight ↗</button>
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Thread types"></div>
+      <p class="privacy">Session only. Nothing is saved or sent.</p>
+    </div>
+  </aside>
+  <section class="stage" id="stage" aria-label="Art history timeline">
+    <div class="gallery-top"><h2 id="stage-title">Every change has a thread.</h2><span id="opened-count">21 works · 12 events</span></div>
+    <nav class="toolbar" aria-label="Travel through time">
+      <div class="era-buttons" role="group" aria-label="Era">
+        <button data-era="ancient">Ancient</button>
+        <button data-era="1000">1000 to 1500</button>
+        <button data-era="1500">1500 to 1800</button>
+        <button data-era="1800">1800s</button>
+        <button data-era="1900">1900s</button>
+      </div>
+      <div class="zoom">
+        <button id="zoom-out" aria-label="Zoom out" title="Zoom out">−<span class="zoom-label"> Zoom out</span></button>
+        <button id="zoom-in" aria-label="Zoom in" title="Zoom in">+<span class="zoom-label"> Zoom in</span></button>
+      </div>
+    </nav>
+    <div class="minimap">
+      <canvas id="mini" tabindex="0" role="slider" aria-label="Timeline mini-map, use Left and Right to travel"
+        aria-valuemin="-1500" aria-valuemax="1925" aria-valuenow="1500"></canvas>
+    </div>
+    <div class="band-wrap" id="band-wrap">
+      <div id="band-scroll" aria-label="Scrollable timeline">
+        <div id="band" role="group" aria-label="Works and events in date order"></div>
+      </div>
+    </div>
+    <div class="band-legend" aria-label="Thread legend" id="legend"></div>
+  </section>
+</main>
+<script src="kit:curio"></script>
+<script>
+/* The shared art-museum engine is absent. The existing family adapter is embedded below. */
+/* Tool-local adapter for the art-museum API specified in spec.md.
+   The shared engine and family document do not exist in this checkout. */
+const Museum = (() => {
+  function frame(el, work, activate) {
+    el.replaceChildren();
+    el.className = 'museum-frame';
+    const viewport = document.createElement('div');
+    viewport.className = 'art-viewport';
+    const image = document.createElement('img');
+    image.src = work.img;
+    image.alt = work.alt;
+    image.draggable = false;
+    const picture = document.createElement('button');
+    picture.className = 'picture-target';
+    picture.setAttribute('aria-label', 'Artwork: ' + work.title + '. Tap to look closer.');
+    picture.append(image);
+    picture.onclick = activate || (() => zoomTo(el, {x: .5, y: .5}));
+    viewport.append(picture);
+    el.append(viewport);
+    el.work = work;
+    el.viewport = viewport;
+    el.picture = picture;
+    el.zoomed = false;
+    const fit = () => {
+      if (!image.naturalWidth || !el.isConnected) return;
+      const w = el.clientWidth - 28;
+      const h = el.clientHeight - 28;
+      const scale = Math.min(w / image.naturalWidth, h / image.naturalHeight);
+      viewport.style.width = Math.max(44, image.naturalWidth * scale) + 'px';
+      viewport.style.height = Math.max(44, image.naturalHeight * scale) + 'px';
+    };
+    image.onload = fit;
+    if (image.complete) fit();
+    el.fit = fit;
+    el.observer = new ResizeObserver(fit);
+    el.observer.observe(el);
+    return el;
+  }
+  function finish(el) {
+    el.picture?.getAnimations().forEach(a => a.finish());
+  }
+  function zoomTo(el, spot) {
+    finish(el);
+    const x = Math.max(-140, Math.min(0, 50 - spot.x * 240));
+    const y = Math.max(-140, Math.min(0, 50 - spot.y * 240));
+    el.picture.style.transform = `translate(${x}%, ${y}%) scale(2.4)`;
+    el.picture.style.transformOrigin = '0 0';
+    el.zoomed = true;
+    el.classList.add('zoomed');
+    if (document.activeElement?.classList.contains('tell-pin')) el.picture.focus({preventScroll: true});
+    el.querySelectorAll('.tell-pin').forEach(p => p.hidden = true);
+    let ring = el.viewport.querySelector('.zoom-ring');
+    if (!ring) {
+      ring = document.createElement('i');
+      ring.className = 'zoom-ring';
+      el.viewport.append(ring);
+    }
+    ring.style.left = `${spot.x * 240 + x}%`;
+    ring.style.top = `${spot.y * 240 + y}%`;
+  }
+  function unzoom(el) {
+    finish(el);
+    if (!el.picture) return;
+    el.picture.style.transform = '';
+    el.zoomed = false;
+    el.classList.remove('zoomed');
+    el.querySelectorAll('.tell-pin').forEach(p => p.hidden = false);
+    el.viewport.querySelector('.zoom-ring')?.remove();
+  }
+  function pins(el, spots, opts) {
+    el.querySelectorAll('.tell-pin').forEach(p => p.remove());
+    for (const spot of spots) {
+      const pin = document.createElement('button');
+      pin.className = 'tell-pin';
+      pin.style.left = `clamp(22px, ${spot.x * 100}%, calc(100% - 22px))`;
+      pin.style.top = `clamp(22px, ${spot.y * 100}%, calc(100% - 22px))`;
+      pin.innerHTML = opts.icon(spot.key);
+      pin.setAttribute('aria-label', spot.label + ': look closer');
+      pin.onclick = () => {
+        opts.onPin(spot);
+        zoomTo(el, spot);
+      };
+      el.viewport.append(pin);
+    }
+  }
+  function label(el, work) {
+    el.replaceChildren();
+    const title = document.createElement('h2');
+    title.textContent = work.title;
+    const artist = document.createElement('p');
+    artist.textContent = work.attribution;
+    const detail = document.createElement('p');
+    detail.textContent = work.date + (work.made ? ' · ' + work.made : '');
+    const link = document.createElement('a');
+    link.href = work.url;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = work.museum + ' ↗';
+    el.append(title, artist, detail, link);
+  }
+  function pair(el, workA, workB) {
+    el.replaceChildren();
+    for (const work of [workA, workB]) {
+      const mount = document.createElement('div');
+      el.append(mount);
+      frame(mount, work);
+    }
+  }
+  function dispose(root) {
+    root?.querySelectorAll('.museum-frame').forEach(f => f.observer?.disconnect());
+  }
+  return {frame, zoomTo, unzoom, pins, label, pair, finish, dispose};
+})();
+
+</script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const DATA = "json:content";
+  const ART = {
+    "perspective": "art:perspective",
+    "press": "art:press",
+    "portugal": "art:portugal",
+    "caravaggio": "art:caravaggio",
+    "photo": "art:photo",
+    "tube": "art:tube",
+    "rail": "art:rail",
+    "japan": "art:japan",
+    "litho": "art:litho",
+    "lostwax": "art:lostwax",
+    "cezanne": "art:cezanne",
+    "abstraction": "art:abstraction",
+    "pd-met-544450": "art:pd-met-544450",
+    "pd-met-246725": "art:pd-met-246725",
+    "pd-met-247017": "art:pd-met-247017",
+    "pd-met-662967": "art:pd-met-662967",
+    "pd-met-39915": "art:pd-met-39915",
+    "pd-met-39328": "art:pd-met-39328",
+    "pd-met-438754": "art:pd-met-438754",
+    "pd-met-449537": "art:pd-met-449537",
+    "pd-met-435848": "art:pd-met-435848",
+    "pd-met-356497": "art:pd-met-356497",
+    "pd-met-312302": "art:pd-met-312302",
+    "pd-met-436453": "art:pd-met-436453",
+    "pd-met-437854": "art:pd-met-437854",
+    "pd-met-291846": "art:pd-met-291846",
+    "pd-met-438820": "art:pd-met-438820",
+    "pd-met-435878": "art:pd-met-435878",
+    "pd-aic-10926": "art:pd-aic-10926",
+    "pd-aic-16571": "art:pd-aic-16571",
+    "pd-aic-97439": "art:pd-aic-97439",
+    "pd-aic-8991": "art:pd-aic-8991",
+    "pd-aic-109819": "art:pd-aic-109819"
+};
+  DATA.works.forEach(w => w.img = ART[w.img.slice(4)]);
+  DATA.events.forEach(e => e.img = ART[e.id]);
+  const WORKS = DATA.works.sort((a, b) => a.year - b.year);
+  const EVENTS = DATA.events;
+  const THREADS = DATA.threads;
+  const records = [...WORKS, ...EVENTS];
+  const record = id => records.find(r => r.id === id);
+  const isWork = id => WORKS.some(w => w.id === id);
+  const beninNote = 'In 1897 British soldiers took thousands of objects from the royal palace of Benin, including plaques like this. '
+    + 'Nigeria has asked for their return, and some have been returned.';
+  const TYPES = {
+    'Learned from': {key: 'learned', color: '#e0a64b', word: 'Learned from', dash: ''},
+    'Invention': {key: 'invention', color: '#8fc3e8', word: 'Invention', dash: '9 6'},
+    'Trade and travel': {key: 'trade', color: '#9fd39a', word: 'Trade', dash: '2 6'},
+    'Compare': {key: 'compare', color: '#e8b4d8', word: 'Compare', dash: ''},
+  };
+  const L = {
+    welcomeTimeline: 'Drag the timeline to travel. Tap any work to see what it was answering.',
+    threadHow: 'Tap a thread button to draw it on the timeline.',
+    compareHow: "A Compare thread means same idea, far apart. It doesn't mean one copied the other.",
+    welcomeChanged: 'Drag the event card onto the work it changed. Or tap the work, then tap Place.',
+    tooEarly: 'That work was made before this happened. Look later on the timeline.',
+    miss: 'Not this one. Look for what is new in the picture.',
+    showHow: 'Tap Show me to see three works to choose from.',
+    allPlaced: 'All eleven placed. Every change had a reason.',
+    next: 'Tap Next event to trace another change.',
+    choose: 'Tap a work, then tap Place. Or drag the event card onto a work.',
+    place: 'Tap Place to test this connection, or tap another work.',
+    noThreads: 'Drag the timeline and tap another work to follow a thread.',
+    candidates: 'Three works have dashed frames. Tap one, then tap Place.',
+    recapHow: 'Tap a connection to see your thread again, or tap Timeline to keep exploring.',
+    beninNote,
+    threads: THREADS.map(t => t.line),
+    around: WORKS.map(w => w.around),
+    eventLines: EVENTS.map(e => e.line),
+  };
+  const state = {
+    mode: 'timeline', selected: null, opened: new Set(), active: [], all: false,
+    filters: new Set(Object.keys(TYPES)), zoom: 1, length: 6000, positions: {},
+    order: shuffle(EVENTS.filter(e => e.year !== null).map(e => e.id)), round: 0,
+    placed: new Set(), target: null, misses: 0, candidates: [], solved: false, attempts: [],
+    touched: false, serial: 0, lastThread: null, fade: null,
+  };
+  const V = Curio.voice({
+    lines: L, scope: () => state.mode, hint: false,
+    welcome: () => {
+      if (state.touched) return null;
+      if (state.mode === 'timeline') return 'welcomeTimeline';
+      return state.placed.size === 11 || state.solved || state.target ? null : 'welcomeChanged';
+    },
+    read: () => {
+      const r = record(state.selected);
+      if (state.mode === 'timeline' && r) {
+        return isWork(r.id) ? `${r.title}. ${r.attribution}. ${r.date}. ${r.around} ${r.id === 'benin' ? beninNote : ''} ${$('hint').textContent}`
+          : `${r.line} ${$('hint').textContent}`;
+      }
+      return (state.mode === 'changed' && state.placed.size < 11 && current() ? current().line + ' ' : '') + $('hint').textContent;
+    },
+    speaks: '.card, .event-tag, .thread-button, #m-changed, #place',
+  });
+  function shuffle(a) {
+    a = [...a];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+  function icon(type) {
+    const shapes = {
+      'Learned from': '<path d="M2 4Q7 2 12 5Q17 2 22 4V19Q17 17 12 20Q7 17 2 19ZM12 5V20"/>',
+      'Invention': '<path d="M9 2H15L16 6L20 5L23 10L20 13L21 17L16 20L13 18L9 21L5 18L6 14L2 11L5 6L9 6Z"/><circle cx="12" cy="11" r="4"/>',
+      'Trade and travel': '<path d="M3 16H22L18 21H7ZM12 2V16M11 3L3 13H11M14 4L21 13H14M2 23Q6 21 10 23T22 23"/>',
+      'Compare': '<path d="M1 12Q6 3 11 12Q6 21 1 12ZM13 12Q18 3 23 12Q18 21 13 12Z"/><circle cx="6" cy="12" r="2"/><circle cx="18" cy="12" r="2"/>',
+    };
+    return `<svg class="type-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7">${shapes[type]}</svg>`;
+  }
+  function hint(text, key, valid = () => true) {
+    $('hint').textContent = text;
+    if (key) V.how(key, {valid, hint: false});
+  }
+  function action(markWelcome = false, keepHow = false) {
+    state.serial++;
+    if (markWelcome) state.touched = true;
+    const keepWelcome = !markWelcome && !state.touched
+      && V.playing === (state.mode === 'timeline' ? L.welcomeTimeline : L.welcomeChanged);
+    if (V.playing && !keepWelcome && !(keepHow && V.playing === L.threadHow)) V.hush();
+    else V.dropQueued();
+    $('band-scroll').scrollTo({left: $('band-scroll').scrollLeft, behavior: 'instant'});
+    document.querySelectorAll('.museum-frame').forEach(Museum.finish);
+    document.querySelectorAll('.card.wrong, .card.right').forEach(b => b.classList.remove('wrong', 'right'));
+    document.getAnimations().forEach(a => {
+      if (a.effect?.target?.matches('.thread-path, .event-tag, .retiring')) a.finish();
+    });
+  }
+  function event(text, valid) {
+    $('hint').textContent = text;
+    V.say(text, {valid, hint: false});
+  }
+  function dateLabel(year) {
+    if (year === null) return 'Technique';
+    return year < 0 ? `${Math.abs(year)} BCE` : String(year);
+  }
+  function fraction(year) {
+    if (year === null) return .008;
+    return year <= 1000 ? .3 * (year + 1500) / 2500 : .3 + .7 * (year - 1000) / 925;
+  }
+  function yearAt(f) {
+    return f < .3 ? f / .3 * 2500 - 1500 : 1000 + (f - .3) / .7 * 925;
+  }
+  function xAt(year) { return 50 + fraction(year) * (state.length - 100); }
+  function centerYear() {
+    return yearAt(($('band-scroll').scrollLeft + $('band-scroll').clientWidth / 2 - 50) / (state.length - 100));
+  }
+  function goYear(year, animate = true) {
+    $('band-scroll').scrollTo({left: xAt(year) - $('band-scroll').clientWidth / 2,
+      behavior: animate && !Curio.reduce ? 'smooth' : 'instant'});
+    drawMini();
+  }
+  function pack(items, slot, rowCount = 3) {
+    const ends = Array(rowCount).fill(-Infinity);
+    return items.map(r => {
+      const x = xAt(r.year);
+      let row = ends.findIndex(e => x - slot / 2 >= e);
+      if (row < 0) row = ends.indexOf(Math.min(...ends));
+      ends[row] = x + slot / 2;
+      return {r, x, row};
+    });
+  }
+  function makeButton(text, className, fn, id) {
+    const b = document.createElement('button');
+    b.className = className;
+    b.textContent = text;
+    if (id) b.id = id;
+    b.onclick = fn;
+    return b;
+  }
+  function layoutBand() {
+    const scroll = $('band-scroll');
+    const band = $('band');
+    const oldFocus = document.activeElement?.dataset?.id;
+    const oldFocusYear = document.activeElement?.dataset?.year;
+    state.length = Math.max(scroll.clientWidth, 6000 * state.zoom);
+    band.style.width = state.length + 'px';
+    band.replaceChildren();
+    state.positions = {};
+    const h = scroll.clientHeight;
+    const compact = h < 440;
+    const short = h < 350;
+    const axisY = short ? h - 158 : compact ? h - 164 : Math.max(270, Math.round(h * .60));
+    const cardH = compact ? 56 : Math.max(72, Math.min(110, (axisY - 54) / 3));
+    const eventH = compact ? 44 : Math.max(44, Math.min(66, (h - axisY - 40) / 3));
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.id = 'threads';
+    svg.setAttribute('aria-hidden', 'true');
+    band.append(svg);
+    const axis = document.createElement('div');
+    axis.className = 'axis';
+    axis.style.top = axisY + 'px';
+    band.append(axis);
+    for (const y of [-1500, -500, 1, 500, 1000, 1400, 1600, 1800, 1900]) {
+      const tick = document.createElement('div');
+      tick.className = 'tick';
+      tick.style.cssText = `left:${xAt(y)}px;top:${axisY - 5}px`;
+      tick.innerHTML = `<span>${y === 1 ? '1 CE' : dateLabel(y)}</span>`;
+      band.append(tick);
+    }
+    const br = document.createElement('span');
+    br.className = 'break idle-glint';
+    br.textContent = '//';
+    br.title = 'Scale changes at 1000 CE: earlier years are compressed.';
+    br.style.cssText = `left:${xAt(1000) - 25}px;top:${axisY + 21}px`;
+    band.append(br);
+    const clusters = state.zoom < .96;
+    const ordered = [...records].sort((a, b) => (a.year ?? -1501) - (b.year ?? -1501));
+    const packed = [...pack(WORKS, 80, short ? 2 : 3),
+      ...pack([...EVENTS].sort((a,b) => (a.year ?? -1501) - (b.year ?? -1501)), 80)];
+    const clusterIds = new Set();
+    if (clusters) {
+      const clusterWorks = WORKS.filter(w => !state.candidates.includes(w.id));
+      const clusterEvents = EVENTS.filter(e => state.mode === 'timeline' || state.placed.has(e.id))
+        .sort((a,b) => (a.year ?? -1501) - (b.year ?? -1501));
+      for (const group of [clusterWorks, clusterEvents]) {
+        let bucket = [];
+        const flush = () => {
+          if (!bucket.length) return;
+          if (bucket.length === 1) { bucket = []; return; }
+          const ids = bucket.map(r => r.id);
+          ids.forEach(id => clusterIds.add(id));
+          const workGroup = isWork(ids[0]);
+          const x = bucket.reduce((s,r) => s + xAt(r.year), 0) / bucket.length;
+          const y = workGroup ? axisY - 85 : axisY + 38;
+          const cluster = makeButton('', 'cluster' + (workGroup ? '' : ' event-cluster'), () => {
+            action();
+            const middle = bucketYears[0];
+            zoomTo(Math.max(1, state.zoom * 2), middle);
+             const closest = [...$('band').querySelectorAll('button[data-year]')]
+               .filter(b => !b.hidden)
+               .sort((a, b) => Math.abs(Number(a.dataset.year) - middle) - Math.abs(Number(b.dataset.year) - middle))[0];
+             closest?.focus({preventScroll: true});
+          });
+          const bucketYears = [yearAt((x - 50) / (state.length - 100))];
+          cluster.innerHTML = `${ids.length}<small>${workGroup ? 'works' : 'events'}</small>`;
+          cluster.setAttribute('aria-label', `${ids.length} ${workGroup ? 'works' : 'events'}, zoom to ${dateLabel(Math.round(bucketYears[0]))}`);
+          cluster.style.cssText = `left:${x - 24}px;top:${y}px`;
+           cluster.dataset.year = bucketYears[0];
+           cluster.onkeydown = e => bandKey(e);
+          band.append(cluster);
+          ids.forEach(id => state.positions[id] = {x, y: y + 24, work: workGroup});
+          bucket = [];
+        };
+        for (const r of group) {
+          if (bucket.length && xAt(r.year) - xAt(bucket[bucket.length - 1].year) >= 84) flush();
+          bucket.push(r);
+        }
+        flush();
+      }
+    }
+    for (const r of ordered) {
+      if (clusterIds.has(r.id)) continue;
+      const p = packed.find(p => p.r.id === r.id);
+      const workGroup = isWork(r.id);
+      const roomy = !compact && workGroup && WORKS.every(w => w.id === r.id || Math.abs(xAt(w.year) - p.x) > 145);
+      const ownH = workGroup ? (roomy ? Math.min(140, axisY - 45) : cardH) : eventH;
+      const ownW = roomy ? Math.min(124, 2 * Math.min(p.x, state.length - p.x) - 12) : 76;
+      let y;
+      if (workGroup) {
+        const gap = short ? 2 : compact ? 4 : 8;
+        y = axisY - (short ? 5 : compact ? 10 : 30) - ownH - p.row * (cardH + gap);
+      } else {
+        y = axisY + (short ? 20 : compact ? 22 : 24) + p.row * (eventH + (short ? 0 : compact ? 2 : 4));
+      }
+      // Short previews retain real-pixel cards; the active era is shown at zoom two.
+      y = Math.max(5, Math.min(h - ownH - 4, y));
+      const b = makeButton('', workGroup ? 'card' : 'event-tag', () => openRecord(r.id));
+      b.id = 'card-' + r.id;
+      b.dataset.id = r.id;
+      b.dataset.kind = r.kind || 'event';
+      b.dataset.year = r.year ?? -1501;
+      b.setAttribute('aria-label', `${r.title}, ${dateLabel(r.year)}${workGroup ? ', open work' : ', open event'}`);
+      b.title = r.title + ', ' + dateLabel(r.year);
+      b.style.cssText = `left:${p.x - ownW / 2}px;top:${y}px;width:${ownW}px;height:${ownH}px`;
+      b.innerHTML = workGroup ? `<img src="${r.img}" alt=""><span class="year">${dateLabel(r.year)}</span>`
+        : `<img src="${r.img}" alt=""><span>${r.year === null ? 'Cast' : dateLabel(r.year)}</span>`;
+      b.onkeydown = e => bandKey(e, r.id);
+      band.append(b);
+      state.positions[r.id] = {x: p.x, y: workGroup ? y + ownH : y, work: workGroup};
+      const stem = document.createElement('div');
+      stem.className = 'stem';
+      const endY = workGroup ? y + ownH : y;
+      stem.style.cssText = `left:${p.x}px;top:${Math.min(axisY, endY)}px;height:${Math.abs(axisY - endY)}px`;
+      band.append(stem);
+    }
+    updateCards();
+    // Decorative rails stay out of the tab order; every interactive stop follows time order.
+    [...band.querySelectorAll('button[data-year]')]
+      .sort((a, b) => Number(a.dataset.year) - Number(b.dataset.year))
+      .forEach(b => band.append(b));
+    let labelRight = -Infinity;
+    for (const label of band.querySelectorAll('.tick span')) {
+      const box = label.getBoundingClientRect();
+      if (box.left < labelRight + 6) label.style.visibility = 'hidden';
+      else labelRight = box.right;
+    }
+    drawThreads();
+    drawMini();
+    let focusTarget = oldFocus ? $('card-' + oldFocus) : null;
+    if (!focusTarget && oldFocusYear !== undefined) {
+      focusTarget = [...band.querySelectorAll('button[data-year]')]
+        .filter(b => !b.hidden)
+        .sort((a, b) => Math.abs(Number(a.dataset.year) - Number(oldFocusYear))
+          - Math.abs(Number(b.dataset.year) - Number(oldFocusYear)))[0];
+    }
+    focusTarget?.focus({preventScroll: true});
+  }
+  function updateCards() {
+    for (const r of records) {
+      const b = $('card-' + r.id);
+      if (!b) continue;
+      b.classList.toggle('opened', state.opened.has(r.id));
+      b.classList.toggle('selected', r.id === (state.mode === 'changed' ? state.target : state.selected));
+      b.classList.toggle('candidate', state.candidates.includes(r.id));
+      b.classList.toggle('placed', state.placed.has(r.id));
+      b.hidden = state.mode === 'changed' && !isWork(r.id) && !state.placed.has(r.id);
+    }
+    $('opened-count').textContent = `${state.opened.size} / 21 works opened`;
+  }
+  function drawThreads(fresh = []) {
+    const svg = $('threads');
+    if (!svg) return;
+    svg.replaceChildren();
+    const all = state.mode === 'timeline' && state.all;
+    const visible = all ? THREADS : state.active.map(id => THREADS.find(t => t.id === id));
+    for (const t of visible) {
+      if (!t || !state.filters.has(t.type)) continue;
+      if (state.mode === 'changed' && t.type === 'Compare') continue;
+      const a = state.positions[t.source];
+      const b = state.positions[t.target];
+      if (!a || !b) continue;
+      const type = TYPES[t.type];
+      const workPair = a.work;
+      const dx = b.x - a.x;
+      const lift = Math.min(120, 35 + Math.abs(dx) * .08);
+      const midX = (a.x + b.x) / 2;
+      const midY = workPair ? Math.max(18, Math.min(a.y, b.y) - lift) : (a.y + b.y) / 2;
+      const d = workPair ? `M${a.x},${a.y} Q${midX},${midY} ${b.x},${b.y}`
+        : `M${a.x},${a.y} C${a.x},${midY} ${b.x},${midY} ${b.x},${b.y}`;
+      const group = document.createElementNS(svg.namespaceURI, 'g');
+      group.setAttribute('opacity', all && !state.active.includes(t.id) ? '.22' : '1');
+      if (!all && state.mode === 'timeline' && state.fade?.id === t.id) {
+        const opacity = Curio.reduce ? 0 : Math.max(0, 1 - (performance.now() - state.fade.at) / 400);
+        group.setAttribute('opacity', opacity);
+        group.classList.add('retiring');
+        if (opacity > 0) group.animate([{opacity}, {opacity: 0}], {duration: 400 * opacity, fill: 'forwards'});
+      }
+      const path = document.createElementNS(svg.namespaceURI, 'path');
+      path.setAttribute('d', d);
+      path.setAttribute('stroke', type.color);
+      path.setAttribute('stroke-dasharray', type.dash);
+      path.setAttribute('class', 'thread-path' + (fresh.includes(t.id) && !Curio.reduce ? ' fresh' : ''));
+      if (t.type === 'Compare') path.style.strokeWidth = '1.5px';
+      group.append(path);
+      if (t.type === 'Compare') {
+        const second = path.cloneNode();
+        second.setAttribute('transform', 'translate(0,4)');
+        group.append(second);
+      }
+      if (!all || state.active.includes(t.id)) {
+        const label = document.createElementNS(svg.namespaceURI, 'text');
+        label.setAttribute('x', midX + 12);
+        label.setAttribute('y', midY - 7);
+        label.setAttribute('fill', type.color);
+        label.setAttribute('class', 'thread-word');
+        label.textContent = type.word;
+        const iconSvg = document.createElementNS(svg.namespaceURI, 'svg');
+        iconSvg.setAttribute('x', midX - 11);
+        iconSvg.setAttribute('y', midY - 23);
+        iconSvg.setAttribute('width', 20);
+        iconSvg.setAttribute('height', 20);
+        iconSvg.setAttribute('viewBox', '0 0 24 24');
+        iconSvg.style.color = type.color;
+        iconSvg.innerHTML = icon(t.type).match(/>(.*)<\/svg>/)[1];
+        iconSvg.setAttribute('fill', 'none');
+        iconSvg.setAttribute('stroke', 'currentColor');
+        iconSvg.setAttribute('stroke-width', '1.7');
+        group.append(iconSvg, label);
+      }
+      svg.append(group);
+    }
+  }
+  function drawMini() {
+    const c = $('mini');
+    const w = c.clientWidth;
+    const h = c.clientHeight;
+    if (!w) return;
+    c.width = w * devicePixelRatio;
+    c.height = h * devicePixelRatio;
+    const ctx = c.getContext('2d');
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+    ctx.fillStyle = '#e5d6bd';
+    ctx.fillRect(0, 0, w, h);
+    ctx.strokeStyle = '#9c825e';
+    ctx.beginPath(); ctx.moveTo(6, 23); ctx.lineTo(w - 6, 23); ctx.stroke();
+    const mx = y => 6 + fraction(y) * (w - 12);
+    for (const r of records) {
+      ctx.fillStyle = isWork(r.id) ? '#8a2a2b' : '#755f39';
+      ctx.beginPath(); ctx.arc(mx(r.year), isWork(r.id) ? 15 : 30, 2, 0, Math.PI * 2); ctx.fill();
+    }
+    const scroll = $('band-scroll');
+    const left = scroll.scrollLeft / state.length * w;
+    const vw = Math.max(12, scroll.clientWidth / state.length * w);
+    ctx.fillStyle = '#8a2a2b22'; ctx.fillRect(left, 1, vw, h - 2);
+    ctx.strokeStyle = '#8a2a2b'; ctx.lineWidth = 2; ctx.strokeRect(left + 1, 1, vw - 2, h - 2);
+    ctx.font = '10px Segoe UI'; ctx.fillStyle = '#493626';
+    ctx.fillText('1500 BCE', 5, 44); ctx.fillText('// 1000', mx(1000) - 14, 44); ctx.fillText('1925', w - 30, 44);
+    const year = Math.round(centerYear());
+    c.setAttribute('aria-valuenow', Math.max(-1500, Math.min(1925, year)));
+    c.setAttribute('aria-valuetext', dateLabel(year));
+  }
+  function zoomTo(zoom, year = centerYear()) {
+    const min = $('band-scroll').clientWidth / 6000;
+    state.zoom = Math.max(min, Math.min(2, zoom));
+    layoutBand();
+    goYear(year, false);
+    $('zoom-in').setAttribute('aria-disabled', state.zoom >= 2);
+    $('zoom-out').setAttribute('aria-disabled', state.zoom <= min + .001);
+    Curio.tone(360 + state.zoom * 90, .045, .03);
+  }
+  function addThreads(ids) {
+    for (const id of ids) state.active = [...state.active.filter(t => t !== id), id].slice(-8);
+    if (state.active.length === 8 && state.fade?.id !== state.active[0]) {
+      state.fade = {id: state.active[0], at: performance.now()};
+    }
+    drawThreads(ids);
+  }
+  function pullThread(t) {
+    action(true);
+    state.lastThread = t.id;
+    state.filters.add(t.type);
+    updateFilters();
+    addThreads([t.id]);
+    const other = t.source === state.selected ? t.target : t.source;
+    goYear(record(other).year);
+    const serial = state.serial;
+    event(t.line, () => state.serial === serial);
+    $('hint').textContent = t.line + ' Tap another thread, or tap a work.';
+    if (t.type === 'Compare') V.how('compareHow', {valid: () => state.lastThread === t.id, hint: false});
+    Curio.tone(540, .1, .045);
+  }
+  function renderIntro() {
+    $('detail').innerHTML = `<span class="eyebrow">The connected gallery</span>
+      <h2 class="intro-title">Pull a thread.<br>Find a reason.</h2>
+      <div class="intro-art"><img src="${record('rhino').img}" alt="Durer's Rhinoceros, an authentic woodcut"></div>
+      <p class="intro-text">21 works. Twelve changes.</p>
+      <p class="intro-note">Compare means a shared idea. It never claims that one artist copied another.</p>`;
+  }
+  function renderDetail(id) {
+    Museum.dispose($('detail'));
+    const r = record(id);
+    const detail = $('detail');
+    detail.replaceChildren();
+    const context = document.createElement('div');
+    context.className = 'work-context';
+    detail.append(context);
+    const head = document.createElement('div');
+    head.className = 'detail-head';
+    head.innerHTML = `<span>${isWork(id) ? 'Inside the frame' : 'A change in the world'}</span>`;
+    head.append(makeButton('×', '', closeDetail, 'close-detail'));
+    head.lastChild.setAttribute('aria-label', 'Close work view');
+    context.append(head);
+    if (isWork(id)) {
+      const frame = document.createElement('div');
+      context.append(frame);
+      Museum.frame(frame, r, () => {
+        action();
+        frame.zoomed ? Museum.unzoom(frame) : Museum.zoomTo(frame, {x: .5, y: .5});
+        Curio.tone(frame.zoomed ? 620 : 430, .05, .03);
+      });
+      frame.classList.toggle('object', r.kind === 'object');
+      const label = document.createElement('div');
+      label.className = 'wall-label';
+      Museum.label(label, r);
+      context.append(label);
+      const around = document.createElement('p');
+      around.className = 'around';
+      around.textContent = r.around;
+      context.append(around);
+      if (id === 'benin') {
+        const note = document.createElement('p');
+        note.className = 'benin-note';
+        note.textContent = beninNote;
+        detail.append(note);
+      }
+    } else {
+      const card = document.createElement('div');
+      card.className = 'deal';
+      card.innerHTML = `<img src="${r.img}" alt="${r.title}"><span class="date">${dateLabel(r.year)}</span><h2>${r.title}</h2><p>${r.line}</p>`;
+      context.append(card);
+    }
+    const threads = document.createElement('div');
+    threads.className = 'thread-buttons';
+    for (const t of THREADS.filter(t => t.source === id || t.target === id)) {
+      const other = record(t.source === id ? t.target : t.source);
+      const b = makeButton('', 'control thread-button', () => pullThread(t), 'thread-' + t.id);
+      const relation = t.type === 'Learned from' && t.source === id ? 'Influenced' : t.type;
+      b.innerHTML = `${icon(t.type)}<span><strong>${relation}</strong>${other.short || other.title}</span>`;
+      threads.append(b);
+    }
+    if (!threads.children.length) {
+      const p = document.createElement('p');
+      p.className = 'around';
+      p.textContent = L.noThreads;
+      threads.append(p);
+    }
+    detail.append(threads);
+    $('filters-rack').hidden = true;
+  }
+  function closeDetail() {
+    action();
+    const old = state.selected;
+    state.selected = null;
+    Museum.dispose($('detail'));
+    renderIntro();
+    $('filters-rack').hidden = false;
+    updateCards();
+    hint(L.welcomeTimeline);
+    const focusTarget = $('card-' + old) || [...$('band').querySelectorAll('button[data-year]')]
+      .filter(b => !b.hidden)
+      .sort((a, b) => Math.abs(Number(a.dataset.year) - record(old).year)
+        - Math.abs(Number(b.dataset.year) - record(old).year))[0];
+    goYear(record(old).year, false);
+    focusTarget?.focus({preventScroll: true});
+  }
+  function openRecord(id) {
+    if (state.mode === 'timeline' && state.selected === id) {
+      Curio.tone(380, .06, .035);
+      return;
+    }
+    if (state.mode === 'changed') {
+      if (!isWork(id) || state.solved) return;
+      action(true);
+      state.target = id;
+      updateSelection();
+      updateCards();
+      hint(L.place, 'place', () => state.target === id && !state.solved);
+      Curio.tone(430, .07, .035);
+      return;
+    }
+    action(true, THREADS.some(t => t.source === id || t.target === id));
+    state.selected = id;
+    if (isWork(id)) state.opened.add(id);
+    renderDetail(id);
+    updateCards();
+    const hasThreads = THREADS.some(t => t.source === id || t.target === id);
+    hint(hasThreads ? L.threadHow : L.noThreads,
+      hasThreads ? 'threadHow' : 'noThreads', () => state.selected === id);
+    Curio.tone(380, .06, .035);
+  }
+  function current() { return record(state.order[state.round]); }
+  function rightThreads(id) {
+    return THREADS.filter(t => t.source === id && t.type !== 'Compare' && !(id === 'japan' && t.target === 'mishima'));
+  }
+  function updateSelection() {
+    const w = record(state.target);
+    $('selection').innerHTML = w ? `<img src="${w.img}" alt="">${w.short}<br>${dateLabel(w.year)}` : 'No work selected yet.';
+    $('place').setAttribute('aria-disabled', !w || state.solved);
+  }
+  function renderChallenge() {
+    Museum.dispose($('detail'));
+    $('filters-rack').hidden = true;
+    const detail = $('detail');
+    detail.replaceChildren();
+    const progress = document.createElement('div');
+    progress.className = 'progress';
+    progress.id = 'progress';
+    progress.innerHTML = `<b>${state.placed.size} / 11 placed</b><span class="progress-track">${state.order.map(id => `<i class="${state.placed.has(id) ? 'done' : ''}"></i>`).join('')}</span>`;
+    detail.append(progress);
+    if (state.placed.size === 11) {
+      const title = document.createElement('h2');
+      title.className = 'intro-title';
+      title.textContent = 'Your eleven connections.';
+      detail.append(title);
+      const caption = document.createElement('p');
+      caption.className = 'recap-caption';
+      caption.textContent = L.recapHow;
+      detail.append(caption);
+      const recap = document.createElement('div');
+      recap.className = 'thread-buttons recap';
+      recap.id = 'recap';
+      for (const a of state.attempts.filter(a => a.right)) {
+        const e = record(a.event);
+        const w = record(a.work);
+        const b = makeButton('', 'control thread-button', () => {
+          action();
+          zoomTo(1, w.year);
+          addThreads(rightThreads(e.id).map(t => t.id));
+          recap.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', button === b));
+          event(rightThreads(e.id).find(t => t.target === w.id).line, () => state.mode === 'changed' && state.placed.size === 11);
+          $('hint').textContent += ' ' + L.recapHow;
+        });
+        b.setAttribute('aria-pressed', 'false');
+        b.innerHTML = `<img src="${e.img}" alt=""><img src="${w.img}" alt="">`
+          + `<span><strong>${e.title}</strong>→ ${w.short}</span>`;
+        recap.append(b);
+      }
+      detail.append(recap);
+      return;
+    }
+    const e = current();
+    const deal = document.createElement('div');
+    deal.className = 'deal' + (state.solved ? ' settled' : '');
+    deal.id = 'deal';
+    deal.innerHTML = `<img src="${e.img}" alt="${e.title}"><span class="date">${dateLabel(e.year)}</span><h2>${e.title}</h2><p>${e.line}</p>`;
+    deal.onpointerdown = startDealDrag;
+    detail.append(deal);
+    const selection = document.createElement('p');
+    selection.className = 'selection';
+    selection.id = 'selection';
+    detail.append(selection);
+    const controls = document.createElement('div');
+    controls.className = 'challenge-controls';
+    controls.append(makeButton('Place', 'control', () => place(state.target), 'place'));
+    const show = makeButton('Show me', 'control', showCandidates, 'show');
+    show.hidden = state.misses < 2 || state.solved;
+    controls.append(show);
+    const next = makeButton('Next event →', 'control', nextEvent, 'next');
+    next.setAttribute('aria-disabled', !state.solved);
+    controls.append(next);
+    detail.append(controls);
+    const result = document.createElement('div');
+    result.className = 'result';
+    result.id = 'result';
+    result.setAttribute('aria-live', 'polite');
+    detail.append(result);
+    updateSelection();
+  }
+  function place(id) {
+    if (state.mode !== 'changed' || state.solved || !id || !isWork(id)) return;
+    action(true);
+    const e = current();
+    const rights = rightThreads(e.id);
+    const right = rights.some(t => t.target === id);
+    state.attempts.push({event: e.id, work: id, right});
+    const serial = state.serial;
+    state.target = id;
+    updateSelection();
+    updateCards();
+    const b = $('card-' + id);
+    if (right) {
+      state.solved = true;
+      state.placed.add(e.id);
+      state.candidates = [];
+      addThreads(rights.map(t => t.id));
+      updateCards();
+      b?.classList.add('right');
+      if (!Curio.reduce) {
+        $('card-' + e.id)?.animate(
+          [{transform: 'translateY(-28px)', opacity: 0}, {transform: 'translateY(0)', opacity: 1}],
+          {duration: 400, easing: 'ease-out'});
+      }
+      $('deal').classList.add('settled');
+      const t = rights.find(t => t.target === id);
+      $('result').textContent = t.line;
+      $('next').setAttribute('aria-disabled', 'false');
+      $('place').setAttribute('aria-disabled', 'true');
+      $('show').hidden = true;
+      $('progress').querySelector('b').textContent = `${state.placed.size} / 11 placed`;
+      [...$('progress').querySelectorAll('i')].forEach((i, n) => i.classList.toggle('done', state.placed.has(state.order[n])));
+      goYear(record(id).year);
+      event(t.line, () => state.serial === serial && state.solved);
+      if (state.placed.size === 11) {
+        renderChallenge();
+        $('hint').textContent = L.allPlaced + ' ' + L.recapHow;
+        V.say('allPlaced', {valid: () => state.mode === 'changed' && state.placed.size === 11, hint: false});
+        if (document.activeElement === document.body) $('recap button').focus({preventScroll: true});
+        $('detail').parentElement.scrollTop = 0;
+      } else {
+        hint(L.next, 'next', () => state.serial === serial && state.solved);
+      }
+      Curio.yes();
+    } else {
+      state.misses++;
+      b?.classList.add('wrong');
+      const key = record(id).year < e.year ? 'tooEarly' : 'miss';
+      $('result').textContent = L[key];
+      event(L[key], () => state.serial === serial);
+      $('hint').textContent = L[key] + ' Tap another work, then Place.';
+      Curio.tone(190, .12, .035);
+      if (state.misses >= 2) {
+        $('show').hidden = false;
+        $('hint').textContent = L[key] + ' Tap Show me, or try another work.';
+        V.how('showHow', {valid: () => !state.solved && state.misses >= 2, needs: '#show', hint: false});
+      }
+    }
+  }
+  function showCandidates() {
+    if (state.misses < 2 || state.solved) return;
+    action();
+    const rights = rightThreads(current().id).map(t => t.target);
+    const right = shuffle(rights)[0];
+    const rightYear = record(right).year;
+    const distractors = WORKS.filter(w => !rights.includes(w.id))
+      .sort((a,b) => Math.abs(a.year - rightYear) - Math.abs(b.year - rightYear)).map(w => w.id);
+    state.candidates = shuffle([right, ...distractors.slice(0, 2)]);
+    while (state.candidates.length < 3) {
+      const extra = shuffle(WORKS.filter(w => !state.candidates.includes(w.id) && !rights.includes(w.id)))[0];
+      state.candidates.push(extra.id);
+    }
+    const years = state.candidates.map(id => record(id).year);
+    const span = Math.max(...years) - Math.min(...years);
+    const width = $('band-scroll').clientWidth;
+    const scale = Math.min(2, Math.max(width / 6000, (width - 140) / Math.max(1, span * 4.54)));
+    zoomTo(scale, (Math.min(...years) + Math.max(...years)) / 2);
+    updateCards();
+    hint(L.candidates, 'candidates', () => state.candidates.length === 3 && !state.solved);
+  }
+  function nextEvent() {
+    if (!state.solved) return;
+    action(true);
+    state.round++;
+    state.target = null;
+    state.misses = 0;
+    state.candidates = [];
+    state.solved = false;
+    state.active = [];
+    state.fade = null;
+    renderChallenge();
+    layoutBand();
+    if (state.placed.size === 11) {
+      event(L.allPlaced, () => state.mode === 'changed' && state.placed.size === 11);
+      $('hint').textContent = L.allPlaced + ' ' + L.recapHow;
+      return;
+    }
+    hint(L.choose, 'choose', () => !state.target && !state.solved);
+    goYear(Math.min(1900, current().year + 40), false);
+    $('m-changed').focus({preventScroll: true});
+  }
+  let initialized = false;
+  function setMode(mode) {
+    if (mode === state.mode && initialized) return;
+    initialized = true;
+    V.hush();
+    state.serial++;
+    state.mode = mode;
+    state.touched = false;
+    state.selected = null;
+    state.active = [];
+    state.fade = null;
+    for (const m of ['timeline', 'changed']) $('m-' + m).setAttribute('aria-pressed', m === mode);
+    $('stage-title').textContent = mode === 'timeline' ? 'Every change has a thread.' : 'What changed the picture?';
+    if (mode === 'timeline') {
+      Museum.dispose($('detail'));
+      renderIntro();
+      $('filters-rack').hidden = false;
+      hint(L.welcomeTimeline);
+    } else {
+      state.filters = new Set(Object.keys(TYPES));
+      renderChallenge();
+      const doneHint = L.allPlaced + ' ' + L.recapHow;
+      hint(state.placed.size === 11 ? doneHint : state.solved ? L.next : state.target ? L.place : L.welcomeChanged);
+    }
+    layoutBand();
+    V.welcome();
+    if (mode === 'changed' && state.placed.size < 11 && state.solved) V.how('next', {needs: '#next', hint: false});
+    if (mode === 'changed' && current()) goYear(Math.min(1900, current().year + 40), false);
+    Curio.tone(mode === 'timeline' ? 330 : 490, .07, .03);
+  }
+  function updateFilters() {
+    document.querySelectorAll('[data-type]').forEach(b => b.setAttribute('aria-pressed', state.filters.has(b.dataset.type)));
+    $('all').setAttribute('aria-pressed', state.all);
+  }
+  function bandKey(e, id) {
+    if (e.key === 'Enter' && state.mode === 'changed' && isWork(id) && state.placed.size < 11) {
+      e.preventDefault();
+      state.target = id;
+      place(id);
+      return;
+    }
+    if (!['ArrowLeft', 'ArrowRight'].includes(e.key)) return;
+    e.preventDefault();
+    action(true);
+    const cards = [...$('band').querySelectorAll('button[data-year]')].filter(b => !b.hidden);
+    const index = cards.indexOf(e.currentTarget);
+    const b = cards[Math.max(0, Math.min(cards.length - 1, index + (e.key === 'ArrowRight' ? 1 : -1)))];
+    b?.focus({preventScroll: true});
+    if (b) goYear(Number(b.dataset.year), false);
+  }
+  let dealDrag = null;
+  function startDealDrag(e) {
+    if (state.solved || e.button !== 0) return;
+    action();
+    dealDrag = {x: e.clientX, y: e.clientY, element: e.currentTarget, active: false, image: current().img};
+    e.currentTarget.setPointerCapture(e.pointerId);
+    e.preventDefault();
+  }
+  addEventListener('pointermove', e => {
+    if (!dealDrag) return;
+    if (!dealDrag.active && Math.hypot(e.clientX - dealDrag.x, e.clientY - dealDrag.y) < 7) return;
+    if (!dealDrag.active) {
+      state.touched = true;
+      dealDrag.active = true;
+      dealDrag.element.classList.add('dragging');
+      const im = document.createElement('img');
+      im.src = dealDrag.image;
+      im.className = 'drag-ghost';
+      im.alt = '';
+      document.body.append(im);
+    }
+    const im = document.querySelector('.drag-ghost');
+    im.style.left = e.clientX - 50 + 'px';
+    im.style.top = e.clientY - 50 + 'px';
+    const box = $('band-scroll').getBoundingClientRect();
+    if (e.clientY > box.top && e.clientY < box.bottom) {
+      if (e.clientX < box.left + 40) $('band-scroll').scrollLeft -= 15;
+      if (e.clientX > box.right - 40) $('band-scroll').scrollLeft += 15;
+    }
+  });
+  addEventListener('pointerup', e => {
+    if (!dealDrag) return;
+    const drag = dealDrag;
+    dealDrag = null;
+    drag.element.classList.remove('dragging');
+    document.querySelector('.drag-ghost')?.remove();
+    if (!drag.active) return;
+    const b = document.elementFromPoint(e.clientX, e.clientY)?.closest('.card');
+    if (b) place(b.dataset.id);
+  });
+  addEventListener('pointercancel', () => {
+    dealDrag?.element.classList.remove('dragging');
+    dealDrag = null;
+    document.querySelector('.drag-ghost')?.remove();
+  });
+  let bandDrag = null;
+  const scroll = $('band-scroll');
+  scroll.addEventListener('pointerdown', e => {
+    if (e.button !== 0) return;
+    bandDrag = {x: e.clientX, left: scroll.scrollLeft, active: false, target: e.target};
+  });
+  scroll.addEventListener('pointermove', e => {
+    if (!bandDrag) return;
+    if (!bandDrag.active && Math.abs(e.clientX - bandDrag.x) > 7) {
+      bandDrag.active = true;
+      action(true);
+      scroll.setPointerCapture(e.pointerId);
+    }
+    if (bandDrag.active) scroll.scrollLeft = bandDrag.left - (e.clientX - bandDrag.x);
+  });
+  scroll.addEventListener('click', e => {
+    if (bandDrag?.active) { e.stopImmediatePropagation(); e.preventDefault(); }
+  }, true);
+  scroll.addEventListener('pointerup', () => setTimeout(() => bandDrag = null, 0));
+  scroll.addEventListener('pointercancel', () => bandDrag = null);
+  scroll.addEventListener('scroll', drawMini);
+  scroll.addEventListener('wheel', e => {
+    action(true);
+    if (e.ctrlKey) {
+      e.preventDefault();
+      zoomTo(state.zoom * (e.deltaY < 0 ? 1.3 : .77));
+    } else if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      e.preventDefault();
+      scroll.scrollLeft += e.deltaY;
+    }
+  }, {passive: false});
+  function miniJump(e) {
+    action();
+    const rect = $('mini').getBoundingClientRect();
+    const f = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    goYear(yearAt(f), false);
+  }
+  $('mini').onpointerdown = e => { $('mini').setPointerCapture(e.pointerId); miniJump(e); };
+  $('mini').onpointermove = e => { if (e.buttons === 1) miniJump(e); };
+  $('mini').onkeydown = e => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) return;
+    e.preventDefault();
+    action();
+    if (e.key === 'Home') goYear(-1500, false);
+    else if (e.key === 'End') goYear(1925, false);
+    else scroll.scrollLeft += (e.key === 'ArrowRight' ? 1 : -1) * scroll.clientWidth * .65;
+  };
+  document.querySelectorAll('[data-era]').forEach(b => b.onclick = () => {
+    action();
+    const years = {ancient: -550, 1000: 1250, 1500: 1550, 1800: 1865, 1900: 1907};
+    document.querySelectorAll('[data-era]').forEach(el => el.setAttribute('aria-pressed', el === b));
+    const compact = innerHeight < 520 || innerWidth < 601;
+    zoomTo(compact ? 2 : 1, compact && b.dataset.era === '1500' ? 1515 : years[b.dataset.era]);
+  });
+  $('zoom-in').onclick = () => { action(); zoomTo(state.zoom * 1.5); };
+  $('zoom-out').onclick = () => { action(); zoomTo(state.zoom / 1.5); };
+  $('spotlight').onclick = () => {
+    const choices = WORKS.filter(w => !state.opened.has(w.id));
+    const w = shuffle(choices.length ? choices : WORKS)[0];
+    zoomTo(1, w.year);
+    openRecord(w.id);
+    $('close-detail').focus({preventScroll: true});
+  };
+  $('all').onclick = () => {
+    action();
+    state.all = !state.all;
+    updateFilters();
+    drawThreads();
+    Curio.tone(state.all ? 520 : 340, .055, .03);
+  };
+  for (const type of Object.keys(TYPES)) {
+    const b = makeButton('', 'control', () => {
+      action();
+      state.filters.has(type) ? state.filters.delete(type) : state.filters.add(type);
+      updateFilters();
+      drawThreads();
+      Curio.tone(420, .05, .03);
+    });
+    b.dataset.type = type;
+    b.setAttribute('aria-pressed', 'true');
+    b.innerHTML = icon(type) + type;
+    $('filters').append(b);
+    const item = document.createElement('span');
+    item.className = 'legend-item ' + TYPES[type].key;
+    item.innerHTML = `<i class="line"></i>${icon(type)}${type}`;
+    $('legend').append(item);
+  }
+  $('m-timeline').onclick = () => setMode('timeline');
+  $('m-changed').onclick = () => setMode('changed');
+  addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    const frame = document.querySelector('.museum-frame');
+    if (frame?.zoomed) Museum.unzoom(frame);
+    else if (state.mode === 'timeline' && state.selected) closeDetail();
+  });
+  Curio.init({clips: "voice:*", rate: .95});
+  Curio.onMotion(() => { drawThreads(); document.querySelectorAll('.museum-frame').forEach(Museum.finish); });
+  let resizeFrame;
+  new ResizeObserver(() => {
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(() => {
+      const year = state.length ? centerYear() : 1550;
+      layoutBand();
+      goYear(year, false);
+    });
+  }).observe($('band-wrap'));
+  state.zoom = innerHeight < 520 || innerWidth < 601 ? 2 : 1;
+  setMode('timeline');
+  goYear(innerWidth < 601 ? 1515 : state.zoom === 2 ? 1495 : 1540, false);
+  window.__tool = {
+    state, setMode, allLines: V.allLines, vlog: V.log, get vq() { return V.queue; },
+    DATA, openRecord, pullThread, place, nextEvent, current, rightThreads, zoomTo, goYear, layoutBand, drawThreads,
+  };
+})();
+</script>
+</body>
+</html>

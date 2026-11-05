@@ -1,0 +1,1494 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon"
+  href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='8' fill='%23f2b705'/%3E%3C/svg%3E">
+<title>Traffic Light Coder · Maple Street · Curio Class</title>
+<meta name="description" content="Program a lively crossing with if-then rules.
+Test five street jobs and replay the exact rule behind each unsafe moment. Grade 3 computer science. Works offline.">
+<!--
+Traffic Light Coder, Curio Class. Grade 3 computer science, If This, Then That.
+CSTA E3-ALG-PS-01, E3-PRO-PD-04, E3-PRO-TR-08; 2017 crosswalk 1B-AP-10, 1B-AP-15, 1B-AP-11.
+Sources: MUTCD 2009 4D.26, 4E.06, 4E.08 and 4D.27. Code.org CS Fundamentals glossary.
+Traffic, driver model and fairness limits are classroom model choices, not street engineering advice.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Includes three painted overhead walkers, marked as people assets in the art manifest.
+Robot family supplies program, card list, first-match rule runner and trace. Sound and voice use the shared kit.
+One offline file. No requests or collection. Content CC BY 4.0; code MIT.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f6f5f1;
+  --ink:#1e2228;
+  --muted:#5a5f66;
+  --line:#dcd9d0;
+  --brand:#2f3640;
+  --gold:#f2b705;
+  --focus:#1d5fd1;
+  --btn:#3a424f;
+  --btn-line:#79808b;
+  --panel:#fcfbf7;
+  --head-ink:#fff;
+  --red:#d93a2b;
+  --yellow:#f2b705;
+  --green:#1f9d55;
+}
+body { height:100%; overflow:hidden; }
+button { min-height:44px; min-width:44px; touch-action:manipulation; }
+button:disabled { opacity:.45; cursor:default; }
+header { padding:12px 20px; gap:8px; border-bottom:5px solid #f2b705; }
+h1 { font-size:clamp(21px,2.2vw,30px); letter-spacing:-.6px; }
+h1 small { font-size:13px; letter-spacing:0; margin-top:5px; }
+.seg button { min-height:48px; font-size:14px; padding:0 14px; }
+.seg button { display:inline-flex; align-items:center; justify-content:center; gap:5px; }
+.mode-icon { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:2; flex:none; }
+.seg button[aria-pressed="true"] { background:var(--gold); color:var(--ink); }
+.icon-btn { min-height:48px; padding:0 12px; font-size:14px; }
+:focus-visible { outline:3px solid var(--focus); outline-offset:3px; box-shadow:0 0 0 5px #fff; }
+main { grid-template-columns:minmax(0,1fr) minmax(325px,32%); grid-template-areas:"stage panel"; min-height:0; }
+.stage { grid-area:stage; }
+.panel { grid-area:panel; }
+.stage {
+  min-height:0;
+  background:radial-gradient(ellipse at 30% 10%,#fdfaf0,#e3e7db);
+  display:flex;
+  flex-direction:column;
+  padding:22px 22px 16px;
+  gap:14px;
+}
+.street-heading { display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.street-heading h2 { margin:0; font:800 21px 'Trebuchet MS',sans-serif; }
+.eyebrow { font-size:11px; font-weight:800; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
+.live { display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:800; }
+.live i { width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 0 4px #1f9d5517; }
+.status {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px 18px;
+  color:#fff;
+  border:2px solid #525861;
+  border-radius:17px;
+  background:linear-gradient(140deg,#454c56,#282e37);
+  box-shadow:0 5px 0 #1e22282b,inset 0 1px #ffffff38;
+}
+.signal-unit { display:flex; align-items:center; gap:12px; }
+.signal-art { position:relative; height:88px; width:34px; flex:none; }
+.signal-art img { width:100%; height:100%; }
+.lamp { position:absolute; left:19%; width:62%; height:23%; border-radius:50%; background:var(--lc); opacity:0; }
+.lamp:nth-of-type(1) { top:12%; --lc:var(--red); }
+.lamp:nth-of-type(2) { top:39%; --lc:var(--yellow); }
+.lamp:nth-of-type(3) { top:66%; --lc:var(--green); }
+.lamp.on { opacity:1; box-shadow:0 0 16px var(--lc),inset 0 2px 5px #fff8; }
+.signal-unit strong { display:block; font-size:22px; letter-spacing:.03em; }
+.signal-unit small { font-size:12px; color:#e1e5eb; }
+.walk-art { position:relative; width:66px; height:78px; flex:none; }
+.walk-art img { position:absolute; width:100%; height:100%; }
+.walk-icon { position:absolute; inset:19% 15% 13%; display:grid; place-items:center; color:#ff9f64; }
+.walk-icon svg { width:100%; height:100%; fill:currentColor; }
+.walk-icon.go { color:#f5fff3; }
+.walk-icon.flash { animation:walkblink 1s steps(1) infinite; }
+@keyframes walkblink { 50% { opacity:.18; } }
+.clock { border-left:1px solid #77808a; padding-left:16px; text-align:right; white-space:nowrap; }
+.clock strong { display:block; font:800 25px Consolas,monospace; }
+.clock small { font-size:11px; letter-spacing:.08em; }
+.street-wrap { position:relative; flex:1; display:flex; flex-direction:column; min-height:0; justify-content:center; }
+.street {
+  position:relative;
+  width:100%;
+  aspect-ratio:2.64;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 12px 24px #313e3424,0 2px 0 #66745a;
+  border:1px solid #7c8f6c;
+  background:#a5c074;
+  isolation:isolate;
+}
+.backdrop { position:absolute; width:100%; height:100%; object-fit:fill; inset:0; }
+.street::after {
+  content:'';
+  position:absolute;
+  pointer-events:none;
+  inset:0;
+  border-radius:inherit;
+  box-shadow:inset 0 0 18px #18241620;
+}
+.street-name {
+  position:absolute; top:4%; left:3%; padding:5px 9px; color:#fff; background:#2f493d;
+  border:2px solid #d9e5cc; border-radius:4px; font-size:10px; font-weight:800; letter-spacing:.12em;
+  box-shadow:2px 3px 3px #0004;
+}
+.stopline { position:absolute; width:.6%; height:20%; background:#f8f4e8; box-shadow:1px 0 2px #0004; }
+.stopline.east { left:42%; top:50%; }
+.stopline.west { left:58%; top:29%; }
+.stopdot {
+  position:absolute; width:16px; height:32px; padding:3px; border:2px solid #fff8; background:#252b31;
+  border-radius:8px; display:flex; flex-direction:column; justify-content:space-around; box-shadow:2px 3px 5px #0005;
+}
+.stopdot.east { left:40%; top:68%; }
+.stopdot.west { left:58%; top:21%; transform:rotate(180deg); }
+.stopdot i { border-radius:50%; width:6px; height:6px; background:#60646a; }
+.stopdot i.on { background:var(--lc); box-shadow:0 0 7px var(--lc); }
+.car {
+  position:absolute;
+  width:8%;
+  height:auto;
+  left:0;
+  top:0;
+  filter:drop-shadow(2px 4px 2px #0006);
+  transition:left var(--beat,500ms) linear;
+  will-change:left;
+}
+.car img { width:100%; height:auto; display:block; }
+.car.west { transform:rotate(180deg); }
+.car.ambulance::after {
+  content:''; position:absolute; left:69%; top:14%; width:8%; height:66%; border-radius:3px;
+  background:#7ccfff; box-shadow:0 0 13px 5px #75bcff; animation:siren .6s steps(1) infinite;
+}
+@keyframes siren { 50% { background:#ff5148; box-shadow:0 0 13px 5px #ff5148; } }
+.walker { position:absolute; width:26px; height:42px; transition:top var(--beat,500ms) linear; filter:drop-shadow(2px 2px 1px #0005); }
+.walker img { width:100%; height:100%; object-fit:contain; }
+.walker.southbound { transform:rotate(180deg); }
+.push {
+  position:absolute; z-index:3; width:60px; height:60px; border-radius:50%; border:4px solid #f9d54b;
+  background:radial-gradient(circle at 35% 25%,#606970,#242c34); color:#fff; font-size:11px; font-weight:900;
+  box-shadow:0 3px 0 #202831,0 0 0 2px #28313b; padding:2px; line-height:1.15;
+}
+.push:hover { box-shadow:0 3px 0 #202831,0 0 0 4px #fff; }
+.push.pressed { background:radial-gradient(circle at 35% 25%,#ffdc4d,#f2b705); color:var(--ink); }
+#push-north { left:calc(66% - 30px); top:0; }
+#push-south { left:calc(34% - 30px); bottom:0; }
+.hazard {
+  position:absolute; z-index:4; left:3%; top:3%; padding:6px 9px;
+  background:#fff7ef; color:#962719; border:3px solid #d93a2b; border-radius:12px;
+  box-shadow:0 4px 20px #0004; font-size:14px; font-weight:900; text-align:center;
+}
+.request { font-size:12px; min-height:18px; color:var(--muted); text-align:center; margin:12px 0 0; }
+.ribbon-desk { background:#fff9e7; border:1px solid #dbc98f; border-radius:13px; padding:10px 12px; }
+.ribbon-head { display:flex; justify-content:space-between; align-items:center; gap:10px; font-size:12px; margin-bottom:8px; }
+.ribbon-head small { color:var(--muted); font-size:11px; }
+.ribbon { display:flex; gap:6px; min-height:30px; align-items:center; }
+.ribbon-chip {
+  display:flex; align-items:center; justify-content:center; min-width:31px; height:28px; padding:0 5px;
+  border:2px solid var(--gold); border-radius:7px; background:#303842; color:#fff; font-size:12px; font-weight:900;
+}
+.ribbon-chip b { width:8px; height:8px; border-radius:50%; background:var(--lc); margin-right:4px; }
+.ribbon-empty { color:var(--muted); font-size:12px; }
+.watchout { font-size:12px; min-height:18px; color:#9b2b1c; margin-top:8px; max-height:42px; overflow:auto; }
+.panel { padding:16px; gap:8px; overflow:hidden; background:linear-gradient(110deg,#fcfbf7,#eeece4); }
+.hint { font-size:15px; line-height:1.4; margin:0; min-height:44px; }
+.controls { display:flex; flex-wrap:nowrap; gap:6px; }
+.controls button { line-height:1.15; }
+.short { display:none; }
+.controls button, .plain {
+  border:1px solid #c6c5bd; background:linear-gradient(#fff,#f0eee6); color:var(--ink);
+  border-radius:9px; padding:6px 10px; font-weight:700; font-size:12px; box-shadow:0 2px 0 #b7b4a9;
+}
+.controls #run { flex:1; min-width:112px; background:linear-gradient(#ffd65d,#f2b705); border-color:#b98b00; font-size:16px; }
+.controls #run.running { background:#fff2eb; border-color:#c65235; }
+.controls #skip { flex:1; }
+.controls #restart { flex:1; }
+.job-card { position:relative; padding:12px 14px; background:#fff8dd; border:1px solid #d2bd79; border-radius:12px; }
+.job-card::before { content:''; position:absolute; left:17px; top:-4px; height:7px; width:34px; border-radius:3px; background:#a6a8a0; }
+.job-card h2 { margin:0 0 5px; font-size:18px; }
+.job-card p { margin:0; font-size:12px; line-height:1.4; }
+.job-dots { display:flex; gap:5px; margin-top:8px; }
+.job-dots button { flex:1; border:1px solid #b3a477; border-radius:8px; background:#fff; font-weight:800; }
+.job-dots button.done { background:#d8ead5; border-color:#4c7250; }
+.job-dots button[aria-pressed="true"] { background:var(--brand); color:#fff; box-shadow:inset 0 -4px var(--gold); }
+.job-dots button.done::after { content:' ✓'; }
+.rules-title { display:flex; justify-content:space-between; align-items:center; margin-top:2px; }
+.rules-title h2 { font-size:15px; margin:0; }
+.rules-title small { font-size:11px; color:var(--muted); }
+.rule-scroll { min-height:0; padding:10px 8px 8px 0; flex:1; }
+.rule-scroll:not(.long) { flex:none; }
+.rule-scroll.long { overflow-y:auto; }
+#strip.rb-strip { display:flex; flex-direction:column; gap:9px; padding:0 7px 0 21px; }
+#strip .rb-cell { width:100%; height:70px; flex:none; border-radius:10px; }
+#strip .rb-cell.empty { display:none; }
+#strip .rb-card { border:1px solid #b7b7ae; background:linear-gradient(110deg,#fff,#f8f7f1); border-radius:10px; }
+#strip .rb-card[aria-pressed="true"] { transform:none; box-shadow:0 0 0 3px var(--gold); }
+#strip .rb-card.now { border-color:#ad7c00; box-shadow:0 0 0 2px var(--gold),0 0 17px #f2b70566; }
+#strip .rb-face { display:block; padding:7px 10px 5px 17px; text-align:left; }
+#strip .rb-num { width:25px; height:25px; font-size:12px; border:2px solid var(--brand); left:-13px; top:25px; }
+#strip .rb-ptr { width:15px; height:21px; }
+.rule-line { display:flex; gap:4px; align-items:center; font-size:12px; line-height:1.2; white-space:nowrap; }
+.rule-line + .rule-line { margin-top:5px; }
+.rule-line .word { font-weight:600; color:var(--muted); font-size:11px; }
+.chip { padding:4px 6px; border:1px solid #b9c3c9; border-radius:5px; background:#edf0ef; font-size:11px; font-weight:800; }
+.chip.GREEN { color:#165d35; background:#e0f0e1; border-color:#88b895; }
+.chip.YELLOW { color:#624800; background:#fff1ae; border-color:#d9bb5c; }
+.chip.RED { color:#8e251a; background:#ffe1db; border-color:#daa095; }
+.chip.action { border-color:#8b939c; background:#e5e9ee; color:#283747; }
+.chip.empty { border-style:dashed; color:#59636a; background:#fff; }
+.incomplete .rb-card { border-style:dashed!important; }
+.never { position:absolute; right:4px; bottom:2px; color:var(--muted); font-size:10px; background:#efefeb; padding:1px 3px; border-radius:3px; }
+#cbtns.rb-cbtns { width:100%; min-height:44px; height:44px; flex:none; }
+#cbtns .rb-in { position:static!important; display:flex; flex-direction:row; gap:7px; justify-content:center; }
+#cbtns.off .rb-in { visibility:visible; }
+#cbtns.off button { opacity:.35; }
+#cbtns button { width:auto; height:44px; flex:1; border-radius:8px; border:1px solid #b6b9b8; box-shadow:0 2px 0 #b7b4a9; font-size:11px; }
+#cbtns button svg { width:20px; height:20px; margin-right:3px; }
+#cbtns .rb-prev::after { content:'Move up'; }
+#cbtns .rb-next::after { content:'Move down'; }
+#cbtns .rb-del::after { content:'Delete'; }
+.add-row { display:flex; gap:7px; }
+.edit-toolbar { display:flex; flex-direction:column; gap:8px; flex:none; }
+.aux-controls { display:flex; gap:6px; flex:none; }
+.aux-controls button {
+  flex:1; border:1px solid #a8aaa0; border-radius:10px; color:var(--ink); font-weight:700;
+  background:linear-gradient(#fffdf5,#e9e6da); box-shadow:0 3px 0 #b3b2a7,inset 0 1px #fff;
+}
+.aux-controls:empty { display:none; }
+#add { flex:1; border:2px dashed #a2a69e; background:#ffffffa0; }
+.panel-foot { font-size:11px; line-height:1.35; color:var(--muted); margin:0; }
+.report {
+  position:absolute; inset:14px; z-index:6; padding:18px; color:var(--ink); background:#fcfbf5;
+  border:2px solid #7f877c; border-radius:18px; box-shadow:0 14px 26px #0003;
+  display:flex; flex-direction:column; gap:9px; overflow:auto;
+}
+.report h2 { margin:0; font:800 23px 'Trebuchet MS',sans-serif; }
+.report h2 span { color:#176439; }
+.report .report-kicker { font-size:10px; font-weight:800; letter-spacing:.13em; color:var(--muted); }
+.report p { margin:0; font-size:13px; }
+.report-grid { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+.stat { padding:9px 11px; background:#edece3; border-radius:9px; font-size:12px; }
+.stat b { display:block; font-size:16px; margin-bottom:3px; }
+.goal-checks { font-size:12px; display:flex; flex-wrap:wrap; gap:5px 12px; }
+.goal-checks span { padding:4px 6px; border-radius:5px; background:#e7eee3; }
+.goal-checks span.fail { background:#f9e5d9; }
+.unsafe-list { display:flex; flex-direction:column; gap:5px; }
+.unsafe-line { padding:7px 9px; min-height:44px; border:1px solid #ddafa1; background:#fff2ed; border-radius:7px; text-align:left; font-size:12px; }
+.unsafe-line strong { color:#8e251a; }
+.report-actions { display:flex; gap:7px; margin-top:auto; }
+.report-actions button { flex:1; }
+#next { background:var(--gold); }
+.replay-banner {
+  position:relative; z-index:5; flex:none; background:#fff8e7; border:2px solid #c29200;
+  padding:5px; border-radius:9px; font-size:12px; text-align:center;
+  display:flex; align-items:center; justify-content:center; gap:5px;
+}
+.replay-banner button { margin-left:8px; }
+dialog {
+  max-width:680px; width:calc(100% - 32px); max-height:calc(100% - 24px); padding:18px;
+  color:var(--ink); background:#fbfaf4; border:3px solid #444d58; border-radius:18px; box-shadow:0 16px 60px #0006;
+}
+dialog::backdrop { background:#17232888; }
+.dialog-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:10px; }
+.dialog-head h2 { margin:0; font-size:19px; }
+.slot-tabs { display:flex; gap:5px; margin-bottom:12px; }
+.slot-tabs button { flex:1; min-width:0; padding:6px; font-size:12px; border:1px solid #aeb6b6; border-radius:7px; background:#e9edeb; }
+.slot-tabs button[aria-pressed="true"] { background:var(--gold); }
+.options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; }
+.options button {
+  min-height:60px; border:1px solid #bac0bd; border-radius:9px; text-align:left;
+  padding:9px 12px; background:#fff; font-weight:700; font-size:14px;
+}
+.options button[aria-pressed="true"] { background:#fff1b0; border:2px solid #987300; }
+.options .option-icon {
+  display:inline-grid; place-items:center; width:24px; height:24px; margin-right:8px;
+  border-radius:50%; background:#e5e8e4; font-size:15px;
+}
+.dialog-footer { display:flex; justify-content:flex-end; margin-top:13px; }
+.calm .walk-icon.flash,.calm .car.ambulance::after { animation:none; }
+.calm .car,.calm .walker { transition:none; }
+@media (min-width:1600px) {
+  main { grid-template-columns:minmax(0,1fr) 530px; }
+  .panel { padding:24px; gap:14px; }
+  #strip .rb-cell { height:95px; }
+  .rule-line { font-size:15px; gap:6px; }
+  .chip { font-size:14px; padding:5px 9px; }
+  .rule-line .word { font-size:13px; }
+  .hint { font-size:18px; min-height:52px; }
+  .stage { padding:30px; gap:22px; }
+  .status { padding:14px 24px; }
+}
+@media (max-height:650px) and (min-width:600px) {
+  header { padding:4px 8px; gap:5px; border-bottom-width:3px; flex-wrap:nowrap; }
+  h1 { font-size:17px; white-space:nowrap; }
+  h1 small { display:none; }
+  .seg button,.icon-btn { min-height:44px; font-size:11px; padding:0 7px; }
+  .seg button { gap:3px; }
+  .mode-icon { width:14px; height:14px; }
+  main { grid-template-columns:minmax(0,1fr) 280px; }
+  .stage { padding:10px; gap:7px; }
+  .street-heading { display:none; }
+  .street-heading h2 { font-size:15px; }
+  .eyebrow { font-size:10px; letter-spacing:.08em; }
+  .status { padding:5px 10px; border-radius:10px; gap:7px; }
+  .signal-art { height:47px; width:18px; }
+  .walk-art { height:47px; width:38px; }
+  .signal-unit { gap:7px; }
+  .signal-unit strong { font-size:15px; }
+  .signal-unit small { font-size:10px; }
+  .clock { padding-left:8px; }
+  .clock strong { font-size:18px; }
+  .street { border-radius:10px; }
+  .street-name { font-size:10px; padding:3px 5px; }
+  .request { margin-top:7px; font-size:10px; }
+  .ribbon-desk { padding:6px 8px; }
+  .ribbon-head { margin-bottom:3px; font-size:10px; }
+  .ribbon-head small { font-size:10px; }
+  .ribbon-chip { min-width:25px; height:24px; font-size:10px; padding:0 3px; }
+  .ribbon { gap:3px; min-height:24px; }
+  .watchout { margin-top:3px; font-size:10px; max-height:24px; min-height:12px; }
+  .panel { padding:6px; gap:4px; }
+  .hint { font-size:11px; min-height:32px; line-height:1.3; }
+  .controls { gap:4px; }
+  .controls button { padding:4px 6px; font-size:10px; }
+  .controls #run { font-size:13px; min-width:80px; }
+  .controls #skip .full { display:none; }
+  .controls #skip .short { display:inline; }
+  .job-card { padding:6px 8px; }
+  .job-card h2 { font-size:13px; margin-bottom:2px; }
+  .job-card p { font-size:10px; }
+  .job-dots { margin-top:4px; gap:3px; }
+  .job-dots button { font-size:11px; }
+  .rules-title h2 { font-size:12px; }
+  .rules-title small { font-size:10px; }
+  #strip { gap:5px!important; padding-top:0; }
+  #strip .rb-cell { height:44px; }
+  #strip .rb-face { padding:4px 3px 3px 13px; }
+  #strip .rb-num { top:15px; width:22px; height:22px; font-size:10px; left:-12px; }
+  .rule-line { gap:3px; font-size:10px; }
+  .rule-line + .rule-line { margin-top:3px; }
+  .rule-line .word,.chip { font-size:10px; }
+  .chip { padding:2px 4px; }
+  .rule-scroll { padding-top:4px; padding-bottom:3px; }
+  #cbtns button { font-size:10px; }
+  #cbtns button svg { width:16px; height:16px; margin:0; }
+  .panel-foot { display:none; }
+  .edit-toolbar { flex-direction:row; gap:5px; }
+  #cbtns.rb-cbtns { flex:3; min-width:0; }
+  .add-row { flex:2; gap:4px; }
+  .add-row button { padding:2px 4px; font-size:10px; min-width:44px; }
+  #defaults .full { display:none; }
+  #defaults .short { display:inline; font-size:18px; }
+  #cbtns .rb-in button::after { content:none; }
+  #cbtns button svg { width:19px; height:19px; }
+  .aux-controls button { font-size:10px; padding:3px; }
+  .job-card { display:grid; grid-template-columns:1fr 228px; gap:2px 5px; align-items:center; }
+  .job-card h2 { grid-area:1/1; }
+  .job-card p { grid-area:2/1; }
+  .job-dots { grid-area:1/2/3/3; margin:0; gap:2px; }
+  .job-dots button { min-width:44px; }
+  .chip .full { display:none; }
+  .chip .short { display:inline; }
+  .report { padding:8px; gap:3px; border-radius:10px; }
+  .report h2 { font-size:18px; }
+  .report p,.stat,.goal-checks,.unsafe-line { font-size:10px; }
+  .report-grid { grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; }
+  .stat { padding:4px; line-height:1.1; }
+  .stat b { font-size:11px; line-height:1.1; margin-bottom:2px; }
+  .unsafe-line { padding:4px 6px; }
+  .hazard-words { display:none; }
+  .replay-banner { font-size:10px; }
+  dialog { padding:12px; }
+  .options { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .options button { font-size:12px; padding:7px; }
+}
+@media (max-width:900px) and (min-height:651px) {
+  header { padding:7px 12px; }
+  h1 { width:100%; font-size:23px; }
+  main { grid-template-columns:minmax(0,1fr); grid-template-rows:auto auto; grid-template-areas:"stage" "panel"; overflow:auto; }
+  .stage { padding:12px; gap:8px; min-height:340px; }
+  .street-heading { display:none; }
+  .status { padding:4px 12px; }
+  .signal-art { height:60px; width:23px; }
+  .walk-art { height:58px; width:47px; }
+  .signal-unit strong { font-size:17px; }
+  .street { max-height:180px; aspect-ratio:auto; flex:1; min-height:130px; }
+  .street-wrap { flex:1; }
+  .ribbon-desk { padding:5px 9px; }
+  .ribbon-head { display:none; }
+  .watchout { display:none; }
+  .request { margin:5px 0; }
+  .panel { border-left:0; border-top:2px solid var(--line); }
+  .rule-scroll { flex:none; }
+}
+@media (min-width:600px) and (max-width:900px) and (min-height:651px) {
+  .report { padding:10px; gap:5px; }
+  .report-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .stat { padding:5px; }
+  .report h2 { font-size:20px; }
+}
+@media (max-width:599px) {
+  body { height:auto; overflow:auto; }
+  header { gap:5px; padding:8px; }
+  h1 { width:100%; font-size:22px; margin-bottom:3px; }
+  .seg { width:100%; border-radius:10px; }
+  .seg button { flex:1; padding:0 6px; font-size:13px; }
+  .icon-btn { flex:1; padding:0 6px; font-size:12px; min-height:44px; }
+  main { display:flex; flex-direction:column; overflow:visible; }
+  .stage { order:0; }
+  .panel { order:1; }
+  .stage { flex:none; min-height:310px; gap:8px; padding:10px; }
+  .street { min-height:145px; }
+  .status { padding:5px 8px; gap:6px; }
+  .signal-unit { gap:7px; }
+  .signal-unit strong { font-size:14px; }
+  .signal-unit small { font-size:10px; }
+  .clock { padding-left:7px; }
+  .clock strong { font-size:18px; }
+  .clock small { font-size:10px; }
+  .request { font-size:10px; }
+  .panel { overflow:visible; padding:12px; }
+  #strip .rb-cell { height:70px; }
+  .rule-scroll.long { max-height:330px; }
+  .rule-line { gap:3px; }
+  .chip { font-size:10px; padding:4px; }
+  .report { min-height:265px; }
+  .report h2 { font-size:18px; }
+  .report p,.stat,.unsafe-line,.goal-checks { font-size:11px; }
+  .report-grid { gap:4px; }
+  .stat { padding:6px; }
+  .stat b { font-size:13px; }
+  dialog { padding:12px; }
+  .options { gap:5px; }
+  .options button { font-size:11px; padding:5px; }
+  .options .option-icon { margin-right:4px; width:20px; height:20px; }
+  .slot-tabs button { font-size:10px; }
+}
+/* Review: keep the test receipt tied to its street and its actual light history. */
+.report { bottom:auto; max-height:calc(100% - 28px); }
+.report-actions { margin-top:8px; }
+.test-trace { padding:10px; border:1px solid #d2cebb; background:#f4f0df; border-radius:9px; }
+.test-trace > b { font-size:12px; }
+.trace-bar { display:flex; height:27px; margin:7px 0 4px; border:1px solid #384039; border-radius:5px; overflow:hidden; }
+.trace-bar span { min-width:0; display:grid; place-items:center; font-size:10px; font-weight:800; }
+.trace-GREEN { background:#c4dfbf; color:#163d25; }
+.trace-YELLOW { background:repeating-linear-gradient(135deg,#f5cf55 0 5px,#ffe9a5 5px 9px); color:#302400; }
+.trace-RED { background:#e4a294; color:#471b16; border-bottom:4px solid #8e251a; }
+.trace-key { display:flex; justify-content:space-between; gap:8px; font-size:10px; color:#50564c; }
+@media (max-height:650px) and (min-width:600px) {
+  .test-trace { padding:4px 6px; }
+  .test-trace > b { font-size:10px; }
+  .trace-bar { height:18px; margin:3px 0; }
+  .report-actions { margin-top:3px; }
+  .walker { width:18px; height:30px; }
+}
+@media (max-width:900px) and (min-height:651px) {
+  main { display:flex; flex-direction:column; }
+  .panel { display:contents; }
+  #hint { order:0; margin:8px 12px 0; min-height:42px; }
+  #controls { order:1; margin:4px 12px 8px; flex:none; }
+  #stage { order:2; flex:none; }
+  .rules-title { order:3; margin:12px 16px 0; }
+  #rule-scroll { order:4; margin:0 12px; }
+  .edit-toolbar { order:5; margin:0 12px 10px; }
+  .panel-foot { order:6; margin:0 12px 10px; }
+  .stage .report { max-height:calc(100% - 20px); inset:10px 10px auto; }
+  .report-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .stage:has(.report:not([hidden])) { min-height:520px; }
+  .stage:has(.report:not([hidden])) .job-card { visibility:hidden; }
+}
+@media (max-width:599px) {
+  .walker { width:20px; height:33px; }
+  .test-trace { padding:5px; }
+  .trace-bar { height:20px; margin:4px 0; }
+}
+/* Final audit: all unsafe report choices stay in view in compact layouts. */
+.report-actions { flex:none; }
+@media (max-height:650px) and (min-width:600px) {
+  .report:has(.unsafe-line) { padding:6px; gap:3px; }
+  .report:has(.unsafe-line) .test-trace { display:none; }
+  .report:has(.unsafe-line) .report-actions { margin-top:0; }
+  .report:has(.unsafe-line) .unsafe-list { gap:3px; flex:none; }
+  .report:has(.unsafe-line) .unsafe-line { flex:none; height:44px; padding:3px 6px; }
+}
+@media (max-width:900px) and (min-height:651px) {
+  .panel { overflow:visible; }
+  #controls { position:sticky; top:0; z-index:8; background:var(--paper); }
+  .report { padding:10px; gap:4px; }
+  .report:has(.unsafe-line) .test-trace { display:none; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Traffic Light Coder<small>If this, then that, on Maple Street</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-watch" aria-pressed="true">
+      <svg class="mode-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12Q12-2 22 12Q12 26 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+      Watch the Street
+    </button>
+    <button id="m-jobs" aria-pressed="false">
+      <svg class="mode-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18v-4a9 9 0 0 1 18 0v4M1 18h22M9 14V3h6v11"/></svg>
+      Street Jobs
+    </button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <aside class="panel" aria-label="Rule workbench">
+    <p class="hint" id="hint">Press a walk button on the street. Watch which rule lights up.</p>
+    <div class="controls" id="controls">
+      <button id="run">Ⅱ Pause</button>
+      <button id="speed" hidden>Speed 4×</button>
+      <button id="skip" aria-label="Skip to report" hidden>⏩ <span class="full">Skip to report</span><span class="short">Report</span></button>
+      <button id="restart">↻ Reset street</button>
+      <button id="step" hidden>▸ Step</button>
+      <button id="send-walker">＋ Send walker</button>
+      <button id="send-ambulance">▰ Send ambulance</button>
+    </div>
+    <div class="rules-title"><h2>Your if-then rules</h2><small id="rule-count">4 / 6</small></div>
+    <div class="rule-scroll" id="rule-scroll"><div id="strip"></div></div>
+    <div class="edit-toolbar"><div id="cbtns"></div>
+    <div class="add-row">
+      <button class="plain" id="add">＋ Add rule</button>
+      <button class="plain" id="defaults" title="Default rules" aria-label="Default rules">
+        <span class="full">Default rules</span><span class="short" aria-hidden="true">↻</span>
+      </button>
+    </div></div>
+    <p class="panel-foot">Every half second, check from rule 1.<br>Only the first rule that fits gets a turn.</p>
+  </aside>
+  <section class="stage" id="stage" aria-label="Maple Street crossing">
+    <div class="street-heading">
+      <div><div class="eyebrow">Maple Street traffic control</div><h2>A little code. A whole street.</h2></div>
+      <span class="live"><i></i><span id="live-label">LIVE · 1×</span></span>
+    </div>
+    <section class="job-card" id="job-card" hidden>
+      <h2 id="job-title">1 · Press to Cross</h2>
+      <p id="goal"></p>
+      <nav class="job-dots" id="job-dots" aria-label="Street jobs"></nav>
+    </section>
+    <div class="status" aria-label="Street signals">
+      <div class="signal-unit">
+        <div class="signal-art" aria-hidden="true">
+          <img src="art:signal-head" alt="">
+          <i class="lamp"></i><i class="lamp"></i><i class="lamp on"></i>
+        </div>
+        <div><small>CAR LIGHT</small><strong id="light-label">GREEN</strong><small id="light-age">green for 0 s</small></div>
+      </div>
+      <div class="signal-unit">
+        <div class="walk-art" aria-hidden="true"><img src="art:walk-signal" alt=""><span class="walk-icon" id="walk-icon"></span></div>
+        <div><small>WALK SIGN</small><strong id="walk-label">WAIT</strong><small id="walk-age">steady hand</small></div>
+      </div>
+      <div class="clock"><strong id="time">0.0 s</strong><small>STREET TIME</small></div>
+    </div>
+    <div class="street-wrap" id="street-wrap">
+      <div class="street" id="street">
+        <img class="backdrop" src="art:maple-street" alt="A painted overhead view of Maple Street, with a crosswalk between two sidewalks.">
+        <span class="street-name">MAPLE ST</span>
+        <i class="stopline east"></i><i class="stopline west"></i>
+        <div class="stopdot east" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="stopdot west" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div id="traffic" aria-hidden="true"></div>
+        <div id="walkers" aria-hidden="true"></div>
+        <button class="push" id="push-north" aria-label="North curb walk button">PUSH<br>TO WALK</button>
+        <button class="push" id="push-south" aria-label="South curb walk button">PUSH<br>TO WALK</button>
+        <div class="hazard" id="hazard" hidden></div>
+      </div>
+      <p class="request" id="request">Press a curb button to send a walker.</p>
+    </div>
+    <div class="replay-banner" id="replay-banner" hidden></div>
+    <div class="ribbon-desk">
+      <div class="ribbon-head"><b>RULES THAT FIRED →</b><small>Top to bottom. First match wins.</small></div>
+      <div class="ribbon" id="ribbon"><span class="ribbon-empty">Press a walk button. Follow the rule numbers here.</span></div>
+      <div class="watchout" id="watchout" aria-live="polite"></div>
+    </div>
+    <section class="report" id="report" role="dialog" aria-label="Test report" hidden></section>
+    <div class="aux-controls" id="aux-controls"></div>
+  </section>
+
+</main>
+<dialog id="picker" aria-labelledby="picker-title">
+  <div class="dialog-head"><h2 id="picker-title">Edit rule 1</h2><button class="plain" id="close-picker">Done</button></div>
+  <div class="slot-tabs" id="slot-tabs" role="group" aria-label="Rule chip slots"></div>
+  <div class="options" id="options" role="group" aria-label="Choose a chip"></div>
+  <div class="dialog-footer"><span class="panel-foot">All conditions must fit. The first matching rule wins.</span></div>
+</dialog>
+<div hidden aria-hidden="true" id="assets">
+  <img id="a-car-red" src="art:car-red" alt=""><img id="a-car-blue" src="art:car-blue" alt="">
+  <img id="a-car-yellow" src="art:car-yellow" alt=""><img id="a-van-green" src="art:van-green" alt="">
+  <img id="a-car-white" src="art:car-white" alt=""><img id="a-ambulance" src="art:ambulance" alt="">
+  <img id="a-walker-red" src="art:walker-red" alt="">
+  <img id="a-walker-yellow" src="art:walker-yellow" alt=""><img id="a-walker-green" src="art:walker-green" alt="">
+</div>
+<script src="kit:curio"></script>
+<script src="kit:robot"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const copy = x => JSON.parse(JSON.stringify(x));
+  const fmt = x => Number(x.toFixed(1)).toString();
+  const LIGHTS = ['GREEN', 'YELLOW', 'RED', 'ANY'];
+  const EXTRAS = ['button', 'done', 'ambulance', '3', '10', '30'];
+  const ACTIONS = ['GREEN', 'YELLOW', 'RED', 'WALK', 'KEEP'];
+  const EXTRA_LABEL = {button:'button pressed', done:'walk is done', ambulance:'ambulance coming',
+    '3':'been 3 s', '10':'been 10 s', '30':'been 30 s'};
+  const ACTION_LABEL = {GREEN:'turn GREEN', YELLOW:'turn YELLOW', RED:'turn RED', WALK:'start WALK', KEEP:'keep lights'};
+  const COLORS = {GREEN:'#1f9d55', YELLOW:'#f2b705', RED:'#d93a2b'};
+  const DEFAULT = [
+    {light:'GREEN', extras:['button'], action:'YELLOW'},
+    {light:'YELLOW', extras:['3'], action:'RED'},
+    {light:'RED', extras:['button'], action:'WALK'},
+    {light:'RED', extras:['done'], action:'GREEN'}
+  ];
+  const RUSH = [
+    {light:'GREEN', extras:['button','30'], action:'YELLOW'},
+    DEFAULT[1],
+    {light:'RED', extras:['done','10'], action:'GREEN'},
+    DEFAULT[2]
+  ];
+  const JOBS = [
+    {name:'Press to Cross', start:DEFAULT.slice(1), wait:true},
+    {name:"Don't Skip Yellow", start:[{light:'GREEN', extras:['button'], action:'RED'}, DEFAULT[2], DEFAULT[3]]},
+    {name:'Let Them Finish', start:[...DEFAULT.slice(0,3), {light:'RED', extras:['10'], action:'GREEN'}]},
+    {name:'Rush Hour', start:DEFAULT, wait:true, fair:true},
+    {name:'Ambulance!', start:RUSH, ambulance:true}
+  ];
+  const L = {
+    'w-watch':'Welcome to Maple Street. This light follows rules. Every half second it checks them from the top, and the first rule that fits wins.',
+    press:'Press a walk button on the street and watch which rule lights up.',
+    chip:'Tap a chip in a rule to change it. Press Add rule to write a new one.',
+    'w-jobs':"You're the city's new light coder. Each job has a goal. Change the rules, then press Run test.",
+    report:'Tap a line in the report to see that moment on the street.',
+    job1:'Job one: Press to Cross. Walkers press the button, but the light never changes. ' +
+      'Press Add rule and write the rule that starts it. Then press Run test.',
+    job2:"Job two: Don't Skip Yellow. Drivers need a yellow light to stop safely. Fix rule one, and add a rule for yellow. Then press Run test.",
+    job3:'Job three: Let Them Finish. The light turns green too soon. Find the rule that does it and change a chip. Then press Run test.',
+    job4:'Job four: Rush Hour. Walkers press all the time. Give the cars a fair turn too: long greens, and no long reds. Then press Run test.',
+    job5:'Job five: Ambulance! When an ambulance is coming, keep the light green for it. Add a rule, then press Run test.',
+    pass:'Test done. Everything was safe, and every goal is met. Job finished.',
+    unsafe:'Test done. There were unsafe moments. The report shows which rule caused each one.',
+    miss:'Test done. It was safe, but a goal was missed. Check the report.',
+    order:'Two rules fit at once, and the higher one won. Try moving a rule.',
+    all:"That's every job. Maple Street is safe and fair. Nice work, coder.",
+    full:'Six rules is the most. Change a rule instead.'
+  };
+  const EVENT_LINES = new Set(['pass','unsafe','miss','order','all','full']);
+  const state = {
+    mode:'watch', job:0, testing:false, paused:false, speed:4, report:null, replay:false, replaying:false,
+    completed:[false,false,false,false,false], slot:'light', editing:null, pressed:false, selected:null,
+    watchRules:copy(DEFAULT), jobRules:JOBS.map(j => copy(j.start)), revision:0
+  };
+  let world;
+  let runner = null;
+  let lastCheckAt = performance.now();
+  let launchTimer = null;
+  let replayTimer = null;
+  let reportEpoch = 0;
+  const HAND = '<svg viewBox="0 0 50 55"><path d="M12 29V15a3 3 0 0 1 6 0v12-19a3 3 0 0 1 6 0v18-21' +
+    'a3 3 0 0 1 6 0v22-17a3 3 0 0 1 6 0v22l3-7c2-5 8-2 6 3l-7 19c-2 5-7 7-13 7-9 0-14-4-18-11L2 33c-3-6 3-9 6-4l4 6z"/></svg>';
+  const WALK = '<svg viewBox="0 0 50 60"><circle cx="29" cy="7" r="6"/><path d="m23 16 9 1 5 11 9 5' +
+    '-4 6-12-8-3-6-3 12 12 15-6 5-14-18-3 10-9 9-6-5 9-10 7-25-7 7-7 1-1-7 9-3z"/></svg>';
+
+  function makeWorld(job = null) {
+    return {
+      t:.5, shown:0, light:'GREEN', since:0, phase:'HAND', walkAt:-100, job, walkers:[], cars:[], unsafe:[], changes:[],
+      greens:[], reds:[], history:[], ribbon:[], fired:[], lastRule:null, ambulanceStopped:false, ambulanceAt:null,
+      ambulanceUntil:null, seed:417, carNext:[0,2], uid:0, emptyRed:0, emptyRedMax:0, watchCap:false
+    };
+  }
+  function pressed(w) {
+    return w.walkers.some(p => p.start === null);
+  }
+  function onCrosswalk(w) {
+    return w.walkers.some(p => p.start !== null && w.t < p.start + 10);
+  }
+  function when(card, w) {
+    const r = card.args;
+    if (!r.light || !r.action || (r.light !== 'ANY' && r.light !== w.light)) return false;
+    const sensors = {
+      button:pressed(w), done:w.phase === 'HAND' && !onCrosswalk(w),
+      ambulance:w.ambulanceUntil !== null && w.t >= w.ambulanceAt && w.t < w.ambulanceUntil,
+      '3':w.t - w.since >= 3, '10':w.t - w.since >= 10, '30':w.t - w.since >= 30
+    };
+    return r.extras.every(e => sensors[e]);
+  }
+  function danger(w, text, i) {
+    w.unsafe.push({time:w.t, text, rule:i + 1});
+  }
+  function execute(card, i, w) {
+    const action = card.args.action;
+    w.lastRule = i;
+    if (!w.fired.includes(i)) w.fired.push(i);
+    if (LIGHTS.slice(0,3).includes(action) && action !== w.light) {
+      if ((w.light === 'GREEN' && action === 'RED') || (w.light === 'YELLOW' && w.t - w.since < 3)) {
+        danger(w, 'Yellow too short', i);
+      }
+      if (action === 'GREEN' && (w.phase !== 'HAND' || onCrosswalk(w))) danger(w, 'Green while crossing', i);
+      if (w.light === 'GREEN') w.greens.push(w.t - w.since);
+      if (w.light === 'RED') w.reds.push(w.t - w.since);
+      w.light = action;
+      w.since = w.t;
+      w.changes.push({time:w.t, action, rule:i + 1});
+    } else if (action === 'WALK' && w.phase === 'HAND') {
+      if (w.light !== 'RED') danger(w, 'Walk while cars go', i);
+      w.phase = 'WALK';
+      w.walkAt = w.t;
+      for (const p of w.walkers) if (p.start === null) p.start = w.t;
+      w.changes.push({time:w.t, action:'WALK', rule:i + 1});
+    }
+    w.ribbon.push({rule:i + 1, light:w.light, action});
+    if (w.ribbon.length > 8) w.ribbon.shift();
+    return {ok:true};
+  }
+  function addWalker(w, side = 0, manual = false) {
+    // Repeated taps belong to the same waiting walker on that curb.
+    if (manual && w.walkers.some(p => p.manual && p.side === side && p.start === null)) return;
+    const time = w.shown;
+    w.walkers.push({id:++w.uid, press:time, side, manual, start:w.phase === 'WALK' ? time : null});
+  }
+  function rng(w) {
+    w.seed = (1664525 * w.seed + 1013904223) >>> 0;
+    return w.seed / 4294967296;
+  }
+  function addCar(w, dir, ambulance = false) {
+    w.cars.push({id:++w.uid, dir, x:ambulance ? -.286667 : dir === 1 ? -.12 : 1.12, kind:ambulance ? 'ambulance' :
+      ['car-red','car-blue','car-yellow','van-green','car-white'][Math.floor(rng(w) * 5)], stopped:false});
+  }
+  function advanceCars(w) {
+    const step = .5 / 12;
+    for (const dir of [1,-1]) {
+      const lane = w.cars.filter(c => c.dir === dir).sort((a,b) => dir * (b.x - a.x));
+      let ahead = null;
+      for (const c of lane) {
+        let nx = c.x + dir * step;
+        const line = dir === 1 ? .38 : .62;
+        const distance = dir * (line - c.x);
+        if (w.light === 'YELLOW' && c.yellowSince !== w.since) {
+          c.yellowSince = w.since;
+          c.yellowStop = distance / (1 / 12) > 2;
+        }
+        const mustStop = w.light === 'RED' || (w.light === 'YELLOW' && c.yellowStop);
+        if (mustStop && distance >= -.001 && dir * (nx - line) >= 0) nx = line;
+        if (c.stopped && w.light !== 'GREEN' && distance >= -.001) nx = c.x;
+        if (ahead !== null && dir * (ahead - nx) < .105) nx = ahead - dir * .105;
+        c.stopped = Math.abs(nx - c.x) < .0001;
+        c.x = nx;
+        ahead = nx;
+      }
+    }
+    w.cars = w.cars.filter(c => c.x > -.25 && c.x < 1.25);
+  }
+  function snapshot(w) {
+    return copy({t:w.shown, light:w.light, since:w.since, phase:w.phase, walkAt:w.walkAt,
+      cars:w.cars, walkers:w.walkers, ribbon:w.ribbon, unsafe:w.unsafe, lastRule:w.lastRule,
+      ambulanceAt:w.ambulanceAt, ambulanceUntil:w.ambulanceUntil});
+  }
+  function tickWorld(w) {
+    w.shown = w.t;
+    if (w.phase !== 'HAND') {
+      w.phase = w.t - w.walkAt >= 17 ? 'HAND' : w.t - w.walkAt >= 7 ? 'FLASH' : 'WALK';
+    }
+    if (w.job !== null) {
+      const j = w.job;
+      const times = j === 3 ? [3,13,23,33,43,53,63,73,83] : j === 4 ? [38,70] : [5,35,65];
+      if (times.includes(w.t)) addWalker(w, times.indexOf(w.t) % 2);
+      const interval = j === 3 ? 3 : j === 4 ? 4 : 6;
+      if (w.t <= 90 && w.t % interval === 0) {
+        addCar(w, 1);
+        addCar(w, -1);
+      }
+      if (j === 4 && w.t === 35.5) {
+        w.ambulanceAt = 36;
+        w.ambulanceUntil = 46;
+        addCar(w, 1, true);
+      }
+      if (j === 4 && w.t === 43) w.ambulanceStopped = w.light === 'RED';
+    } else {
+      for (let k = 0; k < 2; k++) if (w.t >= w.carNext[k]) {
+        addCar(w, k === 0 ? 1 : -1);
+        w.carNext[k] = w.t + 3 + Math.floor(rng(w) * 9) / 2;
+      }
+      if (w.ambulanceAt !== null && w.t === w.ambulanceAt + 7) w.ambulanceStopped = w.light === 'RED';
+    }
+    advanceCars(w);
+    const noCrossing = !w.walkers.some(p => p.start !== null && w.t < p.start + 10);
+    w.emptyRed = w.light === 'RED' && noCrossing ? w.emptyRed + .5 : 0;
+    w.emptyRedMax = Math.max(w.emptyRedMax, w.emptyRed);
+    w.history.push(snapshot(w));
+    if (w.job === null && w.history.length > 500) w.history.shift();
+    const expected = w.job === 3 ? 9 : w.job === 4 ? 2 : 3;
+    const crossed = w.walkers.filter(p => p.start !== null && w.t >= p.start + 10).length;
+    const ended = w.job !== null && ((w.t >= 90 && crossed === expected) || w.t >= 120);
+    w.t += .5;
+    return !ended;
+  }
+  function summarize(w, rules) {
+    const job = JOBS[w.job];
+    const waits = w.walkers.map(p => p.start === null ? w.shown - p.press : p.start - p.press);
+    const crossed = w.walkers.filter(p => p.start !== null && w.shown >= p.start + 10).length;
+    const reds = [...w.reds];
+    if (w.light === 'RED') reds.push(w.shown - w.since);
+    const checks = [
+      {label:'Nothing unsafe', ok:w.unsafe.length === 0},
+      {label:'Every walker crossed', ok:crossed === w.walkers.length}
+    ];
+    const longestWait = Math.max(0,...waits);
+    const shortestGreen = w.greens.length ? Math.min(...w.greens) : null;
+    const longestRed = Math.max(0,...reds);
+    if (job.wait) checks.push({label:'Walker waits under 60 s', ok:longestWait < 60});
+    if (job.fair) {
+      checks.push({label:'Greens at least 30 s', ok:shortestGreen === null || shortestGreen >= 30});
+      checks.push({label:'Reds under 45 s', ok:longestRed < 45});
+    }
+    if (job.ambulance) checks.push({label:'Ambulance never stopped', ok:!w.ambulanceStopped});
+    const arrival = w.changes.filter(c => c.time <= 43 && c.action !== 'WALK');
+    const redAt = arrival.map(c => c.action).lastIndexOf('RED');
+    const arrivalCause = arrival[redAt - 1]?.action === 'YELLOW' ? arrival[redAt - 1] : arrival[redAt];
+    const ambulanceRule = rules.some(r => r.action && ['GREEN','ANY'].includes(r.light) && r.extras.includes('ambulance'));
+    const order = (w.job === 4 && w.ambulanceStopped && ambulanceRule) || (w.job === 3 && longestRed >= 45 &&
+      rules.some(r => r.action === 'GREEN' && r.extras.includes('10')));
+    return {checks, passed:checks.every(c => c.ok), unsafe:copy(w.unsafe), crossed, total:w.walkers.length,
+      longestWait, shortestGreen, longestRed, emptyRed:w.emptyRedMax, ambulanceStopped:w.ambulanceStopped,
+      order, orderRule:w.job === 3 ? rules.findIndex(r => r.action === 'WALK') + 1 :
+        (arrivalCause?.rule || null),
+      time:w.shown, fired:[...w.fired], rules:copy(rules), changes:copy(w.changes)};
+  }
+  function programRules() {
+    return prog.list.map(c => copy(c.args));
+  }
+  function storeRules() {
+    if (state.mode === 'watch') state.watchRules = programRules();
+    else state.jobRules[state.job] = programRules();
+  }
+  const prog = Robot.program({max:6});
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
+    speaks:'.rb-card, #run.running, .push, #send-walker, #add',
+    welcome:() => {
+      if (state.mode === 'watch') return state.pressed || state.paused ? null : [
+        ['w-watch', {valid:() => !state.pressed}], ['press', {valid:() => !state.pressed}]
+      ];
+      if (state.testing) return null;
+      const j = state.job;
+      const needsAdd = [0,1,4].includes(j);
+      return [['w-jobs', {valid:() => !state.testing}],
+        ['job' + (j + 1), {valid:() => !state.testing && state.job === j && (!needsAdd || !prog.full)}]];
+    }
+  });
+  function hint(text) {
+    $('hint').textContent = text;
+  }
+  function waitingHint() {
+    if (prog.full) return 'Six rules is the most. Tap a rule to change a chip, move it, or delete it.';
+    if (state.mode === 'watch') return 'Press a walk button on the street. Tap a rule to change its chips.';
+    return 'Tap a rule to change its chips, or press Add rule. Then press Run test.';
+  }
+  const strip = Robot.strip($('strip'), {
+    prog, max:6, layout:'column', buttons:$('cbtns'), label:'Your if-then rules, checked from the top',
+    names:{earlier:'Move up', later:'Move down', remove:'Delete'}, emptyFocus:() => $('add'), bounds:() => $('rule-scroll'),
+    renderCard(card, i, face, button) {
+      const r = card.args;
+      const short = {button:'button', done:'walk done', ambulance:'ambulance', '3':'3 s', '10':'10 s', '30':'30 s'};
+      const extra = [0,1].map(k => '<span class="word">and</span><span class="chip ' +
+        (!r.extras[k] ? 'empty' : '') + '" data-slot="extra' + k + '"><span class="full">' +
+        (EXTRA_LABEL[r.extras[k]] || '＋') + '</span><span class="short">' + (short[r.extras[k]] || '＋') + '</span></span>').join('');
+      face.innerHTML = '<span class="rule-line"><span class="word">If</span><span class="chip ' + (r.light || 'empty') +
+        '" data-slot="light">' + (r.light || 'light?') + '</span>' + extra + '</span>' +
+        '<span class="rule-line"><span class="word">then</span><span class="chip action ' + (!r.action ? 'empty' : '') +
+        '" data-slot="action">' + (ACTION_LABEL[r.action] || 'action?') + '</span></span>';
+      button.parentElement.classList.toggle('incomplete', !r.light || !r.action);
+      face.querySelectorAll('[data-slot]').forEach(e => e.style.pointerEvents = 'auto');
+    },
+    cardLabel(card, i) {
+      const r = card.args;
+      return 'Rule ' + (i + 1) + ': If ' + (r.light || 'choose light') +
+        r.extras.map(e => ' and ' + EXTRA_LABEL[e]).join('') + ' then ' + (ACTION_LABEL[r.action] || 'choose action') + '. Enter to edit.';
+    },
+    onSelect(i) { state.selected = i; }
+  });
+  strip.size({cw:300, ch:78, gap:9, nd:25, pad:21, ptrW:15, ptrH:21, btn:44, btnGap:7, btnH:44});
+  function marks() {
+    for (let i = 0; i < prog.length; i++) {
+      const face = strip.card(i).querySelector('.rb-face');
+      face.querySelector('.never')?.remove();
+      if (state.report && !state.report.fired.includes(i)) {
+        const tag = document.createElement('span');
+        tag.className = 'never';
+        tag.textContent = 'never fired';
+        face.appendChild(tag);
+      }
+    }
+  }
+  function syncPanel() {
+    const jobs = state.mode === 'jobs';
+    $('m-watch').setAttribute('aria-pressed', !jobs);
+    $('m-jobs').setAttribute('aria-pressed', jobs);
+    $('job-card').hidden = !jobs;
+    $('run').textContent = jobs ? state.testing ? '■ Stop' : '▶ Run test' : state.paused ? '▶ Play' : 'Ⅱ Pause';
+    $('run').classList.toggle('running', state.testing);
+    $('speed').hidden = !jobs;
+    $('speed').textContent = 'Speed ' + state.speed + '×';
+    $('skip').hidden = !jobs || !state.testing;
+    $('restart').textContent = jobs ? '↻ Start over' : '↻ Reset street';
+    const restartParent = jobs ? $('controls') : $('aux-controls');
+    if ($('restart').parentElement !== restartParent) restartParent.appendChild($('restart'));
+    for (const id of ['send-walker','send-ambulance']) {
+      if ($(id).parentElement !== $('aux-controls')) $('aux-controls').appendChild($(id));
+    }
+    $('step').hidden = jobs || !state.paused;
+    $('send-walker').hidden = jobs;
+    $('send-ambulance').hidden = jobs;
+    $('defaults').hidden = jobs;
+    $('push-north').hidden = jobs;
+    $('push-south').hidden = jobs;
+    $('add').disabled = prog.full;
+    $('rule-count').textContent = prog.length + ' / 6';
+    $('rule-scroll').classList.toggle('long', prog.length > 4);
+    if (jobs) {
+      $('job-title').textContent = (state.job + 1) + ' · ' + JOBS[state.job].name;
+      $('goal').textContent = 'Goal: every walker crosses, and nothing unsafe.' +
+        (state.job === 3 ? ' Model limits: green ≥ 30 s; red < 45 s; walker wait < 60 s.' :
+          state.job === 4 ? ' The ambulance must never stop.' : state.job === 0 ? ' Model limit: walker wait < 60 s.' : '');
+      $('job-dots').querySelectorAll('button').forEach((b,i) => {
+        b.setAttribute('aria-pressed', i === state.job);
+        b.classList.toggle('done', state.completed[i]);
+        b.setAttribute('aria-label', 'Job ' + (i + 1) + ': ' + JOBS[i].name + (state.completed[i] ? ', complete' : ''));
+      });
+    }
+    strip.place();
+  }
+  function stopRunner() {
+    clearTimeout(launchTimer);
+    launchTimer = null;
+    if (runner) runner.stop();
+    runner = null;
+  }
+  function clearReplay() {
+    clearInterval(replayTimer);
+    replayTimer = null;
+    state.replay = false;
+    state.replaying = false;
+    $('replay-banner').hidden = true;
+    $('job-card').hidden = state.mode !== 'jobs';
+  }
+  function stopTest() {
+    state.testing = false;
+    stopRunner();
+    clearReplay();
+    syncPanel();
+    renderWorld();
+  }
+  function launch(single = false, delay = 0) {
+    stopRunner();
+    const localWorld = world;
+    let nextBeatAt = 0;
+    runner = Robot.run(prog, {
+      style:'rules', world:localWorld,
+      beat:() => {
+        nextBeatAt += 500 / (state.mode === 'jobs' ? state.speed : 1);
+        return Math.max(1,nextBeatAt - performance.now());
+      },
+      when, exec:execute, traceIdle:true, snap:w => ({...snapshot(w),t:w.t}),
+      tick(n,w) {
+        const more = tickWorld(w);
+        lastCheckAt = performance.now();
+        if (w === world) renderWorld();
+        return more;
+      },
+      onStep(i) {
+        if (localWorld === world) strip.setNow(i < 0 ? null : i);
+      },
+      onEnd(result) {
+        if (result.result === 'done' && state.testing && localWorld === world) finishTest();
+      }
+    });
+    const r = runner;
+    launchTimer = setTimeout(() => {
+      if (r !== runner) return;
+      nextBeatAt = performance.now();
+      if (single) r.step();
+      else r.go();
+    }, delay);
+  }
+  function resetStreet() {
+    stopRunner();
+    clearReplay();
+    state.testing = false;
+    state.report = null;
+    state.pressed = false;
+    $('report').hidden = true;
+    world = makeWorld(state.mode === 'jobs' ? state.job : null);
+    lastCheckAt = performance.now();
+    strip.setNow(null);
+    marks();
+    renderWorld();
+    syncPanel();
+    if (state.mode === 'watch' && !state.paused) launch(false, 500);
+  }
+  prog.on(() => {
+    state.revision++;
+    storeRules();
+    state.report = null;
+    $('report').hidden = true;
+    clearReplay();
+    if (state.mode === 'jobs') {
+      state.testing = false;
+      stopRunner();
+    } else if (!state.paused) launch(false, Math.max(0,500 - (performance.now() - lastCheckAt)));
+    hint(waitingHint());
+    syncPanel();
+    marks();
+    renderWorld();
+  });
+  function renderWorld(s = null) {
+    const w = s || world;
+    const t = s ? s.t : w.shown;
+    const phase = w.phase;
+    $('job-card').hidden = state.mode !== 'jobs' || state.replay;
+    $('light-label').textContent = w.light;
+    $('light-age').textContent = w.light.toLowerCase() + ' for ' + fmt(Math.max(0,t - w.since)) + ' s';
+    document.querySelectorAll('.lamp').forEach((e,i) => e.classList.toggle('on', ['RED','YELLOW','GREEN'][i] === w.light));
+    document.querySelectorAll('.stopdot').forEach(box => [...box.children].forEach((e,i) => {
+      const l = ['RED','YELLOW','GREEN'][i];
+      e.style.setProperty('--lc', COLORS[l]);
+      e.classList.toggle('on', l === w.light);
+    }));
+    $('walk-label').textContent = phase === 'WALK' ? 'WALK' : phase === 'FLASH' ? 'FINISH' : 'WAIT';
+    $('walk-age').textContent = phase === 'HAND' ? 'steady hand' :
+      (phase === 'WALK' ? 'walk · ' + fmt(Math.max(0,7 - (t - w.walkAt))) :
+        'flashing · ' + fmt(Math.max(0,17 - (t - w.walkAt)))) + ' s';
+    $('walk-icon').className = 'walk-icon ' + (phase === 'WALK' ? 'go' : phase === 'FLASH' ? 'flash' : '');
+    $('walk-icon').innerHTML = phase === 'WALK' ? WALK : HAND;
+    $('time').textContent = t.toFixed(1) + ' s';
+    $('live-label').textContent = state.replay ? state.replaying ? 'REPLAY' : 'PAUSED REPLAY' :
+      state.testing ? 'TEST · ' + state.speed + '×' : state.mode === 'jobs' ? 'READY TO TEST' : state.paused ? 'PAUSED' : 'LIVE · 1×';
+    $('street').style.setProperty('--beat', (500 / (state.testing ? state.speed : 1)) + 'ms');
+    const activeIds = new Set(w.cars.map(c => 'car-' + c.id));
+    for (const e of [...$('traffic').children]) if (!activeIds.has(e.id)) e.remove();
+    for (const c of w.cars) {
+      let e = $('car-' + c.id);
+      if (!e) {
+        e = document.createElement('div');
+        e.id = 'car-' + c.id;
+        e.className = 'car ' + (c.dir === -1 ? 'west ' : '') + (c.kind === 'ambulance' ? 'ambulance' : '');
+        e.innerHTML = '<img src="' + $('a-' + c.kind).src + '" alt="">';
+        $('traffic').appendChild(e);
+      }
+      e.style.left = (c.x * 100 - 4) + '%';
+      e.style.top = c.dir === 1 ? '54%' : '34%';
+    }
+    const walkers = w.walkers.filter(p => p.start === null || t - p.start <= 11);
+    const walkerIds = new Set(walkers.map(p => 'walker-' + p.id));
+    for (const e of [...$('walkers').children]) if (!walkerIds.has(e.id)) e.remove();
+    for (const p of walkers) {
+      let e = $('walker-' + p.id);
+      if (!e) {
+        e = document.createElement('div');
+        e.id = 'walker-' + p.id;
+        e.className = 'walker' + (p.side ? '' : ' southbound');
+        const kit = ['red','yellow','green'][p.id % 3];
+        e.innerHTML = '<img src="' + $('a-walker-' + kit).src + '" alt="">';
+        $('walkers').appendChild(e);
+      }
+      const progress = p.start === null ? 0 : Math.min(1,(t - p.start) / 10);
+      e.style.left = (p.side ? 50.5 : 47.5) + (p.start === null ? (p.id % 3 - 1) * 2.5 : 0) + '%';
+      e.style.top = (p.side ? 77 - 59 * progress : 18 + 59 * progress) + '%';
+    }
+    const pending = w.walkers.filter(p => p.start === null).length;
+    for (const side of [0,1]) {
+      const b = $(side ? 'push-south' : 'push-north');
+      const waiting = w.walkers.some(p => p.side === side && p.start === null);
+      b.classList.toggle('pressed', waiting);
+      b.innerHTML = waiting ? 'CALL<br>SENT' : 'PUSH<br>TO WALK';
+    }
+    const crossCount = w.walkers.filter(p => p.start !== null && t < p.start + 10).length;
+    const detector = w.ambulanceUntil !== null && t >= w.ambulanceAt && t < w.ambulanceUntil;
+    $('request').textContent = detector ? '▰ Ambulance detector: coming up the street' : pending ?
+      pending + (pending === 1 ? ' walker waiting · button pressed' : ' walkers waiting · button pressed') : crossCount ?
+        crossCount + (crossCount === 1 ? ' walker crossing' : ' walkers crossing') : 'Crosswalk clear · ' +
+          (state.mode === 'watch' ? 'press a curb button to send a walker' : 'traffic follows the job script');
+    $('ribbon').innerHTML = w.ribbon.length ? w.ribbon.map(r => '<span class="ribbon-chip" title="Rule ' + r.rule +
+      ': ' + ACTION_LABEL[r.action] + '"><b style="--lc:' + COLORS[r.light] + '"></b>' + r.rule + '</span>').join('') :
+      '<span class="ribbon-empty">Waiting for a rule to fit…</span>';
+    const last = w.unsafe[w.unsafe.length - 1];
+    $('hazard').hidden = !last || t - last.time > 2;
+    if (last) $('hazard').innerHTML = '⚠<span class="hazard-words"> ' + last.text + ' · Rule ' + last.rule + '</span>';
+    document.querySelector('.street-name').hidden = !$('hazard').hidden;
+    $('watchout').textContent = state.mode === 'watch' && last ?
+      'Watch out: ' + fmt(last.time) + ' s · ' + last.text + ' · Rule ' + last.rule + ' did it' : '';
+  }
+  function setMode(mode) {
+    if (mode === state.mode && world) return;
+    storeRules();
+    V.hush();
+    stopTest();
+    state.mode = mode;
+    state.paused = false;
+    state.testing = false;
+    prog.load((mode === 'watch' ? state.watchRules : state.jobRules[state.job]).map(args => ({op:'rule', args:copy(args)})));
+    resetStreet();
+    hint(waitingHint());
+    V.welcome();
+    syncPanel();
+  }
+  function openJob(i) {
+    const fromNext = document.activeElement.id === 'next';
+    storeRules();
+    V.hush();
+    stopTest();
+    state.job = i;
+    prog.load(state.jobRules[i].map(args => ({op:'rule', args:copy(args)})));
+    resetStreet();
+    hint(waitingHint());
+    V.welcome();
+    if (fromNext) $('run').focus({preventScroll:true});
+  }
+  function runTest() {
+    V.hush();
+    resetStreet();
+    state.testing = true;
+    reportEpoch++;
+    hint('Watch the firing rule. Tap Stop to edit, Speed to change pace, or Skip to report.');
+    syncPanel();
+    Curio.tone(440,.08,.06);
+    launch(false, 0);
+  }
+  function finishTest() {
+    const fromSkip = document.activeElement.id === 'skip';
+    state.testing = false;
+    const report = summarize(world, programRules());
+    state.report = report;
+    if (report.passed) state.completed[state.job] = true;
+    hint(report.passed ? state.job < 4 ? 'Every goal passed. Press Next job, or tap a rule to try another program.' :
+      'All goals passed. Choose another job to try a different program.' :
+      report.unsafe.length ? 'Tap an unsafe line to replay its rule. Tap that rule to change a chip, then press Run test.' :
+        'Check the missed goal. Tap a rule to change its chips, then press Run test.');
+    renderWorld();
+    renderReport();
+    syncPanel();
+    if (fromSkip) $('edit-report').focus({preventScroll:true});
+    marks();
+    const epoch = reportEpoch;
+    const valid = () => state.report === report && !state.testing && reportEpoch === epoch && !state.replay;
+    const summaryKey = report.passed ? 'pass' : report.unsafe.length ? 'unsafe' : 'miss';
+    const entries = [summaryKey];
+    if (report.order) entries.push('order');
+    if (report.passed && state.completed.every(Boolean)) entries.push('all');
+    V.say(entries, {valid});
+    if (report.unsafe.length && !V.heard('report')) V.how('report', {valid, needs:'.unsafe-line'});
+    if (report.passed) Curio.yes();
+    else Curio.tone(200,.12,.05);
+  }
+  function skipReport() {
+    if (!state.testing) return;
+    stopRunner();
+    let guard = 0;
+    while (guard++ < 241) {
+      const i = prog.list.findIndex(c => when(c, world));
+      if (i >= 0) execute(prog.card(i),i,world);
+      if (!tickWorld(world)) break;
+    }
+    renderWorld();
+    finishTest();
+  }
+  function reportTrace(r) {
+    const changes = r.changes.filter(c => ['GREEN','YELLOW','RED'].includes(c.action));
+    let at = 0;
+    let light = 'GREEN';
+    const parts = [];
+    for (const c of [...changes, {time:r.time, action:null}]) {
+      if (c.time > at) parts.push({light, from:at, to:c.time});
+      at = c.time;
+      light = c.action;
+    }
+    return '<div class="test-trace"><b>Your car-light run</b><div class="trace-bar" aria-label="Car light over street time">' +
+      parts.map(p => '<span class="trace-' + p.light + '" style="flex:' + (p.to - p.from) + '" title="' +
+        p.light + ': ' + fmt(p.from) + ' to ' + fmt(p.to) + ' seconds">' +
+        (p.to - p.from > r.time * .1 ? p.light : '') + '</span>').join('') +
+      '</div><div class="trace-key"><span>0 s · GREEN / YELLOW / RED</span><span>' + fmt(r.time) + ' s</span></div></div>';
+  }
+  function renderReport() {
+    const r = state.report;
+    if (!r) return;
+    $('report').hidden = false;
+    const heading = r.passed ? '<span>✓ Job complete</span>' : r.unsafe.length ? '⚠ Find the unsafe rule' : 'A goal needs work';
+    const green = r.shortestGreen === null ? 'none ended' : fmt(r.shortestGreen) + ' s';
+    $('report').innerHTML = '<div class="report-kicker">MAPLE STREET · TEST REPORT · ' + fmt(r.time) + ' STREET SECONDS</div>' +
+      '<h2>' + heading + '</h2><div class="goal-checks">' + r.checks.map(c => '<span class="' + (c.ok ? '' : 'fail') + '">' +
+        (c.ok ? '✓ ' : '✕ ') + c.label + '</span>').join('') + '</div>' +
+      '<div class="report-grid"><div class="stat"><b>' + r.unsafe.length + ' unsafe moments</b>' +
+        (r.unsafe.length ? 'Tap a line below to replay.' : 'Every signal change was safe.') + '</div>' +
+      '<div class="stat"><b>' + r.crossed + ' of ' + r.total + ' crossed</b>Longest wait: ' + fmt(r.longestWait) + ' s</div>' +
+      '<div class="stat"><b>Cars</b>Shortest green: ' + green + '<br>Longest red: ' + fmt(r.longestRed) + ' s' +
+        (state.job === 4 ? '<br>Longest empty red: ' + fmt(r.emptyRed) + ' s' : '') + '</div>' +
+      '<div class="stat"><b>' + (state.job === 4 ? 'Ambulance' : 'Empty crosswalk') + '</b>' +
+        (state.job === 4 ? r.ambulanceStopped ? 'Had to stop' : 'Never stopped' :
+          'Longest empty red: ' + fmt(r.emptyRed) + ' s' + (r.emptyRed >= 10 ? '<br>Cars waited 10 s or more.' : '')) + '</div></div>' +
+      (r.order || (state.job === 4 && r.ambulanceStopped) ?
+        (r.orderRule ? '<p>Rule ' + r.orderRule + ' changed the light first. Rules are checked from the top.</p>' :
+          '<p>The ambulance reached a red light. Check the rules that change the car light.</p>') : '') +
+      reportTrace(r) +
+      '<div class="unsafe-list">' + r.unsafe.map((u,i) => '<button class="unsafe-line" data-replay="' + i + '"><strong>' +
+        fmt(u.time) + ' s · ' + u.text + '</strong><br>Rule ' + u.rule + ' did it. ↶ Replay</button>').join('') + '</div>' +
+      '<div class="report-actions"><button class="plain" id="edit-report">Back to rules</button>' +
+      (r.passed && state.job < 4 ? '<button class="plain" id="next">Next job →</button>' : '') + '</div>';
+    $('report').querySelectorAll('[data-replay]').forEach(b => b.onclick = () => replayUnsafe(+b.dataset.replay));
+    $('edit-report').onclick = () => {
+      $('report').hidden = true;
+      hint(waitingHint());
+      strip.card(0)?.focus({preventScroll:true});
+    };
+    if ($('next')) $('next').onclick = () => openJob(state.job + 1);
+  }
+  function replayUnsafe(i) {
+    V.hush();
+    clearReplay();
+    const u = state.report.unsafe[i];
+    const frames = world.history.filter(s => s.t >= u.time - 3 && s.t <= u.time);
+    state.replay = true;
+    state.replaying = true;
+    $('report').hidden = true;
+    $('replay-banner').hidden = false;
+    $('replay-banner').innerHTML = 'Replaying ' + fmt(Math.max(0,u.time - 3)) + ' to ' + fmt(u.time) +
+      ' s <button class="plain" id="back-report">Back to report</button>';
+    $('back-report').onclick = () => {
+      clearReplay();
+      renderWorld();
+      renderReport();
+      hint('Tap another unsafe line, or tap a rule to change its chips. Then press Run test.');
+      $('edit-report').focus({preventScroll:true});
+    };
+    $('back-report').focus({preventScroll:true});
+    hint('Watch the replay pause on Rule ' + u.rule + '. Press Back to report, or tap the rule to edit.');
+    let at = 0;
+    const show = () => {
+      const s = frames[at++];
+      if (s) {
+        renderWorld(s);
+        strip.setNow(s.lastRule);
+      }
+      if (at >= frames.length) {
+        clearInterval(replayTimer);
+        state.replaying = false;
+        strip.select(u.rule - 1, 'replay');
+        strip.setNow(u.rule - 1);
+        $('replay-banner').firstChild.textContent = fmt(u.time) + ' s · ' + u.text + ' · Rule ' + u.rule + ' ';
+        $('live-label').textContent = 'PAUSED REPLAY';
+      }
+    };
+    show();
+    replayTimer = setInterval(show, 250);
+  }
+  function openPicker(i, slot = null) {
+    if (!prog.card(i)) return;
+    if (state.testing) stopTest();
+    clearReplay();
+    renderWorld();
+    state.report = null;
+    $('report').hidden = true;
+    marks();
+    state.editing = prog.card(i).id;
+    const r = prog.card(i).args;
+    state.slot = slot || (!r.light ? 'light' : !r.action ? 'action' : 'light');
+    strip.select(i, 'picker');
+    hint('Choose a chip, then press Done. ' + (state.mode === 'jobs' ? 'Press Run test to try your rules.' : 'Changes count at the next check.'));
+    drawPicker();
+    if (!$('picker').open) $('picker').showModal();
+    if (!V.heard('chip')) V.how('chip', {
+      valid:() => $('picker').open && !prog.full, needs:['#close-picker','#add']
+    });
+    $('options').querySelector('[aria-pressed="true"]')?.focus({preventScroll:true});
+  }
+  function drawPicker() {
+    const i = prog.indexOf(state.editing);
+    if (i < 0) return;
+    const r = prog.card(i).args;
+    $('picker-title').textContent = 'Edit rule ' + (i + 1);
+    const slots = [['light','If light'], ['extra0','and…'], ['extra1','and…'], ['action','then…']];
+    $('slot-tabs').innerHTML = slots.map(([key,label]) => '<button data-slot="' + key + '" aria-pressed="' +
+      (state.slot === key) + '">' + label + '</button>').join('');
+    for (const b of $('slot-tabs').children) b.onclick = () => {
+      state.slot = b.dataset.slot;
+      drawPicker();
+      $('slot-tabs').querySelector('[aria-pressed="true"]').focus({preventScroll:true});
+    };
+    let choices;
+    if (state.slot === 'light') choices = LIGHTS.map(k => [k,k, k === 'ANY' ? '◇' : '●']);
+    else if (state.slot === 'action') choices = ACTIONS.map(k => [k,ACTION_LABEL[k], k === 'KEEP' ? '＝' : k === 'WALK' ? '↟' : '●']);
+    else choices = [['','no extra condition','○'], ...EXTRAS.map(k => [k,EXTRA_LABEL[k],
+      k === 'button' ? '◉' : k === 'done' ? '✓' : k === 'ambulance' ? '▰' : '◷'])];
+    const value = state.slot === 'light' ? r.light : state.slot === 'action' ? r.action : r.extras[+state.slot.slice(-1)] || '';
+    $('options').innerHTML = choices.map(([key,label,icon]) => '<button data-value="' + key + '" aria-pressed="' +
+      (key === value) + '"><span class="option-icon">' + icon + '</span>' + label + '</button>').join('');
+    for (const b of $('options').children) b.onclick = () => {
+      const next = copy(prog.card(prog.indexOf(state.editing)).args);
+      if (state.slot === 'light') next.light = b.dataset.value;
+      else if (state.slot === 'action') next.action = b.dataset.value;
+      else {
+        const e = +state.slot.slice(-1);
+        next.extras[e] = b.dataset.value;
+        next.extras = next.extras.filter(Boolean);
+        next.extras = [...new Set(next.extras)];
+      }
+      prog.replace(prog.indexOf(state.editing),'rule',next);
+      Curio.tone(620,.05,.04);
+      const value = state.slot === 'light' ? next.light : state.slot === 'action' ? next.action :
+        next.extras[+state.slot.slice(-1)] || '';
+      for (const option of $('options').children) option.setAttribute('aria-pressed', option.dataset.value === value);
+    };
+  }
+  function closePicker() {
+    $('picker').close();
+    const i = prog.indexOf(state.editing);
+    strip.card(i)?.focus({preventScroll:true});
+    hint(waitingHint());
+    V.dropQueued(e => e.key === 'chip');
+  }
+  // Capture the intended slot before the family strip handles the card's selection.
+  $('strip').addEventListener('click', e => {
+    const b = e.target.closest('.rb-card');
+    if (!b) return;
+    const i = prog.indexOf(+b.dataset.rbid);
+    const slot = e.target.closest('[data-slot]')?.dataset.slot;
+    setTimeout(() => openPicker(i,slot),0);
+  });
+  $('strip').addEventListener('keydown', e => {
+    const b = e.target.closest('.rb-card');
+    if (!b) return;
+    const i = prog.indexOf(+b.dataset.rbid);
+    if (e.altKey && ['ArrowUp','ArrowDown'].includes(e.key)) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      prog.move(i,e.key === 'ArrowUp' ? -1 : 1);
+    } else if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      openPicker(i);
+    } else if (e.key === 'Delete') {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      prog.remove(i);
+      (strip.card(Math.min(i,prog.length - 1)) || $('add')).focus({preventScroll:true});
+    }
+  },true);
+  $('picker').addEventListener('keydown', e => {
+    if (!['ArrowLeft','ArrowRight'].includes(e.key)) return;
+    e.preventDefault();
+    const slots = ['light','extra0','extra1','action'];
+    state.slot = slots[(slots.indexOf(state.slot) + (e.key === 'ArrowRight' ? 1 : 3)) % 4];
+    drawPicker();
+    $('slot-tabs').querySelector('[aria-pressed="true"]').focus({preventScroll:true});
+  });
+  $('picker').addEventListener('cancel', e => { e.preventDefault(); closePicker(); });
+  document.addEventListener('click', e => {
+    const button = e.target.closest('button');
+    if (button && !['sound','read'].includes(button.id)) Curio.tone(420,.025,.018);
+  });
+  $('close-picker').onclick = closePicker;
+  $('m-watch').onclick = () => setMode('watch');
+  $('m-jobs').onclick = () => setMode('jobs');
+  $('run').onclick = () => {
+    if (state.mode === 'jobs') {
+      if (state.testing) {
+        V.hush();
+        stopTest();
+        hint('Test stopped. Tap a rule to change a chip, then press Run test.');
+      } else runTest();
+    } else {
+      state.paused = !state.paused;
+      if (state.paused) stopRunner();
+      else launch(false,0);
+      hint(state.paused ? 'Press Step for one half-second check, or Play to keep the street moving.' : waitingHint());
+      syncPanel();
+      renderWorld();
+      if (!state.paused) V.welcome();
+    }
+  };
+  $('speed').onclick = () => {
+    state.speed = state.speed === 4 ? 1 : 4;
+    $('street').style.setProperty('--beat',500 / state.speed + 'ms');
+    syncPanel();
+    renderWorld();
+  };
+  $('skip').onclick = skipReport;
+  $('restart').onclick = () => {
+    V.hush();
+    if (state.mode === 'jobs') {
+      state.jobRules[state.job] = copy(JOBS[state.job].start);
+      prog.load(state.jobRules[state.job].map(args => ({op:'rule',args})));
+    }
+    resetStreet();
+    hint(waitingHint());
+    if (state.mode === 'jobs') V.welcome();
+  };
+  $('defaults').onclick = () => {
+    prog.load(DEFAULT.map(args => ({op:'rule',args:copy(args)})));
+    resetStreet();
+    hint(waitingHint());
+  };
+  $('step').onclick = () => launch(true,0);
+  function sendWalker(side) {
+    if (state.mode !== 'watch') return;
+    state.pressed = true;
+    V.dropQueued(e => ['w-watch','press'].includes(e.key));
+    addWalker(world,side,true);
+    renderWorld();
+    hint(state.paused ? 'Call sent. Press Step for the next check, or Play to run the crossing.' :
+      'Call sent. Watch the firing rule, or tap a rule to change its chips.');
+    Curio.tone(720,.06,.05);
+  }
+  $('push-north').onclick = () => sendWalker(0);
+  $('push-south').onclick = () => sendWalker(1);
+  $('send-walker').onclick = () => sendWalker(world.uid % 2);
+  $('send-ambulance').onclick = () => {
+    world.ambulanceAt = world.shown;
+    world.ambulanceUntil = world.shown + 10;
+    addCar(world,1,true);
+    renderWorld();
+    hint(state.paused ? 'Ambulance coming. Press Step for the next check, or Play to run the crossing.' :
+      'Ambulance coming. Watch which rule wins, or tap a rule to change its chips.');
+    Curio.tone(660,.1,.04);
+  };
+  $('add').onclick = () => {
+    if (prog.full) {
+      hint(L.full);
+      V.say('full',{valid:() => prog.full});
+      return;
+    }
+    prog.add('rule',null,{light:null,extras:[],action:null});
+    const i = prog.length - 1;
+    strip.select(i,'add');
+    strip.card(i).scrollIntoView({block:'nearest'});
+    openPicker(i,'light');
+    Curio.tone(520,.06,.05);
+  };
+  JOBS.forEach((j,i) => {
+    const b = document.createElement('button');
+    b.textContent = i + 1;
+    b.id = 'job-' + (i + 1);
+    b.onclick = () => openJob(i);
+    $('job-dots').appendChild(b);
+  });
+  world = makeWorld();
+  Curio.onMotion(() => renderWorld());
+  Curio.init({clips:"voice:*",rate:.94});
+  // Small pure-data hooks let reviewers compare the browser model with independent numeric evidence.
+  window.__tool = {
+    state, setMode, openJob, prog, strip, when, execute, tickWorld, makeWorld, summarize, DEFAULT, RUSH, JOBS,
+    get world() { return world; }, get runner() { return runner; },
+    allLines:V.allLines, vlog:V.log, get vq() { return V.queue; }, EVENT_LINES,
+    runTest, skipReport, renderWorld,
+    loadRules(rules) { prog.load(rules.map(args => ({op:'rule',args:copy(args)}))); },
+    simulate(rules,job) {
+      const w = makeWorld(job);
+      const cards = rules.map(args => ({op:'rule',args:copy(args)}));
+      let more = true;
+      let guard = 0;
+      while (more && guard++ < 241) {
+        const i = cards.findIndex(c => when(c,w));
+        if (i >= 0) execute(cards[i],i,w);
+        more = tickWorld(w);
+      }
+      return {report:summarize(w,rules), world:w};
+    }
+  };
+  world = makeWorld();
+  prog.load(DEFAULT.map(args => ({op:'rule',args:copy(args)})));
+  resetStreet();
+  hint(waitingHint());
+  syncPanel();
+})();
+</script>
+</body>
+</html>

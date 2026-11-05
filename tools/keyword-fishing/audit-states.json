@@ -1,0 +1,11 @@
+{
+  "keep": ["#hint", "#word-line", "#cast"],
+  "states": [
+    {"name":"small-catch", "steps":[{"click":".tile[data-word=sea]"},{"click":".tile[data-word=turtles]"},{"click":".tile[data-word=eat]"},{"click":"#cast"},{"wait":1000}]},
+    {"name":"full-line", "steps":[{"click":"#level-2"}]},
+    {"name":"swap-open", "steps":[{"click":"#level-3"},{"click":".tile[data-word=big]"},{"click":"#slot-0"},{"click":"#swap"}], "keep":["#swap-options"]},
+    {"name":"free-unknown", "steps":[{"click":"#m-free"},{"click":"#typed-word"},{"js":"document.querySelector('#typed-word').value='moonstone'"},{"click":"#add-word"}]},
+    {"name":"fish-tag", "steps":[{"click":"#fish-T1"}], "keep":["#tag-card"]},
+    {"name":"confirm-clear", "steps":[{"click":"#clear-stickers"}], "sizes":["1366x768"], "keep":["#confirm-clear"]}
+  ]
+}

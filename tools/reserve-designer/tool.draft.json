@@ -1,0 +1,26 @@
+{
+  "id": "reserve-designer",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Connect a valley for six species. Find the one loss that breaks your reserve.",
+  "outcome": "Design, test and refine connected habitat while balancing a land budget and working farms.",
+  "driver": "students",
+  "minutes": "25-45",
+  "modes": [
+    "Plan",
+    "Stress test",
+    "Groups"
+  ],
+  "grades_label": "Grade 9",
+  "sources": [
+    "OpenStax Biology 2e, sections 47.2 and 47.3 (CC BY 4.0)",
+    "Childress and Lung (2003), Animal Behaviour 66:389-398; Pulliam (1973), Journal of Theoretical Biology 38:419-422",
+    "National Park Service: Wind Cave Prairie Dogs; Rocky Mountain National Park Elk; Black Bears",
+    "USGS Northern Prairie Wildlife Research Center: Wood frog; Cornell Lab All About Birds: Ovenbird",
+    "Fictional map, land prices, budget and species thresholds are Curio Class model values, 2026-10-29",
+    "Existing portraits drawn with FLUX.1-schnell (Apache 2.0), edited for Curio Class",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-10-31"
+}

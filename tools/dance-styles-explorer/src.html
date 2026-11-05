@@ -1,0 +1,1776 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Watch eight dance styles, compare movement traces and rhythms, and write a count-based critique. Grades 9-12. Offline.">
+<link rel="icon" href="data:,">
+<title>Dance Styles Explorer · Curio Class</title>
+<!--
+Dance Styles Explorer, Curio Class. Based on kit/starter/src.html. Content CC BY 4.0, code MIT.
+NCAS dance DA:Re7.1.HSI, DA:Re8.1.HSI, DA:Re9.1.HSI, DA:Cn11.1.HSI. Sources in data.json and notes.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. No recordings made.
+Painted rehearsal figures use a local renderer and shared analytical pose landmarks.
+One offline file. Notes and drafts stay on this device only.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {--brand:#c9b3ff;--brand-ink:#1c1203;--paper:#0a0c12;--panel:#141b25;--ink:#e8edf3;--muted:#a6b3c4}
+body {min-height:0;overflow:hidden;grid-template-rows:74px minmax(0,1fr) 52px}
+header {padding:10px 20px;gap:12px;flex-wrap:nowrap;border-bottom:1px solid #403652}
+h1 {font-size:23px;letter-spacing:-.7px}
+h1 small {font-size:12px;letter-spacing:.03em;margin-top:5px}
+.seg {border:1px solid #514961;border-radius:6px;flex-shrink:0}
+.seg button {font-size:13px;min-height:44px;padding:0 15px}
+.seg span {font:11px Consolas,monospace;opacity:.6;margin-right:7px}
+.icon-btn {font-size:12px;min-height:44px;min-width:44px;padding:0 10px;border-radius:6px;border-width:1px}
+main {grid-template-columns:minmax(0,1fr) 348px;overflow:hidden}
+button {touch-action:manipulation}
+button:active {filter:brightness(1.25)}
+.btn {font-size:12px;padding:0 11px;border-radius:5px}
+.primary {background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.eyebrow {font:11px Consolas,monospace;text-transform:uppercase;letter-spacing:.16em;color:var(--brand)}
+.study {display:grid;grid-template-rows:52px minmax(0,1fr) auto auto auto;min-height:0;position:relative;background:#0a0c12}
+.viewbar {display:flex;align-items:center;gap:6px;padding:4px 18px;border-bottom:1px solid #222936}
+.viewbar .spacer {flex:1}
+#scene {width:100%;height:100%;display:block;min-height:0;background:#0a0c12}
+.stage {min-height:0;overflow:hidden;position:relative}
+.stage::after {content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 35% 10%,#c9b3ff0a,transparent 60%);
+  animation:stage-light 8s ease-in-out infinite alternate}
+@keyframes stage-light {to {opacity:.25}}
+.calm .stage::after {animation:none;opacity:.5}
+.stage-title {position:absolute;top:16px;left:22px;pointer-events:none}
+.stage-title h2 {font:400 clamp(24px,3.4vw,42px)/1.1 Georgia,serif;margin:6px 0;color:#f1eaff}
+.stage-title p {margin:7px 0;color:#a6b3c4;font-size:12px}
+.stage-caption {position:absolute;bottom:12px;left:22px;right:18px;display:flex;gap:16px;align-items:center;
+  justify-content:space-between;pointer-events:none;color:#b9c4d4;font-size:11px}
+#movement {font:13px Consolas,monospace;color:#e2d4ff;background:#10131dbb;padding:6px 9px;border-left:2px solid #c9b3ff}
+.gesture-detail {position:absolute;right:22px;top:60px;pointer-events:none;text-align:center;font:11px Consolas,monospace;color:#e2d4ff}
+.gesture-detail svg {display:block;width:82px;height:96px;margin:auto}
+@media(max-height:650px) {.gesture-detail {top:4px;right:65px;font-size:10px}.gesture-detail svg {width:46px;height:50px}}
+.legend {display:flex;gap:10px;font-size:11px}
+.legend i {display:inline-block;width:17px;border-top:2px solid #ffb4a2;margin:0 5px 3px 0}
+.legend i.feet {border-color:#7de2d1;border-top-style:dotted}
+#rhythm {width:100%;height:68px;display:block;border-top:1px solid #293040;background:#0e121b}
+#rhythm.compare {height:100px}
+.transport {display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:10px 18px;background:#111721;border-top:1px solid #303848}
+.transport .btn {min-width:44px}
+#play {min-width:99px;font-size:14px}
+.count {font:12px Consolas,monospace;color:#d9cafa;margin-left:auto;white-space:pre-line}
+.speed {display:flex;gap:3px;margin-left:7px}
+.note-area {max-height:150px;overflow:auto;background:#10151f;padding:8px 18px;border-top:1px solid #303848}
+.note-controls {display:flex;align-items:center;gap:8px;justify-content:space-between;margin-bottom:6px}
+.note-list {display:flex;flex-wrap:wrap;gap:6px}
+.note-list button {text-align:left;max-width:100%;overflow-wrap:anywhere;white-space:normal;line-height:1.4;padding:6px 10px}
+.note-list .empty {font-size:12px;color:var(--muted);padding:8px 0}
+.panel {padding:0;gap:0;min-height:0;overflow:hidden;border-left:1px solid #303848}
+.selector {padding:13px 16px 12px;border-bottom:1px solid #303848;background:#161c28;flex-shrink:0}
+.selector-label {display:flex;justify-content:space-between;margin-bottom:8px;font-size:11px;color:var(--muted);letter-spacing:.08em}
+.style-grid {display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.style-chip {text-align:left;display:flex;align-items:center;gap:8px;padding:0 8px;min-width:0;font-size:12px}
+.style-chip .index {font:10px Consolas,monospace;opacity:.7}
+.style-chip[aria-pressed=true]::after {content:'●';margin-left:auto;font-size:9px}
+.panel-scroll {overflow:auto;min-height:0;padding:15px;display:flex;flex-direction:column;gap:14px;scrollbar-width:thin}
+.file-heading {display:flex;align-items:baseline;justify-content:space-between;gap:6px;flex-wrap:wrap}
+.file-heading h2 {font:400 27px Georgia,serif;margin:0}
+.file-heading span {font:10px Consolas,monospace;color:var(--muted)}
+.feet-card {margin:0;border:1px solid #4b4144;background:#0c0e13;padding:5px;display:grid;grid-template-columns:148px 1fr;gap:11px}
+.feet-card img {width:148px;height:148px;object-fit:cover;display:block}
+.feet-card figcaption {font-size:12px;line-height:1.5;align-self:center;padding-right:6px}
+.feet-card b {display:block;font-size:10px;letter-spacing:.14em;color:#d9c8ff;text-transform:uppercase;margin-bottom:8px}
+.sec {border-radius:4px;padding:12px}
+.sec h3 {margin:0 0 7px;font-size:12px;color:#cdb8f4;letter-spacing:.04em}
+.sec p {font-size:12px;line-height:1.55;margin:0 0 12px}
+.sec p:last-child {margin-bottom:0}
+.signature {width:100%;border-collapse:collapse;font-size:12px;line-height:1.45}
+.signature th {text-align:left;vertical-align:top;color:#b9a6de;width:53px;padding:6px 6px 6px 0;font-weight:600}
+.signature td {padding:6px 0;border-bottom:1px solid #303848;vertical-align:top}
+.measure-grid {display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:11px}
+.measure-grid strong {font:18px Consolas,monospace;color:#e5d5ff;display:block;margin-bottom:4px}
+.measure-grid span {color:#b5c0cf}
+.levelbar {display:flex;height:5px;margin:9px 0 6px;background:#434b5c}
+.levelbar i:nth-child(1) {background:#c9b3ff}
+.levelbar i:nth-child(2) {background:#8fb8ff}
+.levelbar i:nth-child(3) {background:#7de2d1}
+.method {font-size:10px;line-height:1.5;color:#a6b3c4;margin-top:10px}
+.disclaimer {font-size:11px;line-height:1.5;color:#b5beca;border-top:1px solid #303848;padding-top:12px;margin:0}
+select,textarea,input {font:inherit;background:#0d131d;border:1px solid #68768e;color:var(--ink);border-radius:4px;min-width:0}
+select,input {min-height:44px;padding:6px 8px;width:100%}
+textarea {padding:9px;width:100%;line-height:1.5;min-height:90px;resize:vertical}
+label {font-size:12px;line-height:1.5;display:block}
+label>select,label>textarea,label>input {margin-top:4px}
+.pair {display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.compare-table {font-size:11px;table-layout:fixed}
+.compare-table th {width:43px}
+.compare-table td {padding:7px 5px;overflow-wrap:anywhere}
+.compare-art {display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.compare-art img {width:100%;aspect-ratio:1;object-fit:cover;border:1px solid #4a4145;padding:4px;background:#0c0e13}
+.compare-art p {font-size:11px;line-height:1.45;margin:6px 0 0}
+.compare-metrics {display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.compare-metrics .measure-grid {grid-template-columns:1fr}
+.vocab-group {margin:0 0 9px}
+.vocab-group summary {min-height:44px;display:flex;align-items:center;cursor:pointer;color:#cbb5f1;font-size:12px}
+.terms,.criteria {display:flex;flex-wrap:wrap;gap:5px}
+details:not([open])>.terms {display:none}
+.terms .btn,.criteria .btn {font-size:11px;padding:0 8px}
+#definition {font-size:12px;line-height:1.5;min-height:45px;margin:9px 0 0;color:#c4cfdf}
+.draft-box {margin-bottom:15px}
+.draft-box label {font-weight:600;margin-bottom:6px}
+.draft-box .btn {margin-top:6px}
+.checks {font-size:12px;line-height:1.7;color:#c7d2e2}
+.checks .met {color:#7de2d1}
+.actions {display:flex;flex-wrap:wrap;gap:6px}
+.privacy {font-size:11px;line-height:1.5;color:#a6b3c4;margin:8px 0 0}
+footer {display:flex;align-items:center;padding:6px 20px;gap:20px;background:#151526;border-top:1px solid #383045}
+#hint {margin:0;min-height:30px;font-size:12px;line-height:1.4;flex:1}
+footer .mark {font:11px Georgia,serif;letter-spacing:.04em;color:#c9b3ff;white-space:nowrap}
+dialog {width:min(440px,calc(100vw - 28px));background:#18202b;color:var(--ink);border:1px solid #b7a1e4;border-radius:8px;padding:22px}
+dialog::backdrop {background:#05060bc9}
+dialog h2 {font:25px Georgia,serif;margin:0 0 14px;color:#d9c6ff}
+dialog .actions {margin-top:14px}
+dialog p {font-size:13px;line-height:1.5}
+#copyFallback {min-height:140px}
+.mobile-style {display:none}
+.print-output {display:none}
+@media (max-width:1100px) {
+  header {padding:8px 12px;gap:7px} h1 {font-size:20px} .seg button {padding:0 10px}
+  main {grid-template-columns:minmax(0,1fr) 310px} .feet-card {grid-template-columns:120px 1fr}
+  .feet-card img {width:120px;height:120px} .transport {padding:8px 10px}
+}
+@media (max-height:650px) and (min-width:601px) {
+  body {grid-template-rows:62px minmax(0,1fr) 42px} header h1 small {display:none}
+  .viewbar {padding:0 8px;gap:4px} .study {grid-template-rows:44px minmax(0,1fr) auto auto auto}
+  .viewbar .btn {font-size:11px;padding:0 7px} .stage-title {left:14px;top:8px}
+  .stage-title h2 {font-size:24px;margin:3px 0} .stage-title p {display:none}
+  .stage-caption {left:14px;bottom:6px} #movement {font-size:10px;padding:3px 6px}
+  .legend {display:none} #rhythm {height:42px} #rhythm.compare {height:65px}
+  .transport {padding:3px 8px;gap:3px} .transport .btn {padding:0 7px;font-size:11px}
+  #play {min-width:76px;font-size:12px} .speed {margin-left:0} .count {font-size:10px}
+  .selector {padding:7px 9px} .selector-label {margin-bottom:5px;font-size:10px}
+  .style-grid {gap:3px} .style-chip {font-size:11px;padding:0 6px;gap:4px}
+  .panel-scroll {padding:10px;gap:10px} .feet-card {grid-template-columns:90px 1fr;gap:8px}
+  .checks {font-size:11px;line-height:1.35}
+  .feet-card img {width:90px;height:90px} .feet-card figcaption {font-size:11px}
+  .feet-card b {margin-bottom:3px} .note-area {max-height:80px;padding:4px 10px}
+  .note-area {display:flex;align-items:center;gap:6px;max-height:48px;padding:2px 8px}
+  .note-area .eyebrow {display:none}
+  .note-controls {margin:0;flex-shrink:0}
+  .note-list {flex:1;flex-wrap:nowrap;overflow:auto;max-height:44px}
+  footer {padding:3px 12px} #hint {font-size:11px}
+}
+@media (max-width:850px) and (min-width:601px) {
+  main {grid-template-columns:minmax(0,1fr) 246px} h1 {font-size:17px;max-width:180px}
+  header {gap:5px;padding:6px 8px} .seg span {display:none} .seg button {padding:0 8px;font-size:12px}
+  .icon-btn {font-size:11px;padding:0 7px} .count {width:100%;text-align:center;margin:0}
+  .transport {justify-content:center} .stage-title h2 {font-size:23px}
+  .feet-card {grid-template-columns:1fr} .feet-card img {width:100%;height:120px}
+  .feet-card figcaption {padding:4px} .file-heading h2 {font-size:22px}
+  h1 small {display:none}
+  #style-bharatanatyam {font-size:10px;letter-spacing:-.2px}
+}
+@media (min-width:601px) and (max-width:999px) and (min-height:701px) {
+  main {grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) 232px}
+  .panel {display:grid;grid-template-columns:246px minmax(0,1fr);border-left:0;border-top:1px solid #303848}
+  .selector {border-bottom:0;border-right:1px solid #303848}
+  .panel-scroll {height:232px}
+  .feet-card {grid-template-columns:148px 1fr}
+  .feet-card img {width:148px;height:148px}
+  .style-chip {font-size:11px;gap:4px;padding:0 6px}
+}
+@media (max-width:600px) {
+  body {overflow:hidden;display:grid;height:100dvh;grid-template-rows:auto minmax(0,1fr) 64px}
+  header {flex-wrap:wrap;padding:9px;gap:5px}
+  h1 {font-size:19px;width:100%;flex:none;margin-bottom:5px} h1 small {display:none}
+  .seg {margin-right:auto} .seg span {display:none} .seg button {padding:0 7px;font-size:11px}
+  .icon-btn {font-size:11px;padding:0 5px}
+  main {display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:400px minmax(0,1fr);overflow:hidden}
+  .study {height:400px;grid-template-rows:50px minmax(0,1fr) auto auto auto}
+  .viewbar {padding:3px 8px;gap:4px} .viewbar .btn {font-size:11px;padding:0 7px}
+  .viewbar .spacer {display:none} .stage-title {left:14px;top:10px}
+  .stage-title h2 {font-size:28px} .stage-title p {font-size:11px}
+  #scene {position:absolute;bottom:0;height:calc(100% - 48px)}
+  .gesture-detail {top:0;right:8px;font-size:10px}
+  .gesture-detail svg {width:42px;height:48px}
+  .stage-title {top:3px;left:12px}
+  .stage-title .eyebrow {font-size:10px}
+  .stage-title h2 {font-size:20px;margin:2px 0}
+  .stage-title p {display:none}
+  .is-paired .stage-title h2 {font-size:16px;max-width:310px}
+  .stage-caption {left:14px;gap:4px} .legend {display:none} #movement {font-size:11px}
+  #rhythm {height:56px} #rhythm.compare {height:90px} .transport {padding:6px;gap:4px}
+  .transport .btn {font-size:11px;padding:0 7px} #play {min-width:80px;font-size:12px}
+  .count {font-size:10px;margin-left:0;flex:1;text-align:right} .speed {margin-left:0}
+  .panel {border-left:0;overflow:hidden}
+  .selector {padding:8px}
+  #styleSelector .selector-label,#styleGrid {display:none}
+  #styleSelector .mobile-style {display:block}
+  .panel-scroll {overflow:auto;flex:1;padding:10px}
+  .feet-card {grid-template-columns:112px 1fr} .feet-card img {width:112px;height:112px}
+  footer {position:static;padding:7px 10px;z-index:4;height:64px;min-height:64px} footer .mark {display:none}
+  #hint {font-size:11px} .note-area {max-height:90px}.compare-table {font-size:12px}
+}
+@media print {
+  main {display:none!important}
+  .print-output {display:block;white-space:pre-wrap;font:12pt/1.6 Georgia,serif;color:black;padding:12mm}
+  body {display:block;overflow:visible;background:white;color:black}
+  header,.study,.selector,footer,.actions,.terms,.criteria,.vocab-group {display:none!important}
+  main,.panel,.panel-scroll {display:block;overflow:visible;height:auto;border:0;padding:0;background:white}
+  .sec {background:white;color:black;border:0} #file,#comparePanel,#vocabulary {display:none!important}
+  textarea {border:0;background:white;color:black;resize:none;overflow:visible;min-height:150px}
+  .draft-box .btn {display:none} .draft-box {break-inside:avoid} .checks,.privacy {color:black}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Dance Styles Explorer<small>Analyzing and critiquing dance styles</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-styles" aria-pressed="true"><span>1</span>Styles</button>
+    <button id="m-compare" aria-pressed="false"><span>2</span>Compare</button>
+    <button id="m-critique" aria-pressed="false"><span>3</span>Critique</button>
+  </div>
+  <button id="motion" class="icon-btn" aria-pressed="true">Motion</button>
+  <button id="sound" class="icon-btn" aria-pressed="true">Sound</button>
+  <button id="read" class="icon-btn">Read</button>
+</header>
+<main>
+  <section class="study" aria-label="Movement study">
+    <div class="viewbar" role="group" aria-label="Stage view">
+      <button id="live" class="btn" aria-pressed="true">Live</button>
+      <button id="trace" class="btn" aria-pressed="false">Trace</button>
+      <button id="rhythmToggle" class="btn" aria-pressed="true">Rhythm line</button>
+      <span class="spacer"></span>
+      <button id="overlay" class="btn" aria-pressed="false" hidden>Overlay</button>
+      <button id="clearTrace" class="btn">Clear trace</button>
+    </div>
+    <div id="stage" class="stage">
+      <svg id="scene" role="img" aria-label="Animated dance phrase with high, middle and low level guides"></svg>
+      <div class="stage-title"><span class="eyebrow" id="stageTag">Movement file / 01</span><h2 id="stageName">Ballet</h2>
+        <p id="stageSub">16 counts · piano waltz · 56 counts/min</p></div>
+      <div class="stage-caption"><span id="movement">Plié in first</span><span class="legend"><span><i></i>Hands</span>
+        <span><i class="feet"></i>Feet</span></span></div>
+      <div id="gestureDetail" class="gesture-detail" hidden>
+        <svg id="gestureImage" overflow="hidden" preserveAspectRatio="none" viewBox="0 0 .5 .5" aria-label="Detailed painted hand gesture">
+          <image href="art:painted-mudras" width="1" height="1" preserveAspectRatio="none"/>
+        </svg><span id="gestureLabel"></span>
+      </div>
+    </div>
+    <svg id="rhythm" role="img" aria-label="Count ticks, accent bars, foot sound dots and current playhead"></svg>
+    <div class="transport" id="transport">
+      <button class="btn primary" id="play">▶ Play</button>
+      <button class="btn" id="prev" aria-label="Previous count">◀ count</button>
+      <button class="btn" id="next" aria-label="Next count">count ▶</button>
+      <div class="speed" role="group" aria-label="Playback speed">
+        <button class="btn" id="half" aria-pressed="false">0.5x</button><button class="btn" id="normal" aria-pressed="true">1x</button>
+      </div>
+      <button id="note" class="btn" hidden>⌖ Note</button>
+      <span id="count" class="count">Count 1 of 16</span>
+    </div>
+    <div id="noteArea" class="note-area" hidden>
+      <div class="note-controls"><span class="eyebrow">Count-stamped notes</span><button class="btn" id="allNotes" aria-pressed="false">All notes</button></div>
+      <div id="noteList" class="note-list"></div>
+    </div>
+  </section>
+  <aside class="panel" aria-label="Style file and critique desk">
+    <div class="selector" id="styleSelector"><div class="selector-label"><span>STYLE FILES</span><span>08 / OPEN ARCHIVE</span></div>
+      <div class="style-grid" id="styleGrid"></div>
+      <div class="mobile-style"><label>Style file<select id="mobileStyle" aria-label="Style file"></select></label></div>
+    </div>
+    <div class="selector" id="compareSelector" hidden>
+      <div class="pair"><label>Style A<select id="styleA"></select></label><label>Style B<select id="styleB"></select></label></div>
+    </div>
+    <div class="panel-scroll" id="panelScroll">
+      <article id="file"></article>
+      <article id="comparePanel" hidden></article>
+      <section id="critiquePanel" hidden>
+        <button id="critiqueCompare" class="btn" aria-pressed="false">Critique a comparison</button>
+        <div class="sec" id="vocabulary" style="margin-top:12px"><h2>Vocabulary guide</h2><div id="vocab"></div>
+          <p id="definition">Tap a term to see its meaning and use it in a note.</p></div>
+        <div class="sec" style="margin-top:12px"><h2>Your critique</h2>
+          <div class="draft-box"><label for="saw">What I saw</label>
+            <textarea id="saw" aria-label="What I saw" placeholder="Describe and analyze a moment..."></textarea>
+            <button class="btn insert" data-box="saw">Insert note</button></div>
+          <div class="draft-box"><label for="means">What it means</label>
+            <textarea id="means" aria-label="What it means" placeholder="Interpret it using the style's context..."></textarea>
+            <button class="btn insert" data-box="means">Insert note</button></div>
+          <div class="draft-box"><label for="works">How well it works</label>
+            <textarea id="works" aria-label="How well it works" placeholder="Evaluate a moment against a criterion..."></textarea>
+            <button class="btn insert" data-box="works">Insert note</button></div>
+          <div id="criteria" class="criteria" aria-label="Evaluation criteria"></div>
+          <div id="checks" class="checks" aria-live="polite"></div>
+          <div class="actions"><button class="btn" id="copy">Copy text</button><button class="btn" id="print">Print</button>
+            <button class="btn" id="clear">Clear critique</button></div>
+          <p class="privacy" id="saveStatus">Notes and draft are saved on this device only. They never leave this device.</p>
+        </div>
+      </section>
+    </div>
+  </aside>
+</main>
+<footer>
+  <p id="hint" class="hint">Pick a style and watch its phrase. Turn on Trace to see the shape it leaves in space.</p>
+  <span class="mark">Curio Class / Dance studies</span>
+</footer>
+<dialog id="noteDialog" aria-labelledby="noteTitle"><h2 id="noteTitle">Note at count 1</h2>
+  <label>Term<select id="noteTerm"></select></label><label style="margin-top:12px">A few words, up to 140 characters
+    <textarea id="noteWords" aria-label="A few words, up to 140 characters" maxlength="140"
+      placeholder="What did you see at this count?"></textarea></label>
+  <p id="noteError" hidden>Write a few words before saving your note.</p>
+  <div class="actions"><button id="saveNote" class="btn primary">Save note</button><button id="cancelNote" class="btn">Cancel</button></div>
+</dialog>
+<dialog id="clearDialog" aria-labelledby="clearTitle"><h2 id="clearTitle">Clear your critique?</h2>
+  <p>This removes all notes and the three draft boxes saved on this device.</p>
+  <div class="actions"><button id="confirmClear" class="btn primary">Clear notes and draft</button>
+    <button id="cancelClear" class="btn">Keep my work</button></div>
+</dialog>
+<dialog id="copyDialog" aria-labelledby="copyTitle"><h2 id="copyTitle">Copy your critique</h2>
+  <p>Select the text, then use your device's Copy command.</p><textarea id="copyFallback" readonly aria-label="Critique text to copy"></textarea>
+  <div class="actions"><button class="btn" id="closeCopy">Close</button></div>
+</dialog>
+<div id="printOutput" class="print-output"></div>
+<script src="kit:curio"></script>
+<script src="kit:dance"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const DATA = "json:data";
+  const STYLES = DATA.styles;
+  const IDS = Object.keys(STYLES);
+  const TERMS = Object.values(DATA.vocab).flatMap(group => Object.keys(group));
+  const CRITERIA = ['Clarity of style', 'Musicality', 'Use of space', 'Contrast of energy', 'Communicates an idea', 'Technique as shown'];
+  const ART = {
+    ballet:'art:dse-ballet', modern:'art:dse-modern', jazz:'art:dse-jazz', tap:'art:dse-tap', breaking:'art:dse-breaking',
+    irish:'art:dse-irish', flamenco:'art:dse-flamenco', bharatanatyam:'art:dse-bharatanatyam'
+  };
+  const state = {
+    mode:'styles', style:'ballet', styleB:'breaking', playing:false, pos:0, speed:1,
+    live:true, trace:false, rhythm:true, overlay:false, comparison:false, allNotes:false, notes:[], draft:{
+      saw:'',means:'',works:''
+    },
+    term:'isolation', selectedNote:null, noteStart:0, noteEnd:0, noteStyle:'ballet', noteClockStart:0, noteClockEnd:0
+  };
+  let storageOK = true;
+  try {
+    const saved = JSON.parse(localStorage.getItem('dance-styles-explorer') || 'null');
+    if (saved && Array.isArray(saved.notes)) {
+      state.notes = saved.notes.filter(n => IDS.includes(n.style) && TERMS.includes(n.term) && typeof n.words === 'string')
+        .map((n,i) => ({
+        ...n, id:/^[a-z0-9]+$/i.test(String(n.id))?String(n.id):'restored'+i,
+          other:IDS.includes(n.other)?n.other:null, words:n.words.slice(0,140),
+          start:Math.max(1,Math.min(STYLES[n.style].total,Number(n.start)||1)),
+          end:Math.max(1,Math.min(STYLES[n.style].total,Number(n.end)||1))
+      }));
+    }
+    if (saved && saved.draft) for (const k of ['saw','means','works']) state.draft[k] = String(saved.draft[k] || '');
+  } catch {
+    storageOK = false;
+  }
+  const esc = text => String(text).replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+  const paired = () => state.mode === 'compare' || (state.mode === 'critique' && state.comparison);
+  const setHint = text => {
+    $('hint').textContent = text;
+  };
+  const L = {
+    ...DATA.lines
+  };
+  for (let i=1; i<=24; i++) L['saved'+i] = 'Note saved at count '+i+'.';
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode+':'+state.style, hint:false,
+    read:() => $('hint').textContent,
+    welcome:() => state.playing||(state.mode==='compare'&&state.overlay) ? null
+      : ['w'+state.mode[0].toUpperCase()+state.mode.slice(1), {
+      valid:() => !state.playing
+    }],
+    speaks:'.style-chip,#play,#note'
+  });
+  function how(key, valid = () => true) {
+    V.how(key, {
+      valid:() => !state.playing && valid(), hint:false
+    });
+  }
+  function persist() {
+    try {
+      localStorage.setItem('dance-styles-explorer', JSON.stringify({
+        notes:state.notes,draft:state.draft
+      }));
+      storageOK = true;
+    } catch {
+      storageOK = false;
+    }
+    $('saveStatus').textContent = storageOK ? 'Notes and draft are saved on this device only. They never leave this device.'
+      : 'This browser could not save. Copy your critique before closing. Nothing leaves this device.';
+  }
+  const P = name => Dance.pose(name);
+  const custom = (name, base, extra) => {
+    const pose={
+      ...P(base),...extra
+    };
+    if(extra.arms) {
+      pose.lArm=extra.arms.slice();
+      pose.rArm=extra.arms.slice();
+    }
+    if(extra.legs) {
+      pose.lLeg=extra.legs.slice();
+      pose.rLeg=extra.legs.slice();
+    }
+    if(extra.toe!=null) {
+      pose.lToe=extra.toe;
+      pose.rToe=extra.toe;
+    }
+    Dance.poses[name]=pose;
+    return name;
+  };
+  custom('dse-tendu','stand',{
+    rLeg:[32,8,0],rToe:1,arms:[75,20,82,30]
+  });
+  custom('dse-fifth','stand',{
+    lLeg:[0,12,0],rLeg:[0,-12,0],arms:[70,15,90,70]
+  });
+  custom('dse-spiral','crouch',{
+    twist:65,side:25,arms:[80,65,60,80]
+  });
+  custom('dse-roll','lie',{
+    roll:65,arms:[60,70,75,100],lLeg:[65,6,80],rLeg:[30,5,65]
+  });
+  custom('dse-tilt','stand',{
+    side:35,lArm:[160,0,168,0],rArm:[85,0,92,0],rLeg:[0,45,10]
+  });
+  custom('dse-jazz-head','stand',{
+    tilt:24,arms:[40,0,45,140]
+  });
+  custom('dse-jazz-shoulder','stand',{
+    side:12,twist:20,lArm:[45,0,70,10],rArm:[20,0,25,20]
+  });
+  custom('dse-jazz-hip','stand',{
+    side:-16,lLeg:[15,10,20],rLeg:[5,16,14],arms:[40,-25,55,165]
+  });
+  custom('dse-jazz-hit','stand',{
+    lArm:[125,0,140,0],rArm:[85,0,95,0],lLeg:[25,26,45],rLeg:[0,25,0]
+  });
+  custom('dse-tap-front','stand',{
+    rLeg:[30,3,12],arms:[10,0,14,25]
+  });
+  custom('dse-tap-back','stand',{
+    rLeg:[-22,3,32],arms:[10,0,14,25]
+  });
+  custom('dse-tap-heel','stand',{
+    rToe:1,lLeg:[10,3,12],arms:[10,0,14,25]
+  });
+  custom('dse-toprock','stand',{
+    lLeg:[25,-12,10],rLeg:[-5,16,12],arms:[94,10,100,5],twist:18
+  });
+  custom('dse-floor-step','sit',{
+    pitch:30,lLeg:[100,35,80],rLeg:[95,12,20],lArm:[20,-90,5,-90],rArm:[40,70,20,90]
+  });
+  custom('dse-spin','lie',{
+    yaw:30,lLeg:[50,25,20],rLeg:[30,45,20],arms:[70,10,90,10]
+  });
+  custom('dse-freeze','crouch',{
+    pitch:70,roll:30,lArm:[30,90,5,90],rArm:[70,90,50,90],lLeg:[65,40,95],rLeg:[105,15,100]
+  });
+  custom('dse-irish-point','stand',{
+    arms:[0,0,0,0],rLeg:[25,-9,0],rToe:1,lToe:.4
+  });
+  custom('dse-irish-hop','hop',{
+    arms:[0,0,0,0],rLeg:[20,-8,95],lToe:1
+  });
+  custom('dse-irish-kick','kick',{
+    arms:[0,0,0,0],rLeg:[83,-8,0],lToe:1
+  });
+  custom('dse-flamenco-low','stand',{
+    lArm:[70,30,120,45],rArm:[100,25,148,60],lLeg:[8,10,12]
+  });
+  custom('dse-flamenco-high','stand',{
+    lArm:[155,25,175,75],rArm:[135,30,168,60],rLeg:[15,8,20],head:-8
+  });
+  custom('dse-remate','stand',{
+    lArm:[170,0,150,45],rArm:[78,25,110,120],lLeg:[15,16,26],head:-8
+  });
+  custom('dse-araimandi','plie',{
+    lLeg:[35,43,75],rLeg:[35,43,75],arms:[90,0,90,90]
+  });
+  custom('dse-tatta','dse-araimandi',{
+    rLeg:[52,42,95],arms:[90,0,90,90]
+  });
+  custom('dse-natta','dse-araimandi',{
+    rLeg:[0,55,0],rToe:.5,rArm:[90,0,90,0],lArm:[90,0,90,90]
+  });
+  custom('dse-pataka','dse-araimandi',{
+    arms:[95,0,95,0]
+  });
+  custom('dse-alapadma','dse-araimandi',{
+    arms:[130,0,145,20],head:-8
+  });
+  const STEP_NAMES = {
+    ballet:['Plié in first','Relevé · arms in fifth','Tendu front','Arabesque','Passé relevé','Pirouette · one turn',
+      'Close in fifth · port de bras','Révérence'],
+    modern:['Contraction','Release','Spiral to the floor','Floor roll','Rise to kneel','Fall and recovery swing',
+      'Off-balance tilt','Suspend → collapse'],
+    jazz:['Head isolation','Shoulder isolation','Jazz walk','Kick ball change','Pas de bourrée','Jazz turn','Hip isolation','Sharp finish'],
+    tap:['Shuffle ball change','Shuffle ball change','Flaps traveling right','Flaps traveling right','Single time step','Single time step',
+      'Heel drops','Stamp · stamp · hold'],
+    breaking:['Toprock cross steps','Toprock open','Go down','Six-step footwork','Six-step footwork','Six-step footwork','Back spin','Baby freeze'],
+    irish:['Hop and point','Sevens right','Two threes','High kick','Hop and point left','Sevens left','Two threes left','High kick left'],
+    flamenco:['Braceo · floreo','Zapateado · accent 3','Braceo rising','Zapateado · accent 6','Accent 8 · turn','Accents 10 + 12',
+      'Braceo · floreo','Zapateado · accent 3','Braceo rising','Zapateado · accent 6','Accent 8 · turn','Remate · held finish'],
+    bharatanatyam:['Araimandi','Tatta adavu','Tatta adavu','Natta adavu','Natta adavu','Pataka · flat hand','Alapadma · lotus','Closing pose']
+  };
+  // Each step has two counts. The last keyframe belongs to the transition at the end of the second count.
+  const seq = (poses, opts={
+  }) => ({
+    poses,counts:2,at:{
+      x:50,z:43
+    },facing:0,...opts
+  });
+  const arc = (a,b) => Dance.paths.arc(50,43,7,a,b,12);
+  const PHRASES = {
+    ballet:Dance.phrase([
+      seq(['plie','plie','stand']),seq(['stand','releve','releve']),seq(['releve','dse-tendu','dse-tendu']),
+      seq(['dse-tendu','arabesque','arabesque'],{
+      facing:28
+    }),seq(['arabesque','passe','passe']),
+      seq([{
+      ...P('passe'),yaw:0
+    },{
+      ...P('passe'),yaw:180
+    },{
+      ...P('passe'),yaw:360
+    }]),
+      seq(['dse-fifth','release','dse-fifth']),seq(['dse-fifth','bow','bow'])]),
+    modern:Dance.phrase([
+      seq(['stand','contraction','contraction']),seq(['contraction','release','release']),
+      seq(['release','dse-spiral','sit'],{
+      dyn:'collapse'
+    }),seq(['sit','dse-roll','lie'],{
+      facing:65
+    }),
+      seq(['lie','kneel','kneel']),seq(['kneel','lunge','release'],{
+      dyn:'swing'
+    }),
+      seq(['release','dse-tilt','dse-tilt'],{
+      dyn:'suspend'
+    }),seq(['dse-tilt','dse-tilt','lie'],{
+      dyn:'collapse'
+    })]),
+    jazz:Dance.phrase([
+      seq(['stand','dse-jazz-head',{
+      ...P('dse-jazz-head'),tilt:-24
+    }],{
+      dyn:'sharp'
+    }),
+      seq(['stand','dse-jazz-shoulder',Dance.mirror('dse-jazz-shoulder')],{
+      dyn:'sharp'
+    }),
+      seq(['step',Dance.mirror('step'),'step'],{
+      travel:Dance.paths.line([50,43],[62,43])
+    }),
+      seq(['kick','step','stand'],{
+      dyn:'sharp'
+    }),seq(['step',Dance.mirror('step'),'stand']),
+      seq([{
+      ...P('passe'),yaw:0
+    },{
+      ...P('passe'),yaw:180
+    },{
+      ...P('passe'),yaw:360
+    }],{
+      dyn:'sharp'
+    }),
+      seq(['dse-jazz-hip',Dance.mirror('dse-jazz-hip'),'dse-jazz-hip'],{
+      dyn:'sharp'
+    }),
+      seq(['stand','dse-jazz-hit','dse-jazz-hit'],{
+      dyn:'sharp'
+    })]),
+    tap:Dance.phrase([
+      seq(['dse-tap-front','dse-tap-back','step'],{
+      dyn:'sharp'
+    }),seq(['dse-tap-front','dse-tap-back','step'],{
+      side:'L',dyn:'sharp'
+    }),
+      seq(['dse-tap-front','step','dse-tap-back'],{
+      travel:Dance.paths.line([50,43],[56,43]),dyn:'sharp'
+    }),
+      seq(['dse-tap-front','step','dse-tap-back'],{
+      travel:Dance.paths.line([56,43],[62,43]),side:'L',dyn:'sharp'
+    }),
+      seq(['dse-tap-back','dse-tap-front','step'],{
+      dyn:'sharp'
+    }),seq(['step','dse-tap-heel','stand'],{
+      side:'L',dyn:'sharp'
+    }),
+      seq(['stand','dse-tap-heel','stand'],{
+      dyn:'sharp'
+    }),seq(['stamp','stand','stand'],{
+      dyn:'sharp'
+    })]),
+    breaking:Dance.phrase([
+      seq(['dse-toprock',Dance.mirror('dse-toprock'),'dse-toprock'],{
+      dyn:'sharp'
+    }),
+      seq(['dse-toprock',Dance.mirror('dse-toprock'),'arms-wide'],{
+      dyn:'sharp'
+    }),
+      seq(['arms-wide','crouch','dse-floor-step'],{
+      dyn:'collapse',travel:Dance.paths.line([50,43],[57,43])
+    }),
+      seq(['dse-floor-step',Dance.mirror('dse-floor-step'),'dse-floor-step'],{
+      travel:arc(0,120),facing:40
+    }),
+      seq(['dse-floor-step',Dance.mirror('dse-floor-step'),'dse-floor-step'],{
+      travel:arc(120,240),facing:160
+    }),
+      seq(['dse-floor-step',Dance.mirror('dse-floor-step'),'dse-floor-step'],{
+      travel:arc(240,360),facing:280
+    }),
+      seq([{
+      ...P('dse-spin'),yaw:0
+    },{
+      ...P('dse-spin'),yaw:180
+    },{
+      ...P('dse-spin'),yaw:360
+    }]),
+      seq(['dse-freeze','dse-freeze','dse-freeze'],{
+      facing:40,dyn:'sharp'
+    })]),
+    irish:Dance.phrase(Array.from({
+      length:8
+    },(_,i) => seq(
+      i%4===0 ? ['dse-irish-hop','dse-irish-point','dse-irish-point'] : i%4===3 ? ['dse-irish-point','dse-irish-kick','dse-irish-point']
+        : ['dse-irish-point','dse-irish-hop','dse-irish-point'],
+      {
+      side:i>=4?'L':undefined,dyn:'sharp',...(i%4===1?{
+        travel:Dance.paths.line(i<4?[50,43]:[64,43],i<4?[64,43]:[50,43])
+      }:{
+      })
+    }))),
+    flamenco:Dance.phrase(Array.from({
+      length:12
+    },(_,i) => seq(
+      i===11 ? ['dse-remate','dse-remate','dse-remate'] : i%3===0 ? ['dse-flamenco-low','dse-flamenco-high','dse-flamenco-low']
+        : ['dse-flamenco-high',{
+      ...P('dse-flamenco-low'),rLeg:[35,7,42]
+    },'dse-flamenco-high'],
+      {
+      side:i%2?'L':undefined,dyn:'sharp'
+    }))),
+    bharatanatyam:Dance.phrase([
+      seq(['dse-araimandi','dse-araimandi','dse-araimandi']),seq(['dse-araimandi','dse-tatta','dse-araimandi'],{
+      dyn:'sharp'
+    }),
+      seq(['dse-araimandi',Dance.mirror('dse-tatta'),'dse-araimandi'],{
+      dyn:'sharp'
+    }),
+      seq(['dse-araimandi','dse-natta','dse-araimandi'],{
+      dyn:'sharp'
+    }),
+      seq(['dse-araimandi',Dance.mirror('dse-natta'),'dse-araimandi'],{
+      dyn:'sharp'
+    }),
+      seq(['dse-araimandi','dse-pataka','dse-pataka']),seq(['dse-pataka','dse-alapadma','dse-alapadma']),
+      seq(['dse-alapadma','dse-araimandi','dse-araimandi'],{
+      dyn:'sharp'
+    })])
+  };
+  // Resolve stationary locations after a traveling step. No invisible jumps between adjacent steps.
+  for (const phrase of Object.values(PHRASES)) {
+    let at={
+      x:50,z:43
+    };
+    for (const step of phrase.steps) {
+      if (step.travel) at = step.travel.at(1);
+      else step.at = {
+        x:at.x,z:at.z
+      };
+    }
+  }
+  const EVENTS = {
+  };
+  for (const id of IDS) {
+    const s=STYLES[id], accents=[], feet=[];
+    for (let n=1; n<=s.total; n++) {
+      const cycle=((n-1)%12)+1;
+      const strong = id==='flamenco' ? [3,6,8,10,12].includes(cycle) : (n-1)%4===0;
+      if (strong || (id==='jazz' && n%2===0)) accents.push({
+        at:n-1+(id==='jazz'?.5:0),strength:strong?1:.65
+      });
+      if (['tap','irish','flamenco','bharatanatyam'].includes(id)) {
+        feet.push({
+          at:n-1,strength:strong?1:.6
+        });
+        if (id==='tap' && n<15) feet.push({
+          at:n-1+.5,strength:.5
+        });
+        if (id==='irish' && n%4!==0) feet.push({
+          at:n-1+.5,strength:.45
+        });
+      }
+    }
+    EVENTS[id]={
+      accents,feet
+    };
+  }
+  function makeTrack(id) {
+    const s=STYLES[id], sub=id==='ballet'?3:2, length=s.total*sub;
+    const pattern=() => Array(length).fill(null);
+    const bass=pattern(), melody=pattern(), drum=pattern(), tap=pattern(), clap=pattern();
+    for(let n=0;n<s.total;n++) {
+      bass[n*sub]=[48,43,45,41][Math.floor(n/4)%4];
+      if(id==='ballet') {
+        melody[n*sub]=[60,64,67];
+        melody[n*sub+1]=[64,67];
+        melody[n*sub+2]=[64,67];
+      } else if(id==='modern') {
+        if(n%3===0) melody[n*sub]=[55,62,65][Math.floor(n/3)%3];
+      } else if(id==='irish') {
+        melody[n*sub]=[74,76,78,81,78,76,74,69][n%8];
+        melody[n*sub+1]=[76,78,81,78,76,74,69,74][n%8];
+      } else if(id==='jazz') melody[n*sub+1]=[60,64,67];
+      else if(id==='flamenco') melody[n*sub]=[52,55,59,64];
+      if(id==='breaking') drum[n*sub]=n%2===0?'X':null;
+    }
+    for(const ev of EVENTS[id].feet) tap[Math.round(ev.at*sub)]='x';
+    for(const ev of EVENTS[id].accents) clap[Math.round(ev.at*sub)]='X';
+    const parts = id==='ballet'?{
+      piano:melody,bass
+    }:id==='modern'?{
+      piano:melody,pad:bass
+    }
+      :id==='jazz'?{
+      piano:melody,bass
+    }:id==='tap'?{
+      bass,tap
+    }
+      :id==='breaking'?{
+      kick:drum,snare:clap,hat:'x.'.repeat(s.total),shaker:'.x'.repeat(s.total)
+    }
+      :id==='irish'?{
+      pad:melody,tap
+    }:id==='flamenco'?{
+      pluck:melody,clap,tap
+    }:{
+      wood:clap,stamp:tap,hat:'.x'.repeat(s.total)
+    };
+    return {
+      len:s.total,sub,swing:['jazz','tap'].includes(id)?.2:0,vol:.35,countIn:false,parts
+    };
+  }
+  const TRACKS=Object.fromEntries(IDS.map(id => [id,makeTrack(id)]));
+  // These local landmark keyframes supply technique details the shared angle rig cannot express.
+  // The renderer, traces and measurements all use these same corrected joints.
+  function modelJoints(id,pose,c) {
+    const J=Dance.skeleton(pose);
+    const shiftBody=hip=>{
+      const dy=hip-J.pelvis[1];
+      for(const key of Object.keys(J)) if(!['fwd','up','hfwd','hup'].includes(key)) J[key][1]+=dy;
+    };
+    if(id==='ballet'&&c<2) {
+      const bend=Math.min(1,Math.max(0,pose.lLeg[2]/62));
+      shiftBody(.525-.075*bend);
+      for(const [side,sign] of [['l',1],['r',-1]]) {
+        J[side+'Kn']=[sign*(.058+.095*bend),.27-.015*bend,.01];
+        J[side+'An']=[sign*.025,.035,0];
+        J[side+'To']=[sign*.10,.016,.025];
+      }
+    }
+    if(id==='ballet'&&c>=2&&c<4) {
+      for(const [side,sign] of [['l',1],['r',-1]]) {
+        J[side+'El']=[sign*.17,J[side+'Sh'][1]+.12,.01];
+        J[side+'Ha']=[sign*.035,J[side+'Sh'][1]+.27,.015];
+      }
+    }
+    if(id==='ballet'&&c>=4&&c<6) {
+      J.rAn=[-.045,.035,.26];
+      J.rTo=[-.045,.016,.34];
+      J.rKn=J.rHi.map((v,i)=>(v+J.rAn[i])/2);
+    }
+    if(id==='bharatanatyam') {
+      const natta=(c>=6&&c<10),side=c>=8?'l':'r';
+      shiftBody(.39);
+      for(const [key,sign] of [['l',1],['r',-1]]) {
+        const stretched=natta&&key===side;
+        const striking=c>=2&&c<6&&((c<4&&key==='r')||(c>=4&&key==='l'));
+        const raised=striking?Math.max(0,(pose[key+'Leg'][0]-35)/17)*.075:0;
+        J[key+'An']=[sign*(stretched?.37:.17),.035+raised,.015];
+        J[key+'To']=[sign*(stretched?.43:.23),.016+raised,.045];
+        J[key+'Kn']=stretched?J[key+'Hi'].map((v,i)=>(v+J[key+'An'][i])/2):[sign*.265,.20+raised,.015];
+      }
+    }
+    if(id==='flamenco'&&c>=22) {
+      const high=J.lSh[1];
+      J.lEl=[.15,high+.14,.01];J.lHa=[.10,high+.31,.02];
+      J.rEl=[-.20,high-.09,.02];J.rHa=[-.08,high+.025,.04];
+    }
+    if(id==='breaking'&&c>=6&&c<12) {
+      // Six alternating foot placements around two grounded hands, one per count.
+      const angle=Math.floor(c-6)*Math.PI/3;
+      const feet=[[.29*Math.cos(angle),-.07+.26*Math.sin(angle)],
+        [.29*Math.cos(angle+Math.PI),-.07+.26*Math.sin(angle+Math.PI)]];
+      const landmarks={pelvis:[0,.28,0],chest:[0,.23,.20],neck:[0,.24,.26],head:[0,.29,.32],
+        lSh:[.09,.23,.20],rSh:[-.09,.23,.20],lWa:[.07,.29,.05],rWa:[-.07,.29,.05],
+        lEl:[.14,.12,.24],rEl:[-.14,.12,.24],lHa:[.16,.024,.30],rHa:[-.16,.024,.30],
+        lHi:[.058,.28,0],rHi:[-.058,.28,0]};
+      for(const [key,value] of Object.entries(landmarks)) J[key]=value;
+      for(const [i,key] of ['l','r'].entries()) {
+        const [x,z]=feet[i];
+        J[key+'An']=[x,.035,z];J[key+'To']=[x,.016,z+.06];
+        J[key+'Kn']=[x*.65,.14,z*.65];
+      }
+    }
+    if(id==='breaking'&&c>=14) {
+      const landmarks={
+        pelvis:[.61,.26],chest:[.35,.46],neck:[.24,.66],head:[.13,.76],
+        rSh:[.31,.48],lSh:[.40,.42],rWa:[.46,.39],lWa:[.49,.35],
+        rEl:[.47,.56],lEl:[.65,.62],rHa:[.35,.875],lHa:[.66,.875],
+        rHi:[.59,.28],lHi:[.64,.25],rKn:[.65,.49],lKn:[.67,.12],
+        rAn:[.865,.48],lAn:[.87,.255],rTo:[.94,.57],lTo:[.94,.35]
+      };
+      for(const [key,[x,y]] of Object.entries(landmarks)) J[key]=[(x-.5)*.95,(.91-y)*.95*2/3,0];
+    }
+    return J;
+  }
+  function projectModel(actor,id,c) {
+    const J=modelJoints(id,actor.pose,c),unit=actor.height;
+    actor.joints=J;
+    const angle=actor.facing*Math.PI/180,co=Math.cos(angle),si=Math.sin(angle);
+    for(const [key,point] of Object.entries(J)) {
+      if(['fwd','up','hfwd','hup'].includes(key)) continue;
+      const [x,y,z]=point;
+      actor.wj[key]=[actor.x+(x*co+z*si)*unit,y*unit,actor.z+(z*co-x*si)*unit];
+      actor.sj[key]=floor.project(...actor.wj[key]);
+    }
+  }
+  // Measurements use half-count samples of this exact phrase, independent of drawing size.
+  function measure(id) {
+    const phrase=PHRASES[id], levels=[0,0,0];
+    let reach=0, travel=0, stillness=0, previous=null;
+    const joints=['head','tilt','lean','side','twist','pitch','roll','yaw','lArm','rArm','lLeg','rLeg'];
+    for(let c=0;c<phrase.total;c+=.5) {
+      const sample=phrase.at(c), J=modelJoints(id,sample.pose,c), hip=J.pelvis[1];
+      levels[hip>=.52?0:hip>=.28?1:2]++;
+      reach=Math.max(reach,Math.hypot(...J.lHa.map((v,i)=>v-J.rHa[i])));
+      if(previous) travel+=Math.hypot((sample.x??50)-previous.x,(sample.z??43)-previous.z)/40;
+      previous={
+        x:sample.x??50,z:sample.z??43
+      };
+    }
+    for(let c=0;c<phrase.total;c++) {
+      const a=phrase.at(c).pose,b=phrase.at(Math.min(c+.999,phrase.total-.001)).pose;
+      const changes=joints.flatMap(k=>Array.isArray(a[k])?a[k].map((v,i)=>Math.abs(v-b[k][i])):[Math.abs(a[k]-b[k])]);
+      if(Math.max(...changes)<=5) stillness++;
+    }
+    return {
+      levels:levels.map(n=>Math.round(n/(phrase.total*2)*100)),reach,travel,
+      accents:EVENTS[id].accents.length/phrase.total*8,stillness
+    };
+  }
+  const METRICS=Object.fromEntries(IDS.map(id=>[id,measure(id)]));
+  const svg=$('scene');
+  const floor=Dance.floor(svg,'void',{
+    w:800,h:500,dancerFrac:.62
+  });
+  const colors=[{
+    hand:'#ffb4a2',foot:'#7de2d1',badge:'circle'
+  },{
+    hand:'#ffd166',foot:'#8fb8ff',badge:'square'
+  }];
+  // One painted source pose per performer. Swapping an image and its landmarks replaces the figure.
+  // The dance engine still supplies the pose clock; paintings follow its projected joint locations.
+  const PAINT = {
+    ballet:'art:painted-ballet-rig',modern:'art:painted-modern-rig',jazz:'art:painted-jazz-rig',tap:'art:painted-tap-rig',
+    breaking:'art:painted-breaking-rig',irish:'art:painted-irish-rig',flamenco:'art:painted-flamenco-rig',
+    bharatanatyam:'art:painted-bharatanatyam-rig'
+  };
+  const paintNS='http://www.w3.org/2000/svg';
+  const paintDefs=document.createElementNS(paintNS,'defs');
+  svg.appendChild(paintDefs);
+  const paintNode=(tag,attrs,parent)=>{
+    const node=document.createElementNS(paintNS,tag);
+    for(const [key,value] of Object.entries(attrs)) node.setAttribute(key,value);
+    parent.appendChild(node);
+    return node;
+  };
+  for(const id of IDS) paintNode('image',{id:'paint-'+id,href:PAINT[id],width:1,height:1,preserveAspectRatio:'none'},paintDefs);
+  paintNode('image',{id:'paint-freeze',href:'art:painted-breaking-freeze',width:1,height:1,
+    preserveAspectRatio:'none'},paintDefs);
+  paintNode('image',{id:'paint-hands',href:'art:painted-mudras',width:1,height:1,
+    preserveAspectRatio:'none'},paintDefs);
+  const CUTS = {
+    torso:{a:[.5,.21],b:[.5,.50],poly:[[.44,.17],[.56,.17],[.595,.205],[.605,.445],[.60,.54],[.40,.54],[.395,.445],[.405,.205]],j:['chest','pelvis']},
+    head:{a:[.5,.085],b:[.5,.175],poly:[[.43,0],[.57,0],[.57,.195],[.43,.195]],j:['head','neck']},
+    rUa:{a:[.40,.215],b:[.25,.22],poly:[[.23,.155],[.415,.155],[.415,.27],[.23,.27]],j:['rSh','rEl']},
+    lUa:{a:[.60,.215],b:[.75,.22],poly:[[.585,.155],[.77,.155],[.77,.27],[.585,.27]],j:['lSh','lEl']},
+    rFa:{a:[.25,.22],b:[.085,.22],poly:[[0,.12],[.265,.12],[.265,.265],[0,.265]],j:['rEl','rHa']},
+    lFa:{a:[.75,.22],b:[.915,.22],poly:[[.735,.12],[1,.12],[1,.265],[.735,.265]],j:['lEl','lHa']},
+    rTh:{a:[.445,.50],b:[.43,.68],poly:[[.36,.46],[.50,.46],[.50,.69],[.36,.70]],j:['rHi','rKn']},
+    lTh:{a:[.555,.50],b:[.57,.68],poly:[[.50,.46],[.64,.46],[.64,.70],[.50,.69]],j:['lHi','lKn']},
+    rSn:{a:[.43,.68],b:[.40,.90],poly:[[.345,.66],[.50,.66],[.50,.925],[.345,.925]],j:['rKn','rAn']},
+    lSn:{a:[.57,.68],b:[.59,.90],poly:[[.50,.66],[.65,.66],[.65,.925],[.50,.925]],j:['lKn','lAn']},
+    rFt:{a:[.40,.90],b:[.39,.97],poly:[[.32,.89],[.48,.89],[.48,1],[.32,1]],j:['rAn','rTo']},
+    lFt:{a:[.59,.90],b:[.60,.97],poly:[[.52,.89],[.68,.89],[.68,1],[.52,1]],j:['lAn','lTo']}
+  };
+  for(const [name,cut] of Object.entries(CUTS)) {
+    const clip=paintNode('clipPath',{id:'paint-cut-'+name,clipPathUnits:'userSpaceOnUse'},paintDefs);
+    paintNode('polygon',{points:cut.poly.map(p=>p.join(',')).join(' ')},clip);
+  }
+  function paintedView(parent,index=0) {
+    const group=paintNode('g',{class:'painted-dancer'},parent);
+    const parts={};
+    for(const name of Object.keys(CUTS)) {
+      const node=paintNode('g',{},group);
+      const use=paintNode('use',{'clip-path':'url(#paint-cut-'+name+')'},node);
+      parts[name]={node,use};
+    }
+    const freeze=paintNode('use',{href:'#paint-freeze',display:'none'},group);
+    const hands=['r','l'].map(side=>{
+      const crop=paintNode('svg',{overflow:'hidden',display:'none',preserveAspectRatio:'none'},group);
+      paintNode('use',{href:'#paint-hands'},crop);
+      return {side,crop};
+    });
+    const badge=paintNode(index?'rect':'circle',{fill:'#f5efff',stroke:'#141b25','stroke-width':1},group);
+    return {group,parts,freeze,hands,badge,index};
+  }
+  function paintPose(view,id,S,unit,facing=0,phase=0) {
+    const frozen=id==='breaking'&&phase>=14;
+    const mudra=id==='bharatanatyam'&&phase>=10&&phase<14;
+    view.freeze.setAttribute('display',frozen?'':'none');
+    if(frozen) {
+      const wrist=S.rHa;
+      view.freeze.setAttribute('transform',`translate(${wrist[0]-.35*.95*unit} ${wrist[1]-.875*.95*2/3*unit}) scale(${unit*.95} ${unit*.95*2/3})`);
+    }
+    const depth=[];
+    for(const [name,cut] of Object.entries(CUTS)) {
+      const A=S[cut.j[0]],B=S[cut.j[1]],p=view.parts[name];
+      p.node.style.display=frozen?'none':'';
+      let [ax,ay]=cut.a,[bx,by]=cut.b;
+      if(id==='ballet') {
+        if(name==='rSn') {ax=.443;ay=.67;bx=.428;by=.90;}
+        if(name==='lSn') {ax=.548;ay=.67;bx=.55;by=.90;}
+        if(name==='rFt') {ax=.428;ay=.90;bx=.415;by=.946;}
+        if(name==='lFt') {ax=.55;ay=.90;bx=.565;by=.946;}
+      }
+      const len=Math.hypot(bx-ax,by-ay),ux=(bx-ax)/len,uy=(by-ay)/len;
+      let dx=B[0]-A[0],dy=B[1]-A[1];
+      const projected=Math.hypot(dx,dy)||.001;
+      const minimum=unit*(name==='head'?.09:name==='torso'?.25:.035);
+      if(projected<minimum) {dx*=minimum/projected;dy*=minimum/projected;}
+      let width=unit*.83;
+      if(name==='head') {
+        const length=Math.hypot(dx,dy)||.001;
+        dx=dx/length*unit*.09;dy=dy/length*unit*.09;
+      }
+      const destLen=Math.hypot(dx,dy)||.001;
+      const nx=-dy/destLen*width,ny=dx/destLen*width;
+      const a=dx/len*ux-nx*uy,b=dy/len*ux-ny*uy;
+      const c=dx/len*uy+nx*ux,d=dy/len*uy+ny*ux;
+      p.node.setAttribute('transform',`matrix(${a} ${b} ${c} ${d} ${A[0]-a*ax-c*ay} ${A[1]-b*ax-d*ay})`);
+      p.use.setAttribute('href','#paint-'+id);
+      depth.push({node:p.node,z:(A[2]+B[2])/2,name});
+    }
+    depth.sort((a,b)=>b.z-a.z || (a.name==='torso'?1:-1));
+    depth.forEach(p=>view.group.appendChild(p.node));
+    view.badge.setAttribute('display',frozen?'none':'');
+    const center=[(S.chest[0]+S.pelvis[0])/2,(S.chest[1]+S.pelvis[1])/2];
+    if(view.index) {
+      for(const [key,value] of Object.entries({x:center[0]-unit*.015,y:center[1]-unit*.015,
+        width:unit*.03,height:unit*.03})) view.badge.setAttribute(key,value);
+    } else {
+      for(const [key,value] of Object.entries({cx:center[0],cy:center[1],r:unit*.017})) view.badge.setAttribute(key,value);
+    }
+    view.group.appendChild(view.badge);
+    view.hands.forEach(({side,crop},i)=>{
+      crop.setAttribute('display',mudra?'':'none');
+      if(!mudra) return;
+      crop.setAttribute('viewBox',`${i*.5} ${phase>=12?.5:0} .5 .5`);
+      crop.setAttribute('x',S[side+'Ha'][0]-.05*unit);
+      crop.setAttribute('y',S[side+'Ha'][1]-.125*unit);
+      crop.setAttribute('width',.10*unit);
+      crop.setAttribute('height',.14*unit);
+      view.group.appendChild(crop);
+    });
+  }
+  function createPerformer(index) {
+    const actor=Dance.dancer(floor.layers.actors,{floor,noShadow:false});
+    const view=paintedView(actor.g,index);
+    const set=actor.set.bind(actor);
+    actor.phase=0;
+    actor.set=sample=>{
+      if(sample.phase!==undefined) actor.phase=sample.phase;
+      return set(sample);
+    };
+    const render=actor.render.bind(actor);
+    actor.render=()=>{
+      render();
+      for(const child of actor.g.children) if(child!==view.group) child.style.display='none';
+      actor.g.appendChild(view.group);
+      const id=index?state.styleB:state.style;
+      projectModel(actor,id,actor.phase);
+      paintPose(view,id,actor.sj,floor.scale(actor.z)*actor.height,actor.facing+actor.pose.yaw,actor.phase);
+    };
+    actor.render();
+    return actor;
+  }
+  const dancers=[createPerformer(0),createPerformer(1)];
+  const trails=dancers.map((d,i)=>Dance.trail(d,{mode:'exposure',hidden:true,handColor:colors[i].hand,footColor:colors[i].foot}));
+  // Reuse painted ghost nodes between captures. The paths use the exact same analytical hands and feet.
+  trails.forEach((trail,index)=>{
+    let cache='',views=[];
+    trail.render=()=>{
+      trail.g.style.display=trail.hidden?'none':'';
+      if(trail.hidden) return;
+      const id=index?state.styleB:state.style;
+      const key=[id,floor.w,floor.h,trail.ghosts.length,trail.ghosts[0]?.hands,trail.ghosts.at(-1)?.hands].join('|');
+      if(key===cache) return;
+      cache=key;
+      trail.g.textContent='';
+      views=[];
+      const actor=dancers[index];
+      const save={pose:actor.pose,x:actor.x,z:actor.z,facing:actor.facing,lift:actor.lift,phase:actor.phase};
+      trail.ghosts.forEach((sample,i)=>{
+        actor.set({...sample,phase:sample.phase??0});
+        const view=paintedView(trail.g,index);
+        view.group.setAttribute('opacity',trail.ghosts.length===1?.26:.1+.16*i/(trail.ghosts.length-1));
+        paintPose(view,id,actor.sj,floor.scale(actor.z)*actor.height,actor.facing+actor.pose.yaw,actor.phase);
+        views.push(view);
+      });
+      actor.set(save);
+      for(let joint=0;joint<4;joint++) {
+        const points=trail.ghosts.map(g=>floor.project(...g.hands[joint]).slice(0,2).join(','));
+        if(points.length<2) continue;
+        paintNode('polyline',{points:points.join(' '),fill:'none',stroke:joint<2?colors[index].hand:colors[index].foot,
+          'stroke-width':2,'stroke-dasharray':joint<2?'none':'2 5',opacity:.8},trail.g);
+      }
+    };
+  });
+  let clock=null, run=null, music=null, lastHalf=-1, countStrip=null;
+  const ns='http://www.w3.org/2000/svg';
+  function el(tag,attrs,parent,text) {
+    const node=document.createElementNS(ns,tag);
+    for(const [k,v] of Object.entries(attrs)) node.setAttribute(k,v);
+    if(text!==undefined) node.textContent=text;
+    parent.appendChild(node);
+    return node;
+  }
+  function localCount(id,pos=state.pos) {
+    if(!paired()) return Math.max(0,Math.min(STYLES[id].total-.0001,pos));
+    return ((pos%STYLES[id].total)+STYLES[id].total)%STYLES[id].total;
+  }
+  function sampleAt(id,c,index) {
+    const phase=localCount(id,c);
+    const s=PHRASES[id].at(phase);
+    s.phase=phase;
+    if(id==='ballet'&&phase>=4&&phase<8) s.facing=70;
+    if(id==='irish'&&Math.floor(phase/2)%4===3) s.facing=70;
+    if(id==='breaking'&&phase>=14) s.facing=0;
+    s.x=(s.x??50)+(paired()&&!state.overlay?(index===0?-19:19):0);
+    s.z=s.z??43;
+    return s;
+  }
+  function captureTo(pos) {
+    const half=Math.floor(pos*2+1e-5);
+    if(half<lastHalf) clearTrace(false);
+    for(let h=lastHalf+1;h<=half;h++) {
+      for(let i=0;i<(paired()?2:1);i++) {
+        const id=i?state.styleB:state.style, d=dancers[i],t=trails[i];
+        d.set(sampleAt(id,h/2,i));
+        if(t.ghosts.length>=32) t.ghosts.shift();
+        const previous=t.points.at(-1);
+        if(!previous||Math.hypot(d.x-previous.x,d.z-previous.z)>.5) t.points.push({x:d.x,z:d.z,c:h/2});
+        t.ghosts.push({pose:d.pose,x:d.x,z:d.z,facing:d.facing,lift:d.lift,phase:localCount(id,h/2),
+          hands:['lHa','rHa','lTo','rTo'].map(key=>d.world(key).slice())});
+        t.lastHalf=h;
+        t.render();
+        t.points=t.points.filter(p=>p.c>=h/2-16);
+      }
+    }
+    lastHalf=half;
+  }
+  const strikes=paintNode('g',{'aria-hidden':'true'},floor.layers.front);
+  function drawActors(pos) {
+    strikes.textContent='';
+    const phase=localCount(state.style,pos);
+    const gesture=state.style==='bharatanatyam'&&phase>=10&&phase<14;
+    $('gestureDetail').hidden=!gesture;
+    if(gesture) {
+      $('gestureImage').setAttribute('viewBox',`0 ${phase>=12?.5:0} .5 .5`);
+      $('gestureLabel').textContent=phase>=12?'Alapadma · lotus':'Pataka · flat hand';
+    }
+    for(let i=0;i<(paired()?2:1);i++) {
+      const id=i?state.styleB:state.style;
+      const c=Curio.reduce?Math.floor(localCount(id,pos))+.999:localCount(id,pos);
+      dancers[i].set(sampleAt(id,c,i));
+      dancers[i].g.style.display=state.live?'':'none';
+      const phase=localCount(id,pos);
+      const hit=EVENTS[id].feet.find(event=>Math.abs(event.at-phase)<.12);
+      if(state.playing&&state.live&&hit&&!Curio.reduce) {
+        const foot=dancers[i].sj[Math.round(phase*2)%2?'lTo':'rTo'];
+        paintNode('ellipse',{cx:foot[0],cy:foot[1]+3,rx:10+hit.strength*5,ry:3,
+          fill:'none',stroke:colors[i].foot,'stroke-width':2,opacity:.8},strikes);
+      }
+    }
+    dancers[1].g.style.display=paired()&&state.live?'':'none';
+    trails[1].g.style.display=paired()?'':'none';
+    [...floor.layers.shadow.children].forEach((shadow,i)=>{
+      shadow.style.display=state.live&&(i===0||paired())?'':'none';
+    });
+  }
+  function clearTrace(show=true) {
+    trails.forEach(t=>t.clear());
+    lastHalf=Math.floor(state.pos*2)-1;
+    if(show) setHint('Trace cleared. Press Play or count ▶ to build a new exposure.');
+  }
+  function layout() {
+    const w=svg.clientWidth,h=svg.clientHeight;
+    if(w<1||h<1) return;
+    svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
+    floor.resize(w,h,{
+      x0:w*.06,x1:w*.94,yBack:h*.70,yFront:h*.93
+    });
+    floor.dancerHeight=Math.max(18,h*.62/floor.scale(43));
+    // The engine stores world-space endpoints. Re-ground them at the new display height after a resize.
+    trails.forEach((trail,i)=>{
+      for(const ghost of trail.ghosts) {
+        dancers[i].set(ghost);
+        ghost.hands=['lHa','rHa','lTo','rTo'].map(key=>dancers[i].world(key).slice());
+      }
+    });
+    floor.layers.marks.textContent='';
+    const baseline=floor.project(50,0,43)[1], unit=floor.scale(43)*floor.dancerHeight;
+    for(const [name,frac] of [['High',.72],['Middle',.42],['Low',.12]]) {
+      const y=baseline-unit*frac;
+      el('line',{
+        x1:18,y1:y,x2:w-18,y2:y,stroke:'#a6b3c4','stroke-opacity':.1,'stroke-dasharray':'3 8'
+      },floor.layers.marks);
+      el('text',{
+        x:h<360?w-52:18,y:y-6,fill:'#a6b3c4','font-size':10,'font-family':'Consolas,monospace'
+      },floor.layers.marks,name);
+    }
+    if(countStrip) countStrip.g.remove();
+    countStrip=Dance.counts(floor.layers.front,null,{
+      n:STYLES[state.style].meter,mode:'dots',off:'#30374a',on:'#c9b3ff'
+    });
+    countStrip.layout({
+      x:w-100,y:15,w:80,h:13
+    });
+    countStrip.g.style.display=h<170||innerWidth<600?'none':'';
+    drawActors(state.pos);
+    trails.forEach(t=>t.render());
+    rhythm();
+  }
+  function rhythm() {
+    const graph=$('rhythm');
+    if(!state.rhythm) return;
+    const w=graph.clientWidth,h=graph.clientHeight,rows=paired()?2:1;
+    if(w<1||h<1) return;
+    graph.setAttribute('viewBox',`0 0 ${w} ${h}`);
+    graph.textContent='';
+    const left=rows===2?30:18,right=14,rowH=h/rows;
+    for(let row=0;row<rows;row++) {
+      const id=row?state.styleB:state.style,s=STYLES[id],events=EVENTS[id];
+      const total=paired()?s.cycle:s.total;
+      const y0=row*rowH,base=y0+rowH-19,dx=(w-left-right)/total;
+      if(rows===2) el('text',{
+        x:8,y:y0+18,fill:row?'#ffd166':'#c9b3ff','font-size':11
+      },graph,row?'B':'A');
+      el('line',{
+        x1:left,y1:base,x2:w-right,y2:base,stroke:'#475063'
+      },graph);
+      for(let n=1;n<=total;n++) {
+        const x=left+(n-.5)*dx;
+        el('line',{
+          x1:x,y1:base-3,x2:x,y2:base+3,stroke:'#778398'
+        },graph);
+        el('text',{
+          x,y:base+15,fill:'#a6b3c4','font-size':10,'text-anchor':'middle','font-family':'Consolas'
+        },graph,n);
+      }
+      for(const a of events.accents.filter(a=>a.at<total)) el('rect',{
+        x:left+(a.at+.5)*dx-2,y:base-5-a.strength*(rowH-29),width:4,
+        height:a.strength*(rowH-29),fill:row?'#ffd166':'#c9b3ff',rx:1
+      },graph);
+      for(const f of events.feet.filter(f=>f.at<total)) el('circle',{
+        cx:left+(f.at+.5)*dx,cy:base-4,r:2,fill:row?'#8fb8ff':'#7de2d1'
+      },graph);
+      const phase=localCount(id)%total;
+      const x=left+(Math.min(total-1,phase)+.5)*dx;
+      el('line',{
+        x1:x,y1:y0+3,x2:x,y2:base+3,stroke:'#fff','stroke-width':1.5
+      },graph);
+      el('circle',{
+        cx:x,cy:y0+4,r:3,fill:'#fff'
+      },graph);
+    }
+  }
+  function updatePosition(pos,capture=true) {
+    state.pos=pos;
+    if(capture) captureTo(pos);
+    drawActors(pos);
+    const totalA=paired()?STYLES[state.style].cycle:STYLES[state.style].total;
+    const totalB=STYLES[state.styleB].cycle;
+    const a=Math.min(totalA,Math.floor(localCount(state.style)%totalA)+1);
+    const b=Math.min(totalB,Math.floor(localCount(state.styleB)%totalB)+1);
+    $('count').textContent=paired()?`A ${a}/${totalA} · B ${b}/${totalB}`
+      :`Count ${a} of ${STYLES[state.style].total}`;
+    const step=Math.floor(localCount(state.style)/2);
+    const label=STEP_NAMES[state.style][step]||STEP_NAMES[state.style].at(-1);
+    const stepB=Math.floor(localCount(state.styleB)/2);
+    $('movement').textContent=paired()?`A: ${label} / B: ${STEP_NAMES[state.styleB][stepB]}`:label;
+    if(countStrip) countStrip.set(a,'count');
+    rhythm();
+  }
+  function stopRun() {
+    if(run) run.stop();
+    if(clock) clock.stop();
+    if(music) music.stop();
+    run=null;
+    clock=null;
+    music=null;
+    state.playing=false;
+    $('play').textContent='▶ Play';
+    $('play').setAttribute('aria-label','Play phrase');
+  }
+  function endDemo() {
+    const end=STYLES[state.style].total-.0001;
+    stopRun();
+    updatePosition(end);
+    const id=state.style;
+    const result=METRICS[state.style];
+    $('stageSub').textContent=`Phrase held · High / Middle / Low: ${result.levels.join(' / ')}% · ${result.stillness} still counts`;
+    setHint('Phrase complete. Press Trace to hold its shapes, or enter Critique and press Note to record a moment.');
+    const lines=['rhythmHow','i.'+id];
+    if(state.trace&&!V.heard('traceHow')) lines.push('traceHow');
+    V.how(lines,{
+      valid:()=>!state.playing&&state.style===id,hint:false
+    });
+  }
+  function play() {
+    V.hush();
+    if(state.playing) {
+      const pos=clock?clock.pos:state.pos;
+      stopRun();
+      updatePosition(pos);
+      setHint('Paused. Use ◀ count and count ▶ to inspect a moment, or press Play to continue.');
+      if(state.trace) how('traceHow',()=>state.trace);
+      return;
+    }
+    if(!paired()&&state.pos>=STYLES[state.style].total-.01) {
+      state.pos=0;
+      clearTrace(false);
+    }
+    const start=state.pos;
+    state.playing=true;
+    $('play').textContent='Ⅱ Pause';
+    $('play').setAttribute('aria-label','Pause phrase');
+    setHint(state.mode==='critique'?'Press Note to stamp a moment, or Pause to look closely.':'Turn on Trace to hold the movement in space, or press Pause.');
+    clock=Dance.clock(STYLES[state.style].bpm*state.speed,{
+      meter:STYLES[state.style].meter,countIn:0
+    });
+    clock.seek(start);
+    const ids=paired()?[state.style,state.styleB]:[state.style];
+    const phrases=ids.map((id,i)=>({
+      total:STYLES[id].total,at:c=>sampleAt(id,c,i)
+    }));
+    run=Dance.play(dancers.slice(0,ids.length),phrases,{
+      clock,loop:paired(),onFrame:pos=>{
+        if(!paired()&&pos>=STYLES[state.style].total) {
+          endDemo();
+          return;
+        }
+      updatePosition(pos);
+      }
+    });
+    music=Dance.music(TRACKS[state.style],clock);
+    clock.start(start);
+  }
+  function step(delta) {
+    V.dropQueued();
+    stopRun();
+    const ceiling=paired()?Infinity:STYLES[state.style].total-.0001;
+    const pos=Math.max(0,Math.min(ceiling,Math.floor(state.pos+.0001)+delta));
+    updatePosition(pos);
+    setHint('Count held. Turn on Trace to compare shapes, or press Note in Critique to record this moment.');
+  }
+  function setSpeed(value) {
+    state.speed=value;
+    $('half').setAttribute('aria-pressed',value===.5);
+    $('normal').setAttribute('aria-pressed',value===1);
+    if(clock) clock.setBpm(STYLES[state.style].bpm*value);
+    setHint(value===.5?'Half speed. The music and movement slow together from the next count.':'Full speed. The change takes effect from the next count.');
+  }
+  function metricsHTML(id) {
+    const m=METRICS[id];
+    return `<div class="measure-grid"><div><strong>${m.levels.join(' / ')}%</strong><span>High / Middle / Low</span></div>
+      <div><strong>${m.reach.toFixed(2)}</strong><span>Reach / body height</span></div><div><strong>${m.travel.toFixed(2)}</strong>
+      <span>Travel / body heights</span></div><div><strong>${m.accents.toFixed(1)}</strong><span>Accents / 8 counts</span></div>
+      <div><strong>${m.stillness}</strong><span>Still counts / ${STYLES[id].total}</span></div></div>
+      <div class="levelbar">${m.levels.map(n=>`<i style="width:${n}%"></i>`).join('')}</div>`;
+  }
+  function signatureHTML(id) {
+    return ['Body','Action','Space','Time','Energy'].map((label,i)=>`<tr><th>${label}</th><td>${esc(STYLES[id].signature[i])}</td></tr>`).join('');
+  }
+  function renderFile() {
+    const s=STYLES[state.style];
+    $('file').innerHTML=`<div class="file-heading"><h2>${esc(s.name)}</h2><span>FILE ${String(IDS.indexOf(state.style)+1).padStart(2,'0')}</span></div>
+      <figure class="feet-card" style="margin-top:12px"><img src="${ART[state.style]}" alt="${esc(s.caption)}">
+      <figcaption><b>On the feet</b>${esc(s.caption)}</figcaption></figure>
+      <div class="sec" style="margin-top:14px"><h2>Context</h2><h3>Where and when</h3><p>${esc(s.where)}</p>
+      <h3>Roots</h3><p>${esc(s.roots)}</p><h3>People and milestones</h3><p>${esc(s.people)}</p></div>
+      <div class="sec" style="margin-top:14px"><h2>Signature</h2><table class="signature">${signatureHTML(state.style)}</table>
+      <h3 style="margin-top:13px">Look for</h3><p>${esc(s.look)}</p><h3>Music</h3><p>${esc(s.music)}</p>
+      <p class="method">Synthesized study track. Its timbre stands for the music described above.</p></div>
+      <div class="sec" style="margin-top:14px"><h2>Measured from this demo</h2>${metricsHTML(state.style)}
+      <p class="method">Curio Class measures, not a ranking of traditions. Half-count samples; hip bands: High ≥ 0.52,
+      Middle ≥ 0.28, Low &lt; 0.28 body heights. Reach uses 3D hands. Travel uses a 40-unit body height.
+      Stillness: no measured joint angle changes more than 5° in a count.</p></div>
+      <p class="disclaimer" style="margin-top:14px">The demo is a short phrase drawn by Curio Class to show traits of the style.
+      It is not a recording of a real performance.</p>`;
+  }
+  function renderCompare() {
+    const a=STYLES[state.style],b=STYLES[state.styleB];
+    $('comparePanel').innerHTML=`<div class="file-heading"><h2>Shape against shape</h2></div>
+      <p class="method">A ${esc(a.name)} / B ${esc(b.name)}. B is shown at A's speed. B's music is silent.</p>
+      <div class="sec"><h2>Signature</h2><table class="signature compare-table"><thead><tr><th></th><th>A ${esc(a.name)}</th>
+      <th>B ${esc(b.name)}</th></tr></thead><tbody>${['Body','Action','Space','Time','Energy'].map((label,i)=>
+        `<tr><th>${label}</th><td>${esc(a.signature[i])}</td><td>${esc(b.signature[i])}</td></tr>`).join('')}</tbody></table></div>
+      <div class="compare-art" style="margin-top:12px"><div><img src="${ART[state.style]}" alt="${esc(a.caption)}"><p>${esc(a.caption)}</p></div>
+      <div><img src="${ART[state.styleB]}" alt="${esc(b.caption)}"><p>${esc(b.caption)}</p></div></div>
+      <div class="sec" style="margin-top:12px"><h2>Measured from these demos</h2><div class="compare-metrics">
+      <div><h3>A ${esc(a.name)}</h3>${metricsHTML(state.style)}</div><div><h3>B ${esc(b.name)}</h3>${metricsHTML(state.styleB)}</div></div>
+      <p class="method">Same definitions as the style files. B is shown at A's speed. Each phrase loops on its own counts.</p></div>
+      <p class="disclaimer" style="margin-top:12px">The demos are short phrases drawn by Curio Class to show traits of the styles.
+      They are not recordings of real performances.</p>`;
+  }
+  function refreshLabels() {
+    const s=STYLES[state.style];
+    document.body.classList.toggle('is-paired',paired());
+    $('critiqueCompare').setAttribute('aria-pressed',state.comparison);
+    $('stageTag').textContent=paired()?'A ○ / B □ · Shared clock':'Movement file / '+String(IDS.indexOf(state.style)+1).padStart(2,'0');
+    $('stageName').textContent=paired()?`${s.name} / ${STYLES[state.styleB].name}`:s.name;
+    $('stageSub').textContent=paired()?`${s.bpm} counts/min · A's music · ${state.overlay?'overlaid traces':'side by side'}`
+      :`${s.total} counts · ${s.bpm} counts/min · study phrase`;
+    $('rhythm').classList.toggle('compare',paired());
+    $('overlay').hidden=!paired();
+    $('styleSelector').hidden=state.mode==='compare'||(state.mode==='critique'&&state.comparison);
+    $('compareSelector').hidden=!paired();
+    $('file').hidden=state.mode!=='styles';
+    $('comparePanel').hidden=state.mode!=='compare';
+    $('critiquePanel').hidden=state.mode!=='critique';
+    $('note').hidden=state.mode!=='critique';
+    $('noteArea').hidden=state.mode!=='critique';
+    $('styleA').value=state.style;
+    $('styleB').value=state.styleB;
+    $('mobileStyle').value=state.style;
+    document.querySelectorAll('.style-chip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.style===state.style));
+  }
+  function chooseStyle(id,autoplay=true) {
+    V.hush();
+    stopRun();
+    state.style=id;
+    state.selectedNote=null;
+    state.pos=0;
+    clearTrace(false);
+    renderFile();
+    renderCompare();
+    refreshLabels();
+    renderNotes();
+    layout();
+    updatePosition(0,false);
+    setHint('Press Play to watch '+STYLES[id].name+', or turn on Trace and step through its counts.');
+    if(autoplay) play();
+  }
+  function setMode(mode) {
+    if(state.mode===mode) return;
+    V.hush();
+    stopRun();
+    state.mode=mode;
+    state.pos=0;
+    clearTrace(false);
+    for(const m of ['styles','compare','critique']) $('m-'+m).setAttribute('aria-pressed',m===mode);
+    refreshLabels();
+    renderCompare();
+    renderNotes();
+    updateChecks();
+    layout();
+    updatePosition(0,false);
+    const key='w'+mode[0].toUpperCase()+mode.slice(1);
+    setHint(L[key]);
+    V.welcome();
+  }
+  function toggle(name,button) {
+    state[name]=!state[name];
+    button.setAttribute('aria-pressed',state[name]);
+    if(name==='trace') {
+      trails.forEach(t=>t.show(state.trace));
+      setHint(state.trace?'Trace on. Press Play or step a count. Hands draw solid lines; feet draw dotted lines.'
+        :'Trace off. Press Play to watch only the live figure.');
+      if(!state.playing&&state.trace) how('traceHow',()=>state.trace);
+    } else if(name==='rhythm') {
+      $('rhythm').hidden=!state.rhythm;
+      setHint(state.rhythm?'Rhythm line on. Tall bars show accents; dots show foot sounds.':'Rhythm line hidden. Press Rhythm line to show the timing again.');
+    } else if(name==='overlay') {
+      clearTrace(false);
+      setHint(state.overlay?'Overlay on. Press Play to compare A in coral/aqua and B in gold/blue. Hands are solid; feet dotted.'
+        :'Side by side. Press Play to compare both phrases on A’s clock.');
+    } else setHint(state.live?'Live figure visible. Press Play to watch the phrase.':'Live figure hidden. Turn on Trace to study its exposure.');
+    refreshLabels();
+    layout();
+  }
+  function noteCount() {
+    const total=paired()?STYLES[state.style].cycle:STYLES[state.style].total;
+    return Math.min(total,Math.floor(localCount(state.style)%total)+1);
+  }
+  function noteRange(n) {
+    let end=n.end;
+    if(n.other&&Number.isFinite(n.clockStart)&&Number.isFinite(n.clockEnd)) {
+      end=n.start+Math.max(0,n.clockEnd-n.clockStart-1);
+    }
+    const crosses=n.end<n.start||(n.other&&end>STYLES[n.style].cycle);
+    return String(n.start)+(end!==n.start?'-'+end+(crosses?' (across cycles)':''):'');
+  }
+  let heldNote=false;
+  function beginNote() {
+    state.noteStart=noteCount();
+    state.noteEnd=state.noteStart;
+    state.noteStyle=state.style;
+    heldNote=true;
+    state.noteClockStart=Math.floor(state.pos);
+  }
+  function openNote() {
+    if(!heldNote) beginNote();
+    state.noteEnd=noteCount();
+    heldNote=false;
+    state.noteClockEnd=Math.floor(state.pos)+1;
+    if(!paired()&&state.noteEnd<state.noteStart) state.noteEnd=state.noteStart;
+    stopRun();
+    if(V.playing&&V.playing.startsWith('Note saved at count ')) V.dropQueued();
+    else V.hush();
+    $('noteTitle').textContent='Note at count '+noteRange({
+      start:state.noteStart,end:state.noteEnd,style:state.noteStyle,
+      other:paired()?state.styleB:null,clockStart:state.noteClockStart,clockEnd:state.noteClockEnd
+    });
+    $('noteTerm').value=state.term;
+    $('noteWords').value='';
+    $('noteError').hidden=true;
+    $('noteDialog').showModal();
+    $('noteWords').focus({
+      preventScroll:true
+    });
+    setHint(L.noteHow);
+    how('noteHow',()=>$('noteDialog').open);
+  }
+  function saveNote() {
+    const words=$('noteWords').value.trim();
+    if(!words) {
+      $('noteError').hidden=false;
+      $('noteWords').focus({
+        preventScroll:true
+      });
+      return;
+    }
+    const note={
+      id:Date.now().toString(36),style:state.noteStyle,other:paired()?state.styleB:null,start:state.noteStart,end:state.noteEnd,
+      clockStart:state.noteClockStart,clockEnd:state.noteClockEnd,
+      term:$('noteTerm').value,words
+    };
+    state.notes.push(note);
+    state.selectedNote=note.id;
+    state.term=note.term;
+    $('noteDialog').close();
+    $('note').focus({
+      preventScroll:true
+    });
+    persist();
+    renderNotes();
+    V.say('saved'+note.start,{
+      now:true,valid:()=>!state.playing&&state.selectedNote===note.id,hint:false
+    });
+    how('draftHow',()=>state.mode==='critique');
+    setHint('Note saved at count '+note.start+'. Tap Insert note under a draft box to cite it.');
+  }
+  function renderNotes() {
+    const notes=state.notes.filter(n=>state.allNotes||n.style===state.style).sort((a,b)=>a.start-b.start);
+    $('noteList').innerHTML=notes.length?notes.map(n=>`<button class="btn" data-note="${n.id}" aria-pressed="${n.id===state.selectedNote}">
+      ${esc(STYLES[n.style].name)} · ${noteRange(n)} · ${esc(n.term)}: ${esc(n.words)}</button>`).join('')
+      :'<span class="empty">No notes yet. Press Note while watching or paused.</span>';
+    $('noteList').querySelectorAll('button').forEach(b=>b.onclick=()=>jumpNote(b.dataset.note));
+  }
+  function jumpNote(id) {
+    const n=state.notes.find(n=>n.id===id);
+    if(!n) return;
+    state.selectedNote=id;
+    if(n.style!==state.style) chooseStyle(n.style,false);
+    state.selectedNote=id;
+    state.comparison=!!n.other;
+    if(n.other) state.styleB=n.other;
+    refreshLabels();
+    const start=n.other&&Number.isFinite(n.clockStart)?n.clockStart:n.start-1;
+    const end=n.other&&Number.isFinite(n.clockEnd)?n.clockEnd-.001:Math.min(STYLES[n.style].total-.001,n.end-.001);
+    stopRun();
+    V.hush();
+    state.pos=start;
+    clearTrace(false);
+    lastHalf=Math.max(-1,start*2-1);
+    captureTo(end);
+    state.trace=true;
+    $('trace').setAttribute('aria-pressed','true');
+    trails.forEach(t=>t.show(true));
+    updatePosition(start,false);
+    renderNotes();
+    setHint('Count '+n.start+' held. Tap Insert note under a draft box to cite this observation.');
+    $('noteList').querySelector(`[data-note="${id}"]`)?.focus({
+      preventScroll:true
+    });
+  }
+  function insertNote(box) {
+    const notes=state.notes.filter(n=>n.style===state.style);
+    const n=notes.find(n=>n.id===state.selectedNote)||notes.at(-1);
+    if(!n) {
+      setHint(L.emptyInsert);
+      how('emptyInsert');
+      return;
+    }
+    const text=`(count ${noteRange(n)}, ${n.term}: ${n.words})`;
+    const field=$(box),start=field.selectionStart,end=field.selectionEnd;
+    field.setRangeText((start?' ':'')+text,start,end,'end');
+    state.draft[box]=field.value;
+    persist();
+    updateChecks();
+    setHint('Count reference inserted. Add your own explanation to this draft box.');
+  }
+  function updateChecks() {
+    const text=Object.values(state.draft).join(' ').toLowerCase();
+    const counts=['saw','means','works'].map(k=>/\bcounts?\s+\d+/i.test(state.draft[k]));
+    const terms=TERMS.filter(t=>new RegExp('\\b'+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','i').test(text));
+    const criterion=CRITERIA.some(c=>state.draft.works.toLowerCase().includes(c.toLowerCase()));
+    const checks=[...counts.map((ok,i)=>({
+      ok,label:['What I saw','What it means','How well it works'][i]+' cites a count'
+    })),
+      {
+        ok:terms.length>=3,label:terms.length+' vocabulary '+(terms.length===1?'term':'terms')+' used (aim for 3)'
+    },{
+      ok:criterion,label:'Evaluation names a criterion'
+    }];
+    $('checks').innerHTML=checks.map(c=>`<div class="${c.ok?'met':''}">${c.ok?'✓':'○'} ${c.label}</div>`).join('');
+    return checks;
+  }
+  function critiqueText() {
+    return ['Dance Styles Explorer / Curio Class',...['saw','means','works'].map((k,i)=>
+      ['What I saw','What it means','How well it works'][i]+'\n'+state.draft[k]),'Count-stamped notes',...state.notes.map(n=>
+      STYLES[n.style].name+` (count ${noteRange(n)}, ${n.term}: ${n.words})`)].join('\n\n');
+  }
+  async function copyText() {
+    const text=critiqueText();
+    try {
+      await navigator.clipboard.writeText(text);
+      setHint(L.copied);
+      V.say('copied',{
+        valid:()=>!state.playing,hint:false
+      });
+    }
+    catch {
+      $('copyFallback').value=text;
+      $('copyDialog').showModal();
+      $('copyFallback').focus({
+        preventScroll:true
+      });
+      $('copyFallback').select();
+    }
+  }
+  function clearCritique() {
+    state.notes=[];
+    state.draft={
+      saw:'',means:'',works:''
+    };
+    state.selectedNote=null;
+    ['saw','means','works'].forEach(k=>$(k).value='');
+    try {
+      localStorage.removeItem('dance-styles-explorer');
+    } catch {
+      storageOK=false;
+    }
+    renderNotes();
+    updateChecks();
+    $('clearDialog').close();
+    $('clear').focus({
+      preventScroll:true
+    });
+    setHint(L.cleared);
+    V.say('cleared',{
+      valid:()=>!state.playing,hint:false
+    });
+  }
+  // Controls are built once so a playing phrase never rebuilds the control beneath a pointer or focus.
+  $('styleGrid').innerHTML=IDS.map((id,i)=>`<button class="btn style-chip" data-style="${id}" id="style-${id}" aria-pressed="${id==='ballet'}">
+    <span class="index">${String(i+1).padStart(2,'0')}</span>${esc(STYLES[id].name)}</button>`).join('');
+  document.querySelectorAll('.style-chip').forEach(b=>b.onclick=()=>chooseStyle(b.dataset.style));
+  for(const control of ['styleA','styleB','mobileStyle']) {
+    $(control).innerHTML=IDS.map(id=>`<option value="${id}">${esc(STYLES[id].name)}</option>`).join('');
+  }
+  $('styleA').onchange=()=>chooseStyle($('styleA').value);
+  $('mobileStyle').onchange=()=>chooseStyle($('mobileStyle').value);
+  $('styleB').onchange=()=>{
+    state.styleB=$('styleB').value;
+    chooseStyle(state.style);
+  };
+  for(const mode of ['styles','compare','critique']) $('m-'+mode).onclick=()=>setMode(mode);
+  $('play').onclick=play;
+  $('prev').onclick=()=>step(-1);
+  $('next').onclick=()=>step(1);
+  $('half').onclick=()=>setSpeed(.5);
+  $('normal').onclick=()=>setSpeed(1);
+  for(const [id,key] of [['live','live'],['trace','trace'],['rhythmToggle','rhythm'],['overlay','overlay']])
+    $(id).onclick=()=>toggle(key,$(id));
+  $('clearTrace').onclick=()=>clearTrace();
+  $('critiqueCompare').onclick=()=>{
+    state.comparison=!state.comparison;
+    $('critiqueCompare').setAttribute('aria-pressed',state.comparison);
+    stopRun();
+    if(!paired()) state.pos=Math.min(state.pos,STYLES[state.style].total-.0001);
+    clearTrace(false);
+    refreshLabels();
+    layout();
+    updatePosition(state.pos,false);
+    setHint(state.comparison?'Choose Style A and Style B, then press Play or Note.'
+      :'Pick a style, press Play, then press Note when you see a moment worth discussing.');
+  };
+  $('note').onpointerdown=beginNote;
+  $('note').onclick=openNote;
+  $('saveNote').onclick=saveNote;
+  $('cancelNote').onclick=()=>{
+    $('noteDialog').close();
+    $('note').focus({
+      preventScroll:true
+    });
+    setHint('Press Play to continue, or Note to record another moment.');
+  };
+  $('noteDialog').addEventListener('cancel',()=>{
+    V.hush();
+    setHint('Press Play to continue, or Note to record another moment.');
+  });
+  $('noteTerm').innerHTML=Object.entries(DATA.vocab).map(([group,terms])=>`<optgroup label="${group}">
+    ${Object.keys(terms).map(term=>`<option>${esc(term)}</option>`).join('')}</optgroup>`).join('');
+  $('vocab').innerHTML=Object.entries(DATA.vocab).map(([group,terms],i)=>`<details class="vocab-group" ${i===0?'open':''}>
+    <summary>${group}</summary><div class="terms">${Object.keys(terms).map(term=>`<button class="btn" data-term="${esc(term)}">${esc(term)}</button>`).join('')}
+    </div></details>`).join('');
+  $('vocab').querySelectorAll('button').forEach(b=>b.onclick=()=>{
+    state.term=b.dataset.term;
+    const definition=Object.values(DATA.vocab).find(g=>g[state.term])[state.term];
+    $('definition').textContent=state.term+': '+definition;
+    $('noteTerm').value=state.term;
+    setHint(state.term+': '+definition+' Press Note to stamp it to a count.');
+  });
+  $('allNotes').onclick=()=>{
+    state.allNotes=!state.allNotes;
+    $('allNotes').setAttribute('aria-pressed',state.allNotes);
+    renderNotes();
+    setHint(state.allNotes?'All notes shown. Tap a note to return to its style and count.'
+      :'Only this style’s notes are shown. Tap a note to return to its count.');
+  };
+  for(const key of ['saw','means','works']) {
+    $(key).value=state.draft[key];
+    $(key).oninput=()=>{
+      state.draft[key]=$(key).value;
+      persist();
+      updateChecks();
+    };
+  }
+  document.querySelectorAll('.insert').forEach(b=>b.onclick=()=>insertNote(b.dataset.box));
+  $('criteria').innerHTML=CRITERIA.map(c=>`<button class="btn">${c}</button>`).join('');
+  $('criteria').querySelectorAll('button').forEach(b=>b.onclick=()=>{
+    const prefix=state.draft.works?' ':'';
+    state.draft.works+=prefix+b.textContent+': ';
+    $('works').value=state.draft.works;
+    persist();
+    updateChecks();
+    setHint('Criterion added. Explain how well a count or count range meets it.');
+  });
+  function preparePrint() {
+    stopRun();
+    V.hush();
+    $('printOutput').textContent=critiqueText();
+    setHint('Print view prepared. Press Play to continue, or choose another mode.');
+  }
+  $('copy').onclick=copyText;
+  $('print').onclick=()=>{
+    stopRun();
+    V.hush();
+    preparePrint();
+    window.print();
+  };
+  addEventListener('beforeprint',preparePrint);
+  $('clear').onclick=()=>{
+    $('clearDialog').showModal();
+  };
+  $('confirmClear').onclick=clearCritique;
+  $('cancelClear').onclick=()=>{
+    $('clearDialog').close();
+    $('clear').focus({
+      preventScroll:true
+    });
+  };
+  $('closeCopy').onclick=()=>{
+    $('copyDialog').close();
+    $('copy').focus({
+      preventScroll:true
+    });
+  };
+  addEventListener('keydown',event=>{
+    if(/INPUT|TEXTAREA|SELECT/.test(event.target.tagName)||document.querySelector('dialog[open]')) return;
+    if(['1','2','3'].includes(event.key)) {
+      event.preventDefault();
+      setMode(['styles','compare','critique'][Number(event.key)-1]);
+    }
+    if(event.key.toLowerCase()==='n'&&state.mode==='critique'&&!event.repeat) {
+      event.preventDefault();
+      beginNote();
+      openNote();
+    }
+    if(event.code==='Space'&&event.target===document.body) {
+      event.preventDefault();
+      play();
+    }
+  });
+  function pauseForRead() {
+    if(!state.playing) return;
+    const pos=clock.pos;
+    stopRun();
+    updatePosition(pos);
+    setHint('Paused. Press Play to continue, or use the count buttons to inspect a moment.');
+  }
+  $('read').addEventListener('pointerdown',pauseForRead,true);
+  $('read').addEventListener('keydown',event=>{
+    if(event.key==='Enter'||event.key===' ') pauseForRead();
+  },true);
+  Curio.onMotion(()=>updatePosition(state.pos,false));
+  Curio.onSound(()=>{
+    if(music)music.mute(!Curio.sound);
+  });
+  Curio.init({
+    clips:"voice:*",rate:.95
+  });
+  new ResizeObserver(layout).observe($('stage'));
+  renderFile();
+  renderCompare();
+  renderNotes();
+  updateChecks();
+  refreshLabels();
+  layout();
+  updatePosition(0,false);
+  window.__tool={
+    state,setMode,chooseStyle,play,step,setSpeed,measure,metrics:METRICS,phrases:PHRASES,events:EVENTS,
+    floor,dancers,trails,updatePosition,clearTrace,saveNote,jumpNote,insertNote,updateChecks,critiqueText,
+    allLines:V.allLines,vlog:V.log,get vq(){
+      return V.queue;
+    },get clock(){
+      return clock;
+    }
+  };
+})();
+
+</script>
+</body>
+</html>

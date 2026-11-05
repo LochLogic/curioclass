@@ -1,0 +1,26 @@
+{
+  "id": "poem-to-movement",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Make a dance that carries an idea. Can the Viewer read it?",
+  "outcome": "Build a movement phrase from a source, notate its pathway and revise its qualities from feedback.",
+  "driver": "students or teacher",
+  "minutes": "15-30",
+  "modes": [
+    "Source",
+    "Moves",
+    "Map",
+    "Viewer"
+  ],
+  "grades_label": "Grades 3-5",
+  "sources": [
+    "Christina Rossetti, Who Has Seen the Wind?, Sing-Song (1872); Project Gutenberg ebook 76703, 1893 edition.",
+    "Robert Louis Stevenson, From a Railway Carriage, first eight lines, A Child's Garden of Verses (1885); Project Gutenberg ebook 25609.",
+    "Anne Green Gilbert, Creative Dance for All Ages, second edition, Human Kinetics (2015).",
+    "National Core Arts Standards, Dance, DA:Cr1, DA:Cr3, DA:Cn10, grades 3-5.",
+    "Original source profiles and Viewer distance rule by Curio Class.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-02"
+}

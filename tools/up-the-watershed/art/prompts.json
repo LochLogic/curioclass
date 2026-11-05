@@ -1,6 +1,6 @@
 {
   "house_style": "Realistic documentary-style painting for a high school watershed mystery, like a field photo: natural daylight, true colors, clear subject, calm, deserted. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
-  "style": "One set of eight sibling suspect cards, every scene in the same painted style and framing, the suspect clearly in the middle of the picture.",
+  "style": "Cohesive documentary field-guide paintings for high school environmental science.",
   "assets": [
     {
       "name": "pasture",
@@ -12,7 +12,7 @@
       "people": false,
       "sd": "Four brown cattle standing knee-deep in the middle of a shallow muddy creek that winds through a green summer pasture, trampled muddy banks with hoof prints, a few trees in the distance.",
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok: inspected final WebP contact sheet, no people or text"
     },
     {
       "name": "fields",
@@ -23,7 +23,7 @@
       "quality": 75,
       "people": false,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok: inspected final WebP contact sheet, no people or text"
     },
     {
       "name": "construction",
@@ -34,7 +34,7 @@
       "quality": 75,
       "people": false,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok: inspected final WebP contact sheet, no people or text"
     },
     {
       "name": "storm-drain",
@@ -46,7 +46,7 @@
       "people": false,
       "sd": "A large round concrete pipe opening set in a plain concrete wall in a creek bank, a strong stream of brown rainwater pouring out of the dark pipe opening into a creek below, wet stones, the underside of a small concrete road bridge overhead, overcast sky after rain.",
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok: inspected final WebP contact sheet, no people or text"
     },
     {
       "name": "sewer",
@@ -57,7 +57,7 @@
       "quality": 75,
       "people": false,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok: inspected final WebP contact sheet, no people or text"
     },
     {
       "name": "plant",
@@ -68,7 +68,7 @@
       "quality": 75,
       "people": false,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok: inspected final WebP contact sheet, no people or text"
     },
     {
       "name": "geese",
@@ -79,7 +79,7 @@
       "quality": 75,
       "people": false,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok: inspected final WebP contact sheet, no people or text"
     },
     {
       "name": "beach",
@@ -90,7 +90,203 @@
       "quality": 75,
       "people": false,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok: inspected final WebP contact sheet, no people or text"
+    },
+    {
+      "name": "uw-green-lake",
+      "prompt": "A lake shore with thick bright green algae scum on the water, reeds, overcast light.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 640,
+      "quality": 76,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "generation_path": "C:\\Users\\Cory\\.codex\\generated_images\\01a19408-7714-7381-83e0-fd85266f8239\\exec-9bcac742-3e70-4e20-95de-0a532d3082f4.png",
+      "review": "ok: inspected final WebP contact sheet, no people or text"
+    },
+    {
+      "name": "uw-muddy-creek",
+      "prompt": "A small brown muddy creek under a stone bridge in a small town, cloudy day.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 640,
+      "quality": 76,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "generation_path": "C:\\Users\\Cory\\.codex\\generated_images\\01a19408-7714-7381-83e0-fd85266f8239\\exec-81ac6288-039f-4425-8b3a-e6d45f7e345d.png",
+      "review": "ok: inspected final WebP contact sheet, no people or text"
+    },
+    {
+      "name": "uw-i-cattle",
+      "prompt": "Two recognizable brown cattle standing ankle-deep in a narrow strip of creek water. The two animals fill most of the square, separated silhouettes, sturdy natural anatomy, large brown bodies and visible heads. Only a small muddy bank and a little blue-gray water beneath their hooves. Three-quarter view from above, crisp realistic painted miniature, natural upper-left light and subtle material shading, matching the environmental field-guide set. Readable at 40 pixels. Entire isolated miniature centered on pure flat magenta (#FF00FF). No people, text, letters, numbers, logos or frame.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 128,
+      "quality": 80,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "generation_path": "C:\\Users\\Cory\\.codex\\generated_images\\01a1a39c-d320-7213-a054-9a83d76e9f5a\\exec-ecfddec6-9cb7-4e0f-8f49-2f2f2ec3edec.png",
+      "despill": true,
+      "review": "cold review: redrawn with cattle filling the icon, verified at map and fix-card sizes"
+    },
+    {
+      "name": "uw-i-tile",
+      "prompt": "A tiny a short black drain pipe pouring water into a ditch beside green crop rows, three-quarter view from above, like a model railway miniature, crisp painted illustration with true material detail and upper-left light, centered whole object on a pure flat magenta background (#FF00FF). No people, text, letters, numbers, logos or frame.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 128,
+      "quality": 80,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "generation_path": "C:\\Users\\Cory\\.codex\\generated_images\\01a19408-7714-7381-83e0-fd85266f8239\\exec-fbe92efd-04b6-4883-a024-61d6bf2c636d.png",
+      "despill": true,
+      "review": "ok: inspected final WebP contact sheet, no people or text"
+    },
+    {
+      "name": "uw-i-construction",
+      "prompt": "A tiny a small yellow excavator on a patch of bare brown soil, three-quarter view from above, like a model railway miniature, crisp painted illustration with true material detail and upper-left light, centered whole object on a pure flat magenta background (#FF00FF). No people, text, letters, numbers, logos or frame.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 128,
+      "quality": 80,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "generation_path": "C:\\Users\\Cory\\.codex\\generated_images\\01a19408-7714-7381-83e0-fd85266f8239\\exec-14480dd6-3176-4b87-9b84-eec6a875927d.png",
+      "despill": true,
+      "review": "ok: inspected final WebP contact sheet, no people or text"
+    },
+    {
+      "name": "uw-i-storm-drain",
+      "prompt": "A tiny a round concrete pipe mouth spilling grey water, three-quarter view from above, like a model railway miniature, crisp painted illustration with true material detail and upper-left light, centered whole object on a pure flat magenta background (#FF00FF). No people, text, letters, numbers, logos or frame.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 128,
+      "quality": 80,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "generation_path": "C:\\Users\\Cory\\.codex\\generated_images\\01a19408-7714-7381-83e0-fd85266f8239\\exec-9d72a15a-461a-4934-b8e7-11e8e064705b.png",
+      "despill": true,
+      "review": "ok: inspected final WebP contact sheet, no people or text"
+    },
+    {
+      "name": "uw-i-sewer",
+      "prompt": "A tiny an old brick manhole with a cracked iron lid on grass, three-quarter view from above, like a model railway miniature, crisp painted illustration with true material detail and upper-left light, centered whole object on a pure flat magenta background (#FF00FF). No people, text, letters, numbers, logos or frame.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 128,
+      "quality": 80,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "generation_path": "C:\\Users\\Cory\\.codex\\generated_images\\01a19408-7714-7381-83e0-fd85266f8239\\exec-a9b8b515-3f6e-4e27-800a-b7a1619a4a01.png",
+      "despill": true,
+      "review": "ok: inspected final WebP contact sheet, no people or text"
+    },
+    {
+      "name": "uw-i-plant",
+      "prompt": "A tiny two round treatment tanks and a small building, three-quarter view from above, like a model railway miniature, crisp painted illustration with true material detail and upper-left light, centered whole object on a pure flat magenta background (#FF00FF). No people, text, letters, numbers, logos or frame.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 128,
+      "quality": 80,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "generation_path": "C:\\Users\\Cory\\.codex\\generated_images\\01a19408-7714-7381-83e0-fd85266f8239\\exec-090321c5-c3eb-414b-8fd2-d69b0fc98ed6.png",
+      "despill": true,
+      "review": "ok: inspected final WebP contact sheet, no people or text"
+    },
+    {
+      "name": "uw-i-geese",
+      "prompt": "A tiny three Canada geese standing together, three-quarter view from above, like a model railway miniature, crisp painted illustration with true material detail and upper-left light, centered whole object on a pure flat magenta background (#FF00FF). No people, text, letters, numbers, logos or frame.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 128,
+      "quality": 80,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "generation_path": "C:\\Users\\Cory\\.codex\\generated_images\\01a19408-7714-7381-83e0-fd85266f8239\\exec-dc618ad6-9940-4009-bc44-12dfc8aaa292.png",
+      "despill": true,
+      "review": "ok: inspected final WebP contact sheet, no people or text"
+    },
+    {
+      "name": "uw-t-pasture",
+      "prompt": "Seamless top-down aerial texture of green grazed grass with a few cattle paths, even soft light, filling the whole frame.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 256,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "generation_path": "C:\\Users\\Cory\\.codex\\generated_images\\01a19408-7714-7381-83e0-fd85266f8239\\exec-3f8a2c2e-5637-40ef-b036-9c9b7616426c.png",
+      "review": "ok: inspected final WebP contact sheet, no people or text"
+    },
+    {
+      "name": "uw-t-cropland",
+      "prompt": "Seamless top-down aerial texture of rows of young corn in brown soil, even soft light, filling the whole frame.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 256,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "generation_path": "C:\\Users\\Cory\\.codex\\generated_images\\01a19408-7714-7381-83e0-fd85266f8239\\exec-887d1e44-0183-44f9-a794-8b3868e60372.png",
+      "review": "ok: inspected final WebP contact sheet, no people or text"
+    },
+    {
+      "name": "uw-t-town",
+      "prompt": "Seamless top-down aerial texture of small town rooftops, yards and trees, even soft light, filling the whole frame.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 256,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "generation_path": "C:\\Users\\Cory\\.codex\\generated_images\\01a19408-7714-7381-83e0-fd85266f8239\\exec-2ffe71a0-b12b-4ba0-ac8b-a0ddf6364f60.png",
+      "review": "ok: inspected final WebP contact sheet, no people or text"
+    },
+    {
+      "name": "uw-t-bare-soil",
+      "prompt": "Seamless top-down aerial texture of graded brown soil with tire tracks, even soft light, filling the whole frame.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 256,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "generation_path": "C:\\Users\\Cory\\.codex\\generated_images\\01a19408-7714-7381-83e0-fd85266f8239\\exec-13a43a65-a309-4046-bb72-21f1c5b07718.png",
+      "review": "ok: inspected final WebP contact sheet, no people or text"
+    },
+    {
+      "name": "uw-t-water",
+      "prompt": "Seamless top-down aerial texture of calm blue-green lake water with small ripples, even soft light, filling the whole frame.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 256,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "generation_path": "C:\\Users\\Cory\\.codex\\generated_images\\01a19408-7714-7381-83e0-fd85266f8239\\exec-2880c770-cfa1-4f9a-b061-67822ea171c5.png",
+      "review": "ok: inspected final WebP contact sheet, no people or text"
     }
   ]
 }

@@ -1,0 +1,61 @@
+{
+  "house_style": "Sophisticated editorial gouache painting for a high-school piano practice journal. Cinematic architectural interiors, tactile brushwork and colored-pencil details, deep midnight blue shadows, honey brass light, warm wood, soft botanical green. Believable piano construction and perspective. Layered foreground, middle ground and background. Directional light. Rich, quiet, inviting, never childish. Blank surfaces. No people, faces, hands, body parts, text, letters, numbers, logos or watermark.",
+  "assets": [
+    {
+      "name": "rpp-practice",
+      "prompt": "A small school piano practice room in evening light. Upright piano with its keyboard lid closed, wooden bench, separate black music stand holding blank cream sheets, a brass stand lamp casting a pool of honey light, felt acoustic panels and a tall window. Foreground edge of a music desk, warm wood grain and small brass screws. Wide 16:9 architectural composition.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "ok: no people or lettering; checked at displayed size"
+    },
+    {
+      "name": "rpp-library",
+      "prompt": "Corner of a school library, an upright piano and empty bench by tall windows with noon light from the left. Deep shelves of books with plain unlettered spines, empty reading tables, leafy plants. Perspective floorboards and angled daylight lead to the piano. Wide 16:9 composition, quiet lived-in architectural painting.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "ok: no people or lettering; checked at displayed size"
+    },
+    {
+      "name": "rpp-senior",
+      "prompt": "Bright community room arranged for an afternoon recital. A realistic digital piano on a sturdy stand at the front with an empty bench, rows of empty padded chairs, potted plants, large window sending warm afternoon light from the left. Tactile upholstery and wood, welcoming space. Wide 16:9 composition.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 65,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "ok: no people or lettering; checked at displayed size"
+    },
+    {
+      "name": "rpp-cafe",
+      "prompt": "Cozy coffee shop open-mic corner at dusk. A realistic stage keyboard on a stand with sustain pedal, empty stool, small speaker, brass string lights, counter with an espresso machine and plain cups. Warm light from the left meets blue window shadows, beautifully textured wood and small metal details. Wide 16:9 composition.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 65,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "ok: no people or lettering; checked at displayed size"
+    },
+    {
+      "name": "rpp-metronome",
+      "prompt": "A single wooden pyramid metronome seen exactly from the front, front cover removed, beautiful walnut grain, beveled edges, dark blank inner face with small unlabeled brass tick marks. Pendulum removed so the app can draw its moving pendulum. Complete object centered fully in frame on perfectly flat pure green #00FF00 background. No lettering or numbers or ground shadow. Portrait 3:4.",
+      "aspect": "3:4",
+      "width": 400,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "review": "ok: no people or lettering; checked at displayed size"
+    }
+  ]
+}

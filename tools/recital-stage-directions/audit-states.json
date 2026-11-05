@@ -1,0 +1,123 @@
+{
+  "target": 44,
+  "keep": [
+    "#stage",
+    "#view-switch",
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "stage-view",
+      "steps": [
+        {
+          "click": "#reverse"
+        }
+      ]
+    },
+    {
+      "name": "call-check",
+      "steps": [
+        {
+          "click": "#calls"
+        },
+        {
+          "click": "#dancer-0"
+        },
+        {
+          "click": "[data-plan=\"C\"]"
+        },
+        {
+          "click": "#check"
+        }
+      ]
+    },
+    {
+      "name": "recital-watch",
+      "steps": [
+        {
+          "click": "#m-recital"
+        },
+        {
+          "click": "#watch"
+        },
+        {
+          "wait": 21000
+        }
+      ]
+    },
+    {
+      "name": "recital-clues",
+      "steps": [
+        {
+          "click": "#m-recital"
+        },
+        {
+          "click": "#clues-tab"
+        },
+        {
+          "click": "#clue-0"
+        }
+      ]
+    },
+    {
+      "name": "idea",
+      "steps": [
+        {
+          "click": "#m-recital"
+        },
+        {
+          "click": "#clues-tab"
+        },
+        {
+          "click": "#main-idea"
+        }
+      ]
+    },
+    {
+      "name": "turn",
+      "steps": [
+        {
+          "click": "#m-turn"
+        },
+        {
+          "click": "#phrase-2"
+        }
+      ]
+    },
+    {
+      "name": "compare",
+      "steps": [
+        {
+          "click": "#m-recital"
+        },
+        {
+          "click": "#clues-tab"
+        },
+        {
+          "click": "#main-idea"
+        },
+        {
+          "click": "#idea-1"
+        },
+        {
+          "click": "#piece-1"
+        },
+        {
+          "click": "#clues-tab"
+        },
+        {
+          "click": "#main-idea"
+        },
+        {
+          "click": "#idea-2"
+        },
+        {
+          "click": "#compare"
+        }
+      ],
+      "keep": [
+        "#compare-board"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "design-challenge-studio",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Test an idea. Change a priority. Watch the winner flip.",
+  "outcome": "Break down a design challenge and defend a solution using prioritized criteria and constraints",
+  "driver": "students",
+  "minutes": "30-50",
+  "modes": [
+    "Break it down",
+    "Criteria",
+    "Prototype",
+    "Trade-offs"
+  ],
+  "grades_label": "Grade 12",
+  "sources": [
+    "US GAO (2020), GAO-20-494, school HVAC needs",
+    "WHO and UNICEF JMP (2023), household drinking water 2000 to 2022",
+    "CDC (2025-01-30), Guide to Drinking Water Treatment and Sanitation for Backcountry and Travel Use",
+    "US DOE Energy Saver, Energy Efficient Window Attachments and Cool Roofs",
+    "ASHRAE Fundamentals (2021), chapter 18; ASHRAE Standard 55-2020",
+    "EIA FAQ, US 2023 electricity emissions, 0.81 lb per kWh",
+    "Room, costs and heat-wave shape are invented classroom assumptions",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Four retained illustrations drawn with FLUX.1-schnell (Apache 2.0)"
+  ],
+  "third_party": [],
+  "updated": "2026-10-31"
+}

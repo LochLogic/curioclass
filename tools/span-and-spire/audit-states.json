@@ -1,0 +1,221 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "fold-and-recover",
+      "steps": [
+        {
+          "click": "#go"
+        },
+        {
+          "wait": 6800
+        }
+      ],
+      "keep": [
+        "#hint"
+      ]
+    },
+    {
+      "name": "keyboard-first-triangle",
+      "steps": [
+        {
+          "click": "#world"
+        },
+        {
+          "js": "document.getElementById('world').focus({preventScroll:true})"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "Enter"
+        }
+      ],
+      "keep": [
+        "#hint"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "tower-start",
+      "steps": [
+        {
+          "click": "#m-tower"
+        }
+      ],
+      "keep": [
+        "#go",
+        "#piece-shelf",
+        "#hint",
+        "#top-loads"
+      ]
+    },
+    {
+      "name": "tower-with-work",
+      "steps": [
+        {
+          "click": "#m-tower"
+        },
+        {
+          "drag": "return (()=>{const a=__tool.screenPoint(-1,0),b=__tool.screenPoint(-1,2);return [a,[a[0]+1,(a[1]+b[1])/2],b]})()"
+        },
+        {
+          "drag": "return (()=>{const a=__tool.screenPoint(1,0),b=__tool.screenPoint(1,2);return [a,[a[0]-1,(a[1]+b[1])/2],b]})()"
+        },
+        {
+          "drag": "return (()=>{const a=__tool.screenPoint(-1,2),b=__tool.screenPoint(1,2);return [a,[(a[0]+b[0])/2,a[1]+1],b]})()"
+        },
+        {
+          "drag": "return (()=>{const a=__tool.screenPoint(-1,0),b=__tool.screenPoint(1,2);return [a,[(a[0]+b[0])/2,(a[1]+b[1])/2+1],b]})()"
+        },
+        {
+          "click": "#go"
+        },
+        {
+          "wait": 1000
+        }
+      ],
+      "keep": [
+        "#go",
+        "#piece-shelf",
+        "#hint",
+        "#top-loads"
+      ]
+    },
+    {
+      "name": "tower-extremes",
+      "steps": [
+        {
+          "click": "#m-tower"
+        },
+        {
+          "drag": "return (()=>{const r=document.getElementById('strength').getBoundingClientRect();return [[r.x+20,r.y+22],[r.right-8,r.y+22]]})()"
+        },
+        {
+          "drag": "return (()=>{const r=document.getElementById('speed').getBoundingClientRect();return [[r.x+20,r.y+22],[r.right-8,r.y+22]]})()"
+        },
+        {
+          "drag": "return (()=>{const r=document.getElementById('wind-speed').getBoundingClientRect();return [[r.x+20,r.y+22],[r.right-8,r.y+22]]})()"
+        },
+        {
+          "click": "#wind"
+        }
+      ],
+      "keep": [
+        "#go",
+        "#piece-shelf",
+        "#hint",
+        "#top-loads"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "yard-after-save",
+      "steps": [
+        {
+          "click": "#save"
+        },
+        {
+          "click": "#m-yard"
+        },
+        {
+          "click": ".design-card"
+        },
+        {
+          "click": "#test-all"
+        },
+        {
+          "wait": 1500
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#test-all",
+        "#cards"
+      ]
+    },
+    {
+      "name": "tag-book",
+      "steps": [
+        {
+          "click": "#tags"
+        }
+      ],
+      "keep": [
+        "#close-tags"
+      ]
+    },
+    {
+      "name": "new-confirmation",
+      "steps": [
+        {
+          "click": "#new"
+        }
+      ],
+      "keep": [
+        "#confirm-yes",
+        "#confirm-no"
+      ]
+    },
+    {
+      "name": "compact-promise-choices",
+      "steps": [
+        {
+          "click": "#promises summary"
+        },
+        {
+          "wait": 250
+        }
+      ],
+      "keep": [
+        "#promise-list",
+        "#close-promises"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

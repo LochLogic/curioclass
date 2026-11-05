@@ -1,0 +1,120 @@
+{
+  "states": [
+    {
+      "name": "cow-selected",
+      "steps": [
+        {
+          "click": "#add-cow"
+        }
+      ],
+      "keep": [
+        "#readout"
+      ]
+    },
+    {
+      "name": "two-trees",
+      "steps": [
+        {
+          "click": "#m-puzzles"
+        }
+      ],
+      "keep": [
+        "#goals",
+        "#next"
+      ]
+    },
+    {
+      "name": "balloons",
+      "steps": [
+        {
+          "click": "#m-puzzles"
+        },
+        {
+          "click": "#previous"
+        }
+      ],
+      "keep": [
+        "#goals",
+        "#next"
+      ]
+    },
+    {
+      "name": "mixed-zoom",
+      "steps": [
+        {
+          "click": "#m-mixed"
+        },
+        {
+          "click": "#show-one"
+        }
+      ],
+      "keep": [
+        "#print-frame",
+        "#show-one",
+        "#whole"
+      ]
+    },
+    {
+      "name": "solved-wipe",
+      "steps": [
+        {
+          "click": "#m-puzzles"
+        },
+        {
+          "drag": "return (()=>{const o=document.querySelectorAll('.object')[0];const r=o.getBoundingClientRect(),c=document.querySelector('#postcard').getBoundingClientRect();const x=r.x+r.width/2,y=r.y+r.height/2;return Array.from({length:16},(_,i)=>[x,y+(-0.24)*c.height*i/15]);})()"
+        },
+        {
+          "click": "#larger",
+          "times": 19,
+          "gap": 0.04
+        },
+        {
+          "click": ".object:nth-child(2)"
+        },
+        {
+          "click": "#smaller",
+          "times": 5,
+          "gap": 0.04
+        },
+        {
+          "drag": "return (()=>{const o=document.querySelectorAll('.object')[1];const r=o.getBoundingClientRect(),c=document.querySelector('#postcard').getBoundingClientRect();const x=r.x+r.width/2,y=r.y+r.height/2;return Array.from({length:16},(_,i)=>[x,y+(-0.28)*c.height*i/15]);})()"
+        },
+        {
+          "click": "#compare"
+        },
+        {
+          "wait": 300
+        }
+      ],
+      "keep": [
+        "#postcard",
+        "#compare",
+        "#next",
+        "#hint"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "misty-hills",
+      "steps": [
+        {
+          "click": "#m-puzzles"
+        },
+        {
+          "click": "#next",
+          "times": 5,
+          "gap": 0.1
+        }
+      ],
+      "keep": [
+        "#goals",
+        "#next",
+        "#side-summary"
+      ]
+    }
+  ]
+}

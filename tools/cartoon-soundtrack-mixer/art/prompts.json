@@ -1,0 +1,185 @@
+{
+  "house_style": "1920s black and white rubber hose cartoon style, bold expressive ink outlines, flat gray tones, subtle hand-painted paper texture, soft shading, consistent charming black cat with white muzzle, belly and paws. Original animal cartoon for grades 3 to 5. No text, letters, numbers, logos or people.",
+  "assets": [
+    {
+      "name": "theater-piano",
+      "prompt": "Warm painted look, soft stage light. An old movie theater from the 1920s, an upright piano with blank sheet music on its stand and an empty stool in the left foreground, a glowing blank movie screen on the right, deep burgundy velvet curtains, warm amber lamp light, polished wood and brass details. No people.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 76,
+      "cutout": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex)",
+      "review": "ok: generated output and keyed contact sheet inspected",
+      "house_style": "Warm painted gouache, soft stage light, rich amber lamps and burgundy velvet, polished 1920s wood and brass. No people, text, letters, numbers or logos."
+    },
+    {
+      "name": "bg-fence-night",
+      "prompt": "A wooden backyard fence running across the picture at night, its top rail at 65 percent of picture height for a cat to walk on, a big round moon high at right, rooftops behind. Empty scene, no animals.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 76,
+      "cutout": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex)",
+      "review": "ok: generated output and keyed contact sheet inspected"
+    },
+    {
+      "name": "cloud",
+      "prompt": "A single fluffy storm cloud, shaded charcoal lobes with pale rim light. Fully in frame, isolated on perfectly flat pure green #00FF00.",
+      "aspect": "4:1",
+      "width": 800,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex)",
+      "review": "ok: generated output and keyed contact sheet inspected"
+    },
+    {
+      "name": "bg-porch",
+      "prompt": "Original monochrome 1920s porch, open wood floor for a separate animated box; moonlight, grain, railings and far-right cat door retained.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 76,
+      "cutout": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex)",
+      "review": "ok: generated output and keyed contact sheet inspected",
+      "redrawn": "Cold review: remove baked-in box for one animated box and retain detailed porch plate."
+    },
+    {
+      "name": "bg-window",
+      "prompt": "Inside a cozy room, a round rug in front of a big window with rain on the glass, night outside, soft light from the upper right. Empty rug in lower center, no animals.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 76,
+      "cutout": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex)",
+      "review": "ok: generated output and keyed contact sheet inspected"
+    },
+    {
+      "name": "cat-walk-a",
+      "prompt": "A black and white cartoon cat with big white eyes, rubber hose cartoon style, walking right along a fence, front paw forward, separated legs. Subject alone fully in frame on perfectly flat pure green #00FF00. No ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 380,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex)",
+      "review": "ok: generated output and keyed contact sheet inspected"
+    },
+    {
+      "name": "cat-walk-b",
+      "prompt": "A black and white cartoon cat with big white eyes, rubber hose cartoon style, walking right along a fence, back paw forward, separated legs. Subject alone fully in frame on perfectly flat pure green #00FF00. No ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 380,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex)",
+      "review": "ok: generated output and keyed contact sheet inspected"
+    },
+    {
+      "name": "cat-look",
+      "prompt": "A black and white cartoon cat with big white eyes, rubber hose cartoon style, standing on four paws facing right, head tilted looking up at the moon. Subject alone fully in frame on perfectly flat pure green #00FF00. No ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 380,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex)",
+      "review": "ok: generated output and keyed contact sheet inspected"
+    },
+    {
+      "name": "cat-puff",
+      "prompt": "A black and white cartoon cat with big white eyes, rubber hose cartoon style, startled, fur puffed, arched back, tail straight up, wide eyes. Subject alone fully in frame on perfectly flat pure green #00FF00. No ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 380,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex)",
+      "review": "ok: generated output and keyed contact sheet inspected"
+    },
+    {
+      "name": "cat-jump",
+      "prompt": "A black and white cartoon cat with big white eyes, rubber hose cartoon style, leaping down to the right, legs stretched, whole body visible. Subject alone fully in frame on perfectly flat pure green #00FF00. No ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 380,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex)",
+      "review": "ok: generated output and keyed contact sheet inspected"
+    },
+    {
+      "name": "cat-run",
+      "prompt": "A black and white cartoon cat with big white eyes, rubber hose cartoon style, running fast to the right, stretched out horizontally, whole body visible. Subject alone fully in frame on perfectly flat pure green #00FF00. No ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 380,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex)",
+      "review": "ok: generated output and keyed contact sheet inspected"
+    },
+    {
+      "name": "cat-listen",
+      "prompt": "A black and white cartoon cat with big white eyes, rubber hose cartoon style, frozen facing right, ears up, one front paw raised, listening. Subject alone fully in frame on perfectly flat pure green #00FF00. No ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 380,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex)",
+      "review": "ok: generated output and keyed contact sheet inspected"
+    },
+    {
+      "name": "cat-carry",
+      "prompt": "A black and white cartoon cat with big white eyes, rubber hose cartoon style, walking right on four paws, holding a tiny kitten gently by the scruff in its mouth. Subject alone fully in frame on perfectly flat pure green #00FF00. No ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 380,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex)",
+      "review": "ok: generated output and keyed contact sheet inspected"
+    },
+    {
+      "name": "cat-curl",
+      "prompt": "A black and white cartoon cat with big white eyes, rubber hose cartoon style, curled up asleep around a tiny sleeping kitten, a peaceful complete curled silhouette. Subject alone fully in frame on perfectly flat pure green #00FF00. No ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 380,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex)",
+      "review": "ok: generated output and keyed contact sheet inspected"
+    },
+    {
+      "name": "kitten-peek",
+      "prompt": "Preserve the box cutout silhouette, flaps and perspective; tiny light gray kitten peeks over the front rim. Monochrome rubber hose style on pure green #00FF00.",
+      "aspect": "1:1",
+      "width": 380,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex)",
+      "review": "ok: generated output and keyed contact sheet inspected",
+      "redrawn": "Cold review: kitten reveal retains the empty box perspective and silhouette.",
+      "despill": true
+    },
+    {
+      "name": "box",
+      "prompt": "A black and white cartoon cat with big white eyes, rubber hose cartoon style, a cardboard box with open flaps, empty. Subject alone fully in frame on perfectly flat pure green #00FF00. No ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 380,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex)",
+      "review": "ok: generated output and keyed contact sheet inspected"
+    }
+  ]
+}

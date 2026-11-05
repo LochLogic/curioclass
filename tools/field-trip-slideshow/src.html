@@ -1,0 +1,1074 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Field Trip Slideshow · Curio Class</title>
+<meta name="description" content="Four classroom crews prepare and present a true aquarium slideshow. A teacher-led K-2 media arts tool. Works offline.">
+<!--
+Field Trip Slideshow, Curio Class. K-2 Media Arts: MA:Pr5, MA:Pr6, MA:Cn10.
+Teacher led. Sources and illustrative assumptions are in notes.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0. Code MIT. One file, no network requests. No camera, upload or recording.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f1f7f8; --ink:#13262c; --muted:#4d6268; --line:#a7c8ce; --focus:#e67d22;
+  --brand:#155e75; --btn:#155e75; --btn-line:#7eb3bf; --head-ink:#fff; --panel:#f1f7f8;
+}
+body { height:100dvh; min-height:0; grid-template-rows:auto 28px minmax(0,1fr) auto; overflow:hidden; }
+header { display:block; padding:0; background:linear-gradient(120deg,#124759,#155e75 65%,#226d79); }
+.mast { height:72px; padding:6px 20px; display:flex; align-items:center; gap:8px; }
+h1 { font-size:28px; letter-spacing:-.5px; }
+h1 small { font-size:14px; }
+button { min-width:60px; min-height:60px; touch-action:manipulation; }
+.icon-btn { min-height:60px; padding:0 14px; }
+.seg { display:flex; width:100%; border:0; border-radius:0; background:#0b3545; gap:3px; padding:0 14px 5px; }
+.seg button { flex:1; min-height:60px; border:1px solid #76a6b4; border-radius:12px 12px 3px 3px; }
+.seg button[aria-pressed="true"] { background:#fbd36b; color:#13262c; box-shadow:inset 0 -4px #bf8a25; }
+#badges { display:flex; justify-content:center; align-items:center; gap:36px; background:#d7e9ec; border-bottom:1px solid #adcbd1; }
+.badge { font-size:14px; font-weight:750; white-space:nowrap; }
+.badge b { display:inline-grid; place-items:center; width:22px; color:var(--brand); }
+main { display:block; min-height:0; padding:12px 18px 6px; position:relative; }
+.view { height:100%; min-height:0; }
+.view h2 { margin:0; font-size:clamp(17px,1.9vw,25px); line-height:1.2; }
+.eyebrow { color:var(--muted); font-size:13px; text-transform:uppercase; letter-spacing:1.2px; }
+.topline { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.film-label { color:var(--muted); font-weight:650; font-size:14px; }
+.screen { background:#0b1c22; border:5px solid #193b45; border-radius:15px; overflow:hidden; position:relative;
+  box-shadow:0 5px 15px #09283330,inset 0 0 0 1px #56828a; }
+.photo { position:relative; display:block; overflow:hidden; background:#07151a; min-height:0; }
+.photo img { display:block; width:100%; height:100%; object-fit:contain; }
+.photo.blur img { filter:blur(6px); transform:scale(1.08); }
+.photo.dark img { filter:brightness(.35); }
+.photo.crop img { transform:translateX(70%); }
+.photo.glare::after { content:""; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 40%,#fff 0%,#ffffffd9 20%,#ffffff00 57%); }
+.photo::before { content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:linear-gradient(130deg,#ffffff12,transparent 35%,#00101a15); }
+.b { border:2px solid #91b2ba; background:linear-gradient(#fff,#e5eff1); border-radius:12px;
+  padding:4px 12px; font-size:17px; font-weight:750; box-shadow:0 3px 0 #a8c2c8; }
+.b:active { box-shadow:0 1px 0 #7898a0; transform:translateY(2px); }
+.b.gold { background:linear-gradient(#ffe59b,#f6c854); border-color:var(--brand); }
+.b[aria-pressed="true"] { border-color:var(--brand); background:#ffdf82; box-shadow:inset 0 0 0 2px #155e75; }
+.b:disabled { opacity:.5; cursor:default; }
+.actions { display:flex; gap:8px; min-height:60px; }
+.actions .b { flex:1; }
+.hint { margin:0; padding:8px 20px; min-height:48px; border-top:2px solid #b6cfd5; background:#fbf1dc;
+  font-size:17px; line-height:1.4; display:flex; align-items:center; gap:9px; }
+.hint::before { content:'◉'; color:var(--brand); font-size:19px; }
+#camera { display:grid; grid-template-rows:30px minmax(0,1fr) 66px; gap:9px; }
+#camera.zoom { grid-template-rows:30px minmax(0,1fr); }
+#takes { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; min-height:0; }
+.take { min-width:0; display:grid; grid-template-rows:minmax(0,1fr) 44px; padding:0;
+  background:#123240; color:#fff; border:4px solid #315d69; border-radius:14px; overflow:hidden;
+  box-shadow:0 5px 0 #08242c,0 9px 18px #0c3d4d20; }
+.take .photo { width:100%; height:100%; }
+.take span { display:grid; place-items:center; font-size:20px; font-weight:800; letter-spacing:.4px; }
+.take:hover { border-color:#e5ba51; }
+.take:hover img { scale:1.03; transition:scale .2s; }
+#camera-bar { display:flex; gap:10px; }
+#camera-nav { display:flex; gap:7px; flex:1; }
+#camera-nav button { flex:1; }
+#strip { display:grid; grid-template-columns:repeat(6,minmax(60px,1fr)); gap:6px; flex:2; }
+.slot { position:relative; padding:0; border:2px dashed #648792; background:#d4e4e7; border-radius:8px;
+  overflow:hidden; min-width:60px; min-height:60px; }
+.slot .photo { position:absolute; inset:0; }
+.slot b { position:absolute; bottom:2px; left:3px; color:#fff; background:#102a34; border-radius:4px; padding:0 5px; }
+.slot.empty b { position:static; color:#284a55; background:none; font-size:18px; }
+.slot[aria-pressed="true"] { border:3px solid #155e75; box-shadow:0 0 0 2px #f4c754; }
+#closer { display:grid; grid-template-columns:minmax(0,1fr) 290px; gap:16px; min-height:0; }
+#close-photo { width:100%; height:100%; }
+#close-panel { display:flex; flex-direction:column; justify-content:center; gap:14px; }
+#take-note { font-size:21px; line-height:1.35; background:#fbf1dc; border-radius:15px; padding:14px; margin:0; }
+#sound-view { display:grid; grid-template-columns:minmax(0,1fr) 265px; grid-template-rows:minmax(0,1fr) 68px; gap:12px; }
+#sound-picture { display:flex; flex-direction:column; }
+#sound-picture .photo { flex:1; }
+.caption { margin:0; background:#102d39; color:#fff; padding:9px 14px; font-size:20px; line-height:1.4; text-align:center; }
+.word { border-radius:4px; display:inline-block; padding:0 2px; }
+.word.lit { background:#f4d16a; color:#13262c; }
+.mixer { border:3px solid #aac6cc; background:linear-gradient(120deg,#eaf2f3,#cadfe3); border-radius:18px;
+  padding:15px; display:flex; flex-direction:column; gap:12px; box-shadow:inset 0 2px #fff; min-height:0; }
+.meters { display:flex; gap:18px; justify-content:center; flex:1; min-height:70px; }
+.meter { display:flex; flex-direction:column; align-items:center; gap:6px; font-weight:800; }
+.segments { display:flex; flex-direction:column-reverse; width:49px; min-height:60px; flex:1; gap:5px; padding:7px;
+  background:#102934; border:3px solid #547780; border-radius:10px; }
+.segments i { flex:1; background:#31505c; border-radius:3px; box-shadow:inset 0 1px #ffffff20; }
+.segments i.on { background:linear-gradient(#78e4d4,#28ab9c); box-shadow:0 0 9px #65e9c048; }
+.segments i.hot { background:linear-gradient(#ffd67e,#d79434); }
+#listening { display:flex; gap:10px; align-items:center; justify-content:center; min-height:63px; }
+#ear { font-size:40px; }
+#listen-symbol { font-size:32px; font-weight:900; color:#155e75; }
+#listen-text { font-size:16px; text-align:center; margin:0; }
+#music-model { text-align:center; font-size:12px; color:#355762; }
+#sound-actions { grid-column:1/-1; }
+#sound-actions .slide-counter { align-self:center; font-weight:750; white-space:nowrap; }
+#speaker { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:16px; }
+.speaker-side { display:grid; grid-template-rows:30px minmax(0,1fr); gap:8px; min-height:0; }
+#speaker-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(60px,1fr)); gap:10px; }
+.slide-card { border:3px solid #6f939e; border-radius:12px; background:#fff; padding:0; overflow:hidden;
+  display:grid; grid-template-rows:minmax(25px,1fr) auto; position:relative; }
+.slide-card .photo { width:100%; height:100%; }
+.bubble { display:block; padding:7px; font-size:15px; line-height:1.2; background:#fff; min-height:38px; }
+.slide-card .number { position:absolute; top:5px; left:5px; border-radius:5px; background:#102e3a; color:#fff; padding:1px 6px; }
+.slide-card.matched { border-color:#155e75; }
+#sentence-cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:repeat(3,minmax(60px,1fr)); gap:10px; }
+.sentence { text-align:left; padding:9px; background:linear-gradient(#fffdf5,#f7ebd0); border:2px solid #c5b48e;
+  border-radius:12px; font-weight:650; font-size:clamp(14px,1.35vw,20px); line-height:1.3; }
+.sentence .animal { font-size:23px; display:block; margin-bottom:6px; }
+.sentence.placed { background:#dfecec; border-color:#9cb8bf; }
+.sentence[aria-pressed="true"] { outline:4px solid #d49c22; outline-offset:-4px; background:#ffe5a1; }
+#practice { display:flex; flex-direction:column; justify-content:center; align-items:center; gap:18px;
+  padding:15px; border:3px solid #a5c4cc; border-radius:18px; background:#fff6dd; }
+#practice p { font-size:clamp(18px,2.4vw,33px); margin:0; line-height:1.4; text-align:center; }
+.practice-icon { font-size:65px; }
+#room { display:grid; grid-template-columns:minmax(0,1fr) 280px; gap:14px; }
+#room-stage { position:relative; border-radius:16px; overflow:hidden; background:#c4d4d8 url('art:classroom') center/cover; }
+#room-dark { position:absolute; inset:0; background:#061726; opacity:0; transition:opacity .4s; }
+#room-stage.dim #room-dark { opacity:.48; }
+#room-stage.off #room-dark { opacity:.78; }
+#beam { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+.beam-path { fill:#fff4a330; }
+#projector { position:absolute; left:51%; top:51%; width:15%; height:35%; object-fit:contain; }
+#screen-prop { position:absolute; left:3%; top:9%; width:38%; height:59%; object-fit:fill; }
+#projection { position:absolute; left:5%; top:13%; width:34%; height:50%; overflow:hidden; background:#fff; }
+#projection .photo { width:100%; height:100%; opacity:1; }
+#projection .wash { position:absolute; inset:0; background:#fff; opacity:.6; transition:opacity .4s; }
+#room-stage.dim .wash { opacity:.25; }
+#room-stage.off .wash { opacity:.05; }
+#room-stage.up #projection { transform:skewY(-10deg) scale(.9); opacity:.45; }
+#shadow { position:absolute; inset:15% 20%; background:#0a1726e6; clip-path:polygon(50% 0,61% 33%,98% 35%,70% 57%,83% 98%,50% 76%,17% 98%,30% 57%,2% 35%,39% 33%); }
+#speaker-marker { position:absolute; left:19%; top:36%; z-index:3; font-size:clamp(25px,5vw,65px); color:#ffd05e;
+  filter:drop-shadow(0 2px 2px #0008); transition:left .25s,top .25s; }
+#speaker-marker.beside { left:41%; top:51%; }
+#speaker-marker.behind { left:84%; top:71%; }
+#chairs-art { position:absolute; left:65%; top:38%; right:2%; bottom:1%; }
+.chair { position:absolute; object-fit:contain; width:28%; height:35%; }
+#room-stage.door .chair { transform:scaleX(-1); }
+#room-label { position:absolute; top:8px; right:8px; padding:5px 10px; background:#f1f7f8eb; color:#13262c;
+  border-radius:8px; font-weight:700; font-size:14px; }
+#volume-rings { position:absolute; left:48%; bottom:10%; display:flex; gap:4px; align-items:center; }
+#volume-rings i { display:block; height:20px; width:5px; border-radius:3px; background:#ffe49c; box-shadow:0 0 4px #0b1c22; }
+#room-controls { display:grid; grid-template-rows:repeat(5,minmax(60px,1fr)); gap:8px; }
+.room-toggle { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; text-align:left; }
+.room-toggle span { font-size:14px; color:#355762; }
+.room-toggle b { font-size:18px; }
+#show { display:grid; grid-template-rows:minmax(0,1fr) auto; gap:10px; }
+#show-screen { position:relative; display:flex; flex-direction:column; }
+#show-photo { flex:1; min-height:0; }
+#show-title { position:absolute; left:8%; right:8%; top:13%; text-align:center; padding:20px 10px; color:#fff;
+  background:#082d3cdd; border:2px solid #c4e6eb77; border-radius:18px; box-shadow:0 7px 30px #0005; }
+#show-title h2 { font-size:clamp(26px,4vw,60px); letter-spacing:-1px; }
+#show-title p { font-size:clamp(16px,1.8vw,25px); margin:8px 0 0; color:#e9f5f6; }
+#show-bar { display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr 1fr 1fr; gap:8px; }
+#show-bar .b { font-size:16px; padding:4px 6px; }
+.bubble-light { position:absolute; width:8px; height:8px; border:1px solid #d2f6ff70; border-radius:50%;
+  bottom:8%; left:var(--x); z-index:2; pointer-events:none; animation:bubbles 9s linear infinite; animation-delay:var(--delay); }
+@keyframes bubbles { to { translate:15px -220px; opacity:0; } }
+dialog { width:min(750px,94vw); max-height:95dvh; border:3px solid #47717d; border-radius:18px; color:var(--ink);
+  background:#fbf6e9; padding:18px; box-shadow:0 20px 80px #0005; }
+dialog::backdrop { background:#071d2aca; }
+dialog h2 { margin:0 0 10px; font-size:26px; }
+dialog .actions { margin-top:14px; }
+.check-row { border-top:1px solid #c3cfc9; padding:10px 0; display:grid; grid-template-columns:35px 1fr 125px;
+  align-items:center; gap:8px; }
+.check-row p { margin:0; font-size:17px; line-height:1.35; }
+.check-row strong { font-size:24px; color:#155e75; }
+.check-row button { font-size:16px; }
+#reset-dialog p { font-size:20px; }
+.calm *,body.calm .photo img { animation:none!important; transition:none!important; }
+.calm .take:hover img { scale:1; }
+@media(min-width:1600px) {
+  .mast { height:90px; } h1 { font-size:34px; } .seg button { font-size:22px; }
+  main { padding:18px 30px 10px; } .hint { font-size:23px; min-height:60px; }
+  #camera { grid-template-rows:40px minmax(0,1fr) 90px; } .take span { font-size:25px; }
+  #sound-view { grid-template-columns:minmax(0,1fr) 320px; } .caption { font-size:26px; }
+  #room { grid-template-columns:minmax(0,1fr) 340px; }
+}
+@media(max-height:650px) and (min-width:600px) {
+  .mast { height:60px; padding:0 8px; } h1 { font-size:20px; } h1 small { display:none; }
+  .icon-btn { padding:0 9px; font-size:14px; } .seg { padding:0 5px; }
+  .seg button { padding:0 5px; font-size:15px; }
+  body { grid-template-rows:auto 24px minmax(0,1fr) 40px; }
+  #badges { gap:25px; } .badge { font-size:12px; }
+  main { padding:5px 8px; } .hint { font-size:13px; min-height:40px; padding:3px 9px; line-height:1.25; }
+  #camera { grid-template-rows:23px minmax(0,1fr) 60px; gap:5px; }
+  #camera.zoom { grid-template-rows:23px minmax(0,1fr); }
+  #takes { gap:8px; } .take { grid-template-rows:minmax(0,1fr) 28px; } .take span { font-size:17px; }
+  #camera-bar { gap:5px; } #camera-nav { gap:4px; } #strip { gap:4px; flex:0 0 380px; }
+  .b { font-size:14px; padding:3px 6px; } #closer { grid-template-columns:minmax(0,1fr) 220px; gap:9px; }
+  #close-panel { gap:5px; } #take-note { font-size:14px; padding:6px; }
+  #sound-view { grid-template-columns:minmax(0,1fr) 205px; grid-template-rows:minmax(0,1fr) 60px; gap:5px; }
+  .caption { font-size:14px; padding:4px; } .mixer { padding:5px; gap:3px; }
+  .meters { gap:15px; } .meter { font-size:13px; gap:2px; } .segments { width:35px; gap:3px; padding:4px; }
+  #listening { min-height:26px; } #ear { font-size:25px; } #listen-symbol { font-size:23px; }
+  #listen-text { font-size:12px; } #sound-actions .slide-counter { font-size:12px; }
+  #music-model { font-size:10px; }
+  #speaker { gap:10px; } .speaker-side { grid-template-rows:23px minmax(0,1fr); gap:5px; }
+  #speaker-grid,#sentence-cards { gap:5px; } .sentence { font-size:12px; padding:4px; line-height:1.15; }
+  #practice { padding:5px; gap:3px; } #practice p { font-size:16px; line-height:1.2; }
+  .practice-icon { font-size:28px; line-height:1; }
+  .sentence .animal { display:inline; font-size:17px; margin-right:4px; } .bubble { padding:3px; font-size:10px; min-height:25px; }
+  #room { grid-template-columns:minmax(0,1fr) 255px; gap:8px; }
+  #room-controls { grid-template-columns:1fr 1fr; grid-template-rows:repeat(3,minmax(60px,1fr)); gap:5px; }
+  .room-toggle span { font-size:12px; } .room-toggle b { font-size:14px; }
+  #show { gap:5px; } #show-bar { gap:4px; } #show-bar .b { font-size:12px; }
+  #show-title { padding:8px; } #show-title h2 { font-size:28px; } #show-title p { font-size:14px; }
+  .check-row { padding:5px 0; grid-template-columns:25px 1fr 110px; } .check-row p { font-size:14px; }
+  dialog { padding:10px; } dialog h2 { margin:0 0 5px; font-size:21px; } dialog .actions { margin-top:5px; }
+}
+@media(max-width:599px) {
+  .mast { height:70px; padding:3px 6px; gap:4px; } h1 { font-size:17px; max-width:115px; }
+  .icon-btn { padding:0 5px; font-size:12px; } .seg { padding:0; gap:2px; }
+  .seg button { padding:0 2px; font-size:12px; display:flex; flex-direction:column; justify-content:center; gap:3px; }
+  body { grid-template-rows:auto 27px minmax(0,1fr) 64px; }
+  #badges { gap:8px; } .badge { font-size:11px; } .badge b { width:14px; }
+  main { padding:7px; } .hint { min-height:64px; font-size:14px; padding:5px 8px; line-height:1.3; }
+  #camera { grid-template-rows:28px minmax(0,1fr) 128px; gap:8px; }
+  #camera.zoom { grid-template-rows:28px minmax(0,1fr); }
+  #takes { gap:6px; } .take { grid-template-rows:minmax(0,1fr) 36px; border-width:2px; }
+  .take span { font-size:16px; } #camera-bar { flex-direction:column; gap:5px; }
+  #camera-nav,#strip { flex:1; } #strip { gap:0; }
+  #closer { grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) auto; gap:8px; }
+  #close-panel { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  #take-note { grid-column:1/-1; font-size:16px; padding:8px; }
+  #sound-view { grid-template-columns:minmax(0,1fr) 103px; grid-template-rows:minmax(0,1fr) 128px; gap:6px; }
+  .mixer { padding:6px 3px; gap:8px; } .meters { gap:6px; } .meter { font-size:11px; }
+  .segments { width:32px; padding:4px; } #listening { gap:2px; } #ear { font-size:31px; }
+  #listen-symbol { font-size:25px; } #listen-text { font-size:13px; } .caption { font-size:16px; padding:7px; }
+  #sound-actions { display:grid; grid-template-columns:1fr 1fr 1fr; gap:5px; }
+  #sound-actions .slide-counter { grid-column:2; text-align:center; font-size:13px; }
+  #sound-actions .b { padding:3px; font-size:14px; }
+  #speaker { grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) minmax(0,1fr); gap:10px; }
+  .speaker-side { grid-template-rows:24px minmax(0,1fr); gap:4px; }
+  #speaker-grid { gap:5px; } #sentence-cards { gap:5px; } .sentence { font-size:12px; padding:4px; line-height:1.15; }
+  .sentence .animal { display:inline; font-size:17px; margin-right:3px; } .bubble { font-size:10px; padding:3px; min-height:25px; }
+  #practice { padding:6px; gap:6px; } #practice p { font-size:18px; line-height:1.25; }
+  .practice-icon { font-size:28px; line-height:1; }
+  #room { grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) 194px; gap:7px; }
+  #room-controls { grid-template-columns:1fr 1fr; grid-template-rows:repeat(3,60px); gap:6px; }
+  .room-toggle span { font-size:12px; } .room-toggle b { font-size:15px; }
+  #show-bar { grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px; }
+  #show-bar .b { font-size:13px; } #show-title { left:5%; right:5%; padding:12px 7px; }
+  #show-title h2 { font-size:29px; } #show-title p { font-size:16px; }
+  .check-row { grid-template-columns:24px 1fr 92px; gap:5px; } .check-row p { font-size:14px; }
+  .check-row button { font-size:13px; padding:3px; } dialog { padding:12px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="mast">
+    <h1>Field Trip Slideshow<small>One trip. Four crews. A show for our families.</small></h1>
+    <button class="icon-btn" id="read">🔊 Read</button>
+    <button class="icon-btn" id="motion" aria-pressed="true">✨ Motion</button>
+    <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  </div>
+  <nav class="seg" aria-label="Crew job">
+    <button id="m-camera" aria-pressed="true"><span>📷</span> Camera</button>
+    <button id="m-sound" aria-pressed="false"><span>🔈</span> Sound</button>
+    <button id="m-speaker" aria-pressed="false"><span>🎤</span> Speaker</button>
+    <button id="m-room" aria-pressed="false"><span>🪑</span> Room</button>
+    <button id="m-show" aria-pressed="false"><span>▶</span> Show</button>
+  </nav>
+</header>
+<div id="badges" aria-label="Crew readiness"></div>
+<main>
+  <section class="view" id="camera" aria-label="Camera crew">
+    <div class="topline"><h2 id="camera-title"></h2><span class="film-label">Choose a take</span></div>
+    <div id="takes"></div>
+    <div id="closer" hidden>
+      <div class="screen" id="close-photo"></div>
+      <div id="close-panel">
+        <p id="take-note"></p>
+        <button class="b gold" id="use-take">✓ Use this one</button>
+        <button class="b" id="back-takes">↩ Back to takes</button>
+      </div>
+    </div>
+    <div id="camera-bar">
+      <div id="camera-nav"><button class="b" id="camera-back">◀ Back slide</button><button class="b" id="camera-next">Next slide ▶</button></div>
+      <div id="strip" aria-label="Six slideshow slots"></div>
+    </div>
+  </section>
+  <section class="view" id="sound-view" hidden aria-label="Sound crew">
+    <div class="screen" id="sound-picture"><div class="photo" id="sound-photo"></div><p class="caption" id="test-caption"></p></div>
+    <div class="mixer">
+      <div class="meters">
+        <div class="meter"><span>🎤 Voice</span><div class="segments" id="voice-meter"></div></div>
+        <div class="meter"><span>♫ Music</span><div class="segments" id="music-meter"></div></div>
+      </div>
+      <div id="listening"><span id="ear">👂</span><span id="listen-symbol"></span></div>
+      <p id="listen-text"></p>
+      <small id="music-model"></small>
+    </div>
+    <div class="actions" id="sound-actions">
+      <button class="b" id="softer">− Softer</button><button class="b gold" id="test">▶ Test it</button>
+      <button class="b" id="louder">+ Louder</button><button class="b" id="sound-back">◀ Back slide</button>
+      <span class="slide-counter" id="sound-counter"></span><button class="b" id="sound-next">Next slide ▶</button>
+    </div>
+  </section>
+  <section class="view" id="speaker" hidden aria-label="Speaker crew">
+    <div class="speaker-side"><h2>Pictures to speak about</h2><div id="speaker-grid"></div></div>
+    <div class="speaker-side"><h2>Pick a sentence, then a picture</h2><div id="sentence-cards"></div>
+      <div id="practice" hidden><span class="practice-icon">🎤 ★</span>
+        <p>Stand tall.<br>Look at the families.<br>Say it loud and clear.</p><button class="b gold" id="practiced">✓ We practiced</button></div>
+    </div>
+  </section>
+  <section class="view" id="room" hidden aria-label="Room crew">
+    <div id="room-stage">
+      <div id="room-dark"></div>
+      <svg id="beam" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+        <path class="beam-path" d="M585 375 L60 70 L60 370 Z"/>
+      </svg>
+      <img id="screen-prop" src="art:screen-down" alt="Pull-down screen">
+      <div id="projection"><div id="room-photo" class="photo"></div><div class="wash"></div><div id="shadow"></div></div>
+      <img id="projector" src="art:projector" alt="Projector on its cart">
+      <div id="speaker-marker" aria-label="Speaker spot marker">★<span style="font-size:.5em">🎤</span></div>
+      <div id="chairs-art"></div><div id="volume-rings" aria-hidden="true"></div>
+      <div id="room-label">Family view</div>
+    </div>
+    <div id="room-controls"></div>
+  </section>
+  <section class="view" id="show" hidden aria-label="The slideshow">
+    <div class="screen" id="show-screen"><div id="show-photo" class="photo"></div>
+      <div id="show-title"><h2>Our Aquarium Trip</h2><p>Made by our Camera, Sound, Speaker and Room crews</p></div>
+      <p class="caption" id="show-caption"></p>
+    </div>
+    <div id="show-bar">
+      <button class="b" id="rehearse">▤ Dress rehearsal</button><button class="b gold" id="present">▶ Present</button>
+      <button class="b" id="show-back">◀ Back slide</button><button class="b" id="show-next">Next slide ▶</button>
+      <button class="b" id="end-show">■ End show</button><button class="b" id="new-show">↺ New show</button>
+    </div>
+  </section>
+</main>
+<p class="hint" id="hint" aria-live="polite"></p>
+<dialog id="rehearsal-dialog" aria-labelledby="rehearsal-title"><h2 id="rehearsal-title">▤ Dress rehearsal</h2>
+  <div id="checklist"></div><div class="actions"><button class="b" id="read-rehearsal">🔊 Read</button>
+  <button class="b" id="close-rehearsal">↩ Back to show</button></div>
+</dialog>
+<dialog id="reset-dialog" aria-labelledby="reset-title"><h2 id="reset-title">Start a new show?</h2>
+  <p>This clears all four crews' work.</p><div class="actions"><button class="b gold" id="confirm-reset">✓ Yes, start over</button>
+  <button class="b" id="keep-show">↩ Keep it</button><button class="b" id="read-reset">🔊 Read</button></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const slides = [
+    {name:'jellyfish', icon:'🪼', problem:'dark', sentence:'Jellyfish have no bones and no brain.'},
+    {name:'octopus', icon:'🐙', problem:'crop', sentence:'An octopus has eight arms, and it can change color.'},
+    {name:'sea turtle', icon:'🐢', problem:'glare', sentence:'Sea turtles breathe air. They swim up to the top for a breath.'},
+    {name:'shark', icon:'🦈', problem:'crop', sentence:'Sharks grow new teeth all their lives.'},
+    {name:'seahorse', icon:'♞', problem:'dark', sentence:'Seahorse dads carry the babies.'},
+    {name:'penguin', icon:'🐧', problem:'glare', sentence:'Penguins are birds that cannot fly, but they swim fast.'}
+  ];
+  // A single token per image keeps the offline bundle small even when a painting appears in several views.
+  const art = {
+    jellyfish:'art:jellyfish', octopus:'art:octopus', turtle:'art:turtle', shark:'art:shark',
+    seahorse:'art:seahorse', penguin:'art:penguin', entrance:'art:entrance',
+    screenUp:'art:screen-up', screenDown:'art:screen-down', chair:'art:chair'
+  };
+  const images = [art.jellyfish,art.octopus,art.turtle,art.shark,art.seahorse,art.penguin];
+  const takes = [ ['blur','clear','dark'], ['crop','blur','clear'], ['clear','glare','blur'],
+    ['blur','crop','clear'], ['dark','clear','blur'], ['clear','blur','glare'] ];
+  const jobs = ['camera','sound','speaker','room'];
+  const icons = ['📷','🔈','🎤','🪑'];
+  const names = ['Camera','Sound','Speaker','Room'];
+  const state = {
+    mode:'camera', slide:0, selectedTake:null, picks:Array(6).fill(null), music:5, tested:false,
+    selectedSentence:null, matches:Array(6).fill(false), practiced:false,
+    room:{lights:0, screen:0, chairs:1, spot:0, volume:0}, showIndex:0, presenting:false, testing:false
+  };
+  const roomOptions = {
+    lights:['On','Dim','Off'], screen:['Up','Down'], chairs:['Face the screen','Face the door'],
+    spot:['In the beam','Beside the screen','Behind the chairs'], volume:['Soft','Medium','Loud']
+  };
+  const roomMeta = {
+    lights:['💡','Lights'], screen:['▣','Screen'], chairs:['🪑','Chairs'], spot:['★🎤','Speaker spot'], volume:['🔈','Volume']
+  };
+  const L = {
+    wCamera:'Camera crew, pick the best photo for each slide. Tap a take to look closer.',
+    wSound:'Sound crew, the families must hear the speaker. Tap Test it and listen.',
+    wSpeaker:'Speaker crew, find the true sentence for each picture. Tap a sentence, then a slide.',
+    wRoom:'Room crew, set up so every family can see and hear. Change the lights, screen, chairs, speaker spot and volume.',
+    wShow:'Tap Dress rehearsal to check every job. Then tap Present.',
+    cameraDone:'Six clear photos. Camera crew, great job!', wrong:'Is that about this picture? Look again.',
+    allMatched:'Every slide has its sentence. Now practice: stand tall, look at the families, and say it loud and clear.',
+    practiced:'Speaker crew, ready to share! Tap Show, then Dress rehearsal.',
+    listen:['I can hear every word.','Some words are hard to hear.','The music covers the words.'],
+    softer:'Tap Softer, then Test it again.', roomReady:'The room is ready!',
+    lightNote:'The lights wash out the picture. Try Dim or Off.', screenNote:'Pull the screen down.',
+    chairNote:'Turn the chairs to face the screen.', beamNote:'The speaker is in the beam and makes a shadow.',
+    behindNote:"Families can't see the speaker back there.", softNote:"The back row can't hear.", loudNote:'Too loud for a classroom.',
+    ready:'Every job is ready. Showtime!', end:'Thank you for coming to our aquarium show!',
+    readyRows:['Camera: six clear takes.','Sound: the music stays under the words.',
+      'Speaker: six true sentences and practice.','Room: families can see and hear.'],
+    hTake:'Tap Use this one to keep this take, or tap Back to takes to compare.',
+    hAgain:'Tap Try another take to compare, or tap Use this one to keep it.',
+    hSound:'Tap Softer or Louder to change the music. Tap Test it to hear the words.',
+    hSentence:'Tap a sentence card. Then tap the picture it tells about.',
+    hPicture:'Tap the picture for your sentence. Read can say the sentence again.',
+    hPractice:'Practice together. Then tap We practiced.',
+    hReady:'Tap Show, then Dress rehearsal to check the crews.',
+    hPresent:'Tap Next slide when the speaker is done. Tap End show to finish.',
+    hEnded:'Tap Present to share again, or New show to begin again.',
+    hReset:'Tap Yes, start over to clear the crews, or Keep it to keep your work.',
+    hCheck:'Tap a crew in the checklist to fix its job, or tap Back to show.',
+    clear:slides.map(s => `Clear, and the ${s.name} is in the middle. Good camera work!`),
+    blur:slides.map(s => `That one is blurry. Can you see the ${s.name} clearly?`),
+    dark:slides.map(s => `That one is too dark. Families won't see the ${s.name}.`),
+    crop:slides.map(s => `Part of the ${s.name} is cut off.`),
+    glare:'A flash bounced off the glass.',
+    sentence:slides.map(s => s.sentence),
+    cameraFix:slides.map((s,i) => ['clear','blur','dark','crop','glare'].map(type =>
+      `Camera: slide ${i+1} ${type === 'clear' ? 'needs a clear take' : type === 'blur' ? 'is blurry' :
+        type === 'dark' ? 'is too dark' : type === 'crop' ? 'is cut off' : 'has glare'}. Tap Camera to fix it.`)),
+    cameraMissing:slides.map((s,i) => `Camera: choose a take for slide ${i+1}. Tap Camera to fix it.`),
+    soundFix:'Sound: tap Softer until the words are clear, then tap Test it.',
+    soundTest:'Sound: tap Test it to check the music under the words.',
+    speakerFix:'Speaker: match a sentence to each picture, then practice. Tap Speaker to fix it.',
+    speakerPractice:'Speaker: practice together, then tap We practiced.',
+    roomFix:['Room: dim the lights. Tap Room to fix it.','Room: pull the screen down. Tap Room to fix it.',
+      'Room: turn the chairs toward the screen. Tap Room to fix it.',
+      'Room: move the speaker beside the screen. Tap Room to fix it.','Room: set the volume to Medium. Tap Room to fix it.']
+  };
+  let testGeneration = 0;
+  let highlightTimer = null;
+  let testTimer = null;
+  let currentHint = '';
+  let welcomeValid = true;
+  let initialized = false;
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode + ':' + state.slide, hint:false,
+    read:() => $('reset-dialog').open ? L.hReset : $('rehearsal-dialog').open ? checks().map(x => x.text) : currentHint,
+    welcome:() => state.mode === 'speaker' && state.matches.every(Boolean) ? null :
+      ['w'+state.mode[0].toUpperCase()+state.mode.slice(1), {valid:() => welcomeValid}],
+    speaks:'.take, #test, #use-take, #rehearse, #present, .room-toggle, .sentence, .slide-card'
+  });
+  function hint(text) {
+    currentHint = text;
+    $('hint').textContent = text;
+  }
+  function instruct(key) {
+    hint(L[key]);
+    V.how(key, {valid:() => currentHint === L[key]});
+  }
+  function event(text, valid = () => true) { V.say(text, {valid}); }
+  function photoHTML(i, type='clear') {
+    const cls = type === 'clear' ? '' : type;
+    return `<div class="photo ${cls}"><img src="${images[i]}" alt="${slides[i].name} aquarium painting"></div>`;
+  }
+  function typeOf(i) { return state.picks[i] === null ? 'clear' : takes[i][state.picks[i]]; }
+  function roomPass() {
+    const r = state.room;
+    return [r.lights > 0, r.screen === 1, r.chairs === 0, r.spot === 1, r.volume === 1];
+  }
+  function readiness() {
+    return [state.picks.every((p,i) => p !== null && takes[i][p] === 'clear'), state.music <= 3 && state.tested,
+      state.matches.every(Boolean) && state.practiced, roomPass().every(Boolean)];
+  }
+  function badges() {
+    readiness().forEach((ready,i) => {
+      $('badge-'+jobs[i]).innerHTML = `<b>${ready ? '✓' : '○'}</b> ${names[i]}`;
+      $('badge-'+jobs[i]).setAttribute('aria-label', names[i]+(ready ? ' ready' : ' needs work'));
+    });
+  }
+  function stopPlayback() {
+    ++testGeneration;
+    clearInterval(highlightTimer);
+    clearTimeout(testTimer);
+    state.testing = false;
+    stopMusic();
+    document.querySelectorAll('.word.lit').forEach(el => el.classList.remove('lit'));
+    $('test').textContent = '▶ Test it';
+  }
+  function setMode(mode) {
+    if (initialized && state.mode === mode) return;
+    initialized = true;
+    stopPlayback();
+    V.hush();
+    state.mode = mode;
+    state.selectedTake = null;
+    state.presenting = false;
+    welcomeValid = true;
+    const viewIds = {camera:'camera',sound:'sound-view',speaker:'speaker',room:'room',show:'show'};
+    Object.entries(viewIds).forEach(([key,id]) => {
+      $(id).hidden = key !== mode;
+      $('m-'+key).setAttribute('aria-pressed', key === mode);
+    });
+    if (mode === 'camera') renderCamera();
+    if (mode === 'sound') renderSound();
+    if (mode === 'speaker') renderSpeaker();
+    if (mode === 'room') renderRoom();
+    if (mode === 'show') {
+      state.showIndex = 0;
+      renderShow();
+    }
+    const key = 'w'+mode[0].toUpperCase()+mode.slice(1);
+    hint(L[key]);
+    if (mode === 'speaker' && state.matches.every(Boolean)) hint(state.practiced ? L.hReady : L.hPractice);
+    if (mode === 'speaker' && state.matches.every(Boolean)) {
+      V.how(state.practiced ? 'hReady' : 'hPractice', {valid:() => state.matches.every(Boolean)});
+    } else V.welcome();
+    badges();
+  }
+  function renderCamera() {
+    const i = state.slide;
+    $('camera').classList.toggle('zoom',state.selectedTake !== null);
+    $('camera-bar').hidden = state.selectedTake !== null;
+    $('camera-title').textContent = `${i+1} of 6 · ${slides[i].name}`;
+    $('takes').hidden = state.selectedTake !== null;
+    $('closer').hidden = state.selectedTake === null;
+    for (let t=0; t<3; t++) $('take-'+t).innerHTML = photoHTML(i,takes[i][t])+`<span>Take ${'ABC'[t]}</span>`;
+    if (state.selectedTake !== null) {
+      const type = takes[i][state.selectedTake];
+      $('close-photo').innerHTML = photoHTML(i,type);
+      $('close-photo').firstElementChild.style.height = '100%';
+      $('take-note').textContent = takeNote(type,i);
+      $('back-takes').textContent = type === 'clear' ? '↩ Back to takes' : '↩ Try another take';
+    }
+    for (let n=0; n<6; n++) {
+      const slot = $('slot-'+n);
+      slot.classList.toggle('empty',state.picks[n] === null);
+      slot.innerHTML = (state.picks[n] === null ? '' : photoHTML(n,typeOf(n)))+`<b>${n+1}</b>`;
+      slot.setAttribute('aria-pressed',n === i);
+      slot.setAttribute('aria-label',`Slide ${n+1}: ${slides[n].name}${state.picks[n] === null ? ', no take yet' : ''}`);
+    }
+  }
+  function takeNote(type,i) { return type === 'glare' ? L.glare : L[type][i]; }
+  function selectTake(t) {
+    V.hush();
+    welcomeValid = false;
+    state.selectedTake = t;
+    renderCamera();
+    Curio.tone(440,.07,.05);
+    const type = takes[state.slide][t];
+    const i = state.slide;
+    hint(takeNote(type,i)+' '+(type === 'clear' ? L.hTake : L.hAgain));
+    event(takeNote(type,i),() => state.slide === i && state.selectedTake === t);
+    V.how(type === 'clear' ? 'hTake' : 'hAgain', {valid:() => state.slide === i && state.selectedTake === t});
+    $('use-take').focus({preventScroll:true});
+  }
+  function useTake() {
+    const i = state.slide;
+    const t = state.selectedTake;
+    if (t === null) return;
+    V.hush();
+    state.picks[i] = t;
+    state.selectedTake = null;
+    const type = takes[i][t];
+    if (type === 'clear') Curio.yes();
+    else Curio.tone(220,.1,.07);
+    state.slide = (i+1)%6;
+    renderCamera();
+    badges();
+    hint(takeNote(type,i)+' '+(readiness()[0] ? 'Tap Sound to help families hear the words.' :
+      'Tap a take for '+slides[state.slide].name+'.'));
+    event(takeNote(type,i));
+    if (readiness()[0]) event(L.cameraDone,() => readiness()[0]);
+    $('take-0').focus({preventScroll:true});
+  }
+  function changeSlide(delta) {
+    stopPlayback();
+    V.hush();
+    const leavingCloser = state.mode === 'camera' && state.selectedTake !== null;
+    state.slide = (state.slide+delta+6)%6;
+    state.selectedTake = null;
+    if (state.mode === 'camera') renderCamera();
+    else renderSound();
+    hint(state.mode === 'camera' ? `Tap a take for the ${slides[state.slide].name}.` : L.hSound);
+    if (leavingCloser) $('take-0').focus({preventScroll:true});
+    Curio.tone(330,.04,.035);
+  }
+  function renderSound() {
+    $('sound-photo').innerHTML = photoHTML(state.slide,typeOf(state.slide));
+    $('sound-photo').firstElementChild.style.height = '100%';
+    $('test-caption').innerHTML = slides[state.slide].sentence.split(' ').map(w => `<span class="word">${w}</span>`).join(' ');
+    $('sound-counter').textContent = `${state.slide+1} of 6`;
+    renderLevel();
+  }
+  function renderLevel() {
+    for (let i=1; i<=5; i++) $('music-'+i).className = i <= state.music ? 'on'+(i >= 4 ? ' hot' : '') : '';
+    const face = state.music <= 3 ? 0 : state.music === 4 ? 1 : 2;
+    $('listen-symbol').textContent = ['✓','?','✕'][face];
+    $('listen-text').textContent = L.listen[face];
+    $('music-model').textContent = 'Listening model · level '+state.music+' of 5';
+    $('music-meter').setAttribute('aria-label',`Music level ${state.music} of 5`);
+    $('softer').title = state.music === 1 ? 'Music is at its softest level' : 'Lower the music one step';
+    $('louder').title = state.music === 5 ? 'Music is at its loudest level' : 'Raise the music one step';
+  }
+  function changeLevel(delta) {
+    if (state.testing) V.dropQueued();
+    else V.hush();
+    const before = state.music;
+    state.music = Math.max(1,Math.min(5,state.music+delta));
+    welcomeValid = false;
+    renderLevel();
+    setMusicGain();
+    badges();
+    hint(`Music level ${state.music}. ${L.listen[state.music <= 3 ? 0 : state.music === 4 ? 1 : 2]} Tap Test it to listen.`);
+    if (before !== state.music) Curio.tone(220+state.music*40,.045,.035);
+  }
+  function testSound() {
+    stopPlayback();
+    V.hush();
+    welcomeValid = false;
+    state.testing = true;
+    state.tested = true;
+    const generation = testGeneration;
+    const slide = state.slide;
+    $('test').textContent = '↻ Test again';
+    hint(slides[slide].sentence+' Tap Softer or Louder while you listen.');
+    badges();
+    startMusic();
+    const words = [...$('test-caption').children];
+    let word = 0;
+    const wordTime = Math.min(5000/words.length,390);
+    words[0]?.classList.add('lit');
+    highlightTimer = setInterval(() => {
+      words.forEach(el => el.classList.remove('lit'));
+      words[Math.min(++word,words.length-1)]?.classList.add('lit');
+    },wordTime);
+    event(slides[slide].sentence,() => state.testing && testGeneration === generation);
+    testTimer = setTimeout(() => {
+      if (testGeneration !== generation) return;
+      stopPlayback();
+      const face = state.music <= 3 ? 0 : state.music === 4 ? 1 : 2;
+      const level = state.music;
+      hint(L.listen[face]+' '+L.hSound);
+      V.say(L.listen[face], {now:true,valid:() => state.mode === 'sound' && !state.testing && state.music === level});
+      if (state.music >= 4) V.how('softer',{valid:() => state.music >= 4});
+    },6000);
+  }
+  function renderSpeaker() {
+    for (let i=0; i<6; i++) {
+      $('picture-'+i).innerHTML = photoHTML(i,typeOf(i))+`<span class="number">${i+1}</span>`+
+        `<span class="bubble">${state.matches[i] ? '✓ '+slides[i].sentence : '💬 …'}</span>`;
+      $('picture-'+i).classList.toggle('matched',state.matches[i]);
+      $('sentence-'+i).setAttribute('aria-pressed',state.selectedSentence === i);
+      $('sentence-'+i).classList.toggle('placed',state.matches[i]);
+    }
+    const all = state.matches.every(Boolean);
+    $('sentence-cards').hidden = all;
+    $('practice').hidden = !all;
+    $('practiced').textContent = state.practiced ? '✓ Practiced together' : '✓ We practiced';
+  }
+  function selectSentence(i) {
+    if (state.matches[i]) {
+      hint(slides[i].sentence+' Choose a sentence that still needs a picture.');
+      event(slides[i].sentence);
+      return;
+    }
+    V.hush();
+    welcomeValid = false;
+    state.selectedSentence = i;
+    renderSpeaker();
+    hint(slides[i].sentence+' '+L.hPicture);
+    event(slides[i].sentence,() => state.selectedSentence === i);
+    V.how('hPicture',{valid:() => state.selectedSentence !== null});
+    Curio.tone(440,.05,.04);
+  }
+  function matchSentence(i) {
+    const selected = state.selectedSentence;
+    if (selected === null) {
+      if (state.matches[i]) {
+        state.matches[i] = false;
+        state.practiced = false;
+        renderSpeaker();
+        badges();
+        hint(L.hSentence);
+        V.how('hSentence');
+        Curio.tone(330,.07,.04);
+      } else instruct('hSentence');
+      return;
+    }
+    V.hush();
+    state.selectedSentence = null;
+    if (selected !== i) {
+      renderSpeaker();
+      hint(L.wrong+' '+L.hSentence);
+      event('wrong');
+      Curio.tone(190,.12,.05);
+      return;
+    }
+    state.matches[i] = true;
+    Curio.yes();
+    renderSpeaker();
+    badges();
+    if (state.matches.every(Boolean)) {
+      hint(L.hPractice);
+      event('allMatched',() => state.matches.every(Boolean));
+      $('practiced').focus({preventScroll:true});
+    } else {
+      hint('✓ '+slides[i].sentence+' '+L.hSentence);
+      event(slides[i].sentence);
+    }
+  }
+  function renderRoom() {
+    const r = state.room;
+    $('room-stage').className = [r.lights === 1 ? 'dim' : r.lights === 2 ? 'off' : '',r.screen === 0 ? 'up' : '',
+      r.chairs === 1 ? 'door' : ''].join(' ');
+    $('room-photo').innerHTML = photoHTML(0,typeOf(0));
+    $('room-photo').firstElementChild.style.height = '100%';
+    $('screen-prop').src = r.screen === 0 ? art.screenUp : art.screenDown;
+    $('screen-prop').style.height = r.screen === 0 ? '7%' : '59%';
+    $('projection').style.top = r.screen === 0 ? '20%' : '13%';
+    $('shadow').hidden = r.spot !== 0;
+    $('speaker-marker').className = r.spot === 1 ? 'beside' : r.spot === 2 ? 'behind' : '';
+    $('volume-rings').innerHTML = Array.from({length:[1,3,5][r.volume]},(_,i) => `<i style="height:${12+i*7}px"></i>`).join('');
+    for (const key in roomOptions) $('room-'+key).innerHTML = `<span>${roomMeta[key][0]} ${roomMeta[key][1]}</span>`+
+      `<b>${roomOptions[key][r[key]]}</b>`;
+  }
+  function roomNote(key) {
+    const r = state.room;
+    if (key === 'lights' && r.lights === 0) return L.lightNote;
+    if (key === 'screen' && r.screen === 0) return L.screenNote;
+    if (key === 'chairs' && r.chairs === 1) return L.chairNote;
+    if (key === 'spot' && r.spot !== 1) return r.spot === 0 ? L.beamNote : L.behindNote;
+    if (key === 'volume' && r.volume !== 1) return r.volume === 0 ? L.softNote : L.loudNote;
+    return '';
+  }
+  function toggleRoom(key) {
+    welcomeValid = false;
+    V.hush();
+    state.room[key] = (state.room[key]+1)%roomOptions[key].length;
+    renderRoom();
+    badges();
+    const value = state.room[key];
+    const note = roomNote(key);
+    if (readiness()[3]) {
+      hint(L.roomReady+' Tap Show, then Dress rehearsal.');
+      event('roomReady',() => readiness()[3]);
+      Curio.yes();
+    } else if (note) {
+      hint(note+' Tap '+roomMeta[key][1]+' to change it.');
+      event(note,() => state.room[key] === value);
+    } else {
+      hint(roomMeta[key][1]+': '+roomOptions[key][value]+'. Change another room control.');
+      Curio.tone(440,.07,.04);
+    }
+  }
+  function checks() {
+    const cameraBad = state.picks.findIndex((p,i) => p === null || takes[i][p] !== 'clear');
+    const cameraType = cameraBad < 0 ? 'clear' : typeOf(cameraBad);
+    const cameraText = cameraBad < 0 ? L.readyRows[0] : state.picks[cameraBad] === null ?
+      L.cameraMissing[cameraBad] : L.cameraFix[cameraBad][['clear','blur','dark','crop','glare'].indexOf(cameraType)];
+    const roomBad = roomPass().indexOf(false);
+    const good = readiness();
+    return [
+      {job:'camera',good:good[0],text:cameraText},
+      {job:'sound',good:good[1],text:good[1] ? L.readyRows[1] : state.music > 3 ? L.soundFix : L.soundTest},
+      {job:'speaker',good:good[2],text:good[2] ? L.readyRows[2] :
+        state.matches.every(Boolean) ? L.speakerPractice : L.speakerFix},
+      {job:'room',good:good[3],text:good[3] ? L.readyRows[3] : L.roomFix[roomBad]}
+    ];
+  }
+  function rehearse() {
+    welcomeValid = false;
+    stopPlayback();
+    V.hush();
+    const rows = checks();
+    rows.forEach((r,i) => {
+      $('check-mark-'+i).textContent = r.good ? '✓' : '○';
+      $('check-text-'+i).textContent = r.text;
+    });
+    $('rehearsal-dialog').showModal();
+    hint(L.hCheck);
+    const first = rows.find(r => !r.good);
+    event(first ? first.text : L.ready,() => $('rehearsal-dialog').open);
+  }
+  function renderShow() {
+    const n = state.showIndex;
+    $('show-title').hidden = n > 0 && n < 7;
+    $('show-photo').innerHTML = n === 0 || n === 7 ? `<img src="${art.entrance}" alt="Aquarium entrance painting">` :
+      `<div style="height:100%">${photoHTML(n-1,typeOf(n-1))}</div>`;
+    if (n > 0 && n < 7) $('show-photo').firstElementChild.firstElementChild.style.height = '100%';
+    $('show-title').innerHTML = n === 7 ? '<h2>Thank you for coming!</h2><p>Our aquarium show, made together.</p>' :
+      '<h2>Our Aquarium Trip</h2><p>Made by our Camera, Sound, Speaker and Room crews</p>';
+    $('show-caption').textContent = n > 0 && n < 7 ? (state.matches[n-1] ? slides[n-1].sentence : '💬 Speaker crew: this slide still needs its sentence.') :
+      n === 0 ? 'A true recount, told by our class' : 'Camera · Sound · Speaker · Room';
+  }
+  function showSlide(delta) {
+    stopPlayback();
+    V.hush();
+    state.showIndex = Math.max(0,Math.min(7,state.showIndex+delta));
+    renderShow();
+    if (state.showIndex === 7) {
+      state.presenting = false;
+      hint(L.hEnded);
+      event('end',() => state.showIndex === 7);
+      applause();
+    } else {
+      hint(L.hPresent);
+      if (state.presenting) {
+        startMusic();
+        if (state.showIndex > 0 && state.matches[state.showIndex-1]) {
+          const n = state.showIndex;
+          event(slides[n-1].sentence,() => state.showIndex === n && state.presenting);
+        }
+      }
+    }
+  }
+  // An original eight-bar D-major aquarium loop. The music bus always uses the specified dB gain.
+  let audio = null;
+  let musicBus = null;
+  let musicTimer = null;
+  let musicNodes = [];
+  const audioInfo = {bpm:72, bars:8, gain:1, ramp:.05};
+  function audioContext() {
+    if (!Curio.sound) return null;
+    audio ||= new (window.AudioContext || window.webkitAudioContext)();
+    if (audio.state === 'suspended') audio.resume().catch(() => {});
+    return audio;
+  }
+  function setMusicGain() {
+    audioInfo.gain = Math.pow(10,[-24,-18,-12,-6,0][state.music-1]/20);
+    if (!musicBus || !audio) return;
+    const now = audio.currentTime;
+    musicBus.gain.cancelScheduledValues(now);
+    musicBus.gain.setValueAtTime(musicBus.gain.value,now);
+    musicBus.gain.linearRampToValueAtTime(audioInfo.gain,now+.05);
+  }
+  function musicNote(frequency, time, duration, gain, type='sine') {
+    const oscillator = audio.createOscillator();
+    const envelope = audio.createGain();
+    oscillator.type = type;
+    oscillator.frequency.value = frequency;
+    envelope.gain.setValueAtTime(.0001,time);
+    envelope.gain.exponentialRampToValueAtTime(gain,time+.08);
+    envelope.gain.exponentialRampToValueAtTime(.0001,time+duration);
+    oscillator.connect(envelope).connect(musicBus);
+    oscillator.start(time);
+    oscillator.stop(time+duration+.05);
+    musicNodes.push(oscillator);
+  }
+  function scheduleMusic() {
+    if (!musicBus || !Curio.sound) return;
+    const beat = 60/72;
+    const begin = audio.currentTime+.03;
+    const chords = [[146.832,184.997,220],[123.471,146.832,184.997],[98,123.471,146.832],[110,138.591,164.814]];
+    for (let bar=0; bar<8; bar++) {
+      const chord = chords[Math.floor(bar/2)];
+      chord.forEach(f => musicNote(f,begin+bar*4*beat,4*beat,.07));
+      for (let step=0; step<8; step++) musicNote(chord[step%3]*4,begin+(bar*4+step/2)*beat,.45,.08);
+      musicNote(1174.66,begin+(bar*4+3.25)*beat,.18,.025);
+    }
+    musicTimer = setTimeout(scheduleMusic,8*4*beat*1000);
+  }
+  function startMusic() {
+    stopMusic();
+    if (!audioContext()) return;
+    musicBus = audio.createGain();
+    musicBus.connect(audio.destination);
+    setMusicGain();
+    scheduleMusic();
+  }
+  function stopMusic() {
+    clearTimeout(musicTimer);
+    for (const node of musicNodes) { try { node.stop(); } catch {} }
+    musicNodes = [];
+    if (musicBus) musicBus.disconnect();
+    musicBus = null;
+  }
+  function applause() {
+    if (!audioContext()) return;
+    musicBus = audio.createGain();
+    musicBus.gain.value = .15;
+    musicBus.connect(audio.destination);
+    const length = audio.sampleRate * .14;
+    const buffer = audio.createBuffer(1,length,audio.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i=0; i<length; i++) data[i] = (Math.random()*2-1)*(1-i/length)**2;
+    for (let clap=0; clap<16; clap++) {
+      const source = audio.createBufferSource();
+      source.buffer = buffer;
+      source.connect(musicBus);
+      source.start(audio.currentTime+clap*.11+(clap%3)*.015);
+      musicNodes.push(source);
+    }
+  }
+  // Persistent controls preserve focus and never rebuild beneath the pointer.
+  $('badges').innerHTML = jobs.map((job,i) => `<span class="badge" id="badge-${job}"><b>○</b> ${names[i]}</span>`).join('');
+  for (let i=0; i<3; i++) {
+    const button = document.createElement('button');
+    button.className = 'take';
+    button.id = 'take-'+i;
+    button.onclick = () => selectTake(i);
+    $('takes').append(button);
+  }
+  for (let i=0; i<6; i++) {
+    const slot = document.createElement('button');
+    slot.className = 'slot';
+    slot.id = 'slot-'+i;
+    slot.onclick = () => {
+      const delta = i-state.slide;
+      changeSlide(delta);
+    };
+    $('strip').append(slot);
+    const picture = document.createElement('button');
+    picture.className = 'slide-card';
+    picture.id = 'picture-'+i;
+    picture.setAttribute('aria-label',`Slide ${i+1}, ${slides[i].name}`);
+    picture.onclick = () => matchSentence(i);
+    $('speaker-grid').append(picture);
+  }
+  // The sentence order differs from the picture order and the icon labels do not change after a wrong match.
+  for (const i of [3,0,4,1,5,2]) {
+    const card = document.createElement('button');
+    card.className = 'sentence';
+    card.id = 'sentence-'+i;
+    card.innerHTML = `<span class="animal">${slides[i].icon}</span>${slides[i].sentence}`;
+    card.onclick = () => selectSentence(i);
+    $('sentence-cards').append(card);
+  }
+  // Sentence cards precede pictures in keyboard order, even though pictures are visually on the left.
+  const speakerSides = $('speaker').children;
+  speakerSides[1].style.order = '0';
+  speakerSides[0].style.order = '1';
+  $('speaker').insertBefore(speakerSides[1],speakerSides[0]);
+  for (let i=1; i<=5; i++) {
+    $('voice-meter').insertAdjacentHTML('beforeend','<i class="on"></i>');
+    $('music-meter').insertAdjacentHTML('beforeend',`<i id="music-${i}"></i>`);
+  }
+  for (const key in roomOptions) {
+    const button = document.createElement('button');
+    button.id = 'room-'+key;
+    button.className = 'b room-toggle';
+    button.onclick = () => toggleRoom(key);
+    $('room-controls').append(button);
+  }
+  for (let row=0; row<3; row++) {
+    for (let col=0; col<3; col++) {
+      const img = document.createElement('img');
+      img.src = art.chair;
+      img.className = 'chair';
+      img.alt = '';
+      img.style.left = (col*30)+'%';
+      img.style.top = (row*27)+'%';
+      $('chairs-art').append(img);
+    }
+  }
+  for (let i=0; i<4; i++) {
+    const row = document.createElement('div');
+    row.className = 'check-row';
+    row.innerHTML = `<strong id="check-mark-${i}"></strong><p id="check-text-${i}"></p>`+
+      `<button class="b" id="fix-${jobs[i]}">${icons[i]} ${names[i]}</button>`;
+    row.querySelector('button').onclick = () => {
+      $('rehearsal-dialog').close();
+      setMode(jobs[i]);
+      $('m-'+jobs[i]).focus({preventScroll:true});
+    };
+    $('checklist').append(row);
+  }
+  Object.keys({camera:0,sound:0,speaker:0,room:0,show:0}).forEach(m => $('m-'+m).onclick = () => setMode(m));
+  $('use-take').onclick = useTake;
+  $('back-takes').onclick = () => {
+    V.hush();
+    state.selectedTake = null;
+    renderCamera();
+    hint(`Tap a take for the ${slides[state.slide].name}.`);
+    $('take-0').focus({preventScroll:true});
+  };
+  $('camera-back').onclick = () => changeSlide(-1);
+  $('camera-next').onclick = () => changeSlide(1);
+  $('sound-back').onclick = () => changeSlide(-1);
+  $('sound-next').onclick = () => changeSlide(1);
+  $('softer').onclick = () => changeLevel(-1);
+  $('louder').onclick = () => changeLevel(1);
+  $('test').onclick = testSound;
+  $('practiced').onclick = () => {
+    state.practiced = true;
+    renderSpeaker();
+    badges();
+    hint(L.hReady);
+    event('practiced');
+    Curio.yes();
+  };
+  $('rehearse').onclick = rehearse;
+  $('close-rehearsal').onclick = () => {
+    V.hush();
+    $('rehearsal-dialog').close();
+    hint(L.wShow);
+  };
+  $('present').onclick = () => {
+    welcomeValid = false;
+    state.presenting = true;
+    state.showIndex = 0;
+    showSlide(0);
+    Curio.yes();
+  };
+  $('show-next').onclick = () => showSlide(1);
+  $('show-back').onclick = () => showSlide(-1);
+  $('end-show').onclick = () => {
+    state.showIndex = 7;
+    showSlide(0);
+  };
+  $('new-show').onclick = () => {
+    stopPlayback();
+    V.hush();
+    $('reset-dialog').showModal();
+    instruct('hReset');
+  };
+  $('read-rehearsal').onclick = () => V.read();
+  $('read-reset').onclick = () => V.read();
+  $('keep-show').onclick = () => {
+    V.hush();
+    $('reset-dialog').close();
+    hint(L.wShow);
+  };
+  $('confirm-reset').onclick = () => {
+    stopPlayback();
+    V.hush();
+    state.slide = 0;
+    state.picks.fill(null);
+    state.matches.fill(false);
+    state.selectedSentence = null;
+    state.music = 5;
+    state.tested = false;
+    state.practiced = false;
+    state.room = {lights:0,screen:0,chairs:1,spot:0,volume:0};
+    $('reset-dialog').close();
+    setMode('camera');
+    $('m-camera').focus({preventScroll:true});
+  };
+  for (const dialog of [$('rehearsal-dialog'),$('reset-dialog')]) dialog.addEventListener('cancel',() => { V.hush(); hint(L.wShow); });
+  document.addEventListener('keydown',e => {
+    if ($('rehearsal-dialog').open || $('reset-dialog').open) return;
+    if (!['ArrowLeft','ArrowRight'].includes(e.key)) return;
+    if (state.mode === 'camera') {
+      e.preventDefault();
+      changeSlide(e.key === 'ArrowLeft' ? -1 : 1);
+    }
+    if (state.mode === 'show') {
+      e.preventDefault();
+      showSlide(e.key === 'ArrowLeft' ? -1 : 1);
+    }
+  });
+  Curio.onSound(on => {
+    if (!on) stopPlayback();
+    else if (state.presenting) startMusic();
+  });
+  // Quiet water life, removed completely with Motion off.
+  for (let i=0; i<5; i++) {
+    const bubble = document.createElement('i');
+    bubble.className = 'bubble-light';
+    bubble.style.setProperty('--x',(12+i*18)+'%');
+    bubble.style.setProperty('--delay',(-i*1.9)+'s');
+    $('show-screen').append(bubble);
+  }
+  Curio.init({clips:"voice:*",rate:.98,readFallback:() => currentHint});
+  // Read cancels the custom listening clock too, so its later summary cannot interrupt Read.
+  $('read').addEventListener('click',() => {
+    const interruptedTest = state.testing;
+    stopPlayback();
+    if (interruptedTest) hint(L.listen[state.music <= 3 ? 0 : state.music === 4 ? 1 : 2]+' '+L.hSound);
+  },{capture:true});
+  window.__tool = {state,setMode,allLines:V.allLines,vlog:V.log,get vq() { return V.queue; },
+    slides,takes,readiness,roomPass,checks,selectTake,useTake,changeSlide,testSound,changeLevel,
+    selectSentence,matchSentence,toggleRoom,showSlide,audioInfo,stopPlayback,renderSpeaker,renderCamera};
+  setMode('camera');
+})();
+</script>
+</body>
+</html>

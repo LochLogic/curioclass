@@ -1,0 +1,55 @@
+{
+  "keep": ["#hint"],
+  "states": [
+    {
+      "name": "six-selected",
+      "steps": [
+        {"click": "#m-select"},
+        {"click": "#card-window"}, {"click": "#add-work"},
+        {"click": "#card-teapot"}, {"click": "#add-work"},
+        {"click": "#card-creek"}, {"click": "#add-work"},
+        {"click": "#card-busstop"}, {"click": "#add-work"},
+        {"click": "#card-crows"}, {"click": "#add-work"},
+        {"click": "#card-laundromat"}, {"click": "#add-work"}
+      ],
+      "keep": ["#add-work", "#go-hang"]
+    },
+    {
+      "name": "hung-and-lit",
+      "steps": [
+        {"click": "#card-creek"}, {"click": "#add-work"},
+        {"click": "#go-hang"}, {"click": "#hang-on-wall"}, {"click": "#light-work"}
+      ],
+      "keep": ["#tray", "#light-work", "#hang-on-wall", "#room"]
+    },
+    {
+      "name": "label-open",
+      "steps": [
+        {"click": "#card-creek"}, {"click": "#add-work"},
+        {"click": "#go-hang"}, {"click": "#edit-label"}
+      ],
+      "keep": ["#label-title", "#label-note", "#label-done"]
+    },
+    {
+      "name": "statement-open",
+      "steps": [
+        {"click": "#m-hang"}, {"click": "#edit-statement"}
+      ],
+      "keep": ["#statement-text", "#statement-done"]
+    },
+    {
+      "name": "walk-stop",
+      "steps": [
+        {"click": "#card-creek"}, {"click": "#add-work"}, {"click": "#go-hang"},
+        {"click": "#hang-on-wall"}, {"click": "#preview-walk"}, {"click": "#walk-play"},
+        {"wait": 1200}, {"click": "#walk-stop"}
+      ],
+      "keep": ["#room", "#walk-step", "#walk-back", "#walk-stop", "#order-strip"]
+    },
+    {
+      "name": "clear-confirm",
+      "steps": [{"click": "#m-checklist"}, {"click": "#clear-show"}],
+      "keep": ["#clear-cancel", "#clear-confirm"]
+    }
+  ]
+}

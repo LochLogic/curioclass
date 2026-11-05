@@ -1,0 +1,1500 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Speech Coach · Curio Class</title>
+<meta name="description" content="Plan a talk, rehearse aloud, and compare section timing, slide choices and listener marks. Grade 12. Private and offline.">
+<!--
+Speech Coach, Curio Class. Grade 12 ELA, SL.11-12.4 and SL.11-12.5. Student driven.
+Built from kit/starter/src.html, kit:curio and kit:theme-912.
+Sample facts: CDC MMWR 67(3), 2018; AASM 2016; AAP 2014; California SB 328, 2019.
+Museum art: Met Open Access and Art Institute of Chicago, CC0. Credits appear beside slides.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Original content CC BY 4.0, code MIT. One offline file, no network requests or audio recording.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root { --brand:#5ee07a; --brand-ink:#1c1203; }
+body { height:100dvh; overflow:hidden; grid-template-rows:auto auto minmax(0,1fr) auto; }
+header { padding:12px 22px; gap:9px; }
+h1 { font-size:25px; letter-spacing:-.7px; }
+h1 small { font-size:12px; margin-top:5px; letter-spacing:.2px; }
+.logo-light { display:inline-block; width:9px; height:23px; margin-right:9px; background:var(--brand);
+  border-radius:3px; box-shadow:0 0 18px #5ee07a66; animation:cue 4s infinite; }
+@keyframes cue { 50% { box-shadow:0 0 26px #5ee07aaa; } }
+.calm .logo-light { animation:none; }
+.icon-btn { min-height:44px; border-radius:7px; border-width:1px; font-size:13px; padding:0 12px; }
+.bar { display:flex; align-items:center; gap:18px; padding:8px 22px; background:#151e28; border-bottom:1px solid #364050; }
+.seg { border-radius:7px; border-width:1px; flex:none; }
+.seg button { min-height:44px; font-size:14px; padding:0 21px; }
+.bar-note { font:12px var(--readout-font); color:var(--muted); margin-left:auto; }
+#task-drawer-toggle { display:none; }
+#mobile-hint { display:none; }
+select,input,textarea { font:inherit; color:var(--ink); border:1px solid #62758c; background:#0e151e;
+  border-radius:6px; padding:10px; min-height:44px; max-width:100%; }
+select { cursor:pointer; }
+textarea { resize:vertical; width:100%; line-height:1.55; }
+label { display:block; font-size:12px; color:#bfcbd8; }
+label>input,label>textarea,label>select { display:block; width:100%; margin-top:6px; }
+button,input,select,textarea { touch-action:manipulation; }
+button { transition:background .12s, border-color .12s, box-shadow .12s; }
+button:active { box-shadow:inset 0 0 0 2px var(--brand); }
+button[aria-disabled="true"] { opacity:.45; cursor:default; }
+.btn { font-size:13px; border-radius:6px; padding:0 12px; }
+.primary { background:var(--brand); color:var(--brand-ink); border-color:var(--brand); }
+.row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.row>* { min-width:0; }
+.grow { flex:1; }
+.eyebrow { text-transform:uppercase; letter-spacing:2px; font-size:10px; color:var(--muted); font-weight:700; }
+.muted { color:var(--muted); }
+.small { font-size:12px; line-height:1.5; }
+.mono { font-family:var(--readout-font); font-variant-numeric:tabular-nums; }
+h2,h3,p { margin-top:0; }
+main { grid-template-columns:minmax(0,1fr) 262px; overflow:hidden; }
+.panel { padding:18px; gap:15px; background:linear-gradient(145deg,#1c2733,#131b25 70%); }
+.hint { flex:none; min-height:92px; font-size:14px; padding:10px 12px; border-left:2px solid var(--brand); background:#0e171e; }
+.tasks { display:grid; gap:6px; }
+.task { text-align:left; }
+.task span { float:right; font:12px var(--readout-font); }
+#goal { min-height:66px; margin:8px 0 0; font-size:12px; line-height:1.55; color:var(--muted); }
+.plan-total { font-size:27px; letter-spacing:-1px; margin:7px 0 4px; }
+.plan-rule { height:5px; background:#394351; border-radius:4px; overflow:hidden; margin:10px 0; }
+.plan-rule i { display:block; height:100%; background:var(--brand); }
+#relation { font-size:12px; }
+.panel-foot { margin-top:auto; display:grid; gap:7px; }
+.panel-foot .btn { width:100%; }
+#storage { position:fixed; top:0; left:0; right:0; z-index:30; padding:9px 12px; background:#713b29; color:white; font-size:13px; }
+body.saving-failed { padding-top:48px; }
+.panel>.hint { position:sticky; top:0; z-index:2; }
+.privacy { grid-column:1/-1; font-size:11px; line-height:1.45; color:#b2bfcc; background:#0d1219;
+  border-top:1px solid var(--line); padding:7px 22px; margin:0; }
+.workspace { min-width:0; min-height:0; overflow:hidden; background:radial-gradient(ellipse at 40% 0%,#293b3333,transparent 65%),#0d1219; }
+.view { height:100%; min-height:0; }
+#build { display:grid; grid-template-rows:auto minmax(0,1fr) auto; padding:20px; gap:14px; }
+.desk-head { display:flex; justify-content:space-between; gap:12px; align-items:center; }
+.desk-head h2 { font-weight:500; font-size:25px; margin:3px 0 0; letter-spacing:-.6px; }
+.build-grid { display:grid; grid-template-columns:142px minmax(220px,1fr) minmax(240px,1.05fr); gap:14px; min-height:0; }
+.rail { overflow:auto; display:grid; grid-auto-rows:minmax(60px,1fr); gap:7px; padding-right:4px; }
+.section-tab { flex:none; min-height:67px; width:100%; text-align:left; padding:8px 10px; border:1px solid #3e4c5a;
+  background:linear-gradient(135deg,#1d2934,#141e27); color:var(--ink); border-radius:6px; }
+.section-tab[aria-pressed="true"] { background:linear-gradient(135deg,#2c4835,#1b3026); border-color:var(--brand); }
+.section-tab { line-height:1.15; font-size:12px; }
+.section-tab { height:100%; max-height:90px; }
+.section-tab strong { display:block; font-size:13px; margin:3px 0; }
+.section-tab small { font:11px var(--readout-font); color:#acbbc8; }
+.tab-num { font:10px var(--readout-font); color:var(--brand); }
+.editor,.slide-maker { min-height:0; overflow:auto; border:1px solid #3d4b59; border-radius:8px;
+  background:linear-gradient(145deg,#1c2934,#141c26); padding:16px; box-shadow:0 9px 25px #0003; }
+.editor { display:flex; flex-direction:column; gap:11px; overflow:hidden; }
+.editor-fields { min-height:0; overflow:auto; display:flex; flex-direction:column; gap:10px; padding:2px; }
+.editor-actions { display:grid; grid-template-columns:1fr 1fr; gap:6px; flex:none; padding-top:8px; border-top:1px solid #4c5b62; }
+.editor-fields>label,.editor-fields>.row { flex:none; }
+.editor .row label { flex:1; }
+#script { height:170px; min-height:100px; font-size:14px; }
+#signpost { min-height:84px; font-size:16px; color:#f0f7f2; background:#0c1916; border-color:#548265; }
+.editor-nav { display:flex; gap:7px; }
+.editor-nav .btn { flex:1; }
+.check-label { display:flex; align-items:center; min-height:44px; gap:8px; }
+.check-label input { appearance:none; width:44px; height:44px; min-width:44px; margin:0; padding:0; cursor:pointer; }
+.check-label input:checked { background:var(--brand); box-shadow:inset 0 0 0 12px #18202b; }
+.counts { justify-content:space-between; font-size:11px; }
+.slide-maker { display:flex; flex-direction:column; gap:10px; }
+.slide-title { display:flex; align-items:center; justify-content:space-between; gap:7px; }
+.slide-title h3 { margin:0; font-size:12px; font-weight:500; letter-spacing:1px; text-transform:uppercase; }
+.slide-screen { position:relative; aspect-ratio:16/10; min-height:135px; overflow:hidden; border-radius:4px;
+  background:radial-gradient(ellipse at 80% 10%,#364f45,#101c24 75%); border:1px solid #627568;
+  box-shadow:0 5px 0 #050a0e,0 12px 30px #0007; display:flex; flex-direction:column; justify-content:center; }
+.slide-maker>.slide-screen { flex:none; }
+.slide-screen img { width:100%; height:100%; object-fit:contain; position:absolute; inset:0; }
+.slide-screen.blank-slide { background:#080c11; border-color:#3d4c4f; }
+.slide-screen.chart-slide { justify-content:flex-start; overflow:auto; }
+.slide-screen.busy-slide { justify-content:flex-start; overflow:auto; }
+.slide-screen.word-image img { opacity:.5; object-position:75% center; }
+.slide-screen:has(img) .slide-text { background:#0d1219eb; margin-top:auto; border-top:1px solid #627568; padding:12px 16px; }
+.slide-screen:has(.slide-text) img { position:relative; inset:auto; flex:1; min-height:30px; height:0; }
+.slide-screen:has(img):has(.slide-text) { overflow:auto; }
+.performance-right .slide-text { font-size:clamp(10px,1.3vw,20px); padding:6px; }
+.slide-text { position:relative; z-index:1; padding:22px; font-size:clamp(15px,1.9vw,29px); line-height:1.3;
+  font-weight:500; white-space:pre-wrap; overflow-wrap:anywhere; text-shadow:0 2px 9px #000; }
+.slide-text.busy-text { font-size:clamp(12px,1.05vw,18px); line-height:1.4; padding:16px; }
+.credit { font-size:10px; line-height:1.4; min-height:27px; color:#abbac6; margin-top:2px; }
+.slide-maker>.credit,.slide-maker>.slide-choices,.slide-maker>.slide-data,.slide-maker>.checks,
+.slide-maker>p { flex:none; }
+.slide-data { display:grid; gap:9px; }
+#slide-text { min-height:77px; font-size:13px; }
+.slide-choices { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.checks { border-top:1px solid #3c4854; padding-top:9px; font-size:12px; }
+.reading { padding:7px 9px; margin-bottom:6px; border-left:2px solid #ffd166; background:#3b32272b; line-height:1.45; }
+.reading strong { color:#ffd166; }
+.other { font-size:12px; color:#b9d4c1; border-top:1px solid #3b4d42; padding-top:10px; }
+.other strong { color:var(--brand); }
+.bars { display:flex; flex-direction:column; gap:6px; padding:12px 18px 6px; flex:none; }
+.chart-row { display:grid; grid-template-columns:1fr auto; gap:5px; font-size:12px; }
+.chart-row i { grid-column:1/-1; height:12px; border-radius:2px; background:linear-gradient(90deg,#3a8658,#7de58f);
+  width:var(--v); box-shadow:0 2px 5px #0005; }
+.chart-source { flex:none; padding:5px 18px 10px; font-size:10px; color:#d1dccf; }
+.mobile-nav { display:none; }
+#rehearse { position:relative; background:#080d12 url('art:sc-empty-house') center/cover; }
+#rehearse::before { content:''; position:absolute; inset:0; background:linear-gradient(90deg,#080e1555,#070d1333); }
+.rehearsal-content { position:relative; height:100%; display:grid; grid-template-rows:auto minmax(0,1fr) auto auto;
+  padding:24px; gap:15px; }
+.stage-top { display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.stage-status { color:#d0dccf; padding:7px 10px; background:#10181fee; border:1px solid #61725d; border-radius:4px; font-size:11px; }
+.clocks { display:flex; gap:25px; background:#0d1219f5; padding:8px 17px; border:1px solid #455b52; border-radius:5px; }
+.clock { font:32px var(--readout-font); letter-spacing:-1px; }
+.clock small { display:block; font:10px 'Segoe UI',sans-serif; letter-spacing:1.6px; color:var(--muted); }
+.performance { display:grid; grid-template-columns:minmax(0,1fr) minmax(170px,.48fr); gap:18px; min-height:0; align-items:center; }
+.cue-card { height:100%; background:#0d1219eb; border:1px solid #4c5c62; border-left:3px solid var(--brand); padding:24px;
+  border-radius:6px; min-height:0; max-height:100%; overflow:auto; box-shadow:0 18px 40px #0006; }
+#cue { font-size:clamp(28px,3vw,45px); font-weight:500; line-height:1.25; margin:12px 0 16px; letter-spacing:-.6px; }
+#delivery-text { font-size:17px; line-height:1.7; white-space:pre-wrap; margin:0; color:#ced7e1; }
+#cue-index { color:var(--brand); font:12px var(--readout-font); }
+.performance-right { display:grid; grid-template-rows:minmax(0,1fr) auto; gap:15px; min-width:0; height:100%; min-height:0; }
+.performance-right>div:first-child { min-height:0; display:flex; flex-direction:column; }
+.performance-right .slide-screen { flex:1; min-height:0; aspect-ratio:auto; }
+.performance-right .credit { padding:3px 5px; background:#0d1219dd; }
+.listener { background:#0d1219ee; border:1px solid #4b5a65; border-radius:6px; padding:10px; }
+.listener .eyebrow { margin-bottom:9px; }
+.pad { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:7px; }
+.pad .btn { min-height:56px; text-align:left; padding:6px 8px; background:linear-gradient(#2b3542,#19232d); }
+.pad b { display:block; font:12px var(--readout-font); color:var(--brand); margin-bottom:3px; }
+#mark-flash { min-height:20px; font-size:11px; color:#c5e7c8; padding-top:7px; }
+.transport { background:#0d1219f5; border:1px solid #4b5b65; border-radius:7px; padding:12px; display:flex;
+  gap:9px; align-items:center; flex-wrap:wrap; box-shadow:0 9px 25px #0008; }
+#advance { min-height:60px; min-width:180px; font-size:22px; font-weight:700; }
+.mic-area { margin-left:auto; max-width:230px; }
+.mic-area label { display:flex; align-items:center; gap:8px; }
+.mic-area input { width:44px; min-width:44px; height:44px; margin:0; accent-color:var(--brand); }
+.level { height:4px; background:#34414e; margin-top:3px; }
+.level i { display:block; height:100%; width:0; background:var(--brand); }
+.mic-note { font-size:10px; line-height:1.4; color:#bbc6d1; margin:4px 0 0; }
+.timeline { display:flex; gap:3px; height:22px; }
+.timeline>div { flex:var(--weight); min-width:3px; position:relative; background:#101c25ee; border:1px solid #718376; overflow:hidden; }
+.timeline i { position:absolute; inset:0 auto 0 0; background:#5ee07a66; width:var(--fill); }
+.timeline span { position:relative; padding:0 5px; font:10px/20px var(--readout-font); white-space:nowrap; }
+#review { overflow:auto; padding:24px; }
+.review-summary { display:flex; align-items:end; justify-content:space-between; gap:15px; margin-bottom:18px; }
+.review-summary h2 { margin:4px 0; font-size:29px; font-weight:500; letter-spacing:-.7px; }
+.run-total { font:35px var(--readout-font); color:var(--brand); }
+.review-row { display:grid; grid-template-columns:1.15fr .55fr .55fr .9fr 1.4fr; gap:12px; align-items:center;
+  padding:12px; border-bottom:1px solid #36434e; background:linear-gradient(90deg,#1c2a34,#151f28); }
+.review-row.head { background:#0c131b; font-size:10px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); }
+.review-row .role-label { font-size:13px; }
+.pace { font:18px var(--readout-font); }
+.pace small { font-size:11px; }
+.slow { color:#ffd166; } .steady { color:var(--brand); } .fast { color:#ff8a8a; }
+.mark-lane { min-height:23px; background:#0c141d; position:relative; border-bottom:1px solid #697b78; }
+.mark-lane span { position:absolute; top:var(--mark-top,0); font:12px/18px var(--readout-font);
+  min-width:16px; text-align:center; background:#24372f; border:1px solid #76947f; border-radius:3px; transform:translateX(-50%); }
+.mark-times { font-size:10px; color:#b7c8bd; line-height:1.5; padding-top:4px; overflow-wrap:anywhere; }
+.trial-focus { display:grid; grid-template-columns:minmax(0,1fr) minmax(180px,.8fr) auto; gap:12px; align-items:center;
+  padding:14px; margin-bottom:15px; border:1px solid #63896a; border-left:3px solid var(--brand);
+  background:linear-gradient(120deg,#213e30,#141f27); border-radius:6px; }
+.trial-focus p { font-size:13px; line-height:1.5; margin:5px 0 0; }
+.trial-focus input { width:100%; }
+.run-strip-track { width:100%; background:#0c141d; border-bottom:1px solid #42534a; overflow:hidden; }
+.slide-timing { font-size:11px; color:#b4c4ce; margin:5px 0; }
+.section-result { margin-bottom:7px; }
+.review-lower { display:grid; gap:18px; margin-top:20px; }
+.review-lower>* { min-width:0; }
+.notebook { max-width:100%; }
+.selfcheck { display:grid; grid-template-columns:1fr 1fr; gap:15px; padding:16px; border:1px solid #3c4e56; border-radius:6px; }
+.selfcheck h3 { font-size:13px; margin-bottom:9px; }
+.stumbles { display:flex; gap:5px; flex-wrap:wrap; }
+.stumbles .btn { font-size:11px; }
+.notebook { overflow:auto; border:1px solid #43515e; border-radius:6px; }
+table { width:100%; border-collapse:collapse; font-size:12px; }
+th,td { padding:10px; text-align:left; border-bottom:1px solid #3b4855; vertical-align:top; }
+th { font-size:10px; color:#bac8d6; background:#101922; }
+td input { width:185px; font-size:12px; }
+.compare-strip { display:flex; height:40px; margin:0; }
+.compare-strip span { flex:var(--weight); min-width:0; padding:5px 3px; border:1px solid #617666; overflow:hidden;
+  background:linear-gradient(#314d3b,#1c3127); font:11px var(--readout-font); }
+dialog { color:var(--ink); background:#18232e; border:1px solid #7e9888; border-radius:10px; padding:25px;
+  width:min(650px,90vw); max-height:85vh; box-shadow:0 25px 80px #000b; }
+dialog::backdrop { background:#02070bd9; }
+dialog h2 { font-size:22px; font-weight:500; }
+#thread-paragraph { line-height:1.9; font-size:17px; padding:15px; background:#0d171d; border-left:2px solid var(--brand); }
+#thread-paragraph em { color:var(--brand); font-style:normal; }
+#claim-comparison { line-height:1.6; font-size:14px; margin:12px 0; }
+#claim-comparison:empty { display:none; }
+#thread-dialog>.row { margin-top:8px; }
+#toast { position:fixed; left:50%; bottom:46px; transform:translateX(-50%); background:#234c35; color:#e8ffeb;
+  border:1px solid var(--brand); border-radius:7px; padding:11px 17px; z-index:15; font-size:13px; max-width:90vw; }
+.sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+@media (max-width:1150px) {
+  header { padding:8px 14px; } h1 { font-size:21px; } #talk-picker { width:210px; font-size:12px; }
+  .build-grid { grid-template-columns:105px minmax(0,1fr) minmax(0,1fr); gap:9px; }
+  main { grid-template-columns:minmax(0,1fr) 220px; }
+  #build { padding:14px; gap:10px; } .editor,.slide-maker { padding:11px; }
+  .panel { padding:12px; gap:10px; } .hint { font-size:12px; min-height:83px; }
+  .rehearsal-content { padding:16px; gap:10px; } .cue-card { padding:17px; }
+  #advance { min-width:135px; } .mic-area { max-width:180px; }
+}
+@media (max-height:900px) and (min-width:761px) {
+  #signpost { min-height:60px; height:64px; }
+  #script { height:104px; min-height:88px; }
+  .editor-fields { gap:7px; }
+}
+@media (max-height:650px) and (min-width:601px) {
+  header { padding:4px 10px; flex-wrap:nowrap; gap:5px; } h1 { font-size:18px; } h1 small { display:none; }
+  #talk-picker { width:190px; } .icon-btn { padding:0 7px; font-size:12px; }
+  .bar { padding:4px 10px; gap:8px; } .seg button { padding:0 15px; }
+  main { grid-template-columns:minmax(0,1fr) 190px; }
+  .panel { padding:9px; gap:8px; } .hint { min-height:63px; padding:7px; font-size:11px; }
+  .tasks { gap:3px; } .task { padding:0 6px; font-size:11px; } .task span { font-size:10px; }
+  #goal { min-height:0; font-size:10px; line-height:1.4; margin-top:5px; }
+  .plan-total { font-size:20px; } .plan-rule { margin:5px 0; } .panel-foot { gap:4px; }
+  .panel-foot .btn { font-size:11px; } .privacy { font-size:10px; padding:4px 10px; }
+  #build { padding:10px; gap:8px; } .desk-head h2 { font-size:18px; } .desk-head .eyebrow { display:none; }
+  .build-grid { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+  .desk-head>div:not(.mobile-nav) { display:none; }
+  .desk-head>.mobile-nav { flex:1; }
+  .editor-fields>label:first-of-type { order:-2; }
+  .editor-fields>label:nth-of-type(2) { order:-1; }
+  .rail { display:none; } .mobile-nav { display:flex; } .mobile-nav .btn { flex:1; font-size:11px; padding:0 5px; }
+  .editor,.slide-maker { padding:9px; gap:8px; } #script { height:110px; }
+  #signpost { min-height:70px; font-size:14px; } .editor label,.slide-maker label { font-size:11px; }
+  .slide-text { padding:14px; font-size:20px; } .slide-screen { min-height:105px; }
+  .slide-maker { gap:5px; }
+  .slide-maker>.slide-title { order:-2; }
+  .slide-maker>.slide-choices { order:-1; }
+  .slide-maker>.slide-screen { height:clamp(84px,calc(100dvh - 370px),255px); min-height:84px; aspect-ratio:auto; }
+  .slide-maker>.slide-screen:has(img) .slide-text { font-size:14px; padding:6px 8px; }
+  .slide-text.busy-text { padding:8px; font-size:10px; line-height:1.3; }
+  .other { font-size:10px; padding-top:5px; }
+  .editor-actions { gap:4px; padding-top:4px; }
+  .editor-actions { display:flex; }
+  .editor-actions .btn { flex:1; min-width:44px; padding:0 3px; font-size:10px; }
+  .trial-focus { grid-template-columns:1fr 1fr; padding:8px; gap:6px; }
+  .trial-focus>.btn { grid-column:2; }
+  .rehearsal-content { padding:9px; gap:7px; } .clocks { gap:15px; padding:5px 10px; } .clock { font-size:23px; }
+  .stage-status { font-size:10px; padding:5px; } .performance { gap:9px; grid-template-columns:minmax(0,1fr) minmax(125px,.6fr); }
+  .cue-card { padding:12px; } #cue { font-size:22px; margin:7px 0; } #delivery-text { font-size:12px; line-height:1.5; }
+  .performance-right { gap:7px; } .listener { padding:6px; } .listener .eyebrow { display:none; }
+  .pad { gap:4px; } .pad .btn { min-height:44px; font-size:10px; padding:4px; } .pad b { display:inline; margin-right:3px; }
+  #mark-flash { font-size:10px; padding-top:3px; min-height:15px; } .credit { font-size:10px; min-height:0; }
+  .transport { padding:6px; gap:5px; } #advance { font-size:19px; min-height:48px; min-width:115px; }
+  #delivery { max-width:125px; font-size:11px; padding:5px; } #abandon { font-size:11px; padding:0 6px; }
+  .mic-area { max-width:120px; } .mic-area label { font-size:10px; } .mic-note { display:none; }
+  .mic-area { position:absolute; left:148px; top:8px; width:110px; background:#0d1219ee; padding:0 4px; }
+  .mic-area input { min-width:44px; }
+  .timeline { height:16px; } .timeline span { line-height:14px; } #review { padding:12px; }
+  dialog { max-height:98vh; padding:12px; }
+  #thread-dialog h2 { font-size:20px; margin-bottom:7px; }
+  #thread-dialog>.small { margin-bottom:6px; }
+  #thread-paragraph { font-size:13px; line-height:1.4; padding:8px; margin-bottom:6px; }
+  #thread-dialog textarea { min-height:54px; padding:8px; }
+}
+@media (max-width:760px) and (max-height:650px) and (min-width:601px) {
+  .performance { grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) 64px; gap:5px; }
+  .performance-right { grid-template-columns:105px minmax(0,1fr); grid-template-rows:1fr; gap:6px; }
+  .performance-right .credit { display:none; }
+  .listener { padding:3px; }
+  .pad { grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .pad .btn { min-height:56px; font-size:10px; text-align:center; }
+  .pad b { display:block; }
+  #mark-flash { display:none; }
+  #cue { font-size:18px; margin:4px 0; }
+  #delivery-text { font-size:11px; }
+  #cue-index { font-size:10px; }
+  .cue-card { padding:7px 10px; }
+  .stage-status { max-width:125px; }
+}
+@media (max-width:760px) and (min-height:651px) {
+  body { height:auto; overflow:auto; min-height:100dvh; }
+  header { gap:6px; } h1 { width:100%; } #talk-picker { flex:1; }
+  main { grid-template-columns:minmax(0,1fr); overflow:visible; }
+  .workspace { overflow:visible; } .panel { border-top:1px solid var(--line); }
+  #build { min-height:650px; } .build-grid { grid-template-columns:120px minmax(0,1fr); }
+  .slide-maker { grid-column:1/-1; min-height:420px; } .editor { min-height:380px; }
+  #rehearse { height:800px; } .performance { grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) auto; }
+  .performance-right { display:grid; grid-template-columns:1fr; gap:7px; }
+  #run-slide { height:110px; min-height:110px; aspect-ratio:auto; } .performance-right .credit { display:none; }
+  .pad { grid-template-columns:repeat(4,1fr); } .pad .btn { min-height:56px; }
+  .listener .eyebrow { display:none; } #cue { font-size:28px; } #delivery-text { font-size:14px; }
+  .mic-area { max-width:none; } .mic-note { display:block; } .transport { gap:6px; }
+  .bar-note { font-size:10px; } .tasks { grid-template-columns:repeat(3,1fr); }
+  .task { text-align:center; padding:6px; } .task span { float:none; display:block; }
+  #goal { min-height:0; } .hint { min-height:55px; } .panel-foot { grid-template-columns:1fr 1fr; }
+  #reset-sample { grid-column:1/-1; } .selfcheck { grid-template-columns:1fr; }
+}
+@media (max-width:600px) {
+  .bar { padding:7px 10px; } .bar-note { display:none; } .seg { width:100%; } .seg button { flex:1; padding:0 9px; }
+  header { padding:10px; } .icon-btn { padding:0 8px; font-size:11px; } #talk-picker { width:100%; flex-basis:100%; }
+  h1 { font-size:24px; } .build-grid { display:flex; flex-direction:column; } .rail { display:none; }
+  .mobile-nav { display:flex; } .mobile-nav .btn { flex:1; padding:0 6px; font-size:12px; }
+  .editor,.slide-maker { overflow:visible; flex:none; } .desk-head { flex-wrap:wrap; } #build { overflow:visible; padding:12px; }
+  .editor { min-height:0; } .slide-maker { min-height:0; } .slide-text { font-size:23px; }
+  .other { line-height:1.6; } .privacy { padding:8px 12px; }
+  .rehearsal-content { padding:10px; } .stage-top { align-items:start; } .clocks { gap:12px; padding:7px; }
+  .clock { font-size:25px; } .stage-status { font-size:10px; max-width:115px; } #cue { font-size:25px; }
+  .cue-card { padding:14px; } .transport .btn { flex:1; } #advance { width:100%; }
+  #delivery { width:100%; } .mic-area { flex:1 1 100%; } #rehearse { height:960px; }
+  .review-row { grid-template-columns:1fr .5fr .5fr; gap:8px; } .review-row>:nth-child(4),.review-row>:nth-child(5) { grid-column:auto; }
+  .review-row>:last-child { grid-column:2/-1; } .review-row.head>:nth-child(n+4) { display:none; }
+  #review { padding:12px; } .review-summary { align-items:start; flex-wrap:wrap; } .review-summary h2 { font-size:24px; }
+}
+/* Portrait devices keep the working stage and hint in view. Task settings open in a drawer. */
+@media (max-width:760px) and (min-height:651px) {
+  body { height:100dvh; min-height:0; overflow:hidden; grid-template-rows:auto auto auto minmax(0,1fr) auto; }
+  header { padding:6px 10px; gap:5px; }
+  h1 { width:auto; font-size:21px; }
+  h1 small { display:none; }
+  #talk-picker { flex:1 1 200px; width:auto; }
+  .icon-btn { min-height:44px; }
+  .bar { padding:5px 10px; gap:7px; }
+  .seg { width:auto; flex:1; }
+  .seg button { padding:0 9px; }
+  #task-drawer-toggle { display:block; padding:0 9px; }
+  .bar-note { display:none; }
+  #mobile-hint { display:block; padding:6px 10px; background:#141d26; }
+  #mobile-hint .hint { min-height:0; font-size:12px; line-height:1.4; padding:6px 9px; }
+  main { display:block; min-height:0; overflow:hidden; }
+  .workspace { height:100%; overflow:hidden; }
+  #build { height:100%; min-height:0; overflow:auto; display:block; }
+  .desk-head { margin-bottom:10px; }
+  .desk-head h2 { font-size:21px; }
+  .desk-head .eyebrow { display:none; }
+  .build-grid { display:flex; flex-direction:column; gap:10px; }
+  .rail { display:none; }
+  .mobile-nav { display:flex; }
+  .mobile-nav .btn { flex:1; font-size:12px; }
+  .editor,.slide-maker { flex:none; min-height:0; overflow:visible; }
+  .editor { height:min(600px,calc(100dvh - 350px)); min-height:340px; overflow:hidden; }
+  .editor-fields { flex:1; overflow:auto; }
+  .trial-focus { grid-template-columns:1fr; }
+  #other-check { margin-top:10px; }
+  #rehearse { height:100%; }
+  .rehearsal-content { padding:8px; gap:6px; }
+  .performance { grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) 70px; gap:5px; }
+  .performance-right { grid-template-columns:100px minmax(0,1fr); grid-template-rows:1fr; height:70px; gap:5px; }
+  #run-slide { height:70px; min-height:0; }
+  .performance-right .credit { display:none; }
+  .listener { padding:3px; }
+  .listener .eyebrow,#mark-flash { display:none; }
+  .pad { grid-template-columns:repeat(4,minmax(0,1fr)); gap:3px; }
+  .pad .btn { min-height:62px; font-size:10px; padding:2px; text-align:center; }
+  .pad b { display:block; margin-bottom:3px; }
+  .cue-card { padding:9px; }
+  #cue { font-size:22px; line-height:1.25; margin:5px 0; }
+  #delivery-text { font-size:12px; line-height:1.5; }
+  #cue-index { font-size:10px; }
+  .clocks { padding:5px 8px; gap:15px; }
+  .clock { font-size:23px; }
+  .stage-status { padding:6px; }
+  .transport { display:grid; grid-template-columns:1fr 70px 86px; padding:6px; gap:5px; }
+  #advance { width:auto; min-width:0; font-size:20px; min-height:48px; }
+  #pause,#abandon { font-size:11px; padding:0 5px; }
+  #delivery { width:100%; grid-column:1; font-size:12px; padding:4px; }
+  .mic-area { grid-column:2/-1; margin:0; max-width:none; }
+  .mic-area label { font-size:10px; gap:5px; }
+  .mic-area input { height:44px; }
+  .mic-note { font-size:10px; margin-top:2px; line-height:1.2; }
+  .level { display:none; }
+  .timeline { height:16px; }
+  .timeline span { line-height:14px; }
+  .privacy { padding:5px 10px; font-size:10px; }
+  #task-dialog .panel { border:0; background:none; padding:12px 0 0; overflow:visible; }
+  #task-dialog { width:94vw; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1><span class="logo-light" aria-hidden="true"></span>Speech Coach<small>Plan it. Run it. Read the marks.</small></h1>
+  <select id="talk-picker" aria-label="Talk"><option value="sample">Sample: Push the first bell</option><option value="mine">My talk</option></select>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<div class="bar">
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-build" aria-pressed="true">Build</button>
+    <button id="m-rehearse" aria-pressed="false">Rehearse</button>
+    <button id="m-review" aria-pressed="false">Review</button>
+  </div>
+  <button class="btn" id="task-drawer-toggle">Task</button>
+  <div class="bar-note" id="talk-stats"></div>
+</div>
+<div id="mobile-hint"></div>
+<div id="storage" hidden>This browser isn't saving. Your runs will be lost when you close the tab.</div>
+<main>
+  <div class="workspace">
+    <section class="view" id="build" aria-label="Build your run sheet">
+      <div class="desk-head"><div><div class="eyebrow">The rehearsal desk</div><h2 id="talk-title">Push the first bell</h2></div>
+        <button class="btn" id="thread">Thread view ↗</button></div>
+      <div class="build-grid">
+        <nav class="rail" id="sections" aria-label="Run sheet sections"></nav>
+        <section class="editor" aria-label="Selected section">
+          <div class="row mobile-nav" id="section-navigation"><button class="btn" id="previous">← Previous</button><span id="section-position" class="mono small"></span>
+            <button class="btn" id="next-section">Next section →</button></div>
+          <div class="editor-fields">
+          <div class="row"><label class="grow">Role<select id="role"></select></label><span class="eyebrow" id="selected-number"></span></div>
+          <label>Signpost · the first sentence heard<textarea id="signpost" aria-label="Signpost" rows="2" placeholder="What should your listener hear first?"></textarea></label>
+          <label>Script · full words or notes<textarea id="script" aria-label="Script, full words or notes" placeholder="Write the words you plan to say."></textarea></label>
+          <div class="row counts"><span id="word-count" class="mono"></span><span id="auto-label" class="muted"></span></div>
+          <div class="row"><label class="grow">Planned seconds<input type="number" min="5" max="3600" step="1" id="planned"></label>
+            <label class="check-label"><input type="checkbox" id="must">Must keep</label></div>
+          <label>Link into the next section<select id="link"></select></label>
+          </div>
+          <div class="editor-actions"><button class="btn" id="up">Move up</button><button class="btn" id="down">Move down</button>
+            <button class="btn" id="add">Add section</button><button class="btn" id="delete">Delete section</button></div>
+        </section>
+        <section class="slide-maker" aria-label="Slide maker">
+          <div class="slide-title"><h3>Slide maker</h3><span class="mono small muted" id="slide-number"></span></div>
+          <div class="slide-screen" id="build-slide"></div><div class="credit" id="build-credit"></div>
+          <div class="slide-choices"><label>Kind<select id="kind"></select></label><label>Slide's job<select id="job"></select></label></div>
+          <div class="slide-data">
+            <label id="text-label">Slide words<textarea id="slide-text" aria-label="Slide words or caption" rows="3"></textarea></label>
+            <label id="picture-label">Picture shelf<select id="picture"></select></label>
+            <label id="chart-label" hidden>Bars · label: number, up to five<textarea id="chart-data" rows="3"></textarea></label>
+            <label id="source-label" hidden>Source line<input id="source" type="text" placeholder="Who made this evidence?"></label>
+          </div>
+          <div class="checks" id="slide-checks" aria-live="polite"></div>
+          <p class="small muted">Slide checks are rules of thumb for this tool.</p>
+          <p class="small muted" id="sample-tip">This slide has a problem on purpose. Find it, fix it, and run again.</p>
+        </section>
+      </div>
+      <div class="other" id="other-check"></div>
+    </section>
+    <section class="view" id="rehearse" aria-label="Rehearsal stage" hidden>
+      <div class="rehearsal-content">
+        <div class="stage-top"><div class="stage-status" id="stage-status">EMPTY HOUSE / READY</div>
+          <div class="clocks"><div class="clock"><small>SECTION</small><span id="section-clock">0:00</span></div>
+            <div class="clock"><small>TOTAL</small><span id="total-clock">0:00</span></div></div></div>
+        <div class="performance">
+          <div class="cue-card"><span id="cue-index"></span><h2 id="cue"></h2><p id="delivery-text"></p></div>
+          <div class="performance-right"><div><div class="slide-screen" id="run-slide"></div><div class="credit" id="run-credit"></div></div>
+            <div class="listener"><div class="eyebrow">Listener pad · optional partner</div><div class="pad">
+              <button class="btn" id="mark-f" data-mark="F"><b>F</b>Filler</button>
+              <button class="btn" id="mark-l" data-mark="L"><b>L</b>Lost me</button>
+              <button class="btn" id="mark-h" data-mark="H"><b>H</b>Couldn't hear</button>
+              <button class="btn" id="mark-n" data-mark="N"><b>N</b>Nice moment</button>
+            </div><div id="mark-flash" aria-live="polite">A solo speaker can ignore this pad.</div></div></div>
+        </div>
+        <div class="transport">
+          <button class="btn primary" id="advance">▶ Start</button><button class="btn" id="pause" disabled>Pause · P</button>
+          <button class="btn" id="abandon" disabled>Abandon run</button>
+          <select id="delivery" aria-label="Display during rehearsal"><option>Script</option><option>Notes only</option><option>Nothing</option></select>
+          <div class="mic-area"><label><input type="checkbox" id="mic">Listen for pauses</label><div class="level"><i id="level"></i></div>
+            <p class="mic-note">Measuring loudness only, right now. Nothing is recorded or saved.</p></div>
+        </div>
+        <div class="timeline" id="timeline" aria-label="Planned section widths with elapsed time fills"></div>
+      </div>
+    </section>
+    <section class="view" id="review" aria-label="Review your runs" hidden></section>
+  </div>
+  <aside class="panel">
+    <p class="hint" id="hint"></p>
+    <section><div class="eyebrow">Your task</div><div class="tasks" id="tasks"></div><p id="goal"></p></section>
+    <section><div class="eyebrow">Planned / task limit</div><div class="plan-total mono" id="plan-total"></div>
+      <div class="plan-rule"><i id="plan-fill"></i></div><div id="relation"></div></section>
+    <div class="small muted" id="context">The talk is made up; the facts in it are real and sourced. Sleep needs vary from person to person.</div>
+    <div class="panel-foot"><button class="btn" id="save">Save run notes</button><button class="btn" id="clear">Clear my talk</button>
+      <button class="btn" id="reset-sample">Reset sample</button></div>
+  </aside>
+</main>
+<p class="privacy">Your talk and your run numbers stay on this device. The microphone is optional and never records.</p>
+<dialog id="thread-dialog" aria-labelledby="thread-title"><h2 id="thread-title">Follow the thread</h2>
+  <p class="small muted">If a listener heard only these lines, could they follow you?</p><div id="thread-paragraph"></div>
+  <label>Listener test · the whole point in one sentence<textarea id="listener-test" aria-label="Listener test, the talk's point in one sentence" rows="2"></textarea></label>
+  <div class="row"><button class="btn" id="compare-claim">Compare with Claim</button>
+    <button class="btn primary" id="close-thread">Back to desk</button></div><div id="claim-comparison"></div></dialog>
+<dialog id="confirm-dialog" aria-labelledby="confirm-title"><h2 id="confirm-title"></h2><p id="confirm-text"></p>
+  <div class="row"><button class="btn primary" id="confirm-no">No</button><button class="btn" id="confirm-yes">Yes</button></div></dialog>
+<dialog id="task-dialog" aria-label="Task and saved work"><button class="btn primary" id="close-task">Back to work</button><div id="mobile-panel"></div></dialog>
+<div id="toast" role="status" hidden></div>
+<div hidden id="art-bank"><img id="art-maid" src="art:pd-met-437878" alt="A Maid Asleep by Johannes Vermeer">
+  <img id="art-harvest" src="art:pd-met-435809" alt="The Harvesters by Pieter Bruegel the Elder">
+  <img id="art-clock" src="art:pd-aic-57819" alt="Wall Clock, case by Jean-Pierre Latz"></div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const clone = x => JSON.parse(JSON.stringify(x));
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const words = s => String(s).trim().split(/\s+/).filter(Boolean).length;
+  const wordLabel = n => `${n} word${n===1?'':'s'}`;
+  const tokens = s => String(s).toLowerCase().replace(/[^\p{L}\p{N}_\s:-]/gu, '').split(/\s+/)
+    .map(w => w.replace(/^[:-]+|[:-]+$/g, '')).filter(w => /[\p{L}\p{N}_]/u.test(w));
+  const plan = n => Math.max(5, Math.round(n / 150 * 60 / 5) * 5);
+  const time = n => `${Math.floor(Math.max(0,n) / 60)}:${String(Math.floor(Math.max(0,n) % 60)).padStart(2,'0')}`;
+  const ROLES = ['Opening','Claim','Reason','Evidence','Other side','Answer','Close'];
+  const LINKS = ['because','for example','but','so','therefore','finally','and',''];
+  const KINDS = ['Words','Chart','Picture','Quote','Ask the room','Blank'];
+  const JOBS = ['Shows evidence','Shows a pattern','Gives a picture','Gives the key words','Asks the room','Rests the eyes'];
+  const ART = {
+    'maid-asleep': {id:'art-maid', credit:'Johannes Vermeer, A Maid Asleep, ca. 1656-57. The Met, 14.40.611. CC0.'},
+    harvesters: {id:'art-harvest', credit:'Pieter Bruegel the Elder, The Harvesters, 1565. The Met, 19.164. CC0.'},
+    'wall-clock': {id:'art-clock', credit:'Wall Clock, c. 1735-40, case by Jean-Pierre Latz. Art Institute of Chicago, 57819. CC0.'}
+  };
+  const TASKS = [
+    {name:'Board comment',max:120,min:0,register:'Formal',goal:'Speak to officials. Name your request early. Stop at the limit.'},
+    {name:'Club pitch',max:60,min:0,register:'Informal',goal:'Talk to classmates. Keep one reason and the ask. Cut the rest.'},
+    {name:'Class presentation',max:300,min:240,register:'Formal',goal:'Develop it: add a reason or more evidence, and slides that show it.'}
+  ];
+  const L = {
+    'w-build':'Each card is one section. Type its signpost first, then its words. Then make its slide on the right.',
+    slide:"Tap a slide kind, then tap its job. A slide should do something your voice can't.",
+    busy:'This slide competes with you. Cut its words, or tap a different job.',
+    thread:"These are only your signposts. Type the talk's point in the Listener test box from them alone.",
+    other:'Tap Add section and set its role to Other side. Then answer it.',
+    'w-rehearse':'Press Start and talk out loud. Press Next or Space at the end of each section.',
+    mic:'The microphone only measures loudness. Nothing is recorded.',
+    'w-review':"Each row shows your real pace. Find the fastest section, then type what you'll change.",
+    runsaved:"Run saved. Write what you'll change, then run it again.",
+    over:'You ran over the limit. Find a section to cut or tighten.',
+    'review-empty':'Open Rehearse and press Start to make your first run.',
+    'build-task':'Tap a section and adjust its words or planned seconds for this task.',
+    paused:"Clock paused. Press Resume or P when you're ready to continue.",
+    countdown:'Watch the count. Talk when the clock starts. Abandon run cancels this trial.',
+    'run-next':'Speak out loud. Press Next or Space at the end of this section.',
+    'run-finish':'Speak out loud. Press Finish run or Space at the end of this section.',
+    'thread-compare':'Tap Compare with Claim to compare your sentence with the Claim card.',
+    'thread-return':'Compare the two points. Tap Back to desk to revise a signpost.'
+  };
+  const SAMPLE = [
+  {
+    "role": "Opening",
+    "signpost": "Raise your hand if you were awake before six this morning.",
+    "script": "Raise your hand if you were awake before six this morning. Keep it up if you felt fully awake by first period. Most hands go down on that second question, and there is a reason. It isn't laziness. It's biology, and it's the bell schedule.",
+    "planned": 20,
+    "manual": false,
+    "must": false,
+    "link": "so",
+    "slide": {
+      "kind": "Picture",
+      "job": "Gives a picture",
+      "text": "",
+      "picture": "maid-asleep",
+      "bars": [],
+      "source": ""
+    }
+  },
+  {
+    "role": "Claim",
+    "signpost": "So here is my claim.",
+    "script": "So here is my claim: our district should move the first high school bell to 8:30 a.m. or later. I'll give you two reasons, answer the biggest objection, and then ask you for one thing.",
+    "planned": 15,
+    "manual": false,
+    "must": true,
+    "link": "because",
+    "slide": {
+      "kind": "Words",
+      "job": "Gives the key words",
+      "text": "First bell: 8:30 a.m.",
+      "picture": "wall-clock",
+      "bars": [],
+      "source": ""
+    }
+  },
+  {
+    "role": "Reason",
+    "signpost": "First reason: we don't get enough sleep.",
+    "script": "First reason: we don't get enough sleep. The American Academy of Sleep Medicine says teenagers need eight to ten hours a night. But when the CDC surveyed high school students in 2015, about seven in ten said they slept less than eight hours on school nights. That's most of this room.",
+    "planned": 20,
+    "manual": false,
+    "must": false,
+    "link": "and",
+    "slide": {
+      "kind": "Chart",
+      "job": "Shows evidence",
+      "text": "",
+      "picture": "",
+      "bars": [
+        {
+          "label": "Less than 8 hours",
+          "value": 72.7
+        },
+        {
+          "label": "8 hours or more",
+          "value": 27.3
+        }
+      ],
+      "source": "CDC, MMWR, 2018 · US high school students · data as of 2015 · percent"
+    }
+  },
+  {
+    "role": "Reason",
+    "signpost": "Second reason: it isn't a matter of just going to bed earlier.",
+    "script": "Second reason: it isn't a matter of just going to bed earlier. The American Academy of Pediatrics explains that in the teen years the body clock shifts later, and many teenagers have trouble falling asleep before eleven. That's why the Academy recommends that middle and high schools start at 8:30 or later.",
+    "planned": 20,
+    "manual": false,
+    "must": false,
+    "link": "but",
+    "slide": {
+      "kind": "Quote",
+      "job": "Shows evidence",
+      "text": "AAP: start at 8:30 a.m. or later",
+      "picture": "",
+      "bars": [],
+      "source": "American Academy of Pediatrics, 2014 · paraphrase"
+    }
+  },
+  {
+    "role": "Other side",
+    "signpost": "Now the biggest objection.",
+    "script": "Now the biggest objection. Later start times can mean new bus routes, and they push practices and after-school jobs later into the evening. Those costs are real. But they can be worked out. In 2019, California passed a law that has most high schools start no earlier than 8:30, beginning with the 2022-23 school year. If a whole state can rework its buses and schedules, our district can study it.",
+    "planned": 30,
+    "manual": false,
+    "must": false,
+    "link": "so",
+    "slide": {
+      "kind": "Words",
+      "job": "Shows evidence",
+      "text": "Objection: buses. Later start = new bus routes. Practices and after-school jobs end later in the evening. Those costs are real. California law (2019): most high schools start no earlier than 8:30, beginning 2022-23. If a whole state can rework buses and schedules, our district can study it.",
+      "picture": "",
+      "bars": [],
+      "source": ""
+    }
+  },
+  {
+    "role": "Close",
+    "signpost": "So here is my one request.",
+    "script": "So here is my one request. Sign our letter asking the school board to study an 8:30 start for next year. A later bell won't fix everything. But it would let us show up to first period awake, and that's worth studying.",
+    "planned": 15,
+    "manual": false,
+    "must": true,
+    "link": "",
+    "slide": {
+      "kind": "Picture",
+      "job": "Gives a picture",
+      "text": "Bruegel painted a harvester asleep at noon, 1565.",
+      "picture": "harvesters",
+      "bars": [],
+      "source": ""
+    }
+  }
+];
+  function emptySection(role='Opening') {
+    return {role,signpost:'',script:'',planned:5,manual:false,must:false,link:'so',
+      slide:{kind:'Blank',job:'Rests the eyes',text:'',picture:'',bars:[],source:''}};
+  }
+  const state = {mode:'build',talk:'sample',selected:0,phase:'ready',current:0,count:3,typed:false,
+    data:{sample:{sections:clone(SAMPLE),task:0,runs:[],conclude:'',listener:''},
+      mine:{sections:[emptySection()],task:0,runs:[],conclude:'',listener:''}},reviewIndex:-1};
+  const talk = () => state.data[state.talk];
+  const selected = () => talk().sections[state.selected];
+  const task = () => TASKS[talk().task];
+  const active = () => state.phase==='running' || state.phase==='paused' || state.phase==='countdown';
+  let run = null, anchor = 0, elapsedBase = 0, sectionStart = 0, countdownId = 0;
+  let stream = null, audioContext = null, analyser = null, micInterval = null, micEpoch = 0;
+  let noise = [], threshold = .008, quietSince = null, quietMarked = false, lastMicTime = null;
+  let confirmAction = null, confirmOrigin = null, toastTimer = 0;
+  const V = Curio.voice({lines:L, scope:() => state.mode+':'+state.talk, hint:false, read:() => active() ? [] : $('hint').textContent,
+    welcome:() => active() || (state.mode==='review' && !talk().runs.length) ? null :
+      ['w-'+state.mode,{valid:() => !active() && !(state.mode==='build' && state.typed) &&
+        !(state.mode==='review' && talk().runs[state.reviewIndex]?.note)}],
+    speaks:'#advance, #thread, #kind, #job, #mic'});
+  function hint(key) {
+    $('hint').textContent = L[key] || key;
+  }
+  function how(key, valid=() => !active(), needs) {
+    hint(key);
+    V.how(key,{valid,needs});
+  }
+  function save() {
+    try {
+      localStorage.setItem('speech-coach:v1',JSON.stringify(state.data));
+      return true;
+    } catch {
+      $('storage').hidden=false;
+      document.body.classList.add('saving-failed');
+      return false;
+    }
+  }
+  function load() {
+    try {
+      const data=JSON.parse(localStorage.getItem('speech-coach:v1') || 'null');
+      if (data && ['sample','mine'].every(k => data[k] && Array.isArray(data[k].sections) && data[k].sections.length && Array.isArray(data[k].runs))) {
+        state.data=data;
+        for (const k of ['sample','mine']) {
+          state.data[k].runs=state.data[k].runs.slice(-8);
+          if (!TASKS[state.data[k].task]) state.data[k].task=0;
+        }
+      }
+    } catch {
+      $('storage').hidden=false;
+      document.body.classList.add('saving-failed');
+    }
+  }
+  function toast(text) {
+    $('toast').textContent=text;
+    $('toast').hidden=false;
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(() => { $('toast').hidden=true; },2600);
+  }
+  function ask(title,text,action) {
+    confirmAction=action;
+    confirmOrigin=document.activeElement;
+    $('confirm-title').textContent=title;
+    $('confirm-text').textContent=text;
+    $('confirm-dialog').showModal();
+    $('confirm-no').focus({preventScroll:true});
+  }
+  function closeConfirm(yes) {
+    $('confirm-dialog').close();
+    const action=confirmAction;
+    confirmAction=null;
+    if (confirmOrigin?.isConnected) confirmOrigin.focus({preventScroll:true});
+    if (yes && action) action();
+  }
+  function relation(seconds,t) {
+    const difference=n => n<1 ? 'less than 0:01' : time(Math.round(n));
+    if (seconds>t.max) return `over by ${difference(seconds-t.max)}`;
+    if (t.min && seconds<t.min) return `under by ${difference(t.min-seconds)}`;
+    if (seconds===t.max) return 'at the limit';
+    return t.min ? 'inside the 4:00 to 5:00 window' : `under by ${difference(t.max-seconds)}`;
+  }
+  function panel() {
+    const total=talk().sections.reduce((n,s) => n+s.planned,0);
+    const t=task();
+    const count=talk().sections.length;
+    const totalWords=talk().sections.reduce((n,s) => n+words(s.script),0);
+    $('talk-stats').textContent=`${count} section${count===1?'':'s'} / ${wordLabel(totalWords)} / ${time(total)} planned`;
+    $('plan-total').textContent=`${time(total)} of ${time(t.max)}`;
+    $('relation').textContent=`${t.register} · ${relation(total,t)}`;
+    $('plan-fill').style.width=Math.min(100,total/t.max*100)+'%';
+    $('plan-fill').style.background=total>t.max ? '#ff8a8a' : 'var(--brand)';
+    $('goal').textContent=t.goal;
+    for (const [i,b] of [...$('tasks').children].entries()) {
+      b.setAttribute('aria-pressed',i===talk().task);
+      b.disabled=active();
+    }
+    $('context').hidden=state.talk!=='sample';
+    $('reset-sample').hidden=state.talk!=='sample';
+    $('talk-picker').disabled=active();
+    $('clear').disabled=active();
+    $('reset-sample').disabled=active();
+    $('read').disabled=active();
+    $('sound').disabled=active();
+  }
+  function sectionName(sections,i) {
+    const s=sections[i];
+    const same=sections.filter(x => x.role===s.role);
+    return s.role+(same.length>1 ? ' '+sections.slice(0,i+1).filter(x => x.role===s.role).length : '');
+  }
+  function rail() {
+    const old=$('sections').scrollTop;
+    const sections=talk().sections;
+    if ($('sections').children.length===sections.length) {
+      for (const [i,b] of [...$('sections').children].entries()) {
+        const s=sections[i];
+        b.setAttribute('aria-pressed',i===state.selected);
+        b.querySelector('.tab-num').textContent=String(i+1).padStart(2,'0')+(s.must?' ◆':'');
+        b.querySelector('strong').textContent=sectionName(sections,i);
+        b.querySelector('small').textContent=`${wordLabel(words(s.script))} · ${time(s.planned)}`;
+      }
+      return;
+    }
+    $('sections').innerHTML=talk().sections.map((s,i) => `<button class="section-tab" data-index="${i}" aria-pressed="${i===state.selected}">
+      <span class="tab-num">${String(i+1).padStart(2,'0')} ${s.must?'◆':''}</span><strong>${esc(sectionName(talk().sections,i))}</strong>
+      <small>${wordLabel(words(s.script))} · ${time(s.planned)}</small></button>`).join('');
+    $('sections').scrollTop=old;
+  }
+  function slideWords(s) {
+    if (s.kind==='Blank') return [];
+    if (s.kind==='Chart') return tokens(s.bars.map(b => b.label+' '+b.value).join(' '));
+    return tokens(s.text);
+  }
+  function checks(section) {
+    const sw=slideWords(section.slide), scriptSet=new Set(tokens(section.script));
+    const fraction=sw.length ? sw.filter(w => scriptSet.has(w)).length/sw.length : 0;
+    const overlap=Math.round(fraction*100);
+    return {count:sw.length,overlap,busy:sw.length>20,reading:sw.length>0 && fraction>.6,
+      noSource:['Chart','Quote'].includes(section.slide.kind) && !section.slide.source.trim()};
+  }
+  function slideRender(box,credit,s) {
+    box.className='slide-screen'+(s.kind==='Words' && s.picture ? ' word-image':'');
+    box.classList.toggle('blank-slide',s.kind==='Blank');
+    box.classList.toggle('chart-slide',s.kind==='Chart');
+    box.classList.toggle('busy-slide',tokens(s.text).length>20 && s.kind!=='Blank');
+    const a=ART[s.picture];
+    let html='';
+    if (a && ['Picture','Words'].includes(s.kind)) html=`<img src="${$(a.id).src}" alt="${esc($(a.id).alt)}">`;
+    if (s.kind==='Chart') {
+      const max=Math.max(1,...s.bars.map(b => Math.abs(b.value)));
+      const signed=s.bars.some(b => b.value<0);
+      html='<div class="bars">'+s.bars.map(b => `<div class="chart-row"><span>${esc(b.label)}</span><span class="mono">${esc(b.value)}</span>
+        <i style="--v:${Math.abs(b.value)/max*(signed?50:100)}%;margin-left:${signed?(b.value<0?50-Math.abs(b.value)/max*50:50):0}%"></i></div>`).join('')+'</div>';
+      html+=`<div class="chart-source">${esc(s.source)}</div>`;
+    } else if (s.kind!=='Blank' && s.text) {
+      const quoted=s.kind==='Quote' && !/paraphrase/i.test(s.source);
+      html+=`<div class="slide-text ${tokens(s.text).length>20?'busy-text':''}">${quoted?'“':''}${esc(s.text)}${quoted?'”':''}</div>`;
+    }
+    box.innerHTML=html;
+    credit.textContent=(a && ['Words','Picture'].includes(s.kind) ? a.credit : s.kind==='Quote'?s.source:'') || ' ';
+  }
+  function slideUpdate() {
+    const s=selected().slide;
+    slideRender($('build-slide'),$('build-credit'),s);
+    const c=checks(selected());
+    $('slide-number').textContent=`${String(state.selected+1).padStart(2,'0')} / ${talk().sections.length}`;
+    $('text-label').hidden=['Blank','Chart'].includes(s.kind);
+    $('text-label').firstChild.textContent=s.kind==='Ask the room'?'Question for a show of hands':s.kind==='Picture'?'Caption':'Slide words';
+    $('picture-label').hidden=!['Words','Picture'].includes(s.kind);
+    $('chart-label').hidden=s.kind!=='Chart';
+    $('source-label').hidden=!['Chart','Quote'].includes(s.kind);
+    $('slide-checks').innerHTML=(c.busy?`<div class="reading"><strong>Busy slide · ${c.count} words</strong><br>Listeners can't read ${c.count} words and hear you at once.</div>`:'')+
+      (c.reading?`<div class="reading"><strong>Reading slide · ${c.overlap===60?'over 60':c.overlap} percent</strong><br>This slide says what you say. Give it a different job.</div>`:'')+
+      (c.noSource?'<div class="reading"><strong>No source</strong><br>Add a source line for this evidence.</div>':'')+
+      (!c.busy&&!c.reading&&!c.noSource?'<span class="muted">No slide readings right now.</span>':'');
+    $('sample-tip').hidden=state.talk!=='sample' || state.selected!==4;
+  }
+  function otherCheck() {
+    const sections=talk().sections, i=sections.findIndex(s => s.role==='Other side');
+    $('other-check').innerHTML=i<0 ? 'No Other side section yet. Listeners who disagree will notice.' :
+      sections.slice(i+1).some(s => s.role==='Answer' || s.link==='but') || sections[i].link==='but' ?
+        '<strong>✓ Your Other side is answered</strong> · Structure check: roles and links, not the wording.' :
+        'Structure check: add an Answer section or use “but” after Other side. Check the spoken answer too.';
+  }
+  function editor() {
+    const s=selected();
+    $('role').value=s.role;
+    $('signpost').value=s.signpost;
+    $('script').value=s.script;
+    $('planned').value=s.planned;
+    $('must').checked=s.must;
+    $('link').value=s.link;
+    $('kind').value=s.slide.kind;
+    $('job').value=s.slide.job;
+    $('slide-text').value=s.slide.text;
+    $('picture').value=s.slide.picture;
+    $('chart-data').value=s.slide.bars.map(b => b.label+': '+b.value).join('\n');
+    $('source').value=s.slide.source;
+    $('selected-number').textContent=`SECTION ${String(state.selected+1).padStart(2,'0')}`;
+    $('section-position').textContent=`${state.selected+1}/${talk().sections.length}`;
+    $('previous').disabled=state.selected===0;
+    $('next-section').disabled=state.selected===talk().sections.length-1;
+    $('up').disabled=state.selected===0;
+    $('down').disabled=state.selected===talk().sections.length-1;
+    $('delete').disabled=(task().name==='Club pitch' && s.must) || talk().sections.length===1;
+    $('delete').title=$('delete').disabled?'Must keep sections cannot be cut for Club pitch. Keep at least one section.':'';
+    $('word-count').textContent=wordLabel(words(s.script));
+    $('auto-label').textContent=s.manual?'time set by you':'auto · 150 words/min';
+    $('talk-title').textContent=state.talk==='sample'?'Push the first bell':'My talk';
+    slideUpdate();
+    otherCheck();
+  }
+  function focusRole() {
+    const field=document.querySelector('.editor-fields');
+    const control=$('role');
+    const area=field.getBoundingClientRect();
+    const bounds=control.getBoundingClientRect();
+    if (bounds.bottom>area.bottom) field.scrollTop+=bounds.bottom-area.bottom+2;
+    if (bounds.top<area.top) field.scrollTop-=area.top-bounds.top+2;
+    control.focus({preventScroll:true});
+  }
+  function selectSection(i,focus=false) {
+    state.selected=Math.max(0,Math.min(talk().sections.length-1,i));
+    rail();
+    editor();
+    document.querySelector('.editor-fields').scrollTop=0;
+    const c=checks(selected());
+    if (c.busy || c.reading) how('busy',() => state.mode==='build' && (checks(selected()).busy || checks(selected()).reading));
+    else hint('w-build');
+    if (focus) focusRole();
+    Curio.tone(420+i*40,.045,.018);
+  }
+  function changed(what) {
+    state.typed=true;
+    V.dropQueued();
+    if (what==='script' && !selected().manual) {
+      selected().planned=plan(words(selected().script));
+      $('planned').value=selected().planned;
+    }
+    $('word-count').textContent=wordLabel(words(selected().script));
+    $('auto-label').textContent=selected().manual?'time set by you':'auto · 150 words/min';
+    // Update the collapsed cards in place while typing, preserving pointer and focus.
+    const b=$('sections').children[state.selected];
+    if (b) b.querySelector('small').textContent=`${wordLabel(words(selected().script))} · ${time(selected().planned)}`;
+    slideUpdate();
+    otherCheck();
+    panel();
+    save();
+  }
+  function move(delta) {
+    const next=state.selected+delta;
+    if (next<0 || next>=talk().sections.length) return;
+    [talk().sections[state.selected],talk().sections[next]]=[talk().sections[next],talk().sections[state.selected]];
+    selectSection(next,true);
+    save();
+  }
+  function elapsed() {
+    return elapsedBase+(state.phase==='running' ? (performance.now()-anchor)/1000 : 0);
+  }
+  function stopMic() {
+    micEpoch++;
+    if (micInterval) clearInterval(micInterval);
+    micInterval=null;
+    if (stream) stream.getTracks().forEach(t => t.stop());
+    stream=null;
+    if (audioContext) audioContext.close().catch(() => {});
+    audioContext=null;
+    analyser=null;
+    $('mic').checked=false;
+    $('level').style.width='0%';
+    quietSince=null;
+    quietMarked=false;
+    lastMicTime=null;
+  }
+  async function micOn() {
+    const epoch=++micEpoch;
+    try {
+      const opened=await navigator.mediaDevices.getUserMedia({audio:true});
+      if (epoch!==micEpoch || state.mode!=='rehearse' || !$('mic').checked) {
+        opened.getTracks().forEach(t => t.stop());
+        return;
+      }
+      stream=opened;
+      audioContext=new AudioContext();
+      analyser=audioContext.createAnalyser();
+      analyser.fftSize=1024;
+      audioContext.createMediaStreamSource(stream).connect(analyser);
+      noise=[];
+      threshold=.008;
+      micInterval=setInterval(() => {
+        const frame=new Float32Array(analyser.fftSize);
+        analyser.getFloatTimeDomainData(frame);
+        const rms=Math.sqrt(frame.reduce((n,x) => n+x*x,0)/frame.length);
+        $('level').style.width=Math.min(100,rms*600)+'%';
+        measureLevel(rms);
+      },100);
+      if (!active()) how('mic',() => !!stream && !active());
+    } catch {
+      stopMic();
+      toast('Microphone unavailable. You can rehearse with the listener pad or self-check.');
+    }
+  }
+  function measureLevel(rms) {
+    if (state.phase!=='running' || !run) {
+      lastMicTime=null;
+      quietSince=null;
+      quietMarked=false;
+      return;
+    }
+    const t=elapsed();
+    if (t<=2) {
+      noise.push(rms);
+      threshold=Math.max(.0001,noise.reduce((a,b) => a+b,0)/noise.length*1.5);
+      lastMicTime=t;
+      return;
+    }
+    run.measured=true;
+    const dt=lastMicTime===null?0:Math.min(.2,t-lastMicTime);
+    run.measuredSeconds+=dt;
+    lastMicTime=t;
+    if (rms<threshold) {
+      run.quietSeconds+=dt;
+      if (quietSince===null) quietSince=t;
+      if (!quietMarked && t-quietSince>=2) {
+        run.pauses.push({section:state.current,second:t-sectionStart,total:t});
+        quietMarked=true;
+      }
+    } else {
+      quietSince=null;
+      quietMarked=false;
+    }
+  }
+  function rehearsal() {
+    const s=run ? run.sections[state.current] : talk().sections[state.current];
+    const script=run ? run.scripts[state.current] : s.script;
+    const signpost=run ? run.signposts[state.current] : s.signpost;
+    const slide=run ? run.slides[state.current] : s.slide;
+    $('cue-index').textContent=`${String(state.current+1).padStart(2,'0')} / ${talk().sections.length} · ${s.role}`+
+      ($('delivery').value==='Script'?'':' · Pace is measured against your script.');
+    $('cue').textContent=$('delivery').value==='Nothing'?'':signpost || 'Your next section';
+    $('delivery-text').textContent=$('delivery').value==='Script'?script:$('delivery').value==='Notes only'?'Pace is measured against your script.':'';
+    slideRender($('run-slide'),$('run-credit'),slide);
+    $('advance').textContent=state.phase==='countdown'?String(state.count):
+      state.phase==='ready'?'▶ Start':state.current===talk().sections.length-1?'Finish run ■':'Next section →';
+    $('advance').disabled=false;
+    $('advance').setAttribute('aria-disabled',state.phase==='countdown' || state.phase==='paused');
+    $('pause').disabled=!['running','paused'].includes(state.phase);
+    $('pause').textContent=state.phase==='paused'?'Resume · P':'Pause · P';
+    $('abandon').disabled=!active();
+    $('mic').disabled=active();
+    for (const b of document.querySelectorAll('[data-mark]')) b.disabled=state.phase!=='running';
+    $('stage-status').textContent=state.phase==='countdown'?`GET READY / ${state.count}`:
+      state.phase==='paused'?'CLOCK PAUSED':state.phase==='running'?'● LIVE / YOUR VOICE':'EMPTY HOUSE / READY';
+    if (state.phase==='paused') hint('paused');
+    else if (state.phase==='countdown') hint('countdown');
+    else if (state.phase==='running') {
+      hint(state.current===talk().sections.length-1?'run-finish':'run-next');
+    } else hint('w-rehearse');
+    panel();
+    tick();
+  }
+  function makeRun() {
+    const sections=talk().sections;
+    return {task:clone(task()),sections:sections.map(s => ({role:s.role,words:words(s.script),planned:s.planned,
+      actual:0,pace:0,slideWords:slideWords(s.slide).length,slideKind:s.slide.kind})),
+      scripts:sections.map(s => s.script),signposts:sections.map(s => s.signpost),slides:sections.map(s => clone(s.slide)),
+      marks:[],pauses:[],measured:false,quietSeconds:0,measuredSeconds:0,total:0,self:{fillers:'',stumbles:[]},note:''};
+  }
+  function start() {
+    if (state.phase!=='ready') return;
+    V.hush();
+    Curio.stop();
+    if ($('mic').checked && !stream) {
+      stopMic();
+      toast('The microphone was not ready. This run will use the listener pad and self-check.');
+    }
+    state.phase='countdown';
+    state.current=0;
+    state.count=3;
+    run=makeRun();
+    elapsedBase=0;
+    sectionStart=0;
+    noise=[];
+    rehearsal();
+    countdownId=setInterval(() => {
+      state.count--;
+      if (state.count>0) rehearsal();
+      else {
+        clearInterval(countdownId);
+        state.phase='running';
+        anchor=performance.now();
+        rehearsal();
+        $('advance').focus({preventScroll:true});
+      }
+    },1000);
+  }
+  function next() {
+    if (state.phase==='ready') return start();
+    if (state.phase!=='running') return;
+    const t=elapsed();
+    const s=run.sections[state.current];
+    s.actual=Math.max(.001,t-sectionStart);
+    s.pace=Math.round(s.words/s.actual*60);
+    if (state.current===run.sections.length-1) return finish(t);
+    state.current++;
+    sectionStart=t;
+    $('mark-flash').textContent='New section. Listener marks are stamped here.';
+    rehearsal();
+  }
+  function pause() {
+    if (state.phase==='running') {
+      elapsedBase=elapsed();
+      state.phase='paused';
+      quietSince=null;
+      quietMarked=false;
+    } else if (state.phase==='paused') {
+      anchor=performance.now();
+      state.phase='running';
+    } else return;
+    rehearsal();
+    if (state.phase==='paused') $('pause').focus({preventScroll:true});
+  }
+  function abandon(mode='rehearse') {
+    clearInterval(countdownId);
+    stopMic();
+    V.hush();
+    state.phase='ready';
+    state.current=0;
+    run=null;
+    elapsedBase=0;
+    sectionStart=0;
+    setMode(mode,true);
+  }
+  function finish(t) {
+    elapsedBase=t;
+    state.phase='ready';
+    run.total=t;
+    stopMic();
+    // Save numeric rehearsal observations, never microphone samples or duplicated scripts.
+    const saved=clone(run);
+    delete saved.scripts;
+    delete saved.signposts;
+    delete saved.slides;
+    talk().runs.push(saved);
+    talk().runs=talk().runs.slice(-8);
+    state.reviewIndex=talk().runs.length-1;
+    run=null;
+    save();
+    setMode('review',true,false);
+    hint('runsaved');
+    V.say('runsaved',{valid:() => state.mode==='review' && !active()});
+    if (t>saved.task.max) V.say('over',{valid:() => state.mode==='review' && !active()});
+    Curio.yes();
+  }
+  function mark(kind) {
+    if (state.phase!=='running' || !run) return;
+    const t=elapsed();
+    run.marks.push({kind,section:state.current,second:t-sectionStart,total:t});
+    const names={F:'Filler',L:'Lost me',H:"Couldn't hear",N:'Nice moment'};
+    $('mark-flash').textContent=`${kind} · ${names[kind]} · section ${state.current+1} at ${time(t-sectionStart)}`;
+    const b=$('mark-'+kind.toLowerCase());
+    b.style.borderColor='var(--brand)';
+    setTimeout(() => { b.style.borderColor=''; },200);
+    tick();
+  }
+  function tick() {
+    if (state.mode!=='rehearse') return;
+    const t=elapsed();
+    $('section-clock').textContent=time(t-sectionStart);
+    $('total-clock').textContent=time(t);
+    $('total-clock').style.color=t>(run?run.task.max:task().max)?'#ff8a8a':'';
+    const sections=run?run.sections:talk().sections;
+    if ($('timeline').children.length!==sections.length) {
+      $('timeline').innerHTML=sections.map((s,i) => `<div style="--weight:${s.planned}" title="${esc(s.role)}: ${s.planned} seconds planned">
+        <i></i><span>${i+1}</span></div>`).join('');
+    }
+    for (const [i,b] of [...$('timeline').children].entries()) {
+      const actual=run ? i<state.current?run.sections[i].actual:i===state.current?t-sectionStart:0 : 0;
+      const fill=Math.min(100,actual/sections[i].planned*100);
+      b.style.setProperty('--weight',sections[i].planned);
+      b.firstElementChild.style.width=fill+'%';
+      b.style.borderColor=run && i===state.current?'var(--brand)':'#718376';
+    }
+  }
+  const band = n => n<110?'slow':n>170?'fast':'steady';
+  const glyph = n => n<110?'◀':n>170?'▶':'●';
+  function runStrip(r,scale) {
+    return `<div class="run-strip-track"><div class="compare-strip" style="width:${r.total/scale*100}%">${r.sections.map((s,i) =>
+      `<span style="--weight:${s.actual}" title="${esc(s.role)}: ${time(Math.round(s.actual))}">${i+1}<br>${time(Math.round(s.actual))}</span>`
+    ).join('')}</div></div>`;
+  }
+  function review() {
+    const runs=talk().runs;
+    if (!runs.length) {
+      $('review').innerHTML='<div class="eyebrow">Your rehearsal notebook</div><h2>No runs yet.</h2><p class="muted">Open Rehearse and press Start. Your marked run sheet will appear here.</p><button class="btn primary" id="first-run">Go to Rehearse →</button>';
+      $('first-run').onclick=() => setMode('rehearse');
+      return;
+    }
+    state.reviewIndex=Math.max(0,Math.min(runs.length-1,state.reviewIndex<0?runs.length-1:state.reviewIndex));
+    const r=runs[state.reviewIndex];
+    const within=r.total<=r.task.max && (!r.task.min || r.total>=r.task.min);
+    const rows=r.sections.map((s,i) => {
+      const marks=r.marks.filter(m => m.section===i);
+      const pauses=r.pauses.filter(m => m.section===i);
+      const lane=marks.map((m,j) => `<span style="left:${Math.min(94,Math.max(6,m.second/s.actual*100))}%;--mark-top:${j*20}px"
+        title="${m.kind} at ${m.second.toFixed(1)} seconds">${m.kind}</span>`).join('');
+      const markTimes=marks.map(m => `${m.kind} ${m.second.toFixed(1)}s`).join(' · ');
+      return `<div class="section-result"><div class="review-row"><div class="role-label">${String(i+1).padStart(2,'0')} · ${esc(sectionName(r.sections,i))}</div>
+        <div class="mono">${time(s.planned)}</div><div class="mono">${time(Math.round(s.actual))}</div>
+        <div class="pace ${band(s.pace)}">${glyph(s.pace)} ${s.pace}<br><small>${band(s.pace)} · words/min</small></div>
+        <div><div class="mark-lane" style="height:${Math.max(23,marks.length*20)}px"
+          aria-label="${esc(marks.map(m => m.kind+' at '+m.second.toFixed(1)+' seconds').join(', ') || 'No listener marks')}">${lane}</div>
+        ${marks.length?`<div class="mark-times">${markTimes}</div>`:''}
+        <div class="small muted">${r.measured?pauses.length+' long pause'+(pauses.length===1?'':'s'):'Pauses not measured'}</div></div></div>
+        <p class="slide-timing">Slide ${i+1} · ${s.slideKind} · ${wordLabel(s.slideWords)} · up ${time(Math.round(s.actual))}${s.slideWords>20 && s.actual<10?' · Busy slide: too brief to read.':''}</p></div>`;
+    }).join('');
+    const fillers=r.marks.filter(m => m.kind==='F').length;
+    const lost=r.marks.filter(m => m.kind==='L').length;
+    const fastest=r.sections.reduce((a,b) => a.pace>b.pace?a:b);
+    const fastestIndex=r.sections.indexOf(fastest);
+    const busyIndex=r.sections.findIndex(s => s.slideWords>20 && s.actual<10);
+    const focusText=busyIndex>=0 ? `Slide ${busyIndex+1}: ${r.sections[busyIndex].slideWords} words, up ${time(Math.round(r.sections[busyIndex].actual))}. Cut its words or give it more time.` :
+      `Fastest: ${sectionName(r.sections,fastestIndex)}, ${fastest.pace} words per minute against the script. Choose one change and test it.`;
+    $('review').innerHTML=`<div class="review-summary"><div><div class="eyebrow">The marked run sheet / trial ${state.reviewIndex+1}</div>
+      <h2>${within?'A run to build on.':'Find your next change.'}</h2><span class="small muted">${esc(r.task.name)} · ${relation(r.total,r.task)}</span></div>
+      <div class="run-total">${time(Math.round(r.total))}</div></div>
+      <section class="trial-focus" aria-label="Choose your next trial"><div><div class="eyebrow">One change for the next trial</div><p>${esc(focusText)}</p></div>
+        <label>What I changed · this run<input id="trial-note" data-note="${state.reviewIndex}" aria-label="What I changed, selected run" value="${esc(r.note)}"></label>
+        <button class="btn primary" id="revise-section" data-section="${busyIndex>=0?busyIndex:fastestIndex}">Revise section ${1+(busyIndex>=0?busyIndex:fastestIndex)} →</button></section>
+      <div class="review-row head"><span>Section</span><span>Plan</span><span>Actual</span><span>Pace</span><span>Listener marks</span></div>${rows}
+      <p class="small muted">F filler · L lost me · H couldn't hear · N nice moment. Pace is measured against your script.</p>
+      <div class="small muted">About pace: 150 words per minute is a common rule of thumb. Slow under 110, steady 110 to 170, fast over 170 are guides for a talk, not rules.</div>
+      ${r.measured?`<p class="small">Quiet time: ${(r.quietSeconds/Math.max(.001,r.measuredSeconds)*100).toFixed(0)} percent of measured talk time. ${r.pauses.length} long pause${r.pauses.length===1?'':'s'}.</p>`:''}
+      <div class="review-lower"><section class="selfcheck"><div><h3>Self-check · after every run</h3><label>How many fillers do you think you said?
+      <select id="self-fillers"><option value="">Choose</option><option>None</option><option>a few</option><option>many</option></select></label>
+      <p class="small">Finished inside the limit? <strong>${within?'Yes':'No'}</strong> · filled from the clock.</p></div>
+      <div><h3>Tap any section where you stumbled</h3><div class="stumbles">${r.sections.map((s,i) => `<button class="btn" data-stumble="${i}" aria-pressed="${r.self.stumbles.includes(i)}">${i+1} ${esc(s.role)}</button>`).join('')}</div></div></section>
+      <section><div class="row"><h3 class="grow">Runs · lab notebook</h3><button class="btn primary" id="run-again">Run another trial →</button></div>
+      <div class="notebook" tabindex="0" aria-label="Saved run notebook"><table><thead><tr><th>Run / time</th><th>Task limit</th><th>Slowest / fastest</th><th>F/min · lost</th><th>What I changed</th></tr></thead><tbody>
+      ${runs.map((x,i) => {
+        const slow=x.sections.reduce((a,b) => a.pace<b.pace?a:b), fast=x.sections.reduce((a,b) => a.pace>b.pace?a:b);
+        return `<tr><td><button class="btn" data-review="${i}" aria-pressed="${state.reviewIndex===i}">${i+1} · ${time(Math.round(x.total))}</button></td>
+        <td>${relation(x.total,x.task)}</td><td>${esc(sectionName(x.sections,x.sections.indexOf(slow)))} ${slow.pace}<br>${esc(sectionName(x.sections,x.sections.indexOf(fast)))} ${fast.pace}</td>
+        <td>${(x.marks.filter(m => m.kind==='F').length/(x.total/60)).toFixed(1)} · ${x.marks.filter(m => m.kind==='L').length}</td>
+        <td><input data-note="${i}" aria-label="What I changed, run ${i+1}" value="${esc(x.note)}"></td></tr>`;
+      }).join('')}</tbody></table></div></section>
+      <section><h3>Compare runs</h3><div class="row"><select id="compare-a" aria-label="First run to compare"></select>
+      <select id="compare-b" aria-label="Second run to compare"></select></div><div id="comparison"></div></section>
+      <label>Conclude · What one change helped most? What's your next trial?<textarea id="conclude" aria-label="Conclusion and next trial" rows="3"></textarea></label>
+      <p class="small muted">${fillers} listener filler${fillers===1?'':'s'}, ${lost} Lost me mark${lost===1?'':'s'} in the selected run. Up to eight runs are kept on this device.</p></div>`;
+    $('self-fillers').value=r.self.fillers;
+    $('self-fillers').onchange=() => { r.self.fillers=$('self-fillers').value; save(); };
+    $('conclude').value=talk().conclude || '';
+    $('conclude').oninput=() => { talk().conclude=$('conclude').value; save(); };
+    for (const input of document.querySelectorAll('[data-note]')) input.oninput=() => {
+      runs[+input.dataset.note].note=input.value;
+      for (const other of document.querySelectorAll(`[data-note="${input.dataset.note}"]`)) {
+        if (other!==input) other.value=input.value;
+      }
+      V.dropQueued();
+      save();
+    };
+    for (const b of document.querySelectorAll('[data-stumble]')) b.onclick=() => {
+      const i=+b.dataset.stumble;
+      r.self.stumbles=r.self.stumbles.includes(i)?r.self.stumbles.filter(n => n!==i):[...r.self.stumbles,i];
+      b.setAttribute('aria-pressed',r.self.stumbles.includes(i));
+      save();
+    };
+    for (const b of document.querySelectorAll('[data-review]')) b.onclick=() => {
+      const y=$('review').scrollTop;
+      state.reviewIndex=+b.dataset.review;
+      review();
+      $('review').scrollTop=y;
+      document.querySelector(`[data-review="${state.reviewIndex}"]`).focus({preventScroll:true});
+    };
+    $('run-again').onclick=() => setMode('rehearse');
+    $('revise-section').onclick=() => {
+      const index=+$('revise-section').dataset.section;
+      setMode('build');
+      selectSection(index,true);
+    };
+    for (const id of ['compare-a','compare-b']) {
+      $(id).innerHTML=runs.map((x,i) => `<option value="${i}">Run ${i+1} · ${time(Math.round(x.total))}</option>`).join('');
+      $(id).onchange=compareRuns;
+    }
+    $('compare-a').value=Math.max(0,runs.length-2);
+    $('compare-b').value=runs.length-1;
+    compareRuns();
+  }
+  function compareRuns() {
+    const a=+$('compare-a').value,b=+$('compare-b').value;
+    const x=talk().runs[a],y=talk().runs[b],scale=Math.max(1,x.total,y.total);
+    $('comparison').innerHTML=`<p class="small muted">Same time scale · full width ${time(Math.round(scale))}. Blocks show section seconds.</p>
+      <p class="small muted">Run ${a+1} · ${time(Math.round(x.total))}</p>${runStrip(x,scale)}
+      <p class="small muted">Run ${b+1} · ${time(Math.round(y.total))}</p>${runStrip(y,scale)}`;
+  }
+  function setMode(mode,force=false,speak=true) {
+    if (active() && !force) {
+      ask('Abandon this run?','This unfinished run will not be saved.',() => abandon(mode));
+      return;
+    }
+    const oldView=$(state.mode);
+    const focusWillHide=oldView?.contains(document.activeElement);
+    V.hush();
+    stopMic();
+    state.mode=mode;
+    document.body.dataset.mode=mode;
+    for (const m of ['build','rehearse','review']) {
+      $(m).hidden=m!==mode;
+      $('m-'+m).setAttribute('aria-pressed',m===mode);
+    }
+    if (mode==='build') { rail(); editor(); }
+    if (mode==='rehearse') {
+      state.current=0;
+      elapsedBase=0;
+      sectionStart=0;
+      rehearsal();
+    }
+    if (mode==='review') review();
+    hint(mode==='review' && !talk().runs.length?'review-empty':'w-'+mode);
+    panel();
+    if (speak && !(mode==='review' && !talk().runs.length)) V.welcome();
+    if (force || focusWillHide) $('m-'+mode).focus({preventScroll:true});
+  }
+  function thread() {
+    $('thread-paragraph').innerHTML=talk().sections.map((s,i) => `${esc(s.signpost)}${i<talk().sections.length-1 && s.link?' <em>'+esc(s.link)+'</em>':''}`).join(' ');
+    $('listener-test').value=talk().listener || '';
+    $('claim-comparison').textContent='';
+    $('thread-dialog').showModal();
+    how('thread',() => $('thread-dialog').open && !$('listener-test').value);
+  }
+  function options(id,list) { $(id).innerHTML=list.map(s => `<option value="${esc(s)}">${esc(s || 'No link')}</option>`).join(''); }
+  options('role',ROLES);
+  options('link',LINKS);
+  options('kind',KINDS);
+  options('job',JOBS);
+  $('picture').innerHTML='<option value="">None</option><option value="maid-asleep">A Maid Asleep · Vermeer</option><option value="harvesters">The Harvesters · Bruegel</option><option value="wall-clock">Wall Clock · Latz</option>';
+  $('tasks').innerHTML=TASKS.map((t,i) => `<button class="btn task" data-task="${i}">${t.name}<span>${t.min?'4:00-':''}${time(t.max)}</span></button>`).join('');
+  for (const b of $('tasks').children) b.onclick=() => {
+    talk().task=+b.dataset.task;
+    panel();
+    editor();
+    hint(state.mode==='build'?'build-task':state.mode==='rehearse'?'w-rehearse':talk().runs.length?'w-review':'review-empty');
+    save();
+    Curio.tone(520,.06,.02);
+  };
+  $('sections').onclick=e => {
+    const b=e.target.closest('[data-index]');
+    if (!b) return;
+    selectSection(+b.dataset.index);
+    $('sections').children[state.selected].focus({preventScroll:true});
+  };
+  for (const id of ['role','signpost','script','planned','must','link']) $(id).addEventListener(id==='must'?'change':'input',() => {
+    const s=selected();
+    if (id==='planned') { s.planned=Math.max(5,Math.min(3600,Math.round(Number($('planned').value)||5))); s.manual=true; }
+    else if (id==='must') s.must=$('must').checked;
+    else s[id]=$(id).value;
+    changed(id);
+    if (id==='role') {
+      rail();
+      if (!talk().sections.some(x => x.role==='Other side') && !V.heard('other')) {
+        how('other',() => !talk().sections.some(x => x.role==='Other side'),'#add');
+      }
+    }
+    if (id==='must') {
+      $('delete').disabled=(task().name==='Club pitch' && s.must) || talk().sections.length===1;
+      const badge=$('sections').children[state.selected]?.querySelector('.tab-num');
+      if (badge) badge.textContent=String(state.selected+1).padStart(2,'0')+(s.must?' ◆':'');
+    }
+  });
+  $('planned').addEventListener('change',() => { $('planned').value=selected().planned; });
+  for (const id of ['kind','job','slide-text','picture','source','chart-data']) $(id).addEventListener('input',() => {
+    const s=selected().slide;
+    if (id==='chart-data') {
+      s.bars=$('chart-data').value.split('\n').slice(0,5).map(line => {
+        const at=line.lastIndexOf(':');
+        const value=Number(line.slice(at+1).trim());
+        return at>0 && Number.isFinite(value)?{label:line.slice(0,at).trim(),value}:null;
+      }).filter(Boolean);
+    } else s[id==='slide-text'?'text':id]=$(id).value;
+    changed(id);
+    if (id==='kind') how('slide',() => state.mode==='build', '#job');
+    if (id==='job') V.dropQueued(x => x.key==='slide');
+  });
+  $('previous').onclick=() => {
+    selectSection(state.selected-1);
+    if ($('previous').disabled) $('next-section').focus({preventScroll:true});
+  };
+  $('next-section').onclick=() => {
+    selectSection(state.selected+1);
+    if ($('next-section').disabled) $('previous').focus({preventScroll:true});
+  };
+  $('up').onclick=() => move(-1);
+  $('down').onclick=() => move(1);
+  $('add').onclick=() => {
+    talk().sections.splice(state.selected+1,0,emptySection('Reason'));
+    selectSection(state.selected+1,true);
+    panel();
+    save();
+  };
+  $('delete').onclick=() => {
+    if ($('delete').disabled) return;
+    ask('Delete this section?','Its signpost, script and slide will be removed.',() => {
+      talk().sections.splice(state.selected,1);
+      selectSection(Math.min(state.selected,talk().sections.length-1),true);
+      panel();
+      save();
+    });
+  };
+  for (const m of ['build','rehearse','review']) $('m-'+m).onclick=() => { if (state.mode!==m) setMode(m); };
+  $('talk-picker').onchange=() => {
+    V.hush();
+    state.talk=$('talk-picker').value;
+    state.selected=0;
+    state.reviewIndex=-1;
+    state.typed=false;
+    setMode(state.mode);
+  };
+  $('advance').onclick=next;
+  $('pause').onclick=pause;
+  $('abandon').onclick=() => ask('Abandon this run?','This unfinished run will not be saved.',() => abandon());
+  $('delivery').onchange=rehearsal;
+  for (const b of document.querySelectorAll('[data-mark]')) b.onclick=() => mark(b.dataset.mark);
+  $('mic').onchange=() => { if ($('mic').checked) micOn(); else stopMic(); };
+  $('save').onclick=() => { toast(save()?'Talk and run notes saved on this device.':'This browser could not save your work.'); };
+  $('clear').onclick=() => ask('Clear My talk?','Your own talk, its runs and its notes will be removed. The sample stays.',() => {
+    state.data.mine={sections:[emptySection()],task:0,runs:[],conclude:'',listener:''};
+    state.talk='mine';
+    state.selected=0;
+    state.reviewIndex=-1;
+    $('talk-picker').value='mine';
+    save();
+    setMode('build');
+    focusRole();
+  });
+  $('reset-sample').onclick=() => ask('Reset sample?','Restore the six original sections and clear its runs and notes.',() => {
+    state.data.sample={sections:clone(SAMPLE),task:0,runs:[],conclude:'',listener:''};
+    state.selected=0;
+    state.reviewIndex=-1;
+    save();
+    setMode('build');
+    focusRole();
+  });
+  $('confirm-no').onclick=() => closeConfirm(false);
+  $('confirm-yes').onclick=() => closeConfirm(true);
+  $('thread').onclick=thread;
+  $('listener-test').oninput=() => {
+    talk().listener=$('listener-test').value;
+    hint(talk().listener.trim()?'thread-compare':'thread');
+    V.dropQueued();
+    save();
+  };
+  $('compare-claim').onclick=() => {
+    const claim=talk().sections.find(s => s.role==='Claim');
+    $('claim-comparison').textContent=claim?'Your Claim card: '+claim.script:'No Claim card yet. Add a section and set its role to Claim.';
+    hint('thread-return');
+  };
+  $('close-thread').onclick=() => {
+    $('thread-dialog').close();
+    hint('w-build');
+    $('thread').focus({preventScroll:true});
+  };
+  $('thread-dialog').addEventListener('close',() => {
+    V.hush();
+    hint('w-build');
+  });
+  $('task-drawer-toggle').onclick=() => $('task-dialog').showModal();
+  $('close-task').onclick=() => {
+    $('task-dialog').close();
+    $('task-drawer-toggle').focus({preventScroll:true});
+  };
+  const sidePanel=document.querySelector('aside.panel');
+  function responsivePanel() {
+    const navigation=$('section-navigation');
+    const compact=innerWidth>=601 && innerHeight<=650;
+    const parent=compact ? document.querySelector('.desk-head') : document.querySelector('.editor');
+    if (navigation.parentElement!==parent) {
+      const focused=navigation.contains(document.activeElement) ? document.activeElement : null;
+      parent.prepend(navigation);
+      focused?.focus({preventScroll:true});
+    }
+    const portrait=innerWidth<=760 && innerHeight>650;
+    if (portrait && sidePanel.parentElement!==$('mobile-panel')) {
+      $('mobile-hint').append($('hint'));
+      $('mobile-panel').append(sidePanel);
+    } else if (!portrait && sidePanel.parentElement!==document.querySelector('main')) {
+      if ($('task-dialog').open) $('task-dialog').close();
+      sidePanel.prepend($('hint'));
+      document.querySelector('main').append(sidePanel);
+    }
+  }
+  addEventListener('resize',responsivePanel);
+  responsivePanel();
+  addEventListener('keydown',e => {
+    if (e.ctrlKey || e.metaKey || e.altKey || e.repeat || e.target.closest('input,textarea,select,dialog')) return;
+    if (state.mode!=='rehearse') return;
+    const k=e.key.toLowerCase();
+    if (k===' ') { e.preventDefault(); next(); }
+    else if (k==='p') { e.preventDefault(); pause(); }
+    else if ('flhn'.includes(k) && k.length===1) { e.preventDefault(); mark(k.toUpperCase()); }
+    else if (k==='escape' && !active()) setMode('build');
+  });
+  function pageHide() {
+    stopMic();
+    if (state.phase==='countdown') {
+      clearInterval(countdownId);
+      state.phase='ready';
+      run=null;
+      rehearsal();
+    }
+    if (state.phase==='running') pause();
+  }
+  addEventListener('pagehide',pageHide);
+  document.addEventListener('visibilitychange',() => { if (document.hidden) pageHide(); });
+  Curio.init({clips:'voice:*',rate:.95,readFallback:() => $('hint').textContent});
+  // Also guard Read if activated programmatically while a run is active.
+  $('read').onclick=() => { if (!active()) V.read(); };
+  load();
+  setMode('build');
+  setInterval(tick,100);
+  window.__tool={state,setMode,V,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},words,tokens,plan,time,checks,
+    selected,talk,task,selectSection,start,next,pause,mark,abandon,elapsed,measureLevel,stopMic,
+    get run(){return run;},get stream(){return stream;},get threshold(){return threshold;},
+    get anchor(){return anchor;},set anchor(value){anchor=value;},get sectionStart(){return sectionStart;},
+    render:() => { rail(); editor(); panel(); },save,review,relation};
+})();
+</script>
+</body>
+</html>

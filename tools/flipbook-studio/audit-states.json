@@ -1,0 +1,15 @@
+{
+  "keep": ["#page", "#play", "#readout", "#hint"],
+  "states": [
+    {"name":"copied-page","steps":[{"click":"#copy-page"}]},
+    {"name":"bounce-time","steps":[{"click":"#starters"},{"click":"[data-starter=real]"},{"click":"#m-time"}],"sizes":["1366x768","680x425"]},
+    {"name":"live-flip","steps":[{"click":"#m-flip"},{"click":"#play"},{"wait":500},{"click":"#play"}]},
+    {"name":"starter-library","steps":[{"click":"#starters"}],"keep":[],"sizes":["1366x768","680x425"]},
+    {"name":"timing-help","steps":[{"click":"#m-time"},{"click":"#why"}],"keep":[],"sizes":["1366x768"]},
+    {"name":"hold-high","steps":[{"click":"#m-time"},{"click":"#hold-plus","times":5}]},
+    {"name":"hold-low","steps":[{"click":"#m-time"},{"click":"#hold-minus"}]},
+    {"name":"fps-low","steps":[{"click":"#m-time"},{"click":"[data-fps='6']"}],"sizes":["1366x768","680x425"]},
+    {"name":"fps-high","steps":[{"click":"#m-time"},{"click":"[data-fps='24']"}],"sizes":["1366x768","680x425"]},
+    {"name":"page-limit","steps":[{"click":"#new-page","times":47,"gap":0.05}],"sizes":["1366x768","680x425"]}
+  ]
+}

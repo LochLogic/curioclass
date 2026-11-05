@@ -1,0 +1,25 @@
+{
+  "id": "up-the-watershed",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Eight kits. Three water mysteries. Follow the evidence upstream.",
+  "outcome": "Use spatial and weather evidence to identify pollution sources, then evaluate cleanup technologies under a budget.",
+  "driver": "students",
+  "minutes": "30-45",
+  "modes": ["Cases", "Sample", "Claim", "Fix-it"],
+  "grades_label": "Grade 12",
+  "topic": "watershed pollution and solutions",
+  "sources": [
+    "EPA, 2012 Recreational Water Quality Criteria: 126 geometric mean and 410 statistical threshold, E. coli CFU/100 mL. The fictional case uses 410 as its action line.",
+    "EPA National Primary Drinking Water Regulations: nitrate-N 10 mg/L.",
+    "EPA Quality Criteria for Water (1986): 0.05 mg/L phosphorus guideline for streams entering lakes.",
+    "EIFAC Technical Paper 1 (1965): suspended sediment fisheries reference bands.",
+    "EPA agricultural nonpoint source guidance (2003), urban guidance (2005), Construction General Permit, nutrient removal reference (2008), and BEACH Act program.",
+    "USDA NRCS conservation practice standards 382, 390 and 605.",
+    "Creek, town, loads, flows, costs and modeled fix efficiencies are fictional teaching inputs from spec.md.",
+    "Eight retained illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-10-31"
+}

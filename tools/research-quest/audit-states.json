@@ -1,0 +1,653 @@
+{
+  "states": [
+    {
+      "name": "plan",
+      "steps": [
+        {
+          "click": "#question-1"
+        },
+        {
+          "click": "#ask-next"
+        }
+      ],
+      "keep": [
+        "#plan-go"
+      ]
+    },
+    {
+      "name": "gather",
+      "steps": [
+        {
+          "click": "#question-1"
+        },
+        {
+          "click": "#ask-next"
+        },
+        {
+          "click": "#place-library"
+        },
+        {
+          "click": "#place-county"
+        },
+        {
+          "click": "#place-nature"
+        },
+        {
+          "click": "#place-notebook"
+        },
+        {
+          "click": "#plan-go"
+        }
+      ],
+      "keep": [
+        ".ways",
+        "#save-source",
+        "#gather-next"
+      ]
+    },
+    {
+      "name": "saved-note",
+      "steps": [
+        {
+          "click": "#question-1"
+        },
+        {
+          "click": "#ask-next"
+        },
+        {
+          "click": "#place-library"
+        },
+        {
+          "click": "#place-county"
+        },
+        {
+          "click": "#place-nature"
+        },
+        {
+          "click": "#place-notebook"
+        },
+        {
+          "click": "#plan-go"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        }
+      ],
+      "keep": [
+        ".note-sheet",
+        "#redo"
+      ]
+    },
+    {
+      "name": "organize",
+      "steps": [
+        {
+          "click": "#question-1"
+        },
+        {
+          "click": "#ask-next"
+        },
+        {
+          "click": "#place-library"
+        },
+        {
+          "click": "#place-county"
+        },
+        {
+          "click": "#place-nature"
+        },
+        {
+          "click": "#place-notebook"
+        },
+        {
+          "click": "#plan-go"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        },
+        {
+          "click": "#pack-chip"
+        },
+        {
+          "click": "#dialog-content [data-pack='county']"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        },
+        {
+          "click": "#pack-chip"
+        },
+        {
+          "click": "#dialog-content [data-pack='nature']"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        },
+        {
+          "click": "#pack-chip"
+        },
+        {
+          "click": "#dialog-content [data-pack='notebook']"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        },
+        {
+          "click": "#gather-next"
+        }
+      ],
+      "keep": [
+        ".organizer",
+        ".steps",
+        "#organize-done"
+      ]
+    },
+    {
+      "name": "council-answer",
+      "steps": [
+        {
+          "click": "#question-1"
+        },
+        {
+          "click": "#ask-next"
+        },
+        {
+          "click": "#place-library"
+        },
+        {
+          "click": "#place-county"
+        },
+        {
+          "click": "#place-nature"
+        },
+        {
+          "click": "#place-notebook"
+        },
+        {
+          "click": "#plan-go"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        },
+        {
+          "click": "#pack-chip"
+        },
+        {
+          "click": "#dialog-content [data-pack='county']"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        },
+        {
+          "click": "#pack-chip"
+        },
+        {
+          "click": "#dialog-content [data-pack='nature']"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        },
+        {
+          "click": "#pack-chip"
+        },
+        {
+          "click": "#dialog-content [data-pack='notebook']"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        },
+        {
+          "click": "#gather-next"
+        },
+        {
+          "click": "#note-library"
+        },
+        {
+          "click": "#heading-0"
+        },
+        {
+          "click": "#note-county"
+        },
+        {
+          "click": "#heading-0"
+        },
+        {
+          "click": "#note-nature"
+        },
+        {
+          "click": "#heading-0"
+        },
+        {
+          "click": "#note-notebook"
+        },
+        {
+          "click": "#heading-1"
+        },
+        {
+          "click": "#step-0"
+        },
+        {
+          "click": "#step-1"
+        },
+        {
+          "click": "#organize-done"
+        },
+        {
+          "click": "#next-question"
+        }
+      ],
+      "keep": [
+        ".speech",
+        "#next-question"
+      ]
+    },
+    {
+      "name": "ending",
+      "steps": [
+        {
+          "click": "#question-1"
+        },
+        {
+          "click": "#ask-next"
+        },
+        {
+          "click": "#place-library"
+        },
+        {
+          "click": "#place-county"
+        },
+        {
+          "click": "#place-nature"
+        },
+        {
+          "click": "#place-notebook"
+        },
+        {
+          "click": "#plan-go"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        },
+        {
+          "click": "#pack-chip"
+        },
+        {
+          "click": "#dialog-content [data-pack='county']"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        },
+        {
+          "click": "#pack-chip"
+        },
+        {
+          "click": "#dialog-content [data-pack='nature']"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        },
+        {
+          "click": "#pack-chip"
+        },
+        {
+          "click": "#dialog-content [data-pack='notebook']"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        },
+        {
+          "click": "#gather-next"
+        },
+        {
+          "click": "#note-library"
+        },
+        {
+          "click": "#heading-0"
+        },
+        {
+          "click": "#note-county"
+        },
+        {
+          "click": "#heading-0"
+        },
+        {
+          "click": "#note-nature"
+        },
+        {
+          "click": "#heading-0"
+        },
+        {
+          "click": "#note-notebook"
+        },
+        {
+          "click": "#heading-1"
+        },
+        {
+          "click": "#step-0"
+        },
+        {
+          "click": "#step-1"
+        },
+        {
+          "click": "#organize-done"
+        },
+        {
+          "click": "#next-question",
+          "times": 6,
+          "gap": 0.1
+        }
+      ],
+      "keep": [
+        ".ending",
+        "#show-trail"
+      ]
+    },
+    {
+      "name": "trail-back",
+      "steps": [
+        {
+          "click": "#question-1"
+        },
+        {
+          "click": "#ask-next"
+        },
+        {
+          "click": "#place-library"
+        },
+        {
+          "click": "#place-county"
+        },
+        {
+          "click": "#place-nature"
+        },
+        {
+          "click": "#place-notebook"
+        },
+        {
+          "click": "#plan-go"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        },
+        {
+          "click": "#pack-chip"
+        },
+        {
+          "click": "#dialog-content [data-pack='county']"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        },
+        {
+          "click": "#pack-chip"
+        },
+        {
+          "click": "#dialog-content [data-pack='nature']"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        },
+        {
+          "click": "#pack-chip"
+        },
+        {
+          "click": "#dialog-content [data-pack='notebook']"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        },
+        {
+          "click": "#gather-next"
+        },
+        {
+          "click": "#note-library"
+        },
+        {
+          "click": "#heading-0"
+        },
+        {
+          "click": "#note-county"
+        },
+        {
+          "click": "#heading-0"
+        },
+        {
+          "click": "#note-nature"
+        },
+        {
+          "click": "#heading-0"
+        },
+        {
+          "click": "#note-notebook"
+        },
+        {
+          "click": "#heading-1"
+        },
+        {
+          "click": "#step-0"
+        },
+        {
+          "click": "#step-1"
+        },
+        {
+          "click": "#organize-done"
+        },
+        {
+          "click": "#next-question",
+          "times": 6,
+          "gap": 0.1
+        },
+        {
+          "click": "#show-trail"
+        }
+      ],
+      "keep": [
+        ".connections"
+      ]
+    },
+    {
+      "name": "confirmation",
+      "steps": [
+        {
+          "click": "#question-1"
+        },
+        {
+          "click": "#ask-next"
+        },
+        {
+          "click": "#pack-chip"
+        },
+        {
+          "click": "#dialog-restart"
+        }
+      ],
+      "keep": [
+        "#dialog"
+      ]
+    },
+    {
+      "name": "selected-ready-outline",
+      "steps": [
+        {
+          "click": "#question-1"
+        },
+        {
+          "click": "#ask-next"
+        },
+        {
+          "click": "#place-library"
+        },
+        {
+          "click": "#place-county"
+        },
+        {
+          "click": "#place-nature"
+        },
+        {
+          "click": "#place-notebook"
+        },
+        {
+          "click": "#plan-go"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        },
+        {
+          "click": "#pack-chip"
+        },
+        {
+          "click": "#dialog-content [data-pack='county']"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        },
+        {
+          "click": "#pack-chip"
+        },
+        {
+          "click": "#dialog-content [data-pack='nature']"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        },
+        {
+          "click": "#pack-chip"
+        },
+        {
+          "click": "#dialog-content [data-pack='notebook']"
+        },
+        {
+          "click": "[data-way='0']"
+        },
+        {
+          "click": "#save-source"
+        },
+        {
+          "click": "#gather-next"
+        },
+        {
+          "click": "#note-library"
+        },
+        {
+          "click": "#heading-0"
+        },
+        {
+          "click": "#note-county"
+        },
+        {
+          "click": "#heading-0"
+        },
+        {
+          "click": "#note-nature"
+        },
+        {
+          "click": "#heading-0"
+        },
+        {
+          "click": "#note-notebook"
+        },
+        {
+          "click": "#heading-1"
+        },
+        {
+          "click": "#step-0"
+        },
+        {
+          "click": "#step-1"
+        },
+        {
+          "click": "#note-library"
+        }
+      ],
+      "keep": [
+        "#hint",
+        ".organizer",
+        "#organize-done"
+      ]
+    },
+    {
+      "name": "nested-pack-card",
+      "steps": [
+        {
+          "click": "#question-1"
+        },
+        {
+          "click": "#ask-next"
+        },
+        {
+          "click": "#pack-chip"
+        },
+        {
+          "click": "#dialog-content [data-pack='question']"
+        },
+        {
+          "click": "#dialog-close"
+        }
+      ],
+      "keep": [
+        "#pack-chip",
+        "#plan-go"
+      ]
+    }
+  ]
+}

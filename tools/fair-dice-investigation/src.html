@@ -1,0 +1,1442 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Fair Dice Investigation · Curio Class</title>
+<meta name="description" content="Investigate a board game café with chi-square tests and inference for a regression slope. Grade 12. Works offline.">
+<!--
+Fair Dice Investigation, Curio Class. Grade 12, AP-STAT.U8 and AP-STAT.U9. Students drive.
+Sources: College Board AP Statistics; OpenStax Introductory Statistics 2e, 11.2 and 11.4;
+OpenIntro Statistics 4e, 7.5 and 8.4. All café data are made up.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Existing café illustration: FLUX.1-schnell, Apache 2.0.
+Content CC BY 4.0. Code MIT. Offline, no collection or network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root { --paper:#0c0a12; --brand:#ff5577; --brand-ink:#10161f; --card:#f4efe2; --felt:#123d30; }
+body { height:100dvh; min-height:0; overflow:hidden; }
+header { padding:10px 18px; gap:8px; flex-wrap:nowrap; }
+h1 { font-size:24px; letter-spacing:-.5px; }
+h1 small { font-size:13px; letter-spacing:.15px; }
+header button, .seg button { min-height:44px; font-size:14px; padding:0 12px; }
+.icon-btn { font-size:14px; padding:0 10px; }
+.seg button { min-width:44px; }
+#sound { width:90px; flex-shrink:0; }
+.lab-mode .hint { min-height:80px; }
+main { grid-template-columns:minmax(0,1fr) 320px; overflow:hidden; }
+button, select { min-height:44px; }
+button { touch-action:manipulation; }
+.btn { font-size:14px; }
+.btn.primary { background:var(--brand); color:var(--brand-ink); border-color:var(--brand); }
+.btn:disabled { opacity:.48; }
+.stage { min-height:0; background:#123d30 url('art:felt-table') center/cover; padding:16px 24px; }
+.stage::before { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(120deg,#03140b20,#03140b88); }
+.work { position:relative; min-width:0; height:100%; display:grid; grid-template-rows:auto auto minmax(80px,1fr) auto; gap:10px; }
+.case-title { display:flex; align-items:center; gap:10px; min-width:0; }
+.case-title h2 { margin:0; font:600 22px Georgia,serif; color:#fff5dd; }
+.eyebrow { color:#d5c6a7; font-size:11px; letter-spacing:2px; text-transform:uppercase; }
+.case-title .eyebrow { margin-right:auto; }
+.case-title .btn { background:#0e241e; color:#fff3db; border-color:#8c9c7c; }
+.dice-row { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+.die { position:relative; border:1px solid #bcb18a66; border-radius:9px; background:linear-gradient(#102a2277,#061c1588);
+  box-shadow:0 6px 9px #0003,inset 0 1px #fff2; display:flex; align-items:center; justify-content:center; gap:10px; padding:4px 10px; }
+.die[aria-pressed=true] { border:2px solid #ff5577; background:linear-gradient(#5b293622,#091f16); box-shadow:0 0 20px #ff557722; }
+.die-art { display:block; width:76px; height:76px; position:relative; filter:drop-shadow(3px 6px 3px #0007); }
+.die-art img { width:100%; height:100%; object-fit:contain; }
+.die-art svg { position:absolute; inset:0; width:100%; height:100%; }
+.die-label { font-size:14px; font-weight:700; }
+.die-label small { display:block; font:12px var(--readout-font); color:#d6ddc6; margin-top:5px; }
+.die.rolling .die-art { animation:tumble .22s linear infinite; }
+@keyframes tumble { 0% { transform:translateY(0) rotate(-9deg); } 50% { transform:translateY(-7px) rotate(9deg); } }
+.idle-light { width:6px; height:6px; background:#ffd491; border-radius:50%; box-shadow:0 0 12px #ffd491; animation:glow 3s ease-in-out infinite; }
+@keyframes glow { 50% { opacity:.4; } }
+.calm .idle-light, .calm .die.rolling .die-art { animation:none!important; }
+.chart-wrap { position:relative; min-height:0; background:#071a15aa; border:1px solid #c9b98f44; border-radius:7px; overflow:hidden; }
+canvas { display:block; width:100%; height:100%; }
+.chart-label { position:absolute; top:9px; left:14px; font-size:12px; color:#f4efe2; pointer-events:none; }
+.opening-brief { position:absolute; left:12%; right:12%; top:20%; padding:18px 22px; background:#f4efe2;
+  color:#272923; border:1px solid #b2a17b; box-shadow:3px 8px 24px #0008; }
+.opening-brief p { margin:0; font:17px/1.5 Georgia,serif; }
+.opening-brief .silhouette { width:54px; height:70px; margin:0 0 0 14px; }
+.picker-dice { display:flex; height:48px; }
+.case-choice .picker-dice img { width:25%; object-fit:contain; }
+.test-card { color:#272923; background:linear-gradient(120deg,#fff9ec,#e8dfc9); border:1px solid #d2c29d;
+  box-shadow:3px 7px 15px #0005; border-radius:3px; padding:12px 16px; position:relative; }
+.test-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:#b02d48; }
+.card-head { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:#6d4b45; margin-bottom:7px; }
+.metrics { display:flex; gap:24px; align-items:baseline; flex-wrap:wrap; }
+.metric { font-size:12px; }
+.metric b { display:block; font:700 24px var(--readout-font); color:#2c332b; }
+.contrib { display:grid; grid-template-columns:repeat(7,1fr); margin-top:8px; gap:4px; font:12px var(--readout-font); }
+.contrib span { text-align:center; }
+.conclusion { font-size:13px; margin-top:7px; min-height:18px; }
+.panel { grid-column:2; grid-row:1; padding:14px; gap:10px; border-left:3px solid #3c302c; background:linear-gradient(105deg,#201d24,#141b25); }
+.notebook-head { display:flex; align-items:center; justify-content:space-between; font:italic 18px Georgia,serif; color:#eedcbe; }
+.case-picker { display:grid; grid-template-columns:repeat(3,1fr); gap:5px; padding:7px; background:linear-gradient(#10121ad9,#10121ae6),url('art:cafe-after-hours') center/cover;
+  border:1px solid #584a45; border-radius:5px; }
+.case-choice { min-width:0; padding:3px; border:1px solid #897c6555; border-radius:3px; background:#151b20; color:#ede8d8; font-size:11px; }
+.case-choice img { display:block; width:100%; height:48px; object-fit:cover; margin-bottom:4px; border-radius:2px; }
+.case-choice[aria-pressed=true] { border:2px solid var(--brand); }
+.case-choice:disabled { opacity:.45; }
+.roll-controls { display:grid; grid-template-columns:repeat(3,1fr); gap:5px; }
+.roll-controls button { padding:0 3px; }
+.action-grid { display:grid; grid-template-columns:1fr 1fr; gap:5px; }
+.budget { padding:9px 11px; background:#0d1515; border:1px solid #526450; border-radius:4px; }
+.budget .readout { font-size:28px; color:#fff1d2; }
+.budget small { color:#c4ceb8; }
+.budget-track { height:4px; background:#374335; margin-top:7px; }
+.budget-track i { display:block; height:100%; background:#ffd28b; }
+.hint { flex-shrink:0; font-size:14px; line-height:1.4; min-height:62px; padding:9px 10px; color:#f0eddc; background:#0c1119; border-left:2px solid var(--brand); }
+.alpha { display:flex; align-items:center; gap:8px; font-size:13px; }
+select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-radius:4px; padding:0 7px; font-size:14px; }
+.alpha select { flex:1; }
+.side-content { min-height:0; flex:1; overflow:auto; font-size:12px; line-height:1.45; }
+.side-content p { margin:4px 0 8px; }
+.side-content h3 { margin:6px 0; font-size:12px; letter-spacing:1px; text-transform:uppercase; color:#d6b89b; }
+.log-row { border-bottom:1px solid #76645355; padding:5px 1px; font:11px/1.4 var(--readout-font); }
+.privacy { color:#bcc1c9; font-size:10px; }
+.bottom-row { display:flex; gap:6px; align-items:center; justify-content:space-between; }
+.bottom-row .btn { font-size:12px; padding:0 8px; }
+.stamp { display:inline-block; border:2px solid #9e2942; color:#ff9eb0; padding:6px 12px; letter-spacing:2px; text-transform:uppercase; transform:rotate(-3deg); font-weight:800; }
+.truth { padding:7px; border:1px dashed #b29a77; margin-top:8px; font-size:12px; }
+.truth b { color:#ffd99a; }
+#case2.work { grid-template-rows:auto minmax(0,1fr) auto; }
+.table-scene { min-height:0; display:flex; flex-direction:column; justify-content:center; gap:8px; }
+.wins-table { width:100%; table-layout:fixed; border-collapse:separate; border-spacing:4px; color:#f9f0da; }
+.wins-table th { font-size:12px; font-weight:600; padding:2px; }
+.wins-table th:first-child { width:17%; }
+.wins-table th:last-child { width:14%; }
+.wins-table button { width:100%; border-radius:3px; min-height:68px; border:1px solid #bbaa7877; background:#081c16c9; color:#fff1d0; padding:3px; }
+.wins-table button:hover { border-color:#ffd28b; }
+.wins-table button.selected { outline:2px solid #ff5577; }
+.wins-table button strong { font:700 22px var(--readout-font); }
+.wins-table button small { display:block; font:11px var(--readout-font); margin-top:3px; color:#d6deca; }
+.wins-table .total { background:#eadebd; color:#24382c; font-size:15px; min-height:44px; cursor:grab; }
+.wins-table .total { touch-action:none; }
+.drag-chip { position:fixed; z-index:20; pointer-events:none; padding:10px 14px; background:#ffe5ad; color:#183425;
+  border:1px solid #7c653d; border-radius:4px; box-shadow:3px 6px 12px #0007; font:700 15px var(--readout-font); }
+.formula { font:13px var(--readout-font); text-align:center; min-height:20px; color:#ffe5ad; }
+.table-caption { margin:0; color:#dce6cb; text-align:center; font-size:12px; }
+#case3.work { grid-template-rows:auto auto minmax(70px,1fr) auto; }
+.plot-tabs { display:flex; align-items:center; gap:7px; }
+.plot-tabs img { width:74px; height:48px; object-fit:cover; border:1px solid #c5ac7e; margin-left:auto; }
+.plot-tabs .btn { background:#09211c; color:#f4efe2; border-color:#849b7c; }
+.plot-tabs .btn[aria-pressed=true] { background:#f4efe2; color:#123d30; }
+#lab.work { grid-template-rows:auto minmax(90px,1fr) auto; }
+.lab-readout { position:absolute; top:16px; left:20px; z-index:1; }
+.lab-readout strong { font:700 clamp(40px,6vw,82px) var(--readout-font); color:#fff2d7; letter-spacing:-5px; }
+.lab-readout small { display:block; font-size:13px; color:#dce1cd; }
+.compact-strip .lab-readout { left:10px; top:9px; width:40%; }
+.compact-strip .lab-readout strong { font-size:28px; letter-spacing:-1px; }
+.compact-strip .lab-readout small { font-size:10px; line-height:1.2; }
+.lab-table { width:100%; text-align:center; font:12px var(--readout-font); border-collapse:collapse; }
+.lab-table td,.lab-table th { padding:6px; border-bottom:1px solid #b4a78a; }
+.lab-settings { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.slider-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 10px; }
+.weight { display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:5px; font:12px var(--readout-font); }
+.weight input { min-width:0; height:44px; }
+.weight output { width:38px; text-align:right; font-size:11px; }
+.lab-die { display:flex; align-items:center; gap:10px; }
+.lab-die img { width:64px; height:64px; object-fit:contain; }
+.lab-die p { margin:0; font-size:12px; }
+.full-width { grid-column:1 / -1; }
+.modal-backdrop { position:fixed; inset:0; z-index:10; display:grid; place-items:center; background:#03080ce6 url('art:cafe-after-hours') center/cover; }
+.modal-backdrop::before { content:''; position:absolute; inset:0; background:#03080cc9; }
+.modal { position:relative; max-height:90dvh; overflow:auto; width:min(620px,94vw); background:#f4efe2; color:#242d29;
+  border:1px solid #b8a886; box-shadow:0 20px 90px #000b; padding:24px; }
+.modal h2 { font:27px Georgia,serif; margin:0 0 14px; }
+.modal p { font-size:15px; line-height:1.5; }
+.modal .btn { background:#263d33; color:#fff3dd; }
+.modal { display:flex; flex-direction:column; overflow:hidden; }
+#dialog-body { min-height:0; overflow:auto; }
+#close-dialog { flex-shrink:0; align-self:flex-start; margin-top:10px; }
+.brief-img { width:100%; max-height:200px; object-fit:cover; }
+.silhouette { float:right; width:86px; height:110px; background:#d8d0bc; border:1px solid #aea188; margin:0 0 12px 16px; }
+.mini { font-size:11px!important; }
+@media (min-width:1700px) { main { grid-template-columns:minmax(0,1fr) 380px; } .stage { padding:24px 40px; } .die-art { width:100px; height:100px; } }
+@media (max-height:650px) and (min-width:600px) {
+  header { padding:5px 10px; gap:5px; } h1 { font-size:18px; } h1 small { display:none; }
+  header button,.seg button { padding:0 8px; font-size:12px; }
+  header .icon-btn { padding:0 8px; font-size:12px; }
+  main { grid-template-columns:minmax(0,1fr) 250px; }
+  .stage { padding:8px 10px; } .work { gap:5px; }
+  .case-title h2 { font-size:17px; } .case-title .eyebrow { font-size:10px; letter-spacing:1px; }
+  .die { gap:3px; padding:1px 4px; } .die-art { width:45px; height:45px; } .die-label { font-size:11px; }
+  .die-label small { font-size:10px; margin:0; } .dice-row { gap:5px; }
+  .test-card { padding:7px 9px; } .card-head { margin-bottom:4px; } .metric b { font-size:19px; }
+  .metrics { gap:12px; } .contrib { margin-top:5px; font-size:10px; } .conclusion { font-size:11px; margin-top:4px; }
+  .panel { padding:7px; gap:5px; } .notebook-head { display:none; }
+  .case-picker { padding:3px; } .case-choice img { display:none; } .case-choice { min-height:44px; }
+  .hint { font-size:12px; min-height:51px; padding:5px 7px; }
+  .budget { padding:4px 7px; } .budget .readout { font-size:19px; } .budget-track { margin-top:3px; }
+  .wins-table { border-spacing:2px; } .wins-table button { min-height:49px; }
+  .wins-table button strong { font-size:17px; } .wins-table button small { font-size:10px; margin-top:1px; }
+  .wins-table th { font-size:10px; } .wins-table .total { font-size:12px; }
+  .formula,.table-caption { font-size:10px; } .table-scene { gap:2px; }
+  .lab-readout { top:7px; left:14px; } .lab-readout strong { font-size:42px; }
+  .lab-die { display:none; } .slider-grid { gap:0 4px; } .weight { font-size:10px; gap:3px; }
+  .weight input { height:36px; } .weight output { width:32px; } .lab-settings select { width:100%; }
+  .lab-table td,.lab-table th { padding:4px; font-size:10px; }
+}
+@media (max-width:599px) {
+  header { flex-wrap:wrap; padding:5px 8px; gap:4px; }
+  h1 { width:100%; font-size:20px; } h1 small { display:none; }
+  header button,.seg button { padding:0 7px; font-size:11px; }
+  header .icon-btn { padding:0 6px; font-size:11px; }
+  header #sound { width:70px; }
+  main { grid-template-columns:1fr; grid-template-rows:minmax(295px,1.1fr) minmax(280px,1fr); }
+  .stage { padding:6px 8px; } .work { gap:4px; }
+  .case-title h2 { font-size:16px; } .case-title .eyebrow { font-size:10px; letter-spacing:0; }
+  .die { gap:3px; padding:2px; } .die-art { width:42px; height:42px; } .die-label { font-size:10px; }
+  .die-label small { font-size:10px; margin-top:0; } .dice-row { gap:4px; }
+  .test-card { padding:6px 8px; } .metrics { gap:13px; } .metric { font-size:10px; } .metric b { font-size:18px; }
+  .contrib { font-size:10px; margin-top:5px; } .conclusion { font-size:11px; margin-top:4px; }
+  .card-head { font-size:10px; letter-spacing:1px; margin-bottom:4px; }
+  .panel { grid-column:1; grid-row:2; padding:6px 8px; gap:4px; display:grid; grid-template-columns:1fr 1fr; grid-auto-rows:min-content; overflow:auto; }
+  .notebook-head,.side-content,.privacy { display:none; }
+  .case-picker { grid-column:1 / -1; padding:0; background:none; border:0; }
+  .case-choice { min-height:44px; } .case-choice img { display:none; }
+  .budget { padding:4px 8px; } .budget .readout { font-size:20px; } .budget-track { margin-top:3px; }
+  .hint { grid-column:1 / -1; grid-row:2; min-height:43px; padding:4px 7px; font-size:12px; }
+  #case-actions,#table-actions,#slope-actions,#lab-actions { display:contents; }
+  .roll-controls,.action-grid { grid-column:1 / -1; }
+  .bottom-row { grid-column:1 / -1; }
+  .alpha { font-size:11px; } .alpha select { min-width:0; }
+  .wins-table { border-spacing:2px; } .wins-table button { min-height:46px; }
+  .wins-table button strong { font-size:16px; } .wins-table button small { font-size:10px; margin:0; }
+  .wins-table th { font-size:10px; } .wins-table .total { font-size:11px; }
+  .table-scene { gap:1px; } .table-caption,.formula { font-size:10px; }
+  .plot-tabs img { width:50px; height:44px; } .plot-tabs .btn { font-size:12px; padding:0 7px; }
+  .lab-readout { top:6px; left:12px; } .lab-readout strong { font-size:40px; }
+  .lab-table td,.lab-table th { padding:3px; font-size:10px; }
+  .lab-die { display:none; } .slider-grid { grid-column:1 / -1; grid-template-columns:repeat(3,1fr); gap:0 5px; }
+  .weight { font-size:10px; gap:2px; } .weight input { height:33px; } .weight output { width:32px; }
+  .lab-settings { grid-column:1 / -1; } .lab-settings select { width:100%; }
+}
+@media (max-height:520px) and (min-width:600px) {
+  .panel { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); grid-auto-rows:min-content; align-content:start; }
+  .case-picker,.hint,.bottom-row { grid-column:1 / -1; }
+  #case-actions,#table-actions,#slope-actions { display:contents; }
+  .roll-controls,.action-grid { grid-column:1 / -1; }
+  .panel .side-content,.panel .privacy { display:none; }
+  .panel .budget { min-height:44px; font-size:10px; padding:3px 6px; }
+  .panel .budget .readout { font-size:16px; }
+  .panel .budget small { font-size:10px; }
+  .panel .alpha { font-size:12px; gap:3px; }
+  .panel .alpha-label { display:none; }
+  .panel .alpha::before { content:'α'; font-size:13px; }
+  .panel .alpha select { width:80px; padding:0 3px; font-size:12px; }
+  .hint { min-height:50px; }
+}
+@media (max-height:650px), (max-width:599px) {
+  .case-choice .picker-dice { display:none; }
+  .panel.lab-mode { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); grid-auto-rows:min-content; align-content:start; }
+  .lab-mode .notebook-head,.lab-mode .side-content,.lab-mode .privacy,.lab-mode .lab-die { display:none; }
+  .lab-mode #lab-actions { display:contents; }
+  .lab-mode .action-grid { grid-column:1 / -1; grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .lab-mode .action-grid .btn { font-size:10px; line-height:1.15; padding:1px 3px; overflow-wrap:anywhere; }
+  .lab-mode .hint { grid-column:1 / -1; grid-row:1; }
+  .lab-mode .slider-grid { grid-column:1 / -1; grid-row:3; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0 7px; }
+  .lab-mode .weight { grid-template-columns:10px minmax(0,1fr); gap:0 3px; position:relative; padding-bottom:0; }
+  .lab-mode .weight input { height:44px; }
+  .lab-mode .weight output { position:absolute; bottom:0; right:0; width:auto; font-size:10px; line-height:10px; }
+  .lab-mode .lab-settings { grid-column:2; grid-row:4; display:block; font-size:10px; }
+  .lab-mode .lab-settings .mini { display:none; }
+  .lab-mode .lab-settings select { display:block; width:100%; min-height:44px; }
+  .lab-mode .alpha { grid-column:1; grid-row:4; align-self:end; min-height:44px; font-size:12px; gap:4px; }
+  .lab-mode .alpha-label { display:none; }
+  .lab-mode .alpha::before { content:'α'; font-size:13px; }
+  .lab-mode .alpha select { width:80px; min-width:0; font-size:12px; }
+  .lab-mode .bottom-row { grid-column:1 / -1; grid-row:5; }
+}
+@media (min-width:600px) and (max-width:950px) and (min-height:651px) {
+  main { grid-template-columns:minmax(0,1fr) 280px; }
+  .stage { padding:10px; }
+  .case-title h2 { font-size:18px; }
+  .case-title .eyebrow { font-size:10px; letter-spacing:1px; }
+  .die { gap:3px; padding:4px; }
+  .die-art { width:46px; height:46px; }
+  .die-label { font-size:11px; }
+  .die-label small { font-size:10px; }
+}
+@media (max-height:520px), (max-width:599px) {
+  .opening-brief { left:8px; right:8px; top:8px; padding:5px 7px; }
+  .opening-brief p { font:11px/1.25 'Segoe UI',sans-serif; }
+  .opening-brief .silhouette { width:28px; height:36px; margin-left:6px; }
+  .test-card { padding:5px 8px; line-height:1.15; }
+  .test-card .card-head { letter-spacing:.5px; line-height:1.1; margin-bottom:3px; }
+  .contrib { line-height:1.1; margin-top:3px; }
+  .conclusion { font-size:10px; line-height:1.15; margin-top:3px; }
+  #slope-card .metrics { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)) minmax(100px,1.5fr); gap:5px; }
+  #slope-card .metric { font-size:10px; }
+  #slope-card .metric b { font-size:16px; }
+  #slope-card .metric:last-child b { font-size:12px!important; }
+  #case3.work { grid-template-rows:auto auto minmax(120px,1fr) auto; }
+  #case2 .table-caption { display:none; }
+  #case2 .table-scene { justify-content:flex-start; }
+  #case2.work { gap:3px; }
+  #case2 .formula { min-height:14px; line-height:12px; }
+  #case2 .wins-table button { min-height:44px; padding:1px; }
+  #case2 .wins-table button strong { font-size:16px; line-height:18px; }
+  #case2 .wins-table button small { font-size:10px; line-height:10px; margin:0; }
+  #table-card .metric b { display:inline; font-size:18px; margin-left:5px; }
+  #table-card .card-head { letter-spacing:0; }
+}
+@media (min-width:1200px) {
+  #case2.work { grid-template-columns:minmax(0,1fr) 230px; grid-template-rows:auto minmax(0,1fr); column-gap:16px; }
+  #case2 .case-title { grid-column:1 / -1; }
+  #case2 .table-scene { grid-column:1; grid-row:2; }
+  #table-card { grid-column:2; grid-row:2; align-self:center; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Fair Dice Investigation <small>Something at this table isn't fair.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-cases" aria-pressed="true">Cases</button>
+    <button id="m-lab" aria-pressed="false">Dice lab</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <aside class="panel" id="notebook">
+    <div class="notebook-head">Night Owl casebook <span class="idle-light"></span></div>
+    <div class="case-picker" id="picker" role="group" aria-label="Case files">
+      <button class="case-choice" id="pick1" aria-pressed="true">
+<span class="picker-dice">
+<img src="art:die-red" alt="">
+<img src="art:die-blue" alt="">
+<img src="art:die-green" alt="">
+<img src="art:die-white" alt="">
+</span>01 · Loaded die</button>
+      <button class="case-choice" id="pick2" disabled aria-pressed="false"><img src="art:case2-file" alt="">02 · First player</button>
+      <button class="case-choice" id="pick3" disabled aria-pressed="false"><img src="art:case3-file" alt="">03 · Weights</button>
+    </div>
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div id="case-actions">
+      <div class="roll-controls">
+        <button class="btn" id="roll1">Roll 1</button>
+        <button class="btn" id="roll10">Roll 10</button>
+        <button class="btn primary" id="roll100">Roll 100</button>
+      </div>
+      <div class="action-grid" style="margin-top:5px">
+        <button class="btn" id="test-die">Test this die</button>
+        <button class="btn primary" id="accuse">Accuse Red</button>
+      </div>
+    </div>
+    <div id="table-actions" hidden>
+      <div class="action-grid">
+        <button class="btn" id="fill-rest" disabled>Fill the rest</button>
+        <button class="btn primary" id="point-cell" disabled>Point to the cell</button>
+      </div>
+    </div>
+    <div id="slope-actions" hidden>
+      <div class="action-grid">
+        <button class="btn primary" id="test-slope">Test the slope</button>
+        <button class="btn" id="shuffle">Shuffle the y values</button>
+        <button class="btn" id="weight-link" disabled>Weights are the link</button>
+        <button class="btn" id="temp-link" disabled>Temperature is the link</button>
+        <button class="btn" id="cite-p" disabled>p-value</button>
+        <button class="btn" id="cite-ci" disabled>Interval</button>
+      </div>
+    </div>
+    <div id="lab-actions" hidden>
+      <div class="action-grid">
+        <button class="btn" id="fair">Fair</button><button class="btn" id="loaded">Case 1</button>
+        <button class="btn" id="lab-once">Roll once</button>
+        <button class="btn primary" id="lab-run">Run 1,000 investigations</button>
+      </div>
+    </div>
+    <div class="budget" id="budget-box"><span class="readout" id="budget">1,200</span> <small>rolls left</small>
+      <div class="budget-track"><i id="budget-bar" style="width:100%"></i></div>
+    </div>
+    <label class="alpha"><span class="alpha-label">Significance α</span> <select id="alpha" aria-label="Significance alpha">
+      <option value="0.1">0.10</option><option value="0.05" selected>0.05</option><option value="0.01">0.01</option>
+    </select></label>
+    <div class="lab-die" id="lab-die" hidden><img src="art:die-white" alt="Ivory die"><p>Relative weights.<br>Percentages renormalize.</p></div>
+    <div class="slider-grid" id="weights" hidden></div>
+    <div class="lab-settings" id="lab-settings" hidden>
+      <label>Rolls per test <select id="lab-n"><option>30</option><option>60</option><option>120</option><option>300</option>
+        <option selected>600</option><option>1000</option></select></label>
+      <div class="mini">Saved cases never leave this device.</div>
+    </div>
+    <div class="side-content" id="side-content">
+<h3>Test log</h3>
+<p id="note">Four dice. One hidden difference. Spend your rolls where the evidence leads.</p>
+<div id="test-log">
+</div>
+</div>
+    <div class="bottom-row">
+      <button class="btn" id="help">Test help</button>
+      <button class="btn" id="clear">Clear</button>
+      <button class="btn primary" id="next-case" hidden>Next case</button>
+    </div>
+    <div class="privacy">Made-up café, made-up data. Cases save only on this device.</div>
+  </aside>
+  <div class="stage" id="stage" style="grid-column:1;grid-row:1">
+    <section class="work" id="case1" aria-label="Case 1 evidence">
+      <div class="case-title"><span class="eyebrow">Evidence file 01</span><h2>The loaded die</h2><button class="btn briefing">Briefing</button></div>
+      <div class="dice-row" id="dice"></div>
+      <div class="chart-wrap" id="bars"><canvas id="bar-canvas" aria-label="Observed face counts and dashed expected count" role="img"></canvas>
+        <div class="opening-brief" id="opening-brief"></div></div>
+      <div class="test-card" id="die-card"></div>
+    </section>
+    <section class="work" id="case2" aria-label="Case 2 evidence" hidden>
+      <div class="case-title"><span class="eyebrow">Evidence file 02</span><h2>The first-player edge</h2><button class="btn briefing">Briefing</button></div>
+      <div class="table-scene"><p class="table-caption">Observed wins · Seat 1 moves first · 120 games per row</p>
+        <table class="wins-table" id="wins-table" aria-label="Wins by game and seat">
+</table>
+<div class="formula" id="formula">Expected = row total × column total ÷ 360</div>
+      </div>
+      <div class="test-card" id="table-card"></div>
+    </section>
+    <section class="work" id="case3" aria-label="Case 3 evidence" hidden>
+      <div class="case-title"><span class="eyebrow">Evidence file 03</span><h2>The weighted dice</h2><button class="btn briefing">Briefing</button></div>
+      <div class="plot-tabs" role="group" aria-label="Explanatory variable">
+        <button class="btn" id="plot-weight" aria-pressed="true">Weight depth</button>
+        <button class="btn" id="plot-temp" aria-pressed="false">Temperature</button><img src="art:case3-file" alt="Bag of dice and tiny metal weights">
+      </div>
+      <div class="chart-wrap" id="plots"><canvas id="plot-canvas" aria-label="Scatter plot, least squares line and residual plot" role="img"></canvas></div>
+      <div class="test-card" id="slope-card"></div>
+    </section>
+    <section class="work" id="lab" aria-label="Dice lab" hidden>
+      <div class="case-title"><span class="eyebrow">Simulation bench</span><h2>How often does it flag?</h2></div>
+      <div class="chart-wrap" id="lab-result">
+<div class="lab-readout">
+<strong id="share">?</strong>
+<small id="share-label">Run investigations to see the share flagged.</small>
+</div>
+        <canvas id="lab-canvas" aria-label="A dot for each of 1,000 investigations; filled dots are flagged" role="img"></canvas></div>
+      <div class="test-card" id="lab-card">
+<div class="card-head">Investigation record</div>
+<div id="lab-single">Each test assumes a fair die: expected count n ÷ 6, df = 5.</div>
+        <table class="lab-table"><thead><tr><th>n</th><th>α</th><th>Share flagged</th><th>Die</th></tr></thead><tbody id="lab-history"></tbody></table></div>
+    </section>
+  </div>
+</main>
+<div class="modal-backdrop" id="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="dialog-title" tabindex="-1">
+  <h2 id="dialog-title"></h2>
+  <div id="dialog-body" tabindex="0" aria-label="Briefing or test help text"></div>
+  <button class="btn" id="close-dialog">Back to evidence</button>
+</div></div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const names = ['Red', 'Blue', 'Green', 'White'];
+  const art = ['art:die-red', 'art:die-blue', 'art:die-green', 'art:die-white'];
+  const fair = [1/6,1/6,1/6,1/6,1/6,1/6];
+  const loaded = [1/8,1/6,1/6,1/6,1/6,5/24];
+  const observed = [[31,31,30,28],[30,32,29,29],[54,25,22,19]];
+  const games = ['Tile game','Train game','Castle game'];
+  const columns = [115,88,81,76];
+  const data = {
+    weight: {x:Array.from({length:12},(_,i) => i/10), y:[3.46,3.58,3.49,3.61,3.52,3.70,3.66,3.59,3.79,3.68,3.84,3.77], unit:'mm', label:'Weight depth', rolls:600},
+    temp: {x:Array.from({length:12},(_,i) => i+18), y:[3.52,3.44,3.55,3.49,3.47,3.58,3.43,3.51,3.56,3.46,3.50,3.53], unit:'°C', label:'Café temperature', rolls:1200},
+  };
+  const L = {
+    wCases:'One of these four dice is loaded. Tap a die and press Roll 100, then press Test this die.',
+    budget:'Careful with the budget. Give every die a quick look, then keep rolling whichever one looks most suspicious.',
+    wrongDie:'That die was honest. Test enough dice and one will look guilty by chance. Pick another die and press Accuse.',
+    outOfEvidence:'The evidence ran out on this one. Here are the true weights. On to Case 2.',
+    wCase2:'Drag a row total and a column total into each cell to build the expected count.',
+    pointCell:'Now press Point to the cell, and tap the cell that adds the most to chi-square.',
+    wCase3:'Two suspects for the higher rolls. Press Test the slope on each plot, then pick the real link.',
+    closed:"Case closed. I'll file it.",
+    wLab:'Set the weights, pick a number of rolls, then press Run 1,000 investigations.',
+    under30:'Roll at least thirty times before testing. Then press Test this die.',
+    selectDie:'Press Roll 1, Roll 10, or Roll 100 to collect evidence for the selected die.',
+    exhausted:'The roll budget is spent. Choose a die, review its tests, then press Accuse.',
+    fill:'Three cells built. Press Fill the rest, or keep building cells with the totals.',
+    cellWrong:'Compare all twelve contributions. Tap the cell that adds the most to chi-square.',
+    decoy:'The temperature interval crosses zero. Reconsider the link, then choose your evidence.',
+    citation:'Choose p-value or Interval to defend your decision.',
+    chooseLink:'Both slopes are tested. Press Weights are the link or Temperature is the link.',
+    labDone:'The simulations are complete. Change the sample size or weights and run another investigation.',
+    next:'Press Next case to open the next evidence file, or review this case.',
+  };
+  let randomState = 1;
+  let loadedIndex = 0;
+  let rollTask = null;
+  let drawToken = 0;
+  let returnFocus = null;
+  const state = {
+    mode:'cases', caseId:1, selected:0, budget:1200, counts:Array.from({length:4},() => [0,0,0,0,0,0]),
+    faces:[1,1,1,1], tested:[null,null,null,null], log:[], alpha:.05, attempts:0, rejected:[], reveal:[],
+    solved:[], outcomes:{}, built:Array(12).fill(false), parts:Array.from({length:12},() => ({row:false,col:false})),
+    row:null, col:null, pointing:false, set:'weight', slopes:{}, decision:null, shuffled:null, shuffleProgress:1,
+    weights:[4,4,4,4,4,4], n:600, labResult:null, labProgress:1, history:[], once:null,
+  };
+  function rng() {
+    randomState += 0x6D2B79F5;
+    let z = randomState;
+    z = Math.imul(z ^ z >>> 15, z | 1);
+    z ^= z + Math.imul(z ^ z >>> 7, z | 61);
+    return ((z ^ z >>> 14) >>> 0) / 4294967296;
+  }
+  function seed(n) {
+    stopRoll();
+    randomState = Number(n) >>> 0;
+    loadedIndex = Math.floor(rng()*4);
+    state.counts = Array.from({length:4},() => [0,0,0,0,0,0]);
+    state.tested = [null,null,null,null];
+    state.budget = 1200;
+    state.log = [];
+    state.attempts = 0;
+    state.reveal = [];
+    state.rejected = [];
+    state.outcomes[1] = null;
+    render();
+    hint(L.wCases);
+  }
+  const sum = a => a.reduce((v,x) => v+x,0);
+  const fmt = (n,d=4) => Number(n).toFixed(d);
+  const normalize = a => sum(a) > 0 ? a.map(x => x/sum(a)) : [...fair];
+  function face(w) {
+    let u = rng();
+    for (let i=0;i<5;i++) { u -= w[i];
+      if (u < 0) return i;
+      }
+    return 5;
+  }
+  // Lanczos log gamma, regularized gamma Q, and beta continued fraction.
+  function logGamma(z) {
+    const p = [676.5203681218851,-1259.1392167224028,771.3234287776531,-176.6150291621406,
+      12.507343278686905,-.13857109526572012,9.984369578019572e-6,1.5056327351493116e-7];
+    if (z < .5) return Math.log(Math.PI)-Math.log(Math.sin(Math.PI*z))-logGamma(1-z);
+    z -= 1;
+    let x = .9999999999998099;
+    p.forEach((v,i) => { x += v/(z+i+1); });
+    const t = z+7.5;
+    return .9189385332046727+(z+.5)*Math.log(t)-t+Math.log(x);
+  }
+  function gammaQ(a,x) {
+    if (x<=0) return 1;
+    const factor = Math.exp(-x+a*Math.log(x)-logGamma(a));
+    if (x<a+1) {
+      let term=1/a, total=term;
+      for (let n=1;n<300;n++) { term*=x/(a+n);
+        total+=term;
+        if (Math.abs(term)<Math.abs(total)*1e-14) break;
+        }
+      return Math.max(0,1-total*factor);
+    }
+    let b=x+1-a, c=1e30, d=1/b, h=d;
+    for (let i=1;i<300;i++) {
+      const an=-i*(i-a);
+      b+=2;
+      d=an*d+b;
+      if(Math.abs(d)<1e-30) d=1e-30;
+      c=b+an/c;
+      if(Math.abs(c)<1e-30) c=1e-30;
+      d=1/d;
+      const delta=d*c;
+      h*=delta;
+      if(Math.abs(delta-1)<1e-14) break;
+    }
+    return Math.min(1,Math.max(0,factor*h));
+  }
+  function betaCF(a,b,x) {
+    let c=1, d=1-(a+b)*x/(a+1);
+    if(Math.abs(d)<1e-30) d=1e-30;
+    d=1/d;
+    let h=d;
+    for(let m=1;m<200;m++) {
+      for(const aa of [m*(b-m)*x/((a+2*m-1)*(a+2*m)),
+        -(a+m)*(a+b+m)*x/((a+2*m)*(a+2*m+1))]) {
+        d=1+aa*d;
+        if(Math.abs(d)<1e-30) d=1e-30;
+        c=1+aa/c;
+        if(Math.abs(c)<1e-30) c=1e-30;
+        d=1/d;
+        const delta=d*c;
+        h*=delta;
+      }
+      if(Math.abs(d*c-1)<1e-14) break;
+    }
+    return h;
+  }
+  function betaI(x,a,b) {
+    if(x<=0) return 0;
+    if(x>=1) return 1;
+    const bt=Math.exp(logGamma(a+b)-logGamma(a)-logGamma(b)+a*Math.log(x)+b*Math.log(1-x));
+    return x<(a+1)/(a+b+2) ? bt*betaCF(a,b,x)/a : 1-bt*betaCF(b,a,1-x)/b;
+  }
+  function goodness(counts) {
+    const n=sum(counts), expected=n/6;
+    const contributions=counts.map(o => expected ? (o-expected)**2/expected : 0);
+    const statistic=sum(contributions);
+    return {n,expected,contributions,statistic,df:5,p:gammaQ(2.5,statistic/2)};
+  }
+  function table() {
+    const expected=observed.map(() => columns.map(c => 120*c/360));
+    const contributions=observed.map((r,i) => r.map((o,j) => (o-expected[i][j])**2/expected[i][j]));
+    const statistic=sum(contributions.flat());
+    return {observed,expected,contributions,statistic,df:6,p:gammaQ(3,statistic/2)};
+  }
+  function slope(set='weight', ys=null) {
+    const d=data[set], x=d.x, y=ys || d.y, n=x.length, xm=sum(x)/n, ym=sum(y)/n;
+    const sxx=sum(x.map(v => (v-xm)**2));
+    const syy=sum(y.map(v => (v-ym)**2));
+    const sxy=sum(x.map((v,i) => (v-xm)*(y[i]-ym)));
+    const b=sxy/sxx, intercept=ym-b*xm;
+    const residual=y.map((v,i) => v-intercept-b*x[i]);
+    const s=Math.sqrt(sum(residual.map(v => v*v))/(n-2));
+    const se=s/Math.sqrt(sxx), t=b/se, p=betaI((n-2)/(n-2+t*t),(n-2)/2,.5);
+    return {b,intercept,residual,s,se,t,p,df:n-2,r:sxy/Math.sqrt(sxx*syy),r2:sxy*sxy/(sxx*syy),
+      interval:[b-2.2281388519649385*se,b+2.2281388519649385*se]};
+  }
+  function lab(w,n,a,k=1000) {
+    const weights=normalize(w), flags=[], stats=[];
+    for(let run=0;run<k;run++) {
+      const counts=[0,0,0,0,0,0];
+      for(let i=0;i<n;i++) counts[face(weights)]++;
+      const r=goodness(counts);
+      flags.push(r.p<a);
+      stats.push(r);
+    }
+    return {flags,stats,share:flags.filter(Boolean).length/k,n,a,weights};
+  }
+  function hint(text,key=null,options={}) {
+    $('hint').textContent=text;
+    if(key) V.how(key,{...options,hint:false});
+  }
+  const V = Curio.voice({lines:L, scope:() => state.mode+':'+state.caseId, hint:false, read:() => $('hint').textContent,
+    welcome:() => {
+      if(state.mode==='lab') return ['wLab',{valid:() => !state.labResult}];
+      if(state.caseId===1 && state.budget===1200 && !state.attempts && !state.outcomes[1]) {
+        return ['wCases',{needs:'#roll100'}];
+      }
+      if(state.caseId===2 && !state.built.some(Boolean)) return 'wCase2';
+      if(state.caseId===3 && Object.keys(state.slopes).length<2) return 'wCase3';
+      return null;
+    }, speaks:'#roll1,#roll10,#roll100,#test-die,#accuse,#lab-run,#lab-once,#test-slope'});
+  function save() {
+    try { localStorage.setItem('curio-dice-cases',JSON.stringify({solved:state.solved,outcomes:state.outcomes}));
+      }
+    catch { $('note').textContent='Saving is unavailable. You can still investigate in this session.';
+      }
+  }
+  function stopRoll() {
+    if(!rollTask) return;
+    cancelAnimationFrame(rollTask.raf);
+    rollTask=null;
+    document.querySelectorAll('.rolling').forEach(el => el.classList.remove('rolling'));
+  }
+  function roll(die,k) {
+    stopRoll();
+    if(typeof die==='string') die=names.findIndex(n => n.toLowerCase()===die.toLowerCase());
+    if(die<0 || die>3 || state.outcomes[1]) return 0;
+    state.selected=die;
+    const total=Math.min(Math.max(0,Math.floor(k)),state.budget);
+    if(!total) { hint(L.exhausted,'exhausted',{valid:() => !state.budget,needs:'#accuse'});
+      return 0;
+      }
+    state.tested[die]=null;
+    V.dropQueued();
+    const task={die,total,drawn:0,start:performance.now(),raf:0};
+    rollTask=task;
+    function add(count) {
+      for(let i=0;i<count;i++) {
+        const f=face(die===loadedIndex?loaded:fair);
+        state.counts[die][f]++;
+        state.faces[die]=f+1;
+        state.budget--;
+        task.drawn++;
+      }
+    }
+    add(1);
+    Curio.tone(180,.09,.04,'triangle');
+    render();
+    $('die'+die).classList.toggle('rolling',total>1);
+    const tick=now => {
+      if(rollTask!==task) return;
+      const target=Math.min(total,Math.max(1,Math.floor((now-task.start)/650*total)));
+      if(target>task.drawn) { add(target-task.drawn);
+        renderCounts();
+        drawBars();
+        renderDieCard();
+        }
+      if(task.drawn<total) task.raf=requestAnimationFrame(tick);
+      else {
+        rollTask=null;
+        $('die'+die).classList.remove('rolling');
+        Curio.tone(320,.12,.035);
+        updateControls();
+        if(!state.budget) hint(L.exhausted,'exhausted',{valid:() => !state.budget,needs:'#accuse'});
+        else if(sum(state.counts[die])>=300) hint(L.budget,'budget',{valid:() => !state.outcomes[1],needs:'#roll100'});
+        else hint(sum(state.counts[die])<30?'Keep rolling until this die has at least 30 rolls, then press Test this die.':
+          'Press Test this die to compare these counts with a fair die.');
+      }
+    };
+    if(total===1) { rollTask=null;
+      updateControls();
+      hint('Roll again, or press Test this die after at least 30 rolls.');
+      }
+    else task.raf=requestAnimationFrame(tick);
+    return total;
+  }
+  function test(die=state.selected) {
+    stopRoll();
+    state.selected=die;
+    if(sum(state.counts[die])<30) {
+      if(state.budget) hint(L.under30,'under30',{valid:() => sum(state.counts[state.selected])<30 && state.budget>0});
+      else hint('This die has fewer than 30 rolls. The budget is spent. Select a sampled die to test, or press Accuse.');
+      render();
+      return null;
+    }
+    const r=goodness(state.counts[die]);
+    state.tested[die]=r;
+    state.log.push({die: names[die],...r,alpha:state.alpha});
+    const interpretation=r.p<state.alpha?'Evidence against equal face probabilities.':
+      'Not enough evidence to reject equal face probabilities.';
+    hint(`p = ${fmt(r.p)}. ${interpretation} `+
+      (state.budget?'Choose more rolls or Accuse.':'The budget is spent. Choose a die and press Accuse.'));
+    Curio.tone(r.p<state.alpha?440:250,.16,.04);
+    render();
+    return r;
+  }
+  function closeCase(id,outcome) {
+    const active=document.activeElement;
+    V.hush();
+    if(id===1) outcome.evidence={counts:state.counts,faces:state.faces,tested:state.tested,budget:state.budget,
+      log:state.log,selected:state.selected,reveal:state.reveal,loadedIndex};
+    if(!state.solved.includes(id)) state.solved.push(id);
+    state.outcomes[id]=outcome;
+    save();
+    hint(id<3?L.next:'All three files are closed. Open Dice lab to investigate false alarms and power.');
+    V.say('closed',{valid:() => Boolean(state.outcomes[id])});
+    Curio.tone(440,.2,.035);
+    render();
+    if(active.disabled || !active.getClientRects().length) {
+      requestAnimationFrame(() => (id<3?$('next-case'):$('m-lab')).focus({preventScroll:true}));
+    }
+  }
+  function accuse(die=state.selected) {
+    stopRoll();
+    V.hush();
+    if(state.outcomes[1]) return;
+    if(state.rejected.includes(die)) {
+      hint('This die was already cleared. Select another die, then press Accuse.');
+      Curio.tone(150,.1,.025);
+      return;
+    }
+    state.selected=die;
+    state.reveal.push(die);
+    if(die===loadedIndex) {
+      closeCase(1,{status:'Case closed',die:names[die],trueWeights:loaded,tests:state.log.length,spent:1200-state.budget});
+    } else {
+      state.attempts++;
+      state.rejected.push(die);
+      if(state.attempts===2) {
+        state.reveal=[0,1,2,3];
+        closeCase(1,{status:'Closed: the evidence ran out',weights:names.map((n,i) => ({name:n,weights:i===loadedIndex?loaded:fair})),tests:state.log.length});
+        openCase(2);
+        V.say('outOfEvidence',{valid:() => state.caseId===2 && !state.built.some(Boolean)});
+        hint('Case 1 closed: the evidence ran out. Press Briefing to review the honest-die note. Now build expected cells using the totals.');
+      } else {
+        hint(L.wrongDie);
+        V.say('wrongDie',{valid:() => state.caseId===1 && state.attempts===1,needs:'#accuse'});
+        render();
+        showDialog('An honest die',silhouette('librarian')+`<p><b>${names[die]} is honest.</b> Its six probabilities are all 1/6.</p><p>${falseAlarmNote()}</p><p>One more accusation remains. Pick another die and press Accuse.</p>`);
+      }
+    }
+    render();
+  }
+  function falseAlarmNote() {
+    return 'This die was honest. In this case three dice are honest; test all three at 0.05 and about one time in seven, at least one of them looks guilty by chance. Test four honest dice and it is nearly one in five.';
+  }
+  function silhouette(who) {
+    const token=who==='suspect'?'art:suspect':'art:librarian';
+    return `<svg class="silhouette" role="img" aria-label="${who} portrait awaiting painting" viewBox="0 0 86 110" data-art="${token}">
+      <circle cx="43" cy="33" r="18" fill="#59564f"/><path d="M12 110V85Q12 57 43 57T74 85V110" fill="#59564f"/>
+      <path d="M15 95H70" stroke="#b4a586" stroke-width="10"/></svg>`;
+  }
+  function showDialog(title,body) {
+    returnFocus=document.activeElement;
+    $('dialog-title').textContent=title;
+    $('dialog-body').innerHTML=body;
+    $('dialog-body').scrollTop=0;
+    $('overlay').hidden=false;
+    document.querySelector('main').inert=true;
+    document.querySelector('header').inert=true;
+    $('close-dialog').focus({preventScroll:true});
+  }
+  function closeDialog() {
+    $('overlay').hidden=true;
+    document.querySelector('main').inert=false;
+    document.querySelector('header').inert=false;
+    requestAnimationFrame(() => {
+      if(returnFocus && returnFocus.isConnected && returnFocus.tabIndex>=0 &&
+        !returnFocus.disabled && returnFocus.getClientRects().length) {
+        returnFocus.focus({preventScroll:true});
+      } else {
+        (state.mode==='lab'?$('m-lab'):$('pick'+state.caseId)).focus({preventScroll:true});
+      }
+    });
+    V.welcome();
+  }
+  function briefing() {
+    if(state.caseId===1) showDialog('01 / The loaded die',silhouette('librarian')+
+      '<p>The Night Owl café tournament has a problem: one of four dice is loaded. You have 1,200 rolls and at most two accusations.</p><p>Tap a die, collect rolls, then test its face counts. A small p-value is evidence, not certainty.</p>');
+    if(state.caseId===2) showDialog('02 / The first-player edge',silhouette('librarian')+
+      '<img class="brief-img" src="art:case2-file" alt="Board game boxes and tournament score sheets">'+
+      '<p>Three games, 120 plays each. Does the pattern of winning seats differ by game?</p><p>Build expected counts from the margins. Drag each total into a cell, or select its row total, its column total, then the cell.</p>'+ 
+      (state.outcomes[1]?.status.includes('ran out')?`<p>Previous file: ${falseAlarmNote()}</p>`+
+        state.outcomes[1].weights.map(d=>`<p><b>${d.name} true probabilities:</b> ${d.weights.map(v=>fmt(v*100,2)+'%').join(', ')}</p>`).join(''):''));
+    if(state.caseId===3) showDialog('03 / The weighted dice',silhouette('suspect')+
+      '<img class="brief-img" src="art:case3-file" alt="Dice weights and evidence bag">'+
+      '<p>The suspect claims hidden weights change nothing. Compare 12 dice at different weight depths with a separate record of 12 café nights.</p><p>Test each slope. Use a p-value or interval to defend the link.</p>');
+  }
+  function buildTable() {
+    $('wins-table').innerHTML='<thead><tr><th>Game</th>'+[1,2,3,4].map(i=>`<th>Seat ${i}</th>`).join('')+'<th>Total</th></tr></thead><tbody>'+
+      observed.map((row,i)=>`<tr><th scope="row">${games[i]}</th>`+row.map((v,j)=>`<td><button id="cell${i*4+j}" data-cell="${i*4+j}" aria-label="${games[i]}, seat ${j+1}, observed ${v}"><strong>${v}</strong><small>Expected ?</small></button></td>`).join('')+
+      `<td><button class="total" data-kind="row" data-index="${i}" id="row${i}" aria-label="${games[i]} row total 120">120</button></td></tr>`).join('')+
+      '<tr><th>Totals</th>'+columns.map((v,j)=>`<td><button class="total" data-kind="col" data-index="${j}" id="col${j}" aria-label="Seat ${j+1} column total ${v}">${v}</button></td>`).join('')+'<td>360</td></tr></tbody>';
+    document.querySelectorAll('.total').forEach(b => {
+      let pointer=null, chip=null, moved=false;
+      const cleanup=() => { if(chip) chip.remove(); chip=null; pointer=null; };
+      b.onpointerdown=e => {
+        if(e.button!==0) return;
+        pointer={x:e.clientX,y:e.clientY};
+        moved=false;
+        b.setPointerCapture(e.pointerId);
+      };
+      b.onpointermove=e => {
+        if(!pointer) return;
+        if(Math.hypot(e.clientX-pointer.x,e.clientY-pointer.y)>5) moved=true;
+        if(!moved) return;
+        if(!chip) {
+          chip=document.createElement('div'); chip.className='drag-chip';
+          chip.textContent=(b.dataset.kind==='row'?'Row ':'Column ')+b.textContent;
+          document.body.appendChild(chip);
+        }
+        chip.style.left=e.clientX+8+'px';
+        chip.style.top=e.clientY+8+'px';
+      };
+      b.onpointerup=e => {
+        if(!pointer) return;
+        if(moved) {
+          const target=document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-cell]');
+          if(target) acceptTotal(+target.dataset.cell,b.dataset.kind,+b.dataset.index);
+        }
+        cleanup();
+      };
+      b.onpointercancel=cleanup;
+      b.onclick=() => {
+        if(moved) { moved=false; return; }
+        state[b.dataset.kind]=+b.dataset.index;
+        $('formula').textContent=`Row ${state.row===null?'?':120} × column ${state.col===null?'?':columns[state.col]} ÷ 360. Select the matching cell.`;
+        document.querySelectorAll('.total').forEach(el => el.classList.toggle('selected',
+          state[el.dataset.kind]===+el.dataset.index));
+        Curio.tone(300,.08,.025);
+      };
+    });
+    document.querySelectorAll('[data-cell]').forEach(b => {
+      const idx=+b.dataset.cell;
+      b.onclick=() => {
+        if(state.pointing) return pointCell(idx);
+        if(state.row===null || state.col===null) {
+          hint('Select a row total, select a column total, then tap their cell. You can also drag each total into it.');
+          return;
+        }
+        acceptTotal(idx,'row',state.row);
+        acceptTotal(idx,'col',state.col);
+      };
+      b.ondragover=e => e.preventDefault();
+      b.ondrop=e => {
+        e.preventDefault();
+        try { const [kind,i]=JSON.parse(e.dataTransfer.getData('text/plain')); acceptTotal(idx,kind,i); } catch {}
+      };
+    });
+  }
+  function acceptTotal(idx,kind,value) {
+    if(state.outcomes[2] || state.built[idx]) return;
+    const correct=kind==='row'?Math.floor(idx/4):idx%4;
+    if(value!==correct) { hint('That total belongs to a different row or column. Select the matching totals and cell.');
+      return;
+      }
+    state.parts[idx][kind]=true;
+    if(state.parts[idx].row && state.parts[idx].col) {
+      state.built[idx]=true;
+      $('formula').textContent=`120 × ${columns[idx%4]} ÷ 360 = ${fmt(120*columns[idx%4]/360,2)}`;
+      state.row=null;
+      state.col=null;
+      document.querySelectorAll('.total').forEach(b => b.classList.remove('selected'));
+      Curio.tone(460,.12,.035);
+      const count=state.built.filter(Boolean).length;
+      if(count===12) hint(L.pointCell,'pointCell',{needs:'#point-cell',valid:() => !state.pointing && !state.outcomes[2]});
+      else if(count>=3) hint(L.fill,'fill',{needs:'#fill-rest',valid:() => state.built.filter(Boolean).length>=3 && !state.built.every(Boolean)});
+      else hint(`${count} of 3 hand-built cells. Choose another row total, column total, and cell.`);
+    } else {
+      $('formula').textContent=`${state.parts[idx].row?'120':'row total ?'} × ${state.parts[idx].col?columns[idx%4]:'column total ?'} ÷ 360`;
+      hint('Drop the other matching total into this cell to finish its expected count.');
+    }
+    renderTable();
+    updateControls();
+  }
+  function pointCell(idx) {
+    state.pointing=false;
+    if(idx===8) closeCase(2,{status:'Case closed',contribution:table().contributions[2][0],cell:'Castle game, Seat 1'});
+    else {
+      state.pointing=true;
+      hint(L.cellWrong,'cellWrong');
+      $('note').textContent=`That cell adds ${fmt(table().contributions.flat()[idx],3)}. Press Point to the cell and compare the largest contribution.`;
+      Curio.tone(130,.14,.035);
+    }
+    updateControls();
+  }
+  function testSlope() {
+    const set=state.set;
+    state.slopes[set]=slope(set);
+    Curio.tone(380,.13,.035);
+    if(Object.keys(state.slopes).length===2) hint(L.chooseLink,'chooseLink',{needs:['#weight-link','#temp-link']});
+    else hint(`Now select ${set==='weight'?'Temperature':'Weight depth'} and press Test the slope.`);
+    renderSlopeCard();
+    updateControls();
+  }
+  function chooseLink(value) {
+    state.decision=value;
+    hint(L.citation,'citation',{needs:['#cite-p','#cite-ci'],valid:() => state.decision!==null});
+    updateControls();
+  }
+  function cite(type) {
+    if(!state.decision) return;
+    if(state.decision==='weight') closeCase(3,{status:'Case closed',citation:type,interval:slope().interval,p:slope().p});
+    else {
+      state.decision=null;
+      hint('Temperature: p = 0.7805 (about 0.781); 95% interval (-0.0081, 0.0104) crosses zero. Choose the link again.','decoy');
+      Curio.tone(130,.14,.03);
+      updateControls();
+    }
+  }
+  function cancelDraw() { drawToken++;
+    state.labProgress=1;
+    state.shuffleProgress=1;
+    }
+  function animateDots(kind) {
+    const token=++drawToken, start=performance.now();
+    state[kind+'Progress']=0;
+    function tick(now) {
+      if(token!==drawToken) return;
+      state[kind+'Progress']=Math.min(1,(now-start)/1300);
+      if(kind==='lab') drawLab();
+      else drawPlots();
+      if(state[kind+'Progress']<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  function shuffle() {
+    const set=state.set, real=slope(set), slopes=[];
+    for(let k=0;k<1000;k++) {
+      const ys=[...data[set].y];
+      for(let i=ys.length-1;i>0;i--) { const j=Math.floor(rng()*(i+1));
+        [ys[i],ys[j]]=[ys[j],ys[i]];
+        }
+      slopes.push(slope(set,ys).b);
+    }
+    state.shuffled={set,slopes,real:real.b,extreme:slopes.filter(v => Math.abs(v)>=Math.abs(real.b)).length};
+    Curio.tone(240,.12,.035);
+    hint('Shuffled slopes break the x and y pairing. Select the other plot, or press Test the slope to compare evidence.');
+    animateDots('shuffle');
+  }
+  function setPlot(set) {
+    cancelDraw();
+    state.set=set;
+    state.shuffled=null;
+    state.shuffleProgress=1;
+    $('plot-weight').setAttribute('aria-pressed',set==='weight');
+    $('plot-temp').setAttribute('aria-pressed',set==='temp');
+    hint(state.slopes[set]?'Review this interval. Test the other plot or choose the link.':'Press Test the slope for this plot.');
+    renderSlopeCard();
+    drawPlots();
+    Curio.tone(270,.08,.025);
+  }
+  function runLab(k) {
+    cancelDraw();
+    const r=lab(state.weights,state.n,state.alpha,k);
+    Curio.tone(300,.1,.035);
+    if(k===1) {
+      state.once=r.stats[0];
+      $('lab-single').textContent=`One test: χ² = ${fmt(state.once.statistic,3)}, df = 5, p = ${fmt(state.once.p)}. ${r.flags[0]?'Flagged.':'Not flagged.'}`;
+      hint('One sample can mislead. Press Run 1,000 investigations to see how often it flags.');
+    } else {
+      state.labResult=r;
+      const isFair=r.weights.every(v => Math.abs(v-1/6)<1e-8);
+      const same=state.history.findIndex(h => h.n===state.n && h.a===state.alpha && h.weights.join()===r.weights.join());
+      const entry={...r,label:isFair?'Fair':'Weighted'};
+      if(same>=0) state.history.splice(same,1);
+      state.history.unshift(entry);
+      state.history=state.history.slice(0,6);
+      renderLabHistory();
+      hint(L.labDone,'labDone',{valid:() => Boolean(state.labResult)});
+      animateDots('lab');
+    }
+    drawLab();
+  }
+  function resetLabResult() {
+    cancelDraw();
+    state.labResult=null;
+    state.once=null;
+    state.labProgress=1;
+    $('lab-single').textContent='Each test assumes a fair die: expected count n ÷ 6, df = 5.';
+    hint('Settings changed. Press Roll once or Run 1,000 investigations for new evidence.');
+    drawLab();
+  }
+  function setPreset(w) {
+    state.weights=[...w];
+    renderWeights();
+    resetLabResult();
+    Curio.tone(280,.1,.03);
+  }
+  function openCase(id) {
+    if(id>1 && !state.solved.includes(id-1)) return;
+    if(state.mode==='cases' && state.caseId===id) {
+      V.welcome();
+      Curio.tone(240,.06,.02);
+      return;
+    }
+    stopRoll();
+    cancelDraw();
+    V.hush();
+    state.mode='cases';
+    state.caseId=id;
+    render();
+    const entry=id===1?(state.budget?L.wCases:L.exhausted):id===2?L.wCase2:L.wCase3;
+    hint(state.outcomes[id]?(id<3?L.next:'All three files are closed. Explore Dice lab.'):entry);
+    if(id!==1 && !state.outcomes[id]) briefing();
+    else V.welcome();
+  }
+  function setMode(mode) {
+    const requested=['lab','dice lab'].includes(mode.toLowerCase())?'lab':'cases';
+    if(state.mode===requested) {
+      V.welcome();
+      Curio.tone(240,.06,.02);
+      return;
+    }
+    stopRoll();
+    cancelDraw();
+    V.hush();
+    state.mode=mode.toLowerCase()==='dice lab'?'lab':mode.toLowerCase();
+    if(state.mode!=='lab') state.mode='cases';
+    if(!$('overlay').hidden) closeDialog();
+    render();
+    const closedHint=state.caseId<3?L.next:'All three files are closed. Open Dice lab to investigate further.';
+    hint(state.mode==='lab'?L.wLab:state.outcomes[state.caseId]?closedHint:
+      state.caseId===1?(state.budget?L.selectDie:L.exhausted):state.caseId===2?L.wCase2:L.wCase3);
+    V.welcome();
+  }
+  function renderCounts() {
+    names.forEach((n,i) => {
+      $('die'+i).setAttribute('aria-pressed',state.selected===i);
+      $('count'+i).textContent=sum(state.counts[i])+' rolls';
+      $('pips'+i).innerHTML=pips(state.faces[i],i===3?'#3a3327':'#fff4df');
+    });
+    $('budget').textContent=state.budget.toLocaleString();
+    $('budget-bar').style.width=state.budget/12+'%';
+    $('accuse').textContent='Accuse '+names[state.selected];
+  }
+  function pips(n,color) {
+    const pts={1:[[50,55]],2:[[38,43],[62,67]],3:[[38,43],[50,55],[62,67]],
+      4:[[38,43],[62,43],[38,67],[62,67]],5:[[38,43],[62,43],[50,55],[38,67],[62,67]],
+      6:[[38,43],[62,43],[38,55],[62,55],[38,67],[62,67]]};
+    return pts[n].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="3.5" fill="${color}"/>`).join('');
+  }
+  function renderDieCard() {
+    const i=state.selected, r=state.tested[i], counts=state.counts[i], n=sum(counts);
+    const trueRow=state.reveal.includes(i)?'<span>True P</span>'+
+      (i===loadedIndex?loaded:fair).map(p=>`<span>${fmt(p*100,2)}%</span>`).join(''):'';
+    $('die-card').innerHTML=`<div class="card-head">${names[i]} / Goodness of fit · H₀: all six probabilities = 1/6</div>`+
+      `<div class="metrics"><div class="metric">Rolls<b>${n}</b></div><div class="metric">Expected each<b>${fmt(n/6,1)}</b></div>`+
+      `<div class="metric">χ²<b>${r?fmt(r.statistic,2):'?'}</b></div><div class="metric">df<b>5</b></div>`+
+      `<div class="metric">p-value<b>${r?fmt(r.p):'?'}</b></div></div>`+
+      `<div class="contrib"><span>Face</span>${counts.map((_,j)=>`<span>${j+1}</span>`).join('')}<span>O</span>`+
+      counts.map(o=>`<span>${o}</span>`).join('')+'<span>χ² part</span>'+
+      counts.map((o,j)=>`<span>${r?fmt(r.contributions[j],2):'?'}</span>`).join('')+trueRow+'</div>'+
+      `<div class="conclusion">${state.outcomes[1]?state.outcomes[1].status:r?(r.p<state.alpha?'Reject H₀':'Do not reject H₀')+` at α = ${state.alpha}. A test is not proof of guilt.`:
+        n<30?'Collect at least 30 rolls so every expected count is at least 5.':'Press Test this die. χ² = Σ (O − E)² / E.'}</div>`;
+  }
+  function renderTable() {
+    const r=table();
+    state.built.forEach((built,i) => {
+      const b=$('cell'+i), row=Math.floor(i/4), col=i%4;
+      b.querySelector('small').textContent=built?`E ${fmt(r.expected[row][col],2)}`:'Expected ?';
+      let part=b.querySelector('.part');
+      if(state.built.every(Boolean)) {
+        if(!part) { part=document.createElement('small'); part.className='part'; b.appendChild(part); }
+        part.textContent='χ² '+fmt(r.contributions[row][col],3);
+      }
+      b.setAttribute('aria-label',`${games[row]}, seat ${col+1}, observed ${observed[row][col]}, expected ${built?fmt(r.expected[row][col],2):'unknown'}`+
+        (state.built.every(Boolean)?`, contribution ${fmt(r.contributions[row][col],3)}`:''));
+    });
+    $('table-card').innerHTML='<div class="card-head">Homogeneity · H₀: same seat pattern for every game</div>'+
+      (state.built.every(Boolean)?`<div class="metrics"><div class="metric">χ²<b>${fmt(r.statistic,3)}</b></div><div class="metric">df<b>6</b></div>`+
+      `<div class="metric">p-value<b>${fmt(r.p)}</b></div></div><div class="conclusion">${state.outcomes[2]?'Case closed. Castle game, seat 1 adds 6.403.':
+        r.p<.05?'Reject H₀ at α = 0.05. The seat pattern differs by game.':'Do not reject H₀ at α = 0.05.'}</div>`:
+      `<div class="conclusion">${state.built.filter(Boolean).length} / 12 expected cells built. E = row total × column total ÷ grand total. df = (3 − 1)(4 − 1) = 6.</div>`);
+  }
+  function renderSlopeCard() {
+    const set=state.set, r=state.slopes[set], d=data[set], result=slope(set);
+    $('slope-card').innerHTML=`<div class="card-head">${d.label} / H₀: population slope β = 0 · two-sided test</div>`+
+      `<div class="metrics"><div class="metric">Slope / ${d.unit}<b>${fmt(result.b,set==='weight'?4:5)}</b></div>`+
+      `<div class="metric">t = b / SE(b)<b>${r?fmt(r.t,2):'?'}</b></div><div class="metric">df<b>10</b></div>`+
+      `<div class="metric">p-value<b>${r?fmt(r.p):'?'}</b></div><div class="metric">95% interval<b style="font-size:16px">`+
+      `${r?'('+r.interval.map(v=>fmt(v,set==='weight'?3:4)).join(', ')+')':'?'}</b></div></div>`+
+      `<div class="conclusion">${r?`SE(b) = ${fmt(r.se,set==='weight'?4:5)}. `+
+        (set==='weight'?'p ≈ 0.00048. Interval excludes zero.':'p ≈ 0.781. Interval crosses zero.'):
+        'Press Test the slope. Each dot is a mean of '+d.rolls.toLocaleString()+' rolls.'}</div>`;
+  }
+  function renderLabHistory() {
+    $('lab-history').innerHTML=state.history.map(h=>`<tr><td>${h.n}</td><td>${h.a}</td><td>${fmt(h.share*100,1)}%</td><td>${h.label}</td></tr>`).join('');
+  }
+  function renderWeights() {
+    const w=normalize(state.weights);
+    w.forEach((v,i)=> {
+      $('w'+i).value=state.weights[i];
+      $('wo'+i).textContent=fmt(v*100,1)+'%';
+      $('w'+i).setAttribute('aria-valuetext',fmt(v*100,1)+' percent probability');
+    });
+  }
+  function updateControls() {
+    const closed=Boolean(state.outcomes[1]);
+    [1,10,100].forEach(n=> { $('roll'+n).disabled=!state.budget || closed; });
+    $('test-die').disabled=closed;
+    $('accuse').disabled=closed;
+    for(let id=1;id<=3;id++) {
+      $('pick'+id).disabled=id>1&&!state.solved.includes(id-1);
+      $('pick'+id).setAttribute('aria-pressed',state.caseId===id);
+    }
+    $('fill-rest').disabled=state.built.filter(Boolean).length<3 || state.built.every(Boolean);
+    $('point-cell').disabled=!state.built.every(Boolean) || Boolean(state.outcomes[2]);
+    const both=Object.keys(state.slopes).length===2;
+    $('weight-link').disabled=!both || Boolean(state.outcomes[3]);
+    $('temp-link').disabled=!both || Boolean(state.outcomes[3]);
+    $('cite-p').disabled=!state.decision || Boolean(state.outcomes[3]);
+    $('cite-ci').disabled=!state.decision || Boolean(state.outcomes[3]);
+    $('next-case').hidden=state.mode!=='cases'||!state.outcomes[state.caseId]||state.caseId===3;
+  }
+  function render() {
+    const labMode=state.mode==='lab';
+    $('opening-brief').hidden=state.budget<1200 || state.attempts>0 || Boolean(state.outcomes[1]);
+    $('notebook').classList.toggle('lab-mode',labMode);
+    $('m-cases').setAttribute('aria-pressed',!labMode);
+    $('m-lab').setAttribute('aria-pressed',labMode);
+    for(let id=1;id<=3;id++) $('case'+id).hidden=labMode || state.caseId!==id;
+    $('lab').hidden=!labMode;
+    $('picker').hidden=labMode;
+    $('case-actions').hidden=labMode || state.caseId!==1;
+    $('table-actions').hidden=labMode || state.caseId!==2;
+    $('slope-actions').hidden=labMode || state.caseId!==3;
+    $('lab-actions').hidden=!labMode;
+    $('budget-box').hidden=labMode || state.caseId!==1;
+    ['weights','lab-die','lab-settings'].forEach(id=> { $(id).hidden=!labMode; });
+    document.querySelector('.alpha').hidden=!labMode && state.caseId!==1;
+    $('test-log').innerHTML=state.log.slice().reverse().map(r=>`<div class="log-row">${r.die} · n ${r.n} · χ² ${fmt(r.statistic,2)}<br>p ${fmt(r.p)} · α ${r.alpha}</div>`).join('');
+    const out=state.outcomes[state.caseId];
+    if(out && !labMode) {
+      $('note').innerHTML=`<span class="stamp">${out.status}</span><p>${state.caseId===1?`${out.tests} tests filed. ${out.spent??1200-state.budget} rolls spent.`:
+        state.caseId===2?'The game and the seat pattern are linked.':`Weight depth: ${out.citation} evidence filed.`}</p>`;
+    } else if(state.caseId===1 && !labMode) {
+      $('note').innerHTML='Four dice. One hidden difference. Spend your rolls where the evidence leads.';
+    } else if(!labMode) $('note').textContent=state.caseId===2?'Rows are separate game samples. Check expected counts, then compare contributions.':
+      'Check linearity and equal spread with the residuals. Sampling and independence need the study design too.';
+    else $('note').textContent='Fair die: share flagged estimates false alarm rate. Weighted die: it estimates power. Monte Carlo results vary.';
+    if(state.reveal.length && !labMode && state.caseId===1) {
+      $('note').innerHTML+=state.reveal.map(i=>`<div class="truth"><b>${names[i]} true weights</b><br>${(i===loadedIndex?loaded:fair).map(v=>fmt(v*100,2)+'%').join(' · ')}</div>`).join('');
+    }
+    renderCounts();
+    renderDieCard();
+    renderTable();
+    renderSlopeCard();
+    updateControls();
+    requestAnimationFrame(drawVisible);
+  }
+  // Charts use current physical pixel dimensions, never a scaled scene.
+  function context(id) {
+    const canvas=$(id), box=canvas.getBoundingClientRect(), dpr=devicePixelRatio||1;
+    if(box.width<1 || box.height<1) return null;
+    canvas.width=Math.round(box.width*dpr);
+    canvas.height=Math.round(box.height*dpr);
+    const ctx=canvas.getContext('2d');
+    ctx.scale(dpr,dpr);
+    ctx.font='12px Segoe UI';
+    return {c:ctx,w:box.width,h:box.height};
+  }
+  function text(c,t,x,y,size=12,color='#e5e7d5',align='left') {
+    c.font=`${size}px Segoe UI`;
+    c.fillStyle=color;
+    c.textAlign=align;
+    c.fillText(t,x,y);
+  }
+  function line(c,x1,y1,x2,y2,color='#a6b79b66',dash=[]) {
+    c.strokeStyle=color;
+    c.setLineDash(dash);
+    c.beginPath();
+    c.moveTo(x1,y1);
+    c.lineTo(x2,y2);
+    c.stroke();
+    c.setLineDash([]);
+  }
+  function drawBars() {
+    const cc=context('bar-canvas');
+    if(!cc) return;
+    const {c,w,h}=cc, counts=state.counts[state.selected], n=sum(counts), expected=n/6;
+    const small=h<160, left=35, top=small?20:35, bottom=h-27, max=Math.max(10,...counts,expected)*1.25;
+    const bw=(w-left-18)/6;
+    const y=v=>bottom-v/max*(bottom-top);
+    text(c,'Face counts',12,small?13:21,small?10:13);
+    text(c,'Dashed: expected '+fmt(expected,1),w-10,small?13:21,small?10:12,'#f4ddad','right');
+    const steps=small?2:4;
+    for(let v=0;v<=steps;v++) {
+      const val=max*v/steps;
+      line(c,left,y(val),w-10,y(val),'#b9bfa320');
+      text(c,String(Math.round(val)),left-5,y(val)+4,10,'#c2cfb8','right');
+    }
+    counts.forEach((v,i)=> {
+      const x=left+i*bw+bw*.18, width=bw*.64, height=bottom-y(v);
+      const gradient=c.createLinearGradient(x,0,x+width,0);
+      gradient.addColorStop(0,'#b53250'); gradient.addColorStop(.5,'#ff758e'); gradient.addColorStop(1,'#db3b61');
+      c.fillStyle=gradient;
+      c.fillRect(x,y(v),width,Math.max(1,height));
+      c.fillStyle='#ffc7c9'; c.fillRect(x,y(v),width,2);
+      text(c,String(v),x+width/2,Math.max(top+10,y(v)-6),small?11:16,'#fff2d5','center');
+      text(c,String(i+1),x+width/2,h-9,small?11:14,'#e9e9d7','center');
+    });
+    line(c,left,y(expected),w-10,y(expected),'#ffe5ad',[5,4]);
+    if(!n) text(c,'Choose a die. Roll to put evidence on the table.',w/2,(top+bottom)/2,small?11:17,'#d5d7bc','center');
+    $('bar-canvas').setAttribute('aria-label',names[state.selected]+': observed '+counts.join(', ')+'. Expected each '+fmt(expected,2));
+  }
+  function drawPlots() {
+    const cc=context('plot-canvas');
+    if(!cc) return;
+    const {c,w,h}=cc,d=data[state.set],r=slope(state.set),left=43,right=w-18,top=20,split=h*.61,bottom=h-27;
+    const compact=h<220, xmin=d.x[0], xmax=d.x[11], ymin=Math.min(...d.y)-.06, ymax=Math.max(...d.y)+.06;
+    const px=x=>left+(x-xmin)/(xmax-xmin)*(right-left);
+    const py=y=>split-24-(y-ymin)/(ymax-ymin)*(split-top-29);
+    text(c,'Mean roll',left,13,10,'#f0e5c9');
+    for(let i=0;i<4;i++) {
+      const y=ymin+(ymax-ymin)*i/3;
+      line(c,left,py(y),right,py(y),'#d5d6bb22');
+      text(c,fmt(y,2),left-6,py(y)+3,10,'#d2d9c6','right');
+    }
+    line(c,left,py(r.intercept+r.b*xmin),right,py(r.intercept+r.b*xmax),'#ff7c95');
+    d.y.forEach((v,i)=> {
+      c.beginPath(); c.arc(px(d.x[i]),py(v),compact?3.6:5.5,0,Math.PI*2);
+      c.fillStyle='#ffe5ad'; c.fill(); c.strokeStyle='#2e3828'; c.stroke();
+    });
+    const zero=(split+bottom)/2, range=.17;
+    text(c,'Residuals',left,split+2,10,'#f0e5c9');
+    const ry=v=>zero-v/range*(bottom-split-9)/2;
+    line(c,left,zero,right,zero,'#e7e3c0',[4,4]);
+    text(c,'0',left-6,zero+3,10,'#d1d7c2','right');
+    r.residual.forEach((v,i)=> {
+      c.beginPath(); c.arc(px(d.x[i]),ry(v),compact?3:4,0,Math.PI*2); c.fillStyle='#b4d3c3'; c.fill();
+    });
+    [0,5,11].forEach(i=>text(c,String(d.x[i]),px(d.x[i]),h-13,10,'#dddcc3','center'));
+    text(c,d.label+' ('+d.unit+')',w/2,h-1,10,'#dddcc3','center');
+    if(state.shuffled && state.shuffled.set===state.set) drawShuffle(c,w,h);
+  }
+  function drawShuffle(c,w,h) {
+    const d=state.shuffled, x=44,y=h*.68, pw=w-65,ph=h*.25;
+    c.fillStyle='#0b1317f5';
+    c.fillRect(x-5,y-15,pw+15,ph+21);
+    const min=Math.min(...d.slopes,d.real)*1.15,max=Math.max(...d.slopes,d.real)*1.15;
+    const px=v=>x+(v-min)/(max-min)*pw;
+    const bins=Array(55).fill(0),count=Math.floor(d.slopes.length*state.shuffleProgress);
+    const frequencies=Array(55).fill(0);
+    d.slopes.forEach(v=> { frequencies[Math.min(54,Math.floor((v-min)/(max-min)*55))]++; });
+    const stackStep=Math.max(.1,(ph-16)/Math.max(...frequencies));
+    d.slopes.slice(0,count).forEach(v=> {
+      const bin=Math.min(54,Math.floor((v-min)/(max-min)*55)), stack=bins[bin]++;
+      c.beginPath(); c.arc(px(v),y+ph-6-stack*stackStep,Math.max(.4,Math.min(1.3,stackStep*.45)),0,Math.PI*2);
+      c.fillStyle=Math.abs(v)>=Math.abs(d.real)?'#ff758e':'#c9d3bf'; c.fill();
+    });
+    line(c,px(d.real),y+2,px(d.real),y+ph,'#ff758e',[3,3]);
+    text(c,`1,000 shuffled slopes · ${d.extreme}/1,000 as extreme · real ${fmt(d.real,4)}`,x,y-3,10,'#ffe6b0');
+  }
+  function drawLab() {
+    const cc=context('lab-canvas');
+    if(!cc) return;
+    const {c,w,h}=cc, r=state.labResult;
+    $('share').textContent=r?fmt(r.share*100,1)+'%':'?';
+    const isFair=normalize(state.weights).every(v=>Math.abs(v-1/6)<1e-8);
+    $('share-label').textContent=r?`${r.flags.filter(Boolean).length} of 1,000 flagged · ${isFair?'false alarm rate':'power'} at α = ${state.alpha}`:
+      'Set weights, then run 1,000 investigations.';
+    const compact=h<180;
+    $('lab-result').classList.toggle('compact-strip',compact);
+    const top=compact?12:h<250?80:145;
+    const left=compact?w*.45:18;
+    const cols=50, rows=20, dx=(w-left-18)/cols, dy=Math.max(1,(h-top-27)/rows);
+    const count=r?Math.floor(1000*state.labProgress):1000;
+    for(let i=0;i<count;i++) {
+      const flagged=r&&r.flags[i], x=left+(i%cols+.5)*dx,y=top+(Math.floor(i/cols)+.5)*dy;
+      c.beginPath();
+      c.arc(x,y,Math.max(.8,Math.min(dx,dy)*.28),0,Math.PI*2);
+      if(flagged) { c.fillStyle='#ff6d8a';
+        c.fill();
+        }
+      else { c.strokeStyle=r?'#acc7b188':'#80958144';
+        c.stroke();
+        }
+    }
+    text(c,'● Flagged     ○ Not flagged     Each dot = one investigation',18,h-9,10,'#d9e0c7');
+  }
+  function drawVisible() {
+    if(state.mode==='lab') drawLab();
+    else if(state.caseId===1) drawBars();
+    else if(state.caseId===3) drawPlots();
+  }
+  function help() {
+    if(state.mode==='lab') return showDialog('False alarms and power',
+      '<p>Each investigation tests H₀: six equal face probabilities. The expected count is n ÷ 6 and df is 5. Every offered n gives expected counts of at least 5.</p>'+
+      '<p>With a fair die, the share flagged estimates the false alarm rate, near α. With a weighted die, it estimates power. Each run uses independent generated rolls; 1,000 runs still have simulation variation.</p>');
+    if(state.caseId===1) showDialog('Read the evidence, not just the flag',
+      '<p>H₀: all six probabilities are 1/6. Hₐ: at least one differs. χ² = Σ (O − E)² / E, with E = n/6 and df = 5. Reject H₀ when the upper-tail p-value is below α.</p>'+
+      '<p>Conditions: categorical counts, independent random rolls, all expected counts at least 5. This simulator generates independent rolls. Not rejecting does not prove fairness.</p>'+
+      '<p><b>Worked example:</b> 600 rolls: [71, 96, 104, 99, 101, 129]. E = 100 each. Contributions: 8.41, 0.16, 0.16, 0.01, 0.01, 8.41. χ² = 17.16, p = 0.0042.</p>'+
+      '<p>A fair-looking 60: [11, 9, 10, 8, 12, 10], χ² = 1.00, p = 0.9626. df 5 critical values: 9.236 (α .10), 11.070 (.05), 15.086 (.01).</p>'+
+      '<p>Test three honest dice at .05: 1 − .95³ = 14.3% chance of at least one false alarm. Four honest dice: 18.5%. Repeated peeks at accumulating data also change the overall false alarm rate.</p>'+
+      '<p>Case 1 power at α .05, approximate: n 30 → .079; 60 → .112; 120 → .189; 300 → .450; 600 → .788; 1,000 → .960. The 1,200-roll limit leaves uncertainty even with careful play.</p>');
+    if(state.caseId===2) showDialog('Homogeneity of seat patterns',
+      '<p>H₀: the distribution of winning seats is the same for all three games. Hₐ: at least one distribution differs. E = row total × column total ÷ 360. df = (3 − 1)(4 − 1) = 6.</p>'+
+      '<p>Use categorical counts from independent random samples, one sample for each game, with expected counts at least 5. These invented records assume that design; the table cannot verify it.</p>'+
+      '<p>A homogeneity test compares distributions across separately sampled populations. An independence test instead takes one sample and asks whether its two categorical variables are associated. The statistic and expected-count formula are the same.</p>');
+    if(state.caseId===3) showDialog('Conditions and slope inference',
+      '<p>H₀: β = 0. Hₐ: β ≠ 0. SE(b) = s / √Σ(x − x̄)², t = b / SE(b), df = n − 2 = 10. The 95% interval is b ± 2.2281 SE(b).</p>'+
+      '<p><b>Linear:</b> inspect scatter and residuals for curvature. <b>Equal spread:</b> inspect residuals for a fan. <b>Normal:</b> a small sample needs approximately normal residuals; this plot alone cannot establish normality.</p>'+
+      '<p><b>Independent and random:</b> require study design evidence, not the residual plot. The made-up records assume independent randomly sampled dice or nights. An association alone does not establish a causal mechanism.</p>'+
+      '<p>Weight depth: ŷ = 3.4841 + 0.2850x, r = 0.849, r² = 0.720, s = 0.0672. Temperature is a separate data set with its own units and roll counts.</p>');
+  }
+  names.forEach((n,i) => {
+    const b=document.createElement('button');
+    b.id='die'+i;
+    b.className='die';
+    b.setAttribute('aria-label',n+' die');
+    b.innerHTML=`<span class="die-art"><img src="${art[i]}" alt=""><svg viewBox="0 0 100 100" aria-hidden="true" id="pips${i}"></svg></span>`+
+      `<span class="die-label">${n}<small id="count${i}">0 rolls</small></span>`;
+    b.onclick=() => {
+      stopRoll(); state.selected=i; render();
+      Curio.tone(210+i*35,.08,.025);
+      hint(state.outcomes[1]?'Case closed. Review the true weights or press Next case.':state.budget?L.selectDie:L.exhausted);
+    };
+    $('dice').appendChild(b);
+  });
+  for(let i=0;i<6;i++) {
+    const label=document.createElement('label');
+    label.className='weight';
+    label.innerHTML=`<span>${i+1}</span><input id="w${i}" type="range" min="0" max="24" step="1" value="4" aria-label="Face ${i+1} relative weight"><output id="wo${i}"></output>`;
+    $('weights').appendChild(label);
+    $('w'+i).oninput=() => {
+      state.weights[i]=+$('w'+i).value;
+      renderWeights();
+      resetLabResult();
+      if(!sum(state.weights)) hint('All relative weights are zero, so this setting uses a fair die. Raise a face weight to change it.');
+      Curio.tone(180+i*30,.045,.015);
+    };
+  }
+  $('opening-brief').innerHTML=silhouette('librarian')+
+    '<p>Made-up café, made-up data. One of four dice is loaded.</p>'+
+    '<p>You have 1,200 rolls and two accusations. Tap a die, then press Roll 100.</p>';
+  buildTable();
+  [1,10,100].forEach(k=> { $('roll'+k).onclick=() => roll(state.selected,k); });
+  $('test-die').onclick=() => test();
+  $('accuse').onclick=() => accuse();
+  for(let i=1;i<=3;i++) $('pick'+i).onclick=() => openCase(i);
+  $('m-cases').onclick=() => setMode('cases');
+  $('m-lab').onclick=() => setMode('lab');
+  $('next-case').onclick=() => openCase(state.caseId+1);
+  $('fill-rest').onclick=() => {
+    const focused=document.activeElement===$('fill-rest');
+    state.built.fill(true);
+    renderTable();
+    updateControls();
+    if(focused) requestAnimationFrame(() => $('point-cell').focus({preventScroll:true}));
+    hint(L.pointCell,'pointCell',{needs:'#point-cell',valid:() => !state.pointing && !state.outcomes[2]});
+    Curio.tone(430,.15,.035);
+  };
+  $('point-cell').onclick=() => { state.pointing=true;
+    hint('Tap the table cell with the largest χ² contribution.');
+    Curio.tone(320,.08,.025);
+    };
+  $('test-slope').onclick=testSlope;
+  $('plot-weight').onclick=() => setPlot('weight');
+  $('plot-temp').onclick=() => setPlot('temp');
+  $('shuffle').onclick=shuffle;
+  $('weight-link').onclick=() => chooseLink('weight');
+  $('temp-link').onclick=() => chooseLink('temp');
+  $('cite-p').onclick=() => cite('p-value');
+  $('cite-ci').onclick=() => cite('interval');
+  $('fair').onclick=() => setPreset([4,4,4,4,4,4]);
+  $('loaded').onclick=() => setPreset([3,4,4,4,4,5]);
+  $('lab-once').onclick=() => runLab(1);
+  $('lab-run').onclick=() => runLab(1000);
+  $('lab-n').onchange=() => { state.n=+$('lab-n').value;
+    resetLabResult();
+    };
+  $('alpha').onchange=() => {
+    state.alpha=+$('alpha').value;
+    if(state.mode==='lab') resetLabResult();
+    else { cancelDraw();
+      render();
+      hint('Significance changed. Review the test decision at the new α.');
+      }
+  };
+  document.querySelectorAll('.briefing').forEach(b=> { b.onclick=briefing; });
+  $('help').onclick=help;
+  $('close-dialog').onclick=closeDialog;
+  $('clear').onclick=() => showDialog('Clear saved cases?',
+    '<p>This clears solved cases and the current investigation on this device.</p><button class="btn" id="confirm-clear">Clear all cases</button>');
+  $('dialog-body').addEventListener('click',e => {
+    if(e.target.id!=='confirm-clear') return;
+    try { localStorage.removeItem('curio-dice-cases'); } catch {}
+    location.reload();
+  });
+  $('overlay').addEventListener('keydown',e => {
+    if(e.key==='Escape') { e.preventDefault(); closeDialog(); }
+    if(e.key==='Tab') {
+      const controls=[...$('overlay').querySelectorAll('button,[tabindex="0"]')];
+      const idx=controls.indexOf(document.activeElement);
+      if(e.shiftKey && idx===0) { e.preventDefault(); controls.at(-1).focus({preventScroll:true}); }
+      else if(!e.shiftKey && idx===controls.length-1) { e.preventDefault(); controls[0].focus({preventScroll:true}); }
+    }
+  });
+  let savedEvidence=null;
+  try {
+    const saved=JSON.parse(localStorage.getItem('curio-dice-cases')||'null');
+    if(saved && Array.isArray(saved.solved)) {
+      state.solved=saved.solved.filter(x=>[1,2,3].includes(x));
+      state.outcomes=saved.outcomes||{};
+      savedEvidence=state.outcomes[1]?.evidence;
+      if(savedEvidence) {
+        for(const key of ['counts','faces','tested','budget','log','selected','reveal']) state[key]=savedEvidence[key];
+      }
+      if(state.solved.includes(2)) state.built.fill(true);
+      if(state.solved.includes(3)) state.slopes={weight:slope('weight'),temp:slope('temp')};
+    }
+  } catch {}
+  Curio.init({clips:"voice:*",rate:.95,readFallback:() => $('hint').textContent});
+  new ResizeObserver(drawVisible).observe($('stage'));
+  new ResizeObserver(drawVisible).observe($('bars'));
+  new ResizeObserver(drawVisible).observe($('plots'));
+  new ResizeObserver(drawVisible).observe($('lab-result'));
+  const initialSeed=Number(new URLSearchParams(location.search).get('seed')||Math.floor(Math.random()*4294967296));
+  randomState=initialSeed>>>0;
+  loadedIndex=Math.floor(rng()*4);
+  if(savedEvidence) loadedIndex=savedEvidence.loadedIndex;
+  renderWeights();
+  render();
+  hint(state.outcomes[1]?L.next:L.wCases);
+  window.__tool={state,setMode,seed,roll,test,accuse,table,slope,lab,goodness,openCase,allLines:V.allLines,vlog:V.log,
+    get vq() { return V.queue;
+      },render};
+})();
+</script>
+</body>
+</html>

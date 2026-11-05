@@ -1,0 +1,186 @@
+{
+  "house_style": "Rich theatrical gouache and colored pencil illustration for grades 3 to 5. Deep midnight blues, velvet crimson, warm gold directional lighting, tactile painted cloth, elegant inviting stagecraft. Layered depth, subtle grain, cinematic composition. No text, lettering, numbers or logos.",
+  "assets": [
+    {
+      "name": "house-from-stage",
+      "prompt": "The view from center theater stage looking out at an entirely empty audience house: rows of red velvet seats rising into the dark, a central aisle receding into the distance, small blank green glows near the exits, warm house lights dimmed. Broad symmetrical architecture, balcony rail with gold details, soft light from upper left, richly textured upholstery. Camera at standing eye level. Wide full frame painted background. No people, faces or body parts. No text.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 78,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "recital-backdrop",
+      "prompt": "A soft painted theater backdrop cloth in deep blue with gentle flowing swirls, hung at the back of a stage. Straight-on wide full frame, luxurious indigo fabric with soft folds, azure and gold brushwork suggesting drifting autumn air, soft warm light from upper left, subtle cloth weave. The middle and lower half are calm open deep blue for moving figures in front. No people, faces, body parts, objects, text, letters, numbers or logos.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 78,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "dancer-stand",
+      "people": true,
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "9:16",
+      "height": 500,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body recital dancers in stand pose or gait keyframes. Three identifiable dancers with circle, square and triangle badges. Front, back, left and right facings; left and right variants where the move changes side. Include start, midpoint and end keyframes. Clothing variants: default pink and cream, mint and navy, gold and violet; ballet rust and gold or sage and cream; jazz black and yellow or red and white; neutral cream and navy. Child-appropriate rehearsal clothing, complete bodies with space around feet and hands. Flat pure magenta key. Match house style. Pose geometry must preserve engine movement clues.",
+      "movement_requirements": "Neutral standing pose, arms resting, feet clearly on the floor. Three badge and default costume variants."
+    },
+    {
+      "name": "dancer-releve",
+      "people": true,
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "9:16",
+      "height": 500,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body recital dancers in releve pose or gait keyframes. Three identifiable dancers with circle, square and triangle badges. Front, back, left and right facings; left and right variants where the move changes side. Include start, midpoint and end keyframes. Clothing variants: default pink and cream, mint and navy, gold and violet; ballet rust and gold or sage and cream; jazz black and yellow or red and white; neutral cream and navy. Child-appropriate rehearsal clothing, complete bodies with space around feet and hands. Flat pure magenta key. Match house style. Pose geometry must preserve engine movement clues.",
+      "movement_requirements": "Rise from flat feet onto the toes. Arms open slowly from a low rounded position to raised, gently curved arms. Include the two flowing arm shapes."
+    },
+    {
+      "name": "dancer-arms-wide",
+      "people": true,
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "9:16",
+      "height": 500,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body recital dancers in arms-wide pose or gait keyframes. Three identifiable dancers with circle, square and triangle badges. Front, back, left and right facings; left and right variants where the move changes side. Include start, midpoint and end keyframes. Clothing variants: default pink and cream, mint and navy, gold and violet; ballet rust and gold or sage and cream; jazz black and yellow or red and white; neutral cream and navy. Child-appropriate rehearsal clothing, complete bodies with space around feet and hands. Flat pure magenta key. Match house style. Pose geometry must preserve engine movement clues.",
+      "movement_requirements": "Open arms sideways. Include the guide facing front and back, with clear hand endpoints for the live my left and my right arrows. Also flow between raised and open arms."
+    },
+    {
+      "name": "dancer-walk",
+      "people": true,
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "9:16",
+      "height": 500,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body recital dancers in walk pose or gait keyframes. Three identifiable dancers with circle, square and triangle badges. Front, back, left and right facings; left and right variants where the move changes side. Include start, midpoint and end keyframes. Clothing variants: default pink and cream, mint and navy, gold and violet; ballet rust and gold or sage and cream; jazz black and yellow or red and white; neutral cream and navy. Child-appropriate rehearsal clothing, complete bodies with space around feet and hands. Flat pure magenta key. Match house style. Pose geometry must preserve engine movement clues.",
+      "movement_requirements": "Two-leg walking cycle, ordinary sharp walk for Rush Hour and smooth tiptoe walk with flowing arms for Autumn Leaves. Preserve front, back and travel profiles."
+    },
+    {
+      "name": "dancer-arabesque",
+      "people": true,
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "9:16",
+      "height": 500,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body recital dancers in arabesque pose or gait keyframes. Three identifiable dancers with circle, square and triangle badges. Front, back, left and right facings; left and right variants where the move changes side. Include start, midpoint and end keyframes. Clothing variants: default pink and cream, mint and navy, gold and violet; ballet rust and gold or sage and cream; jazz black and yellow or red and white; neutral cream and navy. Child-appropriate rehearsal clothing, complete bodies with space around feet and hands. Flat pure magenta key. Match house style. Pose geometry must preserve engine movement clues.",
+      "movement_requirements": "A long balanced line: one supporting leg, the other extended straight behind, torso inclining forward and arms extending. Include both leg choices."
+    },
+    {
+      "name": "dancer-sink-curl",
+      "people": true,
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "9:16",
+      "height": 500,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body recital dancers in sink-curl pose or gait keyframes. Three identifiable dancers with circle, square and triangle badges. Front, back, left and right facings; left and right variants where the move changes side. Include start, midpoint and end keyframes. Clothing variants: default pink and cream, mint and navy, gold and violet; ballet rust and gold or sage and cream; jazz black and yellow or red and white; neutral cream and navy. Child-appropriate rehearsal clothing, complete bodies with space around feet and hands. Flat pure magenta key. Match house style. Pose geometry must preserve engine movement clues.",
+      "movement_requirements": "A slow one-way sink from standing through a bent midpoint into a seated floor curl, head and gaze low. The final head height is about 0.57 of standing body height. No rebound."
+    },
+    {
+      "name": "dancer-stamp",
+      "people": true,
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "9:16",
+      "height": 500,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body recital dancers in stamp pose or gait keyframes. Three identifiable dancers with circle, square and triangle badges. Front, back, left and right facings; left and right variants where the move changes side. Include start, midpoint and end keyframes. Clothing variants: default pink and cream, mint and navy, gold and violet; ballet rust and gold or sage and cream; jazz black and yellow or red and white; neutral cream and navy. Child-appropriate rehearsal clothing, complete bodies with space around feet and hands. Flat pure magenta key. Match house style. Pose geometry must preserve engine movement clues.",
+      "movement_requirements": "A sharp lifted knee and stamping foot, then a grounded hit. Used on counts 4 and 8. Include both sides."
+    },
+    {
+      "name": "dancer-point",
+      "people": true,
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "9:16",
+      "height": 500,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body recital dancers in point pose or gait keyframes. Three identifiable dancers with circle, square and triangle badges. Front, back, left and right facings; left and right variants where the move changes side. Include start, midpoint and end keyframes. Clothing variants: default pink and cream, mint and navy, gold and violet; ballet rust and gold or sage and cream; jazz black and yellow or red and white; neutral cream and navy. Child-appropriate rehearsal clothing, complete bodies with space around feet and hands. Flat pure magenta key. Match house style. Pose geometry must preserve engine movement clues.",
+      "movement_requirements": "A sharp extended arm direction, stable feet and a clear freeze. Include different front/profile facings for the ending."
+    },
+    {
+      "name": "dancer-kick",
+      "people": true,
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "9:16",
+      "height": 500,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body recital dancers in kick pose or gait keyframes. Three identifiable dancers with circle, square and triangle badges. Front, back, left and right facings; left and right variants where the move changes side. Include start, midpoint and end keyframes. Clothing variants: default pink and cream, mint and navy, gold and violet; ballet rust and gold or sage and cream; jazz black and yellow or red and white; neutral cream and navy. Child-appropriate rehearsal clothing, complete bodies with space around feet and hands. Flat pure magenta key. Match house style. Pose geometry must preserve engine movement clues.",
+      "movement_requirements": "Clear kicks alternating with grounded steps. Keep supporting leg legible and foot extension clean. Include both kicking legs."
+    },
+    {
+      "name": "dancer-clap",
+      "people": true,
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "9:16",
+      "height": 500,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body recital dancers in clap pose or gait keyframes. Three identifiable dancers with circle, square and triangle badges. Front, back, left and right facings; left and right variants where the move changes side. Include start, midpoint and end keyframes. Clothing variants: default pink and cream, mint and navy, gold and violet; ballet rust and gold or sage and cream; jazz black and yellow or red and white; neutral cream and navy. Child-appropriate rehearsal clothing, complete bodies with space around feet and hands. Flat pure magenta key. Match house style. Pose geometry must preserve engine movement clues.",
+      "movement_requirements": "Hands meet in front of the chest for a crisp accent, then open. Two keyframes must support accents a quarter-count before beats 12 and 16."
+    },
+    {
+      "name": "dancer-star-jump",
+      "people": true,
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "9:16",
+      "height": 500,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body recital dancers in star-jump pose or gait keyframes. Three identifiable dancers with circle, square and triangle badges. Front, back, left and right facings; left and right variants where the move changes side. Include start, midpoint and end keyframes. Clothing variants: default pink and cream, mint and navy, gold and violet; ballet rust and gold or sage and cream; jazz black and yellow or red and white; neutral cream and navy. Child-appropriate rehearsal clothing, complete bodies with space around feet and hands. Flat pure magenta key. Match house style. Pose geometry must preserve engine movement clues.",
+      "movement_requirements": "One shared jump: low preparation, airborne star shape, grounded landing. Arms open high, legs spread in the air, feet reconnect to the same floor position."
+    },
+    {
+      "name": "dancer-sharp-freeze",
+      "people": true,
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "9:16",
+      "height": 500,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body recital dancers in sharp-freeze pose or gait keyframes. Three identifiable dancers with circle, square and triangle badges. Front, back, left and right facings; left and right variants where the move changes side. Include start, midpoint and end keyframes. Clothing variants: default pink and cream, mint and navy, gold and violet; ballet rust and gold or sage and cream; jazz black and yellow or red and white; neutral cream and navy. Child-appropriate rehearsal clothing, complete bodies with space around feet and hands. Flat pure magenta key. Match house style. Pose geometry must preserve engine movement clues.",
+      "movement_requirements": "Three distinct ending poses: pointing in profile, a clearly low crouch, and open arms in the opposite profile. Each freezes without a loop."
+    },
+    {
+      "name": "dancer-run",
+      "people": true,
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "9:16",
+      "height": 500,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body recital dancers in run pose or gait keyframes. Three identifiable dancers with circle, square and triangle badges. Front, back, left and right facings; left and right variants where the move changes side. Include start, midpoint and end keyframes. Clothing variants: default pink and cream, mint and navy, gold and violet; ballet rust and gold or sage and cream; jazz black and yellow or red and white; neutral cream and navy. Child-appropriate rehearsal clothing, complete bodies with space around feet and hands. Flat pure magenta key. Match house style. Pose geometry must preserve engine movement clues.",
+      "movement_requirements": "A complete running gait with alternating legs, bent elbows and a slight forward lean, for the Explorer room phrase."
+    },
+    {
+      "name": "dancer-reach",
+      "people": true,
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "9:16",
+      "height": 500,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body recital dancers in reach pose or gait keyframes. Three identifiable dancers with circle, square and triangle badges. Front, back, left and right facings; left and right variants where the move changes side. Include start, midpoint and end keyframes. Clothing variants: default pink and cream, mint and navy, gold and violet; ballet rust and gold or sage and cream; jazz black and yellow or red and white; neutral cream and navy. Child-appropriate rehearsal clothing, complete bodies with space around feet and hands. Flat pure magenta key. Match house style. Pose geometry must preserve engine movement clues.",
+      "movement_requirements": "Reach out toward the audience from downstage left, with body focus matching the reaching hands. Include a high eyes-up reach too."
+    },
+    {
+      "name": "dancer-bow",
+      "people": true,
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "9:16",
+      "height": 500,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body recital dancers in bow pose or gait keyframes. Three identifiable dancers with circle, square and triangle badges. Front, back, left and right facings; left and right variants where the move changes side. Include start, midpoint and end keyframes. Clothing variants: default pink and cream, mint and navy, gold and violet; ballet rust and gold or sage and cream; jazz black and yellow or red and white; neutral cream and navy. Child-appropriate rehearsal clothing, complete bodies with space around feet and hands. Flat pure magenta key. Match house style. Pose geometry must preserve engine movement clues.",
+      "movement_requirements": "Move from standing into a respectful forward bow, then return upright for the repeat. Include front and back views."
+    }
+  ]
+}

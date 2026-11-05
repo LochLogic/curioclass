@@ -1,0 +1,25 @@
+{
+  "id": "traveling-art-show",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Six artworks. Ten spots. Can your library show survive a month?",
+  "outcome": "Choose artworks with a theme and protect, place and label them for a library show",
+  "driver": "students or teacher",
+  "minutes": "15-30",
+  "grades_label": "Grades 3-5",
+  "modes": [
+    "Look around",
+    "Shows",
+    "Library and museum"
+  ],
+  "sources": [
+    "Canadian Conservation Institute: Agent of Deterioration, Light, Ultraviolet and Infrared; Incorrect Relative Humidity; Incorrect Temperature",
+    "Library of Congress: Care, Handling and Storage of Works on Paper",
+    "Northeast Document Conservation Center: Matting and Framing for Art and Artifacts on Paper",
+    "Image Permanence Institute: Graphics Atlas, inkjet",
+    "American Alliance of Museums: What is a museum?; American Library Association: Libraries Transform",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-01"
+}

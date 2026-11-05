@@ -1,0 +1,1176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Theory Gym · Keys, cadences and modulation · Curio Class</title>
+<meta name="description"
+  content="Slide a key lens over a score, hear the harmony, and work through intervals, keys, cadences and pivot chords. Grades 9-12. Offline.">
+<!--
+Theory Gym, Curio Class. Based on kit/starter/src.html. Grades 9-12 music, NCAS MU:Re7 and MU:Re8.
+Music examples written for Curio Class. Theory: Open Music Theory, Kostka and Payne, Tonal Harmony.
+Circle of fifths: Britannica, Key. Full sources and teaching notes in notes.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. One offline file. No network requests. Progress stays on this device.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --paper:#f6ecd9;--ink:#1d1b16;--muted:#5f5848;--brand:#1f4fd1;--brand-ink:#fff;
+  --line:#c3b79d;--focus:#1f4fd1;--btn:#f6ecd9;--btn-line:#a99e85;--head-ink:#1d1b16;
+  --head-bg:#f6ecd9;--panel:#f6ecd9;--sec-bg:#f6ecd9;--fits:#276b35;--outside:#b3261e;
+  color-scheme:light;
+}
+body {height:100%;min-height:0;overflow:hidden;background:#bf935c}
+header {min-height:64px;padding:6px 20px;gap:14px;flex-wrap:nowrap;border-bottom:3px solid var(--brand)}
+h1 {font-size:25px;font-weight:850;letter-spacing:-.7px;text-transform:uppercase}
+h1 small {font-size:12px;letter-spacing:.08em;font-weight:500;text-transform:none;margin-top:4px}
+.seg {border:1px solid var(--brand);border-radius:5px;flex-shrink:0}
+.seg button,.icon-btn {min-width:44px;min-height:44px;font-size:13px;padding:0 13px}
+.icon-btn {border-width:1px;border-radius:5px;background:#fff8e9}
+.seg button {background:transparent;color:var(--brand)}
+.seg button[aria-pressed=true] {background:var(--brand);color:#fff}
+main {display:grid;grid-template-columns:minmax(0,1fr) 424px;gap:16px;padding:16px;min-height:0;
+  background:linear-gradient(#66432214,#66432214),url('art:maple-court') center/cover}
+.panel {grid-column:2;grid-row:1;border:1px solid #ac9776;padding:18px;gap:15px;border-radius:4px;
+  box-shadow:0 5px 16px #51311335;overflow:auto;min-height:0;background:linear-gradient(120deg,#fff9ec,#f0e5ce)}
+.eyebrow {font:700 11px/1.4 Consolas,monospace;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.hint {margin:0;min-height:70px;font-size:15px;line-height:1.45;border-left:3px solid var(--brand);padding-left:10px}
+.picker {display:grid;gap:6px}
+label {font-size:12px;font-weight:700;color:var(--muted)}
+select {font:600 14px 'Segoe UI',sans-serif;color:var(--ink);background:#fff9ec;border:1px solid #a39578;
+  border-radius:4px;min-height:44px;max-width:100%;padding:0 9px;width:100%}
+.btn {min-height:44px;min-width:44px;padding:0 13px;font-size:13px;border-radius:4px;background:linear-gradient(#fffaf0,#ede1c9);
+  border:1px solid #9d8d70;color:var(--ink);box-shadow:0 2px 0 #8d755538;font-weight:650}
+.btn[aria-pressed=true],.primary {background:var(--brand);color:#fff;border-color:var(--brand)}
+.btn:active {transform:translateY(1px);box-shadow:none}
+.btn:disabled {opacity:.5}
+.smallprint {font-size:11px;line-height:1.5;color:var(--muted);margin:0}
+.piano-art {min-height:130px;flex:1;background:#151818 url('art:piano-detail') center/cover;border:1px solid #67533a;
+  box-shadow:inset 0 0 35px #0005;border-radius:3px;position:relative}
+.piano-art::after {content:'';position:absolute;inset:0;background:linear-gradient(transparent,#0006)}
+.workbench {grid-column:1;grid-row:1;min-height:0;display:flex;flex-direction:column;gap:0;
+  box-shadow:0 8px 24px #49331955;border-radius:5px;background:#fffbf0;border:1px solid #ad9875;overflow:hidden}
+.score-heading {display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 20px 4px}
+.score-heading h2 {font:400 28px/1.1 Georgia,serif;margin:3px 0 0;letter-spacing:-.5px}
+.score-heading .serial {font:13px Consolas,monospace;letter-spacing:.1em;color:var(--muted);white-space:nowrap}
+.score-scroll {overflow-x:auto;overflow-y:hidden;min-height:0;flex:1;position:relative;overscroll-behavior-x:contain;
+  background:radial-gradient(ellipse at 15% 5%,#fffef9,transparent 80%),#fffaf0}
+#score {width:100%;height:100%;min-width:630px;min-height:0;display:block}
+#score .note {fill:var(--ink);stroke:#1d1b16;stroke-width:1}
+#score .out-note {fill:var(--outside)}
+#score .note-group {transition:opacity .15s}
+#score .tone-ring {fill:none;stroke:var(--outside);stroke-width:2}
+#score .numeral {font:700 17px Georgia,serif;fill:var(--brand)}
+#score .numeral.second {fill:var(--fits)}
+#score .ledger {stroke:#625841;stroke-width:1}
+#score .hot {fill:#1f4fd115;stroke:var(--brand);stroke-width:1.5}
+#score .resolved {fill:#276b3510;stroke:#276b35;stroke-width:1.5}
+#score .evidence {fill:none;stroke:#276b35;stroke-width:2.5}
+#score .tap-area {fill:transparent;cursor:pointer}
+#score .tap-area:focus-visible {outline:none;fill:#1f4fd116;stroke:var(--brand);stroke-width:3}
+.lenses {padding:0 18px 5px;display:grid;gap:4px;border-top:1px solid #d0c3a7;background:#faf2e2}
+.lens {display:flex;align-items:center;gap:7px;min-height:50px;border:1.5px solid var(--brand);border-radius:4px;
+  background:linear-gradient(110deg,#dbe8ffb3,#edf3ffdd);padding:4px 8px;position:relative;touch-action:pan-y}
+.lens.two {border-color:var(--fits);background:linear-gradient(110deg,#e0efdfd9,#f2f7eddd)}
+.lens-index {font:700 11px Consolas,monospace;letter-spacing:.08em;color:var(--brand)}
+.two .lens-index {color:var(--fits)}
+.key-name {font:700 18px Georgia,serif;flex:1;text-align:center;white-space:nowrap;min-width:84px;cursor:ew-resize;
+  min-height:44px;display:flex;align-items:center;justify-content:center;user-select:none}
+.key-name:focus-visible {outline-offset:0}
+.lens .arrow {font-size:17px;background:#fffc;box-shadow:none;padding:0;width:44px}
+.lens .quality {min-width:64px;font-size:12px;padding:0 8px;background:#ffffffb3;box-shadow:none}
+.lens .quality[aria-pressed=true] {background:var(--brand);color:white}
+.lens .lock {font-size:12px;min-width:68px;padding:0 9px;box-shadow:none}
+.fit-count {font-size:12px;font-weight:650;color:var(--brand);text-align:right;min-width:125px}
+.two .fit-count {color:var(--fits)}
+.lens.locked::before {content:'✓';position:absolute;left:-12px;top:15px;background:var(--fits);color:white;
+  border-radius:50%;height:23px;width:23px;text-align:center;line-height:23px}
+.transport {display:flex;align-items:center;gap:8px;padding:5px 18px;border-top:1px solid #cabc9e;background:#eee1c7}
+#play {min-width:136px}
+#play[aria-pressed=true] {background:var(--brand);color:#fff}
+.playing-light {display:inline-block;width:7px;height:7px;border-radius:50%;background:#276b35;margin-right:6px;
+  box-shadow:0 0 0 4px #276b3518;animation:breathe 3s infinite}
+@keyframes breathe {50%{opacity:.35}}
+.calm .playing-light {animation:none!important}
+.legend {font-size:11px;color:var(--muted);margin-left:auto;text-align:right}
+.answers {display:flex;flex-direction:column;gap:4px;padding:5px 18px;border-top:1px solid #d0c3a7;background:#fff9ed}
+.answer-row {display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.answer-row .label {font:700 11px Consolas,monospace;text-transform:uppercase;color:var(--muted);min-width:56px}
+.answer-row button {flex:1;min-width:44px;padding:0 7px;font-size:12px}
+.rep-actions {display:flex;gap:8px;align-items:center}
+.rep-actions .next {margin-left:auto}
+#result {font-size:13px;line-height:1.4;min-height:32px;border-left:3px solid #a88e58;padding:4px 10px;
+  background:#f3e8d0;margin:0}
+#result.success {border-color:var(--fits);background:#e8efdd}
+.keyboard {height:56px;flex-shrink:0;position:relative;overflow:hidden;background:#24262a;
+  border-top:5px solid #45382a;display:flex;align-items:stretch;padding:0 18px 7px;gap:0}
+.keyboard .white {flex:1;position:relative;border:1px solid #a19b8b;border-top:0;border-radius:0 0 3px 3px;
+  background:linear-gradient(90deg,#e7e2d5,#fffaf0 45%,#eee5d2);box-shadow:inset 0 -4px 0 #d0c5af}
+.keyboard .black {position:absolute;z-index:1;top:0;width:60%;height:61%;right:-30%;border-radius:0 0 3px 3px;
+  background:linear-gradient(90deg,#17191e,#414248 60%,#18191d);box-shadow:0 3px 3px #0007;border:1px solid #0d0f14}
+.keyboard .lit {background:#99b9ff;box-shadow:inset 0 -4px 0 var(--brand)}
+.keyboard .black.lit {background:#1f4fd1;box-shadow:0 0 10px #86adff}
+.keyboard .key-label {position:absolute;bottom:6px;width:100%;text-align:center;font:10px Consolas,monospace;color:#584e3d}
+.keyboard-caption {background:#24262a;color:#ede6d7;font:11px Consolas,monospace;padding:5px 18px;min-height:23px}
+.rep-board {display:grid;gap:14px}
+.set-label {font-size:12px;font-weight:750;margin:0 0 5px}
+.tiles {display:flex;gap:3px}
+.tile {min-height:44px;min-width:0;width:100%;flex:1;padding:0;border:1px solid #b2a182;background:#fffbef;
+  border-radius:3px;font-size:12px;position:relative}
+.tile[aria-pressed=true] {outline:2px solid var(--brand);outline-offset:-2px;color:var(--brand);background:#e6edff}
+.dot {display:block;height:6px;width:6px;border:1px solid var(--fits);border-radius:50%;margin:4px auto 0}
+.dot.full {background:var(--fits)}
+.dot.empty {border-color:transparent}
+#reps-open {display:block}
+.privacy-note {font-size:11px;color:var(--muted);margin:0;padding:3px 10px;background:#f6ecd9}
+dialog {color:var(--ink);background:#f6ecd9;border:2px solid #8a795d;border-radius:6px;padding:18px;
+  width:min(520px,95vw);box-shadow:0 12px 80px #0008;max-height:95vh;overflow:auto}
+dialog::backdrop {background:#171f3470}
+.dialog-head {display:flex;gap:10px;justify-content:space-between;align-items:center;margin-bottom:14px}
+.dialog-head h2 {font:24px Georgia,serif;margin:0}
+#confirm p {line-height:1.5;font-size:15px}
+@media (max-width:1100px),(max-height:650px) {
+  header {min-height:54px;padding:5px 12px;gap:8px}
+  h1 {font-size:21px}
+  h1 small {display:none}
+  .seg button,.icon-btn {font-size:12px;padding:0 9px}
+  main {padding:10px;gap:8px;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
+  .panel {grid-column:1;grid-row:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,32%) auto;
+    padding:7px 10px;gap:10px;align-items:center;overflow:visible}
+  .panel>.eyebrow,.panel .piano-art,.panel .smallprint,.panel>.rep-board,.panel>#clear {display:none!important}
+  .hint {min-height:0;font-size:12px;line-height:1.35;margin:0;padding-left:7px}
+  .picker {gap:0}
+  .picker label {display:none}
+  .picker select {font-size:12px}
+  #reps-open {display:block}
+  .workbench {grid-column:1;grid-row:2}
+  .score-heading {padding:8px 16px 0}
+  .score-heading h2 {font-size:23px}
+  #score {min-height:0;min-width:610px}
+  .score-heading .eyebrow {font-size:10px}
+  .lenses {padding:0 10px 5px}
+  .lens {min-height:50px;gap:5px;padding:2px 5px}
+  .key-name {font-size:17px}
+  .transport {padding:5px 10px}
+  .keyboard {height:48px;padding-bottom:4px}
+  .keyboard-caption {font-size:10px;padding:3px 10px;min-height:19px}
+  .answers {padding:5px 10px;gap:4px}
+  #result {font-size:12px;min-height:33px}
+  .rep-actions .btn {font-size:12px;padding:0 8px}
+}
+@media (max-height:510px) and (min-width:600px) {
+  .icon-btn {width:60px;min-width:60px;padding:0 4px;font-size:11px}
+  main {padding:5px 8px;gap:5px}
+  .panel {padding:3px 8px}
+  .score-heading {padding:3px 12px 0}
+  .score-heading h2 {font-size:19px;margin:0}
+  .score-heading .eyebrow,.score-heading .serial {display:none}
+  .score-scroll {flex:1}
+  #score {min-height:0}
+  .keyboard,.keyboard-caption {display:none}
+  .transport {display:contents}
+  #play {position:fixed;top:5px;left:155px;min-width:130px;height:44px;z-index:3}
+  #two {position:fixed;top:5px;left:289px;width:48px;min-width:48px;height:44px;padding:0 3px;font-size:11px;z-index:3}
+  .legend {display:none}
+  body[data-two="true"] .score-heading,body[data-two="true"] .privacy-note {display:none}
+  .transport {padding:3px 8px}
+  .lenses {padding-bottom:3px;gap:3px}
+  .lens {min-height:48px}
+  body.workout .score-heading {display:none}
+  body.workout #score {min-height:0}
+  body.workout .legend {display:none}
+  body.workout .transport {display:contents}
+  body.workout #play {position:fixed;top:5px;left:155px;min-width:130px;height:44px;z-index:3}
+  body.workout .answers {gap:3px;padding-top:3px;padding-bottom:3px}
+  body.workout #result {font-size:11px;min-height:25px;padding:2px 7px}
+  body.workout .answer-row {gap:3px}
+  body.workout .answer-row .label {display:none}
+  body.workout .answer-row .btn {font-size:11px}
+  body.workout .privacy-note {display:none}
+  body.workout #result {display:none}
+  body.workout[data-set="3"] .lenses {grid-template-columns:1fr 1fr;gap:5px}
+  body.workout[data-set="3"] .lens {gap:2px;padding:2px 4px 16px;min-width:0}
+  body.workout[data-set="3"] .lens-index {display:none}
+  body.workout[data-set="3"] .key-name {min-width:65px;font-size:15px}
+  body.workout[data-set="3"] .quality {min-width:49px;padding:0 3px;font-size:11px}
+  body.workout[data-set="3"] .lock {min-width:58px;padding:0 4px;font-size:11px}
+  body.workout[data-set="3"] .fit-count {position:absolute;left:4px;bottom:0;font-size:10px;text-align:left}
+}
+@media (max-height:650px) and (min-width:600px) {
+  body.workout .score-heading {display:none}
+  body.workout[data-set="2"] .keyboard-caption {display:none}
+  body.workout[data-set="3"] .lenses {grid-template-columns:1fr 1fr;gap:5px}
+  body.workout[data-set="3"] .lens {gap:3px;padding:2px 5px 16px;min-width:0}
+  body.workout[data-set="3"] .lens-index {display:none}
+  body.workout[data-set="3"] .key-name {min-width:65px;font-size:15px}
+  body.workout[data-set="3"] .quality {min-width:49px;padding:0 3px;font-size:11px}
+  body.workout[data-set="3"] .lock {min-width:58px;padding:0 4px;font-size:11px}
+  body.workout[data-set="3"] .fit-count {position:absolute;left:4px;bottom:0;font-size:10px;text-align:left}
+}
+@media (max-width:599px) {
+  body {height:100%;overflow:auto}
+  header {flex-wrap:wrap;padding:7px 10px;gap:6px}
+  h1 {flex-basis:100%;font-size:24px}
+  .seg button,.icon-btn {padding:0 8px;font-size:11px}
+  main {padding:8px;gap:7px;min-height:0;overflow:visible}
+  .panel {grid-template-columns:minmax(0,1fr) auto;gap:5px;padding:7px}
+  .hint {grid-column:1/-1;font-size:12px;min-height:35px}
+  .picker {grid-column:1}
+  #reps-open {grid-column:2;grid-row:2}
+  .workbench {min-height:0;overflow:visible}
+  .score-heading {padding:9px 10px 2px}
+  .score-heading h2 {font-size:23px}
+  .score-heading .serial {display:none}
+  .score-scroll {height:247px;min-height:247px;flex:none}
+  #score {height:247px;min-width:690px}
+  body.workout .score-scroll {height:200px;min-height:200px}
+  body.workout #score {height:200px}
+  body.workout[data-set="0"] #score {min-width:0}
+  .lenses {padding:0 6px 5px}
+  .lens {flex-wrap:wrap;gap:3px;padding:3px;min-height:76px}
+  .lens-index {display:none}
+  .lens .arrow {width:44px}
+  .key-name {font-size:17px;min-width:90px}
+  .lens .quality {min-width:57px;padding:0 4px}
+  .fit-count {width:100%;text-align:left;font-size:11px;padding-left:5px;min-width:0}
+  .lens .lock {position:static;min-height:44px;height:44px;font-size:11px}
+  body.workout .lens .fit-count {flex:1 1 200px;width:auto;min-height:44px;display:flex;align-items:center}
+  .legend {font-size:10px}
+  .transport {padding:5px 6px;gap:4px;flex-wrap:wrap}
+  #play {min-width:125px}
+  .transport .btn {font-size:12px;padding:0 7px}
+  .legend {width:100%;text-align:left}
+  .answers {padding:6px;gap:6px}
+  .answer-row {gap:3px}
+  .answer-row .label {width:100%;font-size:10px}
+  .answer-row button {font-size:11px;padding:0 3px}
+  .rep-actions {gap:4px}
+  .rep-actions .btn {font-size:11px;padding:0 6px}
+  body.workout .transport {display:none}
+  .rep-actions #play {min-width:86px;flex:1;padding:0 3px;font-size:11px}
+  body.workout .privacy-note {order:-1}
+  .keyboard {height:48px;padding:0 6px 4px}
+  .keyboard-caption {padding:4px 6px;font-size:10px}
+  .keyboard .key-label {font-size:10px}
+  .lenses,.answers {position:relative}
+  dialog .tiles {display:grid;grid-template-columns:repeat(4,1fr)}
+}
+@media (min-height:511px) {
+  #sound {width:96px;flex-shrink:0;white-space:nowrap}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Theory Gym<small>keys, cadences and modulation</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-lens" aria-pressed="true">Lens</button>
+    <button id="m-workout" aria-pressed="false">Workout</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <aside class="panel">
+    <div class="eyebrow">Listen. Read. Find home.</div>
+    <p class="hint" id="hint"></p>
+    <div class="picker" id="passage-picker">
+      <label for="passage">Passage</label>
+      <select id="passage" aria-label="Passage"></select>
+    </div>
+    <button class="btn" id="reps-open">Reps</button>
+    <div class="rep-board" id="rep-board" hidden></div>
+    <button class="btn" id="clear" hidden>Clear progress</button>
+    <div class="piano-art" aria-hidden="true"></div>
+    <p class="smallprint" id="progress-note">Progress saves here. It never leaves this device.</p>
+  </aside>
+  <section class="workbench" aria-label="Interactive score and key lenses">
+    <div class="score-heading">
+      <div><div class="eyebrow" id="score-kicker">Key lens / Explore</div><h2 id="score-title">Find a place to land.</h2></div>
+      <span class="serial" id="score-serial">01 / 17</span>
+    </div>
+    <div class="score-scroll" id="score-scroll" aria-label="Score, scroll sideways on narrow screens">
+      <svg id="score" role="group" aria-label="Grand staff. Tap a note or chord to hear it."></svg>
+    </div>
+    <div class="lenses" id="lenses">
+      <div class="lens" id="lens-0">
+        <span class="lens-index">LENS 01</span>
+        <button class="btn arrow" id="prev-0" aria-label="Lens 1, previous key">◀</button>
+        <div class="key-name" id="key-0" role="slider" tabindex="0" aria-label="Lens 1 key" aria-valuemin="0" aria-valuemax="11"></div>
+        <button class="btn arrow" id="next-0" aria-label="Lens 1, next key">▶</button>
+        <button class="btn quality" id="quality-0" aria-label="Lens 1, switch major or minor">Major</button>
+        <span class="fit-count" id="fit-0"></span>
+        <button class="btn lock primary" id="lock-0" aria-label="Lock in lens 1" hidden>Lock in</button>
+      </div>
+      <div class="lens two" id="lens-1" hidden>
+        <span class="lens-index">LENS 02</span>
+        <button class="btn arrow" id="prev-1" aria-label="Lens 2, previous key">◀</button>
+        <div class="key-name" id="key-1" role="slider" tabindex="0" aria-label="Lens 2 key" aria-valuemin="0" aria-valuemax="11"></div>
+        <button class="btn arrow" id="next-1" aria-label="Lens 2, next key">▶</button>
+        <button class="btn quality" id="quality-1" aria-label="Lens 2, switch major or minor">Major</button>
+        <span class="fit-count" id="fit-1"></span>
+        <button class="btn lock primary" id="lock-1" aria-label="Lock in lens 2" hidden>Lock in</button>
+      </div>
+    </div>
+    <div class="answers" id="answers" hidden>
+      <div class="answer-row" id="numbers" role="group" aria-label="Interval number" hidden></div>
+      <div class="answer-row" id="qualities" role="group" aria-label="Interval quality" hidden></div>
+      <div class="answer-row" id="cadences" role="group" aria-label="Cadence" hidden></div>
+      <p id="result" role="status" aria-live="polite"></p>
+      <div class="rep-actions">
+        <button class="btn primary" id="check">Check</button>
+        <button class="btn" id="spot">Spot me <span id="hint-count">0/2</span></button>
+        <button class="btn next" id="next-rep">Next rep →</button>
+      </div>
+    </div>
+    <div class="transport">
+      <button class="btn" id="play" aria-pressed="false">▶ Play passage</button>
+      <button class="btn" id="two" aria-pressed="false">Two lenses</button>
+      <span class="legend"><span class="playing-light"></span><span id="legend-text">Ring + ×: outside key</span></span>
+    </div>
+    <div class="keyboard" id="keyboard" role="img" aria-label="Piano keyboard showing played notes"></div>
+    <div class="keyboard-caption" id="keyboard-caption">Tap a chord or note to see its keys.</div>
+    <p class="privacy-note">Progress stays on this device.</p>
+  </section>
+</main>
+<dialog id="rep-dialog" aria-label="Choose a rep">
+  <div class="dialog-head"><h2>Your workout</h2><button class="btn" id="reps-close">Done</button></div>
+  <div class="rep-board" id="dialog-board"></div>
+  <p class="smallprint">● Solved without hints. ○ Solved with hints. Progress never leaves this device.</p>
+  <button class="btn" id="dialog-clear">Clear progress</button>
+</dialog>
+<dialog id="confirm" aria-label="Clear progress confirmation">
+  <p>Clear all saved progress on this device?</p>
+  <div class="answer-row"><button class="btn" id="cancel-clear">Keep progress</button>
+    <button class="btn primary" id="confirm-clear">Clear progress</button></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const DATA = "json:content";
+  const LETTERS = 'CDEFGAB';
+  const PCS = [0, 2, 4, 5, 7, 9, 11];
+  const SET_NAMES = ['Warm-up: intervals', 'Set 1: Find the key', 'Set 2: Name the cadence', 'Set 3: Find the pivot'];
+  const LENGTHS = [8, 6, 6, 5];
+  const L = {
+    welcomeLens:'Slide the lens with the arrow buttons. Watch which chords fit and which notes light up.',
+    twoHow:'Two lenses. Slide the green one too. A gold bracket marks a chord that fits both keys.',
+    welcomeWorkout:'Tap Reps, then tap a rep tile to start a set.',
+    warmupHow:'Pick the number, then the quality, then press Check.',
+    set1How:'Slide the lens to the key, then press Lock in.',
+    set2How:'Read the last two chords, then tap the cadence name.',
+    set3How:'Slide each lens to its key and press its Lock in. Then tap the pivot chord.',
+    right:"That's it.",
+    outside:'Some notes are still outside the lens.',
+    notHome:"Every note fits, but it doesn't end on home. Which key ends here?",
+    tooEarly:"That one fits both keys too, but the music hasn't turned yet. Look later.",
+    tooLate:'Too late. The music already turned. Look one chord earlier.',
+    stillOld:'That chord is still only in the first key. Look later.',
+    closePerfect:'Close. Look at the top note of the last chord.',
+    itEndsOnVi:'It ends on vi, not V.',
+    readAgain:'Read the last two numerals again.',
+    numberRight:'Number right, quality wrong.',
+    qualityRight:'Quality right, number wrong.',
+    bothWrong:'Count the letter names and half steps again.',
+    missing:'Pick a number and a quality first.',
+    missingCadence:'Pick a cadence first.',
+    missingKeys:'Lock in both keys first. Then tap the pivot chord.',
+    openingRight:'Opening key locked. Set the green lens and press its Lock in.',
+    closingRight:'Closing key locked. Set the blue lens and press its Lock in.',
+    choosePivot:'Both keys locked. Tap the pivot chord.',
+    wrongOpening:'Find the opening home chord. Set the blue lens and press its Lock in.',
+    wrongClosing:'Find the closing home chord. Set the green lens and press its Lock in.',
+    setDone:'Set complete. Tap Next rep to start the next set.',
+    lastSetDone:'Set complete. Tap Reps to revisit a set.',
+    workoutDone:'All 25 reps saved. Tap Reps to revisit a set.',
+    cleared:'Progress cleared. Tap a rep tile to start again.',
+    hintWarm1:'Count the letter names, counting both notes.',
+    hintWarm2:'Now count half steps on the keyboard.',
+    hintKey1:'Find a note with a sharp or flat. Which keys have it?',
+    hintKey2:'Look at the last chord or note. Is it home?',
+    hintCadence1:'Read the numerals of the last two chords.',
+    hintCadence2:'Is the tonic on top at the end?',
+    hintPivot1:'Find the first chord only the second lens fits.',
+    hintPivot2:'The pivot is just before it.'
+  };
+  let saved = {};
+  let storageOK = true;
+  try { saved = JSON.parse(localStorage.getItem('theory-gym-progress-v1') || '{}'); } catch { storageOK = false; }
+  if (!saved || typeof saved !== 'object' || Array.isArray(saved)) saved = {};
+  const state = {
+    mode:'lens', passage:0, set:0, rep:0, lenses:[0, 1], two:false, number:null, quality:null, cadence:null,
+    hints:0, hintHistory:[], wrong:0, solved:false, locks:[false, false], playing:false, active:-1, progress:saved,
+    attempt:0, revision:0, moved:[false, false], pickedRep:false, result:''
+  };
+  let ac = null;
+  let nodes = [];
+  let playToken = 0;
+  let pendingVoice = [];
+  let pendingRead = false;
+  let layoutFrame = 0;
+  let heldScore = false;
+  let redrawPending = false;
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
+    speaks:'#play, #check, #lock-0, #lock-1, .tile',
+    welcome:() => state.mode === 'lens'
+      ? ['welcomeLens', {valid:() => !state.moved[0] && !state.playing}]
+      : ['welcomeWorkout', {valid:() => !state.pickedRep && !state.playing}]
+  });
+  const pc = note => (PCS[LETTERS.indexOf(note[0])] + (note.match(/#/g) || []).length
+    - (note.match(/b/g) || []).length + 24) % 12;
+  const midi = note => 12 * (Number(note.slice(-1)) + 1) + PCS[LETTERS.indexOf(note[0])]
+    + (note.match(/#/g) || []).length - (note.match(/b/g) || []).length;
+  const pitch = note => note.slice(0, -1);
+  const pretty = text => text.replace(/#/g, '♯').replace(/b(?=\b|[0-9])/g, '♭');
+  const keyName = key => pretty(key.tonic) + (key.minor ? ' minor' : ' major');
+  const rawKeyName = key => key.tonic + (key.minor ? ' minor' : ' major');
+  const keyByName = name => DATA.keys.findIndex(key => rawKeyName(key) === name);
+  const current = () => state.mode === 'workout' && state.set === 0 ? DATA.warmups[state.rep] : DATA.passages[state.passage];
+  const isWarm = () => state.mode === 'workout' && state.set === 0;
+  const isPivot = () => state.mode === 'workout' && state.set === 3;
+  const key = i => DATA.keys[state.lenses[i]];
+  const same = (a, b) => a.length === b.length && a.every(n => b.includes(n));
+  function numeral(notes, k) {
+    return Object.entries(k.vocab).find(([, tones]) => same(notes, tones))?.[0] || '?';
+  }
+  function degree(note, k) {
+    const at = k.scale.indexOf(note);
+    if (at >= 0) return String(at + 1);
+    if (k.minor && k.raised.includes(note)) return 'raised ' + (k.raised.indexOf(note) + 6);
+    return '?';
+  }
+  function fitsNote(note, k) { return degree(note, k) !== '?'; }
+  function labels(p, k) {
+    return p.notes.map(tones => p.melody ? degree(tones[0], k) : numeral(tones, k));
+  }
+  function hint(text) { $('hint').textContent = text; }
+  function narrate(id, how = false, valid = () => true, needs = []) {
+    const completion = ['setDone','lastSetDone','workoutDone'].includes(id);
+    const options = {valid, needs, hint:false, now:!how && !completion};
+    if (state.playing) pendingVoice.push([id, how, options]);
+    else if (how) V.how(id, options);
+    else V.say(id, options);
+  }
+  function howKey() { return ['warmupHow', 'set1How', 'set2How', 'set3How'][state.set]; }
+  function waiting() {
+    if (state.mode === 'lens') return L.welcomeLens;
+    if (state.solved) return 'Rep solved. Tap Next rep, or choose another rep tile.';
+    if (isPivot() && state.locks.every(Boolean)) return L.choosePivot;
+    return L[howKey()];
+  }
+  function stopPassage(clear = true) {
+    playToken++;
+    state.playing = false;
+    state.active = -1;
+    for (const node of nodes) { try { node.stop(); } catch {} }
+    nodes = [];
+    if (clear) { pendingVoice = []; pendingRead = false; }
+    $('play').textContent = '▶ Play passage';
+    $('play').setAttribute('aria-pressed', false);
+    document.querySelectorAll('.hot').forEach(e => e.remove());
+  }
+  function audio() {
+    if (!Curio.sound) return null;
+    if (!ac) ac = new (window.AudioContext || window.webkitAudioContext)();
+    if (ac.state === 'suspended') ac.resume();
+    return ac;
+  }
+  function piano(note, time, gain = .12) {
+    const ctx = audio();
+    if (!ctx) return;
+    const f = 440 * 2 ** ((midi(note) - 69) / 12);
+    for (const [ratio, level] of [[1, 1], [2, .45], [3, .2], [4, .1], [5, .05]]) {
+      const oscillator = ctx.createOscillator();
+      const envelope = ctx.createGain();
+      const filter = ctx.createBiquadFilter();
+      oscillator.type = 'triangle';
+      oscillator.frequency.value = f * ratio;
+      filter.type = 'lowpass';
+      filter.frequency.value = f * 9;
+      envelope.gain.setValueAtTime(0, time);
+      envelope.gain.linearRampToValueAtTime(gain * level, time + .008);
+      envelope.gain.exponentialRampToValueAtTime(.0001, time + 1.4);
+      oscillator.connect(envelope).connect(filter).connect(ctx.destination);
+      oscillator.start(time);
+      oscillator.stop(time + 1.5);
+      nodes.push(oscillator);
+      oscillator.onended = () => { nodes = nodes.filter(n => n !== oscillator); oscillator.disconnect(); };
+    }
+  }
+  function playTones(notes) {
+    const ctx = audio();
+    if (ctx) notes.forEach((n, i) => piano(n, ctx.currentTime + .015 * i, .13 / Math.sqrt(notes.length)));
+    lightKeys(notes);
+  }
+  async function playPassage() {
+    if (state.playing) { stopPassage(); drawScore(); return; }
+    V.hush();
+    stopPassage();
+    state.playing = true;
+    const token = ++playToken;
+    $('play').textContent = '■ Stop passage';
+    $('play').setAttribute('aria-pressed', true);
+    const p = current();
+    const sequence = isWarm() ? [[p.low], [p.high], [p.low, p.high]] : p.voices;
+    for (let i = 0; i < sequence.length; i++) {
+      if (token !== playToken) return;
+      state.active = isWarm() ? Math.min(i, 1) : i;
+      drawScore();
+      playTones(sequence[i]);
+      await Curio.wait(820);
+    }
+    if (token !== playToken) return;
+    state.playing = false;
+    state.active = -1;
+    $('play').textContent = '▶ Play passage';
+    $('play').setAttribute('aria-pressed', false);
+    drawScore();
+    if (pendingRead) {
+      pendingRead = false;
+      V.read();
+    }
+    for (const [id, how, opts] of pendingVoice.splice(0)) {
+      if (how) V.how(id, opts);
+      else V.say(id, opts);
+    }
+  }
+  function keyboard() {
+    $('keyboard').innerHTML = '';
+    for (let n = 40; n <= 83; n++) {
+      if ([1, 3, 6, 8, 10].includes(n % 12)) continue;
+      const white = document.createElement('div');
+      white.className = 'white';
+      white.dataset.midi = n;
+      if (n % 12 === 0) white.innerHTML = `<span class="key-label">C${Math.floor(n / 12) - 1}</span>`;
+      if ([0, 2, 5, 7, 9].includes(n % 12) && n < 83) {
+        white.innerHTML += `<div class="black" data-midi="${n + 1}"></div>`;
+      }
+      $('keyboard').append(white);
+    }
+  }
+  function lightKeys(notes) {
+    document.querySelectorAll('[data-midi]').forEach(e => e.classList.toggle('lit', notes.some(n => midi(n) === +e.dataset.midi)));
+    const p = current();
+    $('keyboard-caption').textContent = isWarm()
+      ? `${pretty(p.low)} → ${pretty(p.high)} · ${p.steps} half steps`
+      : notes.map(pretty).join(' · ');
+    $('keyboard').setAttribute('aria-label', 'Played notes: ' + notes.map(pretty).join(', '));
+  }
+  const svg = (tag, attrs, content = '') => `<${tag} ${Object.entries(attrs).map(([n, v]) => `${n}="${v}"`).join(' ')}>${content}</${tag}>`;
+  function noteY(note, bass, spacing, top) {
+    const step = Number(note.slice(-1)) * 7 + LETTERS.indexOf(note[0]);
+    const base = bass ? 2 * 7 + LETTERS.indexOf('G') : 4 * 7 + LETTERS.indexOf('E');
+    return top + spacing * 4 - (step - base) * spacing / 2;
+  }
+  function noteSVG(note, x, bass, k, top, spacing) {
+    const y = noteY(note, bass, spacing, top);
+    const name = pitch(note);
+    const outside = !isWarm() && !fitsNote(name, k);
+    const secondOutside = !isWarm() && state.two && !fitsNote(name, key(1));
+    let s = '';
+    const bottom = top + spacing * 4;
+    if (y < top - 2) {
+      for (let ly = top - spacing; ly >= y - 2; ly -= spacing) s += svg('line', {x1:x-13,x2:x+13,y1:ly,y2:ly,class:'ledger'});
+    }
+    if (y > bottom + 2) {
+      for (let ly = bottom + spacing; ly <= y + 2; ly += spacing) s += svg('line', {x1:x-13,x2:x+13,y1:ly,y2:ly,class:'ledger'});
+    }
+    if (name.length > 1) {
+      const accidental = name.slice(1).replace(/##/g,'𝄪').replace(/#/g,'♯').replace(/bb/g,'𝄫').replace(/b/g,'♭');
+      s += svg('text', {x:x-21,y:y+6,'font-size':23,'text-anchor':'middle',fill:outside?'#b3261e':'#1d1b16'}, accidental);
+    }
+    if (outside || secondOutside) {
+      s += svg('ellipse', {cx:x,cy:y,rx:13,ry:10,class:'tone-ring','stroke-dasharray':!outside?'3 2':'none'});
+      const mark = state.two ? '×'+(outside?'1':'')+(outside && secondOutside?'·':'')+(secondOutside?'2':'') : '×';
+      s += svg('text', {x:x+17,y:y+4,'font-size':11,'font-weight':800,fill:'#b3261e'}, mark);
+    }
+    s += svg('ellipse', {cx:x,cy:y,rx:8.6,ry:6.1,transform:`rotate(-18 ${x} ${y})`,class:'note'+(outside?' out-note':'')});
+    return {s,y};
+  }
+  function signature(k, x, top, spacing) {
+    const sharps = ['F5','C5','G5','D5','A4','E5','B4'];
+    const flats = ['B4','E5','A4','D5','G4','C5','F4'];
+    const sign = k.scale.some(n => n.includes('#')) ? '#' : 'b';
+    const count = k.scale.filter(n => n.includes(sign)).length;
+    let s = '';
+    for (let i = 0; i < count; i++) {
+      const note = (sign === '#' ? sharps : flats)[i];
+      const y = noteY(note, false, spacing, top);
+      s += svg('text', {x:x+i*7,y:y+5,'font-size':17,fill:'#1f4fd1',opacity:.24}, sign === '#' ? '♯' : '♭');
+    }
+    return s;
+  }
+  function drawScore() {
+    if (heldScore) {
+      redrawPending = true;
+      return;
+    }
+    redrawPending = false;
+    const score = $('score');
+    const focused = document.activeElement?.id;
+    const p = current();
+    const warm = isWarm();
+    score.setAttribute('aria-label', state.mode === 'workout' && state.solved
+      ? 'Grand staff. Frames mark the notes supporting your checked answer. Tap a note or chord to hear it.'
+      : 'Grand staff. Tap a note or chord to hear it.');
+    const voices = warm ? [[p.low], [p.high]] : p.voices;
+    const count = voices.length;
+    const w = warm ? score.clientWidth : Math.max(score.clientWidth, 610);
+    const h = Math.max(score.clientHeight, 120);
+    score.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    const compact = h < 230;
+    const spacing = compact ? 8 : 11;
+    const treble = compact ? 18 : Math.max(43, (h - 260) / 2);
+    const bass = treble + (compact ? 58 : 96);
+    const labelY = Math.min(h - (state.two && !warm ? 43 : 26), bass + spacing * 4 + 55);
+    const left = warm ? (w<500 ? 100 : 145) : 94;
+    const usable = w - left - 35;
+    const step = usable / count;
+    let s = svg('defs', {}, '<linearGradient id="paper" x2="1" y2="1"><stop stop-color="#fffdf6"/><stop offset="1" stop-color="#f8efd9"/></linearGradient>');
+    s += svg('rect', {x:0,y:0,width:w,height:h,fill:'url(#paper)'});
+    for (const top of [treble, bass]) {
+      for (let i = 0; i < 5; i++) {
+        s += svg('line', {x1:20,x2:w-20,y1:top+i*spacing,y2:top+i*spacing,stroke:'#8c8067','stroke-width':.8});
+      }
+    }
+    s += svg('text', {x:25,y:treble+spacing*3.7,'font-size':compact?47:57,'font-family':'Georgia,serif',fill:'#2e2a22'}, '𝄞');
+    s += svg('text', {x:25,y:bass+spacing*3,'font-size':42,'font-family':'Georgia,serif',fill:'#2e2a22'}, '𝄢');
+    s += svg('line', {x1:19,x2:19,y1:treble,y2:bass+4*spacing,stroke:'#625841','stroke-width':2});
+    if (!warm) s += signature(key(0), 57, treble, spacing);
+    const firstLabels = warm ? [] : labels(p, key(0));
+    const secondLabels = warm ? [] : labels(p, key(1));
+    voices.forEach((notes, i) => {
+      const x = warm ? left + i * Math.min(step, 240) : left + step * (i + .5);
+      const cell = Math.max(44, Math.min(step-5, 100));
+      const evidence = state.mode === 'workout' && state.solved
+        && (warm || state.set === 2 && i >= count - 2 || state.set === 1 && i === count - 1 || isPivot() && i === p.pivot);
+      if (evidence) s += svg('rect', {x:x-cell/2,y:10,width:cell,height:h-14,rx:5,class:'resolved'});
+      if (state.active === i) s += svg('rect', {x:x-cell/2,y:10,width:cell,height:h-14,rx:5,class:'hot'});
+      let min = Infinity;
+      let max = -Infinity;
+      notes.forEach((note, j) => {
+        const isBass = notes.length > 1 && j === 0;
+        const n = noteSVG(note, x, isBass, key(0), isBass ? bass : treble, spacing);
+        s += n.s;
+        if (evidence && j === notes.length - 1 && (warm || state.set === 1 || state.set === 2)) {
+          s += svg('ellipse', {cx:x,cy:n.y,rx:13,ry:10,class:'evidence'});
+        }
+        if (!isBass) { min = Math.min(min, n.y); max = Math.max(max, n.y); }
+        if (!warm && key(0).minor && key(0).raised.includes(pitch(note))) {
+          const raised = 'raised ' + (key(0).raised.indexOf(pitch(note)) + 6);
+          s += svg('text', {x,y:Math.max(11,treble-9),'text-anchor':'middle','font-size':11,fill:'#276b35'}, raised);
+        }
+      });
+      if (Number.isFinite(min)) {
+        const down = (min + max) / 2 < noteY('B4', false, spacing, treble);
+        const stemX = x + (down ? -8 : 8);
+        s += svg('line', {x1:stemX,x2:stemX,y1:down?min:max,y2:down?max+27:min-27,
+          stroke:'#1d1b16','stroke-width':1.5});
+      }
+      if (notes.length > 1) {
+        const y = noteY(notes[0], true, spacing, bass);
+        const down = y < bass + spacing * 2;
+        const stemX = x + (down ? -8 : 8);
+        s += svg('line', {x1:stemX,x2:stemX,y1:y,y2:y+(down?25:-25),stroke:'#1d1b16','stroke-width':1.5});
+      }
+      if (!warm) {
+        s += svg('rect', {x:x-cell/2,y:labelY-19,width:cell,height:state.two?43:30,rx:3,fill:'#1f4fd109',stroke:'#b5c4e4'});
+        s += svg('text', {x,y:labelY,'text-anchor':'middle',class:'numeral',
+          style:`font-size:${firstLabels[i].length>3?12:17}px`}, firstLabels[i]);
+        if (state.two) {
+          s += svg('text', {x,y:labelY+18,'text-anchor':'middle',class:'numeral second',
+            style:`font-size:${secondLabels[i].length>3?12:17}px`}, secondLabels[i]);
+          if (firstLabels[i] !== '?' && secondLabels[i] !== '?') {
+            s += svg('path', {d:`M${x-cell/2} ${labelY+27} v4 h${cell} v-4`,fill:'none',stroke:'#b07d12','stroke-width':2});
+            s += svg('text', {x,y:labelY+43,'text-anchor':'middle','font-size':11,fill:'#1d1b16'}, 'fits both');
+          }
+        }
+      } else {
+        s += svg('text', {x,y:h-12,'text-anchor':'middle','font-size':14,fill:'#5f5848'}, pretty(notes[0]));
+      }
+      const label = warm ? pretty(notes[0]) : p.melody ? pretty(p.melody[i]) : pretty(p.chords[i]);
+      s += svg('rect', {x:x-cell/2,y:9,width:cell,height:h-12,rx:4,class:'tap-area',id:'chord-'+i,tabindex:0,
+        role:'button','aria-label':`${isPivot()?'Choose':'Play'} ${p.melody?'note':'chord'} ${i+1}, ${label}`});
+    });
+    const next = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    next.innerHTML = s;
+    next.querySelectorAll('.tap-area').forEach(fresh => {
+      const existing = score.querySelector('#'+fresh.id);
+      if (!existing) return;
+      for (const attr of [...fresh.attributes]) existing.setAttribute(attr.name,attr.value);
+      fresh.replaceWith(existing);
+    });
+    score.replaceChildren(...next.childNodes);
+    score.querySelectorAll('.tap-area').forEach((el, i) => {
+      el.onclick = () => tapChord(i);
+      el.onkeydown = event => {
+        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); tapChord(i); }
+      };
+    });
+    if (focused?.startsWith('chord-')) $(focused)?.focus({preventScroll:true});
+  }
+  function renderLenses() {
+    document.body.dataset.two = String(state.two);
+    if (!isWarm()) $('legend-text').textContent = state.two ? 'Ring + ×1 / ×2: outside that lens' : 'Ring + ×: outside key';
+    $('lenses').hidden = isWarm();
+    $('lens-1').hidden = !state.two || isWarm();
+    $('two').setAttribute('aria-pressed', state.two);
+    $('two').hidden = state.mode === 'workout';
+    for (let i = 0; i < 2; i++) {
+      const k = key(i);
+      $('key-'+i).textContent = keyName(k);
+      $('key-'+i).setAttribute('aria-valuenow', state.lenses[i] % 12);
+      $('key-'+i).setAttribute('aria-valuetext', keyName(k));
+      $('quality-'+i).textContent = k.minor ? 'Minor' : 'Major';
+      $('quality-'+i).setAttribute('aria-pressed', k.minor);
+      $('lens-'+i).classList.toggle('locked', state.locks[i]);
+      $('lock-'+i).hidden = state.mode !== 'workout' || !(state.set === 1 && i === 0 || state.set === 3);
+      const p = current();
+      if (!isWarm()) {
+        const n = labels(p,k).filter(v => v !== '?').length;
+        $('fit-'+i).textContent = `${n} of ${p.notes.length} ${p.melody?'notes':'chords'} fit ${keyName(k)}`;
+      }
+    }
+  }
+  function moveLens(i, delta, toggle = false) {
+    if (isWarm() || state.mode === 'workout' && state.set === 2) return;
+    const value = state.lenses[i];
+    state.lenses[i] = toggle ? (value+12)%24 : Math.floor(value/12)*12+(value%12+delta+12)%12;
+    state.moved[i] = true;
+    state.revision++;
+    state.locks[i] = false;
+    if (state.mode === 'workout') {
+      state.solved = false;
+      showResult('Key changed. Press Lock in to check this reading.');
+      if (V.playing && ![L.set1How,L.set3How].includes(V.playing)) V.hush();
+    }
+    V.dropQueued();
+    hint(waiting());
+    renderLenses();
+    drawScore();
+  }
+  function storeProgress() {
+    try { localStorage.setItem('theory-gym-progress-v1', JSON.stringify(state.progress)); }
+    catch { storageOK = false; }
+    updateProgress();
+  }
+  function progressId() { return state.set + ':' + state.rep; }
+  function updateProgress() {
+    document.querySelectorAll('.tile').forEach(tile => {
+      const status = state.progress[tile.dataset.set+':'+tile.dataset.rep];
+      tile.querySelector('.dot').className = 'dot ' + (status === 'solo' ? 'full' : status === 'hint' ? '' : 'empty');
+      tile.setAttribute('aria-pressed', state.mode==='workout' && +tile.dataset.set===state.set && +tile.dataset.rep===state.rep);
+      tile.setAttribute('aria-label', `${SET_NAMES[tile.dataset.set]}, rep ${+tile.dataset.rep+1}`
+        + (status ? status==='solo'?', solved without hints':', solved with hints' : ', not solved'));
+    });
+    const count = Object.keys(state.progress).filter(id => /^(0:[0-7]|[12]:[0-5]|3:[0-4])$/.test(id)).length;
+    $('progress-note').textContent = storageOK
+      ? `${count}/25 reps saved here. Progress never leaves this device.`
+      : `${count}/25 reps this session. Saving is unavailable in this browser. Progress never leaves this device.`;
+  }
+  function buildRepBoard(id) {
+    $(id).innerHTML = SET_NAMES.map((name,s) => `<div><p class="set-label">${name}</p><div class="tiles">`
+      + Array.from({length:LENGTHS[s]},(_,r) => `<button class="tile" data-set="${s}" data-rep="${r}">${r+1}`
+        + '<i class="dot empty" aria-hidden="true"></i></button>').join('') + '</div></div>').join('');
+    $(id).querySelectorAll('.tile').forEach(tile => {
+      tile.onclick = () => {
+        loadRep(+tile.dataset.set, +tile.dataset.rep);
+        if ($('rep-dialog').open) $('rep-dialog').close();
+      };
+    });
+  }
+  function choices(id, values, field) {
+    $(id).innerHTML = '<span class="label">'+field+'</span>'
+      + values.map(v => `<button class="btn" data-value="${v}" aria-pressed="false">${v}</button>`).join('');
+    $(id).querySelectorAll('button').forEach(button => {
+      button.onclick = () => {
+        stopPassage();
+        state[field] = field === 'number' ? Number(button.dataset.value) : button.dataset.value;
+        if (state.solved) {
+          state.solved = false;
+          showResult('Choice changed. Press Check to check this answer.');
+          drawScore();
+        }
+        state.attempt++;
+        V.dropQueued();
+        $(id).querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b === button));
+        hint(field === 'cadence' ? 'Cadence selected. Press Check.' : 'Pick the number and quality, then press Check.');
+        Curio.tone(field === 'cadence' ? 392 : 330, .055, .035);
+      };
+    });
+  }
+  function showResult(text, success = false) {
+    state.result = text;
+    $('result').textContent = text;
+    $('result').classList.toggle('success', success);
+  }
+  function resultLine(id, append = '') {
+    const attempt = ++state.attempt;
+    showResult(L[id] + (append ? ' '+append : ''));
+    hint(L[id] + (id === 'missing' || id === 'missingCadence' || id === 'missingKeys' ? '' : ' Try again, or tap Spot me.'));
+    narrate(id, false, () => state.attempt === attempt);
+  }
+  function solved(answer) {
+    const completeBefore = Array.from({length:LENGTHS[state.set]},(_,i) => state.progress[state.set+':'+i]).every(Boolean);
+    state.solved = true;
+    if (state.progress[progressId()] !== 'solo') state.progress[progressId()] = state.hints ? 'hint' : 'solo';
+    storeProgress();
+    showResult(answer, true);
+    hint(answer + ' Tap Next rep.');
+    drawScore();
+    const p = current();
+    lightKeys(isWarm() ? [p.low,p.high] : p.voices[isPivot() ? p.pivot : p.voices.length-1]);
+    Curio.yes();
+    const attempt = ++state.attempt;
+    narrate('right', false, () => state.solved && state.attempt===attempt);
+    const complete = Array.from({length:LENGTHS[state.set]},(_,i) => state.progress[state.set+':'+i]).every(Boolean);
+    if (complete && !completeBefore) {
+      const allComplete = LENGTHS.every((length,set) =>
+        Array.from({length},(_,rep) => state.progress[set+':'+rep]).every(Boolean));
+      const id = allComplete ? 'workoutDone' : state.set === 3 ? 'lastSetDone' : 'setDone';
+      hint(L[id]);
+      narrate(id, false, () => state.solved && state.attempt===attempt);
+    }
+  }
+  function spot(auto = false) {
+    if (state.hints >= 2 || auto && state.hints >= 1) {
+      showResult(state.hintHistory.join(' / '));
+      hint(state.hintHistory.at(-1) + ' ' + waiting());
+      return;
+    }
+    const ids = [['hintWarm1','hintWarm2'], ['hintKey1','hintKey2'], ['hintCadence1','hintCadence2'], ['hintPivot1','hintPivot2']];
+    const id = ids[state.set][state.hints++];
+    state.hintHistory.push(L[id]);
+    $('hint-count').textContent = state.hints+'/2';
+    showResult((auto ? state.result + ' ' : '') + L[id]);
+    hint(L[id] + ' ' + waiting());
+    const repKey = progressId();
+    narrate(id, true, () => progressId()===repKey);
+  }
+  function wrong(id) {
+    state.wrong++;
+    resultLine(id);
+    if (state.wrong === 2 && state.hints === 0 && (state.set===1 || state.set===3)) {
+      const attempt = state.attempt;
+      setTimeout(() => { if (state.attempt===attempt && !state.solved) spot(true); }, 700);
+    }
+  }
+  function lock(i) {
+    stopPassage();
+    V.dropQueued();
+    const p = current();
+    if (state.set === 1) {
+      const k = key(0);
+      if (!p.notes.flat().every(n => fitsNote(n,k))) { wrong('outside'); return; }
+      const end = p.notes.at(-1);
+      const home = p.melody ? end[0]===k.tonic : same(end,k.vocab[k.minor?'i':'I']);
+      if (!home) { wrong('notHome'); return; }
+      solved(`${keyName(k)}. Every note fits, and the phrase ends on home.`);
+    } else if (state.set === 3) {
+      if (state.solved && state.locks.every(Boolean)) {
+        hint(waiting());
+        return;
+      }
+      const wanted = i===0 ? p.opening : p.closing;
+      if (rawKeyName(key(i)) !== wanted) { wrong(i===0?'wrongOpening':'wrongClosing'); return; }
+      state.locks[i] = true;
+      renderLenses();
+      const id = state.locks.every(Boolean) ? 'choosePivot' : i===0 ? 'openingRight' : 'closingRight';
+      resultLine(id);
+      hint(L[id]);
+    }
+  }
+  function tapChord(i) {
+    stopPassage();
+    if (isPivot()) {
+      if (!state.locks.every(Boolean)) { resultLine('missingKeys'); return; }
+      const p = current();
+      state.solved = false;
+      state.active = i;
+      drawScore();
+      playTones(p.voices[i]);
+      if (i > p.pivot) { wrong('tooLate'); return; }
+      if (i < p.pivot) {
+        wrong(numeral(p.notes[i],key(0))!=='?' && numeral(p.notes[i],key(1))!=='?' ? 'tooEarly' : 'stillOld');
+        return;
+      }
+      solved(`${pretty(p.chords[i])}: ${p.romans[0]} in ${pretty(p.opening)}, ${p.romans[1]} in ${pretty(p.closing)}. `
+        + 'The next chord belongs only to the new key.');
+    } else {
+      V.dropQueued();
+      const p = current();
+      playTones(isWarm() ? [i===0?p.low:p.high] : p.voices[i]);
+      state.active = i;
+      drawScore();
+      hint(state.mode==='lens'?'Tap Play passage to hear the phrase, or slide the lens arrows to try another key.':waiting());
+    }
+  }
+  const DEFINITIONS = {
+    'Perfect authentic':'V to I, both in root position, with the tonic on top.',
+    'Imperfect authentic':'V to I without all the perfect-authentic conditions; here the soprano ends on the third.',
+    Half:'The phrase stops on V.',
+    Plagal:'IV to I.',
+    Deceptive:'V to vi (or VI in minor).'
+  };
+  function check() {
+    stopPassage();
+    V.dropQueued();
+    if (state.set===1) { lock(0); return; }
+    if (state.set===3) { resultLine('missingKeys'); return; }
+    const p = current();
+    if (state.set===0) {
+      if (!state.number || !state.quality) { resultLine('missing'); return; }
+      if (state.number===p.number && state.quality===p.quality) {
+        const ordinal = {2:'2nd',3:'3rd',4:'4th',5:'5th',6:'6th',7:'7th',8:'octave'}[p.number];
+        solved(`${pretty(p.low)} to ${pretty(p.high)}: ${p.quality} ${ordinal}. ${p.steps} half steps.`);
+      } else wrong(state.number===p.number ? 'numberRight' : state.quality===p.quality ? 'qualityRight' : 'bothWrong');
+    } else {
+      if (!state.cadence) { resultLine('missingCadence'); return; }
+      if (state.cadence===p.answer) solved(`${p.answer}. ${DEFINITIONS[p.answer]}`);
+      else if (state.cadence==='Perfect authentic' && p.answer==='Imperfect authentic') wrong('closePerfect');
+      else if (state.cadence==='Half' && p.answer==='Deceptive') wrong('itEndsOnVi');
+      else wrong('readAgain');
+    }
+  }
+  function loadRep(set, rep, announce = true) {
+    stopPassage();
+    const keepHow = state.mode === 'workout' && state.set === set && V.playing === L[howKey()];
+    if (keepHow) V.dropQueued();
+    else V.hush();
+    state.set = set;
+    document.body.dataset.set = set;
+    state.rep = rep;
+    state.pickedRep = true;
+    state.passage = DATA.passages.findIndex(p => p.set===set && p.rep===rep);
+    state.number = null;
+    state.quality = null;
+    state.cadence = null;
+    state.hints = 0;
+    state.hintHistory = [];
+    state.wrong = 0;
+    state.solved = false;
+    state.locks = [false, false];
+    state.two = set===3;
+    state.lenses = set===2 ? [keyByName(current().key), 1] : [0, 0];
+    state.attempt++;
+    state.moved = [false, false];
+    $('hint-count').textContent = '0/2';
+    document.querySelectorAll('.answer-row button[data-value]').forEach(b => b.setAttribute('aria-pressed',false));
+    showResult(set===0?'Count letters for the number; count half steps for the quality.':
+      set===1?'Fit is evidence. The final note or chord must also be home.':
+      set===2?'Read how the final two chords land.':'Find the two home keys, then the last shared chord before the turn.');
+    hint(waiting());
+    render();
+    const id = howKey();
+    const repId = progressId();
+    const attempt = state.attempt;
+    if (announce) {
+      narrate(id, true, () => progressId()===repId && !state.solved && state.attempt===attempt,
+        set===0?'#check':set===2?'#cadences':'#lock-0');
+    }
+  }
+  function nextRep() {
+    const rep = state.rep + 1;
+    if (rep < LENGTHS[state.set]) loadRep(state.set,rep);
+    else loadRep((state.set+1)%4,0);
+  }
+  function setMode(mode, announce = true) {
+    if (mode===state.mode && document.body.dataset.ready) return;
+    stopPassage();
+    V.hush();
+    state.mode = mode;
+    state.attempt++;
+    document.body.classList.toggle('workout',mode==='workout');
+    $('m-lens').setAttribute('aria-pressed',mode==='lens');
+    $('m-workout').setAttribute('aria-pressed',mode==='workout');
+    if (mode==='workout') {
+      loadRep(state.set,state.rep,false);
+      state.pickedRep = false;
+      hint(waiting());
+      V.dropQueued();
+      if (announce) V.welcome();
+    } else {
+      if (state.passage<0) state.passage=0;
+      state.locks = [false, false];
+      state.two = false;
+      state.lenses = [0,1];
+      state.moved = [false,false];
+      hint(L.welcomeLens);
+      render();
+      V.welcome();
+    }
+    document.body.dataset.ready = 'true';
+  }
+  function render() {
+    const workout = state.mode==='workout';
+    const warm = isWarm();
+    const p = current();
+    $('passage-picker').hidden = workout;
+    $('rep-board').hidden = !workout;
+    $('clear').hidden = !workout;
+    $('answers').hidden = !workout;
+    $('numbers').hidden = !warm;
+    $('qualities').hidden = !warm;
+    $('cadences').hidden = !workout || state.set!==2;
+    $('check').hidden = workout && (state.set===1 || state.set===3);
+    $('score-kicker').textContent = workout ? SET_NAMES[state.set] : 'Key lens / Explore';
+    $('score-title').textContent = warm ? 'Two notes. One interval.' : workout ? ['','Find home.','Name the landing.','Catch the turn.'][state.set]
+      : p.set===3 ? 'Where does the music turn?' : p.set===2 ? 'Listen to the landing.' : 'Find a place to land.';
+    $('score-serial').textContent = workout ? String(state.rep+1).padStart(2,'0')+' / '+LENGTHS[state.set]
+      : String(state.passage+1).padStart(2,'0')+' / 17';
+    $('passage').value = state.passage;
+    $('legend-text').textContent = warm ? 'Letters give the number. Half steps give quality.' : 'Ring + ×: outside key';
+    $('lenses').hidden = warm;
+    renderLenses();
+    updateProgress();
+    for (let i=0;i<2;i++) {
+      for (const id of ['prev-','next-','quality-']) $(id+i).disabled = workout && state.set===2;
+      $('key-'+i).setAttribute('aria-disabled',workout && state.set===2);
+    }
+    $('score-scroll').scrollLeft = 0;
+    drawScore();
+    if (warm) lightKeys([p.low,p.high]);
+    else {
+      document.querySelectorAll('.lit').forEach(e => e.classList.remove('lit'));
+      $('keyboard-caption').textContent = 'Tap a chord or note to see its keys.';
+      $('keyboard').setAttribute('aria-label','Piano keyboard. No notes selected.');
+    }
+    placePlay();
+  }
+  function placePlay() {
+    const play = $('play');
+    const nextParent = state.mode==='workout' && innerWidth<600
+      ? document.querySelector('.rep-actions') : document.querySelector('.transport');
+    if (play.parentElement!==nextParent) {
+      const focused = document.activeElement===play;
+      nextParent.prepend(play);
+      if (focused) play.focus({preventScroll:true});
+    }
+  }
+  $('passage').innerHTML = DATA.passages.map((p,i) => `<option value="${i}">Set ${p.set} · Passage ${p.rep+1}</option>`).join('');
+  $('passage').onchange = () => {
+    stopPassage();
+    V.hush();
+    state.passage = +$('passage').value;
+    state.attempt++;
+    hint('Tap Play passage, then slide the lens arrows to try a key.');
+    render();
+  };
+  for (let i=0;i<2;i++) {
+    $('prev-'+i).onclick = () => moveLens(i,-1);
+    $('next-'+i).onclick = () => moveLens(i,1);
+    $('quality-'+i).onclick = () => moveLens(i,0,true);
+    $('lock-'+i).onclick = () => lock(i);
+    $('key-'+i).onkeydown = event => {
+      if (['ArrowRight','ArrowLeft'].includes(event.key)) {
+        event.preventDefault();
+        moveLens(i,event.key==='ArrowRight'?1:-1);
+      }
+    };
+    let origin = null;
+    $('key-'+i).onpointerdown = event => {
+      if (state.mode==='workout' && state.set===2) return;
+      origin = {x:event.clientX,index:state.lenses[i]};
+      event.currentTarget.setPointerCapture(event.pointerId);
+    };
+    $('key-'+i).onpointermove = event => {
+      if (!origin) return;
+      const delta = Math.trunc((event.clientX-origin.x)/32);
+      const wanted = Math.floor(origin.index/12)*12+(origin.index%12+delta+120)%12;
+      if (state.lenses[i]!==wanted) {
+        state.lenses[i] = wanted;
+        state.moved[i] = true;
+        state.locks[i] = false;
+        if (state.mode === 'workout') {
+          state.solved = false;
+          showResult('Key changed. Press Lock in to check this reading.');
+          if (V.playing && ![L.set1How,L.set3How].includes(V.playing)) V.hush();
+        }
+        V.dropQueued();
+        renderLenses();
+        drawScore();
+      }
+    };
+    $('key-'+i).onpointerup = $('key-'+i).onpointercancel = () => { origin = null; hint(waiting()); };
+  }
+  $('two').onclick = () => {
+    state.two = !state.two;
+    V.dropQueued();
+    if (!state.two && V.playing === L.twoHow) V.hush();
+    renderLenses();
+    drawScore();
+    hint(state.two ? L.twoHow : L.welcomeLens);
+      if (state.two) narrate('twoHow',true,() => state.two && !state.moved[1],'#key-1');
+  };
+  $('m-lens').onclick = () => setMode('lens');
+  $('m-workout').onclick = () => setMode('workout');
+  $('play').onclick = playPassage;
+  $('score').addEventListener('pointerdown', () => { heldScore = true; });
+  const releaseScore = () => {
+    heldScore = false;
+    if (redrawPending) requestAnimationFrame(drawScore);
+  };
+  addEventListener('pointerup',releaseScore);
+  addEventListener('pointercancel',releaseScore);
+  $('check').onclick = check;
+  $('spot').onclick = () => { stopPassage(); spot(); };
+  $('next-rep').onclick = nextRep;
+  $('reps-open').onclick = () => {
+    if (state.mode==='lens') setMode('workout',false);
+    stopPassage();
+    V.hush();
+    $('rep-dialog').showModal();
+    hint('Tap a rep tile. Filled dots mean solved without hints; hollow dots mean solved with hints.');
+    V.welcome();
+  };
+  $('reps-close').onclick = () => { $('rep-dialog').close(); hint(waiting()); };
+  for (const id of ['clear','dialog-clear']) $(id).onclick = () => { stopPassage(); V.hush(); $('confirm').showModal(); };
+  $('cancel-clear').onclick = () => $('confirm').close();
+  $('confirm-clear').onclick = () => {
+    state.progress = {};
+    state.solved = false;
+    storeProgress();
+    $('confirm').close();
+    showResult('Saved progress cleared. Choose a rep to begin again.');
+    hint(L.cleared);
+    narrate('cleared');
+  };
+  choices('numbers',['2','3','4','5','6','7','8'],'number');
+  $('numbers').querySelector('button[data-value="8"]').textContent = 'Octave';
+  choices('qualities',['perfect','major','minor','augmented','diminished'],'quality');
+  choices('cadences',['Perfect authentic','Imperfect authentic','Half','Plagal','Deceptive'],'cadence');
+  buildRepBoard('rep-board');
+  buildRepBoard('dialog-board');
+  keyboard();
+  Curio.init({clips:"voice:*", rate:.95, readFallback:() => $('hint').textContent});
+  $('read').onclick = () => {
+    if (state.playing) {
+      pendingVoice = [];
+      pendingRead = true;
+      V.hush();
+    } else V.read();
+  };
+  Curio.onSound(on => { if (!on) stopPassage(); });
+  Curio.onMotion(() => drawScore());
+  new ResizeObserver(() => {
+    cancelAnimationFrame(layoutFrame);
+    layoutFrame = requestAnimationFrame(drawScore);
+  }).observe($('score-scroll'));
+  addEventListener('resize',placePlay);
+  window.__tool = {
+    state,setMode,allLines:V.allLines,vlog:V.log,DATA,labels,numeral,degree,fitsNote,keyName,keyByName,
+    loadRep,moveLens,lock,check,tapChord,playPassage,stopPassage,render,spot,nextRep,
+    get vq() { return V.queue; }, get audioNodes() { return nodes.length; }
+  };
+  setMode('lens');
+})();
+</script>
+</body>
+</html>

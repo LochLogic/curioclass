@@ -1,0 +1,181 @@
+{
+  "states": [
+    {
+      "name": "scene-open",
+      "steps": [
+        {
+          "click": "#scene-2"
+        }
+      ],
+      "keep": [
+        "#rail",
+        "#deck"
+      ]
+    },
+    {
+      "name": "timed-laptop",
+      "steps": [
+        {
+          "click": "#scene-2"
+        }
+      ],
+      "keep": [
+        "#rail",
+        "#deck",
+        "#clock"
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "scene-error",
+      "steps": [
+        {
+          "click": "#scene-0"
+        },
+        {
+          "click": "#card-d0"
+        }
+      ],
+      "keep": [
+        "#rail",
+        "#deck"
+      ]
+    },
+    {
+      "name": "scene-finish",
+      "steps": [
+        {
+          "click": "#scene-0"
+        },
+        {
+          "click": "#card-s0"
+        },
+        {
+          "click": "#card-s1"
+        },
+        {
+          "click": "#card-s2"
+        },
+        {
+          "click": "#card-s3"
+        },
+        {
+          "click": "#card-s4"
+        },
+        {
+          "click": "#card-s5"
+        }
+      ],
+      "keep": [
+        "#finish",
+        "#again",
+        "#next"
+      ]
+    },
+    {
+      "name": "cpr-running",
+      "steps": [
+        {
+          "click": "#m-cpr"
+        },
+        {
+          "click": "#start"
+        },
+        {
+          "click": "#chest"
+        }
+      ],
+      "keep": [
+        "#chest",
+        "#stop"
+      ]
+    },
+    {
+      "name": "cpr-summary",
+      "steps": [
+        {
+          "click": "#m-cpr"
+        },
+        {
+          "click": "#start"
+        },
+        {
+          "click": "#chest"
+        },
+        {
+          "click": "#stop"
+        }
+      ],
+      "keep": [
+        "#start",
+        "#summary"
+      ]
+    },
+    {
+      "name": "guide-aed",
+      "steps": [
+        {
+          "click": "#m-guide"
+        },
+        {
+          "click": "#guide-3"
+        }
+      ],
+      "keep": [
+        "#guide-detail"
+      ]
+    },
+    {
+      "name": "clear-confirmation",
+      "steps": [
+        {
+          "click": "#clear"
+        }
+      ],
+      "keep": [
+        "#clear-dialog"
+      ]
+    },
+    {
+      "name": "summary-after-tap",
+      "steps": [
+        {
+          "click": "#m-cpr"
+        },
+        {
+          "click": "#start"
+        },
+        {
+          "click": "#chest"
+        },
+        {
+          "click": "#stop"
+        },
+        {
+          "click": "#chest"
+        }
+      ],
+      "keep": [
+        "#start",
+        "#summary"
+      ]
+    },
+    {
+      "name": "timer-off-scene",
+      "steps": [
+        {
+          "click": "#timer"
+        },
+        {
+          "click": "#scene-0"
+        }
+      ],
+      "keep": [
+        "#rail",
+        "#deck"
+      ]
+    }
+  ]
+}

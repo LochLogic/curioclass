@@ -1,0 +1,26 @@
+{
+  "keep": [],
+  "states": [
+    {"name":"design-mark","steps":[{"click":"#m-design"}],"keep":["#artboard","#section-body","#undo","#start-over"]},
+    {"name":"symbols","steps":[{"click":"#m-design"},{"click":"#choose-symbol"}],"keep":["#dialog"]},
+    {"name":"design-name","steps":[{"click":"#m-design"},{"click":"#section-name"}],"keep":["#artboard","#section-body"]},
+    {"name":"design-color","steps":[{"click":"#m-design"},{"click":"#section-color"}],"keep":["#artboard","#section-body"]},
+    {"name":"palette","steps":[{"click":"#m-design"},{"click":"#section-color"},{"click":"#choose-palette"}],"keep":["#dialog"]},
+    {"name":"design-lockup","steps":[{"click":"#m-design"},{"click":"#section-lockup"}],"keep":["#artboard","#section-body"]},
+    {"name":"test-detail","steps":[{"click":"#m-test"},{"wait":800},{"click":"#tile-bag"}],"keep":["#dialog","#fix-design"]},
+    {"name":"own-business","steps":[
+      {"js":"const b=document.getElementById(innerWidth>600&&innerHeight<=640?'own-business-panel':'own-business'); b.dataset.auditOwn='yes'; b.scrollIntoView({block:'center'});"},
+      {"click":"[data-audit-own]"}
+    ],"keep":["#dialog","#save-own"]},
+    {"name":"reset-confirm","steps":[{"click":"#m-design"},{"click":"#start-over"}],"keep":["#dialog"]},
+    {"name":"undo-redo","steps":[{"click":"#m-design"},{"click":"#choose-symbol"},{"click":"#symbol-heart"},{"click":"#undo"},{"click":"#redo"}],"keep":["#artboard","#section-body"]},
+    {"name":"merge-proof","steps":[{"click":"#m-design"},{"click":"#choose-symbol"},{"click":"#symbol-heart"},{"click":"#m-test"},{"wait":800},{"click":"#tile-bag"}],"keep":["#dialog","#fix-design"]},
+    {"name":"phone-proof","steps":[{"click":"#m-test"},{"wait":800},{"click":"#tile-phone"}],"keep":["#dialog","#fix-design"]},
+    {"name":"restored-script-face","steps":[{"click":"#m-design"},{"click":"#section-name"},
+      {"js":"const f=document.getElementById('face');f.value='Pacifico';f.dispatchEvent(new Event('change',{bubbles:true}));"}
+    ],"keep":["#artboard","#section-body"]},
+    {"name":"mark-extremes","steps":[{"click":"#m-design"},
+      {"js":"for(const [id,value] of [['scale',130],['rotate',180]]){const el=document.getElementById(id);el.value=value;el.dispatchEvent(new Event('input',{bubbles:true}));}"}
+    ],"keep":["#artboard","#section-body"]}
+  ]
+}

@@ -1,0 +1,2261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Image Transformer · Curio Class</title>
+<meta name="description" content="Move every pixel with a matrix. Compare products, undo moves, and recover colors. Grade 12. Works offline.">
+<link rel="icon" href="data:,">
+<!--
+Image Transformer, Curio Class. Grade 12 precalculus, students, 25 to 40 minutes.
+N-VM.C, A-REI.C.9, AP-PRECALC.U4. OpenStax Precalculus 2e 9.5 and 9.7;
+College Board AP Precalculus topics 4.10 to 4.14. See notes.md for sources.
+Lighthouse and fox: supplied FLUX artwork. Balloon: OpenAI gpt-image, edited for Curio Class. No people. Content CC BY 4.0, code MIT. No network or saved work.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{
+--brand:#a58cff;
+--brand-ink:#10161f
+}
+body{
+overflow:hidden
+}
+header{
+padding:8px 16px;
+gap:8px
+}
+h1{
+font-size:25px
+}
+h1 small{
+font-size:13px
+}
+.seg button,.icon-btn{
+min-height:44px;
+font-size:14px;
+padding:0 12px
+}
+main{
+grid-template-columns:minmax(0,1fr) 380px;
+gap:0
+}
+.panel{
+grid-column:2;
+grid-row:1;
+padding:12px;
+gap:8px;
+overflow:auto;
+background:linear-gradient(125deg,#202735,#141b25 45%)
+}
+.panel>*{
+flex-shrink:0
+}
+.workbench{
+grid-column:1;
+grid-row:1;
+display:flex;
+flex-direction:column;
+min-height:0;
+min-width:0;
+padding:16px;
+background:radial-gradient(ellipse at 15% 0,#302b49 0,transparent 60%),linear-gradient(140deg,#1c2330,#0b1018)
+}
+.rail{
+display:flex;
+justify-content:space-between;
+align-items:center;
+min-height:30px;
+color:var(--muted);
+font:12px var(--readout-font)
+}
+.lamp{
+color:#c7b6ff;
+letter-spacing:.13em
+}
+.lamp::before{
+content:'';
+display:inline-block;
+width:7px;
+height:7px;
+background:#b8a0ff;
+border-radius:50%;
+margin-right:8px;
+box-shadow:0 0 12px #a58cff;
+animation:lamp 4s ease-in-out infinite
+}
+@keyframes lamp{
+50%{
+opacity:.45
+}
+}
+body.calm .lamp::before{
+animation:none
+}
+.stages{
+display:grid;
+grid-template-columns:1fr;
+gap:12px;
+flex:1;
+min-height:0
+}
+.viewport{
+display:flex;
+flex-direction:column;
+position:relative;
+min-width:0;
+min-height:0;
+border:1px solid #485367;
+border-radius:9px;
+overflow:hidden;
+background:#0e1118;
+box-shadow:0 12px 30px #0007,inset 0 1px #a9b7cc44
+}
+.viewport::before,.viewport::after{
+content:'⊕';
+position:absolute;
+top:5px;
+color:#596174;
+font:12px monospace;
+z-index:2;
+pointer-events:none
+}
+.viewport::before{
+left:7px
+}
+.viewport::after{
+right:7px
+}
+.viewtitle{
+min-height:36px;
+padding:7px 25px;
+background:linear-gradient(#252c39,#191f2b);
+font:13px var(--readout-font);
+display:flex;
+gap:10px;
+align-items:center;
+justify-content:space-between;
+border-bottom:1px solid #343d4e
+}
+.product{
+color:#d0bfff;
+font-weight:600
+}
+.canvasbox{
+position:relative;
+flex:1;
+min-height:0;
+overflow:hidden
+}
+canvas{
+display:block;
+width:100%;
+height:100%;
+touch-action:none
+}
+.tiphandle{
+position:absolute;
+width:44px;
+height:44px;
+border:0;
+border-radius:50%;
+background:transparent;
+color:transparent;
+transform:translate(-50%,-50%);
+padding:0;
+cursor:grab
+}
+.tiphandle:focus-visible{
+outline:2px solid var(--focus);
+background:#8fe3ff22
+}
+.viewnote{
+padding:6px 12px;
+color:var(--muted);
+font-size:12px;
+border-top:1px solid #252c38;
+min-height:29px
+}
+.readstrip{
+margin-top:12px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px
+}
+.meter{
+padding:10px 12px;
+border:1px solid #40495e;
+border-radius:7px;
+background:linear-gradient(145deg,#292b3c,#171d28);
+box-shadow:inset 0 1px #ffffff12
+}
+.meter small{
+display:block;
+font-size:11px;
+letter-spacing:.09em;
+color:#b4bfd0;
+text-transform:uppercase;
+margin-bottom:4px
+}
+.meter strong{
+font:600 18px var(--readout-font);
+color:#e1d6ff
+}
+.meter p{
+font-size:13px;
+margin:3px 0 0;
+color:var(--muted)
+}
+.hint{
+min-height:57px;
+font-size:14px;
+line-height:1.35;
+padding:8px 10px;
+border-left:2px solid var(--brand);
+background:#0d131d
+}
+.controls{
+display:flex;
+flex-direction:column;
+gap:8px;
+min-height:0
+}
+.controls.colorcard{
+display:grid;
+grid-template-columns:repeat(6,minmax(0,1fr))
+}
+.colorcard>*{
+grid-column:span 6
+}
+.colorcard #formula-actions{
+grid-column:span 2
+}
+.colorcard #filter-actions{
+grid-column:span 4;
+grid-row:auto
+}
+.colorcard #formula-actions:has(#showme:not([hidden])){
+grid-column:span 6
+}
+.colorcard #formula-actions:has(#showme:not([hidden]))~#filter-actions{
+grid-column:span 6
+}
+.sectionlabel{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin:0 0 6px;
+color:#b3bfd0;
+font:600 11px var(--readout-font);
+letter-spacing:.1em;
+text-transform:uppercase
+}
+.matrix{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:4px 10px;
+position:relative;
+padding:3px 10px;
+border-left:2px solid #b9c4d7;
+border-right:2px solid #b9c4d7;
+border-radius:7px
+}
+.entry{
+display:grid;
+grid-template-columns:58px minmax(35px,1fr);
+gap:5px;
+align-items:center;
+min-width:0
+}
+.entry input.num{
+width:100%;
+padding:0 5px;
+font-size:19px;
+text-align:center;
+border-left:3px solid var(--gr-1)
+}
+.entry:nth-child(even) input.num{
+border-left-color:var(--gr-2);
+border-left-style:dashed
+}
+.entry input[type=range]{
+min-width:0
+}
+.presets{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:4px;
+margin-top:7px
+}
+.btn{
+font-size:13px;
+padding:0 7px;
+background:linear-gradient(#2c3546,#1b2432);
+box-shadow:inset 0 1px #ffffff0a
+}
+.btn:hover{
+background:#364055
+}
+.btn[aria-pressed=true]{
+background:var(--brand);
+color:var(--brand-ink);
+border-color:var(--brand)
+}
+.actions{
+display:flex;
+gap:5px;
+align-items:center
+}
+.actions .btn{
+flex:1
+}
+.actions input.num{
+width:48px;
+min-width:44px;
+padding:0 4px;
+text-align:center
+}
+.picturelist{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:5px
+}
+.picbtn{
+position:relative;
+min-height:64px;
+padding:0;
+border:1px solid #62789a;
+border-radius:6px;
+overflow:hidden;
+background:#1c2532
+}
+.picbtn[aria-pressed=true]{
+border:2px solid var(--brand);
+box-shadow:0 0 0 1px #a58cff33
+}
+.picbtn img{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:.7
+}
+.picbtn span{
+position:relative;
+display:block;
+margin-top:34px;
+background:#080d17d9;
+font-size:12px;
+padding:3px 0;
+color:white
+}
+.picbtn.f{
+background:repeating-conic-gradient(#1d3045 0 25%,#344a63 0 50%) 0 / 20px 20px
+}
+.picbtn.f::before{
+content:'F';
+position:absolute;
+left:30%;
+top:0;
+font:bold 43px Georgia;
+color:#ffe2aa
+}
+.columnnote{
+font-size:12px;
+color:var(--muted);
+line-height:1.45;
+margin:4px 0 0
+}
+.ordercards{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px
+}
+.ordercard{
+min-width:0;
+border:1px solid #414b60;
+padding:8px;
+border-radius:7px;
+background:#101721
+}
+.ordercard .entry{
+display:block
+}
+.ordercard .entry input{
+font-size:17px
+}
+.ordercard .matrix{
+padding:3px 6px;
+gap:4px
+}
+.presetselect{
+height:44px;
+width:100%;
+margin-top:6px;
+background:#202b3b;
+border:1px solid #62789a;
+border-radius:5px;
+color:var(--ink);
+font-size:13px
+}
+.ordercards .sectionlabel{
+font-size:13px;
+color:var(--brand)
+}
+.orderlayout .stages{
+grid-template-columns:1fr 1fr
+}
+.orderlayout .stages.withsum{
+grid-template-columns:1fr 1fr 1fr
+}
+.orderlayout .readstrip{
+grid-template-columns:1fr
+}
+.cardtabs{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:4px
+}
+.cardtabs .btn{
+font-size:12px
+}
+.moves{
+display:flex;
+gap:4px
+}
+.moves .btn{
+flex:1;
+padding:0 4px
+}
+.undobox{
+padding:10px;
+background:#101721;
+border:1px solid #414b60;
+border-radius:8px
+}
+.undobox .matrix .entry{
+display:block
+}
+.equation{
+font:15px/1.5 var(--readout-font);
+margin:0;
+color:#d6c8ff;
+overflow-wrap:anywhere
+}
+.answers{
+display:flex;
+gap:6px;
+align-items:center
+}
+.answers label{
+flex:1;
+min-width:0;
+font-size:12px;
+color:var(--muted)
+}
+.answers input.num{
+width:100%;
+padding:0 5px;
+margin-top:3px
+}
+.feedback{
+font-size:14px;
+line-height:1.4;
+margin:0;
+min-height:46px;
+color:#e1d6ff
+}
+.formula{
+font:13px/1.5 var(--readout-font);
+color:#d8c9ff;
+white-space:pre-wrap;
+margin:7px 0 0
+}
+.undofeedback{
+display:flex;
+gap:12px;
+align-items:center;
+margin-top:7px;
+padding:7px 10px;
+background:#141b25;
+border:1px solid #414b60;
+border-radius:6px
+}
+.undofeedback .feedback{
+flex:1;
+min-height:0
+}
+.undofeedback .formula{
+flex:1;
+margin:0
+}
+.undofeedback .filtertable{
+font-size:12px;
+line-height:1.3;
+margin:0
+}
+#stage-filtertable{
+display:none
+}
+.resultlight{
+animation:resultlight .6s ease-out
+}
+@keyframes resultlight{
+0%{
+box-shadow:inset 0 0 80px #a58cff66
+}
+100%{
+box-shadow:inset 0 0 0 #a58cff00
+}
+}
+.filtertable{
+font:15px/1.65 var(--readout-font);
+white-space:pre;
+margin:5px 0;
+color:#dbcaff
+}
+.swatch{
+display:inline-block;
+width:16px;
+height:16px;
+vertical-align:middle;
+border:1px solid white;
+border-radius:50%;
+margin-right:6px
+}
+.sr{
+position:absolute;
+width:1px;
+height:1px;
+overflow:hidden;
+clip-path:inset(50%)
+}
+@media(max-width:1100px){
+main{
+grid-template-columns:minmax(0,1fr) 330px
+}
+header{
+padding:5px 10px;
+gap:5px
+}
+h1{
+font-size:20px
+}
+.seg button,.icon-btn{
+padding:0 8px;
+font-size:13px
+}
+.workbench{
+padding:9px
+}
+.panel{
+padding:8px;
+gap:5px
+}
+.controls{
+gap:5px
+}
+.entry{
+grid-template-columns:52px minmax(25px,1fr)
+}
+}
+@media(max-width:999px){
+.orderlayout .stages,.orderlayout .stages.withsum{
+grid-template-columns:1fr;
+grid-template-rows:1fr 1fr
+}
+.orderlayout .stages.withsum{
+grid-template-rows:1fr 1fr 1fr
+}
+h1 small{
+display:none
+}
+}
+@media(min-width:600px) and (max-height:650px){
+  .readstrip{grid-template-columns:1fr}
+  .meter{padding:4px 6px;display:flex;align-items:center;flex-wrap:wrap;gap:3px 6px}
+  .meter small{font-size:10px;margin:0;letter-spacing:0}
+  .meter strong{font-size:12px}
+  .meter p{font-size:10px;margin:0;line-height:1.2}
+header{
+padding:3px 8px;
+gap:4px
+}
+h1{
+font-size:18px
+}
+h1 small{
+display:none
+}
+.seg button,.icon-btn{
+padding:0 7px;
+font-size:12px
+}
+.workbench{
+padding:6px
+}
+.panel{
+padding:5px;
+gap:4px
+}
+.controls{
+gap:4px
+}
+.sectionlabel{
+display:none
+}
+.picbtn{
+min-height:44px;
+height:44px
+}
+.picbtn span{
+margin-top:22px;
+font-size:11px;
+padding:1px 0
+}
+.presets{
+margin-top:4px
+}
+.hint{
+min-height:44px;
+font-size:12px;
+padding:5px 7px
+}
+.columnnote{
+display:none
+}
+.readstrip{
+margin-top:5px;
+gap:5px
+}
+.meter{
+padding:5px 7px
+}
+.meter strong{
+font-size:14px
+}
+.meter small{
+font-size:10px;
+margin-bottom:2px
+}
+.meter p{
+font-size:11px;
+margin:1px 0 0
+}
+.viewnote{
+font-size:11px;
+padding:3px 7px;
+min-height:22px
+}
+.viewtitle{
+font-size:11px;
+min-height:27px;
+padding:4px 22px;
+flex-wrap:wrap;
+gap:0
+}
+.rail{
+min-height:22px;
+font-size:10px
+}
+.stages{
+gap:5px
+}
+.undobox{
+padding:4px
+}
+.feedback{
+min-height:32px;
+font-size:12px
+}
+.equation{
+font-size:13px
+}
+.formula{
+font-size:11px;
+margin:3px 0 0
+}
+.undofeedback{
+padding:4px 6px;
+gap:7px;
+margin-top:4px
+}
+#matrix-U .matrix{
+grid-template-columns:repeat(4,1fr);
+padding:2px 5px;
+gap:4px
+}
+#filtertable{
+display:none
+}
+#stage-filtertable:not([hidden]){
+display:block
+}
+.ordercard{
+padding:5px
+}
+.ordercard .sectionlabel{
+display:block;
+margin:0
+}
+.orderlayout .readstrip{
+grid-template-columns:1fr 1fr
+}
+.orderlayout .viewnote{
+display:none
+}
+}
+@media(max-width:599px){
+body{
+overflow:auto;
+height:auto;
+min-height:100vh
+}
+header{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+padding:5px 8px;
+gap:4px
+}
+h1{
+font-size:20px;
+width:100%;
+grid-column:span 3
+}
+.seg{
+grid-column:span 3;
+justify-content:center
+}
+.seg button{
+padding:0 10px;
+flex:1
+}
+.icon-btn{
+min-width:0
+}
+main{
+display:flex;
+flex-direction:column
+}
+.workbench{
+order:0;
+height:295px;
+flex:none;
+padding:7px
+}
+.workbench:has(#undofeedback:not([hidden]) #formula-result:not([hidden])){
+height:385px
+}
+.workbench:has(#undofeedback:not([hidden]) #stage-filtertable:not([hidden])){
+height:360px
+}
+.workbench:has(#undofeedback:not([hidden]) #stage-filtertable:not([hidden])) .meter p{
+display:none
+}
+.panel{
+order:1;
+overflow:visible;
+padding:7px;
+border-top:1px solid var(--line);
+border-left:0
+}
+.hint{
+min-height:44px;
+font-size:12px;
+padding:5px 7px
+}
+.controls{
+gap:5px
+}
+.sectionlabel{
+display:none
+}
+.picbtn{
+min-height:44px;
+height:44px
+}
+.picbtn span{
+margin-top:22px;
+padding:1px 0;
+font-size:11px
+}
+.columnnote{
+display:none
+}
+.readstrip{
+margin-top:5px;
+gap:5px
+}
+.meter{
+padding:5px 7px
+}
+.meter strong{
+font-size:14px
+}
+.meter p{
+font-size:11px
+}
+.meter small{
+font-size:10px;
+margin-bottom:2px
+}
+.rail{
+min-height:22px;
+font-size:10px
+}
+.viewnote{
+font-size:11px;
+min-height:22px;
+padding:3px 6px
+}
+.viewtitle{
+font-size:11px;
+min-height:27px;
+padding:4px 22px;
+gap:4px
+}
+.orderlayout .workbench{
+height:305px
+}
+.orderlayout .readstrip{
+grid-template-columns:1fr 1fr
+}
+.orderlayout .viewnote{
+display:none
+}
+#matrix-U .matrix{
+grid-template-columns:repeat(4,1fr);
+padding:2px 5px;
+gap:4px
+}
+#filtertable{
+display:none
+}
+#stage-filtertable:not([hidden]){
+display:block
+}
+.ordercard .sectionlabel{
+display:block
+}
+.feedback{
+min-height:35px;
+font-size:13px
+}
+.undobox{
+padding:6px
+}
+}
+
+/* Keep the bracket's two mathematical rows at every viewport size. */
+#matrix-U .matrix{
+grid-template-columns:1fr 1fr
+}
+
+.ordercard .entry{
+display:block
+}
+
+.ordercard .entry input{
+display:block
+}
+
+.ordercard .entry input[type=range]{
+width:100%;
+min-width:0;
+height:44px
+}
+
+.ordercard .matrix{
+padding:3px;
+gap:4px
+}
+
+.ordercard{
+padding:5px
+}
+
+.feedback:empty{
+display:none
+}
+
+.undofeedback:has(.feedback:empty):has(#formula-result[hidden]):has(#stage-filtertable[hidden]){
+display:none
+}
+
+.stage-tools{
+display:flex;
+flex-direction:column;
+gap:4px;
+flex:none
+}
+
+.stage-tools .hint{
+margin-bottom:4px
+}
+
+.stage-tools .moves{
+margin-bottom:4px
+}
+
+.workbench>#pictures{
+flex:none;
+margin-top:5px
+}
+
+body.calm .resultlight{
+animation:none
+}
+
+@media(min-width:600px) and (max-height:650px){
+
+  .orderlayout .readstrip .meter p{
+display:none
+}
+
+
+  .colorcard #formula-actions:has(#showme:not([hidden])){
+grid-column:span 3
+}
+
+  .colorcard #formula-actions:has(#showme:not([hidden]))~#filter-actions{
+grid-column:span 3
+}
+
+  .colorcard #formula-actions .btn,.colorcard #filter-actions .btn{
+padding:0 3px;
+font-size:11px
+}
+
+  .orderlayout .readstrip{
+grid-template-columns:1fr
+}
+
+  .orderlayout .meter{
+padding:3px 6px;
+display:flex;
+align-items:center;
+gap:7px
+}
+
+  .orderlayout .meter small{
+margin:0
+}
+
+  .orderlayout .meter strong{
+font-size:12px
+}
+
+  .orderlayout .rail{
+display:none
+}
+
+  .orderlayout .viewtitle{
+min-height:22px;
+font-size:10px;
+padding:2px 16px
+}
+
+  .orderlayout .stages{
+gap:3px
+}
+
+  .undobox:has(#move-answer:not([hidden])){
+display:grid;
+grid-template-columns:1fr 1.3fr;
+align-items:center;
+gap:4px
+}
+
+  .undobox .equation{
+font-size:12px
+}
+
+  .panel{
+gap:3px
+}
+
+  .controls{
+gap:3px
+}
+
+  .ordercards .sectionlabel{
+font-size:11px
+}
+
+  .ordercard .presetselect{
+margin-top:3px
+}
+
+  .orderlayout .workbench .hint{
+font-size:11px;
+min-height:36px;
+padding:3px 5px
+}
+
+
+}
+
+@media(max-width:599px){
+
+  header{
+grid-template-columns:1fr repeat(3,57px);
+gap:3px;
+padding:4px 6px
+}
+
+  h1{
+grid-column:1;
+grid-row:1;
+font-size:15px;
+width:auto
+}
+
+  header .seg{
+grid-column:1/-1;
+grid-row:2
+}
+
+  .icon-btn{
+grid-row:1;
+font-size:11px;
+padding:0 3px
+}
+
+  main{
+min-height:0
+}
+
+  .workbench,.workbench:has(#undofeedback:not([hidden]) #formula-result:not([hidden])),
+  .workbench:has(#undofeedback:not([hidden]) #stage-filtertable:not([hidden])){
+height:330px
+}
+
+  .orderlayout .workbench{
+height:340px
+}
+
+  body.undolayout .workbench{
+height:285px
+}
+
+  body.colorlayout .workbench{
+height:330px
+}
+
+  .panel{
+padding:5px;
+gap:4px
+}
+
+  .ordercard .sectionlabel{
+font-size:11px;
+margin-bottom:3px
+}
+
+  .readstrip .meter{
+padding:4px 5px
+}
+
+  .readstrip .meter strong{
+font-size:12px;
+line-height:1.2
+}
+
+  .readstrip .meter small{
+font-size:10px;
+margin-bottom:2px;
+letter-spacing:0
+}
+
+  .readstrip .meter p{
+font-size:10px;
+line-height:1.2;
+margin:2px 0 0
+}
+
+  .orderlayout .readstrip .meter p{
+display:none
+}
+
+  .undofeedback{
+padding:4px;
+gap:4px;
+margin-top:4px;
+flex:none
+}
+
+  .undofeedback .formula,.undofeedback .filtertable{
+font-size:11px;
+line-height:1.2
+}
+
+  .undofeedback .feedback{
+font-size:11px;
+min-height:0
+}
+
+
+  .viewnote{
+display:none
+}
+
+  .viewtitle{
+font-size:10px;
+min-height:24px;
+padding:3px 17px;
+flex-wrap:wrap;
+gap:0
+}
+
+  .colorcard #formula-actions:has(#showme:not([hidden])){
+grid-column:span 3
+}
+
+  .colorcard #formula-actions:has(#showme:not([hidden]))~#filter-actions{
+grid-column:span 3
+}
+
+  .colorcard #formula-actions .btn,.colorcard #filter-actions .btn{
+padding:0 3px;
+font-size:11px
+}
+
+  .orderlayout .rail{
+display:none
+}
+
+  .workbench .hint{
+min-height:36px;
+font-size:11px;
+padding:3px 5px
+}
+
+  .workbench .sectionlabel{
+display:none
+}
+
+
+}
+
+@media(min-width:600px) and (min-height:651px){
+  .undofeedback:has(.feedback:empty):has(#formula-result[hidden]){
+    display:none
+  }
+}
+@media(min-width:600px) and (max-height:650px){
+  .readstrip{grid-template-columns:1fr;gap:3px}
+  .meter{padding:3px 6px;display:flex;align-items:center;flex-wrap:wrap;gap:3px 6px}
+  .meter small{font-size:10px;margin:0;letter-spacing:0}
+  .meter strong{font-size:12px}
+  .meter p{font-size:10px;margin:0;line-height:1.2}
+}
+@media(max-width:599px){
+  body.undolayout:not(.colorlayout) .workbench:has(#undofeedback:not([hidden]) #formula-result:not([hidden])){
+    height:285px
+  }
+}
+#matrix-M .entry{
+  grid-template-columns:74px minmax(25px,1fr)
+}
+#matrix-M .entry input.num{
+  font-size:16px
+}
+@media(min-width:600px) and (max-height:650px){
+  body:not(.orderlayout):not(.undolayout) .stage-tools .hint{
+    height:64px;
+    min-height:64px
+  }
+  body:not(.orderlayout):not(.undolayout) .readstrip{
+    height:86px;
+    flex:none;
+    grid-template-rows:1fr 1fr
+  }
+}
+@media(max-width:599px){
+  body:not(.orderlayout):not(.undolayout) .stage-tools .hint{
+    height:52px;
+    min-height:52px
+  }
+  body:not(.orderlayout):not(.undolayout) .readstrip{
+    height:90px;
+    flex:none
+  }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Image Transformer <small>Four numbers move every pixel.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-studio" aria-pressed="true">Studio</button>
+    <button id="m-order" aria-pressed="false">Order matters</button>
+    <button id="m-undo" aria-pressed="false">Undo it</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <aside class="panel" aria-label="Transformation controls">
+    <p class="hint" id="hint"></p>
+    <div class="controls" id="studio-controls">
+      <section><h2 class="sectionlabel">Matrix <span>columns → arrows</span></h2><div id="matrix-M"></div></section>
+      <div class="presets" id="presets-M"></div>
+      <div class="actions">
+        <button class="btn" id="scale">Scale by k</button>
+        <input class="num" id="scalar" aria-label="Scalar k" value="1" inputmode="decimal">
+        <button class="btn" id="animate">Animate</button>
+        <button class="btn" id="reset">Reset</button>
+      </div>
+      <p class="columnnote" id="columns"></p>
+    </div>
+    <div class="controls" id="order-controls" hidden>
+      <div class="ordercards">
+        <section class="ordercard">
+<h2 class="sectionlabel">Matrix A</h2>
+<div id="matrix-A">
+</div>
+<select class="presetselect" id="preset-A"
+  aria-label="Preset for A">
+</select>
+</section>
+        <section class="ordercard">
+<h2 class="sectionlabel">Matrix B</h2>
+<div id="matrix-B">
+</div>
+<select class="presetselect" id="preset-B"
+  aria-label="Preset for B">
+</select>
+</section>
+      </div>
+      <div class="actions"><button class="btn" id="swap">Swap</button><button class="btn" id="sum" aria-pressed="false">A + B</button></div>
+      <p class="columnnote">Try Stretch x2 for A, Turn 90° for B. Then try two turns.</p>
+    </div>
+    <div class="controls" id="undo-controls" hidden>
+      <div class="cardtabs" role="group" aria-label="Undo card">
+        <button class="btn" id="card-move" aria-pressed="true">Undo the move</button>
+        <button class="btn" id="card-pixel" aria-pressed="false">Pixel origin</button>
+        <button class="btn" id="card-color" aria-pressed="false">Color filter</button>
+      </div>
+      <div class="moves" id="moves"></div>
+      <div class="undobox">
+        <p class="equation" id="given"></p>
+        <div id="move-answer"><div id="matrix-U"></div></div>
+        <div class="answers" id="pixel-answer" hidden>
+          <label>x<input class="num" id="answer-x" value="0" inputmode="decimal"></label>
+          <label>y<input class="num" id="answer-y" value="0" inputmode="decimal"></label>
+        </div>
+        <div id="color-answer" hidden>
+          <p class="filtertable" id="filtertable"></p>
+          <div class="answers">
+            <label>R<input class="num" id="answer-r" value="0" inputmode="numeric"></label>
+            <label>G<input class="num" id="answer-g" value="0" inputmode="numeric"></label>
+            <label>B<input class="num" id="answer-b" value="0" inputmode="numeric"></label>
+          </div>
+        </div>
+      </div>
+      <div class="actions"><button class="btn" id="apply">Apply</button><button class="btn" id="impossible">It can't be undone</button></div>
+      <div class="actions" id="formula-actions">
+<button class="btn" id="formula" aria-expanded="false">Show the formula</button>
+<button class="btn" id="showme" hidden>Show me</button>
+</div>
+      <div class="actions" id="filter-actions" hidden>
+        <button class="btn" id="gray" aria-pressed="false">Gray filter</button><button class="btn" id="nextpixel">Next pixel</button>
+      </div>
+    </div>
+    <section id="pictures"><h2 class="sectionlabel">Picture <span>4 × 3 units</span></h2><div class="picturelist" id="picturelist"></div></section>
+  </aside>
+  <section class="workbench" aria-label="Darkroom transformation stage">
+    <div class="rail"><span class="lamp">MATRIX DARKROOM</span><span id="rail-right">LIVE / 2 × 2</span></div>
+    <div class="stage-tools" id="stage-tools"></div>
+    <div class="stages" id="stages">
+      <section class="viewport" id="view-main">
+        <div class="viewtitle"><span id="title-main">Live transformation</span><span class="product" id="product-main"></span></div>
+        <div class="canvasbox" id="box-main">
+          <canvas id="canvas-main" tabindex="0"
+  aria-label="Transformed picture. In Studio press Enter to pin (1, 1), then arrow keys to move the probe.">
+</canvas>
+          <button class="tiphandle" id="tip-i" aria-label="i-hat arrow tip. Arrow keys move 0.1, Shift moves 1."></button>
+          <button class="tiphandle" id="tip-j" aria-label="j-hat arrow tip. Arrow keys move 0.1, Shift moves 1."></button>
+        </div>
+        <div class="viewnote" id="note-main">Drag either arrow tip. Tap the picture to pin a pixel.</div>
+      </section>
+      <section class="viewport" id="view-other" hidden>
+        <div class="viewtitle"><span>B then A: AB</span><span class="product" id="product-other"></span></div>
+        <div class="canvasbox"><canvas id="canvas-other" aria-label="Picture after B then A"></canvas></div>
+        <div class="viewnote">B acts first, then A.</div>
+      </section>
+      <section class="viewport" id="view-sum" hidden>
+        <div class="viewtitle"><span>A + B</span><span class="product" id="product-sum"></span></div>
+        <div class="canvasbox"><canvas id="canvas-sum" aria-label="Picture under the sum A plus B"></canvas></div>
+        <div class="viewnote">Addition, for comparison.</div>
+      </section>
+    </div>
+    <div class="undofeedback" id="undofeedback" hidden>
+      <p class="feedback" id="feedback" aria-live="polite"></p>
+      <p class="formula" id="formula-result" hidden></p>
+      <p class="filtertable" id="stage-filtertable" hidden></p>
+    </div>
+    <div class="readstrip" id="readstrip">
+      <div class="meter"><small id="meter-label">Determinant / orientation</small><strong id="det"></strong><p id="orientation"></p></div>
+      <div class="meter"><small id="area-label">Picture area / probe</small><strong id="area"></strong><p id="probe"></p></div>
+    </div>
+  </section>
+</main>
+<div hidden>
+  <img id="art-lighthouse" src="art:imt-lighthouse" alt="Painted lighthouse">
+  <img id="art-balloon" src="art:imt-balloon" alt="Painted hot air balloon">
+  <img id="art-fox" src="art:imt-fox" alt="Painted fox">
+</div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const I = [1, 0, 0, 1];
+  const PRESETS = {
+    'Identity': I,
+    'Turn 90°': [0, -1, 1, 0],
+    'Turn 30°': [.866, -.5, .5, .866],
+    'Shear': [1, 1, 0, 1],
+    'Stretch x2': [2, 0, 0, 1],
+    'Reflect': [-1, 0, 0, 1],
+    'Flatten': [1, 2, .5, 1],
+  };
+  const MOVES = [
+    {m: [2, 1, 1, 1], b: [5, 3], x: [2, 1]},
+    {m: [3, 1, 2, 1], b: [7, 5], x: [2, 1]},
+    {m: [1, 2, 3, 4], b: [5, 11], x: [1, 2]},
+    {m: [1, 2, 2, 4], b: [0, 0], x: null},
+  ];
+  const ORIGINALS = [[200, 100, 40], [60, 180, 120], [250, 30, 90]];
+  const FILTER = [[.5, .5, 0], [0, .5, .5], [.5, 0, .5]];
+  const state = {
+    mode: 'studio', M: [...I], A: [...PRESETS['Turn 90°']], B: [...PRESETS.Shear], U: [...I],
+    picture: 'lighthouse', probe: null, sum: false, card: 'move', move: 0, pixel: 0,
+    gray: false, misses: 0, solved: false, formula: false, edited: false, checked: false,
+    display: [...I], animation: null, attempts: [],
+  };
+  const L = {
+    studio: 'Type in the four number boxes, or drag the tip of either arrow. Every pixel in the picture follows.',
+    columns: 'The first column is where the right arrow lands. The second is where the up arrow lands.',
+    flipped: 'The determinant went negative, so the picture flipped.',
+    flat: 'Determinant zero. The whole picture got squashed onto a line.',
+    point: 'Determinant zero. Every pixel landed on the origin, so the picture became a point.',
+    order: 'Pick a preset for A and for B. The two screens do them in opposite orders. Press Swap to trade them.',
+    undo: 'Type the matrix that puts the picture back, then press Apply.',
+    pixel: 'Type the x and y this pixel started at, then press Check.',
+    home: 'Back home. Your matrix undid it.',
+    noUndo: "Right. A flattened picture can't be pulled back apart.",
+    color: 'Each pixel\'s color went through the filter. Type the original red, green and blue, then press Check.',
+  };
+  const eventLines = new Set(['flipped', 'flat', 'point', 'home', 'noUndo']);
+  const welcomeKey = () => state.mode === 'studio' ? 'studio' : state.mode === 'order' ? 'order' :
+    state.card === 'move' ? 'undo' : state.card;
+  const V = Curio.voice({
+    lines: L,
+    scope: () => state.mode + (state.mode === 'undo' ? ':' + state.card : ''),
+    hint: false,
+    read: () => $('hint').textContent,
+    welcome: () => {
+      if (state.mode === 'undo' && state.card === 'pixel' && state.move === 3) return null;
+      if (state.mode !== 'undo' && state.edited) return null;
+      if (state.mode === 'undo' && state.checked) return null;
+      return [welcomeKey(), {valid: () => state.mode === 'undo' ? !state.checked : !state.edited}];
+    },
+    speaks: '#apply, #impossible',
+  });
+  const n = value => {
+    const rounded = Math.round(value * 1000) / 1000;
+    return String(Object.is(rounded, -0) ? 0 : rounded);
+  };
+  const fmt = m => `[${n(m[0])} ${n(m[1])}; ${n(m[2])} ${n(m[3])}]`;
+  const determinant = m => m[0] * m[3] - m[1] * m[2];
+  const multiply = (a, b) => [
+    a[0] * b[0] + a[1] * b[2], a[0] * b[1] + a[1] * b[3],
+    a[2] * b[0] + a[3] * b[2], a[2] * b[1] + a[3] * b[3],
+  ];
+  const times = (m, p) => [m[0] * p[0] + m[1] * p[1], m[2] * p[0] + m[3] * p[1]];
+  const inverse = m => {
+    const d = determinant(m);
+    return Math.abs(d) < 1e-12 ? null : [m[3] / d, -m[1] / d, -m[2] / d, m[0] / d];
+  };
+  function inverse3(matrix) {
+    const rows = matrix.map((row, i) => [...row, ...[0, 1, 2].map(j => Number(i === j))]);
+    for (let c = 0; c < 3; c++) {
+      let pivot = c;
+      for (let r = c + 1; r < 3; r++) if (Math.abs(rows[r][c]) > Math.abs(rows[pivot][c])) pivot = r;
+      if (Math.abs(rows[pivot][c]) < 1e-10) return null;
+      [rows[c], rows[pivot]] = [rows[pivot], rows[c]];
+      const divisor = rows[c][c];
+      rows[c] = rows[c].map(v => v / divisor);
+      for (let r = 0; r < 3; r++) {
+        if (r === c) continue;
+        const factor = rows[r][c];
+        rows[r] = rows[r].map((v, k) => v - factor * rows[c][k]);
+      }
+    }
+    return rows.map(row => row.slice(3));
+  }
+  function parse(text) {
+    const s = String(text).trim().replaceAll('−', '-');
+    const match = s.match(/^([+-]?(?:\d+(?:\.\d*)?|\.\d+))(?:\s*\/\s*([+-]?(?:\d+(?:\.\d*)?|\.\d+)))?$/);
+    if (!match) return null;
+    const value = Number(match[1]) / (match[2] === undefined ? 1 : Number(match[2]));
+    return Number.isFinite(value) ? value : null;
+  }
+  const clamp = v => Math.max(-10, Math.min(10, v));
+  const currentMove = () => MOVES[state.move];
+  const currentFilter = () => state.gray ? Array.from({length: 3}, () => [1 / 3, 1 / 3, 1 / 3]) : FILTER;
+  const filtered = () => currentFilter().map(row => row.reduce((sum, v, i) => sum + v * ORIGINALS[state.pixel][i], 0));
+  const hint = text => { $('hint').textContent = text; };
+  function how(key, valid = () => true) {
+    if (!V.heard(key)) V.how(key, {valid, hint: false});
+  }
+  let eventSerial = 0;
+  function speakEvent(key, valid) {
+    if (eventLines.has(key)) V.say(key, {key: key + ':' + (++eventSerial), valid, hint: false});
+  }
+  function stopAnimation() {
+    if (state.animation) cancelAnimationFrame(state.animation.frame);
+    state.animation = null;
+  }
+  function animateTo(from, to, duration) {
+    stopAnimation();
+    if (Curio.reduce) {
+      state.display = [...to];
+      render();
+      return;
+    }
+    const animation = {start: performance.now(), frame: null};
+    state.animation = animation;
+    const step = now => {
+      if (state.animation !== animation) return;
+      const t = Math.min(1, (now - animation.start) / duration);
+      const e = t * t * (3 - 2 * t);
+      state.display = from.map((v, i) => v + (to[i] - v) * e);
+      render();
+      if (t < 1) animation.frame = requestAnimationFrame(step);
+      else {
+        state.animation = null;
+        update();
+      }
+    };
+    state.display = [...from];
+    render();
+    animation.frame = requestAnimationFrame(step);
+  }
+  function syncMatrix(key) {
+    state[key].forEach((v, i) => {
+      const box = $(`${key}-${i}`);
+      if (document.activeElement !== box) box.value = n(v);
+      box.removeAttribute('aria-invalid');
+      const slider = $(`${key}-s${i}`);
+      if (slider) slider.value = Math.max(-3, Math.min(3, v));
+    });
+  }
+  function editMatrix(key, matrix, source = 'box') {
+    const oldDet = determinant(state[key]);
+    const next = matrix.map(clamp);
+    const changed = next.some((value, i) => value !== state[key][i]);
+    stopAnimation();
+    state[key] = next;
+    syncMatrix(key);
+    if (key === 'U') {
+      state.solved = false;
+      hint('Press Apply to test your revised matrix against the move.');
+      $('feedback').textContent = 'Press Apply to test your matrix against the move.';
+    } else {
+      state.edited = state.edited || changed;
+      if (key === 'M') {
+        state.display = [...state.M];
+        const d = determinant(state.M);
+        hint('Drag an arrow or edit the matrix. Tap the picture to pin a pixel, then try Animate.');
+        if (d < -.0005 && oldDet >= -.0005) speakEvent('flipped', () => determinant(state.M) < -.0005);
+        if (Math.abs(d) < .0005 && Math.abs(oldDet) >= .0005) {
+          const point = state.M.every(v => Math.abs(v) < 1e-12);
+          speakEvent(point ? 'point' : 'flat', () => Math.abs(determinant(state.M)) < .0005 &&
+            state.M.every(v => Math.abs(v) < 1e-12) === point);
+        }
+        if (source === 'arrow') how('columns', () => state.mode === 'studio');
+      } else {
+        hint('Compare the products above the pictures. Change a preset, or press Swap.');
+      }
+    }
+    Curio.tone(320 + Math.min(400, Math.abs(determinant(matrix)) * 70), .07, .018);
+    update();
+    pulse();
+  }
+  function buildMatrix(key, sliders) {
+    const container = document.createElement('div');
+    container.className = 'matrix';
+    ['a', 'b', 'c', 'd'].forEach((label, index) => {
+      const entry = document.createElement('div');
+      entry.className = 'entry';
+      const box = document.createElement('input');
+      box.id = `${key}-${index}`;
+      box.className = 'num';
+      box.value = state[key][index];
+      box.inputMode = 'decimal';
+      box.setAttribute('aria-label', `${key} ${label}, row ${index < 2 ? 1 : 2}, column ${index % 2 + 1}`);
+      const commit = final => {
+        const value = parse(box.value);
+        box.setAttribute('aria-invalid', String(value === null));
+        if (value === null) {
+          if (final) hint('Enter a decimal or a simple fraction, such as 1/2. A fraction needs a nonzero denominator.');
+          return;
+        }
+        const matrix = [...state[key]];
+        matrix[index] = clamp(value);
+        editMatrix(key, matrix);
+        if (final) box.value = n(matrix[index]);
+      };
+      box.oninput = () => commit(false);
+      box.onchange = () => commit(true);
+      entry.append(box);
+      if (sliders) {
+        const slider = document.createElement('input');
+        slider.type = 'range';
+        slider.id = `${key}-s${index}`;
+        slider.min = -3;
+        slider.max = 3;
+        slider.step = .1;
+        slider.value = state[key][index];
+        slider.setAttribute('aria-label', `${key} ${label} slider`);
+        slider.oninput = () => {
+          const matrix = [...state[key]];
+          matrix[index] = Number(slider.value);
+          editMatrix(key, matrix, 'slider');
+        };
+        entry.append(slider);
+      }
+      container.append(entry);
+    });
+    $('matrix-' + key).append(container);
+  }
+  ['M', 'A', 'B', 'U'].forEach(key => buildMatrix(key, key !== 'U'));
+  Object.entries(PRESETS).forEach(([name, matrix]) => {
+    const button = document.createElement('button');
+    button.className = 'btn';
+    button.textContent = name;
+    button.dataset.preset = name;
+    button.onclick = () => editMatrix('M', matrix, 'preset');
+    $('presets-M').append(button);
+    ['A', 'B'].forEach(key => {
+      const option = document.createElement('option');
+      option.textContent = name;
+      option.value = name;
+      $('preset-' + key).append(option);
+    });
+  });
+  ['A', 'B'].forEach(key => {
+    $('preset-' + key).value = key === 'A' ? 'Turn 90°' : 'Shear';
+    $('preset-' + key).onchange = () => editMatrix(key, PRESETS[$('preset-' + key).value], 'preset');
+  });
+  ['lighthouse', 'balloon', 'fox', 'F'].forEach((name, i) => {
+    const button = document.createElement('button');
+    button.className = 'picbtn' + (name === 'F' ? ' f' : '');
+    button.id = 'picture-' + name;
+    button.setAttribute('aria-pressed', String(i === 0));
+    if (name !== 'F') {
+      const image = document.createElement('img');
+      image.src = $('art-' + name).src;
+      image.alt = '';
+      button.append(image);
+    }
+    const label = document.createElement('span');
+    label.textContent = name === 'F' ? 'Letter F' : name[0].toUpperCase() + name.slice(1);
+    button.append(label);
+    button.onclick = () => {
+      state.picture = name;
+      document.querySelectorAll('.picbtn').forEach(b => b.setAttribute('aria-pressed', String(b === button)));
+      filterCache = null;
+      Curio.tone(520, .08, .018);
+      render();
+      pulse();
+    };
+    $('picturelist').append(button);
+  });
+  let filterCache = null;
+  function filteredImage() {
+    const letter = state.picture === 'F';
+    const image = letter ? null : $('art-' + state.picture);
+    if (!letter && (!image.complete || !image.naturalWidth)) return null;
+    const key = state.picture + ':' + state.gray;
+    if (filterCache && filterCache.key === key) return filterCache.canvas;
+    const canvas = document.createElement('canvas');
+    canvas.width = letter ? 800 : image.naturalWidth;
+    canvas.height = letter ? 600 : image.naturalHeight;
+    const ctx = canvas.getContext('2d', {willReadFrequently: true});
+    if (letter) drawPicture(ctx, I, {s: 200, ox: 0, oy: 600}, 1, false);
+    else ctx.drawImage(image, 0, 0);
+    const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const f = currentFilter();
+    for (let i = 0; i < pixels.data.length; i += 4) {
+      const red = pixels.data[i];
+      const green = pixels.data[i + 1];
+      const blue = pixels.data[i + 2];
+      for (let channel = 0; channel < 3; channel++) {
+        const row = f[channel];
+        pixels.data[i + channel] = row[0] * red + row[1] * green + row[2] * blue;
+      }
+    }
+    ctx.putImageData(pixels, 0, 0);
+    filterCache = {key, canvas};
+    return canvas;
+  }
+  function drawPicture(ctx, matrix, geometry, opacity = 1, filter = false) {
+    const {s, ox, oy} = geometry;
+    ctx.save();
+    ctx.globalAlpha = opacity;
+    ctx.setTransform(s * matrix[0], -s * matrix[2], s * matrix[1], -s * matrix[3], ox, oy);
+    const image = filter ? filteredImage() : $('art-' + state.picture);
+    if (state.picture === 'F' && !filter) {
+      for (let x = 0; x < 4; x++) for (let y = 0; y < 3; y++) {
+        ctx.fillStyle = (x + y) % 2 ? '#405b78' : '#c2ccd7';
+        ctx.fillRect(x, y, 1, 1);
+      }
+      ctx.fillStyle = '#ffe1a3';
+      ctx.strokeStyle = '#172536';
+      ctx.lineWidth = .04;
+      ctx.beginPath();
+      [[.7, .4], [1.35, .4], [1.35, 1.2], [2.5, 1.2], [2.5, 1.8], [1.35, 1.8],
+        [1.35, 2.1], [3.1, 2.1], [3.1, 2.7], [.7, 2.7]].forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y));
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+    } else if (image && (image.naturalWidth || image.width)) {
+      ctx.scale(1, -1);
+      ctx.drawImage(image, 0, -3, 4, 3);
+    }
+    ctx.restore();
+  }
+  function geometry(canvas) {
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    return {w: width, h: height, s: Math.max(1, Math.min(width - 46, height - 30) / 12), ox: width / 2, oy: height / 2};
+  }
+  function draw(canvas, matrix, options = {}) {
+    const g = geometry(canvas);
+    if (!g.w || !g.h) return;
+    const ratio = window.devicePixelRatio || 1;
+    const width = Math.round(g.w * ratio);
+    const height = Math.round(g.h * ratio);
+    if (canvas.width !== width || canvas.height !== height) {
+      canvas.width = width;
+      canvas.height = height;
+    }
+    const ctx = canvas.getContext('2d');
+    // Draw at actual device pixels, including all canvas transform coefficients.
+    const d = {w: width, h: height, s: g.s * ratio, ox: g.ox * ratio, oy: g.oy * ratio};
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    const light = ctx.createRadialGradient(d.w * .3, d.h * .15, 0, d.w * .5, d.h * .5, d.w * .8);
+    light.addColorStop(0, '#202337');
+    light.addColorStop(.5, '#10151f');
+    light.addColorStop(1, '#0a0d14');
+    ctx.fillStyle = light;
+    ctx.fillRect(0, 0, d.w, d.h);
+    // Fixed reference grid, then the moving grid in the same matrix as the picture.
+    const grid = (m, color, alpha) => {
+      ctx.save();
+      ctx.setTransform(d.s * m[0], -d.s * m[2], d.s * m[1], -d.s * m[3], d.ox, d.oy);
+      ctx.strokeStyle = color;
+      ctx.globalAlpha = alpha;
+      ctx.lineWidth = ratio / d.s;
+      ctx.beginPath();
+      for (let i = -6; i <= 6; i++) {
+        ctx.moveTo(i, -6);
+        ctx.lineTo(i, 6);
+        ctx.moveTo(-6, i);
+        ctx.lineTo(6, i);
+      }
+      ctx.stroke();
+      ctx.restore();
+    };
+    grid(I, '#2a3140', .5);
+    grid(matrix, '#68718b', .42);
+    drawPicture(ctx, I, d, .2);
+    const zero = matrix.every(v => Math.abs(v) < 1e-10);
+    const det = determinant(matrix);
+    if (!zero && Math.abs(det) > 1e-10) drawPicture(ctx, matrix, d, 1, options.color && !(state.solved && !state.gray));
+    const point = p => {
+      const q = times(matrix, p);
+      return [d.ox + q[0] * d.s, d.oy - q[1] * d.s];
+    };
+    // Singular matrices still show their collapsed image boundary.
+    if (!zero && Math.abs(det) <= 1e-10) {
+      ctx.strokeStyle = '#cebaff';
+      ctx.lineWidth = 4 * ratio;
+      ctx.beginPath();
+      [[0, 0], [4, 0], [4, 3], [0, 3]].forEach((p, i) => i ? ctx.lineTo(...point(p)) : ctx.moveTo(...point(p)));
+      ctx.closePath();
+      ctx.stroke();
+    }
+    ctx.strokeStyle = '#a1adc455';
+    ctx.lineWidth = ratio;
+    ctx.beginPath();
+    ctx.moveTo(d.ox - 6 * d.s, d.oy);
+    ctx.lineTo(d.ox + 6 * d.s, d.oy);
+    ctx.moveTo(d.ox, d.oy - 6 * d.s);
+    ctx.lineTo(d.ox, d.oy + 6 * d.s);
+    ctx.stroke();
+    ctx.font = `${11 * ratio}px Consolas,monospace`;
+    ctx.fillStyle = '#aeb9cc';
+    const tickStep = g.s < 10 ? 6 : g.s < 17 ? 3 : 2;
+    for (let i = -6; i <= 6; i += tickStep) {
+      if (i === 0) continue;
+      ctx.fillText(i, d.ox + i * d.s + 3 * ratio, d.oy + 13 * ratio);
+      ctx.fillText(i, d.ox + 5 * ratio, d.oy - i * d.s - 3 * ratio);
+    }
+    ctx.fillText('x', d.ox + 6 * d.s - 10 * ratio, d.oy - 7 * ratio);
+    ctx.fillText('y', d.ox + 7 * ratio, d.oy - 6 * d.s + 11 * ratio);
+    ctx.beginPath();
+    [[0, 0], [1, 0], [1, 1], [0, 1]].forEach((p, i) => i ? ctx.lineTo(...point(p)) : ctx.moveTo(...point(p)));
+    ctx.closePath();
+    ctx.fillStyle = '#a58cff20';
+    ctx.strokeStyle = '#ded0ff66';
+    ctx.fill();
+    ctx.stroke();
+    [[1, 0], [0, 1]].forEach((p, i) => {
+      const end = point(p);
+      const angle = Math.atan2(end[1] - d.oy, end[0] - d.ox);
+      ctx.save();
+      ctx.strokeStyle = i ? '#c9a0ff' : '#5aa9ff';
+      ctx.fillStyle = ctx.strokeStyle;
+      ctx.lineWidth = 3 * ratio;
+      if (i) ctx.setLineDash([6 * ratio, 4 * ratio]);
+      ctx.beginPath();
+      ctx.moveTo(d.ox, d.oy);
+      ctx.lineTo(...end);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.beginPath();
+      ctx.moveTo(...end);
+      ctx.lineTo(end[0] - 10 * ratio * Math.cos(angle - .45), end[1] - 10 * ratio * Math.sin(angle - .45));
+      ctx.lineTo(end[0] - 10 * ratio * Math.cos(angle + .45), end[1] - 10 * ratio * Math.sin(angle + .45));
+      ctx.closePath();
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(...end, 6 * ratio, 0, Math.PI * 2);
+      ctx.fillStyle = '#10161f';
+      ctx.fill();
+      ctx.stroke();
+      ctx.font = `bold ${12 * ratio}px Segoe UI,sans-serif`;
+      ctx.fillStyle = '#edf2ff';
+      ctx.shadowColor = '#000';
+      ctx.shadowBlur = 5 * ratio;
+      if (g.s >= 9) {
+        const tx = Math.max(3 * ratio, Math.min(d.w - 15 * ratio, end[0] + (i ? -17 : 10) * ratio));
+        const ty = Math.max(13 * ratio, Math.min(d.h - 4 * ratio, end[1] - 9 * ratio));
+        ctx.fillText(i ? 'ĵ' : 'î', tx, ty);
+      }
+      ctx.restore();
+    });
+    ctx.fillStyle = '#e6d9ff';
+    ctx.beginPath();
+    ctx.arc(d.ox, d.oy, (zero ? 5 : 2) * ratio, 0, Math.PI * 2);
+    ctx.fill();
+    let pin = options.pin || state.probe;
+    if (options.color) pin = [2, 1.5];
+    if (pin) {
+      const p = point(pin);
+      ctx.strokeStyle = '#fff0ba';
+      ctx.lineWidth = 2 * ratio;
+      ctx.beginPath();
+      ctx.arc(...p, 9 * ratio, 0, 2 * Math.PI);
+      ctx.stroke();
+      ctx.fillStyle = '#fff0ba';
+      ctx.fillRect(p[0] - 2 * ratio, p[1] - 2 * ratio, 4 * ratio, 4 * ratio);
+      if (options.color) {
+        // A controlled sample tile inside the image is the pixel used by the color equation.
+        ctx.fillStyle = `rgb(${(state.solved && !state.gray ? ORIGINALS[state.pixel] : filtered()).join(',')})`;
+        ctx.fillRect(p[0] - 5 * ratio, p[1] - 5 * ratio, 10 * ratio, 10 * ratio);
+      }
+    }
+    if (state.mode === 'undo' && state.card === 'pixel' && state.checked && state.probe && currentMove().x) {
+      const guess = point(state.probe);
+      ctx.strokeStyle = state.solved ? '#6fdca6' : '#ffb8a8';
+      ctx.lineWidth = 2 * ratio;
+      ctx.beginPath();
+      ctx.moveTo(guess[0] - 6 * ratio, guess[1] - 6 * ratio);
+      ctx.lineTo(guess[0] + 6 * ratio, guess[1] + 6 * ratio);
+      ctx.moveTo(guess[0] + 6 * ratio, guess[1] - 6 * ratio);
+      ctx.lineTo(guess[0] - 6 * ratio, guess[1] + 6 * ratio);
+      ctx.stroke();
+      if (!state.solved) {
+        const target = point(currentMove().x);
+        ctx.setLineDash([4 * ratio, 4 * ratio]);
+        ctx.beginPath();
+        ctx.moveTo(...guess);
+        ctx.lineTo(...target);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+    }
+    if (options.handles) {
+      [[1, 0], [0, 1]].forEach((p, i) => {
+        const end = point(p);
+        const button = $(i ? 'tip-j' : 'tip-i');
+        button.style.left = end[0] / ratio + 'px';
+        button.style.top = end[1] / ratio + 'px';
+        button.hidden = end[0] < 0 || end[0] > d.w || end[1] < 0 || end[1] > d.h;
+      });
+    }
+  }
+  function render() {
+    if (state.mode === 'order') {
+      draw($('canvas-main'), multiply(state.B, state.A));
+      draw($('canvas-other'), multiply(state.A, state.B));
+      if (state.sum) draw($('canvas-sum'), state.A.map((v, i) => v + state.B[i]));
+    } else {
+      const color = state.mode === 'undo' && state.card === 'color';
+      const pin = state.mode === 'undo' && state.card === 'pixel' && currentMove().x ? currentMove().x : null;
+      draw($('canvas-main'), state.display, {handles: state.mode === 'studio', color, pin});
+    }
+  }
+  function pulse() {
+    $('view-main').classList.remove('resultlight');
+    void $('view-main').offsetWidth;
+    $('view-main').classList.add('resultlight');
+  }
+  function update() {
+    if (state.mode === 'order') {
+      const ba = multiply(state.B, state.A);
+      const ab = multiply(state.A, state.B);
+      const same = ba.every((v, i) => Math.abs(v - ab[i]) <= .0005);
+      $('product-main').textContent = fmt(ba);
+      $('product-other').textContent = fmt(ab);
+      $('product-sum').textContent = fmt(state.A.map((v, i) => v + state.B[i]));
+      $('det').textContent = same ? 'Same picture' : 'Different pictures';
+      $('orientation').textContent = 'Matrix products read right to left: in BA, A acts first.';
+      $('area').textContent = `det BA = ${n(determinant(ba))}; det AB = ${n(determinant(ab))}`;
+      $('probe').textContent = 'Change A or B to compare their two orders.';
+      $('meter-label').textContent = 'Order comparison';
+      $('area-label').textContent = 'Products / area scales';
+    } else if (state.mode === 'undo' && state.card === 'color') {
+      $('product-main').textContent = state.gray ? 'GRAY / det 0' : 'BLEND / det 0.25';
+      $('det').textContent = state.solved && !state.gray ? `Recovered RGB (${ORIGINALS[state.pixel].join(', ')})` :
+        `Filtered RGB (${filtered().map(n).join(', ')})`;
+      $('orientation').textContent = 'Ringed sample tile: a known pixel for this filter equation.';
+      $('area').textContent = state.gray ? 'Information merged' : state.solved ? 'F inverse restored the color' : 'Three channels, one system';
+      $('probe').textContent = state.gray ? 'Different RGB triples can give the same gray.' : 'Each new channel averages two original channels.';
+      $('meter-label').textContent = 'Color probe';
+      $('area-label').textContent = 'Filter laboratory';
+    } else {
+      const m = state.mode === 'studio' ? state.M : state.display;
+      const raw = determinant(m);
+      const d = Math.abs(raw) < .0005 ? 0 : raw;
+      const zero = m.every(v => Math.abs(v) < 1e-12);
+      $('product-main').textContent = fmt(m);
+      $('det').textContent = `det = ad - bc = ${n(d)}`;
+      $('orientation').textContent = d === 0 ? zero ? 'Flattened to a point' : 'Flattened onto a line' : `Flipped: ${d < 0 ? 'yes' : 'no'}`;
+      $('area').textContent = `12 → ${n(12 * Math.abs(d))} square units`;
+      $('meter-label').textContent = 'Determinant / orientation';
+      $('area-label').textContent = `Area × |det| = ${n(Math.abs(d))}`;
+      const p = state.mode === 'undo' && state.card === 'pixel' ? currentMove().x : state.probe;
+      if (p) {
+        const q = times(m, p);
+        $('probe').textContent = `M × (${p.map(n).join(', ')}) = (${q.map(n).join(', ')})`;
+        if (state.mode === 'undo' && state.card === 'pixel' && !state.solved) {
+          $('probe').textContent = `Moved pin b = (${currentMove().b.join(', ')}). Find its origin.`;
+        }
+      } else $('probe').textContent = state.mode === 'studio' ? 'Tap the picture to drop a probe pin.' : 'Home ghost: the original 4 × 3 picture.';
+      $('columns').textContent = `Column 1: î → (${n(state.M[0])}, ${n(state.M[2])}). Column 2: ĵ → (${n(state.M[1])}, ${n(state.M[3])}).`;
+    }
+    render();
+  }
+  function resetTask() {
+    stopAnimation();
+    state.probe = null;
+    state.misses = 0;
+    state.solved = false;
+    state.checked = false;
+    state.formula = false;
+    state.U = [...I];
+    state.display = state.card === 'color' ? [...I] : [...currentMove().m];
+    syncMatrix('U');
+    $('feedback').textContent = '';
+    $('showme').hidden = true;
+    $('formula-result').hidden = true;
+    $('formula').setAttribute('aria-expanded', 'false');
+    ['x', 'y', 'r', 'g', 'b'].forEach(c => { $('answer-' + c).value = '0'; });
+    updateUndo();
+    update();
+  }
+  function updateUndo() {
+    const card = state.card;
+    $('title-main').textContent = card === 'color' ? 'Color filter / known pixel' :
+      card === 'pixel' ? 'Where did this pixel come from?' : 'Moved picture / home ghost';
+    $('note-main').textContent = card === 'color' ? 'The ring marks the controlled sample in the filter equation.' :
+      'The faint picture marks home. Your entries decide the result.';
+    $('undo-controls').classList.toggle('colorcard', card === 'color');
+    document.body.classList.toggle('colorlayout', state.mode === 'undo' && card === 'color');
+    ['move', 'pixel', 'color'].forEach(k => {
+      $('card-' + k).setAttribute('aria-pressed', String(card === k));
+      $(k + '-answer').hidden = card !== k;
+    });
+    $('moves').hidden = card === 'color';
+    document.querySelectorAll('[data-move]').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.move === state.move)));
+    $('apply').textContent = card === 'move' ? 'Apply' : 'Check';
+    $('impossible').hidden = false;
+    $('filter-actions').hidden = card !== 'color';
+    $('stage-filtertable').hidden = card !== 'color';
+    $('formula').textContent = card === 'color' ? 'Find F inverse' : 'Show the formula';
+    if (card === 'color') {
+      $('given').textContent = 'F × (R, G, B) = (' + filtered().map(n).join(', ') + ')';
+      $('filtertable').textContent = state.gray ?
+        'F = [1/3 1/3 1/3]\n    [1/3 1/3 1/3]\n    [1/3 1/3 1/3]' :
+        'F = [0.5 0.5  0 ]\n    [ 0  0.5 0.5]\n    [0.5  0  0.5]';
+      $('stage-filtertable').textContent = $('filtertable').textContent;
+      $('gray').setAttribute('aria-pressed', String(state.gray));
+    } else {
+      $('given').textContent = `M = ${fmt(currentMove().m)}` + (card === 'pixel' ? `; b = (${currentMove().b.join(', ')})` : '; find U with UM = I');
+    }
+    hint(L[card === 'move' ? 'undo' : card]);
+    if (card === 'pixel' && !currentMove().x) hint("Move 4 has no unique pixel origin. Press It can't be undone to explain why.");
+  }
+  function chooseCard(card) {
+    Curio.stop();
+    V.hush();
+    state.card = card;
+    if (card === 'color') {
+      state.picture = 'balloon';
+      document.querySelectorAll('.picbtn').forEach(b => b.setAttribute('aria-pressed', String(b.id === 'picture-balloon')));
+    }
+    resetTask();
+    if (card !== 'pixel' || state.move !== 3) how(card === 'move' ? 'undo' : card, () => !state.checked);
+    Curio.tone(430, .08, .02);
+  }
+  for (let i = 0; i < 4; i++) {
+    const button = document.createElement('button');
+    button.className = 'btn';
+    button.dataset.move = i;
+    button.textContent = 'Move ' + (i + 1);
+    button.onclick = () => {
+      state.move = i;
+      V.hush();
+      resetTask();
+      Curio.tone(300 + i * 80, .09, .025);
+    };
+    $('moves').append(button);
+  }
+  ['move', 'pixel', 'color'].forEach(card => { $('card-' + card).onclick = () => chooseCard(card); });
+  function result(correct, text, product = null, event = null) {
+    state.checked = true;
+    state.solved = correct;
+    state.attempts.push({card: state.card, move: state.move + 1, pixel: state.pixel + 1, correct, text});
+    $('feedback').textContent = text;
+    $('feedback').className = 'feedback ' + (correct ? 'ok' : 'warn');
+    if (correct) {
+      Curio.yes();
+      if (event) speakEvent(event, () => state.solved);
+      hint(state.card === 'color' ? 'Your result is recorded below. Press Next pixel or choose another Undo card.' :
+        'Your result is recorded below. Choose another Move or another Undo card.');
+    } else {
+      state.misses++;
+      $('showme').hidden = state.misses < 2;
+      Curio.tone(160, .18, .025, 'triangle');
+      hint('Read the result below. Revise your entries, then press ' + (state.card === 'move' ? 'Apply.' : 'Check.'));
+    }
+    if (product) {
+      const from = [...state.display];
+      animateTo(from, product, 600);
+      if (Curio.reduce) update();
+    }
+    update();
+    pulse();
+  }
+  $('apply').onclick = () => {
+    V.dropQueued();
+    if (state.card === 'move' && state.U.some((value, i) => parse($('U-' + i).value) === null)) {
+      return result(false, 'Enter four decimals or simple fractions before pressing Apply.');
+    }
+    const m = currentMove().m;
+    if (state.card === 'move') {
+      const product = multiply(state.U, m);
+      const correct = state.move !== 3 && product.every((v, i) => Math.abs(v - I[i]) <= .005);
+      const bad = product.findIndex((v, i) => Math.abs(v - I[i]) > .005);
+      let message = `Your U × M = ${fmt(product)}. Back home.`;
+      if (!correct) {
+        const row = Math.floor(Math.max(0, bad) / 2);
+        const col = Math.max(0, bad) % 2;
+        message = `Row ${row + 1}, column ${col + 1}: ${n(state.U[row * 2])}(${n(m[col])}) + ` +
+          `${n(state.U[row * 2 + 1])}(${n(m[col + 2])}) = ${n(product[Math.max(0, bad)])}, not ${I[Math.max(0, bad)]}.`;
+      }
+      result(correct, message, product, correct ? 'home' : null);
+    } else if (state.card === 'pixel') {
+      const p = ['x', 'y'].map(k => parse($('answer-' + k).value));
+      if (p.includes(null)) return result(false, 'Enter two decimals or simple fractions, then press Check.');
+      const q = times(m, p);
+      const correct = !!currentMove().x && p.every((v, i) => Math.abs(v - currentMove().x[i]) <= .01);
+      const bad = q.findIndex((v, i) => Math.abs(v - currentMove().b[i]) > .01);
+      const row = Math.max(0, bad);
+      const message = correct ? `Origin (${p.map(n).join(', ')}) → (${q.map(n).join(', ')}). Accepted within 0.01 per coordinate.` :
+        !currentMove().x ? 'More than one origin lands here. This singular move cannot be uniquely undone.' :
+        `Row ${row + 1}: ${m[row * 2]}(${n(p[0])}) + ${m[row * 2 + 1]}(${n(p[1])}) = ${n(q[row])}, not ${currentMove().b[row]}.`;
+      state.probe = p;
+      result(correct, message);
+      render();
+    } else {
+      const rgb = ['r', 'g', 'b'].map(c => parse($('answer-' + c).value));
+      if (rgb.some(v => v === null || !Number.isInteger(v) || v < 0 || v > 255)) {
+        return result(false, 'Enter whole RGB values from 0 to 255, then press Check.');
+      }
+      if (state.gray) {
+        const guess = rgb.reduce((sum, v) => sum + v, 0) / 3;
+        const target = filtered()[0];
+        return result(false, Math.abs(guess - target) < 1e-9 ?
+          `That triple fits, but other colors also fit. Press It can't be undone.` :
+          `Each row averages your channels to ${n(guess)}, not ${n(target)}. Press It can't be undone for the inverse question.`);
+      }
+      const f = filtered();
+      const q = FILTER.map(row => row.reduce((s, v, i) => s + v * rgb[i], 0));
+      const correct = rgb.every((v, i) => v === ORIGINALS[state.pixel][i]);
+      const row = Math.max(0, q.findIndex((v, i) => v !== f[i]));
+      const terms = FILTER[row].map((v, i) => `${n(v)}(${rgb[i]})`).join(' + ');
+      result(correct, correct ? `Recovered RGB (${rgb.join(', ')}). F sends it to (${f.join(', ')}).` :
+        `Channel ${row + 1}: ${terms} = ${n(q[row])}, not ${f[row]}.`);
+    }
+  };
+  function grayExplanation() {
+    const original = ORIGINALS[state.pixel];
+    const total = original.reduce((sum, v) => sum + v, 0);
+    const gray = total / 3;
+    return `(${original.join(', ')}) and (${original[1]}, ${original[0]}, ${original[2]}) both become ` +
+      `(${[gray, gray, gray].map(n).join(', ')}). Gray merges different colors.`;
+  }
+  $('impossible').onclick = () => {
+    const singular = state.card === 'color' ? state.gray : state.move === 3;
+    result(singular, singular ? state.card === 'color' ?
+      grayExplanation() :
+      'Every point on a line lands on the same spot, so no matrix can send them back apart.' :
+      'The determinant is nonzero, so this transformation has an inverse. Try the formula, then revise your entries.',
+      null, singular ? 'noUndo' : null);
+  };
+  $('showme').onclick = () => {
+    const card = state.card;
+    let text;
+    if (card === 'move') text = inverse(currentMove().m) ? `U = ${fmt(inverse(currentMove().m))}. Type it, then press Apply.` :
+      "No inverse exists. Press It can't be undone.";
+    else if (card === 'pixel') text = currentMove().x ? `x = M inverse × b = (${currentMove().x.join(', ')}). Type it, then press Check.` :
+      "No unique origin exists. Press It can't be undone.";
+    else text = state.gray ? "No unique original color exists. Press It can't be undone." :
+      `F inverse × filtered RGB = (${ORIGINALS[state.pixel].join(', ')}). Type it, then press Check.`;
+    $('feedback').textContent = text;
+    hint(text);
+    Curio.tone(440, .08, .02);
+  };
+  $('formula').onclick = () => {
+    state.formula = !state.formula;
+    $('formula-result').hidden = !state.formula;
+    $('formula').setAttribute('aria-expanded', String(state.formula));
+    if (state.card === 'color') {
+      const inv = inverse3(currentFilter());
+      $('formula-result').textContent = inv ? 'F inverse =\n' + inv.map(row => '[' + row.map(n).join(' ') + ']').join('\n') : 'det F = 0. No inverse exists.';
+    } else {
+      $('formula-result').textContent = 'M inverse = (1/det M)[d -b; -c a]' +
+        (state.card === 'pixel' ? '\nx = M inverse × b' : '') + `\ndet M = ${n(determinant(currentMove().m))}`;
+    }
+    Curio.tone(470, .08, .02);
+  };
+  $('gray').onclick = () => {
+    state.gray = !state.gray;
+    V.hush();
+    filterCache = null;
+    resetTask();
+    Curio.tone(220, .12, .02);
+  };
+  $('nextpixel').onclick = () => {
+    state.pixel = (state.pixel + 1) % ORIGINALS.length;
+    V.hush();
+    resetTask();
+    Curio.tone(540, .08, .02);
+  };
+  $('scale').onclick = () => {
+    const k = parse($('scalar').value);
+    if (k === null) return hint('Type a decimal or simple fraction in k, then press Scale by k.');
+    editMatrix('M', state.M.map(v => v * k), 'scalar');
+  };
+  $('animate').onclick = () => {
+    hint('The in-between frames are just the in-between matrices. Edit a number or press a preset at any time.');
+    animateTo(I, state.M, 1000);
+    Curio.tone(410, .1, .02);
+  };
+  $('reset').onclick = () => {
+    Curio.stop();
+    V.hush();
+    state.probe = null;
+    editMatrix('M', I, 'reset');
+    state.edited = false;
+    hint(L.studio);
+    V.welcome();
+    $('scalar').value = '1';
+  };
+  $('swap').onclick = () => {
+    [state.A, state.B] = [state.B, state.A];
+    ['A', 'B'].forEach(syncMatrix);
+    const selected = $('preset-A').value;
+    $('preset-A').value = $('preset-B').value;
+    $('preset-B').value = selected;
+    state.edited = true;
+    hint('A and B traded places. Compare which result moved to each screen.');
+    Curio.tone(530, .1, .02);
+    update();
+    pulse();
+  };
+  $('sum').onclick = () => {
+    state.sum = !state.sum;
+    $('sum').setAttribute('aria-pressed', String(state.sum));
+    $('view-sum').hidden = !state.sum;
+    $('stages').classList.toggle('withsum', state.sum);
+    Curio.tone(380, .08, .02);
+    update();
+  };
+  function dragTip(index, event) {
+    if (state.mode !== 'studio') return;
+    event.preventDefault();
+    const target = event.currentTarget;
+    target.setPointerCapture(event.pointerId);
+    $(index ? 'tip-j' : 'tip-i').focus({preventScroll: true});
+    const move = e => {
+      const canvas = $('canvas-main');
+      const r = canvas.getBoundingClientRect();
+      const g = geometry(canvas);
+      const matrix = [...state.M];
+      matrix[index] = clamp(Math.round((e.clientX - r.left - g.ox) / g.s * 10) / 10);
+      matrix[index + 2] = clamp(Math.round((g.oy - e.clientY + r.top) / g.s * 10) / 10);
+      editMatrix('M', matrix, 'arrow');
+    };
+    target.onpointermove = move;
+    target.onpointerup = target.onpointercancel = () => {
+      target.onpointermove = null;
+      target.onpointerup = null;
+      target.onpointercancel = null;
+    };
+  }
+  ['i', 'j'].forEach((key, index) => {
+    const button = $('tip-' + key);
+    button.onpointerdown = e => {
+      const r = $('canvas-main').getBoundingClientRect();
+      const g = geometry($('canvas-main'));
+      const distances = [0, 1].map(column => Math.hypot(
+        e.clientX - r.left - g.ox - state.M[column] * g.s,
+        e.clientY - r.top - g.oy + state.M[column + 2] * g.s,
+      ));
+      const nearest = distances[0] === distances[1] ? index : distances[0] < distances[1] ? 0 : 1;
+      dragTip(nearest, e);
+    };
+    button.onkeydown = e => {
+      if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) return;
+      e.preventDefault();
+      const matrix = [...state.M];
+      const delta = e.shiftKey ? 1 : .1;
+      const slot = index + (e.key === 'ArrowUp' || e.key === 'ArrowDown' ? 2 : 0);
+      matrix[slot] = Math.round((matrix[slot] + (['ArrowLeft', 'ArrowDown'].includes(e.key) ? -delta : delta)) * 10) / 10;
+      editMatrix('M', matrix, 'arrow');
+    };
+  });
+  $('canvas-main').onclick = e => {
+    if (state.mode !== 'studio') return;
+    const inv = inverse(state.display);
+    if (!inv) return hint('This flattened picture has no unique pixel origin. Try Identity, then tap the picture.');
+    const r = e.currentTarget.getBoundingClientRect();
+    const g = geometry(e.currentTarget);
+    const p = times(inv, [(e.clientX - r.left - g.ox) / g.s, (g.oy - e.clientY + r.top) / g.s]);
+    if (p[0] < 0 || p[0] > 4 || p[1] < 0 || p[1] > 3) return;
+    state.probe = p.map(v => Math.round(v * 10) / 10);
+    hint('The pin follows M × (x, y). Change a matrix entry to move that same original pixel.');
+    Curio.tone(660, .07, .02);
+    update();
+  };
+  $('canvas-main').onkeydown = e => {
+    if (state.mode !== 'studio') return;
+    if (e.key === 'Enter') state.probe = [1, 1];
+    else if (e.key.startsWith('Arrow')) {
+      const p = state.probe || [1, 1];
+      const axis = ['ArrowLeft', 'ArrowRight'].includes(e.key) ? 0 : 1;
+      const sign = ['ArrowLeft', 'ArrowDown'].includes(e.key) ? -1 : 1;
+      p[axis] = Math.round(Math.max(0, Math.min(axis ? 3 : 4, p[axis] + sign * .1)) * 10) / 10;
+      state.probe = p;
+    } else return;
+    e.preventDefault();
+    hint('The pin follows the original pixel. Change a matrix entry to see its new destination.');
+    Curio.tone(660, .07, .02);
+    update();
+  };
+  let modeReady = false;
+  function setMode(mode) {
+    if (modeReady && state.mode === mode) return;
+    modeReady = true;
+    Curio.stop();
+    V.hush();
+    stopAnimation();
+    state.mode = mode;
+    state.edited = false;
+    state.checked = false;
+    state.probe = null;
+    document.body.classList.toggle('orderlayout', mode === 'order');
+    document.body.classList.toggle('undolayout', mode === 'undo');
+    document.body.classList.toggle('colorlayout', mode === 'undo' && state.card === 'color');
+    ['studio', 'order', 'undo'].forEach(k => {
+      $('m-' + k).setAttribute('aria-pressed', String(k === mode));
+      $(k + '-controls').hidden = k !== mode;
+    });
+    $('view-other').hidden = mode !== 'order';
+    $('undofeedback').hidden = mode !== 'undo';
+    $('view-sum').hidden = mode !== 'order' || !state.sum;
+    $('stages').classList.toggle('withsum', mode === 'order' && state.sum);
+    $('tip-i').hidden = mode !== 'studio';
+    $('tip-j').hidden = mode !== 'studio';
+    $('canvas-main').tabIndex = mode === 'studio' ? 0 : -1;
+    $('canvas-main').setAttribute('aria-label', mode === 'studio' ?
+      'Transformed picture. In Studio press Enter to pin (1, 1), then arrow keys to move the probe.' :
+      mode === 'order' ? 'Picture after A then B' : 'Moved picture, with its original home ghost');
+    $('title-main').textContent = mode === 'order' ? 'A then B: BA' : mode === 'undo' ? 'Moved picture / home ghost' : 'Live transformation';
+    $('rail-right').textContent = mode === 'order' ? 'COMPARE / BA · AB' : mode === 'undo' ? 'RECOVER / INVERSE' : 'LIVE / 2 × 2';
+    $('note-main').textContent = mode === 'order' ? 'A acts first, then B.' : mode === 'studio' ?
+      'Drag either arrow tip. Tap the picture to pin a pixel.' : 'The faint picture marks home. Your entries decide the result.';
+    if (mode === 'undo') resetTask();
+    else state.display = [...state.M];
+    responsiveControls();
+    if (mode !== 'undo') hint(L[welcomeKey()]);
+    V.welcome();
+    update();
+  }
+  ['studio', 'order', 'undo'].forEach(mode => { $('m-' + mode).onclick = () => setMode(mode); });
+  function responsiveControls() {
+    const short = innerWidth >= 600 && innerHeight <= 650;
+    const narrow = innerWidth < 600;
+    const active = document.activeElement;
+    const hintParent = short || narrow ? $('stage-tools') : document.querySelector('.panel');
+    if ($('hint').parentElement !== hintParent) hintParent.prepend($('hint'));
+    const movesParent = short && state.mode === 'undo' ? $('stage-tools') : $('undo-controls');
+    if ($('moves').parentElement !== movesParent) {
+      if (movesParent === $('undo-controls')) movesParent.insertBefore($('moves'), movesParent.children[1]);
+      else movesParent.append($('moves'));
+    }
+    if (active && active !== document.body && document.activeElement !== active) active.focus({preventScroll:true});
+  }
+  window.addEventListener('resize', responsiveControls);
+  Curio.onMotion(reduce => {
+    if (reduce && state.animation) {
+      stopAnimation();
+      state.display = state.mode === 'studio' ? [...state.M] : state.solved ? [...I] : multiply(state.U, currentMove().m);
+      update();
+    }
+  });
+  Curio.init({clips: "voice:*", rate: .98, readFallback: () => $('hint').textContent});
+  new ResizeObserver(render).observe($('stages'));
+  ['lighthouse', 'balloon', 'fox'].forEach(name => { $('art-' + name).onload = render; });
+  window.__tool = {
+    state, setMode, allLines: V.allLines, vlog: V.log, get vq() { return V.queue; },
+    multiply, determinant, inverse, inverse3, times, parse, editMatrix, update, render, chooseCard,
+    geometry, PRESETS, MOVES, FILTER, ORIGINALS,
+  };
+  setMode('studio');
+})();
+</script>
+</body>
+</html>

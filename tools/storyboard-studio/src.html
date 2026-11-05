@@ -1,0 +1,3027 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Storyboard Studio · Shots, angles and continuity · Curio Class</title>
+<meta name="description" content="Place cameras, plan two short films and watch your storyboard as an animatic. Grades 9 to 12 media arts. Offline.">
+<!--
+Storyboard Studio, Curio Class. Student driven, grades 9 to 12 Media Arts.
+MA:Cr1.1.HSI, MA:Cr2.1.HSI, MA:Cr3.1.HSI, MA:Re7.1.HSI.
+Continuity conventions: Film Art, 12th edition, chapters 5 and 6; Katz, Film Directing Shot by Shot.
+Full-frame lens geometry and original scripts from spec.md. Content CC BY 4.0, code MIT.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+One offline file. Device storage only. Starter: kit/starter/src.html.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --brand:#ff6b6b;
+  --brand-ink:#2a0a0a;
+  --desk:#15171d;
+  --axis:#ffd166;
+}
+body {
+  height:100%;
+  overflow:hidden;
+  grid-template-rows:76px minmax(0,1fr);
+}
+header {
+  padding:10px 20px;
+  gap:10px;
+  flex-wrap:nowrap;
+  border-bottom:1px solid #44424a;
+}
+h1 {
+  font-size:25px;
+  letter-spacing:-.7px;
+  white-space:nowrap;
+}
+h1 b {
+  color:var(--brand);
+}
+h1 small {
+  font-size:12px;
+  letter-spacing:.2px;
+  margin-top:5px;
+}
+.seg {
+  border-radius:7px;
+  border-width:1px;
+  flex:none;
+}
+.seg button {
+  min-height:44px;
+  min-width:44px;
+  font-size:14px;
+  padding:0 15px;
+}
+.icon-btn {
+  min-height:44px;
+  min-width:44px;
+  font-size:13px;
+  padding:0 11px;
+  border-radius:7px;
+  border-width:1px;
+}
+#motion {width:96px;flex-shrink:0;}
+#sound {width:90px;flex-shrink:0;}
+main {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 278px;
+  min-height:0;
+}
+main, #stage, .panel, #workarea, #timeline, #anim-controls, .transport {
+  min-width:0;
+}
+.panel {
+  grid-column:2;
+  grid-row:1;
+  padding:12px 16px;
+  gap:8px;
+  border-left:1px solid #3d3e47;
+  overflow:visible;
+}
+.field {
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  min-width:0;
+}
+.field>span, .eyebrow {
+  color:#b6bdca;
+  text-transform:uppercase;
+  letter-spacing:.13em;
+  font-size:10px;
+  font-weight:700;
+}
+select, input[type=number] {
+  width:100%;
+  min-width:0;
+  min-height:44px;
+  border:1px solid #67748a;
+  border-radius:6px;
+  background:linear-gradient(#252e3c,#1a222e);
+  color:var(--ink);
+  font:600 13px 'Segoe UI',sans-serif;
+  padding:0 9px;
+}
+select:focus-visible, input:focus-visible {
+  outline:3px solid var(--focus);
+  outline-offset:2px;
+}
+.fields {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+.fields .beat-field {
+  grid-column:auto;
+}
+.actions {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px;
+}
+.actions #add {
+  grid-column:auto;
+}
+.btn {
+  font-size:12px;
+  min-height:44px;
+  padding:0 9px;
+  border-radius:5px;
+}
+.primary {
+  background:var(--brand);
+  color:var(--brand-ink);
+  border-color:var(--brand);
+  font-weight:750;
+}
+.status {
+  font:11px/1.4 var(--readout-font);
+  color:var(--muted);
+  margin:0;
+}
+.storage {
+  margin-top:auto;
+  color:#aab6c6;
+  font-size:11px;
+  line-height:1.45;
+}
+.hint {
+  font-size:12px;
+  line-height:1.5;
+  min-height:42px;
+  padding-left:10px;
+  border-left:2px solid var(--brand);
+}
+#stage {
+  grid-column:1;
+  grid-row:1;
+  min-height:0;
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  background:linear-gradient(#0d1119b8,#0d1119d9),url('art:editing-desk') center/cover;
+}
+.stage-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  flex:none;
+}
+.slate {
+  font:700 12px var(--readout-font);
+  color:#ede8df;
+  letter-spacing:.12em;
+}
+.slate::before {
+  content:'';
+  display:inline-block;
+  width:7px;
+  height:7px;
+  margin-right:9px;
+  background:var(--brand);
+  border-radius:50%;
+  box-shadow:0 0 9px #ff6b6b80;
+  animation:tally 4s ease-in-out infinite;
+}
+@keyframes tally {
+  50% {
+    box-shadow:0 0 14px #ff6b6b;
+    opacity:.55;
+  }
+}
+.calm .slate::before {
+  animation:none;
+}
+.badge {
+  font:11px var(--readout-font);
+  color:#bac4d3;
+  background:#111720;
+  padding:7px 9px;
+  border:1px solid #4a505c;
+  border-radius:4px;
+}
+.workarea {
+  display:grid;
+  grid-template-columns:minmax(190px,.54fr) minmax(0,1fr);
+  gap:16px;
+  min-height:0;
+  flex:1;
+  align-items:center;
+}
+.map-wrap {
+  background:#111b26ee;
+  border:1px solid #505562;
+  border-radius:6px;
+  box-shadow:0 12px 28px #0005;
+  overflow:hidden;
+}
+.map-head {
+  padding:11px;
+  display:flex;
+  justify-content:space-between;
+  border-bottom:1px solid #343e4e;
+  font-size:10px;
+  letter-spacing:.12em;
+}
+#plan {
+  display:block;
+  width:100%;
+  height:280px;
+  touch-action:none;
+  cursor:grab;
+}
+#plan:active {
+  cursor:grabbing;
+}
+.map-foot {
+  font-size:10px;
+  color:#c2cbd8;
+  padding:9px 10px;
+  border-top:1px solid #343e4e;
+  line-height:1.5;
+}
+.monitor {
+  min-width:0;
+  padding:9px;
+  border-radius:9px;
+  background:linear-gradient(135deg,#44454b,#25272f 9%,#171a21 92%,#42434a);
+  border:1px solid #68666a;
+  box-shadow:0 18px 42px #0009, inset 0 1px #ffffff30;
+}
+.monitor-top {
+  display:flex;
+  justify-content:space-between;
+  gap:6px;
+  font:10px var(--readout-font);
+  padding:5px 5px 9px;
+  color:#bfc5cf;
+}
+.frame {
+  position:relative;
+  aspect-ratio:16/9;
+  background:#e9e9e6;
+  overflow:hidden;
+  border:1px solid #05080e;
+}
+#view {
+  width:100%;
+  height:100%;
+  display:block;
+}
+.safeframe {
+  position:absolute;
+  inset:7%;
+  border:1px solid #30394035;
+  pointer-events:none;
+  clip-path:polygon(0 0,14% 0,14% 1%,1% 1%,1% 14%,0 14%,0 0,
+  100% 0,100% 14%,99% 14%,99% 1%,86% 1%,86% 0,100% 0,100% 100%,86% 100%,86% 99%,99% 99%,99% 86%,100% 86%,
+  100% 100%,0 100%,0 86%,1% 86%,1% 99%,14% 99%,14% 100%,0 100%);
+}
+.shot-label {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:5px;
+  padding:10px 5px 5px;
+}
+#shot {
+  font-size:clamp(16px,1.7vw,23px);
+  color:#fff;
+  font-weight:650;
+  letter-spacing:-.5px;
+}
+#side {
+  color:var(--axis);
+  font:11px var(--readout-font);
+  white-space:nowrap;
+}
+.beat-line {
+  margin:0;
+  padding:12px 4px 3px;
+  color:#f0ece5;
+  font-size:13px;
+  line-height:1.5;
+  min-height:47px;
+}
+.beat-line b {
+  color:var(--brand);
+  font-family:var(--readout-font);
+  font-size:10px;
+  margin-right:7px;
+}
+.strip-wrap {
+  flex:none;
+  border-top:1px solid #65636b;
+  padding-top:12px;
+}
+.strip-head {
+  display:flex;
+  justify-content:space-between;
+  font-size:10px;
+  color:#c1c9d5;
+  letter-spacing:.1em;
+  margin-bottom:8px;
+}
+#strip {
+  display:flex;
+  gap:6px;
+  overflow-x:auto;
+  padding:3px 3px 6px;
+  scrollbar-width:thin;
+}
+.panel-chip {
+  min-width:54px;
+  min-height:44px;
+  border:1px solid #7c8390;
+  background:#1a222e;
+  border-radius:4px;
+  font:11px var(--readout-font);
+}
+.panel-chip[aria-pressed=true] {
+  background:var(--brand);
+  color:var(--brand-ink);
+  border-color:var(--brand);
+}
+.mini-marker {
+  color:#ffe0a0;
+  border:1px dashed #d6b35d;
+  background:#211f1a;
+  min-height:44px;
+  min-width:88px;
+  padding:0 5px;
+  font-size:10px;
+}
+#board-view {
+  flex:1;
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.board-toolbar {
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+}
+#grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  align-content:start;
+  gap:13px;
+  overflow:auto;
+  padding:4px;
+  min-height:0;
+  flex:1;
+}
+.board-card {
+  position:relative;
+  background:#e9e9e6;
+  color:#30343c;
+  border-radius:3px;
+  border:2px solid #bbb;
+  box-shadow:2px 5px 9px #0006;
+  min-width:0;
+}
+.board-card.selected {
+  border:2px solid var(--brand);
+  box-shadow:0 0 0 2px var(--brand);
+}
+.board-select {
+  width:100%;
+  background:none;
+  border:0;
+  padding:6px;
+  text-align:left;
+  color:#30343c;
+  display:block;
+}
+.board-select canvas {
+  display:block;
+  width:100%;
+  aspect-ratio:16/9;
+  border:1px solid #888;
+}
+.card-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  min-height:27px;
+  gap:5px;
+  font:11px var(--readout-font);
+}
+.card-head b {
+  font:800 18px var(--readout-font);
+}
+.card-details {
+  font-size:10px;
+  line-height:1.5;
+  margin-top:5px;
+}
+.card-beat {
+  font-size:11px;
+  line-height:1.4;
+  margin:4px 0;
+  min-height:31px;
+}
+.cut-marker {
+  width:100%;
+  min-height:44px;
+  border:0;
+  border-top:1px dashed #b68b36;
+  color:#503900;
+  background:#ffe2a7;
+  font-weight:700;
+  font-size:11px;
+}
+#notes-strip {
+  font-size:12px;
+  line-height:1.5;
+  padding:10px;
+  background:#101720ee;
+  border:1px solid #4e5663;
+}
+#anim-controls {
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.transport {
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+}
+.transport .btn {
+  flex:1;
+}
+.toggles {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.check {
+  display:flex;
+  align-items:center;
+  gap:5px;
+  font-size:12px;
+  min-height:44px;
+  cursor:pointer;
+}
+.check input {
+  width:21px;
+  height:21px;
+  accent-color:var(--brand);
+}
+#timeline {
+  display:flex;
+  gap:3px;
+  min-height:44px;
+  flex:none;
+  overflow-x:auto;
+  padding-top:10px;
+}
+.time-block {
+  position:relative;
+  min-width:44px;
+  border:1px solid #727f90;
+  background:#242f40;
+  padding:5px 0;
+  font:11px var(--readout-font);
+  min-height:44px;
+}
+.time-block.active {
+  background:var(--brand);
+  color:var(--brand-ink);
+}
+.time-block .flag {
+  position:absolute;
+  top:-11px;
+  left:-5px;
+  color:var(--axis);
+  background:#222;
+  font:13px sans-serif;
+}
+#progress {
+  height:3px;
+  background:#4b5260;
+  flex:none;
+}
+#progress>i {
+  display:block;
+  height:100%;
+  background:var(--brand);
+  width:0;
+}
+#captions {
+  position:absolute;
+  bottom:3%;
+  left:5%;
+  right:5%;
+  background:#0c111ceb;
+  color:#fff;
+  padding:9px;
+  font-size:14px;
+  line-height:1.4;
+  text-align:center;
+}
+#cross-overlay {
+  position:absolute;
+  inset:0;
+  background:#151b25f5;
+  padding:10px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:8px;
+  cursor:pointer;
+}
+.split {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+}
+.split canvas {
+  width:100%;
+  aspect-ratio:16/9;
+  background:#e9e9e6;
+  border:1px solid #ccc;
+}
+.swap-arrows {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  color:#ffd166;
+  font:12px var(--readout-font);
+  text-align:center;
+  gap:6px;
+}
+.cross-title {
+  color:#ffd166;
+  font-size:13px;
+  text-align:center;
+  font-weight:700;
+}
+.showing-problem .shot-label,
+.showing-problem #captions,
+.showing-problem .monitor-top {
+  visibility:hidden;
+}
+body[data-mode=animatic] .workarea {
+  grid-template-columns:1fr;
+}
+body[data-mode=animatic] .map-wrap {
+  display:none;
+}
+body[data-mode=animatic] .monitor {
+  width:min(100%,calc((100vh - 250px)*1.777));
+  margin:auto;
+}
+body[data-mode=animatic] .beat-line, body[data-mode=animatic] .strip-wrap {
+  display:none;
+}
+dialog {
+  width:min(540px,calc(100vw - 28px));
+  background:#17212f;
+  color:var(--ink);
+  border:1px solid #929cae;
+  border-radius:8px;
+  padding:20px;
+}
+dialog[open] {
+  display:flex;
+  flex-direction:column;
+  max-height:calc(100dvh - 36px);
+}
+dialog::backdrop {
+  background:#04070bcc;
+}
+dialog h2 {
+  flex:none;
+  font-size:20px;
+  margin:0 0 10px;
+}
+dialog p {
+  min-height:0;
+  overflow:auto;
+  font-size:14px;
+  line-height:1.5;
+}
+#mini-plan {
+  flex:0 1 180px;
+  min-height:80px;
+  width:100%;
+  height:180px;
+  background:#111b26;
+  border:1px solid #586174;
+  border-radius:4px;
+}
+.dialog-buttons {
+  flex:none;
+  display:flex;
+  gap:8px;
+  justify-content:flex-end;
+}
+#print-root {
+  display:none;
+}
+@media (min-width:1500px) {
+  #grid {
+    grid-template-columns:repeat(4,minmax(0,1fr));
+  }
+  .monitor {
+    padding:13px;
+  }
+  #plan {
+    height:360px;
+  }
+}
+@media (max-width:1150px) and (min-width:1001px) {
+  main {
+    grid-template-columns:minmax(0,1fr) 250px;
+  }
+  #stage {
+    padding:15px;
+    gap:10px;
+  }
+  .workarea {
+    grid-template-columns:minmax(150px,.49fr) minmax(0,1fr);
+    gap:10px;
+  }
+  .panel {
+    padding:12px;
+    gap:9px;
+  }
+  #plan {
+    height:230px;
+  }
+}
+@media (max-width:1000px) and (min-width:601px) {
+  body {
+    grid-template-rows:54px minmax(0,1fr);
+  }
+  header {
+    padding:5px 10px;
+    gap:6px;
+  }
+  h1 {
+    font-size:19px;
+  }
+  h1 small {
+    display:none;
+  }
+  .seg button {
+    font-size:12px;
+    padding:0 10px;
+  }
+  .icon-btn {
+    font-size:11px;
+    padding:0 8px;
+  }
+  main {
+    grid-template-columns:1fr;
+    grid-template-rows:minmax(0,1fr) auto;
+  }
+  .panel {
+    grid-column:1;
+    grid-row:2;
+    padding:7px 10px;
+    border-left:0;
+    border-top:1px solid #586174;
+    display:grid;
+    grid-template-columns:150px minmax(0,1fr);
+    gap:5px 10px;
+  }
+  .scene-field {
+    grid-column:1;
+    grid-row:1;
+  }
+  .fields {
+    grid-column:2;
+    grid-row:1;
+    display:grid;
+    grid-template-columns:repeat(6,minmax(0,1fr));
+    gap:5px;
+  }
+  .fields .beat-field {
+    grid-column:auto;
+  }
+  .field {
+    gap:2px;
+  }
+  .field>span {
+    font-size:10px;
+    letter-spacing:.02em;
+  }
+  select, input[type=number] {
+    font-size:11px;
+    padding:0 4px;
+  }
+  .actions {
+    grid-column:1/-1;
+    grid-row:2;
+    display:flex;
+    gap:5px;
+  }
+  .actions .btn {
+    flex:1;
+    font-size:11px;
+    padding:0 5px;
+  }
+  .hint {
+    grid-column:1/-1;
+    grid-row:3;
+    min-height:18px;
+    margin:0;
+    font-size:11px;
+    line-height:1.4;
+  }
+  .storage, .status {
+    display:none;
+  }
+  #stage {
+    padding:10px 14px;
+    gap:7px;
+  }
+  .stage-top {
+    height:19px;
+  }
+  .badge {
+    padding:3px 6px;
+    font-size:10px;
+  }
+  .slate {
+    font-size:10px;
+  }
+  .workarea {
+    position:relative;
+    display:flex;
+    flex-direction:column-reverse;
+    align-items:stretch;
+    justify-content:center;
+    gap:5px;
+  }
+  .monitor {
+    width:min(100%,calc((100vh - 330px)*1.777));
+    margin:0 auto;
+    padding:5px;
+  }
+  .monitor-top {
+    font-size:10px;
+    padding:1px 3px 4px;
+  }
+  .shot-label {
+    padding:4px 3px 2px;
+  }
+  #shot {
+    font-size:14px;
+  }
+  #side {
+    font-size:10px;
+  }
+  .beat-line {
+    font-size:11px;
+    line-height:1.3;
+    min-height:0;
+    padding:4px 2px 1px;
+  }
+  .map-wrap {
+    position:absolute;
+    width:160px;
+    height:142px;
+    left:0;
+    bottom:5px;
+    z-index:2;
+  }
+  .map-head {
+    padding:5px;
+    font-size:10px;
+  }
+  #plan {
+    height:100px;
+  }
+  .map-foot {
+    padding:3px;
+    font-size:10px;
+  }
+  .map-foot .key-note {
+    display:none;
+  }
+  .strip-wrap {
+    padding-top:4px;
+  }
+  .strip-head {
+    display:none;
+  }
+  #strip {
+    padding:0;
+    gap:4px;
+  }
+  #strip .panel-chip {
+    min-width:44px;
+  }
+  body[data-mode=board] .panel {
+    grid-template-columns:150px 1fr;
+  }
+  #board-view {
+    gap:5px;
+  }
+  .board-toolbar .btn {
+    font-size:11px;
+  }
+  #grid {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:9px;
+  }
+  .card-details {
+    font-size:10px;
+  }
+  #notes-strip {
+    font-size:11px;
+    padding:4px;
+  }
+  body[data-mode=animatic] .monitor {
+    width:min(100%,calc((100vh - 265px)*1.777));
+  }
+  body[data-mode=animatic] .panel {
+    grid-template-columns:150px 1fr;
+  }
+  #anim-controls {
+    grid-column:2;
+    grid-row:1/3;
+    gap:4px;
+  }
+  .transport .btn {
+    min-width:44px;
+    font-size:11px;
+    padding:0 6px;
+  }
+  .toggles {
+    gap:12px;
+  }
+  .check {
+    font-size:11px;
+  }
+}
+@media (max-width:800px) and (min-width:601px) {
+  .panel {
+    grid-template-columns:120px minmax(0,1fr);
+  }
+  header .icon-btn {
+    max-width:74px;
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  h1 {
+    font-size:17px;
+  }
+  header {
+    gap:5px;
+  }
+  .seg button {
+    padding:0 8px;
+    font-size:11px;
+  }
+  .map-wrap {
+    width:132px;
+    height:126px;
+    bottom:3px;
+  }
+  #plan {
+    height:86px;
+  }
+  .map-head {
+    font-size:10px;
+    padding:4px;
+    letter-spacing:0;
+  }
+  .monitor {
+    margin-left:auto;
+    margin-right:0;
+    width:min(calc(100% - 145px),calc((100vh - 290px)*1.777));
+  }
+  .monitor-top {
+    font-size:10px;
+  }
+  .monitor-top .frame-detail {
+    display:none;
+  }
+  #grid {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+  body[data-mode=animatic] .monitor {
+    margin:auto;
+    width:min(100%,calc((100vh - 265px)*1.777));
+  }
+}
+@media (max-width:600px) {
+  body {
+    height:auto;
+    overflow:auto;
+    grid-template-rows:auto 1fr;
+  }
+  header {
+    flex-wrap:wrap;
+    padding:9px;
+    gap:6px;
+  }
+  h1 {
+    flex:1 1 100%;
+    font-size:23px;
+  }
+  h1 small {
+    display:block;
+    font-size:11px;
+  }
+  .seg button {
+    padding:0 8px;
+    font-size:11px;
+  }
+  .icon-btn {
+    font-size:10px;
+    padding:0;
+    width:64px;
+    flex-shrink:0;
+  }
+  #read {width:44px;}
+  #motion, #sound {width:64px;}
+  header {
+    justify-content:space-between;
+  }
+  main {
+    display:flex;
+    flex-direction:column-reverse;
+  }
+  #stage {
+    min-height:405px;
+    padding:12px;
+    gap:10px;
+  }
+  .panel {
+    border-left:0;
+    border-top:1px solid #555;
+    padding:12px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  .scene-field {
+    grid-column:1;
+    grid-row:1;
+  }
+  .actions {
+    grid-column:1/-1;
+    grid-row:2;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+  }
+  .actions #add {
+    grid-column:auto;
+  }
+  .fields {
+    grid-column:1/-1;
+    grid-row:3;
+    grid-template-columns:repeat(3,1fr);
+  }
+  .fields .beat-field {
+    grid-column:auto;
+  }
+  .hint {
+    grid-column:1/-1;
+    grid-row:4;
+    min-height:38px;
+  }
+  .storage {
+    grid-column:1/-1;
+    margin:0;
+    font-size:10px;
+  }
+  .status {
+    grid-column:2;
+    grid-row:1;
+    align-self:center;
+  }
+  .workarea {
+    display:flex;
+    flex-direction:column-reverse;
+    gap:10px;
+  }
+  .monitor {
+    width:100%;
+    padding:5px;
+  }
+  .monitor-top {
+    padding:2px 3px 4px;
+    font-size:10px;
+  }
+  #shot {
+    font-size:16px;
+  }
+  .shot-label {
+    padding:4px;
+  }
+  .beat-line {
+    min-height:30px;
+    font-size:12px;
+    padding:4px;
+  }
+  .map-wrap {
+    width:100%;
+  }
+  .map-head {
+    padding:5px 8px;
+  }
+  #plan {
+    height:108px;
+  }
+  .map-foot {
+    padding:4px 8px;
+    font-size:10px;
+  }
+  .map-foot .key-note {
+    display:none;
+  }
+  .strip-wrap {
+    padding-top:5px;
+  }
+  .strip-head {
+    display:none;
+  }
+  #strip {
+    padding:0;
+  }
+  #board-view {
+    min-height:420px;
+  }
+  #grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    overflow:visible;
+  }
+  .board-toolbar {
+    gap:5px;
+  }
+  .board-toolbar .btn {
+    font-size:11px;
+    padding:0 7px;
+  }
+  #anim-controls {
+    grid-column:1/-1;
+    grid-row:2/4;
+  }
+  body[data-mode=animatic] #stage {
+    min-height:340px;
+  }
+  body[data-mode=animatic] .monitor {
+    width:100%;
+  }
+  #captions {
+    font-size:11px;
+    padding:5px;
+  }
+  #strip-wrap {
+    display:none;
+  }
+  #stage {
+    padding:8px 12px;
+    gap:7px;
+  }
+  #plan {
+    height:90px;
+  }
+  .monitor {
+    padding:5px;
+  }
+  .shot-label {
+    padding:3px;
+  }
+  .beat-line {
+    min-height:24px;
+    font-size:11px;
+  }
+  .hint {
+    grid-row:1;
+    min-height:38px;
+  }
+  .scene-field, .status {
+    grid-row:2;
+  }
+  .actions {
+    grid-row:3;
+  }
+  .fields {
+    grid-row:4;
+  }
+  body[data-mode=board] main {flex-direction:column;}
+  body[data-mode=board] .fields {display:none;}
+  body[data-mode=board] .actions {grid-column:2;grid-row:2;display:block;align-self:end;}
+  body[data-mode=board] .actions .btn {display:none;}
+  body[data-mode=board] .actions #add {display:block;width:100%;}
+  body[data-mode=board] .status,
+  body[data-mode=board] .storage {display:none;}
+  body[data-mode=animatic] .panel {grid-template-columns:1fr;}
+  body[data-mode=animatic] .hint {grid-row:1;grid-column:1;}
+  body[data-mode=animatic] .scene-field {grid-row:2;grid-column:1;}
+  body[data-mode=animatic] #anim-controls {grid-row:3;grid-column:1;}
+  body[data-mode=animatic] .status {grid-row:4;grid-column:1;}
+  body[data-mode=animatic] #stage,
+  body[data-mode=animatic] .panel {width:100%;max-width:100vw;}
+}
+/* The compact preview gives the lens image the available height.
+   Its readouts sit on the monitor bezel, with the plan inset beside it. */
+@media (max-width:1000px) and (min-width:601px) {
+  #strip-wrap {
+    display:none;
+  }
+  .monitor {
+    position:relative;
+  }
+  .monitor-top {
+    position:absolute;
+    top:8px;
+    left:9px;
+    right:9px;
+    z-index:1;
+    color:#303941;
+  }
+  .shot-label {
+    position:absolute;
+    left:10px;
+    right:10px;
+    bottom:29px;
+    padding:2px 4px;
+    background:#101720e8;
+  }
+  #shot {
+    font-size:12px;
+  }
+  .beat-line {
+    font-size:10px;
+    min-height:22px;
+    padding:3px 2px 0;
+  }
+  .monitor {
+    width:min(70%,calc((100vh - 390px)*1.777));
+  }
+  .map-wrap {
+    position:static;
+    width:250px;
+    height:103px;
+    margin:auto;
+    flex:none;
+  }
+  #plan {
+    height:64px;
+  }
+  .map-head {
+    padding:4px 6px;
+  }
+  .map-foot {
+    padding:2px 5px;
+  }
+  .workarea {
+    gap:7px;
+  }
+  body[data-mode=animatic] .monitor-top {
+    color:#303941;
+  }
+  body[data-mode=animatic] .shot-label {
+    bottom:7px;
+  }
+  #captions {
+    font-size:10px;
+    line-height:1.2;
+    padding:4px;
+    bottom:22px;
+  }
+  #cross-overlay {
+    padding:4px;
+    gap:3px;
+  }
+  .cross-title, .swap-arrows {
+    font-size:10px;
+    line-height:1.2;
+  }
+  body[data-mode=animatic] .monitor {
+    width:min(100%,calc((100vh - 222px)*1.777));
+  }
+  #anim-controls {
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:8px;
+  }
+  #anim-controls[hidden] {
+    display:none;
+  }
+  .transport {
+    flex:1;
+    flex-wrap:nowrap;
+    gap:4px;
+  }
+  .transport .btn {
+    padding:0 4px;
+    font-size:10px;
+  }
+  .toggles {
+    flex-wrap:nowrap;
+    gap:4px;
+  }
+  .check {
+    font-size:10px;
+    white-space:nowrap;
+  }
+}
+@media (max-width:900px) and (min-width:601px) {
+  .workarea {
+    flex-direction:row;
+    align-items:center;
+  }
+  .monitor {
+    width:min(calc(100% - 149px),calc((100vh - 265px)*1.777));
+    margin:0 auto;
+  }
+  .map-wrap {
+    position:absolute;
+    left:0;
+    bottom:1px;
+    width:132px;
+    height:126px;
+  }
+  #plan {
+    height:86px;
+  }
+  .field>span {
+    letter-spacing:0;
+    white-space:nowrap;
+    font-size:10px;
+  }
+  body[data-mode=animatic] .monitor {
+    width:min(100%,calc((100vh - 225px)*1.777));
+  }
+}
+@media (max-width:1000px) and (min-width:601px) {
+  body[data-mode=board] .panel {
+    grid-template-columns:120px 112px minmax(0,1fr);
+    grid-template-rows:auto;
+  }
+  body[data-mode=board] .scene-field {grid-column:1;grid-row:1;}
+  body[data-mode=board] .fields {display:none;}
+  body[data-mode=board] .actions {
+    grid-column:2;
+    grid-row:1;
+    display:block;
+    align-self:end;
+  }
+  body[data-mode=board] .actions .btn {display:none;}
+  body[data-mode=board] .actions #add {display:block;width:100%;}
+  body[data-mode=board] .hint {
+    grid-column:3;
+    grid-row:1;
+    min-height:44px;
+    align-self:center;
+  }
+  body[data-mode=board] #stage {padding-top:6px;padding-bottom:6px;gap:5px;}
+  body[data-mode=board] .board-select {position:relative;padding:4px;}
+  body[data-mode=board] .card-head {
+    position:absolute;
+    top:6px;
+    left:6px;
+    right:6px;
+    min-height:18px;
+    padding:1px 3px;
+    background:#eeeee9ed;
+    z-index:1;
+  }
+  body[data-mode=board] .card-head b {font-size:12px;}
+  body[data-mode=board] .card-details {font-size:10px;line-height:1.1;margin-top:3px;}
+  body[data-mode=board] .card-beat {font-size:10px;line-height:1.1;min-height:0;margin:3px 0;}
+}
+@media print {
+  @page {
+    size:landscape;
+    margin:12mm;
+  }
+  body {
+    display:block;
+    height:auto;
+    background:white;
+    color:black;
+    overflow:visible;
+  }
+  body>header, body>main, dialog {
+    display:none!important;
+  }
+  #print-root {
+    display:block;
+  }
+  .print-page {
+    break-after:page;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10mm 6mm;
+  }
+  .print-page:last-child {
+    break-after:auto;
+  }
+  .print-title {
+    grid-column:1/-1;
+    font:700 15pt sans-serif;
+    margin:0;
+  }
+  .print-card {
+    break-inside:avoid;
+    border:1px solid #333;
+    padding:3mm;
+  }
+  .print-card img {
+    width:100%;
+    display:block;
+    aspect-ratio:16/9;
+  }
+  .print-card p {
+    font:10pt/1.3 sans-serif;
+    margin:2mm 0;
+  }
+}
+</style>
+</head>
+<body data-mode="plan">
+<header>
+  <h1>Storyboard <b>Studio</b><small>Shots, angles and continuity in film · Curio Class</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-plan" aria-pressed="true">Plan</button>
+    <button id="m-board" aria-pressed="false">Board</button>
+    <button id="m-animatic" aria-pressed="false">Animatic</button>
+  </div>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+</header>
+<main>
+  <aside class="panel">
+    <label class="field scene-field"><span>Scene</span><select id="scene-pick">
+      <option value="slice">The Last Slice</option><option value="bus">Late Bus</option>
+    </select></label>
+    <div class="fields" id="fields">
+      <label class="field"><span>Aim at</span><select id="aim"></select></label>
+      <label class="field"><span>Lens</span><select id="lens">
+        <option value="24">24 mm</option><option value="35">35 mm</option><option value="50">50 mm</option><option value="85">85 mm</option>
+      </select></label>
+      <label class="field"><span>Height</span><select id="height">
+        <option>Low</option><option>Eye</option><option>High</option><option>Overhead</option>
+      </select></label>
+      <label class="field"><span>Duration (s)</span><input id="duration" type="number" min="0.5" max="8" step="0.5" value="2"></label>
+      <label class="field beat-field"><span>Beat</span><select id="beat"></select></label>
+      <label class="field"><span>Into this panel</span><select id="transition">
+        <option value="Cut">Cut</option><option value="Dissolve">Dissolve</option><option value="Fade from black">Fade from black</option>
+      </select></label>
+    </div>
+    <div class="actions" id="actions">
+      <button class="btn primary" id="add">+ Add panel</button>
+      <button class="btn" id="duplicate">Duplicate</button>
+      <button class="btn" id="delete">Delete panel</button>
+      <button class="btn" id="prev">‹ Prev</button>
+      <button class="btn" id="next">Next ›</button>
+      <button class="btn" id="clear">Clear board</button>
+    </div>
+    <div id="anim-controls" hidden>
+      <div class="transport">
+        <button class="btn primary" id="play">▶ Play</button>
+        <button class="btn" id="stop">■ Stop</button>
+        <button class="btn" id="back">‹ Back</button>
+        <button class="btn" id="step">Step ›</button>
+        <button class="btn" id="from">From panel</button>
+      </div>
+      <div class="toggles">
+        <label class="check"><input type="checkbox" id="caption-toggle" checked>Captions</label>
+        <label class="check"><input type="checkbox" id="problems" checked>Show problems</label>
+      </div>
+    </div>
+    <p class="hint" id="hint"></p>
+    <p class="status" id="panel-status"></p>
+    <p class="storage" id="storage">Saved on this device. Your boards never leave it.</p>
+  </aside>
+  <div class="stage" id="stage">
+    <div class="stage-top"><span class="slate" id="slate">THE LAST SLICE</span><span class="badge" id="board-badge">MY BOARD</span></div>
+    <div class="workarea" id="workarea">
+      <div class="map-wrap">
+        <div class="map-head"><b>FLOOR PLAN</b><span>1 m grid</span></div>
+        <canvas id="plan" tabindex="0" role="application" aria-label="Camera floor plan. Drag the camera or use arrow keys. Shift moves one meter."></canvas>
+        <div class="map-foot">Drag camera to frame your shot.<span class="key-note"><br>Arrow keys: 0.25 m · Shift: 1 m</span></div>
+      </div>
+      <div class="monitor" id="monitor">
+        <div class="monitor-top"><span id="camera-info">24 mm / Eye / 1.2 m</span><span class="frame-detail">16:9 · FULL FRAME</span></div>
+        <div class="frame" id="frame">
+          <canvas id="view" role="img" aria-label="Live storyboard viewfinder"></canvas>
+          <div class="safeframe"></div>
+          <div id="captions" hidden></div>
+          <div id="cross-overlay" hidden role="button" tabindex="0" aria-label="Line crossed. Tap to continue.">
+            <div class="cross-title">⚠ Line crossed · watch screen direction</div>
+            <div class="split"><canvas id="before-frame"></canvas><canvas id="after-frame"></canvas></div>
+            <div class="swap-arrows"><span id="before-sides"></span><span id="after-sides"></span></div>
+            <div class="cross-title">Tap to continue</div>
+          </div>
+        </div>
+        <div class="shot-label"><span id="shot">Wide</span><span id="side">Side A</span></div>
+        <p class="beat-line" id="beat-line"></p>
+      </div>
+    </div>
+    <div class="strip-wrap" id="strip-wrap">
+      <div class="strip-head"><span>YOUR SEQUENCE</span><span id="running-time">0:02</span></div>
+      <div id="strip" aria-label="Panels in order"></div>
+    </div>
+    <div id="board-view" hidden>
+      <div class="board-toolbar">
+        <button class="btn primary" id="sample">Fix this board</button>
+        <button class="btn" id="mine">My board</button>
+        <button class="btn" id="earlier">Move earlier</button>
+        <button class="btn" id="later">Move later</button>
+        <button class="btn" id="print">Print board</button>
+      </div>
+      <div id="grid" aria-label="Storyboard panels"></div>
+      <div id="notes-strip"></div>
+    </div>
+    <div id="timeline" hidden aria-label="Animatic timeline"></div>
+    <div id="progress" hidden><i></i></div>
+  </div>
+</main>
+<dialog id="marker-dialog" aria-labelledby="marker-title">
+  <h2 id="marker-title">Line crossed</h2>
+  <canvas id="mini-plan" role="img" aria-label="The two cameras and the line"></canvas>
+  <p id="marker-note"></p>
+  <div class="dialog-buttons">
+    <button class="btn" id="read-marker">Read</button><button class="btn" id="close-marker">Close</button>
+    <button class="btn primary" id="go-panel">Go to panel</button>
+  </div>
+</dialog>
+<dialog id="clear-dialog" aria-labelledby="clear-title">
+  <h2 id="clear-title">Clear this board?</h2>
+  <p>Replace this scene's current board with one wide panel?</p>
+  <div class="dialog-buttons">
+    <button class="btn" id="read-clear">Read</button><button class="btn" id="cancel-clear">Keep board</button>
+    <button class="btn primary" id="confirm-clear">Clear board</button>
+  </div>
+</dialog>
+<div id="print-root"></div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const clamp = (v,lo,hi) => Math.max(lo,Math.min(hi,v));
+  const copy = value => JSON.parse(JSON.stringify(value));
+  const rad = degrees => degrees * Math.PI / 180;
+  const dot = (a,b) => a.reduce((sum,v,i) => sum+v*b[i],0);
+  const sub = (a,b) => a.map((v,i) => v-b[i]);
+  const cross = (a,b) => [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]];
+  const norm = a => {
+    const d=Math.hypot(...a)||1;
+    return a.map(v=>v/d);
+  };
+  const scenes = {
+    slice: {
+      title:'The Last Slice', aims:['Ash','Remy','Both','Slice'],
+      beats:[
+      'Ash and Remy share a pizza. One slice is left.',
+      'Ash looks at the last slice.', 'Remy looks at it too.', 'They both reach at once.',
+      'Their hands stop over the slice.', 'Ash pulls back and shrugs.',
+      'Remy slides the tray across to Ash.', 'Ash grins and tears the slice in half.'
+      ]
+    },
+    bus: {
+      title:'Late Bus', aims:['Nico','Bus','Stop'],
+      beats:[
+      'Nico checks the time. Late.', 'Nico runs.', 'The bus pulls up to the stop.',
+      'Nico runs faster.', 'The bus doors start to close.', 'Nico waves an arm.', 'The doors open again.'
+      ]
+    }
+  };
+  const L = {
+    welcomePlan:'Drag the camera on the plan. The viewfinder shows the shot. Then tap Add panel for the next one.',
+    lineHow:'The yellow line runs between the actors. Keep the camera on one side and they stay on their own side of the screen.',
+    welcomeBoard:'Here is your board. Drag a panel to change the order.',
+    boardStart:'Tap Add panel to build a sequence, or Fix this board to inspect a practice board.',
+    markerHow:'Scroll for more panels. Tap a marker between two panels to see what went wrong.',
+    welcomeAnimatic:'Press Play to watch your board in time.',
+    lineCrossed:'That cut crosses the line. Ash and Remy just swapped sides of the screen.',
+    lineCrossedBus:'That cut crosses the line. Nico now runs the other way.',
+    jumpCut:'These two shots are almost the same. Move the camera 30 degrees, or change the shot size by two steps.',
+    fixedBoard:'Clean cuts all the way through. Go to Animatic and press Play to see how it flows.',
+    animaticPause:'Watch the sides swap here.',
+    planHow:'Drag the camera, then tap Add panel. Choose a new Beat for each story moment.',
+    boardHow:'Select a panel, then tap Move earlier or Move later. Tap a marker to inspect a cut.',
+    animHow:'Tap Play to watch from the start, or From panel to start at the selected panel.',
+    maxHow:'The board has twelve panels. Select a panel to revise it, or delete one to make room.',
+    playingHow:'Tap Stop to hold this frame. Step and Back move one panel at a time.',
+    sampleHow:'Tap a marker, then Go to panel to repair the cut. Scroll for more panels; My board returns to your work.',
+    cleanHow:'Your cuts have no continuity markers. Tap Animatic, then Play to watch the timing.',
+    cameraHow:'Use arrow keys to move the camera a quarter meter. Hold Shift to move one meter.',
+    missingHow:'Choose Beat to cover another script moment, then tap Add panel for the next shot.',
+    boardEarlier:'Select a panel, then tap Move earlier to change the order. Tap a marker to inspect a cut.',
+    boardLater:'Select a panel, then tap Move later to change the order. Tap a marker to inspect a cut.',
+    boardEarlierClean:'Select a panel, then tap Move earlier to change the order. Tap Fix this board to inspect a practice board.',
+    boardLaterClean:'Select a panel, then tap Move later to change the order. Tap Fix this board to inspect a practice board.',
+    blocked:'Camera stopped: keep 0.3 m clear of the table and characters. Drag around them.',
+    crossNote:'Crossing the line flips who is on the left. The audience can lose track of where people are. A neutral shot in between lets you cross.',
+    jumpNote:'Two very similar shots in a row look like a glitch. Change the angle by 30 degrees or more, or change the shot size by two steps.',
+    convention:'Filmmakers break this on purpose sometimes. If you do, mean it.',
+    markerAction:'Tap Go to panel to edit this camera, or Close to return to the board.',
+    clearNote:'Replace this scene\'s current board with one wide panel? Tap Clear board to confirm, or Keep board to return.',
+    overheadHow:'Overhead looks straight down. Drag the camera over the subject, or choose a wider Lens.',
+    overheadHowBoard:'Overhead looks straight down. Tap Plan, then drag the camera over the subject.',
+    cameraMoved:'The camera moved clear of the table or actor. Drag the camera to reframe this beat.',
+    cameraMovedBoard:'The camera moved clear of the table or actor. Tap Plan, then drag the camera to reframe this beat.'
+  };
+  L.crossRead=`${L.crossNote} ${L.convention} ${L.markerAction}`;
+  L.jumpRead=`${L.jumpNote} ${L.convention} ${L.markerAction}`;
+  L.bothRead=`${L.crossNote} ${L.jumpNote} ${L.convention} ${L.markerAction}`;
+  let nextId=1;
+  function panel(x,y,lens,aim,beat=1,height='Eye') {
+    return {
+      id:nextId++,x,y,lens,aim,beat,height,duration:2,transition:'Cut'
+    };
+  }
+  function initial(scene) {
+    return [scene==='slice' ? panel(0,-3.5,24,'Both') : panel(-8,-6,24,'Nico')];
+  }
+  function sample(scene) {
+    if (scene==='slice') return [
+    panel(0,-3.5,24,'Both',1), panel(1.6,-.6,50,'Ash',2), panel(-1.6,-.6,50,'Remy',3),
+    panel(0,-2.2,35,'Both',4), panel(.3,-.9,85,'Slice',5,'High'), panel(1.6,.6,50,'Ash',6),
+    panel(-1.6,-.6,50,'Remy',7), panel(-1.46,-.97,50,'Remy',8)
+    ];
+    return [
+    panel(-8,-6,24,'Nico',1), panel(-4,-3,85,'Nico',2), panel(6,-6,35,'Bus',3),
+    panel(0,4,50,'Nico',4), panel(9,-.5,85,'Bus',5), panel(6,-3,50,'Nico',6)
+    ];
+  }
+  const state = {
+    mode:'plan', scene:'slice', selected:0, sample:false, boards:{
+      slice:initial('slice'),bus:initial('bus')
+    },
+    samples:{
+      slice:null,bus:null
+    }, playing:false, playIndex:0, pauseUntil:0, showProblems:true,
+    captions:true, frameStart:0, elapsed:0, revision:0, markerIndex:1, drag:false, timingLog:[], pausePrevious:0
+  };
+  function validateBoard(board,scene) {
+    return Array.isArray(board) && board.length>=1 && board.length<=12 && board.every(p=>
+    p && Number.isFinite(p.x) && Number.isFinite(p.y) && Math.abs(p.x)<100 && Math.abs(p.y)<100 &&
+    [24,35,50,85].includes(p.lens) && scenes[scene].aims.includes(p.aim) &&
+    ['Low','Eye','High','Overhead'].includes(p.height) && Number.isInteger(p.beat) &&
+    p.beat>=1 && p.beat<=scenes[scene].beats.length && Number.isFinite(p.duration) &&
+    p.duration>=.5 && p.duration<=8 && ['Cut','Dissolve','Fade from black'].includes(p.transition));
+  }
+  try {
+    const saved=JSON.parse(localStorage.getItem('storyboard-studio-boards'));
+    for (const s of ['slice','bus']) if (saved && validateBoard(saved[s],s)) {
+      state.boards[s]=saved[s].map(p=>({
+        ...p,id:nextId++
+      }));
+    }
+  } catch {
+  }
+  const board = () => (state.sample ? state.samples : state.boards)[state.scene];
+  const current = () => board()[state.mode==='animatic' ? state.playIndex : state.selected];
+  const scene = () => scenes[state.scene];
+  const eye = s => s==='slice' ? 1.2 : 1.6;
+  const zHeight = (p,s=state.scene) => ({
+    Low:.5,Eye:eye(s),High:2.6,Overhead:4
+  })[p.height];
+  function positions(p,s=state.scene) {
+    const n=p.beat-1;
+    return {
+      nico:[-10,-6,-3,0,4,6,8][n], bus:[-12,-2,9,9,9,9,9][n]
+    };
+  }
+  function target(p,s=state.scene) {
+    if (s==='slice') return ({
+      Ash:[-.6,0,1.2],Remy:[.6,0,1.2],Both:[0,0,1.2],Slice:[p.beat>=7 ? -.13 : 0,0,.75]
+    })[p.aim];
+    const pos=positions(p,s);
+    return ({
+      Nico:[pos.nico,0,1.6],Bus:[pos.bus,3,1.5],Stop:[9,1,2]
+    })[p.aim];
+  }
+  const sizes=['Extreme close-up','Close-up','Medium close-up','Medium','Wide','Extreme wide'];
+  function sizeIndex(h) {
+    const n=Math.round(h*1e9)/1e9;
+    return n<.3 ? 0 : n<.6 ? 1 : n<1 ? 2 : n<2 ? 3 : n<=6 ? 4 : 5;
+  }
+  function metrics(p,s=state.scene) {
+    const d=Math.hypot(p.x-target(p,s)[0],p.y-target(p,s)[1],zHeight(p,s)-target(p,s)[2]);
+    const H=20.25*d/p.lens;
+    return {
+      H,d,size:sizeIndex(H),name:sizes[sizeIndex(H)],fov:2*Math.atan(10.125/p.lens)
+    };
+  }
+  const side = p => p.height==='Overhead' || Math.abs(p.y)<=.3+1e-9 ? 0 : Math.sign(p.y);
+  const sideName = p => side(p)===0 ? 'On the line' : side(p)<0 ? 'Side A' : 'Side B';
+  function direction(p,s=state.scene) {
+    if (p.height==='Overhead') return [0,0,-1];
+    return norm(sub(target(p,s),[p.x,p.y,zHeight(p,s)]));
+  }
+  function checks(a,b,s=state.scene) {
+    const result=[];
+    if (side(a)*side(b)===-1) result.push('Line crossed');
+    const angle=Math.acos(clamp(dot(direction(a,s),direction(b,s)),-1,1))*180/Math.PI;
+    if (a.aim===b.aim && angle<30-1e-7 && Math.abs(metrics(a,s).size-metrics(b,s).size)<=1) result.push('Jump cut');
+    return result;
+  }
+  const markers = () => board().map((p,i)=>i ? checks(board()[i-1],p) : []);
+  const total = () => board().reduce((n,p)=>n+p.duration,0);
+  function timeText(seconds) {
+    const s=Math.round(seconds*10)/10;
+    const whole=Math.floor(s%60);
+    return `${Math.floor(s/60)}:${String(whole).padStart(2,'0')}${s%1 ? '.5' : ''}`;
+  }
+  const V=Curio.voice({
+    lines:L, scope:()=>`${state.scene}/${state.mode}`,
+    welcome:()=>{
+      const key={
+        plan:'welcomePlan',board:'welcomeBoard',animatic:'welcomeAnimatic'
+      }
+      [state.mode];
+      const text=state.mode==='board' && board().length===1 ? L.boardStart :
+        state.mode==='plan' && board().length===12 ? L.maxHow : L[key];
+      return [key,text,{
+        valid:()=>!state.drag && !state.playing && !$('marker-dialog').open && !$('clear-dialog').open &&
+          state.revision===state.entryRevision && !state.playedOnEntry
+      }];
+    },
+    hint:false,
+    read:()=>{
+      if($('clear-dialog').open) return L.clearNote;
+      if($('marker-dialog').open) {
+        const kinds=markers()[state.markerIndex];
+        return kinds.length>1 ? L.bothRead : kinds[0]==='Line crossed' ? L.crossRead : L.jumpRead;
+      }
+      return $('hint').textContent;
+    },
+    speaks:'#plan, .cut-marker, .mini-marker, #play, #from'
+  });
+  const EVENT_LINES=new Set(['lineCrossed','lineCrossedBus','jumpCut','fixedBoard','animaticPause']);
+  function hint() {
+    let text;
+    if (state.mode==='animatic') text=state.playing ? L.playingHow : L.animHow;
+    else if (state.mode==='board') {
+      if(state.sample) text=markers().some(m=>m.length) ? L.sampleHow : L.cleanHow;
+      else if(board().length===1) text=L.boardStart;
+      else {
+        const key=state.selected>0 ? 'boardEarlier' : 'boardLater';
+        text=L[key+(markers().some(m=>m.length) ? '' : 'Clean')];
+      }
+    }
+    else text=board().length===12 ? L.maxHow : current().height==='Overhead' ? L.overheadHow : L.planHow;
+    $('hint').textContent=text;
+  }
+  function save() {
+    try {
+      localStorage.setItem('storyboard-studio-boards',JSON.stringify(state.boards));
+      $('storage').textContent=state.sample ? 'Practice copy. My board stays saved on this device.' : 'Saved on this device. Your boards never leave it.';
+    } catch {
+      $('storage').textContent='Device storage is unavailable. Keep this tab open to keep your boards.';
+    }
+  }
+  function sound(freq=440) {
+    Curio.tone(freq,.055,.035,'sine');
+  }
+  function changed(before=[],howKey=null) {
+    state.finished=false;
+    state.revision++;
+    const rev=state.revision;
+    V.dropQueued();
+    save();
+    render();
+    if(howKey && !V.heard(howKey)) {
+      V.how(howKey,{
+        valid:()=>state.revision===rev && !state.drag
+      });
+    }
+    const i=state.selected;
+    const now=markers()[i]||[];
+    for (const kind of now) if (!before.includes(kind)) {
+      const key=kind==='Jump cut' ? 'jumpCut' : state.scene==='slice' ? 'lineCrossed' : 'lineCrossedBus';
+      V.say(key,{
+        kind:EVENT_LINES.has(key) ? 'event' : 'how',
+        valid:()=>state.revision===rev && state.selected===i
+      });
+    }
+    if (state.sample && !markers().some(m=>m.length) && state.sampleHadProblems) {
+      state.sampleHadProblems=false;
+      V.say('fixedBoard',{
+        valid:()=>state.revision===rev && state.sample
+      });
+      $('hint').textContent=L.cleanHow;
+    } else if (state.sample && markers().some(m=>m.length)) state.sampleHadProblems=true;
+  }
+  function syncControls() {
+    const p=current();
+    for (const key of ['aim','lens','height','beat','duration','transition']) $(key).value=p[key];
+    $('delete').disabled=board().length===1;
+    $('add').disabled=$('duplicate').disabled=board().length===12;
+    $('prev').disabled=state.selected===0;
+    $('next').disabled=state.selected===board().length-1;
+    $('earlier').disabled=state.selected===0;
+    $('later').disabled=state.selected===board().length-1;
+    $('mine').setAttribute('aria-pressed',!state.sample);
+    $('sample').setAttribute('aria-pressed',state.sample);
+    const around=markers().filter((m,i)=>i===state.selected || i===state.selected+1).flat();
+    $('board-badge').textContent=(state.sample ? 'PRACTICE COPY' : 'MY BOARD')+
+    (innerWidth<=1000 && state.mode==='plan' ? ` · ${state.selected+1}/${board().length}${around.length ? ' · ⚠ '+[...new Set(around)].join(', ') : ''}` : '');
+    $('panel-status').textContent=state.finished ? `Finished ${board().length} panels · ${timeText(total())}` :
+      `Panel ${state.selected+1} / ${board().length} · ${timeText(total())}`;
+    $('running-time').textContent=timeText(total());
+  }
+  function fillSceneControls() {
+    $('aim').replaceChildren(...scene().aims.map(name=>new Option(name,name)));
+    $('beat').replaceChildren(...scene().beats.map((text,i)=>new Option(`${i+1}. ${text}`,i+1)));
+    $('slate').textContent=scene().title.toUpperCase();
+    $('scene-pick').value=state.scene;
+  }
+  function selectedPanel(i) {
+    if(i===state.selected && !state.playing) {
+      sound(500);
+      V.welcome();
+      return;
+    }
+    stop();
+    state.selected=clamp(i,0,board().length-1);
+    state.playIndex=state.selected;
+    state.revision++;
+    V.dropQueued();
+    sound(500);
+    render();
+    if(document.activeElement===$('prev') && $('prev').disabled) $('next').focus({
+      preventScroll:true
+    });
+    if(document.activeElement===$('next') && $('next').disabled) $('prev').focus({
+      preventScroll:true
+    });
+  }
+  function setMode(mode) {
+    stop();
+    state.finished=false;
+    state.elapsed=0;
+    V.hush();
+    state.mode=mode;
+    state.entryRevision=state.revision;
+    state.playedOnEntry=false;
+    state.playIndex=state.selected;
+    document.body.dataset.mode=mode;
+    for (const m of ['plan','board','animatic']) $('m-'+m).setAttribute('aria-pressed',m===mode);
+    $('workarea').hidden=mode==='board';
+    $('board-view').hidden=mode!=='board';
+    $('fields').hidden=$('actions').hidden=mode==='animatic';
+    $('anim-controls').hidden=mode!=='animatic';
+    $('strip-wrap').hidden=mode!=='plan';
+    $('timeline').hidden=$('progress').hidden=mode!=='animatic';
+    render();
+    V.welcome();
+    if (mode==='board' && markers().some(m=>m.length)) {
+      V.how('markerHow',{
+        valid:()=>state.mode==='board' && markers().some(m=>m.length),needs:'.cut-marker'
+      });
+    }
+    requestAnimationFrame(drawAll);
+  }
+  // A small painter's 3D renderer. World units are meters, z points up.
+  // Each item is depth sorted. Polygon clipping keeps close cameras stable at the near plane.
+  function drawShot(canvas,p,s=state.scene,options={
+  }) {
+    const w=canvas.width, h=canvas.height, ctx=canvas.getContext('2d');
+    ctx.clearRect(0,0,w,h);
+    const paper=ctx.createLinearGradient(0,0,w,h);
+    paper.addColorStop(0,'#f5f3ed');
+    paper.addColorStop(1,'#d9dbd9');
+    ctx.fillStyle=paper;
+    ctx.fillRect(0,0,w,h);
+    const origin=[p.x,p.y,zHeight(p,s)];
+    const forward=direction(p,s);
+    const horizontalRight=cross(forward,[0,0,1]);
+    const right=Math.hypot(...horizontalRight)<1e-6 ? [1,0,0] : norm(horizontalRight);
+    const up=norm(cross(right,forward));
+    const focal=h*p.lens/20.25;
+    const cam = v => {
+      const a=sub(v,origin);
+      return [dot(a,right),dot(a,up),dot(a,forward)];
+    };
+    const screen = v => [w/2+v[0]*focal/v[2],h/2-v[1]*focal/v[2]];
+    const project = v => screen(cam(v));
+    const items=[];
+    function poly(points,fill,stroke='#4a4f58',width=.8,detail=false) {
+      const coords=points.map(cam);
+      const clipped=[];
+      for (let i=0;i<coords.length;i++) {
+        const a=coords[i], b=coords[(i+1)%coords.length];
+        if (a[2]>=.07) clipped.push(a);
+        if ((a[2]>=.07)!==(b[2]>=.07)) {
+          const t=(.07-a[2])/(b[2]-a[2]);
+          clipped.push(a.map((v,j)=>v+t*(b[j]-v)));
+        }
+      }
+      if (clipped.length<3) return;
+      const floor=points.every(v=>v[2]<=.02);
+      items.push({
+        depth:floor ? 1e6 : coords.reduce((v,c)=>v+c[2],0)/coords.length,draw:()=>{
+          ctx.beginPath();
+          clipped.map(screen).forEach((v,i)=>i ? ctx.lineTo(...v) : ctx.moveTo(...v));
+          ctx.closePath();
+          ctx.fillStyle=fill;
+          ctx.fill();
+          ctx.strokeStyle=stroke;
+          ctx.lineWidth=width*w/800;
+          ctx.stroke();
+          if (detail) {
+            ctx.save();
+            ctx.clip();
+            ctx.strokeStyle='#34394180';
+            ctx.lineWidth=w/900;
+            for(let x=-h;x<w;x+=9*w/800) {
+              ctx.beginPath();
+              ctx.moveTo(x,0);
+              ctx.lineTo(x+h,h);
+              ctx.stroke();
+            }
+            ctx.restore();
+          }
+        }
+      });
+    }
+    function box(x,y,z,dx,dy,dz,colors=['#e9e9e6','#b6b9bc','#8a8f98']) {
+      const X=x+dx,Y=y+dy,Z=z+dz;
+      poly([[x,y,z],[X,y,z],[X,y,Z],[x,y,Z]],colors[1]);
+      poly([[X,Y,z],[x,Y,z],[x,Y,Z],[X,Y,Z]],colors[1]);
+      poly([[x,Y,z],[x,y,z],[x,y,Z],[x,Y,Z]],colors[2]);
+      poly([[X,y,z],[X,Y,z],[X,Y,Z],[X,y,Z]],colors[2]);
+      poly([[x,y,Z],[X,y,Z],[X,Y,Z],[x,Y,Z]],colors[0]);
+    }
+    function line(a,b,color='#4a4f58',width=2) {
+      const ca=cam(a), cb=cam(b);
+      if (ca[2]<.08 || cb[2]<.08) return;
+      items.push({
+        depth:a[2]<=.02 && b[2]<=.02 ? 1e6 : (ca[2]+cb[2])/2,draw:()=>{
+          ctx.strokeStyle=color;
+          ctx.lineWidth=width*w/800;
+          ctx.lineCap='round';
+          ctx.beginPath();
+          ctx.moveTo(...screen(ca));
+          ctx.lineTo(...screen(cb));
+          ctx.stroke();
+        }
+      });
+    }
+    function sphere(v,r,color,pattern=false) {
+      const a=cam(v);
+      if (a[2]<.09) return;
+      items.push({
+        depth:a[2],draw:()=>{
+          const [x,y]=screen(a), radius=Math.min(w*4,r*focal/a[2]);
+          const g=ctx.createRadialGradient(x-radius*.35,y-radius*.4,radius*.1,x,y,radius);
+          g.addColorStop(0,options.gray ? '#ededeb' : color);
+          g.addColorStop(1,options.gray ? '#858b91' : shade(color,.58));
+          ctx.fillStyle=g;
+          ctx.beginPath();
+          ctx.arc(x,y,radius,0,Math.PI*2);
+          ctx.fill();
+          ctx.strokeStyle='#3b4149';
+          ctx.lineWidth=Math.max(.6,w/950);
+          ctx.stroke();
+          if(pattern) {
+            ctx.save();
+            ctx.clip();
+            ctx.strokeStyle='#3a414b';
+            ctx.lineWidth=Math.max(.5,w/1000);
+            for(let k=-radius*2;k<radius*2;k+=radius*.45) {
+              ctx.beginPath();
+              ctx.moveTo(x+k,y-radius);
+              ctx.lineTo(x+k+radius,y+radius);
+              ctx.stroke();
+            }
+            ctx.restore();
+          }
+        }
+      });
+    }
+    function capsule(a,b,r,color,pattern=false) {
+      const ca=cam(a), cb=cam(b);
+      if (ca[2]<.12 || cb[2]<.12) return;
+      items.push({
+        depth:(ca[2]+cb[2])/2,draw:()=>{
+          const A=screen(ca),B=screen(cb);
+          const width=Math.min(w*2,2*r*focal/((ca[2]+cb[2])/2));
+          ctx.lineCap='round';
+          ctx.lineWidth=width+1.6;
+          ctx.strokeStyle='#3d434c';
+          ctx.beginPath();
+          ctx.moveTo(...A);
+          ctx.lineTo(...B);
+          ctx.stroke();
+          const grad=ctx.createLinearGradient(A[0]-width/2,A[1],A[0]+width/2+1,A[1]+1);
+          grad.addColorStop(0,options.gray ? '#b1b5b8' : shade(color,.65));
+          grad.addColorStop(.45,options.gray ? '#e0e1df' : color);
+          grad.addColorStop(1,options.gray ? '#8a8f98' : shade(color,.6));
+          ctx.lineWidth=width;
+          ctx.strokeStyle=grad;
+          ctx.beginPath();
+          ctx.moveTo(...A);
+          ctx.lineTo(...B);
+          ctx.stroke();
+          if(pattern) {
+            ctx.strokeStyle='#3b4149';
+            ctx.lineWidth=Math.max(1,w/800);
+            ctx.setLineDash([width*.25,width*.25]);
+            ctx.beginPath();
+            ctx.moveTo(...A);
+            ctx.lineTo(...B);
+            ctx.stroke();
+            ctx.setLineDash([]);
+          }
+        }
+      });
+    }
+    function shadow(x,y,rx,ry) {
+      const points=Array.from({
+        length:28
+      },(_,i)=>[x+Math.cos(i*Math.PI/14)*rx,y+Math.sin(i*Math.PI/14)*ry,.012]);
+      poly(points,'#4a4f5828','#4a4f5800',0);
+    }
+    function mannequin(x,y,color,facing,seated,index) {
+      const b=p.beat;
+      const head=seated ? 1.2 : 1.6;
+      const hip=seated ? .54 : .87;
+      const f=[Math.cos(facing),Math.sin(facing)];
+      const across=[-f[1],f[0]];
+      shadow(x+.13,y+.16,.38,.2);
+      const point=(forward,sideways,z)=>[x+f[0]*forward+across[0]*sideways,y+f[1]*forward+across[1]*sideways,z];
+      capsule(point(0,0,hip),point(0,0,head-.26),.17,color,options.gray && index===0);
+      sphere(point(0,0,head),.16,color,options.gray && index===1);
+      let headFacing=facing;
+      if (seated && ((index===0 && b>=2) || (index===1 && b>=3))) headFacing=Math.atan2(-y,-x);
+      const looksDown=seated && ((index===0 && b>=2 && b<=5) || (index===1 && b>=3 && b<=5));
+      const nose=[x+Math.cos(headFacing)*.21,y+Math.sin(headFacing)*.21,head-(looksDown ? .13 : .025)];
+      poly([point(.03,-.055,head+.015),nose,point(.03,.055,head-.055)],shade(color,.75));
+      const shoulder=head-.29+(b===6 && index===0 && seated ? .075 : 0);
+      for (const sign of [-1,1]) {
+        const a=point(0,sign*.19,shoulder);
+        let elbow=point(.05,sign*.25,shoulder-.22);
+        let end=point(.16,sign*.20,shoulder-.38);
+        if (seated && [4,5].includes(b)) {
+          elbow=point(.28,sign*.19,.89);
+          end=point(.48,sign*.08,.88);
+        }
+        if (seated && b===7 && index===1) {
+          elbow=point(.28,sign*.18,.85);
+          end=point(.54,sign*.06,.79);
+        }
+        if (seated && b===6 && index===0) {
+          elbow=point(-.05,sign*.29,1.0);
+          end=point(.06,sign*.36,1.1);
+        }
+        if (seated && b===8 && index===0) {
+          elbow=point(.24,sign*.23,.86);
+          end=point(.47,sign*.16,.82);
+        }
+        if (!seated) {
+          const run=b>=2 && b<=6;
+          elbow=point(sign*(run?.19:.03),sign*.22,shoulder-.18);
+          end=point(-sign*(run?.23:.01),sign*.22,shoulder-.32);
+          if(b===1 && sign===-1) {
+            elbow=point(.15,-.23,1.16);
+            end=point(.32,-.08,1.25);
+          }
+          if(b===6 && sign===1) {
+            elbow=point(0,.27,1.55);
+            end=point(.02,.29,1.96);
+          }
+        }
+        capsule(a,elbow,.055,color);
+        capsule(elbow,end,.05,color);
+        const knee=seated ? point(.28,sign*.1,.48) : point(sign*(b>=2?.24:.02),sign*.1,.48);
+        const ankle=seated ? point(.32,sign*.1,.08) : point(-sign*(b>=2?.25:.02),sign*.1,.08);
+        capsule(point(0,sign*.1,hip),knee,.075,'#707680');
+        capsule(knee,ankle,.065,'#707680');
+        capsule(ankle,[ankle[0]+f[0]*.12,ankle[1]+f[1]*.12,.055],.065,'#4a4f58');
+      }
+      if (!seated) {
+        capsule(point(-.18,0,1.12),point(-.18,0,1.4),.15,'#a78bfa',options.gray);
+        line(point(-.14,-.11,1.37),point(.05,-.14,1.18),'#4a4f58',3);
+        line(point(-.14,.11,1.37),point(.05,.14,1.18),'#4a4f58',3);
+      }
+    }
+    if(s==='slice') {
+      poly([[-7,-7,0],[7,-7,0],[7,7,0],[-7,7,0]],'#d0d1ce','#8a8f98');
+      for(let x=-7;x<=7;x++) for(let y=-7;y<=7;y++) {
+        if((x+y)%2===0) poly([[x,y,.002],[x+1,y,.002],[x+1,y+1,.002],[x,y+1,.002]],'#b7bab730','#8a8f9818');
+      }
+      if(p.y<2.8) {
+        box(-4,2.98,0,8,.12,2.8,['#e9e9e6','#d5d5d1','#8a8f98']);
+        box(-2.5,2.93,1.1,5,.03,1.3,['#e9e9e6','#eff1ec','#8a8f98']);
+        for(let x=-2.5;x<=2.5;x+=1.25) line([x,2.89,1.1],[x,2.89,2.4],'#747b83',3);
+        line([-2.5,2.88,1.1],[2.5,2.88,1.1],'#747b83',4);
+      }
+      // A pale pool of window light makes the floor read as a place.
+      poly([[-2.3,2.6,.008],[2.3,2.6,.008],[3,-2,.008],[-1.6,-2,.008]],'#f9f7e225','#ffffff00',0);
+      if(p.y>-2.8) {
+        box(-4,-3.1,0,3.4,.1,2.6);
+        box(.6,-3.1,0,3.4,.1,2.6);
+        box(-.55,-3.08,0,1.1,.05,2.2,['#bbbfc1','#a8adb2','#4a4f58']);
+        box(-.38,-3.12,.8,.76,.02,1.05,['#e9e9e6','#d9dddf','#8a8f98']);
+      }
+      for(const x of [-3,3]) {
+        box(x-.5,1,.08,1,.6,.42,['#a9adb2','#8a8f98','#4a4f58']);
+        box(x-.5,1.5,.45,1,.12,.65,['#bdc0c1','#8a8f98','#4a4f58']);
+      }
+      shadow(0,.18,.95,.65);
+      for(const x of [-.49,.49]) for(const y of [-.29,.29]) box(x-.025,y-.025,0,.05,.05,.71);
+      box(-.6,-.4,.7,1.2,.8,.05,['#e9e9e6','#b5b9bd','#8a8f98']);
+      for(const x of [-.6,.6]) {
+        box(x-.23,-.2,.4,.46,.4,.05,['#acb0b3','#8a8f98','#4a4f58']);
+        box(x+(x<0 ? -.25 : .21),-.21,.4,.04,.42,.58,['#acb0b3','#8a8f98','#4a4f58']);
+      }
+      mannequin(-.6,0,'#3fb8af',0,true,0);
+      mannequin(.6,0,'#f2c14e',Math.PI,true,1);
+      const trayX=p.beat>=7 ? -.13 : 0;
+      box(trayX-.22,-.17,.751,.44,.34,.018,['#b8bdc1','#8a8f98','#4a4f58']);
+      // A shallow wedge with a raised crust and flat toppings still reads as pizza in marker grays.
+      // On the sharing beat the two halves are visibly separated in Ash's hands.
+      const pizzaStart=items.length;
+      if(p.beat!==8) {
+        poly([[trayX-.16,-.12,.757],[trayX+.16,-.12,.757],[trayX+.16,-.12,.775],[trayX-.16,-.12,.775]],
+          '#a7a59a','#62666a',.8);
+        poly([[trayX-.16,-.12,.775],[trayX+.16,-.12,.775],[trayX,.14,.775]],'#e4e1d2','#62666a',1.3);
+        capsule([trayX-.16,-.12,.79],[trayX+.16,-.12,.79],.018,'#a9a79d');
+      }
+      function sliceHalf(sign) {
+        const sharing=p.beat===8;
+        const yOffset=sharing ? sign*.16 : 0;
+        const z=sharing ? .80 : .775;
+        const a=[trayX,-.12+yOffset,z],b=[trayX+sign*.16,-.12+yOffset,z],c=[trayX,.14+yOffset,z];
+        const lower=v=>[v[0],v[1],v[2]-.018];
+        if(sharing) {
+          poly([lower(a),lower(b),b,a],'#a7a59a','#62666a',.8);
+          poly([lower(b),lower(c),c,b],'#b7b6ab','#62666a',.8);
+          poly([a,b,c],'#e4e1d2','#62666a',1.3);
+          capsule([a[0],a[1],z+.015],[b[0],b[1],z+.015],.018,'#a9a79d');
+        }
+        for(const [dx,dy,r] of [[.068,-.045,.023],[.025,.05,.017]]) {
+          const x=trayX+sign*dx,y=dy+yOffset;
+          poly(Array.from({length:12},(_,i)=>[x+Math.cos(i*Math.PI/6)*r,y+Math.sin(i*Math.PI/6)*r,z+.004]),
+            '#85888b','#62666a',.6);
+        }
+        line([trayX+sign*.045,-.085+yOffset,z+.006],[trayX+sign*.10,-.06+yOffset,z+.006],'#f5f3e9',1);
+      }
+      sliceHalf(-1);
+      sliceHalf(1);
+      // Keep surface marks on the wedge, rather than sorting them behind its broad top.
+      const pizzaItems=items.splice(pizzaStart);
+      items.push({
+        depth:cam([trayX,0,p.beat===8 ? .80 : .78])[2],
+        draw:()=>pizzaItems.forEach(item=>item.draw())
+      });
+    } else {
+      const pos=positions(p,s);
+      poly([[-30,-10,0],[30,-10,0],[30,2,0],[-30,2,0]],'#d2d4d1');
+      poly([[-30,2,-.1],[30,2,-.1],[30,9,-.1],[-30,9,-.1]],'#8a8f98');
+      box(-30,1.9,-.1,60,.15,.11,['#edece7','#a4a9ad','#4a4f58']);
+      for(let x=-28;x<30;x+=2) line([x,-8,.006],[x,1.85,.006],'#a2a7ab',1);
+      for(let x=-28;x<30;x+=4) poly([[x,5,.01],[x+2,5,.01],[x+2,5.1,.01],[x,5.1,.01]],'#e9e9e6');
+      for(let x=-28;x<30;x+=6) {
+        box(x,9,0,4.8,3,3.2,['#b8bdc1','#a5aab0','#8a8f98']);
+        for(let j=0;j<3;j++) box(x+.4+j*1.3,8.98,1.1,.8,.03,1.1,['#ddd','#c5c9cb','#8a8f98']);
+      }
+      capsule([9,1,0],[9,1,2.2],.035,'#747b83');
+      box(8.73,.96,1.8,.54,.08,.6,['#e9e9e6','#e9e9e6','#4a4f58']);
+      // A bus pictogram, never generated lettering.
+      box(8.84,.91,1.98,.32,.03,.2,['#8a8f98','#8a8f98','#4a4f58']);
+      sphere([8.9,.88,1.94],.03,'#4a4f58');
+      sphere([9.09,.88,1.94],.03,'#4a4f58');
+      shadow(pos.bus-1.5,4.05,2.8,1);
+      const x=pos.bus;
+      // The bus reference point is its doors at (x, 3), as specified for Aim at Bus.
+      const frontIndex=items.length;
+      box(x-4,3,.35,4.7,1.8,2.25,['#e9e9e6','#b8bdc1','#8a8f98']);
+      const front=items[frontIndex];
+      const detailStart=items.length;
+      box(x-3.7,2.98,1.35,2.7,.02,.9,['#e9e9e6','#d9dfe0','#8a8f98']);
+      for(let k=0;k<4;k++) line([x-3.7+k*.68,2.97,1.35],[x-3.7+k*.68,2.97,2.25],'#4a4f58',3);
+      const opening=[5,6].includes(p.beat) ? .08 : p.beat>=3 ? .4 : 0;
+      box(x-.425,2.975,.48,.85,.02,1.77,['#4a4f58','#4a4f58','#4a4f58']);
+      if(opening<.4) {
+        for(const leafX of [x-.425,x+.015+opening]) {
+          box(leafX,2.955,.49,.4-opening,.02,1.75,['#e9e9e6','#a6adb5','#8a8f98']);
+          box(leafX+.035,2.94,1.22,.33-opening,.012,.89,['#e9e9e6','#d8dedd','#8a8f98']);
+          line([leafX+.06,2.925,1.36],[leafX+.16,2.925,1.9],'#edf0ed',2);
+          line([leafX+.06,2.925,1.06],[leafX+.18,2.925,1.06],'#4a4f58',3);
+        }
+      }
+      line([x-3.8,2.96,1.1],[x+.5,2.96,1.1],'#4a4f58',3);
+      // Affixed details travel with the front face, rather than sorting behind its far half.
+      const frontDetails=items.splice(detailStart);
+      if(front) {
+        const drawFront=front.draw;
+        front.draw=()=>{
+          drawFront();
+          frontDetails.sort((a,b)=>b.depth-a.depth).forEach(item=>item.draw());
+        };
+      } else items.push(...frontDetails);
+      for(const xx of [x-3,x-.1]) for(const yy of [2.94,4.86]) {
+        sphere([xx,yy,.4],.4,'#4a4f58');
+        sphere([xx,yy-.025,.4],.18,'#aab0b5');
+      }
+      box(x+.67,3.3,1.3,.03,1.1,.9,['#e9e9e6','#e9e9e6','#4a4f58']);
+      mannequin(pos.nico,0,'#a78bfa',0,false,0);
+    }
+    items.sort((a,b)=>b.depth-a.depth).forEach(item=>item.draw());
+    // Fine paper grain is deterministic, so nothing flickers while the camera moves.
+    ctx.fillStyle='#272c3213';
+    for(let i=0;i<900;i++) {
+      const x=(i*97%997)/997*w, y=(i*193%991)/991*h;
+      ctx.fillRect(x,y,Math.max(.5,w/1600),Math.max(.5,w/1600));
+    }
+    if(options.gray) {
+      ctx.globalCompositeOperation='saturation';
+      ctx.fillStyle='#888';
+      ctx.fillRect(0,0,w,h);
+      ctx.globalCompositeOperation='source-over';
+    }
+  }
+  function shade(hex,factor) {
+    const color=hex.replace('#','');
+    if(color.length!==6) return '#8a8f98';
+    return '#'+[0,2,4].map(i=>Math.round(parseInt(color.slice(i,i+2),16)*factor).toString(16).padStart(2,'0')).join('');
+  }
+  function fitCanvas(canvas) {
+    const r=canvas.getBoundingClientRect(), dpr=Math.min(devicePixelRatio||1,2);
+    const w=Math.max(1,Math.round(r.width*dpr)),h=Math.max(1,Math.round(r.height*dpr));
+    if(canvas.width!==w || canvas.height!==h) {
+      canvas.width=w;
+      canvas.height=h;
+    }
+  }
+  let planTransform=null;
+  function drawPlan(canvas,p,extra=[],mini=false) {
+    fitCanvas(canvas);
+    const ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height,dpr=w/canvas.getBoundingClientRect().width;
+    ctx.clearRect(0,0,w,h);
+    ctx.fillStyle='#101a26';
+    ctx.fillRect(0,0,w,h);
+    const s=state.scene;
+    const base=s==='slice' ? [-4,4,-4,4] : [-12,12,-7,7];
+    const all=[p,...extra];
+    let [minX,maxX,minY,maxY]=base;
+    for(const q of all) {
+      minX=Math.min(minX,q.x-1);
+      maxX=Math.max(maxX,q.x+1);
+      minY=Math.min(minY,q.y-1);
+      maxY=Math.max(maxY,q.y+1);
+    }
+    const scale=Math.min((w-24*dpr)/(maxX-minX),(h-22*dpr)/(maxY-minY));
+    const cx=(minX+maxX)/2,cy=(minY+maxY)/2;
+    const point=(x,y)=>[w/2+(x-cx)*scale,h/2-(y-cy)*scale];
+    if(!mini) planTransform={
+      scale:scale/dpr,cx,cy,w:w/dpr,h:h/dpr
+    };
+    ctx.strokeStyle='#ffffff19';
+    ctx.lineWidth=dpr*.6;
+    for(let x=Math.ceil(minX);x<=maxX;x++) {
+      ctx.beginPath();
+      ctx.moveTo(...point(x,minY));
+      ctx.lineTo(...point(x,maxY));
+      ctx.stroke();
+    }
+    for(let y=Math.ceil(minY);y<=maxY;y++) {
+      ctx.beginPath();
+      ctx.moveTo(...point(minX,y));
+      ctx.lineTo(...point(maxX,y));
+      ctx.stroke();
+    }
+    function rect(x,y,dx,dy,fill,stroke='#8a95a5') {
+      const [sx,sy]=point(x,y+dy);
+      ctx.fillStyle=fill;
+      ctx.fillRect(sx,sy,dx*scale,dy*scale);
+      ctx.strokeStyle=stroke;
+      ctx.lineWidth=dpr;
+      ctx.strokeRect(sx,sy,dx*scale,dy*scale);
+    }
+    function label(text,x,y,color='#c1ccda',align='center') {
+      const q=point(x,y);
+      ctx.font=`${10*dpr}px Segoe UI`;
+      ctx.textAlign=align;
+      ctx.textBaseline='middle';
+      const width=ctx.measureText(text).width;
+      ctx.fillStyle='#101a26ef';
+      ctx.fillRect(q[0]-width/2-3*dpr,q[1]-7*dpr,width+6*dpr,14*dpr);
+      ctx.fillStyle=color;
+      ctx.fillText(text,...q);
+    }
+    function actor(x,y,color,name,facing=0) {
+      const [sx,sy]=point(x,y),r=Math.max(scale*.18,3*dpr);
+      ctx.fillStyle=color;
+      ctx.strokeStyle='#e7edf3';
+      ctx.lineWidth=.7*dpr;
+      ctx.beginPath();
+      ctx.arc(sx,sy,r,0,Math.PI*2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(sx+Math.cos(facing)*r*1.8,sy-Math.sin(facing)*r*1.8);
+      ctx.lineTo(sx+Math.cos(facing+.6)*r*.6,sy-Math.sin(facing+.6)*r*.6);
+      ctx.lineTo(sx+Math.cos(facing-.6)*r*.6,sy-Math.sin(facing-.6)*r*.6);
+      ctx.closePath();
+      ctx.fill();
+      if(!mini && h/dpr>100) label(name,x,y-.6,color);
+    }
+    if(s==='slice') {
+      rect(-4,-3,8,6,'#3b41481c','#81868d');
+      rect(-.6,-.4,1.2,.8,'#abb4bc33','#aab8c6');
+      rect((p.beat>=7 ? -.13 : 0)-.2,-.15,.4,.3,'#e1d7ab');
+      actor(-.6,0,'#3fb8af','Ash',0);
+      actor(.6,0,'#f2c14e','Remy',Math.PI);
+      if(h/dpr>120) {
+        label('WINDOW',0,3.1);
+        label('DOOR',0,-2.8);
+      }
+    } else {
+      const pos=positions(p);
+      rect(-12,2,24,3,'#646d7928','#6a7481');
+      rect(pos.bus-4,3,4.7,1.8,'#aab2bc55');
+      actor(pos.nico,0,'#a78bfa','Nico');
+      rect(8.8,.8,.4,.4,'#e9e9e6');
+      if(h/dpr>120) label('STOP',9,1.7);
+    }
+    ctx.strokeStyle='#ffd166';
+    ctx.lineWidth=1.5*dpr;
+    ctx.setLineDash([5*dpr,4*dpr]);
+    ctx.beginPath();
+    ctx.moveTo(...point(minX,0));
+    ctx.lineTo(...point(maxX,0));
+    ctx.stroke();
+    ctx.setLineDash([]);
+    label('The line',minX+(maxX-minX)*.18,.55,'#ffd166');
+    function camera(q,ghost=false,number=0) {
+      const t=target(q), a=Math.atan2(t[1]-q.y,t[0]-q.x),[x,y]=point(q.x,q.y);
+      const radius=ghost ? 4*dpr : 7*dpr;
+      if(!ghost) {
+        const half=Math.atan(18/q.lens), length=scale*(s==='slice' ? 2 : 6);
+        ctx.fillStyle='#ff6b6b22';
+        ctx.strokeStyle='#ff6b6b88';
+        ctx.lineWidth=dpr;
+        ctx.beginPath();
+        ctx.moveTo(x,y);
+        ctx.lineTo(x+Math.cos(a-half)*length,y-Math.sin(a-half)*length);
+        ctx.lineTo(x+Math.cos(a+half)*length,y-Math.sin(a+half)*length);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        ctx.strokeStyle='#ff6b6b';
+        ctx.lineWidth=dpr;
+        ctx.beginPath();
+        ctx.arc(x,y,14*dpr,0,Math.PI*2);
+        ctx.stroke();
+      }
+      ctx.save();
+      ctx.translate(x,y);
+      ctx.rotate(-a);
+      ctx.globalAlpha=ghost ? .45 : 1;
+      ctx.fillStyle=ghost ? '#cdd5df' : '#ff6b6b';
+      ctx.strokeStyle='#fff';
+      ctx.lineWidth=dpr;
+      ctx.fillRect(-radius,-radius*.62,radius*1.3,radius*1.24);
+      ctx.beginPath();
+      ctx.moveTo(radius*.3,-radius*.38);
+      ctx.lineTo(radius*.95,-radius*.72);
+      ctx.lineTo(radius*.95,radius*.72);
+      ctx.lineTo(radius*.3,radius*.38);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+      if(ghost || mini) label(String(number||state.selected+1),q.x,q.y-.65,ghost ? '#cbd2dd' : '#ff9e9e');
+    }
+    extra.forEach((q,i)=>camera(q,true,board().indexOf(q)+1||i+1));
+      camera(p,false,board().indexOf(p)+1);
+  }
+  function renderStrip() {
+    const host=$('strip'),ms=markers();
+    const signature=board().map((p,i)=>p.id+':'+ms[i].join(',')).join('|');
+    if(host.dataset.signature===signature) {
+      host.querySelectorAll('.panel-chip').forEach((b,i)=>b.setAttribute('aria-pressed',i===state.selected));
+      revealStrip();
+      return;
+    }
+    const focusId=document.activeElement?.dataset.panelId;
+    host.dataset.signature=signature;
+    host.replaceChildren();
+    board().forEach((p,i)=>{
+      if(ms[i].length) {
+        const m=document.createElement('button');
+        m.className='mini-marker';
+        m.textContent='⚠ '+ms[i].join(' / ');
+        m.title=ms[i].join(' / ');
+        m.setAttribute('aria-label',`${ms[i].join(' and ')} into panel ${i+1}`);
+        m.onclick=()=>openMarker(i);
+        host.append(m);
+      }
+      const b=document.createElement('button');
+      b.className='panel-chip';
+      b.textContent=String(i+1).padStart(2,'0');
+      b.dataset.panelId=p.id;
+      b.title=`Panel ${i+1}: ${metrics(p).name}, beat ${p.beat}`;
+      b.setAttribute('aria-pressed',i===state.selected);
+      b.onclick=()=>selectedPanel(i);
+      host.append(b);
+    });
+    if(focusId) host.querySelector(`[data-panel-id="${focusId}"]`)?.focus({
+      preventScroll:true
+    });
+    revealStrip();
+  }
+  function revealStrip() {
+    if(state.mode!=='plan') return;
+    const host=$('strip'),active=host.querySelector('.panel-chip[aria-pressed="true"]');
+    if(!active || !host.clientWidth) return;
+    const left=active.offsetLeft-host.offsetLeft;
+    if(left<host.scrollLeft) host.scrollLeft=left;
+    else if(left+active.offsetWidth>host.scrollLeft+host.clientWidth) {
+      host.scrollLeft=left+active.offsetWidth-host.clientWidth;
+    }
+  }
+  function renderBoard() {
+    const host=$('grid'),ms=markers(),focus=document.activeElement;
+    const focusedId=focus?.closest('[data-id]')?.dataset.id;
+    host.replaceChildren();
+    board().forEach((p,i)=>{
+      const card=document.createElement('article');
+      card.className='board-card'+(i===state.selected ? ' selected' : '');
+      card.dataset.id=p.id;
+      card.draggable=true;
+      const button=document.createElement('button');
+      button.className='board-select';
+      button.setAttribute('aria-pressed',i===state.selected);
+      button.setAttribute('aria-label',`Panel ${i+1}, ${metrics(p).name}, beat ${p.beat}`);
+      const head=document.createElement('div');
+      head.className='card-head';
+      head.innerHTML=`<b>${String(i+1).padStart(2,'0')}</b><span>${p.duration} s · ${p.transition}</span>`;
+      const canvas=document.createElement('canvas');
+      canvas.width=480;
+      canvas.height=270;
+      drawShot(canvas,p);
+      const details=document.createElement('div');
+      details.className='card-details';
+      details.textContent=`${metrics(p).name} · ${p.lens} mm · ${p.height} · ${sideName(p)}`;
+      const beat=document.createElement('p');
+      beat.className='card-beat';
+      beat.textContent=`${p.beat}. ${scene().beats[p.beat-1]}`;
+      button.append(head,canvas,details,beat);
+      card.append(button);
+      button.onclick=()=>{
+        state.selected=i;
+        state.playIndex=i;
+        state.revision++;
+        V.dropQueued();
+        sound();
+        host.querySelectorAll('.board-card').forEach((c,j)=>{
+          c.classList.toggle('selected',i===j);
+          c.querySelector('button').setAttribute('aria-pressed',i===j);
+        });
+        syncControls();
+        hint();
+      };
+      button.ondblclick=()=>{
+        state.selected=i;
+        setMode('plan');
+      };
+      card.ondragstart=event=>{
+        state.drag=true;
+        V.dropQueued();
+        event.dataTransfer.setData('text/plain',String(p.id));
+        event.dataTransfer.effectAllowed='move';
+      };
+      card.ondragover=event=>{
+        event.preventDefault();
+        event.dataTransfer.dropEffect='move';
+      };
+      card.ondrop=event=>{
+        event.preventDefault();
+        const id=Number(event.dataTransfer.getData('text/plain'));
+        const from=board().findIndex(q=>q.id===id);
+        if(from>=0) reorder(from,i);
+      };
+      card.ondragend=()=>{
+        state.drag=false;
+      };
+      if(ms[i].length) {
+        const marker=document.createElement('button');
+        marker.className='cut-marker';
+        marker.textContent=`⚠ ${ms[i].join(' · ')} (${i} → ${i+1})`;
+        marker.onclick=()=>openMarker(i);
+        card.append(marker);
+      }
+      host.append(card);
+    });
+    if(focusedId) host.querySelector(`[data-id="${focusedId}"] .board-select`)?.focus({
+      preventScroll:true
+    });
+    const missing=scene().beats.map((_,i)=>i+1).filter(n=>!board().some(p=>p.beat===n));
+    $('notes-strip').textContent=`Beats with no panel: ${missing.length ? missing.join(', ') : 'none'} · Running time ${timeText(total())}`;
+  }
+  function renderTimeline() {
+    const host=$('timeline');
+    const ms=markers();
+    const signature=board().map((p,i)=>`${p.id}:${p.duration}:${ms[i].join(',')}`).join('|');
+    if(host.dataset.signature===signature) {
+      host.querySelectorAll('.time-block').forEach((b,i)=>{
+        b.classList.toggle('active',i===state.playIndex);
+        b.setAttribute('aria-pressed',i===state.playIndex);
+      });
+      layoutTimeline();
+      return;
+    }
+    host.dataset.signature=signature;
+    host.replaceChildren();
+    board().forEach((p,i)=>{
+      const b=document.createElement('button');
+      b.className='time-block'+(i===state.playIndex ? ' active' : '');
+      b.textContent=i+1;
+      b.title=`Panel ${i+1}: ${p.duration} seconds${ms[i].length ? ', '+ms[i].join(', ') : ''}`;
+      b.setAttribute('aria-label',b.title);
+      b.setAttribute('aria-pressed',i===state.playIndex);
+      if(ms[i].length) {
+        const flag=document.createElement('span');
+        flag.className='flag';
+        flag.textContent='⚠';
+        b.append(flag);
+      }
+      b.onclick=()=>jumpTo(i,true);
+      host.append(b);
+    });
+    layoutTimeline();
+  }
+  function layoutTimeline() {
+    if(state.mode!=='animatic') return;
+    const host=$('timeline');
+    const minimum=Math.min(...board().map(p=>p.duration));
+    const before=board().slice(0,state.playIndex).reduce((sum,p)=>sum+p.duration,0);
+    const elapsed=state.playing && !state.pauseUntil ? performance.now()-state.frameStart : state.elapsed;
+    const proportion=(before+clamp(elapsed/1000,0,board()[state.playIndex].duration))/total();
+    $('progress').firstElementChild.style.width=`${clamp(proportion,0,1)*100}%`;
+    const drawable=Math.max(host.clientWidth-(board().length-1)*3,total()/minimum*44);
+    [...host.children].forEach((b,i)=>{
+      b.style.flex=`0 0 ${board()[i].duration/total()*drawable}px`;
+    });
+    const active=host.children[state.playIndex];
+    if(!active) return;
+    if(active.offsetLeft<host.scrollLeft) host.scrollLeft=active.offsetLeft;
+    else if(active.offsetLeft+active.offsetWidth>host.scrollLeft+host.clientWidth) {
+      host.scrollLeft=active.offsetLeft+active.offsetWidth-host.clientWidth;
+    }
+  }
+  function render() {
+    syncControls();
+    hint();
+    if(state.mode==='board') renderBoard();
+    if(state.mode==='plan') renderStrip();
+    if(state.mode==='animatic') renderTimeline();
+    drawAll();
+  }
+  function drawAll() {
+    layoutTimeline();
+    revealStrip();
+    $('monitor').classList.toggle('showing-problem',state.pauseUntil>0);
+    if(state.mode==='board') return;
+    const p=current();
+    if(!p) return;
+    if(state.mode==='animatic' && innerWidth>600) {
+      const area=$('workarea').getBoundingClientRect();
+      const bezel=innerWidth<=1000 ? 12 : 91;
+      $('monitor').style.width=Math.max(100,Math.min(area.width,(area.height-bezel)*16/9))+'px';
+    } else $('monitor').style.width='';
+    fitCanvas($('view'));
+    drawShot($('view'),p);
+    if(state.mode==='animatic' && !state.pauseUntil && state.transitionActive) {
+      drawTransition(state.playing ? performance.now() : state.frameStart+state.elapsed);
+    }
+    const m=metrics(p);
+    $('shot').textContent=m.name;
+    $('side').textContent=sideName(p);
+    $('camera-info').textContent=`${p.lens} mm / ${p.height} / ${zHeight(p).toFixed(1)} m`;
+    $('view').setAttribute('aria-label',`${m.name}, ${sideName(p)}. ${scene().beats[p.beat-1]}`);
+    $('beat-line').innerHTML=`<b>BEAT ${String(p.beat).padStart(2,'0')}</b>${scene().beats[p.beat-1]}`;
+    $('captions').hidden=state.mode!=='animatic' || !state.captions;
+    $('captions').textContent=scene().beats[p.beat-1];
+    if(state.mode==='plan') drawPlan($('plan'),p,board().slice(0,state.selected));
+    if(state.pauseUntil) drawSplit();
+  }
+  function cameraBlocked(p,x,y) {
+    // High and overhead cameras are above the table and both scenes' actors.
+    if(zHeight(p)>=2.6) return false;
+    if(state.scene==='slice') {
+      // Rounded expansion of the 1.2 x 0.8 meter table by the 0.3 meter clearance.
+      const tx=clamp(x,-.6,.6),ty=clamp(y,-.4,.4);
+      if(Math.hypot(x-tx,y-ty)<.3-1e-9) return true;
+      return [-.6,.6].some(ax=>Math.hypot(x-ax,y)<.3-1e-9);
+    } else {
+      const nx=positions(p).nico;
+      return Math.hypot(x-nx,y)<.3-1e-9;
+    }
+  }
+  function clearCamera(p) {
+    if(!cameraBlocked(p,p.x,p.y)) return false;
+    // A beat can move Nico into a camera; lowering a high camera can meet the table.
+    // Find the nearest free position, preserving its side when distances tie.
+    const start=p.y>0 ? Math.PI/2 : -Math.PI/2;
+    for(let step=1;step<=60;step++) {
+      for(let a=0;a<64;a++) {
+        const angle=start+a*Math.PI/32;
+        const x=Math.round((p.x+Math.cos(angle)*step*.025)*1000)/1000;
+        const y=Math.round((p.y+Math.sin(angle)*step*.025)*1000)/1000;
+        if(!cameraBlocked(p,x,y)) {
+          p.x=x;
+          p.y=y;
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+  function moveCamera(x,y) {
+    const p=board()[state.selected],before=markers()[state.selected]||[];
+    const bounds=state.scene==='slice' ? [-8,8,-7,7] : [-16,16,-7,9];
+    x=Math.round(clamp(x,bounds[0],bounds[1])*1000)/1000;
+    y=Math.round(clamp(y,bounds[2],bounds[3])*1000)/1000;
+    if(cameraBlocked(p,x,y)) {
+      $('hint').textContent=L.blocked;
+      return false;
+    }
+    p.x=Math.round(x*1000)/1000;
+    p.y=Math.round(y*1000)/1000;
+    changed(before);
+    return true;
+  }
+  let pointerOrigin=null;
+  $('plan').onpointerdown=event=>{
+    const p=current(),r=$('plan').getBoundingClientRect(),t=planTransform;
+    if(!t) return;
+    const px=t.w/2+(p.x-t.cx)*t.scale,py=t.h/2-(p.y-t.cy)*t.scale;
+    if(Math.hypot(event.clientX-r.left-px,event.clientY-r.top-py)>24) return;
+    $('plan').focus({
+      preventScroll:true
+    });
+    $('plan').setPointerCapture(event.pointerId);
+    state.drag=true;
+    V.dropQueued();
+    // Freeze the transform for the gesture. A plan that pans under the pointer causes jitter.
+    pointerOrigin={
+      ...t,left:r.left,top:r.top,dx:event.clientX-r.left-px,dy:event.clientY-r.top-py
+    };
+    sound(330);
+  };
+  $('plan').onpointermove=event=>{
+    if(!state.drag || !pointerOrigin) return;
+    const t=pointerOrigin;
+    moveCamera((event.clientX-t.left-t.dx-t.w/2)/t.scale+t.cx,
+    -(event.clientY-t.top-t.dy-t.h/2)/t.scale+t.cy);
+  };
+  function endDrag() {
+    if(state.drag) sound(660);
+    state.drag=false;
+    pointerOrigin=null;
+  }
+  $('plan').onpointerup=$('plan').onpointercancel=endDrag;
+  $('plan').onkeydown=event=>{
+    const delta=event.shiftKey ? 1 : .25,p=current();
+    const directions={
+      ArrowLeft:[-delta,0],ArrowRight:[delta,0],ArrowUp:[0,delta],ArrowDown:[0,-delta]
+    };
+    if(directions[event.key]) {
+      event.preventDefault();
+      const [dx,dy]=directions[event.key];
+      moveCamera(p.x+dx,p.y+dy);
+      sound(370);
+    }
+  };
+  function add(duplicate=false) {
+    if(board().length>=12) return;
+    const p=copy(board()[state.selected]);
+    p.id=nextId++;
+    if(!duplicate) p.beat=Math.min(scene().beats.length,p.beat+1);
+    board().splice(state.selected+1,0,p);
+    state.selected++;
+    state.playIndex=state.selected;
+    sound(740);
+    changed([],state.scene==='slice' ? 'lineHow' : null);
+    if(board().length===12 && [$('add'),$('duplicate')].includes(document.activeElement)) {
+      const target=state.mode==='board' ? $('earlier') : $('plan');
+      target.focus({preventScroll:true});
+    }
+  }
+  function reorder(from,to) {
+    if(from===to || to<0 || to>=board().length) return;
+    const [p]=board().splice(from,1);
+    board().splice(to,0,p);
+    state.selected=to;
+    state.drag=false;
+    sound(500);
+    changed();
+    if(document.activeElement===$('earlier') && $('earlier').disabled) $('later').focus({
+      preventScroll:true
+    });
+    if(document.activeElement===$('later') && $('later').disabled) $('earlier').focus({
+      preventScroll:true
+    });
+  }
+  function openMarker(i) {
+    state.markerIndex=i;
+    state.revision++;
+    V.hush();
+    sound(280);
+    const kinds=markers()[i];
+    $('marker-title').textContent=`${kinds.join(' · ')}: ${i} → ${i+1}`;
+    $('marker-note').textContent=[...kinds.map(kind=>kind==='Line crossed' ? L.crossNote : L.jumpNote),
+      L.convention,L.markerAction].join(' ');
+    $('marker-dialog').showModal();
+    drawPlan($('mini-plan'),board()[i],[board()[i-1]],true);
+    V.how('markerAction',{valid:()=>$('marker-dialog').open});
+  }
+  let markerFocus=null;
+  $('go-panel').onclick=()=>{
+    $('marker-dialog').close();
+    state.selected=state.markerIndex;
+    setMode('plan');
+    $('plan').focus({
+      preventScroll:true
+    });
+  };
+  $('close-marker').onclick=()=>{
+    V.hush();
+    $('marker-dialog').close();
+  };
+  for(const id of ['marker-dialog','clear-dialog']) $(id).oncancel=()=>V.hush();
+  $('read-marker').onclick=() => V.read();
+  $('read-clear').onclick=() => V.read();
+  function loadSample() {
+    stop();
+    V.hush();
+    if(!state.samples[state.scene]) state.samples[state.scene]=sample(state.scene);
+    state.sample=true;
+    state.selected=0;
+    state.playIndex=0;
+    state.sampleHadProblems=markers().some(m=>m.length);
+    state.revision++;
+    save();
+    render();
+    V.how('markerHow',{
+      valid:()=>state.mode==='board' && state.sample && markers().some(m=>m.length),needs:'.cut-marker'
+    });
+    sound(550);
+  }
+  function drawSplit() {
+    const i=state.playIndex;
+    if(i<1) return;
+    for(const id of ['before-frame','after-frame']) {
+      fitCanvas($(id));
+    }
+    drawShot($('before-frame'),board()[i-1]);
+    drawShot($('after-frame'),board()[i]);
+    if(state.scene==='slice') {
+      const order=p=>{
+        const r=p.height==='Overhead' ? [1,0,0] : norm(cross(direction(p),[0,0,1]));
+        return r[0]>.0 ? 'Ash ←   → Remy' : 'Remy ←   → Ash';
+      };
+      $('before-sides').textContent=order(board()[i-1]);
+      $('after-sides').textContent=order(board()[i]);
+    } else {
+      const text=p=>side(p)<0 ? 'Nico runs →' : '← Nico runs';
+      $('before-sides').textContent=text(board()[i-1]);
+      $('after-sides').textContent=text(board()[i]);
+    }
+  }
+  function endPause(now=performance.now()) {
+    if(!state.pauseUntil) return;
+    state.pauseUntil=0;
+    state.frameStart=now;
+    state.elapsed=0;
+    $('cross-overlay').hidden=true;
+    V.dropQueued();
+    drawAll();
+    if(state.playing) drawTransition(now);
+  }
+  function stop() {
+    state.finished=false;
+    if(state.playing && !state.pauseUntil) {
+      state.elapsed=state.transitionActive ? state.presentedElapsed : performance.now()-state.frameStart;
+    }
+    state.playing=false;
+    endPause();
+    $('play').setAttribute('aria-pressed',false);
+    if(state.mode==='animatic') {
+      hint();
+      syncControls();
+    }
+  }
+  function enterFrame(index,now,problem=true) {
+    state.pausePrevious=state.playIndex;
+    state.playIndex=index;
+    state.selected=index;
+    state.frameStart=now;
+    state.elapsed=0;
+    state.transitionActive=false;
+    state.timingLog.push({
+      index,t:performance.now(),scheduled:now
+    });
+    const crossed=index>0 && checks(board()[index-1],board()[index]).includes('Line crossed');
+    if(problem && crossed && state.showProblems) {
+      state.pauseUntil=now+1000;
+      $('cross-overlay').hidden=false;
+      const token=state.pauseUntil;
+      V.say('animaticPause',{
+        valid:()=>state.pauseUntil===token && state.playing
+      });
+    }
+    renderTimeline();
+    syncControls();
+    drawAll();
+  }
+  function start(fromSelected=false) {
+    V.hush();
+    state.finished=false;
+    endPause();
+    state.playing=true;
+    state.timingLog=[];
+    state.playedOnEntry=true;
+    enterFrame(fromSelected ? state.selected : 0,performance.now(),false);
+    drawTransition(performance.now());
+    $('play').setAttribute('aria-pressed',true);
+    sound(620);
+    hint();
+  }
+  function jumpTo(i,keepPlaying=false) {
+    state.finished=false;
+    const was=state.playing;
+    endPause();
+    if(!keepPlaying) state.playing=false;
+    enterFrame(clamp(i,0,board().length-1),performance.now(),false);
+    state.playing=keepPlaying && was;
+    $('play').setAttribute('aria-pressed',state.playing);
+    hint();
+    sound(480);
+  }
+  function tick(now) {
+    if(state.mode==='animatic' && state.playing) {
+      if(state.pauseUntil) {
+        if(now>=state.pauseUntil) {
+          const end=state.pauseUntil;
+          endPause(end);
+        }
+      } else {
+        const p=board()[state.playIndex],elapsed=now-state.frameStart,duration=p.duration*1000;
+        if(elapsed>=duration) {
+          if(state.playIndex===board().length-1) {
+            state.elapsed=duration;
+            state.playing=false;
+            state.finished=true;
+            state.selected=state.playIndex;
+            state.transitionActive=false;
+            drawShot($('view'),p);
+            state.timingLog.push({
+              index:'end',t:performance.now(),scheduled:state.frameStart+duration
+            });
+            $('play').setAttribute('aria-pressed',false);
+            syncControls();
+            hint();
+          } else enterFrame(state.playIndex+1,state.frameStart+duration);
+        }
+        if(state.playing && !state.pauseUntil) drawTransition(now);
+        const before=board().slice(0,state.playIndex).reduce((v,q)=>v+q.duration,0);
+        const progress=(before+Math.min((now-state.frameStart)/1000,board()[state.playIndex].duration))/total();
+        $('progress').firstElementChild.style.width=`${clamp(progress,0,1)*100}%`;
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+  const transitionCanvas=document.createElement('canvas');
+  function drawTransition(now) {
+    const p=current(),elapsed=now-state.frameStart;
+    state.presentedElapsed=Math.max(0,elapsed);
+    const transitionTime=Math.min(500,p.duration*1000);
+    if(p.transition==='Cut' || elapsed>transitionTime || state.playIndex===0 && p.transition==='Dissolve') {
+      if(state.transitionActive) {
+        drawShot($('view'),p);
+        state.transitionActive=false;
+      }
+      return;
+    }
+    state.transitionActive=true;
+    const canvas=$('view'),ctx=canvas.getContext('2d');
+    // Motion off holds the incoming still for the same transition time.
+    drawShot(canvas,p);
+    if(Curio.reduce) return;
+    const alpha=1-clamp(elapsed/transitionTime,0,1);
+    ctx.save();
+    ctx.globalAlpha=alpha;
+    if(p.transition==='Fade from black') {
+      ctx.fillStyle='#000';
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+    }
+    else {
+      transitionCanvas.width=canvas.width;
+      transitionCanvas.height=canvas.height;
+      drawShot(transitionCanvas,board()[state.playIndex-1]);
+      ctx.drawImage(transitionCanvas,0,0);
+    }
+    ctx.restore();
+  }
+  $('cross-overlay').onclick=()=>endPause();
+  $('cross-overlay').onkeydown=event=>{
+    if(['Enter',' '].includes(event.key)) {
+      event.preventDefault();
+      endPause();
+    }
+  };
+  // A tap anywhere ends a problem pause; the target's action still runs in the same event.
+  document.addEventListener('pointerdown',()=>{
+    if(state.pauseUntil) endPause();
+  },true);
+  function printBoard() {
+    const host=$('print-root');
+    host.replaceChildren();
+    for(let start=0;start<board().length;start+=6) {
+      const page=document.createElement('section');
+      page.className='print-page';
+      const title=document.createElement('h2');
+      title.className='print-title';
+      title.textContent=`${scene().title} · ${state.sample ? 'Practice copy' : 'My board'} · Running time ${timeText(total())}`;
+      page.append(title);
+      board().slice(start,start+6).forEach((p,j)=>{
+        const i=start+j, card=document.createElement('article');
+        card.className='print-card';
+        const canvas=document.createElement('canvas');
+        canvas.width=640;
+        canvas.height=360;
+        drawShot(canvas,p,state.scene,{
+          gray:true
+        });
+        const img=document.createElement('img');
+        img.src=canvas.toDataURL();
+        img.alt=`Panel ${i+1}`;
+        const info=document.createElement('p');
+        info.textContent=`${i+1}. ${metrics(p).name} · ${p.lens} mm · ${p.height} · ${sideName(p)}`;
+        const beat=document.createElement('p');
+        beat.textContent=`Beat ${p.beat}: ${scene().beats[p.beat-1]}`;
+        const notes=document.createElement('p');
+        const cut=i ? checks(board()[i-1],p).join(', ') : '';
+        notes.textContent=`${p.duration} s · Into this panel: ${p.transition}${cut ? ' · '+cut : ''}`;
+        card.append(img,info,beat,notes);
+        page.append(card);
+      });
+      const missing=scene().beats.map((_,i)=>i+1).filter(n=>!board().some(p=>p.beat===n));
+      const note=document.createElement('p');
+      note.style.gridColumn='1 / -1';
+      note.textContent=`Beats with no panel: ${missing.join(', ')||'none'}`;
+      page.append(note);
+      host.append(page);
+    }
+    requestAnimationFrame(()=>window.print());
+  }
+  for(const m of ['plan','board','animatic']) $('m-'+m).onclick=()=>{
+    sound();
+    if(state.mode!==m) setMode(m);
+    else {
+      hint();
+      V.welcome();
+    }
+  };
+  for(const key of ['aim','lens','height','beat','duration','transition']) $(key).onchange=()=>{
+    const p=board()[state.selected],before=markers()[state.selected]||[];
+    let value=$(key).value;
+    if(['lens','beat'].includes(key)) value=Number(value);
+    if(key==='duration') value=clamp(Math.round((Number(value)||.5)*2)/2,.5,8);
+    p[key]=value;
+    const moved=['height','beat'].includes(key) && clearCamera(p);
+    sound(540);
+    let how=moved ? 'cameraMoved' : key==='height' && p.height==='Overhead' ? 'overheadHow' : null;
+    if(how && state.mode==='board') how+='Board';
+    changed(before,how);
+    if(moved) $('hint').textContent=L[how];
+  };
+  $('add').onclick=()=>add();
+  $('duplicate').onclick=()=>add(true);
+  $('delete').onclick=()=>{
+    if(board().length===1) return;
+    board().splice(state.selected,1);
+    state.selected=Math.min(state.selected,board().length-1);
+    state.playIndex=state.selected;
+    sound(260);
+    changed();
+    if($('delete').disabled) $('add').focus({
+      preventScroll:true
+    });
+  };
+  $('prev').onclick=()=>selectedPanel(state.selected-1);
+  $('next').onclick=()=>selectedPanel(state.selected+1);
+  $('clear').onclick=()=>{
+    V.hush();
+    $('clear-dialog').showModal();
+    V.how('clearNote',{valid:()=>$('clear-dialog').open});
+  };
+  $('cancel-clear').onclick=()=>{
+    V.hush();
+    $('clear-dialog').close();
+  };
+  $('confirm-clear').onclick=()=>{
+    $('clear-dialog').close();
+    stop();
+    V.hush();
+    (state.sample ? state.samples : state.boards)[state.scene]=initial(state.scene);
+    state.selected=state.playIndex=0;
+    changed();
+    $('add').focus({
+      preventScroll:true
+    });
+  };
+  $('sample').onclick=loadSample;
+  $('mine').onclick=()=>{
+    stop();
+    V.hush();
+    state.sample=false;
+    state.selected=state.playIndex=0;
+    state.revision++;
+    save();
+    render();
+    sound(550);
+  };
+  $('earlier').onclick=()=>reorder(state.selected,state.selected-1);
+  $('later').onclick=()=>reorder(state.selected,state.selected+1);
+  $('print').onclick=printBoard;
+  $('play').onclick=()=>start();
+  $('from').onclick=()=>start(true);
+  $('stop').onclick=()=>{
+    stop();
+    sound(250);
+  };
+  $('step').onclick=()=>jumpTo(state.playIndex+1);
+  $('back').onclick=()=>jumpTo(state.playIndex-1);
+  $('problems').onchange=()=>{
+    state.showProblems=$('problems').checked;
+    endPause();
+    drawAll();
+    sound();
+  };
+  $('caption-toggle').onchange=()=>{
+    state.captions=$('caption-toggle').checked;
+    endPause();
+    drawAll();
+    sound();
+  };
+  $('scene-pick').onchange=()=>{
+    stop();
+    V.hush();
+    state.scene=$('scene-pick').value;
+    if(state.sample && !state.samples[state.scene]) state.samples[state.scene]=sample(state.scene);
+    state.selected=state.playIndex=0;
+    state.revision++;
+    state.entryRevision=state.revision;
+    state.playedOnEntry=false;
+    fillSceneControls();
+    save();
+    render();
+    V.welcome();
+    sound(550);
+  };
+  const resizeObserver=new ResizeObserver(()=>drawAll());
+  resizeObserver.observe($('stage'));
+  resizeObserver.observe($('view'));
+  resizeObserver.observe($('plan'));
+  Curio.onMotion(()=>{
+    $('motion').textContent=Curio.reduce ? 'Motion off' : 'Motion';
+    drawAll();
+  });
+  Curio.onSound(()=>{
+    $('sound').textContent=Curio.sound ? 'Sound' : 'Sound off';
+  });
+  Curio.init({
+    clips:"voice:*",rate:.94
+  });
+  fillSceneControls();
+  save();
+  setMode('plan');
+  requestAnimationFrame(tick);
+  window.__tool={
+    state,setMode,allLines:()=>V.allLines(),vlog:V.log,get vq(){
+      return V.queue;
+    },
+    metrics,side,sideName,checks,target,zHeight,direction,sizeIndex,board,markers,sample,loadSample,
+    selectedPanel,moveCamera,render,drawShot,printBoard,sceneData:scenes,add,reorder,start,stop,jumpTo,
+    get planTransform(){
+      return planTransform;
+    }
+  };
+})();
+</script>
+</body>
+</html>

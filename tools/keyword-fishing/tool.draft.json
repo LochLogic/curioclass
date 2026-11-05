@@ -1,0 +1,21 @@
+{
+  "id": "keyword-fishing",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Pick the words, watch what bites.",
+  "outcome": "Choose, remove and swap search keywords to find a small useful catch.",
+  "driver": "students or teacher",
+  "minutes": "15-25",
+  "modes": [
+    "Levels",
+    "Free fishing"
+  ],
+  "grades_label": "Grades 3-5",
+  "sources": [
+    "AASL National School Library Standards, Framework for Learners (2018), Inquire I.A.1 and Curate IV.A.2",
+    "All pages and sites are fictional; the simple catalog model and catch goal are choices for this tool.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-03"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "launch-pad",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Solve it first. Then fire.",
+  "outcome": "Solve quadratic equations with four methods and interpret the roots as flight times",
+  "driver": "students",
+  "minutes": "20-40",
+  "modes": [
+    "Launch",
+    "Missions"
+  ],
+  "grades_label": "Grade 9",
+  "sources": [
+    "Common Core State Standards, HSA-REI.B.4a and 4b: https://www.thecorestandards.org/Math/Content/HSA/REI/",
+    "OpenStax Elementary Algebra 2e, section 10.6: https://openstax.org/books/elementary-algebra-2e/pages/10-6-solve-applications-modeled-by-quadratic-equations",
+    "OpenStax Intermediate Algebra 2e, chapter 9: https://openstax.org/books/intermediate-algebra-2e/pages/9-3-solve-quadratic-equations-using-the-quadratic-formula",
+    "NIST, standard acceleration of gravity: https://physics.nist.gov/cgi-bin/cuu/Value?gn",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-03"
+}

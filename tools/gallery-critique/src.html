@@ -1,0 +1,1191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Gallery Critique · Curio Class</title>
+<meta name="description"
+  content="Pin claims to evidence in three real paintings, challenge unsupported statements, and write your own critique. Grades 9-12. Works offline.">
+<!--
+Gallery Critique, Curio Class. Based on kit/starter/src.html. NCAS VA:Re7, VA:Re8, VA:Re9.
+Feldman: describe, analyze, interpret, judge. Ragans: aesthetic criteria. Smithsonian: accessible label guidance.
+Museum paintings: Art Institute of Chicago and The Metropolitan Museum of Art, public domain / CC0.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Fictional panelists. No generated people.
+Content CC BY 4.0, code MIT. One offline file. No student work is stored or sent anywhere.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {--brand:#f39cbc;--brand-ink:#1c1203;--wall:url('art:gc-wall')}
+body {--footer-h:54px;grid-template-rows:64px minmax(0,1fr) var(--footer-h);min-height:0;overflow:hidden}
+header {padding:8px 22px;gap:8px;flex-wrap:nowrap;border-bottom:1px solid #6b4857}
+h1 {font:500 25px Georgia,serif;letter-spacing:-.4px}
+h1 b {color:var(--brand);font-weight:500}
+h1 small {font:10px 'Segoe UI',sans-serif;letter-spacing:.18em;text-transform:uppercase;margin-top:4px}
+.icon-btn,.btn {min-height:44px;min-width:44px;border-radius:5px;font-size:12px;padding:0 11px;border-width:1px}
+.icon-btn {width:88px;flex-shrink:0}
+button {touch-action:manipulation}
+button:active:not(:disabled) {filter:brightness(1.2)}
+.primary {background:var(--brand);border-color:var(--brand);color:var(--brand-ink);font-weight:750}
+main {display:block;min-height:0;overflow:hidden}
+footer {display:flex;align-items:center;gap:14px;background:#10161f;border-top:1px solid #3b3441;padding:6px 22px}
+#hint {font-size:13px;line-height:1.35;flex:1;min-width:0;margin:0}
+.privacy {color:var(--muted);font:10px/1.3 Consolas,monospace;max-width:175px}
+.eyebrow {font:11px/1.3 Consolas,monospace;letter-spacing:.17em;text-transform:uppercase;color:var(--brand)}
+.muted {color:var(--muted)}
+#choose {height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;background:var(--wall) center/cover,#10161f}
+.opening {text-align:center;padding:22px 16px 4px}
+.opening h2 {font:400 clamp(24px,3vw,42px)/1.05 Georgia,serif;margin:6px 0 8px;color:#f5e9e0}
+.opening p {font-size:13px;margin:0;color:#d4c9c5}
+.work-row {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;padding:20px 7% 10px;min-height:0}
+.work-card {display:grid;grid-template-rows:minmax(0,1fr) auto;gap:14px;border:0;padding:12px;background:transparent;min-width:0}
+.work-card[aria-pressed=true] {background:#f39cbc12;outline:2px solid var(--brand);outline-offset:0;border-radius:5px}
+.work-art {display:flex;align-items:center;justify-content:center;min-height:0;position:relative}
+.work-art img {display:block;position:absolute;object-fit:contain;outline:6px ridge #a88045;
+  box-shadow:0 0 0 8px #3b271a,0 0 0 10px #e1bc75,10px 17px 22px #0009}
+.work-caption {font:400 17px/1.15 Georgia,serif;color:#f0e5d9;text-align:center}
+.work-caption small {display:block;font:11px/1.4 'Segoe UI',sans-serif;color:#c6bfbc;margin-top:5px}
+.seat-row {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:15px 7% 8px}
+.seat {display:flex;align-items:center;gap:16px;text-align:left;background:linear-gradient(130deg,#23232bd9,#151c26f5);
+  border:1px solid #6e5b50;border-radius:6px;padding:10px 16px;box-shadow:0 5px 12px #0004;min-height:114px}
+.seat img {width:96px;height:96px;object-fit:contain;filter:drop-shadow(4px 6px 5px #0007)}
+.seat strong {display:block;font:400 24px Georgia,serif;margin-bottom:7px}
+.seat small {font-size:12px;color:#ccd0d6;line-height:1.4;display:block}
+.seat[aria-pressed=true] {border:2px solid var(--brand);background:linear-gradient(130deg,#4d303f,#1c2532)}
+.choose-actions {display:flex;justify-content:center;align-items:center;gap:24px;padding:6px 20px 17px}
+#take-seat {min-width:220px}
+details {position:relative;font-size:12px;color:#d2c4bf}
+summary {min-height:44px;display:flex;align-items:center;cursor:pointer}
+details p {position:absolute;z-index:8;bottom:38px;right:0;width:250px;background:#18202b;padding:14px;border:1px solid #637187}
+details:not([open]) p {display:none}
+.missing {outline:2px solid var(--warn);outline-offset:-2px}
+#panel {height:100%;display:grid;grid-template-columns:minmax(0,3fr) minmax(300px,2fr)}
+.gallery {background:var(--wall) center/cover,#10161f;display:grid;grid-template-rows:44px minmax(0,1fr) auto;
+  padding:12px 24px 20px;min-width:0;min-height:0;position:relative}
+.gallery-top {display:flex;justify-content:space-between;align-items:center;font:11px Consolas,monospace;color:#d6c6b4;gap:8px}
+.gallery-top .btn {background:#10161fba}
+.gallery:has(#pin-note:not([hidden])) #whole {visibility:hidden}
+.art-slot {min-height:0;min-width:0;padding:18px 8px;display:flex;position:relative}
+.museum-frame {position:relative;flex:1;min-width:0;min-height:0;display:flex;align-items:center;justify-content:center}
+.art-viewport {position:relative;overflow:hidden;flex:none;background:#211e1b;border:1px solid #33241e;
+  outline:8px ridge #ad864c;box-shadow:0 0 0 10px #382519,0 0 0 12px #d7b475,10px 19px 25px #000a}
+.picture-target {display:block;border:0;padding:0;width:100%;height:100%;background:none;transition:transform .9s ease}
+.picture-target img {display:block;width:100%;height:100%;object-fit:contain}
+.picture-target:disabled {opacity:1;cursor:default}
+.tell-pin {position:absolute;transform:translate(-50%,-50%);width:44px;height:44px;border:1px solid #f8d5e2;
+  border-radius:50%;color:white;background:#18202b4d;font:700 15px Consolas,monospace;text-shadow:0 1px 3px #000;
+  box-shadow:0 0 0 4px #0002;z-index:3}
+.tell-pin[aria-pressed=true] {background:var(--brand);color:var(--brand-ink);border:2px solid #fff;text-shadow:none;
+  box-shadow:0 0 0 6px #f39cbc40}
+.evidence-leaders {position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:visible}
+.evidence-leaders line {stroke:#f8d5e2;stroke-width:1.2;opacity:.8}
+.evidence-leaders circle {fill:#f8d5e2;stroke:#18202b;stroke-width:1}
+.zoom-ring {position:absolute;width:40%;aspect-ratio:1;border:2px solid #f9d7df;border-radius:50%;
+  box-shadow:0 0 0 500px #0005;transform:translate(-50%,-50%);pointer-events:none}
+.label-row {display:flex;justify-content:center;gap:9px;align-items:center;padding-top:5px}
+#wall-label {background:#ede6d6;color:#272421;padding:10px 14px;border-left:3px solid #b29266;max-width:520px;
+  box-shadow:3px 5px 10px #0005;position:relative}
+#wall-label h2 {font:italic 17px/1.15 Georgia,serif;margin:0 0 4px}
+#wall-label p {margin:2px 0;font-size:11px}
+#wall-label a {color:#383127;font-size:10px;display:inline-flex;align-items:center;min-height:44px;min-width:44px}
+#label-pin {flex:none}
+#label-pin:not([hidden]) {position:static;transform:none}
+.workbench {display:grid;grid-template-rows:30px auto minmax(0,1fr) auto 44px;gap:10px;background:#141b25;
+  border-left:1px solid #53414b;padding:17px 18px;min-height:0;min-width:0}
+.rounds {grid-row:1}#lens-box {grid-row:2}.floor-wrap {grid-row:3}.builder {grid-row:4}#next-round {grid-row:5}
+.rounds {display:grid;grid-template-columns:repeat(4,1fr);gap:4px;align-items:center}
+.rounds span {font-size:12px;color:var(--muted);border-bottom:2px solid #36404e;padding-bottom:8px}
+.rounds .current {color:var(--brand);border-color:var(--brand);font-weight:700}
+.rounds .past {color:#e5d4de;border-color:#9c6d84}
+#lens-box {display:flex;flex-direction:column;gap:4px}
+#lens-box small {color:var(--muted);font-size:11px;line-height:1.3}
+select {background:#0d131b;color:var(--ink);border:1px solid #637088;border-radius:4px;min-height:44px;min-width:0;
+  padding:0 8px;width:100%;font:12px 'Segoe UI',sans-serif}
+.floor-wrap {display:grid;grid-template-rows:auto minmax(0,1fr);gap:7px;min-height:0}
+.floor-head {display:flex;align-items:center;justify-content:space-between}
+.floor-head h2 {font:400 22px Georgia,serif;margin:0}
+.floor-head small {color:var(--muted);font:10px Consolas,monospace}
+#floor {display:grid;grid-template-rows:repeat(3,minmax(0,1fr));gap:9px;min-height:0;position:relative}
+.claim {position:relative;background:linear-gradient(130deg,#202733,#18202b);border:1px solid #3d4451;
+  border-radius:5px;padding:7px 10px 7px 54px;display:flex;flex-direction:column;min-height:0;gap:3px;
+  box-shadow:3px 4px 7px #0002;transition:border-color .2s,opacity .3s}
+.claim::before {content:'';position:absolute;width:6px;height:6px;border-radius:50%;background:#ad9670;
+  box-shadow:inset 1px 1px 2px #f5e2bc;right:9px;top:9px}
+.speaker {display:flex;align-items:center;gap:8px;font-size:11px;min-height:14px;color:#e9d2dd}
+.speaker img {position:absolute;left:7px;top:7px;height:36px;width:40px;object-fit:contain}
+.speaker b {font-weight:650}
+.claim-text {font:13px/1.3 'Segoe UI',sans-serif;margin:0;flex:1}
+.claim-actions {display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.claim-actions .btn {min-height:44px;font-size:11px;padding:0 13px}
+.claim-status {font-size:11px;line-height:1.35;color:var(--ok);margin:0}
+.claim-status:empty {display:none}
+.claim[data-status=pinned] {border-color:#568d78}
+.claim[data-status=challenged] {border-color:#7e6e7b;background:#161d27}
+.claim[data-status=challenged] .claim-text {text-decoration:line-through;color:#b7a9b4}
+.claim[data-status=challenged] .claim-status {color:#dbc7d2}
+.claim.active {border:2px solid var(--brand);box-shadow:0 0 18px #f39cbc18}
+.claim.waiting {opacity:0;animation:enter .35s ease forwards;animation-delay:var(--delay)}
+@keyframes enter {from {opacity:0;transform:translateY(9px)} to {opacity:1;transform:translateY(0)}}
+.calm .claim.waiting {opacity:1;animation:none}
+.reason-box {grid-template-columns:1fr 1fr;gap:8px;position:fixed;inset:0;margin:auto;
+  width:min(440px,calc(100% - 28px));height:fit-content;max-height:calc(100% - 28px);overflow:auto;
+  padding:18px;background:linear-gradient(130deg,#202733,#18202b);color:var(--ink);
+  border:1px solid var(--brand);border-radius:5px;box-shadow:0 15px 60px #000b}
+.reason-box[open] {display:grid}
+.reason-box::backdrop {background:#090d16b8}
+.reason-context {grid-column:1/-1;margin:0 0 8px;font:16px/1.45 Georgia,serif}
+.reason-context small {display:block;font:11px 'Segoe UI',sans-serif;color:var(--brand);margin-bottom:8px}
+.reason-box .read-reason {grid-column:1/-1;text-align:center}
+.reason-box .btn {font-size:11px;min-height:44px;text-align:left;padding:3px 7px;line-height:1.2}
+.reason-box .cancel-reason {text-align:center;background:#303b4b}
+#pager {display:none;gap:5px;align-items:center;justify-content:space-between}
+#pager span {font:11px Consolas,monospace;color:var(--muted)}
+.builder {border-top:1px solid #42404b;padding-top:9px;display:grid;gap:6px;min-width:0;
+  grid-template-columns:minmax(0,1fr) auto}
+.builder-head {grid-column:1/-1}.menus label span {display:none}
+.builder .menus label span {display:none}
+.builder-bottom {flex-direction:column;justify-content:center}
+#own-preview {display:none!important}
+.builder.has-own .menus,.builder.has-own .builder-bottom {display:none}
+.builder.pinning-own .menus {display:none}
+.builder.pinning-own .builder-bottom {display:flex;grid-column:1/-1;flex-direction:row}
+.builder.has-own #own-entries {display:flex;gap:5px;overflow:visible;max-height:none}
+#own-entries {grid-column:1/-1}.own-entry span {display:none}
+.own-entry .btn {white-space:nowrap}
+.builder-head {display:flex;justify-content:space-between;align-items:center}
+.builder-head h2 {font:400 19px Georgia,serif;margin:0}
+#own-count {font:10px Consolas,monospace;color:var(--muted)}
+.menus {display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.menus label {min-width:0}
+.menus label span {font-size:10px;color:var(--muted);display:block;margin-bottom:2px}
+.menus .wide {grid-column:1/-1}
+.builder-bottom {display:flex;gap:8px;align-items:center;min-height:44px}
+#own-preview {font-size:11px;line-height:1.4;color:#bfc6d1;margin:0;flex:1;max-height:48px;overflow:auto}
+#pin-own {flex:none}
+#own-entries {font-size:11px;line-height:1.35;color:var(--ok);max-height:55px;overflow:auto}
+#own-entries:empty {display:none}
+.own-entry {display:flex;gap:5px;align-items:center;justify-content:space-between}
+.own-entry .btn {font-size:10px;min-height:44px}
+#next-round {width:100%}
+.pin-note {position:absolute;left:50%;top:17px;transform:translateX(-50%);pointer-events:none;background:#141b25ee;
+  border:1px solid var(--brand);border-radius:5px;padding:9px 14px;z-index:7;font-size:12px;white-space:nowrap}
+.glint {position:absolute;left:11%;top:13%;width:3px;height:3px;background:#e9d2a6;border-radius:50%;
+  box-shadow:0 0 7px 2px #e9d2a677;animation:glow 5s ease-in-out infinite;pointer-events:none}
+@keyframes glow {0%,100% {opacity:.25} 50% {opacity:.75}}
+.calm .glint {animation:none;opacity:.4}
+#record-view {height:calc(100% - 64px);overflow:auto;background:#171c24;padding:25px 24px 32px}
+main:has(#record-view:not([hidden])) {background:#171c24}
+.record-paper {max-width:850px;margin:0 auto;background:#f4efdf;color:#262726;padding:32px 45px;
+  border-top:5px solid #ad7b92;box-shadow:0 10px 40px #0005}
+.record-paper h2 {font:400 34px Georgia,serif;margin:8px 0 14px}
+.record-paper h3 {font:400 23px Georgia,serif;border-bottom:1px solid #b9b3a5;padding-bottom:7px;margin-top:23px}
+.record-paper .eyebrow {color:#794657}
+.record-paper p,.record-paper li {font-size:13px;line-height:1.55}
+.transcript-row {display:flex;gap:10px;align-items:flex-start;margin:12px 0}
+.transcript-row img {width:40px;height:40px;object-fit:contain}
+.transcript-row p {margin:0}
+.record-actions {display:flex;flex-wrap:wrap;gap:8px;position:fixed;z-index:12;bottom:var(--footer-h);
+  left:50%;transform:translateX(-50%);width:min(850px,calc(100% - 48px));padding:9px 18px;
+  background:#f4efdf;border-top:1px solid #b9b3a5;box-shadow:0 -3px 12px #0003}
+.record-actions .btn {color:#252c35;background:#ece7da;border-color:#827d77}
+.record-actions .primary {background:#f39cbc;color:#1c1203}
+textarea {display:block;width:100%;min-height:190px;padding:14px;background:#fffdf6;color:#222a31;
+  font:15px/1.6 Georgia,serif;border:1px solid #89867c;border-radius:2px;resize:vertical}
+#counts {font-size:12px;min-height:22px;color:#245742}
+#counts.warn {color:#8a3125}
+#print-product {display:none;white-space:pre-wrap}
+.empty-record {color:#62605b;font-style:italic}
+@media (max-height:760px) {
+  .opening {padding-top:13px}.opening h2 {font-size:32px}.seat {min-height:100px;padding:6px 12px}
+  .seat img {height:80px;width:80px}.work-row {padding-top:15px;gap:23px}.workbench {gap:7px;padding:12px}
+  .claim {padding:6px 8px 6px 50px;gap:3px}.speaker {min-height:14px}.speaker img {height:29px;width:36px}
+  .claim-text {font-size:12px}.floor-head h2 {font-size:19px}.builder {gap:4px;padding-top:5px}
+}
+@media (max-width:1050px),(max-height:680px) {
+  body {--footer-h:50px;grid-template-rows:54px minmax(0,1fr) var(--footer-h)}header {padding:5px 12px}h1 {font-size:21px}
+  h1 small {display:none}.privacy {display:none}footer {padding:5px 12px}#hint {font-size:12px}
+  #panel {grid-template-columns:minmax(0,55fr) minmax(290px,45fr)}
+  .workbench {grid-template-rows:24px auto minmax(0,1fr) auto 44px;gap:5px;padding:8px}
+  .rounds span {font-size:10px;padding-bottom:5px}.floor-wrap {grid-template-rows:auto minmax(0,1fr) 44px;gap:4px}
+  #floor {display:block}.claim {height:100%;padding:7px 10px 7px 46px}.claim:not(.shown) {display:none}
+  .claim-text {font-size:12px;line-height:1.3}.speaker img {height:25px}.speaker {font-size:10px}
+  #pager {display:flex}.floor-head h2 {font-size:17px}.builder-head h2 {font-size:16px}
+  .menus label span {display:none}.menus {gap:3px}.builder {gap:3px;padding-top:4px}
+  .builder {grid-template-columns:minmax(0,1fr) auto}.builder-head {grid-column:1/-1}
+  #own-preview {display:none}.builder-bottom {gap:4px;flex-direction:column;justify-content:center}
+  .builder-bottom .btn {padding:0 8px;width:64px}#own-entries {max-height:44px;grid-column:1/-1}#lens-box small {display:none}
+  .gallery {padding:5px 17px 10px;grid-template-rows:44px minmax(0,1fr) auto}
+  .gallery-top {font-size:10px}.gallery-top .btn {font-size:10px;padding:0 8px}.art-slot {padding:14px 0}
+  #wall-label {padding:6px 9px}#wall-label h2 {font-size:13px}#wall-label p {font-size:10px}
+  #wall-label a {font-size:10px}.work-caption {font-size:14px}.seat strong {font-size:20px}
+  .seat-row {padding:9px 4% 5px;gap:9px}.seat {gap:8px;min-height:78px;padding:6px 8px}
+  .seat img {width:58px;height:58px}.seat small {font-size:10px}.work-row {padding:12px 5%;gap:21px}
+  .opening h2 {font-size:27px}.opening p {font-size:11px}.opening {padding:10px 10px 1px}
+  .choose-actions {padding-bottom:8px}.pin-note {font-size:10px;padding:6px;top:8px}
+}
+@media (max-height:510px) and (min-width:600px) {
+  body {--footer-h:44px;grid-template-rows:50px minmax(0,1fr) var(--footer-h)}
+  .workbench {grid-template-rows:20px auto minmax(0,1fr) auto 44px;padding:5px 7px;gap:3px}
+  .builder {padding-top:2px}.floor-wrap {gap:2px}
+  .floor-head {display:none}.floor-wrap {grid-template-rows:minmax(0,1fr) 44px;gap:3px}
+  .speaker {min-height:14px}.speaker img {height:21px}.claim {gap:3px;padding:5px 7px 5px 42px}
+  .claim-actions .btn {padding:0 8px}.claim-text {font-size:11px}.claim-status {font-size:10px}
+  .claim[data-status=challenged] .speaker,.claim[data-status=pinned] .speaker {display:none}
+  .builder-head {display:none}.menus select {font-size:10px}.builder-bottom {min-height:44px}
+  .gallery-top>span {display:none}.gallery-top {justify-content:flex-end}#wall-label a {display:none}
+  .opening {padding-top:5px}.opening h2 {font-size:23px;margin:3px 0}.opening .eyebrow,.opening p {display:none}
+  textarea {min-height:110px}
+  .work-row {padding:9px 6% 7px}.work-caption small {display:none}.work-caption {font-size:12px}
+  .seat {min-height:64px;gap:5px}.seat img {width:45px;height:45px}.seat strong {font-size:16px;margin:0 0 4px}
+  .seat small {font-size:10px}.seat-row {padding:6px 5%}.choose-actions {padding:3px 10px 5px}
+  #wall-label h2 {font-size:12px}#wall-label p {font-size:10px}.label-row {padding:0}
+  .gallery {grid-template-rows:minmax(0,1fr) auto;padding-top:4px;padding-bottom:6px}
+  .gallery-top {position:absolute;right:17px;bottom:6px;z-index:6}
+  .art-slot {padding:0}
+  .label-row {padding-right:84px}
+  #wall-label {display:grid;grid-template-columns:auto auto;column-gap:7px;align-items:center;padding:4px 6px;min-width:0}
+  #wall-label h2 {grid-column:1/-1;margin-bottom:2px}
+  #wall-label p {margin:0}
+}
+@media (max-width:599px) {
+  body {--footer-h:64px;grid-template-rows:96px minmax(0,1fr) var(--footer-h)}
+  header {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:5px 9px}
+  h1 {grid-row:1;grid-column:1/3;font-size:23px;white-space:nowrap}
+  header:has(#record[hidden]) h1 {grid-column:1/-1}
+  .icon-btn {width:100%;font-size:11px;padding:0 6px}#record {grid-row:1;grid-column:3}
+  #read {grid-row:2;grid-column:1}#motion {grid-row:2;grid-column:2}#sound {grid-row:2;grid-column:3}
+  #panel {display:grid;grid-template-columns:1fr;grid-template-rows:40% minmax(0,1fr)}
+  .gallery {grid-template-columns:minmax(0,1fr) 100px;grid-template-rows:1fr;padding:12px 17px;gap:14px}
+  .gallery-top {position:absolute;top:4px;right:8px;z-index:6}.gallery-top span {display:none}
+  .gallery-top .btn {padding:0 6px;min-width:44px;font-size:10px;background:#131a25ee}
+  .art-slot {padding:12px 0 0}.label-row {align-items:flex-end;flex-direction:column;justify-content:flex-end;gap:5px}
+  #wall-label {padding:5px;font-size:10px}#wall-label h2 {font-size:11px}#wall-label p {font-size:10px}
+  #wall-label a {display:none}.workbench {border-left:0;border-top:1px solid #57434f;padding:6px 9px;gap:4px}
+  .floor-head {display:none}.floor-wrap {grid-template-rows:minmax(0,1fr) 44px;gap:3px}
+  .claim {padding:5px 8px 5px 42px;gap:3px}.speaker {min-height:14px}.speaker img {height:22px}.claim-text {font-size:11px}
+  .claim-status {font-size:10px}.builder-head {display:none}.builder {padding-top:3px}
+  .menus select {font-size:11px}#own-preview {font-size:10px}.pin-note {left:10px;transform:none;top:7px;font-size:10px}
+  #choose {grid-template-rows:auto minmax(0,1fr) auto auto}.opening h2 {font-size:25px}.opening p {font-size:11px}
+  .opening .eyebrow {display:none}.work-row {padding:14px 16px 7px;gap:15px}.work-card {padding:2px;gap:13px}
+  .work-caption {font-size:11px;line-height:1.3}.work-caption small {font-size:10px}.work-art img {outline-width:3px;
+    box-shadow:0 0 0 5px #3b271a,0 0 0 6px #e1bc75,5px 8px 10px #0009}
+  .seat-row {padding:10px 14px;grid-template-columns:1fr;gap:5px}.seat {min-height:64px;padding:5px 12px;gap:15px}
+  .seat img {height:50px;width:50px}.seat strong {font-size:20px;margin-bottom:3px}.seat small {font-size:11px}
+  .choose-actions {gap:12px;padding:2px 14px 10px}#take-seat {min-width:180px}details {font-size:10px}
+  .record-paper {padding:20px 18px}.record-paper h2 {font-size:27px}#record-view {padding:15px 12px 100px}
+  .record-actions {width:calc(100% - 24px);padding:8px 10px}
+}
+@media print {
+  html,body {height:auto;overflow:visible;background:white;color:black;display:block}
+  header,footer,#choose,#panel,.record-actions,textarea,#counts {display:none!important}
+  main,#record-view {display:block!important;height:auto;overflow:visible;padding:0;background:white}
+  .record-paper {box-shadow:none;border:0;padding:0;background:white;color:black;max-width:none}
+  .record-paper h3 {break-after:avoid}.transcript-row {break-inside:avoid}#print-product {display:block}
+  .record-paper .eyebrow {color:black}
+  .record-paper img {filter:grayscale(1)}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Gallery <b>Critique</b><small>Curio Class · Every claim needs a place to stand</small></h1>
+  <button class="btn" id="record" hidden>Record ↗</button>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+</header>
+<main>
+  <section id="choose" aria-label="Choose a painting and a seat">
+    <div class="opening"><span class="eyebrow">Three paintings. Three perspectives.</span>
+      <h2>Look closely. Make your case.</h2><p>Take a seat. Put the evidence on the record.</p></div>
+    <div class="work-row" id="work-row"></div>
+    <div class="seat-row" id="seat-row"></div>
+    <div class="choose-actions"><button id="take-seat" class="btn primary">Take your seat →</button>
+      <details><summary>How it works +</summary><p>Describe what you see. Analyze how it works. Interpret its meaning.
+        Judge through a lens. Pin the evidence, challenge unsupported claims, then edit your piece.</p></details></div>
+  </section>
+  <section id="panel" aria-label="Critique panel" hidden>
+    <div class="gallery" id="gallery">
+      <div class="gallery-top"><span id="seat-label"></span><button class="btn" id="whole">Look closer +</button></div>
+      <div class="art-slot"><div id="painting"></div><i class="glint" aria-hidden="true"></i></div>
+      <div class="label-row"><div id="wall-label"></div><button id="label-pin" class="tell-pin" hidden>8</button></div>
+      <div class="pin-note" id="pin-note" hidden>Pick up to two spots · then Done</div>
+    </div>
+    <aside class="workbench" aria-label="The floor">
+      <div class="rounds" id="rounds" aria-label="Four rounds"></div>
+      <div id="lens-box" hidden><select id="lens" aria-label="Judgment lens"></select>
+        <small>A judgment depends on the lens. Say which one you're using.</small></div>
+      <div class="floor-wrap"><div class="floor-head"><h2>The floor</h2><small id="floor-count">3 claims to consider</small></div>
+        <div id="floor"></div><div id="pager"><button class="btn" id="previous">← Previous</button><span id="page-count"></span>
+          <button class="btn" id="next-card">Next →</button></div></div>
+      <div class="builder" id="builder"><div class="builder-head"><h2>Your claim</h2><span id="own-count">0 of 3</span></div>
+        <div class="menus" id="menus"></div><div class="builder-bottom"><p id="own-preview"></p>
+          <button class="btn primary" id="pin-own">Pin it</button></div><div id="own-entries"></div></div>
+      <button class="btn primary" id="next-round" disabled>Next round →</button>
+    </aside>
+  </section>
+  <section id="record-view" aria-label="Your critique record" hidden><article class="record-paper">
+    <span class="eyebrow">Gallery Critique / On the record</span><h2 id="record-title"></h2><p id="record-meta"></p>
+    <div id="transcript"></div><h3 id="product-heading"></h3><label for="product">Edit your piece</label>
+    <textarea id="product" aria-label="Edit your critique piece" spellcheck="true"></textarea>
+    <p id="counts" aria-live="polite"></p><p id="print-product"></p>
+  </article></section>
+  <div class="record-actions" id="record-actions" role="group" aria-label="Record actions" hidden>
+    <button class="btn primary" id="print">Print</button><button class="btn" id="back">Back to the panel</button>
+    <button class="btn" id="new-panel">New panel</button></div>
+</main>
+<footer><p class="hint" id="hint" aria-live="polite"></p><span class="privacy">Nothing is saved.<br>Your work stays in this page.</span></footer>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const DATA = "json:content";
+  const IMAGES = {rain:'art:pd-aic-20684', gulf:'art:pd-met-11122', bath:'art:pd-aic-111442'};
+  for (const id in DATA) DATA[id].img = IMAGES[id];
+  const ROUNDS = ['Describe', 'Analyze', 'Interpret', 'Judge'];
+  const LENSES = ['Looks real', 'Well designed', 'Strong feeling', 'Does a job'];
+  const REASONS = ['No evidence in the picture', 'Wrong round', 'A fact that needs a source'];
+  const ROLES = {
+    Critic: {name:'Ines Okafor', goal:'Reach a judgment and back it.', img:'art:gc-critic', product:'Your review'},
+    Curator: {name:'Dr. Paul Lindqvist', goal:'Write the wall label.', img:'art:gc-curator', product:'Your wall label'},
+    Artist: {name:'Rae Santos', goal:'Explain how it was made.', img:'art:gc-artist', product:'Your making notes'},
+    Visitor: {name:'A visitor', img:'art:gc-visitor'}
+  };
+  const L = {
+    welcomeChoose:'Tap a painting, then tap a seat, then tap Take your seat.',
+    welcomePanel:'We start by describing. Tap Pin on a claim, then tap the spot in the painting that shows it.',
+    challengeHow:"If a claim can't be pinned, tap Challenge and pick the reason.",
+    ownHow:'Now build your own claim with the menus, then tap Pin it.',
+    nextHow:'The floor is clear. Tap Next round.',
+    roundAnalyze:'Now analyze how the parts work together. Pin each claim to its spot, or challenge it.',
+    roundInterpret:'Now interpret what it might mean. Pin each claim to the spot that shows why, or challenge it.',
+    roundJudge:'Now judge. Pick a lens first, then pin each claim or challenge it.',
+    pinned:'On the record.',
+    missPin:"That spot doesn't show it. Tap another spot, or tap Cancel and challenge it.",
+    missOwnPin:'That pin does not support your sentence. Tap another spot, or tap Cancel to revise your menus.',
+    laterRound:'This belongs to a later round. Tap Challenge and pick Wrong round.',
+    wrongLens:'Not under this lens. Switch the lens, then pin it.',
+    struck:'Struck from the record.',
+    missChallenge:'Look again at what kind of claim this is.',
+    recordReady:'The record is ready. Edit your piece, then tap Print or New panel.'
+  };
+  const state = {mode:'choose', work:null, role:null, round:0, claims:[], own:[[],[],[],[]], page:0,
+    pinning:null, picked:[], lens:null, tick:0, product:'', edited:false, seeded:false, finished:false, form:{}};
+  const work = () => DATA[state.work];
+  const current = () => state.claims.filter(c => c.round === state.round);
+  const own = () => state.own[state.round];
+  const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function hint(text) { $('hint').textContent = text; }
+  function action() {
+    state.tick++;
+    V.dropQueued();
+  }
+  function event(key) {
+    hint(L[key]);
+    const tick = state.tick;
+    V.say(key, {valid:() => state.tick === tick});
+  }
+  function how(key, valid = () => true, needs) {
+    hint(L[key]);
+    V.how(key, {valid, needs});
+  }
+  L.hintLines = [
+      "Tap Whole picture to return, or tap a claim’s Pin button.",
+      "Tap Pin on a claim, or Challenge it.",
+      "Tap Take your seat to open the panel.",
+      "Painting chosen. Tap a seat, then tap Take your seat.",
+      "Seat chosen. Tap a painting, then tap Take your seat.",
+      "Tap Pin on a claim, or Challenge it. Build one claim of your own.",
+      "Pick a painting and a seat first.",
+      "Tap the reason this claim cannot go on the record.",
+      "Tap Pin on this claim, or tap Challenge.",
+      "Claim reopened. Tap Pin or Challenge.",
+      "Your claim was removed. Build another claim, then tap Pin it.",
+      "Build another sentence with the menus, then tap Pin it.",
+      "Pick a lens above the floor first. Then tap Pin.",
+      "Tap up to two numbered spots, then tap Done. Escape cancels.",
+      "Two spots selected. Tap a selected spot to remove it, or tap Done.",
+      "Evidence selected. Tap Done to test this claim.",
+      "Tap a numbered spot in the painting, then tap Done.",
+      "Pin cancelled. Tap Pin or Challenge, or build your own claim.",
+      "Every claim is resolved. Tap Finish to edit your piece.",
+      "On the record. Pin or challenge the remaining claims; add one of your own.",
+      "The floor is clear. Tap Finish.",
+      "Struck from the record. Read the reply, then pin or challenge another claim.",
+      " Tap Pin it to choose the evidence.",
+      "Tap Record to edit or print your completed piece.",
+      "Tap Pin or Challenge on this claim.",
+      "Tap Whole picture to return. Tap a claim’s Pin button to find its evidence.",
+      "Tap Pin or Challenge on a claim.",
+      "Pick a lens, then tap Pin on a judgment.",
+      ". Pin or challenge each judgment.",
+      "The panel is complete. Tap Record to edit or print your piece.",
+      "Tap Finish to edit your piece.",
+      "Tap Pin or Challenge. Add one claim of your own.",
+      "Challenge closed. Tap Pin or Challenge on this claim."
+  ];
+  L.cardLines = Object.values(DATA).flatMap(w => w.claims.flatMap(c => [c.text,c.reply].filter(Boolean)));
+  const V = Curio.voice({lines:L, scope:() => state.mode + (state.mode === 'panel' ? state.round : ''), hint:false,
+    read:() => state.mode === 'panel' ? [state.pinning?.text || current()[state.page]?.text || '',$('hint').textContent]
+      : $('hint').textContent,
+    welcome:() => state.mode === 'choose' ? ['welcomeChoose',{needs:'#take-seat'}]
+      : state.mode === 'panel' && !current().some(c => c.status) && !state.round ? ['welcomePanel',{needs:'.pin-claim'}] : null
+  });
+
+  // The shared art-museum files are absent. Reuse the existing sibling adapter locally, extended for selectable pins.
+  const Museum = (() => {
+    function frame(el, w) {
+      el.replaceChildren();
+      el.className = 'museum-frame';
+      const viewport = document.createElement('div');
+      viewport.className = 'art-viewport';
+      const picture = document.createElement('button');
+      picture.className = 'picture-target';
+      picture.setAttribute('aria-label', 'Painting: ' + w.title + '. Tap to look closer.');
+      const img = document.createElement('img');
+      img.src = w.img;
+      img.alt = w.alt;
+      img.draggable = false;
+      picture.append(img);
+      viewport.append(picture);
+      el.append(viewport);
+      el.viewport = viewport;
+      el.picture = picture;
+      el.zoomed = false;
+      el.fit = () => {
+        if (!img.naturalWidth || !el.isConnected) return;
+        const scale = Math.min((el.clientWidth - 28) / img.naturalWidth, (el.clientHeight - 28) / img.naturalHeight);
+        viewport.style.width = Math.max(1, img.naturalWidth * scale) + 'px';
+        viewport.style.height = Math.max(1, img.naturalHeight * scale) + 'px';
+        el.layoutPins?.();
+      };
+      img.onload = el.fit;
+      el.observer = new ResizeObserver(el.fit);
+      el.observer.observe(el);
+      picture.onclick = e => {
+        if (state.pinning) return;
+        action();
+        const box = viewport.getBoundingClientRect();
+        const spot = {x:(e.clientX - box.left) / box.width, y:(e.clientY - box.top) / box.height};
+        el.zoomed ? unzoom(el) : zoomTo(el, spot);
+        $('whole').textContent = el.zoomed ? 'Whole picture' : 'Look closer +';
+        hint(el.zoomed ? 'Tap Whole picture to return, or tap a claim’s Pin button.' : 'Tap Pin on a claim, or Challenge it.');
+        Curio.tone(420,.08,.03);
+      };
+      if (img.complete) el.fit();
+      return el;
+    }
+    function zoomTo(el, spot) {
+      const x = Math.max(-140, Math.min(0, 50 - spot.x * 240));
+      const y = Math.max(-140, Math.min(0, 50 - spot.y * 240));
+      el.picture.style.transformOrigin = '0 0';
+      el.picture.style.transform = `translate(${x}%,${y}%) scale(2.4)`;
+      el.zoomed = true;
+      let ring = el.viewport.querySelector('.zoom-ring');
+      if (!ring) {
+        ring = document.createElement('i');
+        ring.className = 'zoom-ring';
+        el.viewport.append(ring);
+      }
+      ring.style.left = (spot.x * 240 + x) + '%';
+      ring.style.top = (spot.y * 240 + y) + '%';
+    }
+    function unzoom(el) {
+      el.picture.style.transform = '';
+      el.viewport.querySelector('.zoom-ring')?.remove();
+      el.zoomed = false;
+    }
+    function pins(el, spots, opts) {
+      el.viewport.querySelectorAll('.tell-pin').forEach(p => p.remove());
+      el.viewport.querySelector('.evidence-leaders')?.remove();
+      const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+      svg.classList.add('evidence-leaders');
+      svg.setAttribute('aria-hidden','true');
+      el.viewport.append(svg);
+      const entries = [];
+      for (const spot of spots) {
+        const pin = document.createElement('button');
+        pin.className = 'tell-pin';
+        pin.id = 'spot-' + spot.key;
+        pin.textContent = spot.key;
+        pin.setAttribute('aria-label', 'Spot ' + spot.key + ': ' + spot.label);
+        pin.setAttribute('aria-pressed', 'false');
+        pin.style.left = `clamp(22px,${spot.x * 100}%,calc(100% - 22px))`;
+        pin.style.top = `clamp(22px,${spot.y * 100}%,calc(100% - 22px))`;
+        pin.onclick = () => opts.onPin(spot.key);
+        el.viewport.append(pin);
+        entries.push({spot,pin});
+      }
+      el.layoutPins = () => {
+        const width = el.viewport.clientWidth;
+        const height = el.viewport.clientHeight;
+        const clamp = (v,max) => Math.max(22,Math.min(max-22,v));
+        const points = entries.map(e => ({x:clamp(e.spot.x*width,width),y:clamp(e.spot.y*height,height)}));
+        const anchors = points.map(p => ({...p}));
+        const gap = Math.max(30,Math.min(46,Math.min(width,height)/3.5));
+        for (let step=0;step<100;step++) {
+          for (let i=0;i<points.length;i++) {
+            for (let j=i+1;j<points.length;j++) {
+              const a=points[i], b=points[j];
+              let dx=b.x-a.x, dy=b.y-a.y;
+              const distance=Math.hypot(dx,dy) || .01;
+              if (distance>=gap) continue;
+              if (!dx && !dy) dx=.01;
+              const push=(gap-distance)/2;
+              a.x=clamp(a.x-dx/distance*push,width);
+              a.y=clamp(a.y-dy/distance*push,height);
+              b.x=clamp(b.x+dx/distance*push,width);
+              b.y=clamp(b.y+dy/distance*push,height);
+            }
+          }
+        }
+        svg.replaceChildren();
+        entries.forEach((e,i) => {
+          const p=points[i], anchor=anchors[i];
+          e.pin.style.left=p.x+'px';
+          e.pin.style.top=p.y+'px';
+          if (Math.hypot(p.x-anchor.x,p.y-anchor.y)<2) return;
+          const line=document.createElementNS(svg.namespaceURI,'line');
+          line.setAttribute('x1',e.spot.x*width);
+          line.setAttribute('y1',e.spot.y*height);
+          line.setAttribute('x2',p.x);
+          line.setAttribute('y2',p.y);
+          const dot=document.createElementNS(svg.namespaceURI,'circle');
+          dot.setAttribute('cx',e.spot.x*width);
+          dot.setAttribute('cy',e.spot.y*height);
+          dot.setAttribute('r',2.5);
+          svg.append(line,dot);
+        });
+      };
+      el.layoutPins();
+    }
+    function label(el, w) {
+      el.innerHTML = `<h2>${escapeHtml(w.title)}</h2><p>${escapeHtml(w.artist)} · ${escapeHtml(w.date)}</p>` +
+        `<p>${escapeHtml(w.made)}</p><a href="${w.url}" target="_blank" rel="noopener">${escapeHtml(w.museum)} ↗</a>`;
+    }
+    return {frame, zoomTo, unzoom, pins, label};
+  })();
+
+  function chooseInit() {
+    $('work-row').innerHTML = Object.values(DATA).map(w => `<button class="work-card" id="work-${w.id}" aria-pressed="false">` +
+      `<span class="work-art"><img src="${w.img}" alt="${escapeHtml(w.alt)}"></span><span class="work-caption">` +
+      `${escapeHtml(w.title)}<small>${escapeHtml(w.artist)} · ${escapeHtml(w.date)}</small></span></button>`).join('');
+    $('seat-row').innerHTML = ['Critic','Curator','Artist'].map(role => `<button class="seat" id="seat-${role}" aria-pressed="false">` +
+      `<img src="${ROLES[role].img}" alt=""><span><strong>${role}</strong><small>${ROLES[role].goal}</small></span></button>`).join('');
+    document.querySelectorAll('.work-art').forEach(el => {
+      const img = el.querySelector('img');
+      const fit = () => {
+        if (!img.naturalWidth) return;
+        const scale = Math.min((el.clientWidth - 16) / img.naturalWidth, (el.clientHeight - 16) / img.naturalHeight);
+        img.style.width = Math.max(1,img.naturalWidth * scale) + 'px';
+        img.style.height = Math.max(1,img.naturalHeight * scale) + 'px';
+      };
+      img.onload = fit;
+      new ResizeObserver(fit).observe(el);
+      if (img.complete) fit();
+    });
+    for (const id in DATA) $('work-' + id).onclick = () => {
+      action();
+      state.work = id;
+      document.querySelectorAll('.work-card').forEach(b => b.setAttribute('aria-pressed', b.id === 'work-' + id));
+      $('work-row').classList.remove('missing');
+      Curio.tone(360,.07,.03);
+      hint(state.role ? 'Tap Take your seat to open the panel.' : 'Painting chosen. Tap a seat, then tap Take your seat.');
+    };
+    for (const role of ['Critic','Curator','Artist']) $('seat-' + role).onclick = () => {
+      action();
+      state.role = role;
+      document.querySelectorAll('.seat').forEach(b => b.setAttribute('aria-pressed', b.id === 'seat-' + role));
+      $('seat-row').classList.remove('missing');
+      Curio.tone(480,.07,.03);
+      hint(state.work ? 'Tap Take your seat to open the panel.' : 'Seat chosen. Tap a painting, then tap Take your seat.');
+    };
+  }
+  function setMode(mode) {
+    if (mode === state.mode && mode !== 'panel') return;
+    V.hush();
+    state.mode = mode;
+    $('choose').hidden = mode !== 'choose';
+    $('panel').hidden = mode !== 'panel';
+    $('record-view').hidden = mode !== 'record';
+    $('record-actions').hidden = mode !== 'record';
+    $('record').hidden = mode !== 'panel';
+    if (mode === 'choose') {
+      hint(L.welcomeChoose);
+      V.welcome();
+    }
+    if (mode === 'panel') {
+      requestAnimationFrame(() => $('painting').fit?.());
+      hint('Tap Pin on a claim, or Challenge it. Build one claim of your own.');
+      V.welcome();
+    }
+  }
+  function start() {
+    action();
+    if (!state.work || !state.role) {
+      $('work-row').classList.toggle('missing', !state.work);
+      $('seat-row').classList.toggle('missing', !state.role);
+      hint('Pick a painting and a seat first.');
+      Curio.tone(170,.12,.04);
+      return;
+    }
+    state.claims = structuredClone(work().claims);
+    state.round = 0;
+    state.own = [[],[],[],[]];
+    state.finished = false;
+    state.product = '';
+    state.edited = false;
+    state.seeded = false;
+    state.lens = null;
+    $('painting').observer?.disconnect();
+    setMode('panel');
+    Museum.frame($('painting'), work());
+    Museum.label($('wall-label'), work());
+    $('seat-label').textContent = 'YOUR SEAT / ' + state.role.toUpperCase();
+    $('whole').textContent = 'Look closer +';
+    renderRound();
+    hint(L.welcomePanel);
+    V.welcome();
+    $('card-' + current()[0].id).querySelector('[data-act=pin]').focus({preventScroll:true});
+  }
+  function speaker(c) { return c.own ? 'You · ' + state.role : ROLES[c.role === state.role ? 'Visitor' : c.role].name; }
+  function badge(c) { return ROLES[c.own ? state.role : c.role === state.role ? 'Visitor' : c.role].img; }
+  function cardHTML(c, index) {
+    return `<article class="claim waiting" id="card-${c.id}" style="--delay:${index * 400}ms" data-status="">` +
+      `<div class="speaker"><img src="${badge(c)}" alt=""><b>${speaker(c)}</b></div>` +
+      `<p class="claim-text">${escapeHtml(c.text)}</p><p class="claim-status"></p><div class="claim-actions">` +
+      `<button class="btn pin-claim" data-act="pin">Pin</button><button class="btn" data-act="challenge">Challenge</button>` +
+      `<button class="btn primary" data-act="done" hidden>Done</button><button class="btn" data-act="cancel" hidden>Cancel</button>` +
+      `<button class="btn" data-act="unpin" hidden>Unpin</button><button class="btn" data-act="withdraw" hidden>Withdraw challenge</button></div>` +
+      `<dialog class="reason-box" aria-label="Challenge this claim" aria-describedby="reason-${c.id}">` +
+      `<p class="reason-context" id="reason-${c.id}">` +
+      `<small>${speaker(c)} · Choose a challenge reason</small>${escapeHtml(c.text)}</p>` +
+      REASONS.map((r,i) => `<button class="btn" data-reason="${i}">${r}</button>`).join('') +
+      `<button class="btn cancel-reason" aria-label="Cancel challenge" data-act="cancel-reason">Cancel</button>` +
+      `<button class="btn read-reason" data-act="read-reason">Read claim</button></dialog></article>`;
+  }
+  function reveal() { $('floor').querySelectorAll('.waiting').forEach(c => c.classList.remove('waiting')); }
+  function renderRound() {
+    state.page = 0;
+    state.form = {};
+    $('rounds').innerHTML = ROUNDS.map((r,i) => `<span class="${i === state.round ? 'current' : i < state.round ? 'past' : ''}"` +
+      `${i === state.round ? ' aria-current="step"' : ''}>${r}</span>`).join('');
+    $('lens-box').hidden = state.round !== 3;
+    $('lens').innerHTML = '<option value="">Pick a lens</option>' + LENSES.map((l,i) => `<option value="${i}">${l}</option>`).join('');
+    if (state.lens !== null) $('lens').value = state.lens;
+    $('floor').innerHTML = current().map(cardHTML).join('');
+    for (const c of current()) {
+      const card = $('card-' + c.id);
+      card.onclick = e => {
+        const b = e.target.closest('button');
+        if (!b) return;
+        state.page = current().indexOf(c);
+        if (b.dataset.reason !== undefined) challenge(c, REASONS[+b.dataset.reason]);
+        else handleCard(c, b.dataset.act);
+      };
+      card.querySelector('.reason-box').addEventListener('cancel', e => {
+        e.preventDefault();
+        handleCard(c,'cancel-reason');
+      });
+    }
+    buildMenus();
+    updateCards();
+    updateProgress();
+  }
+  function handleCard(c, act) {
+    if (act === 'read-reason') V.read();
+    if (act === 'pin') beginPin(c);
+    if (act === 'cancel') cancelPin();
+    if (act === 'done') donePin();
+    if (act === 'challenge') {
+      action();
+      $('card-' + c.id).querySelector('.reason-box').showModal();
+      $('card-' + c.id).querySelector('[data-reason]').focus({preventScroll:true});
+      hint('Tap the reason this claim cannot go on the record.');
+    }
+    if (act === 'cancel-reason') {
+      action();
+      $('card-' + c.id).querySelector('.reason-box').close();
+      $('card-' + c.id).querySelector('[data-act=challenge]').focus({preventScroll:true});
+      hint('Tap Pin on this claim, or tap Challenge.');
+    }
+    if (act === 'unpin' || act === 'withdraw') {
+      action();
+      delete c.status;
+      delete c.picks;
+      updateCards();
+      updateProgress();
+      $('card-' + c.id).querySelector('[data-act=pin]').focus({preventScroll:true});
+      hint('Claim reopened. Tap Pin or Challenge.');
+    }
+  }
+  function updateCards() {
+    for (const c of current()) {
+      const el = $('card-' + c.id);
+      const active = state.pinning === c;
+      el.dataset.status = c.status || '';
+      el.classList.toggle('active', active);
+      el.classList.toggle('shown', current().indexOf(c) === state.page);
+      el.inert = !!state.pinning && !active;
+      for (const act of ['pin','challenge','done','cancel','unpin','withdraw']) {
+        const visible = active ? ['done','cancel'].includes(act) : !c.status ? ['pin','challenge'].includes(act)
+          : c.status === 'pinned' ? act === 'unpin' : act === 'withdraw';
+        el.querySelector(`[data-act=${act}]`).hidden = !visible;
+      }
+      el.querySelector('.claim-status').textContent = c.status === 'pinned' ? '📌 On the record · spot ' + c.picks.join(', ')
+        : c.status === 'challenged' ? c.flaw + '. ' + c.reply : '';
+    }
+    $('page-count').textContent = (state.page + 1) + ' of 3';
+    $('previous').disabled = state.page === 0 || !!state.pinning;
+    $('next-card').disabled = state.page === 2 || !!state.pinning;
+    $('builder').inert = !!state.pinning && !state.pinning.own;
+    $('menus').inert = !!state.pinning;
+    $('own-entries').inert = !!state.pinning;
+    $('whole').disabled = !!state.pinning;
+    if ($('painting').picture) $('painting').picture.disabled = !!state.pinning;
+    $('record').disabled = !!state.pinning;
+    $('lens').disabled = !!state.pinning || state.finished;
+  }
+  function clearFloor() { return current().every(c => !!c.status); }
+  function ready() { return clearFloor() && own().length > 0 && !state.pinning; }
+  function updateProgress() {
+    const count = current().filter(c => c.status).length;
+    $('floor-count').textContent = count + ' of 3 resolved';
+    $('next-round').disabled = !ready() || state.finished;
+    $('next-round').textContent = state.finished ? 'Panel complete' : state.round === 3 ? 'Finish →' : 'Next round →';
+    $('own-count').textContent = own().length + ' of 3';
+    $('pin-own').disabled = own().length >= 3;
+    $('builder').classList.toggle('has-own',own().length > 0 && !state.pinning?.own);
+    $('builder').classList.toggle('pinning-own',!!state.pinning?.own);
+    $('own-entries').innerHTML = own().map((c,i) => `<div class="own-entry"><span title="${escapeHtml(c.text)}">` +
+      `◆ Your claim ${i+1} · spot ${c.picks.join(', ')}</span><button class="btn" data-own="${i}"` +
+      ` title="${escapeHtml(c.text)}" aria-label="Unpin your claim ${i+1}, spot ${c.picks.join(', ')}">📌 ${i+1} · Unpin</button></div>`).join('');
+    $('own-entries').querySelectorAll('[data-own]').forEach(b => b.onclick = () => {
+      action();
+      own().splice(+b.dataset.own,1);
+      updateProgress();
+      (own().length ? $('own-entries').querySelector('button') : $('pin-own')).focus({preventScroll:true});
+      hint('Your claim was removed. Build another claim, then tap Pin it.');
+    });
+    if (own().length && own().length < 3) {
+      const add = document.createElement('button');
+      add.className = 'btn';
+      add.textContent = '+ Add claim';
+      add.onclick = () => {
+        action();
+        $('builder').classList.remove('has-own');
+        $('menus').querySelector('select').focus({preventScroll:true});
+        hint('Build another sentence with the menus, then tap Pin it.');
+      };
+      $('own-entries').append(add);
+    }
+    if (state.finished) {
+      current().forEach(c => $('card-' + c.id).querySelectorAll('button').forEach(b => b.disabled = true));
+      $('builder').inert = true;
+    }
+  }
+  function beginPin(c) {
+    action();
+    if (state.pinning || state.finished) return;
+    if (c.flaw === 'Wrong round') {
+      event('laterRound');
+      V.how('challengeHow',{valid:() => !current().some(x => x.status === 'challenged'),needs:'[data-act=challenge]'});
+      return;
+    }
+    if (state.round === 3 && state.lens === null) {
+      hint('Pick a lens above the floor first. Then tap Pin.');
+      return;
+    }
+    if (state.round === 3 && c.lens !== undefined && c.lens !== state.lens) {
+      event('wrongLens');
+      return;
+    }
+    state.pinning = c;
+    state.picked = [];
+    Museum.unzoom($('painting'));
+    $('whole').textContent = 'Look closer +';
+    Museum.pins($('painting'), work().spots, {onPin:pickSpot});
+    $('label-pin').hidden = false;
+    $('label-pin').setAttribute('aria-label','Spot 8: wall label, date and museum context');
+    $('pin-note').hidden = false;
+    $('pin-note').textContent = 'Pick up to two spots · then Done';
+    if (c.own) {
+      $('pin-own').textContent = 'Done';
+      ownCancel.hidden = false;
+    }
+    updateCards();
+    updateProgress();
+    hint((c.own ? c.text + ' ' : '') + 'Tap up to two numbered spots, then tap Done. Escape cancels.');
+    $('spot-1').focus({preventScroll:true});
+    Curio.tone(510,.06,.03);
+  }
+  function pickSpot(id) {
+    if (!state.pinning) return;
+    action();
+    if (state.picked.includes(id)) state.picked = state.picked.filter(n => n !== id);
+    else if (state.picked.length < 2) state.picked.push(id);
+    else {
+      hint('Two spots selected. Tap a selected spot to remove it, or tap Done.');
+      return;
+    }
+    for (let n = 1; n <= 8; n++) (n === 8 ? $('label-pin') : $('spot-' + n))?.setAttribute('aria-pressed',state.picked.includes(n));
+    $('pin-note').textContent = state.picked.length ? 'Selected ' + state.picked.join(' + ') + ' · tap Done' : 'Pick up to two spots · then Done';
+    hint(state.picked.length ? 'Evidence selected. Tap Done to test this claim.' : 'Tap a numbered spot in the painting, then tap Done.');
+    Curio.tone(550 + id * 27,.06,.035);
+  }
+  function supported(c, picks, lens = state.lens) {
+    if (c.flaw) return false;
+    if (c.round === 3 && c.lens !== lens) return false;
+    return picks.some(n => c.support.includes(n));
+  }
+  function releasePin() {
+    const c = state.pinning;
+    state.pinning = null;
+    state.picked = [];
+    $('painting').viewport.querySelectorAll('.tell-pin').forEach(p => p.remove());
+    $('painting').viewport.querySelector('.evidence-leaders')?.remove();
+    $('painting').layoutPins = null;
+    $('label-pin').hidden = true;
+    $('label-pin').setAttribute('aria-pressed','false');
+    $('pin-note').hidden = true;
+    $('pin-own').textContent = 'Pin it';
+    ownCancel.hidden = true;
+    updateCards();
+    updateProgress();
+    return c;
+  }
+  function cancelPin() {
+    if (!state.pinning) return;
+    action();
+    const c = releasePin();
+    (c.own ? (own().length ? $('own-entries').querySelector('button') : $('pin-own'))
+      : $('card-' + c.id).querySelector('[data-act=pin]')).focus({preventScroll:true});
+    hint('Pin cancelled. Tap Pin or Challenge, or build your own claim.');
+    if (state.challengeSuggested && !c.own) {
+      state.challengeSuggested = false;
+      how('challengeHow',() => !state.pinning,'[data-act=challenge]');
+    }
+  }
+  function donePin() {
+    if (!state.pinning) return;
+    action();
+    const c = state.pinning;
+    if (!supported(c,state.picked)) {
+      event(c.own ? 'missOwnPin' : 'missPin');
+      if (!c.own) state.challengeSuggested = true;
+      $('pin-note').textContent = 'Evidence does not match · try another spot';
+      Curio.tone(180,.12,.04);
+      return;
+    }
+    c.picks = [...state.picked];
+    c.status = 'pinned';
+    if (c.own) own().push(c);
+    releasePin();
+    Curio.yes();
+    event('pinned');
+    const el = c.own ? (ready() ? $('next-round') : $('own-entries').querySelector('button'))
+      : $('card-' + c.id).querySelector('[data-act=unpin]');
+    el.focus({preventScroll:true});
+    if (ready()) {
+      hint(state.round === 3 ? 'Every claim is resolved. Tap Finish to edit your piece.' : L.nextHow);
+      if (state.round < 3) V.how('nextHow',{valid:ready,needs:'#next-round'});
+    } else if (clearFloor() && !own().length) {
+      how('ownHow',() => clearFloor() && !own().length && !state.pinning,'#pin-own');
+    } else hint('On the record. Pin or challenge the remaining claims; add one of your own.');
+  }
+  function challenge(c, reason) {
+    action();
+    if (state.pinning || c.status) return;
+    if (reason !== c.flaw) {
+      event('missChallenge');
+      Curio.tone(180,.1,.03);
+      return;
+    }
+    c.status = 'challenged';
+    $('card-' + c.id).querySelector('.reason-box').close();
+    updateCards();
+    updateProgress();
+    event('struck');
+    Curio.tone(300,.1,.04);
+    $('card-' + c.id).querySelector('[data-act=withdraw]').focus({preventScroll:true});
+    if (ready()) {
+      hint(state.round === 3 ? 'The floor is clear. Tap Finish.' : L.nextHow);
+      if (state.round < 3) V.how('nextHow',{valid:ready,needs:'#next-round'});
+    } else if (clearFloor() && !own().length) how('ownHow',() => clearFloor() && !own().length,'#pin-own');
+    else hint('Struck from the record. Read the reply, then pin or challenge another claim.');
+  }
+  function menu(id, title, options, wide = false) {
+    const label = document.createElement('label');
+    if (wide) label.className = 'wide';
+    const name = document.createElement('span');
+    name.textContent = title;
+    const select = document.createElement('select');
+    select.id = id;
+    select.setAttribute('aria-label',title);
+    select.innerHTML = options.map(([v,t]) => `<option value="${escapeHtml(v)}">${escapeHtml(t)}</option>`).join('');
+    state.form[id] = select.value;
+    select.onchange = () => {
+      action();
+      state.form[id] = select.value;
+      preview();
+      hint(ownClaim().text + ' Tap Pin it to choose the evidence.');
+      Curio.tone(390,.05,.025);
+    };
+    label.append(name,select);
+    $('menus').append(label);
+  }
+  function buildMenus() {
+    $('menus').replaceChildren();
+    const spots = work().spots.map(s => [String(s.key), s.key + ' · ' + s.label]);
+    if (state.round === 0) menu('thing','I see',spots,true);
+    if (state.round === 1) {
+      const available = ['line','color','shape','space','light','pattern'].filter(e => work().spots.some(s => s.elements.includes(e)));
+      menu('element','Element',available.map(e => [e,e]));
+      menu('first','First spot',spots);
+      menu('relation','Relationship',['leads my eye to','balances','contrasts with','repeats'].map(e => [e,e]));
+      menu('second','Second spot',spots.slice(1).concat(spots.slice(0,1)));
+    }
+    if (state.round === 2) {
+      menu('meaning-spot','Spot',spots);
+      menu('meaning','Suggests',Object.keys(work().meanings).map(m => [m,m]));
+    }
+    if (state.round === 3) {
+      menu('judgment','Judgment',['succeeds','falls short'].map(m => [m,m]));
+      menu('judge-spot','Because of spot',spots);
+    }
+    preview();
+  }
+  function ownClaim() {
+    const f = state.form;
+    const s = n => work().spots[n-1]?.label || '';
+    let text = '', support = [];
+    if (!state.round) {
+      text = 'I see ' + s(+f.thing) + '.';
+      support = [+f.thing];
+    }
+    if (state.round === 1) {
+      text = `The ${f.element} at spot ${f.first} ${f.relation} spot ${f.second}.`;
+      support = +f.first !== +f.second && work().spots[+f.first-1].elements.includes(f.element) ? [+f.first] : [];
+    }
+    if (state.round === 2) {
+      text = `Spot ${f['meaning-spot']} suggests ${f.meaning}.`;
+      support = work().meanings[f.meaning].includes(+f['meaning-spot']) ? [+f['meaning-spot']] : [];
+    }
+    if (state.round === 3) {
+      text = `Through the lens of ${LENSES[state.lens] || 'a lens'}, it ${f.judgment} because of spot ${f['judge-spot']}.`;
+      support = (work().lenses[LENSES[state.lens]] || []).includes(+f['judge-spot']) ? [+f['judge-spot']] : [];
+    }
+    return {id:'own-' + state.round + '-' + Date.now(), round:state.round, role:state.role, own:true, text,
+      support, ...(state.round === 3 ? {lens:state.lens} : {}), choices:structuredClone(f)};
+  }
+  function preview() { $('own-preview').textContent = ownClaim().text; }
+  const ownCancel = document.createElement('button');
+  ownCancel.className = 'btn';
+  ownCancel.id = 'cancel-own';
+  ownCancel.textContent = 'Cancel';
+  ownCancel.hidden = true;
+  ownCancel.onclick = cancelPin;
+  $('pin-own').after(ownCancel);
+  function advance() {
+    if (!ready() || state.finished) return;
+    action();
+    if (state.round === 3) {
+      state.finished = true;
+      updateProgress();
+      openRecord(true);
+      return;
+    }
+    V.hush();
+    state.round++;
+    renderRound();
+    const key = ['welcomePanel','roundAnalyze','roundInterpret','roundJudge'][state.round];
+    how(key,() => !current().some(c => c.status),state.round === 3 ? '#lens' : '.pin-claim');
+    $('card-' + current()[0].id).querySelector('[data-act=pin]').focus({preventScroll:true});
+    Curio.tone(480 + state.round * 70,.13,.04);
+  }
+  function seedProduct() {
+    const pinned = state.claims.filter(c => c.status === 'pinned');
+    if (state.role === 'Critic') {
+      const pieces = ROUNDS.map((_,r) => state.own[r][0] || pinned.find(c => c.round === r)).filter(Boolean);
+      return pieces.map(c => c.text).join(' ') + (state.lens !== null ? ' Lens: ' + LENSES[state.lens] + '.' : '');
+    }
+    if (state.role === 'Curator') return [0,2].flatMap(r => [
+      ...pinned.filter(c => c.round === r), ...state.own[r]]).map(c => c.text).join(' ');
+    return [...pinned.filter(c => c.round === 1),...state.own[1]].map(c => c.text + ' (spot ' + c.picks.join(', ') + ')').join('\n');
+  }
+  function counts(text, role) {
+    const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+    const sentences = text.split(/[.!?]+/).map(s => s.trim()).filter(Boolean);
+    const longest = Math.max(0,...sentences.map(s => s.split(/\s+/).length));
+    const pass = role === 'Curator' ? words <= 100 && longest <= 25 : role !== 'Critic' || words <= 150;
+    return {words,sentences:sentences.length,longest,pass};
+  }
+  function updateCounts() {
+    const c = counts(state.product,state.role);
+    $('counts').classList.toggle('warn',!c.pass);
+    $('counts').textContent = c.words + (c.words === 1 ? ' word' : ' words') + (state.role === 'Curator'
+      ? ` · ${c.sentences} ${c.sentences === 1 ? 'sentence' : 'sentences'} · longest sentence: ${c.longest} words · ` +
+        (c.pass ? 'Within 100 words and 25 words per sentence.' : 'Trim to 100 words and 25 words per sentence.')
+      : state.role === 'Critic' ? ' · ' + (c.pass ? 'Within 150 words.' : 'Trim to 150 words.') : ' · No word limit.');
+    $('print-product').textContent = state.product;
+  }
+  function openRecord(finish = false) {
+    action();
+    setMode('record');
+    $('record-title').textContent = work().title;
+    $('record-meta').textContent = work().artist + ' · ' + work().date + ' | Your seat: ' + state.role;
+    const transcript = $('transcript');
+    transcript.replaceChildren();
+    let recorded = 0;
+    for (let r = 0; r < 4; r++) {
+      const entries = [...state.claims.filter(c => c.round === r && c.status === 'pinned'),...state.own[r]];
+      if (!entries.length) continue;
+      const heading = document.createElement('h3');
+      heading.textContent = ROUNDS[r];
+      transcript.append(heading);
+      for (const c of entries) {
+        recorded++;
+        const row = document.createElement('div');
+        row.className = 'transcript-row';
+        row.innerHTML = `<img src="${badge(c)}" alt=""><p><b>${speaker(c)}</b> · spot ${c.picks.join(', ')}<br>${escapeHtml(c.text)}</p>`;
+        transcript.append(row);
+      }
+    }
+    const struck = state.claims.filter(c => c.status === 'challenged');
+    if (struck.length) {
+      const section = document.createElement('section');
+      section.innerHTML = '<h3>Challenged</h3>' + struck.map(c => `<p><b>${speaker(c)}</b>: <s>${escapeHtml(c.text)}</s>` +
+        `<br>${escapeHtml(c.flaw)}. ${escapeHtml(c.reply)}</p>`).join('');
+      transcript.append(section);
+    }
+    if (!recorded) transcript.innerHTML = '<p class="empty-record">No claims pinned yet. Back to the panel to begin.</p>';
+    $('product-heading').textContent = ROLES[state.role].product;
+    $('product').setAttribute('aria-label',ROLES[state.role].product + ', editable text');
+    if (!state.edited) state.product = seedProduct();
+    state.seeded = true;
+    $('product').value = state.product;
+    updateCounts();
+    $('record-view').scrollTop = 0;
+    hint(L.recordReady);
+    if (finish) V.say('recordReady',{valid:() => state.mode === 'record',needs:'#print'});
+    if (finish) {
+      requestAnimationFrame(() => {
+        const view = $('record-view');
+        const heading = $('product-heading');
+        view.scrollTop = heading.getBoundingClientRect().top - view.getBoundingClientRect().top + view.scrollTop - 12;
+        $('product').focus({preventScroll:true});
+      });
+    } else $('back').focus({preventScroll:true});
+  }
+  $('take-seat').onclick = start;
+  $('floor').addEventListener('pointerdown',reveal,{capture:true});
+  $('floor').addEventListener('keydown',reveal,{capture:true});
+  function pageClaim(direction) {
+    action();
+    state.page = Math.max(0,Math.min(2,state.page+direction));
+    reveal();
+    updateCards();
+    const active = document.activeElement;
+    if (active?.disabled) {
+      const card = $('card-' + current()[state.page].id);
+      const target = card.querySelector('.claim-actions button:not([hidden]):not(:disabled)')
+        || document.querySelector('#pager button:not(:disabled)');
+      target?.focus({preventScroll:true});
+    }
+    hint(state.finished ? 'Tap Record to edit or print your completed piece.' : 'Tap Pin or Challenge on this claim.');
+  }
+  $('previous').onclick = () => pageClaim(-1);
+  $('next-card').onclick = () => pageClaim(1);
+  $('pin-own').onclick = () => state.pinning?.own ? donePin() : beginPin(ownClaim());
+  $('label-pin').onclick = () => pickSpot(8);
+  $('wall-label').onclick = e => {
+    if (state.pinning) {
+      e.preventDefault();
+      pickSpot(8);
+    }
+  };
+  $('whole').onclick = () => {
+    action();
+    const f = $('painting');
+    f.zoomed ? Museum.unzoom(f) : Museum.zoomTo(f,{x:.5,y:.5});
+    $('whole').textContent = f.zoomed ? 'Whole picture' : 'Look closer +';
+    hint(f.zoomed ? 'Tap Whole picture to return. Tap a claim’s Pin button to find its evidence.' : 'Tap Pin or Challenge on a claim.');
+  };
+  $('lens').onchange = () => {
+    action();
+    state.lens = $('lens').value === '' ? null : +$('lens').value;
+    preview();
+    hint(state.lens === null ? 'Pick a lens, then tap Pin on a judgment.' : 'Lens: ' + LENSES[state.lens] + '. Pin or challenge each judgment.');
+    Curio.tone(460,.07,.03);
+  };
+  $('next-round').onclick = advance;
+  $('record').onclick = () => openRecord();
+  $('back').onclick = () => {
+    action();
+    setMode('panel');
+    updateCards();
+    updateProgress();
+    hint(state.finished ? 'The panel is complete. Tap Record to edit or print your piece.'
+      : ready() ? state.round === 3 ? 'Tap Finish to edit your piece.' : L.nextHow : 'Tap Pin or Challenge. Add one claim of your own.');
+    $('record').focus({preventScroll:true});
+  };
+  $('product').oninput = () => {
+    state.product = $('product').value;
+    state.edited = true;
+    updateCounts();
+  };
+  $('print').onclick = () => {
+    action();
+    updateCounts();
+    window.print();
+  };
+  $('new-panel').onclick = () => {
+    action();
+    if (state.edited && !confirm('Your edited text is not saved. Start a new panel and discard it?')) return;
+    state.product = '';
+    state.edited = false;
+    state.work = null;
+    state.role = null;
+    state.pinning = null;
+    document.querySelectorAll('.seat,.work-card').forEach(b => b.setAttribute('aria-pressed','false'));
+    setMode('choose');
+    $('work-rain').focus({preventScroll:true});
+  };
+  document.addEventListener('keydown',e => {
+    if (e.key === 'Escape') {
+      if (state.pinning) cancelPin();
+      else if (state.mode === 'panel' && $('painting').zoomed) {
+        Museum.unzoom($('painting'));
+        $('whole').textContent = 'Look closer +';
+      }
+      else {
+        const box = document.querySelector('.reason-box[open]');
+        if (box) {
+          e.preventDefault();
+          box.close();
+          box.closest('.claim').querySelector('[data-act=challenge]').focus({preventScroll:true});
+          hint('Challenge closed. Tap Pin or Challenge on this claim.');
+        }
+      }
+    }
+    if (state.pinning && ['ArrowRight','ArrowDown','ArrowLeft','ArrowUp'].includes(e.key)) {
+      e.preventDefault();
+      const pins = [...$('painting').viewport.querySelectorAll('.tell-pin'),$('label-pin')];
+      const i = pins.indexOf(document.activeElement);
+      const d = ['ArrowRight','ArrowDown'].includes(e.key) ? 1 : -1;
+      pins[(i+d+8)%8].focus({preventScroll:true});
+    }
+  });
+  Curio.onMotion(reduced => { if (reduced) reveal(); });
+  Curio.init({clips:"voice:*",rate:.92});
+  chooseInit();
+  hint(L.welcomeChoose);
+  window.__tool = {state, setMode, allLines:V.allLines, vlog:V.log, get vq() { return V.queue; },
+    data:DATA, supported, ownClaim, counts, seedProduct, beginPin, pickSpot, donePin, cancelPin, challenge, advance,
+    start, openRecord, renderRound, ready, Museum, V};
+})();
+</script>
+</body>
+</html>

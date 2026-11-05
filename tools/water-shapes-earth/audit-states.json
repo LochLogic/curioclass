@@ -1,0 +1,165 @@
+{
+  "states": [
+    {
+      "name": "freeze-result",
+      "steps": [
+        {
+          "click": "#noise"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#skip"
+        }
+      ],
+      "keep": [
+        "#scene",
+        "#results",
+        "#run"
+      ]
+    },
+    {
+      "name": "freeze-graph",
+      "steps": [
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#skip"
+        },
+        {
+          "click": "#s-graph"
+        }
+      ],
+      "keep": [
+        "#scene",
+        "#run"
+      ]
+    },
+    {
+      "name": "claim-compare",
+      "steps": [
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#skip"
+        },
+        {
+          "click": "#s-conclude"
+        },
+        {
+          "click": "#compare"
+        }
+      ],
+      "keep": [
+        "#claim",
+        "#compare"
+      ]
+    },
+    {
+      "name": "dissolve-result",
+      "steps": [
+        {
+          "click": "#m-dissolve"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#skip"
+        }
+      ],
+      "keep": [
+        "#scene",
+        "#results"
+      ]
+    },
+    {
+      "name": "stream-result",
+      "steps": [
+        {
+          "click": "#m-stream"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#skip"
+        },
+        {
+          "click": "#g-2"
+        }
+      ],
+      "keep": [
+        "#scene",
+        "#results"
+      ]
+    },
+    {
+      "name": "four-groups",
+      "steps": [
+        {
+          "click": "#count"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        }
+      ],
+      "keep": [
+        "#plan-table",
+        "#run"
+      ]
+    },
+    {
+      "name": "max-cycles",
+      "steps": [
+        {
+          "click": "#p-0-cycles"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#skip"
+        }
+      ],
+      "keep": [
+        "#scene",
+        "#results"
+      ]
+    },
+    {
+      "name": "book",
+      "steps": [
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#skip"
+        },
+        {
+          "click": "#book-open"
+        }
+      ],
+      "keep": [
+        "#book-close",
+        "#copy",
+        "#clear"
+      ]
+    }
+  ]
+}

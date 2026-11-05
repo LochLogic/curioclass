@@ -1,0 +1,150 @@
+{
+  "states": [
+    {
+      "name": "moves",
+      "steps": [
+        {
+          "click": "#source-river"
+        },
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#highlight-0"
+        },
+        {
+          "click": "#highlight-1"
+        },
+        {
+          "click": "#highlight-2"
+        },
+        {
+          "click": "#highlight-3"
+        },
+        {
+          "click": "#make"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#hint"
+      ]
+    },
+    {
+      "name": "map",
+      "steps": [
+        {
+          "click": "#source-river"
+        },
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#highlight-0"
+        },
+        {
+          "click": "#highlight-1"
+        },
+        {
+          "click": "#highlight-2"
+        },
+        {
+          "click": "#highlight-3"
+        },
+        {
+          "click": "#make"
+        },
+        {
+          "click": "#m-map"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#hint"
+      ]
+    },
+    {
+      "name": "viewer",
+      "steps": [
+        {
+          "click": "#source-river"
+        },
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#highlight-0"
+        },
+        {
+          "click": "#highlight-1"
+        },
+        {
+          "click": "#highlight-2"
+        },
+        {
+          "click": "#highlight-3"
+        },
+        {
+          "click": "#make"
+        },
+        {
+          "click": "#m-map"
+        },
+        {
+          "click": "#m-viewer"
+        },
+        {
+          "click": "#show"
+        },
+        {
+          "until": "!__tool.state.playing",
+          "max": 20000
+        }
+      ],
+      "keep": [
+        "#play",
+        "#hint"
+      ]
+    },
+    {
+      "name": "six-moves",
+      "steps": [
+        {
+          "click": "#source-train"
+        },
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#highlight-0"
+        },
+        {
+          "click": "#highlight-1"
+        },
+        {
+          "click": "#highlight-2"
+        },
+        {
+          "click": "#highlight-3"
+        },
+        {
+          "click": "#highlight-4"
+        },
+        {
+          "click": "#highlight-5"
+        },
+        {
+          "click": "#make"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#hint"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "house_style": "Sophisticated architectural gouache painting for a high-school dance production notebook. Pale honey limestone, boxwood green, warm copper sunlight from upper left, cool blue water, restrained rich pigments, fine pencil grain and realistic materials. Clear shapes and dimensional shading. No lettering, numbers, logos or watermarks.",
+  "assets": [
+    {
+      "name": "mcp-hero",
+      "prompt": "Wide painting of an empty museum courtyard at golden hour. Two arcades of pale stone columns flank a generous open limestone floor, a round fountain in the middle, a balcony along the far wall. Foreground paving, middle fountain, distant architectural wall. Evocative warm late sun, long shadows, water glints. No statues or figurative ornament. No people, faces or body parts.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 76,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mcp-stone",
+      "prompt": "Seamless top-down texture of pale limestone paving slabs, soft even light, subtle cream stone grain and slim joints, filling the entire square frame. Texture only, viewed perpendicular to the surface. No people, faces or body parts.",
+      "aspect": "1:1",
+      "width": 640,
+      "quality": 76,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mcp-column",
+      "prompt": "One complete pale limestone column with simple capital and broad plinth, front view, delicate fluting and chiseled edges, warm light from left. Entire column including base in frame. Isolated on flat pure green #00FF00. No people, faces or body parts.",
+      "aspect": "9:16",
+      "width": 240,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "mcp-fountain",
+      "prompt": "Round low stone fountain basin with a single central spout and gently spraying water, front view, blue water, honey limestone lip and masonry joints. Entire fountain in frame. Isolated on flat pure green #00FF00. No people, faces or body parts.",
+      "aspect": "1:1",
+      "width": 440,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "mcp-fountain-still",
+      "prompt": "Round low stone fountain basin with a single central spout, still blue water reflecting warm sunlight, front view, honey limestone lip and masonry joints. Entire fountain in frame. Isolated on flat pure green #00FF00. No people, faces or body parts.",
+      "aspect": "1:1",
+      "width": 440,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true,
+      "holes": true,
+      "redraw_count": 1,
+      "redraw_note": "The first candidate had a spray. Replaced with a calm basin and short dry capped pedestal."
+    },
+    {
+      "name": "mcp-marley",
+      "prompt": "A rolled gray vinyl dance floor with a short unfurled tail and a roll of black dance-floor tape beside it. Three-quarter product view, material grain and curled edge visible. Isolated on flat pure green #00FF00. No people, faces or body parts.",
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "mcp-speaker",
+      "prompt": "One black portable sound speaker on a complete tripod stand, front three-quarter view, mesh grille, handles, three sturdy feet, entire stand in frame. Isolated on flat pure green #00FF00. No people, faces or body parts.",
+      "aspect": "1:1",
+      "width": 320,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "mcp-uplight",
+      "prompt": "Small LED uplight fixture on limestone paving casting a warm amber beam up the base of a pale stone column at dusk. Rich blue shadows, detailed vented metal housing and lens, intimate square painting. Empty architecture only. No people, faces or body parts.",
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mcp-risers",
+      "prompt": "Low folding audience risers with one row of empty simple chairs, three-quarter product view, sturdy metal braces and warm gray platforms, complete object in frame. Isolated on flat pure green #00FF00. No people, faces or body parts.",
+      "aspect": "1:1",
+      "width": 380,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "dancer-procession",
+      "prompt": "Next painter: full-body contemporary dancer in simple ochre rehearsal clothes, a walking procession stride, front and rear three-quarter variants. Match the architectural gouache world. Keep feet and hands in frame.",
+      "aspect": "9:16",
+      "width": 300,
+      "cutout": true,
+      "people": true
+    },
+    {
+      "name": "dancer-floor-roll",
+      "prompt": "Next painter: contemporary dancer in blue rehearsal clothes, lying extended and rolling low across the floor, two compatible floor-work poses. Whole body visible.",
+      "aspect": "16:9",
+      "width": 400,
+      "cutout": true,
+      "people": true
+    },
+    {
+      "name": "dancer-kneel-sit",
+      "prompt": "Next painter: contemporary dancer in blue rehearsal clothes, kneeling back on heels and sitting on the floor, whole body visible. Front and rear three-quarter variants.",
+      "aspect": "1:1",
+      "width": 320,
+      "cutout": true,
+      "people": true
+    },
+    {
+      "name": "dancer-standing-pool",
+      "prompt": "Next painter: contemporary dancer in blue rehearsal clothes, standing with a gentle lateral reach, middle level. Whole body visible, front and rear three-quarter variants.",
+      "aspect": "9:16",
+      "width": 300,
+      "cutout": true,
+      "people": true
+    },
+    {
+      "name": "dancer-weave",
+      "prompt": "Next painter: contemporary dancer in plum rehearsal clothes, side step and turning lunge for weaving between columns. Whole body visible, front and rear three-quarter variants.",
+      "aspect": "9:16",
+      "width": 300,
+      "cutout": true,
+      "people": true
+    },
+    {
+      "name": "dancer-rise",
+      "prompt": "Next painter: contemporary dancer in burgundy rehearsal clothes, plie landing, extended star jump and upward lift pose for the finale. Whole body visible, consistent ensemble costume and front and rear variants.",
+      "aspect": "9:16",
+      "width": 320,
+      "cutout": true,
+      "people": true
+    }
+  ]
+}

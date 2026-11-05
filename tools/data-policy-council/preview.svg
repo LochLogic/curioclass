@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="paper" x2="1" y2="1"><stop stop-color="#fffdf7"/><stop offset="1" stop-color="#e3ecf5"/></linearGradient>
+    <linearGradient id="oak" x2="0" y2="1"><stop stop-color="#d5b98a"/><stop offset="1" stop-color="#94714d"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity=".15"/></filter>
+  </defs>
+  <rect width="800" height="500" fill="url(#paper)"/>
+  <path d="M0 0H800V85H0Z" fill="#1f4e79"/>
+  <text x="28" y="40" fill="white" font-size="29" font-family="Georgia,serif">Data Policy Council</text>
+  <text x="30" y="64" fill="#e3ecf5" font-size="12" letter-spacing="2" font-family="sans-serif">LINDEN VALLEY UNIFIED</text>
+  <path d="M0 165Q400 115 800 165V220H0Z" fill="url(#oak)"/>
+  <g fill="#faf6e8" stroke="#b5a17e" stroke-width="2" filter="url(#shadow)">
+    <rect x="30" y="126" width="138" height="80" rx="4"/>
+    <rect x="180" y="115" width="138" height="80" rx="4"/>
+    <rect x="330" y="111" width="138" height="80" rx="4"/>
+    <rect x="480" y="115" width="138" height="80" rx="4"/>
+    <rect x="630" y="126" width="138" height="80" rx="4"/>
+  </g>
+  <g font-family="sans-serif" font-size="16" fill="#1c2330" text-anchor="middle">
+    <text x="99" y="155">Parent</text><text x="249" y="144">Student</text><text x="399" y="140">Teacher</text>
+    <text x="549" y="144">Principal</text><text x="699" y="155">Budget</text>
+  </g>
+  <g stroke="#b2b9ba" stroke-width="7" stroke-linecap="round">
+    <path d="M50 178H147M200 167H297M350 163H447M500 167H597M650 178H747"/>
+  </g>
+  <g fill="#1f4e79" stroke="white" stroke-width="2">
+    <circle cx="112" cy="178" r="6"/><circle cx="270" cy="167" r="6"/><circle cx="430" cy="163" r="6"/>
+    <circle cx="580" cy="167" r="6"/><circle cx="670" cy="178" r="6"/>
+  </g>
+  <text x="30" y="261" fill="#1c2330" font-size="27" font-family="Georgia,serif">A day in the data</text>
+  <text x="770" y="258" fill="#1f4e79" font-size="17" font-family="sans-serif" text-anchor="end">4 of 8 moments</text>
+  <path d="M45 406H755" stroke="#9cabb8" stroke-width="2"/>
+  <g fill="#eeefec" stroke="#aab3bb" stroke-width="2">
+    <rect x="30" y="285" width="81" height="104" rx="4"/><rect x="500" y="285" width="81" height="104" rx="4"/>
+    <rect x="594" y="285" width="81" height="104" rx="4"/><rect x="688" y="285" width="81" height="104" rx="4"/>
+  </g>
+  <g fill="white" stroke="#1f4e79" stroke-width="3" filter="url(#shadow)">
+    <rect x="124" y="285" width="81" height="104" rx="4"/><rect x="218" y="285" width="81" height="104" rx="4"/>
+    <rect x="312" y="285" width="81" height="104" rx="4"/><rect x="406" y="285" width="81" height="104" rx="4"/>
+  </g>
+  <g fill="#c2d4e2"><path d="M128 289H201V332H128ZM222 289H295V332H222ZM316 289H389V332H316ZM410 289H483V332H410Z"/></g>
+  <g fill="#1f4e79">
+    <path d="M146 300H183V332H146ZM158 303H172V332H158Z"/>
+    <path d="M250 298H266V313H281V326H266V340H250V326H235V313H250Z"/>
+    <ellipse cx="353" cy="319" rx="25" ry="13"/>
+    <path d="M430 298H463V329H430Z"/>
+  </g>
+  <g fill="#9f1239" font-size="10" font-family="sans-serif">
+    <text x="132" y="372">USED FOR ADS</text><text x="226" y="372">USED FOR ADS</text>
+    <text x="320" y="372">USED FOR ADS</text><text x="414" y="372">USED FOR ADS</text>
+  </g>
+  <text x="30" y="459" fill="#555e6e" font-size="17" font-family="sans-serif">Write the rules. Watch the trail. Bring your draft to a vote.</text>
+</svg>

@@ -1,0 +1,33 @@
+{
+  "id": "dance-styles-explorer",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Hold a dance in space and time. Watch, compare, and pin your critique to a count.",
+  "outcome": "Analyze dance styles and write a critique supported by movement evidence and context.",
+  "driver": "students or teacher",
+  "minutes": "20-45",
+  "modes": [
+    "Styles",
+    "Compare",
+    "Critique"
+  ],
+  "grades_label": "Grades 9-12",
+  "sources": [
+    "National Core Arts Standards, Dance (2014), high school DA:Re7.1, DA:Re8.1, DA:Re9.1, DA:Cn11.1: https://www.nationalartsstandards.org/",
+    "Ballet (court origins, Académie Royale de Danse 1661, Beauchamp's five positions, Taglioni and La Sylphide 1832): Encyclopaedia Britannica, \"ballet\": https://www.britannica.com/art/ballet",
+    "Misty Copeland, principal dancer 2015: American Ballet Theatre, https://www.abt.org/people/misty-copeland/",
+    "Modern dance (Duncan, Graham's contraction and release, company 1926): Britannica, \"modern dance\": https://www.britannica.com/art/modern-dance; Martha Graham Dance Company: https://marthagraham.org/history/",
+    "Alvin Ailey, Revelations (1960): Alvin Ailey American Dance Theater, https://www.alvinailey.org/",
+    "Jazz dance (roots in African American social dance, Jack Cole, Katherine Dunham, Fosse): Britannica, \"jazz dance\": https://www.britannica.com/art/jazz-dance",
+    "Tap (juba, Irish and Scottish step dance, Master Juba, Bojangles): Britannica, \"tap dance\": https://www.britannica.com/art/tap-dance; National Tap Dance Day: Public Law 101-21 (1989); Library of Congress, https://www.loc.gov/",
+    "Breaking (Bronx, DJ Kool Herc, breaks, Rock Steady Crew): Britannica, \"breakdancing\": https://www.britannica.com/art/breakdancing; Olympic debut at Paris 2024: https://olympics.com/en/sports/breaking/",
+    "Irish step dance (dancing masters, the feis, An Coimisiún early 1930s, Riverdance 1994): An Coimisiún le Rincí Gaelacha, https://www.clrg.ie/; Riverdance, https://riverdance.com/about/",
+    "Flamenco (Andalusia, Gitano communities, cante, toque, baile, UNESCO 2010): UNESCO, https://ich.unesco.org/en/RL/flamenco-00363; Britannica, \"flamenco\": https://www.britannica.com/art/flamenco; 12-count compás accents: Paco Peña, Toques Flamencos (Musical New Services, 1976).",
+    "Bharatanatyam (Tamil Nadu, sadir, Natya Shastra, 1930s, Kalakshetra 1936, araimandi, adavus, mudras, Adi tala): Britannica, \"Bharata natyam\": https://www.britannica.com/art/Bharata-natyam; Kalakshetra Foundation, https://www.kalakshetra.in/",
+    "Energy qualities and the Body, Action, Space, Time, Energy frame: Perpich Center for Arts Education, \"The Elements of Dance\".",
+    "Checks run in Python (2026-10-29): the Look contrast pairs (all match). Demo lengths: Ballet 16 counts at 56 counts a minute = 17.1 s, Modern 14.1 s, Jazz 8.0 s, Tap 9.2 s, Breaking 8.7 s, Irish 8.6 s, Flamenco 24 counts at 150 = 9.6 s, Bharatanatyam 12.0 s, all under 30 s. The old Ballet track (84 beats a minute, one count a beat in 3) failed: 16 counts leave 1 beat over the last whole bar, so the phrase ended mid-bar; counting one count to a bar of a 168-beat waltz fixes it (a usual class waltz speed). Flamenco's accents 3, 6, 8, 10, 12 and Adi tala's 8 beats match Sources.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-03"
+}

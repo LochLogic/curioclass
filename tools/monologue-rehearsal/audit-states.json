@@ -1,0 +1,177 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "reader",
+      "steps": [
+        {
+          "click": "#piece-0"
+        }
+      ],
+      "keep": [
+        "#choose-piece",
+        "#close-reader"
+      ]
+    },
+    {
+      "name": "circumstances",
+      "steps": [
+        {
+          "click": "#piece-0"
+        },
+        {
+          "click": "#choose-piece"
+        }
+      ],
+      "keep": [
+        "#tab-circ",
+        "#tab-score",
+        "#hint"
+      ]
+    },
+    {
+      "name": "score",
+      "steps": [
+        {
+          "click": "#piece-0"
+        },
+        {
+          "click": "#choose-piece"
+        },
+        {
+          "click": "#tab-score"
+        },
+        {
+          "click": "#gap-1"
+        }
+      ],
+      "keep": [
+        "#tab-score",
+        "#hint"
+      ]
+    },
+    {
+      "name": "rehearse-start",
+      "steps": [
+        {
+          "click": "#piece-0"
+        },
+        {
+          "click": "#choose-piece"
+        },
+        {
+          "click": "#m-rehearse"
+        },
+        {
+          "click": "#start"
+        }
+      ],
+      "keep": [
+        "#start",
+        "#back",
+        "#next",
+        "#hint"
+      ]
+    },
+    {
+      "name": "audiences",
+      "steps": [
+        {
+          "click": "#piece-0"
+        },
+        {
+          "click": "#choose-piece"
+        },
+        {
+          "click": "#m-perform"
+        }
+      ],
+      "keep": [
+        "#hand",
+        "#audience-0",
+        "#audience-1",
+        "#audience-2",
+        "#audience-3",
+        "#hint"
+      ]
+    },
+    {
+      "name": "partner",
+      "steps": [
+        {
+          "click": "#piece-0"
+        },
+        {
+          "click": "#choose-piece"
+        },
+        {
+          "click": "#m-perform"
+        },
+        {
+          "click": "#hand"
+        },
+        {
+          "click": "[data-flag='0']"
+        }
+      ],
+      "keep": [
+        "#done",
+        "#hint"
+      ]
+    },
+    {
+      "name": "response",
+      "steps": [
+        {
+          "click": "#piece-0"
+        },
+        {
+          "click": "#choose-piece"
+        },
+        {
+          "click": "#m-perform"
+        },
+        {
+          "click": "#hand"
+        },
+        {
+          "click": "#done"
+        }
+      ],
+      "keep": [
+        ".want-grid",
+        "#hint"
+      ]
+    },
+    {
+      "name": "compare",
+      "steps": [
+        {
+          "click": "#piece-0"
+        },
+        {
+          "click": "#choose-piece"
+        },
+        {
+          "click": "#m-perform"
+        },
+        {
+          "click": "#hand"
+        },
+        {
+          "click": "#done"
+        },
+        {
+          "click": "[data-want='0']"
+        },
+        {
+          "click": "#save-performance"
+        }
+      ],
+      "keep": [
+        "#result-summary",
+        "#hint"
+      ]
+    }
+  ]
+}

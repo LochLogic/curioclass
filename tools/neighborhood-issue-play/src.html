@@ -1,0 +1,1069 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neighborhood Issue Play · Curio Class</title>
+<meta name="description" content="Build a three-scene play from neighbors' different wants. Design a paper theater and perform. Grades 3-5. Offline.">
+<!--
+Curio Class. Grades 3-5 theater: TH:Cr1, TH:Pr6, TH:Cn10, TH:Cn11. Students or teacher.
+Sources: V&A, Toy theatres; Spolin, Theater Games for the Classroom (1986); National Core Arts Standards;
+FHWA, Guide for Improving Pedestrian Safety at Uncontrolled Crossing Locations (2018); NACTO Play Streets.
+Fictional neighbors and scenarios written for Curio Class. No network requests. No recording.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. People art deferred.
+Content CC BY 4.0. Code MIT. curioclass.org.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f4ead8; --ink:#2b2118; --muted:#6a5a48; --line:#cbb798; --focus:#9b431a;
+  --brand:#0f6e5a; --btn:#0c5d4c; --btn-line:#80b7a7; --head-ink:#fff; --panel:#fffaf1;
+}
+body { overflow:hidden; grid-template-rows:auto auto minmax(0,1fr); }
+header { padding:10px 20px; gap:8px; background:linear-gradient(110deg,#075443,#0f6e5a); }
+h1 { font:700 clamp(20px,2.2vw,31px)/1.1 Georgia,serif; }
+h1 small { font-size:13px; margin-top:5px; }
+header .icon-btn { min-height:44px; padding:0 12px; font-size:14px; }
+button,input,select,textarea { font:inherit; }
+button { min-height:44px; min-width:44px; border:1px solid #bba17c; border-radius:6px;
+  background:linear-gradient(#fffef9,#f0e3cb); padding:7px 10px; box-shadow:0 2px 0 #8f725040; font-weight:650; }
+button:hover { border-color:var(--brand); background:#fff1ca; }
+button:disabled { opacity:.48; cursor:default; }
+button[aria-pressed="true"],button[aria-selected="true"] { background:var(--brand); color:#fff; border-color:var(--brand); }
+button.primary { background:var(--brand); color:#fff; border-color:#064536; }
+button.gold { background:#ffe08a; color:var(--ink); border-color:#af8730; }
+.steps { display:flex; gap:5px; padding:6px 20px; background:#eee0c4; border-bottom:2px solid #b3966d; }
+.steps button { flex:1; border-radius:4px; font-size:14px; }
+.steps span { margin-right:6px; opacity:.8; }
+main { grid-template-columns:minmax(0,1fr) 340px; }
+.panel { grid-column:2; grid-row:1; padding:12px; gap:10px; overflow:hidden; min-height:0;
+  background:repeating-linear-gradient(0deg,#fffaf1 0,#fffaf1 29px,#e6d7ba66 30px); border-left:2px dashed #bea27c; }
+.panel h2 { margin:0; font:700 24px Georgia,serif; }
+.eyebrow { margin:0; color:var(--muted); font-size:11px; letter-spacing:2px; font-weight:800; text-transform:uppercase; }
+#hint { min-height:62px; flex:none; margin:0; font-size:14px; line-height:1.4; padding:9px 10px;
+  border-left:4px solid var(--brand); background:#e6eee2; }
+#actions { display:flex; gap:6px; flex:none; }
+#actions button { flex:1; }
+#controls { overflow:auto; flex:1; min-height:0; padding:0 3px 6px; }
+.privacy { font-size:11px; color:var(--muted); margin:0; }
+.footer-row { display:flex; align-items:center; justify-content:space-between; gap:4px; flex:none; }
+.footer-row button { font-size:12px; padding:4px 7px; }
+.stage { grid-column:1; grid-row:1; min-height:0; padding:20px; display:flex; flex-direction:column; align-items:center;
+  justify-content:center; background:radial-gradient(ellipse at 35% 15%,#f7efdc,#d6bc90 90%); isolation:isolate; }
+.stage::before { content:''; position:absolute; inset:0; opacity:.25; z-index:-1;
+  background:repeating-linear-gradient(87deg,transparent 0,transparent 5px,#a7865a13 6px,#fff6 7px); }
+.stage-title { text-align:center; font:700 20px Georgia,serif; margin:0 0 10px; }
+.street { position:relative; width:100%; aspect-ratio:16/9; max-height:75%; border:8px solid #f9f2de;
+  box-shadow:2px 9px 16px #52321942; background:#d3e9d8; overflow:hidden; transform:rotate(-.3deg); }
+.street>.painting { width:100%; height:100%; object-fit:cover; }
+.street .neighbor { position:absolute; width:14%; height:34%; bottom:3%; border:0; padding:0; background:none; box-shadow:none; }
+.neighbor .puppet { height:80%; width:100%; position:relative; display:block; }
+.name-tag { background:#fff7dd; color:var(--ink); border:1px solid #705c42; padding:4px 2px; border-radius:3px;
+  display:block; font-size:clamp(10px,1.1vw,15px); white-space:nowrap; box-shadow:0 2px 3px #0003; }
+.neighbor[aria-pressed="true"] .name-tag { background:#ffe08a; outline:2px solid var(--brand); }
+.paper-person { height:100%; width:100%; filter:drop-shadow(2px 3px 1px #0005); overflow:visible; }
+.speech { background:#fffaf0; border:2px solid #715335; border-radius:8px; padding:12px 16px;
+  box-shadow:2px 5px 0 #52321920; line-height:1.35; font-size:clamp(13px,1.6vw,21px); flex:none; }
+#street-bubble { width:min(95%,750px); margin-top:14px; min-height:90px; position:relative; }
+#street-bubble::before { content:''; position:absolute; top:-11px; left:22%; width:20px; height:20px;
+  background:#fffaf0; border-top:2px solid #715335; border-left:2px solid #715335; transform:rotate(45deg); }
+.bubble-name { display:block; font:700 18px Georgia,serif; margin-bottom:5px; }
+.problem-marker { position:absolute; top:37%; padding:6px 9px; background:#ffe08a; border:2px solid #715335;
+  transform:rotate(3deg); font-weight:800; font-size:clamp(10px,1.2vw,16px); box-shadow:2px 3px 1px #0003; }
+.problem-card { display:block; width:100%; text-align:left; margin:7px 0; padding:12px; line-height:1.3; }
+.problem-card b { display:block; font-size:16px; margin-bottom:4px; }
+.problem-card small { display:block; font-weight:400; }
+.heard { display:flex; gap:4px; margin:9px 0; }
+.heard i { background:#dfd1b8; border:1px solid #958368; border-radius:50%; width:17px; height:17px; font-style:normal;
+  display:grid; place-items:center; font-size:12px; }
+.heard i.yes { background:var(--brand); color:#fff; }
+.section-label { display:block; font-weight:750; margin:10px 0 5px; font-size:14px; }
+select,input[type=text],textarea { width:100%; min-height:44px; min-width:0; color:var(--ink); background:#fffef8;
+  border:1px solid #ac9576; border-radius:5px; padding:8px; }
+textarea { resize:vertical; line-height:1.4; }
+.row { display:flex; gap:6px; align-items:center; }
+.row>* { flex:1; min-width:0; }
+.chips { display:flex; flex-wrap:wrap; gap:5px; margin:7px 0; }
+.chips button { flex:1; font-size:13px; }
+.help { color:var(--muted); font-size:12px; line-height:1.4; margin:5px 0; }
+.readback { background:#eee1c7; padding:10px; line-height:1.45; font-size:14px; border-left:3px solid #a67c3d; }
+.cast-cards { display:flex; width:100%; gap:14px; justify-content:center; min-height:0; }
+.cast-card { flex:1; max-width:280px; min-width:0; background:#fff9ea; border:1px solid #bca175; padding:12px;
+  box-shadow:3px 5px 2px #50321a30; transform:rotate(-1deg); }
+.cast-card:nth-child(2) { transform:rotate(1deg); }
+.cast-card h3 { font:700 21px Georgia,serif; margin:7px 0; }
+.cast-card .puppet { display:block; height:clamp(90px,19vh,225px); position:relative; }
+.cast-card p { font-size:14px; line-height:1.4; }
+.blank-cast { padding:30px; border:2px dashed #967d59; font:700 25px Georgia,serif; color:var(--muted); }
+.theater { position:relative; width:min(100%,1000px); aspect-ratio:4/3; min-height:0; overflow:hidden; flex:0 1 auto; }
+.backdrop { position:absolute; left:12%; top:18%; width:76%; height:65%; object-fit:cover; }
+.front { position:absolute; inset:0; width:100%; height:100%; object-fit:fill; pointer-events:none; z-index:10; }
+.stage-floor { position:absolute; left:13%; bottom:13%; width:74%; height:14%; background:linear-gradient(#b98d51,#705030);
+  box-shadow:inset 0 2px 1px #ffe2a6; }
+.wing { position:absolute; top:26%; width:18%; height:51%; object-fit:contain; z-index:2; pointer-events:none; }
+.wing.left { left:12%; } .wing.right { right:12%; transform:scaleX(-1); }
+.actor { position:absolute; width:19%; height:37%; bottom:20%; z-index:5; transform-origin:50% 100%; }
+.actor.speaking { filter:drop-shadow(0 0 4px #ffe08a); animation:bob .65s ease-in-out infinite alternate; }
+.actor.entering { animation:enter .9s ease-out both; }
+.actor.shuffle { animation-duration:1.8s; animation-timing-function:steps(7,end); }
+.actor.strut { animation-duration:1.2s; } .actor.tiptoe { animation-duration:1.6s; animation-timing-function:steps(10,end); }
+.actor.hurry { animation-duration:.5s; } .actor.bowing { animation:bow 1s ease-in-out 2; }
+.costume { position:absolute; object-fit:contain; pointer-events:none; z-index:2; }
+.costume-hat { width:52%; height:27%; top:-2%; left:24%; }
+.costume-glasses { width:44%; height:15%; top:18%; left:28%; }
+.costume-scarf { width:49%; height:28%; top:28%; left:25%; }
+.costume-apron,.costume-sash,.costume-backpack { width:64%; height:48%; top:32%; left:18%; }
+.prop { position:absolute; width:18%; height:24%; z-index:7; border:0; background:none; box-shadow:none; padding:0;
+  touch-action:none; transform:translate(-50%,-100%); }
+.prop img { width:100%; height:100%; object-fit:contain; pointer-events:none; }
+.prop.selected { outline:2px dashed var(--brand); outline-offset:1px; }
+.prop:hover { background:none; }
+.prop:disabled { opacity:1; cursor:default; }
+.prop[data-type="ball"] { width:8%; height:11%; }
+.prop[data-type="cones"] { width:13%; height:16%; }
+.prop[data-type="seeds"] { width:10%; height:13%; }
+.prop[data-type="bench"] { width:23%; height:21%; }
+.prop-label { position:absolute; top:21%; left:14%; width:72%; font-size:clamp(10px,1.2vw,16px); pointer-events:none;
+  text-align:center; line-height:1.1; word-break:break-word; }
+.curtain { position:absolute; left:13%; top:17%; width:74%; height:65%; display:flex; z-index:9; pointer-events:none; }
+.curtain i { width:50%; height:100%; display:block; background:repeating-linear-gradient(90deg,#741f22,#b83e35 10%,#7c2229 20%);
+  border-bottom:8px solid #c4a24f; transition:transform .8s; box-shadow:inset 0 6px 8px #0005; }
+.curtain.open i:first-child { transform:translateX(-96%); } .curtain.open i:last-child { transform:translateX(96%); }
+.theater-caption { position:absolute; top:12%; left:24%; width:52%; text-align:center; z-index:12;
+  font:700 clamp(10px,1.3vw,18px) Georgia,serif; color:#fff5ce; background:#0c5748;
+  border:1px solid #e0c477; border-radius:50%; padding:3px 7px; }
+#performance-bubble { width:min(96%,850px); min-height:104px; margin:3px 0 8px; }
+#performance-bubble.your { border:4px solid #b18722; background:#fff4c7; }
+.direction { font-size:.72em; color:var(--muted); display:block; }
+.your-label { font-size:13px; font-weight:800; display:block; }
+.audience { position:absolute; bottom:1%; left:20%; width:60%; height:9%; display:flex; align-items:flex-end;
+  justify-content:center; gap:2%; z-index:12; }
+.audience i { height:70%; width:9%; background:linear-gradient(110deg,#bf9765,#5f4737); border-radius:50% 50% 15% 15%;
+  border:2px solid #f2d7a8; transform-origin:bottom; box-shadow:1px 3px 1px #0003; }
+.audience.droop i { animation:droop 4s forwards; } .audience.clap i { animation:clap .25s ease-in-out 8 alternate; }
+.zzz { position:absolute; right:20%; bottom:6%; z-index:13; font-weight:800; background:#fff3d5; padding:3px 9px; }
+.flat-bubbles { position:absolute; left:20%; right:20%; top:32%; display:flex; justify-content:space-around; z-index:8; }
+.flat-bubbles b { background:#fff9ec; border:2px solid #6a5a48; border-radius:10px; padding:7px; }
+.shelf { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }
+.shelf button { min-height:77px; padding:5px 2px; font-size:12px; }
+.shelf img { display:block; width:100%; height:42px; object-fit:contain; pointer-events:none; }
+.checks { list-style:none; padding:0; margin:9px 0; display:grid; gap:5px; }
+.checks li { background:#f4e9d9; padding:7px 8px; font-size:12px; border-left:4px solid #b03a2e; line-height:1.3; }
+.checks li.pass { border-color:var(--brand); background:#e9efdf; }
+.checks b { display:block; font-size:13px; margin-bottom:2px; }
+.check-mark { display:inline-grid; place-items:center; width:17px; height:17px; margin-right:3px;
+  border-radius:3px; background:#b03a2e; color:#fff; }
+.pass .check-mark { background:var(--brand); }
+.theater-options { width:min(100%,620px); flex:none; margin:7px 0 0; }
+.theater-options button { min-width:0; }
+.script { width:100%; height:100%; max-height:760px; padding:20px; background:#fff9e9; border:1px solid #ad906b;
+  box-shadow:4px 8px 12px #52321930; display:flex; flex-direction:column; min-height:0; }
+.scene-tabs { display:flex; gap:6px; margin-bottom:12px; flex:none; }
+.scene-tabs button { flex:1; font-size:13px; }
+.script h2 { font:700 25px Georgia,serif; margin:4px 0 15px; }
+.script-lines { overflow:auto; flex:1; min-height:0; }
+.script-line { padding:12px; border-bottom:1px solid #d1bd98; display:grid; grid-template-columns:1fr 44px 44px; gap:7px; }
+.script-line b { color:var(--brand); font-size:14px; }
+.script-line p { font:19px/1.45 Georgia,serif; margin:6px 0; }
+.script-line button { align-self:center; padding:3px; font-size:12px; }
+.script .help { margin:10px 0 0; flex:none; }
+.tick-label { display:flex; align-items:center; gap:7px; min-height:44px; font-size:14px; }
+.tick-label input { width:44px; height:44px; margin:0; accent-color:var(--brand); }
+dialog { border:2px solid #82633b; border-radius:8px; padding:24px; width:min(90%,420px); background:#fff7e7; color:var(--ink); }
+dialog::backdrop { background:#21170f99; } dialog p { line-height:1.5; }
+.idle-leaf { position:absolute; top:6%; left:7%; width:14px; height:7px; background:#d49a44; border-radius:80% 0;
+  animation:leaf 6s ease-in-out infinite alternate; pointer-events:none; }
+@keyframes leaf { to { transform:translate(25px,15px) rotate(60deg); } }
+@keyframes enter { from { translate:-250% 0; } to { translate:0 0; } }
+@keyframes bob { to { transform:translateY(-5px) rotate(2deg); } }
+@keyframes bow { 50% { transform:rotate(20deg) translateY(6px); } }
+@keyframes droop { to { transform:rotate(30deg) scaleY(.65); } }
+@keyframes clap { to { transform:rotate(8deg) translateY(-5px); } }
+body.calm .actor,body.calm .idle-leaf,body.calm .audience i { animation:none!important; }
+body.calm .actor.speaking { outline:3px solid #b18722; outline-offset:3px; }
+body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
+@media (max-width:1050px) {
+  main { grid-template-columns:minmax(0,1fr) 290px; } .stage { padding:12px; }
+  .panel { padding:9px; gap:7px; } .panel h2 { font-size:21px; }
+  .steps { padding:5px 10px; } .cast-cards { gap:7px; } .cast-card { padding:8px; }
+}
+@media (max-height:640px) and (min-width:600px) {
+  header { padding:4px 10px; flex-wrap:nowrap; } h1 { font-size:19px; }
+  header .icon-btn { font-size:12px; padding:0 8px; }
+  main { grid-template-columns:minmax(0,1fr) 250px; } .steps { padding:3px 8px; }
+  .steps button { font-size:12px; padding:4px; } .steps span { display:none; }
+  .stage { padding:8px; } .stage-title { font-size:15px; margin-bottom:5px; }
+  #hint { min-height:54px; padding:6px; font-size:12px; } .panel { padding:6px; gap:5px; }
+  .panel h2,.eyebrow { display:none; } .privacy { font-size:10px; }
+  .problem-card { margin:4px 0; padding:6px; font-size:12px; }
+  .problem-card b { font-size:13px; margin:0; } .problem-card small { font-size:11px; }
+  #street-bubble { min-height:69px; margin-top:9px; padding:8px; }
+  .bubble-name { font-size:14px; margin:0 0 2px; } .speech { font-size:13px; }
+  #performance-bubble { min-height:75px; padding:7px 10px; margin:0; }
+  .cast-card h3 { font-size:15px; } .cast-card p { font-size:12px; margin:5px 0; }
+  .cast-card { display:flex; flex-direction:column; }
+  .cast-card .puppet { height:58px; flex:none; }
+  .cast-card h3 { font-size:13px; line-height:1.15; min-height:30px; margin:4px 0; }
+  .cast-card p { font-size:11px; line-height:1.2; margin:4px 0; }
+  .cast-card button { font-size:11px; padding:3px; margin-top:auto; flex:none; }
+  .script { padding:10px; }
+  .script h2 { font-size:18px; margin:3px 0 8px; } .script-line { padding:6px; }
+  .script-line p { font-size:15px; } .scene-tabs { margin-bottom:5px; gap:3px; }
+  .scene-tabs button { font-size:11px; padding:3px; } .readback { font-size:12px; padding:6px; }
+  .checks li { padding:5px 6px; }
+  body[data-step="Perform"] #controls .section-label { margin:3px 0; }
+  body[data-step="Perform"] #controls .chips { margin:3px 0; }
+  body[data-step="Perform"] #controls .chips button { font-size:11px; line-height:1.2; padding:3px; }
+  body[data-step="Theater"] .shelf { gap:3px; }
+  body[data-step="Theater"] .shelf button { min-height:47px; padding:3px 2px; font-size:11px; }
+  body[data-step="Theater"] .shelf img { height:20px; }
+  body[data-step="Theater"] #costume-help { display:none; }
+  body[data-step="Theater"] label[for="costume-character"] { position:absolute; width:1px; height:1px;
+    overflow:hidden; clip-path:inset(50%); margin:0; }
+}
+@media (max-width:599px) {
+  body { overflow:auto; min-height:100dvh; height:auto; } header { padding:7px 10px; gap:5px; }
+  h1 { width:100%; font-size:23px; } header .icon-btn { flex:1; font-size:13px; }
+  .steps { padding:5px; gap:3px; position:sticky; top:0; z-index:25; }
+  .steps button { padding:4px 2px; font-size:11px; } .steps span { display:none; }
+  main { display:flex; flex-direction:column; } .stage { order:0; padding:10px; min-height:245px; }
+  .panel { order:1; border-left:0; border-top:2px dashed #bea27c; overflow:visible; padding:10px; }
+  #controls { overflow:visible; } .panel h2,.panel .eyebrow { display:none; } #hint { min-height:55px; }
+  .stage-title { font-size:17px; margin-bottom:6px; } .street { border-width:4px; max-height:none; }
+  .street .neighbor { width:16%; height:38%; } .name-tag { font-size:10px; }
+  #street-bubble { min-height:80px; font-size:13px; margin-top:10px; padding:8px 10px; }
+  body[data-step="Street"] #street-bubble { min-height:60px; margin-top:8px; }
+  .bubble-name { font-size:15px; } .theater { width:100%; flex:none; }
+  #performance-bubble { min-height:95px; padding:9px; font-size:16px; margin-bottom:8px; }
+  body[data-step="Perform"] .stage { min-height:0; }
+  body[data-step="Perform"] #actions { position:sticky; bottom:6px; z-index:20; background:#fff7e9; padding:5px; }
+  body:not([data-step="Street"]):not([data-step="Perform"]) #actions {
+    position:sticky; top:54px; bottom:6px; z-index:20; background:#fff7e9;
+  }
+  .cast-cards { gap:5px; } .cast-card { padding:6px; } .cast-card h3 { font-size:14px; }
+  .cast-card p { font-size:11px; } .cast-card .puppet { height:95px; }
+  .script { height:340px; padding:8px; } .script h2 { font-size:20px; margin-bottom:7px; }
+  .script-line { padding:8px 3px; grid-template-columns:1fr 44px 44px; gap:4px; }
+  .script-line p { font-size:15px; } .scene-tabs button { font-size:11px; padding:3px; }
+  .theater-caption { font-size:13px; } .blank-cast { font-size:20px; padding:20px; }
+  body[data-step="Theater"] .shelf { gap:4px; }
+  body[data-step="Theater"] .shelf button { min-height:50px; padding:3px; font-size:12px; }
+  body[data-step="Theater"] .shelf img { height:23px; }
+  body[data-step="Theater"] #costume-help { display:none; }
+  body[data-step="Theater"] label[for="costume-character"] { position:absolute; width:1px; height:1px;
+    overflow:hidden; clip-path:inset(50%); margin:0; }
+}
+</style>
+</head>
+<body data-step="Street">
+<header>
+  <h1>Neighborhood Issue Play<small>Making a play about a neighborhood problem · Curio Class</small></h1>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+</header>
+<nav class="steps" role="tablist" aria-label="Play building steps" id="steps"></nav>
+<main>
+  <aside class="panel" aria-label="Play workbench">
+    <p class="eyebrow">A little theater. A big question.</p>
+    <h2 id="panel-title">Listen on the street</h2>
+    <p id="hint" aria-live="polite"></p>
+    <div id="actions"></div><div id="controls"></div>
+    <div class="footer-row"><p class="privacy" id="save-status">Saved here only. Nothing is recorded.</p><button id="new-play">New play</button></div>
+  </aside>
+  <section class="stage" id="stage" aria-label="Paper theater and street"></section>
+</main>
+<dialog id="confirm-dialog" aria-labelledby="confirm-title">
+  <h2 id="confirm-title">Start again?</h2><p id="confirm-text"></p>
+  <div class="row"><button id="confirm-no">Keep my play</button><button id="confirm-yes" class="primary">Yes, continue</button></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const STEPS = ['Street','Characters','Theater','Scenes','Perform'];
+  const SCENES = ['The problem','The clash','A try at a fix'];
+  const N = [
+    {id:'shell',name:'Mrs. Shell',short:'Shell',about:'Walks the block every morning, slowly.',color:'#756b86'},
+    {id:'rufus',name:'Rufus',short:'Rufus',about:'Runs the corner store.',color:'#b56a3c'},
+    {id:'gail',name:'Officer Gail',short:'Gail',about:'The school crossing guard.',color:'#527585'},
+    {id:'nutmeg',name:'Nutmeg',short:'Nutmeg',about:'Nine years old. Loves ball games.',color:'#c19638'},
+    {id:'bramble',name:'Councilor Bramble',short:'Bramble',about:'On the town council.',color:'#4d7463'},
+    {id:'fern',name:'Fern',short:'Fern',about:'A gardener with a baby in a stroller.',color:'#946575'}
+  ];
+  const view = (want,why,blocker) => ({want,fullSentence:`I want ${want}.`,reportedWant:want.replace(/\bmy\b/g,'their'),why,blocker});
+  const P = [
+    {title:'The park is closed',problem:'The park is closed for repairs until spring.',spot:'Park closed',backdrop:'park',views:[
+      view('a bench somewhere for now','My knees need a place to rest on my walk.','Time'),
+      view('the park open fast','Families shop at my store after the park. Sales are down.','bramble'),
+      view('kids out of the street','Cars come around that corner fast.','nutmeg'),
+      view('a place to play now',"We have been playing ball in the street. It is the only flat place.",'gail'),
+      view('the repairs done right, without rushing','The slide was cracked. Rushing could make it unsafe again.','rufus'),
+      view('the sandbox open at least','My little one has nowhere to dig.','The rules')],fixes:[
+        {text:'A play street on Saturdays, closed to cars.',helps:['nutmeg','gail','fern']},
+        {text:'A borrowed bench outside the library until spring.',helps:['shell']},
+        {text:'A gate sign: Park opens in May. Store open today!',helps:['rufus','bramble']}]},
+    {title:'A safer school corner',problem:'There is no crosswalk by the school.',spot:'No crosswalk',backdrop:'school',views:[
+      view('more time to cross',"I am slow. The cars do not wait.",'The rules'),
+      view('to keep my two parking spots','A crosswalk takes the spots in front of my store.','gail'),
+      view('a painted crosswalk and a sign',"I cannot stop cars where there are no lines.",'bramble'),
+      view('to walk to school alone','My mom says no until there is a crosswalk.','Money'),
+      view('a car count first','The town has to count the cars before it can paint lines.','Time'),
+      view('slower cars','A speed bump would help, too.','rufus')],fixes:[
+        {text:'Kids and neighbors count the cars for a week.',helps:['bramble','nutmeg','gail']},
+        {text:'Move the crosswalk one house down, away from the store.',helps:['rufus','gail']},
+        {text:'A sign that says Slow, children crossing.',helps:['fern','shell']}]},
+    {title:'Finding words together',problem:'A new family has moved in. Neighbors cannot yet talk to each other.',
+      spot:'Hello, neighbors',backdrop:'school',views:[
+      view('time to learn a greeting','I want to welcome our new neighbors, but learning new words takes practice.','Time'),
+      view('a picture guide for the store','I want us to understand each other, but a long meeting would close my store.','bramble'),
+      view('a clear way to explain the school crossing','We need to understand each other so every family knows the safe route.','Time'),
+      view('to invite the new child to play','We both want to join in. We do not yet know words the other understands.','Time'),
+      view('a welcome meeting with language help','We could meet at the store, but Rufus needs to keep serving customers.','rufus'),
+      view('a garden welcome with picture labels','We could plant together, but printing sturdy picture cards costs money.','Money')],fixes:[
+        {text:'Make picture cards together and practice greetings both ways.',helps:['shell','rufus','nutmeg']},
+        {text:'Plan an after-hours welcome with an interpreter and a picture route map.',helps:['bramble','gail','rufus']},
+        {text:'Invite neighbors to a garden and ball-game welcome with pictures.',helps:['fern','nutmeg','shell']} ]}
+  ];
+  const ART = {
+    street:'art:street',front:'art:theater-front',park:'art:backdrop-park',school:'art:backdrop-school',lot:'art:backdrop-lot',
+    tree:'art:wing-tree',lamp:'art:wing-lamp',fence:'art:wing-fence',bush:'art:wing-bush',
+    bench:'art:prop-bench',cones:'art:prop-cones',seeds:'art:prop-seeds',wheelbarrow:'art:prop-wheelbarrow',
+    sign:'art:prop-sign',ball:'art:prop-ball',hat:'art:costume-hat',scarf:'art:costume-scarf',glasses:'art:costume-glasses',
+    apron:'art:costume-apron',sash:'art:costume-sash',backpack:'art:costume-backpack'
+  };
+  // Future painter switches paintedPeople to true only after every people puppet is reviewed.
+  const paintedPeople = false;
+  const PEOPLE = {shell:'art:puppet-shell',rufus:'art:puppet-rufus',gail:'art:puppet-gail',
+    nutmeg:'art:puppet-nutmeg',bramble:'art:puppet-bramble',fern:'art:puppet-fern'};
+  const L = {
+    welcomeStreet:'Pick a problem on the street. Then tap the neighbors to hear what they think.',
+    heardHow:"You've heard enough to start. Tap Make the play, or keep listening.",
+    welcomeCharacters:'Tap Add character. Pick two or three neighbors for your play.',
+    blockerHow:"Now choose who or what is in their way. That's where the drama comes from.",
+    welcomeTheater:'Pick a backdrop, wings and props. Then dress your puppets.',
+    welcomeScenes:'Write three short scenes. Pick a speaker, then a line, or type your own.',
+    checkFail:'The stage check found a problem. Read the cross, then fix it.',
+    flat:"Nobody is in anybody's way, so nothing happens. Tap Characters and give someone a blocker.",
+    checkPass:"All three checks pass. Tap Perform when you're ready.",
+    welcomePerform:'Pick your role, then tap Curtain. Tap Next line after each line.',
+    yourLine:"That's your line. Read it out loud, then tap Next line.",
+    bow:'Take a bow. What does your play say about this street?',
+    addMore:'Tap Add character to choose one more neighbor. A play needs at least two characters.',
+    writeFix:'Choose What do they try, then tick who the fix helps. You can edit any line in the script.',
+    next:'Read the speech bubble aloud. Tap Next line, or press Space, to continue.',
+    finish:'Tap Bow to finish your play. Then write what it says about this neighborhood.',
+    reflect:'Write your closing answer. Tap From the top to perform your play again.',
+    pickNeighbor:'Tap another neighbor on the street. Hear at least three, then tap Make the play.',
+    addLine:'Pick a speaker and a suggested line, or type your own. Tap Add line to put it in this scene.',
+    editLine:'Choose a speaker and line, or type your own. Tap Save line to replace this line.',
+    fullScene:'This scene has six lines. Tap Edit on a script line to change it, or remove a line to make room.'
+  };
+  const fresh = () => ({version:1,step:'Street',reached:0,problem:0,chosen:false,heard:[],neighbor:null,characters:[],
+    theater:{backdrop:'park',wings:['tree','lamp'],props:[],sign:'Hello'},costumes:{},scenes:[[],[],[]],
+    scene:0,fix:'',helps:[],reflection:'',role:'all'});
+  const state = fresh();
+  try {
+    const saved = JSON.parse(localStorage.getItem('neighborhood-issue-play'));
+    if (saved?.version===1 && Array.isArray(saved.characters) && saved.characters.every(c => N.some(n => n.id===c.id))) {
+      Object.assign(state,saved);
+      if (!STEPS.includes(state.step)) state.step='Street';
+    }
+  } catch {}
+  const run = {open:false,index:-1,auto:false,entering:false,bowed:false,flat:false,flatDone:false};
+  let timer=null;
+  let flatTimer=null;
+  let entryTimer=null;
+  let clapContext=null;
+  let clapTimer=null;
+  let selectedCharacter=state.characters[0]?.id || null;
+  let selectedProp=null;
+  let theaterTab='Backdrop';
+  let editIndex=-1;
+  let revision=0;
+  let enteredRevision=0;
+  let lastPass=false;
+  let confirmAction=null;
+  let uid=0;
+  const esc = text => String(text ?? '').replace(/[&<>"']/g,c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const neighbor = id => N.find(n => n.id===id);
+  const character = id => state.characters.find(c => c.id===id);
+  const info = id => P[state.problem].views[N.findIndex(n => n.id===id)];
+  const want = c => c.custom ? c.text.trim() : info(c.id).want;
+  const wantClause = c => c.custom ? `I want ${want(c)||'something to change'}` : info(c.id).fullSentence.slice(0,-1);
+  const blockerName = c => neighbor(c.blocker)?.name || c.blocker;
+  const V = Curio.voice({lines:L,scope:() => state.step,hint:false,read:() => $('hint').textContent,
+    welcome:() => {
+      if ($('confirm-dialog').open) return null;
+      if (state.step==='Street') return !state.chosen ? ['welcomeStreet',{valid:() => !state.chosen}] : null;
+      if (state.step==='Characters') return !state.characters.length ? ['welcomeCharacters',{valid:() => !state.characters.length}] : null;
+      if (state.step==='Theater') return ['welcomeTheater',{valid:() => revision===enteredRevision}];
+      if (state.step==='Scenes') return ['welcomeScenes',{valid:() => revision===enteredRevision}];
+      return !run.open ? ['welcomePerform',{valid:() => !run.open}] : null;
+    },speaks:'#check,#bow'});
+  function save() {
+    try {
+      localStorage.setItem('neighborhood-issue-play',JSON.stringify(state));
+      $('save-status').textContent='Saved here only. Nothing is recorded.';
+    } catch { $('save-status').textContent='Saving unavailable. Keep this tab open.'; }
+  }
+  function sound() { Curio.tone(520,.055,.025,'triangle'); }
+  function ask(text,fn) {
+    V.hush(); sound();
+    confirmAction=fn;
+    $('confirm-text').textContent=text;
+    $('confirm-dialog').showModal();
+  }
+  $('confirm-no').onclick=() => $('confirm-dialog').close();
+  $('confirm-yes').onclick=() => { $('confirm-dialog').close(); confirmAction?.(); };
+  $('new-play').onclick=() => ask('New play clears the play saved on this device. Keep your play or start again.',() => {
+    stopRun(); V.hush();
+    Object.keys(state).forEach(k => delete state[k]);
+    Object.assign(state,fresh());
+    selectedCharacter=null;
+    try { localStorage.removeItem('neighborhood-issue-play'); } catch {}
+    render(); V.welcome();
+  });
+  function checks() {
+    const enough=state.characters.length>=2;
+    const clash=state.characters.some(c => character(c.blocker) && c.blocker!==c.id);
+    return [
+      {title:'Everyone wants something.',pass:enough && state.characters.every(c => want(c).length>0),
+        why:!enough?'Add two or three characters.':state.characters.some(c => !want(c))?'Give each character a want.':'Every character has a want.'},
+      {title:'Two wants clash.',pass:clash,
+        why:clash?'A character stands in another character’s way.':'Open Characters and choose another character as a blocker.'},
+      {title:'Scene 3 tries a fix.',pass:!!state.fix.trim() && state.helps.some(id => !!character(id)),
+        why:!state.fix.trim()?'Choose or write a fix in Scene 3.':
+          !state.helps.length?'Tick at least one character it helps.':'Your fix helps someone in this play.'}
+    ];
+  }
+  function checkHTML() {
+    return `<ul class="checks">${checks().map(c => `<li class="${c.pass?'pass':''}">
+      <b><span class="check-mark">${c.pass?'✓':'✕'}</span>${c.title}</b>${c.why}</li>`).join('')}</ul>`;
+  }
+  function changed(redraw=true) {
+    revision++; V.dropQueued();
+    if (run.flat) endFlat(false);
+    save();
+    if (redraw) render();
+    else $('hint').textContent=stepHint();
+    const pass=checks().every(c => c.pass);
+    if (pass && !lastPass && state.reached>=3) {
+      state.reached=4;
+      makeSteps();
+      save();
+      const rev=revision;
+      V.say('checkPass',{valid:() => rev===revision,needs:'#step-Perform'});
+    }
+    lastPass=pass;
+  }
+  function how(key,opts={}) { $('hint').textContent=L[key]; V.how(key,opts); }
+  function stepHint() {
+    if (state.step==='Street') return !state.chosen?L.welcomeStreet:state.heard.length>=3?L.heardHow:L.pickNeighbor;
+    if (state.step==='Characters') return !state.characters.length?L.welcomeCharacters:state.characters.length<2?L.addMore:
+      'Choose a character card to edit its want, blocker, voice and movement. Tap Build the theater when ready.';
+    if (state.step==='Theater') return L.welcomeTheater;
+    if (state.step==='Scenes') {
+      if (editIndex>=0) return L.editLine;
+      if (state.scene===2 && (!state.fix.trim() || !state.helps.length)) return L.writeFix;
+      return state.scenes[state.scene].length>=6?L.fullScene:L.addLine;
+    }
+    if (run.bowed) return L.reflect;
+    if (!run.open) return L.welcomePerform;
+    if (run.index>=timeline().length-1) return L.finish;
+    return L.next;
+  }
+  function stopAuto() { clearTimeout(timer); timer=null; run.auto=false; }
+  function stopRun() {
+    stopAuto(); clearTimeout(flatTimer); clearTimeout(entryTimer);
+    stopClap();
+    Object.assign(run,{open:false,index:-1,entering:false,bowed:false,flat:false,flatDone:false});
+  }
+  function setMode(step) {
+    const index=typeof step==='number'?step:STEPS.indexOf(step);
+    if (index<0 || index>state.reached) return;
+    V.hush(); stopRun(); state.step=STEPS[index];
+    enteredRevision=revision;
+    $('controls').scrollTop=0;
+    if (state.step==='Scenes') ensureScenes();
+    editIndex=-1;
+    save(); render();
+    if (innerWidth<600) window.scrollTo({top:0,behavior:'instant'});
+    V.welcome();
+    if (state.step==='Perform' && !checks()[1].pass) stageCheck();
+  }
+  function proceed(step) { state.reached=Math.max(state.reached,STEPS.indexOf(step)); setMode(step); }
+  function makeSteps() {
+    $('steps').innerHTML=STEPS.map((s,i) => `<button role="tab" id="step-${s}" data-step="${s}"
+      aria-selected="${state.step===s}" ${i>state.reached?'disabled':''}><span>${i+1}</span>${s}</button>`).join('');
+    $('steps').querySelectorAll('button').forEach((b,i) => {
+      b.onclick=() => { sound(); setMode(i); };
+      b.onkeydown=e => {
+        if (!['ArrowLeft','ArrowRight','Home','End'].includes(e.key)) return;
+        e.preventDefault();
+        const j=e.key==='Home'?0:e.key==='End'?state.reached:Math.max(0,Math.min(state.reached,i+(e.key==='ArrowRight'?1:-1)));
+        setMode(j); $('step-'+STEPS[j]).focus({preventScroll:true});
+      };
+    });
+  }
+  function person(id) {
+    const n=neighbor(id);
+    const short=id==='nutmeg';
+    const costumes=(state.costumes[id]||[]).map(k => `<img class="costume costume-${k}" src="${ART[k]}" alt="${k}">`).join('');
+    if (paintedPeople) return `<img class="paper-person" src="${PEOPLE[id]}" alt="">${costumes}`;
+    return `<svg class="paper-person" viewBox="0 0 110 180" aria-hidden="true">
+      <defs><linearGradient id="shade-${id}"><stop stop-color="${n.color}"/><stop offset="1" stop-color="#40372e"/></linearGradient></defs>
+      <path d="M52 120h7v60h-7z" fill="#ad8350" stroke="#6e4c2b"/>
+      <g transform="translate(${short?9:0},${short?24:0}) scale(${short?.83:1})">
+      <circle cx="55" cy="28" r="20" fill="#c3ae8e" stroke="#68523f" stroke-width="2"/>
+      <path d="M36 53 Q55 43 74 53 L90 111 L72 115 L67 83 L68 140 L42 140 L43 83 L37 115 L21 111Z"
+        fill="url(#shade-${id})" stroke="#40372e" stroke-width="2"/>
+      <path d="M43 140L42 162H53L55 141L58 162H71L67 140" fill="#544d45" stroke="#362f29" stroke-width="2"/>
+      <path d="M46 57L54 67L65 55M48 76H62M48 84H62" fill="none" stroke="#f3e4c0" stroke-width="2"/>
+      </g></svg>${costumes}`;
+  }
+  function streetHTML() {
+    const n=state.neighbor?neighbor(state.neighbor):null;
+    const v=n?info(n.id):null;
+    return `<h2 class="stage-title">Every door has a different point of view</h2>
+      <div class="street"><img class="painting" src="${ART.street}" alt="Paper neighborhood with a store, homes, park gate and school">
+      <i class="idle-leaf"></i>${state.chosen?`<div class="problem-marker" style="left:${[65,68,33][state.problem]}%">${P[state.problem].spot}</div>`:''}
+      ${N.map((a,i) => `<button class="neighbor" id="neighbor-${a.id}" style="left:${i*16.25+.8}%"
+        aria-pressed="${state.neighbor===a.id}" aria-label="${a.name}: ${a.about}" ${!state.chosen?'disabled':''}>
+        <span class="puppet">${person(a.id)}</span><span class="name-tag">${state.heard.includes(a.id)?'✓ ':''}${a.short}</span></button>`).join('')}</div>
+      <div class="speech" id="street-bubble" aria-live="polite">${n?`<b class="bubble-name">${n.name}</b>
+      ${esc(v.fullSentence)}<br>${esc(v.why)}`:
+      '<b class="bubble-name">A play starts with listening.</b>Pick a problem. Then tap a neighbor at a door.'}</div>`;
+  }
+  function streetControls() {
+    $('actions').innerHTML=`<button class="primary" id="make-play" ${state.heard.length<3?'disabled':''}>Make the play →</button>`;
+    $('controls').innerHTML=P.map((p,i) => `<button class="problem-card" id="problem-${i}" aria-pressed="${state.chosen&&state.problem===i}">
+      <b>${i+1}. ${p.title}</b><small>${i===2?'Neighbors cannot yet talk to each other.':p.problem}</small></button>`).join('')+
+      `<p class="section-label">Heard ${state.heard.length} of 6</p><div class="heard" aria-hidden="true">${N.map(n =>
+      `<i class="${state.heard.includes(n.id)?'yes':''}">${state.heard.includes(n.id)?'✓':''}</i>`).join('')}</div>`;
+    P.forEach((p,i) => $('problem-'+i).onclick=() => {
+      const pick=() => {
+        const wasChosen=state.chosen;
+        const theater=state.theater;
+        const costumes=state.costumes;
+        Object.assign(state,fresh(),{problem:i,chosen:true,theater,costumes});
+        if (!wasChosen) theater.backdrop=p.backdrop;
+        selectedCharacter=null;
+        sound(); changed();
+        how('pickNeighbor',{valid:() => state.step==='Street'&&state.heard.length<3,needs:'.neighbor:not(:disabled)'});
+      };
+      if (state.chosen && i!==state.problem) ask('A new problem starts a new play. Only costumes and the theater stay.',pick);
+      else if (!state.chosen) pick();
+    });
+    $('make-play').onclick=() => proceed('Characters');
+    N.forEach(n => $('neighbor-'+n.id).onclick=() => {
+      state.neighbor=n.id;
+      if (!state.heard.includes(n.id)) state.heard.push(n.id);
+      sound(); changed();
+      if (state.heard.length>=3) how('heardHow',{valid:() => state.step==='Street',needs:'#make-play'});
+    });
+  }
+  function castHTML() {
+    if (!state.characters.length) return '<div class="blank-cast">Who belongs in your play?<br><small>Tap Add character to choose.</small></div>';
+    return `<h2 class="stage-title">A want + someone in the way = drama</h2><div class="cast-cards">${state.characters.map(c =>
+      `<article class="cast-card"><span class="puppet">${person(c.id)}</span><h3>${neighbor(c.id).name}</h3>
+      <p><b>Wants</b><br>${esc(want(c)||'Choose a want')}</p><p><b>In the way</b><br>${esc(blockerName(c))}</p>
+      <button id="edit-${c.id}" data-edit="${c.id}" aria-pressed="${c.id===selectedCharacter}">
+      Edit ${neighbor(c.id).short}</button></article>`).join('')}</div>`;
+  }
+  function readback(c) {
+    const reported=c.custom?want(c).replace(/\bmy\b/g,'their'):info(c.id).reportedWant;
+    return `${neighbor(c.id).name} wants ${reported||'something'}, but ${c.blocker==='Nobody'?'nobody':blockerName(c)} is in the way. `+
+      `Talks ${c.volume.toLowerCase()} and ${c.pace.toLowerCase()}. `+
+      `${{Hurry:'Hurries',Shuffle:'Shuffles',Strut:'Struts',Tiptoe:'Tiptoes'}[c.move]}.`;
+  }
+  function bindCast() {
+    document.querySelectorAll('[data-edit]').forEach(b => b.onclick=() => { selectedCharacter=b.dataset.edit; sound(); render(); });
+  }
+  function characterControls() {
+    $('actions').innerHTML=`<button class="primary" id="to-theater" ${state.characters.length<2?'disabled':''}>Build the theater →</button>`;
+    const c=character(selectedCharacter)||state.characters[0];
+    if (c) selectedCharacter=c.id;
+    const add=`<label class="section-label" for="add-neighbor">Add character (${state.characters.length} of 3)</label><div class="row">
+      <select id="add-neighbor" aria-label="Neighbor to add" ${state.characters.length>=3?'disabled':''}>
+      ${N.filter(n => !character(n.id)).map(n => `<option value="${n.id}">${n.name}</option>`).join('')}</select>
+      <button id="add-character" ${state.characters.length>=3?'disabled':''}>Add character</button></div>`;
+    $('controls').innerHTML=(state.characters.length<2?add:'')+(!c?'':`
+      <label class="section-label" for="want">${neighbor(c.id).short} wants</label><select id="want"><option value="given" ${!c.custom?'selected':''}>
+      ${esc(info(c.id).want)}</option><option value="custom" ${c.custom?'selected':''}>Something else</option></select>
+      ${c.custom?`<input type="text" id="custom-want" maxlength="60" aria-label="Your character's want"
+      value="${esc(c.text)}" placeholder="Write what they want">`:''}
+      <label class="section-label" for="blocker">Who or what is in the way?</label><select id="blocker">${[
+        ...state.characters.filter(a => a.id!==c.id).map(a => [a.id,neighbor(a.id).name]),
+        ...['The rules','Time','Money','Nobody'].map(x => [x,x])].map(([id,label]) =>
+        `<option value="${id}" ${c.blocker===id?'selected':''}>${label}</option>`).join('')}</select>
+      <p class="help">Suggested: ${character(info(c.id).blocker)?neighbor(info(c.id).blocker).name:
+        N.some(n => n.id===info(c.id).blocker)?'Try one of your other characters.':info(c.id).blocker}</p>
+      <span class="section-label">How they talk</span><div class="row"><select id="volume" aria-label="Voice size">
+      ${['Big','Small'].map(x => `<option ${c.volume===x?'selected':''}>${x}</option>`).join('')}</select>
+      <select id="pace" aria-label="Voice speed">${['Fast','Slow'].map(x => `<option ${c.pace===x?'selected':''}>${x}</option>`).join('')}</select></div>
+      <label class="section-label" for="movement">How they move</label><select id="movement">${['Hurry','Shuffle','Strut','Tiptoe'].map(x =>
+      `<option ${c.move===x?'selected':''}>${x}</option>`).join('')}</select><p class="readback" id="readback">${esc(readback(c))}</p>
+      <button id="remove-character">Remove ${neighbor(c.id).short}</button>
+      <div class="chips">${state.characters.map(a => `<button id="pick-${a.id}" data-pick="${a.id}"
+      aria-pressed="${c.id===a.id}">${neighbor(a.id).short}</button>`).join('')}</div>${state.characters.length>=2?add:''}`);
+    $('to-theater').onclick=() => proceed('Theater');
+    $('add-character').onclick=() => {
+      if (state.characters.length>=3) return;
+      const id=$('add-neighbor').value;
+      if (!neighbor(id)) return;
+      state.characters.push({id,custom:false,text:'',blocker:'Nobody',volume:'Big',pace:'Fast',move:'Strut'});
+      selectedCharacter=id;
+      sound(); changed();
+      how('blockerHow',{valid:() => state.step==='Characters'&&character(id)?.blocker==='Nobody',needs:'#blocker'});
+    };
+    document.querySelectorAll('[data-pick]').forEach(b => b.onclick=() => { selectedCharacter=b.dataset.pick; sound(); render(); });
+    bindCast();
+    if (!c) return;
+    $('want').onchange=e => { c.custom=e.target.value==='custom'; changed(); };
+    if ($('custom-want')) $('custom-want').oninput=e => {
+      c.text=e.target.value; changed(false); $('readback').textContent=readback(c); $('stage').innerHTML=castHTML(); bindCast();
+    };
+    for (const [id,key] of [['blocker','blocker'],['volume','volume'],['pace','pace'],['movement','move']]) {
+      $(id).onchange=e => { c[key]=e.target.value; sound(); changed(); };
+    }
+    $('remove-character').onclick=() => ask('Remove this character and all of their script lines?',() => {
+      state.characters=state.characters.filter(a => a.id!==c.id);
+      state.scenes.forEach((lines,i) => state.scenes[i]=lines.filter(l => l.speaker!==c.id));
+      state.characters.forEach(a => { if (a.blocker===c.id) a.blocker='Nobody'; });
+      state.helps=state.helps.filter(id => id!==c.id);
+      selectedCharacter=state.characters[0]?.id||null;
+      changed();
+    });
+  }
+  function theaterHTML(perform=false) {
+    const t=state.theater;
+    const item=timeline()[run.index];
+    const actors=state.characters.map((c,i) => {
+      const speaking=perform&&run.open&&item?.speaker===c.id&&!run.flat;
+      return `<div class="actor ${c.move.toLowerCase()} ${speaking?'speaking':''} ${run.entering||run.flat?'entering':''} ${run.bowed?'bowing':''}"
+        style="left:${state.characters.length===2?28+i*28:21+i*20}%;${!run.open&&perform&&!run.flat?'visibility:hidden':''}"
+        aria-label="${neighbor(c.id).name}${speaking?', speaking':''}">${person(c.id)}</div>`;
+    }).join('');
+    return `<div class="theater" id="theater"><img class="backdrop" src="${ART[t.backdrop]}" alt="${t.backdrop} backdrop">
+      <div class="stage-floor"></div>${t.wings.map((w,i) => `<img class="wing ${i?'right':'left'}" src="${ART[w]}" alt="${w} wing">`).join('')}
+      ${actors}${t.props.map(p => `<button class="prop ${p.id===selectedProp?'selected':''}" data-prop="${p.id}" data-type="${p.type}"
+      aria-label="Move ${p.type}"
+      style="left:${p.x}%;top:${p.y}%" ${perform?'tabindex="-1" disabled':''}><img src="${ART[p.type]}" alt="">
+      ${p.type==='sign'?`<span class="prop-label">${esc(t.sign)}</span>`:''}</button>`).join('')}
+      ${perform&&!run.flat?`<div class="curtain ${run.open?'open':''}"><i></i><i></i></div>`:''}
+      <img class="front" src="${ART.front}" alt="Decorated paper toy theater with open side curtains">
+      <div class="theater-caption">${run.flat?'A play with no clash':run.bowed?'A bow for your neighborhood play':'The Neighborhood Players'}</div>
+      <div class="audience ${run.flat?'droop':''} ${run.bowed?'clap':''}">${Array.from({length:9},() => '<i></i>').join('')}</div>
+      ${run.flat?`<div class="flat-bubbles">${state.characters.map(() => '<b>Okay!</b>').join('')}</div><span class="zzz">Zzz</span>`:''}</div>`;
+  }
+  function theaterControls() {
+    $('actions').innerHTML='<button class="primary" id="to-scenes">Write the scenes →</button>';
+    const tabs=['Backdrop','Wings','Props','Costumes'];
+    const tabHTML=`<div class="chips theater-options">${tabs.map(tab => `<button id="theater-tab-${tab}" data-theater-tab="${tab}"
+      aria-pressed="${theaterTab===tab}">${tab}</button>`).join('')}</div>`;
+    $('stage').insertAdjacentHTML('beforeend',tabHTML);
+    let html='';
+    if (theaterTab==='Backdrop') html+=`<div class="shelf">${[['park','Park gate'],['school','School corner'],['lot','Empty lot']].map(([k,s]) =>
+      `<button id="backdrop-${k}" data-backdrop="${k}" aria-pressed="${state.theater.backdrop===k}">
+      <img src="${ART[k]}" alt="">${s}</button>`).join('')}</div>`;
+    if (theaterTab==='Wings') html+=['Left','Right'].map((label,i) => `<label class="section-label" for="wing-${i}">${label} wing</label>
+      <select id="wing-${i}">${['tree','lamp','fence','bush'].map(w => `<option value="${w}" ${state.theater.wings[i]===w?'selected':''}>
+      ${w==='lamp'?'Lamp post':w[0].toUpperCase()+w.slice(1)}</option>`).join('')}</select>`).join('');
+    if (theaterTab==='Props') html+=`<p class="help">Pick up to three props. Drag on stage, or select a prop and press arrow keys.</p>
+      <div class="shelf">${['bench','cones','seeds','wheelbarrow','sign','ball'].map(k => `<button id="add-prop-${k}" data-add-prop="${k}"
+      ${state.theater.props.length>=3?'disabled':''}><img src="${ART[k]}" alt="">
+      ${{seeds:'Seed packets',cones:'Traffic cones',sign:'Blank sign'}[k]||k[0].toUpperCase()+k.slice(1)}</button>`).join('')}</div>
+      <label class="section-label" for="sign-text">Sign words (16 characters)</label>
+      <input id="sign-text" type="text" maxlength="16" value="${esc(state.theater.sign)}">
+      <button id="remove-prop" ${!selectedProp?'disabled':''}>Remove selected</button>`;
+    if (theaterTab==='Costumes') html+=`<label class="section-label" for="costume-character">Dress a character</label>
+      <select id="costume-character">${state.characters.map(c => `<option value="${c.id}" ${selectedCharacter===c.id?'selected':''}>
+      ${neighbor(c.id).name}</option>`).join('')}</select><p class="help" id="costume-help">Choose up to two pieces for each puppet.</p>
+      <div class="shelf">${['hat','scarf','glasses','apron','sash','backpack'].map(k => `<button id="costume-${k}" data-costume="${k}"
+      aria-pressed="${(state.costumes[selectedCharacter]||[]).includes(k)}"><img src="${ART[k]}" alt="">${k}</button>`).join('')}</div>
+      <p class="help" id="costume-note"></p>`;
+    $('controls').innerHTML=html;
+    $('to-scenes').onclick=() => proceed('Scenes');
+    document.querySelectorAll('[data-theater-tab]').forEach(b => b.onclick=() => { theaterTab=b.dataset.theaterTab; sound(); render(); });
+    document.querySelectorAll('[data-backdrop]').forEach(b => b.onclick=() => { state.theater.backdrop=b.dataset.backdrop; sound(); changed(); });
+    for (let i=0;i<2;i++) if ($('wing-'+i)) $('wing-'+i).onchange=e => { state.theater.wings[i]=e.target.value; sound(); changed(); };
+    document.querySelectorAll('[data-add-prop]').forEach(b => b.onclick=() => {
+      if (state.theater.props.length>=3) return;
+      const slots=[26,50,74];
+      const x=slots.find(x => state.theater.props.every(p => Math.abs(p.x-x)>20)) ?? slots[state.theater.props.length];
+      const p={id:'p'+Date.now()+'-'+uid++,type:b.dataset.addProp,x,y:78};
+      state.theater.props.push(p); selectedProp=p.id; sound(); changed();
+    });
+    if ($('sign-text')) $('sign-text').oninput=e => {
+      state.theater.sign=e.target.value; changed(false);
+      document.querySelectorAll('.prop-label').forEach(el => el.textContent=e.target.value);
+    };
+    if ($('remove-prop')) $('remove-prop').onclick=() => {
+      state.theater.props=state.theater.props.filter(p => p.id!==selectedProp); selectedProp=null; changed();
+    };
+    if ($('costume-character')) $('costume-character').onchange=e => { selectedCharacter=e.target.value; render(); };
+    document.querySelectorAll('[data-costume]').forEach(b => b.onclick=() => {
+      const id=selectedCharacter||state.characters[0]?.id;
+      if (!id) return;
+      const list=state.costumes[id]||=[];
+      const k=b.dataset.costume;
+      if (list.includes(k)) list.splice(list.indexOf(k),1);
+      else if (list.length<2) list.push(k);
+      else {
+        $('costume-note').textContent='Take one piece off before adding another.';
+        $('hint').textContent='Tap a selected costume piece to take it off. Then choose another piece.';
+        sound(); return;
+      }
+      sound(); changed();
+    });
+    bindProps();
+    fitTheater();
+  }
+  function bindProps() {
+    document.querySelectorAll('[data-prop]').forEach(b => {
+      b.onpointerdown=e => {
+        const p=state.theater.props.find(p => p.id===b.dataset.prop);
+        if (!p || state.step!=='Theater') return;
+        selectedProp=p.id;
+        document.querySelectorAll('.prop').forEach(el => el.classList.toggle('selected',el===b));
+        if ($('remove-prop')) $('remove-prop').disabled=false;
+        b.setPointerCapture(e.pointerId); b.focus({preventScroll:true}); sound();
+        b.onpointermove=ev => {
+          const r=$('theater').getBoundingClientRect();
+          p.x=Math.max(22,Math.min(78,(ev.clientX-r.left)/r.width*100));
+          p.y=Math.max(68,Math.min(83,(ev.clientY-r.top)/r.height*100));
+          b.style.left=p.x+'%'; b.style.top=p.y+'%';
+        };
+        b.onpointerup=() => { b.onpointermove=null; save(); };
+        b.onpointercancel=() => { b.onpointermove=null; save(); };
+      };
+      b.onclick=() => { selectedProp=b.dataset.prop; b.classList.add('selected'); if ($('remove-prop')) $('remove-prop').disabled=false; };
+      b.onkeydown=e => {
+        if (!e.key.startsWith('Arrow')) return;
+        e.preventDefault();
+        const p=state.theater.props.find(p => p.id===b.dataset.prop);
+        selectedProp=p.id;
+        p.x=Math.max(22,Math.min(78,p.x+(e.key==='ArrowRight'?2:e.key==='ArrowLeft'?-2:0)));
+        p.y=Math.max(68,Math.min(83,p.y+(e.key==='ArrowDown'?1:e.key==='ArrowUp'?-1:0)));
+        b.style.left=p.x+'%'; b.style.top=p.y+'%'; b.classList.add('selected');
+        if ($('remove-prop')) $('remove-prop').disabled=false;
+        save(); sound();
+      };
+    });
+  }
+  function suggestion(c,scene,slot) {
+    const v=info(c.id);
+    const b=character(c.blocker);
+    if (scene===0) return slot===0?`${wantClause(c)}. ${v.why}`:`Have you heard? ${P[state.problem].problem}`;
+    if (scene===1) {
+      if (slot===3) return b?'And you are in mine.':c.blocker==='Nobody'?'Then we agree.':`${wantClause(c)}, but an obstacle remains.`;
+      if (slot===0) return `${wantClause(c)}. That is what we need!`;
+      if (slot===1) return b?`But I want ${want(c)}. That matters too!`:
+        `${wantClause(c)}, but ${c.blocker==='The rules'?'the rules say no':c.blocker==='Time'?'there is not enough time':
+        c.blocker==='Money'?'there is not enough money':'nobody stands in my way'}.`;
+      return b?`You are in my way, ${neighbor(b.id).name}.`:`${wantClause(c)}, but nobody here is stopping me.`;
+    }
+    if (slot===0) return state.fix?`What if we tried this? ${state.fix}`:'What could we try together?';
+    return state.helps.includes(c.id)?'That could work for me.':`It is a start. But what about my wish? ${wantClause(c)}.`;
+  }
+  function lineText(line,scene) {
+    const c=character(line.speaker);
+    return line.slot===null || !c?line.text:suggestion(c,scene,line.slot);
+  }
+  function ensureScenes() {
+    if (state.characters.length<2) return;
+    state.scenes.forEach((lines,i) => {
+      if (!lines.length) {
+        lines.push({speaker:state.characters[0].id,slot:0,text:''});
+        lines.push({speaker:state.characters[1].id,slot:i===0?0:1,text:''});
+      }
+    });
+  }
+  function scriptHTML() {
+    const i=state.scene;
+    return `<div class="script"><div class="scene-tabs" role="tablist" aria-label="Three scenes">${SCENES.map((s,j) =>
+      `<button id="scene-${j}" data-scene="${j}" role="tab" aria-selected="${i===j}">${j+1}. ${s}</button>`).join('')}</div>
+      <h2>Scene ${i+1}: ${SCENES[i]}</h2><div class="script-lines">${state.scenes[i].map((l,j) =>
+      `<article class="script-line"><div><b>${neighbor(l.speaker)?.name||'Choose speaker'}</b><p>${esc(lineText(l,i))}</p></div>
+      <button id="line-edit-${j}" data-line-edit="${j}" aria-label="Edit line ${j+1}">Edit</button>
+      <button id="line-delete-${j}" data-line-delete="${j}" aria-label="Remove line ${j+1}"
+      ${state.scenes[i].length<=2?'disabled':''}>×</button></article>`).join('')}</div>
+      <p class="help">${state.scenes[i].length} of 6 lines · Starter lines follow your character choices. Edit any line.</p></div>`;
+  }
+  function sceneControls() {
+    $('actions').innerHTML='<button id="check">Stage check</button><button class="primary" id="perform">Perform →</button>';
+    const i=state.scene;
+    const edit=editIndex>=0?state.scenes[i][editIndex]:null;
+    const speaker=edit?.speaker||selectedCharacter||state.characters[0]?.id;
+    let html='';
+    if (i===2) html+=`<label class="section-label" for="fix">What do they try?</label><select id="fix"><option value="">Choose a fix</option>
+      ${P[state.problem].fixes.map((f,j) => `<option value="${j}" ${state.fix===f.text?'selected':''}>${esc(f.text)}</option>`).join('')}
+      <option value="custom" ${state.fix&&!P[state.problem].fixes.some(f => f.text===state.fix)?'selected':''}>Something else</option></select>
+      <input type="text" id="custom-fix" maxlength="90" aria-label="Write a fix" placeholder="Or write your own fix" value="${esc(state.fix)}">
+      <span class="section-label">Who does it help?</span>${state.characters.map(c => `<label class="tick-label">
+      <input type="checkbox" data-help="${c.id}" id="help-${c.id}" ${state.helps.includes(c.id)?'checked':''}>${neighbor(c.id).name}</label>`).join('')}`;
+    html+=`<label class="section-label" for="speaker">${edit?'Edit line '+(editIndex+1):'Add a line'}: speaker</label><select id="speaker">
+      ${state.characters.map(c => `<option value="${c.id}" ${speaker===c.id?'selected':''}>${neighbor(c.id).name}</option>`).join('')}</select>
+      <label class="section-label" for="suggestion">Suggested line</label><select id="suggestion"></select>
+      <label class="section-label" for="custom-line">Or type your own (90 characters)</label>
+      <textarea id="custom-line" aria-label="Your own script line" maxlength="90" rows="2">${edit?.slot===null?esc(edit.text):''}</textarea>
+      <button id="add-line" ${!edit&&state.scenes[i].length>=6?'disabled':''}>${edit?'Save line':'Add line'}</button>
+      ${edit?'<button id="cancel-line">Cancel edit</button>':''}<div id="live-checks">${checkHTML()}</div>`;
+    $('controls').innerHTML=html;
+    $('actions').prepend($('add-line'));
+    function options() {
+      const c=character($('speaker').value);
+      if (!c) return;
+      const slots=[0,1,...(i===1?[2,...(character(c.blocker)?[3]:[])]:[])];
+      $('suggestion').innerHTML=slots.map(slot => `<option value="${slot}" ${edit?.slot===slot?'selected':''}>
+      ${esc(suggestion(c,i,slot))}</option>`).join('');
+    }
+    options();
+    $('speaker').onchange=() => { selectedCharacter=$('speaker').value; options(); };
+    $('add-line').onclick=() => {
+      if (!character($('speaker').value)) return;
+      const text=$('custom-line').value.trim();
+      const l={speaker:$('speaker').value,slot:text?null:Number($('suggestion').value),text};
+      if (editIndex>=0) state.scenes[i][editIndex]=l;
+      else if (state.scenes[i].length<6) state.scenes[i].push(l);
+      editIndex=-1; sound(); changed();
+    };
+    if ($('cancel-line')) $('cancel-line').onclick=() => { editIndex=-1; render(); };
+    document.querySelectorAll('[data-scene]').forEach(b => b.onclick=() => {
+      state.scene=Number(b.dataset.scene); editIndex=-1; sound(); save(); render();
+    });
+    document.querySelectorAll('[data-line-edit]').forEach(b => b.onclick=() => {
+      editIndex=Number(b.dataset.lineEdit); render(); $('speaker').focus({preventScroll:true});
+    });
+    document.querySelectorAll('[data-line-delete]').forEach(b => b.onclick=() => {
+      if (state.scenes[i].length>2) state.scenes[i].splice(Number(b.dataset.lineDelete),1);
+      editIndex=-1; changed();
+    });
+    if ($('fix')) $('fix').onchange=e => {
+      if (e.target.value==='custom') { $('custom-fix').focus({preventScroll:true}); return; }
+      state.fix=e.target.value===''?'':P[state.problem].fixes[Number(e.target.value)]?.text||'';
+      state.helps=[]; sound(); changed();
+    };
+    if ($('custom-fix')) $('custom-fix').oninput=e => {
+      state.fix=e.target.value; changed(false); updateScriptAndChecks();
+    };
+    document.querySelectorAll('[data-help]').forEach(b => b.onchange=() => {
+      state.helps=b.checked?[...new Set([...state.helps,b.dataset.help])]:state.helps.filter(id => id!==b.dataset.help);
+      changed(false); updateScriptAndChecks();
+    });
+    $('check').onclick=stageCheck;
+    $('perform').onclick=() => {
+      state.reached=4; setMode('Perform');
+      if (checks()[1].pass) stageCheck();
+    };
+  }
+  function updateScriptAndChecks() {
+    if ($('live-checks')) $('live-checks').innerHTML=checkHTML();
+    if (state.step==='Scenes'&&!run.flat) document.querySelectorAll('.script-line p').forEach((el,j) => {
+      el.textContent=lineText(state.scenes[state.scene][j],state.scene);
+    });
+  }
+  function stageCheck() {
+    const rev=revision;
+    if (checks().every(c => c.pass)) {
+      Curio.yes();
+      if (state.step==='Scenes') V.say('checkPass',{valid:() => rev===revision,needs:'#perform'});
+    }
+    else {
+      sound(); V.say('checkFail',{valid:() => rev===revision});
+      if (!checks()[1].pass && state.characters.length>=2) {
+        stopAuto(); run.flat=true; run.flatDone=false; renderStage();
+        $('hint').textContent='Watch this six-second preview. Then give someone a character blocker in Characters.';
+        clearTimeout(flatTimer); flatTimer=setTimeout(() => endFlat(true),6000);
+      }
+    }
+  }
+  function endFlat(speak) {
+    clearTimeout(flatTimer); run.flat=false; run.flatDone=true;
+    render();
+    if (speak) { $('hint').textContent=L.flat; V.say('flat',{valid:() => run.flatDone}); }
+  }
+  function timeline() {
+    return state.scenes.flatMap((lines,i) => [{scene:i,card:true},...lines.map(l => ({...l,scene:i}))]);
+  }
+  function performanceBubble() {
+    const l=timeline()[run.index];
+    if (run.flat) return '<b class="bubble-name">They all agree.</b>Is anything getting in anyone’s way?';
+    if (run.bowed) return '<b class="bubble-name">Your play has something to say.</b>'+ 
+      'What does your play say about this neighborhood? Is there a problem like this on your street?';
+    if (!run.open||!l) return '<b class="bubble-name">Places, everyone.</b>Choose your role. Tap Curtain to open your theater.';
+    if (l.card) return `<b class="bubble-name">Scene ${l.scene+1}: ${SCENES[l.scene]}</b>Tap Next line to begin this scene.`;
+    const c=character(l.speaker);
+    if (!c) return 'This line needs a speaker. Return to Scenes to edit it.';
+    const mine=state.role==='all'||state.role===c.id;
+    return `<b class="bubble-name">${neighbor(c.id).name}<span class="direction">(${c.volume.toLowerCase()} and ${c.pace.toLowerCase()})</span></b>
+      ${esc(lineText(l,l.scene))}${mine?'<span class="your-label">Your line! Read it aloud.</span>':''}`;
+  }
+  function renderStage() {
+    if (run.flat) $('stage').innerHTML=`<div class="speech" id="performance-bubble">${performanceBubble()}</div>${theaterHTML(true)}`;
+    else if (state.step==='Street') $('stage').innerHTML=streetHTML();
+    else if (state.step==='Characters') $('stage').innerHTML=castHTML();
+    else if (state.step==='Scenes') $('stage').innerHTML=scriptHTML();
+    else if (state.step==='Theater') $('stage').innerHTML=`<h2 class="stage-title">Make a place for your story</h2>${theaterHTML()}`;
+    else {
+      const l=timeline()[run.index];
+      const mine=l?.speaker&&(state.role==='all'||state.role===l.speaker);
+      $('stage').innerHTML=`<div class="speech ${mine?'your':''}" id="performance-bubble" aria-live="polite">
+        ${performanceBubble()}</div>${theaterHTML(true)}`;
+    }
+    fitTheater();
+  }
+  function fitTheater() {
+    const el=$('theater');
+    if (!el || innerWidth<600) return;
+    const stage=$('stage');
+    const extra=[...stage.children].filter(x => x!==el).reduce((n,x) => n+x.getBoundingClientRect().height+12,0);
+    const available=stage.clientHeight-32-extra;
+    el.style.width=Math.min(stage.clientWidth-32,available*4/3,1100)+'px';
+    el.style.flexShrink='0';
+  }
+  function nextLine() {
+    if (!run.open||run.flat||run.bowed) return;
+    if (run.entering) { clearTimeout(entryTimer); run.entering=false; }
+    if (run.index<timeline().length-1) run.index++;
+    renderStage(); updatePerformanceControls(); $('hint').textContent=stepHint();
+    const l=timeline()[run.index];
+    if (l?.speaker&&(state.role==='all'||state.role===l.speaker)) {
+      const index=run.index;
+      V.how('yourLine',{now:!V.heard('yourLine'),valid:() => run.index===index,needs:'#next-line'});
+    }
+    sound(); scheduleAuto();
+  }
+  function scheduleAuto() {
+    clearTimeout(timer);
+    if (!run.auto||!run.open||run.bowed) return;
+    if (run.index>=timeline().length-1) { stopAuto(); updatePerformanceControls(); return; }
+    const l=timeline()[run.index];
+    const text=l?.card?SCENES[l.scene]:l?lineText(l,l.scene):'';
+    timer=setTimeout(nextLine,1500+60*text.length);
+  }
+  function updatePerformanceControls() {
+    if (!$('next-line')) return;
+    $('next-line').disabled=!run.open||run.bowed||run.flat;
+    $('curtain').textContent=run.open?'Close curtain':'Curtain';
+    $('auto').textContent=run.auto?'Auto: on':'Auto: off';
+    $('auto').setAttribute('aria-pressed',run.auto);
+    $('bow').disabled=!run.open||run.index<timeline().length-1||run.bowed;
+  }
+  function performControls() {
+    $('actions').innerHTML='<button class="gold" id="curtain">Curtain</button><button class="primary" id="next-line">Next line →</button>';
+    $('controls').innerHTML=`<span class="section-label">My role</span><div class="chips">${[
+      ['all',"I'll read them all"],...state.characters.map(c => [c.id,neighbor(c.id).short])].map(([id,name]) =>
+      `<button id="role-${id}" data-role="${id}" aria-pressed="${state.role===id}">${name}</button>`).join('')}</div>
+      <div class="row"><button id="auto" aria-pressed="false">Auto: off</button><button id="top">From the top</button><button id="bow">Bow</button></div>
+      <div id="live-checks">${checkHTML()}</div><div id="reflection-wrap" ${!run.bowed?'hidden':''}>
+      <label class="section-label" for="reflection">Your closing answer</label>
+      <textarea id="reflection" aria-label="Your closing answer" rows="3" maxlength="600">${esc(state.reflection)}</textarea></div>
+      <p class="help">Read the parts live. Nothing is recorded. Space advances the next line when you are not typing.</p>`;
+    document.querySelectorAll('[data-role]').forEach(b => b.onclick=() => {
+      state.role=b.dataset.role;
+      document.querySelectorAll('[data-role]').forEach(el => el.setAttribute('aria-pressed',el===b));
+      save(); renderStage(); sound();
+    });
+    $('curtain').onclick=() => {
+      if (run.flat) endFlat(false);
+      if (run.open) { stopAuto(); run.open=false; run.entering=false; clearTimeout(entryTimer); }
+      else {
+        run.open=true; run.bowed=false;
+        if (run.index<0) run.index=0;
+        run.entering=!Curio.reduce;
+        entryTimer=setTimeout(() => {
+          run.entering=false; document.querySelectorAll('.actor').forEach(a => a.classList.remove('entering'));
+        },1800);
+      }
+      sound(); renderStage(); updatePerformanceControls(); $('hint').textContent=stepHint();
+      const curtain=document.querySelector('.curtain');
+      if (curtain && !Curio.reduce) {
+        curtain.classList.toggle('open',!run.open);
+        void curtain.offsetWidth;
+        requestAnimationFrame(() => curtain.classList.toggle('open',run.open));
+      }
+    };
+    $('next-line').onclick=nextLine;
+    $('auto').onclick=() => {
+      const enable=!run.auto;
+      if (enable&&!run.open) $('curtain').click();
+      run.auto=enable;
+      scheduleAuto(); updatePerformanceControls(); sound();
+    };
+    $('top').onclick=() => {
+      stopRun(); V.hush(); renderStage(); updatePerformanceControls(); $('reflection-wrap').hidden=true;
+      $('hint').textContent=L.welcomePerform; sound();
+    };
+    $('bow').onclick=() => {
+      stopAuto(); run.bowed=true; renderStage(); updatePerformanceControls(); $('reflection-wrap').hidden=false;
+      $('controls').prepend($('reflection-wrap'));
+      $('controls').scrollTop=0;
+      $('reflection').focus({preventScroll:true});
+      $('hint').textContent=L.reflect; V.say('bow',{valid:() => run.bowed}); clap();
+    };
+    $('reflection').oninput=e => { state.reflection=e.target.value; save(); };
+    updatePerformanceControls();
+  }
+  function clap() {
+    if (!Curio.sound) return;
+    stopClap();
+    const ctx=new (window.AudioContext||window.webkitAudioContext)();
+    clapContext=ctx;
+    const length=Math.floor(ctx.sampleRate*.12);
+    const buffer=ctx.createBuffer(1,length,ctx.sampleRate);
+    const samples=buffer.getChannelData(0);
+    for (let i=0;i<length;i++) samples[i]=(Math.random()*2-1)*Math.exp(-i/(length*.18));
+    for (let i=0;i<7;i++) {
+      const source=ctx.createBufferSource();
+      const gain=ctx.createGain();
+      source.buffer=buffer; gain.gain.value=.05;
+      source.connect(gain); gain.connect(ctx.destination); source.start(ctx.currentTime+i*.13);
+    }
+    clapTimer=setTimeout(stopClap,1500);
+  }
+  function stopClap() {
+    clearTimeout(clapTimer);
+    if (clapContext) { clapContext.close().catch(() => {}); clapContext=null; }
+  }
+  function render() {
+    const focus=document.activeElement;
+    const focusId=focus?.id;
+    const scrollTop=$('controls').scrollTop;
+    document.body.dataset.step=state.step;
+    makeSteps();
+    $('panel-title').textContent={Street:'Listen on the street',Characters:'Build your cast',Theater:'Set the paper stage',
+      Scenes:'Write a little drama',Perform:'Your opening night'}[state.step];
+    $('hint').textContent=stepHint();
+    renderStage();
+    if (state.step==='Street') streetControls();
+    if (state.step==='Characters') characterControls();
+    if (state.step==='Theater') theaterControls();
+    if (state.step==='Scenes') sceneControls();
+    if (state.step==='Perform') performControls();
+    $('controls').scrollTop=scrollTop;
+    if (focusId && focus!==document.body && $(focusId) && !$(focusId).disabled && !$('confirm-dialog').open) {
+      $(focusId).focus({preventScroll:true});
+    } else if (focusId && focus!==document.body && !$('confirm-dialog').open) {
+      const next=$('actions').querySelector('button:not(:disabled)')||
+        $('controls').querySelector('button:not(:disabled),select:not(:disabled),input:not(:disabled),textarea');
+      next?.focus({preventScroll:true});
+    }
+  }
+  document.addEventListener('keydown',e => {
+    if (state.step!=='Perform'||$('confirm-dialog').open||['INPUT','TEXTAREA','SELECT','BUTTON'].includes(e.target.tagName)) return;
+    if (e.code==='Space'||e.key==='Enter') { e.preventDefault(); nextLine(); }
+  });
+  new ResizeObserver(fitTheater).observe($('stage'));
+  Curio.onMotion(() => { if (state.step==='Perform') renderStage(); });
+  Curio.onSound(on => { if (!on) stopClap(); });
+  Curio.init({clips:"voice:*",rate:.94});
+  window.__tool={state,run,setMode,allLines:V.allLines,vlog:V.log,checks,suggestion,lineText,readback,
+    get vq() { return V.queue; },get revision() { return revision; },data:{neighbors:N,problems:P},render};
+  render(); V.welcome();
+})();
+</script>
+</body>
+</html>

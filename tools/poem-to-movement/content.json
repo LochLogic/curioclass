@@ -1,0 +1,412 @@
+[
+  {
+    "id": "wind",
+    "name": "Wind",
+    "kind": "poem",
+    "title": "Who Has Seen the Wind?",
+    "author": "Christina Rossetti, 1872",
+    "profile": [
+      0.5,
+      0,
+      0,
+      0.75
+    ],
+    "path": "Curved",
+    "poem": [
+      "Who has seen the wind?",
+      "Neither I nor you:",
+      "But when the leaves [hang] [trembling]",
+      "The wind is [passing thro\u2019].",
+      "Who has seen the wind?",
+      "Neither you nor I:",
+      "But when the trees [bow down] their heads",
+      "The wind is [passing by]."
+    ],
+    "items": [
+      {
+        "word": "hang",
+        "verb": "float",
+        "speed": "Slow",
+        "weight": "Light",
+        "flow": "Smooth",
+        "level": "High",
+        "path": "Curved",
+        "spot": null
+      },
+      {
+        "word": "trembling",
+        "verb": "shiver",
+        "speed": "Quick",
+        "weight": "Light",
+        "flow": "Sharp",
+        "level": "High",
+        "path": "In place",
+        "spot": null
+      },
+      {
+        "word": "passing through",
+        "verb": "glide",
+        "speed": "Quick",
+        "weight": "Light",
+        "flow": "Smooth",
+        "level": "Middle",
+        "path": "Curved",
+        "spot": null
+      },
+      {
+        "word": "bow down",
+        "verb": "sink",
+        "speed": "Slow",
+        "weight": "Light",
+        "flow": "Smooth",
+        "level": "Low",
+        "path": "In place",
+        "spot": null
+      },
+      {
+        "word": "passing by",
+        "verb": "float",
+        "speed": "Slow",
+        "weight": "Light",
+        "flow": "Smooth",
+        "level": "Middle",
+        "path": "Curved",
+        "spot": null
+      }
+    ]
+  },
+  {
+    "id": "train",
+    "name": "Train",
+    "kind": "poem",
+    "title": "From a Railway Carriage",
+    "author": "Robert Louis Stevenson, 1885",
+    "profile": [
+      1,
+      1,
+      1,
+      0.5
+    ],
+    "path": "Straight",
+    "poem": [
+      "[Faster] than fairies, faster than witches,",
+      "Bridges and houses, hedges and ditches;",
+      "And [charging] along like troops in a battle",
+      "All through the meadows the horses and cattle:",
+      "All of the sights of the hill and the plain",
+      "[Fly] as thick as [driving rain];",
+      "And ever again, in the [wink] of an eye,",
+      "Painted stations [whistle by]."
+    ],
+    "items": [
+      {
+        "word": "Faster",
+        "verb": "rush",
+        "speed": "Quick",
+        "weight": "Strong",
+        "flow": "Sharp",
+        "level": "Middle",
+        "path": "Straight",
+        "spot": null
+      },
+      {
+        "word": "charging",
+        "verb": "stomp",
+        "speed": "Quick",
+        "weight": "Strong",
+        "flow": "Sharp",
+        "level": "Middle",
+        "path": "Straight",
+        "spot": null
+      },
+      {
+        "word": "Fly",
+        "verb": "leap",
+        "speed": "Quick",
+        "weight": "Light",
+        "flow": "Smooth",
+        "level": "High",
+        "path": "Straight",
+        "spot": null
+      },
+      {
+        "word": "driving rain",
+        "verb": "scatter",
+        "speed": "Quick",
+        "weight": "Light",
+        "flow": "Sharp",
+        "level": "Low",
+        "path": "Zigzag",
+        "spot": null
+      },
+      {
+        "word": "wink",
+        "verb": "freeze",
+        "speed": "Quick",
+        "weight": "Light",
+        "flow": "Sharp",
+        "level": "Middle",
+        "path": "In place",
+        "spot": null
+      },
+      {
+        "word": "whistle by",
+        "verb": "rush",
+        "speed": "Quick",
+        "weight": "Strong",
+        "flow": "Sharp",
+        "level": "Middle",
+        "path": "Straight",
+        "spot": null
+      }
+    ]
+  },
+  {
+    "id": "river",
+    "name": "River",
+    "kind": "painting",
+    "title": "Slow River at Dusk",
+    "author": "Original woodblock-inspired painting",
+    "profile": [
+      0,
+      0,
+      0,
+      0.25
+    ],
+    "path": "Curved",
+    "items": [
+      {
+        "word": "still water",
+        "verb": "glide",
+        "speed": "Slow",
+        "weight": "Light",
+        "flow": "Smooth",
+        "level": "Low",
+        "path": "Curved",
+        "spot": [
+          0.53,
+          0.83
+        ]
+      },
+      {
+        "word": "a heron wading",
+        "verb": "reach",
+        "speed": "Slow",
+        "weight": "Light",
+        "flow": "Smooth",
+        "level": "Middle",
+        "path": "In place",
+        "spot": [
+          0.16,
+          0.63
+        ]
+      },
+      {
+        "word": "drifting mist",
+        "verb": "float",
+        "speed": "Slow",
+        "weight": "Light",
+        "flow": "Smooth",
+        "level": "Middle",
+        "path": "Curved",
+        "spot": [
+          0.63,
+          0.43
+        ]
+      },
+      {
+        "word": "a low moon",
+        "verb": "sink",
+        "speed": "Slow",
+        "weight": "Light",
+        "flow": "Smooth",
+        "level": "Low",
+        "path": "In place",
+        "spot": [
+          0.84,
+          0.16
+        ]
+      }
+    ]
+  },
+  {
+    "id": "storm",
+    "name": "Storm",
+    "kind": "painting",
+    "title": "Storm over the Hills",
+    "author": "Original Romantic-inspired painting",
+    "profile": [
+      1,
+      1,
+      1,
+      0.75
+    ],
+    "path": "Zigzag",
+    "items": [
+      {
+        "word": "lightning",
+        "verb": "leap",
+        "speed": "Quick",
+        "weight": "Strong",
+        "flow": "Sharp",
+        "level": "High",
+        "path": "Zigzag",
+        "spot": [
+          0.82,
+          0.19
+        ]
+      },
+      {
+        "word": "bending trees",
+        "verb": "sway",
+        "speed": "Slow",
+        "weight": "Strong",
+        "flow": "Smooth",
+        "level": "Low",
+        "path": "In place",
+        "spot": [
+          0.15,
+          0.55
+        ]
+      },
+      {
+        "word": "rolling clouds",
+        "verb": "roll",
+        "speed": "Slow",
+        "weight": "Strong",
+        "flow": "Smooth",
+        "level": "High",
+        "path": "Curved",
+        "spot": [
+          0.45,
+          0.19
+        ]
+      },
+      {
+        "word": "pouring rain",
+        "verb": "scatter",
+        "speed": "Quick",
+        "weight": "Strong",
+        "flow": "Sharp",
+        "level": "Middle",
+        "path": "Zigzag",
+        "spot": [
+          0.78,
+          0.62
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rain",
+    "name": "Rain",
+    "kind": "sound",
+    "title": "Rain on a Roof",
+    "author": "A twelve-second sound, made in code",
+    "profile": [
+      1,
+      0,
+      1,
+      0.25
+    ],
+    "path": "Zigzag",
+    "items": [
+      {
+        "word": "first drops",
+        "verb": "shiver",
+        "speed": "Quick",
+        "weight": "Light",
+        "flow": "Sharp",
+        "level": "High",
+        "path": "In place",
+        "spot": null
+      },
+      {
+        "word": "patter",
+        "verb": "scatter",
+        "speed": "Quick",
+        "weight": "Light",
+        "flow": "Sharp",
+        "level": "Low",
+        "path": "Zigzag",
+        "spot": null
+      },
+      {
+        "word": "a gust",
+        "verb": "glide",
+        "speed": "Quick",
+        "weight": "Light",
+        "flow": "Smooth",
+        "level": "Middle",
+        "path": "Zigzag",
+        "spot": null
+      },
+      {
+        "word": "slow drips",
+        "verb": "freeze",
+        "speed": "Slow",
+        "weight": "Light",
+        "flow": "Sharp",
+        "level": "Low",
+        "path": "In place",
+        "spot": null
+      }
+    ]
+  },
+  {
+    "id": "drum",
+    "name": "Drum",
+    "kind": "sound",
+    "title": "A Big Slow Drum",
+    "author": "A twelve-second sound, made in code",
+    "profile": [
+      0,
+      1,
+      1,
+      0.25
+    ],
+    "path": "Straight",
+    "items": [
+      {
+        "word": "BOOM",
+        "verb": "stomp",
+        "speed": "Slow",
+        "weight": "Strong",
+        "flow": "Sharp",
+        "level": "Low",
+        "path": "Straight",
+        "spot": null
+      },
+      {
+        "word": "silence",
+        "verb": "freeze",
+        "speed": "Slow",
+        "weight": "Light",
+        "flow": "Smooth",
+        "level": "Middle",
+        "path": "In place",
+        "spot": null
+      },
+      {
+        "word": "boom boom boom",
+        "verb": "stomp",
+        "speed": "Quick",
+        "weight": "Strong",
+        "flow": "Sharp",
+        "level": "Low",
+        "path": "Straight",
+        "spot": null
+      },
+      {
+        "word": "fading",
+        "verb": "melt",
+        "speed": "Slow",
+        "weight": "Light",
+        "flow": "Smooth",
+        "level": "Low",
+        "path": "In place",
+        "spot": null
+      }
+    ]
+  }
+]

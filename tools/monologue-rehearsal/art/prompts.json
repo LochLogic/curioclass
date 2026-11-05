@@ -1,0 +1,96 @@
+{
+  "house_style": "Sophisticated theatrical environment painting for a high school acting studio. Rich gouache and oil brush texture, cinematic directional light, deep atmospheric perspective, tactile stone and wood, restrained jewel colors, luminous highlights. A complete environment with foreground, middle distance and background. Empty spaces only. No people, faces, body parts, text, letters, numbers, logos or watermarks.",
+  "assets": [
+    {
+      "name": "mr-viola",
+      "prompt": "A narrow sunlit street in an old Mediterranean seaside town, a small gold ring lying clearly on foreground cobbles. Ochre plaster, blue shutters, a distant glimpse of sea. Low oblique sunlight from upper left. Landscape 16:10.",
+      "aspect": "16:10",
+      "width": 1200,
+      "quality": 74,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mr-marullus",
+      "prompt": "An ancient Roman street with columns, flower petals and garlands scattered on paving stones after a celebration. Monumental pale columns recede in perspective, warm sunlight from left, rich red petals in foreground. Landscape 16:10. Nonfigurative geometric and acanthus-leaf stone relief only; no statues or human figure carvings.",
+      "aspect": "16:10",
+      "width": 1200,
+      "quality": 74,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "redraw_note": "Replaced figurative arch relief with geometric and leaf stonework."
+    },
+    {
+      "name": "mr-helena",
+      "prompt": "A palace garden in ancient Athens at dusk, marble steps, cypress trees and the first stars. Violet blue air and warm last light from the left on marble. An intimate empty garden, deep perspective. Landscape 16:10.",
+      "aspect": "16:10",
+      "width": 1200,
+      "quality": 74,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mr-hale",
+      "prompt": "A cold gloomy early twentieth century farmhouse kitchen in winter, unwashed pans, a loaf of bread on a rough table, jars of preserved fruit on a shelf, frost on the window. Cold directional window light from left, muted brown and gray green. Landscape 16:10.",
+      "aspect": "16:10",
+      "width": 1200,
+      "quality": 74,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mr-ghost",
+      "prompt": "An empty black box rehearsal room with a single bare bulb ghost light on a stand and two empty chairs. Scuffed dark wooden stage floor, folds of black curtains, gentle amber light from the bulb at left. Wide 16:9.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mr-panel",
+      "prompt": "A long audition table with exactly three empty chairs, water glasses and a stack of entirely blank papers in a bright studio. Actor viewpoint from the playing space. Daylight from left. Landscape 4:3.",
+      "aspect": "4:3",
+      "width": 1200,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mr-class",
+      "prompt": "An empty high school classroom with desks pushed back to make a playing space, blank walls and blank board. Sunlight from tall windows at left catches dust over the empty central floor. Landscape 4:3.",
+      "aspect": "4:3",
+      "width": 1200,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mr-young",
+      "prompt": "An empty school library reading corner with low cushions and a small rug, warmly lit from windows at left, low wooden bookshelves with plain unlettered book spines. Cozy intimate playing space. Landscape 4:3.",
+      "aspect": "4:3",
+      "width": 1200,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mr-community",
+      "prompt": "An empty school auditorium seen from the stage, rows of red seats and warm house lights, polished stage edge in foreground, modest school theater with rich depth. All chairs empty, soft light from left. Landscape 4:3.",
+      "aspect": "4:3",
+      "width": 1200,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    }
+  ]
+}

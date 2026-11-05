@@ -1,0 +1,1204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>School Wall Mural · Curio Class</title>
+<meta name="description" content="Build a community mural rubric, test four painted designs on the wall, and defend your choice. Grades 6-8. Works offline.">
+<!-- Curio Class. NCAS VA:Pr4, Pr5, Pr6, Re9, Cn10. Code MIT; content CC BY 4.0.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Neighbors and scores are fictional. Fade rates and glance thresholds are teaching models.
+Sources, computations and limitations in notes.md. No network requests. -->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f3f1ec;--ink:#1e2328;--muted:#5a6068;--line:#d4cec0;--focus:#b04805;
+  --brand:#1f5fa8;--btn:#184d89;--btn-line:#92b4da;--head-ink:#fff;--panel:#fff;
+}
+body {grid-template-columns:minmax(0,1fr);}
+main,#stage,#workspace,.panel {min-width:0;}
+header {padding:10px 16px;gap:8px;background:linear-gradient(110deg,#174778,#1f5fa8);}
+h1 {font:700 27px Georgia,serif;} h1 small {font-size:13px;letter-spacing:.02em;}
+.seg {border-radius:7px;} .seg button,.icon-btn {min-height:44px;font-size:14px;padding:0 12px;}
+.seg button[aria-pressed=true] {background:#fff2c7;color:#24384c;}
+main {grid-template-columns:minmax(0,1fr) 350px;overflow:hidden;}
+.panel {grid-column:2;grid-row:1;padding:14px;gap:10px;border-left:1px solid var(--line);}
+#stage {grid-column:1;grid-row:1;min-height:0;display:flex;flex-direction:column;background:#e8e3d8;}
+#stage::before {content:'';position:absolute;inset:0;pointer-events:none;opacity:.13;
+  background:repeating-linear-gradient(110deg,transparent 0 3px,#baac8b 3px 4px);}
+#leader {z-index:1;min-height:48px;display:flex;align-items:center;gap:10px;padding:5px 18px;
+  background:#fdfbf5;border-bottom:1px solid #bcb29b;font-size:12px;}
+#leader img {width:110px;height:29px;object-fit:fill;border:1px solid #bbb;} #leader strong {font-size:15px;}
+#leader .preview {margin-left:auto;color:var(--muted);font-size:11px;}
+#workspace {position:relative;flex:1;min-height:0;padding:22px;overflow:auto;}
+#workspace h2 {margin:0;font:700 clamp(23px,2.8vw,36px)/1.12 Georgia,serif;}
+.eyebrow {color:var(--brand);font-weight:800;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;}
+.deck {font-size:14px;color:var(--muted);margin:8px 0 16px;}
+.hint {font-size:15px;line-height:1.35;min-height:67px;margin:0;padding:10px;background:#edf3fa;border-left:4px solid var(--brand);}
+button {min-height:44px;min-width:44px;border:1px solid #b5bdc4;background:#fff;border-radius:6px;padding:7px 10px;}
+button:hover {border-color:var(--brand);box-shadow:0 2px 6px #132b4818;}
+button[aria-pressed=true] {background:#e5effa;border-color:var(--brand);color:#174778;}
+button:disabled {opacity:.45;cursor:default;}
+.primary {background:var(--brand);color:white;font-weight:700;border-color:var(--brand);}
+.row {display:flex;gap:6px;flex-wrap:wrap;align-items:center;} .row>* {flex:1;}
+.small {font-size:12px;line-height:1.35;color:var(--muted);margin:0;}
+.panel h3 {font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin:4px 0;}
+#controls {display:flex;flex-direction:column;gap:9px;}
+.panel:has(#view-sidewalk) .row {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));}
+.footer {margin-top:auto;border-top:1px solid var(--line);padding-top:8px;display:flex;gap:8px;align-items:center;}
+.footer .small {flex:1;}
+.neighbors {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
+.neighbor {background:#fdfbf5;border:1px solid #c8bfac;border-radius:3px;box-shadow:0 4px 9px #46351924;overflow:hidden;
+  display:flex;flex-direction:column;min-height:0;}
+.neighbor:nth-child(2n) {transform:rotate(.6deg);} .neighbor:nth-child(3n) {transform:rotate(-.5deg);}
+.neighbor:has(.quote) {overflow:auto;}
+.front {padding:0;border:0;border-radius:0;text-align:left;background:transparent;flex:1;}
+.neighbor img {width:100%;aspect-ratio:4/3;object-fit:cover;display:block;}
+.byline {display:block;padding:8px 10px;line-height:1.25;font-size:14px;}
+.byline small {display:block;color:var(--muted);font-size:11px;margin-top:3px;}
+.quote {padding:12px;display:flex;flex-direction:column;gap:8px;flex:1;}
+.quote blockquote {font:italic 17px/1.35 Georgia,serif;margin:0;flex:1;}
+.quote strong {font-size:12px;} .quote button {font-size:12px;text-align:left;}
+.quote .close {min-height:44px;font-size:12px;margin-top:auto;}
+.chips {display:flex;flex-wrap:wrap;gap:5px;}
+.chip {border-left:5px solid var(--c);padding:6px 8px;background:#f3f1ec;font-size:12px;border-radius:3px;}
+.rubric {display:flex;flex-direction:column;gap:5px;}
+.weight {display:grid;grid-template-columns:minmax(0,1fr) 44px 22px 44px;gap:3px;align-items:center;
+  border-left:4px solid var(--c);padding-left:8px;min-height:48px;}
+.weight label {font-size:13px;font-weight:700;line-height:1.15;}
+.weight label small {display:block;font-size:10px;color:var(--muted);font-weight:400;margin-top:3px;}
+.weight output {text-align:center;font-weight:800;font-size:18px;} .weight.zero label {opacity:1;color:var(--muted);}
+.weight button {font-size:20px;padding:0;} #add-list {display:grid;gap:4px;}
+#add-list button {text-align:left;font-size:12px;}
+#controls:has(#add-list:not([hidden])) #rubric,
+#controls:has(#add-list:not([hidden])) #changes {display:none;}
+.ranking {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:32px;align-items:stretch;}
+.rank-card {position:relative;display:flex;flex-direction:column;background:#fffdf7;box-shadow:0 7px 14px #392d2424;
+  border:1px solid #b9ae99;padding:0;text-align:left;min-width:0;border-radius:2px;}
+.rank-card.first {border-top:5px solid var(--brand);transform:translateY(-12px);}
+.rank-head {padding:15px 12px 10px;display:flex;justify-content:space-between;align-items:center;}
+.rank-head b {font:italic 32px Georgia,serif;color:var(--brand);} .rank-head span {font-size:12px;color:var(--muted);}
+.painting {position:relative;overflow:hidden;background:#dfded7;}
+.painting img {display:block;width:100%;aspect-ratio:4/1;object-fit:fill;}
+.rank-card .painting {margin:0 8px;box-shadow:0 2px 5px #0003;}
+.rank-card .painting img {aspect-ratio:2/1;object-fit:cover;}
+.rank-card .name {font:700 19px/1.1 Georgia,serif;margin:16px 12px 8px;min-height:42px;}
+.total {margin:0 12px;font-size:12px;color:var(--muted);} .total strong {font:700 30px Georgia,serif;color:var(--ink);}
+.bar {display:flex;gap:1px;min-height:12px;height:12px;margin:10px 12px;background:#e8e4dc;}
+.bar span {background:var(--c);transition:width .4s;}
+.open {padding:10px 12px;font-size:12px;color:var(--brand);margin-top:auto;}
+.legend {display:flex;gap:7px 14px;flex-wrap:wrap;margin-top:24px;font-size:11px;color:#41464c;}
+.legend span::before {content:'';display:inline-block;width:9px;height:9px;background:var(--c);margin-right:4px;}
+.notice {min-height:33px;font-size:13px;color:#174778;background:#f8f5eb;border:1px solid #c9c0ae;padding:8px 12px;margin:18px 0 0;}
+.large-paint {margin:18px 0 10px;box-shadow:0 7px 18px #32281833;border:8px solid #fffdf7;}
+.banner {position:absolute;left:19%;top:17%;width:61%;font:700 clamp(10px,1.2vw,20px) Georgia,serif;
+  text-align:center;color:#254565;white-space:nowrap;}
+.score-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;}
+.score-line {background:#fffdf7;border-left:4px solid var(--c);padding:7px 10px;font-size:12px;}
+.score-line b {display:block;margin-bottom:3px;}
+.stage-actions {display:flex;justify-content:space-between;gap:8px;align-items:center;}
+.street-stage {position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#c5d3d7;margin-top:14px;
+  box-shadow:0 8px 22px #25332333;}
+.backdrop {position:absolute;inset:0;width:100%;height:100%;}
+.wall-art {position:absolute;left:0;top:0;width:1000px;height:250px;transform-origin:0 0;}
+.wall-art .painting,.wall-art img {width:100%;height:100%;aspect-ratio:auto;} .wall-art .banner {font-size:25px;}
+.readout {position:absolute;left:14px;bottom:14px;max-width:86%;background:#fffdf7;border:1px solid #b4ac98;
+  padding:11px 14px;box-shadow:0 3px 9px #0002;font-size:13px;line-height:1.35;}
+.readout strong {display:block;font:700 22px Georgia,serif;color:#174778;margin-top:3px;}
+.readout small {display:block;font-size:10px;margin-top:4px;color:var(--muted);}
+.distance {position:absolute;top:12px;left:12px;background:#153d64;color:white;padding:7px 11px;font-size:12px;}
+.bus-clip {position:absolute;left:4.5%;top:13%;width:82%;height:67%;overflow:hidden;border-radius:5%;}
+.bus-clip {clip-path:polygon(0 0,100% 15%,100% 64%,90% 65%,80% 96%,0 100%);}
+.bus-wall {position:absolute;inset:0;transform:translateX(110%);background:#eee2c6;}
+.bus-wall .painting {position:absolute;left:0;top:20%;width:100%;height:57%;} .bus-wall img {height:100%;}
+.bus-wall.riding {animation:ride 1.7s linear both;filter:blur(.7px);}
+@keyframes ride {from{transform:translateX(105%)}to{transform:translateX(-105%)}}
+.calm .bus-wall.riding {animation:none!important;transform:translateX(0);filter:none;}
+.bus-prompt {display:flex;gap:7px;flex-wrap:wrap;margin-top:10px;} .bus-prompt button {flex:1;font-size:13px;}
+.swatches {display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin-top:10px;}
+.swatch {padding:5px;background:#fffdf7;border:1px solid #c8bfac;font-size:10px;line-height:1.2;}
+.swatch i {display:block;height:25px;margin-bottom:4px;border:1px solid #0002;} .swatch b {display:block;}
+input[type=range] {width:100%;min-height:44px;accent-color:var(--brand);}
+.change {padding:8px;border-left:4px solid #4a6b3a;background:#f0f4eb;font-size:12px;} .change button {margin-top:5px;}
+.board-scene {position:relative;aspect-ratio:16/9;overflow:hidden;margin-top:12px;box-shadow:0 6px 15px #0002;max-height:290px;}
+.easel {position:absolute;left:36%;top:32%;width:32%;height:18%;box-shadow:0 1px 3px #0003;}
+.easel .painting,.easel img {height:100%;} .easel .banner {font-size:8px;}
+.nameplates {position:absolute;left:7%;right:5%;bottom:10%;display:flex;justify-content:space-between;font:700 11px Georgia,serif;}
+.nameplates span {background:#e7cf90;padding:4px 7px;border:1px solid #896c36;}
+.board-question {background:#fffdf7;padding:15px;border-left:5px solid var(--brand);margin-top:12px;}
+.board-question h3 {font:700 21px Georgia,serif;margin:0 0 10px;} .answers {display:flex;flex-direction:column;gap:7px;}
+.answer {text-align:left;font-size:13px;line-height:1.3;} .answer small {display:block;margin-top:5px;color:var(--muted);}
+.answer[aria-disabled=true] {background:repeating-linear-gradient(135deg,#f0eeea 0 6px,#e8e5df 6px 7px);color:#5a6068;}
+.board-done {padding:15px;background:#fffdf7;border:1px solid #c8bfac;font-size:14px;margin-top:12px;}
+.board-done h3 {font:700 24px Georgia,serif;margin:0 0 10px;}
+.glint {animation:glint 6s ease-in-out infinite;} @keyframes glint {50%{box-shadow:0 0 15px #e6c97b66}}
+.calm .glint {animation:none;}
+.neighbors {height:calc(100% - 108px);min-height:300px;grid-template-rows:repeat(2,minmax(0,1fr));}
+.front {display:flex;flex-direction:column;}
+.neighbor img {height:0;flex:1;min-height:0;aspect-ratio:auto;}
+.byline {flex:none;}
+.hint {flex-shrink:0;}
+.factory-revision {position:absolute;inset:0;width:100%;height:100%;}
+.street-stage {aspect-ratio:auto;height:clamp(140px,calc(100vh - 360px),520px);}
+.street-stage .backdrop {object-fit:fill;}
+@media (max-width:1100px) {
+  header {gap:5px;padding:6px 10px;} h1 {font-size:22px;} h1 small {font-size:11px;}
+  .seg button,.icon-btn {padding:0 8px;font-size:12px;} main {grid-template-columns:minmax(0,1fr) 310px;}
+  #workspace {padding:15px;} .ranking {gap:7px;} .rank-card .name {font-size:16px;margin:12px 8px 6px;}
+  .rank-head b {font-size:26px;} .rank-head {padding:10px 8px;} .neighbors {gap:8px;}
+  .quote blockquote {font-size:14px;} .quote {padding:8px;}
+}
+@media (max-width:999px) and (min-height:651px) {
+  body {height:auto;min-height:100vh;} main {display:flex;flex-direction:column;overflow:visible;}
+  #stage {order:0;min-height:480px;} .panel {order:1;border-left:0;overflow:visible;}
+  #workspace {overflow:visible;} .rubric {display:grid;grid-template-columns:1fr 1fr;} .footer {margin-top:4px;}
+  .neighbors {height:400px;}
+  #stage {min-height:0;}
+  .ranking {margin-top:20px;}
+  .rank-head {padding:7px;}
+  .rank-card .painting img {aspect-ratio:3/1;}
+  .rank-card .name {min-height:28px;margin:10px 8px 4px;}
+  .total strong {font-size:24px;}
+  .open {padding:7px;}
+  .legend {margin-top:12px;}
+  .notice {margin-top:10px;}
+  .hint {min-height:44px;}
+  .street-stage {height:auto;aspect-ratio:16/9;}
+}
+@media (max-height:650px) and (min-width:600px) {
+  header {padding:4px 8px;gap:4px;} h1 {font-size:18px;} h1 small {display:none;}
+  .seg button,.icon-btn {padding:0 6px;font-size:11px;} main {grid-template-columns:minmax(0,1fr) 260px;}
+  .panel {padding:7px;gap:5px;} .hint {font-size:12px;min-height:48px;padding:6px;}
+  .panel h3 {font-size:10px;margin:0;} #controls {gap:5px;} .small {font-size:10px;}
+  #leader {padding:4px 8px;min-height:36px;gap:6px;font-size:10px;} #leader strong {font-size:12px;}
+  #leader img {width:70px;height:22px;} #leader .preview {display:none;}
+  #workspace {padding:10px;} #workspace h2 {font-size:22px;} .deck {font-size:11px;margin:5px 0 8px;}
+  .eyebrow {font-size:10px;margin-bottom:4px;} .neighbors {gap:6px;}
+  .neighbor img {aspect-ratio:1.9/1;} .byline {font-size:11px;padding:5px;} .byline small {font-size:10px;}
+  .quote blockquote {font-size:12px;} .quote button {font-size:10px;padding:4px;}.quote {padding:6px;gap:5px;}
+  .ranking {margin-top:24px;gap:5px;} .rank-card .name {font-size:13px;min-height:32px;margin:9px 6px 5px;}
+  .rank-head {padding:8px 5px;} .rank-head b {font-size:22px;} .rank-head span {font-size:10px;}
+  .rank-card .painting {margin:0 4px;} .total {margin:0 6px;font-size:10px;} .total strong {font-size:22px;}
+  .bar {margin:8px 6px;height:9px;min-height:9px;} .open {font-size:10px;padding:8px 6px;}
+  .legend {font-size:10px;gap:4px 8px;margin-top:14px;} .notice {font-size:11px;padding:6px;margin-top:10px;min-height:29px;}
+  .weight {min-height:44px;grid-template-columns:minmax(0,1fr) 44px 17px 44px;padding-left:4px;gap:1px;}
+  .weight label {font-size:10px;} .weight label small {display:none;} .rubric {gap:2px;} .weight output {font-size:15px;}
+  .footer {padding-top:4px;} .footer .small {display:none;} .score-grid {gap:3px;} .score-line {padding:4px 6px;font-size:10px;}
+  .large-paint {margin:8px 0;border-width:4px;} .street-stage {margin-top:8px;}
+  .readout {left:7px;bottom:7px;padding:6px 8px;font-size:10px;}.readout strong {font-size:15px;}.readout small {display:none;}
+  .distance {font-size:10px;padding:5px;top:6px;left:6px;}.board-scene {max-height:110px;margin-top:6px;}
+  .board-question {padding:8px;margin-top:6px;}.board-question h3 {font-size:16px;margin-bottom:6px;}
+  .answer {font-size:11px;}.answer small {font-size:10px;}.swatches {gap:3px;margin-top:5px;}.swatch {padding:3px;}
+  .swatch i {height:12px;}
+  .nameplates {font-size:10px;left:4%;right:4%;}
+  .nameplates span {padding:2px;}
+  .neighbors {height:calc(100% - 75px);min-height:210px;}
+  .neighbors:has(.quote) .neighbor:not(:has(.quote)) {visibility:hidden;}
+  .neighbors:has(.quote) .neighbor:has(.quote) {position:absolute;inset:75px 10px 10px;transform:none;z-index:2;}
+  .neighbors:has(.quote) .quote {max-width:100%;}
+  .ranking {margin-top:20px;}
+  #workspace:has(.ranking) .deck {display:none;}
+  #workspace:has(.ranking) h2 {font-size:19px;}
+  .rank-card .name {font-size:12px;margin-top:7px;}
+  .rank-card .painting img {aspect-ratio:2.4/1;}
+  .open {padding:6px;}
+}
+@media (max-width:599px) {
+  body {height:auto;} header {gap:5px;padding:8px;} h1 {width:100%;font-size:25px;} h1 small {display:block;font-size:12px;}
+  .seg {width:100%;} .seg button {flex:1;padding:0 4px;font-size:13px;} .icon-btn {flex:1;font-size:12px;}
+  main {display:flex;flex-direction:column;overflow:visible;} #stage {min-height:400px;order:0;}
+  #workspace {padding:12px;overflow:visible;} #workspace h2 {font-size:27px;} #leader {padding:5px 9px;font-size:11px;}
+  #leader img {width:70px;height:24px;} #leader strong {font-size:12px;} #leader .preview {display:none;}
+  .panel {order:1;overflow:visible;border-left:0;padding:12px;} .rubric {display:flex;}
+  .neighbors {grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;} .byline {font-size:12px;}
+  .neighbor img {aspect-ratio:1.5/1;} .quote blockquote {font-size:14px;}.quote button {font-size:11px;}
+  .ranking {display:flex;flex-direction:column;margin-top:15px;gap:9px;}
+  .rank-card {display:grid;grid-template-columns:42px 105px 1fr;align-items:center;padding:6px;}
+  .rank-card.first {transform:none;border-top:1px solid #b9ae99;border-left:5px solid var(--brand);}
+  .rank-head {grid-column:1;grid-row:1/4;padding:4px;flex-direction:column;gap:6px;}.rank-head b {font-size:26px;}
+  .rank-card .painting {grid-column:2;grid-row:1/4;margin:0;}.rank-card .painting img {aspect-ratio:1.2/1;object-fit:cover;}
+  .rank-card .name {grid-column:3;margin:4px 8px;font-size:17px;min-height:0;}
+  .total {grid-column:3;font-size:11px;margin:0 8px;}.total strong {font-size:20px;}
+  .rank-card .bar {grid-column:3;margin:6px 8px;height:8px;min-height:8px;}.open {display:none;}
+  .legend {font-size:10px;margin-top:12px;gap:6px 10px;}.notice {font-size:12px;margin-top:12px;}
+  .score-grid {grid-template-columns:1fr;}.stage-actions button {font-size:12px;}
+  .street-stage {height:auto;aspect-ratio:1.35/1;}.readout {max-width:90%;font-size:11px;padding:7px;}
+  .readout strong {font-size:17px;}.swatches {grid-template-columns:repeat(3,1fr);}
+  .bus-prompt {gap:5px;}.bus-prompt button {font-size:11px;padding:5px;}.board-question {padding:10px;}
+  .nameplates {font-size:10px;}.nameplates span {padding:2px;}.easel .banner {font-size:5px;}.footer {margin-top:10px;}
+  .neighbors {height:560px;grid-template-rows:repeat(3,minmax(0,1fr));}
+  .rank-head span {font-size:0;}
+  .rank-head span::after {content:attr(data-short);font-size:11px;}
+}
+/* Keep a whole mural visible, including the landmarks at its edges. */
+.rank-card .painting img {aspect-ratio:4/1;object-fit:fill;}
+.brief {display:none;}
+.easel {left:35%;top:20%;width:31%;height:18%;}
+.nameplates {left:12%;right:6%;bottom:12%;}
+.board-scene {width:min(100%,700px);max-height:none;}
+.board-done {border-top:4px solid var(--brand);}
+.board-done .concern {border-left:3px solid #9a6330;padding-left:10px;}
+.change {display:flex;align-items:center;justify-content:space-between;gap:6px;}
+.change button {flex:none;margin:0;}
+#changes:empty {display:none;}
+.change-list {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;margin-top:5px;}
+.change-list .change {padding:4px;font-size:10px;}
+.change-list .full {display:none;}
+.change-list .brief {display:inline;}
+#change-details summary {min-height:44px;border:1px solid #b5bdc4;border-radius:6px;padding:10px;
+  background:#f0f4eb;cursor:pointer;font-size:13px;}
+#change-details {grid-column:1/-1;min-width:0;width:100%;}
+#rubric-actions button {font-size:13px;}
+.panel:has(#rubric) .footer {min-height:0;}
+#controls:has(#change-details[open])>:not(#changes) {display:none!important;}
+#controls:has(#summers) {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;}
+#controls:has(#summers)>h3:first-child,#controls:has(#summers)>.row,
+#controls:has(#summers)>p,#controls:has(#summers)>#changes,#controls:has(#summers)>#to-board {grid-column:1/-1;}
+#controls:has(#summers)>h3:not(:first-child) {display:none;}
+#controls:has(#summers)>p {font-size:10px;}
+.readout small {display:block;}
+@media (min-width:1000px) {
+  .neighbors:has(#n-5 .quote) #n-2 {display:none;}
+  .neighbors:has(#n-5 .quote) #n-5 {grid-column:3;grid-row:1/3;transform:none;}
+}
+@media (min-width:1000px) and (max-width:1099px) {
+  .board-scene {width:min(100%,420px);}
+}
+@media (min-width:1100px) {
+  #workspace:has(.board-scene) {display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
+    grid-template-rows:auto auto minmax(0,1fr);gap:0 14px;align-content:start;}
+  #workspace:has(.board-scene)>h2,#workspace:has(.board-scene)>.eyebrow {grid-column:1/-1;}
+  .board-scene {grid-column:1;grid-row:3;align-self:start;width:100%;}
+  .board-question,.board-done {grid-column:2;grid-row:3;align-self:start;}
+}
+@media (max-width:999px) {
+  html,body {height:100%;min-height:0;overflow:hidden;}
+  body {grid-template-rows:auto minmax(0,1fr);}
+  main {display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;overflow:hidden;}
+  #stage {grid-column:1;grid-row:1;min-height:0;}
+  .panel {grid-column:1;grid-row:2;padding:7px;gap:5px;overflow:auto;border-top:1px solid var(--line);}
+  #workspace {overflow:auto;padding:10px;}
+  .hint {font-size:12px;min-height:44px;padding:6px;}
+  .panel h3 {font-size:10px;margin:0;}
+  #controls {gap:5px;}
+  .small {font-size:10px;}
+  .rubric {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px 6px;}
+  .weight {min-height:44px;padding-left:4px;gap:1px;grid-template-columns:minmax(0,1fr) 44px 16px 44px;}
+  .weight label {font-size:10px;}
+  .weight label .full {display:none;}
+  .weight label .brief {display:inline;}
+  .weight label small {display:none;}
+  .weight output {font-size:15px;}
+  .footer {margin-top:0;padding-top:4px;min-height:44px;}
+  .footer .small {display:block;font-size:10px;}
+  #add-list {grid-template-columns:repeat(2,minmax(0,1fr));}
+  #add-list button {font-size:10px;}
+  #controls:has(#summers) {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;}
+  #controls:has(#summers)>h3:first-child,#controls:has(#summers)>.row,
+  #controls:has(#summers)>#changes,#controls:has(#summers)>#to-board {grid-column:1/-1;}
+  #controls:has(#summers)>p,#controls:has(#summers)>h3:not(:first-child) {display:none;}
+  #changes {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;}
+  #changes h3 {grid-column:1/-1;}
+  .change {font-size:10px;padding:4px;}
+  .change button {font-size:11px;padding:4px;}
+  #workspace:has(.neighbors) {display:flex;flex-direction:column;overflow:hidden;}
+  #workspace:has(.neighbors)>h2,#workspace:has(.neighbors)>.eyebrow,#workspace:has(.neighbors)>.deck {flex:none;}
+  .neighbors {flex:1;height:auto;min-height:0;}
+  .neighbors:has(.quote) .neighbor:not(:has(.quote)) {visibility:hidden;}
+  .neighbors:has(.quote) .neighbor:has(.quote) {position:absolute;inset:65px 10px 10px;transform:none;z-index:2;}
+  .quote blockquote {font-size:15px;}
+  .quote {gap:6px;}
+  .rank-card .painting img {aspect-ratio:4/1;object-fit:fill;}
+  .board-scene {width:min(100%,420px);}
+  .board-question h3 {font-size:17px;}
+  #workspace:has(.bus-prompt) .street-stage {height:clamp(120px,calc(100dvh - 660px),300px);aspect-ratio:auto;}
+  #controls:has(#present) {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));}
+  #controls:has(#present)>h3,#controls:has(#present)>p {grid-column:1/-1;}
+  #controls:has(#present)>p:last-child {display:none;}
+}
+@media (max-width:900px) and (max-height:650px) and (min-width:600px) {
+  main {grid-template-columns:minmax(0,1fr) 350px;grid-template-rows:minmax(0,1fr);}
+  .panel {grid-column:2;grid-row:1;border-top:0;}
+  .panel .hint {min-height:44px;}
+  #workspace:has(.ranking)>.eyebrow,#workspace:has(.ranking)>h2,#workspace:has(.ranking)>.deck,
+  #workspace:has(.ranking)>.legend {display:none;}
+  .ranking {display:flex;flex-direction:column;gap:7px;margin-top:4px;}
+  .rank-card {display:grid;grid-template-columns:29px minmax(80px,1fr) minmax(70px,1fr);padding:5px;align-items:center;}
+  .rank-card.first {transform:none;border-top:1px solid #b9ae99;border-left:4px solid var(--brand);}
+  .rank-head {grid-column:1;grid-row:1/4;padding:0;}
+  .rank-head b {font-size:20px;}
+  .rank-head span {display:none;}
+  .rank-card .painting {grid-column:2;grid-row:1/4;margin:0 4px 0 0;}
+  .rank-card .name {grid-column:3;font-size:12px;min-height:0;margin:0 2px 2px;}
+  .total {grid-column:3;font-size:10px;margin:0 2px;}
+  .total strong {font-size:17px;}
+  .rank-card .bar {grid-column:3;margin:3px 2px;height:6px;min-height:6px;}
+  .open {display:none;}
+  .notice {font-size:10px;margin-top:7px;padding:5px;}
+  .large-paint {margin:6px 0;}
+  #workspace:has(.large-paint) .deck {display:none;}
+  .score-grid {grid-template-columns:1fr;}
+  .street-stage {height:170px;}
+  .board-scene {width:100%;max-height:none;aspect-ratio:16/9;}
+  .board-question {padding:7px;}
+  .board-scene:has(+.board-done) {display:none;}
+  .board-scene {width:142px;}
+  #workspace:has(.board-scene)>.eyebrow {display:none;}
+  #workspace:has(.board-scene)>h2 {font-size:17px;}
+  .board-scene .nameplates {display:none;}
+  #controls:has(#summers)>.row {grid-template-columns:repeat(4,minmax(0,1fr));}
+  #controls:has(#summers)>.row button {font-size:11px;padding:4px;}
+  #workspace:has(.neighbors)>.eyebrow,#workspace:has(.neighbors)>.deck {display:none;}
+  #workspace:has(.neighbors)>h2 {font-size:19px;margin-bottom:8px;}
+  .byline small {display:none;}
+  .neighbors:has(.quote) .neighbor:has(.quote) {inset:65px 10px 10px;}
+}
+@media (min-width:600px) and (max-width:999px) and (min-height:651px) {
+  #workspace:has(.swatches) .street-stage {height:clamp(130px,calc(100dvh - 670px),300px);aspect-ratio:auto;}
+  #controls:has(#summers)>.row {grid-template-columns:repeat(4,minmax(0,1fr));}
+}
+@media (max-width:599px) {
+  header {gap:4px;padding:5px 8px;}
+  h1 {font-size:20px;}
+  h1 small {display:none;}
+  .seg {width:100%;}
+  .icon-btn {flex:1;}
+  #leader {min-height:36px;}
+  #workspace>.eyebrow,#workspace>.deck {display:none;}
+  #workspace h2 {font-size:20px;}
+  .neighbors {height:auto;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));}
+  .byline {font-size:10px;padding:4px;}
+  .byline small {display:none;}
+  .neighbors:has(.quote) .neighbor:has(.quote) {inset:38px 10px 5px;}
+  .quote {padding:6px;}
+  .quote blockquote {font-size:13px;}
+  #workspace:has(.ranking)>h2,#workspace:has(.ranking)>.legend {display:none;}
+  .ranking {margin-top:0;gap:4px;}
+  .rank-card {grid-template-columns:28px 110px 1fr;padding:4px;}
+  .rank-head {padding:0;}
+  .rank-head b {font-size:20px;}
+  .rank-head span {display:none;}
+  .rank-card .painting img {aspect-ratio:4/1;object-fit:fill;}
+  .rank-card .name {font-size:12px;margin:0 5px;}
+  .total {font-size:10px;margin:0 5px;}
+  .total strong {font-size:16px;}
+  .rank-card .bar {margin:3px 5px;height:6px;min-height:6px;}
+  .notice {font-size:10px;margin-top:5px;padding:5px;}
+  .street-stage {margin-top:6px;height:145px;aspect-ratio:auto;}
+  .readout {left:5px;bottom:5px;font-size:10px;padding:5px;}
+  .readout strong {font-size:14px;}
+  .readout small {font-size:10px;}
+  .distance {font-size:10px;padding:4px;top:5px;left:5px;}
+  .swatches {gap:3px;margin-top:4px;}
+  .swatches {grid-template-columns:repeat(var(--swatch-count),minmax(0,1fr));}
+  .swatch .full {display:none;}
+  .swatch .brief {display:inline;}
+  .swatch {font-size:10px;padding:3px;}
+  .swatch i {height:12px;}
+  .bus-prompt {margin-top:5px;}
+  .board-scene {width:220px;margin-top:5px;}
+  .board-scene:has(+.board-done) {display:none;}
+  .board-question {padding:7px;margin-top:5px;}
+  .board-question h3 {font-size:16px;margin-bottom:6px;}
+  .nameplates {font-size:10px;}
+  .board-done {padding:10px;font-size:12px;margin-top:5px;}
+  .board-done h3 {font-size:20px;}
+  .easel .banner {font-size:10px;}
+  .panel:has(#rubric) .footer {min-height:0;flex-shrink:0;}
+  .panel:has(#rubric) .hint {min-height:40px;}
+  #workspace:has(.ranking) .notice {font-size:10px;line-height:1.1;}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>School Wall Mural<small>Planning a community mural · Curio Class</small></h1>
+  <nav class="seg" aria-label="Mode">
+    <button id="m-listen" aria-pressed="true">Listen</button><button id="m-judge" aria-pressed="false">Judge</button>
+    <button id="m-street" aria-pressed="false">Street test</button><button id="m-board" aria-pressed="false">Board</button>
+  </nav>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button><button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint" aria-live="polite"></p><div id="controls"></div>
+    <div class="footer"><p class="small" id="privacy">Saved on this device only. Your choices never leave it.</p><button id="reset">Reset</button></div>
+  </aside>
+  <section class="stage" id="stage" aria-label="Mural project"><div id="leader" aria-live="polite"></div><div id="workspace"></div></section>
+</main>
+<script src="kit:curio"></script>
+<script>(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const ART = {
+    places:['art:place-flower-shop','art:place-bus-stop','art:place-senior-porch',
+      'art:place-garden-gate','art:place-skate-ramp','art:place-custodian-bench'],
+    sketches:['art:sketch-a-river-timeline','art:sketch-b-sunflowers','art:sketch-c-quilt','art:sketch-d-open-book'],
+    sidewalk:'art:wall-sidewalk',across:'art:wall-across',bus:'art:bus-window',board:'art:board-room',
+    enlarged:'art:sketch-a-enlarged'
+  };
+  const CR = [
+    ['Our history','History','Mrs. Banks','#8a5a2b'],['Readable from the street','Readable','Ken Ito','#1f5fa8'],
+    ['Bright and welcoming','Bright','Rosa Delgado','#c9861a'],['Lasts outdoors','Lasts','Mr. Harmon','#4a6b3a'],
+    ['Students help make it','Students','Jada Price','#8c3f8f'],['Nature and calm','Nature','Tomas Reyes','#2f8a5a'],
+    ['Cost and time','Cost','Mr. Harmon','#5a6068']
+  ];
+  const NB = [
+    ['Rosa Delgado','Sol Flowers, across the street',
+      'People should smile when they walk by. This corner has been gray for twenty years.',[2]],
+    ['Ken Ito','Rides the 14 bus every morning',
+      'I see that wall for two seconds from the bus. Make it something I can get in two seconds.',[1]],
+    ['Mrs. Odette Banks','Willow Street Senior Center',
+      'This street had a streetcar and a button factory. Kids should know where they live.',[0]],
+    ['Tomas Reyes','Third Street community garden','We have birds, bees and a lot of concrete. Bring some green.',[5]],
+    ['Jada Price','Skate park regular, 8th grade',"If students don't help paint it, it isn't ours. Leave a part for us.",[4]],
+    ['Mr. Lee Harmon','School custodian',
+      'Sun hits that wall all afternoon. Cheap paint is gone in three summers, and every color costs a day of scaffolding.',[3,6]]
+  ];
+  const SK = [
+    {name:'River Timeline',scores:[4,1,2,3,2,2,1],detail:'factory windows',cm:6,days:12,colors:14,focal:9,
+      features:['streetcar','button factory','bridge'],student:'A hired artist paints the scenes; students fill the sky.',
+      reasons:['Three Willow Street landmarks: streetcar, button factory, bridge.','Factory windows are just 6 cm across.',
+        'Muted earth tones.','Earth pigments rate I; one blue rates II.','Students fill the sky around an artist’s scenes.',
+        'A river shares the wall with many small scenes.','14 colors and 12 painting days.'],
+      pigments:[['Yellow ochre PY43',1,'#bf8d32'],['Burnt sienna PBr7',1,'#9a4a31'],['Ultramarine PB29',1,'#324ba5'],
+        ['Prussian blue PB27',2,'#174467'],['Carbon black PBk7',1,'#25272b'],['Titanium white PW6',1,'#f7f4e8']]},
+    {name:'Sunflower Street',scores:[1,4,4,2,2,4,3],detail:'a swallow’s eye',cm:40,days:5,colors:5,focal:3,
+      features:['sunflowers','swallows','blue sky'],student:'Students help fill the large flat shapes.',
+      reasons:['No Willow Street history is pictured.','The smallest key detail is 40 cm across.','Bold yellow flowers on bright sky blue.',
+        'Yellow and red pigments both rate II.','Students help fill large flat shapes.','Five giant sunflowers and three swallows.',
+        '5 colors and 5 painting days.'],
+      pigments:[['Hansa yellow PY3',2,'#f5d329'],['Naphthol red PR112',2,'#da4335'],['Phthalo blue PB15',1,'#2078ae'],
+        ['Phthalo green PG7',1,'#27734d'],['Titanium white',1,'#f7f4e8']]},
+    {name:'Quilt Blocks',scores:[3,3,3,1,3,1,4],detail:'a quilt square’s inner triangle',cm:25,days:4,colors:6,focal:1,
+      features:['pink squares','teal triangles','a quilt grid'],student:'Each class paints one block, using simple stencils.',
+      reasons:['Patterns come from the senior center’s quilting circle.','Inner triangles are 25 cm across.','Hot pink, orange and teal.',
+        'Fluorescent pink and alizarin crimson both rate III.','Each class paints one block.','Geometric patterns, with little nature imagery.',
+        '6 colors, 4 painting days, simple stencils.'],
+      pigments:[['Fluorescent pink',3,'#fc329b'],['Alizarin crimson PR83',3,'#a8244b'],['Pyrrole orange PO73',1,'#f26a2c'],
+        ['Phthalo green-blue',1,'#158b8b'],['Carbon black',1,'#25272b']]},
+    {name:'Open Book',scores:[2,3,2,4,4,2,2],detail:'banner letters',cm:45,days:9,colors:9,focal:2,
+      features:['an open book','birds','the banner words'],student:'Students write the banner line and paint the pages.',
+      reasons:['Pages turn into the street and river; no named historical landmarks.','Banner letters are 45 cm tall.',
+        'Soft blues rather than bright colors.','All pigments rate I, plus a clear UV-blocking topcoat.',
+        'Students write the banner line and paint the pages.','Birds and a river share the book’s pages.','9 colors and 9 painting days.'],
+      pigments:[['Ultramarine',1,'#455d9c'],['Phthalo blue',1,'#237caf'],['Titanium white',1,'#f7f4e8'],
+        ['Carbon black',1,'#25272b'],['Yellow ochre',1,'#bf8d32']]}
+  ];
+  const L = {
+    welcomeListen:'Six neighbors live with this wall. Tap a card to hear what each one wants.',
+    addHow:'Tap Add to rubric to keep what matters to you.',
+    welcomeJudge:'Set a weight for each criterion with the steppers. Watch the sketches change places.',
+    newLeader:'New leader.',zeroHow:'Give at least one criterion a weight.',
+    welcomeStreet:'Now test your pick on the real wall. Tap a view.',
+    busHow:'Tap Ride past. You get under two seconds, just like the bus.',busAsk:'Tap what you caught.',
+    summersHow:'Drag Summers to see five years of sun.',
+    welcomeBoard:'The board has three questions. Pick the answer you can back up.',
+    lockedHow:'That answer needs evidence you have not gathered. Run the named test or add the named criterion first.',
+    boardDone:'The board has its reply. Read it and decide what to change.',
+    rankingHow:'Tap a sketch to inspect its scores, or use the weight steppers to change your rubric.',
+    criterionHow:'Tap a criterion to add or remove it. Added criteria start at weight 2.',
+    detailHow:'Tap Choose this one to pin it for Street test and Board, or tap Back to ranking.',
+    evidenceHow:'Pick an answer with evidence, or tap Leave unanswered to name a concern for the board.',
+    replyHow:'Tap Back to Judge to revise your priorities, or Present again to try another defense.'
+  };
+  const STORAGE = 'curio-school-wall-mural-v1';
+  const fresh = () => ({mode:'listen',weights:Array(7).fill(null),chosen:null,heard:[],opened:null,large:null,
+    revisions:{enlarge:false,swaps:{}},view:'sidewalk',summers:0,tests:{},features:{},ride:false,
+    boardStep:0,answers:[],questions:[],banner:'Our street, our stories',notice:''});
+  const state = fresh();
+  let storageOK = true,rideTimer = null,serial = 0,entered = 0,resetAt = -Infinity,resetSerial = -1;
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE) || 'null');
+    if (saved && Array.isArray(saved.weights) && saved.weights.length === 7) {
+      state.weights = saved.weights.map(w => w === null ? null : Math.max(0,Math.min(3,Number(w)||0)));
+      state.chosen = Number.isInteger(saved.chosen) && saved.chosen >= 0 && saved.chosen < 4 ? saved.chosen : null;
+      if (saved.revisions) state.revisions = {enlarge:!!saved.revisions.enlarge,swaps:saved.revisions.swaps || {}};
+      state.heard = Array.isArray(saved.heard) ? saved.heard : [];
+      state.banner = typeof saved.banner === 'string' ? saved.banner.slice(0,40) : state.banner;
+      state.mode = 'judge';
+    }
+  } catch {storageOK = false;
+  }
+  const V = Curio.voice({lines:L,scope:() => state.mode,hint:false,read:() => $('hint').textContent,
+    welcome:() => [(state.mode === 'judge' && state.weights.some(w => w !== null) && state.weights.every(w => !w) ?
+      'zeroHow':({listen:'welcomeListen',judge:'welcomeJudge',street:'welcomeStreet',board:'welcomeBoard'})[state.mode]),
+      {valid:() => serial === entered && !state.ride && (state.mode !== 'listen' || state.opened === null) &&
+        state.large === null && (state.mode !== 'board' || state.boardStep === 0)}],
+    speaks:'.front, .answer, #ride'});
+  const esc = s => String(s).replace(/[&<>"']/g,c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function save() {
+    try {localStorage.setItem(STORAGE,JSON.stringify({weights:state.weights,chosen:state.chosen,revisions:state.revisions,
+      heard:state.heard,banner:state.banner}));
+      } catch {storageOK = false;
+      }
+    $('privacy').textContent = storageOK ? 'Saved on this device only. Your choices never leave it.' :
+      'Saving unavailable. Choices stay in this open tab only.';
+  }
+  const swapCount = i => (state.revisions.swaps[i] || []).filter(Boolean).length;
+  function scores(i) {
+    const s = SK[i].scores.slice();
+    if (i === 0 && state.revisions.enlarge) {s[0] = 3;
+    s[1] = 2;
+    }
+    if ((i === 1 || i === 2) && swapCount(i) === 2) s[3] = 3;
+    return s;
+  }
+  const weights = () => state.weights.every(w => w === null) ? Array(7).fill(2) : state.weights.map(w => w || 0);
+  function ranking() {
+    const w = weights();
+    return SK.map((s,i) => ({i,total:scores(i).reduce((n,x,k) => n+x*w[k],0)})).sort((a,b) => b.total-a.total || a.i-b.i);
+  }
+  function leaders() {const r = ranking();
+  return r.filter(x => x.total === r[0].total).map(x => x.i);
+  }
+  const chosen = () => state.chosen === null ? leaders()[0] : state.chosen;
+  const detailSize = i => i === 0 && state.revisions.enlarge ? 30 : SK[i].cm;
+  const angle = (i,d) => 2*Math.atan(detailSize(i)/100/2/d)*180/Math.PI*60;
+  const angleWord = a => a >= 15 ? 'easy to read' : a >= 5 ? 'you can tell something is there' : 'lost';
+  const revisionKey = i => JSON.stringify([i === 0 && state.revisions.enlarge,state.revisions.swaps[i] || [],i === 3 ? state.banner:'']);
+  const features = i => i === 0 && state.revisions.enlarge ? ['streetcar','button factory','large windows']:SK[i].features;
+  const evidence = i => state.tests[i] || (state.tests[i] = {});
+  const seen = (v,i = chosen()) => evidence(i)[v] === revisionKey(i);
+  function mark(v) {evidence(chosen())[v] = revisionKey(chosen());
+  }
+  function pigments(i) {
+    const p = SK[i].pigments.map(x => x.slice()),s = state.revisions.swaps[i] || [];
+    if (i === 1) {
+      if (s[0]) p[0] = ['Arylide yellow PY74',2,'#e2c13a'];
+      if (s[1]) p[1] = ['Pyrrole red PR254',1,'#d74835'];
+    }
+    if (i === 2) {
+      if (s[0]) p[0] = ['Quinacridone magenta PR122',1,'#b43783'];
+      if (s[1]) p[1] = ['Quinacridone red PR209',1,'#bd3b56'];
+    }
+    return p;
+  }
+  const loss = (rate,n) => 1-Math.pow(1-({1:.01,2:.04,3:.15}[rate]),n);
+  function mix(hex,f) {
+    return `rgb(${[1,3,5].map((k,j) => Math.round(parseInt(hex.slice(k,k+2),16)*(1-f)+[189,187,180][j]*f)).join(',')})`;
+  }
+  function painting(i) {
+    const image = i === 0 && state.revisions.enlarge ? ART.enlarged:ART.sketches[i];
+    return `<div class="painting"><img src="${image}" alt="${esc(SK[i].name)} mural sketch${i === 0 && state.revisions.enlarge ? ', enlarged factory, bridge removed':''}">`+
+      (i === 3 ? `<span class="banner">${esc(state.banner)}</span>` : '')+'</div>';
+  }
+  function preserve(fn) {
+    const id = document.activeElement && document.activeElement.id;
+    fn();
+    if (id && $(id) && document.activeElement !== $(id)) $(id).focus({preventScroll:true});
+  }
+  function hint(key,opts = {}) {
+    $('hint').textContent = L[key] || key;
+    const stamp = serial;
+    V.how(key,{valid:() => serial === stamp,...opts});
+  }
+  function cue() {Curio.tone(480,.045,.035,'sine');
+  }
+  function leaderStrip() {
+    const ls = leaders(),i = ls.includes(chosen()) ? chosen() : ls[0];
+    $('leader').innerHTML = `<img src="${i === 0 && state.revisions.enlarge ? ART.enlarged:ART.sketches[i]}" alt=""><span><strong>`+
+      `${ls.length > 1 ? 'Tie: pick one with Choose':'Leading: '+SK[i].name}</strong>`+
+      `${state.chosen !== null ? `<br>⌖ Your pick: ${SK[state.chosen].name}`:''}</span>`+
+      `<span class="preview">${state.weights.every(w => w === null) ? 'Equal-weight preview':'Your criteria pick the winner'}</span>`;
+  }
+  function setMode(m, force = false) {
+    const oldFocus = document.activeElement && document.activeElement.id;
+    if (!force && !state.ride && m === state.mode && state.large === null &&
+      $('m-'+m).getAttribute('aria-pressed') === 'true') return;
+    stopRide();
+    V.hush();
+    serial++;
+    entered = serial;
+    state.mode = m;
+    state.large = null;
+    if (m === 'judge' && state.weights.every(w => w === null)) state.weights.fill(2);
+    if (m === 'street' && state.view !== 'bus') mark(state.view);
+    if (m === 'board' && !state.questions.length) startBoard();
+    for (const k of ['listen','judge','street','board']) $('m-'+k).setAttribute('aria-pressed',k === m);
+    render();
+    if (oldFocus && !$(oldFocus)) $('m-'+m).focus({preventScroll:true});
+    const key = {listen:state.opened === null ? 'welcomeListen':'addHow',
+      judge:state.weights.some(w => w !== null) && state.weights.every(w => !w) ? 'zeroHow':'welcomeJudge',
+      street:'welcomeStreet',board:state.boardStep >= 3 ? 'replyHow':'welcomeBoard'}[m];
+    $('hint').textContent = L[key];
+    V.welcome() || hint(key);
+    save();
+  }
+  function render() {
+    preserve(() => {
+    const reset = $('reset');
+    if (reset) document.querySelector('.footer').append(reset);
+    leaderStrip();
+    ({listen:renderListen,judge:renderJudge,street:renderStreet,board:renderBoard})[state.mode]();
+    });
+  }
+  function front(i) {
+    const n = NB[i];
+    return `<button class="front" id="neighbor-${i}" aria-label="Listen to ${esc(n[0])}"><img src="${ART.places[i]}" alt="${esc(n[1])}">`+
+      `<span class="byline"><b>${n[0]}</b><small>${n[1]}</small></span></button>`;
+  }
+  function quote(i) {
+    const n = NB[i];
+    return `<div class="quote"><strong>${n[0]}</strong><blockquote>“${n[2]}”</blockquote>`+
+      n[3].map(k => `<button id="chip-${k}" data-criterion="${k}" aria-pressed="${state.weights[k] !== null}">`+
+        `${state.weights[k] !== null ? '✓ In rubric:':'Add to rubric:'} ${CR[k][0]}</button>`).join('')+
+      '<button class="close" id="close-neighbor">← Back to place</button></div>';
+  }
+  function renderListen() {
+    $('workspace').innerHTML = '<p class="eyebrow">Willow Street · Community voices</p>'+
+      '<h2>One wall. Six different wishes.</h2><p class="deck">Tap a place. Keep the wishes you want your mural to answer.</p>'+
+      `<div class="neighbors">${NB.map((n,i) => `<article class="neighbor" id="n-${i}">${state.opened === i ? quote(i):front(i)}</article>`).join('')}</div>`;
+    listenPanel();
+    NB.forEach((n,i) => {
+      if ($('neighbor-'+i)) $('neighbor-'+i).onclick = () => {
+        V.hush();
+        state.opened = i;
+        serial++;
+        cue();
+        if (!state.heard.includes(i)) state.heard.push(i);
+        renderListen();
+        $('chip-'+n[3][0]).focus({preventScroll:true});
+        $('hint').textContent = n[3].some(k => state.weights[k] === null) ? L.addHow :
+          'These wishes are already in your rubric. Tap In rubric to remove one, or Back to place.';
+        const stamp = serial;
+        V.how([n[2],['addHow',{valid:() => serial === stamp && n[3].some(k => state.weights[k] === null)}]],
+          {valid:() => state.opened === i,needs:'#chip-'+n[3][0]});
+        save();
+      };
+    });
+    if ($('close-neighbor')) $('close-neighbor').onclick = () => {
+      const i = state.opened;
+      state.opened = null;
+      cue();
+      serial++;
+      renderListen();
+      $('neighbor-'+i).focus({preventScroll:true});
+      hint('welcomeListen');
+    };
+    document.querySelectorAll('[data-criterion]').forEach(b => b.onclick = () => {
+      const k = +b.dataset.criterion;
+      state.weights[k] = state.weights[k] === null ? 2:null;
+      serial++;
+      cue();
+      b.setAttribute('aria-pressed',state.weights[k] !== null);
+      b.textContent = `${state.weights[k] !== null ? '✓ In rubric:':'Add to rubric:'} ${CR[k][0]}`;
+      listenPanel();
+      leaderStrip();
+      $('hint').textContent = `${CR[k][0]} ${state.weights[k] === null ? 'removed.':'added at weight 2.'} Tap another place, or Go to Judge.`;
+      save();
+    });
+  }
+  function listenPanel() {
+    $('controls').innerHTML = '<button id="go-judge" class="primary">Go to Judge →</button><h3>Your rubric so far</h3><div class="chips">'+
+      (state.weights.map((w,k) => w === null ? '' : `<span class="chip" style="--c:${CR[k][3]}">${CR[k][0]} · ${w}</span>`).join('') ||
+      '<p class="small">Open a card, then tap Add to rubric. Each wish starts at weight 2.</p>')+
+      '</div><p class="small">These neighbors and mural proposals are made up for Curio Class.</p>';
+    $('go-judge').onclick = () => setMode('judge');
+  }
+  function renderJudge() {renderRubric();
+  renderJudgeStage();
+  }
+  function renderJudgeStage() {
+    if (state.large !== null) {renderLarge();
+    return;
+    }
+    const r = ranking(),w = weights(),max = Math.max(1,...r.map(x => x.total));
+    $('workspace').innerHTML = '<p class="eyebrow">The selection table</p><h2>What should this wall stand for?</h2>'+
+      '<p class="deck">Weight a wish from 0 to 3. Every sketch brings something and gives something up.</p>'+
+      `<div class="ranking" id="ranking">${r.map((x,pos) => {
+        const tied = r.filter(y => y.total === x.total).length > 1,rank = r.findIndex(y => y.total === x.total)+1;
+        return `<button class="rank-card ${pos === 0 ? 'first glint':''}" id="sketch-${x.i}" data-sketch="${x.i}" `+
+          `aria-label="${SK[x.i].name}, ${x.total} points${tied ? ', tied':''}. Inspect sketch">`+
+          `<div class="rank-head"><b>0${rank}</b><span data-short="${tied ? 'tied':String.fromCharCode(65+x.i)}">`+
+          `${tied ? 'tied':state.chosen === x.i ? '⌖ pinned':'proposal '+String.fromCharCode(65+x.i)}</span></div>`+
+          painting(x.i)+`<div class="name">${SK[x.i].name}</div><p class="total"><strong>${x.total}</strong> points</p>`+
+          `<div class="bar" aria-hidden="true">${scores(x.i).map((s,k) => `<span style="--c:${CR[k][3]};width:${s*w[k]/max*100}%" `+
+            `title="${CR[k][0]}: ${w[k]} × ${s} = ${w[k]*s}"></span>`).join('')}</div><span class="open">Inspect sketch ↗</span></button>`;
+      }).join('')}</div><div class="legend">${CR.map(c => `<span style="--c:${c[3]}">${c[0]}</span>`).join('')}</div>`+
+      `<p class="notice" id="notice" aria-live="polite">${esc(state.notice || 'Score = weight × criterion score, added across your rubric. Scores are this tool’s model.')}</p>`;
+    document.querySelectorAll('[data-sketch]').forEach(b => b.onclick = () => {
+      state.large = +b.dataset.sketch;
+      serial++;
+      cue();
+      renderLarge();
+      $('back-ranking').focus({preventScroll:true});
+      hint('detailHow');
+    });
+  }
+  function renderRubric() {
+    const reset = $('reset');
+    if (reset) document.querySelector('.footer').append(reset);
+    $('controls').innerHTML = '<h3>Your rubric · Weight 0 to 3</h3><div class="rubric" id="rubric">'+
+      state.weights.map((w,k) => w === null ? '' : `<div class="weight${w === 0 ? ' zero':''}" style="--c:${CR[k][3]}" id="row-${k}">`+
+      `<label for="plus-${k}" title="${CR[k][0]} · ${CR[k][2]}"><span class="full">${CR[k][0]}</span>`+
+      `<span class="brief">${CR[k][1]}</span><small>${CR[k][2]}</small></label>`+
+      `<button id="minus-${k}" data-step="${k},-1" aria-label="Decrease ${CR[k][0]}">−</button>`+
+      `<output id="w-${k}" aria-label="Weight for ${CR[k][0]}">${w}</output>`+
+      `<button id="plus-${k}" data-step="${k},1" aria-label="Increase ${CR[k][0]}">+</button></div>`).join('')+
+      '</div><div class="row" id="rubric-actions"><button id="add">Add criterion</button><button id="equal">Equal weights</button></div>'+
+      '<div id="add-list" hidden></div><div id="changes"></div>';
+    document.querySelectorAll('[data-step]').forEach(b => b.onclick = () => {
+      const [k,d] = b.dataset.step.split(',').map(Number);
+      changeWeight(k,Math.max(0,Math.min(3,state.weights[k]+d)));
+    });
+    $('equal').onclick = () => {
+      cue();
+      const before = leaders().join();
+      state.weights = state.weights.map(w => w === null ? null:2);
+      serial++;
+      afterWeight(before,'Every included wish now has weight 2.');
+    };
+    $('add').onclick = () => {
+      serial++;
+      cue();
+      const list = $('add-list');
+      list.hidden = !list.hidden;
+      if (list.hidden) {hint('rankingHow');
+      return;
+      }
+      list.innerHTML = CR.map((c,k) => `<button id="add-${k}" data-add="${k}" aria-pressed="${state.weights[k] !== null}">`+
+        `${state.weights[k] !== null ? '✓ ': '+ '}${c[0]}${!state.heard.some(i => NB[i][3].includes(k)) ? ' · not heard yet':''}</button>`).join('');
+      list.querySelectorAll('button').forEach(b => b.onclick = () => {
+        const k = +b.dataset.add,before = leaders().join();
+        state.weights[k] = state.weights[k] === null ? 2:null;
+        serial++;
+        cue();
+        state.questions = [];
+        state.notice = CR[k][0]+' changed. Tap a weight stepper, or Add criterion to choose another.';
+        renderJudge();
+        leaderStrip();
+        $('add').focus({preventScroll:true});
+        $('hint').textContent = L.rankingHow;
+        save();
+      });
+      hint('criterionHow');
+    };
+    renderChanges();
+    if (reset) $('rubric-actions').append(reset);
+  }
+  function changeWeight(k,value) {
+    const before = leaders().join(),previous = state.weights[k];
+    state.weights[k] = value;
+    serial++;
+    cue();
+    afterWeight(before,`${CR[k][1]} now counts ${value > previous ? 'more':value < previous ? 'less':'the same'}.`);
+  }
+  function afterWeight(before,reason) {
+    state.questions = [];
+    const after = leaders(),stamp = serial;
+    state.notice = before !== after.join() ? (after.length === 1 ? `New leader: ${SK[after[0]].name}. `:'Tie: pick one with Choose. ')+reason : reason;
+    if (before !== after.join() && after.length === 1) V.say('newLeader',{valid:() => serial === stamp});
+    const old = new Map([...document.querySelectorAll('[data-sketch]')].map(e => [e.id,e.getBoundingClientRect()]));
+    state.weights.forEach((w,k) => {if ($('w-'+k)) {$('w-'+k).textContent = w;
+    $('row-'+k).classList.toggle('zero',w === 0);
+    }});
+    renderJudgeStage();
+    leaderStrip();
+    if (!Curio.reduce) document.querySelectorAll('[data-sketch]').forEach(e => {
+      const a = old.get(e.id),b = e.getBoundingClientRect();
+      if (a) e.animate([{translate:`${a.x-b.x}px ${a.y-b.y}px`},{translate:'0 0'}],{duration:400,easing:'ease-out'});
+    });
+    if (state.weights.every(w => !w)) hint('zeroHow');
+    else $('hint').textContent = L.rankingHow;
+    save();
+  }
+  function reason(i,k) {
+    if (i === 0 && state.revisions.enlarge) {
+      if (k === 0) return 'The bridge is cut to make room; streetcar and factory remain.';
+      if (k === 1) return 'Factory windows are now 30 cm across.';
+      if (k === 6) return 'Fewer small scenes, same 12 painting days.';
+    }
+    if (swapCount(i) && k === 3) return pigments(i).map(p => `${p[0]}: ${['','I','II','III'][p[1]]}`).join('; ')+'.';
+    if (i === 2 && swapCount(i) === 2 && k === 2) return 'A little less glow; Bright stays 3.';
+    return SK[i].reasons[k];
+  }
+  function renderLarge() {
+    const i = state.large;
+    $('workspace').innerHTML = `<div class="stage-actions"><button id="back-ranking">← Back to ranking</button>`+
+      `<button id="choose" class="primary">${state.chosen === i ? '⌖ Chosen':'Choose this one'}</button></div>`+
+      `<div class="large-paint">${painting(i)}</div><h2>${SK[i].name}</h2><p class="deck">Criterion scores use 1 to 4, before weights.</p>`+
+      `<div class="score-grid">${CR.map((c,k) => `<div class="score-line" style="--c:${c[3]}"><b>${c[0]} · ${scores(i)[k]} / 4</b>`+
+      `${reason(i,k)}</div>`).join('')}</div>`+(i === 3 ? '<label class="small" for="banner-input">Your banner line (up to 40 characters)</label>'+
+      `<input id="banner-input" maxlength="40" value="${esc(state.banner)}" style="width:100%;min-height:44px;font:inherit;padding:8px">`:'');
+    $('back-ranking').onclick = () => {
+      cue();
+      state.large = null;
+      serial++;
+      renderJudgeStage();
+      $('sketch-'+i).focus({preventScroll:true});
+      hint('rankingHow');
+    };
+    $('choose').onclick = () => {
+      state.chosen = i;
+      state.questions = [];
+      state.answers = [];
+      state.boardStep = 0;
+      serial++;
+      cue();
+      leaderStrip();
+      $('choose').textContent = '⌖ Chosen';
+      $('hint').textContent = `Pinned ${SK[i].name}. Tap Street test to see it on the wall.`;
+      save();
+    };
+    if ($('banner-input')) $('banner-input').oninput = e => {
+      state.banner = e.target.value;
+      state.questions = [];
+      document.querySelectorAll('.banner').forEach(el => el.textContent = state.banner);
+      save();
+    };
+  }
+  function renderChanges() {
+    const el = $('changes');
+    if (!el) return;
+    const changes = [];
+    if (state.revisions.enlarge) changes.push(['enlarge',
+      'River Timeline: 30 cm windows. Readable 2, History 3. Fewer small scenes, same days.','A · 30 cm windows']);
+    for (const i of [1,2]) (state.revisions.swaps[i] || []).forEach((s,k) => {
+      if (s) changes.push([`${i}-${k}`,`${SK[i].name}: ${pigments(i)[k][0]} (${['','I','II','III'][pigments(i)[k][1]]}).`,
+        `${String.fromCharCode(65+i)} · ${pigments(i)[k][0].match(/[A-Z]+[0-9]+/)?.[0]} (${['','I','II','III'][pigments(i)[k][1]]})`]);
+    });
+    el.innerHTML = changes.length ? `<details id="change-details"><summary>Changes · ${changes.length} `+
+      `${changes.length === 1 ? 'revision':'revisions'}. Open to Undo</summary>`+
+      '<div class="change-list">'+changes.map(([key,text,short]) => `<div class="change" title="${esc(text)}">`+
+      `<span><span class="full">${text}</span><span class="brief">${short}</span></span>`+
+      `<button id="undo-${key}" data-undo="${key}" aria-label="Undo ${esc(text)}">Undo</button></div>`).join('')+'</div></details>':'';
+    if ($('change-details')) {
+      let prior;
+      $('change-details').ontoggle = e => {
+        if (!e.target.isConnected) return;
+        e.target.querySelector('summary').textContent = `Changes · ${changes.length} `+
+          `${changes.length === 1 ? 'revision':'revisions'}. ${e.target.open ? 'Close to return':'Open to Undo'}`;
+        V.hush();
+        serial++;
+        cue();
+        if (e.target.open) {
+          const reset = $('reset');
+          if (reset && $('rubric-actions')) document.querySelector('.footer').append(reset);
+          prior = $('hint').textContent;
+          $('hint').textContent = 'Tap Undo beside a revision, or close Changes to return to the controls.';
+        } else {
+          if ($('rubric-actions') && $('reset')) $('rubric-actions').append($('reset'));
+          $('hint').textContent = prior || L.rankingHow;
+        }
+      };
+    }
+    el.querySelectorAll('[data-undo]').forEach(b => b.onclick = () => {
+      const key = b.dataset.undo;
+      if (key === 'enlarge') state.revisions.enlarge = false;
+      else {const [i,k] = key.split('-');
+      state.revisions.swaps[i][k] = false;
+      }
+      cue();
+      serial++;
+      state.questions = [];
+      state.notice = 'Revision undone. Original scores restored.';
+      render();
+      save();
+      $('hint').textContent = state.mode === 'judge' ? L.rankingHow :
+        'Original paint or detail restored. Tap another view, or Judge to compare scores.';
+      $('m-'+state.mode).focus({preventScroll:true});
+    });
+  }
+  function renderStreet() {
+    const i = chosen(),v = state.view;
+    $('controls').innerHTML = '<h3>Walk your pick past the wall</h3><div class="row">'+
+      [['sidewalk','Sidewalk'],['across','Across the street'],['bus','Bus window'],['summers','Five summers']].map(([key,n]) =>
+      `<button id="view-${key}" data-view="${key}" aria-pressed="${v === key}">${n}</button>`).join('')+'</div>'+
+      (v === 'bus' ? `<button id="ride" class="primary">${seen('bus') ? 'Ride again':'Ride past'}</button>`:'')+
+      (v === 'summers' ? '<label for="summers"><b>Summers: <output id="summer-value">'+state.summers+'</output> / 5</b></label>'+
+      `<input id="summers" type="range" min="0" max="5" step="1" value="${state.summers}">`+
+      '<p class="small">A simple model, not a lab test. I loses 1%, II 4%, III 15% of remaining strength each summer.</p>'+swapButtons(i):'')+
+      (i === 0 && ['sidewalk','across'].includes(v) && !state.revisions.enlarge ?
+      '<button id="enlarge" class="primary">Enlarge detail</button><p class="small">30 cm windows. The bridge gives way: Readable 1 → 2, History 4 → 3.</p>':'')+
+      '<div id="changes"></div><button id="to-board">Take this to the Board →</button>';
+    document.querySelectorAll('[data-view]').forEach(b => b.onclick = () => setView(b.dataset.view));
+    if ($('ride')) $('ride').onclick = ride;
+    if ($('summers')) $('summers').oninput = e => {
+      state.summers = +e.target.value;
+      cue();
+      serial++;
+      mark('summers');
+      $('summer-value').textContent = state.summers;
+      renderStreetScene();
+      $('hint').textContent = [1,2].includes(chosen()) && swapCount(chosen()) < 2 ?
+      'Compare the swatches. Tap a listed paint swap to test a replacement.':
+      'Compare the swatches, then tap another view or Take this to the Board.';
+    };
+    if ($('enlarge')) $('enlarge').onclick = () => revise(() => {state.revisions.enlarge = true;
+    });
+    document.querySelectorAll('[data-swap]').forEach(b => b.onclick = () => {
+      const k = +b.dataset.swap;
+      revise(() => {if (!state.revisions.swaps[i]) state.revisions.swaps[i] = [];
+      state.revisions.swaps[i][k] = true;
+      });
+    });
+    $('to-board').onclick = () => setMode('board');
+    renderChanges();
+    renderStreetScene();
+  }
+  function swapButtons(i) {
+    if (i !== 1 && i !== 2) return '<p class="small">No listed paint swap for this sketch.</p>';
+    const names = i === 1 ? ['PY3 → PY74, II','PR112 → PR254, I']:['Fluorescent pink → PR122, I','PR83 → PR209, I'];
+    if (swapCount(i) === 2) return '<p class="small">Both swaps applied. Open Changes to Undo a revision.</p>';
+    return '<h3>Swap paint</h3>'+names.map((n,k) => (state.revisions.swaps[i] || [])[k] ? '' :
+      `<button id="swap-${k}" data-swap="${k}">${n}</button>`).join('')+
+      `<p class="small">${i === 1 ? 'PY74 stays II: better, but check the brand.':'After both swaps: Lasts 3; Bright 3, a little less glow.'}</p>`;
+  }
+  function revise(fn) {
+    const i = chosen();
+    const before = leaders().join();
+    fn();
+    state.chosen = i;
+    serial++;
+    cue();
+    state.questions = [];
+    state.boardStep = 0;
+    state.answers = [];
+    state.notice = leaders().join() !== before ? 'Revision changed the ranking. Tap Judge to compare.':'Revision applied. Scores updated everywhere.';
+    mark(state.view);
+    render();
+    $('hint').textContent = 'Revision applied. Tap Judge to compare, or another view.';
+    save();
+    $('view-'+state.view).focus({preventScroll:true});
+  }
+  function setView(v) {
+    stopRide();
+    V.hush();
+    state.view = v;
+    serial++;
+    cue();
+    if (v !== 'bus') mark(v);
+    preserve(renderStreet);
+    if (v === 'bus') hint('busHow',{needs:'#ride'});
+    else if (v === 'summers') hint('summersHow',{needs:'#summers'});
+    else $('hint').textContent = 'Read the detail size on the wall. Tap another view to test distance, speed or sun.';
+  }
+  // Homography from a 1000 by 250 mural to four measured wall corners.
+  function warp(points) {
+    const [p0,p1,p2,p3] = points;
+    const dx1 = p1[0]-p2[0],dx2 = p3[0]-p2[0],dx3 = p0[0]-p1[0]+p2[0]-p3[0];
+    const dy1 = p1[1]-p2[1],dy2 = p3[1]-p2[1],dy3 = p0[1]-p1[1]+p2[1]-p3[1];
+    const den = dx1*dy2-dx2*dy1,g = den ? (dx3*dy2-dx2*dy3)/den:0,h = den ? (dx1*dy3-dx3*dy1)/den:0;
+    const a = p1[0]-p0[0]+g*p1[0],b = p3[0]-p0[0]+h*p3[0];
+    const d = p1[1]-p0[1]+g*p1[1],e = p3[1]-p0[1]+h*p3[1];
+    return `matrix3d(${a/1000},${d/1000},0,${g/1000},${b/250},${e/250},0,${h/250},0,0,1,0,${p0[0]},${p0[1]},0,1)`;
+  }
+  function positionWall() {
+    const el = $('wall-art'),stage = $('street-picture');
+    if (!el || !stage) return;
+    const w = stage.clientWidth,h = stage.clientHeight;
+    const pts = state.view === 'sidewalk' ? [[.12,.35],[.88,.22],[.88,.70],[.12,.69]]:
+      [[.13,.30],[.89,.30],[.89,.60],[.13,.60]];
+    el.style.transform = warp(pts.map(([x,y]) => [x*w,y*h]));
+    const a = angle(chosen(),state.view === 'sidewalk' ? 3:18);
+    el.querySelector('.painting').style.filter = `blur(${Math.max(0,(15-a)/15)*6*w/972/(w*.76/1000)}px)`;
+    if (state.view === 'summers') {
+      const p = pigments(chosen()),mean = p.reduce((n,x) => n+loss(x[1],state.summers),0)/p.length;
+      el.querySelector('.painting').style.filter = `saturate(${1-mean})`;
+    }
+  }
+  function renderStreetScene() {
+    const i = chosen(),v = state.view,d = v === 'sidewalk' ? 3:v === 'bus' ? 9:18,a = angle(i,d);
+    let inner;
+    if (v === 'bus') inner = `<img class="backdrop" src="${ART.bus}" alt="Inside an empty city bus">`+
+      `<div class="bus-clip"><div class="bus-wall${state.ride ? ' riding':''}" id="bus-wall">${painting(i)}</div></div>`+
+      '<div class="distance">9 m · 25 km/h · 12 m wall</div>';
+    else inner = `<img class="backdrop" src="${v === 'sidewalk' ? ART.sidewalk:ART.across}" alt="School wall from ${v === 'sidewalk' ? 'the sidewalk':'across the street'}">`+
+      `<div class="wall-art" id="wall-art">${painting(i)}</div>`+
+      `<div class="distance">${v === 'summers' ? `${state.summers} summers of sun`:`${d} meters from the wall`}</div>`;
+    const p = pigments(i),mean = p.reduce((n,x) => n+loss(x[1],state.summers),0)/p.length;
+    let readout = `<div class="readout">Smallest key detail: ${SK[i].detail} · ${detailSize(i)} cm on the wall`+
+      `<strong>${a.toFixed(1)} arcminutes · ${angleWord(a)}</strong>`+
+      '<small>15′ for a glance is our rule of thumb; below 5′ is lost in this model.</small></div>';
+    if (v === 'summers') readout = `<div class="readout">A simple model, not a lab test<strong>${(mean*100).toFixed(1)}% mean color strength lost</strong>`+
+      '<small>Yearly: I 1%, II 4%, III 15%. Equal pigment weights.</small></div>';
+    $('workspace').innerHTML = `<p class="eyebrow">Street test · ${SK[i].name}</p><h2>${{
+      sidewalk:'Meet your mural up close.',across:'Will it read across the street?',bus:'You get one passing glance.',summers:'Let five summers pass.'}[v]}</h2>`+
+      `<div class="street-stage" id="street-picture">${inner}${readout}</div>`+
+      (v === 'bus' && !state.ride && seen('bus') ? `<div class="bus-prompt" aria-label="What did you catch?">${features(i).map((f,k) =>
+        `<button id="feature-${k}" data-feature="${k}" aria-pressed="${(state.features[i] || []).includes(k)}">${f}</button>`).join('')}</div>`+
+        `<p class="notice" id="bus-result">${SK[i].focal} focal ${SK[i].focal === 1 ? 'shape':'shapes'}. A glance holds about three, in this tool’s guide.`+
+        ` You marked ${(state.features[i] || []).length} of 3 features.</p>`:'')+
+      (v === 'summers' ? `<div class="swatches" style="--swatch-count:${p.length}">${p.map(x =>
+        `<div class="swatch" title="${x[0]}"><i style="background:${mix(x[2],loss(x[1],state.summers))}"></i>`+
+        `<b><span class="full">${x[0]}</span><span class="brief">${x[0].match(/[A-Z]+[0-9]+/)?.[0] ||
+          ({'Fluorescent pink':'Fl. pink','Phthalo green-blue':'Teal','Titanium white':'White','Carbon black':'Black','Yellow ochre':'Ochre'})[x[0]] || x[0]}</span></b>`+
+        `<span class="full">${['','I · excellent','II · very good','III · not lasting'][x[1]]}</span>`+
+        `<span class="brief">${['','I','II','III'][x[1]]}</span><br>${(loss(x[1],state.summers)*100).toFixed(1)}% lost</div>`).join('')}</div>`+
+        '<p class="small">Model paint grades. Real products and formulations vary.</p>':'');
+    positionWall();
+    if (v === 'summers' && state.summers === 5) evidence(i).summerFive = revisionKey(i);
+    document.querySelectorAll('[data-feature]').forEach(b => b.onclick = () => {
+      const k = +b.dataset.feature,f = state.features[i] || (state.features[i] = []);
+      if (f.includes(k)) f.splice(f.indexOf(k),1);
+      else f.push(k);
+      b.setAttribute('aria-pressed',f.includes(k));
+      serial++;
+      cue();
+      $('bus-result').textContent = `${SK[i].focal} focal ${SK[i].focal === 1 ? 'shape':'shapes'}. A glance holds about three, in this tool’s guide. You marked ${f.length} of 3 features.`;
+      $('hint').textContent = 'Mark what you caught, then tap Ride again or another view.';
+    });
+  }
+  function stopRide() {clearTimeout(rideTimer);
+  rideTimer = null;
+  state.ride = false;
+  }
+  function ride() {
+    stopRide();
+    V.hush();
+    state.ride = true;
+    serial++;
+    cue();
+    state.features[chosen()] = [];
+    renderStreetScene();
+    $('hint').textContent = 'Watch the wall pass. After the ride, tap the features you caught.';
+    state.rideStarted = performance.now();
+    rideTimer = setTimeout(() => {
+      state.ride = false;
+      state.lastRideDuration = performance.now()-state.rideStarted;
+      mark('bus');
+      renderStreetScene();
+      $('hint').textContent = L.busAsk;
+      const stamp = serial;
+      V.say('busAsk',{valid:() => serial === stamp && state.view === 'bus'});
+      $('ride').textContent = 'Ride again';
+    },1700);
+  }
+  function startBoard() {
+    state.boardSketch = chosen();
+    state.questions = scores(chosen()).map((score,k) => ({score,k})).sort((a,b) => a.score-b.score || a.k-b.k).slice(0,2).map(x => x.k);
+    state.questions.push(7);
+    state.boardStep = 0;
+    state.answers = [];
+  }
+  function comparison(i,leader) {
+    if (i === leader) return false;
+    if (seen('across',i) && seen('across',leader) && angle(i,18) >= 15 && angle(leader,18) < 15) return true;
+    if (seen('bus',i) && seen('bus',leader) && SK[i].focal <= 3 && SK[leader].focal > 3) return true;
+    return seen('summers',i) && seen('summers',leader) &&
+      evidence(i).summerFive === revisionKey(i) && evidence(leader).summerFive === revisionKey(leader) &&
+      Math.max(...pigments(i).map(p => loss(p[1],5))) < Math.max(...pigments(leader).map(p => loss(p[1],5)));
+  }
+  function boardContent(k) {
+    const i = chosen(),sk = SK[i],s = scores(i),w = state.weights[k] || 0,has = state.weights[k] !== null;
+    const card = (text,ok = true,need = '',source = '') => ({text,ok,need,source});
+    if (k === 0) return ['What does this have to do with Willow Street?',[
+      card(`Mrs. Banks asked for history; our score is ${s[0]}.`,has,'Add Our history to the rubric first.','Rubric: Our history'),
+      ...([2,3].includes(i) ? [card('Students will add a timeline panel.',true,'','Proposal; not yet tested')]:[])]];
+    if (k === 1) return ['Can drivers and riders even tell what it is?',[
+      card(`Across the street the smallest detail is ${angle(i,18).toFixed(1)} arcminutes.`,seen('across'),
+        'Run the Across the street test first.','Street test: Across the street'),
+      card(`Ken Ito rides by; on the bus test I caught ${(state.features[i] || []).length} of 3 features.`,seen('bus'),
+        'Run Ride past in the Bus window test first.','Street test: Bus window')]];
+    if (k === 2) return ['Isn’t it a bit dull?',[
+      card(`Rosa asked for welcome; we weighted it ${w}.`,has,'Add Bright and welcoming to the rubric first.','Rubric: Bright and welcoming')]];
+    if (k === 3) return ['Will it look like this in five years?',[
+      card('With the swap, every pigment is I or II.',swapCount(i) > 0 && pigments(i).every(p => p[1] <= 2),
+        'Apply the listed paint swaps first.','Revision: Swap paint'),
+      card(`Five summers test: up to ${(Math.max(...pigments(i).map(p => loss(p[1],5)))*100).toFixed(1)}% color lost.`,
+        seen('summers') && evidence(i).summerFive === revisionKey(i),'Set Summers to 5 in Five summers first.','Street test: Five summers, year 5')]];
+    if (k === 4) return ['Who actually paints it?',[card(sk.student,true,'','Sketch plan: student painting role')]];
+    if (k === 5) return ['Where’s the green Tomas asked for?',[
+      card(`We weighted Nature and calm ${w}; this sketch scores ${s[5]}.`,has,
+        'Add Nature and calm to the rubric first.','Rubric: Nature and calm')]];
+    if (k === 6) return [`Can we afford ${sk.days} painting days?`,[
+      card(`${sk.days} days, ${sk.colors} colors. Others: ${SK.filter((_,j) => j !== i).map(x => `${x.name} ${x.days} days`).join('; ')}.`,
+        true,'','Sketch plans: cost and time comparison')]];
+    const r = ranking(),ls = leaders(),margin = r.find(x => x.i === i).total-Math.max(...r.filter(x => x.i !== i).map(x => x.total));
+    const leadClaim = ls.includes(i) ? `It ${margin === 0 ? 'tied for the lead':`led by ${margin} points`} under our rubric.` :
+      `This pick trails the leader by ${-margin} points under our rubric.`;
+    return ['Why this over the other three?',[
+      card(leadClaim,ls.includes(i),
+        'Make this sketch a leader under your rubric first.','Judge: weighted totals'),
+      card('It wasn’t the leader, but it passed a street test the leader failed.',!ls.includes(i) && comparison(i,r[0].i),
+        'Test this pick and the leader in a view where this pick performs better.','Street test: comparison with the leader')]];
+  }
+  function renderBoard() {
+    if (!state.questions.length || state.boardSketch !== chosen()) startBoard();
+    const i = chosen();
+    $('controls').innerHTML = '<h3>Your presentation</h3><p class="small">'+SK[i].name+'</p>'+
+      `<p class="small">${state.boardStep >= 3 ? 'All three questions addressed.':`Question ${state.boardStep+1} of 3. Locked cards name the evidence still needed.`}</p>`+
+      '<button id="back-judge">Back to Judge</button><button id="present">Present again</button>'+
+      (state.boardStep < 3 ? '<button id="unanswered">Leave unanswered</button>':'')+
+      '<p class="small">The reply records your evidence and the concerns still open. There is no vote or approval.</p>';
+    $('back-judge').onclick = () => setMode('judge');
+    $('present').onclick = () => {V.hush();
+    startBoard();
+    serial++;
+    preserve(renderBoard);
+    hint('welcomeBoard');
+    };
+    if ($('unanswered')) $('unanswered').onclick = () => answerBoard(null);
+    let content;
+    if (state.boardStep >= 3) {
+      const n = state.answers.filter(a => a && a.strong).length;
+      const concerns = state.questions.filter((k,j) => !state.answers[j] || !state.answers[j].strong || (k < 7 && scores(i)[k] <= 2));
+      content = `<div class="board-done"><p class="eyebrow">${SK[i].name} · Your presentation</p>`+
+        `<h3>The board’s reply</h3><p>You answered ${n} of 3 with evidence from your tests and rubric.</p>`+
+        (concerns.length ? concerns.map(k => `<p class="concern">We still worry about ${k === 7 ?
+          'why this one beats the alternatives':CR[k][0].toLowerCase()}${k < 7 && scores(i)[k] <= 2 ?
+          `: ${scores(i)[k]} of 4. ${reason(i,k)}`:'.'}</p>`).join(''):
+        '<p>Your evidence addresses these questions. Keep the remaining tradeoffs visible when you present your plan.</p>')+
+        '<p class="small">'+state.answers.map((a,j) => `${j+1}. ${a ? esc(a.text):'Left unanswered.'}`).join('<br>')+'</p></div>';
+    } else {
+      const [question,cards] = boardContent(state.questions[state.boardStep]);
+      content = `<div class="board-question"><p class="eyebrow">Question ${state.boardStep+1} / 3</p><h3>${question}</h3>`+
+        `<div class="answers">${cards.map((c,j) => `<button class="answer" id="answer-${j}" data-answer="${j}" aria-disabled="${!c.ok}">`+
+        `${esc(c.text)}<small>${c.ok ? esc(c.source):'🔒 '+esc(c.need)}</small></button>`).join('')}</div></div>`;
+    }
+    $('workspace').innerHTML = '<p class="eyebrow">Willow Street · School board</p><h2>Make the case for your wall.</h2>'+
+      `<div class="board-scene"><img class="backdrop" src="${ART.board}" alt="Community, School and Facilities representatives at a table, with your mural on an easel behind them">`+
+      `<div class="easel">${painting(i)}</div><div class="nameplates"><span>Community</span><span>School</span><span>Facilities</span></div></div>`+content;
+    document.querySelectorAll('[data-answer]').forEach(b => b.onclick = () => {
+      const c = boardContent(state.questions[state.boardStep])[1][+b.dataset.answer];
+      if (!c.ok) {serial++;
+      $('hint').textContent = c.need;
+      V.how('lockedHow');
+      cue();
+      return;
+      }
+      answerBoard(c);
+    });
+  }
+  function answerBoard(card) {
+    state.answers.push(card ? {text:card.text,source:card.source,strong:!card.source.startsWith('Proposal')}:null);
+    state.boardStep++;
+    serial++;
+    cue();
+    renderBoard();
+    if (state.boardStep >= 3) {
+      $('hint').textContent = L.replyHow;
+      V.dropQueued();
+      V.say('boardDone',{now:true,valid:() => state.boardStep >= 3});
+    }
+    else hint('evidenceHow');
+    ($('answer-0') || $('back-judge')).focus({preventScroll:true});
+  }
+  for (const m of ['listen','judge','street','board']) $('m-'+m).onclick = () => setMode(m);
+  $('reset').onclick = () => {
+    if (performance.now()-resetAt < 1000 && serial === resetSerial) return;
+    resetAt = performance.now();
+    stopRide();
+    V.hush();
+    Object.assign(state,fresh());
+    serial++;
+    setMode('listen',true);
+    resetSerial = serial;
+    try {localStorage.removeItem(STORAGE);
+    } catch {}
+    $('hint').textContent = 'Project reset. Tap a neighbor’s card to build a new rubric.';
+  };
+  new ResizeObserver(positionWall).observe($('stage'));
+  Curio.init({clips:"voice:*",rate:.9});
+  const allLines = () => [...new Set([...V.allLines(),...NB.map(n => n[2])])];
+  window.__tool = {state,setMode,allLines,vlog:V.log,get vq(){return V.queue;
+  },ranking,scores,angle,loss,
+    boardContent,chosen,leaders,pigments,changeWeight,setView,ride,render,stopRide,revisionKey};
+  setMode(state.mode,true);
+})();
+</script>
+</body>
+</html>

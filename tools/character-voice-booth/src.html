@@ -1,0 +1,1444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Character Voice Booth · Voice, character and feeling · Curio Class</title>
+<meta name="description" content="Record the same line as different characters, compare voiceprints, or plan a voice to perform live. Grades 3-5.">
+<link rel="icon" href="data:,">
+<!--
+Character Voice Booth, Curio Class. Grades 3-5 theatre. NCAS TH:Cr2, TH:Pr4, TH:Re7, TH:Cr3, TH:Pr5.
+Normalized autocorrelation inspired by de Cheveigne and Kawahara (2002). Standard acoustics formulas.
+Bins and planning notches are this tool's approximate choices. Audio remains in memory only.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Code MIT; original learning content CC BY 4.0. One offline file, no network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f2f5f4; --ink:#1f2a2b; --muted:#566466; --line:#bdc9c7; --brand:#7a5200;
+  --btn:#7a5200; --btn-line:#c6aa71; --head-ink:#fff; --panel:#f2f5f4; --focus:#dc9300;
+}
+body { overflow:hidden; }
+header { padding:9px 16px; gap:8px; border-bottom:4px solid #513800; }
+h1 { font:800 clamp(20px,2.3vw,31px)/1.06 Georgia,serif; letter-spacing:-.5px; }
+h1 small { font-size:13px; margin-top:5px; letter-spacing:.3px; }
+.seg button,.icon-btn { min-height:44px; min-width:44px; padding:0 11px; font-size:14px; }
+.seg { border-radius:9px; }
+.seg button[aria-pressed="true"] { background:#ffe0a1; color:#382800; }
+button { min-height:44px; border:1px solid #a4b4b3; border-radius:8px; background:#fff; padding:5px 9px; font-weight:700; }
+button:active { translate:0 1px; }
+button:disabled { cursor:default; opacity:.5; }
+main { grid-template-columns:minmax(0,1fr) 360px; min-height:0; overflow:hidden; }
+.panel { grid-column:2; grid-row:1; padding:12px; gap:9px; border-left:3px solid #b4a17a;
+  background:linear-gradient(110deg,#fbfcf8,#e8eeeb); }
+.stage { grid-column:1; grid-row:1; min-height:0; display:flex; flex-direction:column; color:#e8efee;
+  background:radial-gradient(ellipse at 20% 0%,#465356,#1a2529 80%); }
+.studio { position:relative; height:29%; min-height:90px; max-height:215px; flex:none; overflow:hidden;
+  background:url('art:booth-wall') center 54%/cover; border-bottom:7px solid #6b482a; box-shadow:0 6px 15px #0007; }
+.studio::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,#111a1b99,transparent 50%,#111a1b55); }
+.mic { position:absolute; height:74%; left:50%; bottom:0; transform:translateX(-50%); z-index:2; filter:drop-shadow(5px 5px 5px #0008); }
+.lamp { position:absolute; width:180px; height:48px; left:50%; top:4px; transform:translateX(-50%); z-index:3; }
+.lamp img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
+.lamp span { position:absolute; inset:0; display:grid; place-items:center; font-weight:800; color:#fff; font-size:15px; }
+.studio-copy { position:absolute; top:25px; left:22px; z-index:3; max-width:37%; }
+.eyebrow { color:#e7be72; text-transform:uppercase; font-size:11px; letter-spacing:2px; font-weight:800; }
+.studio-copy strong { display:block; font:italic 25px/1.15 Georgia,serif; margin-top:6px; }
+.studio-tag { position:absolute; right:14px; bottom:13px; z-index:3; background:#172125e8; padding:6px 9px;
+  border:1px solid #7b8b8b; border-radius:5px; font-size:11px; max-width:29%; }
+#count { position:absolute; inset:0; z-index:5; display:grid; place-items:center; font-size:70px; font-weight:900;
+  text-shadow:0 3px 10px #000; pointer-events:none; }
+.recording .mic { animation:mic-pulse .7s ease-in-out infinite alternate; }
+@keyframes mic-pulse { to { filter:drop-shadow(0 0 12px #ffba70); } }
+.pilot { width:7px; height:7px; display:inline-block; border-radius:50%; background:#b9f18c; box-shadow:0 0 8px #b9f18c;
+  animation:pilot 3s ease-in-out infinite alternate; margin-right:5px; }
+@keyframes pilot { to { opacity:.4; } }
+.calm .mic,.calm .pilot { animation:none; }
+.shelf { flex:1; min-height:0; padding:14px 18px; display:flex; flex-direction:column; gap:7px; }
+.shelf-title { display:flex; justify-content:space-between; gap:8px; align-items:center; flex:none; font-size:12px; }
+.shelf-title b { letter-spacing:1.5px; text-transform:uppercase; color:#e7be72; }
+.shelf-title span { color:#c8d2d1; font-size:11px; }
+#take-list { flex:1; min-height:0; overflow:auto; display:flex; flex-direction:column; gap:7px; }
+.empty { flex:1; display:flex; flex-direction:column; justify-content:center; padding:18px 30px;
+  border:1px dashed #768583; border-radius:10px; background:linear-gradient(125deg,#3c494c55,#18222688); }
+.empty h2 { font:italic clamp(24px,3vw,42px)/1.15 Georgia,serif; margin:0 0 12px; color:#ffe0a1; }
+.empty p { max-width:470px; font-size:15px; line-height:1.5; margin:0 0 12px; }
+.demo-line { width:100%; height:65px; opacity:.55; }
+.take { background:#263236; border:1px solid #607173; border-left:5px solid var(--take); border-radius:7px;
+  padding:8px 10px; flex:none; box-shadow:0 3px 6px #0003; }
+.take.newest { background:#263236; }
+.take-head { display:flex; align-items:center; gap:7px; font-size:12px; }
+.take-head img { height:32px; width:32px; object-fit:contain; }
+.take-head strong { color:var(--take); white-space:nowrap; }
+.take-name { font-weight:700; }
+.take-line { flex:1; color:#d2dcda; font-size:11px; }
+.take button { background:#172429; color:#e8efee; border-color:#7b8f92; padding:2px 8px; min-width:44px; }
+.chart { width:100%; display:block; height:66px; }
+.newest .chart { height:132px; }
+.values { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:5px; font-size:11px; }
+.values div { border-top:1px solid #6b7778; padding-top:4px; }
+.values b { display:block; color:var(--take); }
+.take:not(.newest) .values { font-size:10px; }
+.playing { outline:3px solid #ffe0a1; outline-offset:-3px; }
+.print-draw { animation:draw .6s ease-out; }
+@keyframes draw { from { clip-path:inset(0 100% 0 0); } to { clip-path:inset(0); } }
+.calm .print-draw { animation:none; }
+.section-label { font-size:11px; letter-spacing:1.1px; text-transform:uppercase; font-weight:800; color:#566466; margin-bottom:4px; }
+.field-head { display:flex; align-items:center; justify-content:space-between; gap:6px; }
+.field-head label { font-weight:800; font-size:13px; }
+select { min-height:44px; width:100%; border:1px solid #9eaeab; border-radius:7px; padding:6px 8px;
+  color:var(--ink); background:#fff; font:600 13px 'Segoe UI',sans-serif; }
+#line { width:100%; text-align:left; font-size:13px; background:#fff; color:#1f2a2b; }
+.line-dialog { position:fixed; inset:12% 8%; z-index:40; background:#f2f5f4; color:#1f2a2b; padding:18px;
+  border:3px solid #7a5200; border-radius:12px; box-shadow:0 0 0 100vmax #101c24bb; display:flex; flex-direction:column; gap:10px; }
+.line-dialog h2 { margin:0; font:700 25px Georgia,serif; }
+.line-chips { display:grid; grid-template-columns:1fr 1fr; gap:8px; flex:1; }
+.line-chips button { text-align:left; color:#1f2a2b; font-size:15px; }
+.line-preview { margin:6px 0 0; font:700 21px/1.2 Georgia,serif; min-height:50px; }
+.card-tabs { display:flex; gap:4px; }
+.card-tabs button { flex:1; font-size:12px; }
+button[aria-pressed="true"] { background:#f8dfaa; color:#3f2c00; border-color:#7a5200; }
+.cards { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:5px; margin-top:6px; }
+.cards.feelings-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.card { min-width:0; min-height:80px; padding:4px 2px; border:1px solid #a5b5b2; background:linear-gradient(#fff,#e6eeeb);
+  display:flex; align-items:center; flex-direction:column; justify-content:center; gap:2px; font-size:10px; line-height:1.1; }
+.card img { height:49px; width:55px; object-fit:contain; filter:drop-shadow(0 2px 1px #0003); }
+.face { font-size:34px; height:47px; display:grid; place-items:center; }
+  .face svg { width:36px; height:36px; overflow:visible; }
+  .perform .face svg { width:130px; height:130px; }
+  .perform .face { height:140px; }
+.card[aria-pressed="true"] { box-shadow:inset 0 0 0 2px #7a5200; background:#fff0ce; }
+.body-tip { font-size:12px; margin:5px 0 0; min-height:30px; line-height:1.3; }
+.record-area { margin-top:auto; }
+.record-row { display:flex; align-items:center; gap:12px; }
+.record-btn { background:#a81f26; border:4px solid #f7fcf9; box-shadow:0 0 0 2px #a81f26,0 4px 7px #0003;
+  color:#fff; border-radius:999px; min-height:64px; min-width:125px; font-size:18px; }
+.record-btn.busy { background:#7a5200; }
+.clock { flex:1; font-size:12px; color:#566466; }
+.time-track { height:9px; border-radius:6px; background:#d0dad7; overflow:hidden; margin-top:7px; }
+.time-fill { height:100%; width:0; background:#7a5200; }
+.hint { font-size:13px; line-height:1.3; margin:9px 0 3px; min-height:36px; }
+.privacy { font-size:10px; line-height:1.3; color:#566466; margin:5px 0 0; }
+.extras { display:flex; gap:6px; }
+.extras button { flex:1; font-size:12px; }
+.notice { border-left:3px solid #7a5200; background:#fff1d7; padding:7px; font-size:12px; margin:0; }
+.plan-controls { display:grid; gap:4px; }
+.dial label { display:flex; justify-content:space-between; font-size:13px; font-weight:800; }
+.dial output { color:#7a5200; }
+  input[type=range] { width:100%; height:44px; margin:0; accent-color:#7a5200; cursor:pointer; }
+.notches { display:flex; justify-content:space-between; font-size:10px; color:#566466; margin-top:-3px; }
+.notches span { width:20%; text-align:center; line-height:1.1; }
+.plan-stage,.compare-stage { height:100%; padding:22px; display:flex; flex-direction:column; min-height:0; gap:12px; }
+.stage-heading { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+.stage-heading h2 { font:italic clamp(24px,3vw,40px)/1.1 Georgia,serif; margin:0; color:#ffe0a1; }
+.badge { font-size:11px; border:1px solid #798788; padding:5px 8px; border-radius:5px; color:#d9e1de; }
+.plot { position:relative; flex:1; min-height:120px; border:1px solid #627376; border-radius:10px; background:#263236;
+  padding:14px; box-shadow:inset 0 0 30px #121e2366; }
+.large-chart { height:100%; width:100%; display:block; }
+.chart-key { display:flex; gap:14px; font-size:12px; color:#e2e9e6; }
+.plan-line { font:700 clamp(19px,2.3vw,30px)/1.2 Georgia,serif; color:#fff; margin:0; }
+.plan-note { font-size:12px; color:#c7d3cf; margin:0; }
+.plan-results { display:grid; grid-template-columns:1fr 1fr; gap:3px 9px; font-size:11px; color:#e8efee; }
+.panel>.plan-results { color:#1f2a2b; }
+.plan-limit { margin:0; font-size:11px; line-height:1.3; color:#ffe0a1; }
+.plan-dials { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+.plan-dials div { background:#263236; border:1px solid #627376; border-radius:7px; padding:10px; font-size:12px; }
+.plan-dials strong { display:block; color:#ffd166; margin-top:4px; font-size:16px; }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+td,th { text-align:left; border-bottom:1px solid #5c6e70; padding:7px 8px; }
+th { color:#e8c278; }
+.compare-sentence { font-size:16px; line-height:1.3; margin:6px 0 0; color:#fff; }
+.take-pickers { display:grid; gap:9px; }
+.take-pickers label { display:block; font-size:13px; font-weight:800; margin-bottom:4px; }
+.play-pair { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:8px; }
+.play-pair button:last-child { grid-column:1 / -1; }
+.gold-btn { background:#7a5200; color:#fff; border-color:#7a5200; }
+.mystery-takes { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+.mystery-takes button { background:#263236; color:#fff; border-color:#708384; }
+.mystery-takes button[aria-pressed="true"] { background:#ffe0a1; color:#263236; }
+#guess-cards .card { min-height:70px; }
+#reveal-result { font-size:13px; }
+.guess-results { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px;
+    flex:1; min-height:0; overflow:auto; align-content:start; }
+.guess-result { padding:8px; background:#263236; border:1px solid #718384; border-radius:7px; font-size:12px; }
+.guess-result img { width:50px; height:50px; object-fit:contain; float:left; margin-right:7px; }
+.perform { position:absolute; inset:0; z-index:30; background:#172226f5; padding:24px; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:16px; text-align:center; }
+.perform img { max-height:32%; max-width:50%; object-fit:contain; }
+.perform h2 { font:700 clamp(26px,4vw,50px)/1.15 Georgia,serif; margin:0; max-width:700px; color:#ffe0a1; }
+.perform .plan-dials { width:min(100%,650px); }
+.perform p { margin:0; font-size:14px; }
+.perform button { min-width:160px; color:#1f2a2b; }
+.stage>#plan-controls { flex:none; grid-template-columns:1fr 1fr; padding:8px 18px 14px; gap:7px 20px; }
+.stage>#plan-controls label { color:#e8efee; }
+.stage>#plan-controls output,.stage>#plan-controls .notches { color:#ffe0a1; }
+.stage>#plan-controls input { accent-color:#ffd166; }
+.stage.plan-mode .plan-stage { flex:1; height:auto; }
+.stage.plan-mode .plan-stage>.plan-dials { display:none; }
+@media (max-height:800px) and (min-width:600px) {
+  header { padding:6px 12px; }
+  h1 { font-size:23px; }
+  .panel { gap:6px; padding:9px; }
+  .line-preview { font-size:19px; min-height:44px; margin-top:4px; }
+  .card { min-height:80px; }
+  .card img { height:49px; }
+  .face { height:34px; font-size:29px; }
+  .body-tip { min-height:29px; }
+  .hint { min-height:36px; margin-top:6px; }
+  .plan-stage,.compare-stage { padding:14px; gap:9px; }
+}
+@media (max-width:1050px) {
+  main { grid-template-columns:minmax(0,1fr) 310px; }
+  h1 { font-size:22px; }
+  h1 small { display:none; }
+  header { gap:6px; padding:6px 10px; }
+  .seg button,.icon-btn { padding:0 9px; font-size:12px; }
+  .studio-copy strong { font-size:19px; }
+  .studio-copy { left:12px; }
+  .shelf { padding:10px; }
+  .take-line { display:none; }
+  .values { grid-template-columns:1fr 1fr; }
+}
+@media (max-height:560px) and (min-width:600px) {
+  main { grid-template-columns:minmax(0,1fr) 322px; }
+  h1 { font-size:18px; }
+  header { padding:3px 7px; gap:4px; }
+  .seg button,.icon-btn { padding:0 7px; font-size:11px; }
+  .panel { padding:6px 8px; gap:4px; }
+  .line-preview,.field-head { display:none; }
+  .card-picker>.card-tabs { position:absolute; top:0; right:0; width:156px; }
+  .card-picker { position:relative; }
+  .card-picker>.section-label { min-height:44px; width:calc(100% - 164px); display:flex; align-items:center; margin:0; }
+  .cards { margin-top:0; gap:3px; }
+  .card { min-height:44px; height:44px; flex-direction:row; font-size:10px; gap:1px; padding:1px; }
+  .card img { height:33px; width:29px; }
+  .face { height:31px; font-size:25px; }
+  .face svg { width:29px; height:29px; }
+  .body-tip { min-height:25px; margin-top:3px; font-size:11px; }
+  .record-btn { min-height:44px; min-width:116px; font-size:16px; border-width:2px; }
+  .record-area { margin-top:0; }
+  .hint { font-size:11px; min-height:29px; margin:4px 0 0; }
+  .extras button { font-size:11px; padding:2px; }
+  .privacy { margin:0; font-size:10px; }
+  .studio { min-height:80px; height:26%; }
+  .studio-copy strong,.studio-tag { display:none; }
+  .studio-copy { top:10px; }
+  .lamp { width:125px; height:29px; top:0; }
+  .lamp span { font-size:11px; }
+  .studio .mic { height:70%; }
+  .shelf { padding:6px 9px; gap:4px; }
+  .shelf-title,.shelf-title span { font-size:10px; }
+  .take { padding:4px 6px; }
+  .take .chart { height:62px; }
+  .take.newest .chart { height:124px; }
+  .take-head { gap:3px; font-size:10px; }
+  .take-head img { width:24px; height:24px; }
+  .values { font-size:10px; gap:2px; }
+  .values div { padding-top:2px; }
+  .empty { padding:12px; }
+  .empty h2 { font-size:23px; margin-bottom:7px; }
+  .empty p { font-size:12px; margin-bottom:4px; }
+  .demo-line { height:32px; }
+  .plan-stage,.compare-stage { padding:9px; gap:6px; }
+  .stage-heading h2 { font-size:23px; }
+  .badge { font-size:10px; padding:3px; }
+  .plan-line { font-size:18px; }
+  .plot { min-height:65px; padding:7px; }
+  .plan-dials { gap:4px; }
+  .plan-dials div { padding:4px; font-size:10px; }
+  .plan-dials strong { font-size:12px; }
+  .plan-note,.chart-key { font-size:10px; }
+  .plan-controls { gap:0; }
+  .dial label { font-size:11px; }
+  input[type=range] { height:44px; }
+  .notches { font-size:10px; }
+  td,th { font-size:10px; padding:4px; }
+  .compare-sentence { font-size:11px; margin-top:4px; }
+  .take-pickers { gap:4px; }
+  .take-pickers label { margin:0; font-size:11px; }
+  .stage>#plan-controls { padding:4px 10px 8px; gap:3px 10px; }
+  .stage.plan-mode .plan-note { display:none; }
+  .privacy { line-height:1.1; }
+  .panel { gap:3px; }
+  .mystery-mode #mystery { margin-top:0!important; }
+  .mystery-mode #mystery-controls>.body-tip,.mystery-mode #reveal-result { display:none; }
+  .mystery-mode #mystery-controls>.card-tabs,.mystery-mode #reveal { margin-top:0!important; }
+  .mystery-mode .mystery-takes { grid-template-columns:repeat(6,1fr); gap:3px; margin:3px 0; }
+  .mystery-mode .mystery-takes button { min-width:44px; padding:2px; font-size:10px; }
+  .mystery-mode #guess-cards { margin:3px 0; }
+  .mystery-mode #guess-cards .card { min-height:44px; }
+  .no-mic #record-row,.no-mic #mic-notice,.no-mic #booth-extras,.no-mic .body-tip { display:none; }
+  .perform { padding:10px; gap:8px; }
+  .perform img { max-height:70px; }
+  .perform .face { height:60px; }
+  .perform .face svg { width:56px; height:56px; }
+  .perform h2 { font-size:23px; }
+  .perform .eyebrow { display:none; }
+  .perform p { font-size:11px; }
+  .panel.plan-checked #body-tip { display:none; }
+}
+@media (max-width:599px) {
+  body { overflow:auto; height:auto; min-height:100vh; }
+  header { padding:5px 8px; gap:4px; }
+  h1 { width:100%; font-size:22px; margin:2px 0; }
+  .seg { flex:1; }
+  .seg button { flex:1; }
+  .seg button,.icon-btn { padding:0 6px; font-size:11px; }
+  #motion,#sound,#read { min-width:44px; }
+  main { display:flex; flex-direction:column; overflow:visible; }
+  .panel { order:0; border:0; padding:8px; gap:6px; overflow:visible; }
+  .stage { order:1; min-height:440px; height:540px; flex:none; }
+  .line-preview { font-size:20px; min-height:0; margin:5px 0 0; }
+  .card { min-height:59px; }
+  .card img { height:32px; }
+  .face { height:32px; font-size:28px; }
+  .body-tip { min-height:0; }
+  .record-area { margin-top:0; }
+  .record-btn { min-height:48px; }
+  .hint { min-height:34px; margin:5px 0 0; }
+  .privacy { margin:0; }
+  .plan-stage,.compare-stage { padding:12px; }
+  .plan-dials { gap:4px; }
+  .plan-dials div { padding:6px; font-size:10px; }
+  .plan-dials strong { font-size:13px; }
+  .studio-copy strong { font-size:18px; }
+  .studio-copy { display:none; }
+  .notches { margin-bottom:4px; }
+  .perform { position:fixed; }
+  .panel>.plan-controls { grid-template-columns:1fr 1fr; gap:7px 12px; }
+  .line-dialog { inset:5%; padding:12px; }
+  .line-chips { grid-template-columns:1fr; gap:5px; }
+  .line-chips button { font-size:12px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Character Voice Booth <small>Voice, character and feeling</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-booth" aria-pressed="true">Booth</button>
+    <button id="m-compare" aria-pressed="false">Compare</button>
+    <button id="m-plan" aria-pressed="false">Plan</button>
+  </div>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+</header>
+<main>
+  <aside class="panel" id="panel" aria-label="Voice controls">
+    <section id="line-picker">
+      <div class="field-head"><label for="line">Line</label><span class="section-label">Same words. New voice.</span></div>
+      <button id="line" aria-haspopup="dialog" aria-label="Choose a line"></button>
+      <p class="line-preview" id="line-preview"></p>
+    </section>
+    <section class="card-picker" id="card-picker">
+      <div class="section-label">Card</div>
+      <div class="card-tabs" role="group" aria-label="Card type">
+        <button id="characters" aria-pressed="true">Characters</button>
+        <button id="feelings" aria-pressed="false">Feelings</button>
+      </div>
+      <div class="cards" id="cards"></div>
+      <p class="body-tip" id="body-tip"></p>
+    </section>
+    <div class="plan-results" id="plan-check-panel" hidden></div>
+    <section class="plan-controls" id="plan-controls" hidden></section>
+    <section id="compare-controls" hidden>
+      <div class="take-pickers" id="take-pickers">
+        <div><label for="take-a">Take A</label><select id="take-a" aria-label="Take A"></select></div>
+        <div><label for="take-b">Take B</label><select id="take-b" aria-label="Take B"></select></div>
+      </div>
+      <div class="play-pair" id="play-pair">
+        <button id="play-a">▶ Play A</button><button id="play-b">▶ Play B</button>
+        <button id="play-ab" class="gold-btn">▶ Play A then B</button>
+      </div>
+      <button id="mystery" style="width:100%;margin-top:9px" aria-pressed="false">Mystery listener</button>
+      <div id="mystery-controls" hidden>
+        <p class="body-tip">Tap a take, listen, then choose its card.</p>
+        <div class="mystery-takes" id="mystery-takes"></div>
+        <div class="card-tabs" style="margin-top:6px" role="group" aria-label="Guess card type">
+          <button id="guess-characters" aria-pressed="true">Characters</button>
+          <button id="guess-feelings" aria-pressed="false">Feelings</button>
+        </div>
+        <div class="cards" id="guess-cards"></div>
+        <button id="reveal" class="gold-btn" style="width:100%;margin-top:6px">Reveal</button>
+        <p id="reveal-result" aria-live="polite"></p>
+      </div>
+    </section>
+    <div class="record-area" id="record-area">
+      <div class="record-row" id="record-row">
+        <button class="record-btn" id="record">● Record</button>
+        <div class="clock"><span id="time-label">0 to 8 seconds</span>
+          <div class="time-track"><div class="time-fill" id="time-fill"></div></div>
+        </div>
+      </div>
+      <p class="hint" id="hint" aria-live="polite"></p>
+      <p class="notice" id="mic-notice" hidden>No microphone here. That's OK: use Plan and perform for a partner.</p>
+      <button id="go-plan" hidden style="width:100%;margin-top:5px">Go to Plan</button>
+    </div>
+    <div class="extras" id="booth-extras">
+      <button id="clear">Clear all takes</button><button id="challenge">Change one thing</button>
+    </div>
+    <div class="extras" id="plan-extras" hidden>
+      <button id="perform" class="gold-btn">Perform it</button><button id="record-check" hidden>Record to check</button>
+    </div>
+    <p class="privacy">Audio stays here until close. Never saved or uploaded. Speed assumes you say every chosen word.</p>
+  </aside>
+  <section class="stage" id="stage" aria-label="Voiceprint stage">
+    <div class="studio" id="studio">
+      <div class="studio-copy"><span class="eyebrow">The voice laboratory</span><strong>One line.<br>Many characters.</strong></div>
+      <div class="lamp" id="lamp"><img id="lamp-off" src="art:lamp-off" alt="">
+        <img id="lamp-on" src="art:lamp-on" alt="" hidden><span id="lamp-label">READY</span>
+      </div>
+      <img class="mic" src="art:mic" alt="Silver studio microphone">
+      <span id="count" hidden></span>
+      <div class="studio-tag"><i class="pilot"></i>Listen. Change. Listen again.</div>
+    </div>
+    <div class="shelf" id="shelf">
+      <div class="shelf-title"><b>Take shelf</b><span id="shelf-label">Your voice makes the print</span></div>
+      <div id="take-list"></div>
+    </div>
+    <div class="plan-stage" id="plan-stage" hidden></div>
+    <div class="compare-stage" id="compare-stage" hidden></div>
+    <div class="perform" id="perform-overlay" role="dialog" aria-modal="true" aria-label="Perform your planned voice" hidden></div>
+  </section>
+</main>
+<div class="line-dialog" id="line-dialog" role="dialog" aria-modal="true" aria-label="Choose a line" hidden>
+  <h2>Keep the words. Choose a line.</h2>
+  <div class="line-chips" id="line-chips"></div>
+  <button id="close-lines">Keep this line</button>
+</div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const esc = text => String(text).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const LINES = ['Who left this door open?', 'I found it! It was under the bed.', 'Please, may I have one more?',
+    'Hello? Is anybody out there?', 'This is the best day ever.', 'Shh. Something is coming.',
+    'I am not going to bed.', 'Look what I can do!'];
+  const ART = {usual:'art:usual', mouse:'art:mouse', boot:'art:boot', robot:'art:robot', crown:'art:crown',
+    helmet:'art:helmet', puppy:'art:puppy', wizard:'art:wizard'};
+  const CARDS = [
+    ['usual','My usual voice','Just talk like you, to a friend.'],
+    ['mouse','Tiny mouse','Make yourself small. Quick little hands.'],
+    ['boot','Sleepy giant','Stand tall and heavy. Yawn first.'],
+    ['robot','Robot','Stiff arms. Every word the same.'],
+    ['crown','Grumpy queen','Chin up. Arms folded.'],
+    ['helmet','Nervous knight','Shaky knees. Look over your shoulder.'],
+    ['puppy','Excited puppy','Bounce on your toes.'],
+    ['wizard','Old wizard','Lean on a pretend staff. Take your time.'],
+    ['happy','Happy','Smile while you say it.','☺'], ['sad','Sad','Let your shoulders drop.','☹'],
+    ['scared','Scared','Hold your breath first.','😨'], ['angry','Angry','Stamp one foot.','😠'],
+    ['surprised','Surprised','Eyes wide, eyebrows up.','😮'], ['bored','Bored','Lean on your hand.','😑']
+  ];
+  const COLORS = ['#ffd166','#7fdbff','#ff9fb2','#b9f18c','#d0b3ff','#ffb070'];
+  const DASHES = ['','12 5','3 5','15 4 3 4','8 3','2 3 9 3'];
+  const DIALS = ['Pitch','Speed','Loudness','Pauses'];
+  const NOTCHES = [['much lower','lower','usual','higher','much higher'],
+    ['much slower','slower','usual','faster','much faster'], ['much softer','softer','usual','louder','much louder'],
+    ['none','1','2','3','4']];
+  const L = {
+    booth:'Welcome to the booth. Pick a line, then tap Record and say it in your usual voice.',
+    first:'Now tap a character card. Tap Record and say the same line as that character.',
+    second:'Tap Compare to see what you changed.', baseline:"That's your usual voice. Every other take is compared to this one.",
+    fallback:'This first take is the baseline. Record My usual voice to compare with your everyday voice.',
+    take:'This take is', pitch:['much lower','lower','about as high','higher','much higher'],
+    speed:['and much slower','and slower','at about the same speed','and faster','and much faster'],
+    than:'than your usual voice.', quiet:"I didn't hear the words. Move closer to the mic and try again.",
+    thanBaseline:'than the baseline take.',
+    noMic:"No microphone here. That's OK. Tap Go to Plan and perform for a partner.",
+    challenge:'Tap Record and say the line in your usual voice. Then tap Record again and change only the',
+    dial:['pitch.','speed.','loudness.','pauses.'], fair:"You changed just that one thing. That's a fair test.",
+    unfair:'You changed more than one thing. Try again and keep the others the same.',
+    unchanged:'That dial stayed about the same. Tap Record and try changing it again.',
+    compare:'Pick Take A and Take B. Then tap Play A then B and listen for what changed.',
+    needTwo:'You need two takes to compare. Tap Booth and record another.',
+    mystery:'Listener, tap a take, then tap the card you think it was. Then tap Reveal.',
+    matched:'Your partner matched', numbers:['none','one','two','three','four','five','six'], of:'of',
+    plan:'Slide the four dials to plan a voice. Then tap Perform it and say it for a partner.',
+    matches:DIALS.flatMap(d => [d+' matched your plan.',d+" didn't match your plan."]),
+    perform:'Ask your partner to look away. Say the line using your four planned choices, then ask them to guess the card.',
+    chooseLine:'Tap a line, then tap Keep this line.',
+    clear:'All takes are cleared. Tap Record to start again.', lines:LINES, cards:CARDS.map(c => c[1]+'. '+c[2])
+  };
+  const state = {mode:'booth',line:0,card:'usual',family:'characters',takes:[],next:1,baselineId:null,
+    plan:[2,2,2,0],phase:'idle',mic:'unknown',a:null,b:null,playing:null,mystery:false,
+    order:[],guesses:{},guessFamily:'characters',mysteryTake:null,reveal:null,challenge:null,check:null,removed:'',captureLog:[]};
+  let ctx=null,stream=null,input=null,recorder=null,mute=null;
+  let chunks=[],captured=0,recordingStart=0,captureToken=0,pendingMeta=null,workletReady=false;
+  let player=null,playResolve=null,playToken=0,playStarted=0,playbackFrame=0,performFocus=null;
+  let modeReady=false;
+  let chartId=0;
+  const pendingCharts=new Map(),chartSpecs=new WeakMap();
+  const isBusy = () => state.phase !== 'idle';
+  const card = id => CARDS.find(c => c[0] === id) || CARDS[0];
+  const wordCount = line => line.trim().split(/\s+/).length;
+  const baseline = () => state.takes.find(t => t.id === state.baselineId) || state.takes[0];
+  const takeById = id => state.takes.find(t => t.id === +id);
+  const V = Curio.voice({lines:L,scope:() => state.mode,hint:false,
+    read:() => state.mode === 'booth' ? [LINES[state.line],card(state.card)[1]+'. '+card(state.card)[2]] : $('hint').textContent,
+    speaks:'#record, #record-check, #perform, #challenge',
+    welcome:() => isBusy() || !$('line-dialog').hidden || !$('perform-overlay').hidden ? null : state.mode === 'booth' ?
+      (state.mic==='denied' ? ['noMic',{needs:'#go-plan'}] : ['booth',{valid:() => !state.takes.length && !isBusy()}]) :
+      state.mode === 'compare' ? [state.takes.length < 2 ? 'needTwo':'compare',{valid:() => !state.mystery && !state.playing}] :
+        ['plan',{valid:() => !state.check && !isBusy()}]
+  });
+  const hint = text => { $('hint').textContent=text; };
+  const how = (key,valid=() => !isBusy()) => V.how(key,{valid});
+  function nextHint() {
+    if (state.mode === 'plan') return state.check ? 'Compare the two prints. Move a dial to revise, or tap Perform it.' : L.plan;
+    if (state.mode === 'compare') return state.reveal ? state.reveal.summary+' Tap Mystery listener to return to Compare.' :
+      state.mystery ? L.mystery : state.takes.length < 2 ? L.needTwo : L.compare;
+    if (state.mic === 'denied') return L.noMic;
+    if (state.challenge) {
+      const d=DIALS[state.challenge.dial].toLowerCase();
+      return state.challenge.first ? 'Keep the same line. Tap Record again and change only '+d+'.' :
+        'Change only '+d+'. First, tap Record and use your usual voice.';
+    }
+    return !state.takes.length ? L.booth : state.takes.length === 1 ? L.first : L.second;
+  }
+  function stopPlayback() {
+    playToken++;
+    cancelAnimationFrame(playbackFrame);
+    if (player) {
+      player.onended=null;
+      try { player.stop(); } catch {}
+      player.disconnect();
+      player=null;
+    }
+    state.playing=null;
+    if (playResolve) { playResolve(); playResolve=null; }
+    document.querySelectorAll('.playing').forEach(e => e.classList.remove('playing'));
+    document.querySelectorAll('.playhead').forEach(e => e.remove());
+  }
+  const feedback = () => Curio.tone(350,.035,.025,'sine');
+  function cardArt(id,alt='') {
+    if (ART[id]) return '<img src="'+ART[id]+'" alt="'+esc(alt)+'">';
+    const expressions={
+      happy:'<path d="M10 20 Q18 30 26 20"/><circle cx="12" cy="14" r="1.5"/><circle cx="24" cy="14" r="1.5"/>',
+      sad:'<path d="M11 25 Q18 18 25 25 M8 11 L14 9 M22 9 L28 11"/>'+ 
+        '<circle cx="12" cy="16" r="1.5"/><circle cx="24" cy="16" r="1.5"/>',
+      scared:'<ellipse cx="18" cy="25" rx="4" ry="5"/><path d="M8 9 L14 7 M22 7 L28 9"/>'+ 
+        '<ellipse cx="12" cy="15" rx="2" ry="3"/><ellipse cx="24" cy="15" rx="2" ry="3"/>',
+      angry:'<path d="M8 10 L15 13 M21 13 L28 10 M11 25 Q18 19 25 25"/>'+ 
+        '<circle cx="12" cy="16" r="1.5"/><circle cx="24" cy="16" r="1.5"/>',
+      surprised:'<ellipse cx="18" cy="25" rx="4" ry="5"/><path d="M8 9 Q12 5 16 9 M20 9 Q24 5 28 9"/>'+ 
+        '<circle cx="12" cy="15" r="2"/><circle cx="24" cy="15" r="2"/>',
+      bored:'<path d="M8 15 H15 M21 15 H28 M12 24 H24"/>'
+    };
+    const faceId='face-'+id+'-'+(++chartId);
+    return '<span class="face" aria-hidden="true"><svg viewBox="0 0 36 36"><defs>'+ 
+      '<radialGradient id="'+faceId+'" cx="30%" cy="25%" r="80%"><stop stop-color="#fff4bb"/>'+ 
+      '<stop offset=".65" stop-color="#ffd166"/><stop offset="1" stop-color="#d99428"/></radialGradient></defs>'+ 
+      '<circle cx="18" cy="18" r="16" fill="url(#'+faceId+')" stroke="#8a590a"/>'+ 
+      '<path d="M7 12 Q9 5 17 5" fill="none" stroke="#fff6d3" stroke-width="2" stroke-linecap="round"/>'+ 
+      '<g fill="none" stroke="#493919" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+ 
+      expressions[id]+'</g></svg></span>';
+  }
+  function cardButtons(container,list,action,selected) {
+    container.innerHTML=list.map(c => '<button class="card" data-card="'+c[0]+'" aria-label="'+esc(c[1])+
+      '" aria-pressed="'+(selected===c[0])+'">'+cardArt(c[0])+'<span>'+esc(c[1])+'</span></button>').join('');
+    container.querySelectorAll('button').forEach(b => b.onclick=() => action(b.dataset.card));
+  }
+  function selectCard(id) {
+    if (isBusy()) return;
+    stopPlayback();
+    state.card=id;
+    state.check=null;
+    document.querySelectorAll('#cards button').forEach(b => b.setAttribute('aria-pressed',b.dataset.card===id));
+    $('body-tip').textContent=card(id)[1]+': '+card(id)[2];
+    V.dropQueued();
+    feedback();
+    hint(state.mode==='plan' || state.challenge || state.mic==='denied' ? nextHint() :
+      'Say “'+LINES[state.line]+'” as '+card(id)[1]+'. Tap Record when ready.');
+    if (state.mode==='plan') renderPlan();
+  }
+  function showCards() {
+    $('cards').classList.toggle('feelings-grid',state.family==='feelings');
+    $('characters').setAttribute('aria-pressed',state.family==='characters');
+    $('feelings').setAttribute('aria-pressed',state.family==='feelings');
+    cardButtons($('cards'),state.family==='characters'?CARDS.slice(0,8):CARDS.slice(8),selectCard,state.card);
+    $('body-tip').textContent=card(state.card)[1]+': '+card(state.card)[2];
+  }
+  function selectFamily(f) {
+    if (isBusy()) return;
+    stopPlayback();
+    state.family=f;
+    state.card=f==='characters'?'usual':'happy';
+    state.check=null;
+    V.dropQueued();
+    showCards();
+    hint(nextHint());
+    feedback();
+    if (state.mode==='plan') renderPlan();
+  }
+  const pitchBin = v => Math.abs(v)<2?2:v>0?v>5?4:3:v< -5?0:1;
+  const speedBin = v => Math.abs(v)<=.15?2:v>0?v>.4?4:3:v< -.4?0:1;
+  const loudBin = v => Math.abs(v)<3?2:v>0?v>8?4:3:v< -8?0:1;
+  function relative(t,b=baseline()) {
+    if (!b) return {pitch:0,speed:0,loudness:0,bins:[2,2,2,t.pauses.length]};
+    const pitch=12*Math.log2(t.hz/b.hz),speed=t.speed/b.speed-1,loudness=t.db-b.db;
+    return {pitch,speed,loudness,bins:[pitchBin(pitch),speedBin(speed),loudBin(loudness),t.pauses.length]};
+  }
+  const signed = v => (v>0?'+':'')+v.toFixed(1);
+  function readouts(t) {
+    const r=relative(t);
+    return [NOTCHES[0][r.bins[0]].replace('usual','about the same')+', '+signed(r.pitch)+' steps',
+      NOTCHES[1][r.bins[1]].replace('usual','about the same')+', '+t.speed.toFixed(1)+' words/s',
+      NOTCHES[2][r.bins[2]].replace('usual','about the same')+', '+signed(r.loudness)+' dB',
+      t.pauses.length+' '+(t.pauses.length===1?'pause':'pauses')];
+  }
+  function median(values) {
+    const v=[...values].sort((a,b) => a-b),m=Math.floor(v.length/2);
+    return !v.length?0:v.length%2?v[m]:(v[m-1]+v[m])/2;
+  }
+  function analyze(samples,rate,line) {
+    const hop=Math.round(rate*.01),stride=Math.max(1,Math.floor(rate/8000)),sr=rate/stride;
+    const lo=Math.floor(sr/700),hi=Math.ceil(sr/70),frames=[];
+    for (let start=0;start+2048<=samples.length;start+=hop) {
+      let square=0,mean=0;
+      for (let j=0;j<2048;j++) { const x=samples[start+j]; square+=x*x; mean+=x; }
+      mean/=2048;
+      const db=20*Math.log10(Math.max(1e-9,Math.sqrt(square/2048))),t=start/rate;
+      if (db<= -45) { frames.push({t,hz:0,db,clarity:0}); continue; }
+      const data=[];
+      for (let j=0;j<2048;j+=stride) data.push(samples[start+j]-mean);
+      const scores=new Float64Array(hi+2);
+      for (let lag=lo-1;lag<=hi+1;lag++) {
+        let xy=0,xx=0,yy=0;
+        for (let j=0;j<data.length-lag;j++) {
+          const a=data[j],b=data[j+lag];
+          xy+=a*b;
+          xx+=a*a;
+          yy+=b*b;
+        }
+        scores[lag]=xy/Math.sqrt(Math.max(1e-18,xx*yy));
+      }
+      let peak=0;
+      for (let lag=lo;lag<=hi;lag++) {
+        if (scores[lag]>=.8 && scores[lag]>=scores[lag-1] && scores[lag]>scores[lag+1]) { peak=lag; break; }
+      }
+      let hz=0,clarity=0;
+      if (peak) {
+        clarity=scores[peak];
+        const left=scores[peak-1],mid=scores[peak],right=scores[peak+1];
+        const offset=.5*(left-right)/(left-2*mid+right || 1);
+        hz=sr/(peak+Math.max(-.5,Math.min(.5,offset)));
+        // Allow half a hertz of interpolation error at the two analysis limits.
+        hz=hz<69.5 || hz>700.5?0:Math.max(70,Math.min(700,hz));
+      }
+      frames.push({t,hz,db,clarity});
+    }
+    const voiced=frames.filter(f => f.hz),voicedTime=voiced.length*hop/rate;
+    if (voicedTime<.5) return null;
+    const smooth=frames.map((f,i) => ({...f,hz:f.hz ?
+      median(frames.slice(Math.max(0,i-2),i+3).filter(x => x.hz).map(x => x.hz)):0}));
+    const first=voiced[0].t,last=voiced.at(-1).t+hop/rate,pauses=[];
+    let silence=null;
+    for (const f of frames) {
+      if (f.t<first || f.t>=last) continue;
+      if (!f.hz && silence===null) silence=f.t;
+      if (f.hz && silence!==null) {
+        if (f.t-silence>=.3-1e-6) pauses.push({start:silence,end:f.t});
+        silence=null;
+      }
+    }
+    const speaking=Math.max(.01,last-first-pauses.reduce((s,p) => s+p.end-p.start,0));
+    return {frames:smooth,hz:median(voiced.map(f => f.hz)),db:voiced.reduce((s,f) => s+f.db,0)/voiced.length,
+      speed:wordCount(line)/speaking,pauses,voicedTime,duration:samples.length/rate};
+  }
+  function ghost(plan=state.plan,line=LINES[state.line],base=baseline()) {
+    const hz=(base?.hz || 220)*2**((plan[0]-2)*3.5/12);
+    const speed=2.5*[.55,.8,1,1.25,1.6][plan[1]],db=(base?.db || -25)+(plan[2]-2)*5;
+    const words=line.split(/\s+/),boundaries=[],pauses=[],frames=[];
+    words.slice(0,-1).forEach((w,i) => { if (/[,.!?]$/.test(w)) boundaries.push(i+1); });
+    for (let i=1;i<words.length;i++) if (!boundaries.includes(i)) boundaries.push(i);
+    const pauseAfter=boundaries.slice(0,plan[3]).sort((a,b) => a-b);
+    let elapsed=0;
+    for (let i=1;i<=words.length;i++) {
+      elapsed+=1/speed;
+      if (pauseAfter.includes(i)) { pauses.push({start:elapsed,end:elapsed+.5}); elapsed+=.5; }
+    }
+    for (let t=0;t<=elapsed;t+=.02) frames.push({t,hz:pauses.some(p => t>=p.start && t<p.end)?0:hz,db});
+    return {hz,speed,db,frames,pauses,duration:elapsed};
+  }
+  function chart(series,large=false,W=0,H=0) {
+    if (!W) {
+      const id=++chartId;
+      pendingCharts.set(id,{series,large});
+      return '<svg data-chart="'+id+'" class="'+(large?'large-chart':'chart')+'" role="img" '+
+        'aria-label="Voiceprint: time zero to eight seconds, lower to higher pitch; thickness shows loudness"></svg>';
+    }
+    const left=42,right=W-16,top=20,bottom=H-22;
+    const x=t => left+Math.min(8,Math.max(0,t))/8*(right-left);
+    const y=hz => bottom-Math.log2(Math.min(700,Math.max(70,hz))/70)/Math.log2(10)*(bottom-top);
+    let out='<svg class="'+(large?'large-chart':'chart')+'" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" '+
+      'role="img" aria-label="Voiceprint: time zero to eight seconds, lower to higher pitch; thickness shows loudness">';
+    for (let s=0;s<=8;s++) out+='<path d="M '+x(s)+' '+top+' V '+bottom+'" stroke="#526569"/>'+
+      '<text x="'+x(s)+'" y="'+(H-5)+'" fill="#cdd9d6" font-size="11" text-anchor="middle">'+s+(s===8?' s':'')+'</text>';
+    out+='<text x="1" y="13" fill="#cdd9d6" font-size="11">higher</text>'+
+      '<text x="1" y="'+(bottom-2)+'" fill="#cdd9d6" font-size="11">lower</text>';
+    const by=y(baseline()?.hz || 220);
+    const referenceLabel=baseline() && baseline().card!=='usual'?'baseline: Take '+baseline().id:'your usual voice';
+    if (!state.mystery) out+='<path d="M '+left+' '+by+' H '+right+'" stroke="#c9d5d0" stroke-dasharray="5 6"/>'+ 
+      '<rect x="'+left+'" y="0" width="145" height="16" fill="#263236"/>'+ 
+      '<text x="'+(left+3)+'" y="13" fill="#e1e9e5" font-size="11">- - '+referenceLabel+'</text>';
+    for (const [seriesIndex,item] of series.entries()) {
+      const t=item.take,color=item.color || '#ffd166',dash=item.ghost?'2 8':item.dash || '';
+      out+='<g opacity="'+(item.ghost?.8:1)+'">';
+      // Continuous paths keep the dotted ghost and dashed take patterns visible.
+      let segment=[];
+      const flush=() => {
+        if (segment.length<2) { segment=[]; return; }
+        if (item.ghost) {
+          const thick=Math.max(2,Math.min(10,6+(t.db-(baseline()?.db || -25))*.4));
+          const path=segment.map((f,n) => (n?'L ':'M ')+x(f.t).toFixed(1)+' '+y(f.hz).toFixed(1)).join(' ');
+          out+='<path d="'+path+'" fill="none" stroke="'+color+'" stroke-width="'+thick+'" '+
+            'stroke-linecap="round" stroke-dasharray="1 12"/>';
+          segment=[];
+          return;
+        }
+        let distance=0,run=[],runWidth=null,runOffset=0;
+        const drawRun=() => {
+          if (run.length<2) return;
+          const path=run.map((f,n) => (n?'L ':'M ')+x(f.t).toFixed(1)+' '+y(f.hz).toFixed(1)).join(' ');
+          out+='<path d="'+path+'" fill="none" stroke="'+color+'" stroke-width="'+runWidth+'" '+
+            'stroke-linecap="'+(dash?'butt':'round')+'" stroke-linejoin="round" '+
+            (dash?'stroke-dasharray="'+dash+'" stroke-dashoffset="'+runOffset.toFixed(1)+'"':'')+'/>';
+        };
+        for (let n=1;n<segment.length;n++) {
+          const a=segment[n-1],b=segment[n];
+          const thick=Math.round(Math.max(2,Math.min(10,6+(b.db-(baseline()?.db || -25))*.4))*2)/2;
+          if (thick!==runWidth) {
+            drawRun();
+            run=[a];
+            runWidth=thick;
+            runOffset=distance;
+          }
+          run.push(b);
+          distance+=Math.hypot(x(b.t)-x(a.t),y(b.hz)-y(a.hz));
+        }
+        drawRun();
+        segment=[];
+      };
+      for (const f of t.frames) { if (f.hz) segment.push(f); else flush(); }
+      flush();
+      t.pauses.forEach((p,i) => { out+='<text x="'+x((p.start+p.end)/2)+'" y="'+Math.max(13,bottom-3-(seriesIndex*2+i%2)*12)+
+        '" fill="'+color+'" font-size="11" text-anchor="middle">pause</text>'; });
+      out+='</g>';
+    }
+    return out+'</svg>';
+  }
+  function refreshCharts() {
+    document.querySelectorAll('svg[data-chart]').forEach(svg => {
+      const key=+svg.dataset.chart;
+      if (pendingCharts.has(key)) { chartSpecs.set(svg,pendingCharts.get(key)); pendingCharts.delete(key); }
+      const spec=chartSpecs.get(svg),r=svg.getBoundingClientRect();
+      if (!spec || r.width<1 || r.height<1) return;
+      const temp=document.createElement('div');
+      temp.innerHTML=chart(spec.series,spec.large,r.width,r.height);
+      svg.setAttribute('viewBox','0 0 '+r.width+' '+r.height);
+      svg.innerHTML=temp.firstElementChild.innerHTML;
+    });
+    pendingCharts.clear();
+  }
+  function renderShelf(newId) {
+    const base=baseline();
+    $('shelf-label').textContent=base?'About, compared with baseline: Take '+base.id:'Your voice makes the print';
+    if (!state.takes.length) {
+      $('take-list').innerHTML='<div class="empty"><span class="eyebrow">Make your first voiceprint</span>'+
+        '<h2>What does a tiny mouse<br>sound like?</h2><p>Keep the words. Change your voice.<br>First record your usual voice, then try a character.</p>'+
+        '<svg class="demo-line" viewBox="0 0 600 70" aria-hidden="true"><path d="M0 48 Q40 48 55 36 T95 34 T145 43 '+
+        'M175 35 Q205 8 225 24 T270 14 T330 32 M370 22 Q400 3 435 20 T500 29 T590 16" '+
+        'stroke="#ffd166" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="3 8"/></svg>'+
+        '<p class="plan-note">No mic? Tap Plan to build a voice for a live performance.</p></div>';
+      return;
+    }
+    $('take-list').innerHTML=[...state.takes].reverse().map((t,i) => {
+      const values=readouts(t),c=(t.id-1)%6;
+      return '<article class="take '+(i===0?'newest ':'')+(newId===t.id?'print-draw':'')+'" data-take="'+t.id+'" '+
+        'style="--take:'+COLORS[c]+'"><div class="take-head"><strong>Take '+t.id+'</strong>'+cardArt(t.card)+
+        '<span class="take-name">'+esc(card(t.card)[1])+'</span><span class="take-line">'+esc(t.line)+'</span>'+
+        '<button data-play="'+t.id+'" aria-label="Play Take '+t.id+'">▶ Play</button>'+
+        '<button data-delete="'+t.id+'" aria-label="Delete Take '+t.id+'">⌫</button></div>'+
+        chart([{take:t,color:COLORS[c],dash:DASHES[c]}])+'<div class="values">'+
+        values.map((v,n) => '<div><b>'+DIALS[n]+'</b>'+esc(v)+'</div>').join('')+'</div></article>';
+    }).join('');
+    $('take-list').querySelectorAll('[data-play]').forEach(b => b.onclick=() => play(+b.dataset.play));
+    $('take-list').querySelectorAll('[data-delete]').forEach(b => b.onclick=() => deleteTake(+b.dataset.delete));
+    refreshCharts();
+  }
+  function renderPlan() {
+    const checked=state.check && takeById(state.check.id);
+    $('panel').classList.toggle('plan-checked',!!checked);
+    $('plan-check-panel').hidden=!checked;
+    $('plan-check-panel').innerHTML=checked?state.check.results.map(v => '<div>'+esc(v)+'</div>').join(''):'';
+    const g=checked?ghost(state.check.plan,checked.line,state.check.reference):ghost();
+    const list=[{take:g,ghost:true,color:'#ffd166'}];
+    const requested=checked?state.check.plan[3]:state.plan[3];
+    const limit=g.pauses.length<requested?'This line has only '+g.pauses.length+
+      ' gaps between words. The ghost fits '+g.pauses.length+' of the '+requested+' planned pauses.':'';
+    const pitchLimit=g.hz<70 || g.hz>700?'Planned pitch is beyond the measured range; the ghost is at the chart edge.':'';
+    if (checked) list.push({take:checked,color:'#7fdbff'});
+    $('plan-stage').innerHTML='<div class="stage-heading"><h2>Your planned voice</h2><span class="badge">Dotted = plan</span></div>'+
+      '<p class="plan-line">“'+esc(LINES[state.line])+'”</p><div class="plot">'+chart(list,true)+'</div>'+
+      '<div class="chart-key"><span>··· Planned print</span>'+(checked?'<span>━ Measured Take '+checked.id+'</span>':'')+'</div>'+
+      (limit?'<div class="plan-limit">'+esc(limit)+'</div>':'')+
+      (pitchLimit?'<div class="plan-limit">'+esc(pitchLimit)+'</div>':'')+
+      '<div class="plan-dials">'+state.plan.map((v,i) => '<div>'+['↕ Pitch','» Speed','◖ Loudness','Ⅱ Pauses'][i]+
+        '<strong>'+esc(NOTCHES[i][v])+'</strong></div>').join('')+'</div>'+
+      '<p class="plan-note">About: '+g.speed.toFixed(2)+' words/s; '+g.duration.toFixed(2)+' seconds. '+
+      'Ghost usual speed: 2.5 words/s. Pitch uses your baseline, or 220 Hz without one. Loudness is relative.</p>';
+    refreshCharts();
+  }
+  function difference(a,b) {
+    const r=relative(b,a),words=[NOTCHES[0][r.bins[0]],NOTCHES[1][r.bins[1]],NOTCHES[2][r.bins[2]]]
+      .map(v => v==='usual'?'about the same':v),p=b.pauses.length-a.pauses.length;
+    words.push(p===0?'about the same':Math.abs(p)+' '+(Math.abs(p)===1?'pause':'pauses')+' '+(p>0?'more':'fewer'));
+    return {words,r,p};
+  }
+  function comparePickers() {
+    for (const side of ['a','b']) {
+      const select=$('take-'+side);
+      select.innerHTML=state.takes.map(t => '<option value="'+t.id+'">Take '+t.id+
+        (state.mystery?'':' · '+esc(card(t.card)[1]))+'</option>').join('');
+      if (!takeById(state[side])) state[side]=state.takes[side==='a'?0:Math.min(1,state.takes.length-1)]?.id || null;
+      select.value=state[side] || '';
+      select.disabled=state.takes.length<2;
+    }
+    ['play-a','play-b','play-ab'].forEach(id => $(id).disabled=state.takes.length<2);
+    $('mystery').disabled=!state.takes.length;
+  }
+  function renderCompare() {
+    comparePickers();
+    if (state.mystery) return renderMystery();
+    const a=takeById(state.a),b=takeById(state.b);
+    if (!a || !b || state.takes.length<2) {
+      $('compare-stage').innerHTML='<div class="stage-heading"><h2>Hear the difference</h2></div><div class="empty">'+
+        '<h2>Two takes tell a story.</h2><p>Tap Booth and record your usual voice, then a character. Your shared chart will appear here.</p></div>';
+      return;
+    }
+    const compactReadout=t => {
+      const r=relative(t);
+      return [signed(r.pitch)+' steps',t.speed.toFixed(1)+' words/s',signed(r.loudness)+' dB',
+        t.pauses.length+' '+(t.pauses.length===1?'pause':'pauses')];
+    };
+    const d=difference(a,b),av=compactReadout(a),bv=compactReadout(b),clauses=[];
+    d.words.slice(0,3).forEach(w => { if (w!=='about the same') clauses.push(w); });
+    let sentence=clauses.length?'B is '+clauses.join(', '):'B is about the same';
+    if (d.p) sentence+=(clauses.length?' and has ':' in pitch, speed and loudness, and has ')+d.words[3];
+    sentence+=' than A.';
+    $('compare-stage').innerHTML='<div class="stage-heading"><h2>Hear the difference</h2><span class="badge">Baseline: Take '+baseline().id+'</span></div>'+
+      '<div class="chart-key"><span>━ A: Take '+a.id+'</span><span>┄ B: Take '+b.id+'</span></div><div class="plot">'+
+      chart([{take:a,color:COLORS[(a.id-1)%6]},{take:b,color:COLORS[(b.id-1)%6],dash:'10 7'}],true)+'</div>'+
+      '<div><table><thead><tr><th>About</th><th>A</th><th>B</th><th>What changed</th></tr></thead><tbody>'+
+      DIALS.map((name,i) => '<tr><th>'+name+'</th><td>'+esc(av[i])+'</td><td>'+esc(bv[i])+'</td><td>'+esc(d.words[i])+
+        (i<3 && d.r.bins[i]!==2?' '+(d.r.bins[i]>2?'↑':'↓'):i===3 && d.p?' '+(d.p>0?'↑':'↓'):'')+'</td></tr>').join('')+
+      '</tbody></table><p class="compare-sentence">'+esc(sentence)+'</p></div>';
+    refreshCharts();
+  }
+  function renderMystery() {
+    const selected=takeById(state.mysteryTake);
+    $('mystery-controls').hidden=false;
+    if ($('mystery-takes').dataset.order!==state.order.join(',')) {
+      $('mystery-takes').dataset.order=state.order.join(',');
+      $('mystery-takes').innerHTML=state.order.map((id,i) => '<button data-mystery="'+id+'">Take '+(i+1)+'</button>').join('');
+    }
+    $('mystery-takes').querySelectorAll('button').forEach((b,i) => {
+      b.setAttribute('aria-pressed',+b.dataset.mystery===state.mysteryTake);
+      b.textContent='Take '+(i+1)+(state.guesses[b.dataset.mystery]?' · guessed':'');
+    });
+    $('mystery-takes').querySelectorAll('button').forEach(b => b.onclick=() => {
+      state.mysteryTake=+b.dataset.mystery;
+      renderMystery();
+      $('mystery-takes').querySelector('[data-mystery="'+state.mysteryTake+'"]').focus({preventScroll:true});
+      play(state.mysteryTake);
+    });
+    const guess=id => {
+      if (!state.mysteryTake || state.reveal) return;
+      stopPlayback();
+      state.guesses[state.mysteryTake]=id;
+      feedback();
+      renderMystery();
+      $('guess-cards').querySelector('[data-card="'+id+'"]').focus({preventScroll:true});
+      hint('Guess marked. Tap another take, or tap Reveal when you are ready.');
+    };
+    if ($('guess-cards').dataset.family!==state.guessFamily) {
+      $('guess-cards').classList.toggle('feelings-grid',state.guessFamily==='feelings');
+      $('guess-cards').dataset.family=state.guessFamily;
+      cardButtons($('guess-cards'),state.guessFamily==='characters'?CARDS.slice(0,8):CARDS.slice(8),guess,null);
+    }
+    $('guess-cards').querySelectorAll('button').forEach(b => {
+      b.setAttribute('aria-pressed',b.dataset.card===state.guesses[state.mysteryTake]);
+      b.disabled=!!state.reveal;
+    });
+    $('guess-characters').setAttribute('aria-pressed',state.guessFamily==='characters');
+    $('guess-feelings').setAttribute('aria-pressed',state.guessFamily==='feelings');
+    $('reveal').disabled=!state.order.length || !!state.reveal;
+    $('reveal-result').textContent=state.reveal?state.reveal.summary:'';
+    const shown=selected || takeById(state.order[0]);
+    $('compare-stage').innerHTML='<div class="stage-heading"><h2>Mystery listener</h2><span class="badge">'+
+      (state.reveal?'Cards revealed':'Labels hidden')+'</span></div>'+ 
+      (state.reveal?'<p class="plan-line">'+esc(state.reveal.summary)+'</p><div class="guess-results" tabindex="0" role="region" aria-label="Revealed takes">'+
+        state.reveal.rows.map(row => '<div class="guess-result">'+cardArt(row.real)+
+        '<b>Take '+row.number+': '+(row.match?'✓ Match':'✗ Different')+'</b><p>Guessed: '+esc(row.guess?card(row.guess)[1]:'no guess')+
+        '<br>Real: '+esc(card(row.real)[1])+'</p></div>').join('')+'</div>':
+        '<div class="plot">'+(shown?chart([{take:shown,color:'#ffd166'}],true):'')+'</div>'+
+        '<p class="plan-line">Listen to the voice. What character do you hear?</p>'+
+        '<p class="plan-note">Take labels, pictures and the baseline identity are hidden.</p>');
+    refreshCharts();
+  }
+  function reveal() {
+    if (state.reveal) return;
+    stopPlayback();
+    const rows=state.order.map((id,i) => ({number:i+1,real:takeById(id).card,guess:state.guesses[id],
+      match:state.guesses[id]===takeById(id).card}));
+    const count=rows.filter(r => r.match).length,summary='Matched '+count+' of '+rows.length+'.';
+    state.reveal={rows,summary};
+    state.guesses={};
+    renderMystery();
+    hint(summary+' Tap Mystery listener to return to Compare.');
+    V.say([L.matched,L.numbers[count],L.of,L.numbers[rows.length]],{valid:() => state.mystery && !!state.reveal});
+    $('mystery').focus({preventScroll:true});
+  }
+  function setMode(mode) {
+    if (!['booth','compare','plan'].includes(mode)) return;
+    if (modeReady && mode===state.mode) {
+      stopPlayback();
+      if (isBusy()) cancelRecording();
+      hint(nextHint());
+      V.welcome();
+      return;
+    }
+    stopPlayback();
+    if (isBusy()) cancelRecording();
+    closePerform(false);
+    V.hush();
+    state.mode=mode;
+    if (mode!=='plan') { $('panel').classList.remove('plan-checked'); $('plan-check-panel').hidden=true; }
+    $('panel').classList.toggle('no-mic',state.mic==='denied' && mode==='booth');
+    $('panel').classList.toggle('mystery-mode',mode==='compare' && state.mystery);
+    $('stage').classList.toggle('plan-mode',mode==='plan');
+    layoutDials();
+    if (mode!=='compare') { state.mystery=false; state.guesses={}; state.reveal=null; }
+    for (const m of ['booth','compare','plan']) $('m-'+m).setAttribute('aria-pressed',m===mode);
+    const booth=mode==='booth',plan=mode==='plan',compare=mode==='compare';
+    $('studio').hidden=!booth;
+    $('shelf').hidden=!booth;
+    $('plan-stage').hidden=!plan;
+    $('compare-stage').hidden=!compare;
+    $('line-picker').hidden=compare;
+    $('card-picker').hidden=compare;
+    $('plan-controls').hidden=!plan;
+    $('compare-controls').hidden=!compare;
+    $('record-row').hidden=!booth;
+    $('booth-extras').hidden=!booth;
+    $('plan-extras').hidden=!plan;
+    $('mic-notice').hidden=state.mic!=='denied' || !booth;
+    $('go-plan').hidden=state.mic!=='denied' || !booth;
+    $('mystery-controls').hidden=true;
+    $('take-pickers').hidden=false;
+    $('play-pair').hidden=false;
+    $('mystery').setAttribute('aria-pressed',false);
+    $('record-check').hidden=state.mic!=='granted';
+    if (booth) renderShelf();
+    if (plan) renderPlan();
+    if (compare) renderCompare();
+    hint(nextHint());
+    V.welcome();
+    modeReady=true;
+  }
+  async function audioContext() {
+    if (!ctx || ctx.state==='closed') ctx=new AudioContext();
+    if (ctx.state==='suspended') await ctx.resume();
+    return ctx;
+  }
+  function layoutDials() {
+    const stageDials=innerWidth>=600 && state.mode==='plan';
+    const parent=stageDials?$('stage'):$('panel');
+    if ($('plan-controls').parentElement!==parent) {
+      if (stageDials) parent.append($('plan-controls'));
+      else parent.insertBefore($('plan-controls'),$('compare-controls'));
+    }
+  }
+  async function setupCapture(s,token) {
+    const ac=await audioContext();
+    if (!workletReady) {
+      const code=`class BoothCapture extends AudioWorkletProcessor {
+        process(inputs) {
+          const channel=inputs[0]?.[0];
+          if (channel) this.port.postMessage(channel.slice());
+          return true;
+        }
+      }
+      registerProcessor('booth-capture',BoothCapture);`;
+      const url='data:text/javascript;base64,'+btoa(code);
+      await ac.audioWorklet.addModule(url);
+      workletReady=true;
+    }
+    if (token!==captureToken) { s.getTracks().forEach(track => track.stop()); return false; }
+    input=ac.createMediaStreamSource(s);
+    recorder=new AudioWorkletNode(ac,'booth-capture');
+    mute=ac.createGain();
+    mute.gain.value=0;
+    input.connect(recorder);
+    recorder.connect(mute).connect(ac.destination);
+    recorder.port.onmessage=event => {
+      if (state.phase!=='recording') return;
+      const data=event.data,room=Math.round(ac.sampleRate*8)-captured;
+      if (room<=0) return;
+      const part=data.length>room?data.slice(0,room):data;
+      chunks.push(part);
+      captured+=part.length;
+      if (captured>=ac.sampleRate*8) finishRecording();
+    };
+    return true;
+  }
+  function releaseMic() {
+    if (recorder) { recorder.port.onmessage=null; recorder.disconnect(); recorder=null; }
+    if (input) { input.disconnect(); input=null; }
+    if (mute) { mute.disconnect(); mute=null; }
+    if (stream) { stream.getTracks().forEach(t => t.stop()); stream=null; }
+  }
+  function busyUI() {
+    const busy=isBusy();
+    $('studio').hidden=state.mode!=='booth' && !busy;
+    $('record').textContent=busy?'■ Stop':'● Record';
+    $('record').classList.toggle('busy',busy);
+    $('record-check').textContent=busy?'■ Stop':'Record to check';
+    $('record-row').hidden=state.mode!=='booth' && !busy;
+    $('read').disabled=busy;
+    ['line','characters','feelings','clear','challenge','perform'].forEach(id => $(id).disabled=busy);
+    document.querySelectorAll('#cards button,.dial input').forEach(b => b.disabled=busy);
+    $('lamp-off').hidden=state.phase==='recording';
+    $('lamp-on').hidden=state.phase!=='recording';
+    $('lamp-label').textContent=state.phase==='recording'?'Recording':'READY';
+    $('studio').classList.toggle('recording',state.phase==='recording');
+    if (!busy) {
+      $('count').hidden=true;
+      $('time-label').textContent='0 to 8 seconds';
+      $('time-fill').style.width='0';
+    }
+  }
+  function cancelRecording() {
+    captureToken++;
+    releaseMic();
+    chunks=[];
+    captured=0;
+    pendingMeta=null;
+    state.phase='idle';
+    state.captureLog.push({event:'cancel',t:performance.now()});
+    busyUI();
+    hint(nextHint());
+  }
+  async function record(check=false) {
+    if (state.phase==='recording') return finishRecording();
+    if (isBusy()) return cancelRecording();
+    stopPlayback();
+    V.hush();
+    const token=++captureToken;
+    state.phase='requesting';
+    state.captureLog.push({event:'record-pressed',t:performance.now()});
+    const base=baseline();
+    pendingMeta={line:LINES[state.line],card:state.card,plan:check?[...state.plan]:null,
+      reference:check?{hz:base?.hz || 220,db:base?.db || -25,speed:2.5,pauses:[]}:null};
+    if (state.challenge?.first) pendingMeta.line=state.challenge.line;
+    if (state.challenge && !state.challenge.first) pendingMeta.card='usual';
+    busyUI();
+    hint('Allow the microphone, then wait for 3, 2, 1. Tap Stop to cancel.');
+    try {
+      if (!navigator.mediaDevices?.getUserMedia || !window.isSecureContext) throw new Error('No microphone');
+      const acquired=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false},video:false});
+      if (token!==captureToken) { acquired.getTracks().forEach(t => t.stop()); return; }
+      stream=acquired;
+      state.mic='granted';
+      if (!(await setupCapture(acquired,token))) return;
+      $('record-check').hidden=false;
+      $('mic-notice').hidden=true;
+      $('go-plan').hidden=true;
+      state.phase='counting';
+      busyUI();
+      $('count').hidden=false;
+      for (const n of [3,2,1]) {
+        $('count').textContent=n;
+        hint('Get ready: '+n+'. Tap Stop to cancel.');
+        await Curio.wait(1000);
+        if (token!==captureToken) return;
+      }
+      $('count').hidden=true;
+      chunks=[];
+      captured=0;
+      recordingStart=performance.now();
+      state.phase='recording';
+      state.captureLog.push({event:'recording',t:recordingStart});
+      busyUI();
+      hint('Say “'+pendingMeta.line+'” now. Tap Stop when you finish.');
+      const tick=() => {
+        if (token!==captureToken || state.phase!=='recording') return;
+        const seconds=(performance.now()-recordingStart)/1000;
+        $('time-label').textContent=Math.min(8,seconds).toFixed(1)+' / 8 seconds';
+        $('time-fill').style.width=Math.min(100,seconds/8*100)+'%';
+        if (seconds>=8.2) { finishRecording(); return; }
+        requestAnimationFrame(tick);
+      };
+      tick();
+    } catch (err) {
+      if (token!==captureToken) return;
+      state.lastCaptureError=err.name+': '+err.message;
+      releaseMic();
+      chunks=[];
+      pendingMeta=null;
+      state.phase='idle';
+      state.mic='denied';
+      $('panel').classList.toggle('no-mic',state.mode==='booth');
+      busyUI();
+      $('record-check').hidden=true;
+      $('mic-notice').hidden=false;
+      const policy=document.permissionsPolicy || document.featurePolicy;
+      $('mic-notice').textContent="No microphone here. That's OK: use Plan and perform for a partner."+
+        (window.top!==window && policy && !policy.allowsFeature('microphone')?' Open full screen to record.':'');
+      $('go-plan').hidden=false;
+      hint(L.noMic);
+      V.say('noMic',{valid:() => state.mic==='denied' && !isBusy()});
+    }
+  }
+  function finishRecording() {
+    if (state.phase!=='recording') return;
+    captureToken++;
+    releaseMic();
+    state.phase='analyzing';
+    const rate=ctx.sampleRate,data=new Float32Array(captured);
+    let offset=0;
+    for (const chunk of chunks) { data.set(chunk,offset); offset+=chunk.length; }
+    chunks=[];
+    captured=0;
+    const meta=pendingMeta,token=captureToken;
+    pendingMeta=null;
+    hint('Drawing your voiceprint…');
+    setTimeout(() => {
+      if (token!==captureToken) return;
+      const result=analyze(data,rate,meta.line);
+      state.phase='idle';
+      busyUI();
+      if (!result) {
+        state.captureLog.push({event:'rejected',t:performance.now()});
+        hint(L.quiet);
+        V.say('quiet',{valid:() => !isBusy()});
+        return;
+      }
+      const buffer=ctx.createBuffer(1,data.length,rate);
+      buffer.copyToChannel(data,0);
+      shelfTake(result,buffer,meta);
+    },20);
+  }
+  function challengeResult(a,b,dial) {
+    const r=relative(b,a),changed=DIALS.filter((d,i) => i===3?a.pauses.length!==b.pauses.length:r.bins[i]!==2);
+    const met=changed.length===1 && changed[0]===DIALS[dial];
+    return {met,changed,text:met?'You changed only '+DIALS[dial].toLowerCase()+'. That is a fair test.':
+      changed.length?'Changed: '+changed.join(' and ')+'. Try again, changing only '+DIALS[dial].toLowerCase()+'.':
+        'All four stayed about the same. Try again, changing only '+DIALS[dial].toLowerCase()+'.'};
+  }
+  function shelfTake(result,buffer,meta) {
+    const t={...result,id:state.next++,line:meta.line,card:meta.card,buffer},first=!state.takes.length;
+    state.takes.push(t);
+    if (t.card==='usual' || !state.baselineId) state.baselineId=t.id;
+    if (state.takes.length>6) {
+      const old=state.takes.splice(state.takes.findIndex(take => take.id!==state.baselineId),1)[0];
+      old.buffer=null;
+      state.removed='Take '+old.id+' was removed to make room.';
+    }
+    state.a=baseline().id;
+    state.b=t.id;
+    state.captureLog.push({event:'shelved',id:t.id,t:performance.now()});
+    if (meta.plan) {
+      const r=relative(t,meta.reference),results=meta.plan.map((v,i) => {
+        const got=i===3?t.pauses.length:r.bins[i];
+        return DIALS[i]+': planned '+NOTCHES[i][v]+', got '+(i===3?got:NOTCHES[i][got].replace('usual','about the same'))+
+          (got===v?' · match':'');
+      });
+      state.check={id:t.id,plan:meta.plan,reference:meta.reference,results};
+      V.say(meta.plan.map((v,i) => L.matches[i*2+((i===3?t.pauses.length:r.bins[i])===v?0:1)]),
+        {valid:() => !!state.check && !isBusy()});
+    } else {
+      const r=relative(t);
+      V.say(first?(t.card==='usual'?'baseline':'fallback'):
+        [L.take,L.pitch[r.bins[0]],L.speed[r.bins[1]],baseline().card==='usual'?L.than:L.thanBaseline],
+        {valid:() => !isBusy() && state.takes.at(-1)?.id===t.id});
+    }
+    let outcome='';
+    if (state.challenge) {
+      if (!state.challenge.first) { state.challenge.first=t.id; state.challenge.line=t.line; }
+      else {
+        const a=takeById(state.challenge.first);
+        if (a) {
+          const c=challengeResult(a,t,state.challenge.dial);
+          outcome=c.text;
+          V.say(c.met?'fair':c.changed.length>1?'unfair':'unchanged',{valid:() => !isBusy()});
+        }
+        state.challenge=null;
+      }
+    }
+    renderShelf(t.id);
+    if (state.mode==='plan') renderPlan();
+    if (state.mode==='compare') renderCompare();
+    hint(outcome || [state.removed,nextHint()].filter(Boolean).join(' '));
+    state.removed='';
+    if (state.mode==='booth' && !state.challenge && !outcome) {
+      const key=state.takes.length===1?'first':'second';
+      if (!V.heard(key)) how(key,() => !isBusy() && state.takes.at(-1)?.id===t.id);
+    }
+    Curio.tone(520,.12,.045);
+  }
+  function deleteTake(id) {
+    stopPlayback();
+    V.hush();
+    const t=takeById(id);
+    if (!t) return;
+    t.buffer=null;
+    state.takes=state.takes.filter(v => v.id!==id);
+    if (state.baselineId===id) state.baselineId=[...state.takes].reverse().find(v => v.card==='usual')?.id || state.takes[0]?.id || null;
+    if (state.check?.id===id) state.check=null;
+    if (state.challenge?.first===id) state.challenge=null;
+    renderShelf();
+    hint('Take '+id+' deleted. '+nextHint());
+    $('record').focus({preventScroll:true});
+  }
+  async function play(id,continuation=false) {
+    if (isBusy()) return;
+    const t=takeById(id);
+    if (!t?.buffer) return;
+    if (!continuation) stopPlayback();
+    V.hush();
+    const token=playToken,ac=await audioContext();
+    if (token!==playToken || !takeById(id)) return;
+    const source=ac.createBufferSource();
+    source.buffer=t.buffer;
+    source.connect(ac.destination);
+    player=source;
+    state.playing=id;
+    playStarted=ac.currentTime;
+    const node=(state.mode==='booth'?document.querySelector('[data-take="'+id+'"]'):null) || $('compare-stage');
+    node.classList.add('playing');
+    source.start();
+    hint('Playing '+(state.mystery?'the mystery take':'Take '+id)+'. Tap another Play to switch at once.');
+    return new Promise(resolve => {
+      playResolve=resolve;
+      source.onended=() => {
+        if (token===playToken) {
+          state.playing=null;
+          player=null;
+          playResolve=null;
+          node.classList.remove('playing');
+          document.querySelectorAll('.playhead').forEach(e => e.remove());
+          hint(nextHint());
+        }
+        source.disconnect();
+        resolve();
+      };
+      const tick=() => {
+        if (token!==playToken || state.playing!==id) return;
+        if (!Curio.reduce) {
+          const svg=node.querySelector('svg');
+          if (svg) {
+            let head=svg.querySelector('.playhead');
+            if (!head) { head=document.createElementNS('http://www.w3.org/2000/svg','line'); head.classList.add('playhead'); svg.append(head); }
+            const x=42+(ac.currentTime-playStarted)/8*(svg.viewBox.baseVal.width-58);
+            for (const [k,v] of Object.entries({x1:x,x2:x,y1:20,y2:svg.viewBox.baseVal.height-25,stroke:'#fff','stroke-width':2})) {
+              head.setAttribute(k,v);
+            }
+          }
+        }
+        playbackFrame=requestAnimationFrame(tick);
+      };
+      tick();
+    });
+  }
+  async function playPair() {
+    stopPlayback();
+    const token=playToken,a=state.a,b=state.b;
+    await play(a,true);
+    if (token===playToken && takeById(a) && takeById(b)) await play(b,true);
+  }
+  function clearTakes() {
+    stopPlayback();
+    V.hush();
+    for (const t of state.takes) t.buffer=null;
+    state.takes=[];
+    state.baselineId=null;
+    state.a=null;
+    state.b=null;
+    state.check=null;
+    state.challenge=null;
+    state.guesses={};
+    state.order=[];
+    state.reveal=null;
+    chunks=[];
+    captured=0;
+    renderShelf();
+    hint(L.clear);
+    V.say('clear',{valid:() => !state.takes.length && !isBusy()});
+  }
+  function perform() {
+    stopPlayback();
+    V.hush();
+    performFocus=document.activeElement;
+    $('perform-overlay').innerHTML=cardArt(state.card,card(state.card)[1])+'<span class="eyebrow">Perform for your partner</span>'+
+      '<h2>“'+esc(LINES[state.line])+'”</h2><div class="plan-dials">'+state.plan.map((v,i) =>
+        '<div>'+['↕ Pitch','» Speed','◖ Loudness','Ⅱ Pauses'][i]+
+        '<strong>'+esc(NOTCHES[i][v])+'</strong></div>').join('')+'</div><p>Partner: look away and listen, then guess the card.</p>'+ 
+      '<button id="back-plan">Back to Plan</button>';
+    $('perform-overlay').hidden=false;
+    $('panel').inert=true;
+    document.querySelector('header').inert=true;
+    $('back-plan').onclick=() => closePerform();
+    $('back-plan').focus({preventScroll:true});
+    V.say('perform',{valid:() => !$('perform-overlay').hidden});
+  }
+  function closePerform(focus=true) {
+    if ($('perform-overlay').hidden) return;
+    $('perform-overlay').hidden=true;
+    $('panel').inert=false;
+    document.querySelector('header').inert=false;
+    V.hush();
+    if (focus && performFocus?.isConnected) performFocus.focus({preventScroll:true});
+  }
+  function init() {
+    $('line').textContent=LINES[0]+' ▾';
+    $('line-preview').textContent='“'+LINES[0]+'”';
+    const closeLines=() => {
+      V.hush();
+      $('line-dialog').hidden=true;
+      document.querySelector('header').inert=false;
+      document.querySelector('main').inert=false;
+      $('line').focus({preventScroll:true});
+      hint(nextHint());
+      V.welcome();
+    };
+    $('line-chips').innerHTML=LINES.map((v,i) => '<button data-line="'+i+'" aria-pressed="'+(i===0)+'">'+esc(v)+'</button>').join('');
+    $('line').onclick=() => {
+      stopPlayback();
+      V.hush();
+      $('line-dialog').hidden=false;
+      document.querySelector('header').inert=true;
+      document.querySelector('main').inert=true;
+      $('line-chips').querySelector('[data-line="'+state.line+'"]').focus({preventScroll:true});
+      V.how('chooseLine',{valid:() => !$('line-dialog').hidden});
+    };
+    $('close-lines').onclick=closeLines;
+    $('line-chips').querySelectorAll('button').forEach(b => b.onclick=() => {
+      stopPlayback();
+      V.dropQueued();
+      state.line=+b.dataset.line;
+      $('line').textContent=LINES[state.line]+' ▾';
+      $('line-chips').querySelectorAll('button').forEach(c => c.setAttribute('aria-pressed',+c.dataset.line===state.line));
+      state.check=null;
+      state.challenge=null;
+      $('line-preview').textContent='“'+LINES[state.line]+'”';
+      hint(nextHint());
+      feedback();
+      if (state.mode==='plan') renderPlan();
+      closeLines();
+    });
+    $('characters').onclick=() => selectFamily('characters');
+    $('feelings').onclick=() => selectFamily('feelings');
+    showCards();
+    $('plan-controls').innerHTML=DIALS.map((name,i) => '<div class="dial"><label for="dial-'+i+'">'+name+
+      '<output id="out-'+i+'">'+NOTCHES[i][state.plan[i]]+'</output></label><input id="dial-'+i+'" type="range" min="0" max="4" '+
+      'step="1" value="'+state.plan[i]+'" aria-valuetext="'+NOTCHES[i][state.plan[i]]+'"><div class="notches">'+
+      NOTCHES[i].map(v => '<span>'+v+'</span>').join('')+'</div></div>').join('');
+    DIALS.forEach((name,i) => $('dial-'+i).oninput=() => {
+      stopPlayback();
+      V.dropQueued();
+      state.plan[i]=+$('dial-'+i).value;
+      $('out-'+i).textContent=NOTCHES[i][state.plan[i]];
+      $('dial-'+i).setAttribute('aria-valuetext',NOTCHES[i][state.plan[i]]);
+      state.check=null;
+      hint('Plan updated. Tap Perform it and say the line using these four choices.');
+      renderPlan();
+      feedback();
+    });
+    ['booth','compare','plan'].forEach(m => $('m-'+m).onclick=() => setMode(m));
+    $('record').onclick=() => record();
+    $('record-check').onclick=() => record(true);
+    $('go-plan').onclick=() => setMode('plan');
+    $('perform').onclick=perform;
+    $('clear').onclick=clearTakes;
+    $('challenge').onclick=() => {
+      stopPlayback();
+      V.hush();
+      const dial=Math.floor(Math.random()*4);
+      state.challenge={dial,first:null,line:LINES[state.line]};
+      hint(nextHint());
+      V.how([L.challenge,L.dial[dial]],{key:'challenge-'+dial,valid:() => !!state.challenge && !isBusy()});
+      feedback();
+    };
+    for (const side of ['a','b']) $('take-'+side).onchange=() => {
+      stopPlayback();
+      state[side]=+$('take-'+side).value;
+      renderCompare();
+      hint(nextHint());
+    };
+    $('play-a').onclick=() => play(state.a);
+    $('play-b').onclick=() => play(state.b);
+    $('play-ab').onclick=playPair;
+    $('mystery').onclick=() => {
+      stopPlayback();
+      V.hush();
+      state.mystery=!state.mystery;
+      $('panel').classList.toggle('mystery-mode',state.mystery);
+      state.guesses={};
+      state.reveal=null;
+      state.order=state.takes.map(t => t.id);
+      for (let i=state.order.length-1;i>0;i--) {
+        const j=Math.floor(Math.random()*(i+1));
+        [state.order[i],state.order[j]]=[state.order[j],state.order[i]];
+      }
+      state.mysteryTake=state.order[0];
+      $('mystery').setAttribute('aria-pressed',state.mystery);
+      $('mystery-controls').hidden=!state.mystery;
+      $('take-pickers').hidden=state.mystery;
+      $('play-pair').hidden=state.mystery;
+      hint(nextHint());
+      renderCompare();
+      if (state.mystery) how('mystery',() => state.mystery && !state.reveal);
+    };
+    $('reveal').onclick=reveal;
+    ['characters','feelings'].forEach(f => $('guess-'+f).onclick=() => {
+      stopPlayback();
+      state.guessFamily=f;
+      renderMystery();
+      hint(L.mystery);
+    });
+    document.addEventListener('keydown',event => {
+      if (!$('line-dialog').hidden) {
+        if (event.key==='Escape') closeLines();
+        if (event.key==='Tab') {
+          const buttons=[...$('line-dialog').querySelectorAll('button')],index=buttons.indexOf(document.activeElement);
+          event.preventDefault();
+          buttons[(index+(event.shiftKey?buttons.length-1:1))%buttons.length].focus({preventScroll:true});
+        }
+        return;
+      }
+      if (event.key==='Escape') { closePerform(); if (isBusy()) cancelRecording(); stopPlayback(); }
+      if (!$('perform-overlay').hidden && event.key==='Tab') { event.preventDefault(); $('back-plan').focus({preventScroll:true}); }
+      if (!event.repeat && event.key.toLowerCase()==='r' && $('panel').contains(document.activeElement) &&
+        !['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName) && state.mode!=='compare' &&
+        (state.mode==='booth' || state.mic==='granted')) {
+        event.preventDefault();
+        record(state.mode==='plan');
+      }
+    });
+    Curio.init({clips:"voice:*",rate:.9});
+    Curio.onMotion(() => { if (Curio.reduce) document.querySelectorAll('.playhead').forEach(e => e.remove()); });
+    new ResizeObserver(() => { layoutDials(); refreshCharts(); }).observe($('stage'));
+    setMode('booth');
+    window.addEventListener('pagehide',() => { cancelRecording(); clearTakes(); });
+    window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq() { return V.queue; },analyze,relative,ghost,
+      challengeResult,record,cancelRecording,clearTakes,stopPlayback,renderShelf,renderCompare,renderPlan,shelfTake,play,baseline,readouts,
+      get audio() { return ctx; },get captureChunks() { return chunks.length; }};
+  }
+  init();
+})();
+</script>
+</body>
+</html>

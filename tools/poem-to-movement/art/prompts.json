@@ -1,0 +1,1601 @@
+{
+  "house_style": "Rich, tactile fine-art illustrations for a grade 3 to 5 dance studio. Painterly layered color, subtle paper grain, beautifully composed silhouettes and directional light. Original compositions. No text, lettering, numbers or logos.",
+  "assets": [
+    {
+      "name": "studio-light",
+      "prompt": "Empty contemporary dance rehearsal studio, front view, violet-charcoal plaster wall, large muted violet mirror reflecting soft light, slate gray marley floor. Warm daylight enters from upper left, soft diagonal shafts of dust and subtle floor reflections, rich gouache and pencil surface texture, calm atmospheric depth. Wide central empty space for a code dancer. No barre, furniture, equipment or text. No people, faces or body parts.",
+      "aspect": "16:9",
+      "width": 1120,
+      "quality": 76,
+      "cutout": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "painting-river",
+      "prompt": "A slow wide river at dusk in the style of Japanese woodblock prints, flat bands of indigo blue and peach, a single heron wading in shallow water at the lower left, drifting mist over reeds across the middle right, a low pale moon at upper right, still water with gentle curved ripples across the bottom center. Full-frame landscape, delicate carved lines and textured pigments, a quiet luminous twilight. No people, faces or human body parts.",
+      "aspect": "16:9",
+      "width": 1120,
+      "quality": 78,
+      "cutout": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "painting-storm",
+      "prompt": "A thunderstorm over rolling green hills in the style of Romantic landscape painting. A bright jagged lightning bolt at upper right, trees bending in the wind at lower left, huge dark rolling clouds at upper center, slanting sheets of pouring rain across the right hillside. Dramatic light from the lightning, rich oil-paint impasto and atmospheric depth. Full-frame landscape. No people, faces or human body parts.",
+      "aspect": "16:9",
+      "width": 1120,
+      "quality": 78,
+      "cutout": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "poem-card",
+      "prompt": "A single sheet of soft ivory handmade paper with a deckled edge, blank, lying flat on a pale warm neutral surface, viewed directly from above. Gentle light from upper left, soft natural shadow, subtle cotton fibers and delicate grain. Spacious clean center for a poem to be added in code. Full frame. No people, faces or human body parts.",
+      "aspect": "4:3",
+      "width": 960,
+      "quality": 75,
+      "cutout": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "dancer-float-low-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. float at low level, keyframe a, engine pose reach-up. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-float-low-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. float at low level, keyframe b, engine pose arms-wide. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-float-middle-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. float at middle level, keyframe a, engine pose reach-up. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-float-middle-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. float at middle level, keyframe b, engine pose arms-wide. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-float-high-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. float at high level, keyframe a, engine pose reach-up. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-float-high-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. float at high level, keyframe b, engine pose arms-wide. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-shiver-low-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. shiver at low level, keyframe a, engine pose arms-wide. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-shiver-low-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. shiver at low level, keyframe b, engine pose arms-wide. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-shiver-middle-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. shiver at middle level, keyframe a, engine pose arms-wide. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-shiver-middle-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. shiver at middle level, keyframe b, engine pose arms-wide. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-shiver-high-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. shiver at high level, keyframe a, engine pose arms-wide. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-shiver-high-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. shiver at high level, keyframe b, engine pose arms-wide. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-glide-low-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. glide at low level, keyframe a, engine pose walk-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-glide-low-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. glide at low level, keyframe b, engine pose walk-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-glide-middle-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. glide at middle level, keyframe a, engine pose walk-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-glide-middle-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. glide at middle level, keyframe b, engine pose walk-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-glide-high-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. glide at high level, keyframe a, engine pose walk-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-glide-high-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. glide at high level, keyframe b, engine pose walk-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-sink-low-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sink at low level, keyframe a, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-sink-low-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sink at low level, keyframe b, engine pose curl. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-sink-middle-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sink at middle level, keyframe a, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-sink-middle-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sink at middle level, keyframe b, engine pose curl. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-sink-high-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sink at high level, keyframe a, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-sink-high-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sink at high level, keyframe b, engine pose curl. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-rush-low-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. rush at low level, keyframe a, engine pose run-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-rush-low-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. rush at low level, keyframe b, engine pose run-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-rush-middle-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. rush at middle level, keyframe a, engine pose run-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-rush-middle-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. rush at middle level, keyframe b, engine pose run-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-rush-high-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. rush at high level, keyframe a, engine pose run-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-rush-high-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. rush at high level, keyframe b, engine pose run-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-stomp-low-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. stomp at low level, keyframe a, engine pose stamp. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-stomp-low-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. stomp at low level, keyframe b, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-stomp-middle-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. stomp at middle level, keyframe a, engine pose stamp. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-stomp-middle-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. stomp at middle level, keyframe b, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-stomp-high-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. stomp at high level, keyframe a, engine pose stamp. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-stomp-high-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. stomp at high level, keyframe b, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-leap-low-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. leap at low level, keyframe a, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-leap-low-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. leap at low level, keyframe b, engine pose star-jump. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-leap-middle-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. leap at middle level, keyframe a, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-leap-middle-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. leap at middle level, keyframe b, engine pose star-jump. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-leap-high-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. leap at high level, keyframe a, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-leap-high-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. leap at high level, keyframe b, engine pose star-jump. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-scatter-low-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. scatter at low level, keyframe a, engine pose hop-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-scatter-low-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. scatter at low level, keyframe b, engine pose hop-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-scatter-middle-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. scatter at middle level, keyframe a, engine pose hop-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-scatter-middle-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. scatter at middle level, keyframe b, engine pose hop-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-scatter-high-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. scatter at high level, keyframe a, engine pose hop-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-scatter-high-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. scatter at high level, keyframe b, engine pose hop-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-freeze-low-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. freeze at low level, keyframe a, engine pose held. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-freeze-low-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. freeze at low level, keyframe b, engine pose held. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-freeze-middle-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. freeze at middle level, keyframe a, engine pose held. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-freeze-middle-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. freeze at middle level, keyframe b, engine pose held. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-freeze-high-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. freeze at high level, keyframe a, engine pose held. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-freeze-high-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. freeze at high level, keyframe b, engine pose held. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-reach-low-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. reach at low level, keyframe a, engine pose point. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-reach-low-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. reach at low level, keyframe b, engine pose reach-up. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-reach-middle-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. reach at middle level, keyframe a, engine pose point. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-reach-middle-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. reach at middle level, keyframe b, engine pose reach-up. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-reach-high-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. reach at high level, keyframe a, engine pose point. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-reach-high-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. reach at high level, keyframe b, engine pose reach-up. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-sway-low-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sway at low level, keyframe a, engine pose bend-side-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-sway-low-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sway at low level, keyframe b, engine pose bend-side-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-sway-middle-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sway at middle level, keyframe a, engine pose bend-side-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-sway-middle-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sway at middle level, keyframe b, engine pose bend-side-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-sway-high-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sway at high level, keyframe a, engine pose bend-side-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-sway-high-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sway at high level, keyframe b, engine pose bend-side-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-roll-low-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. roll at low level, keyframe a, engine pose twist-front. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-roll-low-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. roll at low level, keyframe b, engine pose twist-turn. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-roll-middle-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. roll at middle level, keyframe a, engine pose twist-front. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-roll-middle-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. roll at middle level, keyframe b, engine pose twist-turn. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-roll-high-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. roll at high level, keyframe a, engine pose twist-front. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-roll-high-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. roll at high level, keyframe b, engine pose twist-turn. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-melt-low-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. melt at low level, keyframe a, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-melt-low-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. melt at low level, keyframe b, engine pose sit. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-melt-middle-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. melt at middle level, keyframe a, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-melt-middle-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. melt at middle level, keyframe b, engine pose sit. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-melt-high-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. melt at high level, keyframe a, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-melt-high-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. melt at high level, keyframe b, engine pose sit. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Light version: weightless, lifted onto tiptoe where the support permits.",
+      "weight": "light"
+    },
+    {
+      "name": "dancer-float-low-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. float at low level, keyframe a, engine pose reach-up. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-float-low-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. float at low level, keyframe b, engine pose arms-wide. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-float-middle-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. float at middle level, keyframe a, engine pose reach-up. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-float-middle-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. float at middle level, keyframe b, engine pose arms-wide. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-float-high-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. float at high level, keyframe a, engine pose reach-up. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-float-high-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. float at high level, keyframe b, engine pose arms-wide. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-shiver-low-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. shiver at low level, keyframe a, engine pose arms-wide. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-shiver-low-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. shiver at low level, keyframe b, engine pose arms-wide. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-shiver-middle-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. shiver at middle level, keyframe a, engine pose arms-wide. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-shiver-middle-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. shiver at middle level, keyframe b, engine pose arms-wide. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-shiver-high-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. shiver at high level, keyframe a, engine pose arms-wide. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-shiver-high-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. shiver at high level, keyframe b, engine pose arms-wide. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-glide-low-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. glide at low level, keyframe a, engine pose walk-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-glide-low-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. glide at low level, keyframe b, engine pose walk-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-glide-middle-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. glide at middle level, keyframe a, engine pose walk-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-glide-middle-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. glide at middle level, keyframe b, engine pose walk-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-glide-high-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. glide at high level, keyframe a, engine pose walk-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-glide-high-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. glide at high level, keyframe b, engine pose walk-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-sink-low-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sink at low level, keyframe a, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-sink-low-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sink at low level, keyframe b, engine pose curl. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-sink-middle-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sink at middle level, keyframe a, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-sink-middle-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sink at middle level, keyframe b, engine pose curl. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-sink-high-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sink at high level, keyframe a, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-sink-high-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sink at high level, keyframe b, engine pose curl. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-rush-low-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. rush at low level, keyframe a, engine pose run-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-rush-low-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. rush at low level, keyframe b, engine pose run-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-rush-middle-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. rush at middle level, keyframe a, engine pose run-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-rush-middle-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. rush at middle level, keyframe b, engine pose run-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-rush-high-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. rush at high level, keyframe a, engine pose run-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-rush-high-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. rush at high level, keyframe b, engine pose run-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-stomp-low-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. stomp at low level, keyframe a, engine pose stamp. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-stomp-low-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. stomp at low level, keyframe b, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-stomp-middle-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. stomp at middle level, keyframe a, engine pose stamp. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-stomp-middle-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. stomp at middle level, keyframe b, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-stomp-high-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. stomp at high level, keyframe a, engine pose stamp. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-stomp-high-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. stomp at high level, keyframe b, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-leap-low-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. leap at low level, keyframe a, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-leap-low-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. leap at low level, keyframe b, engine pose star-jump. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-leap-middle-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. leap at middle level, keyframe a, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-leap-middle-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. leap at middle level, keyframe b, engine pose star-jump. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-leap-high-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. leap at high level, keyframe a, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-leap-high-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. leap at high level, keyframe b, engine pose star-jump. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-scatter-low-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. scatter at low level, keyframe a, engine pose hop-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-scatter-low-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. scatter at low level, keyframe b, engine pose hop-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-scatter-middle-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. scatter at middle level, keyframe a, engine pose hop-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-scatter-middle-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. scatter at middle level, keyframe b, engine pose hop-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-scatter-high-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. scatter at high level, keyframe a, engine pose hop-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-scatter-high-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. scatter at high level, keyframe b, engine pose hop-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-freeze-low-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. freeze at low level, keyframe a, engine pose held. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-freeze-low-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. freeze at low level, keyframe b, engine pose held. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-freeze-middle-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. freeze at middle level, keyframe a, engine pose held. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-freeze-middle-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. freeze at middle level, keyframe b, engine pose held. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-freeze-high-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. freeze at high level, keyframe a, engine pose held. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-freeze-high-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. freeze at high level, keyframe b, engine pose held. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-reach-low-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. reach at low level, keyframe a, engine pose point. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-reach-low-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. reach at low level, keyframe b, engine pose reach-up. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-reach-middle-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. reach at middle level, keyframe a, engine pose point. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-reach-middle-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. reach at middle level, keyframe b, engine pose reach-up. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-reach-high-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. reach at high level, keyframe a, engine pose point. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-reach-high-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. reach at high level, keyframe b, engine pose reach-up. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-sway-low-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sway at low level, keyframe a, engine pose bend-side-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-sway-low-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sway at low level, keyframe b, engine pose bend-side-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-sway-middle-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sway at middle level, keyframe a, engine pose bend-side-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-sway-middle-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sway at middle level, keyframe b, engine pose bend-side-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-sway-high-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sway at high level, keyframe a, engine pose bend-side-left. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-sway-high-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. sway at high level, keyframe b, engine pose bend-side-right. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-roll-low-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. roll at low level, keyframe a, engine pose twist-front. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-roll-low-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. roll at low level, keyframe b, engine pose twist-turn. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-roll-middle-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. roll at middle level, keyframe a, engine pose twist-front. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-roll-middle-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. roll at middle level, keyframe b, engine pose twist-turn. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-roll-high-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. roll at high level, keyframe a, engine pose twist-front. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-roll-high-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. roll at high level, keyframe b, engine pose twist-turn. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-melt-low-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. melt at low level, keyframe a, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-melt-low-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. melt at low level, keyframe b, engine pose sit. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-melt-middle-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. melt at middle level, keyframe a, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-melt-middle-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. melt at middle level, keyframe b, engine pose sit. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-melt-high-strong-a",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. melt at high level, keyframe a, engine pose stand. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    },
+    {
+      "name": "dancer-melt-high-strong-b",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 640,
+      "quality": 78,
+      "prompt": "Future painter only. Consistent full-body painted dancer in a coral top, blue-violet trousers, cream shoes and circle badge. melt at high level, keyframe b, engine pose sit. Keep complete body and limbs in frame, flat pure green background. Match dance engine keyframe contact sheet, with high on tiptoe and low visibly near the floor. Owner review required. Strong version: mix the knees forty percent toward a deep plie, with clear grounded support and strong accents. Keep the same action, level, costume, proportions and camera as the light version. Flat pure green background.",
+      "weight": "strong"
+    }
+  ]
+}

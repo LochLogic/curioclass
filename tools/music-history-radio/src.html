@@ -1,0 +1,1714 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Music History Radio · Curio Class</title>
+<meta name="description" content="One original melody, twelve listening stations. Tune, compare and mix musical history. Grades 9-12. Offline.">
+<!--
+Music History Radio, Curio Class. Based on kit/starter/src.html. Content CC BY 4.0, code MIT.
+NCAS MU:Re7 and MU:Cn11. Original tune and arrangements: The Traveler, written for Curio Class.
+Historical facts: supplied spec sources, with added gamelan sources in notes.md.
+Gamelan: Smithsonian Folkways SFW40441 notes; UNESCO nomination 01607; Philharmonie de Paris, 4 June 2025.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. People postcard reviewed separately.
+All audio is synthesized. No recordings, tracking or network requests. Mystery results are not stored.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --brand:#4fd18b;--brand-ink:#1b1916;--paper:#1b1916;--panel:#26231f;
+  --ink:#f1ead8;--muted:#b3a993;--line:#51483a;--btn:#302b24;--btn-line:#81725a;
+  --head-bg:#171613;--head-ink:#f1ead8;--focus:#f7c775;--room:url('art:mhr-room');
+}
+body {grid-template-rows:76px minmax(0,1fr) 58px;min-height:0;overflow:hidden}
+header {padding:10px 20px;gap:20px;flex-wrap:nowrap;border-bottom:1px solid #645033}
+h1 {font:400 25px/1.1 Georgia,serif;letter-spacing:-.5px;white-space:nowrap}
+h1 span {color:var(--brand)}
+h1 small {font:11px/1.5 'Segoe UI',sans-serif;letter-spacing:.03em;margin-top:4px}
+.seg {flex-shrink:0;border-radius:5px;border-width:1px}
+.seg button {min-height:44px;font-size:13px;padding:0 16px}
+.utilities {display:flex;gap:6px}
+.icon-btn {min-height:44px;min-width:44px;border-width:1px;border-radius:5px;font-size:12px;padding:0 10px}
+button {touch-action:manipulation}
+button:active:not(:disabled) {filter:brightness(1.3)}
+button:disabled {cursor:not-allowed}
+main {grid-template-columns:minmax(0,1fr) 350px;min-height:0}
+.studio {position:relative;min-width:0;min-height:0;padding:20px 26px 10px;display:flex;flex-direction:column;
+  background:linear-gradient(#15130eb8,#15130e12 60%,#15130e55),var(--room) center/cover;overflow:hidden}
+.time-box {flex-shrink:0;padding:10px 16px 6px;background:#191711e8;border:1px solid #78664a66;border-radius:3px}
+.time-caption {display:flex;justify-content:space-between;align-items:center;font:10px Consolas,monospace;letter-spacing:.13em;color:#c8bca6}
+.time-caption strong {color:var(--brand);font-size:12px;letter-spacing:.02em}
+.time-strip {height:28px;position:relative;margin:0 2px}
+#time-svg {width:100%;height:100%;overflow:visible}
+.time-ends {display:flex;justify-content:space-between;color:#c8bca6;font:10px Consolas,monospace}
+#guess {position:absolute;left:0;top:-7px;width:100%;height:44px}
+#guess::-webkit-slider-runnable-track {background:transparent}
+#guess::-webkit-slider-thumb {background:#f3e3b5;border-color:#2b2418;box-shadow:0 0 0 2px #f3e3b5}
+.airline {display:flex;justify-content:space-between;gap:10px;flex-shrink:0;margin-top:14px;font:10px Consolas,monospace;
+  color:#f1ead8;letter-spacing:.08em;text-shadow:0 1px 3px black}
+#air.on {color:var(--brand)}
+.radio-space {flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:6px 0}
+.radio {position:relative;width:min(96%,calc((100dvh - 295px)*1.628));aspect-ratio:1000/614;flex-shrink:0;
+  filter:drop-shadow(0 18px 15px #0009)}
+.radio-art {width:100%;height:100%;display:block}
+.maker {position:absolute;top:21%;left:28%;width:43%;text-align:center;color:#2b1e0f;background:#d8bc7cda;
+  border:2px solid #6f4e2a;box-shadow:0 3px 6px #0006;font:700 clamp(9px,1vw,14px)/1.6 Georgia,serif;letter-spacing:.23em}
+.maker span {display:block;font:9px/1.4 Consolas,monospace;letter-spacing:.2em}
+#eye {position:absolute;top:21%;right:13%;width:7%;aspect-ratio:1;border-radius:50%;background:#173a23;
+  border:4px solid #453220;box-shadow:inset 0 0 8px black,0 0 0 2px #bd9a55;overflow:hidden}
+#eye i {position:absolute;inset:0;background:conic-gradient(from 130deg,#082713 0deg 100deg,#4fd18b 100deg 360deg);
+  opacity:.25;border-radius:50%;box-shadow:inset 0 0 12px #112518}
+#eye.lock i {background:radial-gradient(circle,#0b351e 17%,#8af7ac 22%,#4fd18b 62%,#0d4b2d);opacity:1}
+.on-air #eye i {opacity:.85}
+.dial-window {position:absolute;left:15%;right:15%;top:56%;height:16%;background:#f3e3b5;color:#2b2418;
+  box-shadow:inset 0 0 14px #97661c88;overflow:hidden;border-radius:3px}
+.dial-scale {position:relative;height:100%;margin:0 12px}
+#marks {display:flex;justify-content:space-between;align-items:center;position:absolute;inset:0}
+.mark {width:0;position:relative;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font:11px Consolas,monospace;gap:6px}
+.mark::before {content:'';width:1px;height:23%;background:#57442a}
+.mark::after {content:'';position:absolute;top:12%;width:10px;height:6px;border-top:1px solid #ad965f}
+#needle {position:absolute;left:0;top:6%;height:88%;width:3px;background:#b8232b;box-shadow:0 0 6px #e8844388;pointer-events:none}
+#tuner {position:absolute;inset:0;height:100%;width:100%;opacity:0;cursor:ew-resize;touch-action:none}
+.radio > #tuner {inset:auto;left:15%;top:calc(56% - max(0px,44px - 16%));height:max(44px,16%);width:70%}
+.radio:has(#tuner:focus-visible) .dial-window {outline:3px solid var(--focus);outline-offset:2px}
+.dial-window:focus-within {outline:3px solid var(--focus);outline-offset:2px}
+.knob {position:absolute;width:12%;aspect-ratio:1;left:16%;bottom:1%;cursor:ew-resize;touch-action:none;user-select:none}
+.knob img {width:100%;height:100%;pointer-events:none;filter:drop-shadow(0 3px 3px #0009)}
+.knob span {position:absolute;bottom:0;left:105%;font:9px Consolas,monospace;color:#dbc28e;letter-spacing:.08em}
+.volume {position:absolute;right:18%;bottom:5%;width:8%;aspect-ratio:1;min-width:44px;min-height:44px}
+.volume img {width:100%;height:100%}
+.volume span {position:absolute;bottom:-13px;left:50%;transform:translateX(-50%);font:8px Consolas,monospace;color:#dbc28e}
+.volume input {position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize}
+.volume:focus-within {outline:3px solid var(--focus)}
+.power {position:absolute;left:43%;bottom:5%;width:17%;min-height:44px;background:linear-gradient(#403528,#211c17);
+  border:1px solid #a88c5c;border-radius:5px;color:#ebddba;font-size:12px;box-shadow:0 3px 4px #0008}
+.power {z-index:3}
+.power i {display:inline-block;width:7px;height:7px;background:#78654a;border-radius:50%;margin-right:6px}
+.powered .power i {background:var(--brand);box-shadow:0 0 7px var(--brand)}
+.transport {display:flex;justify-content:center;gap:8px;flex-shrink:0}
+.btn {background:#26221ce8;border-color:#9c855b;border-radius:4px;font-size:12px;min-height:44px;padding:0 14px}
+.primary {background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.comparison {font:11px/1.45 Consolas,monospace;min-height:30px;color:#f1e4cc;text-align:center;padding:7px 4px 0;
+  text-shadow:0 1px 3px black;flex-shrink:0}
+.feature-panel {padding:20px;min-width:0;min-height:0;overflow:auto;background:linear-gradient(150deg,#302a22,#211f1b);
+  border-left:1px solid #78664a;display:flex;flex-direction:column;gap:10px}
+.feature-panel > * {flex-shrink:0}
+.postcard {position:relative;flex-shrink:0;height:145px;margin:0 30px;background:#171612;transform:rotate(-1deg);
+  border:5px solid #caba96;box-shadow:0 8px 18px #0006}
+.postcard img {width:100%;height:100%;object-fit:cover;display:block}
+.postcard-cover {position:absolute;inset:0;display:grid;align-content:center;text-align:center;background:#342b20;
+  font:18px Georgia,serif;color:#e0d0ad;line-height:1.5}
+.postcard-cover span {font:12px 'Segoe UI',sans-serif}
+.station-heading h2 {font:400 30px/1.1 Georgia,serif;margin:4px 0 6px}
+.eyebrow {font:10px/1.4 Consolas,monospace;letter-spacing:.12em;color:var(--brand)}
+.station-heading p {margin:0;font:11px Consolas,monospace;color:var(--muted)}
+#listen-for {margin:0;padding:6px 0 7px;color:#dfd0b3;font:italic 13px/1.45 Georgia,serif;min-height:38px}
+#features {display:grid;gap:0}
+.feature {border-top:1px solid #6b5b403f;padding:8px 0;line-height:1.4}
+.feature-label {display:flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.feature p {font-size:12px;margin:3px 0 0;color:var(--ink)}
+.changed {font-size:8px;background:#4fd18b22;color:#87e9b1;border:1px solid #6eaf8b;padding:0 3px;letter-spacing:0}
+.giveaway {padding:8px;border-left:3px solid var(--brand);background:#4fd18b13}
+.notation {border-top:1px solid var(--line);padding-top:9px;margin-top:auto;min-height:88px}
+#notation {width:100%;height:65px;background:#e5d8b9;border-radius:2px;margin-top:4px;color:#2b2418}
+.panel-result {background:#3f3625;border:1px solid #967e53;padding:12px;font-size:13px;line-height:1.5}
+.mixing {flex-shrink:0;margin-top:6px;padding:7px 12px;background:linear-gradient(#42382d,#211d18);
+  border:1px solid #9c855b;border-radius:5px;display:flex;gap:12px}
+.mix-knobs {display:flex;flex:1;justify-content:space-around;gap:12px}
+.mix-control {display:grid;grid-template-columns:54px minmax(60px,1fr);grid-template-rows:24px 30px;position:relative;max-width:230px;flex:1}
+.mix-control img {width:50px;height:50px;grid-row:1/3;pointer-events:none}
+.mix-control label {font-size:12px;align-self:center;color:#d9c6a4}
+.mix-control input {position:absolute;left:0;top:0;width:54px;height:54px;opacity:0;cursor:ew-resize}
+.mix-control:focus-within {outline:3px solid var(--focus);outline-offset:3px}
+.mix-control output {grid-column:2;grid-row:2;font-size:12px;line-height:1.2;align-self:center;color:var(--ink)}
+.mix-control select {max-width:100%;min-width:0;height:30px;min-height:44px;font-size:11px;background:#211e18;
+  color:var(--ink);border:1px solid #86714f;border-radius:3px;z-index:1;align-self:center}
+.mix-actions {display:flex;flex-direction:column;gap:5px}
+.mix-actions .btn {min-height:44px;padding:0 10px;font-size:11px}
+body[data-mode=desk] .radio {width:min(86%,calc((100dvh - 387px)*1.628))}
+.mystery-cover {position:absolute;inset:1%;background:repeating-linear-gradient(35deg,#2b2924 0 5px,#302c25 5px 7px);
+  border:2px solid #ad9260;border-radius:14% 14% 4% 4%;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;box-shadow:inset 0 0 60px #0009;color:#dfceaa;text-align:center;padding:16px;gap:12px}
+.mystery-cover span {font:10px Consolas,monospace;letter-spacing:.18em}
+.mystery-cover strong {font:400 clamp(17px,2vw,30px) Georgia,serif}
+.mystery-cover p {font-size:12px;margin:0}
+.cover-rule {height:1px;width:70%;background:linear-gradient(90deg,transparent,#ad9260,transparent)}
+.mystery-controls {display:flex;gap:12px;align-items:center;justify-content:center;flex-shrink:0;font:12px Consolas,monospace}
+body[data-mode=mystery] .time-box {padding-top:16px;padding-bottom:12px}
+body[data-mode=mystery] .time-strip {height:40px}
+body[data-mode=mystery] #guess {top:0}
+footer {display:flex;align-items:center;gap:15px;padding:6px 20px;border-top:1px solid #78664a66;background:#191713}
+#hint {margin:0;flex:1;font-size:13px;line-height:1.4}
+.footer-note {font:9px/1.6 Consolas,monospace;color:var(--muted);text-align:right;flex-shrink:0}
+.on-air .maker {box-shadow:0 0 10px #f2a93b44}
+.on-air #air {animation:air-glow 3s ease-in-out infinite}
+@keyframes air-glow {50% {text-shadow:0 0 6px #4fd18b99}}
+.calm * {animation:none!important;transition:none!important}
+@media(min-width:1600px) {
+  main {grid-template-columns:minmax(0,1fr) 420px}
+  .feature-panel {padding:26px;gap:15px}.postcard {height:195px}.feature p {font-size:15px}.feature-label {font-size:12px}
+  .station-heading h2 {font-size:38px}#listen-for {font-size:16px}.notation {min-height:110px}#notation {height:80px}
+}
+@media(max-height:800px) and (min-width:801px) {
+  .studio {padding-top:12px}.feature-panel {padding:14px;gap:6px}.postcard {height:115px;margin:0 35px}
+  .feature {padding:5px 0}.feature p {font-size:12px}.station-heading h2 {font-size:27px}#listen-for {font-size:12px;min-height:30px}
+  .notation {min-height:82px}.airline {margin-top:9px}
+}
+@media(max-width:1100px) {
+  header {gap:10px;padding:7px 12px}h1 {font-size:21px}.seg button {padding:0 11px;font-size:12px}
+  .icon-btn {padding:0 7px;font-size:11px}main {grid-template-columns:minmax(0,1fr) 300px}
+  .studio {padding:12px 14px 8px}.feature-panel {padding:12px}.postcard {height:120px;margin:0 30px}
+  .mix-control {grid-template-columns:44px 1fr}.mix-control img {width:40px;height:40px}.mixing {padding:6px;gap:6px}
+}
+@media(max-width:1000px) {
+  body {grid-template-rows:108px minmax(0,1fr) 48px}
+  header {display:grid;grid-template-columns:1fr auto;grid-template-rows:42px 44px;gap:6px}
+  h1 {grid-column:1;grid-row:1}h1 small {display:none}.utilities {grid-column:2;grid-row:1}
+  .seg {grid-column:1/3;grid-row:2;justify-self:center}.seg button {padding:0 24px;font-size:12px}
+  .radio {width:min(100%,calc((100dvh - 300px)*1.628))}
+  body[data-mode=desk] .radio {width:min(95%,calc((100dvh - 395px)*1.628))}
+  .feature {padding:5px 0}.feature p {font-size:12px}.station-heading h2 {font-size:26px}.postcard {height:100px}
+  .transport {gap:5px}.btn {padding:0 9px}.time-box {padding:6px 9px}.time-caption {font-size:9px}
+}
+@media(max-height:550px) and (min-width:601px) {
+  body {grid-template-rows:64px minmax(0,1fr) 48px}
+  header {display:flex;gap:9px;height:64px;padding:6px 10px}
+  h1 {font-size:17px;max-width:165px;white-space:normal;flex:1}
+  .seg button {padding:0 10px;font-size:11px}.icon-btn {font-size:10px;padding:0 6px}.utilities {gap:4px}
+  main {grid-template-columns:minmax(0,1fr) 265px}.studio {padding:5px 10px 3px}.postcard {display:none}
+  .feature-panel {padding:8px 12px;gap:3px}.station-heading h2 {font-size:22px}.station-heading p {font-size:10px}
+  .feature {padding:3px 0}.feature p {font-size:11px;line-height:1.25}.feature-label {font-size:10px}
+  #listen-for {display:none}.notation {min-height:65px;padding-top:4px}
+  #notation {height:42px}.eyebrow {font-size:9px}.radio {width:min(98%,calc((100dvh - 256px)*1.628))}
+  .airline {margin-top:3px;font-size:9px}.time-strip {height:18px}.time-box {padding:4px 7px}.time-ends {font-size:9px}
+  .comparison {font-size:10px;min-height:22px;padding-top:4px}.transport {gap:4px}.btn {font-size:11px;padding:0 8px}
+  .dial-window {overflow:auto;scrollbar-width:none}.dial-scale {min-width:480px;margin:0 18px}
+  .knob {min-width:44px;min-height:44px;width:12%;left:14%;bottom:0}.knob span {display:none}
+  .volume {bottom:0;right:15%}.volume span {display:none}.power {bottom:0;left:42%;font-size:11px;width:20%}
+  .maker {font-size:9px}.maker span {font-size:7px}#eye {border-width:2px}
+  .mixing {margin-top:0;padding:3px;gap:4px}.mix-control img {display:none}.mix-control {display:flex;flex-direction:column}
+  .mix-control label {font-size:10px}.mix-control select {width:100%;font-size:10px}.mix-knobs {gap:6px}
+  .mix-control input {position:static;opacity:1;width:100%;height:44px;min-width:44px}
+  .mix-control output {font-size:10px;min-height:24px;align-self:start}
+  .mix-actions {flex-direction:row;gap:3px}.mix-actions .btn {font-size:10px;padding:0 5px}
+  body[data-mode=desk] .radio {width:min(98%,calc((100dvh - 305px)*1.628))}
+  body[data-mode=desk] .comparison {display:none}
+  .mystery-cover {gap:6px}.mystery-cover p {font-size:10px}.mystery-cover span {font-size:9px}
+  body[data-mode=mystery] .time-box {padding:4px 7px}body[data-mode=mystery] .time-strip {height:30px}
+  body[data-mode=mystery] #guess {top:-7px}.mystery-controls {gap:6px;font-size:10px}
+  #hint {font-size:11px}.footer-note {font-size:8px}.panel-result {font-size:11px;padding:5px}
+}
+@media(max-width:800px) and (min-height:551px), (max-width:600px) {
+  body {display:block;overflow:auto;min-height:100dvh}header {height:108px}
+  main {display:flex;flex-direction:column}.studio {min-height:440px;padding:12px 14px 6px}
+  .radio-space {min-height:225px}.radio {width:min(96%,560px)}
+  .feature-panel {border-left:0;border-top:1px solid #78664a;overflow:visible;display:grid;
+    grid-template-columns:130px minmax(0,1fr);gap:10px;padding:15px 18px 72px}
+  .postcard {grid-column:1;grid-row:1/3;height:110px;margin:0}.station-heading {grid-column:2}
+  #listen-for {grid-column:2;font-size:12px}#features,.notation,.panel-result {grid-column:1/3}
+  .feature {padding:7px 0}.feature p {font-size:13px}.feature-label {font-size:11px}
+  footer {position:sticky;bottom:0;z-index:10;min-height:58px;padding:7px 12px}.footer-note {display:none}#hint {font-size:12px}
+  .dial-scale {min-width:520px;margin:0 18px}.dial-window {overflow-x:auto;scrollbar-width:none}
+  .dial-window::-webkit-scrollbar {display:none}.mark {font-size:11px}
+  body[data-mode=desk] .radio {width:min(96%,520px)}body[data-mode=desk] .studio {min-height:510px}
+  .mixing {flex-direction:column}.mix-actions {flex-direction:row;justify-content:center}.mix-control {max-width:none}
+  .mix-control img {display:none}.mix-control {display:flex;flex-direction:column;gap:4px}.mix-control select {width:100%;height:44px}
+  .mix-control input {position:static;opacity:1;width:100%;height:44px;min-width:44px}
+  .mix-knobs {gap:8px}.mystery-controls {gap:8px;flex-wrap:wrap;font-size:11px}
+  .knob {min-width:44px;min-height:44px}.volume {min-width:44px;min-height:44px}
+}
+@media(max-width:420px) {
+  header {padding:6px 8px;gap:3px;height:108px;grid-template-rows:46px 44px}
+  h1 {font-size:16px;white-space:normal;max-width:140px;line-height:1.1}.utilities {gap:3px}
+  .icon-btn {font-size:10px;padding:0 4px}.seg button {padding:0 20px;font-size:11px}
+  .studio {min-height:380px;padding:10px 10px 6px}.radio-space {min-height:208px}
+  .time-caption {font-size:8px}.airline {font-size:8px}.transport {gap:4px}.btn {font-size:11px;padding:0 8px}
+  .radio {width:100%}.power {font-size:10px;bottom:0;width:22%;left:39%}.knob {left:14%;bottom:0}
+  .knob span,.volume span {display:none}.volume {bottom:0;right:13%}.maker {font-size:9px}.maker span {font-size:7px}
+  .comparison {font-size:10px}.postcard {height:95px}.feature-panel {grid-template-columns:110px minmax(0,1fr);padding:14px 14px 30px}
+  .station-heading h2 {font-size:25px}.mystery-cover {gap:7px}.mystery-cover p {font-size:10px}
+  body[data-mode=desk] .studio {min-height:475px}
+}
+/* Final build repairs for the mechanical audit's repeated label and footer leads. */
+.seg button {min-width:44px}
+.dial-scale {min-width:480px}
+.dial-window {overflow-x:auto;scrollbar-width:none}
+.dial-window::-webkit-scrollbar {display:none}
+.postcard {width:min(100%,180px);height:auto;aspect-ratio:4/3;margin:0 auto}
+.postcard img {object-fit:contain}
+.feature-panel:has(.panel-result:not([hidden])) .postcard,
+.feature-panel:has(.panel-result:not([hidden])) #listen-for {display:none}
+.panel-result {order:-1;border-left:3px solid var(--brand);padding:10px;font-size:12px}
+.panel-result strong {display:block;color:var(--brand);font:19px Georgia,serif;margin-bottom:6px}
+.recap {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:3px 8px;font:11px/1.35 Consolas,monospace}
+.recap span:nth-child(even) {text-align:right}
+.feature-panel.revealed .giveaway {box-shadow:inset 0 0 12px #4fd18b12}
+.mixing.pending {border-color:#f7c775}
+.mixing:not(.pending) .mix-control output {color:#b4f1ce}
+@media(min-width:1600px) {.postcard {width:240px}}
+@media(max-height:550px) and (min-width:601px) {
+  .feature-panel:has(.panel-result:not([hidden])) .notation {display:none}
+  .panel-result {font-size:11px;padding:5px}.panel-result strong {font-size:15px}
+  .recap {font-size:10px;gap:1px 8px}
+}
+.time-caption,.time-ends,.airline,.eyebrow,.knob span,.volume span,.footer-note,.changed,
+.maker span,.mystery-cover span {font-size:10px}
+.maker {font-size:11px;white-space:nowrap;letter-spacing:.12em}
+body[data-mode=mystery] .time-strip {height:44px;margin-top:6px;margin-bottom:4px}
+body[data-mode=mystery] #time-svg {position:absolute;top:-4px;height:38px}
+body[data-mode=mystery] #guess {top:0;height:44px}
+@media(max-width:800px) and (min-height:551px), (max-width:600px) {
+  body {display:grid;grid-template-rows:108px minmax(0,1fr) 58px;height:100dvh;min-height:0;overflow:hidden}
+  header {height:auto}
+  main {min-height:0;overflow:auto}
+  .studio,.feature-panel {flex-shrink:0}
+  footer {position:static;min-height:58px}
+}
+@media(min-width:601px) and (max-width:750px) and (max-height:550px) {
+  main {grid-template-columns:minmax(0,1fr) 230px}
+}
+
+</style>
+</head>
+<body>
+<header>
+  <h1><span>Music History</span> Radio<small>One tune. Twelve ways to hear history.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-dial" aria-pressed="true">Dial</button>
+    <button id="m-desk" aria-pressed="false">Mixing desk</button>
+    <button id="m-mystery" aria-pressed="false">Mystery station</button>
+  </div>
+  <div class="utilities">
+    <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+    <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+    <button class="icon-btn" id="read">Read</button>
+  </div>
+</header>
+<main>
+  <section class="studio" id="stage" aria-label="Radio listening studio">
+    <div class="time-box">
+      <div class="time-caption"><span id="strip-title">TRUE TIME / YEARS TO SCALE</span><strong id="time-year">about 900</strong></div>
+      <div class="time-strip" id="timeline">
+        <svg id="time-svg" viewBox="0 0 1200 38" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <input id="guess" type="range" min="800" max="2000" step="10" value="1400" aria-label="Mystery year" hidden>
+      </div>
+      <div class="time-ends"><span>800</span><span>1200</span><span>1600</span><span>2000</span></div>
+    </div>
+    <div class="airline"><span id="air">○ POWER OFF</span><span id="playhead">THE TRAVELER / ORIGINAL TUNE</span></div>
+    <div class="radio-space">
+      <div class="radio" id="radio">
+        <img class="radio-art" src="art:mhr-radio" alt="Painted 1940s bakelite radio with woven grille and cream dial">
+        <div class="maker" aria-hidden="true">CURIO CLASS <span>THE TRAVELER</span></div>
+        <div id="eye" aria-hidden="true"><i></i></div>
+        <div class="dial-window" id="dial-window">
+          <div class="dial-scale" id="dial-scale">
+            <div id="marks" aria-hidden="true"></div>
+            <div id="needle" aria-hidden="true"></div>
+          </div>
+        </div>
+        <input id="tuner" type="range" min="0" max="1100" value="0" step="1" aria-label="Tuning needle">
+        <div class="knob tuning" id="knob" role="slider" tabindex="0" aria-label="Tuning knob"
+          aria-valuemin="0" aria-valuemax="11" aria-valuenow="0">
+          <img src="art:mhr-knob" alt="" draggable="false"><span>TUNING</span>
+        </div>
+        <button class="power" id="power"><i></i><span>Power</span></button>
+        <label class="volume"><img src="art:mhr-knob" alt=""><span>VOLUME</span>
+          <input id="volume" type="range" min="0" max="100" value="70" aria-label="Volume">
+        </label>
+        <div class="mystery-cover" id="cover" hidden>
+          <div class="cover-rule"></div><span>UNIDENTIFIED BROADCAST</span><strong>Listen for the evidence.</strong>
+          <p>The same melody. A different musical world.</p><div class="cover-rule"></div>
+        </div>
+      </div>
+    </div>
+    <div class="transport" id="dial-controls">
+      <button class="btn" id="prev">◀ Station</button>
+      <button class="btn" id="next">Station ▶</button>
+      <button class="btn" id="compare" aria-pressed="false">Compare</button>
+      <button class="btn" id="flip" disabled>Flip A / B</button>
+    </div>
+    <div id="comparison" class="comparison">Equal dial spacing is for tuning. The thin strip above shows real time.</div>
+    <div class="mixing" id="mixing" hidden>
+      <div class="mix-knobs" id="mix-knobs"></div>
+      <div class="mix-actions"><button class="btn" id="random">Random mix</button><button class="btn" id="reset">Reset</button></div>
+    </div>
+    <div class="mystery-controls" id="mystery-controls" hidden>
+      <span id="round">Round 1 / 6</span><strong id="guess-label">Your year: 1400</strong>
+      <button class="btn primary" id="reveal">Tune in</button>
+      <button class="btn" id="advance" hidden>Next station</button>
+    </div>
+  </section>
+  <aside class="feature-panel" id="panel">
+    <div class="postcard"><img id="postcard" src="art:mhr-pc-chant" alt="Candlelit monastery cloister">
+      <div class="postcard-cover" id="postcard-cover" hidden>Station sealed<br><span>Trust your ears.</span></div>
+    </div>
+    <div class="station-heading"><span class="eyebrow" id="station-number">STATION 01 / 12</span>
+      <h2 id="station-name">Chant</h2><p id="station-meta">about 900 · free rhythm</p></div>
+    <p id="listen-for">One unaccompanied line, with room for each phrase.</p>
+    <div id="features"></div>
+    <div class="notation"><span class="eyebrow" id="notation-label">HOW IT MIGHT BE WRITTEN / FIRST FOUR BARS</span>
+      <svg id="notation" viewBox="0 0 360 68" role="img" aria-label="Simplified music notation"></svg></div>
+    <div class="panel-result" id="result" role="status" hidden></div>
+  </aside>
+</main>
+<footer><p id="hint">Press Power, then drag the tuning knob or tap Station to find a station.</p>
+  <span class="footer-note">SYNTHESIZED ARRANGEMENTS<br><span id="key-help">SPACE pause · C compare · F flip · M mix</span></span></footer>
+<script src="kit:curio"></script>
+<script src="kit:music-studio"></script>
+<script>
+const STATIONS = [
+  {
+    "id": "chant",
+    "name": "Chant",
+    "year": 900,
+    "bpm": 100,
+    "features": [
+      "One melody, no harmony (monophony).",
+      "Follows the words, no beat.",
+      "None.",
+      "Voices only.",
+      "Memorized and sung; neumes reminded singers of the shape. Staff lines came about 1025."
+    ],
+    "giveaways": [
+      0,
+      1
+    ],
+    "listen": "One unaccompanied line, with room for each phrase."
+  },
+  {
+    "id": "organum",
+    "name": "Notre Dame organum",
+    "year": 1200,
+    "bpm": 108,
+    "features": [
+      "A held voice under a moving one.",
+      "Repeating long-short patterns.",
+      "Open fifths and octaves.",
+      "Voices.",
+      "Cathedral manuscripts; Perotin’s four-voice Viderunt omnes was sung at Christmas 1198."
+    ],
+    "giveaways": [
+      2,
+      0
+    ],
+    "listen": "Hear the low held note beneath the moving melody."
+  },
+  {
+    "id": "renaissance",
+    "name": "Renaissance",
+    "year": 1500,
+    "bpm": 100,
+    "features": [
+      "Voices imitate, then move together.",
+      "Gentle, steady.",
+      "Full triads, careful dissonance.",
+      "Recorders.",
+      "Printed part music: Petrucci’s Odhecaton, Venice, 1501."
+    ],
+    "giveaways": [
+      0,
+      3
+    ],
+    "listen": "The lower line enters after the tune, then the voices join."
+  },
+  {
+    "id": "baroque",
+    "name": "Baroque",
+    "year": 1720,
+    "bpm": 112,
+    "features": [
+      "Tune over a busy bass line.",
+      "Driving and steady.",
+      "Chords built on the bass.",
+      "Harpsichord, cello.",
+      "Courts, churches and printed parts; Bach’s Brandenburg Concertos are dated 1721."
+    ],
+    "giveaways": [
+      3,
+      1
+    ],
+    "listen": "A plucked tune above the continuo; listen for the softer echo."
+  },
+  {
+    "id": "classical",
+    "name": "Classical",
+    "year": 1785,
+    "bpm": 108,
+    "features": [
+      "Clear tune and accompaniment.",
+      "Balanced four-bar phrases.",
+      "Simple I, IV, V.",
+      "Early piano.",
+      "Public concerts and printed home sonatas; Mozart’s K. 545 (1788) uses Alberti bass."
+    ],
+    "giveaways": [
+      0,
+      2
+    ],
+    "listen": "Listen beneath the tune for root, fifth, third, fifth."
+  },
+  {
+    "id": "romantic",
+    "name": "Romantic",
+    "year": 1850,
+    "bpm": 102,
+    "features": [
+      "Rich, singing tune.",
+      "Flexible time.",
+      "Colorful chromatic chords.",
+      "Full grand piano.",
+      "Home pianos; Babcock’s one-piece iron frame (1825) helped make larger pianos possible."
+    ],
+    "giveaways": [
+      1,
+      2
+    ],
+    "listen": "Time relaxes at phrase endings and pushes into the swell."
+  },
+  {
+    "id": "gamelan",
+    "name": "Javanese gamelan",
+    "year": 1889,
+    "bpm": 96,
+    "features": [
+      "Related melodic layers at different speeds.",
+      "Gongs mark repeating cycles.",
+      "Melodic layers rather than Western chord progressions.",
+      "Bronze metallophones and gongs, with drums.",
+      "A living Indonesian tradition. Sundanese and Javanese artists performed in Paris in 1889; an encounter, not an origin."
+    ],
+    "giveaways": [
+      0,
+      3
+    ],
+    "listen": "Simplified original arrangement, not a traditional piece or an authentic slendro or pelog tuning."
+  },
+  {
+    "id": "ragtime",
+    "name": "Ragtime",
+    "year": 1900,
+    "bpm": 116,
+    "features": [
+      "Tune over oom-pah.",
+      "Syncopated over a steady march beat.",
+      "I, IV, V with passing chords.",
+      "Upright piano.",
+      "African American roots; sheet music and piano rolls carried Joplin’s Maple Leaf Rag (1899)."
+    ],
+    "giveaways": [
+      1,
+      3
+    ],
+    "listen": "The melody moves off the beat while the left hand holds steady."
+  },
+  {
+    "id": "swing",
+    "name": "Swing",
+    "year": 1938,
+    "bpm": 150,
+    "features": [
+      "Sections answering each other.",
+      "Swing.",
+      "Sixth and seventh chords.",
+      "Brass, saxes, rhythm section.",
+      "African American jazz; records, radio, dance halls; Goodman’s integrated 1938 concert used Henderson’s arrangements."
+    ],
+    "giveaways": [
+      1,
+      3
+    ],
+    "listen": "Long-short eighths, walking bass, and answering brass."
+  },
+  {
+    "id": "rocknroll",
+    "name": "Rock and roll",
+    "year": 1956,
+    "bpm": 132,
+    "features": [
+      "Small band, loud guitar.",
+      "Strong backbeat.",
+      "Three chords.",
+      "Electric guitar, bass, drums.",
+      "Black rhythm and blues roots: Tharpe, Berry, Little Richard; 45s (1949), jukeboxes and radio DJs."
+    ],
+    "giveaways": [
+      1,
+      3
+    ],
+    "listen": "Count one TWO three FOUR against the boogie bass."
+  },
+  {
+    "id": "disco",
+    "name": "Disco",
+    "year": 1978,
+    "bpm": 120,
+    "features": [
+      "Layered dance groove.",
+      "Steady pulse for dancing.",
+      "Seventh chords.",
+      "Drums, synth, strings.",
+      "New York’s Black, Latino and gay club scenes; DJs and extended 12-inch dance singles."
+    ],
+    "giveaways": [
+      1,
+      4
+    ],
+    "listen": "A kick on every beat; the hi-hat answers between them."
+  },
+  {
+    "id": "hiphop",
+    "name": "Hip hop",
+    "year": 1987,
+    "bpm": 92,
+    "features": [
+      "Loop plus drums.",
+      "Heavy, laid-back beat.",
+      "Whatever the sample has.",
+      "Turntables, sampler, drum machine.",
+      "Black and Latino youth in the Bronx; Kool Herc’s 1973 party, mixtapes, then records and radio."
+    ],
+    "giveaways": [
+      3,
+      0
+    ],
+    "listen": "An MC would rap over this beat. This station plays the beat only."
+  }
+];
+const TUNE = [
+  [[0,1],[2,1],[4,1],[7,1]], [[9,1],[7,1],[4,2]], [[4,1],[7,1],[4,1],[2,1]], [[2,3]],
+  [[0,1],[2,1],[4,1],[7,1]], [[9,1],[12,1],[9,1],[7,1]], [[7,1],[4,1],[2,2]], [[0,3]]
+];
+const CHORDS = [[0,4,7],[9,12,16],[4,7,11],[7,11,14],[0,4,7],[5,9,12],[7,11,14],[0,4,7]];
+const DORIAN = {0:2,2:4,4:5,7:9,9:11,12:14};
+const NAME = ['Texture','Rhythm','Harmony','Instruments','How it traveled'];
+const DESK_SOUND = ['synthesized choir','synthesized voices','recorder','harpsichord','fortepiano',
+  'grand piano','bronze-like metallophone','upright piano','brass','electric guitar','synth lead','chopped keyboard sample'];
+const indexOf = id => STATIONS.findIndex(s => s.id === id);
+const stationAt = i => STATIONS[Math.max(0,Math.min(STATIONS.length - 1,Math.round(i)))];
+const config = i => ({beat:i,harmony:i,sound:i});
+
+function compileBar(settings, bar) {
+  const beat = stationAt(settings.beat);
+  const harmony = stationAt(settings.harmony);
+  const sound = stationAt(settings.sound);
+  const bid = beat.id;
+  const hid = harmony.id;
+  const sid = sound.id;
+  let seconds = 60 / beat.bpm;
+  if (bid === 'romantic') {
+    if (bar === 3 || bar === 7) seconds /= .75;
+    if (bar === 4 || bar === 5) seconds /= 1.1;
+  }
+  let units = bid === 'organum' ? ([3,7].includes(bar) ? 3 : 6) : 4;
+  const notes = TUNE[bar];
+  const events = [];
+  const add = (kind, pitch, time, dur = .4, amp = 1, layer = 'melody') => {
+    events.push({kind,pitch,time:Math.max(0,time),dur:Math.max(.04,dur),amp,layer});
+  };
+  const unit = x => x * seconds;
+  let melodyKind = {
+    chant:'choir',organum:'choir',renaissance:'recorder',baroque:'harpsichord',classical:'fortepiano',
+    romantic:'grand',ragtime:'upright',swing:'brass',rocknroll:'guitar',disco:'lead',hiphop:'chop',gamelan:'metal'
+  }[sid];
+  let dynamic = 1;
+  if (sid === 'baroque' && bar >= 4) dynamic = .46;
+  if (sid === 'classical' && bar >= 4) dynamic = [.65,.83,.68,.46][bar - 4];
+  if (sid === 'romantic') dynamic = [.65,.7,.8,.7,.9,1.1,.8,.5][bar];
+  let cursor = 0;
+  notes.forEach(([pitch,dur],n) => {
+    let at = cursor;
+    let len = dur;
+    if (bid === 'organum') {
+      len = dur >= 2 ? 3 : (n % 2 === 0 ? 2 : 1);
+      at = cursor;
+    }
+    if (bid === 'ragtime') {
+      at = notes.length === 1 ? .5 : [0,.5,1.5,2.5][n];
+      if (dur >= 2) len = 4 - at;
+    }
+    let time = unit(at);
+    let duration = unit(len) * .9;
+    if (bid === 'chant') {
+      time = cursor;
+      duration = dur >= 2 ? .87 : .48 + (n % 3) * .09;
+      len = duration + .04;
+    }
+    const p = sid === 'chant' || sid === 'organum' ? DORIAN[pitch] : pitch;
+    add(melodyKind,p,time,duration,dynamic);
+    if (sid === 'swing' && pitch === 4 && [0,4].includes(bar)) {
+      events[events.length-1].scoop = true;
+    }
+    if (sid === 'baroque' && ((bar === 3 && dur === 3) || (bar === 6 && dur === 2))) {
+      for (let k = 0; k < 8; k++) add('harpsichord',p + (k % 2 ? 2 : 0),time + k * .09,.09,.4,'ornament');
+    }
+    if (sid === 'renaissance' && bar === 0 && n < 2 && hid !== 'chant') {
+      add('recorder',p - 12,time + unit(2),duration,.53,'imitation');
+    }
+    if (sid === 'gamelan' && hid !== 'chant') {
+      add('metal',p + 12,time + .08,duration * .65,.32,'elaboration');
+      if (duration > .45) add('metal',p + 12,time + duration/2,.3,.28,'elaboration');
+    }
+    cursor = bid === 'chant' ? time + len : at + len;
+  });
+  const duration = bid === 'chant' ? cursor + .12 : unit(units);
+  const H = (k,p,t,d=.35,a=.5,l='harmony') => add(k,p,t,d,a,l);
+  const chordKind = {
+    choir:'voice',recorder:'recorder',harpsichord:'harpsichord',fortepiano:'fortepiano',grand:'grand',
+    upright:'upright',brass:'brass',guitar:'guitar',lead:'pad',chop:'sample',metal:'metal'
+  }[melodyKind] || 'voice';
+  let chord = CHORDS[bar].slice();
+  if (hid === 'hiphop') chord = CHORDS[bar % 2].slice();
+  if (hid === 'classical' || hid === 'ragtime' || hid === 'rocknroll') {
+    chord = [[0,4,7],[5,9,12],[0,4,7],[7,11,14],[0,4,7],[5,9,12],[7,11,14],[0,4,7]][bar];
+  }
+  if (hid === 'romantic') {
+    if (bar === 1) chord = [9,12,16,19];
+    if (bar === 2) chord = [9,13,16,19];
+    if (bar === 3) chord = [2,6,9,12];
+  }
+  if (['swing','disco'].includes(hid)) {
+    const extensions = hid === 'disco' ? [11,19,14,17,11,16,17,11] : [9,19,14,17,9,14,17,9];
+    chord.push(extensions[bar]);
+  }
+  if (hid === 'chant') {
+    if (sid === 'organum') H('voice',2 - 24,0,duration,.5,'drone');
+  } else if (hid === 'organum') {
+    const bass = [3].includes(bar % 4) ? 9 : 2;
+    H('voice',bar === 7 ? 2 - 24 : bass - 24,0,duration,.65,'drone');
+  } else if (hid === 'gamelan') {
+    H('gong',0 - 24,Math.max(0,duration - .18),1.8,.8,'gong');
+    notes.forEach(([p,d],n) => H('metal',p - 12,n * duration/notes.length,.9,.4,'layer'));
+  } else if (hid === 'baroque') {
+    for (let q = 0; q < units; q += .5) {
+      H(chordKind,chord[0] - (q % 1 ? 24 : 12),q * duration/units,.23,.47,'continuo');
+      H('cello',chord[0] - 24,q * duration/units,.25,.28,'continuo');
+    }
+  } else if (hid === 'classical') {
+    for (let q = 0; q < units * 2; q++) {
+      H(chordKind,chord[[0,2,1,2][q % 4]] - 12,q * duration/(units*2),.28,.42,'Alberti');
+    }
+  } else if (hid === 'romantic') {
+    for (let q = 0; q < 8; q++) {
+      H(chordKind,chord[q % chord.length] - (q % 2 ? 0 : 24),q * duration/8,.65,.5,'arpeggio');
+    }
+    if (bar === 3) [7,11,14,17].forEach(p => H(chordKind,p-12,duration/2,duration/2,.36));
+  } else if (hid === 'ragtime') {
+    for (let q = 0; q < 4; q++) {
+      if (q % 2 === 0) H(chordKind,chord[0] - 24,q * duration/4,.35,.67,'stride');
+      else chord.forEach(p => H(chordKind,p-12,q * duration/4,.2,.32,'stride'));
+    }
+    H(chordKind,chord[0] - 1,3.5 * duration/4,.12,.25,'passing');
+  } else if (hid === 'rocknroll') {
+    [0,0,4,4,7,7,9,9].forEach((p,q) => H('bass',chord[0]+p-24,q * duration/8,.2,.58,'boogie'));
+    chord.forEach(p => H(chordKind,p-12,0,duration,.28));
+  } else if (hid === 'swing') {
+    [chord[0]-24,chord[1]-24,chord[2]-24,chord[0]-13].forEach((p,q) => H('bass',p,q*duration/4,.28,.72,'walking'));
+    chord.forEach(p => H(chordKind,p - 12,0,.38,.28));
+    if ([1,3,5].includes(bar)) chord.forEach(p => H('brass',p,1.5 * duration/4,.2,.5,'answer'));
+  } else if (hid === 'disco') {
+    chord.forEach(p => H('pad',p-12,0,duration,.26));
+    for (let q=0;q<8;q++) H('synthbass',chord[0] - (q%2 ? 12 : 24),q * duration/8,.18,.5,'octave bass');
+  } else {
+    if (sid !== 'renaissance' || bar >= 2) chord.forEach(p => H(chordKind,p-12,0,duration,.28));
+  }
+  if (sid === 'renaissance' && bar === 1 && hid !== 'chant') {
+    H('recorder',4-12,0,seconds,.53,'imitation');
+    H('recorder',7-12,seconds,seconds,.53,'imitation');
+  }
+  if (sid === 'renaissance' && bar === 6 && hid !== 'chant') {
+    H('recorder',12,0,duration/2,.4,'suspension');
+    H('recorder',11,duration/2,duration/2,.4,'resolution');
+  }
+  if (sid === 'hiphop' && hid !== 'chant') {
+    const sampleBar = bar % 2;
+    let t = 0;
+    TUNE[sampleBar].forEach(([p,d]) => {
+      H('sample',p - 12,t * duration/4,d * duration/4,.34,'sample loop');
+      t += d;
+    });
+    for (let q=0;q<8;q++) {
+      const c = CHORDS[sampleBar];
+      H('sample',c[[0,2,1,2][q%4]]-24,q * duration/8,.2,.22,'sample loop');
+    }
+    [0,.73,1.31].forEach(t => H('crackle',0,t % duration,.025,.1,'surface'));
+    if ([3,7].includes(bar)) H('scratch',0,duration-.2,.2,.5,'scratch');
+  }
+  if (bid === 'swing') {
+    for (let q=0;q<4;q++) {
+      H('ride',0,q * duration/4,.12,.35,'drums');
+      H('ride',0,(q+2/3) * duration/4,.08,.2,'drums');
+      if (q%2) H('hat',0,q * duration/4,.05,.45,'drums');
+    }
+  }
+  if (bid === 'rocknroll' || bid === 'disco' || bid === 'hiphop') {
+    const kick = bid === 'disco' ? [0,1,2,3] : bid === 'hiphop' ? [0,1.5] : [0,2];
+    kick.forEach(q => H('kick',0,q * duration/4,.16,.8,'drums'));
+    [1,3].forEach(q => H('snare',0,q * duration/4,.14,.58,'drums'));
+    if (bid === 'hiphop') {
+      for (let q=0;q<16;q++) H('hat',0,(q/4 + (q%2 ? .07 : 0))*duration/4,.04,.25,'drums');
+    } else {
+      for (let q=0;q<8;q++) H(bid === 'disco' && q%2 ? 'openhat':'hat',0,q*duration/8,.1,.25,'drums');
+    }
+  }
+  if (bid === 'gamelan') {
+    [0,2].forEach(q => H('handdrum',0,q * duration/4,.1,.3,'drums'));
+    H('gong',bar%2 ? -24:-12,duration-.12,1.4,.5,'cycle');
+  }
+  events.sort((a,b) => a.time-b.time);
+  return {duration,events,bar,settings:{...settings},bpm:beat.bpm,units};
+}
+
+// The tool's conductor extends the kit sounds for variable-length phrases and exact bar swaps.
+// MS supplies the shared AudioContext, pitch calculation and plucked / recorder instruments.
+const RadioAudio = (() => {
+  let ctx, music, master, staticGain, noise, interval, currentBus;
+  let generation = 0;
+  let plan, position = 0, anchor = 0, nextBar = 0;
+  let scheduled = false;
+  let boundaryTimer = 0;
+  let currentSettings = config(0);
+  let pending = null;
+  let barCallback = () => {};
+  const impulses = new Map();
+  let pianoBuffer;
+  const active = new Set();
+  function setup() {
+    if (ctx) {ctx.resume();return;}
+    ctx = MS.ctx();
+    if (!ctx) return;
+    master = ctx.createGain();
+    master.gain.value = Curio.sound ? Number(document.getElementById('volume').value)/100 : 0;
+    const limiter = ctx.createDynamicsCompressor();
+    limiter.threshold.value = -13;
+    limiter.ratio.value = 8;
+    master.connect(limiter).connect(ctx.destination);
+    music = ctx.createGain();
+    music.gain.value = .65;
+    music.connect(master);
+    staticGain = ctx.createGain();
+    staticGain.gain.value = 0;
+    staticGain.connect(master);
+    noise = ctx.createBuffer(1,ctx.sampleRate*2,ctx.sampleRate);
+    const data = noise.getChannelData(0);
+    let seed = 123456789;
+    for (let i=0;i<data.length;i++) {
+      seed = (1664525*seed+1013904223)>>>0;
+      data[i] = (seed/4294967296*2-1)*.65;
+    }
+    const source = ctx.createBufferSource();
+    source.buffer = noise;
+    source.loop = true;
+    const high = ctx.createBiquadFilter();
+    high.type = 'highpass';
+    high.frequency.value = 950;
+    source.connect(high).connect(staticGain);
+    source.start();
+    pianoBuffer = ctx.createBuffer(1,Math.ceil(ctx.sampleRate*1.4),ctx.sampleRate);
+    const sample = pianoBuffer.getChannelData(0);
+    for (let i=0;i<sample.length;i++) {
+      const t = i/ctx.sampleRate;
+      let v = 0;
+      [[1,1],[2,.45],[3,.2],[4,.1],[5,.05]].forEach(([r,a]) => v += a*Math.sin(2*Math.PI*261.63*r*t));
+      sample[i] = Math.round(v*Math.exp(-t*5)*Math.min(1,t/.006)*42)/128;
+    }
+    interval = setInterval(pump,25);
+  }
+  function room(seconds) {
+    if (impulses.has(seconds)) return impulses.get(seconds);
+    const buffer = ctx.createBuffer(2,Math.ceil(ctx.sampleRate*seconds),ctx.sampleRate);
+    let seed = 42;
+    for (let c=0;c<2;c++) {
+      const a = buffer.getChannelData(c);
+      for (let i=0;i<a.length;i++) {
+        seed = (1664525*seed+1013904223)>>>0;
+        a[i] = (seed/4294967296*2-1)*Math.pow(1-i/a.length,3)*.4;
+      }
+    }
+    impulses.set(seconds,buffer);
+    return buffer;
+  }
+  function bus(settings) {
+    const sid = stationAt(settings.sound).id;
+    const output = ctx.createGain();
+    output.gain.value = 1;
+    output.connect(music);
+    const dry = ctx.createGain();
+    dry.connect(output);
+    const wet = ctx.createGain();
+    const convolver = ctx.createConvolver();
+    convolver.buffer = room(['chant','organum'].includes(sid) ? 4 : sid === 'romantic' ? 2 : .6);
+    wet.gain.value = ['chant','organum'].includes(sid) ? .5 : .17;
+    wet.connect(convolver).connect(output);
+    if (sid === 'rocknroll') {
+      const delay = ctx.createDelay();
+      const gain = ctx.createGain();
+      delay.delayTime.value = .095;
+      gain.gain.value = .27;
+      dry.connect(delay).connect(gain).connect(output);
+    }
+    return {m:dry,r:wet,output};
+  }
+  function oscillator(f,t,d,type,amp,b,cutoff=0,scoop=false) {
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.type = type;
+    o.frequency.setValueAtTime(scoop ? f*Math.pow(2,-1/12) : f,t);
+    if (scoop) o.frequency.exponentialRampToValueAtTime(f,t+.07);
+    g.gain.setValueAtTime(.0001,t);
+    g.gain.linearRampToValueAtTime(amp,t+.02);
+    g.gain.setValueAtTime(amp*.7,t+Math.max(.025,d*.7));
+    g.gain.exponentialRampToValueAtTime(.0001,t+d+.04);
+    let output = o;
+    if (cutoff) {
+      const filter = ctx.createBiquadFilter();
+      filter.frequency.setValueAtTime(cutoff,t);
+      filter.frequency.exponentialRampToValueAtTime(Math.max(200,cutoff*.35),t+d+.04);
+      output.connect(filter);
+      output = filter;
+    }
+    output.connect(g);
+    g.connect(b.m);
+    g.connect(b.r);
+    o.start(t);
+    o.stop(t+d+.07);
+    active.add(o);
+    o.onended = () => active.delete(o);
+  }
+  function drum(kind,t,d,amp,b) {
+    if (kind === 'kick' || kind === 'handdrum') {
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.frequency.setValueAtTime(kind === 'kick' ? 140 : 220,t);
+      o.frequency.exponentialRampToValueAtTime(45,t+.15);
+      g.gain.setValueAtTime(.28*amp,t);
+      g.gain.exponentialRampToValueAtTime(.0001,t+.18);
+      o.connect(g).connect(b.m);
+      o.start(t);
+      o.stop(t+.2);
+      return;
+    }
+    const n = ctx.createBufferSource();
+    n.buffer = noise;
+    const filter = ctx.createBiquadFilter();
+    filter.type = kind === 'snare' ? 'bandpass':'highpass';
+    filter.frequency.value = kind === 'snare' ? 1700 : 6500;
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(amp * (kind === 'snare' ? .3:.15),t);
+    const len = kind === 'openhat' || kind === 'ride' ? .22 : d;
+    g.gain.exponentialRampToValueAtTime(.0001,t+len);
+    n.connect(filter).connect(g).connect(b.m);
+    n.start(t);
+    n.stop(t+len+.01);
+  }
+  function note(e,t,b) {
+    const f = MS.freq('C',e.pitch);
+    const d = e.dur;
+    const amp = e.amp;
+    const kind = e.kind;
+    if (['kick','handdrum','snare','hat','openhat','ride','crackle','scratch'].includes(kind)) {
+      drum(kind,t,d,amp,b);
+      return;
+    }
+    if (kind === 'sample' || kind === 'chop') {
+      const n = ctx.createBufferSource();
+      const lp = ctx.createBiquadFilter();
+      const g = ctx.createGain();
+      n.buffer = pianoBuffer;
+      n.playbackRate.value = f/261.63;
+      lp.frequency.value = kind === 'sample' ? 1200 : 2700;
+      g.gain.setValueAtTime(.26*amp,t);
+      g.gain.exponentialRampToValueAtTime(.0001,t+Math.min(d,kind === 'chop' ? .22 : .7));
+      n.connect(lp).connect(g).connect(b.m);
+      g.connect(b.r);
+      n.start(t,0,Math.min(.9,d));
+      return;
+    }
+    if (kind === 'choir' || kind === 'voice') {
+      for (const center of [700,1100]) {
+        for (const cents of [-5,5]) {
+          const o = ctx.createOscillator();
+          const filter = ctx.createBiquadFilter();
+          const g = ctx.createGain();
+          const vibrato = ctx.createOscillator();
+          const depth = ctx.createGain();
+          o.type = 'sawtooth';
+          o.frequency.value = f;
+          o.detune.value = cents;
+          vibrato.frequency.value = 5;
+          depth.gain.value = f*.004;
+          vibrato.connect(depth).connect(o.frequency);
+          filter.type = 'bandpass';
+          filter.frequency.value = center;
+          filter.Q.value = 3;
+          g.gain.setValueAtTime(.0001,t);
+          g.gain.linearRampToValueAtTime(.12*amp,t+.07);
+          g.gain.setValueAtTime(.09*amp,t+Math.max(.08,d-.07));
+          g.gain.exponentialRampToValueAtTime(.0001,t+d+.15);
+          o.connect(filter).connect(g);
+          g.connect(b.m);
+          g.connect(b.r);
+          [o,vibrato].forEach(n => {n.start(t);n.stop(t+d+.18);});
+        }
+      }
+      return;
+    }
+    if (kind === 'recorder') {
+      const quiet = ctx.createGain();
+      quiet.gain.value = amp*.55;
+      quiet.connect(b.m);
+      MS.blow(f,t,d,{m:quiet,r:b.r});
+      return;
+    }
+    if (['brass','cello','bass','synthbass','lead','pad','guitar'].includes(kind)) {
+      if (kind === 'guitar') {
+        const distortion = ctx.createWaveShaper();
+        const curve = new Float32Array(1024);
+        for (let i=0;i<curve.length;i++) curve[i] = Math.tanh((i/512-1)*3)*.55;
+        distortion.curve = curve;
+        distortion.connect(b.m);
+        oscillator(f,t,d,'sawtooth',.13*amp,{m:distortion,r:b.r},2600);
+      } else if (kind === 'pad') {
+        [-.06,0,.06].forEach(detune => oscillator(f*(1+detune*.01),t,d,'sawtooth',.035*amp,b,1300));
+      } else {
+        oscillator(f,t,d,['bass','synthbass','lead'].includes(kind) ? 'square':'sawtooth',
+          (kind === 'bass' || kind === 'synthbass' ? .1 : .075)*amp,b,kind === 'brass' ? 3100 : 1300,e.scoop);
+      }
+      return;
+    }
+    const recipes = {
+      harpsichord:{decay:.38,partials:[[1,1],[2,.6],[3,.25],[4,.16]],type:'sawtooth',gain:.13},
+      fortepiano:{decay:.75,partials:[[1,1],[2,.45],[3,.2],[4,.1],[5,.05]],type:'triangle',gain:.2},
+      grand:{decay:1.5,partials:[[1,1],[1.002,.4],[2,.45],[2.003,.2],[3,.2]],type:'triangle',gain:.19},
+      upright:{decay:.85,partials:[[1,1],[1.004632,.8],[2,.3],[3,.13]],type:'triangle',gain:.17},
+      metal:{decay:1.3,partials:[[1,1],[2.76,.4],[5.4,.14]],type:'sine',gain:.2},
+      gong:{decay:2.2,partials:[[1,1],[1.49,.7],[2.03,.5],[2.76,.3]],type:'sine',gain:.25}
+    };
+    const r = recipes[kind] || recipes.fortepiano;
+    MS.pluck(f,t,r.decay,{...r,gain:r.gain*amp,cutoff:f*8},b);
+  }
+  function silence() {
+    clearTimeout(boundaryTimer);
+    scheduled = false;
+    pending = null;
+    generation++;
+    if (ctx && currentBus) {
+      currentBus.output.gain.cancelScheduledValues(ctx.currentTime);
+      currentBus.output.gain.setValueAtTime(0,ctx.currentTime);
+      const old = currentBus;
+      setTimeout(() => {old.output.disconnect();old.m.disconnect();old.r.disconnect();},4200);
+    }
+    currentBus = null;
+  }
+  function start(settings,bar=0) {
+    setup();
+    if (!ctx) return;
+    silence();
+    currentSettings = {...settings};
+    currentBus = bus(settings);
+    nextBar = bar;
+    anchor = ctx.currentTime + .015;
+    plan = null;
+    position = 0;
+    scheduled = true;
+    pump();
+  }
+  function pump() {
+    if (!ctx || !scheduled) return;
+    const horizon = ctx.currentTime + .15;
+    while (scheduled && anchor < horizon) {
+      if (!plan) {
+        // Commit on the boundary, so a last-moment knob turn still reaches the next bar.
+        if (anchor > ctx.currentTime + .002) {
+          clearTimeout(boundaryTimer);
+          boundaryTimer = setTimeout(pump,Math.max(1,(anchor-ctx.currentTime)*1000));
+          break;
+        }
+        anchor = Math.max(anchor,ctx.currentTime);
+        if (pending) {
+          currentSettings = {...pending.settings};
+          const apply = pending.apply;
+          pending = null;
+          const old = currentBus;
+          currentBus = bus(currentSettings);
+          old.output.gain.setValueAtTime(1,anchor);
+          old.output.gain.linearRampToValueAtTime(0,anchor+.025);
+          setTimeout(() => old.output.disconnect(),Math.max(0,(anchor-ctx.currentTime+4.2)*1000));
+          const g = generation;
+          setTimeout(() => {if (g === generation) apply?.();},Math.max(0,(anchor-ctx.currentTime)*1000));
+        }
+        plan = compileBar(currentSettings,nextBar);
+        position = 0;
+        const g = generation;
+        const bar = nextBar;
+        setTimeout(() => {if (g === generation && scheduled) barCallback(bar,currentSettings);},
+          Math.max(0,(anchor-ctx.currentTime)*1000));
+      }
+      while (position < plan.events.length && anchor+plan.events[position].time < horizon) {
+        const e = plan.events[position++];
+        if (Curio.sound) note(e,anchor+e.time,currentBus);
+      }
+      if (anchor+plan.duration >= horizon) break;
+      anchor += plan.duration;
+      nextBar++;
+      if (nextBar === 8) {
+        nextBar = 0;
+        anchor += 2 * 60/stationAt(currentSettings.beat).bpm;
+      }
+      plan = null;
+    }
+    if (music) {
+      const duck = window.__tool?.voicePlaying ? .4 : 1;
+      music.gain.setTargetAtTime(.65*duck*Math.max(0,window.__tool?.state.strength ?? 1),ctx.currentTime,.025);
+    }
+  }
+  function signal(strength,on) {
+    if (!ctx) return;
+    staticGain.gain.setTargetAtTime(on && Curio.sound ? (1-strength)*.12:0,ctx.currentTime,.015);
+  }
+  function queue(settings,apply) {
+    if (!scheduled) {apply?.();return;}
+    pending = {settings:{...settings},apply};
+  }
+  function volume(v) {if (master) master.gain.setTargetAtTime(Curio.sound ? v/100 : 0,ctx.currentTime,.015);}
+  function mute() {
+    if (ctx && master) master.gain.setTargetAtTime(Curio.sound ? Number(document.getElementById('volume').value)/100:0,ctx.currentTime,.005);
+  }
+  return {start,silence,signal,queue,volume,mute,setup,cancelQueue:() => {pending=null;},onBar:f => {barCallback=f;},
+    get playing(){return scheduled;},get pending(){return !!pending;},get context(){return ctx;},
+    inspect:() => ({scheduled,nextBar,currentSettings,pending:!!pending,active:active.size,
+      now:ctx?.currentTime,nextAt:plan ? anchor+plan.duration : anchor})};
+})();
+
+const $ = id => document.getElementById(id);
+const state = {
+  mode:'dial',index:0,position:0,strength:1,locked:true,powered:false,paused:true,
+  a:null,b:null,pending:false,bar:0,mix:config(indexOf('baroque')),mystery:null
+};
+const L = {
+  welcome:'Press Power, then drag the tuning knob or tap Station to find a station.',
+  powerHow:'Press Power to hear the station. Then use the controls below the radio.',
+  compareHow:'Station A is pinned. Now turn the dial to a second station.',
+  flipHow:'Press Flip to switch between the two stations at the next bar.',
+  deskHow:'Turn the Beat, Harmony or Sound knob to another era. The change starts at the next bar.',
+  mysteryHow:'Listen, then drag the pin to the year you hear and press Tune in.',
+  setDone:'Set done. Your count is on the screen.',
+  dialReady:'Tap Station or drag the tuning knob. Press Compare to pin this sound, then find another station.',
+  compareReady:'Press Flip to compare A and B at the next bar, or turn the dial.',
+  tuningHow:'Keep turning the tuning knob until the green eye closes and the station locks.',
+  mysteryPower:'Press Power to hear the hidden station. Then move the year pin and press Tune in.',
+  deskPower:'Press Power, then turn a Beat, Harmony or Sound knob to hear a new mix.',
+  nextHow:'Compare the two highlighted clues, then press Next station.',
+  newHow:'Press New set to hear six different stations. Results are not saved.',
+  guessHow:'Listen, then drag the year pin or use its arrow keys. Press Tune in to reveal the station.',
+  pendingHow:'The knobs show your new mix. Listen for it at the next bar.',
+  pausedHow:'Press Resume to hear the radio again. You can still change the controls while paused.'
+};
+STATIONS.forEach(s => {
+  L['ident-'+s.id] = `${s.year}. ${s.name}.`;
+  L['result-'+s.id] = `It was ${s.year}. ${s.name}.`;
+  NAME.forEach((name,i) => {
+    L[`feature-${s.id}-${i}`] = `${name}. ${s.features[i]}`;
+    L[`mix-feature-${s.id}-${i}`] = `${name}. ${s.name}: ${s.features[i]}`;
+  });
+  const i = STATIONS.indexOf(s);
+  L['desk-instrument-'+s.id] = `Instruments. ${s.name} melody: ${DESK_SOUND[i]}; other parts follow Harmony and Beat.`;
+  STATIONS.forEach(h => {
+    L[`desk-texture-${s.id}-${h.id}`] = `Texture. ${s.name} sound with ${h.name} accompaniment.`;
+  });
+});
+L.deskSolo = 'Texture. Chant: one melody without accompaniment.';
+L.deskDrone = 'Texture. Chant harmony: one melody over an organum drone.';
+const IMAGES = {
+  chant:'art:mhr-pc-chant',organum:'art:mhr-pc-organum',renaissance:'art:mhr-pc-renaissance',
+  baroque:'art:mhr-pc-baroque',classical:'art:mhr-pc-classical',romantic:'art:mhr-pc-romantic',
+  ragtime:'art:mhr-pc-ragtime',swing:'art:mhr-pc-swing',rocknroll:'art:mhr-pc-rocknroll',
+  disco:'art:mhr-pc-disco',hiphop:'art:mhr-pc-hiphop',gamelan:'art:mhr-pc-gamelan'
+};
+const ALTS = {
+  chant:'Candlelit stone monastery cloister',organum:'Gothic cathedral interior with rose window',
+  renaissance:'Four wooden recorders on green cloth',baroque:'Harpsichord and cello in a palace room',
+  classical:'Early wooden fortepiano in an empty salon',romantic:'Black grand piano in a Victorian parlor',
+  ragtime:'Upright piano and player-piano roll',swing:'Instruments on an empty art deco ballroom bandstand',
+  rocknroll:'Glowing jukebox in a diner',disco:'Mirror ball above an empty illuminated dance floor',
+  hiphop:'A young Black woman DJ and neighbors at a Bronx courtyard party, including a wheelchair user',
+  gamelan:'Bronze metallophones and gongs in a Javanese pavilion'
+};
+const V = Curio.voice({
+  lines:L,scope:() => state.mode,hint:false,
+  welcome:() => {
+    if (state.powered && !state.paused) return null;
+    if (!state.powered && state.mode !== 'dial') return ['powerHow',{needs:'#power'}];
+    if (state.mode === 'dial' && !state.powered) return ['welcome',{valid:() => !state.powered,needs:'#power'}];
+    if (state.mode === 'desk') return ['deskHow',{needs:'#mix-beat'}];
+    if (state.mode === 'mystery' && !state.mystery?.revealed) return ['mysteryHow',{needs:'#reveal'}];
+    return null;
+  },
+  speaks:'#power, #reveal',
+  read:() => {
+    if (state.mode === 'mystery' && !state.mystery?.revealed) return $('hint').textContent;
+    const s = panelStation();
+    return [$('hint').textContent,L['ident-'+s.id],...NAME.map((name,i) => `${name}. ${featureText(i)}`)];
+  }
+});
+
+function targetIndex() {
+  return state.mode === 'mystery' ? state.mystery.stations[state.mystery.round] : state.index;
+}
+function panelStation() {
+  return stationAt(state.mode === 'desk' ? state.mix.sound : targetIndex());
+}
+function settings() {
+  return state.mode === 'desk' ? {...state.mix} : config(targetIndex());
+}
+function featureText(i) {
+  if (state.mode !== 'desk') return panelStation().features[i];
+  if (i === 0) {
+    if (stationAt(state.mix.harmony).id === 'chant') {
+      return (panelStation().id === 'organum' ? L.deskDrone : L.deskSolo).slice(9);
+    }
+    return L[`desk-texture-${panelStation().id}-${stationAt(state.mix.harmony).id}`].slice(9);
+  }
+  if (i === 3) return L['desk-instrument-'+panelStation().id].slice(13);
+  const source = i === 1 ? state.mix.beat : i === 2 ? state.mix.harmony : state.mix.sound;
+  return `${stationAt(source).name}: ${stationAt(source).features[i]}`;
+}
+function showHint(text) {$('hint').textContent = text;}
+function updateHint() {
+  if (state.mode === 'mystery' && state.mystery.revealed) {
+    showHint(state.mystery.done ? 'Press New set to hear six different stations. Results are not saved.' :
+      'Compare the two highlighted clues, then press Next station.');
+    return;
+  }
+  if (!state.powered) {
+    showHint(state.mode==='dial' ? L.welcome : state.mode==='mystery' ?
+      'Press Power to hear the hidden station. Then move the year pin and press Tune in.' :
+      'Press Power, then turn a Beat, Harmony or Sound knob to hear a new mix.');
+    return;
+  }
+  if (state.paused) {showHint(L.pausedHow);return;}
+  if (state.mode === 'mystery') {
+    if (state.mystery.done) showHint('Press New set to hear six different stations. Results are not saved.');
+    else if (state.mystery.revealed) showHint('Compare the two highlighted clues, then press Next station.');
+    else showHint('Listen, then drag the year pin or use its arrow keys. Press Tune in to reveal the station.');
+    return;
+  }
+  if (state.mode === 'desk') {
+    showHint(state.pending ? 'The knobs show your new mix. Listen for it at the next bar.' : L.deskHow);
+    return;
+  }
+  if (state.a !== null && state.b === null) showHint(L.compareHow);
+  else if (state.a !== null && state.b !== null) showHint('Press Flip to compare A and B at the next bar, or turn the dial.');
+  else if (!state.locked) showHint('Keep turning the tuning knob until the green eye closes and the station locks.');
+  else showHint('Tap Station or drag the tuning knob. Press Compare to pin this sound, then find another station.');
+}
+function drawTimeline() {
+  const hidden = state.mode === 'mystery' && !state.mystery.revealed;
+  const selected = panelStation();
+  let svg = '<path d="M0 26H1200" stroke="#8e7d60" stroke-width="1"/>';
+  for (const s of STATIONS) {
+    const x = s.year - 800;
+    const active = !hidden && selected.id === s.id;
+    svg += `<path d="M${x} ${active?3:17}V31" stroke="${active?'#4fd18b':'#b0a184'}" stroke-width="2"/>`;
+    if (active) svg += `<circle cx="${x}" cy="5" r="4" fill="#4fd18b"/>`;
+  }
+  $('time-svg').innerHTML = svg;
+  $('time-year').textContent = hidden ? `Your year: ${state.mystery.guess}` :
+    selected.id === 'gamelan' ? '1889 encounter' : `about ${selected.year}`;
+  $('strip-title').textContent = state.mode === 'mystery' ? 'MYSTERY / PLACE THE YEAR PIN' : 'TRUE TIME / YEARS TO SCALE';
+}
+function notation(s,hidden) {
+  const svg = $('notation');
+  const label = $('notation-label');
+  if (hidden) {
+    label.textContent = 'HOW IT MIGHT BE WRITTEN / SEALED';
+    svg.innerHTML = '<text x="180" y="39" text-anchor="middle" fill="#2b2418" font-size="13">Notation sealed</text>';
+    svg.setAttribute('aria-label','Notation is concealed until you reveal the station');
+    return;
+  }
+  label.textContent = s.id === 'gamelan' ? 'SIMPLIFIED LAYER SKETCH / ORIGINAL ARRANGEMENT' :
+    'HOW IT MIGHT BE WRITTEN / FIRST FOUR BARS';
+  let out = '';
+  if (s.id === 'hiphop') {
+    label.textContent = 'FIRST FOUR BARS / EIGHTH-NOTE PADS';
+    for (let row=0;row<3;row++) {
+      out += `<text x="4" y="${19+row*19}" font-size="10" fill="#2b2418">${['SAMPLE','KICK','SNARE'][row]}</text>`;
+      for (let col=0;col<32;col++) {
+        const on = row === 0 ? [0,2,4,6,8,10,12].includes(col%16) :
+          row === 1 ? [0,3].includes(col%8) : [2,6].includes(col%8);
+        out += `<rect x="${55+col*9}" y="${7+row*19}" width="7" height="13" rx="1"
+          fill="${on?'#4e3a23':'#bfb08c'}" stroke="#7c6c4b"/>`;
+      }
+    }
+  } else if (s.id === 'gamelan') {
+    ['TUNE','LAYER','GONG'].forEach((t,row) => {
+      out += `<text x="4" y="${18+row*20}" font-size="10" fill="#2b2418">${t}</text>`;
+      out += `<path d="M50 ${14+row*20}H345" stroke="#ad9b72"/>`;
+      for (let n=0;n<(row===2?4:row===1?16:8);n++) {
+        out += `<circle cx="${58+n*(row===2?90:row===1?18:40)}" cy="${14+row*20}"
+          r="${row===2?5:3}" fill="#4e3a23"/>`;
+      }
+    });
+  } else {
+    if (s.id !== 'chant') {
+      for (let n=0;n<(s.id==='organum'?4:5);n++) out += `<path d="M7 ${18+n*7}H351" stroke="#9a8966"/>`;
+    }
+    if (['ragtime','swing','rocknroll','disco'].includes(s.id)) {
+      const labels = {ragtime:['C','F','C','G'],swing:['C6','Am7','Em7','G7'],
+        rocknroll:['C','F','C','G'],disco:['Cmaj7','Am7','Em7','G7']}[s.id];
+      labels.forEach((c,n) => out += `<text x="${19+n*80}" y="11" fill="#2b2418" font-size="10">${c}</text>`);
+    }
+    let x = 20;
+    TUNE.slice(0,4).forEach((bar,b) => {
+      if (b) out += `<path d="M${x-9} 17V53" stroke="#8d7b57"/>`;
+      for (const [p,d] of bar) {
+        const diatonic = {0:0,2:1,4:2,7:4,9:5,12:7}[p];
+        const y = 53-diatonic*3.5;
+        if (s.id === 'chant' || s.id === 'organum') {
+          out += `<path d="M${x} ${y}l5 -3 3 4 -5 3z M${x+7} ${y+1}v12" fill="#2b2418" stroke="#2b2418"/>`;
+        } else {
+          if (p === 0) out += `<path d="M${x-7} 53h14" stroke="#2b2418"/>`;
+          out += `<ellipse cx="${x}" cy="${y}" rx="4" ry="3" fill="${d>=2?'#e5d8b9':'#2b2418'}"
+            stroke="#2b2418" transform="rotate(-20 ${x} ${y})"/><path d="M${x+3} ${y}v-21" stroke="#2b2418"/>`;
+          if (d === 3) out += `<circle cx="${x+9}" cy="${y-2}" r="1.5" fill="#2b2418"/>`;
+        }
+        x += d*20;
+      }
+      if (b === 3) out += `<text x="${x+4}" y="39" font-size="15" fill="#2b2418">𝄽</text>`;
+    });
+    if (s.id === 'chant') out += '<text x="9" y="65" font-size="10" fill="#2b2418">ah</text>';
+  }
+  svg.innerHTML = out;
+  svg.setAttribute('aria-label',s.id==='hiphop' ? 'Four bars of eighth-note pads for a sample loop, kick and snare' :
+    `Simplified ${s.name} notation showing the first four bars of The Traveler`);
+}
+function renderPanel() {
+  const masked = state.mode === 'mystery' && !state.mystery.revealed;
+  const s = panelStation();
+  $('postcard-cover').hidden = !masked;
+  $('postcard').hidden = masked;
+  if (!masked) {
+    $('postcard').src = IMAGES[s.id];
+    $('postcard').alt = ALTS[s.id];
+  }
+  $('station-number').textContent = masked ? 'MYSTERY BROADCAST' : state.mode === 'desk' ?
+    `MIXING DESK ${state.pending?' / NEXT BAR':''}` : `STATION ${String(targetIndex()+1).padStart(2,'0')} / 12`;
+  $('station-name').textContent = masked ? 'What do you hear?' : state.mode === 'desk' ? 'Your era mix' : s.name;
+  const beat = state.mode === 'desk' ? stationAt(state.mix.beat) : s;
+  const tempo = beat.id === 'chant' ? 'free rhythm' : `${beat.bpm} bpm`;
+  $('station-meta').textContent = masked ? `Round ${state.mystery.round+1} of 6 · no dates revealed` :
+    state.mode === 'desk' ? `Beat: ${beat.name} · ${tempo}${state.pending?' · next bar':''}` :
+    `${s.id === 'gamelan'?'Paris encounter, 1889':'about '+s.year} · ${tempo}`;
+  $('listen-for').textContent = masked ? 'Listen to the layers, the pulse, and the instruments. Place your year pin above the radio.' :
+    state.mode === 'desk' ? `${s.name} timbre, ${beat.name} timing, ${stationAt(state.mix.harmony).name} harmony.` : s.listen;
+  const children = [...$('features').children];
+  const previous = stationAt(Math.max(0,targetIndex()-1));
+  for (let i=0;i<5;i++) {
+    const row = children[i];
+    row.classList.toggle('giveaway',state.mode === 'mystery' && !masked && s.giveaways.includes(i));
+    row.querySelector('p').textContent = masked ? ['One line or several?', 'Free, steady, or syncopated?',
+      'Open intervals or chords?', 'Which sound carries the tune?', 'What setting might carry this music?'][i] : featureText(i);
+    row.querySelector('.changed').hidden = masked || state.mode !== 'dial' || targetIndex()===0 || s.features[i]===previous.features[i];
+  }
+  notation(s,masked);
+  if (state.mode === 'desk') $('notation-label').textContent = `${s.name.toUpperCase()} REFERENCE / NOT THE MIXED SCORE`;
+  const result = $('result');
+  $('panel').classList.toggle('revealed',state.mode === 'mystery' && !masked);
+  result.hidden = state.mode !== 'mystery' || !state.mystery.revealed;
+  if (!result.hidden) {
+    const m = state.mystery;
+    const current = m.history[m.history.length-1];
+    if (m.done) {
+      result.innerHTML = `<strong>Within 50 years: ${m.history.filter(h=>h.gap<=50).length} of 6</strong>`+
+        '<div class="recap">'+m.history.map(h =>
+          `<span>${h.name}</span><span>${h.guess} → ${h.year} · ${h.gap} off</span>`).join('')+'</div>';
+    } else {
+      result.innerHTML = `<strong>${s.name} · ${s.year}</strong>`+
+        `You said ${current.guess}: ${current.gap} ${current.gap===1?'year':'years'} off. `+
+        'Listen again for the two highlighted clues.';
+    }
+  }
+}
+function render() {
+  const mystery = state.mode === 'mystery';
+  const masked = mystery && !state.mystery.revealed;
+  document.body.dataset.mode = state.mode;
+  document.body.classList.toggle('on-air',state.powered && !state.paused);
+  document.body.classList.toggle('powered',state.powered);
+  for (const m of ['dial','desk','mystery']) $('m-'+m).setAttribute('aria-pressed',String(state.mode===m));
+  $('cover').hidden = !masked;
+  $('dial-controls').hidden = state.mode !== 'dial';
+  $('mixing').hidden = state.mode !== 'desk';
+  $('mixing').classList.toggle('pending',state.pending && state.mode === 'desk');
+  $('mystery-controls').hidden = !mystery;
+  $('comparison').hidden = mystery;
+  $('guess').hidden = !mystery || state.mystery.revealed;
+  $('dial-window').hidden = masked;
+  $('tuner').hidden = state.mode !== 'dial';
+  $('knob').hidden = masked;
+  $('knob').inert = state.mode !== 'dial';
+  $('volume').parentElement.hidden = masked;
+  $('eye').classList.toggle('lock',state.locked && state.powered && !masked);
+  $('air').textContent = !state.powered ? '○ POWER OFF' : state.paused ? 'Ⅱ PAUSED' :
+    masked ? '● MYSTERY ON AIR' : state.locked || state.mode === 'desk' ? '● SIGNAL LOCKED' : '◌ BETWEEN STATIONS';
+  $('air').classList.toggle('on',state.powered && !state.paused);
+  $('power').querySelector('span').textContent = !state.powered ? 'Power' : state.paused ? 'Resume' : 'Pause';
+  $('power').setAttribute('aria-label',!state.powered ? 'Power on radio' : state.paused ? 'Resume radio' : 'Pause radio');
+  $('playhead').textContent = state.powered && !state.paused ? `THE TRAVELER / PHRASE ${state.bar+1} OF 8` :
+    'THE TRAVELER / ORIGINAL TUNE';
+  const shownPosition = state.mode === 'desk' ? state.mix.sound : mystery ? targetIndex() : state.position;
+  $('needle').style.left = `${shownPosition/11*100}%`;
+  if ($('dial-window').scrollWidth > $('dial-window').clientWidth) {
+    $('dial-window').scrollLeft = shownPosition/11 * $('dial-scale').clientWidth - $('dial-window').clientWidth/2;
+  }
+  $('tuner').value = state.position*100;
+  const label = `${stationAt(state.position).name}, about ${stationAt(state.position).year}${state.locked?', locked':', between stations'}`;
+  $('tuner').setAttribute('aria-valuetext',label);
+  $('knob').setAttribute('aria-valuenow',state.position.toFixed(2));
+  $('knob').setAttribute('aria-valuetext',label);
+  $('knob').querySelector('img').style.transform = `rotate(${shownPosition/11*290-145}deg)`;
+  $('compare').setAttribute('aria-pressed',String(state.a !== null));
+  $('compare').textContent = state.a === null ? 'Compare' : 'Clear A';
+  $('flip').disabled = state.b === null;
+  $('flip').textContent = state.pending && state.mode === 'dial' ? 'Next bar…' : 'Flip A / B';
+  $('comparison').textContent = state.mode === 'desk' ? 'The dial shows Sound. Turn the three knobs below to combine eras.' : state.a === null ?
+    'Equal dial spacing is for tuning. The thin strip above shows real time.' :
+    `A: ${stationAt(state.a).name} (${tempoLabel(state.a)}) · B: `+
+    (state.b === null ? 'tune a second station' : `${stationAt(state.b).name} (${tempoLabel(state.b)})`);
+  if (mystery) {
+    $('round').textContent = `Round ${state.mystery.round+1} / 6`;
+    $('guess-label').textContent = `Your year: ${state.mystery.guess}`;
+    if (state.mystery.revealed) {
+      const m=state.mystery;
+      const gap=m.history[m.history.length-1].gap;
+      $('guess-label').textContent = m.done ? `Within 50 years: ${m.history.filter(h=>h.gap<=50).length} / 6` :
+        `You: ${m.guess} · ${gap} ${gap===1?'year':'years'} off`;
+    }
+    $('guess').value = state.mystery.guess;
+    $('reveal').hidden = state.mystery.revealed;
+    $('advance').hidden = !state.mystery.revealed;
+    $('advance').textContent = state.mystery.done ? 'New set' : 'Next station';
+  }
+  for (const key of ['beat','harmony','sound']) {
+    $('mix-'+key).value = state.mix[key];
+    $('mix-'+key).setAttribute('aria-valuetext',stationAt(state.mix[key]).name);
+    $('mix-value-'+key).textContent = stationAt(state.mix[key]).name;
+    const img = $('mix-'+key).parentElement.querySelector('img');
+    img.style.transform = `rotate(${state.mix[key]/11*290-145}deg)`;
+  }
+  drawTimeline();
+  renderPanel();
+  updateHint();
+}
+function identify(i) {
+  if (!state.powered || state.paused || !state.locked || state.mode === 'mystery') return;
+  const s = stationAt(i);
+  V.how('ident-'+s.id,{hint:false,valid:() => state.mode !== 'mystery' && panelStation().id===s.id && state.locked && !state.paused});
+}
+function tempoLabel(i) {return stationAt(i).id === 'chant' ? 'free rhythm' : `${stationAt(i).bpm} bpm`;}
+function restart() {
+  if (!state.powered || state.paused) return;
+  state.bar = 0;
+  RadioAudio.start(settings());
+  RadioAudio.signal(state.strength,true);
+}
+let staticTimer = 0;
+function tune(value) {
+  if (state.mode !== 'dial') return;
+  value = Math.max(0,Math.min(11,value));
+  if (Curio.reduce) value = Math.round(value);
+  const old = state.index;
+  const oldLock = state.locked;
+  RadioAudio.cancelQueue();
+  state.position = value;
+  state.index = Math.round(value);
+  state.strength = Math.max(0,1-Math.abs(value-state.index)/.5);
+  state.locked = Math.abs(value-state.index) <= .150001;
+  state.pending = false;
+  const powerHint = !state.powered && [L.welcome,L.powerHow].includes(V.playing);
+  if ((old !== state.index || oldLock && !state.locked) && !powerHint) V.hush();
+  if (old !== state.index) restart();
+  if (!oldLock && state.locked && old === state.index) restart();
+  if (state.a !== null && state.index !== state.a && state.locked) state.b = state.index;
+  if (state.powered && !state.paused) {
+    RadioAudio.signal(Curio.reduce && old!==state.index ? 0:state.strength,true);
+    if (Curio.reduce && old!==state.index) {
+      clearTimeout(staticTimer);
+      staticTimer = setTimeout(() => RadioAudio.signal(state.strength,!state.paused),300);
+    }
+  }
+  render();
+  if (state.locked && (old !== state.index || !oldLock)) identify(state.index);
+  if (state.b !== null && !V.heard('flipHow') && state.paused) V.how('flipHow',{needs:'#flip',hint:false});
+}
+function power() {
+  state.powered = true;
+  state.paused = !state.paused;
+  state.pending = false;
+  V.hush();
+  if (state.paused) {
+    RadioAudio.silence();
+    RadioAudio.signal(1,false);
+  } else {
+    restart();
+    identify(state.mode === 'desk' ? state.mix.sound : state.index);
+  }
+  render();
+}
+function compare() {
+  if (state.mode !== 'dial') return;
+  if (state.a !== null) {state.a=null;state.b=null;}
+  else {
+    state.a=state.index;
+    if (state.paused) {
+      const needsPower = !state.powered;
+      V.how(needsPower ? 'powerHow' : 'compareHow',{hint:false,needs:needsPower ? '#power' : '#next',
+        valid:() => needsPower ? !state.powered : state.a!==null && state.b===null});
+    }
+  }
+  render();
+}
+function flip() {
+  if (state.mode !== 'dial' || state.b === null || state.pending) return;
+  const target = state.index === state.a ? state.b : state.a;
+  state.pending = true;
+  V.dropQueued();
+  RadioAudio.queue(config(target),() => {
+    if (state.mode !== 'dial') return;
+    state.index=target;
+    state.position=target;
+    state.strength=1;
+    state.locked=true;
+    state.pending=false;
+    render();
+    identify(target);
+  });
+  render();
+}
+function changeMix(key,value) {
+  state.mix[key] = Number(value);
+  state.pending = RadioAudio.playing;
+  V.dropQueued();
+  const next = {...state.mix};
+  RadioAudio.queue(next,() => {state.pending=false;render();});
+  render();
+}
+function newSet() {
+  const list = STATIONS.map((s,i)=>i);
+  for (let i=list.length-1;i>0;i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [list[i],list[j]]=[list[j],list[i]];
+  }
+  state.mystery = {stations:list.slice(0,6),round:0,guess:1400,revealed:false,done:false,history:[]};
+}
+function reveal() {
+  const m = state.mystery;
+  if (!m || m.revealed) return;
+  const s = stationAt(m.stations[m.round]);
+  m.revealed = true;
+  m.history.push({guess:m.guess,year:s.year,name:s.name,gap:Math.abs(m.guess-s.year)});
+  m.done = m.round === 5;
+  V.dropQueued();
+  render();
+  $('advance').focus({preventScroll:true});
+  V.say('result-'+s.id,{hint:false,valid:() => state.mode==='mystery' && m.revealed});
+  if (m.done) V.say('setDone',{hint:false,valid:() => m.done});
+}
+function advance() {
+  V.hush();
+  if (state.mystery.done) newSet();
+  else {
+    state.mystery.round++;
+    state.mystery.revealed=false;
+    state.mystery.guess=1400;
+  }
+  state.strength=1;
+  state.locked=true;
+  restart();
+  render();
+  $('guess').focus({preventScroll:true});
+}
+function setMode(mode) {
+  if (!['dial','desk','mystery'].includes(mode) || mode===state.mode) return;
+  V.hush();
+  state.mode=mode;
+  if (mode === 'dial') state.position=state.index;
+  state.pending=false;
+  state.strength=1;
+  state.locked=true;
+  if (mode==='mystery' && !state.mystery) newSet();
+  restart();
+  render();
+  if (state.paused) V.welcome();
+  else if (mode!=='mystery') identify(mode==='desk'?state.mix.sound:state.index);
+}
+
+// Make controls once. Updates change text, never replace the focused input.
+STATIONS.forEach(s => {
+  const mark = document.createElement('span');
+  mark.className='mark';
+  mark.textContent=String(s.year);
+  $('marks').append(mark);
+});
+NAME.forEach(name => {
+  const row = document.createElement('div');
+  row.className='feature';
+  const label = document.createElement('div');
+  label.className='feature-label';
+  label.append(document.createTextNode(name));
+  const badge = document.createElement('span');
+  badge.className='changed';
+  badge.textContent='changed';
+  label.append(badge);
+  row.append(label,document.createElement('p'));
+  $('features').append(row);
+});
+['beat','harmony','sound'].forEach(key => {
+  const group = document.createElement('div');
+  group.className='mix-control';
+  const image = document.createElement('img');
+  image.src='art:mhr-knob';
+  image.alt='';
+  const label = document.createElement('label');
+  label.htmlFor='mix-'+key;
+  label.textContent=key[0].toUpperCase()+key.slice(1);
+  const select = document.createElement('input');
+  select.type='range';
+  select.min=0;
+  select.max=11;
+  select.step=1;
+  select.id='mix-'+key;
+  select.setAttribute('aria-label',key[0].toUpperCase()+key.slice(1)+' era');
+  select.oninput=() => {
+    select.setAttribute('aria-valuetext',stationAt(Number(select.value)).name);
+    changeMix(key,select.value);
+  };
+  const output=document.createElement('output');
+  output.id='mix-value-'+key;
+  output.htmlFor=select.id;
+  group.append(image,label,select,output);
+  $('mix-knobs').append(group);
+});
+for (const mode of ['dial','desk','mystery']) $('m-'+mode).onclick=() => setMode(mode);
+$('power').onclick=power;
+$('prev').onclick=() => tune((state.index+11)%12);
+$('next').onclick=() => tune((state.index+1)%12);
+$('compare').onclick=compare;
+$('flip').onclick=flip;
+$('tuner').oninput=e => tune(Number(e.target.value)/100);
+let needleDrag = null;
+$('tuner').onpointerdown=e => {
+  e.preventDefault();
+  e.currentTarget.focus({preventScroll:true});
+  const rail = $('dial-scale').getBoundingClientRect();
+  tune((e.clientX-rail.left)/rail.width*11);
+  needleDrag = {x:e.clientX,value:state.position,width:rail.width};
+  e.currentTarget.setPointerCapture(e.pointerId);
+};
+$('tuner').onpointermove=e => {
+  if (!needleDrag) return;
+  e.preventDefault();
+  tune(needleDrag.value+(e.clientX-needleDrag.x)/needleDrag.width*11);
+};
+$('tuner').onpointerup=() => {needleDrag=null;};
+$('tuner').onpointercancel=() => {needleDrag=null;};
+$('tuner').onkeydown=e => {
+  if (e.key==='ArrowLeft' || e.key==='ArrowRight') {
+    e.preventDefault();
+    tune(state.index+(e.key==='ArrowRight'?1:-1));
+  }
+};
+let dragging = null;
+$('knob').onpointerdown=e => {
+  if (state.mode !== 'dial') return;
+  dragging={x:e.clientX,y:e.clientY,value:state.position};
+  $('knob').setPointerCapture(e.pointerId);
+};
+$('knob').onpointermove=e => {
+  if (!dragging) return;
+  tune(dragging.value+(e.clientX-dragging.x-(e.clientY-dragging.y))/32);
+};
+$('knob').onpointerup=() => {dragging=null;};
+$('knob').onpointercancel=() => {dragging=null;};
+$('knob').onkeydown=e => {
+  if (!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'].includes(e.key)) return;
+  e.preventDefault();
+  tune(e.key==='Home'?0:e.key==='End'?11:state.index+(['ArrowRight','ArrowUp'].includes(e.key)?1:-1));
+};
+$('volume').oninput=e => {
+  RadioAudio.volume(Number(e.target.value));
+  e.target.parentElement.querySelector('img').style.transform=`rotate(${Number(e.target.value)*2.7-135}deg)`;
+};
+$('random').onclick=() => {
+  ['beat','harmony','sound'].forEach(k => {state.mix[k]=Math.floor(Math.random()*12);});
+  changeMix('beat',state.mix.beat);
+};
+$('reset').onclick=() => {
+  V.hush();
+  state.mix=config(indexOf('baroque'));
+  changeMix('beat',state.mix.beat);
+};
+$('guess').oninput=e => {
+  state.mystery.guess=Number(e.target.value);
+  $('guess-label').textContent=`Your year: ${state.mystery.guess}`;
+  $('time-year').textContent=`Your year: ${state.mystery.guess}`;
+  V.dropQueued();
+};
+$('reveal').onclick=reveal;
+$('advance').onclick=advance;
+document.addEventListener('keydown',e => {
+  if (e.altKey || e.ctrlKey || e.metaKey) return;
+  if (e.key===' ' && !e.target.matches('button,select,textarea')) {
+    e.preventDefault();
+    power();
+    return;
+  }
+  if (e.target.matches('input,select,textarea,[role=slider]')) return;
+  if (e.key==='ArrowRight' && state.mode==='dial') {e.preventDefault();tune(state.index+1);}
+  if (e.key==='ArrowLeft' && state.mode==='dial') {e.preventDefault();tune(state.index-1);}
+  if (e.key.toLowerCase()==='c') compare();
+  if (e.key.toLowerCase()==='f') flip();
+  if (e.key.toLowerCase()==='m') setMode('desk');
+});
+RadioAudio.onBar(bar => {
+  state.bar=bar;
+  $('playhead').textContent=`THE TRAVELER / PHRASE ${bar+1} OF 8`;
+  $('maker')?.classList.toggle('beat',bar%2===0);
+});
+Curio.onSound(on => {
+  RadioAudio.mute();
+  RadioAudio.signal(state.strength,on && state.powered && !state.paused);
+  if (on && state.powered && !state.paused) identify(state.mode==='desk'?state.mix.sound:state.index);
+});
+Curio.init({clips:"voice:*",rate:.96});
+window.__tool = {
+  state,setMode,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},
+  get voicePlaying(){return !!V.playing || speechSynthesis.speaking;},
+  stations:STATIONS,tune,compileBar,changeMix,reveal,advance,newSet,render,RadioAudio,
+  verifyMixes:() => {
+    let combinations=0,events=0;
+    for (let beat=0;beat<12;beat++) for (let harmony=0;harmony<12;harmony++) for (let sound=0;sound<12;sound++) {
+      for (let b=0;b<8;b++) {
+        const plan=compileBar({beat,harmony,sound},b);
+        if (!(plan.duration>0) || plan.events.some(e => !Number.isFinite(e.time+e.dur+e.pitch+e.amp))) {
+          throw new Error(`Invalid mix ${beat},${harmony},${sound},${b}`);
+        }
+        events+=plan.events.length;
+      }
+      combinations++;
+    }
+    return {combinations,events};
+  }
+};
+render();
+new ResizeObserver(() => {
+  const space=document.querySelector('.radio-space');
+  const width=Math.min(space.clientWidth*.96,space.clientHeight*1000/614);
+  $('radio').style.width=Math.max(120,width)+'px';
+}).observe(document.querySelector('.radio-space'));
+
+</script>
+</body>
+</html>

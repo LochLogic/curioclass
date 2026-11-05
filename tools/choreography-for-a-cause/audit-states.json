@@ -1,0 +1,45 @@
+{
+  "keep": ["#hint"],
+  "states": [
+    {
+      "name": "motif-created",
+      "steps": [{"click":"#choose"},{"click":"#make"},{"click":"#stopMotif"}],
+      "keep": ["#stage-wrap","#make","#playMotif"]
+    },
+    {
+      "name": "structure-filled",
+      "steps": [
+        {"click":"#choose"},{"click":"#make"},{"click":"#stopMotif"},
+        {"click":"#m-structure"},{"click":"#structure-library .motif-chip"},
+        {"click":"[data-slot='1']"},{"click":"#structure-library .motif-chip"}
+      ],
+      "keep": ["#strip","#playDance","#stage-wrap"]
+    },
+    {
+      "name": "viewer-replay",
+      "steps": [
+        {"click":"#choose"},{"click":"#make"},{"click":"#stopMotif"},
+        {"click":"#m-structure"},{"click":"#structure-library .motif-chip"},
+        {"click":"[data-slot='1']"},{"click":"#structure-library .motif-chip"},
+        {"click":"#m-viewers"},{"click":"#showViewers"},{"wait":18000}
+      ],
+      "sizes": ["680x425","1366x768","375x812"],
+      "keep": ["#viewer-score","#showViewers","#stage-wrap"]
+    },
+    {
+      "name": "real-viewer-dialog",
+      "steps": [
+        {"click":"#choose"},{"click":"#make"},{"click":"#stopMotif"},
+        {"click":"#m-structure"},{"click":"#structure-library .motif-chip"},
+        {"click":"[data-slot='1']"},{"click":"#structure-library .motif-chip"},
+        {"click":"#m-viewers"},{"click":"#addViewer"}
+      ],
+      "keep": ["#realDialog"]
+    },
+    {
+      "name": "change-issue-dialog",
+      "steps": [{"click":"#choose"},{"click":"#m-file"},{"click":"[data-folder='F']"},{"click":"#choose"}],
+      "keep": ["#confirmDialog"]
+    }
+  ]
+}

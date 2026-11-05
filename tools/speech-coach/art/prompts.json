@@ -1,0 +1,35 @@
+{
+  "house_style": "Cinematic editorial painting for a Grade 12 rehearsal instrument. Realistic materials, subtle brush grain, deep navy shadows, warm amber stage lighting, muted burgundy velvet. Sophisticated and atmospheric. No text, letters, numbers, logos, people, faces or body parts.",
+  "assets": [
+    {
+      "name": "pd-met-437878",
+      "prompt": "Existing public-domain museum image: Johannes Vermeer, A Maid Asleep, The Met 437878.",
+      "people": true,
+      "source": "Met Open Access, CC0",
+      "review": "supplied museum image retained"
+    },
+    {
+      "name": "pd-met-435809",
+      "prompt": "Existing public-domain museum image: Pieter Bruegel the Elder, The Harvesters, The Met 435809.",
+      "people": true,
+      "source": "Met Open Access, CC0",
+      "review": "supplied museum image retained"
+    },
+    {
+      "name": "pd-aic-57819",
+      "prompt": "Existing public-domain museum image: Wall Clock, case by Jean-Pierre Latz, Art Institute of Chicago 57819.",
+      "source": "AIC Open Access, CC0",
+      "review": "supplied museum image retained"
+    },
+    {
+      "name": "sc-empty-house",
+      "prompt": "A richly painted contemporary public high school auditorium, viewed from the front edge of its wooden stage into the audience. Rows of empty burgundy velvet seats with curved plywood armrests, two accessible aisles, a modest rear sound booth, warm timber acoustic panels and dark navy upper walls. The simple functional room feels like a real school, with exquisite material detail rather than palace ornament. Warm amber light from upper left catches velvet pile, rounded wood edges, small aisle lights and scuffed stage boards across the lower foreground. Thin spotlight haze, seats receding gently into shadow, luminous cinematic editorial realism with subtle brush grain. Wide 16:9 view, audience fills the image. Entirely unoccupied, blank surfaces, no text, letters, numbers, logos or people.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 76,
+      "cutout": false,
+      "drawn_by": "codex",
+      "review": "Cold review redraw checked at 1600x900 and in the rehearsal stage: school acoustic panels, sound booth, velvet seats and stage foreground; no people, text or logos."
+    }
+  ]
+}

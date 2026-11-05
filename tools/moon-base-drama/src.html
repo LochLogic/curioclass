@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moon Base Drama · Curio Class</title>
+<meta name="description" content="Become Commander Ada's crew. Speak in role, use moon facts, and rewind your choices to help a lunar greenhouse.">
+<!--
+Moon Base Drama, Curio Class. Teacher-led K-2 theatre: TH:Cr3, TH:Re9, TH:Cn11.
+Moon facts from NASA; solar energy from US Department of Energy. See notes.md and spec.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0. Code MIT. One offline file. No story storage.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f2f3f5; --ink:#1a1f26; --muted:#555d68; --line:#a7b0ba;
+  --focus:#ffcf45; --brand:#3a4a5c; --btn:#29394b; --btn-line:#8190a1;
+  --head-ink:#fff; --panel:#e9edf1; --amber:#f2b632;
+}
+body { overflow:hidden; width:100%; grid-template-rows:76px minmax(0,1fr); }
+button { min-width:60px; min-height:60px; touch-action:manipulation; }
+button:disabled { cursor:default; opacity:.5; }
+header { padding:7px 18px; gap:9px; flex-wrap:nowrap; border-bottom:3px solid #162331; }
+h1 { font-size:clamp(18px,2.2vw,29px); letter-spacing:-.04em; }
+h1 small { font-size:13px; letter-spacing:.02em; margin-top:5px; }
+.seg button, .icon-btn { min-height:60px; font-size:15px; padding:0 15px; }
+.seg { border-radius:16px; }
+.seg button[aria-pressed="true"] { background:#f2b632; color:#28200e; }
+main { display:flex; flex-direction:column; min-height:0; min-width:0; width:100%; }
+.map-strip { height:42px; flex:none; background:#1c2a39; color:#e3e9f0; display:flex;
+  align-items:center; justify-content:center; gap:0; padding:0 18px; overflow:hidden; }
+.map-node { display:flex; align-items:center; gap:6px; font-size:12px; white-space:nowrap; }
+.map-node::after { content:''; width:clamp(12px,3vw,50px); height:2px; background:#8293a6; margin:0 8px; }
+.map-node:last-child::after { display:none; }
+.map-dot { width:24px; height:24px; border:2px solid #a9b7c6; border-radius:50%; display:grid; place-items:center; }
+.map-node.choice-node .map-dot { border-radius:5px; transform:rotate(45deg); }
+.map-dot span { transform:rotate(0); }
+.choice-node .map-dot span { transform:rotate(-45deg); }
+.map-node.current .map-dot { background:#f2b632; color:#1a1f26; border-color:#ffe7ab; box-shadow:0 0 12px #f2b63266; }
+.map-node.future { opacity:.35; }
+.stage { flex:1; min-height:0; isolation:isolate; background:#182736; }
+.backdrop { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.scene-shade { position:absolute; inset:0; background:linear-gradient(0deg,#091421aa,transparent 45%,#06132144); }
+.crew-title { position:absolute; top:22px; left:4%; color:#fff; text-shadow:0 2px 4px #102030;
+  margin:0; font-size:clamp(18px,2.5vw,30px); }
+.crew-title small { display:block; font:500 16px 'Segoe UI',sans-serif; margin-top:3px; }
+.jobs { position:absolute; left:4%; top:85px; bottom:122px; width:62%; display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(0,1fr)); gap:18px; }
+.job { position:relative; border:2px solid #b6c6d6; border-radius:24px; padding:7px;
+  background:linear-gradient(145deg,#f7faf5ee,#d7e1e7ee); box-shadow:0 5px 0 #172b3b99, inset 0 0 0 4px #fff5;
+  font-weight:800; font-size:clamp(14px,1.7vw,22px); display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:3px; }
+.job::before { content:''; position:absolute; inset:8px; border:1px dashed #9aabb9; border-radius:17px; pointer-events:none; }
+.job img { height:calc(100% - 37px); max-height:135px; max-width:90%; object-fit:contain;
+  filter:drop-shadow(0 5px 3px #1d344d33); transition:transform .25s; }
+.job[aria-pressed="true"] { border:4px solid #f2b632; background:linear-gradient(145deg,#fff7dbf5,#e7e5d3f5); }
+.job[aria-pressed="true"] img { transform:scale(1.12) rotate(-5deg); }
+.job .check { position:absolute; top:8px; right:9px; width:26px; height:26px; display:none;
+  border-radius:50%; background:#31475a; color:#fff; font-size:19px; }
+.job[aria-pressed="true"] .check { display:block; }
+.ada { position:absolute; top:28px; right:3%; width:28%; max-width:390px; background:#fff8e6;
+  border:3px solid #b4935d; border-radius:9px 9px 17px 17px; padding:23px 20px 18px;
+  box-shadow:0 8px 0 #17212b66, inset 0 0 0 5px #f3e8cd; transform:rotate(1deg); }
+.ada::before { content:''; position:absolute; width:80px; height:16px; border:3px solid #8c98a1;
+  background:linear-gradient(#d3dce1,#7b8b98); border-radius:6px; top:-9px; left:calc(50% - 40px); }
+.ada h2 { font-size:14px; letter-spacing:.08em; text-transform:uppercase; color:#6c5737; margin:0 0 9px; }
+.ada p { margin:0; font-size:clamp(18px,2vw,27px); font-weight:650; line-height:1.35; }
+.radio { position:absolute; left:3%; bottom:18px; width:63%; min-height:88px; display:flex; gap:14px;
+  align-items:center; padding:12px 18px; background:linear-gradient(150deg,#263b4df5,#102332fa);
+  border:2px solid #8197a8; border-radius:18px; color:#fff; box-shadow:0 5px 0 #07121baa,inset 0 0 0 4px #ffffff09; }
+.speaker { width:62px; height:62px; flex:none; border:5px solid #11202d; border-radius:50%;
+  background:repeating-linear-gradient(0deg,#152938 0 3px,#4a6070 3px 5px); box-shadow:0 0 0 2px #748c9d; }
+.radio.on .speaker { box-shadow:0 0 0 3px #f2b632,0 0 22px #f2b632aa; }
+.radio-text { flex:1; min-width:0; }
+.radio-label { color:#f9cb6b; font-size:11px; font-weight:800; letter-spacing:.12em; display:flex; gap:7px; align-items:center; }
+.signal { display:inline-block; width:7px; height:7px; background:#b9c5ce; border-radius:50%; }
+.radio.on .signal { background:#ffcf55; }
+.caption { margin:5px 0 0; font-size:clamp(13px,1.5vw,19px); line-height:1.3; }
+.idle-beacon { position:absolute; left:18px; top:18px; width:8px; height:8px; border-radius:50%;
+  background:#ffc04c; box-shadow:0 0 12px #ffbf4b; animation:breathe 3s ease-in-out infinite; }
+@keyframes breathe { 50% { opacity:.35; } }
+.meters { position:absolute; top:22px; left:3%; display:flex; gap:10px; padding:10px 14px;
+  color:#fff; background:#142839ed; border:2px solid #8396a5; border-radius:16px; }
+.meter { min-width:75px; }
+.meter-label { font-size:15px; font-weight:700; }
+.dots { display:flex; gap:6px; margin-top:7px; }
+.dot { width:16px; height:16px; border-radius:50%; border:2px solid #c2cfda; background:#182937; transition:background .4s,box-shadow .4s; }
+.dot.full { background:#f2b632; border-color:#ffe4a8; box-shadow:0 0 9px #f2b63288; }
+.choices { position:absolute; left:3%; width:63%; bottom:135px; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.choice { border:3px solid #e1e9ef; border-radius:18px; padding:14px; background:linear-gradient(#f7f9f8,#dce5e9);
+  box-shadow:0 6px 0 #14283b99; font-weight:800; font-size:clamp(17px,2vw,27px); line-height:1.2; }
+.choice .choice-icon { display:block; font-size:32px; margin-bottom:7px; }
+.choice[aria-pressed="true"] { border-color:#f2b632; outline:3px solid #fff; outline-offset:2px; background:#fff2cb; }
+.choice[aria-pressed="false"].other { opacity:.78; }
+.beat-tag { position:absolute; left:3%; top:115px; background:#f3f6f0e8; border:2px solid #b3c2cb;
+  border-radius:12px; padding:8px 14px; font-weight:800; font-size:17px; z-index:1; }
+.rover { position:absolute; width:28%; max-width:430px; left:auto; right:3%; bottom:145px;
+  filter:drop-shadow(0 9px 4px #0008); }
+.rover.drive { animation:drive-in 1.4s ease-out both; }
+@keyframes drive-in { from { transform:translateX(-190%); } to { transform:translateX(0); } }
+.ice { position:absolute; width:22%; max-width:270px; left:27%; top:30%; filter:drop-shadow(0 7px 7px #1119); }
+.ice.float { animation:float-ice 4s ease-in-out infinite; }
+@keyframes float-ice { 50% { transform:translateY(-13px) rotate(3deg); } }
+.night { position:absolute; inset:0; background:#020b23; opacity:0; pointer-events:none; transition:opacity .4s; }
+.night.active { opacity:.64; }
+.grow-lamps { position:absolute; inset:0; pointer-events:none; opacity:0; }
+.grow-lamps.active { opacity:1; }
+.lamp-glow { position:absolute; top:8%; width:24%; height:80%; background:radial-gradient(ellipse,#ffde8366,transparent 67%); }
+.leaf-layer { position:absolute; width:42%; height:43%; bottom:72px; left:16%; overflow:visible; }
+.leaves { transform-origin:300px 300px; transition:transform .4s; }
+.leaf-layer.droopy .leaves { transform:scaleY(.55) skewX(3deg); }
+.response-object { position:absolute; left:18%; top:27%; width:28%; height:35%; overflow:visible;
+  filter:drop-shadow(0 8px 8px #0007); pointer-events:none; }
+.energy-flow { stroke-dasharray:12 14; animation:charge .6s linear infinite; }
+@keyframes charge { to { stroke-dashoffset:-52; } }
+.battery-cell { transition:fill .4s; }
+.warm-rings { animation:warmth 2s ease-out infinite; transform-origin:center; }
+@keyframes warmth { 50% { opacity:.3; } }
+.controls { flex:none; padding:9px 15px 12px; background:linear-gradient(#e4e9ed,#c5cfd7);
+  border-top:3px solid #899aa8; display:flex; gap:10px; align-items:center; box-shadow:inset 0 2px 0 #fff; }
+.controls button { border:2px solid #8d9eac; border-radius:13px; background:#f6f8f9; padding:0 17px;
+  font-size:17px; font-weight:750; box-shadow:0 3px 0 #6e7e8b; }
+.controls button.gold { background:linear-gradient(#ffd66a,#f2b632); color:#2e250f; border-color:#b48a29; }
+.controls .hint { flex:1; font-size:14px; margin:0; line-height:1.3; min-height:36px; color:#263747; }
+.controls #start { margin-left:auto; }
+.map-dialog { width:min(790px,94vw); max-height:95vh; padding:24px; color:var(--ink); background:#edf1f3;
+  border:4px solid #73869a; border-radius:24px; box-shadow:0 25px 90px #0009; }
+.map-dialog::backdrop { background:#071523b8; }
+.map-dialog h2 { margin:0 0 6px; font-size:27px; }
+.map-dialog p { margin:5px 0 18px; font-size:17px; }
+.map-options { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.map-options button { min-height:110px; border:2px solid #9aabb9; background:#fffaf0; border-radius:16px; font-size:18px; font-weight:750; }
+.map-options button span { display:block; font-size:30px; padding-bottom:7px; }
+.dialog-actions { display:flex; gap:10px; margin-top:20px; }
+.dialog-actions button { flex:1; border:2px solid #8d9eac; border-radius:12px; background:#fff; font-weight:700; }
+.calm *, .calm *::before { animation:none!important; transition:none!important; }
+@media (max-width:1050px) {
+  header { padding:6px 10px; gap:6px; }
+  h1 { font-size:20px; }
+  h1 small { display:none; }
+  .seg button,.icon-btn { padding:0 9px; font-size:13px; }
+  .controls { gap:7px; padding:7px 9px 10px; }
+  .controls button { padding:0 10px; font-size:14px; }
+  .controls .hint { font-size:12px; }
+  .jobs { gap:12px; }
+  .ada { padding:20px 13px 14px; }
+  .ada p { font-size:19px; }
+}
+@media (min-width:600px) and (max-width:900px) {
+  .map-node .node-label { display:none; }
+  .map-node.current .node-label { display:inline; }
+  .map-node::after { width:20px; margin:0 8px; }
+}
+@media (max-height:640px) and (min-width:600px) {
+  body { grid-template-rows:72px minmax(0,1fr); }
+  .map-strip { height:30px; }
+  .map-node { font-size:10px; gap:3px; }
+  .map-dot { width:18px; height:18px; }
+  .crew-title { top:9px; font-size:18px; }
+  .crew-title small { display:none; }
+  .jobs { top:39px; bottom:85px; gap:8px; }
+  .job { border-radius:14px; padding:4px; font-size:13px; }
+  .job img { height:calc(100% - 20px); max-height:90px; }
+  .job::before { inset:4px; border-radius:9px; }
+  .job .check { top:3px; right:3px; width:19px; height:19px; font-size:14px; }
+  .ada { top:15px; width:29%; padding:16px 11px 12px; right:2%; }
+  .ada h2 { font-size:10px; margin-bottom:5px; }
+  .ada p { font-size:14px; line-height:1.28; }
+  .radio { bottom:9px; left:2%; width:65%; min-height:65px; padding:7px 10px; gap:9px; }
+  .speaker { width:37px; height:37px; border-width:3px; }
+  .radio-label { font-size:10px; }
+  .caption { font-size:12px; margin-top:3px; }
+  .meters { top:10px; padding:7px 10px; gap:8px; }
+  .meter { min-width:63px; }
+  .meter-label { font-size:12px; }
+  .dots { margin-top:4px; }
+  .dot { width:12px; height:12px; }
+  .beat-tag { top:72px; font-size:13px; padding:4px 9px; }
+  .stage.choosing .beat-tag { display:none; }
+  .choices { left:2%; width:65%; bottom:87px; gap:9px; }
+  .choice { padding:7px 9px; font-size:15px; display:flex; align-items:center; justify-content:center; gap:7px; }
+  .choice .choice-icon { font-size:23px; margin:0; }
+  .rover { bottom:90px; width:26%; left:auto; right:3%; }
+  .ice { top:25%; width:18%; }
+  .leaf-layer { bottom:70px; }
+  .response-object { display:none; }
+  .controls { padding-top:5px; padding-bottom:8px; }
+  .controls .hint { display:block; position:fixed; right:2%; bottom:92px; width:29%; min-height:50px;
+    padding:7px 8px; background:#fff8e6f0; border:1px solid #b4935d; border-radius:8px;
+    color:#1a1f26; font-size:11px; line-height:1.3; z-index:3; }
+  .controls button { flex:1; padding:0 7px; font-size:13px; }
+}
+@media (max-width:599px) {
+  body { grid-template-rows:136px minmax(0,1fr); }
+  header { display:grid; grid-template-columns:1fr 1fr 1fr; grid-template-rows:60px 60px; padding:5px; gap:4px; }
+  h1 { grid-column:1; font-size:17px; letter-spacing:-.05em; }
+  .seg { grid-column:2/4; justify-self:stretch; }
+  .seg button { flex:1; font-size:14px; }
+  .icon-btn { font-size:13px; padding:0 6px; }
+  .map-strip { height:34px; padding:0 6px; }
+  .map-node { gap:0; }
+  .map-node .node-label { display:none; }
+  .map-node::after { width:13px; margin:0 4px; }
+  .map-dot { width:20px; height:20px; font-size:11px; }
+  .crew-title { top:12px; left:4%; font-size:19px; }
+  .crew-title small { display:none; }
+  .jobs { width:92%; top:48px; bottom:187px; gap:8px; }
+  .job { font-size:12px; padding:4px; border-radius:14px; }
+  .job img { height:calc(100% - 32px); max-height:75px; }
+  .job::before { inset:4px; border-radius:9px; }
+  .job .check { top:3px; right:3px; width:20px; height:20px; font-size:14px; }
+  .ada { right:4%; top:auto; bottom:105px; width:92%; padding:13px 12px 9px; transform:none; }
+  .ada::before { height:11px; top:-7px; }
+  .ada h2 { font-size:10px; margin-bottom:4px; }
+  .ada p { font-size:14px; line-height:1.3; }
+  .radio { bottom:9px; left:4%; width:92%; min-height:83px; padding:9px 10px; gap:9px; }
+  .speaker { width:32px; height:32px; border-width:3px; }
+  .radio-label { font-size:10px; }
+  .caption { font-size:12px; margin-top:4px; }
+  .meters { top:10px; left:4%; gap:12px; padding:8px 12px; }
+  .meter { min-width:65px; }
+  .meter-label { font-size:12px; }
+  .dot { width:12px; height:12px; }
+  .beat-tag { top:78px; left:4%; font-size:13px; padding:5px 9px; }
+  .choices { left:4%; width:92%; bottom:236px; gap:9px; }
+  .choice { padding:7px 8px; font-size:15px; min-height:76px; }
+  .choice .choice-icon { font-size:23px; margin-bottom:3px; }
+  .controls { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); padding:6px 8px 9px; gap:6px; }
+  .controls button { padding:0 4px; font-size:12px; }
+  .controls .hint { display:flex; align-items:center; grid-column:3; grid-row:2;
+    min-height:60px; font-size:11px; line-height:1.2; color:#263747; }
+  .controls.crew-controls { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .controls.crew-controls .hint { grid-column:1; grid-row:1; }
+  .rover { left:auto; right:5%; width:40%; top:75px; bottom:auto; }
+  .ice { width:30%; left:20%; top:25%; }
+  .leaf-layer { bottom:89px; width:84%; left:8%; height:39%; }
+  .response-object { left:26%; top:25%; width:40%; height:23%; }
+  .map-dialog { padding:17px; }
+  .map-dialog h2 { font-size:22px; }
+  .map-options { gap:6px; }
+  .map-options button { font-size:14px; }
+}
+@media (min-width:600px) and (max-width:800px) and (max-height:640px) {
+  .rover { top:82px; bottom:auto; width:22.5%; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Moon Base Drama<small>Commander Ada needs a crew</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-crew" aria-pressed="true">✦ Crew</button>
+    <button id="m-mission" aria-pressed="false">🚀 Mission</button>
+  </div>
+  <button class="icon-btn" id="read">🔊 Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<main>
+  <div class="map-strip" id="map-strip" aria-label="Your story path" hidden></div>
+  <div class="stage" id="stage">
+    <img class="backdrop" id="backdrop" alt="">
+    <div class="scene-shade"></div>
+    <div class="night" id="night"></div>
+    <div class="grow-lamps" id="grow-lamps" aria-hidden="true">
+      <svg viewBox="0 0 1280 801" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+        <defs>
+          <radialGradient id="lamp-light"><stop stop-color="#ffe4a8" stop-opacity=".6"/>
+            <stop offset="1" stop-color="#f2b632" stop-opacity="0"/></radialGradient>
+        </defs>
+        <g class="lamp-beam"><ellipse cx="580" cy="370" rx="210" ry="340" fill="url(#lamp-light)"/>
+          <ellipse cx="580" cy="184" rx="107" ry="14" fill="#ffe6a0"/></g>
+        <g class="lamp-beam"><ellipse cx="110" cy="410" rx="190" ry="340" fill="url(#lamp-light)"/>
+          <ellipse cx="110" cy="218" rx="87" ry="10" fill="#ffe6a0"/></g>
+        <g class="lamp-beam"><ellipse cx="1210" cy="430" rx="190" ry="340" fill="url(#lamp-light)"/>
+          <ellipse cx="1210" cy="229" rx="83" ry="10" fill="#ffe6a0"/></g>
+        <ellipse class="lamp-dark" cx="110" cy="218" rx="88" ry="12" fill="#172333"/>
+        <ellipse class="lamp-dark" cx="1210" cy="229" rx="84" ry="12" fill="#172333"/>
+      </svg>
+    </div>
+    <div class="idle-beacon" aria-hidden="true"></div>
+    <h2 class="crew-title" id="crew-title">Welcome to Moon Base Luna<small>Choose a job. Mime your prop.</small></h2>
+    <div class="jobs" id="jobs" aria-label="Crew jobs"></div>
+    <div class="meters" id="meters" aria-label="Greenhouse meters" hidden></div>
+    <div class="beat-tag" id="beat-tag" hidden></div>
+    <img class="rover" id="rover" alt="A six-wheeled lunar rover" hidden>
+    <img class="ice" id="ice" alt="A block of lunar ice" hidden>
+    <svg class="response-object" id="response-object" viewBox="0 0 300 160" aria-hidden="true" hidden>
+      <defs>
+        <linearGradient id="metal" x2="0" y2="1"><stop stop-color="#d6e3e6"/>
+          <stop offset=".5" stop-color="#8299a8"/><stop offset="1" stop-color="#3b5365"/></linearGradient>
+      </defs>
+      <g id="battery-picture" hidden>
+        <path d="M30 65H75" stroke="#f2b632" stroke-width="9" class="energy-flow" id="charge-path"/>
+        <rect x="77" y="26" width="191" height="107" rx="17" fill="url(#metal)" stroke="#e9f1f5" stroke-width="5"/>
+        <rect x="269" y="59" width="17" height="40" rx="4" fill="#d1dce2"/>
+        <rect x="89" y="39" width="166" height="80" rx="9" fill="#1b2c3a"/>
+        <g stroke="#d8e4e9" stroke-width="2">
+          <rect class="battery-cell" x="100" y="49" width="40" height="60" rx="4"/>
+          <rect class="battery-cell" x="151" y="49" width="40" height="60" rx="4"/>
+          <rect class="battery-cell" x="202" y="49" width="40" height="60" rx="4"/>
+        </g>
+        <path d="M38 12L21 39H40L29 61L62 30H43L55 12Z" fill="#ffe3a1"/>
+      </g>
+      <g id="warm-picture" hidden>
+        <path d="M63 125V75A87 66 0 0 1 237 75V125Z" fill="#314f61" stroke="#dce9ec" stroke-width="5"/>
+        <path d="M64 93Q145 49 237 93V125H63Z" fill="#e4b85a" stroke="#fff0c5" stroke-width="4"/>
+        <path d="M73 96L93 122M106 82L137 125M149 79L177 125M191 83L218 125" stroke="#9b7438" stroke-width="4"/>
+        <g class="warm-rings" fill="none" stroke="#ffda78" stroke-width="5" stroke-linecap="round">
+          <path d="M113 61Q95 46 111 30M150 56Q133 40 150 20M185 61Q168 46 183 30"/>
+        </g>
+      </g>
+      <g id="air-picture" hidden fill="none" stroke="#bcd9f2" stroke-width="7" stroke-linecap="round">
+        <path d="M40 50H211L194 34M211 50L194 67M65 92H249L230 75M249 92L230 109"/>
+        <circle cx="150" cy="80" r="68" stroke="#f2b632" stroke-width="8"/>
+        <path d="M104 126L197 33" stroke="#f2b632" stroke-width="9"/>
+      </g>
+    </svg>
+    <svg class="leaf-layer" id="leaf-layer" viewBox="0 0 600 400" aria-hidden="true" hidden>
+      <defs>
+        <clipPath id="leaf-clip"><rect width="600" height="300"/></clipPath>
+        <clipPath id="tray-clip"><rect y="300" width="600" height="100"/></clipPath>
+      </defs>
+      <g class="leaves"><image id="painted-leaves" width="600" height="400" clip-path="url(#leaf-clip)" preserveAspectRatio="none"/></g>
+      <image id="painted-tray" width="600" height="400" clip-path="url(#tray-clip)" preserveAspectRatio="none"/>
+    </svg>
+    <div class="choices" id="choices" hidden>
+      <button class="choice" id="choice-a" aria-pressed="false"><span class="choice-icon"></span><span class="choice-word"></span></button>
+      <button class="choice" id="choice-b" aria-pressed="false"><span class="choice-icon"></span><span class="choice-word"></span></button>
+    </div>
+    <aside class="ada" id="ada">
+      <h2>📋 Ada's card · say in role</h2>
+      <p id="ada-line"></p>
+    </aside>
+    <div class="radio" id="radio" role="status" aria-live="polite">
+      <div class="speaker" aria-hidden="true"></div>
+      <div class="radio-text"><div class="radio-label"><i class="signal"></i>MISSION CONTROL</div><p class="caption" id="caption"></p></div>
+    </div>
+  </div>
+  <nav class="controls crew-controls" id="controls" aria-label="Mission controls">
+    <p class="hint" id="hint">Tap a job badge. Show the crew your prop.</p>
+    <button id="back" hidden>◀ Back</button>
+    <button id="again" hidden>◉ Radio again</button>
+    <button id="card" aria-pressed="true">📋 Ada's card</button>
+    <button id="rewind" hidden>↶ Rewind</button>
+    <button class="gold" id="next" hidden>▶ Next</button>
+    <button class="gold" id="start" disabled>🚀 Start mission</button>
+  </nav>
+</main>
+<dialog class="map-dialog" id="map-dialog" aria-labelledby="map-title">
+  <h2 id="map-title">↶ Change our story</h2>
+  <p id="map-instruction">Tap a past choice. Say a different line and watch what changes.</p>
+  <div class="map-options" id="map-options"></div>
+  <div class="dialog-actions">
+    <button id="close-map">↩ Back to base</button>
+    <button id="new-mission">🚀 New mission</button>
+  </div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const show = (id,visible) => $(id).toggleAttribute('hidden',!visible);
+  const ART = {
+    base:'art:base', greenhouse:'art:greenhouse', solar:'art:surface-solar', crater:'art:ice-crater', airlock:'art:airlock',
+    rover:'art:rover', ice:'art:ice-block', can:'art:watering-can', wrench:'art:wrench', key:'art:rover-key',
+    medic:'art:first-aid', scientist:'art:science-kit', radio:'art:headset', planter:'art:greenhouse-planter'
+  };
+  const JOBS = [
+    ['Plant Keeper','can','Plant Keeper, you water the greenhouse plants. Show me your watering can.'],
+    ['Engineer','wrench','Engineer, you fix the machines. Show me your wrench.'],
+    ['Rover Driver','key','Rover Driver, you drive the moon buggy. Turn the key and steer!'],
+    ['Medic','medic','Medic, you keep the crew healthy. Open your first aid kit.'],
+    ['Scientist','scientist','Scientist, you study moon rocks and ice. Hold up your magnifier.'],
+    ['Radio Operator','radio','Radio Operator, you talk to Earth. Put on your headset.']
+  ];
+  const BEATS = [
+    null,
+    {name:'Long night', art:'base', icon:'☾',
+      radio:'Moon Base Luna, this is Mission Control. On the Moon, a day lasts about two weeks, ' +
+        'and the night lasts about two weeks too. The long night begins soon.',
+      ada:'Crew! When the Sun goes down, our greenhouse gets no sunlight for two whole weeks. What do our plants need?'},
+    {name:'Greenhouse', art:'greenhouse', icon:'🌱',
+      radio:'Your plants need light, water, warmth and air. Right now, every meter is low.',
+      ada:'We have three jobs before dark. Ready, crew?'},
+    {name:'Batteries', art:'solar', icon:'⚡', choice:0,
+      radio:'Our solar panels make power only while the Sun shines.', ada:'How do we keep the plant lamps on all night?',
+      choices:[['☀ ▣','Fill the batteries now!',
+        'Good thinking. The Sun is shining now, so the panels can fill the batteries.',2],
+      ['☾','Wait until dark','Mission Control here. Remember: no Sun at night means no solar power. Your batteries are low.',0]]},
+    {name:'Water', art:'crater', icon:'💧', choice:1,
+      radio:'Your water tank is low. Scientists found ice hiding in dark craters near the Moon\'s south pole.', ada:'Where can we get water?',
+      choices:[['🧊','Ice in the dark crater','Great. Rover Driver, steer to the crater. Scientist, find the ice!',2],
+      ['≈','A river','Mission Control here. Our maps show no rivers on the Moon. But look: something shines in that dark crater.',1]]},
+    {name:'Lift the ice', art:'crater', icon:'🧊',
+      radio:'The ice block is heavy. But on the Moon, things weigh only about one sixth as much as on Earth.',
+      ada:'Who can carry it? Show me how you lift it on the Moon!'},
+    {name:'Warmth', art:'airlock', icon:'☀', choice:2,
+      radio:'Moon nights are colder than any freezer on Earth, and there is no air outside the base.', ada:'How do we keep the plants warm?',
+      choices:[['▧','Wrap it in a blanket','Yes! A thick blanket keeps the warmth in.',2],
+      ['▯','Open the doors for air','Careful! There is no air outside. Opening the doors would let our air out. Engineer, shut them fast!',0]]},
+    {name:'Brush off', art:'airlock', icon:'✧',
+      radio:'Moon dust is sharp and sticky. Brush off your suits before you go inside.',
+      ada:'Medic, check the crew. Everyone, brush off the dust!'},
+    {name:'Night arrives', art:'greenhouse', icon:'☾', ada:'Crew, which choice made the biggest difference? Tell me why.'}
+  ];
+  const L = {
+    welcome:'Mission Control to Moon Base Luna. Teacher, you are Commander Ada. Tap a job badge for each crew member.',
+    crewHint:'Tap a job badge. Show the crew your prop.',
+    ready:'When the crew is ready, tap Start mission.',
+    choose:'Commander, read your card. When the crew answers, tap their choice.',
+    next:'When the crew is done, tap Next.',
+    old:'The old story fades. Tap a choice to make a new one.',
+    map:'Tap a past choice in the story map to rewind.',
+    mapEmpty:'Your choices will appear here. Tap Back to base to return to the story.',
+    endFull:'Mission Control to Moon Base Luna. The long night is here, and your greenhouse is glowing. Great work, crew!',
+    endTwo:'The long night is here. The greenhouse is OK, but one part is low. Can you rewind and fix it?',
+    endLow:'The long night is here, and the plants are droopy. Rewind and make a different choice!',
+    rewind3:'Rewinding to the batteries. What will you say this time?',
+    rewind4:'Rewinding to the water. What will you say this time?',
+    rewind6:'Rewinding to the warmth. What will you say this time?'
+  };
+  JOBS.forEach((j,i) => L['job' + i] = j[2]);
+  BEATS.forEach((b,i) => {
+    if (!b) return;
+    if (b.radio) L['beat' + i] = b.radio;
+    if (b.choices) b.choices.forEach((c,j) => L['result' + i + j] = c[2]);
+  });
+  const state = {mode:'crew', beat:1, jobs:[], choices:{}, oldChoices:{}, visited:1, card:true, caption:L.welcome, map:false};
+  let revision = 0;
+  let noise = null;
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode + ':' + state.beat,
+    welcome:() => state.mode === 'crew' && !state.jobs.length ? ['welcome', {valid:() => !state.jobs.length}] : null,
+    speaks:'.job, #start, #next, #back, .choice, .map-options button',
+    hint:false, read:() => state.mode === 'mission' ? missionLine() : hintText()
+  });
+  function meterValues() {
+    const values = [1,1,1];
+    [3,4,6].forEach((b,i) => {
+      if (b <= state.beat && state.choices[b] !== undefined) values[i] += BEATS[b].choices[state.choices[b]][3];
+    });
+    return values;
+  }
+  function endingKey() {
+    const full = meterValues().filter(n => n === 3).length;
+    return full === 3 ? 'endFull' : full === 2 ? 'endTwo' : 'endLow';
+  }
+  function missionLine() {
+    if (state.beat === 8) return L[endingKey()];
+    const selected = state.choices[state.beat];
+    return selected === undefined ? BEATS[state.beat].radio : BEATS[state.beat].choices[selected][2];
+  }
+  function stop() {
+    revision++;
+    V.hush();
+    if (noise) {
+      try { noise.stop(); } catch {}
+      noise = null;
+    }
+    $('radio').classList.remove('on');
+  }
+  function crackle() {
+    if (!Curio.sound || !V.tapped) return;
+    const ctx = Curio.audio();
+    if (!ctx) return;
+    const length = Math.floor(ctx.sampleRate * .2);
+    const buffer = ctx.createBuffer(1,length,ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i=0; i<length; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / length);
+    const source = ctx.createBufferSource();
+    const filter = ctx.createBiquadFilter();
+    const gain = ctx.createGain();
+    filter.type = 'bandpass';
+    filter.frequency.value = 1800;
+    filter.Q.value = .7;
+    gain.gain.value = .035;
+    source.buffer = buffer;
+    source.connect(filter).connect(gain).connect(ctx.destination);
+    source.start();
+    noise = source;
+  }
+  function speak(key) {
+    state.caption = L[key] || key;
+    $('caption').textContent = state.caption;
+    crackle();
+    const rev = revision;
+    V.say(key,{valid:() => rev === revision});
+  }
+  function hintText() {
+    if (state.map) return state.visited >= 3 ? L.map : L.mapEmpty;
+    if (state.mode === 'crew') return state.jobs.length ? L.ready : L.crewHint;
+    if (state.beat === 8) return 'Tell Ada what changed. Tap Rewind.';
+    const b = BEATS[state.beat];
+    return b.choices && state.choices[state.beat] === undefined ? L.choose : L.next;
+  }
+  function how() {
+    $('hint').textContent = hintText();
+    const rev = revision;
+    const valid = () => rev === revision;
+    if (state.mode === 'crew' && state.jobs.length) {
+      if (!V.heard('ready')) V.how('ready',{valid,needs:'#start'});
+    } else if (state.mode === 'mission' && state.beat > 1 && state.beat < 8) {
+      const choosing = BEATS[state.beat].choices && state.choices[state.beat] === undefined;
+      const key = choosing ? 'choose' : 'next';
+      if (!V.heard(key)) V.how(key,{valid,needs:choosing ? '#choice-a' : '#next'});
+    }
+  }
+  JOBS.forEach((j,i) => {
+    const button = document.createElement('button');
+    button.className = 'job';
+    button.id = 'job-' + i;
+    button.setAttribute('aria-pressed','false');
+    button.innerHTML = '<img alt=""><span class="job-word"></span><span class="check" aria-hidden="true">✓</span>';
+    button.querySelector('img').src = ART[j[1]];
+    button.querySelector('.job-word').textContent = j[0];
+    button.onclick = () => {
+      stop();
+      if (!state.jobs.includes(i)) state.jobs.push(i);
+      render();
+      Curio.tone(480 + i * 60,.09,.04);
+      speak('job' + i);
+      how();
+    };
+    $('jobs').append(button);
+  });
+  const mapNodes = BEATS.slice(1).map((b,i) => {
+    const node = document.createElement('div');
+    node.className = 'map-node' + (b.choices ? ' choice-node' : '');
+    node.innerHTML = '<span class="map-dot"><span></span></span><span class="node-label"></span>';
+    node.querySelector('.node-label').textContent = b.name;
+    $('map-strip').append(node);
+    return node;
+  });
+  const meterEls = ['💡 Light','💧 Water','☀ Warm'].map(label => {
+    const meter = document.createElement('div');
+    meter.className = 'meter';
+    meter.innerHTML = '<div class="meter-label"></div><div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>';
+    meter.querySelector('.meter-label').textContent = label;
+    $('meters').append(meter);
+    return meter;
+  });
+  const rewindButtons = [3,4,6].map(b => {
+    const button = document.createElement('button');
+    button.id = 'rewind-' + b;
+    button.innerHTML = '<span></span>' + BEATS[b].name;
+    button.onclick = () => {
+      closeMap(false);
+      goBeat(b,true);
+    };
+    $('map-options').append(button);
+    return button;
+  });
+  $('rover').src = ART.rover;
+  $('ice').src = ART.ice;
+  $('painted-leaves').setAttribute('href',ART.planter);
+  $('painted-tray').setAttribute('href',ART.planter);
+  function render() {
+    const crew = state.mode === 'crew';
+    const b = BEATS[state.beat];
+    const choice = state.choices[state.beat];
+    const choosing = !crew && b.choices;
+    $('stage').classList.toggle('choosing',Boolean(choosing));
+    const values = meterValues();
+    $('backdrop').src = ART[crew ? 'base' : b.art];
+    $('jobs').hidden = !crew;
+    $('crew-title').hidden = !crew;
+    $('meters').hidden = crew || state.beat === 1;
+    $('beat-tag').hidden = crew;
+    $('beat-tag').textContent = state.beat + ' / 8 · ' + b.name;
+    $('map-strip').hidden = crew;
+    $('controls').classList.toggle('crew-controls',crew);
+    ['back','again','rewind','next'].forEach(id => $(id).hidden = crew);
+    $('start').hidden = !crew;
+    $('start').disabled = !state.jobs.length;
+    $('next').disabled = Boolean(choosing && choice === undefined);
+    $('next').textContent = state.beat === 8 ? '🚀 New mission' : '▶ Next';
+    $('ada').hidden = !state.card;
+    $('card').setAttribute('aria-pressed',String(state.card));
+    $('ada-line').textContent = crew ? 'Welcome to Moon Base Luna, crew! Tell me your job. Show me what you brought.' :
+      state.beat === 3 && choice === 1 ? 'Hmm. Should we rewind and try again?' : b.ada;
+    JOBS.forEach((_,i) => $('job-' + i).setAttribute('aria-pressed',String(state.jobs.includes(i))));
+    ['crew','mission'].forEach(m => $('m-' + m).setAttribute('aria-pressed',String(state.mode === m)));
+    $('choices').hidden = !choosing;
+    if (choosing) [0,1].forEach(i => {
+      const button = $(i ? 'choice-b' : 'choice-a');
+      button.querySelector('.choice-icon').textContent = b.choices[i][0];
+      button.querySelector('.choice-word').textContent = b.choices[i][1];
+      button.setAttribute('aria-pressed',String(choice === i));
+      button.classList.toggle('other',choice !== undefined && choice !== i);
+    });
+    meterEls.forEach((el,i) => {
+      el.setAttribute('aria-label',['Light','Water','Warm'][i] + ': ' + values[i] + ' of 3');
+      el.querySelectorAll('.dot').forEach((dot,j) => dot.classList.toggle('full',j < values[i]));
+    });
+    mapNodes.forEach((node,i) => {
+      const n = i + 1;
+      node.classList.toggle('current',n === state.beat);
+      node.classList.toggle('future',n > state.beat);
+      const chosen = state.choices[n] ?? state.oldChoices[n];
+      node.querySelector('.map-dot span').textContent = chosen === undefined ? String(n) : BEATS[n].choices[chosen][0];
+      node.setAttribute('aria-label',BEATS[n].name + (n > state.beat ? ', future or old story' : ', visited'));
+    });
+    rewindButtons.forEach((button,i) => {
+      const n = [3,4,6][i];
+      button.disabled = n > state.visited;
+      const chosen = state.choices[n] ?? state.oldChoices[n];
+      button.querySelector('span').textContent = chosen === undefined ? '◇' : BEATS[n].choices[chosen][0];
+    });
+    $('map-instruction').textContent = state.visited >= 3 ?
+      'Tap a past choice. Say a different line and watch what changes.' : L.mapEmpty;
+    const night = !crew && state.beat === 8;
+    $('night').classList.toggle('active',night);
+    $('grow-lamps').classList.toggle('active',night);
+    document.querySelectorAll('.lamp-beam').forEach((el,i) => el.toggleAttribute('hidden',i >= values[0]));
+    document.querySelectorAll('.lamp-dark').forEach((el,i) => el.toggleAttribute('hidden',i + 1 < values[0]));
+    show('leaf-layer',night);
+    $('leaf-layer').classList.toggle('droopy',values[1] < 3 || values[2] < 3);
+    $('rover').hidden = crew || state.beat !== 4;
+    $('ice').hidden = crew || state.beat !== 5;
+    $('ice').classList.toggle('float',!crew && state.beat === 5);
+    const response = !crew && choice !== undefined && [3,6].includes(state.beat);
+    show('response-object',response);
+    show('battery-picture',state.beat === 3);
+    show('warm-picture',state.beat === 6 && choice === 0);
+    show('air-picture',state.beat === 6 && choice === 1);
+    show('charge-path',choice === 0);
+    document.querySelectorAll('.battery-cell').forEach((el,i) => el.setAttribute('fill',i < values[0] ? '#f2b632' : '#273b4a'));
+    $('caption').textContent = state.caption;
+    $('hint').textContent = hintText();
+  }
+  function setMode(mode) {
+    const fromStart = document.activeElement === $('start');
+    const fromMissionBar = ['back','again','rewind','next'].some(id => document.activeElement === $(id));
+    stop();
+    state.mode = mode;
+    state.caption = mode === 'crew' ? L.welcome : missionLine();
+    render();
+    if (fromStart && mode === 'mission') $('next').focus({preventScroll:true});
+    if (fromMissionBar && mode === 'crew') $('m-crew').focus({preventScroll:true});
+    if (mode === 'crew') V.welcome();
+    else speak(state.beat === 8 ? endingKey() : state.choices[state.beat] === undefined ? 'beat' + state.beat :
+      'result' + state.beat + state.choices[state.beat]);
+    how();
+  }
+  function invalidateFrom(beat) {
+    Object.keys(state.choices).forEach(key => {
+      if (+key >= beat) {
+        state.oldChoices[key] = state.choices[key];
+        delete state.choices[key];
+      }
+    });
+  }
+  function goBeat(beat,rewound=false) {
+    stop();
+    const choiceFocused = $('choices').contains(document.activeElement);
+    const previous = state.beat;
+    if (beat < previous || rewound) invalidateFrom(beat);
+    state.beat = beat;
+    state.visited = Math.max(state.visited,beat);
+    render();
+    if (choiceFocused && !BEATS[beat].choices) $('next').focus({preventScroll:true});
+    if ($('next').disabled && document.activeElement === $('next')) $('choice-a').focus({preventScroll:true});
+    if (rewound) $('choice-a').focus({preventScroll:true});
+    if (beat === 4) {
+      $('rover').classList.remove('drive');
+      void $('rover').offsetWidth;
+      $('rover').classList.add('drive');
+    }
+    speak(rewound ? 'rewind' + beat : beat === 8 ? endingKey() : 'beat' + beat);
+    if (rewound && !V.heard('old')) V.how('old',{valid:() => state.choices[beat] === undefined && state.beat === beat});
+    else how();
+    $('hint').textContent = hintText();
+  }
+  function choose(value) {
+    if (state.mode !== 'mission' || !BEATS[state.beat].choices) return;
+    stop();
+    const beat = state.beat;
+    invalidateFrom(beat);
+    state.choices[beat] = value;
+    // A new branch replaces every later choice. Ghost nodes remain until that beat is visited again.
+    Object.keys(state.oldChoices).forEach(key => { if (+key === beat) delete state.oldChoices[key]; });
+    render();
+    Curio.tone(value ? 230 : 650,.1,.04);
+    speak('result' + beat + value);
+    how();
+  }
+  function next() {
+    if (state.mode !== 'mission' || $('next').disabled) return;
+    if (state.beat === 8) newMission();
+    else goBeat(state.beat + 1);
+  }
+  function back() {
+    if (state.mode !== 'mission') return;
+    if (state.beat === 1) setMode('crew');
+    else goBeat(state.beat - 1);
+  }
+  function openMap() {
+    stop();
+    state.map = true;
+    render();
+    $('map-dialog').showModal();
+    const firstChoice = rewindButtons.find(b => !b.disabled);
+    V.how(firstChoice ? 'map' : 'mapEmpty',{needs:firstChoice ? '#' + firstChoice.id : '#close-map'});
+  }
+  function closeMap(restore=true) {
+    stop();
+    state.map = false;
+    $('map-dialog').close();
+    $('hint').textContent = hintText();
+    if (restore) $('rewind').focus({preventScroll:true});
+  }
+  function newMission() {
+    if (state.map) closeMap(false);
+    stop();
+    state.mode = 'mission';
+    state.beat = 1;
+    state.choices = {};
+    state.oldChoices = {};
+    state.visited = 1;
+    render();
+    speak('beat1');
+    how();
+  }
+  $('m-crew').onclick = () => setMode('crew');
+  $('m-mission').onclick = () => setMode('mission');
+  $('start').onclick = () => setMode('mission');
+  $('next').onclick = next;
+  $('back').onclick = back;
+  $('choice-a').onclick = () => choose(0);
+  $('choice-b').onclick = () => choose(1);
+  $('again').onclick = () => {
+    stop();
+    speak(state.beat === 8 ? endingKey() : state.choices[state.beat] === undefined ? 'beat' + state.beat :
+      'result' + state.beat + state.choices[state.beat]);
+  };
+  $('card').onclick = () => {
+    stop();
+    state.card = !state.card;
+    render();
+    Curio.tone(420,.06,.025);
+  };
+  $('rewind').onclick = openMap;
+  $('close-map').onclick = () => closeMap();
+  $('new-mission').onclick = newMission;
+  $('map-dialog').addEventListener('cancel',e => {
+    e.preventDefault();
+    closeMap();
+  });
+  document.addEventListener('keydown',e => {
+    if (state.map || e.altKey || e.ctrlKey || e.metaKey) return;
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      next();
+    }
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      back();
+    }
+    if (e.key.toLowerCase() === 'r' && state.mode === 'mission') {
+      e.preventDefault();
+      openMap();
+    }
+    if (e.key.toLowerCase() === 'a') {
+      e.preventDefault();
+      $('card').click();
+    }
+  });
+  document.addEventListener('pointerdown',e => {
+    if (e.target.closest('button')) stop();
+  },true);
+  Curio.init({clips:"voice:*",rate:.9});
+  const motionClick = $('motion').onclick;
+  $('motion').onclick = () => {
+    stop();
+    motionClick();
+  };
+  // Curio.voice exposes actual playback, including Read. Follow it instead of an estimated glow timer.
+  function radioState() {
+    const playing = speechSynthesis.speaking && !speechSynthesis.paused;
+    $('radio').classList.toggle('on',playing);
+    const last = V.log[V.log.length - 1];
+    const caption = V.playing || (playing && last?.kind === 'read' ? last.text : state.caption);
+    if ($('caption').textContent !== caption) $('caption').textContent = caption;
+    requestAnimationFrame(radioState);
+  }
+  requestAnimationFrame(radioState);
+  window.__tool = {state,setMode,allLines:V.allLines,vlog:V.log,get vq() { return V.queue; },
+    meterValues,endingKey,goBeat,choose,next,back,newMission};
+  render();
+})();
+</script>
+</body>
+</html>

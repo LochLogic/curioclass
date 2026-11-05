@@ -1,0 +1,1297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research Quest · Five stops to Friday's council · Curio Class</title>
+<meta name="description" content="Build a researched school garden plan. Choose a question, visit sources, make notes and face the council. Grades 6-8. Works offline.">
+<!--
+Research Quest, Curio Class. Students or teacher, grades 6-8, library.
+AASL Inquire, Collaborate, Engage; C3 D1.5.6-8, D3.1.6-8; CCSS W.6.7, W.7.7, W.8.7.
+Facts: U.S. Fish and Wildlife Service, Monarch; Xerces Society, Monarch Butterfly Conservation;
+USDA PLANTS. All people, institutions and source documents in the story are fictional.
+Illustrations generated with OpenAI gpt-image and existing local FLUX art, edited for Curio Class.
+Content CC BY 4.0. Code MIT. One offline file. No network requests. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f7f1e1; --panel:#fffaf0; --ink:#2b2418; --muted:#6b5d45; --line:#e3d6b8;
+  --brand:#0f766e; --btn:#0f766e; --btn-line:#65aca4; --head-ink:#ffffff; --focus:#9d174d;
+}
+body {height:100dvh; min-height:0; overflow:hidden;}
+header {padding:12px 22px; background:linear-gradient(110deg,#104e49,#0f766e 65%,#14635b); border-bottom:3px solid #c7a361;}
+h1 {font-family:Georgia,serif; font-size:30px; font-weight:normal; letter-spacing:.02em;}
+h1 small {font-size:13px; letter-spacing:.04em; margin-top:5px;}
+header .icon-btn {min-height:44px; font-size:14px; padding:0 13px; border-width:1px; border-radius:8px;}
+main {grid-template-columns:minmax(0,1fr) 252px;}
+.stage {grid-column:1; grid-row:1;}
+.panel {grid-column:2; grid-row:1;}
+.stage {min-height:0; isolation:isolate; display:flex; flex-direction:column; padding:0 22px 22px;}
+.map-art {position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-3;}
+.stage::after {content:""; position:absolute; inset:0; background:#3f34154a; z-index:-2; pointer-events:none;}
+.trail {position:relative; height:99px; flex:none; display:flex; align-items:center; justify-content:space-around; padding:8px 35px;}
+.trail::before {content:""; position:absolute; left:8%; right:8%; top:45px; border-top:3px dashed #fff4cb; filter:drop-shadow(0 1px 1px #48391d);}
+.stop {position:relative; display:grid; justify-items:center; gap:3px; z-index:1; width:18%; color:#2b2418;}
+.stop b {display:grid; place-items:center; width:36px; height:36px; border-radius:50%; background:#f8f0d9;
+  border:2px solid #b99651; box-shadow:0 3px 6px #392c3038; font:700 16px Georgia,serif;}
+.stop.current b {background:var(--brand); color:white; border-color:#fff3bf; box-shadow:0 0 0 4px #0f766e70;}
+.stop span {font-size:12px; font-weight:700; background:#fff8eaeF; border-radius:4px; padding:2px 6px; white-space:nowrap;}
+.stop small {font-size:10px; background:#fffaf0; padding:1px 5px; border-radius:3px; max-width:100%; white-space:nowrap;}
+.stop small img {width:14px; height:14px; object-fit:cover; border-radius:2px; vertical-align:middle; margin:0 1px;}
+#marker {position:absolute; top:3px; width:43px; height:43px; object-fit:contain; z-index:3; left:8%;
+  transform:translateX(-50%); transition:left 1s ease-in-out; pointer-events:none; filter:drop-shadow(1px 4px 2px #251f1960);}
+.chapter {position:relative; flex:1; min-height:0; width:100%; max-width:1300px; margin:0 auto;
+  background:linear-gradient(125deg,#fffdf6,#fffaf0 65%,#f5ead1); border:1px solid #fef1ca; border-radius:5px 18px 8px 5px;
+  box-shadow:0 16px 50px #2b210e60,5px 5px 0 -1px #e2cf9f,7px 7px 0 #86714a;
+  padding:22px 26px; display:flex; flex-direction:column; gap:14px;}
+.chapter::before {content:""; position:absolute; left:-6px; top:24px; width:5px; height:45px; background:#0f766e; border-radius:2px;}
+.chapter-title {display:flex; align-items:center; gap:16px; flex:none;}
+.chapter-title .eyebrow {font-size:11px; font-weight:800; color:var(--brand); letter-spacing:.16em; text-transform:uppercase;}
+h2 {font:normal clamp(24px,2.6vw,36px)/1.1 Georgia,serif; margin:5px 0 0;}
+h3 {font:700 15px/1.25 'Segoe UI',sans-serif; margin:0;}
+p {margin:0; line-height:1.42;}
+.chapter-title .seal {margin-left:auto; color:var(--muted); border:1px solid #bba36f; border-radius:50%; width:57px; height:57px;
+  display:grid; place-items:center; transform:rotate(9deg); font:700 12px Georgia,serif; text-align:center; flex:none;}
+.chapter-body {flex:1; min-height:0; display:flex; flex-direction:column; gap:12px;}
+.chapter-body > *, .organizer > *, .notes-list > *, .outline > * {min-width:0;}
+.organizer {grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+.notes-list,.outline {grid-template-columns:repeat(2,minmax(0,1fr));}
+button {min-height:44px; min-width:44px; touch-action:manipulation;}
+.btn {background:#fffdf7; border:1px solid #b2a17c; border-radius:6px; padding:8px 14px; font-weight:650; color:var(--ink);}
+.btn:hover:not(:disabled) {background:#f1e9d4; border-color:var(--brand);}
+.btn.primary {background:var(--brand); color:#fff; border-color:#0b5c55; box-shadow:0 3px 0 #094b44;}
+.btn.primary:hover:not(:disabled) {background:#095d56;}
+button:disabled {opacity:.48; cursor:default;}
+main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 0 0 2px var(--brand); background:#e3f0e7;}
+.actions {display:flex; align-items:center; justify-content:flex-end; gap:8px; margin-top:auto; flex:none;}
+.actions .status {margin-right:auto; font-size:13px; color:var(--muted);}
+.intro-grid {display:grid; grid-template-columns:.85fr 1.15fr; gap:24px; flex:1; min-height:0;}
+.opening-art {position:relative; min-height:0; overflow:hidden; border-radius:4px; background:#e9d7b5;}
+.opening-art .bed {display:block; width:100%; height:55%; object-fit:cover;}
+.opening-art .desk {display:block; width:100%; height:45%; object-fit:cover; border-top:4px solid #fff5dc;}
+.photo-caption {position:absolute; left:12px; right:12px; bottom:46%; background:#fff9e9f2; padding:10px 12px;
+  font:italic 17px Georgia,serif; box-shadow:0 3px 8px #0003; transform:rotate(-2deg);}
+.ask-content {display:flex; flex-direction:column; gap:12px; min-height:0;}
+.story {display:flex; gap:12px; align-items:center; font-size:14px;}
+.story img {display:none; width:106px; height:79px; object-fit:cover; border-radius:5px; flex:none;}
+.questions {display:grid; grid-template-columns:1fr 1fr; gap:10px; flex:1;}
+.question {position:relative; text-align:left; padding:14px; border:1px solid #cdbc93; border-radius:4px;
+  background:linear-gradient(135deg,#fff,#fcf5e3); box-shadow:1px 3px 0 #ddcfad; font-size:15px; line-height:1.35;}
+.question b {display:block; font:700 12px Georgia,serif; color:var(--muted); margin-bottom:5px;}
+.reply {font:italic 15px/1.4 Georgia,serif; min-height:43px; border-left:3px solid #c0a160; padding-left:10px;}
+.place-grid {display:grid; grid-template-columns:repeat(3,1fr); grid-template-rows:1fr 1fr; gap:14px; flex:1; min-height:0;}
+.place {position:relative; padding:0; border:2px solid #cdbb92; border-radius:6px; background:#fffcf2; overflow:hidden;
+  display:flex; flex-direction:column; text-align:left; min-height:0; box-shadow:0 3px 5px #40351b1a;}
+.place img {width:100%; height:calc(100% - 49px); min-height:45px; object-fit:cover; flex:1;}
+.place .label {display:block; padding:7px 11px; width:100%; font-weight:700; font-size:14px; line-height:1.2; min-height:49px;}
+.place .label small {display:block; font-size:11px; font-weight:400; color:var(--muted); margin-top:2px;}
+.place .pick {position:absolute; top:9px; right:9px; background:#fffdf2; border:2px solid #6a765c;
+  border-radius:50%; width:27px; height:27px; display:grid; place-items:center; color:var(--brand); font-weight:800;}
+.place[aria-pressed="true"] .pick {background:var(--brand); color:white;}
+.art-mark {position:absolute; top:28%; left:17%; right:17%; padding:3px; pointer-events:none;
+  font:700 10px/1.2 Georgia,serif; text-align:center; color:#31473d; background:#fffaf0dc; border-radius:2px;}
+.art-mark.play-mark {font-size:23px; color:white; background:transparent; text-shadow:0 2px 4px #000;}
+.shake {animation:shake .25s linear;}
+@keyframes shake {25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.gather {display:grid; grid-template-columns:.8fr 1.2fr; gap:20px; flex:1; min-height:0;}
+.source {display:flex; flex-direction:column; gap:10px; min-height:0;}
+.source img {width:100%; min-height:50px; height:35%; object-fit:cover; border-radius:4px;}
+.source blockquote {font:19px/1.45 Georgia,serif; margin:0; padding:0 0 0 14px; border-left:3px solid #b79755;}
+.source .citation {font-size:12px; color:var(--muted); font-style:italic;}
+.note-work {display:flex; flex-direction:column; gap:12px; min-height:0;}
+.ways {display:grid; grid-template-columns:repeat(6,1fr); gap:8px; flex:1; min-height:0;}
+.way {grid-column:span 3; text-align:left; font-size:13px; line-height:1.3; background:white; border:1px solid #c3b38d;
+  border-top:4px solid #0f766e; border-radius:4px; padding:9px;}
+.way.own {grid-column:span 2;}
+.way small {display:block; font-size:11px; color:var(--muted); margin-bottom:6px; font-weight:700;}
+.note-sheet {position:relative; background:#fff; border:1px solid #dacfb7; border-top:5px solid var(--brand); padding:16px;
+  box-shadow:3px 4px 0 #e9ddc0; font:17px/1.5 Georgia,serif;}
+.note-sheet .citation {margin-top:12px; font:italic 12px 'Segoe UI',sans-serif; color:var(--muted);}
+.visit-tabs {display:flex; flex-wrap:wrap; gap:5px;}
+.visit-tabs button {font-size:12px; padding:5px 8px; flex:1;}
+.organizer {display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:14px; flex:1; min-height:0;}
+.notes-list {display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; min-height:0;}
+.note-card {position:relative; text-align:left; padding:10px; background:white; border:1px solid #d8ccb1;
+  border-top:4px solid var(--brand); border-radius:3px; box-shadow:1px 3px 0 #e8ddc5; font-size:13px; line-height:1.3;}
+.note-card small {display:block; font-size:10px; color:var(--muted); margin-top:6px; font-style:italic;}
+.note-card .note-copy {display:block;}
+.note-card small:not(.where) {white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.note-card .where {font-weight:700; font-style:normal; color:var(--brand);}
+.outline {display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px;}
+.heading {position:relative; text-align:left; border:1px dashed #a18d64; background:#ede4cc8a; border-radius:5px;
+  padding:10px; font-size:14px; font-weight:700;}
+.heading small {display:block; font-size:11px; margin-top:5px; color:var(--muted); font-weight:400;}
+.heading.drop-over {background:#dfefe5; outline:3px solid var(--brand);}
+.steps {display:flex; gap:7px; flex-wrap:wrap;}
+.steps .btn {flex:1; min-width:100px; font-size:12px; text-align:left; padding:7px 9px;}
+.steps-label {font-size:12px; color:var(--muted); display:flex; justify-content:space-between;}
+.council {position:relative; flex:1; min-height:0; display:flex; flex-direction:column; justify-content:center; align-items:center;
+  border-radius:7px; overflow:hidden; padding:14px; background:#30271c;}
+.council > img {position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+.council::after {content:""; position:absolute; inset:0; background:linear-gradient(#211c1810,#211c1870); pointer-events:none;}
+.nameplates {position:relative; z-index:1; display:flex; width:100%; justify-content:center; gap:10px; margin-bottom:14px;}
+.nameplate {background:#8a6a1f; color:white; border:1px solid #e1bf65; border-radius:3px; padding:8px 12px;
+  font:700 12px Georgia,serif; text-align:center; min-height:44px; display:grid; place-items:center; box-shadow:0 4px 5px #0006;}
+.nameplate small {display:block; font:10px 'Segoe UI',sans-serif;}
+.nameplate.active {outline:3px solid #fff4b0; box-shadow:0 0 26px #ffe2a3;}
+.speech {position:relative; z-index:1; width:90%; background:#fffaf0f7; padding:20px 24px; border:1px solid #e6ce8c;
+  box-shadow:0 8px 20px #21170b70; border-radius:5px;}
+.speech .who {font-size:11px; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); font-weight:700;}
+.speech .c-question {font:25px/1.2 Georgia,serif; margin:8px 0 14px;}
+.speech .answer {font-size:15px; line-height:1.45; border-left:3px solid var(--brand); padding-left:12px;}
+.speech .aside {font-size:12px; margin-top:9px; color:var(--muted);}
+.evidence-compare {display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+.evidence-compare b {display:block; font-size:11px; color:var(--muted); margin-bottom:5px;}
+.slides {display:grid; grid-template-columns:repeat(3,1fr); gap:7px; font-size:11px;}
+.slide {padding:8px 10px; border:1px solid #cdbc96; border-top:3px solid var(--brand); background:white;}
+.slide b {display:block; margin-bottom:3px; font-size:12px;}
+.ending {display:grid; grid-template-columns:.9fr 1.1fr; gap:20px; flex:1; min-height:0; align-items:center;}
+.ending img {width:100%; height:100%; max-height:340px; object-fit:cover; border-radius:4px;}
+.ending h3 {font:30px/1.2 Georgia,serif; margin-bottom:16px; color:var(--brand);}
+.ending p {font-size:17px;}
+.trail-back {position:relative; flex:1; min-height:0; background:#f9f0d7; border:1px solid #d5bd80; border-radius:6px; overflow:hidden;}
+.trail-back > img {position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.65;}
+.trail-back svg {position:absolute; width:100%; height:100%;}
+.trace-path {cursor:pointer;}
+.trace-path:focus-visible {outline:0; filter:drop-shadow(0 0 4px #9d174d);}
+.trace-path .route-ink {transition:stroke-width .15s,opacity .15s;}
+.trail-back.tracing .trace-path:not(.active) .route-ink {opacity:.18;}
+.trace-path.active .route-ink {stroke-width:7; filter:drop-shadow(0 1px 2px #fff);}
+.back-stops span.active {outline:3px solid var(--brand); background:#e3f0e7;}
+.connection.active {outline:3px solid var(--focus); outline-offset:2px;}
+.connection .trace-evidence {display:block; margin-top:5px; color:var(--muted); font-size:11px; line-height:1.25;}
+@media(max-height:640px), (max-width:600px) {.connection .trace-evidence {display:none;}}
+.back-stops {position:absolute; top:5%; left:0; right:0; display:flex; justify-content:space-around;}
+.back-stops span {background:#fffdf0; padding:5px; border:1px solid #977b40; font-size:12px; font-weight:700; border-radius:50%;}
+.connections {position:absolute; left:3%; right:3%; bottom:5%; display:flex; flex-wrap:wrap; justify-content:center; gap:7px;}
+.connection {width:calc(25% - 7px); min-height:56px; border:2px solid #15803d; background:#fffdf4; border-radius:5px;
+  text-align:left; padding:7px; font-size:12px; box-shadow:0 3px 5px #0003;}
+.connection.missing {border-color:#b91c1c; border-style:dashed;}
+.connection b {display:block; color:#15803d; font-size:13px;}
+.connection.missing b {color:#b91c1c;}
+.trace-short,.trace-mini {display:none;}
+.panel {padding:18px 15px; border-left:2px solid #b69d69; background:linear-gradient(100deg,#efe2c4,#fffaf0 10%); gap:14px;}
+.panel .eyebrow {font-size:10px; color:var(--muted); letter-spacing:.14em; text-transform:uppercase;}
+.hint {font:15px/1.45 'Segoe UI',sans-serif; margin:0; min-height:92px;}
+.pack-head {font:23px Georgia,serif; margin:0; display:flex; align-items:center; gap:9px;}
+.pack-head img {width:35px; height:42px; object-fit:contain;}
+.pack-items {display:flex; flex-direction:column; gap:6px; flex:1; min-height:0; overflow:auto;}
+.pack-item {text-align:left; border:1px solid #d9c8a2; border-left:4px solid var(--brand); border-radius:3px;
+  background:#fffcf4; min-height:44px; padding:7px 9px; font-size:12px; flex-shrink:0;}
+.pack-item small {display:block; color:var(--muted); font-size:10px; margin-top:2px;}
+.pack-empty {font:italic 14px/1.5 Georgia,serif; color:var(--muted); padding:12px 0;}
+.panel-buttons {display:flex; flex-direction:column; gap:8px;}
+.privacy {font-size:10px; color:var(--muted); line-height:1.35;}
+#pack-chip {display:flex; align-items:center; gap:8px; border:0; padding:0; background:transparent;
+  font:23px Georgia,serif; text-align:left;}
+#pack-chip img {width:31px; height:42px; object-fit:contain;}
+.pack-local {display:block; font:10px/1.25 'Segoe UI',sans-serif; color:var(--muted); margin-top:3px;}
+.dialog {width:min(700px,calc(100% - 24px)); max-height:90dvh; border:1px solid #ac9360; border-radius:8px;
+  padding:24px; background:var(--panel); color:var(--ink); box-shadow:0 15px 60px #0006;}
+.dialog::backdrop {background:#211c16aa;}
+.dialog h2 {font-size:26px; margin-bottom:15px;}
+.dialog .dialog-content {max-height:calc(80dvh - 120px); overflow:auto; display:flex; flex-direction:column; gap:10px;}
+.dialog .actions {margin-top:18px;}
+.dialog .pack-item {font-size:14px;}
+.dialog .note-sheet {font-size:16px;}
+.dialog-hint {font-size:12px; color:var(--muted); border-top:1px solid var(--line); padding-top:8px;}
+.idle-glint {position:absolute; right:35px; top:65px; width:5px; height:5px; background:#fff6cd; border-radius:50%;
+  box-shadow:0 0 10px 5px #fff5b088; animation:glint 5s ease-in-out infinite; pointer-events:none; z-index:-1;}
+@keyframes glint {50%{opacity:.15; transform:translate(15px,-12px)}}
+.calm *, .calm *::after, .calm *::before {animation:none!important; transition:none!important;}
+.saved-flash {animation:saved .35s ease-out;}
+@keyframes saved {50%{box-shadow:0 0 0 6px #0f766e55; transform:translateY(-3px)}}
+.arrive {animation:arrive .3s ease-out;}
+@keyframes arrive {from{opacity:.5; transform:translateY(7px)}to{opacity:1; transform:translateY(0)}}
+@media(min-width:1600px) {
+  main {grid-template-columns:minmax(0,1fr) 300px;}
+  .chapter {padding:30px 35px; gap:20px;}
+  .chapter-body {gap:18px;}
+  .question {font-size:20px; padding:22px;}
+  .story {font-size:18px;} .story img {width:140px; height:105px;}
+  .reply {font-size:20px; min-height:60px;}
+  .way {font-size:17px; padding:15px;}
+  .source blockquote {font-size:25px;}
+  .note-card {font-size:18px; padding:18px;}
+  .note-card small {font-size:12px;}
+  .steps .btn {font-size:16px;}
+  .hint {font-size:18px;}
+  .speech .c-question {font-size:34px;}
+  .speech .answer {font-size:19px;}
+}
+@media(min-width:1000px) and (max-width:1300px) and (min-height:641px) {
+  .note-card {font-size:12px; line-height:1.25; padding:7px;}
+  .note-card small {margin-top:3px; line-height:1.15;}
+}
+@media(max-width:1100px) and (min-height:641px) and (min-width:601px) {
+  main {grid-template-columns:minmax(0,1fr) 185px;}
+  .stage {padding:0 14px 16px;}
+  .chapter {padding:16px; gap:10px;}
+  .story img {width:75px; height:65px;}
+  .question {font-size:13px; padding:10px;}
+  .intro-grid {gap:14px; grid-template-columns:.65fr 1.35fr;}
+  .source blockquote {font-size:16px;}
+  .gather {gap:12px; grid-template-columns:.7fr 1.3fr;}
+  .way {font-size:12px; padding:7px;}
+}
+@media(min-width:601px) and (max-width:999px) and (min-height:641px) {
+  main {grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) 70px;}
+  .stage {grid-column:1; grid-row:1;}
+  .panel {grid-column:1; grid-row:2; flex-direction:row; align-items:center; padding:7px 12px; overflow:visible;}
+  .panel .eyebrow,.pack-items,.privacy {display:none;}
+  .panel .hint {font-size:13px; min-height:0; flex:1;}
+  .panel-buttons {flex-direction:row; gap:5px;}
+  .panel-buttons .btn {font-size:12px; padding:7px 10px;}
+  #pack-chip {font:700 13px 'Segoe UI',sans-serif; border:1px solid var(--brand); padding:7px 10px;}
+  #pack-chip img {display:none;}
+  .intro-grid {grid-template-columns:.8fr 1.2fr;}
+  .question {font-size:15px;}
+  .note-card {font-size:12px;}
+}
+@media(max-height:640px) and (min-width:601px) {
+  header {padding:4px 12px; gap:8px; flex-wrap:nowrap; height:54px;}
+  h1 {font-size:23px;} header h1 small {display:none;}
+  main {grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) 60px;}
+  .stage {grid-row:1; padding:0 12px 12px;}
+  .panel {grid-column:1; grid-row:2; border:0; border-top:1px solid #baa273; padding:5px 12px; flex-direction:row; align-items:center; gap:8px;
+    overflow:visible;}
+  .panel .eyebrow,.pack-head,.pack-items,.privacy {display:none;}
+  .hint {min-height:0; flex:1; font-size:12px; line-height:1.3;}
+  .panel-buttons {flex-direction:row; gap:5px;}
+  .panel-buttons .btn,#pack-chip {font-size:11px; padding:5px 8px;}
+  #pack-chip {display:block; flex:none;}
+  #pack-chip img {display:none;}
+  .trail {height:36px; padding:0 25px;}
+  .trail::before {top:20px;}
+  .stop {display:flex; justify-content:center; gap:3px; align-items:center; width:auto;}
+  .stop b {width:24px; height:24px; font-size:12px;}
+  .stop span {font-size:10px; padding:2px 4px;}
+  .stop small {display:none;}
+  #marker {width:25px; height:28px; top:1px;}
+  .chapter {padding:10px 14px; gap:7px;}
+  .chapter-title {gap:8px;}
+  .chapter-title .eyebrow {font-size:10px;}
+  h2 {font-size:22px; margin-top:2px;}
+  .chapter-title .seal {width:36px; height:36px; font-size:10px;}
+  .chapter-body {gap:7px;}
+  .intro-grid {gap:12px; grid-template-columns:.7fr 1.3fr;}
+  .ask-content {gap:6px;}
+  .story {font-size:11px; gap:7px;}
+  .story img {width:60px; height:44px;}
+  .photo-caption {font-size:12px; padding:7px; left:7px; bottom:46%; right:7px;}
+  .questions {gap:6px;}
+  .question {font-size:12px; padding:7px; line-height:1.2;}
+  .question b {display:inline; font-size:10px; margin-right:4px;}
+  .reply {font-size:11px; min-height:26px; line-height:1.2;}
+  .actions .btn {font-size:12px; padding:5px 10px;}
+  .actions .status {font-size:11px;}
+  .place-grid {gap:7px;}
+  .place .label {font-size:12px; padding:5px 8px; min-height:35px;}
+  .place .label small {font-size:10px; margin-top:1px;}
+  .place .pick {width:22px; height:22px; top:4px; right:4px;}
+  .gather {grid-template-columns:.65fr 1.35fr; gap:12px;}
+  .source {gap:5px;}
+  .source img {height:31%; min-height:35px;}
+  .source h3 {font-size:12px;}
+  .source blockquote {font-size:12px; line-height:1.3; padding-left:8px;}
+  .source .citation {font-size:10px;}
+  .note-work {gap:6px;}
+  .ways {gap:5px;}
+  .way {padding:5px; font-size:10.5px; line-height:1.2;}
+  .way small {font-size:10px; margin-bottom:4px;}
+  .chapter:has(.gather) .way {font-size:10px; line-height:1.12; padding:4px;}
+  .visit-tabs {gap:4px;} .visit-tabs button {font-size:10px; padding:4px 6px;}
+  .gather-tabs {display:none;}
+  .gather-footer .status {display:none;}
+  .chapter:has(.gather) .seal {display:none;}
+  .chapter:has(.gather) h2 {font-size:20px;}
+  .chapter:has(.gather) .chapter-title {min-height:32px;}
+  .chapter:has(.gather) .chapter-body {gap:5px;}
+  .note-sheet {font-size:14px; padding:10px;}
+  .organizer {gap:8px; grid-template-rows:minmax(0,1fr);}
+  .notes-list,.outline {gap:5px; grid-template-rows:repeat(2,minmax(0,1fr)); min-height:0;}
+  .note-card {font-size:10.5px; line-height:1.2; padding:6px;}
+  .note-card small {font-size:10px; margin-top:3px;}
+  .note-card {padding:4px;}
+  .note-card .note-copy {display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; line-height:1.12;}
+  .note-card small {line-height:1.05; margin-top:2px;}
+  .chapter:has(.organizer) .actions {position:absolute; right:14px; bottom:10px;}
+  .chapter:has(.organizer) .actions .status {display:none;}
+  .chapter:has(.organizer) .steps {padding-right:76px;}
+  .chapter:has(.organizer) h2 {font-size:20px;}
+  .chapter:has(.organizer) .seal {display:none;}
+  .heading {font-size:12px; padding:5px; line-height:1.15;}
+  .outline {grid-template-rows:repeat(2,minmax(0,1fr));}
+  .heading small {font-size:10px; line-height:1.05; margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .steps {gap:5px; flex-wrap:nowrap;}
+  .steps .btn {min-width:0; font-size:10px; padding:4px 6px;}
+  .steps-label {font-size:10px;}
+  .council {padding:7px;}
+  .chapter:has(.council) .chapter-title h2,.chapter:has(.council) .seal {display:none;}
+  .chapter:has(.council) .chapter-title {min-height:12px;}
+  .chapter:has(.council) .council {min-height:140px;}
+  .chapter:has(.council) .slide-content {display:none;}
+  .chapter:has(.council) .slide {padding:3px 6px;}
+  .nameplates {gap:6px; margin-bottom:7px;}
+  .nameplate {font-size:10px; padding:4px 8px; min-height:28px;}
+  .nameplate small {font-size:10px;}
+  .chapter:has(.council) .nameplate small {display:none;}
+  .chapter:has(.council) .nameplate {min-height:20px; padding:3px 6px;}
+  .chapter:has(.council) .nameplates {margin-bottom:4px;}
+  .speech {padding:10px 13px; width:94%;}
+  .speech .c-question {font-size:18px; margin:5px 0 8px;}
+  .speech .answer {font-size:12px; line-height:1.3;}
+  .speech .who,.speech .aside {font-size:10px;}
+  .chapter:has(.council) .speech .who {display:none;}
+  .chapter:has(.council) .speech {padding:7px 10px;}
+  .chapter:has(.council) .speech .c-question {font-size:16px; margin:2px 0 6px;}
+  .slides {font-size:10px; gap:5px;} .slide {padding:4px 7px;} .slide b {font-size:10px;}
+  .ending {gap:15px;} .ending h3 {font-size:23px; margin-bottom:8px;} .ending p {font-size:14px;}
+  .ending {grid-template-rows:minmax(0,1fr);}
+  .ending img {min-height:0;}
+  .connection {min-height:44px; font-size:10px; padding:5px;} .connection b {font-size:10px;}
+  .trace-full {display:none;} .trace-short {display:block;}
+  .connection b {display:none;}
+  .trace-mini {display:block; font-size:10px; font-weight:700; margin-bottom:4px;}
+  .connections {display:grid; grid-template-columns:repeat(var(--questions),minmax(0,1fr)); gap:4px;}
+  .connection {width:auto; min-height:60px; padding:3px;}
+  .back-stops span {font-size:10px; padding:4px;}
+}
+@media(max-width:600px) {
+  body {height:auto; min-height:100dvh; overflow:auto; padding-bottom:80px;}
+  header {padding:7px 9px; gap:5px; flex-wrap:wrap;}
+  h1 {font-size:25px; flex:1 0 100%;} h1 small {display:block; font-size:11px; margin:2px 0 3px;}
+  header .icon-btn {flex:1; font-size:12px; padding:0 8px;}
+  main {grid-template-columns:1fr; grid-template-rows:auto auto;}
+  .stage {grid-row:1; padding:0 8px 15px; min-height:0; overflow:visible;}
+  .trail {height:60px; padding:4px 0;}
+  .trail::before {top:23px;}
+  .stop b {width:26px; height:26px; font-size:12px;} .stop span {font-size:10px; padding:2px 4px;}
+  .stop small {display:none;} #marker {width:27px; height:30px; top:0;}
+  .chapter {padding:13px; gap:10px; flex:none; min-height:520px; border-radius:4px 10px 4px 4px;}
+  h2 {font-size:25px;} .chapter-title .seal {display:none;}
+  .chapter-title .eyebrow {font-size:10px;}
+  .chapter-body {gap:10px;}
+  .intro-grid {grid-template-columns:1fr; gap:12px;}
+  .opening-art {height:100px;}
+  .opening-art .bed {height:100%;}
+  .opening-art .desk {display:none;}
+  .photo-caption {font-size:13px; bottom:8px; left:8px; right:8px; padding:7px;}
+  .story {font-size:12px;} .story img {display:block; width:64px; height:48px;}
+  .ask-content {gap:10px;}
+  .question {font-size:12px; padding:9px; min-height:75px;}
+  .reply {font-size:13px; min-height:36px;}
+  .actions {flex-wrap:wrap;} .actions .status {font-size:11px;}
+  .actions .btn {font-size:12px; padding:7px 9px;}
+  .place-grid {grid-template-columns:1fr 1fr; grid-template-rows:repeat(3,125px); gap:9px; flex:none;}
+  .place .label {font-size:12px; min-height:42px; padding:6px 8px;} .place .label small {font-size:10px;}
+  .gather {grid-template-columns:1fr; gap:12px;}
+  .chapter:has(.gather) {padding:10px; gap:8px;}
+  .chapter:has(.gather) .way {font-size:10.5px; line-height:1.25;}
+  .source {display:grid; grid-template-columns:90px 1fr; gap:7px;}
+  .source img {grid-column:1; grid-row:1 / 4; width:90px; height:100%; min-height:90px;}
+  .source img[alt="Monarch caterpillar on milkweed"] {object-fit:contain; background:#e4d7a8;}
+  .source blockquote {font-size:13px; padding-left:7px;} .source h3 {font-size:13px;}
+  .source .citation {font-size:10px;}
+  .note-work {gap:9px;} .ways {gap:6px;}
+  .way {padding:7px; font-size:11px;} .way small {font-size:10px;}
+  .way.own {grid-column:span 6; min-height:54px;}
+  .way.own small {display:inline; margin-right:5px;}
+  .visit-tabs {gap:4px;} .visit-tabs button {font-size:10px; padding:5px; min-width:60px;}
+  .gather-tabs {display:none;}
+  .gather-footer .status {display:none;}
+  .gather-footer {justify-content:space-between;}
+  .gather-footer .btn {flex:1;}
+  .gather-footer #gather-next {flex-basis:100%;}
+  .organizer {grid-template-columns:minmax(0,1fr); gap:10px;}
+  .note-card {font-size:11px; padding:8px;}
+  .chapter:has(.organizer) .note-card {padding:5px;}
+  .chapter:has(.organizer) .note-copy {display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+    overflow:hidden; line-height:1.15;}
+  .chapter:has(.organizer) .note-card small {font-size:10px; line-height:1.1; margin-top:2px;}
+  .chapter:has(.organizer) .heading {min-height:44px; padding:5px;}
+  .chapter:has(.organizer) .heading small {display:none;}
+  .chapter:has(.organizer) .steps {display:grid; grid-template-columns:repeat(3,minmax(0,1fr));}
+  .chapter:has(.organizer) .steps .btn {min-width:0; font-size:10.5px; padding:5px;}
+  .chapter:has(.organizer) .actions {position:absolute; right:13px; bottom:13px; width:calc((100% - 36px) / 3);}
+  .chapter:has(.organizer) .actions .status {display:none;}
+  .chapter:has(.organizer) #organize-done {width:100%;}
+  .outline {grid-template-columns:1fr 1fr;}
+  .heading {min-height:55px; font-size:12px; padding:7px;} .heading small {font-size:10px;}
+  .steps {gap:5px;} .steps .btn {font-size:11px; min-width:90px; padding:6px;}
+  .steps-label {font-size:10px;}
+  .council {min-height:280px; padding:10px 7px;}
+  .chapter:has(.council) .council {min-height:260px;}
+  .chapter:has(.council) .slide-content {display:none;}
+  .nameplates {gap:4px; margin-bottom:10px;}
+  .nameplate {font-size:10px; padding:6px 5px; flex:1;} .nameplate small {font-size:10px;}
+  .speech {width:100%; padding:14px;}
+  .speech .c-question {font-size:21px;} .speech .answer {font-size:13px;}
+  .evidence-compare {grid-template-columns:1fr; gap:8px;}
+  .slides {grid-template-columns:1fr; font-size:11px; gap:4px;}
+  .slide {padding:6px 8px;} .slide b {font-size:11px;}
+  .ending {grid-template-columns:1fr;} .ending img {height:200px;} .ending h3 {font-size:25px; margin-bottom:8px;}
+  .ending p {font-size:14px;}
+  .trail-back {min-height:340px;}
+  .connection {width:calc(50% - 6px); font-size:10px; min-height:50px;} .connection b {font-size:11px;}
+  .back-stops span {font-size:10px; padding:4px;}
+  .panel {position:fixed; bottom:0; left:0; right:0; height:80px; z-index:5; display:grid;
+    grid-template-columns:minmax(0,1fr) 140px; grid-template-rows:1fr 12px; align-items:center;
+    padding:7px 10px; border:0; border-top:1px solid #bba472; gap:2px 7px; overflow:visible;}
+  .panel .eyebrow,.pack-head,.pack-items {display:none;}
+  .hint {font-size:11.5px; min-height:0; line-height:1.3; grid-column:1; grid-row:1;}
+  .panel-buttons {display:none;}
+  #pack-chip {display:block; font:700 12px 'Segoe UI',sans-serif; background:var(--panel); padding:6px;
+    border:1px solid var(--brand); grid-column:2; grid-row:1;}
+  #pack-chip img {display:none;}
+  .privacy {font-size:10px; grid-column:1 / -1; grid-row:2; line-height:1;}
+}
+@media(min-width:601px) and (max-width:740px) and (max-height:450px) {
+  .chapter:has(.intro-grid) .story {display:none;}
+  .note-card {padding:3px;}
+  .note-card .note-copy {font-size:10px; line-height:1.05;}
+  .note-card small {margin-top:1px;}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Research Quest <small>Five stops to Friday's council</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <aside class="panel">
+    <span class="eyebrow">Librarian's field notes</span>
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <button class="btn" id="pack-chip">Research pack · 0</button>
+    <div class="pack-items" id="pack-items"></div>
+    <div class="panel-buttons">
+      <button class="btn" id="rewind">Rewind</button>
+      <button class="btn" id="restart">Start over</button>
+    </div>
+    <p class="privacy">Your quest saves on this device. Nothing leaves it.</p>
+  </aside>
+  <section class="stage" id="stage" aria-label="Quest map and current chapter">
+    <img class="map-art" src="art:rq-trail-map" alt="A painted map of school grounds and woodland paths">
+    <div class="idle-glint"></div>
+    <nav class="trail" id="trail" aria-label="Five stops">
+      <div class="stop"><b>1</b><span>Ask</span><small></small></div>
+      <div class="stop"><b>2</b><span>Plan</span><small></small></div>
+      <div class="stop"><b>3</b><span>Gather</span><small></small></div>
+      <div class="stop"><b>4</b><span>Organize</span><small></small></div>
+      <div class="stop"><b>5</b><span>Present</span><small></small></div>
+      <img id="marker" src="art:rq-marker" alt="Your backpack marker">
+    </nav>
+    <article class="chapter" id="chapter" aria-label="Current chapter"></article>
+  </section>
+</main>
+<dialog class="dialog" id="dialog" aria-labelledby="dialog-title">
+  <h2 id="dialog-title"></h2>
+  <div class="dialog-content" id="dialog-content"></div>
+  <div class="actions" id="dialog-actions"></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const esc = text => String(text).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const art = {
+    map:'art:rq-trail-map', marker:'art:rq-marker', bed:'art:rq-garden-bed', bloom:'art:rq-garden-bloom',
+    caterpillar:'art:rq-caterpillar', desk:'art:rq-library-desk', library:'art:rq-library', county:'art:rq-county',
+    nature:'art:rq-nature', notebook:'art:rq-notebook', video:'art:rq-video', seed:'art:rq-seed', council:'art:rq-council-room'
+  };
+  const QUESTIONS = [
+    'Monarch butterflies.',
+    'What do monarch butterflies need from a school garden in our area?',
+    'Are monarchs the prettiest butterflies?',
+    'How many monarchs spend the winter in Mexico?'
+  ];
+  const REPLIES = [
+    "That's a topic. A topic is a place to start. What do you want to know about it?",
+    "That's a question you can answer, and it's about our garden.",
+    'People can disagree on that one. Can research settle it?',
+    'You could find that out. Will it help the garden?'
+  ];
+  const SOURCES = [
+    {
+      id:'library', place:'Library shelf', kind:'Book', title:'Monarchs and Milkweed',
+      citation:'Dana Whitfield, 2022, page 12',
+      passage:'Monarch caterpillars eat only milkweed. Without milkweed plants, monarchs cannot complete their life cycle.',
+      versions:[
+        "Monarch caterpillars need milkweed. It's the only plant they eat, so no milkweed means no new monarchs.",
+        "Monarch caterpillars eat just milkweed. Without milkweed plants, monarchs can't complete their life cycle.",
+        'Monarch butterflies like milkweed best, but they can use other plants too.'
+      ]
+    },
+    {
+      id:'county', place:'County garden office', kind:'Office page', title:'Planting for Pollinators',
+      citation:'Bramble County Garden Office, updated April 2025',
+      passage:'Choose milkweed that is native to our region, such as common milkweed or butterfly weed. Avoid spraying pesticides, which can kill caterpillars.',
+      versions:[
+        'The county garden office says to plant milkweed that grows naturally here, like common milkweed or butterfly weed, and not to spray pesticides.',
+        'Choose milkweed native to our region, like common milkweed or butterfly weed. Avoid spraying pesticides that can kill caterpillars.',
+        'Any milkweed from any store works, and a little pesticide is fine.'
+      ]
+    },
+    {
+      id:'nature', place:'Nature center naturalist', kind:'Interview', title:'Interview with Rosa Delgado',
+      citation:'Naturalist, Bramble Creek Nature Center, this week',
+      passage:'Adult monarchs drink nectar from lots of different flowers. In late summer and fall they need blooming flowers to fuel their long trip south.',
+      versions:[
+        'Grown monarchs feed on nectar from many flowers, and flowers that bloom late in the year give them energy for migrating.',
+        'Adult monarchs drink nectar from many flowers. In late summer and fall they need blooming flowers to fuel their trip south.',
+        'Monarchs only visit flowers in the spring.'
+      ]
+    },
+    {
+      id:'notebook', place:'Garden club notebook', kind:"Last year's notes", title:'Garden club notebook', citation:'Club notes, last October',
+      passage:'We counted 2 monarchs all fall. There is no milkweed anywhere in our garden.',
+      versions:[
+        'Last fall the club saw only two monarchs, and the garden has no milkweed.',
+        'We counted two monarchs all fall. There is no milkweed in our garden.',
+        'The club saw lots of monarchs last fall.'
+      ]
+    },
+    {
+      id:'video', place:'Top 10 Butterfly Facts', kind:'Video', title:'Top 10 Butterfly Facts', citation:'FactBlast channel',
+      passage:'Monarchs can fly up to 3,000 miles to their winter home!',
+      versions:[
+        'Some monarchs travel as far as 3,000 miles to spend the winter somewhere warm.',
+        'Monarchs can fly up to 3,000 miles to their winter home.',
+        'Every butterfly flies 3,000 miles each year.'
+      ]
+    },
+    {
+      id:'seed', place:'Sunny Acres seed ad', kind:'Advertisement', title:'Butterfly Blend', citation:'Sunny Acres Seeds',
+      passage:'Butterfly Blend brings butterflies to ANY garden, guaranteed! Just sprinkle and wait.',
+      versions:[
+        'A seed company says its mix brings butterflies to any garden.',
+        'Butterfly Blend brings butterflies to any garden, guaranteed.',
+        'Scientists say Butterfly Blend works in every garden.'
+      ]
+    }
+  ];
+  const HEADINGS = ['What monarchs need','What our garden has now','Our plan','Not needed'];
+  const PLAN = [
+    'Plant native milkweed', 'Plant flowers that bloom in late summer and fall', "Don't spray pesticides",
+    'Sprinkle Butterfly Blend seed mix', 'Count monarchs again next fall'
+  ];
+  const COUNCIL = [
+    ['Principal Okoro','What are you asking us to do, and why?',1,'a clear question and what our garden has now'],
+    ['Lily Tran','Why milkweed? Why not just pretty flowers?',4,'why monarchs need milkweed'],
+    ['Mr. Hale','Will the plants you want grow here?',4,'proof the plants will grow here'],
+    ['Principal Okoro','Where did that fact come from?',3,'where your facts came from'],
+    ['Lily Tran','When should our flowers bloom?',4,'when the flowers should bloom'],
+    ['Mr. Hale','Hold on. Is that really what your source said?',3,'what your source really said'],
+    ['Mr. Hale','What plants are in Butterfly Blend?',4,'what is in the seed mix']
+  ];
+  const L = {
+    open:"The garden club has an empty bed, and Friday the council decides what grows there. Your quest: bring them a plan. Tap a question card to begin.",
+    ask:'Stop one. Tap the question you will research.',
+    plan:'Stop two. You have time for four visits. Tap four places.',
+    go:'Four places. Press Go.',
+    gather:'Stop three. Tap one of the five ways to write this note.',
+    save:'Now press Save note, or Save note with its source.',
+    gatherNext:'Tap a place in your pack to write another note.',
+    toOrganize:'Four notes saved. Press On to Stop 4.',
+    organize:'Stop four. Tap a note, then tap a heading. Then tap up to three plan steps.',
+    placeNote:'Tap a heading to place this note.',
+    done:'Your outline is ready. Press Done.',
+    present:'Friday. The council is waiting. Press Next question to hear them.',
+    next:'Press Next question to hear the next council member.',
+    endingNext:'Press See the decision to hear the council outcome.',
+    trail:'Each line leads back to the choice that decided an answer. Tap a line to see that choice.',
+    approved:'Plan approved! Next week the club plants native milkweed and fall flowers.',
+    homework:'Approved, with homework: come back with the missing pieces.',
+    notYet:'Not yet. The council asks you to dig deeper and come back next month.',
+    tooClose:'Some of your notes sound almost word for word. Try saying it your own way.',
+    continueAsk:'Your question is in the pack. Press On to Plan, or tap another question card.',
+    reply:REPLIES,
+    council:COUNCIL.map(row => row[0] + '. ' + row[1])
+  };
+  const shuffle = list => {
+    const out = [...list];
+    for (let i = out.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [out[i],out[j]] = [out[j],out[i]];
+    }
+    return out;
+  };
+  function fresh() {
+    return {version:1, mode:'quest', stop:1, question:null, places:[], notes:{}, headings:{}, steps:[],
+      active:null, way:null, selected:null, councilIndex:-1, finale:false, trail:false,
+      order:Object.fromEntries(SOURCES.map(s => [s.id,shuffle([0,1,2])]))};
+  }
+  let state = fresh();
+  try {
+    const saved = JSON.parse(localStorage.getItem('rq-run'));
+    if (saved && saved.version === 1 && saved.stop >= 1 && saved.stop <= 5 && Array.isArray(saved.places)) {
+      state = {...fresh(),...saved};
+    }
+  } catch {}
+  const V = Curio.voice({
+    lines:L, scope:() => state.stop, hint:false,
+    welcome:() => state.stop === 1 && state.question === null && !$('dialog').open ?
+      ['open',{valid:() => state.question === null && !$('dialog').open}] : null,
+    speaks:'.question, #next-question',
+    read:() => $('dialog').open ? $('dialog-title').innerText + '. ' + $('dialog-content').innerText :
+      $('hint').innerText + ' ' + $('chapter').innerText
+  });
+  function save() {
+    try {
+      if (state.stop === 1 && state.question === null) localStorage.removeItem('rq-run');
+      else localStorage.setItem('rq-run',JSON.stringify(state));
+    } catch {}
+  }
+  const source = id => SOURCES.find(s => s.id === id);
+  const countNotes = () => Object.keys(state.notes).length;
+  const inOutline = id => state.notes[id] && Number.isInteger(state.headings[id]) && state.headings[id] < 3;
+  const noteText = note => {
+    const s = source(note.id);
+    if (note.way === 'quote') return '“' + s.passage + '”';
+    if (note.way === 'copy') return s.passage;
+    return s.versions[Number(note.way)];
+  };
+  const sourceLine = note => note.withSource ? source(note.id).title + ' · ' + source(note.id).citation : '× no source';
+  function noteHtml(note, full = false) {
+    return `<div class="note-sheet"><p>${esc(noteText(note))}</p><p class="citation">${esc(sourceLine(note))}</p>
+      ${full ? `<p class="citation">In your outline: ${HEADINGS[state.headings[note.id]] || 'Not placed'}</p>` : ''}</div>`;
+  }
+  function evaluate(run = state) {
+    const outlined = id => run.notes[id] && Number.isInteger(run.headings[id]) && run.headings[id] < 3;
+    const ids = run.places.filter(outlined);
+    const target = ids.find(id => run.headings[id] === 0) || ids[0];
+    const changed = ids.find(id => run.notes[id].way === '2');
+    const answers = [
+      run.question === 1 && outlined('notebook') && run.headings.notebook === 1,
+      outlined('library') && run.headings.library === 0,
+      outlined('county') && run.steps.includes(0),
+      !!target && run.notes[target].withSource && run.notes[target].way !== 'copy',
+      outlined('nature') && run.steps.includes(1)
+    ];
+    const references = [
+      ['notebook',run.question !== 1 ? 1 : 4], ['library',4], ['county',4], [target,3], ['nature',4]
+    ];
+    const results = answers.map((ok,i) => ({id:i, ok:!!ok, target:references[i][0], stop:references[i][1]}));
+    if (changed) results.push({id:5,ok:false,target:changed,stop:3});
+    if (run.steps.includes(3)) results.push({id:6,ok:false,target:'seed',stop:4});
+    const missing = results.filter(r => !r.ok);
+    return {results, missing, target, tooClose:ids.some(id => run.notes[id].way === '1'),
+      ending:missing.length === 0 ? 'approved' : missing.length < 3 ? 'homework' : 'notYet'};
+  }
+  function answerText(result) {
+    if (result.id === 3 && !result.target) return "There's nothing in the outline to point to.";
+    if (result.id === 6) return "I'm not sure... The ad didn't say.";
+    if (result.id === 5) return 'Your note: ' + noteText(state.notes[result.target]) + '\nSource: “' + source(result.target).passage + '”';
+    if (result.id === 3) {
+      const n = state.notes[result.target];
+      const response = n.withSource ? sourceLine(n) : "I'm not sure... I did not save the source.";
+      return n.way === 'copy' ? response + '\nPrincipal Okoro: Those are the book\'s exact words. Put them in quote marks and name the book.' : response;
+    }
+    if (!result.ok) return "I'm not sure...";
+    if (result.id === 0) return QUESTIONS[state.question] + ' ' + noteText(state.notes.notebook);
+    return noteText(state.notes[result.target]) + (result.id === 2 ? ' Our plan: ' + PLAN[0] + '.' :
+      result.id === 4 ? ' Our plan: ' + PLAN[1] + '.' : '');
+  }
+  function hint(text, key, valid = () => true, needs) {
+    $('hint').textContent = text === L.organize && matchMedia('(max-width:600px)').matches ?
+      'Tap a note, then a heading. Pick up to 3 plan steps.' : text;
+    if (key) V.how(key,{valid,needs});
+  }
+  function how() {
+    if (state.stop === 1) {
+      if (state.question === null) hint(L.ask, V.heard('open') ? 'ask' : null,() => state.question === null);
+      else hint(L.continueAsk,'continueAsk',() => state.stop === 1 && state.question !== null,'#ask-next');
+    }
+    if (state.stop === 2) {
+      const ready = state.places.length === 4;
+      hint(ready ? L.go : `${4-state.places.length} visits left. Tap a place to add it, or tap it again to unpick.`,
+        ready ? 'go' : 'plan',() => state.stop === 2 && (state.places.length === 4) === ready,ready ? '#plan-go' : '.place');
+    }
+    if (state.stop === 3) {
+      if (state.way !== null && !state.notes[state.active]) {
+        hint(L.save,'save',() => state.stop === 3 && state.way !== null && !state.notes[state.active],'#save-source');
+      } else if (state.notes[state.active]) {
+        const left = 4-countNotes();
+        hint(left ? `${left} ${left === 1 ? 'place still needs' : 'places still need'} a note. Tap a place in your pack.` : L.toOrganize,
+          left ? 'gatherNext' : 'toOrganize',() => state.stop === 3 && !!state.notes[state.active],left ?
+            (matchMedia('(max-height:640px), (max-width:600px)').matches ? '#pack-chip' : '.visit-tab') : '#gather-next');
+      } else hint(L.gather,'gather',() => state.stop === 3 && state.way === null,'.way');
+    }
+    if (state.stop === 4) {
+      const ready = state.places.every(id => Number.isInteger(state.headings[id])) && state.steps.length > 0;
+      const key = state.selected ? 'placeNote' : ready ? 'done' : 'organize';
+      hint(L[key],key,() => state.stop === 4 &&
+        (key === 'placeNote' ? !!state.selected : !state.selected &&
+          (state.places.every(id => Number.isInteger(state.headings[id])) && state.steps.length > 0) === ready),
+        key === 'done' ? '#organize-done' : '.heading');
+    }
+    if (state.stop === 5) {
+      if (state.trail) hint(L.trail,'trail',() => state.trail,'.connection');
+      else if (state.finale) hint('Press Trail back to see which choices decided the council answers.');
+      else if (state.councilIndex < 0) hint(L.present,'present',() => state.councilIndex < 0,'#next-question');
+      else hint(state.councilIndex >= evaluate().results.length-1 ? L.endingNext : L.next);
+    }
+  }
+  function btn(id, text, enabled = true, cls = 'primary') {
+    return `<button class="btn ${cls}" id="${id}" ${enabled ? '' : 'disabled'}>${text}</button>`;
+  }
+  function chapterHeader(eyebrow, title, stamp = 'FRIDAY<br>COUNCIL') {
+    return `<div class="chapter-title"><div><div class="eyebrow">${eyebrow}</div><h2>${title}</h2></div>
+      <div class="seal" aria-hidden="true">${stamp}</div></div>`;
+  }
+  function askView() {
+    return chapterHeader('Stop 1 / Ask','What will you research?') + `<div class="chapter-body">
+      <div class="intro-grid">
+        <div class="opening-art"><img class="bed" src="${art.bed}" alt="An empty raised garden bed by the school">
+          <img class="desk" src="${art.desk}" alt="Mr. Adeyemi's library desk with books, a green lamp and your waiting pack">
+          <div class="photo-caption">An empty bed. A Friday deadline.<br>A garden for monarchs?</div></div>
+        <div class="ask-content">
+          <div class="story"><img src="${art.desk}" alt="Mr. Adeyemi's empty library desk and a waiting backpack">
+            <p>Principal Okoro needs a researched plan for the garden. Mr. Adeyemi hands you a pack. Your first choice:</p></div>
+          <div class="questions">${QUESTIONS.map((q,i) => `<button class="question" id="question-${i}" data-question="${i}"
+            aria-pressed="${state.question === i}"><b>${'ABCD'[i]}</b>${q}</button>`).join('')}</div>
+          <p class="reply" id="ask-reply">${state.question === null ? '“Bring the council a plan your research can stand behind.”' : esc(REPLIES[state.question])}</p>
+        </div>
+      </div>
+      <div class="actions"><span class="status">Bramble Hill Middle School · Garden Council</span>
+        ${btn('ask-next','On to Plan →',state.question !== null)}</div></div>`;
+  }
+  function planView() {
+    return chapterHeader('Stop 2 / Plan','Four visits before Friday') + `<div class="chapter-body">
+      <div class="place-grid">${SOURCES.map(s => `<button class="place" id="place-${s.id}" data-place="${s.id}"
+        aria-pressed="${state.places.includes(s.id)}"><img src="${art[s.id]}" alt="${esc(s.place)}">
+        ${s.id === 'county' ? '<span class="art-mark">Planting for Pollinators</span>' :
+          s.id === 'video' ? '<span class="art-mark play-mark" aria-hidden="true">▶</span>' :
+          s.id === 'seed' ? '<span class="art-mark">Butterfly Blend</span>' : ''}
+        <span class="pick" aria-hidden="true">${state.places.includes(s.id) ? '✓' : '+'}</span>
+        <span class="label">${s.place}<small>${s.kind}</small></span></button>`).join('')}</div>
+      <div class="actions"><span class="status" id="visit-count">${state.places.length} of 4 visits in your plan</span>
+        ${btn('plan-go','Go →',state.places.length === 4)}</div></div>`;
+  }
+  function gatherView() {
+    const s = source(state.active || state.places[0]);
+    state.active = s.id;
+    const n = state.notes[s.id];
+    const labels = ['Copy it, with quote marks','Copy it, no quote marks'];
+    return chapterHeader('Stop 3 / Gather',n ? 'A note in your pack' : 'Keep what you find',`${countNotes()} / 4<br>NOTES`) +
+      `<div class="chapter-body"><div class="gather">
+        <div class="source"><img src="${art[s.id === 'library' ? 'caterpillar' : s.id]}" alt="${s.id === 'library' ? 'Monarch caterpillar on milkweed' : s.place}">
+          <h3>${s.title}</h3><blockquote>${s.passage}</blockquote><p class="citation">${s.citation}</p></div>
+        <div class="note-work">${n ? noteHtml(n) :
+          `<div class="ways">${['quote','copy',...state.order[s.id].map(String)].map((way,i) =>
+            `<button class="way ${i > 1 ? 'own' : ''}" data-way="${way}" id="way-${i}" aria-pressed="${state.way === way}">
+              ${i < 2 ? labels[i] : `<small>In my own words</small>${s.versions[Number(way)]}`}</button>`).join('')}</div>
+            `}
+        </div></div>
+        <div class="visit-tabs gather-tabs" aria-label="Your four visits">${state.places.map(id => `<button class="btn visit-tab" data-visit="${id}"
+          id="visit-${id}" aria-pressed="${state.active === id}">${source(id).place}${state.notes[id] ? ' · ✓' : ''}</button>`).join('')}</div>
+        <div class="actions gather-footer"><span class="status">${countNotes()} of 4 places have a saved note</span>
+          ${n ? btn('redo','Redo note',true,'') : btn('save-note','Save note',state.way !== null,'') +
+            btn('save-source','Save note with its source',state.way !== null)}
+          ${btn('gather-next','On to Stop 4 →',countNotes() === 4)}</div></div>`;
+  }
+  function organizeView() {
+    const placed = state.places.every(id => Number.isInteger(state.headings[id]));
+    return chapterHeader('Stop 4 / Organize','Make a case, not a pile') + `<div class="chapter-body">
+      <div class="organizer"><div class="notes-list">${state.places.map(id => {
+        const n = state.notes[id];
+        return `<button class="note-card" id="note-${id}" draggable="true" data-note="${id}" aria-pressed="${state.selected === id}">
+          <span class="note-copy" title="${esc(noteText(n))}">${esc(noteText(n))}</span>
+          <small title="${esc(sourceLine(n))}">${esc(sourceLine(n))}</small>
+          <small class="where">${HEADINGS[state.headings[id]] || 'Tap me, then a heading'}</small></button>`;
+      }).join('')}</div><div class="outline">${HEADINGS.map((name,i) => {
+        const names = state.places.filter(id => state.headings[id] === i).map(id => source(id).place).join(' · ') || 'Place a note here';
+        return `<button class="heading" id="heading-${i}" data-heading="${i}">
+          ${name}<small title="${esc(names)}">${names}</small></button>`;
+      }).join('')}</div></div>
+      <div class="steps-label"><b>Plan steps · choose up to 3</b><span>${state.steps.length === 3 ? 'Three steps chosen. Unpick one to change it.' : state.steps.length + ' of 3 chosen'}</span></div>
+      <div class="steps">${PLAN.map((p,i) => `<button class="btn" id="step-${i}" data-step="${i}" aria-pressed="${state.steps.includes(i)}"
+        ${state.steps.length === 3 && !state.steps.includes(i) ? 'disabled title="Three steps chosen. Unpick one first."' : ''}>${p}</button>`).join('')}</div>
+      <div class="actions"><span class="status">${Object.keys(state.headings).length} of 4 notes placed</span>
+        ${btn('organize-done','Done →',placed && state.steps.length > 0)}</div></div>`;
+  }
+  function slidesHtml() {
+    return `<div class="slides">${HEADINGS.slice(0,3).map((name,i) => `<div class="slide"><b>${name}</b>
+      <span class="slide-content">${state.places.filter(id => state.headings[id] === i).map(id => source(id).place).join(' · ') || 'No notes'}
+      ${i === 2 ? '<br>' + state.steps.map(n => PLAN[n]).join(' · ') : ''}</span></div>`).join('')}</div>`;
+  }
+  function presentView() {
+    const ev = evaluate();
+    const r = ev.results[state.councilIndex];
+    const row = r ? COUNCIL[r.id] : null;
+    return chapterHeader('Stop 5 / Present',"Friday. The council is listening.") + `<div class="chapter-body">
+      <div class="council"><img src="${art.council}" alt="An empty meeting table with three empty chairs and blank name stands">
+        <div class="nameplates">${['Principal Okoro','Lily Tran','Mr. Hale'].map((name,i) => `<div class="nameplate ${row && row[0] === name ? 'active' : ''}">
+          ${name}${i === 1 ? '<small>Garden club president · Grade 8</small>' : i === 2 ? '<small>Groundskeeper</small>' : ''}</div>`).join('')}</div>
+        <div class="speech arrive" aria-live="polite"><p class="who">${row ? row[0] : 'Your researched plan'}</p>
+          <p class="c-question">${row ? row[1] : 'You have the floor.'}</p>
+          <div class="answer">${r && r.id === 5 ? `<div class="evidence-compare"><p><b>Your note</b>${esc(noteText(state.notes[r.target]))}</p>
+            <p><b>Source's real words</b>“${esc(source(r.target).passage)}”</p></div>` :
+            row ? esc(answerText(r)).replace(/\n/g,'<br><br>') : 'Your question, notes and plan are on the table. Which answers will they hold up?'}
+          </div></div></div>
+      ${slidesHtml()}<div class="actions"><span class="status">${r ? 'Question ' + (state.councilIndex+1) + ' of ' + ev.results.length : 'Your outline becomes three slides'}</span>
+        ${btn('next-question',state.councilIndex === ev.results.length-1 ? 'See the decision →' : 'Next question →')}</div></div>`;
+  }
+  function endingView() {
+    const ev = evaluate();
+    const text = ev.ending === 'homework' ? 'Approved, with homework: come back with ' +
+      ev.missing.map(r => COUNCIL[r.id][3]).join(' and ') + '.' : L[ev.ending];
+    return chapterHeader('Friday / The decision',ev.ending === 'approved' ? 'A plan the club can plant.' : 'Your research has a next chapter.') +
+      `<div class="chapter-body"><div class="ending"><img src="${ev.ending === 'approved' ? art.bloom : art.bed}"
+        alt="${ev.ending === 'approved' ? 'The garden full of milkweed and asters, with a monarch butterfly' : 'The raised bed still waiting for a plan'}">
+        <div><h3>${ev.ending === 'approved' ? 'Plan approved!' : ev.ending === 'homework' ? 'Approved, with homework' : 'Not yet.'}</h3>
+          <p>${esc(text)}</p>${ev.tooClose ? `<p class="reply" style="margin-top:16px">Principal Okoro: “${L.tooClose}”</p>` : ''}</div></div>
+        <div class="actions"><span class="status">Every answer has a trail.</span>${btn('show-trail','Trail back →')}</div></div>`;
+  }
+  function trailView() {
+    const ev = evaluate();
+    return chapterHeader('Your quest / Trail back','Follow an answer to its roots') + `<div class="chapter-body">
+      <div class="trail-back"><img src="${art.map}" alt="Your illustrated research trail">
+        <svg viewBox="0 0 1000 400" preserveAspectRatio="none" aria-label="Lines from council questions to research choices">${ev.results.map((r,i) => {
+          const x = 80 + i * (840 / Math.max(1,ev.results.length-1));
+          const path = `M ${x} 240 Q ${x} 150 ${(r.stop-.5)*200} 35`;
+          return `<g class="trace-path" role="button" tabindex="0" data-trace="${r.id}"
+            aria-label="Follow question ${r.id+1} to Stop ${r.stop}">
+            <circle class="trace-hit" cx="${x}" cy="200" r="22" fill="transparent"/>
+            <path d="${path}" fill="none" stroke="transparent" stroke-width="44"/>
+            <path class="route-ink" d="${path}" fill="none" stroke="${r.ok ? '#15803d' : '#b91c1c'}"
+              stroke-width="4" ${r.ok ? '' : 'stroke-dasharray="10 7"'}/></g>`;
+        }).join('')}</svg>
+        <div class="back-stops">${['1 Ask','2 Plan','3 Gather','4 Organize','5 Present'].map(s => `<span>${s}</span>`).join('')}</div>
+        <div class="connections" style="--questions:${ev.results.length}">${ev.results.map(r => `<button class="connection ${r.ok ? '' : 'missing'}" data-trace="${r.id}" id="trace-${r.id}">
+          <b>${r.ok ? '✓ Answer held' : '× Still missing'} · Stop ${r.stop}</b><span class="trace-full">${COUNCIL[r.id][1]}</span>
+          <span class="trace-mini">${r.ok ? '✓' : '×'} Stop ${r.stop}</span>
+          <span class="trace-short">${['Our garden question','Why milkweed?','Plants that grow here','Where facts came from','When flowers bloom','What the source said','Seed mix contents'][r.id]}</span>
+          <span class="trace-evidence">${esc(traceEvidence(r))}</span></button>`).join('')}</div>
+      </div><div class="actions">${btn('trail-rewind','Rewind to a stop',true,'')}${btn('trail-restart','Start over',true,'')}</div></div>`;
+  }
+  function packContent() {
+    let out = state.question === null ? '<p class="pack-empty">A question, four visits, and the notes that carry your plan. Your pack starts here.</p>' :
+      `<button class="pack-item" data-pack="question">Your question<small>${QUESTIONS[state.question]}</small></button>`;
+    for (const id of state.places) {
+      out += `<button class="pack-item" data-pack="${id}">${source(id).place}<small>${state.notes[id] ? 'Note saved' : 'Visit planned'}</small></button>`;
+    }
+    if (Object.keys(state.headings).length) out += '<button class="pack-item" data-pack="outline">Your outline<small>Three headings and your plan steps</small></button>';
+    return out;
+  }
+  function updatePack() {
+    $('pack-items').innerHTML = packContent();
+    $('pack-chip').innerHTML = `<img src="${art.marker}" alt=""><span>Research pack · ${
+      (state.question === null ? 0 : 1) + countNotes()}<small class="pack-local">Only on this device</small></span>`;
+    $('rewind').disabled = state.stop === 1;
+    const badges = [state.question === null ? '' : 'Question ' + 'ABCD'[state.question],
+      state.places.length ? state.places.length + ' visits' : '',countNotes() ? countNotes() + ' notes' : '',
+      Object.keys(state.headings).length ? 'Outline' : '',''];
+    [...document.querySelectorAll('.stop')].forEach((el,i) => {
+      el.classList.toggle('current',i+1 === state.stop);
+      el.querySelector('small').textContent = i+1 < state.stop ? badges[i] : '';
+      if (i === 1 && state.stop > 2) {
+        el.querySelector('small').innerHTML = state.places.map(id =>
+          `<img src="${art[id]}" alt="${source(id).place}" title="${source(id).place}">`).join('');
+      }
+    });
+    $('marker').style.left = (10 + (state.stop-1)*20) + '%';
+  }
+  function render(focusId) {
+    const old = focusId || (document.activeElement && document.activeElement.id);
+    $('chapter').innerHTML = state.stop === 1 ? askView() : state.stop === 2 ? planView() : state.stop === 3 ? gatherView() :
+      state.stop === 4 ? organizeView() : state.trail ? trailView() : state.finale ? endingView() : presentView();
+    updatePack();
+    how();
+    save();
+    requestAnimationFrame(drawTrail);
+    if (old && $(old) && !$(old).disabled) $(old).focus({preventScroll:true});
+  }
+  function move(stop) {
+    V.hush();
+    state.stop = stop;
+    state.way = null;
+    state.selected = null;
+    if (stop === 3) state.active = state.places[0];
+    if (stop === 5) {
+      state.councilIndex = -1;
+      state.finale = false;
+      state.trail = false;
+    }
+    render();
+    Curio.tone(440,.1,.04,'sine');
+    requestAnimationFrame(() => {
+      const el = $('chapter').querySelector('button:not(:disabled)');
+      if (el) el.focus({preventScroll:true});
+    });
+  }
+  function drawTrail() {
+    const map = document.querySelector('.trail-back');
+    if (!map) return;
+    const bounds = map.getBoundingClientRect();
+    const svg = map.querySelector('svg');
+    svg.setAttribute('viewBox',`0 0 ${bounds.width} ${bounds.height}`);
+    map.querySelectorAll('.trace-path').forEach(group => {
+      const id = Number(group.dataset.trace);
+      const result = evaluate().results.find(r => r.id === id);
+      const card = map.querySelector(`.connections [data-trace="${id}"]`).getBoundingClientRect();
+      const stop = map.querySelectorAll('.back-stops span')[result.stop-1].getBoundingClientRect();
+      const startX = card.left + card.width/2 - bounds.left;
+      const startY = card.top - bounds.top - 3;
+      const endX = stop.left + stop.width/2 - bounds.left;
+      const endY = stop.bottom - bounds.top + 4;
+      const path = `M ${startX} ${startY} Q ${startX} ${(startY+endY)/2} ${endX} ${endY}`;
+      group.querySelectorAll('path').forEach(el => el.setAttribute('d',path));
+      group.querySelector('circle').setAttribute('cx',startX);
+      group.querySelector('circle').setAttribute('cy',Math.max(24,startY-24));
+    });
+  }
+  addEventListener('resize',drawTrail);
+  let returnFocus = null;
+  function openDialog(title, content, actions) {
+    if (!$('dialog').open) returnFocus = document.activeElement;
+    $('dialog-title').textContent = title;
+    $('dialog-content').innerHTML = content;
+    $('dialog-actions').innerHTML = actions || btn('dialog-close','Back to quest',true,'');
+    const instruction = document.createElement('p');
+    instruction.className = 'dialog-hint';
+    instruction.textContent = $('dialog-actions').querySelector('#reset-yes') ?
+      'Tap Yes to clear those choices, or No to keep them.' : $('dialog-content').querySelector('[data-rewind]') ?
+      'Tap a stop, or tap Back to quest.' : $('dialog-content').querySelector('[data-pack]') ?
+      'Tap a pack item, or tap Back to quest.' : 'Tap Back to quest to return.';
+    $('dialog-content').append(instruction);
+    V.hush();
+    $('dialog').showModal();
+    const first = $('dialog-content').querySelector('button:not(:disabled)') ||
+      $('dialog-actions').querySelector('button:not(:disabled)');
+    if (first) first.focus({preventScroll:true});
+  }
+  function closeDialog() {
+    $('dialog').close();
+    if (returnFocus && returnFocus.isConnected && !returnFocus.disabled) returnFocus.focus({preventScroll:true});
+  }
+  function confirmReset(stop) {
+    const title = stop === 0 ? 'Start the whole quest over?' : 'Go back to ' + ['','Ask','Plan','Gather','Organize'][stop] + '?';
+    openDialog(title,`<p>${stop === 0 ? 'Your whole quest will be cleared.' : 'Your choices after this stop will be cleared.'}</p>`,
+      btn('reset-no','No, keep my quest',true,'') + `<button class="btn primary" id="reset-yes" data-reset="${stop}">Yes</button>`);
+  }
+  function rewindMenu() {
+    openDialog('Rewind to a stop',`<p>Choose the stop to reopen. You will confirm before anything is cleared.</p>
+      ${['Ask','Plan','Gather','Organize'].slice(0,state.stop-1).map((s,i) =>
+        `<button class="btn" data-rewind="${i+1}">${i+1} ${s}</button>`).join('')}`);
+  }
+  function rewindTo(stop) {
+    V.hush();
+    if (stop === 0) {
+      state = fresh();
+      try {localStorage.removeItem('rq-run');} catch {}
+      closeDialog();
+      render('question-0');
+      return;
+    }
+    state.stop = stop;
+    if (stop < 2) state.places = [];
+    if (stop < 3) state.notes = {};
+    if (stop < 4) {
+      state.headings = {};
+      state.steps = [];
+    }
+    state.active = state.places[0] || null;
+    state.way = null;
+    state.selected = null;
+    state.councilIndex = -1;
+    state.finale = false;
+    state.trail = false;
+    closeDialog();
+    render();
+    const next = $('chapter').querySelector('button:not(:disabled)');
+    if (next) next.focus({preventScroll:true});
+  }
+  function openPack(key) {
+    if (key === 'question') openDialog('Your question',`<p>${QUESTIONS[state.question]}</p><p class="reply">${REPLIES[state.question]}</p>`);
+    else if (key === 'outline') openDialog('Your outline',slidesHtml());
+    else if (state.stop === 3) {
+      if ($('dialog').open) closeDialog();
+      V.hush();
+      state.active = key;
+      state.way = null;
+      render('pack-chip');
+    } else if (state.notes[key]) openDialog(source(key).place,noteHtml(state.notes[key],true));
+    else openDialog(source(key).place,`<img src="${art[key]}" alt="${source(key).place}" style="width:100%;max-height:260px;object-fit:cover">
+      <p>${source(key).kind} · a planned visit</p>`);
+  }
+  function trace(id) {
+    const r = evaluate().results.find(r => r.id === id);
+    const note = state.notes[r.target];
+    let content = `<p><b>${COUNCIL[id][1]}</b></p><p>${r.ok ? 'Your answer held up.' : 'This answer was still missing.'} Follow it to Stop ${r.stop}.</p>
+      <p class="reply">${esc(traceEvidence(r))}</p>`;
+    if (r.stop === 1) content += `<p class="note-sheet">${QUESTIONS[state.question]}</p>`;
+    if (note) content += noteHtml(note,true);
+    if (id === 2 || id === 4 || id === 6) content += `<p>Plan steps: ${state.steps.map(i => PLAN[i]).join('; ')}</p>`;
+    if (!note && r.stop !== 1) content += '<p>No matching note in the outline.</p>';
+    openDialog('Trail back · ' + ['','Ask','Plan','Gather','Organize','Present'][r.stop],content);
+  }
+  function traceEvidence(r) {
+    const note = state.notes[r.target];
+    if (r.id === 0 && state.question !== 1) return 'Your question: ' + QUESTIONS[state.question];
+    if (r.id === 6) return 'Your plan includes Butterfly Blend; its ingredients were not given.';
+    if (!note) return 'Your visits did not bring back this evidence.';
+    if (r.id === 3) return note.way === 'copy' ? 'Exact words saved without quote marks.' :
+      note.withSource ? 'You kept the source with this note.' : 'You saved the note without its source.';
+    if (r.id === 5) return 'Compare the meaning of your note with the source.';
+    if (!inOutline(r.target)) return source(r.target).place + ': placed in Not needed.';
+    if (r.id === 0 || r.id === 1) return source(r.target).place + ': ' + HEADINGS[state.headings[r.target]] + '.';
+    return source(r.target).place + ' + ' +
+      (state.steps.includes(r.id === 2 ? 0 : 1) ? PLAN[r.id === 2 ? 0 : 1] : 'the matching plan step was not selected') + '.';
+  }
+  function highlightTrace(id) {
+    const map = document.querySelector('.trail-back');
+    if (!map) return;
+    const result = evaluate().results.find(r => r.id === id);
+    map.classList.toggle('tracing',!!result);
+    map.querySelectorAll('[data-trace]').forEach(el => el.classList.toggle('active',Number(el.dataset.trace) === id));
+    map.querySelectorAll('.back-stops span').forEach((el,i) => el.classList.toggle('active',!!result && result.stop === i+1));
+  }
+  for (const name of ['pointerover','focusin']) document.addEventListener(name,event => {
+    const route = event.target.closest('[data-trace]');
+    if (route) highlightTrace(Number(route.dataset.trace));
+  });
+  for (const name of ['pointerout','focusout']) document.addEventListener(name,event => {
+    if (!event.target.closest('[data-trace]')) return;
+    const route = event.relatedTarget?.closest('[data-trace]') ||
+      (name === 'pointerout' ? document.activeElement.closest('[data-trace]') : null);
+    highlightTrace(route ? Number(route.dataset.trace) : null);
+  });
+  function selectQuestion(i) {
+    V.hush();
+    state.question = i;
+    document.querySelectorAll('.question').forEach(el => el.setAttribute('aria-pressed',Number(el.dataset.question) === i));
+    $('ask-reply').textContent = REPLIES[i];
+    $('ask-next').disabled = false;
+    updatePack();
+    save();
+    $('hint').textContent = L.continueAsk;
+    V.say(REPLIES[i],{valid:() => state.stop === 1 && state.question === i});
+  }
+  function pickPlace(id, el) {
+    const at = state.places.indexOf(id);
+    if (at < 0 && state.places.length === 4) {
+      $('hint').textContent = 'Four visits. Unpick one first.';
+      el.classList.remove('shake');
+      void el.offsetWidth;
+      el.classList.add('shake');
+      Curio.tone(180,.08,.04);
+      return;
+    }
+    if (at >= 0) state.places.splice(at,1);
+    else state.places.push(id);
+    el.setAttribute('aria-pressed',at < 0);
+    el.querySelector('.pick').textContent = at < 0 ? '✓' : '+';
+    $('plan-go').disabled = state.places.length !== 4;
+    $('visit-count').textContent = state.places.length + ' of 4 visits in your plan';
+    updatePack();
+    how();
+    save();
+  }
+  function chooseWay(way) {
+    V.dropQueued();
+    state.way = way;
+    document.querySelectorAll('.way').forEach(el => el.setAttribute('aria-pressed',el.dataset.way === way));
+    $('save-note').disabled = false;
+    $('save-source').disabled = false;
+    how();
+    save();
+  }
+  function saveNote(withSource) {
+    if (state.way === null || state.notes[state.active]) return;
+    state.notes[state.active] = {id:state.active,way:state.way,withSource};
+    state.way = null;
+    V.dropQueued();
+    render('redo');
+    const sheet = $('chapter').querySelector('.note-sheet');
+    if (sheet) sheet.classList.add('saved-flash');
+    Curio.tone(620,.12,.05);
+  }
+  function placeNote(i) {
+    if (!state.selected) {
+      hint('Tap a note card first, then tap the heading where it belongs.');
+      return;
+    }
+    const selected = state.selected;
+    state.headings[selected] = i;
+    state.selected = null;
+    $('note-' + selected).querySelector('.where').textContent = HEADINGS[i];
+    document.querySelectorAll('.note-card').forEach(el => el.setAttribute('aria-pressed','false'));
+    document.querySelectorAll('.heading').forEach((el,j) => {
+      el.classList.remove('drop-over');
+      const detail = el.querySelector('small');
+      detail.textContent = state.places.filter(id => state.headings[id] === j)
+        .map(id => source(id).place).join(' · ') || 'Place a note here';
+      detail.title = detail.textContent;
+    });
+    $('organize-done').disabled = !(state.places.every(id => Number.isInteger(state.headings[id])) && state.steps.length > 0);
+    document.querySelector('.actions .status').textContent = Object.keys(state.headings).length + ' of 4 notes placed';
+    updatePack();
+    how();
+    save();
+    Curio.tone(540,.08,.04);
+  }
+  function nextCouncil() {
+    V.hush();
+    state.councilIndex++;
+    const ev = evaluate();
+    if (state.councilIndex >= ev.results.length) {
+      state.finale = true;
+      render('show-trail');
+      V.say(ev.ending,{valid:() => state.finale && !state.trail});
+      if (ev.tooClose) V.say('tooClose',{valid:() => state.finale && !state.trail});
+      if (ev.ending === 'approved') Curio.yes();
+    } else {
+      const nextButton = $('next-question');
+      render('next-question');
+      if (nextButton) {
+        nextButton.textContent = $('next-question').textContent;
+        $('next-question').replaceWith(nextButton);
+        nextButton.focus({preventScroll:true});
+      }
+      const index = state.councilIndex;
+      V.say(L.council[ev.results[index].id],{valid:() => state.councilIndex === index && !state.finale});
+    }
+  }
+  document.addEventListener('click',event => {
+    const b = event.target.closest('button, .trace-path');
+    if (!b || b.disabled) return;
+    if (!['motion','sound','read'].includes(b.id)) Curio.tone(370,.035,.018,'sine');
+    if (b.dataset.question !== undefined) return selectQuestion(Number(b.dataset.question));
+    if (b.dataset.place) return pickPlace(b.dataset.place,b);
+    if (b.dataset.way !== undefined) return chooseWay(b.dataset.way);
+    if (b.dataset.visit) {
+      V.hush();
+      state.active = b.dataset.visit;
+      state.way = null;
+      return render(b.id);
+    }
+    if (b.dataset.note) {
+      state.selected = state.selected === b.dataset.note ? null : b.dataset.note;
+      document.querySelectorAll('.note-card').forEach(el => el.setAttribute('aria-pressed',el.dataset.note === state.selected));
+      how();
+      save();
+      return;
+    }
+    if (b.dataset.heading !== undefined) return placeNote(Number(b.dataset.heading));
+    if (b.dataset.step !== undefined) {
+      const i = Number(b.dataset.step);
+      state.steps = state.steps.includes(i) ? state.steps.filter(n => n !== i) : [...state.steps,i];
+      document.querySelectorAll('[data-step]').forEach(el => {
+        el.setAttribute('aria-pressed',state.steps.includes(Number(el.dataset.step)));
+        el.disabled = state.steps.length === 3 && !state.steps.includes(Number(el.dataset.step));
+      });
+      const ready = state.places.every(id => Number.isInteger(state.headings[id])) && state.steps.length > 0;
+      $('organize-done').disabled = !ready;
+      document.querySelector('.steps-label span').textContent = state.steps.length === 3 ?
+        'Three steps chosen. Unpick one to change it.' : state.steps.length + ' of 3 chosen';
+      how();
+      save();
+      return;
+    }
+    if (b.dataset.pack) return openPack(b.dataset.pack);
+    if (b.dataset.trace !== undefined) return trace(Number(b.dataset.trace));
+    if (b.dataset.rewind) {
+      closeDialog();
+      return confirmReset(Number(b.dataset.rewind));
+    }
+    if (b.dataset.reset !== undefined) return rewindTo(Number(b.dataset.reset));
+    const actions = {
+      'ask-next':() => move(2), 'plan-go':() => move(3), 'gather-next':() => move(4),
+      'organize-done':() => move(5), 'save-note':() => saveNote(false), 'save-source':() => saveNote(true),
+      redo:() => {
+        delete state.notes[state.active];
+        state.way = null;
+        render('way-0');
+      },
+      'next-question':nextCouncil,
+      'show-trail':() => {
+        V.hush();
+        state.trail = true;
+        render('trace-0');
+      },
+      rewind:rewindMenu, 'trail-rewind':rewindMenu,
+      restart:() => confirmReset(0), 'trail-restart':() => confirmReset(0),
+      'pack-chip':() => openDialog('Your research pack',packContent(),
+        btn('dialog-rewind','Rewind',state.stop > 1,'') + btn('dialog-restart','Start over',true,'') + btn('dialog-close','Back to quest',true,'')),
+      'dialog-rewind':() => {
+        closeDialog();
+        rewindMenu();
+      },
+      'dialog-restart':() => {
+        closeDialog();
+        confirmReset(0);
+      },
+      'dialog-close':closeDialog, 'reset-no':closeDialog
+    };
+    if (actions[b.id]) actions[b.id]();
+  });
+  document.addEventListener('keydown',event => {
+    if (!event.target.matches('.trace-path') || !['Enter',' '].includes(event.key)) return;
+    event.preventDefault();
+    trace(Number(event.target.dataset.trace));
+  });
+  let dragged = null;
+  let pointerDrag = null;
+  document.addEventListener('dragstart',event => {
+    const card = event.target.closest('[data-note]');
+    if (!card) return;
+    dragged = card.dataset.note;
+    state.selected = dragged;
+    event.dataTransfer.setData('text/plain',dragged);
+    event.dataTransfer.effectAllowed = 'move';
+  });
+  document.addEventListener('dragover',event => {
+    const heading = event.target.closest('[data-heading]');
+    if (!heading) return;
+    event.preventDefault();
+    heading.classList.add('drop-over');
+  });
+  document.addEventListener('dragleave',event => event.target.closest('[data-heading]')?.classList.remove('drop-over'));
+  document.addEventListener('drop',event => {
+    const heading = event.target.closest('[data-heading]');
+    if (!heading || !dragged) return;
+    event.preventDefault();
+    state.selected = dragged;
+    dragged = null;
+    placeNote(Number(heading.dataset.heading));
+  });
+  document.addEventListener('pointerdown',event => {
+    const card = event.target.closest('[data-note]');
+    if (card) pointerDrag = {id:card.dataset.note,x:event.clientX,y:event.clientY};
+  });
+  document.addEventListener('pointerup',event => {
+    if (!pointerDrag) return;
+    const drag = pointerDrag;
+    pointerDrag = null;
+    if (Math.hypot(event.clientX-drag.x,event.clientY-drag.y) < 8) return;
+    const heading = document.elementFromPoint(event.clientX,event.clientY)?.closest('[data-heading]');
+    if (heading) {
+      state.selected = drag.id;
+      placeNote(Number(heading.dataset.heading));
+    }
+  });
+  $('dialog').addEventListener('cancel',() => {
+    if (returnFocus && returnFocus.isConnected) requestAnimationFrame(() => returnFocus.focus({preventScroll:true}));
+  });
+  Curio.init({clips:"voice:*",rate:.9});
+  window.__tool = {
+    get state() {return state;}, setMode:() => {}, allLines:V.allLines, vlog:V.log,
+    get vq() {return V.queue;}, evaluate, render, rewindTo, source, noteText,
+    load:run => {
+      V.hush();
+      state = {...fresh(),...run};
+      render();
+    }
+  };
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+{
+  "states": [
+    {
+      "name": "call-sent",
+      "steps": [
+        {
+          "click": "#push-north"
+        }
+      ],
+      "keep": [
+        "#run",
+        "#hint",
+        "#strip"
+      ]
+    },
+    {
+      "name": "paused-step",
+      "steps": [
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#step"
+        }
+      ],
+      "keep": [
+        "#step",
+        "#hint"
+      ]
+    },
+    {
+      "name": "chip-picker",
+      "steps": [
+        {
+          "click": ".rb-card"
+        }
+      ],
+      "keep": [
+        "#picker",
+        "#options",
+        "#close-picker"
+      ]
+    },
+    {
+      "name": "job-report",
+      "steps": [
+        {
+          "click": "#m-jobs"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#skip"
+        }
+      ],
+      "keep": [
+        "#report",
+        "#run",
+        "#strip"
+      ]
+    },
+    {
+      "name": "unsafe-report",
+      "steps": [
+        {
+          "click": "#m-jobs"
+        },
+        {
+          "click": "#job-3"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#skip"
+        }
+      ],
+      "keep": [
+        "#report",
+        "#run"
+      ]
+    },
+    {
+      "name": "replay",
+      "steps": [
+        {
+          "click": "#m-jobs"
+        },
+        {
+          "click": "#job-3"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#skip"
+        },
+        {
+          "click": ".unsafe-line"
+        },
+        {
+          "wait": 1800
+        }
+      ],
+      "keep": [
+        "#back-report",
+        "#strip"
+      ]
+    },
+    {
+      "name": "rush-hour",
+      "steps": [
+        {
+          "click": "#m-jobs"
+        },
+        {
+          "click": "#job-4"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#skip"
+        }
+      ],
+      "keep": [
+        "#report",
+        "#run"
+      ]
+    },
+    {
+      "name": "ambulance",
+      "steps": [
+        {
+          "click": "#m-jobs"
+        },
+        {
+          "click": "#job-5"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#skip"
+        }
+      ],
+      "keep": [
+        "#report",
+        "#run"
+      ]
+    },
+    {
+      "name": "six-rules",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-jobs"
+        },
+        {
+          "js": "__tool.loadRules([...__tool.DEFAULT,{light:'ANY',extras:['ambulance','30'],action:'KEEP'},{light:null,extras:[],action:null}])"
+        }
+      ],
+      "keep": [
+        "#run",
+        "#add",
+        "#hint"
+      ]
+    },
+    {
+      "name": "all-condition-choices",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": ".rb-card"
+        },
+        {
+          "click": "#slot-tabs [data-slot=extra0]"
+        }
+      ],
+      "keep": [
+        "#options",
+        "#close-picker"
+      ]
+    },
+    {
+      "name": "zero-rules-report",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#m-jobs"
+        },
+        {
+          "js": "__tool.loadRules([])"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#skip"
+        }
+      ],
+      "keep": [
+        "#report",
+        "#run"
+      ]
+    }
+  ]
+}

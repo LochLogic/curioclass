@@ -1,0 +1,129 @@
+{
+  "house_style": "Soft realistic gouache and colored-pencil aquarium field-trip illustration for young children. Rich luminous teal water, warm highlights, tactile painted detail, readable clear silhouettes, layered foreground, middle and background, light from upper left. No people, faces, body parts, text, letters, numbers, logos, watermark or border.",
+  "assets": [
+    {
+      "name": "jellyfish",
+      "prompt": "Moon jellyfish glowing in a deep blue public aquarium tank, translucent bells with visible four-lobed centers and fine tentacles. Main jellyfish centered and fully visible.",
+      "aspect": "16:10",
+      "width": 960,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "octopus",
+      "prompt": "One red octopus pressed against public aquarium glass, eight distinct spreading arms with suckers, central mantle and two eyes, complete animal centered and fully in frame.",
+      "aspect": "16:10",
+      "width": 960,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "revision": "Corrected seven visible arms to eight distinct, countable arms. Inspected full size and counted eight separate tips.",
+      "revision_prompt": "Keep six lateral arms; replace the single bottom arm with two separately visible bottom arms, each with its own curled tip, separated by blue water to the central crown. Exactly eight arms. Keep the centered animal, aquarium glass, red color and realistic gouache/pencil style. No people or text."
+    },
+    {
+      "name": "turtle",
+      "prompt": "A green sea turtle swimming toward the viewer in a public aquarium, broad patterned shell, two front flippers and two hind flippers, small head raised, entire animal centered.",
+      "aspect": "16:10",
+      "width": 960,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "shark",
+      "prompt": "One shark gliding from left to right above a curved glass aquarium tunnel, whole animal with distinct tail centered, clear blue water with light ripples, empty tunnel.",
+      "aspect": "16:10",
+      "width": 960,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "seahorse",
+      "prompt": "Two anatomically recognizable seahorses holding seagrass with curled tails in a public aquarium, both centered, tiny dorsal fins, delicate snouts, sunlit gold and green details.",
+      "aspect": "16:10",
+      "width": 960,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "penguin",
+      "prompt": "Four penguins standing on wet rocks beside clear water in a public aquarium penguin habitat, all four fully visible and centered, black and white plumage, subtle reflections.",
+      "aspect": "16:10",
+      "width": 960,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "entrance",
+      "prompt": "Entrance to a public aquarium with a big blue arch, blank sign above doors and fish shapes on glass, sunny day, beautiful empty forecourt and leafy planting.",
+      "aspect": "16:10",
+      "width": 960,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "classroom",
+      "prompt": "Empty elementary classroom side view. Left wall is clear pale wall with blank whiteboard. Windows with blinds at right, warm wooden floor, three rows of small chairs at far right. Open central floor for overlays. All surfaces blank.",
+      "aspect": "16:9",
+      "width": 960,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "revision": "Removed the baked-in wooden chairs so the three rows of interactive blue chair cutouts alone show direction.",
+      "revision_prompt": "Remove all wooden chairs, preserving the room, floor, light and blank whiteboard. No people or text."
+    },
+    {
+      "name": "screen-up",
+      "prompt": "A pull-down projector screen on a metal wall bracket, rolled fully up into its slim housing, small pull cord, whole object centered on flat pure green #00FF00 background. No cast shadow.",
+      "aspect": "3:4",
+      "width": 400,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "screen-down",
+      "prompt": "A pull-down projector screen on a metal wall bracket pulled down, blank warm white surface and dark narrow border, whole object centered on flat pure green #00FF00 background. No cast shadow.",
+      "aspect": "3:4",
+      "width": 400,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "projector",
+      "prompt": "A classroom projector on a small rolling cart, strict side view facing left, lens pointing left, vent slots and buttons and cable details, all wheels visible, on flat pure green #00FF00 background. No cast shadow.",
+      "aspect": "1:1",
+      "width": 400,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "chair",
+      "prompt": "A small blue school chair, strict side view facing left, curved blue seat and backrest, four slim metal legs, full object centered on flat pure green #00FF00 background. No cast shadow.",
+      "aspect": "1:1",
+      "width": 400,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex"
+    }
+  ]
+}

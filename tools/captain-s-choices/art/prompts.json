@@ -1,36 +1,91 @@
 {
-  "house_style": "Soft painterly illustration for a high school sports leadership story, atmospheric light, rich but calm color, loose brush texture, an empty scene. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "house_style": "Sophisticated soft gouache sports editorial illustration for high school students. Rich natural color, subtle colored-pencil texture, cinematic directional light, convincing materials and depth. Quiet, reflective mood. No people, faces, body parts, text, letters, numbers or logos.",
   "assets": [
     {
       "name": "field-day",
-      "prompt": "An empty grass sports field with orange cones in a line, a metal team bench and a water cooler, golden late afternoon light.",
+      "prompt": "Empty grass ultimate field, orange cones marking the end zone lines, white flying disc resting on foreground grass, metal team bench at right. Golden late afternoon light from upper left, wooded hills and open sky beyond. Expansive landscape, detailed foreground grass, atmospheric middle distance.",
       "aspect": "16:9",
-      "cutout": false,
-      "width": 1600,
-      "quality": 70,
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "width": 1400,
+      "quality": 76,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex built-in image tool)",
+      "review": "ok: inspected finished WebP, cutouts on magenta, no people or lettering"
     },
     {
       "name": "field-night",
-      "prompt": "An empty grass field under bright stadium lights at night, a sideline bench, dew sparkling on the grass.",
+      "prompt": "Empty grass ultimate field beneath bright stadium lights at night, sideline bench, orange end zone cones, dew sparkling on foreground grass, deep teal night sky. Light beams from upper left, atmospheric distant trees. Expansive cinematic landscape.",
       "aspect": "16:9",
-      "cutout": false,
-      "width": 1600,
-      "quality": 70,
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "width": 1400,
+      "quality": 76,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex built-in image tool)",
+      "review": "ok: inspected finished WebP, cutouts on magenta, no people or lettering"
     },
     {
       "name": "bus",
-      "prompt": "The inside of an empty yellow school bus, rows of green seats, warm evening light through the windows.",
+      "prompt": "Interior of an empty yellow school bus, rows of worn green vinyl seats, warm evening light through windows on the left, perspective toward the back, reflective quiet mood. Detailed stitching, metal frames, amber window reflections.",
       "aspect": "16:9",
-      "cutout": false,
-      "width": 1600,
-      "quality": 70,
-      "sd": "The inside of a completely empty school bus seen from the back row looking toward the front, two rows of dark green seats with nobody in them, warm evening light through the side windows, a plain interior with no signs, deserted.",
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "width": 1200,
+      "quality": 76,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex built-in image tool)",
+      "review": "ok: inspected finished WebP, cutouts on magenta, no people or lettering"
+    },
+    {
+      "name": "phone",
+      "prompt": "Direct overhead view of a coral-cased smartphone lying vertically on a wooden locker room bench, with a rolled cream sports towel along the right edge. The phone is large: its blank flat dark slate screen occupies exactly the central 64 percent of image width, from x 18 to 82 percent, and 80 percent of image height, from y 10 to 90 percent. Screen and bezel are straight and face the viewer squarely. Slim coral case, restrained wood grain and towel stitching. Soft gouache sports editorial illustration, visible brushwork and colored-pencil texture, warm upper-left light. Entire phone visible, no people, hands, text, letters, numbers or logos.",
+      "aspect": "3:4",
+      "width": 700,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex built-in image tool)",
+      "review": "Cold review: redrawn with built-in imagegen; finished 700x933 WebP inspected at desktop, compact and phone sizes. No people or lettering."
+    },
+    {
+      "name": "jersey-kestrel",
+      "prompt": "Front view of an empty coral sports jersey on a simple hanger, white collar and sleeve trim, large completely blank front panel. Fabric folds, stitched seams, soft side light, whole garment visible. Isolated against flat pure green #00FF00 background.",
+      "aspect": "3:4",
+      "width": 240,
+      "quality": 80,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex built-in image tool)",
+      "despill": true,
+      "holes": true,
+      "review": "ok: inspected finished WebP, cutouts on magenta, no people or lettering"
+    },
+    {
+      "name": "jersey-opponent",
+      "prompt": "Front view of an empty slate grey sports jersey on a simple hanger, dark collar and sleeve trim, large completely blank front panel. Fabric folds, stitched seams, soft side light, whole garment visible. Isolated against flat pure green #00FF00 background.",
+      "aspect": "3:4",
+      "width": 240,
+      "quality": 80,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex built-in image tool)",
+      "despill": true,
+      "holes": true,
+      "review": "ok: inspected finished WebP, cutouts on magenta, no people or lettering"
+    },
+    {
+      "name": "coach-board",
+      "prompt": "A coach clipboard with a blank cream sheet of paper, silver metal clip, a silver whistle on a dark looped lanyard beside it. Rich wood grain, shaded paper, convincing brushed metal highlights. Whole objects visible. Isolated against flat pure green #00FF00 background.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 80,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex built-in image tool)",
+      "despill": true,
+      "holes": true,
+      "review": "ok: inspected finished WebP, cutouts on magenta, no people or lettering"
     }
   ]
 }

@@ -1,0 +1,271 @@
+[
+  {
+    "slug": "titanic",
+    "title": "The Titanic, 1912",
+    "subtitle": "Lifeboats and competing causes",
+    "claim": "The Titanic disaster was so deadly mainly because the ship did not carry enough lifeboats.",
+    "plain": "Many people died. The main reason: too few lifeboats.",
+    "cause": "Too few lifeboats",
+    "effect": "the deadly Titanic disaster",
+    "clues": [
+      {
+        "id": "T1",
+        "name": "People and seats",
+        "text": "People on board: 2,223. Lifeboat seats: 1,176.",
+        "source": "table, US Senate report, 1912",
+        "key": 0,
+        "reason": "there were seats for only about half the people.",
+        "keywords": [
+          "people",
+          "seats",
+          "lifeboat"
+        ]
+      },
+      {
+        "id": "T2",
+        "name": "Legal requirements",
+        "text": "the ship was fulfilling all the requirements of the British Board of Trade.",
+        "source": "US Senate report",
+        "key": 0,
+        "reason": "the rules allowed too few boats, so the shortage was legal; it points to a deeper cause, the rules.",
+        "keywords": [
+          "requirements",
+          "trade",
+          "rules"
+        ]
+      },
+      {
+        "id": "T3",
+        "name": "Saved and lost",
+        "text": "Saved: 706. Lost: 1,517.",
+        "source": "table, US Senate report",
+        "key": 2,
+        "reason": "706 is fewer than the 1,176 seats, so boats left with empty seats; how the boats were filled mattered too.",
+        "keywords": [
+          "saved",
+          "lost",
+          "706",
+          "1517"
+        ]
+      },
+      {
+        "id": "T4",
+        "name": "Ice warnings",
+        "text": "On the third day out ice warnings were received by the wireless operators on the Titanic.",
+        "source": "US Senate report",
+        "key": 2,
+        "reason": "another cause, why the ship hit the ice at all.",
+        "keywords": [
+          "ice",
+          "warnings",
+          "wireless"
+        ]
+      },
+      {
+        "id": "T5",
+        "name": "Ship speed",
+        "text": "the ship was going not less than 21 knots and the ship's speed was not reduced.",
+        "source": "US Senate report",
+        "key": 2,
+        "reason": "another cause of the collision.",
+        "keywords": [
+          "speed",
+          "knots",
+          "reduced"
+        ]
+      },
+      {
+        "id": "T6",
+        "name": "Recommendation",
+        "text": "There should be enough lifeboats for all on board.",
+        "source": "US Senate report, recommendations",
+        "key": 0,
+        "reason": "the investigators saw lifeboats as a key problem to fix.",
+        "keywords": [
+          "lifeboats",
+          "recommendation",
+          "board"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "chicago",
+    "title": "The Great Chicago Fire, 1871",
+    "subtitle": "A familiar story. An uncertain origin.",
+    "claim": "Mrs. O'Leary's cow did not start the Great Chicago Fire. The cow story came from a newspaper, and the real cause is unknown.",
+    "plain": "The famous cow story is not true. Nobody knows how the fire started.",
+    "cause": "A newspaper story",
+    "effect": "people believing the cow story",
+    "clues": [
+      {
+        "id": "G1",
+        "name": "Inquiry finding",
+        "text": "we are unable to determine whether a spark from a chimney or a person started it.",
+        "source": "Board of Police and Fire Commissioners, 1871 inquiry",
+        "key": 0,
+        "reason": "officials at the time could not find the cause.",
+        "keywords": [
+          "inquiry",
+          "determine",
+          "officials"
+        ]
+      },
+      {
+        "id": "G2",
+        "name": "Reporter account",
+        "text": "A reporter, Michael Ahern, later said that he and other reporters made up the cow story. Accounts disagree about the year he said it.",
+        "source": "later accounts",
+        "key": 0,
+        "reason": "it supports the claim, but it is one person's statement made many years later, so it is weaker than G1.",
+        "keywords": [
+          "reporter",
+          "ahern",
+          "invented"
+        ]
+      },
+      {
+        "id": "G3",
+        "name": "Barn location",
+        "text": "The fire started in or near the O'Leary family's barn on DeKoven Street.",
+        "source": "Chicago History Museum / Northwestern University",
+        "key": 3,
+        "reason": "it explains why people blamed the cow, but it fits both stories.",
+        "keywords": [
+          "barn",
+          "dekoven",
+          "location"
+        ]
+      },
+      {
+        "id": "G4",
+        "name": "After-fire photograph",
+        "text": "Chicago after the fire, 1871.",
+        "source": "photograph, AIC 59281",
+        "key": 3,
+        "reason": "it shows the damage, not how the fire began.",
+        "keywords": [
+          "photo",
+          "photograph",
+          "damage",
+          "ruins"
+        ]
+      },
+      {
+        "id": "G5",
+        "name": "Council resolution",
+        "text": "In 1997, the Chicago City Council passed a resolution clearing Mrs. O'Leary and her cow.",
+        "source": "Chicago City Council, 1997",
+        "key": 3,
+        "reason": "a vote 126 years later is an opinion, not new evidence.",
+        "keywords": [
+          "council",
+          "resolution",
+          "1997"
+        ]
+      },
+      {
+        "id": "G6",
+        "name": "Human cost",
+        "text": "About 300 people died, and about 100,000 people lost their homes.",
+        "source": "Encyclopedia of Chicago",
+        "key": 3,
+        "reason": "it shows how serious the fire was, not its cause.",
+        "keywords": [
+          "died",
+          "homes",
+          "homeless"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "frontier",
+    "title": "The Frontier, 1893",
+    "subtitle": "An explanation with limits",
+    "claim": "The existence of an area of free land, its continuous recession, and the advance of American settlement westward, explain American development. The most important effect of the frontier has been in the promotion of democracy.",
+    "plain": "Turner says: there was open land in the West, and settlers kept moving west. This is why America grew the way it did, and why it became more democratic.",
+    "cause": "Land and westward settlement",
+    "effect": "American development and democracy",
+    "clues": [
+      {
+        "id": "F1",
+        "name": "Census line",
+        "text": "there can hardly be said to be a frontier line.",
+        "source": "1890 Census, quoted by Turner",
+        "key": 3,
+        "reason": "it tells why Turner wrote in 1893, not whether he was right.",
+        "keywords": [
+          "census",
+          "line",
+          "1890"
+        ]
+      },
+      {
+        "id": "F2",
+        "name": "Removal Act",
+        "text": "An Act to provide for an exchange of lands with the Indians residing in any of the states or territories, and for their removal west of the river Mississippi.",
+        "source": "Indian Removal Act, 1830, its title",
+        "key": 1,
+        "reason": "the land was not free; Native nations lived there, and the US government removed many of them by law and by force.",
+        "keywords": [
+          "removal",
+          "act",
+          "native"
+        ]
+      },
+      {
+        "id": "F3",
+        "name": "Homestead Act",
+        "text": "A settler could claim 160 acres of public land by living on it and farming it for five years.",
+        "source": "Homestead Act, 1862",
+        "key": 0,
+        "reason": "settlement westward was real, and the government pushed it.",
+        "keywords": [
+          "homestead",
+          "acres",
+          "farming"
+        ]
+      },
+      {
+        "id": "F4",
+        "name": "Wyoming vote",
+        "text": "In 1869, Wyoming Territory gave women the right to vote, before any state did.",
+        "source": "Wyoming State Library, 1869 law",
+        "key": 0,
+        "reason": "a western place widened democracy.",
+        "keywords": [
+          "wyoming",
+          "women",
+          "vote"
+        ]
+      },
+      {
+        "id": "F5",
+        "name": "Voting barriers",
+        "text": "In 1890, Mississippi's new constitution added a poll tax and a literacy test. They were used to stop Black men from voting.",
+        "source": "Mississippi Department of Archives and History",
+        "key": 2,
+        "reason": "in Turner's time, democracy was shrinking for many Americans, so the frontier was not the whole story.",
+        "keywords": [
+          "mississippi",
+          "tax",
+          "literacy"
+        ]
+      },
+      {
+        "id": "F6",
+        "name": "House of Burgesses",
+        "text": "In 1619, colonists in Virginia met as an elected assembly, the House of Burgesses.",
+        "source": "National Park Service, Historic Jamestowne",
+        "key": 2,
+        "reason": "self-government in America had older roots in the East.",
+        "keywords": [
+          "burgesses",
+          "assembly",
+          "virginia"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,1514 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Recorder Concert Rehearsal · Curio Class</title>
+<meta name="description"
+  content="Lead four animal recorder players: listen, give a precise rehearsal note, then join their concert. Grades 3 to 5. Works offline.">
+<!--
+Recorder Concert Rehearsal, Curio Class. Grades 3 to 5 music: MU:Pr5, MU:Pr6, MU:Re9.
+Traditional public-domain tunes; recorder guidance: American Recorder Society, Yamaha and van Hauwe.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. One offline file; no recording, microphone, or network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f7f6ea; --ink:#1f2414; --muted:#5c6150; --line:#cbd0b6; --focus:#a33a2a;
+  --brand:#5a6b14; --btn:#4e5d11; --btn-line:#9fa97c; --head-ink:#fff; --panel:#fffef7;
+}
+body { overflow-x:hidden; }
+header { padding:12px 20px; gap:10px; background:linear-gradient(115deg,#414e12,#697a20); }
+h1 { font-size:clamp(20px,2.1vw,29px); letter-spacing:-.7px; }
+h1 small { font-size:13px; letter-spacing:1px; text-transform:uppercase; margin-top:5px; }
+button, select { min-height:44px; }
+button { touch-action:manipulation; }
+button:active { transform:translateY(1px); }
+header .icon-btn, .seg button { min-height:44px; min-width:44px; font-size:14px; padding:0 13px; }
+.seg button[aria-pressed="true"] { background:#f1df9c; color:var(--ink); }
+main { display:grid; grid-template-columns:minmax(0,1fr) 390px; position:relative; min-height:0; }
+.stage { min-height:0; overflow:visible; padding:18px; display:flex; flex-direction:column; gap:12px; }
+.stage-top { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.eyebrow { font-size:11px; font-weight:800; letter-spacing:1.8px; text-transform:uppercase; color:var(--muted); }
+.stage-top h2 { margin:3px 0 0; font:800 clamp(19px,2.4vw,29px) 'Trebuchet MS',sans-serif; }
+.take-stamp { border:1px solid #b0b691; border-radius:8px; padding:8px 12px; background:#eeefd8;
+  font-size:14px; font-weight:800; white-space:nowrap; }
+.room-shell { border:6px solid #8d6743; border-radius:15px; overflow:hidden; box-shadow:0 9px 22px #3a2c1425;
+  width:min(100%,calc((100vh - 365px)*1.77778)); align-self:center; flex-shrink:0;
+  display:flex; flex-direction:column; }
+.bars { order:0; }
+.room { order:1; }
+.bars { display:flex; gap:4px; padding:6px 10px; background:#fff9e6; align-items:center; }
+.bars .bar-label { font-size:12px; font-weight:700; margin-right:5px; }
+.bar { flex:1; border:1px solid #c3c7a4; border-radius:6px; background:#f4f3e6; font-weight:800; padding:0; }
+.bar[aria-pressed="true"] { box-shadow:inset 0 0 0 3px #5a6b14; }
+.bar.current { color:#fff; background:var(--brand); }
+.room { width:100%; aspect-ratio:16/9; position:relative; overflow:hidden; background:#d3b580; isolation:isolate; }
+.backdrop { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-3; }
+.sunbeam { position:absolute; inset:0; pointer-events:none; z-index:-2;
+  background:linear-gradient(118deg,#fff2ae27,transparent 55%); animation:light 7s ease-in-out infinite alternate; }
+@keyframes light { to { opacity:.3; } }
+.players { position:absolute; inset:15% 3% 5%; display:grid; grid-template-columns:repeat(4,1fr); gap:2%; }
+.player { position:relative; border:0; background:transparent; padding:0; min-width:0; border-radius:15px; }
+.player::before { content:''; position:absolute; left:10%; right:10%; bottom:10%; height:6%; border-radius:50%;
+  background:#42301850; filter:blur(3px); }
+.player img { position:absolute; width:100%; height:94%; left:0; bottom:12%; object-fit:contain;
+  filter:drop-shadow(0 3px 2px #443b292b); transition:transform .12s ease; pointer-events:none; }
+.player .play-pose { visibility:hidden; }
+.player.sounding .play-pose { visibility:visible; transform:translateY(-3px); }
+.player.sounding .rest-pose { visibility:hidden; }
+.player .name { position:absolute; bottom:0; left:50%; transform:translateX(-50%); display:flex; align-items:center;
+  gap:6px; background:#fff8e9; border:2px solid #4d3b20; padding:5px 10px; border-radius:7px;
+  box-shadow:0 3px 0 #513c2738; font-weight:800; font-size:clamp(11px,1.25vw,17px); white-space:nowrap; }
+.badge { display:inline-grid; place-content:center; color:#fff; width:21px; height:21px; background:var(--color);
+  border-radius:50%; font-size:12px; line-height:1; }
+.player:nth-child(2) .badge { border-radius:2px; }
+.player:nth-child(3) .badge { clip-path:polygon(50% 0,100% 100%,0 100%); padding-top:5px; border-radius:0; }
+.player:nth-child(4) .badge { clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%); color:var(--ink); border-radius:0; }
+.player[aria-pressed="true"] { background:#fff6bd24; outline:3px solid #fff3ad; outline-offset:-3px; }
+.player[aria-pressed="true"] .name::after { content:'SOLO'; font-size:10px; color:var(--brand); }
+.room.nodding .player img { animation:nod .3s ease; }
+.room.bowing .player img { transform:rotate(6deg); }
+.room.ready-pose .player .play-pose { visibility:visible; }
+.room.ready-pose .player .rest-pose { visibility:hidden; }
+@keyframes nod { 50% { transform:rotate(6deg); } }
+.listening { position:absolute; left:12px; top:10px; background:#fff9e9ec; padding:7px 10px;
+  border-radius:7px; font-weight:700; font-size:13px; box-shadow:0 2px 7px #4a371a24; }
+.count { position:absolute; top:2%; right:2%; border-radius:50%; background:#fff7d9; color:#44350d; z-index:3;
+  font:800 clamp(16px,2.2vw,28px) 'Trebuchet MS',sans-serif; width:1.5em; height:1.5em; display:grid; place-items:center;
+  box-shadow:0 3px 12px #493b2033; }
+.score { position:absolute; height:31%; bottom:0; left:0; right:0; background:#fffdf0f2; border-top:2px solid #a3aa7d; }
+.score svg { width:100%; height:100%; display:block; }
+.room.with-score .players { bottom:33%; top:12%; }
+.room.with-score .listening { display:none; }
+.scene-tools { display:flex; justify-content:space-between; gap:8px; align-items:center; }
+.scene-tools button, .quiet { background:#fffdf5; border:1px solid #b5bb94; border-radius:8px; padding:7px 12px; font-weight:700; }
+.scene-tools button[aria-pressed="true"] { background:#e2e8bd; }
+.scene-tools span { font-size:13px; color:var(--muted); }
+.result { background:#e9edd3; border-left:4px solid var(--brand); border-radius:3px 9px 9px 3px;
+  padding:12px 14px; margin:0; min-height:48px; font-weight:650; line-height:1.4; }
+.panel { padding:18px; gap:12px; overflow:auto; border-left:1px solid #c8ceb2; }
+.play-row { display:flex; align-items:center; gap:8px; }
+.play-row .big-btn { flex:1; border-radius:10px; min-height:52px; background:var(--brand); color:#fff; font-size:20px; }
+.take-label { font-size:13px; color:var(--muted); }
+.hint { margin:0; min-height:64px; font-size:15px; line-height:1.4; }
+.piece-row { display:flex; gap:6px; align-items:center; }
+select { max-width:100%; min-width:0; border:1px solid #b3b994; border-radius:7px; padding:6px 9px;
+  background:#fff; color:var(--ink); font:inherit; }
+#piece { flex:1; font-size:14px; }
+#new { padding:6px 9px; font-size:12px; }
+.clipboard { position:relative; padding:15px 12px 10px; background:linear-gradient(125deg,#f1e5bd,#e8d9a8);
+  border:1px solid #c2ac73; border-radius:9px; box-shadow:0 4px 0 #baa36d4a; }
+.clipboard::before { content:''; position:absolute; width:70px; height:13px; top:-5px; left:calc(50% - 35px);
+  border:2px solid #8e8e76; border-radius:4px; background:linear-gradient(#ddddcb,#aaa990); }
+.clipboard h3 { margin:0 0 7px; font-size:14px; }
+.checks { display:grid; gap:3px; }
+.criterion { display:flex; align-items:center; gap:9px; text-align:left; border:0; border-bottom:1px solid #bba77080;
+  background:transparent; min-height:44px; padding:5px 0; }
+.criterion .box { width:22px; height:22px; border:2px solid #7a744e; border-radius:4px; background:#fff9df;
+  display:grid; place-items:center; font-size:13px; font-weight:800; flex-shrink:0; }
+.criterion .copy { flex:1; font-size:14px; font-weight:700; }
+.criterion .status { font-size:11px; min-width:68px; text-align:right; }
+.criterion[aria-pressed="true"] .box { background:var(--brand); color:#fff; }
+.criterion[aria-pressed="true"] .status { font-weight:800; }
+.note-builder { display:flex; flex-direction:column; gap:8px; }
+.note-open .checks { grid-template-columns:1fr 1fr; }
+.note-open .criterion .status { display:none; }
+.note-open .cards { grid-template-columns:1fr 1fr; }
+.note-open .cards:has(.note-card:last-child:nth-child(3)) { grid-template-columns:1fr; }
+.note-builder h3 { margin:0; font-size:15px; }
+.address { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+label { font-size:12px; font-weight:750; display:flex; flex-direction:column; gap:4px; }
+.cards { display:grid; gap:6px; }
+.note-card { text-align:left; padding:9px 11px; min-height:54px; font-size:13px; line-height:1.32;
+  border:1px solid #bfc5a6; border-radius:8px; background:#fff; box-shadow:0 2px 0 #c7cbb938; }
+.note-card[aria-pressed="true"] { border:2px solid var(--brand); padding:8px 10px; background:#f1f4df; }
+.give { min-height:44px; border:0; border-radius:8px; background:var(--brand); color:#fff; font-weight:800; }
+.footer-actions { display:flex; gap:8px; justify-content:space-between; }
+.privacy { margin:0; font-size:11px; color:var(--muted); line-height:1.4; }
+.concert-tabs { display:flex; gap:4px; margin-bottom:2px; }
+.concert-tabs button { flex:1; padding:5px; font-size:12px; border:1px solid #b4bb91; border-radius:7px; background:#fff; }
+.concert-tabs button[aria-pressed="true"] { background:#e3e9be; font-weight:800; }
+.manners-progress { display:flex; gap:6px; }
+.moment-tab { width:44px; border-radius:50%; border:1px solid #a6ad88; background:#fff; font-weight:800; }
+.moment-tab[aria-pressed="true"] { background:var(--brand); color:#fff; }
+.moment-tab.met { box-shadow:inset 0 0 0 3px #cdd8a0; }
+.moment-title { margin:3px 0; font:800 19px 'Trebuchet MS',sans-serif; }
+.choices { display:grid; gap:7px; }
+.choices button { border:1px solid #bdc4a3; border-radius:8px; padding:10px; background:#fff; text-align:left;
+  font-size:14px; line-height:1.4; }
+.choices button.correct { background:#e6edc8; border:2px solid var(--brand); }
+.moment-art { position:absolute; left:50%; top:5%; transform:translateX(-50%); background:#fff9e9ed;
+  padding:9px 18px; border-radius:10px; text-align:center; box-shadow:0 4px 10px #3c251d33; z-index:2; }
+.moment-art b { display:block; font-size:clamp(13px,1.6vw,20px); }
+.moment-art span { display:block; font-size:12px; margin-top:2px; }
+.audience { position:absolute; left:0; right:0; bottom:-2%; height:11%; display:flex; justify-content:space-around; pointer-events:none; }
+.audience i { height:100%; width:7%; background:#231c21; border-radius:50% 50% 0 0; position:relative; }
+.audience i::before { content:''; position:absolute; background:#231c21; border-radius:50%; width:40%; height:75%; top:-45%; left:30%; }
+.room.concert .players { right:21%; bottom:14%; }
+.room.manners .players { top:28%; }
+.room.manners .moment-art { top:2%; max-width:80%; padding:6px 12px; }
+.your-spot { position:absolute; right:3%; bottom:15%; border:2px dashed #fff6d3; border-radius:50%; width:16%;
+  padding:8px 0; background:#5a421c66; color:#fff; text-align:center; font-size:13px; font-weight:800; }
+.curtain { position:absolute; inset:0; z-index:-1; pointer-events:none; }
+.curtain::before, .curtain::after { content:''; position:absolute; top:0; bottom:0; width:49%;
+  background:repeating-linear-gradient(90deg,#5b101b,#952333 14%,#b43e44 26%,#721621 40%); box-shadow:0 5px 15px #200b0e55;
+  transition:width 1.1s ease; }
+.curtain::before { left:0; border-radius:0 0 30% 0; }
+.curtain::after { right:0; border-radius:0 0 0 30%; }
+.curtain.open::before, .curtain.open::after { width:0; }
+.join-chips { display:flex; gap:5px; }
+.join-chips button { flex:1; padding:5px; font-size:12px; border:1px solid #b7bea0; border-radius:8px; background:white; }
+.join-chips button[aria-pressed="true"] { background:#e3e9be; font-weight:800; }
+.staff { width:100%; height:132px; flex-shrink:0; background:#fffdf2; border:1px solid #c3c8ae; border-radius:10px; overflow:hidden; }
+.concert-join .room-shell { width:min(100%,calc((100vh - 530px)*1.77778)); }
+.concert-join .player .name { font-size:11px; padding:4px 5px; gap:3px; }
+.concert-join .player .badge { width:16px; height:16px; font-size:10px; }
+.concert-join .bars .bar-label { display:none; }
+.concert-join .bars { padding:6px; }
+.staff svg { width:100%; height:100%; }
+.fingering { display:flex; align-items:center; gap:12px; background:#f0f2df; border-radius:9px; padding:8px 12px; }
+.fingering svg { width:45px; height:130px; flex-shrink:0; }
+.fingering b { font-size:32px; }
+.fingering p { margin:3px 0; font-size:13px; }
+.history { margin:0; padding-left:22px; font-size:13px; line-height:1.6; }
+.compare-pair { display:flex; gap:7px; }
+.compare-pair button { flex:1; }
+.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+.calm .sunbeam { animation:none; }
+.calm .player img, .calm .curtain::before, .calm .curtain::after { transition:none; }
+.calm .player.sounding .play-pose { transform:none; }
+.calm .room.nodding .player img { animation:none; }
+@media (min-width:1600px) {
+  main { grid-template-columns:minmax(0,1fr) 440px; }
+  .panel { padding:24px; gap:15px; }
+  .note-card { font-size:15px; min-height:65px; }
+  .stage { padding:24px; }
+}
+@media (min-width:600px) and (max-height:900px) {
+  .stage { padding:12px; gap:8px; }
+  .panel { padding:12px; gap:9px; }
+  .hint { min-height:44px; font-size:14px; }
+  .criterion { min-height:44px; }
+  .clipboard { padding:12px 10px 5px; }
+  .note-card { min-height:46px; padding:6px 8px; font-size:12px; }
+  .note-card[aria-pressed="true"] { padding:5px 7px; }
+}
+@media (min-width:600px) and (max-width:1000px) {
+  main { grid-template-columns:minmax(0,1fr) 280px; }
+  header { gap:6px; padding:6px 10px; }
+  h1 { flex:1; font-size:18px; }
+  h1 small { display:none; }
+  header .icon-btn, .seg button { font-size:12px; padding:0 8px; }
+  .stage-top h2 { font-size:19px; }
+  .take-stamp { padding:6px; font-size:12px; }
+  .stage { padding:9px; }
+  .stage-top .eyebrow { display:none; }
+  .room-shell { border-width:4px; }
+  .player .name { padding:4px 5px; gap:3px; }
+  .badge { width:17px; height:17px; font-size:10px; }
+  .scene-tools span { font-size:11px; }
+  .scene-tools button { padding:6px; font-size:12px; }
+  .result { font-size:13px; padding:8px; }
+  .panel { padding:9px; gap:7px; }
+  .piece-row { gap:4px; }
+  #piece { width:60%; font-size:12px; padding:4px; }
+  #new { font-size:11px; padding:4px; }
+  .checks { grid-template-columns:1fr 1fr; gap:2px 7px; }
+  .criterion { flex-wrap:wrap; gap:4px; align-content:center; padding:2px; }
+  .criterion .copy { font-size:11px; }
+  .criterion .status { display:none; }
+  .clipboard h3 { font-size:12px; margin-bottom:3px; }
+  .hint { font-size:12px; }
+  .note-card { font-size:11px; }
+  .footer-actions .quiet { font-size:11px; padding:5px; }
+  .staff { height:110px; }
+  .moment-title { font-size:16px; }
+  .moment-art span { display:none; }
+  .choices button { padding:6px; font-size:12px; }
+}
+@media (min-width:600px) and (max-height:600px) {
+  header { padding:4px 8px; gap:5px; }
+  h1 { font-size:17px; }
+  header .icon-btn, .seg button { padding:0 6px; font-size:11px; }
+  main { min-height:calc(100vh - 52px); }
+  .stage { gap:5px; padding:7px; }
+  .stage-top h2 { font-size:17px; }
+  .stage-top .eyebrow, .take-stamp { display:none; }
+  .room-shell { border-width:3px; }
+  .bars { padding:3px; gap:2px; }
+  .bars .bar-label { display:none; }
+  .listening { padding:4px 6px; font-size:11px; top:5px; left:5px; }
+  .scene-tools span { display:none; }
+  .scene-tools button { flex:1; font-size:11px; }
+  .panel { padding:7px; gap:6px; }
+  .play-row .big-btn { min-height:44px; font-size:18px; }
+  .hint { font-size:12px; min-height:36px; }
+  .clipboard { padding:9px 6px 3px; }
+  .clipboard h3 { display:none; }
+  .checks { grid-template-columns:1fr 1fr; gap:0 4px; }
+  .criterion .copy { font-size:11px; }
+  .criterion .status { display:none; }
+  .criterion { gap:4px; }
+  .privacy { font-size:10px; }
+  .room-shell { width:100%; }
+  .room { max-height:calc(100vh - 245px); }
+  .note-open { padding-bottom:134px; }
+  .note-open:has(.note-card:last-child:nth-child(6)) { min-height:520px; }
+  .note-open .score { height:44px; }
+  .note-open .room.with-score .players { bottom:46px; }
+  .note-open:has(#score:not([hidden])) .stage-top { display:none; }
+  .note-open .room.with-score { height:135px; max-height:135px; }
+  .note-open .room.with-score .players { top:4%; }
+  .note-open .player img { height:calc(100% - 24px); bottom:25px; }
+  .note-open .player .name { padding:3px 4px; font-size:10px; }
+  .note-open .player .badge { width:14px; height:14px; font-size:10px; }
+  .note-open .listening { display:none; }
+  .note-open .note-builder { position:absolute; left:7px; right:7px; bottom:6px; z-index:5; border:1px solid #b6bc97;
+    border-radius:10px; padding:7px; background:#fffdf3; display:grid; grid-template-columns:150px 1fr 90px; gap:7px; }
+  .note-open .note-builder h3 { display:none; }
+  .note-open .address { grid-template-columns:1fr; gap:3px; }
+  .note-open .address label { flex-direction:row; align-items:center; gap:3px; font-size:10px; }
+  .note-open .address select { width:110px; font-size:11px; }
+  .note-open .cards { grid-template-columns:repeat(3,1fr); gap:5px; }
+  .note-open .cards:has(.note-card:last-child:nth-child(3)) { grid-template-columns:repeat(3,1fr); }
+  .note-open .note-card { font-size:11px; padding:6px; }
+  .note-open .note-card[aria-pressed="true"] { padding:5px; }
+  .note-open .give { padding:4px; font-size:12px; }
+  .note-open .result { font-size:11px; min-height:32px; padding:5px; }
+  .note-open .room { max-height:110px; aspect-ratio:auto; height:110px; }
+  .footer-actions { gap:5px; }
+  .moment-title { margin:0; font-size:14px; }
+  .choices { gap:4px; }
+  .choices button { min-height:44px; padding:5px; font-size:11px; }
+  .moment-art { padding:4px 8px; }
+  .moment-art span { display:none; }
+  .fingering { padding:5px; }
+  .fingering svg { height:90px; }
+  .staff { height:90px; }
+  .concert-join .room-shell { width:100%; }
+  .concert-join .room { max-height:95px; }
+  #join-panel { display:grid; grid-template-columns:minmax(0,1fr) 100px; gap:5px; }
+  #join-panel .take-label { grid-column:1; margin:4px 0; font-size:11px; }
+  #join-panel .join-chips { grid-column:1; }
+  #join-panel .join-chips button { font-size:10px; padding:3px; }
+  #join-panel .fingering { grid-column:2; grid-row:1 / span 3; padding:3px; gap:3px; }
+  #join-panel .fingering svg { width:24px; height:90px; }
+  #join-panel .fingering b { font-size:23px; }
+  #join-panel .fingering .eyebrow { font-size:10px; letter-spacing:0; }
+  #join-panel .fingering p { font-size:10px; line-height:1.25; }
+  #join-panel #slower { grid-column:1; font-size:11px; padding:4px; }
+  #join-panel .privacy { grid-column:1 / 3; }
+}
+@media (max-width:599px) {
+  body { display:block; }
+  header { padding:8px 10px; gap:6px; }
+  h1 { width:100%; font-size:21px; }
+  h1 small { display:none; }
+  header .icon-btn, .seg button { padding:0 8px; font-size:11px; }
+  .seg { flex:1; }
+  .seg button { flex:1; }
+  main { display:flex; flex-direction:column; }
+  .stage { padding:9px 9px 0; gap:6px; order:0; }
+  .stage-top h2 { font-size:19px; }
+  .stage-top .eyebrow { display:none; }
+  .take-stamp { padding:5px; font-size:12px; }
+  .room-shell { border-width:3px; border-radius:10px; width:100%; }
+  .concert-join .room-shell { width:100%; }
+  .bars { gap:2px; padding:3px; }
+  .bars .bar-label { display:none; }
+  .bars:has(button:nth-of-type(8)) { display:grid; grid-template-columns:repeat(4,1fr); }
+  .player .name { padding:4px; gap:3px; font-size:11px; }
+  .badge { width:16px; height:16px; font-size:10px; }
+  .player[aria-pressed="true"] .name::after { display:none; }
+  .listening { font-size:11px; padding:4px 6px; left:5px; top:5px; }
+  .scene-tools span { font-size:11px; }
+  .scene-tools button { font-size:12px; padding:5px 8px; }
+  .result { min-height:39px; padding:8px; font-size:12px; }
+  .panel { padding:9px; gap:9px; overflow:visible; border:0; order:1; }
+  .play-row { order:-2; }
+  .hint { order:-1; min-height:42px; font-size:14px; }
+  .clipboard { padding:13px 10px 5px; }
+  .checks { grid-template-columns:1fr 1fr; gap:2px 8px; }
+  .criterion .copy { font-size:12px; }
+  .criterion .status { display:none; }
+  .criterion { gap:5px; }
+  .note-builder { padding:10px; border:1px solid #c8cdb1; border-radius:10px; background:#f5f5e6; }
+  .note-card { font-size:14px; }
+  .moment-art { padding:5px 10px; }
+  .moment-art span { display:none; }
+  .concert-join .result { display:none; }
+  .phone-guide { display:flex; gap:6px; flex-shrink:0; }
+  .phone-guide .staff { flex:1; min-width:0; width:calc(100% - 106px); }
+  .phone-guide .fingering { width:100px; flex-shrink:0; padding:4px; gap:3px; }
+  .phone-guide .fingering svg { width:24px; height:90px; }
+  .phone-guide .fingering b { font-size:23px; }
+  .phone-guide .fingering p { font-size:10px; line-height:1.25; }
+  .phone-guide .eyebrow { font-size:10px; letter-spacing:0; }
+  .play-row #slower { flex:0 0 42%; font-size:12px; padding:5px; }
+}
+
+/* A rehearsal note stays within reach while the whole cast remains visible. */
+.audience { height:13%; bottom:-3%; align-items:flex-end; }
+.audience i { flex-shrink:0; width:7%; height:76%; margin-left:-2%;
+  background:linear-gradient(100deg,#1b1720,#352934 70%,#17151c);
+  border:1px solid #69505a35; transform:translateY(calc(mod(var(--seat),3)*4px)); }
+.audience i:nth-child(3n) { height:90%; border-radius:43% 55% 0 0; }
+.audience i:nth-child(4n)::before { width:49%; left:25%; height:66%; }
+.audience i:nth-child(5n)::before { border-radius:45% 55% 40% 40%; }
+.audience i::before { background:linear-gradient(90deg,#231c27,#3b2c37); }
+.quiet-hall .audience { filter:brightness(.8); }
+.audience-talk { position:absolute; bottom:6%; left:8%; right:8%; display:none;
+  justify-content:space-between; pointer-events:none; }
+.room.manners.talking .audience-talk { display:flex; }
+.audience-talk i { background:#fff5dd; color:#59404b; padding:0 9px; border-radius:50%;
+  font:900 20px/1 'Trebuchet MS',sans-serif; box-shadow:0 3px 4px #160e2138; }
+.room.bowing .player img { transform-origin:50% 85%; transition:transform .4s ease; }
+.scene-tools.note-tools { display:grid; grid-template-columns:80px repeat(4,minmax(0,1fr)); gap:4px; }
+.note-tools #piece { grid-column:1; grid-row:1; width:80px; font-size:10px; padding:3px; }
+.note-tools #score-toggle { grid-column:2; grid-row:1; }
+.note-tools #new { grid-column:3; grid-row:1; }
+.note-tools #reset { grid-column:4; grid-row:1; }
+.note-tools #all { grid-column:5; grid-row:1; }
+.scene-tools.note-tools button { min-width:0; padding:3px; font-size:10px; }
+@media (min-width:600px) and (max-height:900px) {
+  .note-open { padding-bottom:150px; }
+  .note-open .note-builder { position:absolute; left:8px; right:8px; bottom:7px; z-index:5;
+    border:1px solid #b6bc97; border-radius:10px; padding:7px; background:linear-gradient(120deg,#fffdf3,#f0eddb);
+    display:grid; grid-template-columns:150px minmax(0,1fr) 90px; gap:7px; }
+  .note-open .note-builder h3 { display:none; }
+  .note-open .address { grid-template-columns:1fr; gap:4px; }
+  .note-open .address label { flex-direction:row; align-items:center; gap:4px; font-size:11px; }
+  .note-open .address select { flex:1; width:108px; font-size:12px; }
+  .note-open .cards, .note-open .cards:has(.note-card:last-child:nth-child(3)) { grid-template-columns:repeat(3,1fr); }
+  .note-open .note-card { font-size:12px; min-height:52px; padding:6px; }
+  .note-open .note-card[aria-pressed="true"] { padding:5px; }
+  .note-open .room-shell { width:min(100%,calc((100vh - 480px)*1.77778)); }
+  .note-open .checks { grid-template-columns:1fr 1fr; }
+  .note-open .result { min-height:32px; font-size:12px; padding:6px; }
+}
+@media (min-width:600px) and (max-width:1000px) and (min-height:601px) {
+  .note-open .room-shell { width:min(100%,calc((100vh - 410px)*1.77778)); }
+}
+@media (min-width:600px) and (max-height:600px) {
+  .note-open { padding-bottom:150px; min-height:0!important; }
+  .note-open .stage-top { display:none; }
+  .note-open .stage { gap:4px; padding:4px 7px; }
+  .note-open #rehearsal-panel, .note-open #footer-actions, .note-open #panel > .privacy { display:none; }
+  .note-open .room-shell { width:100%; }
+  .note-open .room { height:clamp(76px,calc(100vh - 349px),140px); max-height:none; aspect-ratio:auto; }
+  .note-open .room.with-score { height:clamp(106px,calc(100vh - 319px),160px); max-height:none; }
+  .note-open:has(#score:not([hidden])) .result { display:none; }
+  .note-open .room.with-score .players { top:0; bottom:50px; }
+  .note-open .score { height:50px; }
+  .note-open .result { min-height:24px; padding:3px; font-size:11px; }
+  .note-open .player img { height:calc(100% - 23px); bottom:23px; }
+  .note-open .note-card { font-size:11px; min-height:46px; }
+  .note-open .note-builder { left:7px; right:7px; bottom:5px; padding:6px; gap:5px; }
+}
+@media (max-width:599px) {
+  .note-open .stage { padding:5px 7px 0; gap:4px; }
+  .note-open .stage-top, .note-open .result, .note-open #rehearsal-panel,
+  .note-open #footer-actions, .note-open #panel > .privacy { display:none; }
+  .note-open .room { height:120px; aspect-ratio:auto; }
+  .note-open .room.with-score { height:150px; }
+  .note-open .room.with-score .players { top:0; bottom:44px; }
+  .note-open .score { height:44px; }
+  .note-open .player img { height:calc(100% - 21px); bottom:21px; }
+  .note-open .player .name { font-size:10px; padding:3px; gap:2px; }
+  .note-open .badge { width:14px; height:14px; }
+  .note-open .listening, .note-open .scene-tools span { display:none; }
+  .note-open .scene-tools button { flex:1; }
+  .note-open .panel { padding:6px 7px; gap:4px; }
+  .note-open .play-row .big-btn { min-height:44px; font-size:18px; }
+  .note-open .hint { min-height:34px; font-size:12px; line-height:1.35; }
+  .note-open .clipboard { padding:4px; box-shadow:none; }
+  .note-open .clipboard::before, .note-open .clipboard h3 { display:none; }
+  .note-open .checks { grid-template-columns:repeat(4,minmax(0,1fr)); gap:3px; }
+  .note-open .criterion { gap:2px; padding:2px; min-width:0; }
+  .note-open .criterion .box { width:14px; height:17px; border-width:1px; font-size:11px; }
+  .note-open .criterion .copy { font-size:10px; }
+  .note-open .note-builder { padding:4px; gap:4px; }
+  .note-open .note-builder h3 { display:none; }
+  .note-open .address { gap:5px; }
+  .note-open label { font-size:10px; gap:1px; }
+  .note-open select { font-size:12px; padding:4px; }
+  .note-open .cards, .note-open .cards:has(.note-card:last-child:nth-child(3)) { grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px; }
+  .note-open .note-card { min-height:50px; padding:4px; font-size:11px; line-height:1.25; }
+  .note-open .note-card[aria-pressed="true"] { padding:3px; }
+}
+
+/* Confirmed review-audit leads: keep captions clear and four score labels separated. */
+.note-open .listening { display:none; }
+.note-open .score { min-height:60px; }
+@media (min-width:600px) and (max-height:600px) {
+  .note-open .stage { padding:3px 7px; }
+  .note-open .bars { padding:0; }
+  .note-open .room-shell { border-width:2px; }
+  .note-open .room.with-score { height:clamp(116px,calc(100vh - 309px),170px); }
+  .note-open .room.with-score .players { bottom:60px; }
+}
+@media (max-width:599px) {
+  .note-open .room.with-score { height:160px; }
+  .note-open .room.with-score .players { bottom:60px; }
+  .note-open .panel { gap:3px; }
+  .concert-join .room { height:160px; aspect-ratio:auto; }
+  .concert-compare .result { display:none; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Recorder Concert Rehearsal <small>Leading a rehearsal · Curio Class</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-rehearsal" aria-pressed="true">Rehearsal</button>
+    <button id="m-concert" aria-pressed="false">Concert</button>
+  </div>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+</header>
+<main id="workspace">
+  <section class="stage" aria-label="Ensemble music room">
+    <div class="stage-top">
+      <div><div class="eyebrow" id="eyebrow">You have the clipboard</div><h2 id="piece-title">Hot Cross Buns</h2></div>
+      <div class="take-stamp" id="take-stamp">Take 1</div>
+    </div>
+    <div class="room-shell">
+      <div class="bars" id="bars" aria-label="Tap a bar to loop it"><span class="bar-label">BAR</span></div>
+      <div class="room" id="room">
+        <img class="backdrop" id="room-backdrop" src="art:music-room" alt="A sunlit music room with wooden floor, piano and music stands">
+        <img class="backdrop" id="concert-backdrop" src="art:school-stage" alt="A warmly lit school stage with red velvet curtains" hidden>
+        <div class="sunbeam"></div>
+        <div class="curtain" id="curtain" hidden></div>
+        <div class="listening" id="listening">Listen first. Tap a player to solo.</div>
+        <div class="count" id="count" hidden>4</div>
+        <div class="moment-art" id="moment-art" hidden><b></b><span></span></div>
+        <div class="players" id="players"></div>
+        <div class="your-spot" id="your-spot" hidden>5 · You</div>
+        <div class="audience" id="audience" hidden aria-hidden="true"></div>
+        <div class="audience-talk" aria-hidden="true"><i>···</i><i>···</i><i>···</i></div>
+        <div class="score" id="score" hidden></div>
+      </div>
+    </div>
+    <div class="scene-tools" id="scene-tools">
+      <button id="score-toggle" aria-pressed="false">Score view</button>
+      <span id="listen-label">Listen first, then check your ears.</span>
+      <button id="all">Hear everyone</button>
+    </div>
+    <p class="result" id="result" aria-live="polite">Four players. One group. What do your ears notice?</p>
+    <div class="staff" id="staff" hidden></div>
+    <div class="phone-guide" id="phone-guide" hidden></div>
+  </section>
+  <aside class="panel" id="panel" aria-label="Rehearsal clipboard">
+    <div class="play-row"><button class="big-btn" id="play">▶ Play take</button></div>
+    <p class="hint" id="hint">Tap Play take and listen to the group. You will give one clear note afterward.</p>
+    <div id="rehearsal-panel">
+      <div class="piece-row">
+        <select id="piece" aria-label="Piece"><option value="buns">Hot Cross Buns</option><option value="lune">Au Clair de la Lune</option></select>
+        <button class="quiet" id="new">New rehearsal</button>
+      </div>
+    </div>
+    <div class="clipboard" id="clipboard">
+      <h3>Your listening checklist</h3>
+      <div class="checks" id="checks"></div>
+    </div>
+    <div class="note-builder" id="note-builder" hidden>
+      <h3>Give one useful note</h3>
+      <div class="address">
+        <label>Who<select id="who"><option>Juniper</option><option>Otis</option><option>Bea</option>
+          <option>Finn</option><option>Everyone</option></select></label>
+        <label>Where<select id="where"></select></label>
+      </div>
+      <div class="cards" id="cards" role="group" aria-label="Choose your note"></div>
+      <button class="give" id="give">Give note</button>
+    </div>
+    <div id="concert-panel" hidden>
+      <div class="concert-tabs" role="group" aria-label="Concert parts">
+        <button id="c-manners" aria-pressed="true">1 · Stage manners</button>
+        <button id="c-join" aria-pressed="false">2 · Play with them</button>
+        <button id="c-compare" aria-pressed="false">3 · Then and now</button>
+      </div>
+      <div id="manners-panel">
+        <div class="manners-progress" id="manners-progress"></div>
+        <h3 class="moment-title" id="moment-title"></h3>
+        <div class="choices" id="choices"></div>
+        <button class="give" id="open-curtain" hidden>Open the curtain · Play with them</button>
+      </div>
+      <div id="join-panel" hidden>
+        <p class="take-label">How will you join?</p>
+        <div class="join-chips"><button id="join-recorder" aria-pressed="true">Real recorder</button>
+          <button id="join-sing" aria-pressed="false">Sing names</button><button id="join-clap" aria-pressed="false">Clap rhythm</button></div>
+        <div class="fingering" id="fingering"></div>
+        <button class="quiet" id="slower" aria-pressed="false">Slower · 80 beats a minute</button>
+        <p class="privacy">Play along, sing or clap. Nothing is recorded or listened to.</p>
+      </div>
+      <div id="compare-panel" hidden>
+        <label>Listen back to<select id="compare-piece"><option value="buns">Hot Cross Buns</option>
+          <option value="lune">Au Clair de la Lune</option></select></label>
+        <div class="compare-pair"><button class="quiet" id="first">First take</button><button class="quiet" id="final">Final take</button></div>
+        <button class="quiet" id="both">First, then final</button>
+        <h3 class="moment-title">Your rehearsal notes</h3><ol class="history" id="history"></ol>
+      </div>
+    </div>
+    <div class="footer-actions" id="footer-actions">
+      <button class="quiet" id="reset">Start over</button><button class="quiet" id="go-concert" hidden>Go to the concert</button>
+    </div>
+    <p class="privacy">Notes and take settings are saved on this device only. No microphone is used.</p>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:music-studio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const pieceRow=$('piece').parentElement;
+  const clone = value => JSON.parse(JSON.stringify(value));
+  const NAMES = ['Juniper','Otis','Bea','Finn'];
+  const COLORS = ['#a33a2a','#2f6b8f','#7a4f9a','#f0b54a'];
+  const PAN = [-.45,-.15,.15,.45];
+  const ART = {
+    Juniper:['art:juniper-rest','art:juniper-play'], Otis:['art:otis-rest','art:otis-play'],
+    Bea:['art:bea-rest','art:bea-play'], Finn:['art:finn-rest','art:finn-play'],
+  };
+  const PIECES = {
+    buns:{name:'Hot Cross Buns', bpm:88, bars:4, phrases:[1,2,4],
+      music:'B A G:h | B A G:h | G:e G:e G:e G:e A:e A:e A:e A:e | B A G:h'},
+    lune:{name:'Au Clair de la Lune', bpm:96, bars:8, phrases:[4,8],
+      music:'G G G A | B:h A:h | G B A A | G:w | G G G A | B:h A:h | G B A A | G:w'},
+  };
+  for (const piece of Object.values(PIECES)) piece.parsed = MS.parse(piece.music);
+  const CRITERIA = ['Together','Clear tone','Steady beat','Phrasing'];
+  const DESCRIPTIONS = ['Start and finish together','No squeaks; notes in tune','No rushing or dragging','Breathe at phrase ends'];
+  const KINDS = {late:'Together', squeak:'Clear tone', sharp:'Clear tone', rush:'Steady beat', breath:'Phrasing'};
+  const FIXES = {
+    late:'watch me and breathe in on my count.',
+    squeak:'cover the holes all the way with the pads of your fingers.',
+    sharp:'blow gently, like warm air on your hand.',
+    rush:"keep the beat steady in bar 3. Feel the eighths, don't hurry.",
+    breath:'take your breath at the end of the phrase, not in the middle.',
+  };
+  const L = {
+    welcomeRehearsal:"You're leading rehearsal today. Tap Play take and listen to the group.",
+    markHow:'What needs work? Tap a checklist line to mark Needs work.',
+    noteHow:'Now pick who, which bar, and one note card. Then tap Give note.',
+    toolsHow:'Not sure who it was? Tap a player to hear them alone.',
+    fixed:'That fixed it. Listen for the change in this take.',
+    noChange:'They tried, but nobody knew what to change.',
+    notThem:'That player already does that. Listen again: who was it?',
+    ready:"That's a clean take. You're ready for the concert.",
+    welcomeConcert:'Before the curtain opens, help the group with stage manners. Tap a choice.',
+    playHow:"Pick how you'll join, then tap Play. Watch the note names as they scroll.",
+    compareHow:'Choose a piece. Tap First take, Final take, or First, then final to hear what your notes changed.',
+    waitWhy:'Waiting tells the audience the music is about to start.',
+    tuneWhy:'Tuning first means the group sounds like one.',
+    stillWhy:"Still bodies keep the audience's attention on the music.",
+    bowWhy:'The bow says thank you. Together looks like a group.',
+    wrong:['The group cannot hear its start while the audience is talking.',
+      'The group has not checked whether its notes match.',
+      'Waving or practicing distracts the audience between pieces.',
+      'Leaving or bowing separately breaks the group ending.'],
+    joinDone:"That's the final note. Tap Then and now to hear the rehearsal change.",
+  };
+  for (const name of NAMES) {
+    L['fixed-late-'+name] = `That fixed it. ${name} came in right on time.`;
+    L['fixed-squeak-'+name] = `That fixed it. ${name} covered the holes for a clear tone.`;
+    L['fixed-sharp-'+name] = `That fixed it. ${name} used gentle breath and matched the group.`;
+    L['fixed-breath-'+name] = `That fixed it. ${name} saved the breath for the phrase ending.`;
+  }
+  L['fixed-rush-Everyone'] = 'That fixed it. Everyone kept the eighth notes steady.';
+  const MANNERS = [
+    {title:'The audience is still talking.', right:1, why:'waitWhy', icon:'Wait for quiet', detail:'Recorders ready. Eyes on the leader.',
+      choices:['Start playing','Wait for quiet, recorders ready','Shush them']},
+    {title:'Before the first piece.', right:0, why:'tuneWhy', icon:'One long A, together', detail:'Alone first, then match the group.',
+      choices:['Each player plays a long A alone, then together to match','Skip it','Play the hardest bar fast']},
+    {title:'Between the two pieces.', right:0, why:'stillWhy', icon:'Recorders down. Stand still.', detail:'Keep your eyes on the leader.',
+      choices:['Recorders down, stand still, eyes on the leader','Wave to family','Practice the next piece']},
+    {title:'After the last note.', right:0, why:'bowWhy', icon:'Hold... then bow together', detail:'A quiet moment, then a shared thank you.',
+      choices:['Hold still a moment, then bow together','Run off','Bow one at a time']},
+  ];
+  function scripted(piece) {
+    return piece === 'buns' ? [{id:'late',who:'Otis',bar:1},{id:'squeak',who:'Bea',bar:2},{id:'rush',who:'Everyone',bar:3}]
+      : [{id:'sharp',who:'Finn',bar:2},{id:'breath',who:'Juniper',bar:3},{id:'late',who:'Bea',bar:1}];
+  }
+  function fresh(piece) {
+    const problems = scripted(piece);
+    return {problems,first:clone(problems),last:clone(problems),notes:[],take:1,heard:false};
+  }
+  const state = {mode:'rehearsal',piece:'buns',running:false,solo:null,loop:null,score:false,criterion:null,card:null,
+    marks:[],beat:-4,played:false,usedSolo:false,part:'manners',moment:0,met:[false,false,false,false],join:'recorder',slower:false,
+    pending:null,result:'Four players. One group. What do your ears notice?',records:{buns:fresh('buns'),lune:fresh('lune')}};
+  const STORE = 'recorder-concert-rehearsal';
+  function validProblems(list, piece) {
+    return Array.isArray(list) && list.length <= 3 && list.every(p => p && p.id in KINDS
+      && (NAMES.includes(p.who) || (p.id === 'rush' && p.who === 'Everyone'))
+      && Number.isInteger(p.bar) && p.bar >= 1 && p.bar <= PIECES[piece].bars
+      && (p.id !== 'rush' || piece === 'buns' && p.bar === 3 && p.who === 'Everyone')
+      && (p.id !== 'late' || p.bar === 1));
+  }
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORE) || 'null');
+    for (const piece of Object.keys(PIECES)) {
+      const data = saved && saved[piece];
+      if (data && validProblems(data.first,piece) && validProblems(data.last,piece) && Array.isArray(data.notes)) {
+        state.records[piece] = {first:clone(data.first),last:clone(data.last),problems:clone(data.last),
+          notes:data.notes.filter(n => n && typeof n.text === 'string').slice(-200),take:data.notes.length+1,heard:false};
+      }
+    }
+  } catch {}
+  function save() {
+    try {
+      const data = {};
+      for (const [piece,r] of Object.entries(state.records)) data[piece] = {first:r.first,last:r.last,notes:r.notes};
+      localStorage.setItem(STORE,JSON.stringify(data));
+    } catch {}
+  }
+  const rec = () => state.records[state.piece];
+  Object.defineProperty(state,'pending',{
+    enumerable:false,configurable:true,
+    get:() => rec().pending || null,
+    set:value => { rec().pending=value; },
+  });
+  let clock = null;
+  let activeEvents = [];
+  let activeBpm = 88;
+  let activePiece = 'buns';
+  let activeOffset = 0;
+  let runSerial = 0;
+  let compareQueue = null;
+  let cards = [];
+  const routes = new Set();
+  const V = Curio.voice({lines:L,scope:() => state.mode + ':' + state.piece,
+    hint:false,read:() => $('hint').textContent,
+    welcome:() => state.running ? null : state.mode === 'rehearsal' && !rec().heard
+      ? ['welcomeRehearsal',{valid:() => !state.running && !rec().heard}]
+      : state.mode === 'concert' && state.part === 'manners'
+        ? ['welcomeConcert',{valid:() => !state.running && state.part === 'manners'}] : null,
+    speaks:'#play, .player, .bar, #first, #final, #both, #give, .choice',
+  });
+  function hint(text, how, valid) {
+    $('hint').textContent = text;
+    if (how && !state.running && !V.heard(how)) {
+      V.how(how,{valid:valid || (() => !state.running),hint:false});
+    }
+  }
+  function feedback(text) { state.result=text; $('result').textContent=text; }
+  function eventsFor(piece, problems) {
+    const p = PIECES[piece];
+    const rushed = problems.some(x => x.id === 'rush');
+    const mapBeat = b => !rushed || b <= 8 ? b : b < 12 ? 8 + (b-8)/1.15 : b - (4-4/1.15);
+    const out = [];
+    NAMES.forEach((who,player) => {
+      let squeaked = false;
+      p.parsed.events.forEach((base,index) => {
+        const bar = Math.floor(base.beat/4)+1;
+        const issues = problems.filter(x => x.who === who && x.bar === bar);
+        const late = issues.some(x => x.id === 'late') && index === 0;
+        const sharp = issues.some(x => x.id === 'sharp');
+        const breath = issues.some(x => x.id === 'breath') && base.beat + base.dur === bar*4;
+        const squeak = issues.some(x => x.id === 'squeak') && base.semi === 7 && !squeaked;
+        const start = mapBeat(base.beat) + (late ? .15*p.bpm/60 : 0);
+        let dur = mapBeat(base.beat+base.dur)-mapBeat(base.beat) - (late ? .15*p.bpm/60 : 0);
+        if (breath) dur = Math.max(.1,dur-.5);
+        out.push({beat:start,dur,semi:base.semi+5+(sharp ? .4 : 0),player,who,bar,
+          original:base.beat,note:['G','A','B'][[7,9,11].indexOf(base.semi)],late,sharp,breath,squeak,
+          rush:rushed && bar===3,instr:'recorder-'+player});
+        if (squeak) {
+          squeaked = true;
+          out.push({beat:start,dur:.15,semi:base.semi+5+19,player,who,bar,original:base.beat,
+            note:'G',effect:true,instr:'recorder-'+player});
+        }
+      });
+    });
+    return {events:out.sort((a,b) => a.beat-b.beat || a.player-b.player),beats:mapBeat(p.parsed.beats)};
+  }
+  // The engine owns the clock, pitch and flute synthesis. Tool instruments route each player through a stereo bus.
+  // Halve the engine flute vibrato by intercepting only its vibrato gain assignment while MS.blow builds a note.
+  NAMES.forEach((name,i) => {
+    MS.INSTR['recorder-'+i] = {name:'Recorder: '+name,play:(f,t,d,b) => {
+      f *= 440 / MS.freq('C',9);
+      const c = MS.ctx();
+      if (!c) return;
+      const pan = c.createStereoPanner();
+      pan.pan.value = PAN[i];
+      const gain = c.createGain();
+      const level = state.solo === null || state.solo === i ? .38 : 0;
+      gain.gain.value = level;
+      gain.connect(pan);
+      pan.connect(b.m);
+      const wet = c.createGain();
+      wet.gain.value = level;
+      wet.connect(b.r);
+      const route = {gain,wet,player:i,pan:PAN[i],frequency:f};
+      routes.add(route);
+      if (d < .2) {
+        for (const node of [gain,wet]) {
+          node.gain.setValueAtTime(level,t);
+          node.gain.setValueAtTime(level,t+d*.65);
+          node.gain.linearRampToValueAtTime(0,t+d);
+        }
+      }
+      const original = c.createGain;
+      let count = 0;
+      let vibrato = null;
+      c.createGain = function() {
+        const node = original.call(c);
+        count++;
+        if (count === 2) {
+          const parameter = node.gain;
+          vibrato = parameter;
+          const descriptor = Object.getOwnPropertyDescriptor(AudioParam.prototype,'value');
+          if (descriptor && descriptor.set) Object.defineProperty(parameter,'value',{
+            configurable:true,get:() => descriptor.get.call(parameter),set:value => descriptor.set.call(parameter,value/2),
+          });
+        }
+        return node;
+      };
+      try { MS.blow(f,t,d,{m:gain,r:wet}); } finally { c.createGain = original; }
+      route.vibrato=vibrato ? vibrato.value : null;
+      setTimeout(() => {
+        routes.delete(route); gain.disconnect(); wet.disconnect(); pan.disconnect();
+      },Math.max(1000,(t-c.currentTime+d+1)*1000));
+    }};
+  });
+  // Keep silent layers scheduled so a solo tap can reveal even a note already being held.
+  function updateSoloRoutes() {
+    const c = MS.ctx();
+    if (!c) return;
+    for (const route of routes) {
+      const value=Curio.sound && (state.solo===null || state.solo===route.player) ? .38 : 0;
+      for (const node of [route.gain,route.wet]) node.gain.setTargetAtTime(value,c.currentTime,.01);
+    }
+  }
+  function buildPlayers() {
+    NAMES.forEach((name,i) => {
+      const button = document.createElement('button');
+      button.className='player';
+      button.id='player-'+i;
+      button.style.setProperty('--color',COLORS[i]);
+      button.setAttribute('aria-label',`Solo ${name}, player ${i+1}`);
+      button.setAttribute('aria-pressed','false');
+      button.innerHTML=`<img class="rest-pose" src="${ART[name][0]}" alt="${name}, an animal recorder player at rest">`
+        + `<img class="play-pose" src="${ART[name][1]}" alt="" aria-hidden="true">`
+        + `<span class="name"><span class="badge">${i+1}</span>${name}</span>`;
+      button.onclick=() => solo(i);
+      $('players').append(button);
+    });
+    for (let i=0;i<18;i++) {
+      const person=document.createElement('i');
+      person.style.setProperty('--seat',i);
+      $('audience').append(person);
+    }
+  }
+  function drawBars() {
+    const scenePiece=state.mode==='rehearsal' ? state.piece : state.part==='join' ? 'lune'
+      : state.part==='compare' ? $('compare-piece').value : state.piece;
+    const count = PIECES[scenePiece].bars;
+    const existing = $('bars').querySelectorAll('.bar');
+    if (existing.length === count) return updateBars();
+    existing.forEach(x => x.remove());
+    for (let i=1;i<=count;i++) {
+      const button=document.createElement('button');
+      button.className='bar'; button.textContent=i; button.id='bar-'+i;
+      button.setAttribute('aria-label','Loop bar '+i);
+      button.onclick=() => loop(i);
+      $('bars').append(button);
+    }
+    updateBars();
+  }
+  function updateBars() {
+    $('bars').querySelectorAll('.bar').forEach((b,i) => {
+      b.disabled=state.mode!=='rehearsal';
+      b.setAttribute('aria-pressed',state.loop === i+1);
+      b.classList.toggle('current',state.running && Math.floor(currentOriginal()/4) === i);
+    });
+  }
+  function currentOriginal() {
+    const beat = clock ? clock.beat : state.beat;
+    const e = [...activeEvents].reverse().find(e => !e.effect && e.beat <= beat+.01);
+    return e ? e.original + Math.max(0,beat-e.beat) : beat;
+  }
+  function drawChecks() {
+    CRITERIA.forEach((criterion,i) => {
+      let button=$('criterion-'+i);
+      if (!button) {
+        button=document.createElement('button'); button.id='criterion-'+i; button.className='criterion';
+        button.innerHTML=`<span class="box">✓</span><span class="copy">${criterion}</span><span class="status">OK</span>`;
+        button.title=DESCRIPTIONS[i];
+        button.onclick=() => mark(criterion);
+        $('checks').append(button);
+      }
+      const selected=state.marks.includes(criterion);
+      button.setAttribute('aria-pressed',selected);
+      button.setAttribute('aria-label',criterion+': '+(selected ? 'Needs work' : 'OK')+'. '+DESCRIPTIONS[i]);
+      button.querySelector('.status').textContent=selected ? 'Needs work' : 'OK';
+      button.querySelector('.box').textContent=selected ? '!' : '✓';
+    });
+  }
+  function mark(criterion) {
+    const marked=state.marks.includes(criterion);
+    state.marks=marked ? state.marks.filter(item => item!==criterion) : [...state.marks,criterion];
+    state.criterion=marked ? null : criterion;
+    state.card=null;
+    drawChecks(); drawCards();
+    if (!rec().heard) {
+      if (state.running) hint('Listen to the take. Tap Stop to pause, or tap a player to Solo.');
+      else { hint(L.welcomeRehearsal); V.welcome(); }
+      return;
+    }
+    if (rec().heard && !rec().problems.length) {
+      hint('Tap Go to the concert, or listen to your clean take again.');
+      return;
+    }
+    hint('Pick Who, Where and one note card. Tap Give note, then listen to the next take.','noteHow',
+      () => !state.running && rec().heard && state.criterion !== null);
+    if (state.running) V.hush();
+    Curio.tone(600,.07,.04);
+  }
+  function cardOptions() {
+    const who=$('who').value;
+    const criterion=state.criterion;
+    if (!criterion) return Object.keys(FIXES).map(id => ({id,text:(id==='rush'?'Everyone':who)+', '+FIXES[id]}))
+      .concat([{id:'vague',text:'Sound better!'}]);
+    const correct = Object.keys(KINDS).filter(id => KINDS[id] === criterion);
+    let options;
+    if (criterion === 'Clear tone') options=correct.map(id => ({id,text:who+', '+FIXES[id]}));
+    else options=[{id:correct[0],text:(correct[0]==='rush'?'Everyone':who)+', '+FIXES[correct[0]]},
+      criterion==='Steady beat' ? {id:'squeak',text:who+', '+FIXES.squeak} : {id:'louder',text:who+', play louder.'}];
+    options.push({id:'vague',text:criterion==='Together'?'Try harder, everyone.':criterion==='Phrasing'?"That wasn't great. Again!":'Sound better!'});
+    // Stable rotating order prevents the first position from always being a fixing card.
+    const rotate=(rec().take+CRITERIA.indexOf(criterion))%options.length;
+    return options.slice(rotate).concat(options.slice(0,rotate));
+  }
+  function drawCards() {
+    cards=cardOptions();
+    const focused=document.activeElement;
+    const wasCard=focused && focused.classList.contains('note-card');
+    const oldId=wasCard ? focused.dataset.kind : null;
+    $('cards').replaceChildren();
+    cards.forEach(card => {
+      const button=document.createElement('button'); button.className='note-card'; button.dataset.kind=card.id;
+      button.id='card-'+card.id; button.textContent=card.text; button.setAttribute('aria-pressed',state.card===card.id);
+      button.onclick=() => {
+        state.card=card.id;
+        $('cards').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed',b.dataset.kind===state.card));
+        hint('Tap Give note to send your note. The next take will show what it changed.');
+        Curio.tone(720,.06,.04);
+      };
+      $('cards').append(button);
+    });
+    if (oldId && $('card-'+oldId)) $('card-'+oldId).focus({preventScroll:true});
+  }
+  function drawWhere() {
+    $('where').replaceChildren();
+    for (let bar=1;bar<=PIECES[state.piece].bars;bar++) {
+      const option=document.createElement('option'); option.value=bar; option.textContent='Bar '+bar; $('where').append(option);
+    }
+    const whole=document.createElement('option'); whole.value='whole'; whole.textContent='Whole piece'; $('where').append(whole);
+  }
+  function drawScore() {
+    const piece=state.mode==='rehearsal' ? state.piece : activePiece;
+    const p=PIECES[piece];
+    const data=eventsFor(piece,state.mode==='rehearsal' ? rec().problems : []);
+    const total=p.parsed.beats;
+    const width=Math.max(350,$('score').clientWidth);
+    const height=Math.max(1,$('score').clientHeight);
+    const row=(height-8)/4;
+    const label=width<500 ? 51 : 65;
+    const unit=(width-label-8)/total;
+    let svg=`<svg viewBox="0 0 ${width} ${height}" role="img" `
+      +'aria-label="Four score lanes. Late notes move right, sharp notes move up, squeaks sparkle, breaths leave a gap.">';
+    for (let b=0;b<=total;b++) {
+      svg+=`<path d="M${label+b*unit} 0v${height}" stroke="${b%4 ? '#dddcc9':'#b4b895'}" stroke-width="1"/>`;
+    }
+    NAMES.forEach((who,i) => {
+      const y=8+row*(i+.5);
+      svg+=`<text x="3" y="${y+4}" font-size="10" fill="#1f2414">${who}</text>`;
+      svg+=`<path d="M${label} ${y}H${width}" stroke="#d4d4bd" stroke-width="1"/>`;
+      data.events.filter(e => e.player===i && !e.effect).forEach(e => {
+        const x=label+e.beat*unit;
+        const yy=y-(e.sharp?6:0);
+        svg+=`<rect x="${x}" y="${yy-5}" width="${Math.max(2,e.dur*unit-1)}" height="9" rx="2" fill="${COLORS[i]}"/>`;
+        if (e.sharp) svg+=`<text x="${x}" y="${yy+4}" font-size="10">↑</text>`;
+        if (e.squeak) svg+=`<text x="${x}" y="${yy+4}" font-size="10">✦</text>`;
+        if (e.breath) svg+=`<text x="${x+e.dur*unit}" y="${yy+4}" font-size="10">’</text>`;
+        if (e.rush) svg+=`<path d="M${x} ${yy+6}h${Math.max(2,e.dur*unit-1)}" stroke="#1f2414" stroke-width="2"/>`;
+      });
+    });
+    svg+=`<path id="score-head" stroke="#1f2414" stroke-width="2" d="M0 0v${height}"/></svg>`;
+    $('score').innerHTML=svg;
+  }
+  function render() {
+    const rehearsal=state.mode==='rehearsal';
+    $('m-rehearsal').setAttribute('aria-pressed',rehearsal);
+    $('m-concert').setAttribute('aria-pressed',!rehearsal);
+    $('rehearsal-panel').hidden=!rehearsal;
+    $('clipboard').hidden=!rehearsal;
+    $('footer-actions').hidden=!rehearsal;
+    $('concert-panel').hidden=rehearsal;
+    $('scene-tools').hidden=!rehearsal;
+    $('room-backdrop').hidden=!rehearsal;
+    $('concert-backdrop').hidden=rehearsal;
+    $('audience').hidden=rehearsal;
+    $('your-spot').hidden=rehearsal;
+    $('curtain').hidden=rehearsal;
+    $('room').classList.toggle('concert',!rehearsal);
+    $('room').classList.toggle('manners',!rehearsal && state.part==='manners');
+    const canNote=rehearsal && rec().heard && rec().problems.length>0;
+    $('note-builder').hidden=!canNote;
+    $('workspace').classList.toggle('note-open',canNote);
+    $('workspace').classList.toggle('concert-join',!rehearsal && state.part==='join');
+    $('workspace').classList.toggle('concert-compare',!rehearsal && state.part==='compare');
+    $('score').hidden=!state.score || !rehearsal;
+    $('room').classList.toggle('with-score',state.score && rehearsal);
+    $('score-toggle').setAttribute('aria-pressed',state.score);
+    $('piece').value=state.piece;
+    $('take-stamp').textContent='Take '+rec().take;
+    $('take-stamp').hidden=!rehearsal;
+    $('piece-title').textContent=rehearsal ? PIECES[state.piece].name : state.part==='join' ? 'Au Clair de la Lune' : 'The spring concert';
+    $('eyebrow').textContent=rehearsal ? 'You have the clipboard' : 'Your group, ready to share';
+    $('go-concert').hidden=rec().last.length>0 || !rec().heard || !!state.pending;
+    $('staff').hidden=rehearsal || state.part!=='join';
+    $('moment-art').hidden=rehearsal || state.part!=='manners';
+    $('curtain').classList.toggle('open',state.met.every(Boolean));
+    $('play').textContent=state.running ? '■ Stop' : rehearsal ? '▶ Play take' : state.part==='join' ? '▶ Play with them' : '▶ Listen to the group';
+    $('play').parentElement.hidden=!rehearsal && state.part!=='join' && !state.running;
+    NAMES.forEach((name,i) => {
+      $('player-'+i).setAttribute('aria-pressed',state.solo===i);
+      $('player-'+i).disabled=!rehearsal;
+    });
+    $('listening').hidden=!rehearsal;
+    $('listening').textContent=state.running ? (state.solo===null?'All four players':NAMES[state.solo]+' solo')
+      +(state.loop?' · looping bar '+state.loop:'') : state.solo===null?'Tap a player to hear them alone.':NAMES[state.solo]+' solo · tap again for all';
+    drawBars(); drawChecks();
+    if (state.score) drawScore();
+    layoutNotes(); layoutJoin();
+    if (!rehearsal) drawConcert();
+  }
+  function layoutNotes() {
+    const compact=!$('note-builder').hidden && (innerWidth<600 || innerHeight<=600);
+    const tools=$('scene-tools');
+    const focused=document.activeElement;
+    tools.classList.toggle('note-tools',compact);
+    if (compact) {
+      for (const id of ['piece','new','reset']) if ($(id).parentElement!==tools) tools.insertBefore($(id),$('all'));
+      $('piece').title=PIECES[state.piece].name;
+    } else {
+      if ($('piece').parentElement!==pieceRow) pieceRow.insertBefore($('piece'),pieceRow.firstChild);
+      if ($('new').parentElement!==pieceRow) pieceRow.append($('new'));
+      if ($('reset').parentElement!==$('footer-actions')) $('footer-actions').insertBefore($('reset'),$('go-concert'));
+    }
+    if (focused && focused!==document.activeElement && document.contains(focused)) focused.focus({preventScroll:true});
+  }
+  function layoutJoin() {
+    const mobile=innerWidth<600 && state.mode==='concert' && state.part==='join';
+    const guide=$('phone-guide');
+    const stage=document.querySelector('.stage');
+    const playRow=$('play').parentElement;
+    const focused=document.activeElement;
+    if (mobile) {
+      if ($('staff').parentElement!==guide) guide.append($('staff'));
+      if ($('fingering').parentElement!==guide) guide.append($('fingering'));
+      if ($('slower').parentElement!==playRow) playRow.append($('slower'));
+    } else {
+      if ($('staff').parentElement!==stage) stage.insertBefore($('staff'),guide);
+      if ($('slower').parentElement!==$('join-panel')) {
+        $('join-panel').insertBefore($('slower'),$('join-panel').querySelector('.privacy'));
+      }
+      if ($('fingering').parentElement!==$('join-panel')) $('join-panel').insertBefore($('fingering'),$('slower'));
+    }
+    guide.hidden=!mobile;
+    if (focused && focused!==document.activeElement && document.contains(focused)) focused.focus({preventScroll:true});
+  }
+  function setMode(mode) {
+    if (state.mode===mode) { V.welcome(); return; }
+    stop(); V.hush(); state.mode=mode; state.solo=null; state.loop=null;
+    if (mode==='concert') state.part='manners';
+    $('room').classList.remove('ready-pose','bowing');
+    render();
+    if (innerWidth<600) window.scrollTo(0,0);
+    if (mode==='rehearsal') {
+      feedback(rec().heard && !rec().problems.length ? 'Ready for the concert.' : 'Four players. Listen before you give a note.');
+      hint(state.pending ? 'Tap Play take to hear the effect of your note.' : rec().heard && !rec().last.length
+        ? 'Tap Go to the concert, or listen to your clean take again.'
+        : rec().heard ? 'Tap Play take to listen again, or build one clear note.' : L.welcomeRehearsal);
+      V.welcome();
+    } else {
+      feedback('Every concert starts before the first note. Choose what the group should do.');
+      hint(L.welcomeConcert); V.welcome();
+    }
+  }
+  function stop() {
+    runSerial++;
+    state.running=false;
+    compareQueue=null;
+    if (clock) { const old=clock; clock=null; old.stop(); }
+    MS.stop();
+    $('count').hidden=true;
+    NAMES.forEach((name,i) => $('player-'+i).classList.remove('sounding'));
+    $('play').textContent=state.mode==='rehearsal'?'▶ Play take':'▶ Play with them';
+  }
+  function playData(piece, problems, {lead=4, startBeat=0, endBeat=null, done=null, bpm=null}={}) {
+    const data=eventsFor(piece,problems);
+    activePiece=piece;
+    activeBpm=bpm || PIECES[piece].bpm;
+    const low=startBeat;
+    activeOffset=low;
+    const high=endBeat===null?data.beats:endBeat;
+    activeEvents=data.events.filter(e => e.beat >= low-1e-7 && e.beat < high-1e-7)
+      .map(e => ({...e,beat:e.beat-low}));
+    const serial=++runSerial;
+    state.running=true; state.beat=-lead;
+    V.hush();
+    $('play').textContent='■ Stop';
+    $('play').parentElement.hidden=false;
+    $('listening').textContent=(state.solo===null?'All four players':NAMES[state.solo]+' solo')+(state.loop?' · looping bar '+state.loop:'');
+    clock=MS.play(activeEvents,{key:'G',bpm:activeBpm,lead,beats:high-low,exclusive:true,
+      onStep:i => { if (serial!==runSerial) return; state.beat=i; $('count').hidden=i>=0; $('count').textContent=i<0?i+5:''; },
+      onEnd:why => {
+        if (serial!==runSerial || why!=='end') return;
+        clock=null;
+        if (state.loop && state.mode==='rehearsal') { playLoop(0); return; }
+        state.running=false; $('count').hidden=true;
+        NAMES.forEach((name,i) => $('player-'+i).classList.remove('sounding'));
+        render();
+        if (done) done();
+      },
+    });
+  }
+  function endTake() {
+    const outcome=state.pending;
+    state.pending=null;
+    rec().heard=true;
+    rec().last=clone(rec().problems);
+    state.played=true; state.criterion=null; state.card=null; state.marks=[];
+    render(); drawCards(); save();
+    if (!rec().problems.length) {
+      feedback('Ready for the concert. Your notes brought the group together.');
+      hint('Tap Go to the concert, or listen to your clean take again.');
+      if (outcome) V.say(outcome.voice,{valid:() => !state.running});
+      if (!rec().readyAnnounced) {
+        V.say('ready',{valid:() => !state.running && !rec().problems.length});
+        rec().readyAnnounced=true;
+      }
+    } else if (outcome) {
+      feedback(outcome.text);
+      hint('Listen again with Solo or Loop bar. Pick a checklist line, then build your next note.');
+      V.say(outcome.voice,{valid:() => !state.running});
+    } else {
+      feedback('Take '+rec().take+' is on your clipboard. What needs work?');
+      hint('Tap a checklist line to mark Needs work. Pick Who, Where and one note card.','markHow',
+        () => !state.running && state.criterion===null && rec().heard);
+    }
+    if (rec().take>=2 && !state.usedSolo && !V.heard('toolsHow')) V.how('toolsHow',{valid:() => !state.running && !state.usedSolo});
+  }
+  function playTake() {
+    if (state.running) { stop(); render(); pauseHint(); return; }
+    if (state.mode==='concert') {
+      if (state.part==='join') return playJoin();
+      if (state.part==='compare') return compare('last');
+      hint('Tap a choice on each Stage manners card before the curtain opens.');
+      return;
+    }
+    if (state.loop) return playLoop(4);
+    feedback('Listen to take '+rec().take+'. What do your ears notice?');
+    playData(state.piece,rec().problems,{done:endTake});
+    hint('Listen to the group. Tap Stop to pause, a player to Solo, or a bar to Loop bar.');
+  }
+  function pauseHint() {
+    if (state.mode==='rehearsal') hint('Tap Play take to start again. Solo a player or tap a bar to investigate.');
+    else if (state.part==='join') hint('Tap Play with them to start again. Pick how you will join, or choose Slower.');
+    else if (state.part==='compare') hint(L.compareHow);
+    else hint('Tap a choice for this stage moment.');
+  }
+  function playLoop(lead=0) {
+    const data=eventsFor(state.piece,rec().problems);
+    const selected=state.loop;
+    const barEvents=data.events.filter(e => e.bar===selected);
+    const first=barEvents.reduce((min,e) => Math.min(min,e.beat),Infinity);
+    const base=selected===1?0:first;
+    const next=data.events.filter(e => e.bar===selected+1).reduce((min,e) => Math.min(min,e.beat),data.beats);
+    playData(state.piece,rec().problems,{lead,startBeat:base,endBeat:next,done:endTake});
+  }
+  function solo(i) {
+    if (state.mode!=='rehearsal') return;
+    state.solo=state.solo===i?null:i;
+    state.usedSolo=true;
+    updateSoloRoutes();
+    V.hush(); render();
+    if (state.mode!=='rehearsal') return;
+    hint(state.solo===null?'Everyone is playing. Tap a player to solo, or tap a bar to loop.':NAMES[i]+' is soloed. Tap the same player for everyone.');
+    if (!state.running) {
+      if (state.loop) playLoop(0);
+      else playData(state.piece,rec().problems,{lead:4,done:endTake});
+    }
+  }
+  function loop(bar) {
+    if (state.mode!=='rehearsal') return;
+    state.loop=state.loop===bar?null:bar;
+    V.hush();
+    // Re-anchor immediately on a loop tap, cutting the previous bus and its already scheduled notes.
+    if (clock) { const old=clock; runSerial++; clock=null; old.stop(); }
+    if (state.loop) playLoop(0);
+    else playData(state.piece,rec().problems,{lead:0,done:endTake});
+    render();
+    hint(state.loop?'Looping bar '+bar+'. Tap that bar again for the whole piece.':'Whole piece. Tap a bar to loop it.');
+  }
+  function applyNote(problems,who,where,card) {
+    const index=problems.findIndex(p => p.id===card && p.who===who && (String(p.bar)===String(where) || card==='late' && where==='whole'));
+    return {fixed:index<0?null:problems[index],problems:problems.filter((p,i) => i!==index)};
+  }
+  function giveNote() {
+    if (!rec().heard) { hint('Tap Play take and listen before giving a note.'); return; }
+    if (state.pending) {
+      hint('Tap Play take and hear the effect of this note before giving another note.');
+      showPlay();
+      Curio.tone(300,.08,.04);
+      return;
+    }
+    if (!state.card) { hint('Choose one note card, then tap Give note.'); Curio.tone(240,.1,.04); return; }
+    stop(); V.hush();
+    const who=$('who').value;
+    const where=$('where').value;
+    const result=applyNote(rec().problems,who,where,state.card);
+    const chosen=cards.find(c => c.id===state.card);
+    const text=chosen.text+' ('+(where==='whole'?'Whole piece':'bar '+where)+')';
+    rec().notes.push({text,who,where,card:state.card});
+    rec().take++;
+    rec().problems=clone(result.problems);
+    const notThem=NAMES.includes(who) && state.card!=='rush' && !result.fixed
+      && rec().problems.some(p => p.id===state.card && p.who!==who);
+    const changed=result.fixed;
+    state.pending=changed ? {text:`Your note to ${who} changed ${changed.id==='rush'?'the beat in bar 3': 'bar '+changed.bar+'.'} Listen to the next take.`,
+      voice:'fixed-'+changed.id+'-'+changed.who} : {text:notThem?`${who} already does that. Listen again: who was it?`:L.noChange,
+      voice:notThem?'notThem':'noChange'};
+    // Last means the most recently heard full take, not an unheard note setting.
+    save();
+    $('room').classList.add('nodding');
+    setTimeout(() => $('room').classList.remove('nodding'),320);
+    feedback('Note sent. Tap Play take to hear what changed.');
+    hint('Tap Play take and listen for the effect of your note.');
+    state.card=null; state.criterion=null; state.marks=[];
+    render(); drawCards();
+    $('play').focus({preventScroll:true});
+    showPlay();
+    Curio.tone(660,.08,.05);
+  }
+  function showPlay() {
+    if (window.scrollY>0) {
+      window.scrollTo(0,0);
+      $('play').focus({preventScroll:true});
+    }
+  }
+  function switchPiece(piece) {
+    stop(); V.hush(); state.piece=piece; state.solo=null; state.loop=null; state.criterion=null; state.card=null; state.marks=[];
+    state.played=false; activePiece=piece; drawWhere(); drawCards(); render();
+    feedback('A new piece to listen to. Use the clipboard to choose what needs work.');
+    hint(rec().heard?'Tap Play take to listen, or give one clear rehearsal note.':L.welcomeRehearsal);
+    V.welcome();
+  }
+  function randomProblems(piece) {
+    const ids=Object.keys(KINDS).filter(id => piece==='buns' || id!=='rush');
+    for (let i=ids.length-1;i>0;i--) { const j=Math.floor(Math.random()*(i+1)); [ids[i],ids[j]]=[ids[j],ids[i]]; }
+    return ids.slice(0,3).map(id => {
+      let bar=id==='late'?1:id==='rush'?3:1+Math.floor(Math.random()*PIECES[piece].bars);
+      if (id==='breath') {
+        const eligible=Array.from({length:PIECES[piece].bars},(_,i) => i+1).filter(b => !PIECES[piece].phrases.includes(b));
+        bar=eligible[Math.floor(Math.random()*eligible.length)];
+      }
+      if (id==='squeak') {
+        const eligible=[...new Set(PIECES[piece].parsed.events.filter(e => e.semi===7).map(e => Math.floor(e.beat/4)+1))];
+        bar=eligible[Math.floor(Math.random()*eligible.length)];
+      }
+      return {id,who:id==='rush'?'Everyone':NAMES[Math.floor(Math.random()*4)],bar};
+    });
+  }
+  function reset(random=false) {
+    const keepWelcome=V.playing===L.welcomeRehearsal;
+    stop();
+    if (!keepWelcome) V.hush();
+    state.records[state.piece]=fresh(state.piece);
+    if (random) {
+      const problems=randomProblems(state.piece);
+      Object.assign(rec(),{problems,first:clone(problems),last:clone(problems)});
+    }
+    state.criterion=null; state.card=null; state.pending=null; state.solo=null; state.loop=null; state.marks=[];
+    save(); drawCards(); render();
+    feedback(random?'Three new problems. Same group, fresh ears.':'A fresh start. Listen before you give your first note.');
+    hint(L.welcomeRehearsal); V.welcome();
+  }
+  function drawConcert() {
+    ['manners','join','compare'].forEach(part => {
+      $('c-'+part).setAttribute('aria-pressed',state.part===part);
+      $(part+'-panel').hidden=state.part!==part;
+    });
+    if (state.part==='manners') drawManners();
+    if (state.part==='join') { drawStaff(); drawFingering('G'); }
+    if (state.part==='compare') drawHistory();
+  }
+  function concertPart(part) {
+    const opened=document.activeElement===$('open-curtain');
+    stop(); V.hush();
+    $('room').classList.remove('ready-pose','bowing');
+    if (part==='join' && !state.met.every(Boolean)) {
+      hint('Finish all four Stage manners moments first. Tap a numbered moment, then choose a response.');
+      feedback('The curtain stays closed until the group is ready.');
+      render();
+      return;
+    }
+    state.part=part; state.loop=null; state.solo=null; render();
+    if (innerWidth<600) window.scrollTo(0,0);
+    if (opened && part==='join') $('play').focus({preventScroll:true});
+    if (part==='join') { hint(L.playHow,'playHow',() => !state.running && state.part==='join');
+      feedback('Your part: B, A and G. Join on a real recorder, sing the names, or clap.'); }
+    if (part==='manners') { hint('Tap a numbered moment, then choose what the group should do.'); }
+    if (part==='compare') { hint(L.compareHow,'compareHow'); feedback('Listen to where your group began, then hear where your notes took them.'); }
+  }
+  function drawManners() {
+    if (!$('manners-progress').children.length) {
+      MANNERS.forEach((m,i) => {
+        const b=document.createElement('button'); b.className='moment-tab'; b.id='moment-'+i; b.textContent=i+1;
+        b.setAttribute('aria-label','Stage manners moment '+(i+1));
+        b.onclick=() => {
+          stop(); V.hush(); state.moment=i;
+          $('room').classList.remove('ready-pose','bowing');
+          render(); hint('Tap a choice for this stage moment.');
+        };
+        $('manners-progress').append(b);
+      });
+    }
+    MANNERS.forEach((m,i) => {
+      $('moment-'+i).classList.toggle('met',state.met[i]);
+      $('moment-'+i).setAttribute('aria-pressed',state.moment===i);
+      $('moment-'+i).textContent=state.met[i]?'✓':i+1;
+    });
+    const m=MANNERS[state.moment];
+    $('room').classList.toggle('talking',state.moment===0 && !state.met[0]);
+    $('room').classList.toggle('quiet-hall',state.met[0]);
+    $('moment-title').textContent=m.title;
+    const scenes=['A talking audience','Time to tune','A quiet changeover','The final note'];
+    $('moment-art').querySelector('b').textContent=state.met[state.moment]?m.icon:scenes[state.moment];
+    $('moment-art').querySelector('span').textContent=state.met[state.moment]?m.detail:'Help the group choose its next move.';
+    const old=$('choices').dataset.moment;
+    if (old!==String(state.moment)) {
+      $('choices').dataset.moment=state.moment;
+      $('choices').replaceChildren();
+      m.choices.forEach((choice,i) => {
+        const b=document.createElement('button'); b.className='choice'; b.id='choice-'+i; b.textContent=choice;
+        b.onclick=() => answerManners(i); $('choices').append(b);
+      });
+    }
+    $('choices').querySelectorAll('button').forEach((b,i) => b.classList.toggle('correct',state.met[state.moment] && i===m.right));
+    $('open-curtain').hidden=!state.met.every(Boolean);
+  }
+  function answerManners(index) {
+    stop(); V.hush();
+    const moment=state.moment;
+    const m=MANNERS[moment];
+    if (index!==m.right) {
+      render();
+      $('room').classList.remove('ready-pose','bowing');
+      feedback(L.wrong[moment]); hint('Try another choice for this stage moment.');
+      V.say(L.wrong[moment],{valid:() => state.part==='manners' && state.moment===moment});
+      Curio.tone(270,.12,.04); return;
+    }
+    state.met[moment]=true;
+    drawManners(); render();
+    feedback(L[m.why]);
+    hint(state.met.every(Boolean)?'Tap Open the curtain to join the group.':'Tap the next numbered moment, then choose what the group should do.');
+    if (moment!==1) V.say(m.why,{valid:() => state.part==='manners' && state.moment===moment});
+    Curio.yes();
+    $('room').classList.toggle('ready-pose',moment===0);
+    if (moment===1) {
+      V.hush();
+      const notes=NAMES.map((who,i) => ({beat:i*1.4,dur:1.2,semi:14,player:i,instr:'recorder-'+i}));
+      NAMES.forEach((who,i) => notes.push({beat:6,dur:2,semi:14,player:i,instr:'recorder-'+i}));
+      activeEvents=notes;
+      state.running=true;
+      const serial=++runSerial;
+      clock=MS.play(notes,{key:'G',bpm:100,beats:8,onStep:beat => {
+        if (serial!==runSerial || state.moment!==1) return;
+        const player=beat<6 ? Math.min(3,Math.floor(beat/1.4)) : null;
+        $('moment-art').querySelector('b').textContent=(player===null?'Everyone':NAMES[player])+' · A';
+        $('moment-art').querySelector('span').textContent=player===null?'Listen for one matching sound.':'One long note. Listen, then match.';
+      },onEnd:why => {
+        if (serial===runSerial && why==='end') {
+          clock=null; state.running=false; render();
+          V.say(m.why,{valid:() => state.part==='manners' && state.moment===1 && !state.running});
+        }
+      }});
+      $('play').textContent='■ Stop';
+      $('play').parentElement.hidden=false;
+    }
+    if (moment===3) {
+      const serial=runSerial;
+      $('room').classList.remove('bowing');
+      setTimeout(() => {
+        if (serial!==runSerial || state.part!=='manners' || state.moment!==3) return;
+        $('room').classList.add('bowing');
+        setTimeout(() => {
+          if (serial===runSerial) $('room').classList.remove('bowing');
+        },1400);
+      },650);
+    }
+  }
+  function drawStaff() {
+    const notes=PIECES.lune.parsed.events;
+    const width=Math.max(340,$('staff').clientWidth);
+    let svg=`<svg viewBox="0 0 ${width} 132" role="img" aria-label="Your written recorder part on a five-line staff. Notes G, A and B.">`;
+    svg+='<g id="staff-notes">';
+    for (let line=0;line<5;line++) svg+=`<path d="M0 ${35+line*12}H${width+2100}" stroke="#979d80" stroke-width="1"/>`;
+    notes.forEach(e => {
+      const name=e.semi===7?'G':e.semi===9?'A':'B';
+      const x=100+e.beat*62;
+      const y=name==='G'?71:name==='A'?65:59;
+      svg+=`<ellipse cx="${x}" cy="${y}" rx="8" ry="5.5" transform="rotate(-15 ${x} ${y})" `
+        +`fill="${e.dur>=2?'#fffdf2':'#1f2414'}" stroke="#1f2414" stroke-width="2"/>`;
+      if (e.dur<4) svg+=`<path d="M${x+7} ${y}v-30" stroke="#1f2414" stroke-width="2"/>`;
+      svg+=`<text x="${x}" y="110" text-anchor="middle" font-size="18" font-weight="700" fill="#1f2414">${name}</text>`;
+    });
+    svg+='</g><path d="M100 18v100" stroke="#5a6b14" stroke-width="3"/></svg>';
+    $('staff').innerHTML=svg;
+  }
+  function drawFingering(note) {
+    const count=note==='B'?1:note==='A'?2:3;
+    let svg='<svg viewBox="0 0 50 145" role="img" aria-label="'+note+': cover thumb and '+count+' front holes">';
+    svg+='<defs><linearGradient id="wood"><stop stop-color="#b57c39"/><stop offset=".4" stop-color="#f6d399"/>'
+      +'<stop offset="1" stop-color="#bc8545"/></linearGradient></defs><rect x="15" y="4" width="22" height="134" rx="8" fill="url(#wood)" stroke="#91632c"/>';
+    svg+='<circle cx="6" cy="31" r="4" fill="#1f2414"/>';
+    for (let i=0;i<7;i++) svg+=`<circle cx="26" cy="${32+i*13}" r="4" fill="${i<count?'#1f2414':'#fff6df'}" stroke="#655438"/>`;
+    svg+='</svg>';
+    $('fingering').innerHTML=svg+`<div><span class="eyebrow">Next note</span><br><b>${note}</b><p>Thumb + ${count===1?'hole 1':'holes 1 to '+count}</p>`
+      +'<p>● covered · ○ open<br>Left hand at the top.</p></div>';
+  }
+  function playJoin() {
+    state.solo=null;
+    playData('lune',[],{bpm:state.slower?80:96,done:() => {
+      feedback(L.joinDone); hint('Tap Then and now to compare the first and final takes.'); V.say('joinDone',{valid:() => !state.running});
+    }});
+    hint('Follow the note names. '+(state.join==='recorder'?'Play your recorder.':state.join==='sing'?'Sing G, A and B.':'Clap the rhythm.'));
+  }
+  function drawHistory() {
+    const piece=$('compare-piece').value;
+    $('history').replaceChildren();
+    const notes=state.records[piece].notes;
+    if (!notes.length) {
+      const li=document.createElement('li'); li.textContent='No notes yet for this piece. Lead a rehearsal to make a change.'; $('history').append(li);
+    } else for (const note of notes) { const li=document.createElement('li'); li.textContent=note.text; $('history').append(li); }
+  }
+  function compare(which, both=false) {
+    stop(); V.hush(); state.solo=null; state.loop=null;
+    const piece=$('compare-piece').value;
+    const data=state.records[piece];
+    feedback((which==='first'?'First':'Final')+' take · '+PIECES[piece].name+(both?' · final take follows':''));
+    playData(piece,data[which],{done:() => {
+      if (both) {
+        feedback('Final take · '+PIECES[piece].name);
+        hint('Final take: listen for what your notes changed. Tap Stop to pause.');
+        playData(piece,data.last,{done:() => hint('Tap either take to listen again, or read your notes below.')});
+      } else hint('Tap the other take to compare, or tap First, then final.');
+    }});
+    hint((which==='first'?'First take: ':'Final take: ')+'listen to this take. Tap Stop to pause.');
+  }
+  function animate() {
+    if (state.running && clock) {
+      const beat=clock.beat;
+      const shownBeat=Curio.reduce?Math.floor(beat):beat;
+      state.beat=shownBeat;
+      NAMES.forEach((name,i) => {
+        const sounding=beat>=0 && (state.solo===null || state.solo===i)
+          && activeEvents.some(e => e.player===i && !e.effect && beat>=e.beat && beat<e.beat+e.dur*.92);
+        $('player-'+i).classList.toggle('sounding',sounding);
+      });
+      if (state.mode==='concert' && state.part==='manners' && state.moment===1) {
+        const sounding=activeEvents.filter(e => beat>=e.beat && beat<e.beat+e.dur);
+        const label=sounding.length>1?'Everyone':sounding.length?NAMES[sounding[0].player]:'Listen';
+        $('moment-art').querySelector('b').textContent=label+' · A';
+      }
+      updateBars();
+      const head=$('score-head');
+      if (head && state.score) {
+        const width=Math.max(350,$('score').clientWidth);
+        const label=width<500?51:65;
+        const absolute=shownBeat+activeOffset;
+        head.setAttribute('transform',`translate(${label+Math.max(0,absolute)*(width-label-8)/PIECES[activePiece].parsed.beats} 0)`);
+      }
+      if (state.mode==='concert' && state.part==='join') {
+        const staff=$('staff-notes');
+        if (staff) staff.setAttribute('transform',`translate(${-Math.max(0,shownBeat)*62} 0)`);
+        const next=PIECES.lune.parsed.events.find(e => e.beat >= Math.max(0,beat)-.1);
+        const note=next?(next.semi===7?'G':next.semi===9?'A':'B'):'G';
+        if ($('fingering').dataset.note!==note) { $('fingering').dataset.note=note; drawFingering(note); }
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+  buildPlayers(); drawChecks(); drawWhere(); drawCards();
+  $('m-rehearsal').onclick=() => setMode('rehearsal');
+  $('m-concert').onclick=() => setMode('concert');
+  $('play').onclick=playTake;
+  $('piece').onchange=() => switchPiece($('piece').value);
+  $('new').onclick=() => reset(true);
+  $('reset').onclick=() => reset(false);
+  $('give').onclick=giveNote;
+  $('who').onchange=() => { state.card=null; drawCards(); };
+  $('where').onchange=() => { hint('Choose one note card, then tap Give note.'); };
+  $('score-toggle').onclick=() => { state.score=!state.score; render(); Curio.tone(500,.05,.03); };
+  $('all').onclick=() => { state.solo=null; updateSoloRoutes(); render(); if (!state.running) playTake(); };
+  $('go-concert').onclick=() => setMode('concert');
+  ['manners','join','compare'].forEach(part => $('c-'+part).onclick=() => concertPart(part));
+  $('open-curtain').onclick=() => concertPart('join');
+  ['recorder','sing','clap'].forEach(join => $('join-'+join).onclick=() => {
+    state.join=join;
+    ['recorder','sing','clap'].forEach(j => $('join-'+j).setAttribute('aria-pressed',j===join));
+    hint('Tap Play with them. '+(join==='recorder'?'Play the shown recorder notes.':join==='sing'?'Sing the note names.':'Clap the shown rhythm.'));
+    if (state.running) V.hush();
+  });
+  $('slower').onclick=() => {
+    state.slower=!state.slower;
+    $('slower').setAttribute('aria-pressed',state.slower);
+    $('slower').textContent=state.slower?'Normal speed · 96 beats a minute':'Slower · 80 beats a minute';
+    if (clock && state.part==='join') clock.bpm=state.slower?80:96;
+    hint('Tap Play with them, or follow the notes if the music is already playing.');
+  };
+  $('compare-piece').onchange=() => { stop(); render(); hint(L.compareHow); };
+  $('first').onclick=() => compare('first');
+  $('final').onclick=() => compare('last');
+  $('both').onclick=() => compare('first',true);
+  document.addEventListener('keydown',event => {
+    if (/INPUT|SELECT|TEXTAREA/.test(event.target.tagName)) return;
+    if (event.code==='Space' && event.target.id!=='read') { event.preventDefault(); playTake(); }
+    if (/^[1-4]$/.test(event.key) && state.mode==='rehearsal') { event.preventDefault(); solo(Number(event.key)-1); }
+  });
+  // Panel controls lead the keyboard sequence; players and bars follow, in their visible order.
+  const panel=$('panel');
+  document.querySelector('main').insertBefore(panel,document.querySelector('.stage'));
+  panel.style.gridColumn='2'; panel.style.gridRow='1';
+  document.querySelector('.stage').style.gridColumn='1'; document.querySelector('.stage').style.gridRow='1';
+  $('room').parentElement.append($('bars'));
+  $('read').addEventListener('pointerdown',() => { if (state.running) { stop(); render(); pauseHint(); } });
+  $('read').addEventListener('keydown',event => {
+    if ((event.key==='Enter' || event.key===' ') && state.running) { stop(); render(); pauseHint(); }
+  });
+  Curio.onSound(() => { updateSoloRoutes(); if (state.running) V.hush(); });
+  Curio.init({clips:"voice:*",rate:.95});
+  window.addEventListener('resize',() => {
+    layoutNotes(); layoutJoin();
+    if (state.score) drawScore();
+    if (state.mode==='concert' && state.part==='join') drawStaff();
+  });
+  window.addEventListener('pagehide',stop);
+  render();
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},eventsFor,applyNote,
+    randomProblems,switchPiece,reset,giveNote,endTake,concertPart,answerManners,stop,save,
+    get clock(){return clock;},get activeEvents(){return activeEvents;},
+    get routes(){return [...routes].map(r => ({player:r.player,pan:r.pan,frequency:r.frequency,
+      vibrato:r.vibrato,level:r.gain.gain.value}));}};
+  requestAnimationFrame(animate);
+})();
+</script>
+</body>
+</html>

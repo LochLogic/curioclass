@@ -1,0 +1,227 @@
+{
+  "states": [
+    {
+      "name": "marked-step",
+      "steps": [
+        {
+          "drag": "return (()=>{const r=document.querySelector('#paper').getBoundingClientRect();return Array.from({length:25},(_,i)=>[r.x+r.width*(.15+i/40),r.y+r.height*(.6+.1*Math.sin(i/4))]);})();"
+        }
+      ],
+      "keep": [
+        "#paper",
+        "#next-question",
+        "#chips",
+        "#hint"
+      ]
+    },
+    {
+      "name": "question-seven",
+      "steps": [
+        {
+          "click": "#next-question",
+          "times": 6,
+          "gap": 0.2
+        }
+      ],
+      "keep": [
+        "#question-card",
+        "#next-question",
+        "#chips",
+        "#hint"
+      ]
+    },
+    {
+      "name": "sample-story",
+      "steps": [
+        {
+          "js": "document.querySelector(\"#saved-0\").scrollIntoView({block:\"center\"})"
+        },
+        {
+          "click": "#saved-0"
+        },
+        {
+          "js": "window.scrollTo(0,0)"
+        },
+        {
+          "click": "#m-tell"
+        }
+      ],
+      "keep": [
+        "#question-card",
+        "#paper",
+        "#next-step",
+        "#step-strip",
+        "#hint"
+      ]
+    },
+    {
+      "name": "story-finished",
+      "steps": [
+        {
+          "js": "document.querySelector(\"#saved-0\").scrollIntoView({block:\"center\"})"
+        },
+        {
+          "click": "#saved-0"
+        },
+        {
+          "js": "window.scrollTo(0,0)"
+        },
+        {
+          "click": "#m-tell"
+        },
+        {
+          "click": "#next-step",
+          "times": 7,
+          "gap": 0.2
+        }
+      ],
+      "keep": [
+        "#paper",
+        "#start-over",
+        "#draw-more",
+        "#hint"
+      ]
+    },
+    {
+      "name": "stickers-open",
+      "steps": [
+        {
+          "click": "#stickers"
+        }
+      ],
+      "keep": [
+        "#sticker-dialog"
+      ]
+    },
+    {
+      "name": "questions-open",
+      "steps": [
+        {
+          "click": "#questions"
+        }
+      ],
+      "keep": [
+        "#questions-dialog"
+      ]
+    },
+    {
+      "name": "tools-open",
+      "steps": [
+        {
+          "click": "#tools-open"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "800x500",
+        "1000x625",
+        "760x900",
+        "375x812"
+      ],
+      "keep": [
+        "#tools-dialog"
+      ]
+    },
+    {
+      "name": "selected-sticker",
+      "steps": [
+        {
+          "click": "#stickers"
+        },
+        {
+          "click": "#sticker-grid button:nth-child(4)"
+        }
+      ],
+      "keep": [
+        "#paper",
+        "#resize",
+        "#next-question",
+        "#hint"
+      ]
+    },
+    {
+      "name": "new-confirm",
+      "steps": [
+        {
+          "click": "#stickers"
+        },
+        {
+          "click": "#sticker-grid button:nth-child(8)"
+        },
+        {
+          "js": "document.querySelector(\"#new\").scrollIntoView({block:\"center\"})"
+        },
+        {
+          "click": "#new"
+        }
+      ],
+      "keep": [
+        "#confirm-dialog"
+      ]
+    },
+    {
+      "name": "keyboard-size-edge",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#stickers"
+        },
+        {
+          "click": "#sticker-grid button:nth-child(8)"
+        },
+        {
+          "js": "const m=__tool.state.drawing.marks.at(-1);m.x=40;m.y=40;m.size=80;__tool.paint();document.querySelector('#resize').focus({preventScroll:true});"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        }
+      ],
+      "keep": [
+        "#paper",
+        "#resize",
+        "#hint"
+      ]
+    },
+    {
+      "name": "replay-reasons",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "js": "document.querySelector('#saved-0').scrollIntoView({block:'center'})"
+        },
+        {
+          "click": "#saved-0"
+        },
+        {
+          "js": "window.scrollTo(0,0)"
+        },
+        {
+          "click": "#m-tell"
+        },
+        {
+          "wait": 4500
+        }
+      ],
+      "keep": [
+        "#paper",
+        "#badges",
+        "#next-step",
+        "#hint"
+      ]
+    }
+  ]
+}

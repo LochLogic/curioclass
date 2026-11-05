@@ -1,0 +1,1176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Courtroom Statistics · Innocent until proven guilty · Curio Class</title>
+<meta name="description" content="Put seven made-up statistical claims on trial. Explore z and t tests, confidence intervals, errors and power. Grade 12. Works offline.">
+<!-- Curio Class. S-IC.B, AP-STAT.U6, AP-STAT.U7. Sources: OpenStax Introductory Statistics 2e,
+OpenIntro Statistics 4e, Common Core and College Board, as listed in notes.md and spec.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class; courtroom backdrop: FLUX.1-schnell (Apache 2.0).
+Content CC BY 4.0. Code MIT. One offline file. -->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --paper:#e9dcc6; --panel:#f8f1e4; --sec-bg:#fffaf2; --ink:#2b2119; --muted:#6b5a48;
+  --line:#c7b599; --btn-line:#8c7656; --brand:#1d6b47; --brand-ink:#fff; --btn:#fffaf2;
+  --head-bg:#4a3322; --head-ink:#f8f1e4; --ok:#2d6a1f; --warn:#8a2a1e; --focus:#1f4fbf;
+  color-scheme:light;
+}
+body {height:100dvh; min-height:0; overflow:hidden;}
+header {padding:10px 20px; gap:8px; border-bottom:3px solid #b79c70; flex-wrap:nowrap;}
+h1 {font:700 clamp(19px,2.3vw,30px)/1.05 Georgia,serif; letter-spacing:-.4px;}
+h1 small {color:#f8f1e4; margin-top:5px; font:13px 'Segoe UI',sans-serif;}
+.seg {border-radius:5px; border-color:#b29a75; flex-shrink:0;}
+.seg button {background:#4a3322; min-height:44px; padding:0 15px;}
+.seg button[aria-pressed=true] {background:#f8f1e4; color:#2b2119;}
+.icon-btn {background:#4a3322; border-color:#b29a75; border-radius:5px; min-height:44px; padding:0 10px;}
+#sound {width:112px; flex-shrink:0;}
+main {display:grid; grid-template-columns:minmax(0,1fr) 270px; min-height:0;}
+.stage {min-height:0; display:flex; flex-direction:column; padding:18px 22px; gap:10px;
+  background:linear-gradient(#38271966,#38271999),url(art:courtroom-empty) center/cover;}
+.stage::after {content:''; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(115deg,#fff3c315,transparent 45%); animation:daylight 9s ease-in-out infinite alternate;}
+@keyframes daylight {to {opacity:.3;}}
+.calm .stage::after {animation:none;}
+.bench {z-index:1; display:flex; align-items:center; justify-content:space-between; gap:8px; padding:9px 14px;
+  color:#fffaf2; background:linear-gradient(#68492e,#442e1e); border:1px solid #ac8858; box-shadow:0 3px 8px #20130d55;}
+.bench b {font:700 19px Georgia,serif;}
+.bench span {font-size:12px; letter-spacing:.07em; text-transform:uppercase;}
+.steps {display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); z-index:1; gap:4px;}
+.steps button {min-width:44px; min-height:44px; padding:4px; border:1px solid #a68d63; border-radius:3px;
+  background:#f8f1e4; font:600 12px 'Segoe UI',sans-serif; color:var(--ink);}
+.steps button[aria-current=step] {background:var(--brand); color:white; border-color:#1d6b47;}
+.steps button:disabled {background:#d5c6ae; color:#5b4b3a; opacity:.8; cursor:default;}
+.card {position:relative; z-index:1; min-height:0; flex:1; padding:clamp(12px,2vw,28px);
+  display:flex; flex-direction:column; gap:12px; background:linear-gradient(125deg,#fffdf6,#f3e9d7);
+  border:1px solid #bba17c; box-shadow:0 8px 24px #21170d66, inset 0 0 40px #b99b5c0d;}
+.card::before {content:''; position:absolute; inset:6px; border:1px solid #b99b5c33; pointer-events:none;}
+h2,h3,p {margin:0;}
+h2 {font:700 clamp(23px,2.7vw,37px)/1.08 Georgia,serif;}
+h3 {font:700 19px Georgia,serif;}
+.eyebrow {font-size:11px; text-transform:uppercase; letter-spacing:.14em; color:var(--muted); font-weight:700;}
+.lead {font:17px/1.4 Georgia,serif; max-width:65ch;}
+.muted {color:var(--muted); font-size:13px; line-height:1.35;}
+.work {flex:1; display:flex; flex-direction:column; min-height:0; gap:10px;}
+.bottom {margin-top:auto; display:flex; flex-shrink:0; gap:10px; align-items:center; justify-content:space-between;}
+.btn {border-radius:4px; background:linear-gradient(#fffdf7,#eee0c9);}
+.primary {background:var(--brand); color:#fff; border-color:var(--brand);}
+button:active:not(:disabled) {filter:brightness(.9);}
+.row {display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+.row>* {flex:1;}
+.charge {display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:center; flex:1; min-height:0;}
+.evidence {height:100%; max-height:320px; min-height:0; width:100%; object-fit:cover; border:7px solid #fffaf2;
+  outline:1px solid #baa482; box-shadow:4px 5px 10px #4a332233; transform:rotate(-1.3deg);}
+.evidence-wrap {position:relative; height:100%; max-height:320px; min-height:0; margin:0;}
+.evidence-tag {position:absolute; left:16%; top:42%; font:700 18px Georgia,serif; color:#4a3322; transform:rotate(-1.3deg);}
+.claim {font:700 clamp(20px,2.7vw,36px) Georgia,serif; margin:12px 0;}
+.charge .row button {font:700 24px Georgia,serif;}
+.folders {display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; flex:1; min-height:0;}
+.folder {position:relative; border:0; min-height:90px; background:transparent; padding:14px 10px 4px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; isolation:isolate;}
+.folder::before {content:''; position:absolute; z-index:-1; inset:0; background:url(art:case-folder) center/100% 100% no-repeat;
+  filter:drop-shadow(2px 5px 3px #3f29174d);}
+.folder strong {font:700 clamp(13px,1.6vw,19px) Georgia,serif;}
+.folder small {font-size:11px; color:#51412f;}
+.folder:hover {transform:translateY(-3px);}
+.folder .file-no {font:10px var(--readout-font); letter-spacing:.1em;}
+.large-alpha {display:flex; gap:14px; margin:auto 0;}
+.large-alpha button {flex:1; min-height:90px; font:700 30px Georgia,serif;}
+.checks {display:grid; gap:8px;}
+.check {display:grid; grid-template-columns:minmax(0,1fr) 55px 55px; gap:6px; align-items:center;
+  padding:8px 10px; border:1px solid var(--line); background:#fffaf2;}
+.check p {font-weight:650; font-size:14px;}
+.check small {display:block; color:var(--muted); font-size:12px; line-height:1.25; font-weight:400; margin-top:3px;}
+.check button {padding:0 8px;}
+.chart {width:100%; height:0; min-height:110px; flex:1; display:block; overflow:visible;}
+.chart text {fill:var(--ink); font-family:'Segoe UI',sans-serif;}
+.metrics {display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px;}
+.metric {border-top:1px solid #c7b599; padding:7px 4px;}
+.metric small {font-size:11px; color:var(--muted); display:block;}
+.metric b {font:700 clamp(15px,1.7vw,24px) var(--readout-font);}
+.stamp-row {display:flex; align-items:center; justify-content:center; gap:20px; flex:1; min-height:70px;}
+#gavel {width:120px; max-height:120px; object-fit:contain; transform-origin:80% 85%;}
+#gavel.swing {animation:strike .4s ease-out;}
+@keyframes strike {0%{transform:rotate(-28deg)} 70%{transform:rotate(8deg)} 100%{transform:rotate(0)}}
+.stamp {font:700 clamp(23px,3vw,42px) Georgia,serif; border:3px double currentColor; padding:10px 16px;
+  transform:rotate(-4deg); color:var(--brand); text-align:center; min-width:160px;}
+.verdicts {display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px;}
+.verdicts button {padding:7px; min-height:58px; font-size:15px;}
+.verdicts small {display:block; font-size:11px; font-weight:400;}
+.sentence {display:flex; flex-direction:column; gap:5px; align-items:stretch; font-size:14px;}
+.sentence .row {flex-wrap:nowrap; gap:5px;}
+.sentence .row>* {min-width:0;}
+.sentence select {max-width:100%;}
+select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); background:#fffaf2;
+  border:1px solid var(--btn-line); border-radius:3px; padding:4px 6px;}
+.panel {min-width:0; padding:20px 16px; border-left:4px solid #ad8d61; overflow:hidden; gap:12px;
+  background:linear-gradient(90deg,#ede0cb,#f8f1e4 9%);}
+.clerk-label {font:700 12px 'Segoe UI',sans-serif; text-transform:uppercase; letter-spacing:.12em; color:var(--muted);}
+.hint {font:16px/1.45 'Segoe UI',sans-serif; min-height:132px;}
+.hint.objection {border-left:3px solid var(--warn); padding-left:9px; color:var(--warn);}
+.case-seal {border-top:1px solid var(--line); padding-top:12px; font:700 17px Georgia,serif;}
+.session {font-size:12px; line-height:1.5; max-height:165px; overflow:auto;}
+.session div {padding:5px 0; border-bottom:1px solid var(--line);}
+.privacy {margin-top:auto; font-size:11px; color:var(--muted);}
+#dotplot {height:65px; width:100%; flex:none;}
+.docket-head {display:flex; gap:10px; align-items:center;}
+.docket-head img {width:48px; height:48px; object-fit:contain;}
+.docket-controls {display:grid; grid-template-columns:1fr 1fr; gap:8px;}
+.field {font-size:12px; color:var(--muted); display:flex; flex-direction:column; gap:3px;}
+.docket-layout {display:flex; flex:1; gap:18px; min-height:0;}
+.docket-layout .chart {width:67%; height:auto; align-self:stretch; min-height:0;}
+.bars {width:33%; display:flex; flex-direction:column; justify-content:center; gap:16px; font-size:12px;}
+.bar-track {height:20px; background:#dfd2bc; border:1px solid #ac9877; margin:5px 0;}
+.bar-fill {height:100%; background:var(--brand); width:0; transition:width .8s ease-out;}
+.bar-fill.type1 {background:#8a2a1e;}
+.bars b {font:700 17px var(--readout-font);}
+#line-controls {display:flex; gap:10px; align-items:center;}
+#line-controls select {max-width:55%;}
+.status {font-weight:700; font-size:14px; min-height:22px;}
+.limit-note {font-size:12px; color:var(--muted);}
+@media (max-width:1100px), (max-height:650px) {
+  header {padding:5px 9px; gap:5px;}
+  h1 {font-size:19px;}
+  h1 small {display:none;}
+  .icon-btn {max-width:44px; min-width:44px; overflow:hidden; white-space:nowrap; font-size:0; padding:0;}
+  .icon-btn::first-letter {font-size:0;}
+  #motion::after {content:'◌'; font-size:23px;}
+  #motion[aria-pressed=false]::after {content:'Ⅱ'; font-size:18px;}
+  #sound::after {content:'♪'; font-size:23px;}
+  #sound[aria-pressed=false]::after {content:'♪×'; font-size:18px;}
+  #read {font-size:12px;}
+  #read::first-letter {font-size:12px;}
+  .seg button {font-size:13px; padding:0 9px;}
+  main {grid-template-columns:minmax(0,1fr) 210px;}
+  .stage {padding:8px; gap:6px;}
+  .bench {padding:6px 9px;}
+  .bench b {font-size:16px;}
+  .card {padding:14px; gap:8px;}
+  h2 {font-size:25px;}
+  .lead {font-size:15px;}
+  .panel {padding:12px 10px; gap:10px;}
+  .hint {font-size:14px; min-height:128px;}
+  .folders {gap:5px;}
+  .folder {min-height:70px; padding:12px 4px 3px;}
+  .metrics .metric {padding:3px;}
+  .metric b {font-size:16px;}
+  .metric small {font-size:10px;}
+  #evidence-metrics {grid-template-columns:repeat(6,minmax(0,1fr)); flex-shrink:0;}
+  #evidence-metrics .metric b {font-size:12px;}
+  #evidence-metrics .metric small {font-size:10px;}
+  .bottom #case-progress {display:none;}
+  .bottom {justify-content:flex-end;}
+  .check {padding:5px 6px;}
+  .check p {font-size:12px;}
+  .check small {font-size:10px;}
+  .charge {gap:10px;}
+  .verdicts button {font-size:12px; min-height:52px;}
+  .stamp {font-size:25px; padding:5px 10px;}
+  #gavel {width:80px; max-height:80px;}
+}
+@media (max-height:550px) and (min-width:601px) {
+  .eyebrow {display:none;}
+  .bench span {font-size:10px; letter-spacing:0;}
+  .steps button {font-size:10px;}
+  h2 {font-size:21px;}
+  .card {padding:10px; gap:5px;}
+  .work {gap:5px;}
+  .lead {font-size:13px;}
+  .claim {font-size:21px; line-height:1.08; margin:4px 0;}
+  .charge .lead {font-size:12px; line-height:1.25;}
+  .charge .muted {font-size:11px; line-height:1.25;}
+  .large-alpha button {min-height:60px;}
+  .folders {grid-template-columns:repeat(4,minmax(0,1fr));}
+  .folder strong {font-size:12px;}
+  .folder small {font-size:10px;}
+  .folder .file-no {display:none;}
+  #dotplot {height:40px;}
+  .check {padding:2px 4px;}
+  .card:has(#admissibility:not([hidden])) #stage-title {display:none;}
+  .card:has(#sentencing:not([hidden])) #stage-title {display:none;}
+  #interval-line {min-height:100px;}
+  #interval-note {font-size:11px; line-height:1.3;}
+  .card:has(#admissibility:not([hidden])) .check {padding:0 4px;}
+  .card:has(#admissibility:not([hidden])) .checks {gap:4px;}
+  #paired-trap {font-size:11px; padding:4px;}
+  .check small {font-size:10px;}
+  .stamp-row {min-height:35px; gap:10px;}
+  #gavel {width:50px; max-height:50px;}
+  .stamp {font-size:18px;}
+  .sentence {font-size:11px; gap:3px;}
+  .sentence select {font-size:11px;}
+  #verdict-stage .stamp-row {position:absolute; right:12px; top:1px; height:31px; min-height:31px;}
+  #verdict-stage .stamp {font-size:15px; min-width:105px; padding:2px 8px; border-width:2px;}
+  #verdict-stage #gavel {width:30px; max-height:30px;}
+  .card:has(#verdict-stage:not([hidden])) #stage-title {max-width:120px;}
+  .chart {min-height:70px;}
+  .docket-layout {gap:6px;}
+  .bars {gap:4px; font-size:10px;}
+  .bars b {font-size:12px;}
+  .bar-track {height:10px; margin:2px 0;}
+  .docket-head img {display:none;}
+  .docket-controls {gap:4px;}
+  .docket-controls {grid-template-columns:repeat(4,minmax(0,1fr)); align-items:end; flex-shrink:0;}
+  .docket-controls button {font-size:12px; padding:4px; min-height:44px;}
+  .docket-controls select {font-size:12px;}
+  #docket-card .status {font-size:12px;}
+  .session {max-height:72px;}
+}
+@media (max-width:600px) {
+  header {flex-wrap:wrap; padding:5px 8px; gap:5px;}
+  h1 {width:100%; font-size:22px;}
+  header .seg {margin-right:auto;}
+  main {grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) 125px;}
+  .panel {border-left:0; border-top:3px solid #ad8d61; padding:8px 12px; gap:4px;}
+  .clerk-label {font-size:10px;}
+  .panel .clerk-label {display:none;}
+  .panel .field {font-size:12px; gap:0;}
+  .panel .trial-alpha-label {position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%);}
+  .panel .field select {font-size:13px;}
+  .hint {min-height:0; font-size:13px; line-height:1.3;}
+  .case-seal,.session,.privacy {display:none;}
+  #folders-back {position:absolute; right:10px; bottom:8px; min-height:44px;}
+  .panel .row {margin:0; padding-right:110px;}
+  .bench span {font-size:10px;}
+  .stage {padding:7px;}
+  .steps {grid-template-columns:repeat(3,minmax(0,1fr)); gap:3px;}
+  .steps button {font-size:11px;}
+  .card {padding:13px; gap:7px;}
+  .folders {grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px;}
+  .folder {min-height:57px;}
+  .folder .file-no {display:none;}
+  .folder strong {font-size:14px;}
+  .folder small {font-size:10px;}
+  .charge {grid-template-columns:1fr; grid-template-rows:minmax(60px,1fr) auto; gap:8px;}
+  .evidence {max-height:130px; border-width:4px;}
+  .evidence-wrap {max-height:130px;}
+  .evidence-tag {font-size:13px;}
+  .claim {margin:5px 0; font-size:23px;}
+  .lead {font-size:14px; line-height:1.3;}
+  h2 {font-size:24px;}
+  .large-alpha {gap:6px;}
+  .large-alpha button {font-size:25px; min-height:70px;}
+  .check {grid-template-columns:minmax(0,1fr) 44px 44px; gap:4px;}
+  .check button {padding:0 4px;}
+  .verdicts {grid-template-columns:1fr; gap:4px;}
+  .verdicts button {min-height:44px; font-size:13px; padding:4px;}
+  .verdicts small {display:inline; margin-left:5px;}
+  .stamp-row {min-height:35px; gap:10px; flex:none;}
+  #gavel {width:48px; max-height:48px;}
+  .stamp {font-size:20px;}
+  .sentence {font-size:12px; gap:3px;}
+  .sentence select {font-size:12px;}
+  .docket-layout {flex-direction:column; gap:4px;}
+  .docket-layout .chart {width:100%; height:0; min-height:100px;}
+  .bars {flex-direction:row; width:100%; gap:12px;}
+  .bars>div {width:50%;}
+  .bars b {font-size:14px;}
+  .docket-head img {width:32px; height:32px;}
+  .docket-controls select {font-size:13px;}
+  .limit-note {font-size:11px;}
+  #evidence-metrics {grid-template-columns:repeat(3,minmax(0,1fr));}
+  #evidence-metrics .metric b {font-size:14px;}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Courtroom Statistics <small>Innocent until proven guilty.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-trial" aria-pressed="true">Trial</button>
+    <button id="m-lineup" aria-pressed="false">Lineup</button>
+    <button id="m-docket" aria-pressed="false">Docket</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-label="Motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-label="Sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <section class="stage" id="stage" aria-label="Courtroom">
+    <div class="bench" id="bench"><b id="bench-title">The case files</b><span id="bench-meta">Statistical court · Made-up cases</span></div>
+    <nav class="steps" id="steps" aria-label="Trial stages"></nav>
+    <article class="card" id="card">
+      <section id="picker" class="work">
+        <p class="eyebrow">Seven claims. Your standard of proof.</p>
+        <h2>Call the first case.</h2>
+        <p class="lead">Open a file. Decide what the data can prove.</p>
+        <div class="folders" id="folders"></div>
+      </section>
+      <section id="trial-card" class="work" hidden>
+        <p class="eyebrow" id="stage-label"></p><h2 id="stage-title"></h2>
+        <div class="work" id="charges">
+          <div class="charge">
+            <figure class="evidence-wrap">
+              <img class="evidence" id="evidence" alt="">
+              <figcaption class="evidence-tag" id="evidence-tag" hidden>368 g</figcaption>
+            </figure>
+            <div><p class="lead" id="claim-story"></p><p class="claim" id="null-claim"></p>
+              <p class="muted">Defendant H₀, presumed true. Choose the charge Hₐ:</p>
+              <div class="row" id="signs">
+                <button class="btn" data-sign="<" aria-label="Alternative less than">&lt;</button>
+                <button class="btn" data-sign=">" aria-label="Alternative greater than">&gt;</button>
+                <button class="btn" data-sign="≠" aria-label="Alternative not equal to">≠</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="work" id="proof" hidden>
+          <p class="lead">How strong must the evidence be? Lock α before opening the evidence.</p>
+          <div class="large-alpha" id="proof-alphas"></div>
+          <p class="muted">α is the planned cutoff for the p-value, not the chance that H₀ is true.</p>
+        </div>
+        <div class="work" id="admissibility" hidden>
+          <div class="checks" id="checks"></div>
+          <svg id="dotplot" role="img" aria-label="Sample dot plot or sample-size condition"></svg>
+        </div>
+        <div class="work" id="evidence-stage" hidden>
+          <p class="muted" id="null-caption"></p>
+          <svg class="chart" id="null-curve" role="img" aria-label="Null distribution with p-value tails"></svg>
+          <div class="metrics" id="evidence-metrics"></div>
+        </div>
+        <div class="work" id="verdict-stage" hidden>
+          <div class="stamp-row"><img id="gavel" src="art:gavel" alt="Walnut gavel"><div class="stamp" id="stamp">Your verdict</div></div>
+          <div class="verdicts">
+            <button class="btn" id="guilty">■ Guilty <small>reject H₀</small></button>
+            <button class="btn" id="not-guilty">○ Not guilty <small>fail to reject H₀</small></button>
+            <button class="btn" id="innocent">Innocent <small>accept H₀</small></button>
+          </div>
+          <div class="sentence" id="sentence" hidden>
+            <p id="sentence-preview"></p>
+            <div class="row">
+              <select id="sentence-strength" aria-label="Evidence conclusion">
+                <option value="">Evidence...</option><option value="yes">is convincing</option><option value="no">is insufficient</option>
+              </select>
+              <select id="sentence-direction" aria-label="Context direction">
+                <option value="">Direction...</option><option value="<">is less than</option>
+                <option value=">">is greater than</option><option value="≠">differs from</option>
+              </select>
+              <button class="btn" id="file-sentence">File sentence</button>
+            </div>
+          </div>
+        </div>
+        <div class="work" id="sentencing" hidden>
+          <p class="lead" id="interval-caption"></p>
+          <svg class="chart" id="interval-line" role="img" aria-label="Confidence interval with claim marker"></svg>
+          <div class="metrics" id="interval-metrics"></div>
+          <p class="limit-note" id="interval-note"></p>
+        </div>
+        <div class="bottom">
+          <p class="muted" id="case-progress"></p>
+          <button id="paired-trap" class="btn" aria-label="Treat the shoes as two independent samples?" hidden>Use two samples?</button>
+          <button class="btn primary" id="next">Continue</button>
+        </div>
+      </section>
+      <section id="lineup-card" class="work" hidden>
+        <p class="eyebrow">The claims this court would not convict</p><h2>The Lineup</h2>
+        <div id="line-controls"><select id="line-case" aria-label="Lineup case"></select><select id="line-alpha" aria-label="Lineup alpha"></select></div>
+        <svg class="chart" id="lineup-line" role="img" aria-label="Live claim marker, non-rejection band and confidence interval"></svg>
+        <label class="field" for="claim-slider">Drag the claimed value <input type="range" id="claim-slider" step="any"></label>
+        <p class="status" id="line-status"></p><p class="limit-note" id="line-note"></p>
+      </section>
+      <section id="docket-card" class="work" hidden>
+        <div class="docket-head"><img src="art:coin" alt="Plain silver coin"><div><p class="eyebrow">Errors &amp; power</p><h2>The fair-coin court</h2></div></div>
+        <p class="muted">H₀: p = 0.50 · Hₐ: p &gt; 0.50 · x = count of heads</p>
+        <div class="docket-controls">
+          <label class="field">Sample size n<select id="docket-n"></select></label>
+          <label class="field">Standard α<select id="docket-alpha"></select></label>
+          <label class="field" for="true-p"><span>True p: <output id="true-label">0.60</output></span><input id="true-p" type="range" min=".5" max=".7" step=".05" value=".6"></label>
+          <button class="btn primary" id="simulate">Hold 1,000 trials</button>
+        </div>
+        <div class="docket-layout">
+          <svg class="chart" id="docket-curves" role="img" aria-label="Null and true distributions of heads with rejection regions"></svg>
+          <div class="bars" id="bars">
+            <div><strong>Type I · H₀ true</strong><div class="bar-track"><div class="bar-fill type1" id="type1-bar"></div></div>
+              <b id="type1-exact"></b><p id="type1-sim">No trials yet</p></div>
+            <div><strong>Power · true p</strong><div class="bar-track"><div class="bar-fill" id="power-bar"></div></div>
+              <b id="power-exact"></b><p id="power-sim">No trials yet</p></div>
+          </div>
+        </div>
+        <p class="status" id="cutoff"></p><p class="limit-note" id="beta-note"></p>
+      </section>
+    </article>
+  </section>
+  <aside class="panel" id="panel">
+    <p class="clerk-label">The court clerk</p><p class="hint" id="hint" aria-live="polite"></p>
+    <div class="row" id="live-alpha" hidden>
+      <label class="field"><span class="trial-alpha-label">Trial α</span><select id="trial-alpha" aria-label="Trial standard alpha"></select></label>
+    </div>
+    <button class="btn" id="folders-back">Case files</button>
+    <p class="case-seal">Your session record</p><div class="session" id="session">No verdicts filed yet.</div>
+    <p class="privacy">Made-up cases. Session record stays in this page only and clears when you reload. No data leaves this device.</p>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const cereal = [372.8,359.1,366.7,362,370.5,365.2,356.6,371.9,368.1,361.3,375,363.7,367.5,
+    360.4,369.6,362.9,376.7,365.8,358.5,371.1,364.6,362.5,368.4,365,361.6];
+  const old = [64.2,71.5,58.9,67.3,62.8,75.1,69.4,60.5,66.7,73,63.6,70.2];
+  const shoes = [62.4,70.9,56.5,67.8,61.7,73.6,69.2,58.5,67,71.7,62.7,68.6].map((v,i) => v-old[i]);
+  const mean = x => x.reduce((a,b) => a+b,0)/x.length;
+  const sd = x => Math.sqrt(x.reduce((a,b) => a+(b-mean(x))**2,0)/(x.length-1));
+  const cases = [
+    {name:'Seeds', art:'seeds', type:'prop', null:.85, estimate:.79, n:200, sign:'<', parameter:'the true germination rate',
+      story:'A seed company claims 85% germination. Is the true rate less than 85%?',
+      data:'Random sample: 158 of 200 sprout. Shipment: 50,000 seeds.', unit:'', digits:3,
+      checks:[['Random selection','200 seeds selected randomly.',true],['10% condition','200 < 5,000, one tenth of 50,000.',true],
+        ['Large counts under H₀','200 × 0.85 = 170; 200 × 0.15 = 30. Both ≥ 10.',true]]},
+    {name:'Cereal', art:'cereal', type:'mean', null:368, estimate:mean(cereal), s:sd(cereal), n:25, df:24,
+      sign:'<', parameter:'the true mean box mass', story:'The box says 368 g. Are boxes underfilled on average?',
+      data:'25 randomly sampled boxes. Mean 365.9 g; sample SD 5.2450 g.', unit:'g', digits:1, dots:cereal,
+      checks:[['Random selection','25 boxes selected randomly.',true],['Independence','Assume 25 boxes are under 10% of production.',true],
+        ['Nearly normal','Dot plot is roughly symmetric, with no strong outliers.',true]]},
+    {name:'Reminder texts', art:'texts', type:'twoProp', null:0, estimate:.08, n:300, sign:'>',
+      parameter:'the true kept-appointment rate difference (text minus none)',
+      story:'Do reminders increase kept appointments? Use text minus no text.',
+      data:'Random assignment: 246 of 300 texted; 222 of 300 not texted kept appointments.', unit:'', digits:3,
+      checks:[['Random assignment','600 patients randomly assigned, 300 in each group.',true],
+        ['Independent groups','Different patients; no patient appears in both groups.',true],
+        ['Large counts under H₀','Pooled p = 468/600 = 0.78. Expected 234 kept, 66 missed per group.',true]]},
+    {name:'Bus waits', art:'bus', type:'mean', null:10, estimate:10.6, s:3.1, n:40, df:39, sign:'>',
+      parameter:'the true mean wait', story:'The city says the mean wait is 10 minutes. Is it longer?',
+      data:'40 randomly logged waits. Mean 10.6 min; sample SD 3.1 min.', unit:'min', digits:2,
+      checks:[['Random selection','40 waits logged randomly.',true],['Independence','Assume separate waits; 40 under 10% of all waits.',true],
+        ['Large sample','n = 40 ≥ 30. Raw waits were not supplied.',true]]},
+    {name:'Running shoes', art:'shoes', type:'mean', null:0, estimate:mean(shoes), s:sd(shoes), n:12, df:11, sign:'<',
+      parameter:'the true mean time difference (new minus old)',
+      story:'Do new shoes reduce 400 m times? Use new minus old; each runner tests both pairs.',
+      data:'12 paired runners; order randomized. Analyze new minus old in seconds.', unit:'s', digits:2, dots:shoes,
+      checks:[['Randomized order','Each runner uses both pairs in randomized order.',true],
+        ['Independent pairs','Different runners; analyze 12 within-runner differences.',true],
+        ['Nearly normal differences','Difference dot plot has no strong skew or outliers.',true]]},
+    {name:'Standing desks', art:'desks', type:'twoMean', null:0, estimate:20, n:30, sign:'≠',
+      parameter:'the true mean steps-per-hour difference (standing minus sitting)',
+      story:'Do standing desks change steps per hour? Use standing minus sitting.',
+      data:'60 workers randomly assigned. Standing: 256, SD 38, n 30. Sitting: 236, SD 35, n 30.', unit:'steps/h', digits:1,
+      checks:[['Random assignment','60 workers randomly assigned, 30 per desk group.',true],
+        ['Independent groups','Different workers in the two treatments.',true],
+        ['Large samples','Both groups have n = 30. Raw step counts were not supplied.',true]]},
+    {name:'Viewer poll', art:'callin', type:'dismiss', null:.92, sign:'≠', parameter:'the true viewer agreement rate',
+      story:'A TV show says 92% of 1,000 viewers who called in agree. Does this describe all viewers?',
+      data:'1,000 viewers chose to call. No random selection.', unit:'', digits:3,
+      checks:[['Random selection','Callers volunteered. The show did not select a random sample.',false],
+        ['Independence','Different callers, but independence cannot repair selection bias.',true],
+        ['Large counts','920 agree and 80 disagree. Large counts do not repair bias.',true]]}
+  ];
+  const art = {
+    seeds:'art:evidence-seeds', cereal:'art:evidence-cereal', texts:'art:evidence-texts', bus:'art:evidence-bus',
+    shoes:'art:evidence-shoes', desks:'art:evidence-desks', callin:'art:evidence-callin'
+  };
+  const state = {mode:'trial',caseId:-1,stage:0,unlocked:0,alpha:.05,locked:false,evidenceSeen:false,
+    changed:false,charge:null,checks:[null,null,null],verdict:null,filed:false,summaries:{},claim:null,
+    lineupMoved:false,docketRun:false,docket:{n:100,a:.05,p:.6,sim:null}};
+  const L = {
+    wTrial:'Tap a case folder to open it. Then pick the charge and lock your standard of proof before you see any evidence.',
+    charge:'Tap less than, greater than, or not equal to for the charge against the claim.',
+    proof:'Tap a standard of proof. Then press Lock standard before opening the evidence.',
+    checks:'Read each condition and its numbers. Tap Yes or No for each check.',
+    admit:'The three conditions are checked. Press Admit evidence to open the evidence.',
+    evidence:'Compare the shaded tail with the locked standard. Press Make a verdict when you have weighed the evidence.',
+    verdict:'Tap Guilty or Not guilty. Then build the conclusion and press File sentence.',
+    alphaLate:"The standard was set before the evidence. Changing it now isn't fair to the defendant.",
+    innocent:'This court never finds a claim innocent. Not guilty means the evidence fell short. Tap Guilty or Not guilty.',
+    sentencing:'Now the sentence: the interval of values the evidence supports. Compare it with the claim marker on the line.',
+    wLineup:'Drag the claim slider along the line. Watch which claims this court would convict.',
+    wDocket:'Pick a sample size and a true p, then press Hold 1,000 trials.',
+    dismissed:'No random sample, no trial. Tap Case files, then open another folder.',
+    wrongCharge:'Read the claim again. Tap the direction that matches what the case asks.',
+    rightCharge:'Charge entered. Press Set standard to continue.',
+    wrongCheck:'That condition is not supported by this case. Check the numbers and try Yes or No again.',
+    paired:'These are the same runners in both shoes. Use the twelve paired differences, not two independent samples.',
+    wrongVerdict:'That verdict does not follow the standard. Compare the p-value with alpha, then choose again.',
+    rightVerdict:'Verdict entered. Choose the evidence conclusion and direction, then press File sentence.',
+    filed:'Conclusion filed. Press View interval to hand down the confidence interval.',
+    wrongSentence:'Check the evidence conclusion and direction against your verdict and charge. Then press File sentence.',
+    simulation:'The trials are filed. Compare simulated shares with the exact values, then change a control to test another court.'
+  };
+  const V = Curio.voice({lines:L, scope:() => state.mode+':'+state.caseId, hint:false, read:() => $('hint').textContent,
+    welcome:() => state.mode==='trial' ? (state.caseId<0 ? 'wTrial' : null) :
+      state.mode==='lineup' ? (!state.lineupMoved ? 'wLineup' : null) : (!state.docketRun ? 'wDocket' : null)});
+  function hint(text, key, event=false, valid=() => true) {
+    $('hint').textContent=text;
+    $('hint').classList.remove('objection');
+    if (key) (event ? V.say : V.how)(key,{valid,hint:false});
+  }
+  // Numerical recipes: log gamma, incomplete beta, normal and Student t tails.
+  function logGamma(z) {
+    const c=[676.5203681218851,-1259.1392167224028,771.3234287776531,-176.6150291621406,
+      12.507343278686905,-.13857109526572012,9.984369578019572e-6,1.5056327351493116e-7];
+    if (z<.5) return Math.log(Math.PI)-Math.log(Math.sin(Math.PI*z))-logGamma(1-z);
+    z-=1;
+    let x=.9999999999998099;
+    c.forEach((v,i) => x+=v/(z+i+1));
+    const t=z+c.length-.5;
+    return .9189385332046727+(z+.5)*Math.log(t)-t+Math.log(x);
+  }
+  function betaFraction(a,b,x) {
+    let c=1,d=1-(a+b)*x/(a+1);
+    d=1/(Math.abs(d)<1e-30 ? 1e-30 : d);
+    let h=d;
+    for (let m=1;m<=200;m++) {
+      let aa=m*(b-m)*x/((a+2*m-1)*(a+2*m));
+      d=1+aa*d;
+      c=1+aa/c;
+      if (Math.abs(d)<1e-30) d=1e-30;
+      if (Math.abs(c)<1e-30) c=1e-30;
+      d=1/d;
+      h*=d*c;
+      aa=-(a+m)*(a+b+m)*x/((a+2*m)*(a+2*m+1));
+      d=1+aa*d;
+      c=1+aa/c;
+      if (Math.abs(d)<1e-30) d=1e-30;
+      if (Math.abs(c)<1e-30) c=1e-30;
+      d=1/d;
+      const delta=d*c;
+      h*=delta;
+      if (Math.abs(delta-1)<3e-14) break;
+    }
+    return h;
+  }
+  function ibeta(x,a,b) {
+    if (x<=0) return 0;
+    if (x>=1) return 1;
+    const bt=Math.exp(logGamma(a+b)-logGamma(a)-logGamma(b)+a*Math.log(x)+b*Math.log1p(-x));
+    return x<(a+1)/(a+b+2) ? bt*betaFraction(a,b,x)/a : 1-bt*betaFraction(b,a,1-x)/b;
+  }
+  function normalCDF(x) {
+    const z=Math.abs(x),t=1/(1+.2316419*z);
+    const tail=.3989422804014327*Math.exp(-z*z/2)*t*(.319381530+t*(-.356563782+t*(1.781477937+t*(-1.821255978+t*1.330274429))));
+    return x>=0 ? 1-tail : tail;
+  }
+  function cdf(x,df=null) {
+    if (df===null) return normalCDF(x);
+    const tail=.5*ibeta(df/(df+x*x),df/2,.5);
+    return x>=0 ? 1-tail : tail;
+  }
+  function quantile(p,df=null) {
+    let lo=-40,hi=40;
+    for (let i=0;i<90;i++) {
+      const mid=(lo+hi)/2;
+      if (cdf(mid,df)<p) lo=mid; else hi=mid;
+    }
+    return (lo+hi)/2;
+  }
+  function density(x,df=null) {
+    return df===null ? Math.exp(-x*x/2)/Math.sqrt(2*Math.PI) :
+      Math.exp(logGamma((df+1)/2)-logGamma(df/2)) / Math.sqrt(df*Math.PI)*(1+x*x/df)**(-(df+1)/2);
+  }
+  function stats(i=state.caseId,claim=cases[i]?.null,twoSided=false) {
+    const c=cases[i];
+    if (!c || c.type==='dismiss') return null;
+    let se0,se,df=null;
+    if (c.type==='prop') {
+      se0=Math.sqrt(claim*(1-claim)/c.n);
+      se=Math.sqrt(c.estimate*(1-c.estimate)/c.n);
+    } else if (c.type==='twoProp') {
+      let lo=Math.max(0,-claim)+1e-10,hi=Math.min(1,1-claim)-1e-10;
+      for (let j=0;j<70;j++) {
+        const q=(lo+hi)/2,p=q+claim;
+        const score=246/p-54/(1-p)+222/q-78/(1-q);
+        if (score>0) lo=q; else hi=q;
+      }
+      const q=(lo+hi)/2,p=q+claim;
+      se0=Math.sqrt((p*(1-p)+q*(1-q))/300);
+      se=Math.sqrt((.82*.18+.74*.26)/300);
+    } else if (c.type==='twoMean') {
+      const a=38**2/30,b=35**2/30;
+      se=se0=Math.sqrt(a+b);
+      df=(a+b)**2/(a*a/29+b*b/29);
+    } else {
+      se=se0=c.s/Math.sqrt(c.n);
+      df=c.df;
+    }
+    const statistic=(c.estimate-claim)/se0;
+    const p=twoSided || c.sign==='≠' ? 2*(1-cdf(Math.abs(statistic),df)) :
+      c.sign==='<' ? cdf(statistic,df) : 1-cdf(statistic,df);
+    return {estimate:c.estimate,claim,se0,se,df,statistic,p:Math.max(0,Math.min(1,p)),kind:df===null?'z':'t'};
+  }
+  function interval(C,i=state.caseId) {
+    const s=stats(i);
+    if (!s) return null;
+    const critical=quantile((1+C)/2,s.df),margin=critical*s.se;
+    return {C,estimate:s.estimate,critical,margin,low:s.estimate-margin,high:s.estimate+margin};
+  }
+  function lineup(v=state.claim) {
+    const i=state.caseId<0 ? 0 : Math.min(state.caseId,5);
+    const s=stats(i,v,true),ci=interval(1-state.alpha,i),c=cases[i];
+    let low=ci.low,high=ci.high;
+    if (c.type==='prop' || c.type==='twoProp') {
+      function edge(a,b,left) {
+        for (let j=0;j<65;j++) {
+          const mid=(a+b)/2,inside=stats(i,mid,true).p>=state.alpha;
+          if (inside===left) b=mid; else a=mid;
+        }
+        return (a+b)/2;
+      }
+      low=edge(c.type==='prop' ? .000001 : -.999999,c.estimate,true);
+      high=edge(c.estimate,c.type==='prop' ? .999999 : .999999,false);
+    }
+    return {...s,convicted:s.p<state.alpha,band:[low,high],interval:ci};
+  }
+  function binomial(n,p) {
+    const out=[];
+    for (let x=0;x<=n;x++) out.push(Math.exp(logGamma(n+1)-logGamma(x+1)-logGamma(n-x+1)+x*Math.log(p)+(n-x)*Math.log1p(-p)));
+    return out;
+  }
+  function docket(n=state.docket.n,a=state.docket.a,p=state.docket.p) {
+    const k=Math.ceil(n/2+quantile(1-a)*Math.sqrt(n/4)-1e-10);
+    const nullPMF=binomial(n,.5),truePMF=binomial(n,p);
+    const typeI=nullPMF.slice(k).reduce((x,y) => x+y,0),power=truePMF.slice(k).reduce((x,y) => x+y,0);
+    return {n,a,p,k,typeI,power,beta:1-power,nullPMF,truePMF};
+  }
+  const fmt = (v,d=3) => Number(v).toFixed(d);
+  const pvalue = v => v<.0001 ? '< 0.0001' : fmt(v,4);
+  const alphaText = a => fmt(a,2);
+  const metric = (label,value) => `<div class="metric"><small>${label}</small><b>${value}</b></div>`;
+  const stages=['Charges','Proof standard','Admissibility','Evidence','Verdict','Sentencing'];
+  const ids=['charges','proof','admissibility','evidence-stage','verdict-stage','sentencing'];
+  const stepButtons=stages.map((name,i) => {
+    const b=document.createElement('button');
+    b.textContent=(i+1)+'. '+name;
+    b.id='step-'+i;
+    b.onclick=() => goStage(i);
+    $('steps').appendChild(b);
+    return b;
+  });
+  const folderButtons=cases.map((c,i) => {
+    const b=document.createElement('button');
+    b.className='folder';
+    b.id='case-'+i;
+    b.innerHTML=`<span class="file-no">FILE ${String(i+1).padStart(2,'0')}</span><strong>${c.name}</strong><small id="folder-status-${i}">Open case</small>`;
+    b.onclick=() => openCase(i);
+    $('folders').appendChild(b);
+    return b;
+  });
+  function alphaOptions(el) {
+    [.10,.05,.01].forEach(a => el.add(new Option('α '+alphaText(a),a)));
+    el.value='.05';
+    el.value=String(.05);
+  }
+  ['trial-alpha','line-alpha','docket-alpha'].forEach(id => alphaOptions($(id)));
+  [.1,.05,.01].forEach(a => {
+    const b=document.createElement('button');
+    b.className='btn';
+    b.textContent=alphaText(a);
+    b.onclick=() => setAlpha(a);
+    b.dataset.alpha=a;
+    $('proof-alphas').appendChild(b);
+  });
+  cases.slice(0,6).forEach((c,i) => $('line-case').add(new Option(c.name,i)));
+  [20,50,100,200,400].forEach(n => $('docket-n').add(new Option(n,n)));
+  $('docket-n').value='100';
+  for (let j=0;j<3;j++) {
+    const row=document.createElement('div');
+    row.className='check';
+    row.innerHTML=`<p id="check-title-${j}"></p><button class="btn" id="yes-${j}" aria-label="Condition ${j+1}: Yes">Yes</button>`+
+      `<button class="btn" id="no-${j}" aria-label="Condition ${j+1}: No">No</button>`;
+    $('checks').appendChild(row);
+    [true,false].forEach(yes => $( (yes ? 'yes-' : 'no-')+j).onclick=() => checkCondition(j,yes));
+  }
+  function openCase(i) {
+    const moveFocus=document.activeElement===folderButtons[i];
+    V.hush();
+    Object.assign(state,{caseId:i,stage:0,unlocked:0,alpha:.05,locked:false,evidenceSeen:false,changed:false,
+      charge:null,checks:[null,null,null],verdict:null,filed:false,claim:cases[i].null});
+    if (state.mode!=='trial') state.mode='trial';
+    $('sentence-strength').value='';
+    $('sentence-direction').value='';
+    render();
+    if (moveFocus) $('signs').querySelector('button').focus({preventScroll:true});
+    hint(L.charge,'charge',false,() => state.stage===0);
+    Curio.tone(280,.1,.04);
+  }
+  let trialSnapshot=null;
+  function setMode(m) {
+    V.hush();
+    const nextMode=m.toLowerCase();
+    if (state.mode==='trial' && nextMode!=='trial') {
+      const keys=['caseId','stage','unlocked','alpha','locked','evidenceSeen','changed','charge','checks','verdict','filed','claim'];
+      trialSnapshot=Object.fromEntries(keys.map(key => [key,Array.isArray(state[key]) ? [...state[key]] : state[key]]));
+    }
+    if (state.mode!=='trial' && nextMode==='trial' && trialSnapshot) Object.assign(state,trialSnapshot);
+    state.mode=m.toLowerCase();
+    if (state.mode==='lineup') {
+      if (state.caseId<0 || state.caseId===6) state.caseId=0;
+      state.claim=cases[state.caseId].null;
+    }
+    render();
+    const key=state.mode==='trial' ? (state.caseId<0 ? 'wTrial' : ['charge','proof','checks','evidence','verdict','sentencing'][state.stage]) :
+      state.mode==='lineup' ? 'wLineup' : 'wDocket';
+    hint(L[key]);
+    V.welcome() || V.how(key,{hint:false});
+  }
+  function goStage(i) {
+    if (i>state.unlocked) return;
+    V.dropQueued();
+    state.stage=i;
+    if (i>=3) state.evidenceSeen=true;
+    render();
+    if (document.activeElement===$('next') && $('next').disabled) {
+      const target=i===2 ? $('yes-0') : i===4 ? $('guilty') : stepButtons[i];
+      target.focus({preventScroll:true});
+    }
+    const key=['charge','proof','checks','evidence','verdict','sentencing'][i];
+    hint(L[key],key,false,() => state.stage===i);
+  }
+  function setAlpha(a) {
+    if (state.alpha===a) return;
+    state.alpha=a;
+    Curio.tone(360,.08,.03);
+    if (state.mode==='trial' && state.evidenceSeen) {
+      state.changed=true;
+      state.verdict=null;
+      state.filed=false;
+      state.unlocked=Math.min(state.unlocked,4);
+      if (state.stage===5) state.stage=4;
+      $('sentence-strength').value='';
+      $('sentence-direction').value='';
+      if (state.summaries[state.caseId]) {
+        state.summaries[state.caseId]={alpha:a,verdict:'Verdict pending',changed:true};
+      }
+      render();
+      hint(L.alphaLate,'alphaLate',true,() => state.changed);
+      $('hint').classList.add('objection');
+    } else render();
+  }
+  document.querySelectorAll('[data-sign]').forEach(b => b.onclick=() => {
+    const c=cases[state.caseId],sign=b.dataset.sign;
+    if (sign!==c.sign) {
+      hint(`“${c.story}” ${L.wrongCharge}`,'wrongCharge',true,() => state.stage===0);
+      b.setAttribute('aria-pressed','true');
+      Curio.tone(170,.12,.03);
+      return;
+    }
+    state.charge=sign;
+    state.unlocked=Math.max(state.unlocked,1);
+    render();
+    hint(`Hₐ: ${sign} ${c.null}. ${L.rightCharge}`,'rightCharge',true,() => state.stage===0);
+    Curio.yes();
+  });
+  function checkCondition(j,yes) {
+    const c=cases[state.caseId];
+    state.checks[j]=yes;
+    renderChecks();
+    if (yes!==c.checks[j][2]) {
+      hint(c.checks[j][1]+' '+L.wrongCheck,'wrongCheck',true,() => state.stage===2);
+      Curio.tone(170,.1,.03);
+    } else if (c.type==='dismiss' && j===0) {
+      state.summaries[state.caseId]={alpha:state.alpha,verdict:'Dismissed: voluntary response',changed:false};
+      render();
+      hint("No random sample, no trial. A bigger pile of call-ins doesn't fix who chose to call. Tap Case files.",'dismissed',true);
+      $('next').textContent='Case dismissed';
+      $('next').disabled=true;
+    } else {
+      Curio.tone(450,.06,.025);
+      updateNext();
+      const ready=state.checks.every((v,k) => v===c.checks[k][2]);
+      if (ready) hint(L.admit,'admit',false,() => state.stage===2 && ! $('next').disabled);
+      else hint('Condition entered. Tap Yes or No for each remaining check.');
+    }
+  }
+  function verdict(guilty) {
+    const s=stats(),correct=s.p<state.alpha;
+    const cId=state.caseId;
+    $('gavel').classList.remove('swing');
+    void $('gavel').offsetWidth;
+    $('gavel').classList.add('swing');
+    Curio.tone(105,.16,.09,'triangle');
+    if (guilty!==correct) {
+      state.verdict=null;
+      state.filed=false;
+      state.unlocked=Math.min(state.unlocked,4);
+      renderVerdict();
+      updateNext();
+      $('stamp').textContent='Objection';
+      hint(`p = ${pvalue(s.p)}; α = ${alphaText(state.alpha)}. ${L.wrongVerdict}`,'wrongVerdict',true,
+        () => state.caseId===cId && !state.verdict);
+      return;
+    }
+    state.verdict=guilty ? 'Guilty' : 'Not guilty';
+    renderVerdict();
+    updateNext();
+    hint(L.rightVerdict,'rightVerdict',true,() => state.caseId===cId && !!state.verdict && !state.filed);
+  }
+  $('guilty').onclick=() => verdict(true);
+  $('not-guilty').onclick=() => verdict(false);
+  $('innocent').onclick=() => {
+    state.verdict=null;
+    state.filed=false;
+    state.unlocked=Math.min(state.unlocked,4);
+    renderVerdict();
+    updateNext();
+    $('stamp').textContent='Never innocent';
+    hint('Not guilty means the evidence fell short, not that the claim is true. Tap Guilty or Not guilty.','innocent',true,
+      () => state.stage===4);
+    Curio.tone(160,.12,.04);
+  };
+  $('file-sentence').onclick=() => {
+    const good=$('sentence-strength').value===(stats().p<state.alpha ? 'yes' : 'no') &&
+      $('sentence-direction').value===cases[state.caseId].sign;
+    if (!good) return hint(L.wrongSentence,'wrongSentence',true,() => !state.filed);
+    state.filed=true;
+    state.unlocked=5;
+    state.summaries[state.caseId]={alpha:state.alpha,verdict:state.verdict,changed:state.changed};
+    renderRecord();
+    updateNext();
+    hint(L.filed,'filed',true,() => state.filed && state.stage===4);
+    Curio.yes();
+  };
+  $('next').onclick=() => {
+    if (state.stage===0 && state.charge) goStage(1);
+    else if (state.stage===1) {
+      state.locked=true;
+      state.unlocked=Math.max(state.unlocked,2);
+      goStage(2);
+    } else if (state.stage===2 && state.checks.every((v,j) => v===cases[state.caseId].checks[j][2])) {
+      if (cases[state.caseId].type==='dismiss') return;
+      state.unlocked=Math.max(state.unlocked,3);
+      goStage(3);
+    } else if (state.stage===3) {
+      state.unlocked=Math.max(state.unlocked,4);
+      goStage(4);
+    } else if (state.stage===4 && state.filed) goStage(5);
+    else if (state.stage===5) setMode('lineup');
+  };
+  $('paired-trap').onclick=() => hint(L.paired,'paired',true,() => state.caseId===4 && state.stage===2);
+  $('folders-back').onclick=() => {
+    V.hush();
+    state.mode='trial';
+    state.caseId=-1;
+    render();
+    hint(L.wTrial,'wTrial',false,() => state.caseId<0);
+    folderButtons[0].focus({preventScroll:true});
+  };
+  $('trial-alpha').onchange=e => setAlpha(+e.target.value);
+  $('line-alpha').onchange=e => setAlpha(+e.target.value);
+  $('line-case').onchange=e => {
+    state.caseId=+e.target.value;
+    state.claim=cases[state.caseId].null;
+    setupLineup();
+    drawLineup();
+    hint(L.wLineup);
+  };
+  $('claim-slider').oninput=e => {
+    state.claim=+e.target.value;
+    state.lineupMoved=true;
+    drawLineup();
+    Curio.tone(300+state.claim%1*150,.035,.012);
+    hint('Drag the claim slider again. A filled square is convicted; a hollow circle is not convicted.');
+  };
+  function docketChange() {
+    state.docket={n:+$('docket-n').value,a:+$('docket-alpha').value,p:+$('true-p').value,sim:null};
+    drawDocket();
+    hint(L.wDocket);
+    Curio.tone(350,.07,.025);
+  }
+  ['docket-n','docket-alpha','true-p'].forEach(id => $(id).addEventListener(id==='true-p'?'input':'change',docketChange));
+  let seed=(+(new URLSearchParams(location.search).get('seed')) || 1729)>>>0;
+  function random() {
+    seed+=0x6D2B79F5;
+    let t=seed;
+    t=Math.imul(t^t>>>15,t|1);
+    t^=t+Math.imul(t^t>>>7,t|61);
+    return ((t^t>>>14)>>>0)/4294967296;
+  }
+  $('simulate').onclick=() => {
+    const d=docket();
+    let a=0,b=0;
+    // Inverse binomial CDF samples two independent sets of 1,000 trials.
+    function cumulative(pmf) {
+      let sum=0;
+      return pmf.map(v => sum+=v);
+    }
+    const nullCDF=cumulative(d.nullPMF),trueCDF=cumulative(d.truePMF);
+    function sample(cdf) {
+      const u=random();
+      let lo=0,hi=cdf.length-1;
+      while (lo<hi) {
+        const mid=(lo+hi)>>1;
+        if (cdf[mid]>=u) hi=mid; else lo=mid+1;
+      }
+      return lo;
+    }
+    for (let j=0;j<1000;j++) {
+      a+=sample(nullCDF)>=d.k;
+      b+=sample(trueCDF)>=d.k;
+    }
+    state.docket.sim={typeI:a/1000,power:b/1000};
+    state.docketRun=true;
+    drawDocket(true);
+    hint(L.simulation,'simulation',true,() => !!state.docket.sim);
+    Curio.tone(210,.16,.04);
+  };
+  function renderRecord() {
+    const records=Object.entries(state.summaries);
+    $('session').innerHTML=records.length ? records.map(([i,s]) => `<div><b>${cases[i].name}</b><br>`+
+      `${s.verdict} · α ${alphaText(s.alpha)}${s.changed ? '<br>⚠ standard changed' : ''}</div>`).join('') : 'No verdicts filed yet.';
+    cases.forEach((c,i) => {
+      const s=state.summaries[i];
+      $('folder-status-'+i).textContent=s ? s.verdict+(s.changed ? ' *' : '') : 'Open case';
+    });
+  }
+  function renderChecks() {
+    const c=cases[state.caseId];
+    c.checks.forEach(([title,detail],j) => {
+      $('check-title-'+j).innerHTML=title+'<small>'+detail+'</small>';
+      $( 'yes-'+j).setAttribute('aria-pressed',state.checks[j]===true);
+      $( 'no-'+j).setAttribute('aria-pressed',state.checks[j]===false);
+    });
+    $('paired-trap').hidden=state.caseId!==4;
+    drawDots(c);
+  }
+  function updateNext() {
+    const labels=['Set standard','Lock standard','Admit evidence','Make a verdict','View interval','Explore in Lineup'];
+    $('next').textContent=labels[state.stage];
+    $('next').disabled=(state.stage===0 && !state.charge) ||
+      (state.stage===2 && (!state.checks.every((v,j) => v===cases[state.caseId].checks[j][2]) || state.caseId===6)) ||
+      (state.stage===4 && !state.filed);
+    $('case-progress').textContent=state.changed ? '⚠ Standard changed after evidence' :
+      state.locked ? 'Standard locked: α '+alphaText(state.alpha) : 'Set the rules before the evidence';
+    stepButtons.forEach((b,i) => {
+      b.disabled=i>state.unlocked;
+      b.setAttribute('aria-current',i===state.stage ? 'step' : 'false');
+    });
+  }
+  function renderVerdict() {
+    $('stamp').textContent=state.verdict ? (state.verdict==='Guilty' ? '■ ' : '○ ')+state.verdict : 'Your verdict';
+    $('sentence').hidden=!state.verdict;
+    sentencePreview();
+  }
+  function sentencePreview() {
+    const strength=$('sentence-strength'),direction=$('sentence-direction');
+    const s=strength.value ? strength.selectedOptions[0].textContent : '[evidence]';
+    const d=direction.value ? direction.selectedOptions[0].textContent : '[direction]';
+    $('sentence-preview').textContent='At α '+alphaText(state.alpha)+', there '+s+' evidence that '+
+      cases[state.caseId].parameter+' '+d+' '+cases[state.caseId].null+'.';
+  }
+  ['sentence-strength','sentence-direction'].forEach(id => $(id).onchange=sentencePreview);
+  function render() {
+    ['trial','lineup','docket'].forEach(m => $('m-'+m).setAttribute('aria-pressed',state.mode===m));
+    const isTrial=state.mode==='trial',open=state.caseId>=0;
+    $('picker').hidden=!isTrial || open;
+    $('trial-card').hidden=!isTrial || !open;
+    $('lineup-card').hidden=state.mode!=='lineup';
+    $('docket-card').hidden=state.mode!=='docket';
+    $('steps').hidden=!isTrial || !open;
+    $('live-alpha').hidden=!isTrial || !open || !state.locked;
+    $('folders-back').hidden=isTrial && !open;
+    $('bench-title').textContent=isTrial ? (open ? cases[state.caseId].name : 'The case files') :
+      state.mode==='lineup' ? 'Claim by claim' : 'The fair-coin docket';
+    $('bench-meta').textContent=isTrial ? (open ? 'Made-up case' : 'Seven made-up cases') :
+      state.mode==='lineup' ? 'Two-sided tests' : 'Binomial trials';
+    $('trial-alpha').value=String(state.alpha);
+    $('line-alpha').value=String(state.alpha);
+    document.querySelectorAll('[data-alpha]').forEach(b => b.setAttribute('aria-pressed',+b.dataset.alpha===state.alpha));
+    renderRecord();
+    if (isTrial && open) {
+      const c=cases[state.caseId];
+      ids.forEach((id,i) => $(id).hidden=state.stage!==i);
+      $('paired-trap').hidden=state.caseId!==4 || state.stage!==2;
+      $('stage-label').textContent='Made-up case · '+(state.stage+1)+' of 6';
+      $('stage-title').textContent=stages[state.stage];
+      $('evidence').src=art[c.art];
+      $('evidence').alt=c.name+' evidence scene, without people';
+      $('evidence-tag').hidden=state.caseId!==1;
+      $('claim-story').textContent=c.story;
+      const parameter=c.type==='twoProp' ? 'p₁ − p₂' : c.type==='twoMean' ? 'μ₁ − μ₂' :
+        state.caseId===4 ? 'μ_diff' : c.type==='prop' || c.type==='dismiss' ? 'p' : 'μ';
+      $('null-claim').textContent='H₀: '+parameter+' = '+c.null+(c.unit ? ' '+c.unit : '');
+      document.querySelectorAll('[data-sign]').forEach(b => b.setAttribute('aria-pressed',b.dataset.sign===state.charge));
+      if (state.stage===2) renderChecks();
+      if (state.stage===3) drawEvidence();
+      if (state.stage===4) renderVerdict();
+      if (state.stage===5) drawInterval();
+      updateNext();
+    } else if (state.mode==='lineup') {
+      setupLineup();
+      drawLineup();
+    } else if (state.mode==='docket') drawDocket();
+  }
+  // Responsive SVGs use their actual CSS dimensions, keeping labels at readable pixel sizes.
+  function svgBox(el) {
+    const r=el.getBoundingClientRect();
+    const w=Math.max(180,r.width),h=Math.max(40,r.height);
+    el.setAttribute('viewBox',`0 0 ${w} ${h}`);
+    el.setAttribute('preserveAspectRatio','none');
+    return {w,h};
+  }
+  const text = (x,y,s,anchor='middle',size=12,fill='') =>
+    `<text x="${x}" y="${y}" text-anchor="${anchor}" font-size="${size}" ${fill ? `style="fill:${fill}"` : ''}>${s}</text>`;
+  function drawDots(c) {
+    const el=$('dotplot'),{w,h}=svgBox(el);
+    if (!c.dots) {
+      el.innerHTML=text(w/2,h/2,c.type==='dismiss' ? 'Selection bias stays, even with 1,000 calls.' : 'Check the sample sizes and the design above.');
+      return;
+    }
+    const lo=Math.min(...c.dots),hi=Math.max(...c.dots),scale=v => 24+(v-lo)/(hi-lo)*(w-48);
+    const stacks={};
+    let out=`<path d="M20 ${h-19}H${w-20}" stroke="#8c7656"/>`;
+    c.dots.forEach(v => {
+      const bucket=Math.round((v-lo)/(hi-lo)*35);
+      const stack=stacks[bucket] || 0;
+      stacks[bucket]=stack+1;
+      out+=`<circle cx="${scale(v)}" cy="${h-25-stack*7}" r="3" fill="#1d6b47"/>`;
+    });
+    el.innerHTML=out+text(24,h-3,fmt(lo,1),'start',10)+text(w-24,h-3,fmt(hi,1)+' '+c.unit,'end',10);
+  }
+  function drawEvidence() {
+    const c=cases[state.caseId],s=stats(),el=$('null-curve'),{w,h}=svgBox(el);
+    const pad=28,base=h-28,top=22,limit=Math.max(4,Math.abs(s.statistic)+.6),peak=density(0,s.df);
+    const xx=t => pad+(t+limit)/(2*limit)*(w-2*pad);
+    const yy=t => base-density(t,s.df)/peak*(base-top);
+    let curve='',shade='',active=false;
+    for (let i=0;i<=240;i++) {
+      const t=-limit+i/240*2*limit,x=xx(t),y=yy(t);
+      curve+=(i?'L':'M')+x+' '+y;
+      const tail=c.sign==='<' ? t<=s.statistic : c.sign==='>' ? t>=s.statistic : Math.abs(t)>=Math.abs(s.statistic);
+      if (tail && !active) {shade+=`M${x} ${base}L${x} ${y}`; active=true;}
+      else if (tail) shade+=`L${x} ${y}`;
+      else if (active) {shade+=`L${x} ${base}Z`; active=false;}
+    }
+    if (active) shade+=`L${w-pad} ${base}Z`;
+    let out=`<path d="${shade}" fill="#1d6b47" opacity=".35"/><path d="${curve}" fill="none" stroke="#4a3322" stroke-width="2.5"/>`;
+    out+=`<path d="M${pad} ${base}H${w-pad}" stroke="#8c7656"/>`;
+    out+=`<path d="M${xx(0)} ${top}V${base}" stroke="#8c7656" stroke-dasharray="3 4"/>`;
+    out+=`<path d="M${xx(s.statistic)} ${yy(s.statistic)}V${base}" stroke="#1d6b47" stroke-width="3"/>`;
+    out+=text(xx(0),base+18,'H₀: '+c.null,'middle',11);
+    out+=text(s.statistic<0 ? pad : w-pad,16,`${s.kind} = ${fmt(s.statistic,3)} · shaded p = ${pvalue(s.p)}`,
+      s.statistic<0 ? 'start' : 'end',12);
+    out+=text(xx(s.statistic),base+18,fmt(c.estimate,c.digits),'middle',11);
+    el.innerHTML=out;
+    $('null-caption').textContent=c.data+' Null curve: '+(s.df===null ? 'normal' : 't, df '+fmt(s.df,s.df%1 ? 1 : 0))+'.';
+    $('evidence-metrics').innerHTML=metric('Estimate',fmt(s.estimate,c.digits))+metric('Null SE',fmt(s.se0,6))+
+      metric(s.kind,fmt(s.statistic,3))+metric('df',s.df===null ? 'normal' : fmt(s.df,s.df%1 ? 1 : 0))+
+      metric('p-value',pvalue(s.p))+metric('Locked α',alphaText(state.alpha));
+  }
+  function numberLine(el,{low,high,estimate,claim,band,ci,convicted,labels=true}) {
+    const {w,h}=svgBox(el),pad=30;
+    const xx=v => pad+(v-low)/(high-low)*(w-2*pad);
+    const base=Math.max(35,h*.38),c=cases[state.caseId],d=c.digits;
+    let out='';
+    for (let j=0;j<=4;j++) {
+      const v=low+(high-low)*j/4,x=xx(v);
+      out+=`<path d="M${x} ${base-5}V${base+5}" stroke="#8c7656"/>`+text(x,base+23,fmt(v,d),'middle',11);
+    }
+    out+=`<path d="M${pad} ${base}H${w-pad}" stroke="#8c7656" stroke-width="2"/>`;
+    if (band) {
+      out+=`<path d="M${xx(band[0])} ${base}H${xx(band[1])}" stroke="#1d6b47" stroke-width="16" opacity=".22"/>`;
+      out+=`<path d="M${xx(band[0])} ${base-12}V${base+12}M${xx(band[1])} ${base-12}V${base+12}" stroke="#1d6b47" stroke-width="2"/>`;
+      out+=text(w/2,Math.max(15,base-35),`Not convicted: [${fmt(band[0],d)}, ${fmt(band[1],d)}]`,'middle',12);
+    }
+    const lineY=Math.min(h-25,base+65);
+    out+=`<path d="M${xx(ci.low)} ${lineY-7}V${lineY+7}M${xx(ci.high)} ${lineY-7}V${lineY+7}`+
+      `M${xx(ci.low)} ${lineY}H${xx(ci.high)}" stroke="#4a3322" stroke-width="3"/>`;
+    out+=`<circle cx="${xx(estimate)}" cy="${lineY}" r="4" fill="#4a3322"/>`;
+    out+=text(w/2,Math.min(h-5,lineY+24),`${Math.round(ci.C*100)}% interval: [${fmt(ci.low,d)}, ${fmt(ci.high,d)}]`,'middle',12);
+    const mx=xx(claim);
+    out+=`<path d="M${mx} ${base-22}V${base-8}" stroke="#2b2119" stroke-width="2"/>`;
+    out+=convicted ? `<rect x="${mx-6}" y="${base-7}" width="12" height="12" fill="#2b2119"/>` :
+      `<circle cx="${mx}" cy="${base-1}" r="7" fill="#fffaf2" stroke="#2b2119" stroke-width="2"/>`;
+    el.innerHTML=out;
+  }
+  function drawInterval() {
+    const c=cases[state.caseId],s=stats(),C=1-(c.sign==='≠' ? state.alpha : 2*state.alpha),ci=interval(C);
+    const span=Math.max(ci.margin*1.5,Math.abs(c.null-c.estimate)*1.2);
+    $('interval-caption').textContent=`${Math.round(C*100)}% confidence at α ${alphaText(state.alpha)}: `+
+      (c.sign==='≠' ? 'C = 1 − α.' : 'One-sided charge, central interval: C = 1 − 2α.');
+    numberLine($('interval-line'),{low:c.estimate-span,high:c.estimate+span,estimate:c.estimate,claim:c.null,ci,
+      convicted:s.p<state.alpha});
+    $('interval-metrics').innerHTML=metric('Estimate',fmt(c.estimate,c.digits))+metric('Critical value',fmt(ci.critical,4))+
+      metric('Margin',fmt(ci.margin,c.digits===3 ? 4 : 2));
+    $('interval-note').textContent=c.type==='prop' || c.type==='twoProp' ?
+      "AP uses the estimate's SE; the score-test band can differ. Compare both in Lineup." :
+      c.sign==='≠' ? 'Matching two-sided t tests do not reject claims inside this interval.' :
+      'For a one-sided charge, compare the relevant bound.';
+  }
+  function lineupRange() {
+    const c=cases[state.caseId],ci=interval(.99),span=ci.margin*1.5;
+    return [Math.max(c.type==='prop' ? .001 : c.type==='twoProp' ? -.99 : -Infinity,c.estimate-span),
+      Math.min(c.type==='prop' ? .999 : c.type==='twoProp' ? .99 : Infinity,c.estimate+span)];
+  }
+  function setupLineup() {
+    $('line-case').value=state.caseId;
+    const [lo,hi]=lineupRange();
+    $('claim-slider').min=lo;
+    $('claim-slider').max=hi;
+    if (state.claim===null) state.claim=cases[state.caseId].null;
+    $('claim-slider').value=state.claim;
+  }
+  function drawLineup() {
+    const c=cases[state.caseId],r=lineup(),[low,high]=lineupRange();
+    numberLine($('lineup-line'),{low,high,estimate:c.estimate,claim:state.claim,band:r.band,ci:r.interval,convicted:r.convicted});
+    $('line-status').textContent=(r.convicted ? '■ Convicted' : '○ Not convicted')+` · claim ${fmt(state.claim,c.digits)} · two-sided p ${pvalue(r.p)}`;
+    $('line-note').textContent=c.type==='prop' || c.type==='twoProp' ?
+      'Two brackets: the score-test band uses SE fitted under the claim; the AP interval uses estimated proportions. Their endpoints differ slightly.' :
+      'The not-convicted band and the t interval match exactly. Changing the claim moves the test; the data stay fixed.';
+  }
+  function drawDocket(animate=false) {
+    const d=docket(),el=$('docket-curves'),{w,h}=svgBox(el),pad=24,base=h-30,top=28;
+    const lo=Math.max(0,Math.floor(d.n*.5-4*Math.sqrt(d.n*.25)));
+    const hi=Math.min(d.n,Math.ceil(d.n*d.p+4*Math.sqrt(d.n*d.p*(1-d.p))));
+    const xx=v => pad+(v-lo)/(hi-lo)*(w-2*pad),peak=Math.max(...d.nullPMF,...d.truePMF);
+    const yy=v => base-v/peak*(base-top);
+    let out='';
+    [d.nullPMF,d.truePMF].forEach((pmf,j) => {
+      const color=j ? '#1d6b47' : '#8a2a1e';
+      let path='',shade=`M${xx(Math.max(lo,d.k-.5))} ${base}`;
+      for (let x=lo;x<=hi;x++) {
+        path+=(x===lo ? 'M' : 'L')+xx(x)+' '+yy(pmf[x]);
+        if (x>=d.k) shade+='L'+xx(x)+' '+yy(pmf[x]);
+      }
+      shade+=`L${xx(hi)} ${base}Z`;
+      out+=`<path d="${shade}" fill="${color}" opacity=".22"/><path d="${path}" fill="none" stroke="${color}"`+
+        ` stroke-width="2.5" ${j?'':'stroke-dasharray="5 3"'}/>`;
+    });
+    out+=`<path d="M${pad} ${base}H${w-pad}M${xx(d.k-.5)} ${top}V${base}" stroke="#8c7656"/>`;
+    out+=text(pad,14,'H₀: p = .50','start',11)+text(w-pad,14,'True p = '+fmt(d.p,2),'end',11);
+    out+=text(xx(lo),base+18,lo,'middle',10)+text(xx(hi),base+18,hi+' heads','end',10);
+    out+=text(xx(d.k-.5),base+18,'k = '+d.k,'middle',11);
+    el.innerHTML=out;
+    $('true-label').textContent=fmt(d.p,2);
+    $('type1-exact').textContent=fmt(d.typeI,4)+' exact';
+    $('power-exact').textContent=fmt(d.power,4)+' exact';
+    $('cutoff').textContent='Convict if x ≥ '+d.k+' heads out of '+d.n+'.';
+    $('beta-note').textContent='β = '+fmt(d.beta,4)+': the unshaded true-p area, failing to reject. '+
+      'Integer cutoffs make exact Type I differ from planned α '+alphaText(d.a)+'.';
+    ['type1','power'].forEach((key,i) => {
+      const bar=$(key+'-bar'),value=state.docket.sim ? state.docket.sim[i ? 'power' : 'typeI'] : 0;
+      bar.style.transition='none';
+      bar.style.width=animate ? '0%' : value*100+'%';
+      if (animate) {
+        void bar.offsetWidth;
+        bar.style.transition=Curio.reduce ? 'none' : 'width .8s ease-out';
+        bar.style.width=value*100+'%';
+      }
+      $(key+'-sim').textContent=state.docket.sim ? fmt(value,3)+' simulated / 1,000' : 'No trials yet';
+    });
+  }
+  ['trial','lineup','docket'].forEach(m => $('m-'+m).onclick=() => {
+    if (state.mode!==m) setMode(m);
+  });
+  Curio.init({clips:"voice:*",rate:.95,readFallback:() => $('hint').textContent});
+  let chartFrame=0;
+  const chartObserver=new ResizeObserver(() => {
+    cancelAnimationFrame(chartFrame);
+    chartFrame=requestAnimationFrame(() => {
+      if (state.mode==='trial' && state.caseId>=0) {
+        if (state.stage===2) drawDots(cases[state.caseId]);
+        if (state.stage===3) drawEvidence();
+        if (state.stage===5) drawInterval();
+      } else if (state.mode==='lineup') drawLineup();
+      else if (state.mode==='docket') drawDocket();
+    });
+  });
+  ['card','dotplot','null-curve','interval-line','lineup-line','docket-curves'].forEach(id => chartObserver.observe($(id)));
+  window.__tool={state,setMode,openCase,setAlpha,stats,interval,lineup,docket,cases,goStage,allLines:V.allLines,vlog:V.log,
+    get vq() {return V.queue;}};
+  setMode('trial');
+})();
+</script>
+</body>
+</html>

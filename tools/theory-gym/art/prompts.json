@@ -1,0 +1,22 @@
+{
+  "house_style": "Sophisticated editorial material study for a high-school music workbench, warm maple and cream, court-line blue accents, realistic fine grain and directional late-afternoon light from upper left. Rich tactile surfaces, restrained color, crisp detail. No people, body parts, text, letters, numbers, symbols or logos.",
+  "assets": [
+    {
+      "name": "maple-court",
+      "prompt": "Wide overhead view of a beautiful honey maple gym floor as a continuous material backdrop. Long maple boards, fine wood pores, restrained varnish reflections, a single blue court arc entering the lower right edge and a thin blue stripe at the far left edge. Spacious quiet center for a music score overlay. Warm angled window light from upper left, soft long shadows at edges. Entire image is floor, edge to edge.",
+      "aspect": "16:9",
+      "width": 1500,
+      "quality": 74,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "piano-detail",
+      "prompt": "Sophisticated editorial close-up of a real acoustic grand piano, warm maple reflections and ebony case, natural late-afternoon light from the upper left and deep court-blue shadows. Accurate straight piano keyboard: a single clearly visible octave of seven white keys C D E F G A B and the next C, with exactly five black keys in the standard group of two followed by a group of three, a white-key gap between the groups. Camera nearly overhead with slight perspective, keyboard across the lower third, polished dark ebony fallboard above, brass hinge, wood pores and felt details. Refined realistic photograph-like painting matching the maple gym floor material. Wide 16:9 composition that remains legible in a narrow side panel. No text, lettering, numbers, logos or people.",
+      "aspect": "16:9",
+      "width": 900,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review_note": "Redrawn in cold review: original had an incorrect continuous black-key pattern."
+    }
+  ]
+}

@@ -1,0 +1,626 @@
+{
+  "stories": {
+    "goats": {
+      "name": "Billy Goats",
+      "title": "The Three Billy Goats Gruff.",
+      "beats": [
+        {
+          "type": "tell",
+          "line": "Once upon a time, three billy goats lived near a hill of sweet green grass. To get there, they had to cross a bridge.",
+          "backdrop": "meadow-bridge"
+        },
+        {
+          "type": "tell",
+          "line": "But under the bridge lived a grumpy troll.",
+          "backdrop": "meadow-bridge"
+        },
+        {
+          "type": "dress",
+          "line": "Moon side, you are the troll! Put on your shaggy cape and your big, heavy boots.",
+          "backdrop": "meadow-bridge",
+          "side": 1,
+          "pieces": {
+            "1": [
+              "shaggy-cape",
+              "big-boots",
+              "troll-nose"
+            ]
+          }
+        },
+        {
+          "type": "dress",
+          "line": "Sun side, you are the goats! Put on your horns.",
+          "backdrop": "meadow-bridge",
+          "side": 0,
+          "pieces": {
+            "0": [
+              "little-horns"
+            ]
+          }
+        },
+        {
+          "type": "act",
+          "line": "The littlest goat goes first. Trip, trap, trip, trap. Sun side, tiptoe, quiet and small.",
+          "backdrop": "meadow-bridge",
+          "side": 0,
+          "sound": "Trip trap"
+        },
+        {
+          "type": "choose",
+          "line": "How does the troll talk? Tap Big and booming, or Squeaky and small.",
+          "backdrop": "meadow-bridge",
+          "choices": {
+            "a": {
+              "icon": ")))",
+              "name": "Big and booming"
+            },
+            "b": {
+              "icon": "·))",
+              "name": "Squeaky and small"
+            }
+          }
+        },
+        {
+          "type": "act",
+          "line": "Moon side, say it big and booming: Who is that tripping over my bridge?",
+          "backdrop": "meadow-bridge",
+          "side": 1,
+          "variants": {
+            "a": "Moon side, say it big and booming: Who is that tripping over my bridge?",
+            "b": "Moon side, say it squeaky and small: Who is that tripping over my bridge?"
+          },
+          "choiceFrom": 5
+        },
+        {
+          "type": "act",
+          "line": "Sun side, be a brave little goat. Say: Wait for my big brother. He is much bigger than me!",
+          "backdrop": "meadow-bridge",
+          "side": 0
+        },
+        {
+          "type": "act",
+          "line": "Here comes the biggest goat. TRIP, TRAP! Sun side, stomp, big and slow.",
+          "backdrop": "meadow-bridge",
+          "side": 0,
+          "pieces": {
+            "0": [
+              "curly-horns"
+            ]
+          },
+          "sound": "TRIP TRAP"
+        },
+        {
+          "type": "freeze",
+          "line": "The troll jumps up. The big goat lowers his horns. Everyone, freeze like a statue!",
+          "backdrop": "meadow-bridge",
+          "side": "both"
+        },
+        {
+          "type": "tell",
+          "line": "Bump! The big goat bumps the troll right off the bridge. Splash! Into the river he goes.",
+          "backdrop": "meadow-bridge",
+          "sound": "Splash"
+        },
+        {
+          "type": "act",
+          "line": "Now everyone, be the goats munching sweet grass on the hill. Munch, munch. Show me your happy face.",
+          "backdrop": "meadow-bridge",
+          "side": "both"
+        },
+        {
+          "type": "end",
+          "line": "The end! Tap Swap and play again, and the Sun side and Moon side trade parts.",
+          "backdrop": "meadow-bridge"
+        }
+      ]
+    },
+    "gingerbread": {
+      "name": "Gingerbread Boy",
+      "title": "The Gingerbread Boy.",
+      "beats": [
+        {
+          "type": "tell",
+          "line": "One morning, a little old woman baked a gingerbread boy. Ding! She opened the oven door.",
+          "backdrop": "cottage-kitchen",
+          "sound": "Oven ding"
+        },
+        {
+          "type": "dress",
+          "line": "Sun side, you are the Gingerbread Boy! Put on your icing buttons and your candy bow tie.",
+          "backdrop": "cottage-kitchen",
+          "side": 0,
+          "pieces": {
+            "0": [
+              "icing-buttons",
+              "candy-bow"
+            ]
+          }
+        },
+        {
+          "type": "act",
+          "line": "Out he jumped, and away he ran! Sun side, run in your seats and say: Run, run, as fast as you can! You can't catch me, I'm the Gingerbread Boy!",
+          "backdrop": "cottage-kitchen",
+          "side": 0,
+          "sound": "Running feet"
+        },
+        {
+          "type": "dress",
+          "line": "Moon side, you are the little old woman and the little old man. Put on your aprons. Wave your arms and call: Stop! Stop!",
+          "backdrop": "cottage-kitchen",
+          "side": 1,
+          "pieces": {
+            "1": [
+              "apron"
+            ]
+          }
+        },
+        {
+          "type": "dress",
+          "line": "Now Moon side, you are a cow in the field. Put on your bell. Say: Moo! Stop, little cookie!",
+          "backdrop": "country-road",
+          "side": 1,
+          "pieces": {
+            "1": [
+              "cow-bell"
+            ]
+          }
+        },
+        {
+          "type": "choose",
+          "line": "How does the Gingerbread Boy run past the pig? Tap Super fast, or Slow and silly.",
+          "backdrop": "country-road",
+          "choices": {
+            "a": {
+              "icon": "➜",
+              "name": "Super fast"
+            },
+            "b": {
+              "icon": "🐌",
+              "name": "Slow and silly"
+            }
+          }
+        },
+        {
+          "type": "act",
+          "line": "Moon side, you are the pig. Oink! Sun side, run past the pig super fast!",
+          "backdrop": "country-road",
+          "side": "both",
+          "pieces": {
+            "1": [
+              "pig-snout"
+            ]
+          },
+          "variants": {
+            "a": "Moon side, you are the pig. Oink! Sun side, run past the pig super fast!",
+            "b": "Moon side, you are the pig. Oink! Sun side, run past the pig in slow motion, slow and silly!"
+          },
+          "choiceFrom": 5
+        },
+        {
+          "type": "tell",
+          "line": "Then the Gingerbread Boy came to a wide river. He could not swim! A sly fox sat on the bank.",
+          "backdrop": "wide-river"
+        },
+        {
+          "type": "dress",
+          "line": "Moon side, you are the fox. Put on your pointy ears and your bushy tail. Say it sweet and sly: Hop on my tail. I will carry you across.",
+          "backdrop": "wide-river",
+          "side": 1,
+          "pieces": {
+            "1": [
+              "fox-ears",
+              "bushy-tail"
+            ]
+          }
+        },
+        {
+          "type": "act",
+          "line": "Sun side, hop onto the fox's tail. Now onto his back. Now onto his nose!",
+          "backdrop": "wide-river",
+          "side": 0
+        },
+        {
+          "type": "freeze",
+          "line": "Everyone, freeze! The Gingerbread Boy is on the fox's nose. Show me with your face: worried, or happy?",
+          "backdrop": "wide-river",
+          "side": "both"
+        },
+        {
+          "type": "tell",
+          "line": "Snap! The clever fox gobbled him up. And that was the end of the Gingerbread Boy.",
+          "backdrop": "wide-river",
+          "sound": "Snap"
+        },
+        {
+          "type": "end",
+          "line": "The end! Tap Swap and play again, and the Sun side and Moon side trade parts.",
+          "backdrop": "wide-river"
+        }
+      ]
+    },
+    "turnip": {
+      "name": "Big Turnip",
+      "title": "The Great Big Turnip.",
+      "beats": [
+        {
+          "type": "tell",
+          "line": "Grandpa planted a tiny turnip seed. He said: Grow, little turnip. Grow big and sweet!",
+          "backdrop": "veggie-garden"
+        },
+        {
+          "type": "act",
+          "line": "Everyone, be the seed. Curl up small. Now grow, grow, grow, and stretch up tall!",
+          "backdrop": "veggie-garden",
+          "side": "both"
+        },
+        {
+          "type": "dress",
+          "line": "Sun side, you are Grandpa. Put on your straw hat. Grab the leaves and pull! Heave-ho! It would not come up.",
+          "backdrop": "veggie-garden",
+          "side": 0,
+          "pieces": {
+            "0": [
+              "straw-hat"
+            ]
+          },
+          "sound": "Heave-ho"
+        },
+        {
+          "type": "dress",
+          "line": "Moon side, you are Grandma. Put on your shawl. Hold on to Grandpa and pull! Heave-ho! It would not come up.",
+          "backdrop": "veggie-garden",
+          "side": 1,
+          "pieces": {
+            "1": [
+              "shawl"
+            ]
+          },
+          "sound": "Heave-ho"
+        },
+        {
+          "type": "dress",
+          "line": "Sun side, you are the granddaughter. Put on your bow. Pull! Heave-ho! Still stuck.",
+          "backdrop": "veggie-garden",
+          "side": 0,
+          "pieces": {
+            "0": [
+              "hair-bow"
+            ]
+          },
+          "sound": "Heave-ho"
+        },
+        {
+          "type": "dress",
+          "line": "Moon side, you are the dog. Woof! Pull! Heave-ho! Still stuck.",
+          "backdrop": "veggie-garden",
+          "side": 1,
+          "pieces": {
+            "1": [
+              "dog-ears"
+            ]
+          },
+          "sound": "Heave-ho"
+        },
+        {
+          "type": "dress",
+          "line": "Sun side, you are the cat. Meow! Pull! Heave-ho! Still stuck.",
+          "backdrop": "veggie-garden",
+          "side": 0,
+          "pieces": {
+            "0": [
+              "cat-whiskers"
+            ]
+          },
+          "sound": "Heave-ho"
+        },
+        {
+          "type": "choose",
+          "line": "Who should help next? Tap the Tiny mouse, or the Big bear.",
+          "backdrop": "veggie-garden",
+          "choices": {
+            "a": {
+              "icon": "🐭",
+              "name": "Tiny mouse"
+            },
+            "b": {
+              "icon": "🐻",
+              "name": "Big bear"
+            }
+          }
+        },
+        {
+          "type": "dress",
+          "line": "Everyone, you are the tiny mouse. Put on your little ears. Squeak! Now everyone pull together. One, two, three, heave-ho!",
+          "backdrop": "veggie-garden",
+          "side": "both",
+          "pieces": {
+            "both": [
+              "mouse-ears"
+            ]
+          }
+        },
+        {
+          "type": "freeze",
+          "line": "Pop! Out came the turnip, and everyone tumbled down in a heap! Freeze in your funny heap!",
+          "backdrop": "veggie-garden",
+          "side": "both",
+          "sound": "Pop"
+        },
+        {
+          "type": "end",
+          "line": "And they all ate turnip soup. The end! Tap Swap and play again, and the Sun side and Moon side trade parts.",
+          "backdrop": "veggie-garden"
+        }
+      ]
+    }
+  },
+  "pieces": {
+    "little-horns": {
+      "name": "Little horns",
+      "place": "head"
+    },
+    "curly-horns": {
+      "name": "Curly horns",
+      "place": "head"
+    },
+    "straw-hat": {
+      "name": "Straw hat",
+      "place": "head"
+    },
+    "crown": {
+      "name": "Crown",
+      "place": "head"
+    },
+    "wizard-hat": {
+      "name": "Wizard hat",
+      "place": "head"
+    },
+    "fox-ears": {
+      "name": "Fox ears",
+      "place": "head"
+    },
+    "dog-ears": {
+      "name": "Dog ears",
+      "place": "head"
+    },
+    "mouse-ears": {
+      "name": "Mouse ears",
+      "place": "head"
+    },
+    "cow-bell": {
+      "name": "Cow horns and bell",
+      "place": "head"
+    },
+    "hair-bow": {
+      "name": "Hair bow",
+      "place": "head"
+    },
+    "pig-snout": {
+      "name": "Pig snout",
+      "place": "face"
+    },
+    "cat-whiskers": {
+      "name": "Cat whiskers",
+      "place": "face"
+    },
+    "troll-nose": {
+      "name": "Troll nose",
+      "place": "face"
+    },
+    "icing-buttons": {
+      "name": "Icing buttons",
+      "place": "body"
+    },
+    "candy-bow": {
+      "name": "Candy bow tie",
+      "place": "body"
+    },
+    "apron": {
+      "name": "Apron",
+      "place": "body"
+    },
+    "shawl": {
+      "name": "Shawl",
+      "place": "body"
+    },
+    "shaggy-cape": {
+      "name": "Shaggy cape",
+      "place": "body"
+    },
+    "big-boots": {
+      "name": "Big boots",
+      "place": "feet"
+    },
+    "bushy-tail": {
+      "name": "Bushy tail",
+      "place": "tail"
+    }
+  },
+  "questions": [
+    "How does this character walk? Show me.",
+    "What does this character sound like? Say hello.",
+    "How does this character feel today? Show me with your face.",
+    "Where does this character live? Tell a friend.",
+    "What does this character want more than anything? Tell a friend."
+  ],
+  "sounds": [
+    {
+      "name": "Trip trap",
+      "icon": "♬"
+    },
+    {
+      "name": "TRIP TRAP",
+      "icon": "♫"
+    },
+    {
+      "name": "Splash",
+      "icon": "≋"
+    },
+    {
+      "name": "Oven ding",
+      "icon": "♧"
+    },
+    {
+      "name": "Running feet",
+      "icon": "⋯"
+    },
+    {
+      "name": "Snap",
+      "icon": "✦"
+    },
+    {
+      "name": "Heave-ho",
+      "icon": "↗"
+    },
+    {
+      "name": "Pop",
+      "icon": "✧"
+    }
+  ],
+  "lines": {
+    "welcome": "Tap a story. Alone, try both parts. Together, split into Sun side and Moon side. Mime in your own space.",
+    "nextHint": "Tap Next when you are ready for more of the story.",
+    "actHint": "When everyone has had a turn, tap Next.",
+    "chooseHint": "Let the class choose. Then tap their choice.",
+    "endHint": "Tap Swap and play again to trade parts.",
+    "swap": "Swap! Sun side and Moon side, trade parts.",
+    "freeze": "Freeze! Everyone be a statue.",
+    "unfreeze": "Unfreeze!",
+    "trunkWelcome": "This is the dress-up trunk. Tap a costume piece to dress the puppet.",
+    "askHint": "Tap Ask, and the class can answer my question.",
+    "surprise": "Ta-da! Who could this be?",
+    "clear": "All clean. Let's dress up someone new.",
+    "bear": "A big bear came to help. Everyone, be the bear. Pull! Heave-ho! Even the bear could not do it. Maybe someone tiny can help.",
+    "askAgain": "Act it out. Tap Ask for another question."
+  },
+  "voiceLines": [
+    "Once upon a time, three billy goats lived near a hill of sweet green grass. To get there, they had to cross a bridge.",
+    "But under the bridge lived a grumpy troll.",
+    "Moon side, you are the troll! Put on your shaggy cape and your big, heavy boots.",
+    "Sun side, you are the troll! Put on your shaggy cape and your big, heavy boots.",
+    "Sun side, you are the goats! Put on your horns.",
+    "Moon side, you are the goats! Put on your horns.",
+    "The littlest goat goes first. Trip, trap, trip, trap. Sun side, tiptoe, quiet and small.",
+    "The littlest goat goes first. Trip, trap, trip, trap. Moon side, tiptoe, quiet and small.",
+    "How does the troll talk? Tap Big and booming, or Squeaky and small.",
+    "Moon side, say it big and booming: Who is that tripping over my bridge?",
+    "Sun side, say it big and booming: Who is that tripping over my bridge?",
+    "Moon side, say it squeaky and small: Who is that tripping over my bridge?",
+    "Sun side, say it squeaky and small: Who is that tripping over my bridge?",
+    "Sun side, be a brave little goat. Say: Wait for my big brother. He is much bigger than me!",
+    "Moon side, be a brave little goat. Say: Wait for my big brother. He is much bigger than me!",
+    "Here comes the biggest goat. TRIP, TRAP! Sun side, stomp, big and slow.",
+    "Here comes the biggest goat. TRIP, TRAP! Moon side, stomp, big and slow.",
+    "The troll jumps up. The big goat lowers his horns. Everyone, freeze like a statue!",
+    "Bump! The big goat bumps the troll right off the bridge. Splash! Into the river he goes.",
+    "Now everyone, be the goats munching sweet grass on the hill. Munch, munch. Show me your happy face.",
+    "The end! Tap Swap and play again, and the Sun side and Moon side trade parts.",
+    "The end! Tap Swap and play again, and the Moon side and Sun side trade parts.",
+    "The Three Billy Goats Gruff.",
+    "One morning, a little old woman baked a gingerbread boy. Ding! She opened the oven door.",
+    "Sun side, you are the Gingerbread Boy! Put on your icing buttons and your candy bow tie.",
+    "Moon side, you are the Gingerbread Boy! Put on your icing buttons and your candy bow tie.",
+    "Out he jumped, and away he ran! Sun side, run in your seats and say: Run, run, as fast as you can! You can't catch me, I'm the Gingerbread Boy!",
+    "Out he jumped, and away he ran! Moon side, run in your seats and say: Run, run, as fast as you can! You can't catch me, I'm the Gingerbread Boy!",
+    "Moon side, you are the little old woman and the little old man. Put on your aprons. Wave your arms and call: Stop! Stop!",
+    "Sun side, you are the little old woman and the little old man. Put on your aprons. Wave your arms and call: Stop! Stop!",
+    "Now Moon side, you are a cow in the field. Put on your bell. Say: Moo! Stop, little cookie!",
+    "Now Sun side, you are a cow in the field. Put on your bell. Say: Moo! Stop, little cookie!",
+    "How does the Gingerbread Boy run past the pig? Tap Super fast, or Slow and silly.",
+    "Moon side, you are the pig. Oink! Sun side, run past the pig super fast!",
+    "Sun side, you are the pig. Oink! Moon side, run past the pig super fast!",
+    "Moon side, you are the pig. Oink! Sun side, run past the pig in slow motion, slow and silly!",
+    "Sun side, you are the pig. Oink! Moon side, run past the pig in slow motion, slow and silly!",
+    "Then the Gingerbread Boy came to a wide river. He could not swim! A sly fox sat on the bank.",
+    "Moon side, you are the fox. Put on your pointy ears and your bushy tail. Say it sweet and sly: Hop on my tail. I will carry you across.",
+    "Sun side, you are the fox. Put on your pointy ears and your bushy tail. Say it sweet and sly: Hop on my tail. I will carry you across.",
+    "Sun side, hop onto the fox's tail. Now onto his back. Now onto his nose!",
+    "Moon side, hop onto the fox's tail. Now onto his back. Now onto his nose!",
+    "Everyone, freeze! The Gingerbread Boy is on the fox's nose. Show me with your face: worried, or happy?",
+    "Snap! The clever fox gobbled him up. And that was the end of the Gingerbread Boy.",
+    "The Gingerbread Boy.",
+    "Grandpa planted a tiny turnip seed. He said: Grow, little turnip. Grow big and sweet!",
+    "Everyone, be the seed. Curl up small. Now grow, grow, grow, and stretch up tall!",
+    "Sun side, you are Grandpa. Put on your straw hat. Grab the leaves and pull! Heave-ho! It would not come up.",
+    "Moon side, you are Grandpa. Put on your straw hat. Grab the leaves and pull! Heave-ho! It would not come up.",
+    "Moon side, you are Grandma. Put on your shawl. Hold on to Grandpa and pull! Heave-ho! It would not come up.",
+    "Sun side, you are Grandma. Put on your shawl. Hold on to Grandpa and pull! Heave-ho! It would not come up.",
+    "Sun side, you are the granddaughter. Put on your bow. Pull! Heave-ho! Still stuck.",
+    "Moon side, you are the granddaughter. Put on your bow. Pull! Heave-ho! Still stuck.",
+    "Moon side, you are the dog. Woof! Pull! Heave-ho! Still stuck.",
+    "Sun side, you are the dog. Woof! Pull! Heave-ho! Still stuck.",
+    "Sun side, you are the cat. Meow! Pull! Heave-ho! Still stuck.",
+    "Moon side, you are the cat. Meow! Pull! Heave-ho! Still stuck.",
+    "Who should help next? Tap the Tiny mouse, or the Big bear.",
+    "A big bear came to help. Everyone, be the bear. Pull! Heave-ho! Even the bear could not do it. Maybe someone tiny can help.",
+    "Everyone, you are the tiny mouse. Put on your little ears. Squeak! Now everyone pull together. One, two, three, heave-ho!",
+    "Pop! Out came the turnip, and everyone tumbled down in a heap! Freeze in your funny heap!",
+    "And they all ate turnip soup. The end! Tap Swap and play again, and the Sun side and Moon side trade parts.",
+    "And they all ate turnip soup. The end! Tap Swap and play again, and the Moon side and Sun side trade parts.",
+    "The Great Big Turnip.",
+    "Tap a story. Alone, try both parts. Together, split into Sun side and Moon side. Mime in your own space.",
+    "Tap Next when you are ready for more of the story.",
+    "When everyone has had a turn, tap Next.",
+    "Let the class choose. Then tap their choice.",
+    "Tap Swap and play again to trade parts.",
+    "Swap! Sun side and Moon side, trade parts.",
+    "Freeze! Everyone be a statue.",
+    "Unfreeze!",
+    "This is the dress-up trunk. Tap a costume piece to dress the puppet.",
+    "Tap Ask, and the class can answer my question.",
+    "Ta-da! Who could this be?",
+    "All clean. Let's dress up someone new.",
+    "How does this character walk? Show me.",
+    "What does this character sound like? Say hello.",
+    "How does this character feel today? Show me with your face.",
+    "Where does this character live? Tell a friend.",
+    "What does this character want more than anything? Tell a friend.",
+    "Big and booming",
+    "Squeaky and small",
+    "Super fast",
+    "Slow and silly",
+    "Tiny mouse",
+    "Big bear",
+    "Act it out. Tap Ask for another question.",
+    "Little horns on.",
+    "Little horns off.",
+    "Curly horns on.",
+    "Curly horns off.",
+    "Straw hat on.",
+    "Straw hat off.",
+    "Crown on.",
+    "Crown off.",
+    "Wizard hat on.",
+    "Wizard hat off.",
+    "Fox ears on.",
+    "Fox ears off.",
+    "Dog ears on.",
+    "Dog ears off.",
+    "Mouse ears on.",
+    "Mouse ears off.",
+    "Cow horns and bell on.",
+    "Cow horns and bell off.",
+    "Hair bow on.",
+    "Hair bow off.",
+    "Pig snout on.",
+    "Pig snout off.",
+    "Cat whiskers on.",
+    "Cat whiskers off.",
+    "Troll nose on.",
+    "Troll nose off.",
+    "Icing buttons on.",
+    "Icing buttons off.",
+    "Candy bow tie on.",
+    "Candy bow tie off.",
+    "Apron on.",
+    "Apron off.",
+    "Shawl on.",
+    "Shawl off.",
+    "Shaggy cape on.",
+    "Shaggy cape off.",
+    "Big boots on.",
+    "Big boots off.",
+    "Bushy tail on.",
+    "Bushy tail off."
+  ]
+}

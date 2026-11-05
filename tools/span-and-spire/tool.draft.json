@@ -1,0 +1,28 @@
+{
+  "id": "span-and-spire",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Build over a farm creek, drag the truck across, then pluck a tower and shake it at its own sway speed.",
+  "outcome": "Design, test, compare and combine trusses using load paths, buckling, criteria and constraints, and resonance.",
+  "driver": "students",
+  "minutes": "20-60",
+  "modes": [
+    "Bridge",
+    "Tower",
+    "Yard"
+  ],
+  "grades_label": "Grades 6-12",
+  "sources": [
+    "Hibbeler, Structural Analysis, direct stiffness truss analysis",
+    "USDA Forest Products Laboratory, Wood Handbook FPL-GTR-282 (2021), chapters 5 and 7",
+    "ASTM A36 and AISC Steel Construction Manual: steel stiffness and yield",
+    "FHWA Bridge Formula Weights (FHWA-HOP-06-105); 23 CFR 658.17",
+    "Chopra, Dynamics of Structures: modal superposition and base excitation",
+    "OpenStax University Physics Volume 1, elasticity; OpenStax College Physics 2e, hydrostatics",
+    "NASA Glenn, air density 1.225 kg/m3; ASCE 7 commentary, open-land wind profile",
+    "Game prices and simplified material values are listed in spec.md",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-10-30"
+}

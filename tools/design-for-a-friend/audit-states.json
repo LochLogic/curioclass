@@ -1,0 +1,260 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "four-questions",
+      "steps": [
+        {
+          "click": "#meet-ana"
+        },
+        {
+          "click": "#q-ana-0"
+        },
+        {
+          "click": "#q-ana-1"
+        },
+        {
+          "click": "#q-ana-2"
+        },
+        {
+          "click": "#q-ana-3"
+        }
+      ],
+      "keep": [
+        "#questions",
+        "#questions-left",
+        "#answer"
+      ]
+    },
+    {
+      "name": "three-feature-design",
+      "steps": [
+        {
+          "click": "#meet-lou"
+        },
+        {
+          "click": "#tab-design"
+        },
+        {
+          "click": "#feature-text"
+        },
+        {
+          "click": "#slot-0"
+        },
+        {
+          "click": "#feature-buttons"
+        },
+        {
+          "click": "#slot-1"
+        },
+        {
+          "click": "#feature-video"
+        },
+        {
+          "click": "#slot-2"
+        }
+      ],
+      "keep": [
+        "#phone",
+        "#shelf",
+        "#start"
+      ]
+    },
+    {
+      "name": "polite-yes-result",
+      "steps": [
+        {
+          "click": "#meet-lou"
+        },
+        {
+          "click": "#q-lou-3"
+        },
+        {
+          "click": "#tab-design"
+        },
+        {
+          "click": "#feature-text"
+        },
+        {
+          "click": "#slot-0"
+        },
+        {
+          "click": "#feature-buttons"
+        },
+        {
+          "click": "#slot-1"
+        },
+        {
+          "click": "#feature-video"
+        },
+        {
+          "click": "#slot-2"
+        },
+        {
+          "click": "#start"
+        },
+        {
+          "until": "!__tool.state.running",
+          "max": 6000
+        }
+      ],
+      "keep": [
+        "#phone",
+        "#path",
+        "#result-panel",
+        "#back"
+      ]
+    },
+    {
+      "name": "all-friends-result",
+      "steps": [
+        {
+          "click": "#m-all"
+        },
+        {
+          "click": "#feature-read"
+        },
+        {
+          "click": "#slot-0"
+        },
+        {
+          "click": "#feature-buttons"
+        },
+        {
+          "click": "#slot-1"
+        },
+        {
+          "click": "#feature-spanish"
+        },
+        {
+          "click": "#slot-2"
+        },
+        {
+          "click": "#feature-reminder"
+        },
+        {
+          "click": "#slot-3"
+        },
+        {
+          "click": "#start"
+        },
+        {
+          "until": "!__tool.state.running",
+          "max": 15000
+        }
+      ],
+      "keep": [
+        "#all-results",
+        "#result-panel",
+        "#back"
+      ]
+    },
+    {
+      "name": "quote-board-open",
+      "steps": [
+        {
+          "click": "#meet-lou"
+        },
+        {
+          "click": "#q-lou-0"
+        },
+        {
+          "click": "#board-toggle"
+        },
+        {
+          "click": "#sheet-notes [data-note]"
+        }
+      ],
+      "keep": [
+        "#board-sheet",
+        "#quote-detail",
+        "#close-board"
+      ]
+    },
+    {
+      "name": "shared-live-snag",
+      "steps": [
+        {
+          "click": "#m-all"
+        },
+        {
+          "click": "#start"
+        },
+        {
+          "wait": 2450
+        }
+      ],
+      "keep": [
+        "#all-results",
+        "#slots",
+        "#shelf",
+        "#start",
+        "#back"
+      ]
+    },
+    {
+      "name": "live-shelf-selection",
+      "steps": [
+        {
+          "click": "#friend-lou"
+        },
+        {
+          "click": "#tab-test"
+        },
+        {
+          "click": "#feature-read"
+        }
+      ],
+      "keep": [
+        "#slots",
+        "#shelf",
+        "#hint",
+        "#start"
+      ]
+    },
+    {
+      "name": "lou-snag-result",
+      "steps": [
+        {
+          "click": "#friend-lou"
+        },
+        {
+          "click": "#tab-design"
+        },
+        {
+          "click": "#feature-text"
+        },
+        {
+          "click": "#slot-0"
+        },
+        {
+          "click": "#start"
+        },
+        {
+          "until": "!__tool.state.running",
+          "max": 6000
+        }
+      ],
+      "keep": [
+        "#result-panel",
+        "#path",
+        "#back"
+      ]
+    },
+    {
+      "name": "direct-test-entry",
+      "steps": [
+        {
+          "click": "#tab-test"
+        }
+      ],
+      "keep": [
+        "#phone",
+        "#hint",
+        "#start"
+      ]
+    }
+  ]
+}

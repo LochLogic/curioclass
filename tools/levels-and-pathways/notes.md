@@ -1,3 +1,22 @@
+## What it teaches
+
+Children explore high, middle and low dance levels and straight, curved and zigzag pathways.
+They read the floor ribbons as movement symbols and invent a dance that changes level from part to part.
+
+## Key skills
+
+- Copy a movement cue and start or stop together.
+- Change a body shape between high, middle and low.
+- Trace and name the pathway made by a traveling dancer.
+- Describe observed movement before choosing an answer.
+- Plan a pathway with different levels in its parts.
+
+## Support at home
+
+- Make a high shape and a low shape together using comfortable arm movements.
+- Trace a straight, curved or zigzag line in the air and ask your child to copy it.
+- In a clear space, make a short dance that starts high and finishes low. Seated movement works too.
+
 ## A 5-minute start
 
 1. Clear a space. Everyone finds their own **bubble space**: arms out, turn around, touch nobody.
@@ -28,4 +47,4 @@
 - Low level is on the floor (sitting, kneeling or lying). A child who can't get down low, kneel or go on tiptoe shows the level with their arms or upper body instead; any way of getting closer to the floor or to the sky counts.
 - **Motion** off keeps the same counts and music; the dancer just steps from count to count without the in-between.
 - Standards (NCAS dance): Cr1.1.Ka and Kb, Cr1.1.2b (Draw a path: one dance that changes level part by part), Pr4.1.Ka, 1a and 2a (levels; straight, curved and zigzag pathways), Re7.1.Kb (Mystery path), Cr3.1.Kb and 2b (the ribbon map as symbols for pathway and level), Pr5.1.Kb; SHAPE America S2.
-- The studio, the dancer and the music are made in the browser. Nothing is saved and nothing is sent anywhere.
+- The studio and three dance guides are painted. The guides, their mirror images and the ribbons follow the dance kit's poses and count clock. Music is synthesized in the browser. No dance or progress is saved or sent anywhere. The shared Motion control remembers its preference on this device.

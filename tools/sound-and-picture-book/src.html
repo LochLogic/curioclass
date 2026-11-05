@@ -1,0 +1,1176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Sound and Picture Book · Curio Class</title>
+<meta name="description" content="Make a three-page woodland picture book. Choose sounds, then swap them to hear a different story. K-2 media arts. Offline.">
+<!--
+Sound and Picture Book, Curio Class. Teacher led, K-2 media arts.
+NCAS MA:Cr1, MA:Cr2, MA:Cr3, MA:Pr4. Chion, Audio-Vision (1994), added value.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Sounds synthesized with Web Audio. Content CC BY 4.0, code MIT. No network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f6f3ea; --ink:#1c2030; --muted:#5a5c66; --line:#cfbea2; --focus:#a34308;
+  --brand:#1e3a8a; --btn:#1e3a8a; --btn-line:#98afdc; --head-ink:#fff; --panel:#faf6ed;
+}
+body { display:flex; flex-direction:column; overflow:hidden; }
+button { min-width:60px; min-height:60px; border:2px solid #c6b797; border-radius:12px;
+  padding:7px 12px; font-size:16px; line-height:1.15; font-weight:750; background:linear-gradient(#fffdf7,#eee5d4);
+  box-shadow:0 3px 0 #80694730; }
+button:hover { border-color:var(--brand); }
+button:active { box-shadow:none; transform:translateY(2px); }
+button[aria-pressed="true"],button.chosen { background:var(--brand); color:white; border-color:var(--brand); }
+button:disabled { opacity:.45; cursor:default; }
+header { padding:8px 16px; gap:8px; flex:none; flex-wrap:nowrap; box-shadow:0 4px 16px #17284c40; z-index:3; }
+h1 { font-size:25px; max-width:340px; }
+h1 small { font-size:13px; margin-top:5px; }
+.seg { border-radius:15px; }
+.seg button { min-height:60px; min-width:76px; padding:5px 12px; }
+.icon-btn { min-height:60px; padding:6px 12px; border-radius:14px; }
+main { flex:1; min-height:0; display:flex; flex-direction:column; position:relative;
+  background:repeating-linear-gradient(92deg,#ffffff0a 0 2px,#8b73560b 2px 3px),
+  radial-gradient(ellipse at 35% 5%,#fffdf0,#e8dfcc 70%,#c9b693); }
+.workspace { flex:1; min-height:0; padding:14px 22px 8px; display:flex; gap:22px; }
+.studio { flex:1; min-width:0; min-height:0; display:flex; flex-direction:column; gap:9px; }
+.ribbon { display:flex; align-items:center; gap:8px; flex:none; }
+.ribbon h2 { font:800 24px Georgia,serif; margin:0 auto 0 0; }
+.ribbon h2::before { content:"✦ "; color:#94690f; display:inline-block; animation:glimmer 4s ease-in-out infinite; }
+@keyframes glimmer { 50% { opacity:.45; } }
+.ribbon .page-tabs { display:flex; gap:6px; }
+.page-tabs button { min-width:74px; }
+.stage { min-height:0; flex:1; display:flex; align-items:center; justify-content:center; overflow:visible; }
+.book { position:relative; width:100%; aspect-ratio:1.6; max-height:100%; border:6px solid #fff8e7;
+  border-radius:5px 13px 13px 5px; background:#f6f0dd; box-shadow:3px 5px 0 #d0c3a6,5px 9px 0 #fff8e7,8px 16px 22px #54422844;
+  overflow:hidden; isolation:isolate; touch-action:none; }
+.book::after { content:""; pointer-events:none; position:absolute; inset:0; z-index:10;
+  box-shadow:inset 10px 0 18px #30251230,inset -1px 0 3px #fff8; border-radius:inherit; }
+.backdrop { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.page-word { position:absolute; inset:0; display:grid; place-content:center; color:#8a7655;
+  font:italic 800 clamp(24px,4vw,56px) Georgia,serif; text-align:center; }
+.page-word small { font:600 16px 'Segoe UI',sans-serif; margin-top:12px; }
+.plan-pages .page-word,.swap-pages .page-word { font-size:clamp(12px,2.2vw,30px); }
+.page-word ~ .page-folio { display:none; }
+body[data-mode="make"] .page-folio { display:none; }
+.piece { position:absolute; border:0; padding:0; background:none; box-shadow:none; border-radius:10px;
+  cursor:grab; transform:translate(-50%,-50%); touch-action:none; display:flex; align-items:center; justify-content:center; }
+.piece img { width:100%; height:100%; object-fit:contain; pointer-events:none; filter:drop-shadow(2px 5px 2px #102b2a30); }
+.piece img { flex:none; }
+.piece[data-flip="true"] img { transform:scaleX(-1); }
+.piece.selected { outline:3px dashed #fff; outline-offset:3px; filter:drop-shadow(0 0 2px #1e3a8a); z-index:5; }
+.piece .handle { position:absolute; right:0; bottom:0; width:60px; height:60px;
+  border:2px solid #fff; border-radius:50%; background:#1e3a8a; color:white; font-size:14px;
+  display:flex; flex-direction:column; justify-content:center; cursor:nwse-resize; }
+.reminder { position:absolute; top:9px; right:9px; background:#fff6deef; border-radius:4px 12px 4px 12px;
+  padding:8px 12px; font-size:14px; box-shadow:2px 3px 8px #0002; max-width:60%; }
+.page-folio { position:absolute; bottom:8px; right:10px; border-radius:20px; background:#fff6e7ed;
+  padding:4px 10px; font-size:13px; font-weight:800; }
+.curl { animation:turn .6s ease-out; transform-origin:left; }
+@keyframes turn { 0% { clip-path:polygon(0 0,60% 0,100% 45%,100% 100%,0 100%); filter:brightness(1.2); }
+  100% { clip-path:polygon(0 0,100% 0,100% 0,100% 100%,0 100%); filter:brightness(1); } }
+.playing .piece img { animation:float 3.6s ease-in-out infinite; }
+.playing .piece:nth-of-type(2n) img { animation-delay:-1.7s; }
+@keyframes float { 50% { translate:0 -5px; rotate:1deg; } }
+.calm *,.calm *::before,.calm *::after { animation:none!important; transition:none!important; }
+.traybar,.playbar { display:flex; gap:8px; justify-content:center; flex:none; }
+.traybar button { flex:1; max-width:180px; }
+.editing { display:flex; justify-content:center; gap:6px; flex-wrap:wrap; min-height:60px; }
+.editing:empty { visibility:hidden; }
+.editing button { font-size:14px; padding:6px 9px; }
+.panel { width:280px; flex:none; padding:14px; border:2px solid #c7b38d; border-radius:16px;
+  box-shadow:4px 6px 15px #503b2220; gap:10px; overflow:visible; }
+.panel h2 { font:800 23px Georgia,serif; margin:0; }
+.sound-pick { text-align:left; display:flex; align-items:center; gap:10px; width:100%; }
+.sound-pick .sound-symbol { font-size:29px; }
+.sound-pick small { display:block; font-size:12px; font-weight:600; margin-bottom:3px; }
+.sound-pick.action { border-radius:34px; }
+.sound-note { padding:10px; background:#e6eaf4; border-radius:10px; color:#253e76; font-size:14px; }
+.privacy { font-size:12px; color:var(--muted); margin:0; }
+.bottom { flex:none; display:flex; align-items:center; gap:12px; padding:8px 22px;
+  background:#fffaf0cc; border-top:1px solid #cbb996; min-height:56px; }
+.hint { flex:1; min-height:40px; display:flex; align-items:center; font-size:16px; margin:0; color:var(--ink); line-height:1.25; }
+.gold { background:linear-gradient(#ffdd7c,#f5c04e); color:#33260e; border-color:#a77c23; }
+.primary { background:var(--brand); color:#fff; border-color:var(--brand); }
+.plan-pages,.swap-pages { flex:1; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px;
+  min-height:0; align-content:center; }
+.page-card { min-width:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+.page-card h3 { font:800 23px Georgia,serif; margin:0; text-align:center; }
+.page-card .book { max-height:none; flex:none; }
+.slot { display:flex; align-items:center; gap:6px; font-size:15px; padding:5px 9px; text-align:left;
+  background:#fffbf1; width:100%; }
+.slot span { font-weight:500; color:var(--muted); }
+.plan-row { display:grid; grid-template-columns:130px 1fr; gap:12px; align-items:center; }
+.plan-row h3 { font:800 20px Georgia,serif; margin:0; }
+.choices { display:grid; grid-template-columns:repeat(8,minmax(60px,1fr)); gap:7px; }
+.choices button { padding:4px; font-size:12px; min-height:72px; }
+.choices img { width:47px; height:36px; object-fit:contain; display:block; margin:auto; }
+.choices .symbol { font-size:24px; display:block; }
+.compact-plan { display:flex; gap:8px; }
+.compact-plan button { flex:1; }
+.plan-rows { display:none; }
+.plan-pages .slot { display:none; }
+.compact-slot { width:100%; flex:none; }
+.plan-pages { align-content:stretch; }
+.plan-pages .stage { flex:1; }
+.plan-pages .page-card { min-height:0; }
+.chip { display:flex; gap:8px; align-items:center; justify-content:center; width:100%; background:#f9f5e9;
+  border:2px solid #7e92bb; border-radius:12px; min-height:60px; font-size:16px; cursor:grab; touch-action:none; }
+.chip.action { border-radius:40px; }
+.chip.chosen { outline:3px solid #c3932b; }
+.swap-picked { outline:4px solid #d29f35; }
+.idea { background:#f3ead3; border-left:4px solid #c28e27; padding:12px; border-radius:6px; font-size:16px; }
+#another .idea { font-weight:500; font-size:13px; background:transparent; border:0; padding:4px 0 0; }
+.change { min-height:62px; font-weight:800; font-size:17px; }
+.end-card { position:absolute; inset:0; z-index:12; background:#f9f3e4ee; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:16px; }
+.end-card h2 { margin:0; font:italic 800 clamp(32px,6vw,70px) Georgia,serif; color:var(--brand); }
+.end-card p { margin:0; }
+.end-card .row { display:flex; gap:12px; }
+dialog { border:3px solid #bba27a; border-radius:20px; background:#faf5e8; color:var(--ink);
+  padding:16px; width:min(760px,calc(100vw - 24px)); max-height:calc(100dvh - 24px); box-shadow:0 25px 90px #14254566; }
+dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
+.dialog-head { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+.dialog-head h2 { margin:0 auto 0 0; font:800 26px Georgia,serif; }
+.dialog-grid { display:grid; grid-template-columns:repeat(4,minmax(60px,1fr)); gap:10px; }
+.choice { min-height:88px; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:4px; }
+.choice img { width:74px; height:54px; object-fit:contain; }
+.choice .symbol { font-size:27px; }
+.sound-option { display:flex; gap:0; }
+.sound-option .assign { flex:1; min-width:0; border-radius:14px 0 0 14px; font-size:14px; }
+.sound-option .audition { border-left:0; border-radius:0 14px 14px 0; width:60px; padding:3px; font-size:12px; }
+.sound-option.action .assign { border-radius:32px 0 0 32px; }
+.sound-option.action .audition { border-radius:0 32px 32px 0; }
+.sound-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.dialog-hint { margin:12px 0 0; font-size:15px; line-height:1.3; }
+.slideback { animation:shake .32s ease-out; }
+@keyframes shake { 30% { translate:15px 0; } 65% { translate:-8px 0; } }
+.drag-ghost { position:fixed; z-index:50; pointer-events:none; opacity:.9; background:#ffebac; width:160px; }
+@media(max-width:1100px) {
+  h1 { font-size:19px; max-width:190px; } h1 small { display:none; }
+  .seg button { min-width:66px; padding:4px 8px; font-size:14px; }
+  .icon-btn { font-size:13px; padding:4px 8px; }
+  .workspace { gap:12px; padding:10px 14px; } .panel { width:236px; }
+  .plan-pages,.swap-pages { gap:12px; } .plan-row { grid-template-columns:100px 1fr; gap:6px; }
+}
+@media(max-height:650px) and (min-width:601px) {
+  header { padding:4px 8px; gap:5px; } h1 { font-size:16px; max-width:160px; }
+  .seg button { min-width:60px; font-size:12px; padding:4px; } .icon-btn { font-size:12px; padding:4px 6px; }
+  .workspace { padding:6px 12px; gap:12px; } .studio { gap:5px; } .ribbon h2 { font-size:18px; }
+  .ribbon button { font-size:13px; padding:4px 8px; } .page-tabs button { min-width:60px; }
+  .panel { width:202px; padding:8px; gap:6px; } .panel h2 { font-size:18px; }
+  .sound-note,.panel .privacy { display:none; } .sound-pick { padding:5px 8px; font-size:13px; }
+  .sound-pick .sound-symbol { font-size:22px; } .bottom { padding:3px 12px; min-height:49px; }
+  .hint { font-size:13px; min-height:40px; } .traybar { gap:5px; } .traybar button { padding:4px; font-size:12px; }
+  .editing { display:none; flex-wrap:nowrap; }
+  .editing:not(:empty) { display:flex; }
+  .editing:not(:empty) + .traybar { display:none; }
+  .plan-rows { display:none; } .compact-plan { display:flex; gap:8px; } .compact-plan button { flex:1; }
+  .page-card { gap:5px; } .page-card h3 { font-size:18px; } .slot { font-size:12px; }
+  .plan-pages .page-card h3 { display:none; }
+  .plan-pages .compact-slot { font-size:12px; padding:4px; }
+  .plan-pages .page-folio { font-size:11px; padding:3px; bottom:3px; right:3px; }
+  body[data-mode="plan"] .ribbon h2 { font-size:15px; }
+  .idea { font-size:13px; padding:8px; } .change { font-size:14px; min-height:35px; }
+  .book { border-width:4px; } .reminder { padding:5px 8px; font-size:12px; }
+  .playbar { justify-content:stretch; gap:5px; } .playbar button { flex:1; font-size:13px; padding:4px; }
+  .dialog-grid .choice { min-height:75px; } .choice img { height:40px; }
+  .end-card { gap:7px; } .end-card h2 { font-size:30px; }
+  .end-card p { font-size:12px; } .end-card button { font-size:12px; padding:4px; }
+}
+@media(max-width:600px) {
+  header { display:grid; grid-template-columns:1fr repeat(3,60px); padding:6px; gap:5px; }
+  h1 { font-size:18px; max-width:none; } .seg { grid-column:1/-1; grid-row:2; display:flex; }
+  .seg button { flex:1; min-width:60px; } .icon-btn { font-size:12px; padding:3px; }
+  .workspace { padding:6px 12px; flex-direction:column; gap:6px; } .studio { flex:1; gap:5px; }
+  .ribbon h2 { font-size:20px; } .ribbon button { font-size:13px; padding:5px; }
+  .page-tabs button { min-width:60px; } .stage { flex:none; }
+  .panel { width:auto; padding:8px; display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+  .panel h2 { grid-column:1/-1; font-size:18px; } .sound-note,.panel .privacy { display:none; }
+  .sound-pick { font-size:13px; gap:5px; padding:5px; } .sound-pick .sound-symbol { font-size:21px; }
+  .plan-pages,.swap-pages { gap:9px; } .page-card h3 { font-size:16px; } .page-card { gap:7px; }
+  .book { border-width:3px; } .plan-rows { display:none; } .compact-plan { display:flex; gap:6px; }
+  .compact-plan button { flex:1; font-size:14px; padding:5px; } .slot { padding:3px; font-size:11px; flex-direction:column; gap:2px; }
+  .plan-pages { flex:1; }
+  .chip { font-size:12px; padding:4px; gap:3px; } .swap-pages { flex:none; margin-top:12px; }
+  .idea { padding:6px; font-size:13px; grid-column:1/-1; }
+  .change { grid-column:1/-1; min-height:32px; font-size:14px; }
+  .bottom { padding:5px 12px; align-items:start; } .hint { font-size:14px; min-height:50px; }
+  .privacy { font-size:11px; } .bottom .privacy { max-width:85px; }
+  .playbar { display:grid; grid-template-columns:1fr 1fr; gap:7px; } .playbar button { font-size:14px; }
+  .dialog-grid { grid-template-columns:repeat(3,minmax(60px,1fr)); gap:6px; } .sound-grid { grid-template-columns:1fr 1fr; }
+  .dialog-head h2 { font-size:21px; } dialog { padding:10px; } .choice { min-height:82px; font-size:13px; }
+  .choice img { width:60px; height:43px; } .sound-option .assign { font-size:12px; padding:3px; }
+  .sound-option .audition { min-width:60px; } .reminder { font-size:12px; padding:5px; }
+  .editing { gap:4px; } .editing button { font-size:12px; padding:3px; min-width:60px; }
+}
+@media(max-height:450px) and (min-width:601px) {
+  .swap-pages .book { width:115.2px; height:72px; align-self:center; }
+  .swap-pages .page-folio { display:none; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Sound and<br>Picture Book <small>Same pictures. A different story.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-plan" aria-pressed="true">💡 Plan</button>
+    <button id="m-make" aria-pressed="false">🖌 Make</button>
+    <button id="m-play" aria-pressed="false">📖 Play</button>
+    <button id="m-swap" aria-pressed="false">⇄ Swap</button>
+  </div>
+  <button class="icon-btn" id="read">🔊 Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<main>
+  <div class="workspace" id="workspace"></div>
+  <div class="bottom"><p class="hint" id="hint" aria-live="polite"></p><p class="privacy" id="save-status">Book stays on this device.</p></div>
+</main>
+<dialog id="chooser" aria-labelledby="dialog-title">
+  <div class="dialog-head"><h2 id="dialog-title"></h2><button id="close-dialog">✓ Close</button></div>
+  <div id="dialog-content"></div>
+  <p class="dialog-hint" id="dialog-hint"></p>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const ART = {
+    forest:'art:forest', pond:'art:pond', cave:'art:cave', campsite:'art:campsite', hill:'art:hill', meadow:'art:meadow',
+    'raccoon-happy':'art:raccoon-happy', 'raccoon-scared':'art:raccoon-scared', 'raccoon-sleepy':'art:raccoon-sleepy',
+    'turtle-happy':'art:turtle-happy', 'turtle-scared':'art:turtle-scared', 'turtle-sleepy':'art:turtle-sleepy',
+    'frog-happy':'art:frog-happy', 'frog-scared':'art:frog-scared', 'frog-sleepy':'art:frog-sleepy',
+    'fox-happy':'art:fox-happy', 'fox-scared':'art:fox-scared', 'fox-sleepy':'art:fox-sleepy',
+    lantern:'art:lantern', umbrella:'art:umbrella', basket:'art:basket', map:'art:map', rowboat:'art:rowboat'
+  };
+  const PLACES = [['forest','Forest path'],['pond','Pond'],['cave','Cave'],['campsite','Campsite at night'],
+    ['hill','Rainy hill'],['meadow','Meadow at sunrise']];
+  const ANIMALS = [['raccoon','Raccoon'],['turtle','Turtle'],['frog','Frog'],['fox','Fox']];
+  const THINGS = [['lantern','Lantern'],['umbrella','Umbrella'],['basket','Berry basket'],['map','Map'],['rowboat','Rowboat']];
+  const EVENTS = [['walk','Goes for a walk','🐾'],['storm','A storm comes','⛈'],['lost','Gets lost','🗺'],
+    ['food','Finds food','🫐'],['noise','Hears a noise','◖))'],['sleep','Falls asleep','☾'],
+    ['friend','Meets a friend','♡♡'],['home','Gets home','⌂']];
+  const BG = [['rain','Rain','🌧'],['wind','Wind','≋'],['birds','Birds','🐦'],['crickets','Crickets','🦗'],
+    ['stream','Stream','💧'],['campfire','Campfire','🔥']];
+  const FX = [['thunder','Thunder','⛈'],['splash','Splash','💦'],['footsteps','Footsteps','🐾'],['snore','Snore','☾'],
+    ['munch','Munch','🫐'],['hoot','Hoot','🦉'],['snap','Snap','ϟ'],['tada','Ta-da','✦']];
+  const WORDS = ['Beginning','Middle','End'];
+  const IDEAS = ['Swap the Snap on page 2 with the Snore on page 3.','Put Thunder on page 2.',
+    'Swap pages 1 and 3.','Give page 2 Crickets instead of Wind.'];
+  const L = {
+    plan:'Every good story has a beginning, a middle and an end. Tap a Who card, then a page.',
+    where:'Now, where does each part happen? Tap a Where card, then a page.',
+    ready:"That's a plan. Tap Make it.", make:'Build page one. Tap a place, then add a character.',
+    sounds:'Now give the page sounds. Pick a background sound and an action sound.',
+    play:'Tell the story out loud while the book plays. Tap Next page to turn.',
+    end:'The end. Now try Swap, and see what changes.',
+    swap:'Drag a sound to another page to swap them. Or tap two page numbers.',
+    swapped:'Swapped! Tap Play. Is it a different story now?',
+    wrong:'Swap a background with a background, or an action with an action.',
+    limit:'Four pieces is the most on a page.', sample:"Raccoon's Night Walk. Tap Play to hear the book.",
+    choose:'Tap a card. Then tap a page.', select:'Tap a piece to change its pose, move it, or remove it.',
+    newBook:'Start a new book? Tap Yes, start new, or Keep my book.',
+    undo:'Swap undone. Tap Play to hear your book again.',
+    remove:'Piece removed. Tap Characters or Things to add another.',
+    pages:WORDS.flatMap(w => [...PLACES,...EVENTS].map(x => `${w}: ${x[1]}.`)),
+    soundNames:[...BG,...FX].map(x => x[1] + (x[0] === 'thunder' ? '!' : '.')),
+    ideas:IDEAS,
+    ui:['Sample book','Make it','New book','Place','Characters','Things','Background','Action','Happy','Scared','Sleepy','Flip',
+      'Remove','Back page','Next page','Auto','Start again','Undo swap','Another idea','Yes, start new','Keep my book']
+  };
+  L.extra = [];
+  for (const list of [ANIMALS,PLACES,EVENTS]) for (const x of list) L.extra.push(x[1]+'. Tap a page.');
+  for (const x of PLACES) L.extra.push(x[1]+'.');
+  L.extra.push('Happy.','Scared.','Sleepy.','Tap a card. Then tap a page.',
+    'Tap a picture to put it on this page.',
+    'Tap a sound name to add or remove it. Tap Hear to listen.');
+  const blank = () => ({place:null,event:null,pieces:[],bg:null,fx:null});
+  const state = {mode:'plan',page:0,book:{who:null,pages:[blank(),blank(),blank()]},selected:null,card:null,
+    swapPage:null,swapChip:null,undo:[],idea:0,change:'',end:false,auto:false,revision:0};
+  const clone = x => JSON.parse(JSON.stringify(x));
+  const label = (list,id) => list.find(x => x[0] === id)?.[1] || 'None yet';
+  const soundData = (kind,id) => (kind === 'bg' ? BG : FX).find(x => x[0] === id);
+  const page = () => state.book.pages[state.page];
+  let uid = Date.now();
+  const piece = (kind,id,x=420,y=420,size=250,pose='happy') => ({uid:++uid,kind,id,x,y,size,pose,flip:false,main:false});
+  function validBook(b) {
+    if (!b || !Array.isArray(b.pages) || b.pages.length !== 3 || !(b.who === null || ANIMALS.some(x => x[0] === b.who))) return false;
+    return b.pages.every(p => p && (p.place === null || PLACES.some(x => x[0] === p.place)) &&
+      (p.event === null || EVENTS.some(x => x[0] === p.event)) && (p.bg === null || BG.some(x => x[0] === p.bg)) &&
+      (p.fx === null || FX.some(x => x[0] === p.fx)) && Array.isArray(p.pieces) && p.pieces.length <= 4 &&
+      p.pieces.every(a => ['animal','thing'].includes(a.kind) && (a.kind === 'animal' ? ANIMALS : THINGS).some(x => x[0] === a.id) &&
+        ['happy','scared','sleepy'].includes(a.pose) && ['x','y','size'].every(k => Number.isFinite(a[k])) && a.size >= 80 && a.size <= 460));
+  }
+  try {
+    const b = JSON.parse(localStorage.getItem('curio-spb-book'));
+    if (validBook(b)) state.book = b;
+  } catch {}
+  const audio = {ctx:null,bg:null,fx:null,timers:[],generation:0,log:[],actionUntil:0};
+  function context() {
+    if (!audio.ctx) audio.ctx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audio.ctx.state === 'suspended') audio.ctx.resume();
+    return audio.ctx;
+  }
+  function group() {
+    const c = context();
+    const gain = c.createGain();
+    gain.gain.value = 0;
+    gain.connect(c.destination);
+    return {gain,nodes:[],timers:[],stopped:false};
+  }
+  function noise(g,duration,color='white') {
+    const c = context();
+    const b = c.createBuffer(1,Math.ceil(c.sampleRate*duration),c.sampleRate);
+    const d = b.getChannelData(0);
+    let brown = 0, pink = 0;
+    for (let i=0;i<d.length;i++) {
+      const w = Math.random()*2-1;
+      brown = (brown + .02*w)/1.02;
+      pink = .92*pink + .08*w;
+      d[i] = Math.max(-1,Math.min(1,color === 'brown' ? brown*3.5 : color === 'pink' ? pink*2.2 : w));
+    }
+    const s = c.createBufferSource();
+    s.buffer = b;
+    g.nodes.push(s);
+    return s;
+  }
+  function filter(type,hz) {
+    const f = context().createBiquadFilter();
+    f.type = type;
+    f.frequency.value = hz;
+    return f;
+  }
+  function burst(g,t,dur,hz,volume,type='noise',fall=null) {
+    const c = context();
+    const amp = c.createGain();
+    amp.gain.setValueAtTime(0,t);
+    amp.gain.linearRampToValueAtTime(volume,t+.005);
+    amp.gain.exponentialRampToValueAtTime(.0001,t+dur);
+    amp.connect(g.gain);
+    let s;
+    if (type === 'noise' || type === 'brown') {
+      s = noise(g,dur+.02,type === 'brown' ? 'brown' : 'white');
+      const f = filter(type === 'brown' ? 'lowpass' : 'bandpass',hz);
+      if (fall) f.frequency.exponentialRampToValueAtTime(fall,t+dur);
+      s.connect(f).connect(amp);
+    } else {
+      s = c.createOscillator();
+      s.type = 'sine';
+      s.frequency.setValueAtTime(hz,t);
+      if (fall) s.frequency.exponentialRampToValueAtTime(fall,t+dur);
+      s.connect(amp);
+      g.nodes.push(s);
+    }
+    s.start(t);
+    s.stop(t+dur+.02);
+  }
+  function stopGroup(g,ms=300) {
+    if (!g || g.stopped) return;
+    g.stopped = true;
+    g.timers.forEach(clearTimeout);
+    const t = context().currentTime;
+    g.gain.gain.cancelScheduledValues(t);
+    g.gain.gain.setTargetAtTime(0,t,Math.max(.005,ms/5000));
+    setTimeout(() => {
+      g.nodes.forEach(n => { try { n.stop(); n.disconnect(); } catch {} });
+      g.gain.disconnect();
+    },ms);
+  }
+  function stopAudio() {
+    audio.generation++;
+    audio.timers.forEach(clearTimeout);
+    audio.timers = [];
+    stopGroup(audio.bg);
+    stopGroup(audio.fx);
+    audio.bg = null;
+    audio.fx = null;
+    audio.actionUntil = 0;
+    audio.log.push({event:'stop',t:performance.now()});
+  }
+  function background(id) {
+    if (!id || !Curio.sound) return;
+    const g = group(), c = context(), t = c.currentTime;
+    audio.bg = g;
+    const peak = {rain:.18,wind:.20,birds:.12,crickets:.08,stream:.14,campfire:.15}[id];
+    g.peak = peak;
+    g.gain.gain.linearRampToValueAtTime(peak,t+.3);
+    if (['rain','wind','stream','campfire'].includes(id)) {
+      const s = noise(g,8,id === 'rain' ? 'pink' : id === 'stream' ? 'white' : 'brown');
+      // Crossfade the random buffer's ends for a continuous, click-free loop.
+      const d = s.buffer.getChannelData(0), n = Math.floor(c.sampleRate*.08);
+      for (let i=0;i<n;i++) d[d.length-n+i] = d[d.length-n+i]*(1-i/n)+d[i]*(i/n);
+      s.loop = true;
+      s.loopStart = .08;
+      s.loopEnd = 8;
+      const f = filter(id === 'rain' ? 'bandpass' : 'lowpass',id === 'rain' ? 1500 : id === 'stream' ? 1200 : 600);
+      s.connect(f).connect(g.gain);
+      s.start();
+      if (id === 'wind') {
+        const lfo = c.createOscillator(), depth = c.createGain();
+        lfo.frequency.value = .2;
+        depth.gain.value = 300;
+        lfo.connect(depth).connect(f.frequency);
+        lfo.start();
+        g.nodes.push(lfo);
+      }
+    }
+    const tick = () => {
+      if (g.stopped) return;
+      const now = c.currentTime;
+      if (id === 'birds') burst(g,now,.08,2500+Math.random()*300,.8,'sine',4000);
+      if (id === 'crickets') for (let i=0;i<3;i++) burst(g,now+i*.09,.045,4500,.6,'sine');
+      if (id === 'rain') burst(g,now,.014,1900,.16);
+      if (id === 'campfire') burst(g,now,.005,2800,.5);
+      if (id === 'stream') g.gain.gain.setTargetAtTime(peak*(.75+Math.random()*.25),now,.015);
+      const gap = id === 'birds' ? 400+Math.random()*1100 : id === 'crickets' ? 600 : id === 'stream' ? 55 : 160+Math.random()*450;
+      g.timers.push(setTimeout(tick,gap));
+      if (g.timers.length > 10) g.timers.shift();
+    };
+    if (id !== 'wind') tick();
+    audio.log.push({event:'background',id,t:performance.now()});
+  }
+  const fxDuration = id => ({thunder:2.56,splash:.4,footsteps:1.4,snore:3.2,munch:.64,hoot:1.15,snap:.042,tada:.65}[id] || 0);
+  function action(id) {
+    if (!id || !Curio.sound) return;
+    const g = group(), t = context().currentTime;
+    audio.fx = g;
+    g.gain.gain.value = .4;
+    if (id === 'thunder') { burst(g,t,.06,2200,.8); burst(g,t+.06,2.5,120,1,'brown'); }
+    if (id === 'splash') burst(g,t,.4,3000,1,'noise',400);
+    if (id === 'footsteps') for (let i=0;i<4;i++) {
+      burst(g,t+i*.4,.15,80,.75,'sine'); burst(g,t+i*.4,.025,1200,.18);
+    }
+    if (id === 'snore') for (let i=0;i<2;i++) {
+      const amp = context().createGain(), s = noise(g,1.6,'brown'), f = filter('lowpass',450);
+      amp.gain.setValueAtTime(0,t+i*1.6);
+      amp.gain.linearRampToValueAtTime(.8,t+i*1.6+.6);
+      amp.gain.linearRampToValueAtTime(0,t+(i+1)*1.6);
+      s.connect(f).connect(amp).connect(g.gain);
+      s.start(t+i*1.6);
+      burst(g,t+i*1.6,1.6,30,.18,'sine');
+    }
+    if (id === 'munch') for (let i=0;i<3;i++) burst(g,t+i*.25,.12,1500,.9);
+    if (id === 'hoot') for (let i=0;i<2;i++) burst(g,t+i*.6,.5,380,.9,'sine',330);
+    if (id === 'snap') { burst(g,t,.002,4000,.8); burst(g,t+.002,.04,2000,.8); }
+    if (id === 'tada') [523.25,659.25,783.99].forEach((f,i) => burst(g,t+i*.12,.4,f,.7,'sine'));
+    audio.actionUntil = performance.now()+fxDuration(id)*1000;
+    audio.log.push({event:'action',id,t:performance.now()});
+    g.timers.push(setTimeout(() => stopGroup(g,50),fxDuration(id)*1000+70));
+  }
+  function duck() {
+    if (!audio.bg || audio.bg.stopped) return;
+    const speaking = !!V.playing;
+    audio.bg.gain.gain.setTargetAtTime(audio.bg.peak*(speaking ? .5 : 1),context().currentTime,.06);
+  }
+  setInterval(duck,100);
+  const V = Curio.voice({lines:L,scope:() => state.mode+':'+state.page,hint:false,
+    read:() => $('chooser').open ? $('dialog-hint').textContent : $('hint').textContent,
+    welcome:() => {
+      if (state.mode === 'play') return null;
+      if (state.mode === 'plan' && state.book.who) return null;
+      return [state.mode,{valid:() => state.mode !== 'play' &&
+        (state.mode !== 'make' || (state.page === 0 && page().pieces.length === 0))}];
+    }
+  });
+  function hint(text) { $('hint').textContent = text; }
+  function speak(text,how=false,valid=() => true) {
+    if (how) V.how(text,{valid});
+    else V.say(text,{valid});
+  }
+  function save() {
+    state.revision++;
+    try {
+      localStorage.setItem('curio-spb-book',JSON.stringify(state.book));
+      $('save-status').textContent = 'Saved on this device.';
+    } catch { $('save-status').textContent = 'For this visit. Storage unavailable.'; }
+  }
+  function button(id,text,fn,cls='') {
+    const b = document.createElement('button');
+    if (id) b.id = id;
+    b.textContent = text;
+    b.className = cls;
+    b.onclick = fn;
+    return b;
+  }
+  function el(tag,cls='',text='') {
+    const e = document.createElement(tag);
+    e.className = cls;
+    e.textContent = text;
+    return e;
+  }
+  function preserveFocus(fn) {
+    const id = document.activeElement?.id;
+    fn();
+    if (id && $(id)) $(id).focus({preventScroll:true});
+  }
+  function scene(p,index,editable=false) {
+    const b = el('div','book');
+    if (editable) { b.id = 'page-canvas'; b.setAttribute('aria-label',WORDS[index]+' picture page'); }
+    if (editable) b.onclick = e => {
+      if (e.target.closest('.piece')) return;
+      state.selected = null; updateSelection(); hint(L.select); Curio.tone(350,.06,.025);
+    };
+    if (p.place) {
+      const bg = el('img','backdrop');
+      bg.src = ART[p.place];
+      bg.alt = label(PLACES,p.place);
+      b.append(bg);
+    } else {
+      const w = el('div','page-word',WORDS[index]);
+      if (editable) w.append(el('small','','Tap Place to begin.'));
+      b.append(w);
+    }
+    for (const a of p.pieces) {
+      const node = editable ? button('piece-'+a.uid,'',() => selectPiece(a.uid),'piece') : el('div','piece');
+      node.style.left = a.x/10+'%';
+      node.style.top = a.y/6.25+'%';
+      node.style.width = a.size/10+'%';
+      node.style.height = a.size/6.25+'%';
+      node.dataset.flip = a.flip;
+      node.dataset.size = a.size;
+      node.style.minWidth = editable ? '60px' : '0';
+      node.style.minHeight = editable ? '60px' : '0';
+      const img = el('img');
+      img.src = ART[a.kind === 'animal' ? a.id+'-'+a.pose : a.id];
+      img.alt = label(a.kind === 'animal' ? ANIMALS : THINGS,a.id)+(a.kind === 'animal' ? ', '+a.pose : '');
+      node.append(img);
+      if (editable) {
+        node.setAttribute('aria-label',img.alt+'. Drag or use arrow keys to move.');
+        node.dataset.uid = a.uid;
+        node.onpointerdown = e => pieceDown(e,a,node,b);
+        node.onkeydown = e => pieceKey(e,a);
+      }
+      b.append(node);
+    }
+    b.append(el('div','page-folio',WORDS[index]+' · '+(index+1)));
+    return b;
+  }
+  function base(title) {
+    const studio = el('section','studio');
+    const ribbon = el('div','ribbon');
+    ribbon.append(el('h2','',title));
+    studio.append(ribbon);
+    $('workspace').append(studio);
+    return {studio,ribbon};
+  }
+  function refresh() {
+    $('workspace').replaceChildren();
+    document.body.dataset.mode = state.mode;
+    if (state.mode === 'plan') renderPlan();
+    if (state.mode === 'make') renderMake();
+    if (state.mode === 'play') renderPlay();
+    if (state.mode === 'swap') renderSwap();
+    requestAnimationFrame(fitBooks);
+  }
+  function fitBooks() {
+    document.querySelectorAll('.stage > .book').forEach(b => {
+      const r = b.parentElement.getBoundingClientRect();
+      b.style.width = Math.min(r.width,r.height*1.6)+'px';
+      b.style.height = Math.min(r.height,r.width/1.6)+'px';
+      b.querySelectorAll('.piece').forEach(node => {
+        const pixels = Number(node.dataset.size)*b.clientWidth/1000;
+        node.querySelector('img').style.width = pixels+'px';
+        node.querySelector('img').style.height = pixels+'px';
+        fitHandle(node);
+      });
+    });
+  }
+  new ResizeObserver(fitBooks).observe($('workspace'));
+  function setMode(m) {
+    const moveFocus = !!document.activeElement?.closest('#workspace');
+    stopAudio();
+    clearTimeout(autoTimer);
+    V.hush();
+    state.mode = m;
+    state.selected = null;
+    state.card = null;
+    state.swapPage = null;
+    state.swapChip = null;
+    state.end = false;
+    state.auto = false;
+    if (m === 'play') state.page = 0;
+    for (const k of ['plan','make','play','swap']) $('m-'+k).setAttribute('aria-pressed',k === m);
+    refresh();
+    if (moveFocus) $('m-'+m).focus({preventScroll:true});
+    hint(m === 'plan' && state.book.who ? 'Tap a Where card, then a page. Or tap Sample book.' :
+      m === 'make' && page().pieces.length ? 'Tap a piece to edit it. Or choose Background and Action sounds.' : L[m]);
+    if (m === 'play') startPage();
+    else V.welcome();
+  }
+  function sample() {
+    stopAudio();
+    V.hush();
+    const ps = [blank(),blank(),blank()];
+    ['forest','cave','campsite'].forEach((id,i) => {
+      ps[i].place = id;
+      ps[i].event = ['walk','noise','sleep'][i];
+      const a = piece('animal','raccoon',i === 1 ? 410 : 390,430,i === 2 ? 270 : 300,['happy','scared','sleepy'][i]);
+      a.uid = i+1;
+      a.main = true;
+      ps[i].pieces.push(a);
+      ps[i].bg = ['birds','wind','crickets'][i];
+      ps[i].fx = ['footsteps','snap','snore'][i];
+    });
+    const lantern = piece('thing','lantern',570,470,170);
+    lantern.uid = 4;
+    ps[0].pieces.push(lantern);
+    state.book = {who:'raccoon',pages:ps};
+    state.undo = [];
+    state.page = 0;
+    state.selected = null;
+    save();
+    preserveFocus(refresh);
+    hint(L.sample);
+    speak('sample');
+    Curio.yes();
+  }
+  function renderPlan() {
+    const {studio,ribbon} = base('A story starts here');
+    ribbon.append(button('sample','📖 Sample book',sample,'gold'));
+    ribbon.append(button('new-book','✧ New book',newBook));
+    const pages = el('div','plan-pages');
+    state.book.pages.forEach((p,i) => {
+      const card = el('article','page-card');
+      card.append(el('h3','',WORDS[i]));
+      const picture = scene(p,i);
+      picture.onclick = () => applyCard(i);
+      const stage = el('div','stage');
+      stage.append(picture);
+      card.append(stage);
+      card.append(button('set-page-'+i,'📄 '+WORDS[i],() => {
+        if (state.card) applyCard(i);
+        else pageSlots(i);
+      },'compact-slot'));
+      card.append(button('plan-who-'+i,'🐾 '+label(ANIMALS,state.book.who),() => applyCard(i,'who'),'slot'));
+      card.append(button('plan-place-'+i,'⌖ '+label(PLACES,p.place),() => applyCard(i,'place'),'slot'));
+      card.append(button('plan-event-'+i,(EVENTS.find(x => x[0] === p.event)?.[2] || '✧')+' '+label(EVENTS,p.event),
+        () => applyCard(i,'event'),'slot'));
+      card.ondragover = e => e.preventDefault();
+      card.ondrop = e => { e.preventDefault(); applyCard(i); };
+      pages.append(card);
+    });
+    studio.append(pages);
+    const compact = el('div','compact-plan');
+    compact.append(button('who-tray','🐾 Who',() => choose('who')),
+      button('where-tray','⌖ Where',() => choose('plan-place')),button('event-tray','✧ What happens',() => choose('event')));
+    const go = button('make-it','🖌 Make it',() => { state.page = 0; setMode('make'); },'gold');
+    go.disabled = !state.book.pages.every(p => p.place);
+    compact.append(go);
+    studio.append(compact);
+  }
+  function pageSlots(i) {
+    openChooser(WORDS[i]+' plan','Tap a filled card to clear it. Tap Close to choose a new card.');
+    const grid = el('div','dialog-grid');
+    grid.append(button('clear-who','🐾 '+label(ANIMALS,state.book.who),() => clearSlot('who')),
+      button('clear-place','⌖ '+label(PLACES,state.book.pages[i].place),() => clearSlot('place')),
+      button('clear-event','✧ '+label(EVENTS,state.book.pages[i].event),() => clearSlot('event')));
+    $('dialog-content').append(grid);
+    function clearSlot(kind) {
+      closeChooser(false); applyCard(i,kind); $('set-page-'+i).focus({preventScroll:true});
+    }
+  }
+  function planChoice(kind,x) {
+    const b = button('card-'+kind+'-'+x[0],'',() => {
+      state.card = {kind,id:x[0]};
+      document.querySelectorAll('[id^="card-"]').forEach(a => a.setAttribute('aria-pressed',a === b));
+      if ($('chooser').open) closeChooser(false);
+      hint(x[1]+'. Tap Beginning, Middle or End.');
+      speak(x[1]+'. Tap a page.',false,() => state.card?.kind === kind && state.card?.id === x[0]);
+      Curio.tone(440,.07,.035);
+    });
+    if (kind !== 'event') {
+      const img = el('img'); img.src = ART[kind === 'who' ? x[0]+'-happy' : x[0]]; img.alt = '';
+      b.append(img);
+    } else b.append(el('span','symbol',x[2]));
+    b.append(el('span','',x[1]));
+    b.draggable = true;
+    b.ondragstart = e => { state.card = {kind,id:x[0]}; e.dataTransfer.setData('text/plain',x[0]); };
+    return b;
+  }
+  function applyCard(i,clearKind=null) {
+    V.hush();
+    const c = state.card;
+    const p = state.book.pages[i];
+    if (!c) {
+      if (clearKind === 'who') { state.book.who = null; state.book.pages.forEach(q => q.pieces = q.pieces.filter(a => !a.main)); }
+      else if (clearKind) p[clearKind] = null;
+      else { hint('Tap a Who, Where or What happens card first.'); speak('choose',true); return; }
+      save();
+      preserveFocus(refresh);
+      hint('Card cleared. Tap a card, then a page.');
+      return;
+    }
+    const wasReady = state.book.pages.every(q => q.place);
+    if (c.kind === 'who') {
+      state.book.who = c.id;
+      state.book.pages.forEach(q => {
+        let a = q.pieces.find(t => t.main);
+        if (a) a.id = c.id;
+        else if (q.pieces.length < 4) { a = piece('animal',c.id); a.main = true; q.pieces.unshift(a); }
+        else { a = q.pieces.find(t => t.kind === 'animal') || q.pieces[0];
+          a.kind = 'animal'; a.id = c.id; a.main = true; }
+      });
+    } else p[c.kind] = c.id;
+    state.card = null;
+    save();
+    preserveFocus(refresh);
+    Curio.yes();
+    const ready = state.book.pages.every(q => q.place);
+    hint(ready ? L.ready : c.kind === 'who' ? L.where : 'Tap another card, then a page.');
+    if (c.kind === 'who') speak('where',true,() => !state.book.pages.some(q => q.place));
+    else speak(`${WORDS[i]}: ${label(c.kind === 'place' ? PLACES : EVENTS,c.id)}.`,false,() => p[c.kind] === c.id);
+    if (ready && !wasReady) speak('ready',false,() => state.book.pages.every(q => q.place));
+  }
+  function renderMake() {
+    const {studio,ribbon} = base('Make your page');
+    const tabs = el('div','page-tabs');
+    [0,1,2].forEach(i => {
+      const b = button('page-'+i,'📄 '+(i+1),() => {
+        stopAudio(); V.hush(); state.page = i; state.selected = null;
+        preserveFocus(refresh); hint(`Page ${i+1}. Tap Place, Characters, Things or a sound.`);
+      });
+      b.setAttribute('aria-pressed',i === state.page);
+      tabs.append(b);
+    });
+    ribbon.append(tabs);
+    const stage = el('div','stage');
+    stage.append(scene(page(),state.page,true));
+    if (page().event) stage.firstChild.append(el('div','reminder','Plan: '+label(EVENTS,page().event)));
+    studio.append(stage);
+    const controls = el('div','editing'); controls.id = 'editing'; studio.append(controls);
+    const tray = el('div','traybar');
+    tray.append(button('place-tray','⌖ Place',() => choose('place')),
+      button('characters-tray','🐾 Characters',() => choose('animal')),
+      button('things-tray','🧺 Things',() => choose('thing')));
+    studio.append(tray);
+    const panel = el('aside','panel');
+    panel.append(el('h2','','Give it a sound'));
+    ['bg','fx'].forEach(kind => {
+      const d = soundData(kind,page()[kind]);
+      const b = button('sound-'+kind,'',() => choose(kind),'sound-pick '+(kind === 'fx' ? 'action' : ''));
+      b.append(el('span','sound-symbol',d?.[2] || (kind === 'bg' ? '≋' : '✦')));
+      const text = el('span');
+      text.append(el('small','',kind === 'bg' ? 'Background · loops' : 'Action · plays once'));
+      text.append(document.createTextNode(d?.[1] || 'Choose a sound'));
+      b.append(text);
+      panel.append(b);
+    });
+    panel.append(el('p','sound-note','Try a quiet sound, then a surprising sound. What could happen in this picture?'));
+    panel.append(button('hear-page','▷ Hear page',() => auditionPage(),'primary'));
+    panel.append(button('play-book','📖 Play book',() => setMode('play'),'gold'));
+    $('workspace').append(panel);
+    updateSelection();
+  }
+  function updateSelection() {
+    document.querySelectorAll('.piece.selected').forEach(e => e.classList.remove('selected'));
+    document.querySelectorAll('.handle').forEach(e => e.remove());
+    const box = $('editing');
+    if (!box) return;
+    box.replaceChildren();
+    const a = page().pieces.find(x => x.uid === state.selected);
+    if (!a) { fitBooks(); return; }
+    const node = $('piece-'+a.uid);
+    node.classList.add('selected');
+    const handle = el('span','handle','↗ Size');
+    handle.tabIndex = 0;
+    handle.setAttribute('role','button');
+    handle.setAttribute('aria-label','Size. Arrow keys make this piece bigger or smaller.');
+    handle.onpointerdown = e => pieceDown(e,a,node,$('page-canvas'),true);
+    handle.onkeydown = e => {
+      if (e.key.startsWith('Arrow')) {
+        e.preventDefault(); e.stopPropagation();
+        a.size = Math.max(80,Math.min(460,a.size+(['ArrowRight','ArrowUp'].includes(e.key) ? 20 : -20)));
+        positionPiece(a,node); save();
+      }
+    };
+    node.append(handle);
+    if (a.kind === 'animal') ['happy','scared','sleepy'].forEach((pose,i) => {
+      const b = button('pose-'+pose,['☺ Happy','◉ Scared','☾ Sleepy'][i],() => {
+        a.pose = pose; node.querySelector('img').src = ART[a.id+'-'+pose];
+        node.querySelector('img').alt = label(ANIMALS,a.id)+', '+pose;
+        save(); updatePoseButtons(a); Curio.tone(400+i*100,.07,.03);
+        speak(pose[0].toUpperCase()+pose.slice(1)+'.',false,() => a.pose === pose && page().pieces.includes(a));
+      });
+      b.setAttribute('aria-pressed',a.pose === pose);
+      box.append(b);
+    });
+    box.append(button('flip','↔ Flip',() => { a.flip = !a.flip; node.dataset.flip = a.flip; save(); Curio.tone(520,.07,.03); }),
+      button('remove','× Remove',removePiece));
+    fitBooks();
+  }
+  function updatePoseButtons(a) {
+    for (const pose of ['happy','scared','sleepy']) $('pose-'+pose)?.setAttribute('aria-pressed',a.pose === pose);
+  }
+  function selectPiece(id) {
+    if (state.selected === id) return;
+    state.selected = id;
+    updateSelection();
+    hint('Drag the piece. Use Size, Flip or Remove. Tap empty paper for the trays.');
+    Curio.tone(380,.06,.025);
+  }
+  function positionPiece(a,node) {
+    node.style.left = a.x/10+'%'; node.style.top = a.y/6.25+'%';
+    node.style.width = a.size/10+'%'; node.style.height = a.size/6.25+'%';
+    node.dataset.size = a.size;
+    const pixels = a.size*$('page-canvas').clientWidth/1000;
+    node.querySelector('img').style.width = pixels+'px';
+    node.querySelector('img').style.height = pixels+'px';
+    fitHandle(node);
+  }
+  function fitHandle(node) {
+    const h = node.querySelector('.handle');
+    if (!h || !$('page-canvas')) return;
+    h.style.translate = '0 0';
+    const r = h.getBoundingClientRect(), b = $('page-canvas').getBoundingClientRect();
+    const dx = Math.max(0,b.left+6-r.left)-Math.max(0,r.right-b.right+6);
+    const dy = Math.max(0,b.top+6-r.top)-Math.max(0,r.bottom-b.bottom+6);
+    h.style.translate = dx+'px '+dy+'px';
+  }
+  function pieceDown(e,a,node,book,resizing=false) {
+    if (e.button !== 0) return;
+    e.preventDefault(); e.stopPropagation();
+    selectPiece(a.uid);
+    node.focus({preventScroll:true});
+    const rect = book.getBoundingClientRect(), start = {x:e.clientX,y:e.clientY,px:a.x,py:a.y,size:a.size};
+    const target = resizing ? node.querySelector('.handle') : node;
+    target.setPointerCapture(e.pointerId);
+    const move = ev => {
+      const dx = (ev.clientX-start.x)*1000/rect.width;
+      const dy = (ev.clientY-start.y)*625/rect.height;
+      if (resizing) a.size = Math.max(80,Math.min(460,start.size+Math.max(dx,dy)*1.5));
+      else { a.x = Math.max(a.size*.3,Math.min(1000-a.size*.3,start.px+dx));
+        a.y = Math.max(a.size*.3,Math.min(625-a.size*.3,start.py+dy)); }
+      positionPiece(a,node);
+    };
+    const up = () => { target.removeEventListener('pointermove',move); target.removeEventListener('pointerup',up); save(); };
+    target.addEventListener('pointermove',move);
+    target.addEventListener('pointerup',up,{once:true});
+    target.addEventListener('pointercancel',up,{once:true});
+  }
+  function pieceKey(e,a) {
+    if (e.key === 'Escape') {
+      e.preventDefault(); state.selected = null; updateSelection(); hint(L.select);
+      $('characters-tray').focus({preventScroll:true}); return;
+    }
+    if (e.key === 'Delete') { e.preventDefault(); state.selected = a.uid; removePiece(); }
+    if (!e.key.startsWith('Arrow')) return;
+    e.preventDefault(); selectPiece(a.uid);
+    a.x = Math.max(0,Math.min(1000,a.x+(e.key === 'ArrowRight' ? 10 : e.key === 'ArrowLeft' ? -10 : 0)));
+    a.y = Math.max(0,Math.min(625,a.y+(e.key === 'ArrowDown' ? 10 : e.key === 'ArrowUp' ? -10 : 0)));
+    positionPiece(a,$('piece-'+a.uid)); save();
+  }
+  function removePiece() {
+    page().pieces = page().pieces.filter(a => a.uid !== state.selected);
+    state.selected = null; save(); refresh(); $('characters-tray').focus({preventScroll:true});
+    hint(L.remove); speak('remove');
+  }
+  let dialogReturn = null;
+  function openChooser(title,text) {
+    stopAudio(); V.hush();
+    dialogReturn = document.activeElement?.id;
+    $('dialog-title').textContent = title;
+    $('dialog-content').replaceChildren();
+    $('dialog-hint').textContent = text;
+    $('chooser').showModal();
+  }
+  function closeChooser(restore=true) {
+    stopAudio();
+    V.hush();
+    $('chooser').close();
+    hint(state.mode === 'plan' ? (state.book.who ? L.where : L.plan) :
+      'Tap Place, Characters, Things, Background or Action to change this page.');
+    if (restore && dialogReturn && $(dialogReturn)) $(dialogReturn).focus({preventScroll:true});
+  }
+  $('close-dialog').onclick = () => closeChooser();
+  $('chooser').addEventListener('cancel',() => {
+    stopAudio(); V.hush();
+    hint(state.mode === 'plan' ? (state.book.who ? L.where : L.plan) :
+      'Tap Place, Characters, Things, Background or Action to change this page.');
+  });
+  function choose(kind) {
+    const isSound = ['bg','fx'].includes(kind);
+    const title = {who:'Who is in your story?', 'plan-place':'Where does it happen?',event:'What happens?',place:'Choose a place',
+      animal:'Add a character',thing:'Add a thing',bg:'Background sound',fx:'Action sound'}[kind];
+    openChooser(title,isSound ? 'Tap a sound name to add or remove it. Tap Hear to listen.' :
+      state.mode === 'plan' ? 'Tap a card. Then tap a page.' : 'Tap a picture to put it on this page.');
+    const grid = el('div','dialog-grid'+(isSound ? ' sound-grid' : ''));
+    if (isSound) {
+      (kind === 'bg' ? BG : FX).forEach(x => {
+        const wrap = el('div','sound-option '+(kind === 'fx' ? 'action' : ''));
+        const assign = button('assign-'+x[0],x[2]+' '+x[1],() => {
+          stopAudio();
+          page()[kind] = page()[kind] === x[0] ? null : x[0];
+          save();
+          grid.querySelectorAll('.assign').forEach(b => b.setAttribute('aria-pressed',b.id === 'assign-'+page()[kind]));
+          hint(page()[kind] ? x[1]+'. Tap Play book to hear your story.' : 'Sound removed. Tap another sound.');
+          $('dialog-hint').textContent = x[1]+(page()[kind] ? ' assigned. Tap Close to return to your page.' : ' removed. Tap another sound.');
+          V.say(x[1]+(x[0] === 'thunder' ? '!' : '.'),{now:true,valid:() => page()[kind] === x[0]});
+          updateSoundSummary(kind);
+          Curio.tone(540,.06,.03);
+        },'assign');
+        assign.setAttribute('aria-pressed',page()[kind] === x[0]);
+        const audition = button('audition-'+x[0],'▷ Hear',() => {
+          V.hush(); stopAudio();
+          if (kind === 'bg') { background(x[0]); audio.timers.push(setTimeout(stopAudio,3500)); }
+          else action(x[0]);
+          $('dialog-hint').textContent = 'Listening: '+x[1]+'. Tap its name to put it on the page.';
+        },'audition');
+        audition.setAttribute('aria-label','Hear '+x[1]);
+        wrap.append(assign,audition); grid.append(wrap);
+      });
+    } else {
+      const list = kind === 'who' || kind === 'animal' ? ANIMALS : kind === 'event' ? EVENTS : kind === 'thing' ? THINGS : PLACES;
+      list.forEach(x => {
+        if (state.mode === 'plan') { const b = planChoice(kind === 'plan-place' ? 'place' : kind,x); b.className = 'choice'; grid.append(b); }
+        else {
+          const b = button('choose-'+x[0],'',() => {
+            if (kind === 'place') { page().place = x[0]; save(); closeChooser(false); refresh();
+              $('place-tray').focus({preventScroll:true}); hint('Tap Characters or Things to build your page.'); speak(x[1]+'.'); }
+            else addPiece(kind,x[0]);
+          },'choice');
+          const img = el('img'); img.src = ART[kind === 'animal' ? x[0]+'-happy' : x[0]]; img.alt = '';
+          b.append(img,el('span','',x[1])); grid.append(b);
+        }
+      });
+    }
+    $('dialog-content').append(grid);
+    speak($('dialog-hint').textContent,true);
+  }
+  function updateSoundSummary(kind) {
+    const b = $('sound-'+kind), d = soundData(kind,page()[kind]);
+    if (!b) return;
+    b.querySelector('.sound-symbol').textContent = d?.[2] || '✧';
+    b.lastChild.lastChild.textContent = d?.[1] || 'Choose a sound';
+  }
+  function addPiece(kind,id) {
+    if (page().pieces.length >= 4) {
+      $('dialog-hint').textContent = L.limit; hint(L.limit); V.say('limit',{now:true}); return;
+    }
+    const a = piece(kind,id,330+page().pieces.length*100,410,kind === 'animal' ? 270 : 190);
+    page().pieces.push(a);
+    state.selected = a.uid; save(); closeChooser(false); refresh();
+    $('piece-'+a.uid)?.focus({preventScroll:true});
+    hint(L.sounds); speak('sounds',true,() => !page().bg && !page().fx); Curio.yes();
+  }
+  function auditionPage() {
+    V.hush(); stopAudio();
+    background(page().bg);
+    audio.timers.push(setTimeout(() => action(page().fx),800));
+    audio.timers.push(setTimeout(stopAudio,6000));
+    hint('Listen to this page. Tap a sound to change what happens.');
+  }
+  function renderPlay() {
+    const {studio,ribbon} = base(WORDS[state.page]+' · '+(state.page+1)+' / 3');
+    const chips = el('div','ribbon');
+    for (const kind of ['bg','fx']) {
+      const d = soundData(kind,page()[kind]);
+      if (d) chips.append(el('span','',d[2]+' '+d[1]));
+    }
+    ribbon.append(chips);
+    const stage = el('div','stage');
+    const book = scene(page(),state.page);
+    book.id = 'play-page'; book.classList.add('playing');
+    stage.append(book); studio.append(stage);
+    if (!Curio.sound) book.append(el('div','reminder','🔇 Sound off'));
+    if (state.end) {
+      const end = el('div','end-card');
+      end.append(el('h2','','The end'),el('p','','Same pictures. What will new sounds change?'));
+      const row = el('div','row');
+      row.append(button('end-restart','↶ Start again',() => turn(0)),button('end-swap','⇄ Swap',() => setMode('swap'),'gold'));
+      end.append(row); book.append(end);
+    }
+    const bar = el('div','playbar');
+    const back = button('back','◀ Back page',() => turn(Math.max(0,state.page-1)));
+    back.disabled = state.page === 0 && !state.end;
+    const next = button('next','Next page ▶',() => state.page === 2 ? finish() : turn(state.page+1),'gold');
+    next.disabled = state.end;
+    const auto = button('auto','◷ Auto',() => {
+      state.auto = !state.auto; auto.setAttribute('aria-pressed',state.auto);
+      if (state.auto && state.end) turn(0); else scheduleAuto();
+      hint(state.auto ? 'Auto turns each page after six seconds. Tell the story aloud.' : L.play);
+    });
+    auto.setAttribute('aria-pressed',state.auto);
+    bar.append(back,next,auto,button('restart','↶ Start again',() => turn(0)));
+    studio.append(bar);
+  }
+  let autoTimer = null;
+  function scheduleAuto() {
+    clearTimeout(autoTimer);
+    if (state.auto && state.mode === 'play' && !state.end) autoTimer = setTimeout(() => state.page === 2 ? finish() : turn(state.page+1),6000);
+  }
+  function startPage() {
+    const gen = audio.generation;
+    const p = page(), index = state.page;
+    background(p.bg);
+    audio.log.push({event:'page',page:index,t:performance.now()});
+    audio.timers.push(setTimeout(() => { if (gen === audio.generation) action(p.fx); },800));
+    const delay = 800+(Curio.sound ? fxDuration(p.fx)*1000 : 0)+80;
+    audio.timers.push(setTimeout(() => {
+      if (gen !== audio.generation || state.mode !== 'play' || state.end) return;
+      V.how('play',{valid:() => state.page === index && !state.end});
+    },delay));
+    if (!Curio.reduce) $('play-page')?.classList.add('curl');
+    scheduleAuto();
+  }
+  function turn(i) {
+    stopAudio(); V.hush(); clearTimeout(autoTimer);
+    state.page = i; state.end = false;
+    preserveFocus(refresh); hint(L.play); startPage();
+  }
+  function finish() {
+    stopAudio(); V.hush(); clearTimeout(autoTimer);
+    state.end = true; state.auto = false;
+    refresh(); $('end-swap').focus({preventScroll:true}); hint(L.end); speak('end');
+  }
+  function renderSwap() {
+    const {studio} = base('Change a sound. Hear a new story.');
+    const pages = el('div','swap-pages');
+    state.book.pages.forEach((p,i) => {
+      const card = el('article','page-card');
+      const num = button('swap-page-'+i,'📄 Page '+(i+1),() => pickPage(i));
+      num.setAttribute('aria-pressed',state.swapPage === i); card.append(num,scene(p,i));
+      ['bg','fx'].forEach(kind => {
+        const d = soundData(kind,p[kind]);
+        const b = button('chip-'+kind+'-'+i,(d?.[2] || '＋')+' '+(d?.[1] || (kind === 'bg' ? 'Background' : 'Action')),
+          () => pickChip(i,kind),'chip '+(kind === 'fx' ? 'action' : ''));
+        b.dataset.kind = kind; b.dataset.page = i;
+        b.setAttribute('aria-pressed',state.swapChip?.i === i && state.swapChip?.kind === kind);
+        b.onpointerdown = e => chipDown(e,i,kind,b);
+        card.append(b);
+      });
+      pages.append(card);
+    });
+    studio.append(pages);
+    const panel = el('aside','panel');
+    panel.append(el('h2','','What changed?'));
+    panel.append(el('div','change',state.change || '⇄ Your pictures can tell a different story.'));
+    panel.append(button('swap-play','📖 Play',() => setMode('play'),'gold'));
+    const undo = button('undo','↶ Undo swap',undoSwap); undo.disabled = state.undo.length === 0; panel.append(undo);
+    const another = button('another','',() => {
+      state.idea = (state.idea+1)%IDEAS.length;
+      const idea = state.idea;
+      another.lastChild.textContent = IDEAS[idea]; hint(IDEAS[idea]);
+      speak(IDEAS[idea],false,() => state.idea === idea);
+    });
+    another.append(el('strong','','✧ Another idea'),el('div','idea',IDEAS[state.idea]));
+    panel.append(another);
+    $('workspace').append(panel);
+  }
+  function recordSwap() {
+    state.undo.push({book:clone(state.book),change:state.change});
+    if (state.undo.length > 10) state.undo.shift();
+  }
+  function swapped(text) {
+    state.change = text; state.swapPage = null; state.swapChip = null;
+    save(); preserveFocus(refresh); hint(L.swapped); V.say('swapped',{now:true}); Curio.yes();
+  }
+  function pickPage(i) {
+    stopAudio();
+    if (state.swapPage === null || state.swapPage === i) {
+      state.swapPage = state.swapPage === i ? null : i;
+      document.querySelectorAll('[id^="swap-page-"]').forEach((b,n) => b.setAttribute('aria-pressed',state.swapPage === n));
+      hint('Tap another page number to swap whole pages.'); return;
+    }
+    recordSwap();
+    const j = state.swapPage;
+    [state.book.pages[i],state.book.pages[j]] = [state.book.pages[j],state.book.pages[i]];
+    swapped(`📄 Page ${j+1} ⇄ Page ${i+1}. Pictures and sounds moved together.`);
+  }
+  function pickChip(i,kind) {
+    stopAudio();
+    if (!state.swapChip) {
+      state.swapChip = {i,kind};
+      $('chip-'+kind+'-'+i).setAttribute('aria-pressed','true');
+      hint('Tap another '+(kind === 'bg' ? 'background' : 'action')+' chip to swap sounds.'); return;
+    }
+    const from = state.swapChip;
+    if (from.i === i && from.kind === kind) {
+      state.swapChip = null; $('chip-'+kind+'-'+i).setAttribute('aria-pressed','false'); hint(L.swap); return;
+    }
+    swapSounds(from.i,from.kind,i,kind);
+  }
+  function swapSounds(i,kind,j,toKind) {
+    if (kind !== toKind) {
+      state.swapChip = null;
+      document.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed','false'));
+      const b = $('chip-'+kind+'-'+i);
+      b.classList.remove('slideback'); void b.offsetWidth; b.classList.add('slideback');
+      hint(L.wrong); V.say('wrong',{now:true}); return;
+    }
+    if (i === j) return;
+    recordSwap();
+    const moving = soundData(kind,state.book.pages[i][kind]);
+    [state.book.pages[i][kind],state.book.pages[j][kind]] = [state.book.pages[j][kind],state.book.pages[i][kind]];
+    swapped(`${moving?.[2] || '⇄'} ${moving?.[1] || 'Empty sound'} moved to page ${j+1}. Only sounds moved.`);
+  }
+  function undoSwap() {
+    const item = state.undo.pop();
+    if (!item) return;
+    state.book = item.book; state.change = item.change;
+    save(); preserveFocus(refresh); hint(L.undo); V.say('undo',{now:true});
+    if (!$('undo').disabled) $('undo').focus({preventScroll:true}); else $('swap-play').focus({preventScroll:true});
+  }
+  function chipDown(e,i,kind,b) {
+    if (e.button !== 0) return;
+    const start = {x:e.clientX,y:e.clientY};
+    let ghost = null;
+    b.setPointerCapture(e.pointerId);
+    const move = ev => {
+      if (!ghost && Math.hypot(ev.clientX-start.x,ev.clientY-start.y) > 8) {
+        ghost = b.cloneNode(true); ghost.removeAttribute('id'); ghost.classList.add('drag-ghost'); document.body.append(ghost);
+      }
+      if (ghost) { ghost.style.left = ev.clientX-80+'px'; ghost.style.top = ev.clientY-30+'px'; }
+    };
+    const up = ev => {
+      b.removeEventListener('pointermove',move);
+      if (!ghost) return;
+      ghost.remove();
+      const to = document.elementFromPoint(ev.clientX,ev.clientY)?.closest('.chip');
+      b.onclick = null;
+      if (to) swapSounds(i,kind,Number(to.dataset.page),to.dataset.kind);
+      else { hint('Drag a sound onto another sound chip.'); b.classList.add('slideback'); }
+      setTimeout(() => { if (b.isConnected) b.onclick = () => pickChip(i,kind); },50);
+    };
+    b.addEventListener('pointermove',move);
+    b.addEventListener('pointerup',up,{once:true});
+  }
+  function newBook() {
+    openChooser('Start a new book?',L.newBook);
+    const row = el('div','traybar');
+    row.append(button('confirm-new','✓ Yes, start new',() => {
+      state.book = {who:null,pages:[blank(),blank(),blank()]}; state.undo = []; state.change = ''; state.page = 0;
+      save(); closeChooser(false); setMode('plan'); $('sample').focus({preventScroll:true});
+    }),button('keep-book','📖 Keep my book',() => closeChooser(),'gold'));
+    $('dialog-content').append(row); hint(L.newBook); speak('newBook');
+  }
+  for (const m of ['plan','make','play','swap']) $('m-'+m).onclick = () => {
+    if (state.mode === m) { V.welcome(); return; }
+    setMode(m);
+  };
+  addEventListener('keydown',e => {
+    if (state.mode === 'play' && !$('chooser').open && ['ArrowLeft','ArrowRight'].includes(e.key)) {
+      e.preventDefault();
+      if (e.key === 'ArrowLeft') turn(Math.max(0,state.page-1));
+      else if (state.page === 2) finish(); else turn(state.page+1);
+    }
+  });
+  Curio.init({clips:"voice:*",rate:.88});
+  Curio.onSound(on => {
+    stopAudio();
+    if (state.mode === 'play') { preserveFocus(refresh); if (on && !state.end) startPage(); }
+  });
+  // Read stops the foreground effect before speaking, and leaves the background quiet.
+  $('read').addEventListener('pointerdown',() => stopAudio(),{capture:true});
+  $('read').addEventListener('keydown',e => { if (e.key === 'Enter' || e.key === ' ') stopAudio(); },{capture:true});
+  window.__tool = {state,setMode,allLines:V.allLines,vlog:V.log,audioLog:audio.log,swapSounds,sample,validBook,
+    get vq() { return V.queue; },get actionUntil() { return audio.actionUntil; }};
+  setMode('plan');
+})();
+</script>
+</body>
+</html>

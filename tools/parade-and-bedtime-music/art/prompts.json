@@ -1,0 +1,70 @@
+{
+  "house_style": "Soft watercolor picture-book illustration for K-2 music, luminous washes, fine colored-pencil texture, rich layered depth, warm directional light, lovingly observed objects, clean silhouettes. No people, faces, body parts, text, letters, numbers, logos or watermarks.",
+  "assets": [
+    {
+      "name": "moment-bedtime",
+      "prompt": "A cozy child's empty bedroom at night, a small bed with a patchwork quilt, a big window with a round moon and stars, a soft lamp glow. Deep indigo and moonlight cream. Foreground quilt, middle bed, distant moon. Landscape composition, full bleed.",
+      "aspect": "16:10",
+      "width": 1100,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "moment-parade",
+      "prompt": "A small town main street ready for a parade, colorful red and yellow bunting and balloons, flags on lampposts, a sunny sky, an empty road down the middle. Charming textured shopfronts with blank signs. Foreground cobblestones, middle street, distant rooftops. Landscape composition, full bleed.",
+      "aspect": "16:10",
+      "width": 1100,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "moment-birthday",
+      "prompt": "A kitchen table set for a birthday party with a frosted cake with candles, wrapped presents, paper party hats and streamers. Raspberry pinks and buttercream, light from an open window at upper left. Foreground table edge, middle cake, soft kitchen behind. Landscape composition, full bleed.",
+      "aspect": "16:10",
+      "width": 800,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "moment-rain",
+      "prompt": "A rainy day seen through a window with raindrops on the glass, a pair of red rain boots and a yellow umbrella by the door, grey sky. Blue grey watercolor, warm reflected window light. Foreground boots and umbrella, middle window, distant wet garden. Landscape composition, full bleed.",
+      "aspect": "16:10",
+      "width": 800,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "toy-drum",
+      "prompt": "A small red and gold toy marching drum with two wooden drumsticks resting on top. Fine rope lacing, softly shaded parchment drumhead, tiny brass fittings. Whole object centered with generous margin, on perfectly flat pure green #00FF00, no cast shadow.",
+      "aspect": "1:1",
+      "width": 350,
+      "quality": 80,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "teddy",
+      "prompt": "A soft honey-brown teddy bear toy sitting, slightly sleepy, stitched closed eyes and embroidered nose, warm fuzzy fabric, cream paws, small blue ribbon. Rich soft watercolor and colored-pencil picture-book texture, gentle upper-left light, visible fabric seams and soft tufts. Whole toy centered with generous margin on perfectly flat pure magenta #FF00FF, no cast shadow. Clean natural fur edges with no green tint.",
+      "aspect": "1:1",
+      "width": 350,
+      "quality": 80,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "key": "magenta",
+      "holes": true
+    }
+  ]
+}

@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Family Dance Night · Curio Class</title>
+<meta name="description" content="Visit seven family tables, watch and copy dances, describe moves and learn where they belong. K-2 dance. Offline.">
+<!--
+Family Dance Night, Curio Class. Teacher-led K-2 dance: DA:Re8, DA:Re9, DA:Cn11.
+Built from kit/starter/src.html. Facts: Smithsonian Folklife, LOC, Britannica, Korea.net, NPS Jazz, Ladzekpo and GeoNames.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Original synthesized music, no recorded tune.
+Map is Natural Earth public-domain land, Equal Earth projection, reused from the local world map data.
+No automatic network requests. No dance progress saved.
+Content CC BY 4.0, code MIT. curioclass.org. Sources and teaching notes in notes.md.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root{
+  --paper:#fbf6ee;--ink:#2a1c18;--muted:#6a5850;--line:#d8bea0;--focus:#225b83;
+  --brand:#7f1d1d;--btn:#6c1616;--btn-line:#d79c79;--head-ink:#fff;--panel:#fbf6ee;
+}
+body{overflow:hidden}
+header{padding:8px 18px;gap:8px;box-shadow:0 4px 0 #39181366;z-index:3;flex-wrap:nowrap}
+h1{font-size:clamp(19px,2.5vw,31px)}h1 small{font-size:13px;letter-spacing:.05em}
+.icon-btn{min-height:60px;min-width:60px;padding:0 14px}
+button{touch-action:manipulation}button:active{transform:translateY(2px)}
+button:focus-visible{outline:4px solid var(--focus);outline-offset:2px;box-shadow:0 0 0 6px #fff}
+main{grid-template-columns:minmax(0,1fr) 400px;min-height:0}
+body.home main{grid-template-columns:1fr}
+.stage{grid-column:1;grid-row:1;min-height:0;background:#c99a62;isolation:isolate}
+#sv{position:absolute;inset:0;width:100%;height:100%;display:block}
+.panel{grid-column:2;grid-row:1;padding:12px;gap:10px;border-left:4px solid #7f1d1d;overflow:hidden;
+  background:linear-gradient(100deg,#f3e5cf,#fffaf2 12%,#fbf6ee 95%);box-shadow:inset 7px 0 12px #6f3a2112}
+body.home .panel{display:none}
+.tabs{display:grid;grid-template-columns:repeat(4,minmax(60px,1fr));gap:5px}
+.tabs button{height:66px;border:2px solid #bb9f81;border-radius:12px 12px 4px 4px;background:#fffaf3;
+  font-weight:800;font-size:13px;padding:3px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:3px}
+.tabs button b{font-size:22px;line-height:1}
+.tabs button[aria-selected=true]{background:#7f1d1d;color:#fff;border-color:#7f1d1d;box-shadow:0 4px 0 #431010}
+.tabbody{display:flex;flex-direction:column;gap:10px;min-height:0;flex:1}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.big-btn{min-height:60px;font-size:19px;padding:6px 10px;border-radius:12px}
+.soft{border:2px solid #bfa482;background:#fffaf3;color:#2a1c18;box-shadow:0 4px 0 #8c6e4c33}
+.soft[aria-pressed=true]{background:#f9df92;border-color:#7f1d1d;box-shadow:inset 0 0 0 2px #7f1d1d}
+.hint{font-size:17px;line-height:1.35;margin:0;min-height:70px;padding:10px 12px;background:#fffdf8;
+  border:1px solid #d7bea1;border-left:5px solid #7f1d1d;border-radius:4px 12px 12px 4px}
+.label{font:800 13px 'Trebuchet MS',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#6a5850;margin:3px 0}
+.dance-name{font:800 clamp(22px,2.3vw,32px)/1.08 'Trebuchet MS',sans-serif;margin:0;color:#7f1d1d}
+.movebtn{display:flex;align-items:center;text-align:left;gap:8px;min-height:84px;padding:7px 10px;font-size:17px}
+.movebtn svg{width:53px;height:61px;flex:none}.movebtn small{display:block;font-size:12px;margin-bottom:2px;color:#6a5850}
+.words{display:grid;grid-template-columns:repeat(4,minmax(60px,1fr));gap:6px}
+.word{min-height:60px;border:2px solid #bea184;border-radius:10px;background:#fffaf3;font-size:14px;font-weight:750;
+  display:flex;align-items:center;justify-content:center;gap:4px;padding:3px}
+.word b{font-size:18px}.word[aria-pressed=true]{background:#f7d774;border-color:#7f1d1d;box-shadow:inset 0 0 0 2px #7f1d1d}
+.footer{display:grid;grid-template-columns:1fr 1fr;gap:8px}.footer .big-btn{font-size:15px}
+#from-card{border:2px solid #cbb08c;background:#fffdf8;border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px}
+#map{width:100%;height:155px;background:#dce9e9;border-radius:9px;display:block}
+#place{font-size:19px;font-weight:800;margin:0}#origin{font-size:16px;line-height:1.4;margin:0}
+.favorite-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#favorite-view{border:2px solid #c6a37f;background:#fffaf0;border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:10px}
+#favorite-view h2{font-size:20px;color:#7f1d1d;margin:0}#favorite-view p{margin:0;font-size:16px;line-height:1.35}
+.table-card{position:absolute;display:flex;flex-direction:column;align-items:center;width:clamp(112px,18vw,240px);
+  transform:translate(-50%,-50%);z-index:2;pointer-events:none}
+.table-card img{width:100%;height:clamp(80px,16vh,195px);object-fit:contain;filter:drop-shadow(0 9px 5px #482b2844)}
+.table-card button{pointer-events:auto;min-height:60px;width:100%;border:3px solid #7f1d1d;border-radius:16px;
+  background:#fff9ec;color:#471b18;font:800 clamp(12px,1.3vw,19px)/1.1 'Trebuchet MS',sans-serif;
+  padding:5px;box-shadow:0 5px 0 #652119;display:flex;align-items:center;justify-content:center;gap:5px}
+.table-card button .tic{display:none}.table-card.visited button .tic{display:inline}
+.table-card.visited button{background:#fff0ac}.table-card button b{font-size:21px}
+.home-note{display:none;position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;
+  padding:10px 18px;color:#61231a;background:#fff8e4dd;border:2px solid #d2ae79;border-radius:50%;box-shadow:0 8px 28px #6a3c2922}
+.home-note strong{display:block;font:800 clamp(19px,3vw,38px) 'Trebuchet MS',sans-serif}
+.home-note span{font-size:clamp(12px,1.5vw,18px)}
+#home-hint{position:absolute;top:12px;left:14px;max-width:56%;padding:8px 14px;border-radius:12px;background:#fff8e7ed;
+  font-size:clamp(12px,1.5vw,18px);font-weight:650;box-shadow:0 3px 8px #3f291b22}
+#lights-badge{position:absolute;top:12px;right:14px;z-index:2;background:#7f1d1d;color:white;border:2px solid #ffe4a7;
+  border-radius:30px;padding:11px 16px;font-size:clamp(14px,1.5vw,20px);font-weight:800}
+#stage-title{position:absolute;top:12px;left:14px;font-size:clamp(16px,2vw,25px);font-weight:800;background:#fff8e9ed;
+  border:2px solid #cba777;border-radius:12px;padding:9px 14px;max-width:70%;box-shadow:0 3px 6px #42231b22}
+#count{position:absolute;right:12px;top:76px;font:900 clamp(44px,7vw,90px)/1 'Trebuchet MS',sans-serif;color:#7f1d1d;
+  min-width:80px;text-align:center;text-shadow:2px 3px 0 #fff5d9;pointer-events:none}
+#count small{display:block;font:800 12px 'Segoe UI',sans-serif;letter-spacing:.03em}
+#prop-table{position:absolute;left:2%;bottom:8%;width:28%;max-height:42%;object-fit:contain;pointer-events:none;
+  filter:drop-shadow(0 9px 5px #482b2844)}
+#vote-badge{position:absolute;bottom:16px;right:16px;max-width:60%;padding:9px 13px;background:#fff7dc;color:#7f1d1d;
+  border:2px solid #bd6d41;border-radius:12px;font-weight:750;font-size:16px}
+body:not(.home) #lights-badge{display:none}
+.glow-bulb{animation:breathe 3s ease-in-out infinite}@keyframes breathe{50%{opacity:.55}}
+.calm .glow-bulb{animation:none!important}
+@media (min-width:601px) and (max-width:999px) and (min-height:651px){
+  main{grid-template-columns:1fr;grid-template-rows:300px minmax(0,1fr)}
+  .panel{grid-column:1;grid-row:2;border-left:0;border-top:4px solid #7f1d1d}
+  body.home main{grid-template-rows:1fr}
+}
+@media (max-height:650px) and (min-width:601px){
+  header{padding:4px 8px;gap:6px}h1{font-size:19px}h1 small{display:none}.icon-btn{padding:0 9px;font-size:14px}
+  main{grid-template-columns:minmax(0,1fr) 340px}.panel{padding:3px;gap:2px}
+  .tabs button{height:60px;font-size:11px;gap:1px}.tabs button b{font-size:19px}.tabbody{gap:5px}
+  .dance-name{font-size:21px}.label{display:none}.hint{font-size:12px;line-height:1.2;min-height:36px;padding:3px 6px}
+  #copy{display:grid;grid-template-columns:1fr 1fr;flex:none;gap:4px}
+  #copy #count-in{grid-column:1/-1}
+  #copy .movebtn{flex-direction:column;text-align:center;gap:1px;min-height:86px;font-size:13px}
+  #copy .movebtn svg{height:35px;width:35px}#words,#from,#favorite-view{flex:none}
+  .home-note{display:none}
+  .movebtn{min-height:66px;font-size:14px;padding:3px 6px}.movebtn svg{width:42px;height:54px}
+  .big-btn{font-size:16px}.footer .big-btn{font-size:13px}.words{gap:4px}.word{font-size:12px}
+  #from-card{padding:5px;gap:3px}#map{height:86px}#place{font-size:15px}#origin{font-size:12px}
+  .table-card img{height:clamp(75px,22vh,135px)}.table-card{width:19%}.table-card button{font-size:12px}
+  #home-hint{top:6px;padding:6px 9px;font-size:12px}#lights-badge{top:6px;padding:8px 11px}
+  #stage-title{top:6px;font-size:17px;padding:6px 9px}#count{top:57px;right:4px;min-width:60px}
+  #favorite-view{padding:5px;gap:6px}#favorite-view h2{font-size:16px}#favorite-view p{font-size:13px}
+  .favorite-options{gap:4px}
+}
+@media (max-width:600px){
+  header{padding:5px 8px;flex-wrap:wrap;gap:5px;justify-content:center}
+  h1{width:100%;font-size:20px;text-align:center;margin:0}h1 small{display:none}
+  .icon-btn{flex:1;font-size:14px;padding:0 7px}body{overflow:auto;min-height:100vh;height:auto}
+  main{display:flex;flex-direction:column}.stage{height:205px;min-height:205px;flex:none;order:0}
+  .panel{border-left:0;border-top:4px solid #7f1d1d;padding:7px;gap:7px;overflow:visible;order:1}
+  .tabs button{height:60px;font-size:12px}.tabbody{gap:7px;flex:none}.label{display:none}.dance-name{font-size:22px}
+  .hint{min-height:55px;font-size:14px;padding:7px}.movebtn{min-height:72px;font-size:15px}.movebtn svg{height:55px}
+  .footer .big-btn{font-size:14px}#map{height:120px}#origin{font-size:15px}#place{font-size:17px}
+  #count{font-size:48px;top:53px;right:4px}#stage-title{font-size:16px;top:5px;left:6px;padding:6px;max-width:75%}
+  #prop-table{width:25%;bottom:4%}#vote-badge{font-size:12px;bottom:6px;right:6px;padding:5px}
+  body.home .stage{height:calc(100dvh - 100px);min-height:660px}.table-card{width:43%}
+  .table-card img{height:110px}.table-card button{font-size:15px}.home-note{top:49%;padding:7px 11px}
+  .home-note strong{font-size:20px}.home-note span{font-size:12px}
+  #home-hint{top:5px;left:5px;padding:7px;font-size:12px;max-width:60%}#lights-badge{top:5px;right:5px;padding:8px;font-size:13px}
+}
+</style>
+</head>
+<body class="home">
+<header>
+  <h1>Family Dance Night <small>Seven tables. A whole world of movement. · Curio Class</small></h1>
+  <button class="icon-btn" id="read">🔊 Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<main>
+  <aside class="panel" id="panel" aria-label="Dance controls">
+    <div class="tabs" role="tablist" aria-label="Explore the dance">
+      <button id="tab-watch" role="tab" aria-selected="true" aria-controls="watch"><b>◉</b>Watch</button>
+      <button id="tab-copy" role="tab" aria-selected="false" aria-controls="copy"><b>↔</b>Copy</button>
+      <button id="tab-words" role="tab" aria-selected="false" aria-controls="words"><b>💬</b>Words</button>
+      <button id="tab-from" role="tab" aria-selected="false" aria-controls="from"><b>⌖</b>Where from</button>
+    </div>
+    <div class="tabbody" id="watch" role="tabpanel">
+      <p class="label">On the dance floor</p><h2 class="dance-name" id="dance-name"></h2>
+      <div class="row"><button class="big-btn gold" id="play">▶ Play</button>
+        <button class="big-btn soft" id="slow" aria-pressed="false">◷ Slow</button></div>
+    </div>
+    <div class="tabbody" id="copy" role="tabpanel" hidden>
+      <button class="big-btn soft movebtn" id="move-0"><svg aria-hidden="true"></svg><span><small>Move 1</small><span></span></span></button>
+      <button class="big-btn soft movebtn" id="move-1"><svg aria-hidden="true"></svg><span><small>Move 2</small><span></span></span></button>
+      <button class="big-btn gold" id="count-in">● Count me in</button>
+    </div>
+    <div class="tabbody" id="words" role="tabpanel" hidden><div class="words" id="word-grid"></div></div>
+    <div class="tabbody" id="from" role="tabpanel" hidden>
+      <div id="from-card"><svg id="map" viewBox="0 0 360 180" role="img" aria-label="World map with the dance's home marked"></svg>
+        <p id="place"></p><p id="origin"></p></div>
+    </div>
+    <div class="tabbody" id="favorite-view" hidden>
+      <h2>♥ Favorite part</h2><p>Vote with your hands. Tap your favorite.</p><div class="favorite-options" id="favorites"></div>
+    </div>
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div class="footer"><button class="big-btn soft" id="favorite">♡ Favorite part</button>
+      <button class="big-btn" id="back">⌂ Back to the gym</button></div>
+  </aside>
+  <div class="stage" id="stage">
+    <svg id="sv" aria-hidden="true"></svg><div id="home-tables"></div>
+    <div class="home-note" id="home-note"><strong>Come dance!</strong><span>Pick a family's table.</span></div>
+    <div id="home-hint">Tap a table to meet its dance.</div>
+    <div id="lights-badge">💡 Lights <span id="lights">0 of 7</span></div>
+    <div id="stage-title" hidden></div><div id="count" hidden></div><img id="prop-table" alt="" hidden>
+    <div id="vote-badge" hidden></div>
+  </div>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:dance"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  const WORLD = "json:world";
+  const art = {
+    gym:'art:gym',lion:'art:table-lion',jarabe:'art:table-jarabe',irish:'art:table-irish',bhangra:'art:table-bhangra',
+    fan:'art:table-fan',second:'art:table-second',kpanlogo:'art:table-kpanlogo',headClosed:'art:lion-head-closed',
+    headOpen:'art:lion-head-open',body:'art:lion-body',fanOpen:'art:fan-open',fanClosed:'art:fan-closed',umbrella:'art:umbrella',
+  };
+  const state = {table:null,tab:'gym',playing:false,slow:false,selected:0,shown:'both',visited:[],votes:{},
+    favorite:false,count:0,runId:0,countIn:false,lastAnswer:null};
+  const WORDS = ['Fast','Slow','High','Low','Big','Small','Smooth','Sharp','Stamp','Hop','Turn','Shake'];
+  const WORD_ICONS = ['»','◷','↑','↓','↔','·','≈','ϟ','▰','↟','⟳','≋'];
+  const painterNames = ['lion-wake','lion-bow','jarabe-stamp','jarabe-swirl','irish-feet','irish-kick',
+    'bhangra-shoulder','bhangra-hop','fan-wave','fan-flower','second-strut','second-twirl','kpanlogo-roll','kpanlogo-low'];
+  const move = (name,words,poses,dyn='smooth',turn=false) => ({name,words:words.split(' '),poses,dyn,turn});
+  const p = x => Dance.pose(x);
+  const mirror = x => Dance.mirror(p(x));
+  const step = {lLeg:[36,6,48],rLeg:[-10,5,8],arms:[24,20,32,45]};
+  const low = {lLeg:[65,22,100],rLeg:[65,22,100],lean:12,arms:[80,0,86,10]};
+  const up = [150,15,165,30];
+  const DATA = [
+    {id:'lion',name:'Lion Dance',icon:'◉',place:'Guangdong, southern China',pin:[23,113.1],bpm:100,prop:'lion head',
+      origin:'The lion dance comes from southern China. Two dancers become one lion, for good luck at the Lunar New Year.',
+      colors:{top:'#c8102e',bottom:'#c8102e',shoe:'#f2e6da'},moves:[
+        move('Lion wakes up','High Low Shake',[{...low,arms:[110,80,130,90],head:20},
+          {arms:[165,70,170,80],head:-15,tilt:-14},{arms:[165,70,170,80],head:-15,tilt:14},{...low,head:12}],'shake'),
+        move('Lion bows','Low Slow Big',[{...step,arms:[100,80,115,90]},
+          {...low,lean:48,head:32,arms:[70,85,70,90]},{...low,lean:48,head:32},{arms:[140,70,150,90],head:-12}])]},
+    {id:'jarabe',name:'Jarabe Tapatio',icon:'✿',place:'Jalisco, Mexico',pin:[20.7,-103.3],bpm:132,prop:'skirt',
+      origin:'Folklorico dancers in Mexico dance the jarabe at fiestas. Their feet tap a rhythm on the floor.',
+      colors:{top:'#f6f1e7',bottom:'#e4572e',shoe:'#3a2a1c'},moves:[
+        move('Zapateado','Fast Stamp Small',[{...step,arms:[48,0,55,0],rToe:1},
+          {arms:[48,0,55,0],lToe:1,rLeg:[25,5,35]},mirror({...step,arms:[48,0,55,0],rToe:1}),
+          {arms:[48,0,55,0],rToe:1,lLeg:[25,5,35]}],'sharp'),
+        move('Skirt swirl','Turn Big Smooth',[{arms:[95,0,90,0],lLeg:[0,10,4],rLeg:[0,10,4]},
+          {arms:[130,0,135,0],toe:1},{arms:[85,0,90,0],side:8},{arms:[130,0,135,0],toe:1}],'smooth',true)]},
+    {id:'irish',name:'Irish Step Dance',icon:'♫',place:'Ireland',pin:[53.3,-6.3],bpm:112,prop:'fiddle',
+      origin:'Irish dancers keep their arms still at their sides while their feet move fast. They dance at ceili parties.',
+      colors:{top:'#1b5e20',bottom:'#1b5e20',shoe:'#111111'},moves:[
+        move('Still arms, busy feet','Fast Small Hop',[
+          {arms:[0,0,0,0],lLeg:[20,2,10],rLeg:[-8,2,45],toe:1,lift:.03},
+          {arms:[0,0,0,0],rLeg:[20,2,10],lLeg:[-8,2,45],toe:1}],'sharp'),
+        move('Hop and kick','Hop High Sharp',[{arms:[0,0,0,0],rLeg:[78,6,0],lToe:1,lift:.08},
+          {arms:[0,0,0,0],rLeg:[-10,3,85],lLeg:[10,3,20]},
+          {arms:[0,0,0,0],lLeg:[78,6,0],rToe:1,lift:.08},{arms:[0,0,0,0],lLeg:[-10,3,85],rLeg:[10,3,20]}],'sharp')]},
+    {id:'bhangra',name:'Bhangra',icon:'✧',place:'Punjab, India and Pakistan',pin:[31.6,74.9],bpm:96,prop:'dhol drum',
+      origin:'Bhangra comes from Punjab. Farmers danced it to celebrate the harvest, and people dance it at weddings and parties today.',
+      colors:{top:'#f2a900',bottom:'#ffffff',shoe:'#754325'},moves:[
+        move('Shoulder bounce','High Shake Fast',[
+          {arms:up,side:7,lLeg:[12,15,22],rLeg:[12,15,22]},{arms:[170,15,178,30],side:-7,toe:1}],'shake'),
+        move('Bhangra hop','Hop High Big',[
+          {arms:up,lLeg:[80,16,110],rToe:1,lift:.08},{arms:up,rLeg:[80,16,110],lToe:1,lift:.08}],'swing')]},
+    {id:'fan',name:'Korean Fan Dance',icon:'❀',place:'Korea',pin:[37.6,127],bpm:60,prop:'fans',
+      origin:'In the Korean fan dance, dancers open and close big painted fans. Together the fans look like flowers and waves.',
+      colors:{top:'#f06292',bottom:'#4fc3f7',shoe:'#f6f1e7'},moves:[
+        move('Fan wave','Smooth Slow Big',[{lArm:[45,0,65,0],rArm:[110,0,125,0],side:5},
+          {lArm:[110,0,125,0],rArm:[45,0,65,0],side:-5},{arms:[140,0,150,0]},{arms:[55,0,65,0]}]),
+        move('Flower','Turn High Smooth',[{arms:[165,25,165,165],toe:.5},{arms:[170,25,170,165],toe:1}],'smooth',true)]},
+    {id:'second',name:'Second Line',icon:'☂',place:'New Orleans, Louisiana, USA',pin:[29.95,-90.07],bpm:100,prop:'umbrella',
+      origin:'In New Orleans, people dance in the street behind a brass band. The dancers who follow the band are called the second line.',
+      colors:{top:'#ffd23f',bottom:'#1d3557',shoe:'#734b31'},moves:[
+        move('Strut','Big Hop Fast',[{lLeg:[75,9,95],rLeg:[0,7,8],rArm:[130,0,145,0],lArm:[80,0,90,0],lift:.06},
+          {rLeg:[75,9,95],lLeg:[0,7,8],rArm:[145,0,155,0],lArm:[105,0,110,0],lift:.06}],'swing'),
+        move('Umbrella twirl','Turn High Smooth',[
+          {rArm:[170,0,175,0],lArm:[70,0,95,0],toe:.5},{rArm:[175,0,178,0],lArm:[100,0,110,0],toe:1}],'smooth',true)]},
+    {id:'kpanlogo',name:'Kpanlogo',icon:'▥',place:'Accra, Ghana',pin:[5.6,-.2],bpm:112,prop:'drums',
+      origin:'Kpanlogo is a dance of the Ga people of Accra, Ghana. Drummers and dancers play together at celebrations.',
+      colors:{top:'#f4a300',bottom:'#00695c',shoe:'#6d4c41'},moves:[
+        move('Shoulder roll and arm swing','Smooth Big',[
+          {lArm:[70,80,85,95],rArm:[60,-60,70,-60],twist:22,side:8,lLeg:[15,12,25],rLeg:[15,12,25]},
+          {rArm:[70,80,85,95],lArm:[60,-60,70,-60],twist:-22,side:-8,lLeg:[15,12,25],rLeg:[15,12,25]}]),
+        move('Low bounce','Low Fast Small',[
+          {...low,lLeg:[62,25,100],rLeg:[48,15,85],side:5},{...low,rLeg:[62,25,100],lLeg:[48,15,85],side:-5}],'swing')]},
+  ];
+  const L = {
+    welcome:'Welcome to family dance night! Each table has a dance from home. Tap a table.',
+    watch:'Tap Play to watch the dance.',copy:'Want to try it? Tap Copy, then tap a move.',
+    chooseMove:'Tap Move 1 or Move 2. Stand up and copy the dancer like a mirror.',
+    words:'What did you see? Tap a dance word.',favorite:'Why do you like it? Tell a friend.',
+    fromHint:'Tap Read to hear the card. Tap Favorite part to choose what you liked.',
+    vote:'Vote with your hands. Tap Move 1, Move 2, The music, or the prop.',
+    countIn:'Tap Count me in for four counts, then copy the selected move.',
+    lights:'Thank you for sharing your dance! The lights are on.',all:'Every family shared a dance. The whole gym is glowing!',
+  };
+  DATA.forEach((d,i) => {
+    L['table'+i]='The '+d.name+'!';
+    L['from'+i]=d.origin;
+    d.moves.forEach((m,j) => {L['move'+i+j]=m.name+'. Stand up and copy me!';
+    });
+  });
+  WORDS.forEach(w=>{L['yes'+w]='Yes! I see '+w.toLowerCase()+'.';
+  L['no'+w]='Hmm, look again. Do you see '+w.toLowerCase()+'?';
+  });
+  const hint = text => {$('hint').textContent=text;
+  };
+  const V = Curio.voice({lines:L,scope:()=>state.table+':'+state.tab,hint:false,
+    read:()=>state.table===null?$('home-hint').textContent:state.tab==='from'?current().origin:$('hint').textContent,
+    welcome:()=>state.table===null?['welcome',{valid:()=>state.table===null}]:null,
+    speaks:'.table-card button,#play,#move-0,#move-1,#count-in,#back',
+  });
+  let floor,figure=[],lightLayer,countStrip,run=null,clk=null,music=null,extraAudio=null;
+  let pendingWord=null,pendingRead=false,speechEpoch=0;
+  const current = ()=>DATA[state.table];
+  function mk(tag,attrs,parent) {
+    const el=document.createElementNS(NS,tag);
+    for(const [k,v] of Object.entries(attrs||{}))el.setAttribute(k,v);
+    if(parent)parent.appendChild(el);
+    return el;
+  }
+  function stopRun(hush=true) {
+    state.runId++;
+    state.playing=false;
+    state.countIn=false;
+    pendingWord=null;
+    pendingRead=false;
+    if(run)run.stop();
+    if(music)music.stop();
+    if(extraAudio)extraAudio.stop();
+    if(clk)clk.stop();
+    run=null;
+    music=null;
+    extraAudio=null;
+    clk=null;
+    if(hush)V.hush();
+    $('play').textContent='▶ Play';
+    $('count').hidden=true;
+    if(countStrip)countStrip.set(null);
+  }
+  // The painter replaces only this renderer. Dance remains the model for joints, timing, root motion and mirroring.
+  function createFigureRenderer(d,index=0) {
+    const model=Dance.dancer(floor.layers.actors,{floor,...d.colors,skin:'#b88b68',hair:'#33261f',scale:d.id==='lion'?.85:1});
+    const overlay=mk('g',{},floor.layers.actors);
+    const spriteNames=painterNames.slice(state.table*2,state.table*2+2);
+    const clipId='cloth-'+Math.random().toString(36).slice(2);
+    const renderer={model,overlay,spriteNames,clipId,remove(){model.remove();
+    overlay.remove();
+    }};
+    model.onMove(()=>decorateFigure(renderer,d,index));
+    return renderer;
+  }
+  function imageProp(parent,url,x,y,w,h,rotate=0) {
+    return mk('image',{href:url,x:x-w/2,y:y-h/2,width:w,height:h,
+      transform:`rotate(${rotate} ${x} ${y})`,preserveAspectRatio:'xMidYMid meet'},parent);
+  }
+  function decorateFigure(renderer,d,index) {
+    const {model:m,overlay:g}=renderer;
+    g.textContent='';
+    const J=m.sj;
+    if(!J)return;
+    const u=floor.scale(m.z)*m.height;
+    const pos=clk?Math.max(0,clk.pos):0;
+    const c=Curio.reduce?Math.floor(pos):pos;
+    const [hx,hy]=J.head;
+    if(d.id==='lion') {
+      for(const k of ['torso','head','hair','lUa','rUa','lFa','rFa'])m.parts[k].e.style.display='none';
+      if(index===0&&figure.length===2) {
+        const other=figure[1].model.sj;
+        if(other) {
+          const a=J.chest,b=other.chest,mid=[(a[0]+b[0])/2,(a[1]+b[1])/2];
+          const angle=Math.atan2(a[1]-b[1],a[0]-b[0])*180/Math.PI;
+          const cloth=imageProp(g,art.body,mid[0],mid[1]+u*.14,
+            Math.hypot(a[0]-b[0],a[1]-b[1])+u*.25,u*.34,angle);
+          cloth.setAttribute('preserveAspectRatio','none');
+          const fold=imageProp(g,art.body,(mid[0]+a[0])/2,(mid[1]+a[1])/2+u*.1,u*.32,u*.3,angle);
+          fold.setAttribute('preserveAspectRatio','none');
+        }
+        imageProp(g,Math.floor(c)%2?art.headOpen:art.headClosed,hx,hy+u*.04,u*.39,u*.39,
+          state.selected===1?m.pose.head*.3:m.pose.tilt);
+        if(state.selected===1&&Math.floor(c)%8===4)mk('path',{
+          d:`M${hx-u*.065} ${hy}l${u*.05} 0 M${hx+u*.025} ${hy}l${u*.05} 0`,
+          stroke:'#6b1923','stroke-width':u*.012,'stroke-linecap':'round'},g);
+      }
+    }
+    if(d.id==='jarabe'||d.id==='fan') {
+      const a=J.lWa,b=J.rWa,y=Math.max(J.lAn[1],J.rAn[1])-u*.045;
+      const swing=d.id==='jarabe'?Math.abs(Math.sin(c*Math.PI/2)):0;
+      const width=u*(d.id==='jarabe'?.26+swing*.1:.23),cx=(a[0]+b[0])/2,cy=(a[1]+b[1])/2;
+      const hem=y-(d.id==='jarabe'&&state.selected===1?swing*u*.14:0);
+      let path=`M${a[0]} ${cy}Q${cx-width*.85} ${cy+u*.18} ${cx-width} ${hem}
+        Q${cx} ${hem+u*.06} ${cx+width} ${hem}Q${cx+width*.85} ${cy+u*.18} ${b[0]} ${cy}Z`;
+      if(d.id==='jarabe'&&state.selected===1){
+        const hands=[J.lHa,J.rHa].sort((v,w)=>v[0]-w[0]);
+        path=`M${a[0]} ${cy}L${hands[0][0]} ${hands[0][1]}Q${cx-width} ${hem} ${cx} ${hem+u*.06}
+          Q${cx+width} ${hem} ${hands[1][0]} ${hands[1][1]}L${b[0]} ${cy}Z`;
+      }
+      mk('path',{d:path,fill:d.colors.bottom,stroke:Dance.shade(d.colors.bottom,.3),'stroke-width':2},g);
+      const clip=mk('clipPath',{id:renderer.clipId},g);
+      mk('path',{d:path},clip);
+      const details=mk('g',{'clip-path':'url(#'+renderer.clipId+')'},g);
+      if(d.id==='jarabe')for(const [k,col] of [[.64,'#2b9348'],[.8,'#f2c14e'],[.94,'#f6f1e7']]) {
+        const yy=cy+(hem-cy)*k,ww=width*k;
+        mk('path',{d:`M${cx-ww} ${yy}Q${cx} ${yy+u*.05} ${cx+ww} ${yy}`,fill:'none',stroke:col,
+          'stroke-width':u*.025,'stroke-dasharray':`${u*.018} ${u*.005}`},details);
+      }
+      for(let k=-2;k<=2;k++)mk('path',{
+        d:`M${cx+k*u*.025} ${cy+u*.04}Q${cx+k*u*.05} ${hem-u*.09} ${cx+k*width/3} ${hem}`,
+        fill:'none',stroke:'#ffffff','stroke-width':u*.009,opacity:.3},details);
+    }
+    if(d.id==='bhangra') {
+      mk('path',{d:`M${hx-u*.067} ${hy-u*.02}Q${hx-u*.06} ${hy-u*.13} ${hx} ${hy-u*.11}
+        Q${hx+u*.07} ${hy-u*.1} ${hx+u*.07} ${hy-u*.02}Z`,fill:'#c2185b',stroke:'#7a103c','stroke-width':2},g);
+      for(let i=0;i<3;i++)mk('path',{d:`M${hx-u*.05} ${hy-u*(.02+i*.022)}l${u*.1} ${-u*.025}`,
+        stroke:'#ef87ae','stroke-width':u*.009,fill:'none'},g);
+    }
+    if(d.id==='fan')for(const [key,side] of [['lHa',1],['rHa',-1]]) {
+      const a=J[key],angle=side*(30+Math.sin(c*Math.PI/4)*22);
+      imageProp(g,Math.floor(c)%8===7?art.fanClosed:art.fanOpen,a[0],a[1]-u*.08,u*.31,u*.31,angle);
+    }
+    if(d.id==='second') {
+      const a=J.rHa,b=J.lHa;
+      imageProp(g,art.umbrella,a[0],a[1]-u*.15,u*.45,u*.45,state.selected===1?c*75:Math.sin(c)*8);
+      mk('path',{d:`M${b[0]} ${b[1]}q${u*.09} ${-u*.02} ${u*.13} ${u*.07}
+        l${-u*.04} ${u*.06}q${-u*.06} ${-u*.08} ${-u*.1} ${-u*.04}Z`,fill:'#fffaf2',stroke:'#b5aaa0','stroke-width':1.2},g);
+    }
+    if(d.id==='kpanlogo')for(let k=0;k<4;k++) {
+      const yy=J.lSh[1]+(J.rWa[1]-J.lSh[1])*(k+.5)/4;
+      mk('path',{d:`M${J.rSh[0]} ${yy}l${u*.1} ${u*.025}l${u*.08} ${-u*.025}`,fill:'none',
+        stroke:k%2?'#00695c':'#ffe5a3','stroke-width':u*.016},g);
+    }
+  }
+  function makeFigures() {
+    figure.forEach(x=>x.remove());
+    figure=[];
+    floor.layers.shadow.textContent='';
+    figure.push(createFigureRenderer(current(),0));
+    if(current().id==='lion')figure.push(createFigureRenderer(current(),1));
+    poseMove(0,0);
+  }
+  function phraseFor(moveIndex,copy=false,index=0) {
+    const d=current(),m=d.moves[moveIndex],frames=m.poses.map(x=>copy?Dance.mirror(p(x)):p(x));
+    const ph=Dance.phrase([{poses:frames,counts:8,dyn:m.dyn,facing:0,
+      at:{x:d.id==='lion'?(index===0?57:40):58,z:43}}]);
+    return {total:8,steps:ph.steps,at(c){
+      const s=ph.at(c);
+      s.facing=copy?0:m.turn?c/8*360:0;
+      if(copy&&m.turn)s.pose.yaw=-c/8*360;
+      if(d.id==='lion'&&moveIndex===1)s.z=43+Math.sin(c/8*Math.PI)*6;
+      if(d.id==='second'&&moveIndex===0)s.z=43+Math.sin(c/8*Math.PI*2)*6;
+      if(d.id==='kpanlogo'&&moveIndex===1)s.x=58+Math.sin(c*Math.PI/2)*2;
+      return s;
+    }};
+  }
+  function poseMove(moveIndex,c=.6) {
+    state.selected=moveIndex;
+    figure.forEach((r,i)=>r.model.set(phraseFor(moveIndex,state.tab==='copy',i).at(c)));
+    figure.forEach((r,i)=>decorateFigure(r,current(),i));
+  }
+  function drawLights() {
+    lightLayer.textContent='';
+    const w=floor.w,h=floor.h;
+    for(let row=0;row<7;row++) {
+      const y=8+row*Math.min(h*.012,9),drop=16+row*1.5;
+      mk('path',{d:`M0 ${y}Q${w/2} ${y+drop*2} ${w} ${y}`,fill:'none',stroke:'#514131','stroke-width':1.7},lightLayer);
+      for(let k=0;k<9;k++) {
+        const x=w*(k+.5)/9,cy=y+4*drop*(x/w)*(1-x/w),on=state.visited.includes(row);
+        if(on)mk('circle',{cx:x,cy:cy+5,r:12,fill:'#f7d774',opacity:.16,class:Curio.reduce?'':'glow-bulb'},lightLayer);
+        mk('path',{d:`M${x} ${cy}v5`,stroke:'#514131','stroke-width':2},lightLayer);
+        mk('ellipse',{cx:x,cy:cy+8,rx:3.5,ry:5,fill:on?'#f7d774':'#625b50',
+          stroke:on?'#fff1b5':'#3a3731','stroke-width':1},lightLayer);
+      }
+    }
+    $('lights').textContent=state.visited.length+' of 7';
+    $('home-note').querySelector('strong').textContent=state.visited.length===7?'Our gym is glowing!':'Come dance!';
+    $('home-note').querySelector('span').textContent=state.visited.length===7?'Seven dances shared. Pick one again.':"Pick a family's table.";
+  }
+  function layoutTables() {
+    const coords=innerWidth<=600?[[25,17],[75,17],[25,39],[75,39],[25,65],[75,65],[50,88]]:
+      [[11,29],[37,27],[63,27],[89,29],[15,75],[50,75],[85,75]];
+    DATA.forEach((d,i)=>{
+      $('table-card-'+i).style.left=coords[i][0]+'%';
+      $('table-card-'+i).style.top=coords[i][1]+'%';
+    });
+  }
+  function relayout() {
+    const w=$('stage').clientWidth,h=$('stage').clientHeight;
+    $('sv').setAttribute('viewBox',`0 0 ${w} ${h}`);
+    floor.opts.dancerFrac=state.table!==null&&['fan','second'].includes(current().id)? .45:.53;
+    floor.resize(w,h,{x0:-w*.08,x1:w*1.08,yBack:h*.30,yFront:h*.95});
+    const bg=floor.layers.bg.querySelector('image');
+    if(bg){bg.setAttribute('height',h);
+    bg.setAttribute('preserveAspectRatio','xMidYMid slice');
+    }
+    floor.layers.floor.style.opacity='.12';
+    floor.layers.actors.style.display=state.table===null?'none':'';
+    floor.layers.shadow.style.display=state.table===null?'none':'';
+    floor.layers.bg.style.filter=state.visited.length===7?'brightness(1.16)':'';
+    figure.forEach(r=>r.model.render());
+    if(state.table!==null)figure.forEach((r,i)=>decorateFigure(r,current(),i));
+    countStrip.layout({x:w*.28,y:h-36,w:w*.55,h:26});
+    drawLights();
+    layoutTables();
+    countStrip.g.style.display=state.table===null||state.tab==='copy'?'none':'';
+  }
+  function selectTab(tab,focus=false) {
+    stopRun();
+    state.favorite=false;
+    state.tab=tab;
+    for(const k of ['watch','copy','words','from']){
+      $('tab-'+k).setAttribute('aria-selected',tab===k);
+      $(k).hidden=tab!==k;
+    }
+    $('favorite-view').hidden=true;
+    $('favorite').setAttribute('aria-pressed','false');
+    countStrip.g.style.display=tab==='copy'?'none':'';
+    if(tab==='copy'){
+      poseMove(state.selected);
+      hint(L.chooseMove);
+      V.how('chooseMove',{valid:()=>state.tab==='copy',needs:'#move-0'});
+    }
+    if(tab==='words'){hint(L.words);
+    V.how('words',{valid:()=>state.tab==='words',needs:'.word'});
+    }
+    if(tab==='from'){drawMap();
+    hint(L.fromHint);
+    V.say('from'+state.table,{valid:()=>state.tab==='from'});
+    }
+    if(tab==='watch'){hint(L.watch);
+    V.how('watch',{valid:()=>!state.playing,needs:'#play'});
+    }
+    if(focus)$('tab-'+tab).focus({preventScroll:true});
+  }
+  function openTable(i) {
+    stopRun();
+    state.table=i;
+    state.tab='watch';
+    state.selected=0;
+    state.shown='both';
+    state.slow=false;
+    state.favorite=false;
+    document.body.classList.remove('home');
+    $('home-tables').hidden=true;
+    $('home-note').hidden=true;
+    $('home-hint').hidden=true;
+    $('stage-title').hidden=false;
+    $('stage-title').textContent=DATA[i].name;
+    $('prop-table').src=art[DATA[i].id];
+    $('prop-table').hidden=false;
+    $('dance-name').textContent=DATA[i].name;
+    $('slow').setAttribute('aria-pressed','false');
+    $('vote-badge').hidden=!state.votes[i];
+    if(state.votes[i])$('vote-badge').textContent='♥ '+state.votes[i];
+    for(const k of ['watch','copy','words','from']){
+      $('tab-'+k).setAttribute('aria-selected',k==='watch');
+      $(k).hidden=k!=='watch';
+    }
+    $('favorite-view').hidden=true;
+    DATA[i].moves.forEach((m,j)=>{
+      $('move-'+j).querySelector('span span').textContent=m.name;
+      Dance.icon($('move-'+j).querySelector('svg'),Dance.mirror(p(m.poses[0])),{...DATA[i].colors,facing:0});
+    });
+    makeFavorites();
+    makeFigures();
+    relayout();
+    hint(L.watch);
+    V.say('table'+i);
+    V.how('watch',{valid:()=>!state.playing&&state.tab==='watch',needs:'#play'});
+    $('tab-watch').focus({preventScroll:true});
+  }
+  function backHome() {
+    if(state.table===null)return;
+    const old=state.table,first=!state.visited.includes(old);
+    stopRun();
+    state.table=null;
+    state.favorite=false;
+    state.tab='gym';
+    if(first)state.visited.push(old);
+    document.body.classList.add('home');
+    $('home-tables').hidden=false;
+    $('home-note').hidden=false;
+    $('home-hint').hidden=false;
+    $('stage-title').hidden=true;
+    $('prop-table').hidden=true;
+    $('vote-badge').hidden=true;
+    $('table-card-'+old).classList.add('visited');
+    $('table-'+old).setAttribute('aria-label',DATA[old].name+', visited');
+    $('home-hint').textContent=state.visited.length===7?
+      'Every family shared a dance. Pick a table to dance again.':'Tap another table to meet its dance.';
+    relayout();
+    if(first){Curio.yes();
+    V.say(state.visited.length===7?'all':'lights');
+    }
+    $('table-'+old).focus({preventScroll:true});
+  }
+  function makeMusic(d,volume) {
+    const pattern=(n,fn)=>Array.from({length:n},(_,i)=>fn(i));
+    const notes=[60,64,67,69,67,64,62,60],parts={};
+    if(d.id==='lion'){parts.kick='X...x...X...x...';
+    parts.wood='....x.......x...';
+    }
+    if(d.id==='jarabe'){
+      parts.pluck=pattern(48,i=>i%3===0?notes[Math.floor(i/3)%8]+7:null);
+      parts.stamp='X..x..x..X..x..x';
+    }
+    if(d.id==='irish'){parts.tap='x.x.x.x.x.x.x.x.';
+    parts.kick='X.......x.......';
+    }
+    if(d.id==='bhangra'){
+      parts.kick='X...x...X...x...';
+      parts.clap='...x...x...x...x';
+      parts.pluck=pattern(32,i=>i%4===0?[62,65,69,72][i/4%4]:null);
+    }
+    if(d.id==='fan'){parts.wood='X.....x..x..';
+    parts.kick='X.....x.....';
+    }
+    if(d.id==='second'){
+      parts.bass=pattern(32,i=>i%4===0?[48,43,48,46][i/4%4]:null);
+      parts.snare='..x...x...x...x.';
+      parts.kick='X...x...X...x...';
+    }
+    if(d.id==='kpanlogo'){parts.kick='X..x..x.X..x..x.';
+    parts.wood='x..x..x.x.x.x...';
+    parts.shaker='xxxxxxxxxxxxxxxx';
+    }
+    const sub=['jarabe','fan'].includes(d.id)?3:2;
+    // Repeat each short drum pattern through a complete sixteen-count loop.
+    for(const key in parts)if(typeof parts[key]==='string')parts[key]=parts[key].repeat(Math.ceil(16*sub/parts[key].length)).slice(0,16*sub);
+    return Dance.music({len:16,sub,swing:['bhangra','second'].includes(d.id)?.24:0,vol:volume,parts},clk);
+  }
+  function makeExtraAudio(d,volume) {
+    let out=null,noise=null;
+    const stop=()=>{if(out){out.gain.value=0;
+    const old=out;
+    setTimeout(()=>old.disconnect(),80);
+    out=null;
+    }};
+    const count=n=>{
+      if(n<=0||!Curio.sound||!Dance.heard)return;
+      const a=Curio.audio(),t=a.currentTime+.015,beat=(n-1)%16;
+      if(!out){out=a.createGain();
+      out.gain.value=volume;
+      out.connect(a.destination);
+      }
+      const tone=(freq,type,dur,gain,filter=2200,vibrato=false)=>{
+        const o=a.createOscillator(),g=a.createGain(),f=a.createBiquadFilter();
+        o.type=type;
+        o.frequency.value=freq;
+        f.type='lowpass';
+        f.frequency.value=filter;
+        g.gain.setValueAtTime(.0001,t);
+        g.gain.exponentialRampToValueAtTime(gain,t+.02);
+        g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+        o.connect(f).connect(g).connect(out);
+        o.start(t);
+        o.stop(t+dur+.02);
+        if(vibrato){
+          const l=a.createOscillator(),lg=a.createGain();
+          l.frequency.value=5.5;
+          lg.gain.value=freq*.007;
+          l.connect(lg).connect(o.frequency);
+          l.start(t);
+          l.stop(t+dur+.02);
+        }
+      };
+      const drum=(freq,dur=.22)=>tone(freq,'sine',dur,.32,900);
+      const hiss=(dur,freq,gain)=>{
+        if(!noise){
+          noise=a.createBuffer(1,a.sampleRate,a.sampleRate);
+          const ar=noise.getChannelData(0);
+          for(let i=0;i<ar.length;i++)ar[i]=Math.random()*2-1;
+        }
+        const s=a.createBufferSource(),f=a.createBiquadFilter(),g=a.createGain();
+        s.buffer=noise;
+        f.type='highpass';
+        f.frequency.value=freq;
+        g.gain.setValueAtTime(gain,t);
+        g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+        s.connect(f).connect(g).connect(out);
+        s.start(t);
+        s.stop(t+dur);
+      };
+      const notes=[60,64,67,69,67,64,62,60],freq=k=>440*2**((k-69)/12),dur=60/clk.bpm;
+      if(d.id==='lion'){
+        drum(beat%4?115:75);
+        if(beat%4===1||beat%4===3)hiss(.4,2600,.19);
+        if(beat%8===0)[98,147,207,281].forEach(f=>tone(f,'sine',1.1,.1));
+      }
+      if(d.id==='jarabe')tone(freq(notes[beat%8]+12),'sawtooth',dur*.8,.1,1500);
+      if(d.id==='irish'){
+        tone(freq(notes[beat%8]+7),'sawtooth',dur*.9,.13,2400,true);
+        if(beat%2===0)drum(110);
+      }
+      if(d.id==='bhangra')drum(beat%2?175:85);
+      if(d.id==='fan'){
+        tone(freq([72,74,79,76,74,72,67,72][beat%8]),'sine',dur*.9,.2,1800,true);
+        hiss(.2,3000,.015);
+        drum(beat%3?190:95,.13);
+      }
+      if(d.id==='second')[60,64,67].forEach((nt,i)=>tone(freq(nt+(beat%4===2?5:0)),'sawtooth',dur*.6,.055,1200+i*180));
+      if(d.id==='kpanlogo')drum(beat%3===0?90:beat%2?170:130,.15);
+    };
+    const off=clk.onCount(count);
+    return {stop(){off();
+    stop();
+    },duck(v){if(out)out.gain.value=!Curio.sound?0:v?volume*.501:volume;
+    }};
+  }
+  async function speakDuring(line,options={}) {
+    const speech=++speechEpoch;
+    if(music){music.stop();
+    music=makeMusic(current(),.23);
+    }
+    if(extraAudio)extraAudio.duck(true);
+    const token=state.runId;
+    await V.say(line,{...options,wait:true});
+    if(token!==state.runId||speech!==speechEpoch)return;
+    if(music){music.stop();
+    music=makeMusic(current(),.46);
+    }
+    if(extraAudio)extraAudio.duck(false);
+  }
+  function showCount(n) {
+    state.count=n;
+    state.countIn=n<=0;
+    $('count').hidden=false;
+    $('count').innerHTML=(n<=0?n+4:((n-1)%8)+1)+'<small>'+(n<=0?'GET READY':'COPY THE MOVE')+'</small>';
+  }
+  function startRun(moveIndex=null,countIn=false) {
+    stopRun();
+    const d=current(),token=state.runId;
+    state.playing=true;
+    state.shown=moveIndex===null?'both':moveIndex;
+    if(moveIndex!==null)state.selected=moveIndex;
+    const copy=moveIndex!==null||state.tab==='copy';
+    clk=Dance.clock(d.bpm*((copy||state.slow)? .6:1),{meter:['jarabe','fan'].includes(d.id)?3:4,countIn:countIn?4:0});
+    if(copy)poseMove(state.selected,0);
+    hint(copy?'Copy the dancer like a mirror. Tap a move to try again.':'Watch the two moves. Tap Slow to copy, or tap Stop.');
+    $('play').textContent='■ Stop';
+    music=makeMusic(d,.46);
+    extraAudio=makeExtraAudio(d,.46);
+    const phrases=figure.map((r,i)=>{
+      if(moveIndex!==null)return phraseFor(moveIndex,true,i);
+      const a=phraseFor(0,false,i),b=phraseFor(1,false,i);
+      return {total:16,at(c){return c<8?a.at(c):b.at(c-8);
+      }};
+    });
+    let began=false;
+    const begin=()=>{
+      if(began||token!==state.runId)return;
+      began=true;
+      run=Dance.play(figure.map(r=>r.model),phrases,{clock:clk,loop:moveIndex===null,
+        onFrame(pos){
+          if(moveIndex===null)state.selected=Math.floor(Math.max(0,pos)%16/8);
+          figure.forEach((r,i)=>decorateFigure(r,d,i));
+        },onEnd(){
+          if(token!==state.runId)return;
+          stopRun(false);
+          hint('Tap Words to describe the move, or tap another move.');
+          V.how('words',{valid:()=>state.tab==='copy',needs:'#tab-words'});
+        }});
+      if(moveIndex!==null)speakDuring('move'+state.table+moveIndex,{valid:()=>token===state.runId});
+    };
+    clk.onCount(n=>{
+      if(token!==state.runId)return;
+      if(n>0&&pendingRead){pendingRead=false;
+      stopRun(false);
+      V.read();
+      return;
+      }
+      if(n===1)begin();
+      if(copy||n<=0)showCount(n);
+      if(moveIndex===null)countStrip.set(n);
+      if(n>0&&pendingWord){const line=pendingWord;
+      pendingWord=null;
+      speakDuring(line);
+      }
+      if(moveIndex===null&&n===17){
+        hint('Tap Copy, then tap a move to try it.');
+        if(!V.heard('copy'))speakDuring('copy',{kind:'how',valid:()=>state.tab==='watch',needs:'#tab-copy'});
+      }
+    });
+    if(!countIn)begin();
+    clk.start();
+  }
+  function answerWord(w) {
+    const d=current(),fits=state.shown==='both'?d.moves.some(m=>m.words.includes(w)):d.moves[state.shown].words.includes(w);
+    const key=(fits?'yes':'no')+w;
+    state.lastAnswer={word:w,fits,shown:state.shown};
+    document.querySelectorAll('.word').forEach(b=>b.setAttribute('aria-pressed',b.dataset.word===w));
+    hint(L[key]);
+    Curio.tone(fits?660:390,.13,.035);
+    $('stage-title').textContent=d.name+' · '+w;
+    if(state.playing)pendingWord=key;
+    else V.say(key,{now:true});
+  }
+  function drawMap() {
+    const svg=$('map');
+    svg.textContent='';
+    mk('path',{d:WORLD.d,transform:'translate(0 10) scale(.36)',fill:'#b8c7a3',stroke:'#778a73',
+      'stroke-width':1.5,'stroke-linejoin':'round'},svg);
+    const [lat,lon]=current().pin,t=Math.asin(Math.sqrt(3)/2*Math.sin(lat*Math.PI/180));
+    const xx=2*Math.sqrt(3)*(lon*Math.PI/180)*Math.cos(t)/
+      (3*(9*.003796*t**8+7*.000893*t**6-3*.081106*t*t+1.340264));
+    const yy=.003796*t**9+.000893*t**7-.081106*t**3+1.340264*t;
+    const x=(xx+WORLD.xmax)*WORLD.s*.36,y=(WORLD.ymax-yy)*WORLD.s*.36+10;
+    mk('circle',{cx:x,cy:y,r:10,fill:'#fff8de',stroke:'#7f1d1d','stroke-width':2},svg);
+    mk('circle',{cx:x,cy:y,r:4.5,fill:'#7f1d1d'},svg);
+    mk('path',{d:`M${x} ${y+12}v13`,stroke:'#7f1d1d','stroke-width':3},svg);
+    const label=mk('text',{x:x>240?x-12:x+12,y:y<34?y+21:y-11,'text-anchor':x>240?'end':'start',
+      fill:'#4b1616','font-size':12,'font-weight':800,'paint-order':'stroke',stroke:'#faffef','stroke-width':3},svg);
+    label.textContent=current().id==='bhangra'?'Punjab':current().id==='second'?'New Orleans':current().place.split(',')[0];
+    $('map').setAttribute('aria-label','World map: '+current().place);
+    $('place').textContent='⌖ '+current().place;
+    $('origin').textContent=current().origin;
+  }
+  function makeFavorites() {
+    const box=$('favorites');
+    box.textContent='';
+    const d=current();
+    ['Move 1','Move 2','The music','The '+d.prop].forEach((name,i)=>{
+      const b=document.createElement('button');
+      b.className='big-btn soft';
+      b.textContent=['↔ ','↔ ','♫ ','✧ '][i]+name;
+      b.onclick=()=>{
+        state.votes[state.table]=i<2?d.moves[i].name:name;
+        $('vote-badge').textContent='♥ '+state.votes[state.table];
+        $('vote-badge').hidden=false;
+        [...box.children].forEach(x=>x.setAttribute('aria-pressed',x===b));
+        hint(L.favorite);
+        Curio.tone(784,.2,.04);
+        V.say('favorite');
+      };
+      box.appendChild(b);
+    });
+  }
+  function toggleFavorite() {
+    if(state.favorite){selectTab(state.tab);
+    return;
+    }
+    stopRun();
+    state.favorite=true;
+    for(const k of ['watch','copy','words','from'])$(k).hidden=true;
+    $('favorite-view').hidden=false;
+    $('favorite').setAttribute('aria-pressed','true');
+    hint(L.vote);
+    V.how('vote',{valid:()=>state.favorite,needs:'#favorites button'});
+  }
+  DATA.forEach((d,i)=>{
+    const card=document.createElement('div');
+    card.className='table-card';
+    card.id='table-card-'+i;
+    card.innerHTML='<img alt="" src="'+art[d.id]+'"><button id="table-'+i+'"><b>'+d.icon+'</b><span>'+d.name+
+      '</span><span class="tic" aria-hidden="true">✓</span></button>';
+    card.querySelector('button').onclick=()=>openTable(i);
+    $('home-tables').appendChild(card);
+  });
+  WORDS.forEach((w,i)=>{
+    const b=document.createElement('button');
+    b.className='word';
+    b.dataset.word=w;
+    b.id='word-'+w;
+    b.setAttribute('aria-pressed','false');
+    b.innerHTML='<b aria-hidden="true">'+WORD_ICONS[i]+'</b>'+w;
+    b.onclick=()=>answerWord(w);
+    $('word-grid').appendChild(b);
+  });
+  for(const tab of ['watch','copy','words','from'])$('tab-'+tab).onclick=()=>selectTab(tab);
+  $('play').onclick=()=>{
+    if(state.playing){stopRun();
+    hint(L.watch);
+    }
+    else startRun();
+  };
+  $('slow').onclick=()=>{
+    state.slow=!state.slow;
+    $('slow').setAttribute('aria-pressed',state.slow);
+    if(clk)clk.setBpm(current().bpm*(state.slow? .6:1));
+    Curio.tone(state.slow?330:520,.1,.025);
+  };
+  for(let j=0;j<2;j++)$('move-'+j).onclick=()=>startRun(j);
+  $('count-in').onclick=()=>startRun(state.selected,true);
+  $('favorite').onclick=toggleFavorite;
+  $('back').onclick=backHome;
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&state.table!==null){e.preventDefault();
+    backHome();
+    }
+    if(e.code==='Space'&&state.table!==null&&!e.repeat){
+      e.preventDefault();
+      if(state.playing){stopRun();
+      hint(state.tab==='copy'?L.chooseMove:L.watch);
+      }
+      else startRun(state.tab==='copy'?state.selected:null);
+    }
+    const tabs=['watch','copy','words','from'];
+    if(e.target.closest('.tabs')&&['ArrowLeft','ArrowRight'].includes(e.key)){
+      e.preventDefault();
+      selectTab(tabs[(tabs.indexOf(state.tab)+(e.key==='ArrowRight'?1:3))%4],true);
+    }
+  });
+  Curio.init({clips:"voice:*",rate:.88});
+  $('read').onclick=()=>{
+    if(state.countIn){pendingRead=true;
+    return;
+    }
+    if(state.playing)stopRun(false);
+    V.read();
+  };
+  Curio.onSound(on=>{if(extraAudio)extraAudio.duck(!on);
+  });
+  Curio.onMotion(()=>{if(floor)drawLights();
+  });
+  floor=Dance.floor($('sv'),'square',{backdrop:art.gym,dancerFrac:.53});
+  lightLayer=mk('g',{},floor.layers.marks);
+  countStrip=Dance.counts(floor.layers.front,null,{n:8,mode:'numbers',on:'#f7d774',offLine:'#8a6344'});
+  new ResizeObserver(relayout).observe($('stage'));
+  hint(L.welcome);
+  relayout();
+  window.__tool={state,DATA,WORDS,L,setMode:selectTab,openTable,backHome,startRun,stopRun,poseMove,answerWord,
+    allLines:V.allLines,vlog:V.log,get vq(){return V.queue;
+    },get figures(){return figure;
+    },get clock(){return clk;
+    },
+    painterNames,phraseFor,relayout};
+})();
+</script>
+</body>
+</html>

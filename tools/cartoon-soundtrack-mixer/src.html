@@ -1,0 +1,1513 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cartoon Soundtrack Mixer · Curio Class</title>
+<meta name="description" content="Score an original silent cartoon, then swap the music to change its mood. Grades 3 to 5. Works offline.">
+<!-- Curio Class. Original cartoon and cues. Content CC BY 4.0; code MIT.
+     History: Library of Congress Silent Film Music; Rapee, Motion Picture Moods (1924); Altman, Silent Film Sound (2004).
+     Illustrations generated with OpenAI gpt-image, edited for Curio Class. All audio synthesized locally. -->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#17120d; --panel:#2a221a; --ink:#efe6d4; --muted:#b3a68e; --line:#685238;
+  --brand:#e9b949; --btn:#34291e; --btn-line:#8c7043; --head-ink:#efe6d4; --focus:#fff1b7;
+}
+body { overflow:hidden; min-height:0; grid-template-rows:64px 48px minmax(0,1fr) 46px; }
+header { display:contents; }
+.masthead { display:flex; align-items:center; background:linear-gradient(100deg,#302216,#17120d);
+  border-bottom:1px solid #8c7043; padding:6px 18px; gap:8px; }
+h1 { font:800 clamp(17px,2.2vw,28px)/1.1 Georgia,serif; color:var(--brand); letter-spacing:.01em; }
+h1 small { font:500 12px/1.4 'Segoe UI',sans-serif; color:var(--ink); }
+button, select, textarea { font:inherit; }
+button, select { min-height:44px; border:1px solid #8c7043; border-radius:7px; background:#34291e; color:var(--ink); }
+button { min-width:44px; padding:6px 12px; font-weight:700; }
+button:hover { filter:brightness(1.15); }
+button[aria-pressed="true"], .gold { background:var(--brand); color:var(--paper); border-color:#ffe19a; }
+.icon-btn { min-height:44px; padding:0 10px; font-size:13px; }
+nav.seg { display:flex; align-items:center; justify-content:center; gap:5px; background:#20180f;
+  border:0; border-radius:0; overflow:visible; }
+nav.seg button { min-width:140px; min-height:44px; border-radius:0; border:0; border-bottom:3px solid transparent;
+  background:transparent; padding:6px 12px; font-size:16px; }
+nav button[aria-pressed="true"] { background:#372b18; color:var(--brand); border-bottom-color:var(--brand); }
+main { display:grid; grid-template-columns:minmax(0,1fr) 310px; gap:12px; padding:12px; min-height:0; }
+.work { display:flex; flex-direction:column; gap:8px; min-height:0; min-width:0; }
+.projection { flex:1 1 0; position:relative; min-height:0; display:grid; place-items:center; overflow:hidden;
+  background:radial-gradient(ellipse at 50% 40%,#473420,#110d0a 75%); border:1px solid #685238; border-radius:10px; }
+.projection::before,.projection::after { content:""; position:absolute; top:0; bottom:0; width:24px; z-index:2;
+  background:repeating-linear-gradient(90deg,#331314,#60262a 10px,#361416 19px); box-shadow:0 0 15px #000; }
+.projection::before { left:0; border-radius:0 0 70% 0; }
+.projection::after { right:0; border-radius:0 0 0 70%; }
+#theaterArt { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+#screen { position:absolute; inset:0; width:100%; height:100%; display:block; object-fit:contain; padding:8px 30px; }
+body[data-mode="theater"] #screen { inset:auto; width:60%; height:auto; aspect-ratio:16/9; position:absolute; right:5%; top:12%; padding:0;
+  border:2px solid #d4b06b; box-shadow:0 0 22px #f5c96955; background:#000; }
+body[data-mode="theater"] .projection::before,body[data-mode="theater"] .projection::after { display:none; }
+.film-label { position:absolute; bottom:8px; left:40px; padding:4px 10px; border-radius:4px; background:#17120de6;
+  color:#e9b949; font:700 11px/1.3 monospace; letter-spacing:.08em; pointer-events:none; }
+.transport { display:flex; gap:6px; align-items:center; flex:none; }
+.transport button { flex:1; }
+.projection .transport { position:absolute; z-index:4; bottom:4px; left:5px; right:5px; background:#17120ddd; }
+.projection:has(.transport) .film-label { top:3px; bottom:auto; }
+#time { min-width:80px; text-align:center; font:700 13px monospace; color:var(--brand); }
+.timeline-scroll { overflow-x:auto; overflow-y:hidden; flex:none; border:1px solid #8c7043; border-radius:7px;
+  background:#201a13; scrollbar-color:#a08046 #241b11; }
+#timeline { position:relative; width:100%; min-width:0; padding-bottom:2px; }
+#ruler { position:relative; width:100%; height:44px; touch-action:none; cursor:ew-resize; padding:0; border:0;
+  background:repeating-linear-gradient(90deg,transparent 0 calc(25% - 1px),#6c563b calc(25% - 1px) 25%); border-radius:0; }
+.ruler-number { position:absolute; top:6px; font:12px monospace; color:var(--muted); transform:translateX(-50%); }
+.ruler-number:first-child { transform:none; }
+.ruler-number:last-child { transform:translateX(-100%); }
+.track-name { font:700 10px monospace; color:var(--muted); position:absolute; top:27px; left:5px; letter-spacing:.08em; }
+#blocks { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:3px; padding:0 3px; }
+.cue { position:relative; min-width:0; min-height:59px; padding:4px; text-align:left; background:#342d23; border:1px dashed #a9926a; }
+.cue strong { display:block; font-size:13px; }
+.cue small { font-size:10px; display:block; line-height:1.3; font-weight:500; }
+.cue[aria-pressed="true"] { outline:2px solid #fff3c5; outline-offset:-3px; }
+.cue:focus-visible { outline:3px solid #fff1b7; outline-offset:2px; }
+.cue.bright { background:#f2d27a; color:#17120d; }
+.cue.dark { background:repeating-linear-gradient(135deg,#8fb6f0 0 8px,#a4c4f2 8px 10px); color:#17120d; }
+.cue.creepy { background:radial-gradient(#a784c5 1px,transparent 1px) 0 0/8px 8px,#c9a2e8; color:#17120d; }
+#effectsTrack { height:51px; position:relative; touch-action:none; border-top:1px solid #685238; margin-top:3px;
+  background:repeating-linear-gradient(90deg,transparent 0 calc(25% - 1px),#55432d calc(25% - 1px) 25%); }
+#effectsTrack.two { height:100px; }
+#effectPins { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible; }
+#effectPins line { stroke:#c5f3c7; stroke-width:1.5; }
+#effectPins .duration { stroke-width:3; opacity:.8; }
+#effectsTrack.packed .effect { border-top:3px solid #e4ffe6; }
+.empty-effects { position:absolute; inset:0; display:grid; place-items:center; color:var(--muted); font-size:12px; pointer-events:none; }
+.effect { position:absolute; height:44px; min-width:44px; overflow:hidden; padding:3px 5px; border-radius:5px;
+  background:#9fd8a8; border:1px solid #c5f3c7; color:#17120d; text-align:left; white-space:nowrap; touch-action:none; }
+.effect small { display:block; font:10px/10px monospace; white-space:pre-line; }
+.effect span,.effect small { display:block; overflow:hidden; text-overflow:ellipsis; }
+.effect span { font:700 11px/1.25 'Segoe UI',sans-serif; }
+.effect[aria-pressed="true"] { background:#d1f2d4; outline:3px solid #fff4c9; outline-offset:-3px; }
+.effect:focus-visible { outline:3px solid #fff1b7; outline-offset:2px; }
+#playhead { position:absolute; top:0; bottom:0; width:2px; background:#fff9db; pointer-events:none; box-shadow:0 0 5px #000; }
+#playhead::before { content:"▼"; position:absolute; left:-7px; top:25px; color:#fff9db; font-size:15px; }
+.panel { padding:0; border:1px solid #685238; border-radius:10px; background:linear-gradient(130deg,#332a20,#231c15);
+  overflow:hidden; gap:0; display:flex; min-height:0; }
+.panel-tabs { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; padding:5px; flex:none; }
+.panel-tabs button { padding:4px; font-size:13px; }
+.pane { padding:8px 12px; overflow:auto; min-height:0; flex:1; }
+.pane h2 { font:700 21px Georgia,serif; color:var(--brand); margin:3px 0 8px; }
+.pane p { font-size:15px; line-height:1.45; }
+.eyebrow { font:700 11px monospace; text-transform:uppercase; letter-spacing:.1em; color:var(--brand); }
+.history { border-left:2px solid var(--brand); padding-left:12px; }
+.theater-actions { display:grid; gap:8px; margin-top:18px; }
+.shapers { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+label { display:block; color:var(--muted); font-size:12px; font-weight:700; }
+select { display:block; width:100%; padding:5px; color:var(--ink); margin-top:3px; }
+.shapers select:focus-visible,#rainLength:focus-visible { outline:3px solid var(--focus); outline-offset:-3px; }
+.presets { display:grid; grid-template-columns:repeat(3,1fr); gap:5px; margin-top:12px; }
+.presets button { padding:4px; font-size:12px; }
+#presetLabel { display:none; }
+.shelf { display:grid; grid-template-columns:1fr 1fr; gap:5px; }
+.shelf button { background:#344834; border-color:#9fd8a8; text-align:left; font-size:12px; padding:4px 7px; touch-action:none; }
+.shelf button small { display:block; font:10px monospace; color:#d2dfcc; }
+.fx-short { display:none; }
+.shelf button[aria-pressed="true"] { background:#9fd8a8; color:#17120d; }
+.shelf button[aria-pressed="true"] small { color:#17120d; }
+.effect-edit { display:flex; align-items:center; gap:5px; margin-top:8px; flex-wrap:wrap; }
+.effect-edit button { flex:1; padding:3px 6px; }
+.note { color:var(--muted); font-size:12px!important; }
+#swapBar { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
+#swapBar button { min-height:58px; font-size:18px; }
+#choiceStrip { border:1px solid #685238; border-radius:7px; padding:8px 12px; min-height:56px; font-size:14px; line-height:1.4; }
+.moods { display:flex; gap:5px; flex-wrap:wrap; margin:10px 0; }
+.moods button { padding:5px 9px; font-size:13px; }
+.row { display:flex; gap:5px; flex-wrap:wrap; }
+.row button { flex:1; }
+footer { padding:7px 16px; border-top:1px solid #685238; display:flex; align-items:center; gap:12px; background:#21190f; }
+#hint { margin:0; font-size:13px; line-height:1.3; flex:1; min-height:32px; display:flex; align-items:center; }
+#saveStatus { font-size:11px; color:var(--muted); max-width:140px; }
+dialog { width:min(650px,calc(100% - 24px)); max-height:90vh; padding:20px; border:2px solid var(--brand); border-radius:12px;
+  background:#2a221a; color:var(--ink); box-shadow:0 25px 80px #000b; }
+dialog::backdrop { background:#000b; }
+dialog h2 { margin:0 0 12px; font:700 25px Georgia,serif; color:var(--brand); }
+dialog p { font-size:14px; line-height:1.5; }
+dialog label { font-size:12px; }
+textarea { display:block; width:100%; min-height:100px; resize:vertical; margin:7px 0 15px; background:#17120d;
+  color:var(--ink); border:1px solid #a48b5d; border-radius:6px; padding:10px; line-height:1.5; }
+textarea:focus-visible { outline:3px solid var(--focus); outline-offset:-3px; }
+.assets { display:none; }
+@media (max-height:600px) and (min-width:600px) {
+  body { grid-template-columns:minmax(0,1fr) auto; grid-template-rows:48px minmax(0,1fr) 38px; }
+  .masthead { grid-column:1; grid-row:1; padding:2px 6px; gap:4px; min-width:0; }
+  h1 { font-size:14px; min-width:0; } h1 small { display:none; }
+  .icon-btn { font-size:11px; padding:0 6px; }
+  nav.seg { grid-column:2; grid-row:1; gap:0; }
+  nav.seg button { min-width:88px; font-size:12px; padding:4px; }
+  main { grid-column:1/-1; grid-row:2; }
+  footer { grid-column:1/-1; grid-row:3; }
+  main { padding:6px; gap:6px; grid-template-columns:minmax(0,1fr) 220px; }
+  .work { gap:3px; }
+  .pane { padding:4px 7px; }
+  .pane h2 { font-size:16px; margin:2px 0 4px; }
+  .pane p { font-size:12px; margin:5px 0; }
+  .shapers { gap:2px 5px; }
+  label { font-size:10px; } select { margin:0; }
+  .presets { margin-top:4px; gap:2px; }
+  #cuePane .presets { display:none; } #presetLabel { display:block; }
+  .presets button { font-size:10px; }
+  .cue { min-height:47px; } .cue strong { font-size:11px; } .cue small { font-size:10px; }
+  .cue .detail { display:none; }
+  #ruler { height:30px; } .track-name { top:18px; } .ruler-number { top:1px; }
+  #ruler { min-height:44px; margin-bottom:0; z-index:1; background:transparent; }
+  #ruler .track-name { display:none; }
+  #blocks { position:relative; z-index:2; }
+  #playhead::before { top:15px; }
+  #time { min-width:65px; font-size:11px; }
+  .transport button { padding:4px 6px; font-size:12px; }
+  .film-label { bottom:3px; font-size:10px; }
+  #swapBar button { min-height:44px; font-size:15px; }
+  #choiceStrip { font-size:12px; min-height:45px; padding:5px 8px; }
+  #hint { font-size:11px; min-height:24px; } footer { padding:3px 9px; } #saveStatus { font-size:10px; }
+  .shelf { gap:2px; grid-template-columns:repeat(4,1fr); }
+  .shelf button { min-width:44px; font-size:10px; padding:3px; }
+  .fx-long { display:none; } .fx-short { display:block; }
+  .panel-tabs { padding:2px; }
+  .effect-edit { margin-top:3px; flex-wrap:nowrap; gap:3px; }
+  .effect-edit button { min-width:44px; font-size:10px; padding:3px; }
+  #rainLabel { font-size:0; width:44px; flex:none; }
+  #rainLength { width:44px; font-size:10px; }
+  #effectsPane .note { display:none; }
+  .theater-actions { margin-top:6px; gap:4px; }
+  dialog { padding:12px; } dialog h2 { font-size:22px; margin-bottom:6px; }
+  dialog textarea { min-height:70px; margin:4px 0 8px; }
+  dialog p { margin:6px 0; }
+}
+@media (max-width:599px) {
+  body { grid-template-rows:100px 46px minmax(0,1fr) 66px; }
+  .masthead { flex-wrap:wrap; padding:7px 9px; justify-content:center; gap:5px; }
+  h1 { flex-basis:100%; text-align:center; font-size:20px; }
+  h1 small { font-size:10px; }
+  .icon-btn { min-height:44px; padding:0 12px; }
+  nav.seg { gap:0; } nav.seg button { min-width:0; flex:1; padding:4px; font-size:14px; }
+  main { padding:6px; gap:6px; grid-template-columns:1fr; grid-template-rows:minmax(280px,1.6fr) minmax(155px,1fr); }
+  body[data-mode="theater"] main,body[data-mode="swap"] main { grid-template-rows:minmax(300px,2fr) minmax(150px,1fr); }
+  .work { gap:4px; } #screen { padding:2px 10px; }
+  body[data-mode="theater"] #screen { inset:0; width:100%; height:100%; padding:12px; border:0; background:transparent; }
+  .projection::before,.projection::after { width:10px; }
+  #timeline { min-width:720px; }
+  .cue { min-height:50px; } .cue small.detail { display:none; }
+  .pane { padding:5px 9px; } .pane h2 { font-size:17px; margin:0 0 3px; }
+  .pane p { font-size:12px; margin:4px 0; }
+  .panel-tabs { padding:2px; }
+  .shapers { grid-template-columns:repeat(3,1fr); gap:3px; }
+  label { font-size:10px; } select { margin:1px 0; padding:3px; font-size:12px; }
+  .presets { margin-top:5px; grid-template-columns:repeat(3,1fr); gap:3px; }
+  #cuePane .presets { display:none; } #presetLabel { display:block; }
+  .shelf { grid-template-columns:repeat(5,1fr); gap:3px; }
+  .shelf button { font-size:10px; padding:3px; line-height:1.15; }
+  .fx-long { display:none; } .fx-short { display:block; }
+  .shelf small { font-size:10px!important; }
+  #swapBar { gap:3px; } #swapBar button { font-size:14px; min-height:44px; padding:3px; }
+  #choiceStrip { font-size:12px; padding:5px 8px; min-height:56px; }
+  #hint { font-size:11px; min-height:38px; }
+  footer { padding:4px 9px; flex-direction:column; align-items:stretch; gap:0; }
+  #saveStatus { display:block; max-width:none; font-size:10px; }
+  .film-label { left:15px; bottom:3px; font-size:10px; }
+  .theater-actions { grid-template-columns:1fr 1fr; gap:4px; margin-top:5px; }
+  .theater-actions button { font-size:12px; padding:3px; }
+}
+</style>
+</head>
+<body data-mode="theater">
+<header>
+  <div class="masthead">
+  <h1>Cartoon Soundtrack Mixer<small>Scoring a silent cartoon · Curio Class</small></h1>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  </div>
+<nav class="seg" role="group" aria-label="Mode">
+  <button id="m-theater" aria-pressed="true">Theater</button>
+  <button id="m-score" aria-pressed="false">Score it</button>
+  <button id="m-swap" aria-pressed="false">Mood Swap</button>
+</nav>
+</header>
+<main>
+  <section class="work" aria-label="Movie and timeline">
+    <div class="projection" id="projection">
+      <img id="theaterArt" src="art:theater-piano" alt="A painted 1920s theater with an empty piano stool, warm lamps and velvet curtains">
+      <canvas id="screen" width="960" height="540" role="img" aria-label="Whiskers and the Storm, an original silent cat cartoon"></canvas>
+      <div class="film-label" id="filmLabel">WHISKERS AND THE STORM · 24 SECONDS</div>
+    </div>
+    <div class="transport">
+      <button class="gold" id="play">▶ Play silent</button>
+      <button id="playScene" hidden>Play scene</button>
+      <span id="time">0.0 / 24 s</span>
+    </div>
+    <div id="swapBar" hidden aria-label="Choose a score">
+      <button id="swap-Yours" aria-pressed="true">Yours</button>
+      <button id="swap-Funny" aria-pressed="false">Funny</button>
+      <button id="swap-Scary" aria-pressed="false">Scary</button>
+      <button id="swap-Sad" aria-pressed="false">Sad</button>
+    </div>
+    <div id="choiceStrip" hidden></div>
+    <div class="timeline-scroll" id="timelineScroll" hidden>
+      <div id="timeline">
+        <div id="ruler" role="slider" tabindex="0" aria-label="Movie playhead in seconds" aria-valuemin="0" aria-valuemax="24" aria-valuenow="0">
+          <span class="ruler-number" style="left:0">0 s</span><span class="ruler-number" style="left:25%">6</span>
+          <span class="ruler-number" style="left:50%">12</span><span class="ruler-number" style="left:75%">18</span>
+          <span class="ruler-number" style="left:100%;transform:translateX(-100%)">24</span><span class="track-name">MUSIC</span>
+        </div>
+        <div id="blocks"></div>
+        <div id="effectsTrack" role="group" tabindex="0" aria-label="Effects track, Enter places the selected sound at the playhead">
+          <span class="empty-effects" id="emptyEffects">＋ Tap a sound, then tap here</span>
+        </div>
+        <div id="playhead"></div>
+      </div>
+    </div>
+  </section>
+  <aside class="panel" id="panel">
+    <div class="panel-tabs" id="panelTabs" hidden>
+      <button id="tab-cue" aria-pressed="true">Music</button>
+      <button id="tab-effects" aria-pressed="false">Effects</button>
+      <button id="tab-story" aria-pressed="false">Story</button>
+    </div>
+    <section class="pane" id="theaterPane">
+      <span class="eyebrow">The pianist's bench</span>
+      <h2>Same picture.<br>Three different stories.</h2>
+      <p class="history">Before movies had sound, a pianist or organist in the theater played along, live, to fit each scene.</p>
+      <p>Many used books of music sorted by mood, so they could flip to a storm or a chase in seconds.</p>
+      <div class="theater-actions">
+        <button id="threeWays">Hear it three ways</button>
+        <button class="gold" id="startScore">Start scoring →</button>
+      </div>
+      <p class="note" id="demoName">An original cartoon. Your music tells its story.</p>
+    </section>
+    <section class="pane" id="cuePane" hidden>
+      <h2 id="cueTitle">1 · Fence</h2>
+      <div class="shapers">
+        <label>Feel<select id="feel"><option>Bright</option><option>Dark</option><option>Creepy</option></select></label>
+        <label>Tempo<select id="tempo"><option>Slow</option><option selected>Medium</option><option>Fast</option></select></label>
+        <label>Loudness<select id="loudness"><option>Soft</option><option selected>Medium</option><option>Loud</option></select></label>
+        <label>Instrument<select id="instrument"><option>Piano</option><option>Tuba</option><option>Strings</option><option>Xylophone</option></select></label>
+        <label>Style<select id="style"><option>Smooth</option><option>Bouncy</option></select></label>
+        <label id="presetLabel">Preset<select id="presetSelect"><option value="">Choose...</option><option>Tiptoe</option>
+          <option>Chase</option><option>Lullaby</option><option>Storm</option><option>March</option><option>Mystery</option></select></label>
+      </div>
+      <div class="presets" aria-label="Set all five music choices">
+        <button data-preset="Tiptoe">Tiptoe</button><button data-preset="Chase">Chase</button><button data-preset="Lullaby">Lullaby</button>
+        <button data-preset="Storm">Storm</button><button data-preset="March">March</button><button data-preset="Mystery">Mystery</button>
+      </div>
+      <p class="note">A preset shapes all five choices. Change any choice to make it yours.</p>
+    </section>
+    <section class="pane" id="effectsPane" hidden>
+      <h2>Sound effects</h2>
+      <div class="shelf" id="shelf"></div>
+      <div class="effect-edit" id="effectEdit" hidden>
+        <button id="effectLeft" aria-label="Move selected effect left a quarter second">← ¼ s</button>
+        <button id="effectRight" aria-label="Move selected effect right a quarter second">¼ s →</button>
+        <button id="removeEffect">Remove</button>
+        <label id="rainLabel" hidden>Rain length<select id="rainLength">
+          <option value="3">3 s</option><option value="4">4 s</option>
+          <option value="5">5 s</option><option value="6">6 s</option>
+        </select></label>
+      </div>
+      <p class="note" id="effectHelp">Drag a sound onto the effects track, or tap a sound then tap the track. Up to 16 effects.</p>
+    </section>
+    <section class="pane" id="storyPane" hidden>
+      <h2>My cartoon is...</h2>
+      <div class="moods" id="moods"></div>
+      <div class="row"><button id="writeScore">Write it</button><button id="clear">Clear score</button></div>
+      <p class="note">Score, mood and writing save only on this device. Nothing leaves this device.</p>
+    </section>
+    <section class="pane" id="swapPane" hidden>
+      <span class="eyebrow">The picture stays the same</span>
+      <h2>What did the music change?</h2>
+      <p>Tap Play, then swap scores while it runs. Listen for speed, loudness and the instrument's sound.</p>
+      <div class="row"><button id="write">Write it</button><button id="guess">Class guess</button><button id="show" hidden>Show</button></div>
+      <p id="guessResult" class="note">Your intended mood: Funny</p>
+      <p class="note">Your score and writing stay on this device.</p>
+    </section>
+  </aside>
+</main>
+<footer><p id="hint"></p><span id="saveStatus">Saved only on this device</span></footer>
+<dialog id="writing">
+  <h2>The composer's note</h2>
+  <label id="reasonPrompt" for="reason">My cartoon is ___. The music in scene ___ makes it feel that way because the tempo is ___,
+    it is ___ (soft or loud) and the ___ sounds ___.</label>
+  <textarea id="reason" aria-labelledby="reasonPrompt" placeholder="Tell the story your music makes..."></textarea>
+  <label id="comparePrompt" for="compare">The ___ score turns it into a different story because ___.</label>
+  <textarea id="compare" aria-labelledby="comparePrompt" placeholder="Name what you heard change..."></textarea>
+  <p class="note">Saved only on this device. Nothing leaves this device.</p>
+  <button class="gold" id="closeWriting">Save and return</button>
+</dialog>
+<div class="assets" aria-hidden="true">
+  <img id="bg-fence-night" src="art:bg-fence-night" alt=""><img id="bg-porch" src="art:bg-porch" alt="">
+  <img id="bg-window" src="art:bg-window" alt=""><img id="cloud" src="art:cloud" alt="">
+  <img id="cat-walk-a" src="art:cat-walk-a" alt=""><img id="cat-walk-b" src="art:cat-walk-b" alt="">
+  <img id="cat-look" src="art:cat-look" alt=""><img id="cat-puff" src="art:cat-puff" alt="">
+  <img id="cat-jump" src="art:cat-jump" alt=""><img id="cat-run" src="art:cat-run" alt="">
+  <img id="cat-listen" src="art:cat-listen" alt=""><img id="cat-carry" src="art:cat-carry" alt="">
+  <img id="cat-curl" src="art:cat-curl" alt=""><img id="kitten-peek" src="art:kitten-peek" alt="">
+  <img id="box" src="art:box" alt="">
+</div>
+<script src="kit:curio"></script>
+<script src="kit:music-studio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const scenes = ['Fence', 'Storm', 'Box', 'Home'];
+  const keys = ['feel', 'tempo', 'loudness', 'instrument', 'style'];
+  const preset = (feel, tempo, loudness, instrument, style) => ({feel, tempo, loudness, instrument, style});
+  const presets = {
+    Tiptoe: preset('Bright','Medium','Soft','Xylophone','Bouncy'),
+    Chase: preset('Bright','Fast','Loud','Piano','Bouncy'),
+    Lullaby: preset('Bright','Slow','Soft','Strings','Smooth'),
+    Storm: preset('Dark','Fast','Loud','Strings','Smooth'),
+    March: preset('Bright','Medium','Loud','Tuba','Bouncy'),
+    Mystery: preset('Creepy','Slow','Soft','Strings','Smooth'),
+  };
+  const effects = [
+    ['Thunder',2,'ϟ'],['Rain',3,'☂'],['Tiptoe steps',1,'··'],['Running steps',1,'»'],['Boing',.5,'↗'],
+    ['Slide whistle down',.75,'↘'],['Meow',.75,'♪'],['Tiny mew',.5,'♬'],['Door creak',1,'⌑'],['Heartbeat',2,'♡'],
+  ];
+  const fx = (name,time,dur) => ({name,time,dur:dur || effects.find(e => e[0] === name)[1]});
+  const scores = {
+    Funny: {cues:[presets.Tiptoe,presets.March,presets.Tiptoe,presets.Chase], effects:[
+      fx('Tiptoe steps',1),fx('Boing',7.2),fx('Slide whistle down',8),fx('Running steps',9),fx('Meow',13),fx('Tiny mew',16)]},
+    Scary: {cues:[presets.Mystery,presets.Storm,presets.Mystery,preset('Creepy','Slow','Soft','Piano','Smooth')], effects:[
+      fx('Heartbeat',1),fx('Thunder',7),fx('Rain',8,4),fx('Door creak',14),fx('Tiny mew',16)]},
+    Sad: {cues:[preset('Dark','Slow','Soft','Piano','Smooth'),preset('Dark','Medium','Medium','Strings','Smooth'),
+      preset('Dark','Slow','Soft','Piano','Smooth'),presets.Lullaby], effects:[
+      fx('Rain',6,6),fx('Thunder',7),fx('Tiny mew',16),fx('Rain',20,4)]},
+  };
+  const L = {
+    welcomeTheater:'Long ago, movies had no sound. Tap Play silent to watch this one the way the audience did.',
+    threeWays:'Now tap Hear it three ways. Same storm, three kinds of music.',
+    welcomeScore:'Tap a music block under a scene. Then pick its feel, tempo, loudness and instrument.',
+    effectsHow:'Drag a sound effect onto the timeline where it should happen. Then tap Play.',
+    welcomeSwap:'Tap Play. While it runs, tap Funny, Scary or Sad to swap the music.',
+    writeHow:'Which music fits your story? Tap Write it and name the tempo, the loudness and the instrument.',
+    swapFunny:'That was the funny score.', swapScary:'That was the scary score.', swapSad:'That was the sad score.',
+    swapYours:'That was your score.',
+  };
+  const state = {
+    mode:'theater', tab:'cue', cues:[null,null,null,null], effects:[], mood:'Funny', reason:'', compare:'',
+    scene:0, t:0, playing:false, swap:'Yours', selectedEffect:null, picked:null, guess:false, revealed:false,
+  };
+  const validChoices = {
+    feel:['Bright','Dark','Creepy'], tempo:['Slow','Medium','Fast'], loudness:['Soft','Medium','Loud'],
+    instrument:['Piano','Tuba','Strings','Xylophone'], style:['Smooth','Bouncy'],
+  };
+  try {
+    const saved = JSON.parse(localStorage.getItem('cartoon-soundtrack-mixer'));
+    if (saved) {
+      if (Array.isArray(saved.cues) && saved.cues.length === 4) {
+        state.cues = saved.cues.map(c => c && keys.every(k => validChoices[k].includes(c[k])) ? c : null);
+      }
+      if (Array.isArray(saved.effects)) state.effects = saved.effects.filter(e =>
+        effects.some(f => f[0] === e.name) && Number.isFinite(e.time) && e.time >= 0 && e.time < 24 &&
+        Number.isFinite(e.dur) && e.dur > 0 && e.dur <= 6).slice(0,16).map(e => ({...e,id:cryptoId()}));
+      if (['Funny','Scary','Sad','Sweet','Exciting'].includes(saved.mood)) state.mood = saved.mood;
+      state.reason = typeof saved.reason === 'string' ? saved.reason.slice(0,5000) : '';
+      state.compare = typeof saved.compare === 'string' ? saved.compare.slice(0,5000) : '';
+    }
+  } catch (_) { /* Private browsing still allows a temporary score. */ }
+  function cryptoId() { return Math.random().toString(36).slice(2);
+  }
+  function save() {
+    try {
+      localStorage.setItem('cartoon-soundtrack-mixer', JSON.stringify({
+        cues:state.cues,effects:state.effects,mood:state.mood,reason:state.reason,compare:state.compare,
+      }));
+      $('saveStatus').textContent = 'Saved only on this device';
+    } catch (_) { $('saveStatus').textContent = 'Storage unavailable. Keep this tab open.';
+    }
+  }
+  const hint = text => { $('hint').textContent = text;
+  };
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
+    welcome:() => state.playing ? null : state.mode === 'theater' ? 'welcomeTheater' :
+      state.mode === 'score' ? (state.cues.some(Boolean) ? null : 'welcomeScore') : 'welcomeSwap',
+    speaks:'#play,#playScene,#threeWays',
+  });
+
+  // Local instrument extensions. The shared engine and its docs remain untouched, per the build boundary.
+  function sustained(f,t,d,b,strings) {
+    const c = MS.ctx();
+    const env = c.createGain();
+    const lp = c.createBiquadFilter();
+    lp.type = 'lowpass';
+    lp.frequency.value = strings ? 1800 : 700;
+    const attack = Math.min(d*.8,strings ? .12 : .045);
+    env.gain.setValueAtTime(.0001,t);
+    env.gain.linearRampToValueAtTime(strings ? .15 : .2,t+attack);
+    env.gain.setValueAtTime(strings ? .14 : .18,t+Math.max(attack,d-.04));
+    env.gain.linearRampToValueAtTime(.0001,t+d);
+    lp.connect(env);
+    env.connect(b.m);
+    env.connect(b.r);
+    for (const detune of strings ? [-7,7] : [0]) {
+      const o = c.createOscillator();
+      o.type = 'sawtooth';
+      o.frequency.value = strings ? f : f/2;
+      o.detune.value = detune;
+      o.connect(lp);
+      o.start(t);
+      o.stop(t+d+.02);
+    }
+  }
+  MS.INSTR.tuba = {name:'Tuba',play:(f,t,d,b) => sustained(f,t,d,b,false)};
+  MS.INSTR.strings = {name:'Strings',play:(f,t,d,b) => sustained(f,t,d,b,true)};
+  MS.INSTR.xylophone = {name:'Xylophone',play:(f,t,d,b) => MS.pluck(f,t,Math.min(.32,d),{
+    gain:.3,partials:[[1,1],[4,.18],[10,.04]],
+  },b)};
+  const bpm = {Slow:66,Medium:104,Fast:152};
+  const volume = {Soft:.35,Medium:.6,Loud:.9};
+  const major = MS.SCALES.major.rows.map(r => r[0]);
+  const minor = MS.SCALES.minor.rows.map(r => r[0]);
+  const melodies = {
+    Bright:[major[0],major[2],major[4],major[2],major[1],major[3],major[5],major[4],
+      major[2],major[4],major[7],major[4],major[3],major[1],major[6],major[0]],
+    Dark:[minor[0],minor[2],minor[4],minor[2],minor[1],minor[3],minor[5],minor[4],
+      minor[2],minor[4],minor[7],minor[4],minor[3],minor[1],8,minor[0]],
+    Creepy:[7,6,5,4,4,5,6,7],
+  };
+  let clock = null;
+  let anchor = 0;
+  let pageAnchor = 0;
+  let startPosition = 0;
+  let endPosition = 24;
+  let mutedMovie = true;
+  let demo = -1;
+  let lastSwap = null;
+  let audioLayers = [];
+  const players = new Map();
+  const cuePhases = new Map();
+  const telemetry = {switches:[],effects:[],frames:[],edits:[],notes:[]};
+  let previewPlayer = null;
+  const current = () => state.playing ? Math.max(startPosition,startPosition + (clock ? clock.currentTime-anchor :
+    performance.now()/1000-pageAnchor)) : state.t;
+  const score = () => state.mode === 'theater' && demo >= 0 ? scores[['Funny','Scary','Sad'][demo]] :
+    state.mode === 'swap' && state.swap !== 'Yours' ? scores[state.swap] : state;
+
+  function fadeLayer(layer,seconds=.08) {
+    if (!layer) return;
+    const c = MS.ctx();
+    layer.gain.gain.cancelScheduledValues(c.currentTime);
+    layer.gain.gain.setValueAtTime(layer.gain.gain.value,c.currentTime);
+    layer.gain.gain.linearRampToValueAtTime(0,c.currentTime+seconds);
+    setTimeout(() => layer.gain.disconnect(),Math.max(100,seconds*1000+100));
+  }
+  function silence() {
+    previewPlayer?.stop();
+    previewPlayer = null;
+    for (const p of players.values()) p.stop();
+    players.clear();
+    audioLayers.forEach(l => fadeLayer(l,.015));
+    audioLayers = [];
+  }
+  function layer(music=false) {
+    const c = MS.ctx();
+    const gain = c.createGain();
+    gain.gain.value = .52;
+    if (!music) gain.connect(c.destination);
+    const out = {gain};
+    audioLayers.push(out);
+    return out;
+  }
+  function scheduleCue(index,position,at) {
+    const old = players.get(index);
+    if (old) old.stop();
+    const cue = score().cues[index];
+    if (!cue || mutedMovie || !Curio.sound || !clock) return;
+    const localStart = Math.max(index*6,position);
+    const localEnd = Math.min(index*6+6,endPosition);
+    if (localStart >= localEnd) return;
+    const l = layer(true);
+    const c = MS.ctx();
+    const noteBeats = cue.feel === 'Creepy' ? 1 : .5;
+    const step = noteBeats*60/bpm[cue.tempo];
+    const melody = melodies[cue.feel];
+    const phase = cuePhases.get(index);
+    const beatAtStart = phase ? phase.beat+(localStart-phase.time)*bpm[cue.tempo]/60 :
+      (localStart-index*6)*bpm[cue.tempo]/60;
+    let noteIndex = Math.floor(beatAtStart/noteBeats);
+    let next = localStart+((noteIndex+1)*noteBeats-beatAtStart)*60/bpm[cue.tempo];
+    const engineShift = at-c.currentTime-.08;
+    const events = [];
+    // A restart enters the current note, then follows the original cue's phase.
+    for (let t=localStart;
+    t < localEnd-.001;
+    ) {
+      const dur = Math.min(next,localEnd)-t;
+      events.push({beat:t-position+engineShift,semi:melody[noteIndex%melody.length],dur:Math.max(.015,dur)});
+      t = next;
+      noteIndex++;
+      next += step;
+    }
+    const name = 'cartoon-'+index;
+    let noteCounter = 0;
+    MS.INSTR[name] = {name:'Cue',play:(f,t,d,bus) => {
+      const event = events[noteCounter++];
+      const intendedPosition = position+event.beat-engineShift;
+      telemetry.notes.push({scene:index,instrument:cue.instrument,scheduled:t,queued:c.currentTime,
+        intendedPosition,picturePosition:startPosition+t-anchor});
+      if (telemetry.notes.length > 5000) telemetry.notes.shift();
+      if (!l.wired) { l.gain.connect(bus.m);
+      l.gain.connect(bus.r);
+      l.wired = true;
+      }
+      const g = c.createGain();
+      const length = Math.max(.01,d*(cue.style === 'Smooth' ? .95 : .4));
+      g.gain.setValueAtTime(volume[cue.loudness],t);
+      g.gain.setValueAtTime(volume[cue.loudness],t+Math.max(0,length-.015));
+      g.gain.linearRampToValueAtTime(0,t+length);
+      g.connect(l.gain);
+      // Feed the engine's dry and room buses through the cue's gated gain.
+      const silentRoom = c.createGain();
+      silentRoom.gain.value = 0;
+      silentRoom.connect(l.gain);
+      const instrument = cue.instrument === 'Xylophone' ? 'xylophone' : cue.instrument.toLowerCase();
+      MS.INSTR[instrument].play(f,t,length,{m:g,r:silentRoom});
+      setTimeout(() => { g.disconnect();
+      silentRoom.disconnect();
+      },Math.max(100,(t-c.currentTime+2)*1000));
+    }};
+    const p = MS.play(events,{bpm:60,lead:0,beats:Math.max(.001,localEnd-position+engineShift),instr:name,exclusive:false});
+    players.set(index,p);
+    l.player = p;
+    l.index = index;
+    if (cue.feel === 'Creepy') {
+      const drone = c.createOscillator();
+      const dg = c.createGain();
+      drone.type = 'sine';
+      drone.frequency.value = MS.freq('C',-24);
+      dg.gain.value = .09*volume[cue.loudness];
+      drone.connect(dg).connect(l.gain);
+      drone.start(at+localStart-position);
+      drone.stop(at+localEnd-position);
+    }
+  }
+  function effectSound(e,at,remaining,offset,l) {
+    if (!Curio.sound || !clock || remaining <= 0) return;
+    const c = clock;
+    const duration = remaining;
+    const g = c.createGain();
+    g.gain.setValueAtTime(.0001,at);
+    g.gain.linearRampToValueAtTime(.19,at+.008);
+    g.gain.setValueAtTime(.19,at+Math.max(.01,duration-.04));
+    g.gain.linearRampToValueAtTime(.0001,at+duration);
+    g.connect(l.gain);
+    const osc = (type,f,to,start=0,len=duration,level=1) => {
+      const o = c.createOscillator();
+      const v = c.createGain();
+      o.type = type;
+      o.frequency.setValueAtTime(f,at+start);
+      if (to) o.frequency.exponentialRampToValueAtTime(Math.max(20,to),at+start+len);
+      v.gain.value = level;
+      o.connect(v).connect(g);
+      o.start(at+start);
+      o.stop(at+start+len);
+    };
+    if (e.name === 'Rain' || e.name === 'Thunder') {
+      const buffer = c.createBuffer(1,Math.ceil(c.sampleRate*duration),c.sampleRate);
+      const a = buffer.getChannelData(0);
+      for (let i=0;
+      i<a.length;
+      i++) a[i] = (Math.random()*2-1)*(e.name === 'Thunder' ? Math.exp(-i/a.length*2) : .6);
+      const n = c.createBufferSource();
+      const lp = c.createBiquadFilter();
+      lp.type = 'lowpass';
+      lp.frequency.value = e.name === 'Thunder' ? 420 : 5000;
+      n.buffer = buffer;
+      n.connect(lp).connect(g);
+      n.start(at);
+      n.stop(at+duration);
+    } else if (e.name.includes('steps') || e.name === 'Heartbeat') {
+      const interval = e.name === 'Running steps' ? .13 : e.name === 'Heartbeat' ? .48 : .24;
+      for (let k=0;
+      k<duration;
+      k+=interval) {
+        const click = c.createGain();
+        click.gain.setValueAtTime(.0001,at+k);
+        click.gain.exponentialRampToValueAtTime(.6,at+k+.004);
+        click.gain.exponentialRampToValueAtTime(.0001,at+Math.min(duration,k+.09));
+        click.connect(g);
+        const o = c.createOscillator();
+        o.frequency.value = e.name === 'Heartbeat' ? 58 : 190+Math.random()*100;
+        o.type = e.name === 'Heartbeat' ? 'sine' : 'triangle';
+        o.connect(click);
+        o.start(at+k);
+        o.stop(at+Math.min(duration,k+.1));
+      }
+    } else if (e.name === 'Boing') osc('sine',170,690);
+    else if (e.name === 'Slide whistle down') osc('sine',1200,150);
+    else if (e.name === 'Door creak') osc('sawtooth',120,350,0,duration,.5);
+    else {
+      const o = c.createOscillator();
+      const formant = c.createBiquadFilter();
+      o.type = 'sawtooth';
+      o.frequency.setValueAtTime(e.name === 'Tiny mew' ? 720 : 430,at);
+      o.frequency.exponentialRampToValueAtTime(e.name === 'Tiny mew' ? 510 : 240,at+duration);
+      formant.type = 'bandpass';
+      formant.Q.value = 3;
+      formant.frequency.setValueAtTime(1200,at);
+      formant.frequency.linearRampToValueAtTime(650,at+duration);
+      o.connect(formant).connect(g);
+      o.start(at);
+      o.stop(at+duration);
+    }
+    telemetry.effects.push({name:e.name,time:e.time,scheduled:at,offset,remaining});
+    setTimeout(() => g.disconnect(),Math.max(100,(at-c.currentTime+duration+.1)*1000));
+  }
+  function scheduleEffects(position,at) {
+    if (mutedMovie || !clock || !Curio.sound) return;
+    const l = layer();
+    l.effects = true;
+    for (const e of score().effects) {
+      const end = Math.min(e.time+e.dur,24,endPosition);
+      const from = Math.max(position,e.time);
+      if (end > from) effectSound(e,at+from-position,end-from,from-e.time,l);
+    }
+  }
+  function refreshAudio(position=current(),only=null,initial=false) {
+    if (!state.playing) return;
+    const at = clock ? (initial ? anchor : clock.currentTime) : 0;
+    if (only !== null) {
+      audioLayers.filter(l => l.index === only).forEach(l => fadeLayer(l));
+      audioLayers = audioLayers.filter(l => l.index !== only);
+      scheduleCue(only,position,at);
+      return;
+    }
+    for (const p of players.values()) p.stop();
+    players.clear();
+    audioLayers.forEach(l => fadeLayer(l));
+    audioLayers = [];
+    for (let i=0;
+    i<4;
+    i++) scheduleCue(i,position,at);
+    scheduleEffects(position,at);
+  }
+  function play(from=state.t,to=24,silent=false) {
+    stop(false);
+    V.hush();
+    state.t = from >= to ? 0 : from;
+    startPosition = state.t;
+    cuePhases.clear();
+    endPosition = to;
+    mutedMovie = silent;
+    clock = Curio.sound && !silent ? MS.ctx() : null;
+    anchor = clock ? clock.currentTime+.08 : 0;
+    pageAnchor = performance.now()/1000 + (clock ? .08 : 0);
+    state.playing = true;
+    lastSwap = null;
+    refreshAudio(state.t,null,true);
+    $('play').textContent = '■ Stop';
+    hint(state.guess && !state.revealed ? 'Listen, make your guess, then tap Show to reveal the score.' :
+      'Tap Stop to pause. '+(state.mode === 'swap' ? 'Tap a score button to change only the sound.' : 'Watch the picture and listen.'));
+  }
+  function stop(ended=false) {
+    if (state.playing) state.t = Math.min(current(),endPosition);
+    state.playing = false;
+    silence();
+    $('play').textContent = state.mode === 'theater' ? '▶ Play silent' : '▶ Play';
+    if (ended) {
+      if (state.mode === 'theater' && demo >= 0 && demo < 2) {
+        demo++;
+        $('demoName').textContent = ['Funny','Scary','Sad'][demo]+' · same storm, different music';
+        play(6,12,false);
+        return;
+      }
+      if (state.mode === 'theater') {
+        const finishedDemo = demo >= 0;
+        demo = -1;
+        if (finishedDemo) state.t = 11.999;
+        if (finishedDemo) hint('Same pictures, three stories. Tap Start scoring to make yours.');
+        else {
+          hint(L.threeWays);
+          V.how('threeWays',{valid:() => !state.playing && demo < 0,needs:'#threeWays'});
+        }
+      } else if (state.mode === 'swap') {
+        hint(state.guess && !state.revealed ? 'Make your guess, then tap Show to reveal the score.' : L.writeHow);
+        const announced = lastSwap;
+        if (announced) V.say('swap'+announced,{valid:() => !state.playing && state.swap === announced, hint:false});
+        V.how('writeHow',{valid:() => !state.playing && !state.guess,needs:'#write'});
+      } else hint('Tap a music block to change it, or tap Play to hear your score again.');
+    }
+  }
+  function seek(t) {
+    const wasPlaying = state.playing;
+    const silent = mutedMovie;
+    const limit = endPosition;
+    stop(false);
+    state.t = Math.max(0,Math.min(24,t));
+    if (wasPlaying) play(state.t,limit,silent);
+    draw(state.t);
+    updateTime(true);
+  }
+
+  const canvas = $('screen');
+  const pen = canvas.getContext('2d');
+  function picture(name,x,y,w,h,rotation=0) {
+    const img = $(name);
+    if (!img.complete || !img.naturalWidth) return;
+    pen.save();
+    pen.translate(x+w/2,y+h/2);
+    pen.rotate(rotation);
+    pen.drawImage(img,-w/2,-h/2,w,h);
+    pen.restore();
+  }
+  function sprite(name,x,baseline,width,angle=0) {
+    const im = $(name);
+    if (!im.naturalWidth) return;
+    const h = width*im.naturalHeight/im.naturalWidth;
+    picture(name,x,baseline-h,width,h,angle);
+  }
+  function draw(t) {
+    pen.clearRect(0,0,960,540);
+    pen.fillStyle = '#111';
+    pen.fillRect(0,0,960,540);
+    const index = Math.min(3,Math.floor(t/6));
+    const local = t-index*6;
+    pen.save();
+    pen.filter = 'grayscale(1)';
+    picture(t < 12 ? 'bg-fence-night' : t < 20 ? 'bg-porch' : 'bg-window',0,0,960,540);
+    if (t < 12) {
+      if (t >= 6) {
+        pen.fillStyle = '#0006';
+        pen.fillRect(0,0,960,540);
+        picture('cloud',960-(t-6)*210,35,600,179);
+      }
+      let pose = 'cat-walk-'+(Math.floor(t*4)%2 ? 'b' : 'a');
+      let x = 55+Math.min(t,4.5)*105;
+      let base = 305;
+      let width = 190;
+      if (t >= 4.5) pose = 'cat-look';
+      if (t >= 7.2) pose = 'cat-puff';
+      if (t >= 8 && t < 8.6) {
+        pose = 'cat-jump';
+        const q = (t-8)/.6;
+        x += q*55;
+        base += 185*q*q;
+      } else if (t >= 8.6) {
+        pose = t < 9 ? 'cat-listen' : 'cat-run';
+        x = 585+Math.max(0,t-9)*135;
+        base = 490;
+        width = 205;
+      }
+      sprite(pose,x,base,width);
+      if (t >= 8) {
+        pen.strokeStyle = '#e7e7e799';
+        pen.lineWidth = 1.4;
+        for (let i=0;
+        i<95;
+        i++) {
+          const y = (i*83+(Curio.reduce ? 0 : t*420))%580-20;
+          const xRain = (i*137)%1000;
+          pen.beginPath();
+          pen.moveTo(xRain,y);
+          pen.lineTo(xRain-8,y+22);
+          pen.stroke();
+        }
+      }
+      const flashLen = Curio.reduce ? .3 : .12;
+      if (t >= 7 && t < 7+flashLen) {
+        pen.fillStyle = Curio.reduce ? '#88888888' : '#ffffffdf';
+        pen.fillRect(0,0,960,540);
+      }
+    } else if (t < 18) {
+      sprite(t < 13 ? 'cat-walk-a' : 'cat-listen',120+Math.min(1,t-12)*100,450,235);
+      const wobble = !Curio.reduce && ((t >= 14 && t < 14.5) || (t >= 15.5 && t < 16)) ? Math.sin(t*40)*.07 : 0;
+      // One separate box keeps the wobble and reveal on the same uncluttered porch plate.
+      sprite(t < 16 ? 'box' : 'kitten-peek',520,390,300,wobble);
+    } else if (t < 20) {
+      sprite('box',520,390,300);
+      const q = (t-18)/2;
+      // Approach the small painted opening in perspective; the door jamb occludes the entering cat.
+      pen.save();
+      pen.beginPath();
+      pen.rect(0,0,916,540);
+      pen.clip();
+      sprite('cat-carry',350+q*585,448-q*105,250-q*145);
+      pen.restore();
+    } else {
+      sprite('cat-curl',350,505,280);
+    }
+    pen.restore();
+    // Quiet analog texture while stopped, frozen completely with Motion off.
+    const grainTime = Curio.reduce ? 0 : Math.floor(performance.now()/160);
+    pen.fillStyle = '#ffffff0b';
+    for (let i=0;
+    i<80;
+    i++) pen.fillRect((i*113+grainTime*17)%960,(i*79+grainTime*31)%540,2,1);
+    const vignette = pen.createRadialGradient(480,260,160,480,270,570);
+    vignette.addColorStop(0,'#0000');
+    vignette.addColorStop(1,'#0008');
+    pen.fillStyle = vignette;
+    pen.fillRect(0,0,960,540);
+    if (t >= 22.5) { pen.fillStyle = 'rgba(0,0,0,'+Math.min(1,(t-22.5)/1.5)+')';
+    pen.fillRect(0,0,960,540);
+    }
+    const cueCount = state.cues.filter(Boolean).length;
+    const effectCount = state.effects.length;
+    $('filmLabel').textContent = state.mode === 'theater' && demo >= 0 ?
+      ['FUNNY','SCARY','SAD'][demo]+' · SAME STORM' : t >= 24 && state.mode === 'score' ?
+      'YOUR '+state.mood.toUpperCase()+' SCORE · '+cueCount+' '+(cueCount === 1 ? 'SCENE' : 'SCENES')+' · '+
+      effectCount+' '+(effectCount === 1 ? 'EFFECT' : 'EFFECTS') :
+      scenes[index].toUpperCase()+' · WHISKERS AND THE STORM';
+    canvas.setAttribute('aria-label',`Whiskers and the Storm. Scene ${index+1}: ${scenes[index]}. ${t.toFixed(1)} seconds.`);
+  }
+  const cueButtons = [];
+  for (let i=0;
+  i<4;
+  i++) {
+    const b = document.createElement('button');
+    b.className = 'cue';
+    b.id = 'cue-'+i;
+    b.setAttribute('aria-pressed',i === 0);
+    b.innerHTML = '<strong></strong><small class="summary"></small><small class="detail"></small>';
+    b.onclick = () => selectScene(i);
+    $('blocks').append(b);
+    cueButtons.push(b);
+  }
+  function updateBlocks() {
+    cueButtons.forEach((b,i) => {
+      const cue = state.cues[i];
+      b.className = 'cue'+(cue ? ' '+cue.feel.toLowerCase() : '');
+      b.setAttribute('aria-pressed',state.scene === i);
+      b.querySelector('strong').textContent = (i+1)+' · '+scenes[i];
+      b.querySelector('.summary').textContent = cue ? cue.feel+' · '+cue.instrument : '＋ Shape music';
+      b.querySelector('.detail').textContent = cue ? cue.tempo+' · '+cue.loudness+' · '+cue.style : 'Silent';
+      b.title = cue ? keys.map(k => cue[k]).join(', ') : 'Blank music block. Tap to shape scene '+(i+1);
+    });
+  }
+  function selectScene(index) {
+    state.scene = index;
+    state.selectedEffect = null;
+    setTab('cue');
+    const cue = state.cues[index] || preset('Bright','Medium','Medium','Piano','Smooth');
+    keys.forEach(k => { $(k).value = cue[k];
+    });
+    $('cueTitle').textContent = (index+1)+' · '+scenes[index];
+    updateBlocks();
+    renderEffects();
+    if (!state.playing) seek(index*6);
+    hint('Choose a preset or change Feel, Tempo, Loudness, Instrument or Style for '+scenes[index]+'.');
+  }
+  function editCue(value=null) {
+    const cue = value ? {...value} : Object.fromEntries(keys.map(k => [k,$(k).value]));
+    const position = current();
+    const oldCue = state.cues[state.scene];
+    if (state.playing && oldCue && position >= state.scene*6 && position < state.scene*6+6) {
+      const prior = cuePhases.get(state.scene);
+      const beat = prior ? prior.beat+(position-prior.time)*bpm[oldCue.tempo]/60 :
+        (position-state.scene*6)*bpm[oldCue.tempo]/60;
+      cuePhases.set(state.scene,{time:position,beat});
+    }
+    state.cues[state.scene] = cue;
+    keys.forEach(k => { $(k).value = cue[k];
+    });
+    if (state.playing) refreshAudio(position,state.scene);
+    telemetry.edits.push({scene:state.scene,t:current(),cue:{...cue}});
+    updateBlocks();
+    save();
+    hint(scenes[state.scene]+': '+keys.map(k => cue[k]).join(', ')+'. Tap Play scene to hear it.');
+    if (!state.playing) auditionCue(cue);
+    if (state.cues.filter(Boolean).length >= 2 && !state.effects.length) {
+      hint('Tap Play scene to hear this cue, or tap Effects to add a sound to the picture.');
+    }
+  }
+  function auditionCue(cue) {
+    previewPlayer?.stop();
+    if (!Curio.sound) return;
+    V.hush();
+    const c = MS.ctx();
+    if (!c) return;
+    const instrument = cue.instrument === 'Xylophone' ? 'xylophone' : cue.instrument.toLowerCase();
+    const notes = melodies[cue.feel];
+    const style = cue.style === 'Smooth' ? .95 : .4;
+    MS.INSTR['cartoon-preview'] = {name:'Cue preview',play:(f,t,d,b) => {
+      const g = c.createGain();
+      g.gain.setValueAtTime(volume[cue.loudness]*.52,t);
+      g.gain.setValueAtTime(volume[cue.loudness]*.52,t+Math.max(0,d-.015));
+      g.gain.linearRampToValueAtTime(0,t+d);
+      g.connect(b.m);
+      const quiet = c.createGain();
+      quiet.gain.value = 0;
+      MS.INSTR[instrument].play(f,t,d,{m:g,r:quiet});
+      setTimeout(() => { g.disconnect(); quiet.disconnect(); },(t-c.currentTime+d+.1)*1000);
+    }};
+    previewPlayer = MS.play([{beat:0,semi:notes[0],dur:.5*style},{beat:.5,semi:notes[1],dur:.5*style}],
+      {bpm:bpm[cue.tempo],beats:1,instr:'cartoon-preview',exclusive:false});
+  }
+  keys.forEach(k => { $(k).onchange = () => editCue();
+  });
+  document.querySelectorAll('[data-preset]').forEach(b => { b.onclick = () => editCue(presets[b.dataset.preset]);
+  });
+  $('presetSelect').onchange = () => {
+    if (presets[$('presetSelect').value]) editCue(presets[$('presetSelect').value]);
+    $('presetSelect').value = '';
+  };
+  function setTab(tab) {
+    state.tab = tab;
+    for (const k of ['cue','effects','story']) {
+      $('tab-'+k).setAttribute('aria-pressed',k === tab);
+      $(k+'Pane').hidden = k !== tab;
+    }
+    hint(tab === 'cue' ? 'Tap a scene block, then choose a preset or shape its music.' : tab === 'effects' ?
+      'Tap a sound, then tap the effects track to place it. Drag a chip to move it.' :
+      'Choose your intended mood. Tap Write it to explain your music choices.');
+    if (tab === 'effects' && !state.playing && state.cues.filter(Boolean).length >= 2 && !state.effects.length) {
+      V.how('effectsHow',{valid:() => state.tab === 'effects' && !state.playing && !state.effects.length,needs:'#shelf'});
+    }
+  }
+  for (const k of ['cue','effects','story']) $('tab-'+k).onclick = () => setTab(k);
+  for (const mood of ['Funny','Scary','Sad','Sweet','Exciting']) {
+    const b = document.createElement('button');
+    b.textContent = mood;
+    b.dataset.mood = mood;
+    b.onclick = () => { state.mood = mood;
+    updateMoods();
+    save();
+    hint('Your cartoon is '+mood.toLowerCase()+'. Tap Write it to explain why.');
+    };
+    $('moods').append(b);
+  }
+  function updateMoods() {
+    document.querySelectorAll('[data-mood]').forEach(b => b.setAttribute('aria-pressed',b.dataset.mood === state.mood));
+    if (!state.guess) $('guessResult').textContent = 'Your intended mood: '+state.mood;
+  }
+  let modeReady = false;
+  function setMode(mode) {
+    if (modeReady && state.mode === mode) {
+      if (!state.playing) V.welcome();
+      return;
+    }
+    modeReady = true;
+    stop(false);
+    V.hush();
+    demo = -1;
+    state.mode = mode;
+    state.t = 0;
+    state.guess = false;
+    state.revealed = false;
+    document.body.dataset.mode = mode;
+    for (const k of ['theater','score','swap']) $('m-'+k).setAttribute('aria-pressed',k === mode);
+    $('theaterArt').hidden = mode !== 'theater';
+    $('theaterPane').hidden = mode !== 'theater';
+    $('panelTabs').hidden = mode !== 'score';
+    $('swapPane').hidden = mode !== 'swap';
+    $('timelineScroll').hidden = mode !== 'score';
+    $('playScene').hidden = mode !== 'score';
+    $('swapBar').hidden = mode !== 'swap';
+    $('choiceStrip').hidden = mode !== 'swap';
+    for (const k of ['cue','effects','story']) $(k+'Pane').hidden = true;
+    if (mode === 'score') { setTab(state.tab);
+    selectScene(state.scene);
+    }
+    $('play').textContent = mode === 'theater' ? '▶ Play silent' : '▶ Play';
+    $('show').hidden = true;
+    $('demoName').textContent = 'An original cartoon. Your music tells its story.';
+    updateSwap();
+    updateMoods();
+    draw(state.t);
+    updateTime();
+    hint(L[mode === 'theater' ? 'welcomeTheater' : mode === 'score' ? 'welcomeScore' : 'welcomeSwap']);
+    V.welcome();
+    if (document.activeElement !== document.body && document.activeElement.closest('[hidden]')) {
+      $('m-'+mode).focus({preventScroll:true});
+    }
+  }
+  for (const k of ['theater','score','swap']) $('m-'+k).onclick = () => setMode(k);
+  $('startScore').onclick = () => setMode('score');
+  $('play').onclick = () => {
+    if (state.playing) { stop();
+    hint(state.mode === 'theater' ? 'Tap Play silent to continue, or tap Hear it three ways.' :
+      state.mode === 'swap' ? 'Tap Play to continue, or tap a score button.' : 'Tap Play to continue, or tap a scene block.');
+    }
+    else {
+      demo = -1;
+      if (state.mode === 'theater') $('demoName').textContent = 'Silent cartoon · watch the picture first';
+      play(state.t >= 23.99 ? 0 : state.t,24,state.mode === 'theater');
+    }
+  };
+  $('playScene').onclick = () => play(state.scene*6,state.scene*6+6,false);
+  $('threeWays').onclick = () => {
+    demo = 0;
+    $('demoName').textContent = 'Funny · same storm, different music';
+    play(6,12,false);
+  };
+  function updateSwap() {
+    const hidden = state.guess && !state.revealed;
+    ['Yours','Funny','Scary','Sad'].forEach((name,i) => {
+      const b = $('swap-'+name);
+      b.textContent = hidden ? 'Score '+String.fromCharCode(65+i) : name;
+      b.disabled = hidden;
+      b.setAttribute('aria-label',b.textContent);
+      b.setAttribute('aria-pressed',!hidden && state.swap === name);
+    });
+    updateStrip();
+  }
+  function updateStrip() {
+    if (state.mode !== 'swap') return;
+    if (state.guess && !state.revealed) {
+      $('choiceStrip').textContent = 'Listen closely. Which story is the music telling? Tap Show after your guess.';
+      return;
+    }
+    const index = Math.min(3,Math.floor(state.t/6));
+    const cue = score().cues[index];
+    const fxNames = score().effects.filter(e => e.time < index*6+6 && e.time+e.dur > index*6).map(e => e.name.toLowerCase());
+    $('choiceStrip').textContent = `Scene ${index+1}, ${state.swap}: `+(cue ? keys.map(k => cue[k]).join(', ') : 'Silent music block')+
+      (fxNames.length ? ' + '+[...new Set(fxNames)].join(', ') : '');
+  }
+  function swap(name) {
+    if (state.guess && !state.revealed) return;
+    V.dropQueued(line => line.key.startsWith('swap'));
+    if (Object.entries(L).some(([key,text]) => key.startsWith('swap') && V.playing === text)) V.hush();
+    const before = current();
+    state.swap = name;
+    lastSwap = name;
+    if (state.playing) refreshAudio(before);
+    telemetry.switches.push({name,before,after:current(),latencyBudget:.08});
+    updateSwap();
+    hint(state.playing ? 'The picture keeps going. Listen to the '+name.toLowerCase()+' score.' : 'Tap Play to hear '+name.toLowerCase()+'.');
+  }
+  for (const name of ['Yours','Funny','Scary','Sad']) $('swap-'+name).onclick = () => swap(name);
+  $('guess').onclick = () => {
+    state.swap = ['Yours','Funny','Scary','Sad'][Math.floor(Math.random()*4)];
+    state.guess = true;
+    state.revealed = false;
+    updateSwap();
+    $('show').hidden = false;
+    $('guessResult').textContent = 'Secret score. Make your guess, then tap Show.';
+    play(0,24,false);
+  };
+  $('show').onclick = () => {
+    state.revealed = true;
+    updateSwap();
+    $('guessResult').textContent = 'That was '+(state.swap === 'Yours' ? 'your score' : 'the '+state.swap.toLowerCase()+' score')+'.';
+    if (state.playing) lastSwap = state.swap;
+    else {
+      const revealedScore = state.swap;
+      V.say('swap'+revealedScore,{valid:() => !state.playing && state.revealed && state.swap === revealedScore});
+    }
+    hint('Tap Class guess for another secret score, or Write it to explain what you heard.');
+  };
+  let returnFocus = null;
+  function openWriting() {
+    stop();
+    V.hush();
+    returnFocus = document.activeElement;
+    $('reason').value = state.reason;
+    $('compare').value = state.compare;
+    $('writing').showModal();
+    hint('Write what changed in the music. Tap Save and return when you are ready.');
+  }
+  $('write').onclick = openWriting;
+  $('writeScore').onclick = openWriting;
+  $('reason').oninput = () => { state.reason = $('reason').value;
+  save();
+  };
+  $('compare').oninput = () => { state.compare = $('compare').value;
+  save();
+  };
+  $('closeWriting').onclick = () => $('writing').close();
+  $('writing').onclose = () => {
+    save();
+    hint('Tap Play to listen again, or tap Write it to revise your note.');
+    returnFocus?.focus({preventScroll:true});
+  };
+  $('clear').onclick = () => {
+    stop();
+    V.hush();
+    state.cues = [null,null,null,null];
+    state.effects = [];
+    state.reason = '';
+    state.compare = '';
+    state.mood = 'Funny';
+    state.selectedEffect = null;
+    state.picked = null;
+    save();
+    updateBlocks();
+    renderEffects();
+    updateMoods();
+    hint('Score and writing cleared. Tap a music block to start again.');
+  };
+
+  function snap(t) { return Math.max(0,Math.min(23.75,Math.round(t*4)/4));
+  }
+  function timelineTime(x) {
+    const r = $('timeline').getBoundingClientRect();
+    return Math.max(0,Math.min(24,(x-r.left)/r.width*24));
+  }
+  function nudgeCollision(time,id) {
+    let t = snap(time);
+    while (state.effects.some(e => e.id !== id && Math.abs(e.time-t)<.01) && t < 23.75) t += .25;
+    while (state.effects.some(e => e.id !== id && Math.abs(e.time-t)<.01) && t > 0) t -= .25;
+    return t;
+  }
+  function placeEffect(name,time) {
+    if (state.effects.length >= 16) { hint('All 16 effect spaces are full. Tap a chip and Remove to make room.');
+    return;
+    }
+    const item = effects.find(e => e[0] === name);
+    const e = {id:cryptoId(),name,time:nudgeCollision(time),dur:item[1]};
+    state.effects.push(e);
+    state.selectedEffect = e.id;
+    state.picked = null;
+    setTab('effects');
+    renderEffects();
+    save();
+    if (state.playing) refreshEffects();
+    hint(name+' placed at '+e.time.toFixed(2)+' seconds. Drag it to move, or tap Remove.');
+  }
+  function refreshEffects() {
+    audioLayers.filter(l => l.effects).forEach(l => fadeLayer(l,.015));
+    audioLayers = audioLayers.filter(l => !l.effects);
+    scheduleEffects(current(),clock ? clock.currentTime+.02 : 0);
+  }
+  function removeEffect() {
+    const restoreFocus = document.activeElement.closest('.effect,#effectEdit');
+    state.effects = state.effects.filter(e => e.id !== state.selectedEffect);
+    state.selectedEffect = null;
+    renderEffects();
+    save();
+    if (state.playing) refreshEffects();
+    if (restoreFocus) $('effectsTrack').focus({preventScroll:true});
+    hint('Effect removed. Tap Effects, then choose a sound to place another.');
+  }
+  function moveEffect(delta) {
+    const e = state.effects.find(e => e.id === state.selectedEffect);
+    if (!e) return;
+    e.time = nudgeCollision(e.time+delta,e.id);
+    setTab('effects');
+    renderEffects();
+    save();
+    if (state.playing) refreshEffects();
+    hint(e.name+' at '+e.time.toFixed(2)+' seconds. Use arrows to move it by a quarter second.');
+  }
+  const chipElements = new Map();
+  const pins = document.createElementNS('http://www.w3.org/2000/svg','svg');
+  pins.id = 'effectPins';
+  pins.setAttribute('aria-hidden','true');
+  $('effectsTrack').prepend(pins);
+  function renderEffects() {
+    const selected = state.effects.find(e => e.id === state.selectedEffect);
+    for (const [id,b] of chipElements) if (!state.effects.some(e => e.id === id)) { b.remove();
+    chipElements.delete(id);
+    }
+    const timelineWidth = $('timeline').clientWidth || 720;
+    const ordered = [...state.effects].sort((a,b) => a.time-b.time);
+    const laneEnds = [-1,-1];
+    const positions = [];
+    let two = false;
+    let packed = false;
+    for (const e of ordered) {
+      const left = e.time/24*timelineWidth;
+      const width = Math.max(44,Math.min(e.dur,24-e.time)/24*timelineWidth);
+      const lane = left < laneEnds[0] ? 1 : 0;
+      if (left < laneEnds[lane] || left+width > timelineWidth) packed = true;
+      laneEnds[lane] = left+width+2;
+      positions.push({left,width,lane});
+    }
+    if (packed) {
+      // Only labels spread. Exact onset pins and duration strokes stay on the time scale.
+      for (let lane=0; lane<2; lane++) {
+        const indices = ordered.map((_,i) => i).filter(i => i%2 === lane);
+        const width = Math.min(110,(timelineWidth-4)/Math.max(1,indices.length)-3);
+        let end = 2;
+        indices.forEach((i,j) => {
+          const rightLimit = timelineWidth-2-(indices.length-j)*(width+3)+3;
+          const left = Math.max(end,Math.min(ordered[i].time/24*timelineWidth,rightLimit));
+          positions[i] = {left,width,lane};
+          end = left+width+3;
+        });
+      }
+    }
+    pins.replaceChildren();
+    for (let i=0; i<ordered.length; i++) {
+      const e = ordered[i];
+      const pos = positions[i];
+      let b = chipElements.get(e.id);
+      if (!b) {
+        b = document.createElement('button');
+        b.className = 'effect';
+        b.innerHTML = '<span></span><small></small>';
+        b.dataset.id = e.id;
+        b.addEventListener('pointerdown',startChipDrag);
+        b.onclick = () => { if (dragSuppress) return;
+        state.selectedEffect = e.id;
+        setTab('effects');
+        renderEffects();
+        hint(e.name+' at '+e.time.toFixed(2)+' seconds, length '+Math.min(e.dur,24-e.time).toFixed(2)+
+          ' seconds. Drag to move, or tap Remove.');
+        };
+        $('effectsTrack').append(b);
+        chipElements.set(e.id,b);
+      }
+      const lane = pos.lane;
+      if (lane) two = true;
+      b.style.left = pos.left+'px';
+      b.style.width = pos.width+'px';
+      b.style.top = (lane*49+5)+'px';
+      const chipWidth = pos.width;
+      const shortNames = {'Thunder':'Thndr','Tiptoe steps':'Steps','Running steps':'Run',
+        'Slide whistle down':'Slide','Tiny mew':'Mew','Door creak':'Creak','Heartbeat':'Heart'};
+      b.querySelector('span').textContent = chipWidth < 70 ? (shortNames[e.name] || e.name) :
+        effects.find(f => f[0] === e.name)[2]+' '+e.name;
+      const length = Math.min(e.dur,24-e.time);
+      b.querySelector('small').textContent = packed ? e.time+'s\n'+length+'s' : length+' s';
+      b.title = `${e.name}, ${e.time.toFixed(2)} seconds, length ${length.toFixed(2)} seconds`;
+      b.setAttribute('aria-label',b.title);
+      b.setAttribute('aria-pressed',e.id === state.selectedEffect);
+      if (packed) {
+        const line = (x1,y1,x2,y2,kind='') => {
+          const el = document.createElementNS('http://www.w3.org/2000/svg','line');
+          for (const [k,v] of Object.entries({x1,y1,x2,y2})) el.setAttribute(k,v);
+          if (kind) el.setAttribute('class',kind);
+          pins.append(el);
+        };
+        const x = e.time/24*timelineWidth;
+        line(x,lane*49+1,Math.min(timelineWidth,x+length/24*timelineWidth),lane*49+1,'duration');
+        line(x,lane*49+1,x,lane*49+5);
+        line(x,lane*49+1,pos.left+4,lane*49+5);
+      }
+    }
+    $('effectsTrack').classList.toggle('packed',packed);
+    $('effectHelp').textContent = packed ?
+      'Crowded labels show start, then length. Pins and top strokes show exact timing.' :
+      'Drag a sound onto the effects track, or tap a sound then tap the track. Up to 16 effects.';
+    $('effectsTrack').classList.toggle('two',two);
+    $('emptyEffects').hidden = state.effects.length > 0;
+    $('effectEdit').hidden = !selected;
+    $('rainLabel').hidden = selected?.name !== 'Rain';
+    if (selected?.name === 'Rain') $('rainLength').value = String(Math.round(selected.dur));
+    document.querySelectorAll('[data-effect]').forEach(b => b.setAttribute('aria-pressed',b.dataset.effect === state.picked));
+    if (selected && innerWidth < 600 && !state.playing && !drag) {
+      const sc = $('timelineScroll');
+      const r = chipElements.get(selected.id).getBoundingClientRect();
+      const view = sc.getBoundingClientRect();
+      if (r.left < view.left+3 || r.right > view.right-3) sc.scrollLeft += r.left-view.left-(sc.clientWidth-r.width)/2;
+    }
+  }
+  $('removeEffect').onclick = removeEffect;
+  $('effectLeft').onclick = () => moveEffect(-.25);
+  $('effectRight').onclick = () => moveEffect(.25);
+  $('rainLength').onchange = () => {
+    const e = state.effects.find(e => e.id === state.selectedEffect);
+    if (!e) return;
+    e.dur = +$('rainLength').value;
+    renderEffects();
+    save();
+    if (state.playing) refreshEffects();
+  };
+  let drag = null;
+  let dragSuppress = false;
+  function startChipDrag(event) {
+    if (event.button !== 0) return;
+    const e = state.effects.find(e => e.id === event.currentTarget.dataset.id);
+    state.selectedEffect = e.id;
+    setTab('effects');
+    drag = {type:'chip',id:e.id,x:event.clientX,y:event.clientY,start:e.time,offset:timelineTime(event.clientX)-e.time,moved:false};
+    event.currentTarget.setPointerCapture(event.pointerId);
+    renderEffects();
+  }
+  for (const e of effects) {
+    const b = document.createElement('button');
+    b.dataset.effect = e[0];
+    b.setAttribute('aria-pressed','false');
+    b.setAttribute('aria-label',e[0]+', '+e[1]+' seconds');
+    b.title = e[0]+', '+e[1]+' seconds';
+    b.innerHTML = '<span class="fx-long"></span><span class="fx-short"></span><small></small>';
+    b.querySelector('span').textContent = e[2]+' '+e[0];
+    b.querySelector('small').textContent = e[1]+' s';
+    const shortName = {'Tiptoe steps':'Tiptoe','Running steps':'Running','Slide whistle down':'Slide ↓'}[e[0]] || e[0];
+    b.querySelector('.fx-short').textContent = shortName;
+    b.onclick = () => {
+      if (dragSuppress) return;
+      state.picked = state.picked === e[0] ? null : e[0];
+      renderEffects();
+      hint(state.picked ? 'Tap the effects track where '+e[0]+' should sound.' : 'Tap a sound to select it.');
+    };
+    b.onpointerdown = event => {
+      if (event.button !== 0) return;
+      drag = {type:'shelf',name:e[0],x:event.clientX,y:event.clientY,moved:false};
+      b.setPointerCapture(event.pointerId);
+    };
+    $('shelf').append(b);
+  }
+  document.addEventListener('pointermove',event => {
+    if (!drag) return;
+    if (Math.hypot(event.clientX-drag.x,event.clientY-drag.y)>5) drag.moved = true;
+    if (drag.type === 'chip' && drag.moved) {
+      const e = state.effects.find(e => e.id === drag.id);
+      e.time = snap(timelineTime(event.clientX)-drag.offset);
+      renderEffects();
+    }
+  });
+  document.addEventListener('pointerup',event => {
+    if (!drag) return;
+    const d = drag;
+    drag = null;
+    if (!d.moved) return;
+    dragSuppress = true;
+    setTimeout(() => { dragSuppress = false;
+    },80);
+    const track = $('effectsTrack').getBoundingClientRect();
+    const inside = event.clientX >= track.left && event.clientX <= track.right && event.clientY >= track.top-10 && event.clientY <= track.bottom+10;
+    if (d.type === 'shelf' && inside) placeEffect(d.name,timelineTime(event.clientX));
+    else if (d.type === 'chip') {
+      if (!inside) removeEffect();
+      else {
+        const e = state.effects.find(e => e.id === d.id);
+        e.time = nudgeCollision(e.time,e.id);
+        save();
+        renderEffects();
+        if (state.playing) refreshEffects();
+        hint(e.name+' at '+e.time.toFixed(2)+' seconds. Drag to move, or tap Remove.');
+      }
+    }
+  });
+  document.addEventListener('pointercancel',() => {
+    const canceled = drag;
+    drag = null;
+    if (canceled?.type === 'chip') {
+      const e = state.effects.find(e => e.id === canceled.id);
+      if (e) e.time = canceled.start;
+      renderEffects();
+    }
+  });
+  $('effectsTrack').onclick = event => {
+    if (event.target.closest('.effect') || dragSuppress) return;
+    if (state.picked) placeEffect(state.picked,timelineTime(event.clientX));
+    else hint('First tap a sound in Effects, then tap this track.');
+  };
+  $('effectsTrack').onkeydown = event => {
+    if (event.target !== $('effectsTrack') || event.key !== 'Enter') return;
+    event.preventDefault();
+    if (state.picked) placeEffect(state.picked,state.t);
+    else hint('Tap a sound in Effects, then press Enter on this track to place it at the playhead.');
+  };
+  let scrubbing = false;
+  $('ruler').onpointerdown = event => {
+    scrubbing = true;
+    $('ruler').setPointerCapture(event.pointerId);
+    seek(timelineTime(event.clientX));
+  };
+  $('ruler').onpointermove = event => { if (scrubbing) seek(timelineTime(event.clientX));
+  };
+  $('ruler').onpointerup = () => { scrubbing = false;
+  };
+  $('ruler').onpointercancel = () => { scrubbing = false;
+  };
+  $('ruler').onkeydown = event => {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault();
+      seek(state.t+(event.key === 'ArrowRight' ? .25 : -.25));
+    }
+  };
+  document.addEventListener('keydown',event => {
+    if (event.target.matches('input,select,textarea') || $('writing').open) return;
+    if (event.code === 'Space') {
+      event.preventDefault();
+      $('play').click();
+      return;
+    }
+    if (state.mode !== 'score') return;
+    if (/^[1-4]$/.test(event.key)) { selectScene(+event.key-1);
+    cueButtons[+event.key-1].focus({preventScroll:true});
+    }
+    if (state.selectedEffect && (event.key === 'ArrowRight' || event.key === 'ArrowLeft') && event.target !== $('ruler')) {
+      event.preventDefault();
+      moveEffect(event.key === 'ArrowRight' ? .25 : -.25);
+    }
+    if (state.selectedEffect && event.key === 'Delete') { event.preventDefault();
+    removeEffect();
+    }
+  });
+  $('read').addEventListener('click',() => {
+    const wasPlaying = state.playing;
+    stop();
+    if (wasPlaying) hint(state.mode === 'theater' ? L.threeWays : state.mode === 'swap' ?
+      (state.guess && !state.revealed ? 'Make your guess, then tap Show to reveal the score.' : L.welcomeSwap) :
+      'Tap Play to hear your score, or tap a scene block to change its music.');
+  },true);
+  Curio.onSound(() => {
+    previewPlayer?.stop();
+    previewPlayer = null;
+    if (state.playing) {
+      const t = current();
+      silence();
+      startPosition = t;
+      if (Curio.sound && !mutedMovie) {
+        clock = MS.ctx();
+        anchor = clock.currentTime;
+        refreshAudio(t);
+      } else {
+        clock = null;
+        pageAnchor = performance.now()/1000;
+      }
+    }
+  });
+  function updateTime(follow=state.playing) {
+    $('time').textContent = state.t.toFixed(1)+' / 24 s';
+    $('playhead').style.left = (state.t/24*100)+'%';
+    $('ruler').setAttribute('aria-valuenow',state.t.toFixed(2));
+    $('ruler').setAttribute('aria-valuetext',state.t.toFixed(2)+' seconds, '+scenes[Math.min(3,Math.floor(state.t/6))]);
+    if (follow && innerWidth < 600 && state.mode === 'score' && !drag) {
+      const sc = $('timelineScroll');
+      const px = state.t/24*$('timeline').clientWidth;
+      if (px-sc.scrollLeft > sc.clientWidth*.66 || px-sc.scrollLeft < sc.clientWidth*.33) sc.scrollLeft = px-sc.clientWidth*.5;
+    }
+    updateStrip();
+  }
+  let lastDraw = 0;
+  function frame(ms) {
+    if (state.playing) {
+      state.t = Math.min(endPosition,current());
+      telemetry.frames.push({t:state.t,audio:clock?.currentTime ?? null});
+      if (telemetry.frames.length > 1800) telemetry.frames.shift();
+      if (state.t >= endPosition) stop(true);
+    }
+    if (state.playing || ms-lastDraw > 160) { draw(state.t);
+    updateTime();
+    lastDraw = ms;
+    }
+    requestAnimationFrame(frame);
+  }
+  Curio.init({clips:"voice:*",rate:.95});
+  // Panel controls come before the long timeline lists for keyboard users.
+  const panel = $('panel');
+  const work = document.querySelector('.work');
+  panel.style.gridColumn = '2';
+  panel.style.gridRow = '1';
+  work.style.gridColumn = '1';
+  work.style.gridRow = '1';
+  document.querySelector('main').prepend(panel);
+  const responsiveOrder = () => {
+    const narrow = innerWidth < 600;
+    panel.style.gridColumn = narrow ? '1' : '2';
+    panel.style.gridRow = narrow ? '2' : '1';
+    const transport = document.querySelector('.transport');
+    if (!narrow && innerHeight < 600) $('projection').append(transport);
+    else $('projection').after(transport);
+    renderEffects();
+  };
+  addEventListener('resize',responsiveOrder);
+  responsiveOrder();
+  updateBlocks();
+  renderEffects();
+  updateMoods();
+  setMode('theater');
+  requestAnimationFrame(frame);
+  window.__tool = {
+    state,setMode,setTab,selectScene,editCue,placeEffect,moveEffect,removeEffect,seek,play,stop,swap,
+    allLines:V.allLines,vlog:V.log,telemetry,presets,scores,effects,draw,current,
+    get vq() { return V.queue;
+    },
+    get clockInfo() { return {audio:!!clock,anchor,startPosition,endPosition,current:current()};
+    },
+  };
+})();
+</script>
+</body>
+</html>

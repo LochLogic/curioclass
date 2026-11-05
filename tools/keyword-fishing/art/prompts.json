@@ -5,11 +5,85 @@
       "prompt": "A calm lake on a misty morning seen from the end of a wooden dock, reeds and lily pads at the edges, soft green hills far away, clear open water across the middle two thirds, storybook painted style.",
       "aspect": "16:9",
       "cutout": false,
-      "width": 1600,
+      "width": 1500,
       "quality": 72,
       "local_note": "stage background behind the code-drawn water, fish and bobber",
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "drawn_by": "codex"
+    },
+    {
+      "name": "kf-fish-ocean",
+      "prompt": "A single friendly cartoon fish seen from the side facing right, round orange body with pale cream stripes and warm golden fins, smooth broad plain flank, clear eye and little mouth, graceful separate tail. Entire fish centered with a generous margin on perfectly flat pure green (#00FF00). No ground or cast shadow. A game cutout that must read well at 110 pixels long.",
+      "aspect": "16:10",
+      "cutout": true,
+      "width": 240,
+      "quality": 82,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "kf-fish-night",
+      "prompt": "A single friendly cartoon fish seen from the side facing right, slim violet body with long dark purple fins and lavender highlights, smooth broad plain flank, clear eye and little mouth, graceful separate tail. Entire fish centered with a generous margin on perfectly flat pure green (#00FF00). No ground or cast shadow. A game cutout that must read well at 110 pixels long.",
+      "aspect": "16:10",
+      "cutout": true,
+      "width": 240,
+      "quality": 82,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "kf-fish-earth",
+      "prompt": "A single friendly cartoon fish seen from the side facing right, chunky coral red body with small darker red spots and terracotta fins, smooth broad plain flank, clear eye and little mouth, graceful separate tail. Entire fish centered with a generous margin on perfectly flat pure green (#00FF00). No ground or cast shadow. A game cutout that must read well at 110 pixels long.",
+      "aspect": "16:10",
+      "cutout": true,
+      "width": 240,
+      "quality": 82,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "kf-fish-space",
+      "prompt": "A single friendly cartoon fish seen from the side facing right, sleek sky blue body with a silver belly and dark turquoise fins, smooth broad plain flank, clear eye and little mouth, graceful separate tail. Entire fish centered with a generous margin on perfectly flat pure green (#00FF00). No ground or cast shadow. A game cutout that must read well at 110 pixels long.",
+      "aspect": "16:10",
+      "cutout": true,
+      "width": 240,
+      "quality": 82,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "kf-bobber",
+      "prompt": "A red and white fishing bobber floating upright, tiny metal eyelet at the top, warm shiny curved red cap, ivory lower half, small blue ring of ripples at its base. Entire object centered, perfectly flat pure green (#00FF00) background, no ground or cast shadow.",
+      "aspect": "1:1",
+      "cutout": true,
+      "width": 180,
+      "quality": 82,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "kf-bucket",
+      "prompt": "A small dented tin fishing pail seen from the front, arched wire handle, rolled rim, subtle water reflections, scratches and soft blue-gray metal shading. Entire object centered, perfectly flat pure green (#00FF00) background, no ground or cast shadow.",
+      "aspect": "1:1",
+      "cutout": true,
+      "width": 220,
+      "quality": 82,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
     }
-  ]
+  ],
+  "house_style": "Warm storybook gouache and colored-pencil illustration for Grades 3 to 5. Rich natural colors, directional golden morning light from upper left, delicate paper grain, beautiful rounded forms with volume and true small details. No text, letters, numbers, logos or people."
 }

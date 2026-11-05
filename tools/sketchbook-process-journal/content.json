@@ -1,0 +1,249 @@
+{
+  "issues": [
+    {
+      "name": "City heat",
+      "image": "heat-roofs",
+      "cards": [
+        {
+          "name": "Day and night",
+          "text": "In US cities, daytime temperatures run about 1 to 7°F higher than in outlying areas, and nighttime temperatures about 2 to 5°F higher."
+        },
+        {
+          "name": "Roofs",
+          "text": "On a warm day, ordinary roofing can reach as much as 66°F warmer than the air around it."
+        },
+        {
+          "name": "Trees",
+          "text": "Trees and plants cool streets two ways: shade, and water evaporating from their leaves."
+        }
+      ],
+      "source": "US EPA"
+    },
+    {
+      "name": "Plastic in the ocean",
+      "image": "plastic-shore",
+      "cards": [
+        {
+          "name": "Tons",
+          "text": "In 2010, an estimated 4.8 to 12.7 million metric tons of plastic washed into the ocean from land."
+        },
+        {
+          "name": "Most common",
+          "text": "Plastic is the most common kind of trash found in the ocean and on beaches."
+        },
+        {
+          "name": "Smaller",
+          "text": "Plastic does not rot away. It breaks into smaller and smaller pieces; under 5 mm, they are called microplastics."
+        }
+      ],
+      "source": "Jambeck et al., 2015; NOAA"
+    },
+    {
+      "name": "Monarch butterflies",
+      "image": "monarch-firs",
+      "cards": [
+        {
+          "name": "Decline",
+          "text": "Monarch numbers have been falling steadily since the mid-1990s."
+        },
+        {
+          "name": "Milkweed",
+          "text": "Monarch caterpillars eat only milkweed."
+        },
+        {
+          "name": "Winter",
+          "text": "Eastern monarchs spend the winter packed into fir forests in the mountains of central Mexico."
+        }
+      ],
+      "source": "US FWS; USDA Forest Service"
+    }
+  ],
+  "traditions": [
+    {
+      "name": "Vanitas still life",
+      "context": "the Dutch Republic, 1600s",
+      "intro": "Painters filled tables with beautiful things and quiet warnings. Every object reminds the viewer that life and wealth do not last.",
+      "traits": [
+        "Symbols of death (a skull)",
+        "Symbols of time running out (a snuffed candle, an hourglass)",
+        "Things at the edge of decay (wilting flowers, peeled fruit)",
+        "A dark plain background with one strong window light",
+        "Costly objects shown in loving detail"
+      ],
+      "images": [
+        "vanitas-a",
+        "vanitas-b"
+      ],
+      "source": "Tate; Metropolitan Museum"
+    },
+    {
+      "name": "Ukiyo-e woodblock prints",
+      "context": "Japan, Edo period, 1600s to 1860s",
+      "intro": "Prints of famous places, seasons and city life, carved on wood with one block for each color. Artists sold them in series, like Hokusai's Thirty-six Views of Mount Fuji (about 1830 to 1832).",
+      "traits": [
+        "Flat areas of color with bold outlines",
+        "A big shape close up, framing a small far view",
+        "A place shown in a season or weather",
+        "Prints made in a series",
+        "Prussian blue, a new imported blue printmakers took up around 1830"
+      ],
+      "images": [
+        "ukiyo-a",
+        "ukiyo-b"
+      ],
+      "source": "Metropolitan Museum"
+    },
+    {
+      "name": "WPA posters",
+      "context": "United States, 1936 to 1943",
+      "intro": "During the Great Depression, a government program paid artists to make posters for parks, health, safety and community events. Most were silkscreen prints, so each design could be printed many times.",
+      "traits": [
+        "Flat layered colors, a few at a time",
+        "One short bold message",
+        "A public topic for everyone",
+        "Simple strong shapes that read from far away",
+        "Made to be printed many times and posted in public"
+      ],
+      "images": [
+        "wpa-a",
+        "wpa-b"
+      ],
+      "source": "Library of Congress"
+    }
+  ],
+  "sample": {
+    "issue": 1,
+    "tradition": 0,
+    "pages": [
+      {
+        "type": "Issue",
+        "image": "plastic-shore",
+        "text": "The beach near my aunt's house is half plastic after a storm.",
+        "tags": []
+      },
+      {
+        "type": "Tradition",
+        "image": "vanitas-a",
+        "text": "Vanitas paintings warn you about things that last too short. Plastic is the opposite: it lasts too long.",
+        "tags": []
+      },
+      {
+        "type": "Thumbnails",
+        "image": "sample-thumbs",
+        "text": "A heap on the beach. A skull built of bottles. A table with a fish and a plastic bag.",
+        "tags": [
+          {
+            "aspect": "Subject",
+            "kind": "research",
+            "index": 0,
+            "note": "Tons is too big to draw. One table of it is something people can look at.",
+            "issue": 1,
+            "tradition": 0,
+            "label": "Tons"
+          },
+          {
+            "aspect": "Composition",
+            "kind": "borrowed",
+            "index": 4,
+            "note": "A table, like the Dutch painters",
+            "issue": 1,
+            "tradition": 0,
+            "label": "Costly objects shown in loving detail"
+          }
+        ]
+      },
+      {
+        "type": "Study",
+        "image": "sample-study",
+        "text": "A value study: one bottle, one shell, one window.",
+        "tags": [
+          {
+            "aspect": "Composition",
+            "kind": "borrowed",
+            "index": 3,
+            "note": "Dark back, one window light. It makes plain trash look precious.",
+            "issue": 1,
+            "tradition": 0,
+            "label": "A dark plain background with one strong window light"
+          }
+        ]
+      },
+      {
+        "type": "Revision",
+        "image": "sample-rev1",
+        "text": "Replace the skull with a fish skeleton tangled in a bag.",
+        "tags": [
+          {
+            "aspect": "Symbol",
+            "kind": "broke",
+            "index": 0,
+            "note": "Not a human skull. The warning is about the fish.",
+            "issue": 1,
+            "tradition": 0,
+            "label": "Symbols of death (a skull)"
+          },
+          {
+            "aspect": "Subject",
+            "kind": "research",
+            "index": 1,
+            "note": "The bag, because it is the thing I find most.",
+            "issue": 1,
+            "tradition": 0,
+            "label": "Most common"
+          }
+        ]
+      },
+      {
+        "type": "Revision",
+        "image": "sample-rev2",
+        "text": "A lighter instead of a candle. Bright caps against the dark.",
+        "tags": [
+          {
+            "aspect": "Symbol",
+            "kind": "broke",
+            "index": 1,
+            "note": "Their candle burns out. My lighter never goes away.",
+            "issue": 1,
+            "tradition": 0,
+            "label": "Symbols of time running out (a snuffed candle, an hourglass)"
+          },
+          {
+            "aspect": "Color",
+            "kind": "own",
+            "index": 0,
+            "note": "Bright plastic colors against the dark, so the trash is the loudest thing.",
+            "issue": 1,
+            "tradition": 0,
+            "label": "My own idea"
+          }
+        ]
+      },
+      {
+        "type": "Plan",
+        "image": "sample-plan",
+        "text": "A Dutch vanitas warns that beautiful things don't last. My still life warns about the things that last too long. I borrowed the dark table and window light, but swapped the skull for a fish and the candle for a lighter.",
+        "tags": [
+          {
+            "aspect": "Material",
+            "kind": "own",
+            "index": 0,
+            "note": "Painted on a cardboard box from a delivery, so the painting is made of packaging too.",
+            "issue": 1,
+            "tradition": 0,
+            "label": "My own idea"
+          },
+          {
+            "aspect": "Symbol",
+            "kind": "research",
+            "index": 2,
+            "note": "Tiny bright specks in the sand at the front: the pieces you can't pick up.",
+            "issue": 1,
+            "tradition": 0,
+            "label": "Smaller"
+          }
+        ]
+      }
+    ]
+  },
+  "sources": "- NCAS Visual Arts VA:Cr1, VA:Cn10, VA:Cn11: https://www.nationalartsstandards.org/\n- City heat R1 and R2: US EPA, \"Learn About Heat Islands\" (daytime about 1 to 7°F higher, nighttime about 2 to 5°F higher; roofing \"as much as 66°F warmer than the surrounding air\"), https://www.epa.gov/heatislands/learn-about-heat-islands (read 2026-10-29). R3: US EPA, \"Using Trees and Vegetation to Reduce Heat Islands\" (shade and evapotranspiration), https://www.epa.gov/heatislands/using-trees-and-vegetation-reduce-heat-islands\n- Plastic R1: Jambeck, J. R. et al. (2015), \"Plastic waste inputs from land into the ocean\", Science 347(6223): 768-771 (4.8 to 12.7 million metric tons in 2010). R2 and R3: NOAA Marine Debris Program, \"Plastics\" and \"Microplastics\" (plastic the most common debris type; microplastics under 5 mm), https://marinedebris.noaa.gov/\n- Monarchs R1: US Fish and Wildlife Service, Monarchs page (\"steadily declining since the mid-1990s\"), https://www.fws.gov/initiative/pollinators/monarchs (read 2026-10-29). R2 and R3: USDA Forest Service, \"Monarch Butterfly\" (milkweed host plant; overwintering in oyamel fir forests of central Mexico), https://www.fs.usda.gov/wildflowers/pollinators/Monarch_Butterfly/\n- Vanitas definition and symbols: Tate, Art Term \"Vanitas\", https://www.tate.org.uk/art/art-terms/v/vanitas ; Metropolitan Museum, Heilbrunn Timeline, \"Still-Life Painting in Northern Europe, 1600-1800\".\n- Ukiyo-e (Edo period, one block per color, series, Hokusai's Thirty-six Views about 1830 to 1832, Prussian blue from around 1830): Metropolitan Museum, Heilbrunn Timeline, \"Woodblock Prints in the Ukiyo-e Style\" and the Met's catalog entries for \"Thirty-six Views of Mount Fuji\", https://www.metmuseum.org/toah/hd/ukiy/hd_ukiy.htm\n- WPA posters (1936 to 1943, Federal Art Project, mostly silkscreen, public topics): Library of Congress, \"Posters: WPA Posters\" collection, https://www.loc.gov/collections/works-progress-administration-posters/\n- Theo Marsh, his pages and his statement are made up for this tool. All artworks are original paintings in the named styles, not copies.\n- Number checks (Python, 2026-10-29): sample tags counted by source give research 3, borrowed 2, broke 2, own 2, total 9 (matches Content). Storage arithmetic corrected in cold review, 2026-11-04: pages 1 and 2 are fixed, so 10 working pages can hold at most 40 drawings. At 40 KiB per compressed image, base64 expands those drawings to about 2133 KiB of ASCII characters before metadata. Actual sizes and storage quotas vary; failed writes preserve the in-memory book and show the full-storage message. Contrast ratios in Look computed.\n\n"
+}

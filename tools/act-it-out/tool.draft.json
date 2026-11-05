@@ -1,0 +1,23 @@
+{
+  "id": "act-it-out",
+  "stage": "built",
+  "status": "beta",
+  "hook": "The class is the cast. Open the trunk, become a character, and trade parts.",
+  "outcome": "Use body, face, and voice to act out folktales and invent characters",
+  "driver": "teacher",
+  "minutes": "15-25",
+  "modes": [
+    "Stories",
+    "Trunk"
+  ],
+  "grades_label": "Grades K-2",
+  "sources": [
+    "Original retellings of The Three Billy-Goats Gruff (Dasent, 1859), The Gingerbread Boy (St. Nicholas, May 1875), and Repka (Afanasyev, 1855 to 1863), public domain",
+    "National Core Arts Standards, Theatre K-2: TH:Cr1, TH:Cr2, TH:Pr4, TH:Pr5, TH:Pr6",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Six backdrop illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Sound effects synthesized in code"
+  ],
+  "third_party": [],
+  "updated": "2026-11-03"
+}

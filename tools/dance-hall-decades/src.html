@@ -1,0 +1,1316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Dance Hall Decades · Curio Class</title>
+<meta name="description" content="Walk into eight social dance halls, learn their patterns, and consider access and credit. Grades 6-8. Works offline.">
+<!--
+Dance Hall Decades, Curio Class. Built from kit/starter/src.html. Content CC BY 4.0, code MIT.
+NCAS DA:Re7, Re8, Re9, Cn10, Cn11. Sources and teaching adaptations are in notes.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Generated images contain no people.
+The temporary faceless figure comes from kit/dance.js. Original synthesized grooves, no song recordings.
+No network requests, tracking or uploads. Only the comparison is saved on this device.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --brand:#e07be0;--paper:#1d1410;--panel:#2a1e18;--ink:#f5ece2;--muted:#c4b2a0;
+  --line:#79604e;--focus:#9bdcff;--btn:#36261f;--btn-line:#876b55;--head-ink:#f5ece2;
+}
+body {grid-template-rows:auto minmax(0,1fr);min-height:0;overflow:hidden}
+header {background:#1d1410;border-bottom:1px solid #79604e;padding:12px 22px;gap:9px;flex-wrap:nowrap}
+h1 {font:400 clamp(22px,2.3vw,33px)/1.05 Georgia,serif;letter-spacing:-.7px}
+h1 span {color:var(--brand)}
+h1 small {font:12px/1.7 'Segoe UI',sans-serif;letter-spacing:.05em}
+.seg {border:1px solid #876b55;border-radius:6px;flex-shrink:0}
+.seg button {min-height:44px;font-size:13px;padding:0 15px}
+#m-halls {min-width:44px}
+.seg button[aria-pressed=true] {background:var(--brand);color:#1d1410}
+.icon-btn {min-height:44px;min-width:44px;border:1px solid #876b55;border-radius:6px;font-size:12px;padding:0 10px}
+#sound {width:76px;flex-shrink:0}
+button,input,select,textarea {touch-action:manipulation}
+button:active {filter:brightness(1.25)}
+button:disabled {opacity:.5;cursor:default}
+main {display:block;min-width:0;min-height:0;overflow:hidden}
+#halls {height:100%;display:grid;grid-template-rows:100px minmax(0,1fr) 54px}
+.timeline {display:flex;align-items:stretch;gap:8px;padding:6px 22px;background:linear-gradient(#31231a,#201711);
+  border-bottom:1px solid #79604e;overflow-x:auto;scrollbar-width:thin;isolation:isolate;grid-row:1}
+.marker {position:relative;flex:1;min-width:66px;background:none;border:0;border-bottom:2px solid #72523a;
+  border-radius:4px;color:var(--muted);display:flex;align-items:center;justify-content:center;flex-direction:column;padding:0 4px 7px}
+.marker img {height:58px;width:90px;max-width:100%;object-fit:contain;filter:drop-shadow(0 4px 3px #0008)}
+.marker span {font:12px/1.2 Consolas,monospace;white-space:nowrap}
+.marker.active {background:#e07be015;border-color:var(--brand);color:var(--ink)}
+.marker.active::before {content:'';position:absolute;inset:0;border-radius:4px;border:1px solid #e07be060;pointer-events:none}
+.marker.visited::after {content:'';position:absolute;width:4px;height:4px;bottom:2px;background:var(--muted);border-radius:50%}
+.workspace {display:grid;grid-template-columns:minmax(0,1fr) 275px;grid-template-rows:minmax(0,1fr);
+  min-height:0;min-width:0;grid-row:2}
+.hall-wrap {min-width:0;min-height:0;display:grid;grid-template-rows:48px minmax(0,1fr);padding:12px 0 0 18px}
+.tabs {display:flex;gap:5px;min-width:0;align-items:stretch}
+.tabs button {background:#35261d;border:1px solid #876b55;border-bottom:0;border-radius:7px 7px 0 0;
+  min-height:44px;padding:0 14px;color:var(--muted);font-size:13px}
+.tabs button[aria-selected=true] {color:var(--ink);background:#594032;border-top:2px solid var(--brand)}
+.hall {position:relative;overflow:hidden;isolation:isolate;border:1px solid #876b55;border-radius:0 7px 0 0;background:#38271b}
+#hall-art {position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3}
+.hall::before {content:'';position:absolute;inset:0;z-index:-2;
+  background:linear-gradient(#130e0be8,#130e0b00 37%,#130e0b20 65%,#130e0be8)}
+.hall::after {content:'';pointer-events:none;position:absolute;inset:0;border:6px solid #e4b06a0a;box-shadow:inset 0 0 70px #10080044}
+.hall-heading {position:absolute;left:24px;top:20px;right:120px;text-shadow:0 2px 4px #000}
+.eyebrow {font:11px/1.4 Consolas,monospace;letter-spacing:.13em;color:#f5c68f;text-transform:uppercase}
+.hall-heading h2 {font:400 clamp(25px,3.5vw,49px)/1.1 Georgia,serif;margin:3px 0 7px}
+.hall-heading p {margin:0;color:#eee1d2;font-size:13px}
+.room-tag {position:absolute;top:24px;right:22px;border:1px solid #e9c18b80;border-radius:50%;width:62px;height:62px;
+  display:grid;place-content:center;text-align:center;background:#2a1e18c9;font:19px/1.1 Georgia,serif;gap:2px}
+.room-tag small {display:block;font:10px Consolas,monospace;letter-spacing:.1em}
+#dance-layer {position:absolute;inset:110px 0 84px;display:grid;grid-template-columns:40% 60%;align-items:stretch;min-height:0}
+.figure-box {position:relative;min-height:0;min-width:0}
+#figure {height:100%;width:100%;overflow:visible;filter:drop-shadow(0 5px 6px #0009)}
+.figure-caption {position:absolute;bottom:0;left:5%;right:5%;font:11px/1.3 Consolas,monospace;text-align:center;
+  color:#f5ece2;text-shadow:0 1px 3px #000;background:#1d1410b3;padding:4px;border-radius:3px}
+.diagram-box {position:relative;padding:10px 30px 8px 0;display:flex;flex-direction:column;min-height:0}
+.diagram-title {font:10px/1.4 Consolas,monospace;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;color:#fff1dc}
+#footprints {width:100%;flex:1;min-height:0;background:radial-gradient(ellipse,#1d1410b8,#1d14106e 70%,transparent 72%)}
+.foot-legend {font:11px Consolas,monospace;text-shadow:0 1px 2px #000;color:#f5ece2;display:flex;gap:16px;justify-content:center}
+.foot-legend b:first-child {color:#6fc3ff}
+.foot-legend b:last-child {color:#ffb36b}
+.phrase-counts {display:flex;justify-content:center;gap:3px;flex-wrap:wrap;margin-top:8px;flex-shrink:0}
+.phrase-counts span {display:grid;place-content:center;min-width:22px;min-height:22px;border:1px solid #c4b2a055;
+  border-radius:3px;background:#1d1410bf;color:#f5ece2;font:14px/1 Consolas,monospace}
+.phrase-counts span.current {border-color:var(--brand);background:var(--brand);color:#1d1410;font-weight:800}
+.dance-floor {transition:filter .3s}
+.count-strip {position:absolute;bottom:0;left:0;right:0;display:grid;grid-template-columns:100px minmax(0,1fr);
+  gap:8px;align-items:center;background:linear-gradient(transparent,#170f0bf0 15%);min-height:70px;padding:7px 22px}
+#big-count {font:700 clamp(48px,5.4vw,90px)/1 Georgia,serif;color:var(--brand);text-align:center;font-variant-numeric:tabular-nums}
+#step-cue {font:600 clamp(15px,1.6vw,24px)/1.2 'Segoe UI',sans-serif}
+#step-detail {font:12px/1.4 'Segoe UI',sans-serif;color:var(--muted);margin-top:3px}
+.panel {border:0;background:linear-gradient(135deg,#33241b,#211711);padding:22px 18px;gap:12px;min-height:0;overflow:visible}
+.panel .eyebrow {color:var(--muted)}
+.panel h3 {font:400 23px Georgia,serif;margin:0}
+.panel p {font-size:13px;line-height:1.5;margin:0;color:var(--muted)}
+.play {min-height:60px;background:var(--brand);border:1px solid #f2b6f2;color:#1d1410;border-radius:6px;
+  font:700 21px Georgia,serif;box-shadow:0 4px 0 #5d3053}
+.speed {display:flex;border:1px solid #876b55;border-radius:6px;overflow:hidden;min-height:46px;flex-shrink:0}
+.speed button {flex:1;border:0;background:#32231b;min-height:44px;font-size:13px}
+.speed button[aria-pressed=true] {background:#61465b;color:#fff}
+.control {background:#38281f;border:1px solid #876b55;border-radius:5px;min-height:44px;padding:6px 10px;font-size:13px}
+.control[aria-pressed=true] {border-color:var(--brand);background:#60425a}
+.hall-nav {display:flex;gap:6px;margin-top:auto}
+.hall-nav button {flex:1}
+.groove {display:flex;gap:4px;align-items:end;height:22px;padding:0 2px}
+.groove i {height:6px;width:5px;background:var(--brand);border-radius:1px}
+.groove i:nth-child(2n) {height:14px}
+.groove i:nth-child(3n) {height:21px}
+.playing .groove i {animation:meter .7s ease-in-out infinite alternate}
+.playing .groove i:nth-child(2n) {animation-delay:-.4s}
+.calm .groove i {animation:none!important}
+@keyframes meter {to {height:3px}}
+.lamp {width:6px;height:6px;display:inline-block;background:#f0bf73;border-radius:50%;box-shadow:0 0 7px #f0bf73;
+  animation:lamp 4s ease-in-out infinite alternate;margin-right:7px}
+@keyframes lamp {to {opacity:.45}}
+.calm .lamp {animation:none!important}
+.hint-row {display:flex;align-items:center;padding:7px 22px;border-top:1px solid #79604e;
+  background:#231912;gap:12px;grid-row:3}
+.hint {margin:0;font-size:13px;line-height:1.4;flex:1}
+.hint-row small {color:var(--muted);font-size:11px;white-space:nowrap}
+.story {position:absolute;top:112px;left:24px;right:24px;bottom:20px;overflow:auto;scrollbar-width:thin}
+.story-card {max-width:800px;background:#251a14ee;border:1px solid #b68b5c99;padding:18px 22px;
+  box-shadow:0 6px 20px #0008;border-radius:4px}
+.story-card h3 {font:400 25px/1.2 Georgia,serif;color:#f3cc99;margin:0 0 8px}
+.story-card p {font-size:15px;line-height:1.5;margin:8px 0}
+.story-card .fact {border-left:3px solid var(--brand);background:#e07be00d;padding:10px 14px;margin:12px 0;font:17px/1.4 Georgia,serif}
+.story-card .talk {color:#f5c68f;font-size:16px;border-top:1px solid #79604e;padding-top:12px;margin-top:12px}
+.story-card a {color:#a8dfff;display:inline-block;min-height:44px;padding:12px 0;font-size:12px}
+#moving {height:100%;overflow:auto;padding:22px;scrollbar-width:thin;background:radial-gradient(ellipse at top,#483026,#1d1410 75%)}
+.moving-heading {display:flex;justify-content:space-between;gap:12px;align-items:start;margin-bottom:16px}
+.moving-heading h2 {font:400 32px Georgia,serif;margin:0 0 5px}
+.moving-heading p {margin:0;color:var(--muted);font-size:12px}
+.moving-grid {display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:20px;max-width:1600px;margin:auto}
+.sheet {border:1px solid #876b55;background:linear-gradient(140deg,#3e2d23,#251b15);padding:20px;border-radius:7px;
+  box-shadow:0 7px 20px #0004;min-width:0}
+.sheet h3 {font:400 23px Georgia,serif;color:#f5c68f;margin:0 0 14px}
+.picks {display:flex;gap:10px;margin-bottom:16px}
+label {font-size:12px;display:block;min-width:0}
+select,textarea,input[type=text] {color:var(--ink);font:inherit;background:#1d1410;border:1px solid #97785e;
+  border-radius:5px;min-height:44px;padding:8px;max-width:100%}
+select {width:100%;font-size:13px}
+.picks label {flex:1}
+.chart-row {position:relative;margin:12px 0}
+.row-ends {display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px}
+.row-ends b {font-weight:500}
+.track {position:relative;margin:20px 14px 0;height:44px;border-top:2px solid #aa8d72;
+  background:repeating-linear-gradient(90deg,#aa8d7230 0 1px,transparent 1px 25%)}
+.pin {position:absolute;top:-22px;transform:translateX(-50%);font:700 12px/1.2 Consolas,monospace;white-space:nowrap}
+.pin.me {color:var(--brand);top:18px}
+.pin.a {color:#6fc3ff;top:-16px}
+.pin.b {color:#ffb36b;top:1px}
+.track i {position:absolute;top:-4px;height:6px;width:6px;background:currentColor;transform:rotate(45deg)}
+.chart-row input {position:absolute;bottom:0;left:14px;width:calc(100% - 28px);height:44px;margin:0;opacity:0;cursor:ew-resize}
+.chart-row:focus-within .track {outline:3px solid var(--focus);outline-offset:4px}
+.chart-note {font-size:11px;color:var(--muted);line-height:1.5}
+.judge {border-top:1px solid #79604e;padding-top:12px;margin-top:12px}
+.judge h4 {margin:0 0 7px;font:600 16px Georgia,serif}
+.strengths {display:flex;gap:5px;margin-bottom:7px}
+.strengths button {min-height:44px;flex:1}
+.reasons {display:flex;gap:5px;flex-wrap:wrap}
+.reasons button {min-height:44px;font-size:11px;padding:6px 9px;text-align:left;flex:1;min-width:100px}
+.frame {grid-column:1/-1}
+.sentence-fields {display:grid;grid-template-columns:1fr 2fr;gap:10px}
+.sentence-fields label {display:flex;flex-direction:column;gap:5px}
+.sentence-fields textarea {height:70px;resize:vertical;font-size:13px}
+.sentence-fields select {font-size:13px}
+#reflection {font:19px/1.5 Georgia,serif;background:#1d1410;padding:15px;border-left:3px solid var(--brand);margin:15px 0}
+.copy-row {display:flex;align-items:center;gap:12px}
+#save-status {font-size:12px;color:var(--muted)}
+.moving-hint {margin:0 0 14px;font-size:13px;color:var(--muted)}
+@media (min-width:1600px) {
+  #halls {grid-template-rows:120px minmax(0,1fr) 60px}
+  .marker img {height:76px;width:110px}
+  .marker span {font-size:14px}
+  .workspace {grid-template-columns:minmax(0,1fr) 330px}
+  .panel {padding:28px;gap:18px}
+  .panel p {font-size:15px}
+  .tabs button {font-size:15px}
+  #dance-layer {inset:135px 0 100px}
+  .count-strip {min-height:100px}
+  .hint {font-size:15px}
+}
+@media (max-height:650px) and (min-width:600px) {
+  header {padding:5px 12px;gap:6px}
+  h1 {font-size:22px}
+  h1 small {display:none}
+  .seg button,.icon-btn {font-size:11px;padding:0 8px}
+  #halls {grid-template-rows:70px minmax(0,1fr) 42px}
+  .timeline {padding:0 12px}
+  .marker img {height:42px;width:65px}
+  .marker span {font-size:10px}
+  .workspace {grid-template-columns:minmax(0,1fr) 200px}
+  .hall-wrap {padding:6px 0 0 8px;grid-template-rows:44px minmax(0,1fr)}
+  .tabs {gap:3px}
+  .tabs button {font-size:10px;padding:0 7px}
+  .hall-heading {top:10px;left:14px;right:70px}
+  .hall-heading h2 {font-size:27px;margin:3px 0}
+  .hall-heading p {font-size:10px}
+  .eyebrow {font-size:10px}
+  .room-tag {width:44px;height:44px;font-size:14px;right:12px;top:12px}
+  .room-tag small {font-size:10px}
+  #dance-layer {inset:77px 0 50px;grid-template-columns:38% 62%}
+  .diagram-box {padding:0 12px 0 0}
+  .diagram-title,.figure-caption {display:none}
+  .foot-legend {font-size:10px;gap:8px}
+  .phrase-counts {display:none}
+  .phrase-counts span {min-width:18px;min-height:18px}
+  .count-strip {grid-template-columns:55px 1fr;min-height:50px;padding:4px 12px}
+  #big-count {font-size:46px}
+  #step-cue {font-size:14px}
+  #step-detail {font-size:10px}
+  .panel {padding:12px;gap:7px}
+  .panel h3,.panel>.eyebrow,.panel>.groove {display:none}
+  .panel p {display:none}
+  .play {min-height:44px;font-size:18px}
+  .speed button,.control {font-size:11px}
+  .hint-row {padding:3px 12px}
+  .hint {font-size:11px}
+  .hint-row small {display:none}
+  .story {top:80px;left:12px;right:12px;bottom:10px}
+  .story-card {padding:10px 14px}
+  .story-card h3 {font-size:19px}
+  .story-card p {font-size:12px}
+  .story-card .fact,.story-card .talk {font-size:13px}
+  .moving-heading h2 {font-size:24px}
+  #moving {padding:8px}
+  .moving-heading {min-height:44px;margin-bottom:0;align-items:center}
+  .moving-heading h2 {display:none}
+  .moving-heading p {font-size:10px;line-height:12px}
+  .moving-hint {margin:0 0 4px}
+  .moving-hint .hint {font-size:10px;line-height:12px}
+  .moving-grid {gap:8px}
+  .sheet {padding:8px}
+  .sheet>h3 {display:none}
+  .picks {margin-bottom:0;gap:6px}
+  .picks label,#criterion {font-size:10px;line-height:12px}
+  .chart-row {margin:1px 0}
+  .row-ends {font-size:10px;line-height:12px;margin-bottom:0}
+  .track {margin:10px 10px 0;height:24px}
+  .pin {font-size:10px;line-height:11px}
+  .pin.a {top:-10px}
+  .pin.b {top:1px}
+  .pin.me {top:12px}
+  .chart-row input {left:10px;width:calc(100% - 20px)}
+  .chart-note {font-size:10px;line-height:12px;margin:2px 0 0}
+  .judge {margin-top:4px;padding-top:4px}
+  .judge h4 {font-size:11px;line-height:12px;margin:0}
+  .strengths {margin-bottom:0;gap:3px}
+  .strengths button {font-size:10px;padding:2px}
+  .reasons {gap:3px;flex-wrap:nowrap}
+  .reasons button {font-size:10px;min-width:0;padding:2px 3px}
+}
+@media (min-height:651px) and (max-height:750px) and (min-width:951px) {
+  .panel {gap:10px;padding:18px}
+  .panel>.eyebrow,.panel>h3,.panel>.groove {display:none}
+  .panel p {font-size:12px}
+}
+@media (max-width:950px) and (min-width:600px) {
+  header {gap:6px;padding-left:12px;padding-right:12px}
+  h1 {font-size:23px}
+  h1 small {font-size:10px}
+  .seg button,.icon-btn {font-size:11px;padding:0 8px}
+  .workspace {grid-template-columns:minmax(0,1fr) 200px}
+  .panel {padding:13px;gap:9px}
+  .tabs button {padding:0 7px;font-size:11px}
+  .timeline {gap:3px;padding-left:12px;padding-right:12px}
+  .marker {min-width:58px}
+  .moving-grid {gap:10px}
+  .sheet {padding:12px}
+  .picks {gap:5px}
+}
+@media (max-width:599px) {
+  body {overflow:auto;height:auto;min-height:100dvh}
+  header {flex-wrap:wrap;padding:10px;gap:6px}
+  h1 {width:100%;font-size:27px}
+  h1 small {display:block;font-size:11px}
+  .seg {flex:1}
+  .seg button {padding:0 9px;font-size:11px}
+  .icon-btn {font-size:10px;padding:0 5px}
+  #sound {width:44px;line-height:12px}
+  main {overflow:visible}
+  #halls {height:auto;grid-template-rows:86px auto auto}
+  .timeline {padding:3px 10px;gap:7px}
+  .marker {flex:0 0 70px}
+  .marker img {height:54px}
+  .workspace {grid-template-columns:1fr}
+  .hall-wrap {padding:8px 8px 0;grid-template-rows:44px 365px}
+  .tabs button {font-size:10px;padding:0 8px;flex:1}
+  .hall {border-radius:0 0 6px 6px}
+  .hall-heading {left:14px;top:16px;right:65px}
+  .hall-heading h2 {font-size:32px}
+  .hall-heading p {font-size:11px}
+  .room-tag {right:10px;width:44px;height:44px;font-size:14px}
+  #dance-layer {inset:110px 0 68px;grid-template-columns:36% 64%}
+  .diagram-box {padding:0 10px 0 0}
+  .diagram-title {font-size:10px}
+  .figure-caption {display:none}
+  .count-strip {grid-template-columns:60px 1fr;padding:8px 10px}
+  #big-count {font-size:50px}
+  #step-cue {font-size:16px}
+  #step-detail {font-size:10px}
+  .panel {padding:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .panel h3,.panel>.eyebrow,.panel>p,.panel>.groove {display:none}
+  .play {min-height:48px;grid-row:1}
+  .speed {grid-row:1}
+  #mirror {grid-row:2}
+  .hall-nav {grid-row:2;margin:0}
+  .hall-nav button {font-size:10px;padding:4px}
+  .hint-row {padding:10px;align-items:start}
+  .hint-row small {display:none}
+  .hint {font-size:12px}
+  .story {top:110px;left:10px;right:10px;bottom:12px}
+  .story-card {padding:12px}
+  .story-card p {font-size:13px}
+  .story-card h3 {font-size:21px}
+  .story-card .fact,.story-card .talk {font-size:14px}
+  #moving {height:auto;padding:12px;overflow:visible}
+  .moving-heading h2 {font-size:28px}
+  .moving-grid {grid-template-columns:1fr;gap:12px}
+  .sheet {padding:14px}
+  .sentence-fields {grid-template-columns:1fr}
+  .moving-heading {gap:5px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Dance Hall <span>Decades</span><small>Social dance across a century · Curio Class</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-halls" aria-pressed="true">Halls</button>
+    <button id="m-moving" aria-pressed="false">My way of moving</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <section id="halls" aria-label="Dance halls">
+    <div class="workspace">
+      <div class="hall-wrap">
+        <div class="tabs" role="tablist" aria-label="Explore the hall">
+          <button id="tab-dance" role="tab" aria-selected="true" aria-controls="dance-layer">The dance</button>
+          <button id="tab-room" role="tab" aria-selected="false" aria-controls="story-room">The room</button>
+          <button id="tab-people" role="tab" aria-selected="false" aria-controls="story-people">Who made it,<br>who was kept out</button>
+        </div>
+        <div class="hall" id="hall">
+          <img id="hall-art" alt="">
+          <div class="hall-heading">
+            <div class="eyebrow" id="hall-year"></div>
+            <h2 id="hall-name"></h2>
+            <p id="hall-place"></p>
+          </div>
+          <div class="room-tag"><small>HALL</small><span id="hall-index">01</span></div>
+          <div id="dance-layer" role="tabpanel" aria-label="The dance">
+            <div class="figure-box">
+              <svg id="figure" role="img" aria-label="Dance demonstrator"></svg>
+              <div class="figure-caption" id="figure-caption">Face the same way</div>
+            </div>
+            <div class="diagram-box">
+              <div class="diagram-title" id="diagram-title">Your feet · looking down</div>
+              <svg id="footprints" role="img" aria-label="Numbered footprint pattern"></svg>
+              <div class="foot-legend"><b>L · left</b><b>R · right</b></div>
+            </div>
+          </div>
+          <div class="count-strip" id="count-strip">
+            <div id="big-count">1</div>
+            <div><div id="step-cue"></div><div id="step-detail"></div></div>
+          </div>
+          <div class="story" id="story-room" role="tabpanel" aria-label="The room" hidden></div>
+          <div class="story" id="story-people" role="tabpanel" aria-label="Who made it, who was kept out" hidden></div>
+        </div>
+      </div>
+      <aside class="panel" aria-label="Dance controls">
+        <div class="eyebrow"><i class="lamp"></i>Step inside</div>
+        <h3>Learn it on your feet.</h3>
+        <button class="play" id="play">▶ Play</button>
+        <div class="speed" role="group" aria-label="Learning speed">
+          <button id="learn" aria-pressed="true">Learn</button>
+          <button id="party" aria-pressed="false">Party</button>
+        </div>
+        <button class="control" id="mirror" aria-pressed="false">⇄ Mirror</button>
+        <p id="tempo-label"></p>
+        <p id="formation"></p>
+        <div class="groove" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <p id="groove-label"></p>
+        <div class="hall-nav">
+          <button class="control" id="previous">Previous hall</button>
+          <button class="control" id="next">Next hall</button>
+        </div>
+      </aside>
+    </div>
+    <nav class="timeline" id="timeline" aria-label="Eight halls, 1920s to today"></nav>
+    <div class="hint-row"><p class="hint" id="hint"></p><small>Explore at your own pace.</small></div>
+  </section>
+  <section id="moving" aria-label="My way of moving" hidden>
+    <div class="moving-heading">
+      <div><h2>My way of moving</h2><p>Saved on this device only. Your writing never leaves it.</p></div>
+      <button id="reset" class="control">Reset</button>
+    </div>
+    <div class="moving-hint" id="moving-hint"></div>
+    <div class="moving-grid">
+      <div class="sheet">
+        <h3>Where do you stand?</h3>
+        <div class="picks">
+          <label>Dance A<select id="pick-a"></select></label>
+          <label>Dance B<select id="pick-b"></select></label>
+        </div>
+        <div id="chart"></div>
+        <p class="chart-note">◆ Me · ● A · ▲ B · Curio Class descriptions, not measured. Hover a row for reasons.</p>
+      </div>
+      <div class="sheet">
+        <h3>Judge with a criterion</h3>
+        <label>Your criterion<select id="criterion">
+          <option>Easy for newcomers to join</option><option>Lets you invent</option>
+          <option>Works without a partner</option><option>Fits a crowded room</option>
+        </select></label>
+        <div id="judge-a" class="judge"></div>
+        <div id="judge-b" class="judge"></div>
+      </div>
+      <div class="sheet frame">
+        <h3>Make your case</h3>
+        <div class="sentence-fields">
+          <label>I move most like<select id="like"></select></label>
+          <label>Because<textarea id="because" aria-label="Why this dance fits my movement" maxlength="400"
+            placeholder="Use a movement pattern and your own experience."></textarea></label>
+          <label>By my criterion, the stronger dance is<select id="stronger"></select></label>
+          <label>Because<textarea id="why" aria-label="Evidence for the stronger dance" maxlength="400"
+            placeholder="Use evidence from the dance's facts."></textarea></label>
+        </div>
+        <p id="reflection"></p>
+        <div class="copy-row"><button class="control" id="copy">Copy</button><span id="save-status" role="status"></span></div>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:dance"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  const HALLS = [
+    {
+      name:'Charleston', year:'1923', decade:'1920s', place:'Harlem nightclubs', art:'art:hall-1920s-club',
+      marker:'art:marker-gramophone', learn:100, party:200, counts:4, groove:'Stride piano · original learning groove',
+      formation:'Four counts. Arms swing opposite the feet.',
+      room:['Harlem clubs in the 1920s, with jazz bands on the bandstand.',
+        'The Charleston swept the country after the 1923 Broadway show Runnin\' Wild.'],
+      made:'Black Americans in the South developed the dance, with roots traced to Charleston, South Carolina.',
+      out:'The Cotton Club opened in Harlem in 1923. Black dancers and musicians performed there, but its customers were white only.',
+      fact:'The people making the entertainment could be barred from joining its audience.',
+      talk:'Who could dance there, and who could only perform there?',
+      source:'https://www.britannica.com/topic/Cotton-Club', sourceName:'Cotton Club · Britannica',
+      story:'Black performers made the Cotton Club famous, but Black customers were kept out.',
+      reasons:['Four-count repeated pattern','Can be danced alone','Kicks need space'],
+      descriptors:['Often solo, also partnered','Feet and swinging arms','A recognizable repeated pattern','Short pattern to try'],
+    },
+    {
+      name:'Lindy Hop', year:'1930s', decade:'1930s', place:'The Savoy Ballroom · Harlem', art:'art:hall-savoy',
+      marker:'art:marker-stand', learn:110, party:160, counts:6, groove:'Swing · walking bass · original learning groove',
+      formation:'Six-count basic. Partners hold one hand; try the footwork solo too.',
+      room:['596 Lenox Avenue, Harlem. Open from 1926 to 1958.',
+        'A block-long ballroom holding up to about 4,000 people, with live big bands.',
+        'The best dancers gathered in Cats\' Corner.'],
+      made:'Black dancers at the Savoy developed the Lindy Hop around 1927.',
+      out:'The Savoy had a no-discrimination policy. Its mostly Black crowds included white dancers too, ' +
+        'while rooms such as the Cotton Club excluded Black customers.',
+      fact:'Frankie Manning remembered a room where dancing mattered more than skin color. This is a paraphrase of his recollection.',
+      talk:'What would it change to be judged by your dancing rather than your skin?',
+      source:'https://www.bklynlibrary.org/blog/2022/12/01/cutting-rug-evidences', sourceName:'Manning recollection · Brooklyn Public Library',
+      story:'At the Savoy, people said you were judged by your dancing, not your skin.',
+      reasons:['One-hand partner connection','Triple steps take practice','Dancers invent variations'],
+      descriptors:['A partner connection','Bouncing body and feet','Room for variations','Triple steps need practice'],
+    },
+    {
+      name:'Mambo', year:'1950s', decade:'1950s', place:'The Palladium Ballroom · Manhattan', art:'art:hall-palladium',
+      marker:'art:marker-timbales', learn:90, party:180, counts:8, groove:'Clave and bass · original learning groove',
+      formation:'On-one learning version. Step, replace, center, pause.',
+      room:['Latin big bands filled the floor: Tito Puente, Machito and Tito Rodriguez.',
+        'Puerto Rican, Cuban, Black, Jewish and Italian New Yorkers shared the dance floor.'],
+      made:'Cuban musicians first shaped the mambo. New York dancers from many communities developed it together.',
+      out:'The Palladium brought different communities together in a city still shaped by racial ' +
+        'exclusion. We do not assume that every ballroom welcomed everyone.',
+      fact:'One shared floor let dancers exchange ideas across communities.',
+      talk:'Why might a dance spread faster in a room open to everyone?',
+      source:'https://teachrock.org/wp-content/uploads/Handout_3_-_1950s_Manhattan_2.pdf', sourceName:'Palladium history · TeachRock',
+      story:'At the Palladium, dancers from different New York communities shared the floor and exchanged ideas.',
+      reasons:['Forward-and-back basic','Often danced with a partner','Pauses on counts four and eight here'],
+      descriptors:['Often partnered, also solo','Weight shifts through body','Basic with variations','Weight changes take practice'],
+    },
+    {
+      name:'The Stroll', year:'1957', decade:'1957', place:'Bandstand · Philadelphia', art:'art:hall-tv-studio',
+      marker:'art:marker-camera', learn:100, party:110, counts:8, groove:'Shuffle · original learning groove',
+      formation:'Two facing lines. A couple struts down the middle, then joins the end.',
+      room:['A television studio with a dance floor and cameras.',
+        'Bandstand began locally in 1952. American Bandstand went national on ABC on August 5, 1957.',
+        'Here, try a simplified eight-count side-touch version.'],
+      made:'Dances like the Stroll grew from Black teen dancing and rhythm and blues.',
+      out:'From 1954, ticket practices favored regulars and visitors from white suburbs and kept Black ' +
+        'teenagers out. The Philadelphia audience stayed almost all white before the move to Los Angeles ' +
+        'in 1964.',
+      fact:'Black music could be heard on television while Black teenagers were excluded from the televised dance floor.',
+      talk:'Black musicians played on the show. Why did it matter who was dancing in the audience?',
+      source:'https://nicestkids.com/nehvectors/nicest-kids/protesting-segregation-on-bandstand', sourceName:'Admission-policy evidence · Matthew Delmont',
+      story:'Bandstand used admission practices that kept Black teenagers off a dance floor showing Black music to the country.',
+      reasons:['Two lines share an aisle','Simple side-touch adaptation','Couples improvise their strut'],
+      descriptors:['Group lines and a couple','Mostly footwork here','Set sides, invented strut','Easy side-touch version'],
+    },
+    {
+      name:'The Twist', year:'1960', decade:'1960', place:'A teen sock hop · school gym', art:'art:hall-sock-hop',
+      marker:'art:marker-player', learn:120, party:156, counts:8, groove:'Shuffle · original learning groove',
+      formation:'Feet stay in place. Twist hips and shoulders opposite ways. Dip and rise.',
+      room:['A school gym, shoes off to protect the floor.',
+        'A record player supplied the rhythm. Dancers could move apart, without a partner.'],
+      made:'Hank Ballard and the Midnighters, a Black rhythm and blues group, released The Twist in 1959. ' +
+        'Chubby Checker\'s 1960 version made it a national craze.',
+      out:'Many adults called the dance improper. Its popularity also raises a question of who gets remembered and credited.',
+      fact:'Ballard recorded the song first; Checker\'s later recording brought it to a much wider audience.',
+      talk:'Who gets the credit: the first person to do it, or the one who makes it famous?',
+      source:'https://www.britannica.com/biography/Chubby-Checker', sourceName:'The Twist recordings · Britannica',
+      story:'Hank Ballard recorded The Twist before Chubby Checker made it famous. Both belong in its story.',
+      reasons:['No partner required','Feet stay in place','Whole-body twisting'],
+      descriptors:['No partner needed','Hips and shoulders lead','Personal twisting style','Join on a steady beat'],
+    },
+    {
+      name:'Toprock', year:'1973', decade:'1973', place:'A Bronx block party · New York', art:'art:hall-block-party',
+      marker:'art:marker-turntables', learn:100, party:110, counts:4, groove:'Drum break · original learning groove',
+      formation:'Cross step: right across, center, left across, center. Bounce on each count.',
+      room:['A community room at 1520 Sedgwick Avenue and the neighborhood outside it.',
+        'DJ Kool Herc played Cindy Campbell\'s back-to-school party on August 11, 1973.',
+        'Long drum breaks gave dancers space to develop their moves.'],
+      made:'Black and Puerto Rican young people in the Bronx developed breaking, including its upright toprock steps.',
+      out:'Young people made their own gathering places in neighborhoods cut through by highways and left with too few places to go.',
+      fact:'Community parties created space for young people to dance. The 1973 back-to-school event was a fundraiser, not a free event.',
+      talk:'When a place leaves you out, how do you make your own?',
+      source:'https://birthplaceofhiphop.nyc/our-story/', sourceName:'The community room\'s story · Birthplace of Hip Hop',
+      story:'Black and Puerto Rican young people in the Bronx made their own dance spaces and developed breaking.',
+      reasons:['Solo cross steps','Arms open with the cross','Personal invention is central'],
+      descriptors:['Solo dancing','Feet, arms and bounce','Personal invention','Crosses take practice'],
+    },
+    {
+      name:'The Hustle', year:'1975', decade:'1975', place:'A New York disco', art:'art:hall-disco',
+      marker:'art:marker-ball', learn:100, party:120, counts:3, groove:'Four-on-the-floor · original learning groove',
+      formation:'Partner basic: and-one, two, three. Tap left, step left, back right, in place left.',
+      room:['A dark dance floor, colored lights, and a DJ mixing records.',
+        'Disco grew at welcoming parties such as David Mancuso\'s Loft, begun in 1970.'],
+      made:'Black, Latino and gay dancers helped shape disco. Latino teens in the Bronx and Brooklyn danced the Hustle before the 1975 hit song.',
+      out:'Many clubs had turned these communities away. In 1979, Disco Demolition Night destroyed disco ' +
+        'records at a Chicago ballpark; many saw a backlash against the people disco belonged to.',
+      fact:'A welcoming dance culture could still become a target of hostility outside its own rooms.',
+      talk:'What does it mean when a crowd destroys another crowd\'s music?',
+      source:'https://www.britannica.com/art/disco', sourceName:'Disco communities and backlash · Britannica',
+      story:'Disco welcomed Black, Latino and gay dancers. The later backlash was also about the people who belonged there.',
+      reasons:['Partner basic','Quick lead-in before one','Room for turns and variations'],
+      descriptors:['Partner basic','Feet and connected body','Basic with variations','Quick timing needs practice'],
+    },
+    {
+      name:'Electric Slide', year:'1976 to today', decade:'1976+', place:'Wedding receptions and shared celebrations', art:'art:hall-wedding',
+      marker:'art:marker-boombox', learn:104, party:116, counts:18, groove:'Steady pop beat · original learning groove',
+      formation:'Eighteen counts, then face the next wall. Touches do not take your weight.',
+      room:['A party where people join the same line and pattern.',
+        'Wooden dance floors, a DJ and guests learning from each other.',
+        'This common eighteen-count version differs from Ric Silver\'s original twenty-two counts.'],
+      made:'Ric Silver dates his first version to 1976, an origin date that has been disputed. Marcia ' +
+        'Griffiths\'s Electric Boogie helped make the dance famous.',
+      out:'A line dance can invite people to join without a partner. Access still depends on the setting. ' +
+        'In 2007, Silver\'s copyright claim and objections to posted versions raised questions about ' +
+        'ownership.',
+      fact:'The shared eighteen-count version and the creator\'s original twenty-two-count version are different.',
+      talk:'Can anyone own a dance everyone does?',
+      source:'https://www.eff.org/files/eff-2007-annual-report.pdf', sourceName:'The 2007 dispute · Electronic Frontier Foundation',
+      story:'The Electric Slide raises a question: what belongs to a choreographer, and what belongs to everyone dancing?',
+      reasons:['No partner required','Everyone repeats the same steps','Quarter-turn changes the facing wall'],
+      descriptors:['No partner needed','Mostly footwork','A shared fixed pattern','Follow others in the line'],
+    },
+  ];
+  const ROWS = [
+    ['Alone','Partner',[1,4,3,2,0,0,4,0]],
+    ['Feet first','Whole body',[2,3,3,1,4,3,2,1]],
+    ['Set steps','Make it up',[1,3,2,1,2,4,2,0]],
+    ['Learn first','Join right in',[2,1,1,3,4,2,1,4]],
+  ];
+  const L = {
+    welcomeHalls:'Every dot on this line is a room where people danced. Tap one, and press Play to learn its steps.',
+    learnHow:'Stand up and face the screen. Press Play and follow the lit footprints.',
+    roomHow:'Every dance has a story about who got in and who did not. Read it, then talk it over.',
+    welcomeMoving:'Set where you stand on each line. Then pick two dances to put beside you.',
+  };
+  HALLS.forEach((h,i) => L['story'+i] = h.story);
+  const storageKey = 'curio-dance-hall-decades-v1';
+  const blankProfile = () => ({me:[2,2,2,2], picks:[0,4], criterion:0, strengths:['',''], reasons:[-1,-1],
+    like:0, stronger:0, because:'', why:''});
+  const state = {mode:'halls', hall:0, tab:'dance', playing:false, speed:'learn', mirror:false,
+    count:0, event:0, visited:new Set([0]), profile:blankProfile(), turns:0};
+  let savedOK = true;
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
+    if (saved) {
+      const p = {...blankProfile(), ...saved};
+      p.me = p.me.map(v => Math.max(0,Math.min(4,Number(v)||0))).slice(0,4);
+      if (p.me.length !== 4) p.me = [2,2,2,2];
+      p.picks = p.picks.map(v => Math.max(0,Math.min(7,Number(v)||0))).slice(0,2);
+      if (p.picks.length !== 2 || p.picks[0] === p.picks[1]) p.picks = [0,4];
+      p.criterion = Math.max(0,Math.min(3,Number(p.criterion)||0));
+      p.because = String(p.because||'').slice(0,400);
+      p.why = String(p.why||'').slice(0,400);
+      p.strengths = p.strengths.map(v => ['Strong','Some','Weak'].includes(v) ? v : '');
+      p.reasons = p.reasons.map(v => Number.isInteger(v) && v>=0 && v<3 ? v : -1);
+      state.profile = p;
+    }
+  } catch { savedOK = false; }
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode + state.hall + state.tab, hint:false,
+    read:() => $('hint').textContent,
+    welcome:() => state.playing ? null : state.mode==='moving' ? 'welcomeMoving' :
+      state.hall===0 && state.tab==='dance' ? ['welcomeHalls',{valid:() => !state.playing}] : null,
+    speaks:'#play, .marker, .tabs button, #m-moving, #m-halls',
+  });
+  let pendingStory = null;
+  function hint() {
+    if (state.mode==='moving') return;
+    const s = state.playing ? 'Press Stop to pause the groove. Change Learn or Party, Mirror, or the hall tabs while it plays.' :
+      state.tab==='dance' ? 'Press Play and follow the lit footprints. Try Mirror when facing the screen, or open a hall tab.' :
+      state.tab==='room' ? 'Read about this place. Open Who made it, who was kept out to explore access and credit.' :
+      'Read the fact card and discuss Talk about it. Choose another hall to compare its story.';
+    $('hint').textContent = s;
+  }
+  function narrateCurrent() {
+    if (state.playing) {
+      if (state.tab==='people') pendingStory = {hall:state.hall, tab:state.tab};
+      return;
+    }
+    if (state.tab==='dance') V.how('learnHow',{valid:() => !state.playing && state.tab==='dance',needs:'#play'});
+    if (state.tab==='people') {
+      const i = state.hall;
+      const lines = !V.heard('roomHow') ? ['roomHow','story'+i] : ['story'+i];
+      V.how(lines,{valid:() => !state.playing && state.hall===i && state.tab==='people'});
+    }
+  }
+  const markerButtons = HALLS.map((h,i) => {
+    const b = document.createElement('button');
+    b.id = 'hall-'+i;
+    b.className = 'marker';
+    b.setAttribute('aria-label',h.year+', '+h.name+', '+h.place);
+    b.innerHTML = '<img alt="" src="'+h.marker+'"><span>'+h.decade+'</span>';
+    b.onclick = () => setHall(i);
+    $('timeline').appendChild(b);
+    return b;
+  });
+  function setHall(i) {
+    if(i===state.hall) {narrateCurrent();return;}
+    const focused=document.activeElement;
+    stop(false);
+    V.hush();
+    state.hall = Math.max(0,Math.min(7,i));
+    state.visited.add(state.hall);
+    state.count = 0;
+    state.event = 0;
+    state.turns = 0;
+    pendingStory = null;
+    renderHall();
+    if(focused===$('next') && state.hall===7) $('previous').focus({preventScroll:true});
+    if(focused===$('previous') && state.hall===0) $('next').focus({preventScroll:true});
+    Curio.tone(220 + state.hall*28,.08,.035,'sine');
+  }
+  function setTab(tab,force=false) {
+    if(tab===state.tab && !force) {hint();return;}
+    V.hush();
+    state.tab = tab;
+    pendingStory = null;
+    for (const t of ['dance','room','people']) {
+      $('tab-'+t).setAttribute('aria-selected',t===tab);
+      $('tab-'+t).tabIndex = t===tab ? 0 : -1;
+    }
+    $('dance-layer').hidden = tab!=='dance';
+    $('count-strip').hidden = tab!=='dance';
+    $('story-room').hidden = tab!=='room';
+    $('story-people').hidden = tab!=='people';
+    hint();
+    narrateCurrent();
+  }
+  function setMode(mode) {
+    if(mode===state.mode) {V.welcome();return;}
+    stop(false);
+    V.hush();
+    state.mode = mode;
+    $('halls').hidden = mode!=='halls';
+    $('moving').hidden = mode!=='moving';
+    $('m-halls').setAttribute('aria-pressed',mode==='halls');
+    $('m-moving').setAttribute('aria-pressed',mode==='moving');
+    if (mode==='moving') {
+      $('moving-hint').appendChild($('hint'));
+      $('hint').textContent='Move the Me sliders, then pick two dances. Judge them using one criterion.';
+      renderMoving();
+      V.welcome();
+    } else {
+      document.querySelector('.hint-row').prepend($('hint'));
+      hint();
+      requestAnimationFrame(layoutFigure);
+      V.welcome() || narrateCurrent();
+    }
+  }
+  function renderHall() {
+    const h = HALLS[state.hall];
+    $('hall-art').src = h.art;
+    $('hall-art').alt = 'Imagined empty setting: '+h.place+'.';
+    $('hall-year').textContent = h.year+' · SOCIAL DANCE';
+    $('hall-name').textContent = h.name;
+    $('hall-place').textContent = h.place;
+    $('hall-index').textContent = String(state.hall+1).padStart(2,'0');
+    $('formation').textContent = h.formation;
+    $('groove-label').textContent = h.groove;
+    $('tempo-label').textContent = 'Learning tempos: '+h.learn+' / '+h.party+' beats per minute.';
+    $('story-room').innerHTML = '<article class="story-card"><div class="eyebrow">Inside the room</div><h3>'+h.place+
+      '</h3>'+h.room.map(s => '<p>'+s+'</p>').join('')+'</article>';
+    $('story-people').innerHTML = '<article class="story-card"><div class="eyebrow">Credit & access</div><h3>Who made it?</h3><p>'+h.made+
+      '</p><h3>Who was kept out?</h3><p>'+h.out+'</p><div class="fact"><div class="eyebrow">Fact card · summary</div>'+h.fact+
+      '</div><a target="_blank" rel="noopener" href="'+h.source+'">Source: '+h.sourceName+
+      ' ↗</a><p class="talk"><strong>Talk about it</strong><br>'+h.talk+'</p></article>';
+    markerButtons.forEach((b,i) => {
+      b.classList.toggle('active',i===state.hall);
+      b.classList.toggle('visited',state.visited.has(i));
+      b.setAttribute('aria-current',i===state.hall ? 'step' : 'false');
+    });
+    $('previous').disabled = state.hall===0;
+    $('next').disabled = state.hall===7;
+    buildPattern();
+    drawFootprints();
+    showEvent(0);
+    setTab(state.tab,true);
+    requestAnimationFrame(layoutFigure);
+  }
+  // Every event has its own duration in beats. Subdivisions do not add counts.
+  // Coordinates are top-down floor positions; x grows toward the dancer's right, y toward the front.
+  let pattern = [];
+  function evt(count,foot,cue,x,y,dur=1,pose='step',detail='') {
+    return {count:String(count),foot,cue,x,y,dur,pose,detail};
+  }
+  function buildPattern() {
+    const e = evt;
+    const h = state.hall;
+    if (h===0) pattern = [
+      e(1,'L','Step left forward',-30,-35,1,'step','Swing the opposite arm.'),
+      e(2,'R','Kick right forward',32,-67,1,'kick','Keep the kick comfortable.'),
+      e(3,'R','Step right back',30,35,1,'step'),
+      e(4,'L','Tap left behind',-30,68,1,'point','Tap without changing weight.'),
+    ];
+    if (h===1) pattern = [
+      e(1,'L','Rock left back',-25,35),e(2,'R','Recover onto right',25,0),
+      e(3,'L','Triple: left',-65,0,2/3),e('and','R','Triple: right',-40,0,1/3),e(4,'L','Triple: left',-80,0),
+      e(5,'R','Triple: right',25,0,2/3),e('and','L','Triple: left',0,0,1/3),e(6,'R','Triple: right',50,0),
+    ];
+    if (h===2) pattern = [
+      e(1,'L','Step left forward',-28,-65),e(2,'R','Replace onto right',28,0),e(3,'L','Left to center',-28,0),
+      e(4,'','Pause',-28,0,1,'stand','Hold your weight. No new step.'),
+      e(5,'R','Step right back',28,65),e(6,'L','Replace onto left',-28,0),e(7,'R','Right to center',28,0),
+      e(8,'','Pause',28,0,1,'stand','Hold your weight. No new step.'),
+    ];
+    if (h===3) pattern = Array.from({length:8},(_,i) => {
+      const phase=i%4;
+      return e(i+1,['R','L','L','R'][phase],['Step right side','Touch left','Step left side','Touch right'][phase],
+        [65,38,-65,-38][phase],0,1,phase%2 ? 'point':'step','Two facing lines; the top couple struts down the aisle.');
+    });
+    if (h===4) pattern = Array.from({length:8},(_,i) => e(i+1,'LR',i%2 ? 'Hips right, shoulders left':'Hips left, shoulders right',
+      0,0,1,i>=2 && i<=5 ? 'bend-side':'twist',i<4 ? 'Dip gradually. Feet stay in place.':'Rise gradually. Feet stay in place.'));
+    if (h===5) pattern = [
+      e(1,'R','Cross right in front',-45,-35,1,'step','Open your arms; keep a bounce.'),
+      e(2,'R','Right back to center',28,0,1,'stand'),
+      e(3,'L','Cross left in front',45,-35,1,'step','Open your arms; keep a bounce.'),
+      e(4,'L','Left back to center',-28,0,1,'stand'),
+    ];
+    if (h===6) pattern = [
+      e('and','L','Tap left',-36,0,.5,'point','Quick lead-in before one.'),
+      e(1,'L','Step onto left',-28,0,1,'step'),e(2,'R','Step right back',28,45,1,'step'),
+      e(3,'L','Left in place',-28,0,.5,'stand'),
+    ];
+    if (h===7) pattern = [
+      e(1,'R','Step right side',25,0),e(2,'L','Left behind right',10,15),e(3,'R','Step right side',70,0),
+      e(4,'L','Touch left',45,0,1,'point'),e(5,'L','Step left side',10,0),e(6,'R','Right behind left',25,15),
+      e(7,'L','Step left side',-45,0),e(8,'R','Touch right',-20,0,1,'point'),
+      e(9,'R','Step right back',-20,30),e(10,'L','Step left back',-45,55),e(11,'R','Step right back',-20,80),
+      e(12,'L','Touch left',-45,80,1,'point'),e(13,'L','Step left forward',-45,45),
+      e(14,'R','Touch right',-20,45,1,'point'),e(15,'R','Rock right back',-20,80),
+      e(16,'L','Touch left',-45,80,1,'point'),e(17,'L','Step left forward',-45,45),
+      e(18,'R','Scuff right, quarter turn left',-20,10,1,'kick','Repeat the pattern facing the next wall.'),
+    ];
+    let at=0;
+    pattern.forEach(p => {p.at=at;at+=p.dur;});
+  }
+  function svgEl(tag,attrs,parent) {
+    const el = document.createElementNS(NS,tag);
+    Object.entries(attrs).forEach(([k,v]) => el.setAttribute(k,v));
+    parent.appendChild(el);
+    return el;
+  }
+  let printGroups=[];
+  const phraseCounts=document.createElement('div');
+  phraseCounts.className='phrase-counts';
+  phraseCounts.setAttribute('aria-hidden','true');
+  document.querySelector('.diagram-box').appendChild(phraseCounts);
+  function drawFootprints() {
+    const svg=$('footprints');
+    svg.replaceChildren();
+    const w=svg.clientWidth||300;
+    const height=svg.clientHeight||200;
+    svg.setAttribute('viewBox',`0 0 ${w} ${height}`);
+    const scale=Math.min(w/260,height/210);
+    const root=svgEl('g',{'data-floor':'true'},svg);
+    const cx=w/2, cy=height/2;
+    // The visible diagram follows the current foot position. Faint numbered locations show the phrase path.
+    const coords = p => [cx + p.x*scale*(state.mirror?-1:1),cy+p.y*scale*.8];
+    let prev={L:[cx-25*scale,cy],R:[cx+25*scale,cy]};
+    printGroups=pattern.map((p,i) => {
+      const [x,y]=coords(p);
+      if (p.foot==='L'||p.foot==='R') {
+        const a=prev[p.foot];
+        if (Math.hypot(x-a[0],y-a[1])>12) {
+          svgEl('path',{d:`M ${a[0]} ${a[1]} L ${x} ${y}`,stroke:'#f5d1a9','stroke-width':1.5,
+            'stroke-dasharray':'4 4',opacity:.4},root);
+          const angle=Math.atan2(y-a[1],x-a[0]);
+          svgEl('path',{d:`M ${x-7*Math.cos(angle-.5)} ${y-7*Math.sin(angle-.5)} L ${x} ${y} `+
+            `L ${x-7*Math.cos(angle+.5)} ${y-7*Math.sin(angle+.5)}`,stroke:'#f5d1a9','stroke-width':1.5,fill:'none',opacity:.6},root);
+        }
+        prev[p.foot]=[x,y];
+      }
+      const g=svgEl('g',{class:'print-group',opacity:.35},root);
+      // Stacked visits to the same spot become labels beside the live footprint, not overlapping stamps.
+      const rank=pattern.slice(0,i).filter(q => q.foot===p.foot && q.x===p.x && q.y===p.y).length;
+      const isBoth=p.foot==='LR';
+      const targets=isBoth ? [{foot:'L',x:cx-24*scale,y:cy},{foot:'R',x:cx+24*scale,y:cy}] : [{foot:p.foot,x,y}];
+      targets.forEach(t => {
+        if (!t.foot) return;
+        const color=t.foot==='L'?'#6fc3ff':'#ffb36b';
+        const s=Math.max(.65,Math.min(1.25,scale));
+        const f=svgEl('g',{transform:`translate(${t.x} ${t.y}) scale(${s})`},g);
+        svgEl('path',{d:'M -10 13 C -14 1 -10 -20 -2 -24 C 8 -28 13 -17 10 -8 L 6 7 Q 10 24 -1 26 Q -12 26 -10 13 Z',
+          fill:color,stroke:'#1d1410','stroke-width':2},f);
+        const txt=svgEl('text',{x:0,y:7,fill:'#1d1410','text-anchor':'middle','font-size':15,'font-weight':800},f);
+        txt.textContent=t.foot;
+      });
+      const label=svgEl('text',{'data-count-label':'true',x:x+17+rank*17,y:y-12,fill:'#fff1dc','font-size':Math.max(14,17*scale),
+        'font-weight':700,'paint-order':'stroke',stroke:'#1d1410','stroke-width':3},g);
+      label.textContent=p.count==='and'?'&':p.count;
+      return g;
+    });
+    // Long and repeated-position patterns are clearer with one live footprint and a phrase count strip.
+    if (state.hall===7 || state.hall===4 || state.hall===1 || state.hall===3) {
+      printGroups.forEach(g => g.setAttribute('opacity',0));
+    }
+    phraseCounts.replaceChildren();
+    pattern.forEach(p=>{
+      const s=document.createElement('span');s.textContent=p.count==='and'?'&':p.count;phraseCounts.appendChild(s);
+    });
+    showPrint(state.event);
+  }
+  function showPrint(index) {
+    printGroups.forEach((g,i) => {
+      const crowded=[1,3,4,6,7].includes(state.hall) || $('footprints').clientHeight<140;
+      g.style.display=crowded && i!==index?'none':'';
+      g.setAttribute('opacity',i===index?1:crowded?0:.26);
+      g.querySelector('[data-count-label]')?.setAttribute('fill',i===index?'#e07be0':'#fff1dc');
+      if (i===index) g.parentNode.appendChild(g);
+    });
+    [...phraseCounts.children].forEach((e,i)=>e.classList.toggle('current',i===index));
+  }
+  let dancer=null;
+  // Deferred art tokens resolve to draft SVGs until the owner's painter supplies the WebP files.
+  // The renderer deliberately uses only real painted files, so no placeholder enters the classroom scene.
+  const PAINTED_POSES=[
+    ['art:dancer-charleston-left-forward','art:dancer-charleston-right-kick',
+      'art:dancer-charleston-right-back','art:dancer-charleston-left-back-tap'],
+    ['art:dancer-lindy-left-rock-back','art:dancer-lindy-right-recover',
+      'art:dancer-lindy-left-triple','art:dancer-lindy-right-triple','art:dancer-lindy-left-triple',
+      'art:dancer-lindy-right-triple','art:dancer-lindy-left-triple','art:dancer-lindy-right-triple'],
+    ['art:dancer-mambo-left-forward','art:dancer-mambo-right-replace','art:dancer-mambo-left-center',
+      'art:dancer-mambo-left-center','art:dancer-mambo-right-back','art:dancer-mambo-left-replace',
+      'art:dancer-mambo-right-center','art:dancer-mambo-right-center'],
+    ['art:dancer-stroll-right-side','art:dancer-stroll-left-touch','art:dancer-stroll-left-side','art:dancer-stroll-right-touch',
+      'art:dancer-stroll-right-side','art:dancer-stroll-left-touch','art:dancer-stroll-left-side','art:dancer-stroll-right-touch'],
+    ['art:dancer-twist-hips-left-shoulders-right','art:dancer-twist-hips-right-shoulders-left',
+      'art:dancer-twist-low-left','art:dancer-twist-low-right','art:dancer-twist-low-left','art:dancer-twist-low-right',
+      'art:dancer-twist-hips-left-shoulders-right','art:dancer-twist-hips-right-shoulders-left'],
+    ['art:dancer-toprock-right-cross-front','art:dancer-toprock-center-from-right',
+      'art:dancer-toprock-left-cross-front','art:dancer-toprock-center-from-left'],
+    ['art:dancer-hustle-left-tap-and','art:dancer-hustle-left-weight-one',
+      'art:dancer-hustle-right-back','art:dancer-hustle-left-in-place'],
+    ['art:dancer-electric-right-side','art:dancer-electric-left-behind','art:dancer-electric-right-side',
+      'art:dancer-electric-left-touch','art:dancer-electric-left-side','art:dancer-electric-right-behind',
+      'art:dancer-electric-left-side','art:dancer-electric-right-touch','art:dancer-electric-right-back',
+      'art:dancer-electric-left-back','art:dancer-electric-right-back','art:dancer-electric-left-touch',
+      'art:dancer-electric-left-forward','art:dancer-electric-right-touch','art:dancer-electric-right-back',
+      'art:dancer-electric-left-touch','art:dancer-electric-left-forward','art:dancer-electric-right-scuff-turn-left'],
+  ];
+  let paintedFigure=null;
+  // Single swap seam for future painted people: replace this renderer, leaving clock and event data intact.
+  const figureRenderer = {
+    mount() {
+      $('figure').replaceChildren();
+      dancer= Dance.dancer($('figure'),{floor:Dance.flat(130,90,170),height:1,
+        top:'#e07be0',bottom:'#252b3b',skin:'#b98965',hair:'#2a1a13',shoe:'#f5ece2',badge:'diamond'});
+      paintedFigure=svgEl('image',{'preserveAspectRatio':'xMidYMax meet',display:'none'},$('figure'));
+    },
+    render(pose,x=0,y=0,facing=180) {
+      if (!dancer) return;
+      const uri=PAINTED_POSES[state.hall][state.event];
+      const ready=uri.startsWith('data:image/webp');
+      dancer.g.style.display=ready?'none':'';
+      paintedFigure.setAttribute('display',ready?'':'none');
+      if(ready) {
+        const box=$('figure').viewBox.baseVal;
+        paintedFigure.setAttribute('href',uri);
+        paintedFigure.setAttribute('x',0);
+        paintedFigure.setAttribute('y',0);
+        paintedFigure.setAttribute('width',box.width);
+        paintedFigure.setAttribute('height',box.height);
+        paintedFigure.setAttribute('transform',state.mirror?`translate(${box.width} 0) scale(-1 1)`:'');
+      }
+      dancer.set({pose,x,y:0,z:y,facing});
+    },
+  };
+  function layoutFigure() {
+    if (state.mode!=='halls') return;
+    const box=$('figure').getBoundingClientRect();
+    if (box.width<1 || box.height<1) return;
+    const k=Math.min(box.height*.83,box.width*.9);
+    if (!dancer) figureRenderer.mount();
+    dancer.floor = Dance.flat(k,box.width/2,box.height*.92);
+    $('figure').setAttribute('viewBox',`0 0 ${box.width} ${box.height}`);
+    drawFootprints();
+    poseFigure(state.event,1);
+  }
+  function eventPose(i) {
+    const p=pattern[i];
+    let pose=Dance.pose(p.pose);
+    const s=p.foot==='R' ? -1 : 1;
+    if (p.pose==='step') {
+      const hip=/back|behind/i.test(p.cue)?-22:22;
+      const out=/side/i.test(p.cue)?24:/behind/i.test(p.cue)?-14:8;
+      pose=Dance.pose({lLeg:s>0?[hip,out,12]:[-8,8,15],rLeg:s<0?[hip,out,12]:[-8,8,15],
+        lArm:[30,s>0?-80:80,35,80],rArm:[30,s>0?80:-80,35,-80],lean:3});
+    }
+    if (p.pose==='point') {
+      pose=Dance.pose({lLeg:p.foot==='L'?[12,15,5]:[0,4,8],rLeg:p.foot==='R'?[12,15,5]:[0,4,8],
+        lToe:p.foot==='L'?1:0,rToe:p.foot==='R'?1:0,arms:[20,20,25,50]});
+    }
+    if (state.hall===0 && i===2) pose=Dance.pose({rLeg:[-25,3,8],lLeg:[0,3,8],
+      lArm:[30,80,35,80],rArm:[30,-80,35,-80]});
+    if (state.hall===0 && i===3) pose=Dance.pose({lLeg:[-25,3,8],rLeg:[0,3,10],lToe:1});
+    if (state.hall===1 && i<2) pose=Dance.pose({lLeg:i===0?[-22,5,10]:[0,5,10],rLeg:[0,5,10],arms:[35,60,55,90]});
+    if (state.hall===2) pose=Dance.pose({lLeg:[i<2?28:0,5,8],rLeg:[i===4||i===5?-28:0,5,8],
+      side:i===1||i===4?-4:4,arms:[35,20,50,80]});
+    if (state.hall===3) {
+      const phase=i%4;
+      pose=Dance.pose({lLeg:[0,phase===2?24:5,10],rLeg:[0,phase===0?24:5,10],
+        lToe:phase===1?1:0,rToe:phase===3?1:0,arms:[25,20,30,50]});
+    }
+    if (state.hall===4) {
+      const dip=Math.sin((i/7)*Math.PI);
+      pose=Dance.pose({yaw:i%2?-18:18,twist:i%2?40:-40,side:i%2?8:-8,
+        legs:[dip*25,12,dip*48],arms:[45,40,70,90]});
+    }
+    if (state.hall===5) {
+      if (i%2===0) pose=Dance.pose({lLeg:i===2?[25,-24,12]:[0,8,12],
+        rLeg:i===0?[25,-24,12]:[0,8,12],arms:[75,0,85,0],lean:5});
+      else pose=Dance.pose({legs:[8,7,16],arms:[25,30,35,60]});
+    }
+    return pose;
+  }
+  function poseFigure(i,u) {
+    if (!dancer || !pattern.length) return;
+    const previous=eventPose((i+pattern.length-1)%pattern.length), current=eventPose(i);
+    const pose=Curio.reduce ? current : Dance.mix(previous,current,Math.min(1,u*4));
+    const p=pattern[i];
+    const facing=state.mirror ? 35 : 145;
+    const turn=state.hall===7 ? state.turns*90 + (i===17 ? 90*(Curio.reduce?1:Math.min(1,u*2)) : 0) : 0;
+    figureRenderer.render(pose,0,0,facing + turn);
+    $('figure-caption').textContent=state.mirror?'Mirror: face the screen':'Face the same way';
+    $('figure').setAttribute('aria-label',HALLS[state.hall].name+': '+p.cue);
+  }
+  function showEvent(i) {
+    state.event=i;
+    const p=pattern[i];
+    state.count=p.count;
+    $('big-count').textContent=p.count==='and'?'&':p.count;
+    $('step-cue').textContent=p.cue;
+    $('step-detail').textContent=p.detail || ('Count '+p.count+' of '+HALLS[state.hall].counts+' · repeat the pattern');
+    showPrint(i);
+    poseFigure(i,1);
+  }
+  // Audio lookahead schedules only the next subdivision, so tempo edits land on the next count boundary.
+  let audio=null, bus=null, noiseBuffer=null, scheduler=null, raf=null, nextAt=0, eventIndex=0, beat=0;
+  let visuals=[], active=null;
+  let playToken=0;
+  const trace=[];
+  function initAudio() {
+    if (audio) return;
+    audio=Curio.audio();
+    bus=audio.createGain();
+    bus.gain.value=Curio.sound ? .32 : 0;
+    bus.connect(audio.destination);
+    noiseBuffer=audio.createBuffer(1,audio.sampleRate*.25,audio.sampleRate);
+    const data=noiseBuffer.getChannelData(0);
+    let seed=1947;
+    for (let i=0;i<data.length;i++) {seed=(seed*16807)%2147483647;data[i]=(seed/2147483647)*2-1;}
+  }
+  function note(freq,time,duration,vol=.12,type='triangle') {
+    if (!Curio.sound) return;
+    const o=audio.createOscillator(), g=audio.createGain();
+    o.type=type;
+    o.frequency.setValueAtTime(freq,time);
+    g.gain.setValueAtTime(.0001,time);
+    g.gain.exponentialRampToValueAtTime(vol,time+.006);
+    g.gain.exponentialRampToValueAtTime(.0001,time+duration);
+    o.connect(g);g.connect(bus);o.start(time);o.stop(time+duration+.01);
+  }
+  function drum(type,time,vol=.15) {
+    if (!Curio.sound) return;
+    if (type==='kick') {
+      const o=audio.createOscillator(),g=audio.createGain();
+      o.frequency.setValueAtTime(135,time);o.frequency.exponentialRampToValueAtTime(40,time+.16);
+      g.gain.setValueAtTime(vol,time);g.gain.exponentialRampToValueAtTime(.0001,time+.2);
+      o.connect(g);g.connect(bus);o.start(time);o.stop(time+.21);return;
+    }
+    const n=audio.createBufferSource(),f=audio.createBiquadFilter(),g=audio.createGain();
+    n.buffer=noiseBuffer;f.type='highpass';f.frequency.value=type==='hat'?6500:1500;
+    const len=type==='hat'?.04:.12;
+    g.gain.setValueAtTime(vol,time);g.gain.exponentialRampToValueAtTime(.0001,time+len);
+    n.connect(f);f.connect(g);g.connect(bus);n.start(time);n.stop(time+len+.01);
+  }
+  function grooveAt(t,b,seconds) {
+    const h=state.hall, n=Math.floor(b)%8;
+    const bass=[65.41,82.41,98,110,130.81,110,98,82.41];
+    if (h===0) {
+      if(n%2===0) note(bass[n],t,.2,.18);
+      else [261.63,329.63,392].forEach(f=>note(f,t,.16,.055));
+      note([523.25,659.25,587.33,783.99][n%4],t+seconds*.66,.12,.045);
+    } else if(h===1) {
+      note(bass[n],t,seconds*.75,.15);
+      drum('hat',t,.055);drum('hat',t+seconds*2/3,.03);
+      if(n%2===1) drum('snare',t,.07);
+      if(n%4===0) [261.63,311.13,392].forEach(f=>note(f,t,.2,.035));
+    } else if(h===2) {
+      // Two-bar son-clave accents over an eight-beat cycle.
+      if([0,3,5,6].includes(n)) note(1700,t,.045,.07,'sine');
+      if(n===1) note(1700,t+seconds*.5,.045,.07,'sine');
+      if(n%2===0) note([65.41,98,82.41,98][n/2],t,.22,.15);
+      drum('hat',t+seconds*.5,.035);
+    } else if(h===3 || h===4) {
+      if(n%2===0) drum('kick',t,.18);else drum('snare',t,.1);
+      drum('hat',t,.04);drum('hat',t+seconds*2/3,.03);
+      note(bass[n],t,.16,.09);
+    } else if(h===5) {
+      if([0,3,4,6].includes(n)) drum('kick',t,.22);
+      if(n%2===1) drum('snare',t,.16);
+      drum('hat',t,.05);drum('hat',t+seconds*.5,.04);
+      if(n===2||n===6) drum('kick',t+seconds*.75,.13);
+    } else if(h===6) {
+      drum('kick',t,.2);drum('hat',t+seconds*.5,.07);
+      if(n%2===1) drum('snare',t,.1);
+      note(n%2===0?65.41:130.81,t+seconds*.5,.12,.11);
+    } else {
+      if(n%2===0) drum('kick',t,.18);else drum('snare',t,.13);
+      drum('hat',t,.055);drum('hat',t+seconds*.5,.03);
+      note([65.41,65.41,87.31,98][n%4],t,.2,.1);
+    }
+  }
+  function schedule() {
+    if (!state.playing) return;
+    while(nextAt < audio.currentTime+.035) {
+      const p=pattern[eventIndex], seconds=60/HALLS[state.hall][state.speed];
+      // Only integer music beats trigger a full groove beat; the musical meter runs across phrase boundaries.
+      const startBeat=beat;
+      const musicStart=startBeat-(state.hall===6 ? .5 : 0);
+      const first=Math.ceil(musicStart-1e-6),end=musicStart+p.dur;
+      if(state.hall===6 && eventIndex===0) drum('hat',nextAt,.04);
+      for(let b=first;b<end-1e-6;b++) grooveAt(nextAt+(b-musicStart)*seconds,b,seconds);
+      const duration=p.dur*seconds;
+      visuals.push({i:eventIndex,time:nextAt,duration,tempo:HALLS[state.hall][state.speed],beat:startBeat});
+      nextAt+=duration;
+      beat+=p.dur;
+      eventIndex=(eventIndex+1)%pattern.length;
+    }
+  }
+  function frame() {
+    if (!state.playing) return;
+    const now=audio.currentTime;
+    while(visuals.length && visuals[0].time<=now) {
+      active=visuals.shift();
+      if(active.i===0 && state.event===pattern.length-1 && state.hall===7) state.turns=(state.turns+1)%4;
+      showEvent(active.i);
+      trace.push({...active,display:now,hall:state.hall});
+      if(trace.length>256) trace.shift();
+    }
+    if(active && state.tab==='dance' && !Curio.reduce) poseFigure(active.i,(now-active.time)/active.duration);
+    raf=requestAnimationFrame(frame);
+  }
+  async function play() {
+    if(state.playing) {stop();return;}
+    const token=++playToken;
+    V.hush();
+    initAudio();
+    state.playing=true;
+    $('play').textContent='■ Stop';
+    $('play').setAttribute('aria-pressed','true');
+    $('halls').classList.add('playing');
+    $('read').title='Stops the groove and reads the current hint';
+    hint();
+    showEvent(0);
+    await audio.resume();
+    if(!state.playing || token!==playToken) return;
+    bus.gain.setValueAtTime(Curio.sound ? .32 : 0,audio.currentTime);
+    eventIndex=0;beat=0;visuals=[];active=null;state.turns=0;
+    nextAt=audio.currentTime+.025;
+    schedule();
+    scheduler=setInterval(schedule,12);
+    frame();
+  }
+  function stop(speak=true) {
+    playToken++;
+    state.playing=false;
+    clearInterval(scheduler);cancelAnimationFrame(raf);
+    visuals=[];active=null;
+    if(bus) bus.gain.cancelScheduledValues(audio.currentTime);
+    if(bus) bus.gain.setValueAtTime(0,audio.currentTime);
+    $('play').textContent='▶ Play';
+    $('play').setAttribute('aria-pressed','false');
+    $('halls').classList.remove('playing');
+    hint();
+    if(speak && pendingStory && pendingStory.hall===state.hall && state.tab==='people') narrateCurrent();
+    pendingStory=null;
+  }
+  function setSpeed(speed) {
+    state.speed=speed;
+    $('learn').setAttribute('aria-pressed',speed==='learn');
+    $('party').setAttribute('aria-pressed',speed==='party');
+    $('tempo-label').textContent=HALLS[state.hall][speed]+' beats per minute · '+
+      (state.playing?'changes at the next count.':'original learning groove.');
+    Curio.tone(speed==='party'?440:330,.05,.025);
+  }
+  $('play').onclick=play;
+  $('learn').onclick=()=>setSpeed('learn');
+  $('party').onclick=()=>setSpeed('party');
+  $('mirror').onclick=()=>{
+    state.mirror=!state.mirror;
+    $('mirror').setAttribute('aria-pressed',state.mirror);
+    drawFootprints();poseFigure(state.event,1);
+    Curio.tone(392,.05,.025);
+  };
+  $('previous').onclick=()=>setHall(state.hall-1);
+  $('next').onclick=()=>setHall(state.hall+1);
+  for(const tab of ['dance','room','people']) $('tab-'+tab).onclick=()=>setTab(tab);
+  document.querySelector('.tabs').onkeydown=e=>{
+    if(!['ArrowRight','ArrowLeft'].includes(e.key)) return;
+    e.preventDefault();
+    const tabs=['dance','room','people'];
+    const t=tabs[(tabs.indexOf(state.tab)+(e.key==='ArrowRight'?1:2))%3];
+    setTab(t);$('tab-'+t).focus({preventScroll:true});
+  };
+  $('m-halls').onclick=()=>setMode('halls');
+  $('m-moving').onclick=()=>setMode('moving');
+  // Read is still the kit's read handler. Capture stops music before that handler runs.
+  $('read').addEventListener('click',()=>{if(state.playing) stop(false);},{capture:true});
+  Curio.onSound(on=>{
+    if(bus) bus.gain.setValueAtTime(state.playing && on ? .32 : 0,audio.currentTime);
+    if(on && !state.playing) narrateCurrent();
+  });
+  Curio.onMotion(()=>poseFigure(state.event,1));
+  function save() {
+    try {localStorage.setItem(storageKey,JSON.stringify(state.profile));savedOK=true;}
+    catch {savedOK=false;}
+    $('save-status').textContent=savedOK?'Saved on this device.':'Saving unavailable; keep this page open.';
+  }
+  function options(select,selected,limit=null) {
+    select.replaceChildren();
+    HALLS.forEach((h,i)=>{
+      if(limit && !limit.includes(i)) return;
+      const o=document.createElement('option');o.value=i;o.textContent=h.name;select.appendChild(o);
+    });
+    select.value=String(selected);
+  }
+  const rowEls=ROWS.map((row,i)=>{
+    const div=document.createElement('div');div.className='chart-row';
+    div.innerHTML='<div class="row-ends"><b>'+row[0]+'</b><b>'+row[1]+'</b></div>'+
+      '<div class="track"><span class="pin me">◆ Me</span><span class="pin a">● A</span><span class="pin b">▲ B</span></div>'+
+      '<input type="range" id="me-'+i+'" min="0" max="4" step="1" aria-label="Me: '+row[0]+' to '+row[1]+'">';
+    div.querySelector('input').oninput=e=>{
+      state.profile.me[i]=Number(e.target.value);updateChart();save();
+      V.dropQueued();
+      $('hint').textContent='Pick two dances to compare with Me. Choose a criterion and a fact for each dance.';
+    };
+    $('chart').appendChild(div);return div;
+  });
+  const judges=['a','b'].map((side,j)=>{
+    const box=$('judge-'+side);
+    box.innerHTML='<h4></h4><div class="strengths"></div><div class="reasons"></div>';
+    ['Strong','Some','Weak'].forEach(value=>{
+      const b=document.createElement('button');b.className='control';b.textContent=value;b.setAttribute('aria-pressed','false');
+      b.onclick=()=>{state.profile.strengths[j]=value;updateJudges();updateSentence();save();};
+      box.querySelector('.strengths').appendChild(b);
+    });
+    for(let k=0;k<3;k++) {
+      const b=document.createElement('button');b.className='control';b.setAttribute('aria-pressed','false');
+      b.onclick=()=>{
+        const p=state.profile;
+        p.reasons[j]=k;
+        if(p.stronger===p.picks[j]) {
+          p.why=HALLS[p.picks[j]].reasons[k].toLowerCase();
+          $('why').value=p.why;
+        }
+        updateJudges();updateSentence();save();
+      };
+      box.querySelector('.reasons').appendChild(b);
+    }
+    return box;
+  });
+  function updateChart() {
+    const p=state.profile;
+    rowEls.forEach((el,i)=>{
+      const input=el.querySelector('input');
+      input.value=p.me[i];
+      input.title='A: '+HALLS[p.picks[0]].descriptors[i]+'. B: '+HALLS[p.picks[1]].descriptors[i]+'.';
+      input.setAttribute('aria-valuetext',p.me[i]+' of 4, from '+ROWS[i][0]+' to '+ROWS[i][1]);
+      for(const [type,v] of [['me',p.me[i]],['a',ROWS[i][2][p.picks[0]]],['b',ROWS[i][2][p.picks[1]]]]) {
+        const pin=el.querySelector('.'+type);pin.style.left=(v*25)+'%';
+        if(type!=='me') {
+          const j=type==='a'?0:1;
+          pin.title=HALLS[p.picks[j]].name+': '+HALLS[p.picks[j]].descriptors[i]+'. Position '+v+' of 4.';
+        }
+      }
+    });
+  }
+  function updateJudges() {
+    const p=state.profile;
+    judges.forEach((box,j)=>{
+      const h=HALLS[p.picks[j]];
+      box.querySelector('h4').textContent=(j===0?'A · ':'B · ')+h.name;
+      box.querySelectorAll('.strengths button').forEach(b=>{
+        b.setAttribute('aria-label',h.name+': '+b.textContent);
+        b.setAttribute('aria-pressed',b.textContent===p.strengths[j]);
+      });
+      box.querySelectorAll('.reasons button').forEach((b,k)=>{
+        b.textContent=h.reasons[k];b.setAttribute('aria-pressed',p.reasons[j]===k);
+      });
+    });
+  }
+  function sentence() {
+    const p=state.profile;
+    return 'I move most like '+HALLS[p.like]?.name+' because '+(p.because.trim()||'___')+
+      '. By my criterion, '+$('criterion').options[p.criterion].text.toLowerCase()+', '+HALLS[p.stronger]?.name+
+      ' is stronger because '+(p.why.trim()||'___')+'.';
+  }
+  function updateSentence() {
+    $('reflection').textContent=sentence();
+  }
+  function renderMoving() {
+    const p=state.profile;
+    options($('pick-a'),p.picks[0]);options($('pick-b'),p.picks[1]);
+    $('pick-a').options[p.picks[1]].disabled=true;
+    $('pick-b').options[p.picks[0]].disabled=true;
+    if(!p.picks.includes(p.like)) p.like=p.picks[0];
+    if(!p.picks.includes(p.stronger)) p.stronger=p.picks[0];
+    options($('like'),p.like,p.picks);options($('stronger'),p.stronger,p.picks);
+    $('criterion').selectedIndex=p.criterion;
+    $('because').value=p.because;$('why').value=p.why;
+    updateChart();updateJudges();updateSentence();
+    $('save-status').textContent=savedOK?'Saved on this device only.':'Saving unavailable; keep this page open.';
+  }
+  ['a','b'].forEach((side,j)=>$('pick-'+side).onchange=e=>{
+    const value=Number(e.target.value),p=state.profile;
+    if(value===p.picks[1-j]) {e.target.value=p.picks[j];return;}
+    p.picks[j]=value;p.strengths[j]='';p.reasons[j]=-1;
+    const other=$('pick-'+(side==='a'?'b':'a'));
+    [...other.options].forEach(o=>o.disabled=Number(o.value)===value);
+    if(!p.picks.includes(p.like)) p.like=value;
+    if(!p.picks.includes(p.stronger)) p.stronger=value;
+    options($('like'),p.like,p.picks);options($('stronger'),p.stronger,p.picks);
+    updateChart();updateJudges();updateSentence();save();
+  });
+  $('criterion').onchange=e=>{
+    state.profile.criterion=e.target.selectedIndex;
+    state.profile.strengths=['',''];state.profile.reasons=[-1,-1];
+    updateJudges();updateSentence();save();
+  };
+  for(const id of ['like','stronger','because','why']) $(id).addEventListener('input',e=>{
+    state.profile[id]=id==='like'||id==='stronger'?Number(e.target.value):e.target.value;
+    if(id==='stronger') {
+      const p=state.profile, side=p.picks.indexOf(p.stronger), r=p.reasons[side];
+      if(r>=0) {p.why=HALLS[p.stronger].reasons[r].toLowerCase();$('why').value=p.why;}
+    }
+    updateSentence();save();V.dropQueued();
+  });
+  $('copy').onclick=async()=>{
+    const text=sentence();
+    try {
+      await navigator.clipboard.writeText(text);
+      $('save-status').textContent='Copied your comparison.';
+    } catch {
+      const selection=getSelection(),range=document.createRange();
+      range.selectNodeContents($('reflection'));selection.removeAllRanges();selection.addRange(range);
+      $('save-status').textContent='Text selected. Press Ctrl+C or use your device\'s Copy command.';
+    }
+  };
+  $('reset').onclick=()=>{
+    V.hush();state.profile=blankProfile();
+    try {localStorage.removeItem(storageKey);} catch {}
+    renderMoving();$('save-status').textContent='Comparison cleared on this device.';
+    $('hint').textContent='Move the Me sliders, then pick two dances. Judge them using one criterion.';
+  };
+  new ResizeObserver(()=>layoutFigure()).observe($('hall'));
+  document.addEventListener('visibilitychange',()=>{if(document.hidden && state.playing) stop(false);});
+  Curio.init({clips:"voice:*",rate:.9});
+  figureRenderer.mount();
+  renderHall();
+  window.__tool={state,setMode,setHall,setTab,setSpeed,play,stop,allLines:V.allLines,vlog:V.log,
+    get vq(){return V.queue;},get pattern(){return pattern;},trace,HALLS,ROWS,sentence,figureRenderer,
+    get audioTime(){return audio?.currentTime||0;}};
+})();
+</script>
+</body>
+</html>

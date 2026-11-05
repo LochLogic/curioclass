@@ -1,0 +1,24 @@
+{
+  "id": "theory-gym",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Slide a key lens over the score. Hear where the music comes home.",
+  "outcome": "Identify intervals, keys, cadences and pivot chords using spelled notes and harmonic evidence.",
+  "driver": "students",
+  "minutes": "20-40",
+  "modes": [
+    "Lens",
+    "Workout"
+  ],
+  "grades_label": "Grades 9-12",
+  "sources": [
+    "National Core Arts Standards MU:Re7 and MU:Re8, nationalartsstandards.org",
+    "Open Music Theory: Intervals, Minor scales, Roman numerals and SATB chord construction, Cadence types, Modulation",
+    "Kostka and Payne, Tonal Harmony",
+    "Britannica, Key",
+    "All passages written for Curio Class",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-01"
+}

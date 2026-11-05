@@ -1,0 +1,22 @@
+{
+  "id":"design-for-a-friend",
+  "stage":"built",
+  "status":"beta",
+  "hook":"Ask a friend. Make an app. Watch what really helps.",
+  "outcome":"Use interviews and task tests to improve a design for different users",
+  "driver":"students or teacher",
+  "minutes":"20-35",
+  "modes":["Interview","One App for All"],
+  "grades_label":"Grade 5",
+  "sources":[
+    "Nielsen Norman Group, Interviewing Users: https://www.nngroup.com/articles/interviewing-users/",
+    "Angela Glover Blackwell, The Curb-Cut Effect, SSIR, Winter 2017: https://ssir.org/articles/entry/the_curb_cut_effect",
+    "W3C WCAG 2.2, Understanding Target Size (Minimum): https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
+    "IDEO.org, The Field Guide to Human-Centered Design (2015): https://www.designkit.org/resources/1.html",
+    "CSTA K-12 Computer Science Standards (2017): https://csteachers.org/k12standards/",
+    "Maple Street Garden and its gardeners are fictional",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party":[],
+  "updated":"2026-10-31"
+}

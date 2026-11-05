@@ -1,0 +1,29 @@
+{
+  "id": "biome-atlas",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Climate predicts. Nature has the last word.",
+  "outcome": "Use climate evidence to predict a biome and explain why disturbance and changed conditions alter recovery.",
+  "driver": "students",
+  "minutes": "25-40",
+  "modes": [
+    "Read",
+    "Key",
+    "Change"
+  ],
+  "grades_label": "Grade 12",
+  "sources": [
+    "Climate normals 1991 to 2020: WMO, via NOAA NCEI archive accession 0253808",
+    "Peel, Finlayson and McMahon (2007), Updated world map of the Koppen-Geiger climate classification",
+    "Whittaker (1975), Communities and Ecosystems",
+    "Olson et al. (2001), Terrestrial ecoregions of the world",
+    "Natural Earth public domain land outline, repository world map",
+    "OpenStax Biology 2e section 45.6; Poorter et al. (2021); Bond and Keeley (2005)",
+    "Lovich and Bainbridge (1999); Keeley et al. (2012); Franklin et al. (2002)",
+    "Johnstone et al. (2010); Forbes, Ebersole and Strandberg (2001)",
+    "Existing landscape illustrations drawn with FLUX.1-schnell (Apache 2.0), edited for Curio Class",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-03"
+}

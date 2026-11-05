@@ -1,0 +1,27 @@
+{
+  "id": "water-shapes-earth",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Run fair tests of ice, acid and current, then explain what changed the rock.",
+  "outcome": "Use controlled investigations and trial data to connect water properties to Earth surface processes.",
+  "driver": "students",
+  "minutes": "35-50",
+  "grades_label": "Grade 9",
+  "modes": [
+    "Freeze-Thaw",
+    "Dissolve",
+    "Stream Table"
+  ],
+  "sources": [
+    "USGS Water Science School: Water Density; pH and Water; Sinkholes; Dissolved Oxygen and Water.",
+    "Fagerlund 1977, Materials and Structures 10:217, critical degree of saturation.",
+    "OpenStax Chemistry 2e, 11.3 Solubility.",
+    "USGS Water-Supply Paper 2175 (1982), Measurement and Computation of Streamflow.",
+    "Hjulstr\u00f6m 1935, Bulletin of the Geological Institute of Uppsala 25:221; rounded grain thresholds.",
+    "NASA Glenn Research Center: Earth Atmosphere Model, air density about 1.2 kg per cubic meter.",
+    "Freeze and dissolve rates are invented educational lab-model rates, not measured field rates.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-02"
+}

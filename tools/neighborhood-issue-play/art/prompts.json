@@ -1,0 +1,352 @@
+{
+  "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers, logos, people, faces or body parts.",
+  "assets": [
+    {
+      "name": "street",
+      "prompt": "A friendly neighborhood street seen from the side, corner store with blank awning, three small houses, fenced park gate, school with blank sign, broad sidewalk and road foreground. Deep layered miniature paper scenery, tiny flowerpots and brick details, open space along sidewalk for six puppets.",
+      "width": 1400,
+      "aspect": "16:9",
+      "cutout": false,
+      "quality": 74,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "theater-front",
+      "prompt": "Front of a beautiful paper toy theater, decorated teal and ochre proscenium arch, paper columns, curved top and red curtains pulled entirely to sides, shallow wooden stage floor. The stage opening and outside the arch are flat pure magenta #FF00FF, ready to key out. No scenery in the opening.",
+      "width": 1100,
+      "aspect": "4:3",
+      "cutout": true,
+      "quality": 74,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "backdrop-park",
+      "prompt": "A park behind a closed wooden gate with a blank sign, slide and swings, layered trees, open foreground for puppets, theatrical miniature paper scenery.",
+      "width": 1000,
+      "aspect": "16:10",
+      "cutout": false,
+      "quality": 74,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "backdrop-school",
+      "prompt": "A neighborhood school street corner with blank school sign, road without painted lines, sidewalk and flower planters, open foreground for puppets, theatrical miniature paper scenery.",
+      "width": 1000,
+      "aspect": "16:10",
+      "cutout": false,
+      "quality": 74,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "backdrop-lot",
+      "prompt": "An empty grassy city lot with weeds between two brick buildings, open foreground, theatrical miniature paper scenery.",
+      "width": 1000,
+      "aspect": "16:10",
+      "cutout": false,
+      "quality": 74,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "wing-tree",
+      "prompt": "Single miniature theater wing: leafy tree with layered green leaves and a sturdy trunk. Fully in frame on flat pure magenta #FF00FF.",
+      "width": 270,
+      "aspect": "3:4",
+      "cutout": true,
+      "quality": 74,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "wing-lamp",
+      "prompt": "Single miniature theater wing: old-fashioned street lamp post. Fully in frame on flat pure magenta #FF00FF.",
+      "width": 270,
+      "aspect": "3:4",
+      "cutout": true,
+      "quality": 74,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "wing-fence",
+      "prompt": "Single miniature theater wing: section of cream picket fence. Fully in frame on flat pure magenta #FF00FF.",
+      "width": 270,
+      "aspect": "3:4",
+      "cutout": true,
+      "quality": 74,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "wing-bush",
+      "prompt": "Single miniature theater wing: round leafy bush. Fully in frame on flat pure magenta #FF00FF.",
+      "width": 270,
+      "aspect": "3:4",
+      "cutout": true,
+      "quality": 74,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "prop-bench",
+      "prompt": "Single miniature theater prop: wooden park bench with slatted seat and metal legs. Fully in frame on flat pure magenta #FF00FF.",
+      "width": 250,
+      "aspect": "4:3",
+      "cutout": true,
+      "quality": 74,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
+    },
+    {
+      "name": "prop-cones",
+      "prompt": "Single miniature theater prop: three orange traffic cones grouped together. Fully in frame on flat pure magenta #FF00FF.",
+      "width": 250,
+      "aspect": "1:1",
+      "cutout": true,
+      "quality": 74,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "prop-seeds",
+      "prompt": "Single miniature theater prop: basket of blank colorful seed packets. Fully in frame on flat pure magenta #FF00FF.",
+      "width": 250,
+      "aspect": "1:1",
+      "cutout": true,
+      "quality": 74,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "prop-wheelbarrow",
+      "prompt": "Single miniature theater prop: small green wheelbarrow with one wheel and two handles. Fully in frame on flat pure magenta #FF00FF.",
+      "width": 250,
+      "aspect": "1:1",
+      "cutout": true,
+      "quality": 74,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
+    },
+    {
+      "name": "prop-sign",
+      "prompt": "Single miniature theater prop: blank cream wooden sign on a post, broad flat blank sign surface. Fully in frame on flat pure magenta #FF00FF.",
+      "width": 250,
+      "aspect": "3:4",
+      "cutout": true,
+      "quality": 74,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "prop-ball",
+      "prompt": "Single miniature theater prop: red ball. Fully in frame on flat pure magenta #FF00FF.",
+      "width": 250,
+      "aspect": "1:1",
+      "cutout": true,
+      "quality": 74,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "puppet-shell",
+      "prompt": "A human neighbor, older neighbor in a cardigan with a walking stick, as a full-body cut-paper puppet on a wooden stick. Inclusive cast, everyday clothing. Owner reviews people art. Flat pure green background.",
+      "width": 230,
+      "aspect": "3:4",
+      "cutout": true,
+      "people": true,
+      "anchors": {
+        "head": [
+          0.5,
+          0.16
+        ],
+        "body": [
+          0.5,
+          0.47
+        ]
+      },
+      "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers or logos."
+    },
+    {
+      "name": "puppet-rufus",
+      "prompt": "A human neighbor, storekeeper in a shop apron, as a full-body cut-paper puppet on a wooden stick. Inclusive cast, everyday clothing. Owner reviews people art. Flat pure green background.",
+      "width": 230,
+      "aspect": "3:4",
+      "cutout": true,
+      "people": true,
+      "anchors": {
+        "head": [
+          0.5,
+          0.16
+        ],
+        "body": [
+          0.5,
+          0.47
+        ]
+      },
+      "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers or logos."
+    },
+    {
+      "name": "puppet-gail",
+      "prompt": "A human neighbor, school crossing guard with a vest and blank paddle, as a full-body cut-paper puppet on a wooden stick. Inclusive cast, everyday clothing. Owner reviews people art. Flat pure green background.",
+      "width": 230,
+      "aspect": "3:4",
+      "cutout": true,
+      "people": true,
+      "anchors": {
+        "head": [
+          0.5,
+          0.16
+        ],
+        "body": [
+          0.5,
+          0.47
+        ]
+      },
+      "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers or logos."
+    },
+    {
+      "name": "puppet-nutmeg",
+      "prompt": "A human neighbor, nine-year-old who likes ball games, as a full-body cut-paper puppet on a wooden stick. Inclusive cast, everyday clothing. Owner reviews people art. Flat pure green background.",
+      "width": 230,
+      "aspect": "3:4",
+      "cutout": true,
+      "people": true,
+      "anchors": {
+        "head": [
+          0.5,
+          0.16
+        ],
+        "body": [
+          0.5,
+          0.47
+        ]
+      },
+      "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers or logos."
+    },
+    {
+      "name": "puppet-bramble",
+      "prompt": "A human neighbor, town councilor with a jacket and folder, as a full-body cut-paper puppet on a wooden stick. Inclusive cast, everyday clothing. Owner reviews people art. Flat pure green background.",
+      "width": 230,
+      "aspect": "3:4",
+      "cutout": true,
+      "people": true,
+      "anchors": {
+        "head": [
+          0.5,
+          0.16
+        ],
+        "body": [
+          0.5,
+          0.47
+        ]
+      },
+      "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers or logos."
+    },
+    {
+      "name": "puppet-fern",
+      "prompt": "A human neighbor, gardener beside a stroller, as a full-body cut-paper puppet on a wooden stick. Inclusive cast, everyday clothing. Owner reviews people art. Flat pure green background.",
+      "width": 230,
+      "aspect": "3:4",
+      "cutout": true,
+      "people": true,
+      "anchors": {
+        "head": [
+          0.5,
+          0.16
+        ],
+        "body": [
+          0.5,
+          0.47
+        ]
+      },
+      "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers or logos."
+    },
+    {
+      "name": "costume-hat",
+      "prompt": "Single costume piece alone, small ochre felt hat, sized for a paper puppet. Fully in frame on flat pure magenta #FF00FF.",
+      "width": 180,
+      "aspect": "1:1",
+      "cutout": true,
+      "quality": 74,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "costume-scarf",
+      "prompt": "Single costume piece alone, striped red scarf, sized for a paper puppet. Fully in frame on flat pure magenta #FF00FF.",
+      "width": 180,
+      "aspect": "1:1",
+      "cutout": true,
+      "quality": 74,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "costume-glasses",
+      "prompt": "Single costume piece alone, round spectacles, sized for a paper puppet. Fully in frame on flat pure magenta #FF00FF.",
+      "width": 180,
+      "aspect": "1:1",
+      "cutout": true,
+      "quality": 74,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
+    },
+    {
+      "name": "costume-apron",
+      "prompt": "Single costume piece alone, cream shop apron, sized for a paper puppet. Fully in frame on flat pure magenta #FF00FF.",
+      "width": 180,
+      "aspect": "1:1",
+      "cutout": true,
+      "quality": 74,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "costume-sash",
+      "prompt": "Single costume piece alone, gold sash, sized for a paper puppet. Fully in frame on flat pure magenta #FF00FF.",
+      "width": 180,
+      "aspect": "1:1",
+      "cutout": true,
+      "quality": 74,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "costume-backpack",
+      "prompt": "Single costume piece alone, small blue backpack, sized for a paper puppet. Fully in frame on flat pure magenta #FF00FF.",
+      "width": 180,
+      "aspect": "1:1",
+      "cutout": true,
+      "quality": 74,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    }
+  ]
+}

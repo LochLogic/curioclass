@@ -1,0 +1,26 @@
+{
+  "id": "game-day-fuel",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Fuel the week. Test the final whistle.",
+  "outcome": "Plan meals and timing around a fixed training schedule.",
+  "driver": "students",
+  "minutes": "20-40",
+  "modes": [
+    "Plan the week",
+    "Game day"
+  ],
+  "grades_label": "Grades 9-12",
+  "sources": [
+    "Dietary Guidelines for Americans 2020-2025, Appendices 2 and 3",
+    "USDA MyPlate and FoodData Central; typical serving values",
+    "NIH ODS: Exercise and Athletic Performance; Supplements: What You Need to Know",
+    "CDC: Heat and Athletes",
+    "Food family records from label-detective and lunch-tray-builder",
+    "Original labeled teaching model and thresholds",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "13 retained new-food illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-10-31"
+}

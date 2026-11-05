@@ -1,5 +1,5 @@
 {
-  "house_style": "Flat editorial illustration for a high school statistics tool, like a modern magazine portrait: clean shapes, soft shading, warm muted colors, natural and respectful. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "house_style": "Flat editorial illustration for a high school statistics journal. Clean precise shapes, soft gouache shading, subtle paper grain, warm ivory, graphite and editor blue, directional daylight from upper left. No text, letters, numbers, logos, people, faces or body parts.",
   "style": "The journal editor, Dr. Mara Quill, shown beside her letters on a light paper page.",
   "assets": [
     {
@@ -12,7 +12,67 @@
       "width": 360,
       "quality": 82,
       "source": "gpt-image-2 (Codex)",
-      "review": "pending"
+      "review": "deferred: existing portrait superseded by spec; coded silhouette used",
+      "replacement_prompt": "Chest-up portrait of a woman in her fifties with short dark hair streaked with gray, round tortoiseshell glasses, dark blazer and white collar, blue pencil over manuscript, dry kind expression."
+    },
+    {
+      "name": "reaction-lab",
+      "prompt": "A small empty university reaction-time lab, desk with black red-button reaction box and monitor with plain glowing blank blue screen, shelves of blank-spine binders, wall clock with blank face and no hands. Soft daylight through a tall window, foreground workbench, layered room depth, refined editorial illustration.",
+      "aspect": "16:9",
+      "width": 1000,
+      "cutout": false,
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "review": "ok: inspected finished WebP at intended size; no people or lettering"
+    },
+    {
+      "name": "drink-can",
+      "prompt": "A single slim drink can, matte silver aluminum, blank blue-gray band around middle, cold water beads, realistic lid and pull tab. Centered fully in frame on perfectly flat pure green #00FF00 background.",
+      "aspect": "3:4",
+      "width": 180,
+      "cutout": true,
+      "quality": 78,
+      "drawn_by": "codex",
+      "despill": true,
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "review": "ok: inspected finished WebP at intended size; no people or lettering"
+    },
+    {
+      "name": "water-glass",
+      "prompt": "A clear cylindrical glass filled with water and a few ice cubes, bright rim and refracted light, fully in frame on perfectly flat pure green #00FF00 background.",
+      "aspect": "3:4",
+      "width": 180,
+      "cutout": true,
+      "quality": 78,
+      "drawn_by": "codex",
+      "despill": true,
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "review": "ok: inspected finished WebP at intended size; no people or lettering"
+    },
+    {
+      "name": "stopwatch",
+      "prompt": "A silver mechanical stopwatch, blank white circular face, crown and small side pusher, polished rim, centered fully in frame on perfectly flat pure green #00FF00 background.",
+      "aspect": "1:1",
+      "width": 180,
+      "cutout": true,
+      "quality": 78,
+      "drawn_by": "codex",
+      "despill": true,
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "review": "ok: inspected finished WebP at intended size; no people or lettering"
+    },
+    {
+      "name": "reaction-box",
+      "prompt": "A small black reaction time button box with one large round red push button on top, four small screws, cable trailing from back. Three-quarter view, fully in frame on flat pure green #00FF00.",
+      "aspect": "1:1",
+      "width": 220,
+      "cutout": true,
+      "quality": 78,
+      "drawn_by": "codex",
+      "despill": true,
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "review": "ok: inspected finished WebP at intended size; no people or lettering"
     }
   ]
 }

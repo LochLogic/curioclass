@@ -1,0 +1,271 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "artist-wrong-reveal",
+      "steps": [
+        {
+          "click": "#artist-moods [data-mood='4']"
+        },
+        {
+          "click": "#hotspot-0"
+        },
+        {
+          "click": "#hotspot-3"
+        }
+      ],
+      "keep": [
+        "#artist-picture",
+        "#reveal"
+      ]
+    },
+    {
+      "name": "makeover-mixed",
+      "steps": [
+        {
+          "click": "#m-makeover"
+        },
+        {
+          "click": "#place-busstop"
+        },
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#light-warm"
+        },
+        {
+          "click": "#weather-rain"
+        },
+        {
+          "click": "#detail-bus-glove"
+        }
+      ],
+      "keep": [
+        "#place-picture",
+        "#compass-card"
+      ]
+    },
+    {
+      "name": "makeover-agree",
+      "steps": [
+        {
+          "click": "#m-makeover"
+        },
+        {
+          "click": "#place-busstop"
+        },
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#goal-moods [data-mood='1']"
+        },
+        {
+          "click": "#light-warm"
+        },
+        {
+          "click": "#detail-bus-lights"
+        },
+        {
+          "click": "#detail-bus-cat"
+        }
+      ],
+      "keep": [
+        "#place-picture",
+        "#compass-card"
+      ]
+    },
+    {
+      "name": "clue-disagrees",
+      "steps": [
+        {
+          "click": "#m-makeover"
+        },
+        {
+          "click": "#place-busstop"
+        },
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#detail-bus-lights"
+        },
+        {
+          "js": "document.querySelector('#clue-bus-lights').scrollIntoView({block:'center'});"
+        },
+        {
+          "click": "#clue-bus-lights"
+        },
+        {
+          "click": "#tag-moods [data-mood='0']"
+        },
+        {
+          "click": "#keep-clue"
+        }
+      ],
+      "keep": [
+        "#tag-dialog"
+      ]
+    },
+    {
+      "name": "night-weather",
+      "steps": [
+        {
+          "click": "#m-makeover"
+        },
+        {
+          "click": "#place-busstop"
+        },
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#time-night"
+        },
+        {
+          "click": "#weather-rain"
+        },
+        {
+          "click": "#detail-bus-broken-lamp"
+        }
+      ],
+      "keep": [
+        "#place-picture",
+        "#compass-card"
+      ]
+    },
+    {
+      "name": "porch-fog-gray",
+      "steps": [
+        {
+          "click": "#m-makeover"
+        },
+        {
+          "click": "#place-busstop"
+        },
+        {
+          "click": "#place-porch"
+        },
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#colors-gray"
+        },
+        {
+          "click": "#weather-fog"
+        },
+        {
+          "click": "#detail-porch-lantern"
+        }
+      ],
+      "keep": [
+        "#place-picture",
+        "#compass-card"
+      ]
+    },
+    {
+      "name": "partner-hidden",
+      "steps": [
+        {
+          "click": "#m-makeover"
+        },
+        {
+          "click": "#place-busstop"
+        },
+        {
+          "click": "#partner"
+        }
+      ],
+      "keep": [
+        "#place-picture",
+        "#partner-card"
+      ]
+    },
+    {
+      "name": "before-after",
+      "steps": [
+        {
+          "click": "#m-makeover"
+        },
+        {
+          "click": "#place-busstop"
+        },
+        {
+          "click": "#time-night"
+        },
+        {
+          "click": "#compare"
+        },
+        {
+          "drag": "(()=>{const r=document.querySelector('#wipe').getBoundingClientRect();return [[r.x+r.width*.75,r.y+r.height*.5],[r.x+r.width*.56,r.y+r.height*.5],[r.x+r.width*.37,r.y+r.height*.5]]})()"
+        }
+      ],
+      "keep": [
+        "#place-picture"
+      ]
+    },
+    {
+      "name": "writing-card",
+      "steps": [
+        {
+          "click": "#m-makeover"
+        },
+        {
+          "click": "#place-busstop"
+        },
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#goal-moods [data-mood='1']"
+        },
+        {
+          "click": "#light-warm"
+        },
+        {
+          "click": "#detail-bus-lights"
+        },
+        {
+          "click": "#detail-bus-cat"
+        },
+        {
+          "click": "#write"
+        }
+      ],
+      "keep": [
+        "#sentence-card"
+      ]
+    },
+    {
+      "name": "playground-details",
+      "steps": [
+        {
+          "click": "#m-makeover"
+        },
+        {
+          "click": "#place-playground"
+        },
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#detail-play-swing"
+        },
+        {
+          "click": "#detail-play-crow"
+        },
+        {
+          "click": "#detail-play-glow"
+        }
+      ],
+      "keep": [
+        "#place-picture",
+        "#compass-card"
+      ]
+    }
+  ]
+}

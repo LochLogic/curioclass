@@ -1,0 +1,22 @@
+{
+  "id": "recorder-concert-rehearsal",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Give one clear note. Hear one real change.",
+  "outcome": "Listen, evaluate an ensemble take, and give specific feedback before joining a concert.",
+  "driver": "students or teacher",
+  "minutes": "15-30",
+  "modes": [
+    "Rehearsal",
+    "Concert"
+  ],
+  "grades_label": "Grades 3-5",
+  "sources": [
+    "Hot Cross Buns and Au Clair de la Lune: traditional, public domain. Library of Congress Songs of America; IMSLP.",
+    "American Recorder Society and Yamaha soprano recorder fingering guidance; Walter van Hauwe, The Modern Recorder Player, vol. 1 (1984).",
+    "NAfME concert etiquette; National Core Arts Standards MU:Pr5, MU:Pr6 and MU:Re9, grades 3 to 5.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-01"
+}

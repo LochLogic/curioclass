@@ -1,0 +1,1145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Reserve Designer · Curio Class</title>
+<meta name="description" content="Buy connected habitat for six species, then stress-test your reserve. Grade 9 science. Works offline.">
+<!--
+Reserve Designer, Curio Class. Grade 9 science. HS-LS2-7, HS-LS2-8, HS-LS4-6.
+Students design and refine protected habitat in a fictional valley.
+Ecology: OpenStax Biology 2e 47.2 and 47.3. Species sources and model limits: notes.md.
+Groups: Childress and Lung 2003; Pulliam 1973; NPS Wind Cave prairie dogs.
+Map, prices and thresholds are model values, checked independently in Python.
+Original portraits: FLUX.1-schnell (Apache 2.0). New illustrations: OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0. Code MIT. One offline file. No network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root { --brand:#ff4a2e; --brand-ink:#10161f; --leaf:#ade1b0; }
+body { height:100dvh; overflow:hidden; }
+header { padding:10px 20px; gap:8px; }
+h1 { font-size:23px; letter-spacing:-.6px; display:flex; align-items:center; gap:10px; }
+h1 small { font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:5px; }
+.logo { width:30px; height:35px; color:var(--brand); }
+.seg { border:1px solid #637489; border-radius:7px; }
+.seg button { min-height:44px; min-width:44px; padding:0 16px; font-size:14px; }
+.icon-btn { border-width:1px; border-radius:7px; min-height:44px; min-width:44px; padding:0 12px; font-size:13px; }
+main { grid-template-columns:minmax(0,1fr) minmax(280px,35%); overflow:hidden; min-height:0; min-width:0; width:100%; }
+.stage { grid-column:1; grid-row:1; min-height:0; padding:18px 22px 12px; display:flex; flex-direction:column;
+  background:radial-gradient(ellipse at 40% 0%,#33473455,transparent 65%),#10191c; }
+.stage::before { content:''; position:absolute; inset:0; pointer-events:none; opacity:.15;
+  background:repeating-radial-gradient(ellipse at 25% 50%,transparent 0 29px,#6d8d7b44 30px 31px,transparent 32px 57px); }
+.stage>* { position:relative; }
+.survey-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; flex:none; }
+.eyebrow { text-transform:uppercase; color:#b5c5bc; letter-spacing:2px; font-size:10px; font-weight:600; }
+.survey-heading h2 { margin:3px 0 0; font-size:23px; font-weight:500; letter-spacing:-.7px; }
+.compass { font:600 12px var(--readout-font); color:#bdcdbf; }
+.compass b { color:var(--brand); font-size:23px; }
+.map-rig { flex:1; min-height:0; display:grid; place-items:center; padding:12px 0; }
+.map-board { position:relative; box-shadow:0 18px 45px #0008,0 0 0 5px #71806e33,0 0 0 6px #9aa58d44; }
+.map-grid { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); aspect-ratio:12/8; width:100%; }
+.cell { position:relative; min-width:0; min-height:0; padding:0; border:0; border-right:1px solid #10161f66;
+  border-bottom:1px solid #10161f66; border-radius:0; background:#233d2a; overflow:hidden; isolation:isolate; }
+.terrain { position:absolute; inset:-1px; background-position:center; background-size:cover; pointer-events:none; }
+.cell::after { content:''; position:absolute; inset:0; box-shadow:inset 0 1px 0 #ffffff18; pointer-events:none; }
+.cell:hover::after { background:#fff2; box-shadow:inset 0 0 0 2px #e5ebd9; }
+.cell:focus-visible { outline:3px solid var(--focus); outline-offset:1px; z-index:5; }
+.cell.protected::after { box-shadow:inset 0 0 0 3px var(--brand),inset 0 0 0 5px #10161f; }
+.cell.protected:hover::after { background:#fff2; }
+.cell.river-active::before { content:''; position:absolute; z-index:1; inset:5px 38%; border:1px solid #bdedf6;
+  border-top:0; border-bottom:0; opacity:.8; }
+.flag { position:absolute; bottom:7%; right:8%; width:24%; height:36%; z-index:2; filter:drop-shadow(1px 1px 1px #000); }
+.flag::before { content:''; position:absolute; inset:0 0 35% 12%; background:var(--brand); clip-path:polygon(0 0,100% 12%,80% 70%,0 65%); }
+.flag::after { content:''; position:absolute; left:8%; top:0; height:100%; width:2px; background:#f0e5ca; }
+.protected.fresh .flag { animation:plant .4s cubic-bezier(.2,.8,.3,1); }
+@keyframes plant { from { transform:translateY(-25px) scale(1.4); opacity:0; } to { transform:none; opacity:1; } }
+.cell.growing .terrain { animation:grow .65s ease-out; }
+@keyframes grow { from { filter:sepia(1); opacity:.35; scale:.7; } to { filter:none; opacity:1; scale:1; } }
+.cell.weak::after { box-shadow:inset 0 0 0 2px #10161f; outline:3px dashed var(--brand); outline-offset:-4px; }
+.crack { position:absolute; z-index:4; color:#fff1b7; font:bold clamp(13px,2vw,28px) monospace; left:32%; top:15%;
+  text-shadow:1px 2px 2px #000; pointer-events:none; }
+.cell.lost .terrain { filter:grayscale(1) brightness(.23); }
+.cell.lost .crack,.cell.lost .crossing-icon { display:none; }
+.loss-tag { position:absolute; z-index:5; inset:0; display:grid; place-items:center; color:#fff4d2; font-size:clamp(8px,1vw,12px);
+  text-shadow:0 1px 2px #000; pointer-events:none; }
+.cell.usable .terrain { filter:brightness(1.2); }
+.cell.unusable .terrain { filter:brightness(.3) saturate(.2); }
+.crossing-icon { position:absolute; inset:17%; z-index:2; color:#fff4d3; text-shadow:1px 2px 3px #000; font-size:25px; }
+.river-shimmer { position:absolute; left:50%; top:0; height:100%; width:8.33%; pointer-events:none; opacity:.12;
+  background:repeating-linear-gradient(160deg,transparent 0 12px,#ccecff 13px 14px,transparent 15px 25px);
+  animation:river 5s linear infinite; mix-blend-mode:screen; }
+@keyframes river { to { background-position:0 100px; } }
+.map-meta { display:flex; justify-content:space-between; flex-wrap:wrap; gap:5px 14px; color:#c0cec4; font-size:11px; }
+.legend { display:flex; gap:10px; align-items:center; }
+.flag-key { width:9px; height:11px; display:inline-block; border-left:2px solid #f0e5ca; background:var(--brand); margin-right:4px; }
+.bank-key { color:#bdebf8; font-size:16px; vertical-align:middle; }
+.selection { margin:8px 0 0; min-height:22px; font-size:12px; color:#c2d0c4; }
+.selection::after { content:' Saved only on this device.'; color:#9fb8a4; }
+#needs-picker { flex:1; align-items:center; gap:8px; font-size:12px; }
+body[data-needs="true"] #needs-picker { display:flex; }
+body[data-needs="true"] .survey-heading>div:first-child { display:none; }
+#needs-picker label { flex:none; }
+#needs-picker select { min-width:0; }
+.panel { grid-column:2; grid-row:1; padding:16px; gap:12px; border-color:#3f4c42; background:linear-gradient(140deg,#1e2926,#141b25 55%); }
+.budget-heading { display:flex; justify-content:space-between; align-items:baseline; gap:8px; }
+.budget-heading h2 { font:600 11px 'Segoe UI',sans-serif; letter-spacing:1.5px; text-transform:uppercase; margin:0; color:var(--muted); }
+.budget-heading strong { font:500 26px var(--readout-font); letter-spacing:-1px; }
+.budget-heading small { font:12px 'Segoe UI',sans-serif; color:var(--muted); }
+.budget-track { height:6px; background:#3a453d; margin:8px 0; border-radius:3px; overflow:hidden; }
+.budget-fill { height:100%; width:0; background:var(--brand); transition:width .18s; }
+.budget-detail { display:flex; justify-content:space-between; color:#b5c3bc; font-size:12px; }
+.farms { font-size:12px; margin-top:7px; display:flex; justify-content:space-between; }
+.farms b { color:#e6d89e; }
+.actions { display:flex; gap:7px; }
+.actions>* { flex:1; min-width:0; }
+.btn { border-radius:6px; font-size:13px; }
+.primary { background:var(--brand); color:var(--brand-ink); border-color:var(--brand); font-weight:700; }
+.species-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.species-head h2 { font-size:12px; margin:0; letter-spacing:1px; text-transform:uppercase; color:#b5c3bc; }
+#met-count { font:13px var(--readout-font); color:var(--leaf); }
+.species-list { display:grid; gap:7px; }
+.species { display:grid; grid-template-columns:54px 1fr; gap:10px; align-items:center; padding:6px;
+  background:#101a20a8; border:1px solid #34423e; border-radius:7px; }
+.portrait { width:54px; height:54px; border-radius:5px; object-fit:cover; }
+.species h3 { font-size:13px; margin:0 0 2px; font-weight:600; }
+.need { display:block; font-size:11px; color:#b8c7bf; line-height:1.3; }
+.status { display:block; font-size:11px; color:#ffbdad; line-height:1.3; margin-top:3px; }
+.species.met { border-color:#51795c; }
+.species.met .status { color:#ade1b0; }
+.species.changed { animation:result-flash .65s ease-out; }
+@keyframes result-flash { from { background:#608b5b; } to { background:#101a20a8; } }
+.hint { flex:none; min-height:58px; padding:10px 12px; border-left:2px solid var(--brand); background:#24312b; font-size:13px; line-height:1.4; }
+.tip { font-size:11px; line-height:1.4; padding:9px 10px; }
+.foot { font-size:10px; line-height:1.5; color:#adbbb4; margin:0; }
+.device { font-size:10px; color:#a7b9ab; margin:0; }
+.end-notes { margin-top:auto; }
+.popover { position:absolute; z-index:20; width:265px; padding:12px; background:#19252b; border:1px solid #95aa92;
+  border-radius:8px; box-shadow:0 10px 40px #000b; }
+.popover h3 { margin:0 0 5px; font-size:15px; }
+.popover p { margin:0 0 10px; font-size:12px; color:#c5d1c7; line-height:1.4; }
+.popover .btn { width:100%; margin-top:6px; text-align:left; min-height:44px; }
+.popover .close { text-align:center; background:transparent; }
+.future-strip { display:flex; gap:8px; overflow-x:auto; padding:8px 0; height:118px; flex:none; }
+.future { width:116px; min-width:116px; min-height:98px; padding:5px; border:1px solid #596a5d; border-radius:5px;
+  background:#131e21; text-align:left; color:#c8d4ca; font-size:9px; line-height:1.2; }
+.future.selected { border:2px solid var(--brand); }
+.future canvas { width:96px; height:64px; display:block; margin:0 auto 4px; }
+#stress-summary { color:#e4eede; font-size:14px; margin:0; }
+.stress-sub { font-size:11px; color:#bdcbc0; margin:4px 0 7px; }
+.stress-actions { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+#run { grid-column:1/-1; }
+.groups { grid-column:1/-1; padding:20px; overflow:auto;
+  background:radial-gradient(ellipse at 50% 0,#32433255,transparent 65%),#0f171b; }
+.groups-top { display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:14px; }
+.groups-top h2 { font-size:26px; font-weight:500; margin:0; letter-spacing:-.8px; }
+.groups-top .hint { max-width:530px; min-height:58px; }
+#group-hint-slot { max-width:530px; flex:1; }
+.group-cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; height:calc(100% - 100px); min-height:440px; }
+.group-card { background:#1b2827; border:1px solid #4d6051; border-radius:9px; display:flex; flex-direction:column; overflow:hidden; }
+.group-title { padding:12px 16px; display:flex; gap:12px; align-items:center; }
+.group-title img { width:96px; height:96px; object-fit:cover; border-radius:6px; }
+.group-title h3 { margin:0 0 4px; font-size:21px; font-weight:500; }
+.group-title p { margin:0; color:#becdc1; font-size:12px; }
+.habitat-scene { flex:1; min-height:160px; position:relative; background-size:cover; background-position:center; overflow:hidden; }
+.habitat-scene::after { content:''; pointer-events:none; position:absolute; inset:0;
+  background:linear-gradient(transparent 65%,#151f1744); box-shadow:inset 0 1px 0 #ffffff44; }
+.scene-count { position:absolute; top:12px; left:12px; z-index:3; padding:7px 10px; border:1px solid #c3d3b966;
+  border-radius:5px; background:#14211ce8; font-size:12px; color:#ecf5df; }
+.elk { position:absolute; object-fit:contain; transform:translateX(-50%); filter:drop-shadow(1px 3px 2px #1c241766); }
+.dog-place { position:absolute; width:10%; aspect-ratio:1; transform:translateX(-50%); }
+.dog { position:absolute; height:100%; width:100%; object-fit:contain; left:0; bottom:8%; transition:transform .25s ease-in,opacity .15s; }
+.mound { position:absolute; width:100%; height:36%; object-fit:contain; bottom:0; left:0; z-index:2; }
+.dog-place.diving .dog { transform:translateY(80%); opacity:0; }
+.alarm-ripple { position:absolute; left:50%; top:55%; width:80%; height:60%; border:3px solid #fff0b8;
+  border-radius:50%; transform:translate(-50%,-50%); opacity:0; pointer-events:none; }
+.alarm-active .alarm-ripple { animation:alarm-ring 1s ease-out; }
+@keyframes alarm-ring { from { opacity:.8; scale:.1; } to { opacity:0; scale:1.4; } }
+.group-controls { padding:12px 16px; }
+.herd-label { display:flex; justify-content:space-between; align-items:center; font-size:13px; }
+.herd-label output { color:#f0db9c; font:20px var(--readout-font); }
+#herd:focus-visible { outline-offset:-4px; }
+.chance { display:flex; align-items:baseline; justify-content:space-between; gap:10px; font-size:12px; color:#c2d1c6; }
+.chance strong { font:28px var(--readout-font); color:#e9eccb; }
+.prob-track { height:8px; border:1px solid #6b836d; background:#101b1a; border-radius:3px; margin-top:8px; }
+.prob-fill { height:100%; background:#b3cf80; width:0; }
+.formula { margin:6px 0 0; font-size:11px; color:#b8c8bc; }
+.formula-compact { display:none; }
+.group-copy { font-size:12px; line-height:1.5; padding:0 16px 12px; margin:0; }
+.group-source { padding:0 16px 12px; font-size:10px; color:#afc0b4; margin:0; }
+.lesson { color:#d5e4ca; font-size:12px; line-height:1.4; margin:10px 0 0; }
+.calm .river-shimmer,.calm .fresh .flag,.calm .changed,.calm .growing .terrain,.calm .alarm-ripple { animation:none; }
+.calm .dog,.calm .budget-fill { transition:none; }
+@media (max-height:899px) and (min-width:601px) {
+  .species-list { grid-template-columns:1fr 1fr; gap:5px; }
+  .species { grid-template-columns:40px 1fr; gap:6px; padding:5px; min-height:66px; }
+  .portrait { width:40px; height:40px; }
+  .species h3 { font-size:12px; }
+  .need { display:none; }
+  .status { font-size:10px; }
+  .panel { gap:10px; }
+  .end-notes { margin-top:0; }
+}
+@media (max-width:1050px) {
+  header { padding:7px 12px; gap:6px; }
+  h1 { font-size:20px; }
+  h1 small { display:none; }
+  .logo { width:23px; height:29px; }
+  .seg button { padding:0 11px; font-size:12px; }
+  .icon-btn { padding:0 9px; font-size:12px; }
+  main { grid-template-columns:minmax(0,1fr) 34.5%; }
+  .panel { padding:10px; gap:9px; }
+  .stage { padding:12px; }
+  .survey-heading h2 { font-size:20px; }
+  .species { gap:4px; }
+  .species-list { grid-template-columns:1fr 1fr; gap:5px; }
+  .species { grid-template-columns:32px 1fr; min-height:62px; padding:4px; }
+  .portrait { width:32px; height:36px; }
+  .need { display:none; }
+  .status { font-size:10px; }
+  .species h3 { font-size:11px; }
+  .budget-heading strong { font-size:22px; }
+  .btn { padding:0 7px; font-size:11px; }
+  .groups { padding:12px; }
+}
+@media (max-height:640px) and (min-width:601px) {
+  header { padding:5px 10px; }
+  h1 { font-size:18px; gap:5px; }
+  .logo { width:19px; height:25px; }
+  .seg button { padding:0 8px; font-size:11px; }
+  .icon-btn { padding:0 7px; font-size:11px; }
+  .stage { padding:8px 11px; }
+  .survey-heading h2 { font-size:17px; }
+  .eyebrow { font-size:9px; letter-spacing:1.3px; }
+  .map-rig { padding:8px 0; }
+  .map-meta { font-size:10px; }
+  .selection { font-size:10px; min-height:24px; margin-top:5px; }
+  .panel { padding:8px; gap:7px; }
+  .budget-heading strong { font-size:18px; }
+  .budget-track { margin:5px 0; }
+  .farms,.budget-detail { font-size:10px; }
+  .farms { margin-top:4px; }
+  .species-head { margin-bottom:4px; }
+  .species-head h2 { font-size:10px; }
+  .species { grid-template-columns:32px 1fr; padding:3px; min-height:54px; }
+  .portrait { width:32px; height:37px; }
+  .species h3 { font-size:10px; }
+  .status { font-size:10px; margin-top:0; }
+  .hint { font-size:11px; min-height:48px; padding:6px 8px; }
+  .tip,.end-notes { display:none; }
+  #stress-summary { font-size:12px; }
+  .future-strip { height:84px; }
+  .future { min-height:70px; width:90px; min-width:90px; font-size:8px; }
+  .future canvas { width:72px; height:48px; }
+  .groups { padding:8px 12px; }
+  .groups-top { margin-bottom:5px; }
+  .groups-top h2 { font-size:18px; }
+  .groups-top .hint { max-width:340px; min-height:40px; padding:5px 8px; }
+  .group-cards { gap:12px; height:calc(100% - 41px); min-height:0; }
+  .group-title { padding:7px 10px; gap:8px; }
+  .group-title img { width:40px; height:40px; }
+  .group-title h3 { font-size:16px; }
+  .group-title p { font-size:10px; }
+  .habitat-scene { min-height:95px; }
+  .group-controls { padding:5px 10px; }
+  .herd-label,.chance { font-size:10px; }
+  .herd-label output { font-size:15px; }
+  .chance strong { font-size:20px; }
+  .formula,.group-copy,.lesson { font-size:9px; }
+  .group-copy { padding:0 10px 5px; }
+  .group-source { padding:0 10px 5px; font-size:9px; }
+  .scene-count { top:6px; left:7px; padding:4px 6px; font-size:10px; }
+  .species { grid-template-columns:28px 1fr; min-height:45px; }
+  .portrait { width:28px; height:34px; }
+  .status { font-size:10px; }
+  .panel { gap:4px; }
+  .hint { min-height:44px; font-size:10px; }
+  #budget-box,#plan-tools,#species-box,#stress-tools { flex:none; }
+  .future-strip { height:58px; padding:3px 0; }
+  .future { width:68px; min-width:68px; min-height:48px; padding:3px; font-size:8px; }
+  .future canvas { width:48px; height:32px; margin-bottom:2px; }
+  .future span { display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .group-title { padding:4px 8px; }
+  .group-title img { width:32px; height:32px; }
+  .group-title h3 { font-size:14px; }
+  .group-copy { display:none; }
+  .group-card:first-child .group-controls { display:grid; grid-template-columns:75px 1fr; column-gap:5px; }
+  .herd-label { display:block; }
+  .herd-label output { display:block; }
+  .chance,.prob-track,.formula { grid-column:1/-1; }
+  .formula { font-size:10px; }
+  .formula-wide { display:none; }
+  .formula-compact { display:inline; }
+  .group-controls { padding:2px 10px; }
+  .group-controls .lesson { font-size:10px; }
+  .group-source { flex:none; }
+  .group-controls { padding:0 10px; }
+  .prob-track { height:6px; margin-top:2px; }
+  .formula { margin-top:2px; }
+  .chance strong { line-height:1; }
+  .group-source { padding-bottom:3px; }
+  .group-title h3 { margin-bottom:2px; }
+  .groups>.lesson .foot { display:none; }
+  .habitat-scene { min-height:110px; }
+  .groups { display:grid; grid-template-rows:auto minmax(0,1fr) auto; }
+  .group-cards { height:auto; }
+  .groups>.lesson { margin-top:5px; font-size:9px; }
+  .group-source { line-height:1.1; }
+  body[data-mode="stress"] .stress-actions { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  body[data-mode="stress"] #run { grid-column:auto; }
+  body[data-mode="stress"] .stress-sub { margin:3px 0 5px; font-size:9px; }
+  body[data-mode="stress"] .species { min-height:42px; }
+  body[data-mode="stress"] .portrait { height:28px; }
+  body[data-mode="stress"] .stress-sub,body[data-mode="stress"] .farms { display:none; }
+  body[data-mode="stress"] .survey-heading .eyebrow { display:none; }
+  body[data-mode="stress"] .future-strip { height:50px; }
+  body[data-mode="stress"] .map-rig { padding:4px 0; }
+}
+@media (max-width:600px) {
+  body { height:auto; min-height:100dvh; overflow:auto; }
+  header { padding:6px 10px; gap:5px; }
+  h1 { width:100%; font-size:21px; }
+  .seg { flex:1; }
+  .seg button { flex:1; padding:0 7px; font-size:11px; }
+  .icon-btn { padding:0 7px; width:44px; overflow:hidden; white-space:nowrap; font-size:0; }
+  .icon-btn::first-letter { font-size:17px; }
+  #read { font-size:11px; }
+  #read::first-letter { font-size:11px; }
+  main { display:flex; flex-direction:column; overflow:visible; }
+  .panel,.groups { min-width:0; width:100%; }
+  .stage { order:0; height:auto; min-height:335px; width:100%; min-width:0; flex:none; padding:12px 17px 8px; overflow:visible; }
+  .map-rig { flex:none; display:block; padding:10px 0; }
+  .map-board { width:100%!important; }
+  .panel { order:1; padding:12px; overflow:visible; border-left:0; border-top:1px solid #485c4b; gap:9px; }
+  .panel>#hint { order:-3; }
+  #plan-tools,#stress-tools { order:-2; }
+  #budget-box { order:-1; }
+  .stress-actions { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  #run { grid-column:auto; }
+  .species-list { grid-template-columns:1fr 1fr; gap:5px; }
+  .species { grid-template-columns:40px 1fr; padding:5px; min-height:65px; gap:7px; }
+  .portrait { width:40px; height:44px; }
+  .need { display:none; }
+  .species h3 { font-size:12px; }
+  .status { font-size:10px; }
+  .hint { min-height:48px; }
+  .map-meta { font-size:10px; }
+  .legend { gap:6px; }
+  .selection { font-size:10px; }
+  .tip,.end-notes { display:none; }
+  .groups { order:0; padding:12px; overflow:visible; }
+  .groups-top { display:block; }
+  .groups-top h2 { font-size:22px; margin-bottom:9px; }
+  .group-cards { grid-template-columns:1fr 1fr; gap:8px; height:auto; min-height:0; }
+  .group-card { min-height:530px; }
+  .habitat-scene { min-height:170px; }
+  .group-title { padding:6px; gap:6px; }
+  .group-title img { width:32px; height:32px; }
+  .group-title h3 { font-size:13px; }
+  .group-title p { font-size:9px; }
+  .group-copy { display:none; }
+  .group-controls { padding:6px 8px; }
+  .group-card:first-child .group-controls { display:grid; grid-template-columns:56px minmax(0,1fr); gap:0 4px; }
+  .herd-label { display:block; font-size:10px; }
+  .herd-label output { display:block; font-size:15px; }
+  .chance,.prob-track,.formula { grid-column:1/-1; }
+  .chance { font-size:10px; }
+  .chance strong { font-size:20px; }
+  .formula { font-size:10px; }
+  .formula-wide { display:none; }
+  .formula-compact { display:inline; }
+  .group-source { padding:0 8px 6px; font-size:9px; }
+  .group-controls .lesson { font-size:10px; }
+  .scene-count { top:6px; left:5px; padding:4px; font-size:9px; }
+  .dog-place { width:14%; }
+  .future-strip { height:105px; width:100%; max-width:100%; min-width:0; }
+  body[data-mode="stress"] .stage { height:auto; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1><svg class="logo" viewBox="0 0 32 40" aria-hidden="true"><path d="M4 39V2m1 1L29 7 20 19 5 16"
+    fill="none" stroke="currentColor" stroke-width="3"/></svg><span>Reserve Designer<small>Curio Class · Field planning studio</small></span></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-plan" aria-pressed="true">Plan</button><button id="m-stress" aria-pressed="false">Stress test</button>
+    <button id="m-groups" aria-pressed="false">Groups</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" aria-label="Motion">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true" aria-label="Sound">🔊 Sound</button><button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <!-- Controls precede the map in tab order; the map comes first visually. -->
+  <aside class="panel" id="panel">
+    <section id="budget-box" aria-label="Land budget">
+      <div class="budget-heading"><h2>Land budget</h2><strong>$<span id="left">4,000</span><small>k left</small></strong></div>
+      <div class="budget-track" role="meter" id="budget-meter" aria-label="Budget spent" aria-valuemin="0" aria-valuemax="4000">
+        <div class="budget-fill" id="budget-fill"></div></div>
+      <div class="budget-detail"><span>Spent <b id="spent">$0k</b></span><span>Budget $4,000k</span></div>
+      <div class="farms"><span>Farms still farming <b id="farms">20 of 20</b></span><span>keep 16+</span></div>
+    </section>
+    <div class="actions" id="plan-tools"><button class="btn" id="show-needs" aria-pressed="false">Show needs</button>
+      <button class="btn" id="clear">Clear plan</button></div>
+    <div id="stress-tools" hidden><p id="stress-summary">Test your reserve against change.</p>
+      <p class="stress-sub" id="stress-sub">Independent single-cell losses, not a 50-year forecast.</p>
+      <div class="stress-actions"><button class="btn primary" id="run">Run 50 years</button>
+        <button class="btn" id="weakest" aria-pressed="false">Weakest cells</button><button class="btn" id="back">Back to plan</button></div>
+    </div>
+    <section aria-label="Species needs" id="species-box"><div class="species-head"><h2>Species field notes</h2><span id="met-count">0 / 6 met</span></div>
+      <div class="species-list" id="species-list"></div></section>
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <p class="tip" id="tip">Corridors join patches so animals can move between them.</p>
+    <div class="end-notes"><p class="device" id="device">Your plan stays on this device. It never leaves it.</p>
+      <p class="foot">This valley is made up; the species needs are simplified from real ones. A real reserve also needs water rights,
+        willing sellers, fire plans and many more species.</p></div>
+  </aside>
+  <section class="stage" id="stage" aria-label="Valley reserve map">
+    <div class="survey-heading"><div><span class="eyebrow" id="map-eyebrow">A valley. Six species. One reserve.</span>
+      <h2 id="map-title">Make room for life.</h2></div>
+      <div id="needs-picker" hidden><label for="need-species">Habitat to highlight</label>
+        <select id="need-species" class="btn" style="width:100%">
+          <option value="elk">Elk</option><option value="prairie">Prairie dog</option><option value="frog">Wood frog</option>
+          <option value="bear">Black bear</option><option value="ovenbird">Ovenbird</option><option value="otter">River otter</option>
+        </select></div><span class="compass"><b>↑</b> N</span></div>
+    <div class="map-rig" id="map-rig"><div class="map-board" id="map-board">
+      <div class="map-grid" id="map-grid" role="group" aria-label="Valley map, eight rows by twelve columns"></div>
+      <div class="river-shimmer" aria-hidden="true"></div></div></div>
+    <div class="map-meta"><span>1 cell = 1 square km</span><span class="legend"><span><i class="flag-key"></i>Protected</span>
+      <span><b class="bank-key">∥</b> Safe river</span></span></div>
+    <p class="selection" id="selection">Click a land cell to plant your first flag.</p>
+    <div class="future-strip" id="future-strip" aria-label="Individual futures" hidden></div>
+  </section>
+  <section class="groups" id="groups" hidden aria-label="Group behavior models">
+    <div class="groups-top"><h2>There is safety in numbers.</h2><div id="group-hint-slot"></div></div>
+    <div class="group-cards">
+      <article class="group-card"><div class="group-title"><img id="group-elk-portrait" alt="Bull elk at a forest edge">
+        <div><h3>Many eyes, more grazing.</h3><p>Elk herd · Independent watch model</p></div></div>
+        <div class="habitat-scene" id="herd-scene" aria-label="Painted mountain meadow with elk">
+          <div class="scene-count" id="watching">Watching now: 0</div><div id="elk-layer"></div></div>
+        <div class="group-controls"><label class="herd-label" for="herd">Herd size <output id="herd-value">10 elk</output></label>
+          <input type="range" id="herd" min="1" max="20" value="10" aria-label="Herd size">
+          <div class="chance"><span>Chance at least one elk is watching</span><strong id="chance">89%</strong></div>
+          <div class="prob-track"><div class="prob-fill" id="prob-fill"></div></div>
+          <p class="formula"><span class="formula-wide">Model: each elk watches 20% of the time. Chance = 1 − 0.8<sup>herd size</sup>.</span>
+            <span class="formula-compact">Model: 20% each; chance = 1 − 0.8ⁿ. Real elk watch less in larger groups.</span></p></div>
+        <p class="group-copy">Real finding: each elk spends less time watching in bigger groups. This model holds individual watch time fixed
+          to isolate the “many eyes” effect.</p>
+        <p class="group-source">Childress &amp; Lung (2003), Animal Behaviour 66:389–398. Model: Pulliam (1973).</p>
+      </article>
+      <article class="group-card"><div class="group-title"><img id="group-pd-portrait" alt="Black-tailed prairie dog by a burrow">
+        <div><h3>One call. A whole colony.</h3><p>Prairie dogs · Shared alarm response</p></div></div>
+        <div class="habitat-scene" id="colony-scene" aria-label="Painted prairie with eight prairie dogs on mounds">
+          <div class="scene-count" id="colony-state" aria-live="polite">8 above ground</div><div id="dog-layer"></div>
+          <div class="alarm-ripple" aria-hidden="true"></div></div>
+        <div class="group-controls"><button class="btn primary" id="alarm" style="width:100%">Alarm call</button>
+          <p class="lesson" id="alarm-text">Press Alarm call. Watch how quickly the whole colony responds.</p></div>
+        <p class="group-copy">Prairie dog alarm calls differ by predator. In this simplified scene, every call sends all eight dogs to shelter
+          for three seconds.</p>
+        <p class="group-source">National Park Service, Wind Cave: Prairie Dogs. Slobodchikoff et al. (1991).</p>
+      </article>
+    </div>
+    <p class="lesson">That is why the elk rule needs a herd's worth of land and the prairie dog rule needs a colony.
+      <span class="foot">Your reserve stays on this device. The valley and thresholds are simplified model values.</span></p>
+  </section>
+</main>
+<div class="popover" id="cell-menu" role="dialog" aria-labelledby="menu-title" hidden>
+  <h3 id="menu-title"></h3><p id="menu-copy"></p><div id="menu-actions"></div><button class="btn close" id="menu-close">Cancel</button></div>
+<div hidden id="art-bank">
+  <img id="art-forest" src="art:rd-tile-forest" alt=""><img id="art-meadow" src="art:rd-tile-meadow" alt="">
+  <img id="art-wetland" src="art:rd-tile-wetland" alt=""><img id="art-farm" src="art:rd-tile-farm" alt="">
+  <img id="art-town" src="art:rd-tile-town" alt=""><img id="art-river" src="art:rd-tile-river" alt="">
+  <img id="art-highway" src="art:rd-tile-highway" alt=""><img id="art-bridge" src="art:rd-tile-bridge" alt="">
+  <img id="art-crossing" src="art:rd-tile-crossing" alt="">
+  <img id="art-elk" src="art:rd-elk" alt=""><img id="art-prairie" src="art:rd-prairie-dog" alt="">
+  <img id="art-frog" src="art:rd-wood-frog" alt=""><img id="art-bear" src="art:rd-bear" alt="">
+  <img id="art-ovenbird" src="art:rd-ovenbird" alt=""><img id="art-otter" src="art:rd-otter" alt="">
+  <img id="art-herd-meadow" src="art:rd-herd-meadow" alt=""><img id="art-colony" src="art:rd-colony" alt="">
+  <img id="art-elk-alert" src="art:rd-elk-alert" alt=""><img id="art-elk-graze" src="art:rd-elk-graze" alt="">
+  <img id="art-pd-up" src="art:rd-pd-up" alt=""><img id="art-pd-mound" src="art:rd-pd-mound" alt="">
+</div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const MAP = ['FFFFFFRFFFFF', 'FFFWFFRGGFFF', 'FFWWFGRGGAFF', 'HHHHHHBHHHHH',
+    'GGAAGWRAAGGG', 'GGATTWRAAGGA', 'GAATTARWWGGA', 'AAAAAARWWGGA'].join('');
+  const NAMES = {F:'forest', G:'meadow', W:'wetland', A:'farm', T:'town', R:'river', H:'highway', B:'bridge'};
+  const BASE = {F:250, G:200, W:150, A:300, H:500};
+  const SPECIES = [
+    {id:'elk', name:'Elk', need:'One area: 4 north forest + 4 south meadow.'},
+    {id:'prairie', name:'Prairie dog', need:'3 connected protected meadows.'},
+    {id:'frog', name:'Wood frog', need:'Protected wetland beside protected forest.'},
+    {id:'bear', name:'Black bear', need:'One connected area of at least 12 cells.'},
+    {id:'ovenbird', name:'Ovenbird', need:'2 protected forest interiors, away from farms, town and highway.'},
+    {id:'otter', name:'River otter', need:'4 river cells with a protected bank.'}
+  ];
+  const L = {
+    welcomePlan:'Welcome to Reserve Designer. Click a cell on the map to protect it, then read each species row to see what it still needs.',
+    welcomeStress:'Stress test. Press Run fifty years. Each future loses one protected cell.',
+    welcomeGroups:'Groups. Drag the Herd size slider and count how many elk are watching.',
+    farmChoice:'Farm land. Press Buy and farm on, or Buy and restore to meadow for a little more.',
+    crossing:'Press Build a wildlife crossing to let animals over the highway. It costs five hundred thousand.',
+    overBudget:'That is over budget. Click a protected cell to sell it back, or pick a cheaper cell.',
+    allSix:'All six species have what they need. Now see if it holds up. Open Stress test.',
+    stressDone:'Fifty years tested. The cracked cells are your weak links.',
+    stressNoWeak:'Test complete. No additional species need broke. Press Back to plan to review your reserve.',
+    alarm:'Alarm call! The whole colony dives at once.'
+  };
+  const HINTS = {
+    plan:'Plan. Click cells to protect them. Read each species row to see what it still needs.',
+    stress:'Press Run 50 years. Each future loses one protected cell.',
+    groups:'Compare Herd size 1 and 20: how does the watcher chance change? Then press Alarm call.'
+  };
+  const state = {mode:'plan', plan:{}, needs:false, needSpecies:'elk', selected:-1, focusCell:0,
+    futures:[], weak:[], weakShown:false, lost:-1, running:false, shown:0, herd:10, watching:[], dive:false, revision:0};
+  let runTimer = 0;
+  let diveTimer = 0;
+  let groupTick = 0;
+  let groupTouched = false;
+  let previousMet = [];
+  let menuCell = -1;
+  let actionSerial = 0;
+  let modeReady = false;
+  const art = name => $('art-' + name).src;
+  function around(i, diagonal = false) {
+    const r = Math.floor(i / 12), c = i % 12, out = [];
+    for (let dr = -1; dr <= 1; dr++) {
+      for (let dc = -1; dc <= 1; dc++) {
+        if ((!dr && !dc) || (!diagonal && Math.abs(dr) + Math.abs(dc) !== 1)) continue;
+        if (r + dr >= 0 && r + dr < 8 && c + dc >= 0 && c + dc < 12) out.push((r + dr) * 12 + c + dc);
+      }
+    }
+    return out;
+  }
+  const neighbors = Array.from({length:96}, (_, i) => around(i));
+  const near8 = Array.from({length:96}, (_, i) => around(i, true));
+  function price(i, action = 'buy') {
+    if (!BASE[MAP[i]]) return 0;
+    return BASE[MAP[i]] + (MAP[i] !== 'H' && near8[i].some(j => MAP[j] === 'T') ? 100 : 0) + (action === 'restore' ? 100 : 0);
+  }
+  const spent = (plan = state.plan) => Object.entries(plan).reduce((sum, [i, a]) => sum + price(+i, a), 0);
+  const farming = () => 20 - Object.values(state.plan).filter(a => a === 'restore').length;
+  const landType = (i, plan = state.plan) => plan[i] === 'restore' ? 'G' : MAP[i];
+  function components(cells) {
+    const remaining = new Set(cells), groups = [];
+    while (remaining.size) {
+      const start = remaining.values().next().value;
+      remaining.delete(start);
+      const group = new Set([start]), queue = [start];
+      for (let k = 0; k < queue.length; k++) {
+        for (const j of neighbors[queue[k]]) {
+          if (remaining.delete(j)) { group.add(j); queue.push(j); }
+        }
+      }
+      groups.push(group);
+    }
+    return groups;
+  }
+  function evaluate(plan = state.plan, lost = -1) {
+    const land = new Set(Object.keys(plan).map(Number).filter(i => i !== lost)), river = new Set();
+    for (let i = 0; i < 96; i++) {
+      if (MAP[i] === 'R' && (land.has(i - 1) || land.has(i + 1))) river.add(i);
+    }
+    const habitat = new Set([...land, ...river]);
+    if (river.has(30) && river.has(54)) habitat.add(42);
+    const groups = components(habitat);
+    const forests = [...land].filter(i => landType(i, plan) === 'F');
+    const meadows = [...land].filter(i => landType(i, plan) === 'G');
+    const wetlands = [...land].filter(i => landType(i, plan) === 'W');
+    const elkAreas = groups.map(g => ({north:forests.filter(i => i < 36 && g.has(i)).length,
+      south:meadows.filter(i => i >= 48 && g.has(i)).length}));
+    const bestElk = elkAreas.reduce((a, b) => Math.min(b.north, 4) + Math.min(b.south, 4) >
+      Math.min(a.north, 4) + Math.min(a.south, 4) ? b : a, {north:0, south:0});
+    const meadowArea = Math.max(0, ...components(meadows).map(g => g.size));
+    const frogPair = wetlands.some(i => neighbors[i].some(j => land.has(j) && landType(j, plan) === 'F'));
+    const bearArea = Math.max(0, ...groups.map(g => g.size));
+    const interior = forests.filter(i => !near8[i].some(j => ['A','T','H'].includes(landType(j, plan))));
+    const met = [elkAreas.some(a => a.north >= 4 && a.south >= 4), meadowArea >= 3, frogPair,
+      bearArea >= 12, interior.length >= 2, river.size >= 4];
+    const missing = [`N forest ${bestElk.north}/4; S meadow ${bestElk.south}/4`,
+      `${meadowArea}/3 connected meadows`, frogPair ? 'Pond + forest connected' : 'Needs wetland beside forest',
+      `${bearArea}/12 cells in one area`, `${interior.length}/2 quiet forest interiors`, `${river.size}/4 protected riverbanks`];
+    return {met, missing, river, habitat, groups, land, interior, forests, meadows, wetlands};
+  }
+  function save() {
+    try { localStorage.setItem('reserve-designer-plan-v1', JSON.stringify(state.plan)); }
+    catch { $('device').textContent = 'Saving is unavailable. Your plan stays in this open tab.'; }
+  }
+  function load() {
+    try {
+      const p = JSON.parse(localStorage.getItem('reserve-designer-plan-v1') || '{}'), safe = {};
+      for (const [id, action] of Object.entries(p)) {
+        const i = Number(id);
+        if (!Number.isInteger(i) || i < 0 || i >= 96 || !BASE[MAP[i]]) continue;
+        if (action !== 'buy' && !(action === 'restore' && MAP[i] === 'A')) continue;
+        safe[i] = action;
+      }
+      if (spent(safe) <= 4000 && Object.values(safe).filter(a => a === 'restore').length <= 4) state.plan = safe;
+    } catch { /* Blocked or damaged storage starts with a fresh plan. */ }
+  }
+  const V = Curio.voice({lines:L, scope:() => state.mode, hint:false,
+    read:() => $('hint').textContent,
+    speaks:'.cell, #alarm, #run, #herd',
+    welcome:() => {
+      if (state.mode === 'plan') return ['welcomePlan', {valid:() => state.selected < 0}];
+      if (state.mode === 'stress') return ['welcomeStress', {valid:() => !state.running && !state.futures.length, needs:'#run'}];
+      return ['welcomeGroups', {valid:() => !groupTouched, needs:'#herd'}];
+    }
+  });
+  function hint(text) {
+    $('hint').textContent = text;
+  }
+  function cellLabel(i) {
+    const type = NAMES[landType(i)];
+    const status = state.plan[i] ? (state.plan[i] === 'restore' ? 'protected, restored meadow' : 'protected') : 'not protected';
+    const cost = BASE[MAP[i]] ? `, $${price(i, state.plan[i] || 'buy')}k` : ', cannot be bought';
+    return `Row ${Math.floor(i / 12) + 1}, column ${i % 12 + 1}, ${type}${cost}, ${status}`;
+  }
+  function buildMap() {
+    for (let i = 0; i < 96; i++) {
+      const b = document.createElement('button');
+      b.className = 'cell';
+      b.id = 'cell-' + i;
+      b.type = 'button';
+      b.tabIndex = i ? -1 : 0;
+      b.innerHTML = '<span class="terrain"></span><span class="flag" hidden></span><span class="crack" hidden>ϟ</span>' +
+        '<span class="loss-tag" hidden></span><span class="crossing-icon" hidden>⌒</span>';
+      b.onclick = e => activateCell(i, e.detail === 0);
+      b.onfocus = () => { state.focusCell = i; $('selection').textContent = cellLabel(i) + '.'; };
+      b.onkeydown = e => {
+        if (['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Home','End'].includes(e.key)) e.preventDefault();
+        let target = i;
+        if (e.key === 'ArrowRight') target = Math.floor(i / 12) * 12 + Math.min(11, i % 12 + 1);
+        if (e.key === 'ArrowLeft') target = Math.floor(i / 12) * 12 + Math.max(0, i % 12 - 1);
+        if (e.key === 'ArrowDown' && i < 84) target = i + 12;
+        if (e.key === 'ArrowUp' && i >= 12) target = i - 12;
+        if (e.key === 'Home') target = Math.floor(i / 12) * 12;
+        if (e.key === 'End') target = Math.floor(i / 12) * 12 + 11;
+        if (target !== i) {
+          e.preventDefault();
+          b.tabIndex = -1;
+          $('cell-' + target).tabIndex = 0;
+          $('cell-' + target).focus({preventScroll:true});
+        }
+      };
+      $('map-grid').append(b);
+    }
+  }
+  function buildSpecies() {
+    for (const s of SPECIES) {
+      const row = document.createElement('div');
+      row.className = 'species';
+      row.setAttribute('role', 'group');
+      row.id = 'species-' + s.id;
+      row.innerHTML = `<img class="portrait" alt="${s.name}"><div><h3>${s.name}</h3>` +
+        `<span class="need">${s.need}</span><span class="status"></span></div>`;
+      row.querySelector('img').src = art(s.id);
+      row.title = s.need;
+      $('species-list').append(row);
+    }
+  }
+  function usable(i, e) {
+    const t = landType(i);
+    switch (state.needSpecies) {
+      case 'elk': return !!BASE[MAP[i]] || MAP[i] === 'R' || MAP[i] === 'B';
+      case 'prairie': return t === 'G';
+      case 'frog': return t === 'F' || t === 'W';
+      case 'bear': return !!BASE[MAP[i]] || e.habitat.has(i);
+      case 'ovenbird': return t === 'F' && !near8[i].some(j => ['A','T','H'].includes(landType(j)));
+      case 'otter': return MAP[i] === 'R' || neighbors[i].some(j => MAP[j] === 'R' && Math.abs(j - i) === 1);
+      default: return false;
+    }
+  }
+  function lossWord(i) { return {F:'Fire', G:'Road', W:'Drained', A:'Lot', H:'Closed'}[landType(i)] || 'Lost'; }
+  function renderMap(e = evaluate(state.plan, state.lost)) {
+    for (let i = 0; i < 96; i++) {
+      const b = $('cell-' + i), protectedCell = Object.hasOwn(state.plan, i);
+      const type = MAP[i] === 'H' && protectedCell ? 'crossing' : NAMES[landType(i)];
+      const tile = b.querySelector('.terrain');
+      tile.style.backgroundImage = `url("${art(type)}")`;
+      if (!['R','H','B'].includes(MAP[i])) tile.style.transform = `rotate(${i * 37 % 4 * 90}deg) scaleX(${i % 3 === 0 ? -1 : 1})`;
+      b.classList.toggle('protected', protectedCell && i !== state.lost);
+      b.classList.toggle('river-active', e.river.has(i) || i === 42 && e.habitat.has(42));
+      b.classList.toggle('weak', state.weakShown && state.weak.includes(i));
+      b.classList.toggle('lost', i === state.lost);
+      b.classList.toggle('usable', state.needs && usable(i, e));
+      b.classList.toggle('unusable', state.needs && !usable(i, e));
+      b.querySelector('.flag').hidden = !protectedCell || i === state.lost;
+      b.querySelector('.crack').hidden = !state.weakShown || !state.weak.includes(i);
+      b.querySelector('.loss-tag').hidden = i !== state.lost;
+      if (i === state.lost) b.querySelector('.loss-tag').textContent = lossWord(i);
+      b.querySelector('.crossing-icon').hidden = !(MAP[i] === 'H' && protectedCell);
+      b.setAttribute('aria-label', cellLabel(i) + (i === state.lost ? ', lost in this future' : ''));
+      b.setAttribute('aria-pressed', protectedCell);
+    }
+  }
+  function render() {
+    const amount = spent(), e = evaluate(state.plan, state.lost);
+    $('left').textContent = (4000 - amount).toLocaleString('en-US');
+    $('spent').textContent = '$' + amount.toLocaleString('en-US') + 'k';
+    $('budget-fill').style.width = amount / 40 + '%';
+    $('budget-meter').setAttribute('aria-valuenow', amount);
+    $('farms').textContent = farming() + ' of 20';
+    $('weakest').setAttribute('aria-pressed', state.weakShown);
+    $('met-count').textContent = e.met.filter(Boolean).length + ' / 6 met';
+    SPECIES.forEach((s, k) => {
+      const row = $('species-' + s.id);
+      row.classList.toggle('met', e.met[k]);
+      row.setAttribute('aria-label', s.name + '. ' + s.need + ' ' + (e.met[k] ? 'Needs met.' : e.missing[k]));
+      row.querySelector('.status').textContent = e.met[k] ? '✓ Needs met' : e.missing[k];
+      if (previousMet.length && previousMet[k] !== e.met[k] && !Curio.reduce) {
+        row.classList.remove('changed');
+        void row.offsetWidth;
+        row.classList.add('changed');
+      }
+    });
+    previousMet = e.met.slice();
+    renderMap(e);
+    return e;
+  }
+  function transact(i, action = 'buy') {
+    if (state.mode !== 'plan' || !BASE[MAP[i]]) return false;
+    const beforeAll = evaluate().met.every(Boolean);
+    if (action === 'sell') {
+      if (!state.plan[i]) return false;
+      const refund = price(i, state.plan[i]);
+      delete state.plan[i];
+      hint(`Sold row ${Math.floor(i / 12) + 1}, column ${i % 12 + 1}. $${refund}k returned. Click another cell to refine your plan.`);
+      Curio.tone(260, .12, .07);
+    } else {
+      if (state.plan[i] || action === 'restore' && MAP[i] !== 'A') return false;
+      const cost = price(i, action), left = 4000 - spent();
+      if (action === 'restore' && farming() <= 16) {
+        hint('Keep 16 farms farming: undo another restore first. Buy and farm on keeps this farm in production.');
+        Curio.tone(140, .15, .09);
+        return false;
+      }
+      if (cost > left) {
+        hint(`$${left.toLocaleString('en-US')}k left, this cell costs $${cost}k. Click a protected cell to sell it back.`);
+        Curio.tone(140, .15, .09);
+        const serial = actionSerial;
+        V.how('overBudget', {valid:() => actionSerial === serial});
+        return false;
+      }
+      state.plan[i] = action;
+      hint(action === 'restore' ? 'Meadow restored. Click another cell to connect habitat; keep at least 16 farms farming.' :
+        `Protected ${NAMES[MAP[i]]}. Click it again to sell, or protect a neighbor to connect habitat.`);
+      Curio.tone(480 + i % 6 * 65, .13, .065, 'sine');
+    }
+    state.revision++;
+    state.futures = [];
+    state.weak = [];
+    state.weakShown = false;
+    state.lost = -1;
+    state.shown = 0;
+    save();
+    const e = render(), tile = $('cell-' + i);
+    $('selection').textContent = cellLabel(i) + '.';
+    if (!e.met.every(Boolean) && V.playing === L.allSix) V.hush();
+    tile.classList.remove('fresh', 'growing');
+    void tile.offsetWidth;
+    tile.classList.add(action === 'restore' ? 'growing' : 'fresh');
+    if (!beforeAll && e.met.every(Boolean)) {
+      hint('All six needs are met. Open Stress test, then press Run 50 years to find your weak links.');
+      Curio.yes();
+      V.say('allSix', {valid:() => evaluate().met.every(Boolean), needs:'#m-stress'});
+    }
+    return true;
+  }
+  function closeMenu(returnFocus = false, preserveHint = false) {
+    if ([L.farmChoice,L.crossing].includes(V.playing)) V.hush();
+    V.dropQueued(it => ['farmChoice','crossing'].includes(it.key));
+    $('cell-menu').hidden = true;
+    const i = menuCell;
+    menuCell = -1;
+    if (i >= 0 && state.mode === 'plan' && !preserveHint) hint(HINTS.plan);
+    if (returnFocus && i >= 0) $('cell-' + i).focus({preventScroll:true});
+  }
+  function openMenu(i) {
+    if (menuCell === i && !$('cell-menu').hidden) return;
+    closeMenu();
+    menuCell = i;
+    const menu = $('cell-menu');
+    $('menu-title').textContent = `${NAMES[MAP[i]]} · Row ${Math.floor(i / 12) + 1}, column ${i % 12 + 1}`;
+    $('menu-copy').textContent = state.plan[i] ? 'Sell back at the full purchase price.' : MAP[i] === 'A' ?
+      'Working farms join protected land. Restoration changes habitat, but takes a farm out of production.' : MAP[i] === 'H' ?
+      'A wildlife overpass connects protected cells on either side of the highway.' : 'Protect this cell and connect it to a neighbor.';
+    if (MAP[i] !== 'H' && near8[i].some(j => MAP[j] === 'T')) $('menu-copy').textContent += ' Includes $100k beside town.';
+    $('menu-actions').replaceChildren();
+    const choices = state.plan[i] ? [['sell', `Sell back · $${price(i, state.plan[i])}k`]] : MAP[i] === 'A' ?
+      [['buy', `Buy and farm on · $${price(i)}k`], ['restore', `Buy and restore to meadow · $${price(i, 'restore')}k`]] :
+      [['buy', MAP[i] === 'H' ? 'Build a wildlife crossing · $500k' : `Protect ${NAMES[MAP[i]]} · $${price(i)}k`]];
+    for (const [action, label] of choices) {
+      const b = document.createElement('button');
+      b.className = 'btn' + (action === 'buy' ? ' primary' : '');
+      b.id = 'action-' + action;
+      b.textContent = label;
+      b.onclick = () => {
+        if ([L.farmChoice,L.crossing].includes(V.playing)) V.hush();
+        V.dropQueued(it => ['farmChoice','crossing'].includes(it.key));
+        if (transact(i, action)) closeMenu(true, true);
+      };
+      $('menu-actions').append(b);
+    }
+    menu.hidden = false;
+    hint(state.plan[i] ? 'Press Sell back to return the full price, or press Cancel to keep this cell.' :
+      `Press Protect ${NAMES[MAP[i]]} to buy this cell, or press Cancel.`);
+    const r = $('cell-' + i).getBoundingClientRect();
+    menu.style.left = Math.max(8, Math.min(innerWidth - 273, r.right + 8)) + 'px';
+    menu.style.top = Math.max(8, Math.min(innerHeight - menu.offsetHeight - 8, r.top)) + scrollY + 'px';
+    $('menu-actions').firstElementChild.focus({preventScroll:true});
+    if (!state.plan[i] && MAP[i] === 'A') {
+      hint('Farm land. Choose Buy and farm on, or Buy and restore to meadow.');
+      V.how('farmChoice', {valid:() => menuCell === i, needs:'#action-buy'});
+    }
+    if (!state.plan[i] && MAP[i] === 'H') {
+      hint('Highway. Press Build a wildlife crossing to connect land across the road.');
+      V.how('crossing', {valid:() => menuCell === i, needs:'#action-buy'});
+    }
+  }
+  function activateCell(i, keyboard) {
+    if ([L.welcomePlan,L.overBudget].includes(V.playing)) V.hush();
+    actionSerial++;
+    state.selected = i;
+    V.dropQueued();
+    $('selection').textContent = cellLabel(i) + '.';
+    if (state.mode === 'stress') {
+      const f = state.futures.find(future => future.lost === i);
+      if (f) { stopRun(); showFuture(f); }
+      else hint('The plan is locked. Press Back to plan to change protected cells.');
+      return;
+    }
+    if (!BASE[MAP[i]]) {
+      closeMenu();
+      hint(MAP[i] === 'R' || MAP[i] === 'B' ?
+        'Protect a left or right riverbank. The bridge links only when its north and south river cells count as habitat.' :
+        'Town cannot be bought. Protect surrounding habitat and keep farms working.');
+      Curio.tone(210, .08, .05);
+      return;
+    }
+    if (keyboard || MAP[i] === 'A' && !state.plan[i] || MAP[i] === 'H' && !state.plan[i]) openMenu(i);
+    else { closeMenu(); transact(i, state.plan[i] ? 'sell' : 'buy'); }
+  }
+  function calculateFutures() {
+    const baseline = evaluate().met;
+    state.futures = Object.keys(state.plan).map(Number).sort((a, b) => a - b).map(lost => {
+      const e = evaluate(state.plan, lost);
+      return {lost, met:e.met, missing:e.missing, losses:SPECIES.filter((s, k) => !e.met[k]).map(s => s.name),
+        newlyLost:SPECIES.filter((s, k) => baseline[k] && !e.met[k]).map(s => s.name)};
+    });
+    state.weak = state.futures.filter(f => f.newlyLost.length).map(f => f.lost);
+  }
+  function paintMini(canvas, f) {
+    const ctx = canvas.getContext('2d');
+    for (let i = 0; i < 96; i++) {
+      const x = i % 12 * 8, y = Math.floor(i / 12) * 8;
+      const name = MAP[i] === 'H' && state.plan[i] ? 'crossing' : NAMES[landType(i)], image = $('art-' + name);
+      if (image.complete && image.naturalWidth) ctx.drawImage(image, x, y, 8, 8);
+      if (state.plan[i]) { ctx.strokeStyle = '#ff4a2e'; ctx.lineWidth = 1; ctx.strokeRect(x + .5, y + .5, 7, 7); }
+      if (i === f.lost) { ctx.fillStyle = '#080b0df0'; ctx.fillRect(x, y, 8, 8); }
+    }
+  }
+  function buildFutures() {
+    $('future-strip').replaceChildren();
+    state.futures.forEach((f, k) => {
+      const b = document.createElement('button');
+      b.className = 'future';
+      b.id = 'future-' + f.lost;
+      const outcome = f.newlyLost.length ? f.newlyLost.join(', ') : f.met.every(Boolean) ? 'All six kept' : 'No new loss';
+      b.setAttribute('aria-label', `Future ${k + 1}, row ${Math.floor(f.lost / 12) + 1}, column ${f.lost % 12 + 1}. ${outcome}`);
+      const canvas = document.createElement('canvas');
+      canvas.width = 96;
+      canvas.height = 64;
+      canvas.setAttribute('aria-hidden', 'true');
+      b.append(canvas);
+      const caption = document.createElement('span');
+      caption.textContent = `${k + 1}. ${f.met.every(Boolean) ? '✓ ' : ''}${outcome}`;
+      b.append(caption);
+      b.onclick = () => { stopRun(); state.shown = state.futures.length; showFuture(f); };
+      $('future-strip').append(b);
+      paintMini(canvas, f);
+    });
+    $('future-strip').hidden = !state.futures.length;
+    fitMap();
+  }
+  function showFuture(f, auto = false) {
+    state.lost = f.lost;
+    const i = f.lost;
+    $('map-title').textContent = `${lossWord(i)} at row ${Math.floor(i / 12) + 1}, column ${i % 12 + 1}`;
+    $('map-eyebrow').textContent = 'One possible future · Not a forecast';
+    $('selection').textContent = f.newlyLost.length ? 'Needs broken by this loss: ' + f.newlyLost.join(', ') + '.' :
+      f.met.every(Boolean) ? 'All six species still have what they need.' : `${f.met.filter(Boolean).length} of 6 needs met. No additional need lost.`;
+    if (!auto) {
+      const outcome = f.newlyLost.length ? 'Needs broken: ' + f.newlyLost.join(', ') + '.' :
+        f.met.every(Boolean) ? 'All six needs survive this loss.' : 'No new need breaks; the original gaps remain.';
+      hint(`${lossWord(i)}, row ${Math.floor(i / 12) + 1}, column ${i % 12 + 1}: ${outcome} Press Back to plan to refine.`);
+      Curio.tone(f.newlyLost.length ? 180 : 660, .14, .065);
+    }
+    for (const b of $('future-strip').children) b.classList.toggle('selected', b.id === 'future-' + i);
+    if (auto) $('future-' + i).scrollIntoView({block:'nearest', inline:'nearest', behavior:'instant'});
+    render();
+  }
+  function stressSummary() {
+    const kept = state.futures.filter(f => !f.losses.length).length;
+    const count = state.futures.length;
+    $('stress-summary').textContent = `All six kept in ${kept} of ${count} ${count === 1 ? 'future' : 'futures'}`;
+    $('stress-sub').textContent = `${state.weak.length} weak cells. Independent losses, not a 50-year forecast.`;
+  }
+  function stopRun() { clearTimeout(runTimer); state.running = false; }
+  function runStress() {
+    if (V.playing === L.welcomeStress) V.hush();
+    stopRun();
+    V.dropQueued();
+    calculateFutures();
+    if (!state.futures.length) {
+      hint('Protect some land first. Press Back to plan, then click cells to build your reserve.');
+      $('stress-summary').textContent = 'No protected cells to test.';
+      return;
+    }
+    buildFutures();
+    stressSummary();
+    state.running = true;
+    state.shown = 0;
+    hint('Watch each lost cell. Press Weakest cells or choose a small map to inspect a future, or Back to plan to refine.');
+    Curio.tone(330, .12, .07);
+    const complete = () => {
+      state.running = false;
+      state.lost = -1;
+      state.weakShown = true;
+      $('weakest').setAttribute('aria-pressed', 'true');
+      $('map-title').textContent = 'The connections that matter.';
+      $('map-eyebrow').textContent = 'Stress test complete · Refine your reserve';
+      render();
+      hint(evaluate().met.every(Boolean) ? 'Cracks mark weak links. Press Back to plan to add another route, then test again.' :
+        'Some needs were unmet before this test. Press Back to plan to meet all six, then add backup routes.');
+      $('selection').textContent = `${state.weak.length} weak cells marked. Dashed outlines and cracks show where one loss breaks a species rule.`;
+      V.say(state.weak.length ? 'stressDone' : 'stressNoWeak',
+        {valid:() => state.mode === 'stress' && !state.running, needs:'#back'});
+    };
+    if (Curio.reduce) { state.shown = state.futures.length; complete(); return; }
+    const step = () => {
+      if (!state.running || state.mode !== 'stress') return;
+      if (state.shown >= state.futures.length) { complete(); return; }
+      showFuture(state.futures[state.shown++], true);
+      runTimer = setTimeout(step, 200);
+    };
+    step();
+  }
+  function weakest() {
+    stopRun();
+    if (!state.futures.length) { calculateFutures(); buildFutures(); }
+    if (!state.futures.length) {
+      $('stress-summary').textContent = 'No protected cells to test.';
+      hint('Protect some land first. Press Back to plan, then click cells to build your reserve.');
+      return;
+    }
+    stressSummary();
+    state.shown = state.futures.length;
+    state.weakShown = !state.weakShown;
+    state.lost = -1;
+    $('weakest').setAttribute('aria-pressed', state.weakShown);
+    $('map-title').textContent = state.weakShown ? 'The connections that matter.' : 'Your protected valley.';
+    $('selection').textContent = state.weakShown ? `${state.weak.length} weak cells marked. Select a small map to inspect one future.` :
+      'Select a small map to inspect one future, or press Back to plan to refine.';
+    hint(state.weakShown ? 'Cracks mark cells whose loss breaks a need met by your plan. Press Back to plan to add another route.' :
+      'Weak-cell marks hidden. Select a small map to inspect a future, or press Back to plan to refine.');
+    render();
+    Curio.tone(420, .1, .06);
+  }
+  function fitMap() {
+    const r = $('map-rig').getBoundingClientRect();
+    const s = getComputedStyle($('map-rig'));
+    const height = r.height - parseFloat(s.paddingTop) - parseFloat(s.paddingBottom);
+    $('map-board').style.width = Math.floor(Math.min(r.width, Math.max(0, height) * 1.5)) + 'px';
+  }
+  function pseudo(index, tick) {
+    let x = Math.imul(index + 1, 374761393) ^ Math.imul(tick + 7, 668265263);
+    x = Math.imul(x ^ x >>> 13, 1274126177);
+    return ((x ^ x >>> 16) >>> 0) / 4294967296;
+  }
+  function drawHerd() {
+    const n = state.herd, exact = Math.round(n * .2);
+    state.watching = Array.from({length:n}, (_, i) => Curio.reduce ? i < exact : pseudo(i, groupTick) < .2);
+    $('herd-value').textContent = n + ' elk';
+    $('herd').setAttribute('aria-valuetext', n + ' elk');
+    $('watching').textContent = 'Watching now: ' + state.watching.filter(Boolean).length;
+    const probability = (1 - Math.pow(.8, n)) * 100;
+    $('chance').textContent = Math.round(probability) + '%';
+    $('prob-fill').style.width = probability + '%';
+    const layer = $('elk-layer');
+    while (layer.children.length > n) layer.lastElementChild.remove();
+    for (let i = 0; i < n; i++) {
+      let image = layer.children[i];
+      if (!image) { image = document.createElement('img'); image.className = 'elk'; layer.append(image); }
+      image.src = art(state.watching[i] ? 'elk-alert' : 'elk-graze');
+      image.alt = state.watching[i] ? 'Elk watching' : 'Elk grazing';
+      const row = i % 3, col = Math.floor(i / 3);
+      image.style.left = (9 + col * 13 + row * 2.2) + '%';
+      image.style.bottom = (31 - row * 11 + (i * 7 % 4)) + '%';
+      image.style.height = (9 + row * 2.5) + '%';
+      image.style.width = (14 + row * 3) + '%';
+      image.style.zIndex = row + 1;
+    }
+  }
+  function drawDogs() {
+    const positions = [[16,28],[40,33],[64,29],[85,34],[9,8],[32,9],[57,6],[81,8]];
+    for (let i = 0; i < 8; i++) {
+      const place = document.createElement('div');
+      place.className = 'dog-place';
+      place.style.left = positions[i][0] + '%';
+      place.style.bottom = positions[i][1] + '%';
+      place.innerHTML = '<img class="dog" alt="Prairie dog"><img class="mound" alt="Burrow mound">';
+      place.querySelector('.dog').src = art('pd-up');
+      place.querySelector('.mound').src = art('pd-mound');
+      $('dog-layer').append(place);
+    }
+  }
+  function alarm() {
+    if (V.playing === L.welcomeGroups) V.hush();
+    clearTimeout(diveTimer);
+    state.dive = true;
+    groupTouched = true;
+    for (const p of $('dog-layer').children) p.classList.add('diving');
+    $('colony-scene').classList.remove('alarm-active');
+    void $('colony-scene').offsetWidth;
+    $('colony-scene').classList.add('alarm-active');
+    $('colony-state').textContent = 'All 8 sheltered';
+    $('alarm-text').textContent = 'One warning reaches the colony. All eight shelter for three seconds.';
+    hint('The whole colony sheltered together. Move Herd size to compare another group, or press Alarm call again.');
+    Curio.tone(1250, .1, .06);
+    V.say('alarm', {valid:() => state.dive, needs:'#alarm', now:true});
+    diveTimer = setTimeout(() => {
+      state.dive = false;
+      if (V.playing === L.alarm) V.hush();
+      for (const p of $('dog-layer').children) p.classList.remove('diving');
+      $('colony-state').textContent = '8 above ground';
+      $('alarm-text').textContent = 'Back above ground. Alarm calls differ by predator in real colonies.';
+    }, 3000);
+  }
+  function setMode(mode) {
+    if (!['plan','stress','groups'].includes(mode)) return;
+    if (modeReady && mode === state.mode) return;
+    const focusWasBack = document.activeElement === $('back');
+    V.hush();
+    stopRun();
+    closeMenu();
+    state.mode = mode;
+    modeReady = true;
+    if (mode === 'groups') $('group-hint-slot').append($('hint'));
+    else $('panel').insertBefore($('hint'), $('tip'));
+    document.body.dataset.mode = mode;
+    state.lost = -1;
+    state.needs = false;
+    document.body.dataset.needs = 'false';
+    $('show-needs').setAttribute('aria-pressed', 'false');
+    $('needs-picker').hidden = true;
+    for (const m of ['plan','stress','groups']) $('m-' + m).setAttribute('aria-pressed', m === mode);
+    $('stage').hidden = mode === 'groups';
+    $('panel').hidden = mode === 'groups';
+    $('groups').hidden = mode !== 'groups';
+    $('plan-tools').hidden = mode !== 'plan';
+    $('stress-tools').hidden = mode !== 'stress';
+    if (mode === 'stress') {
+      if (state.futures.length) stressSummary();
+      else {
+        $('stress-summary').textContent = 'Plan not tested yet.';
+        $('stress-sub').textContent = 'Independent single-cell losses, not a 50-year forecast.';
+      }
+    }
+    $('future-strip').hidden = mode !== 'stress' || !state.futures.length;
+    $('map-title').textContent = mode === 'plan' ? 'Make room for life.' : 'Can your reserve hold together?';
+    $('map-eyebrow').textContent = mode === 'plan' ? 'A valley. Six species. One reserve.' : 'Stress test · One loss per future';
+    $('selection').textContent = mode === 'plan' ? 'Click a land cell to protect it. Click a protected cell to sell it back.' :
+      'The plan is locked. Each future tests a different protected cell.';
+    hint(HINTS[mode]);
+    if (mode === 'groups') drawHerd();
+    render();
+    requestAnimationFrame(fitMap);
+    if (focusWasBack) $('m-plan').focus({preventScroll:true});
+    V.welcome();
+  }
+  for (const m of ['plan','stress','groups']) $('m-' + m).onclick = () => setMode(m);
+  $('show-needs').onclick = () => {
+    state.needs = !state.needs;
+    document.body.dataset.needs = state.needs;
+    $('show-needs').setAttribute('aria-pressed', state.needs);
+    $('needs-picker').hidden = !state.needs;
+    hint(state.needs ? needsHint() : HINTS.plan);
+    Curio.tone(520, .08, .05);
+    renderMap();
+  };
+  function needsHint() {
+    if (state.needSpecies === 'elk') {
+      return 'Bright land can join the herd route. It still needs one area with 4 north forest and 4 south meadow cells.';
+    }
+    const species = SPECIES.find(s => s.id === state.needSpecies);
+    return `${species.name}: ${species.need} Choose another species in Habitat to highlight; bright cells are potential habitat.`;
+  }
+  $('need-species').onchange = () => { state.needSpecies = $('need-species').value; hint(needsHint()); renderMap(); };
+  $('clear').onclick = () => {
+    V.hush();
+    stopRun();
+    closeMenu();
+    state.plan = {};
+    state.futures = [];
+    state.weak = [];
+    state.weakShown = false;
+    state.lost = -1;
+    state.selected = -1;
+    state.revision++;
+    save();
+    render();
+    hint('Plan cleared and the full budget returned. Click a cell to start a new design.');
+    $('selection').textContent = 'Plan cleared. Click a land cell to begin another design.';
+    Curio.tone(240, .12, .06);
+  };
+  $('menu-close').onclick = () => closeMenu(true);
+  $('cell-menu').onkeydown = e => {
+    if (e.key === 'Escape') { e.preventDefault(); closeMenu(true); }
+    if (e.key !== 'Tab') return;
+    const controls = [...$('cell-menu').querySelectorAll('button')], first = controls[0], last = controls[controls.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus({preventScroll:true}); }
+    if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus({preventScroll:true}); }
+  };
+  document.addEventListener('pointerdown', e => {
+    if (!$('cell-menu').hidden && !$('cell-menu').contains(e.target) && !e.target.closest('.cell')) closeMenu(true);
+  });
+  $('run').onclick = runStress;
+  $('weakest').onclick = weakest;
+  $('back').onclick = () => setMode('plan');
+  $('herd').oninput = () => {
+    if (V.playing === L.welcomeGroups) V.hush();
+    state.herd = Number($('herd').value);
+    groupTouched = true;
+    drawHerd();
+    hint('Move Herd size again to compare the chance of a watcher, or press Alarm call to test the prairie dog colony.');
+    Curio.tone(240 + state.herd * 15, .04, .035);
+  };
+  $('alarm').onclick = alarm;
+  Curio.init({clips:"voice:*", rate:.95});
+  load();
+  buildMap();
+  buildSpecies();
+  $('group-elk-portrait').src = art('elk');
+  $('group-pd-portrait').src = art('prairie');
+  $('herd-scene').style.backgroundImage = `url("${art('herd-meadow')}")`;
+  $('colony-scene').style.backgroundImage = `url("${art('colony')}")`;
+  drawHerd();
+  drawDogs();
+  Curio.onMotion(drawHerd);
+  setInterval(() => {
+    if (state.mode !== 'groups' || Curio.reduce) return;
+    groupTick++;
+    drawHerd();
+  }, 2000);
+  new ResizeObserver(() => { fitMap(); if (menuCell >= 0) closeMenu(true); }).observe($('map-rig'));
+  window.__tool = {state, setMode, evaluate, transact, price, spent, farming, render, runStress, weakest, activateCell, closeMenu,
+    allLines:V.allLines, vlog:V.log, get vq() { return V.queue; }, map:MAP, species:SPECIES};
+  setMode('plan');
+})();
+</script>
+</body>
+</html>

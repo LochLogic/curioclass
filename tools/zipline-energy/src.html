@@ -1,0 +1,1044 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Zipline Energy · Every joule goes somewhere · Curio Class</title>
+<meta name="description" content="Design a zipline for three rider masses. Track height, speed, friction and recovered electricity. Grade 11 physics. Works offline.">
+<!--
+Zipline Energy, Curio Class. Adapted from kit/starter/src.html.
+Grade 11: HS-PS3-1, HS-PS3-2, HS-PS3-3. Students drive.
+Sources: OpenStax College Physics 2e chapters 5, 7 and 23; Precalculus 2e 8.1; NASA Glenn atmosphere model.
+Friction, drag areas, brake settings, battery share and safety limits are lab settings.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Code MIT. Content CC BY 4.0. One offline file, no network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root { --brand:#d0c440; --brand-ink:#10161f; }
+body { overflow:hidden; }
+header { gap:8px; padding:10px 16px; }
+h1 { font-size:25px; }
+h1 small { font-size:12px; letter-spacing:.08em; }
+.seg { border-width:1px; border-radius:9px; }
+.seg button,.icon-btn { min-height:44px; font-size:14px; padding:0 12px; }
+.icon-btn { border-width:1px; border-radius:9px; }
+#briefs { min-height:44px; }
+dialog { background:#18232f; color:var(--ink); border:1px solid #8b9aa7; border-radius:12px;
+  max-width:min(440px,92vw); padding:20px; box-shadow:0 20px 80px #0009; }
+dialog::backdrop { background:#07111ac9; }
+dialog h2 { margin:0 0 12px; font-size:20px; }
+dialog p { font-size:13px; line-height:1.5; }
+dialog .btn { margin-top:12px; min-width:100px; }
+button { min-width:44px; }
+main { display:block; min-width:0; min-height:0; width:100%; }
+.view { width:100%; max-width:100vw; height:100%; min-height:0; }
+.mode-scroll { display:contents; }
+#design { display:grid; grid-template-columns:minmax(0,1fr) 350px; grid-template-rows:auto 1fr 48px; }
+.stage { grid-column:1; grid-row:1 / 3; min-height:0; background:#233442; }
+#world { position:absolute; inset:0; width:100%; height:100%; }
+.lab { grid-column:2; grid-row:1; padding:12px 12px 8px; background:linear-gradient(120deg,#24303b,#141b25); }
+.stamp { color:var(--brand); font:700 11px/1.2 var(--readout-font); letter-spacing:.15em; margin-bottom:8px; }
+.actions { display:grid; grid-template-columns:1fr 1.4fr 44px; gap:6px; }
+.actions button { padding:0 5px; }
+.go { background:var(--brand); color:var(--brand-ink); border-color:var(--brand); }
+.lab h2 { font-size:14px; margin:12px 0 5px; }
+.lab-sub { font-size:11px; color:var(--muted); margin:0 0 6px; }
+.rules { display:grid; gap:5px; }
+.rule-row { display:grid; grid-template-columns:42px repeat(3,1fr); gap:2px; align-items:center; font-size:11px; }
+.rule-row b { font-size:12px; }
+.rule-row span { background:#0d141e; padding:5px 3px; border:1px solid #334251; border-radius:4px; text-align:center; }
+.rule-row span.ok { border-color:#3f755d; }
+.rule-row span.warn { border-color:#955f55; }
+#lab-status { min-height:30px; font-size:12px; margin:7px 0 0; line-height:1.3; }
+.controls { grid-column:2; grid-row:2; padding:4px 12px 10px; background:#141b25; display:grid; gap:8px; align-content:start; }
+.control-block { border-top:1px solid #3a4753; padding-top:7px; min-width:0; }
+.control-block h2 { margin:0 0 4px; color:#b9c5d3; font-size:11px; text-transform:uppercase; letter-spacing:.1em; }
+.sliders { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.slider label { display:flex; justify-content:space-between; font-size:12px; color:#b9c5d3; gap:3px; }
+.slider output { color:var(--brand); font-family:var(--readout-font); white-space:nowrap; }
+input[type=range] { height:34px; display:block; }
+.rule-row b { white-space:nowrap; }
+.hardware { display:none; text-align:center; padding-top:16px; border-top:1px solid #43505d; margin-top:12px; }
+.hardware img { display:block; width:180px; height:110px; object-fit:contain; margin:0 auto; }
+.hardware p { font:12px var(--readout-font); color:var(--brand); }
+@media (min-width:1100px) and (min-height:700px) { .hardware { display:block; } }
+.row { display:flex; gap:5px; }
+.row>* { flex:1; min-width:0; }
+.btn { font-size:13px; padding:0 6px; }
+.pair { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.rider-choice svg { width:18px; height:25px; vertical-align:middle; margin-right:3px; }
+.tog-label { font-size:11px; color:var(--muted); display:block; margin:0 0 3px; }
+.brake-setting { margin-top:5px; }
+.brake-setting label { font-size:12px; }
+[data-brake] img { display:block; width:38px; height:20px; object-fit:contain; margin:0 auto; }
+select { background:#202c38; border:1px solid #62789a; border-radius:6px; color:var(--ink); min-height:44px;
+  font:12px 'Segoe UI',sans-serif; padding:0 7px; width:100%; }
+.challenge-row { display:grid; grid-template-columns:1fr 96px; gap:6px; margin-top:8px; align-items:center; }
+.challenge-row span { font-size:11px; color:var(--brand); }
+.hintbar { grid-column:1 / -1; grid-row:3; display:flex; gap:16px; align-items:center; border-top:1px solid #3a4753;
+  background:#101720; padding:4px 14px; }
+#hint { font-size:13px; line-height:1.35; flex:1; min-height:32px; display:flex; align-items:center; }
+.keys { color:var(--muted); font-size:11px; white-space:nowrap; }
+#ledger { display:grid; grid-template-columns:minmax(0,1fr) 320px; grid-template-rows:1fr 48px; }
+#ledger .hintbar,#notebook .hintbar { grid-row:2; }
+.ledger-main { min-height:0; display:grid; grid-template-columns:minmax(180px,.75fr) 1fr; gap:14px; padding:18px; }
+.energy-card { background:linear-gradient(110deg,#202d3a,#111922); border:1px solid #3b4a5b; border-radius:12px;
+  padding:14px; display:grid; grid-template-columns:90px 1fr; grid-template-rows:auto 1fr; gap:12px; min-height:0; }
+.energy-title { grid-column:1/-1; margin:0; font-size:13px; }
+.energy-tower { display:flex; flex-direction:column-reverse; min-height:180px; border:1px solid #b4c1cd; border-radius:5px;
+  background:#0d141d; overflow:hidden; }
+.energy-tower div { min-height:0; position:relative; box-shadow:inset 0 1px #ffffff55; flex-shrink:0; }
+.energy-tower div::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,#ffffff25,transparent,#0003); }
+.energy-key { display:flex; flex-direction:column; justify-content:space-around; min-width:0; }
+.energy-key p { font-size:12px; margin:2px 0; }
+.energy-key strong { display:block; font:15px var(--readout-font); }
+.energy-key i { display:inline-block; width:9px; height:9px; margin-right:4px; border:1px solid #ffffff66; }
+.replay { min-width:0; display:flex; flex-direction:column; justify-content:center; gap:10px; }
+#replay-world { width:100%; min-height:130px; flex:1; background:#17232e; border-radius:12px; }
+.replay label { font-size:13px; }
+.ledger-side { padding:16px; display:flex; flex-direction:column; gap:10px; background:#141b25; overflow:auto; }
+.calc { background:#1c2834; border:1px solid #3c4a59; border-radius:9px; padding:12px; font-size:13px; line-height:1.5; }
+.calc h2 { font-size:12px; color:var(--brand); margin:0 0 7px; }
+.calc p { margin:4px 0; }
+.small { font-size:11px; color:var(--muted); line-height:1.4; }
+#notebook { display:grid; grid-template-columns:minmax(0,1fr) 320px; grid-template-rows:1fr 48px; }
+.notebook-main { min-height:0; min-width:0; max-width:100%; overflow:auto; padding:16px; }
+.plot-wrap { background:#121d28; border:1px solid #3a4d60; border-radius:12px; padding:12px; }
+.plot-wrap h2 { font-size:14px; margin:0 0 3px; }
+#mass-plot { width:100%; height:300px; display:block; }
+.plot-legend { display:flex; gap:20px; color:var(--muted); font-size:12px; }
+.table-bar { display:flex; gap:8px; align-items:center; margin:12px 0 6px; }
+.table-bar span { flex:1; font-size:12px; }
+.table-scroll { overflow:auto; max-width:100%; max-height:260px; border:1px solid #344456; }
+table { border-collapse:collapse; font:11px var(--readout-font); white-space:nowrap; }
+td,th { border:1px solid #334251; padding:7px; text-align:right; }
+th { background:#202e3c; position:sticky; top:0; }
+.notebook-side { min-width:0; min-height:0; overflow:auto; padding:16px; background:#141b25; }
+.notebook-side label { display:block; font-size:14px; line-height:1.5; }
+textarea { width:100%; min-height:120px; background:#0d141d; color:var(--ink); border:1px solid #62789a;
+  border-radius:8px; font:14px 'Segoe UI',sans-serif; padding:9px; margin:10px 0; resize:vertical; }
+#copy-fallback { min-height:80px; }
+#compare-result { font-size:13px; line-height:1.5; }
+.svg-label { fill:#e8edf3; font:12px 'Segoe UI',sans-serif; paint-order:stroke; stroke:#111c29; stroke-width:4px; }
+.svg-label.small-label { font-size:10px; }
+.scene-number { fill:#d0c440; font:700 26px var(--readout-font); }
+.idle-glint { animation:glint 5s ease-in-out infinite; }
+.calm .idle-glint { animation:none!important; opacity:.6; }
+@keyframes glint { 0%,100% { opacity:.4; } 50% { opacity:1; } }
+body.compact header { padding:4px 7px; gap:5px; flex-wrap:nowrap; }
+body.compact h1 { font-size:17px; white-space:nowrap; }
+body.compact h1 small { display:none; }
+body.compact .seg button,body.compact .icon-btn { font-size:12px; padding:0 7px; }
+body.compact #design { grid-template-columns:minmax(0,1fr) 235px; grid-template-rows:minmax(0,1fr) 150px 42px; }
+body.compact .stage { grid-row:1; }
+body.compact .lab { padding:6px 8px; }
+body.compact .rules { gap:3px; }
+body.compact .challenge-row { display:none; }
+body.compact .stamp { display:none; }
+body.compact .lab h2 { margin:5px 0 2px; font-size:12px; }
+body.compact .lab-sub { margin-bottom:4px; font-size:10px; }
+body.compact .rule-row { font-size:10px; grid-template-columns:34px repeat(3,1fr); line-height:1.1; }
+body.compact .rule-row b { font-size:10px; }
+body.compact .rule-row span { padding:2px 1px; }
+body.compact #lab-status { font-size:10px; min-height:24px; margin-top:3px; line-height:1.2; }
+body.compact .actions { gap:3px; }
+body.compact .actions button { font-size:12px; }
+body.compact .controls { grid-column:1 / -1; grid-row:2; grid-template-columns:1.05fr 1fr 1fr 1.2fr;
+  gap:10px; padding:5px 9px; border-top:1px solid #455362; }
+body.compact .control-block { padding-top:0; border:0; }
+body.compact .control-block h2 { font-size:10px; margin-bottom:3px; }
+body.compact .sliders { grid-template-columns:1fr; gap:0; }
+body.compact .slider label { font-size:10px; }
+body.compact input[type=range] { height:27px; }
+body.compact .pair { display:flex; flex-direction:column; gap:3px; }
+body.compact .pair .tog-label { display:none; }
+body.compact .btn { font-size:11px; padding:0 3px; }
+body.compact .rider-choice svg { display:none; }
+body.compact .rider-mass { display:block; margin-top:4px; }
+body.compact .hintbar { padding:3px 9px; }
+body.compact #hint { font-size:11px; min-height:30px; }
+body.compact .keys { display:none; }
+body.compact .brake-setting { margin-top:3px; }
+body.compact #friction { min-height:44px; width:100%; }
+body.compact #ledger { grid-template-columns:minmax(0,1fr) 225px; grid-template-rows:1fr 42px; }
+body.compact .ledger-main { padding:8px; gap:8px; grid-template-columns:minmax(150px,1fr) .8fr; }
+body.compact .energy-card { grid-template-columns:45px 1fr; gap:5px; padding:8px; }
+body.compact .energy-title { font-size:11px; }
+body.compact .energy-key p { font-size:10px; }
+body.compact .energy-key strong { font-size:11px; }
+body.compact .energy-tower { min-height:120px; }
+body.compact .ledger-side { padding:8px; gap:5px; }
+body.compact .calc { font-size:11px; padding:7px; }
+body.compact .calc h2 { font-size:11px; margin-bottom:3px; }
+body.compact #notebook { grid-template-columns:minmax(0,1fr) 225px; grid-template-rows:minmax(0,1fr) 42px; }
+body.compact .notebook-side textarea { min-height:65px; height:65px; margin:6px 0; }
+body.compact .notebook-main,body.compact .notebook-side { padding:8px; }
+body.compact #mass-plot { height:150px; }
+body.compact .notebook-side label,body.compact #compare-result { font-size:12px; }
+body.stack { height:100dvh; min-height:0; overflow:hidden; }
+body.stack header { flex-wrap:wrap; padding:8px; }
+body.stack h1 { font-size:22px; width:100%; }
+body.stack .seg { flex:1; }
+body.stack .seg button { padding:0 11px; }
+body.stack .icon-btn { padding:0 8px; font-size:12px; }
+body.stack .view { height:100%; }
+body.stack .mode-scroll { display:flex; flex-direction:column; flex:1; min-height:0; overflow:auto;
+  overscroll-behavior:contain; scroll-padding:12px; }
+body.stack .mode-scroll>* { flex:none; min-width:0; width:100%; }
+body.stack .notebook-main,body.stack .notebook-side,body.stack .ledger-side { overflow:visible; }
+body.stack #design { display:flex; flex-direction:column; }
+body.stack .stage { height:320px; flex:none; }
+body.stack .lab { order:1; min-height:310px; }
+body.stack .controls { order:2; grid-template-columns:1fr 1fr; }
+body.stack .hintbar { order:3; min-height:60px; position:static; flex:none; z-index:2; }
+body.stack #ledger,body.stack #notebook { display:flex; flex-direction:column; }
+body.stack #notebook>* { width:100%; min-width:0; }
+body.stack .ledger-main { min-height:430px; padding:10px; grid-template-columns:1fr 1fr; gap:8px; }
+body.stack .energy-card { padding:8px; grid-template-columns:40px 1fr; gap:6px; }
+body.stack .energy-key strong { font-size:12px; }
+body.stack .energy-key p { font-size:10px; }
+body.stack #mass-plot { height:260px; }
+body.stack .keys { display:none; }
+@media (max-width:480px) {
+  body.stack .controls { grid-template-columns:1fr; padding:10px; }
+  body.stack .stage { height:265px; }
+  body.stack header { gap:5px; }
+  body.stack h1 small { display:block; }
+  body.stack .seg { width:100%; flex:none; display:flex; }
+  body.stack .seg button { flex:1; }
+  body.stack .hintbar { position:static; z-index:2; }
+  body.stack .table-bar { flex-wrap:wrap; }
+  body.stack .table-bar span { flex-basis:100%; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Zipline Energy <small>Every joule goes somewhere.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-design" aria-pressed="true">Design</button>
+    <button id="m-ledger" aria-pressed="false">Ledger</button>
+    <button id="m-notebook" aria-pressed="false">Notebook</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="btn" id="briefs">Cards</button>
+</header>
+<main>
+  <section id="design" class="view" aria-label="Zipline design lab">
+    <div class="mode-scroll" id="design-scroll">
+    <div class="stage" id="stage"><svg id="world" role="img" aria-label="Zipline cable across a dusk valley"></svg></div>
+    <aside class="lab">
+      <div class="stamp">FIELD LAB / 300 METERS</div>
+      <div class="actions">
+        <button class="btn go" id="ride">▶ Ride</button>
+        <button class="btn" id="test">Test all three</button>
+        <button class="btn" id="reset" aria-label="Reset design" title="Reset design (R)">↺</button>
+      </div>
+      <h2>One design. Three riders.</h2>
+      <p class="lab-sub">Zone ≥ 1 m/s · Stop &lt; 296 m · Peak ≤ 1.5 g</p>
+      <div class="rules" id="rules" aria-live="polite"></div>
+      <p id="lab-status">Ready at the launch. Press Ride.</p>
+      <div class="challenge-row"><span id="challenge-status"></span></div>
+      <div class="hardware" id="hardware"><img id="hardware-img" src="art:zl-pad" alt="Selected brake hardware">
+        <p id="hardware-equation">PAD / F = 800 N</p></div>
+    </aside>
+    <div class="controls">
+      <section class="control-block">
+        <h2>01 / Cable</h2>
+        <div class="sliders">
+          <div class="slider"><label for="height">Tree anchor <output id="height-out">15 m</output></label>
+            <input id="height" type="range" min="5" max="35" step="1" value="15"></div>
+          <div class="slider"><label for="sag">Cable sag <output id="sag-out">10 m</output></label>
+            <input id="sag" type="range" min="5" max="20" step="0.5" value="10"></div>
+        </div><button class="btn" id="friction" aria-pressed="false">Friction off: no</button>
+      </section>
+      <section class="control-block">
+        <h2>02 / Trolley + posture</h2>
+        <div class="pair">
+          <div><span class="tog-label">Trolley</span><div class="row">
+            <button class="btn" id="new" data-key="worn" data-value="false" aria-pressed="true">New</button>
+            <button class="btn" id="worn" data-key="worn" data-value="true" aria-pressed="false">Worn</button>
+          </div></div>
+          <div><span class="tog-label">Posture</span><div class="row">
+            <button class="btn" id="upright" data-key="tuck" data-value="false" aria-pressed="true">Upright</button>
+            <button class="btn" id="tuck" data-key="tuck" data-value="true" aria-pressed="false">Tuck</button>
+          </div></div>
+        </div>
+      </section>
+      <section class="control-block">
+        <h2>03 / Rider</h2>
+        <div class="row" id="mass-buttons">
+          <button class="btn rider-choice" id="mass35" data-mass="35" aria-pressed="false">35 kg</button>
+          <button class="btn rider-choice" id="mass70" data-mass="70" aria-pressed="true">70 kg</button>
+          <button class="btn rider-choice" id="mass120" data-mass="120" aria-pressed="false">120 kg</button>
+        </div>
+        <div class="slider rider-mass"><label for="mass">Mass <output id="mass-out">70 kg</output></label>
+          <input id="mass" type="range" min="30" max="130" value="70" step="1"></div>
+      </section>
+      <section class="control-block">
+        <h2>04 / Brake</h2>
+        <div class="row">
+          <button class="btn" id="none" data-brake="none" aria-pressed="false">None</button>
+          <button class="btn" id="pad" data-brake="pad" aria-pressed="true"><img src="art:zl-pad" alt="">Pad</button>
+          <button class="btn" id="generator" data-brake="generator" aria-pressed="false"><img src="art:zl-magnet" alt="">Generator</button>
+        </div>
+        <div class="slider brake-setting" id="brake-setting"><label for="strength"><span id="strength-label">Pad force</span>
+          <output id="strength-out">800 N</output></label><input id="strength" type="range" min="200" max="2000" step="50" value="800"></div>
+      </section>
+    </div>
+    </div>
+  </section>
+  <section id="ledger" class="view" aria-label="Energy ledger" hidden>
+    <div class="mode-scroll" id="ledger-scroll">
+    <div class="ledger-main">
+      <div class="energy-card">
+        <h2 class="energy-title" id="energy-title">One fixed total</h2>
+        <div class="energy-tower" id="energy-tower" role="img" aria-label="Stacked energy ledger"></div>
+        <div class="energy-key" id="energy-key"></div>
+      </div>
+      <div class="replay">
+        <svg id="replay-world" role="img" aria-label="Last ride replay"></svg>
+        <label for="scrub">Replay position <output id="scrub-out">4.0 m</output></label>
+        <input id="scrub" type="range" min="0" max="1000" value="1000" aria-label="Scrub last ride">
+        <p class="small" id="ride-description"></p>
+      </div>
+    </div>
+    <aside class="ledger-side">
+      <div class="calc" id="height-work"></div><div class="calc" id="where-work"></div><div class="calc" id="ideal-work"></div>
+      <p class="small">Zero height is the lowest point of this cable. Generator work: 80% battery, 20% brake heat.</p>
+      <p class="small">Model leaves out cable stretch and bounce, wind, rider swing and trolley spin energy.</p>
+    </aside>
+    </div>
+  </section>
+  <section id="notebook" class="view" aria-label="Ride notebook" hidden>
+    <div class="mode-scroll" id="notebook-scroll">
+    <div class="notebook-main">
+      <div class="plot-wrap"><h2>Same cable, different masses</h2>
+        <p class="small">Speed at the brake zone for the current design. × means stalled before the zone.</p>
+        <svg id="mass-plot" role="img" aria-label="Brake zone speed versus rider mass"></svg>
+        <div class="plot-legend"><span>● With friction</span><span>◇ Friction off</span></div>
+      </div>
+      <div class="table-bar"><span id="saved-status">Notebook stays on this device.</span>
+        <button class="btn" id="copy">Copy table</button><button class="btn" id="clear">Clear notebook</button></div>
+      <div class="table-scroll"><table id="ride-table"></table></div>
+      <textarea id="copy-fallback" aria-label="Table text to copy" readonly hidden></textarea>
+    </div>
+    <aside class="notebook-side">
+      <label for="conclusion">Why does a brake that pushes harder at higher speed treat light and heavy riders more evenly?</label>
+      <textarea id="conclusion" aria-label="Explain how the two brakes treat different masses."
+        placeholder="Use a speed, stopping point or peak g from your tests."></textarea>
+      <p class="small">This conclusion is unsaved. Saved rides never leave this device.</p>
+      <button class="btn" id="compare">Compare</button><p id="compare-result" aria-live="polite"></p>
+      <div class="calc"><h2>Lab assumptions</h2><p>g = 9.81 m/s² · ρ = 1.20 kg/m³</p>
+        <p>New μ = 0.015 · Worn μ = 0.030</p><p>Upright CᵈA = 0.50 m² · Tuck = 0.30 m²</p>
+        <p>The three safety rules are lab settings, not industry standards.</p></div>
+    </aside>
+    </div>
+  </section>
+  <footer class="hintbar" id="hintbar"><p class="hint" id="hint"></p><span class="keys">SPACE Ride · T Test all · R Reset</span></footer>
+</main>
+<dialog id="cards">
+  <h2>Three design briefs</h2>
+  <label for="challenge">Choose a challenge</label>
+  <select id="challenge">
+    <option value="">Free design</option><option value="Z1">Z1 · Safe for everyone</option>
+    <option value="Z2">Z2 · Low tree</option><option value="Z3">Z3 · Rainy day</option>
+  </select>
+  <p id="brief-text">Each brief sets a cable and trolley. Choose a brake, then Test all three. Earned briefs stay on this device.</p>
+  <button class="btn go" id="close-cards">Back to design</button>
+</dialog>
+<script src="kit:curio"></script>
+<script src="kit:graphing"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  const masses = [35,70,120];
+  const defaults = {H:15,b:10,worn:false,tuck:false,m:70,brake:'pad',pad:800,generator:70,off:false};
+  const state = {mode:'design',design:{...defaults},running:false,batch:false,results:{},ghosts:[],last:null,
+    sample:null,rides:[],passed:[],challenge:'',revision:0,elapsed:0,active:[],storage:true};
+  const ART = {valley:'art:zl-valley',cliff:'art:zl-cliff',tree:'art:zl-tree',platform:'art:zl-platform',
+    trolley:'art:zl-trolley',pad:'art:zl-pad',generator:'art:zl-magnet'};
+  // These tokens mark the future approved paintings. Code silhouettes are used until owner review.
+  const RIDER_ART = {light:['art:zl-rider-light-up','art:zl-rider-light-tuck'],
+    mid:['art:zl-rider-mid-up','art:zl-rider-mid-tuck'],heavy:['art:zl-rider-heavy-up','art:zl-rider-heavy-tuck']};
+  function primaryVisible() {
+    if (!document.body.classList.contains('stack')) return true;
+    const r=$('ride').getBoundingClientRect(),p=$('design-scroll').getBoundingClientRect();
+    return r.top>=p.top && r.bottom<=p.bottom;
+  }
+  const L = {
+    design:'Set the cable and the brake, then press Ride. The card checks three safety rules.',
+    three:'Now press Test all three. One design has to work for every rider.',
+    stall:'Stuck in the middle. Not enough height for that cable.',
+    edge:'Too fast at the platform. Pick a brake or make it stronger.',
+    hard:'That brake grabbed too hard for this rider.',
+    pass:'All three riders safe. That is a design.',
+    ledger:'Drag the scrubber along the ride. The bars always add up to the energy you started with.',
+    notebook:'Compare the plot and your ride table. Write a reason, then press Compare.',
+    notebookScroll:'Inspect the plot. Scroll down to write a reason, then press Compare.',
+    reset:'Set the cable and the brake, then press Ride.',
+    changed:'Press Ride to test this changed design, or press Test all three.',
+    changedUp:'Scroll up to Ride or Test all three to test this changed design.',
+    off:'Press Ride to compare height and motion energy with friction and the brake off.',
+    offDone:'Open Ledger to compare height and motion. Press Ride to run this what-if again.',
+    good:'This rider passes all three rules. Press Test all three to check the other masses.',
+    compare:'A pad gives the same force to every rider. A generator pushes harder at higher speed, so slower light riders feel less force.'
+  };
+  const V = Curio.voice({lines:L,scope:()=>state.mode,hint:false,read:()=>$('hint').textContent,
+    speaks:'#ride, #test',welcome:()=>{
+      if (state.mode==='design') return state.hasRidden || $('cards').open || !primaryVisible() ? null :
+        ['design',{valid:()=>!state.running && !state.hasRidden && !$('cards').open && primaryVisible(),needs:'#ride'}];
+      if (state.mode==='ledger') return ['ledger',{valid:()=>!state.scrubbed}];
+      return document.body.classList.contains('stack') ? 'notebookScroll' : 'notebook';
+    }});
+  function hint(value) { $('hint').textContent=value; }
+  function mk(tag,attrs,parent) {
+    const el=document.createElementNS(NS,tag);
+    for (const [k,v] of Object.entries(attrs||{})) el.setAttribute(k,v);
+    if (parent) parent.appendChild(el);
+    return el;
+  }
+  function text(parent,x,y,value,cls='svg-label',anchor='start') {
+    const el=mk('text',{x,y,class:cls,'text-anchor':anchor},parent);
+    el.textContent=value;
+    return el;
+  }
+  const fmt = (n,d=1) => Number.isFinite(n) ? n.toFixed(d) : 'not reached';
+  const stopLabel = x => x<296 && 296-x<.05 ? x.toFixed(3) : fmt(x);
+  const joules = n => Math.round(n).toLocaleString('en-US');
+  function geometry(d) {
+    const D=Math.hypot(300,d.H-45),ex=300/D,ey=(d.H-45)/D,a2=d.b*d.b+D*D/4;
+    const A=ey*ey/a2+ex*ex/(d.b*d.b),B=ex*ey*(1/a2-1/(d.b*d.b));
+    const C=ex*ex/a2+ey*ey/(d.b*d.b),det=A*C-B*B;
+    return {
+      y:x=>(45+d.H)/2+(-B*(x-150)-Math.sqrt(Math.max(0,A-det*(x-150)**2)))/A,
+      slope:x=>(-B+det*(x-150)/Math.sqrt(Math.max(1e-20,A-det*(x-150)**2)))/A,
+      low:(45+d.H)/2-Math.sqrt(a2*ey*ey+d.b*d.b*ex*ex),D,length:2*Math.sqrt(a2)
+    };
+  }
+  const cache=new Map();
+  function simulate(input,m=input.m) {
+    const d={...input,m},key=JSON.stringify(d);
+    if (cache.has(key)) return cache.get(key);
+    const geo=geometry(d),mu=d.off ? 0 : d.worn ? .030 : .015,drag=d.off ? 0 : 1.2*(d.tuck ? .30 : .50)/m;
+    let x=4,u=0,rolling=0,air=0,work=0,t=0,peak=0,zone=null,steps=0;
+    const total=m*9.81*(geo.y(4)-geo.low),samples=[];
+    function sample() {
+      return {x,y:geo.y(x),v:Math.sqrt(Math.max(0,u)),t,rolling,air,work,
+        height:m*9.81*(geo.y(x)-geo.low),motion:.5*m*Math.max(0,u)};
+    }
+    function derivative(xx,uu,active) {
+      const slope=geo.slope(xx),q=Math.hypot(1,slope),v=Math.sqrt(Math.max(0,uu));
+      const force=d.off || !active || d.brake==='none' ? 0 : d.brake==='pad' ? d.pad : d.generator*v;
+      const r=mu*m*9.81*q,a=.5*m*drag*Math.max(0,uu)*q,br=force*q;
+      return [-2*9.81*slope-2*(r+a+br)/m,r,a,br,q];
+    }
+    samples.push(sample());
+    while (x<296-1e-8 && steps<100000) {
+      const dx=Math.min(.008/Math.hypot(1,geo.slope(x)),296-x,x<276-1e-8 ? 276-x : 1),active=x>=276-1e-8;
+      const k1=derivative(x,u,active),k2=derivative(x+dx/2,u+k1[0]*dx/2,active);
+      const k3=derivative(x+dx/2,u+k2[0]*dx/2,active),k4=derivative(x+dx,u+k3[0]*dx,active);
+      const ks=k1.map((v,i)=>(v+2*k2[i]+2*k3[i]+k4[i])/6),un=u+dx*ks[0];
+      if (active) peak=Math.max(peak,-k1[0]/(2*k1[4]*9.81));
+      const fraction=un<0 && u>0 ? u/(u-un) : 1,dd=dx*fraction;
+      const v0=Math.sqrt(Math.max(0,u)),v1=Math.sqrt(Math.max(0,u+dd*ks[0]));
+      t+=2*dd*ks[4]/Math.max(1e-10,v0+v1);
+      x+=dd;
+      u=Math.max(0,u+dd*ks[0]);
+      rolling+=dd*ks[1];
+      air+=dd*ks[2];
+      work+=dd*ks[3];
+      steps++;
+      if (zone===null && x>=276-1e-7) zone=Math.sqrt(u);
+      if (steps%30===0 || un<0 || x>=296-1e-8 || Math.abs(x-276)<1e-7) samples.push(sample());
+      if (un<0) break;
+    }
+    const reached=zone!==null && zone>=1,stopped=x<296-1e-7 && zone!==null,gentle=peak<=1.5,final=samples.at(-1);
+    const result={d,m,geo,samples,total,zone,x,v:Math.sqrt(u),peak,time:t,rolling,air,work,
+      battery:d.brake==='generator' ? work*.8 : 0,pass:reached&&stopped&&gentle,reached,stopped,gentle,
+      kind:zone===null ? 'stall' : x>=296-1e-7 ? 'edge' : 'stop',error:total-final.height-final.motion-rolling-air-work};
+    if (cache.size>100) cache.clear();
+    cache.set(key,result);
+    return result;
+  }
+  function atTime(ride,time) {
+    const a=ride.samples;
+    let lo=0,hi=a.length-1;
+    while (lo+1<hi) { const mid=(lo+hi)>>1; if (a[mid].t<time) lo=mid; else hi=mid; }
+    const p=a[lo],q=a[hi],f=Math.max(0,Math.min(1,(time-p.t)/Math.max(1e-10,q.t-p.t)));
+    return Object.fromEntries(Object.keys(p).map(k=>[k,p[k]+(q[k]-p[k])*f]));
+  }
+  function save() {
+    try { localStorage.setItem('curio-zipline-energy',JSON.stringify({rides:state.rides,passed:state.passed})); }
+    catch { state.storage=false; }
+    $('saved-status').textContent=state.storage ? `${state.rides.length} rides saved on this device only.` : 'Storage unavailable. Rides last this session.';
+  }
+  function restore() {
+    try {
+      const data=JSON.parse(localStorage.getItem('curio-zipline-energy')||'{}');
+      if (Array.isArray(data.rides)) state.rides=data.rides.filter(r=>r && Number.isFinite(r.m) && r.d);
+      if (Array.isArray(data.passed)) state.passed=data.passed.filter(x=>['Z1','Z2','Z3'].includes(x));
+    } catch { state.storage=false; }
+  }
+  function record(r) {
+    state.rides.push({d:r.d,m:r.m,zone:r.zone,x:r.x,v:r.v,peak:r.peak,rolling:r.rolling,air:r.air,
+      work:r.work,battery:r.battery,height:r.samples.at(-1).height,motion:r.samples.at(-1).motion,total:r.total,pass:r.pass,off:r.d.off});
+    save();
+  }
+  function stopRide() {
+    state.running=false;
+    state.active=[];
+    state.batch=false;
+    soundStop();
+    $('ride').textContent='▶ Ride';
+    $('test').textContent='Test all three';
+  }
+  function change() {
+    stopRide();
+    state.revision++;
+    state.results={};
+    state.ghosts=[];
+    state.sample=null;
+    state.batchVerdict=null;
+    V.dropQueued();
+    const above=!primaryVisible();
+    hint(above ? L.changedUp : state.design.off ? L.off : L.changed);
+    $('lab-status').textContent='Design changed. Ready for a new test.';
+    sync();
+    drawScene();
+    lab();
+    Curio.tone(320,.04,.025);
+  }
+  function sync() {
+    const d=state.design;
+    for (const [id,k] of [['height','H'],['sag','b'],['mass','m']]) {
+      $(id).value=d[k];
+      $(id+'-out').textContent=d[k]+(id==='mass' ? ' kg' : ' m');
+    }
+    document.querySelectorAll('[data-key]').forEach(el=>el.setAttribute('aria-pressed',String(d[el.dataset.key])===el.dataset.value));
+    document.querySelectorAll('[data-mass]').forEach(el=>el.setAttribute('aria-pressed',+el.dataset.mass===d.m));
+    document.querySelectorAll('[data-brake]').forEach(el=>el.setAttribute('aria-pressed',el.dataset.brake===d.brake));
+    const gen=d.brake==='generator';
+    $('strength').min=gen ? 20 : 200;
+    $('strength').max=gen ? 300 : 2000;
+    $('strength').step=gen ? 5 : 50;
+    $('strength').value=gen ? d.generator : d.pad;
+    $('strength-label').textContent=gen ? 'Generator strength' : 'Pad force';
+    $('strength-out').textContent=(gen ? d.generator : d.pad)+(gen ? ' N·s/m' : ' N');
+    $('brake-setting').style.visibility=d.brake==='none' ? 'hidden' : 'visible';
+    $('friction').setAttribute('aria-pressed',d.off);
+    $('friction').textContent='Friction off: '+(d.off ? 'yes' : 'no');
+    $('hardware-img').src=d.brake==='generator' ? ART.generator : ART.pad;
+    $('hardware-img').style.visibility=d.brake==='none' || d.off ? 'hidden' : 'visible';
+    $('hardware-equation').textContent=d.off ? 'WHAT-IF / HEIGHT ⇄ MOTION' : d.brake==='none' ? 'NO BRAKE / F = 0 N' :
+      d.brake==='pad' ? `PAD / F = ${d.pad} N` : `GENERATOR / F = ${d.generator} v`;
+    for (const m of masses) $('mass'+m).innerHTML=silhouetteIcon(m,d.tuck)+m+' kg';
+    $('challenge-status').textContent=state.passed.length ? state.passed.length+'/3 earned' : '3 design briefs';
+    $('briefs').textContent=state.passed.length ? 'Cards '+state.passed.length+'/3' : 'Cards';
+    for (const option of $('challenge').options) {
+      option.textContent=option.textContent.replace(/^✓ /,'');
+      if (state.passed.includes(option.value)) option.textContent='✓ '+option.textContent;
+    }
+  }
+  function lab() {
+    const custom=!masses.includes(state.design.m) && !state.batch && Object.keys(state.results).length<=1;
+    const shown=custom ? [state.design.m] : masses;
+    $('rules').innerHTML=shown.map(m=>{
+      const r=state.results[m],values=r ? [[r.reached,r.zone===null ? 'no zone' : fmt(r.zone,2)+' m/s'],
+        [r.stopped,stopLabel(r.x)+' m'],[r.gentle,fmt(r.peak,2)+' g']] : [[null,'zone'],[null,'stop'],[null,'peak']];
+      return `<div class="rule-row"><b>${m} kg</b>${values.map(([pass,v])=>
+        `<span class="${pass===null ? '' : pass ? 'ok' : 'warn'}">${pass===null ? '·' : pass ? '✓' : '×'} ${v}</span>`).join('')}</div>`;
+    }).join('');
+    $('rules').hidden=state.design.off;
+    if (state.design.off) $('lab-status').textContent='What-if: friction, drag and brake off. No lab verdict.';
+  }
+  let audio=null,osc=null,gain=null,brakeOsc=null,brakeGain=null,brakeFilter=null;
+  function soundStart() {
+    if (!Curio.sound) return;
+    try {
+      audio ||= new (window.AudioContext||window.webkitAudioContext)();
+      audio.resume();
+      soundStop();
+      gain=audio.createGain();
+      gain.gain.value=.012;
+      gain.connect(audio.destination);
+      osc=audio.createOscillator();
+      osc.type='sawtooth';
+      osc.frequency.value=90;
+      osc.connect(gain);
+      osc.start();
+      brakeGain=audio.createGain();
+      brakeGain.gain.value=0;
+      brakeGain.connect(audio.destination);
+      if (state.design.brake==='pad') {
+        const buffer=audio.createBuffer(1,audio.sampleRate,audio.sampleRate);
+        const samples=buffer.getChannelData(0);
+        for (let i=0;i<samples.length;i++) samples[i]=Math.random()*2-1;
+        brakeOsc=audio.createBufferSource();
+        brakeOsc.buffer=buffer;
+        brakeOsc.loop=true;
+        brakeFilter=audio.createBiquadFilter();
+        brakeFilter.type='highpass';
+        brakeFilter.frequency.value=1300;
+        brakeOsc.connect(brakeFilter);
+        brakeFilter.connect(brakeGain);
+      } else {
+        brakeOsc=audio.createOscillator();
+        brakeOsc.type='sine';
+        brakeOsc.frequency.value=700;
+        brakeOsc.connect(brakeGain);
+      }
+      brakeOsc.start();
+    } catch { soundStop(); }
+  }
+  function soundStop() {
+    if (osc) { try { osc.stop(); brakeOsc.stop(); } catch {} }
+    osc=null;
+    brakeOsc=null;
+    if (gain) gain.disconnect();
+    if (brakeGain) brakeGain.disconnect();
+    if (brakeFilter) brakeFilter.disconnect();
+    gain=null;
+    brakeGain=null;
+    brakeFilter=null;
+  }
+  function soundUpdate(s) {
+    if (!osc || !Curio.sound) return;
+    osc.frequency.setTargetAtTime(80+s.v*24,audio.currentTime,.08);
+    gain.gain.setTargetAtTime(.004+Math.min(.012,s.v*.0007),audio.currentTime,.08);
+    brakeGain.gain.setTargetAtTime(s.x>=276 && state.design.brake!=='none' && !state.design.off ? .016 : 0,audio.currentTime,.04);
+    if (brakeOsc.frequency) brakeOsc.frequency.setTargetAtTime(350+s.v*65,audio.currentTime,.06);
+  }
+  function start(batch=false) {
+    stopRide();
+    V.dropQueued();
+    state.revision++;
+    state.results={};
+    state.ghosts=[];
+    state.batchVerdict=null;
+    state.batch=batch;
+    state.running=true;
+    state.hasRidden=true;
+    state.elapsed=0;
+    state.active=(batch ? masses : [state.design.m]).map((m,i)=>({ride:simulate(state.design,m),delay:batch ? i*2 : 0,done:false}));
+    state.clock=performance.now();
+    state.sample=state.active[0].ride.samples[0];
+    $('ride').textContent='↻ Ride again';
+    $('test').textContent=batch ? 'Testing at 4×' : 'Test all three';
+    $('lab-status').textContent=batch ? 'Three masses. Two seconds between launches.' : 'Riding in real time. Watch the brake zone.';
+    hint('Watch the ride. Change a setting to cancel and redesign.');
+    Curio.tone(420,.07,.04);
+    soundStart();
+    lab();
+    drawScene();
+  }
+  function finishOne(r,batch) {
+    state.last=r;
+    state.calculated=false;
+    state.results[r.m]=r;
+    state.ghosts.push(r);
+    record(r);
+    lab();
+    const rev=state.revision;
+    if (state.design.off) return;
+    if (r.kind==='stall') {
+      $('lab-status').textContent=`Stuck at ${fmt(r.x)} m. The crew hauls them in.`;
+      if (!batch) V.say('stall',{valid:()=>state.revision===rev});
+    } else if (r.kind==='edge') {
+      $('lab-status').textContent=`Hit the platform at ${fmt(r.v,2)} m/s. The padded bumper catches the trolley.`;
+      if (!batch) V.say('edge',{valid:()=>state.revision===rev});
+    } else if (!r.gentle) {
+      $('lab-status').textContent=`Stopped at ${fmt(r.x)} m, but ${fmt(r.peak,2)} g is too hard.`;
+      if (!batch) V.say('hard',{valid:()=>state.revision===rev});
+    } else $('lab-status').textContent=`${r.m} kg: stopped at ${stopLabel(r.x)} m. Ratchet catch holds the trolley.`;
+    Curio.tone(r.pass ? 620 : 180,.12,.045);
+  }
+  function challengeFits(id) {
+    const d=state.design;
+    return d.b===10 && !d.tuck && !d.off && (id==='Z1' ? d.H===15&&!d.worn : id==='Z2' ? d.H===25&&!d.worn : d.H===15&&d.worn);
+  }
+  function finishBatch() {
+    const rev=state.revision,all=masses.every(m=>state.results[m]?.pass);
+    state.batchVerdict=state.design.off ? null : all;
+    if (state.design.off) { hint(L.offDone); return; }
+    if (all && !state.design.off) {
+      $('lab-status').textContent='All three riders safe. One design passes every lab rule.';
+      hint('All three riders safe. Open Ledger to follow the energy, or choose a new challenge.');
+      V.say('pass',{valid:()=>state.revision===rev});
+      Curio.yes();
+      if (state.challenge && challengeFits(state.challenge) && !state.passed.includes(state.challenge)) {
+        state.passed.push(state.challenge);
+        save();
+        sync();
+      }
+    } else if (!state.design.off) {
+      const r=masses.map(m=>state.results[m]).find(r=>r && !r.pass);
+      if (r) $('lab-status').textContent=r.kind==='stall' ? `${r.m} kg: stuck at ${fmt(r.x)} m, before the brake zone.` :
+        r.kind==='edge' ? `${r.m} kg: hit the platform at ${fmt(r.v,2)} m/s.` :
+        `${r.m} kg: ${fmt(r.peak,2)} g exceeds the 1.5 g limit. Change the brake and test again.`;
+      hint('Review the crosses, adjust the brake, then press Test all three again.');
+      if (r) V.say(r.kind==='stall' ? 'stall' : r.kind==='edge' ? 'edge' : 'hard',{valid:()=>state.revision===rev});
+    }
+  }
+  function tick(now) {
+    if (state.running) {
+      state.elapsed=(now-state.clock)/1000;
+      let moving=null;
+      for (const entry of state.active) {
+        const local=(state.elapsed-entry.delay)*(state.batch ? 4 : 1);
+        if (local<0) continue;
+        if (!entry.done && local>=entry.ride.time) { entry.done=true; finishOne(entry.ride,state.batch); }
+        if (!entry.done) moving={ride:entry.ride,s:atTime(entry.ride,local)};
+      }
+      state.sample=moving ? moving.s : state.active.at(-1).ride.samples.at(-1);
+      if (moving) soundUpdate(moving.s);
+      drawDynamic();
+      if (state.active.every(e=>e.done)) {
+        const batch=state.batch;
+        stopRide();
+        if (batch) finishBatch();
+        else {
+          const r=state.last;
+          hint(r.d.off ? 'Open Ledger to compare height and speed. Change a setting or press Ride again.' :
+            r.pass ? L.good : 'Review the crossed rule. Adjust the brake, then press Ride or Test all three.');
+          if (!V.heard('three')) {
+            V.how('three',{valid:()=>state.revision>0 && !state.running && state.mode==='design',needs:'#test'});
+          }
+        }
+        drawScene();
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+  function silhouetteIcon(m,tuck) {
+    const w=m<53 ? 6 : m>95 ? 10 : 8;
+    return `<svg viewBox="-15 0 35 50" aria-hidden="true"><circle cx="0" cy="8" r="5" fill="currentColor"/>
+      <path d="M0 16v${tuck ? 13 : 19}m0 -13l12 -9m-12 22l${tuck ? '13 -3 0 12' : '3 16m-3 -16l-5 15'}"
+      stroke="currentColor" stroke-width="${w}" fill="none" stroke-linecap="round"/></svg>`;
+  }
+  function rider(parent,x,y,dataX,geo,d,m,opacity=1,label=false,scale=1,xScale=scale) {
+    const angle=Math.atan(geo.slope(dataX)*scale/xScale)*180/Math.PI;
+    const g=mk('g',{transform:`translate(${x},${y})`,opacity},parent);
+    const trolley=mk('g',{transform:`rotate(${-angle})`},g);
+    mk('image',{href:ART.trolley,x:-1.8*scale,y:-2.2*scale,width:3.6*scale,height:3.6*scale},trolley);
+    const h=(m<53 ? 7.5 : 8.5)*scale,w=(m<53 ? 1.4 : m>95 ? 2.3 : 1.8)*scale;
+    mk('path',{d:`M0 4L0 ${h*.3}`,stroke:'#d8c99b','stroke-width':2},g);
+    const body=mk('g',{transform:`translate(0,${scale*1.2})`},g);
+    mk('circle',{cx:0,cy:h*.1,r:h*.1,fill:'#c4d2dc',stroke:'#111f2b','stroke-width':1},body);
+    mk('path',{d:`M0 ${h*.27}L0 ${h*.58}M0 ${h*.35}L${w*2} ${h*.13}`,stroke:'#c4d2dc',
+      'stroke-width':w,fill:'none','stroke-linecap':'round'},body);
+    mk('path',{d:d.tuck ? `M0 ${h*.56}L${h*.27} ${h*.45}L${h*.2} ${h*.68}` :
+      `M0 ${h*.56}L${h*.1} ${h*.88}M0 ${h*.56}L${-h*.12} ${h*.86}`,
+      stroke:'#a2b6c6','stroke-width':w*.8,fill:'none','stroke-linecap':'round'},body);
+    mk('path',{d:`M${-w} ${h*.48}L${w} ${h*.53}`,stroke:'#d0c440','stroke-width':2},body);
+    if (label) text(g,0,-3.2*scale,m+' kg','svg-label small-label','middle');
+    return g;
+  }
+  let sceneMap=null;
+  function sceneBase(svg,d,small=false) {
+    const rect=svg.getBoundingClientRect(),W=Math.max(250,rect.width),H=Math.max(130,rect.height);
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    svg.textContent='';
+    const traceH=small ? 0 : Math.min(105,H*.2),bottom=H-traceH-25,top=small ? 20 : 56;
+    const geo=geometry(d),floor=Math.min(0,Math.floor((geo.low-10)/5)*5);
+    const left=small ? 25 : 42,right=W-(small ? 20 : 34),X=x=>left+x/300*(right-left);
+    const Y=y=>bottom-(y-floor)/(55-floor)*(bottom-top);
+    const defs=mk('defs',{},svg),sid=small ? 'replayShade' : 'worldShade';
+    const shade=mk('linearGradient',{id:sid,x1:0,y1:0,x2:0,y2:1},defs);
+    mk('stop',{offset:0,'stop-color':'#0c1a2c','stop-opacity':.12},shade);
+    mk('stop',{offset:1,'stop-color':'#08131e','stop-opacity':.7},shade);
+    mk('image',{href:ART.valley,x:0,y:0,width:W,height:H,preserveAspectRatio:'xMidYMid slice'},svg);
+    mk('rect',{x:0,y:0,width:W,height:H,fill:`url(#${sid})`},svg);
+    const cw=Math.max(45,W*.11),tw=Math.max(60,W*.13),th=Y(0)-Y(40),pw=Math.max(40,W*.065);
+    mk('image',{href:ART.cliff,x:X(0)-cw*.68,y:Y(45)-9,width:cw,height:bottom-Y(45)+26,preserveAspectRatio:'none'},svg);
+    mk('image',{href:ART.tree,x:X(300)-tw*.48,y:Y(40),width:tw,height:th,preserveAspectRatio:'none'},svg);
+    mk('image',{href:ART.platform,x:X(296)-pw*.1,y:Y(geo.y(296))-pw*.38,width:pw,height:pw*.7,preserveAspectRatio:'none'},svg);
+    const points=[];
+    for (let x=0;x<=300;x++) points.push([X(x),Y(geo.y(x))]);
+    const path='M'+points.map(p=>p.join(',')).join('L');
+    mk('path',{d:path,stroke:'#07111c','stroke-width':6,fill:'none'},svg);
+    mk('path',{d:path,stroke:'#bcc8ce','stroke-width':2.2,fill:'none'},svg);
+    mk('path',{d:path,stroke:'#eff4f7','stroke-width':.6,fill:'none','stroke-opacity':.7,transform:'translate(0,-1)'},svg);
+    const zp=[];
+    for (let x=276;x<=296;x+=.5) zp.push([X(x),Y(geo.y(x))]);
+    mk('path',{d:'M'+zp.map(p=>p.join(',')).join('L'),stroke:'#ff8a8a','stroke-width':14,
+      'stroke-opacity':.35,'stroke-dasharray':'3 3',fill:'none'},svg);
+    if (d.brake!=='none' && !d.off) mk('image',{href:ART[d.brake],x:X(276)-15,y:Y(geo.y(276))-24,width:30,height:24},svg);
+    for (const [x,h] of [[0,45],[300,d.H]]) {
+      mk('circle',{cx:X(x),cy:Y(h),r:4,fill:'#d0c440',stroke:'#1a2430','stroke-width':2},svg);
+      mk('line',{x1:X(x),y1:Y(h),x2:X(x),y2:Y(geo.y(x)),stroke:'#b8c0c8','stroke-width':1.5},svg);
+    }
+    if (!small) {
+      mk('rect',{x:0,y:0,width:W,height:45,fill:'#111c2a','fill-opacity':.8},svg);
+      text(svg,16,20,'ZIPLINE / ENERGY & WORK','svg-label small-label');
+      text(svg,16,37,'300 m span · ellipse cable','svg-label small-label').id='stage-subtitle';
+      text(svg,W-16,29,'0.0 m/s','scene-number','end').id='speed-number';
+      for (const h of [-15,0,15,30,45].filter(h=>h>=floor)) {
+        mk('line',{x1:4,y1:Y(h),x2:24,y2:Y(h),stroke:'#d6dfe9','stroke-opacity':.6},svg);
+        text(svg,6,Y(h)-4,h+' m','svg-label small-label');
+      }
+      for (const x of [0,100,200,300]) text(svg,X(x),bottom+16,x+' m','svg-label small-label',
+        x===0 ? 'start' : x===300 ? 'end' : 'middle');
+      text(svg,W-12,53,'rider not to scale · 5×','svg-label small-label','end');
+      text(svg,X(270)-6,Y(geo.y(276))-14,'brake 276 to 296 m','svg-label small-label','end');
+      text(svg,16,H-traceH+4,'SPEED TRACE / m/s','svg-label small-label');
+      const trace=mk('g',{id:'speed-trace'},svg),ph=Math.max(25,traceH-35);
+      const plane=Plane(trace,{x:[4,296],y:[0,30],left:42,top:H-traceH+12,width:Math.max(80,W-70),height:ph,
+        grid:[100,10],labels:[100,20],tickFormat:(v,a)=>a==='x' ? '' : v,ticks:'axis'});
+      sceneMap={svg,W,H,X,Y,geo,plane,dynamic:mk('g',{id:'moving-layer'},svg),d};
+      mk('circle',{cx:X(104),cy:Y(geo.y(104)),r:2,fill:'#fff6cd',class:'idle-glint'},svg);
+    }
+    return {svg,W,H,X,Y,geo,d};
+  }
+  function drawScene() {
+    if (state.mode!=='design') return;
+    sceneBase($('world'),state.design);
+    drawDynamic();
+  }
+  function drawDynamic() {
+    if (!sceneMap || state.mode!=='design') return;
+    const {W,H,X,Y,geo,dynamic,plane}=sceneMap;
+    dynamic.textContent='';
+    plane.clear();
+    const drawn=[],scale=(Y(0)-Y(45))/45;
+    function drawRide(r,s,opacity,withLabel) {
+      rider(dynamic,X(s.x),Y(geo.y(s.x)),s.x,geo,r.d,r.m,opacity,withLabel,scale,X(1)-X(0));
+      if (!drawn.includes(r)) {
+        plane.param(t=>{ const p=atTime(r,t); return [p.x,p.v]; },[0,Math.min(r.time,s.t)],
+          {color:r.m===35 ? 1 : r.m===120 ? 2 : 3,width:1.8,samples:140,label:`${r.m} kg speed along cable`});
+        drawn.push(r);
+      }
+    }
+    for (const r of state.ghosts) drawRide(r,r.samples.at(-1),.3,false);
+    let speed=0;
+    if (state.running) {
+      for (const entry of state.active) {
+        const time=(state.elapsed-entry.delay)*(state.batch ? 4 : 1);
+        if (time<0 || entry.done) continue;
+        const s=atTime(entry.ride,time);
+        const pose=Curio.reduce ? s.x<276 ? entry.ride.samples[0] :
+          atTime(entry.ride,entry.ride.samples.find(p=>p.x>=276)?.t||entry.ride.time) : s;
+        drawRide(entry.ride,pose,1,true);
+        speed=s.v;
+      }
+    } else if (state.last && state.ghosts.length) {
+      drawRide(state.last,state.last.samples.at(-1),1,true);
+      speed=state.last.v;
+      const r=state.last,title=r.d.off ? 'FRICTION OFF / WHAT-IF' : state.batchVerdict===true ? '✓ ALL THREE RIDERS SAFE' :
+        state.batchVerdict===false ? '× DESIGN NEEDS A CHANGE' : r.pass ? '✓ THIS RIDER PASSES' :
+        r.kind==='edge' ? '× ARRIVED TOO FAST' : r.kind==='stall' ? '× STALLED BEFORE BRAKE' : '× BRAKING TOO HARD';
+      if (H<280) $('stage-subtitle').textContent=title;
+      else {
+        const bw=Math.min(W-30,330),bx=(W-bw)/2;
+        mk('rect',{x:bx,y:62,width:bw,height:42,rx:5,fill:'#111c29','fill-opacity':.94,
+          stroke:state.batchVerdict===false || !r.pass ? '#bd8374' : '#81caa4'},dynamic);
+        text(dynamic,W/2,88,title,'svg-label','middle');
+      }
+    } else {
+      rider(dynamic,X(4),Y(geo.y(4)),4,geo,state.design,state.design.m,1,false,scale,X(1)-X(0));
+      text(dynamic,W/2,H*.4,'Design it. Ride it. Account for it.','svg-label','middle');
+    }
+    if (state.running && state.sample?.x>=276 && state.design.brake!=='none' && !state.design.off) {
+      const s=state.sample,color=state.design.brake==='generator' ? '#9ee6d8' : '#ffb070';
+      mk('circle',{cx:X(s.x),cy:Y(geo.y(s.x)),r:16,fill:color,'fill-opacity':.15,stroke:color,
+        'stroke-width':2,'stroke-opacity':.8},dynamic);
+      text(dynamic,Math.max(90,X(s.x)-25),Y(geo.y(s.x))-30,
+        state.design.brake==='generator' ? 'recovering energy' : 'brake → heat','svg-label small-label','end');
+    }
+    if ($('speed-number')) $('speed-number').textContent=fmt(speed)+' m/s';
+  }
+  const energies=[['height','Height','#5aa9ff'],['motion','Motion','#5fd39a'],['rolling','Rolling heat','#ff8a8a'],
+    ['air','Air drag heat','#c9a0ff'],['brakeHeat','Brake heat','#ffb070'],['battery','Battery','#9ee6d8']];
+  function ledger() {
+    const r=state.last;
+    if (!r) return;
+    const s=atTime(r,r.time*+$('scrub').value/1000),battery=r.d.brake==='generator' ? s.work*.8 : 0;
+    const e={...s,battery,brakeHeat:s.work-battery},total=energies.reduce((a,[key])=>a+e[key],0);
+    $('energy-title').textContent=`Start total ${joules(r.total)} J`;
+    $('energy-tower').innerHTML=energies.map(([key,name,color])=>
+      `<div style="height:${100*e[key]/r.total}%;background:${color}" title="${name}: ${joules(e[key])} J"></div>`).join('');
+    $('energy-tower').setAttribute('aria-label',energies.map(([key,name])=>`${name} ${joules(e[key])} joules`).join(', '));
+    $('energy-key').innerHTML=energies.map(([key,name,color])=>
+      `<p><i style="background:${color}"></i>${name}<strong>${joules(e[key])} J${key==='battery' ? ` · ${(e[key]/3600).toFixed(2)} Wh` : ''}</strong></p>`).join('');
+    $('scrub-out').textContent=fmt(s.x)+' m';
+    const dh=r.geo.y(4)-r.geo.y(s.x),lost=r.m*9.81*dh;
+    $('height-work').innerHTML=`<h2>Height energy lost by ${fmt(s.x)} m</h2><p>${joules(lost)} J</p>
+      <p>m g Δh = ${r.m} × 9.81 × ${fmt(dh,2)}</p>`;
+    $('where-work').innerHTML=`<h2>Where it went</h2><p>Rolling ${joules(s.rolling)} + drag ${joules(s.air)} + brake ${joules(s.work)}
+      + motion ${joules(s.motion)} = ${joules(s.rolling+s.air+s.work+s.motion)} J</p>
+      <p class="small">Brake work includes heat + battery. Rounded entries can differ by a few joules.</p>`;
+    const speed=Math.sqrt(Math.max(0,2*9.81*(r.geo.y(4)-r.geo.y(276))));
+    $('ideal-work').innerHTML=`<h2>Same cable, friction off</h2><p>Zone speed = √(2 g Δh) = ${fmt(speed,2)} m/s</p>
+      <p class="small">Ledger closure: ${fmt(100*Math.abs(total-r.total)/r.total,5)}% of start energy.</p>`;
+    const rideLabel=state.calculated ? 'Calculated preview' : 'Last completed ride';
+    $('ride-description').textContent=`${rideLabel}: ${r.m} kg · ${r.d.brake} · ${r.d.off ? 'friction off' : 'friction on'}.`;
+    const map=sceneBase($('replay-world'),r.d,true);
+    rider(map.svg,map.X(s.x),map.Y(r.geo.y(s.x)),s.x,r.geo,r.d,r.m,1,true,
+      map.Y(0)-map.Y(1),map.X(1)-map.X(0));
+    text(map.svg,10,20,`${fmt(s.v,2)} m/s`,'svg-label');
+  }
+  const headers=['Ride','Tree m','Sag m','Trolley','Posture','Brake','Setting','Mass kg','Zone m/s','Stop/end m','Edge m/s',
+    'Peak g','Height J','Motion J','Rolling J','Drag J','Brake heat J','Battery J','Start J','Result'];
+  function rowValues(r,i) {
+    return [i+1,r.d.H,r.d.b,r.d.worn ? 'Worn' : 'New',r.d.tuck ? 'Tuck' : 'Upright',r.d.off ? 'Off' : r.d.brake,
+      r.d.brake==='pad' ? r.d.pad+' N' : r.d.brake==='generator' ? r.d.generator+' N s/m' : '-',r.m,
+      r.zone===null ? 'stalled' : fmt(r.zone,2),stopLabel(r.x),fmt(r.v,2),fmt(r.peak,2),Math.round(r.height),Math.round(r.motion),
+      Math.round(r.rolling),Math.round(r.air),Math.round(r.work-r.battery),Math.round(r.battery),Math.round(r.total),
+      r.off ? 'what-if' : r.pass ? 'PASS' : 'FAIL'];
+  }
+  function notebook() {
+    $('ride-table').innerHTML='<thead><tr>'+headers.map(h=>`<th>${h}</th>`).join('')+'</tr></thead><tbody>'+
+      state.rides.map((r,i)=>'<tr>'+rowValues(r,i).map(v=>`<td>${v}</td>`).join('')+'</tr>').join('')+'</tbody>';
+    $('saved-status').textContent=state.storage ? `${state.rides.length} rides saved on this device only.` : 'Storage unavailable. Rides last this session.';
+    drawPlot();
+  }
+  function drawPlot() {
+    const svg=$('mass-plot'),W=Math.max(280,svg.clientWidth),H=svg.clientHeight;
+    svg.textContent='';
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    const d=state.design,on=masses.map(m=>simulate({...d,off:false},m)),off=masses.map(m=>simulate({...d,off:true},m));
+    const max=Math.ceil(Math.max(30,...off.map(r=>r.zone||0))/10)*10;
+    const plot=Plane(svg,{x:[25,130],y:[0,max],left:64,top:12,width:W-84,height:H-65,grid:[10,5],labels:[20,10],
+      ticks:'edge',xLabel:'rider mass (kg)',yLabel:'zone speed (m/s)'});
+    for (const [rows,color,dashed] of [[on,1,false],[off,2,true]]) {
+      for (let i=0;i<2;i++) if (rows[i].zone!==null && rows[i+1].zone!==null) {
+        plot.segment([masses[i],rows[i].zone],[masses[i+1],rows[i+1].zone],{color,width:2,dashed});
+      }
+      rows.forEach(r=>{
+        plot.point(r.m,r.zone||0,{color,shape:dashed ? 'diamond' : 'circle',r:5});
+        plot.label(r.m,r.zone||0,r.zone===null ? '×' : fmt(r.zone,2),{anchor:'middle',dy:dashed ? -12 : 20,layer:'labels'});
+      });
+    }
+  }
+  function setMode(mode) {
+    if (!['design','ledger','notebook'].includes(mode)) return;
+    if (state.initialized && state.mode===mode) return;
+    stopRide();
+    Curio.stop();
+    V.hush();
+    state.mode=mode;
+    state.initialized=true;
+    for (const m of ['design','ledger','notebook']) {
+      $(m).hidden=m!==mode;
+      $('m-'+m).setAttribute('aria-pressed',m===mode);
+    }
+    $(mode).appendChild($('hintbar'));
+    if (mode==='ledger') {
+      if (!state.last) { state.last=simulate(state.design); state.calculated=true; }
+      hint(L.ledger);
+      ledger();
+    } else if (mode==='notebook') {
+      hint(document.body.classList.contains('stack') ? L.notebookScroll : L.notebook);
+      notebook();
+    }
+    else { hint(!primaryVisible() ? L.changedUp : state.hasRidden ? L.changed : L.design); drawScene(); }
+    V.welcome();
+  }
+  function reset() {
+    V.hush();
+    state.design={...defaults};
+    state.last=null;
+    state.hasRidden=false;
+    state.challenge='';
+    $('challenge').value='';
+    change();
+    hint(L.reset);
+  }
+  function layout() {
+    const stack=innerWidth<800 && innerHeight>innerWidth || innerWidth<600;
+    document.body.classList.toggle('stack',stack);
+    document.body.classList.toggle('compact',!stack && (innerHeight<900 || innerWidth<1100));
+    if (state.mode==='design') drawScene();
+    if (state.mode==='ledger') ledger();
+    if (state.mode==='notebook') drawPlot();
+  }
+  for (const mode of ['design','ledger','notebook']) $('m-'+mode).onclick=()=>setMode(mode);
+  for (const [id,key] of [['height','H'],['sag','b'],['mass','m']]) $(id).oninput=()=>{
+    state.design[key]=+$(id).value;
+    change();
+  };
+  document.querySelectorAll('[data-key]').forEach(el=>el.onclick=()=>{
+    state.design[el.dataset.key]=el.dataset.value==='true';
+    change();
+  });
+  document.querySelectorAll('[data-mass]').forEach(el=>el.onclick=()=>{ state.design.m=+el.dataset.mass; change(); });
+  document.querySelectorAll('[data-brake]').forEach(el=>el.onclick=()=>{ state.design.brake=el.dataset.brake; change(); });
+  $('strength').oninput=()=>{ state.design[state.design.brake==='generator' ? 'generator' : 'pad']=+$('strength').value; change(); };
+  $('friction').onclick=()=>{ state.design.off=!state.design.off; change(); };
+  $('ride').onclick=()=>start(false);
+  $('test').onclick=()=>start(true);
+  $('reset').onclick=reset;
+  $('briefs').onclick=()=>{
+    state.beforeCardsHint=$('hint').textContent;
+    state.cardHint='';
+    hint('Choose a challenge, then press Back to design.');
+    $('cards').showModal();
+    Curio.tone(400,.05,.03);
+  };
+  $('close-cards').onclick=()=>$('cards').close();
+  $('cards').addEventListener('close',()=>{
+    if (state.mode!=='design') setMode('design');
+    hint(state.cardHint||state.beforeCardsHint||L.design);
+    $('briefs').focus({preventScroll:true});
+  });
+  $('challenge').onchange=()=>{
+    const id=$('challenge').value;
+    state.challenge=id;
+    if (!id) return;
+    state.design={...defaults,H:id==='Z2' ? 25 : 15,worn:id==='Z3'};
+    change();
+    hint(`${id==='Z1' ? 'Safe for everyone' : id==='Z2' ? 'Low tree: anchor at 25 m' : 'Rainy day: worn trolley'}. Choose a brake and press Test all three.`);
+    state.cardHint=$('hint').textContent;
+    $('brief-text').textContent=(id==='Z1' ? 'Default cable and new trolley.' :
+      id==='Z2' ? 'Tree anchor at 25 meters and new trolley.' : 'Default cable and worn trolley.')+
+      ' Keep the cable, trolley and upright posture. Choose a brake, then press Test all three.';
+  };
+  $('scrub').oninput=()=>{ state.scrubbed=true; V.dropQueued(); ledger(); };
+  $('copy').onclick=async()=>{
+    const value=[headers.join('\t'),...state.rides.map((r,i)=>rowValues(r,i).join('\t'))].join('\n');
+    try { await navigator.clipboard.writeText(value); hint('Ride table copied. It stays under your control on this device.'); }
+    catch {
+      $('copy-fallback').hidden=false;
+      $('copy-fallback').value=value;
+      $('copy-fallback').focus({preventScroll:true});
+      $('copy-fallback').select();
+      hint('Select the table text below, then copy it with Control C.');
+    }
+    Curio.tone(500,.06,.03);
+  };
+  $('clear').onclick=()=>{ state.rides=[]; save(); notebook(); hint('Notebook cleared. Your earned challenges remain on this device.'); };
+  $('compare').onclick=()=>{
+    $('compare-result').textContent=L.compare;
+    hint('Compare your explanation with the evidence. Adjust your conclusion if needed.');
+    V.how('compare',{valid:()=>state.mode==='notebook'});
+    Curio.tone(550,.07,.03);
+  };
+  addEventListener('keydown',e=>{
+    if (/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName) || state.mode!=='design') return;
+    if (e.code==='Space') { e.preventDefault(); start(false); }
+    if (e.key.toLowerCase()==='t') start(true);
+    if (e.key.toLowerCase()==='r') reset();
+  });
+  Curio.onSound(on=>{ if (!on) soundStop(); else if (state.running) soundStart(); });
+  Curio.onMotion(()=>drawScene());
+  Curio.init({clips:"voice:*",rate:.94});
+  restore();
+  sync();
+  lab();
+  setMode('design');
+  layout();
+  new ResizeObserver(layout).observe(document.querySelector('main'));
+  requestAnimationFrame(tick);
+  window.__tool={state,setMode,allLines:()=>V.allLines(),vlog:V.log,simulate,geometry,start,reset,change,ledger,notebook,
+    get vq(){return V.queue;},RIDER_ART};
+})();
+</script>
+</body>
+</html>

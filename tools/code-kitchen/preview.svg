@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+<defs>
+  <linearGradient id="room" x2="0" y2="1"><stop stop-color="#fff7e7"/><stop offset="1" stop-color="#d7b68a"/></linearGradient>
+  <linearGradient id="cake" x2="0" y2="1"><stop stop-color="#f7ca67"/><stop offset="1" stop-color="#bb6322"/></linearGradient>
+  <radialGradient id="plate"><stop stop-color="#fffdf0"/><stop offset=".7" stop-color="#f8edcf"/><stop offset=".84" stop-color="#c3a57b"/><stop offset="1" stop-color="#fff7e4"/></radialGradient>
+  <filter id="shadow"><feDropShadow dx="2" dy="8" stdDeviation="7" flood-opacity=".2"/></filter>
+</defs>
+<rect width="800" height="500" fill="url(#room)"/>
+<path d="M0 150H800M0 250H800M0 350H800M100 0V400M300 0V400M500 0V400M700 0V400" stroke="#e2c9a7" stroke-width="2"/>
+<rect width="800" height="65" fill="#9a4a12"/>
+<text x="28" y="43" fill="#fff" font-family="sans-serif" font-weight="800" font-size="29">Code Kitchen</text>
+<g transform="rotate(-3 225 270)" filter="url(#shadow)">
+  <rect x="35" y="110" width="390" height="320" rx="5" fill="#fffdf7"/>
+  <path d="M35 163H425" stroke="#d77f70" stroke-width="3"/>
+  <path d="M35 222H425M35 278H425M35 334H425M35 390H425" stroke="#cfdce8"/>
+  <g font-family="monospace" font-size="21" fill="#50331f">
+    <text x="55" y="145">RECIPE CARD</text>
+    <text x="55" y="205">def stack(size):</text>
+    <text x="78" y="261">pour_pancakes(size)</text>
+    <text x="78" y="317">add_topping("syrup")</text>
+    <text x="55" y="374">stack(4)</text>
+  </g>
+</g>
+<ellipse cx="600" cy="389" rx="151" ry="57" fill="url(#plate)" filter="url(#shadow)"/>
+<g fill="url(#cake)" stroke="#ac5d20" stroke-width="2">
+  <ellipse cx="602" cy="350" rx="92" ry="30"/><ellipse cx="602" cy="333" rx="92" ry="30"/>
+  <ellipse cx="602" cy="316" rx="92" ry="30"/><ellipse cx="602" cy="299" rx="92" ry="30"/>
+</g>
+<path d="M537 288Q598 261 668 293Q683 306 656 310L636 314Q626 349 614 316Q572 322 537 306Z" fill="#9d4d19"/>
+<path d="M583 280L610 274L627 285L600 291Z" fill="#ffe889" stroke="#cfad44"/>
+<rect x="517" y="92" width="145" height="107" fill="#fff9e5" stroke="#b89668" transform="rotate(5 590 145)"/>
+<text x="536" y="127" font-family="monospace" font-weight="700" font-size="17" fill="#6e3e1d">TABLE 3</text>
+<text x="536" y="157" font-family="sans-serif" font-size="16" fill="#6e3e1d">4 pancakes</text>
+<text x="536" y="180" font-family="sans-serif" font-size="16" fill="#6e3e1d">syrup</text>
+</svg>

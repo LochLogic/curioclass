@@ -1,0 +1,140 @@
+{
+  "keep": [
+    "#stage",
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "drink-best",
+      "steps": [
+        {
+          "click": "#orderSelect"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#reveal"
+        }
+      ],
+      "keep": [
+        "#packageCard",
+        "#graphCard",
+        "#canSlider"
+      ]
+    },
+    {
+      "name": "radius-min",
+      "steps": [
+        {
+          "drag": "return (()=>{const r=document.querySelector('#radius').getBoundingClientRect();return [[r.x+r.width/2,r.y+22],[r.x+12,r.y+22]];})();"
+        }
+      ]
+    },
+    {
+      "name": "radius-max",
+      "steps": [
+        {
+          "drag": "return (()=>{const r=document.querySelector('#radius').getBoundingClientRect();return [[r.x+r.width/2,r.y+22],[r.x+r.width-12,r.y+22]];})();"
+        }
+      ]
+    },
+    {
+      "name": "net",
+      "steps": [
+        {
+          "click": "#netToggle"
+        }
+      ]
+    },
+    {
+      "name": "lid-cost",
+      "steps": [
+        {
+          "click": "#orderSelect"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#lidCost').getBoundingClientRect();return [[r.x+r.width/2,r.y+22],[r.x+r.width-12,r.y+22]];})();"
+        },
+        {
+          "click": "#reveal"
+        }
+      ]
+    },
+    {
+      "name": "shelf-drink",
+      "steps": [
+        {
+          "click": "#m-shelf"
+        },
+        {
+          "click": "#can-drink"
+        }
+      ]
+    },
+    {
+      "name": "packed",
+      "steps": [
+        {
+          "click": "#m-case"
+        },
+        {
+          "click": "#pack"
+        },
+        {
+          "wait": 1700
+        }
+      ]
+    },
+    {
+      "name": "square-packed",
+      "steps": [
+        {
+          "click": "#m-case"
+        },
+        {
+          "click": "#orderSelect"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#pack"
+        },
+        {
+          "wait": 1700
+        }
+      ]
+    }
+  ]
+}

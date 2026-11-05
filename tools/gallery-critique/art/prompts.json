@@ -1,6 +1,6 @@
 {
-  "house_style": "Painted gallery-poster portrait for a high school art critique tool: confident painterly brushwork, rich but calm color, head and shoulders, natural and respectful. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
-  "style": "Three panelist portraits in one shared style, head and shoulders, shown small and round.",
+  "house_style": "Sophisticated gallery-poster painting for grades 9-12, quiet painterly realism, rich material texture, warm upper-left light, restrained charcoal and antique brass palette. No text, letters, numbers, logos or people.",
+  "style": "Museum wall and symbolic objects, never portraits. Legacy portraits retained but unused.",
   "assets": [
     {
       "name": "panel-okafor",
@@ -44,6 +44,88 @@
       "despill": true,
       "source": "gpt-image-2 (Codex)",
       "review": "pending"
+    },
+    {
+      "name": "gc-wall",
+      "prompt": "A deep charcoal gray museum wall of smooth matte plaster, one soft warm spotlight pool in the upper middle fading into darkness at the edges, a narrow strip of dark polished wood floor along the bottom, quiet painterly realism.",
+      "aspect": "16:9",
+      "cutout": false,
+      "people": false,
+      "width": 1400,
+      "quality": 76,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "gc-critic",
+      "prompt": "A black fountain pen lying across an open notebook with blank cream pages, a single still-life object group. Flat pure green (#00FF00) background.",
+      "aspect": "1:1",
+      "cutout": true,
+      "people": false,
+      "width": 192,
+      "quality": 76,
+      "drawn_by": "codex",
+      "despill": true
+    },
+    {
+      "name": "gc-curator",
+      "prompt": "A brass ring of old keys with a blank cream paper tag, a single still-life object group. Flat pure green (#00FF00) background.",
+      "aspect": "1:1",
+      "cutout": true,
+      "people": false,
+      "width": 192,
+      "quality": 76,
+      "drawn_by": "codex",
+      "despill": true
+    },
+    {
+      "name": "gc-artist",
+      "prompt": "A short wooden paintbrush in a broad clear glass jar of cloudy water, painted gallery-poster realism, upper-left warm light, worn wood, pigment marks, shaded glass rim and watery reflections. Compact square silhouette legible at 40 pixels. Native transparent background, no text, letters, numbers, logos or people.",
+      "aspect": "1:1",
+      "cutout": false,
+      "people": false,
+      "width": 192,
+      "quality": 76,
+      "drawn_by": "codex",
+      "native_alpha": true,
+      "review": "Cold review redraw: native alpha preserved; wide silhouette replaces narrow green-fringed emblem."
+    },
+    {
+      "name": "gc-visitor",
+      "prompt": "A folded blank paper museum map with a small brass pin, a single still-life object group. Flat pure green (#00FF00) background.",
+      "aspect": "1:1",
+      "cutout": true,
+      "people": false,
+      "width": 192,
+      "quality": 76,
+      "drawn_by": "codex",
+      "despill": true
+    },
+    {
+      "name": "pd-aic-20684",
+      "prompt": "Authentic public-domain museum original. Preserve it; never generate a replacement.",
+      "source": "CC0 (AIC public domain)",
+      "museum_original": true,
+      "people": true,
+      "cutout": false,
+      "width": 1400
+    },
+    {
+      "name": "pd-met-11122",
+      "prompt": "Authentic public-domain museum original. Preserve it; never generate a replacement.",
+      "source": "CC0 (Met Open Access)",
+      "museum_original": true,
+      "people": true,
+      "cutout": false,
+      "width": 1400
+    },
+    {
+      "name": "pd-aic-111442",
+      "prompt": "Authentic public-domain museum original. Preserve it; never generate a replacement.",
+      "source": "CC0 (AIC public domain)",
+      "museum_original": true,
+      "people": true,
+      "cutout": false,
+      "width": 1400
     }
   ]
 }

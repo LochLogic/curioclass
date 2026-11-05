@@ -1,0 +1,2379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code Kitchen · Cook with code · Curio Class</title>
+<meta name="description" content="Cook breakfast orders with typed variables and procedures, then meet a changed menu with fewer edits. Grades 6-8. Offline.">
+<link rel="icon" href="data:,">
+<!-- Code Kitchen, Curio Class. Kit starter, students, grades 6-8 computer science.
+MS-PRO-VD-16, MS-PRO-PD-12, MS-PRO-RD-17. Python Tutorial and SICP section 1.1.8.
+Original tickets and language. Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Existing diner backdrop: FLUX.1-schnell (Apache 2.0). Content CC BY 4.0. Code MIT. No network requests. -->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#fbf3e4;
+  --panel:#fffaf1;
+  --ink:#2b1d14;
+  --muted:#6b5545;
+  --line:#e7d6bd;
+  --brand:#9a4a12;
+  --btn:#2b1d14;
+  --btn-line:#cf9b73;
+  --head-ink:#fff;
+  --focus:#1d4ed8;
+}
+body {
+  height:100%;
+  overflow:hidden;
+  background:radial-gradient(at 70% 30%,#fff9ed,#e8d6b8)
+}
+button,input,select,summary {
+  min-height:44px;
+  min-width:44px;
+  font:inherit
+}
+button,summary {
+  border:1px solid #baa181;
+  border-radius:7px;
+  background:linear-gradient(#fffdf8,#f1e4cd);
+  font-weight:650
+}
+button:hover,summary:hover {
+  background:#ffe5b5
+}
+button:active {
+  transform:translateY(1px)
+}
+button[aria-pressed="true"] {
+  background:#9a4a12;
+  color:white
+}
+header {
+  padding:9px 16px;
+  gap:8px;
+  flex-wrap:nowrap;
+  background:linear-gradient(120deg,#71300d,#a6531c 60%,#853c12)
+}
+h1 {
+  font-size:27px;
+  white-space:nowrap;
+  letter-spacing:-.7px
+}
+h1 small {
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-top:4px
+}
+.seg {
+  border-radius:7px
+}
+.seg button,.icon-btn {
+  min-height:44px;
+  padding:0 10px;
+  font-size:13px;
+  border-radius:5px
+}
+.seg button[aria-pressed="true"] {
+  background:#f8deac;
+  color:#43230c
+}
+main {
+  grid-template-columns:minmax(0,1fr) 252px;
+  min-height:0;
+  gap:12px;
+  padding:12px
+}
+.panel {
+  grid-column:2;
+  grid-row:1;
+  border:1px solid #c9af89;
+  border-radius:10px;
+  padding:12px;
+  gap:9px;
+  box-shadow:0 6px 18px #6d3c1620;
+  background:linear-gradient(120deg,#fffdf8,#f5ead7)
+}
+.hint {
+  font-size:14px;
+  line-height:1.4;
+  margin:0;
+  min-height:60px;
+  flex:none
+}
+.actions {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px;
+  flex:none
+}
+#cook {
+  grid-column:1/-1;
+  background:linear-gradient(#ffdb80,#ecc064);
+  color:#432509;
+  box-shadow:0 3px #ac7933;
+  min-height:52px;
+  border:1px solid #a66c23;
+  border-radius:7px;
+  font-size:21px
+}
+.actions button {
+  font-size:13px
+}
+.actions #new-ticket {
+  grid-column:1/-1;
+  background:#f5d8a4
+}
+.stage {
+  grid-column:1;
+  grid-row:1;
+  min-height:0;
+  display:grid;
+  grid-template-rows:100px minmax(0,1fr) 27px;
+  gap:10px;
+  overflow:hidden;
+  background:transparent
+}
+.rail {
+  position:relative;
+  display:flex;
+  gap:7px;
+  padding:12px 6px 2px;
+  overflow:auto;
+  align-items:stretch;
+  background-image:url('art:ticket-rail');
+  background-size:100% 26px;
+  background-repeat:no-repeat;
+  background-position:top
+}
+.ticket {
+  flex:1;
+  min-width:105px;
+  max-width:230px;
+  padding:6px 9px;
+  background:linear-gradient(105deg,#fffef4,#f8e9c8);
+  border:1px solid #c6ae83;
+  border-bottom:3px dotted #c1ad8b;
+  box-shadow:1px 4px 5px #66421c25;
+  position:relative
+}
+.ticket strong {
+  font:800 13px ui-monospace,Consolas,monospace
+}
+.ticket .order {
+  font-size:12px;
+  display:flex;
+  align-items:center;
+  gap:4px;
+  flex-wrap:wrap;
+  margin-top:3px
+}
+.ticket img {
+  width:22px;
+  height:18px;
+  object-fit:contain
+}
+.ticket small {
+  display:block;
+  font-size:10px;
+  color:#634a36
+}
+.ticket .stamp {
+  position:absolute;
+  right:5px;
+  top:0;
+  font-size:25px;
+  font-weight:900;
+  color:#216140;
+  transform:rotate(-12deg)
+}
+.ticket.wrong .stamp {
+  color:#b91c1c
+}
+.ticket.wrong {
+  border-color:#b91c1c
+}
+.empty-rail {
+  align-self:center;
+  font-size:14px;
+  color:var(--muted);
+  margin-left:15px
+}
+.workbench {
+  display:grid;
+  grid-template-columns:minmax(0,1.62fr) minmax(190px,1fr);
+  gap:13px;
+  min-height:0
+}
+.card {
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+  background:#fffdf7;
+  border:1px solid #d4b994;
+  border-radius:5px;
+  box-shadow:2px 7px 16px #4f2d2325;
+  transform:rotate(-.25deg);
+  overflow:hidden
+}
+.card-head {
+  display:flex;
+  justify-content:space-between;
+  padding:12px 14px 9px;
+  border-bottom:3px solid #d77f70;
+  font-size:12px;
+  color:#765c46;
+  text-transform:uppercase;
+  letter-spacing:1.6px;
+  flex:none
+}
+.card-head strong {
+  color:#57361e
+}
+#code {
+  overflow:auto;
+  flex:1;
+  padding:6px 0 30px;
+  scroll-padding:10px
+}
+.code-line {
+  min-height:52px;
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:3px;
+  border-bottom:1px solid #dce5ed;
+  padding:3px 8px 3px 0;
+  position:relative;
+  font:500 17px ui-monospace,Consolas,monospace
+}
+.code-line.selected {
+  background:#fff2cf
+}
+.code-line.running {
+  background:#ffe4a1;
+  box-shadow:inset 5px 0 #a65212
+}
+.code-line.error {
+  background:#fff0ec;
+  box-shadow:inset 5px 0 #b91c1c
+}
+.line-no {
+  background:transparent;
+  border:0;
+  color:#826b58;
+  width:36px;
+  flex:none;
+  padding:0;
+  font-size:12px
+}
+.line-content {
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:3px;
+  flex:1;
+  min-width:0
+}
+.indented {
+  margin-left:23px;
+  padding-left:10px;
+  border-left:2px solid #cbb48e
+}
+.kw {
+  font-weight:800;
+  color:#8b3710
+}
+.slot {
+  border:1px solid #9b866a;
+  min-width:44px;
+  max-width:100%;
+  height:44px;
+  text-align:center;
+  padding:5px 7px;
+  font:inherit;
+  color:var(--ink);
+  background:#f0e7d9;
+  border-radius:6px
+}
+.slot.num {
+  border-radius:50px;
+  background:#dbeafe;
+  color:#1e3a8a;
+  border-color:#91afd7
+}
+.slot.text {
+  background:#fde68a;
+  color:#78350f;
+  border-radius:3px 13px 13px 3px;
+  border-color:#c9a247
+}
+.slot.bool {
+  background:#dcfce7;
+  color:#14532d;
+  border-radius:50px;
+  border-color:#8cbaa0
+}
+.slot:focus {
+  outline:3px solid #1d4ed8;
+  outline-offset:1px
+}
+.error-note {
+  width:100%;
+  padding:8px 12px 6px 40px;
+  color:#b91c1c;
+  font:650 13px/1.4 'Segoe UI',sans-serif
+}
+.station {
+  position:relative;
+  min-height:0;
+  border:1px solid #d7bd94;
+  border-radius:10px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  background:linear-gradient(#f6efdf,#e4cdaa)
+}
+.station::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:url('art:diner-pass') center/cover;
+  opacity:.25;
+  pointer-events:none
+}
+.station-title {
+  z-index:1;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2px;
+  padding:13px 14px;
+  color:#66432a
+}
+.lamp {
+  width:7px;
+  height:7px;
+  display:inline-block;
+  background:#bf691d;
+  border-radius:50%;
+  box-shadow:0 0 8px #cf8017;
+  animation:glow 3s infinite;
+  margin-right:5px
+}
+@keyframes glow {
+  50% {
+    opacity:.4
+  }
+}
+.calm .lamp {
+  animation:none
+}
+.cook-scene {
+  position:relative;
+  flex:1;
+  min-height:190px;
+  isolation:isolate
+}
+.griddle {
+  position:absolute;
+  width:94%;
+  height:49%;
+  object-fit:contain;
+  top:3%;
+  left:1%;
+  filter:drop-shadow(0 8px 5px #573b2335)
+}
+.toaster {
+  position:absolute;
+  width:31%;
+  height:26%;
+  object-fit:contain;
+  right:2%;
+  bottom:23%;
+  z-index:2
+}
+.dish {
+  position:absolute;
+  width:45%;
+  height:39%;
+  left:27%;
+  bottom:7%;
+  object-fit:contain;
+  z-index:2;
+  filter:drop-shadow(1px 6px 4px #4a2b2033)
+}
+.food {
+  position:absolute;
+  object-fit:contain;
+  z-index:3;
+  filter:drop-shadow(0 2px 1px #58301922);
+  animation:drop .28s ease-out
+}
+.food.toast-pop {
+  animation:toast-pop .28s ease-out;
+}
+@keyframes toast-pop {
+  from {
+    transform:translateY(20px); opacity:.3
+  }
+  to {
+    transform:translateY(0); opacity:1
+  }
+}
+.passing .dish,.passing .food {
+  animation:pass .35s ease-out
+}
+@keyframes drop {
+  from {
+    transform:translateY(-30px);
+    opacity:.3
+  }
+  to {
+    transform:translateY(0);
+    opacity:1
+  }
+}
+.served-flash {
+  position:absolute;
+  z-index:7;
+  left:10%;
+  right:10%;
+  top:25%;
+  padding:17px 8px;
+  text-align:center;
+  background:#fff5dcf2;
+  border:2px solid #6b8b59;
+  border-radius:8px;
+  box-shadow:0 6px 15px #40281530;
+  animation:pass .35s ease-out
+}
+@keyframes pass {
+  from {
+    transform:translateX(-40px);
+    opacity:0
+  }
+  to {
+    transform:translateX(0);
+    opacity:1
+  }
+}
+.station-state {
+  position:relative;
+  z-index:4;
+  padding:7px 12px;
+  font-size:12px;
+  background:#fff7e5d9;
+  min-height:34px
+}
+.jars {
+  position:relative;
+  min-height:110px;
+  max-height:150px;
+  overflow:auto;
+  display:flex;
+  flex-wrap:wrap;
+  align-content:start;
+  gap:5px;
+  padding:9px 7px 4px;
+  border-top:5px solid #a57447;
+  background:linear-gradient(#d3b58f,#f5e7ce)
+}
+.jar {
+  position:relative;
+  width:74px;
+  height:91px;
+  background:url('art:jar') center/contain no-repeat;
+  flex:none;
+  text-align:center
+}
+.jar b {
+  display:block;
+  position:absolute;
+  top:43%;
+  left:4%;
+  width:92%;
+  font:700 12px ui-monospace,Consolas,monospace;
+  background:#fff7e5e8;
+  border:1px solid #ccb691;
+  border-radius:9px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  padding:3px
+}
+.jar b.num {
+  background:#dbeafe;
+  color:#1e3a8a;
+  border-radius:50%
+}
+.jar b.text {
+  background:#fde68a;
+  color:#78350f;
+  border-radius:2px 10px 10px 2px
+}
+.jar b.bool {
+  background:#dcfce7;
+  color:#14532d;
+  border-radius:20px
+}
+.jar small {
+  position:absolute;
+  bottom:2px;
+  left:0;
+  width:100%;
+  font:700 11px ui-monospace,Consolas,monospace;
+  background:#fff7e5e8
+}
+.scope {
+  width:100%;
+  border:1px dashed #876241;
+  border-radius:5px;
+  display:flex;
+  flex-wrap:wrap;
+  padding:3px;
+  background:#fffbf073
+}
+.scope span {
+  width:100%;
+  font-size:11px;
+  font-weight:700
+}
+.footer {
+  display:flex;
+  justify-content:space-between;
+  gap:6px;
+  color:#6b5545;
+  font-size:11px;
+  align-items:center
+}
+.counter {
+  font:700 13px/1.4 ui-monospace,Consolas,monospace;
+  margin:0;
+  min-height:37px;
+  padding:7px;
+  border:1px dashed #af8b59;
+  background:#fff7dd;
+  border-radius:6px;
+  flex:none
+}
+.panel h2 {
+  font-size:11px;
+  margin:4px 0;
+  letter-spacing:1.7px;
+  text-transform:uppercase
+}
+.tool-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:5px;
+  flex:none
+}
+.tool-grid button {
+  font-size:12px;
+  padding:2px 5px
+}
+.levels {
+  display:grid;
+  gap:5px;
+  flex:none;
+  margin-top:auto
+}
+.set {
+  display:grid;
+  grid-template-columns:1fr repeat(3,44px);
+  align-items:center;
+  gap:4px
+}
+.set span {
+  font-size:10px;
+  line-height:1.3;
+  color:var(--muted)
+}
+.set button {
+  border-radius:50%;
+  width:44px;
+  padding:0;
+  font-size:13px;
+  position:relative
+}
+.set button.done::after {
+  content:'✓';
+  position:absolute;
+  right:0;
+  bottom:0;
+  color:#176b3b;
+  font-size:14px;
+  background:#fff8e9;
+  border-radius:50%
+}
+.set button.par {
+  outline:3px solid #b48628;
+  outline-offset:-5px
+}
+.open-tools {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px
+}
+.open-tools #new-ticket {
+  grid-column:1/-1
+}
+.open-tools button {
+  font-size:12px
+}
+.manager {
+  position:absolute;
+  top:10px;
+  left:8%;
+  width:84%;
+  z-index:10;
+  padding:17px 22px;
+  background:#ffedb3;
+  box-shadow:2px 9px 15px #4c2c1a50;
+  border:1px solid #b68c46;
+  transform:rotate(-1deg);
+  animation:pass .4s ease-out
+}
+.manager h2 {
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  margin:0 0 7px
+}
+.manager p {
+  font-size:19px;
+  font-weight:700;
+  margin:0 0 12px
+}
+.manager button {
+  padding:0 20px
+}
+dialog {
+  border:2px solid #ae8556;
+  border-radius:12px;
+  padding:20px;
+  color:var(--ink);
+  background:#fffaf0;
+  width:min(560px,94vw);
+  max-height:92vh;
+  overflow:auto;
+  box-shadow:0 20px 80px #2b1d1466
+}
+dialog::backdrop {
+  background:#2b1d1470
+}
+dialog h2 {
+  margin:0 0 10px;
+  font-size:20px
+}
+.dialog-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px
+}
+.dialog-head button {
+  padding:0 14px
+}
+.pantry-grid {
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:5px;
+  margin:10px 0
+}
+.pantry-text {
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+  margin:8px 0
+}
+.pantry-text button {
+  padding:0 10px;
+  font:14px ui-monospace,Consolas,monospace
+}
+dialog input,dialog select {
+  border:1px solid #aa8c66;
+  border-radius:6px;
+  padding:6px;
+  background:#fffef9
+}
+#value-edit {
+  width:100%;
+  font:18px ui-monospace,Consolas,monospace
+}
+.dialog-actions {
+  display:flex;
+  gap:8px;
+  justify-content:flex-end;
+  margin-top:12px
+}
+.primary {
+  background:var(--brand);
+  color:white;
+  padding:0 18px
+}
+.form-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px
+}
+.form-grid label {
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  font-size:13px
+}
+.form-grid .wide {
+  grid-column:1/-1
+}
+.form-grid .check {
+  display:flex;
+  flex-direction:row;
+  align-items:center
+}
+.form-grid input[type=checkbox] {
+  width:24px;
+  margin:0
+}
+.muted {
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.4
+}
+#add-options {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px
+}
+#add-options button {
+  font:13px ui-monospace,Consolas,monospace;
+  padding:5px
+}
+@media (max-height:899px) {
+  .jars {
+    min-height:85px;
+    max-height:88px;
+    flex-wrap:nowrap
+  }
+  .jar {
+    height:70px;
+    width:65px
+  }
+  .scope {
+    width:auto;
+    flex:none;
+    flex-wrap:nowrap
+  }
+  .scope span {
+    width:55px;
+    align-self:center
+  }
+  .scope .jar {
+    width:65px
+  }
+}
+@media (max-width:1100px) {
+  main {
+    grid-template-columns:minmax(0,1fr) 205px;
+    padding:8px;
+    gap:8px
+  }
+  .panel {
+    padding:8px;
+    gap:7px
+  }
+  .workbench {
+    grid-template-columns:minmax(0,1.6fr) minmax(155px,1fr);
+    gap:8px
+  }
+  .set {
+    grid-template-columns:1fr repeat(3,44px);
+    gap:1px
+  }
+  .set span {
+    font-size:10px
+  }
+  .code-line {
+    font-size:15px
+  }
+  .card-head {
+    padding:9px 8px;
+    font-size:10px;
+    letter-spacing:1px
+  }
+  .station-title {
+    font-size:10px;
+    padding:10px
+  }
+  .hint {
+    font-size:13px
+  }
+  h1 {
+    font-size:23px
+  }
+  .tool-grid {
+    grid-template-columns:1fr 1fr
+  }
+  .levels {
+    display:none
+  }
+}
+@media (max-height:550px) and (min-width:600px) {
+  header {
+    padding:5px 8px;
+    gap:5px
+  }
+  h1 {
+    font-size:20px
+  }
+  .seg button,.icon-btn {
+    font-size:11px;
+    padding:0 7px
+  }
+  main {
+    grid-template-columns:minmax(0,1fr) 168px;
+    padding:6px;
+    gap:6px
+  }
+  .panel {
+    padding:6px;
+    gap:6px
+  }
+  .hint {
+    font-size:12px;
+    min-height:65px
+  }
+  .stage {
+    grid-template-rows:76px minmax(0,1fr) 22px;
+    gap:6px
+  }
+  .workbench {
+    grid-template-columns:minmax(0,1.6fr) minmax(140px,1fr);
+    gap:6px
+  }
+  .code-line {
+    font-size:13px;
+    min-height:48px
+  }
+  .card-head {
+    font-size:10px;
+    letter-spacing:0;
+    padding:5px 8px
+  }
+  .line-no {
+    width:44px;
+    min-width:44px
+  }
+  .slot {
+    padding:3px;
+    max-width:100%
+  }
+  .indented {
+    margin-left:10px;
+    padding-left:5px
+  }
+  .station-title {
+    padding:6px;
+    letter-spacing:1px
+  }
+  .cook-scene {
+    min-height:110px
+  }
+  .jars {
+    min-height:68px;
+    max-height:68px;
+    padding:3px
+  }
+  .jar {
+    height:57px;
+    width:52px
+  }
+  .jar b {
+    font-size:10px
+  }
+  .jar small {
+    font-size:10px
+  }
+  .station-state {
+    font-size:10px;
+    padding:4px
+  }
+  .ticket {
+    min-width:98px;
+    padding:4px 6px
+  }
+  .ticket .order {
+    font-size:10px;
+    gap:2px
+  }
+  .ticket strong {
+    font-size:11px
+  }
+  .ticket img {
+    width:18px;
+    height:14px
+  }
+  .footer {
+    font-size:10px
+  }
+  #cook {
+    min-height:44px;
+    font-size:18px
+  }
+  .counter {
+    font-size:11px
+  }
+  .tool-grid button {
+    font-size:11px
+  }
+  .levels {
+    margin-top:0
+  }
+}
+@media (min-width:600px) and (max-width:790px) and (min-height:551px) {
+  main {
+    grid-template-columns:minmax(0,1fr);
+    grid-template-rows:minmax(0,1fr) 210px
+  }
+  .panel {
+    grid-column:1;
+    grid-row:2;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    overflow:auto;
+    align-content:start
+  }
+  .actions {
+    grid-column:1;
+    grid-row:1/4;
+    grid-template-columns:1fr 1fr 1fr;
+    align-content:start
+  }
+  #cook {
+    grid-column:1/-1
+  }
+  .hint {
+    grid-column:2;
+    grid-row:1;
+    min-height:45px
+  }
+  .tool-grid {
+    grid-column:2
+  }
+  .levels {
+    display:none
+  }
+  .tool-grid {
+    grid-template-columns:repeat(4,1fr)
+  }
+  .tool-grid button {
+    font-size:11px
+  }
+  .counter {
+    grid-column:2
+  }
+  .panel h2 {
+    display:none
+  }
+  .stage {
+    grid-column:1;
+    grid-row:1
+  }
+}
+@media (max-width:599px) {
+  header {
+    flex-wrap:wrap;
+    padding:6px 8px;
+    gap:5px
+  }
+  h1 {
+    font-size:21px;
+    width:100%;
+    margin:0
+  }
+  h1 small {
+    display:none
+  }
+  .seg button,.icon-btn {
+    padding:0 6px;
+    font-size:11px
+  }
+  .seg {
+    flex:1
+  }
+  main {
+    display:flex;
+    flex-direction:column;
+    padding:6px;
+    gap:6px
+  }
+  .panel {
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:4px;
+    flex:none;
+    padding:5px;
+    overflow:visible
+  }
+  .hint {
+    grid-column:1/-1;
+    min-height:34px;
+    font-size:12px;
+    line-height:1.35
+  }
+  .actions {
+    display:flex;
+    gap:4px;
+    grid-column:1/-1
+  }
+  #cook {
+    flex:1;
+    min-height:44px;
+    font-size:18px
+  }
+  .actions button {
+    font-size:11px;
+    padding:0 5px
+  }
+  #restart {
+    max-width:72px
+  }
+  .tool-grid {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    grid-column:1/-1;
+    gap:4px
+  }
+  .tool-grid button {
+    padding:0 3px;
+    font-size:11px
+  }
+  .panel h2,.levels {
+    display:none
+  }
+  .counter {
+    font-size:11px;
+    padding:4px;
+    min-height:0;
+    grid-column:1/-1
+  }
+  .stage {
+    flex:1;
+    min-height:0;
+    grid-template-rows:72px minmax(0,1fr) 20px;
+    gap:5px
+  }
+  .workbench {
+    display:flex;
+    flex-direction:column-reverse;
+    gap:5px;
+    min-height:0
+  }
+  .card {
+    flex:1;
+    min-height:90px;
+    transform:none
+  }
+  .card-head {
+    padding:5px 8px
+  }
+  .code-line {
+    font-size:14px;
+    min-height:48px
+  }
+  .line-no {
+    width:44px;
+    min-width:44px
+  }
+  .station {
+    height:65px;
+    flex:none;
+    flex-direction:row;
+    overflow:hidden
+  }
+  .station-title {
+    font-size:10px;
+    width:60px;
+    padding:6px;
+    letter-spacing:0
+  }
+  .cook-scene {
+    height:65px;
+    min-height:0;
+    flex:1
+  }
+  .griddle {
+    height:65%;
+    top:10%;
+    width:100%
+  }
+  .toaster {
+    display:none
+  }
+  .dish {
+    height:80%;
+    width:55%;
+    bottom:0;
+    left:25%
+  }
+  .station-state {
+    max-width:110px;
+    font-size:10px;
+    padding:4px;
+    align-self:center;
+    min-height:0
+  }
+  .jars {
+    display:none
+  }
+  .served-flash {
+    top:5%;
+    padding:5px;
+    font-size:11px
+  }
+  .ticket {
+    min-width:100px;
+    padding:3px 6px
+  }
+  .ticket strong {
+    font-size:11px
+  }
+  .ticket .order {
+    font-size:10px
+  }
+  .ticket small {
+    font-size:10px
+  }
+  .ticket img {
+    width:18px;
+    height:14px
+  }
+  .footer {
+    font-size:10px
+  }
+  .manager {
+    top:3px;
+    padding:10px;
+    width:94%;
+    left:3%
+  }
+  .manager p {
+    font-size:15px
+  }
+  .pantry-grid {
+    grid-template-columns:repeat(4,1fr)
+  }
+  .open-tools {
+    grid-column:1/-1;
+    display:flex
+  }
+  .panel:has(#new-ticket:not([hidden])) .actions {
+    display:grid;
+    grid-template-columns:repeat(4,1fr)
+  }
+  .panel:has(#new-ticket:not([hidden])) #cook {
+    grid-column:1/3
+  }
+  .panel:has(#new-ticket:not([hidden])) #new-ticket {
+    grid-column:3/5
+  }
+  .jars {
+    display:flex;
+    width:max-content;
+    max-width:150px;
+    flex:0 1 150px;
+    min-width:0;
+    min-height:65px;
+    max-height:65px;
+    border-top:0;
+    border-left:2px solid #a57447;
+    padding:0;
+    overflow:auto
+  }
+  .jars:empty {
+    display:none
+  }
+  .station:has(.jar) .station-state {
+    display:none
+  }
+  .jars .jar {
+    width:54px;
+    height:61px
+  }
+  .jars .scope {
+    border:0;
+    padding:0
+  }
+  .jars .scope span {
+    width:38px;
+    font-size:10px
+  }
+}
+@media (max-height:550px) {
+  dialog .dialog-actions {
+    position:sticky;
+    bottom:-20px;
+    padding:9px 0;
+    background:#fffaf0;
+    z-index:2
+  }
+}
+@media (max-height:550px) and (min-width:600px) {
+  #ticket-form .form-grid {
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:6px;
+  }
+  #ticket-form .form-grid label:last-child {
+    grid-column:2/-1;
+  }
+  #ticket-form input:not([type=checkbox]) {
+    width:100%;
+  }
+  #ticket-form .check {
+    font-size:12px;
+    gap:3px;
+  }
+  #pantry-dialog[open] {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:5px;
+    padding:12px;
+    width:min(650px,96vw);
+    max-height:96vh;
+  }
+  #pantry-dialog .dialog-head,
+  #pantry-dialog > .muted,
+  #pantry-dialog #value-edit,
+  #pantry-dialog .dialog-actions {
+    grid-column:1/-1;
+  }
+  #pantry-dialog > .muted {
+    font-size:11px;
+    margin:2px 0;
+  }
+  #pantry-dialog #numbers {
+    grid-column:1;
+    grid-row:4/6;
+    grid-template-columns:repeat(4,1fr);
+    margin:0;
+    align-content:start;
+  }
+  #pantry-dialog #text-values {
+    grid-column:2;
+    grid-row:4;
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    margin:0;
+    gap:5px;
+  }
+  #pantry-dialog #text-values button {
+    font-size:11px;
+    padding:0 2px;
+  }
+  #pantry-dialog #scope-values {
+    grid-column:2;
+    grid-row:5;
+    margin:0;
+    gap:4px;
+  }
+  #pantry-dialog .dialog-actions {
+    position:static;
+    margin:2px 0 0;
+    padding:0;
+  }
+}
+.primary:hover {
+  background:#7e390c;
+  color:#fff;
+}
+.icon-btn:hover,
+.seg button:hover {
+  background:#5f2e0d;
+  color:#fff;
+}
+.seg button[aria-pressed="true"]:hover {
+  background:#f8deac;
+  color:#43230c;
+}
+@media (max-width:599px) {
+  .stage {
+    grid-template-rows:96px minmax(0,1fr) 20px;
+  }
+  .ticket {
+    min-width:200px;
+  }
+  .jars .jar b {
+    top:36%;
+    font-size:11px;
+    padding:2px;
+  }
+}
+@media (min-width:791px), (min-width:600px) and (max-height:550px) {
+  .panel > .hint {
+    position:sticky;
+    top:0;
+    z-index:12;
+    background:#fffaf1;
+  }
+  .panel > .actions {
+    position:sticky;
+    top:calc(var(--hint-height,60px) + 7px);
+    z-index:11;
+    background:#fffaf1;
+  }
+}
+@media (min-width:600px) and (max-width:790px) and (min-height:551px) {
+  .panel > .actions,
+  .panel > .hint {
+    position:sticky;
+    top:0;
+    z-index:11;
+    background:#fffaf1;
+  }
+  .panel:has(#new-ticket:not([hidden])) #cook {
+    grid-column:1/3;
+  }
+  .panel:has(#new-ticket:not([hidden])) #new-ticket {
+    grid-column:3/4;
+  }
+}
+.plate-label {
+  position:absolute;
+  left:25%;
+  width:50%;
+  bottom:4%;
+  z-index:6;
+  padding:3px;
+  background:#fff5da;
+  border:1px solid #bda279;
+  box-shadow:0 2px 3px #573b2320;
+  color:#50341d;
+  text-align:center;
+  overflow-wrap:anywhere;
+  font:700 11px/1.2 ui-monospace,Consolas,monospace;
+}
+.ticket.heavy {
+  min-width:230px;
+}
+@media (min-width:600px) {
+  .stage:has(.ticket.heavy) {
+    grid-template-rows:120px minmax(0,1fr) 27px;
+  }
+}
+@media (max-height:550px) and (min-width:600px) {
+  .stage:has(.ticket.heavy) {
+    grid-template-rows:96px minmax(0,1fr) 22px;
+  }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Code Kitchen <small>Cook with code</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-tickets" aria-pressed="true">Tickets</button>
+    <button id="m-open" aria-pressed="false">Open kitchen</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <aside class="panel">
+    <p id="hint" class="hint"></p>
+    <div class="actions">
+      <button class="big-btn gold" id="cook">▶ Cook</button>
+      <button id="new-ticket" hidden>+ New ticket</button>
+      <button id="step">Step</button><button id="stop">Stop</button>
+      <button id="undo">Undo</button><button id="restart">Restart level</button>
+    </div>
+    <p class="counter" id="edits">A1 · Numbers</p>
+    <h2>Recipe tools</h2>
+    <div class="tool-grid">
+      <button id="add-line">+ Add a line</button><button id="pantry">Pantry</button>
+      <button id="move-up">Move up</button><button id="move-down">Move down</button>
+      <button id="indent">Indent</button><button id="outdent">Outdent</button>
+      <button id="delete-line">Delete</button><button id="choose-level">Levels</button>
+    </div>
+    <div class="open-tools" id="open-tools" hidden>
+      <button id="clear-card">Clear card</button><button id="clear-saved">Clear saved</button>
+    </div>
+    <div class="levels" id="levels"></div>
+  </aside>
+  <div class="stage" id="stage">
+    <div class="rail" id="rail" aria-label="Order tickets"></div>
+    <div class="workbench">
+      <section class="card" aria-label="Editable recipe card">
+        <div class="card-head"><strong id="card-title">Recipe card</strong><span id="line-count">4 / 40 lines</span></div>
+        <div id="code"></div>
+      </section>
+      <section class="station" aria-label="Cooking station">
+        <div class="station-title"><i class="lamp"></i>THE PASS</div>
+        <div class="cook-scene" id="cook-scene">
+          <img class="griddle" src="art:griddle" alt="Steel griddle">
+          <img class="toaster" src="art:toaster" alt="Chrome toaster">
+          <img class="dish" id="dish" src="art:plate" alt="Breakfast plate">
+          <div id="food"></div><div id="plate-label" class="plate-label" hidden></div>
+          <div id="served-flash" class="served-flash" hidden></div>
+        </div>
+        <div id="station-state" class="station-state" aria-live="polite">Ready for your recipe.</div>
+        <div class="jars" id="jars" aria-label="Variable jars"></div>
+      </section>
+    </div>
+    <div class="footer"><span id="footer-level">Set A · Jars</span><span>Saved only on this device.</span></div>
+    <div class="manager" id="manager" hidden>
+      <h2>Manager's note · Menu change</h2><p id="manager-text"></p><button id="got-it">Back to the card</button>
+    </div>
+  </div>
+</main>
+<dialog id="pantry-dialog">
+  <div class="dialog-head"><h2>Pantry · Fill this slot</h2><button data-close>Close</button></div>
+  <p class="muted">Numbers count. Quotes make text. True and False answer yes or no.</p>
+  <input id="value-edit" aria-label="Slot value" autocomplete="off" spellcheck="false">
+  <div class="pantry-grid" id="numbers"></div><div class="pantry-text" id="text-values"></div>
+  <div class="pantry-text" id="scope-values"></div>
+  <div class="dialog-actions"><button id="use-value" class="primary">Use value</button></div>
+</dialog>
+<dialog id="add-dialog">
+  <div class="dialog-head"><h2>Add under selected line</h2><button data-close>Close</button></div>
+  <div id="add-options"></div>
+  <div id="line-composer" hidden>
+    <p class="muted">Choose this new line's values before inserting. Adding the finished line counts as one edit.</p>
+    <div class="form-grid" id="composer-fields"></div>
+    <div class="dialog-actions"><button id="insert-line" class="primary">Insert line</button></div>
+  </div>
+  <p class="muted">A procedure's indented lines run when its name is called.</p>
+</dialog>
+<dialog id="level-dialog">
+  <div class="dialog-head"><h2>Ticket sets</h2><button data-close>Close</button></div><div id="level-options"></div>
+  <p class="muted">✓ Served · Gold ring: menu change met in par. All levels are open.</p>
+</dialog>
+<dialog id="ticket-dialog">
+  <div class="dialog-head"><h2>Write a new ticket</h2><button data-close>Close</button></div>
+  <form id="ticket-form">
+    <div class="form-grid">
+      <label>Table<input name="table" type="number" min="1" max="12" value="1" required></label>
+      <label>Eggs<input name="eggs" type="number" min="0" max="6" value="0" required></label>
+      <label>Pancakes<input name="pancakes" type="number" min="0" max="8" value="3" required></label>
+      <label>Toast<input name="toast" type="number" min="0" max="4" value="0" required></label>
+      <label class="check"><input name="syrup" type="checkbox">Syrup</label>
+      <label class="check"><input name="butter" type="checkbox">Butter</label>
+      <label class="check"><input name="berries" type="checkbox">Berries</label>
+      <label class="check"><input name="banana" type="checkbox">Banana</label>
+      <label class="check"><input name="go" type="checkbox">To go</label>
+      <label>Label<input name="label" aria-label="To-go label" maxlength="24" value=""></label>
+    </div><p id="ticket-error" class="muted"></p>
+    <div class="dialog-actions"><button type="submit" class="primary">Hang ticket</button></div>
+  </form>
+</dialog>
+<dialog id="confirm-dialog">
+  <h2>Clear saved kitchen?</h2><p>This removes your Open kitchen card and tickets from this device.</p>
+  <div class="dialog-actions"><button data-close>No, keep it</button><button id="confirm-clear" class="primary">Yes, clear saved</button></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const clone = x => JSON.parse(JSON.stringify(x));
+  const esc = x => String(x).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const TOPPINGS = ['syrup','butter','berries','banana'];
+  const BUILTINS = {crack_eggs:['count'], pour_pancakes:['count'], add_topping:['name'], toast:['slices'], label:['words'], serve:['table','to_go']};
+  const ART = {
+    'fried-egg':'art:fried-egg', pancake:'art:pancake', toast:'art:toast', syrup:'art:syrup', butter:'art:butter',
+    berries:'art:berries', banana:'art:banana', plate:'art:plate', box:'art:to-go-box'
+  };
+  const L = {
+    'w-tickets':'Orders are on the rail. Tap a slot on the recipe card to fix it, then press Cook.',
+    slot:'Pick a value from the pantry, or type one. Quotes make it text.',
+    stopped:'The cook stopped. Read the red note on that line, fix it, then press Cook.',
+    served:"Every order's out.", change:'The menu just changed. Update your card, then press Cook again.',
+    par:"One change did it. That's what a procedure buys you.",
+    over:'That took a lot of edits. Press Restart level and try a procedure, so the change is in one place.',
+    blank:'A blank holds whatever you pass in, only while that recipe runs.',
+    'w-open':'Press New ticket to write an order, then write the card and press Cook.'
+  };
+  const state = {mode:'tickets', level:1, card:[], tickets:[], phase:0, edits:0, frozen:false, selected:0,
+    slot:null, running:false, error:null, active:-1, globals:{}, locals:null, procedure:'', plate:null, results:[], done:false};
+  let history = [], runtime = null, runToken = 0, revision = 0, eventId = 0, openCache = null, progress = {};
+  try {progress = JSON.parse(localStorage.getItem('curio-code-kitchen') || '{}');
+  } catch {}
+  const V = Curio.voice({lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
+    speaks:'#cook,#step,.slot,#new-ticket',
+    welcome:() => state.mode === 'tickets' ? (!state.slot && !state.running && !state.error ? 'w-tickets' : null) :
+    (!state.tickets.length ? 'w-open' : null)});
+  function hint(text) {$('hint').textContent = text;
+    document.documentElement.style.setProperty('--hint-height',$('hint').offsetHeight+'px');
+  }
+  function how(key, valid = () => true) {V.how(key, {valid, hint:false});
+  }
+  function event(key, valid = () => true) {V.say(key, {key:key + (++eventId), valid, hint:false});
+  }
+  const call = (name,args=[],depth=0) => ({kind:'call',name,args:args.map(String),depth});
+  const assign = (name,value,depth=0) => ({kind:'assign',name,args:[String(value)],depth});
+  const def = (name,params='') => ({kind:'def',name,args:[params],depth:0});
+  const ticket = (table,pancakes=0,topping=[],eggs=0,toast=0,go=false,label='') =>
+  ({table,pancakes,toppings:topping,eggs,toast,go,label});
+  const classic = () => [call('crack_eggs',[2],1),call('pour_pancakes',[3],1),call('add_topping',['"butter"'],1)];
+  const flatClassic = t => [call('crack_eggs',[2]),call('pour_pancakes',[3]),call('add_topping',['"butter"']),call('serve',[t,'False'])];
+  const flatStack = t => [call('pour_pancakes',[3]),call('add_topping',['"syrup"']),call('serve',[t,'False'])];
+  const names = ['Numbers','Joining','True or False','Same plate twice','Three tables','A card inside a card',
+  'One blank','Two blanks','A yes-or-no blank','Copy and paste','Order slips','Two changes'];
+  function levelData(n) {
+    if (n === 1) return {tickets:[ticket(3,4,['syrup'])], card:[assign('stack','"4"'),call('pour_pancakes',['stack']),
+      call('add_topping',['"syrup"']),call('serve',[3,'False'])], changes:[]};
+    if (n === 2) return {tickets:[ticket(7,5,[],0,0,true,'5 pancakes')], card:[assign('small','"3"'),assign('extra','"2"'),
+      assign('stack','small + extra'),call('pour_pancakes',['stack']),call('label',['stack + " pancakes"']),call('serve',[7,'True'])],changes:[]};
+    if (n === 3) return {tickets:[ticket(5,0,[],0,1),ticket(6,0,[],0,1,true,'toast')],card:[assign('to_go','"no"'),
+      call('toast',[1]),call('serve',[5,'to_go']),assign('to_go','"yes"'),call('toast',[1]),call('label',['"toast"']),call('serve',[6,'to_go'])],changes:[]};
+    if (n === 4) return {tickets:[1,2].map(t=>ticket(t,3,['butter'],2)),card:flatClassic(1),
+      changes:[{text:'The Classic now has 4 pancakes.',update:ts=>ts.forEach(t=>t.pancakes=4)}]};
+    if (n === 5) return {tickets:[4,5,6].map(t=>ticket(t,3,['butter'],2)),card:[def('classic'),...classic(),call('classic'),call('serve',[4,'False'])],
+      changes:[{text:'The Classic gets berries instead of butter.',update:ts=>ts.forEach(t=>t.toppings=['berries'])}]};
+    if (n === 6) return {tickets:[ticket(3,0,[],2,2),ticket(4,4,['syrup'],2,2)],card:[call('crack_eggs',[2]),call('toast',[2]),
+      call('serve',[3,'False']),call('crack_eggs',[2]),call('toast',[2]),call('pour_pancakes',[4]),call('add_topping',['"syrup"']),call('serve',[4,'False'])],
+      changes:[{text:'Toast is 1 slice on every plate.',update:ts=>ts.forEach(t=>t.toast=1)}]};
+    if (n === 7) return {tickets:[2,5,3].map((p,i)=>ticket(i+1,p,['syrup'])),card:[def('stack','size'),call('pour_pancakes',['size'],1),
+      call('add_topping',['"syrup"'],1),call('stack',[2]),call('serve',[1,'False'])],
+      changes:[{text:'Stacks get butter, not syrup.',update:ts=>ts.forEach(t=>t.toppings=['butter'])}]};
+    if (n === 8) return {tickets:[ticket(5,3,['berries']),ticket(6,4,['banana']),ticket(7,2,['syrup'])],
+      card:[def('stack','size'),call('pour_pancakes',['size'],1),call('add_topping',['"syrup"'],1),call('stack',[3]),call('serve',[5,'False'])],
+      changes:[{text:'Every stack gets 1 extra pancake.',update:ts=>ts.forEach(t=>t.pancakes++)}]};
+    if (n === 9) return {tickets:[ticket(8,3,['butter'],2),ticket(9,3,['butter'],2,0,true,'Classic'),ticket(10,3,['butter'],2,0,true,'Classic')],
+      card:[def('classic'),...classic(),call('classic'),call('serve',[8,'False']),call('classic'),call('label',['"Classic"']),
+      call('serve',[9,'True']),call('classic'),call('label',['"Classic"']),call('serve',[10,'True'])],
+      changes:[{text:'To-go labels now read "Classic, thanks!"',update:ts=>ts.forEach(t=>{if(t.go)t.label='Classic, thanks!';
+        })}]};
+    if (n === 10) return {tickets:[1,2,3,4,5].map(t=>ticket(t,3,['syrup'])),card:[1,2,3,4,5].flatMap(flatStack),
+      changes:[{text:'Short stacks are 2 pancakes now.',update:ts=>ts.forEach(t=>t.pancakes=2),par:false},
+      {text:'Short stacks get berries instead of syrup.',update:ts=>ts.forEach(t=>t.toppings=['berries'])}]};
+    if (n === 11) return {tickets:[ticket(1,3,['berries']),ticket(2,0,[],2,1,true,'eggs'),ticket(3,4,['banana'],0,0,true,'4 pancakes'),
+      ticket(4,0,[],2,1),ticket(5,3,['berries'],0,0,true,'3 pancakes')],card:[],
+      changes:[{text:'Egg plates get 2 toast.',update:ts=>ts.forEach(t=>{if(t.eggs)t.toast=2;
+        })}]};
+    return {tickets:[1,2,3].map(t=>ticket(t,3,['syrup'])).concat([4,5,6].map(t=>ticket(t,0,[],2,1))),
+      card:[def('short_stack'),call('pour_pancakes',[3],1),call('add_topping',['"syrup"'],1),
+      ...[1,2,3].flatMap(t=>[call('short_stack'),call('serve',[t,'False'])]),
+      ...[4,5,6].flatMap(t=>[call('crack_eggs',[2]),call('toast',[1]),call('serve',[t,'False'])])],
+      changes:[{text:'Egg plates get 3 eggs.',update:ts=>ts.forEach(t=>{if(t.eggs)t.eggs=3;
+        })},
+      {text:'Short stacks get banana on top of the syrup.',update:ts=>ts.forEach(t=>{if(t.pancakes)t.toppings.push('banana');
+        })}]};
+  }
+  function save() {
+    try {
+      localStorage.setItem('curio-code-kitchen',JSON.stringify(progress));
+      if (state.mode === 'open') localStorage.setItem('curio-code-kitchen-open',JSON.stringify({card:state.card,tickets:state.tickets}));
+    } catch {}
+  }
+  function blankPlate() {return {eggs:0,pancakes:0,toast:0,toppings:[],label:''};
+  }
+  function halt(clear=false) {
+    runToken++;
+    state.running=false;
+    if (clear) {runtime=null;
+      state.done=false;
+      state.active=-1;
+      state.plate=blankPlate();
+      state.globals={};
+      state.locals=null;
+      state.procedure='';
+      state.results=[];
+      state.error=null;
+      state.servedPlate=null;
+      $('served-flash').hidden=true;
+    }
+    $('cook').textContent='▶ Cook';
+  }
+  function snapshot() {return clone({card:state.card,edits:state.edits,selected:state.selected,frozen:state.frozen});
+  }
+  function mutate(fn,keepCard=false) {
+    halt();
+    history.push(snapshot());
+    if (history.length>40) history.shift();
+    fn();
+    if (state.phase && !state.frozen) state.edits++;
+    state.error=null;
+    state.active=-1;
+    runtime=null;
+    revision++;
+    state.done=false;
+    $('manager').hidden=true;
+    hint('Choose a slot to edit, or press Cook to test every ticket.');
+    render(keepCard);
+    save();
+    Curio.tone(540,.04,.04);
+  }
+  function setLevel(n) {
+    if (state.mode==='open') {openCache=clone({card:state.card,tickets:state.tickets});
+      save();
+    }
+    const sameLevel=state.mode==='tickets' && state.level===(Number(n)||1);
+    halt(true);
+    if(!sameLevel || V.playing!==L['w-tickets'])V.hush();
+    else V.dropQueued();
+    state.mode='tickets';
+    state.level=Math.max(1,Math.min(12,Number(n)||1));
+    const d=levelData(state.level);
+    state.card=clone(d.card);
+    state.tickets=clone(d.tickets);
+    state.phase=0;
+    state.edits=0;
+    state.frozen=false;
+    state.done=false;
+    state.selected=0;
+    state.slot=null;
+    history=[];
+    revision++;
+    $('manager').hidden=true;
+    hint(L['w-tickets']);
+    render();
+    if (state.level>=7 && state.level<=9) {hint(L.blank+' Press Cook to test the card.');
+      how('blank',()=>!state.running);
+    }
+    else V.welcome();
+  }
+  function setMode(m) {
+    if(m===state.mode)return;
+    if (m==='tickets') {setLevel(state.level);
+      return;
+    }
+    halt(true);
+    V.hush();
+    state.mode='open';
+    history=[];
+    revision++;
+    let data=openCache;
+    if (!data) {try {data=JSON.parse(localStorage.getItem('curio-code-kitchen-open')||'null');
+      } catch {}}
+    state.card=Array.isArray(data?.card)?data.card.slice(0,40):[];
+    state.tickets=Array.isArray(data?.tickets)?data.tickets.slice(0,8):[];
+    state.phase=0;
+    state.edits=0;
+    state.frozen=false;
+    state.selected=0;
+    state.slot=null;
+    state.done=false;
+    $('manager').hidden=true;
+    hint(state.tickets.length?'Choose a slot to edit, or press Cook to test your saved tickets.':L['w-open']);
+    render();
+    V.welcome();
+  }
+  function kind(value) {
+    if (/^-?\d+$/.test(value.trim())) return 'num';
+    if (/^["']/.test(value.trim())) return 'text';
+    if (/^(True|False)$/.test(value.trim())) return 'bool';
+    return '';
+  }
+  function inputHTML(i,key,value) {
+    const width=Math.max(4,Math.min(27,String(value).length+1));
+    return `<input class="slot ${kind(value)}" data-i="${i}" data-key="${key}" value="${esc(value)}"
+      style="width:calc(${width}ch + 15px)" aria-label="Line ${i+1} ${key==='name'?'name':key==='0'?'value':'argument '+(Number(key)+1)}"
+      autocomplete="off" spellcheck="false">`;
+  }
+  function renderCard() {
+    const focused=document.activeElement;
+    const focusKey=focused?.matches('.slot')?[focused.dataset.i,focused.dataset.key,focused.selectionStart]:null;
+    const scroll=$('code').scrollTop;
+    $('code').innerHTML=state.card.length ? state.card.map((line,i)=>{
+      let s=inputHTML(i,'name',line.name);
+      if(line.kind==='assign') s+=' <span>=</span> '+inputHTML(i,'0',line.args[0]);
+      if(line.kind==='def') s='<span class="kw">def</span> '+s+' ( '+inputHTML(i,'0',line.args[0])+ ' ):';
+      if(line.kind==='call') s+=' ( '+line.args.map((a,j)=>inputHTML(i,String(j),a)).join('<span>,</span>')+' )';
+      return `<div class="code-line ${state.selected===i?'selected':''} ${state.active===i?'running':''}
+        ${state.error?.line===i?'error':''}" data-line="${i}"><button class="line-no" data-select="${i}" aria-label="Select line ${i+1}">${i+1}</button>
+        <div class="line-content ${line.depth?'indented':''}">${s}</div>
+        ${state.error?.line===i?`<div class="error-note">✗ ${esc(state.error.message)}</div>`:''}</div>`;
+    }).join('') : '<p class="muted" style="padding:15px">Your recipe starts here.<br>Press Add a line.</p>';
+    $('code').scrollTop=scroll;
+    if(focusKey) {
+      const el=$('code').querySelector(`[data-i="${focusKey[0]}"][data-key="${focusKey[1]}"]`);
+      if(el) {el.focus({preventScroll:true});
+        el.setSelectionRange(focusKey[2],focusKey[2]);
+      }
+    }
+    $('line-count').textContent=state.card.length+' / 40 lines';
+    $('card-title').textContent=state.mode==='open'?'Your recipe card':String.fromCharCode(65+Math.floor((state.level-1)/3))+
+    state.level+' · '+names[state.level-1];
+  }
+  function renderRail() {
+    $('rail').innerHTML=state.tickets.map((t,i)=>{
+      const result=state.results.find(r=>r.index===i);
+      const icon=(name,n)=>n?`<span><img src="${ART[name]}" alt="${name}">${n}</span>`:'';
+        const heavy=t.toppings.length>2 || (t.go && t.label.length>16);
+        return `<div class="ticket ${heavy?'heavy':''} ${result&&!result.ok?'wrong':''}" title="${esc(result?.reason||'Unserved')}">
+        <strong>TABLE ${t.table}</strong>${result?`<span class="stamp">${result.ok?'✓':'✗'}</span>`:''}
+        <div class="order">${icon('fried-egg',t.eggs)}${icon('pancake',t.pancakes)}${icon('toast',t.toast)}
+        ${t.toppings.map(x=>`<span><img src="${ART[x]}" alt="">${x}</span>`).join('')}</div>
+        ${t.go?`<small><b>TO GO</b> ${esc(t.label)}</small>`:''}
+        ${result&&!result.ok?`<small>✗ ${esc(result.reason)}</small>`:''}</div>`;
+    }).join('') || '<span class="empty-rail">No orders yet. Press New ticket.</span>';
+    requestAnimationFrame(()=>reveal(state.selected));
+  }
+  function jarHTML(name,value) {
+    const display=typeof value==='boolean'?(value?'True':'False'):typeof value==='string'?'"'+value+'"':String(value);
+    return `<div class="jar" title="${esc(name+' = '+display)}"><b class="${kind(display)}">${esc(display)}</b><small>${esc(name)}</small></div>`;
+  }
+  function renderStation(action='') {
+    const p=state.servedPlate||state.plate||blankPlate();
+    const images=[];
+    function img(name,left,top,width,height=18) {
+      images.push(`<img class="food ${name==='toast'?'toast-pop':''}" src="${ART[name]}" alt="${name}" style="left:${left}%;top:${top}%;width:${width}%;height:${height}%">`);
+    }
+    for(let i=0;i<p.eggs;i++) img('fried-egg',state.servedPlate?28+(i%3)*11:12+(i%3)*18,
+    state.servedPlate?72+Math.floor(i/3)*9:17+Math.floor(i/3)*16,13.2,17);
+    const pancakeStep=Math.min(3.5,35/Math.max(1,p.pancakes-1));
+    for(let i=0;i<p.pancakes;i++) img('pancake',36,64-i*pancakeStep,28.2,12);
+    for(let i=0;i<p.toast;i++) img('toast',state.servedPlate?26+i*8:68+(i%2)*8,
+    state.servedPlate?76-i*3:48-Math.floor(i/2)*8,15,15);
+    p.toppings.forEach((t,i)=>img(t,40+i*4,59-Math.max(0,p.pancakes-1)*pancakeStep,
+    t==='butter'?7.5:t==='syrup'?28.2:13.2,16));
+    const artState=JSON.stringify([p,!!state.servedPlate]);
+    if($('food').dataset.state!==artState) {
+      const oldCount=$('food').childElementCount;
+      $('food').innerHTML=images.join('');
+      if(!state.servedPlate) [...$('food').children].slice(0,oldCount).forEach(el=>el.style.animation='none');
+      $('food').dataset.state=artState;
+    }
+    $('jars').innerHTML=Object.entries(state.globals).map(([n,v])=>jarHTML(n,v)).join('')+
+    (state.locals?`<div class="scope"><span>${esc(state.procedure)}<br>call blanks</span>${Object.entries(state.locals).map(([n,v])=>jarHTML(n,v)).join('')}</div>`:'');
+    $('jars').scrollLeft=$('jars').scrollWidth;
+    if(action) $('station-state').textContent=action;
+    $('dish').src=state.servedPlate&&state.servedGo?ART.box:ART.plate;
+    $('plate-label').textContent=p.label;
+    $('plate-label').hidden=!p.label || (!!state.servedPlate&&!state.servedGo);
+    $('cook-scene').classList.toggle('passing',!!state.servedPlate);
+  }
+  function levelButtons() {
+    return ['A · Jars','B · Recipe cards','C · Blanks','D · Menu changes'].map((name,g)=>
+    `<div class="set"><span>${name}</span>${[1,2,3].map(j=>{
+        const n=g*3+j, p=progress[n]||{};
+        return `<button data-level="${n}" aria-label="${String.fromCharCode(65+g)+n} ${names[n-1]}" aria-pressed="${state.level===n}"
+    class="${p.done?'done':''} ${p.par?'par':''}">${n}</button>`;
+      }).join('')}</div>`).join('');
+  }
+  function render(keepCard=false) {
+    $('m-tickets').setAttribute('aria-pressed',state.mode==='tickets');
+    $('m-open').setAttribute('aria-pressed',state.mode==='open');
+    $('open-tools').hidden=state.mode!=='open';
+    $('new-ticket').hidden=state.mode!=='open';
+    $('levels').hidden=state.mode!=='tickets';
+    $('choose-level').hidden=state.mode!=='tickets';
+    $('restart').textContent=state.mode==='open'?'Reset run':'Restart level';
+    $('edits').textContent=state.phase ? `Edits since the change: ${state.edits} (par ${state.level===10&&state.phase===1?'none':1})`+
+    (state.frozen?' · final':'') : (state.mode==='open'?'Open kitchen · up to 8 tickets':
+    String.fromCharCode(65+Math.floor((state.level-1)/3))+state.level+' · '+names[state.level-1]);
+    $('footer-level').textContent=state.mode==='open'?'Your menu, your code':
+    'Set '+['A · Jars','B · Recipe cards','C · Blanks','D · Menu changes'][Math.floor((state.level-1)/3)];
+    if(!$('levels').childElementCount) $('levels').innerHTML=levelButtons();
+    $('levels').querySelectorAll('[data-level]').forEach(button=>{
+      const n=Number(button.dataset.level), p=progress[n]||{};
+      button.setAttribute('aria-pressed',n===state.level);
+      button.classList.toggle('done',!!p.done);
+      button.classList.toggle('par',!!p.par);
+    });
+    renderRail();
+    if(!keepCard)renderCard();
+    else {
+      $('code').querySelectorAll('.error-note').forEach(el=>el.remove());
+      $('code').querySelectorAll('.code-line').forEach(el=>el.classList.remove('error'));
+      highlight();
+    }
+    renderStation();
+  }
+  // Safe, deliberately small expression parser. Student text never reaches eval or Function.
+  function evaluate(source,locals) {
+    const text=String(source).trim();
+    let pos=0;
+    function spaces(){while(/\s/.test(text[pos]||'') && pos<text.length)pos++;
+    }
+    function atom() {
+      spaces();
+      const start=pos, c=text[pos];
+      if(c==='"'||c==="'") {
+        pos++;
+        let out='';
+        while(pos<text.length && text[pos]!==c) {
+          if(text[pos]==='\\' && pos+1<text.length)pos++;
+          out+=text[pos++];
+        }
+        if(text[pos]!==c)throw Error('Close the quotes around this text.');
+        pos++;
+        return out;
+      }
+      if(c==='(') {pos++;
+        const value=sum();
+        spaces();
+        if(text[pos++]!==')')throw Error('Close the parentheses.');
+        return value;
+      }
+      const number=text.slice(pos).match(/^-?\d+/);
+      if(number) {pos+=number[0].length;
+        return Number(number[0]);
+      }
+      const name=text.slice(pos).match(/^[A-Za-z_][A-Za-z_0-9]*/);
+      if(name) {
+        pos+=name[0].length;
+        const n=name[0];
+        spaces();
+        if(n==='True')return true;
+        if(n==='False')return false;
+        if(n==='str' && text[pos]==='(') {
+          pos++;
+          const value=sum();
+          spaces();
+          if(text[pos++]!==')')throw Error('Close str with a parenthesis.');
+          if(typeof value==='boolean')return value?'True':'False';
+          return String(value);
+        }
+        if(locals && Object.hasOwn(locals,n))return locals[n];
+        if(Object.hasOwn(state.globals,n))return state.globals[n];
+        throw Error('No jar named '+n+'.');
+      }
+      throw Error(start===text.length?'Fill this value slot.':'Use a number, quoted text, True, False, or a jar name.');
+    }
+    function sum() {
+      let a=atom();
+      spaces();
+      while(text[pos]==='+') {
+        pos++;
+        const b=atom();
+        if(typeof a!==typeof b || !['number','string'].includes(typeof a))throw Error("Can't add a number and text.");
+        a+=b;
+        spaces();
+      }
+      return a;
+    }
+    const value=sum();
+    spaces();
+    if(pos!==text.length)throw Error('Check the value after '+text.slice(0,pos)+'.');
+    return value;
+  }
+  function validName(name) {return /^[A-Za-z_][A-Za-z_0-9]*$/.test(name) && !['True','False','str'].includes(name);
+  }
+  function startRuntime() {
+    halt(true);
+    $('manager').hidden=true;
+    state.slot=null;
+    state.done=false;
+    const defs={};
+    for(let i=0;i<state.card.length;i++) {
+      const line=state.card[i];
+      if(line.kind==='def') {
+        let end=i+1;
+        while(end<state.card.length && state.card[end].depth>line.depth)end++;
+        const params=line.args[0].trim()?line.args[0].split(',').map(x=>x.trim()):[];
+        if(!validName(line.name) || params.some(x=>!validName(x)) || new Set(params).size!==params.length) {
+          fail(i,'Give this recipe and its blanks simple, different names.');
+          return false;
+        }
+        if(Object.hasOwn(BUILTINS,line.name)) {fail(i,'Choose a recipe name different from a kitchen action.');
+          return false;
+        }
+        defs[line.name]={start:i+1,end,params,definition:i};
+      }
+    }
+    runtime={defs,stack:[{pc:0,end:state.card.length,locals:null,name:''}]};
+    renderRail();
+    renderStation('The griddle is ready.');
+    highlight();
+    return true;
+  }
+  function fail(line,message) {
+    state.error={line,message};
+    state.active=line;
+    state.selected=line;
+    halt();
+    runtime=null;
+    $('station-state').textContent='✗ Cook stopped on line '+(line+1);
+    hint(L.stopped);
+    renderCard();
+    reveal(line);
+    const errorRevision=revision;
+    event('stopped',()=>revision===errorRevision && (!!state.error||state.running));
+    Curio.tone(150,.15,.06,'triangle');
+  }
+  function requireType(name,value,type,source) {
+    if(typeof value===type)return;
+    const actual=typeof value==='string'?'the text "'+value+'"':typeof value==='boolean'?(value?'True':'False'):String(value);
+    const jar=/^[A-Za-z_][A-Za-z_0-9]*$/.test(source)?source+' holds ':'It got ';
+    throw Error(name+' needs '+(type==='boolean'?'True or False':type==='number'?'a number':'text')+'. '+jar+actual+'.');
+  }
+  function range(name,value,min,max) {if(!Number.isInteger(value)||value<min||value>max)throw Error(name+' takes '+min+' to '+max+'.');
+  }
+  function samePlate(t,p,go) {
+    if(p.eggs!==t.eggs)return 'Eggs: '+p.eggs+'; wanted '+t.eggs+'.';
+    if(p.pancakes!==t.pancakes)return 'Pancakes: '+p.pancakes+'; wanted '+t.pancakes+'.';
+    if(p.toast!==t.toast)return 'Toast: '+p.toast+'; wanted '+t.toast+'.';
+    if([...new Set(p.toppings)].sort().join('|')!==[...t.toppings].sort().join('|'))return 'Check the toppings.';
+    if(go!==t.go)return t.go?'This order is to go.':'This order is dine-in.';
+    if(go && p.label!==t.label)return 'Label must be "'+t.label+'".';
+    return '';
+  }
+  function kitchen(name,args,sources) {
+    const p=state.plate;
+    if(name==='serve') {
+      requireType(name,args[0],'number',sources[0]);
+      range(name,args[0],1,12);
+      requireType(name,args[1],'boolean',sources[1]);
+      const index=state.tickets.findIndex((t,i)=>t.table===args[0] && !state.results.some(r=>r.index===i));
+      if(index<0)throw Error('Table '+args[0]+" didn't order that.");
+      const reason=samePlate(state.tickets[index],p,args[1]);
+      state.results.push({index,ok:!reason,reason,plate:clone(p),go:args[1]});
+      $('served-flash').hidden=false;
+      $('served-flash').textContent=reason?'✗ Table '+args[0]+': '+reason:'✓ Table '+args[0]+' served';
+      $('dish').src=args[1]?ART.box:ART.plate;
+      state.servedPlate=clone(p);
+      state.servedGo=args[1];
+      state.plate=blankPlate();
+      renderRail();
+      Curio.tone(reason?180:740,.09,.05);
+      return (reason?'✗ ':'✓ ')+'Plate sent to table '+args[0]+'.';
+    }
+    $('served-flash').hidden=true;
+    state.servedPlate=null;
+    if(name==='crack_eggs'||name==='pour_pancakes'||name==='toast') {
+      const max={crack_eggs:6,pour_pancakes:8,toast:4}[name];
+      requireType(name,args[0],'number',sources[0]);
+      range(name,args[0],1,max);
+      const key={crack_eggs:'eggs',pour_pancakes:'pancakes',toast:'toast'}[name];
+      p[key]+=args[0];
+      Curio.tone(name==='toast'?820:360,.06,.04);
+      return args[0]+' '+(key==='toast'?'toast':key)+' on the station.';
+    }
+    requireType(name,args[0],'string',sources[0]);
+    if(name==='add_topping') {
+      if(!TOPPINGS.includes(args[0]))throw Error('We don\'t have "'+args[0]+'".');
+      if(!p.toppings.includes(args[0]))p.toppings.push(args[0]);
+      Curio.tone(580,.06,.04);
+      return args[0]+' added.';
+    }
+    if(args[0].length>24)throw Error('label takes up to 24 characters.');
+    p.label=args[0];
+    return 'Label: "'+args[0]+'"';
+  }
+  function highlight() {
+    $('code').querySelectorAll('.code-line').forEach((el,i)=>{
+      el.classList.toggle('running',i===state.active);
+      el.classList.toggle('selected',i===state.selected);
+    });
+    if(state.active>=0)reveal(state.active);
+  }
+  function reveal(i) {
+    const el=$('code').querySelector(`[data-line="${i}"]`);
+    if(!el)return;
+    if(el.offsetTop<$('code').scrollTop)$('code').scrollTop=el.offsetTop-8;
+    const bottom=el.offsetTop+el.offsetHeight;
+    if(bottom>$('code').scrollTop+$('code').clientHeight)$('code').scrollTop=bottom-$('code').clientHeight+8;
+  }
+  function executeOne() {
+    if(!runtime)return false;
+    while(runtime.stack.length) {
+      const frame=runtime.stack.at(-1);
+      if(frame.pc>=frame.end) {runtime.stack.pop();
+        continue;
+      }
+      const index=frame.pc++, line=state.card[index];
+      state.active=index;
+      state.selected=index;
+      state.locals=frame.locals;
+      state.procedure=frame.name;
+      try {
+        if(line.kind==='def') {
+          frame.pc=runtime.defs[line.name].end;
+          renderStation('Recipe '+line.name+' is ready to call.');
+          highlight();
+          return true;
+        }
+        if(line.depth && !frame.name)throw Error('Indent this line inside a def, or move it out.');
+        if(line.kind==='assign') {
+          if(!validName(line.name))throw Error('Give this jar a name using letters, numbers and underscores.');
+          const value=evaluate(line.args[0],frame.locals);
+          (frame.locals||state.globals)[line.name]=value;
+          renderStation('Jar '+line.name+' updated.');
+          highlight();
+          Curio.tone(480,.04,.035);
+          return true;
+        }
+        const values=line.args.map(s=>evaluate(s,frame.locals));
+        if(Object.hasOwn(BUILTINS,line.name)) {
+          if(values.length!==BUILTINS[line.name].length)throw Error(line.name+' needs '+BUILTINS[line.name].length+' value slots.');
+          const action=kitchen(line.name,values,line.args);
+          renderStation(action);
+          highlight();
+          return true;
+        }
+        const d=runtime.defs[line.name];
+        if(!d)throw Error('No recipe named '+line.name+'.');
+        if(values.length!==d.params.length)throw Error(line.name+' needs '+d.params.length+' blanks.');
+        if(runtime.stack.length>=21)throw Error('This recipe calls itself forever.');
+        const locals=Object.fromEntries(d.params.map((p,i)=>[p,values[i]]));
+        runtime.stack.push({pc:d.start,end:d.end,locals,name:line.name});
+        state.locals=locals;
+        state.procedure=line.name;
+        renderStation('Calling '+line.name+'.');
+        highlight();
+        return true;
+      } catch(error) {fail(index,error.message);
+        return false;
+      }
+    }
+    state.locals=null;
+    state.procedure='';
+    runtime=null;
+    finish();
+    return false;
+  }
+  function finish() {
+    halt();
+    state.active=-1;
+    renderStation('Run finished.');
+    highlight();
+    if(!state.tickets.length) {hint('Press New ticket to add an order, then Cook to test it.');
+      return;
+    }
+    const correct=state.results.filter(r=>r.ok).length;
+    if(correct!==state.tickets.length) {
+      hint(correct+' of '+state.tickets.length+' orders matched. Check the rail, edit the card, then press Cook.');
+      $('station-state').textContent=correct+' / '+state.tickets.length+' matched';
+      return;
+    }
+    state.done=true;
+    Curio.yes();
+    if(state.mode==='open') {hint('Every order matched. Press New ticket for another order, or change your card.');
+      event('served',()=>state.done);
+      return;
+    }
+    const d=levelData(state.level);
+    progress[state.level]={...(progress[state.level]||{}),done:true};
+    if(state.phase) {
+      const previous=d.changes[state.phase-1];
+      const met=state.edits<=1 && previous.par!==false;
+      if(met)progress[state.level].par=true;
+      if(state.phase===d.changes.length) {
+        state.frozen=true;
+        hint(met?'Menu served in '+state.edits+' edit'+(state.edits===1?'':'s')+'. Par met! Choose another level with Levels.':
+        'Menu served in '+state.edits+' edits. Restart level to try a reuse plan.');
+        event(met?'par':'served',()=>state.done);
+        if(!met)how('over',()=>state.frozen);
+        render();
+        save();
+        return;
+      }
+    }
+    if(state.phase<d.changes.length) {
+      const change=d.changes[state.phase];
+      change.update(state.tickets);
+      state.phase++;
+      state.edits=0;
+      state.frozen=false;
+      state.results=[];
+      state.done=false;
+      revision++;
+      $('manager-text').textContent=change.text;
+      $('manager').hidden=false;
+      hint(L.change);
+      event('change',()=>!state.running && !state.frozen);
+      render();
+      save();
+      return;
+    }
+    hint("Every order's out. Choose another level with Levels.");
+    event('served',()=>state.done);
+    render();
+    save();
+  }
+  async function cook() {
+    V.dropQueued(item=>item.kind!=='event');
+    if(!startRuntime())return;
+    const token=++runToken;
+    state.running=true;
+    $('cook').textContent='↻ Cooking';
+    hint('Watch the highlighted line. Tap a slot to pause and edit, or press Stop to clear the station.');
+    while(state.running && token===runToken) {
+      if(!executeOne())break;
+      await Curio.wait(350);
+    }
+  }
+  function selectSlot(el) {
+    halt();
+    state.selected=Number(el.dataset.i);
+    state.slot={line:state.selected,key:el.dataset.key};
+    $('code').querySelectorAll('.code-line').forEach((e,i)=>e.classList.toggle('selected',i===state.selected));
+    const selectedRevision=revision;
+    hint(L.slot);
+    how('slot',()=>!!state.slot&&!state.running&&revision===selectedRevision);
+    Curio.tone(460,.035,.025);
+  }
+  $('code').addEventListener('focusin',e=>{if(e.target.matches('.slot'))selectSlot(e.target);
+  });
+  $('code').addEventListener('pointerdown',e=>{if(e.target.closest('.code-line'))halt();
+  });
+  $('code').addEventListener('click',e=>{
+    const select=e.target.closest('[data-select]');
+    if(select) {
+      halt();
+      state.selected=Number(select.dataset.select);
+      state.slot=null;
+      highlight();
+      hint('Use Add a line or the line tools for line '+(state.selected+1)+'.');
+    }
+  });
+  $('code').addEventListener('change',e=>{
+    const el=e.target;
+    if(!el.matches('.slot'))return;
+    const i=Number(el.dataset.i),key=el.dataset.key,value=el.value;
+    if((key==='name'?state.card[i].name:state.card[i].args[Number(key)])===value)return;
+    mutate(()=>{if(key==='name')state.card[i].name=value;
+      else state.card[i].args[Number(key)]=value;
+    },true);
+    el.className='slot '+kind(value);
+    el.style.width='calc('+Math.max(4,Math.min(27,value.length+1))+'ch + 15px)';
+  });
+  function commitFocused() {
+    if(document.activeElement?.matches('.slot'))document.activeElement.dispatchEvent(new Event('change',{bubbles:true}));
+  }
+  $('cook').onclick=()=>{commitFocused();
+    cook();
+  };
+  $('step').onclick=()=>{
+    commitFocused();
+    halt();
+    if(!runtime && !startRuntime())return;
+    hint('Press Step for the next line, or Cook to run from the start.');
+    executeOne();
+  };
+  $('stop').onclick=()=>{halt(true);
+    hint('Station cleared. Press Cook to start the recipe again.');
+    render();
+    renderStation('Station cleared.');
+  };
+  function undo() {
+    commitFocused();
+    halt();
+    const old=history.pop();
+    if(!old) {hint('No edits to undo yet. Tap a slot to change its value.');
+      return;
+    }
+    Object.assign(state,old);
+    state.done=false;
+    state.error=null;
+    state.active=-1;
+    runtime=null;
+    revision++;
+    render();
+    save();
+    hint('Edit undone. Press Cook to test the card.');
+  }
+  $('undo').onclick=undo;
+  $('restart').onclick=()=>state.mode==='tickets'?setLevel(state.level):($('stop').click());
+  function lineTool(action) {
+    commitFocused();
+    const i=state.selected;
+    if(!state.card[i]) {hint('Press Add a line to start a recipe card.');
+      return;
+    }
+    if(action==='up' && i===0 || action==='down' && i===state.card.length-1) {
+      hint('This line is at the edge. Select another line, or press Cook to test the card.');
+      return;
+    }
+    mutate(()=>{
+      if(action==='delete') {state.card.splice(i,1);
+        state.selected=Math.max(0,i-1);
+        state.slot=null;
+      }
+      if(action==='indent')state.card[i].depth=1;
+      if(action==='outdent')state.card[i].depth=0;
+      if(action==='up'||action==='down') {
+        const j=i+(action==='up'?-1:1);
+        [state.card[i],state.card[j]]=[state.card[j],state.card[i]];
+        state.selected=j;
+        state.slot=null;
+      }
+    });
+    reveal(state.selected);
+  }
+  for(const [id,action] of [['move-up','up'],['move-down','down'],['indent','indent'],['outdent','outdent'],['delete-line','delete']])
+  $(id).onclick=()=>lineTool(action);
+  function openDialog(id) {halt();
+    $(id).showModal();
+  }
+  document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>b.closest('dialog').close());
+  $('add-line').onclick=()=>{
+    commitFocused();
+    if(state.card.length>=40) {hint('The card is full: 40 lines. Delete a line before adding one.');
+      return;
+    }
+    const options=[['Jar: name = value',assign('name','0')],['Recipe: def name(blanks):',def('recipe','blank')],
+    ...Object.keys(BUILTINS).map(name=>[name+'( )',call(name,BUILTINS[name].map((_,i)=>name==='serve'?(i?'False':'1'):
+    name==='add_topping'?'"syrup"':name==='label'?'"Classic"':'1'))]),
+    ...state.card.filter(l=>l.kind==='def').map(l=>[l.name+'( )',call(l.name,l.args[0].trim()?l.args[0].split(',').map(()=> '1'):[])])];
+    $('line-composer').hidden=true;
+    $('add-options').hidden=false;
+    $('add-options').innerHTML=options.map(([label],i)=>`<button data-add="${i}">${esc(label)}</button>`).join('');
+    $('add-options').onclick=e=>{
+      const b=e.target.closest('[data-add]');
+      if(!b)return;
+      const line=clone(options[Number(b.dataset.add)][1]);
+      line.depth=line.kind==='def'?0:(state.card[state.selected]?.depth||0);
+      $('composer-fields').innerHTML=`<label>Name<input data-composer="name" value="${esc(line.name)}" autocomplete="off"></label>`+
+      line.args.map((a,i)=>`<label>${line.kind==='def'?'Blanks (comma separated)':line.kind==='assign'?'Value':'Argument '+(i+1)}
+        <input data-composer="${i}" value="${esc(a)}" autocomplete="off" spellcheck="false"></label>`).join('');
+      $('line-composer').hidden=false;
+      $('add-options').hidden=true;
+      $('composer-fields').querySelector('input').focus({preventScroll:true});
+      $('insert-line').onclick=()=>{
+        $('composer-fields').querySelectorAll('input').forEach(el=>{
+          if(el.dataset.composer==='name')line.name=el.value;
+          else line.args[Number(el.dataset.composer)]=el.value;
+        });
+        mutate(()=>{const at=state.card.length?state.selected+1:0;
+          state.card.splice(at,0,line);
+          state.selected=at;
+          state.slot=null;
+        });
+        $('add-dialog').close();
+        reveal(state.selected);
+      };
+    };
+    openDialog('add-dialog');
+  };
+  $('numbers').innerHTML=Array.from({length:13},(_,i)=>`<button data-value="${i}">${i}</button>`).join('');
+  $('text-values').innerHTML=[...TOPPINGS,' eggs',' pancakes','Classic'].map(t=>
+  `<button data-value="${esc(JSON.stringify(t))}">${esc(JSON.stringify(t))}</button>`).join('')+
+  '<button data-value="True">True</button><button data-value="False">False</button>';
+  function pantry() {
+    commitFocused();
+    if(!state.slot || !state.card[state.slot.line]) {
+      hint('Tap a value slot on the card, then press Pantry.');
+      return;
+    }
+    const line=state.card[state.slot.line], key=state.slot.key;
+    $('value-edit').value=key==='name'?line.name:line.args[Number(key)];
+    const vars=new Set(state.card.filter(l=>l.kind==='assign').map(l=>l.name));
+    for(let i=state.slot.line-1;i>=0;i--) {
+      if(!state.card[state.slot.line].depth)break;
+      if(state.card[i].kind==='def') {state.card[i].args[0].split(',').map(x=>x.trim()).filter(Boolean).forEach(x=>vars.add(x));
+        break;
+      }
+    }
+    $('scope-values').innerHTML=[...vars].map(v=>`<button data-value="${esc(v)}">${esc(v)}</button>`).join('')+
+    '<button data-wrap="str">str( )</button><button data-wrap="plus">+</button>';
+    openDialog('pantry-dialog');
+  }
+  $('pantry').onclick=pantry;
+  $('pantry-dialog').addEventListener('click',e=>{
+    const b=e.target.closest('[data-value],[data-wrap]');
+    if(!b)return;
+    if(b.dataset.value!==undefined)$('value-edit').value=b.dataset.value;
+    if(b.dataset.wrap==='str')$('value-edit').value='str('+$('value-edit').value+')';
+    if(b.dataset.wrap==='plus')$('value-edit').value+=' + ';
+    $('value-edit').focus({preventScroll:true});
+  });
+  $('use-value').onclick=()=>{
+    const slot=state.slot, value=$('value-edit').value;
+    if(!slot)return;
+    const line=state.card[slot.line],old=slot.key==='name'?line.name:line.args[Number(slot.key)];
+    if(old!==value)mutate(()=>{if(slot.key==='name')line.name=value;
+      else line.args[Number(slot.key)]=value;
+    });
+    $('pantry-dialog').close();
+    const el=$('code').querySelector(`[data-i="${slot.line}"][data-key="${slot.key}"]`);
+    el?.focus({preventScroll:true});
+  };
+  $('value-edit').addEventListener('keydown',e=>{if(e.key==='Enter'){$('use-value').click();
+      e.preventDefault();
+    }});
+  $('code').addEventListener('keydown',e=>{
+    if(e.key==='Enter' && e.target.matches('.slot')) {commitFocused();
+      pantry();
+      e.preventDefault();
+    }
+  });
+  document.addEventListener('keydown',e=>{
+    if(e.ctrlKey && e.key.toLowerCase()==='z' && !document.querySelector('dialog[open]')) {e.preventDefault();
+      undo();
+    }
+    if(e.altKey && ['ArrowUp','ArrowDown'].includes(e.key)) {e.preventDefault();
+      lineTool(e.key==='ArrowUp'?'up':'down');
+    }
+  });
+  function levelClick(e) {
+    const b=e.target.closest('[data-level]');
+    if(!b)return;
+    setLevel(b.dataset.level);
+    if($('level-dialog').open)$('level-dialog').close();
+  }
+  $('levels').onclick=levelClick;
+  $('level-options').onclick=levelClick;
+  $('choose-level').onclick=()=>{$('level-options').innerHTML=levelButtons();
+    openDialog('level-dialog');
+  };
+  $('got-it').onclick=()=>{$('manager').hidden=true;
+    hint('Update the card for the new tickets, then press Cook.');
+  };
+  $('m-tickets').onclick=()=>setMode('tickets');
+  $('m-open').onclick=()=>setMode('open');
+  $('new-ticket').onclick=()=>{
+    if(state.tickets.length>=8) {hint('The rail holds 8 tickets. Clear saved to start a new kitchen.');
+      return;
+    }
+    $('ticket-error').textContent='';
+    openDialog('ticket-dialog');
+  };
+  $('ticket-form').onsubmit=e=>{
+    e.preventDefault();
+    const form=new FormData(e.target), num=k=>Number(form.get(k));
+    if(state.tickets.some(t=>t.table===num('table'))) {$('ticket-error').textContent='That table already has a ticket. Choose another table.';
+      return;
+    }
+    const t=ticket(num('table'),num('pancakes'),TOPPINGS.filter(x=>form.has(x)),num('eggs'),num('toast'),form.has('go'),String(form.get('label')));
+    state.tickets.push(t);
+    state.results=[];
+    state.done=false;
+    save();
+    renderRail();
+    $('ticket-dialog').close();
+    hint('Press Add a line to build the recipe, then Cook to test the ticket.');
+  };
+  $('clear-card').onclick=()=>mutate(()=>{state.card=[];
+    state.selected=0;
+    state.slot=null;
+  });
+  $('clear-saved').onclick=()=>openDialog('confirm-dialog');
+  $('confirm-clear').onclick=()=>{
+    halt(true);
+    state.card=[];
+    state.tickets=[];
+    state.slot=null;
+    history=[];
+    openCache=null;
+    try {localStorage.removeItem('curio-code-kitchen-open');
+    } catch {}
+    render();
+    $('confirm-dialog').close();
+    hint(L['w-open']);
+  };
+  window.__tool = {state, setLevel, setMode, card:()=>clone(state.card),
+    setCard:json=>{halt(true);
+      state.card=clone(typeof json==='string'?JSON.parse(json):json).slice(0,40);
+      state.selected=0;
+      state.slot=null;
+      runtime=null;
+      render();
+      save();
+    },
+    cook, edits:()=>state.edits, allLines:()=>V.allLines(), vlog:V.log, evaluate,
+    line: {call,assign,def}, stop:()=>{$('stop').click();
+    }};
+  Curio.init({clips:"voice:*",rate:.95});
+  new ResizeObserver(()=>{
+    document.documentElement.style.setProperty('--hint-height',$('hint').offsetHeight+'px');
+  }).observe($('hint'));
+  state.plate=blankPlate();
+  setLevel(1);
+})();
+</script>
+</body>
+</html>

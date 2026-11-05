@@ -1,0 +1,26 @@
+{
+  "house_style": "Quiet traditional stationery for a grade 2 reading tool. Warm pale parchment and deep blue ink. Fine, restrained texture. No text, letters, numbers, logos or people.",
+  "assets": [
+    {
+      "name": "parchment",
+      "prompt": "Full-frame pale warm ivory parchment paper texture, evenly lit, very subtle fine paper fibers, faint warm tonal variation, clean unmarked paper with a nearly uniform light center. Texture only, no objects or ornament.",
+      "aspect": "1:1",
+      "width": 1024,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "flourish",
+      "prompt": "One small elegant deep blue ink quill with a short curved ink stroke at its base. Simple quiet stationery flourish, centered, isolated on a perfectly flat pure green (#00FF00) background. Entire feather and stroke fully visible with generous space. No ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 96,
+      "cutout": true,
+      "quality": 80,
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    }
+  ]
+}

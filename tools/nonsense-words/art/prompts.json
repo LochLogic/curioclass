@@ -1,0 +1,23 @@
+{
+  "house_style": "Quiet classroom stationery, warm cream parchment and deep blue ink. Restrained handmade texture, clear silhouettes, soft daylight. No text, letters, numbers or logos.",
+  "assets": [
+    {
+      "name": "parchment",
+      "prompt": "A full-frame flat sheet of pale warm ivory parchment, subtle fine paper fibers, extremely low contrast, evenly lit with soft daylight from upper left. Clean and smooth enough to put dark reading text over. Edge-to-edge paper texture only, no objects or marks.",
+      "aspect": "1:1",
+      "width": 640,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "quill",
+      "prompt": "A single small elegant feather quill drawn in deep blue ink and pale blue watercolor, diagonal from lower left to upper right, delicate feather barbs and a simple pointed nib, centered with ample margin on flat pure green (#00FF00). One quiet stationery flourish, no lettering or other objects.",
+      "aspect": "1:1",
+      "width": 80,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex"
+    }
+  ]
+}

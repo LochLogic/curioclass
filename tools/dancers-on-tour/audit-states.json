@@ -1,0 +1,143 @@
+{
+  "states": [
+    {
+      "name": "floor-card",
+      "steps": [
+        {
+          "click": "#hot-0"
+        }
+      ],
+      "keep": [
+        "#hotFact"
+      ]
+    },
+    {
+      "name": "adapt-min",
+      "steps": [
+        {
+          "click": "#m-adapt"
+        },
+        {
+          "drag": "return (()=>{const r=document.getElementById('spread').getBoundingClientRect();return Array.from({length:12},(_,i)=>[r.x+r.width/2-i*(r.width/2-8)/11,r.y+r.height/2]);})();"
+        }
+      ],
+      "keep": [
+        "#lights",
+        "#spread",
+        "#run"
+      ]
+    },
+    {
+      "name": "adapt-max",
+      "steps": [
+        {
+          "click": "#m-adapt"
+        },
+        {
+          "drag": "return (()=>{const r=document.getElementById('spread').getBoundingClientRect();return Array.from({length:12},(_,i)=>[r.x+r.width/2+i*(r.width/2-8)/11,r.y+r.height/2]);})();"
+        }
+      ],
+      "keep": [
+        "#lights",
+        "#spread",
+        "#run"
+      ]
+    },
+    {
+      "name": "theater-split",
+      "steps": [
+        {
+          "click": "#v-theater"
+        },
+        {
+          "click": "#m-adapt"
+        },
+        {
+          "click": "#phrase-3"
+        },
+        {
+          "click": "#swap"
+        }
+      ],
+      "keep": [
+        "#lights",
+        "#run"
+      ]
+    },
+    {
+      "name": "warm-work",
+      "steps": [
+        {
+          "click": "#m-warm"
+        },
+        {
+          "click": "#block-0"
+        },
+        {
+          "click": "#block-2"
+        },
+        {
+          "click": "#block-3"
+        },
+        {
+          "click": "#block-4"
+        }
+      ],
+      "keep": [
+        "#warmbar"
+      ]
+    },
+    {
+      "name": "after-run",
+      "steps": [
+        {
+          "click": "#m-adapt"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "until": "!__tool.state.running",
+          "max": 30000
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "keep": [
+        "#lights",
+        "#run"
+      ]
+    },
+    {
+      "name": "warm-max",
+      "steps": [
+        {
+          "click": "#m-warm"
+        },
+        {
+          "click": "#block-0"
+        },
+        {
+          "click": "#block-1"
+        },
+        {
+          "click": "#block-2"
+        },
+        {
+          "click": "#block-3"
+        },
+        {
+          "click": "#block-4"
+        },
+        {
+          "click": "#block-5"
+        }
+      ],
+      "keep": [
+        "#warmbar"
+      ]
+    }
+  ]
+}

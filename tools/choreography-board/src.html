@@ -1,0 +1,2355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Choreography Board · Curio Class</title>
+<meta name="description" content="Create and revise movement phrases, then watch earlier and current versions dance together. Grades 6 to 8. Works offline.">
+<!--
+Choreography Board, Curio Class. NCAS Dance DA:Cr1.1, DA:Cr2.1, DA:Cr3.1, grades 6 to 8.
+Devices: Smith-Autard, Dance Composition (2010); Blom and Chaplin, The Intimate Act of Choreography (1982).
+Energy qualities: Perpich Center, The Elements of Dance. Stage geography: Gillette (2013).
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. Offline. Only localStorage, key choreography-board.
+Painted articulated dancers use one neutral pose with front/back views. Registration is isolated in paintedRig.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#12141c; --panel:#1a1d28; --ink:#e9ecf2; --muted:#a3a9bb; --line:#2c3142;
+  --focus:#ffd166; --brand:#3ddc97; --brand-ink:#0b1a12; --btn:#232838; --btn-line:#495267; --head-ink:#e9ecf2;
+}
+body { height:100dvh; overflow:hidden; grid-template-columns:minmax(0,1fr); }
+header { background:linear-gradient(115deg,#1e2530,#12141c 70%); border-bottom:1px solid #434b5b; padding:14px 22px; }
+h1 { font-size:25px; letter-spacing:-.7px; }
+h1::before { content:'▥'; color:var(--brand); margin-right:10px; }
+h1 small { color:var(--muted); font-size:13px; letter-spacing:.2px; margin-top:4px; }
+.seg { border-radius:9px; border-width:1px; }
+.seg button,.icon-btn { min-height:44px; font-size:14px; padding:0 14px; }
+.seg button[aria-pressed=true] { background:var(--brand); color:var(--brand-ink); }
+.icon-btn { border-radius:8px; border-width:1px; }
+main { grid-template-columns:minmax(0,1fr) 340px; overflow:hidden; min-width:0; }
+.panel { grid-column:2; grid-row:1; padding:14px; border-left:1px solid #434b5b; gap:12px; min-width:0; min-height:0;
+  overflow:hidden; }
+.panel-head { display:flex; flex-direction:column; gap:10px; flex:none; }
+.panel-scroll { min-height:0; overflow:auto; flex:1; scrollbar-color:#526078 #1a1d28; padding-right:2px; }
+.workspace { grid-column:1; grid-row:1; display:grid; grid-template-rows:minmax(0,1fr) auto; min-width:0; min-height:0; }
+.stage-wrap { min-height:0; position:relative; margin:14px 14px 0; border:1px solid #434b5b; border-radius:14px 14px 0 0; overflow:hidden; }
+.stages { width:100%; height:100%; display:flex; background:#08090d; }
+.stage-view { min-width:0; flex:1; position:relative; }
+.stage-view svg { display:block; width:100%; height:100%; }
+.stage-view + .stage-view { border-left:2px solid #0c0e14; }
+.stage-label { position:absolute; top:12px; left:12px; padding:6px 10px; background:#11141de8; border:1px solid #61697a;
+  border-radius:6px; font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--ink);
+  max-width:56%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.stage-info { position:absolute; top:12px; right:12px; padding:6px 10px; background:#11141de8; font-size:12px; border-radius:6px; }
+.stage-caption { position:absolute; bottom:16px; left:20px; right:20px; display:flex; align-items:center; justify-content:space-between;
+  pointer-events:none; color:#fff; text-shadow:0 1px 4px #000; }
+.stage-caption b { font-size:19px; background:#11141dd9; padding:7px 12px; border-radius:7px; }
+.stage-caption span { font-size:12px; background:#11141dd9; padding:7px 10px; border-radius:7px; }
+.stage-caption b { max-width:43%; overflow-wrap:anywhere; }
+.stage-caption span { max-width:54%; }
+.standby { position:absolute; width:7px; height:7px; border-radius:50%; background:var(--brand); right:18px; bottom:8px;
+  box-shadow:0 0 10px #3ddc97; animation:standby 3s ease-in-out infinite; }
+@keyframes standby { 50% { opacity:.3; } }
+.calm .standby { animation:none; }
+.timeline { min-width:0; background:linear-gradient(#202532,#171b25); margin:0 14px 14px; padding:12px; border:1px solid #434b5b;
+  border-top-color:#66738a; border-radius:0 0 12px 12px; }
+.timeline-head { display:flex; align-items:center; gap:12px; justify-content:space-between; margin-bottom:8px; }
+.eyebrow { color:var(--muted); font-size:11px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; }
+.timeline-head strong { color:var(--brand); font-size:13px; }
+.timeline-scroll { overflow-x:auto; overflow-y:hidden; max-width:100%; scrollbar-color:#728197 #171b25; padding-bottom:4px; }
+.track { min-width:100%; width:max-content; position:relative; display:flex; align-items:stretch; padding-top:25px; }
+.block { background:linear-gradient(140deg,#2d3548,#222838); border:1px solid #59657c; border-radius:8px; padding:7px 8px 5px;
+  text-align:left; height:96px; min-width:72px; position:relative; flex:none; }
+.block[aria-pressed=true] { border:2px solid var(--brand); box-shadow:inset 0 3px 0 #3ddc97; padding:6px 7px 4px; }
+.block strong { font-size:12px; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.block .meta { font-size:10px; color:var(--muted); display:block; margin-top:3px; }
+.thumbs { display:flex; height:32px; margin-top:3px; }
+.thumbs svg { width:12.5%; height:32px; }
+.glyphs { color:var(--brand); font-size:10px; font-weight:700; height:13px;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.gap { border:0; background:transparent; color:#8e9aaf; width:44px; flex:none; border-radius:6px; padding:0; }
+.gap:hover,.gap.ready { background:#3ddc9718; color:var(--brand); }
+.ruler { position:absolute; top:0; left:0; width:100%; height:24px; pointer-events:none; font-size:10px; color:#a3a9bb; }
+.ruler span { position:absolute; border-left:1px solid #59657c; padding-left:4px; }
+.playhead { position:absolute; top:20px; bottom:0; left:0; width:2px; background:var(--focus); pointer-events:none;
+  box-shadow:0 0 7px #ffd16666; z-index:2; }
+.playhead::before { content:''; position:absolute; top:-3px; left:-4px; width:10px; height:8px; background:var(--focus);
+  clip-path:polygon(0 0,100% 0,50% 100%); }
+button,input,select,textarea,summary { min-height:44px; }
+button { min-width:44px; }
+.btn { border:1px solid #59657c; border-radius:7px; background:linear-gradient(#303748,#232838); color:var(--ink);
+  padding:7px 10px; font-size:13px; font-weight:650; line-height:1.15; }
+.btn:hover:not(:disabled) { border-color:var(--brand); background:#303c47; }
+.btn[aria-pressed=true] { background:#264a40; border-color:var(--brand); color:#a9ffda; }
+.btn:disabled { opacity:.42; cursor:default; }
+.primary { background:var(--brand); color:var(--brand-ink); border-color:#77edb9; font-weight:800; }
+.primary:hover:not(:disabled) { background:#78edb9; color:var(--brand-ink); }
+.row { display:flex; align-items:center; gap:6px; }
+.row > * { min-width:0; }
+.row .grow { flex:1; }
+.grid2 { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; }
+.grid4 { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:5px; }
+.sec { border-top:1px solid #3b4355; padding-top:10px; }
+.sec h2 { font-size:11px; text-transform:uppercase; letter-spacing:1.7px; color:var(--muted); margin:0 0 8px; }
+.hint { font-size:13px; line-height:1.4; margin:0; min-height:55px; background:#111721; border-left:3px solid var(--brand); padding:8px 10px; }
+.sub { color:var(--muted); font-size:12px; line-height:1.4; margin:7px 0; }
+.readout { font-variant-numeric:tabular-nums; font-size:13px; color:var(--brand); }
+.transport .primary { font-size:16px; flex:1; }
+.transport { background:var(--panel); z-index:4; padding:6px 0; flex:none; }
+label { font-size:12px; color:var(--muted); display:block; margin:7px 0 4px; }
+select,input,textarea { width:100%; background:#10141e; border:1px solid #59657c; border-radius:7px; color:var(--ink);
+  font:13px 'Segoe UI',sans-serif; padding:7px 9px; }
+textarea { resize:vertical; min-height:66px; }
+.device { display:flex; gap:9px; align-items:center; text-align:left; }
+.device b { display:grid; place-items:center; width:25px; height:25px; background:#0f1820; border-radius:5px; font-size:11px; color:var(--brand); }
+.device span { flex:1; }
+.device-menu { margin-top:7px; border:1px solid #496958; background:#172b27; border-radius:8px; padding:8px; }
+.device-menu p { font-size:12px; line-height:1.4; margin:0 0 7px; }
+.option-grid { display:flex; flex-wrap:wrap; gap:5px; }
+.option-grid .btn { flex:1 0 75px; }
+.phrase-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:5px; }
+.phrase-chip { display:flex; align-items:center; gap:6px; padding:5px 7px; text-align:left; }
+.phrase-chip svg { width:29px; height:34px; flex:none; }
+.phrase-chip span { overflow:hidden; text-overflow:ellipsis; font-size:12px; }
+.formation { display:flex; align-items:center; gap:6px; font-size:12px; padding:4px 6px; }
+.formation svg { width:40px; height:30px; flex:none; }
+.formation-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:5px; }
+.formation-grid .formation:last-child { grid-column:1/-1; }
+.history-list { display:flex; flex-direction:column; gap:5px; margin-top:8px; }
+.version { text-align:left; font-size:12px; line-height:1.4; }
+.version small { display:block; color:#bdc8db; font-size:11px; }
+.metrics { display:grid; gap:7px; }
+.metric { background:#111721; padding:8px; border:1px solid #353d50; border-radius:7px; font-size:12px; }
+.metric b { display:block; margin-bottom:5px; color:#cad2e1; }
+.metric .value { color:var(--brand); font-size:13px; }
+.metrics p { margin:0; }
+.level-bar { display:flex; height:5px; overflow:hidden; border-radius:3px; margin:5px 0 3px; }
+.level-bar i:nth-child(1) { background:#ffd166; }
+.level-bar i:nth-child(2) { background:#7cc4ff; }
+.level-bar i:nth-child(3) { background:#f7a8d8; }
+#same { border-left:2px solid var(--focus); padding-left:8px; color:#f8dfaa; }
+.editor-panel { display:grid; gap:7px; }
+.moves { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px; }
+.moves .btn { font-size:11px; padding:5px; }
+.moves svg { width:30px; height:34px; display:block; margin:auto; }
+.moves h3 { grid-column:1/-1; font-size:11px; color:var(--muted); margin:5px 0 0; }
+.count-slots { display:grid; grid-template-columns:repeat(8,minmax(44px,1fr)); gap:5px; }
+.slot { height:91px; padding:4px; }
+.slot svg { width:100%; height:50px; display:block; }
+.slot span { font-size:11px; }
+body.show-mode main { grid-template-columns:1fr; }
+body.show-mode .panel,body.show-mode .timeline { display:none; }
+body.show-mode .workspace { grid-template-rows:1fr; }
+body.show-mode .stage-wrap { margin:0; border:0; border-radius:0; }
+body.show-mode .stage-caption,body.show-mode .stage-label,body.show-mode .stage-info,
+body.show-mode .standby,body.show-mode .dz-counts { display:none; }
+body.show-mode header { display:none; }
+body.show-mode { grid-template-rows:1fr; }
+.showbar { position:absolute; z-index:5; bottom:15px; left:50%; transform:translateX(-50%); padding:7px; display:flex; gap:6px;
+  background:#11141deb; border:1px solid #59657c; border-radius:10px; }
+.showbar .btn { white-space:nowrap; }
+.title-card { position:absolute; top:25%; left:15%; right:15%; color:#fff; text-shadow:0 2px 12px #000;
+  text-align:center; font-size:clamp(20px,4vw,48px); font-family:'Trebuchet MS',sans-serif; overflow-wrap:anywhere; }
+.confirm { position:fixed; inset:0; z-index:10; background:#080b12d9; display:grid; place-items:center; padding:18px; }
+.confirm section { max-width:420px; background:#222838; border:1px solid #637189; padding:24px; border-radius:14px; }
+.confirm h2 { font-size:22px; margin-top:0; }
+.confirm p { line-height:1.5; font-size:14px; }
+.status { font-size:12px; color:var(--muted); }
+@media (max-height:900px) {
+  header { padding:9px 16px; gap:8px; }
+  .panel { padding:10px; gap:10px; }
+  .transport { top:-10px; }
+}
+@media (max-width:1100px) and (min-width:600px) {
+  main { grid-template-columns:minmax(0,1fr) 300px; }
+  h1 { font-size:21px; }
+  h1 small { font-size:12px; }
+  header { flex-wrap:nowrap; gap:6px; }
+  .seg button,.icon-btn { padding:0 10px; font-size:13px; }
+}
+@media (max-height:650px) and (min-width:600px) {
+  main { grid-template-columns:minmax(0,1fr) 280px; }
+  header { flex-wrap:nowrap; padding:5px 8px; gap:5px; }
+  h1 { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+  .seg { margin-right:auto; }
+  .seg button,.icon-btn { padding:0 9px; font-size:12px; }
+  .stage-wrap { margin:8px 8px 0; }
+  .timeline { margin:0 8px 8px; padding:7px; }
+  .timeline-head { margin-bottom:3px; }
+  .block { height:83px; }
+  .thumbs,.thumbs svg { height:25px; }
+  .stage-caption { left:9px; right:9px; bottom:8px; }
+  .stage-caption b { font-size:13px; padding:5px 7px; }
+  .stage-caption span { display:none; }
+  .stage-label,.stage-info { font-size:10px; top:6px; padding:4px 6px; }
+  .hint { font-size:12px; }
+  #devices { grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; }
+  #devices .device { display:block; text-align:center; padding:5px 2px; font-size:10px; }
+  #devices .device b { display:none; }
+  #devices-sec h2 { margin-bottom:5px; }
+  .panel { gap:7px; }
+  .hint { min-height:50px; }
+  #devices { grid-template-columns:repeat(4,minmax(0,1fr)); }
+}
+@media (max-width:999px) and (min-height:651px), (max-width:599px) {
+  body { height:auto; min-height:100dvh; overflow:auto; }
+  header { padding:8px 10px; gap:6px; flex-wrap:wrap; }
+  h1 { width:100%; font-size:21px; }
+  h1 small { display:none; }
+  .seg { margin-right:auto; }
+  .seg button,.icon-btn { font-size:12px; padding:0 9px; }
+  main { display:flex; flex-direction:column; overflow:visible; }
+  .workspace { order:0; display:flex; flex-direction:column; }
+  .stage-wrap { height:clamp(200px,37vw,380px); flex:none; margin:8px 8px 0; }
+  .timeline { margin:0 8px 8px; padding:8px; }
+  .panel { order:1; overflow:visible; padding:12px; border:0; }
+  .panel-scroll { overflow:visible; }
+  .transport { position:static; }
+  .hint { min-height:50px; }
+  #devices { grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .stage-caption b { font-size:14px; }
+  .stage-caption span { display:none; }
+  body.show-mode { height:100dvh; overflow:hidden; }
+  body.show-mode main { display:grid; }
+  body.show-mode .workspace { display:grid; height:100dvh; }
+  body.show-mode .stage-wrap { height:100%; margin:0; }
+  .stage-label,.stage-info { font-size:10px; }
+}
+@media (max-width:430px) {
+  header .seg { width:100%; }
+  header .seg button { flex:1; }
+  .icon-btn { flex:1; }
+  .timeline-head { gap:4px; }
+  .timeline-head .eyebrow { font-size:10px; }
+  .timeline-head strong { font-size:11px; }
+  .stages.split .stage-info { display:none; }
+  .stages.split .stage-label { left:4px; padding:4px; }
+  .stage-wrap { height:165px; }
+  .timeline { padding:6px; }
+  .timeline-head { margin-bottom:3px; }
+  .block { height:83px; }
+  .thumbs,.thumbs svg { height:25px; }
+  #devices { grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; }
+  #devices .device { display:block; text-align:center; font-size:10px; padding:4px 2px; }
+  #devices .device b { display:none; }
+  .hint { font-size:12px; }
+}
+
+.compact-picker { display:none; }
+.build-pages .btn { padding:5px 2px; font-size:11px; }
+#phrases { grid-template-columns:repeat(3,minmax(0,1fr)); }
+#block-sec,#phrases-sec,#history-sec { margin-top:0 !important; }
+.phrase-save input { flex:1; }
+.phrase-save #save-phrase { width:100px; flex:none; }
+.editor-panel #hold { min-height:44px; }
+.editor-panel .moves .btn { min-height:52px; }
+#compare-panel summary { cursor:pointer; color:var(--muted); padding:12px 0; font-size:12px; }
+@media (max-height:650px) and (min-width:600px), (max-width:430px), (max-width:999px) and (min-height:651px) {
+  #phrases { display:none; }
+  #phrase-picker:not([hidden]) { display:block; }
+  #moves { display:none; }
+  #move-picker:not([hidden]) { display:block; }
+  #editor-panel #hold { margin-top:3px !important; }
+  #editor-panel .sec > label[for=move-group] { display:none; }
+  #move-group,#move-picker { margin-top:5px; }
+  #editor-panel .sec > h2 { margin-bottom:4px; }
+  #editor-panel label { margin-top:4px; }
+  .build-pages { gap:3px; }
+}
+.title-card small { display:block; font:14px/1.6 Segoe UI,sans-serif; margin-top:12px; color:#e8f2ec; }
+
+.transport > .row:nth-child(3) { display:none; }
+.transport #count { flex:none; font-size:11px; white-space:nowrap; }
+.transport #track { font-size:12px; }
+@media (max-width:999px) and (min-height:651px) {
+  .stage-wrap { height:clamp(190px,30vw,300px); }
+}
+@media (max-width:430px) {
+  .stage-wrap { height:145px; }
+  .panel { padding:8px; }
+}
+
+.compact-cast { display:none; }
+@media (max-height:650px) and (min-width:600px), (max-width:430px), (max-width:999px) and (min-height:651px) {
+  .compact-cast { display:flex; }
+  .compact-picker { display:block; }
+  #block-controls > label,#dancers,#formations,#block-controls > .row:not(.compact-cast) { display:none; }
+  #block-sec > h2,#history-sec > h2 { display:none; }
+  #block-action { margin-top:6px; }
+  #history-sec > .row,#history-sec > .sub,#save-status { display:none; }
+  #history-sec::after { content:'Saved only on this device.'; display:block; color:var(--muted); font-size:11px; margin-top:6px; }
+  #history-sec label { margin-top:4px; }
+}
+@media (max-height:650px) and (min-width:600px), (max-width:430px), (max-width:999px) and (min-height:651px) {
+#block-controls > .sub { font-size:10px; margin:3px 0; }
+#history-sec label[for=title] { display:none; }
+}
+
+.compare-pages { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.compare-pages .btn { padding:5px; font-size:12px; }
+#compare-measures,#compare-reasons { margin-top:0 !important; }
+@media (max-height:650px) and (min-width:600px), (max-width:999px) and (min-height:651px), (max-width:430px) {
+  #reasons,#compare-reasons h2,#compare-before > h2,#compare-before > label,#version-details { display:none; }
+  #compare-reasons textarea { min-height:44px; height:44px; }
+}
+
+.device-pickers { display:none; }
+@media (max-height:650px) and (min-width:600px), (max-width:999px) and (min-height:651px), (max-width:430px) {
+  #devices-sec.choosing-device #devices,#devices-sec.choosing-device #device-options { display:none; }
+  #devices-sec.choosing-device #device-meaning,#devices-sec.choosing-device > h2 { display:none; }
+  #devices-sec.choosing-device .device-pickers { display:grid; gap:6px; }
+  #devices-sec.choosing-device .device-menu { padding:0; border:0; background:transparent; margin-top:0; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Choreography Board <small>Create and revise movement phrases</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-build" aria-pressed="true">Build</button>
+    <button id="m-compare" aria-pressed="false">Compare</button>
+    <button id="m-show" aria-pressed="false">Show</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <aside class="panel" id="panel">
+    <div class="panel-head">
+    <div class="transport">
+      <div class="row"><button class="btn primary" id="play">▶ Play</button><button class="btn" id="loop" aria-pressed="false">↻ Loop block</button></div>
+      <div class="row" style="margin-top:6px"><label for="track" style="margin:0">Track</label><select id="track" class="grow"></select></div>
+      <div class="row" style="justify-content:space-between;margin-top:8px">
+        <span class="readout" id="count">Count 1 of 24</span><span class="status" id="track-info">76 BPM · 4/4</span>
+      </div>
+    </div>
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div class="grid4 build-pages" id="build-pages" role="group" aria-label="Build sections">
+      <button class="btn" data-page="devices">Devices</button><button class="btn" data-page="cast">Cast</button>
+      <button class="btn" data-page="phrases">Phrases</button><button class="btn" data-page="history">History</button>
+    </div>
+    <div class="grid4 compare-pages" id="compare-pages" hidden role="group" aria-label="Compare sections">
+      <button class="btn" data-compare-page="before">Before</button>
+      <button class="btn" data-compare-page="measures">Measures</button>
+      <button class="btn" data-compare-page="reasons">Reasons</button>
+    </div>
+    </div>
+    <div class="panel-scroll" id="panel-scroll">
+    <div id="build-panel">
+      <section class="sec" id="devices-sec">
+        <h2>Devices <span id="selected-name"></span></h2>
+        <div class="grid2" id="devices"></div>
+        <div class="device-menu" id="device-menu" hidden><p id="device-meaning"></p>
+          <div class="device-pickers"><select id="device-picker" aria-label="Device">
+            <option value="">Back to all devices</option></select>
+          <select id="device-option-picker" aria-label="Device option"></select></div><div class="option-grid" id="device-options"></div></div>
+      </section>
+      <section class="sec" id="block-sec" style="margin-top:12px">
+        <h2>Selected block</h2><p class="sub" id="selection-empty">Tap a block on the timeline first.</p>
+        <div id="block-controls" hidden>
+          <div class="row compact-cast"><select id="cast-picker" aria-label="Dancers"></select>
+          <select id="formation-picker" aria-label="Formation"></select></div>
+          <select id="block-action" class="compact-picker" aria-label="Selected block action">
+            <option value="">Arrange or edit block</option><option value="earlier">Move earlier</option>
+            <option value="later">Move later</option><option value="edit-copy">Edit a copy</option><option value="remove">Remove</option>
+          </select>
+          <label>Dancers</label><div class="grid4" id="dancers"></div>
+          <label>Formation</label><div class="formation-grid" id="formations"></div>
+          <p class="sub">Stage left and right are the dancer's view, facing you.</p>
+          <div class="row"><button class="btn grow" id="earlier">◀ Earlier</button><button class="btn grow" id="later">Later ▶</button></div>
+          <div class="row" style="margin-top:5px">
+            <button class="btn grow" id="edit-copy">✎ Edit a copy</button><button class="btn" id="remove">⌫ Remove</button>
+          </div>
+        </div>
+      </section>
+      <section class="sec" id="phrases-sec" style="margin-top:12px"><h2>Phrases · eight counts each</h2>
+        <select id="phrase-picker" class="compact-picker" aria-label="Choose a phrase">
+          <option value="">Choose a phrase</option></select>
+        <div class="phrase-grid" id="phrases"></div>
+        <button class="btn" id="make" style="width:100%;margin-top:6px">✎ Make a phrase</button></section>
+      <section class="sec" id="history-sec" style="margin-top:12px"><h2>History</h2>
+        <select id="history-action" class="compact-picker" aria-label="History action">
+          <option value="">History actions</option><option value="undo">Undo</option><option value="redo">Redo</option>
+          <option value="new">New dance</option><option value="clear">Clear saved</option></select>
+        <div class="row"><strong class="grow" id="version">Version 1</strong>
+          <button class="btn" id="undo">↶ Undo</button><button class="btn" id="redo">↷ Redo</button>
+        </div>
+        <label for="title">Dance title</label><input id="title" aria-label="Dance title" type="text" maxlength="40" placeholder="Untitled dance">
+        <p class="sub">Starter: First Light. Saved on this device only. Your work never leaves this device.</p>
+        <p id="save-status" class="status" role="status"></p>
+        <div class="row"><button class="btn grow" id="new">New dance</button><button class="btn grow" id="clear">Clear saved</button></div>
+      </section>
+    </div>
+    <div id="compare-panel" hidden>
+      <section class="sec" id="compare-before"><h2>Before</h2><label for="before">Choose an earlier version</label><select id="before"></select>
+        <div class="row" style="margin-top:7px">
+          <button class="btn grow" id="ghost" aria-pressed="false">♧ Ghost</button>
+          <button class="btn grow" id="go-back">↩ Go back to Before</button>
+        </div>
+        <p class="sub" id="oldest-note"></p><details id="version-details"><summary>Version notes</summary>
+        <div class="history-list" id="history-list" hidden></div></details>
+      </section>
+      <section class="sec" id="compare-measures" style="margin-top:12px"><h2>What changed</h2>
+        <div class="metrics" id="metrics"></div><p class="sub" id="same"></p>
+        <p class="sub">Levels and energy count every dancer on every count, including held shapes during canon. These are this tool's measures.</p></section>
+      <section class="sec" id="compare-reasons" style="margin-top:12px"><h2>Why I changed it <span id="reason-version"></span></h2>
+        <select id="reason-picker" class="compact-picker" aria-label="Why I changed it">
+          <option value="">Choose a reason (optional)</option></select><div class="grid2" id="reasons"></div>
+        <label for="reason-note">Optional note · 120 characters</label>
+        <textarea id="reason-note" aria-label="Why I changed it: optional note" maxlength="120"></textarea></section>
+    </div>
+    <div id="editor-panel" class="editor-panel" hidden>
+      <section class="sec"><h2>Make a phrase · <span id="slot-name">Count 1</span></h2>
+        <div class="row"><button class="btn primary grow" id="try">▶ Try it</button><button class="btn" id="cancel">✕ Cancel</button></div>
+        <label for="phrase-name">Phrase name · 20 characters</label><div class="row phrase-save">
+        <input id="phrase-name" maxlength="20" value="My phrase"><button class="btn primary" id="save-phrase">Save phrase</button></div>
+        <div class="row editor-settings"><div class="grow"><label for="editor-level">Level</label>
+        <select id="editor-level"></select></div><div class="grow"><label for="editor-dyn">Dynamics</label>
+        <select id="editor-dyn"></select></div></div><div id="editor-levels" hidden></div>
+        <button class="btn" id="hold" style="width:100%;margin-top:6px">Hold previous shape</button>
+        <label for="move-group">Move group</label><div class="row move-pickers"><select id="move-group"></select>
+        <select id="move-picker" class="compact-picker" aria-label="Choose a move"></select></div><div class="moves" id="moves"></div>
+      </section>
+    </div>
+    </div>
+  </aside>
+  <div class="workspace">
+    <div class="stage-wrap" id="stage">
+      <div class="stages" id="stages">
+        <div class="stage-view" id="view-before" hidden>
+          <svg id="svg-before" role="img" aria-label="Before dance, audience view"></svg>
+          <span class="stage-label" id="label-before">Before</span>
+        </div>
+        <div class="stage-view" id="view-now"><svg id="svg-now" role="img" aria-label="Current dance, audience view"></svg>
+          <span class="stage-label" id="label-now">Rehearsal / First Light</span>
+          <span class="stage-info" id="stage-info">2 dancers · Line</span></div>
+      </div>
+      <div class="stage-caption" id="caption"><b id="phrase-caption">Rise</b><span id="device-caption">A phrase is an idea in eight counts.</span></div>
+      <span class="standby" aria-hidden="true"></span>
+      <div class="title-card" id="show-title" hidden></div>
+      <div class="showbar" id="showbar" hidden>
+        <button class="btn primary" id="show-play">▶ Play</button><button class="btn" id="show-stop">■ Stop</button>
+        <button class="btn" id="back">← Back</button>
+      </div>
+    </div>
+    <section class="timeline" id="timeline" aria-label="Dance timeline">
+      <div class="timeline-head"><span class="eyebrow" id="timeline-label">Your dance / 3 phrases</span><strong id="length">24 / 96 counts</strong></div>
+      <div class="timeline-scroll" id="timeline-scroll"><div class="track" id="blocks"></div><div class="count-slots" id="slots" hidden></div></div>
+    </section>
+  </div>
+</main>
+<div class="confirm" id="confirm" hidden role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+  <section><h2 id="confirm-title">Start a new dance?</h2><p id="confirm-text"></p>
+    <div class="row"><button class="btn primary" id="confirm-yes">Continue</button>
+      <button class="btn" id="confirm-no">Keep working</button>
+    </div>
+  </section>
+</div>
+<script src="kit:curio"></script>
+<script src="kit:dance"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  const clone = value => JSON.parse(JSON.stringify(value));
+  const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+  const mix = (a, b, t) => a + (b - a) * t;
+  const svgNode = (tag, attrs, parent) => {
+    const node = document.createElementNS(NS, tag);
+    for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, value);
+    if (parent) parent.append(node);
+    return node;
+  };
+  const colors = ['#ff8a7a', '#7cc4ff', '#ffd166', '#f7a8d8'];
+  const badges = ['circle', 'square', 'triangle', 'diamond'];
+  const qualities = ['smooth', 'sharp', 'swing', 'suspend', 'collapse', 'shake'];
+  const levels = ['high', 'middle', 'low'];
+  const washes = ['#f9c25c', '#f5a0aa', '#6cc6bb', '#b7a0ed', '#83b4e4'];
+  const cap = str => str[0].toUpperCase() + str.slice(1);
+
+  // Movement data stays separate from the renderer, including the future painted-pose adapter.
+  const extra = {
+    'reach-side': {rArm:[90,0,96,0], lArm:[25,0,30,0]},
+    'reach-low': {lean:45, arms:[30,80,20,90], lLeg:[20,5,30], rLeg:[20,5,30]},
+    'wave-right': {rArm:[140,0,60,0], lArm:[20,0,22,0]},
+    'wave-left': {lArm:[140,0,60,0], rArm:[20,0,22,0]},
+    'wave-right-open': {rArm:[90,0,160,0], lArm:[20,0,22,0]},
+    'wave-left-open': {lArm:[90,0,160,0], rArm:[20,0,22,0]},
+    'body-wave': {lean:30, head:15, arms:[70,40,90,40], lLeg:[20,5,38], rLeg:[20,5,38]},
+    'heart': {rArm:[65,75,95,170], lArm:[12,0,18,0]},
+    'look-up': {head:-32, arms:[20,0,25,0]},
+    'sit-look-up': {...Dance.poses.sit,head:-32,low:{...Dance.poses.sit,head:-32}},
+    'point-foot': {lLeg:[40,0,0], lToe:1, arms:[90,0,92,0]},
+    'roll': {pitch:-85, roll:65, arms:[65,70,80,80], lLeg:[60,4,90], rLeg:[60,4,90]},
+    'push': {...Dance.poses.lunge,arms:[65,90,85,90]},
+    'pull': {lean:-12, arms:[55,80,110,140], lLeg:[20,6,30], rLeg:[20,6,30]},
+    'circle': {arms:[155,20,170,20]},
+    'spiral': {twist:60, side:20, arms:[95,0,125,60]},
+    'spiral-kneel': {...Dance.poses.kneel,twist:45,arms:[95,0,125,60],
+      low:{...Dance.poses.kneel,twist:45,arms:[95,0,125,60],lean:15}},
+    'shake-hands': {arms:[85,50,115,70]},
+    'shoulders': {arms:[28,0,35,15], side:12, head:8},
+    'turn-quarter': {twist:20, arms:[75,0,100,0]},
+    'turn-half': {arms:[80,0,105,0]},
+    'turn-full': {arms:[80,0,110,0]},
+  };
+  const frame = (p, level='middle', dyn='smooth', travel=0, facing=0) => ({p, level, dyn, travel, facing});
+  const F = frame;
+  const pair = (...entries) => entries.flatMap(entry => [clone(entry), clone(entry)]);
+  const starters = [
+    {id:'rise', name:'Rise', frames:pair(F('curl','low'),F('kneel','low'),F('arms-wide'),F('releve','high'))},
+    {id:'fall', name:'Fall', frames:[F('releve','high'),F('releve','high'),F('releve','high','suspend'),
+      F('crouch','low','collapse'),F('roll','low'),{...F('roll','low'),side:true},F('sit-look-up','low'),F('sit-look-up','low')]},
+    {id:'turn', name:'Turn and point', frames:[F('step','middle','smooth',0),F('step','middle','smooth',-3),
+      F('turn-full','middle','smooth',-6,-180),F('turn-full','middle','smooth',-6,-360),
+      F('point-foot','middle','smooth',-6,-360),F('point-foot','middle','smooth',-6,-360),
+      F('clap','middle','smooth',-6,-360),F('clap','middle','smooth',-6,-360)]},
+    {id:'wave', name:'Wave', frames:[F('wave-right'),F('wave-right-open'),F('wave-left'),F('wave-left-open'),
+      F('release'),F('body-wave'),F('contraction'),F('crouch','low')]},
+    {id:'leap', name:'Leap across', frames:[{...F('run','middle','smooth',0),gaitPhase:.15},{...F('run','middle','smooth',-3),gaitPhase:.65},
+      {...F('run','middle','smooth',-6),gaitPhase:.15},
+      F('leap','high','smooth',-9),{...F('run','middle','smooth',-12),gaitPhase:.15},
+      {...F('run','middle','smooth',-15),gaitPhase:.65},{...F('run','middle','smooth',-18),gaitPhase:.15},F('plie','middle','smooth',-20)]},
+    {id:'stomp', name:'Stomp grid', frames:[F('stamp','middle','sharp'),{...F('stamp','middle','sharp'),side:true},F('clap','middle','sharp'),
+      F('clap','middle','sharp'),F('stamp','middle','sharp'),{...F('stamp','middle','sharp'),side:true},
+      F('star-jump','high','sharp'),F('stand','middle','sharp')]},
+    {id:'push', name:'Push and pull', frames:pair(F('push'),F('pull'),{...F('push'),side:true},F('pull'))},
+    {id:'shake', name:'Shake out', frames:pair(F('shake-hands','middle','shake'),F('shoulders','middle','shake'),
+      F('arms-wide','middle','shake'),F('stand'))},
+    {id:'spiral', name:'Spiral down', frames:pair(F('twist'),{...F('twist','middle'),side:true},F('spiral-kneel','low'),F('curl','low'))},
+    {id:'star', name:'Star', frames:[F('star-jump','high'),F('plie'),F('tuck-jump','high'),F('plie'),
+      F('arms-wide'),F('circle'),F('reach-up'),F('circle')]},
+    {id:'gesture', name:'Gesture', frames:pair(F('heart'),F('reach-side'),F('look-up'),F('bow'))},
+    {id:'freeze', name:'Freeze frames', frames:pair(F('lunge','middle','sharp'),F('arabesque','middle','sharp'),
+      F('crouch','low','sharp'),F('reach-up','high','sharp'))},
+  ];
+  // Rise's kneel reaches up while remaining low, as specified.
+  starters[0].frames[2].p = 'kneel-reach';
+  starters[0].frames[3].p = 'kneel-reach';
+  extra['kneel-reach'] = {...Dance.poses.kneel, arms:[165,15,175,15], low:{...Dance.poses.sit, arms:[155,15,170,15]}};
+  const moveGroups = {
+    Reach:[['reach-up','Reach up'],['reach-side','Reach side'],['reach-low','Reach low'],['arms-wide','Arms wide']],
+    Turn:[['turn-quarter','Quarter turn'],['turn-half','Half turn'],['turn-full','Full turn'],['spiral','Spiral']],
+    Travel:[['step','Step'],['run','Run'],['leap','Leap'],['slide','Slide'],['skip','Skip']],
+    Floor:[['kneel','Kneel'],['sit','Sit'],['roll','Roll'],['crouch','Crouch'],['lie','Lie']],
+    Shapes:[['lunge','Lunge'],['arabesque','Arabesque'],['passe','Passé'],['contraction','Contraction'],['release','Release'],['clap','Clap']],
+  };
+  const deviceDefs = {
+    repeat:{tag:'Re',symbol:'↻',name:'Repeat',meaning:'Do the phrase again, so the block is twice as long.'},
+    retro:{tag:'Rt',symbol:'↶',name:'Retrograde',meaning:'Perform the phrase backwards, last count first, like rewinding a video.'},
+    mirror:{tag:'Mi',symbol:'⇆',name:'Mirror',meaning:'Perform it on the other side; right becomes left.'},
+    level:{tag:'Lv',symbol:'↕',name:'Level',meaning:'Perform it higher on the toes, or lower with bent knees, closer to the floor.',
+      options:[['high','Higher'],['low','Lower']]},
+    tempo:{tag:'Tm',symbol:'◷',name:'Tempo',meaning:'Half time doubles the counts: augmentation. Double time halves them: diminution.',
+      options:[[2,'Half time'],[.5,'Double time']]},
+    dyn:{tag:'Dy',symbol:'≈',name:'Dynamics',meaning:'Change the energy quality of the movement.',options:qualities.map(q => [q,cap(q)])},
+    size:{tag:'Sz',symbol:'⤢',name:'Size',meaning:'Use more space for bigger movements, or less space for smaller movements.',
+      options:[[1.3,'Bigger'],[.65,'Smaller']]},
+    canon:{tag:'Ca',symbol:'⋱',name:'Canon',meaning:'Start the same phrase one after another. Without canon, dancers move in unison.',
+      options:[[1,'1 count apart'],[2,'2 counts apart']]},
+  };
+  const L = {
+    wBuild:"Here's a short dance to start. Press Play to watch it, then tap a block and try a device.",
+    wCompare:'Before is on the left, now is on the right. Press Play both and watch what your change did.',
+    wCompareNone:'Nothing has changed yet. Tap Build, then tap a block and try a device.',
+    wShow:'Show time. Press Play to see the whole dance from the audience.',
+    placeHow:'Now tap a spot on the timeline to place it.',
+    deviceHow:'Now tap a device in the panel to change how this block is danced.',
+    compareHow:'You made a change. Tap Compare to see before and after side by side.',
+    makeHow:'Tap a count slot, then pick a move. Press Try it, then Save phrase when it feels right.',
+    dRepeat:'Repeat: saying it twice makes it matter.',
+    dRetro:'Retrograde: the phrase runs backwards, last count first.',
+    dMirror:'Mirror: right becomes left.', dLevel:'Level: same phrase, new height.', dTempo:'Tempo: same moves, new speed.',
+    dDyn:'Dynamics: same shapes, new energy.', dSize:'Size: same moves, more or less space.',
+    dCanon:'Canon: dancers start one after another, like a round.',
+    needDancers:'Canon needs two dancers or more. Tap Dancers 2 first.',
+    overLimit:'That makes the dance too long. Remove a block first.',
+    cLevel:"Keep the phrase; change its height. Tap Level option, or press Play.",
+    cTempo:"Half time doubles the counts; Double time halves them. Tap Tempo option, or press Play.",
+    cDyn:"Keep the shapes; change their energy. Tap Dynamics option, or press Play.",
+    cSize:"Use more or less space for the same moves. Tap Size option, or press Play.",
+    cCanon:"Start dancers one or two counts apart. Tap Canon option, or press Play.",
+    pageDevices:'Tap a timeline block, then tap a device to revise it.',
+    pageCast:'Tap Dancers or a Formation to change the selected block.',
+    pagePhrases:'Choose a phrase, then tap a plus on the timeline to place it. Or tap Make a phrase.',
+    pageHistory:'Type a Dance title, or choose an available history control.',
+    pageBefore:'Choose a Before version, then press Play both.',
+    pageMeasures:'Read what changed, then press Play both to watch the difference.',
+    pageReasons:'Choose a reason for this version, or type a short note.',
+    saved:"Phrase saved. You'll find it with the starters.",
+  };
+  const starterDance = () => ({title:'',track:'Drift',blocks:['rise','wave','turn'].map(id => ({phrase:id,n:2,formation:'Line',devices:{}}))});
+  const state = {mode:'build', selected:-1, pending:null, playing:false, loop:false, ghost:false, editor:null,deviceUsed:false,
+    history:[{id:1,label:'First Light',dance:starterDance(),reason:'',note:''}], cursor:0,before:0,custom:[],nextId:2,dropped:0};
+  const current = () => state.history[state.cursor];
+  const dance = () => current().dance;
+  const findPhrase = id => [...starters,...state.custom].find(p => p.id === id) || starters[0];
+  const blockLength = b => 8*(b.devices.tempo || 1)*(b.devices.repeat ? 2 : 1)+(b.n-1)*(b.devices.canon || 0);
+  const total = d => d.blocks.reduce((sum,b) => sum+blockLength(b),0);
+  const startOf = (d, index) => d.blocks.slice(0,index).reduce((sum,b) => sum+blockLength(b),0);
+  const blockAt = (d, count) => {
+    let start = 0;
+    for (let i=0;i<d.blocks.length;i++) {
+      const len = blockLength(d.blocks[i]);
+      if (count < start+len || i === d.blocks.length-1) return {block:d.blocks[i],index:i,start,local:clamp(count-start,0,len)};
+      start += len;
+    }
+    return null;
+  };
+  let saveEnabled = true;
+  let storageOK = true;
+  try {
+    const saved = JSON.parse(localStorage.getItem('choreography-board') || 'null');
+    if (saved && saved.schema === 1 && Array.isArray(saved.history) && saved.history.length && saved.history.length <= 40) {
+      if (saved.history.every(v => v.dance && Array.isArray(v.dance.blocks) && v.dance.blocks.length <= 8 && total(v.dance) <= 96)) {
+        state.history = saved.history;
+        state.cursor = clamp(saved.cursor || 0,0,state.history.length-1);
+        state.custom = Array.isArray(saved.custom) ? saved.custom : [];
+        state.nextId = saved.nextId || Math.max(...state.history.map(v => v.id))+1;
+        state.dropped = saved.dropped || 0;
+        state.before = Math.max(0,state.cursor-1);
+      }
+    }
+  } catch { storageOK = false;
+  }
+  state.deviceUsed=state.history.some(v => v.dance.blocks.some(b => Object.keys(b.devices).length));
+  function persist() {
+    if (!saveEnabled) return;
+    try {
+      localStorage.setItem('choreography-board', JSON.stringify({schema:1,history:state.history,cursor:state.cursor,
+        custom:state.custom,nextId:state.nextId,dropped:state.dropped}));
+      storageOK = true;
+    } catch { storageOK = false;
+    }
+    $('save-status').textContent = storageOK ? 'Saved here automatically.' : 'Saving is unavailable in this browser. Keep this page open.';
+  }
+  let run = null;
+  let lastPos = 0;
+  let showTimer = null;
+  let showToken = 0;
+  const deferred = [];
+  let eventSerial=0;
+  const hint = text => { $('hint').textContent = text;
+  };
+  const welcomeKey = () => state.editor ? 'makeHow' : state.mode === 'compare' ?
+    (state.history.length > 1 ? 'wCompare' : 'wCompareNone') : state.mode === 'show' ? 'wShow' : 'wBuild';
+  const V = Curio.voice({lines:L,scope:() => state.mode,hint:false,
+    read:() => { stop(false);
+      deferred.length=0;
+      return $('hint').textContent;
+    },
+    welcome:() => {
+      if (state.mode==='build' && !state.editor && (state.deviceUsed || state.pending)) return null;
+      if (state.mode==='compare' && state.ghost && state.history.length>1) return null;
+      return [welcomeKey(),{valid:() => !state.playing && !showTimer}];
+    },
+    speaks:'#play, #show-play, #try',
+  });
+  function narrate(key, event=false, valid=() => true) {
+    const entry = {key,event,valid,mode:state.mode};
+    if (state.playing) { deferred.push(entry);
+      return;
+    }
+    V[event ? 'say':'how'](key,{hint:false,key:event ? `${key}-${++eventSerial}`:undefined,
+      valid:() => !state.playing && entry.mode === state.mode && valid()});
+  }
+  function setHint(key) { hint(L[key]);
+    narrate(key);
+  }
+
+  // Track definitions are original synthesized music. No recordings or external audio.
+  const notes = seq => seq.flatMap(n => [n,null]);
+  const tracks = {
+    Pulse:{bpm:112,len:8,sub:2,vol:.35,parts:{kick:'X...x...X...x...',clap:'..x...x...x...x.',
+      pluck:[60,64,67,72,64,67,72,76,62,65,69,74,65,69,74,77]}},
+    Drift:{bpm:76,len:8,sub:2,vol:.32,parts:{pad:[[48,55,60],null,null,null,null,null,null,null,[45,52,57],null,null,null,null,null,null,null],
+      piano:notes([72,null,67,64,69,null,64,60])}},
+    Strut:{bpm:96,len:8,sub:2,swing:.28,vol:.32,parts:{bass:notes([36,40,43,45,38,41,45,47]),
+      click:'..x...x...x...x.',hat:'....x.......x...'}},
+    Storm:{bpm:132,len:8,sub:2,vol:.31,parts:{kick:'X..xx...x..xx...',stamp:'X.......x.......',
+      pad:notes([[36,43],null,[38,45],null,[36,43],null,[41,48],null])}},
+  };
+
+  function poseFor(f) {
+    let p;
+    if (['run','leap','slide','skip'].includes(f.p)) {
+      p = Dance.gaits[f.p].pose(f.p === 'leap' ? .75 : (f.gaitPhase ?? .3)).pose;
+    } else p = extra[f.p] || Dance.poses[f.p];
+    if (f.level==='low' && ['crouch','sit','lie','roll','sit-look-up'].includes(f.p)) {
+      // These shapes already contact the floor. Adding a second generic squat would fold knees past their support.
+      p={...p,low:p};
+    }
+    if (f.level==='high' && ['curl','kneel','kneel-reach','crouch','sit','lie','roll','sit-look-up','spiral-kneel'].includes(f.p)) {
+      // A higher floor phrase rises onto the toes instead of reporting High while the torso remains on the floor.
+      p={...Dance.pose(p),pitch:0,roll:0,yaw:0,lean:0,lLeg:[0,3,0],rLeg:[0,3,0],lToe:1,rToe:1};
+    }
+    p = Dance.level(p,f.level);
+    if (f.side) p = Dance.mirror(p);
+    return p;
+  }
+  function transformFrames(b) {
+    let frames = clone(findPhrase(b.phrase).frames);
+    const dev = b.devices;
+    frames = frames.map(f => {
+      let p = poseFor({...f,level:dev.level || f.level});
+      const size = dev.size || 1;
+      for (const key of ['lArm','rArm']) p[key] = p[key].map((n,i) => clamp(mix(Dance.BASE[key][i],n,size),-180,180));
+      p.side *= size;
+      p.lift *= size;
+      if (dev.mirror) p = Dance.mirror(p);
+      return {...f,pose:p,level:dev.level || f.level,dyn:dev.dyn || f.dyn,travel:(f.travel || 0)*size*(dev.mirror ? -1:1),
+        facing:f.facing*(dev.mirror ? -1:1)};
+    });
+    if (dev.retro) {
+      frames.reverse();
+      // Reversed keyframes retrace the original floor coordinates, so travel direction reverses too.
+    }
+    return frames;
+  }
+  const formationPositions = (name,n) => {
+    const sets = {
+      Line:(n===1 ? [50]:n===2 ? [27,73]:n===3 ? [18,50,82]:[12,37.3,62.7,88]).map(x => ({x,z:43})),
+      'Two rows':[{x:27,z:44},{x:73,z:44},{x:43,z:17},{x:57,z:17}],
+      Wedge:[{x:50,z:48},{x:25,z:31},{x:75,z:31},{x:50,z:12}],
+      Diagonal:[{x:25,z:12},{x:42,z:24},{x:59,z:36},{x:76,z:48}],
+      Cluster:[{x:45,z:38},{x:55,z:43},{x:48,z:26},{x:58,z:31}],
+    };
+    return sets[name].slice(0,n);
+  };
+  const compiled = new WeakMap();
+  function compile(d) {
+    if (compiled.has(d)) return compiled.get(d);
+    const result = d.blocks.map((b,i) => {
+      const frames = transformFrames(b);
+      const phr = Dance.phrase(frames.map((f,j) => ({poses:[f.pose,frames[Math.min(j+1,7)].pose],counts:1,dyn:f.dyn})));
+      return {b,frames,phr,start:startOf(d,i),positions:formationPositions(b.formation,b.n)};
+    });
+    compiled.set(d,result);
+    return result;
+  }
+  function sample(d, position, index) {
+    const found = blockAt(d,position);
+    if (!found) return {pose:Dance.pose('stand'),x:50,z:43,visible:false,lift:0,facing:0};
+    const c = compile(d)[found.index];
+    const {b,frames,phr,positions} = c;
+    if (index >= b.n) return {pose:Dance.pose('stand'),x:50,z:43,visible:false,lift:0,facing:0};
+    const tempo = b.devices.tempo || 1;
+    const len = 8*tempo*(b.devices.repeat ? 2:1);
+    let local = clamp(found.local-index*(b.devices.canon || 0),0,len-.00001);
+    let phase = (local/tempo)%8;
+    if (Curio.reduce) phase = Math.floor(phase);
+    const j = Math.floor(phase);
+    const u = phase-j;
+    const a = frames[j];
+    const z = frames[Math.min(j+1,7)];
+    const result = phr.at(phase);
+    let pos = positions[index];
+    if (found.index > 0 && found.local < 2) {
+      const previous = compile(d)[found.index-1];
+      const old = previous.positions[index] || pos;
+      const t = Curio.reduce ? Math.floor(found.local)/2 : found.local/2;
+      pos = {x:mix(old.x,pos.x,t),z:mix(old.z,pos.z,t)};
+      if (previous.b.formation !== b.formation) {
+        const legs = Dance.gaits.walk.pose((found.local/2)%1).pose;
+        result.pose.lLeg = legs.lLeg;
+        result.pose.rLeg = legs.rLeg;
+      }
+    }
+    const ease = Curio.reduce ? 0 : Dance.dyn[a.dyn].ease(u);
+    return {...result,x:clamp(pos.x+mix(a.travel,z.travel,ease),10,90),z:pos.z,
+      facing:mix(a.facing,z.facing,ease),visible:true,level:a.level,dyn:a.dyn,
+      poseKey:a.p,mirrored:!!b.devices.mirror!==!!a.side,figureScale:b.formation==='Cluster' ? (b.n>2 ? .8:1):b.n===4 ? .6:b.n===3 ? .76:1};
+  }
+
+  // One painted T pose per dancer, front and back. Joint data articulates the painting, so no pose catalogue is needed.
+  const paintedRig = {url:'art:cb-dancer-cast',width:2048,height:1440,cell:512,backY:770};
+  const groundedPoses={
+  "curl": {
+    "atlas": "cb-grounded-cast",
+    "w": 2048,
+    "h": 2656,
+    "ratio": 0.4,
+    "cells": [
+      [
+        79,
+        4,
+        312,
+        535
+      ],
+      [
+        614,
+        2,
+        305,
+        537
+      ],
+      [
+        1125,
+        0,
+        332,
+        539
+      ],
+      [
+        1666,
+        7,
+        306,
+        532
+      ]
+    ]
+  },
+  "kneel": {
+    "atlas": "cb-grounded-cast",
+    "w": 2048,
+    "h": 2656,
+    "ratio": 0.77,
+    "cells": [
+      [
+        107,
+        627,
+        286,
+        684
+      ],
+      [
+        628,
+        627,
+        294,
+        684
+      ],
+      [
+        1128,
+        627,
+        331,
+        684
+      ],
+      [
+        1674,
+        628,
+        298,
+        682
+      ]
+    ]
+  },
+  "crouch": {
+    "atlas": "cb-grounded-cast",
+    "w": 2048,
+    "h": 2656,
+    "ratio": 0.49,
+    "cells": [
+      [
+        31,
+        1429,
+        442,
+        535
+      ],
+      [
+        565,
+        1427,
+        427,
+        537
+      ],
+      [
+        1066,
+        1435,
+        450,
+        529
+      ],
+      [
+        1588,
+        1434,
+        460,
+        530
+      ]
+    ]
+  },
+  "sit": {
+    "atlas": "cb-grounded-cast",
+    "w": 2048,
+    "h": 2656,
+    "ratio": 0.52,
+    "cells": [
+      [
+        0,
+        2070,
+        512,
+        584
+      ],
+      [
+        512,
+        2062,
+        470,
+        592
+      ],
+      [
+        1029,
+        2075,
+        485,
+        579
+      ],
+      [
+        1549,
+        2070,
+        487,
+        585
+      ]
+    ]
+  },
+  "lie": {
+    "atlas": "cb-floor-bow-cast",
+    "w": 2048,
+    "h": 1329,
+    "ratio": 0.24,
+    "cells": [
+      [
+        0,
+        2,
+        491,
+        187
+      ],
+      [
+        520,
+        0,
+        489,
+        191
+      ],
+      [
+        1039,
+        0,
+        491,
+        190
+      ],
+      [
+        1559,
+        5,
+        489,
+        186
+      ]
+    ]
+  },
+  "roll": {
+    "atlas": "cb-floor-bow-cast",
+    "w": 2048,
+    "h": 1329,
+    "ratio": 0.38,
+    "cells": [
+      [
+        39,
+        434,
+        393,
+        209
+      ],
+      [
+        566,
+        436,
+        382,
+        213
+      ],
+      [
+        1074,
+        433,
+        385,
+        220
+      ],
+      [
+        1610,
+        433,
+        401,
+        220
+      ]
+    ]
+  },
+  "bow": {
+    "atlas": "cb-floor-bow-cast",
+    "w": 2048,
+    "h": 1329,
+    "ratio": 0.78,
+    "cells": [
+      [
+        148,
+        763,
+        190,
+        566
+      ],
+      [
+        661,
+        760,
+        202,
+        569
+      ],
+      [
+        1177,
+        759,
+        211,
+        570
+      ],
+      [
+        1706,
+        766,
+        198,
+        563
+      ]
+    ]
+  }
+};
+  const groundedURLs={'cb-grounded-cast':'art:cb-grounded-cast','cb-floor-bow-cast':'art:cb-floor-bow-cast'};
+  const groundedKey=(key,level,pose) => {
+    if (level==='high') return null;
+    if (['curl','kneel','kneel-reach','spiral-kneel','crouch','sit','sit-look-up','lie','roll'].includes(key)) {
+      return key==='kneel-reach' || key==='spiral-kneel' ? 'kneel':key==='sit-look-up' ? 'sit':key;
+    }
+    if (level==='low') return 'crouch';
+    return key==='bow' || key==='reach-low' || pose.lean>40 ? 'bow':null;
+  };
+  const atlasDefs=svgNode('defs',{},svgNode('svg',{'aria-hidden':'true',width:0,height:0,
+    style:'position:absolute;pointer-events:none'},document.body));
+  const atlasReferences=new Map();
+  function atlasRef(url,width,height) {
+    if (!atlasReferences.has(url)) {
+      const id='paint-atlas-'+atlasReferences.size;
+      svgNode('image',{id,href:url,width,height},atlasDefs);
+      atlasReferences.set(url,'#'+id);
+    }
+    return atlasReferences.get(url);
+  }
+  let rigSerial=0;
+  function addPaintedRig(d,index,ghost=false) {
+    const uid='paint-'+(++rigSerial);
+    const defs=svgNode('defs',{},d.g);
+    const tiles={};
+    const spriteId=uid+'-whole';
+    const spriteClip=svgNode('clipPath',{id:spriteId,clipPathUnits:'userSpaceOnUse'},defs);
+    const spriteRect=svgNode('rect',{},spriteClip);
+    const sprite=svgNode('g',{},d.g);
+    const spriteImageGroup=svgNode('g',{'clip-path':`url(#${spriteId})`},sprite);
+    const spriteImage=svgNode('use',{},spriteImageGroup);
+    const spriteBadge=svgNode('path',{fill:'#fff',stroke:'#182533','stroke-width':1.2},sprite);
+    if (ghost) {
+      const filter=svgNode('filter',{id:uid+'-outline',x:'-10%',y:'-10%',width:'120%',height:'120%'},defs);
+      svgNode('feMorphology',{in:'SourceAlpha',operator:'dilate',radius:1.3,result:'wide'},filter);
+      svgNode('feComposite',{in:'wide',in2:'SourceAlpha',operator:'out',result:'edge'},filter);
+      svgNode('feFlood',{'flood-color':'#f4fbff',result:'white'},filter);
+      svgNode('feComposite',{in:'white',in2:'edge',operator:'in'},filter);
+      d.g.setAttribute('filter',`url(#${uid}-outline)`);
+    }
+    const make=(name,parent,polygon) => {
+      const id=uid+'-'+name;
+      const clip=svgNode('clipPath',{id,clipPathUnits:'userSpaceOnUse'},defs);
+      const poly=svgNode('polygon',{},clip);
+      const group=svgNode('g',{'clip-path':`url(#${id})`},parent);
+      svgNode('use',{href:atlasRef(paintedRig.url,paintedRig.width,paintedRig.height)},group);
+      tiles[name]={group,poly,polygon};
+    };
+    const strip=(a,b,w) => {
+      const n=Math.hypot(b[0]-a[0],b[1]-a[1]);
+      const x=-(b[1]-a[1])/n*w/2,y=(b[0]-a[0])/n*w/2;
+      return [[a[0]+x,a[1]+y],[b[0]+x,b[1]+y],[b[0]-x,b[1]-y],[a[0]-x,a[1]-y]];
+    };
+    for (const side of ['l','r']) for (const part of ['Th','Sn','Ft','Ua','Fa']) {
+      const p=d.parts[side+part];
+      p.a.style.display='none';
+      p.b.style.display='none';
+      make(side+part,p.e,[]);
+    }
+    const tp=d.parts.torso;
+    tp.top.style.display='none';
+    tp.low.style.display='none';
+    d.parts.neck.setAttribute('stroke',['#97582f','#dfad78','#b47b43','#bc814e'][index]);
+    make('torso',tp.e,[]);
+    if (tp.badge) tp.e.append(tp.badge);
+    d.parts.head.el.style.display='none';
+    d.parts.hair.e.style.display='none';
+    make('head',d.parts.head.e,[]);
+    const matrix=(src,dst) => {
+      const [a,b,c]=src,[A,B,C]=dst;
+      const ux=b[0]-a[0],uy=b[1]-a[1],vx=c[0]-a[0],vy=c[1]-a[1],det=ux*vy-uy*vx;
+      const U=[B[0]-A[0],B[1]-A[1]],V=[C[0]-A[0],C[1]-A[1]];
+      const m=[(U[0]*vy-V[0]*uy)/det,(U[1]*vy-V[1]*uy)/det,
+        (V[0]*ux-U[0]*vx)/det,(V[1]*ux-U[1]*vx)/det];
+      m.push(A[0]-m[0]*a[0]-m[2]*a[1],A[1]-m[1]*a[0]-m[3]*a[1]);
+      return `matrix(${m.join(' ')})`;
+    };
+    d.paint=() => {
+      const S=d.sj;
+      if (!S) return;
+      const key=d.paintKey;
+      const frame=groundedPoses[key];
+      sprite.style.display=frame ? '':'none';
+      for (const [name,part] of Object.entries(d.parts)) {
+        if (part.e && name!=='hair') part.e.style.display=frame ? 'none':'';
+      }
+      if (frame) {
+        const [x,y,w,h]=frame.cells[index];
+        spriteRect.setAttribute('x',x);
+        spriteRect.setAttribute('y',y);
+        spriteRect.setAttribute('width',w);
+        spriteRect.setAttribute('height',h);
+        spriteImage.setAttribute('href',atlasRef(groundedURLs[frame.atlas],frame.w,frame.h));
+        spriteImage.setAttribute('width',frame.w);
+        spriteImage.setAttribute('height',frame.h);
+        const k=d.floor.scale(d.z)*d.height,point=d.floor.map(d.x,d.z);
+        const scale=k*frame.ratio/h;
+        const width=w*scale,height=h*scale;
+        const flip=index===3 ? key==='bow':!!d.paintMirror;
+        const tx=point.x+(flip ? width/2:-width/2)-x*scale*(flip ? -1:1);
+        const ty=point.y-height-y*scale;
+        spriteImageGroup.setAttribute('transform',`matrix(${flip ? -scale:scale} 0 0 ${scale} ${tx} ${ty})`);
+        const badgeAt={curl:[.42,.36],kneel:[.5,.52],crouch:[.46,.36],sit:[.5,.35],lie:[.3,.40],roll:[.43,.52],bow:[.5,.32]}[key];
+        const bx=point.x+(badgeAt[0]-.5)*width*(flip ? -1:1),by=point.y-height+badgeAt[1]*height,r=Math.max(2,k*.025);
+        const paths=[`M ${-r} 0 a ${r} ${r} 0 1 0 ${2*r} 0 a ${r} ${r} 0 1 0 ${-2*r} 0`,
+          `M ${-r} ${-r} h ${2*r} v ${2*r} h ${-2*r} Z`,`M 0 ${-r} L ${r} ${r} L ${-r} ${r} Z`,
+          `M 0 ${-r} L ${r} 0 L 0 ${r} L ${-r} 0 Z`];
+        spriteBadge.setAttribute('d',paths[index]);
+        spriteBadge.setAttribute('transform',`translate(${bx} ${by})`);
+        d.g.append(sprite);
+        return;
+      }
+      const back=Math.cos((d.facing+(d.pose.yaw || 0)+(d.pose.twist || 0))*Math.PI/180)<0;
+      const dx=index*paintedRig.cell,dy=back ? paintedRig.backY:0;
+      const src=p => [p[0]+dx,p[1]+dy];
+      const k=d.floor.scale(d.z)*d.height;
+      const tile=(name,poly,anchors,target) => {
+        const t=tiles[name];
+        t.poly.setAttribute('points',poly.map(src).map(p => p.join(',')).join(' '));
+        t.group.setAttribute('transform',matrix(anchors.map(src),target));
+      };
+      for (const side of ['l','r']) {
+        const right=(side==='l')!==back;
+        const sign=right ? 1:-1;
+        const shoulder=[256+sign*62,151],elbow=[256+sign*151,158],hand=[256+sign*248,163];
+        const hip=[256+sign*35,324],knee=[256+sign*46,472],ankle=[256+sign*63,626],toe=[256+sign*74,650];
+        const bones={Ua:[shoulder,elbow,44,'Sh','El'],Fa:[elbow,hand,31,'El','Ha'],
+          Th:[hip,knee,86,'Hi','Kn'],Sn:[knee,ankle,74,'Kn','An'],Ft:[ankle,toe,58,'An','To']};
+        for (const [part,[a,b,w,j1,j2]] of Object.entries(bones)) {
+          const A=S[side+j1],B=S[side+j2];
+          const sl=Math.hypot(b[0]-a[0],b[1]-a[1]);
+          const dl=Math.max(.5,Math.hypot(B[0]-A[0],B[1]-A[1]));
+          const sn=[-(b[1]-a[1])/sl,(b[0]-a[0])/sl];
+          const dn=[-(B[1]-A[1])/dl,(B[0]-A[0])/dl];
+          const across=k/650;
+          const start=[a[0]-(b[0]-a[0])*.04,a[1]-(b[1]-a[1])*.04];
+          const end=[b[0]+(b[0]-a[0])*.05,b[1]+(b[1]-a[1])*.05];
+          tile(side+part,strip(start,end,w),[a,b,[a[0]+sn[0]*50,a[1]+sn[1]*50]],
+            [A,B,[A[0]+dn[0]*50*across,A[1]+dn[1]*50*across]]);
+        }
+      }
+      const left=back ? S.lSh:S.rSh,right=back ? S.rSh:S.lSh;
+      const hip=[(S.lHi[0]+S.rHi[0])/2,(S.lHi[1]+S.rHi[1])/2];
+      tile('torso',[[187,126],[325,126],[316,278],[323,345],[189,345],[196,278]],
+        [[194,151],[318,151],[256,324]],[left,right,hip]);
+      const H=S.head;
+      const up=d.joints.hup,rad=d.facing*Math.PI/180;
+      const angle=Math.atan2(up[0]*Math.cos(rad)+up[2]*Math.sin(rad),up[1]);
+      const headRight=[Math.cos(angle),Math.sin(angle)],upward=[Math.sin(angle),-Math.cos(angle)];
+      const headScale=k/950;
+      tile('head',[[192,0],[320,0],[320,137],[192,137]],[[256,64],[310,64],[256,0]],
+        [H,[H[0]+headRight[0]*54*headScale,H[1]+headRight[1]*54*headScale],
+          [H[0]+upward[0]*64*headScale,H[1]+upward[1]*64*headScale]]);
+    };
+    const render=d.render.bind(d);
+    d.render=() => { render(); d.paint(); };
+    d.render();
+    return d;
+  }
+
+  // The only figure integration boundaries. The next painter can replace these without changing dance data or clocks.
+  function createPerformer(view,index,ghost=false) {
+    const c = colors[index];
+    const performer = Dance.dancer(view.floor.layers.actors,{floor:view.floor,top:c,bottom:Dance.shade(c,.45),
+      skin:c,hair:'#17202c',shoe:'#f3e4c6',badge:badges[index],ghost:ghost ? .25:undefined,noShadow:ghost});
+    performer.shadowElement=ghost ? null:view.floor.layers.shadow.lastElementChild;
+    if (ghost) {
+      performer.g.classList.add('ghost-figure');
+      performer.g.querySelectorAll('path,ellipse,line,circle').forEach(n => {
+        if (n.hasAttribute('fill') && n.getAttribute('fill') !== 'none') n.setAttribute('fill','none');
+        if (n.hasAttribute('stroke')) n.setAttribute('stroke','#f4fbff');
+      });
+    }
+    addPaintedRig(performer,index,ghost);
+    return performer;
+  }
+  function paintPerformer(performer,s) {
+    performer.paintKey=groundedKey(s.poseKey,s.level,s.pose);
+    performer.paintMirror=s.mirrored;
+    performer.scale=s.figureScale || 1;
+    performer.g.style.display = s.visible === false ? 'none':'';
+    if (performer.shadowElement) performer.shadowElement.style.display=s.visible === false ? 'none':'';
+    performer.set(s);
+  }
+  const iconCache=new Map();
+  function paintIcon(svg,f) {
+    const p=f.pose || poseFor(f);
+    const key=JSON.stringify([p,f.p,f.level]);
+    const cached=iconCache.get(key);
+    if (cached) {
+      svg.setAttribute('viewBox',cached.box);
+      svg.innerHTML=cached.html.replace(/paint-\d+/g,'paint-'+(++rigSerial));
+      return;
+    }
+    const actor=Dance.icon(svg,p,{top:colors[0],skin:colors[0],bottom:'#663e48',hair:'#17202c',badge:'circle'});
+    actor.paintKey=groundedKey(f.p,f.level,p);
+    actor.paintMirror=f.side;
+    addPaintedRig(actor,0);
+    if (actor.paintKey) {
+      const frame=groundedPoses[actor.paintKey],cell=frame.cells[0];
+      const height=100*frame.ratio,width=height*cell[2]/cell[3],side=Math.max(width,height)+16;
+      svg.setAttribute('viewBox',`${-side/2} ${-height/2-side/2} ${side} ${side}`);
+    }
+    iconCache.set(key,{box:svg.getAttribute('viewBox'),html:svg.innerHTML});
+  }
+  function newView(id) {
+    const svg = $(id);
+    const floor = Dance.floor(svg,'stage',{w:800,h:450,dancerFrac:.44});
+    return {svg,floor,dancers:[],ghosts:[],image:null,wash:null,counts:null};
+  }
+  const views = {now:newView('svg-now'),before:newView('svg-before')};
+  function fitView(view) {
+    const rect = view.svg.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    const w=rect.width,h=rect.height;
+    view.svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
+    const scale=Math.max(w/1600,h/900),iw=1600*scale,ih=900*scale,ix=(w-iw)/2,iy=(h-ih)/2;
+    view.floor.resize(w,h,{x0:Math.max(w*.04,ix+iw*.08),x1:Math.min(w*.96,ix+iw*.92),yBack:iy+ih*.59,yFront:Math.min(h*.94,iy+ih*.94)});
+    view.floor.layers.bg.textContent='';
+    view.floor.layers.floor.textContent='';
+    view.floor.deco.textContent='';
+    view.floor.back.textContent='';
+    view.image=svgNode('image',{href:'art:cb-blackbox',x:ix,y:iy,width:iw,height:ih},view.floor.layers.bg);
+    view.wash=svgNode('rect',{x:Math.max(0,ix+iw*.223),y:iy+ih*.09,width:Math.min(w,iw*.548),height:ih*.5,
+      fill:washes[0],opacity:.16},view.floor.layers.bg);
+    // Theater painting geometry: floor seam 59%, cyc x 22.3% to 77.1%, y 9% to 59%.
+    if (!view.counts) view.counts=Dance.counts(view.floor.layers.marks,null,{mode:'numbers',on:colors[0],off:'#202735',
+      past:'#9be6c1',offLine:'#718093'});
+    view.counts.layout({x:w*.32,y:h-34,w:w*.36,h:23});
+    view.dancers.forEach(d => d.render());
+    view.ghosts.forEach(d => d.render());
+  }
+  function ensureDancers(view,d,ghost=false) {
+    const n = state.editor && !ghost ? 1 : Math.max(0,...d.blocks.map(b => b.n));
+    const arr = ghost ? view.ghosts:view.dancers;
+    while (arr.length<n) arr.push(createPerformer(view,arr.length,ghost));
+    while (arr.length>n) arr.pop().remove();
+    return arr;
+  }
+  function layout() {
+    fitView(views.now);
+    fitView(views.before);
+    renderFrame(lastPos);
+    positionPlayhead(lastPos);
+  }
+  const resizeObserver = new ResizeObserver(layout);
+  resizeObserver.observe($('stage'));
+  function renderDance(view,d,pos,ghost=false) {
+    const arr=ensureDancers(view,d,ghost);
+    const order=[];
+    arr.forEach((actor,i) => {
+      const s=sample(d,pos,i);
+      paintPerformer(actor,s);
+      if (s.visible) order.push(actor);
+    });
+    order.sort((a,b) => a.z-b.z).forEach(actor => view.floor.layers.actors.append(actor.g));
+    if (!ghost) {
+      const found=blockAt(d,pos);
+      view.wash?.setAttribute('fill',washes[(found?.index || 0)%washes.length]);
+      view.counts.set(Math.floor(pos)+1);
+    }
+  }
+  function renderFrame(pos) {
+    if (state.editor) {
+      const actor=ensureDancers(views.now,{blocks:[{n:1}]})[0];
+      const i=state.playing ? Math.min(7,Math.floor(pos)) : state.editor.slot;
+      const p=state.editor.frames[i];
+      const next=state.editor.frames[Math.min(7,i+1)];
+      const t=state.playing && !Curio.reduce ? Dance.dyn[p.dyn].ease(pos%1):0;
+      paintPerformer(actor,{pose:Dance.mix(poseFor(p),poseFor(next),t),x:50+mix(p.travel || 0,next.travel || 0,t),z:43,
+        facing:mix(p.facing || 0,next.facing || 0,t),lift:0,poseKey:p.p,level:p.level,mirrored:p.side});
+      views.now.counts.set(i+1);
+      $('stage-info').textContent='1 dancer · Phrase preview';
+      $('count').textContent=`Count ${i+1} of 8`;
+      return;
+    }
+    renderDance(views.now,dance(),pos);
+    if (state.mode==='compare') {
+      const before=state.history[state.before].dance;
+      if (state.ghost) renderDance(views.now,before,pos,true);
+      else renderDance(views.before,before,pos);
+    }
+    const found=blockAt(dance(),pos);
+    if (found) {
+      $('phrase-caption').textContent=findPhrase(found.block.phrase).name;
+      $('stage-info').textContent=`${found.block.n} dancer${found.block.n===1 ? '':'s'} · ${found.block.formation}`;
+      const tags=Object.keys(deviceDefs).filter(k => found.block.devices[k]).map(k => deviceDefs[k].name);
+      $('device-caption').textContent=tags.length ? tags.join(' · '):'A phrase is an idea in eight counts.';
+    } else {
+      $('phrase-caption').textContent='Your stage is ready';
+      $('stage-info').textContent='Choose a phrase';
+    }
+    const count=Math.min(total(dance()),Math.floor(pos)+1);
+    $('count').textContent=total(dance()) ? `Count ${count} of ${total(dance())}`:'No phrases yet';
+    positionPlayhead(pos);
+  }
+  function positionPlayhead(pos) {
+    const head=$('playhead');
+    if (!head) return;
+    const found=blockAt(dance(),pos);
+    const block=found && document.querySelector(`[data-block="${found.index}"]`);
+    if (block) head.style.left=`${block.offsetLeft+block.offsetWidth*clamp(found.local/blockLength(found.block),0,1)}px`;
+  }
+
+  function stop(flush=true) {
+    showToken++;
+    if (showTimer) { clearTimeout(showTimer);
+      showTimer=null;
+    }
+    $('show-title').hidden=true;
+    if (run) {
+      lastPos=run.clock.pos;
+      run.handles.forEach(h => h.stop());
+      run.music?.stop();
+      run.clock.stop();
+      run=null;
+    }
+    state.playing=false;
+    $('play').textContent=state.mode==='compare' ? '▶ Play both':'▶ Play';
+    $('try').textContent='▶ Try it';
+    $('show-play').textContent='▶ Play';
+    if (flush) {
+      deferred.splice(0).forEach(e => {
+        if (e.mode===state.mode && e.valid()) narrate(e.key,e.event,e.valid);
+      });
+    }
+  }
+  async function start(show=false,from=null) {
+    stop(false);
+    V.hush();
+    if (!state.editor && !dance().blocks.length) { hint('Tap Phrases, choose a phrase, then tap + on the timeline to place it.');
+      return;
+    }
+    const token=showToken;
+    if (show) {
+      $('show-title').textContent=dance().title || 'Untitled dance';
+      $('show-title').hidden=false;
+      $('show-play').textContent='▶ Restart';
+      showTimer=setTimeout(() => {
+        showTimer=null;
+        if (token!==showToken) return;
+        $('show-title').hidden=true;
+        startPlayback(0,true);
+      },2000);
+      renderFrame(0);
+      return;
+    }
+    const origin=from ?? (state.mode==='compare' || state.editor ? 0 : state.selected>=0 ? startOf(dance(),state.selected):0);
+    startPlayback(origin,false);
+  }
+  function startPlayback(from,show) {
+    state.playing=true;
+    lastPos=from;
+    const clock=Dance.clock(tracks[dance().track].bpm,{countIn:0,meter:4});
+    const music=Dance.music(tracks[dance().track],clock);
+    const handles=[];
+    const max=state.editor ? 8 : state.mode==='compare' ? Math.max(total(dance()),total(state.history[state.before].dance)):total(dance());
+    // Each composed phrase samples tool transforms, while the shared engine owns playback and timing.
+    const attach=(view,d,ghost=false) => {
+      const actors=ensureDancers(view,d,ghost);
+      if (!actors.length) return;
+      const phrases=actors.map((_,i) => ({total:max,at:c => sample(d,c,i)}));
+      const adapters=actors.map(actor => ({set:s => paintPerformer(actor,s)}));
+      handles.push(Dance.play(adapters,phrases,{clock}));
+    };
+    if (!state.editor) {
+      attach(views.now,dance());
+      if (state.mode==='compare') attach(state.ghost ? views.now:views.before,state.history[state.before].dance,state.ghost);
+    }
+    run={clock,music,handles};
+    $('play').textContent='■ Stop';
+    $('try').textContent='■ Stop';
+    $('show-play').textContent='▶ Restart';
+    let lastBlock=-1;
+    clock.onFrame(pos => {
+      if (!run || run.clock!==clock) return;
+      lastPos=pos;
+      renderFrame(pos);
+      const found=blockAt(dance(),pos);
+      if (found && found.index!==lastBlock) {
+        lastBlock=found.index;
+        if (Curio.sound) Curio.tone(220, .25, .025, 'sine');
+      }
+      if (!state.editor && state.loop && state.mode==='build' && state.selected>=0) {
+        const begin=startOf(dance(),state.selected);
+        if (pos>=begin+blockLength(dance().blocks[state.selected])) clock.seek(begin);
+      } else if (pos>=max) finish(show);
+    });
+    clock.start(from);
+  }
+  function finish(show) {
+    const final=Math.max(0,(state.editor ? 8:total(dance()))-.001);
+    stop();
+    lastPos=final;
+    renderFrame(final);
+    if (show) {
+      hint('Your performance is complete. Press Play to perform again, or Back to revise.');
+      const token=showToken;
+      views.now.dancers.forEach(d => { d.paintKey='bow'; d.render(); });
+      $('show-title').textContent=dance().title || 'Untitled dance';
+      const recap=document.createElement('small');
+      const devices=[...new Set(dance().blocks.flatMap(b => Object.keys(b.devices).map(k => deviceDefs[k].name)))];
+      recap.textContent=`${dance().blocks.length} phrase${dance().blocks.length===1 ? '':'s'} · ${total(dance())} counts`+
+        (devices.length ? ' · '+devices.join(', '):'')+(current().reason ? ' · '+current().reason:'');
+      $('show-title').append(recap);
+      $('show-title').hidden=false;
+    }
+  }
+  function commit(label,change,force=false) {
+    const updated=clone(dance());
+    change(updated);
+    if (updated.blocks.length>8 || total(updated)>96) {
+      hint(L.overLimit);
+      const selected=state.selected,version=current().id;
+      narrate('overLimit',true,() => state.selected===selected && current().id===version);
+      Curio.tone(130,.12,.08);
+      return false;
+    }
+    if (!force && JSON.stringify(updated)===JSON.stringify(dance())) return false;
+    const wasPlaying=state.playing;
+    const currentBlock=blockAt(dance(),lastPos)?.index || 0;
+    stop(false);
+    saveEnabled=true;
+    const previous=state.cursor;
+    state.history.push({id:state.nextId++,label,dance:updated,reason:'',note:''});
+    state.cursor=state.history.length-1;
+    state.before=previous;
+    if (state.history.length>40) {
+      state.history.shift();
+      state.cursor--;
+      state.before=Math.max(0,state.before-1);
+      state.dropped++;
+    }
+    state.selected=clamp(state.selected,-1,updated.blocks.length-1);
+    persist();
+    renderUI();
+    lastPos=startOf(dance(),Math.min(currentBlock,Math.max(0,dance().blocks.length-1)));
+    renderFrame(lastPos);
+    Curio.tone(540,.07,.045);
+    if (wasPlaying) start(false,lastPos);
+    return true;
+  }
+  function selectBlock(index) {
+    if (state.pending) { place(index);
+      return;
+    }
+    state.selected=index;
+    if (state.mode==='build') setBuildPage('devices',false);
+    lastPos=startOf(dance(),index);
+    const playing=state.playing;
+    renderSelection();
+    renderTimeline();
+    renderFrame(lastPos);
+    if (playing) start(false,lastPos);
+    else if (state.mode==='compare') hint(state.ghost ?
+      'Press Play both. Before is a faint outline over Now.':'Press Play both to compare these versions from count 1.');
+    else setHint('deviceHow');
+    Curio.tone(420,.04,.025);
+  }
+  function place(index) {
+    if (!state.pending) return;
+    const id=state.pending;
+    const name=findPhrase(id).name;
+    if (commit(`Add ${name}`,d => d.blocks.splice(index,0,{phrase:id,n:2,formation:'Line',devices:{}}))) {
+      state.pending=null;
+      state.selected=index;
+      renderUI();
+      lastPos=startOf(dance(),index);
+      renderFrame(lastPos);
+      const placed=document.querySelector(`[data-block="${index}"]`);
+      if (placed) {
+        $('timeline-scroll').scrollLeft=Math.max(0,placed.offsetLeft-44);
+        placed.focus({preventScroll:true});
+      }
+      $('panel-scroll').scrollTop=0;
+      window.scrollTo(0,0);
+      hint(`${name} placed. Press Play, or tap a device to revise this block.`);
+    }
+  }
+  let buildPage='devices';
+  function setBuildPage(page,speak=true) {
+    const changed=buildPage!==page;
+    if (speak && changed) V.hush();
+    buildPage=page;
+    const ids={devices:'devices-sec',cast:'block-sec',phrases:'phrases-sec',history:'history-sec'};
+    Object.entries(ids).forEach(([key,id]) => { $(id).hidden=key!==page; });
+    $('build-pages').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed',b.dataset.page===page));
+    if (changed) $('panel-scroll').scrollTop=0;
+    if (speak) {
+      const key='page'+cap(page);
+      if (page==='cast' && state.selected<0) setHint('pageDevices');
+      else { hint(L[key]); narrate(key,false,() => buildPage===page); }
+    }
+  }
+  $('build-pages').querySelectorAll('button').forEach(b => { b.onclick=() => setBuildPage(b.dataset.page); });
+  let comparePage='before';
+  function setComparePage(page,speak=true) {
+    const changed=comparePage!==page;
+    if (speak && changed) V.hush();
+    comparePage=page;
+    ['before','measures','reasons'].forEach(key => { $('compare-'+key).hidden=key!==page; });
+    $('compare-pages').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed',b.dataset.comparePage===page));
+    if (changed) $('panel-scroll').scrollTop=0;
+    if (speak) {
+      const key='page'+cap(page);
+      hint(L[key]);
+      narrate(key,false,() => comparePage===page);
+    }
+  }
+  $('compare-pages').querySelectorAll('button').forEach(b => { b.onclick=() => setComparePage(b.dataset.comparePage); });
+  $('version-details').addEventListener('toggle',() => { $('history-list').hidden=!$('version-details').open; });
+  $('reason-picker').onchange=() => {
+    const button=[...$('reasons').querySelectorAll('button')].find(b => b.textContent===$('reason-picker').value);
+    if (button) button.click();
+    else { current().reason=''; persist(); renderHistory(); }
+  };
+  let activeDevice=null;
+  function chooseDevice(key,value=null) {
+    if (state.selected<0) return;
+    const selected=state.selected;
+    const b=dance().blocks[selected];
+    if (key==='canon' && b.n<2) {
+      setBuildPage('cast',false);
+      const target=$('cast-picker').getBoundingClientRect().width ? $('cast-picker'):$('dancers-2');
+      target.focus({preventScroll:true});
+      hint(L.needDancers);
+      narrate('needDancers',true,() => state.selected===selected && dance().blocks[selected]?.n<2);
+      return;
+    }
+    activeDevice=key;
+    const def=deviceDefs[key];
+    if (def.options && value===null) {
+      if (b.devices[key]!==undefined) {
+        chooseDevice(key,b.devices[key]);
+        return;
+      }
+      renderDeviceMenu();
+      const compact=$('device-picker').getBoundingClientRect().width>0;
+      if (compact) $('device-option-picker').focus({preventScroll:true});
+      else $('device-menu').scrollIntoView({block:'nearest'});
+      hint(compact ? L['c'+cap(key)]:
+        `Tap a ${def.name} option below the device buttons. Tap an active option again to remove it.`);
+      return;
+    }
+    const val=def.options ? value:true;
+    if (commit(`${def.name} on block ${selected+1}, ${findPhrase(b.phrase).name}`,d => {
+      const dev=d.blocks[selected].devices;
+      if (dev[key]===val) delete dev[key];
+      else dev[key]=val;
+    })) {
+      state.deviceUsed=true;
+      const voiceKey='d'+key[0].toUpperCase()+key.slice(1);
+      const compact=def.options && $('device-picker').getBoundingClientRect().width>0;
+      hint(compact ? L['c'+cap(key)]:`${def.name} changed. Press Play, or tap Compare to watch your revision.`);
+      const spoken=!V.heard('compareHow') ? [voiceKey,'compareHow']:voiceKey;
+      narrate(spoken,false,() => state.selected===selected && activeDevice===key);
+      renderDeviceMenu();
+      if (def.options && !$('device-picker').getBoundingClientRect().width) {
+        $('device-menu').scrollIntoView({block:'nearest'});
+      }
+    }
+  }
+  function historyMove(delta) {
+    const focused=document.activeElement?.id;
+    const next=state.cursor+delta;
+    if (next<0 || next>=state.history.length) return;
+    stop(false);
+    V.hush();
+    state.cursor=next;
+    state.before=Math.max(0,next-1);
+    state.selected=clamp(state.selected,-1,dance().blocks.length-1);
+    lastPos=0;
+    persist();
+    renderUI();
+    renderFrame(0);
+    if (focused==='undo' && $('undo').disabled) $('redo').focus({preventScroll:true});
+    if (focused==='redo' && $('redo').disabled) $('undo').focus({preventScroll:true});
+    hint(`Version ${current().id} restored. Press Play to watch it, or choose another device.`);
+  }
+  function measure(d) {
+    const result={length:total(d),levels:{high:0,middle:0,low:0},dyn:Object.fromEntries(qualities.map(q => [q,0])),
+      unison:0,canon:0,formations:0,dancerCounts:0};
+    d.blocks.forEach((b,i) => {
+      const len=blockLength(b);
+      result[b.devices.canon ? 'canon':'unison']+=len;
+      if (i>0 && b.formation!==d.blocks[i-1].formation) result.formations++;
+      for (let n=0;n<b.n;n++) for (let c=0;c<len;c++) {
+        const s=sample(d,startOf(d,i)+c+.001,n);
+        result.levels[s.level]++;
+        result.dyn[s.dyn]++;
+        result.dancerCounts++;
+      }
+    });
+    result.shares=levels.map(k => result.dancerCounts ? result.levels[k]*100/result.dancerCounts:0);
+    return result;
+  }
+  function createButton(text,fn,className='btn') {
+    const button=document.createElement('button');
+    button.className=className;
+    button.textContent=text;
+    button.onclick=fn;
+    return button;
+  }
+  let timelineRenderKey=null;
+  function renderTimeline() {
+    const box=$('blocks');
+    $('timeline-label').textContent=`Your dance / ${dance().blocks.length} phrase${dance().blocks.length===1 ? '':'s'}`;
+    $('length').textContent=`${total(dance())} / 96 counts`;
+    const key=JSON.stringify(dance().blocks);
+    if (key===timelineRenderKey) {
+      box.querySelectorAll('[data-block]').forEach(b => b.setAttribute('aria-pressed',+b.dataset.block===state.selected));
+      box.querySelectorAll('.gap').forEach(b => {
+        b.classList.toggle('ready',!!state.pending);
+        b.disabled=state.mode!=='build';
+      });
+      positionPlayhead(lastPos);
+      return;
+    }
+    timelineRenderKey=key;
+    const focus=document.activeElement?.dataset.block;
+    box.textContent='';
+    const ruler=document.createElement('div');
+    ruler.className='ruler';
+    box.append(ruler);
+    const gap=index => {
+      const node=createButton('+',() => state.pending ? place(index):hint('Tap a phrase in the panel, then tap + to place it.'),'gap');
+      node.setAttribute('aria-label',`Place phrase ${index===dance().blocks.length ? 'at end':`before block ${index+1}`}`);
+      node.disabled=state.mode!=='build';
+      if (state.pending) node.classList.add('ready');
+      box.append(node);
+    };
+    gap(0);
+    dance().blocks.forEach((b,i) => {
+      const p=findPhrase(b.phrase);
+      const len=blockLength(b);
+      const node=createButton('',() => selectBlock(i),'block');
+      node.dataset.block=i;
+      node.style.width=`${len*18}px`;
+      node.setAttribute('aria-pressed',state.selected===i);
+      node.setAttribute('aria-label',`Block ${i+1}: ${p.name}, ${len} counts. Select to revise.`);
+      const name=document.createElement('strong');
+      name.textContent=p.name;
+      node.append(name);
+      const meta=document.createElement('span');
+      meta.className='meta';
+      meta.textContent=`${len} counts · ${b.n} dancer${b.n===1 ? '':'s'}`;
+      node.append(meta);
+      const thumbs=document.createElement('div');
+      thumbs.className='thumbs';
+      node.append(thumbs);
+      transformFrames(b).forEach(f => paintIcon(svgNode('svg',{'aria-hidden':true},thumbs),f));
+      const tags=document.createElement('div');
+      tags.className='glyphs';
+      const active=Object.keys(deviceDefs).filter(k => b.devices[k]);
+      tags.textContent=active.map(k => `${deviceDefs[k].symbol} ${deviceDefs[k].tag}`).join(' ');
+      tags.title=active.map(k => deviceDefs[k].name).join(', ');
+      node.setAttribute('aria-label',node.getAttribute('aria-label')+(active.length ? ' Devices: '+tags.title:''));
+      node.append(tags);
+      box.append(node);
+      gap(i+1);
+      const tick=document.createElement('span');
+      tick.textContent=startOf(dance(),i)+1;
+      tick.style.left=`${44+ dance().blocks.slice(0,i).reduce((s,x) => s+blockLength(x)*18+44,0)}px`;
+      ruler.append(tick);
+      for (let c=8;c<len;c+=8) {
+        const sub=document.createElement('span');
+        sub.textContent=startOf(dance(),i)+c+1;
+        sub.style.left=`${44+dance().blocks.slice(0,i).reduce((s,x) => s+blockLength(x)*18+44,0)+len*18*c/len}px`;
+        ruler.append(sub);
+      }
+    });
+    const head=document.createElement('div');
+    head.id='playhead';
+    head.className='playhead';
+    box.append(head);
+    $('timeline-label').textContent=`Your dance / ${dance().blocks.length} phrase${dance().blocks.length===1 ? '':'s'}`;
+    $('length').textContent=`${total(dance())} / 96 counts`;
+    if (focus!==undefined) document.querySelector(`[data-block="${focus}"]`)?.focus({preventScroll:true});
+    positionPlayhead(lastPos);
+  }
+  function renderSelection() {
+    const b=dance().blocks[state.selected];
+    $('selection-empty').hidden=!!b;
+    $('block-controls').hidden=!b;
+    $('selected-name').textContent=b ? ` / ${state.selected+1}`:'';
+    $('devices').querySelectorAll('button').forEach(button => {
+      button.disabled=!b;
+      button.setAttribute('aria-pressed',!!b?.devices[button.dataset.device]);
+    });
+    $('cast-picker').value=b ? b.n:2;
+    $('formation-picker').value=b ? b.formation:'Line';
+    $('block-action').querySelector('[value=earlier]').disabled=!b || state.selected===0;
+    $('block-action').querySelector('[value=later]').disabled=!b || state.selected===dance().blocks.length-1;
+    $('dancers').querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed',!!b && b.n===+button.dataset.n));
+    $('formations').querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed',!!b && b.formation===button.dataset.formation));
+    $('earlier').disabled=!b || state.selected===0;
+    $('later').disabled=!b || state.selected===dance().blocks.length-1;
+    renderDeviceMenu();
+  }
+  function renderDeviceMenu() {
+    const b=dance().blocks[state.selected];
+    const def=deviceDefs[activeDevice];
+    $('device-menu').hidden=!b || !def;
+    $('devices-sec').classList.toggle('choosing-device',!!b && !!def?.options);
+    if (!b || !def) return;
+    $('device-picker').value=activeDevice;
+    const picker=$('device-option-picker');
+    picker.innerHTML='';
+    const empty=document.createElement('option');
+    empty.value='';
+    empty.textContent=b.devices[activeDevice]===undefined ? 'Choose an option':'Remove current device';
+    picker.append(empty);
+    for (const [value,text] of def.options || []) {
+      const option=document.createElement('option');
+      option.value=value;
+      option.textContent=text;
+      picker.append(option);
+    }
+    picker.value=b.devices[activeDevice]===undefined ? '':String(b.devices[activeDevice]);
+    picker.setAttribute('aria-label',def.name+' option');
+    $('device-meaning').textContent=def.meaning;
+    const choices=$('device-options');
+    const focus=document.activeElement?.dataset.option;
+    if (choices.dataset.device===activeDevice) {
+      choices.querySelectorAll('button').forEach(node => {
+        node.setAttribute('aria-pressed',String(b.devices[activeDevice])===node.dataset.option);
+      });
+      return;
+    }
+    choices.dataset.device=activeDevice;
+    choices.textContent='';
+    for (const [value,text] of def.options || []) {
+      const node=createButton(text,() => chooseDevice(activeDevice,value));
+      node.dataset.option=String(value);
+      node.setAttribute('aria-pressed',b.devices[activeDevice]===value);
+      choices.append(node);
+    }
+    if (focus!==undefined) choices.querySelector(`[data-option="${focus}"]`)?.focus({preventScroll:true});
+  }
+  $('phrase-picker').onchange=() => {
+    if ($('phrase-picker').value) $('phrase-'+$('phrase-picker').value)?.click();
+  };
+  let phraseRenderKey=null;
+  function renderPhrases() {
+    const key=state.custom.map(p => p.id).join('|');
+    if (key===phraseRenderKey) {
+      $('phrases').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed',b.id==='phrase-'+state.pending));
+      return;
+    }
+    phraseRenderKey=key;
+    const focus=document.activeElement?.id;
+    const box=$('phrases');
+    box.textContent='';
+    $('phrase-picker').innerHTML='<option value="">Choose a phrase</option>';
+    [...starters,...state.custom].forEach(p => {
+      const node=createButton('',() => {
+        state.pending=state.pending===p.id ? null:p.id;
+        renderPhrases();
+        renderTimeline();
+        if (state.pending) setHint('placeHow');
+        else setHint('wBuild');
+        Curio.tone(640,.06,.04);
+      },'btn phrase-chip');
+      const option=document.createElement('option');
+      option.value=p.id;
+      option.textContent=p.name;
+      $('phrase-picker').append(option);
+      node.id='phrase-'+p.id;
+      node.setAttribute('aria-pressed',state.pending===p.id);
+      paintIcon(svgNode('svg',{'aria-hidden':true},node),p.frames[0]);
+      const text=document.createElement('span');
+      text.textContent=p.name;
+      node.append(text);
+      box.append(node);
+    });
+    if (focus?.startsWith('phrase-')) $(focus)?.focus({preventScroll:true});
+  }
+  function renderMetrics() {
+    if (state.mode!=='compare') return;
+    const before=measure(state.history[state.before].dance);
+    const now=measure(dance());
+    const metrics=$('metrics');
+    metrics.textContent='';
+    const metric=(name,value) => {
+      const box=document.createElement('div');
+      box.className='metric';
+      const label=document.createElement('b');
+      label.textContent=name;
+      const text=document.createElement('div');
+      text.className='value';
+      text.textContent=value;
+      box.append(label,text);
+      metrics.append(box);
+      return box;
+    };
+    metric('Length',`${before.length} → ${now.length} counts`);
+    const levelText=levels.map((k,i) => `${cap(k)} ${before.shares[i].toFixed(0)}% → ${now.shares[i].toFixed(0)}%`).join(' · ');
+    const row=metric('Time at each level · dancer-counts',levelText);
+    for (const m of [before,now]) {
+      const bar=document.createElement('div');
+      bar.className='level-bar';
+      m.shares.forEach(v => { const i=document.createElement('i');
+        i.style.width=v+'%';
+        bar.append(i);
+      });
+      row.append(bar);
+    }
+    metric('Dynamics · dancer-counts',qualities.filter(q => before.dyn[q] || now.dyn[q])
+      .map(q => `${cap(q)} ${before.dyn[q]} → ${now.dyn[q]}`).join(' · '));
+    metric('Together and staggered',`Unison ${before.unison} → ${now.unison} counts · Canon ${before.canon} → ${now.canon} counts`);
+    metric('Formation changes',`${before.formations} → ${now.formations}`);
+    const sameMix=levels.every(k => Math.abs((before.levels[k]/(before.dancerCounts || 1))-(now.levels[k]/(now.dancerCounts || 1)))<.0001)
+      && qualities.every(k => Math.abs((before.dyn[k]/(before.dancerCounts || 1))-(now.dyn[k]/(now.dancerCounts || 1)))<.0001)
+      && before.formations===now.formations && (before.canon===0)===(now.canon===0);
+    $('same').textContent=state.history.length===1 ? 'No changes yet':sameMix ?
+      "Same ingredients, new order or speed: watch the stages, the numbers can't show it.":'Watch how your choices change the phrase.';
+  }
+  function renderHistory() {
+    const focused=document.activeElement?.id;
+    $('version').textContent=`Version ${current().id}`;
+    $('undo').disabled=state.cursor===0;
+    $('redo').disabled=state.cursor===state.history.length-1;
+    $('history-action').querySelector('[value=undo]').disabled=$('undo').disabled;
+    $('history-action').querySelector('[value=redo]').disabled=$('redo').disabled;
+    if (document.activeElement!==$('title')) $('title').value=dance().title;
+    const picker=$('before');
+    picker.textContent='';
+    state.history.forEach((v,i) => {
+      const option=document.createElement('option');
+      option.value=i;
+      option.textContent=`v${v.id}: ${v.label}`+([v.reason,v.note].filter(Boolean).length ?
+        ' · '+[v.reason,v.note].filter(Boolean).join(' · '):'');
+      picker.append(option);
+    });
+    picker.value=state.before;
+    $('go-back').disabled=state.history.length===1 || state.before===state.cursor;
+    $('oldest-note').textContent=state.dropped ? `${state.dropped} oldest version${state.dropped===1 ? '':'s'} dropped at the 40-version limit.`:'';
+    const list=$('history-list');
+    list.textContent='';
+    state.history.slice().reverse().forEach(v => {
+      const index=state.history.indexOf(v);
+      const button=createButton(`v${v.id}: ${v.label}`,() => chooseBefore(index),'btn version');
+      button.id='version-'+v.id;
+      button.setAttribute('aria-pressed',state.before===index);
+      if (v.reason || v.note) { const why=document.createElement('small');
+        why.textContent=[v.reason,v.note].filter(Boolean).join(' · ');
+        button.append(why);
+      }
+      list.append(button);
+    });
+    $('reason-version').textContent=` / v${current().id}`;
+    $('reason-note').value=current().note;
+    $('reason-picker').value=current().reason;
+    $('reasons').querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed',current().reason===button.textContent));
+    if (focused?.startsWith('version-')) $(focused)?.focus({preventScroll:true});
+  }
+  function chooseBefore(index) {
+    stop(false);
+    V.hush();
+    state.before=index;
+    lastPos=0;
+    renderHistory();
+    renderMetrics();
+    renderFrame(0);
+    hint(state.ghost ? 'Press Play both to watch the faint Before outlines against Now.':'Press Play both to compare these versions from count 1.');
+  }
+  function renderUI() {
+    const editing=!!state.editor;
+    document.body.classList.toggle('show-mode',state.mode==='show');
+    ['build','compare','show'].forEach(m => $('m-'+m).setAttribute('aria-pressed',m===state.mode));
+    $('compare-pages').hidden=state.mode!=='compare' || editing;
+    setComparePage(comparePage,false);
+    $('build-pages').hidden=state.mode!=='build' || editing;
+    setBuildPage(buildPage,false);
+    $('build-panel').hidden=state.mode!=='build' || editing;
+    $('compare-panel').hidden=state.mode!=='compare' || editing;
+    $('editor-panel').hidden=!editing;
+    document.querySelector('.transport').hidden=editing;
+    $('view-before').hidden=state.mode!=='compare' || state.ghost;
+    $('stages').classList.toggle('split',state.mode==='compare' && !state.ghost);
+    $('caption').hidden=state.mode==='compare' || editing;
+    $('loop').hidden=state.mode!=='build' || editing;
+    $('track').disabled=editing;
+    $('play').textContent=state.playing ? '■ Stop':state.mode==='compare' ? '▶ Play both':'▶ Play';
+    $('showbar').hidden=state.mode!=='show';
+    $('label-now').textContent=editing ? 'Phrase workshop':state.mode==='compare' ? `Now / v${current().id}`:
+      state.mode==='show' ? 'Performance':`Rehearsal / ${dance().title || 'First Light'}`;
+    $('label-now').title=$('label-now').textContent;
+    $('label-before').textContent=`Before / v${state.history[state.before].id}`;
+    $('track').value=dance().track;
+    $('track-info').textContent=`${tracks[dance().track].bpm} BPM · 4/4`;
+    $('loop').setAttribute('aria-pressed',state.loop);
+    $('ghost').setAttribute('aria-pressed',state.ghost);
+    views.now.ghosts.forEach(d => d.remove());
+    views.now.ghosts=[];
+    $('blocks').hidden=editing;
+    $('slots').hidden=!editing;
+    renderSelection();
+    renderPhrases();
+    renderTimeline();
+    renderHistory();
+    renderMetrics();
+    if (editing) renderEditor();
+    layout();
+  }
+  function setMode(mode,force=false) {
+    const fromShow=state.mode==='show';
+    if (!['build','compare','show'].includes(mode)) return;
+    if (!force && mode===state.mode && !state.editor) return;
+    stop(false);
+    V.hush();
+    deferred.length=0;
+    state.mode=mode;
+    if (mode==='build') buildPage='devices';
+    state.editor=null;
+    state.pending=null;
+    activeDevice=null;
+    lastPos=0;
+    if (mode==='compare') { state.before=Math.max(0,state.cursor-1); comparePage='before'; }
+    renderUI();
+    renderFrame(0);
+    $('panel-scroll').scrollTop=0;
+    window.scrollTo(0,0);
+    if (mode==='compare' && state.ghost && state.history.length>1) hint('Press Play both. Before is a faint outline over Now.');
+    else hint(mode==='build' && state.deviceUsed ?
+      'Tap a timeline block, then choose a device. Press Play to watch your revision.':L[welcomeKey()]);
+    V.welcome();
+    if (mode==='show') $('show-play').focus({preventScroll:true});
+    if (fromShow && mode!=='show') $('m-'+mode).focus({preventScroll:true});
+  }
+  function openEditor(copy=false) {
+    stop(false);
+    V.hush();
+    const p=copy && state.selected>=0 ? findPhrase(dance().blocks[state.selected].phrase):null;
+    state.editor={slot:0,frames:p ? clone(p.frames):Array.from({length:8},() => F('stand'))};
+    $('phrase-name').value=p ? (p.name+' copy').slice(0,20):'My phrase';
+    activeDevice=null;
+    state.pending=null;
+    lastPos=0;
+    renderUI();
+    renderFrame(0);
+    $('panel-scroll').scrollTop=0;
+    window.scrollTo(0,0);
+    $('try').focus({preventScroll:true});
+    setHint('makeHow');
+  }
+  function renderEditor() {
+    const e=state.editor;
+    if (!e) return;
+    const box=$('slots');
+    const focus=document.activeElement?.dataset.slot;
+    box.textContent='';
+    e.frames.forEach((f,i) => {
+      const button=createButton('',() => {
+        stop(false);
+        e.slot=i;
+        lastPos=i;
+        renderEditor();
+        renderFrame(i);
+        hint(`Count ${i+1}. Tap a move, Level, or Dynamics in the phrase panel.`);
+        Curio.tone(500+i*35,.04,.025);
+      },'btn slot');
+      button.dataset.slot=i;
+      button.setAttribute('aria-label',`Count ${i+1}: ${f.p}, ${f.level}, ${f.dyn}`);
+      button.setAttribute('aria-pressed',e.slot===i);
+      const label=document.createElement('span');
+      label.textContent=i+1;
+      button.append(label);
+      paintIcon(svgNode('svg',{'aria-hidden':true},button),f);
+      box.append(button);
+    });
+    $('slot-name').textContent=`Count ${e.slot+1}`;
+    $('editor-dyn').value=e.frames[e.slot].dyn;
+    $('editor-level').value=e.frames[e.slot].level;
+    $('editor-levels').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed',e.frames[e.slot].level===b.dataset.level));
+    if (focus!==undefined) box.querySelector(`[data-slot="${focus}"]`)?.focus({preventScroll:true});
+    $('timeline-label').textContent='Your phrase / eight count slots';
+    $('length').textContent='8 counts';
+  }
+  function editFrame(change) {
+    stop(false);
+    change(state.editor.frames[state.editor.slot]);
+    renderEditor();
+    renderFrame(state.editor.slot);
+    Curio.tone(600,.07,.035);
+  }
+  function savePhrase() {
+    const name=$('phrase-name').value.trim().slice(0,20) || 'My phrase';
+    const phrase={id:'own-'+Date.now().toString(36),name,frames:clone(state.editor.frames)};
+    stop(false);
+    V.hush();
+    state.custom.push(phrase);
+    state.editor=null;
+    state.pending=phrase.id;
+    saveEnabled=true;
+    commit(`Create phrase ${name}`,() => {},true);
+    persist();
+    renderUI();
+    renderFrame(0);
+    $('panel-scroll').scrollTop=0;
+    $('play').focus({preventScroll:true});
+    hint(`${L.saved} Tap + on the timeline to place ${name}.`);
+    narrate('saved',true,() => !state.editor);
+  }
+  let confirmationAction=null;
+  let confirmationFocus=null;
+  function askReset(clear) {
+    stop(false);
+    V.hush();
+    confirmationFocus=document.activeElement;
+    $('confirm-title').textContent=clear ? 'Clear saved work?':'Start a new dance?';
+    $('confirm-text').textContent=clear ? 'This removes this dance, its history, title, and your phrases from this device.':
+      'This replaces your current dance and history with First Light. Your own phrases stay in the phrase library.';
+    $('confirm').hidden=false;
+    document.querySelector('main').inert=true;
+    document.querySelector('header').inert=true;
+    $('confirm-yes').focus({preventScroll:true});
+    confirmationAction=() => {
+      const custom=clear ? []:state.custom;
+      state.history=[{id:1,label:'First Light',dance:starterDance(),reason:'',note:''}];
+      state.cursor=0;
+      state.before=0;
+      state.selected=-1;
+      state.nextId=2;
+      state.dropped=0;
+      state.custom=custom;
+      state.pending=null;
+      state.editor=null;
+      state.loop=false;
+      state.deviceUsed=false;
+      if (clear) {
+        try { localStorage.removeItem('choreography-board');
+        } catch {}
+        saveEnabled=false;
+      } else { saveEnabled=true;
+      persist();
+      }
+      setMode('build',true);
+      $('save-status').textContent=clear ? 'Saved work cleared. New edits will start saving again.':'Saved here automatically.';
+      $('play').focus({preventScroll:true});
+    };
+  }
+  function closeConfirm() {
+    document.querySelector('main').inert=false;
+    document.querySelector('header').inert=false;
+    $('confirm').hidden=true;
+    confirmationFocus?.focus({preventScroll:true});
+  }
+
+  $('track').parentElement.append($('count'));
+  // Construct persistent panel controls once, so live edits do not replace the control under a pointer.
+  Object.entries(tracks).forEach(([name,t]) => {
+    const option=document.createElement('option');
+    option.value=name;
+    option.textContent=`${name} · ${t.bpm} BPM`;
+    $('track').append(option);
+  });
+  $('device-picker').onchange=() => {
+    const key=$('device-picker').value;
+    if (!key) {
+      const previous=activeDevice;
+      activeDevice=null;
+      renderDeviceMenu();
+      $('panel-scroll').scrollTop=0;
+      $('device-'+previous)?.focus({preventScroll:true});
+      hint('Tap another device, or press Play to watch this block.');
+    } else chooseDevice(key);
+  };
+  $('device-option-picker').onchange=() => {
+    const value=$('device-option-picker').value;
+    const b=dance().blocks[state.selected];
+    if (value==='') {
+      if (b.devices[activeDevice]!==undefined) chooseDevice(activeDevice,b.devices[activeDevice]);
+    } else {
+      const option=deviceDefs[activeDevice].options.find(([v]) => String(v)===value);
+      chooseDevice(activeDevice,option[0]);
+    }
+  };
+  Object.entries(deviceDefs).forEach(([key,def]) => {
+    const option=document.createElement('option');
+    option.value=key;
+    option.textContent=def.name;
+    $('device-picker').append(option);
+    const button=createButton('',() => chooseDevice(key),'btn device');
+    button.dataset.device=key;
+    button.id='device-'+key;
+    const icon=document.createElement('b');
+    icon.textContent=def.tag;
+    const label=document.createElement('span');
+    label.textContent=def.name;
+    button.append(icon,label);
+    $('devices').append(button);
+  });
+  $('cast-picker').onchange=() => $('dancers-'+$('cast-picker').value).click();
+  $('formation-picker').onchange=() => {
+    $('formations').querySelector(`[data-formation="${$('formation-picker').value}"]`).click();
+  };
+  for (const id of ['block-action','history-action']) $(id).onchange=() => {
+    const action=$(id).value;
+    $(id).value='';
+    if (action) $(action).click();
+  };
+  for (let n=1;n<=4;n++) {
+    const option=document.createElement('option');
+    option.value=n;
+    option.textContent=n+' dancer'+(n===1 ? '':'s');
+    $('cast-picker').append(option);
+    const button=createButton(`${n} ${['●','■','▲','◆'][n-1]}`,() => {
+      const i=state.selected;
+      commit(`${n} dancers on block ${i+1}`,d => { d.blocks[i].n=n;
+        if (n===1) delete d.blocks[i].devices.canon;
+      });
+    });
+    button.dataset.n=n;
+    button.id='dancers-'+n;
+    button.setAttribute('aria-label',`${n} dancer${n===1 ? '':'s'}`);
+    $('dancers').append(button);
+  }
+  ['Line','Two rows','Wedge','Diagonal','Cluster'].forEach(name => {
+    const option=document.createElement('option');
+    option.value=name;
+    option.textContent=name;
+    $('formation-picker').append(option);
+    const button=createButton('',() => {
+      const i=state.selected;
+      commit(`${name} formation on block ${i+1}`,d => { d.blocks[i].formation=name;
+      });
+    },'btn formation');
+    button.dataset.formation=name;
+    const svg=svgNode('svg',{viewBox:'0 0 100 60','aria-hidden':true},button);
+    formationPositions(name,4).forEach((p,i) => svgNode('circle',{cx:p.x,cy:p.z,r:6,fill:colors[i],stroke:'#0e121b','stroke-width':2},svg));
+    const text=document.createElement('span');
+    text.textContent=name;
+    button.append(text);
+    $('formations').append(button);
+  });
+  ['Clearer idea','More contrast','Build to a peak','Smoother transition','Feedback from a peer','Just exploring'].forEach(reason => {
+    const option=document.createElement('option');
+    option.value=reason;
+    option.textContent=reason;
+    $('reason-picker').append(option);
+    const button=createButton(reason,() => {
+      current().reason=current().reason===reason ? '':reason;
+      persist();
+      renderHistory();
+      Curio.tone(500,.04,.03);
+    });
+    $('reasons').append(button);
+  });
+  qualities.forEach(q => {
+    const o=document.createElement('option');
+    o.value=q;
+    o.textContent=cap(q);
+    $('editor-dyn').append(o);
+  });
+  $('editor-level').onchange=() => editFrame(f => { f.level=$('editor-level').value; });
+  levels.forEach(level => {
+    const option=document.createElement('option');
+    option.value=level;
+    option.textContent=cap(level);
+    $('editor-level').append(option);
+    const button=createButton(cap(level),() => editFrame(f => { f.level=level;
+    }));
+    button.dataset.level=level;
+    $('editor-levels').append(button);
+  });
+  Object.entries(moveGroups).forEach(([group,moves]) => {
+    const groupOption=document.createElement('option');
+    groupOption.value=group;
+    groupOption.textContent=group;
+    $('move-group').append(groupOption);
+    const title=document.createElement('h3');
+    title.dataset.group=group;
+    title.textContent=group;
+    $('moves').append(title);
+    moves.forEach(([id,label]) => {
+      const button=createButton('',() => editFrame(f => {
+        f.p=id;
+        f.travel=['step','run','leap','slide','skip'].includes(id) ? (state.editor.slot-3.5)*2:0;
+        f.gaitPhase=(state.editor.slot%2)*.5+.15;
+        f.facing=id==='turn-quarter' ? 90:id==='turn-half' ? 180:id==='turn-full' ? 360:0;
+      }));
+      button.dataset.group=group;
+      button.dataset.move=id;
+      paintIcon(svgNode('svg',{'aria-hidden':true},button),F(id));
+      const span=document.createElement('span');
+      span.textContent=label;
+      button.append(span);
+      $('moves').append(button);
+    });
+  });
+  function showMoveGroup() {
+    const group=$('move-group').value;
+    $('moves').querySelectorAll('[data-group]').forEach(el => { el.hidden=el.dataset.group!==group || el.tagName==='H3'; });
+    $('move-picker').innerHTML='<option value="">Choose a move</option>';
+    moveGroups[group].forEach(([id,label]) => {
+      const option=document.createElement('option');
+      option.value=id;
+      option.textContent=label;
+      $('move-picker').append(option);
+    });
+  }
+  $('move-group').onchange=showMoveGroup;
+  $('move-picker').onchange=() => {
+    $('moves').querySelector(`[data-move="${$('move-picker').value}"]`)?.click();
+  };
+  showMoveGroup();
+  $('editor-dyn').onchange=() => editFrame(f => { f.dyn=$('editor-dyn').value;
+  });
+  $('hold').onclick=() => editFrame(f => Object.assign(f,clone(state.editor.frames[Math.max(0,state.editor.slot-1)])));
+  $('try').parentElement.append($('hold'));
+  $('hold').textContent='Hold';
+  $('hold').title='Hold previous shape';
+  $('hold').setAttribute('aria-label','Hold previous shape');
+  $('hold').style.cssText='flex:none;width:55px;margin:0';
+  $('make').onclick=() => openEditor();
+  $('edit-copy').onclick=() => openEditor(true);
+  $('cancel').onclick=() => { stop(false);
+    V.hush();
+    state.editor=null;
+    lastPos=0;
+    renderUI();
+    renderFrame(0);
+    $('panel-scroll').scrollTop=0;
+    $('play').focus({preventScroll:true});
+    if (state.deviceUsed) hint('Tap a timeline block, then choose a device. Press Play to watch your revision.');
+    else setHint('wBuild');
+  };
+  $('save-phrase').onclick=savePhrase;
+  $('try').onclick=() => state.playing ? stop():start();
+  $('play').onclick=() => state.playing || showTimer ? stop():start();
+  $('show-play').onclick=() => start(true);
+  $('show-stop').onclick=() => stop();
+  $('back').onclick=() => setMode('build');
+  $('loop').onclick=() => {
+    state.loop=!state.loop;
+    if (state.loop && state.selected<0 && dance().blocks.length) state.selected=0;
+    $('loop').setAttribute('aria-pressed',state.loop);
+    renderSelection();
+    renderTimeline();
+    hint(state.loop ? 'Loop block is on. Press Play to rehearse the selected block.':'Loop block is off. Press Play for the dance.');
+    Curio.tone(460,.06,.03);
+  };
+  $('track').onchange=() => {
+    const name=$('track').value;
+    // Music changes at the current count. Other edits restart the current block.
+    const position=lastPos,playing=state.playing;
+    commit(`${name} backing track`,d => { d.track=name;
+    });
+    if (playing) { stop(false);
+      start(false,position);
+    }
+  };
+  $('earlier').onclick=() => moveBlock(-1);
+  $('later').onclick=() => moveBlock(1);
+  function moveBlock(direction) {
+    const i=state.selected,next=i+direction;
+    if (i<0 || next<0 || next>=dance().blocks.length) return;
+    if (commit(`Move block ${i+1} ${direction<0 ? 'earlier':'later'}`,d => {
+      [d.blocks[i],d.blocks[next]]=[d.blocks[next],d.blocks[i]];
+    })) { state.selected=next;
+    renderSelection();
+    renderTimeline();
+    }
+  }
+  $('remove').onclick=() => {
+    const i=state.selected;
+    if (i<0) return;
+    commit(`Remove block ${i+1}`,d => d.blocks.splice(i,1));
+    const next=document.querySelector(`[data-block="${state.selected}"]`) || $('blocks').querySelector('.gap');
+    next?.focus({preventScroll:true});
+    hint('Tap Phrases, choose a phrase, then tap + on the timeline to add it.');
+  };
+  $('undo').onclick=() => historyMove(-1);
+  $('redo').onclick=() => historyMove(1);
+  $('title').onchange=() => commit('Rename dance',d => { d.title=$('title').value.trim().slice(0,40);
+  });
+  $('before').onchange=() => chooseBefore(+$('before').value);
+  $('ghost').onclick=() => {
+    const playing=state.playing,pos=lastPos;
+    stop(false);
+    state.ghost=!state.ghost;
+    renderUI();
+    renderFrame(pos);
+    hint(state.ghost ? 'Press Play both. Before is a faint outline over Now.':'Press Play both. Before and Now have separate stages.');
+    if (playing) start(false,pos);
+  };
+  $('go-back').onclick=() => {
+    const before=clone(state.history[state.before]);
+    commit(`Return to v${before.id}`,d => Object.assign(d,before.dance),true);
+    hint('Earlier dance restored as a new version. Press Play both to compare.');
+  };
+  $('reason-note').oninput=() => { current().note=$('reason-note').value.slice(0,120);
+    persist();
+  };
+  $('reason-note').onchange=renderHistory;
+  $('new').onclick=() => askReset(false);
+  $('clear').onclick=() => askReset(true);
+  $('confirm-yes').onclick=() => { closeConfirm();
+    confirmationAction?.();
+  };
+  $('confirm-no').onclick=closeConfirm;
+  ['build','compare','show'].forEach(mode => { $('m-'+mode).onclick=() => setMode(mode);
+  });
+  addEventListener('keydown',e => {
+    if (!$('confirm').hidden) {
+      if (e.key==='Escape') { e.preventDefault();
+        closeConfirm();
+      }
+      if (e.key==='Tab') {
+        e.preventDefault();
+        (document.activeElement===$('confirm-yes') ? $('confirm-no'):$('confirm-yes')).focus({preventScroll:true});
+      }
+      return;
+    }
+    if (/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
+    if (e.ctrlKey && ['z','y'].includes(e.key.toLowerCase())) { e.preventDefault();
+      historyMove(e.key.toLowerCase()==='z' ? -1:1);
+      return;
+    }
+    if (['1','2','3'].includes(e.key)) { e.preventDefault();
+      setMode(['build','compare','show'][+e.key-1]);
+      return;
+    }
+    if (e.code==='Space') { e.preventDefault();
+      state.playing || showTimer ? stop():start(state.mode==='show');
+    }
+    if (e.key==='Delete' && state.mode==='build' && !state.editor) { e.preventDefault();
+      $('remove').click();
+    }
+    if (e.key==='Enter' && state.pending && state.mode==='build') { e.preventDefault();
+      place(dance().blocks.length);
+    }
+    if (e.key==='Escape' && state.editor) $('cancel').click();
+  });
+  Curio.init({clips:"voice:*",rate:.96});
+  Curio.onMotion(() => renderFrame(lastPos));
+  Curio.onSound(on => {
+    if (on && state.pending && !state.playing) {
+      const pending=state.pending;
+      narrate('placeHow',false,() => state.pending===pending);
+    }
+  });
+  // The engine and kit stop their own audio on Sound off; no separate audio context is created here.
+  renderUI();
+  renderFrame(0);
+  hint(state.deviceUsed ? 'Tap a timeline block, then choose a device. Press Play to watch your revision.':L.wBuild);
+  $('save-status').textContent=storageOK ? 'Saved on this device only.':'Saving unavailable. Keep this page open.';
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;
+    },measure,blockLength,total,
+    sample,transformFrames,selectBlock,chooseDevice,commit,historyMove,dance,findPhrase,start,stop,renderFrame,openEditor,
+    get position(){return run ? run.clock.pos:lastPos;
+    },seek:pos => { if (run) run.clock.seek(pos);
+      else { lastPos=pos;
+        renderFrame(pos);
+      } }};
+})();
+</script>
+</body>
+</html>

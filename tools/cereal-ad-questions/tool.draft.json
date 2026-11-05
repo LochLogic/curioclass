@@ -1,0 +1,22 @@
+{
+  "id":"cereal-ad-questions",
+  "status":"beta",
+  "stage":"built",
+  "hook":"Pull a cereal ad apart and see which parts did the selling.",
+  "outcome":"Identify sounds, pictures and words in an ad, interpret its message, and notice ads in daily life.",
+  "driver":"teacher",
+  "minutes":"15-25",
+  "modes":["The ad","What it wants","Ads in my day"],
+  "grades_label":"Grades K-2",
+  "sources":[
+    "National Core Arts Standards, Media Arts K-2: MA:Re7, MA:Re8, MA:Re9, MA:Cn11",
+    "American Psychological Association, Report of the APA Task Force on Advertising and Children (2004)",
+    "Common Sense Media, media literacy lessons for K-2",
+    "Musicus, Tal and Wansink (2015), Eyes in the Aisles, Environment and Behavior 47(7), 715-733",
+    "Center for Science in the Public Interest, Temptation at Checkout (2016)",
+    "Zoom-O's, Comet, the slogans and jingle are original fictional content",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party":[],
+  "updated":"2026-11-02"
+}

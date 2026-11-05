@@ -1,0 +1,1805 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Packaging Challenge · Same volume. Less material. · Curio Class</title>
+<meta name="description" content="Reshape a can or box, discover the least material, and compare real cans and packed cases. Grade 10 geometry. Works offline.">
+<!--
+Packaging Challenge, Curio Class. Grade 10 geometry, G-MG.A.1, G-MG.A.2, G-MG.A.3.
+Students drive Orders, Shelf and Case. Sources: CCSS Modeling with Geometry; OpenStax Prealgebra 2e 9.6;
+Wikipedia Beverage can and Tin can, outside sizes listed 2026-10-27; NIST Handbook 44 Appendix C.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Existing kraft texture: FLUX.1-schnell.
+The metal density of 0.03 grams per square centimeter is a practice number, not a measured material property.
+Content CC BY 4.0. Code MIT. One offline file. No collection or saved work. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --brand:#c08a2a;
+  --brand-ink:#10161f;
+  --bench:#2a2118
+}
+body {
+  overflow:hidden;
+  height:100dvh;
+  min-height:0
+}
+header {
+  padding:12px 18px;
+  gap:10px
+}
+h1 {
+  font-size:24px;
+  letter-spacing:-.5px
+}
+h1 small {
+  font-size:13px;
+  letter-spacing:.3px;
+  margin-top:4px
+}
+.seg button,.icon-btn {
+  min-height:44px;
+  min-width:44px;
+  padding:0 13px;
+  font-size:14px
+}
+main {
+  grid-template-columns:minmax(0,1fr) 330px;
+  overflow:hidden
+}
+button,select,input {
+  touch-action:manipulation
+}
+button {
+  transition:background .12s,border-color .12s
+}
+.btn {
+  font-size:13px
+}
+.stage {
+  min-height:0;
+  background:linear-gradient(#17150f66,#17120a99),url(art:pc-workbench) center/cover
+}
+.stage:before {
+  content:"";
+  position:absolute;
+  inset:0;
+  box-shadow:inset 0 0 100px #080b10a8;
+  pointer-events:none
+}
+.stage-head {
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px 22px 8px;
+  gap:8px
+}
+.eyebrow {
+  color:#e3bd79;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase
+}
+.stage-head h2 {
+  font-size:21px;
+  font-weight:600;
+  margin:5px 0;
+  color:#f4eee3
+}
+.lock {
+  border:1px solid #c08a2a8c;
+  border-radius:7px;
+  background:#181a18e8;
+  padding:9px 12px;
+  color:#f2d598;
+  white-space:nowrap;
+  font:600 13px var(--readout-font)
+}
+#ordersScene {
+  height:100%;
+  display:grid;
+  grid-template-rows:auto minmax(0,1fr) auto
+}
+.bench-middle {
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:16px;
+  padding:4px 20px 16px;
+  min-height:0
+}
+.instrument {
+  position:relative;
+  border:1px solid #736049;
+  border-radius:10px;
+  min-width:0;
+  min-height:0;
+  box-shadow:0 12px 24px #0006,inset 0 1px #ffffff14;
+  overflow:hidden
+}
+.package-card {
+  background:linear-gradient(120deg,#262b2bdd,#131b20ed);
+  display:grid;
+  grid-template-rows:auto minmax(0,1fr) auto
+}
+.instrument-title {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:13px 15px 3px;
+  color:#b9c4cd;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  gap:5px
+}
+.lamp {
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#e8c07b;
+  box-shadow:0 0 9px #e8c07b;
+  animation:breathe 3s infinite alternate
+}
+@keyframes breathe {
+  to {
+    opacity:.35
+  }
+}
+.calm .lamp {
+  animation:none
+}
+#package {
+  width:100%;
+  height:100%;
+  min-height:0;
+  display:block;
+  touch-action:none;
+  overflow:hidden
+}
+.measure {
+  fill:#e8edf3;
+  font:12px var(--readout-font)
+}
+.package-note {
+  padding:0 12px 12px;
+  min-height:32px;
+  text-align:center;
+  color:#b7c1ca;
+  font-size:12px
+}
+.graph-card {
+  background:var(--gr-bg);
+  display:grid;
+  grid-template-rows:auto minmax(0,1fr) auto
+}
+#graph {
+  width:100%;
+  height:100%;
+  display:block;
+  min-height:0
+}
+.graph-foot {
+  display:flex;
+  justify-content:space-between;
+  gap:4px;
+  padding:8px 12px 12px;
+  color:#a6b3c4;
+  font-size:11px
+}
+.graph-foot b {
+  color:#e8edf3
+}
+.gr-pt:not([tabindex]) {
+  pointer-events:none;
+  cursor:default
+}
+.gr-tick {
+  font-size:11px!important
+}
+.gr-axlabel {
+  font-size:12px!important
+}
+.graph-current circle {
+  filter:drop-shadow(0 0 5px #c08a2a88)
+}
+.dot-new {
+  animation:dot-in .35s ease-out;
+  transform-box:fill-box;
+  transform-origin:center
+}
+@keyframes dot-in {
+  from {
+    opacity:.1;
+    scale:2.2
+  }
+  to {
+    opacity:1;
+    scale:1
+  }
+}
+.calm .dot-new {
+  animation:none
+}
+.bench-footer {
+  position:relative;
+  margin:0 20px 16px;
+  min-height:60px;
+  background:#101820eb;
+  border-left:3px solid var(--brand);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 14px;
+  gap:12px;
+  border-radius:5px
+}
+#trialSummary {
+  font-size:13px;
+  line-height:1.45;
+  color:#d4dde5
+}
+#trialSummary strong {
+  color:#f1cc89
+}
+.live-material {
+  flex:none;
+  font:600 25px var(--readout-font);
+  color:#efc881;
+  text-align:right
+}
+.live-material small {
+  display:block;
+  color:#a6b3c4;
+  font:10px 'Segoe UI';
+  letter-spacing:.8px;
+  text-transform:uppercase
+}
+#net {
+  position:absolute;
+  z-index:4;
+  bottom:84px;
+  left:22px;
+  right:22px;
+  height:160px;
+  border:1px solid #c08a2a;
+  background:#121a23f5;
+  border-radius:10px;
+  box-shadow:0 12px 35px #0009
+}
+#net svg {
+  width:100%;
+  height:100%
+}
+.panel {
+  padding:14px;
+  gap:10px;
+  overflow:hidden;
+  display:grid;
+  grid-template-rows:auto auto auto auto minmax(0,1fr)
+}
+.order-card {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-height:83px;
+  padding:8px 10px;
+  background:linear-gradient(135deg,#2a2a25,#1b2026);
+  border:1px solid #6b5533;
+  border-radius:9px;
+  position:relative
+}
+.order-card img {
+  width:78px;
+  height:78px;
+  object-fit:contain;
+  filter:drop-shadow(0 5px 4px #0004)
+}
+.order-card h2 {
+  font-size:18px;
+  margin:2px 0 5px;
+  font-weight:650
+}
+.order-card p {
+  margin:0;
+  color:#c4bdac;
+  font-size:12px
+}
+.order-card .eyebrow {
+  font-size:10px;
+  letter-spacing:1.4px
+}
+.controls {
+  display:flex;
+  flex-direction:column;
+  gap:6px
+}
+.pick-row {
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  align-items:center;
+  gap:10px;
+  font-size:13px
+}
+select {
+  min-height:44px;
+  background:#111821;
+  color:var(--ink);
+  border:1px solid #62789a;
+  border-radius:7px;
+  font:600 14px 'Segoe UI';
+  padding:0 8px;
+  width:100%
+}
+.gr-slider {
+  gap:0 8px!important
+}
+.gr-slider label {
+  font-size:13px;
+  color:#c3cedb
+}
+.gr-slider .num {
+  width:6em;
+  font-size:14px;
+  min-height:44px
+}
+.action-row {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px
+}
+.action-row .btn {
+  padding:0 6px
+}
+.action-row .primary {
+  background:var(--brand);
+  color:var(--brand-ink);
+  border-color:var(--brand)
+}
+#hint {
+  font-size:13px;
+  line-height:1.45;
+  min-height:57px;
+  color:#c8d2de;
+  border-left:2px solid #715a32;
+  padding-left:10px
+}
+.details {
+  overflow:auto;
+  min-height:0;
+  padding:0 2px 10px;
+  scrollbar-width:thin
+}
+.metric {
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:8px;
+  border-top:1px solid #35404a;
+  padding-top:10px;
+  margin-top:4px
+}
+.metric span {
+  font-size:12px;
+  color:#adb9c8
+}
+.metric strong {
+  font:600 24px var(--readout-font);
+  color:#ebc37b
+}
+.units {
+  font:12px 'Segoe UI'!important;
+  color:#adb9c8!important
+}
+.readouts {
+  margin:12px 0!important;
+  gap:6px 8px!important;
+  font-size:12px!important
+}
+.readouts dd {
+  text-align:right
+}
+.formula,.density {
+  font-size:12px;
+  line-height:1.6;
+  color:#b6c3d3;
+  margin:10px 0
+}
+.density {
+  border:1px solid #3c454c;
+  padding:9px;
+  border-radius:6px;
+  color:#d4dce4
+}
+.best-card {
+  border:1px solid #c08a2a;
+  background:#c08a2a15;
+  border-radius:7px;
+  padding:10px;
+  margin:10px 0;
+  font-size:13px;
+  line-height:1.6
+}
+.best-card strong {
+  display:block;
+  color:#efc881
+}
+.shelf-stage {
+  height:100%;
+  position:relative;
+  display:grid;
+  grid-template-rows:minmax(0,1.45fr) minmax(0,1fr);
+  padding:16px 20px;
+  gap:16px
+}
+.shelf-display {
+  min-height:0;
+  position:relative;
+  background:url(art:pc-shelf) center/100% 100%;
+  border-radius:9px;
+  border:1px solid #857052;
+  box-shadow:0 12px 30px #0007;
+  overflow:hidden
+}
+.shelf-display:after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(#11182022,transparent 60%,#11182011);
+  pointer-events:none
+}
+.shelf-caption {
+  position:absolute;
+  top:12px;
+  left:14px;
+  color:#372719;
+  font:800 11px 'Segoe UI';
+  letter-spacing:1.7px
+}
+.can-button {
+  position:absolute;
+  bottom:23%;
+  border:0;
+  background:none;
+  padding:0;
+  min-width:44px;
+  min-height:44px;
+  z-index:1;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  transition:translate .18s,filter .18s
+}
+.can-button img {
+  position:absolute;
+  bottom:0;
+  object-fit:fill;
+  filter:drop-shadow(4px 5px 3px #3a281840)
+}
+.can-button[aria-pressed=true] {
+  translate:0 -10px;
+  filter:drop-shadow(0 0 5px #ffe7af)
+}
+.can-tag {
+  position:absolute;
+  top:48%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font:700 12px 'Segoe UI';
+  color:#2a2723;
+  white-space:nowrap;
+  padding:3px;
+  background:#f4ead1df;
+  border-radius:3px
+}
+.shelf-bottom {
+  display:grid;
+  grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
+  gap:14px;
+  min-height:0
+}
+#shelfGraph {
+  height:100%;
+  width:100%;
+  min-height:0;
+  display:block
+}
+.discussion {
+  border:1px solid #756044;
+  border-radius:8px;
+  background:#201d19ec;
+  padding:15px;
+  color:#ece1cd;
+  display:flex;
+  flex-direction:column;
+  justify-content:center
+}
+.discussion .eyebrow {
+  font-size:10px;
+  letter-spacing:1.4px
+}
+.discussion p {
+  font-size:14px;
+  line-height:1.6;
+  margin:9px 0 0
+}
+.shelf-result {
+  font-size:14px;
+  line-height:1.5
+}
+.shelf-result strong {
+  display:block;
+  font:650 38px var(--readout-font);
+  color:#ebc37b;
+  margin:4px 0
+}
+.shelf-result small {
+  font-size:12px;
+  color:#a6b3c4
+}
+.case-stage {
+  height:100%;
+  position:relative;
+  display:grid;
+  grid-template-rows:auto minmax(0,1fr) auto;
+  padding:16px 22px;
+  gap:10px
+}
+.case-stage h2 {
+  font-size:22px;
+  margin:4px 0
+}
+#case {
+  width:100%;
+  height:100%;
+  min-height:0;
+  display:block
+}
+.case-caption {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#101820eb;
+  border-left:3px solid var(--brand);
+  padding:12px;
+  border-radius:6px;
+  font-size:13px;
+  gap:12px
+}
+.case-caption strong {
+  font:700 26px var(--readout-font);
+  color:#ebc37b
+}
+.case-item.arrive {
+  animation:arrive .25s ease-out both;
+  transform-box:fill-box;
+  transform-origin:center
+}
+@keyframes arrive {
+  from {
+    opacity:0;
+    translate:0 -30px
+  }
+  to {
+    opacity:1;
+    translate:0 0
+  }
+}
+.calm .case-item {
+  animation:none!important
+}
+#pack {
+  width:100%;
+  min-height:44px
+}
+.offscreen {
+  position:absolute;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+  clip-path:inset(50%);
+  white-space:nowrap
+}
+@media(min-height:900px) {
+  #net:not([hidden]) {
+    position:relative;
+    bottom:auto;
+    left:auto;
+    right:auto;
+    margin:0 20px 16px;
+    height:140px
+  }
+  #ordersScene.net-open {
+    grid-template-rows:auto minmax(0,1fr) auto auto
+  }
+}
+@media(max-width:999px) and (min-height:701px) {
+  main {
+    grid-template-columns:1fr;
+    grid-template-rows:minmax(250px,1fr) auto
+  }
+  .panel {
+    border-left:0;
+    border-top:1px solid var(--line);
+    max-height:330px;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:auto auto minmax(0,1fr)
+  }
+  .order-card {
+    grid-column:2;
+    grid-row:1;
+    min-height:60px
+  }
+  .order-card img {
+    width:64px;
+    height:64px
+  }
+  .controls {
+    grid-column:1;
+    grid-row:1 / span 2
+  }
+  .action-row {
+    grid-column:2;
+    grid-row:2
+  }
+  #hint {
+    grid-column:1;
+    grid-row:3
+  }
+  .details {
+    grid-column:2;
+    grid-row:3;
+    max-height:110px
+  }
+}
+@media(max-height:700px) {
+  header {
+    padding:5px 10px;
+    gap:7px
+  }
+  h1 {
+    font-size:18px
+  }
+  h1 small {
+    display:none
+  }
+  main {
+    grid-template-columns:minmax(0,1fr) 260px
+  }
+  .panel {
+    padding:9px;
+    gap:7px;
+    grid-template-rows:auto auto auto auto minmax(0,1fr)
+  }
+  .order-card {
+    min-height:48px;
+    height:48px;
+    padding:3px 8px;
+    gap:8px
+  }
+  .order-card img {
+    width:48px;
+    height:48px
+  }
+  .order-card h2 {
+    font-size:15px;
+    margin:0 0 2px
+  }
+  .order-card p {
+    font-size:11px
+  }
+  .order-card .eyebrow {
+    display:none
+  }
+  #hint {
+    min-height:52px;
+    font-size:12px;
+    line-height:1.35
+  }
+  .stage-head {
+    padding:12px 14px 6px
+  }
+  .stage-head h2 {
+    font-size:17px;
+    margin:3px 0
+  }
+  .eyebrow {
+    font-size:10px;
+    letter-spacing:1.3px
+  }
+  .lock {
+    padding:8px;
+    font-size:11px
+  }
+  .bench-middle {
+    padding:4px 12px 10px;
+    gap:10px
+  }
+  .instrument-title {
+    padding:10px 10px 2px;
+    font-size:10px;
+    letter-spacing:.6px
+  }
+  .bench-footer {
+    margin:0 12px 12px;
+    min-height:44px;
+    padding:6px 10px
+  }
+  #trialSummary {
+    font-size:11px
+  }
+  .live-material {
+    font-size:18px
+  }
+  .graph-foot {
+    padding:5px 8px 9px;
+    font-size:10px
+  }
+  .package-note {
+    font-size:10px;
+    padding-bottom:8px;
+    min-height:24px
+  }
+  .shelf-stage {
+    padding:12px;
+    gap:10px
+  }
+  .shelf-bottom {
+    gap:10px
+  }
+  .discussion {
+    padding:10px
+  }
+  .discussion p {
+    font-size:12px
+  }
+  .case-stage {
+    padding:12px 14px
+  }
+  .case-stage h2 {
+    font-size:18px
+  }
+}
+@media(max-width:760px) and (max-height:700px) {
+  main {
+    grid-template-columns:minmax(0,1fr) 244px
+  }
+  h1 {
+    font-size:16px;
+    width:157px;
+    flex:none
+  }
+  .seg button,.icon-btn {
+    font-size:12px;
+    padding:0 8px
+  }
+  .seg {
+    border-width:1px
+  }
+  .bench-middle {
+    gap:6px;
+    padding:4px 8px 8px
+  }
+  .stage-head {
+    padding:8px 10px 4px
+  }
+  .stage-head h2 {
+    font-size:15px
+  }
+  .stage-head .eyebrow {
+    font-size:10px
+  }
+  .lock {
+    font-size:10px;
+    padding:7px
+  }
+  .instrument-title {
+    padding:8px 7px 2px;
+    font-size:10px;
+    letter-spacing:0
+  }
+  .lamp {
+    display:none
+  }
+  .bench-footer {
+    margin:0 8px 8px;
+    padding:6px 8px;
+    gap:5px
+  }
+  #trialSummary {
+    font-size:10px
+  }
+  .graph-foot {
+    flex-wrap:wrap;
+    gap:2px;
+    font-size:10px
+  }
+  .live-material {
+    font-size:15px
+  }
+  .live-material small {
+    font-size:10px
+  }
+  .shelf-bottom {
+    grid-template-columns:1fr
+  }
+  .discussion {
+    display:none
+  }
+  .can-tag {
+    font-size:10px;
+    padding:2px
+  }
+}
+@media(max-width:599px) {
+  header {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:5px;
+    padding:7px 8px
+  }
+  header h1 {
+    grid-column:1/-1;
+    font-size:20px;
+    margin:0;
+    width:auto;
+    padding:2px 0 4px
+  }
+  header .seg {
+    grid-column:1/-1;
+    display:grid;
+    grid-template-columns:repeat(3,1fr)
+  }
+  header .icon-btn {
+    padding:0 4px;
+    font-size:12px
+  }
+  header .seg button {
+    font-size:13px
+  }
+  main {
+    grid-template-columns:1fr;
+    grid-template-rows:minmax(240px,1fr) 280px
+  }
+  .panel {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:auto auto minmax(0,1fr);
+    padding:8px;
+    gap:6px;
+    max-height:none;
+    border-top:1px solid var(--line)
+  }
+  .order-card {
+    grid-column:2;
+    grid-row:1;
+    height:54px;
+    min-height:54px
+  }
+  .order-card img {
+    width:43px;
+    height:50px
+  }
+  .order-card h2 {
+    font-size:13px
+  }
+  .order-card p {
+    font-size:10px
+  }
+  .order-card .eyebrow {
+    display:none
+  }
+  .order-card p {
+    line-height:1.2
+  }
+  .order-card {
+    padding:3px 6px;
+    gap:6px
+  }
+  .controls {
+    grid-column:1;
+    grid-row:1 / span 2;
+    gap:3px
+  }
+  .pick-row {
+    gap:5px;
+    font-size:12px
+  }
+  select {
+    font-size:12px;
+    padding:0 4px
+  }
+  .gr-slider .num {
+    width:4.6em;
+    font-size:13px
+  }
+  .gr-slider label {
+    font-size:12px
+  }
+  .action-row {
+    grid-column:2;
+    grid-row:2;
+    gap:4px
+  }
+  .action-row .btn {
+    font-size:11px;
+    padding:0 3px
+  }
+  #hint {
+    grid-column:1;
+    grid-row:3;
+    min-height:55px;
+    font-size:11px
+  }
+  .details {
+    grid-column:2;
+    grid-row:3;
+    max-height:none
+  }
+  .metric {
+    padding-top:4px;
+    margin-top:0;
+    display:block
+  }
+  .metric strong {
+    font-size:20px
+  }
+  .metric span {
+    font-size:11px
+  }
+  .readouts,.formula,.density {
+    font-size:11px!important
+  }
+  .stage-head {
+    padding:8px 10px 3px
+  }
+  .bench-middle {
+    padding:3px 8px 7px;
+    gap:6px
+  }
+  .bench-footer {
+    margin:0 8px 7px;
+    min-height:36px;
+    padding:4px 7px
+  }
+  .stage-head h2 {
+    font-size:14px
+  }
+  .stage-head .eyebrow {
+    font-size:10px
+  }
+  .lock {
+    font-size:10px;
+    padding:6px
+  }
+  #trialSummary {
+    font-size:10px
+  }
+  .instrument-title {
+    font-size:10px;
+    padding:7px 6px 1px;
+    letter-spacing:0
+  }
+  .live-material {
+    font-size:14px
+  }
+  .graph-foot {
+    padding:3px 6px 6px;
+    font-size:10px
+  }
+  .package-note {
+    font-size:10px;
+    padding:0 4px 6px;
+    min-height:18px
+  }
+  #net {
+    height:120px;
+    left:8px;
+    right:8px;
+    bottom:51px
+  }
+  .shelf-stage {
+    padding:8px;
+    gap:6px
+  }
+  .shelf-bottom {
+    grid-template-columns:1fr
+  }
+  .discussion {
+    display:none
+  }
+  .can-tag {
+    font-size:10px
+  }
+  .case-stage {
+    padding:8px
+  }
+  .case-stage h2 {
+    font-size:16px
+  }
+  .case-caption {
+    padding:6px;
+    font-size:11px
+  }
+  .case-caption strong {
+    font-size:22px
+  }
+}
+@media(max-width:599px) and (max-height:700px) {
+  main {
+    grid-template-rows:minmax(185px,1fr) 255px
+  }
+}
+.package-card:has(#net:not([hidden])) {
+  grid-template-rows:auto minmax(0,1fr) auto 120px
+}
+#packageCard #net {
+  position:relative;
+  inset:auto;
+  margin:0;
+  height:120px;
+  width:100%;
+  border:0;
+  border-top:1px solid #736049;
+  border-radius:0;
+  background:#121a23;
+  box-shadow:none
+}
+#ordersScene.net-open {
+  grid-template-rows:auto minmax(0,1fr) auto
+}
+@media(max-height:700px),(max-width:599px) {
+  .package-card:has(#net:not([hidden])) {
+    grid-template-rows:auto minmax(0,1fr) auto 85px
+  }
+  #packageCard #net {
+    height:85px
+  }
+}
+@media(min-width:600px) and (max-height:550px) {
+  .panel.lid-order .order-card {
+    display:none
+  }
+  .panel.lid-order {
+    grid-template-rows:auto auto auto minmax(0,1fr)
+  }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Packaging Challenge <small>Same volume. Less material.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-orders" aria-pressed="true">Orders</button>
+    <button id="m-shelf" aria-pressed="false">Shelf</button>
+    <button id="m-case" aria-pressed="false">Case</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <section id="ordersScene" aria-label="Design workbench">
+      <div class="stage-head">
+        <div><div class="eyebrow">Design bench / <span id="stageOrder">O1</span></div><h2>Change the shape. Keep the order.</h2></div>
+        <div class="lock" id="lockedVolume">▣ 500 mL locked</div>
+      </div>
+      <div class="bench-middle">
+        <div class="instrument package-card" id="packageCard">
+          <div class="instrument-title">Your package <span class="lamp" aria-hidden="true"></span></div>
+          <svg id="package" role="group" aria-label="Package at true front-view scale">
+            <defs>
+              <linearGradient id="metal"><stop stop-color="#778898"/><stop offset=".2" stop-color="#dfe6ea"/>
+                <stop offset=".35" stop-color="#b5c1cc"/><stop offset=".65" stop-color="#dae1e7"/><stop offset="1" stop-color="#73818d"/></linearGradient>
+              <linearGradient id="lid" x2=".7" y2="1"><stop stop-color="#f2f4f2"/><stop offset=".5" stop-color="#a0b1bd"/>
+                <stop offset="1" stop-color="#d6dfe3"/></linearGradient>
+              <pattern id="kraft" patternUnits="userSpaceOnUse" width="120" height="120"><image href="art:pc-kraft" width="120" height="120"/></pattern>
+            </defs>
+            <g id="packageDrawing"></g>
+            <g id="handle" role="slider" tabindex="0" aria-label="Radius" aria-valuemin="1" aria-valuemax="12" aria-valuenow="3">
+              <circle r="22" fill="transparent"/>
+              <circle r="13" fill="#c08a2a" stroke="#f3d79f" stroke-width="2"/>
+              <path d="M-7 0H7M-4-3L-7 0L-4 3M4-3L7 0L4 3" fill="none" stroke="#10161f" stroke-width="1.8"/>
+            </g>
+          </svg>
+          <div class="package-note" id="packageNote">Drag the gold handle · true front-view scale</div>
+        </div>
+        <div class="instrument graph-card" id="graphCard">
+          <div class="instrument-title"><span id="graphTitle">Material / radius</span><span id="dotCount">0 trials</span></div>
+          <svg id="graph" role="img" aria-label="Material versus package shape"></svg>
+          <div class="graph-foot"><span>● <b>Your trials</b></span><span>◇ Now <span id="graphUnit">cm²</span></span></div>
+        </div>
+      </div>
+      <div id="net" hidden><svg id="netSvg" role="img" aria-label="Flat pieces of the package"></svg></div>
+      <div class="bench-footer"><div id="trialSummary">Drag the handle or slider, then release to leave your first trial.</div>
+        <div class="live-material"><small id="liveMaterialLabel">Material · cm²</small><span id="liveMaterial"></span></div></div>
+    </section>
+    <section id="shelfScene" class="shelf-stage" aria-label="Real cans shelf" hidden>
+      <div class="shelf-display" id="shelfDisplay">
+        <div class="shelf-caption">REAL SIZES / SAME SCALE</div>
+        <button id="can-drink" class="can-button" aria-label="Drink can" aria-pressed="false"><img src="art:pc-can-drink" alt=""><span class="can-tag">Drink</span></button>
+        <button id="can-303" class="can-button" aria-label="No. 303 can" aria-pressed="false"><img src="art:pc-can-303" alt=""><span class="can-tag">No. 303</span></button>
+        <button id="can-2half" class="can-button" aria-label="No. 2½ can" aria-pressed="false"><img src="art:pc-can-2half" alt=""><span class="can-tag">No. 2½</span></button>
+        <button id="can-10" class="can-button" aria-label="No. 10 can" aria-pressed="false"><img src="art:pc-can-10" alt=""><span class="can-tag">No. 10</span></button>
+      </div>
+      <div class="shelf-bottom">
+        <div class="instrument graph-card"><div class="instrument-title" id="shelfGraphTitle">Tap a can to compare</div>
+          <svg id="shelfGraph" role="img" aria-label="Real can and best cylinder of its own model volume"></svg></div>
+        <div class="discussion"><span class="eyebrow">A design is a tradeoff</span>
+          <p>Why might a drink can be tall and thin? Think of hands, cup holders, machines that sell them, and the lid.</p></div>
+      </div>
+    </section>
+    <section id="caseScene" class="case-stage" aria-label="Case packing" hidden>
+      <div><div class="eyebrow">Packing floor / 24 packages</div><h2>Same product. Different empty space.</h2></div>
+      <svg id="case" role="img" aria-label="Twenty-four packages in a four by six case"></svg>
+      <div class="case-caption"><span id="caseStatus">Tap Pack the case to place 24 packages.</span><strong id="caseFill">0 / 24</strong></div>
+    </section>
+  </div>
+  <aside class="panel" id="panel" aria-label="Design controls and readouts">
+    <div class="order-card" id="orderCard"><img id="orderImage" src="art:pc-order-soup" alt="">
+      <div><div class="eyebrow" id="cardLabel">The order</div><h2 id="orderName">Soup can</h2><p id="orderDescription">500 mL · closed can</p></div>
+    </div>
+    <div class="controls" id="controls">
+      <div class="pick-row" id="orderPicker"><label for="orderSelect">Order</label><select id="orderSelect" aria-label="Order">
+        <option value="O1">O1 · Soup / 500 mL</option><option value="O2">O2 · Drink / 355 mL</option>
+        <option value="O3">O3 · Bulk / 3,236 mL</option><option value="O4">O4 · Gift / 1,000 mL</option>
+        <option value="O5">O5 · Seed tray / 500 mL</option><option value="O6">O6 · Costlier lids / 355 mL</option>
+      </select></div>
+      <div id="canSlider"></div><div id="boxSlider" hidden></div><div id="lidSlider" hidden></div>
+      <div id="shelfIntro" hidden><p class="formula">Tap a painted can on the shelf. Each can uses its own outside-size volume.</p></div>
+      <button class="big-btn" id="pack" hidden>Pack the case</button>
+    </div>
+    <div class="action-row" id="orderActions">
+      <button class="btn" id="showCurve">Show curve</button><button class="btn primary" id="reveal">Reveal best</button>
+      <button class="btn" id="clear">Clear dots</button><button class="btn" id="netToggle" aria-expanded="false">Net</button>
+    </div>
+    <p class="hint" id="hint">Drag the handle on the package, or the Radius slider. Release to plot a trial.</p>
+    <div class="details" id="details">
+      <section id="orderReadout">
+        <div class="metric"><span id="materialLabel">Total material</span><div><strong id="material">0</strong> <span class="units" id="materialUnit">cm²</span></div></div>
+        <dl class="readouts"><dt id="xLabel">Radius</dt><dd id="xValue"></dd><dt>Height</dt><dd id="heightValue"></dd>
+          <dt>Volume ▣ locked</dt><dd id="volumeValue"></dd><dt>Top</dt><dd id="topValue"></dd>
+          <dt>Bottom</dt><dd id="bottomValue"></dd><dt>Side wall</dt><dd id="wallValue"></dd></dl>
+        <p class="formula" id="formula"></p><p class="density" id="metalLine"></p>
+        <div class="best-card" id="bestCard" hidden></div>
+        <p class="formula" id="ghostLine" hidden>Comparison ghost: 20 × 10 × 5 cm = 1,000 cm³. Material: 700 cm².</p>
+      </section>
+      <section id="shelfReadout" hidden><div class="shelf-result" id="shelfResult">Pick a can to inspect its design.</div>
+        <dl class="readouts" id="shelfNumbers"></dl>
+        <p class="density">Outside sizes are bigger than what the label says the can holds. Can sizes as listed 2026-10-27.</p>
+        <p class="formula">Why might a drink can be tall and thin? Think of hands, cup holders, machines that sell them, and the lid.</p>
+      </section>
+      <section id="caseReadout" hidden><div class="metric"><span>Case fill</span><div><strong id="fillValue"></strong> <span class="units">%</span></div></div>
+        <dl class="readouts"><dt>Inside volume</dt><dd id="insideVolume"></dd><dt>Product volume</dt><dd id="productVolume"></dd>
+          <dt>Inside dimensions</dt><dd id="caseDimensions"></dd></dl><p class="formula" id="fillFormula"></p>
+        <p class="density" id="caseMetal"></p><p class="formula">Case uses this order’s current shape. Change it in Orders, then return here.</p>
+      </section>
+    </div>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:graphing"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  $('packageCard').appendChild($('net'));
+  const ART = {
+    soup:'art:pc-order-soup',drink:'art:pc-order-drink',tomatoes:'art:pc-order-tomatoes',
+    gift:'art:pc-order-gift',seedlings:'art:pc-order-seedlings',kraft:'art:pc-kraft',top:'art:pc-can-top'
+  };
+  const ORDERS = {
+    O1:{name:'Soup can',v:500,type:'can',image:'soup',start:3},
+    O2:{name:'Drink can',v:355,type:'can',image:'drink',start:2.5},
+    O3:{name:'Bulk can',v:3236,type:'can',image:'tomatoes',start:5},
+    O4:{name:'Gift box',v:1000,type:'box',image:'gift',start:16},
+    O5:{name:'Seed tray',v:500,type:'tray',image:'seedlings',start:16},
+    O6:{name:'Costlier lids',v:355,type:'can',image:'drink',start:3.84}
+  };
+  const CANS = {
+    drink:{name:'Drink can',d:6.6,h:12.3,label:355},
+    '303':{name:'No. 303',d:8.10,h:11.11,label:499},
+    '2half':{name:'No. 2½',d:10.32,h:11.91,label:881},
+    '10':{name:'No. 10',d:15.72,h:17.78,label:3236}
+  };
+  const L = {
+    wOrders:"Here's an order. Drag the handle on the package's edge, or the slider. The volume stays locked, so watch the material.",
+    wShelf:'Tap a real can to put it on the graph next to the best can of its size.',
+    wCase:'Pick an order, then tap Pack the case. Compare how much space cans and boxes leave empty.',
+    curve:'Your dots made a curve. Its lowest point is the best package. Tap Reveal best to check.',
+    best:"That's within half a percent of the best. Great build.",
+    lidShift:'Pricier lids push the best can taller and thinner.',
+    afterBest:'Compare your trials with the best point. Drag the handle again, or pick another Order.',
+    afterPack:'Pick another Order and tap Pack the case to compare the space left empty.',
+    afterShelf:'Tap another real can to compare it with the best can of its own size.'
+  };
+  const state = {mode:'Orders',orderId:'O1',orders:{},shelfId:null,packed:0,packing:false,
+    net:innerHeight>=900,netChosen:false,revision:0};
+  for (const [id,o] of Object.entries(ORDERS)) {
+    state.orders[id] = {x:o.start,k:id==='O6'?3:1,dots:[],curve:false,revealed:false,releases:0,record:null};
+  }
+  const o = () => ORDERS[state.orderId];
+  const s = () => state.orders[state.orderId];
+  const f2 = n => Number(n).toFixed(2);
+  const f1 = n => Number(n).toFixed(1);
+  const mk = (tag,attrs,parent) => {
+    const el = document.createElementNS(NS,tag);
+    for (const [k,v] of Object.entries(attrs || {})) el.setAttribute(k,v);
+    if (parent) parent.appendChild(el);
+    return el;
+  };
+  function text(parent,x,y,value,attrs={}) {
+    const el = mk('text',{x,y,fill:'#e8edf3','font-size':12,...attrs},parent);
+    el.textContent = value;
+    return el;
+  }
+  function model(order=o(),x=s().x,k=s().k) {
+    const can = order.type==='can';
+    const base = can ? Math.PI*x*x : x*x;
+    const h = order.v/base;
+    const top = order.type==='tray' ? 0 : base;
+    const wall = (can ? 2*Math.PI*x : 4*x)*h;
+    const material = top+base+wall;
+    return {x,h,top,bottom:base,wall,material,cost:can?k*(top+base)+wall:material,v:order.v};
+  }
+  function optimum(order=o(),k=s().k) {
+    const x = order.type==='can' ? Math.cbrt(order.v/(2*Math.PI*k)) :
+      Math.cbrt(order.v*(order.type==='tray'?2:1));
+    return model(order,x,k);
+  }
+  const hint = value => {$('hint').textContent=value;};
+  const V = Curio.voice({
+    lines:L,scope:()=>state.mode,hint:false,read:()=>$('hint').textContent,
+    welcome:()=> {
+      if (state.mode==='Orders') return ['wOrders',{valid:()=>s().releases===0,needs:'#orderSelect'}];
+      if (state.mode==='Shelf') return ['wShelf',{valid:()=>state.shelfId===null,needs:'#can-drink'}];
+      return ['wCase',{valid:()=>state.packed===0,needs:'#pack'}];
+    }
+  });
+  let graph = null;
+  let graphKey = '';
+  let drag = null;
+  let dragScale = 1;
+  let caseTimer = 0;
+  let caseGeneration = 0;
+  let lastTone = 0;
+  const canSlider = Plane.slider($('canSlider'),{id:'radius',label:'Radius (cm)',min:1,max:12,step:.01,value:3,
+    format:f2,onInput:(v,source)=>{set(v,false);if(source==='box') release();}});
+  const boxSlider = Plane.slider($('boxSlider'),{id:'side',label:'Base side (cm)',min:2,max:30,step:.01,value:16,
+    format:f2,onInput:(v,source)=>{set(v,false);if(source==='box') release();}});
+  const lidSlider = Plane.slider($('lidSlider'),{id:'lidCost',label:'Lid cost × wall cost',min:1,max:4,step:.5,value:3,
+    format:v=>f1(v)+'×',parse:t=>Number.parseFloat(t),onInput:v=>lidCost(v)});
+  for (const sl of [canSlider,boxSlider]) {
+    sl.range.addEventListener('change',release);
+    sl.range.addEventListener('keydown',e=>{
+      if (e.shiftKey && e.key.startsWith('Arrow')) {
+        e.preventDefault();
+        const direction = ['ArrowRight','ArrowUp'].includes(e.key)?1:-1;
+        set(s().x+direction*.1,false);
+        release();
+      }
+    });
+  }
+  function soundChange() {
+    if (performance.now()-lastTone<85) return;
+    lastTone=performance.now();
+    Curio.tone(160+Math.min(700,s().x*30),.035,.025,'sine');
+  }
+  function finishMotion() {
+    if (state.packing) finishPack();
+    for (const a of document.getAnimations()) {
+      if (a.effect && a.effect.getTiming().iterations!==Infinity) a.finish();
+    }
+  }
+  function setMode(mode) {
+    const canonical={orders:'Orders',shelf:'Shelf',case:'Case'}[String(mode).toLowerCase()];
+    if (!canonical) return;
+    if (canonical===state.mode) {finishMotion();return;}
+    finishMotion();
+    V.hush();
+    state.mode=canonical;
+    state.revision++;
+    for (const name of ['Orders','Shelf','Case']) {
+      $('m-'+name.toLowerCase()).setAttribute('aria-pressed',name===canonical);
+      $(name.toLowerCase()+'Scene').hidden=name!==canonical;
+    }
+    const shelf=canonical==='Shelf';
+    $('orderPicker').hidden=shelf;
+    $('canSlider').hidden=shelf || canonical==='Case' || o().type!=='can';
+    $('boxSlider').hidden=shelf || canonical==='Case' || o().type==='can';
+    $('lidSlider').hidden=canonical!=='Orders' || state.orderId!=='O6';
+    $('orderActions').hidden=canonical!=='Orders';
+    $('pack').hidden=canonical!=='Case';
+    $('shelfIntro').hidden=!shelf;
+    $('orderReadout').hidden=canonical!=='Orders';
+    $('shelfReadout').hidden=!shelf;
+    $('caseReadout').hidden=canonical!=='Case';
+    hint(canonical==='Orders' ? (s().revealed?L.afterBest:L.wOrders) :
+      shelf ? (state.shelfId?L.afterShelf:L.wShelf) : (state.packed?L.afterPack:L.wCase));
+    updateCard();
+    render();
+    V.welcome();
+  }
+  function order(id) {
+    id=String(id).toUpperCase();
+    if (!ORDERS[id]) return;
+    finishMotion();
+    V.hush();
+    state.orderId=id;
+    state.revision++;
+    state.packed=0;
+    graphKey='';
+    $('orderSelect').value=id;
+    canSlider.set(s().x,true);
+    boxSlider.set(s().x,true);
+    lidSlider.set(s().k,true);
+    $('canSlider').hidden=state.mode!=='Orders' || o().type!=='can';
+    $('boxSlider').hidden=state.mode!=='Orders' || o().type==='can';
+    $('lidSlider').hidden=state.mode!=='Orders' || id!=='O6';
+    updateCard();
+    hint(state.mode==='Case'?L.wCase:'Drag the handle or '+(o().type==='can'?'Radius':'Base side')+' slider. Release to plot a trial.');
+    render();
+    Curio.tone(250,.06,.04,'triangle');
+  }
+  function set(value,commit=true) {
+    if (!Number.isFinite(+value)) return;
+    finishMotion();
+    const [min,max]=o().type==='can'?[1,12]:[2,30];
+    s().x=Math.max(min,Math.min(max,Math.round(+value*100)/100));
+    state.revision++;
+    (o().type==='can'?canSlider:boxSlider).set(s().x,true);
+    hint('Release the handle or slider to plot this shape. Try a different width to compare material.');
+    renderOrders();
+    soundChange();
+    if (commit) release();
+  }
+  function release() {
+    finishMotion();
+    const rev=++state.revision;
+    const id=state.orderId;
+    const m=model();
+    const wasCurve=s().curve;
+    s().releases++;
+    s().dots.push({x:m.x,y:m.cost});
+    if (!s().record || m.cost<s().record.y) s().record={x:m.x,y:m.cost,h:m.h};
+    if (s().dots.length>=5) s().curve=true;
+    hint(s().curve && !s().revealed ? L.curve : 'Drag again to compare another shape, or tap Show curve and Reveal best.');
+    renderOrders();
+    const latest=$('graph').querySelector('.trial-last');
+    if (latest && !Curio.reduce) latest.classList.add('dot-new');
+    if (m.cost<=optimum().cost*1.005) {
+      Curio.yes();
+      V.say('best',{valid:()=>state.orderId===id && state.revision===rev});
+    } else Curio.tone(430,.09,.04,'triangle');
+    if (!wasCurve && s().curve && !V.heard('curve')) {
+      V.how('curve',{valid:()=>state.orderId===id && s().curve && !s().revealed,needs:'#reveal'});
+    }
+  }
+  function showCurve() {
+    finishMotion();
+    s().curve=true;
+    hint(L.curve);
+    renderOrders();
+    V.how('curve',{valid:()=>s().curve && !s().revealed,needs:'#reveal'});
+    Curio.tone(510,.07,.035,'sine');
+  }
+  function best() {
+    finishMotion();
+    s().curve=true;
+    s().revealed=true;
+    hint(L.afterBest);
+    renderOrders();
+    V.how('afterBest',{needs:'#orderSelect'});
+    Curio.tone(660,.14,.04,'sine');
+    return optimum();
+  }
+  function lidCost(k) {
+    if(state.orderId!=='O6') return;
+    finishMotion();
+    s().k=Math.max(1,Math.min(4,Math.round(Number(k)*2)/2));
+    state.revision++;
+    const rev=state.revision;
+    lidSlider.set(s().k,true);
+    s().dots=s().dots.map(d=>({x:d.x,y:model(o(),d.x).cost}));
+    s().record=s().dots.length?s().dots.reduce((a,b)=>a.y<b.y?a:b):null;
+    hint('Drag Radius again, or tap Reveal best. Lid and bottom cost '+f1(s().k)+' times the wall per square centimeter.');
+    renderOrders();
+    V.say('lidShift',{valid:()=>state.orderId==='O6' && state.revision===rev,needs:'#lidCost'});
+    Curio.tone(260+s().k*90,.08,.04,'triangle');
+  }
+  function updateCard() {
+    $('panel').classList.toggle('lid-order',state.mode==='Orders' && state.orderId==='O6');
+    $('orderSelect').value=state.orderId;
+    if (state.mode==='Shelf') {
+      $('cardLabel').textContent='The real shelf';
+      $('orderImage').src=ART.tomatoes;
+      $('orderName').textContent='Outside sizes';
+      $('orderDescription').textContent='4 real cans · shared scale';
+      return;
+    }
+    $('cardLabel').textContent='The order / '+state.orderId;
+    $('orderImage').src=ART[o().image];
+    $('orderName').textContent=o().name;
+    const type=o().type==='can'?'closed can':o().type==='box'?'closed square box':'open square tray';
+    $('orderDescription').textContent=o().v.toLocaleString('en-US')+' mL · '+type;
+  }
+  function render() {
+    if(state.mode==='Orders') renderOrders();
+    if(state.mode==='Shelf') renderShelf();
+    if(state.mode==='Case') renderCase();
+  }
+  function renderOrders() {
+    if(state.mode!=='Orders') return;
+    if(!state.netChosen) {
+      state.net=innerHeight>=900;
+      $('net').hidden=!state.net;
+      $('netToggle').setAttribute('aria-expanded',state.net);
+      $('ordersScene').classList.toggle('net-open',state.net);
+    }
+    const m=model();
+    const kCost=state.orderId==='O6';
+    $('stageOrder').textContent=state.orderId;
+    $('lockedVolume').textContent='▣ '+o().v.toLocaleString('en-US')+' mL locked';
+    $('graphTitle').textContent=(kCost?'Cost':'Material')+' / '+(o().type==='can'?'radius':'side');
+    $('graphUnit').textContent=kCost?'wall-cm²':'cm²';
+    $('dotCount').textContent=s().dots.length+' '+(s().dots.length===1?'trial':'trials');
+    $('materialLabel').textContent=kCost?'Cost in wall-cm²':'Total material';
+    $('materialUnit').textContent=kCost?'wall-cm²':'cm²';
+    $('material').textContent=f2(m.cost);
+    $('liveMaterial').textContent=f2(m.cost);
+    $('liveMaterialLabel').textContent=kCost?'Cost · wall-cm²':'Material · cm²';
+    $('xLabel').textContent=o().type==='can'?'Radius':'Base side';
+    $('xValue').textContent=f2(m.x)+' cm';
+    $('heightValue').textContent=f2(m.h)+' cm';
+    $('volumeValue').textContent=o().v.toLocaleString('en-US')+' cm³';
+    $('topValue').textContent=o().type==='tray'?'Open, no top':f2(m.top)+' cm²';
+    $('bottomValue').textContent=f2(m.bottom)+' cm²';
+    $('wallValue').textContent=f2(m.wall)+' cm²';
+    $('formula').textContent=o().type==='can' ? (kCost?'C = k × 2πr² + 2πrh; ':'A = 2πr² + 2πrh; ')+'h = V ÷ πr²' :
+      (o().type==='tray'?'A = s² + 4sh; ':'A = 2s² + 4sh; ')+'h = V ÷ s²';
+    $('metalLine').hidden=o().type!=='can';
+    $('metalLine').textContent='Metal: 0.03 g per cm² (a practice number), so this can uses '+f2(m.material*.03)+' g.'+
+      (kCost?' Mass uses actual area, not weighted cost.':'');
+    $('bestCard').hidden=!s().revealed;
+    if (s().revealed) {
+      const b=optimum();
+      const relation=o().type==='can'?(kCost?'Best: height = 2 × lid cost × radius.':'Best: height = 2 × radius (as wide as it is tall).'):
+        o().type==='box'?'Best: a cube.':'Best: height = half the side.';
+      $('bestCard').innerHTML='<strong>'+relation+'</strong>'+(o().type==='can'?'Radius ':'Side ')+f2(b.x)+' cm · height '+
+        f2(b.h)+' cm<br>'+f2(b.cost)+(kCost?' wall-cm²':' cm²');
+    }
+    $('ghostLine').hidden=state.orderId!=='O4';
+    const record=s().record;
+    if(record) {
+      $('trialSummary').innerHTML='<strong>Your least material: '+f2(record.y)+(kCost?' wall-cm²':' cm²')+'</strong> · '+
+        s().dots.length+' '+(s().dots.length===1?'trial':'trials')+
+        (s().revealed?' · '+f1(Math.max(0,(record.y/optimum().cost-1)*100))+'% above best':' · Keep building your curve.');
+    } else $('trialSummary').textContent='Drag the handle or slider, then release to leave your first trial.';
+    drawPackage(m);
+    drawGraph();
+    drawNet(m);
+  }
+  function drawPackage(m) {
+    const svg=$('package');
+    const W=svg.clientWidth,H=svg.clientHeight;
+    if(W<1||H<1) return;
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    const g=$('packageDrawing');
+    g.replaceChildren();
+    const can=o().type==='can';
+    const width=can?m.x*2:m.x;
+    const designWidth=state.orderId==='O4'?Math.max(width,20):width;
+    const scale=Math.min((W-72)/designWidth,(H-60)/m.h);
+    dragScale=Math.max(.001,scale);
+    const w=width*scale,h=m.h*scale,cx=W/2,base=H-30,x=cx-w/2,y=base-h;
+    const p={x,y,w,h};
+    mk('ellipse',{cx,cy:base+6,rx:Math.max(8,w*.7),ry:Math.max(3,Math.min(9,w*.07)),fill:'#000',opacity:.3},g);
+    if(state.orderId==='O4') {
+      const gw=20*scale,gh=5*scale;
+      mk('rect',{x:cx-gw/2,y:base-gh,width:gw,height:gh,fill:'none',stroke:'#a6b3c4','stroke-dasharray':'5 5',opacity:.4},g);
+      text(g,12,H-7,'Ghost 20 × 10 × 5: 700 cm²',{'font-size':10,fill:'#a6b3c4'});
+    }
+    if(can) {
+      mk('rect',{x,y,width:w,height:h,rx:Math.min(3,w/6),fill:'url(#metal)',stroke:'#273844','stroke-width':2},g);
+      for(let i=1;i<Math.min(45,h/5);i++) {
+        const yy=y+i*h/Math.min(45,h/5);
+        mk('line',{x1:x+2,x2:x+w-2,y1:yy,y2:yy,stroke:'#fff','stroke-opacity':.12,'stroke-width':.6},g);
+      }
+      mk('rect',{x:x+2,y:y+Math.max(1,h*.04),width:Math.max(1,w-4),height:Math.min(3,h*.12),fill:'#f0f4f3',opacity:.65},g);
+      mk('line',{x1:x,x2:x+w,y1:base,y2:base,stroke:'#edf4f4','stroke-width':2},g);
+      const cap=Math.min(7,h*.12);
+      mk('ellipse',{cx,cy:y+cap,rx:w/2,ry:cap,fill:'url(#lid)',stroke:'#637886','stroke-width':1.2},g);
+      mk('ellipse',{cx,cy:y+cap,rx:Math.max(.2,w/2-3),ry:Math.max(.2,cap-1),fill:'none',stroke:'#eef3f4','stroke-width':.8},g);
+      mk('line',{x1:cx,x2:cx,y1:y+2,y2:base-2,stroke:'#445e6f','stroke-dasharray':'3 4','stroke-opacity':.6},g);
+    } else {
+      mk('rect',{x,y,width:w,height:h,fill:'url(#kraft)',stroke:'#513a20','stroke-width':2},g);
+      mk('rect',{x:x+w*.7,y,width:w*.3,height:h,fill:'#734711',opacity:.18},g);
+      mk('line',{x1:x+1,x2:x+w-1,y1:y+2,y2:y+2,stroke:'#f2d39c','stroke-width':2},g);
+      mk('line',{x1:cx,x2:cx,y1:y,y2:base,stroke:'#4b3520','stroke-dasharray':'5 4',opacity:.6},g);
+      if(o().type==='tray') {
+        mk('rect',{x:x+1,y:y+1,width:Math.max(1,w-2),height:Math.min(6,h/3),fill:'#392b1c'},g);
+      }
+    }
+    const lineX=Math.max(23,x-19);
+    mk('line',{x1:lineX,x2:lineX,y1:y,y2:base,stroke:'#d7b16e','stroke-width':1},g);
+    for(const yy of [y,base]) mk('line',{x1:lineX-3,x2:lineX+3,y1:yy,y2:yy,stroke:'#d7b16e'},g);
+    const heightLabel=f2(m.h)+' cm';
+    const heightX=Math.max(14,x-29);
+    text(g,heightX,(y+base)/2,heightLabel,{'font-size':11,'text-anchor':'middle',
+      transform:`rotate(-90 ${heightX} ${(y+base)/2})`});
+    const yy=base+15;
+    mk('line',{x1:can?cx:x,x2:x+w,y1:yy,y2:yy,stroke:'#d7b16e'},g);
+    text(g,cx,Math.max(12,y-10),(can?'r ':'s ')+f2(m.x)+' cm',{'text-anchor':'middle','font-size':W<220?11:13});
+    const handle=$('handle');
+    handle.setAttribute('transform',`translate(${cx+w/2},${y+h/2})`);
+    handle.setAttribute('aria-label',can?'Radius':'Base side');
+    handle.setAttribute('aria-valuemin',can?1:2);
+    handle.setAttribute('aria-valuemax',can?12:30);
+    handle.setAttribute('aria-valuenow',m.x);
+    handle.setAttribute('aria-valuetext',(can?'radius ':'base side ')+f2(m.x)+' centimeters, height '+f2(m.h)+
+      ', '+(state.orderId==='O6'?'cost ':'material ')+f2(m.cost)+(state.orderId==='O6'?' wall square centimeters':' square centimeters'));
+    const zoom=Math.min((W-72)/width,(H-60)/m.h)/19;
+    $('packageNote').textContent=s().revealed ? (can ?
+      (state.orderId==='O6'?'Best: height = 2 × '+f1(s().k)+' × radius':'Best: height = 2 × radius') :
+      o().type==='box'?'Best: a cube':'Best: height = half the side') :
+      zoom<.2?'Zoomed out · front view to scale':'Drag gold handle · front view to scale';
+    return p;
+  }
+  function drawGraph() {
+    const svg=$('graph'),W=svg.clientWidth,H=svg.clientHeight;
+    if(W<1||H<1) return;
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    const min=o().type==='can'?1:2,max=o().type==='can'?12:30;
+    const b=optimum();
+    const current=model();
+    const ymax=Math.ceil(Math.max(b.cost*1.65,current.cost*1.13,...s().dots.map(d=>d.y*1.1))/50)*50;
+    const left=W<220?37:48,top=18,bottom=42,right=14;
+    const pw=Math.max(60,W-left-right),ph=Math.max(35,H-top-bottom);
+    const key=[state.orderId,W,H,ymax,s().k].join('/');
+    if(key!==graphKey) {
+      svg.replaceChildren();
+      graph=Plane(svg,{x:[0,max],y:[0,ymax],width:pw,height:ph,left,top,ticks:'edge',
+        grid:[max/6,ymax/4],labels:[max/3,ymax/2],xLabel:(o().type==='can'?'radius':'side')+' (cm)',
+        tickFormat:(v,axis)=>axis==='y'?String(Math.round(v)):String(Math.round(v))});
+      graphKey=key;
+    }
+    graph.clear();
+    if(s().curve) graph.fn(x=>model(o(),x).cost,{domain:[min,max],color:'#c08a2a',width:3,
+      label:$('formula').textContent,arrows:'both'});
+    s().dots.forEach((d,i)=> {
+      const point=graph.point(d.x,Math.min(ymax*.99,d.y),{color:'#e8edf3',r:W<220?3:4,hit:0,class:i===s().dots.length-1?'trial-last':''});
+      point.el.setAttribute('aria-label','Trial radius or side '+f2(d.x)+', material '+f2(d.y));
+      if(d.y>ymax) graph.label(d.x,ymax*.97,'↑',{anchor:'middle',layer:'labels'});
+    });
+    graph.point(current.x,current.cost,{color:'#c08a2a',r:5,shape:'diamond',class:'graph-current',hit:0});
+    if(s().revealed) {
+      const mark=graph.point(b.x,b.cost,{color:'#c08a2a',r:W<220?6:8,hit:0});
+      mk('circle',{r:W<220?10:13,fill:'none',stroke:'#efc881','stroke-width':1.5},mark.body);
+      graph.label(b.x,b.cost,'BEST',{anchor:'middle',dy:22,layer:'labels',class:'best-label'});
+    }
+  }
+  function drawNet(m) {
+    if(!state.net) return;
+    const svg=$('netSvg'),W=svg.clientWidth,H=svg.clientHeight;
+    svg.replaceChildren();
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    const can=o().type==='can';
+    const wallWidth=can?2*Math.PI*m.x:4*m.x;
+    const diameter=can?2*m.x:m.x;
+    const scale=Math.min((W-75)/(wallWidth+diameter*2),(H-48)/Math.max(m.h,diameter));
+    const wallW=wallWidth*scale,wallH=m.h*scale,d=diameter*scale;
+    const x=22,y=(H-wallH)/2;
+    const fill=can?'#9eacb8':'url(#netKraft)';
+    const defs=mk('defs',{},svg);
+    mk('image',{href:ART.kraft,width:120,height:120},mk('pattern',{id:'netKraft',patternUnits:'userSpaceOnUse',width:120,height:120},defs));
+    mk('rect',{x,y,width:wallW,height:wallH,fill,stroke:'#c08a2a','stroke-width':1.5},svg);
+    if(!can) for(let i=1;i<4;i++) mk('line',{x1:x+wallW*i/4,x2:x+wallW*i/4,y1:y,y2:y+wallH,
+      stroke:'#654114','stroke-dasharray':'4 3'},svg);
+    for(let i=0;i<(o().type==='tray'?1:2);i++) {
+      const xx=x+wallW+12+i*(d+10);
+      if(can) mk('circle',{cx:xx+d/2,cy:H/2,r:d/2,fill,stroke:'#c08a2a','stroke-width':1.5},svg);
+      else mk('rect',{x:xx,y:(H-d)/2,width:d,height:d,fill,stroke:'#c08a2a'},svg);
+    }
+    text(svg,12,17,'NET / wall + bottom'+(o().type==='tray'?'':' + top'),{'font-size':11,fill:'#e3bd79'});
+    text(svg,12,H-10,'Dashed folds · same scale',{'font-size':10,fill:'#a6b3c4'});
+  }
+  function shelf(id) {
+    id=String(id);
+    if(!CANS[id]) return;
+    finishMotion();
+    state.shelfId=id;
+    state.revision++;
+    hint(L.afterShelf);
+    renderShelf();
+    Curio.tone(320+Object.keys(CANS).indexOf(id)*90,.09,.04,'triangle');
+    V.how('afterShelf',{needs:'#can-drink'});
+  }
+  function renderShelf() {
+    if(state.mode!=='Shelf') return;
+    const display=$('shelfDisplay');
+    const W=display.clientWidth,H=display.clientHeight;
+    const ids=['drink','303','2half','10'];
+    const dims=ids.map(id=>CANS[id]);
+    const scale=Math.min((W-56)/(dims.reduce((a,c)=>a+c.d,0)+12),H*.65/17.78);
+    let x=(W-(dims.reduce((a,c)=>a+c.d,0)+12)*scale)/2;
+    for(const id of ids) {
+      const c=CANS[id];
+      const button=$('can-'+id);
+      const imageWidth=c.d*scale;
+      button.style.width=Math.max(44,imageWidth)+'px';
+      button.style.height=c.h*scale+'px';
+      button.style.left=x+imageWidth/2-Math.max(44,imageWidth)/2+'px';
+      button.querySelector('img').style.width=imageWidth+'px';
+      button.querySelector('img').style.height=c.h*scale+'px';
+      button.setAttribute('aria-pressed',state.shelfId===id);
+      x+=(c.d+4)*scale;
+    }
+    const svg=$('shelfGraph'),gw=svg.clientWidth,gh=svg.clientHeight;
+    svg.replaceChildren();
+    svg.setAttribute('viewBox',`0 0 ${gw} ${gh}`);
+    if(!state.shelfId) {
+      text(svg,gw/2,gh/2,'Tap a real can above.',{'text-anchor':'middle',fill:'#a6b3c4','font-size':13});
+      return;
+    }
+    const c=CANS[state.shelfId],v=Math.PI*(c.d/2)**2*c.h;
+    const order={v,type:'can'},m=model(order,c.d/2,1),b=optimum(order,1);
+    const percent=(m.material/b.material-1)*100;
+    $('shelfResult').innerHTML=c.name+' uses<strong>'+f1(percent)+'%</strong>more metal than the best can of the same size.';
+    $('shelfNumbers').innerHTML='<dt>Height ÷ diameter</dt><dd>'+f2(c.h/c.d)+' / best 1.00</dd>'+
+      '<dt>Outside diameter</dt><dd>'+f2(c.d)+' cm</dd><dt>Outside height</dt><dd>'+f2(c.h)+' cm</dd>'+
+      '<dt>Own model volume</dt><dd>'+f1(v)+' cm³</dd><dt>Label capacity</dt><dd>'+c.label.toLocaleString('en-US')+' mL</dd>'+
+      '<dt>Actual material</dt><dd>'+f1(m.material)+' cm²</dd><dt>Best at own volume</dt><dd>'+f1(b.material)+' cm²</dd>';
+    $('shelfGraphTitle').textContent=c.name+' / own '+f1(v)+' cm³';
+    const max=Math.max(b.x,c.d/2)*2.3,ymax=b.material*1.5;
+    const g=Plane(svg,{x:[0,max],y:[b.material*.9,ymax],left:44,top:14,width:Math.max(50,gw-62),height:Math.max(30,gh-58),
+      ticks:'edge',grid:[max/4,b.material*.2],labels:[max/2,b.material*.2],xLabel:'radius (cm)',
+      tickFormat:(n,axis)=>axis==='x'?f1(n):String(Math.round(n))});
+    g.fn(r=>model(order,r,1).material,{domain:[.3,max],color:'#c08a2a',width:3,label:'A = 2πr² + 2V ÷ r'});
+    const actual=g.point(c.d/2,m.material,{color:'#e8edf3',r:6,hit:0});
+    actual.el.setAttribute('aria-label','Real can '+f1(m.material)+' square centimeters');
+    const bestPoint=g.point(b.x,b.material,{color:'#c08a2a',r:6,hit:0});
+    mk('circle',{r:11,fill:'none',stroke:'#e3bd79','stroke-width':1.5},bestPoint.body);
+    g.label(c.d/2,m.material,'Real',{dx:12,dy:-18,layer:'labels'});
+    g.label(b.x,b.material,'Best',{anchor:'middle',dy:13,layer:'labels'});
+  }
+  function finishPack() {
+    clearTimeout(caseTimer);
+    caseGeneration++;
+    state.packing=false;
+    state.packed=24;
+    renderCase();
+  }
+  function pack() {
+    if(state.packing) {finishPack();return;}
+    clearTimeout(caseTimer);
+    const gen=++caseGeneration;
+    state.packing=!Curio.reduce;
+    state.packed=Curio.reduce?24:6;
+    hint(L.afterPack);
+    renderCase();
+    Curio.tone(200,.09,.04,'triangle');
+    const tick=()=> {
+      if(gen!==caseGeneration || !state.packing) return;
+      state.packed=Math.min(24,state.packed+6);
+      renderCase();
+      Curio.tone(200+state.packed*9,.06,.035,'triangle');
+      if(state.packed===24) {state.packing=false;return;}
+      caseTimer=setTimeout(tick,500);
+    };
+    if(state.packing) caseTimer=setTimeout(tick,500);
+    V.how('afterPack',{needs:'#pack'});
+  }
+  function renderCase() {
+    if(state.mode!=='Case') return;
+    const m=model(),can=o().type==='can';
+    const width=can?8*m.x:4*m.x,length=can?12*m.x:6*m.x;
+    const inside=width*length*m.h,product=24*o().v;
+    $('fillValue').textContent=f1(product/inside*100);
+    $('insideVolume').textContent=f2(inside)+' cm³';
+    $('productVolume').textContent=product.toLocaleString('en-US')+' cm³';
+    $('caseDimensions').textContent=f2(width)+' × '+f2(length)+' × '+f2(m.h)+' cm';
+    $('fillFormula').textContent=can?'Fill = product ÷ case = π ÷ 4 = 78.5%, same for any size.':'Fill = product ÷ case = 100.0%.';
+    $('caseMetal').textContent=(can?'Metal per case: ':'Practice metal equivalent per case: ')+
+      f2(24*m.material*.03)+' g = 24 × '+f2(m.material)+' cm² × 0.03 g per cm² (a practice number).'+
+      (can?'':' This models metal, not the actual mass of cardboard.');
+    $('caseStatus').textContent=state.packed===24 ? (can?'Hatched corners are empty, whatever the radius.':'Square bases meet edge to edge.'):
+      state.packing?'Packing row by row. Tap again to finish.':'Tap Pack the case to place 24 packages.';
+    $('caseFill').textContent=state.packed===24?(can?'78.5%':'100.0%'):state.packed+' / 24';
+    const svg=$('case'),W=svg.clientWidth,H=svg.clientHeight;
+    svg.replaceChildren();
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    const cell=Math.max(2,Math.min((W-70)/6,(H-30)/4));
+    const w=cell*6,h=cell*4,x=(W-w)/2,y=(H-h)/2;
+    const defs=mk('defs',{},svg);
+    mk('image',{href:ART.kraft,width:120,height:120},mk('pattern',{id:'caseKraft',patternUnits:'userSpaceOnUse',width:120,height:120},defs));
+    const hatch=mk('pattern',{id:'hatch',patternUnits:'userSpaceOnUse',width:8,height:8},defs);
+    mk('path',{d:'M-2 2L2-2M0 8L8 0M6 10L10 6',stroke:'#4c3420','stroke-width':1,opacity:.55},hatch);
+    mk('rect',{x:x-8,y:y-8,width:w+16,height:h+16,rx:3,fill:'url(#caseKraft)',stroke:'#d0ad74','stroke-width':3},svg);
+    mk('rect',{x,y,width:w,height:h,fill:'#75552d',opacity:.25},svg);
+    for(let i=0;i<24;i++) {
+      const xx=x+i%6*cell,yy=y+Math.floor(i/6)*cell;
+      mk('rect',{x:xx,y:yy,width:cell,height:cell,fill:'none',stroke:'#4c3420','stroke-opacity':.55},svg);
+      if(i>=state.packed) continue;
+      const group=mk('g',{class:'case-item'},svg);
+      if(can) {
+        mk('rect',{x:xx,y:yy,width:cell,height:cell,fill:'url(#hatch)'},group);
+        mk('circle',{cx:xx+cell/2,cy:yy+cell/2,r:cell/2,fill:'#b4c2ca',stroke:'#243341','stroke-width':1},group);
+        mk('image',{href:ART.top,x:xx,y:yy,width:cell,height:cell},group);
+      } else {
+        mk('rect',{x:xx+1,y:yy+1,width:cell-2,height:cell-2,fill:'url(#caseKraft)',stroke:'#cfa96f','stroke-width':1.5},group);
+        mk('line',{x1:xx+cell/2,x2:xx+cell/2,y1:yy+2,y2:yy+cell-2,stroke:'#6c4a27','stroke-dasharray':'5 3'},group);
+        if(o().type==='tray') mk('rect',{x:xx+4,y:yy+4,width:Math.max(1,cell-8),height:Math.max(1,cell-8),fill:'#362f23',opacity:.8},group);
+      }
+      if(state.packing && i>=state.packed-6 && !Curio.reduce) group.classList.add('arrive');
+    }
+    text(svg,x-15,y+h/2,'4',{'text-anchor':'middle','font-size':12});
+    text(svg,x+w/2,Math.min(H-2,y+h+21),'6 packages across',{'text-anchor':'middle','font-size':11});
+  }
+  $('handle').addEventListener('pointerdown',e=>{
+    if(e.button!==0) return;
+    finishMotion();
+    e.preventDefault();
+    $('handle').focus({preventScroll:true});
+    $('handle').setPointerCapture(e.pointerId);
+    drag={start:e.clientX,x:s().x,scale:dragScale,can:o().type==='can'};
+    Curio.tone(300,.035,.03,'sine');
+  });
+  $('handle').addEventListener('pointermove',e=>{
+    if(!drag) return;
+    const dx=e.clientX-drag.start;
+    set(drag.x+dx/drag.scale*(drag.can?1:2),false);
+  });
+  const endDrag=()=>{if(drag){drag=null;release();}};
+  $('handle').addEventListener('pointerup',endDrag);
+  $('handle').addEventListener('pointercancel',endDrag);
+  $('handle').addEventListener('keydown',e=>{
+    const direction={ArrowRight:1,ArrowUp:1,ArrowLeft:-1,ArrowDown:-1}[e.key];
+    if(!direction) return;
+    e.preventDefault();
+    set(s().x+direction*(e.shiftKey?.1:.01));
+  });
+  for(const mode of ['Orders','Shelf','Case']) $('m-'+mode.toLowerCase()).onclick=()=>setMode(mode);
+  for(const id of Object.keys(CANS)) $('can-'+id).onclick=()=>shelf(id);
+  $('orderSelect').onchange=e=>order(e.target.value);
+  $('showCurve').onclick=showCurve;
+  $('reveal').onclick=best;
+  $('clear').onclick=()=> {
+    finishMotion();
+    if(V.playing===L.wOrders) V.dropQueued();
+    else V.hush();
+    Object.assign(s(),{dots:[],curve:false,revealed:false,record:null});
+    hint('Drag the handle or slider to start a fresh set of trials for this Order.');
+    renderOrders();
+    Curio.tone(220,.07,.035,'sine');
+  };
+  $('netToggle').onclick=()=> {
+    finishMotion();
+    state.netChosen=true;
+    state.net=!state.net;
+    $('net').hidden=!state.net;
+    $('netToggle').setAttribute('aria-expanded',state.net);
+    $('ordersScene').classList.toggle('net-open',state.net);
+    renderOrders();
+    Curio.tone(360,.06,.03,'triangle');
+  };
+  $('pack').onclick=pack;
+  Curio.init({clips:"voice:*",rate:.95});
+  Curio.onMotion(()=>{finishMotion();render();});
+  const resize=new ResizeObserver(()=>render());
+  resize.observe($('stage'));
+  window.__tool={state,setMode,order,set,best,shelf,lidCost,pack,model,optimum,allLines:V.allLines,vlog:V.log,
+    get vq(){return V.queue;}};
+  updateCard();
+  render();
+})();
+</script>
+</body>
+</html>

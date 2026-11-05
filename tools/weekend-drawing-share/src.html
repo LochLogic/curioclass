@@ -1,0 +1,1245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Weekend Drawing Share · Curio Class</title>
+<meta name="description" content="Draw a real day, explain your art choices, and replay your picture to tell its story. K-2 visual arts. Offline.">
+<!--
+Weekend Drawing Share, Curio Class. Teacher led, grades K-2. VA:Cr3, VA:Cn10.
+Sources: National Core Arts Standards; Getty Museum, Understanding Formal Analysis.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0. Code MIT. No network requests. Drawings stay on this device.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#fdf8f0; --ink:#2b2024; --muted:#6b5a60; --line:#dccab8;
+  --focus:#005c79; --brand:#b4235a; --btn:#98204d; --btn-line:#e8a6bd;
+  --head-ink:#fff; --panel:#f4ebe0;
+}
+body { display:flex; flex-direction:column; overflow-x:hidden; }
+button { min-width:60px; min-height:60px; border:2px solid #d9c6b1; border-radius:14px;
+  background:linear-gradient(#fffdf9,#f7eddf); font-weight:750; font-size:15px; padding:6px 10px;
+  box-shadow:0 3px 0 #7b563321; line-height:1.12; }
+button:hover { border-color:var(--brand); }
+button:active { transform:translateY(2px); box-shadow:none; }
+button:disabled { opacity:.5; cursor:default; }
+button[aria-pressed="true"] { background:var(--brand); color:white; border-color:var(--brand); }
+button .symbol { display:block; font-size:24px; margin-bottom:2px; }
+header { flex:none; min-height:80px; padding:8px 18px; gap:8px; flex-wrap:nowrap; z-index:3;
+  box-shadow:0 3px 10px #40251735; }
+h1 { font-size:26px; max-width:420px; }
+h1 small { font-size:14px; opacity:1; margin-top:4px; }
+.seg { border-radius:16px; flex:none; }
+.seg button { min-height:60px; min-width:88px; font-size:17px; }
+.seg button[aria-pressed="true"] { background:#ffda64; color:#3d2b13; }
+.icon-btn { min-height:60px; padding:6px 12px; font-size:15px; border-radius:16px; }
+main { display:grid; grid-template-columns:208px minmax(0,1fr) 258px;
+  grid-template-rows:68px minmax(220px,1fr) 68px 36px 96px; gap:0 14px;
+  flex:1; min-height:0; padding:10px 18px 0; position:relative; isolation:isolate; }
+main::before { content:""; position:absolute; inset:0; z-index:-2; background:var(--room) center 65% / cover; filter:blur(4px); }
+main::after { content:""; position:absolute; inset:0; z-index:-1;
+  background:linear-gradient(#fff8e866,#eac59922 65%,#75452240); }
+.question { grid-column:2; grid-row:1; align-self:start; background:#fffcf5; min-height:60px;
+  border-radius:18px 18px 18px 3px; border:2px solid #dbb995; box-shadow:0 4px 8px #4a2d1920;
+  display:flex; align-items:center; gap:12px; padding:7px 18px; position:relative; z-index:1; }
+.qicon { font-size:32px; }
+.question h2 { font:800 clamp(17px,1.8vw,26px)/1.15 'Trebuchet MS',sans-serif; margin:0; }
+.dots { display:flex; gap:6px; margin-top:7px; }
+.dot { width:10px; height:10px; border:2px solid var(--brand); border-radius:50%; }
+.dot.filled { background:var(--brand); }
+.dot.current { box-shadow:0 0 0 2px #f2c84e; }
+.tray { grid-column:1; grid-row:1 / 5; padding:9px; background:#f4ebe0f5;
+  border:2px solid #c49a70; border-radius:18px; box-shadow:4px 6px 12px #59351b35;
+  overflow:auto; display:flex; flex-direction:column; gap:8px; }
+.tray-label,.eyebrow { color:var(--muted); font-size:12px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; }
+.tool-grid { display:grid; grid-template-columns:repeat(2,minmax(60px,1fr)); gap:5px; }
+.tray button { padding:3px; font-size:12px; }
+.tray .symbol { font-size:23px; }
+.swatches { display:grid; grid-template-columns:repeat(3,minmax(60px,1fr)); gap:3px; }
+.swatches button { background:#fffdf9; color:var(--ink); }
+.swatches i { display:block; width:26px; height:21px; border:1px solid #0005; border-radius:45% 42% 40% 44%;
+  margin:0 auto 3px; box-shadow:inset 2px 3px 0 #ffffff60,inset -2px -3px 0 #0002; }
+.swatches button[aria-pressed="true"] { outline:3px solid var(--brand); outline-offset:-4px; }
+.swatches button[aria-pressed="true"]::after { content:" ✓"; }
+.paper-space { grid-column:2; grid-row:2; display:flex; align-items:center; justify-content:center;
+  min-height:0; position:relative; padding:12px 10px 10px; }
+.sheet { aspect-ratio:4/3; width:100%; max-height:100%; position:relative; background:white;
+  box-shadow:2px 4px 0 #e9dccd,6px 13px 22px #48271660; border:1px solid #f5eee3; }
+.sheet::before { content:""; position:absolute; inset:0; background:var(--texture) center / 100% 100%; opacity:.25; pointer-events:none; }
+.sheet::after { content:""; position:absolute; top:-8px; left:26%; width:80px; height:22px;
+  background:#ffedbca8; transform:rotate(-3deg); pointer-events:none; box-shadow:0 1px 1px #76532c18; }
+#paper { display:block; width:100%; height:100%; position:relative; touch-action:none; cursor:crosshair; }
+.pip { position:absolute; right:-64px; top:4px; width:100px; height:106px; object-fit:contain;
+  pointer-events:none; filter:drop-shadow(2px 5px 2px #482c2630); transform-origin:bottom center; animation:perch 4s ease-in-out infinite; }
+@keyframes perch { 50% { transform:rotate(2deg) translateY(-3px); } }
+.calm .pip { animation:none!important; }
+.empty-note { position:absolute; left:15%; right:15%; top:37%; text-align:center; color:#725e56; pointer-events:none; }
+.empty-note strong { display:block; font:700 clamp(18px,2vw,31px)/1.2 'Trebuchet MS',sans-serif; }
+.empty-note span { font-size:clamp(12px,1.2vw,18px); display:block; margin-top:9px; }
+.word-panel { grid-column:3; grid-row:1 / 5; background:#f4ebe0f2; padding:12px;
+  border:2px solid #c49a70; border-radius:18px; box-shadow:4px 6px 12px #59351b35; }
+.word-panel h2 { font:800 22px 'Trebuchet MS',sans-serif; margin:2px 0 4px; }
+.word-panel p { font-size:13px; margin:0 0 10px; color:var(--muted); }
+.chips { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+.chips button { min-height:66px; padding:5px; font-size:14px; position:relative; }
+.chips button[aria-pressed="true"]::after { content:"✓"; position:absolute; top:3px; right:5px; font-weight:900; }
+.reason { min-height:52px; font-size:15px; padding:12px 2px 0; }
+.actions { grid-column:2; grid-row:3; display:flex; gap:7px; align-items:center; justify-content:center; }
+.actions button { flex:1; max-width:180px; padding:6px; }
+.gold { background:linear-gradient(#ffe38b,#ffd052); color:#3f2910; border-color:#dfab2e; }
+.tools-open { display:none; }
+.hint { grid-column:2; grid-row:4; margin:0; display:flex; align-items:center; justify-content:center;
+  text-align:center; font-size:14px; font-weight:650; color:#3c2a25; background:#fff8e7d9; border-radius:9px; }
+.shelf { grid-column:1 / 4; grid-row:5; margin-top:8px; border-top:3px solid #a87546;
+  background:linear-gradient(#f4deba,#e5bc8c); display:flex; gap:8px; align-items:center; padding:5px 10px;
+  box-shadow:0 -3px 10px #54331c20; min-width:0; }
+.shelf-controls { display:flex; gap:5px; flex:none; }
+.shelf-controls button { font-size:13px; }
+.saves { display:flex; gap:7px; min-width:0; flex:1; flex-wrap:wrap; align-items:center; }
+.save-card { width:116px; flex:none; min-height:76px; padding:3px; font-size:10px; background:#fffaf0; }
+.save-card canvas { width:68px; height:42px; display:block; margin:0 auto 3px; background:white; border:1px solid #dfd1bc; }
+.privacy { margin-left:auto; font-size:11px; color:#50392b; max-width:122px; flex:none; }
+.step-strip { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:16px; }
+.step-strip button { width:64px; padding:3px; font-size:11px; }
+.step-strip canvas { display:block; width:54px; height:36px; margin:auto; background:white; }
+.badges { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+.badge { padding:9px 12px; border-radius:12px; background:var(--brand); color:white; font-size:17px; font-weight:800; }
+.selection { position:absolute; border:2px dashed var(--brand); pointer-events:none; }
+.resize { pointer-events:auto; position:absolute; right:-25px; bottom:-25px; width:60px; height:60px;
+  font-size:12px; border-radius:50%; padding:2px; background:#ffe18a; cursor:nwse-resize; touch-action:none; }
+.sample-note { position:absolute; left:8px; bottom:8px; background:#fff6d7; border-radius:8px; padding:5px 8px;
+  font-size:11px; font-weight:700; pointer-events:none; }
+dialog { width:min(720px,96vw); max-height:94vh; overflow:auto; border:3px solid #be8f64;
+  background:#fff8ed; color:var(--ink); border-radius:22px; padding:18px; box-shadow:0 18px 80px #26130765; }
+dialog::backdrop { background:#37251f99; }
+dialog h2 { margin:0; font:800 24px 'Trebuchet MS',sans-serif; }
+.dialog-head { display:flex; gap:12px; justify-content:space-between; align-items:center; margin-bottom:12px; }
+.drawer-grid { display:grid; grid-template-columns:repeat(5,minmax(60px,1fr)); gap:8px; }
+.sticker-choice { min-height:105px; padding:5px; font-size:13px; }
+.sticker-choice img { display:block; width:62px; height:68px; object-fit:contain; margin:auto; }
+.person-icon { display:block; height:68px; font-size:42px; color:var(--brand); }
+.question-grid { display:grid; grid-template-columns:repeat(4,minmax(60px,1fr)); gap:10px; }
+.confirm-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+.tell-view .tray,.tell-view .chips,.tell-view .word-panel>p,.tell-view .reason,.tell-view .draw-actions { display:none; }
+.tell-view .word-panel h2 { margin-bottom:10px; }
+.tell-view .word-panel>h2:first-child { display:none; }
+.tell-view .word-panel { grid-row:1 / 5; }
+.tell-view .paper-space,.tell-view .question,.tell-view .hint,.tell-view .actions { grid-column:2; }
+@media (max-width:1100px) and (min-height:651px) and (min-width:901px) {
+  main { grid-template-columns:208px minmax(0,1fr) 214px; padding:8px; gap:0 8px; }
+  .word-panel { padding:8px; } .chips { gap:5px; } .chips button { font-size:12px; }
+  h1 { font-size:22px; } h1 small { display:none; }
+}
+@media (max-width:900px),(max-height:650px) {
+  header { min-height:60px; padding:0 7px; gap:4px; }
+  h1 { font-size:17px; } h1 small { display:none; }
+  .icon-btn { padding:3px 7px; font-size:12px; }
+  .seg button { padding:3px 9px; font-size:14px; min-width:65px; }
+  main { grid-template-columns:minmax(0,1fr) 148px; grid-template-rows:56px minmax(130px,1fr) 62px 24px 90px;
+    padding:4px 8px 0; gap:0 8px; min-height:calc(100vh - 60px); flex:none; height:calc(100vh + 26px); }
+  .question { grid-column:1; grid-row:1; min-height:52px; padding:5px 12px; margin:0; }
+  .question h2 { font-size:16px; line-height:1.05; } .qicon { font-size:25px; } .dots { margin-top:4px; gap:5px; }
+  .dot { width:8px; height:8px; }
+  .tray { display:none; }
+  .paper-space { grid-column:1; grid-row:2; padding:6px 22px 7px; }
+  .pip { width:68px; height:72px; top:4px; right:-12px; }
+  .actions { grid-column:1; grid-row:3; gap:4px; }
+  .actions button { font-size:12px; min-width:60px; padding:3px; }
+  .tools-open { display:block; }
+  .word-panel { grid-column:2; grid-row:1 / 5; padding:4px; border:0; box-shadow:none; border-radius:10px; }
+  .word-panel h2,.word-panel>p,.reason { display:none; }
+  .chips { grid-template-columns:repeat(2,minmax(60px,1fr)); gap:4px; }
+  .chips button { min-height:60px; font-size:11px; padding:3px 1px; border-radius:10px; }
+  .chips .symbol { font-size:21px; }
+  .hint { grid-column:1; grid-row:4; font-size:11px; }
+  .shelf { grid-column:1 / 3; grid-row:5; margin:5px -8px 0; padding:5px; }
+  .shelf-controls button { font-size:11px; padding:4px; }
+  .shelf { position:relative; display:grid; grid-template-columns:max-content minmax(0,1fr);
+    align-items:start; gap:5px 8px; }
+  .privacy { display:block; position:static; grid-column:1 / -1; max-width:none; margin:0;
+    font-size:10px; line-height:1.2; padding:3px; background:#fff8ed; border-radius:5px; }
+  .privacy br { display:none; }
+  .tell-view .paper-space,.tell-view .question,.tell-view .hint,.tell-view .actions { grid-column:1; }
+  .tell-view .word-panel { grid-row:1 / 5; }
+  .tell-view .word-panel h2 { display:none; }
+  .step-strip { margin:0; display:grid; grid-template-columns:repeat(2,1fr); gap:4px; }
+  .step-strip button { width:auto; }
+  .badges { margin:8px 0 0; flex-direction:column; z-index:1; pointer-events:none; }
+  .badge { font-size:12px; padding:5px; max-width:90px; }
+  #tools-dialog .tray { display:flex; border:0; box-shadow:none; padding:0; overflow:visible; }
+  #tools-dialog .tool-grid { grid-template-columns:repeat(6,1fr); }
+  #tools-dialog .swatches { grid-template-columns:repeat(5,1fr); }
+  .empty-note { top:29%; }
+  .empty-note strong { font-size:19px; }
+  .empty-note span { font-size:11px; }
+}
+@media (max-width:620px) {
+  header { flex-wrap:wrap; justify-content:center; padding:3px 4px; }
+  h1 { width:100%; max-width:none; text-align:center; font-size:18px; padding:2px; margin:0; }
+  .seg button { font-size:12px; padding:2px 8px; min-width:60px; }
+  .icon-btn { font-size:11px; min-width:60px; padding:3px 5px; }
+  main { height:auto; min-height:calc(100vh - 92px); grid-template-columns:minmax(0,1fr);
+    grid-template-rows:76px 224px 62px 128px 34px 96px; }
+  .question { margin-right:36px; } .question h2 { font-size:16px; }
+  .paper-space { padding:6px 24px; }
+  .pip { right:-19px; width:65px; }
+  .chips { grid-template-columns:repeat(5,minmax(60px,1fr)); gap:4px; }
+  .chips button { font-size:11px; }
+  .word-panel { grid-column:1; grid-row:4; padding:0; }
+  .hint { grid-row:5; }
+  .shelf { grid-column:1; grid-row:6; }
+  .empty-note { left:8%; right:8%; } .empty-note strong { font-size:20px; }
+  .empty-note span { font-size:12px; }
+  .tell-view .step-strip { display:grid; grid-template-columns:repeat(4,1fr); }
+  .tell-view .step-strip button { max-width:none; width:auto; }
+  .tell-view .word-panel { background:#f4ebe0e8; grid-row:4; }
+  .badges { position:absolute; right:auto; left:9px; top:94px; margin:0; }
+  .badge { font-size:11px; max-width:70px; }
+  .drawer-grid { grid-template-columns:repeat(3,minmax(60px,1fr)); }
+  .question-grid { grid-template-columns:repeat(3,minmax(60px,1fr)); }
+  #tools-dialog .tool-grid { grid-template-columns:repeat(3,1fr); }
+  .save-card { width:64px; min-height:77px; }
+  .save-card canvas { width:48px; height:30px; }
+  .saves { gap:6px; align-items:flex-start; }
+  .shelf-controls { flex-direction:column; width:76px; }
+  .shelf-controls button { min-height:60px; }
+  .shelf { align-items:flex-start; min-height:142px; height:auto; } .saves { padding-top:5px; }
+}
+@media (max-height:650px) and (min-width:621px) {
+  .sticker-choice { min-height:82px; }
+  .sticker-choice img { height:48px; width:56px; }
+  .sticker-choice canvas { height:48px!important; }
+  #tools-dialog { padding:12px; }
+  #tools-dialog .tray { gap:5px; }
+  #tools-dialog .dialog-head { margin-bottom:8px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Weekend Drawing Share <small>A real day. Your picture. Your story.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-draw" aria-pressed="true">🖍 Draw</button>
+    <button id="m-tell" aria-pressed="false" disabled title="Draw something first.">💬 Tell it</button>
+  </div>
+  <button class="icon-btn" id="read">🔊 Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<main id="main">
+  <div class="question" id="question-card">
+    <span class="qicon" id="qicon" aria-hidden="true">📍</span>
+    <div><h2 id="question">Where were you? Draw the place.</h2><div class="dots" id="dots" aria-label="Seven drawing steps"></div></div>
+  </div>
+  <aside class="tray" id="tray" aria-label="Drawing tools">
+    <span class="tray-label">Make a mark</span>
+    <div class="tool-grid" id="brushes"></div>
+    <div class="tool-grid" id="widths"></div>
+    <span class="tray-label">Your colors</span>
+    <div class="swatches" id="swatches"></div>
+  </aside>
+  <div class="paper-space" id="paper-space">
+    <div class="sheet" id="sheet">
+      <canvas id="paper" width="1200" height="900" tabindex="0" aria-label="Drawing paper. Draw with a pointer. Select a sticker to move it with arrow keys."></canvas>
+      <div class="empty-note" id="empty-note">
+        <strong>A little moment<br>worth remembering.</strong><span>Pick a color. Make a mark.</span>
+      </div>
+      <img class="pip" id="pip" alt="Pip the sparrow">
+      <div class="sample-note" id="sample-note" hidden>Pip's sample · Draw more makes a copy</div>
+      <div class="selection" id="selection" hidden>
+        <button class="resize" id="resize" aria-label="Resize selected sticker. Arrow keys change its size.">↔<br>Size</button>
+      </div>
+    </div>
+  </div>
+  <aside class="word-panel" id="words" aria-label="Art words">
+    <h2>Why that way?</h2><p>Choose up to two art words.</p>
+    <div class="chips" id="chips"></div>
+    <div class="reason" id="reason">Why? Tap an art word.</div>
+    <h2 id="tell-heading" hidden>Your story, in parts</h2>
+    <div class="badges" id="badges" hidden></div>
+    <div class="step-strip" id="step-strip" hidden aria-label="Drawing steps"></div>
+  </aside>
+  <div class="actions draw-actions" id="draw-actions">
+    <button class="tools-open" id="tools-open">🖍<br>Tools</button>
+    <button id="stickers">🌻<br>Stickers</button>
+    <button id="undo">↶<br>Undo</button>
+    <button class="gold" id="next-question">➜<br>Next question</button>
+    <button id="questions">❔<br>Questions</button>
+  </div>
+  <div class="actions tell-actions" id="tell-actions" hidden>
+    <button id="back-step">◀<br>Back step</button>
+    <button id="play-step">▶<br>Play step</button>
+    <button class="gold" id="next-step">➜<br>Next step</button>
+    <button id="draw-more">🖍<br>Draw more</button>
+    <button id="start-over" hidden>↶<br>Start over</button>
+  </div>
+  <p class="hint" id="hint" aria-live="polite">Draw something first.</p>
+  <div class="shelf">
+    <div class="shelf-controls"><button id="new">✦<br>New drawing</button><button id="save">▣<br>Save</button></div>
+    <div class="saves" id="saves" aria-label="Saved drawings"></div>
+    <span class="privacy">Saved here only. <br>Nothing leaves <br>this device.</span>
+  </div>
+</main>
+<dialog id="sticker-dialog" aria-labelledby="sticker-title">
+  <div class="dialog-head"><h2 id="sticker-title">A shape to draw on</h2><button data-close>✓ Close</button></div>
+  <div class="drawer-grid" id="sticker-grid"></div>
+</dialog>
+<dialog id="questions-dialog" aria-labelledby="questions-title">
+  <div class="dialog-head"><h2 id="questions-title">Which part of your day?</h2><button data-close>✓ Close</button></div>
+  <div class="question-grid" id="question-grid"></div>
+</dialog>
+<dialog id="tools-dialog" aria-labelledby="tools-title">
+  <div class="dialog-head"><h2 id="tools-title">Pick your tools</h2><button data-close>✓ Close</button></div>
+  <div id="tools-slot"></div>
+</dialog>
+<dialog id="confirm-dialog" aria-labelledby="confirm-title">
+  <h2 id="confirm-title"></h2><p id="confirm-message"></p>
+  <div class="confirm-actions"><button id="confirm-yes"></button><button id="confirm-no"></button></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const ART = {
+    room:'art:art-room', texture:'art:paper-texture',
+    listen:'art:pip-listen', ask:'art:pip-ask', happy:'art:pip-happy', look:'art:pip-look',
+    sun:'art:sun', cloud:'art:cloud', 'rain-cloud':'art:rain-cloud', tree:'art:tree', flower:'art:flower',
+    house:'art:house', slide:'art:slide', ball:'art:ball', dog:'art:dog', cat:'art:cat', cake:'art:cake', kite:'art:kite'
+  };
+  document.documentElement.style.setProperty('--room', `url("${ART.room}")`);
+  document.documentElement.style.setProperty('--texture', `url("${ART.texture}")`);
+  const QUESTIONS = [
+    ['📍','where','Where were you? Draw the place.'],
+    ['👥','who','Who was there with you? Draw them.'],
+    ['👟','doing','What were you doing? Show it.'],
+    ['⛅','sky','What was the sky like? Draw it.'],
+    ['👂','sound','What could you hear? Draw the sound with lines.'],
+    ['♥','feel','How did you feel? Add a color that shows it.'],
+    ['★','star','What is the most important part? Make it stand out.']
+  ];
+  const WORDS = [
+    ['☀','bright colors','Bright colors. They make a picture feel happy and loud.'],
+    ['☾','dark colors','Dark colors. They can show night, or a quiet feeling.'],
+    ['▣','big','You made it big. Big things look important.'],
+    ['▫','small','You made it small. Small things look little, or far away.'],
+    ['↓','in front','You put it in front, near the bottom. Things in front look close.'],
+    ['↑','far back','You put it far back, up high. It looks far away.'],
+    ['∿','curvy lines','Curvy lines. They feel soft, like wind or water.'],
+    ['ϟ','zigzag lines','Zigzag lines. They feel fast, or loud, or bumpy.'],
+    ['⌕','details','Lots of little details. Now we can look closer.'],
+    ['◎','middle','Right in the middle. That is where our eyes go first.']
+  ];
+  const COLORS = [
+    ['red','#dc3344'],['orange','#ee8427'],['yellow','#f3ca37'],['green','#39864c'],['blue','#3974c0'],
+    ['purple','#8750ae'],['pink','#e87fa7'],['brown','#865330'],['black','#282329'],['white','#ffffff']
+  ];
+  const STICKERS = ['sun','cloud','rain-cloud','tree','flower','house','slide','ball','dog','cat','cake','kite'];
+  const PEOPLE = ['Grown-up','Kid','Baby'];
+  const L = {
+    welcomeDraw:"Hi, I'm Pip! Let's draw something that really happened to you. I'll ask one question at a time.",
+    welcomeTell:"Now you tell the story. I'll show each part the way you drew it.",
+    why:'Why did you draw it that way? Tap an art word.',
+    whyShort:'Why? Tap an art word.',
+    watch:'Watch this part. Then tell us about it.',
+    selected:'Drag the selected sticker. Use Size to make it bigger or smaller.',
+    next:'When this part is done, tap Next question.',
+    done:'All done! Tap Tell it, and tell us your story.',
+    wait:'Tell us about this part. Then tap Next step.',
+    end:'What a story! Thank you for sharing it.',
+    saved:'Saved on this device.', failed:'Could not save on this device.',
+    full:'The paper is full. Tap Undo, or start a new drawing.',
+    first:'Draw something first.', tools:'Pick a tool and a color. Tap Close, then draw on the paper.',
+    stickers:'Tap a sticker. Drag it on the paper. Use Size to make it bigger or smaller.',
+    placed:'Drag your sticker or use Size to resize it, then tap an art word to say why.',
+    questions:'Tap a question to add to that part of your picture.',
+    newAsk:'Start a new drawing? Your changes are not saved. Tap Yes, start new, or Keep drawing.',
+    replace:'Six drawings are saved. Tap Replace the oldest, or Cancel.',
+    openAsk:'Your changes are not saved. Keep drawing, or open the other drawing.',
+    openOther:'Open drawing',
+    sample:"Pip's day at the pond. Tap Tell it, or tap Draw more to make your own copy.",
+    finish:'Look at your whole story. Tap Start over to tell it again, or Draw more to add to it.',
+    sampleCopy:'This is your copy. Draw on the paper to add your own details.',
+    questionsList:QUESTIONS.map(q => q[2]), wordLines:WORDS.map(w => w[2]), wordNames:WORDS.map(w => w[1]),
+    colorNames:COLORS.map(c => c[0]), brushNames:['Crayon','Marker','Paint','Eraser','Thin','Thick'],
+    stickerNames:STICKERS.map(s => s.replace('-',' ')), people:PEOPLE,
+    yesNew:'Yes, start new', keep:'Keep drawing', yesReplace:'Replace the oldest', cancel:'Cancel',
+    controls:['Draw','Tell it','Stickers','Undo','Next question','Questions','New drawing','Save',
+      'Back step','Play step','Next step','Draw more','Start over','Close','Size']
+  };
+  const blank = () => ({id:null, title:'My real day', marks:[], chips:Array.from({length:7},() => []), sample:false});
+  const state = {mode:'draw', step:0, drawing:blank(), brush:'crayon', color:COLORS[4][1], thick:false,
+    selected:null, dirty:false, playing:false, finished:false, done:false, revision:0, pointCount:0, saves:[]};
+  let markId = 0;
+  let active = null;
+  let replay = null;
+  let replayFrame = 0;
+  let badgeCount = 0;
+  let drag = null;
+  let returnFocus = null;
+  let confirmAction = null;
+  let fullSpoken = false;
+  const images = {};
+  const canvas = $('paper');
+  const ctx = canvas.getContext('2d');
+  const layers = document.createElement('canvas');
+  layers.width = 1200;
+  layers.height = 900;
+  const earlier = document.createElement('canvas');
+  earlier.width = 1200;
+  earlier.height = 900;
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode, hint:false, welcomeAfter:false,
+    welcome:() => state.mode === 'draw'
+      ? (!state.drawing.marks.length ? ['welcomeDraw',{valid:() => !state.drawing.marks.length}] : null)
+      : (!state.finished ? ['welcomeTell',{valid:() => !state.finished}] : null),
+    read:() => {
+      const d = document.querySelector('dialog[open]');
+      if (d) return $('hint').textContent;
+      if (state.finished) return L.finish;
+      if (state.done && state.mode === 'draw') return L.done;
+      return state.mode === 'draw' ? $('question').textContent
+        : [QUESTIONS[state.step][2], ...state.drawing.chips[state.step].map(i => WORDS[i][1]), $('hint').textContent];
+    }
+  });
+  function hint(text) { $('hint').textContent = text; }
+  function say(line, opts={}) { return V.say(line, {hint:false,...opts}); }
+  function sound(f=620) { Curio.tone(f,.045,.025,'sine'); }
+  function pose(p) { $('pip').src = ART[p]; }
+  function hasMarks() { return state.drawing.marks.length > 0; }
+  function idsWithMarks() { return QUESTIONS.map((_,i) => i).filter(i => state.drawing.marks.some(m => m.step === i)); }
+  function nextHint() {
+    if (state.drawing.sample) return L.sample;
+    if (!hasMarks()) return L.first;
+    if (!state.drawing.chips[state.step].length) return L.whyShort;
+    return L.next;
+  }
+  function dirty() {
+    state.dirty = true;
+    state.done = false;
+    state.pointCount = state.drawing.marks.reduce((s,m) => s+(m.pts ? m.pts.length : 0),0);
+    if (state.pointCount < 20000) fullSpoken = false;
+  }
+  function stopReplay() {
+    state.revision++;
+    V.hush();
+    cancelAnimationFrame(replayFrame);
+    replay = null;
+    state.playing = false;
+    active = null;
+  }
+  function update() {
+    $('main').classList.toggle('tell-view',state.mode === 'tell');
+    $('m-draw').setAttribute('aria-pressed',state.mode === 'draw');
+    $('m-tell').setAttribute('aria-pressed',state.mode === 'tell');
+    $('m-tell').disabled = !hasMarks();
+    $('m-tell').title = hasMarks() ? 'Replay your picture, one part at a time.' : L.first;
+    $('draw-actions').hidden = state.mode !== 'draw' || state.drawing.sample;
+    $('tell-actions').hidden = state.mode !== 'tell' && !state.drawing.sample;
+    $('back-step').hidden = state.finished || state.mode !== 'tell';
+    $('play-step').hidden = state.finished || state.mode !== 'tell';
+    $('next-step').hidden = state.finished || state.mode !== 'tell';
+    $('start-over').hidden = !state.finished;
+    $('draw-more').hidden = false;
+    $('undo').disabled = !hasMarks() || state.drawing.sample;
+    $('save').disabled = !hasMarks() || state.drawing.sample;
+    $('sample-note').hidden = !state.drawing.sample;
+    $('empty-note').hidden = hasMarks();
+    $('badges').hidden = state.mode !== 'tell';
+    $('step-strip').hidden = state.mode !== 'tell';
+    $('tell-heading').hidden = state.mode !== 'tell';
+    $('qicon').textContent = state.finished || state.done ? '✓' : QUESTIONS[state.step][0];
+    $('question').textContent = state.finished ? 'Your day, in your own way.' : state.done ? 'All done! Tap Tell it.' : QUESTIONS[state.step][2];
+    [...$('dots').children].forEach((d,i) => {
+      d.classList.toggle('filled',state.drawing.marks.some(m => m.step === i));
+      d.classList.toggle('current',state.step === i);
+    });
+    [...$('chips').children].forEach((b,i) => {
+      b.setAttribute('aria-pressed',state.drawing.chips[state.step].includes(i));
+      b.disabled = state.drawing.sample;
+    });
+    $('reason').textContent = state.drawing.chips[state.step].length
+      ? 'My reason: '+state.drawing.chips[state.step].map(i => WORDS[i][1]).join(' + ') : 'Why? Tap an art word.';
+    [...$('brushes').children].forEach(b => b.setAttribute('aria-pressed',b.dataset.brush === state.brush));
+    [...$('widths').children].forEach((b,i) => b.setAttribute('aria-pressed',state.thick === !!i));
+    [...$('swatches').children].forEach((b,i) => b.setAttribute('aria-pressed',COLORS[i][1] === state.color));
+    document.querySelectorAll('#tray button').forEach(b => b.disabled = state.drawing.sample);
+    [...$('step-strip').children].forEach((b,i) => {
+      b.hidden = !state.drawing.marks.some(m => m.step === i);
+      b.setAttribute('aria-pressed',!state.finished && state.step === i);
+    });
+    const first = idsWithMarks()[0];
+    $('back-step').setAttribute('aria-disabled',state.step === first);
+    renderBadges();
+    selection();
+  }
+  function renderBadges() {
+    const values = state.drawing.chips[state.step];
+    $('badges').replaceChildren(...values.slice(0,badgeCount).map(i => {
+      const b = document.createElement('span');
+      b.className = 'badge';
+      b.textContent = WORDS[i][0]+' '+WORDS[i][1];
+      return b;
+    }));
+  }
+  function makeButton(text, action, parent, attributes={}) {
+    const b = document.createElement('button');
+    b.innerHTML = text;
+    for (const [k,v] of Object.entries(attributes)) b.setAttribute(k,v);
+    b.onclick = action;
+    parent.appendChild(b);
+    return b;
+  }
+  function buildControls() {
+    QUESTIONS.forEach((q,i) => {
+      const dot = document.createElement('span');
+      dot.className = 'dot';
+      $('dots').appendChild(dot);
+      makeButton(`<span class="symbol">${q[0]}</span>${q[1]}`,() => {
+        closeDialog($('questions-dialog'));
+        question(i);
+      },$('question-grid'));
+      const b = makeButton(`<canvas width="120" height="90"></canvas>${q[0]} ${q[1]}`,() => playStep(i),$('step-strip'));
+      b.dataset.step = i;
+    });
+    WORDS.forEach((w,i) => makeButton(`<span class="symbol">${w[0]}</span>${w[1]}`,() => chip(i),$('chips'),{'aria-pressed':'false'}));
+    [['🖍','Crayon','crayon'],['▰','Marker','marker'],['🖌','Paint','paint'],['▱','Eraser','eraser']].forEach(([icon,name,id]) => {
+      makeButton(`<span class="symbol">${icon}</span>${name}`,() => {
+        state.brush = id;
+        sound();
+        update();
+        say(name,{now:true,valid:() => state.brush === id});
+      },$('brushes'),{'data-brush':id});
+    });
+    ['Thin','Thick'].forEach((name,i) => makeButton(`<span class="symbol">${i ? '━' : '─'}</span>${name}`,() => {
+      state.thick = !!i;
+      update();
+      sound();
+      say(name,{now:true,valid:() => state.thick === !!i});
+    },$('widths')));
+    COLORS.forEach(([name,color]) => makeButton(`<i style="background:${color}"></i>${name}`,() => {
+      state.color = color;
+      if (state.brush === 'eraser') state.brush = 'crayon';
+      update();
+      sound();
+      say(name,{now:true,valid:() => state.color === color});
+    },$('swatches')));
+    STICKERS.forEach(name => {
+      const b = makeButton(`<img alt="" src="${ART[name]}">${name.replace('-',' ')}`,() => addSticker(name),$('sticker-grid'));
+      b.className = 'sticker-choice';
+    });
+    PEOPLE.forEach((name,i) => {
+      const b = makeButton(`<canvas width="80" height="68" aria-hidden="true"></canvas>${name}`,() => addSticker(name),$('sticker-grid'));
+      b.className = 'sticker-choice';
+      b.querySelector('canvas').style.cssText = 'display:block;width:68px;height:68px;margin:auto';
+      const g = b.querySelector('canvas').getContext('2d');
+      stamp(g,{x:40,y:35,size:[62,47,32][i],color:'#b4235a'});
+    });
+    for (let i=0;i<7;i++) {
+      const b = makeButton('<canvas width="160" height="120"></canvas><span></span>',() => openSaved(i),$('saves'));
+      b.className = 'save-card';
+      b.id = 'saved-'+i;
+    }
+  }
+  function stroke(g,m,portion=1) {
+    const source = m.pts;
+    if (!source.length || portion <= 0) return;
+    const pts = [];
+    const end = (source.at(-1)[2] || 1)*portion;
+    for (let i=0;i<source.length;i++) {
+      const p = source[i];
+      if ((p[2] || 0) <= end || i === 0) pts.push(p);
+      else {
+        const last = source[i-1];
+        const t = Math.max(0,(end-last[2])/(p[2]-last[2] || 1));
+        pts.push([last[0]+(p[0]-last[0])*t,last[1]+(p[1]-last[1])*t]);
+        break;
+      }
+    }
+    g.save();
+    g.lineCap = 'round';
+    g.lineJoin = 'round';
+    g.strokeStyle = g.fillStyle = m.color;
+    g.lineWidth = m.width;
+    if (m.brush === 'eraser') g.globalCompositeOperation = 'destination-out';
+    function path(offset=0) {
+      g.beginPath();
+      g.moveTo(pts[0][0],pts[0][1]+offset);
+      for (let i=1;i<pts.length-1;i++) {
+        g.quadraticCurveTo(pts[i][0],pts[i][1]+offset,(pts[i][0]+pts[i+1][0])/2,(pts[i][1]+pts[i+1][1])/2+offset);
+      }
+      if (pts.length>1) g.lineTo(pts.at(-1)[0],pts.at(-1)[1]+offset);
+      g.stroke();
+      if (pts.length === 1) {
+        g.beginPath();
+        g.arc(pts[0][0],pts[0][1],g.lineWidth/2,0,Math.PI*2);
+        g.fill();
+      }
+    }
+    if (m.brush === 'paint') {
+      g.globalAlpha *= .22;
+      g.lineWidth = m.width*1.35;
+      path();
+      g.globalAlpha *= 2.6;
+      g.lineWidth = m.width;
+      path();
+    } else if (m.brush === 'crayon') {
+      g.globalAlpha *= .66;
+      path();
+      g.globalAlpha *= .6;
+      g.lineWidth = Math.max(1,m.width*.12);
+      for (let j=-2;j<=2;j++) {
+        g.setLineDash([3+j*.3,3]);
+        g.lineDashOffset = j*3;
+        path(j*m.width*.16);
+      }
+    } else path();
+    g.restore();
+  }
+  function stamp(g,m) {
+    g.save();
+    g.translate(m.x-m.size/2,m.y-m.size/2);
+    g.scale(m.size/100,m.size/100);
+    g.strokeStyle = m.color;
+    g.lineWidth = 5;
+    g.lineCap = g.lineJoin = 'round';
+    g.beginPath();
+    g.arc(50,19,13,0,Math.PI*2);
+    g.moveTo(50,33);
+    g.lineTo(50,64);
+    g.lineTo(27,91);
+    g.moveTo(50,64);
+    g.lineTo(73,91);
+    g.moveTo(22,44);
+    g.lineTo(50,48);
+    g.lineTo(78,39);
+    g.stroke();
+    g.globalAlpha *= .3;
+    g.lineWidth = 2;
+    g.translate(2,1);
+    g.stroke();
+    g.restore();
+  }
+  function mark(g,m,portion=1) {
+    if (m.kind === 'stroke') return stroke(g,m,portion);
+    if (portion<=0) return;
+    if (m.kind === 'stamp') return stamp(g,m);
+    const img = images[m.asset];
+    if (!img || !img.complete || !img.naturalWidth) return;
+    const ratio = img.naturalWidth/img.naturalHeight;
+    const w = ratio>1 ? m.size : m.size*ratio;
+    const h = ratio>1 ? m.size/ratio : m.size;
+    g.drawImage(img,m.x-w/2,m.y-h/2,w,h);
+  }
+  function paintDrawing(g,drawing,step=null,progress=null) {
+    g.clearRect(0,0,1200,900);
+    if (step !== null) {
+      const pg = earlier.getContext('2d');
+      pg.clearRect(0,0,1200,900);
+      drawing.marks.filter(m => m.step<step).forEach(m => mark(pg,m));
+      g.save();
+      g.globalAlpha = .4;
+      g.drawImage(earlier,0,0);
+      g.restore();
+    }
+    drawing.marks.forEach(m => {
+      if (step !== null && m.step !== step) return;
+      let portion = 1;
+      if (step !== null && m.step === step && progress) portion = progress.get(m.id) || 0;
+      if (portion<=0) return;
+      g.save();
+      mark(g,m,portion);
+      g.restore();
+    });
+  }
+  function paint() {
+    const g = layers.getContext('2d');
+    let progress = null;
+    if (replay) {
+      progress = new Map();
+      replay.schedule.forEach(s => {
+        const p = Math.min(1,Math.max(0,(replay.elapsed-s.start)/s.duration));
+        progress.set(s.id,Curio.reduce ? (p>0 ? 1 : 0) : p);
+      });
+    }
+    paintDrawing(g,state.drawing,state.mode === 'tell' && !state.finished ? state.step : null,progress);
+    ctx.clearRect(0,0,1200,900);
+    ctx.drawImage(layers,0,0);
+    selection();
+  }
+  function thumbnails() {
+    [...$('step-strip').children].forEach((b,i) => {
+      const c = b.querySelector('canvas');
+      const g = c.getContext('2d');
+      g.clearRect(0,0,c.width,c.height);
+      g.save();
+      g.scale(c.width/1200,c.height/900);
+      const only = {...state.drawing,marks:state.drawing.marks.filter(m => m.step === i)};
+      paintDrawing(g,only);
+      g.restore();
+    });
+  }
+  function fitPaper() {
+    const box = $('paper-space');
+    const css = getComputedStyle(box);
+    const w = box.clientWidth-parseFloat(css.paddingLeft)-parseFloat(css.paddingRight);
+    const h = box.clientHeight-parseFloat(css.paddingTop)-parseFloat(css.paddingBottom);
+    $('sheet').style.width = Math.max(40,Math.min(w,h*4/3))+'px';
+    $('sheet').style.height = Math.max(30,Math.min(h,w*3/4))+'px';
+    selection();
+  }
+  function position(e) {
+    const r = canvas.getBoundingClientRect();
+    return [Math.max(0,Math.min(1200,(e.clientX-r.left)*1200/r.width)),
+      Math.max(0,Math.min(900,(e.clientY-r.top)*900/r.height))];
+  }
+  function selected() { return state.drawing.marks.find(m => m.id === state.selected); }
+  function selection() {
+    const m = selected();
+    const el = $('selection');
+    el.hidden = !m || m.kind === 'stroke' || state.mode !== 'draw' || state.drawing.sample;
+    if (el.hidden) return;
+    el.style.left = (m.x-m.size/2)/12+'%';
+    el.style.top = (m.y-m.size/2)/9+'%';
+    el.style.width = m.size/12+'%';
+    el.style.height = m.size/9+'%';
+  }
+  function pointLimit() {
+    if (state.pointCount<20000) return false;
+    if (!fullSpoken) {
+      fullSpoken = true;
+      hint(L.full);
+      say('full');
+    }
+    return true;
+  }
+  function markAdded(placement=false) {
+    dirty();
+    pose('listen');
+    hint(nextHint());
+    if (!placement && !V.heard('why')) {
+      V.how('why',{valid:() => hasMarks() && !state.drawing.chips[state.step].length});
+    }
+    update();
+  }
+  canvas.onpointerdown = e => {
+    if (state.mode !== 'draw' || state.drawing.sample) return;
+    e.preventDefault();
+    canvas.focus({preventScroll:true});
+    canvas.setPointerCapture(e.pointerId);
+    const [x,y] = position(e);
+    const hit = [...state.drawing.marks].reverse().find(m => m.kind !== 'stroke'
+      && Math.abs(m.x-x)<m.size/2 && Math.abs(m.y-y)<m.size/2);
+    if (hit && hit.id === state.selected && state.brush !== 'eraser') {
+      state.selected = hit.id;
+      drag = {id:hit.id,x,y,ox:hit.x,oy:hit.y};
+      selection();
+      sound(480);
+      return;
+    }
+    state.selected = null;
+    if (pointLimit()) return;
+    const width = (state.thick ? 23 : 8)*(state.brush === 'paint' ? 2.5 : state.brush === 'eraser' ? 3 : 1);
+    active = {id:++markId,kind:'stroke',step:state.step,brush:state.brush,color:state.color,width,pts:[[Math.round(x),Math.round(y),0]]};
+    active.started = performance.now();
+    active.hit = state.brush !== 'eraser' && hit ? hit.id : null;
+    active.wasDirty = state.dirty;
+    state.drawing.marks.push(active);
+    markAdded();
+    paint();
+    sound(390);
+  };
+  canvas.onpointermove = e => {
+    const [x,y] = position(e);
+    if (drag) {
+      const m = selected();
+      if (!m) return;
+      m.x = Math.round(Math.max(m.size/2,Math.min(1200-m.size/2,drag.ox+x-drag.x)));
+      m.y = Math.round(Math.max(m.size/2,Math.min(900-m.size/2,drag.oy+y-drag.y)));
+      dirty();
+      paint();
+      return;
+    }
+    if (!active || pointLimit()) return;
+    const last = active.pts.at(-1);
+    const rounded = [Math.round(x),Math.round(y)];
+    if (Math.hypot(rounded[0]-last[0],rounded[1]-last[1])<3) return;
+    active.pts.push([...rounded,Math.round(performance.now()-active.started)]);
+    state.pointCount++;
+    paint();
+  };
+  function endPointer() {
+    if (active) {
+      if (active.hit && active.pts.length === 1) {
+        state.drawing.marks = state.drawing.marks.filter(m => m.id !== active.id);
+        state.selected = active.hit;
+        state.dirty = active.wasDirty;
+        state.pointCount--;
+        hint(L.selected);
+      }
+      delete active.started;
+      delete active.hit;
+      delete active.wasDirty;
+      update();
+      paint();
+    }
+    active = null;
+    drag = null;
+    thumbnails();
+  }
+  canvas.onpointerup = canvas.onpointercancel = endPointer;
+  $('resize').onpointerdown = e => {
+    const m = selected();
+    if (!m) return;
+    e.preventDefault();
+    e.stopPropagation();
+    $('resize').setPointerCapture(e.pointerId);
+    drag = {resize:true,x:e.clientX,size:m.size};
+  };
+  $('resize').onpointermove = e => {
+    if (!drag || !drag.resize) return;
+    const m = selected();
+    m.size = Math.round(Math.max(80,Math.min(600,drag.size+(e.clientX-drag.x)*1200/canvas.clientWidth)));
+    m.x = Math.max(m.size/2,Math.min(1200-m.size/2,m.x));
+    m.y = Math.max(m.size/2,Math.min(900-m.size/2,m.y));
+    dirty();
+    paint();
+  };
+  $('resize').onpointerup = $('resize').onpointercancel = endPointer;
+  function addSticker(name) {
+    closeDialog($('sticker-dialog'));
+    if (state.drawing.sample || state.mode !== 'draw') return;
+    const isPerson = PEOPLE.includes(name);
+    const m = {id:++markId,kind:isPerson ? 'stamp' : 'sticker',step:state.step,x:600,y:450,
+      size:isPerson ? [300,220,140][PEOPLE.indexOf(name)] : 220,color:state.color,asset:name};
+    state.drawing.marks.push(m);
+    state.selected = m.id;
+    markAdded(true);
+    hint(L.placed);
+    say(name.replace('-',' '));
+    V.how('placed',{valid:() => state.mode === 'draw' && state.selected === m.id && state.step === m.step,needs:'#resize'});
+    paint();
+    thumbnails();
+    canvas.focus({preventScroll:true});
+    sound(780);
+  }
+  function chip(i) {
+    if (state.drawing.sample || state.mode !== 'draw') return;
+    const chips = state.drawing.chips[state.step];
+    const index = chips.indexOf(i);
+    V.dropQueued();
+    const rev = ++state.revision;
+    if (index>=0) {
+      chips.splice(index,1);
+      if (V.playing) V.hush();
+    }
+    else {
+      if (chips.length===2) chips.shift();
+      chips.push(i);
+      say(WORDS[i][2],{valid:() => rev === state.revision,now:true});
+      if (!V.heard('next')) V.how('next',{valid:() => rev === state.revision,needs:'#next-question'});
+    }
+    dirty();
+    hint(nextHint());
+    update();
+    sound(700+i*22);
+  }
+  function question(i, speak=true) {
+    stopReplay();
+    state.step = i;
+    state.done = false;
+    state.selected = null;
+    pose('ask');
+    hint(nextHint());
+    update();
+    paint();
+    if (speak) {
+      const rev = state.revision;
+      say(QUESTIONS[i][2],{valid:() => rev === state.revision});
+    }
+    sound(660);
+  }
+  function setMode(mode) {
+    if (mode === 'tell' && !hasMarks()) return;
+    stopReplay();
+    state.mode = mode;
+    state.done = false;
+    state.finished = false;
+    state.selected = null;
+    if (mode === 'tell') {
+      hint(L.watch);
+      update();
+      thumbnails();
+      playStep(idsWithMarks()[0]);
+      V.welcome();
+    } else {
+      question(state.step);
+    }
+    fitPaper();
+  }
+  function length(m) {
+    if (!m.pts) return 180;
+    return m.pts.reduce((s,p,i) => i ? s+Math.hypot(p[0]-m.pts[i-1][0],p[1]-m.pts[i-1][1]) : s,0) || 30;
+  }
+  function scheduleFor(step) {
+    const marks = state.drawing.marks.filter(m => m.step === step);
+    const raw = marks.map(m => m.pts ? Math.max(30,m.pts.at(-1)[2] || 30) : 250);
+    const time = raw.reduce((a,b) => a+b,0) || 1;
+    const duration = Math.min(4000,time,marks.reduce((s,m) => s+length(m),0)/600*1000);
+    let start = 0;
+    const schedule = marks.map((m,i) => {
+      const ms = raw[i]/time*duration;
+      const entry = {id:m.id,start,duration:ms};
+      start += ms;
+      return entry;
+    });
+    return {schedule,duration,elapsed:0};
+  }
+  async function afterReplay(rev) {
+    if (rev !== state.revision) return;
+    state.playing = false;
+    replay = null;
+    paint();
+    const valid = () => rev === state.revision && state.mode === 'tell' && !state.finished;
+    hint(L.wait);
+    // Let the picture and its reasons invite the child to talk while Pip narrates.
+    // Speech length never leaves a finished picture waiting for its visual payoff.
+    const reveal = async () => {
+      for (const i of state.drawing.chips[state.step]) {
+        if (!valid()) return;
+        badgeCount++;
+        renderBadges();
+        await Curio.wait(380);
+      }
+    };
+    void reveal();
+    await say(QUESTIONS[state.step][2],{valid,wait:true});
+    if (!valid()) return;
+    for (const i of state.drawing.chips[state.step]) {
+      await say(WORDS[i][2],{valid,wait:true});
+      if (!valid()) return;
+    }
+    hint(L.wait);
+    V.how('wait',{valid,needs:'#next-step'});
+  }
+  function playStep(step) {
+    stopReplay();
+    state.finished = false;
+    state.step = step;
+    badgeCount = 0;
+    pose('look');
+    hint(L.watch);
+    update();
+    replay = scheduleFor(step);
+    state.playing = true;
+    const rev = state.revision;
+    const start = performance.now();
+    const tick = now => {
+      if (rev !== state.revision || !replay) return;
+      replay.elapsed = Math.min(replay.duration,now-start);
+      paint();
+      if (replay.elapsed<replay.duration) replayFrame = requestAnimationFrame(tick);
+      else afterReplay(rev);
+    };
+    replayFrame = requestAnimationFrame(tick);
+    sound(740);
+  }
+  function finish() {
+    const moveFocus = document.activeElement === $('next-step');
+    stopReplay();
+    state.finished = true;
+    badgeCount = 0;
+    pose('happy');
+    hint(L.finish);
+    update();
+    paint();
+    say('end');
+    if (moveFocus) $('start-over').focus({preventScroll:true});
+    Curio.yes();
+  }
+  function stepBy(delta) {
+    const ids = idsWithMarks();
+    const index = ids.indexOf(state.step);
+    if (delta>0 && index === ids.length-1) return finish();
+    playStep(ids[Math.max(0,Math.min(ids.length-1,index+delta))]);
+  }
+  function drawMore() {
+    if (state.drawing.sample) {
+      state.drawing = structuredClone(state.drawing);
+      state.drawing.sample = false;
+      state.drawing.title = 'My pond day';
+      state.drawing.id = null;
+      dirty();
+    }
+    setMode('draw');
+  }
+  function openDialog(id,line) {
+    returnFocus = document.activeElement;
+    V.hush();
+    hint(L[line]);
+    const d = $(id);
+    if (id === 'tools-dialog') $('tools-slot').appendChild($('tray'));
+    d.showModal();
+    say(line);
+  }
+  function closeDialog(d) {
+    if (!d.open) return;
+    V.hush();
+    d.close();
+    if (d.id === 'tools-dialog') $('main').insertBefore($('tray'),$('paper-space'));
+    hint(state.mode === 'draw' ? nextHint() : state.finished ? L.finish : L.wait);
+    if (returnFocus && returnFocus.isConnected) returnFocus.focus({preventScroll:true});
+  }
+  function confirmCard(title,message,yes,no,action) {
+    stopReplay();
+    paint();
+    confirmAction = action;
+    $('confirm-title').textContent = title;
+    $('confirm-message').textContent = message;
+    $('confirm-yes').textContent = '✓ '+yes;
+    $('confirm-no').textContent = '↶ '+no;
+    returnFocus = document.activeElement;
+    $('confirm-dialog').showModal();
+    hint(message);
+    say(message);
+  }
+  function fresh() {
+    stopReplay();
+    state.drawing = blank();
+    state.dirty = false;
+    state.pointCount = 0;
+    state.step = 0;
+    state.mode = 'draw';
+    state.done = state.finished = false;
+    question(0);
+    thumbnails();
+    fitPaper();
+  }
+  function save(replace=false) {
+    if (!hasMarks() || state.drawing.sample) return;
+    const existing = state.saves.findIndex(d => d.id === state.drawing.id);
+    if (existing<0 && state.saves.length===6 && !replace) {
+      confirmCard('The shelf is full',L.replace,L.yesReplace,L.cancel,() => save(true));
+      return;
+    }
+    const copy = structuredClone(state.drawing);
+    copy.id ||= 'drawing-'+Date.now();
+    const proposed = structuredClone(state.saves);
+    if (existing>=0) proposed[existing] = copy;
+    else {
+      if (proposed.length===6) proposed.shift();
+      proposed.push(copy);
+    }
+    try {
+      localStorage.setItem('curio-wds-saves',JSON.stringify(proposed));
+    } catch {
+      hint(L.failed);
+      $('question').textContent = L.failed;
+      say('failed');
+      return;
+    }
+    state.drawing.id = copy.id;
+    state.saves = proposed;
+    state.dirty = false;
+    renderShelf();
+    update();
+    hint(L.saved);
+    say('saved');
+    Curio.yes();
+  }
+  function validSave(d) {
+    return d && Array.isArray(d.marks) && d.marks.length<=20000 && Array.isArray(d.chips) && d.chips.length===7
+      && d.chips.every(c => Array.isArray(c) && c.length<=2 && c.every(i => Number.isInteger(i) && i>=0 && i<10))
+      && d.marks.every(m => Number.isInteger(m.step) && m.step>=0 && m.step<7
+        && (m.kind === 'stroke' ? Array.isArray(m.pts) && m.pts.every(p => p.length>=3 && p.every(Number.isFinite))
+          : ['sticker','stamp'].includes(m.kind) && [m.x,m.y,m.size].every(Number.isFinite)));
+  }
+  function loadSaves() {
+    try {
+      const data = JSON.parse(localStorage.getItem('curio-wds-saves') || '[]');
+      state.saves = Array.isArray(data) ? data.filter(validSave).slice(-6) : [];
+    } catch { state.saves = []; }
+  }
+  function renderShelf() {
+    const all = [sample,...state.saves];
+    [...$('saves').children].forEach((b,i) => {
+      b.hidden = i>=all.length;
+      if (b.hidden) return;
+      const drawing = all[i];
+      const name = i===0 ? "Pip's day at the pond" : 'My drawing '+i;
+      b.querySelector('span').textContent = name;
+      b.setAttribute('aria-label',name);
+      const c = b.querySelector('canvas');
+      const g = c.getContext('2d');
+      g.clearRect(0,0,c.width,c.height);
+      g.save();
+      g.scale(c.width/1200,c.height/900);
+      paintDrawing(g,drawing);
+      g.restore();
+    });
+  }
+  function openSaved(i,force=false) {
+    if (state.dirty && hasMarks() && !force) {
+      confirmCard('Open another drawing?',L.openAsk,L.openOther,L.keep,() => openSaved(i,true));
+      return;
+    }
+    const source = i===0 ? sample : state.saves[i-1];
+    if (!source) return;
+    stopReplay();
+    state.drawing = structuredClone(source);
+    state.dirty = false;
+    state.step = 0;
+    state.selected = null;
+    state.mode = 'draw';
+    state.finished = state.done = false;
+    state.pointCount = source.marks.reduce((n,m) => n+(m.pts ? m.pts.length : 0),0);
+    markId = Math.max(markId,...source.marks.map(m => m.id));
+    hint(nextHint());
+    pose('ask');
+    update();
+    paint();
+    thumbnails();
+    fitPaper();
+    if (i===0) say('sample');
+    else say(QUESTIONS[0][2]);
+  }
+  function makeSample() {
+    const d = blank();
+    d.sample = true;
+    d.title = "Pip's day at the pond";
+    const add = (step,m) => d.marks.push({id:++markId,step,...m});
+    const sticker = (step,asset,x,y,size) => add(step,{kind:'sticker',asset,x,y,size});
+    const line = (step,pts,color,width=12) => add(step,{kind:'stroke',brush:'crayon',color,width,
+      pts:pts.map((p,i) => [p[0],p[1],i*28])});
+    const pond = Array.from({length:85},(_,i) => {
+      const t=i/84*Math.PI*2;
+      return [600+350*Math.cos(t),640+110*Math.sin(t)+15*Math.sin(3*t)];
+    });
+    line(0,pond,'#448dc8',24);
+    for (let y=598;y<=700;y+=28) line(0,[[340,y],[450,y-12],[580,y+8],[720,y-8],[870,y]],'#72b5d6',15);
+    sticker(0,'tree',180,420,260);
+    sticker(1,'dog',820,560,170);
+    add(1,{kind:'stamp',asset:'Kid',x:430,y:560,size:220,color:'#ed8625'});
+    sticker(2,'ball',640,470,90);
+    for (let i=0;i<3;i++) line(2,[[688+i*25,416],[709+i*25,435],[698+i*25,450]],'#d43b43',8);
+    sticker(3,'sun',1020,140,200);
+    sticker(3,'cloud',300,130,220);
+    for (let i=0;i<3;i++) line(4,[[875,516-i*15],[909,505-i*20],[940,513-i*19],[970,501-i*21]],'#e2b62e',10);
+    for (let i=0;i<14;i++) {
+      const t=i/14*Math.PI*2;
+      line(5,[[430+145*Math.cos(t),560+145*Math.sin(t)]],i%2 ? '#efab32' : '#ffd241',17);
+    }
+    line(6,Array.from({length:51},(_,i) => [640+68*Math.cos(i/50*Math.PI*2),470+68*Math.sin(i/50*Math.PI*2)]),'#dca62e',18);
+    d.chips = [[6,4],[4],[7],[0,5],[6],[0],[2,9]];
+    return d;
+  }
+  const sample = makeSample();
+  buildControls();
+  $('m-draw').onclick = () => setMode('draw');
+  $('m-tell').onclick = () => setMode('tell');
+  $('next-question').onclick = () => {
+    if (state.step<6) question(state.step+1);
+    else {
+      stopReplay();
+      state.done = hasMarks();
+      pose(hasMarks() ? 'happy' : 'ask');
+      hint(hasMarks() ? L.done : L.first);
+      update();
+      say(hasMarks() ? 'done' : 'first');
+      sound(880);
+    }
+  };
+  $('questions').onclick = () => openDialog('questions-dialog','questions');
+  $('stickers').onclick = () => openDialog('sticker-dialog','stickers');
+  $('tools-open').onclick = () => openDialog('tools-dialog','tools');
+  $('undo').onclick = () => {
+    const moveFocus = document.activeElement === $('undo');
+    state.drawing.marks.pop();
+    state.selected = null;
+    dirty();
+    hint(nextHint());
+    update();
+    paint();
+    thumbnails();
+    if ($('undo').disabled && moveFocus) canvas.focus({preventScroll:true});
+    sound(330);
+  };
+  $('new').onclick = () => state.dirty && hasMarks()
+    ? confirmCard('Start a new drawing?',L.newAsk,L.yesNew,L.keep,fresh) : fresh();
+  $('save').onclick = () => save();
+  $('play-step').onclick = () => playStep(state.step);
+  $('back-step').onclick = () => stepBy(-1);
+  $('next-step').onclick = () => stepBy(1);
+  $('draw-more').onclick = drawMore;
+  $('start-over').onclick = () => {
+    state.finished = false;
+    playStep(idsWithMarks()[0]);
+  };
+  $('confirm-yes').onclick = () => {
+    closeDialog($('confirm-dialog'));
+    const action = confirmAction;
+    confirmAction = null;
+    if (action) action();
+  };
+  $('confirm-no').onclick = () => closeDialog($('confirm-dialog'));
+  document.querySelectorAll('[data-close]').forEach(b => b.onclick = () => closeDialog(b.closest('dialog')));
+  document.querySelectorAll('dialog').forEach(d => d.addEventListener('cancel',e => {
+    e.preventDefault();
+    closeDialog(d);
+  }));
+  document.addEventListener('keydown',e => {
+    if (document.querySelector('dialog[open]')) return;
+    if (state.mode === 'tell' && !state.finished && ['ArrowLeft','ArrowRight'].includes(e.key)) {
+      e.preventDefault();
+      stepBy(e.key === 'ArrowLeft' ? -1 : 1);
+      return;
+    }
+    const m = selected();
+    if (!m || state.mode !== 'draw' || state.drawing.sample) return;
+    if (!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Delete'].includes(e.key)) return;
+    e.preventDefault();
+    if (e.key === 'Delete') {
+      state.drawing.marks = state.drawing.marks.filter(p => p.id !== m.id);
+      state.selected = null;
+      canvas.focus({preventScroll:true});
+    } else if (document.activeElement === $('resize')) {
+      m.size = Math.max(80,Math.min(600,m.size+(['ArrowRight','ArrowUp'].includes(e.key) ? 10 : -10)));
+    } else {
+      m.x += e.key === 'ArrowRight' ? 10 : e.key === 'ArrowLeft' ? -10 : 0;
+      m.y += e.key === 'ArrowDown' ? 10 : e.key === 'ArrowUp' ? -10 : 0;
+    }
+    if (e.key !== 'Delete') {
+      m.x = Math.max(m.size/2,Math.min(1200-m.size/2,m.x));
+      m.y = Math.max(m.size/2,Math.min(900-m.size/2,m.y));
+    }
+    dirty();
+    update();
+    paint();
+    thumbnails();
+    sound(510);
+  });
+  loadSaves();
+  Object.entries(ART).forEach(([name,src]) => {
+    const img = new Image();
+    img.onload = () => { paint(); thumbnails(); renderShelf(); };
+    img.src = src;
+    images[name] = img;
+  });
+  Curio.init({clips:"voice:*",rate:.9});
+  Curio.onMotion(() => paint());
+  new ResizeObserver(fitPaper).observe($('paper-space'));
+  pose('ask');
+  update();
+  fitPaper();
+  paint();
+  renderShelf();
+  window.__tool = {state,setMode,allLines:V.allLines,vlog:V.log,question,playStep,finish,scheduleFor,
+    paint,update,sample,openSaved,save,loadSaves,renderShelf,validSave,chip,addSticker,fitPaper,
+    get replay() { return replay; }, get vq() { return V.queue; }};
+})();
+</script>
+</body>
+</html>

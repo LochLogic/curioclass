@@ -1,0 +1,1544 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biome Atlas · Climate and succession · Curio Class</title>
+<meta name="description" content="Read 13 real climates, predict their biomes and watch ecosystems recover. Grade 12 environmental science. Works offline.">
+<!--
+Biome Atlas, Curio Class. Grade 12, HS-LS2-6. Students drive, Read / Key / Change.
+Climate normals: WMO 1991 to 2020 via NOAA NCEI accession 0253808.
+Key: Peel et al. 2007; biome names: Whittaker 1975; real biomes: Olson et al. 2001.
+Succession sources and model limitations are in notes.md. Natural Earth map via the repository world atlas.
+Existing landscape illustrations: FLUX.1-schnell. New succession illustrations: OpenAI gpt-image.
+Content CC BY 4.0. Code MIT. One file, no network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root { --brand:#5cbf2a; --brand-ink:#10161f; --leaf:#b9e9a2; }
+body { height:100dvh; overflow:hidden; }
+header { padding:10px 20px; gap:8px; }
+h1 { font-size:23px; letter-spacing:-.6px; display:flex; align-items:center; gap:10px; }
+h1 small { font-size:11px; letter-spacing:2px; text-transform:uppercase; margin-top:5px; }
+.mark { width:33px; height:38px; color:var(--brand); }
+.icon-btn { min-height:44px; padding:0 12px; font-size:13px; border-width:1px; border-radius:7px; }
+.stage { grid-column:1; grid-row:1; }
+.panel { grid-column:2; grid-row:1; }
+main { grid-template-columns:minmax(0,1.62fr) minmax(310px,1fr); overflow:hidden; }
+.stage { min-height:0; padding:20px; background:radial-gradient(ellipse at 20% 0%,#20312866,transparent 60%),#0d141c; }
+.panel { padding:18px; gap:15px; border-left:1px solid #344136; }
+.panel-top,.panel-lower { display:flex; flex-direction:column; gap:12px; }
+.panel-lower { min-height:0; }
+.seg { width:100%; border-radius:8px; border:1px solid #46533e; flex:none; }
+.seg button { min-height:44px; flex:1; padding:0 6px; font-size:14px; }
+.step-number { opacity:.6; font:11px var(--readout-font); margin-right:5px; }
+label { font-size:12px; color:var(--muted); letter-spacing:.05em; }
+select { width:100%; min-height:44px; border:1px solid var(--btn-line); border-radius:6px; background:#0d141d;
+  color:var(--ink); font:600 15px 'Segoe UI',sans-serif; padding:0 10px; margin-top:5px; }
+.station-card { border-bottom:1px solid #354234; padding-bottom:11px; }
+.station-card h2 { margin:0 0 4px; font-size:21px; font-weight:600; }
+.meta { color:var(--muted); font-size:12px; }
+.totals { display:flex; gap:24px; margin-top:12px; }
+.totals strong { font:500 24px var(--readout-font); color:#e8edf3; letter-spacing:-1px; }
+.totals small { display:block; color:var(--muted); font-size:10px; letter-spacing:1.2px; margin-top:3px; }
+.row { display:flex; gap:7px; }
+.row>* { flex:1; min-width:0; }
+.btn { border-radius:6px; }
+.btn.primary { background:var(--brand); color:var(--brand-ink); border-color:var(--brand); }
+.hint { min-height:50px; padding:10px 12px; border-left:2px solid var(--brand); background:#1b2a20; font-size:14px; }
+.subhead,.eyebrow { text-transform:uppercase; letter-spacing:1.8px; font-size:10px; font-weight:700; color:var(--muted); }
+.subhead { display:flex; justify-content:space-between; align-items:center; margin:0 0 5px; }
+#space { width:100%; height:190px; display:block; }
+#station-legend { display:grid; grid-template-columns:1fr 1fr; gap:4px; font-size:10px; color:var(--muted); }
+.foot { color:var(--muted); font-size:11px; line-height:1.5; margin:0; }
+footer { margin-top:auto; }
+#tally { color:var(--leaf); font:13px var(--readout-font); padding:9px 0; border-bottom:1px solid var(--line); }
+#clear { background:transparent; margin-top:5px; color:var(--muted); font-size:11px; width:100%; }
+.view { height:100%; display:flex; flex-direction:column; gap:12px; min-height:0; }
+.map-wrap { position:relative; height:30%; min-height:100px; background:#0f1a26; border:1px solid var(--line); border-radius:9px; overflow:hidden; }
+#map { display:block; width:100%; height:100%; }
+.map-caption { position:absolute; top:9px; left:12px; pointer-events:none; color:#a6b3c4; font-size:10px; letter-spacing:1.5px; }
+.map-key { position:absolute; bottom:6px; right:8px; color:var(--muted); font-size:10px; pointer-events:none; }
+.pin { cursor:pointer; outline:none; }
+.pin circle { stroke:#0f1a26; stroke-width:2px; }
+.pin.selected circle { stroke:#e8edf3; }
+.pin:focus-visible circle { stroke:#8fe3ff; stroke-width:4px; }
+.pin text { pointer-events:none; font:700 11px 'Segoe UI',sans-serif; fill:#10161f; text-anchor:middle; dominant-baseline:central; }
+.pin .pin-label { display:none; fill:#e8edf3; font-size:12px; paint-order:stroke;
+  stroke:#0f1a26; stroke-width:5px; }
+.pin:hover .pin-label,.pin:focus .pin-label { display:block; }
+.map-idle { stroke:#5cbf2a; fill:none; stroke-width:1px; opacity:0; pointer-events:none; animation:ripple 4s infinite; }
+@keyframes ripple { 0% {r:12;opacity:.55} 80%,100%{r:24;opacity:0} }
+.calm .map-idle { animation:none; opacity:0; }
+.chart-box { flex:1; min-height:0; border:1px solid var(--line); background:var(--gr-bg); border-radius:9px; padding:15px 15px 8px; }
+.chart-heading { display:flex; justify-content:space-between; align-items:center; gap:7px; }
+.chart-heading h2 { margin:0; font-size:19px; font-weight:500; letter-spacing:-.4px; }
+.legend { font-size:11px; color:var(--muted); display:flex; gap:12px; }
+.legend span::before { content:''; display:inline-block; width:10px; height:10px; margin-right:5px; background:var(--gr-1); }
+.legend span:last-child::before { height:2px; background:var(--gr-4); vertical-align:3px; }
+#climo { width:100%; height:calc(100% - 47px); display:block; min-height:0; }
+.source-line { font-size:10px; color:var(--muted); margin:0; }
+.grid-line { stroke:#ffffff12; stroke-width:1; }
+.axis-text { fill:var(--muted); font:11px 'Segoe UI',sans-serif; }
+.space-label { paint-order:stroke; stroke:var(--panel); stroke-width:3px; stroke-linejoin:round; }
+.graph-title { fill:var(--ink); font:12px 'Segoe UI',sans-serif; }
+.rain { fill:var(--gr-1); }
+.temp { fill:none; stroke:var(--gr-4); stroke-width:2.5; }
+.month-halo { fill:#5cbf2a16; stroke:#b9e9a2; stroke-width:1; stroke-dasharray:3 3; }
+.key-view .map-wrap { height:24%; min-height:80px; }
+.key-work { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(135px,.7fr); gap:12px; flex:1; min-height:0; }
+.question { background:linear-gradient(135deg,#273427,#18251e); border:1px solid #536447; padding:23px;
+  border-radius:9px; display:flex; flex-direction:column; min-height:0; box-shadow:0 12px 32px #0003; }
+.question h2 { font-size:clamp(18px,2.15vw,29px); font-weight:500; line-height:1.25; margin:15px 0; letter-spacing:-.6px; }
+#evidence { color:#d6e6cb; font:14px/1.6 var(--readout-font); white-space:pre-line; }
+#answers { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:auto; padding-top:14px; }
+#answers.chips { grid-template-columns:repeat(7,minmax(0,1fr)); gap:4px; }
+#answers .btn { min-height:48px; font-size:17px; padding:0 4px; }
+#answers.chips .btn { font-size:14px; min-width:0; min-height:44px; }
+#last-comparison { color:var(--leaf); font-size:12px; min-height:36px; margin:10px 0 0; line-height:1.4; }
+.key-side { display:flex; flex-direction:column; justify-content:space-between; gap:10px; min-height:0; }
+#mini { width:100%; height:190px; background:#0e1520; border-radius:8px; }
+.path { font-size:11px; color:var(--muted); border-left:1px solid #536447; padding-left:10px; line-height:1.6; overflow:auto; }
+#reveal-view { flex:1; min-height:0; display:flex; flex-direction:column; gap:14px; }
+.reveal-heading { margin:3px 0; display:flex; align-items:center; gap:15px; }
+.reveal-heading strong { font-size:34px; color:var(--leaf); font-weight:500; }
+.reveal-heading p { color:var(--muted); font-size:13px; }
+.cards { display:grid; grid-template-columns:1fr 1fr; gap:12px; flex:1; min-height:0; }
+.scene-card { margin:0; display:flex; flex-direction:column; background:var(--sec-bg); border:1px solid var(--line);
+  border-radius:9px; overflow:hidden; min-width:0; }
+.scene-card img { width:100%; flex:1; min-height:0; object-fit:cover; }
+.scene-card figcaption { padding:13px; font-size:16px; line-height:1.3; min-height:87px; }
+.scene-card small { color:var(--muted); display:block; text-transform:uppercase; letter-spacing:1px; font-size:10px; margin-bottom:5px; }
+#miss-note { background:#2b2820; border-left:3px solid #d9c27a; padding:12px; font-size:13px; line-height:1.5; }
+#miss-note p { margin:5px 0 0; }
+#check-results { font-size:12px; line-height:1.5; background:var(--sec-bg); border:1px solid var(--line); padding:10px; max-height:180px; overflow:auto; }
+#check-results p { margin:3px 0; }
+#landscape { position:relative; flex:1; min-height:0; background:linear-gradient(#16202c,#223042 88%,#2b2a22 88%);
+  border:1px solid #3d4c43; border-radius:10px; overflow:hidden; isolation:isolate; }
+.land-light { position:absolute; inset:0; background:radial-gradient(ellipse at 20% 0%,#e9daa926,transparent 68%); pointer-events:none; z-index:4; }
+.ridge { position:absolute; left:-10%; width:120%; bottom:12%; height:18%; border-radius:50% 60% 0 0; background:#33413c; opacity:.4; }
+.ground-detail { position:absolute; bottom:0; height:12%; width:100%;
+  background:repeating-linear-gradient(12deg,transparent 0 14px,#675d3a16 15px 16px),linear-gradient(#3b3826,#22271d); }
+#layers { position:absolute; inset:0; z-index:2; }
+.layer { position:absolute; width:100%; left:0; bottom:12%; object-fit:fill; transform-origin:bottom;
+  transition:opacity .5s, height .5s; pointer-events:none; }
+#land-top { position:absolute; top:18px; left:20px; right:20px; display:flex; justify-content:space-between; align-items:start; z-index:5; }
+#land-title { font-size:clamp(18px,2.4vw,30px); font-weight:500; max-width:75%; text-shadow:0 2px 10px #000; }
+#year-badge { color:var(--leaf); font:13px var(--readout-font); border:1px solid #7b9369; background:#14201bd9; padding:7px; border-radius:5px; }
+#land-caption { position:absolute; bottom:12px; left:18px; right:18px; z-index:5; }
+#stage-label { font-size:18px; font-weight:500; margin:0 0 4px; }
+#path-note { color:#c5d0bd; font-size:12px; line-height:1.4; margin:0; max-width:680px; }
+#need-key { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:20px; z-index:6; }
+#need-key h2 { font-size:24px; font-weight:500; margin:0; }
+#shift-cards { position:absolute; right:12px; bottom:29%; display:grid; grid-template-columns:1fr 1fr; gap:6px; width:45%; z-index:6; }
+#shift-cards .scene-card { border-color:#91a27b; box-shadow:0 6px 20px #0006; }
+#shift-cards img { height:80px; flex:none; }
+#shift-cards figcaption { min-height:0; padding:5px; font-size:10px; }
+#shift-cards small { font-size:10px; margin-bottom:3px; }
+.model-note { margin:0; color:var(--muted); font-size:11px; line-height:1.45; }
+.slider-label { display:flex; justify-content:space-between; align-items:center; gap:4px; font-size:12px; letter-spacing:0; color:var(--muted); }
+.slider-label output { font:13px var(--readout-font); color:var(--ink); }
+.sliders { display:flex; flex-direction:column; gap:6px; }
+#ticks { position:relative; height:14px; color:var(--muted); font:10px var(--readout-font); }
+#now-biome { margin:0; padding:8px 10px; border:1px solid #495a40; color:var(--leaf); font-size:13px; }
+#layer-toggle { display:flex; gap:5px; margin-top:2px; }
+#layer-toggle button { font-size:12px; padding:0 8px; }
+#place.flash { animation:placeflash .6s ease; }
+@keyframes placeflash { 0%{box-shadow:0 0 0 0 #b9e9a280}100%{box-shadow:0 0 0 18px #b9e9a200} }
+#space .active-dot { transform-box:fill-box; transform-origin:center; animation:dot-arrive .6s ease-out; }
+@keyframes dot-arrive { from{transform:translate(-70px,-50px) scale(.1);opacity:.1}to{transform:none;opacity:1} }
+.calm #space .active-dot,.calm #place.flash { animation:none; }
+body.compact header { padding:5px 10px; }
+body.compact h1 { font-size:18px; }
+body.compact h1 small { display:none; }
+body.compact .mark { width:24px; height:28px; }
+body.compact main { grid-template-columns:minmax(0,1fr) 285px; }
+body.compact .stage { padding:9px; }
+body.compact .panel { padding:9px; gap:8px; }
+body.compact .panel-top,body.compact .panel-lower { gap:7px; }
+body.compact .station-card h2 { font-size:16px; }
+body.compact .station-card { padding-bottom:7px; }
+body.compact .totals { margin-top:6px; gap:20px; }
+body.compact .totals strong { font-size:19px; }
+body.compact .totals small { font-size:10px; }
+body.compact .hint { font-size:12px; line-height:1.35; min-height:48px; padding:7px; }
+body.compact #space { height:145px; }
+body.compact .view { gap:8px; }
+body.compact .chart-box { padding:9px 8px 4px; }
+body.compact .chart-heading h2 { font-size:15px; }
+body.compact .legend { gap:6px; font-size:10px; }
+body.compact #climo { height:calc(100% - 40px); }
+body.compact .question { padding:14px; }
+body.compact .question h2 { font-size:21px; margin:9px 0; }
+body.compact #evidence { font-size:12px; line-height:1.5; }
+body.compact .key-work { grid-template-columns:minmax(0,1fr); position:relative; }
+body.compact .key-side { display:none; }
+body.compact .key-view .map-wrap { height:22%; min-height:70px; }
+body.compact .key-view .question { padding:12px; }
+body.compact #last-comparison { min-height:29px; margin-top:6px; font-size:11px; }
+body.compact #answers { padding-top:6px; }
+body.compact .scene-card figcaption { font-size:13px; min-height:70px; padding:9px; }
+body.compact .cards { gap:7px; }
+body.compact .reveal-heading strong { font-size:25px; }
+body.compact #miss-note { padding:8px; font-size:11px; line-height:1.4; }
+body.compact .reveal-heading { margin:0; }
+body.compact #reveal-view { gap:7px; }
+body.compact .source-line { font-size:10px; }
+body.compact #land-top { top:12px; left:12px; right:12px; }
+body.compact #stage-label { font-size:15px; }
+body.compact #path-note,body.compact .model-note { font-size:10px; }
+body.compact #land-caption { bottom:9px; left:12px; right:12px; }
+body.compact .sliders { gap:2px; }
+body.compact input[type=range] { height:32px; }
+body.compact #tally { font-size:11px; padding:5px 0; }
+body.compact footer { margin-top:0; }
+@media (max-height:550px) and (min-width:601px) {
+  .station-card .meta,.station-card h2,.totals small,.climate-panel,footer,.panel-lower>.foot { display:none; }
+  .station-card { border:0; padding:0; }
+  .totals { margin:0!important; }
+  .panel { gap:5px!important; }
+  .panel-top,.panel-lower { gap:5px!important; }
+  .panel label { font-size:11px; }
+  .hint { min-height:42px!important; }
+  .btn { font-size:12px; }
+  .map-caption { top:5px; font-size:10px; }
+  .chart-heading { flex-wrap:wrap; }
+  .chart-heading h2 { font-size:14px!important; }
+  #climo { height:calc(100% - 51px)!important; }
+  .question h2 { font-size:18px!important; }
+  #evidence { font-size:11px!important; }
+  #land-title { font-size:17px; }
+  #shift-cards { width:50%; }
+  #shift-cards img { height:50px; }
+  .key-view .map-wrap { display:none; }
+}
+@media (max-width:760px) and (min-height:551px), (max-width:600px) {
+  body { height:auto; overflow:auto; min-height:100dvh; }
+  header { padding:8px 10px; gap:6px; }
+  h1 { font-size:20px; }
+  h1 small { display:none; }
+  .mark { width:25px; height:28px; }
+  .icon-btn { padding:0 8px; font-size:12px; }
+  main { display:flex; flex-direction:column; overflow:visible; }
+  .panel { display:contents; }
+  .panel-top { order:0; background:var(--panel); padding:9px 10px; gap:7px; }
+  .stage { order:1; height:380px; min-height:380px; padding:10px; }
+  .panel-lower { order:2; padding:10px; background:var(--panel); gap:10px; }
+  .panel-top .station-label { display:flex; align-items:center; gap:9px; }
+  select { margin:0; flex:1; min-width:0; font-size:14px; }
+  .station-card { display:none; }
+  .climate-panel { order:5; }
+  #space { height:195px; }
+  #tally { order:6; }
+  footer { order:7; }
+  .hint { min-height:44px; font-size:13px; }
+  .map-wrap { min-height:88px; }
+  .key-work { grid-template-columns:minmax(0,1fr); }
+  .key-side { display:none; }
+  .question { padding:15px; }
+  .question h2 { font-size:22px; margin:9px 0; }
+  #evidence { font-size:12px; }
+  #answers { padding-top:6px; }
+  #last-comparison { min-height:30px; margin-top:6px; font-size:11px; }
+  .key-view .map-wrap { display:none; }
+  .cards { gap:7px; }
+  .scene-card figcaption { font-size:13px; padding:9px; min-height:72px; }
+  #miss-note { padding:8px; font-size:11px; }
+  .reveal-heading { margin:0; }
+  .reveal-heading strong { font-size:26px; }
+  .chart-box { padding:10px 8px 4px; }
+  .chart-heading h2 { font-size:16px; }
+  #stage-label { font-size:15px; }
+  #path-note { font-size:11px; }
+}
+@media (max-width:430px) {
+  header { flex-wrap:wrap; }
+  h1 { flex:1 1 100%; }
+  header .icon-btn { flex:1; }
+  .stage { height:310px; min-height:310px; }
+  .chart-heading { flex-wrap:wrap; }
+  #climo { height:calc(100% - 55px); }
+  #reveal-view { gap:6px; }
+  .reveal-heading p { margin:0; font-size:11px; }
+  .scene-card figcaption { font-size:11px; min-height:65px; padding:6px; }
+  .scene-card small { font-size:10px; }
+  #miss-note { font-size:10px; line-height:1.3; }
+  #miss-note p { margin:3px 0 0; }
+  #land-top { top:12px; left:12px; right:12px; }
+  #land-title { font-size:19px; }
+  #year-badge { font-size:10px; padding:5px; }
+  #shift-cards img { height:50px; }
+  #shift-cards { width:52%; bottom:32%; }
+}
+
+body[data-mode="change"] .station-card h2,
+body[data-mode="change"] .station-card .meta,
+body[data-mode="change"] .totals small { display:none; }
+body[data-mode="change"] .totals { margin-top:0; }
+body[data-mode="change"] .totals strong { font-size:18px; }
+body[data-mode="change"] .panel { gap:9px; }
+body[data-mode="change"] .panel-top,
+body[data-mode="change"] .panel-lower { gap:8px; }
+body[data-mode="change"] input[type=range] { height:32px; }
+body[data-mode="change"] .sliders { gap:2px; }
+body[data-mode="change"] #space { height:120px; }
+body[data-mode="change"] .hint { min-height:42px; font-size:12px; padding:7px 10px; }
+body[data-mode="change"] .subhead { margin-bottom:0; }
+body[data-mode="change"] .climate-panel .foot { font-size:10px; }
+body[data-mode="change"] #tally { padding:4px 0; }
+body[data-mode="key"] .key-view .map-wrap { min-height:70px; }
+#mini-compact { display:none; width:100%; min-height:60px; flex:1; max-height:130px; margin-top:8px; }
+@media (max-height:700px), (max-width:760px) {
+  #mini-compact { display:block; }
+  .question:has(#answers.chips) #mini-compact { max-height:60px; }
+}
+
+@media (max-width:430px) { body[data-mode="key"] .stage { height:400px; min-height:400px; } }
+
+@media (max-height:550px) and (min-width:601px) {
+  body[data-mode="change"] .station-card { display:none; }
+  body[data-mode="change"] .station-word { position:absolute; width:1px; height:1px; overflow:hidden;
+    clip-path:inset(50%); }
+  body[data-mode="change"] select { margin-top:0; }
+  body[data-mode="change"] .panel-top,
+  body[data-mode="change"] .panel-lower { gap:5px; }
+  body[data-mode="change"] .hint { order:-1; min-height:40px; padding:5px 7px; }
+  body[data-mode="change"] .sliders { display:grid; grid-template-columns:1fr 1fr; gap:0 8px; }
+  body[data-mode="change"] .sliders>div:first-child { grid-column:1/-1; }
+  body[data-mode="change"] input[type=range] { height:28px; }
+  body[data-mode="change"] .slider-label { font-size:10px; }
+  body[data-mode="change"] .slider-label output { font-size:11px; }
+  body[data-mode="change"] #ticks { height:12px; }
+  body[data-mode="change"] #now-biome { font-size:11px; margin-top:3px; padding:5px 6px; }
+  body[data-mode="change"] #tally { display:none; }
+  #change-controls .sliders { margin-top:5px!important; }
+  #change-controls .row { gap:4px; }
+  #change-controls .row .btn { padding:0 4px; font-size:11px; }
+}
+@media (max-width:760px) and (min-height:551px), (max-width:600px) {
+  .panel-lower>.hint { order:-1; }
+}
+
+
+@media (max-height:550px) and (min-width:601px) {
+  body[data-mode="read"] .station-word { position:absolute; width:1px; height:1px; overflow:hidden;
+    clip-path:inset(50%); }
+  body[data-mode="read"] select { margin-top:0; }
+  body[data-mode="read"] .panel,
+  body[data-mode="read"] .panel-top,
+  body[data-mode="read"] .panel-lower { gap:5px; }
+  body[data-mode="read"] .totals { margin:0; }
+  body[data-mode="read"] .hint { min-height:40px!important; padding:5px 7px; font-size:11px; }
+  body[data-mode="read"] .climate-panel { display:block; }
+  body[data-mode="read"] #space { height:90px; }
+  body[data-mode="read"] .subhead { margin:0; font-size:10px; letter-spacing:1px; }
+  body[data-mode="read"] #dry-line { font-size:10px; line-height:1.2; }
+  body[data-mode="read"] #tally { display:none; }
+}
+
+@media (max-width:430px) { #answers.chips { gap:2px; } }
+@media (max-height:550px) and (min-width:601px) { footer { display:block; } }
+@media (max-width:430px) {
+  body[data-mode="change"] .sliders { display:grid; grid-template-columns:1fr 1fr; gap:2px 8px; }
+  body[data-mode="change"] .sliders>div:first-child { grid-column:1/-1; }
+  #land-caption { left:10px; right:10px; bottom:8px; padding:6px 8px; border-radius:5px; background:#0c1419df; }
+}
+/* Keep comparison feedback legible beside the controls, including on a school laptop. */
+.panel-top,.panel-lower { flex-shrink:0; }
+#check-results { flex:none; min-height:60px; max-height:125px; }
+body[data-mode="key"] .station-card h2,
+body[data-mode="key"] .station-card .meta,
+body[data-mode="key"] .totals small { display:none; }
+body[data-mode="key"] .totals { margin-top:0; }
+body[data-mode="key"] .totals strong { font-size:18px; }
+body[data-mode="key"] #space { height:135px; }
+#landscape.recovered { border-color:#b9e9a2; }
+#land-caption { padding:8px 10px; border-radius:5px; background:linear-gradient(90deg,#0c1419ed,#0c1419b0); }
+#recovery-progress { position:absolute; left:0; bottom:0; width:0; height:3px; background:#b9e9a2; z-index:7; }
+#landscape { --ground-line:12%; }
+.layer,.ridge { bottom:var(--ground-line); }
+.ground-detail { height:var(--ground-line); }
+@media (max-height:550px) and (min-width:601px) {
+  body[data-mode="key"] .station-card { display:none; }
+  body[data-mode="key"] #check-results { max-height:76px; min-height:52px; }
+  body[data-mode="key"] .station-word { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+  body[data-mode="key"] select { margin-top:0; }
+  body[data-mode="key"] .hint { min-height:36px!important; padding:5px 7px; font-size:11px; line-height:1.3; }
+}
+@media (max-width:430px) {
+  body[data-mode="key"] .stage { height:370px; min-height:370px; }
+  body[data-mode="key"] .question { padding:12px; }
+  body[data-mode="key"]:has(#check-results:not([hidden])) .stage { height:280px; min-height:280px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>
+    <svg class="mark" viewBox="0 0 38 42" aria-hidden="true">
+      <path d="M5 34C0 12 16 5 34 4C34 25 21 39 5 34Z" fill="currentColor" opacity=".22"/>
+      <path d="M5 37L28 12M10 31L10 19M17 24L29 24M18 23L18 13" fill="none" stroke="currentColor" stroke-width="2"/>
+    </svg>
+    <span>Biome Atlas<small>Curio Class · field studies</small></span>
+  </h1>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="reset">Reset</button>
+</header>
+<main>
+  <section class="stage" id="stage" aria-label="Atlas workspace">
+    <div class="view" id="read-view">
+      <div class="map-wrap" id="map-wrap">
+        <span class="map-caption">13 STATIONS / ONE PLANET</span>
+        <svg id="map" aria-label="World map of climate stations"></svg>
+        <span class="map-key" id="map-key">? unkeyed station</span>
+      </div>
+      <div class="chart-box" id="chart-box">
+        <div class="chart-heading">
+          <h2 id="chart-title">A year in Manaus</h2>
+          <div class="legend"><span>Rain, mm</span><span>Temperature, °C</span></div>
+        </div>
+        <svg id="climo" role="img" aria-label="Monthly rain bars and temperature line"></svg>
+        <p class="source-line">Climate normals 1991 to 2020 (WMO, via NOAA NCEI)</p>
+      </div>
+    </div>
+    <div class="view key-view" id="key-view" hidden>
+      <div id="key-map-slot"></div>
+      <div class="key-work" id="key-work">
+        <section class="question" id="question" aria-label="Biome key question">
+          <span class="eyebrow" id="question-step">CLIMATE KEY / 01</span>
+          <h2 id="question-text"></h2>
+          <div id="evidence"></div>
+          <svg id="mini-compact" role="img" aria-label="Monthly climate evidence"></svg>
+          <div id="answers"></div>
+          <p id="last-comparison" aria-live="polite"></p>
+        </section>
+        <div class="key-side">
+          <svg id="mini" role="img" aria-label="Station climograph with relevant months outlined"></svg>
+          <div class="path" id="path"></div>
+        </div>
+      </div>
+      <div id="reveal-view" hidden>
+        <div class="reveal-heading"><strong id="match-status"></strong><p>Climate predicts.<br>Nature has the last word.</p></div>
+        <div class="cards" id="reveal-cards"></div>
+        <div id="miss-note" hidden></div>
+      </div>
+    </div>
+    <div class="view" id="change-view" hidden>
+      <div id="landscape">
+        <div class="ridge"></div>
+        <div class="ground-detail"></div>
+        <div id="layers"></div>
+        <div class="land-light"></div>
+        <div id="land-top"><div id="land-title"></div><div id="year-badge"></div></div>
+        <div id="shift-cards" hidden></div>
+        <div id="land-caption"><p id="stage-label"></p><p id="path-note"></p></div>
+        <div id="recovery-progress" aria-hidden="true"></div>
+        <div id="need-key"><h2>Key this station first</h2><button class="btn primary" id="go-key">Go to Key</button></div>
+      </div>
+      <p class="model-note">This model uses only yearly temperature, yearly rain and its timing. It leaves out soil, slope, fire habits,
+        grazing, seasons of frost and how fast seeds arrive. Real biome edges are wide. Climate shifts are what-if tests, not forecasts.</p>
+    </div>
+  </section>
+  <aside class="panel">
+    <div class="panel-top">
+      <div class="seg" role="group" aria-label="Mode">
+        <button id="m-read" aria-pressed="true"><span class="step-number">01</span>Read</button>
+        <button id="m-key" aria-pressed="false"><span class="step-number">02</span>Key</button>
+        <button id="m-change" aria-pressed="false"><span class="step-number">03</span>Change</button>
+      </div>
+      <label class="station-label" for="station"><span class="station-word">Station</span>
+        <select id="station"></select>
+      </label>
+      <div class="station-card">
+        <h2 id="station-name"></h2>
+        <div class="meta" id="station-meta"></div>
+        <div class="totals">
+          <div><strong id="annual-t"></strong><small>ANNUAL TEMPERATURE</small></div>
+          <div><strong id="annual-p"></strong><small>YEARLY RAIN</small></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-lower">
+      <div id="read-controls" class="row">
+        <button class="btn primary" id="place">Place on chart ↗</button>
+        <button class="btn" id="show-all">Show all stations</button>
+      </div>
+      <div id="key-controls" hidden>
+        <div class="row">
+          <button class="btn primary" id="reveal" disabled>Reveal</button>
+          <button class="btn" id="check" disabled>Check my answers</button>
+        </div>
+        <div class="row" style="margin-top:7px">
+          <button class="btn" id="again">Key again</button>
+          <button class="btn" id="next" disabled>Next station →</button>
+        </div>
+        <div id="layer-toggle" role="group" aria-label="Map layer">
+          <button class="btn" id="layer-mine" aria-pressed="true">My predictions</button>
+          <button class="btn" id="layer-real" aria-pressed="false">Real biomes</button>
+        </div>
+      </div>
+      <div id="change-controls" hidden>
+        <div class="row">
+          <button class="btn" id="disturb" disabled>Clearing</button>
+          <button class="btn primary" id="play" disabled>▶ Play</button>
+          <button class="btn" id="reset-climate" disabled>Reset climate</button>
+        </div>
+        <div class="sliders" style="margin-top:10px">
+          <div>
+            <label class="slider-label" for="years">Years after (approx.) <output id="years-out">0</output></label>
+            <input id="years" type="range" min="0" max="200" step="1" value="200" disabled>
+            <div id="ticks"></div>
+          </div>
+          <div>
+            <label class="slider-label" for="temperature">Warmer or cooler <output id="dt-out">0 °C</output></label>
+            <input id="temperature" type="range" min="-4" max="6" step=".5" value="0" disabled>
+          </div>
+          <div>
+            <label class="slider-label" for="precipitation">Wetter or drier <output id="dp-out">0%</output></label>
+            <input id="precipitation" type="range" min="-50" max="50" step="5" value="0" disabled>
+          </div>
+        </div>
+        <p id="now-biome"></p>
+        
+      </div>
+      <p class="hint" id="hint"></p>
+      <div id="check-results" hidden aria-live="polite"></div>
+      <section class="climate-panel">
+        <p class="subhead"><span>Climate space</span><span id="visited">0 / 13 placed</span></p>
+        <svg id="space" role="img" aria-label="Annual temperature and rain climate space"></svg>
+        <p class="foot" id="dry-line"></p>
+      </section>
+      <div id="station-legend" hidden></div>
+      <div id="tally">Predicted right: 0 of 0</div>
+      <footer>
+        <p class="foot">Your atlas saves on this device. It never leaves it.</p>
+        <button class="btn" id="clear">Clear my progress</button>
+      </footer>
+    </div>
+  </aside>
+</main>
+<div id="art-bank" hidden>
+  <img data-art="tundra" src="art:tundra" alt="">
+  <img data-art="boreal" src="art:boreal" alt="">
+  <img data-art="deciduous" src="art:deciduous" alt="">
+  <img data-art="temperate-rain" src="art:temperate-rain" alt="">
+  <img data-art="mediterranean" src="art:mediterranean" alt="">
+  <img data-art="dry-grass" src="art:dry-grass" alt="">
+  <img data-art="desert" src="art:desert" alt="">
+  <img data-art="trop-savanna" src="art:trop-savanna" alt="">
+  <img data-art="trop-seasonal" src="art:trop-seasonal" alt="">
+  <img data-art="trop-rain" src="art:trop-rain" alt="">
+</div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const S = "json:stations";
+  const WORLD = "json:world";
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const B = {
+    tundra: ['Tundra', 'T', '#c9d6e3'],
+    boreal: ['Boreal forest', 'B', '#3b9a83'],
+    deciduous: ['Temperate deciduous forest', 'D', '#8bbf5a'],
+    'temperate-rain': ['Temperate rainforest', 'R', '#46b574'],
+    mediterranean: ['Mediterranean shrubland', 'M', '#c9a65a'],
+    'dry-grass': ['Dry grassland or savanna', 'G', '#d9c27a'],
+    desert: ['Desert', 'X', '#e3a46f'],
+    'trop-savanna': ['Tropical savanna', 'S', '#b8b04a'],
+    'trop-seasonal': ['Tropical seasonal forest', 'F', '#5fae3c'],
+    'trop-rain': ['Tropical rainforest', 'W', '#2a9d3a']
+  };
+  const REAL = [
+    'Tropical moist broadleaf forest', 'Eastern Guinean forests', 'Central Zambezian miombo woodland',
+    'Sahelian acacia savanna', 'Sonoran desert', 'Forest steppe', 'Shortgrass and mixed prairie',
+    'Central European mixed forests', 'Pacific coastal conifer rainforest', 'Mediterranean woodland and scrub',
+    'East Siberian taiga', 'Arctic coastal tundra', 'Alpine tundra above the tree line'
+  ];
+  const L = {
+    wRead: 'Tap a pin on the map, or pick from the Station list, to open its climate chart.',
+    placeIt: 'Now press Place on chart to see where this place sits in climate space.',
+    wKey: 'Answer each question with the Yes, No or number buttons. The numbers are on the card.',
+    reveal: "That's your prediction. Press Reveal to see what really grows there.",
+    match: 'Your key matches the real biome.',
+    miss: 'A miss. Read the note under the cards to see what averages hide.',
+    wrongPath: 'Your answers took a different path. Press Check my answers to inspect the comparisons.',
+    needKey: 'Key this station first. Press Go to Key.',
+    wChange: 'Press Fire or Clearing, then press Play and watch the land grow back.',
+    shifted: 'The key now predicts a different biome. Press Play to watch the new path.',
+    sameBack: 'Same climate, same biome. It came back.',
+    next: 'Press Next station to investigate another climate, or Change to test recovery.',
+    answerNext: 'Read the comparison, then answer the next question with the Yes, No or number buttons.',
+    placeAgain: 'Pick another Station, or press Key to predict this biome.',
+    playing: 'Watch the land recover. Drag Years after to pause and inspect a stage.',
+    scrub: 'Drag Years after to rewind, or press Play to continue.',
+    changed: 'Move the climate sliders to compare paths, or press Reset climate.',
+    check: 'Read the comparisons, then press Key again to retry, or Reveal to compare biomes.'
+  };
+  const state = {
+    mode: 'Read', station: 0, q: 0, answers: [], keyResult: null, revealed: false,
+    records: {}, placed: [], layer: 'mine', years: 200, dT: 0, dP: 0,
+    playing: false, disturbed: false, generation: 0, stationPicked: false, checked: false
+  };
+  try {
+    const saved = JSON.parse(localStorage.getItem('biome-atlas') || '{}');
+    if (saved.records && typeof saved.records === 'object') {
+      for (let i = 0; i < S.length; i++) {
+        const r = saved.records[i];
+        if (r && B[r.prediction] && Array.isArray(r.answers)) state.records[i] = r;
+      }
+    }
+    if (Array.isArray(saved.placed)) state.placed = saved.placed.filter(i => Number.isInteger(i) && S[i]);
+  } catch {}
+  const fmt = n => n.toLocaleString('en-US', {minimumFractionDigits:1, maximumFractionDigits:1});
+  const name = b => B[b][0];
+  const station = () => S[state.station];
+  const known = () => !!state.records[state.station];
+  const save = () => {
+    try { localStorage.setItem('biome-atlas', JSON.stringify({records:state.records, placed:state.placed})); } catch {}
+  };
+  function climate(s = station(), dt = 0, dp = 0) {
+    const t = s.t.map(v => v + dt);
+    const p = s.p.map(v => v * (1 + dp / 100));
+    const T = t.reduce((a,b) => a+b,0) / 12;
+    const P = p.reduce((a,b) => a+b,0);
+    const summer = s.lat >= 0 ? [3,4,5,6,7,8] : [9,10,11,0,1,2];
+    const winter = Array.from({length:12}, (_,i) => i).filter(i => !summer.includes(i));
+    const share = summer.reduce((a,i) => a+p[i],0) / P;
+    const offset = share >= .7 ? 280 : share <= .3 ? 0 : 140;
+    const D = 20*T + offset;
+    const dry = p.map((v,i) => v < 60 ? i : -1).filter(i => i >= 0);
+    const minSummer = Math.min(...summer.map(i => p[i]));
+    const maxWinter = Math.max(...winter.map(i => p[i]));
+    const warmest = Math.max(...t);
+    const med = T >= 3 && minSummer < 40 && minSummer < maxWinter/3;
+    let result;
+    if (warmest < 10) result = 'tundra';
+    else if (P < D/2) result = 'desert';
+    else if (P < D) result = 'dry-grass';
+    else if (T >= 20) result = dry.length <= 2 ? 'trop-rain' : dry.length <= 4 ? 'trop-seasonal' : 'trop-savanna';
+    else if (med) result = 'mediterranean';
+    else if (P >= 2000) result = 'temperate-rain';
+    else result = T >= 3 ? 'deciduous' : 'boreal';
+    return {t,p,T,P,D,dry,summer,winter,share,offset,minSummer,maxWinter,warmest,med,result};
+  }
+  function question(q = state.q) {
+    const c = climate();
+    const comparison = (a,b,unit) => fmt(a) + unit + ' is ' +
+      (a < b ? 'less than ' : a > b ? 'more than ' : 'equal to ') + fmt(b) + unit;
+    const dryNames = c.dry.map(i => MONTHS[i]).join(', ');
+    const qs = [
+      {text:'Is the warmest month below 10 °C?', evidence:'Warmest month: ' + fmt(c.warmest) + ' °C\nThreshold: 10.0 °C',
+        truth:c.warmest < 10, compare:comparison(c.warmest,10,' °C'), yes:'tundra', no:1, months:[c.t.indexOf(c.warmest)]},
+      {text:'Is yearly rain below half the dry line?', evidence:'Yearly rain: ' + fmt(c.P) + ' mm\nHalf the dry line: ' + fmt(c.D/2) + ' mm',
+        truth:c.P < c.D/2, compare:comparison(c.P,c.D/2,' mm'), yes:'desert', no:2, months:[]},
+      {text:'Is yearly rain below the dry line?', evidence:'Yearly rain: ' + fmt(c.P) + ' mm\nDry line: ' + fmt(c.D) + ' mm',
+        truth:c.P < c.D, compare:comparison(c.P,c.D,' mm'), yes:'dry-grass', no:3, months:[]},
+      {text:'Is the yearly average 20 °C or warmer?', evidence:'Yearly average: ' + fmt(c.T) + ' °C\nThreshold: 20.0 °C',
+        truth:c.T >= 20, compare:comparison(c.T,20,' °C'), yes:4, no:5, months:[]},
+      {text:'How many months get under 60 mm?', evidence:'Rain, Jan to Dec (mm):\n' + c.p.map(v => v.toFixed(1)).join(' · '),
+        truth:c.dry.length, compare:station().name + ' has ' + c.dry.length + ' months under 60 mm: ' + dryNames,
+        months:Array.from({length:12},(_,i) => i), chips:true},
+      {text:'Is the average at least 3 °C, with a dry summer?', evidence:'Average ' + fmt(c.T) + ' °C ≥ 3 °C?\nDriest summer: ' +
+        fmt(c.minSummer) + ' mm < 40 mm?\nAlso under ' + fmt(c.maxWinter/3) + ' mm (winter max ÷ 3)?',
+        truth:c.med, compare:'Average ' + fmt(c.T) + ' °C; summer minimum ' + fmt(c.minSummer) +
+        ' mm, against 40.0 and ' + fmt(c.maxWinter/3) + ' mm. All three tests must hold.',
+        yes:'mediterranean', no:6, months:c.summer},
+      {text:'Is yearly rain 2,000 mm or more?', evidence:'Yearly rain: ' + fmt(c.P) + ' mm\nThreshold: 2,000.0 mm',
+        truth:c.P >= 2000, compare:comparison(c.P,2000,' mm'), yes:'temperate-rain', no:7, months:[]},
+      {text:'Is the yearly average 3 °C or warmer?', evidence:'Yearly average: ' + fmt(c.T) + ' °C\nThreshold: 3.0 °C',
+        truth:c.T >= 3, compare:comparison(c.T,3,' °C'), yes:'deciduous', no:'boreal', months:[]}
+    ];
+    return qs[q];
+  }
+  const art = Object.fromEntries([...document.querySelectorAll('[data-art]')].map(img => [img.dataset.art,img.src]));
+  const K = {
+    'bare-soil': ['art:ba-k-bare-soil',.25],
+    burned: ['art:ba-k-burned',.25],
+    scarred: ['art:ba-k-scarred',.25],
+    'green-grass': ['art:ba-k-green-grass',.15],
+    'golden-grass': ['art:ba-k-golden-grass',.15],
+    'sedge-moss': ['art:ba-k-sedge-moss',.15],
+    'desert-annuals': ['art:ba-k-desert-annuals',.15],
+    'tropical-understory': ['art:ba-k-tropical-understory',.3],
+    'evergreen-shrubs': ['art:ba-k-evergreen-shrubs',.3],
+    'leafy-shrubs': ['art:ba-k-leafy-shrubs',.3],
+    'desert-shrubs': ['art:ba-k-desert-shrubs',.3],
+    cecropia: ['art:ba-k-cecropia',.5],
+    'savanna-trees': ['art:ba-k-savanna-trees',.5],
+    'birch-aspen': ['art:ba-k-birch-aspen',.5],
+    pines: ['art:ba-k-pines',.5],
+    'tropical-canopy': ['art:ba-k-tropical-canopy',.85],
+    'oak-hickory': ['art:ba-k-oak-hickory',.85],
+    'douglas-fir': ['art:ba-k-douglas-fir',.85],
+    'cedar-hemlock': ['art:ba-k-cedar-hemlock',.85],
+    'spruce-larch': ['art:ba-k-spruce-larch',.85]
+  };
+  const tropicalStages = [
+    [0,'Bare soil and stumps',{'bare-soil':1}],
+    [1,'Grasses, vines and ferns',{'tropical-understory':.6}],
+    [3,'Fast pioneer trees',{'tropical-understory':1,cecropia:.6}],
+    [20,'Young mixed forest, closed canopy',{cecropia:1,'tropical-canopy':.6}],
+    [60,'Tall mixed forest',{'tropical-canopy':.85,'tropical-understory':1}],
+    [120,'Old-growth structure',{'tropical-canopy':1,'tropical-understory':1}]
+  ];
+  const succession = {
+    'trop-rain': {span:200,event:'Clearing',stages:tropicalStages,note:'The full species mix can take centuries.'},
+    'trop-seasonal': {span:200,event:'Clearing',stages:tropicalStages,note:'Dry seasons bring fire risk to young regrowth.'},
+    'trop-savanna': {span:5,event:'Fire',stages:[
+      [0,'Black ground, trunks still standing',{burned:1}],
+      [.2,'Green grass shoots',{'green-grass':.4}],
+      [1,'Full grass',{'golden-grass':1}],
+      [3,'Trees resprout from roots',{'golden-grass':1,'savanna-trees':.8}]
+    ],note:'Fire every few years is part of how this biome stays itself.'},
+    'dry-grass': {span:8,event:'Fire',stages:[
+      [0,'Burned ground',{burned:1}], [.3,'Shoots from living roots',{'green-grass':.4}],
+      [1,'Grass cover',{'golden-grass':.7}], [5,'Full grassland',{'golden-grass':1}]
+    ],note:''},
+    desert: {span:150,event:'Clearing',stages:[
+      [0,'Scraped soil',{scarred:1}], [5,'Annuals after rain',{scarred:.5,'desert-annuals':.6}],
+      [30,'Scattered shrubs',{'desert-shrubs':.5}], [100,'Shrubs nearly back',{'desert-shrubs':.9,'desert-annuals':.6}]
+    ],note:'Desert soil crusts and shrubs can take a century or more.'},
+    mediterranean: {span:25,event:'Fire',stages:[
+      [0,'Ash',{burned:1}], [1,'Resprouting shrubs and seedlings',{'evergreen-shrubs':.3}],
+      [5,'Knee-high shrubs',{'evergreen-shrubs':.6}], [15,'Dense shrubland',{'evergreen-shrubs':1}]
+    ],note:''},
+    deciduous: {span:150,event:'Clearing',stages:[
+      [0,'Bare field',{'bare-soil':1}], [1,'Annual weeds',{'green-grass':.5}],
+      [3,'Grasses and perennials',{'green-grass':1}],
+      [15,'Shrubs and pine seedlings',{'green-grass':1,'leafy-shrubs':.7,pines:.3}],
+      [40,'Pine and young hardwoods',{pines:.7,'oak-hickory':.5}],
+      [100,'Oak and hickory forest',{'oak-hickory':1,'leafy-shrubs':.5}]
+    ],note:''},
+    'temperate-rain': {span:200,event:'Clearing',stages:[
+      [0,'Stumps',{'bare-soil':1}], [3,'Shrubs and alder',{'leafy-shrubs':.8}],
+      [30,'Young Douglas-fir',{'leafy-shrubs':.8,'douglas-fir':.5}],
+      [100,'Tall conifers',{'douglas-fir':1}], [200,'Old-growth hemlock and cedar',{'douglas-fir':1,'cedar-hemlock':1}]
+    ],note:''},
+    boreal: {span:150,event:'Fire',stages:[
+      [0,'Burned trunks',{burned:1}], [1,'Fireweed and grasses',{'green-grass':.6}],
+      [10,'Birch, aspen and larch saplings',{'birch-aspen':.5}],
+      [50,'Young conifer stand',{'birch-aspen':.8,'spruce-larch':.6}],
+      [120,'Mature taiga',{'spruce-larch':1}]
+    ],note:''},
+    tundra: {span:80,event:'Clearing',stages:[
+      [0,'Scarred ground',{scarred:1}], [10,'Sedges colonize the tracks',{scarred:.5,'sedge-moss':.5}],
+      [50,'Most cover back',{scarred:.2,'sedge-moss':1}]
+    ],note:'Tracks in tundra can stay visible for decades.'}
+  };
+  let V;
+  let activeHint = 'wRead';
+  function hint(id) {
+    activeHint = id;
+    $('hint').textContent = L[id];
+  }
+  function instruct(id, needs) {
+    hint(id);
+    V.how(id,{needs,valid:() => activeHint === id,hint:false});
+  }
+  const welcome = () => {
+    if (state.mode === 'Read') return !state.stationPicked ? ['wRead',{valid:() => !state.stationPicked}] : null;
+    if (state.mode === 'Key') return !state.answers.length && !state.keyResult ?
+      ['wKey',{valid:() => !state.answers.length && !state.keyResult}] : null;
+    if (known() && (state.disturbed || state.playing)) return null;
+    return known() ? ['wChange',{valid:() => known() && !state.disturbed && !state.playing}] :
+      ['needKey',{valid:() => !known()}];
+  };
+  function tally() {
+    const rows = Object.values(state.records).filter(r => r.revealed);
+    return {right:rows.filter(r => r.correct && r.prediction === S[r.station].real).length,total:rows.length};
+  }
+  function renderTally() {
+    const t = tally();
+    $('tally').textContent = 'Predicted right: ' + t.right + ' of ' + t.total;
+  }
+  function readStation(i) {
+    V.hush();
+    state.station = Number(i);
+    state.generation++;
+    state.stationPicked = true;
+    state.playing = false;
+    state.dT = 0;
+    state.dP = 0;
+    state.disturbed = false;
+    state.years = succession[station().real].span;
+    loadKey();
+    render();
+    if (state.mode === 'Read') instruct('placeIt','#place');
+    else if (state.mode === 'Key') keyHint();
+    else changeHint();
+    Curio.tone(380 + state.station*14,.06,.025);
+    if (!Curio.reduce && state.mode === 'Read') {
+      $('climo').animate([{opacity:.45,transform:'translateY(4px)'},{opacity:1,transform:'none'}],{duration:300,easing:'ease-out'});
+    }
+  }
+  function loadKey() {
+    const r = state.records[state.station];
+    state.answers = r ? r.answers.slice() : [];
+    state.keyResult = r ? r.prediction : null;
+    state.revealed = !!(r && r.revealed);
+    state.q = 0;
+    state.checked = false;
+    $('check-results').hidden = true;
+  }
+  function setMode(m) {
+    V.hush();
+    state.playing = false;
+    state.mode = m;
+    if (m === 'Change' && known() && !state.placed.includes(state.station)) {
+      state.placed.push(state.station);
+      save();
+    }
+    document.body.dataset.mode = m.toLowerCase();
+    render();
+    document.querySelector('.panel').scrollTop = 0;
+    if (m === 'Key' && !state.keyResult) {
+      $('answers').querySelector('button')?.focus({preventScroll:true});
+    }
+    if (m === 'Read') hint(state.stationPicked ? 'placeIt' : 'wRead');
+    else if (m === 'Key') keyHint(false);
+    else changeHint(false);
+    if (!V.welcome()) {
+      const id = activeHint;
+      if (!V.heard(id)) V.how(id,{valid:() => activeHint === id,hint:false});
+    }
+  }
+  function keyHint(speak = true) {
+    const id = state.keyResult ? state.revealed ? 'next' : 'reveal' : state.answers.length ? 'answerNext' : 'wKey';
+    hint(id);
+    if (speak) V.how(id,{valid:() => activeHint === id,hint:false});
+  }
+  function changeHint(speak = true) {
+    const id = !known() ? 'needKey' : state.playing ? 'playing' : state.disturbed ? 'scrub' : 'wChange';
+    hint(id);
+    if (speak) V.how(id,{valid:() => activeHint === id,hint:false,needs:known() ? '#play' : '#go-key'});
+  }
+  function answer(value) {
+    if (state.keyResult) return;
+    const q = question();
+    state.answers.push({q:state.q,value,correct:value === q.truth,comparison:q.compare});
+    const next = q.chips ? value <= 2 ? 'trop-rain' : value <= 4 ? 'trop-seasonal' : 'trop-savanna' :
+      value ? q.yes : q.no;
+    if (typeof next === 'string') {
+      state.keyResult = next;
+      state.records[state.station] = {
+        station:state.station,prediction:next,answers:state.answers.slice(),
+        correct:state.answers.every(a => a.correct),revealed:false
+      };
+      save();
+      Curio.tone(660,.12,.04);
+    } else {
+      state.q = next;
+      Curio.tone(440,.05,.025);
+    }
+    renderKey();
+    renderMap();
+    keyHint();
+    renderTally();
+  }
+  function keyAgain() {
+    state.keyResult = null;
+    state.revealed = false;
+    state.q = 0;
+    state.answers = [];
+    state.checked = false;
+    $('check-results').hidden = true;
+    renderKey();
+    keyHint();
+    $('answers').querySelector('button')?.focus({preventScroll:true});
+    Curio.tone(390,.06,.025);
+  }
+  function reveal() {
+    if (!state.keyResult) return;
+    state.revealed = true;
+    state.records[state.station].revealed = true;
+    save();
+    renderKey();
+    renderTally();
+    const allCorrect = state.answers.every(a => a.correct);
+    const id = state.keyResult === station().real ? 'match' : allCorrect ? 'miss' : 'wrongPath';
+    const i = state.station;
+    V.say(id,{now:true,valid:() => state.station === i && state.revealed,hint:false});
+    hint('next');
+    $('next').focus({preventScroll:true});
+    Curio.tone(id === 'match' ? 650 : 260,.2,.035);
+  }
+  function checkAnswers() {
+    state.checked = true;
+    $('check-results').hidden = false;
+    const errors = state.answers.filter(a => !a.correct);
+    $('check-results').innerHTML = errors.length ?
+      errors.map(a => '<p>↳ ' + a.comparison + '</p>').join('') :
+      '<p>✓ Every answer follows the station numbers.' +
+        (state.station === 6 ? ' The miss is in the model, not your arithmetic.' : '') + '</p>';
+    hint(state.revealed ? 'next' : 'check');
+    Curio.tone(errors.length ? 270 : 570,.1,.025);
+  }
+  function card(b, label, extra = '') {
+    return '<figure class="scene-card"><img src="' + art[b] + '" alt="' + name(b) + ' landscape">' +
+      '<figcaption><small>' + label + '</small>' + name(b) +
+      (extra ? '<div class="meta">' + extra + '</div>' : '') + '</figcaption></figure>';
+  }
+  function renderKey() {
+    $('key-work').hidden = state.revealed;
+    $('reveal-view').hidden = !state.revealed;
+    $('reveal').disabled = !state.keyResult || state.revealed;
+    $('check').disabled = !state.keyResult;
+    $('next').disabled = !state.keyResult;
+    $('again').disabled = !state.keyResult && !state.answers.length;
+    const last = state.answers.at(-1);
+    $('last-comparison').textContent = last ? last.comparison : 'Follow your own answers. Check them at the end.';
+    $('path').innerHTML = state.answers.map((a,i) => '<div>' + String(i+1).padStart(2,'0') + ' / ' +
+      (typeof a.value === 'boolean' ? a.value ? 'Yes' : 'No' : a.value + ' months') + '</div>').join('');
+    if (state.revealed) {
+      const match = state.keyResult === station().real;
+      $('match-status').textContent = match ? 'Match' : 'Miss';
+      $('match-status').style.color = match ? 'var(--leaf)' : '#f0c68d';
+      $('reveal-cards').innerHTML = card(state.keyResult,'Your prediction') + card(station().real,'Real biome',REAL[state.station]);
+      $('miss-note').hidden = match;
+      $('miss-note').innerHTML = state.station === 6 && state.answers.every(a => a.correct) ?
+        '<strong>Why the key missed</strong><p>Dodge City gets just enough rain on average for trees, but the key uses averages. ' +
+        'Dry years, big summer storms that run off, hot winds, fire and grazing all favor grass. Before farms, prairie fires ' +
+        'kept trees to the creek banks. A key built on two numbers draws a sharp line where nature has a wide edge.</p>' :
+        '<strong>Trace the comparisons</strong><p>Your answers led here. Press Check my answers to compare each step with the station numbers.</p>';
+    } else if (state.keyResult) {
+      $('mini-compact').hidden = true;
+      $('question-step').textContent = 'YOUR PREDICTION';
+      $('question-text').textContent = name(state.keyResult);
+      $('evidence').textContent = 'Your path is complete.\nPress Reveal to compare it with the real biome.';
+      $('answers').replaceChildren();
+    } else {
+      const q = question();
+      $('mini-compact').hidden = false;
+      $('question-step').textContent = 'CLIMATE KEY / ' + String(state.answers.length+1).padStart(2,'0');
+      $('question-text').textContent = q.text;
+      $('evidence').textContent = q.evidence;
+      $('answers').classList.toggle('chips',!!q.chips);
+      const choices = q.chips ? Array.from({length:13},(_,i) => i) : [true,false];
+      const buttons = [...$('answers').children];
+      buttons.slice(choices.length).forEach(b => b.remove());
+      choices.forEach((value,i) => {
+        const b = buttons[i] || document.createElement('button');
+        b.className = 'btn';
+        b.textContent = typeof value === 'boolean' ? value ? 'Yes' : 'No' : value;
+        b.dataset.answer = value;
+        b.onclick = () => {
+          answer(value);
+          const target = $('answers').querySelector('button') || $('reveal');
+          target.focus({preventScroll:true});
+        };
+        if (!b.parentElement) $('answers').append(b);
+      });
+      drawClimo($('mini'),q.months);
+      drawClimo($('mini-compact'),q.months);
+    }
+  }
+  function renderStation() {
+    const s = station();
+    const c = climate(s,state.mode === 'Change' ? state.dT : 0,state.mode === 'Change' ? state.dP : 0);
+    $('station').value = state.station;
+    $('station-name').textContent = s.name;
+    $('station-meta').textContent = s.country + ' · ' + Math.abs(s.lat).toFixed(3) + '° ' + (s.lat >= 0 ? 'N' : 'S') +
+      ' · ' + s.elevation.toLocaleString() + ' m';
+    $('annual-t').textContent = fmt(c.T) + '°C';
+    $('annual-p').textContent = fmt(c.P) + ' mm';
+    $('chart-title').textContent = 'A year in ' + s.name;
+  }
+  function svgText(x,y,text,cls = 'axis-text',anchor = 'start') {
+    return '<text x="' + x + '" y="' + y + '" class="' + cls + '" text-anchor="' + anchor + '">' + text + '</text>';
+  }
+  function drawClimo(el,months = []) {
+    const box = el.getBoundingClientRect();
+    if (!box.width || !box.height) return;
+    const W = box.width, H = box.height;
+    el.setAttribute('viewBox','0 0 ' + W + ' ' + H);
+    const small = el.id.startsWith('mini');
+    const Lm = small ? 28 : 36, Rm = small ? 26 : 35;
+    const top = H < 110 ? 14 : 24, bottom = H < 110 ? 20 : 25;
+    const pw = W - Lm - Rm, ph = H-top-bottom;
+    const c = climate();
+    const order = Array.from({length:12},(_,i) => station().lat < 0 ? (i+6)%12 : i);
+    const x = i => Lm + (i+.5)*pw/12;
+    const rainY = v => top + ph*(1-Math.min(400,v)/400);
+    const tempY = v => top + ph*(1-(v+40)/80);
+    let out = '';
+    for (const v of (H < 110 ? [0,400] : [0,100,200,300,400])) {
+      const yy = rainY(v);
+      out += '<line x1="' + Lm + '" y1="' + yy + '" x2="' + (W-Rm) + '" y2="' + yy + '" class="grid-line"/>';
+      out += svgText(Lm-6,yy+4,v,'axis-text','end');
+    }
+    for (const v of (H < 110 ? [-40,40] : [-40,-20,0,20,40])) out += svgText(W-Rm+6,tempY(v)+4,v);
+    out += svgText(Lm,13,'mm') + svgText(W-Rm,13,'°C','axis-text','end');
+    let path = '';
+    order.forEach((m,i) => {
+      const xx = x(i);
+      if (months.includes(m)) out += '<rect x="' + (xx-pw/24+1) + '" y="' + top +
+        '" width="' + (pw/12-2) + '" height="' + ph + '" class="month-halo"/>';
+      out += '<rect x="' + (xx-pw/36) + '" y="' + rainY(c.p[m]) + '" width="' + (pw/18) +
+        '" height="' + (top+ph-rainY(c.p[m])) + '" rx="2" class="rain"><title>' + MONTHS[m] + ': ' + fmt(c.p[m]) + ' mm</title></rect>';
+      out += svgText(xx,H-8,small ? MONTHS[m][0] : MONTHS[m],'axis-text','middle');
+      path += (i ? 'L' : 'M') + xx + ',' + tempY(c.t[m]) + ' ';
+    });
+    out += '<path d="' + path + '" class="temp"/>';
+    order.forEach((m,i) => {
+      out += '<circle cx="' + x(i) + '" cy="' + tempY(c.t[m]) + '" r="' + (small ? 2 : 3.4) +
+        '" fill="var(--gr-4)" stroke="#0e1520" stroke-width="1.5"><title>' + MONTHS[m] + ': ' + fmt(c.t[m]) + ' °C</title></circle>';
+    });
+    if (c.p.some(v => v > 400)) out += svgText(Lm,top+12,'Rain above 400 mm is clipped.');
+    el.innerHTML = out;
+    el.setAttribute('aria-label',station().name + '. ' + (station().lat < 0 ? 'July to June. ' : 'January to December. ') +
+      'Monthly rain from 0 to 400 millimeters; temperature from minus 40 to 40 degrees Celsius.');
+  }
+  function updateMapPins() {
+    $('map').querySelectorAll('.pin').forEach(pin => {
+      const i = Number(pin.dataset.station);
+      const record = state.records[i];
+      const biome = state.layer === 'real' ? record?.revealed ? S[i].real : null : record ? record.prediction : null;
+      const code = biome ? B[biome][1] : '?';
+      pin.classList.toggle('selected',i === state.station);
+      pin.querySelector('circle').setAttribute('fill',biome ? B[biome][2] : '#81949b');
+      pin.querySelector('text').textContent = code;
+      pin.setAttribute('aria-label',S[i].name + ', ' + S[i].country + (biome ? ', ' + code : ', unkeyed'));
+    });
+    const selected = $('map').querySelector('.pin.selected circle');
+    const ripple = $('map').querySelector('.map-idle');
+    if (selected && ripple) {
+      ripple.setAttribute('cx',selected.getAttribute('cx'));
+      ripple.setAttribute('cy',selected.getAttribute('cy'));
+    }
+    $('map-key').textContent = state.layer === 'mine' ? '? unkeyed · letters are predictions' : 'Real biomes appear after Reveal';
+  }
+  function renderMap() {
+    const el = $('map');
+    const box = el.getBoundingClientRect();
+    if (!box.width || !box.height) return;
+    const W = box.width, H = box.height;
+    const signature = W + ':' + H;
+    if (el.dataset.size === signature && el.querySelectorAll('.pin').length === S.length) {
+      updateMapPins();
+      return;
+    }
+    const compactMap = W < 600 || H < 150;
+    $('map-wrap').querySelector('.map-caption').hidden = compactMap;
+    $('map-key').hidden = compactMap;
+    const focusedPin = document.activeElement.closest?.('.pin')?.dataset.station;
+    el.setAttribute('viewBox','0 0 ' + W + ' ' + H);
+    const mapW = Math.min(W,H*2.25);
+    const mapH = mapW/2;
+    const ox = (W-mapW)/2, oy = (H-mapH)/2 + 9;
+    const px = lon => ox + (lon+180)/360*mapW;
+    const py = lat => oy + (90-lat)/180*mapH;
+    let out = '';
+    for (let lat=-60;lat<=60;lat+=30) out += '<line x1="0" y1="' + py(lat) + '" x2="' + W +
+      '" y2="' + py(lat) + '" stroke="#9fb4c00c"/>';
+    out += '<path d="' + WORLD.d + '" transform="translate(' + ox + ',' + oy + ') scale(' +
+      (mapW/WORLD.w) + ',' + (mapH/WORLD.h) + ')" fill="#1d2a33" stroke="#3a4a5a" stroke-width="1"/>';
+    // Close European stations get separate, connected targets without moving their geographic anchors.
+    const targetPositions = S.map(s => [px(s.lon),py(s.lat)]);
+    const overrides = {
+      7:[px(13.402)-17,py(52.467)-11],
+      12:[px(13.854)+17,py(46.379)+13],
+      8:[px(-124.555)-13,py(47.938)-3],
+      6:[px(-99.968)+13,py(37.761)+5]
+    };
+    const narrow = W < 500;
+    const positions = targetPositions.map((p,i) => (overrides[i] || p).slice());
+    for (let pass = 0; pass < 160; pass++) {
+      for (let i = 0; i < positions.length; i++) {
+        for (let j = i+1; j < positions.length; j++) {
+          const dx = positions[j][0]-positions[i][0];
+          const dy = positions[j][1]-positions[i][1];
+          const distance = Math.hypot(dx,dy) || .01;
+          const minimum = matchMedia('(pointer:coarse)').matches ? 35 : 29;
+          if (distance < minimum) {
+            const shift = (minimum-distance)/2;
+            const ux = dx/distance || 1, uy = dy/distance;
+            positions[i][0] -= ux*shift;
+            positions[i][1] -= uy*shift;
+            positions[j][0] += ux*shift;
+            positions[j][1] += uy*shift;
+          }
+        }
+      }
+      positions.forEach(p => {
+        p[0] = Math.max(18,Math.min(W-18,p[0]));
+        p[1] = Math.max(compactMap ? 16 : 36,Math.min(H-(compactMap ? 16 : 30),p[1]));
+      });
+    }
+    const radius = matchMedia('(pointer:coarse)').matches ? 16 : 12;
+    S.forEach((s,i) => {
+      const [gx,gy] = targetPositions[i];
+      const [xx,yy] = positions[i];
+      if (Math.hypot(xx-gx,yy-gy) > 2) out += '<line x1="' + gx + '" y1="' + gy + '" x2="' + xx + '" y2="' + yy +
+        '" stroke="#73877a" stroke-width="1" pointer-events="none"/>';
+      const record = state.records[i];
+      const biome = state.layer === 'real' ? record?.revealed ? s.real : null : record ? record.prediction : null;
+      const fill = biome ? B[biome][2] : '#81949b';
+      const code = biome ? B[biome][1] : '?';
+      if (i === state.station) out += '<circle class="map-idle" cx="' + xx + '" cy="' + yy + '" r="12"/>';
+      out += '<g role="button" tabindex="0" class="pin ' + (i === state.station ? 'selected' : '') +
+        '" data-station="' + i + '" aria-label="' + s.name + ', ' + s.country +
+        (biome ? ', ' + code : ', unkeyed') + '"><title>' + s.name + ', ' + s.country + '</title>' +
+        '<circle cx="' + xx + '" cy="' + yy + '" r="' + radius + '" fill="' + fill + '"/>' +
+        '<text x="' + xx + '" y="' + yy + '">' + code + '</text>' +
+        '<text class="pin-label" x="' + Math.max(55,Math.min(W-55,xx)) + '" y="' +
+        (yy < 55 ? yy + 23 : yy - 19) + '">' + s.name + '</text></g>';
+    });
+    el.innerHTML = out;
+    el.dataset.size = signature;
+    el.querySelectorAll('.pin').forEach(pin => {
+      pin.onclick = () => {
+        const i = Number(pin.dataset.station);
+        readStation(i);
+        $('map').querySelector('[data-station="' + i + '"]')?.focus({preventScroll:true});
+      };
+      pin.onkeydown = e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const i = Number(pin.dataset.station);
+          readStation(i);
+          $('map').querySelector('[data-station="' + i + '"]').focus({preventScroll:true});
+        } else if (e.key.startsWith('Arrow')) {
+          e.preventDefault();
+          const delta = ['ArrowRight','ArrowDown'].includes(e.key) ? 1 : -1;
+          const i = (Number(pin.dataset.station)+delta+S.length)%S.length;
+          $('map').querySelector('[data-station="' + i + '"]').focus({preventScroll:true});
+        }
+      };
+    });
+    if (focusedPin !== undefined) {
+      el.querySelector('[data-station="' + focusedPin + '"]')?.focus({preventScroll:true});
+    }
+    $('map-key').textContent = state.layer === 'mine' ? '? unkeyed · letters are predictions' : 'Real biomes appear after Reveal';
+  }
+  let placedAnimation = false;
+  function drawSpace() {
+    const el = $('space');
+    const box = el.getBoundingClientRect();
+    if (!box.width || !box.height) return;
+    const W = box.width, H = box.height;
+    el.setAttribute('viewBox','0 0 ' + W + ' ' + H);
+    const left = 40, right = 18, top = 10, bottom = 30;
+    const x = t => left+(t+15)/45*(W-left-right);
+    const y = p => H-bottom-p/2800*(H-top-bottom);
+    const c = climate(station(),state.mode === 'Change' ? state.dT : 0,state.mode === 'Change' ? state.dP : 0);
+    const dryP = t => 20*t+c.offset;
+    let out = '<defs><clipPath id="space-clip"><rect x="' + left + '" y="' + top + '" width="' +
+      (W-left-right) + '" height="' + (H-top-bottom) + '"/></clipPath></defs>';
+    for (const p of [0,1000,2000]) {
+      out += '<line class="grid-line" x1="' + left + '" y1="' + y(p) + '" x2="' + (W-right) + '" y2="' + y(p) + '"/>';
+      out += svgText(left-5,y(p)+4,p,'axis-text','end');
+    }
+    for (const t of [-15,3,20,30]) {
+      out += '<line class="grid-line" x1="' + x(t) + '" y1="' + top + '" x2="' + x(t) + '" y2="' + (H-bottom) + '"/>';
+      out += svgText(x(t),H-14,t,'axis-text','middle');
+    }
+    out += '<g clip-path="url(#space-clip)"><path d="M' + x(-15) + ',' + y(0) + 'L' + x(-15) + ',' +
+      y(dryP(-15)) + 'L' + x(30) + ',' + y(dryP(30)) + 'L' + x(30) + ',' + y(0) +
+      'Z" fill="#d9c27a12"/><line x1="' + x(-15) + '" y1="' + y(dryP(-15)) + '" x2="' + x(30) +
+      '" y2="' + y(dryP(30)) + '" stroke="#d9c27a" stroke-dasharray="4 4"/>';
+    if (state.placed.length !== 13) {
+      out += svgText(x(28),y(Math.max(0,dryP(23)/2)),'dry side','axis-text','end');
+    }
+    state.placed.forEach(i => {
+      const sc = climate(S[i]);
+      const showCurrent = i === state.station && state.mode === 'Change';
+      const t = showCurrent ? c.T : sc.T, p = showCurrent ? c.P : sc.P;
+      const xx = Math.max(left+5,Math.min(W-right-5,x(t)));
+      const yy = Math.max(top+5,Math.min(H-bottom-5,y(p)));
+      out += '<circle cx="' + xx + '" cy="' + yy + '" r="' + (i === state.station ? 5 : 3.5) +
+        '" fill="' + (i === state.station ? '#b9e9a2' : '#91abc2') + '" stroke="#0e1520" stroke-width="1.5"' +
+        (placedAnimation && i === state.station ? ' class="active-dot"' : '') + '><title>' + S[i].name +
+        ': ' + fmt(t) + ' °C, ' + fmt(p) + ' mm</title></circle>';
+    });
+    if (state.placed.length === 13) {
+      const points = state.placed.map(i => {
+        const current = i === state.station && state.mode === 'Change';
+        const sc = climate(S[i],current ? state.dT : 0,current ? state.dP : 0);
+        return {i,x:Math.max(left+5,Math.min(W-right-5,x(sc.T))),
+          y:Math.max(top+5,Math.min(H-bottom-5,y(sc.P)))};
+      });
+      const occupied = [];
+      const overlap = (a,b) => Math.max(0,Math.min(a.x+16,b.x+16)-Math.max(a.x,b.x)) *
+        Math.max(0,Math.min(a.y+3,b.y+3)-Math.max(a.y-12,b.y-12));
+      points.forEach(point => {
+        let best = null;
+        for (let xx = left+2; xx <= W-right-16; xx += 18) {
+          for (let yy = top+15; yy <= H-bottom-3; yy += 16) {
+            const candidate = {x:xx,y:yy};
+            const collision = occupied.reduce((sum,box) => sum+overlap(candidate,box),0);
+            const dotHits = points.filter(q => q.x > xx-4 && q.x < xx+20 && q.y > yy-16 && q.y < yy+7).length;
+            const axisHit = xx < left+58 && yy < top+24 ? 1 : 0;
+            const score = collision*1000 + axisHit*1000000 + dotHits*500 + Math.hypot(xx+8-point.x,yy-5-point.y);
+            if (!best || score < best.score) best = {...candidate,score};
+          }
+        }
+        if (!best) best = {x:Math.max(left,Math.min(W-right-16,point.x)),y:top+15};
+        occupied.push(best);
+        out += '<line x1="' + point.x + '" y1="' + point.y + '" x2="' + (best.x+7) + '" y2="' +
+          (best.y-5) + '" stroke="#91abc2" stroke-width=".7" opacity=".6"/>';
+        out += svgText(best.x,best.y,String(point.i+1).padStart(2,'0'),'axis-text space-label');
+      });
+    }
+    out += '</g>' + svgText(W-right,H-2,'Annual temperature (°C)','axis-text','end') + svgText(left,top+9,'Rain (mm)');
+    el.innerHTML = out;
+    $('visited').textContent = state.placed.length + ' / 13 placed';
+    $('dry-line').textContent = 'Dry line D = 20T + ' + c.offset + ' = ' + fmt(c.D) + ' mm · ' +
+      Math.round(c.share*100) + '% of rain in summer half.' +
+      (state.placed.length === 13 ? ' Shading: below the dry line.' : '') +
+      (c.T < -15 || c.T > 30 || c.P > 2800 ? ' Dot at edge: climate is beyond these axes.' : '');
+    $('station-legend').hidden = state.placed.length !== 13;
+    $('station-legend').innerHTML = S.map((s,i) =>
+      '<span>' + String(i+1).padStart(2,'0') + ' ' + s.name + '</span>').join('');
+    if (state.placed.length === 13) {
+      // A complete text legend labels all points without squeezing names into a small plot.
+      el.setAttribute('aria-label',S.map((s,i) => {
+        const current = i === state.station && state.mode === 'Change';
+        const sc = climate(s,current ? state.dT : 0,current ? state.dP : 0);
+        return s.name + ': ' + fmt(sc.T) + ' °C, ' + fmt(sc.P) + ' mm';
+      }).join('; '));
+    }
+  }
+  function destination() {
+    if (!state.dT && !state.dP) return station().real;
+    return climate(station(),state.dT,state.dP).result;
+  }
+  function span() {
+    return Math.max(succession[station().real].span,succession[destination()].span);
+  }
+  function stageAt(b,y) {
+    const stages = succession[b].stages;
+    let result = stages[0];
+    for (const stage of stages) if (y >= stage[0]) result = stage;
+    return result;
+  }
+  Object.entries(K).forEach(([id,[src]]) => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = '';
+    img.className = 'layer';
+    img.dataset.piece = id;
+    img.style.opacity = 0;
+    $('layers').append(img);
+  });
+  function renderLandscape() {
+    const isKnown = known();
+    $('need-key').hidden = isKnown;
+    $('land-top').hidden = !isKnown;
+    $('land-caption').hidden = !isKnown;
+    $('layers').hidden = !isKnown;
+    $('shift-cards').hidden = true;
+    $('recovery-progress').hidden = !isKnown;
+    if (!isKnown) return;
+    const from = station().real;
+    const to = destination();
+    const shifted = to !== from;
+    const finished = state.disturbed && state.years >= span();
+    $('landscape').classList.toggle('recovered',finished);
+    $('recovery-progress').style.width = state.disturbed ? state.years/span()*100 + '%' : '0';
+    const original = stageAt(from,state.years);
+    const changed = stageAt(to,state.years);
+    const blend = shifted ? Math.max(0,Math.min(1,(state.years/span()-.3)/.5)) : 0;
+    const pieces = {};
+    const groundPieces = ['bare-soil','burned','scarred'];
+    for (const [id,m] of Object.entries(original[2])) {
+      const ground = groundPieces.includes(id);
+      pieces[id] = {height:ground ? 1 : m,opacity:(1-blend)*(ground ? m : 1)};
+    }
+    for (const [id,m] of Object.entries(changed[2])) {
+      const ground = groundPieces.includes(id);
+      const height = ground ? 1 : m;
+      const opacity = blend*(ground ? m : 1);
+      if (pieces[id]) {
+        pieces[id].height = pieces[id].height*(1-blend)+height*blend;
+        pieces[id].opacity += opacity;
+      } else pieces[id] = {height,opacity};
+    }
+    // The stage list establishes drawing order, including understory in front of the canopy.
+    let z = 1;
+    const ordered = [...new Set([...Object.keys(original[2]),...Object.keys(changed[2])])];
+    $('layers').querySelectorAll('img').forEach(img => {
+      const piece = pieces[img.dataset.piece];
+      img.style.opacity = piece ? piece.opacity : 0;
+      if (piece) {
+        const share = K[img.dataset.piece][1]*piece.height/.88;
+        img.style.height = 'calc((100% - var(--ground-line)) * ' + share + ')';
+        img.style.zIndex = ordered.indexOf(img.dataset.piece)+1;
+      }
+    });
+    $('land-title').textContent = name(blend >= .5 ? to : from);
+    $('year-badge').textContent = 'YEAR ' + yearText(state.years);
+    const activeStage = blend >= .5 ? changed : original;
+    const activeBiome = blend >= .5 ? to : from;
+    $('stage-label').textContent = activeStage[1];
+    const nextStage = succession[activeBiome].stages.find(s => s[0] > state.years);
+    $('path-note').textContent = finished && !shifted ?
+      yearText(state.years) + ' years after ' + succession[from].event.toLowerCase() + '. Same climate, same biome.' :
+      state.years >= span() && shifted ?
+      'Would take decades to centuries, and might stall: seeds, soils and fire decide the path.' :
+      nextStage ? 'Next: ' + nextStage[1].toLowerCase() + ', near year ' + nextStage[0] + '. Times are approximate.' :
+      succession[activeBiome].note || 'The mature structure holds as the climate stays similar. Drag Years after to compare.';
+    const groundLine = Math.max($('landscape').clientHeight*.12,$('land-caption').offsetHeight+20);
+    $('landscape').style.setProperty('--ground-line',groundLine+'px');
+    if (shifted) {
+      $('shift-cards').hidden = false;
+      const signature = from + ':' + to;
+      if ($('shift-cards').dataset.signature !== signature) {
+        $('shift-cards').innerHTML = card(from,'Was') + card(to,'Key now says');
+        $('shift-cards').dataset.signature = signature;
+      }
+    }
+  }
+  const yearText = y => y < 1 && y > 0 ? y.toFixed(2).replace(/0$/,'') : y < 10 ? y.toFixed(1).replace(/\.0$/,'') : String(Math.round(y));
+  function renderChange() {
+    const enable = known();
+    ['disturb','play','years','temperature','precipitation','reset-climate'].forEach(id => $(id).disabled = !enable);
+    $('disturb').textContent = succession[station().real].event;
+    $('disturb').title = succession[station().real].event === 'Clearing' ? 'Disturb the land and restart at year zero' : 'Burn and restart at year zero';
+    $('play').textContent = state.playing ? 'Ⅱ Pause' : '▶ Play';
+    $('years').max = span();
+    $('years').step = span()/200;
+    $('years').value = state.years;
+    $('years-out').textContent = yearText(state.years) + ' / ' + span() + ' y';
+    $('temperature').value = state.dT;
+    $('precipitation').value = state.dP;
+    $('dt-out').textContent = (state.dT > 0 ? '+' : '') + state.dT + ' °C';
+    $('dp-out').textContent = (state.dP > 0 ? '+' : '') + state.dP + '%';
+    const stages = succession[destination()].stages;
+    let lastTickLabel = -Infinity;
+    $('ticks').innerHTML = stages.map(s => {
+      const position = s[0]/span()*$('years').clientWidth;
+      const label = position-lastTickLabel >= 32;
+      if (label) lastTickLabel = position;
+      return '<span style="position:absolute;border-top:3px solid #71845e;left:' + s[0]/span()*100 +
+        '%;transform:translateX(-50%)">' + (label ? s[0] : '') + '</span>';
+    }).join('');
+    $('now-biome').textContent = enable ? 'Key now says: ' + name(climate(station(),state.dT,state.dP).result) : 'Complete the key to open recovery.';
+    renderLandscape();
+  }
+  function disturb() {
+    if (!known()) return;
+    state.years = 0;
+    state.disturbed = true;
+    state.generation++;
+    renderChange();
+    hint(state.playing ? 'playing' : 'scrub');
+    Curio.tone(succession[station().real].event === 'Fire' ? 100 : 170,.2,.05,'sawtooth');
+    if (!Curio.reduce) $('landscape').animate([{filter:'brightness(1.7)'},{filter:'brightness(1)'}],{duration:300});
+  }
+  let previousTime = null;
+  function tick(time) {
+    if (state.playing) {
+      const delta = previousTime === null ? 0 : Math.min(100,time-previousTime);
+      state.years = Math.min(span(),state.years+delta/8000*span());
+      renderChange();
+      if (state.years >= span()) {
+        state.playing = false;
+        renderChange();
+        if (!state.dT && !state.dP && state.disturbed) {
+          const gen = state.generation;
+          V.say('sameBack',{now:true,valid:() => state.generation === gen && state.years >= span(),hint:false});
+          hint('changed');
+          Curio.tone(530,.15,.035);
+        } else hint('changed');
+      }
+    }
+    previousTime = time;
+    requestAnimationFrame(tick);
+  }
+  function togglePlay() {
+    if (!known()) return;
+    if (state.playing) state.playing = false;
+    else {
+      if (state.years >= span()) state.years = 0;
+      state.playing = true;
+    }
+    previousTime = null;
+    renderChange();
+    hint(state.playing ? 'playing' : 'scrub');
+    Curio.tone(state.playing ? 450 : 300,.07,.03);
+  }
+  function updateClimate() {
+    const old = climate(station(),state.dT,state.dP).result;
+    state.dT = +$('temperature').value;
+    state.dP = +$('precipitation').value;
+    state.years = Math.min(state.years,span());
+    const now = climate(station(),state.dT,state.dP).result;
+    renderStation();
+    renderChange();
+    drawSpace();
+    hint('changed');
+    if (old !== now) {
+      const i = state.station;
+      V.say('shifted',{now:true,valid:() => state.station === i &&
+        climate(station(),state.dT,state.dP).result === now,hint:false});
+      Curio.tone(420,.1,.03);
+    }
+  }
+  function place() {
+    state.stationPicked = true;
+    if (!state.placed.includes(state.station)) state.placed.push(state.station);
+    save();
+    if (!Curio.reduce) {
+      const start = $('annual-p').getBoundingClientRect();
+      const bounds = $('space').getBoundingClientRect();
+      const c = climate();
+      const targetX = bounds.left + 40 + (c.T+15)/45*(bounds.width-58);
+      const targetY = bounds.top + bounds.height-30-c.P/2800*(bounds.height-40);
+      const dot = document.createElement('div');
+      Object.assign(dot.style,{
+        position:'fixed',left:targetX+'px',top:targetY+'px',width:'10px',height:'10px',
+        borderRadius:'50%',background:'#b9e9a2',boxShadow:'0 0 16px #b9e9a2',zIndex:100,pointerEvents:'none'
+      });
+      document.body.append(dot);
+      const flight = dot.animate([
+        {transform:'translate('+(start.x-targetX)+'px,'+(start.y-targetY)+'px) scale(1.7)'},
+        {transform:'translate(0,0) scale(1)'}
+      ],{duration:600,easing:'cubic-bezier(.2,.6,.3,1)'});
+      flight.onfinish = () => dot.remove();
+    }
+    placedAnimation = true;
+    drawSpace();
+    placedAnimation = false;
+    $('place').classList.remove('flash');
+    void $('place').offsetWidth;
+    $('place').classList.add('flash');
+    instruct('placeAgain','#m-key');
+    Curio.tone(580,.13,.035);
+  }
+  function reset() {
+    const untouched = state.mode === 'Read' && state.station === 0 && !state.stationPicked &&
+      !state.placed.length && !Object.keys(state.records).length && !state.answers.length && !state.keyResult &&
+      !state.dT && !state.dP;
+    if (untouched) {
+      hint('wRead');
+      V.welcome();
+      return;
+    }
+    V.hush();
+    state.records = {};
+    state.placed = [];
+    state.station = 0;
+    state.stationPicked = false;
+    state.dT = 0;
+    state.dP = 0;
+    state.years = 200;
+    state.playing = false;
+    state.disturbed = false;
+    state.generation++;
+    loadKey();
+    save();
+    setMode('Read');
+  }
+  function render() {
+    document.body.dataset.mode = state.mode.toLowerCase();
+    ['Read','Key','Change'].forEach(m => {
+      $(m.toLowerCase()+'-view').hidden = state.mode !== m;
+      $('m-'+m.toLowerCase()).setAttribute('aria-pressed',state.mode === m);
+      $(m.toLowerCase()+'-controls').hidden = state.mode !== m;
+    });
+    $('check-results').hidden = state.mode !== 'Key' || !state.checked;
+    if (state.mode === 'Key') {
+      $('key-map-slot').replaceWith($('map-wrap'));
+      $('map-wrap').after(Object.assign(document.createElement('div'),{id:'key-map-slot',hidden:true}));
+    } else if (!$('read-view').contains($('map-wrap'))) {
+      $('read-view').prepend($('map-wrap'));
+    }
+    renderStation();
+    if (state.mode === 'Key') renderKey();
+    if (state.mode === 'Change') renderChange();
+    renderMap();
+    drawClimo($('climo'));
+    drawSpace();
+    renderTally();
+  }
+  function layout() {
+    document.body.classList.toggle('compact',innerWidth > 600 && (innerHeight <= 700 || (innerWidth < 1050 && innerWidth > 760)));
+    renderMap();
+    drawClimo($('climo'));
+    if (state.mode === 'Key') {
+      drawClimo($('mini'),state.keyResult ? [] : question().months);
+      drawClimo($('mini-compact'),state.keyResult ? [] : question().months);
+    }
+    drawSpace();
+    if (state.mode === 'Change') renderLandscape();
+  }
+  S.forEach((s,i) => $('station').add(new Option(s.name + ' · ' + s.country,i)));
+  $('station').onchange = () => readStation($('station').value);
+  ['Read','Key','Change'].forEach(m => $('m-'+m.toLowerCase()).onclick = () => {
+    if (state.mode !== m) setMode(m);
+  });
+  $('place').onclick = place;
+  $('show-all').onclick = () => {
+    state.placed = S.map((_,i) => i);
+    save();
+    drawSpace();
+    hint('placeAgain');
+    Curio.tone(600,.12,.03);
+  };
+  $('reveal').onclick = reveal;
+  $('check').onclick = checkAnswers;
+  $('again').onclick = keyAgain;
+  $('next').onclick = () => readStation((state.station+1)%S.length);
+  $('go-key').onclick = () => setMode('Key');
+  $('disturb').onclick = disturb;
+  $('play').onclick = togglePlay;
+  $('years').oninput = () => {
+    state.playing = false;
+    state.years = +$('years').value;
+    renderChange();
+    hint('scrub');
+  };
+  $('temperature').oninput = updateClimate;
+  $('precipitation').oninput = updateClimate;
+  $('reset-climate').onclick = () => {
+    $('temperature').value = 0;
+    $('precipitation').value = 0;
+    updateClimate();
+  };
+  ['mine','real'].forEach(layer => $('layer-'+layer).onclick = () => {
+    state.layer = layer;
+    $('layer-mine').setAttribute('aria-pressed',layer === 'mine');
+    $('layer-real').setAttribute('aria-pressed',layer === 'real');
+    renderMap();
+    Curio.tone(layer === 'mine' ? 410 : 510,.06,.025);
+  });
+  $('reset').onclick = reset;
+  $('clear').onclick = reset;
+  V = Curio.voice({
+    lines:L, scope:() => state.mode, welcome, hint:false, read:() => $('hint').textContent,
+    speaks:'#station, .pin, #reveal, #disturb, #play, #answers button'
+  });
+  Curio.init({clips:"voice:*",rate:.95,readFallback:() => $('hint').textContent});
+  // Curio.voice already requeues unheard welcomes when Sound comes back on.
+  const observer = new ResizeObserver(layout);
+  observer.observe($('stage'));
+  observer.observe($('space'));
+  // Main controls precede the map pins in keyboard order, without positive tabindex.
+  $('stage').querySelectorAll('.pin').forEach(pin => pin.tabIndex = -1);
+  const main = document.querySelector('main');
+  main.prepend(document.querySelector('.panel'));
+  loadKey();
+  render();
+  layout();
+  hint('wRead');
+  requestAnimationFrame(tick);
+  window.__tool = {
+    state,S,B,K,succession,L,climate,question,answer,reveal,readStation,setMode,keyAgain,disturb,togglePlay,updateClimate,
+    render,span,allLines:V.allLines,vlog:V.log,get mode(){return state.mode},get station(){return state.station},
+    get keyResult(){
+      return state.mode === 'Change' && known() ? climate(station(),state.dT,state.dP).result : state.keyResult;
+    },
+    get tally(){return tally()},
+    get years(){return state.years},
+    get dT(){return state.dT},get dP(){return state.dP},get vq(){return V.queue}
+  };
+})();
+</script>
+</body>
+</html>
+

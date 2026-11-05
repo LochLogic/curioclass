@@ -1,0 +1,56 @@
+{
+  "house_style": "Soft painted gouache illustration for a middle-school theater rehearsal desk. Rich charcoal, aged wood, brass and warm amber work lights from upper left. Tactile brushwork, believable material details and gentle shadows. No people, faces, body parts, text, letters, numbers or logos.",
+  "assets": [
+    {
+      "name": "rehearsal-stage",
+      "prompt": "An empty black box rehearsal room, wide front view. Scuffed charcoal floor with small colored spike tape marks, three simple low prop stands spaced across the floor, heavy black curtains and warm work lights overhead. Open central playing space, atmospheric depth, warm light from upper left.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok",
+      "people": false,
+      "source": "OpenAI gpt-image through the built-in image tool"
+    },
+    {
+      "name": "prop-maya",
+      "prompt": "A battered open black trumpet case with blank colored stickers, a beautiful brass trumpet nestled inside its wine-red velvet lining. Three-quarter front view, whole object with comfortable margins. Isolated on flat pure green #00FF00, no cast shadow on the backdrop.",
+      "aspect": "1:1",
+      "cutout": true,
+      "width": 440,
+      "quality": 80,
+      "drawn_by": "codex",
+      "despill": true,
+      "review": "ok",
+      "people": false,
+      "source": "OpenAI gpt-image through the built-in image tool"
+    },
+    {
+      "name": "prop-ortiz",
+      "prompt": "A navy bus driver's cap and a large ring of silver and brass keys resting on a worn wooden stool. Three-quarter front view, whole stool and objects visible with comfortable margins. Isolated on flat pure green #00FF00, no cast shadow on the backdrop.",
+      "aspect": "1:1",
+      "cutout": true,
+      "width": 380,
+      "quality": 80,
+      "drawn_by": "codex",
+      "despill": true,
+      "review": "ok",
+      "people": false,
+      "source": "OpenAI gpt-image through the built-in image tool"
+    },
+    {
+      "name": "prop-dale",
+      "prompt": "One single worn grey metal folding chair with a clipboard of blank cream papers leaning against the backrest and a burgundy school lanyard draped over the chair back. Empty seat, complete chair with all four legs visible, isolated on flat pure green #00FF00, no other furniture or objects. Soft painted gouache, warm work light from upper left. No people, faces, masks, body parts, text, letters, numbers or logos.",
+      "aspect": "1:1",
+      "cutout": true,
+      "width": 380,
+      "quality": 80,
+      "drawn_by": "codex",
+      "despill": true,
+      "redrawn": 1,
+      "review": "ok",
+      "people": false,
+      "source": "OpenAI gpt-image through the built-in image tool"
+    }
+  ]
+}

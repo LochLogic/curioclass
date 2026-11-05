@@ -1,0 +1,24 @@
+{
+  "id": "zipline-energy",
+  "stage": "built",
+  "status": "beta",
+  "hook": "One cable. Three riders. Account for every joule.",
+  "outcome": "Design and evaluate an energy conversion device using a conserved energy ledger with friction.",
+  "driver": "students",
+  "minutes": "30-45",
+  "modes": [
+    "Design",
+    "Ledger",
+    "Notebook"
+  ],
+  "grades_label": "Grade 11",
+  "sources": [
+    "OpenStax College Physics 2e (2022), chapters 5, 7 and 23",
+    "OpenStax Precalculus 2e, 8.1 The Ellipse",
+    "NASA Glenn, Earth Atmosphere Model",
+    "Hoerner, Fluid-Dynamic Drag (1965), chapter 3; drag areas here are lab settings",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-02"
+}

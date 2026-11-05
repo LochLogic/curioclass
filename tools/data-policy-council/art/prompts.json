@@ -1,6 +1,6 @@
 {
-  "house_style": "Flat editorial illustration for a high school civics tool, like a modern magazine portrait: head and shoulders, clean shapes, soft shading, calm natural colors, plain warm grey background, natural and respectful. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
-  "style": "Six council member portraits in one shared style, head and shoulders, plain warm grey background.",
+  "house_style": "Soft daylight editorial painting for a high-school civics tool. Layered gouache and subtle colored-pencil texture, warm paper tones, civic navy, honey oak, muted sage, natural light from the upper left, dimensional materials. Refined magazine illustration, crisp focal details and painterly edges. People-free scenes stay empty as specified; portraits use the named cast. No text, letters, numbers, logos, watermarks or frames.",
+  "style": "One editorial painted school day and council cast, with consistent warm daylight and paper tones.",
   "assets": [
     {
       "name": "member-dana-ruiz",
@@ -11,7 +11,7 @@
       "width": 320,
       "quality": 82,
       "source": "gpt-image-2 (Codex)",
-      "review": "pending"
+      "review": "Cold review checked 2026-11-03; owner shipment review remains separate."
     },
     {
       "name": "member-malik-owens",
@@ -24,7 +24,7 @@
       "ref": "member-dana-ruiz",
       "ref_mode": "style",
       "source": "gpt-image-2 (Codex)",
-      "review": "pending"
+      "review": "Cold review checked 2026-11-03; owner shipment review remains separate."
     },
     {
       "name": "member-priya-natarajan",
@@ -37,7 +37,7 @@
       "ref": "member-dana-ruiz",
       "ref_mode": "style",
       "source": "gpt-image-2 (Codex)",
-      "review": "pending"
+      "review": "Cold review checked 2026-11-03; owner shipment review remains separate."
     },
     {
       "name": "member-tom-becker",
@@ -50,7 +50,7 @@
       "ref": "member-dana-ruiz",
       "ref_mode": "style",
       "source": "gpt-image-2 (Codex)",
-      "review": "pending"
+      "review": "Cold review checked 2026-11-03; owner shipment review remains separate."
     },
     {
       "name": "member-grace-lee",
@@ -63,7 +63,7 @@
       "ref": "member-dana-ruiz",
       "ref_mode": "style",
       "source": "gpt-image-2 (Codex)",
-      "review": "pending"
+      "review": "Cold review checked 2026-11-03; owner shipment review remains separate."
     },
     {
       "name": "member-ana-sorensen",
@@ -76,7 +76,106 @@
       "ref": "member-dana-ruiz",
       "ref_mode": "style",
       "source": "gpt-image-2 (Codex)",
-      "review": "pending"
+      "review": "Cold review checked 2026-11-03; owner shipment review remains separate."
+    },
+    {
+      "name": "council-chamber",
+      "prompt": "A school district board room in daylight, a curved wooden dais with six empty chairs and six blank nameplates, tall windows, a blank wall plaque. Wide architectural perspective, oak grain, brass fittings, soft sunbeams.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "moment-bus-stop",
+      "prompt": "An empty suburban bus stop with a blank sign post at a curb, early morning. Wet pavement catches peach dawn light, a bench and a quiet leafy street recede behind it.",
+      "aspect": "4:3",
+      "width": 400,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "moment-main-door",
+      "prompt": "The open glass main doors of a middle school, morning. Honey brick, brushed metal handles, a clean entrance mat and sunlight through the panes.",
+      "aspect": "4:3",
+      "width": 400,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "moment-nurse",
+      "prompt": "A school nurse office with a cot, a first-aid cabinet and a blank wall chart. Folded blue blanket, neatly arranged supplies, warm window light.",
+      "aspect": "4:3",
+      "width": 400,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "moment-lunch",
+      "prompt": "A cafeteria tray with a sandwich, an apple and a milk carton with a blank label. Close still life on a school lunch table, enamel tray, tactile bread and glossy apple.",
+      "aspect": "4:3",
+      "width": 400,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "moment-quiz",
+      "prompt": "A quiz sheet with blank lines and a red check mark beside a pencil on a desk. Close still life, paper grain, pencil shavings, soft afternoon light.",
+      "aspect": "4:3",
+      "width": 400,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "moment-leaving",
+      "prompt": "A school side gate and a bike rack, afternoon. Long warm shadows, honey brick wall, metal bars, green trees beyond.",
+      "aspect": "4:3",
+      "width": 400,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "moment-friend",
+      "prompt": "The front porch of a small house with two bikes leaning on the rail, late afternoon. Terracotta pots, blue front door, angled golden sunlight.",
+      "aspect": "4:3",
+      "width": 400,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "moment-home",
+      "prompt": "A lit house window at night with a desk lamp glowing inside. View from the quiet garden, deep blue dusk, warm gold window, desk and closed notebooks inside.",
+      "aspect": "4:3",
+      "width": 400,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
     }
   ]
 }

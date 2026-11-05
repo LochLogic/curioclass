@@ -1,0 +1,13 @@
+{
+  "keep":[],
+  "states":[
+    {"name":"watch","steps":[{"click":"#table-4"},{"click":"#play"}],"keep":["#play",".tabs","#hint"]},
+    {"name":"copy","steps":[{"click":"#table-3"},{"click":"#tab-copy"},{"click":"#move-1"}],"keep":["#copy",".tabs","#hint"]},
+    {"name":"words","steps":[{"click":"#table-6"},{"click":"#tab-words"},{"click":"#word-Sharp"}],"keep":["#word-grid","#hint"]},
+    {"name":"where","steps":[{"click":"#table-3"},{"click":"#tab-from"}],"keep":["#from-card","#hint"]},
+    {"name":"favorite","steps":[{"click":"#table-2"},{"click":"#favorite"},{"click":"#favorites button:nth-child(2)"}],
+      "keep":["#favorite-view","#hint"]},
+    {"name":"one-string","steps":[{"click":"#table-0"},{"click":"#back"}],
+      "keep":["#table-0","#table-1","#table-2","#table-3","#table-4","#table-5","#table-6","#lights-badge"]}
+  ]
+}

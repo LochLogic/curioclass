@@ -1,0 +1,22 @@
+{
+  "id": "audience-talkback",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Same scene. Four switches. Find what changed the feeling for you.",
+  "outcome": "Evaluate staging with chosen criteria and explain a personal response with evidence.",
+  "driver": "students or teacher",
+  "minutes": "15-25",
+  "modes": ["Watch", "Swap lab", "Talkback"],
+  "grades_label": "Grades 3-5",
+  "sources": [
+    "National Core Arts Standards, Theater TH:Re8 and TH:Re9, grades 3-5",
+    "Kennedy Center Education, theater talkbacks and arts integration resources",
+    "Educational Theatre Association, theater design teaching resources",
+    "J. Michael Gillette, Theatrical Design and Production, lighting and costume chapters",
+    "NGSS Practice 3, Planning and carrying out investigations, grades 3-5",
+    "The Borrowed Bike, talkback cards and music are original works for Curio Class",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-01"
+}

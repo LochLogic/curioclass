@@ -1,0 +1,133 @@
+{
+  "house_style": "Rich handmade cut-paper and gouache storybook illustration for ages 5 to 8. Tactile paper fibers, layered edges, visible brush marks, warm light from upper left, gentle dimensional shadows, playful crafted proportions. No text, letters, numbers, logos, people or human body parts.",
+  "assets": [
+    {
+      "name": "theater",
+      "prompt": "Homemade puppet theater made from corrugated cardboard, straight-on symmetrical view. Wide rectangular stage opening occupying the central 70 percent, red fabric curtains tied at the sides, blank cardboard sign above, layered scalloped proscenium, a broad wooden cardboard ledge below. The opening and all exterior background are perfectly flat pure green #00FF00, for keying. Entire theater fully in frame. The frame should be thin enough to leave plenty of acting space.",
+      "aspect": "4:3",
+      "width": 1000,
+      "cutout": true,
+      "key": "green",
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image tool)",
+      "review": "Inspected cutout and placement in the tool."
+    },
+    {
+      "name": "park",
+      "prompt": "Sunny park backdrop, grassy rolling hill, one tall leafy tree on the far right, soft blue sky with a few fluffy clouds. Open empty center and left for a puppet performance. Full bleed landscape without a border.",
+      "aspect": "4:3",
+      "width": 1000,
+      "cutout": false,
+      "key": "green",
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image tool)",
+      "review": "Inspected cutout and placement in the tool.",
+      "redraw_note": "Redrew the entire tree inside the central opening so the kite can visibly lodge in a branch.",
+      "redraw_prompt": "Preserve tactile gouache sunny park. Entire tall leafy tree with complete crown and trunk at x66 percent; crown spans x48 to78 and y18 to54; bare forked branch extends left at x60 y40; trunk ends y83. Left half open for puppet; outer edges sky and grass under curtains. No people or text."
+    },
+    {
+      "name": "pom-closed",
+      "prompt": "Single handmade striped orange and teal sock puppet, closed mouth, two large sewn button eyes, small red felt tongue peeking at the seam. Upright long sock neck and softly curved sock toe head, three quarter side front view facing right. Only the fabric sock from cuff up, with no human wearer visible. Whole puppet centered on perfectly flat pure green #00FF00.",
+      "aspect": "3:4",
+      "width": 380,
+      "cutout": true,
+      "key": "green",
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image tool)",
+      "review": "Inspected cutout and placement in the tool."
+    },
+    {
+      "name": "pom-open",
+      "prompt": "Single handmade striped orange and teal sock puppet, wide open hinged sock mouth with red felt tongue, two large sewn button eyes. Upright long sock neck and softly curved sock toe head, three quarter side front view facing right. Only fabric sock from cuff up, no human wearer visible. Whole puppet centered on perfectly flat pure green #00FF00. Match the closed pose proportions exactly.",
+      "aspect": "3:4",
+      "width": 380,
+      "cutout": true,
+      "key": "green",
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image tool)",
+      "review": "Inspected cutout and placement in the tool.",
+      "ref": "pom-closed",
+      "redraw_note": "Edited the matching closed pose to preserve the puppet identity and button eyes."
+    },
+    {
+      "name": "dot-closed",
+      "prompt": "Single handmade purple sock puppet with yellow polka dots and a large round sewn eye patch around one button eye, closed mouth. Upright long sock neck and curved toe head, three quarter view facing left. Only fabric sock from cuff up, no human wearer visible. Whole puppet centered on pure green #00FF00.",
+      "aspect": "3:4",
+      "width": 320,
+      "cutout": true,
+      "key": "green",
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image tool)",
+      "review": "Inspected cutout and placement in the tool."
+    },
+    {
+      "name": "dot-open",
+      "prompt": "Single handmade purple sock puppet with yellow polka dots and a large round sewn eye patch around one button eye, wide open hinged mouth and red felt tongue. Upright long sock neck, curved toe head, three quarter view facing left. Only fabric sock from cuff up, no human wearer visible. Whole puppet centered on pure green #00FF00. Match the closed pose proportions exactly.",
+      "aspect": "3:4",
+      "width": 320,
+      "cutout": true,
+      "key": "green",
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image tool)",
+      "review": "Inspected cutout and placement in the tool.",
+      "ref": "dot-closed",
+      "redraw_note": "Edited the matching closed pose to preserve the puppet identity and button eyes."
+    },
+    {
+      "name": "kite",
+      "prompt": "Single bright red diamond paper kite with fine wooden cross spars and a long curling ribbon tail with small red bows. Entire kite and tail fully in frame, centered on perfectly flat pure green #00FF00.",
+      "aspect": "3:4",
+      "width": 240,
+      "cutout": true,
+      "key": "green",
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image tool)",
+      "review": "Inspected cutout and placement in the tool."
+    },
+    {
+      "name": "new-kite",
+      "prompt": "Single yellow and green striped diamond paper kite with fine wooden cross spars and a long curling ribbon tail with small yellow bows. Entire kite and tail fully in frame, centered on perfectly flat pure magenta #FF00FF.",
+      "aspect": "3:4",
+      "width": 240,
+      "cutout": true,
+      "key": "magenta",
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image tool)",
+      "review": "Inspected cutout and placement in the tool.",
+      "redraw_prompt": "Same yellow and green striped diamond kite and curling tail, tactile cut paper and gouache. Crisp natural dark green, golden yellow or brown edges; no pink or magenta on the object or reflected light. Uniform pure magenta outside only for keying. Whole kite and tail with generous margins. No people or text.",
+      "redraw_note": "Removed magenta paint fringes and moved the ending prop in front of Pom so the new kite remains visible."
+    },
+    {
+      "name": "stick",
+      "prompt": "Single long thin slightly crooked wooden stick, horizontal orientation, small bark knots and warm woody texture. Fully in frame, centered on perfectly flat pure green #00FF00.",
+      "aspect": "4:1",
+      "width": 500,
+      "cutout": true,
+      "key": "green",
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image tool)",
+      "review": "Inspected cutout and placement in the tool."
+    },
+    {
+      "name": "shelf",
+      "prompt": "Cozy child bedroom shelf seen straight on, books grouped at far left, a small plant at far right, a wide empty wooden shelf in the middle for a sock puppet to rest. Soft peach wall, warm sunlight from upper left, tactile painted wood grain, gentle shadows. No writing on book spines. Full bleed.",
+      "aspect": "16:10",
+      "width": 1000,
+      "cutout": false,
+      "key": "green",
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image tool)",
+      "review": "Inspected cutout and placement in the tool."
+    }
+  ]
+}

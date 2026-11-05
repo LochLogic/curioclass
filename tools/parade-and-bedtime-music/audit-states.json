@@ -1,0 +1,177 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "full-basket",
+      "steps": [
+        {
+          "click": "#tune-0"
+        },
+        {
+          "click": "#elsewhere"
+        },
+        {
+          "click": "#close-tray"
+        },
+        {
+          "click": "#tune-1"
+        },
+        {
+          "click": "#elsewhere"
+        },
+        {
+          "click": "#close-tray"
+        },
+        {
+          "click": "#tune-2"
+        },
+        {
+          "click": "#elsewhere"
+        },
+        {
+          "click": "#close-tray"
+        },
+        {
+          "click": "#tune-3"
+        },
+        {
+          "click": "#elsewhere"
+        },
+        {
+          "click": "#close-tray"
+        },
+        {
+          "click": "#tune-4"
+        },
+        {
+          "click": "#elsewhere"
+        },
+        {
+          "click": "#close-tray"
+        },
+        {
+          "click": "#tune-5"
+        },
+        {
+          "click": "#elsewhere"
+        },
+        {
+          "click": "#close-tray"
+        },
+        {
+          "click": "#tune-6"
+        },
+        {
+          "click": "#elsewhere"
+        },
+        {
+          "click": "#close-tray"
+        },
+        {
+          "click": "#tune-7"
+        },
+        {
+          "click": "#elsewhere"
+        },
+        {
+          "click": "#close-tray"
+        }
+      ],
+      "keep": [
+        "#elsewhere",
+        "#cards"
+      ]
+    },
+    {
+      "name": "earned-clues",
+      "steps": [
+        {
+          "click": "#tune-0"
+        },
+        {
+          "click": "#place-0"
+        },
+        {
+          "click": "#chip-slow"
+        },
+        {
+          "click": "#chip-soft"
+        },
+        {
+          "click": "#chip-high"
+        },
+        {
+          "click": "#chip-smooth"
+        },
+        {
+          "click": "#chip-happy"
+        },
+        {
+          "click": "#close-tray"
+        }
+      ],
+      "keep": [
+        "#cards",
+        "#moments"
+      ]
+    },
+    {
+      "name": "clues",
+      "steps": [
+        {
+          "click": "#tune-0"
+        },
+        {
+          "click": "#place-0"
+        },
+        {
+          "click": "#chip-slow"
+        }
+      ],
+      "keep": [
+        "#chips",
+        "#composer",
+        "#favorite"
+      ]
+    },
+    {
+      "name": "bedtime",
+      "steps": [
+        {
+          "click": "#m-turn"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "click": "#speed-less",
+          "times": 7,
+          "gap": 0.15
+        },
+        {
+          "click": "#volume-less",
+          "times": 8,
+          "gap": 0.15
+        }
+      ],
+      "keep": [
+        "#turn-stage",
+        "#speed-dial",
+        "#volume-dial",
+        "#play"
+      ]
+    },
+    {
+      "name": "reset",
+      "steps": [
+        {
+          "click": "#reset"
+        }
+      ],
+      "keep": [
+        "#yes-reset",
+        "#keep"
+      ]
+    }
+  ]
+}

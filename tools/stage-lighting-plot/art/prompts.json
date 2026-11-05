@@ -1,0 +1,98 @@
+{
+  "house_style": "Sophisticated theatrical design painting for grades 9-12. Realist gouache and oil study with rich material textures, precise recognizable objects, restrained Victorian colors and soft edges. Empty spaces only, no people, faces, body parts, lettering, numbers, logos or watermarks.",
+  "assets": [
+    {
+      "name": "slp-set",
+      "prompt": "An empty 1870s Norwegian middle-class living room seen straight on from the center of a theater audience. Flat even neutral illumination for later digital relighting. A round table in the middle with chairs either side and an unlit brass oil lamp, a white tiled stove at the right front, a tall window in the left wall, two doors in the back wall with the right door open to a dark hall, a piano between the doors, small landscape engravings on walls, no ceiling. Full proscenium composition with the wooden floor visible all the way to the front. Back floor corners at approximately 22 and 78 percent of image width and 61 percent height, front corners at 3 and 97 percent width and 98 percent height. Wide 16:9 scene.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 74,
+      "cutout": false,
+      "drawn_by": "codex",
+      "review": "Inspected: recognizable object, no people or lettering"
+    },
+    {
+      "name": "rs-lamp",
+      "prompt": "A brass kerosene table lamp with a clear glass chimney and a white glass shade, lit with a warm small flame, on a dark wooden table in an empty 1870s Norwegian room. Close square composition, detailed brass fittings and glass reflections.",
+      "aspect": "1:1",
+      "width": 900,
+      "quality": 72,
+      "cutout": false,
+      "drawn_by": "codex",
+      "review": "Inspected: recognizable object, no people or lettering"
+    },
+    {
+      "name": "rs-stove",
+      "prompt": "A tall white ceramic tiled stove with a small iron fire door glowing orange, in an empty dark 1870s Norwegian room. Vertical 3:4 painting, beautiful glazed tile and low warm firelight.",
+      "aspect": "3:4",
+      "width": 675,
+      "quality": 72,
+      "cutout": false,
+      "drawn_by": "codex",
+      "review": "Inspected: recognizable object, no people or lettering"
+    },
+    {
+      "name": "rs-window",
+      "prompt": "A tall frosted sash window at night from inside an empty dark 1870s Norwegian room. Blue light on snowy ground outside and a distant street lamp. Vertical 3:4 painting, delicate frost and old timber detail.",
+      "aspect": "3:4",
+      "width": 675,
+      "quality": 72,
+      "cutout": false,
+      "drawn_by": "codex",
+      "review": "Inspected: recognizable object, no people or lettering"
+    },
+    {
+      "name": "rs-hall",
+      "prompt": "A half-open paneled wooden door seen from an empty dark 1870s Norwegian room into a dim hallway with a coat hook and stairs going down. Vertical 3:4 painting, old brass handle and soft amber spill across the floor.",
+      "aspect": "3:4",
+      "width": 675,
+      "quality": 72,
+      "cutout": false,
+      "drawn_by": "codex",
+      "review": "Inspected: recognizable object, no people or lettering"
+    },
+    {
+      "name": "rs-gaslit",
+      "prompt": "An empty 1870s theater stage with a painted drawing-room backdrop and a row of glowing gas footlights, seen from the empty stalls. Wide 16:9 painting, ornate proscenium, velvet wings, period gas fixtures and beautiful warm pools on the stage.",
+      "aspect": "16:9",
+      "width": 900,
+      "quality": 72,
+      "cutout": false,
+      "drawn_by": "codex",
+      "review": "Inspected: recognizable object, no people or lettering"
+    },
+    {
+      "name": "slp-ers",
+      "prompt": "A technically accurate black ellipsoidal theater spotlight, side view, hanging from a short pipe by a C clamp, with yoke, rear housing, shutters and a long lens barrel. Entire instrument centered, detailed screws and black metal highlights. On perfectly flat pure green #00FF00 for cutout, no cast shadow. 4:3 composition.",
+      "aspect": "4:3",
+      "width": 900,
+      "quality": 74,
+      "cutout": true,
+      "drawn_by": "codex",
+      "review": "Inspected: recognizable object, no people or lettering",
+      "despill": true
+    },
+    {
+      "name": "slp-fresnel",
+      "prompt": "A technically accurate black Fresnel theater lantern with a stepped circular glass lens and four barn doors, three-quarter view, yoke and mounting clamp. Entire instrument centered, detailed vented housing and glass rings. On perfectly flat pure green #00FF00 for cutout, no cast shadow. 4:3 composition.",
+      "aspect": "4:3",
+      "width": 900,
+      "quality": 74,
+      "cutout": true,
+      "drawn_by": "codex",
+      "review": "Inspected: recognizable object, no people or lettering",
+      "despill": true
+    },
+    {
+      "name": "slp-par",
+      "prompt": "A technically accurate black PAR can theater light, a simple cylindrical metal can containing a lamp at its rear, three-quarter view, circular front lens and yoke with clamp. Entire instrument centered with realistic seams and metal highlights. On perfectly flat pure green #00FF00 for cutout, no cast shadow. 4:3 composition.",
+      "aspect": "4:3",
+      "width": 855,
+      "quality": 74,
+      "cutout": true,
+      "drawn_by": "codex",
+      "review": "Inspected: recognizable object, no people or lettering",
+      "despill": true
+    }
+  ]
+}

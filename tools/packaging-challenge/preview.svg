@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+<defs>
+ <linearGradient id="wood" x2="0" y2="1"><stop stop-color="#34352b"/><stop offset="1" stop-color="#77512a"/></linearGradient>
+ <linearGradient id="metal"><stop stop-color="#8294a2"/><stop offset=".2" stop-color="#e0e6e9"/><stop offset=".7" stop-color="#b5c3cc"/><stop offset="1" stop-color="#7c8e9a"/></linearGradient>
+</defs>
+<rect width="800" height="500" fill="#10161f"/>
+<rect y="68" width="800" height="432" fill="url(#wood)"/>
+<path d="M0 395H800M0 442H800" stroke="#ba8c52" opacity=".3"/>
+<text x="24" y="40" fill="#e8edf3" font-family="Segoe UI,sans-serif" font-weight="700" font-size="27">Packaging Challenge</text>
+<rect x="22" y="92" width="354" height="336" rx="12" fill="#19232bed" stroke="#8c714a"/>
+<rect x="392" y="92" width="386" height="336" rx="12" fill="#0e1520" stroke="#8c714a"/>
+<text x="42" y="120" fill="#bfcbd5" font-family="Segoe UI,sans-serif" font-size="13" letter-spacing="2">YOUR PACKAGE</text>
+<rect x="104" y="181" width="189" height="189" rx="3" fill="url(#metal)" stroke="#526774" stroke-width="3"/>
+<path d="M106 189H291M106 364H291" stroke="#f2f6f5" stroke-width="3" opacity=".7"/>
+<circle cx="293" cy="275" r="17" fill="#c08a2a" stroke="#f0d39f" stroke-width="2"/>
+<path d="M285 275H301M289 271L285 275L289 279M297 271L301 275L297 279" fill="none" stroke="#10161f" stroke-width="2"/>
+<text x="198" y="164" text-anchor="middle" fill="#e8edf3" font-family="monospace" font-size="16">r 3.84 cm</text>
+<g stroke="#36414e"><path d="M437 145H751M437 215H751M437 285H751M437 355H751M437 145V380M515 145V380M593 145V380M671 145V380M751 145V380"/></g>
+<path d="M456 143C470 235 481 298 514 312C560 328 629 279 708 145" fill="none" stroke="#c08a2a" stroke-width="4"/>
+<g fill="#e8edf3" stroke="#0e1520" stroke-width="2"><circle cx="476" cy="254" r="5"/><circle cx="490" cy="289" r="5"/><circle cx="563" cy="310" r="5"/><circle cx="594" cy="294" r="5"/></g>
+<circle cx="521" cy="314" r="9" fill="#c08a2a"/><circle cx="521" cy="314" r="16" fill="none" stroke="#efd092" stroke-width="2"/>
+<text x="521" y="285" text-anchor="middle" fill="#e8edf3" font-family="Segoe UI,sans-serif" font-size="14">BEST</text>
+<text x="414" y="120" fill="#bfcbd5" font-family="Segoe UI,sans-serif" font-size="13" letter-spacing="2">MATERIAL / RADIUS</text>
+<text x="24" y="474" fill="#efc881" font-family="Segoe UI,sans-serif" font-size="23">Same volume. Less material.</text>
+<text x="776" y="474" text-anchor="end" fill="#efc881" font-family="monospace" font-size="25">277.55 cm²</text>
+</svg>

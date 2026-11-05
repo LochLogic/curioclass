@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+ <defs>
+  <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+   <path d="M24 0H0V24" fill="none" stroke="#233243" stroke-width="1"/>
+  </pattern>
+  <linearGradient id="panel" x2=".8" y2="1"><stop stop-color="#2b3a4b"/><stop offset="1" stop-color="#141f2c"/></linearGradient>
+  <linearGradient id="area" x2="0" y2="1"><stop stop-color="#00f28d" stop-opacity=".3"/><stop offset="1" stop-color="#00f28d" stop-opacity="0"/></linearGradient>
+  <filter id="shadow"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-opacity=".35"/></filter>
+ </defs>
+ <rect width="800" height="500" fill="#111820"/>
+ <rect width="800" height="500" fill="url(#grid)"/>
+ <rect width="800" height="64" fill="#10161f"/>
+ <path d="M0 64H800" stroke="#00f28d" stroke-width="2"/>
+ <text x="28" y="40" fill="#f1f6ff" font-family="Segoe UI, sans-serif" font-size="25" font-weight="700">Design Challenge Studio</text>
+ <text x="652" y="40" fill="#a6b3c4" font-family="Segoe UI, sans-serif" font-size="14">Curio Class</text>
+ <g font-family="Segoe UI, sans-serif" font-size="13" fill="#b4c7d9">
+  <text x="30" y="100">1 / Break it down</text><text x="220" y="100">2 / Criteria</text>
+  <text x="416" y="100" fill="#00f28d">3 / Prototype</text><text x="602" y="100">4 / Trade-offs</text>
+ </g>
+ <g filter="url(#shadow)">
+  <rect x="26" y="127" width="493" height="323" rx="8" fill="url(#panel)" stroke="#62789a"/>
+  <rect x="539" y="127" width="235" height="323" rx="8" fill="url(#panel)" stroke="#62789a"/>
+ </g>
+ <text x="47" y="160" fill="#e8edf3" font-size="18" font-family="Segoe UI, sans-serif">One room. One hottest day.</text>
+ <g stroke="#b4c7d9" opacity=".16"><path d="M64 206H497M64 250H497M64 294H497M64 338H497"/></g>
+ <rect x="208" y="187" width="126" height="174" fill="#fff" opacity=".05"/>
+ <path d="M64 213C141 231 151 284 226 293S357 226 407 223S471 247 497 248V361H64Z" fill="url(#area)"/>
+ <path d="M64 213C141 231 151 284 226 293S357 226 407 223S471 247 497 248" fill="none" stroke="#00f28d" stroke-width="4"/>
+ <path d="M64 297C130 363 172 351 224 316S355 230 404 251S460 317 497 330" fill="none" stroke="#ff8a8a" stroke-width="2" stroke-dasharray="7 6"/>
+ <path d="M208 293C250 285 309 277 334 275" fill="none" stroke="#5aa9ff" stroke-width="3" stroke-dasharray="2 5"/>
+ <path d="M64 323H497" stroke="#ffd28a" stroke-dasharray="3 4"/>
+ <g font-family="Consolas, monospace" fill="#f1f6ff">
+  <text x="49" y="403" font-size="25">33.82 °C</text><text x="220" y="403" font-size="25">3.55 h</text>
+  <text x="374" y="403" font-size="25">6.88 kWh</text>
+ </g>
+ <g font-family="Segoe UI, sans-serif" fill="#a6b3c4" font-size="11">
+  <text x="49" y="425">HOTTEST INDOOR</text><text x="220" y="425">OVER COMFORT</text><text x="374" y="425">ELECTRICITY</text>
+ </g>
+ <text x="558" y="160" fill="#e8edf3" font-size="18" font-family="Segoe UI, sans-serif">What matters most?</text>
+ <g font-family="Segoe UI, sans-serif" font-size="13" fill="#cad9e8">
+  <text x="559" y="199">Comfort</text><text x="559" y="264">Cost</text><text x="559" y="329">Ready this summer</text>
+ </g>
+ <g stroke="#62789a" stroke-width="5" stroke-linecap="round"><path d="M560 221H750M560 286H750M560 351H750"/></g>
+ <g fill="#00f28d" stroke="#10161f" stroke-width="4"><circle cx="696" cy="221" r="13"/><circle cx="636" cy="286" r="13"/><circle cx="674" cy="351" r="13"/></g>
+ <rect x="557" y="382" width="199" height="46" rx="5" fill="#00f28d"/>
+ <text x="590" y="411" fill="#10161f" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700">Test. Weigh. Choose.</text>
+ <text x="27" y="480" fill="#a6b3c4" font-family="Segoe UI, sans-serif" font-size="13">Engineering design for global challenges</text>
+</svg>

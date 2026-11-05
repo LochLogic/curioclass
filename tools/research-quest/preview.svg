@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="paper" x2="1" y2="1"><stop stop-color="#fffaf0"/><stop offset="1" stop-color="#e5d4a7"/></linearGradient>
+    <linearGradient id="teal" y2="1"><stop stop-color="#0f766e"/><stop offset="1" stop-color="#104e49"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="7" stdDeviation="7" flood-opacity=".2"/></filter>
+  </defs>
+  <rect width="800" height="500" rx="16" fill="url(#paper)"/>
+  <path d="M40 400 Q120 200 210 330 T420 230 T730 100" fill="none" stroke="#b3975d" stroke-width="9" stroke-dasharray="4 16"/>
+  <g fill="#607c54" opacity=".6"><path d="M34 450l30-95 30 95zM75 465l35-110 35 110zM650 200l30-100 30 100zM703 210l35-115 35 115z"/></g>
+  <rect x="90" y="80" width="620" height="335" rx="12" fill="#fffaf0" stroke="#cfb77a" stroke-width="3" filter="url(#shadow)"/>
+  <rect x="90" y="80" width="620" height="70" rx="10" fill="url(#teal)"/>
+  <text x="120" y="127" fill="white" font-family="Georgia,serif" font-size="35">Research Quest</text>
+  <text x="120" y="185" fill="#6b5d45" font-family="sans-serif" font-size="17">FIVE STOPS TO FRIDAY'S COUNCIL</text>
+  <g fill="#fff" stroke="#0f766e" stroke-width="3">
+    <rect x="120" y="218" width="155" height="100" rx="5"/><rect x="305" y="218" width="155" height="100" rx="5"/>
+    <rect x="490" y="218" width="185" height="100" rx="5"/>
+  </g>
+  <g fill="#2b2418" font-family="Georgia,serif" font-size="22"><text x="140" y="255">A question.</text>
+    <text x="325" y="255">Four visits.</text><text x="510" y="255">Your evidence.</text></g>
+  <g stroke="#d1c09b" stroke-width="4"><path d="M140 277h110M140 291h80M325 277h110M325 291h80M510 277h140M510 291h100"/></g>
+  <path d="M130 365h530" stroke="#c8b078" stroke-width="3" stroke-dasharray="5 9"/>
+  <g fill="#0f766e" stroke="#fffaf0" stroke-width="3"><circle cx="145" cy="365" r="20"/><circle cx="270" cy="365" r="20"/>
+    <circle cx="395" cy="365" r="20"/><circle cx="520" cy="365" r="20"/><circle cx="645" cy="365" r="20"/></g>
+  <g fill="white" text-anchor="middle" font-family="sans-serif" font-size="17"><text x="145" y="371">1</text><text x="270" y="371">2</text>
+    <text x="395" y="371">3</text><text x="520" y="371">4</text><text x="645" y="371">5</text></g>
+  <text x="400" y="463" text-anchor="middle" fill="#0f766e" font-family="sans-serif" font-size="17">Curio Class · Follow every answer back to a choice</text>
+</svg>

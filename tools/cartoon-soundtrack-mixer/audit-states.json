@@ -1,0 +1,256 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "score-shaped",
+      "steps": [
+        {
+          "click": "#m-score"
+        },
+        {
+          "click": "#feel"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        }
+      ],
+      "keep": [
+        "#projection",
+        "#play",
+        "#hint",
+        "#timelineScroll"
+      ]
+    },
+    {
+      "name": "effect-placed",
+      "steps": [
+        {
+          "click": "#m-score"
+        },
+        {
+          "click": "#tab-effects"
+        },
+        {
+          "click": "[data-effect=\"Thunder\"]"
+        },
+        {
+          "click": "#effectsTrack"
+        }
+      ],
+      "keep": [
+        "#projection",
+        "#play",
+        "#hint",
+        "#timelineScroll"
+      ]
+    },
+    {
+      "name": "swap-funny",
+      "steps": [
+        {
+          "click": "#m-swap"
+        },
+        {
+          "click": "#swap-Funny"
+        }
+      ],
+      "keep": [
+        "#projection",
+        "#play",
+        "#hint",
+        "#swapBar",
+        "#choiceStrip"
+      ]
+    },
+    {
+      "name": "writing",
+      "steps": [
+        {
+          "click": "#m-swap"
+        },
+        {
+          "click": "#write"
+        }
+      ],
+      "keep": [
+        "#writing"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "guess-reveal",
+      "steps": [
+        {
+          "click": "#m-swap"
+        },
+        {
+          "click": "#guess"
+        },
+        {
+          "click": "#show"
+        },
+        {
+          "click": "#play"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#projection",
+        "#play",
+        "#hint"
+      ]
+    },
+    {
+      "name": "dense-effects",
+      "steps": [
+        {
+          "click": "#m-score"
+        },
+        {
+          "click": "#tab-effects"
+        },
+        {
+          "js": "document.querySelector('#timelineScroll').scrollLeft=0;"
+        },
+        {
+          "drag": "return (()=>{\nconst b=document.querySelector('[data-effect=\"Thunder\"]').getBoundingClientRect();\nconst r=document.querySelector('#effectsTrack').getBoundingClientRect();\nconst x=b.x+b.width/2,y=b.y+b.height/2,tx=r.left+r.width*7.0/24,ty=r.top+20;\nreturn [[x,y],[x-10,y+5],[x-30,y+15],[tx,ty]];\n})()"
+        },
+        {
+          "js": "document.querySelector('#timelineScroll').scrollLeft=0;"
+        },
+        {
+          "drag": "return (()=>{\nconst b=document.querySelector('[data-effect=\"Thunder\"]').getBoundingClientRect();\nconst r=document.querySelector('#effectsTrack').getBoundingClientRect();\nconst x=b.x+b.width/2,y=b.y+b.height/2,tx=r.left+r.width*7.25/24,ty=r.top+20;\nreturn [[x,y],[x-10,y+5],[x-30,y+15],[tx,ty]];\n})()"
+        },
+        {
+          "js": "document.querySelector('#timelineScroll').scrollLeft=0;"
+        },
+        {
+          "drag": "return (()=>{\nconst b=document.querySelector('[data-effect=\"Thunder\"]').getBoundingClientRect();\nconst r=document.querySelector('#effectsTrack').getBoundingClientRect();\nconst x=b.x+b.width/2,y=b.y+b.height/2,tx=r.left+r.width*7.5/24,ty=r.top+20;\nreturn [[x,y],[x-10,y+5],[x-30,y+15],[tx,ty]];\n})()"
+        },
+        {
+          "js": "document.querySelector('#timelineScroll').scrollLeft=0;"
+        },
+        {
+          "drag": "return (()=>{\nconst b=document.querySelector('[data-effect=\"Thunder\"]').getBoundingClientRect();\nconst r=document.querySelector('#effectsTrack').getBoundingClientRect();\nconst x=b.x+b.width/2,y=b.y+b.height/2,tx=r.left+r.width*7.75/24,ty=r.top+20;\nreturn [[x,y],[x-10,y+5],[x-30,y+15],[tx,ty]];\n})()"
+        },
+        {
+          "js": "document.querySelector('#timelineScroll').scrollLeft=0;"
+        },
+        {
+          "drag": "return (()=>{\nconst b=document.querySelector('[data-effect=\"Thunder\"]').getBoundingClientRect();\nconst r=document.querySelector('#effectsTrack').getBoundingClientRect();\nconst x=b.x+b.width/2,y=b.y+b.height/2,tx=r.left+r.width*8.0/24,ty=r.top+20;\nreturn [[x,y],[x-10,y+5],[x-30,y+15],[tx,ty]];\n})()"
+        },
+        {
+          "js": "document.querySelector('#timelineScroll').scrollLeft=0;"
+        },
+        {
+          "drag": "return (()=>{\nconst b=document.querySelector('[data-effect=\"Thunder\"]').getBoundingClientRect();\nconst r=document.querySelector('#effectsTrack').getBoundingClientRect();\nconst x=b.x+b.width/2,y=b.y+b.height/2,tx=r.left+r.width*8.25/24,ty=r.top+20;\nreturn [[x,y],[x-10,y+5],[x-30,y+15],[tx,ty]];\n})()"
+        },
+        {
+          "js": "document.querySelector('#timelineScroll').scrollLeft=0;"
+        },
+        {
+          "drag": "return (()=>{\nconst b=document.querySelector('[data-effect=\"Thunder\"]').getBoundingClientRect();\nconst r=document.querySelector('#effectsTrack').getBoundingClientRect();\nconst x=b.x+b.width/2,y=b.y+b.height/2,tx=r.left+r.width*8.5/24,ty=r.top+20;\nreturn [[x,y],[x-10,y+5],[x-30,y+15],[tx,ty]];\n})()"
+        },
+        {
+          "js": "document.querySelector('#timelineScroll').scrollLeft=0;"
+        },
+        {
+          "drag": "return (()=>{\nconst b=document.querySelector('[data-effect=\"Thunder\"]').getBoundingClientRect();\nconst r=document.querySelector('#effectsTrack').getBoundingClientRect();\nconst x=b.x+b.width/2,y=b.y+b.height/2,tx=r.left+r.width*8.75/24,ty=r.top+20;\nreturn [[x,y],[x-10,y+5],[x-30,y+15],[tx,ty]];\n})()"
+        },
+        {
+          "js": "document.querySelector('#timelineScroll').scrollLeft=0;"
+        },
+        {
+          "drag": "return (()=>{\nconst b=document.querySelector('[data-effect=\"Thunder\"]').getBoundingClientRect();\nconst r=document.querySelector('#effectsTrack').getBoundingClientRect();\nconst x=b.x+b.width/2,y=b.y+b.height/2,tx=r.left+r.width*9.0/24,ty=r.top+20;\nreturn [[x,y],[x-10,y+5],[x-30,y+15],[tx,ty]];\n})()"
+        },
+        {
+          "js": "document.querySelector('#timelineScroll').scrollLeft=0;"
+        },
+        {
+          "drag": "return (()=>{\nconst b=document.querySelector('[data-effect=\"Thunder\"]').getBoundingClientRect();\nconst r=document.querySelector('#effectsTrack').getBoundingClientRect();\nconst x=b.x+b.width/2,y=b.y+b.height/2,tx=r.left+r.width*9.25/24,ty=r.top+20;\nreturn [[x,y],[x-10,y+5],[x-30,y+15],[tx,ty]];\n})()"
+        },
+        {
+          "js": "document.querySelector('#timelineScroll').scrollLeft=0;"
+        },
+        {
+          "drag": "return (()=>{\nconst b=document.querySelector('[data-effect=\"Thunder\"]').getBoundingClientRect();\nconst r=document.querySelector('#effectsTrack').getBoundingClientRect();\nconst x=b.x+b.width/2,y=b.y+b.height/2,tx=r.left+r.width*9.5/24,ty=r.top+20;\nreturn [[x,y],[x-10,y+5],[x-30,y+15],[tx,ty]];\n})()"
+        },
+        {
+          "js": "document.querySelector('#timelineScroll').scrollLeft=0;"
+        },
+        {
+          "drag": "return (()=>{\nconst b=document.querySelector('[data-effect=\"Thunder\"]').getBoundingClientRect();\nconst r=document.querySelector('#effectsTrack').getBoundingClientRect();\nconst x=b.x+b.width/2,y=b.y+b.height/2,tx=r.left+r.width*9.75/24,ty=r.top+20;\nreturn [[x,y],[x-10,y+5],[x-30,y+15],[tx,ty]];\n})()"
+        },
+        {
+          "js": "document.querySelector('#timelineScroll').scrollLeft=0;"
+        },
+        {
+          "drag": "return (()=>{\nconst b=document.querySelector('[data-effect=\"Thunder\"]').getBoundingClientRect();\nconst r=document.querySelector('#effectsTrack').getBoundingClientRect();\nconst x=b.x+b.width/2,y=b.y+b.height/2,tx=r.left+r.width*10.0/24,ty=r.top+20;\nreturn [[x,y],[x-10,y+5],[x-30,y+15],[tx,ty]];\n})()"
+        },
+        {
+          "js": "document.querySelector('#timelineScroll').scrollLeft=0;"
+        },
+        {
+          "drag": "return (()=>{\nconst b=document.querySelector('[data-effect=\"Thunder\"]').getBoundingClientRect();\nconst r=document.querySelector('#effectsTrack').getBoundingClientRect();\nconst x=b.x+b.width/2,y=b.y+b.height/2,tx=r.left+r.width*10.25/24,ty=r.top+20;\nreturn [[x,y],[x-10,y+5],[x-30,y+15],[tx,ty]];\n})()"
+        },
+        {
+          "js": "document.querySelector('#timelineScroll').scrollLeft=0;"
+        },
+        {
+          "drag": "return (()=>{\nconst b=document.querySelector('[data-effect=\"Thunder\"]').getBoundingClientRect();\nconst r=document.querySelector('#effectsTrack').getBoundingClientRect();\nconst x=b.x+b.width/2,y=b.y+b.height/2,tx=r.left+r.width*10.5/24,ty=r.top+20;\nreturn [[x,y],[x-10,y+5],[x-30,y+15],[tx,ty]];\n})()"
+        },
+        {
+          "js": "document.querySelector('#timelineScroll').scrollLeft=0;"
+        },
+        {
+          "drag": "return (()=>{\nconst b=document.querySelector('[data-effect=\"Thunder\"]').getBoundingClientRect();\nconst r=document.querySelector('#effectsTrack').getBoundingClientRect();\nconst x=b.x+b.width/2,y=b.y+b.height/2,tx=r.left+r.width*10.75/24,ty=r.top+20;\nreturn [[x,y],[x-10,y+5],[x-30,y+15],[tx,ty]];\n})()"
+        }
+      ],
+      "keep": [
+        "#projection",
+        "#play",
+        "#hint",
+        "#timelineScroll"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "secret-guess",
+      "steps": [
+        {
+          "click": "#m-swap"
+        },
+        {
+          "click": "#guess"
+        }
+      ],
+      "keep": [
+        "#projection",
+        "#play",
+        "#hint",
+        "#swapBar",
+        "#choiceStrip"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

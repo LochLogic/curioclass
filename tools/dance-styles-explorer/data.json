@@ -1,0 +1,229 @@
+{
+  "styles": {
+    "ballet": {
+      "name": "Ballet",
+      "where": "Italian Renaissance courts in the 1400s and 1500s, shaped in the French court; Louis XIV founded the Académie Royale de Danse in 1661.",
+      "roots": "Court dance and spectacle; Pierre Beauchamp set the five positions of the feet; the terms are French.",
+      "people": "Marie Taglioni (La Sylphide, 1832, early pointe work), Anna Pavlova, Misty Copeland (first African American female principal dancer at American Ballet Theatre, 2015).",
+      "signature": [
+        "turnout from the hips, long lifted spine, pointed feet.",
+        "jumps, turns, extensions.",
+        "vertical lines, often high, shown to the front.",
+        "phrased with the music.",
+        "controlled and light, effort hidden."
+      ],
+      "look": "Turnout; arms framing the head; the finish of each turn.",
+      "music": "A ballet class piano waltz in 3 at 168 beats a minute, counted one count to a bar as ballet classes count a waltz (56 counts a minute).",
+      "caption": "Pointe shoes: satin over a hard box, so a dancer can rise onto the tips of the toes.",
+      "bpm": 56,
+      "total": 16,
+      "cycle": 16,
+      "meter": 3
+    },
+    "modern": {
+      "name": "Modern dance",
+      "where": "United States and Germany, early 1900s, as a break from ballet's rules.",
+      "roots": "Dancers wanted movement from natural impulses and their own time.",
+      "people": "Isadora Duncan (bare feet, natural movement), Martha Graham (contraction and release; company founded 1926), Alvin Ailey (Revelations, 1960).",
+      "signature": [
+        "movement led from the torso, bare feet.",
+        "falls, contractions, floor work.",
+        "low levels and the floor, asymmetry.",
+        "may move with, against or without the beat.",
+        "weight given to gravity, strong contrasts."
+      ],
+      "look": "The spine curving; weight dropping into the floor; stillness.",
+      "music": "Sparse piano and low pad, 68 beats a minute.",
+      "caption": "Bare feet, so the soles can grip, slide and feel the floor.",
+      "bpm": 68,
+      "total": 16,
+      "cycle": 16,
+      "meter": 4
+    },
+    "jazz": {
+      "name": "Jazz dance",
+      "where": "United States, 1900s, from African American social dance into theater and film.",
+      "roots": "The cakewalk, the Charleston and the Lindy Hop; theatrical jazz from the 1940s.",
+      "people": "Jack Cole (theatrical jazz technique), Katherine Dunham, Bob Fosse.",
+      "signature": [
+        "isolations (one body part moves alone), low center.",
+        "kicks, turns, struts.",
+        "presented outward to the audience.",
+        "syncopation, off-beat accents.",
+        "sharp hits and smooth rolls."
+      ],
+      "look": "Isolations; accents that land between beats; a strong finish.",
+      "music": "Swung brass-like stabs and walking bass, 120 beats a minute.",
+      "caption": "Soft split-sole jazz shoes, made to bend and turn.",
+      "bpm": 120,
+      "total": 16,
+      "cycle": 16,
+      "meter": 4
+    },
+    "tap": {
+      "name": "Tap dance",
+      "where": "United States, 1800s.",
+      "roots": "African American dance (juba, buck dancing) meeting Irish and Scottish step dancing; metal taps from the early 1900s.",
+      "people": "William Henry Lane, \"Master Juba\" (1840s), Bill \"Bojangles\" Robinson, Gregory Hines. National Tap Dance Day is May 25, Robinson's birthday (US Congress, 1989).",
+      "signature": [
+        "relaxed upper body, busy feet.",
+        "shuffles, flaps, heel drops, time steps.",
+        "mostly in place.",
+        "the dancer is a drummer; rhythm and improvisation.",
+        "crisp and light."
+      ],
+      "look": "Sound over shape; how quiet the top stays; trading phrases.",
+      "music": "Light swing bass only; the taps are the music, 104 beats a minute.",
+      "caption": "Metal plates on the toe and heel make every step a sound.",
+      "bpm": 104,
+      "total": 16,
+      "cycle": 16,
+      "meter": 4
+    },
+    "breaking": {
+      "name": "Breaking",
+      "where": "The Bronx, New York City, early 1970s, part of hip hop culture.",
+      "roots": "At block parties DJ Kool Herc looped the \"break\" of records; b-boys and b-girls danced to the breaks; battles in a circle (the cypher).",
+      "people": "DJ Kool Herc, Rock Steady Crew (1977), and the first Olympic breaking event (Paris 2024).",
+      "signature": [
+        "whole body, hands to the floor.",
+        "toprock, footwork, power moves, freezes.",
+        "low levels, circles.",
+        "on the breakbeat; freezes hit the accents.",
+        "explosive, personal style."
+      ],
+      "look": "Going down from standing; the freeze on an accent; style as a signature.",
+      "music": "Breakbeat drums with scratch-like sweeps, 110 beats a minute.",
+      "caption": "Sneakers on a flattened cardboard square, a slick floor for spins.",
+      "bpm": 110,
+      "total": 16,
+      "cycle": 16,
+      "meter": 4
+    },
+    "irish": {
+      "name": "Irish step dance",
+      "where": "Ireland; dancing masters taught steps across the country from the 1700s.",
+      "roots": "Competition (the feis); the Irish Dancing Commission developed competition rules in the early 1930s; Riverdance (Eurovision, Dublin, 1994) took it worldwide.",
+      "people": "Riverdance's first leads, Jean Butler and Michael Flatley.",
+      "signature": [
+        "upright, arms still at the sides.",
+        "fast, precise footwork, leaps, kicks.",
+        "in place and in lines.",
+        "jigs, reels and hornpipes.",
+        "light in soft shoes, loud in hard shoes."
+      ],
+      "look": "The still arms; the speed of the feet; crossed feet and turned-out toes.",
+      "music": "A reel in 4 on a fiddle-like lead, 112 beats a minute.",
+      "caption": "Soft shoes for light dances and hard shoes, with tips and heels made to strike, for loud ones.",
+      "bpm": 112,
+      "total": 16,
+      "cycle": 16,
+      "meter": 4
+    },
+    "flamenco": {
+      "name": "Flamenco",
+      "where": "Andalusia, southern Spain; on UNESCO's list of Intangible Cultural Heritage since 2010.",
+      "roots": "Grew among Gitano (Roma) communities with many Andalusian influences; three parts: cante (song), toque (guitar), baile (dance).",
+      "people": "Carmen Amaya, Antonio Gades, Sara Baras.",
+      "signature": [
+        "proud upright torso, curving arms (braceo), turning hands (floreo).",
+        "zapateado (footwork as rhythm), turns, stops.",
+        "in place, strong verticals.",
+        "compás; soleá and alegrías cycles of 12 counts with accents on 3, 6, 8, 10 and 12.",
+        "intense, with sudden stops (remate)."
+      ],
+      "look": "How accents fall in the 12; arms against feet; a sharp closing pose.",
+      "music": "Plucked guitar rasgueado with palmas (handclaps), 150 counts a minute.",
+      "caption": "Heeled shoes with rows of small nails in the toe and heel for footwork.",
+      "bpm": 150,
+      "total": 24,
+      "cycle": 12,
+      "meter": 12
+    },
+    "bharatanatyam": {
+      "name": "Bharatanatyam",
+      "where": "Tamil Nadu, South India; reshaped and named in the 1930s.",
+      "roots": "Grew from temple and court dance of hereditary women dancers (sadir), with roots in the Natya Shastra, an ancient treatise on performance; Rukmini Devi Arundale founded Kalakshetra in 1936.",
+      "people": "T. Balasaraswati, Rukmini Devi Arundale.",
+      "signature": [
+        "araimandi (half-sitting, knees bent outward), mudras (hand gestures that carry meaning), eyes leading.",
+        "adavus (basic step units), striking feet, sculptural poses.",
+        "geometric lines and triangles.",
+        "rhythm syllables (tha ka dhi mi) in tala cycles; Adi tala has 8 beats.",
+        "crisp pure dance (nritta) and expressive storytelling (abhinaya)."
+      ],
+      "look": "The triangle of the bent knees; the hands; feet striking with the syllables.",
+      "music": "Barrel-drum-like strokes and small cymbals, Adi tala, 80 beats a minute.",
+      "caption": "Ankle bells (salangai) ring with each strike of the feet.",
+      "bpm": 80,
+      "total": 16,
+      "cycle": 16,
+      "meter": 8
+    }
+  },
+  "vocab": {
+    "Body": {
+      "isolation": "One part moves alone.",
+      "turnout": "Legs rotated out from the hips.",
+      "contraction": "The torso hollows and curves.",
+      "release": "The torso lengthens back out.",
+      "gesture": "A movement of a part that does not carry weight.",
+      "mudra": "A hand gesture with meaning."
+    },
+    "Action": {
+      "locomotor": "Moves through space.",
+      "nonlocomotor": "Moves in place.",
+      "elevation": "Jumps and leaps.",
+      "turn": "Rotation around an axis.",
+      "freeze": "A held shape.",
+      "fall and recovery": "Yielding to gravity and regaining balance.",
+      "footwork": "Patterns and actions made by the feet."
+    },
+    "Space": {
+      "level": "High, middle or low.",
+      "pathway": "The line traveled.",
+      "direction and facing": "Where movement travels and the body faces.",
+      "general space and personal space": "The shared area and the space immediately around a dancer.",
+      "formation": "The arrangement of dancers.",
+      "cypher": "The circle of a breaking battle."
+    },
+    "Time": {
+      "tempo": "The speed of the counts.",
+      "meter": "Counts in a cycle.",
+      "accent": "An emphasized moment.",
+      "syncopation": "An accent off the main beat.",
+      "stillness": "An interval with movement held.",
+      "unison and canon": "Together in time, or the same phrase starting at different times."
+    },
+    "Energy": {
+      "sustained": "Continuous and even.",
+      "percussive": "A sharp burst.",
+      "swinging": "A pendulum-like release and return.",
+      "suspended": "A sense of hanging before the next movement.",
+      "collapsing": "Giving way to gravity.",
+      "vibratory": "Rapid small shaking movements.",
+      "weight": "Strong or light.",
+      "flow": "Free or bound."
+    }
+  },
+  "lines": {
+    "wStyles": "Pick a style and watch its phrase. Turn on Trace to see the shape it leaves in space.",
+    "wCompare": "Two styles, one clock. Press Play, then turn on Overlay to lay one trace over the other.",
+    "wCritique": "Press Note when you see something worth saying. It's stamped to that count.",
+    "traceHow": "Each ghost is half a count apart. Hands draw solid lines, feet draw dotted ones.",
+    "rhythmHow": "Tall bars are strong accents. Dots are the sound of the feet.",
+    "draftHow": "Now tap Insert note under a box, so every claim points to a moment.",
+    "i.ballet": "Ballet began in Renaissance courts and grew up in France, which is why its words are French.",
+    "i.modern": "Modern dance broke ballet's rules and let weight, breath and the floor back in.",
+    "i.jazz": "Jazz dance grew from African American social dance into theater and film.",
+    "i.tap": "In tap, the dancer is also the drummer. Listen as much as you watch.",
+    "i.breaking": "Breaking started at Bronx block parties in the 1970s, danced to the breaks of records.",
+    "i.irish": "Irish step dance keeps the arms still, so all the speed lives in the feet.",
+    "i.flamenco": "Flamenco joins song, guitar and dance in a cycle of twelve counts.",
+    "i.bharatanatyam": "Bharatanatyam, from South India, tells stories with the hands and keeps time with the feet.",
+    "noteHow": "Pick a Term, type a few words, then press Save note.",
+    "emptyInsert": "Press Note and save an observation first.",
+    "copied": "Critique copied. Your count references are included.",
+    "cleared": "Critique cleared. Press Note to begin again."
+  }
+}

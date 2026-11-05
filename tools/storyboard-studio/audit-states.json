@@ -1,0 +1,432 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "two-panels",
+      "steps": [
+        {
+          "click": "#add"
+        }
+      ],
+      "keep": [
+        "#view",
+        "#plan",
+        "#add"
+      ]
+    },
+    {
+      "name": "sample-board",
+      "steps": [
+        {
+          "click": "#m-board"
+        },
+        {
+          "click": "#sample"
+        }
+      ],
+      "keep": [
+        "#sample",
+        "#mine"
+      ]
+    },
+    {
+      "name": "marker-open",
+      "steps": [
+        {
+          "click": "#m-board"
+        },
+        {
+          "click": "#sample"
+        },
+        {
+          "click": ".cut-marker"
+        }
+      ],
+      "keep": [
+        "#marker-dialog",
+        "#go-panel"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "bus-scene",
+      "steps": [
+        {
+          "click": "#scene-pick"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        }
+      ],
+      "keep": [
+        "#view",
+        "#plan",
+        "#add"
+      ]
+    },
+    {
+      "name": "clear-confirm",
+      "steps": [
+        {
+          "click": "#clear"
+        }
+      ],
+      "keep": [
+        "#clear-dialog",
+        "#cancel-clear"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "animatic-playing",
+      "steps": [
+        {
+          "click": "#m-board"
+        },
+        {
+          "click": "#sample"
+        },
+        {
+          "click": "#m-animatic"
+        },
+        {
+          "click": "#play"
+        }
+      ],
+      "keep": [
+        "#view",
+        "#stop",
+        "#step",
+        "#problems"
+      ]
+    },
+    {
+      "name": "panel-limit",
+      "steps": [
+        {
+          "click": "#add",
+          "times": 11,
+          "gap": 0.15
+        }
+      ],
+      "keep": [
+        "#view",
+        "#plan",
+        "#delete"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "high-long-lens",
+      "steps": [
+        {
+          "click": "#lens"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#height"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#duration"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        }
+      ],
+      "keep": [
+        "#view",
+        "#plan",
+        "#add"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "sharing-beat",
+      "steps": [
+        {
+          "js": "Object.assign(__tool.board()[0],{x:0,y:-2.2,lens:35,aim:'Both',height:'Eye',beat:8});__tool.render();"
+        }
+      ],
+      "keep": [
+        "#view",
+        "#plan",
+        "#add"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

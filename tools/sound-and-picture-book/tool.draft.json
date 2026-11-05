@@ -1,0 +1,19 @@
+{
+  "id":"sound-and-picture-book",
+  "stage":"built",
+  "status":"beta",
+  "hook":"Same pictures. Change the sounds, change the story.",
+  "outcome":"Plan, combine and revise a three-page story using pictures and sounds",
+  "driver":"teacher",
+  "minutes":"20-30",
+  "modes":["Plan","Make","Play","Swap"],
+  "grades_label":"Grades K-2",
+  "sources":[
+    "National Core Arts Standards, Media Arts K-2: MA:Cr1, MA:Cr2, MA:Cr3, MA:Pr4",
+    "Michel Chion (1994), Audio-Vision: Sound on Screen, Columbia University Press: added value",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Original environmental sounds synthesized with Web Audio"
+  ],
+  "third_party":[],
+  "updated":"2026-11-02"
+}

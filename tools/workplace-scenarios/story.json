@@ -1,0 +1,87 @@
+{
+  "stops": [
+    {"time":"8:15","place":"In the car","art":"wp-car","people":["kai","dev"],"tag":"CRP4: communicate clearly","opening":"Your ride is running 15 minutes late. You were supposed to set out the craft bins by 8:30.","choices":[
+      ["Text Kai: \"Ride's late, here by 8:45. Can someone set out the craft bins?\"","heads_up","helped","Kai texts back: 'Thanks for telling me. I've got the bins.'","Send a clear heads-up"],
+      ["Say nothing and hurry in when you get there.","silent","cost","You arrive at 8:45. Dev is doing sign-in alone and setting out bins at the same time.","Arrive without a message"],
+      ["Text Kai: \"Running late.\"","vague","mixed","Kai texts back: 'How late? Anything I need to cover?' Your ride pulls in before you answer.","Send a short message"]]},
+    {"time":"9:15","place":"Craft table","art":"wp-craft","people":["mia","kai"],"tag":"CRP1: responsible employee","opening":"Mia wants to use the hot glue gun herself.","choices":[
+      ["Explain the rule, then let Mia point where every dot of glue goes while you hold the gun.","safe_way","helped","Mia directs every dot. Her owl ends up with three eyes, on purpose.","Let Mia direct the craft"],
+      ["Let her try it just this once while you watch.","bent_rule","cost","Mia is careful. Two other Bluebirds were watching.","Make one exception"],
+      ["Say no and move on to the next camper.","flat_no","mixed","Mia folds her arms and stops working on her owl.","Say no and move on"]]},
+    {"time":"10:30","place":"The path to the pool","art":"wp-path","people":["leo","kai","dev"],"tag":"CRP8: solve problems and persevere","opening":"You count the Bluebirds. Seven. There should be eight.","choices":[
+      ["Stop the line, count again, and radio Kai.","stopped_count","helped","Leo was tying his shoe by the fountain. Kai walks him up. You reach the pool three minutes late, and the lifeguard counts eight.","Stop, count, radio"],
+      ["Keep walking. You probably miscounted.","kept_walking","cost","At the pool the lifeguard counts seven. Kai runs back and finds Leo by the fountain, scared.","Keep the group moving"],
+      ["Ask Dev to walk the group on while you run back to look.","split_up","mixed","You find Leo at the fountain. But Dev walked seven kids to the pool alone, and the lifeguard noticed.","Split up to find Leo"]]},
+    {"time":"12:00","place":"Lunch pavilion","art":"wp-lunch","people":["dev","kai"],"tag":"CRP12: work productively in teams","opening":"A juice box bursts across a whole table. Dev is on his phone.","choices":[
+      ["Ask Dev straight out: \"Can you grab paper towels? I'll move the kids.\"","asked_dev","helped","Dev jumps up. 'Sorry, my mom texted.' The table is dry in two minutes.","Ask Dev directly"],
+      ["Clean it all yourself and complain to Kai later.","complained","mixed","It takes you ten minutes. Kai says she'll talk to Dev.","Clean up, tell Kai later"],
+      ["Post \"Dev is useless lol\" in the junior counselor group chat.","posted","cost","Three people react with laughing faces. Dev sees it.","Post in the group chat"]]},
+    {"time":"1:15","place":"The field","art":"wp-field","people":["dev","mia","ortega"],"tag":"CRP6: creativity","opening":"It's too hot for running games. Ms. Ortega asks the junior counselors for an idea.","choices":[
+      ["Suggest a shade game you know and offer to explain it.","led_idea","helped","Ms. Ortega says, 'Great. Go.' Eight kids learn a new game in the shade.","Lead a shade game"],
+      ["Say you don't have any ideas.","no_idea","mixed","Ms. Ortega picks a game herself. It's fine.","Leave the idea to her"],
+      ["Suggest letting the campers vote between two shade games.","vote","helped","The vote takes one minute, and everyone plays the winner.","Let campers vote"]]},
+    {"time":"2:30","place":"The gym","art":"wp-gym","people":["kai","ortega"],"tag":"CRP8: solve problems and persevere","opening":"Thunder. Everyone heads inside, but the Otters group is already in the gym.","choices":[
+      ["Find Ms. Ortega and tell her both groups are at the gym.","told_director","helped","Ms. Ortega opens the art room. 'Thanks for coming to me instead of fighting it out.'","Tell the director"],
+      ["Tell the Otters' counselor the gym is yours today.","argued","cost","The two of you argue in front of sixteen kids until Kai steps in.","Argue for the gym"],
+      ["Take the Bluebirds to the hallway for a quiet game without telling anyone.","vanished","cost","Kai checks the gym, then the art room, then finds you. 'I didn't know where my group was.'","Move to the hallway"]]},
+    {"time":"3:30","place":"Pickup","art":"wp-pickup","people":["price","leo","ortega"],"tag":"CRP9: integrity","opening":"Mr. Price asks how Leo's day went.","choices":[
+      ["Tell him one thing Leo did today, like finding the shady spot for the game.","specific","helped","Mr. Price grins. 'He never tells me anything. Thanks.'","Tell one real detail"],
+      ["Say \"He was fine.\"","fine","mixed","Mr. Price nods and heads off.","Give a short answer"],
+      ["Send him to Ms. Ortega.","passed_on","mixed","Ms. Ortega answers him, and wonders why you didn't.","Pass the question on"]],"problemChoices":[
+      ["Listen first, then tell him plainly what happened and offer to get Ms. Ortega.","honest","helped","Mr. Price nods. 'Thanks for being straight with me.' Ms. Ortega talks with him.","Listen and be straight"],
+      ["Say none of it was your fault.","blamed","cost","Mr. Price asks for Ms. Ortega, and he is not happy.","Say it wasn't your fault"],
+      ["Say everything went great.","smoothed","cost","Mr. Price frowns. That night he hears the whole story from Leo.","Say everything was great"]]},
+    {"time":"4:00","place":"Staff room","art":"wp-staff","people":["ortega","dev"],"tag":"CRP1: responsible employee","opening":"Ms. Ortega asks each junior counselor: what will you do differently tomorrow?","choices":[
+      ["Name one thing you'd change and one you'd keep.","reflect","helped","She writes it down. 'That's how you get better at this.'","Reflect on the day"],
+      ["Say it went fine.","shrug","mixed","She waits a moment, then moves on to Dev.","Say the day was fine"],
+      ["Ask her advice about your hardest moment today.","ask_advice","helped","She tells you about her first summer, when she lost a whole group for five minutes.","Ask for advice"]]}
+  ],
+  "arrivals": {
+    "heads_up":"The bins are out and the glue guns are warm.",
+    "silent":"Craft starts ten minutes late, and two campers never got signed in.",
+    "vague":"Kai set out half the bins. The glitter is missing.",
+    "asked_dev":"Dev nudges you: 'Say the shadow tag one.'",
+    "complained":"Dev won't look at you.",
+    "posted":"Dev sits at the far end of the bench.",
+    "flat_no":"Mia is still sulking from craft time.",
+    "bent_rule":"On the way in, a Bluebird grabs a glue gun from the craft cart. 'Mia got to!' Kai takes it away.",
+    "kept_walking":"Leo told his dad he got left behind at the fountain. Mr. Price is upset.",
+    "split_up":"Leo told his dad you ran back to find him. Mr. Price wants to know what happened.",
+    "silent_pickup":"Mr. Price asks why Leo's sign-in sheet has no time on it.",
+    "flat_no_vote":"Mia votes, and joins in."
+  },
+  "notes": {
+    "kai": {
+      "heads_up":"You told me early, so I could cover. That's most of this job.",
+      "silent":"I didn't know you'd be late. Dev did two jobs this morning.",
+      "vague":"Next time, tell me what needs covering, not just that you're late.",
+      "bent_rule":"One of ours grabbed a glue gun because Mia got to use one.",
+      "told_director":"The art room save was smart.",
+      "argued":"Arguing over the gym in front of the kids didn't help anyone.",
+      "vanished":"When I can't find my group, my stomach drops. Radio me first."
+    },
+    "dev": {
+      "asked_dev":"Thanks for just asking me. I'm putting my phone away tomorrow.",
+      "complained":"I wish you'd told me yourself instead of Kai.",
+      "posted":"I saw the group chat."
+    },
+    "ortega": {
+      "safe_way":"Mia showed me her three-eyed owl.",
+      "stopped_count":"You stopped the line to count. That's exactly right.",
+      "kept_walking":"Counting is the job. We were lucky today.",
+      "split_up":"You found Leo. Next time radio first, so no one is alone with a group.",
+      "led_idea":"Your shade game was a hit.",
+      "vote":"Letting them vote was clever.",
+      "no_idea":"Bring one game idea tomorrow.",
+      "honest":"Parents trust us when we're straight with them.",
+      "specific":"Parents trust us when we're straight with them.",
+      "blamed":"Owning it would have helped with Mr. Price.",
+      "smoothed":"Mr. Price called me tonight. Tell parents what really happened.",
+      "fine":"Parents love one real detail about their kid.",
+      "passed_on":"Parents love one real detail about their kid.",
+      "reflect":"See you tomorrow, 8:30.",
+      "ask_advice":"See you tomorrow, 8:30.",
+      "shrug":"Think about one thing for tomorrow. See you at 8:30."
+    }
+  }
+}

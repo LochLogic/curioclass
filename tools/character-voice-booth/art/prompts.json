@@ -1,0 +1,131 @@
+{
+  "house_style": "Soft painted picture-book style, warm studio light from upper left, gouache and colored-pencil texture, rich material detail, friendly proportions and dimensional shading. No text, letters, numbers, logos or people.",
+  "assets": [
+    {
+      "name": "booth-wall",
+      "prompt": "Inside a small recording booth, dark slate grey acoustic foam wedges with varied ridges and soft shadows, warm wooden floor strip at bottom, warm overhead studio light, empty center.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mic",
+      "prompt": "Big silver studio microphone, round finely woven mesh head, metal grille and screws, short black desk stand, front view. Isolated centered on flat pure green #00FF00.",
+      "aspect": "3:4",
+      "width": 260,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "lamp-off",
+      "prompt": "Rectangular vintage studio warning lamp box, dark red worn enamel metal, four screws, bevelled blank dark smoky burgundy glass, unlit with a restrained upper-left reflected highlight. Broad dark center for code-drawn white READY text. Same case as lamp-on. Isolated centered on flat pure green #00FF00. No lettering or people.",
+      "aspect": "4:1",
+      "width": 320,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "lamp-on",
+      "prompt": "Rectangular vintage studio warning lamp box, dark red enamel metal, screws and bevelled blank smooth glass front glowing bright red. Isolated centered on flat pure green #00FF00.",
+      "aspect": "4:1",
+      "width": 320,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "usual",
+      "prompt": "Blank paper speech bubble cut from cream card, gently curled paper edge, subtle paper fibers. Isolated centered on flat pure green #00FF00.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "holes": true,
+      "despill": true
+    },
+    {
+      "name": "mouse",
+      "prompt": "Small grey mouse sitting up, round pink ears, tiny whiskers and paws, full animal. Isolated centered on flat pure green #00FF00.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "holes": true,
+      "despill": true
+    },
+    {
+      "name": "boot",
+      "prompt": "One huge worn brown leather boot, heavy rounded toe, stitched seams and scuffed leather, empty prop. Isolated centered on flat pure green #00FF00.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "robot",
+      "prompt": "One friendly tin toy robot with short antenna, metal rivets, square torso and jointed toy limbs. Isolated centered on flat pure green #00FF00.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "crown",
+      "prompt": "One gold crown with red jewels, polished metal highlights and tiny engraved details, empty prop. Isolated centered on flat pure green #00FF00.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "helmet",
+      "prompt": "One steel knight helmet with closed visor, steel rivets and narrow visor slits, empty prop. Isolated centered on flat pure green #00FF00.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "puppy",
+      "prompt": "Happy brown and white puppy sitting, soft floppy ears, full animal, warm fur texture. Isolated centered on flat pure green #00FF00.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "holes": true,
+      "despill": true
+    },
+    {
+      "name": "wizard",
+      "prompt": "Starry blue pointed wizard hat leaning against one wooden staff, embroidered stars and carved wood grain, empty props. Isolated centered on flat pure green #00FF00.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex"
+    }
+  ]
+}

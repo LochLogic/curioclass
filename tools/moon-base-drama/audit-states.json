@@ -1,0 +1,134 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "crew-checked",
+      "steps": [
+        {
+          "click": "#job-0"
+        }
+      ],
+      "keep": [
+        "#jobs",
+        "#ada",
+        "#radio",
+        "#controls"
+      ]
+    },
+    {
+      "name": "batteries",
+      "steps": [
+        {
+          "click": "#m-mission"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        }
+      ],
+      "keep": [
+        "#choices",
+        "#ada",
+        "#radio",
+        "#controls"
+      ]
+    },
+    {
+      "name": "water-result",
+      "steps": [
+        {
+          "click": "#m-mission"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        },
+        {
+          "click": "#choice-a"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-b"
+        }
+      ],
+      "keep": [
+        "#choices",
+        "#meters",
+        "#controls"
+      ]
+    },
+    {
+      "name": "rewind-open",
+      "steps": [
+        {
+          "click": "#m-mission"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        },
+        {
+          "click": "#rewind"
+        }
+      ],
+      "keep": [
+        "#map-dialog"
+      ]
+    },
+    {
+      "name": "night",
+      "steps": [
+        {
+          "click": "#m-mission"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        },
+        {
+          "click": "#choice-a"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-a"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        },
+        {
+          "click": "#choice-a"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        }
+      ],
+      "keep": [
+        "#radio",
+        "#meters",
+        "#ada",
+        "#controls"
+      ]
+    },
+    {
+      "name": "card-hidden",
+      "steps": [
+        {
+          "click": "#m-mission"
+        },
+        {
+          "click": "#card"
+        }
+      ],
+      "keep": [
+        "#radio",
+        "#controls"
+      ]
+    }
+  ]
+}

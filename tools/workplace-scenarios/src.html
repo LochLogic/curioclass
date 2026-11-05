@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workplace Scenarios · One day, many ripples · Curio Class</title>
+<meta name="description" content="Live a day as a junior camp counselor.
+Trace how communication, responsibility and teamwork change later moments. Grades 6-8. Works offline.">
+<!--
+Workplace Scenarios, Curio Class. Grades 6-8 CTE. Original fictional camp story.
+Career Ready Practices: 2012 numbering, labeled in Job card. Sources in notes.md.
+Backdrops: FLUX.1-schnell (Apache 2.0). Badges: OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. One offline file. No network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f4f8fb; --panel:#fff; --ink:#1b2733; --muted:#556372; --line:#d7e3ee;
+  --brand:#1e6fd9; --btn:#155ebd; --btn-line:#8db9f2; --head-ink:#fff; --focus:#713f12;
+  --helped:#187a42; --cost:#b4461a; --mixed:#6b7280;
+}
+body { height:100dvh; min-height:0; overflow:hidden; grid-template-rows:auto auto minmax(0,1fr) auto; }
+header { padding:12px 24px; gap:9px; box-shadow:0 2px 12px #102f4b22; z-index:2; }
+h1 { font-size:27px; letter-spacing:-.6px; }
+h1 small { font-size:13px; opacity:1; margin-top:5px; letter-spacing:.1px; }
+header button { white-space:nowrap; min-width:44px; }
+.seg { border-color:#a1c7f7; border-radius:12px; }
+.seg button { min-height:44px; font-size:14px; padding:0 16px; }
+.seg button[aria-pressed="true"] { background:#fff; color:#155ebd; }
+.icon-btn { min-height:44px; font-size:13px; padding:0 12px; border-radius:12px; }
+#sound { width:88px; }
+.plain { border:1px solid #b4c9dc; background:#fff; border-radius:9px; min-height:44px; padding:7px 14px; font-weight:700; }
+.plain:hover { background:#eaf3ff; border-color:var(--brand); }
+.primary { background:var(--brand); color:#fff; border:0; border-radius:10px; padding:10px 20px; min-height:48px; font-weight:750; }
+.primary:hover { background:#155ebd; }
+.timeline { display:grid; grid-template-columns:repeat(8,minmax(0,1fr)); padding:8px 24px 10px; gap:8px; background:#f4f8fb; }
+.time-stop { position:relative; text-align:center; font-size:12px; color:var(--muted); line-height:1.2; }
+.time-stop::before { content:""; position:absolute; height:2px; background:#cedce9; left:-6px; right:-6px; top:12px; }
+.time-stop:first-child::before { left:50%; }
+.time-stop:last-child::before { right:50%; }
+.pin { position:relative; display:grid; place-items:center; margin:0 auto 4px; width:26px; height:26px; border:2px solid #a9bbcd;
+  border-radius:50%; background:var(--paper); font-weight:800; color:#52677c; }
+.current .pin { color:#fff; background:var(--brand); border-color:var(--brand); box-shadow:0 0 0 4px #1e6fd91b; }
+.played .pin { border-color:var(--brand); color:var(--brand); background:#eaf3ff; }
+.current.played .pin { color:#fff; background:var(--brand); }
+.time-stop.current { font-weight:800; color:#155ebd; }
+main { display:block; position:relative; min-height:0; overflow:hidden; }
+.stage { height:100%; min-height:0; background:#b6d0cb; }
+.backdrop { position:absolute; width:100%; height:100%; object-fit:cover; object-position:center 36%; }
+.stage::after { content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(180deg,#15344218,transparent 36%,#193e483b); }
+.light { position:absolute; inset:0; pointer-events:none; z-index:1; background:linear-gradient(110deg,#fff2c41c,transparent 55%);
+  animation:daylight 8s ease-in-out infinite alternate; }
+@keyframes daylight { to { opacity:.25; } }
+body.calm .light { animation:none; }
+.scene-label { position:absolute; left:22px; top:16px; color:#fff; z-index:1; text-shadow:0 2px 8px #0a233c;
+  background:#14324ae8; border:1px solid #ffffff40; border-radius:12px; padding:10px 12px; }
+.eyebrow { font-size:12px; letter-spacing:2.5px; font-weight:800; }
+.scene-label h2 { font:800 clamp(25px,3vw,43px)/1.1 'Trebuchet MS',sans-serif; margin:8px 0 14px; }
+.chips { display:flex; flex-wrap:wrap; gap:7px; }
+.chip { display:inline-flex; align-items:center; gap:6px; background:#fffffff0; border:1px solid #ffffffa8; color:#273c4f;
+  padding:3px 10px 3px 3px; border-radius:24px; text-shadow:none; font-size:13px; font-weight:700; box-shadow:0 2px 7px #142b3d15; }
+.badge { width:32px; height:32px; object-fit:contain; vertical-align:middle; }
+.story { position:absolute; z-index:2; bottom:24px; left:32px; width:76%; max-width:1200px; background:#fffffff0;
+  border:1px solid #fff; border-radius:16px; padding:20px 24px; box-shadow:0 12px 38px #172d3e38; backdrop-filter:blur(8px); }
+.story-head { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.stamp { font-size:12px; letter-spacing:1px; font-weight:800; color:#155ebd; text-transform:uppercase; }
+.stop-count { margin-left:auto; color:var(--muted); font-size:12px; }
+.opening { font-size:clamp(17px,1.6vw,21px); line-height:1.4; margin:0 0 16px; }
+.thread-link { display:inline-flex; align-items:center; justify-content:center; min-width:44px; min-height:44px; border:1px solid #b6cde6;
+  color:#155ebd; background:#edf5ff; border-radius:8px; vertical-align:middle; padding:0 8px; margin:0 5px 4px 0; }
+.thread-link svg { width:24px; height:20px; }
+.choices { display:grid; gap:8px; }
+.choice { display:flex; gap:14px; align-items:center; text-align:left; background:#fff; border:1px solid #b9ccdf; border-radius:10px;
+  min-height:56px; padding:9px 14px 9px 8px; font-size:16px; line-height:1.3; box-shadow:0 2px 0 #bed0df55;
+  transition:border-color .12s,background .12s; }
+.choice:hover { background:#edf5ff; border-color:#1e6fd9; }
+.letter { display:grid; place-items:center; flex:none; width:34px; height:34px; border-radius:8px; background:#eaf2fc; color:#155ebd; font-weight:800; }
+.result { margin-top:12px; padding:12px 15px; background:#eef5fd; border-left:4px solid var(--brand); border-radius:3px 10px 10px 3px;
+  animation:arrive .28s ease-out; }
+@keyframes arrive { from { transform:translateY(8px); opacity:.3; } to { transform:translateY(0); opacity:1; } }
+.result p { margin:0; font-size:18px; line-height:1.45; }
+.result-foot { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:12px; }
+.practice { color:#344d65; font-size:13px; }
+.receipt { display:flex; align-items:center; gap:12px; padding:9px 12px; border:1px solid #b3cbe2; border-radius:9px;
+  background:#f7faff; font-size:15px; margin:12px 0 0; }
+.receipt .letter { width:30px; height:30px; }
+footer { background:#f4f8fb; display:flex; align-items:center; gap:12px; min-height:44px; padding:6px 24px; border-top:1px solid #d7e3ee; }
+#hint { margin:0; font-size:13px; line-height:1.35; min-height:18px; flex:1; }
+.privacy { font-size:11px; color:#556372; flex:none; }
+.map-page { position:absolute; inset:0; background:radial-gradient(ellipse at 75% 20%,#dcebf8,#f4f8fb 65%); display:flex;
+  flex-direction:column; padding:14px 24px; gap:10px; overflow:auto; }
+.map-top { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.map-top h2 { font:800 23px 'Trebuchet MS',sans-serif; margin:0 auto 0 0; }
+.legend { display:flex; gap:14px; font-size:13px; align-items:center; }
+.legend span { white-space:nowrap; }
+.legend i { display:inline-block; width:25px; margin-right:5px; vertical-align:middle; border-top:3px solid var(--helped); }
+.legend .cost i { border-color:var(--cost); border-top-style:dashed; }
+.legend .mixed i { border-color:var(--mixed); border-top-style:dotted; }
+.map-scroll { position:relative; flex:1; min-height:400px; overflow:auto; border:1px solid #cadbe9; border-radius:14px;
+  background:linear-gradient(180deg,#fff,#f5faff); box-shadow:0 4px 16px #46647a0c; }
+.map-board { position:relative; min-width:1050px; height:400px; display:grid; grid-template-columns:repeat(8,minmax(0,1fr)); }
+.map-column { position:relative; z-index:1; padding:12px 9px; border-right:1px solid #e0eaf2; text-align:center; pointer-events:none; }
+.map-column::before { content:""; position:absolute; inset:0 0 auto; height:145px; background:var(--place-art) center/cover;
+  opacity:.08; z-index:-1; mask-image:linear-gradient(#000,transparent); }
+.map-column .map-time { display:block; }
+.map-column .map-place { display:block; margin-top:5px; min-height:0; }
+.map-column .map-badges { position:absolute; top:57px; left:0; right:0; }
+.map-column .map-short { position:absolute; top:114px; left:9px; right:9px; }
+.map-column .map-choice { position:absolute; top:154px; left:calc(50% - 17px); }
+.map-column .rewind { position:absolute; bottom:12px; left:8px; width:calc(100% - 16px); }
+.note-ports { position:absolute; z-index:3; top:281px; left:0; right:0; display:grid; grid-template-columns:repeat(3,1fr); pointer-events:none; }
+.note-port { justify-self:center; min-height:58px; display:flex; align-items:center; gap:6px; padding:3px 12px 3px 4px;
+  border:1px solid #b8d1e7; background:#edf5ff; border-radius:30px; font-size:12px; font-weight:700; pointer-events:auto; }
+.note-port .badge { width:48px; height:48px; }
+.map-column:last-child { border:0; }
+.map-time { font-size:15px; font-weight:800; color:#155ebd; }
+.map-place { font-size:12px; color:#556372; min-height:28px; }
+.map-choice { width:34px; height:34px; border:2px solid #1e6fd9; border-radius:50%; display:grid; place-items:center;
+  color:#155ebd; background:#edf5ff; font-weight:800; font-size:18px; }
+.map-short { font-size:13px; font-weight:700; line-height:1.25; min-height:34px; }
+.map-badges { display:flex; justify-content:center; }
+.map-badges .badge { width:48px; height:48px; }
+.rewind { margin-top:auto; min-height:44px; font-size:12px; padding:6px 8px; pointer-events:auto; }
+.map-column.unplayed { color:var(--muted); background:#e8eef466; }
+.unplayed .map-time { color:var(--muted); }
+.unplayed .map-choice { border:2px dashed #95a5b6; color:var(--muted); background:#edf1f5; }
+.unplayed .map-badges { filter:grayscale(1); opacity:.5; }
+.threads { position:absolute; z-index:0; left:0; top:0; width:100%; height:100%; pointer-events:none; overflow:visible; }
+.thread-ink { fill:none; stroke:var(--helped); stroke-width:2.8; opacity:1; }
+.thread-ink.cost { stroke:var(--cost); stroke-dasharray:8 6; }
+.thread-ink.mixed { stroke:var(--mixed); stroke-dasharray:2 6; }
+.thread-ink.highlight { stroke-width:5; opacity:1; }
+.threads.has-selection .thread-ink:not(.highlight),
+.threads.has-selection .thread-mark:not(.selected) { opacity:.18; }
+.map-column.thread-endpoint .map-short { color:#155ebd; }
+.map-column.thread-endpoint .map-choice { outline:3px solid #155ebd; outline-offset:3px; }
+.note-port[aria-pressed="true"] { border:2px solid #155ebd; background:#dcecff; }
+.thread-detail.note-detail { display:block; }
+.note-detail strong { display:flex; align-items:center; gap:8px; }
+.note-detail .badge { width:48px; height:48px; }
+.note-detail p { margin-top:8px; }
+@media (max-width:599px) {
+  .opening .ripple-line { display:flow-root; margin-bottom:5px; }
+}
+.thread-hit { fill:none; stroke:transparent; stroke-width:44; pointer-events:stroke; cursor:pointer; }
+.thread-symbol { font:800 14px 'Segoe UI',sans-serif; text-anchor:middle; dominant-baseline:central; fill:#fff; pointer-events:none; }
+.thread-dot { fill:var(--helped); }
+.thread-dot.cost { fill:var(--cost); }
+.thread-dot.mixed { fill:var(--mixed); }
+.threads.drawing .thread-ink { animation:draw-thread 1s ease-out both; }
+@keyframes draw-thread { from { clip-path:inset(0 100% 0 0); } to { clip-path:inset(0); } }
+.thread-list { display:flex; gap:6px; flex-wrap:wrap; }
+.thread-pick { min-width:44px; min-height:44px; border:1px solid #b8cbdc; border-radius:8px; padding:5px 9px;
+  font-size:12px; background:#fff; font-weight:650; }
+.thread-pick[aria-pressed="true"] { border:2px solid var(--brand); background:#eaf3ff; }
+.thread-detail { display:grid; grid-template-columns:1fr 32px 1fr; align-items:center; gap:12px; padding:12px 16px;
+  background:#fff; border:1px solid #b4cfe8; border-radius:12px; }
+.thread-detail p { font-size:14px; line-height:1.4; margin:4px 0 0; }
+.thread-detail small { font-size:11px; color:#155ebd; font-weight:800; letter-spacing:.6px; text-transform:uppercase; }
+.thread-detail .arrow { color:#1e6fd9; font-size:27px; }
+.notes { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+.note { text-align:left; border:1px solid #c5d7e6; background:#fff; border-radius:12px; padding:12px; color:var(--ink); min-height:72px; }
+.note:hover { border-color:var(--brand); box-shadow:0 2px 8px #1e6fd914; }
+.note strong { display:flex; align-items:center; gap:7px; font-size:14px; }
+.note .badge { width:48px; height:48px; }
+.note p { font-size:13px; line-height:1.45; margin:5px 0 0; }
+.map-caption { margin:0; color:#556372; font-size:12px; }
+.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+dialog { padding:0; border:1px solid #bdd2e4; border-radius:16px; max-width:620px; width:calc(100% - 28px); color:var(--ink);
+  box-shadow:0 20px 70px #10314755; max-height:90dvh; }
+dialog::backdrop { background:#122b4566; backdrop-filter:blur(3px); }
+.job-inner { padding:22px; }
+.job-head { display:flex; gap:12px; align-items:center; }
+.job-head h2 { margin:0 auto 0 0; font-size:23px; min-width:0; }
+.job-head button { flex:none; }
+.job-inner p,.job-inner li { font-size:15px; line-height:1.5; }
+.job-inner ul { padding-left:22px; }
+.job-inner .legal { background:#eef4fa; padding:12px; border-radius:8px; font-size:13px; }
+.cast { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+.cast .chip { background:#f2f7fc; border-color:#d7e3ee; font-size:12px; }
+@media (min-width:1000px) and (min-height:651px) {
+  .stage[data-place="wp-lunch"] .story { width:62%; }
+}
+@media (min-width:1600px) and (min-height:900px) {
+  header { padding:16px 36px; } h1 { font-size:33px; }
+  .story { padding:26px 30px; bottom:36px; left:40px; } .choice { min-height:64px; font-size:19px; }
+  .opening { font-size:24px; } .scene-label { left:40px; top:36px; } .result p { font-size:22px; }
+}
+@media (max-height:650px) and (min-width:600px) {
+  header { padding:4px 10px; gap:5px; flex-wrap:nowrap; } h1 { font-size:18px; white-space:nowrap; }
+  h1 small { display:none; } .seg button,.icon-btn { padding:0 9px; font-size:12px; }
+  #sound { width:76px; }
+  .timeline { padding:4px 12px; gap:4px; } .pin { width:21px; height:21px; font-size:11px; margin-bottom:2px; }
+  .time-stop::before { top:10px; } .time-stop { font-size:10px; }
+  .scene-label { top:10px; left:10px; width:24%; padding:8px; } .eyebrow { font-size:10px; letter-spacing:1px; }
+  .scene-label h2 { font-size:23px; margin:7px 0 10px; } .chips { gap:4px; }
+  .chip { font-size:11px; padding-right:6px; }
+  .story { top:auto; bottom:10px; left:27%; width:71.5%; padding:12px 14px; border-radius:12px;
+    display:flex; flex-direction:column; justify-content:center; }
+  .story-head { margin-bottom:6px; } .stamp,.stop-count { font-size:10px; }
+  .opening { font-size:14px; line-height:1.3; margin-bottom:9px; }
+  .choice { font-size:14px; line-height:1.18; padding:6px 9px 6px 6px; min-height:44px; gap:8px; }
+  .letter { width:27px; height:27px; font-size:13px; } .choices { gap:6px; }
+  .result { margin-top:7px; padding:10px; } .result p { font-size:15px; line-height:1.3; }
+  .result-foot { margin-top:8px; } .practice { font-size:11px; } .receipt { font-size:13px; padding:7px; margin-top:5px; }
+  .thread-link { float:left; margin:0 7px 0 0; } footer { padding:3px 12px; min-height:35px; }
+  #hint { font-size:11px; } .privacy { font-size:10px; } .map-page { padding:8px 12px; gap:6px; }
+  .map-top h2 { font-size:18px; }
+  body:has(#map-page:not([hidden])) .timeline { display:none; }
+  body:has(#map-page:not([hidden])) { grid-template-rows:auto minmax(0,1fr) auto; }
+  .map-page { padding:4px 8px; gap:4px; }
+  .map-scroll { min-height:260px; }
+  .map-board { height:260px; }
+  .map-column { padding-top:6px; }
+  .map-column .map-place { display:none; }
+  .map-column .map-badges { top:25px; }
+  .map-column .map-short { top:80px; }
+  .map-column .map-choice { top:122px; }
+  .map-column:not(.unplayed) .map-choice { display:none; }
+  .map-column .rewind { top:118px; bottom:auto; }
+  .map-column .rewind::before { content:attr(data-letter) " · "; color:#155ebd; font-weight:800; }
+  .note-ports { top:202px; }
+  .note-port { min-height:56px; }
+}
+@media (max-width:599px) {
+  header { padding:7px 10px; gap:5px; } h1 { flex:1 0 100%; font-size:22px; margin-bottom:3px; }
+  h1 small { display:none; } .seg button { padding:0 10px; font-size:12px; } .icon-btn { padding:0 7px; font-size:11px; }
+  #sound { width:68px; }
+  .seg { margin-right:auto; } .timeline { padding:6px 8px; gap:3px; } .time-stop { font-size:10px; }
+  .pin { width:23px; height:23px; margin-bottom:3px; font-size:11px; } .time-stop::before { top:11px; }
+  .backdrop { height:125px; object-position:center 45%; } .light { height:125px; }
+  .scene-label { top:4px; left:8px; padding:6px 8px; } .eyebrow { font-size:10px; letter-spacing:1px; }
+  .scene-label h2 { font-size:23px; margin:5px 0 8px; } .chips { gap:4px; }
+  .chip { font-size:11px; padding:2px 7px 2px 2px; }
+  .stage { background:#e4edf5; overflow:auto; } .stage::after { display:none; }
+  .story { top:121px; left:7px; bottom:auto; width:calc(100% - 14px); padding:13px 12px; border-radius:12px; }
+  .story-head { margin-bottom:8px; } .stamp,.stop-count { font-size:10px; }
+  .opening { font-size:15px; line-height:1.3; margin-bottom:11px; }
+  .choice { font-size:14px; line-height:1.25; padding:8px 9px 8px 6px; gap:8px; min-height:48px; }
+  .letter { width:28px; height:28px; } .choices { gap:7px; }
+  .thread-link { float:left; margin:0 7px 0 0; } .result { padding:10px; margin-top:9px; }
+  .result p { font-size:16px; } .result-foot { align-items:flex-start; flex-direction:column; gap:8px; }
+  .result-foot .primary { width:100%; } .receipt { font-size:13px; } .practice { font-size:11px; }
+  footer { flex-wrap:wrap; padding:5px 10px; gap:2px; } #hint { flex:1 0 100%; font-size:11px; min-height:28px; }
+  .privacy { font-size:10px; } footer .plain { margin-left:auto; }
+  .map-page { padding:9px; } .map-top h2 { font-size:20px; flex:1; }
+  .legend { order:3; flex:1 0 100%; gap:9px; font-size:11px; } .legend i { width:18px; }
+  .notes { grid-template-columns:1fr; } .thread-detail { gap:6px; padding:10px; }
+  .thread-detail p { font-size:13px; } .map-caption { font-size:11px; } .cast { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Workplace Scenarios<small>Teamwork, communication and responsibility on the job</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-day" aria-pressed="true">Day</button><button id="m-map" aria-pressed="false">Ripple map</button>
+  </div>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+</header>
+<nav class="timeline" id="timeline" aria-label="Your eight-stop day"></nav>
+<main>
+  <section class="stage" id="stage" aria-label="Day at camp">
+    <img class="backdrop" id="backdrop" alt="">
+    <div class="light" aria-hidden="true"></div>
+    <div class="scene-label">
+      <div class="eyebrow">LAKESIDE REC CENTER · DAY THREE</div><h2 id="place"></h2><div class="chips" id="chips"></div>
+    </div>
+    <article class="story" id="story">
+      <div class="story-head"><span class="stamp" id="stamp"></span><span class="stop-count" id="stop-count"></span></div>
+      <p class="opening" id="opening"></p>
+      <div class="choices" id="choices">
+        <button class="choice" id="choice-0"><span class="letter">A</span><span class="choice-text"></span></button>
+        <button class="choice" id="choice-1"><span class="letter">B</span><span class="choice-text"></span></button>
+        <button class="choice" id="choice-2"><span class="letter">C</span><span class="choice-text"></span></button>
+      </div>
+      <div class="receipt" id="receipt" hidden></div>
+      <section class="result" id="result" aria-live="polite" hidden>
+        <p id="result-text"></p>
+        <div class="result-foot"><span class="practice" id="practice"></span><button class="primary" id="next">Next →</button></div>
+      </section>
+    </article>
+  </section>
+  <section class="map-page" id="map-page" aria-label="Ripple map" hidden>
+    <div class="map-top">
+      <h2 id="map-title">Your day, connected.</h2>
+      <div class="legend" aria-label="Thread kinds">
+        <span><i></i>+ Helped</span><span class="cost"><i></i>− Cost someone</span><span class="mixed"><i></i>• Mixed</span>
+      </div><button class="plain" id="new-day">New day</button>
+    </div>
+    <section class="thread-detail" id="thread-detail" aria-live="polite" tabindex="-1" hidden></section>
+    <div class="map-scroll" id="map-scroll"><div class="map-board" id="map-board"></div></div>
+    <p class="map-caption" id="map-caption"></p>
+    <div class="thread-list" id="thread-list" aria-label="Choose a thread"></div>
+    <div class="notes" id="notes"></div>
+  </section>
+</main>
+<footer>
+  <p id="hint"></p><span class="privacy" id="privacy">Day saved on this device only. Nothing leaves it.</span>
+  <button class="plain" id="job">Job card</button>
+</footer>
+<dialog id="job-dialog" aria-labelledby="job-title">
+  <div class="job-inner">
+    <div class="job-head"><h2 id="job-title">Your job card</h2><button class="plain" id="read-job">Read</button>
+      <button class="plain" id="close-job">Close</button></div>
+    <p><b>Junior counselor, Lakeside Rec Center summer camp (made up).</b> A volunteer role for ages 12 to 15.
+      You help a senior counselor run a group of eight 7-year-olds, the Bluebirds.</p>
+    <ul><li>Counselors only use the glue guns.</li><li>Count campers at every move.</li>
+      <li>Radio Kai before leaving the group.</li><li>Tell Ms. Ortega about any problem with space or safety.</li></ul>
+    <div class="cast" id="cast"></div>
+    <p class="legal">Under United States law, most paid jobs outside farms are closed to people under 14, and 14- and 15-year-olds can work
+      only certain jobs for limited hours. So many people start with volunteer roles like this one.</p>
+    <p style="font-size:12px;color:#556372">Practice tags use the 2012 Career Ready Practices numbering.
+      The 2024 framework groups these skills differently.</p>
+  </div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const DATA = "json:story";
+  const STOPS = DATA.stops;
+  const ART = {
+    'wp-car':'art:wp-car-final', 'wp-craft':'art:wp-craft-review', 'wp-path':'art:wp-path', 'wp-lunch':'art:wp-lunch-review',
+    'wp-field':'art:wp-field', 'wp-gym':'art:wp-gym-review', 'wp-pickup':'art:wp-pickup', 'wp-staff':'art:wp-staff-review',
+    'wp-clipboard':'art:wp-clipboard', 'wp-radio':'art:wp-radio', 'wp-phone':'art:wp-phone',
+    'wp-owl':'art:wp-owl', 'wp-shoe':'art:wp-shoe', 'wp-keys':'art:wp-keys'
+  };
+  const PEOPLE = {
+    ortega:['Ms. Ortega','camp director','wp-clipboard'], kai:['Kai','senior counselor, 17','wp-radio'],
+    dev:['Dev','your partner, 13','wp-phone'], mia:['Mia','Bluebird, 7','wp-owl'],
+    leo:['Leo','Bluebird, 7','wp-shoe'], price:['Mr. Price',"Leo's dad",'wp-keys']
+  };
+  const L = {
+    welcome:"It's day three of camp. Read what's happening, then tap A, B or C.",
+    rippleArrives:'Something from earlier just showed up.', choiceHow:'Tap Next to keep the day moving.',
+    dayDone:"That's the day. Tap See the ripple map to find where your choices landed.",
+    welcomeMap:'Each line runs from a choice to where it landed. Tap a line to read both ends.',
+    rewindHow:'You went back. Tap a new choice, and watch the threads redraw.',
+    mapWaiting:'Tap a thread to read both ends, or tap Day to keep going.',
+    firstMap:'Tap Day to make your first choice. The map will grow with your day.',
+    noteHow:'Read this note, tap another note, or tap a thread to trace a choice.',
+    threadHow:'Read both ends, tap another thread, or tap Rewind to here to try a different choice.',
+    chooseHow:'Choose A, B or C, or press 1, 2 or 3. Job card has the camp rules.',
+    jobHow:'Read your job card. Tap Close to return to your day.', story:DATA
+  };
+  const KEY = 'workplace-scenarios-day';
+  const state = {mode:'day', index:0, choices:[], selectedThread:null, selectedNote:null};
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY));
+    if (saved && Array.isArray(saved.choices)) {
+      for (const n of saved.choices.slice(0,8)) {
+        if (!Number.isInteger(n) || n < 0 || n > 2) break;
+        state.choices.push(n);
+      }
+      state.index = Math.min(state.choices.length,7);
+      if (Number.isInteger(saved.index) && saved.index >= 0 && saved.index <= state.choices.length) {
+        state.index = Math.min(saved.index,7);
+      }
+      if (saved.mode === 'map') state.mode = 'map';
+    }
+  } catch {}
+  function problem(f) { return f.has('kept_walking') || f.has('split_up') || f.has('silent'); }
+  function options(i, f = flags(state.choices,i)) {
+    return i === 6 && problem(f) ? STOPS[i].problemChoices : STOPS[i].choices;
+  }
+  function flags(choices = state.choices, limit = choices.length) {
+    const f = new Set();
+    for (let i = 0; i < Math.min(limit,choices.length); i++) f.add(options(i,f)[choices[i]][1]);
+    return f;
+  }
+  function chosen(i, choices = state.choices) {
+    return i < choices.length ? options(i,flags(choices,i))[choices[i]] : null;
+  }
+  function incoming(i, choices = state.choices) {
+    const f = flags(choices,i);
+    if (i === 1) return ['heads_up','silent','vague'].filter(k => f.has(k));
+    if (i === 4) return ['asked_dev','complained','posted','flat_no'].filter(k => f.has(k));
+    if (i === 5) return f.has('bent_rule') ? ['bent_rule'] : [];
+    if (i === 6) {
+      const k = ['kept_walking','split_up','silent'].find(k => f.has(k));
+      return k ? [k] : [];
+    }
+    return [];
+  }
+  function arrivalText(k,i) { return DATA.arrivals[k === 'silent' && i === 6 ? 'silent_pickup' : k]; }
+  function opening(i, choices = state.choices) {
+    const changed = incoming(i,choices).map(k => arrivalText(k,i));
+    return [...changed,...(i === 6 && changed.length ? [] : [STOPS[i].opening])].join(' ');
+  }
+  function resultText(i, choices = state.choices) {
+    const c = chosen(i,choices);
+    if (!c) return '';
+    return c[3] + (i === 4 && c[1] === 'vote' && flags(choices,i).has('flat_no') ? ' '+DATA.arrivals.flat_no_vote : '');
+  }
+  function noteParts(who, choices = state.choices) {
+    const f = flags(choices);
+    return Object.entries(DATA.notes[who]).filter(([flag]) => f.has(flag));
+  }
+  function noteText(who, choices = state.choices) { return noteParts(who,choices).map(([,text]) => text).join(' '); }
+  function threads(choices = state.choices) {
+    const list = [];
+    const add = (from,to,target,key,text) => {
+      const c = chosen(from,choices);
+      list.push({id:`${from}-${to}-${target}-${key}`,from,to,target,key,text,kind:c[2],source:c[0]});
+    };
+    for (let i = 0; i <= Math.min(choices.length,7); i++) {
+      for (const flag of incoming(i,choices)) {
+        const from = choices.findIndex((_,j) => chosen(j,choices)[1] === flag);
+        add(from,i,'opening',flag,arrivalText(flag,i));
+      }
+    }
+    if (choices.length > 4 && chosen(4,choices)[1] === 'vote' && flags(choices,4).has('flat_no')) {
+      add(1,4,'result','flat_no',DATA.arrivals.flat_no_vote);
+    }
+    if (choices.length === 8) {
+      for (const who of ['kai','dev','ortega']) {
+        for (const [flag,text] of noteParts(who,choices)) {
+          const from = choices.findIndex((_,j) => chosen(j,choices)[1] === flag);
+          add(from,8,who,flag,text);
+        }
+      }
+    }
+    return list;
+  }
+  function save() {
+    try {
+      localStorage.setItem(KEY,JSON.stringify({choices:state.choices,index:state.index,mode:state.mode}));
+      $('privacy').textContent = 'Day saved on this device only. Nothing leaves it.';
+    } catch { $('privacy').textContent = 'Saving unavailable. This day stays open here only.'; }
+  }
+  const allLines = () => {
+    const texts = [...Object.values(L).filter(t => typeof t === 'string'),...jobReadLines()];
+    for (const stop of STOPS) {
+      texts.push(stop.opening);
+      for (const choices of [stop.choices,stop.problemChoices || []]) {
+        choices.forEach((c,j) => texts.push(c[0],c[3],`${'ABC'[j]}. ${c[0]}`));
+      }
+    }
+    texts.push(...Object.values(DATA.arrivals));
+    for (const who of Object.values(DATA.notes)) texts.push(...Object.values(who));
+    return [...new Set(texts)];
+  };
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode, hint:false,
+    welcome:() => {
+      if ($('job-dialog').open) return null;
+      if (state.mode === 'map') {
+        if (!threads().length) return ['firstMap',{valid:() => !threads().length,needs:'#m-day'}];
+        return ['welcomeMap',{valid:() => !state.selectedThread && threads().length > 0}];
+      }
+      return state.index === 0 && !state.choices.length ? ['welcome',{needs:'#choice-0'}] : null;
+    },
+    read:() => readLines(), speaks:'.choice, #next, .thread-link, .thread-pick, .rewind, .note'
+  });
+  const badge = who => `<img class="badge" src="${ART[PEOPLE[who][2]]}" alt="${PEOPLE[who][0]}'s ${
+    {ortega:'clipboard',kai:'radio',dev:'phone',mia:'paper owl',leo:'sneaker',price:'car keys'}[who]}">`;
+  const escape = text => String(text).replace(/[&<>"']/g,c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function hint() {
+    if ($('job-dialog').open) return L.jobHow;
+    if (state.mode === 'map') {
+      if (state.selectedNote) return L.noteHow;
+      if (state.selectedThread) return L.threadHow;
+      return state.choices.length ? L.mapWaiting : L.firstMap;
+    }
+    if (chosen(state.index)) return state.index === 7 ? L.dayDone : L.choiceHow;
+    return L.chooseHow;
+  }
+  function updateHint() { $('hint').textContent = hint(); }
+  function jobReadLines() {
+    const lines = [];
+    for (const el of $('job-dialog').querySelectorAll('.job-inner > p, li, .cast .chip')) {
+      const content = el.cloneNode(true);
+      content.querySelectorAll('br').forEach(br => br.replaceWith(' '));
+      const text = content.textContent.replace(/\s+/g,' ').trim();
+      lines.push(...(el.classList.contains('legal') ? text.split(/(?<=\.)\s+/) : [text]));
+    }
+    return [...lines,L.jobHow];
+  }
+  function readLines() {
+    if ($('job-dialog').open) return jobReadLines();
+    if (state.mode === 'map') {
+      if (state.selectedNote) return [...noteParts(state.selectedNote).map(([,text]) => text),hint()];
+      const t = threads().find(t => t.id === state.selectedThread);
+      return t ? [t.source,t.text,hint()] : hint();
+    }
+    const i = state.index;
+    return chosen(i) ? [resultText(i),hint()] : [opening(i),...options(i).map((c,j) => `${'ABC'[j]}. ${c[0]}`),hint()];
+  }
+  function drawTimeline() {
+    $('timeline').innerHTML = STOPS.map((s,i) => `<div class="time-stop ${i === state.index && state.mode === 'day' ? 'current' : ''}
+      ${i < state.choices.length ? 'played' : ''}" ${i === state.index ? 'aria-current="step"' : ''}>
+      <span class="pin">${i < state.choices.length ? 'ABC'[state.choices[i]] : i+1}</span><span>${s.time}</span></div>`).join('');
+  }
+  function renderDay() {
+    const i = state.index;
+    const s = STOPS[i];
+    const c = chosen(i);
+    $('backdrop').src = ART[s.art];
+    $('stage').dataset.place = s.art;
+    $('place').textContent = s.place;
+    $('chips').innerHTML = s.people.map(who => `<span class="chip" title="${PEOPLE[who][1]}">${badge(who)}${PEOPLE[who][0]}</span>`).join('');
+    $('stamp').textContent = `${s.time} · ${s.place}`;
+    $('stop-count').textContent = `STOP ${i+1} OF 8`;
+    const inc = incoming(i);
+    const icon = '<svg viewBox="0 0 30 20" aria-hidden="true">' +
+      '<path d="M2 15C9 15 7 3 15 3S21 15 28 5" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
+    $('opening').innerHTML = inc.map(k => `<span class="ripple-line"><button class="thread-link" data-flag="${k}"
+      aria-label="Trace the ripple: ${escape(arrivalText(k,i))}">${icon}</button>${escape(arrivalText(k,i))} </span>`).join('') +
+      (i === 6 && inc.length ? '' : escape(s.opening));
+    $('opening').querySelectorAll('.thread-link').forEach(b => b.onclick = () => {
+      const t = threads().find(t => t.to === i && t.key === b.dataset.flag && t.target === 'opening');
+      setMode('map');
+      if (t) selectThread(t.id);
+    });
+    $('choices').hidden = !!c;
+    for (let j = 0; j < 3; j++) $('choice-'+j).querySelector('.choice-text').textContent = options(i)[j][0];
+    $('receipt').hidden = !c;
+    $('result').hidden = !c;
+    if (c) {
+      $('receipt').innerHTML = `<span class="letter">${'ABC'[state.choices[i]]}</span><span>${escape(c[0])}</span>`;
+      $('result-text').textContent = resultText(i);
+      $('practice').textContent = s.tag;
+      $('next').textContent = i === 7 ? 'See the ripple map →' : 'Next →';
+    }
+    updateHint();
+  }
+  function choose(j) {
+    if (state.mode !== 'day' || $('job-dialog').open || chosen(state.index)) return;
+    const hadFocus = document.activeElement.classList.contains('choice');
+    const i = state.index;
+    V.dropQueued();
+    state.choices = [...state.choices.slice(0,i),j];
+    renderDay();
+    drawTimeline();
+    save();
+    Curio.tone(450,.11,.035);
+    if (hadFocus) $('next').focus({preventScroll:true});
+    const resultParts = [chosen(i)[3]];
+    if (i === 4 && chosen(i)[1] === 'vote' && flags(state.choices,i).has('flat_no')) resultParts.push(DATA.arrivals.flat_no_vote);
+    V.say(resultParts,{now:true,valid:() => state.mode === 'day' && state.index === i && !!chosen(i)});
+    const key = i === 7 ? 'dayDone' : 'choiceHow';
+    if (key === 'dayDone') V.say(key,{valid:() => state.index === i,needs:'#next'});
+    else if (!V.heard(key)) V.how(key,{valid:() => state.index === i && !!chosen(i),needs:'#next'});
+  }
+  function narrateOpening() {
+    const i = state.index;
+    const parts = incoming(i).length ? [L.rippleArrives] : [];
+    parts.push(...incoming(i).map(k => arrivalText(k,i)));
+    if (!(i === 6 && incoming(i).length)) parts.push(STOPS[i].opening);
+    V.say(parts,{valid:() => state.index === i && state.mode === 'day' && !chosen(i)});
+  }
+  function next() {
+    if (!chosen(state.index)) return;
+    if (state.index === 7) { setMode('map'); return; }
+    V.hush();
+    state.index++;
+    renderDay();
+    drawTimeline();
+    save();
+    $('choice-0').focus({preventScroll:true});
+    narrateOpening();
+  }
+  function setMode(mode) {
+    if ($('job-dialog').open) return;
+    const focusWasInScene = $('stage').contains(document.activeElement) || $('map-page').contains(document.activeElement);
+    V.hush();
+    state.mode = mode;
+    state.selectedThread = null;
+    state.selectedNote = null;
+    $('stage').hidden = mode !== 'day';
+    $('map-page').hidden = mode !== 'map';
+    $('m-day').setAttribute('aria-pressed',mode === 'day');
+    $('m-map').setAttribute('aria-pressed',mode === 'map');
+    drawTimeline();
+    if (mode === 'map') renderMap();
+    else renderDay();
+    updateHint();
+    save();
+    if (focusWasInScene) $(mode === 'map' ? 'm-map' : 'm-day').focus({preventScroll:true});
+    V.welcome();
+  }
+  function finishDrawing() { $('map-board').querySelector('.threads')?.classList.remove('drawing'); }
+  function renderMap() {
+    const compact = innerHeight <= 650 && innerWidth >= 600;
+    const focused = document.activeElement;
+    const focusKey = focused.dataset.thread ? ['thread',focused.dataset.thread] :
+      focused.dataset.stop ? ['stop',focused.dataset.stop] :
+      focused.dataset.person ? [focused.classList.contains('note-port') ? 'note-port' : 'note',focused.dataset.person] : null;
+    const ts = threads();
+    $('map-title').textContent = state.choices.length === 8 ? 'Your day, connected.' : 'The map so far.';
+    $('map-board').innerHTML = STOPS.map((s,i) => {
+      const c = chosen(i);
+      return `<div class="map-column ${c ? '' : 'unplayed'}" style="--place-art:url('${ART[s.art]}')"><span class="map-time">${s.time}</span>
+        <span class="map-place">${escape(s.place)}</span><span class="map-choice">${c ? 'ABC'[state.choices[i]] : i+1}</span>
+        <span class="map-short">${c ? escape(c[4]) : 'Not played yet'}</span>
+        <span class="map-badges">${s.people.map(badge).join('')}</span>
+        ${c ? `<button class="plain rewind" data-stop="${i}" data-letter="${'ABC'[state.choices[i]]}"
+          aria-label="Rewind to here: ${s.time}, choice ${'ABC'[state.choices[i]]}">Rewind to here</button>` : ''}</div>`;
+    }).join('');
+    const symbols = {helped:'+',cost:'−',mixed:'•'};
+    const marks = [];
+    const paths = ts.map((t,n) => {
+      const x1 = (t.from+.5)*125;
+      const x2 = t.to === 8 ? {kai:1000/6,dev:500,ortega:5000/6}[t.target] : (t.to+.5)*125;
+      const y = compact ? 162 : 188;
+      const y2 = t.to === 8 ? (compact ? 202 : 281) : y;
+      const bend = compact ? 180 + n%3*8 : t.to === 8 ? 230 + n%3*13 : 215 + n%3*17;
+      const d = `M${x1},${y} C${x1},${bend} ${x2},${bend} ${x2},${y2}`;
+      const u = .45 + n%3*.08;
+      const symbolX = x1 + (3*u*u - 2*u*u*u)*(x2-x1);
+      const symbolY = (1-u)**3*y + 3*(1-u)*u*bend + u**3*y2;
+      marks.push(`<g class="thread-mark" data-thread="${t.id}"><circle class="thread-dot ${t.kind}" cx="${symbolX}" cy="${symbolY}" r="8"/>
+        <text class="thread-symbol" x="${symbolX}" y="${symbolY}">${symbols[t.kind]}</text></g>`);
+      return `<g><path class="thread-ink ${t.kind}" data-thread="${t.id}" d="${d}"/>
+        <path class="thread-hit" data-thread="${t.id}" d="${d}"/></g>`;
+    }).join('');
+    $('map-board').insertAdjacentHTML('beforeend',`<svg class="threads ${Curio.reduce ? '' : 'drawing'}" viewBox="0 0 1000 ${compact ? 260 : 400}"
+      preserveAspectRatio="none" aria-label="${ts.length} consequence threads">${paths}<g>${marks.join('')}</g></svg>`);
+    $('map-board').querySelectorAll('.thread-hit').forEach(p => p.onclick = tapThread);
+    $('map-board').querySelectorAll('.rewind').forEach(b => b.onclick = () => rewind(+b.dataset.stop));
+    $('thread-list').innerHTML = ts.map((t,n) => `<button class="thread-pick" data-thread="${t.id}" aria-pressed="false">
+      ${symbols[t.kind]} ${STOPS[t.from].time} → ${t.to === 8 ? PEOPLE[t.target][0] : STOPS[t.to].time}
+      <span class="sr-only">${t.kind === 'cost' ? 'cost someone' : t.kind};
+      ${t.target === 'result' ? 'result' : t.target === 'opening' ? 'opening' : 'note'} ${n+1}</span></button>`).join('');
+    $('thread-list').querySelectorAll('button').forEach(b => b.onclick = () => selectThread(b.dataset.thread));
+    $('thread-detail').hidden = true;
+    $('thread-detail').classList.remove('note-detail');
+    $('map-caption').textContent = state.choices.length === 8 ?
+      `${ts.length} threads. Each one changes these exact words. Tap a line or its label to follow it.` :
+      `${ts.length} ${ts.length === 1 ? 'thread' : 'threads'} so far. Gray stops are unplayed. End-of-day notes arrive after 4:00.`;
+    $('notes').innerHTML = state.choices.length === 8 ? ['kai','dev','ortega'].map(who =>
+      `<button class="note" data-person="${who}"><strong>${badge(who)}${PEOPLE[who][0]}'s note</strong><p>${escape(noteText(who))}</p></button>`).join('') : '';
+    if (state.choices.length === 8) {
+      $('map-board').insertAdjacentHTML('beforeend',`<div class="note-ports">${['kai','dev','ortega'].map(who =>
+        `<button class="note-port" data-person="${who}">${badge(who)}${PEOPLE[who][0]}'s note</button>`).join('')}</div>`);
+    }
+    document.querySelectorAll('.note, .note-port').forEach(b => b.onclick = () => selectNote(b.dataset.person));
+    if (state.selectedThread) selectThread(state.selectedThread,false);
+    else if (state.selectedNote) selectNote(state.selectedNote,false);
+    if (focusKey) {
+      const selector = focusKey[0].startsWith('note') ?
+        `.${focusKey[0]}[data-person="${focusKey[1]}"]` : `button[data-${focusKey[0]}="${focusKey[1]}"]`;
+      document.querySelector(selector)?.focus({preventScroll:true});
+    }
+  }
+  function tapThread(event) {
+    // Wide hit strokes stay useful even where curves run close together.
+    const svg = $('map-board').querySelector('.threads');
+    const matrix = svg.getScreenCTM();
+    let nearest = null;
+    let distance = Infinity;
+    for (const path of svg.querySelectorAll('.thread-hit')) {
+      const length = path.getTotalLength();
+      const samples = Math.min(120,Math.max(24,Math.ceil(length/12)));
+      for (let i = 0; i <= samples; i++) {
+        const p = path.getPointAtLength(length*i/samples).matrixTransform(matrix);
+        const d = (p.x-event.clientX)**2 + (p.y-event.clientY)**2;
+        if (d < distance) { distance = d; nearest = path.dataset.thread; }
+      }
+    }
+    if (nearest) selectThread(nearest);
+  }
+  function selectThread(id, speak = true) {
+    finishDrawing();
+    const t = threads().find(t => t.id === id);
+    if (!t) return;
+    state.selectedThread = id;
+    state.selectedNote = null;
+    $('thread-detail').classList.remove('note-detail');
+    $('map-board').querySelector('.threads').classList.add('has-selection');
+    $('map-board').querySelectorAll('.map-column').forEach((column,i) =>
+      column.classList.toggle('thread-endpoint',i === t.from || i === t.to));
+    document.querySelectorAll('.note-port').forEach(b => b.setAttribute('aria-pressed',t.target === b.dataset.person));
+    $('map-board').querySelectorAll('.thread-ink').forEach(p => p.classList.toggle('highlight',p.dataset.thread === id));
+    $('map-board').querySelectorAll('.thread-mark').forEach(p => p.classList.toggle('selected',p.dataset.thread === id));
+    $('thread-list').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed',b.dataset.thread === id));
+    const destination = t.to === 8 ? PEOPLE[t.target][0]+"'s note" : STOPS[t.to].time+' · '+STOPS[t.to].place;
+    $('thread-detail').innerHTML = `<div><small>${STOPS[t.from].time} · Your choice</small><p>${escape(t.source)}</p></div>
+      <span class="arrow" aria-hidden="true">→</span><div><small>${escape(destination)}</small><p>${escape(t.text)}</p></div>`;
+    $('thread-detail').hidden = false;
+    if (speak) $('map-page').scrollTop = 0;
+    if (speak && document.activeElement.matches('.thread-pick')) $('thread-detail').focus({preventScroll:true});
+    updateHint();
+    if (speak) {
+      Curio.tone(610,.1,.025);
+      V.say([t.source,t.text],{now:true,valid:() => state.selectedThread === id});
+    }
+  }
+  function selectNote(who, speak = true) {
+    if (state.choices.length !== 8 || !PEOPLE[who]) return;
+    finishDrawing();
+    state.selectedThread = null;
+    state.selectedNote = who;
+    $('map-board').querySelector('.threads').classList.remove('has-selection');
+    $('map-board').querySelectorAll('.thread-ink').forEach(p => p.classList.remove('highlight'));
+    $('map-board').querySelectorAll('.map-column').forEach(c => c.classList.remove('thread-endpoint'));
+    $('thread-list').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed','false'));
+    document.querySelectorAll('.note-port').forEach(b => b.setAttribute('aria-pressed',b.dataset.person === who));
+    $('thread-detail').classList.add('note-detail');
+    $('thread-detail').innerHTML = `<strong>${badge(who)}${PEOPLE[who][0]}'s end-of-day note</strong>
+      <p>${escape(noteText(who))}</p>`;
+    $('thread-detail').hidden = false;
+    updateHint();
+    if (speak) {
+      $('map-page').scrollTop = 0;
+      $('thread-detail').focus({preventScroll:true});
+      Curio.tone(610,.1,.025);
+      V.say(noteParts(who).map(([,text]) => text),{
+        now:true,valid:() => state.mode === 'map' && state.selectedNote === who
+      });
+    }
+  }
+  function rewind(i) {
+    finishDrawing();
+    V.hush();
+    state.choices = state.choices.slice(0,i);
+    state.index = i;
+    setMode('day');
+    $('choice-0').focus({preventScroll:true});
+    if (!V.heard('rewindHow')) V.how('rewindHow',{valid:() => state.index === i && !chosen(i),needs:'#choice-0'});
+    narrateOpening();
+  }
+  function newDay() {
+    V.hush();
+    state.choices = [];
+    state.index = 0;
+    setMode('day');
+    try { localStorage.removeItem(KEY); } catch {}
+    $('choice-0').focus({preventScroll:true});
+  }
+  $('cast').innerHTML = Object.keys(PEOPLE).map(who => `<span class="chip">${badge(who)}<span>${PEOPLE[who][0]}<br>${PEOPLE[who][1]}</span></span>`).join('');
+  function modeTap(mode) {
+    if (state.mode === mode) { V.welcome(); return; }
+    setMode(mode);
+  }
+  $('m-day').onclick = () => modeTap('day');
+  $('m-map').onclick = () => modeTap('map');
+  for (let j = 0; j < 3; j++) $('choice-'+j).onclick = () => choose(j);
+  $('next').onclick = next;
+  $('new-day').onclick = newDay;
+  $('job').onclick = () => {
+    V.hush();
+    $('job-dialog').showModal();
+    updateHint();
+    $('close-job').focus({preventScroll:true});
+  };
+  $('read-job').onclick = () => V.read();
+  $('close-job').onclick = () => $('job-dialog').close();
+  $('job-dialog').addEventListener('close',() => {
+    V.hush();
+    updateHint();
+    $('job').focus({preventScroll:true});
+  });
+  $('map-board').addEventListener('pointerdown',finishDrawing);
+  addEventListener('keydown',e => {
+    if (!e.altKey && !e.ctrlKey && !e.metaKey && /^[123]$/.test(e.key)) { e.preventDefault(); choose(+e.key-1); }
+  });
+  Curio.onMotion(reduce => { if (reduce) finishDrawing(); });
+  let mapCompact = innerHeight <= 650 && innerWidth >= 600;
+  addEventListener('resize',() => {
+    const compact = innerHeight <= 650 && innerWidth >= 600;
+    if (compact !== mapCompact && state.mode === 'map') renderMap();
+    mapCompact = compact;
+  });
+  Curio.init({clips:"voice:*",rate:1});
+  window.__tool = {
+    state,setMode,allLines,flags,opening,options,resultText,noteText,noteParts,threads,choose,next,rewind,newDay,
+    DATA,STOPS,ART,vlog:V.log,get vq() { return V.queue; }
+  };
+  setMode(state.mode);
+})();
+</script>
+</body>
+</html>

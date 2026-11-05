@@ -1,0 +1,961 @@
+{
+  "moods": [
+    "Lonely",
+    "Cozy",
+    "Spooky",
+    "Cheerful",
+    "Calm"
+  ],
+  "rows": {
+    "Time": [
+      [
+        "Plain",
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        ""
+      ],
+      [
+        "Dawn",
+        [
+          1,
+          0,
+          0,
+          1,
+          2
+        ],
+        "Early light: quiet, a new start."
+      ],
+      [
+        "Noon",
+        [
+          0,
+          0,
+          0,
+          2,
+          1
+        ],
+        "Bright noon: busy and open."
+      ],
+      [
+        "Dusk",
+        [
+          2,
+          1,
+          1,
+          0,
+          1
+        ],
+        "The day is ending: people go home."
+      ],
+      [
+        "Night",
+        [
+          1,
+          1,
+          2,
+          0,
+          0
+        ],
+        "Dark around the edges: what is out there?"
+      ]
+    ],
+    "Light": [
+      [
+        "Plain",
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        ""
+      ],
+      [
+        "Warm",
+        [
+          0,
+          2,
+          0,
+          1,
+          0
+        ],
+        "Warm light, like a lamp or a fire."
+      ],
+      [
+        "Cool",
+        [
+          2,
+          0,
+          1,
+          0,
+          1
+        ],
+        "Cool blue light feels far away."
+      ]
+    ],
+    "Colors": [
+      [
+        "Plain",
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        ""
+      ],
+      [
+        "Bright",
+        [
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        "Strong, bright colors feel lively."
+      ],
+      [
+        "Soft",
+        [
+          0,
+          1,
+          0,
+          0,
+          2
+        ],
+        "Soft, pale colors feel gentle."
+      ],
+      [
+        "Dark",
+        [
+          1,
+          0,
+          2,
+          0,
+          0
+        ],
+        "Deep, dark colors hide things."
+      ],
+      [
+        "Gray",
+        [
+          2,
+          0,
+          0,
+          0,
+          1
+        ],
+        "Gray takes the life out of a place."
+      ]
+    ],
+    "Weather": [
+      [
+        "None",
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        ""
+      ],
+      [
+        "Rain",
+        [
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "Rain keeps people away, unless you are inside."
+      ],
+      [
+        "Snow",
+        [
+          0,
+          1,
+          0,
+          0,
+          2
+        ],
+        "Snow muffles every sound."
+      ],
+      [
+        "Fog",
+        [
+          1,
+          0,
+          2,
+          0,
+          0
+        ],
+        "Fog hides what is coming."
+      ],
+      [
+        "Wind",
+        [
+          0,
+          0,
+          1,
+          1,
+          0
+        ],
+        "Blowing leaves: wild or playful."
+      ]
+    ]
+  },
+  "details": {
+    "busstop": [
+      [
+        "bus-window",
+        "Shop window glow",
+        [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          76,
+          65,
+          14
+        ],
+        true
+      ],
+      [
+        "bus-lights",
+        "String lights",
+        [
+          0,
+          1,
+          0,
+          2,
+          0
+        ],
+        [
+          32,
+          32,
+          39
+        ],
+        true
+      ],
+      [
+        "bus-glove",
+        "Lost glove on the bench",
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          30,
+          71,
+          3.5
+        ],
+        false
+      ],
+      [
+        "bus-puddles",
+        "Puddles",
+        [
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          70,
+          92,
+          23
+        ],
+        false
+      ],
+      [
+        "bus-cat",
+        "Cat curled on the bench",
+        [
+          0,
+          2,
+          0,
+          0,
+          1
+        ],
+        [
+          43,
+          71,
+          8
+        ],
+        false
+      ],
+      [
+        "bus-balloon",
+        "Balloon tied to the sign",
+        [
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          63,
+          53,
+          6
+        ],
+        false
+      ],
+      [
+        "bus-broken-lamp",
+        "Flickering broken lamp",
+        [
+          1,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          91,
+          15,
+          8
+        ],
+        true
+      ],
+      [
+        "bus-sign",
+        "Crooked sign",
+        [
+          1,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          62,
+          77,
+          7
+        ],
+        false
+      ],
+      [
+        "bus-crows",
+        "Crows on the wire",
+        [
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          59,
+          21,
+          14
+        ],
+        false
+      ],
+      [
+        "bus-planter",
+        "Flower planter",
+        [
+          0,
+          0,
+          0,
+          2,
+          1
+        ],
+        [
+          13,
+          85,
+          17
+        ],
+        false
+      ]
+    ],
+    "porch": [
+      [
+        "porch-chair",
+        "Rocking chair with a blanket",
+        [
+          0,
+          2,
+          0,
+          0,
+          1
+        ],
+        [
+          36,
+          67,
+          11
+        ],
+        false
+      ],
+      [
+        "porch-pumpkins",
+        "Carved pumpkins",
+        [
+          0,
+          0,
+          1,
+          1,
+          0
+        ],
+        [
+          83,
+          82,
+          11
+        ],
+        false
+      ],
+      [
+        "porch-chimes",
+        "Wind chimes",
+        [
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          35,
+          43,
+          3
+        ],
+        false
+      ],
+      [
+        "porch-boarded",
+        "Boarded window",
+        [
+          1,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          51,
+          52,
+          12
+        ],
+        false
+      ],
+      [
+        "porch-dog",
+        "Sleeping dog",
+        [
+          0,
+          2,
+          0,
+          0,
+          1
+        ],
+        [
+          66,
+          86,
+          12
+        ],
+        false
+      ],
+      [
+        "porch-mailbox",
+        "Open empty mailbox",
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          94,
+          87,
+          9
+        ],
+        false
+      ],
+      [
+        "porch-lemonade",
+        "Lemonade sign",
+        [
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          16,
+          88,
+          14
+        ],
+        false
+      ],
+      [
+        "porch-lantern",
+        "Lantern",
+        [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          78,
+          53,
+          4.5
+        ],
+        true
+      ],
+      [
+        "porch-webs",
+        "Cobwebs",
+        [
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          91,
+          35,
+          10
+        ],
+        false
+      ],
+      [
+        "porch-flowers",
+        "Potted flowers",
+        [
+          0,
+          0,
+          0,
+          2,
+          1
+        ],
+        [
+          87,
+          68,
+          8
+        ],
+        false
+      ]
+    ],
+    "playground": [
+      [
+        "play-swing",
+        "Empty swing",
+        [
+          2,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          34,
+          65,
+          10
+        ],
+        false
+      ],
+      [
+        "play-balloons",
+        "Balloons on the fence",
+        [
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          74,
+          54,
+          7
+        ],
+        false
+      ],
+      [
+        "play-puddle",
+        "Puddle under the slide",
+        [
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          73,
+          71,
+          17
+        ],
+        false
+      ],
+      [
+        "play-teddy",
+        "Forgotten teddy bear",
+        [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          43,
+          90,
+          7
+        ],
+        false
+      ],
+      [
+        "play-chalk",
+        "Chalk drawings",
+        [
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          57,
+          78,
+          17
+        ],
+        false
+      ],
+      [
+        "play-crow",
+        "Crow on the slide",
+        [
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          88,
+          34,
+          4
+        ],
+        false
+      ],
+      [
+        "play-feeder",
+        "Bird feeder with birds",
+        [
+          0,
+          0,
+          0,
+          1,
+          2
+        ],
+        [
+          14,
+          57,
+          5
+        ],
+        false
+      ],
+      [
+        "play-leaves",
+        "Leaf pile",
+        [
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        [
+          91,
+          92,
+          14
+        ],
+        false
+      ],
+      [
+        "play-glow",
+        "Lamp glow",
+        [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          10.7,
+          79,
+          5
+        ],
+        true
+      ],
+      [
+        "play-flags",
+        "Bunting flags",
+        [
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          51,
+          61,
+          29
+        ],
+        false
+      ]
+    ]
+  },
+  "lines": {
+    "welcomeArtists": "Look at this painting. What mood is it? Tap a mood.",
+    "cluesHow": "Now tap the things in the painting that told you.",
+    "welcomeMakeover": "Pick a mood at the top. Then change the time, the light, the colors or the weather.",
+    "compassHow": "Each change is a clue. The compass shows which way it points.",
+    "tagHow": "Tap a clue in My clues to tag the mood you meant.",
+    "partnerHow": "Let a partner look at your picture. Ask them to tap a mood.",
+    "writeHow": "Finish both sentences to explain your picture and connect it to your life.",
+    "reasonHow": "Type your reason, then tap Keep my reason.",
+    "tagPrompt": "Tap the mood you meant for this clue.",
+    "reviseHow": "Tap a clue in My clues to explain it, or change a control to revise your picture.",
+    "moreHow": "Change another control, or add a detail, to build your mood.",
+    "storageError": "Saving is unavailable. You can still make a picture while this page stays open."
+  },
+  "allLines": [
+    "Look at this painting. What mood is it? Tap a mood.",
+    "Now tap the things in the painting that told you.",
+    "Pick a mood at the top. Then change the time, the light, the colors or the weather.",
+    "Each change is a clue. The compass shows which way it points.",
+    "Tap a clue in My clues to tag the mood you meant.",
+    "Let a partner look at your picture. Ask them to tap a mood.",
+    "Finish both sentences to explain your picture and connect it to your life.",
+    "Type your reason, then tap Keep my reason.",
+    "Tap the mood you meant for this clue.",
+    "Tap a clue in My clues to explain it, or change a control to revise your picture.",
+    "Change another control, or add a detail, to build your mood.",
+    "Saving is unavailable. You can still make a picture while this page stays open.",
+    "Every clue points to lonely. Tap Write about it.",
+    "Your partner read lonely. You meant lonely.",
+    "Your partner read lonely. You meant cozy.",
+    "Your partner read lonely. You meant spooky.",
+    "Your partner read lonely. You meant cheerful.",
+    "Your partner read lonely. You meant calm.",
+    "Every clue points to cozy. Tap Write about it.",
+    "Your partner read cozy. You meant lonely.",
+    "Your partner read cozy. You meant cozy.",
+    "Your partner read cozy. You meant spooky.",
+    "Your partner read cozy. You meant cheerful.",
+    "Your partner read cozy. You meant calm.",
+    "Every clue points to spooky. Tap Write about it.",
+    "Your partner read spooky. You meant lonely.",
+    "Your partner read spooky. You meant cozy.",
+    "Your partner read spooky. You meant spooky.",
+    "Your partner read spooky. You meant cheerful.",
+    "Your partner read spooky. You meant calm.",
+    "Every clue points to cheerful. Tap Write about it.",
+    "Your partner read cheerful. You meant lonely.",
+    "Your partner read cheerful. You meant cozy.",
+    "Your partner read cheerful. You meant spooky.",
+    "Your partner read cheerful. You meant cheerful.",
+    "Your partner read cheerful. You meant calm.",
+    "Every clue points to calm. Tap Write about it.",
+    "Your partner read calm. You meant lonely.",
+    "Your partner read calm. You meant cozy.",
+    "Your partner read calm. You meant spooky.",
+    "Your partner read calm. You meant cheerful.",
+    "Your partner read calm. You meant calm.",
+    "Artist 1 meant lonely. You said lonely. Cool light can feel both ways.",
+    "Artist 1 meant lonely. You said cozy. Cool light can feel both ways.",
+    "Artist 1 meant lonely. You said spooky. Cool light can feel both ways.",
+    "Artist 1 meant lonely. You said cheerful. Cool light can feel both ways.",
+    "Artist 1 meant lonely. You said calm. Cool light can feel both ways.",
+    "Artist 2 meant cozy. You said lonely. Different readers can notice different clues.",
+    "Artist 2 meant cozy. You said cozy. Different readers can notice different clues.",
+    "Artist 2 meant cozy. You said spooky. Different readers can notice different clues.",
+    "Artist 2 meant cozy. You said cheerful. Different readers can notice different clues.",
+    "Artist 2 meant cozy. You said calm. Different readers can notice different clues.",
+    "Artist 3 meant spooky. You said lonely. Different readers can notice different clues.",
+    "Artist 3 meant spooky. You said cozy. Different readers can notice different clues.",
+    "Artist 3 meant spooky. You said spooky. Different readers can notice different clues.",
+    "Artist 3 meant spooky. You said cheerful. Different readers can notice different clues.",
+    "Artist 3 meant spooky. You said calm. Different readers can notice different clues.",
+    "Early light: quiet, a new start.",
+    "Time dawn pulls toward calm.",
+    "Bright noon: busy and open.",
+    "Time noon pulls toward cheerful.",
+    "The day is ending: people go home.",
+    "Time dusk pulls toward lonely.",
+    "Dark around the edges: what is out there?",
+    "Time night pulls toward spooky.",
+    "Warm light, like a lamp or a fire.",
+    "Light warm pulls toward cozy.",
+    "Cool blue light feels far away.",
+    "Light cool pulls toward lonely.",
+    "Strong, bright colors feel lively.",
+    "Colors bright pulls toward cheerful.",
+    "Soft, pale colors feel gentle.",
+    "Colors soft pulls toward calm.",
+    "Deep, dark colors hide things.",
+    "Colors dark pulls toward spooky.",
+    "Gray takes the life out of a place.",
+    "Colors gray pulls toward lonely.",
+    "Rain keeps people away, unless you are inside.",
+    "Weather rain pulls toward lonely.",
+    "Snow muffles every sound.",
+    "Weather snow pulls toward calm.",
+    "Fog hides what is coming.",
+    "Weather fog pulls toward spooky.",
+    "Blowing leaves: wild or playful.",
+    "Weather wind pulls toward spooky.",
+    "Shop window glow pulls toward cozy.",
+    "Shop window glow. Most people read cozy.",
+    "String lights pull toward cheerful.",
+    "String lights. Most people read cheerful.",
+    "Lost glove on the bench pulls toward lonely.",
+    "Lost glove on the bench. Most people read lonely.",
+    "Puddles pull toward lonely.",
+    "Puddles. Most people read lonely.",
+    "Cat curled on the bench pulls toward cozy.",
+    "Cat curled on the bench. Most people read cozy.",
+    "Balloon tied to the sign pulls toward cheerful.",
+    "Balloon tied to the sign. Most people read cheerful.",
+    "Flickering broken lamp pulls toward spooky.",
+    "Flickering broken lamp. Most people read spooky.",
+    "Crooked sign pulls toward lonely.",
+    "Crooked sign. Most people read lonely.",
+    "Crows on the wire pull toward spooky.",
+    "Crows on the wire. Most people read spooky.",
+    "Flower planter pulls toward cheerful.",
+    "Flower planter. Most people read cheerful.",
+    "Rocking chair with a blanket pulls toward cozy.",
+    "Rocking chair with a blanket. Most people read cozy.",
+    "Carved pumpkins pull toward spooky.",
+    "Carved pumpkins. Most people read spooky.",
+    "Wind chimes pull toward calm.",
+    "Wind chimes. Most people read calm.",
+    "Boarded window pulls toward spooky.",
+    "Boarded window. Most people read spooky.",
+    "Sleeping dog pulls toward cozy.",
+    "Sleeping dog. Most people read cozy.",
+    "Open empty mailbox pulls toward lonely.",
+    "Open empty mailbox. Most people read lonely.",
+    "Lemonade sign pulls toward cheerful.",
+    "Lemonade sign. Most people read cheerful.",
+    "Lantern pulls toward cozy.",
+    "Lantern. Most people read cozy.",
+    "Cobwebs pull toward spooky.",
+    "Cobwebs. Most people read spooky.",
+    "Potted flowers pull toward cheerful.",
+    "Potted flowers. Most people read cheerful.",
+    "Empty swing pulls toward lonely.",
+    "Empty swing. Most people read lonely.",
+    "Balloons on the fence pull toward cheerful.",
+    "Balloons on the fence. Most people read cheerful.",
+    "Puddle under the slide pulls toward lonely.",
+    "Puddle under the slide. Most people read lonely.",
+    "Forgotten teddy bear pulls toward lonely.",
+    "Forgotten teddy bear. Most people read lonely.",
+    "Chalk drawings pull toward cheerful.",
+    "Chalk drawings. Most people read cheerful.",
+    "Crow on the slide pulls toward spooky.",
+    "Crow on the slide. Most people read spooky.",
+    "Bird feeder with birds pulls toward calm.",
+    "Bird feeder with birds. Most people read calm.",
+    "Leaf pile pulls toward cozy.",
+    "Leaf pile. Most people read cozy.",
+    "Lamp glow pulls toward cozy.",
+    "Lamp glow. Most people read cozy.",
+    "Bunting flags pull toward cheerful.",
+    "Bunting flags. Most people read cheerful.",
+    "one lit shelter, nobody waiting. Tap another clue in the painting.",
+    "cool blue-green light. Tap another clue in the painting.",
+    "an empty street running far away. Tap another clue in the painting.",
+    "one lost glove on the bench. Tap another clue in the painting.",
+    "string lights on the shelter. Tap another clue in the painting.",
+    "a cat curled on the bench. Tap another clue in the painting.",
+    "warm lit shop window. Tap another clue in the painting.",
+    "soft snow. Tap another clue in the painting.",
+    "fog swallowing the street. Tap another clue in the painting.",
+    "a flickering lamp. Tap another clue in the painting.",
+    "crows on the wire. Tap another clue in the painting.",
+    "a crooked sign. Tap another clue in the painting.",
+    "Tap Next artist, or choose another painting below the picture.",
+    "Tap another thing in the painting that helped you read its mood.",
+    "Drag the divider, or use its arrow keys, to compare before and after.",
+    "Tap Make your own to give a place a mood.",
+    "Time Dawn pulls toward Calm. Tap its chip in My clues to explain it, or revise it.",
+    "Time Noon pulls toward Cheerful. Tap its chip in My clues to explain it, or revise it.",
+    "Time Dusk pulls toward Lonely. Tap its chip in My clues to explain it, or revise it.",
+    "Time Night pulls toward Spooky. Tap its chip in My clues to explain it, or revise it.",
+    "Light Warm pulls toward Cozy. Tap its chip in My clues to explain it, or revise it.",
+    "Light Cool pulls toward Lonely. Tap its chip in My clues to explain it, or revise it.",
+    "Colors Bright pulls toward Cheerful. Tap its chip in My clues to explain it, or revise it.",
+    "Colors Soft pulls toward Calm. Tap its chip in My clues to explain it, or revise it.",
+    "Colors Dark pulls toward Spooky. Tap its chip in My clues to explain it, or revise it.",
+    "Colors Gray pulls toward Lonely. Tap its chip in My clues to explain it, or revise it.",
+    "Weather Rain pulls toward Lonely. Tap its chip in My clues to explain it, or revise it.",
+    "Weather Snow pulls toward Calm. Tap its chip in My clues to explain it, or revise it.",
+    "Weather Fog pulls toward Spooky. Tap its chip in My clues to explain it, or revise it.",
+    "Weather Wind pulls toward Spooky. Tap its chip in My clues to explain it, or revise it.",
+    "Shop window glow pulls toward Cozy. Tap its chip in My clues to explain it, or revise it.",
+    "String lights pull toward Cheerful. Tap its chip in My clues to explain it, or revise it.",
+    "Lost glove on the bench pulls toward Lonely. Tap its chip in My clues to explain it, or revise it.",
+    "Puddles pull toward Lonely. Tap its chip in My clues to explain it, or revise it.",
+    "Cat curled on the bench pulls toward Cozy. Tap its chip in My clues to explain it, or revise it.",
+    "Balloon tied to the sign pulls toward Cheerful. Tap its chip in My clues to explain it, or revise it.",
+    "Flickering broken lamp pulls toward Spooky. Tap its chip in My clues to explain it, or revise it.",
+    "Crooked sign pulls toward Lonely. Tap its chip in My clues to explain it, or revise it.",
+    "Crows on the wire pull toward Spooky. Tap its chip in My clues to explain it, or revise it.",
+    "Flower planter pulls toward Cheerful. Tap its chip in My clues to explain it, or revise it.",
+    "Rocking chair with a blanket pulls toward Cozy. Tap its chip in My clues to explain it, or revise it.",
+    "Carved pumpkins pull toward Spooky. Tap its chip in My clues to explain it, or revise it.",
+    "Wind chimes pull toward Calm. Tap its chip in My clues to explain it, or revise it.",
+    "Boarded window pulls toward Spooky. Tap its chip in My clues to explain it, or revise it.",
+    "Sleeping dog pulls toward Cozy. Tap its chip in My clues to explain it, or revise it.",
+    "Open empty mailbox pulls toward Lonely. Tap its chip in My clues to explain it, or revise it.",
+    "Lemonade sign pulls toward Cheerful. Tap its chip in My clues to explain it, or revise it.",
+    "Lantern pulls toward Cozy. Tap its chip in My clues to explain it, or revise it.",
+    "Cobwebs pull toward Spooky. Tap its chip in My clues to explain it, or revise it.",
+    "Potted flowers pull toward Cheerful. Tap its chip in My clues to explain it, or revise it.",
+    "Empty swing pulls toward Lonely. Tap its chip in My clues to explain it, or revise it.",
+    "Balloons on the fence pull toward Cheerful. Tap its chip in My clues to explain it, or revise it.",
+    "Puddle under the slide pulls toward Lonely. Tap its chip in My clues to explain it, or revise it.",
+    "Forgotten teddy bear pulls toward Lonely. Tap its chip in My clues to explain it, or revise it.",
+    "Chalk drawings pull toward Cheerful. Tap its chip in My clues to explain it, or revise it.",
+    "Crow on the slide pulls toward Spooky. Tap its chip in My clues to explain it, or revise it.",
+    "Bird feeder with birds pulls toward Calm. Tap its chip in My clues to explain it, or revise it.",
+    "Leaf pile pulls toward Cozy. Tap its chip in My clues to explain it, or revise it.",
+    "Lamp glow pulls toward Cozy. Tap its chip in My clues to explain it, or revise it.",
+    "Bunting flags pull toward Cheerful. Tap its chip in My clues to explain it, or revise it.",
+    "Every clue points to Lonely. Tap Write about it.",
+    "Every clue points to Cozy. Tap Write about it.",
+    "Every clue points to Spooky. Tap Write about it.",
+    "Every clue points to Cheerful. Tap Write about it.",
+    "Every clue points to Calm. Tap Write about it."
+  ]
+}

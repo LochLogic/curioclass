@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Puppet Show Feelings · Curio Class</title>
+<meta name="description" content="Watch Pom's puppet show, direct head, voice and bounce, and talk about feelings. Grades K-2. Works offline.">
+<!--
+Puppet Show Feelings, Curio Class. Teacher led, K-2 theatre: TH:Re7, TH:Re8, TH:Cn10.
+Original story. Simplified classroom cue model from Dael et al. (2012), Wallbott (1998), Juslin and Laukka (2003).
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Content CC BY 4.0, code MIT.
+One offline file. No tool data saved. Shared Motion preference is managed by the Curio Class kit.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --brand:#0b7a5f; --paper:#f4f8f3; --ink:#16241f; --muted:#4f625b; --line:#cedbcf;
+  --focus:#9638a9; --btn:#0b7a5f; --btn-line:#8ac7ac; --head-ink:#fff; --panel:#fffaf0;
+}
+body { overflow:hidden; grid-template-rows:76px 64px minmax(0,1fr) 54px; }
+header { padding:8px 22px; gap:10px; }
+h1 { font-size:28px; }
+h1 small { font-size:14px; }
+button { min-width:60px; min-height:60px; border:2px solid #b9cbbd; border-radius:16px;
+  background:#fffcf4; font-weight:800; padding:5px 13px; font-size:18px; box-shadow:0 3px 0 #16241f19; }
+button:active { box-shadow:none; }
+button:disabled { opacity:.45; cursor:default; }
+button[aria-pressed="true"] { border:4px solid var(--brand); background:#e0f0df; }
+header button[aria-pressed="true"] { background:var(--brand); border:2px solid #8ac7ac; }
+.icon-btn { min-height:60px; }
+nav { display:flex; align-items:center; padding:0 22px; gap:16px; background:#e4eee0; border-bottom:1px solid #c9d7c6; }
+.seg { border:0; overflow:visible; gap:6px; }
+.seg button { min-height:60px; color:var(--ink); background:#fffaf0; border:2px solid #b9cbbd; border-radius:16px;
+  padding:0 12px; font-size:19px; width:174px; }
+.seg button[aria-pressed="true"] { background:var(--brand); color:white; border:4px solid #084e3e; }
+.seg button[aria-pressed="true"]::before { content:'✓ '; }
+.feeling-ring button,.ending-button { position:relative; }
+.feeling-ring button[aria-pressed="true"]::after,.ending-button[aria-pressed="true"]::after {
+  content:'✓'; position:absolute; top:1px; right:5px; }
+.nav-note { margin-left:auto; color:var(--muted); font-weight:700; font-size:14px; }
+main { display:block; min-height:0; position:relative; background:radial-gradient(ellipse at 30% 20%,#fff7d9,#e7dbbc); }
+.mode { height:100%; min-height:0; padding:12px 20px; display:grid; gap:18px; }
+#show { grid-template-columns:minmax(0,1fr) 310px; }
+.stage { min-height:0; background:none; border:0; }
+.theater { width:100%; height:100%; position:relative; isolation:isolate; }
+.backdrop { position:absolute; inset:14% 10% 12%; width:80%; height:74%; object-fit:fill; }
+.theater-frame { position:absolute; inset:0; width:100%; height:100%; object-fit:fill; z-index:5; pointer-events:none; }
+.puppet-window { position:absolute; inset:14% 13% 12%; overflow:hidden; }
+.puppet { position:absolute; width:39%; height:85%; bottom:-12%; left:25%; transform-origin:50% 100%; z-index:3;
+  filter:drop-shadow(9px 10px 6px #34231144); will-change:transform; }
+.puppet img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center bottom; }
+.open { opacity:0; }
+.puppet.talking .closed { opacity:0; }
+.puppet.talking .open { opacity:1; }
+.dot { left:0; width:32%; height:70%; }
+.prop { position:absolute; object-fit:contain; z-index:2; }
+#kite { height:39%; width:20%; left:55%; top:2%; transition:top 1.1s ease,left 1.1s ease,transform 1.1s ease; }
+.scene-0 #kite { top:36%; left:49%; transform:rotate(8deg); }
+.scene-1 #kite { top:16%; left:59%; transform:rotate(-12deg); }
+.scene-2 #kite,.scene-3 #kite,.scene-4 #kite { top:25%; left:66%; transform:rotate(25deg); }
+.scene-5 #kite { top:48%; left:51%; transform:rotate(-20deg); z-index:4; }
+#stick { width:59%; height:10%; bottom:48%; left:12%; transform:rotate(-28deg); z-index:4; }
+.stage-title { position:absolute; z-index:6; top:4%; left:20%; right:20%; text-align:center;
+  color:#57361e; font:900 clamp(14px,2vw,27px) 'Trebuchet MS',sans-serif; }
+.story-card { display:flex; flex-direction:column; gap:12px; min-height:0; padding:16px;
+  background:repeating-linear-gradient(0deg,#fffaf0 0 23px,#ece2cd 24px,#fffaf0 25px);
+  border:2px solid #cfbd99; border-radius:10px 24px 18px 10px; box-shadow:5px 7px 0 #503c2020; }
+.eyebrow { color:var(--muted); font-size:13px; text-transform:uppercase; letter-spacing:2px; font-weight:900; }
+#scene-line { margin:0; font-size:23px; line-height:1.4; font-weight:650; }
+.dots { display:flex; gap:9px; align-items:center; }
+.dots span { width:13px; height:13px; border:2px solid #6b806e; border-radius:50%; }
+.dots span.now { background:var(--brand); box-shadow:0 0 0 3px #9bc9ae; }
+.question { margin-top:auto; text-align:center; padding:10px 0; border-top:2px dashed #bcae8e; }
+.question p { font-size:21px; margin:0 0 9px; font-weight:800; }
+.gold { background:#ffd34d; border-color:#c9a122; color:#3a2c00; }
+.jade { background:var(--brand); color:white; border-color:#065440; }
+.feeling { display:flex; justify-content:center; align-items:center; gap:10px; text-transform:capitalize; font-size:28px; font-weight:900; }
+.face { width:46px; height:46px; flex-shrink:0; overflow:visible; }
+.show-actions { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+#again { grid-column:1/-1; }
+.ending-choices { position:absolute; inset:auto 15% 15%; display:grid; grid-template-columns:repeat(3,1fr); gap:8px; z-index:7; }
+.ending-choices button { font-size:17px; padding:5px; background:#fff6d9; }
+.ending-choices .symbol { display:block; font-size:25px; }
+#backstage { grid-template-rows:minmax(0,1fr) auto; gap:8px; }
+.bare { border-radius:30px; background:radial-gradient(ellipse at 50% 25%,#fff8e5 0,#ddd8cf 55%,#aaa49b);
+  box-shadow:inset 0 2px 20px #4c372b30; overflow:hidden; position:relative; }
+.bare::after { content:''; position:absolute; bottom:0; height:12%; width:100%; left:0;
+  background:repeating-linear-gradient(0deg,#a9845e 0 3px,#bc996e 4px 7px); box-shadow:0 -3px 10px #45301840; z-index:5; }
+.bare .backdrop { inset:0; width:100%; height:100%; opacity:.12; }
+.bare .puppet-window { inset:0 0 3%; }
+.bare .puppet { width:26%; height:88%; left:37%; bottom:-8%; }
+.audience-card { position:absolute; right:4%; top:12%; z-index:6; border-radius:20px; background:#fffaf0;
+  padding:12px 22px; border:3px solid #c9a65d; box-shadow:0 8px 14px #60441b33; }
+.audience-card .eyebrow { text-align:center; margin-bottom:8px; }
+.console { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; padding:10px 16px;
+  background:#f7edda; border:2px solid #cbb992; border-radius:20px; box-shadow:0 5px 0 #7e613d30; }
+.control-group { min-width:0; }
+.control-group h2 { margin:0 0 4px; font-size:17px; }
+.choices { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }
+.choices button { padding:4px; font-size:18px; position:relative; }
+.choices button[aria-pressed="true"]::after { content:'✓'; position:absolute; top:0; right:4px; color:#07503c; font-size:16px; }
+.sock-icon { display:inline-block; font-size:24px; }
+.actions { display:flex; gap:8px; align-items:center; grid-column:1/-1; }
+.talk-actions { display:flex; gap:8px; flex:3; }
+.target-actions { display:grid; grid-template-columns:1fr 1fr; gap:8px; flex:2; }
+.actions button { flex:1; padding:4px 8px; }
+#line { display:flex; align-items:center; justify-content:center; gap:6px; }
+#line svg { width:28px; height:40px; flex-shrink:0; }
+#target { font-size:18px; margin:0; display:flex; align-items:center; gap:5px; font-weight:800;
+  position:absolute; top:5%; left:3%; z-index:6; background:#fffaf0; padding:8px 16px; border-radius:15px; }
+#target .face { width:32px; height:32px; }
+.changed { grid-column:1/-1; color:#4d5f55; min-height:20px; margin:0; text-align:center; font-size:14px; }
+#likeme { grid-template-columns:minmax(0,1fr) 360px; }
+.shelf { border-radius:26px; overflow:hidden; position:relative; box-shadow:0 5px 12px #57412730; }
+.shelf-bg { position:absolute; width:100%; height:100%; object-fit:cover; }
+.shelf .puppet-window { inset:8% 0 18%; }
+.shelf .puppet { height:82%; width:32%; left:34%; }
+#likeme[data-head="0"] .puppet { left:20%; }
+#likeme[data-head="2"] .puppet { left:40%; }
+.feeling-ring { position:absolute; inset:6% 3%; display:grid; grid-template-columns:1fr 1fr;
+  grid-template-rows:repeat(3,1fr); align-items:center; column-gap:56%; z-index:6; pointer-events:none; }
+.feeling-ring button { display:flex; gap:7px; align-items:center; justify-content:center; pointer-events:auto; padding:4px 8px; }
+.feeling-ring .face { width:38px; height:38px; }
+.like-panel { display:flex; flex-direction:column; gap:15px; padding:18px; background:#fffaf0; border:2px solid #cfbd99; border-radius:22px; }
+#life-prompt { font-size:26px; line-height:1.45; margin:0; flex:1; }
+.vote { display:grid; gap:10px; }
+.vote button { display:flex; align-items:center; gap:14px; text-align:left; }
+.vote .symbol { font-size:32px; }
+footer { background:#fffaf0; display:flex; align-items:center; padding:3px 24px; border-top:2px solid #d8d4bf; }
+#hint { margin:0; font-size:17px; line-height:1.3; font-weight:650; }
+.breeze { position:absolute; top:26%; left:15%; width:20%; color:#fff; opacity:.8; font-size:42px; z-index:1;
+  animation:drift 4s ease-in-out infinite alternate; pointer-events:none; }
+@keyframes drift { to { transform:translateX(20px); opacity:.4; } }
+.calm .breeze { animation:none; }
+@media (max-height:650px) and (min-width:600px) {
+  body { grid-template-rows:60px 62px minmax(0,1fr) 36px; }
+  header { padding:0 12px; gap:6px; }
+  h1 { font-size:21px; }
+  h1 small,.nav-note { display:none; }
+  .icon-btn { padding:0 12px; font-size:15px; }
+  nav { padding:0 12px; }
+  .seg button { padding:0 20px; }
+  .mode { padding:5px 10px; gap:8px; }
+  #show { grid-template-columns:minmax(0,1fr) 280px; }
+  .story-card { padding:7px 10px; gap:4px; }
+  #scene-line { font-size:16px; line-height:1.25; }
+  .story-card .eyebrow { display:none; }
+  .question { padding:4px 0; }
+  .question p { font-size:16px; margin-bottom:3px; }
+  .show-actions { display:flex; gap:5px; }
+  .show-actions button { flex:1; font-size:15px; padding:3px; }
+  .ending-choices { inset:auto 6% 1%; grid-template-columns:repeat(3,1fr); gap:3px; }
+  .ending-choices button { min-height:72px; display:flex; flex-direction:column; align-items:center;
+    gap:2px; justify-content:center; font-size:12px; }
+  .ending-choices .symbol { font-size:18px; }
+  #backstage { grid-template-columns:43% 57%; grid-template-rows:1fr; gap:5px; }
+  .console { padding:2px 7px; grid-template-columns:1fr; grid-template-rows:repeat(4,60px); gap:3px; position:relative; }
+  .control-group { display:grid; grid-template-columns:48px 1fr; gap:4px; align-items:center; }
+  .control-group h2 { font-size:14px; margin:0; }
+  .choices { gap:3px; }
+  .choices button { font-size:14px; }
+  .sock-icon { font-size:20px; }
+  .actions { display:contents; }
+  .talk-actions { position:absolute; width:calc(75.4% - 12px); right:calc(100% + 8px); bottom:3px; gap:4px; }
+  .talk-actions { z-index:10; }
+  .target-actions { gap:4px; }
+  .actions button { font-size:13px; flex:1; padding:2px; }
+  #target { background:#fffaf0; padding:3px 7px; border-radius:10px; font-size:14px; }
+  #target .face { height:24px; width:24px; }
+  .changed { position:absolute; bottom:68px; right:calc(100% + 8px); font-size:12px;
+    width:calc(75.4% - 12px); background:#fffaf0; border-radius:8px; }
+  .bare { padding-bottom:90px; background-position:top; }
+  .bare .puppet-window { top:40px; bottom:88px; }
+  .bare .puppet { height:100%; width:55%; left:22.5%; }
+  .audience-card { top:auto; bottom:90px; right:2%; padding:4px 7px; }
+  .audience-card .eyebrow { display:none; }
+  .feeling { font-size:21px; }
+  .face { width:33px; height:33px; }
+  #likeme { grid-template-columns:minmax(0,1fr) 280px; }
+  .like-panel { padding:3px; gap:3px; }
+  #life-prompt { font-size:14px; position:absolute; left:16px; right:300px; bottom:10px;
+    padding:4px 8px; background:#fffaf0; border-radius:10px; z-index:8; }
+  .feeling-ring { column-gap:56%; inset:3px 3px 65px; }
+  .feeling-ring button { font-size:13px; gap:3px; padding:2px; flex-direction:column; }
+  .feeling-ring .face { width:27px; height:27px; }
+  .vote { gap:3px; margin-top:auto; }
+  .vote button { font-size:15px; padding:3px 8px; }
+  #hint { font-size:13px; }
+}
+@media (min-width:600px) and (max-width:1000px) and (min-height:651px) {
+  #show { grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) 250px; gap:8px; }
+  .story-card { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto 1fr 60px; padding:8px 12px; }
+  .story-card .eyebrow { display:none; }
+  .dots { grid-column:1/-1; }
+  #scene-line { font-size:19px; }
+  .question { margin:0; padding:3px; border-top:0; }
+  .question p { font-size:18px; }
+  .show-actions { grid-column:1/-1; display:flex; }
+  .show-actions button { flex:1; }
+  .choices button { font-size:14px; }
+  .actions button { font-size:15px; }
+  #likeme { grid-template-columns:minmax(0,1fr) 250px; }
+  .shelf .puppet-window { inset:0; }
+  .shelf .puppet { width:36%; height:45%; left:32%; bottom:30%; }
+  #likeme[data-head="0"] .puppet { left:13%; }
+  #likeme[data-head="2"] .puppet { left:42%; }
+  .feeling-ring { column-gap:56%; }
+  .feeling-ring button { flex-direction:column; font-size:15px; padding:3px; }
+  .feeling-ring .face { width:30px; height:30px; }
+  .like-panel { padding:10px; }
+  #life-prompt { font-size:21px; }
+}
+@media (max-width:1000px) { .nav-note { display:none; } }
+@media (max-width:599px) {
+  body { grid-template-rows:122px 64px minmax(0,1fr) 68px; }
+  header { padding:0 7px; gap:3px; justify-content:center; }
+  h1 { width:100%; text-align:center; font-size:23px; margin:0; height:52px; padding-top:12px; }
+  h1 small,.nav-note { display:none; }
+  header .icon-btn { flex:1; font-size:14px; padding:0 5px; }
+  nav { padding:0 4px; }
+  .seg { width:100%; gap:4px; }
+  .seg button { flex:1; width:auto; padding:0 3px; font-size:15px; }
+  .mode { padding:5px; gap:5px; }
+  #show { grid-template-columns:1fr; grid-template-rows:minmax(150px,1fr) auto; }
+  .story-card { padding:6px 9px; gap:4px; }
+  .story-card .eyebrow { display:none; }
+  #scene-line { font-size:17px; line-height:1.3; }
+  .question { margin:0; padding:3px 0; display:flex; justify-content:space-between; align-items:center; gap:5px; }
+  .question p { font-size:15px; margin:0; }
+  .question button { font-size:17px; }
+  .show-actions { display:flex; }
+  .show-actions button { flex:1; font-size:17px; padding:2px; }
+  .ending-choices { inset:auto 4% 1%; grid-template-columns:repeat(3,1fr); gap:3px; }
+  .ending-choices button { display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:2px; font-size:12px; min-height:72px; }
+  .ending-choices .symbol { font-size:19px; }
+  #backstage { grid-template-rows:minmax(115px,1fr) auto; gap:4px; }
+  .console { padding:4px; grid-template-columns:1fr; gap:3px; }
+  .control-group { display:grid; grid-template-columns:48px 1fr; gap:3px; align-items:center; }
+  .control-group h2 { margin:0; font-size:14px; }
+  .choices { gap:3px; }
+  .choices button { font-size:15px; padding:2px; }
+  .sock-icon { font-size:20px; }
+  .actions { gap:3px; flex-wrap:wrap; }
+  .talk-actions,.target-actions { flex:1 1 100%; gap:3px; }
+  .actions button { font-size:13px; padding:2px; flex:1; }
+  #target { font-size:14px; padding:3px 7px; }
+  #target .face { width:25px; height:25px; }
+  .changed { font-size:12px; }
+  .bare .puppet { width:40%; left:30%; }
+  .audience-card { right:0; top:0; padding:3px; }
+  .audience-card .eyebrow { display:none; }
+  .feeling { font-size:21px; gap:5px; }
+  .face { width:31px; height:31px; }
+  #likeme { grid-template-columns:1fr; grid-template-rows:minmax(150px,1fr) auto; }
+  .like-panel { padding:8px; gap:6px; }
+  #life-prompt { font-size:21px; }
+  .feeling-ring { inset:4%; column-gap:56%; gap:5px 56%; }
+  .feeling-ring button { font-size:14px; padding:2px; gap:3px; flex-direction:column; }
+  .feeling-ring .face { width:27px; height:27px; }
+  .vote { gap:4px; }
+  .vote button { font-size:16px; }
+  footer { padding:4px 9px; }
+  #hint { font-size:14px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Puppet Show Feelings <small>A little tilt. A different feeling.</small></h1>
+  <button class="icon-btn" id="read">🔊 Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<nav>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-show" aria-pressed="true">🎭 Show</button>
+    <button id="m-backstage" aria-pressed="false">☷ Backstage</button>
+    <button id="m-likeme" aria-pressed="false">♡ Like me</button>
+  </div>
+  <span class="nav-note">Watch closely. Say what you notice.</span>
+</nav>
+<main>
+  <section class="mode" id="show" aria-label="Puppet show">
+    <div class="stage">
+      <div class="theater scene-0" id="theater">
+        <img class="backdrop" src="art:park" alt="Sunny park with a tall tree on the right">
+        <div class="puppet-window">
+          <span class="breeze" aria-hidden="true">〰</span>
+          <img class="prop" id="kite" src="art:kite" alt="Red kite">
+          <img class="prop" id="stick" src="art:stick" alt="Dot's long wooden stick" hidden>
+          <div class="puppet dot" id="show-dot" hidden>
+            <img class="closed" src="art:dot-closed" alt="Dot, a purple sock puppet">
+            <img class="open" src="art:dot-open" alt="">
+          </div>
+          <div class="puppet" id="show-pom">
+            <img class="closed" src="art:pom-closed" alt="Pom, an orange and teal sock puppet">
+            <img class="open" src="art:pom-open" alt="">
+          </div>
+        </div>
+        <img class="theater-frame" src="art:theater" alt="Cardboard puppet theater with tied red curtains">
+        <div class="stage-title">Pom and the kite</div>
+        <div class="ending-choices" id="endings" hidden></div>
+      </div>
+    </div>
+    <div class="story-card">
+      <span class="eyebrow">A tiny puppet play</span>
+      <div class="dots" id="dots" aria-label="Scene 1 of 6"></div>
+      <p id="scene-line"></p>
+      <div class="question" id="question">
+        <p>How does Pom feel?</p>
+        <button id="reveal" class="gold">◉ Show me</button>
+        <div class="feeling" id="reveal-feeling" hidden aria-live="polite"></div>
+      </div>
+      <div class="show-actions">
+        <button id="back">◀ Back</button>
+        <button id="next" class="gold">Next ▶</button>
+        <button id="again">↻ Again</button>
+      </div>
+    </div>
+  </section>
+  <section class="mode" id="backstage" aria-label="Direct Pom" hidden>
+    <div class="bare stage">
+      <img class="backdrop" src="art:park" alt="">
+      <div class="puppet-window">
+        <div class="puppet" id="back-pom">
+          <img class="closed" src="art:pom-closed" alt="Pom on the bare stage">
+          <img class="open" src="art:pom-open" alt="">
+        </div>
+      </div>
+      <p id="target" hidden></p>
+      <div class="audience-card" id="audience-card" hidden>
+        <div class="eyebrow">The audience sees</div><div class="feeling" id="audience-feeling" aria-live="polite"></div>
+      </div>
+    </div>
+    <div class="console">
+      <div class="control-group"><h2>Head</h2><div class="choices" id="head-controls"></div></div>
+      <div class="control-group"><h2>Voice</h2><div class="choices" id="voice-controls"></div></div>
+      <div class="control-group"><h2>Bounce</h2><div class="choices" id="bounce-controls"></div></div>
+      <div class="actions">
+        <div class="talk-actions">
+        <button id="say">▱ Say it</button>
+        <button id="line"><svg id="line-picture" viewBox="0 0 80 64" aria-hidden="true"></svg><span>Line 1</span></button>
+        <button id="audience" class="gold">◉ Audience says</button>
+        </div>
+        <div class="target-actions">
+        <button id="try" aria-pressed="false">☆ Try it</button>
+        <button id="next-target" hidden>➜ Next target</button>
+        </div>
+      </div>
+      <p class="changed" id="changed">Change one thing. Watch Pom.</p>
+    </div>
+  </section>
+  <section class="mode" id="likeme" aria-label="Feelings like mine" hidden>
+    <div class="shelf stage">
+      <img class="shelf-bg" src="art:shelf" alt="Bedroom shelf with books and a little plant">
+      <div class="puppet-window">
+        <div class="puppet" id="like-pom">
+          <img class="closed" src="art:pom-closed" alt="Pom resting on a shelf">
+          <img class="open" src="art:pom-open" alt="">
+        </div>
+      </div>
+      <div class="feeling-ring" id="feelings"></div>
+    </div>
+    <div class="like-panel">
+      <p id="life-prompt">Puppets have feelings like we do. Tap a feeling.</p>
+      <div id="votes" class="vote" hidden></div>
+      <button id="vote" class="gold" aria-pressed="false">▣ Ending vote</button>
+    </div>
+  </section>
+</main>
+<footer><p id="hint" class="hint" aria-live="polite"></p></footer>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const feelings = ['sad','calm','proud','happy','excited','worried'];
+  const table = [
+    [['sad','sad','sad'],['sad','worried','worried'],['worried','worried','worried']],
+    [['calm','calm','happy'],['calm','happy','excited'],['worried','worried','excited']],
+    [['proud','proud','happy'],['proud','happy','excited'],['happy','excited','excited']]
+  ];
+  const presets = {sad:[0,0,0],calm:[1,0,0],proud:[2,0,0],happy:[2,1,1],excited:[2,2,2],worried:[0,2,1]};
+  const labels = [['Down','Straight','Up'],['Slow','Middle','Fast'],['Still','Small','Big']];
+  const scenes = [
+    {line:'This is Pom, a sock puppet. Pom has a brand new red kite.', settings:[2,1,1], n:6, f:'happy'},
+    {line:'Whoosh! The wind lifts the kite up high.', settings:[2,2,2], n:8, f:'excited'},
+    {line:'Oh no! The kite is stuck in the tall tree.', settings:[0,2,1], n:7, f:'worried'},
+    {line:'Pom tugs and tugs. The kite will not come down.', settings:[0,0,0], n:5, f:'sad'},
+    {line:'What happens next? Tap an ending.', settings:[1,0,0], n:0, f:'calm'}
+  ];
+  const endings = [
+    {name:'Dot helps', icon:'🧦🧦', line:"Pom's friend Dot comes by with a long stick. Together they wiggle the kite free!",
+      settings:[2,2,2], n:8, f:'excited', vote:'Some people like it when a friend helps.'},
+    {name:'A new kite', icon:'🪁✂', line:'Pom finds paper and string, and makes a brand new kite, all by herself.',
+      settings:[2,0,0], n:6, f:'proud', vote:'Some people like it when you fix it yourself.'},
+    {name:'Wait for the wind', icon:'〰', line:'Pom sits under the tree and waits. A soft breeze drops the kite right down.',
+      settings:[1,0,0], n:5, f:'calm', vote:'Some people like a quiet, patient ending.'}
+  ];
+  const state = {mode:'show', scene:0, ending:null, revealed:false, back:[2,1,1], line:0,
+    try:false, target:0, met:false, like:null, voteOpen:false, vote:null, changes:0};
+  const L = {
+    wShow:'Welcome to the puppet show! Watch Pom. Then tap Next.',
+    wBack:"You're the puppeteer now. Change one thing at a time: Head, Voice or Bounce.",
+    wLike:'Puppets have feelings like we do. Tap a feeling.',
+    question:'How does Pom feel? Tell me. Then tap Show me.',
+    ending:'Choose an ending. Tap Dot helps, A new kite, or Wait for the wind.',
+    change:'What do you see now? Say it. Then tap Audience says.',
+    flip:'Only one thing changed, and the feeling changed!',
+    scenes:scenes.map(s => s.line), endings:endings.map(e => e.line), votes:endings.map(e => e.vote),
+    reveal:feelings.map(f => `Pom feels ${f}.`), audience:feelings.map(f => `The audience sees ${f}.`),
+    praise:feelings.map(f => `Yes! That's ${f}!`), life:feelings.map(f => `When did you feel ${f}? Tell a friend.`),
+    targets:feelings.map(f => `Make Pom look ${f}. Tap Head, Voice or Bounce.`),
+    voteHow:'Tap the ending you like. Tell a friend why.',
+    backRead:[], hints:[], lineHints:scenes.concat(endings).map(s => s.line + ' Tap Say it.')
+  };
+  for (let h=0; h<3; h++) for (let v=0; v<3; v++) for (let b=0; b<3; b++) {
+    L.backRead.push(`Pom reads as ${table[h][v][b]}. Head ${labels[0][h]}. Voice ${labels[1][v]}. Bounce ${labels[2][b]}.`);
+  }
+  const showHint = () => {
+    if (state.scene === 4) return L.ending;
+    if (!state.revealed) return L.question;
+    return state.scene === 5 ? 'Tap Play again, or choose a different ending.' :
+      'Tap Next to keep watching, or Again to watch this part.';
+  };
+  L.hints = ['Tap Next to keep watching, or Again to watch this part.', 'Tap Play again, or choose a different ending.',
+    'Tap Head, Voice or Bounce. Then tap Audience says.', 'Tap Say it to hear Pom, or Line to change the story line.'];
+  let serial = 0;
+  let targetTimer;
+  let babbleTimer;
+  let activeNodes = [];
+  let audio;
+  let babbleLog = [];
+  let entryActions = 0;
+  const feeling = settings => table[settings[0]][settings[1]][settings[2]];
+  const current = () => state.scene === 5 ? endings[state.ending ?? 0] : scenes[state.scene];
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode + ':' + state.scene, hint:false,
+    welcome:() => state.mode === 'show' ? (!state.scene ? ['wShow',{valid:() => state.scene === 0}] : null) :
+      state.mode === 'backstage' ? (!entryActions ? ['wBack',{valid:() => !entryActions}] : null) :
+      (!entryActions ? ['wLike',{valid:() => !entryActions}] : null),
+    speaks:'#next, #back, #again, #say, #line, .ending-button',
+    read:() => state.mode === 'show' ? [current().line,$('hint').textContent] :
+      state.mode === 'backstage' ? [L.backRead[state.back[0]*9+state.back[1]*3+state.back[2]],$('hint').textContent] :
+      [$('life-prompt').textContent,$('hint').textContent]
+  });
+  function face(f) {
+    const mouths = {sad:'M15 35 Q24 24 33 35',calm:'M16 31 Q24 34 32 31',proud:'M16 30 Q25 34 33 26',
+      happy:'M14 27 Q24 41 34 27',excited:'M15 26 Q24 43 33 26 Z',worried:'M16 34 Q23 28 32 34'};
+    const brows = {sad:'M13 19 L20 15 M28 15 L35 19',calm:'M13 18 L20 18 M28 18 L35 18',
+      proud:'M13 17 L20 15 M28 15 L35 17',happy:'M13 18 Q17 13 21 18 M27 18 Q31 13 35 18',
+      excited:'M12 16 Q17 9 22 16 M26 16 Q31 9 36 16',worried:'M13 20 L21 14 M27 14 L35 20'};
+    return `<svg class="face" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#ffe09a"/>
+      <path d="${brows[f]} ${mouths[f]}" fill="none" stroke="#403523" stroke-width="3" stroke-linecap="round"/></svg>`;
+  }
+  function feelingHTML(f) { return face(f) + `<span>${f}</span>`; }
+  const hint = text => { $('hint').textContent = text; };
+  function stopBabble() {
+    clearTimeout(babbleTimer);
+    for (const node of activeNodes) { try { node.stop(); } catch {} }
+    activeNodes = [];
+    document.querySelectorAll('.puppet').forEach(p => p.classList.remove('talking'));
+  }
+  function cancel(stopVoice = true) {
+    serial++;
+    stopBabble();
+    clearTimeout(targetTimer);
+    if (stopVoice) V.hush();
+    else V.dropQueued();
+  }
+  // Two or three sine and noise blips make each syllable. Mouth timing also runs with Sound off.
+  function blip(duration, pitch) {
+    if (!Curio.sound) return;
+    audio ||= new (window.AudioContext || window.webkitAudioContext)();
+    if (audio.state === 'suspended') audio.resume();
+    const n = 2 + Math.round(Math.random());
+    for (let i=0; i<n; i++) {
+      const t = audio.currentTime + i*duration/n;
+      const d = duration/n*.78;
+      const osc = audio.createOscillator();
+      const gain = audio.createGain();
+      osc.frequency.setValueAtTime((300+i*65)*pitch,t);
+      osc.frequency.exponentialRampToValueAtTime((420-i*35)*pitch,t+d);
+      gain.gain.setValueAtTime(.0001,t);
+      gain.gain.exponentialRampToValueAtTime(.07,t+.008);
+      gain.gain.exponentialRampToValueAtTime(.0001,t+d);
+      osc.connect(gain).connect(audio.destination);
+      osc.start(t);
+      osc.stop(t+d);
+      activeNodes.push(osc);
+      const buffer = audio.createBuffer(1,Math.ceil(audio.sampleRate*d),audio.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let k=0; k<data.length; k++) data[k] = (Math.random()*2-1)*.013*(1-k/data.length);
+      const noise = audio.createBufferSource();
+      const filter = audio.createBiquadFilter();
+      noise.buffer = buffer;
+      filter.type = 'lowpass';
+      filter.frequency.value = 1300*pitch;
+      noise.connect(filter).connect(audio.destination);
+      noise.start(t);
+      activeNodes.push(noise);
+    }
+  }
+  function babble(n, settings, done = () => {}) {
+    stopBabble();
+    const me = serial;
+    const ms = [260,150,95][settings[1]];
+    const pitch = [.85,1,1.15][settings[1]];
+    const puppets = state.mode === 'show' ? [$('show-pom'),...(!$( 'show-dot').hidden ? [$('show-dot')] : [])] :
+      [$(state.mode === 'backstage' ? 'back-pom' : 'like-pom')];
+    let syllable = 0;
+    babbleLog.push({n,ms,pitch,mode:state.mode,t:performance.now()});
+    function tick() {
+      if (me !== serial) return;
+      if (syllable >= n) { stopBabble(); done(); return; }
+      puppets.forEach(p => p.classList.add('talking'));
+      blip(ms/1000*.8,pitch);
+      syllable++;
+      babbleTimer = setTimeout(() => {
+        puppets.forEach(p => p.classList.remove('talking'));
+        babbleTimer = setTimeout(tick,ms*.25);
+      },ms*.75);
+    }
+    tick();
+  }
+  let tilt = -18;
+  let fromTilt = tilt;
+  let toTilt = tilt;
+  let tiltTime = performance.now();
+  let bounceAmplitude = 12;
+  let bounceFrequency = 1.2;
+  let targetAmplitude = 12;
+  let targetFrequency = 1.2;
+  let phase = 0;
+  let previousFrame = performance.now();
+  function pose(settings) {
+    fromTilt = tilt;
+    toTilt = [28,0,-18][settings[0]];
+    tiltTime = performance.now();
+    targetAmplitude = [0,12,34][settings[2]];
+    targetFrequency = [0,1.2,2.2][settings[2]];
+    if (Curio.reduce) { tilt = toTilt; bounceAmplitude = targetAmplitude; bounceFrequency = targetFrequency; }
+  }
+  function frame(now) {
+    const dt = Math.min(.05,(now-previousFrame)/1000);
+    previousFrame = now;
+    const p = Math.min(1,(now-tiltTime)/250);
+    tilt = Curio.reduce ? toTilt : fromTilt + (toTilt-fromTilt)*(1-(1-p)**3);
+    const mix = 1-Math.exp(-dt*14);
+    bounceAmplitude += (targetAmplitude-bounceAmplitude)*mix;
+    bounceFrequency += (targetFrequency-bounceFrequency)*mix;
+    if (!Curio.reduce) phase += dt*bounceFrequency*Math.PI*2;
+    const stage = state.mode === 'show' ? $('theater') : $(state.mode === 'backstage' ? 'backstage' : 'likeme');
+    const scale = Math.min(1.3,stage.clientHeight/450);
+    const y = Curio.reduce ? 0 : -bounceAmplitude*(.5-.5*Math.cos(phase))*scale;
+    const ids = state.mode === 'show' ? ['show-pom','show-dot'] : [state.mode === 'backstage' ? 'back-pom' : 'like-pom'];
+    ids.forEach(id => { $(id).style.transform = `translateY(${y}px) rotate(${tilt}deg)`; });
+    requestAnimationFrame(frame);
+  }
+  function renderShow() {
+    const scene = current();
+    $('theater').className = 'theater scene-' + state.scene;
+    $('scene-line').textContent = scene.line;
+    $('dots').innerHTML = scenes.concat([endings[0]]).map((s,i) => `<span class="${i===state.scene ? 'now' : ''}"></span>`).join('');
+    $('dots').setAttribute('aria-label',`Scene ${state.scene+1} of 6`);
+    $('question').hidden = state.scene === 4;
+    if (state.revealed && document.activeElement === $('reveal')) $('again').focus({preventScroll:true});
+    $('reveal').hidden = state.revealed;
+    $('reveal-feeling').hidden = !state.revealed;
+    $('reveal-feeling').innerHTML = feelingHTML(scene.f);
+    $('endings').hidden = state.scene < 4;
+    if (state.scene === 4 && document.activeElement === $('next')) $('ending-0').focus({preventScroll:true});
+    $('next').disabled = state.scene === 4;
+    $('next').textContent = state.scene === 5 ? '↻ Play again' : 'Next ▶';
+    $('show-dot').hidden = !(state.scene === 5 && state.ending === 0);
+    $('stick').hidden = $('show-dot').hidden;
+    $('kite').src = state.scene === 5 && state.ending === 1 ? images.newKite : images.kite;
+    $('kite').alt = state.scene === 5 && state.ending === 1 ? 'New yellow and green kite' : 'Red kite';
+    endings.forEach((e,i) => $('ending-'+i).setAttribute('aria-pressed',state.ending === i && state.scene === 5));
+    hint(showHint());
+    pose(scene.settings);
+  }
+  async function playScene({welcome = false} = {}) {
+    cancel();
+    state.revealed = false;
+    renderShow();
+    if (welcome && state.scene === 0) V.welcome();
+    const me = serial;
+    const scene = current();
+    await V.say(scene.line,{wait:true,valid:() => me === serial});
+    if (me !== serial) return;
+    if (state.scene === 4) { V.how('ending',{needs:'#ending-0',valid:() => state.scene === 4}); return; }
+    babble(scene.n,scene.settings,() => {
+      if (!state.revealed && me === serial) V.say('question',{needs:'#reveal',valid:() => !state.revealed && me === serial});
+    });
+  }
+  const images = {kite:'art:kite',newKite:'art:new-kite'};
+  function chooseEnding(i) {
+    state.ending = i;
+    state.scene = 5;
+    Curio.yes();
+    playScene();
+  }
+  function nextScene(delta) {
+    if (delta > 0 && state.scene === 4) return;
+    state.scene = state.scene === 5 && delta > 0 ? 0 : Math.max(0,state.scene+delta);
+    if (!state.scene) state.ending = null;
+    playScene();
+  }
+  function updateControls() {
+    ['head','voice','bounce'].forEach((name,k) => {
+      for (let i=0; i<3; i++) $(name+'-'+i).setAttribute('aria-pressed',state.back[k] === i);
+    });
+  }
+  function renderLinePicture() {
+    const scene = state.line < 5 ? scenes[state.line] : endings[state.ending ?? 0];
+    const picture = (src,x,y,w,h,turn = 0) =>
+      `<image href="${src}" x="${x}" y="${y}" width="${w}" height="${h}" transform="rotate(${turn} 28 64)"/>`;
+    const park = $('theater').querySelector('.backdrop').src;
+    const pom = $('show-pom').querySelector('.closed').src;
+    const dot = $('show-dot').querySelector('.closed').src;
+    const kite = state.line === 5 && state.ending === 1 ? images.newKite : images.kite;
+    const inTree = state.line >= 2 && state.line <= 4;
+    $('line-picture').innerHTML = picture(park,0,0,80,64) +
+      (state.line === 5 && (state.ending ?? 0) === 0 ? picture(dot,0,22,25,50) : '') +
+      picture(pom,12,12,32,60,[28,0,-18][scene.settings[0]]) +
+      picture(kite,inTree ? 57 : 42,state.line === 1 ? 0 : inTree ? 14 : 29,18,34);
+    $('line').title = scene.line;
+  }
+  function checkTarget() {
+    if (!state.try) return;
+    const met = feeling(state.back) === feelings[state.target];
+    if (met) {
+      state.met = true;
+      renderTarget();
+      Curio.yes();
+      const target = state.target;
+      V.say(`Yes! That's ${feelings[target]}!`,{now:true,
+        valid:() => state.try && state.met && state.target === target});
+      clearTimeout(targetTimer);
+      targetTimer = setTimeout(nextTarget,2000);
+    } else if (!met) {
+      state.met = false;
+      clearTimeout(targetTimer);
+      renderTarget();
+    }
+  }
+  function change(k,i) {
+    const old = state.back[k];
+    const before = feeling(state.back);
+    serial++;
+    V.dropQueued(line => !line.text.startsWith('Yes!'));
+    state.back[k] = i;
+    state.changes++;
+    entryActions++;
+    $('audience-card').hidden = true;
+    updateControls();
+    pose(state.back);
+    $('changed').textContent = `${['Head','Voice','Bounce'][k]}: ${labels[k][old]} → ${labels[k][i]}`;
+    hint(state.try ? L.targets[state.target] : V.heard('change') ? L.hints[2] : L.change);
+    const me = serial;
+    const flipped = old !== i && before !== feeling(state.back);
+    babble(scenes[state.line]?.n ?? endings[state.ending ?? 0].n,state.back,() => {
+      if (state.mode !== 'backstage' || me !== serial || !$('audience-card').hidden || state.try) return;
+      const how = flipped && !V.heard('flip') ? ['flip','change'] : 'change';
+      V.how(how,{needs:'#audience',now:true,
+        valid:() => state.mode === 'backstage' && me === serial && $('audience-card').hidden});
+    });
+    checkTarget();
+  }
+  function renderTarget() {
+    $('target').hidden = !state.try;
+    $('next-target').hidden = !state.try;
+    $('try').setAttribute('aria-pressed',state.try);
+    $('target').innerHTML = `${state.met ? '✓' : 'Make Pom look'} ${feelingHTML(feelings[state.target])}`;
+  }
+  function nextTarget() {
+    clearTimeout(targetTimer);
+    state.target = (state.target+1)%6;
+    state.met = false;
+    renderTarget();
+    hint(L.targets[state.target]);
+    const target = state.target;
+    V.say(L.targets[target],{valid:() => state.mode === 'backstage' && state.try && state.target === target});
+    checkTarget();
+  }
+  function audience() {
+    const f = feeling(state.back);
+    $('audience-card').hidden = false;
+    $('audience-feeling').innerHTML = feelingHTML(f);
+    hint('Tap Head, Voice or Bounce. Then tap Audience says.');
+    V.dropQueued();
+    V.say(`The audience sees ${f}.`,{now:true,valid:() => !$('audience-card').hidden && feeling(state.back) === f});
+  }
+  function like(f) {
+    cancel(false);
+    state.like = f;
+    $('likeme').dataset.head = presets[f][0];
+    entryActions++;
+    pose(presets[f]);
+    $('life-prompt').textContent = `When did you feel ${f}? Tell a friend.`;
+    feelings.forEach(x => $('feel-'+x).setAttribute('aria-pressed',x === f));
+    hint($('life-prompt').textContent);
+    V.say($('life-prompt').textContent,{now:true,valid:() => state.like === f});
+    Curio.tone(440,.09,.06);
+  }
+  function vote(i) {
+    state.vote = i;
+    endings.forEach((e,k) => $('vote-'+k).setAttribute('aria-pressed',k === i));
+    $('life-prompt').textContent = endings[i].vote;
+    hint('Tap the ending you like. Tell a friend why.');
+    V.say(endings[i].vote,{now:true,valid:() => state.vote === i && state.voteOpen});
+    Curio.yes();
+  }
+  function setMode(mode) {
+    if (mode === state.mode) return;
+    cancel();
+    state.mode = mode;
+    entryActions = 0;
+    for (const m of ['show','backstage','likeme']) {
+      $(m).hidden = m !== mode;
+      $('m-'+m).setAttribute('aria-pressed',m === mode);
+    }
+    if (mode === 'show') { renderShow(); playScene({welcome:true}); }
+    else if (mode === 'backstage') {
+      updateControls();
+      renderLinePicture();
+      renderTarget();
+      pose(state.back);
+      hint(state.try ? L.targets[state.target] : L.wBack);
+      V.welcome();
+    } else {
+      pose(state.like ? presets[state.like] : presets.calm);
+      hint(state.voteOpen ? L.voteHow : state.like ? `When did you feel ${state.like}? Tell a friend.` : L.wLike);
+      V.welcome();
+    }
+  }
+  ['head','voice','bounce'].forEach((name,k) => {
+    labels[k].forEach((label,i) => {
+      const b = document.createElement('button');
+      b.id = name+'-'+i;
+      b.setAttribute('aria-pressed',state.back[k] === i);
+      const icon = k === 0 ? `<span class="sock-icon" style="transform:rotate(${[28,0,-18][i]}deg)">🧦</span>` :
+        `<span>${k === 1 ? ['🐌','👟','🐇'][i] : ['•','⌒','◠'][i]}</span>`;
+      b.innerHTML = icon + ' ' + label;
+      b.onclick = () => change(k,i);
+      $(name+'-controls').append(b);
+    });
+  });
+  feelings.forEach(f => {
+    const b = document.createElement('button');
+    b.id = 'feel-'+f;
+    b.innerHTML = feelingHTML(f);
+    b.setAttribute('aria-pressed','false');
+    b.onclick = () => like(f);
+    $('feelings').append(b);
+  });
+  endings.forEach((e,i) => {
+    for (const [parent,prefix,fn] of [[$('endings'),'ending-',chooseEnding],[$('votes'),'vote-',vote]]) {
+      const b = document.createElement('button');
+      b.id = prefix+i;
+      b.className = 'ending-button';
+      b.setAttribute('aria-pressed','false');
+      b.innerHTML = `<span class="symbol" aria-hidden="true">${e.icon}</span><span>${e.name}</span>`;
+      b.onclick = () => fn(i);
+      parent.append(b);
+    }
+  });
+  for (const m of ['show','backstage','likeme']) $('m-'+m).onclick = () => setMode(m);
+  $('next').onclick = () => nextScene(1);
+  $('back').onclick = () => nextScene(-1);
+  $('again').onclick = playScene;
+  $('reveal').onclick = () => {
+    state.revealed = true;
+    serial++;
+    stopBabble();
+    V.dropQueued();
+    renderShow();
+    V.say(`Pom feels ${current().f}.`,{now:true,valid:() => state.revealed});
+    Curio.yes();
+  };
+  $('say').onclick = () => {
+    serial++;
+    V.dropQueued();
+    babble(state.line < 5 ? scenes[state.line].n : endings[state.ending ?? 0].n,state.back);
+    hint(L.hints[3]);
+  };
+  $('line').onclick = () => {
+    serial++;
+    V.dropQueued();
+    state.line = (state.line+1)%6;
+    $('line').querySelector('span').textContent = 'Line '+(state.line+1);
+    renderLinePicture();
+    const line = state.line < 5 ? scenes[state.line] : endings[state.ending ?? 0];
+    hint(line.line + ' Tap Say it.');
+    V.say(line.line,{now:true,valid:() => state.mode === 'backstage'});
+    babble(line.n,state.back);
+  };
+  $('audience').onclick = audience;
+  $('try').onclick = () => {
+    clearTimeout(targetTimer);
+    state.try = !state.try;
+    state.met = false;
+    renderTarget();
+    hint(state.try ? L.targets[state.target] : L.change);
+    if (state.try) {
+      V.say(L.targets[state.target]);
+      checkTarget();
+    }
+  };
+  $('next-target').onclick = nextTarget;
+  $('vote').onclick = () => {
+    state.voteOpen = !state.voteOpen;
+    $('votes').hidden = !state.voteOpen;
+    $('vote').setAttribute('aria-pressed',state.voteOpen);
+    hint(state.voteOpen ? L.voteHow : state.like ? `When did you feel ${state.like}? Tell a friend.` : L.wLike);
+    if (state.voteOpen) V.how('voteHow',{valid:() => state.voteOpen});
+  };
+  document.addEventListener('keydown',e => {
+    if (e.ctrlKey || e.altKey || e.metaKey || e.repeat) return;
+    if (state.mode === 'show' && ['ArrowRight','ArrowLeft'].includes(e.key)) {
+      e.preventDefault();
+      nextScene(e.key === 'ArrowRight' ? 1 : -1);
+    }
+    if (state.mode !== 'backstage') return;
+    const k = {h:0,v:1,b:2}[e.key.toLowerCase()];
+    if (k !== undefined) {
+      e.preventDefault();
+      change(k,(state.back[k]+1)%3);
+    }
+    if (e.key.toLowerCase() === 'a') { e.preventDefault(); audience(); }
+  });
+  Curio.init({clips:"voice:*",rate:.9});
+  $('read').addEventListener('click',() => {
+    serial++;
+    stopBabble();
+  });
+  Curio.onSound(on => { if (!on) stopBabble(); });
+  Curio.onMotion(() => pose(state.mode === 'show' ? current().settings : state.mode === 'backstage' ? state.back : presets[state.like || 'calm']));
+  requestAnimationFrame(frame);
+  renderShow();
+  renderLinePicture();
+  window.__tool = {state,setMode,allLines:V.allLines,vlog:V.log,feeling,table,presets,scenes,endings,
+    change,chooseEnding,playScene,babbleLog,get vq() { return V.queue; },get tilt() { return tilt; }};
+})();
+</script>
+</body>
+</html>
