@@ -1,0 +1,26 @@
+{
+  "id": "data-policy-council",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Write the policy. Watch one student's data trail change. Bring your draft to a vote.",
+  "outcome": "Explain how data collection, access, retention and family rights change student privacy and institutional tradeoffs.",
+  "driver": "students or teacher",
+  "minutes": "25-45",
+  "modes": [
+    "Draft",
+    "Compare"
+  ],
+  "grades_label": "Grades 9-12",
+  "sources": [
+    "CSTA 2026 ids HS-ALG-IM-10, HS-DAT-IM-28, HS-SYS-IM-36 (`data/standards/csta-2026-ids.txt`); CSTA K-12 CS Standards (2017) 3A-IC-24, 3A-IC-29, 3A-IC-30: https://csteachers.org/k12standards/",
+    "FERPA consent before disclosure, the right to inspect and seek amendment, rights passing to the student at 18, the school-official exception for contractors: 20 U.S.C. 1232g and 34 CFR Part 99; U.S. Department of Education, Student Privacy Policy Office, https://studentprivacy.ed.gov/faq/what-ferpa",
+    "COPPA parental consent for children under 13, and schools consenting only for educational use: FTC, \"Complying with COPPA: Frequently Asked Questions\", section N, https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions",
+    "SOPIPA bans targeted ads based on student data, profiles for non-school purposes and selling student information: California Business and Professions Code 22584, https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&sectionNum=22584",
+    "Data minimization and limited retention as privacy principles: NIST Privacy Framework 1.0 (2020), https://www.nist.gov/privacy-framework ; FTC, \"Protecting Consumer Privacy in an Era of Rapid Change\" (2012), https://www.ftc.gov/reports/protecting-consumer-privacy-era-rapid-change-recommendations-businesses-policymakers",
+    "Early-warning systems that flag students from grades and attendance: U.S. Department of Education, Office of Planning, Evaluation and Policy Development, \"Issue Brief: Early Warning Systems\" (2016), https://www2.ed.gov/rschstat/eval/high-school/early-warning-systems-brief.pdf",
+    "The district, app, vendor, members, Jordan, the points and the vote rule are original to Curio Class.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-10-31"
+}

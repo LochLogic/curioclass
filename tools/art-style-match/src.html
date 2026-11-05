@@ -1,0 +1,2446 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Art Style Match · Curio Class</title>
+<meta name="description" content="Find a painting's visible tells, collect eighteen museum works, and repaint your own scene with six style recipes. Grades 3-5. Works offline.">
+<!--
+Art Style Match, Curio Class. Grades 3-5 visual arts: NCAS VA:Re7 and VA:Cn11.
+Museum works: The Metropolitan Museum of Art Open Access and Art Institute of Chicago, public domain / CC0.
+Individual object links and credits are in content.json and art/public-domain.json.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+The ten-tell recipe model is a classroom simplification, not a definition of every artwork in a movement.
+One offline file. No automatic network requests. Content CC BY 4.0, code MIT.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper: #fbf6ec;
+  --ink: #2a1e22;
+  --muted: #6b5a5e;
+  --line: #d8c9b4;
+  --focus: #d57614;
+  --brand: #9b2457;
+  --btn: #78163e;
+  --btn-line: #c47b9a;
+  --head-ink: #fff;
+  --panel: #fbf6ec;
+  --gold: #d7a93b;
+  --felt: #173f45;
+}
+body {
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+header {
+  background: var(--paper);
+  color: var(--ink);
+  border-top: 5px solid var(--brand);
+  padding: 10px 22px;
+  gap: 10px;
+}
+h1 {
+  font: 700 clamp(23px, 2.3vw, 34px)/1.05 Georgia, serif;
+  letter-spacing: -.04em;
+}
+h1 small {
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0;
+  margin-top: 4px;
+  opacity: 1;
+}
+.icon-btn {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 12px;
+  font-size: 13px;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  background: #fffaf3;
+}
+#sound {
+  width: 88px;
+  min-width: 88px;
+}
+#motion {
+  width: 98px;
+  min-width: 98px;
+}
+.seg {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+}
+.seg button {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 16px;
+  font-size: 14px;
+  color: var(--ink);
+  background: #eee6d8;
+}
+.seg button[aria-pressed="true"] {
+  background: var(--brand);
+  color: white;
+}
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+button:active {
+  filter: brightness(.94);
+}
+button:disabled {
+  cursor: default;
+}
+button:focus-visible, a:focus-visible {
+  outline: 3px solid #f4bf47;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px #2a1e22;
+  z-index: 20;
+}
+main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 0;
+  min-height: 0;
+}
+.stage {
+  min-height: 0;
+  background-color: var(--felt);
+  background-image: linear-gradient(115deg, #102a3340, #123038aa), var(--felt-image);
+  background-size: cover;
+  border: 10px solid #483225;
+  box-shadow: inset 0 0 0 2px #d9a858, inset 0 0 70px #0007;
+  border-radius: 5px;
+  margin: 0 0 12px 14px;
+  padding: 16px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--paper);
+}
+.stage::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px solid #d7a93b88;
+  border-radius: 40px;
+  pointer-events: none;
+}
+.table-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex: none;
+}
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #ebce91;
+}
+.table-title {
+  margin: 0;
+  font: 500 clamp(20px, 2.2vw, 30px)/1.1 Georgia, serif;
+}
+.table-sub {
+  margin: 4px 0 0;
+  color: #fbf6ec;
+  font-size: 13px;
+}
+.album-count {
+    flex: none;
+    white-space: nowrap;
+  border: 1px solid #e8c87a99;
+  padding: 8px 12px;
+  border-radius: 50%;
+  min-width: 54px;
+  text-align: center;
+  font: 600 16px Georgia, serif;
+}
+.view {
+  min-height: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  flex: 1;
+  min-height: 0;
+  padding: 7px;
+}
+.painting-card {
+  position: relative;
+  min-width: 0;
+  min-height: 44px;
+  padding: 7px;
+  background: linear-gradient(135deg, #fffdf8, #e6d7bc);
+  border: 1px solid #e8d6ad;
+  border-radius: 7px;
+  box-shadow: 2px 6px 12px #0006;
+  transform: rotate(var(--tilt, -1deg));
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: var(--ink);
+  text-align: left;
+  transition: transform .2s, box-shadow .2s;
+}
+.painting-card:hover {
+  transform: translateY(-4px) rotate(0);
+  box-shadow: 2px 10px 14px #0008;
+}
+.painting-card img {
+  width: 100%;
+  min-height: 0;
+  flex: 1;
+  object-fit: contain;
+  background: #d4c6a8;
+}
+.painting-card .mini-title {
+  font: 600 11px/1.1 Georgia, serif;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.painting-card .collected {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  background: var(--brand);
+  color: white;
+  border-radius: 50%;
+  padding: 3px 6px;
+  font-size: 12px;
+}
+.panel {
+  min-width: 0;
+  overflow: auto;
+  border: 0;
+  padding: 14px 20px;
+  gap: 14px;
+  background: var(--paper);
+}
+.panel .eyebrow {
+  color: var(--brand);
+}
+.hint {
+  margin: 0;
+  font: 500 17px/1.45 'Segoe UI', sans-serif;
+  min-height: 78px;
+}
+.panel-rule {
+  height: 1px;
+  background: var(--line);
+  width: 100%;
+}
+#context {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.note-title {
+  font: 500 26px/1.1 Georgia, serif;
+  margin: 0 0 8px;
+}
+.note-copy {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0;
+}
+.panel-art {
+  width: 100%;
+  height: 130px;
+  position: relative;
+  margin: 12px 0;
+}
+.recipe-sample {
+  position: absolute;
+  width: 70px;
+  height: 95px;
+  background: #eee4ce;
+  border: 1px solid #aa8d5c;
+  border-radius: 6px;
+  box-shadow: 2px 5px 6px #0003;
+  display: grid;
+  place-items: center;
+}
+.recipe-sample:nth-child(1) {
+  left: 10%;
+  transform: rotate(-13deg);
+  top: 7px;
+}
+.recipe-sample:nth-child(2) {
+  left: 37%;
+  transform: rotate(2deg);
+  top: 0;
+}
+.recipe-sample:nth-child(3) {
+  left: 64%;
+  transform: rotate(14deg);
+  top: 14px;
+}
+.recipe-sample svg {
+  width: 44px;
+  height: 44px;
+}
+.privacy {
+  margin-top: auto;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.wall-label {
+  border-left: 3px solid var(--gold);
+  padding-left: 13px;
+}
+.wall-label h2 {
+  margin: 0 0 10px;
+  font: italic 500 22px/1.2 Georgia, serif;
+}
+.wall-label p {
+  margin: 8px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.wall-label a {
+  color: #812047;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 13px;
+}
+.control {
+  border: 1px solid #b7a68c;
+  border-radius: 7px;
+  background: linear-gradient(#fffcf6, #eee3cf);
+  color: var(--ink);
+  min-height: 44px;
+  min-width: 44px;
+  padding: 7px 12px;
+  font-weight: 650;
+  font-size: 14px;
+  box-shadow: 0 2px 0 #0002;
+}
+.control.primary {
+  background: var(--brand);
+  color: white;
+  border-color: #7b1942;
+}
+.control.gold {
+  background: #d7a93b;
+  border-color: #b58a2d;
+}
+.control:disabled, .control[aria-disabled="true"] {
+  opacity: .55;
+}
+.control[aria-disabled="true"] {
+  cursor: progress;
+}
+.control[aria-pressed="true"] {
+  background: #d7a93b;
+  border-color: #2a1e22;
+  box-shadow: inset 0 0 0 1px #2a1e22;
+}
+.toolbar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  flex: none;
+}
+.toolbar .control {
+  padding: 5px 12px;
+}
+.framed-area {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+    animation: card-unfold .35s ease;
+}
+.museum-frame {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.art-viewport {
+  position: relative;
+  overflow: hidden;
+  flex: none;
+  background: #33272a;
+  border: 1px solid #2a1e22;
+  outline: 8px ridge #b58a38;
+  box-shadow: 0 0 0 10px #4b3120, 0 0 0 12px #e7c173, 8px 15px 24px #0008;
+}
+.picture-target {
+  border: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: none;
+  transition: transform .9s ease;
+}
+.picture-target img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+.tell-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  border-radius: 50%;
+  background: #ffe9a1;
+  border: 3px solid #9b2457;
+  color: var(--ink);
+  box-shadow: 0 2px 8px #0008;
+}
+.zoom-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 48%;
+  aspect-ratio: 1;
+  border: 2px solid #ffedb3;
+  border-radius: 50%;
+  box-shadow: 0 0 0 500px #0004;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.tell-detail {
+  min-height: 50px;
+  color: #fbf6ec;
+  text-align: center;
+  font-size: 15px;
+  margin: 0;
+}
+.style-reveal {
+  border: 1px solid #d7a93b;
+  border-radius: 8px;
+  padding: 12px;
+  font: 500 18px Georgia, serif;
+}
+.match-view {
+  position: relative;
+  display: grid;
+  grid-template-rows: 70px minmax(0, 1fr) 100px;
+  gap: 10px;
+}
+.styles-row {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+}
+.style-card {
+  position: relative;
+  border: 2px solid #c9a45c;
+  border-radius: 7px;
+  background: #d7a93b;
+  color: var(--ink);
+  min-width: 0;
+  min-height: 44px;
+  padding: 5px;
+  font: 650 12px/1.15 'Segoe UI', sans-serif;
+  box-shadow: 1px 4px 8px #0005;
+}
+.style-card.covered {
+  background: repeating-linear-gradient(45deg, #c49737 0 3px, #d7a93b 3px 8px);
+  opacity: 1;
+}
+.style-card.covered::after {
+  content: '✧';
+  display: grid;
+  place-items: center;
+  position: absolute;
+  inset: 7px;
+  border: 1px solid #6d4e1e;
+  font: 36px Georgia, serif;
+}
+.style-card.covered span {
+  visibility: hidden;
+}
+.style-card.ready {
+  animation: card-unfold .45s ease;
+  background: #f9edcf;
+}
+.style-card small {
+  display: block;
+  font-size: 10px;
+  margin-top: 4px;
+}
+.style-card svg {
+  width: 16px;
+  height: 16px;
+}
+.match-center {
+  display: flex;
+  min-height: 0;
+  gap: 15px;
+  align-items: stretch;
+  justify-content: center;
+}
+.match-center .framed-area {
+  max-width: 78%;
+}
+.played {
+  flex: 0 0 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+.played-chip {
+  background: #fbf6ec;
+  border: 2px solid #d7a93b;
+  padding: 9px;
+  border-radius: 7px;
+  color: var(--ink);
+  font-size: 12px;
+  text-align: center;
+  box-shadow: 3px 4px 9px #0005;
+  animation: stick .3s ease;
+}
+.played-chip svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+  margin: 0 auto 5px;
+}
+.hand {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  max-width: 650px;
+  width: 100%;
+  margin: auto;
+  height: 100%;
+}
+.tell-card {
+  border: 2px solid #d4bc8e;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #fffdf6, #ecdfc2);
+  color: var(--ink);
+  padding: 7px;
+  min-width: 0;
+  min-height: 44px;
+  font: 650 13px/1.15 'Segoe UI', sans-serif;
+  box-shadow: 3px 5px 9px #0005;
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform .15s;
+}
+.tell-card svg {
+  display: block;
+  width: 38px;
+  height: 38px;
+  margin: 0 auto 5px;
+}
+.tell-card[aria-pressed="true"] {
+  outline: 3px solid #ffd86f;
+  border-color: var(--brand);
+  transform: translateY(-8px);
+}
+.tell-card.bounce {
+  animation: bounce .35s ease;
+  border-color: var(--brand);
+}
+.deal-back {
+  width: 220px;
+  max-width: 70%;
+  align-self: center;
+  aspect-ratio: .75;
+  max-height: 100%;
+  border: 10px double #d7a93b;
+  border-radius: 13px;
+  background: repeating-linear-gradient(45deg, #6d193d 0 5px, #792044 5px 10px);
+  box-shadow: 5px 12px 20px #0007;
+  display: grid;
+  place-items: center;
+  animation: waiting 5s ease-in-out infinite;
+}
+.deal-back span {
+  font: 100px Georgia, serif;
+  color: #e8c67b;
+}
+.match-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.match-actions #deal {
+  grid-column: 1 / -1;
+  font-size: 20px;
+  min-height: 52px;
+}
+.draw-pile {
+  margin: 3px auto;
+  width: 75px;
+  height: 52px;
+  border: 4px double #dfbb71;
+  border-radius: 5px;
+  background: repeating-linear-gradient(45deg, #6d193d 0 3px, #8e2b55 3px 7px);
+  box-shadow: 3px 3px #b5985f, 5px 5px #4c3727;
+}
+.artist-options {
+  display: grid;
+  gap: 8px;
+}
+.artist-hand {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  max-width: 650px;
+  margin: auto;
+  height: 100%;
+}
+.artist-hand .control {
+  border: 3px double #b08b42;
+  box-shadow: 3px 5px 9px #0005;
+}
+.artist-context {
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--muted);
+  margin: 0;
+}
+.won-seal {
+  padding: 10px;
+  border: 3px double #b88d35;
+  border-radius: 7px;
+  color: #812047;
+  font: 600 22px Georgia, serif;
+  text-align: center;
+  animation: stick .3s ease;
+}
+.collection-receipt {
+  min-width: 0;
+  width: min(100%, 650px);
+  height: 100%;
+  margin: auto;
+  padding: 8px 14px;
+  border: 3px double #d7a93b;
+  border-radius: 8px;
+  background: linear-gradient(120deg, #fffdf6, #ead8ac);
+  box-shadow: 3px 5px 12px #0006;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  animation: stick .4s ease;
+}
+.collection-receipt strong {
+  font: 600 16px/1.15 Georgia, serif;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.collection-receipt small {
+  font-size: 12px;
+}
+.receipt-tells {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+}
+.receipt-tells svg {
+  width: 20px;
+  height: 20px;
+}
+.album-count.earned {
+  animation: album-stamp .65s ease;
+  background: #f5d77a;
+  color: var(--ink);
+}
+@keyframes album-stamp {
+  30% { transform: scale(1.2) rotate(-8deg); }
+}
+@media (min-width: 1000px) and (min-height: 650px) {
+  body[data-mode="album"] .album-grid {
+    grid-template-rows: repeat(6, minmax(75px, 1fr));
+    gap: 8px;
+  }
+  body[data-mode="album"] .album-row {
+    padding-bottom: 6px;
+  }
+  body[data-mode="album"] .album-style {
+    font-size: 14px;
+  }
+  body[data-mode="album"] .album-style small {
+    margin: 3px 0;
+  }
+  body[data-mode="album"] .album-style svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+.scene-picks {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+}
+.scene-picks .control {
+  font-size: 13px;
+  padding: 6px;
+}
+.canvas-space {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+.canvas-mount {
+  position: relative;
+  width: 100%;
+  max-width: 1280px;
+  aspect-ratio: 1.6;
+  border: 10px ridge #be9b59;
+  box-shadow: 3px 10px 20px #0007;
+  max-height: 100%;
+}
+#painting-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.canvas-mount::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 12px #0002;
+  pointer-events: none;
+}
+.canvas-label {
+  text-align: center;
+  min-height: 30px;
+  margin: 0;
+  font: 500 21px Georgia, serif;
+}
+.make-tells {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+.make-tell {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 6px;
+  font-size: 12px;
+  padding: 5px 7px;
+}
+.make-tell svg {
+  width: 24px;
+  height: 24px;
+  flex: none;
+}
+.style-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+.style-buttons .control {
+  font-size: 12px;
+  padding: 5px;
+}
+.make-actions {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.make-actions .control {
+  flex: 1;
+  font-size: 12px;
+  padding: 5px;
+}
+.reference {
+  width: 43%;
+  height: 100%;
+  min-height: 0;
+}
+.reference .museum-frame {
+  height: calc(100% - 45px);
+}
+.reference p {
+  font-size: 12px;
+  text-align: center;
+}
+.album-grid {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  display: grid;
+  grid-template-rows: repeat(6, minmax(95px, 1fr));
+  gap: 10px;
+}
+.album-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) repeat(3, minmax(44px, .8fr));
+  gap: 10px;
+  align-items: stretch;
+  border-bottom: 1px solid #dfca9177;
+  padding: 0 4px 10px;
+}
+.album-style {
+  align-self: center;
+  font: 500 16px/1.15 Georgia, serif;
+}
+.album-style small {
+  display: block;
+  margin: 5px 0;
+  font: 11px 'Segoe UI', sans-serif;
+}
+.album-style svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+.album-slot {
+  min-height: 44px;
+  border: 2px dashed #d0b674;
+  border-radius: 7px;
+  background: #092d3544;
+  display: grid;
+  place-items: center;
+}
+.album-slot span {
+  font: 36px Georgia, serif;
+  color: #ead9ac;
+}
+.album-slot img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: 95px;
+  object-fit: contain;
+}
+.album-slot.filled {
+  background: #fbf6ec;
+  border: 4px solid #e7d0a3;
+  cursor: pointer;
+  box-shadow: 2px 4px 8px #0005;
+}
+.confirm {
+  background: #efe1c9;
+  border: 1px solid #b9a381;
+  padding: 12px;
+  border-radius: 9px;
+}
+.confirm p {
+  margin-top: 0;
+}
+.confirm .toolbar {
+  justify-content: start;
+}
+@keyframes waiting {
+  50% {
+    transform: translateY(-5px) rotate(1deg);
+  }
+}
+@keyframes card-unfold {
+  from {
+    transform: rotateY(90deg);
+  }
+  to {
+    transform: rotateY(0);
+  }
+}
+@keyframes stick {
+  from {
+    transform: translateX(-25px) rotate(-8deg);
+    opacity: .1;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+@keyframes bounce {
+  25% {
+    transform: translateX(8px) rotate(5deg);
+  }
+  70% {
+    transform: translateX(-6px);
+  }
+}
+.calm .deal-back, .calm .played-chip, .calm .style-card, .calm .tell-card,
+.calm .collection-receipt, .calm .album-count {
+  animation: none !important;
+}
+.calm .picture-target, .calm .painting-card, .calm .tell-card {
+  transition: none;
+}
+@media (min-width: 1500px) {
+  .stage {
+    padding: 24px 36px;
+  }
+  .gallery {
+    gap: 22px;
+  }
+  .painting-card {
+    padding: 10px;
+  }
+}
+@media (max-width: 1100px), (max-height: 650px) {
+  header {
+    padding: 6px 12px;
+    gap: 6px;
+  }
+  h1 {
+    font-size: 23px;
+  }
+  h1 small {
+    display: none;
+  }
+  .seg button {
+    padding: 0 12px;
+  }
+  .icon-btn {
+    padding: 0 9px;
+  }
+  main {
+    grid-template-columns: minmax(0, 1fr) 226px;
+  }
+  .stage {
+    margin: 0 0 7px 8px;
+    border-width: 7px;
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .panel {
+    padding: 10px 13px;
+    gap: 10px;
+  }
+  .hint {
+    font-size: 14px;
+    min-height: 64px;
+  }
+  .table-title {
+    font-size: 22px;
+  }
+  .table-sub {
+    font-size: 11px;
+  }
+  .gallery {
+    gap: 9px;
+    padding: 3px;
+  }
+  .painting-card {
+    padding: 4px;
+  }
+  .painting-card .mini-title {
+    font-size: 10px;
+  }
+  .table-top .eyebrow {
+    display: none;
+  }
+  .match-view {
+    grid-template-rows: 62px minmax(0, 1fr) 90px;
+    gap: 8px;
+  }
+  .style-card {
+    font-size: 10px;
+    padding: 3px;
+  }
+  .played {
+    flex-basis: 72px;
+    gap: 5px;
+  }
+  .played-chip {
+    font-size: 10px;
+    padding: 5px;
+  }
+  .played-chip svg {
+    width: 19px;
+    height: 19px;
+  }
+  .hand {
+    gap: 8px;
+  }
+  .played:empty {
+    display: none;
+  }
+  .tell-card svg {
+    width: 28px;
+    height: 28px;
+  }
+  .tell-card {
+    font-size: 11px;
+    padding: 4px;
+  }
+  .panel-art {
+    height: 100px;
+  }
+  .recipe-sample {
+    width: 55px;
+    height: 75px;
+  }
+  .wall-label h2 {
+    font-size: 19px;
+  }
+  .wall-label p {
+    font-size: 12px;
+  }
+  .panel .note-title {
+    font-size: 22px;
+  }
+}
+@media (max-height: 540px) and (min-width: 560px) {
+  body[data-mode="make"] main {
+    grid-template-columns: minmax(0, 1fr) 320px;
+  }
+  main {
+    grid-template-columns: minmax(0, 1fr) 188px;
+  }
+  h1 {
+    font-size: 21px;
+  }
+  header {
+    flex-wrap: nowrap;
+    padding: 5px 8px;
+  }
+  .seg button {
+    font-size: 12px;
+    padding: 0 8px;
+  }
+  .icon-btn {
+    font-size: 11px;
+    padding: 0 7px;
+  }
+  .stage {
+    padding: 7px 10px;
+  }
+  .table-sub, .album-count, .panel-art, .panel .note-copy, .draw-pile {
+    display: none;
+  }
+  .table-title {
+    font-size: 18px;
+  }
+  .gallery {
+    gap: 7px;
+  }
+  .painting-card .mini-title {
+    display: none;
+  }
+  .panel {
+    padding: 8px 10px;
+    gap: 7px;
+  }
+  .hint {
+    min-height: 58px;
+    font-size: 13px;
+    line-height: 1.35;
+  }
+  .privacy {
+    font-size: 10px;
+  }
+  .wall-label h2 {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  .wall-label p {
+    margin: 4px 0;
+    font-size: 11px;
+  }
+  .match-view {
+    grid-template-columns: minmax(0, 1fr) 112px;
+    grid-template-rows: 74px minmax(0, 1fr);
+    gap: 8px;
+  }
+  .styles-row {
+    grid-column: 1 / -1;
+    gap: 5px;
+  }
+  .hand {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 90px 90px;
+    gap: 5px;
+    align-self: center;
+    height: 185px;
+  }
+  .artist-hand {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    height: 185px;
+    align-self: center;
+  }
+  .artist-hand .control {
+    font-size: 11px;
+    padding: 4px;
+  }
+  .collection-receipt {
+    padding: 7px;
+  }
+  .collection-receipt strong {
+    font-size: 12px;
+    white-space: normal;
+  }
+  .match-center {
+    gap: 5px;
+  }
+  .match-center .framed-area {
+    max-width: 100%;
+    margin-bottom: 34px;
+  }
+  .played {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    flex-direction: row;
+  }
+  .played-chip {
+    padding: 3px 6px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .played-chip svg {
+    width: 17px;
+    height: 17px;
+    margin-bottom: 0;
+  }
+  .make-tells {
+    gap: 4px;
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .make-tell {
+    font-size: 10px;
+    padding: 3px;
+    gap: 1px;
+    flex-direction: column;
+    text-align: center;
+  }
+  .make-tell svg {
+    width: 18px;
+    height: 18px;
+  }
+  .style-buttons {
+    gap: 4px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .style-buttons .control {
+    font-size: 10px;
+  }
+  body[data-mode="make"] .panel {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-content: start;
+  }
+  body[data-mode="make"] .panel .hint {
+    min-height: 36px;
+    font-size: 11px;
+  }
+  body[data-mode="make"] .panel .eyebrow, body[data-mode="make"] .privacy {
+    display: none;
+  }
+  .make-actions .control {
+    flex-basis: 25%;
+  }
+  body[data-mode="make"] #context {
+    gap: 7px;
+  }
+  .tell-detail {
+    min-height: 22px;
+    font-size: 12px;
+  }
+  .toolbar {
+    gap: 5px;
+  }
+  .toolbar .control {
+    font-size: 11px;
+    padding: 4px 6px;
+  }
+  .scene-picks .control {
+    font-size: 10px;
+  }
+}
+@media (max-width: 559px) {
+  body {
+    overflow: auto;
+    height: auto;
+    min-height: 100dvh;
+    display: block;
+  }
+  header {
+    display: grid;
+    grid-template-columns: 1fr repeat(3, auto);
+    padding: 7px 8px;
+    gap: 6px;
+  }
+  h1 {
+    font-size: 20px;
+  }
+  #sound, #motion {
+    width: 72px;
+    min-width: 72px;
+  }
+  header .seg {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .icon-btn {
+    padding: 0 7px;
+    font-size: 11px;
+  }
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+  .stage {
+    margin: 0 7px;
+    height: 440px;
+    min-height: 440px;
+    padding: 9px;
+    border-width: 6px;
+  }
+  .gallery {
+    gap: 7px;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+  .painting-card {
+    padding: 3px;
+  }
+  .painting-card .mini-title {
+    display: none;
+  }
+  .table-title {
+    font-size: 22px;
+  }
+  .table-sub {
+    font-size: 11px;
+  }
+  .table-top {
+    gap: 5px;
+  }
+  .panel {
+    overflow: visible;
+    padding: 12px 16px;
+  }
+  .panel-art, .panel-rule, .panel .note-copy, .panel .note-title {
+    display: none;
+  }
+  .hint {
+    min-height: 52px;
+    font-size: 15px;
+  }
+  .privacy {
+    margin: 0;
+  }
+  .match-view {
+    grid-template-rows: 90px minmax(0, 1fr) 90px;
+    gap: 9px;
+  }
+  .styles-row {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+  }
+  .style-card {
+    font-size: 10px;
+  }
+  .style-card.covered::after {
+    font-size: 22px;
+    inset: 3px;
+  }
+  .hand {
+    display: flex;
+    overflow-x: auto;
+    padding: 3px;
+    gap: 7px;
+  }
+  .tell-card {
+    flex: 1 0 65px;
+    font-size: 10px;
+  }
+  .tell-card[aria-pressed="true"] {
+    transform: none;
+    outline-offset: -3px;
+  }
+  .played {
+    flex-basis: 62px;
+  }
+  .match-center {
+    gap: 8px;
+  }
+  .match-actions {
+    grid-template-columns: 1.4fr 1fr 1fr;
+  }
+  .match-actions #deal {
+    grid-column: auto;
+    min-height: 44px;
+    font-size: 18px;
+  }
+  .match-actions .control {
+    font-size: 11px;
+    padding: 5px;
+  }
+  .draw-pile {
+    display: none;
+  }
+  body[data-mode="match"] .panel {
+    display: flex;
+  }
+  body[data-mode="match"] #hint {
+    order: 1;
+  }
+  body[data-mode="match"] #context {
+    order: 2;
+  }
+  body[data-mode="match"] .privacy {
+    order: 3;
+  }
+  body[data-mode="make"] .stage {
+    height: 330px;
+    min-height: 330px;
+  }
+  .scene-picks .control {
+    min-height: 44px;
+    font-size: 11px;
+  }
+  .make-tells {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+  }
+  .make-tell {
+    font-size: 10px;
+    padding: 3px;
+    gap: 1px;
+    flex-direction: column;
+    text-align: center;
+  }
+  .make-tell svg {
+    width: 18px;
+    height: 18px;
+  }
+  .style-buttons {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+  }
+  .style-buttons .control {
+    font-size: 10px;
+  }
+  body[data-mode="make"] .panel .eyebrow {
+    display: none;
+  }
+  body[data-mode="make"] .hint {
+    min-height: 42px;
+    font-size: 12px;
+  }
+  body[data-mode="make"] #context {
+    gap: 7px;
+  }
+  .canvas-label {
+    font-size: 18px;
+  }
+  .album-row {
+    grid-template-columns: minmax(95px, 1fr) repeat(3, minmax(44px, .8fr));
+    gap: 6px;
+  }
+  .album-style {
+    font-size: 12px;
+  }
+  .album-style svg {
+    width: 16px;
+    height: 16px;
+  }
+  .reference {
+    width: 100%;
+    height: 160px;
+  }
+  .canvas-space.comparing {
+    flex-direction: column;
+  }
+  body[data-mode="make"] .stage:has(.comparing) {
+    height: 660px;
+    min-height: 660px;
+  }
+  .canvas-space.comparing .canvas-mount {
+    flex: none;
+  }
+  .canvas-space.comparing .reference {
+    flex: none;
+    height: 180px;
+  }
+  .canvas-space.comparing {
+    gap: 10px;
+  }
+  body[data-mode="make"] .stage:has(.comparing) .canvas-label {
+    margin-bottom: 24px;
+  }
+  body[data-mode="make"]:has(.comparing) .make-actions {
+    position: fixed;
+    z-index: 30;
+    left: 12px;
+    right: 12px;
+    bottom: 10px;
+    padding: 7px;
+    border: 1px solid #b7a68c;
+    border-radius: 9px;
+    background: var(--paper);
+    box-shadow: 0 3px 14px #0005;
+  }
+}
+@media (min-width: 560px) and (max-height: 760px) {
+  body[data-mode="make"] main {
+    grid-template-columns: minmax(0, 1fr) 320px;
+  }
+  body[data-mode="make"] .panel .eyebrow,
+  body[data-mode="make"] .privacy {
+    display: none;
+  }
+  body[data-mode="make"] .hint {
+    min-height: 42px;
+    font-size: 12px;
+  }
+  .make-tells {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+  }
+  .make-tell {
+    flex-direction: column;
+    font-size: 10px;
+    gap: 1px;
+    padding: 3px;
+    text-align: center;
+  }
+  .make-tell svg {
+    width: 18px;
+    height: 18px;
+  }
+  .style-buttons {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+  }
+  .style-buttons .control {
+    font-size: 10px;
+  }
+  .make-actions .control {
+    flex-basis: 25%;
+  }
+  body[data-mode="make"] #context {
+    gap: 7px;
+  }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Art Style Match <small>Art styles and the artists who made them</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-look" aria-pressed="true">Look</button>
+    <button id="m-match" aria-pressed="false">Match</button>
+    <button id="m-make" aria-pressed="false">Make</button>
+    <button id="m-album" aria-pressed="false">Album</button>
+  </div>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+</header>
+<main>
+  <section class="stage" id="stage" aria-label="Art card table">
+    <div class="table-top">
+      <div><span class="eyebrow">The art card table</span><h2 class="table-title" id="stage-title">Every painting has a tell.</h2>
+      <p class="table-sub" id="stage-sub">Look closely. Find the recipe.</p></div>
+      <span class="album-count" id="album-count" aria-label="Paintings in your album">0 / 18</span>
+    </div>
+    <div class="view" id="view"></div>
+  </section>
+  <aside class="panel" aria-label="Art table controls">
+    <span class="eyebrow" id="panel-heading">Look for the tells</span>
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div class="panel-rule"></div>
+    <div id="context"></div>
+    <p class="privacy">Your album stays on this device.<br>Curio Class collects nothing.</p>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script src="lib:museum"></script>
+<script src="lib:brush"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const DATA = "json:content";
+  const ART = {
+    felt: 'art:felt', gold: 'art:gold-leaf',
+    pondBg: 'art:pond-bg', willow: 'art:pond-willow', windowBg: 'art:window-bg', cat: 'art:window-cat',
+    fruitBg: 'art:fruit-bg', bowl: 'art:fruit-bowl', seaBg: 'art:sea-bg', lighthouse: 'art:sea-lighthouse',
+    'pd-met-452111': 'art:pd-met-452111', 'pd-aic-93923': 'art:pd-aic-93923', 'pd-aic-120662': 'art:pd-aic-120662',
+    'pd-met-437881': 'art:pd-met-437881', 'pd-met-438376': 'art:pd-met-438376', 'pd-met-459084': 'art:pd-met-459084',
+    'pd-met-36490': 'art:pd-met-36490', 'pd-met-55433': 'art:pd-met-55433', 'pd-aic-22719': 'art:pd-aic-22719',
+    'pd-aic-16568': 'art:pd-aic-16568', 'pd-aic-153798': 'art:pd-aic-153798', 'pd-aic-81551': 'art:pd-aic-81551',
+    'pd-aic-27992': 'art:pd-aic-27992', 'pd-aic-122130': 'art:pd-aic-122130', 'pd-met-459095': 'art:pd-met-459095',
+    'pd-aic-28560': 'art:pd-aic-28560', 'pd-met-436528': 'art:pd-met-436528', 'pd-aic-80607': 'art:pd-aic-80607',
+  };
+  DATA.works.forEach(w => w.img = ART[w.img.replace('art:', '')]);
+  document.documentElement.style.setProperty('--felt-image', `url("${ART.felt}")`);
+  const TELLS = DATA.tells;
+  const STYLES = DATA.styles;
+  const WORKS = DATA.works;
+  const tell = key => TELLS.find(t => t.id === key);
+  const work = id => WORKS.find(w => w.id === id);
+  const SCENES = [
+    {name: 'Willow by a pond', short: 'Willow', bg: ART.pondBg, subject: ART.willow, place: [.04, .10, .38, .77]},
+    {name: 'Cat on a windowsill', short: 'Cat', bg: ART.windowBg, subject: ART.cat, place: [.25, .35, .49, .48]},
+    {name: 'Bowl of fruit', short: 'Fruit', bg: ART.fruitBg, subject: ART.bowl, place: [.25, .30, .5, .57]},
+    {name: 'Lighthouse by the sea', short: 'Lighthouse', bg: ART.seaBg, subject: ART.lighthouse, place: [.64, .11, .29, .79]},
+  ];
+  const state = {
+    mode: 'look', opened: null, showTells: false, revealed: new Set(), album: new Set(),
+    round: null, phase: 'idle', hand: [], played: [], selected: null, pile: [], wrongStyle: null,
+    scene: 0, effects: new Set(), compare: false, makeTouched: false,
+    renderMs: null, renderTotalMs: null, brushReady: false,
+  };
+  try {
+    const saved = JSON.parse(localStorage.getItem('art-style-match-album') || '[]');
+    if (Array.isArray(saved)) state.album = new Set(saved.filter(id => WORKS.some(w => w.id === id)));
+  } catch {}
+  const L = {
+    welcomeLook: 'Tap a painting to see it big. Then tap Tells to find its clues.',
+    welcomeMatch: 'Tap Deal to get a painting and four tell cards.',
+    playHow: 'Tap a tell card you can see in the painting. Then tap the painting.',
+    pickStyle: 'Tap the style card that matches your tells.',
+    wrongStyle: 'Not this one. Check the recipe on the back.',
+    pickArtist: 'Now tap the artist who made it.',
+    wrongArtist: 'Not this artist. Tap another artist card.',
+    won: 'Into the album!',
+    welcomeMake: 'Tap a style button, or tap the tell cards on and off, and watch your picture change.',
+    ownStyle: 'That mix is your own style.',
+    welcomeAlbum: "Here is every painting you've matched. Tap one to look again.",
+    albumEmpty: 'Your album is empty. Tap Match, then Deal, to win paintings.',
+    albumFull: 'All eighteen! You know six styles by their tells.',
+    anonymous: 'Many book painters did not sign their work.',
+    selectHow: 'Now tap the painting to play that tell. Or tap Trade to exchange it.',
+    tellsHow: 'Tap a round tell pin to look closer. Tap Whole picture to zoom out.',
+    lookOpen: 'Tap Tells to find clues, or tap Next to look at another painting.',
+    clearHow: 'Clear all the paintings in your album? Tap Yes, clear or Keep album.',
+    tradeHow: 'Tap a tell card, then tap Trade to swap it for another.',
+    allMatched: 'Your album has all eighteen paintings. Tap a card in Look, or try a recipe in Make.',
+    misses: Object.fromEntries(TELLS.map(t => [t.id, `No ${t.name.toLowerCase()} here. Look again.`])),
+    two: Object.fromEntries(['flat', 'outline', 'outdoor'].map(k => [k,
+      `${tell(k).name} ${k === 'outline' ? 'fit' : 'fits'} two styles. Tap one more tell card that you can see.`])),
+    tellLines: TELLS.map(t => t.line),
+    cardLines: WORKS.map(w => w.line),
+  };
+  const welcomeKey = () => ({
+    look: state.opened ? null : 'welcomeLook', match: state.phase === 'idle' ? 'welcomeMatch' : null,
+    make: state.makeTouched ? null : 'welcomeMake', album: state.album.size ? 'welcomeAlbum' : 'albumEmpty',
+  })[state.mode];
+  const V = Curio.voice({
+    lines: L, scope: () => state.mode, welcome: welcomeKey, hint: false,
+    read: () => state.mode === 'look' && state.opened ? wallText(work(state.opened)) : $('hint').textContent,
+    speaks: '.painting-card, .tell-card, .style-card, .make-tell, .style-buttons .control, #deal',
+  });
+  const hint = (text, key, options = {}) => {
+    $('hint').textContent = text;
+    if (key) V.how(key, {hint: false, ...options});
+  };
+  function event(text, valid = () => true) {
+    $('hint').textContent = text;
+    V.say(text, {valid, hint: false});
+  }
+  function action(reset = false) {
+    if (reset || V.playing) V.hush();
+    else V.dropQueued();
+    document.querySelectorAll('.museum-frame').forEach(Museum.finish);
+    document.getAnimations().forEach(a => {
+      if (a.effect?.target?.matches('.framed-area, .style-card')) a.finish();
+    });
+  }
+  function shuffle(a) {
+    a = [...a];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+  const columns = shuffle(STYLES.map(s => s.id));
+  const lookOrder = [0, 1, 2].flatMap(row => columns.map(s => WORKS[s * 3 + row]));
+  const dealOrder = shuffle(WORKS.map(w => w.id));
+  let dealCursor = 0;
+  function icon(key) {
+    const drawings = {
+      gold: '<path d="M7 24Q6 7 26 5Q29 24 7 26Z" fill="#d7a93b"/><path d="M7 26L23 10M13 20L12 13M18 15L25 16"/>',
+      tiny: '<circle cx="14" cy="13" r="8" fill="#fff9"/><path d="M20 20L28 28M11 13H17M14 10V16"/>',
+      flat: '<path d="M6 6H26V26H6Z" fill="#a72c63"/>',
+      outline: '<circle cx="16" cy="16" r="11" fill="#f5c875" stroke-width="4"/>',
+      smooth: '<defs><linearGradient id="smooth-grad"><stop stop-color="#f8d6a2"/><stop offset="1" stop-color="#565576"/></linearGradient></defs><circle cx="16" cy="16" r="12" fill="url(#smooth-grad)" stroke="none"/>',
+      shadow: '<circle cx="16" cy="16" r="12" fill="#f7d695"/><path d="M16 4A12 12 0 0 1 16 28Z" fill="#3f3447"/>',
+      dabs: '<path d="M6 13L14 7M12 23L23 13M22 27L28 21" stroke="#9b2457" stroke-width="5"/>',
+      outdoor: '<circle cx="16" cy="16" r="6" fill="#e2ad26"/><path d="M16 2V6M16 26V30M2 16H6M26 16H30M6 6L9 9M23 23L26 26M6 26L9 23M23 9L26 6"/>',
+      dots: '<g fill="#9b2457" stroke="none"><circle cx="9" cy="8" r="3"/><circle cx="22" cy="8" r="3"/><circle cx="16" cy="16" r="3"/><circle cx="8" cy="25" r="3"/><circle cx="24" cy="24" r="3"/></g>',
+      thick: '<path d="M4 22C8 4 16 29 20 12S29 8 29 8" fill="none" stroke="#51767d" stroke-width="7"/><path d="M4 20C8 2 16 27 20 10S29 6 29 6" fill="none" stroke="#a9d0c4" stroke-width="2"/>',
+    };
+    return `<svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">${drawings[key]}</svg>`;
+  }
+  function button(text, id, fn, cls = 'control') {
+    const b = document.createElement('button');
+    b.className = cls;
+    if (id) b.id = id;
+    b.textContent = text;
+    b.onclick = fn;
+    return b;
+  }
+  function wallText(w) {
+    return `${w.title}. ${w.attribution}. ${w.date}. ${w.made}. ${w.museum}.`;
+  }
+  function count() {
+    $('album-count').textContent = `${state.album.size} / 18`;
+  }
+  function saveAlbum() {
+    try { localStorage.setItem('art-style-match-album', JSON.stringify([...state.album])); } catch {}
+    count();
+  }
+  function setMode(mode) {
+    action(true);
+    Museum.dispose($('view'));
+    if (mode !== 'make') makeObserver?.disconnect();
+    state.mode = mode;
+    if (mode === 'make') state.makeTouched = false;
+    document.body.dataset.mode = mode;
+    for (const key of ['look', 'match', 'make', 'album']) $('m-' + key).setAttribute('aria-pressed', key === mode);
+    $('view').className = 'view';
+    $('view').replaceChildren();
+    $('context').replaceChildren();
+    const title = {look: 'Every painting has a tell.', match: 'Build the recipe.', make: 'Same scene. A new way to paint.', album: 'Your collection of close looking.'};
+    $('stage-title').textContent = title[mode];
+    $('stage-sub').textContent = {look: 'Look closely. Find the recipe.', match: 'Find a tell. Play it on the painting.', make: 'Style Brush · a recipe you can see', album: 'Eighteen paintings. Six visible recipes.'}[mode];
+    $('panel-heading').textContent = {look: 'Look for the tells', match: 'Your next move', make: 'Deal your own recipe', album: 'Saved on this device'}[mode];
+    if (mode === 'look') renderLook();
+    if (mode === 'match') renderMatch();
+    if (mode === 'make') renderMake();
+    if (mode === 'album') renderAlbum();
+    count();
+    const key = welcomeKey();
+    if (key) {
+      hint(L[key]);
+      V.welcome();
+    }
+  }
+  function card(w, order) {
+    const b = button('', '', () => openLook(w.id), 'painting-card');
+    b.style.setProperty('--tilt', ((order % 3) - 1) * 1.3 + 'deg');
+    b.setAttribute('aria-label', 'Open painting: ' + w.title);
+    const im = new Image();
+    im.src = w.img;
+    im.alt = '';
+    const caption = document.createElement('span');
+    caption.className = 'mini-title';
+    caption.textContent = w.title;
+    caption.title = w.title;
+    b.append(im, caption);
+    if (state.album.has(w.id)) {
+      const mark = document.createElement('span');
+      mark.className = 'collected';
+      mark.textContent = '✓';
+      b.append(mark);
+    }
+    return b;
+  }
+  function renderLook() {
+    if (state.opened) return renderOpened();
+    const grid = document.createElement('div');
+    grid.className = 'gallery';
+    lookOrder.forEach((w, i) => grid.append(card(w, i)));
+    $('view').append(grid);
+    $('context').innerHTML = `<h2 class="note-title">A style is a recipe.</h2>
+      <p class="note-copy">Dots, swirls, light, outlines. Start with what your eyes can find.</p>
+      <div class="panel-art" aria-hidden="true">${['dots', 'thick', 'gold'].map(k => `<div class="recipe-sample">${icon(k)}</div>`).join('')}</div>`;
+    hint(L.welcomeLook);
+  }
+  function openLook(id) {
+    action(true);
+    Museum.dispose($('view'));
+    state.opened = id;
+    state.showTells = false;
+    if (state.mode !== 'look') {
+      setMode('look');
+      $('tells').focus({preventScroll: true});
+      return;
+    }
+    $('view').replaceChildren();
+    $('context').replaceChildren();
+    renderOpened();
+    $('tells').focus({preventScroll: true});
+  }
+  function renderOpened() {
+    const w = work(state.opened);
+    const area = document.createElement('div');
+    area.className = 'framed-area';
+    const f = document.createElement('div');
+    f.id = 'look-frame';
+    area.append(f);
+    const toolbar = document.createElement('div');
+    toolbar.className = 'toolbar';
+    toolbar.append(
+      button('Previous', 'previous', () => nextLook(-1)),
+      button('Tells', 'tells', togglePins, 'control gold'),
+      button('Whole picture', 'whole', () => { action(); Museum.unzoom(f); hint(L.tellsHow); }),
+      button('Next', 'next', () => nextLook(1)),
+      button('Close', 'close-look', closeLook),
+    );
+    const detail = document.createElement('p');
+    detail.id = 'tell-detail';
+    detail.className = 'tell-detail';
+    detail.textContent = 'What catches your eye?';
+    $('view').append(area, toolbar, detail);
+    Museum.frame(f, w, () => {
+      action();
+      f.zoomed ? Museum.unzoom(f) : Museum.zoomTo(f, {x: .5, y: .5});
+      hint('Tap Whole picture to zoom out, or tap Tells to find clues.');
+    });
+    const label = document.createElement('div');
+    label.className = 'wall-label';
+    $('context').append(label);
+    Museum.label(label, w);
+    const reveal = button('Show style', 'show-style', () => {
+      action();
+      state.revealed.add(w.id);
+      showStyle();
+      $('next').focus({preventScroll: true});
+    });
+    const style = document.createElement('p');
+    style.className = 'style-reveal';
+    function showStyle() {
+      style.textContent = STYLES[w.style].name;
+      reveal.hidden = true;
+      style.hidden = false;
+      hint('Tap Next to explore another painting, or tap Match to try its recipe.');
+    }
+    style.hidden = true;
+    $('context').append(reveal, style);
+    if (state.revealed.has(w.id) || state.album.has(w.id)) showStyle();
+    hint(L.lookOpen, 'lookOpen', {valid: () => state.opened === w.id});
+    requestAnimationFrame(f.fit);
+  }
+  function togglePins() {
+    action();
+    state.showTells = !state.showTells;
+    $('tells').setAttribute('aria-pressed', state.showTells);
+    const f = $('look-frame');
+    Museum.unzoom(f);
+    if (state.showTells) {
+      Museum.pins(f, work(state.opened).spots, {icon, onPin: spot => {
+        action();
+        const t = tell(spot.key);
+        $('tell-detail').textContent = `${t.name}: ${t.line}`;
+        hint('Tap Whole picture to see the whole painting again.');
+        V.how(t.line, {valid: () => state.opened === f.work.id && f.zoomed, hint: false});
+      }});
+      hint(L.tellsHow, 'tellsHow');
+    } else {
+      f.querySelectorAll('.tell-pin').forEach(p => p.remove());
+      hint(L.lookOpen);
+    }
+  }
+  function closeLook() {
+    action();
+    state.opened = null;
+    setMode('look');
+    $('view').querySelector('button')?.focus({preventScroll: true});
+  }
+  function nextLook(delta) {
+    const i = lookOrder.findIndex(w => w.id === state.opened);
+    openLook(lookOrder[(i + delta + 18) % 18].id);
+    $(delta > 0 ? 'next' : 'previous').focus({preventScroll: true});
+  }
+  function candidates(played = state.played) {
+    return STYLES.filter(s => played.length && played.every(k => s.recipe.includes(k)));
+  }
+  function ensureHand(protect = -1) {
+    if (!state.round) return;
+    const useful = work(state.round).tells.filter(k => !state.played.includes(k));
+    const available = TELLS.map(t => t.id).filter(k => !state.hand.includes(k) && !state.played.includes(k));
+    while (state.hand.length < Math.min(4, 10 - state.played.length)) {
+      if (!state.pile.length) state.pile = shuffle(available);
+      const k = state.pile.shift();
+      if (k && !state.hand.includes(k) && !state.played.includes(k)) state.hand.push(k);
+    }
+    if (useful.length && !state.hand.some(k => useful.includes(k))) {
+      const i = state.hand.findLastIndex((k, index) => index !== protect);
+      state.pile.push(state.hand[i]);
+      state.hand[i] = shuffle(useful)[0];
+    }
+    state.pile = [...new Set(state.pile)].filter(k => !state.hand.includes(k) && !state.played.includes(k));
+    for (const k of TELLS.map(t => t.id)) {
+      if (!state.hand.includes(k) && !state.played.includes(k) && !state.pile.includes(k)) state.pile.push(k);
+    }
+  }
+  function deal(forcedId) {
+    const focusId = document.activeElement?.id;
+    action(true);
+    Museum.dispose($('view'));
+    let id = forcedId;
+    if (!id) {
+      for (let offset = 0; offset < dealOrder.length; offset++) {
+        const index = (dealCursor + offset) % dealOrder.length;
+        if (state.album.has(dealOrder[index])) continue;
+        id = dealOrder[index];
+        dealCursor = (index + 1) % dealOrder.length;
+        break;
+      }
+    }
+    if (!id) {
+      hint(L.allMatched, 'allMatched');
+      return;
+    }
+    state.round = id;
+    state.phase = 'tells';
+    state.played = [];
+    state.hand = [];
+    state.selected = null;
+    state.wrongStyle = null;
+    state.pile = shuffle(TELLS.map(t => t.id));
+    ensureHand();
+    $('view').replaceChildren();
+    $('context').replaceChildren();
+    renderMatch();
+    if (focusId === 'deal' || focusId === 'new-painting') $(focusId).focus({preventScroll: true});
+    hint(L.playHow, 'playHow', {valid: () => state.mode === 'match' && state.phase === 'tells' && !state.played.length});
+  }
+  function renderMatch() {
+    $('view').classList.add('match-view');
+    const styles = document.createElement('div');
+    styles.id = 'styles-row';
+    styles.className = 'styles-row';
+    const middle = document.createElement('div');
+    middle.className = 'match-center';
+    const area = document.createElement('div');
+    area.className = 'framed-area';
+    const played = document.createElement('div');
+    played.id = 'played';
+    played.className = 'played';
+    middle.append(area, played);
+    const hand = document.createElement('div');
+    hand.className = 'hand';
+    hand.id = 'hand';
+    // DOM order follows the keyboard recipe: hand, painting, then style choices.
+    $('view').append(hand, middle, styles);
+    styles.style.gridRow = '1';
+    middle.style.gridRow = '2';
+    hand.style.gridRow = '3';
+    if (matchMedia('(max-height:540px) and (min-width:560px)').matches) {
+      hand.style.gridRow = '2';
+      hand.style.gridColumn = '2';
+    }
+    if (state.round) {
+      const f = document.createElement('div');
+      f.id = 'match-frame';
+      area.append(f);
+      Museum.frame(f, work(state.round), () => {
+        if (state.selected) playTell(state.selected);
+        else {
+          action();
+          f.zoomed ? Museum.unzoom(f) : Museum.zoomTo(f, {x: .5, y: .5});
+          hint(state.phase === 'tells' ? L.playHow : state.phase === 'style' ? L.pickStyle : state.phase === 'artist' ? L.pickArtist : 'Tap Deal for another painting.');
+        }
+      });
+      f.picture.ondragover = e => e.preventDefault();
+      f.picture.ondrop = e => { e.preventDefault(); playTell(e.dataTransfer.getData('text/plain')); };
+      requestAnimationFrame(f.fit);
+    } else {
+      area.innerHTML = '<div class="deal-back" aria-hidden="true"><span>✧</span></div>';
+    }
+    for (const s of STYLES) {
+      const b = button('', 'style-' + s.id, () => chooseStyle(s.id), 'style-card covered');
+      b.innerHTML = `<span>${s.name}</span>`;
+      b.setAttribute('aria-label', 'Style card, face down');
+      b.disabled = true;
+      styles.append(b);
+    }
+    for (let i = 0; i < 4; i++) {
+      const b = button('', 'hand-' + i, () => selectTell(i), 'tell-card');
+      b.style.setProperty('--tilt', (i - 1.5) * 1.4 + 'deg');
+      b.onkeydown = e => {
+        if (e.key === 'Enter' && state.phase === 'tells') {
+          e.preventDefault();
+          playTell(state.hand[i]);
+        }
+      };
+      b.draggable = true;
+      b.ondragstart = e => {
+        state.selected = state.hand[i];
+        e.dataTransfer.setData('text/plain', state.selected || '');
+      };
+      hand.append(b);
+    }
+    const actions = document.createElement('div');
+    actions.className = 'match-actions';
+    actions.append(
+      button('Deal', 'deal', () => deal(), 'control primary'),
+      button('Trade', 'trade', trade),
+      button('New painting', 'new-painting', () => deal()),
+    );
+    $('context').append(actions);
+    const pile = document.createElement('div');
+    pile.className = 'draw-pile';
+    pile.setAttribute('aria-hidden', 'true');
+    const result = document.createElement('div');
+    result.id = 'round-result';
+    $('context').append(pile, result);
+    updateMatch();
+    if (!state.round) hint(L.welcomeMatch);
+    else hint(state.phase === 'won' ? 'Tap Deal for another painting, or tap Album to see your collection.' : state.phase === 'artist' ? L.pickArtist : state.phase === 'style' ? L.pickStyle : L.playHow);
+  }
+  function updateMatch() {
+    const live = state.phase === 'tells';
+    for (let i = 0; i < 4; i++) {
+      const b = $('hand-' + i);
+      const k = state.hand[i];
+      b.disabled = !k || !live;
+      b.innerHTML = k ? icon(k) + tell(k).name : '<span>✧</span>';
+      b.setAttribute('aria-pressed', !!k && state.selected === k);
+      b.setAttribute('aria-label', k ? tell(k).name + '. Tap to select, or press Enter to play.' : 'Empty tell card');
+    }
+    const open = ['style', 'artist', 'won'].includes(state.phase);
+    for (const s of STYLES) {
+      const b = $('style-' + s.id);
+      b.disabled = state.phase !== 'style';
+      const wasCovered = b.classList.contains('covered');
+      b.classList.toggle('covered', !open);
+      b.classList.toggle('ready', open && wasCovered);
+      const back = state.wrongStyle === s.id;
+      b.innerHTML = `<span>${back ? s.recipe.map(k => icon(k)).join('') : s.name}${back ? '<small>' + s.recipe.map(k => tell(k).name).join(' + ') + '</small>' : ''}</span>`;
+      b.setAttribute('aria-label', open ? s.name + (back ? ': ' + s.recipe.map(k => tell(k).name).join(', ') : '') : 'Style card, face down');
+    }
+    $('trade').disabled = !live;
+    $('new-painting').disabled = !state.round;
+    const f = $('match-frame');
+    if (f) {
+      Museum.pins(f, work(state.round).spots.filter(s => state.played.includes(s.key)), {icon, onPin: spot => {
+        action();
+        hint(`${tell(spot.key).line} Tap the painting to see the whole picture.`);
+      }});
+    }
+    $('played').innerHTML = state.played.map(k => `<div class="played-chip">${icon(k)}${tell(k).name} ✓</div>`).join('');
+    const result = $('round-result');
+    result.replaceChildren();
+    $('artist-options')?.remove();
+    $('collection-receipt')?.remove();
+    $('hand').hidden = state.phase === 'artist' || state.phase === 'won';
+    if (state.phase === 'artist') {
+      const context = document.createElement('p');
+      context.className = 'artist-context';
+      context.textContent = STYLES[work(state.round).style].back;
+      result.append(context);
+      const options = document.createElement('div');
+      options.id = 'artist-options';
+      options.className = 'artist-options artist-hand';
+      options.style.gridRow = $('hand').style.gridRow;
+      options.style.gridColumn = $('hand').style.gridColumn;
+      const w = work(state.round);
+      const wrongs = shuffle([...new Set(WORKS.filter(x => x.style !== w.style).map(x => x.artist))]).slice(0, 2);
+      state.artistChoices = state.artistChoices || shuffle([w.artist, ...wrongs]);
+      state.artistChoices.forEach((name, i) => {
+        const b = button(name, 'artist-' + i, () => chooseArtist(name));
+        b.dataset.artist = name;
+        options.append(b);
+      });
+      $('view').append(options);
+    }
+    if (state.phase === 'won') {
+      const w = work(state.round);
+      const receipt = document.createElement('div');
+      receipt.id = 'collection-receipt';
+      receipt.className = 'collection-receipt';
+      receipt.style.gridRow = $('hand').style.gridRow;
+      receipt.style.gridColumn = $('hand').style.gridColumn;
+      const title = document.createElement('strong');
+      title.textContent = w.title;
+      title.title = w.title;
+      const artist = document.createElement('small');
+      artist.textContent = w.attribution;
+      const evidence = document.createElement('div');
+      evidence.className = 'receipt-tells';
+      evidence.innerHTML = '<span>You spotted:</span>' + state.played.map(icon).join('');
+      evidence.setAttribute('aria-label', 'You spotted: ' + state.played.map(k => tell(k).name).join(', '));
+      receipt.append(title, artist, evidence);
+      $('view').append(receipt);
+      const seal = document.createElement('p');
+      seal.className = 'won-seal';
+      seal.textContent = 'Into the album!';
+      const line = document.createElement('p');
+      line.className = 'note-copy';
+      line.textContent = w.line;
+      result.append(seal, line);
+    }
+    if (state.phase === 'style' && state.wrongStyle !== null) {
+      const back = document.createElement('p');
+      back.className = 'note-copy';
+      back.textContent = STYLES[state.wrongStyle].back;
+      result.append(back);
+    }
+  }
+  function selectTell(i) {
+    if (state.phase !== 'tells') return;
+    action();
+    state.selected = state.selected === state.hand[i] ? null : state.hand[i];
+    updateMatch();
+    Curio.tone(420, .06, .04);
+    hint(state.selected ? L.selectHow : L.playHow, state.selected ? 'selectHow' : 'playHow');
+  }
+  function playTell(k) {
+    if (state.phase !== 'tells' || !state.hand.includes(k) || state.played.includes(k)) return;
+    action();
+    const w = work(state.round);
+    const b = $('hand-' + state.hand.indexOf(k));
+    if (!w.tells.includes(k)) {
+      state.selected = null;
+      b.classList.remove('bounce');
+      void b.offsetWidth;
+      b.classList.add('bounce');
+      Curio.tone(180, .10, .05);
+      updateMatch();
+      event(L.misses[k], () => state.mode === 'match' && state.round === w.id && state.phase === 'tells');
+      return;
+    }
+    state.played.push(k);
+    state.hand = state.hand.filter(x => x !== k);
+    state.selected = null;
+    ensureHand();
+    const found = candidates();
+    if (found.length === 1) state.phase = 'style';
+    Museum.unzoom($('match-frame'));
+    updateMatch();
+    Curio.yes();
+    if (found.length === 1 && document.activeElement?.classList.contains('tell-card')) {
+      $('style-0').focus({preventScroll: true});
+    }
+    if (found.length === 1) hint(L.pickStyle, 'pickStyle', {valid: () => state.phase === 'style'});
+    else event(L.two[k], () => state.phase === 'tells' && state.played.length === 1);
+  }
+  function trade() {
+    action();
+    if (state.phase !== 'tells') return;
+    if (!state.selected) return hint(L.tradeHow, 'tradeHow');
+    const i = state.hand.indexOf(state.selected);
+    const old = state.hand[i];
+    const replacement = state.pile.shift();
+    if (replacement) state.hand[i] = replacement;
+    state.pile.push(old);
+    state.selected = null;
+    ensureHand(i);
+    updateMatch();
+    Curio.tone(540, .07, .04);
+    hint('A new tell is in your hand. Tap a tell card, then tap the painting.');
+  }
+  function chooseStyle(id) {
+    if (state.phase !== 'style') return;
+    action();
+    if (id !== work(state.round).style) {
+      state.wrongStyle = id;
+      updateMatch();
+      event(L.wrongStyle, () => state.phase === 'style' && state.wrongStyle === id);
+      return;
+    }
+    const w = work(state.round);
+    if (w.artist === 'Unknown Persian painters') return win(true);
+    state.phase = 'artist';
+    state.artistChoices = null;
+    updateMatch();
+    Curio.yes();
+    $('artist-0')?.focus({preventScroll: true});
+    hint(L.pickArtist, 'pickArtist', {valid: () => state.phase === 'artist'});
+  }
+  function chooseArtist(name) {
+    if (state.phase !== 'artist') return;
+    action();
+    if (name !== work(state.round).artist) return event(L.wrongArtist, () => state.phase === 'artist');
+    win();
+  }
+  function win(anonymous = false) {
+    state.phase = 'won';
+    state.album.add(state.round);
+    saveAlbum();
+    $('album-count').classList.remove('earned');
+    void $('album-count').offsetWidth;
+    $('album-count').classList.add('earned');
+    updateMatch();
+    Curio.yes();
+    const w = work(state.round);
+    const text = `${anonymous ? L.anonymous + ' ' : ''}${L.won} ${w.line}`;
+    hint(text + ' Tap Deal for another painting.');
+    V.say([L.won, ...(anonymous ? [L.anonymous] : []), w.line], {
+      valid: () => state.phase === 'won' && state.round === w.id,
+      hint: false,
+    });
+    if (state.album.size === 18) V.say('albumFull', {valid: () => state.album.size === 18 && state.phase === 'won', hint: false});
+    $('deal').focus({preventScroll: true});
+  }
+  let brushInit = false;
+  let brushReadyPromise;
+  let makeObserver = null;
+  let paintSizeTimer;
+  let renderStarted = 0;
+  let lastBitmap = null;
+  function renderMake() {
+    const picks = document.createElement('div');
+    picks.className = 'scene-picks';
+    SCENES.forEach((s, i) => {
+      const b = button(s.short, 'scene-' + i, () => {
+        action();
+        state.scene = i;
+        updateMakeControls();
+        renderPicture();
+        hint('Tap a tell card or a style button to repaint this scene.');
+      });
+      b.title = s.name;
+      b.setAttribute('aria-label', s.name);
+      picks.append(b);
+    });
+    const space = document.createElement('div');
+    space.className = 'canvas-space';
+    space.id = 'canvas-space';
+    const mount = document.createElement('div');
+    mount.className = 'canvas-mount';
+    mount.id = 'canvas-mount';
+    const canvas = document.createElement('canvas');
+    canvas.id = 'painting-canvas';
+    canvas.setAttribute('role', 'img');
+    canvas.setAttribute('aria-label', 'Your Style Brush picture');
+    mount.append(canvas);
+    space.append(mount);
+    const label = document.createElement('p');
+    label.id = 'canvas-label';
+    label.className = 'canvas-label';
+    $('view').append(picks, space, label);
+    const tells = document.createElement('div');
+    tells.className = 'make-tells';
+    TELLS.forEach(t => {
+      const b = button('', 'make-' + t.id, () => {
+        action();
+        state.effects.has(t.id) ? state.effects.delete(t.id) : state.effects.add(t.id);
+        repaint();
+      }, 'control make-tell');
+      b.innerHTML = icon(t.id) + t.name;
+      b.title = t.line;
+      tells.append(b);
+    });
+    const styles = document.createElement('div');
+    styles.className = 'style-buttons';
+    STYLES.forEach(s => styles.append(button(s.name, 'make-style-' + s.id, () => {
+      action();
+      state.effects = new Set(s.recipe);
+      repaint();
+    })));
+    const actions = document.createElement('div');
+    actions.className = 'make-actions';
+    actions.append(
+      button('Save picture', 'save-picture', savePicture, 'control primary'),
+      button('Side by side', 'compare', compare),
+      button('Reset', 'reset-picture', () => {
+        action(true);
+        state.effects.clear();
+        state.compare = false;
+        $('reference')?.remove();
+        $('canvas-space').classList.remove('comparing');
+        repaint();
+      }),
+    );
+    $('context').append(actions, tells, styles);
+    updateMakeControls();
+    makeObserver?.disconnect();
+    makeObserver = new ResizeObserver(() => {
+      clearTimeout(paintSizeTimer);
+      paintSizeTimer = setTimeout(() => {
+        if (!canvas.isConnected || state.mode !== 'make' || !state.brushReady) return;
+        if (canvas.width !== Math.round(canvas.clientWidth) || canvas.height !== Math.round(canvas.clientHeight)) {
+          renderPicture();
+        }
+      }, 150);
+    });
+    makeObserver.observe(canvas);
+    requestAnimationFrame(() => {
+      sizeMount();
+      drawBase();
+      if (!brushInit) {
+        brushInit = true;
+        brushReadyPromise = StyleBrush.init(SCENES, ART.gold, result => {
+          const c = $('painting-canvas');
+          state.renderCount = (state.renderCount || 0) + 1;
+          state.renderMs = result.ms;
+          state.renderTotalMs = performance.now() - renderStarted;
+          if (lastBitmap) lastBitmap.close();
+          lastBitmap = result.bitmap;
+          if (c && state.mode === 'make') {
+            c.width = result.bitmap.width;
+            c.height = result.bitmap.height;
+            c.getContext('2d').drawImage(result.bitmap, 0, 0);
+            c.setAttribute('aria-label', `${SCENES[state.scene].name}, ${recipeLabel()}`);
+            if (result.bitmap.width !== 1600 &&
+                (c.width !== Math.round(c.clientWidth) || c.height !== Math.round(c.clientHeight))) {
+              clearTimeout(paintSizeTimer);
+              paintSizeTimer = setTimeout(() => {
+                if (c.isConnected && state.mode === 'make') renderPicture();
+              }, 150);
+            }
+          }
+        }).then(() => {
+          state.brushReady = true;
+          if (state.mode === 'make') renderPicture();
+        });
+      } else if (state.brushReady) renderPicture();
+    });
+  }
+  function recipeStyle() {
+    return STYLES.find(s => s.recipe.length === state.effects.size && s.recipe.every(k => state.effects.has(k)));
+  }
+  function recipeLabel() {
+    return recipeStyle() ? recipeStyle().name + ' recipe' : 'Your own style';
+  }
+  function updateMakeControls() {
+    $('save-picture').setAttribute('aria-disabled', !!state.saving);
+    TELLS.forEach(t => $('make-' + t.id)?.setAttribute('aria-pressed', state.effects.has(t.id)));
+    SCENES.forEach((s, i) => $('scene-' + i)?.setAttribute('aria-pressed', state.scene === i));
+    STYLES.forEach(s => $('make-style-' + s.id)?.setAttribute('aria-pressed', recipeStyle()?.id === s.id));
+    $('canvas-label').textContent = recipeLabel();
+    const style = recipeStyle();
+    $('compare').disabled = !style || !WORKS.some(w => state.album.has(w.id) && w.style === style.id);
+    $('compare').setAttribute('aria-pressed', state.compare);
+    $('compare').title = $('compare').disabled ? 'Match a painting in this style to compare it here.' : 'Compare with a painting in your album';
+  }
+  function repaint() {
+    state.makeTouched = true;
+    if (state.compare) {
+      state.compare = false;
+      $('reference')?.remove();
+      $('canvas-space').classList.remove('comparing');
+    }
+    updateMakeControls();
+    renderPicture();
+    Curio.tone(350 + state.effects.size * 40, .055, .035);
+    hint(recipeLabel() + '. Tap another tell card, or tap Save picture.');
+    if (!recipeStyle() && !V.heard('ownStyle')) V.how('ownStyle', {valid: () => !recipeStyle(), hint: false});
+  }
+  function sizeMount() {
+    const space = $('canvas-space');
+    const mount = $('canvas-mount');
+    if (!space || !mount) return;
+    const width = Math.min(1280, space.clientWidth * (state.compare && innerWidth >= 560 ? .54 : 1), space.clientHeight * 1.6);
+    mount.style.width = width + 'px';
+    mount.style.height = width / 1.6 + 'px';
+  }
+  async function drawBase() {
+    const canvas = $('painting-canvas');
+    if (!canvas) return;
+    const sceneId = state.scene;
+    const s = SCENES[sceneId];
+    const images = await Promise.all([s.bg, s.subject].map(src => new Promise(resolve => {
+      const im = new Image();
+      im.onload = () => resolve(im);
+      im.src = src;
+    })));
+    if (state.scene !== sceneId || state.mode !== 'make' || state.effects.size) return;
+    canvas.width = Math.max(1, canvas.clientWidth);
+    canvas.height = Math.max(1, canvas.clientHeight);
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(images[0], 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(images[1], ...s.place.map((v, i) => v * (i % 2 ? canvas.height : canvas.width)));
+  }
+  function renderPicture(width) {
+    sizeMount();
+    if (!state.brushReady) return drawBase();
+    const c = $('painting-canvas');
+    if (!c) return;
+    renderStarted = performance.now();
+    StyleBrush.render(state.scene, state.effects, width || Math.max(1, Math.round(c.clientWidth)),
+      width ? Math.round(width / 1.6) : Math.max(1, Math.round(c.clientHeight)));
+  }
+  async function savePicture() {
+    action();
+    if (state.saving || !$('painting-canvas')) return;
+    const scene = state.scene;
+    const effects = new Set(state.effects);
+    state.saving = true;
+    $('save-picture').setAttribute('aria-disabled', 'true');
+    hint('Saving this picture. You can keep changing the scene and tells.');
+    try {
+      await brushReadyPromise;
+      const bitmap = await StyleBrush.snapshot(scene, effects, 1600, 1000);
+      const out = document.createElement('canvas');
+      out.width = 1600;
+      out.height = 1000;
+      out.getContext('2d').drawImage(bitmap, 0, 0);
+      bitmap.close();
+      const blob = await new Promise(resolve => out.toBlob(resolve, 'image/png'));
+      if (!blob) throw new Error('Picture encoding failed');
+      const a = document.createElement('a');
+      const url = URL.createObjectURL(blob);
+      a.href = url;
+      a.download = 'curio-class-style-picture.png';
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      state.savedWidth = 1600;
+      if (state.mode === 'make') hint('Picture saved. Tap a scene or a tell card to keep making.');
+    } catch {
+      if (state.mode === 'make') hint('The picture could not be saved. Tap Save picture to try again.');
+    } finally {
+      state.saving = false;
+      if ($('save-picture')) $('save-picture').setAttribute('aria-disabled', 'false');
+    }
+  }
+  function compare() {
+    action();
+    state.compare = !state.compare;
+    $('reference')?.remove();
+    $('canvas-space').classList.toggle('comparing', state.compare);
+    if (state.compare) {
+      const style = recipeStyle();
+      const referenceWork = WORKS.find(w => state.album.has(w.id) && w.style === style.id);
+      const ref = document.createElement('div');
+      ref.id = 'reference';
+      ref.className = 'reference';
+      const f = document.createElement('div');
+      const caption = document.createElement('p');
+      caption.textContent = referenceWork.title + ' · ' + referenceWork.artist;
+      ref.append(f, caption);
+      $('canvas-space').append(ref);
+      Museum.frame(f, referenceWork);
+      requestAnimationFrame(f.fit);
+    }
+    updateMakeControls();
+    requestAnimationFrame(() => renderPicture());
+    hint(state.compare ? 'Compare the tells in both pictures. Tap Side by side to return to your picture.' : L.welcomeMake);
+  }
+  function renderAlbum() {
+    const grid = document.createElement('div');
+    grid.className = 'album-grid';
+    STYLES.forEach(s => {
+      const row = document.createElement('div');
+      row.className = 'album-row';
+      const label = document.createElement('div');
+      label.className = 'album-style';
+      label.innerHTML = `${s.name}<small>${s.years}</small>${s.recipe.map(icon).join('')}`;
+      row.append(label);
+      WORKS.filter(w => w.style === s.id).forEach(w => {
+        if (state.album.has(w.id)) {
+          const b = button('', 'album-' + w.id, () => openLook(w.id), 'album-slot filled');
+          b.setAttribute('aria-label', 'Open ' + w.title);
+          const im = new Image();
+          im.src = w.img;
+          im.alt = w.title;
+          b.append(im);
+          row.append(b);
+        } else {
+          const slot = document.createElement('div');
+          slot.className = 'album-slot';
+          slot.setAttribute('aria-label', 'Empty painting slot');
+          slot.innerHTML = '<span aria-hidden="true">✧</span>';
+          row.append(slot);
+        }
+      });
+      grid.append(row);
+    });
+    $('view').append(grid);
+    const clear = button('Clear album', 'clear-album', () => {
+      action();
+      $('clear-confirm').hidden = false;
+      hint(L.clearHow, 'clearHow', {valid: () => !$('clear-confirm').hidden});
+    });
+    clear.disabled = !state.album.size;
+    const confirm = document.createElement('div');
+    confirm.id = 'clear-confirm';
+    confirm.className = 'confirm';
+    confirm.hidden = true;
+    confirm.innerHTML = '<p>Clear your whole album?</p>';
+    const buttons = document.createElement('div');
+    buttons.className = 'toolbar';
+    buttons.append(button('Yes, clear', 'clear-yes', () => {
+      action();
+      state.album.clear();
+      state.phase = 'idle';
+      state.round = null;
+      saveAlbum();
+      setMode('album');
+      $('m-match').focus({preventScroll: true});
+    }), button('Keep album', 'clear-no', () => {
+      action();
+      confirm.hidden = true;
+      hint(L.welcomeAlbum);
+      clear.focus({preventScroll: true});
+    }));
+    confirm.append(buttons);
+    $('context').append(clear, confirm);
+    const cultures = document.createElement('p');
+    cultures.className = 'note-copy';
+    cultures.textContent = 'These recipes help us look. Each tradition has many more ways to make art.';
+    $('context').append(cultures);
+    hint(state.album.size ? L.welcomeAlbum : L.albumEmpty);
+  }
+  let resizeTimer;
+  addEventListener('resize', () => {
+    document.querySelectorAll('.museum-frame').forEach(f => { Museum.finish(f); f.fit?.(); });
+    if (state.mode === 'match') {
+      const small = matchMedia('(max-height:540px) and (min-width:560px)').matches;
+      $('hand').style.gridRow = small ? '2' : '3';
+      $('hand').style.gridColumn = small ? '2' : '';
+      if ($('artist-options')) {
+        $('artist-options').style.gridRow = small ? '2' : '3';
+        $('artist-options').style.gridColumn = small ? '2' : '';
+      }
+      if ($('collection-receipt')) {
+        $('collection-receipt').style.gridRow = small ? '2' : '3';
+        $('collection-receipt').style.gridColumn = small ? '2' : '';
+      }
+    }
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => { if (state.mode === 'make') renderPicture(); }, 150);
+  });
+  addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    action();
+    const zoomed = [...document.querySelectorAll('.museum-frame')].find(f => f.zoomed);
+    if (zoomed) Museum.unzoom(zoomed);
+    else if (state.mode === 'look' && state.opened) closeLook();
+    else if (state.mode === 'match') {
+      state.selected = null;
+      updateMatch();
+      hint(state.phase === 'tells' ? L.playHow : state.phase === 'style' ? L.pickStyle :
+        state.phase === 'artist' ? L.pickArtist : state.phase === 'won' ?
+          'Tap Deal for another painting, or tap Album to see your collection.' : L.welcomeMatch);
+    }
+  });
+  for (const mode of ['look', 'match', 'make', 'album']) $('m-' + mode).onclick = () => {
+    if (state.mode !== mode) return setMode(mode);
+    const key = welcomeKey();
+    if (key) {
+      hint(L[key]);
+      V.welcome();
+    }
+  };
+  Curio.init({clips: "voice:*", rate: 1});
+  window.__tool = {
+    state, setMode, allLines: V.allLines, vlog: V.log, get vq() { return V.queue; },
+    works: WORKS, tells: TELLS, styles: STYLES, deal, playTell, chooseStyle, chooseArtist,
+    openLook, recipeStyle, renderPicture, ensureHand, candidates, saveAlbum, V,
+  };
+  setMode('look');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+{
+  "house_style": "Painterly realism for a high-school music-history listening instrument. Rich material textures, restrained vintage warmth, amber light from upper left, deep soft shadows, fine gouache grain. No people, faces, body parts, letters, numbers, text, logos or watermarks. Blank surfaces.",
+  "assets": [
+    {
+      "name": "mhr-radio",
+      "prompt": "A 1940s tabletop radio seen exactly straight on, dark chocolate bakelite body, rounded top corners, broad tan woven grille in upper half, wide entirely blank cream glass dial across middle lower third, two small empty circular knob sockets below dial. Entire radio fully visible, centered and fills frame. Flat pure green background #00FF00.",
+      "aspect": "16:10",
+      "width": 1000,
+      "cutout": true,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex",
+      "despill": true
+    },
+    {
+      "name": "mhr-knob",
+      "prompt": "Single round dark brown bakelite radio knob, straight-on front view, ridged grip, one small cream pointer line, precise radial symmetry, centered fully visible. Flat pure green background #00FF00.",
+      "aspect": "1:1",
+      "width": 180,
+      "cutout": true,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex",
+      "despill": true
+    },
+    {
+      "name": "mhr-room",
+      "prompt": "Cozy 1940s living room corner at evening. Polished walnut side table with empty top fills lower foreground, fringed amber lamp at far left, patterned wallpaper out of focus, quiet central space to place a large radio. Layers of background, middle ground and foreground.",
+      "aspect": "16:9",
+      "width": 1400,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mhr-pc-chant",
+      "prompt": "a candlelit stone monastery cloister with round arches and an empty wooden lectern holding a large closed book. Vintage travel postcard painting, warm muted colors, soft light, an empty quiet place. Full bleed, no postcard border.",
+      "aspect": "4:3",
+      "width": 420,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mhr-pc-organum",
+      "prompt": "the soaring Gothic stone interior of Notre Dame cathedral in Paris, tall pointed arches and colored light from a rose window over an empty stone floor. Vintage travel postcard painting, warm muted colors, soft light, an empty quiet place. Full bleed, no postcard border.",
+      "aspect": "4:3",
+      "width": 420,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mhr-pc-renaissance",
+      "prompt": "four wooden recorders of different sizes lying on a dark green cloth beside a closed leather-bound book. Vintage travel postcard painting, warm muted colors, soft light, an empty quiet place. Full bleed, no postcard border.",
+      "aspect": "4:3",
+      "width": 420,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mhr-pc-baroque",
+      "prompt": "an ornate painted harpsichord with its lid raised and a cello leaning beside it in a palace room with gilded walls and tall windows. Vintage travel postcard painting, warm muted colors, soft light, an empty quiet place. Full bleed, no postcard border.",
+      "aspect": "4:3",
+      "width": 420,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mhr-pc-classical",
+      "prompt": "An elegant early wooden fortepiano circa 1785, slim straight legs and modest small case, in an empty pale Viennese salon; a brass candelabra, plain plaster walls, curtains and wood floor, architecture and furniture only. No figurative decoration.",
+      "aspect": "4:3",
+      "width": 420,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex",
+      "redrawn": true
+    },
+    {
+      "name": "mhr-pc-romantic",
+      "prompt": "a large black grand piano in a Victorian parlor, lace curtains, a vase of flowers, gaslight glow. Vintage travel postcard painting, warm muted colors, soft light, an empty quiet place. Full bleed, no postcard border.",
+      "aspect": "4:3",
+      "width": 420,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mhr-pc-ragtime",
+      "prompt": "an upright piano in a parlor corner around 1900, a stack of sheet music with plain blank covers on top, a player piano roll in an open box. Vintage travel postcard painting, warm muted colors, soft light, an empty quiet place. Full bleed, no postcard border.",
+      "aspect": "4:3",
+      "width": 420,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mhr-pc-swing",
+      "prompt": "an empty 1930s ballroom bandstand with gleaming trumpets, trombones and saxophones resting on stands, art deco lights over a polished dance floor. Vintage travel postcard painting, warm muted colors, soft light, an empty quiet place. Full bleed, no postcard border.",
+      "aspect": "4:3",
+      "width": 420,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mhr-pc-rocknroll",
+      "prompt": "a glowing chrome 1950s jukebox with colored light tubes and a blank front panel, in a diner beside a red vinyl booth. Vintage travel postcard painting, warm muted colors, soft light, an empty quiet place. Full bleed, no postcard border.",
+      "aspect": "4:3",
+      "width": 420,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mhr-pc-disco",
+      "prompt": "a mirror ball throwing spots of light over an empty dance floor of glowing colored squares in a 1970s club. Vintage travel postcard painting, warm muted colors, soft light, an empty quiet place. Full bleed, no postcard border.",
+      "aspect": "4:3",
+      "width": 420,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mhr-pc-hiphop",
+      "prompt": "A Bronx courtyard block party in the late 1980s, two turntables and a compact sampler with blank pads on a folding table, a young Black woman DJ operating the mixer, Black and Latino young neighbors of varied builds enjoying the music behind her including a seated wheelchair user with clear floor space. Everyday late-1980s casual clothing, brick apartments and speaker stack. Close readable composition, equipment foreground, DJ middle ground, small relaxed gathering background. Warm muted amber dusk from upper left, richly textured vintage travel postcard painting, full bleed, landscape 4:3. No lettering, logos or border.",
+      "aspect": "4:3",
+      "width": 420,
+      "people": true,
+      "quality": 76,
+      "drawn_by": "codex",
+      "house_style": "Painterly realism for a high-school music-history listening instrument. Rich material textures, restrained vintage warmth, amber light from upper left, deep soft shadows, fine gouache grain. Natural, respectful people. No letters, numbers, text, logos or watermarks. Blank surfaces.",
+      "redrawn": true
+    },
+    {
+      "name": "mhr-pc-gamelan",
+      "prompt": "An empty Javanese pendopo pavilion with bronze keyed saron metallophones on carved dark red wooden frames, a rack of small bronze kettle gongs and large hanging bronze gong, warm late afternoon light, layered carved timber architecture and a garden beyond. Vintage postcard painting, full bleed, quiet and unoccupied.",
+      "aspect": "4:3",
+      "width": 420,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex"
+    }
+  ]
+}

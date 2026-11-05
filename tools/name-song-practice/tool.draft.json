@@ -1,0 +1,25 @@
+{
+  "id": "name-song-practice",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Clap a name. Sing it. Make the second try shine.",
+  "outcome": "Make a sol-mi name song, apply one practice fix, and perform with expression.",
+  "driver": "teacher",
+  "minutes": "10-20",
+  "modes": [
+    "Make",
+    "Practice",
+    "Perform"
+  ],
+  "grades_label": "Grades K-2",
+  "sources": [
+    "National Core Arts Standards: MU:Cr3, MU:Pr5, MU:Pr6, MU:Cn10",
+    "Organization of American Kodaly Educators, The Kodaly Concept",
+    "Choksy (1999), The Kodaly Method I",
+    "Rutkowski (1990), The measurement and evaluation of children's singing voice development",
+    "Original song and browser-synthesized accompaniments",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-04"
+}

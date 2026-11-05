@@ -1,0 +1,334 @@
+{
+  "house_style": "Rich painted museum-catalog illustration for grades 6 to 8. Warm antique colors, finely observed wood, brass, stone and paper textures, soft gouache edges and pencil details, believable construction, light from upper left. Three-quarter view, centered complete object, generous clear margin. No people, faces, body parts, text, letters, numbers, logos or watermark.",
+  "assets": [
+    {
+      "name": "perspective",
+      "prompt": "a wooden drafting board with a brass compass and straightedge, thin strings pinned to one point. Flat pure magenta (#FF00FF) background.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok: final WebP inspected, no generated people or text"
+    },
+    {
+      "name": "press",
+      "prompt": "a wooden hand printing press with a big screw and a flat bed. Flat pure magenta (#FF00FF) background.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok: final WebP inspected, no generated people or text"
+    },
+    {
+      "name": "portugal",
+      "prompt": "a three-masted sailing ship of the 1400s with square sails beside a wooden crate of brass rings. Flat pure magenta (#FF00FF) background.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76,
+      "drawn_by": "codex",
+      "holes": true,
+      "despill": true,
+      "review": "ok: final WebP inspected, no generated people or text"
+    },
+    {
+      "name": "caravaggio",
+      "prompt": "a single lit candle and its warm glow falling on a small plain stone wall fragment. Flat pure magenta (#FF00FF) background.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76,
+      "drawn_by": "codex",
+      "holes": true,
+      "despill": true,
+      "review": "ok: final WebP inspected, no generated people or text"
+    },
+    {
+      "name": "photo",
+      "prompt": "an early wooden box camera with a brass lens on a wooden tripod. Flat pure magenta (#FF00FF) background.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok: final WebP inspected, no generated people or text"
+    },
+    {
+      "name": "tube",
+      "prompt": "a small squeezable tin paint tube with a blank label and a blob of blue paint. Flat pure magenta (#FF00FF) background.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok: final WebP inspected, no generated people or text"
+    },
+    {
+      "name": "rail",
+      "prompt": "A historically credible green European steam locomotive of about 1840, three-quarter side view, long slim horizontal green boiler, tall narrow straight chimney, one pair of large spoked driving wheels between two pairs of smaller spoked wheels, exposed brass pipes and simple iron frame, open footplate behind the boiler with visible backhead, compact separate coal tender. Early railway engineering proportions, elegant and lightly built, complete locomotive with every wheel visible. Flat pure magenta (#FF00FF) background. No enclosed cab, no modern cowcatcher, no people, no text or numbers.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "cold review: open 1840s footplate and tall chimney; finished WebP checked on parchment",
+      "holes": true,
+      "despill": true
+    },
+    {
+      "name": "japan",
+      "prompt": "a stack of blank paper prints tied with string on a wooden shipping crate. Flat pure magenta (#FF00FF) background.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok: final WebP inspected, no generated people or text"
+    },
+    {
+      "name": "litho",
+      "prompt": "a heavy flat grey limestone printing block with an ink roller resting on it. Flat pure magenta (#FF00FF) background.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok: final WebP inspected, no generated people or text"
+    },
+    {
+      "name": "lostwax",
+      "prompt": "a yellow wax geometric vessel model beside a clay mold and a small crucible of glowing metal. Flat pure magenta (#FF00FF) background.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76,
+      "drawn_by": "codex",
+      "holes": true,
+      "despill": true,
+      "review": "ok: final WebP inspected, no generated people or text"
+    },
+    {
+      "name": "cezanne",
+      "prompt": "a still group of a wooden cube, a cylinder and a sphere in warm light. Flat pure magenta (#FF00FF) background.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok: final WebP inspected, no generated people or text"
+    },
+    {
+      "name": "abstraction",
+      "prompt": "a wooden painter palette with bold blobs of red, yellow and blue paint and a few black lines. Flat pure magenta (#FF00FF) background.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok: final WebP inspected, no generated people or text"
+    },
+    {
+      "name": "pd-met-544450",
+      "prompt": "Authentic supplied public-domain museum work: Seated Statue of Hatshepsut",
+      "source": "https://www.metmuseum.org/art/collection/search/544450",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    },
+    {
+      "name": "pd-met-246725",
+      "prompt": "Authentic supplied public-domain museum work: Terracotta neck-amphora (jar)",
+      "source": "https://www.metmuseum.org/art/collection/search/246725",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    },
+    {
+      "name": "pd-met-247017",
+      "prompt": "Authentic supplied public-domain museum work: Cubiculum (bedroom) from the Villa of P. Fannius Synistor at Boscoreale",
+      "source": "https://www.metmuseum.org/art/collection/search/247017",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    },
+    {
+      "name": "pd-met-662967",
+      "prompt": "Authentic supplied public-domain museum work: Vessel with mythological scene",
+      "source": "https://www.metmuseum.org/art/collection/search/662967",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    },
+    {
+      "name": "pd-met-39915",
+      "prompt": "Authentic supplied public-domain museum work: Summer Mountains",
+      "source": "https://www.metmuseum.org/art/collection/search/39915",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    },
+    {
+      "name": "pd-met-39328",
+      "prompt": "Authentic supplied public-domain museum work: Shiva as Lord of Dance (Nataraja)",
+      "source": "https://www.metmuseum.org/art/collection/search/39328",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    },
+    {
+      "name": "pd-met-438754",
+      "prompt": "Authentic supplied public-domain museum work: Madonna and Child",
+      "source": "https://www.metmuseum.org/art/collection/search/438754",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    },
+    {
+      "name": "pd-met-449537",
+      "prompt": "Authentic supplied public-domain museum work: Mihrab (Prayer Niche)",
+      "source": "https://www.metmuseum.org/art/collection/search/449537",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    },
+    {
+      "name": "pd-met-435848",
+      "prompt": "Authentic supplied public-domain museum work: The Birth of the Virgin",
+      "source": "https://www.metmuseum.org/art/collection/search/435848",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    },
+    {
+      "name": "pd-met-356497",
+      "prompt": "Authentic supplied public-domain museum work: The Rhinoceros",
+      "source": "https://www.metmuseum.org/art/collection/search/356497",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    },
+    {
+      "name": "pd-met-312302",
+      "prompt": "Authentic supplied public-domain museum work: Plaque with Warrior Chief",
+      "source": "https://www.metmuseum.org/art/collection/search/312302",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    },
+    {
+      "name": "pd-met-436453",
+      "prompt": "Authentic supplied public-domain museum work: Esther before Ahasuerus",
+      "source": "https://www.metmuseum.org/art/collection/search/436453",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    },
+    {
+      "name": "pd-met-437854",
+      "prompt": "Authentic supplied public-domain museum work: Whalers",
+      "source": "https://www.metmuseum.org/art/collection/search/437854",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    },
+    {
+      "name": "pd-met-291846",
+      "prompt": "Authentic supplied public-domain museum work: [Still-Life with Cockatoo, Ornamental Ball, Lace, Statuette]",
+      "source": "https://www.metmuseum.org/art/collection/search/291846",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    },
+    {
+      "name": "pd-met-438820",
+      "prompt": "Authentic supplied public-domain museum work: Young Ladies of the Village",
+      "source": "https://www.metmuseum.org/art/collection/search/438820",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    },
+    {
+      "name": "pd-met-435878",
+      "prompt": "Authentic supplied public-domain museum work: Mont Sainte-Victoire",
+      "source": "https://www.metmuseum.org/art/collection/search/435878",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    },
+    {
+      "name": "pd-aic-10926",
+      "prompt": "Authentic supplied public-domain museum work: Mishima: Morning Mist (Mishima, asagiri), from the series \"Fifty-three Stations of the Tokaido Road (Tokaido gojusan tsugi no uchi),\" also known as the Hoeido Tokaido",
+      "source": "https://www.artic.edu/artworks/10926",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    },
+    {
+      "name": "pd-aic-16571",
+      "prompt": "Authentic supplied public-domain museum work: Arrival of the Normandy Train, Gare Saint-Lazare",
+      "source": "https://www.artic.edu/artworks/16571",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    },
+    {
+      "name": "pd-aic-97439",
+      "prompt": "Authentic supplied public-domain museum work: The Seasons",
+      "source": "https://www.artic.edu/artworks/97439",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    },
+    {
+      "name": "pd-aic-8991",
+      "prompt": "Authentic supplied public-domain museum work: Improvisation No. 30 (Cannons)",
+      "source": "https://www.artic.edu/artworks/8991",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    },
+    {
+      "name": "pd-aic-109819",
+      "prompt": "Authentic supplied public-domain museum work: Lozenge Composition with Yellow, Black, Blue, Red, and Gray",
+      "source": "https://www.artic.edu/artworks/109819",
+      "width": 800,
+      "quality": 72,
+      "people": true,
+      "review": "supplied authentic work"
+    }
+  ]
+}

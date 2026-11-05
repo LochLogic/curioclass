@@ -1,0 +1,21 @@
+{
+  "keep": [],
+  "states": [
+    {"name":"two-lenses","steps":[{"click":"#two"}],"keep":["#score-scroll","#lens-1"]},
+    {"name":"warmup","steps":[{"click":"#m-workout"}],"keep":["#score-scroll","#numbers","#qualities","#check"]},
+    {"name":"rep-picker","steps":[{"click":"#reps-open"}],"keep":["#rep-dialog"]},
+    {"name":"key-rep","steps":[{"click":"#m-workout"},{"click":"#reps-open"},{"click":"#dialog-board [data-set='1'][data-rep='0']"}],"keep":["#score-scroll","#lock-0"]},
+    {"name":"cadence","steps":[{"click":"#m-workout"},{"click":"#reps-open"},{"click":"#dialog-board [data-set='2'][data-rep='4']"}],"keep":["#score-scroll","#cadences"]},
+    {"name":"pivot","steps":[{"click":"#m-workout"},{"click":"#reps-open"},{"click":"#dialog-board [data-set='3'][data-rep='0']"}],"keep":["#score-scroll","#lens-1"]},
+    {"name":"clear-confirm","steps":[{"click":"#m-workout"},{"click":"#reps-open"},{"click":"#dialog-clear"}],"keep":["#confirm"]},
+    {"name":"checked-interval","sizes":["680x425","1366x768"],
+      "steps":[{"click":"#m-workout"},{"click":"#numbers [data-value='5']"},
+        {"click":"#qualities [data-value='perfect']"},{"click":"#check"}],
+      "keep":["#score-scroll","#check"]},
+    {"name":"checked-cadence","sizes":["1280x720","1366x768"],
+      "steps":[{"click":"#m-workout"},{"click":"#reps-open"},
+        {"click":"#dialog-board [data-set='2'][data-rep='4']"},
+        {"click":"#cadences [data-value='Imperfect authentic']"},{"click":"#check"}],
+      "keep":["#score-scroll","#cadences","#result"]}
+  ]
+}

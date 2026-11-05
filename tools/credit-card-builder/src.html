@@ -1,0 +1,1252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Credit Card Builder · Curio Class</title>
+<meta name="description" content="Build credits from books, websites and photos, then follow their trails. Grades 3-5. Works offline.">
+<!--
+Credit Card Builder, Curio Class. Grades 3-5, library. AASL Engage VI.B.2 and VI.B.3.
+Sources: AASL, MLA Style Center, U.S. Copyright Office Circular 1, Cornell Lab, USDA ARS, NASA.
+All source documents and creators are fictional. The credit format is a classroom simplification.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. One offline file. No network requests. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f6efe3; --panel:#fffdf8; --ink:#2a2118; --muted:#6a5a48; --line:#e5d9c5;
+  --brand:#b91c1c; --btn:#b91c1c; --btn-line:#e99883; --head-ink:#ffffff; --focus:#1d4ed8;
+}
+body {height:100dvh; min-height:0; overflow:hidden; grid-template-rows:auto auto minmax(0,1fr);}
+header {padding:10px 20px; gap:10px; background:linear-gradient(110deg,#8c1918,#b91c1c 65%,#a81f1b);
+  box-shadow:0 3px 7px #5b271b35; z-index:3;}
+h1 {font:700 29px/1.1 Georgia,serif; letter-spacing:-.02em;}
+h1 small {font-size:13px; margin-top:4px; letter-spacing:.035em;}
+.seg {border-radius:7px; border-width:1px;}
+.seg button,.icon-btn {min-height:44px; font-size:14px; padding:0 12px;}
+.icon-btn {border-width:1px; border-radius:7px; min-width:44px;}
+#sound {min-width:90px;}
+#motion {min-width:98px;}
+.seg button[aria-pressed=true] {background:#fff5da; color:#8d1d18;}
+header :focus-visible {outline-color:#ffe194;}
+button {min-height:44px;}
+.projects {display:flex; padding:8px 20px; gap:10px; background:#e9d8bd;
+  border-bottom:1px solid #c5ad88; box-shadow:inset 0 2px #fff9e5;}
+.project-tab {flex:1; max-width:350px; border:1px solid #bba783; background:#fffaf0; border-radius:4px 10px 0 0;
+  text-align:left; padding:5px 14px; box-shadow:2px 2px 0 #806e4d19; font-weight:750; font-size:15px;}
+.project-tab small {float:right; color:var(--muted); font-size:12px; padding-top:3px;}
+.project-tab[aria-pressed=true] {border-bottom:3px solid var(--brand); color:var(--brand); background:#fffdf8;}
+.project-tab.complete small {background:#166534; color:#fff; padding:3px 7px; border-radius:2px;}
+main {grid-template-columns:minmax(0,1fr) 325px; gap:0; padding:0;}
+.stage {min-height:0; padding:18px 22px 22px; background:radial-gradient(ellipse at 30% 20%,#f9eacd,#dcc29c);
+  display:flex; flex-direction:column; gap:12px; isolation:isolate;}
+.stage::before {content:""; position:absolute; inset:0; opacity:.23; z-index:-1;
+  background:repeating-linear-gradient(3deg,transparent 0 3px,#bba17828 4px 5px); pointer-events:none;}
+.desk-label {font-size:11px; font-weight:800; letter-spacing:.16em; color:#6d4e32; text-transform:uppercase;}
+.piece-row {display:flex; gap:8px; flex:none;}
+#pieces {order:1;}
+#build-work {order:2;}
+.piece {flex:1; border:1px dashed #9b825e; border-radius:5px; padding:7px 12px; background:#fffaf0;
+  text-align:left; font-size:13px; box-shadow:0 3px 4px #65492a12;}
+.piece[aria-pressed=true] {outline:2px solid var(--brand); outline-offset:1px;}
+.piece b {font-size:13px; margin-right:6px;}
+.piece span {font-size:11px; color:var(--muted);}
+.piece.made {border-style:solid;}
+.piece.found {border:2px solid #166534; color:#166534;}
+.piece.found span {color:#166534;}
+.build-work {flex:1; min-height:0; display:grid; grid-template-columns:148px minmax(0,1fr); gap:22px;}
+.mini-project {align-self:center; padding:15px 10px; background:#fffdf4; transform:rotate(-3deg);
+  box-shadow:4px 9px 16px #67472539; position:relative; border:1px solid #d6c8a9;}
+.mini-project::before {content:""; position:absolute; width:60px; height:18px; background:#f1d69fa3;
+  left:calc(50% - 30px); top:-8px; transform:rotate(5deg);}
+.mini-project h2 {font:700 19px Georgia,serif; text-align:center; margin:6px 0 12px;}
+.mini-project p {font-size:11px; line-height:1.5; padding-bottom:8px; border-bottom:1px solid #dac8a9;}
+.mini-project img {width:100%; aspect-ratio:4/3; object-fit:cover; border:4px solid #fff; box-shadow:1px 2px 5px #39281938;}
+.mini-project small {font-size:10px; color:var(--muted);}
+.mini-project.slides {background:transparent; box-shadow:none; border:0; padding:0; transform:none;}
+.mini-project.slides::before {display:none;}
+.mini-slide {background:#fffdf4; border:1px solid #d3bf96; padding:8px; margin:7px 0;
+  box-shadow:3px 4px 5px #67472530; transform:rotate(-2deg);}
+.mini-slide:nth-child(2) {transform:rotate(2deg);}
+.mini-slide p {font-size:10px; border:0; margin:5px 0; padding:0;}
+.mini-slide img {height:75px; object-fit:cover;}
+.mini-project.report {background:repeating-linear-gradient(#fffdf4 0 21px,#d5e2e3 22px,#fffdf4 23px); transform:rotate(2deg);}
+.viewer {min-width:0; min-height:0; display:flex; flex-direction:column; position:relative; border-radius:7px;
+  box-shadow:3px 8px 20px #60422340,0 0 0 1px #9c815c60; background:#fffdf4; overflow:hidden;}
+.viewer-bar {display:flex; align-items:center; justify-content:space-between; padding:6px 14px;
+  background:#faf4e6; border-bottom:1px solid #dfcfb4; min-height:32px; color:#6b5439; font-size:11px;
+  font-weight:800; letter-spacing:.12em; text-transform:uppercase;}
+.viewer-bar i {width:7px; height:7px; border-radius:50%; background:#be9c4e; box-shadow:0 0 0 4px #eedda5; animation:glimmer 3s infinite;}
+@keyframes glimmer {50% {box-shadow:0 0 0 6px #eedda540;}}
+.source {flex:1; min-height:0; position:relative; overflow:auto;}
+.chip {border:1px solid transparent; background:transparent; border-radius:4px; padding:5px 9px; line-height:1.25;
+  font-size:15px; text-align:inherit; overflow-wrap:anywhere; min-width:44px; position:relative;}
+.chip:hover {background:#ffedb0bb; border-color:#af8742; box-shadow:0 2px 0 #9b793833;}
+.chip:active {background:#f8db8c;}
+.chip:focus-visible {z-index:2;}
+.book-cover {height:100%; min-height:290px; max-width:540px; margin:auto; position:relative; background:#f9f2df;}
+.book-cover > img {width:100%; height:100%; object-fit:cover; position:absolute; inset:0;}
+.cover-band {position:relative; padding:13px 18px 8px; display:flex; align-items:center; flex-direction:column;
+  background:linear-gradient(#fff7e8f5 82%,#fff7e800); min-height:43%; text-align:center;}
+.cover-title {font:700 clamp(22px,2.6vw,38px)/1.05 Georgia,serif;}
+.cover-band .chip {display:block;}
+.cover-band .byline {display:flex; justify-content:center; align-items:center; flex-wrap:wrap; margin:0;}
+.cover-band .series {font-size:12px; letter-spacing:.04em; border:1px solid #c2ad81; background:#fff5dc; min-height:44px;}
+.page-nav {display:flex; align-items:center; justify-content:center; gap:16px; padding:5px; background:#fff9eb;
+  border-top:1px solid #ddcbaa; min-height:54px;}
+.page-nav button {border:1px solid #c4b292; border-radius:5px; background:#fffdf6; min-width:44px; font-size:21px;}
+.page-nav span {min-width:112px; text-align:center; font-size:13px; color:var(--muted);}
+.text-page {min-height:100%; padding:24px; background:linear-gradient(90deg,#e3d3b8,#fff9e9 5%,#fffdf4 95%,#e6d8bd);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:10px;}
+.text-page h2 {margin:0; font:normal 32px Georgia,serif;}
+.text-page p {margin:0; display:flex; flex-wrap:wrap; justify-content:center; align-items:center;}
+.text-page .copyright {font-size:14px;}
+.browser {padding:12px 20px 18px; min-height:100%; background:#fffdf8;}
+.address {display:block; width:100%; min-height:44px; background:#f1eee5; border:1px solid #c5bda9; font-size:13px;
+  text-align:left; font-family:Consolas,monospace;}
+.site-name {font:bold 24px Georgia,serif; color:#265a52; margin-top:8px;}
+.nav-chips {display:flex; gap:8px; border-bottom:1px solid #d8c8aa;}
+.browser h2 {margin:9px 0 0; font:700 29px Georgia,serif;}
+.browser h2 .chip {font:inherit;}
+.browser p {margin:0 0 4px; line-height:1.5;}
+.by-date {display:flex; flex-wrap:wrap; align-items:center;}
+.ad {margin-top:12px; border:1px dashed #9f8359; background:#fff0c8; font-size:13px;}
+.photo-view {padding:12px 18px; display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+  grid-template-rows:repeat(4,auto); gap:4px 14px; height:100%; min-height:0; align-content:center;}
+.photo-view > img {grid-column:1; grid-row:1/5; width:100%; height:100%; max-height:400px; min-height:0;
+  object-fit:cover; border:6px solid white;
+  box-shadow:1px 3px 9px #43301b40;}
+.photo-view h2 {margin:0; font:700 25px Georgia,serif;}
+.photo-view h2,.photo-view p {grid-column:2;}
+.photo-view h2 .chip {font:inherit;}
+.photo-view p {margin:0; display:flex; align-items:center; flex-wrap:wrap;}
+.photo-view .site-name {font-size:18px; margin:0;}
+.panel {grid-column:2; grid-row:1; padding:16px 17px 10px; gap:12px; border-left:2px solid #cdb997;
+  background:linear-gradient(100deg,#f9f0df,#fffdf8 10%); overflow:auto;}
+.hint {font-size:15px; line-height:1.4; margin:0; height:72px; min-height:72px; overflow:auto; flex:none;}
+.eyebrow {font-size:10px; letter-spacing:.15em; font-weight:800; color:var(--muted); text-transform:uppercase;}
+.index-card {background:#fffbea; border:1px solid #cdb997; border-radius:3px; padding:12px;
+  box-shadow:3px 5px 0 #d5c6a580,0 7px 14px #80674817; position:relative;}
+.index-card::before {content:""; display:block; border-top:2px solid #d89784; margin:5px 0 8px;}
+.index-card h2 {margin:0; font:normal 21px Georgia,serif;}
+.slots {display:grid; gap:3px; margin-top:8px;}
+.slots.web-slots {grid-template-columns:1fr 1fr;}
+.slot-cell {min-width:0;}
+.slot-cell .slot {width:100%;}
+.slot-cell #access-date {width:100%;}
+.web-slots .slot span {white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.slot {min-height:59px; border:1px solid transparent; border-bottom:1px solid #9cc3e6; background:transparent;
+  padding:5px 6px; text-align:left; min-width:0;}
+.slot small {display:block; color:var(--muted); font-size:11px; font-weight:650; margin-bottom:4px;}
+.slot span {display:block; font-size:14px; overflow-wrap:anywhere; line-height:1.25;}
+.slot[aria-pressed=true] {border:2px solid var(--brand); background:#fff4cf; border-radius:4px; box-shadow:0 0 0 3px #b91c1c12;}
+.empty {color:#756d60; letter-spacing:.05em;}
+.credit-line {font-size:13px; line-height:1.6; overflow-wrap:anywhere; margin:7px 0 0; min-height:62px;
+  max-height:90px; overflow:auto;}
+.credit-line .empty {letter-spacing:0;}
+.actions {display:grid; grid-template-columns:1fr; gap:8px;}
+.big-btn {min-height:50px; font-size:17px; border-radius:5px; box-shadow:0 4px 0 #7a1716;}
+.secondary {border:1px solid #bfa884; background:#fffaf0; border-radius:4px; padding:4px 12px; font-size:13px;}
+.footer {margin-top:auto; padding-top:8px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+.footer small {font-size:10px; color:var(--muted); flex:1;}
+#reset {padding:4px 7px; font-size:11px;}
+.fly-chip {position:fixed; z-index:20; background:#fff2bb; border:1px solid #af8131; border-radius:4px; padding:8px;
+  box-shadow:0 4px 12px #523d2933; pointer-events:none; font-size:14px;}
+.trail {position:absolute; inset:0; padding:24px; background:#e5cda5; display:flex; flex-direction:column; gap:10px;}
+.trail .piece-row {z-index:3;}
+.trail-top {display:flex; align-items:center; justify-content:space-between; gap:10px; z-index:3;}
+.trail-top h2 {margin:0; font:normal 27px Georgia,serif;}
+.trail-scene {flex:1; min-height:0; position:relative; overflow:hidden; border-radius:8px;
+  box-shadow:0 4px 15px #59391950; background:#fff9e9;}
+.shelf-bg,.street-bg {position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+.shelf-books {position:absolute; inset:14% 3% 36%; display:flex; gap:2%; align-items:end;}
+.shelf-book {flex:1; height:100%; position:relative; min-width:0;}
+.shelf-book img {width:100%; height:100%; object-fit:fill;}
+.book-label {position:absolute; top:22%; left:14%; right:14%; bottom:30%; display:flex; flex-direction:column;
+  gap:6px; justify-content:center; align-items:center; text-align:center; font-size:clamp(10px,1.05vw,16px); color:#302718;}
+.book-label b {font-family:Georgia,serif;}
+.book-label {background:linear-gradient(#fff8e5,#f4e3bb); padding:3px; border:1px solid #b29c6a; border-radius:3px;}
+.book-label span {max-width:100%; overflow-wrap:anywhere;}
+.shelf-book.match {filter:drop-shadow(0 0 9px #ffe081);}
+.trail-path {position:absolute; left:5%; right:10%; bottom:19%; height:30%; border-bottom:3px dashed #fff5ce;
+  border-radius:50%; filter:drop-shadow(1px 2px 0 #664b26);}
+.reader {position:absolute; width:clamp(100px,19%,230px); left:3%; bottom:9%; z-index:4;
+  filter:drop-shadow(2px 8px 5px #34250c55);}
+.reader.flying {animation:journey 2s ease-in-out forwards;}
+.reader.ended {left:65%; bottom:22%;}
+.book-trail .reader.ended {bottom:20%; width:16%; max-width:160px; min-width:0;}
+@keyframes journey {0% {left:3%; transform:rotate(-5deg);} 45% {bottom:40%; transform:rotate(7deg);} 100% {left:68%;}}
+.result-paper {position:absolute; z-index:5; left:5%; right:5%; bottom:4%; padding:13px 17px;
+  background:#fffbeaF5; border:2px solid #a5824c; box-shadow:0 3px 10px #50382038; border-radius:4px;}
+.result-paper b {font:700 22px Georgia,serif; color:#7c3e16; margin-right:10px;}
+.result-paper.good {border-color:#166534;}
+.result-paper.good b {color:#166534;}
+.result-paper p {font-size:14px; line-height:1.4; margin:5px 0 0;}
+.destination {position:absolute; right:3%; bottom:22%; width:90px;}
+.destination img {width:100%; display:block;}
+.destination span {position:absolute; top:40%; left:5%; right:5%; background:#fff9e9; font-size:11px; text-align:center;}
+.delivered {position:absolute; width:90px; right:10%; bottom:35%; z-index:6; animation:post 1s ease-in-out;}
+.delivered.bounced {right:44%; bottom:22%; animation:bounce-post 1.2s ease-in-out;}
+@keyframes bounce-post {
+  0% {right:50%; bottom:60%; transform:rotate(-18deg);}
+  55% {right:10%; bottom:35%; transform:rotate(0);}
+  100% {right:44%; bottom:22%; transform:rotate(-25deg);}
+}
+@keyframes post {from {right:50%; bottom:60%; transform:rotate(-18deg) scale(1.3);} to {right:10%; bottom:35%;}}
+.web-trail {position:absolute; inset:8% 8% 32%; display:flex; gap:12px; align-items:stretch;}
+.web-route-card {flex:1; min-width:0; background:#fffdf8; border:1px solid #a4967a; box-shadow:3px 6px 0 #a58f6730;
+  padding:15px; border-radius:7px; font-size:15px; overflow-wrap:anywhere;}
+.web-route-card h3 {font:700 23px Georgia,serif; margin:8px 0;}
+.web-route-card img {width:100%; height:60%; object-fit:contain; background:#f2e7d3;}
+.web-route-card.good {outline:4px solid #166534;}
+.route-grid {display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-top:16px;}
+.route-mini {height:76px; border:1px solid #c3ad83; border-radius:3px; padding:9px 6px;
+  background:linear-gradient(125deg,#fffdf4,#e8dcc4); box-shadow:2px 3px 0 #7a59351a; position:relative; overflow:hidden;}
+.route-mini::before {content:''; display:block; width:62%; height:7px; background:#c3d7d2; margin-bottom:9px;
+  box-shadow:0 15px 0 #d7c9aa,0 25px 0 #d7c9aa;}
+.route-mini::after {content:''; position:absolute; top:0; left:0; right:0; height:5px; background:#8fafa4;}
+.route-mini:nth-child(2n) {transform:rotate(2deg);}
+.route-mini:nth-child(3n) {transform:rotate(-2deg);}
+.photo-grid .route-mini {padding:4px; height:92px; background:#fffdf4;}
+.photo-grid .route-mini::before,.photo-grid .route-mini::after {display:none;}
+.photo-grid .route-mini img {height:100%; width:100%; object-fit:cover; background:#f0e0bf;}
+.photo-grid .route-mini:nth-child(2n) img {object-position:left; transform:scale(1.25);}
+.photo-grid .route-mini:nth-child(3n) img {object-position:right; filter:brightness(.86);}
+.route-dots {height:13px; margin:-5px -5px 9px; border-bottom:1px solid #d8c6a3; color:#9e8160; letter-spacing:4px;}
+.corner {position:absolute; inset:0; padding:20px; display:flex; flex-direction:column; gap:12px; overflow:hidden;}
+.corner::before {content:""; position:absolute; inset:0; background:#fff6dc44; pointer-events:none;}
+.why-cards {display:flex; gap:12px; position:relative;}
+.why-cards p {flex:1; background:#fffaf0ed; border:1px solid #d2bc95; padding:12px; font-size:13px; line-height:1.4;
+  margin:0; box-shadow:2px 4px 7px #5b492a25; transform:rotate(-1deg);}
+.mail-street {position:relative; flex:1; min-height:0; display:grid; grid-template-columns:repeat(5,1fr);
+  grid-template-rows:repeat(2,minmax(0,1fr)); align-content:stretch;
+  gap:14px 8px;}
+.mailbox {position:relative; border:0; background:#fff9e63d; border-radius:7px; padding:0; min-width:0;
+  height:100%; max-height:230px; padding-bottom:32px; display:flex; flex-direction:column; align-items:center; justify-content:end;}
+.mailbox:hover {background:#fff9e6aa;}
+.mailbox[aria-pressed=true] {box-shadow:0 0 0 3px #b91c1c; background:#fff9e6aa;}
+.mailbox > img {height:100%; width:90%; object-fit:contain; filter:drop-shadow(2px 4px 2px #72502e40);}
+.mailbox .tool-icon {position:absolute; width:34px; height:34px; bottom:28px; right:4px; object-fit:contain;}
+.mailbox span {position:absolute; bottom:0; background:#fff8e5; border:1px solid #a48a5b; padding:2px 5px;
+  font-size:11px; font-weight:700; border-radius:3px; max-width:100%; min-height:28px; line-height:1.2;}
+.mailbox .post-mark {position:absolute; top:10%; right:2%; width:44px; height:35px; object-fit:contain;}
+.team-cards {display:flex; gap:10px; position:relative;}
+.team-card {flex:1; border:1px solid #b89c6e; background:#fffae9f0; border-radius:5px; padding:6px 12px; text-align:left;
+  font-size:12px; display:flex; align-items:center; gap:10px;}
+.team-card img {height:34px; width:44px; object-fit:contain;}
+.team-card[aria-pressed=true] {outline:3px solid var(--brand); outline-offset:-3px;}
+.creator-detail img.hero-mail {height:170px; width:100%; object-fit:contain; filter:drop-shadow(2px 7px 3px #795e3030);}
+.creator-detail h2 {font:normal 24px Georgia,serif; margin:4px 0 8px;}
+.creator-detail p {font-size:14px; line-height:1.5;}
+.creator-detail {display:flex; flex-direction:column; gap:3px;}
+.creator-detail .no-credit {order:-2;}
+.creator-detail .mini-post {height:55px; width:80px; object-fit:contain; vertical-align:middle;}
+.no-credit {width:100%; padding:10px; text-align:left; border:1px solid #b79d77; border-radius:4px; background:#fff6df;}
+.no-credit[aria-checked=true] {background:#f0dfc9; border-color:#8b4f20;}
+.unknown-project {border:1px dashed #97754a; background:#fffbea; padding:12px; font:700 19px Georgia,serif;}
+.unknown-project {order:-1;}
+.unknown-project img {width:70px; height:50px; object-fit:cover; float:right; margin-left:8px;}
+.unknown-project small {display:block; font:12px/1.4 'Segoe UI',sans-serif; margin:4px 0;}
+dialog {border:2px solid #ab8d61; border-radius:8px; background:#fffbea; max-width:310px; box-shadow:0 12px 50px #392b2380;}
+dialog::backdrop {background:#31211566;}
+dialog p {font-size:18px;}
+dialog button {min-width:90px; margin:4px;}
+.calm .reader.flying {animation:none; left:68%;}
+.calm .viewer-bar i {animation:none;}
+@media (max-height:900px) {
+  .panel {display:grid; grid-template-columns:minmax(0,1fr) auto auto; grid-template-rows:auto auto auto auto;
+    align-content:start;}
+  .hint {grid-column:1/-1; grid-row:1;}
+  #card-panel,#creator-detail {grid-column:1/-1; grid-row:2;}
+  #card-actions,.footer {display:contents;}
+  #test {grid-column:1; grid-row:3;}
+  #clear {grid-column:2; grid-row:3;}
+  #reset {grid-column:3; grid-row:3; align-self:stretch;}
+  .footer small {grid-column:1/-1; grid-row:4;}
+  .corner-mode .creator-detail {max-height:calc(100dvh - 355px); overflow:auto;}
+  .actions {grid-template-columns:minmax(0,1fr) auto;}
+  .big-btn {font-size:16px; padding:0 12px;}
+  .index-card {padding:10px;}
+  .slot {min-height:52px;}
+  .credit-line {min-height:44px; max-height:60px; line-height:1.4;}
+}
+@media (min-width:1600px) {
+  main {grid-template-columns:minmax(0,1fr) 380px;}
+  .stage {padding:26px 35px;}
+  .build-work {grid-template-columns:190px minmax(0,1fr); gap:35px;}
+  .book-cover {max-width:650px;}
+  .panel {padding:24px; gap:18px;}
+  .slot {min-height:68px;}
+  .slot span {font-size:16px;}
+  .photo-view > img {max-height:520px;}
+}
+@media (max-height:650px), (max-width:1000px) {
+  header {padding:6px 12px; gap:7px;}
+  h1 {font-size:22px;}
+  h1 small {display:none;}
+  .seg button,.icon-btn {font-size:12px; padding:0 9px;}
+  .projects {padding:4px 10px; gap:6px;}
+  .project-tab {font-size:13px; padding:4px 8px;}
+  .project-tab small {font-size:10px;}
+  main {grid-template-columns:minmax(0,1fr) 280px;}
+  .stage {padding:9px 12px; gap:7px;}
+  .desk-label {display:none;}
+  .build-work {grid-template-columns:minmax(0,1fr);}
+  .mini-project {display:none;}
+  .piece {padding:4px 5px;}
+  .piece b {display:block; font-size:12px;}
+  .piece span {font-size:10px;}
+  .viewer-bar {min-height:24px; padding:4px 10px; font-size:10px;}
+  .book-cover {min-height:190px; max-width:none;}
+  .cover-band {padding:5px 10px; min-height:0;}
+  .cover-band .chip {font-size:13px; min-height:44px; padding:3px 7px;}
+  .cover-band .cover-title {font-size:24px;}
+  .cover-band .series {font-size:11px;}
+  .page-nav {min-height:48px; padding:2px;}
+  .text-page {padding:8px; gap:2px;}
+  .text-page h2 {font-size:24px;}
+  .text-page .chip {padding:3px 5px; font-size:13px;}
+  .browser {padding:5px 10px;}
+  .site-name {font-size:19px; margin:0;}
+  .browser h2 {font-size:23px; margin:2px 0;}
+  .browser p {font-size:12px;}
+  .chip {font-size:13px; padding:3px 5px;}
+  .nav-chips {gap:3px;}
+  .ad {margin-top:3px;}
+  .photo-view {padding:6px 10px; gap:0;}
+  .photo-view > img {max-height:160px; min-height:80px;}
+  .photo-view h2 {font-size:19px;}
+  .panel {padding:8px 10px; gap:6px;}
+  .hint {font-size:12px; height:48px; min-height:48px; line-height:1.35;}
+  .index-card {padding:6px 8px;}
+  .index-card h2 {font-size:17px;}
+  .index-card::before {margin:3px 0;}
+  .slots {gap:2px; margin-top:3px;}
+  .slot {min-height:48px; padding:3px 5px;}
+  .slot small {font-size:10px; margin-bottom:1px;}
+  .slot span {font-size:12px;}
+  .credit-line {font-size:11px; line-height:1.3; min-height:37px; max-height:43px; margin-top:4px;}
+  .actions {grid-template-columns:1fr auto; gap:5px;}
+  .big-btn {font-size:13px; min-height:44px; padding:0 9px;}
+  .secondary {font-size:11px; padding:3px 7px;}
+  .footer {padding-top:0; gap:4px;}
+  .footer small {font-size:10px;}
+  .corner {padding:12px; gap:7px;}
+  .why-cards {gap:6px;}
+  .why-cards p {font-size:11px; padding:6px;}
+  .mail-street {gap:8px 5px;}
+  .mailbox {height:100%;}
+  .mailbox span {font-size:10px;}
+  .mailbox .tool-icon {width:25px; height:25px; bottom:21px; right:0;}
+  .team-card {padding:4px; font-size:10px; gap:3px;}
+  .creator-detail img.hero-mail {height:110px;}
+  .creator-detail h2 {font-size:21px;}
+  .creator-detail p {font-size:12px; margin:5px 0;}
+  .route-grid {gap:5px; margin-top:7px;}
+  .route-mini,.photo-grid .route-mini {height:38px; padding:4px;}
+  .route-mini:nth-child(n+4) {display:none;}
+}
+@media (max-height:520px) and (min-width:600px) {
+  h1 {font-size:18px;}
+  .seg button,.icon-btn {font-size:11px; padding:0 7px;}
+  #sound {min-width:64px; width:64px;}
+  #motion {min-width:76px; width:76px;}
+  header {gap:5px; padding:3px 8px;}
+  .projects {padding:3px 8px;}
+  main {grid-template-columns:minmax(0,1fr) 270px;}
+  .stage {padding:7px 9px; gap:5px;}
+  .piece-row {gap:5px;}
+  .viewer-bar {display:none;}
+  .cover-band {display:grid; grid-template-columns:1fr 1fr; padding:5px; background:#fff8e8ef; text-align:center;}
+  .cover-band .cover-title {font-size:21px; grid-column:1/-1;}
+  .cover-band .series {grid-column:1/-1; width:max-content; max-width:100%; justify-self:center;}
+  .book-cover {min-height:165px;}
+  .panel {padding:6px 8px; gap:4px;}
+  .hint {height:46px; min-height:46px; font-size:11px;}
+  .index-card h2 {font-size:15px;}
+  .slots {grid-template-columns:1fr 1fr;}
+  .slot {min-height:44px;}
+  .slot span {font-size:11px;}
+  .slot span {white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .credit-line {min-height:29px; max-height:32px; font-size:10px;}
+  .index-card {padding:4px 6px;}
+  .footer small {max-width:145px;}
+  .text-page {gap:0;}
+  .text-page .chip {font-size:11px;}
+  .browser {display:flex; flex-wrap:wrap; align-content:start; column-gap:7px;}
+  .browser .address {flex-basis:100%; font-size:11px;}
+  .browser .site-name {font-size:17px; flex:1;}
+  .nav-chips {border:0;}
+  .browser h2 {flex-basis:100%; font-size:20px;}
+  .browser .by-date {font-size:11px;}
+  .browser .body-fact {display:none;}
+  .browser .ad {font-size:11px; margin:0;}
+  .photo-view {grid-template-columns:38% 1fr; column-gap:8px;}
+  .photo-view > img {grid-column:1; grid-row:1/5; max-height:180px; height:100%;}
+  .photo-view > h2,.photo-view > p {grid-column:2;}
+  .photo-view h2 {font-size:17px;}
+  .photo-view .chip {font-size:11px;}
+  .trail {padding:10px;}
+  .trail-top h2 {font-size:20px;}
+  .result-paper {left:2%; right:2%; padding:5px 8px;}
+  .result-paper b {font-size:18px;}
+  .result-paper p {font-size:10px; line-height:1.25;}
+  .book-label {top:10%; bottom:10%; left:7%; right:7%; gap:1px; padding:2px;}
+  .book-label .edition {display:none;}
+  .shelf-books {top:20%; bottom:38%;}
+  .book-trail .reader.ended {top:0; bottom:auto; width:60px; min-width:0;}
+  .book-trail .destination {top:1%; bottom:auto; width:38px;}
+  .book-trail .destination span {display:none;}
+  .trail-scene:not(.book-trail) .reader.ended {top:1%; bottom:auto; left:69%; width:50px; min-width:0;}
+  .trail-scene:not(.book-trail) .destination {top:1%; bottom:auto; width:36px;}
+  .trail-scene:not(.book-trail) .destination span {display:none;}
+  .trail-scene:not(.book-trail) .delivered {width:36px; right:10%; bottom:40%;}
+  .web-trail {inset:5% 5% 34%; gap:6px;}
+  .web-route-card {padding:6px; font-size:10px;}
+  .web-route-card h3 {font-size:17px; margin:4px 0;}
+  .web-route-card p {margin:4px 0;}
+  .route-dots {height:9px; margin:0 0 4px; font-size:8px;}
+  .route-grid {margin-top:5px;}
+  .route-mini,.photo-grid .route-mini {height:28px;}
+  .why-cards p {font-size:10px; padding:4px;}
+  .corner {padding:8px; gap:5px;}
+  .mailbox {height:100%; padding-bottom:35px;}
+  .mailbox span {font-size:10px; padding:1px 2px;}
+  .mail-street {gap:5px;}
+  .creator-detail img.hero-mail {height:76px;}
+  .corner-mode .creator-detail {max-height:160px;}
+}
+@media (max-width:599px) {
+  body {overflow:auto; height:auto; min-height:100dvh; display:block;}
+  header {padding:5px 8px; gap:4px; justify-content:space-between;}
+  h1 {font-size:21px; width:100%; text-align:center; margin:0 0 3px;}
+  .seg button,.icon-btn {font-size:10px; padding:0 6px;}
+  #sound {min-width:68px; width:68px; flex:none;}
+  #motion {min-width:71px; width:71px; flex:none;}
+  #read {width:44px; flex:none;}
+  .seg {flex:1;}
+  .seg button {flex:1;}
+  .projects {padding:3px 7px; gap:4px;}
+  .project-tab {font-size:11px; padding:3px 5px; text-align:center;}
+  .project-tab small {float:none; display:block; font-size:10px; padding:0;}
+  main {display:flex; flex-direction:column;}
+  .stage {order:1;}
+  .panel {order:2;}
+  .stage {height:295px; flex:none; padding:7px; gap:5px;}
+  .viewer-bar {display:none;}
+  .piece {min-height:44px;}
+  .piece b {display:inline; font-size:11px;}
+  .piece span {display:block; font-size:10px;}
+  .book-cover {min-height:0;}
+  .cover-band {display:grid; grid-template-columns:1fr 1fr; padding:2px 5px; background:#fff8e8ec;}
+  .cover-band .cover-title {grid-column:1/-1; font-size:24px;}
+  .cover-band .series {grid-column:1/-1; justify-self:center; min-height:44px;}
+  .cover-band .chip {font-size:11px;}
+  .source {overflow:auto;}
+  .page-nav {min-height:46px;}
+  .panel {border-left:0; border-top:1px solid #cdb997; padding:7px 10px; gap:5px; overflow:visible;}
+  .hint {font-size:12px; height:40px; min-height:40px;}
+  .slots {grid-template-columns:1fr 1fr;}
+  .slot {min-height:44px;}
+  .slot small {font-size:10px;}
+  .slot span {font-size:12px;}
+  .index-card {padding:5px 8px;}
+  .index-card h2 {font-size:16px;}
+  .credit-line {min-height:30px; max-height:40px; margin-top:3px;}
+  .actions {grid-template-columns:1fr auto;}
+  .footer {margin-top:0;}
+  .browser {padding:4px 8px; display:flex; flex-wrap:wrap; column-gap:5px; align-content:start;}
+  .browser .address {font-size:10px;}
+  .browser .site-name {font-size:18px; flex:1;}
+  .browser .nav-chips {gap:0; border:0;}
+  .browser .nav-chips .chip {font-size:10px; padding:2px;}
+  .browser h2 {font-size:21px; flex-basis:100%;}
+  .browser .body-fact {display:none;}
+  .browser .by-date .chip,.browser .ad {font-size:11px;}
+  .browser .ad {margin:0;}
+  .text-page {padding:5px; gap:0;}
+  .text-page .chip {font-size:11px; padding:2px 4px;}
+  .text-page h2 {font-size:22px;}
+  .photo-view {grid-template-columns:36% 1fr; padding:5px; column-gap:4px;}
+  .photo-view > img {grid-column:1; grid-row:1/5; height:100%; max-height:200px; min-height:0;}
+  .photo-view h2,.photo-view p {grid-column:2;}
+  .photo-view h2 {font-size:17px;}
+  .photo-view .chip {font-size:11px;}
+  .trail {padding:7px; gap:5px;}
+  .trail-top h2 {font-size:18px;}
+  .trail-top .secondary {font-size:10px;}
+    .shelf-books {inset:20% 2% 38%; gap:1%;}
+  .book-label {font-size:10px; gap:1px; left:10%; right:10%; top:18%; bottom:24%;}
+  .book-label {top:10%; bottom:10%; left:7%; right:7%; padding:2px;}
+  .book-label .edition {display:none;}
+  .book-trail .reader.ended {top:0; bottom:auto; width:60px; min-width:0;}
+  .book-trail .destination {top:1%; bottom:auto; width:38px;}
+  .book-trail .destination span {display:none;}
+  .trail-scene:not(.book-trail) .reader.ended {top:1%; bottom:auto; left:69%; width:45px; min-width:0;}
+  .trail-scene:not(.book-trail) .destination {top:1%; bottom:auto; width:32px;}
+  .trail-scene:not(.book-trail) .destination span {display:none;}
+  .trail-scene:not(.book-trail) .delivered {width:32px; right:10%; bottom:40%;}
+  .result-paper {bottom:2%; padding:5px 8px;}
+  .result-paper b {font-size:17px;}
+  .result-paper p {font-size:10px; line-height:1.25; margin-top:3px;}
+  .reader {min-width:75px; width:25%;}
+  .web-trail {inset:5% 3% 33%; gap:6px;}
+  .web-route-card {padding:6px; font-size:10px;}
+  .web-route-card h3 {font-size:15px;}
+  .route-grid {gap:4px; margin-top:7px;}
+  .route-mini,.photo-grid .route-mini {height:38px; padding:4px;}
+  .route-mini:nth-child(n+4) {display:none;}
+  body.corner-mode .stage {height:415px;}
+  .corner {padding:7px; gap:5px;}
+  .why-cards p {font-size:10px; padding:5px;}
+  .mail-street {grid-template-columns:repeat(3,1fr); grid-template-rows:repeat(3,minmax(0,1fr)); gap:6px;}
+  .mailbox {height:100%;}
+  .mailbox span {font-size:10px;}
+  .creator-detail img.hero-mail {height:100px;}
+  .corner-mode .creator-detail {max-height:130px;}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Credit Card Builder <small>Give credit where it's due</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-build" aria-pressed="true">▤ Build</button>
+    <button id="m-corner" aria-pressed="false">▱ Creator's Corner</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<nav class="projects" aria-label="Projects" id="projects"></nav>
+<main>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <section id="card-panel">
+      <div class="index-card">
+        <h2 id="card-heading">Book credit card</h2>
+        <div class="slots" id="slots"></div>
+        <button class="secondary" id="access-date" hidden></button>
+        <p class="credit-line" id="credit-line"></p>
+      </div>
+    </section>
+    <div class="actions" id="card-actions">
+      <button class="big-btn" id="test" disabled>Test my credits →</button>
+      <button class="secondary" id="clear">Clear card</button>
+    </div>
+    <section class="creator-detail" id="creator-detail" hidden></section>
+    <div class="footer">
+      <small id="save-note">Saved here. Never leaves this device.</small>
+      <button class="secondary" id="reset">Start over</button>
+    </div>
+  </aside>
+  <section class="stage" id="stage" aria-label="Source workspace">
+    <div class="desk-label">The source desk · find the trail back</div>
+    <div class="build-work" id="build-work">
+      <div class="mini-project" id="mini-project"></div>
+      <section class="viewer" id="viewer" aria-label="Source viewer">
+        <div class="viewer-bar"><span id="viewer-label">Source viewer · book</span><i aria-hidden="true"></i></div>
+        <div class="source" id="source"></div>
+        <div class="page-nav" id="page-nav">
+          <button id="prev" aria-label="Previous book page">‹</button>
+          <span id="page-label">Cover · 1 of 3</span>
+          <button id="next" aria-label="Next book page">›</button>
+        </div>
+      </section>
+    </div>
+    <div class="piece-row" id="pieces" aria-label="Borrowed pieces"></div>
+    <section class="trail" id="trail" aria-label="Credit trail" hidden>
+      <div class="trail-top"><h2 id="trail-title">Following your credits</h2>
+        <button class="secondary" id="back">Back to my cards</button></div>
+      <div class="piece-row" id="trail-pieces"></div>
+      <div class="trail-scene" id="trail-scene"></div>
+    </section>
+    <section class="corner" id="corner" aria-label="Creator's Corner" hidden></section>
+  </section>
+</main>
+<dialog id="reset-dialog" aria-labelledby="reset-question">
+  <p id="reset-question">Clear all three projects?</p>
+  <button class="secondary" id="reset-no">No</button><button class="big-btn" id="reset-yes">Yes</button>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const escape = text => String(text).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const image = (name, cls = '', alt = '') => `<img src="${ART[name]}" class="${cls}" alt="${escape(alt)}">`;
+  const ART = {
+    owl:'art:cc-snowy-owl', bee:'art:cc-honeybee-sunflower', moon:'art:cc-moon-lake',
+    owlsCover:'art:cc-cover-owls', hiveCover:'art:cc-cover-hive', moonCover:'art:cc-cover-moon',
+    red:'art:cc-book-red', navy:'art:cc-book-navy', green:'art:cc-book-green', mustard:'art:cc-book-mustard', plum:'art:cc-book-plum',
+    shelf:'art:cc-shelf', fly:'art:cc-reader-fly', stuck:'art:cc-reader-stuck', postcard:'art:cc-postcard',
+    closed:'art:cc-mailbox-closed', open:'art:cc-mailbox-open', locked:'art:cc-mailbox-locked',
+    pen:'art:cc-tool-pen', brush:'art:cc-tool-brush', laptop:'art:cc-tool-laptop', camera:'art:cc-tool-camera', street:'art:cc-street'
+  };
+  const DATA = [
+    {
+      name:'Owl Poster', short:'Owl Poster', photo:'owl', cover:'owlsCover',
+      book:{title:'Owls of the Night', author:'Ana Ruiz', illustrator:'Leo Brandt', series:'Night Animals 3',
+        publisher:'Fern Hill Books', year:'2019', page:'14', fact:'Barn owls can find a mouse in the dark by sound alone.',
+        shelf:[['Owls of the Night','Ana Ruiz','2019'],['Owls of the Night','Ana Ruiz','2023'],
+          ['Owls of the Night','Maya Chen','2016'],['Owl Babies at Dusk','Ana Ruiz','2021'],['Night Herons','Leo Brandt','2020']]},
+      web:{title:'Barn Owl Facts', site:'Wild Wings Kids', author:'the Wild Wings team', date:'May 3, 2024',
+        address:'wildwingskids.example/owls/barn-owl', nav:['Home','Owls','Shop'], ad:'Win free bird stickers!',
+        fact:'Barn owls swallow small prey whole.', creator:'Wild Wings team'},
+      photoInfo:{title:'Snowy Owl at Dawn', author:'Sam Okafor', uploader:'lakeclub_photos', site:'Open Nature Photos'}
+    },
+    {
+      name:'Honeybee Slides', short:'Honeybee Slides', photo:'bee', cover:'hiveCover',
+      book:{title:'The Busy Hive', author:'Grace Liu', illustrator:'Omar Haddad', series:'Garden Friends 1',
+        publisher:'Maple Lane Press', year:'2021', page:'6', fact:'A hive can have one queen and thousands of workers.',
+        shelf:[['The Busy Hive','Grace Liu','2021'],['The Busy Hive','Grace Liu','2024'],['The Busy Hive','Tom Reyes','2018'],
+          ['Bees Up Close','Grace Liu','2022'],['Garden Bugs','Omar Haddad','2019']]},
+      web:{title:'How Bees Make Honey', site:'Little Science Lab', author:'Dot Fischer', date:'September 12, 2023',
+        address:'littlesciencelab.example/bees/honey', nav:['Home','Bees','Next page: Wasps'], ad:'Science kits on sale!',
+        fact:'Bees make honey from flower nectar.', creator:'Dot Fischer'},
+      photoInfo:{title:'Honeybee on a Sunflower', author:'Priya Nair', uploader:'garden_club_7', site:'Sunny Day Images'}
+    },
+    {
+      name:'Moon Report', short:'Moon Report', photo:'moon', cover:'moonCover',
+      book:{title:'Our Moon', author:'David Osei', illustrator:'Ana Ruiz', series:'Sky Watch 2',
+        publisher:'Fern Hill Books', year:'2020', page:'9', fact:'The Moon has no air to breathe.',
+        shelf:[['Our Moon','David Osei','2020'],['Our Moon','Lena Sato','2015'],['Moon and Stars','David Osei','2022'],
+          ['Owls of the Night','Ana Ruiz','2019'],['Our Moon','David Osei','2025']]},
+      web:{title:'Moon Phases for Kids', site:'Star Path Kids', author:'', date:'',
+        address:'starpathkids.example/moon/phases', nav:['Home','Planets','Games'], ad:'Glow stars for your room!',
+        fact:'The Moon looks different through the month because we see different parts of its sunny side.', creator:'Star Path Kids'},
+      photoInfo:{title:'Moon Over Clear Lake', author:'Jonas Berg', uploader:'jonasberg', site:'Open Nature Photos'}
+    }
+  ];
+  const CREATORS = [
+    ['Ana Ruiz','pen','Owls of the Night','Watched owls near her home for two years before writing.',0,0],
+    ['Leo Brandt','brush','Pictures for Owls of the Night','Painted 30 pictures for the owl book.',0,0],
+    ['Sam Okafor','camera','Snowy Owl at Dawn','Waited in the snow three mornings for the owl to land.',0,2],
+    ['Grace Liu','pen','The Busy Hive','Kept bees for ten years.',1,0],
+    ['Omar Haddad','brush','Pictures for The Busy Hive','Drew every bug from life.',1,0],
+    ['Dot Fischer','laptop','How Bees Make Honey','Visited a bee farm to check her facts.',1,1],
+    ['Priya Nair','camera','Honeybee on a Sunflower','Grew the sunflower herself.',1,2],
+    ['David Osei','pen','Our Moon','Taught science for twenty years.',2,0],
+    ['Jonas Berg','camera','Moon Over Clear Lake','Stayed up until 2 in the morning for the moonrise.',2,2],
+    ['Wild Wings team','laptop','Barn Owl Facts','A team of writers.',0,1],
+    ['Star Path Kids','laptop','Moon Phases for Kids','A team of writers.',2,1]
+  ];
+  const L = {
+    'w-build':'Tap a piece of the poster to open its source. Tap a slot on the card, then tap the fact on the source.',
+    flip:'Books hide facts on more than one page. Tap the arrows to turn the pages.',
+    test:'Every piece has a card. Press Test my credits.',
+    found:'Found it! A thank-you is on its way.',
+    stuck:'Stuck! Press Back to my cards, then fix that card.',
+    allFound:'All three found! Every creator got a thank-you.',
+    'w-corner':'These are the creators. Tap a mailbox to see their story and your thank-you notes.',
+    nocredit:'With no name, nobody knows who to thank. Flip the switch back to give the credit back.'
+  };
+  const LABELS = [['Who wrote it?','Title','Year'],['Page title','Website name','Date','Web address'],
+    ['Who took it?','Photo title','Where I found it']];
+  const TYPES = ['Book','Web page','Photo'];
+  const state = {mode:'build', project:0, piece:0, page:0, slot:0, trail:false, running:false, ending:false,
+    trailIndex:0, creator:null, noCredit:false, cards:[], postcards:[]};
+  const fresh = () => DATA.map(() => LABELS.map(labels => ({made:false, slots:labels.map(() => ''), found:false})));
+  state.cards = fresh();
+  try {
+    const saved = JSON.parse(localStorage.getItem('ccb-progress') || 'null');
+    if (saved && Array.isArray(saved.cards) && saved.cards.length === 3) {
+      state.cards = fresh().map((project,p) => project.map((card,t) => {
+        const old = saved.cards[p]?.[t];
+        if (!old || !Array.isArray(old.slots)) return card;
+        card.slots = card.slots.map((_,i) => typeof old.slots[i] === 'string' ? old.slots[i].slice(0,250) : '');
+        card.made = !!old.made;
+        card.found = !!old.found && evaluate(p,t,card.slots).found;
+        return card;
+      }));
+      state.postcards = Array.isArray(saved.postcards) ? [...new Set(saved.postcards.filter(k => /^[0-2]-[0-2]$/.test(k)))] : [];
+    }
+  } catch {}
+  const today = () => new Date().toLocaleDateString('en-US', {timeZone:'America/Denver', month:'long', day:'numeric', year:'numeric'});
+  const accessDate = () => `Date I looked: ${today()}`;
+  let token = 0;
+  let chipCounter = 0;
+  const V = Curio.voice({lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
+    welcome:() => {
+      if ($('reset-dialog').open || state.trail) return null;
+      if (state.mode === 'corner') return state.creator === null ? 'w-corner' : null;
+      return state.cards.flat().every(c => !c.slots.some(Boolean)) ? 'w-build' : null;
+    }, speaks:'#test,.mailbox,.team-card'});
+  function save() {
+    try {localStorage.setItem('ccb-progress', JSON.stringify({cards:state.cards,postcards:state.postcards}));}
+    catch {$('save-note').textContent = 'This browser cannot save. Nothing leaves this device.';}
+  }
+  function hint(text) {$('hint').textContent = text;}
+  function card() {return state.cards[state.project][state.piece];}
+  function selected() {return DATA[state.project];}
+  function chip(text, extra = '') {
+    return `<button class="chip ${extra}" data-chip="${escape(text)}" id="chip-${++chipCounter}">${escape(text)}</button>`;
+  }
+  function parts(prefix, value) {return chip(prefix) + chip(value);}
+  function status(c) {return c.found ? '✓ Found!' : c.made ? 'Card made' : 'Needs credit';}
+  function updateTags() {
+    DATA.forEach((_,p) => {
+      const count = state.cards[p].filter(c => c.found).length;
+      $('project-' + p).querySelector('small').textContent = `${count} of 3 found`;
+      $('project-' + p).classList.toggle('complete',count === 3);
+      $('project-' + p).setAttribute('aria-pressed', p === state.project);
+    });
+    document.querySelectorAll('[data-piece]').forEach(button => {
+      const t = Number(button.dataset.piece);
+      const c = state.cards[state.project][t];
+      button.classList.toggle('made',c.made);
+      button.classList.toggle('found',c.found);
+      button.setAttribute('aria-pressed',t === state.piece);
+      button.querySelector('span').textContent = status(c);
+    });
+    $('test').disabled = !state.cards[state.project].every(c => c.made);
+  }
+  function showCard() {
+    const c = card();
+    $('card-heading').textContent = `${TYPES[state.piece]} credit card`;
+    $('slots').classList.toggle('web-slots',state.piece === 1);
+    [...$('slots').querySelectorAll('.slot')].forEach((button,i) => {
+      button.hidden = i >= c.slots.length;
+      button.parentElement.hidden = button.hidden;
+      if (button.hidden) return;
+      button.querySelector('small').textContent = LABELS[state.piece][i];
+      const value = button.querySelector('span');
+      value.textContent = c.slots[i] || 'Tap a source detail';
+      value.title = value.textContent;
+      button.setAttribute('aria-label',LABELS[state.piece][i] + ': ' + value.textContent);
+      value.classList.toggle('empty',!c.slots[i]);
+      button.setAttribute('aria-pressed',i === state.slot);
+    });
+    $('access-date').hidden = !(state.project === 2 && state.piece === 1);
+    $('access-date').textContent = accessDate();
+    const s = c.slots.map(v => v ? escape(v) : '<span class="empty">___</span>');
+    $('credit-line').innerHTML = state.piece === 2 ? `Photo: ${s[1]}, by ${s[0]}. ${s[2]}.` : s.join('. ') + '.';
+    updateTags();
+  }
+  function renderSource() {
+    const d = selected();
+    chipCounter = 0;
+    $('viewer-label').textContent = `Source viewer · ${TYPES[state.piece]}`;
+    $('page-nav').hidden = state.piece !== 0;
+    if (state.piece === 0) {
+      const b = d.book;
+      if (state.page === 0) {
+        $('source').innerHTML = `<div class="book-cover">${image(d.cover,'','Painted picture book cover')}
+          <div class="cover-band">${chip(b.title,'cover-title')}<p class="byline">${chip('by')}${chip(b.author)}</p>
+          <p class="byline">${chip('illustrated by')}${chip(b.illustrator)}</p>${chip(b.series,'series')}</div></div>`;
+      } else if (state.page === 1) {
+        $('source').innerHTML = `<div class="text-page"><h2>${chip(b.title)}</h2><p>${chip(b.author)}</p>
+          <p>${parts('Pictures by',b.illustrator)}</p><p>${chip(b.publisher)}</p></div>`;
+      } else {
+        $('source').innerHTML = `<div class="text-page copyright"><p>${chip('Text copyright')}${chip(b.year)}${chip(b.author)}</p>
+          <p>${chip('Illustrations copyright')}${chip(b.year)}${chip(b.illustrator)}</p>
+          <p>${parts('First edition',b.year)}</p><p>${parts('Page',b.page)}</p></div>`;
+      }
+      $('page-label').textContent = `${['Cover','Title page','Copyright'][state.page]} · ${state.page + 1} of 3`;
+    } else if (state.piece === 1) {
+      const w = d.web;
+      $('source').innerHTML = `<div class="browser">${chip(w.address,'address')}
+        <div class="site-name">${chip(w.site)}</div><div class="nav-chips">${w.nav.map(n => chip(n)).join('')}</div>
+        <h2>${chip(w.title)}</h2><div class="by-date">${w.author ? parts('By',w.author) : ''}
+        ${w.date ? parts('Updated',w.date) : ''}</div><p class="body-fact">${chip(w.fact)}</p>${chip(w.ad,'ad')}</div>`;
+    } else {
+      const p = d.photoInfo;
+      $('source').innerHTML = `<div class="photo-view">${image(d.photo,'',p.title)}<h2>${chip(p.title)}</h2>
+        <p>${parts('Photo by',p.author)}</p><p>${parts('Uploaded by:',p.uploader)}</p>
+        <p class="site-name">${chip(p.site)}<button class="chip" id="download">Download</button></p></div>`;
+    }
+    $('mini-project').innerHTML = `<h2>${escape(d.name)}</h2><p>${escape(d.book.fact)}</p>${image(d.photo,'',d.photoInfo.title)}
+      <p>${escape(d.web.fact)}</p><small>Three borrowed pieces. Three trails back.</small>`;
+    $('mini-project').className = 'mini-project' + (state.project === 1 ? ' slides' : state.project === 2 ? ' report' : '');
+    if (state.project === 1) {
+      $('mini-project').innerHTML = `<div class="mini-slide"><small>Honeybee Slides · 1</small><p>${escape(d.book.fact)}</p></div>
+        <div class="mini-slide"><small>Honeybee Slides · 2</small><p>${escape(d.web.fact)}</p></div>
+        <div class="mini-slide"><small>Honeybee Slides · 3</small>${image(d.photo,'',d.photoInfo.title)}</div>`;
+    }
+  }
+  function buildHint() {
+    if (state.cards[state.project].every(c => c.made)) return 'Tap a card slot and a source detail to change it, or press Test my credits.';
+    if (state.piece === 0 && !state.page && !V.heard('flip')) return 'Tap a card slot, then a detail on the book. Use the arrows to find more pages.';
+    return `Tap “${LABELS[state.piece][state.slot]}”, then tap a detail on the source.`;
+  }
+  function choosePiece(t) {
+    if (state.trail) {
+      token++;
+      state.piece = t;
+      state.trailIndex = t;
+      state.running = false;
+      endTrail(t);
+      return;
+    }
+    V.hush();
+    state.piece = t;
+    state.page = 0;
+    state.slot = 0;
+    card().made = true;
+    save();
+    showCard();
+    renderSource();
+    hint(buildHint());
+    if (t === 0) V.how('flip',{valid:() => state.piece === 0 && state.page === 0 && !state.trail});
+    if (!$('test').disabled) V.how('test',{needs:'#test',valid:() => !state.trail});
+    Curio.tone(350 + t * 100,.06,.035);
+  }
+  function fill(value, origin) {
+    if (state.mode !== 'build' || state.trail) return;
+    V.dropQueued();
+    const c = card();
+    const slot = $('slot-' + state.slot);
+    const index = state.slot;
+    c.slots[index] = value;
+    c.made = true;
+    c.found = false;
+    showCard();
+    save();
+    hint(`Added to “${LABELS[state.piece][index]}”. Tap another slot, then a source detail.`);
+    Curio.tone(540,.08,.04);
+    if (!Curio.reduce && origin) {
+      const a = origin.getBoundingClientRect();
+      const b = slot.getBoundingClientRect();
+      const flyer = document.createElement('div');
+      flyer.className = 'fly-chip';
+      flyer.textContent = value;
+      flyer.style.left = a.left + 'px';
+      flyer.style.top = a.top + 'px';
+      flyer.style.maxWidth = Math.min(a.width + 40,240) + 'px';
+      document.body.append(flyer);
+      const animation = flyer.animate([{transform:'translate(0,0)',opacity:1},
+        {transform:`translate(${b.left - a.left}px,${b.top - a.top}px) scale(.8)`,opacity:.2}],{duration:400,easing:'ease-in-out'});
+      animation.finished.then(() => flyer.remove()).catch(() => flyer.remove());
+    }
+    if (!$('test').disabled) V.how('test',{needs:'#test',valid:() => !state.trail});
+  }
+  function evaluate(project, type, s) {
+    const d = DATA[project];
+    const stuck = (rule,message) => ({found:false,rule,message});
+    const found = (message = '') => ({found:true,rule:'found',message});
+    if (type === 0) {
+      const b = d.book;
+      if (s[0] === b.illustrator) return stuck('illustrator',
+        `This book is by ${b.illustrator}. They drew the pictures, but someone else wrote the words.`);
+      if (s[0] !== b.author && s[1] === b.title) return stuck('author',`3 books are called ${b.title}. Who wrote yours?`);
+      if (s[0] !== b.author) return stuck('identity',"The reader doesn't know which book to look for. Add who wrote it and its title.");
+      if (s[1] !== b.title) return stuck('title',`${b.author} wrote 3 books on this shelf. Which one?`);
+      if (s[2] !== b.year) {
+        const years = b.shelf.filter(row => row[0] === b.title && row[1] === b.author).map(row => row[2]);
+        return stuck('year',`Two editions match: ${years[0]} and ${years[1]}. Which year?`);
+      }
+      return found();
+    }
+    if (type === 1) {
+      const w = d.web;
+      if (s[3] === w.ad) return stuck('ad','This goes to the ad, not the page!');
+      if (s[3] !== w.address) return stuck('address',
+        "The reader can't find the page. This website has 120 pages. Add the web address from the address bar.");
+      if (!s[0]) return stuck('empty-title',"The address works. Add the page title so readers know what they'll find.");
+      if (s[0] !== w.title) return stuck('wrong-title',"The address works, but the title doesn't match. Readers might doubt it.");
+      if (s[1] !== w.site) return stuck('site','Which website is this? Add its name.');
+      if (s[2] && s[2] !== w.date && !/^Date I looked: .+/.test(s[2])) return stuck('date',
+        "That isn't a date. Add the date the page was updated, or the date you looked.");
+      return found(s[2] ? '' : 'Pages change. Adding the date tells readers which version you saw.');
+    }
+    const p = d.photoInfo;
+    if (s[0] === p.uploader && project !== 2) return stuck('uploader',
+      `${p.uploader} only shared it. The thank-you went to the wrong person!`);
+    if (s[0] !== p.author && !(project === 2 && s[0] === 'jonasberg')) return stuck('photographer',
+      'Nobody knows who to thank. Add who took the photo.');
+    if (s[1] !== p.title) return stuck('photo-title',"This photo site has 5,000 photos. Which one? Add the photo's title.");
+    if (s[2] !== p.site) return stuck('photo-site',"Where did you find it? Add the site's name.");
+    return found();
+  }
+  function recipient(p,t) {return t === 0 ? DATA[p].book.author : t === 1 ? DATA[p].web.creator : DATA[p].photoInfo.author;}
+  function endingMessage(t, result) {
+    return result.found ? (result.message || `The reader found ${t === 0 ? selected().book.title :
+      t === 1 ? selected().web.title : selected().photoInfo.title}.`) : result.message;
+  }
+  function trailScene(t, result = null) {
+    const d = selected();
+    let html = '';
+    if (t === 0) {
+      html = image('shelf','shelf-bg','A warm wooden library shelf') + '<div class="shelf-books">' +
+        d.book.shelf.map((b,i) => {
+          const match = result && (result.found ? i === 0 : result.rule === 'illustrator' ? b[1] === d.book.illustrator :
+            result.rule === 'author' ? b[0] === d.book.title : result.rule === 'title' ? b[1] === d.book.author :
+            result.rule === 'year' ? b[0] === d.book.title && b[1] === d.book.author : false);
+          return `<div class="shelf-book ${match ? 'match' : ''}">
+          ${image(['red','navy','green','mustard','plum'][i])}<div class="book-label"><b>${escape(b[0])}</b>
+          <span>${escape(b[1])}</span><span>${escape(b[2])}${i === 1 && state.project !== 2 || i === 4 && state.project === 2 ?
+            '<span class="edition"> · new edition</span>' : ''}</span>
+          </div></div>`;
+        }).join('') + '</div>';
+    } else if (t === 1) {
+      const w = d.web;
+      const wrong = result && !result.found;
+      html = image('street','street-bg','Leafy sidewalk') + `<div class="web-trail">
+        <div class="web-route-card"><div class="route-dots" aria-hidden="true">● ● ●</div><div>${escape(w.site)}</div>
+        <h3>120 pages</h3><p>Home · ${escape(w.nav[1])} · More pages</p>
+        <div class="route-grid" aria-hidden="true">${'<div class="route-mini"></div>'.repeat(6)}</div></div>
+        <div class="web-route-card ${result?.found ? 'good' : ''}"><div class="route-dots" aria-hidden="true">● ● ●</div>
+        <div>${escape(cardFor(t)[3] || 'Address missing')}</div>
+        <h3>${escape(result?.rule === 'ad' ? w.ad : wrong && result.rule === 'address' ? 'Which page?' : w.title)}</h3>
+        <p>${escape(w.date || 'No update date shown')}</p></div></div>`;
+    } else {
+      html = image('street','street-bg','Leafy sidewalk') + `<div class="web-trail">
+        <div class="web-route-card"><div>${escape(d.photoInfo.site)}</div><h3>5,000 photos</h3><p>Find the title and creator.</p>
+        <div class="route-grid photo-grid" aria-hidden="true">${Array.from({length:6},() =>
+          `<div class="route-mini">${image(d.photo)}</div>`).join('')}</div></div>
+        <div class="web-route-card ${result?.found ? 'good' : ''}">${image(d.photo,'',d.photoInfo.title)}
+        <b>${escape(d.photoInfo.title)}</b><p>Photo by ${escape(d.photoInfo.author)}</p></div></div>`;
+    }
+    html += '<div class="trail-path" aria-hidden="true"></div>';
+    html += image(result && !result.found ? 'stuck' : 'fly',`reader ${result ? 'ended' : 'flying'}`,'Paper-plane reader with magnifier');
+    if (result) {
+      const who = result.rule === 'uploader' ? d.photoInfo.uploader : recipient(state.project,t);
+      if (t !== 0 || result.found) {
+        html += `<div class="destination">${image(result.found ? 'open' : 'closed')}<span>${escape(who)}</span></div>`;
+      }
+      if (result.found || result.rule === 'uploader') {
+        html += image('postcard',`delivered ${result.rule === 'uploader' ? 'bounced' : ''}`,'Thank-you postcard');
+      }
+      html += `<div class="result-paper ${result.found ? 'good' : ''}"><b>${result.found ? '✓ Found it!' : '? Stuck'}</b>
+        <span>${TYPES[t]} trail · ${t + 1} of 3</span><p>${escape(endingMessage(t,result))}</p></div>`;
+    }
+    $('trail-scene').innerHTML = html;
+    $('trail-scene').classList.toggle('book-trail',t === 0);
+    if (t === 0 && result) {
+      const positions = {found:3,year:12,author:22,title:25,identity:40};
+      const index = d.book.shelf.findIndex(b => b[1] === d.book.illustrator);
+      const landing = result.rule === 'illustrator' ? 3 + index * 18.5 : positions[result.rule] ?? 40;
+      $('trail-scene').querySelector('.reader').style.left = landing + '%';
+    }
+  }
+  function cardFor(t) {return state.cards[state.project][t].slots;}
+  function stopTrailSpeech() {
+    if (V.playing) V.hush();
+    else V.dropQueued();
+  }
+  function endTrail(t) {
+    stopTrailSpeech();
+    state.piece = t;
+    state.ending = true;
+    const result = evaluate(state.project,t,cardFor(t));
+    state.cards[state.project][t].found = result.found;
+    if (result.found) {
+      const key = `${state.project}-${t}`;
+      if (!state.postcards.includes(key)) state.postcards.push(key);
+      Curio.yes();
+    } else Curio.tone(190,.12,.035);
+    save();
+    trailScene(t,result);
+    showCard();
+    const shortHints = {
+      illustrator:'They drew the pictures. Who wrote the words?',
+      author:'Several books share this title. Who wrote yours?',
+      identity:'Add who wrote the book and its title.',
+      title:'Which book by this author did you use?',
+      year:'Which edition did you use? Find its year.',
+      ad:'This address goes to the ad, not the page.',
+      address:'Find the web address in the address bar.',
+      'empty-title':'Add the page title so readers know what they will find.',
+      'wrong-title':'The address works, but the title does not match.',
+      site:'Add the name of the website.',
+      date:'Find the update date, or use the date you looked.',
+      uploader:'The thank-you went to the uploader. Who took the photo?',
+      photographer:'Add who took the photo.',
+      'photo-title':'Add the title to find this photo.',
+      'photo-site':'Add the name of the photo site.'
+    };
+    hint(result.found ? 'Found it! Press Back to my cards to keep building, or tap another piece tag.' :
+      `${shortHints[result.rule]} Press Back to my cards to fix it.`);
+    const p = state.project;
+    V.say(result.found ? 'found' : 'stuck',{valid:() => state.trail && state.project === p && state.piece === t && state.ending});
+    return result;
+  }
+  async function startTrail() {
+    if ($('test').disabled) return;
+    V.hush();
+    const own = ++token;
+    state.trail = true;
+    state.running = true;
+    $('trail').hidden = false;
+    $('build-work').hidden = true;
+    $('pieces').hidden = true;
+    $('test').textContent = 'Test again →';
+    for (let t = 0; t < 3; t++) {
+      if (own !== token) return;
+      state.piece = t;
+      state.trailIndex = t;
+      state.ending = false;
+      updateTags();
+      stopTrailSpeech();
+      hint(`The reader is following your ${TYPES[t].toLowerCase()} card. Tap a piece tag to jump, or Back to my cards.`);
+      trailScene(t);
+      await Curio.wait(1700);
+      if (own !== token) return;
+      const result = endTrail(t);
+      const readingTime = 1400 + 75 * endingMessage(t,result).length;
+      const speechTime = 1400 + 75 * L[result.found ? 'found' : 'stuck'].length;
+      await Curio.wait(Math.max(readingTime,speechTime));
+    }
+    if (own !== token) return;
+    state.running = false;
+    if (state.cards[state.project].every(c => c.found)) {
+      hint('All three found! Tap Creator\'s Corner to see the thank-you notes, or choose another project.');
+      V.say('allFound',{valid:() => state.trail && state.cards[state.project].every(c => c.found)});
+    }
+  }
+  function stopTrail() {
+    ++token;
+    V.hush();
+    state.trail = false;
+    state.running = false;
+    state.ending = false;
+    $('trail').hidden = true;
+    $('build-work').hidden = false;
+    $('pieces').hidden = false;
+    state.slot = 0;
+    showCard();
+    renderSource();
+    hint(buildHint());
+  }
+  function chooseProject(p) {
+    if (state.mode === 'build' && state.project === p && !state.trail) {
+      hint(buildHint());
+      V.welcome();
+      return;
+    }
+    stopTrail();
+    state.project = p;
+    state.piece = 0;
+    state.page = 0;
+    state.slot = 0;
+    state.mode = 'build';
+    setMode('build');
+  }
+  function creatorEarned(c) {
+    return state.postcards.includes(`${c[4]}-${c[5]}`) && recipient(c[4],c[5]) === c[0];
+  }
+  function renderCorner() {
+    $('corner').innerHTML = image('street','street-bg','Quiet leafy sidewalk in morning light') +
+      `<div class="why-cards"><p>It's fair. They did the work.</p><p>Readers can find the source and check it.</p>
+      <p>A creator owns what they make from the moment they make it.</p></div>
+      <div class="mail-street">${CREATORS.slice(0,9).map((c,i) => {
+        const earned = creatorEarned(c);
+        const pose = state.creator === i && state.noCredit ? 'locked' : earned ? 'open' : 'closed';
+        return `<button class="mailbox" data-creator="${i}" aria-label="${escape(c[0])}: ${escape(c[2])}"
+          aria-pressed="${state.creator === i}">${image(pose)}${image(c[1],'tool-icon')}
+          ${earned && pose !== 'locked' ? image('postcard','post-mark') : ''}
+          <span>${escape(c[0].split(' ').map(n => n[0]).join(''))} · ${escape(c[2])}</span></button>`;
+      }).join('')}</div><div class="team-cards">${CREATORS.slice(9).map((c,j) =>
+        `<button class="team-card" data-creator="${j + 9}" aria-pressed="${state.creator === j + 9}">
+        ${image('laptop')}<span><b>${escape(c[0])}</b><br>A team of writers ·
+        <span class="team-status">${creatorEarned(c) ? '✓ Thank-you received' : 'No thank-you yet'}</span></span></button>`).join('')}</div>`;
+  }
+  function showCreator() {
+    if (state.creator === null) {
+      $('creator-detail').innerHTML = `<h2>Every piece has a maker.</h2>${image('postcard','hero-mail','Blank thank-you postcard')}
+        <p>Tap a mailbox or a team card to meet a creator.</p><p>Thank-you notes earned in Build arrive here.</p>`;
+      return;
+    }
+    const c = CREATORS[state.creator];
+    const earned = creatorEarned(c);
+    $('creator-detail').innerHTML = `<h2>${escape(c[0])}</h2><p><b>${escape(c[2])}</b><br>${escape(c[3])}</p>
+      ${image(state.noCredit ? 'locked' : earned ? 'open' : 'closed','hero-mail','Creator mailbox')}
+      <p id="mail-status">${state.noCredit ? 'With no name, nobody knows who to thank.' :
+        earned ? image('postcard','mini-post') + 'One thank-you received' : 'No thank-you yet'}</p>
+      <button class="no-credit" id="no-credit" role="switch" aria-checked="${state.noCredit}">No credit: ${state.noCredit ? 'on' : 'off'}</button>
+      ${state.noCredit ? `<p class="unknown-project">${c[5] === 2 ? 'Photo' : 'Fact from'}: ???</p>` : ''}`;
+  }
+  function setMode(mode) {
+    stopTrail();
+    state.mode = mode;
+    state.creator = null;
+    state.noCredit = false;
+    $('m-build').setAttribute('aria-pressed',mode === 'build');
+    $('m-corner').setAttribute('aria-pressed',mode === 'corner');
+    document.body.classList.toggle('corner-mode',mode === 'corner');
+    $('corner').hidden = mode !== 'corner';
+    $('build-work').hidden = mode !== 'build';
+    $('pieces').hidden = mode !== 'build';
+    $('card-panel').hidden = mode !== 'build';
+    $('card-actions').hidden = mode !== 'build';
+    $('creator-detail').hidden = mode !== 'corner';
+    if (mode === 'corner') {
+      renderCorner();
+      showCreator();
+      hint(L['w-corner']);
+    } else {
+      renderSource();
+      showCard();
+      hint(buildHint());
+    }
+    V.welcome();
+    Curio.tone(380,.06,.03);
+  }
+  DATA.forEach((d,p) => {
+    const button = document.createElement('button');
+    button.className = 'project-tab';
+    button.id = 'project-' + p;
+    button.innerHTML = `${escape(d.short)}<small>0 of 3 found</small>`;
+    button.onclick = () => chooseProject(p);
+    $('projects').append(button);
+  });
+  for (let i = 0; i < 4; i++) {
+    const button = document.createElement('button');
+    button.className = 'slot';
+    button.id = 'slot-' + i;
+    button.innerHTML = '<small></small><span></span>';
+    button.onclick = () => {
+      if (state.trail) stopTrail();
+      state.slot = i;
+      showCard();
+      hint(`Now tap a source detail for “${LABELS[state.piece][i]}”.`);
+      if (state.piece === 0 && state.page === 0 && !V.heard('flip')) {
+        V.how('flip',{valid:() => state.piece === 0 && state.page === 0 && !state.trail});
+      }
+      Curio.tone(440,.045,.025);
+    };
+    const cell = document.createElement('div');
+    cell.className = 'slot-cell';
+    cell.append(button);
+    if (i === 2) cell.append($('access-date'));
+    $('slots').append(cell);
+  }
+  for (const id of ['pieces','trail-pieces']) {
+    TYPES.forEach((type,t) => {
+      const button = document.createElement('button');
+      button.className = 'piece';
+      button.dataset.piece = t;
+      button.innerHTML = `<b>${['▤','▧','▣'][t]} ${type}</b><span>Needs credit</span>`;
+      button.onclick = () => choosePiece(t);
+      $(id).append(button);
+    });
+  }
+  $('source').addEventListener('click', event => {
+    const button = event.target.closest('[data-chip]');
+    if (button) fill(button.dataset.chip,button);
+    if (event.target.closest('#download')) {
+      hint('Not needed for a credit. Tap a card slot, then a source detail.');
+      Curio.tone(280,.08,.03);
+    }
+  });
+  $('access-date').onclick = () => {
+    if (state.trail) stopTrail();
+    state.slot = 2;
+    fill(accessDate(),$('access-date'));
+  };
+  function flip(direction) {
+    V.dropQueued();
+    state.page = (state.page + direction + 3) % 3;
+    renderSource();
+    hint(buildHint());
+    Curio.tone(300 + state.page * 70,.05,.025);
+  }
+  $('prev').onclick = () => flip(-1);
+  $('next').onclick = () => flip(1);
+  $('test').onclick = startTrail;
+  $('back').onclick = stopTrail;
+  $('clear').onclick = () => {
+    if (state.trail) stopTrail();
+    V.hush();
+    card().slots.fill('');
+    card().found = false;
+    card().made = true;
+    showCard();
+    save();
+    hint('Card cleared. Tap a slot, then a detail on the source.');
+    Curio.tone(250,.07,.03);
+  };
+  $('m-build').onclick = () => {
+    if (state.mode === 'build' && !state.trail) V.welcome();
+    else setMode('build');
+  };
+  $('m-corner').onclick = () => {
+    if (state.mode === 'corner') V.welcome();
+    else setMode('corner');
+  };
+  $('corner').addEventListener('click',event => {
+    const button = event.target.closest('[data-creator]');
+    if (!button) return;
+    V.hush();
+    if (state.creator !== null) {
+      const previous = CREATORS[state.creator];
+      const previousBox = $('corner').querySelector(`[data-creator="${state.creator}"]`);
+      if (state.creator < 9 && previousBox) {
+        previousBox.querySelector('img').src = ART[creatorEarned(previous) ? 'open' : 'closed'];
+        const post = previousBox.querySelector('.post-mark');
+        if (post) post.hidden = false;
+      } else if (previousBox) {
+        previousBox.querySelector('.team-status').textContent = creatorEarned(previous) ? '✓ Thank-you received' : 'No thank-you yet';
+      }
+    }
+    state.creator = Number(button.dataset.creator);
+    state.noCredit = false;
+    document.querySelectorAll('[data-creator]').forEach(b => b.setAttribute('aria-pressed',b === button));
+    showCreator();
+    hint('Read the creator\'s story. Tap No credit to see what happens when a name is missing.');
+    Curio.tone(490,.07,.03);
+  });
+  $('creator-detail').addEventListener('click',event => {
+    if (!event.target.closest('#no-credit')) return;
+    state.noCredit = !state.noCredit;
+    const checked = state.noCredit;
+    const c = CREATORS[state.creator];
+    const button = $('no-credit');
+    button.setAttribute('aria-checked',checked);
+    button.textContent = 'No credit: ' + (checked ? 'on' : 'off');
+    const old = $('creator-detail').querySelector('.unknown-project');
+    if (old) old.remove();
+    if (checked) {
+      const p = document.createElement('div');
+      p.className = 'unknown-project';
+      const project = DATA[c[4]];
+      p.innerHTML = image(project.photo,'',project.photoInfo.title) + `<small>${escape(project.name)}</small>` +
+        (c[5] === 2 ? 'Photo' : 'Fact from') + ': ???';
+      $('creator-detail').append(p);
+    }
+    $('creator-detail').querySelector('.hero-mail').src = ART[checked ? 'locked' : creatorEarned(c) ? 'open' : 'closed'];
+    $('mail-status').innerHTML = checked ? 'With no name, nobody knows who to thank.' :
+      creatorEarned(c) ? image('postcard','mini-post') + 'One thank-you received' : 'No thank-you yet';
+    const mail = $('corner').querySelector(`[data-creator="${state.creator}"] > img`);
+    if (mail && state.creator < 9) mail.src = ART[checked ? 'locked' : creatorEarned(c) ? 'open' : 'closed'];
+    const post = $('corner').querySelector(`[data-creator="${state.creator}"] .post-mark`);
+    if (post) post.hidden = checked;
+    const teamStatus = $('corner').querySelector(`[data-creator="${state.creator}"] .team-status`);
+    if (teamStatus) teamStatus.textContent = checked ? 'No credit: locked' :
+      creatorEarned(c) ? '✓ Thank-you received' : 'No thank-you yet';
+    hint(checked ? 'With no name, nobody knows who to thank. Tap No credit to restore the credit.' :
+      'Credit restored. Tap another mailbox or return to Build.');
+    if (checked) V.how('nocredit',{valid:() => state.noCredit});
+    Curio.tone(checked ? 220 : 600,.08,.03);
+  });
+  $('reset').onclick = () => {
+    if (state.trail) stopTrail();
+    V.hush();
+    $('reset-dialog').showModal();
+  };
+  $('reset-no').onclick = () => {$('reset-dialog').close(); $('reset').focus({preventScroll:true});};
+  $('reset-yes').onclick = () => {
+    V.hush();
+    state.cards = fresh();
+    state.postcards = [];
+    try {localStorage.removeItem('ccb-progress');} catch {}
+    $('reset-dialog').close();
+    state.project = 0;
+    state.piece = 0;
+    state.page = 0;
+    state.slot = 0;
+    setMode('build');
+    $('reset').focus({preventScroll:true});
+  };
+  Curio.init({clips:"voice:*",rate:.9});
+  showCard();
+  renderSource();
+  hint(L['w-build']);
+  window.__tool = {state,setMode,V,allLines:V.allLines,vlog:V.log,get vq() {return V.queue;},
+    evaluate,DATA,CREATORS,accessDate,chooseProject,choosePiece,fill,startTrail,stopTrail,save};
+})();
+</script>
+</body>
+</html>

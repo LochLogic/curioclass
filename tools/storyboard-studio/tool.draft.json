@@ -1,0 +1,25 @@
+{
+  "id": "storyboard-studio",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Place the camera. Make the cut. Keep your audience with you.",
+  "outcome": "Plan, refine and time a scene using shot scale, camera angle and continuity.",
+  "driver": "students",
+  "minutes": "25-45",
+  "modes": [
+    "Plan",
+    "Board",
+    "Animatic"
+  ],
+  "grades_label": "Grades 9-12",
+  "sources": [
+    "NCAS Media Arts MA:Cr1.1.HSI, MA:Cr2.1.HSI, MA:Cr3.1.HSI, MA:Re7.1.HSI",
+    "Bordwell, Thompson and Smith, Film Art: An Introduction, 12th ed. (2019), chapters 5 and 6",
+    "Steven D. Katz, Film Directing Shot by Shot (1991), continuity and planning chapters",
+    "Full-frame lens field of view: 2 atan(10.125 / focal length)",
+    "Scripts, blocking and sample boards written for Curio Class",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-01"
+}

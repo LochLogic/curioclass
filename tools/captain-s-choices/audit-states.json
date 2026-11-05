@@ -1,0 +1,805 @@
+{
+  "states": [
+    {
+      "name": "chapter-1-result",
+      "steps": [
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        }
+      ],
+      "keep": [
+        "#consequence",
+        "#next"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "talk-open",
+      "steps": [
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#talk"
+        }
+      ],
+      "keep": [
+        "#talk-body"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "spirit-1",
+      "steps": [
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#spirit-card",
+        "#next"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "granite-circle",
+      "steps": [
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#spirit-card",
+        "#next"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "chat",
+      "steps": [
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        ".chat",
+        "#choices"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "chapter-3-result",
+      "steps": [
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        }
+      ],
+      "keep": [
+        "#consequence",
+        "#next"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "chapter-4-result",
+      "steps": [
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        }
+      ],
+      "keep": [
+        "#consequence",
+        "#next"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "spirit-3",
+      "steps": [
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#spirit-card",
+        "#next"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "chapter-6-result",
+      "steps": [
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        }
+      ],
+      "keep": [
+        "#consequence",
+        "#next"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "spirit-5",
+      "steps": [
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#spirit-card",
+        "#next"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "season",
+      "steps": [
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#season-card",
+        "#again"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "history",
+      "steps": [
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#history"
+        }
+      ],
+      "keep": [
+        "#again",
+        "#history"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "board",
+      "steps": [
+        {
+          "click": "#team-board"
+        }
+      ],
+      "keep": [
+        "#board",
+        "#choices"
+      ]
+    },
+    {
+      "name": "chat-public-result",
+      "steps": [
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-1"
+        },
+        {
+          "click": "#choice-1"
+        }
+      ],
+      "keep": [
+        ".chat",
+        "#consequence",
+        "#next"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "chat-silent-result",
+      "steps": [
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-2"
+        },
+        {
+          "click": "#choice-2"
+        }
+      ],
+      "keep": [
+        ".chat",
+        "#consequence",
+        "#next"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "chapter-6-choices",
+      "steps": [
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#choices",
+        "#hint"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "choice-preview",
+      "steps": [
+        {
+          "click": "#choice-2"
+        }
+      ],
+      "keep": [
+        "#choices",
+        "#hint"
+      ],
+      "sizes": [
+        "680x425",
+        "375x812",
+        "1366x768"
+      ]
+    }
+  ]
+}

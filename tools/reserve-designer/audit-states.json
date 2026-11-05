@@ -1,0 +1,181 @@
+{
+  "target": 26,
+  "target_reason": "The spec explicitly permits map cells down to 26 px on phones. All ordinary controls remain at least 44 px.",
+  "keep": [],
+  "states": [
+    {
+      "name": "farm-menu",
+      "steps": [
+        {
+          "click": "#cell-50"
+        }
+      ],
+      "keep": [
+        "#cell-menu"
+      ]
+    },
+    {
+      "name": "crossing-menu",
+      "steps": [
+        {
+          "click": "#cell-39"
+        }
+      ],
+      "keep": [
+        "#cell-menu"
+      ]
+    },
+    {
+      "name": "needs",
+      "steps": [
+        {
+          "click": "#show-needs"
+        }
+      ],
+      "keep": [
+        "#need-species"
+      ]
+    },
+    {
+      "name": "stress-result",
+      "steps": [
+        {
+          "click": "#cell-4"
+        },
+        {
+          "click": "#cell-16"
+        },
+        {
+          "click": "#cell-15"
+        },
+        {
+          "click": "#m-stress"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "wait": 900
+        }
+      ],
+      "keep": [
+        "#map-board",
+        "#run",
+        "#back",
+        "#stress-summary"
+      ]
+    },
+    {
+      "name": "herd-one",
+      "steps": [
+        {
+          "click": "#m-groups"
+        },
+        {
+          "drag": "const r=document.getElementById('herd').getBoundingClientRect();return [[r.x+r.width/2,r.y+22],[r.x+8,r.y+22]];"
+        }
+      ],
+      "keep": [
+        "#herd",
+        "#chance",
+        "#alarm"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "herd-twenty",
+      "steps": [
+        {
+          "click": "#m-groups"
+        },
+        {
+          "drag": "const r=document.getElementById('herd').getBoundingClientRect();return [[r.x+r.width/2,r.y+22],[r.x+r.width-8,r.y+22]];"
+        }
+      ],
+      "keep": [
+        "#herd",
+        "#chance",
+        "#alarm"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "alarm",
+      "steps": [
+        {
+          "click": "#m-groups"
+        },
+        {
+          "click": "#alarm"
+        }
+      ],
+      "keep": [
+        "#herd",
+        "#alarm",
+        "#colony-state"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "revised-plan-unrun",
+      "steps": [
+        {
+          "click": "#cell-0"
+        },
+        {
+          "click": "#m-stress"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "wait": 400
+        },
+        {
+          "click": "#back"
+        },
+        {
+          "click": "#cell-0"
+        },
+        {
+          "click": "#m-stress"
+        }
+      ],
+      "keep": [
+        "#stress-summary",
+        "#back"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "dismiss-menu-on-river",
+      "steps": [
+        {
+          "click": "#cell-50"
+        },
+        {
+          "click": "#cell-6"
+        }
+      ],
+      "keep": [
+        "#hint"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "target": 60,
+  "keep": ["header"],
+  "states": [
+    {
+      "name": "goat-costumes",
+      "steps": [{"click": "#story-goats"}, {"click": "#next", "times": 4, "gap": 0.2}],
+      "keep": ["#beat-line", "#teacher-bar", "#sun-doll", "#moon-doll", "#hint"]
+    },
+    {
+      "name": "choose",
+      "steps": [{"click": "#story-goats"}, {"click": "#next", "times": 5, "gap": 0.2}],
+      "keep": ["#choices", "#teacher-bar", "#beat-line", "#hint"]
+    },
+    {
+      "name": "turnip-bear",
+      "steps": [{"click": "#story-turnip"}, {"click": "#next", "times": 7, "gap": 0.2}, {"click": "#choice-b"}],
+      "keep": ["#teacher-bar", "#beat-line", "#choices", "#hint"]
+    },
+    {
+      "name": "turnip-buried",
+      "steps": [{"click": "#story-turnip"}, {"click": "#next", "times": 2, "gap": 0.2}],
+      "keep": ["#teacher-bar", "#beat-line", "#turnip", "#hint"]
+    },
+    {
+      "name": "swap-and-freeze",
+      "steps": [{"click": "#story-goats"}, {"click": "#next", "times": 3, "gap": 0.2}, {"click": "#swap"}, {"click": "#freeze"}],
+      "keep": ["#teacher-bar", "#beat-line"]
+    },
+    {
+      "name": "gingerbread-fox",
+      "steps": [{"click": "#story-gingerbread"}, {"click": "#next", "times": 5, "gap": 0.2},
+        {"click": "#choice-b"}, {"click": "#next", "times": 3, "gap": 0.2}],
+      "keep": ["#teacher-bar", "#beat-line"]
+    },
+    {
+      "name": "turnip-pop",
+      "steps": [{"click": "#story-turnip"}, {"click": "#next", "times": 7, "gap": 0.2},
+        {"click": "#choice-b"}, {"click": "#next", "times": 2, "gap": 0.2}],
+      "keep": ["#teacher-bar", "#beat-line", "#turnip"]
+    },
+    {
+      "name": "curtain-call",
+      "steps": [{"click": "#story-turnip"}, {"click": "#next", "times": 7, "gap": 0.2},
+        {"click": "#choice-a"}, {"click": "#next", "times": 3, "gap": 0.2}],
+      "keep": ["#replay", "#end-home"]
+    },
+    {
+      "name": "trunk-dressed",
+      "steps": [{"click": "#m-trunk"}, {"click": "#wear-wizard-hat"}, {"click": "#surprise"}, {"click": "#ask"}],
+      "keep": ["#trunk-doll", "#trunk-hint", ".trunk-actions", "#sound-row"]
+    }
+  ]
+}

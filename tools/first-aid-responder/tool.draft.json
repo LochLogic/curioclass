@@ -1,0 +1,26 @@
+{
+  "id": "first-aid-responder",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Put emergency steps in order. Hold a steady hands-only CPR rate.",
+  "outcome": "Sequence six school emergency responses and practice the 100 to 120 per minute CPR rate.",
+  "driver": "students or teacher",
+  "minutes": "15-35",
+  "modes": [
+    "Scenes",
+    "CPR rhythm",
+    "Field guide"
+  ],
+  "grades_label": "Grades 9-12",
+  "updated": "2026-11-03",
+  "third_party": [],
+  "sources": [
+    "AHA 2025 Guidelines for CPR and ECC, Adult Basic Life Support",
+    "AHA and American Red Cross 2024 Guidelines for First Aid",
+    "American Red Cross: CPR Steps and Learn First Aid",
+    "CDC: Heat-Related Illnesses and First Aid for Seizures",
+    "NHES 2024, Standard 7 (SHAPE America)",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Retained school backdrops drawn with FLUX.1-schnell (Apache 2.0), edited for Curio Class"
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "keep": [
+    "#players",
+    "#bars"
+  ],
+  "states": [
+    {
+      "name": "after-take",
+      "steps": [
+        {
+          "click": "#play"
+        },
+        {
+          "until": "__tool.state.records.buns.heard",
+          "max": 20000
+        },
+        {
+          "click": "#criterion-0"
+        }
+      ],
+      "keep": [
+        "#give",
+        "#cards"
+      ],
+      "sizes": [
+        "680x425",
+        "800x500",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "all-note-cards",
+      "steps": [
+        {
+          "click": "#play"
+        },
+        {
+          "until": "__tool.state.records.buns.heard",
+          "max": 20000
+        }
+      ],
+      "keep": [
+        "#give",
+        "#cards",
+        "#checks"
+      ],
+      "sizes": [
+        "680x425",
+        "1000x625",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "eight-bar-notes-score",
+      "steps": [
+        {
+          "js": "document.getElementById('piece').value='lune';document.getElementById('piece').dispatchEvent(new Event('change'));"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "until": "__tool.state.records.lune.heard",
+          "max": 28000
+        },
+        {
+          "click": "#score-toggle"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#cards",
+        "#give",
+        "#score"
+      ],
+      "sizes": [
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "solo-loop-score",
+      "steps": [
+        {
+          "click": "#score-toggle"
+        },
+        {
+          "click": "#player-2"
+        },
+        {
+          "click": "#bar-2"
+        },
+        {
+          "wait": 500
+        }
+      ],
+      "keep": [
+        "#score",
+        "#players"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "concert-manners",
+      "steps": [
+        {
+          "click": "#m-concert"
+        },
+        {
+          "click": "#moment-2"
+        },
+        {
+          "click": "#choice-0"
+        }
+      ],
+      "keep": [
+        "#choices",
+        "#manners-progress"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "concert-join",
+      "steps": [
+        {
+          "click": "#m-concert"
+        },
+        {
+          "click": "#choice-1"
+        },
+        {
+          "click": "#moment-1"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "wait": 5100
+        },
+        {
+          "click": "#moment-2"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#moment-3"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#open-curtain"
+        },
+        {
+          "click": "#slower"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "wait": 3500
+        }
+      ],
+      "keep": [
+        "#staff",
+        "#fingering",
+        "#slower",
+        "#join-recorder",
+        "#join-sing",
+        "#join-clap"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "then-and-now",
+      "steps": [
+        {
+          "click": "#m-concert"
+        },
+        {
+          "click": "#c-compare"
+        },
+        {
+          "click": "#both"
+        },
+        {
+          "wait": 3000
+        }
+      ],
+      "keep": [
+        "#first",
+        "#final",
+        "#history"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

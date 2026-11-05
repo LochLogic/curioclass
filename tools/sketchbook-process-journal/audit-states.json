@@ -1,0 +1,466 @@
+{
+  "states": [
+    {
+      "name": "sample-plan",
+      "steps": [
+        {
+          "click": "#nextPage",
+          "times": 6,
+          "gap": 0.15
+        }
+      ],
+      "keep": [
+        "#book"
+      ]
+    },
+    {
+      "name": "node-card",
+      "steps": [
+        {
+          "click": "#seeMap"
+        },
+        {
+          "click": "#node-0"
+        }
+      ],
+      "keep": [
+        "#modalinner"
+      ]
+    },
+    {
+      "name": "thumbnails",
+      "steps": [
+        {
+          "click": "#m-mine"
+        },
+        {
+          "click": "#chooseIssue"
+        },
+        {
+          "click": "#nextPage"
+        },
+        {
+          "click": "#chooseTradition"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-thumbnails"
+        }
+      ],
+      "keep": [
+        ".drawtools"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "tagged-map",
+      "steps": [
+        {
+          "click": "#m-mine"
+        },
+        {
+          "click": "#chooseIssue"
+        },
+        {
+          "click": "#nextPage"
+        },
+        {
+          "click": "#chooseTradition"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-thumbnails"
+        },
+        {
+          "click": "#aspect-Subject"
+        },
+        {
+          "click": "#seeMap"
+        }
+      ],
+      "keep": [
+        ".mapbar"
+      ],
+      "sizes": [
+        "1000x625",
+        "1366x768",
+        "1920x1080"
+      ]
+    },
+    {
+      "name": "study",
+      "steps": [
+        {
+          "click": "#m-mine"
+        },
+        {
+          "click": "#chooseIssue"
+        },
+        {
+          "click": "#nextPage"
+        },
+        {
+          "click": "#chooseTradition"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-thumbnails"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-study"
+        }
+      ],
+      "keep": [
+        ".drawtools"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "plan-form",
+      "steps": [
+        {
+          "click": "#m-mine"
+        },
+        {
+          "click": "#chooseIssue"
+        },
+        {
+          "click": "#nextPage"
+        },
+        {
+          "click": "#chooseTradition"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-thumbnails"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-plan"
+        }
+      ],
+      "keep": [
+        ".drawtools"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "clear-confirm",
+      "steps": [
+        {
+          "click": "#m-mine"
+        },
+        {
+          "click": "#chooseIssue"
+        },
+        {
+          "click": "#nextPage"
+        },
+        {
+          "click": "#chooseTradition"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-thumbnails"
+        },
+        {
+          "click": "#clearBook"
+        }
+      ],
+      "keep": [
+        "#modalinner"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "compact-tagged-map",
+      "steps": [
+        {
+          "click": "#m-mine"
+        },
+        {
+          "click": "#chooseIssue"
+        },
+        {
+          "click": "#nextPage"
+        },
+        {
+          "click": "#chooseTradition"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-thumbnails"
+        },
+        {
+          "click": "#tagsToggle"
+        },
+        {
+          "click": "#aspect-Subject"
+        },
+        {
+          "click": "#seeMap"
+        }
+      ],
+      "keep": [
+        ".mapbar"
+      ],
+      "sizes": [
+        "680x425",
+        "760x900",
+        "375x812"
+      ]
+    },
+    {
+      "keep": [
+        ".drawtools"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-mine"
+        },
+        {
+          "click": "#chooseIssue"
+        },
+        {
+          "click": "#nextPage"
+        },
+        {
+          "click": "#chooseTradition"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-thumbnails"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-revision"
+        }
+      ],
+      "name": "revision-empty-reference"
+    },
+    {
+      "keep": [
+        ".mapbar"
+      ],
+      "sizes": [
+        "760x900",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-mine"
+        },
+        {
+          "click": "#chooseIssue"
+        },
+        {
+          "click": "#nextPage"
+        },
+        {
+          "click": "#chooseTradition"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-thumbnails"
+        },
+        {
+          "click": "#tagsToggle"
+        },
+        {
+          "click": "#aspect-Subject"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-study"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-study"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-study"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-study"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-study"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-study"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-study"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-study"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-study"
+        },
+        {
+          "click": "#seeMap"
+        }
+      ],
+      "name": "twelve-page-map"
+    },
+    {
+      "sizes": [
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#m-mine"
+        },
+        {
+          "click": "#chooseIssue"
+        },
+        {
+          "click": "#nextPage"
+        },
+        {
+          "click": "#chooseTradition"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-thumbnails"
+        },
+        {
+          "click": "#aspect-Subject"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-study"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-study"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-study"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-study"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-study"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-study"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-study"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-study"
+        },
+        {
+          "click": "#addPage"
+        },
+        {
+          "click": "#add-study"
+        },
+        {
+          "click": "#seeMap"
+        }
+      ],
+      "name": "twelve-page-map-wide",
+      "keep": [
+        ".mapbar"
+      ]
+    }
+  ]
+}

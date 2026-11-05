@@ -1,0 +1,18 @@
+{
+  "id": "weekend-drawing-share",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Draw a real day, then watch your picture grow as you tell its story.",
+  "outcome": "Make art about a personal experience, add details, and explain choices with art words",
+  "driver": "teacher",
+  "minutes": "15-25",
+  "modes": ["Draw", "Tell it"],
+  "grades_label": "Grades K-2",
+  "sources": [
+    "National Core Arts Standards, Visual Arts K-2: VA:Cr3 and VA:Cn10, https://www.nationalartsstandards.org",
+    "Getty Museum, Understanding Formal Analysis, https://www.getty.edu/education/teachers/building_lessons/formal_analysis.html",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-01"
+}

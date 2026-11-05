@@ -1,35 +1,242 @@
 {
-  "house_style": "Natural, true-to-life nature photograph for an elementary library lesson, soft light, gentle colors. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "house_style": "Warm storybook gouache and colored-pencil painting on cream and kraft tones, rich tactile materials, directional soft light, carefully shaded dimensional objects. Blank surfaces. No text, letters, numbers, logos, people, faces, hands or body parts.",
   "assets": [
     {
       "name": "cc-snowy-owl",
-      "prompt": "A snowy owl perched on a fence post in fresh snow at dawn, soft pink sky.",
+      "prompt": "Real nature photograph, realistic anatomy and lighting. A snowy owl perched on a fence post in fresh snow at dawn, soft pink sky.",
       "aspect": "4:3",
-      "cutout": false,
-      "width": 800,
+      "width": 680,
       "quality": 76,
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "cutout": false,
+      "drawn_by": "codex",
+      "people": false
     },
     {
       "name": "cc-honeybee-sunflower",
-      "prompt": "A honeybee on the center of a bright sunflower, close-up, a green garden blurred behind.",
+      "prompt": "Real nature photograph, realistic anatomy and lighting. A honeybee on the center of a bright sunflower, close-up, green garden blurred behind.",
       "aspect": "4:3",
-      "cutout": false,
-      "width": 800,
+      "width": 680,
       "quality": 76,
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "cutout": false,
+      "drawn_by": "codex",
+      "people": false
     },
     {
       "name": "cc-moon-lake",
-      "prompt": "A full moon rising over a still lake with dark pine trees on the far shore, its reflection on the water, night.",
+      "prompt": "Real nature photograph, realistic anatomy and lighting. A full moon rising over a still lake, dark pine trees on far shore, reflection on the water.",
       "aspect": "4:3",
-      "cutout": false,
-      "width": 800,
+      "width": 680,
       "quality": 76,
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "cutout": false,
+      "drawn_by": "codex",
+      "people": false
+    },
+    {
+      "name": "cc-cover-owls",
+      "prompt": "Children's picture book cover illustration of a barn owl gliding over a moonlit meadow, a wide plain cream band across the top third for a title.",
+      "aspect": "3:4",
+      "width": 600,
+      "quality": 76,
+      "cutout": false,
+      "drawn_by": "codex",
+      "people": false
+    },
+    {
+      "name": "cc-cover-hive",
+      "prompt": "Children's picture book cover illustration of a wooden beehive in a flower garden with bees around it, a wide plain cream band across the top third for a title.",
+      "aspect": "3:4",
+      "width": 600,
+      "quality": 76,
+      "cutout": false,
+      "drawn_by": "codex",
+      "people": false
+    },
+    {
+      "name": "cc-cover-moon",
+      "prompt": "Children's picture book cover illustration of a big full moon over rolling hills and a sleeping town, a wide plain cream band across the top third for a title.",
+      "aspect": "3:4",
+      "width": 600,
+      "quality": 76,
+      "cutout": false,
+      "drawn_by": "codex",
+      "people": false
+    },
+    {
+      "name": "cc-book-red",
+      "prompt": "Single hardcover picture book standing upright face out, cherry red cloth, large blank cream label in the middle, soft library light. Isolated whole object centered on perfectly flat pure green (#00FF00), no cast shadow.",
+      "aspect": "3:4",
+      "width": 210,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "people": false
+    },
+    {
+      "name": "cc-book-navy",
+      "prompt": "Single hardcover picture book standing upright face out, navy blue cloth, large blank cream label in the middle, soft library light. Isolated whole object centered on perfectly flat pure green (#00FF00), no cast shadow.",
+      "aspect": "3:4",
+      "width": 210,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "people": false
+    },
+    {
+      "name": "cc-book-green",
+      "prompt": "Single hardcover picture book standing upright face out, leaf green cloth, large blank cream label in the middle, soft library light. Isolated whole object centered on perfectly flat pure green (#00FF00), no cast shadow.",
+      "aspect": "3:4",
+      "width": 210,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "people": false
+    },
+    {
+      "name": "cc-book-mustard",
+      "prompt": "Single hardcover picture book standing upright face out, mustard yellow cloth, large blank cream label in the middle, soft library light. Isolated whole object centered on perfectly flat pure green (#00FF00), no cast shadow.",
+      "aspect": "3:4",
+      "width": 210,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "people": false
+    },
+    {
+      "name": "cc-book-plum",
+      "prompt": "Single hardcover picture book standing upright face out, plum cloth, large blank cream label in the middle, soft library light. Isolated whole object centered on perfectly flat pure green (#00FF00), no cast shadow.",
+      "aspect": "3:4",
+      "width": 210,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "people": false
+    },
+    {
+      "name": "cc-shelf",
+      "prompt": "Long wooden library shelf straight on at eye level, one empty shelf board across the lower middle, more books blurred above and below, warm library light.",
+      "aspect": "16:9",
+      "width": 1100,
+      "quality": 76,
+      "cutout": false,
+      "drawn_by": "codex",
+      "people": false
+    },
+    {
+      "name": "cc-reader-fly",
+      "prompt": "Folded paper airplane made from a blank lined index card, carrying a small brass magnifying glass, flying to the right. Isolated whole object centered on perfectly flat pure green (#00FF00), no cast shadow.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "people": false
+    },
+    {
+      "name": "cc-reader-stuck",
+      "prompt": "Folded cream index-card paper airplane with blue and red ruling, a sharply crumpled nose planted at bottom left, tail and triangular wings tilt upward to upper right. Small brass magnifying glass slipped off beside it at lower right. Rich tactile folds and shaded creases, warm light from upper left, clean whole object with breathing room on perfectly flat pure green (#00FF00), no cast shadow. No people, faces, body parts, writing, letters, numbers or logos.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "people": false,
+      "revision": "Cold review redraw with built-in OpenAI imagegen, referencing the flying plane and original stuck pose. Clearer crushed nose and richer folded-paper shading."
+    },
+    {
+      "name": "cc-postcard",
+      "prompt": "Blank cream postcard with a plain stamp square in top corner, slightly tilted. Isolated whole object centered on perfectly flat pure green (#00FF00), no cast shadow.",
+      "aspect": "4:3",
+      "width": 220,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "people": false
+    },
+    {
+      "name": "cc-mailbox-closed",
+      "prompt": "Red-roofed wooden post mailbox on a short post, door closed with the flag down, blank front plate. Isolated whole object centered on perfectly flat pure green (#00FF00), no cast shadow.",
+      "aspect": "3:4",
+      "width": 280,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "people": false
+    },
+    {
+      "name": "cc-mailbox-open",
+      "prompt": "Red-roofed wooden post mailbox on a short post, door open with the flag up, blank front plate. Isolated whole object centered on perfectly flat pure green (#00FF00), no cast shadow.",
+      "aspect": "3:4",
+      "width": 280,
+      "quality": 76,
+      "cutout": false,
+      "drawn_by": "codex",
+      "people": false,
+      "native_alpha": true,
+      "ref": "cc-mailbox-closed",
+      "revision": "Edited the original closed mailbox to preserve its cream walls, curved red roof, metal trim, nameplate and wooden post. Native transparency retained during rekey sizing."
+    },
+    {
+      "name": "cc-mailbox-locked",
+      "prompt": "Red-roofed wooden post mailbox on a short post, door closed with a small brass padlock, blank front plate. Isolated whole object centered on perfectly flat pure green (#00FF00), no cast shadow.",
+      "aspect": "3:4",
+      "width": 280,
+      "quality": 76,
+      "cutout": false,
+      "drawn_by": "codex",
+      "people": false,
+      "native_alpha": true,
+      "ref": "cc-mailbox-closed",
+      "revision": "Edited the original closed mailbox to preserve its cream walls, curved red roof, metal trim, nameplate and wooden post. Native transparency retained during rekey sizing."
+    },
+    {
+      "name": "cc-tool-pen",
+      "prompt": "A single fountain pen. Isolated whole object centered on perfectly flat pure green (#00FF00), no cast shadow.",
+      "aspect": "1:1",
+      "width": 150,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "people": false
+    },
+    {
+      "name": "cc-tool-brush",
+      "prompt": "A single paintbrush with a wet blue tip. Isolated whole object centered on perfectly flat pure green (#00FF00), no cast shadow.",
+      "aspect": "1:1",
+      "width": 150,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "people": false
+    },
+    {
+      "name": "cc-tool-laptop",
+      "prompt": "A single small open laptop with a blank screen. Isolated whole object centered on perfectly flat pure green (#00FF00), no cast shadow.",
+      "aspect": "1:1",
+      "width": 150,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "people": false
+    },
+    {
+      "name": "cc-tool-camera",
+      "prompt": "A single vintage camera. Isolated whole object centered on perfectly flat pure green (#00FF00), no cast shadow.",
+      "aspect": "1:1",
+      "width": 150,
+      "quality": 76,
+      "cutout": true,
+      "drawn_by": "codex",
+      "people": false
+    },
+    {
+      "name": "cc-street",
+      "prompt": "Quiet small-town sidewalk on sunny morning, low hedge and leafy trees behind, long open strip of pavement along bottom third.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 76,
+      "cutout": false,
+      "drawn_by": "codex",
+      "people": false
     }
   ]
 }

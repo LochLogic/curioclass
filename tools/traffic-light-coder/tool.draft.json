@@ -1,0 +1,23 @@
+{
+  "id": "traffic-light-coder",
+  "status": "beta",
+  "stage": "built",
+  "hook": "A little code. A whole street.",
+  "outcome": "Write, test and debug first-match if-then rules for a crossing.",
+  "driver": "students or teacher",
+  "minutes": "20-30",
+  "modes": [
+    "Watch the Street",
+    "Street Jobs"
+  ],
+  "grades_label": "Grade 3",
+  "sources": [
+    "MUTCD 2009 Sections 4D.26, 4E.06, 4E.08 and 4D.27",
+    "CSTA K-12 Computer Science Standards 2017, 1B-AP-10, 1B-AP-11, 1B-AP-15",
+    "Code.org CS Fundamentals glossary: conditional, event",
+    "Street scripts, driver model and fairness limits are original classroom model choices",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-03"
+}

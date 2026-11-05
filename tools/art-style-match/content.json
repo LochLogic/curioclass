@@ -1,0 +1,766 @@
+{
+  "tells": [
+    {
+      "id": "gold",
+      "name": "Gold",
+      "iconText": "a gold leaf",
+      "line": "Real gold you can see shining in the picture."
+    },
+    {
+      "id": "tiny",
+      "name": "Tiny details",
+      "iconText": "a magnifier",
+      "line": "Small patterns everywhere: on tiles, plants and clothes."
+    },
+    {
+      "id": "flat",
+      "name": "Flat color",
+      "iconText": "a filled square",
+      "line": "Areas of one color with no shading."
+    },
+    {
+      "id": "outline",
+      "name": "Bold outlines",
+      "iconText": "a drawn circle",
+      "line": "Dark lines around the shapes."
+    },
+    {
+      "id": "smooth",
+      "name": "Smooth blending",
+      "iconText": "a soft gradient",
+      "line": "You can't see any brushstrokes."
+    },
+    {
+      "id": "shadow",
+      "name": "Light and shadow",
+      "iconText": "a half-lit ball",
+      "line": "Strong light from one side and deep dark shadows."
+    },
+    {
+      "id": "dabs",
+      "name": "Quick dabs",
+      "iconText": "three short strokes",
+      "line": "Short, loose brushstrokes you can see."
+    },
+    {
+      "id": "outdoor",
+      "name": "Outdoor light",
+      "iconText": "a sun",
+      "line": "Sunlight, sky and bright colors outside."
+    },
+    {
+      "id": "dots",
+      "name": "Dots",
+      "iconText": "a cluster of dots",
+      "line": "Tiny dots of color, side by side."
+    },
+    {
+      "id": "thick",
+      "name": "Thick wavy paint",
+      "iconText": "a wave",
+      "line": "Thick paint laid on in curving strokes."
+    }
+  ],
+  "styles": [
+    {
+      "id": 0,
+      "name": "Persian book painting",
+      "years": "1500s",
+      "recipe": [
+        "gold",
+        "tiny",
+        "flat"
+      ],
+      "back": "Painted for handmade books of poems and stories in Iran."
+    },
+    {
+      "id": 1,
+      "name": "Dutch Golden Age",
+      "years": "1600s",
+      "recipe": [
+        "smooth",
+        "shadow"
+      ],
+      "back": "Painted in the Netherlands to look almost real."
+    },
+    {
+      "id": 2,
+      "name": "Japanese woodblock prints",
+      "years": "1700s to 1800s",
+      "recipe": [
+        "flat",
+        "outline"
+      ],
+      "back": "Carved on wood blocks and printed in many copies in Japan."
+    },
+    {
+      "id": 3,
+      "name": "Impressionism",
+      "years": "1870s to 1900s",
+      "recipe": [
+        "dabs",
+        "outdoor"
+      ],
+      "back": "Painted quickly to catch light and moments, often outside."
+    },
+    {
+      "id": 4,
+      "name": "Pointillism",
+      "years": "1880s to 1890s",
+      "recipe": [
+        "dots",
+        "outdoor"
+      ],
+      "back": "Painted with tiny dots that mix in your eye."
+    },
+    {
+      "id": 5,
+      "name": "Post-Impressionism: Vincent van Gogh",
+      "years": "late 1880s",
+      "recipe": [
+        "thick",
+        "outline"
+      ],
+      "back": "Thick paint and strong lines to show feeling."
+    }
+  ],
+  "works": [
+    {
+      "id": "sada",
+      "img": "art:pd-met-452111",
+      "title": "The Feast of Sada (Shahnama of Shah Tahmasp, folio 22v)",
+      "artist": "Sultan Muhammad",
+      "attribution": "attributed to Sultan Muhammad",
+      "date": "about 1525",
+      "made": "opaque watercolor, ink, silver and gold on paper",
+      "museum": "The Metropolitan Museum of Art",
+      "museumId": "452111",
+      "url": "https://www.metmuseum.org/art/collection/search/452111",
+      "credit": "Gift of Arthur A. Houghton Jr., 1970",
+      "kind": "flat",
+      "alt": "The Feast of Sada (Shahnama of Shah Tahmasp, folio 22v)",
+      "style": 0,
+      "tells": [
+        "gold",
+        "tiny",
+        "flat"
+      ],
+      "spots": [
+        {
+          "x": 0.79,
+          "y": 0.31,
+          "key": "gold",
+          "label": "Gold"
+        },
+        {
+          "x": 0.27,
+          "y": 0.28,
+          "key": "tiny",
+          "label": "Tiny details"
+        },
+        {
+          "x": 0.4,
+          "y": 0.6,
+          "key": "flat",
+          "label": "Flat color"
+        }
+      ],
+      "line": "Made for a Shah's copy of the Book of Kings, a long poem of Iran's legends."
+    },
+    {
+      "id": "khosrow",
+      "img": "art:pd-aic-93923",
+      "title": "Kay Khosrow Crosses the Sea of Zareh",
+      "artist": "Unknown Persian painters",
+      "attribution": "artist unknown (Iran)",
+      "date": "about 1550",
+      "made": "watercolor and ink on paper",
+      "museum": "Art Institute of Chicago",
+      "museumId": "93923",
+      "url": "https://www.artic.edu/artworks/93923",
+      "credit": "Ann McNear Collection",
+      "kind": "flat",
+      "alt": "Kay Khosrow Crosses the Sea of Zareh",
+      "style": 0,
+      "tells": [
+        "tiny",
+        "flat"
+      ],
+      "spots": [
+        {
+          "x": 0.28,
+          "y": 0.48,
+          "key": "tiny",
+          "label": "Tiny details"
+        },
+        {
+          "x": 0.72,
+          "y": 0.52,
+          "key": "flat",
+          "label": "Flat color"
+        }
+      ],
+      "line": "A king and his army cross a sea in a story from the Book of Kings."
+    },
+    {
+      "id": "zal",
+      "img": "art:pd-aic-120662",
+      "title": "Zal Climbing to Rudaba",
+      "artist": "Unknown Persian painters",
+      "attribution": "artist unknown (Shiraz, Iran)",
+      "date": "1580 to 1590",
+      "made": "opaque watercolor and gold on paper",
+      "museum": "Art Institute of Chicago",
+      "museumId": "120662",
+      "url": "https://www.artic.edu/artworks/120662",
+      "credit": "Ann McNear Collection",
+      "kind": "flat",
+      "alt": "Zal Climbing to Rudaba",
+      "style": 0,
+      "tells": [
+        "gold",
+        "tiny",
+        "flat"
+      ],
+      "spots": [
+        {
+          "x": 0.24,
+          "y": 0.21,
+          "key": "gold",
+          "label": "Gold"
+        },
+        {
+          "x": 0.72,
+          "y": 0.7,
+          "key": "tiny",
+          "label": "Tiny details"
+        },
+        {
+          "x": 0.7,
+          "y": 0.4,
+          "key": "flat",
+          "label": "Flat color"
+        }
+      ],
+      "line": "In this story, Zal climbs up a rope to visit Rudaba."
+    },
+    {
+      "id": "pitcher",
+      "img": "art:pd-met-437881",
+      "title": "Young Woman with a Water Pitcher",
+      "artist": "Johannes Vermeer",
+      "attribution": "Johannes Vermeer",
+      "date": "about 1662",
+      "made": "oil on canvas",
+      "museum": "The Metropolitan Museum of Art",
+      "museumId": "437881",
+      "url": "https://www.metmuseum.org/art/collection/search/437881",
+      "credit": "Marquand Collection, Gift of Henry G. Marquand, 1889",
+      "kind": "flat",
+      "alt": "Young Woman with a Water Pitcher",
+      "style": 1,
+      "tells": [
+        "smooth",
+        "shadow"
+      ],
+      "spots": [
+        {
+          "x": 0.46,
+          "y": 0.38,
+          "key": "smooth",
+          "label": "Smooth blending"
+        },
+        {
+          "x": 0.53,
+          "y": 0.65,
+          "key": "shadow",
+          "label": "Light and shadow"
+        }
+      ],
+      "line": "Vermeer painted the soft light from a window again and again."
+    },
+    {
+      "id": "oysters",
+      "img": "art:pd-met-438376",
+      "title": "Still Life with Oysters, a Silver Tazza, and Glassware",
+      "artist": "Willem Claesz Heda",
+      "attribution": "Willem Claesz Heda",
+      "date": "1635",
+      "made": "oil on wood",
+      "museum": "The Metropolitan Museum of Art",
+      "museumId": "438376",
+      "url": "https://www.metmuseum.org/art/collection/search/438376",
+      "credit": "From the Collection of Rita and Frits Markus, Bequest of Rita Markus, 2005",
+      "kind": "flat",
+      "alt": "Still Life with Oysters, a Silver Tazza, and Glassware",
+      "style": 1,
+      "tells": [
+        "smooth",
+        "shadow"
+      ],
+      "spots": [
+        {
+          "x": 0.39,
+          "y": 0.58,
+          "key": "smooth",
+          "label": "Smooth blending"
+        },
+        {
+          "x": 0.7,
+          "y": 0.6,
+          "key": "shadow",
+          "label": "Light and shadow"
+        }
+      ],
+      "line": "Heda painted shiny metal and glass so they look real enough to touch."
+    },
+    {
+      "id": "margaretha",
+      "img": "art:pd-met-459084",
+      "title": "Margaretha van Haexbergen",
+      "artist": "Gerard ter Borch",
+      "attribution": "Gerard ter Borch the Younger",
+      "date": "about 1666 to 1667",
+      "made": "oil on canvas",
+      "museum": "The Metropolitan Museum of Art",
+      "museumId": "459084",
+      "url": "https://www.metmuseum.org/art/collection/search/459084",
+      "credit": "Robert Lehman Collection, 1975",
+      "kind": "flat",
+      "alt": "Margaretha van Haexbergen",
+      "style": 1,
+      "tells": [
+        "smooth",
+        "shadow"
+      ],
+      "spots": [
+        {
+          "x": 0.6,
+          "y": 0.32,
+          "key": "smooth",
+          "label": "Smooth blending"
+        },
+        {
+          "x": 0.69,
+          "y": 0.64,
+          "key": "shadow",
+          "label": "Light and shadow"
+        }
+      ],
+      "line": "Ter Borch painted fine clothes in careful detail."
+    },
+    {
+      "id": "redfuji",
+      "img": "art:pd-met-36490",
+      "title": "South Wind, Clear Sky (Red Fuji)",
+      "artist": "Katsushika Hokusai",
+      "attribution": "Katsushika Hokusai",
+      "date": "about 1830 to 1832",
+      "made": "woodblock print",
+      "museum": "The Metropolitan Museum of Art",
+      "museumId": "36490",
+      "url": "https://www.metmuseum.org/art/collection/search/36490",
+      "credit": "Rogers Fund, 1914",
+      "kind": "flat",
+      "alt": "South Wind, Clear Sky (Red Fuji)",
+      "style": 2,
+      "tells": [
+        "flat",
+        "outline"
+      ],
+      "spots": [
+        {
+          "x": 0.6,
+          "y": 0.54,
+          "key": "flat",
+          "label": "Flat color"
+        },
+        {
+          "x": 0.75,
+          "y": 0.18,
+          "key": "outline",
+          "label": "Bold outlines"
+        }
+      ],
+      "line": "Fuji turns red in the early morning light in late summer and autumn."
+    },
+    {
+      "id": "shower",
+      "img": "art:pd-met-55433",
+      "title": "Sudden Shower over Shin-Ohashi Bridge and Atake",
+      "artist": "Utagawa Hiroshige",
+      "attribution": "Utagawa Hiroshige",
+      "date": "1857",
+      "made": "woodblock print",
+      "museum": "The Metropolitan Museum of Art",
+      "museumId": "55433",
+      "url": "https://www.metmuseum.org/art/collection/search/55433",
+      "credit": "The Howard Mansfield Collection, Purchase, Rogers Fund, 1936",
+      "kind": "flat",
+      "alt": "Sudden Shower over Shin-Ohashi Bridge and Atake",
+      "style": 2,
+      "tells": [
+        "flat",
+        "outline"
+      ],
+      "spots": [
+        {
+          "x": 0.72,
+          "y": 0.38,
+          "key": "flat",
+          "label": "Flat color"
+        },
+        {
+          "x": 0.5,
+          "y": 0.67,
+          "key": "outline",
+          "label": "Bold outlines"
+        }
+      ],
+      "line": "Van Gogh liked this print so much he painted his own copy of it."
+    },
+    {
+      "id": "mimeguri",
+      "img": "art:pd-aic-22719",
+      "title": "Sudden Shower at Mimeguri Shrine (left sheet of three)",
+      "artist": "Torii Kiyonaga",
+      "attribution": "Torii Kiyonaga",
+      "date": "about 1787",
+      "made": "woodblock print",
+      "museum": "Art Institute of Chicago",
+      "museumId": "22719",
+      "url": "https://www.artic.edu/artworks/22719",
+      "credit": "Clarence Buckingham Collection",
+      "kind": "flat",
+      "alt": "Sudden Shower at Mimeguri Shrine (left sheet of three)",
+      "style": 2,
+      "tells": [
+        "flat",
+        "outline"
+      ],
+      "spots": [
+        {
+          "x": 0.54,
+          "y": 0.72,
+          "key": "flat",
+          "label": "Flat color"
+        },
+        {
+          "x": 0.47,
+          "y": 0.42,
+          "key": "outline",
+          "label": "Bold outlines"
+        }
+      ],
+      "line": "This is one sheet of three that fit together into one wide picture."
+    },
+    {
+      "id": "lilies",
+      "img": "art:pd-aic-16568",
+      "title": "Water Lilies",
+      "artist": "Claude Monet",
+      "attribution": "Claude Monet",
+      "date": "1906",
+      "made": "oil on canvas",
+      "museum": "Art Institute of Chicago",
+      "museumId": "16568",
+      "url": "https://www.artic.edu/artworks/16568",
+      "credit": "Mr. and Mrs. Martin A. Ryerson Collection",
+      "kind": "flat",
+      "alt": "Water Lilies",
+      "style": 3,
+      "tells": [
+        "dabs",
+        "outdoor"
+      ],
+      "spots": [
+        {
+          "x": 0.3,
+          "y": 0.7,
+          "key": "dabs",
+          "label": "Quick dabs"
+        },
+        {
+          "x": 0.62,
+          "y": 0.3,
+          "key": "outdoor",
+          "label": "Outdoor light"
+        }
+      ],
+      "line": "Monet painted the water lilies in his own garden pond many times."
+    },
+    {
+      "id": "garden",
+      "img": "art:pd-aic-153798",
+      "title": "Woman in a Garden",
+      "artist": "Berthe Morisot",
+      "attribution": "Berthe Morisot",
+      "date": "1882 to 1883",
+      "made": "oil on canvas",
+      "museum": "Art Institute of Chicago",
+      "museumId": "153798",
+      "url": "https://www.artic.edu/artworks/153798",
+      "credit": "A Millennium Gift of Sara Lee Corporation",
+      "kind": "flat",
+      "alt": "Woman in a Garden",
+      "style": 3,
+      "tells": [
+        "dabs",
+        "outdoor"
+      ],
+      "spots": [
+        {
+          "x": 0.3,
+          "y": 0.21,
+          "key": "dabs",
+          "label": "Quick dabs"
+        },
+        {
+          "x": 0.73,
+          "y": 0.4,
+          "key": "outdoor",
+          "label": "Outdoor light"
+        }
+      ],
+      "line": "Morisot showed her paintings at the very first Impressionist show in 1874."
+    },
+    {
+      "id": "havre",
+      "img": "art:pd-aic-81551",
+      "title": "The Place du Havre, Paris",
+      "artist": "Camille Pissarro",
+      "attribution": "Camille Pissarro",
+      "date": "1893",
+      "made": "oil on canvas",
+      "museum": "Art Institute of Chicago",
+      "museumId": "81551",
+      "url": "https://www.artic.edu/artworks/81551",
+      "credit": "Potter Palmer Collection",
+      "kind": "flat",
+      "alt": "The Place du Havre, Paris",
+      "style": 3,
+      "tells": [
+        "dabs",
+        "outdoor"
+      ],
+      "spots": [
+        {
+          "x": 0.52,
+          "y": 0.23,
+          "key": "dabs",
+          "label": "Quick dabs"
+        },
+        {
+          "x": 0.35,
+          "y": 0.65,
+          "key": "outdoor",
+          "label": "Outdoor light"
+        }
+      ],
+      "line": "Pissarro painted many views of busy Paris streets."
+    },
+    {
+      "id": "jatte",
+      "img": "art:pd-aic-27992",
+      "title": "A Sunday on La Grande Jatte, 1884",
+      "artist": "Georges Seurat",
+      "attribution": "Georges Seurat",
+      "date": "1884 to 1886",
+      "made": "oil on canvas",
+      "museum": "Art Institute of Chicago",
+      "museumId": "27992",
+      "url": "https://www.artic.edu/artworks/27992",
+      "credit": "Helen Birch Bartlett Memorial Collection",
+      "kind": "flat",
+      "alt": "A Sunday on La Grande Jatte, 1884",
+      "style": 4,
+      "tells": [
+        "dots",
+        "outdoor"
+      ],
+      "spots": [
+        {
+          "x": 0.52,
+          "y": 0.28,
+          "key": "dots",
+          "label": "Dots"
+        },
+        {
+          "x": 0.48,
+          "y": 0.63,
+          "key": "outdoor",
+          "label": "Outdoor light"
+        }
+      ],
+      "line": "Seurat worked on this painting for about two years."
+    },
+    {
+      "id": "andelys",
+      "img": "art:pd-aic-122130",
+      "title": "Les Andelys, Cote d'Aval",
+      "artist": "Paul Signac",
+      "attribution": "Paul Signac",
+      "date": "1886",
+      "made": "oil on canvas",
+      "museum": "Art Institute of Chicago",
+      "museumId": "122130",
+      "url": "https://www.artic.edu/artworks/122130",
+      "credit": "Through prior gift of William Wood Prince",
+      "kind": "flat",
+      "alt": "Les Andelys, Cote d'Aval",
+      "style": 4,
+      "tells": [
+        "dots",
+        "outdoor"
+      ],
+      "spots": [
+        {
+          "x": 0.49,
+          "y": 0.64,
+          "key": "dots",
+          "label": "Dots"
+        },
+        {
+          "x": 0.54,
+          "y": 0.26,
+          "key": "outdoor",
+          "label": "Outdoor light"
+        }
+      ],
+      "line": "Signac painted this river town in France."
+    },
+    {
+      "id": "pines",
+      "img": "art:pd-met-459095",
+      "title": "Pines Along the Shore",
+      "artist": "Henri-Edmond Cross",
+      "attribution": "Henri-Edmond Cross",
+      "date": "1896",
+      "made": "oil on canvas",
+      "museum": "The Metropolitan Museum of Art",
+      "museumId": "459095",
+      "url": "https://www.metmuseum.org/art/collection/search/459095",
+      "credit": "Robert Lehman Collection, 1975",
+      "kind": "flat",
+      "alt": "Pines Along the Shore",
+      "style": 4,
+      "tells": [
+        "dots",
+        "outdoor"
+      ],
+      "spots": [
+        {
+          "x": 0.26,
+          "y": 0.32,
+          "key": "dots",
+          "label": "Dots"
+        },
+        {
+          "x": 0.67,
+          "y": 0.65,
+          "key": "outdoor",
+          "label": "Outdoor light"
+        }
+      ],
+      "line": "Cross used dots bigger than Seurat's, like little tiles."
+    },
+    {
+      "id": "bedroom",
+      "img": "art:pd-aic-28560",
+      "title": "The Bedroom",
+      "artist": "Vincent van Gogh",
+      "attribution": "Vincent van Gogh",
+      "date": "1889",
+      "made": "oil on canvas",
+      "museum": "Art Institute of Chicago",
+      "museumId": "28560",
+      "url": "https://www.artic.edu/artworks/28560",
+      "credit": "Helen Birch Bartlett Memorial Collection",
+      "kind": "flat",
+      "alt": "The Bedroom",
+      "style": 5,
+      "tells": [
+        "thick",
+        "outline"
+      ],
+      "spots": [
+        {
+          "x": 0.49,
+          "y": 0.8,
+          "key": "thick",
+          "label": "Thick wavy paint"
+        },
+        {
+          "x": 0.91,
+          "y": 0.58,
+          "key": "outline",
+          "label": "Bold outlines"
+        }
+      ],
+      "line": "Van Gogh painted his own bedroom in Arles, France."
+    },
+    {
+      "id": "irises",
+      "img": "art:pd-met-436528",
+      "title": "Irises",
+      "artist": "Vincent van Gogh",
+      "attribution": "Vincent van Gogh",
+      "date": "1890",
+      "made": "oil on canvas",
+      "museum": "The Metropolitan Museum of Art",
+      "museumId": "436528",
+      "url": "https://www.metmuseum.org/art/collection/search/436528",
+      "credit": "Gift of Adele R. Levy, 1958",
+      "kind": "flat",
+      "alt": "Irises",
+      "style": 5,
+      "tells": [
+        "thick",
+        "outline"
+      ],
+      "spots": [
+        {
+          "x": 0.26,
+          "y": 0.28,
+          "key": "thick",
+          "label": "Thick wavy paint"
+        },
+        {
+          "x": 0.62,
+          "y": 0.67,
+          "key": "outline",
+          "label": "Bold outlines"
+        }
+      ],
+      "line": "Van Gogh painted these irises in his last year."
+    },
+    {
+      "id": "selfie",
+      "img": "art:pd-aic-80607",
+      "title": "Self-Portrait",
+      "artist": "Vincent van Gogh",
+      "attribution": "Vincent van Gogh",
+      "date": "1887",
+      "made": "oil on board",
+      "museum": "Art Institute of Chicago",
+      "museumId": "80607",
+      "url": "https://www.artic.edu/artworks/80607",
+      "credit": "Joseph Winterbotham Collection",
+      "kind": "flat",
+      "alt": "Self-Portrait",
+      "style": 5,
+      "tells": [
+        "thick"
+      ],
+      "spots": [
+        {
+          "x": 0.64,
+          "y": 0.26,
+          "key": "thick",
+          "label": "Thick wavy paint"
+        }
+      ],
+      "line": "Van Gogh painted many pictures of himself because models cost money."
+    }
+  ]
+}

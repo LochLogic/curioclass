@@ -1,0 +1,462 @@
+{
+  "states": [
+    {
+      "name": "work-fears",
+      "steps": [
+        {
+          "click": "#card-W3"
+        }
+      ],
+      "keep": [
+        "#detail"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "show-choose",
+      "steps": [
+        {
+          "click": "#m-shows"
+        }
+      ],
+      "keep": [
+        "#primary",
+        "#crate"
+      ]
+    },
+    {
+      "name": "show-place",
+      "steps": [
+        {
+          "click": "#m-shows"
+        },
+        {
+          "click": "#card-W1"
+        },
+        {
+          "click": "#card-W2"
+        },
+        {
+          "click": "#card-W3"
+        },
+        {
+          "click": "#card-W4"
+        },
+        {
+          "click": "#card-W6"
+        },
+        {
+          "click": "#card-W8"
+        },
+        {
+          "click": "#primary"
+        },
+        {
+          "click": "#primary"
+        }
+      ],
+      "keep": [
+        "#primary",
+        "#crate"
+      ]
+    },
+    {
+      "name": "protection",
+      "steps": [
+        {
+          "click": "#m-shows"
+        },
+        {
+          "click": "#card-W1"
+        },
+        {
+          "click": "#card-W2"
+        },
+        {
+          "click": "#card-W3"
+        },
+        {
+          "click": "#card-W4"
+        },
+        {
+          "click": "#card-W6"
+        },
+        {
+          "click": "#card-W8"
+        },
+        {
+          "click": "#primary"
+        },
+        {
+          "click": "#primary"
+        },
+        {
+          "click": "#card-W1"
+        },
+        {
+          "click": "#place-S3"
+        },
+        {
+          "click": "#protect-glass"
+        }
+      ],
+      "keep": [
+        "#detail",
+        "#primary"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "show-labels",
+      "steps": [
+        {
+          "click": "#m-shows"
+        },
+        {
+          "click": "#card-W1"
+        },
+        {
+          "click": "#card-W2"
+        },
+        {
+          "click": "#card-W3"
+        },
+        {
+          "click": "#card-W4"
+        },
+        {
+          "click": "#card-W6"
+        },
+        {
+          "click": "#card-W8"
+        },
+        {
+          "click": "#primary"
+        },
+        {
+          "click": "#primary"
+        },
+        {
+          "click": "#card-W1"
+        },
+        {
+          "click": "#place-S3"
+        },
+        {
+          "click": "#protect-glass"
+        },
+        {
+          "click": "#card-W2"
+        },
+        {
+          "click": "#place-S4"
+        },
+        {
+          "click": "#protect-glass"
+        },
+        {
+          "click": "#card-W3"
+        },
+        {
+          "click": "#place-S2"
+        },
+        {
+          "click": "#protect-cover"
+        },
+        {
+          "click": "#card-W4"
+        },
+        {
+          "click": "#place-S5"
+        },
+        {
+          "click": "#protect-glass"
+        },
+        {
+          "click": "#card-W6"
+        },
+        {
+          "click": "#place-S7"
+        },
+        {
+          "click": "#protect-glass"
+        },
+        {
+          "click": "#card-W8"
+        },
+        {
+          "click": "#place-S9"
+        },
+        {
+          "click": "#protect-glass"
+        },
+        {
+          "click": "#primary"
+        }
+      ],
+      "keep": [
+        "#primary"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "show-results",
+      "steps": [
+        {
+          "click": "#m-shows"
+        },
+        {
+          "click": "#card-W1"
+        },
+        {
+          "click": "#card-W2"
+        },
+        {
+          "click": "#card-W3"
+        },
+        {
+          "click": "#card-W4"
+        },
+        {
+          "click": "#card-W6"
+        },
+        {
+          "click": "#card-W8"
+        },
+        {
+          "click": "#primary"
+        },
+        {
+          "click": "#primary"
+        },
+        {
+          "click": "#card-W1"
+        },
+        {
+          "click": "#place-S3"
+        },
+        {
+          "click": "#protect-glass"
+        },
+        {
+          "click": "#card-W2"
+        },
+        {
+          "click": "#place-S4"
+        },
+        {
+          "click": "#protect-glass"
+        },
+        {
+          "click": "#card-W3"
+        },
+        {
+          "click": "#place-S2"
+        },
+        {
+          "click": "#protect-cover"
+        },
+        {
+          "click": "#card-W4"
+        },
+        {
+          "click": "#place-S5"
+        },
+        {
+          "click": "#protect-glass"
+        },
+        {
+          "click": "#card-W6"
+        },
+        {
+          "click": "#place-S7"
+        },
+        {
+          "click": "#protect-glass"
+        },
+        {
+          "click": "#card-W8"
+        },
+        {
+          "click": "#place-S9"
+        },
+        {
+          "click": "#protect-glass"
+        },
+        {
+          "click": "#primary"
+        },
+        {
+          "click": "#material-W1"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#material-W2"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#material-W3"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#material-W4"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#material-W6"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#material-W8"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#primary"
+        },
+        {
+          "wait": 8300
+        }
+      ],
+      "keep": [
+        "#primary"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "your-show",
+      "steps": [
+        {
+          "click": "#m-shows"
+        },
+        {
+          "click": "#previous"
+        }
+      ],
+      "keep": [
+        "#primary",
+        "#crate"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "library-and-museum",
+      "steps": [
+        {
+          "click": "#m-compare"
+        }
+      ],
+      "keep": [
+        ".rooms"
+      ]
+    },
+    {
+      "name": "your-show-feedback",
+      "steps": [
+        {
+          "click": "#m-shows"
+        },
+        {
+          "click": "#previous"
+        },
+        {
+          "click": "#card-W1"
+        },
+        {
+          "click": "#card-W2"
+        },
+        {
+          "click": "#card-W3"
+        },
+        {
+          "click": "#card-W4"
+        },
+        {
+          "click": "#card-W5"
+        },
+        {
+          "click": "#card-W7"
+        },
+        {
+          "click": "#primary"
+        }
+      ],
+      "keep": [
+        "#primary",
+        "#crate"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

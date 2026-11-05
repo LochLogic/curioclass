@@ -1,0 +1,1217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Sketchbook Process Journal · Curio Class</title>
+<meta name="description" content="Draw, investigate and trace what changed your artistic idea. A private offline sketchbook for grades 9 to 12.">
+<!--
+Sketchbook Process Journal, Curio Class. Started from kit/starter/src.html.
+Student driven, grades 9 to 12 visual arts. NCAS VA:Cr1, VA:Cn10, VA:Cn11.
+Facts: US EPA; Jambeck et al. (2015); NOAA; US FWS; USDA Forest Service; Tate; Met Museum; Library of Congress.
+Full source lines in content.json and notes.md. Theo Marsh is fictional. Artworks are original interpretations.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. One file, no network requests. Device storage only.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f8f3e6; --ink:#1f1a14; --muted:#5e554a; --line:#d9cfbb; --brand:#7a4f00;
+  --btn:#f8f3e6; --btn-line:#d9cfbb; --head-ink:#1f1a14; --focus:#1f5f99; --panel:#eee7d8;
+  --texture:url('art:spj-paper');
+}
+body {height:100%; min-height:0; overflow:hidden; grid-template-rows:auto minmax(0,1fr);}
+header {background:#f8f3e6; border-bottom:1px solid #c5b79d; padding:12px 22px; gap:10px;}
+h1 {font:600 clamp(20px,2.2vw,30px)/1.1 Georgia,serif; letter-spacing:-.5px;}
+h1 small {font-size:12px; margin-top:7px; color:var(--muted); letter-spacing:.25px;}
+.seg {border-radius:7px; border-width:1px; flex:none;}
+.seg button {min-height:44px; padding:0 14px; font-size:14px;}
+.seg button[aria-pressed=true] {background:var(--brand); color:white;}
+.icon-btn {min-height:44px; min-width:44px; padding:0 10px; border-radius:6px; border-width:1px; font-size:12px;}
+#motion {width:99px;} #sound {width:92px;}
+button,select,input,textarea {font:inherit;}
+button {min-height:44px; min-width:44px; border:1px solid #c3b59c; border-radius:5px; background:#fffcf3; padding:7px 12px;}
+button:hover {background:#eee4cc;}
+button:disabled {opacity:.5; cursor:default;}
+button[aria-pressed=true],button.chosen {border-color:var(--brand); background:#e9d9b6; box-shadow:inset 0 -3px var(--brand);}
+button.primary {background:var(--brand); color:white; border-color:var(--brand);}
+button.primary:hover {background:#5e3d00;}
+main {grid-template-columns:minmax(0,1fr) 232px; min-height:0;}
+main.mapmode {grid-template-columns:1fr;}
+main.mapmode aside {display:none;}
+.stage {min-height:0; padding:20px 22px 16px; overflow:hidden;
+  background:radial-gradient(ellipse at 18% 15%,#d9c5a8 0,transparent 65%),repeating-linear-gradient(93deg,#ba9e7d 0,#bba080 2px,#b79a77 4px,#c3a889 8px);}
+.stage::before {content:''; position:absolute; top:40px; left:9px; width:4px; height:70%; background:#eddbb9; opacity:.25;}
+.panel {background:var(--panel); padding:20px 16px; border-left:1px solid #aa9275; gap:12px;}
+.eyebrow {font:700 11px/1.3 'Segoe UI',sans-serif; text-transform:uppercase; letter-spacing:1.5px; color:var(--brand);}
+.panel h2 {font:normal 25px/1.2 Georgia,serif; margin:0;}
+.panel p {margin:0; line-height:1.5; font-size:13px;}
+.panel .hint {font-size:14px; min-height:84px; border-top:1px solid #cdbfa6; padding-top:14px;}
+.panel button {width:100%; text-align:left; font-weight:600;}
+.panel .bottom {margin-top:auto; font-size:11px; color:var(--muted);}
+.status {min-height:38px; font-size:12px; color:#34553b;}
+.book {height:100%; position:relative; display:flex; flex-direction:column; min-height:0;
+  background:#6b4a32; padding:7px 8px 8px; border-radius:8px 13px 13px 8px; box-shadow:0 14px 25px #38200c55,2px 3px 0 #49311e;}
+.book::after {content:''; position:absolute; right:14px; bottom:-5px; width:38px; height:10px; background:#8d3732; z-index:0;}
+.bookbar {display:flex; align-items:center; gap:6px; background:#eee3cd; padding:5px 9px; flex:none; border-bottom:1px solid #caba9c;}
+.bookbar strong {font:normal 17px Georgia,serif; margin-right:auto;}
+.bookbar button {padding:3px 9px; font-size:12px;}
+.bookhint {font-size:11px; min-height:48px; line-height:1.4; padding:6px 10px; margin:0; flex:none;
+  background:#f4ebd8; border-bottom:1px solid #caba9c;}
+.page-select {max-width:200px; min-height:44px; border:1px solid #b6a486; background:#fbf5e7; padding:3px 5px;}
+.spread {display:grid; grid-template-columns:minmax(0,1.55fr) minmax(270px,1fr); flex:1; min-height:0;
+  background:linear-gradient(#f8f3e6df,#f8f3e6df),var(--texture),var(--paper);}
+.leaf {min-width:0; min-height:0; padding:20px 25px 16px; overflow:auto; position:relative;}
+.leftleaf {border-right:1px solid #c1b69f; box-shadow:inset -12px 0 18px -18px #473217; display:flex; flex-direction:column;}
+.leftleaf:has(#chooseIssue),.leftleaf:has(#chooseTradition) {overflow:hidden;}
+#issueDetail,#traditionDetail {min-height:0; overflow:auto; flex:1;}
+#chooseIssue,#chooseTradition {flex:none; margin-top:8px;}
+.rightleaf {box-shadow:inset 12px 0 18px -18px #473217;}
+.pagehead {display:flex; justify-content:space-between; align-items:baseline; gap:8px; margin-bottom:12px;}
+.pagehead h2 {font:normal 29px/1.15 Georgia,serif; margin:0;}
+.folio {font:italic 13px Georgia,serif; color:var(--muted); flex:none;}
+.hero {flex:1; min-height:100px; width:100%; object-fit:contain; display:block; filter:drop-shadow(0 3px 3px #452b1320);}
+.samplepicture {min-height:0; flex:1; display:flex; padding:5px; background:#e3dac4; transform:rotate(-.6deg); box-shadow:0 3px 6px #3e2b1926;}
+.sampletext {font:italic 17px/1.4 Georgia,serif; margin:16px 0 0;}
+.sample-caption {font-size:11px; color:var(--muted); margin:7px 0 0;}
+.tagtitle {font:normal 25px/1.2 Georgia,serif; margin:4px 0 7px;}
+.tagintro {font-size:12px; color:var(--muted); margin:0 0 16px; line-height:1.4;}
+.tagcard {margin:12px 0; padding:12px 13px; border:1px solid #cabc9f; background:#fffaf0aa;
+  box-shadow:1px 3px 3px #5c451414; border-left:3px solid var(--tag,#7a4f00);}
+.tagcard strong {font-size:12px; letter-spacing:.5px; text-transform:uppercase; display:block; margin-bottom:5px;}
+.tagcard .because {font-size:13px; font-weight:600; line-height:1.4; display:flex; gap:9px; align-items:center;}
+.tagcard p {font:italic 15px/1.5 Georgia,serif; margin:10px 0 2px;}
+.mark {display:inline-flex; width:30px; height:30px; justify-content:center; align-items:center; flex:none;
+  font:800 14px 'Segoe UI',sans-serif; color:white; background:var(--tag);}
+.mark.own {border-radius:50%;} .mark.borrowed {clip-path:polygon(50% 0,100% 100%,0 100%); padding-top:7px;}
+.mark.broke {clip-path:polygon(50% 0,100% 50%,53% 100%,53% 58%,47% 58%,47% 100%,0 50%);}
+.tabs {display:flex; background:#e6dac2; padding:0 3px; gap:2px; flex:none; overflow-x:auto;}
+.tabs button {border:0; border-radius:0; background:#e1d1b2; font-size:11px; padding:3px 8px; flex:1; white-space:nowrap;}
+.tabs button[aria-current=page] {background:#fcf6e8; box-shadow:inset 0 -3px var(--brand);}
+.chips {display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;}
+.chips button {font-size:12px; flex:1 0 auto; padding:4px 8px;}
+.tagform {padding:10px 0; border-top:1px solid #d0c2a8;}
+.decision-receipt {display:flex; gap:9px; align-items:center; padding:10px; margin:0 0 10px;
+  border:1px solid #cabc9f; border-left:3px solid var(--tag); background:#fffaf0; font-size:12px; line-height:1.4;}
+.decision-receipt .mark {width:28px; height:28px;}
+.decision-receipt strong {display:block; font:italic 16px Georgia,serif; margin-bottom:3px;}
+.receipt-flash {animation:receipt .45s ease-out;}
+@keyframes receipt {from {box-shadow:0 0 0 4px #b9904566;} to {box-shadow:0 0 0 0 transparent;}}
+.calm .receipt-flash {animation:none;}
+label {display:block; font-size:12px; font-weight:600; margin-bottom:8px; line-height:1.4;}
+select,input,textarea {color:var(--ink); width:100%; border:1px solid #b9a98d; border-radius:4px; background:#fffdf6; min-height:44px; padding:8px;}
+textarea {resize:vertical; min-height:66px; line-height:1.4;}
+.tagform textarea {font-size:12px;}
+.picks {display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-bottom:12px;}
+.pick {padding:4px; text-align:left; font-size:11px; font-weight:600;}
+.pick img {width:100%; height:72px; object-fit:cover; display:block; margin-bottom:5px;}
+.issuehero {width:100%; max-height:170px; object-fit:cover; box-shadow:0 3px 5px #33231325;}
+.research {padding:9px 0; border-bottom:1px solid #d3c7b0; font-size:12px; line-height:1.5;}
+.research b {font-size:11px; letter-spacing:.6px; text-transform:uppercase; color:var(--brand);}
+.research p {margin:5px 0 0;}
+.credit {font-size:10px; color:var(--muted); line-height:1.4;}
+.tradimages {display:flex; gap:10px; height:195px; margin-bottom:10px;}
+.tradimages button {padding:0; flex:1; min-width:0; border:0; background:transparent;}
+.tradimages img {width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 3px 3px #432a1333);}
+.tradintro {font-size:12px; line-height:1.5;}
+.traits {padding-left:19px; font-size:12px; line-height:1.5;}
+.traits li {margin-bottom:8px;}
+.drawtools {display:flex; gap:4px; flex-wrap:wrap; margin-bottom:9px; flex:none; position:sticky; top:-1px; z-index:2; background:var(--paper);}
+.drawtools button {font-size:11px; padding:4px 8px; flex:1;}
+.drawgrid {display:grid; grid-template-columns:1fr 1fr; grid-template-rows:repeat(2,minmax(0,1fr));
+  gap:11px; min-height:0; flex:1; align-content:start;}
+.drawgrid .drawbox {min-height:0; display:flex; flex-direction:column; align-items:center;}
+.drawgrid canvas.pad {width:auto; max-width:100%; height:calc(100% - 49px); flex:none;}
+.drawbox {min-width:0; position:relative;}
+.drawbox.active canvas {outline:2px solid var(--brand); outline-offset:2px;}
+canvas.pad {display:block; width:100%; aspect-ratio:4/3; background:#fcf9ef; border:1px solid #b8aa91; touch-action:none; cursor:crosshair;}
+.drawbox input {min-height:44px; font-size:11px; margin-top:5px;}
+.singlepad {min-height:0; flex:1; display:flex; flex-direction:column; align-items:stretch;}
+.singlepad .drawbox {min-height:0; flex:1; display:flex; align-items:start; justify-content:center;}
+.singlepad canvas {max-width:100%; max-height:100%; width:auto; height:100%; aspect-ratio:4/3;}
+.refrow {display:flex; gap:12px; align-items:center; margin-bottom:10px;}
+.refrow label {flex:1;}
+.refrow img {width:76px; height:57px; object-fit:contain; border:1px solid #beaf93;}
+.refblank {width:76px; height:57px; border:1px dashed #beaf93; padding:8px; font-size:11px; color:var(--muted); flex:none;}
+.planform {display:grid; gap:8px; margin-top:14px;}
+.pair {display:grid; grid-template-columns:1fr 1fr; gap:8px;}
+.swatches {display:grid; grid-template-columns:repeat(6,1fr); gap:5px; margin-bottom:8px;}
+.swatch {min-width:0; width:100%; height:44px; padding:0; border:2px solid #c4b79f; position:relative;}
+.swatch[aria-pressed=true]::after {content:'✓'; position:absolute; inset:0; display:grid; place-items:center; font-size:20px;
+  color:white; text-shadow:0 1px 3px black,0 -1px 2px black;}
+.palette {display:flex; gap:5px; margin-top:8px;}
+.palette i {height:24px; flex:1; border:1px solid #b3a58b;}
+.muted {color:var(--muted); font-size:12px; line-height:1.5;}
+#tagsToggle {display:none;}
+.mapdesk {height:100%; display:flex; flex-direction:column;
+  background:linear-gradient(#f8f3e6df,#f8f3e6df),var(--texture),var(--paper); border:7px solid #6b4a32;
+  border-radius:8px; box-shadow:0 8px 20px #38200c44; min-height:0;}
+.mapbar {display:flex; align-items:center; gap:8px; padding:10px 15px; border-bottom:1px solid #c8b99b; flex-wrap:wrap;}
+.mapbar h2 {font:normal 25px Georgia,serif; margin:0 auto 0 0;}
+.filters {display:flex; gap:4px;}
+.filters button {font-size:12px; padding:4px 10px;}
+.maplegend {font-size:11px; color:var(--muted); padding:7px 15px; line-height:1.5;}
+.mapwindow {display:flex; min-height:0; flex:1; overflow-y:auto;}
+.sources {width:180px; flex:none; background:#efe6d4; border-right:1px solid #c4b395; position:relative; min-height:600px;}
+.source-label {position:absolute; left:12px; right:10px; height:38px; padding:5px 6px; font-size:10px; line-height:1.3;
+  border-left:3px solid var(--tag); background:#fffbf2; overflow:hidden;}
+.sourcehead {position:absolute; left:14px; top:14px; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1px;}
+.mapscroll {overflow-x:auto; overflow-y:hidden; flex:1; min-width:0; position:relative;}
+.mapcanvas {position:relative; height:600px;}
+.mapcanvas svg {position:absolute; inset:0; width:100%; height:100%; pointer-events:none;}
+.mapcolumn {position:absolute; top:12px; width:104px; height:100px; padding:6px; border:1px solid #cdbc9e; background:#fff9eb; text-align:center;}
+.mapcolumn img {width:88px; height:64px; object-fit:contain; display:block; margin-bottom:4px;}
+.mapcolumn span {font-size:11px;}
+.mapcolumn.untagged {border-style:dashed; height:140px;}
+.mapcolumn .untag {font-size:10px; color:var(--muted); display:block; padding-top:9px;}
+.lane-label {position:absolute; left:5px; font-size:10px; background:var(--paper); color:var(--muted); padding:2px 4px; z-index:1;}
+.node {position:absolute; width:44px; height:44px; padding:6px; border:none; background:var(--paper); border-radius:50%; z-index:2;}
+.node:hover {background:#e9d6b0;}
+.dim {opacity:.25;}
+.old {filter:grayscale(1);}
+.source-label.old {color:#626262;}
+.counts {font:normal 15px/1.6 Georgia,serif; padding:10px 15px; margin:0; border-top:1px solid #c9ba9e;}
+.maphint {font-size:12px; padding:0 15px 10px; margin:0;}
+.quietglow {position:absolute; width:150px; height:30px; background:#fff6; filter:blur(14px); top:2px; left:18%; pointer-events:none;
+  animation:light 7s ease-in-out infinite alternate;}
+@keyframes light {to {opacity:.15; transform:translateX(20px);}}
+.calm .quietglow {animation:none; opacity:.25;}
+dialog {padding:0; max-width:min(740px,94vw); max-height:92vh; color:var(--ink); background:var(--paper); border:1px solid #ad9777;
+  border-radius:8px; box-shadow:0 20px 60px #21170d66;}
+dialog::backdrop {background:#21180f99;}
+.modalinner {padding:22px; overflow:hidden; max-height:88vh; display:flex; flex-direction:column;}
+.modalinner h2 {font:normal 27px Georgia,serif; margin:0 0 15px; flex:none;}
+.modalbody {min-height:0; overflow:auto;}
+.modalinner p {line-height:1.6;}
+.modalinner img {display:block; max-width:100%; max-height:58vh; object-fit:contain; margin:0 auto 12px;}
+.modalactions {display:flex; justify-content:flex-end; flex-wrap:wrap; gap:8px; margin-top:15px; flex:none;}
+@media (max-width:1120px) {
+  header {padding:8px 12px; gap:6px;} h1 {font-size:23px;} h1 small {font-size:11px;}
+  .seg button {padding:0 10px; font-size:12px;}
+  main {grid-template-columns:minmax(0,1fr) 200px;}
+  .stage {padding:12px;} .leaf {padding:16px;} .spread {grid-template-columns:minmax(0,1.4fr) minmax(230px,1fr);}
+  .pagehead h2 {font-size:25px;} .panel {padding:15px 12px;}
+}
+@media (max-width:940px) {
+  header h1 {flex:1 0 100%; font-size:22px;} header h1 small {display:none;}
+  header {padding:7px 12px;} .seg {margin-right:auto;}
+  main {grid-template-columns:minmax(0,1fr) 180px;}
+  .spread {grid-template-columns:1fr;} .rightleaf {display:none;} #tagsToggle {display:block;}
+  .book.tagsopen .rightleaf {display:block;} .book.tagsopen .leftleaf {display:none;}
+  .panel h2 {font-size:22px;} .panel p {font-size:12px;} .panel .hint {font-size:12px;}
+  .stage {padding:10px;} .sampletext {font-size:15px; margin-top:10px;}
+  .pagehead {margin-bottom:8px;} .pagehead h2 {font-size:24px;}
+  .bookbar {padding:3px 5px;} .bookbar strong {display:none;}
+  .tabs button {padding:4px 5px;}
+}
+@media (max-height:550px) and (min-width:600px) {
+  header {padding:4px 8px; gap:5px;} header h1 {font-size:18px; flex:1 0 100%;}
+  header h1 small {display:none;} .stage {padding:7px;} .leaf {padding:10px 14px;}
+  .bookbar {padding:2px 5px;} .pagehead h2 {font-size:21px;} .pagehead {margin-bottom:5px;}
+  .sampletext {font-size:13px; margin:7px 0 0;} .sample-caption {display:none;}
+  .panel {padding:9px 10px; gap:6px;} .panel h2 {font-size:19px;}
+  .panel .hint {min-height:65px; padding-top:7px; font-size:11px;}
+  .panel .bottom {font-size:10px;} .drawtools {margin-bottom:6px;}
+  .panel[data-book=mine] #paneltitle,.panel[data-book=mine] #panelintro {display:none;}
+  .panel[data-book=mine] {gap:4px; padding:8px 10px;}
+  .panel[data-book=mine] .hint {font-size:11px; line-height:1.3; min-height:54px;}
+  .panel[data-book=mine] .status {min-height:22px; font-size:10px;}
+  .panel[data-book=mine] .bottom {font-size:10px; line-height:1.3;}
+  .drawgrid {grid-template-rows:repeat(2,minmax(150px,1fr)); overflow:auto;}
+  .picks .pick img {height:50px;} .issuehero {max-height:100px;}
+  .drawgrid {gap:6px;} .drawbox input {margin-top:2px;} .tabs {display:none;}
+  .mapbar {padding:5px 10px;} .mapbar h2 {font-size:20px;} .maplegend {padding:4px 10px;}
+  .counts {padding:5px 10px; font-size:13px;}
+  .modalinner:has(.because) {padding:16px;}
+  .modalinner:has(.because) img {max-height:26vh;}
+}
+@media (max-width:599px) {
+  body {overflow:auto; height:auto; min-height:100%; display:block;}
+  header {gap:5px; padding:9px 8px;} h1 {font-size:22px!important;}
+  .seg {width:100%; margin-bottom:4px;} .seg button {flex:1; padding:0 8px;}
+  .icon-btn {flex:1;} main {display:flex; flex-direction:column;}
+  .stage {height:620px; min-height:620px; padding:8px;}
+  main.mapmode .stage {height:650px; min-height:650px;}
+  .panel {border:0; padding:14px; display:grid; grid-template-columns:1fr 1fr; gap:9px;}
+  .panel .eyebrow,.panel h2,.panel .hint,.panel .bottom,.panel .status {grid-column:1/-1;}
+  .panel .hint {min-height:45px; padding-top:8px; margin:0;}
+  .panel h2 {font-size:24px;} .leaf {padding:14px 12px;}
+  .bookbar strong {display:none;} .bookbar {flex-wrap:wrap; gap:3px;}
+  .page-select {width:100%; max-width:none;} .bookbar button {flex:1; font-size:11px;}
+  .pagehead h2 {font-size:26px;} .tabs {display:none;}
+  .drawtools {flex-wrap:nowrap; gap:2px;} .drawtools button {padding:3px 4px; min-width:44px; font-size:10px;}
+  .drawgrid {display:block; overflow:auto; padding:3px;}
+  .drawgrid .drawbox {display:block; margin-bottom:14px;}
+  .drawgrid canvas.pad {width:100%; height:auto;}
+  .book > .status {min-height:24px; padding:4px 8px; margin:0; background:#eee3cd; font-size:10px; flex:none;}
+  .singlepad canvas {width:100%; height:auto;}
+  .sources {width:100px;} .source-label {left:5px; right:5px; font-size:10px;}
+  .sourcehead {left:6px; font-size:10px;} .mapbar {padding:8px; gap:7px;}
+  .mapbar h2 {width:100%; font-size:23px;} .filters {width:100%;} .filters button {flex:1; padding:4px 7px;}
+  .maplegend {font-size:10px; padding:5px 8px;} .counts {font-size:13px; padding:8px;}
+  .maphint {padding:0 8px 8px; font-size:11px;}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Sketchbook <i>Process Journal</i><small>Developing an idea from an issue and a tradition · Curio Class</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-sample" aria-pressed="true">Sample book</button>
+    <button id="m-mine" aria-pressed="false">My book</button>
+    <button id="m-map" aria-pressed="false">Idea map</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main id="main">
+  <div class="stage" id="stage"></div>
+  <aside class="panel" id="panel">
+    <div class="eyebrow" id="panelkicker"></div>
+    <h2 id="paneltitle"></h2>
+    <p id="panelintro"></p>
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div id="panelactions"></div>
+    <p class="status" id="saved" role="status"></p>
+    <p class="bottom">Private by design. Your book stays on this device. Nothing leaves it.</p>
+  </aside>
+</main>
+<dialog id="dialog" aria-labelledby="dialogtitle"><div class="modalinner" id="modalinner"></div></dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const DATA = "json:content";
+  const ART = {
+    'heat-roofs':'art:heat-roofs', 'plastic-shore':'art:plastic-shore', 'monarch-firs':'art:monarch-firs',
+    'vanitas-a':'art:vanitas-a', 'vanitas-b':'art:vanitas-b', 'ukiyo-a':'art:ukiyo-a', 'ukiyo-b':'art:ukiyo-b',
+    'wpa-a':'art:wpa-a', 'wpa-b':'art:wpa-b', 'sample-thumbs':'art:sample-thumbs', 'sample-study':'art:sample-study',
+    'sample-rev1':'art:sample-rev1', 'sample-rev2':'art:sample-rev2', 'sample-plan':'art:sample-plan'
+  };
+  const L = {
+    welcomeSample:"This is Theo's sketchbook. Tap Next page to see how the idea changed.",
+    welcomeMine:'Tap an issue card, then tap Choose this issue.',
+    pickTradition:'Now open Tradition. Tap a tradition card, then tap Choose this tradition.',
+    addPage:'Tap Add page and pick Thumbnails to start drawing.',
+    tagHow:'Tap what changed on this page, then pick what caused it.',
+    openTags:'Tap Tags to connect this page to the research, tradition or your own idea.',
+    welcomeMap:'Each line is one part of the idea. Scroll the map, or tap a mark to see what changed it.',
+    firstBreak:"You broke from the tradition there. That's where your own voice shows.",
+    planDone:'Your plan is complete. Check the map to see what shaped it.'
+  };
+  const ASPECTS = ['Subject','Composition','Color','Symbol','Material'];
+  const COLORS = {research:'#1f5f99',borrowed:'#7a4f00',broke:'#a12a2a',own:'#2e6b3f'};
+  const LETTERS = {research:'R',borrowed:'T',broke:'B',own:'O'};
+  const KEY = 'curio-sketchbook-journal';
+  const empty = () => ({issue:null,tradition:null,pages:[{type:'Issue',tags:[]},{type:'Tradition',tags:[]}],planDone:false});
+  let mine = empty();
+  let storageError = false;
+  let loadError = false;
+  try {
+    const data = JSON.parse(localStorage.getItem(KEY));
+    const choice = value => value === null || Number.isInteger(value) && value >= 0 && value < 3;
+    const valid = data && choice(data.issue) && choice(data.tradition) && Array.isArray(data.pages) &&
+      data.pages.length >= 2 && data.pages.length <= 12 && data.pages[0]?.type === 'Issue' && data.pages[1]?.type === 'Tradition' &&
+      data.pages.every((p,i) => p && Array.isArray(p.tags) && p.tags.every(t => t && ASPECTS.includes(t.aspect) &&
+        Object.hasOwn(COLORS,t.kind) && typeof t.label === 'string' && typeof t.note === 'string' &&
+        Number.isInteger(t.index) && t.index >= 0 && t.index < (t.kind === 'research' ? 3 : 5) &&
+        Number.isInteger(t.issue) && t.issue >= 0 && t.issue < 3 &&
+        Number.isInteger(t.tradition) && t.tradition >= 0 && t.tradition < 3) &&
+        (i < 2 || ['Thumbnails','Study','Revision','Plan'].includes(p.type) && typeof p.id === 'string' &&
+          Array.isArray(p.drawings) && p.drawings.every(d => !d || typeof d === 'string' && d.startsWith('data:image/')) &&
+          Array.isArray(p.lines) && p.lines.every(line => typeof line === 'string') &&
+          p.plan && typeof p.plan.title === 'string' && typeof p.plan.medium === 'string' &&
+          typeof p.plan.statement === 'string' && Array.isArray(p.plan.palette)));
+    if (valid) {
+      mine = data;
+    } else if (data) {
+      loadError = true;
+    }
+  } catch (e) {
+    storageError = true;
+  }
+  const state = {mode:'sample',book:'sample',page:0,filter:'All',previewIssue:mine.issue ?? 0,
+    previewTradition:mine.tradition ?? 0,active:0,pencil:'Pencil',tagsOpen:false,issueOpened:false,traditionOpened:false};
+  const pads = new Map();
+  const histories = new Map();
+  let saveTimer;
+  let dialogReturn;
+  let pointerDrawing = false;
+  let layoutBand = innerWidth < 600 ? 'phone' : innerWidth <= 940 ? 'compact' : 'wide';
+  function syncLayout() {
+    if (pointerDrawing) return;
+    const band = innerWidth < 600 ? 'phone' : innerWidth <= 940 ? 'compact' : 'wide';
+    if (band === layoutBand) return;
+    layoutBand = band;
+    render();
+  }
+  addEventListener('resize',syncLayout);
+  const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const book = () => state.book === 'sample' ? DATA.sample : mine;
+  const page = () => book().pages[state.page];
+  const isOld = tag => tag.kind === 'research' ? tag.issue !== book().issue :
+    tag.kind !== 'own' && tag.tradition !== book().tradition;
+  const mark = kind => `<span aria-hidden="true" class="mark ${kind}" style="--tag:${COLORS[kind]}">${LETTERS[kind]}</span>`;
+  const sourceName = tag => tag.kind === 'research' ? `Research: ${tag.label}` :
+    tag.kind === 'own' ? 'My own idea' : `${tag.kind === 'borrowed' ? 'Borrowed' : 'Broke from'}: ${tag.label}`;
+  const V = Curio.voice({lines:L,scope:() => state.mode,hint:false,read:() => $('hint').textContent,
+    welcome:() => state.mode === 'sample' && state.page === 0 ? ['welcomeSample',{valid:() => state.page === 0}] :
+      state.mode === 'map' && book().pages.some(p => p.tags.length) ? ['welcomeMap',{valid:() => !$('dialog').open}] :
+      state.mode === 'mine' && mine.issue === null && state.page === 0 && !state.issueOpened ?
+        ['welcomeMine',{valid:() => state.page === 0 && mine.issue === null && !state.issueOpened}] : null});
+
+  function hint(text, key) {
+    $('hint').textContent = text;
+    const mh = $('maphint');
+    if (mh) mh.textContent = text;
+    if (key) {
+      const p = state.page;
+      V.how(key,{valid:() => state.page === p && !$('dialog').open &&
+        (key !== 'tagHow' || page().tags.length === 0) &&
+        (key !== 'openTags' || !state.tagsOpen) &&
+        (key !== 'pickTradition' || !state.traditionOpened && mine.tradition === null),
+        needs:key === 'addPage' ? '#addPage' : key === 'tagHow' ? '#aspect-Subject' :
+          key === 'openTags' ? '#tagsToggle' : [],hint:false});
+    }
+  }
+  function nextHint() {
+    if (state.mode === 'map') {
+      if (book().pages.some(p => p.tags.length)) return hint(L.welcomeMap);
+      const next = mine.issue === null || mine.tradition === null ?
+        'Tap My book, choose an issue and a tradition, then tap Add page.' : mine.pages.length === 2 ?
+        'Tap My book, then tap Add page to start drawing.' :
+        'Tap My book and choose a working page, then '+(innerWidth <= 940 ? 'tap Tags.' : 'pick an aspect under What changed.');
+      return hint('No decisions tagged yet. '+next);
+    }
+    if (state.mode === 'sample') return hint(state.page < book().pages.length-1 ?
+      'Tap Next page to follow the idea, or Idea map to trace its sources.' :
+      'Tap Prev page to revisit a decision, or Idea map to trace the complete idea.');
+    if (state.page === 0 && mine.issue === null) return hint(L.welcomeMine);
+    if (mine.issue === null) return hint('Open Issue and tap Choose this issue.');
+    if (mine.tradition === null) return hint(L.pickTradition, 'pickTradition');
+    if (mine.pages.length === 2) return hint(L.addPage, 'addPage');
+    const compact = innerWidth <= 940;
+    if (state.page > 1 && !page().tags.length) return hint(compact && !state.tagsOpen ? L.openTags : L.tagHow,
+      compact && !state.tagsOpen ? 'openTags' : 'tagHow');
+    hint(state.page > 1 ? compact ? state.tagsOpen ?
+      'Choose Because for each aspect, or tap Page to return to drawing.' :
+      'Draw or revise this page. Tap Tags to connect a decision to its source.' :
+      'Draw or revise this page. Tap an aspect under What changed to connect a decision to its source.' :
+      mine.pages.length < 12 ? 'Use the page picker to return to your work, or tap Add page.' :
+      'Use the page picker to return to your work. Your book has all 12 pages.');
+  }
+  function tone(kind = 0) { Curio.tone(kind ? 420 : 320,.055,.025,'sine'); }
+  function saveSoon() {
+    $('saved').textContent = 'Saving…';
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(save,1000);
+  }
+  function save() {
+    clearTimeout(saveTimer);
+    saveTimer = null;
+    try {
+      if (mine.issue === null && mine.tradition === null && mine.pages.length === 2) localStorage.removeItem(KEY);
+      else localStorage.setItem(KEY,JSON.stringify(mine));
+      storageError = false;
+      loadError = false;
+      $('saved').textContent = 'Saved on this device';
+    } catch (e) {
+      storageError = true;
+      $('saved').textContent = "This device won't save more. Clear a page or keep this tab open.";
+    }
+  }
+  addEventListener('pagehide',() => {
+    if (saveTimer) save();
+  });
+  function setMode(mode) {
+    if (state.mode === mode && $('stage').children.length) return;
+    V.hush();
+    if (state.mode === 'mine') save();
+    state.mode = mode;
+    if (mode !== 'map') {
+      state.book = mode;
+      state.page = 0;
+      state.issueOpened = false;
+      state.traditionOpened = false;
+    }
+    render();
+    $('m-'+mode).focus({preventScroll:true});
+    V.welcome();
+  }
+  function openPage(index) {
+    V.hush();
+    state.page = Math.max(0,Math.min(book().pages.length-1,index));
+    state.active = 0;
+    state.tagsOpen = false;
+    render();
+    tone();
+  }
+  function modal(title, content, buttons) {
+    dialogReturn = document.activeElement;
+    $('modalinner').innerHTML = `<h2 id="dialogtitle">${esc(title)}</h2>
+      <div class="modalbody">${content}</div><div class="modalactions"></div>`;
+    const actions = $('modalinner').querySelector('.modalactions');
+    for (const b of buttons) {
+      const el = document.createElement('button');
+      el.textContent = b.text;
+      el.id = b.id || '';
+      el.className = b.primary ? 'primary' : '';
+      el.onclick = () => {
+        closeModal();
+        if (b.run) b.run();
+      };
+      actions.append(el);
+    }
+    $('dialog').showModal();
+  }
+  function closeModal() {
+    $('dialog').close();
+    if (dialogReturn?.isConnected) dialogReturn.focus({preventScroll:true});
+  }
+  $('dialog').addEventListener('cancel', e => {
+    e.preventDefault();
+    closeModal();
+  });
+  function confirm(title, run) {
+    modal(title,'<p>Choose Confirm to continue, or Cancel to keep your work.</p>',
+      [{text:'Cancel'},{text:'Confirm',id:'confirm',primary:true,run}]);
+  }
+  function enlarge(name) {
+    modal('Original study in the tradition',`<img src="${ART[name]}" alt="${esc(name)}">
+      <p class="credit">Original interpretation, not a historical artwork.</p>`,
+      [{text:'Back to book'}]);
+  }
+  function render() {
+    const focusId = document.activeElement?.id;
+    const stable = [...document.querySelectorAll('.bookbar button,.bookbar select,.tabs button,#panelactions button')];
+    if ($('hint').parentElement !== $('panel')) $('panel').insertBefore($('hint'),$('panelactions'));
+    if ($('saved').parentElement !== $('panel')) $('panel').insertBefore($('saved'),$('panel').lastElementChild);
+    $('hint').className = 'hint';
+    $('stage').replaceChildren();
+    pads.clear();
+    $('main').classList.toggle('mapmode',state.mode === 'map');
+    for (const m of ['sample','mine','map']) $('m-'+m).setAttribute('aria-pressed',m === state.mode);
+    renderPanel();
+    if (state.mode === 'map') renderMap();
+    else renderBook();
+    nextHint();
+    for (const old of stable) {
+      const fresh = $(old.id);
+      if (!fresh || fresh === old || fresh.tagName !== old.tagName) continue;
+      const value = fresh.value;
+      for (const attribute of [...old.attributes]) old.removeAttribute(attribute.name);
+      for (const attribute of [...fresh.attributes]) old.setAttribute(attribute.name,attribute.value);
+      old.innerHTML = fresh.innerHTML;
+      old.onclick = fresh.onclick;
+      old.onchange = fresh.onchange;
+      if (fresh.tagName === 'SELECT') old.value = value;
+      fresh.replaceWith(old);
+    }
+    if (focusId && $(focusId) && document.activeElement === document.body) {
+      const target = $(focusId).disabled ? $('pageSelect') : $(focusId);
+      target?.focus({preventScroll:true});
+    }
+  }
+  function renderPanel() {
+    const sample = state.book === 'sample';
+    $('panel').dataset.book = state.book;
+    $('panelkicker').textContent = sample ? 'An idea in progress' : 'Your working journal';
+    $('paneltitle').textContent = sample ? "Theo's book" : 'Make your own case.';
+    $('panelintro').textContent = sample ? 'Theo Marsh is a made-up grade 11 artist investigating plastic through vanitas still life.' :
+      'Start with an issue. Let a tradition change the way you see it.';
+    $('panelactions').innerHTML = sample ?
+      '<button id="seeMap">See the map ↗</button><p style="height:7px"></p><button id="startOwn" class="primary">Start my own book</button>' :
+      `<button id="addPage" class="primary" ${mine.issue === null || mine.tradition === null || mine.pages.length >= 12 ? 'disabled' : ''}>Add page +</button>
+       <p style="height:7px"></p><button id="seeMap">See the map ↗</button>
+       <p style="height:7px"></p><button id="deletePage" ${state.page < 2 ? 'disabled' : ''}>Delete page</button>
+       <p style="height:7px"></p><button id="clearBook">Clear book</button>`;
+    $('seeMap').onclick = () => setMode('map');
+    if (sample) $('startOwn').onclick = () => setMode('mine');
+    else {
+      $('addPage').title = mine.pages.length >= 12 ? 'The book holds 12 pages.' :
+        mine.issue === null || mine.tradition === null ? 'Choose an issue and a tradition first.' : 'Add the next step in your investigation.';
+      $('addPage').onclick = addMenu;
+      $('deletePage').onclick = () => confirm('Delete this page?',() => {
+        const removed = page();
+        mine.pages.splice(state.page,1);
+        histories.forEach((v,k) => {
+          if (k.startsWith(removed.id+':')) histories.delete(k);
+        });
+        state.page = Math.min(state.page,mine.pages.length-1);
+        save();
+        render();
+        $('pageSelect').focus({preventScroll:true});
+      });
+      $('clearBook').onclick = () => confirm('Clear your whole book?',() => {
+        clearTimeout(saveTimer);
+        saveTimer = null;
+        mine = empty();
+        histories.clear();
+        state.page = 0;
+        state.previewIssue = 0;
+        state.previewTradition = 0;
+        try {
+          localStorage.removeItem(KEY);
+          storageError = false;
+          loadError = false;
+        } catch (e) {
+          storageError = true;
+        }
+        render();
+        $('pageSelect').focus({preventScroll:true});
+      });
+    }
+    $('saved').textContent = sample ? 'Sample pages are read only.' : storageError ?
+      "This device won't save more. Clear a page or keep this tab open." : loadError ?
+      'The saved book could not be read. Its stored copy stays unchanged until you edit or clear this book.' :
+      saveTimer ? 'Saving…' : 'Saved on this device';
+  }
+  function renderBook() {
+    const b = book();
+    $('stage').innerHTML = `<div class="book ${state.tagsOpen ? 'tagsopen' : ''}" id="book">
+      <div class="bookbar"><strong>${state.book === 'sample' ? "Theo's book" : 'Your book'}</strong>
+        <select id="pageSelect" class="page-select" aria-label="Open page">${b.pages.map((p,i) =>
+          `<option value="${i}" ${i === state.page ? 'selected' : ''}>${i+1} ${p.type}</option>`).join('')}</select>
+        <button id="prevPage" ${state.page === 0 ? 'disabled' : ''}>Prev page</button>
+        <button id="nextPage" ${state.page === b.pages.length-1 ? 'disabled' : ''}>Next page</button>
+        <button id="tagsToggle" aria-pressed="${state.tagsOpen}">${state.tagsOpen ? 'Page' : 'Tags'}</button>
+      </div>
+      <div class="spread"><section class="leaf leftleaf" id="leftleaf"></section>
+        <section class="leaf rightleaf" id="rightleaf" aria-label="What changed"></section></div>
+      <nav class="tabs" aria-label="Book pages">${b.pages.map((p,i) =>
+        `<button id="tab-${i}" data-page="${i}" aria-current="${i === state.page ? 'page' : 'false'}">${i+1} ${p.type}</button>`).join('')}</nav>
+      <div class="quietglow"></div></div>`;
+    $('pageSelect').onchange = e => openPage(+e.target.value);
+    $('prevPage').onclick = () => openPage(state.page-1);
+    $('nextPage').onclick = () => openPage(state.page+1);
+    $('tagsToggle').onclick = () => {
+      state.tagsOpen = !state.tagsOpen;
+      $('book').classList.toggle('tagsopen',state.tagsOpen);
+      $('tagsToggle').textContent = state.tagsOpen ? 'Page' : 'Tags';
+      $('tagsToggle').setAttribute('aria-pressed',state.tagsOpen);
+      if (state.tagsOpen) {
+        if (state.page > 1 && state.book === 'mine') nextHint();
+        else hint(state.page < 2 ? 'Read the source cards and traits, then tap Page to return.' :
+          'Read the decision tags, then tap Page to return.');
+      } else nextHint();
+    };
+    document.querySelectorAll('[data-page]').forEach(el => el.onclick = () => openPage(+el.dataset.page));
+    $('leftleaf').innerHTML = `<div class="pagehead"><h2>${esc(page().type)}</h2><span class="folio">${state.page+1} / ${b.pages.length}</span></div>`;
+    if (state.book === 'sample') renderSample();
+    else if (state.page === 0) renderIssue();
+    else if (state.page === 1) renderTradition();
+    else renderDrawing();
+    renderTags();
+    if (innerWidth < 600) {
+      const spread = $('book').querySelector('.spread');
+      $('book').insertBefore($('hint'),spread);
+      $('hint').className = 'bookhint';
+      if (state.book === 'mine') {
+        $('book').querySelector('.bookbar').append($('addPage'));
+        $('book').append($('saved'));
+      }
+    }
+  }
+  function renderSample() {
+    const p = page();
+    if (state.page === 1) {
+      $('leftleaf').insertAdjacentHTML('beforeend',`<div class="tradimages">${DATA.traditions[0].images.map(n =>
+        `<button data-enlarge="${n}" aria-label="Enlarge ${n}"><img src="${ART[n]}" alt="Original vanitas still life"></button>`).join('')}</div>`);
+      document.querySelectorAll('[data-enlarge]').forEach(el => el.onclick = () => enlarge(el.dataset.enlarge));
+    } else {
+      $('leftleaf').insertAdjacentHTML('beforeend',`<div class="samplepicture"><img class="hero" src="${ART[p.image]}" alt="${esc(p.text)}"></div>`);
+    }
+    $('leftleaf').insertAdjacentHTML('beforeend',`<p class="sampletext">“${esc(p.text)}”</p>`);
+    if (state.page === 6) $('leftleaf').insertAdjacentHTML('beforeend',
+      '<p class="sample-caption">Still Life With Forever · acrylic on flattened cardboard packaging · 60 × 45 cm</p>');
+  }
+  function renderIssue() {
+    $('leftleaf').insertAdjacentHTML('beforeend',`<div class="picks">${DATA.issues.map((x,i) =>
+      `<button class="pick" id="issue-${i}" aria-pressed="${state.previewIssue === i}">
+        <img src="${ART[x.image]}" alt="">${esc(x.name)}</button>`).join('')}</div>
+      <div id="issueDetail"></div><button class="primary" id="chooseIssue">Choose this issue</button>`);
+    function detail() {
+      const issue = DATA.issues[state.previewIssue];
+      $('issueDetail').innerHTML = `<img class="issuehero" src="${ART[issue.image]}" alt="${esc(issue.name)}">
+        <p class="tradintro">${state.previewIssue === 0 ? 'Cities run hotter than the land around them.' :
+          state.previewIssue === 1 ? 'Start with what the storm leaves behind.' : 'Look at a migration through its winter gathering place.'}</p>`;
+      for (let i=0;i<3;i++) $('issue-'+i).setAttribute('aria-pressed',i === state.previewIssue);
+      $('chooseIssue').textContent = mine.issue === state.previewIssue ? 'Chosen issue ✓' : 'Choose this issue';
+      renderTags();
+    }
+    for (let i=0;i<3;i++) $('issue-'+i).onclick = () => {
+      state.issueOpened = true;
+      V.dropQueued();
+      state.previewIssue = i;
+      detail();
+      hint('Tap Choose this issue to use these research cards in your book.');
+      tone();
+    };
+    $('chooseIssue').onclick = () => {
+      mine.issue = state.previewIssue;
+      saveSoon();
+      detail();
+      $('addPage').disabled = mine.tradition === null || mine.pages.length >= 12;
+      if (mine.tradition === null) hint(L.pickTradition,'pickTradition');
+      else if (mine.pages.length >= 12) hint('Your book has 12 pages. Use the page picker to return to your work.');
+      else hint(L.addPage,'addPage');
+      tone(1);
+    };
+    detail();
+  }
+  function renderTradition() {
+    $('leftleaf').insertAdjacentHTML('beforeend',`<div class="picks">${DATA.traditions.map((x,i) =>
+      `<button class="pick" id="tradition-${i}" aria-pressed="${state.previewTradition === i}">
+        <img src="${ART[x.images[0]]}" alt="">${esc(x.name)}</button>`).join('')}</div>
+      <div id="traditionDetail"></div><button class="primary" id="chooseTradition">Choose this tradition</button>`);
+    function detail() {
+      const t = DATA.traditions[state.previewTradition];
+      $('traditionDetail').innerHTML = `<div class="tradimages">${t.images.map(n =>
+        `<button data-enlarge="${n}" aria-label="Enlarge ${n}"><img src="${ART[n]}" alt="Original ${esc(t.name)} interpretation"></button>`).join('')}</div>
+        <p class="credit">${esc(t.context)} · ${esc(t.source)} · Original interpretations</p><p class="tradintro">${esc(t.intro)}</p>`;
+      document.querySelectorAll('[data-enlarge]').forEach(el => el.onclick = () => enlarge(el.dataset.enlarge));
+      for (let i=0;i<3;i++) $('tradition-'+i).setAttribute('aria-pressed',i === state.previewTradition);
+      $('chooseTradition').textContent = mine.tradition === state.previewTradition ? 'Chosen tradition ✓' : 'Choose this tradition';
+      renderTags();
+    }
+    for (let i=0;i<3;i++) $('tradition-'+i).onclick = () => {
+      state.traditionOpened = true;
+      V.dropQueued();
+      state.previewTradition = i;
+      detail();
+      hint('Tap a picture to look closer, then tap Choose this tradition.');
+      tone();
+    };
+    $('chooseTradition').onclick = () => {
+      mine.tradition = state.previewTradition;
+      saveSoon();
+      detail();
+      $('addPage').disabled = mine.issue === null || mine.pages.length >= 12;
+      if (mine.issue === null) hint('Open Issue and tap Choose this issue.');
+      else if (mine.pages.length >= 12) hint('Your book has 12 pages. Use the page picker to return to your work.');
+      else hint(L.addPage,'addPage');
+      tone(1);
+    };
+    detail();
+  }
+  function addMenu() {
+    if (mine.issue === null || mine.tradition === null || mine.pages.length >= 12) return;
+    const types = ['Thumbnails','Study','Revision'];
+    if (mine.pages.some(p => p.type === 'Thumbnails')) types.push('Plan');
+    modal('Add a working page','<p>Choose the next step in your investigation.</p>',
+      [...types.map(t => ({text:t,id:'add-'+t.toLowerCase(),primary:t === 'Thumbnails',run:() => addPage(t)})),{text:'Cancel'}]);
+  }
+  function addPage(type) {
+    if (mine.issue === null || mine.tradition === null || mine.pages.length >= 12) return;
+    if (type === 'Plan' && !mine.pages.some(p => p.type === 'Thumbnails')) return;
+    mine.pages.push({id:crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),type,tags:[],drawings:[],lines:[],trait:0,reference:'',
+      plan:{title:'',medium:'',width:60,height:45,palette:[],statement:''}});
+    state.page = mine.pages.length-1;
+    state.active = 0;
+    state.tagsOpen = false;
+    saveSoon();
+    render();
+    tone(1);
+    $('pageSelect').focus({preventScroll:true});
+  }
+  function renderTags() {
+    if (!$('rightleaf')) return;
+    const target = $('rightleaf');
+    const p = page();
+    if (state.page === 0) {
+      const issue = DATA.issues[state.book === 'sample' ? 1 : state.previewIssue];
+      target.innerHTML = `<div class="eyebrow">Page 1 · Research file</div><h3 class="tagtitle">An issue worth noticing.</h3>
+        ${issue.cards.map((c,i) => `<div class="research"><b>R${i+1} · ${esc(c.name)}</b><p>${esc(c.text)}</p>
+          <span class="credit">${esc(issue.name === 'Plastic in the ocean' ?
+            i === 0 ? 'Jambeck et al., Science (2015)' : 'NOAA Marine Debris Program' : issue.source)}</span></div>`).join('')}
+        <p class="muted">Keep these cards. Later, connect a choice in your drawing to a fact that changed it.</p>`;
+      return;
+    }
+    if (state.page === 1) {
+      const t = DATA.traditions[state.book === 'sample' ? 0 : state.previewTradition];
+      target.innerHTML = `<div class="eyebrow">Page 2 · Tradition file</div><h3 class="tagtitle">A language to borrow.</h3>
+        <p class="muted">${esc(t.context)}</p><ol class="traits">${t.traits.map(x => `<li>${esc(x)}</li>`).join('')}</ol>
+        <p class="muted">Borrow a trait, or deliberately break from it. Make the reason yours.</p>`;
+      return;
+    }
+    if (state.book === 'sample') {
+      target.innerHTML = `<div class="eyebrow">Receipts for the idea</div><h3 class="tagtitle">What changed<br>on this page?</h3>
+        <p class="tagintro">Follow the reason, not just the finished picture.</p>${p.tags.map(t =>
+          `<article class="tagcard" style="--tag:${COLORS[t.kind]}"><strong>${esc(t.aspect)}</strong>
+            <div class="because">${mark(t.kind)}<span>${esc(sourceName(t))}</span></div><p>“${esc(t.note)}”</p></article>`).join('')}`;
+      if (state.page === 6) target.insertAdjacentHTML('beforeend',
+        `<div class="palette">${['#1a1714','#2e6b4f','#e9ece6','#c8322a','#e6b52c'].map(c => `<i style="background:${c}" title="${c}"></i>`).join('')}</div>`);
+      return;
+    }
+    target.innerHTML = `<div class="eyebrow">Connect the decision</div><h3 class="tagtitle">What changed<br>on this page?</h3>
+      <p class="tagintro">Pick an aspect, then name what caused the change.</p><div class="chips">${ASPECTS.map(a =>
+        `<button id="aspect-${a}" aria-pressed="${p.tags.some(t => t.aspect === a)}">${a}</button>`).join('')}</div>
+        <div id="decisionReceipt" aria-live="polite"></div><div id="tagforms"></div>`;
+    ASPECTS.forEach(a => $('aspect-'+a).onclick = () => {
+      const i = p.tags.findIndex(t => t.aspect === a);
+      if (i >= 0) p.tags.splice(i,1);
+      else p.tags.push({aspect:a,kind:'own',label:'My own idea',note:'',issue:mine.issue,tradition:mine.tradition,index:0});
+      $('aspect-'+a).setAttribute('aria-pressed',i < 0);
+      renderTagForms();
+      showReceipt(i < 0 ? p.tags[p.tags.length-1] : null);
+      hint(p.tags.length ? 'Choose Because for each aspect, then add a short note about your decision.' :
+        'Tap an aspect under What changed to connect a decision to its source.');
+      saveSoon();
+      tone();
+    });
+    renderTagForms();
+  }
+  function showReceipt(tag) {
+    const target = $('decisionReceipt');
+    if (!target) return;
+    target.innerHTML = tag ? `<div class="decision-receipt receipt-flash" style="--tag:${COLORS[tag.kind]}">
+      ${mark(tag.kind)}<div><strong>${esc(tag.aspect)} has a thread.</strong>${esc(sourceName(tag))} → Idea map</div></div>` : '';
+  }
+  function renderTagForms() {
+    const p = page();
+    $('tagforms').innerHTML = p.tags.length ? p.tags.map(t => {
+      const current = `${t.kind}:${t.index}`;
+      const old = isOld(t);
+      const opts = [{value:'own:0',text:'My own idea'}];
+      DATA.issues[mine.issue].cards.forEach((c,i) => opts.push({value:'research:'+i,text:'Research: '+c.name}));
+      for (const kind of ['borrowed','broke']) DATA.traditions[mine.tradition].traits.forEach((c,i) =>
+        opts.push({value:kind+':'+i,text:(kind === 'borrowed' ? 'Borrowed: ' : 'Broke from: ')+c}));
+      return `<div class="tagform"><label for="because-${t.aspect}">${esc(t.aspect)} · Because</label>
+        <select id="because-${t.aspect}">${old ? `<option value="old" selected>${esc(sourceName(t))}
+          (from your old ${t.kind === 'research' ? 'issue' : 'tradition'})</option>` : ''}
+        ${opts.map(o => `<option value="${o.value}" ${!old && current === o.value ? 'selected' : ''}>${esc(o.text)}</option>`).join('')}</select>
+        <label for="note-${t.aspect}" style="margin-top:8px">Decision note · 140 characters</label>
+        <textarea id="note-${t.aspect}" maxlength="140">${esc(t.note)}</textarea></div>`;
+    }).join('') : '<p class="muted">Not tagged yet. Drawing and thinking can come first.</p>';
+    p.tags.forEach(t => {
+      $('because-'+t.aspect).onchange = e => {
+        if (e.target.value === 'old') return;
+        const [kind,index] = e.target.value.split(':');
+        Object.assign(t,{kind,index:+index,issue:mine.issue,tradition:mine.tradition,
+          label:kind === 'own' ? 'My own idea' : kind === 'research' ? DATA.issues[mine.issue].cards[+index].name :
+            DATA.traditions[mine.tradition].traits[+index]});
+        saveSoon();
+        tone(1);
+        showReceipt(t);
+        if (kind === 'broke') {
+          const id = p.id;
+          V.say('firstBreak',{valid:() => page().id === id && state.mode === 'mine',hint:false});
+        }
+      };
+      $('note-'+t.aspect).oninput = e => {
+        t.note = e.target.value;
+        saveSoon();
+      };
+    });
+  }
+  function renderDrawing() {
+    const p = page();
+    const count = p.type === 'Thumbnails' ? 4 : 1;
+    $('leftleaf').insertAdjacentHTML('beforeend',`<div class="drawtools" role="group" aria-label="Drawing tools">
+      ${['Pencil','Dark','Eraser','Undo','Clear box'].map(t => `<button id="tool-${t.replace(' ','')}"
+        ${['Pencil','Dark','Eraser'].includes(t) ? `aria-pressed="${state.pencil === t}"` : ''}>${t}</button>`).join('')}</div>
+      <div id="drawingExtra"></div><div class="${count === 4 ? 'drawgrid' : 'singlepad'}">${Array.from({length:count},(_,i) =>
+        `<div class="drawbox ${i === state.active ? 'active' : ''}" data-box="${i}"><canvas class="pad" id="pad-${i}" width="1200" height="900"
+          tabindex="0" aria-label="${count === 4 ? 'Thumbnail '+(i+1) : p.type+' drawing'}. Draw with a pointer. Arrow keys move; Space marks."></canvas>
+          ${count === 4 ? `<input id="line-${i}" maxlength="60" placeholder="What is this one?"
+            aria-label="Thumbnail ${i+1} description" value="${esc(p.lines[i] || '')}">` : ''}</div>`).join('')}</div>`);
+    if (p.type === 'Study') {
+      $('drawingExtra').innerHTML = `<label>Studying which trait?<select id="studyTrait">${DATA.traditions[mine.tradition].traits.map((t,i) =>
+        `<option value="${i}" ${p.trait === i ? 'selected' : ''}>${esc(t)}</option>`).join('')}</select></label>`;
+      $('studyTrait').onchange = e => {
+        p.trait = +e.target.value;
+        saveSoon();
+      };
+    }
+    if (p.type === 'Revision') {
+      const refs = [];
+      mine.pages.slice(0,state.page).forEach((x,pi) => {
+        if (x.type === 'Thumbnails') for (let i=0;i<4;i++) refs.push({value:x.id+':'+i,label:`Page ${pi+1}, thumbnail ${i+1}`,data:x.drawings[i]});
+      });
+      if (!refs.some(r => r.value === p.reference)) p.reference = refs[0]?.value || '';
+      const ref = refs.find(r => r.value === p.reference);
+      $('drawingExtra').innerHTML = `<div class="refrow"><label>Redrawing which thumbnail?<select id="revisionRef">
+        ${refs.length ? refs.map(r => `<option value="${r.value}" ${r.value === p.reference ? 'selected' : ''}>${r.label}</option>`).join('') :
+          '<option>No earlier thumbnails yet</option>'}</select></label>
+          <img id="referenceImage" ${ref?.data ? `src="${ref.data}"` : 'hidden'} alt="Earlier thumbnail">
+          <span class="refblank" id="referenceBlank" ${ref?.data ? 'hidden' : ''}>Not drawn yet</span></div>`;
+      $('revisionRef').onchange = e => {
+        p.reference = e.target.value;
+        const r = refs.find(x => x.value === p.reference);
+        $('referenceImage').hidden = !r?.data;
+        $('referenceBlank').hidden = !!r?.data;
+        if (r?.data) $('referenceImage').src = r.data;
+        else $('referenceImage').removeAttribute('src');
+        saveSoon();
+      };
+    }
+    ['Pencil','Dark','Eraser'].forEach(t => $('tool-'+t).onclick = () => {
+      state.pencil = t;
+      ['Pencil','Dark','Eraser'].forEach(k => $('tool-'+k).setAttribute('aria-pressed',k === t));
+      hint(`${t} selected. Draw in a box, or tap Undo to step back.`);
+      tone();
+    });
+    $('tool-Undo').onclick = undo;
+    $('tool-Clearbox').onclick = () => confirm('Clear this drawing box?',() => {
+      const c = pads.get(state.active);
+      remember(c,state.active);
+      c.getContext('2d').clearRect(0,0,1200,900);
+      commitPad(c,state.active);
+    });
+    for (let i=0;i<count;i++) {
+      setupPad($('pad-'+i),i);
+      if ($('line-'+i)) $('line-'+i).oninput = e => {
+        p.lines[i] = e.target.value;
+        saveSoon();
+      };
+    }
+    if (p.type === 'Plan') {
+      $('leftleaf').querySelector('.singlepad').style.cssText = 'flex:none;height:260px';
+      renderPlan();
+    }
+  }
+  function selectPad(i) {
+    state.active = i;
+    document.querySelectorAll('.drawbox').forEach(el => el.classList.toggle('active',+el.dataset.box === i));
+  }
+  function remember(c,i) {
+    const key = page().id+':'+i;
+    if (!histories.has(key)) histories.set(key,[]);
+    const stack = histories.get(key);
+    stack.push(c.toDataURL('image/png'));
+    if (stack.length > 20) stack.shift();
+  }
+  function commitPad(c,i) {
+    const small = document.createElement('canvas');
+    small.width = 800;
+    small.height = 600;
+    small.getContext('2d').drawImage(c,0,0,800,600);
+    page().drawings[i] = small.toDataURL('image/webp',.6);
+    saveSoon();
+  }
+  function undo() {
+    const c = pads.get(state.active);
+    const stack = histories.get(page().id+':'+state.active);
+    if (!stack?.length) return hint('No earlier strokes in this box. Draw with Pencil to begin.');
+    const i = state.active;
+    const img = new Image();
+    img.onload = () => {
+      if (pads.get(i) !== c) return;
+      c.getContext('2d').clearRect(0,0,1200,900);
+      c.getContext('2d').drawImage(img,0,0);
+      commitPad(c,i);
+    };
+    img.src = stack.pop();
+    tone();
+  }
+  function setupPad(c,i) {
+    pads.set(i,c);
+    const ctx = c.getContext('2d',{willReadFrequently:true});
+    let drawing = false;
+    let last;
+    let loaded = false;
+    let cursor = {x:600,y:450};
+    const drawingPage = page();
+    const initial = drawingPage.drawings[i];
+    if (initial) {
+      const img = new Image();
+      img.onload = () => {
+        if (!loaded && !drawing) ctx.drawImage(img,0,0,1200,900);
+        loaded = true;
+      };
+      img.src = initial;
+    }
+    function point(e) {
+      const r = c.getBoundingClientRect();
+      return {x:(e.clientX-r.left)*1200/r.width,y:(e.clientY-r.top)*900/r.height,
+        pressure:e.pointerType === 'pen' ? Math.max(.1,e.pressure) : .5};
+    }
+    function stroke(a,b) {
+      ctx.globalCompositeOperation = state.pencil === 'Eraser' ? 'destination-out' : 'source-over';
+      ctx.strokeStyle = state.pencil === 'Dark' ? '#28241ed9' : '#514a3bc0';
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.lineWidth = state.pencil === 'Eraser' ? 32 : (state.pencil === 'Dark' ? 9 : 4)*(b.pressure || .5)*2;
+      ctx.beginPath();
+      ctx.moveTo(a.x,a.y);
+      ctx.lineTo(b.x,b.y);
+      ctx.stroke();
+      ctx.globalCompositeOperation = 'source-over';
+    }
+    c.onpointerdown = e => {
+      if (e.button !== 0) return;
+      e.preventDefault();
+      loaded = true;
+      selectPad(i);
+      remember(c,i);
+      c.setPointerCapture(e.pointerId);
+      drawing = true;
+      pointerDrawing = true;
+      last = point(e);
+      stroke(last,{...last,x:last.x+.2});
+      tone();
+    };
+    c.onpointermove = e => {
+      if (!drawing) return;
+      const events = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
+      for (const event of events.length ? events : [e]) {
+        const p = point(event);
+        stroke(last,p);
+        last = p;
+      }
+    };
+    const end = () => {
+      if (!drawing) return;
+      drawing = false;
+      pointerDrawing = false;
+      if (page() === drawingPage) commitPad(c,i);
+      syncLayout();
+    };
+    c.onpointerup = end;
+    c.onpointercancel = end;
+    c.onlostpointercapture = end;
+    c.onfocus = () => selectPad(i);
+    c.onkeydown = e => {
+      if (!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown',' '].includes(e.key)) return;
+      e.preventDefault();
+      loaded = true;
+      selectPad(i);
+      remember(c,i);
+      const before = {...cursor};
+      if (e.key === 'ArrowLeft') cursor.x -= 12;
+      if (e.key === 'ArrowRight') cursor.x += 12;
+      if (e.key === 'ArrowUp') cursor.y -= 12;
+      if (e.key === 'ArrowDown') cursor.y += 12;
+      cursor.x = Math.max(4,Math.min(1196,cursor.x));
+      cursor.y = Math.max(4,Math.min(896,cursor.y));
+      stroke(before,{...cursor,x:cursor.x+(e.key === ' ' ? .2 : 0),pressure:.5});
+      commitPad(c,i);
+    };
+  }
+  const SWATCHES = [
+    ['pale red','#efb5b0'],['light red','#db7f76'],['red','#b93732'],['dark red','#702420'],
+    ['pale orange','#f0cfad'],['light orange','#dba474'],['orange','#bc7135'],['dark orange','#75401f'],
+    ['pale yellow','#f5e7b1'],['light yellow','#e4cc75'],['yellow','#b99a2a'],['dark yellow','#736017'],
+    ['pale green','#c7d8b8'],['light green','#90b58a'],['green','#4d8053'],['dark green','#274b32'],
+    ['pale blue','#c0d9e3'],['light blue','#7cacc9'],['blue','#376e9f'],['dark blue','#233d63'],
+    ['pale violet','#d9c9df'],['light violet','#af91bd'],['violet','#7a518f'],['dark violet','#4d325c']
+  ];
+  function renderPlan() {
+    const p = page();
+    const f = p.plan;
+    const mediums = ['pencil','ink','watercolor','acrylic','collage','printmaking','digital','other'];
+    $('leftleaf').insertAdjacentHTML('beforeend',`<div class="planform"><label>Title · 60 characters
+      <input id="planTitle" aria-label="Artwork title" maxlength="60" value="${esc(f.title)}"></label>
+      <label>Medium<select id="planMedium"><option value="">Choose a medium</option>${mediums.map(m =>
+        `<option ${f.medium === m ? 'selected' : ''}>${m}</option>`).join('')}</select></label><div class="pair">
+      <label>Width in cm<input id="planWidth" type="number" min="5" max="300" value="${f.width}"></label>
+      <label>Height in cm<input id="planHeight" type="number" min="5" max="300" value="${f.height}"></label></div>
+      <label id="paletteLabel">Palette · pick 3 to 6 colors (${f.palette.length}/6)</label><div class="swatches" role="group" aria-labelledby="paletteLabel">
+      ${SWATCHES.map(([name,c],i) => `<button class="swatch" id="swatch-${i}" style="background:${c}" aria-label="${name}"
+        title="${name}" aria-pressed="${f.palette.includes(c)}"></button>`).join('')}</div>
+      <label>Statement · <span id="statementCount">${f.statement.length}</span>/400
+      <textarea id="planStatement" aria-label="Artist statement: what is it about, and what did you take from the tradition?" maxlength="400"
+        placeholder="What is it about, and what did you take from the tradition?">${esc(f.statement)}</textarea></label>
+      <p class="muted" id="planState">Build a plan that explains your choices.</p></div>`);
+    [['planTitle','title'],['planMedium','medium'],['planStatement','statement']].forEach(([id,key]) => $(id).oninput = e => {
+      f[key] = e.target.value;
+      $('statementCount').textContent = f.statement.length;
+      planCheck();
+      saveSoon();
+    });
+    [['planWidth','width'],['planHeight','height']].forEach(([id,key]) => {
+      $(id).oninput = e => {
+        if (e.target.validity.valid && e.target.value) {
+          f[key] = +e.target.value;
+          saveSoon();
+        }
+      };
+      $(id).onblur = () => {
+        $(id).value = f[key];
+      };
+    });
+    SWATCHES.forEach(([name,c],i) => $('swatch-'+i).onclick = () => {
+      const n = f.palette.indexOf(c);
+      if (n >= 0) f.palette.splice(n,1);
+      else if (f.palette.length < 6) f.palette.push(c);
+      else return hint('Your palette has six colors. Tap one to remove it before adding another.');
+      $('swatch-'+i).setAttribute('aria-pressed',f.palette.includes(c));
+      $('paletteLabel').textContent = `Palette · pick 3 to 6 colors (${f.palette.length}/6)`;
+      planCheck();
+      saveSoon();
+      tone();
+    });
+    planCheck();
+  }
+  function planCheck() {
+    const f = page().plan;
+    const ready = f.title.trim() && f.medium && f.palette.length >= 3 && f.statement.trim();
+    $('planState').textContent = ready ? 'Your plan is complete. See the map to trace what shaped it.' : 'Build a plan that explains your choices.';
+    if (ready && !mine.planDone) {
+      mine.planDone = true;
+      V.say('planDone',{valid:() => state.mode === 'mine',hint:false});
+      Curio.yes();
+    }
+  }
+  function counts(b = book()) {
+    const result = {research:0,borrowed:0,broke:0,own:0};
+    b.pages.forEach(p => p.tags.forEach(t => result[t.kind]++));
+    return result;
+  }
+  function matches(t) {
+    return state.filter === 'All' || state.filter === 'Research' && t.kind === 'research' ||
+      state.filter === 'Tradition' && ['borrowed','broke'].includes(t.kind) ||
+      state.filter === 'Mine' && ['broke','own'].includes(t.kind);
+  }
+  function sourceKey(t) {
+    return t.kind === 'own' ? 'own' : `${t.kind === 'research' ? 'R'+t.issue : 'T'+t.tradition}:${t.index}`;
+  }
+  function pagePicture(p,b) {
+    if (p.image) return ART[p.image];
+    if (p.type === 'Thumbnails' && p.drawings?.some(Boolean)) {
+      const pictures = p.drawings.map((data,i) => data ?
+        `<image href="${data}" x="${i%2*410}" y="${Math.floor(i/2)*310}" width="400" height="300"/>` : '').join('');
+      return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(
+        `<svg xmlns="http://www.w3.org/2000/svg" width="810" height="610" viewBox="0 0 810 610">
+          <rect width="810" height="610" fill="#fcf9ef"/>${pictures}</svg>`);
+    }
+    if (p.drawings?.[0]) return p.drawings[0];
+    if (p.type === 'Issue' && b.issue !== null) return ART[DATA.issues[b.issue].image];
+    if (p.type === 'Tradition' && b.tradition !== null) return ART[DATA.traditions[b.tradition].images[0]];
+    return '';
+  }
+  function renderMap() {
+    const b = book();
+    const c = counts();
+    $('stage').innerHTML = `<div class="mapdesk"><div class="mapbar"><h2>Threads of an idea
+      <small style="font:12px 'Segoe UI'">· ${state.book === 'sample' ? "Theo's book" : 'Your book'}</small></h2>
+      <div class="filters" role="group" aria-label="Filter">${['All','Research','Tradition','Mine'].map(f =>
+        `<button id="filter-${f}" aria-pressed="${state.filter === f}">${f}</button>`).join('')}</div></div>
+      <div class="maplegend">□ R Research · △ T Borrowed · ◇ B Broke from · ○ O Own idea · Mine includes deliberate breaks</div>
+      <div class="mapwindow"><div class="sources" id="mapSources"><div class="sourcehead">Sources used</div></div>
+        <div class="mapscroll" id="mapscroll"><div class="mapcanvas" id="mapcanvas"></div></div></div>
+      <p class="counts">Research changed ${c.research} ${c.research === 1 ? 'thing' : 'things'}. The tradition gave you ${c.borrowed}.
+        You broke from it ${c.broke} ${c.broke === 1 ? 'time' : 'times'}. Your own ideas: ${c.own}.</p>
+      <p class="maphint" id="maphint">${L.welcomeMap}</p></div>`;
+    $('maphint').replaceWith($('hint'));
+    $('hint').className = 'maphint';
+    const width = Math.max(720,b.pages.length*120+20);
+    const sources = [];
+    b.pages.forEach(p => p.tags.forEach(t => {
+      const key = sourceKey(t);
+      const source = sources.find(s => s.key === key);
+      if (source) source.total++;
+      else sources.push({key,tag:t,total:1,used:0});
+    }));
+    const sourceStep = innerWidth < 600 || sources.some(s => isOld(s.tag)) ? 64 : 44;
+    const height = Math.max(480,sources.length*sourceStep+120);
+    $('mapcanvas').style.width = width+'px';
+    $('mapcanvas').style.height = height+'px';
+    $('mapscroll').style.height = height+'px';
+    $('mapSources').style.minHeight = height+'px';
+    sources.forEach((s,i) => {
+      s.y = 135+i*sourceStep;
+      const t = s.tag;
+      const old = isOld(t);
+      $('mapSources').insertAdjacentHTML('beforeend',`<div class="source-label ${old ? 'old' : ''}"
+        style="top:${s.y-19}px;height:${sourceStep-6}px;--tag:${COLORS[t.kind]}"
+        title="${esc(sourceName(t))}${old ? ' (from your old '+(t.kind === 'research' ? 'issue' : 'tradition')+')' : ''}">
+        ${esc(t.kind === 'own' ? 'Own idea' : (t.kind === 'research' ? 'R' : 'T')+(t.index+1)+' · '+
+          t.label.split(' (')[0].split(' ').slice(0,7).join(' '))}
+        ${old ? `<br>(from your old ${t.kind === 'research' ? 'issue' : 'tradition'})` : ''}</div>`);
+    });
+    let svg = '';
+    ASPECTS.forEach((a,i) => {
+      const y = 170+i*58;
+      svg += `<line x1="0" x2="${width}" y1="${y}" y2="${y}" stroke="#d9cfbb" stroke-dasharray="3 6"/>`;
+      $('mapcanvas').insertAdjacentHTML('beforeend',`<span class="lane-label" style="top:${y-29}px">${a}</span>`);
+      const nodes = [];
+      b.pages.forEach((p,pi) => p.tags.forEach(t => {
+        if (t.aspect === a) nodes.push({t,pi,x:pi*120+62,y});
+      }));
+      for (let n=1;n<nodes.length;n++) {
+        const p = nodes[n-1];
+        const q = nodes[n];
+        svg += `<path d="M${p.x} ${p.y} H${q.x}" stroke="#ad9c7d" stroke-width="2" fill="none"/>`;
+      }
+    });
+    let nodeIndex = 0;
+    b.pages.forEach((p,pi) => {
+      const pic = pagePicture(p,b);
+      const untagged = pi > 1 && !p.tags.length;
+      $('mapcanvas').insertAdjacentHTML('beforeend',`<div class="mapcolumn ${untagged ? 'untagged' : ''}" style="left:${pi*120+10}px">
+        ${pic ? `<img src="${pic}" alt="Page ${pi+1} preview">` : '<div style="height:64px;border:1px dashed #b4a68d"></div>'}
+        <span>${pi+1} ${esc(p.type)}</span>${untagged ? '<span class="untag">Not tagged yet</span>' : ''}</div>`);
+      p.tags.forEach((t,ti) => {
+        const x = pi*120+62;
+        const y = 170+ASPECTS.indexOf(t.aspect)*58;
+        const source = sources.find(s => s.key === sourceKey(t));
+        const fan = (source.used++-(source.total-1)/2)*4;
+        const old = isOld(t);
+        svg += `<path class="source-link ${matches(t) ? '' : 'dim'} ${old ? 'old' : ''}" data-kind="${t.kind}"
+          d="M0 ${source.y+fan} C${Math.max(35,x*.35)} ${source.y+fan},${x-35} ${y},${x} ${y}" fill="none"
+          stroke="${old ? '#777' : COLORS[t.kind]}" stroke-width="1.5" stroke-opacity=".55"/>`;
+        $('mapcanvas').insertAdjacentHTML('beforeend',`<button class="node ${matches(t) ? '' : 'dim'} ${old ? 'old' : ''}"
+          id="node-${nodeIndex++}" data-kind="${t.kind}" data-pi="${pi}" data-ti="${ti}" style="left:${x-22}px;top:${y-22}px"
+          title="Page ${pi+1}, ${esc(t.aspect)}: ${esc(sourceName(t))}" aria-label="Page ${pi+1}, ${esc(t.aspect)}: ${esc(sourceName(t))}">
+          ${mark(t.kind)}</button>`);
+      });
+    });
+    $('mapcanvas').insertAdjacentHTML('afterbegin',`<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" aria-hidden="true">${svg}</svg>`);
+    document.querySelectorAll('.node').forEach(el => {
+      el.onclick = () => openNode(+el.dataset.pi,+el.dataset.ti);
+      el.onfocus = () => {
+        const sc = $('mapscroll');
+        const r = el.getBoundingClientRect();
+        const s = sc.getBoundingClientRect();
+        if (r.left < s.left || r.right > s.right) sc.scrollLeft = el.offsetLeft-80;
+      };
+    });
+    ['All','Research','Tradition','Mine'].forEach(f => $('filter-'+f).onclick = () => {
+      state.filter = f;
+      ['All','Research','Tradition','Mine'].forEach(k => $('filter-'+k).setAttribute('aria-pressed',k === f));
+      document.querySelectorAll('.node,.source-link').forEach(el => el.classList.toggle('dim',!matches({kind:el.dataset.kind})));
+      hint('Tap a mark to inspect the page and the decision behind it.');
+      tone();
+    });
+    const first = $('mapcanvas').querySelector('.node');
+    if (first) {
+      const scroller = $('mapscroll');
+      const viewport = scroller.parentElement;
+      if (first.offsetLeft+44 > scroller.clientWidth) scroller.scrollLeft = Math.max(0,first.offsetLeft-24);
+      if (first.offsetTop+44 > viewport.clientHeight) viewport.scrollTop = first.offsetTop+44-viewport.clientHeight+12;
+    }
+  }
+  function openNode(pi,ti) {
+    V.dropQueued();
+    const b = book();
+    const p = b.pages[pi];
+    const t = p.tags[ti];
+    const old = isOld(t);
+    const pic = pagePicture(p,b);
+    modal(`Page ${pi+1} · ${t.aspect}`,`${pic ? `<img src="${pic}" alt="Page ${pi+1} drawing">` : ''}
+      <div class="because" style="display:flex;align-items:center;gap:10px">${mark(t.kind)}<strong>${esc(sourceName(t))}</strong></div>
+      ${old ? `<p class="muted">(from your old ${t.kind === 'research' ? 'issue' : 'tradition'})</p>` : ''}
+      <p>${esc(t.note || 'No decision note yet.')}</p>`,[{text:'Back to map'},
+        {text:'Open this page',id:'openNodePage',primary:true,run:() => {
+          state.mode = state.book;
+          state.page = pi;
+          state.tagsOpen = false;
+          V.hush();
+          render();
+          $('pageSelect').focus({preventScroll:true});
+        }}]);
+    tone();
+  }
+  for (const m of ['sample','mine','map']) $('m-'+m).onclick = () => setMode(m);
+  Curio.init({clips:"voice:*",rate:.94});
+  window.__tool = {state,setMode,openPage,allLines:V.allLines,vlog:V.log,get vq() {return V.queue;},
+    get mine() {return mine;},get book() {return book();},DATA,ART,counts,render,save,addPage,histories,SWATCHES};
+  render();
+})();
+</script>
+</body>
+</html>

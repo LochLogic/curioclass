@@ -1,0 +1,139 @@
+{
+  "house_style": "Warm bright gouache town illustration for Grade 3, tactile colored-pencil grain, clean toy-town shapes, rich natural color, gentle dimensional shading, sunlight from upper left, orthographic camera. Consistent set.",
+  "assets": [
+    {
+      "name": "maple-street",
+      "prompt": "Straight overhead orthographic view of a beautiful quiet two-lane neighborhood street running horizontally, asphalt occupying middle half of the image, dashed cream center line, precisely one wide white zebra crossing centered at x fifty percent, pale sidewalks at top and bottom, soft green verges, round maple tree crowns, flower beds, a bench, storm drains and roof corners at edges. Empty street with room for moving cars. Blank surfaces. No people, faces, body parts, text, letters, numbers or logos. Wide panorama.",
+      "aspect": "4:1",
+      "cutout": false,
+      "width": 1500,
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "car-red",
+      "prompt": "A single red hatchback seen from straight above, orthographic top-down, nose pointing right, whole vehicle centered with generous margin, glossy roof, detailed windows, tiny mirrors and tires, soft painted highlights. Isolated on flat pure magenta (#FF00FF). No people, text, letters, numbers, logos or ground shadow.",
+      "aspect": "16:9",
+      "cutout": true,
+      "key": "magenta",
+      "width": 220,
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "car-blue",
+      "prompt": "A single blue sedan seen from straight above, orthographic top-down, nose pointing right, whole vehicle centered with generous margin, glossy roof, detailed windows, tiny mirrors and tires, soft painted highlights. Isolated on flat pure magenta (#FF00FF). No people, text, letters, numbers, logos or ground shadow.",
+      "aspect": "16:9",
+      "cutout": true,
+      "key": "magenta",
+      "width": 220,
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "car-yellow",
+      "prompt": "A single yellow compact car seen from straight above, orthographic top-down, nose pointing right, whole vehicle centered with generous margin, glossy roof, detailed windows, tiny mirrors and tires, soft painted highlights. Isolated on flat pure magenta (#FF00FF). No people, text, letters, numbers, logos or ground shadow.",
+      "aspect": "16:9",
+      "cutout": true,
+      "key": "magenta",
+      "width": 220,
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "van-green",
+      "prompt": "A single forest green van seen from straight above, orthographic top-down, nose pointing right, whole vehicle centered with generous margin, glossy roof, detailed windows, tiny mirrors and tires, soft painted highlights. Isolated on flat pure magenta (#FF00FF). No people, text, letters, numbers, logos or ground shadow.",
+      "aspect": "16:9",
+      "cutout": true,
+      "key": "magenta",
+      "width": 220,
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "car-white",
+      "prompt": "A single white station wagon seen from straight above, orthographic top-down, nose pointing right, whole vehicle centered with generous margin, glossy roof, detailed windows, tiny mirrors and tires, soft painted highlights. Isolated on flat pure magenta (#FF00FF). No people, text, letters, numbers, logos or ground shadow.",
+      "aspect": "16:9",
+      "cutout": true,
+      "key": "magenta",
+      "width": 220,
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "ambulance",
+      "prompt": "A single white ambulance with red side stripes and plain light bar on its roof seen from straight above, orthographic top-down, nose pointing right, whole vehicle centered with generous margin, glossy roof, detailed windows, tiny mirrors and tires, soft painted highlights. Isolated on flat pure magenta (#FF00FF). No people, text, letters, numbers, logos or ground shadow.",
+      "aspect": "16:9",
+      "cutout": true,
+      "key": "magenta",
+      "width": 220,
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "signal-head",
+      "prompt": "A front-facing black traffic signal housing, three equal circular dark unlit lamps stacked vertically, amber outer rim, sculpted black visors, screws and gentle highlights. Isolated on pure magenta (#FF00FF), fully in frame. No people, text, letters, numbers or logos.",
+      "aspect": "9:16",
+      "cutout": true,
+      "key": "magenta",
+      "width": 130,
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "walk-signal",
+      "prompt": "A front-facing square black pedestrian signal housing with completely blank dark face, rounded bevel, small mounting bolts and gentle highlights. Isolated on pure magenta (#FF00FF), fully in frame. No symbols, people, text, letters, numbers or logos.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 150,
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "walker-red",
+      "prompt": "A single child seen from directly overhead, orthographic top-down: a child with deep brown skin, short tightly curled dark hair, a red backpack and a blue shirt. The top of the head, rounded shoulders, backpack straps and small shoes are visible. Facing toward the top of the image, whole figure centered with generous margin. Warm bright gouache town illustration, tactile colored-pencil grain, clean toy-town shapes, gentle dimensional shading, sunlight from upper left. Isolated on flat pure green (#00FF00). No text, letters, numbers or logos.",
+      "people": true,
+      "cutout": true,
+      "width": 90,
+      "aspect": "1:1",
+      "key": "green",
+      "quality": 80,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "walker-yellow",
+      "prompt": "A single child seen from directly overhead, orthographic top-down: a child with medium brown skin, dark straight hair, a yellow backpack and a teal shirt. The top of the head, rounded shoulders, backpack straps and small shoes are visible. Facing toward the top of the image, whole figure centered with generous margin. Warm bright gouache town illustration, tactile colored-pencil grain, clean toy-town shapes, gentle dimensional shading, sunlight from upper left. Isolated on flat pure green (#00FF00). No text, letters, numbers or logos.",
+      "people": true,
+      "cutout": true,
+      "width": 90,
+      "aspect": "1:1",
+      "key": "green",
+      "quality": 80,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "walker-green",
+      "prompt": "A single child seen from directly overhead, orthographic top-down: a child with light warm skin, short chestnut hair, a green backpack and an orange shirt. The top of the head, rounded shoulders, backpack straps and small shoes are visible. Facing toward the top of the image, whole figure centered with generous margin. Warm bright gouache town illustration, tactile colored-pencil grain, clean toy-town shapes, gentle dimensional shading, sunlight from upper left. Isolated on flat pure magenta (#FF00FF). No text, letters, numbers or logos.",
+      "people": true,
+      "cutout": true,
+      "width": 90,
+      "aspect": "1:1",
+      "key": "magenta",
+      "quality": 80,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    }
+  ]
+}

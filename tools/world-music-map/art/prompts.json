@@ -1,0 +1,103 @@
+{
+  "house_style": "Museum catalog instrument portrait for a grade 6-8 musical atlas. Realistic material detail, carefully observed construction, warm directional studio light from upper left, centered instrument alone. Rich walnut grain, aged metal, woven fibers. No people, body parts, text, letters, numbers, logos or watermark.",
+  "assets": [
+    {
+      "name": "pd-met-501374",
+      "prompt": "Existing Met Open Access Saron Panerus Slendro photograph.",
+      "source": "Met Open Access CC0",
+      "width": 600
+    },
+    {
+      "name": "pd-met-500996",
+      "prompt": "Existing Met Open Access ud photograph.",
+      "source": "Met Open Access CC0",
+      "width": 600
+    },
+    {
+      "name": "pd-met-500750",
+      "prompt": "Existing Met Open Access sitar photograph.",
+      "source": "Met Open Access CC0",
+      "width": 600
+    },
+    {
+      "name": "pd-met-500712",
+      "prompt": "Existing Met Open Access tabla photograph.",
+      "source": "Met Open Access CC0",
+      "width": 600
+    },
+    {
+      "name": "pd-met-500576",
+      "prompt": "Existing Met Open Access koto photograph.",
+      "source": "Met Open Access CC0",
+      "width": 600
+    },
+    {
+      "name": "pd-met-501474",
+      "prompt": "Existing Met Open Access Great Highland bagpipe photograph.",
+      "source": "Met Open Access CC0",
+      "width": 600
+    },
+    {
+      "name": "pd-met-500616",
+      "prompt": "Existing Met Open Access erhu photograph.",
+      "source": "Met Open Access CC0",
+      "width": 600
+    },
+    {
+      "name": "wmm-ewe",
+      "prompt": "A gankogui, a forged iron double bell with one large and one small bell joined by a curved handle, beside an axatse, a dried gourd rattle wrapped in a net of strung beads, and two carved wooden Ewe drums with pegged skin heads, one tall and one short. Entire objects clearly separated and fully in frame, on flat pure green (#00FF00).",
+      "aspect": "4:3",
+      "cutout": true,
+      "width": 560,
+      "quality": 78,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true,
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "redraws": 0
+    },
+    {
+      "name": "wmm-mbira",
+      "prompt": "A Shona mbira dzavadzimu, a hardwood soundboard with about twenty two flattened metal keys in two rows, a row of bottle caps along the bottom edge, set inside a large round calabash gourd resonator. Three-quarter overhead view clearly revealing the keys and the gourd. Entire object fully in frame, on flat pure green (#00FF00).",
+      "aspect": "4:3",
+      "cutout": true,
+      "width": 560,
+      "quality": 78,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true,
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "redraws": 0
+    },
+    {
+      "name": "wmm-siku",
+      "prompt": "An Andean siku panpipe in two separate rows of bamboo cane pipes of stepped lengths, one row of exactly seven pipes and one of exactly six, each row tied with colored woven thread. The two rows are physically separate, side by side, with all thirteen open pipe ends visible. Entire objects fully in frame, on flat pure green (#00FF00).",
+      "aspect": "3:4",
+      "cutout": true,
+      "width": 420,
+      "quality": 78,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true,
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "redraws": 2
+    },
+    {
+      "name": "wmm-cuba",
+      "prompt": "A pair of round hardwood claves, two joined traditional Cuban bongo drums with tacked skin heads, and a Cuban tres guitar. The tres has exactly SIX metal strings arranged as THREE CLOSE PAIRS: two adjacent treble strings, two adjacent middle strings, two adjacent bass strings. Three separate paired courses run from six individual bridge anchors across the soundhole, along the fretboard, to exactly six tuning pegs, three per side. The close double lines within each pair must be clearly visible at the bridge and soundhole. Three-quarter front view, the tres nearly upright. Entire instruments fully in frame and clearly separated. Museum catalog portrait, matching warm studio light and rich realistic wood grain. Flat pure green (#00FF00) background. No people, letters or labels.",
+      "aspect": "4:3",
+      "cutout": true,
+      "width": 560,
+      "quality": 78,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true,
+      "source": "OpenAI gpt-image",
+      "review": "cold review: six strings in three paired courses",
+      "redraws": 2
+    }
+  ]
+}

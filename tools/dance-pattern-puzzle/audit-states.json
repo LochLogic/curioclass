@@ -1,0 +1,155 @@
+{
+  "states": [
+    {
+      "name": "puzzle-selected",
+      "steps": [
+        {
+          "click": "#puzzle-3"
+        },
+        {
+          "click": "#card-3"
+        }
+      ],
+      "keep": [
+        "#strip",
+        "#go",
+        "#maker"
+      ]
+    },
+    {
+      "name": "wrong-card",
+      "steps": [
+        {
+          "click": "#puzzle-0"
+        },
+        {
+          "click": "#card-5"
+        },
+        {
+          "click": "[data-move=\"Clap\"]"
+        },
+        {
+          "click": "#card-7"
+        },
+        {
+          "click": "[data-move=\"Clap\"]"
+        },
+        {
+          "click": "[data-bpm=\"120\"]"
+        },
+        {
+          "click": "#sound"
+        },
+        {
+          "click": "#go"
+        },
+        {
+          "until": "__tool.state.wrong >= 0",
+          "max": 15000
+        }
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425"
+      ],
+      "keep": [
+        "#strip",
+        "#go",
+        "#maker"
+      ]
+    },
+    {
+      "name": "lens",
+      "steps": [
+        {
+          "click": "#puzzle-8"
+        },
+        {
+          "click": "#lens"
+        }
+      ],
+      "keep": [
+        "#strip",
+        "#go",
+        "#maker"
+      ]
+    },
+    {
+      "name": "folk-poles",
+      "steps": [
+        {
+          "click": "#puzzle-17"
+        },
+        {
+          "click": "#card-4"
+        }
+      ],
+      "keep": [
+        "#strip",
+        "#go",
+        "#maker"
+      ]
+    },
+    {
+      "name": "mine-work",
+      "steps": [
+        {
+          "click": "#m-mine"
+        },
+        {
+          "click": "#card-0"
+        },
+        {
+          "click": "[data-move=\"Step\"]"
+        },
+        {
+          "click": "#mirror"
+        },
+        {
+          "click": "#copy"
+        }
+      ],
+      "keep": [
+        "#strip",
+        "#go",
+        "#maker"
+      ]
+    },
+    {
+      "name": "clear-confirm",
+      "steps": [
+        {
+          "click": "#m-mine"
+        },
+        {
+          "click": "#clear"
+        }
+      ],
+      "keep": [
+        "#clear-dialog"
+      ]
+    },
+    {
+      "name": "ten-card-strip",
+      "steps": [
+        {
+          "click": "#puzzle-14"
+        },
+        {
+          "click": "#card-6"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1000x625",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#strip",
+        "#go",
+        "#maker"
+      ]
+    }
+  ]
+}

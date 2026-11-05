@@ -10,7 +10,13 @@
       "quality": 74,
       "local_note": "the sign band is the logo zone",
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok",
+      "logo_zone": [
+        18,
+        25.5,
+        61,
+        12
+      ]
     },
     {
       "name": "bb-van",
@@ -20,8 +26,17 @@
       "width": 1200,
       "quality": 74,
       "local_note": "the side panel is the logo zone",
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "source": "OpenAI gpt-image, edit of existing FLUX photograph",
+      "review": "ok",
+      "logo_zone": [
+        27.5,
+        34.8,
+        23.3,
+        25.2
+      ],
+      "previous_source": "flux1-schnell (local)",
+      "drawn_by": "codex",
+      "edit_prompt": "Preserve the plain white van and street composition. Remove the tiny plaque from the black post at the far left, leaving an unmarked post. Keep every surface blank and all windows empty. No people, faces, body parts, letters, numbers or logos."
     },
     {
       "name": "bb-shirt",
@@ -32,18 +47,61 @@
       "quality": 74,
       "local_note": "the chest area is the logo zone",
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok",
+      "logo_zone": [
+        30.8,
+        28.3,
+        38.3,
+        29.2
+      ]
     },
     {
       "name": "bb-bag",
-      "prompt": "A plain brown kraft paper shopping bag standing on a counter, seen straight on, blank front.",
+      "prompt": "Front-on kraft paper shopping bag on a pale warm gray counter, blank front, natural twisted paper handles, open top, folded gussets, fine fibers, firm bottom crease and contact shadow. Warm neutral daylight from upper left. Portrait 3:4. Broad even tan print zone x30.6 to69.5 percent, y38.8 to65.5 percent. No lettering, numbers, logos or people.",
       "aspect": "3:4",
       "cutout": false,
       "width": 900,
       "quality": 74,
       "local_note": "the bag front is the logo zone; long side 1200",
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "source": "OpenAI gpt-image",
+      "review": "Cold review redraw: stronger paper texture, handles and directional light; blank print zone checked.",
+      "logo_zone": [
+        30.6,
+        38.8,
+        38.9,
+        26.7
+      ],
+      "previous_source": "flux1-schnell (local)",
+      "drawn_by": "codex",
+      "people": false
+    },
+    {
+      "name": "bb-phone",
+      "prompt": "A modern smartphone lying exactly vertical on a light wooden desk seen straight from above, centered, its screen a plain smooth dark blue glow. A small potted plant and a closed blank notebook at the edges. Clean realistic product mockup photograph, soft daylight from upper left. Screen occupies x 31 to 69 percent, y 12 to 87 percent. No people, body parts, lettering, numbers, logos or symbols anywhere.",
+      "aspect": "3:4",
+      "cutout": false,
+      "width": 900,
+      "quality": 74,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "logo_zone": [
+        31,
+        16,
+        38,
+        61
+      ]
+    },
+    {
+      "name": "bb-studio",
+      "prompt": "An editorial product photograph of a quiet graphic design studio desk with blank warm white paper sheets, blank kraft swatch cards, forest green and terracotta color swatches without text, a metal ruler, and small geometric wooden solids. Still life at the right of the frame, left two thirds quiet pale paper with subtle shadows. Overhead view, warm directional daylight from upper left, tactile material detail. No people, body parts, letters, text, numbers or logos.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1200,
+      "quality": 74,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
     }
   ]
 }

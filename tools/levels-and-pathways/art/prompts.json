@@ -1,4 +1,678 @@
 {
-  "style": "none: everything is drawn in code (the studio, the dancer, the ribbons and every icon); music and sounds are made in the browser",
-  "assets": []
+  "house_style": "Warm gouache and colored-pencil storybook illustration for a K-2 dance studio. Studio teal, creamy mint walls, golden maple, soft directional sunlight, tactile painted detail. Clean silhouettes and gentle dimensional shading. No text, letters, numbers, or logos.",
+  "style": "Warm gouache and colored-pencil storybook illustration for a K-2 dance studio. Studio teal, creamy mint walls, golden maple, soft directional sunlight, tactile painted detail. Clean silhouettes and gentle dimensional shading. No text, letters, numbers, or logos.",
+  "assets": [
+    {
+      "name": "sunlit-studio",
+      "people": false,
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 76,
+      "prompt": "An empty dance studio, wide three-quarter view from a slightly elevated camera. The back wall occupies the top third: soft mint plaster, a long silver-blue mirror strip and a maple ballet barre on small metal brackets. Tall windows at far right cast two soft diagonal rectangles of warm light. The bottom two thirds are an entirely open golden maple dance floor with fine grain, narrow boards and subtle seams. The center and left are spacious and uncluttered for an animated dancer and floor ribbons. Light comes from upper right. Rich hand-painted surfaces, depth, soft shadows. No people, faces, body parts, figures in mirrors, animals, furnishings on the floor, or writing.",
+      "drawn_by": "codex",
+      "cutout": false,
+      "token": "art:sunlit-studio",
+      "review": "ok: no people or lettering; inspected raw, WebP and in the tool at laptop and phone sizes"
+    },
+    {
+      "name": "dancer-stretch-high",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 420,
+      "quality": 78,
+      "frames": [
+        "A",
+        "B"
+      ],
+      "deferred": false,
+      "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Stretch at high level: tiptoes, arms stretching overhead. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
+      "token": "art:dancer-stretch-high",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-stretch-middle",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 420,
+      "quality": 78,
+      "frames": [
+        "A",
+        "B"
+      ],
+      "deferred": false,
+      "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Stretch at middle level: standing, arms stretching wide. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
+      "token": "art:dancer-stretch-middle",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-stretch-low",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 420,
+      "quality": 78,
+      "frames": [
+        "A",
+        "B"
+      ],
+      "deferred": false,
+      "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Stretch at low level: straddle sit and reach toward toes. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
+      "token": "art:dancer-stretch-low",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-twist-high",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 420,
+      "quality": 78,
+      "frames": [
+        "A",
+        "B"
+      ],
+      "deferred": false,
+      "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Twist at high level: tiptoes, raised arms, torso twisting side to side. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
+      "token": "art:dancer-twist-high",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-twist-middle",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 420,
+      "quality": 78,
+      "frames": [
+        "A",
+        "B"
+      ],
+      "deferred": false,
+      "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Twist at middle level: standing, wide arms, torso twisting side to side. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
+      "token": "art:dancer-twist-middle",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-twist-low",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 420,
+      "quality": 78,
+      "frames": [
+        "A",
+        "B"
+      ],
+      "deferred": false,
+      "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Twist at low level: kneeling back on heels, hands on hips, torso twisting side to side. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
+      "token": "art:dancer-twist-low",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-bend-high",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 420,
+      "quality": 78,
+      "frames": [
+        "A",
+        "B"
+      ],
+      "deferred": false,
+      "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Bend at high level: tiptoes, arms overhead, side bend. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
+      "token": "art:dancer-bend-high",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-bend-middle",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 420,
+      "quality": 78,
+      "frames": [
+        "A",
+        "B"
+      ],
+      "deferred": false,
+      "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Bend at middle level: standing forward bend and upright return. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
+      "token": "art:dancer-bend-middle",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-bend-low",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 420,
+      "quality": 78,
+      "frames": [
+        "A",
+        "B"
+      ],
+      "deferred": false,
+      "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Bend at low level: kneeling back on heels, side bend. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
+      "token": "art:dancer-bend-low",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-swing-high",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 420,
+      "quality": 78,
+      "frames": [
+        "A",
+        "B"
+      ],
+      "deferred": false,
+      "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Swing at high level: tiptoes, arms swinging side to side overhead. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
+      "token": "art:dancer-swing-high",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-swing-middle",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 420,
+      "quality": 78,
+      "frames": [
+        "A",
+        "B"
+      ],
+      "deferred": false,
+      "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Swing at middle level: standing, arms swinging forward and back. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
+      "token": "art:dancer-swing-middle",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-swing-low",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 420,
+      "quality": 78,
+      "frames": [
+        "A",
+        "B"
+      ],
+      "deferred": false,
+      "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Swing at low level: kneeling back on heels, arms swinging close to floor. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
+      "token": "art:dancer-swing-low",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-shake-high",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 420,
+      "quality": 78,
+      "frames": [
+        "A",
+        "B"
+      ],
+      "deferred": false,
+      "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Shake at high level: tiptoes, hands shaking overhead. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
+      "token": "art:dancer-shake-high",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-shake-middle",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 420,
+      "quality": 78,
+      "frames": [
+        "A",
+        "B"
+      ],
+      "deferred": false,
+      "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Shake at middle level: standing, small whole-body shake. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
+      "token": "art:dancer-shake-middle",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-shake-low",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 420,
+      "quality": 78,
+      "frames": [
+        "A",
+        "B"
+      ],
+      "deferred": false,
+      "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Shake at low level: lying on back, hands shaking close to floor. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
+      "token": "art:dancer-shake-low",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-curl-high",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 420,
+      "quality": 78,
+      "frames": [
+        "A",
+        "B"
+      ],
+      "deferred": false,
+      "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Curl at high level: tiptoes, self-hug opening wide. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
+      "token": "art:dancer-curl-high",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-curl-middle",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 420,
+      "quality": 78,
+      "frames": [
+        "A",
+        "B"
+      ],
+      "deferred": false,
+      "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Curl at middle level: standing round curl opening wide. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
+      "token": "art:dancer-curl-middle",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-curl-low",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 420,
+      "quality": 78,
+      "frames": [
+        "A",
+        "B"
+      ],
+      "deferred": false,
+      "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Curl at low level: seated tuck opening into a seated star, head always below 0.62 standing height. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
+      "token": "art:dancer-curl-low",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-walk-high",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 320,
+      "quality": 78,
+      "deferred": false,
+      "frames": [
+        "0",
+        "quarter",
+        "half",
+        "three-quarter"
+      ],
+      "facings": [
+        "front",
+        "three-quarter",
+        "side",
+        "back"
+      ],
+      "prompt": "For the next owner-reviewed painter: the same teal-top, charcoal-legging dancer performing walk at high level. Follow Dance.gaits and Dance.level exactly. Walk alternates steps; skip alternates step-hop feet; gallop keeps the same leading foot; slide faces the class and steps together sideways. High rises on toes with arms up; middle uses normal steps; low travels with bent knees and low arms. Four cycle phases in every listed facing, each a separate full-body cutout. Pure green background. Keep the kit figure until owner review.",
+      "token": "art:dancer-walk-high",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-walk-middle",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 320,
+      "quality": 78,
+      "deferred": false,
+      "frames": [
+        "0",
+        "quarter",
+        "half",
+        "three-quarter"
+      ],
+      "facings": [
+        "front",
+        "three-quarter",
+        "side",
+        "back"
+      ],
+      "prompt": "For the next owner-reviewed painter: the same teal-top, charcoal-legging dancer performing walk at middle level. Follow Dance.gaits and Dance.level exactly. Walk alternates steps; skip alternates step-hop feet; gallop keeps the same leading foot; slide faces the class and steps together sideways. High rises on toes with arms up; middle uses normal steps; low travels with bent knees and low arms. Four cycle phases in every listed facing, each a separate full-body cutout. Pure green background. Keep the kit figure until owner review.",
+      "token": "art:dancer-walk-middle",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-walk-low",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 320,
+      "quality": 78,
+      "deferred": false,
+      "frames": [
+        "0",
+        "quarter",
+        "half",
+        "three-quarter"
+      ],
+      "facings": [
+        "front",
+        "three-quarter",
+        "side",
+        "back"
+      ],
+      "prompt": "For the next owner-reviewed painter: the same teal-top, charcoal-legging dancer performing walk at low level. Follow Dance.gaits and Dance.level exactly. Walk alternates steps; skip alternates step-hop feet; gallop keeps the same leading foot; slide faces the class and steps together sideways. High rises on toes with arms up; middle uses normal steps; low travels with bent knees and low arms. Four cycle phases in every listed facing, each a separate full-body cutout. Pure green background. Keep the kit figure until owner review.",
+      "token": "art:dancer-walk-low",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-skip-high",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 320,
+      "quality": 78,
+      "deferred": false,
+      "frames": [
+        "0",
+        "quarter",
+        "half",
+        "three-quarter"
+      ],
+      "facings": [
+        "front",
+        "three-quarter",
+        "side",
+        "back"
+      ],
+      "prompt": "For the next owner-reviewed painter: the same teal-top, charcoal-legging dancer performing skip at high level. Follow Dance.gaits and Dance.level exactly. Walk alternates steps; skip alternates step-hop feet; gallop keeps the same leading foot; slide faces the class and steps together sideways. High rises on toes with arms up; middle uses normal steps; low travels with bent knees and low arms. Four cycle phases in every listed facing, each a separate full-body cutout. Pure green background. Keep the kit figure until owner review.",
+      "token": "art:dancer-skip-high",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-skip-middle",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 320,
+      "quality": 78,
+      "deferred": false,
+      "frames": [
+        "0",
+        "quarter",
+        "half",
+        "three-quarter"
+      ],
+      "facings": [
+        "front",
+        "three-quarter",
+        "side",
+        "back"
+      ],
+      "prompt": "For the next owner-reviewed painter: the same teal-top, charcoal-legging dancer performing skip at middle level. Follow Dance.gaits and Dance.level exactly. Walk alternates steps; skip alternates step-hop feet; gallop keeps the same leading foot; slide faces the class and steps together sideways. High rises on toes with arms up; middle uses normal steps; low travels with bent knees and low arms. Four cycle phases in every listed facing, each a separate full-body cutout. Pure green background. Keep the kit figure until owner review.",
+      "token": "art:dancer-skip-middle",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-skip-low",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 320,
+      "quality": 78,
+      "deferred": false,
+      "frames": [
+        "0",
+        "quarter",
+        "half",
+        "three-quarter"
+      ],
+      "facings": [
+        "front",
+        "three-quarter",
+        "side",
+        "back"
+      ],
+      "prompt": "For the next owner-reviewed painter: the same teal-top, charcoal-legging dancer performing skip at low level. Follow Dance.gaits and Dance.level exactly. Walk alternates steps; skip alternates step-hop feet; gallop keeps the same leading foot; slide faces the class and steps together sideways. High rises on toes with arms up; middle uses normal steps; low travels with bent knees and low arms. Four cycle phases in every listed facing, each a separate full-body cutout. Pure green background. Keep the kit figure until owner review.",
+      "token": "art:dancer-skip-low",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-gallop-high",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 320,
+      "quality": 78,
+      "deferred": false,
+      "frames": [
+        "0",
+        "quarter",
+        "half",
+        "three-quarter"
+      ],
+      "facings": [
+        "front",
+        "three-quarter",
+        "side",
+        "back"
+      ],
+      "prompt": "For the next owner-reviewed painter: the same teal-top, charcoal-legging dancer performing gallop at high level. Follow Dance.gaits and Dance.level exactly. Walk alternates steps; skip alternates step-hop feet; gallop keeps the same leading foot; slide faces the class and steps together sideways. High rises on toes with arms up; middle uses normal steps; low travels with bent knees and low arms. Four cycle phases in every listed facing, each a separate full-body cutout. Pure green background. Keep the kit figure until owner review.",
+      "token": "art:dancer-gallop-high",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-gallop-middle",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 320,
+      "quality": 78,
+      "deferred": false,
+      "frames": [
+        "0",
+        "quarter",
+        "half",
+        "three-quarter"
+      ],
+      "facings": [
+        "front",
+        "three-quarter",
+        "side",
+        "back"
+      ],
+      "prompt": "For the next owner-reviewed painter: the same teal-top, charcoal-legging dancer performing gallop at middle level. Follow Dance.gaits and Dance.level exactly. Walk alternates steps; skip alternates step-hop feet; gallop keeps the same leading foot; slide faces the class and steps together sideways. High rises on toes with arms up; middle uses normal steps; low travels with bent knees and low arms. Four cycle phases in every listed facing, each a separate full-body cutout. Pure green background. Keep the kit figure until owner review.",
+      "token": "art:dancer-gallop-middle",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-gallop-low",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 320,
+      "quality": 78,
+      "deferred": false,
+      "frames": [
+        "0",
+        "quarter",
+        "half",
+        "three-quarter"
+      ],
+      "facings": [
+        "front",
+        "three-quarter",
+        "side",
+        "back"
+      ],
+      "prompt": "For the next owner-reviewed painter: the same teal-top, charcoal-legging dancer performing gallop at low level. Follow Dance.gaits and Dance.level exactly. Walk alternates steps; skip alternates step-hop feet; gallop keeps the same leading foot; slide faces the class and steps together sideways. High rises on toes with arms up; middle uses normal steps; low travels with bent knees and low arms. Four cycle phases in every listed facing, each a separate full-body cutout. Pure green background. Keep the kit figure until owner review.",
+      "token": "art:dancer-gallop-low",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-slide-high",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 320,
+      "quality": 78,
+      "deferred": false,
+      "frames": [
+        "0",
+        "quarter",
+        "half",
+        "three-quarter"
+      ],
+      "facings": [
+        "front",
+        "three-quarter",
+        "side",
+        "back"
+      ],
+      "prompt": "For the next owner-reviewed painter: the same teal-top, charcoal-legging dancer performing slide at high level. Follow Dance.gaits and Dance.level exactly. Walk alternates steps; skip alternates step-hop feet; gallop keeps the same leading foot; slide faces the class and steps together sideways. High rises on toes with arms up; middle uses normal steps; low travels with bent knees and low arms. Four cycle phases in every listed facing, each a separate full-body cutout. Pure green background. Keep the kit figure until owner review.",
+      "token": "art:dancer-slide-high",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-slide-middle",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 320,
+      "quality": 78,
+      "deferred": false,
+      "frames": [
+        "0",
+        "quarter",
+        "half",
+        "three-quarter"
+      ],
+      "facings": [
+        "front",
+        "three-quarter",
+        "side",
+        "back"
+      ],
+      "prompt": "For the next owner-reviewed painter: the same teal-top, charcoal-legging dancer performing slide at middle level. Follow Dance.gaits and Dance.level exactly. Walk alternates steps; skip alternates step-hop feet; gallop keeps the same leading foot; slide faces the class and steps together sideways. High rises on toes with arms up; middle uses normal steps; low travels with bent knees and low arms. Four cycle phases in every listed facing, each a separate full-body cutout. Pure green background. Keep the kit figure until owner review.",
+      "token": "art:dancer-slide-middle",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-slide-low",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 320,
+      "quality": 78,
+      "deferred": false,
+      "frames": [
+        "0",
+        "quarter",
+        "half",
+        "three-quarter"
+      ],
+      "facings": [
+        "front",
+        "three-quarter",
+        "side",
+        "back"
+      ],
+      "prompt": "For the next owner-reviewed painter: the same teal-top, charcoal-legging dancer performing slide at low level. Follow Dance.gaits and Dance.level exactly. Walk alternates steps; skip alternates step-hop feet; gallop keeps the same leading foot; slide faces the class and steps together sideways. High rises on toes with arms up; middle uses normal steps; low travels with bent knees and low arms. Four cycle phases in every listed facing, each a separate full-body cutout. Pure green background. Keep the kit figure until owner review.",
+      "token": "art:dancer-slide-low",
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-stand",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 420,
+      "deferred": false,
+      "prompt": "Next painter: same consistent full-body dancer, neutral standing ready pose, pure green background. Include high tiptoe readiness and low deep-squat readiness, matching Dance.level stand.",
+      "token": "art:dancer-stand",
+      "frames": [
+        "high",
+        "middle",
+        "low"
+      ],
+      "superseded_by": "painted-dancers",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "dancer-bow",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 420,
+      "deferred": false,
+      "prompt": "Next painter: same consistent full-body dancer, a clear hip fold angled toward the ribbon gallery, pure green background.",
+      "token": "art:dancer-bow",
+      "superseded_by": "painted-gallery-bow",
+      "status": "superseded by the compact three-guide painted rig; no separate pose raster needed"
+    },
+    {
+      "name": "painted-dancers",
+      "people": true,
+      "cutout": true,
+      "aspect": "3:2",
+      "width": 1536,
+      "quality": 82,
+      "drawn_by": "codex",
+      "prompt": "Three full-length adult dance teachers, evenly spaced in three separate columns, all standing front-facing in the same neutral T pose: arms straight horizontally out to the sides, open relaxed hands, legs straight with a clear gap and feet pointing forward. Left: a dark brown-skinned woman with short natural curls, an athletic build, teal short-sleeve top, charcoal full-length leggings, cream dance shoes. Center: a light warm-skinned broad-bodied man with short auburn hair, teal short-sleeve top, charcoal full-length pants, cream dance shoes. Right: an East Asian woman with a straight dark bob, a slender build, teal short-sleeve top, charcoal full-length pants, cream dance shoes. Each top has a small cream diamond applique. Warm friendly understated faces, correct anatomy and complete hands and feet. These are articulated educational puppet sources: keep each limb distinct, sleeves end at mid upper arms, pants cover legs to ankle. Consistent scale and ground baseline, heads level. Soft light from upper right. Flat pure green #00FF00 backdrop fills the image and every space between limbs. No props, shadows, floor, text, lettering, numerals or logos. Landscape sprite sheet, three whole figures entirely visible with generous gaps.",
+      "despill": true,
+      "review": "PASS fresh source representation/anatomy review; full posed output inspected during cold review."
+    },
+    {
+      "name": "painted-gallery-bow",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "width": 360,
+      "quality": 82,
+      "drawn_by": "codex",
+      "despill": true,
+      "prompt": "The East Asian woman dance teacher from the right column of the painted-dancers sheet, with her straight dark bob, teal short-sleeve top, cream diamond applique, charcoal full-length pants and cream dance shoes. Full body, three-quarter view turned slightly toward the left. She gives a warm, modest end-of-dance bow: feet firmly planted, knees soft, hips fold forward about forty degrees, both hands resting lightly on her thighs above her knees. Head follows the upper body and looks gently down. Show a believable connected neck, shoulders, torso, hips, knees and full feet, with a clear gap between legs. Soft dimensional gouache and colored-pencil texture matching the studio and source sheet. Subject alone, fully visible with generous margins on perfectly flat pure green #00FF00. No floor, cast shadows, props, text or logos.",
+      "review": "PASS fresh reviewer: complete plausible anatomy, gentle bow, identity and style consistent, K-2 appropriate.",
+      "ref": "painted-dancers"
+    }
+  ]
 }

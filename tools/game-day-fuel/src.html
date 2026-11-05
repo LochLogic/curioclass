@@ -1,0 +1,1479 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game Day Fuel · Nutrition and fitness planning · Curio Class</title>
+<meta name="description" content="Fuel a fictional athlete's week, then replay game day to test meal timing. Grades 9-12 health. Works offline.">
+<!--
+Game Day Fuel, Curio Class. Grades 9-12 health. NHES.S6 and NHES.S7.
+Sources and model boundaries: notes.md and spec.md. Fixed fictional training schedules.
+Food family: label-detective RAW records, FDA DV and rounding; lunch-tray-builder group keys.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+13 retained new-food illustrations: FLUX.1-schnell (Apache 2.0), edited for Curio Class.
+Existing food art retained and reused. Content CC BY 4.0, code MIT. No network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --brand:#7fb2ff; --brand-ink:#0c1a33; --focus:#b1d4ff;
+  --fruit:#ff8a8a; --veg:#5fd39a; --grain:#f2c46b; --protein:#c9a0ff; --dairy:#8fd0ff;
+}
+body {height:100dvh; overflow:hidden; grid-template-rows:64px 112px minmax(0,1fr) 44px;}
+button,select,input {font:inherit;}
+button {touch-action:manipulation;}
+header {padding:6px 16px; gap:8px; flex-wrap:nowrap;}
+h1 {font-size:25px; letter-spacing:-.7px;}
+h1 small {font-size:12px; letter-spacing:.4px;}
+header .seg button,header .icon-btn {min-height:44px; font-size:13px; padding:0 12px;}
+.seg {border-width:1px; border-radius:8px; flex-shrink:0;}
+button:active {filter:brightness(1.17);}
+.eyebrow {color:var(--brand); font-size:10px; font-weight:800; letter-spacing:1.8px; text-transform:uppercase;}
+.athletes {
+  display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; padding:10px 16px;
+  background:linear-gradient(90deg,#111b29e8,#111b2960),url('art:gdf-bench') center 46%/cover;
+  border-bottom:1px solid #405570;
+}
+.athlete {
+  position:relative; overflow:hidden; text-align:left; display:flex; align-items:center; padding:5px 14px;
+  min-width:0; border:1px solid #617a93; border-radius:10px;
+  background:linear-gradient(120deg,#1b2b3eee,#101a28c9); box-shadow:inset 0 1px #ffffff20,0 4px 12px #0005;
+}
+.athlete[aria-pressed=true] {border:2px solid var(--brand); background:linear-gradient(115deg,#253e5c,#16263be6);}
+.athlete img {width:46%; max-width:148px; height:86px; object-fit:contain; filter:drop-shadow(0 7px 4px #0007);}
+.athlete b {display:block; font-size:20px;}
+.athlete small {display:block; color:#c2cfe0; font-size:12px; line-height:1.5;}
+.athlete .number {position:absolute; right:8px; top:7px; color:var(--brand); font:11px var(--readout-font);}
+.athlete[aria-pressed=true]::after {
+  content:''; position:absolute; right:8px; bottom:7px; width:5px; height:5px; border-radius:50%;
+  background:var(--brand); box-shadow:0 0 8px #7fb2ff; animation:breathe 2s ease-in-out infinite;
+}
+.calm .athlete::after {animation:none;}
+main {min-height:0; grid-template-columns:minmax(0,1fr) 350px; overflow:hidden;}
+.workspace {
+  min-width:0; min-height:0; display:flex; flex-direction:column; padding:12px 14px 10px;
+  background:radial-gradient(ellipse at 35% 0,#263c582d,transparent 70%),#0d141e;
+}
+.board-title {display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px; min-height:42px;}
+.board-title h2 {margin:0; font-size:18px; font-weight:650;}
+.board-title p {margin:3px 0 0; color:var(--muted); font-size:11px;}
+.game-time {font-size:12px; color:var(--brand); text-align:right;}
+.schedule {display:flex; gap:4px; margin-top:4px;}
+.schedule span {padding:4px 6px; background:#182435; border:1px solid #354960; border-radius:5px; font-size:10px;}
+.schedule .game {color:var(--brand); border-color:var(--brand);}
+.toolbar {display:flex; flex-wrap:wrap; gap:5px; margin:0 0 9px;}
+.btn {font-size:12px; padding:0 10px; background:linear-gradient(#263447,#1a2535); border-color:#526780; box-shadow:inset 0 1px #ffffff10;}
+.toolbar .btn {flex:1 0 auto;}
+#week-menu {display:none;}
+.board {
+  flex:1; min-height:0; display:flex; flex-direction:column; border:1px solid #40536a; border-radius:10px;
+  overflow:hidden; box-shadow:0 10px 35px #0004,inset 0 1px #ffffff15; background:#131d2a;
+}
+.grid-scroll {flex:1; min-height:0; overflow:auto; scrollbar-color:#607c9d #151e2a;}
+.week {display:grid; grid-template-columns:72px repeat(7,minmax(95px,1fr)); min-width:745px; align-items:stretch;}
+.week-row {display:contents;}
+.corner,.day-head {position:sticky; top:0; z-index:5; background:linear-gradient(#263448,#1c2a3c); border-bottom:1px solid #48607b;}
+.corner {left:0; z-index:7; padding:12px 5px; color:var(--muted); font-size:10px;}
+.day-head {padding:7px 5px; text-align:center; border-right:1px solid #34465d; min-height:50px;}
+.day-head b {font-size:12px; display:block;}
+.day-head span {display:block; color:var(--muted); font-size:10px; margin-top:2px;}
+.day-head.game {background:linear-gradient(#34537a,#253d5b);}
+.row-name {
+  position:sticky; left:0; z-index:4; background:#1a2636; border-bottom:1px solid #34475c;
+  border-right:1px solid #34475c; padding:12px 7px; font-size:11px; color:#c7d3e2;
+}
+.cell {
+  position:relative; min-height:109px; border-right:1px solid #2c3c51; border-bottom:1px solid #2c3c51;
+  background:linear-gradient(135deg,#1d2a3b,#162130); padding:3px;
+}
+.cell.selected {outline:3px solid var(--brand); outline-offset:-3px; background:#243950; z-index:3;}
+.cell.selected {animation:meal-flash .25s ease-out;}
+.calm .cell.selected {animation:none;}
+.cell.flagged {box-shadow:inset 0 0 0 3px var(--warn);}
+.cell.inactive {background:repeating-linear-gradient(135deg,#151e2a,#151e2a 8px,#192331 8px,#192331 9px);}
+.cell-target {display:block; width:100%; min-height:44px; background:transparent; border:0; text-align:left; padding:3px; font-size:11px;}
+.cell-target time {display:block; color:#becde0; font-size:10px;}
+.cell-foods {display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:2px;}
+.food-chip {
+  border:1px solid #3a4c62; min-width:44px; min-height:44px; padding:1px; border-radius:5px;
+  background:linear-gradient(#2d3d51,#1c2a3b); display:flex; flex-direction:column; align-items:center; justify-content:center;
+}
+.food-chip img {height:29px; width:37px; object-fit:contain; filter:drop-shadow(0 2px 1px #0006);}
+.food-chip span {font-size:10px; width:100%; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;}
+.skipped {color:#a3b2c5; font-size:10px; display:block; text-align:center; padding:4px;}
+.energy-scroll {overflow-x:hidden; flex:none; background:#0f1926; border-top:2px solid #405570;}
+.energy {display:grid; grid-template-columns:72px repeat(7,minmax(95px,1fr)); min-width:745px;}
+.energy-title {padding:11px 6px; font-size:10px; color:#c2d1e4; position:sticky; left:0; background:#142033; z-index:2;}
+.energy-day {padding:8px 5px 9px; border-right:1px solid #2c3c51; font-size:10px;}
+.energy-day strong {display:block; font:700 15px var(--readout-font); margin:3px 0; color:var(--c);}
+.energy-day small {font-size:10px; color:#c0cde0;}
+.bar {height:7px; background:#080e16; border-radius:3px; margin-top:6px; overflow:hidden;}
+.bar i {display:block; width:var(--pct); height:100%; background:linear-gradient(90deg,#49647e,var(--c)); transition:width .2s;}
+.panel {padding:12px; overflow:hidden; gap:9px; background:linear-gradient(120deg,#1b293a,#141d2a);}
+.shelf-head {display:flex; align-items:center; justify-content:space-between; gap:5px;}
+.shelf-head h2 {font-size:17px; margin:0;}
+.shelf-head small {color:var(--brand); font-size:11px; text-align:right;}
+.selected-foods {display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px;}
+.selected-foods .food-chip {min-height:58px;}
+.selected-foods .food-chip img {height:38px; width:50px;}
+.filters {display:grid; grid-template-columns:repeat(5,1fr); gap:3px;}
+.filters .btn {padding:0 3px; font-size:10px; min-width:0;}
+.group-filter {display:flex; gap:8px; align-items:center; font-size:11px; color:var(--muted);}
+select {min-height:44px; flex:1; min-width:0; background:#101b29; color:var(--ink); border:1px solid #526780; border-radius:7px; padding:0 8px;}
+.shelf {
+  height:188px; flex:none; overflow:auto; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); align-content:start;
+  gap:5px; padding:3px; background:#0d1724; border:1px solid #41556d; border-radius:8px; scrollbar-color:#607c9d #151e2a;
+}
+.food {
+  min-width:0; min-height:87px; border:1px solid #3f536e; border-radius:7px; padding:4px 2px;
+  background:radial-gradient(ellipse at 50% 20%,#455b774f,transparent),linear-gradient(#243448,#182538);
+  display:flex; flex-direction:column; align-items:center; position:relative; box-shadow:inset 0 1px #ffffff15;
+}
+.food img {height:48px; width:78px; object-fit:contain; filter:drop-shadow(0 3px 2px #0007);}
+.food span {font-size:10px; line-height:1.15; text-align:center;}
+.food small {font-size:10px; color:#becce0; margin-top:2px;}
+.food:hover {border-color:var(--brand); background:#304a69;}
+.shelf-empty {grid-column:1 / -1; margin:14px 9px; color:var(--muted); font-size:12px; line-height:1.5;}
+.food:active img {transform:translateY(-3px);}
+.side-scroll {flex:1; min-height:90px; overflow:auto; display:flex; flex-direction:column; gap:9px; scrollbar-color:#607c9d #151e2a;}
+.flag-summary {background:#15283e; padding:10px; border:1px solid #496b91; border-radius:7px;}
+.flag-summary h3 {margin:0 0 3px; font-size:14px;}
+.flag-summary p {font-size:11px; margin:0; color:#c2d0e2;}
+.flag-dots {display:flex; gap:4px; margin:7px 0 0;}
+.flag-dots i {height:4px; flex:1; background:var(--ok);}
+.flag-dots i.issue {background:var(--warn);}
+.flags {display:grid; grid-template-columns:1fr 1fr; gap:4px;}
+.flag {min-height:44px; text-align:left; border:1px solid #41556d; background:#182536; border-radius:6px; font-size:11px; padding:5px;}
+.flag[aria-pressed=true] {border:2px solid var(--warn);}
+.flag b {display:inline-block; width:16px; color:var(--c);}
+.flag-detail {font-size:12px; padding:9px; background:#25364a; border-left:3px solid var(--warn); border-radius:4px; line-height:1.45;}
+.label {border:1px solid #8293a8; border-radius:7px; padding:9px; background:#101a27; font-size:12px;}
+.label h3 {font-size:16px; border-bottom:5px solid #d0dae7; margin:0 0 6px; padding-bottom:6px;}
+.nutrition-row,.group-row {display:flex; justify-content:space-between; gap:5px; border-bottom:1px solid #43546b; padding:4px 0;}
+.nutrition-row:first-of-type {font-size:17px; font-weight:800; border-bottom:3px solid #d0dae7;}
+.label p {font-size:10px; color:var(--muted); margin:8px 0 0;}
+.group-row {font-size:11px; color:var(--c);}
+footer {display:flex; align-items:center; gap:12px; padding:4px 16px; border-top:1px solid #3a4f69; background:#152338;}
+#hint {font-size:12px; line-height:1.3; flex:1; min-width:0;}
+.brand-footer {font-size:10px; letter-spacing:1px; color:#abc2e2; white-space:nowrap;}
+#game {position:relative; flex:1; display:flex; flex-direction:column; min-height:0;}
+.model-note {color:#c1cee0; font-size:12px; margin:0 0 8px;}
+.timeline-wrap {
+  min-height:0; flex:1; position:relative; display:flex; flex-direction:column; border:1px solid #49607e;
+  background:radial-gradient(ellipse at 50% 0,#29476a55,transparent 80%),linear-gradient(#162436,#0c1420);
+  border-radius:10px; overflow:hidden;
+}
+.graph {position:relative; flex:1; min-height:70px; margin:12px 16px 0 38px;}
+#chart {width:100%; height:100%; display:block; overflow:visible;}
+.chart-axis {fill:#b3c4d9; font:11px 'Segoe UI',sans-serif;}
+.cursor-dot {filter:drop-shadow(0 0 6px #7fb2ff);}
+.live-led {display:inline-block; width:7px; height:7px; background:var(--brand); border-radius:50%; animation:breathe 2s ease-in-out infinite;}
+@keyframes breathe {50% {opacity:.3;}}
+.calm .live-led {animation:none;}
+.meal-lane {height:164px; flex:none; position:relative; margin:0 16px 0 38px; border-top:1px solid #4b6079;}
+.meal-flag {
+  position:absolute; width:88px; min-height:70px; padding:5px 2px; border:1px solid #7188a4;
+  border-radius:7px; background:linear-gradient(#2c4563,#192a40); transform:translateX(-50%);
+  touch-action:none; box-shadow:0 4px 8px #0005;
+}
+.meal-stems {position:absolute; inset:0; width:100%; height:100%; pointer-events:none;}
+.meal-lane.dense .meal-flag {width:68px;}
+.meal-lane.dense .meal-flag img {width:14px; height:18px;}
+.meal-flag.selected {outline:3px solid var(--brand); outline-offset:1px;}
+.meal-flag b,.meal-flag time {font-size:10px; display:block; line-height:11px;}
+.meal-flag time {color:#c1d3eb;}
+.meal-flag img {height:24px; width:20px; object-fit:contain; vertical-align:middle;}
+.meal-flag.just-ate {animation:meal-flash .6s ease-out;}
+@keyframes meal-flash {50% {box-shadow:0 0 20px #7fb2ff; background:#4b6e97;}}
+.calm .just-ate {animation:none; border-color:white;}
+.drinks-lane {min-height:29px; flex:none; border-top:1px solid #344e6c; padding:6px 12px; font-size:11px; color:var(--dairy);}
+.transport {display:flex; gap:6px; margin:9px 0 0; flex-wrap:wrap; align-items:center;}
+.transport .big-btn {flex:1; min-width:140px;}
+.live {display:flex; gap:8px; align-items:center;}
+.live>div {flex:1; border:1px solid #4b6380; border-radius:7px; padding:8px 10px; background:#0a1624;}
+.live small {display:block; font-size:10px; color:#c0cee0;}
+.live strong {font:700 26px var(--readout-font); color:var(--brand);}
+.result {border:1px solid #608bbd; border-radius:9px; padding:8px 12px; background:linear-gradient(120deg,#253e5a,#18283c); margin:8px 0 0;}
+.result h3 {margin:2px 0; font-size:18px;}
+.result {flex:none;}
+.result p {font-size:12px; line-height:1.5; margin:5px 0; max-width:65ch;}
+.result p:last-child {display:none;}
+.result .result-route {display:block; font:600 12px var(--readout-font); color:#c8dcf7; margin:4px 0 0;}
+.result .result-route span {color:var(--brand);}
+@media (min-width:600px) and (min-height:641px) and (max-height:900px) {
+  body.game-mode {grid-template-rows:64px 88px minmax(0,1fr) 44px;}
+  .game-mode .athlete img {height:66px;}
+  .meal-lane {height:136px;}
+  .meal-flag {min-height:60px;}
+  .result {padding:6px 10px;}
+  .result p {display:none;}
+}
+.move-controls {display:flex; align-items:center; gap:6px; font-size:11px;}
+.move-controls input {min-width:60px; flex:1;}
+dialog {
+  width:min(700px,94vw); max-height:90dvh; border:1px solid #8097b6; border-radius:12px; padding:18px;
+  color:var(--ink); background:linear-gradient(140deg,#263b55,#111e2f); box-shadow:0 20px 80px #000b;
+}
+dialog::backdrop {background:#040a13cc;}
+dialog h2 {margin:0; font-size:23px;}
+dialog .close-row {display:flex; justify-content:space-between; gap:10px; align-items:center; margin-bottom:12px;}
+.notes-grid {display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+.note-card {padding:13px; background:#17283d; border:1px solid #496483; border-radius:8px;}
+.note-card b {color:var(--brand); font-size:14px;}
+.note-card p {font-size:13px; line-height:1.5; margin-bottom:0;}
+.copy-days {display:flex; gap:5px; flex-wrap:wrap; margin-bottom:16px;}
+.sr {position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%);}
+@media (min-width:1500px) {
+  main {grid-template-columns:minmax(0,1fr) 400px;}
+  .food-chip img {height:38px; width:55px;}
+  .food-chip {min-height:54px;}
+  .shelf {height:230px;}
+  .food img {height:64px; width:90px;}
+  .food {min-height:106px;}
+}
+@media (max-height:640px) and (min-width:600px) {
+  body {grid-template-rows:52px 60px minmax(0,1fr) 44px;}
+  header {padding:4px 8px; gap:4px;}
+  h1 {font-size:18px;}
+  h1 small {display:none;}
+  header .seg button,header .icon-btn {font-size:11px; padding:0 7px;}
+  .athletes {padding:4px 8px; gap:5px;}
+  .athlete {padding:2px 6px;}
+  .athlete img {height:48px;}
+  .athlete b {font-size:15px;}
+  .athlete small {font-size:10px;}
+  .athlete .number {display:none;}
+  main {grid-template-columns:minmax(0,1fr) 275px;}
+  .workspace {padding:6px;}
+  .board-title {margin-bottom:4px; min-height:32px;}
+  .board-title h2 {font-size:14px;}
+  .board-title p,.schedule {display:none;}
+  .toolbar {gap:3px; margin-bottom:5px; flex-wrap:nowrap; overflow:auto; flex-shrink:0;}
+  #week-menu {display:block; margin-left:auto; flex:none;}
+  #week-tools {display:none;}
+  .toolbar .btn {font-size:10px; padding:0 6px;}
+  .panel {padding:6px; gap:5px; overflow:auto;}
+  .shelf-head h2 {font-size:14px;}
+  .shelf {height:156px;}
+  .selected-foods .food-chip {min-height:44px;}
+  .selected-foods .food-chip img {height:24px;}
+  .food {min-height:72px;}
+  .food img {height:36px; width:65px;}
+  .side-scroll {min-height:70px; overflow:visible;}
+  .energy-day {padding:4px;}
+  .energy-day strong {font-size:12px;}
+  .energy-title {padding:6px;}
+  .bar {margin-top:3px;}
+  .model-note {font-size:10px; margin-bottom:3px;}
+  .meal-lane {height:108px;}
+  .meal-flag {min-height:44px; width:72px;}
+  .meal-flag {padding:4px 2px;}
+  .meal-flag img {display:none;}
+  .transport {margin-top:4px;}
+  .transport .big-btn {font-size:13px; min-width:110px; min-height:44px;}
+  .transport .btn {padding:0 7px;}
+  .live strong {font-size:20px;}
+  .live>div {padding:4px 8px;}
+  .result {padding:7px; margin-top:4px;}
+  .result h3 {font-size:16px;}
+  .result p {font-size:11px; margin:3px 0;}
+}
+@media (max-width:1050px) and (min-width:600px) {
+  #week-menu {display:block; flex:none;}
+  #week-tools {display:none;}
+  .schedule {display:none;}
+  .athlete img {width:43%;}
+  .athlete b {font-size:16px;}
+  .athlete small {font-size:10px;}
+  .athlete .number {display:none;}
+  .toolbar {flex-wrap:nowrap; overflow:auto; flex-shrink:0;}
+  .toolbar .btn {font-size:10px; padding:0 6px;}
+}
+@media (max-width:599px) {
+  body {grid-template-rows:84px 84px minmax(0,1fr) 55px;}
+  header {padding:4px 7px; flex-wrap:wrap; align-content:center; gap:4px;}
+  h1 {font-size:20px; flex:1 0 100%;}
+  h1 small {display:none;}
+  header .seg button,header .icon-btn {font-size:10px; padding:0 6px;}
+  header .icon-btn {flex:1;}
+  .athletes {padding:5px; gap:4px;}
+  .athlete {padding:2px; flex-direction:column; justify-content:center; text-align:center;}
+  .athlete img {width:65px; height:44px;}
+  .athlete b {font-size:12px;}
+  .athlete small {font-size:10px;}
+  .athlete small:last-child,.athlete .number {display:none;}
+  main {grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) 244px;}
+  .game-mode main {grid-template-rows:minmax(0,1fr) 288px;}
+  .workspace {padding:5px;}
+  .board-title {min-height:25px; margin:0 0 3px;}
+  .board-title h2 {font-size:13px;}
+  .board-title p,.schedule {display:none;}
+  .game-time {font-size:10px;}
+  .toolbar {flex-wrap:nowrap; overflow:auto; margin-bottom:4px; flex-shrink:0;}
+  .toolbar .btn {font-size:10px; padding:0 5px;}
+  .energy-day {padding:4px;}
+  .energy-day strong {font-size:12px; margin:2px 0;}
+  .bar {margin-top:3px;}
+  .panel {
+    position:relative; border-top:1px solid #526780; padding:5px; gap:4px; overflow:auto; display:grid;
+    grid-template-columns:minmax(0,1fr) 118px; grid-template-rows:25px 44px 44px 104px; align-content:start;
+  }
+  .shelf-head {grid-column:1 / -1;}
+  .selected-foods {grid-column:1 / -1; grid-row:2;}
+  .panel.game-panel {grid-template-rows:25px 44px 44px 44px 104px;}
+  .game-panel .filters {grid-row:3;}
+  .game-panel .group-filter {grid-row:4;}
+  .game-panel .shelf,.game-panel .side-scroll {grid-row:5;}
+  .game-panel {overflow:auto;}
+  .selected-foods .food-chip {min-height:44px;}
+  .selected-foods .food-chip img {height:24px;}
+  .shelf-head h2 {font-size:14px;}
+  .filters,.group-filter {grid-column:1 / -1;}
+  .shelf {grid-column:1; height:104px; grid-template-columns:repeat(3,minmax(0,1fr));}
+  .food {min-height:93px;}
+  .food img {width:58px; height:52px;}
+  .side-scroll {grid-column:2; grid-row:4; min-height:104px;}
+  .flag-summary {padding:6px;}
+  .flag-summary h3 {font-size:11px;}
+  .flag-summary p {font-size:10px;}
+  .flags {grid-template-columns:1fr;}
+  .label {padding:5px; font-size:10px;}
+  .label h3 {font-size:12px;}
+  footer {padding:4px 8px; gap:4px;}
+  .brand-footer {display:none;}
+  #hint {font-size:11px;}
+  .model-note {font-size:10px; margin-bottom:3px;}
+  .graph {min-height:65px; margin:6px 8px 0 30px;}
+  .meal-lane {height:94px; margin-left:30px; margin-right:8px;}
+  .meal-flag {width:60px; min-height:44px; padding:2px;}
+  .meal-flag img {display:none;}
+  .meal-flag b,.meal-flag time {font-size:10px;}
+  .drinks-lane {min-height:22px; padding:3px 7px; font-size:10px;}
+  .transport {gap:3px; margin-top:3px;}
+  .transport .big-btn {font-size:12px; min-height:44px; min-width:120px;}
+  .transport .btn {padding:0 5px; font-size:10px;}
+  .live {position:static; gap:3px; margin:0;}
+  .live>div {padding:3px 5px; border:0; background:transparent;}
+  .live strong {font-size:13px;}
+  .live small {display:none;}
+  .result {padding:5px; margin-top:3px;}
+  .result .eyebrow,.result p {display:none;}
+  .result h3 {font-size:13px; margin:0;}
+  .move-controls {font-size:10px;}
+  .notes-grid {grid-template-columns:1fr;}
+}
+@media (max-height:640px),(max-width:599px) {
+  body.game-mode .board-title {display:none;}
+  #week-menu {display:block; flex:none;}
+  #week-tools {display:none;}
+  #mobile-live {position:relative;}
+  .result {position:absolute; top:0; right:0; width:51%; max-width:none; padding:2px 5px; margin:0; z-index:3;}
+  .result p,.result .eyebrow {display:none;}
+  .result .result-route {display:none;}
+  .result h3 {font-size:12px; line-height:18px; margin:0;}
+  .game-finished #mobile-live .live>div:nth-of-type(2) {visibility:hidden;}
+  .graph {min-height:44px; margin-top:4px;}
+  .meal-lane {height:94px;}
+  .drinks-lane {min-height:22px; padding:3px 7px; font-size:10px;}
+  #mobile-live .live {height:24px; margin-bottom:3px; gap:8px;}
+  #mobile-live .live>div {border:0; padding:0 3px; background:transparent; display:flex; align-items:center; gap:6px;}
+  #mobile-live .live strong {font-size:15px; white-space:nowrap;}
+  #mobile-live .live small {display:inline; font-size:10px;}
+  .moving-panel #selected-foods {display:none;}
+  .panel .move-controls {grid-column:1 / -1; grid-row:2; min-height:44px; flex:none;}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Game Day <span style="color:var(--brand)">Fuel</span><small>Nutrition and fitness planning</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-plan" aria-pressed="true">1 · Plan the week</button>
+    <button id="m-game" aria-pressed="false">2 · Game day</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<nav class="athletes" id="athletes" aria-label="Choose a fictional athlete"></nav>
+<main>
+  <section class="workspace" aria-label="Fuel planning board">
+    <div class="board-title">
+      <div><h2 id="board-heading">Ana's training week</h2><p>Fixed training. Your food plan.</p></div>
+      <div><div class="game-time" id="game-time"></div><div class="schedule" id="schedule"></div></div>
+      <button class="btn" id="week-menu">Week tools</button>
+    </div>
+    <div class="toolbar" id="week-tools">
+      <button class="btn" id="typical">Typical week</button><button class="btn" id="clear">Clear week</button>
+      <button class="btn" id="copy">Copy day to...</button><button class="btn" id="save">Save</button>
+      <button class="btn" id="load">Load</button><button class="btn" id="clear-saved">Clear saved</button>
+      <button class="btn" id="notes">Fuel notes</button>
+    </div>
+    <section class="board" id="plan" aria-label="Week grid and energy bars">
+      <div class="grid-scroll" id="grid-scroll"><div class="week" id="week" role="grid" aria-label="Meals by day"></div></div>
+      <div class="energy-scroll" id="energy-scroll"><div class="energy" id="energy"></div></div>
+    </section>
+    <section id="game" hidden aria-label="Game day replay">
+      <p class="model-note">Fuel tank is a teaching model, not a measurement of a real body. Dashed: forecast. Solid: replay.</p>
+      <div id="mobile-live"></div>
+      <div class="timeline-wrap">
+        <div class="graph" id="graph"><svg id="chart" aria-label="Fuel tank percent over the game day" role="img"></svg></div>
+        <div class="meal-lane" id="meal-lane"></div><div class="drinks-lane" id="drinks"></div>
+      </div>
+      <div class="transport">
+        <button class="big-btn" id="play">▶ Play game day</button><button class="btn" id="restart">Restart</button>
+        <button class="btn" id="speed" aria-label="Replay speed">1x</button>
+        <button class="btn" id="move" aria-pressed="false">Move meal</button><button class="btn" id="game-notes">Fuel notes</button>
+      </div>
+      <div class="move-controls" id="move-controls" hidden>
+        <label for="meal-time">Meal time</label><input id="meal-time" type="range" step="5"><output id="meal-time-label"></output>
+      </div>
+      <section class="result" id="result" hidden aria-live="polite"></section>
+    </section>
+  </section>
+  <aside class="panel" aria-label="Food shelf and checks">
+    <div class="shelf-head"><h2>Food shelf <span style="color:var(--brand)">+</span></h2><small id="target-label"></small></div>
+    <div class="selected-foods" id="selected-foods" hidden aria-label="Tap a selected meal food to remove it"></div>
+    <div class="filters" role="group" aria-label="Food type" id="filters"></div>
+    <label class="group-filter">Food group<select id="group-filter" aria-label="Filter food group">
+      <option value="all">All food groups</option><option value="fruit">Fruit</option><option value="veg">Vegetables</option>
+      <option value="grain">Grains</option><option value="protein">Protein</option><option value="dairy">Dairy</option>
+    </select></label>
+    <div class="shelf" id="shelf" aria-label="Tap a food to add one serving"></div>
+    <div class="side-scroll" id="side-scroll">
+      <div class="live" id="live" hidden>
+        <div><small><i class="live-led"></i> LIVE CLOCK</small><strong id="clock"></strong></div>
+        <div><small>FUEL TANK</small><strong id="tank"></strong></div>
+      </div>
+      <div class="flag-summary" id="flag-summary"></div><div class="flag-detail" id="flag-detail" hidden></div>
+      <div class="flags" id="flags" aria-label="Ten fuel checks"></div>
+      <div class="label" id="label" aria-label="Selected day totals"></div>
+      <p style="font-size:10px;color:var(--muted);margin:0">Save stays on this device. Fictional athletes only.</p>
+    </div>
+  </aside>
+</main>
+<footer><p id="hint" class="hint" role="status"></p><span class="brand-footer">CURIO CLASS / FUEL LAB</span></footer>
+<dialog id="dialog" aria-labelledby="dialog-title">
+  <div class="close-row"><h2 id="dialog-title"></h2><button class="btn" id="close-dialog">Close</button></div>
+  <div id="dialog-body"></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const FOODS = "json:foods";
+  const IMG = {
+    apple:'art:apple', banana:'art:banana', plainoats:'art:plainoats', greekyogurt:'art:greekyogurt', milk:'art:milk',
+    chocmilk:'art:chocmilk', stringcheese:'art:stringcheese', carrots:'art:carrots', pretzels:'art:pretzels',
+    granola:'art:granola', trailmix:'art:trailmix', sportsdrink:'art:sportsdrink', water:'art:water',
+    'gdf-strawberries':'art:gdf-strawberries', 'gdf-toast':'art:gdf-toast', 'gdf-eggs':'art:gdf-eggs',
+    'gdf-bagel-pb':'art:gdf-bagel-pb', 'gdf-turkey':'art:gdf-turkey', 'gdf-pbj':'art:gdf-pbj', 'gdf-pasta':'art:gdf-pasta',
+    'gdf-ricebowl':'art:gdf-ricebowl', 'gdf-burrito':'art:gdf-burrito', 'gdf-pizza':'art:gdf-pizza', 'gdf-salmon':'art:gdf-salmon',
+    'gdf-potato':'art:gdf-potato', 'gdf-salad':'art:gdf-salad', 'gdf-broccoli':'art:gdf-broccoli',
+    'gdf-chicken-sandwich':'art:gdf-chicken-sandwich', 'gdf-fries':'art:gdf-fries', 'gdf-smoothie':'art:gdf-smoothie'
+  };
+  const GEAR = ['art:gdf-gear-ana','art:gdf-gear-priya','art:gdf-gear-marcus','art:gdf-gear-kai'];
+  const DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const GROUPS = {
+    fruit:['Fruit','cups'], veg:['Vegetables','cups'], grain:['Grains','oz eq'], protein:['Protein','oz eq'], dairy:['Dairy','cups']
+  };
+  const DRINKS = [8,9,27,28,29];
+  const KEYS = ['cal','fat','sat','trans','chol','sod','carb','fib','sug','add','prot','vd','ca','fe','k'];
+  // FDA label references reused from label-detective, 21 CFR 101.9.
+  const DV = {fat:78,sat:20,chol:300,sod:2300,carb:275,fib:28,add:50,vd:20,ca:1300,fe:18,k:4700};
+  const R = {
+    cal:v => v < 5 ? 0 : v <= 50 ? Math.round(v / 5) * 5 : Math.round(v / 10) * 10,
+    fat:v => v < .5 ? 0 : v < 5 ? Math.round(v * 2) / 2 : Math.round(v),
+    sod:v => v < 5 ? 0 : v <= 140 ? Math.round(v / 5) * 5 : Math.round(v / 10) * 10,
+    g:v => v < .5 ? 0 : v < 1 ? '<1' : Math.round(v)
+  };
+  const ATHLETES = [
+    {id:'ana',name:'Ana',age:16,sport:'Soccer',schedule:'PPPPGRR',start:960,end:1040,wake:390,rest:2000,active:2400,drain:.65},
+    {id:'priya',name:'Priya',age:14,sport:'Basketball',schedule:'PGPPPRR',start:1080,end:1170,wake:390,rest:2000,active:2400,drain:.55},
+    {id:'marcus',name:'Marcus',age:17,sport:'Swimming',schedule:'PPPPPGR',start:540,end:720,wake:360,rest:2800,active:3200,drain:.28},
+    {id:'kai',name:'Kai',age:15,sport:'Cross-country',schedule:'PPPPPGR',start:510,end:570,wake:360,rest:2600,active:3000,drain:.85}
+  ];
+  const L = {
+    wPlan:'This is a typical week. Tap a meal on the grid, then tap foods on the shelf to add them.',
+    planAction:'Select a meal on the grid, then tap foods on the Food shelf. Tap a food chip to remove a serving.',
+    emptyShelf:'No foods match these filters. Choose All, or All food groups, to show foods again.',
+    howFlag:'Tap a flag in the panel to see which days it is about.',
+    wGame:'Tap Play game day and watch the fuel tank.',
+    again:'Tap a meal flag on the timeline to change it. Then tap Play game day again.',
+    allClear:'All ten flags clear.',
+    strong:'Strong finish. The fuel lasted the whole game.',
+    low:'Running low near the end. Check the pre-game meal.',
+    out:'Out of fuel. Check the meals before the game.',
+    move:'Drag a meal flag along the timeline, or use the Meal time slider. Its window sets the limit.'
+  };
+  const NOTES = [
+    ['Energy in, energy out',
+      'Athletes need more energy on training days than rest days. Not eating enough can leave you tired and slow recovery.',
+      'This tool maps rest to moderately active and training to active levels in the 2020–2025 tables. Real plans are personalized.'],
+    ['Carbohydrate',
+      'Carbohydrate is the main fuel for hard exercise. Foods the day before and day of a game fill stores.',
+      'Model wake tank: 30 plus up to 50, from previous-day carbohydrate grams divided by 8.'],
+    ['Before',
+      'Eat 1 to 4 hours before: mostly carbohydrate, some protein, less fat and fiber so it sits well.',
+      'Model meals add carbohydrate grams times 0.25 over 60 minutes. During drinks spread their contribution over play.'],
+    ['After',
+      'Carbohydrate and protein after hard exercise help refuel and repair muscles.',
+      'Tool threshold: one meal within 2 hours, with at least 40 g carbohydrate and 15 g protein.'],
+    ['Fluids',
+      'Drink before, during and after, more in heat. Water is the main drink; sports drinks can help in long, hard sessions.',
+      'Drink checks record presence, not amounts. Awake model drain: 0.05 per minute. Play drains differ by sport.'],
+    ['Supplements',
+      'Most teens can get what they need from food. Supplements are not checked by the FDA for safety or effectiveness before sale.',
+      'Tank outcomes are model thresholds: 30 percent or more is Strong finish; 15 to below 30 is Running low late.']
+  ];
+  const state = {
+    mode:'plan', athlete:0, day:0, slot:0, plan:[], filter:'all', group:'all', flag:null,
+    running:false, clock:390, speed:1, finished:false, moving:false, typical:true, revision:0, resultRevision:-1
+  };
+  let model = [];
+  let lastTick = 0;
+  let dialogReturn = null;
+  let drag = null;
+  const a = () => ATHLETES[state.athlete];
+  const gd = () => a().schedule.indexOf('G');
+  const meal = () => state.plan[state.day].slots[state.slot];
+  const target = d => a().schedule[d] === 'R' ? a().rest : a().active;
+  const groupTargets = () => a().active === 2400
+    ? {fruit:2,veg:3,grain:8,protein:6.5,dairy:3}
+    : {fruit:2.5,veg:4,grain:10,protein:7,dairy:3};
+  const fmt = n => Number(n.toFixed(2)).toLocaleString('en-US');
+  function time(t) {
+    const m = Math.round(t);
+    return `${Math.floor(m / 60) % 12 || 12}:${String(m % 60).padStart(2,'0')} ${m < 720 ? 'am' : 'pm'}`;
+  }
+  function sum(ids) {
+    const t = Object.fromEntries(KEYS.map(k => [k,0]));
+    t.groups = Object.fromEntries(Object.keys(GROUPS).map(k => [k,0]));
+    ids.forEach(id => {
+      const f = FOODS[id];
+      KEYS.forEach(k => t[k] = t[k] === null || f[k] === null ? null : t[k] + f[k]);
+      Object.keys(f.groups).forEach(k => t.groups[k] += f.groups[k]);
+    });
+    return t;
+  }
+  const totals = d => sum(state.plan[d].slots.flatMap(s => s.foods));
+  function template(d) {
+    const s = (name,t,foods,kind='normal') => ({name,time:t,defaultTime:t,foods:[...foods],kind});
+    if (d !== gd()) return [
+      s('Breakfast',420,[3,1,8]), s('Lunch',720,[11,0,8]), s('Snack',930,[24,29]),
+      s('Dinner',1110,[13,19,8]), s('Evening snack',1230,[7,2])
+    ];
+    if (state.athlete < 2) {
+      const slots = [
+        s('Breakfast',420,[3,1,8]), s('Lunch',720,[12,0,8]),
+        s('Pre-game',a().start - 90,[1,24,29],'pre'), s('During',a().start,[29,28],'during'),
+        s(state.athlete === 1 ? 'Recovery dinner' : 'Recovery',state.athlete === 1 ? 1200 : 1080,
+          state.athlete === 1 ? [13,19,9] : [9,1],'recovery')
+      ];
+      if (state.athlete === 0) slots.push(s('Dinner',1170,[13,19,8]));
+      return slots;
+    }
+    const slots = [
+      s('Pre-game breakfast',state.athlete === 2 ? 390 : 375,[3,1,8],'pre'),
+      s('During',a().start,[29,28],'during'),
+      s(state.athlete === 2 ? 'Recovery lunch' : 'Recovery',state.athlete === 2 ? 750 : 600,
+        state.athlete === 2 ? [12,0,9] : [9,1],'recovery')
+    ];
+    if (state.athlete === 3) slots.push(s('Lunch',750,[12,0,8]));
+    slots.push(s('Snack',930,[24,29]),s('Dinner',1110,[13,19,8]));
+    return slots;
+  }
+  function starter() {
+    return DAYS.map((_,d) => ({slots:template(d),moved:[]}));
+  }
+  function windowFor(s) {
+    if (s.kind === 'pre') return [Math.max(a().wake,a().start - 240),a().start - 60];
+    if (s.kind === 'recovery') return [a().end,a().end + 120];
+    if (s.kind === 'during') return [a().start,a().start];
+    return [Math.max(a().wake,s.defaultTime - 60),Math.min(1320,s.defaultTime + 60)];
+  }
+  function readSaved() {
+    try {
+      const x = JSON.parse(localStorage.getItem('gdf-plans') || '{}');
+      return x && typeof x === 'object' ? x : {};
+    } catch {return {};}
+  }
+  function validatePlan(raw) {
+    if (!Array.isArray(raw) || raw.length !== 7) return null;
+    const base = starter();
+    for (let d = 0; d < 7; d++) {
+      if (!raw[d] || !Array.isArray(raw[d].slots)) return null;
+      for (const old of raw[d].slots) {
+        if (!Array.isArray(old.foods) || !old.foods.every(id => Number.isInteger(id) && FOODS[id])) return null;
+        const slot = base[d].slots.find(s => s.name === old.name);
+        if (slot) {
+          slot.foods = old.foods.slice(0,4).filter(id => slot.kind !== 'during' || DRINKS.includes(id));
+          const bounds = windowFor(slot);
+          slot.time = Math.max(bounds[0],Math.min(bounds[1],Number(old.time) || slot.defaultTime));
+        } else base[d].moved.push(...old.foods);
+      }
+      if (Array.isArray(raw[d].moved)) base[d].moved.push(...raw[d].moved.filter(id => FOODS[id]));
+    }
+    return base;
+  }
+  function flags() {
+    const ts = DAYS.map((_,d) => totals(d));
+    const game = state.plan[gd()].slots;
+    const before = game.filter(s => s.kind !== 'during' && a().start - s.time >= 60 && a().start - s.time <= 240);
+    const heavy = game.filter(s => s.kind !== 'during' && s.time < a().start && a().start - s.time <= 120);
+    const recovery = game.filter(s => s.time >= a().end && s.time <= a().end + 120);
+    const groups = groupTargets();
+    const missing = Object.keys(groups).filter(k => ts.reduce((n,t) => n + t.groups[k],0) < groups[k] * 7 * .8);
+    const carbs = before.reduce((n,s) => n + sum(s.foods).carb,0);
+    const ht = sum(heavy.flatMap(s => s.foods));
+    const pre = game.find(s => s.kind === 'pre');
+    const during = game.find(s => s.kind === 'during');
+    const days = f => ts.flatMap((t,d) => f(t,d) ? [d] : []);
+    const F = [
+      ['Energy, low',days((t,d) => t.cal < target(d) * .8),'gap',
+        'Under-fueled: not eating enough for training can leave you tired and slow recovery. Tool threshold: under 80 percent.'],
+      ['Energy, very high',days((t,d) => t.cal > target(d) * 1.3),'check',
+        'Tool threshold: over 130 percent of daily energy needed.'],
+      ['Food groups',missing.length ? DAYS.map((_,d) => d) : [],'gap',
+        (missing.length ? missing.map(k =>
+          `${GROUPS[k][0]} ${fmt(ts.reduce((n,t) => n + t.groups[k],0))} of ${fmt(groups[k] * 7)} ${GROUPS[k][1]}`)
+          .join('; ') : 'All five food groups reach the weekly threshold')
+          + '. Tool threshold: under 80 percent of a weekly group target.'],
+      ['Added sugars',days(t => t.cal > 0 && t.add * 4 > t.cal * .1),'check',
+        'Added sugars supply over 10 percent of the day\'s calories.'],
+      ['Sodium',days(t => t.sod > 2300),'check','Over 2,300 mg sodium in a day.'],
+      ['Breakfast',DAYS.flatMap((_,d) => a().schedule[d] !== 'R' && !state.plan[d].slots[0].foods.length ? [d] : []),'gap',
+        'Breakfast is skipped on a practice or game day.'],
+      ['Pre-game meal',carbs < 60 ? [gd()] : [],'gap',
+        `${fmt(carbs)} g carbohydrate inside 1 to 4 hours before play. Tool threshold: at least 60 g; both ends count.`],
+      ['Heavy stomach',ht.fat >= 20 || ht.fib >= 10 ? [gd()] : [],'check',
+        `${fmt(ht.fat)} g fat and ${fmt(ht.fib)} g fiber inside 2 hours before play. Tool thresholds: 20 g fat or 10 g fiber.`],
+      ['Recovery',recovery.some(s => sum(s.foods).carb >= 40 && sum(s.foods).prot >= 15) ? [] : [gd()],'check',
+        'Tool threshold: one meal within 2 hours after play with at least 40 g carbohydrate and 15 g protein.'],
+      ['Drinks',pre.foods.some(id => DRINKS.includes(id)) && during.foods.some(id => DRINKS.includes(id)) ? [] : [gd()],'check',
+        'Include a drink in both the pre-game slot and During. Drink amounts are not modeled.']
+    ];
+    return F.map(([name,days,kind,detail],id) => ({id,name,days,kind,detail,clear:days.length === 0}));
+  }
+  function simulate() {
+    const athlete = a();
+    const contributions = state.plan[gd()].slots.map(s => ({
+      start:s.kind === 'during' ? athlete.start : s.time,
+      duration:s.kind === 'during' ? athlete.end - athlete.start : 60,
+      fuel:sum(s.foods).carb * .25
+    }));
+    let tank = 30 + Math.min(50,totals((gd() + 6) % 7).carb / 8);
+    const points = [{t:athlete.wake,v:tank}];
+    for (let t = athlete.wake; t < 1320; t++) {
+      let addition = 0;
+      for (const s of contributions) {
+        if (t >= s.start && t < s.start + s.duration) addition += s.fuel / s.duration;
+      }
+      const drain = t >= athlete.start && t < athlete.end ? athlete.drain : .05;
+      // Stabilize decimal comparisons at the exact 15 and 30 percent thresholds.
+      tank = Math.round(Math.max(0,Math.min(100,tank + addition - drain)) * 1e10) / 1e10;
+      points.push({t:t + 1,v:tank});
+    }
+    return points;
+  }
+  function valueAt(t) {
+    const i = Math.max(0,Math.min(model.length - 1,t - a().wake));
+    const low = Math.floor(i);
+    const high = Math.ceil(i);
+    return model[low].v + (model[high].v - model[low].v) * (i - low);
+  }
+  function hint(text) {
+    $('hint').textContent = text;
+  }
+  function chooseAthlete(i) {
+    V.hush();
+    state.running = false;
+    state.athlete = i;
+    const saved = validatePlan(readSaved()[a().id]);
+    state.plan = saved || starter();
+    state.typical = !saved;
+    state.day = state.mode === 'game' ? gd() : 0;
+    state.slot = 0;
+    state.flag = null;
+    state.finished = false;
+    state.clock = a().wake;
+    state.revision++;
+    renderAll();
+    hint(state.mode === 'plan' ? state.typical ? L.wPlan : L.planAction : L.wGame);
+    V.welcome();
+    Curio.tone(330 + i * 70,.08,.04);
+  }
+  function shortName(id) {
+    const names = {3:'Oatmeal',4:'Toast',5:'Eggs',6:'Bagel + PB',7:'Greek yogurt',11:'Turkey',13:'Pasta',14:'Rice bowl',
+      15:'Burrito',16:'Pizza',17:'Salmon',18:'Potato',19:'Salad',20:'Broccoli',21:'Carrots',22:'Chicken',27:'Smoothie'};
+    return names[id] || FOODS[id].name;
+  }
+  function picture(id) {
+    return `<img src="${IMG[FOODS[id].art]}" alt="" draggable="false">`;
+  }
+  function renderAthletes() {
+    if (!$('athletes').children.length) {
+      $('athletes').innerHTML = ATHLETES.map((x,i) => `
+        <button class="athlete" id="athlete-${i}" aria-pressed="false">
+          <img src="${GEAR[i]}" alt="${x.sport} gear"><span><b>${x.name}</b>
+          <small>${x.age} · ${x.sport}</small><small>Fictional athlete</small></span><span class="number">0${i + 1}</span>
+        </button>`).join('');
+      ATHLETES.forEach((_,i) => $('athlete-' + i).onclick = () => {
+        if (i !== state.athlete) chooseAthlete(i);
+      });
+    }
+    ATHLETES.forEach((_,i) => $('athlete-' + i).setAttribute('aria-pressed',i === state.athlete));
+    $('board-heading').textContent = `${a().name}'s ${state.mode === 'plan' ? 'training week' : 'game day'}`;
+    $('game-time').textContent = `${DAYS[gd()]} · ${time(a().start)} to ${time(a().end)}`;
+    $('schedule').innerHTML = DAYS.map((d,i) => {
+      const type = a().schedule[i] === 'R' ? 'Rest' : a().schedule[i] === 'G' ? 'Game' : 'Practice';
+      return `<span class="${type === 'Game' ? 'game' : ''}">${d} ${type}</span>`;
+    }).join('');
+  }
+  function renderGrid() {
+    const old = document.activeElement;
+    const focusId = old && $('week').contains(old) ? old.id : null;
+    const sc = $('grid-scroll');
+    const scroll = [sc.scrollLeft,sc.scrollTop];
+    const fs = flags();
+    let html = '<div class="week-row" role="row"><div class="corner" role="columnheader">MEALS</div>';
+    html += DAYS.map((d,i) => `<div class="day-head ${i === gd() ? 'game' : ''}" role="columnheader"><b>${d}</b>
+      <span>${a().schedule[i] === 'R' ? 'Rest' : i === gd() ? 'Game' : 'Practice'}</span></div>`).join('');
+    html += '</div>';
+    const max = Math.max(...state.plan.map(d => d.slots.length));
+    $('week').setAttribute('aria-rowcount',max + 1);
+    $('week').setAttribute('aria-colcount',8);
+    for (let r = 0; r < max; r++) {
+      const rowNames = ['Breakfast','Lunch','Snack','Dinner','Evening','Game extra'];
+      html += `<div class="week-row" role="row"><div class="row-name" role="rowheader">${rowNames[r]}</div>`;
+      for (let d = 0; d < 7; d++) {
+        const s = state.plan[d].slots[r];
+        if (!s) {
+          html += '<div class="cell inactive" role="gridcell" aria-label="No meal slot"></div>';
+          continue;
+        }
+        const selected = d === state.day && r === state.slot;
+        const flagged = state.flag !== null && fs[state.flag].days.includes(d);
+        html += `<div class="cell ${selected ? 'selected' : ''} ${flagged ? 'flagged' : ''}" role="gridcell">
+          <button class="cell-target" id="cell-${d}-${r}" data-day="${d}" data-slot="${r}"
+          tabindex="${selected ? 0 : -1}" aria-pressed="${selected}"
+          aria-label="${DAYS[d]} ${s.name}, ${s.foods.length} foods. Select meal.">
+          ${s.name}<time>${time(s.time)}</time></button><div class="cell-foods">`;
+        html += s.foods.length ? s.foods.map((id,index) => `
+          <button class="food-chip" id="chip-${d}-${r}-${index}" data-day="${d}" data-slot="${r}"
+          data-remove="${index}" tabindex="-1" title="Remove ${FOODS[id].name}"
+          aria-label="Remove ${FOODS[id].name} from ${DAYS[d]} ${s.name}">
+          ${picture(id)}<span>${shortName(id)}</span></button>`).join('') : '<span class="skipped">Skipped</span>';
+        html += '</div></div>';
+      }
+      html += '</div>';
+    }
+    $('week').innerHTML = html;
+    sc.scrollLeft = scroll[0];
+    sc.scrollTop = scroll[1];
+    if (focusId && $(focusId)) $(focusId).focus({preventScroll:true});
+    renderEnergy();
+  }
+  function renderEnergy() {
+    if (!$('energy').children.length) {
+      $('energy').innerHTML = '<div class="energy-title">ENERGY IN<br>vs needed</div>' + DAYS.map((_,i) =>
+        `<div class="energy-day" id="energy-day-${i}"><small></small><strong></strong><small></small>
+        <div class="bar"><i></i></div></div>`).join('');
+    }
+    DAYS.forEach((d,i) => {
+      const t = totals(i);
+      const pct = t.cal / target(i) * 100;
+      const word = pct < 80 ? 'Low' : pct > 130 ? 'Very high' : 'OK';
+      const color = word === 'OK' ? 'var(--ok)' : 'var(--warn)';
+      const el = $('energy-day-' + i);
+      el.style.setProperty('--c',color);
+      el.style.setProperty('--pct',Math.min(100,pct) + '%');
+      el.children[0].textContent = `${d} · ${word}`;
+      el.children[1].textContent = `${Math.round(pct)}%`;
+      el.children[2].textContent = `${fmt(t.cal)} of ${fmt(target(i))}`;
+    });
+    $('energy-scroll').scrollLeft = $('grid-scroll').scrollLeft;
+  }
+  function renderTarget() {
+    $('target-label').textContent = `${DAYS[state.day]} · ${meal().name} · ${meal().foods.length}/4`;
+    $('selected-foods').hidden = state.mode !== 'game';
+    if (state.mode === 'game') {
+      const focusIndex = document.activeElement?.dataset.editRemove;
+      $('selected-foods').innerHTML = meal().foods.map((id,i) => `<button class="food-chip"
+        data-edit-remove="${i}" aria-label="Remove ${FOODS[id].name}" title="Remove ${FOODS[id].name}">
+        ${picture(id)}<span>× ${shortName(id)}</span></button>`).join('');
+      if (focusIndex !== undefined) {
+        const next = $('selected-foods').querySelector(`[data-edit-remove="${Math.min(+focusIndex,meal().foods.length - 1)}"]`);
+        (next || $('food-0'))?.focus({preventScroll:true});
+      }
+    }
+  }
+  function renderShelf() {
+    const foods = FOODS.filter(f => (state.filter === 'all' || f.slotKind === state.filter)
+      && (state.group === 'all' || f.groups[state.group]));
+    $('shelf').innerHTML = foods.length ? foods.map(f => `<button class="food" id="food-${f.id}" data-food="${f.id}"
+      title="${f.name}: ${f.size}, ${f.cal} kcal"
+      aria-label="Add ${f.name}, ${f.cal} calories, ${f.size}">${picture(f.id)}<span>${f.name}</span>
+      <small>${f.cal} kcal</small></button>`).join('') : `<p class="shelf-empty">${L.emptyShelf}</p>`;
+    return foods.length;
+  }
+  function renderFlags() {
+    const fs = flags();
+    const clear = fs.filter(f => f.clear).length;
+    $('flag-summary').innerHTML = `<h3>${clear} of 10 flags clear</h3>
+      <p>${clear === 10 ? 'All checks meet the model thresholds.' : 'Tap a flag to locate the gap.'}</p>
+      <div class="flag-dots" aria-hidden="true">${fs.map(f => `<i class="${f.clear ? '' : 'issue'}"></i>`).join('')}</div>`;
+    if (!$('flags').children.length) {
+      $('flags').innerHTML = fs.map(f => `<button class="flag" id="flag-${f.id}" data-flag="${f.id}"></button>`).join('');
+    }
+    fs.forEach(f => {
+      const b = $('flag-' + f.id);
+      b.style.setProperty('--c',f.clear ? 'var(--ok)' : 'var(--warn)');
+      b.innerHTML = `<b>${f.clear ? '✓' : f.kind === 'gap' ? '×' : '!'}</b>${f.name}
+        <span class="sr">${f.clear ? 'OK' : f.kind}</span>`;
+      b.setAttribute('aria-pressed',state.flag === f.id);
+    });
+    $('flag-detail').hidden = state.flag === null;
+    if (state.flag !== null) {
+      const f = fs[state.flag];
+      const status = f.clear ? '✓ OK.' : f.kind === 'gap' ? '× Gap.' : '! Check.';
+      $('flag-detail').textContent = `${status} ${f.name}: ${f.detail} ${f.days.map(d => DAYS[d]).join(', ')}`;
+    }
+    return clear;
+  }
+  function renderLabel() {
+    const t = totals(state.day);
+    const targets = groupTargets();
+    const lines = [['Calories','cal','kcal'],['Carbohydrate','carb','g'],['Protein','prot','g'],
+      ['Fat','fat','g'],['Fiber','fib','g'],['Added sugars','add','g'],['Sodium','sod','mg']];
+    $('label').innerHTML = `<h3>${DAYS[state.day]} · selected day</h3>` + lines.map(([name,k,unit]) => {
+      const dv = k in DV ? ` · ${Math.round(t[k] / DV[k] * 100)}% DV` : '';
+      const rounded = k === 'cal' ? R.cal(t[k]) : k === 'sod' ? R.sod(t[k]) : k === 'fat' ? R.fat(t[k]) : R.g(t[k]);
+      return `<div class="nutrition-row"><span>${name}</span><span>${rounded} ${unit}${dv}</span></div>`;
+    }).join('') + Object.keys(GROUPS).map(k => `<div class="group-row" style="--c:var(--${k})">
+      <span>${GROUPS[k][0]}</span><span>${fmt(t.groups[k])} / ${targets[k]} ${GROUPS[k][1]}</span></div>`).join('')
+      + '<p>Example serving values from this tool\'s table; recipes vary. FDA label rounding. '
+      + 'General Daily Values are label references, not athlete targets.</p>';
+    if (state.plan[state.day].moved.length) {
+      $('label').innerHTML += `<p>Moved foods: ${state.plan[state.day].moved.map(id => FOODS[id].name).join(', ')}.
+        Add these from the shelf to place them.</p>`;
+    }
+  }
+  function select(d,s) {
+    state.day = d;
+    state.slot = s;
+    document.querySelectorAll('.cell.selected').forEach(el => el.classList.remove('selected'));
+    const cell = $('cell-' + d + '-' + s);
+    if (cell) {
+      cell.parentElement.classList.add('selected');
+      document.querySelectorAll('.cell-target').forEach(el => {
+        el.tabIndex = el === cell ? 0 : -1;
+        el.setAttribute('aria-pressed',el === cell);
+      });
+    }
+    renderTarget();
+    renderLabel();
+    if (state.mode === 'game') {
+      renderMealFlags();
+      updateMove();
+    }
+    hint($('shelf').querySelector('.food')
+      ? `Add foods to ${DAYS[d]} ${meal().name} from the Food shelf. Tap a food chip to remove it.` : L.emptyShelf);
+    Curio.tone(440,.045,.025);
+  }
+  function edited() {
+    if (state.finished || state.flag !== null) V.hush();
+    state.typical = false;
+    state.revision++;
+    model = simulate();
+    renderGrid();
+    renderTarget();
+    renderLabel();
+    const clear = renderFlags();
+    if (state.mode === 'game') {
+      renderMealFlags();
+      drawChart();
+      renderResult();
+    }
+    if (clear === 10) V.say('allClear',{valid:() => flags().every(f => f.clear),hint:false});
+    else if (state.mode === 'plan' && state.flag === null && !V.heard('howFlag')) {
+      V.how('howFlag',{valid:() => state.mode === 'plan' && state.flag === null,needs:'#flags',hint:false});
+    }
+  }
+  function addFood(id) {
+    const s = meal();
+    if (s.foods.length === 4) {
+      hint('4 foods per meal here. Tap a food chip in that meal to remove it first.');
+      Curio.tone(170,.12,.05);
+      return;
+    }
+    if (s.kind === 'during' && !DRINKS.includes(id)) {
+      hint('During accepts drinks only. Select a different meal flag to add this food.');
+      Curio.tone(170,.12,.05);
+      return;
+    }
+    s.foods.push(id);
+    const moved = state.plan[state.day].moved;
+    const movedIndex = moved.indexOf(id);
+    if (movedIndex !== -1) moved.splice(movedIndex,1);
+    hint(`${FOODS[id].name} added to ${DAYS[state.day]} ${s.name}. Tap another food, or select a different meal.`);
+    V.dropQueued(it => it.key === 'wPlan' || it.key === 'again');
+    Curio.tone(620,.07,.04);
+    edited();
+  }
+  function removeFood(d,s,i) {
+    const keyboardCell = document.activeElement?.classList.contains('cell-target');
+    state.day = d;
+    state.slot = s;
+    if (!Number.isInteger(i) || i < 0 || i >= meal().foods.length) return;
+    const removed = meal().foods.splice(i,1)[0];
+    hint(`${FOODS[removed].name} removed. Tap the Food shelf to try a replacement.`);
+    Curio.tone(300,.08,.04);
+    edited();
+    if (state.mode === 'plan') {
+      const nextIndex = Math.min(i,meal().foods.length - 1);
+      const next = keyboardCell ? $('cell-' + d + '-' + s)
+        : $('chip-' + d + '-' + s + '-' + nextIndex) || $('cell-' + d + '-' + s);
+      next?.focus({preventScroll:true});
+    }
+  }
+  function drawChart() {
+    if (state.mode !== 'game') return;
+    const box = $('graph').getBoundingClientRect();
+    const w = Math.max(120,box.width);
+    const h = Math.max(25,box.height - 18);
+    const start = a().wake;
+    const x = t => (t - start) / (1320 - start) * w;
+    const y = v => h - v / 100 * (h - 8);
+    const path = pts => pts.map((p,i) => `${i ? 'L' : 'M'}${x(p.t).toFixed(1)},${y(p.v).toFixed(1)}`).join(' ');
+    $('chart').setAttribute('viewBox',`0 0 ${w} ${h + 18}`);
+    let html = `<defs><linearGradient id="tank-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#7fb2ff" stop-opacity=".25"/><stop offset="1" stop-color="#7fb2ff" stop-opacity="0"/>
+      </linearGradient></defs><rect x="${x(a().start)}" y="0" width="${x(a().end) - x(a().start)}"
+      height="${h}" fill="#7fb2ff" opacity=".16"/>`;
+    const ticks = h < 70 ? [0,100] : h < 110 ? [0,15,30,100] : [0,15,30,50,75,100];
+    for (const v of ticks) {
+      html += `<line x1="0" x2="${w}" y1="${y(v)}" y2="${y(v)}" stroke="${v === 15 ? '#ffb8a8' : '#4c607a'}"
+        stroke-opacity=".5" stroke-dasharray="${v === 15 ? '4 4' : '0'}"/>
+        <text x="-7" y="${y(v) + 4}" text-anchor="end" class="chart-axis">${v}</text>`;
+    }
+    const step = w < 400 ? 240 : 120;
+    for (let t = Math.ceil(start / step) * step; t <= 1320; t += step) {
+      html += `<line x1="${x(t)}" x2="${x(t)}" y1="0" y2="${h}" stroke="#4c607a" stroke-opacity=".24"/>
+        <text x="${x(t)}" y="${h + 17}" text-anchor="middle" class="chart-axis">${time(t).replace(':00','')}</text>`;
+    }
+    html += `<text x="${Math.min(w - 38,x(a().start) + 4)}" y="13" class="chart-axis">GAME</text>`;
+    const visible = model.filter(p => p.t <= state.clock);
+    visible.push({t:state.clock,v:valueAt(state.clock)});
+    html += `<path d="${path(model)}" fill="none" stroke="#7fb2ff" opacity=".25" stroke-width="2" stroke-dasharray="4 5"/>
+      <path d="${path(visible)} L${x(state.clock)},${h} L0,${h}Z" fill="url(#tank-fill)"/>
+      <path d="${path(visible)}" fill="none" stroke="#91bdff" stroke-width="3" stroke-linejoin="round"/>
+      <line x1="${x(state.clock)}" x2="${x(state.clock)}" y1="0" y2="${h}" stroke="#d5e6ff" stroke-opacity=".7"/>
+      <circle class="cursor-dot" cx="${x(state.clock)}" cy="${y(valueAt(state.clock))}" r="5" fill="#d8eaff"
+      stroke="#7fb2ff" stroke-width="2"/>`;
+    $('chart').innerHTML = html;
+    $('clock').textContent = time(state.clock);
+    $('tank').textContent = `${Math.round(valueAt(state.clock))}%`;
+    $('play').textContent = state.running ? 'Ⅱ Pause' : state.finished ? '▶ Play game day again' : '▶ Play game day';
+    const consumed = state.plan[gd()].slots.filter(s => s.time <= state.clock && s.foods.some(id => DRINKS.includes(id)));
+    $('drinks').textContent = 'Drinks ' + (consumed.length
+      ? consumed.map(s => '✓ ' + time(s.time)).join(' · ') : '· checks appear as drinks are reached');
+  }
+  function renderMealFlags() {
+    const focus = document.activeElement?.closest('.meal-flag')?.id;
+    const narrow = innerWidth < 600 || innerHeight <= 640;
+    const lane = $('meal-lane');
+    const width = lane.clientWidth;
+    const dense = !narrow && width < 500;
+    const shortLaptop = !narrow && innerHeight <= 900;
+    lane.classList.toggle('dense',dense);
+    const cardWidth = innerWidth < 600 ? 60 : narrow ? 72 : dense ? 68 : 88;
+    const left = cardWidth / 2 + 2;
+    const right = width - left;
+    const placed = state.plan[gd()].slots.map((s,i) => ({
+      i,s,row:i % 2,anchor:(s.time - a().wake) / (1320 - a().wake) * width,
+      x:0,top:narrow ? (i % 2) * 47 + 1 : (i % 2) * (shortLaptop ? 66 : 77) + 5
+    }));
+    for (const row of [0,1]) {
+      const items = placed.filter(p => p.row === row).sort((p,q) => p.anchor - q.anchor);
+      let previous = left - cardWidth - 4;
+      items.forEach(p => {
+        p.x = Math.max(left,p.anchor,previous + cardWidth + 4);
+        previous = p.x;
+      });
+      let next = right + cardWidth + 4;
+      items.slice().reverse().forEach(p => {
+        p.x = Math.min(right,p.x,next - cardWidth - 4);
+        next = p.x;
+      });
+    }
+    const stems = placed.map(p => `<line x1="${p.anchor}" y1="0" x2="${p.x}" y2="${p.top}"
+      stroke="#758ca8" stroke-width="1"/>`).join('');
+    lane.innerHTML = `<svg class="meal-stems" aria-hidden="true">${stems}</svg>` + placed.map(({s,i,x,top}) => {
+      const selected = state.day === gd() && state.slot === i;
+      return `<button class="meal-flag ${selected ? 'selected' : ''}" id="meal-${i}" data-meal="${i}"
+        style="left:${x}px;top:${top}px" aria-label="${s.name}, ${time(s.time)}, ${s.foods.length} foods.">
+        <time>${time(s.time)}</time><b>${s.name}</b>${s.foods.map(id => picture(id)).join('')}</button>`;
+    }).join('');
+    if (focus && $(focus)) $(focus).focus({preventScroll:true});
+  }
+  function resultInfo() {
+    const end = valueAt(a().end);
+    const cross = model.find(p => p.t <= a().end && p.v < 15);
+    if (end >= 30) return {
+      key:'strong',title:'Strong finish',
+      text:'Fuel lasted the whole game. Carbohydrate the day before and the meals today kept the tank up.'
+    };
+    if (end >= 15) return {
+      key:'low',title:'Running low late',text:'The tank ran low near the end. Look at the pre-game meal and the day before.'
+    };
+    return {
+      key:'out',title:'Out of gas',
+      crossTime:time(cross ? cross.t : a().start),
+      text:`Out of fuel at ${time(cross ? cross.t : a().start)}. Skipped or small meals before the game left too little.`
+    };
+  }
+  function renderResult() {
+    $('result').hidden = !state.finished;
+    document.body.classList.toggle('game-finished',state.finished && state.mode === 'game');
+    if (!state.finished) return;
+    const info = resultInfo();
+    const revised = state.revision !== state.resultRevision;
+    const changed = revised ? 'Plan changed. Replay to test this revision.' : 'Your replay result.';
+    $('result').innerHTML = `<div class="eyebrow">${revised ? 'REVISED FORECAST' : 'FINAL WHISTLE'} / ${a().name.toUpperCase()}</div>
+      <h3>${revised ? 'Forecast' : info.title} · ${Math.round(valueAt(a().end))}%${info.crossTime
+        ? ' · ' + info.crossTime.replace(' ','') : ''}</h3><p>${info.text}</p>
+      <p class="result-route">Wake <span>${Math.round(valueAt(a().wake))}%</span>
+      → start <span>${Math.round(valueAt(a().start))}%</span> → finish <span>${Math.round(valueAt(a().end))}%</span></p>
+      <span class="sr">${changed}</span>`;
+  }
+  function restart(run=false) {
+    V.hush();
+    state.clock = a().wake;
+    state.finished = false;
+    state.running = run;
+    lastTick = performance.now();
+    renderResult();
+    drawChart();
+    hint(run ? 'Watch the tank rise after meals. Tap Pause or edit a meal flag while time runs.' : L.wGame);
+  }
+  function play() {
+    if (state.finished) restart(true);
+    else {
+      state.running = !state.running;
+      lastTick = performance.now();
+    }
+    V.dropQueued(it => it.key === 'wGame' || it.key === 'again');
+    hint(state.running
+      ? 'Watch meals fill the tank. Tap Pause to hold the clock, or select a meal flag to edit.'
+      : 'Replay paused. Tap Play game day to continue, or edit a meal flag.');
+    drawChart();
+    Curio.tone(state.running ? 550 : 350,.08,.04);
+  }
+  function tick(now) {
+    if (state.running && state.mode === 'game') {
+      const previous = state.clock;
+      state.clock = Math.min(a().end,state.clock + (now - lastTick) / 1000 * 30 * state.speed);
+      for (const [i,s] of state.plan[gd()].slots.entries()) {
+        if (previous < s.time && state.clock >= s.time) {
+          const flag = $('meal-' + i);
+          flag?.classList.remove('just-ate');
+          void flag?.offsetWidth;
+          flag?.classList.add('just-ate');
+          Curio.tone(480 + i * 60,.07,.025);
+        }
+      }
+      if (state.clock >= a().end) {
+        state.running = false;
+        state.finished = true;
+        state.resultRevision = state.revision;
+        renderResult();
+        const info = resultInfo();
+        hint(info.text + ' Tap a meal flag to revise, then Play game day again.');
+        V.say(info.key,{valid:() => state.finished && state.resultRevision === state.revision,hint:false});
+        V.how('again',{valid:() => state.finished && state.resultRevision === state.revision,needs:'#play',hint:false});
+        Curio.tone(info.key === 'strong' ? 720 : 260,.18,.04);
+      }
+      drawChart();
+    }
+    lastTick = now;
+    requestAnimationFrame(tick);
+  }
+  function updateMove() {
+    const bounds = windowFor(meal());
+    $('move-controls').hidden = !state.moving;
+    $('meal-time').min = bounds[0];
+    $('meal-time').max = bounds[1];
+    $('meal-time').value = meal().time;
+    $('meal-time').disabled = bounds[0] === bounds[1];
+    $('meal-time-label').textContent = time(meal().time);
+    $('move').setAttribute('aria-pressed',state.moving);
+    document.querySelector('.panel').classList.toggle('moving-panel',state.moving);
+    placeLive();
+  }
+  function moveMeal(t) {
+    const s = meal();
+    const bounds = windowFor(s);
+    if (bounds[0] === bounds[1]) {
+      hint('During stays fixed to play. Select another meal flag to move it.');
+      return;
+    }
+    if (state.finished || state.flag !== null) V.hush();
+    s.time = Math.max(bounds[0],Math.min(bounds[1],Math.round(t / 5) * 5));
+    state.typical = false;
+    model = simulate();
+    state.revision++;
+    updateMove();
+    renderMealFlags();
+    drawChart();
+    renderFlags();
+    renderResult();
+    renderGrid();
+    hint(`${s.name}: ${time(s.time)}. Window ${time(bounds[0])} to ${time(bounds[1])}. Drag the flag or use Meal time.`);
+  }
+  function renderAll() {
+    model = simulate();
+    renderAthletes();
+    renderGrid();
+    renderTarget();
+    renderShelf();
+    renderFlags();
+    renderLabel();
+    placeLive();
+    if (state.mode === 'game') {
+      renderMealFlags();
+      drawChart();
+      updateMove();
+      renderResult();
+    }
+  }
+  function placeLive() {
+    const compact = innerWidth < 600 || innerHeight <= 640;
+    const parent = compact ? $('mobile-live') : $('side-scroll');
+    if ($('live').parentElement !== parent) parent.prepend($('live'));
+    const resultParent = compact ? $('mobile-live') : $('game');
+    if ($('result').parentElement !== resultParent) resultParent.append($('result'));
+    const controls = $('move-controls');
+    if (compact && state.moving) {
+      const panel = document.querySelector('.panel');
+      if (controls.parentElement !== panel) panel.insertBefore(controls,$('selected-foods'));
+    } else if (controls.parentElement !== $('game')) {
+      $('game').insertBefore(controls,$('result').parentElement === $('game') ? $('result') : null);
+    }
+  }
+  function setMode(m) {
+    if (state.mode === m) return;
+    V.hush();
+    state.running = false;
+    state.mode = m;
+    state.moving = false;
+    document.querySelector('.panel').classList.remove('moving-panel');
+    $('move-controls').hidden = true;
+    $('move').setAttribute('aria-pressed',false);
+    document.body.classList.toggle('game-mode',m === 'game');
+    state.flag = null;
+    $('plan').hidden = m !== 'plan';
+    $('week-tools').hidden = m !== 'plan';
+    $('game').hidden = m !== 'game';
+    $('live').hidden = m !== 'game';
+    document.querySelector('.panel').classList.toggle('game-panel',m === 'game');
+    $('m-plan').setAttribute('aria-pressed',m === 'plan');
+    $('m-game').setAttribute('aria-pressed',m === 'game');
+    $('week-menu').hidden = m === 'game';
+    if (m === 'game') {
+      state.day = gd();
+      state.slot = Math.min(2,state.plan[gd()].slots.length - 1);
+      state.clock = a().wake;
+      state.finished = false;
+    }
+    renderAll();
+    const hasFoods = !!$('shelf').querySelector('.food');
+    hint(m === 'plan' ? !hasFoods ? L.emptyShelf : state.typical ? L.wPlan : L.planAction : L.wGame);
+    const welcomed = V.welcome();
+    if (!welcomed && m === 'plan' && hasFoods) V.how('planAction',{valid:() => state.mode === 'plan',hint:false});
+  }
+  function openDialog(title,html) {
+    dialogReturn = document.activeElement;
+    $('dialog-title').textContent = title;
+    $('dialog-body').innerHTML = html;
+    $('dialog-body').onclick = null;
+    $('dialog').showModal();
+  }
+  function closeDialog() {
+    $('dialog').close();
+    dialogReturn?.focus({preventScroll:true});
+  }
+  function showNotes() {
+    const cards = NOTES.map(([title,first,second],i) => `<article class="note-card">
+      <b>0${i + 1} / ${title}</b><p>${first}</p><p>${second}</p></article>`).join('');
+    openDialog('Fuel notes',`<div class="notes-grid">${cards}</div>`);
+  }
+  const V = Curio.voice({
+    lines:L,scope:() => state.mode,hint:false,
+    read:() => {
+      if ($('dialog').open) return $('dialog-body').textContent;
+      if (state.flag !== null) return $('flag-detail').textContent;
+      if (state.mode === 'game' && state.finished) return $('result').textContent;
+      return $('hint').textContent;
+    },
+    welcome:() => state.mode === 'plan'
+      ? state.typical ? ['wPlan',{valid:() => state.typical && !!$('shelf').querySelector('.food')}] : null
+      : ['wGame',{valid:() => !state.running && !state.finished}],
+    speaks:'#play, .food, .food-chip'
+  });
+  $('m-plan').onclick = () => setMode('plan');
+  $('m-game').onclick = () => setMode('game');
+  $('filters').innerHTML = [['all','All'],['breakfast','Breakfast'],['meal','Meals'],['snack','Snacks'],['drink','Drinks']]
+    .map(([id,name]) => `<button class="btn" id="filter-${id}" data-filter="${id}" aria-pressed="${id === 'all'}">${name}</button>`)
+    .join('');
+  $('filters').onclick = e => {
+    const b = e.target.closest('[data-filter]');
+    if (!b) return;
+    state.filter = b.dataset.filter;
+    [...$('filters').children].forEach(el => el.setAttribute('aria-pressed',el === b));
+    const count = renderShelf();
+    hint(count ? `Tap a food on the ${b.textContent} shelf to add it to ${meal().name}.` : L.emptyShelf);
+  };
+  $('group-filter').onchange = e => {
+    state.group = e.target.value;
+    const count = renderShelf();
+    hint(count ? `Food group filter changed. Tap a food to add it to ${meal().name}.` : L.emptyShelf);
+  };
+  $('shelf').onclick = e => {
+    const b = e.target.closest('[data-food]');
+    if (b) addFood(+b.dataset.food);
+  };
+  $('selected-foods').onclick = e => {
+    const b = e.target.closest('[data-edit-remove]');
+    if (b) removeFood(state.day,state.slot,+b.dataset.editRemove);
+  };
+  $('week').onclick = e => {
+    const b = e.target.closest('[data-remove],.cell-target');
+    if (!b) return;
+    if (b.dataset.remove !== undefined) removeFood(+b.dataset.day,+b.dataset.slot,+b.dataset.remove);
+    else select(+b.dataset.day,+b.dataset.slot);
+  };
+  $('week').onkeydown = e => {
+    const b = e.target.closest('.cell-target');
+    if (!b || !['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Delete'].includes(e.key)) return;
+    e.preventDefault();
+    let d = +b.dataset.day;
+    let s = +b.dataset.slot;
+    if (e.key === 'Delete') {
+      if (meal().foods.length) removeFood(d,s,meal().foods.length - 1);
+      return;
+    }
+    d = Math.max(0,Math.min(6,d + (e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0)));
+    s = Math.max(0,Math.min(state.plan[d].slots.length - 1,s + (e.key === 'ArrowDown' ? 1 : e.key === 'ArrowUp' ? -1 : 0)));
+    select(d,s);
+    const next = $('cell-' + d + '-' + s);
+    next.focus({preventScroll:true});
+    const scroller = $('grid-scroll');
+    const bounds = scroller.getBoundingClientRect();
+    const rect = next.getBoundingClientRect();
+    if (rect.left < bounds.left + 72) scroller.scrollLeft += rect.left - bounds.left - 72;
+    else if (rect.right > bounds.right) scroller.scrollLeft += rect.right - bounds.right;
+    if (rect.top < bounds.top + 50) scroller.scrollTop += rect.top - bounds.top - 50;
+    else if (rect.bottom > bounds.bottom) scroller.scrollTop += rect.bottom - bounds.bottom;
+  };
+  $('grid-scroll').onscroll = () => $('energy-scroll').scrollLeft = $('grid-scroll').scrollLeft;
+  $('flags').onclick = e => {
+    const b = e.target.closest('[data-flag]');
+    if (!b) return;
+    V.hush();
+    state.flag = state.flag === +b.dataset.flag ? null : +b.dataset.flag;
+    renderFlags();
+    renderGrid();
+    hint(state.flag === null ? 'Select a meal, then tap foods on the Food shelf.'
+      : 'Read the selected flag in the panel. Tap an outlined meal, then add or remove food.');
+    V.dropQueued(it => it.key === 'howFlag');
+    if (state.flag !== null) V.say($('flag-detail').textContent,{valid:() => state.flag === +b.dataset.flag,hint:false});
+  };
+  $('typical').onclick = () => {
+    if (state.typical) {
+      hint(L.wPlan);
+      return;
+    }
+    V.hush();
+    state.plan = starter();
+    state.typical = true;
+    state.flag = null;
+    state.slot = 0;
+    state.revision++;
+    renderAll();
+    hint('Typical week restored. Select a meal, then add foods from the shelf.');
+  };
+  $('clear').onclick = () => {
+    state.plan.forEach(d => {
+      d.slots.forEach(s => s.foods = []);
+      d.moved = [];
+    });
+    edited();
+    hint('Week cleared. Select a meal, then tap foods on the Food shelf.');
+  };
+  $('save').onclick = () => {
+    try {
+      const saved = readSaved();
+      saved[a().id] = state.plan;
+      localStorage.setItem('gdf-plans',JSON.stringify(saved));
+      hint(`${a().name}'s plan saved on this device. Tap Load to restore it.`);
+      Curio.yes();
+    } catch {hint('Saving is unavailable. Your plan still works while this page stays open.');}
+  };
+  $('load').onclick = () => {
+    const plan = validatePlan(readSaved()[a().id]);
+    if (!plan) {
+      hint(`No saved plan for ${a().name}. Tap Save to keep this plan on this device.`);
+      return;
+    }
+    state.plan = plan;
+    state.slot = 0;
+    edited();
+    hint(`${a().name}'s saved plan loaded. Select a meal to change it.`);
+  };
+  $('clear-saved').onclick = () => {
+    openDialog('Clear saved plans?',`<p>Remove all athletes' saved plans from this device? The week on screen stays here.</p>
+      <button class="btn" id="confirm-clear">Clear saved plans</button>`);
+    $('confirm-clear').onclick = () => {
+      try {
+        localStorage.removeItem('gdf-plans');
+        hint('Saved plans cleared from this device. Tap Save to keep a new plan.');
+      } catch {hint('Saved plans could not be cleared in this browser.');}
+      closeDialog();
+    };
+  };
+  $('copy').onclick = () => {
+    const choices = DAYS.map((d,i) => `<button class="btn" data-copy="${i}" aria-pressed="false"
+      ${i === state.day ? 'disabled' : ''}>${d}</button>`).join('');
+    openDialog(`Copy ${DAYS[state.day]} to...`,`<p>Slots match by name. Unmatched foods stay in a Moved note.</p>
+      <div class="copy-days">${choices}</div><button class="btn" id="copy-apply">Copy selected days</button>`);
+    const selected = new Set();
+    $('dialog-body').onclick = e => {
+      const b = e.target.closest('[data-copy]');
+      if (!b) return;
+      const d = +b.dataset.copy;
+      if (selected.has(d)) selected.delete(d);
+      else selected.add(d);
+      b.setAttribute('aria-pressed',selected.has(d));
+    };
+    $('copy-apply').onclick = () => {
+      if (!selected.size) return;
+      const from = structuredClone(state.plan[state.day]);
+      selected.forEach(d => {
+        const slots = template(d);
+        const moved = [...from.moved];
+        slots.forEach(s => s.foods = []);
+        from.slots.forEach(s => {
+          const dest = slots.find(x => x.name === s.name);
+          if (dest) dest.foods = [...s.foods];
+          else moved.push(...s.foods);
+        });
+        state.plan[d] = {slots,moved};
+      });
+      closeDialog();
+      edited();
+      hint(`Copied ${DAYS[state.day]} to ${[...selected].map(d => DAYS[d]).join(', ')}. Select a meal to keep planning.`);
+    };
+  };
+  $('week-menu').onclick = () => {
+    const ids = ['typical','clear','copy','save','load','clear-saved','notes'];
+    const buttons = ids.map(id => `<button class="btn" data-week-action="${id}">${$(id).textContent}</button>`).join('');
+    openDialog('Week tools',`<div class="copy-days">${buttons}</div><p>Save stays on this device.</p>`);
+    $('dialog-body').onclick = e => {
+      const b = e.target.closest('[data-week-action]');
+      if (!b) return;
+      closeDialog();
+      $(b.dataset.weekAction).click();
+      if (!$('dialog').open) $('week-menu').focus({preventScroll:true});
+      else dialogReturn = $('week-menu');
+    };
+  };
+  $('notes').onclick = showNotes;
+  $('game-notes').onclick = showNotes;
+  $('close-dialog').onclick = closeDialog;
+  $('dialog').addEventListener('cancel',e => {
+    e.preventDefault();
+    closeDialog();
+  });
+  $('play').onclick = play;
+  $('restart').onclick = () => restart(state.running);
+  $('speed').onclick = () => {
+    state.speed = state.speed === 1 ? 4 : 1;
+    $('speed').textContent = state.speed + 'x';
+    hint(`Replay speed ${state.speed}x. Tap Play game day or edit a meal flag.`);
+  };
+  $('move').onclick = () => {
+    state.moving = !state.moving;
+    updateMove();
+    renderMealFlags();
+    hint(state.moving ? meal().kind === 'during' ? 'During stays fixed to play. Select another meal flag to move it.' : L.move
+      : 'Tap a meal flag to edit its foods, or Play game day to test the plan.');
+    if (state.moving && meal().kind !== 'during') {
+      V.how('move',{valid:() => state.moving && meal().kind !== 'during',needs:'#meal-time',hint:false});
+    }
+  };
+  $('meal-time').oninput = e => moveMeal(+e.target.value);
+  $('meal-lane').onclick = e => {
+    const b = e.target.closest('[data-meal]');
+    if (b && !state.moving) select(gd(),+b.dataset.meal);
+  };
+  $('meal-lane').onpointerdown = e => {
+    const b = e.target.closest('[data-meal]');
+    if (!b || !state.moving) return;
+    e.preventDefault();
+    select(gd(),+b.dataset.meal);
+    const bounds = $('meal-lane').getBoundingClientRect();
+    const pointerTime = a().wake + (e.clientX - bounds.left) / bounds.width * (1320 - a().wake);
+    drag = {id:e.pointerId,left:bounds.left,width:bounds.width,offset:meal().time - pointerTime};
+    $('meal-lane').setPointerCapture(e.pointerId);
+  };
+  $('meal-lane').onpointermove = e => {
+    if (drag && e.pointerId === drag.id) {
+      moveMeal(a().wake + (e.clientX - drag.left) / drag.width * (1320 - a().wake) + drag.offset);
+    }
+  };
+  $('meal-lane').onpointerup = e => {
+    if (!drag) return;
+    $('meal-lane').releasePointerCapture(e.pointerId);
+    drag = null;
+    Curio.tone(500,.05,.03);
+  };
+  $('meal-lane').onpointercancel = () => drag = null;
+  $('meal-lane').onkeydown = e => {
+    const b = e.target.closest('[data-meal]');
+    if (b && state.moving && ['ArrowLeft','ArrowRight'].includes(e.key)) {
+      e.preventDefault();
+      select(gd(),+b.dataset.meal);
+      moveMeal(meal().time + (e.key === 'ArrowRight' ? 5 : -5));
+    }
+  };
+  addEventListener('keydown',e => {
+    if ($('dialog').open || /INPUT|SELECT/.test(e.target.tagName)) return;
+    if (e.key === '1') setMode('plan');
+    if (e.key === '2') setMode('game');
+  });
+  new ResizeObserver(() => {
+    if (state.mode === 'game') {
+      placeLive();
+      drawChart();
+      renderMealFlags();
+    }
+  }).observe($('graph'));
+  addEventListener('resize',placeLive);
+  Curio.init({clips:"voice:*",rate:.95,readFallback:() => $('hint').textContent});
+  state.plan = starter();
+  model = simulate();
+  renderAll();
+  hint(L.wPlan);
+  window.__tool = {
+    state,setMode,allLines:() => [...V.allLines(),...NOTES.flat()],vlog:V.log,
+    get vq() {return V.queue;}, foods:FOODS,athletes:ATHLETES,totals,flags,simulate,valueAt,
+    chooseAthlete,moveMeal,windowFor,addFood,removeFood,restart,play
+  };
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

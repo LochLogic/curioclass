@@ -1,0 +1,21 @@
+{
+  "id": "character-voice-booth",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Keep the words. Change your voice. See what changed.",
+  "outcome": "Make, measure, compare and refine vocal choices for a character",
+  "driver": "students or teacher",
+  "minutes": "20-30",
+  "modes": ["Booth", "Compare", "Plan"],
+  "grades_label": "Grades 3-5",
+  "sources": [
+    "National Core Arts Standards, Theatre grades 3-5: TH:Cr2, TH:Pr4, TH:Re7, TH:Cr3, TH:Pr5",
+    "A. de Cheveigne and H. Kawahara, YIN, JASA 111(4), 1917-1930 (2002)",
+    "Standard acoustics definitions: 12 log2(f2/f1) and 20 log10(rms)",
+    "W3C Media Capture and Streams microphone constraints",
+    "Original lines, cards, approximate bins and planning notches for this tool",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-01"
+}

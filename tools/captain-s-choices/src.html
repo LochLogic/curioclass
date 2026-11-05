@@ -1,0 +1,958 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Captain's Choices · Team culture · Curio Class</title>
+<meta name="description" content="Captain the Kestrels through six leadership choices. Same scores, different team. Grades 9-12 PE. Works offline.">
+<!--
+Captain's Choices, Curio Class. Grades 9-12 PE, SHAPE.S3. Students or teacher.
+Original fictional team, six dilemmas and a fixed season. WFDF 2025-2028 receiving foul rule 17.2.2;
+WFDF Spirit of the Game categories. Sources and the story model are explained in notes.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0; code MIT. One offline file, no network requests. Based on kit/starter/src.html.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --brand:#ff8f6b;
+  --brand-ink:#2a0f05;
+}
+body {height:100dvh; min-height:0; overflow:hidden;}
+header {padding:12px 22px; gap:8px;}
+h1 {font-family:Bahnschrift,'Segoe UI',sans-serif; font-size:28px;}
+h1 small {font-size:13px; margin-top:4px;}
+.icon-btn {min-height:44px; font-size:14px; padding:0 12px;}
+main {grid-template-columns:minmax(0,1.35fr) minmax(340px,1fr); overflow:hidden;}
+.stage {min-height:0; isolation:isolate; background:#24372b;}
+.backdrop {position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-3;}
+.stage::after {content:''; position:absolute; inset:0; z-index:-2;
+  background:linear-gradient(180deg,#0b172040,transparent 28%,#0b14177a); pointer-events:none;}
+.air {position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background:radial-gradient(ellipse at 18% 28%,#ffe5a422,transparent 55%); animation:air 9s ease-in-out infinite;}
+@keyframes air {50% {opacity:.25;}}
+.calm .air {animation:none;}
+.identity {display:flex; justify-content:space-between; align-items:center; gap:8px; padding:20px 24px;}
+.crest {display:flex; gap:9px; align-items:center; font:700 13px Bahnschrift,'Segoe UI',sans-serif;
+  letter-spacing:.16em; color:#fff; text-shadow:0 1px 3px #000;}
+.crest svg {width:37px; height:37px; filter:drop-shadow(0 2px 3px #0005);}
+.progress {display:flex; gap:6px; padding:8px; background:#101820d9; border-radius:20px;}
+.progress span {width:17px; height:5px; border-radius:4px; background:#829092;}
+.progress .passed {background:var(--brand);}
+.progress .current {background:#fff; box-shadow:0 0 0 2px #ff8f6b80;}
+.stage-content {position:absolute; inset:72px 24px 24px; display:flex; flex-direction:column;
+  align-items:center; justify-content:flex-end; gap:18px;}
+.cast {display:flex; align-items:flex-end; justify-content:center; gap:14px; min-height:140px; width:100%;}
+.person {position:relative; display:flex; flex-direction:column; align-items:center; width:90px;
+  transition:transform .65s,opacity .65s; filter:drop-shadow(0 6px 4px #0008);}
+.person img {width:88px; height:100px; object-fit:contain;}
+.person .plate {position:absolute; top:45px; width:37px; background:var(--brand); color:var(--brand-ink);
+  text-align:center; font:800 13px/1.1 Bahnschrift,'Segoe UI',sans-serif; padding:3px 0; border-radius:3px;}
+.person .plate small {display:block; font-size:11px;}
+.person.opponent .plate {background:#3c4856; color:#fff; width:auto; max-width:80px; padding:3px 5px; font-size:11px;}
+.person .name {font-size:12px; font-weight:600; color:#fff; background:#141b25e8; padding:4px 8px; border-radius:5px;}
+.person.coach .plate {display:none;}
+.person.away {transform:translateX(22px) rotate(8deg); opacity:.4;}
+.person.together {transform:translateX(-15px) rotate(-4deg);}
+.person.pair-right {transform:translateX(23px) rotate(4deg);}
+.story-card {background:#141b25ed; border:1px solid #ffffff35; border-top:3px solid var(--brand);
+  border-radius:5px 5px 16px 16px; box-shadow:0 12px 40px #0006; padding:24px; width:100%; max-width:760px;}
+.eyebrow {font-size:11px; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--brand);}
+.card-head {display:flex; justify-content:space-between; align-items:flex-start; gap:12px;}
+h2 {font:700 clamp(23px,2.6vw,38px)/1.08 Bahnschrift,'Segoe UI',sans-serif; margin:8px 0 16px;}
+.situation {font-size:clamp(16px,1.45vw,21px); line-height:1.6; margin:0;}
+.premise {font-size:12px; line-height:1.45; color:#c3cfdd; margin:0 0 10px;}
+.circle-context {font-size:15px; line-height:1.5; margin:0; color:#dce4ed;}
+.score {flex:none; border:1px solid #77869b; background:#0b111b; border-radius:5px; padding:8px 10px;
+  font:700 20px/1.2 Bahnschrift,'Segoe UI',sans-serif; text-align:center; margin-top:6px;}
+.score small {display:block; font:600 10px 'Segoe UI',sans-serif; color:var(--muted); letter-spacing:.06em;}
+.moment {margin-top:14px; border-top:1px solid #ffffff25; padding-top:12px; color:#ffbba4; font-size:15px;}
+.moment::before {content:'↳ ';}
+.panel {padding:24px; gap:14px; border-left:1px solid #556070; overflow:hidden; position:relative;}
+.panel-top {display:flex; align-items:center; justify-content:space-between; gap:8px;}
+.panel-top strong {font:700 19px Bahnschrift,'Segoe UI',sans-serif;}
+.panel-top small {font-size:11px; color:var(--muted); letter-spacing:.08em; text-transform:uppercase;}
+.choices {display:grid; gap:12px;}
+.choice {position:relative; display:grid; grid-template-columns:30px 1fr; align-items:center; gap:10px;
+  width:100%; min-height:88px; text-align:left; padding:15px 16px; background:linear-gradient(120deg,#29313c,#1a232f);
+  border:1px solid #627083; border-radius:5px 12px 12px 5px; line-height:1.45; font-size:16px;
+  box-shadow:0 3px 0 #060b10; transition:border-color .12s,background .12s,opacity .2s;}
+.choice:hover {border-color:#ffbba4; background:#303945;}
+.choice .key {display:grid; place-items:center; border:1px solid #8d98a5; width:28px; height:28px;
+  border-radius:50%; font:600 13px Bahnschrift,'Segoe UI',sans-serif; color:#d6e0ed;}
+.choice.selected {border-color:var(--brand); box-shadow:inset 4px 0 var(--brand),0 0 0 1px var(--brand);}
+.choice.selected .key {background:var(--brand); border-color:var(--brand); color:var(--brand-ink);}
+.choose-label {display:none; color:#ffbba4; font-size:12px; font-weight:700; margin-top:5px;}
+.selected .choose-label {display:block;}
+.choice .short {display:none;}
+.resolved .choice {opacity:.35; cursor:default;}
+.resolved .choice.chosen {opacity:1; background:#392a29; border-color:var(--brand);}
+.resolved .choose-label {display:none;}
+.hint {font-size:13px; line-height:1.4; min-height:37px; color:#c3cfdd; margin:0;}
+.result {overflow:auto; min-height:0; flex:1; border-left:3px solid var(--brand); padding-left:14px;}
+.result h3 {font-size:11px; color:var(--brand); text-transform:uppercase; letter-spacing:.12em; margin:0 0 6px;}
+.result p {font-size:16px; line-height:1.5; margin:0 0 10px;}
+.result #mood {font-size:13px; color:#c3cfdd; margin-bottom:0;}
+.actions {display:flex; gap:8px; align-items:center;}
+.actions #next {flex:1;}
+.footer {display:flex; gap:8px; margin-top:auto; padding-top:10px; border-top:1px solid var(--line);}
+.footer .btn {flex:1; font-size:13px;}
+.talk-body {position:absolute; z-index:8; inset:18% 20px auto; padding:24px; border:1px solid var(--brand);
+  border-radius:12px; background:#18202b; box-shadow:0 0 0 999px #0008,0 20px 40px #0009;}
+.talk-body h3 {color:var(--brand); margin:0 0 12px;}
+.talk-body p {line-height:1.6; font-size:18px;}
+.talk-body .hint {font-size:13px; line-height:1.4; margin:12px 0;}
+.talk-shade {position:fixed; inset:0; z-index:8; background:#0008;}
+.talk-body {z-index:9;}
+.board {position:absolute; z-index:7; inset:72px 24px auto; background:#18202bf7; padding:12px;
+  border:1px solid #728299; border-radius:10px; box-shadow:0 10px 40px #0009;}
+.board h3 {margin:0 0 12px; font-size:17px;}
+.board-grid {display:grid; grid-template-columns:1fr 1fr; gap:0 16px;}
+.board .dial-row {grid-template-columns:65px 1fr 35px; gap:5px; font-size:11px; margin:6px 0;}
+body.board-open .cast {visibility:hidden;}
+.dial-row {display:grid; grid-template-columns:85px 1fr 58px; align-items:center; gap:10px; font-size:13px; margin:10px 0;}
+.track {min-width:0; height:9px; background:#536071; border-radius:5px; position:relative;}
+.dial-row > * {min-width:0;}
+.fill {display:block; width:var(--value); height:100%; background:var(--brand); border-radius:5px; transition:width .65s;}
+.ghost {position:absolute; left:0; top:-4px; width:var(--ghost); height:17px;
+  border:1px solid #e8edf38c; border-radius:3px; background:#ffffff0d;}
+.board small,.model-note {font-size:11px; color:#b6c4d4;}
+.phone-scene {align-items:center; justify-content:center; overflow:hidden;}
+.phone-wrap {position:relative; height:min(100%,630px); aspect-ratio:3/4; max-width:100%; filter:drop-shadow(0 12px 28px #0009);}
+.phone-art {height:100%; width:100%; object-fit:contain; border-radius:16px;}
+.chat {position:absolute; left:21%; right:24%; top:8%; bottom:11%; padding:12px 7px;
+  display:flex; flex-direction:column; gap:12px; color:#edf1f6; background:#141b25; border-radius:8px; overflow:auto;}
+.chat header {background:none; border:0; padding:0 0 10px; display:block; font-size:13px; font-weight:700;}
+.chat header small {display:block; color:#a6b3c4; font-size:11px; font-weight:400; margin-top:3px;}
+.bubble {background:#2c3745; padding:12px; border-radius:2px 12px 12px; font-size:15px; line-height:1.5;}
+.bubble small {display:block; color:#ffbba4; margin-bottom:4px; font-size:11px;}
+.bubble.reply {background:#50382f; border-radius:12px 2px 12px 12px;}
+.chat-status {font-size:12px; color:#b6c4d4; text-align:center; margin:0;}
+.chat .person {align-self:center; margin-top:auto; flex:none; transform:scale(.8); transform-origin:bottom;}
+.spirit-card {max-width:700px;}
+.spirit-title {display:flex; justify-content:space-between; align-items:center;}
+.spirit-total {font:700 49px Bahnschrift,'Segoe UI',sans-serif; color:var(--brand); white-space:nowrap;}
+.spirit-total small {font-size:17px; color:var(--muted);}
+.ratings {display:grid; gap:12px; margin:18px 0;}
+.rating {display:grid; grid-template-columns:minmax(0,1fr) 76px 85px; gap:10px; align-items:center; font-size:14px;}
+.dots {display:flex; gap:4px;}
+.dots i {display:block; width:15px; height:15px; border:1px solid #9ba7b8; border-radius:3px;}
+.dots i.on {background:var(--brand); border-color:var(--brand);}
+.rating strong {font-size:12px;}
+blockquote {font-size:18px; line-height:1.5; margin:12px 0; color:#dce4ed;}
+.season-card {max-width:850px; padding:22px; max-height:100%; overflow:auto;}
+.season-card h2 {margin-bottom:8px;}
+.record {margin:0 0 8px; font-size:16px; line-height:1.45;}
+.epilogues {border-top:1px solid #ffffff25; margin-top:14px; padding-top:10px;}
+.epilogues p {font-size:14px; line-height:1.5; margin:7px 0;}
+.season-card .dial-row {grid-template-columns:85px 1fr 90px;}
+.season-panel p {font-size:17px; line-height:1.55; margin:0;}
+.season-panel .big-btn {padding:12px 16px; line-height:1.4;}
+.choice-list {position:absolute; z-index:7; inset:65px 24px 22px; overflow:auto; min-height:0; margin:0;
+  padding:18px 18px 18px 38px; background:#18202bf7; border:1px solid #728299; border-radius:10px;}
+.history-open #season-card {visibility:hidden;}
+.choice-list li {font-size:14px; line-height:1.5; margin:0 0 14px;}
+.choice-list b {display:block; color:var(--brand);}
+.sr-only {position:absolute; width:1px; height:1px; clip-path:inset(50%); overflow:hidden;}
+.reveal {animation:reveal .45s ease-out;}
+@keyframes reveal {from {opacity:.3; transform:translateY(8px);} to {opacity:1; transform:translateY(0);}}
+.calm .reveal {animation:none;}
+.calm .person,.calm .fill {transition:none;}
+@media (max-height:899px) {
+  header {padding:8px 18px;}
+  .panel {padding:18px; gap:10px;}
+  .choice {min-height:76px; padding:12px; font-size:15px;}
+  .resolved .choices {grid-template-columns:repeat(3,1fr); gap:6px;}
+  .resolved .choice {padding:8px; min-height:48px; grid-template-columns:24px 1fr; gap:6px; font-size:11px;}
+  .resolved .choice .key {width:24px; height:24px;}
+  .resolved .choice .long {display:none;}
+  .resolved .choice .short {display:block;}
+  .stage-content {inset:65px 24px 22px; gap:12px;}
+  .story-card {padding:20px;}
+  .situation {font-size:17px; line-height:1.5;}
+  .cast {min-height:116px;}
+  .result {flex:initial;}
+}
+@media (max-width:1050px) {
+  main {grid-template-columns:minmax(0,1.1fr) minmax(310px,1fr);}
+  .stage-content {inset:60px 14px 14px;}
+  .identity {padding:14px;}
+  .story-card {padding:17px;}
+  h2 {font-size:27px;}
+  .situation {font-size:15px; line-height:1.5;}
+  .panel {padding:14px;}
+  .person {width:65px;}
+  .person img {width:70px; height:86px;}
+  .person .plate {top:39px;}
+  .cast {gap:8px; min-height:100px;}
+  .crest {font-size:11px;}
+  .progress span {width:12px;}
+}
+@media (max-height:640px) and (min-width:600px) {
+  header {padding:5px 10px;}
+  h1 {font-size:21px;}
+  main {grid-template-columns:minmax(0,1fr) minmax(300px,45%);}
+  .panel {padding:10px; gap:7px;}
+  .panel-top strong {font-size:16px;}
+  .panel-top small {font-size:10px;}
+  .choice {min-height:59px; font-size:12px; line-height:1.3; padding:8px; gap:8px;}
+  .choices {gap:7px;}
+  .choose-label {font-size:10px; margin-top:2px;}
+  .hint {font-size:11px; min-height:31px;}
+  .footer {padding-top:5px;}
+  .footer .btn {font-size:11px;}
+  .identity {padding:9px 12px;}
+  .crest svg {width:28px; height:28px;}
+  .stage-content {inset:47px 12px 12px; gap:6px;}
+  .story-card {padding:12px; border-radius:4px 4px 10px 10px;}
+  h2 {font-size:23px; margin:4px 0 9px;}
+  .eyebrow {font-size:10px; letter-spacing:.09em;}
+  .situation {font-size:12px; line-height:1.45;}
+  .cast {min-height:70px; gap:5px;}
+  .person {width:58px;}
+  .person img {width:58px; height:67px;}
+  .person .plate {top:29px; font-size:10px; width:28px; padding:2px 0;}
+  .person .plate small {font-size:10px;}
+  .person .name {font-size:10px; padding:2px 5px;}
+  .score {font-size:17px; padding:5px;}
+  .score small {font-size:10px;}
+  .moment {font-size:11px; padding-top:6px; margin-top:6px;}
+  .resolved .choice {min-height:44px; padding:5px; font-size:10px; gap:4px;}
+  .resolved .choice .key {width:22px; height:22px; font-size:11px;}
+  .result {flex:1; padding-left:9px;}
+  .result p {font-size:12px; line-height:1.4; margin-bottom:5px;}
+  .result #mood {font-size:11px;}
+  .actions .btn,.actions .big-btn {font-size:12px; min-height:44px;}
+  .rating {font-size:11px; grid-template-columns:minmax(0,1fr) 54px 66px; gap:6px;}
+  .rating strong {font-size:10px;}
+  .ratings {gap:7px; margin:10px 0;}
+  .dots {gap:3px;}
+  .dots i {width:10px; height:10px;}
+  .spirit-total {font-size:35px;}
+  blockquote {font-size:13px; margin:7px 0;}
+  .season-card .dial-row {font-size:11px; margin:7px 0; grid-template-columns:60px 1fr 75px; gap:7px;}
+  .record {font-size:12px;}
+  .epilogues {margin-top:8px; padding-top:5px;}
+  .epilogues p {font-size:11px; line-height:1.4; margin:4px 0;}
+  .season-panel p {font-size:14px;}
+  .choice-list {inset:47px 12px 12px;}
+  .bubble {padding:6px; font-size:11px; line-height:1.3;}
+  .chat {gap:6px; padding:5px;}
+  .chat header {font-size:11px; padding-bottom:3px;}
+  .chat-status {font-size:10px;}
+  .chat .person {display:none;}
+  .phone-scene .phone-wrap {width:auto; height:100%; max-width:100%; flex:none; transform:none;}
+  .circle-context {font-size:12px; line-height:1.4;}
+  body[data-phase="spirit"] .cast {min-height:50px;}
+  body[data-phase="spirit"] .person img {height:50px;}
+  body[data-phase="spirit"] .person .plate {top:21px; font-size:10px; padding:1px;}
+  .spirit-card h2 {font-size:20px; line-height:1; margin:4px 0;}
+  .spirit-card .ratings {gap:5px; margin:8px 0;}
+  .spirit-card blockquote {font-size:12px; margin:6px 0;}
+  .spirit-card .model-note {margin:6px 0 0;}
+  .board {inset:47px 12px auto; padding:8px;}
+  .board h3 {font-size:12px; margin:0 0 3px;}
+  .board .dial-row {grid-template-columns:48px 1fr 27px; font-size:10px; margin:4px 0;}
+  .board small {font-size:10px;}
+  .board-grid {gap:0 8px;}
+}
+@media (max-width:599px) {
+  body {height:auto; min-height:100dvh; overflow:auto;}
+  header {padding:9px 10px; gap:5px;}
+  h1 {font-size:23px; flex-basis:100%;}
+  h1 small {display:none;}
+  .icon-btn {flex:1; font-size:12px; padding:0 7px;}
+  main {display:flex; flex-direction:column; overflow:visible;}
+  .stage {height:340px; min-height:340px;}
+  .stage-content {inset:45px 12px 12px; gap:6px;}
+  .identity {padding:9px 12px;}
+  .crest svg {width:27px; height:27px;}
+  .cast {min-height:70px; gap:7px;}
+  .person {width:57px;}
+  .person img {width:57px; height:64px;}
+  .person .plate {top:27px; font-size:10px; width:28px; padding:2px;}
+  .person .plate small {font-size:10px;}
+  .person .name {font-size:10px; padding:2px 5px;}
+  .story-card {padding:12px;}
+  .situation {font-size:13px; line-height:1.45;}
+  h2 {font-size:24px; margin:4px 0 8px;}
+  .eyebrow {font-size:10px;}
+  .score {font-size:17px; padding:5px 7px;}
+  .panel {padding:12px; gap:8px; border:0; overflow:visible; min-height:320px;}
+  .panel-top strong {font-size:17px;}
+  .choice {font-size:12px; min-height:60px; padding:9px; line-height:1.35;}
+  .choices {gap:7px;}
+  .hint {font-size:11px; min-height:31px;}
+  .footer {margin-top:4px; padding-top:6px;}
+  .footer .btn {font-size:12px;}
+  .moment {font-size:11px; margin-top:6px; padding-top:6px;}
+  .result p {font-size:13px;}
+  .result #mood {font-size:11px;}
+  .talk-body {position:fixed; inset:25% 20px auto;}
+  .board {inset:45px 12px auto; padding:8px;}
+  .board h3 {font-size:12px; margin:0 0 3px;}
+  .board .dial-row {grid-template-columns:48px 1fr 27px; font-size:10px; margin:4px 0;}
+  .board small {font-size:10px;}
+  .board-grid {gap:0 8px;}
+  .rating {font-size:11px; grid-template-columns:minmax(0,1fr) 55px 72px; gap:5px;}
+  .rating strong {font-size:10px;}
+  .ratings {gap:8px; margin:12px 0;}
+  .dots {gap:3px;}
+  .dots i {width:11px; height:11px;}
+  .spirit-total {font-size:34px;}
+  blockquote {font-size:13px;}
+  body[data-phase="spirit"] .stage {height:440px; min-height:440px;}
+  .phone-wrap {width:auto; height:100%; max-width:100%; flex:none; transform:none;}
+  .circle-context {font-size:13px; line-height:1.4;}
+  .chat {gap:6px; padding:5px;}
+  .bubble {font-size:11px; padding:6px; line-height:1.35;}
+  .chat header {font-size:11px; padding-bottom:3px;}
+  .chat-status {font-size:10px;}
+  .chat .person {display:none;}
+  body[data-phase="season"] .stage {height:410px; min-height:410px;}
+  body[data-phase="season"] .stage-content {position:absolute; inset:45px 12px 12px; padding:0;}
+  .season-card .dial-row {grid-template-columns:70px 1fr 80px; font-size:12px;}
+  .record {font-size:13px;}
+  .epilogues p {font-size:12px; margin:5px 0;}
+  .season-panel p {font-size:14px; line-height:1.4;}
+  .history-open #choice-list {inset:48px 12px 12px;}
+  body.history-open .stage {height:410px; min-height:410px;}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Captain's Choices <small>Sportsmanship, leadership and team culture</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <section class="stage" id="stage" aria-label="The Kestrels season">
+    <img class="backdrop" id="backdrop" src="art:field-day" alt="Empty ultimate field in golden afternoon light">
+    <div class="air"></div>
+    <div class="identity">
+      <div class="crest">
+        <svg viewBox="0 0 44 44" aria-hidden="true">
+          <circle cx="22" cy="22" r="20" fill="#141b25" stroke="#ff8f6b"/>
+          <path d="M8 15L22 20L36 10L29 23L35 30L23 28L13 35L17 25Z" fill="#ff8f6b"/>
+          <path d="M9 38L35 38" stroke="#ff8f6b"/>
+        </svg>
+        <span>KESTRELS<br><span style="font-size:10px;letter-spacing:.1em">YOUR SEASON</span></span>
+      </div>
+      <div class="progress" id="progress" aria-label="Chapter 1 of 6"></div>
+    </div>
+    <div class="stage-content" id="stage-content"></div>
+    <ol class="choice-list" id="choice-list" hidden></ol>
+    <section class="board" id="board" hidden aria-label="Team culture board"></section>
+  </section>
+  <aside class="panel" id="panel" aria-label="Your captain's choices">
+    <div class="panel-top"><strong id="panel-title">Your first call</strong><small id="panel-step">Chapter 1 / 6</small></div>
+    <div class="choices" id="choices">
+      <button class="choice" id="choice-0" aria-pressed="false"><span class="key">1</span><span>
+        <span class="long"></span><span class="short"></span><span class="choose-label">Tap again to choose</span></span></button>
+      <button class="choice" id="choice-1" aria-pressed="false"><span class="key">2</span><span>
+        <span class="long"></span><span class="short"></span><span class="choose-label">Tap again to choose</span></span></button>
+      <button class="choice" id="choice-2" aria-pressed="false"><span class="key">3</span><span>
+        <span class="long"></span><span class="short"></span><span class="choose-label">Tap again to choose</span></span></button>
+    </div>
+    <p class="circle-context" id="circle-context" hidden></p>
+    <div class="result" id="result" hidden aria-live="polite">
+      <h3>What followed</h3><p id="consequence"></p><h3>Team mood</h3><p id="mood"></p>
+    </div>
+    <div class="season-panel" id="season-panel" hidden>
+      <p>The scores tell one story.<br>The team tells another.</p>
+    </div>
+    <button class="big-btn" id="again" hidden>Play again: same scores, different team</button>
+    <button class="btn" id="history" hidden aria-expanded="false">See every choice you made</button>
+    <p class="hint" id="hint"></p>
+    <div class="actions" id="actions" hidden>
+      <button class="btn" id="talk" aria-expanded="false">Talk about it</button>
+      <button class="big-btn" id="next">Next →</button>
+    </div>
+    <div class="footer">
+      <button class="btn" id="team-board" aria-pressed="false" aria-expanded="false">Team board</button>
+      <button class="btn" id="restart">↻ Start over</button>
+    </div>
+    <div class="talk-shade" id="talk-shade" hidden></div>
+    <section class="talk-body" id="talk-body" role="dialog" aria-modal="true" aria-labelledby="talk-title" hidden>
+      <h3 id="talk-title">Talk about it</h3><p id="talk-question"></p>
+      <button class="btn" id="read-talk">Read</button><button class="btn" id="close-talk">Back to the season</button>
+    </section>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const NAMES = ['Trust', 'Effort', 'Belonging', 'Respect'];
+  const TEAMS = ['Harbor', 'Granite', 'Pines', 'Summit'];
+  const RESULTS = ['13-9 W', '8-13 L', '13-12 W', '10-13 L'];
+  const CATEGORIES = ['Rules knowledge and use', 'Fouls and body contact', 'Fair-mindedness',
+    'Attitude and self-control', 'Communication'];
+  const RATING_WORDS = ['Poor', 'Not good', 'Good', 'Very good', 'Excellent'];
+  const ART = {
+    day:'art:field-day', night:'art:field-night', bus:'art:bus', phone:'art:phone',
+    kestrel:'art:jersey-kestrel', opponent:'art:jersey-opponent', coach:'art:coach-board'
+  };
+  const PEOPLE = {
+    PR:{name:'Priya', number:'07', bio:'Third-year. Best thrower, high standards.'},
+    MA:{name:'Marcus', number:'11', bio:'Senior. Fastest player, quick to blame.'},
+    LE:{name:'Lena', number:'14', bio:'First-year. Quiet, just moved to town.'},
+    TH:{name:'Theo', number:'22', bio:'Sophomore. Eager, still drops easy catches.'},
+    CR:{name:'Coach Ruiz', bio:'Volunteer coach who lets captains lead.'}
+  };
+  const CHAPTERS = [
+    {
+      title:'First practice', label:'The captain sets the tone', art:'day', cast:['MA','LE','PR','CR'],
+      text:"Twenty players show up. Marcus wants an A team versus B team scrimmage so the starters can 'get real reps.' Lena is standing alone near the cones.",
+      question:'What does a new player need in the first week?',
+      choices:[
+        {text:'Mix the lines and pair each new player with a veteran.', short:'Mix the lines', delta:[1,0,2,0],
+          result:'Lena ends up next to Priya, who shows her how to call the force. By the end Lena is calling it herself. Marcus mutters that the scrimmage was sloppy.',
+          moment:'Lena and Priya practice together.'},
+        {text:'Let Marcus run the A team; new players can watch and learn.', short:'A team first', delta:[0,1,-2,0],
+          result:'The A team looks sharp. Lena spends most of practice on the sideline and leaves early.', moment:'Lena leaves early.'},
+        {text:'Stop and have the team agree on three team rules first.', short:'Agree on rules', delta:[2,-1,0,1],
+          result:'It takes twenty minutes. The team picks: show up, talk on the field, make fair calls. Less throwing, but everyone spoke.',
+          moment:'Show up. Talk on the field. Make fair calls.'}
+      ]
+    },
+    {
+      title:'Game 1 vs Harbor', label:'Halftime', art:'night', cast:['TH','PR'], opponent:'Harbor', score:'10 : 4', final:'13 : 9',
+      text:'Halftime, up 10-4. Harbor is a new team with lots of beginners. Your top line wants to stay in and keep throwing long trick shots.',
+      question:'Is winning big disrespectful? Where is the line?',
+      choices:[
+        {text:'Rotate everyone in and run the plays we practiced.', short:'Rotate everyone', delta:[0,1,2,0],
+          result:'Theo gets his first score of the season. Harbor makes a run late, but you win 13-9.', moment:'Theo gets his first score.'},
+        {text:'Keep the top line in and score as many as we can.', short:'Keep top line', delta:[0,1,-1,-1],
+          result:"You pull away, then ease off late. You win 13-9. Harbor's captain says 'good game' a little stiffly.",
+          moment:"Harbor's 'good game' sounds stiff."},
+        {text:'Let the team play trick shots and celebrate loudly after each score.', short:'Trick shots', delta:[0,0,1,-2],
+          result:'The bench is loud and having fun. Harbor stops smiling. You win 13-9.', moment:'Harbor stops smiling.'}
+      ]
+    },
+    {
+      title:'After Game 2 vs Granite', label:'The team group chat', art:'phone', cast:['MA','TH'],
+      text:"Marcus: Theo dropped 4 easy catches. That's the game. Theo stops replying.",
+      question:'Should team conflict be handled in a group chat?',
+      choices:[
+        {text:'Message Marcus privately to cool it, then post: “We lost as a team. Film session Tuesday.”',
+          short:'Private, then team', delta:[2,0,1,0], result:'Marcus sends a thumbs-up. Theo shows up Tuesday early.',
+          moment:'Theo shows up Tuesday early.'},
+        {text:'Post: “Drops lose games. Everyone has to step up.”', short:'Demand more', delta:[-2,1,-1,0],
+          result:'A few people react with a fire emoji. Theo leaves the chat for a day.', moment:'Theo leaves the chat for a day.'},
+        {text:'Stay out of it; it will blow over.', short:'Stay out of it', delta:[-1,0,-1,0],
+          result:"It doesn't blow over. Two more players take sides.", moment:'Two more players take sides.'}
+      ]
+    },
+    {
+      title:'Game 3 vs Pines', label:'Universe point', art:'night', cast:['PR','LE'], opponent:'Pines', score:'12 : 12', final:'13 : 12',
+      text:"Universe point, 12-12. A Pines defender bumps Priya as she reaches for a catch; the disc hits the ground. " +
+        "Priya calls 'Foul!' The Pines player says 'Contest. I got there first.' " +
+        'For this contested receiving foul, the disc returns to the last thrower.',
+      question:'Why might a sport with no referees still work?',
+      choices:[
+        {text:'Walk over, help them talk it through calmly, accept the contest and restart.', short:'Talk and restart', delta:[1,0,0,2],
+          result:'It takes a minute. Play restarts with the disc back. Two passes later, Lena catches the winning score.',
+          moment:'The disc goes back. Lena catches the winner.'},
+        {text:'Back Priya loudly and tell Pines they always cheat.', short:'Back Priya loudly', delta:[1,0,0,-3],
+          result:'Priya feels backed. The Pines sideline goes quiet and cold. You still score the winner.', moment:'Pines goes quiet and cold.'},
+        {text:'Tell Priya to drop the call so you look good.', short:'Drop the call', delta:[-2,0,0,1],
+          result:'Pines gets the disc. Priya stares at you. You get it back on a turnover and still score the winner.',
+          moment:'Priya stares at you.'}
+      ]
+    },
+    {
+      title:'Midweek practice', label:'Tests, jobs and turnout', art:'day', cast:['MA','TH','CR'],
+      text:'Everyone is tired from tests. Two players skipped without saying why. Marcus says practice is pointless.',
+      question:"What's the difference between pushing a team and punishing it?",
+      choices:[
+        {text:"Ask the team what's going on, then run a short practice of mini-games.", short:'Ask, then adapt', delta:[1,1,1,0],
+          result:'You learn one skipper has a new job. The mini-games get loud and competitive in a good way.',
+          moment:'The mini-games get competitive.'},
+        {text:'Run extra sprints for everyone because two people skipped.', short:'Extra sprints', delta:[-2,1,-1,0],
+          result:'Everyone runs. Nobody talks on the way to the parking lot.', moment:'Nobody talks on the way out.'},
+        {text:'Cancel practice.', short:'Cancel practice', delta:[0,-2,0,0],
+          result:'People are relieved. Game day feels a little rusty.', moment:'Practice is canceled.'}
+      ]
+    },
+    {
+      title:'Game 4 vs Summit', label:'Playoffs · the last point', art:'night', cast:['TH','MA','CR'], opponent:'Summit', score:'10 : 12', final:'10 : 13',
+      text:'Down 10-12, Theo throws the turnover that lets Summit score the final point. Your season is over. The bench is silent.',
+      question:'What do you say to a teammate whose mistake ended the season?',
+      choices:[
+        {text:"Huddle up: thank the seniors, name one thing each player did well, then join Summit's spirit circle.",
+          short:'Huddle together', delta:[1,0,1,1],
+          result:"Theo hears that his defense saved two points. Summit's captain thanks you for a clean game.",
+          moment:"Theo hears what his defense meant."},
+        {text:'Say “losses happen” and head straight to the bus.', short:'Head to the bus', delta:[-1,0,0,0],
+          result:'The ride home is quiet. Theo sits alone.', moment:'Theo sits alone.'},
+        {text:'Ask Marcus, the senior, to speak first.', short:'Let Marcus speak', delta:[1,0,0,0],
+          result:'', moment:'Marcus speaks to the team.'}
+      ]
+    }
+  ];
+  const L = {
+    intro:'You were just voted captain of the Kestrels. In ultimate, there are no referees. How your team plays is up to all of you.',
+    pick:'Tap a choice card. Then tap it again to choose it.',
+    next:'Talk it over, then tap Next.',
+    ch1:'Chapter one. First practice.',
+    ch2:'Chapter two. Game one against Harbor.',
+    ch3:'Chapter three. After game two against Granite. The team group chat.',
+    ch4:'Chapter four. Game three against Pines.',
+    ch5:'Chapter five. Midweek practice.',
+    ch6:'Chapter six. Game four against Summit. Playoffs.',
+    prefix:'Spirit score from',
+    season:'The season is over. Two wins, two losses, same as always. Here is the team you built.',
+    again:"Same scores. Different choices. Let's see what changes.",
+    teams:TEAMS,
+    numbers:['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve',
+      'thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty'].map(n => n + ' out of twenty.')
+  };
+  const state = {mode:'season', chapter:0, phase:'chapter', selected:null, dials:[5,5,5,5], choices:[],
+    spirits:[], circle:null, previous:null, board:false, run:0};
+  const V = Curio.voice({
+    lines:L,
+    scope:() => `${state.run}:${state.chapter}:${state.phase}`,
+    hint:false,
+    read:() => !$('talk-body').hidden ? `${$('talk-question').textContent} ${$('hint').textContent}` : currentHint(),
+    welcome:() => state.chapter === 0 && state.phase === 'chapter' ?
+      [['intro', {valid:() => state.phase === 'chapter' && state.chapter === 0}],
+        ...(!V.heard('ch1') && !V.heard(`first-chapter-${state.run}`) ? [[`first-chapter-${state.run}`,L.ch1]] : []),
+        ['pick',L.pick]] : null,
+    speaks:'.choice, #next, #again',
+    welcomeAfter:false
+  });
+  const clamp = (n, max=10) => Math.max(0,Math.min(max,n));
+  const esc = text => String(text).replace(/[&<>"']/g,c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const word = n => n <= 3 ? 'low' : n <= 6 ? 'steady' : 'strong';
+  function person(key, extra='') {
+    const p = PEOPLE[key];
+    return `<div class="person ${key === 'CR' ? 'coach' : ''} ${extra}" data-person="${key}" title="${esc(p.bio)}">
+      <img src="${key === 'CR' ? ART.coach : ART.kestrel}" alt="${esc(p.name + '. ' + p.bio)}">
+      <span class="plate">${key}<small>${p.number || ''}</small></span><span class="name">${p.name}</span></div>`;
+  }
+  function opponent(name) {
+    return `<div class="person opponent"><img src="${ART.opponent}" alt="${name} jersey">
+      <span class="plate">${name}</span><span class="name">${name}</span></div>`;
+  }
+  function setArt(name) {
+    $('backdrop').src = ART[name];
+    $('backdrop').alt = {day:'Empty ultimate field in golden afternoon light', night:'Empty ultimate field under stadium lights',
+      bus:'Empty school bus in warm evening light',phone:'Wooden locker room bench'}[name];
+  }
+  function progress() {
+    $('progress').innerHTML = CHAPTERS.map((_,i) => `<span class="${i < state.choices.length ? 'passed' :
+      i === state.chapter ? 'current' : ''}"></span>`).join('');
+    $('progress').setAttribute('aria-label', state.phase === 'season' ? 'Season complete' : `Chapter ${state.chapter+1} of 6`);
+  }
+  function scene() {
+    const c = CHAPTERS[state.chapter];
+    const committed = state.phase === 'consequence';
+    setArt(committed && state.chapter === 5 && state.selected === 1 ? 'bus' : c.art === 'phone' ? 'night' : c.art);
+    $('stage-content').classList.toggle('phone-scene',state.chapter === 2);
+    if (state.chapter === 2) {
+      const reply = committed ? [
+        '<div class="bubble reply"><small>You</small>We lost as a team. Film session Tuesday.</div><p class="chat-status">Marcus: thumbs-up</p>',
+        '<div class="bubble reply"><small>You</small>Drops lose games. Everyone has to step up.</div><p class="chat-status">Theo left the chat for a day.</p>',
+        '<div class="bubble"><small>Team chat</small>Two more players take sides.</div>'
+      ][state.selected] : '';
+      $('stage-content').innerHTML = `<div class="phone-wrap reveal"><img class="phone-art" src="${ART.phone}"
+        alt="Coral phone on a locker room bench beside a team towel"><div class="chat">
+        <header>KESTRELS CHAT<small>After Game 2 · Granite</small></header>
+        <div class="bubble"><small>Marcus</small>Theo dropped 4 easy catches. That's the game.</div>
+        <p class="chat-status">Theo stops replying.</p>${reply}${person('TH',committed && state.selected !== 0 ? 'away' : '')}
+        </div></div>`;
+      if (committed) {
+        const chat = document.querySelector('.chat');
+        chat.scrollTop = chat.scrollHeight;
+      }
+      return;
+    }
+    const score = c.score ? `<div class="score">${committed ? c.final : c.score}<small>${committed ?
+      'FINAL · ' + (state.chapter === 5 ? 'LOSS' : 'WIN') : state.chapter === 1 ? 'HALFTIME' : 'KESTRELS : ' + c.opponent.toUpperCase()}</small></div>` : '';
+    $('stage-content').innerHTML = `<div class="cast" id="cast">${c.cast.map(k => person(k)).join('')}
+      ${c.opponent ? opponent(c.opponent) : ''}</div><article class="story-card reveal" id="story-card">
+      <div class="card-head"><div><div class="eyebrow">Chapter ${state.chapter+1} · ${c.label}</div><h2>${c.title}</h2></div>${score}</div>
+      ${state.chapter === 0 ? '<p class="premise">You captain an ultimate team with players of all genders. Players make and settle their own calls.</p>' : ''}
+      <p class="situation">${esc(c.text)}</p><div class="moment" id="moment" ${committed ? '' : 'hidden'}></div></article>`;
+    if (committed) showMoment();
+  }
+  function showMoment() {
+    const c = CHAPTERS[state.chapter];
+    if ($('moment')) {
+      $('moment').textContent = c.choices[state.selected].moment;
+      $('moment').hidden = false;
+    }
+    const away = (state.chapter === 0 && state.selected === 1) || (state.chapter === 5 && state.selected === 1);
+    const key = state.chapter === 0 ? 'LE' : 'TH';
+    const chip = document.querySelector(`[data-person="${key}"]`);
+    if (chip) chip.classList.add(away ? 'away' : state.chapter === 0 && state.selected === 0 ? 'pair-right' : 'together');
+    if (state.selected === 1 && state.chapter === 3) {
+      const other = document.querySelector('.person.opponent');
+      if (other) other.classList.add('away');
+    }
+  }
+  function dialRows(ghost=false) {
+    return NAMES.map((n,i) => `<div class="dial-row"><span>${n}</span><div class="track">
+      ${ghost && state.previous ? `<span class="ghost" style="--ghost:${state.previous[i]*10}%"></span>` : ''}
+      <span class="fill" style="--value:${state.dials[i]*10}%"></span></div>
+      <strong>${ghost ? `${word(state.dials[i])} · ` : ''}${state.dials[i]}${ghost ? '' : '/10'}</strong></div>`).join('');
+  }
+  function board() {
+    $('team-board').setAttribute('aria-pressed',state.board);
+    $('team-board').setAttribute('aria-expanded',state.board);
+    $('board').hidden = !state.board;
+    document.body.classList.toggle('board-open',state.board);
+    if (!state.board) return;
+    if (!$('board').hasChildNodes()) {
+      $('board').innerHTML = `<h3>Team culture</h3><div class="board-grid">${dialRows()}</div>
+        <small>Fictional story model. Each dial starts at 5 of 10.</small>`;
+    } else {
+      $('board').querySelectorAll('.dial-row').forEach((row,i) => {
+        row.querySelector('.fill').style.setProperty('--value',`${state.dials[i]*10}%`);
+        row.querySelector('strong').textContent = `${state.dials[i]}/10`;
+      });
+    }
+  }
+  function currentHint() {
+    const c = CHAPTERS[state.chapter];
+    if (state.phase === 'chapter') {
+      const instruction = state.selected === null ? L.pick : `Choice ${state.selected+1} selected. Tap it again, or press Enter to choose.`;
+      const premise = state.chapter === 0 ?
+        'You captain an ultimate team with players of all genders. Players make and settle their own calls. ' : '';
+      return `${instruction} ${premise}${c.text} ${c.choices.map((o,i) => `Choice ${i+1}. ${o.text}`).join(' ')}`;
+    }
+    if (state.phase === 'consequence') {
+      return `${L.next} ${consequence()} Team mood. ${moodText} Talk about it. ${c.question}`;
+    }
+    if (state.phase === 'spirit') {
+      const circle = state.circle;
+      return `${$('circle-context').textContent} ${spiritHint()} ` +
+        `Spirit score from ${circle.team}: ${circle.total} out of 20. ` +
+        circle.scores.map((n,i) => `${CATEGORIES[i]}: ${n}, ${RATING_WORDS[n]}.`).join(' ') + ' ' + captainLine(circle.total);
+    }
+    if (!$('choice-list').hidden) {
+      return `${$('choice-list').textContent} Tap Back to the season card, or Play again.`;
+    }
+    return `Tap Play again to try different choices, or See every choice you made. ${$('season-card').textContent}`;
+  }
+  // Read speaks the full current scene and all choices; the visible hint keeps just the action instruction.
+  function spiritHint() {
+    return state.circle.game === 1 ? 'Tap Next to open the team chat.' :
+      state.circle.game === 3 ? 'Tap Next to see the team you built.' : 'Tap Next to continue the season.';
+  }
+  function hint() {
+    const text = state.phase === 'chapter' ? (state.selected === null ? L.pick :
+      `Choice ${state.selected+1} selected. Tap again or press Enter to choose.`) :
+      state.phase === 'consequence' ? L.next : state.phase === 'spirit' ? spiritHint() :
+      'Tap Play again, or See every choice you made.';
+    const seasonCard = $('season-card');
+    $('hint').textContent = state.phase === 'season' && seasonCard && seasonCard.scrollHeight > seasonCard.clientHeight + 2 ?
+      'Scroll the season card for the full team story. Tap Play again to try other choices.' : text;
+    $('hint').setAttribute('aria-label',currentHint());
+  }
+  let moodText = '';
+  function consequence() {
+    if (state.chapter === 5 && state.selected === 2) {
+      return state.dials[0] >= 6 ? 'Marcus thanks Theo for never giving up on a point.' :
+        "Marcus says 'we should have won.' Nobody answers.";
+    }
+    return CHAPTERS[state.chapter].choices[state.selected].result;
+  }
+  function setCommon() {
+    document.body.dataset.phase = state.phase;
+    $('panel').classList.toggle('resolved',state.phase === 'consequence');
+    $('choices').hidden = !['chapter','consequence'].includes(state.phase);
+    $('circle-context').hidden = state.phase !== 'spirit';
+    $('result').hidden = state.phase !== 'consequence';
+    $('season-panel').hidden = state.phase !== 'season';
+    $('again').hidden = state.phase !== 'season';
+    $('history').hidden = state.phase !== 'season';
+    $('choice-list').hidden = true;
+    document.body.classList.remove('history-open');
+    $('history').textContent = 'See every choice you made';
+    $('history').setAttribute('aria-expanded','false');
+    $('actions').hidden = state.phase === 'chapter' || state.phase === 'season';
+    $('talk').hidden = state.phase !== 'consequence';
+    $('panel-step').textContent = state.phase === 'season' ? 'Season complete' : `Chapter ${state.chapter+1} / 6`;
+    progress();
+    board();
+  }
+  function openChapter(n, moveFocus=true) {
+    V.hush();
+    state.chapter = n;
+    state.phase = 'chapter';
+    state.selected = null;
+    setCommon();
+    $('panel-title').textContent = n === 0 ? 'Your first call' : 'Your call, captain';
+    const c = CHAPTERS[n];
+    c.choices.forEach((o,i) => {
+      const b = $(`choice-${i}`);
+      b.className = 'choice';
+      b.setAttribute('aria-pressed','false');
+      b.removeAttribute('aria-disabled');
+      b.querySelector('.long').textContent = o.text;
+      b.querySelector('.short').textContent = o.short;
+      b.setAttribute('aria-label',`Choice ${i+1}. ${o.text}`);
+    });
+    scene();
+    hint();
+    if (moveFocus) $('choice-0').focus({preventScroll:true});
+    V.say(`ch${n+1}`,{valid:() => state.phase === 'chapter' && state.chapter === n});
+    if (!V.heard('pick')) V.how('pick',{valid:() => state.phase === 'chapter',needs:'#choice-0'});
+  }
+  function select(i, commit=false) {
+    if (state.phase !== 'chapter') return;
+    V.hush();
+    Curio.tone(310+i*45,.06,.025,'sine');
+    if (state.selected === i && !commit || commit) {
+      state.selected = i;
+      choose(i);
+      return;
+    }
+    state.selected = i;
+    CHAPTERS[state.chapter].choices.forEach((_,j) => {
+      const b = $(`choice-${j}`);
+      b.classList.toggle('selected',j === i);
+      b.setAttribute('aria-pressed',j === i);
+    });
+    hint();
+    if (!V.heard('pick')) V.how('pick',{valid:() => state.phase === 'chapter',needs:`#choice-${i}`});
+  }
+  function choose(i) {
+    const c = CHAPTERS[state.chapter];
+    const before = [...state.dials];
+    state.dials = state.dials.map((n,j) => clamp(n+c.choices[i].delta[j]));
+    moodText = c.choices[i].delta.flatMap((d,j) => {
+      if (!d) return [];
+      if (before[j] === state.dials[j]) return [`${NAMES[j]} ${d > 0 ?
+        'is already as high as it goes.' : "can't go any lower."}`];
+      return [`${NAMES[j]} went ${d > 0 ? 'up' : 'down'}.`];
+    }).join(' ');
+    state.choices.push(i);
+    state.phase = 'consequence';
+    setCommon();
+    $('panel-title').textContent = 'You made the call';
+    c.choices.forEach((_,j) => {
+      const b = $(`choice-${j}`);
+      b.classList.toggle('chosen',j === i);
+      b.classList.remove('selected');
+      b.setAttribute('aria-disabled','true');
+    });
+    $('consequence').textContent = consequence();
+    $('mood').textContent = moodText;
+    $('result').scrollTop = 0;
+    $('talk-question').textContent = c.question;
+    $('next').textContent = state.chapter === 1 || state.chapter === 3 || state.chapter === 5 ? 'Next: spirit circle →' : 'Next →';
+    if (state.chapter === 2 || state.chapter === 5 && i === 1) scene();
+    else {
+      if (c.score) {
+        const score = $('stage').querySelector('.score');
+        score.innerHTML = `${c.final}<small>FINAL · ${state.chapter === 5 ? 'LOSS' : 'WIN'}</small>`;
+      }
+      showMoment();
+    }
+    hint();
+    Curio.tone(220,.13,.025,'triangle');
+    $('next').focus({preventScroll:true});
+    V.how('next',{valid:() => state.phase === 'consequence',needs:'#next'});
+  }
+  function scoreSpirit(respect, chapter, choice) {
+    const scores = [2,2,2,2,2];
+    const delta = respect >= 7 ? 1 : respect <= 3 ? -1 : 0;
+    scores[2] += delta;
+    scores[3] += delta;
+    if (chapter === 1 && choice === 0) scores[3]++;
+    if (chapter === 1 && choice === 2) scores[3]--;
+    if (chapter === 3 && choice === 0) {scores[4]++; scores[2]++;}
+    if (chapter === 3 && choice === 1) {scores[3] -= 2; scores[4]--;}
+    if (chapter === 3 && choice === 2) scores[2]++;
+    if (chapter === 5 && choice === 0) scores[4]++;
+    return scores.map(n => clamp(n,4));
+  }
+  function captainLine(n) {
+    return n >= 14 ? 'Great spirit. Thanks for a fun game.' : n >= 10 ? 'Good game.' :
+      "That one got heated. Let's talk next time.";
+  }
+  function openCircle(game) {
+    V.hush();
+    state.phase = 'spirit';
+    const chapter = [1,-1,3,5][game];
+    const scores = scoreSpirit(state.dials[3],chapter,state.selected);
+    state.circle = {game,team:TEAMS[game],scores,total:scores.reduce((a,b) => a+b,0)};
+    state.spirits.push(state.circle.total);
+    setCommon();
+    setArt('night');
+    $('stage-content').classList.remove('phone-scene');
+    const circle = state.circle;
+    $('panel-step').textContent = `Game ${game+1} · ${RESULTS[game]}`;
+    $('stage-content').innerHTML = `<div class="cast">${person('PR')}${opponent(circle.team)}</div>
+      <article class="story-card spirit-card reveal" id="spirit-card">
+      <div class="eyebrow">Game ${game+1} · Opponents' spirit score</div><div class="spirit-title">
+      <h2>Spirit circle<br><span style="font-size:.58em;color:#b6c4d4">with ${circle.team}</span></h2>
+      <div class="spirit-total">${circle.total}<small> / 20</small></div></div>
+      <div class="ratings">${scores.map((n,i) => `<div class="rating"><span>${CATEGORIES[i]}</span>
+        <span class="dots" aria-hidden="true">${[0,1,2,3].map(j => `<i class="${j<n ? 'on' : ''}"></i>`).join('')}</span>
+        <strong>${n} · ${RATING_WORDS[n]}</strong></div>`).join('')}</div>
+      <blockquote>“${captainLine(circle.total)}”</blockquote><p class="model-note">Story model · WFDF categories · 2 means Good</p></article>`;
+    $('panel-title').textContent = `${circle.team}'s view`;
+    $('circle-context').textContent = game === 1 ?
+      'Game 2 ends in an 8-13 loss. Before the team chat opens, Granite gives its view of how you played.' :
+      `Game ${game+1} ends in a ${game === 3 ? 'loss' : 'win'} (${RESULTS[game].split(' ')[0]}). ${circle.team} rates how you played together.`;
+    $('next').textContent = game === 0 ? 'Next: Game 2 vs Granite →' : game === 1 ? 'Next: team chat →' :
+      game === 3 ? 'Next: season card →' : 'Next →';
+    hint();
+    $('next').focus({preventScroll:true});
+    V.say([L.prefix,circle.team,L.numbers[circle.total]],{key:`spirit-${game}`,valid:() => state.phase === 'spirit'});
+  }
+  function epilogue(d=state.dials) {
+    const lines = [
+      d[2] >= 6 ? 'Lena signs up first for next season and brings a friend.' :
+        "Lena doesn't sign up again. She says she never felt part of the team.",
+      d[0] >= 6 ? 'Theo spends the summer throwing with friends and comes back sure-handed.' :
+        "Theo switches to cross-country. 'Less yelling,' he says.",
+      d[3] >= 6 && d[0] >= 5 ? 'Marcus volunteers at the middle school clinic before he graduates.' :
+        'Marcus graduates. The team remembers his speed more than his words.'
+    ];
+    if (d[3] >= 7) lines.push('The league votes the Kestrels its spirit award.');
+    if (d[1] >= 7) lines.push('Practice turnout is the best it has been in years.');
+    if (d[3] < 7 && d[1] < 7) lines.push('Next season starts with a lot to build.');
+    return lines;
+  }
+  function season() {
+    V.hush();
+    state.phase = 'season';
+    setCommon();
+    setArt('bus');
+    $('stage-content').classList.remove('phone-scene');
+    $('stage-content').innerHTML = `<article class="story-card season-card reveal" id="season-card">
+      <div class="eyebrow">Kestrels · End of season</div><h2>The team you built</h2>
+      <p class="record"><b>2 wins, 2 losses.</b> The same in every season you play.</p>
+      <p class="model-note">Fictional team culture, not an assessment of you. Nothing about your season is saved or sent.</p>
+      ${dialRows(true)}${state.previous ? '<small class="model-note">Outlined bars: your previous season.</small>' : ''}
+      <p class="model-note">Spirit totals: ${state.spirits.map((n,i) => `${TEAMS[i]} ${n}`).join(' · ')} / 20 each</p>
+      <div class="epilogues">${epilogue().map(line => `<p>${esc(line)}</p>`).join('')}</div></article>`;
+    $('panel-title').textContent = 'Same scores. Different team.';
+    $('choice-list').innerHTML = state.choices.map((i,j) =>
+      `<li><b>${CHAPTERS[j].title}</b>${esc(CHAPTERS[j].choices[i].text)}</li>`).join('');
+    hint();
+    $('again').focus({preventScroll:true});
+    V.say('season',{valid:() => state.phase === 'season'});
+  }
+  function next() {
+    V.hush();
+    Curio.tone(380,.07,.025,'sine');
+    if (state.phase === 'consequence') {
+      if ([1,3,5].includes(state.chapter)) openCircle([1,3,5].indexOf(state.chapter) === 0 ? 0 : state.chapter === 3 ? 2 : 3);
+      else openChapter(state.chapter+1);
+    } else if (state.phase === 'spirit') {
+      if (state.circle.game === 0) openCircle(1);
+      else if (state.circle.game === 3) season();
+      else openChapter(state.circle.game === 1 ? 2 : 4);
+    }
+  }
+  function restart(replay=false) {
+    V.hush();
+    if (replay) state.previous = [...state.dials];
+    state.dials = [5,5,5,5];
+    state.choices = [];
+    state.spirits = [];
+    state.circle = null;
+    state.board = false;
+    state.run++;
+    $('talk-body').hidden = true;
+    $('talk-shade').hidden = true;
+    $('panel').insertBefore($('hint'),$('actions'));
+    $('board').innerHTML = '';
+    $('talk').setAttribute('aria-expanded','false');
+    setTalkInert(false);
+    openChapter(0);
+    if (replay) V.how('again',{valid:() => state.phase === 'chapter'});
+  }
+  document.querySelectorAll('.choice').forEach((b,i) => b.onclick = () => select(i));
+  $('next').onclick = next;
+  $('restart').onclick = () => restart();
+  $('again').onclick = () => restart(true);
+  $('team-board').onclick = () => {
+    state.board = !state.board;
+    board();
+    hint();
+    Curio.tone(270,.05,.02);
+  };
+  $('history').onclick = () => {
+    $('choice-list').hidden = !$('choice-list').hidden;
+    $('history').setAttribute('aria-expanded',!$('choice-list').hidden);
+    document.body.classList.toggle('history-open',!$('choice-list').hidden);
+    $('history').textContent = $('choice-list').hidden ? 'See every choice you made' : 'Back to the season card';
+    $('hint').textContent = $('choice-list').hidden ? 'Tap Play again, or See every choice you made.' :
+      'Review your six choices. Tap Back to the season card, or Play again.';
+    $('hint').setAttribute('aria-label',currentHint());
+    Curio.tone(290,.06,.02);
+  };
+  function closeTalk() {
+    V.hush();
+    $('talk-body').hidden = true;
+    $('talk-shade').hidden = true;
+    $('panel').insertBefore($('hint'),$('actions'));
+    $('talk').setAttribute('aria-expanded','false');
+    setTalkInert(false);
+    $('talk').focus({preventScroll:true});
+    hint();
+  }
+  $('talk').onclick = () => {
+    V.hush();
+    $('talk-body').hidden = false;
+    $('talk-shade').hidden = false;
+    $('talk-body').insertBefore($('hint'),$('read-talk'));
+    setTalkInert(true);
+    $('talk').setAttribute('aria-expanded','true');
+    $('close-talk').focus({preventScroll:true});
+    $('hint').textContent = "Tap Read to hear the question, or Back to the season when you're ready.";
+    Curio.tone(270,.06,.02);
+  };
+  function setTalkInert(value) {
+    document.querySelector('body > header').inert = value;
+    $('stage').inert = value;
+    [...$('panel').children].forEach(el => {
+      if (!['talk-body','talk-shade'].includes(el.id)) el.inert = value;
+    });
+  }
+  $('close-talk').onclick = closeTalk;
+  $('read-talk').onclick = () => V.read();
+  document.addEventListener('keydown',e => {
+    if (!$('talk-body').hidden) {
+      if (e.key === 'Escape') closeTalk();
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        (document.activeElement === $('close-talk') ? $('read-talk') : $('close-talk')).focus({preventScroll:true});
+      }
+      return;
+    }
+    if (e.altKey || e.ctrlKey || e.metaKey || e.repeat) return;
+    if (state.phase === 'chapter' && /^[123]$/.test(e.key)) {
+      e.preventDefault();
+      const i = Number(e.key)-1;
+      // Number keys select only. Enter, or a second pointer tap, commits.
+      if (state.selected !== i) select(i);
+      $(`choice-${i}`).focus({preventScroll:true});
+    } else if (e.key === 'Enter' && state.phase === 'chapter' && state.selected !== null &&
+      (!document.activeElement.classList.contains('choice') || document.activeElement.id === `choice-${state.selected}`) &&
+      !['motion','sound','read','team-board','restart'].includes(document.activeElement.id)) {
+      e.preventDefault();
+      select(state.selected,true);
+    }
+  });
+  Curio.init({clips:"voice:*",rate:.9,readFallback:() => currentHint()});
+  // The kit owns speech and Read. Its read callback resolves the complete current hint immediately.
+  $('read').onclick = () => V.read();
+  window.__tool = {state,setMode:() => {},allLines:V.allLines,vlog:V.log,CHAPTERS,scoreSpirit,epilogue,
+    select,next,restart,get vq() {return V.queue;},get mood() {return moodText;}};
+  openChapter(0,false);
+})();
+</script>
+</body>
+</html>

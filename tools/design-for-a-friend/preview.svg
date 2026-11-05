@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400">
+  <defs>
+    <linearGradient id="desk" x2="1" y2="1"><stop stop-color="#f5e8cf"/><stop offset="1" stop-color="#d1b98c"/></linearGradient>
+    <linearGradient id="phone" x2="1" y2="1"><stop stop-color="#58717a"/><stop offset="1" stop-color="#0b1b25"/></linearGradient>
+    <filter id="shadow"><feDropShadow dy="6" stdDeviation="5" flood-opacity=".18"/></filter>
+  </defs>
+  <rect width="640" height="400" fill="url(#desk)"/>
+  <g fill="none" stroke="#947448" opacity=".13"><path d="M0 80h640M0 160h640M0 240h640M0 320h640M80 0v400M160 0v400M240 0v400M320 0v400M400 0v400M480 0v400M560 0v400"/></g>
+  <g filter="url(#shadow)">
+    <rect x="221" y="27" width="194" height="342" rx="27" fill="url(#phone)"/>
+    <rect x="232" y="40" width="171" height="315" rx="19" fill="#fffcf4"/>
+    <rect x="290" y="31" width="50" height="4" rx="2" fill="#a2b2af"/>
+    <text x="247" y="71" fill="#285138" font-family="sans-serif" font-weight="bold" font-size="13">Maple Street Garden</text>
+    <path d="M244 145q35-48 71-12t75-12v40H244Z" fill="#b8c99a"/>
+    <path d="M244 155q36-31 73-10t73-14v32H244Z" fill="#75945b"/>
+    <g fill="#e8f3f8" stroke="#0369a1" stroke-width="2">
+      <rect x="245" y="181" width="145" height="43" rx="7"/>
+      <rect x="245" y="234" width="145" height="43" rx="7"/>
+      <rect x="245" y="287" width="145" height="43" rx="7"/>
+    </g>
+    <g fill="#0369a1" font-family="sans-serif" font-size="13" font-weight="bold">
+      <text x="258" y="207">Aa  Big text</text><text x="258" y="260">▣  Big buttons</text><text x="258" y="313">▷  Video lessons</text>
+    </g>
+    <rect x="445" y="77" width="165" height="251" rx="5" fill="#b98f5b" stroke="#ead8b7" stroke-width="9"/>
+    <g fill="#fff1a8"><path d="m455 99 139 5-5 75-138-5Z"/><path d="m458 194 137-4 3 98-137 4Z"/></g>
+    <g fill="#332f25" font-family="sans-serif" font-size="13"><text x="466" y="124">Small words are</text><text x="466" y="142">hard to read</text>
+      <text x="472" y="220">Video lessons?</text></g>
+    <g transform="rotate(-8 527 261)"><rect x="468" y="243" width="123" height="32" fill="none" stroke="#5c5870" stroke-width="3"/>
+      <text x="481" y="264" font-family="sans-serif" font-size="15" font-weight="bold" fill="#5c5870">POLITE YES</text></g>
+    <g fill="#fffdf6" stroke="#c2bcac"><rect x="33" y="107" width="151" height="52" rx="7"/>
+      <rect x="33" y="173" width="151" height="52" rx="7"/><rect x="33" y="239" width="151" height="52" rx="7"/></g>
+    <g fill="#0369a1" font-family="sans-serif" font-size="14" font-weight="bold"><text x="49" y="140">Ask</text>
+      <text x="49" y="206">Design</text><text x="49" y="272">Test drive</text></g>
+  </g>
+</svg>

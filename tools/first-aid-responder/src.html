@@ -1,0 +1,1700 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>First Aid Responder · Curio Class</title>
+<meta name="description" content="Sequence six school emergencies and practice hands-only CPR rate. Grades 9-12. Works offline.">
+<!--
+First Aid Responder, Curio Class. Health grades 9-12, NHES.S7.
+Sources: AHA 2025 Adult Basic Life Support; AHA and American Red Cross 2024 First Aid;
+Red Cross CPR Steps and Learn First Aid; CDC Heat-Related Illnesses and Seizure First Aid.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Retained school backdrops: local FLUX.1-schnell.
+Sound synthesized with the kit and Web Audio. No recordings. No network requests.
+Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root { --brand:#3ee0b0; --brand-ink:#0b2a20; }
+button { min-width:44px; }
+body { overflow:hidden; }
+header { padding:12px 22px; gap:10px; }
+h1 { font-size:25px; letter-spacing:-.7px; }
+h1 small { font-size:12px; margin-top:5px; letter-spacing:.02em; }
+.identity { display:flex; align-items:center; gap:12px; margin-right:auto; }
+.aid-mark { width:39px; height:39px; display:grid; place-items:center; border-radius:10px;
+  background:var(--brand); color:white; font-size:34px; font-weight:600; box-shadow:inset 0 1px 0 #ffffff80; }
+.seg { border-radius:9px; border-width:1px; }
+.seg button,.icon-btn { min-height:44px; font-size:13px; padding:0 12px; }
+.icon-btn { border-radius:8px; border-width:1px; }
+main { grid-template-columns:minmax(0,1fr) 260px; overflow:hidden; }
+main,.stage { min-width:0; }
+.stage { min-height:0; background:#101a21; padding:22px; overflow:auto; }
+.panel { padding:18px; gap:12px; border-left:1px solid #34424b; }
+.eyebrow { color:var(--brand); font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+.topline { display:flex; justify-content:space-between; gap:12px; align-items:end; margin-bottom:18px; }
+h2 { margin:6px 0; font-size:28px; font-weight:650; letter-spacing:-.6px; }
+.muted { color:var(--muted); }
+.small { font-size:12px; line-height:1.45; }
+.topline p { margin:0; font-size:14px; color:var(--muted); }
+.live { display:flex; align-items:center; gap:7px; font-size:11px; color:var(--muted); white-space:nowrap; }
+.live::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--brand);
+  box-shadow:0 0 12px #3ee0b080; animation:standby 3s infinite; }
+@keyframes standby { 50% { opacity:.35; } }
+.calm .live::before { animation:none; }
+.picker { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; height:calc(100% - 100px); }
+.scene-card { position:relative; overflow:hidden; border-radius:12px; padding:0; border:1px solid #4f606b;
+  background:#1a2631; text-align:left; min-height:130px; box-shadow:0 5px 15px #0003; }
+.scene-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .4s; }
+.scene-card:hover img { transform:scale(1.045); }
+.scene-card::after { content:''; position:absolute; inset:0; background:linear-gradient(transparent 5%,#08121d50 30%,#08121df5 100%); }
+.scene-card .scene-copy { position:absolute; z-index:1; bottom:0; left:0; right:0; padding:16px; }
+.scene-card b { display:block; font-size:19px; letter-spacing:-.3px; margin:7px 0; }
+.scene-card .desc { display:block; color:#d3dce6; font-size:12px; line-height:1.4; }
+.scene-card .best { display:block; font:11px var(--readout-font); color:var(--brand); margin-top:12px; }
+.scene-num { font:11px var(--readout-font); color:#e6f5ef; opacity:.8; }
+.scene-card .arrow { position:absolute; right:15px; top:15px; z-index:1; width:28px; height:28px;
+  border:1px solid #ffffff50; border-radius:50%; display:grid; place-items:center; color:#fff; }
+.panel-title { margin:0; font-size:11px; font-weight:700; color:var(--brand); letter-spacing:.14em; text-transform:uppercase; }
+.hint { min-height:70px; font-size:14px; line-height:1.5; flex-shrink:0; }
+.kit-hero { width:100%; height:160px; object-fit:contain; filter:drop-shadow(0 8px 10px #0005); }
+.callout { border:1px solid #3d5558; padding:12px; border-radius:8px; background:linear-gradient(130deg,#1b3434,#17262b); }
+.callout b { color:var(--brand); display:block; margin-bottom:6px; }
+.footer { margin-top:auto; padding-top:14px; border-top:1px solid var(--line); color:#bac7d4; font-size:11px; line-height:1.5; }
+.privacy { color:var(--muted); font-size:11px; line-height:1.4; margin:0; }
+.btn { font-size:13px; min-height:44px; }
+.big-btn { font-size:14px; padding:8px 12px; }
+.text-btn { background:transparent; border:0; text-decoration:underline; color:var(--muted); font-size:12px; min-height:44px; }
+.scene-bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.25; }
+#scene-play { position:relative; z-index:1; min-height:100%; display:flex; flex-direction:column; }
+.scene-top { display:flex; gap:12px; align-items:center; margin-bottom:13px; }
+.scene-top h2 { font-size:23px; margin:0; }
+.briefing { background:#101c29ed; border:1px solid #5b6f77; border-radius:10px; padding:12px 16px; margin-bottom:18px;
+  box-shadow:0 5px 18px #0002; }
+.brief-line { display:flex; align-items:center; gap:12px; }
+.brief-line p { margin:0; font-size:14px; line-height:1.5; flex:1; }
+#more { flex:none; }
+.rail-heading,.deck-heading { display:flex; justify-content:space-between; margin:0 0 9px; font-size:11px;
+  letter-spacing:.09em; color:#e0e7ed; text-transform:uppercase; }
+.rail { position:relative; display:grid; gap:7px; grid-template-columns:repeat(var(--slots),minmax(0,1fr)); margin-bottom:20px; }
+.slot { position:relative; min-height:92px; border:1px dashed #829999; background:#0e1d28c9; border-radius:8px;
+  padding:8px; display:flex; flex-direction:column; justify-content:center; gap:5px; transition:background .2s; }
+.slot .num { font:13px var(--readout-font); color:#b8c8cf; }
+.slot .land { font-size:12px; line-height:1.25; font-weight:600; }
+.slot.filled { background:linear-gradient(140deg,#24483e,#152f2c); border:1px solid var(--brand); box-shadow:0 0 12px #3ee0b015; }
+.slot.filled .num { color:var(--brand); }
+.slot.shared { border-bottom:3px solid #b8c8cf; }
+.slot .either { font-size:10px; color:#c0d3d5; position:absolute; bottom:-15px; white-space:nowrap; left:0; }
+.ghost-marker { position:absolute; top:-9px; left:50%; width:18px; height:18px; border:2px solid #e9edf3;
+  transform:translateX(-50%); border-radius:50%; background:#10252a; box-shadow:0 0 0 4px #ffffff15; }
+.deck { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:11px; flex:1; align-content:start; }
+.step-card { position:relative; min-height:122px; display:flex; flex-direction:column; justify-content:center; gap:7px;
+  text-align:left; padding:13px; border:1px solid #697e8d; border-radius:9px;
+  background:linear-gradient(145deg,#2c3c49,#1b2936); box-shadow:0 4px 0 #08121a, inset 0 1px 0 #ffffff15; touch-action:pan-y; }
+.step-card:hover { border-color:var(--brand); background:linear-gradient(145deg,#354b53,#23333f); }
+.step-card b { font-size:14px; line-height:1.25; }
+.step-card small { font-size:11px; line-height:1.35; color:#c8d5df; }
+.step-card img { width:49px; height:42px; object-fit:contain; position:absolute; right:3px; bottom:2px; opacity:.8; }
+.step-card.has-art { padding-bottom:38px; }
+.step-card.used { visibility:hidden; }
+.step-card { touch-action:none; }
+.step-card.drag-source { opacity:.35; }
+.drag-preview { position:fixed; z-index:100; pointer-events:none; margin:0;
+  border-color:var(--brand); box-shadow:0 12px 24px #0008; }
+.card-flight { position:fixed; z-index:90; pointer-events:none; margin:0; overflow:hidden;
+  border:1px solid var(--brand); border-radius:8px; background:#1c3d36; padding:9px;
+  color:var(--ink); font-size:12px; box-shadow:0 8px 20px #0006; transform-origin:top left; }
+.shake { animation:shake .33s; }
+@keyframes shake { 20%,60% { transform:translateX(7px) rotate(1deg); } 40%,80% { transform:translateX(-7px); } }
+.landed { animation:land .3s; }
+@keyframes land { from { transform:translateY(20px) scale(.8); opacity:.1; } }
+.calm .shake,.calm .landed { animation:none; }
+.feedback { min-height:45px; margin-top:14px; padding:9px 12px; border-radius:6px; background:#101d29ed;
+  border-left:3px solid var(--brand); font-size:13px; line-height:1.4; }
+.feedback.bad { border-color:var(--warn); color:var(--warn); }
+.never { display:flex; gap:10px; margin-top:10px; font-size:11px; color:var(--warn); }
+.never:empty { display:none; }
+.never span { flex:1; border:1px solid #88655c; border-radius:5px; background:#2c2328ed; padding:8px; }
+.clock { font:42px var(--readout-font); color:var(--brand); letter-spacing:-2px; }
+.clock-label { font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); }
+.mistakes { font-size:13px; }
+.ghost-label { min-height:34px; font-size:12px; color:#cbd4df; line-height:1.4; }
+.progress { height:5px; border-radius:3px; background:#2a3945; margin-top:7px; overflow:hidden; }
+.progress i { display:block; height:100%; background:#d7e1e9; width:0; transition:width .2s; }
+.finish { border:1px solid #4f9985; background:#102820f5; border-radius:12px; padding:18px; }
+.finish h3 { color:var(--brand); margin:0 0 7px; font-size:24px; }
+.finish ol { margin:12px 0; padding-left:24px; }
+.finish li { margin:7px 0; font-size:12px; line-height:1.4; }
+.finish li b { color:#d1f2e5; }
+.finish-actions { display:flex; gap:10px; }
+.cpr-work { display:grid; grid-template-rows:auto minmax(200px,1fr) 125px; height:100%; gap:15px; }
+.cpr-work .topline { margin-bottom:0; }
+.instruments { display:grid; grid-template-columns:1fr 1fr; min-height:0; gap:20px; }
+.pad-bay { position:relative; border:1px solid #41565f; border-radius:18px;
+  background:radial-gradient(ellipse at 45% 20%,#355159,#15242e 60%); box-shadow:inset 0 2px 20px #0004;
+  display:grid; grid-template-rows:1fr auto; overflow:hidden; }
+.pad-bay::before { content:''; position:absolute; inset:15px; border:1px dashed #6a8b8b55; border-radius:12px; pointer-events:none; }
+#chest { width:100%; min-height:160px; min-width:160px; border:0; background:transparent; padding:5px 15px; position:relative; touch-action:manipulation; }
+#chest svg { width:100%; height:100%; max-height:330px; display:block; filter:drop-shadow(0 8px 10px #0007); }
+#chest .manikin { transform-origin:50% 55%; }
+#chest.pressed .manikin { animation:compression .2s ease-out; }
+@keyframes compression { 20% { transform:scale(.96,.91); } }
+.calm #chest.pressed .manikin { animation:none; }
+#chest.pressed { box-shadow:inset 0 0 0 3px var(--brand); }
+.pad-label { text-align:center; padding:0 10px 14px; color:#b7cdd1; font-size:11px; letter-spacing:.1em; pointer-events:none; }
+.dial-bay { display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:0; }
+.dial-bay svg { width:100%; max-height:250px; overflow:visible; }
+#needle { transition:transform .15s linear; transform-origin:160px 160px; }
+.calm #needle { transition:none; }
+.rate { font:52px var(--readout-font); margin-top:0; color:var(--ink); }
+.rate small { font:11px 'Segoe UI',sans-serif; color:var(--muted); letter-spacing:.08em; display:block; text-align:center; }
+.rate-note { font-size:11px; line-height:1.45; color:#b9c7d5; margin:15px 0 0; max-width:330px; }
+.trace-bay { background:#0c151e; border:1px solid #3c505a; border-radius:9px; padding:10px 12px; }
+.trace-head { display:flex; justify-content:space-between; align-items:center; font-size:11px; margin-bottom:5px; }
+#trace { width:100%; height:74px; display:block; }
+.round-clock { font:34px var(--readout-font); color:var(--brand); }
+.coach { padding:14px 10px; text-align:center; background:#1a3032; border:1px solid #3d625e; border-radius:8px;
+  font-size:18px; min-height:54px; display:grid; place-items:center; }
+.summary { border-left:3px solid var(--brand); padding-left:10px; font-size:12px; line-height:1.6; }
+#cpr-panel { display:flex; flex-direction:column; gap:9px; }
+#cpr-panel[hidden] { display:none; }
+.summary dl { display:grid; grid-template-columns:1fr auto; gap:3px; margin:5px 0; }
+.summary dd { margin:0; font-family:var(--readout-font); }
+.guide-layout { display:grid; grid-template-columns:minmax(180px,.8fr) 1.5fr; gap:20px; }
+.guide-list { display:flex; flex-direction:column; gap:9px; }
+.guide-tab { min-height:60px; padding:14px; text-align:left; border:1px solid #627b85; background:#1b2b38; border-radius:8px; }
+.guide-tab[aria-pressed=true] { border-color:var(--brand); background:#193831; box-shadow:inset 3px 0 var(--brand); }
+.guide-detail { background:linear-gradient(135deg,#243b40,#162330); border:1px solid #516e73; border-radius:12px; padding:25px; }
+.guide-detail h3 { font-size:25px; margin:0 0 14px; }
+.guide-detail p { font-size:17px; line-height:1.65; }
+.guide-art { width:100%; height:210px; object-fit:contain; filter:drop-shadow(0 10px 15px #0005); }
+dialog { background:#172631; color:var(--ink); border:1px solid #7ea195; border-radius:14px; padding:24px; max-width:340px; }
+dialog::backdrop { background:#040b13cc; }
+dialog p { font-size:15px; line-height:1.5; }
+.dialog-actions { display:flex; justify-content:end; gap:10px; }
+@media (max-height:899px) {
+  .brief-line p { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .briefing.expanded .brief-line p { white-space:normal; }
+  .picker { height:calc(100% - 88px); }
+}
+@media (max-width:1050px) {
+  header { padding:7px 12px; gap:6px; }
+  h1 { font-size:20px; }
+  .identity { gap:7px; }
+  .aid-mark { width:29px; height:29px; font-size:26px; border-radius:7px; }
+  h1 small { font-size:10px; }
+  .seg button,.icon-btn { padding:0 9px; font-size:12px; }
+  main { grid-template-columns:minmax(0,1fr) 210px; }
+  .stage { padding:14px; }
+  .panel { padding:12px; gap:9px; }
+  .picker { gap:10px; }
+  .scene-card .scene-copy { padding:10px; }
+  .scene-card b { font-size:15px; }
+  .scene-card .desc { font-size:11px; }
+  .deck { gap:8px; }
+  .step-card { padding:9px; min-height:113px; }
+  .step-card b { font-size:12px; }
+  .step-card small { font-size:10px; }
+  .slot { padding:6px; min-height:77px; }
+  .slot .land { font-size:10px; }
+  .instruments { gap:12px; }
+  .rate { font-size:42px; }
+  .dial-bay svg text { font-size:14px; }
+  .guide-layout { gap:12px; grid-template-columns:170px 1fr; }
+  .guide-detail { padding:16px; }
+  .guide-detail p { font-size:14px; }
+}
+@media (max-height:650px) and (min-width:600px) {
+  header { padding:4px 9px; flex-wrap:nowrap; gap:5px; }
+  .identity { min-width:0; }
+  h1 { font-size:17px; }
+  h1 small,.aid-mark { display:none; }
+  .seg button,.icon-btn { padding:0 8px; font-size:11px; white-space:nowrap; }
+  main { grid-template-columns:minmax(0,1fr) 186px; }
+  .stage { padding:10px; }
+  .panel { padding:9px; gap:6px; }
+  .topline { margin-bottom:10px; }
+  h2 { font-size:21px; }
+  .topline p { font-size:11px; }
+  .live { display:none; }
+  .picker { gap:9px; height:calc(100% - 66px); }
+  .scene-card { min-height:110px; }
+  .scene-card b { font-size:13px; margin:3px 0; }
+  .scene-card .best { font-size:10px; margin-top:5px; }
+  .scene-card .desc { font-size:10px; }
+  .scene-card .arrow { width:20px; height:20px; right:8px; top:8px; }
+  .scene-num { font-size:10px; }
+  .panel-title { font-size:10px; }
+  .hint { font-size:12px; min-height:50px; }
+  .kit-hero { height:80px; }
+  .callout { padding:8px; font-size:11px; }
+  .footer { font-size:10px; line-height:1.3; padding-top:7px; }
+  .privacy { font-size:10px; }
+  .scene-top { margin-bottom:7px; }
+  .scene-top h2 { font-size:17px; }
+  .scene-top .eyebrow { font-size:10px; }
+  .briefing { padding:5px 9px; margin-bottom:9px; }
+  .brief-line { gap:5px; }
+  .brief-line p { font-size:11px; }
+  #more { min-height:44px; padding:0 7px; font-size:11px; }
+  .rail-heading,.deck-heading { font-size:10px; margin-bottom:5px; }
+  .rail { gap:4px; margin-bottom:17px; }
+  .slot { min-height:48px; padding:4px; gap:2px; }
+  .slot .num { font-size:10px; }
+  .slot .land { font-size:10px; }
+  .slot.filled .land { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+    overflow:hidden; text-overflow:ellipsis; }
+  .deck { gap:7px; }
+  .step-card { min-height:76px; padding:7px; gap:5px; }
+  .step-card b { font-size:11px; }
+  .step-card small { display:none; }
+  .step-card.has-art { padding-bottom:28px; }
+  .step-card img { height:28px; width:40px; }
+  .feedback { font-size:11px; margin-top:9px; min-height:39px; padding:7px 9px; }
+  .never { margin-top:5px; font-size:10px; gap:5px; }
+  .never span { padding:5px; }
+  .clock { font-size:30px; }
+  .ghost-label { min-height:30px; font-size:10px; }
+  .clock-label { font-size:10px; }
+  .mistakes { font-size:11px; }
+  .btn,.big-btn { font-size:11px; }
+  .text-btn { font-size:10px; }
+  .finish { padding:10px; }
+  .finish h3 { font-size:18px; }
+  .finish li { font-size:10px; margin:4px 0; }
+  .finish ol { margin:7px 0; }
+  .cpr-work { grid-template-rows:auto minmax(160px,1fr) 87px; gap:7px; }
+  .instruments { gap:10px; }
+  #chest { padding:2px 6px; }
+  .pad-label { padding-bottom:6px; font-size:10px; }
+  .dial-bay svg { max-height:135px; }
+  .rate { font-size:29px; }
+  .rate-note { font-size:10px; margin:6px 0 0; }
+  .trace-bay { padding:6px 9px; }
+  #trace { height:48px; }
+  .trace-head { font-size:10px; }
+  .round-clock { font-size:26px; }
+  .coach { min-height:38px; font-size:14px; padding:6px; }
+  .summary { font-size:10px; }
+  .guide-tab { min-height:44px; font-size:12px; padding:9px; }
+  .guide-detail h3 { font-size:21px; }
+  .guide-detail p { font-size:12px; line-height:1.4; }
+  .guide-art { height:65px; }
+  .guide-detail { padding:12px; }
+  .guide-detail h3 { margin-bottom:5px; }
+  .guide-detail p { margin:7px 0; }
+}
+@media (max-width:599px) {
+  body { overflow:auto; height:auto; min-height:100%; }
+  header { padding:8px; display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+  .identity { grid-column:1/4; margin:0; }
+  h1 { font-size:21px; }
+  h1 small { display:block; font-size:11px; }
+  .seg { grid-column:1/4; display:grid; grid-template-columns:repeat(3,1fr); }
+  .seg button,.icon-btn { font-size:12px; min-height:44px; }
+  main { display:flex; flex-direction:column; overflow:visible; }
+  .stage { overflow:visible; padding:12px; }
+  .panel { padding:12px; border-left:0; border-top:1px solid var(--line); gap:9px; }
+  .topline { margin-bottom:12px; }
+  h2 { font-size:24px; }
+  .topline p { font-size:12px; }
+  .live { display:none; }
+  .picker { grid-template-columns:repeat(2,minmax(0,1fr)); height:auto; gap:10px; }
+  .scene-card { height:155px; }
+  .scene-card .scene-copy { padding:10px; }
+  .scene-card b { font-size:15px; }
+  .hint { min-height:0; }
+  .kit-hero { height:100px; }
+  .footer { margin-top:5px; }
+  .brief-line p { white-space:nowrap; font-size:12px; }
+  .scene-top h2 { font-size:20px; }
+  .rail { grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px; row-gap:18px; }
+  .slot { min-height:64px; }
+  .slot .land { font-size:11px; }
+  .deck { grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+  .step-card { min-height:112px; padding:10px; }
+  .step-card b { font-size:13px; }
+  .step-card small { font-size:10px; }
+  .feedback { font-size:12px; }
+  .cpr-work { height:auto; display:flex; flex-direction:column; gap:10px; }
+  .cpr-work .topline h2 { font-size:22px; }
+  .instruments { grid-template-columns:minmax(160px,1fr) minmax(0,1fr); gap:9px; }
+  #chest { height:205px; padding:3px; }
+  .pad-label { font-size:10px; padding:0 5px 7px; }
+  .dial-bay svg { max-height:134px; }
+  .rate { font-size:34px; }
+  .rate-note { font-size:10px; margin:8px 0 0; }
+  .trace-bay { height:100px; }
+  #trace { height:55px; }
+  .trace-head { font-size:10px; }
+  body[data-mode=cpr] .panel { display:grid; grid-template-columns:1fr 1fr; }
+  body[data-mode=cpr] .panel-title,body[data-mode=cpr] #hint,body[data-mode=cpr] #cpr-panel,
+  body[data-mode=cpr] .footer,body[data-mode=cpr] .privacy,body[data-mode=cpr] #clear { grid-column:1/3; }
+  #cpr-panel { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  #cpr-panel .round-clock,#cpr-panel .coach,#summary { grid-column:1/3; }
+  #cpr-panel .round-clock { display:none; }
+  #cpr-panel .coach { min-height:40px; font-size:15px; padding:7px; }
+  body[data-mode=cpr] #hint { font-size:12px; }
+  .guide-layout { display:flex; flex-direction:column; }
+  .guide-list { display:grid; grid-template-columns:1fr 1fr; }
+  .guide-tab { min-height:48px; padding:9px; font-size:12px; }
+  .guide-art { height:160px; }
+  .guide-detail p { font-size:15px; }
+}
+@media (min-width:1100px) and (min-height:651px) {
+  #chest svg { max-height:clamp(330px,50vh,520px); }
+  .dial-bay svg { max-height:clamp(250px,34vh,370px); }
+}
+@media (min-width:600px) and (max-height:899px) {
+  body[data-mode=cpr] #cpr-panel { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+  body[data-mode=cpr] #cpr-panel .coach { min-height:44px; font-size:13px; padding:6px; }
+  body[data-mode=cpr] #cpr-panel .btn,body[data-mode=cpr] #start { font-size:11px; padding:5px; }
+  body[data-mode=cpr] #summary { grid-column:1/-1; }
+}
+@media (min-width:600px) {
+  #sound { width:80px; }
+}
+@media (max-width:599px) {
+  .stage,.panel { width:100%; }
+  #scene-play,.briefing,.brief-line { min-width:0; max-width:100%; }
+  .brief-line p { min-width:0; }
+  .guide-art { height:120px; }
+  .guide-detail { padding:14px; }
+  .guide-detail p { line-height:1.5; }
+  body[data-mode=scenes] .stage { padding:8px; }
+  .scene-top { margin-bottom:7px; }
+  .scene-top h2 { font-size:17px; }
+  .briefing { padding:0 7px; margin-bottom:9px; }
+  .brief-line { gap:5px; }
+  .rail-heading,.deck-heading { font-size:10px; margin-bottom:5px; }
+  .rail { margin-bottom:15px; row-gap:17px; }
+  .slot { min-height:42px; padding:4px; }
+  .slot .num { font-size:10px; }
+  .slot .land { font-size:10px; }
+  .deck { gap:7px; }
+  .step-card { min-height:70px; padding:8px; }
+  .step-card b { font-size:12px; }
+  .step-card small { display:none; }
+  .step-card.has-art { padding-bottom:8px; }
+  .step-card img { height:23px; width:29px; opacity:.5; }
+}
+@media (max-height:650px) and (min-width:600px) {
+  .stage { padding:8px; }
+  .panel { display:grid; grid-template-columns:1fr 1fr; align-content:start; gap:5px; padding:7px; }
+  .panel-title,#hint,#picker-panel,#scene-panel,#cpr-panel,.privacy,.footer { grid-column:1/3; }
+  .panel .btn,.panel .text-btn { padding:3px 5px; line-height:1.2; }
+  .panel .footer { margin-top:0; padding-top:5px; line-height:1.15; }
+  .hint { min-height:36px; font-size:11px; }
+  #scene-panel .clock-label { display:none; }
+  #scene-panel .mistakes { margin:3px 0; }
+  .ghost-label { min-height:25px; line-height:1.25; }
+  .clock { font-size:29px; }
+  .briefing { padding:0 7px; margin-bottom:7px; }
+  .slot { min-height:38px; }
+  .rail { margin-bottom:15px; }
+  .step-card { min-height:64px; }
+  .step-card.has-art { padding-bottom:7px; }
+  .step-card img { width:25px; height:22px; opacity:.55; }
+  .feedback { min-height:30px; padding:5px 7px; margin-top:7px; }
+  .instruments { min-height:0; }
+  #chest { min-height:160px; height:100%; }
+  .pad-label { position:absolute; bottom:4px; width:100%; font-size:10px; }
+  .cpr-work { grid-template-rows:auto minmax(160px,1fr) 76px; }
+  .dial-bay svg { max-height:110px; }
+  .rate-note { font-size:10px; line-height:1.25; margin-top:4px; }
+  .rate { font-size:25px; }
+  .rate small { font-size:10px; }
+  #cpr-panel { display:grid; grid-template-columns:1fr 1fr; gap:5px; }
+  #cpr-panel .coach { min-height:38px; font-size:11px; }
+  #start { min-height:44px; font-size:10px; padding:4px; }
+  #summary { grid-column:1/3; }
+  .trace-bay { padding:5px 7px; }
+  #trace { height:43px; }
+  .dial-bay svg text { font-size:18px; }
+  .finish { padding:8px; }
+  .finish h3 { margin-bottom:4px; }
+  .finish .small { font-size:10px; line-height:1.3; }
+  .finish li { margin:3px 0; line-height:1.3; }
+  .finish ol { margin:5px 0; }
+}
+@media (max-width:599px) {
+  .dial-bay svg text { font-size:16px; }
+  #chest { height:185px; }
+  .trace-bay { height:80px; }
+  #trace { height:40px; }
+  header .hint { grid-column:1/4; min-height:34px; height:34px; margin:0; padding:2px 5px;
+    font-size:11px; line-height:1.35; border-left:2px solid var(--brand); background:#192d30;
+    border-radius:4px; display:flex; align-items:center; }
+  .guide-art { height:100px; }
+  body[data-mode] header #hint { grid-column:1/-1; }
+  .guide-list { gap:6px; }
+  .guide-tab { min-height:44px; padding:8px; }
+  body[data-mode=guide] .topline { margin-bottom:8px; }
+  header { grid-template-columns:minmax(0,1fr) repeat(3,44px); gap:4px; }
+  header .identity { grid-column:1; min-width:0; }
+  header #motion { grid-row:1; grid-column:2; }
+  header #sound { grid-row:1; grid-column:3; }
+  header #read { grid-row:1; grid-column:4; }
+  header h1 { font-size:17px; letter-spacing:-.5px; }
+  header h1 small,header .aid-mark { display:none; }
+  header .icon-btn { padding:0; font-size:10px; }
+  header .seg { grid-column:1/-1; }
+  .step-card { min-height:58px; padding:6px; }
+  .step-card b { font-size:11.5px; line-height:1.2; }
+  .slot { min-height:36px; }
+  #scene-utilities { margin-bottom:9px; }
+  #scene-utilities #scene-panel { display:grid; grid-template-columns:95px 1fr; gap:3px 8px; align-items:center; }
+  #scene-utilities .clock-label { display:none; }
+  #scene-utilities .clock { font-size:26px; letter-spacing:-1px; }
+  #scene-utilities .mistakes { margin:0; font-size:11px; }
+  #scene-utilities #ghost-box { grid-column:1/-1; }
+  #scene-utilities .ghost-label { min-height:0; font-size:10px; line-height:1.2; }
+  #scene-utilities .progress { margin-top:3px; height:3px; }
+  #scene-quick-actions { display:grid; grid-template-columns:repeat(3,1fr); gap:5px; margin-top:5px; }
+  #scene-quick-actions .btn { font-size:11px; padding:3px; }
+  .finish { padding:12px; }
+  .finish h3 { font-size:22px; }
+  .finish ol { margin:8px 0; }
+  .finish li { margin:4px 0; line-height:1.3; }
+}
+</style>
+</head>
+<body data-mode="scenes">
+<header>
+  <div class="identity"><span class="aid-mark" aria-hidden="true">+</span>
+    <h1>First Aid Responder<small>Emergency steps and hands-only CPR</small></h1></div>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-scenes" aria-pressed="true" title="Scenes, key 1">Scenes</button>
+    <button id="m-cpr" aria-pressed="false" title="CPR rhythm, key 2">CPR rhythm</button>
+    <button id="m-guide" aria-pressed="false" title="Field guide, key 3">Field guide</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <section class="stage" id="stage" aria-label="Practice area"></section>
+  <aside class="panel">
+    <p class="panel-title" id="panel-title">Response practice</p>
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div id="picker-panel">
+      <img class="kit-hero" src="art:fa-kit" alt="Mint first aid bag, gauze and empty blue gloves">
+      <div class="callout small"><b>Check. Call. Care.</b>Make the next decision.<br>Accuracy comes before speed.</div>
+    </div>
+    <div id="scene-panel" hidden>
+      <div id="timed-display"><div class="clock-label">Your run · includes penalties</div>
+        <div class="clock" id="clock">0:00.0</div></div>
+      <p class="mistakes" id="mistakes">Mistakes: 0</p>
+      <div id="ghost-box"><div class="ghost-label" id="ghost-label">Ghost: finish a timed scene to set one.</div>
+        <div class="progress"><i id="ghost-progress"></i></div></div>
+    </div>
+    <button class="btn" id="timer" aria-pressed="true">Timer: On</button>
+    <button class="btn" id="restart" hidden>↺ Restart scene</button>
+    <button class="btn" id="all-scenes" hidden>◀ All scenes</button>
+    <div id="cpr-panel" hidden>
+      <div class="round-clock" id="round-clock">2:00</div>
+      <div class="coach" id="coach" aria-live="polite">Find your rhythm</div>
+      <button class="big-btn" id="start">▶ Start 2-minute round</button>
+      <button class="btn" id="stop" disabled>■ Stop</button>
+      <button class="btn" id="metronome" aria-pressed="false">Metronome: Off</button>
+      <button class="btn" id="coach-voice" aria-pressed="true">Coach voice: On</button>
+      <div class="summary" id="summary" hidden></div>
+    </div>
+    <button class="text-btn" id="clear">Clear best times</button>
+    <p class="privacy">Saved only on this device.</p>
+    <footer class="footer">Practice and awareness, not certification. Take a hands-on CPR and first aid class
+      (American Heart Association or American Red Cross) to learn it for real. In an emergency, call 911.</footer>
+  </aside>
+</main>
+<dialog id="clear-dialog" aria-labelledby="clear-title">
+  <h2 id="clear-title">Clear your best runs?</h2>
+  <p>This clears all scene times and your best CPR rate trace on this device.</p>
+  <div class="dialog-actions"><button class="btn" id="cancel-clear">Keep them</button>
+    <button class="btn" id="confirm-clear">Clear both</button></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const scenes = [
+  {
+    "name": "Collapse in the gym",
+    "brief": "During a game, an adult in the bleachers slumps over and slides to the floor. They don't move when people call their name.",
+    "art": "gym",
+    "short": "Someone collapses and doesn't respond.",
+    "steps": [
+      {
+        "rank": 1,
+        "title": "Make the scene safe",
+        "text": "Make sure the scene is safe",
+        "reason": "you can't help if you get hurt too"
+      },
+      {
+        "rank": 2,
+        "title": "Check response + breathing, at most 10 s",
+        "text": "Tap their shoulders and shout \"Are you okay?\"; look for normal breathing for no more than 10 seconds (gasping is not normal breathing)",
+        "reason": "you need to know if they are responsive and breathing"
+      },
+      {
+        "rank": 3,
+        "title": "Call 911 + get the AED",
+        "text": "Call 911 on speaker and send someone for the AED",
+        "reason": "the sooner help and the AED come, the better the chance"
+      },
+      {
+        "rank": 4,
+        "title": "Push hard + fast, 100 to 120/min",
+        "text": "Push hard and fast in the center of the chest, 100 to 120 a minute",
+        "reason": "compressions keep blood moving to the brain"
+      },
+      {
+        "rank": 5,
+        "title": "Turn on the AED",
+        "text": "When the AED arrives, turn it on and follow its voice prompts",
+        "reason": "the AED tells you exactly what to do"
+      },
+      {
+        "rank": 6,
+        "title": "Keep going until help takes over",
+        "text": "Keep going until help takes over or the person starts to move or breathe normally",
+        "reason": "stopping stops the blood flow"
+      }
+    ],
+    "dont": [
+      {
+        "title": "Wait a minute to see if they wake up before calling",
+        "text": "Wait a minute to see if they wake up before calling",
+        "reason": "Every minute counts. Call right away.",
+        "rank": 99
+      },
+      {
+        "title": "Stop every few compressions to check them",
+        "text": "Stop every few compressions to check them",
+        "reason": "Keep pauses short; let the AED do the checking",
+        "rank": 99
+      }
+    ]
+  },
+  {
+    "name": "Choking at lunch",
+    "brief": "Your friend suddenly grabs their throat. They can't talk, cough or breathe.",
+    "art": "cafeteria",
+    "short": "A friend can't breathe or talk.",
+    "steps": [
+      {
+        "rank": 1,
+        "title": "Ask if you can help",
+        "text": "Ask \"Are you choking? Can I help?\"",
+        "reason": "a person who can cough hard should keep coughing; one who can't needs help now"
+      },
+      {
+        "rank": 2,
+        "title": "Send someone to call 911",
+        "text": "Have someone call 911",
+        "reason": "help should be on the way in case this doesn't work"
+      },
+      {
+        "rank": 3,
+        "title": "5 back blows, then 5 abdominal thrusts",
+        "text": "Give 5 back blows between the shoulder blades, then 5 abdominal thrusts just above the belly button",
+        "reason": "these push the object out"
+      },
+      {
+        "rank": 4,
+        "title": "Repeat until breathing, coughing or talking",
+        "text": "Keep repeating until the object comes out or they can breathe, cough or talk",
+        "reason": "it may take several rounds"
+      },
+      {
+        "rank": 5,
+        "title": "If unresponsive: lower + CPR",
+        "text": "If they stop responding, lower them to the ground and start CPR",
+        "reason": "CPR can also help push the object out and keeps blood moving"
+      }
+    ],
+    "dont": [
+      {
+        "title": "Give them water to wash it down",
+        "text": "Give them water to wash it down",
+        "reason": "They can't swallow past a blocked airway.",
+        "rank": 99
+      },
+      {
+        "title": "Reach blindly into their mouth",
+        "text": "Reach blindly into their mouth",
+        "reason": "You can push the object deeper.",
+        "rank": 99
+      }
+    ]
+  },
+  {
+    "name": "Deep cut in the wood shop",
+    "brief": "A classmate cut their forearm on a tool. It's bleeding a lot, and the teacher is across the room.",
+    "art": "shop",
+    "short": "Heavy bleeding from a cut.",
+    "steps": [
+      {
+        "rank": 1,
+        "title": "Make the scene safe",
+        "text": "Make sure the scene is safe",
+        "reason": "tools off, nothing else can hurt anyone"
+      },
+      {
+        "rank": 2,
+        "title": "Put on gloves",
+        "text": "Put on gloves from the first aid kit",
+        "reason": "they protect you both"
+      },
+      {
+        "rank": 3,
+        "title": "Press firmly on the wound",
+        "text": "Press firmly on the wound with a clean cloth or gauze",
+        "reason": "heavy bleeding needs pressure now and help on the way (either order)"
+      },
+      {
+        "rank": 3,
+        "title": "Send someone to call 911",
+        "text": "send someone to call 911",
+        "reason": "heavy bleeding needs pressure now and help on the way (either order)"
+      },
+      {
+        "rank": 4,
+        "title": "Add cloth on top",
+        "text": "If blood soaks through, add more cloth on top and keep pressing",
+        "reason": "lifting the cloth lets bleeding start again"
+      },
+      {
+        "rank": 5,
+        "title": "Keep firm pressure",
+        "text": "Keep firm pressure until help takes over",
+        "reason": "steady pressure is what stops bleeding"
+      }
+    ],
+    "dont": [
+      {
+        "title": "Lift the cloth every few seconds to check",
+        "text": "Lift the cloth every few seconds to check",
+        "reason": "Each peek lets the bleeding start again.",
+        "rank": 99
+      },
+      {
+        "title": "Take off the soaked cloth and start over",
+        "text": "Take off the soaked cloth and start over",
+        "reason": "Add more on top instead.",
+        "rank": 99
+      }
+    ]
+  },
+  {
+    "name": "Burn in the teaching kitchen",
+    "brief": "A classmate grabs a hot pan handle. Their palm is red and a blister is starting.",
+    "art": "kitchen",
+    "short": "A hot pan burn.",
+    "steps": [
+      {
+        "rank": 1,
+        "title": "Make the scene safe",
+        "text": "Make sure the scene is safe",
+        "reason": "turn off the burner"
+      },
+      {
+        "rank": 2,
+        "title": "Cool running water, at least 10 min",
+        "text": "Cool the burn under cool running water for at least 10 minutes",
+        "reason": "cooling limits the damage; swelling can trap a ring (either order)"
+      },
+      {
+        "rank": 2,
+        "title": "Remove rings + tight items",
+        "text": "gently take off rings or anything tight near the burn",
+        "reason": "cooling limits the damage; swelling can trap a ring (either order)"
+      },
+      {
+        "rank": 3,
+        "title": "Cover loosely",
+        "text": "Cover it loosely with a clean, dry, nonstick dressing",
+        "reason": "it protects the burn"
+      },
+      {
+        "rank": 4,
+        "title": "Tell teacher + nurse",
+        "text": "Tell the teacher and school nurse; a burn on the hand should be checked by a health care provider",
+        "reason": "hands, face and large burns need care"
+      }
+    ],
+    "dont": [
+      {
+        "title": "Put ice on it",
+        "text": "Put ice on it",
+        "reason": "Ice can damage the skin more.",
+        "rank": 99
+      },
+      {
+        "title": "Pop the blister",
+        "text": "Pop the blister",
+        "reason": "A blister protects the skin underneath.",
+        "rank": 99
+      }
+    ]
+  },
+  {
+    "name": "Heat at practice",
+    "brief": "Hot August practice. A teammate is confused, stumbling, and their skin is very hot.",
+    "art": "field",
+    "short": "A teammate overheats.",
+    "steps": [
+      {
+        "rank": 1,
+        "title": "Recognize heat stroke",
+        "text": "Notice the danger signs: confusion and very hot skin can mean heat stroke, an emergency",
+        "reason": "knowing it's an emergency tells you to act fast"
+      },
+      {
+        "rank": 2,
+        "title": "Call 911",
+        "text": "Call 911",
+        "reason": "heat stroke can be deadly without fast care"
+      },
+      {
+        "rank": 3,
+        "title": "Move to a cooler place",
+        "text": "Move them to a cooler place, in the shade or inside",
+        "reason": "get them out of the heat"
+      },
+      {
+        "rank": 4,
+        "title": "Cool them fast",
+        "text": "Cool them fast with cool, wet cloths or a cool bath",
+        "reason": "lowering their temperature is the goal"
+      },
+      {
+        "rank": 5,
+        "title": "Stay with them",
+        "text": "Stay with them until help arrives",
+        "reason": "their condition can change quickly"
+      }
+    ],
+    "dont": [
+      {
+        "title": "Give them a drink while they're confused",
+        "text": "Give them a drink while they're confused",
+        "reason": "CDC says not to give a drink to someone with heat stroke.",
+        "rank": 99
+      },
+      {
+        "title": "Let them rest alone in the locker room",
+        "text": "Let them rest alone in the locker room",
+        "reason": "Never leave them alone.",
+        "rank": 99
+      }
+    ]
+  },
+  {
+    "name": "Seizure in the hallway",
+    "brief": "A student falls to the floor. Their body is stiff and jerking.",
+    "art": "hallway",
+    "short": "A student has a seizure.",
+    "steps": [
+      {
+        "rank": 1,
+        "title": "Stay calm + stay with them",
+        "text": "Stay calm and stay with them",
+        "reason": "they need someone there until it's over"
+      },
+      {
+        "rank": 2,
+        "title": "Ease down + clear the area",
+        "text": "Ease them to the floor and move hard or sharp things away",
+        "reason": "keep them from getting hurt and know how long it lasts (either order)"
+      },
+      {
+        "rank": 2,
+        "title": "Start timing",
+        "text": "start timing the seizure",
+        "reason": "keep them from getting hurt and know how long it lasts (either order)"
+      },
+      {
+        "rank": 3,
+        "title": "Protect head + turn on side",
+        "text": "Put something soft under their head and gently turn them onto one side",
+        "reason": "this protects the head and helps them breathe"
+      },
+      {
+        "rank": 4,
+        "title": "911 if longer than 5 minutes",
+        "text": "Call 911 if the seizure lasts longer than 5 minutes",
+        "reason": "a long seizure is an emergency"
+      },
+      {
+        "rank": 5,
+        "title": "Stay until fully awake",
+        "text": "Stay until they are fully awake, and talk to them calmly",
+        "reason": "they may be confused afterward"
+      }
+    ],
+    "dont": [
+      {
+        "title": "Hold them down",
+        "text": "Hold them down",
+        "reason": "It can hurt them or you.",
+        "rank": 99
+      },
+      {
+        "title": "Put something in their mouth",
+        "text": "Put something in their mouth",
+        "reason": "It can hurt their teeth or jaw; people can't swallow their tongue.",
+        "rank": 99
+      }
+    ]
+  }
+];
+  const backgrounds = {
+    gym:'art:fa-gym', cafeteria:'art:fa-cafeteria', shop:'art:fa-shop',
+    kitchen:'art:fa-kitchen', field:'art:fa-field', hallway:'art:fa-hallway'
+  };
+  const equipment = {aed:'art:fa-aed', kit:'art:fa-kit'};
+  const manikinArt = 'art:fa-manikin';
+  const L = {
+    wScenes:'Tap a scene card to open it.',
+    order:'Tap the step you would do first. Then keep tapping steps in order.',
+    wCpr:'Press Space or tap the chest to the beat. Keep the needle in the shaded band.',
+    round:'Tap Start 2-minute round when you are ready.',
+    wGuide:'Tap a card to read it, or tap Practice it to try it.',
+    best:'New best time.', done:'Scene complete. Check why this order works.',
+    coachFast:'Push faster.', coachSlow:'A little slower.', coachPause:"Keep going. Don't stop.",
+    roundEnd:'Round over. Check your rate summary.',
+    clearHow:'Choose Keep them to return, or Clear both to erase the saved records.'
+  };
+  scenes.forEach((s,i) => {
+    L['brief'+i] = s.brief;
+    [...s.steps,...s.dont].forEach((card,j) => { L['cardRead'+i+'_'+j] = card.text+'. Press Enter to place this card.'; });
+  });
+  for (let percent=0; percent<=100; percent++) {
+    L['roundEnd'+percent] = 'Round over. '+percent+' percent of your compressions were on target.';
+  }
+  const state = {
+    mode:'scenes', scene:null, timer:true, started:null, finished:false, placed:[], never:[],
+    mistakes:0, stamps:[], eligible:true, elapsed:0, lastFeedback:'', guide:0,
+    cpr:{running:false, start:0, taps:[], rates:[], intervals:[], rate:0, total:0, band:0, longest:0,
+      last:null, pauses:0, metro:false, coachVoice:true, summary:null, trace:[], lastCoach:0, lastVoice:-Infinity}
+  };
+  let best = {scenes:{}, cpr:null};
+  try {
+    const saved = JSON.parse(localStorage.getItem('far-best'));
+    if (saved && typeof saved === 'object') {
+      for (let i=0; i<6; i++) {
+        const b = saved.scenes?.[i];
+        if (b && Number.isFinite(b.time) && b.time >= 0 && Array.isArray(b.stamps) && b.stamps.length === scenes[i].steps.length
+            && b.stamps.every(x => Number.isFinite(x) && x >= 0)) best.scenes[i] = b;
+      }
+      const c = saved.cpr;
+      if (c && Number.isFinite(c.percent) && c.percent >= 0 && c.percent <= 100 && Array.isArray(c.trace)) {
+        best.cpr = {percent:c.percent,trace:c.trace.filter(p => Array.isArray(p) && p.length===2 && p.every(Number.isFinite))};
+      }
+    }
+  } catch {}
+  function saveBest() {
+    try { localStorage.setItem('far-best', JSON.stringify(best)); }
+    catch {}
+  }
+  const escape = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const timeText = ms => {
+    const tenths = Math.round(Math.max(0,ms)/100);
+    return Math.floor(tenths/600)+':'+((tenths%600)/10).toFixed(1).padStart(4,'0');
+  };
+  const shortTime = ms => {
+    const seconds = Math.floor(ms/1000);
+    return Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');
+  };
+  const hint = text => { $('hint').textContent = text; };
+  let dragState = null;
+  let suppressDragClick = null;
+  function cancelDrag() {
+    if (!dragState) return;
+    dragState.clone?.remove();
+    dragState.source.classList.remove('drag-source');
+    try { dragState.source.releasePointerCapture(dragState.pointer); } catch {}
+    dragState = null;
+  }
+  addEventListener('pointermove', e => {
+    const drag = dragState;
+    if (!drag || e.pointerId!==drag.pointer) return;
+    if (!drag.clone && Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>6) {
+      const rect = drag.source.getBoundingClientRect();
+      drag.clone = drag.source.cloneNode(true);
+      drag.clone.removeAttribute('id');
+      drag.clone.removeAttribute('data-card');
+      drag.clone.classList.add('drag-preview');
+      drag.clone.setAttribute('aria-hidden','true');
+      drag.clone.disabled = true;
+      drag.clone.style.width = rect.width+'px';
+      drag.clone.style.height = rect.height+'px';
+      document.body.append(drag.clone);
+      drag.source.classList.add('drag-source');
+    }
+    if (drag.clone) {
+      e.preventDefault();
+      drag.clone.style.left = (e.clientX-drag.offsetX)+'px';
+      drag.clone.style.top = (e.clientY-drag.offsetY)+'px';
+    }
+  },{passive:false});
+  addEventListener('pointerup', e => {
+    const drag = dragState;
+    if (!drag || e.pointerId!==drag.pointer) return;
+    const moved = !!drag.clone;
+    const rail = $('rail')?.getBoundingClientRect();
+    const dropped = moved && rail && e.clientX>=rail.left && e.clientX<=rail.right
+      && e.clientY>=rail.top && e.clientY<=rail.bottom;
+    cancelDrag();
+    if (moved) {
+      suppressDragClick = drag.source;
+      setTimeout(() => { suppressDragClick = null; },0);
+      if (dropped) choose(drag.id);
+    }
+  });
+  addEventListener('pointercancel', cancelDrag);
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode, hint:false,
+    welcome:() => $('clear-dialog').open ? null : state.mode === 'scenes' ? (state.scene === null ? 'wScenes' : null)
+      : state.mode === 'cpr' ? (state.cpr.summary ? null : 'wCpr') : 'wGuide',
+    speaks:'.scene-card,.step-card,#start,#clear',
+    read:() => $('clear-dialog').open ? $('clear-dialog').textContent
+      : state.mode === 'guide' ? guideCards[state.guide].title+'. '+guideCards[state.guide].text
+      : state.mode === 'scenes' && state.scene !== null
+        ? state.finished ? $('finish').textContent : state.readCard || state.lastFeedback || scenes[state.scene].brief+' '+$('hint').textContent
+        : state.mode==='cpr' && state.cpr.summary ? $('summary').textContent+' '+$('hint').textContent : $('hint').textContent
+  });
+  function placeHint() {
+    const parent = innerWidth<600 ? document.querySelector('header') : document.querySelector('.panel');
+    if ($('hint').parentElement===parent) return;
+    if (innerWidth<600) parent.append($('hint'));
+    else parent.insertBefore($('hint'),$('picker-panel'));
+  }
+  function restoreSceneControls() {
+    const panel = document.querySelector('.panel');
+    for (const id of ['scene-panel','timer','restart','all-scenes']) panel.insertBefore($(id),$('cpr-panel'));
+    $('scene-utilities')?.remove();
+  }
+  function placeSceneControls() {
+    if (innerWidth>=600 || state.mode!=='scenes' || state.scene===null || !$('scene-play')) {
+      restoreSceneControls();
+      return;
+    }
+    if ($('scene-utilities')) return;
+    const utilities = document.createElement('div');
+    utilities.id = 'scene-utilities';
+    const actions = document.createElement('div');
+    actions.id = 'scene-quick-actions';
+    $('scene-play').insertBefore(utilities,document.querySelector('.rail-heading'));
+    utilities.append($('scene-panel'),actions);
+    for (const id of ['timer','restart','all-scenes']) actions.append($(id));
+  }
+  function setMode(mode) {
+    placeHint();
+    const alreadyOpen = mode===state.mode && $('stage').childElementCount>0;
+    if (alreadyOpen && (mode!=='scenes' || state.scene===null)) return;
+    restoreSceneControls();
+    document.querySelectorAll('.card-flight').forEach(el => el.remove());
+    if (innerWidth<600) window.scrollTo(0,0);
+    cancelDrag();
+    V.hush();
+    if (state.cpr.running) {
+      endRound(false);
+      V.hush();
+    }
+    stopMetro();
+    state.mode = mode;
+    state.scene = null;
+    state.started = null;
+    document.body.dataset.mode = mode;
+    for (const k of ['scenes','cpr','guide']) $('m-'+k).setAttribute('aria-pressed', k === mode);
+    $('picker-panel').hidden = mode !== 'scenes';
+    $('scene-panel').hidden = true;
+    $('cpr-panel').hidden = mode !== 'cpr';
+    $('timer').hidden = mode !== 'scenes';
+    $('restart').hidden = true;
+    $('all-scenes').hidden = true;
+    $('clear').hidden = mode === 'guide';
+    $('stage').style.backgroundImage = '';
+    $('stage').scrollTop = 0;
+    $('panel-title').textContent = mode === 'scenes' ? 'Response practice' : mode === 'cpr' ? 'Rate training' : 'Field reference';
+    if (mode === 'scenes') renderPicker();
+    if (mode === 'cpr') renderCpr();
+    if (mode === 'guide') renderGuide();
+    hint(L[mode === 'scenes' ? 'wScenes' : mode === 'cpr' ? 'wCpr' : 'wGuide']);
+    V.welcome();
+    if (mode === 'cpr' && state.cpr.metro) startMetro();
+  }
+  function renderPicker() {
+    $('stage').innerHTML = `<div class="topline"><div><div class="eyebrow">School response lab</div>
+      <h2>Be ready for the next step.</h2><p>Six situations. Your decisions. Your own ghost.</p></div>
+      <span class="live">Practice station ready</span></div><div class="picker">${scenes.map((s,i) =>
+      `<button class="scene-card" id="scene-${i}" data-scene="${i}"><img src="${backgrounds[s.art]}" alt="">
+      <span class="arrow" aria-hidden="true">↗</span><span class="scene-copy"><span class="scene-num">SCENE 0${i+1}</span>
+      <b>${s.name}</b><span class="desc">${s.short}</span><span class="best">${best.scenes[i] ? 'Best '+shortTime(best.scenes[i].time) : 'Not run yet'}</span>
+      </span></button>`).join('')}</div>`;
+    document.querySelectorAll('[data-scene]').forEach(b => { b.onclick = () => openScene(+b.dataset.scene, true); });
+  }
+  function openScene(index, focus=false) {
+    cancelDrag();
+    document.querySelectorAll('.card-flight').forEach(el => el.remove());
+    restoreSceneControls();
+    if (innerWidth<600) window.scrollTo(0,0);
+    V.hush();
+    state.scene = index;
+    state.placed = [];
+    state.never = [];
+    state.stamps = [];
+    state.mistakes = 0;
+    state.started = null;
+    state.finished = false;
+    state.elapsed = 0;
+    state.eligible = state.timer;
+    state.lastFeedback = '';
+    state.readCard = null;
+    const s = scenes[index];
+    state.ghost = best.scenes[index] ? structuredClone(best.scenes[index]) : null;
+    const cards = [...s.steps.map((c,i) => ({...c,id:'s'+i})),...s.dont.map((c,i) => ({...c,id:'d'+i}))];
+    for (let i=cards.length-1; i>0; i--) {
+      const j = Math.floor(Math.random()*(i+1));
+      [cards[i],cards[j]] = [cards[j],cards[i]];
+    }
+    state.deck = cards;
+    $('picker-panel').hidden = true;
+    $('scene-panel').hidden = false;
+    $('restart').hidden = false;
+    $('all-scenes').hidden = false;
+    $('stage').innerHTML = `<img class="scene-bg" src="${backgrounds[s.art]}" alt=""><div id="scene-play">
+      <div class="scene-top"><span class="eyebrow">Scene 0${index+1}</span><h2>${s.name}</h2></div>
+      <div class="briefing" id="briefing"><div class="brief-line"><p>${escape(s.brief)}</p>
+      <button class="btn" id="more" aria-expanded="false">More</button></div></div>
+      <div class="rail-heading"><span>Your response sequence</span><span id="step-count">0 / ${s.steps.length}</span></div>
+      <div class="rail" id="rail" style="--slots:${s.steps.length}">${s.steps.map((c,i) => {
+        const shared = s.steps.filter(x => x.rank === c.rank).length > 1;
+        const first = i === 0 || s.steps[i-1].rank !== c.rank;
+        return `<div class="slot ${shared?'shared':''}" id="slot-${i}"><span class="num">${i+1}</span><span class="land"></span>
+          ${shared && first?'<span class="either">↔ either order</span>':''}</div>`;
+      }).join('')}</div><div class="deck-heading"><span>Choose your next move</span><span>Tap or drag to the rail</span></div>
+      <div class="deck" id="deck">${cards.map(c => {
+        const art = index===0 && c.id==='s4' ? 'aed' : index===2 && c.id==='s1' ? 'kit' : null;
+        return `<button class="step-card ${art?'has-art':''}" draggable="true" id="card-${c.id}" data-card="${c.id}"
+          title="${escape(c.text)}"><b>${escape(c.title)}</b><small>${escape(c.text)}</small>
+          ${art?`<img src="${equipment[art]}" alt="">`:''}</button>`;
+      }).join('')}</div><div class="feedback" id="feedback" aria-live="polite">Reading time is free. The clock starts with your first card.</div>
+      <div class="never" id="never" aria-label="Never tray"></div></div>`;
+    $('more').onclick = () => {
+      const expanded = $('briefing').classList.toggle('expanded');
+      $('more').textContent = expanded ? 'Less' : 'More';
+      $('more').setAttribute('aria-expanded', expanded);
+    };
+    document.querySelectorAll('[data-card]').forEach(b => {
+      b.onclick = () => {
+        if (suppressDragClick===b) { suppressDragClick = null; return; }
+        choose(b.dataset.card);
+      };
+      b.onfocus = () => {
+        const card = cards.find(c => c.id===b.dataset.card);
+        state.readCard = card.text+'. Press Enter to place this card.';
+        hint('Enter places this card. Read gives its full text.');
+      };
+      b.ondragstart = e => e.preventDefault();
+      b.onpointerdown = e => {
+        if (e.button!==0 || b.classList.contains('used')) return;
+        const rect = b.getBoundingClientRect();
+        dragState = {source:b,id:b.dataset.card,pointer:e.pointerId,x:e.clientX,y:e.clientY,
+          offsetX:e.clientX-rect.left,offsetY:e.clientY-rect.top,clone:null};
+        try { b.setPointerCapture(e.pointerId); } catch {}
+      };
+    });
+    $('rail').ondragover = e => { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; };
+    $('rail').ondrop = e => { e.preventDefault(); choose(e.dataTransfer.getData('text/plain')); };
+    placeSceneControls();
+    updateScenePanel();
+    hint(L.order);
+    const current = index;
+    V.say('brief'+index, {valid:() => state.scene===current && state.started===null});
+    V.how('order', {valid:() => state.scene===current && state.started===null, needs:'.step-card:not(.used)'});
+    if (focus) $('more').focus({preventScroll:true});
+  }
+  function choose(id) {
+    if (state.mode !== 'scenes' || state.scene === null || state.finished) return;
+    const card = state.deck.find(c => c.id===id);
+    if (!card || state.placed.includes(id) || state.never.includes(id)) return;
+    state.readCard = null;
+    if (state.started === null) {
+      state.started = performance.now();
+      V.hush();
+    }
+    const scene = scenes[state.scene];
+    const remaining = scene.steps.map((c,i) => ({...c,id:'s'+i})).filter(c => !state.placed.includes(c.id));
+    const rank = Math.min(...remaining.map(c => c.rank));
+    const button = $('card-'+id);
+    const wasFocused = document.activeElement === button;
+    if (card.rank !== rank) {
+      state.mistakes++;
+      Curio.tone(175,.12,.08,'triangle');
+      button.classList.remove('shake');
+      void button.offsetWidth;
+      button.classList.add('shake');
+      if (card.rank === 99) {
+        state.never.push(id);
+        retire(button);
+        const n = document.createElement('span');
+        n.textContent = '✗ Never: '+card.title+'. '+card.reason+' (+5 s)';
+        $('never').append(n);
+        state.lastFeedback = '✗ '+card.reason+' +5 s.';
+      } else {
+        state.lastFeedback = 'Not yet: '+remaining.find(c => c.rank===rank).reason+'. +5 s.';
+      }
+      $('feedback').className = 'feedback bad';
+    } else {
+      const slot = $('slot-'+state.placed.length);
+      state.placed.push(id);
+      state.stamps.push(performance.now()-state.started+state.mistakes*5000);
+      slot.querySelector('.land').textContent = card.title;
+      slot.querySelector('.land').title = card.text;
+      slot.title = card.text;
+      slot.querySelector('.num').textContent = '✓ '+state.placed.length;
+      slot.classList.add('filled','landed');
+      flyToSlot(button,slot,card.title);
+      retire(button);
+      Curio.tone(440+state.placed.length*60,.09,.06,'sine');
+      state.lastFeedback = '✓ '+card.reason+'.';
+      $('feedback').className = 'feedback';
+      $('step-count').textContent = state.placed.length+' / '+scene.steps.length;
+    }
+    $('feedback').textContent = state.lastFeedback;
+    hint(state.placed.length===scene.steps.length ? 'Check Why this order, or tap Next scene.' : 'Tap the next step. Read can explain your last move.');
+    updateScenePanel();
+    if (state.placed.length === scene.steps.length) finishScene(wasFocused);
+    else if (wasFocused && button.classList.contains('used')) {
+      document.querySelector('.step-card:not(.used)')?.focus({preventScroll:true});
+    }
+  }
+  function retire(button) {
+    button.classList.add('used');
+    button.tabIndex = -1;
+    button.setAttribute('aria-hidden','true');
+  }
+  function flyToSlot(button,slot,title) {
+    if (Curio.reduce) return;
+    const from = button.getBoundingClientRect();
+    const to = slot.getBoundingClientRect();
+    const flight = document.createElement('div');
+    flight.className = 'card-flight';
+    flight.setAttribute('aria-hidden','true');
+    flight.textContent = title;
+    Object.assign(flight.style, {left:from.left+'px',top:from.top+'px',width:from.width+'px',height:from.height+'px'});
+    document.body.append(flight);
+    const animation = flight.animate([
+      {transform:'translate(0,0) scale(1)',opacity:1},
+      {transform:`translate(${to.left-from.left}px,${to.top-from.top}px) scale(${to.width/from.width},${to.height/from.height})`,opacity:.2}
+    ],{duration:260,easing:'cubic-bezier(.2,.7,.2,1)'});
+    animation.finished.then(() => flight.remove(),() => flight.remove());
+  }
+  function finishScene(focus) {
+    state.elapsed = performance.now()-state.started+state.mistakes*5000;
+    state.finished = true;
+    const previous = state.ghost;
+    const isBest = state.eligible && state.timer && (!previous || state.elapsed<previous.time);
+    if (isBest) {
+      best.scenes[state.scene] = {time:state.elapsed,stamps:state.stamps.slice()};
+      saveBest();
+    }
+    const result = !state.eligible ? 'Untimed run. Nothing recorded.' : isBest
+      ? previous ? ((previous.time-state.elapsed)/1000).toFixed(1)+' s faster than your best' : 'Your first best run is set.'
+      : 'Best: '+timeText(previous.time);
+    $('briefing').remove();
+    $('deck').hidden = true;
+    document.querySelector('.deck-heading').hidden = true;
+    const finish = document.createElement('div');
+    finish.className = 'finish';
+    finish.id = 'finish';
+    finish.innerHTML = `<h3>Response complete.</h3><div class="small">${state.timer?timeText(state.elapsed)+' · ':''}
+      ${state.mistakes} ${state.mistakes===1?'mistake':'mistakes'} · ${result}</div><b class="small">Why this order</b>
+      <ol>${state.placed.map(id => {
+        const c = state.deck.find(x => x.id===id);
+        return `<li><b>${escape(c.title)}:</b> ${escape(c.reason)}.</li>`;
+      }).join('')}</ol><div class="finish-actions"><button class="btn" id="again">Run it again</button>
+      <button class="btn" id="next">Next scene ▶</button></div>`;
+    $('scene-play').insertBefore(finish, $('feedback'));
+    $('again').onclick = () => openScene(state.scene,true);
+    $('next').onclick = () => openScene((state.scene+1)%6,true);
+    Curio.yes();
+    V.say(isBest ? ['best','done'] : 'done', {valid:() => state.finished && state.scene!==null});
+    if (focus) $('again').focus({preventScroll:true});
+  }
+  function updateScenePanel() {
+    $('timer').textContent = 'Timer: '+(state.timer?'On':'Off');
+    $('timer').setAttribute('aria-pressed', state.timer);
+    $('timed-display').hidden = !state.timer;
+    $('ghost-box').hidden = !state.timer;
+    $('mistakes').textContent = 'Mistakes: '+state.mistakes+' (+5 s each)';
+    const elapsed = state.finished ? state.elapsed : state.started===null ? 0 : performance.now()-state.started+state.mistakes*5000;
+    $('clock').textContent = timeText(elapsed);
+    if (state.scene === null || !$('rail')) return;
+    const ghost = state.ghost;
+    const step = ghost ? ghost.stamps.filter(t => t<=elapsed).length : 0;
+    $('ghost-label').textContent = ghost ? step>0 ? 'Ghost: step '+step+' at '+timeText(ghost.stamps[step-1])
+      : 'Ghost: first step at '+timeText(ghost.stamps[0]) : 'Ghost: finish a timed scene to set one.';
+    $('ghost-progress').style.width = ghost ? (step/ghost.stamps.length*100)+'%' : '0';
+    document.querySelectorAll('.ghost-marker').forEach(el => el.remove());
+    if (ghost && state.timer && step>0) {
+      const dot = document.createElement('span');
+      dot.className = 'ghost-marker';
+      dot.setAttribute('aria-label','Ghost step '+step);
+      $('slot-'+(step-1))?.append(dot);
+    }
+  }
+  const guideCards = [
+    {title:'Check, Call, Care', art:'kit', scene:0,
+      text:'Check that the scene is safe, then check the person. Call 911 (or send someone) when it is serious. '
+        +'Care for the person until help takes over.'},
+    {title:'When to call 911', scene:4,
+      text:"Someone isn't responding or isn't breathing normally, can't breathe, has heavy bleeding that won't stop, "
+        +"has signs of heat stroke, has a seizure longer than 5 minutes, or you're not sure. "
+        +'Put the phone on speaker so your hands are free.'},
+    {title:'Hands-only CPR', cpr:true,
+      text:'For a teen or adult who suddenly collapses: call 911, then push hard and fast in the center of the chest, '
+        +"100 to 120 a minute, at least 2 inches deep, letting the chest come all the way up. Don't stop until help takes over. "
+        +'For infants and young children, a class teaches CPR with breaths.'},
+    {title:'AEDs', art:'aed', scene:0,
+      text:"An AED is a portable device that can check the heart's rhythm and give a shock if needed. "
+        +"Turn it on and follow its voice prompts; it won't shock someone who doesn't need it. "
+        +'Many schools and gyms have one: find yours.'},
+    {title:'Good to know', cpr:true,
+      text:'A class with a manikin teaches depth, hand position and how it feels. '
+        +'The American Heart Association and the American Red Cross offer them, and many schools teach hands-only CPR.'}
+  ];
+  guideCards.forEach((card,i) => { L['guideRead'+i] = card.title+'. '+card.text; });
+  function renderGuide() {
+    $('stage').innerHTML = `<div class="topline"><div><div class="eyebrow">Keep the essentials close</div>
+      <h2>Field guide</h2><p>No clock. Take the time to understand.</p></div></div>
+      <div class="guide-layout"><div class="guide-list">${guideCards.map((c,i) =>
+        `<button class="guide-tab" id="guide-${i}" aria-pressed="${state.guide===i}" data-guide="${i}">${c.title}</button>`).join('')}</div>
+      <article class="guide-detail" id="guide-detail"></article></div>`;
+    document.querySelectorAll('[data-guide]').forEach(b => {
+      b.onclick = () => { state.guide = +b.dataset.guide; updateGuide(); Curio.tone(470,.06,.04); };
+    });
+    updateGuide();
+  }
+  function updateGuide() {
+    const c = guideCards[state.guide];
+    document.querySelectorAll('[data-guide]').forEach(b => b.setAttribute('aria-pressed',+b.dataset.guide===state.guide));
+    const artLabel = c.art==='kit' ? 'First aid bag, gauze and gloves' : 'Yellow AED with electrode pads';
+    $('guide-detail').innerHTML = `<h3>${c.title}</h3>
+      ${c.art?`<img class="guide-art" src="${equipment[c.art]}" alt="${artLabel}">`:''}
+      <p>${c.text}</p><button class="btn" id="practice">Practice it ↗</button>`;
+    $('practice').onclick = () => {
+      if (c.cpr) { setMode('cpr'); $('chest').focus({preventScroll:true}); }
+      else { setMode('scenes'); openScene(c.scene,true); }
+    };
+    hint('Tap Read to hear this card, or tap Practice it.');
+  }
+  function gaugeSvg() {
+    const ticks = [];
+    for (let n=60; n<=160; n+=10) {
+      const a = (n-60)/100*Math.PI-Math.PI;
+      const x = 160+134*Math.cos(a);
+      const y = 160+134*Math.sin(a);
+      const x2 = 160+121*Math.cos(a);
+      const y2 = 160+121*Math.sin(a);
+      const tx = 160+106*Math.cos(a);
+      const ty = 160+106*Math.sin(a)+4;
+      ticks.push(`<path d="M${x},${y} L${x2},${y2}" stroke="#b6cbd3" stroke-width="2"/>
+        ${n%20===0?`<text x="${tx}" y="${ty}" fill="#c8d5df" text-anchor="middle" font-size="12">${n}</text>`:''}`);
+    }
+    return `<svg viewBox="0 0 320 190" aria-label="Rate gauge, 60 to 160 compressions per minute" role="img">
+      <defs><radialGradient id="dial"><stop stop-color="#233944"/><stop offset="1" stop-color="#101d29"/></radialGradient></defs>
+      <path d="M17 160 A143 143 0 0 1 303 160 L160 160Z" fill="url(#dial)" stroke="#4c6570"/>
+      <path d="M116.74 26.85 A140 140 0 0 1 203.26 26.85" fill="none" stroke="#3ee0b0" stroke-opacity=".35" stroke-width="27"/>
+      ${ticks.join('')}<text x="160" y="182" fill="#3ee0b0" text-anchor="middle" font-size="12" font-weight="700">Target 100 to 120</text>
+      <g id="needle" style="transform:rotate(-90deg);opacity:0"><path d="M157 162 L160 42 L163 162Z" fill="#e8edf3"/>
+      <circle cx="160" cy="160" r="8" fill="#b4cad0" stroke="#eff9ff" stroke-width="2"/></g></svg>`;
+  }
+  function manikinSvg() {
+    return `<svg viewBox="0 0 300 310" role="img" aria-label="Plastic CPR training manikin, target on the lower half of the breastbone">
+      <g class="manikin"><image href="${manikinArt}" x="18" y="8" width="264" height="292"/>
+      <circle cx="150" cy="173" r="30" fill="#12382a30" stroke="#1b5b49" stroke-width="2" stroke-dasharray="4 4"/>
+      <circle id="target-glow" cx="150" cy="173" r="21" fill="#3ee0b038" stroke="#0c4938" stroke-width="2"/>
+      <path d="M139 173 H161 M150 162 V184" stroke="#0b3d2e" stroke-width="3"/>
+      </g></svg>`;
+  }
+  function renderCpr() {
+    const c = state.cpr;
+    if (!c.running && !c.summary) resetPractice();
+    $('stage').innerHTML = `<div class="cpr-work"><div class="topline"><div><div class="eyebrow">Hands-only CPR · rate practice</div>
+      <h2>Find a rhythm. Keep it.</h2></div><span class="live">Space · Enter · tap</span></div>
+      <div class="instruments"><div class="pad-bay"><button id="chest" aria-label="Chest pad: press once for one compression">
+        ${manikinSvg()}</button><div class="pad-label">CENTER OF CHEST · PRESS SPACE</div></div>
+      <div class="dial-bay">${gaugeSvg()}<div class="rate" id="rate">--<small>RATE / MIN · 5-INTERVAL MEDIAN</small></div>
+      <p class="rate-note">This practices rate only. Real compressions also need depth (at least 2 inches for an adult)
+        and letting the chest come all the way back up. A class uses a manikin for that.</p></div></div>
+      <div class="trace-bay"><div class="trace-head"><span>RATE TRACE · <span id="trace-time">0:00 / 2:00</span></span>
+        <span id="compressions">0 compressions</span></div><canvas id="trace" aria-label="Two-minute compression rate trace"></canvas></div></div>`;
+    $('chest').onpointerdown = e => {
+      if (e.button !== 0 && e.pointerType==='mouse') return;
+      e.preventDefault();
+      $('chest').focus({preventScroll:true});
+      compress();
+    };
+    $('chest').onclick = e => { if (e.detail===0) compress(); };
+    updateCprButtons();
+    updateRate();
+  }
+  function resetPractice(keepSummary=false) {
+    const summary = keepSummary ? state.cpr.summary : null;
+    Object.assign(state.cpr, {taps:[],rates:[],intervals:[],rate:0,total:0,band:0,longest:0,
+      last:null,pauses:0,trace:[],summary,practiceAfterSummary:keepSummary});
+    $('summary').hidden = !summary;
+    $('coach').textContent = 'Find your rhythm';
+  }
+  function median(values) {
+    const sorted = values.slice().sort((a,b) => a-b);
+    const middle = Math.floor(sorted.length/2);
+    return sorted.length%2 ? sorted[middle] : (sorted[middle-1]+sorted[middle])/2;
+  }
+  function compress(at=performance.now()) {
+    if (state.mode !== 'cpr') return;
+    const c = state.cpr;
+    if (c.summary && !c.practiceAfterSummary) {
+      resetPractice(true);
+      hint('Press Space to practice, or tap Start for another round.');
+    }
+    if (c.running && at-c.start>=120000) { endRound(true,c.start+120000); return; }
+    if (c.last !== null && at-c.last < 100) return;
+    if (c.total===0 && !c.running) { c.start = at; if (!c.summary) V.hush(); }
+    if (c.last !== null) {
+      const interval = at-c.last;
+      c.intervals.push(interval);
+      if (interval>2000) c.pauses++;
+      c.longest = Math.max(c.longest, interval/1000);
+      c.rate = 60000/median(c.intervals.slice(-5));
+      c.rates.push(c.rate);
+    } else if (c.running) {
+      c.longest = Math.max(c.longest,(at-c.start)/1000);
+      if (at-c.start>2000) c.pauses++;
+    }
+    c.last = at;
+    c.taps.push(at);
+    c.total++;
+    if (c.rate>=100 && c.rate<=120) {
+      c.band++;
+      V.dropQueued(it => it.key.startsWith('coach'));
+      if ([L.coachFast,L.coachSlow,L.coachPause].includes(V.playing)) V.hush();
+    }
+    c.trace.push([(at-c.start)/1000,c.rate]);
+    const chest = $('chest');
+    chest.classList.remove('pressed');
+    void chest.offsetWidth;
+    chest.classList.add('pressed');
+    setTimeout(() => chest?.classList.remove('pressed'), 200);
+    Curio.tone(c.rate>=100 && c.rate<=120 ? 450 : 280,.035,.025,'sine');
+    updateRate();
+    if (c.total>=10 && !c.running && !V.heard('round')) {
+      hint(L.round);
+      V.how('round',{valid:() => !state.cpr.running && state.mode==='cpr',needs:'#start'});
+    }
+  }
+  function startRound() {
+    V.hush();
+    resetPractice();
+    const c = state.cpr;
+    c.running = true;
+    c.start = performance.now();
+    c.lastCoach = 0;
+    c.lastVoice = -Infinity;
+    updateCprButtons();
+    if (document.activeElement===$('start')) $('chest').focus({preventScroll:true});
+    hint('Press Space or tap the chest. Stop ends the round immediately.');
+    Curio.tone(550,.08,.04);
+  }
+  function endRound(complete, at=performance.now()) {
+    const c = state.cpr;
+    if (!c.running) return;
+    const duration = Math.min(120,Math.max(.001,(at-c.start)/1000));
+    c.longest = Math.max(c.longest, (at-(c.last??c.start))/1000);
+    if (at-(c.last??c.start)>2000) c.pauses++;
+    const percent = c.total ? 100*c.band/c.total : 0;
+    c.running = false;
+    c.practiceAfterSummary = false;
+    if ([L.coachFast,L.coachSlow,L.coachPause].includes(V.playing)) V.hush();
+    $('coach').textContent = complete ? 'Round complete' : 'Round stopped';
+    c.summary = {complete,duration,average:c.total/duration*60,percent,total:c.total,longest:c.longest};
+    const newBest = complete && c.total>0 && (!best.cpr || percent>best.cpr.percent);
+    if (newBest) {
+      best.cpr = {percent, trace:c.trace.slice()};
+      saveBest();
+    }
+    $('summary').hidden = false;
+    $('summary').innerHTML = `<b>${complete?'Two-minute round':'Partial round'}</b><dl>
+      <dt>Average rate</dt><dd>${c.summary.average.toFixed(1)}/min</dd>
+      <dt>In target band</dt><dd>${percent.toFixed(1)}%</dd><dt>Longest pause</dt><dd>${c.longest.toFixed(1)} s</dd>
+      <dt>Compressions</dt><dd>${c.total}</dd></dl><span>${newBest?'New best. ':''}
+      <span id="summary-ghost">${best.cpr?'Ghost best: '+best.cpr.percent.toFixed(1)+'%.':'Finish two minutes to set a ghost.'}</span></span>`;
+    if (innerWidth<600) {
+      requestAnimationFrame(() => {
+        if (state.mode==='cpr' && state.cpr.summary) $('summary').scrollIntoView({block:'nearest',behavior:'instant'});
+      });
+    }
+    hint('Review your rate summary. Tap Start 2-minute round to try again.');
+    updateCprButtons();
+    if (document.activeElement===$('stop')) $('start').focus({preventScroll:true});
+    V.dropQueued();
+    V.say('roundEnd'+Math.round(percent),{valid:() => !state.cpr.running && !!state.cpr.summary});
+    Curio.yes();
+    drawTrace();
+  }
+  function updateCprButtons() {
+    const c = state.cpr;
+    $('start').disabled = c.running;
+    $('stop').disabled = !c.running;
+    $('metronome').textContent = 'Metronome: '+(c.metro?'On':'Off');
+    $('metronome').setAttribute('aria-pressed',c.metro);
+    $('coach-voice').textContent = 'Coach voice: '+(c.coachVoice?'On':'Off');
+    $('coach-voice').setAttribute('aria-pressed',c.coachVoice);
+  }
+  function updateRate() {
+    const c = state.cpr;
+    const rotation = (Math.min(160,Math.max(60,c.rate))-60)/100*180-90;
+    if ($('needle')) {
+      $('needle').style.transform = 'rotate('+rotation+'deg)';
+      $('needle').style.opacity = c.rate ? '1' : '0';
+    }
+    if ($('rate')) $('rate').innerHTML = (c.rate?c.rate.toFixed(1):'--')+'<small>RATE / MIN · 5-INTERVAL MEDIAN</small>';
+    if ($('compressions')) $('compressions').textContent = c.total+' '+(c.total===1?'compression':'compressions');
+    drawTrace();
+  }
+  function coachKey(now) {
+    const c = state.cpr;
+    const gap = (now-(c.last??c.start))/1000;
+    return gap>2 && (c.running || c.total>0) ? 'coachPause'
+      : c.rate===0 ? null : c.rate>=100 && c.rate<=120 ? 'good' : c.rate<100 ? 'coachFast' : 'coachSlow';
+  }
+  function coach(now) {
+    const c = state.cpr;
+    if (now-c.lastCoach<3000) return;
+    c.lastCoach = now;
+    const key = coachKey(now);
+    $('coach').textContent = !key ? 'Find your rhythm' : key==='good' ? '✓ Good rate' : L[key];
+    if (key && key!=='good' && c.coachVoice && now-c.lastVoice>=8000) {
+      c.lastVoice = now;
+      V.say(key,{maxAge:3000,valid:() => state.mode==='cpr' && state.cpr.coachVoice
+        && (!state.cpr.summary || state.cpr.practiceAfterSummary)
+        && coachKey(performance.now())===key});
+    }
+  }
+  function drawTrace() {
+    const canvas = $('trace');
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const dpr = devicePixelRatio || 1;
+    canvas.width = Math.round(rect.width*dpr);
+    canvas.height = Math.round(rect.height*dpr);
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr,dpr);
+    const w = rect.width;
+    const h = rect.height;
+    const left = 28;
+    const y = rate => h-12-(rate-60)/100*(h-19);
+    const x = sec => left+sec/120*(w-left-4);
+    ctx.fillStyle = '#3ee0b026';
+    ctx.fillRect(left,y(120),w-left,y(100)-y(120));
+    ctx.font = '10px Segoe UI';
+    ctx.fillStyle = '#a6b3c4';
+    ctx.strokeStyle = '#344955';
+    for (const n of [100,120]) {
+      ctx.fillText(String(n),0,y(n)+(n===100?9:-3));
+      ctx.beginPath(); ctx.moveTo(left,y(n)); ctx.lineTo(w,y(n)); ctx.stroke();
+    }
+    function line(points,color,width) {
+      ctx.strokeStyle = color;
+      ctx.lineWidth = width;
+      ctx.beginPath();
+      let started = false;
+      let previous = null;
+      for (const [sec,rate] of points) {
+        if (!rate || sec<0 || sec>120) continue;
+        const py = y(Math.min(160,Math.max(60,rate)));
+        if (!started || previous!==null && sec-previous>2) { ctx.moveTo(x(sec),py); started = true; }
+        else ctx.lineTo(x(sec),py);
+        previous = sec;
+      }
+      ctx.stroke();
+    }
+    if (best.cpr) line(best.cpr.trace,'#c5d7e55c',1.5);
+    line(state.cpr.trace,'#3ee0b0',2);
+    ctx.fillStyle = '#a6b3c4';
+    ctx.fillText('0:00',left,h-1); ctx.fillText('2:00',w-25,h-1);
+  }
+  let metroLoop = null;
+  let metroNext = 0;
+  let metroCount = 0;
+  const metroNodes = new Set();
+  function stopMetro() {
+    clearInterval(metroLoop);
+    metroLoop = null;
+    for (const node of metroNodes) { try { node.stop(); } catch {} }
+    metroNodes.clear();
+  }
+  function scheduleMetro(until, callback) {
+    let count = 0;
+    while (metroNext<until) {
+      callback(metroNext,metroCount);
+      metroCount++;
+      count++;
+      metroNext += 60/110;
+    }
+    return count;
+  }
+  function startMetro() {
+    stopMetro();
+    if (!Curio.sound || !state.cpr.metro || state.mode!=='cpr') return;
+    const ac = Curio.audio();
+    ac.resume();
+    metroNext = ac.currentTime+.04;
+    metroCount = 0;
+    const tick = () => {
+      if (!Curio.sound || !state.cpr.metro || state.mode!=='cpr') { stopMetro(); return; }
+      scheduleMetro(ac.currentTime+.12,(at,index) => {
+        const osc = ac.createOscillator();
+        const gain = ac.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = (index+1)%30===0 ? 1050 : 760;
+        gain.gain.setValueAtTime(.045,at);
+        gain.gain.exponentialRampToValueAtTime(.001,at+.035);
+        osc.connect(gain); gain.connect(ac.destination);
+        osc.start(at); osc.stop(at+.04);
+        metroNodes.add(osc);
+        osc.onended = () => metroNodes.delete(osc);
+      });
+    };
+    tick();
+    metroLoop = setInterval(tick,25);
+  }
+  function tick() {
+    if (state.mode==='scenes' && state.scene!==null) updateScenePanel();
+    if (state.mode==='cpr') {
+      const c = state.cpr;
+      const now = performance.now();
+      if (c.running) {
+        if (now-c.start>=120000) endRound(true,c.start+120000);
+        $('round-clock').textContent = shortTime(Math.max(0,120000-(now-c.start)));
+      }
+      if ($('trace-time')) {
+        const elapsed = c.summary && !c.practiceAfterSummary ? c.summary.duration*1000
+          : c.running || c.total ? Math.min(120000,now-c.start) : 0;
+        $('trace-time').textContent = shortTime(elapsed)+' / 2:00';
+      }
+      if (!c.summary || c.practiceAfterSummary) coach(now);
+    }
+  }
+  $('timer').onclick = () => {
+    state.timer = !state.timer;
+    if (state.scene!==null && !state.finished && !state.timer) state.eligible = false;
+    updateScenePanel();
+    hint(state.scene===null ? L.wScenes : state.finished ? 'Check Why this order, or tap Next scene.'
+      : state.timer ? 'Tap the next step. Each mistake adds 5 seconds.'
+        : 'Timer is off. Tap the next step; this run will not be recorded.');
+    Curio.tone(330,.06,.035);
+  };
+  $('restart').onclick = () => openScene(state.scene,true);
+  $('all-scenes').onclick = () => { setMode('scenes'); $('scene-0').focus({preventScroll:true}); };
+  for (const mode of ['scenes','cpr','guide']) $('m-'+mode).onclick = () => setMode(mode);
+  $('start').onclick = startRound;
+  $('stop').onclick = () => {
+    endRound(false);
+    $('start').focus({preventScroll:true});
+  };
+  $('metronome').onclick = () => {
+    state.cpr.metro = !state.cpr.metro;
+    updateCprButtons();
+    if (state.cpr.metro) startMetro(); else stopMetro();
+  };
+  $('coach-voice').onclick = () => {
+    state.cpr.coachVoice = !state.cpr.coachVoice;
+    if (!state.cpr.coachVoice) {
+      V.dropQueued(it => it.key.startsWith('coach'));
+      if ([L.coachFast,L.coachSlow,L.coachPause].includes(V.playing)) V.hush();
+    }
+    updateCprButtons();
+  };
+  let clearHint = '';
+  $('clear').onclick = () => {
+    clearHint = $('hint').textContent;
+    V.hush();
+    $('clear-dialog').showModal();
+    hint(L.clearHow);
+    V.how('clearHow',{valid:() => $('clear-dialog').open,needs:'#confirm-clear'});
+  };
+  function cancelClear() {
+    V.hush();
+    hint(clearHint);
+  }
+  $('cancel-clear').onclick = () => { cancelClear(); $('clear-dialog').close(); };
+  $('clear-dialog').oncancel = cancelClear;
+  $('confirm-clear').onclick = () => {
+    V.hush();
+    best = {scenes:{},cpr:null};
+    try { localStorage.removeItem('far-best'); } catch {}
+    state.ghost = null;
+    $('clear-dialog').close();
+    $('clear').focus({preventScroll:true});
+    if (state.mode==='scenes' && state.scene===null) renderPicker();
+    if (state.mode==='cpr') {
+      drawTrace();
+      if ($('summary-ghost')) $('summary-ghost').textContent = 'Finish two minutes to set a ghost.';
+    }
+    hint('Best times and the CPR ghost are cleared.');
+  };
+  addEventListener('keydown',e => {
+    if (e.repeat) {
+      if (state.mode==='cpr' && (e.code==='Space' || e.key==='Enter')) e.preventDefault();
+      return;
+    }
+    if ($('clear-dialog').open) return;
+    if (['1','2','3'].includes(e.key) && !e.ctrlKey && !e.altKey) {
+      setMode(['scenes','cpr','guide'][+e.key-1]);
+      $('m-'+state.mode).focus({preventScroll:true});
+      return;
+    }
+    if (state.mode==='cpr' && (e.code==='Space' || e.key==='Enter')) {
+      const active = document.activeElement;
+      if (active?.closest('button') && active.id!=='chest') return;
+      e.preventDefault();
+      compress();
+    }
+  });
+  addEventListener('keyup',e => {
+    if (state.mode==='cpr' && (e.code==='Space' || e.key==='Enter') && document.activeElement?.id==='chest') e.preventDefault();
+  });
+  Curio.onSound(on => { if (!on) stopMetro(); else if (state.cpr.metro && state.mode==='cpr') startMetro(); });
+  Curio.onMotion(reduced => { if (reduced) document.querySelectorAll('.card-flight').forEach(el => el.remove()); });
+  new ResizeObserver(() => { if (state.mode==='cpr') drawTrace(); }).observe($('stage'));
+  addEventListener('resize',() => { placeHint(); placeSceneControls(); });
+  Curio.init({clips:"voice:*",rate:.95});
+  setInterval(tick,100);
+  window.__tool = {
+    state, setMode, openScene, choose, compress, startRound, endRound, median, scenes, drawTrace,
+    allLines:V.allLines, vlog:V.log, get vq() { return V.queue; }, get best() { return best; },
+    get metroStats() { return {scheduled:metroCount, pending:metroNodes.size, active:!!metroLoop}; },
+    testMetro:() => {
+      const oldNext = metroNext;
+      const oldCount = metroCount;
+      metroNext = 0;
+      metroCount = 0;
+      const times = [];
+      scheduleMetro(120,t => times.push(t));
+      metroNext = oldNext;
+      metroCount = oldCount;
+      return times;
+    }
+  };
+  setMode('scenes');
+})();
+</script>
+</body>
+</html>

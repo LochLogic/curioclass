@@ -1,0 +1,239 @@
+{
+  "states": [
+    {
+      "name": "maximum-song",
+      "steps": [
+        {
+          "click": "#clap",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#shape-2"
+        },
+        {
+          "click": "#thing-5"
+        }
+      ],
+      "keep": [
+        "#song",
+        "#clap"
+      ]
+    },
+    {
+      "name": "listen",
+      "steps": [
+        {
+          "click": "#clap",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#shape-2"
+        },
+        {
+          "click": "#thing-5"
+        },
+        {
+          "click": "#m-practice"
+        },
+        {
+          "click": "#go"
+        },
+        {
+          "until": "__tool.state.step===1",
+          "max": 15000
+        }
+      ],
+      "keep": [
+        "#song",
+        "#go",
+        "#listen-actions"
+      ]
+    },
+    {
+      "name": "clear-words",
+      "steps": [
+        {
+          "click": "#clap",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#shape-2"
+        },
+        {
+          "click": "#thing-5"
+        },
+        {
+          "click": "#m-practice"
+        },
+        {
+          "click": "#go"
+        },
+        {
+          "until": "__tool.state.step===1",
+          "max": 15000
+        },
+        {
+          "click": "#go"
+        },
+        {
+          "click": "#fix-4"
+        }
+      ],
+      "keep": [
+        "#song",
+        "#fixes",
+        "#go"
+      ]
+    },
+    {
+      "name": "compare",
+      "steps": [
+        {
+          "click": "#clap",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#shape-2"
+        },
+        {
+          "click": "#thing-5"
+        },
+        {
+          "click": "#m-practice"
+        },
+        {
+          "click": "#go"
+        },
+        {
+          "until": "__tool.state.step===1",
+          "max": 15000
+        },
+        {
+          "click": "#go"
+        },
+        {
+          "click": "#fix-4"
+        },
+        {
+          "click": "#go"
+        },
+        {
+          "until": "__tool.state.step===4",
+          "max": 15000
+        }
+      ],
+      "keep": [
+        "#compare-actions",
+        "#song"
+      ]
+    },
+    {
+      "name": "change-confirm",
+      "steps": [
+        {
+          "click": "#clap",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#shape-2"
+        },
+        {
+          "click": "#thing-5"
+        },
+        {
+          "click": "#m-practice"
+        },
+        {
+          "click": "#go"
+        },
+        {
+          "until": "__tool.state.step===1",
+          "max": 15000
+        },
+        {
+          "click": "#m-make"
+        },
+        {
+          "click": "#thing-0"
+        }
+      ],
+      "keep": [
+        "#change-dialog"
+      ]
+    },
+    {
+      "name": "audience",
+      "steps": [
+        {
+          "click": "#clap",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#shape-2"
+        },
+        {
+          "click": "#thing-5"
+        },
+        {
+          "click": "#m-perform"
+        },
+        {
+          "click": "#go"
+        },
+        {
+          "until": "!__tool.state.playing",
+          "max": 15000
+        }
+      ],
+      "keep": [
+        "#audience",
+        "#song",
+        "#go"
+      ]
+    },
+    {
+      "name": "feeling-change",
+      "steps": [
+        {
+          "click": "#clap"
+        },
+        {
+          "click": "#thing-3"
+        },
+        {
+          "click": "#m-perform"
+        },
+        {
+          "click": "#go"
+        },
+        {
+          "wait": 4700
+        },
+        {
+          "click": "#feel-sleepy"
+        },
+        {
+          "wait": 700
+        },
+        {
+          "click": "#feel-silly"
+        },
+        {
+          "until": "!__tool.state.playing",
+          "max": 16000
+        }
+      ],
+      "keep": [
+        "#audience",
+        "#song",
+        "#go"
+      ]
+    }
+  ]
+}

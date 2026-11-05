@@ -1,0 +1,26 @@
+{
+  "id": "pocket-universe",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Throw a world. Watch it orbit, crash or escape. Rewind, then try another future.",
+  "outcome": "Use gravity to build and change orbiting systems, and compare pocket worlds with the real Solar System.",
+  "driver": "students or teacher",
+  "minutes": "10-45",
+  "modes": [
+    "Pocket",
+    "Real Solar System"
+  ],
+  "grades_label": "Grades 6-12",
+  "sources": [
+    "OpenStax University Physics Volume 1, chapter 13",
+    "JPL Approximate Positions of the Planets, Table 1 (J2000)",
+    "NASA Planetary and Sun Fact Sheets",
+    "Domingos, Winter and Yokoyama 2006",
+    "Holman and Wiegert 1999",
+    "Chenciner and Montgomery 2000",
+    "NASA Voyager and Lucy; IAU Resolution B5 2006",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-10-30"
+}

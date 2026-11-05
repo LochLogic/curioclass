@@ -1,0 +1,20 @@
+{
+  "id": "hallway-art-museum",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Turn a school hallway into a museum that kid eyes can see.",
+  "outcome": "Choose art for a theme, give materials suitable display homes, and adjust art for child eye height.",
+  "driver": "teacher",
+  "minutes": "20-30",
+  "modes": ["Choose", "Set up", "Opening day"],
+  "grades_label": "Grades K-2",
+  "sources": [
+    "National Core Arts Standards, Visual Arts K-2: VA:Pr4, VA:Pr5, VA:Pr6, VA:Re9 (nationalartsstandards.org)",
+    "Artwork Archive, The 57 Inch Rule: artworkarchive.com/blog/the-57-inch-rule",
+    "CDC growth charts and NHANES 2015-2018: rounded classroom eye-height estimates from the spec",
+    "National Park Service Museum Handbook, Part I: museum display and protection",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-01"
+}

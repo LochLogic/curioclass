@@ -11,7 +11,7 @@
       "local_note": "stage map under the code-drawn stops, marker and Trail back lines",
       "sd": "An illustrated parchment treasure map seen from above, a winding dotted trail crossing the whole map from left to right, five empty round grassy clearings spaced evenly along the trail, small drawings of a library building, a cabin in the woods, a flower garden and a school building beside the trail, pine trees, no words, no labels, no banners.",
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "rq-garden-bed",
@@ -21,27 +21,139 @@
       "width": 800,
       "quality": 76,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "rq-garden-bloom",
-      "prompt": "A wooden raised garden bed beside a brick school wall, full of pink milkweed flowers and purple asters, an orange monarch butterfly on a flower.",
+      "prompt": "A wooden raised bed beside a brick school wall, common milkweed with broad opposite oval leaves and round clusters of tiny pink star flowers, purple asters, an orange monarch butterfly resting on a milkweed cluster. Warm ink and watercolor storybook illustration. No people or text.",
       "aspect": "4:3",
       "cutout": false,
       "width": 800,
       "quality": 76,
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "drawn_by": "codex"
     },
     {
       "name": "rq-caterpillar",
-      "prompt": "A striped yellow, black and white monarch caterpillar eating a broad milkweed leaf, close-up nature illustration.",
+      "prompt": "A slender monarch caterpillar with fine yellow, black and white transverse bands and black filaments eating the edge of a broad milkweed leaf. Botanical ink and watercolor, warm upper-left sunlight, textured parchment, full body centered for a shallow source-card crop. No people, text or labels.",
       "aspect": "4:3",
       "cutout": false,
       "width": 800,
       "quality": 76,
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "drawn_by": "codex",
+      "people": false
+    },
+    {
+      "name": "rq-marker",
+      "prompt": "A small canvas backpack with a teal flap, leather straps, stitched seams and brass buckles standing on a round map pin, isolated on flat pure magenta (#FF00FF).",
+      "aspect": "1:1",
+      "width": 160,
+      "quality": 74,
+      "cutout": true,
+      "people": false,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "rq-library-desk",
+      "prompt": "A school library desk with a tidy stack of books, a green reading lamp, a canvas pack waiting on top and shelves behind.",
+      "aspect": "4:3",
+      "width": 800,
+      "quality": 74,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "rq-library",
+      "prompt": "A short stack of library books with a ribbon bookmark on a reading table. Blank book covers and spines.",
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 74,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "rq-county",
+      "prompt": "A desktop computer monitor with a blank bright screen on an office desk, a county map pinned on the wall behind.",
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 74,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "rq-nature",
+      "prompt": "A small wooden nature center cabin among trees, inviting woodland path, blank wooden plaque.",
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 74,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "rq-notebook",
+      "prompt": "A worn spiral notebook with blank pages and a pressed leaf on a garden bench.",
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 74,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "rq-video",
+      "prompt": "A tablet on a stand with a blank dark screen on a library table.",
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 74,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "rq-seed",
+      "prompt": "A paper seed packet with a completely blank cream front lying on rich garden soil.",
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 74,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "rq-council-room",
+      "prompt": "A long wooden meeting table in a school library seen from one end, three empty chairs on the far side, three blank wooden name stands, a water pitcher and glasses, afternoon light.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 74,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
     }
   ]
 }

@@ -1,0 +1,18 @@
+{
+  "id":"band-practice",
+  "stage":"built",
+  "status":"beta",
+  "hook":"Hold your part. See your timing. Stay with the band when it goes quiet.",
+  "outcome":"Perform an ensemble part, evaluate early and late timing, and refine tempo through listening and rehearsal",
+  "driver":"students",
+  "minutes":"15-30",
+  "modes":["Rehearse","Solo break","Ghost race"],
+  "grades_label":"Grades 6-8",
+  "sources":["National Core Arts Standards MU:Pr5 and MU:Pr6, https://www.nationalartsstandards.org/",
+    "W3C Web Audio API, https://www.w3.org/TR/webaudio/",
+    "Britannica: Reggae and Waltz; Wikipedia: One drop rhythm, as listed in spec.md",
+    "Original songs and timing thresholds written for Curio Class",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"],
+  "third_party":[],
+  "updated":"2026-10-31"
+}

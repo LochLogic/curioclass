@@ -1,0 +1,141 @@
+{
+  "house_style": "Warm painted picture-book look, soft gouache and colored-pencil texture, soft afternoon light from the left, for a grade 4 art lesson. Rich tactile materials, warm cream, library brick and honey wood. No text, letters, numbers or logos. People only in explicitly marked people assets.",
+  "assets": [
+    {
+      "name": "library-wall",
+      "prompt": "Inside a small town library, one long cream wall seen straight on. Wide 16:9 room, generous blank upper wall for six pictures. A tall sunny window at far left with a deep window sill. A low wooden heater vent under blank wall left of center. A round story-time rug with low bench in the center-left. A front door at center with a coat hook and a small shelf beside it. A glass display case center-right. A short white pedestal in the middle of the floor. A cozy reading nook with an armchair right of center, a librarian's desk at far right. Empty blank walls ready for art. Arrange furniture across the lower third, leave upper two thirds mostly blank. Clear separated wall areas, beautifully painted wood grain, glowing sunlight, books without lettering.",
+      "aspect": "16:9",
+      "width": 1500,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "museum-gallery",
+      "prompt": "A quiet museum gallery with pale gray walls and soft even light, a wooden bench, a rope barrier on posts, a glass case, empty frames on the walls. Straight-on wide room, carefully painted light on plaster, oak floor and glass reflections. Warm painted picture-book look. Empty room, no people or writing.",
+      "aspect": "16:9",
+      "width": 1000,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "w1-pastel",
+      "prompt": "A child's artwork, a chalk pastel drawing of a farm stand with orange pumpkins and black crows on a fence, on blue paper, soft dusty strokes. Flat front view, entire rectangular blue paper visible, 4:3 landscape. Tactile powdery chalk with irregular childlike shapes. Isolated with a clean gap around the paper on flat pure magenta #FF00FF.",
+      "aspect": "4:3",
+      "width": 440,
+      "quality": 78,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": false
+    },
+    {
+      "name": "w2-watercolor",
+      "prompt": "A child's artwork, a loose watercolor painting of small-town shops on a rainy street with puddles and umbrellas propped by doors, blank shop signs. Soft translucent washes and pooled pigment on textured white watercolor paper, entire rectangular sheet visible, 4:3 landscape flat front view. Isolated with a clean gap on flat pure magenta #FF00FF. No people or writing.",
+      "aspect": "4:3",
+      "width": 440,
+      "quality": 78,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": false
+    },
+    {
+      "name": "w3-bowl",
+      "prompt": "A child's handmade small fired glazed clay bowl, green glaze with charming painted frogs around the outside. Three-quarter view, entire bowl visible. Uneven hand-built rim, speckled green glaze, soft ceramic reflections. Isolated on flat pure magenta #FF00FF, no cast shadow beyond the bowl.",
+      "aspect": "1:1",
+      "width": 400,
+      "quality": 80,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": false
+    },
+    {
+      "name": "w4-collage",
+      "prompt": "A child's artwork, a cut and torn paper collage of a fall parade, orange paper leaves and paper dogs marching down a small-town street, bright construction paper. Only dogs in this parade. Clearly visible layered torn fibers, glue edges and cut-paper houses. Flat front view of entire rectangular paper sheet, 4:3 landscape, isolated with a clean gap on flat pure magenta #FF00FF. No people or writing.",
+      "aspect": "4:3",
+      "width": 440,
+      "quality": 80,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": false
+    },
+    {
+      "name": "w5-heron",
+      "prompt": "A child's folded white paper sculpture of a heron standing on one leg on a blue paper base. Long neck bent in a gentle S, long pointed beak, folded triangular wings, visible paper creases. Three-quarter view of whole object with breathing room, 3:4 portrait. White paper shaded with cool gray and warm cream. Isolated on flat pure magenta #FF00FF.",
+      "aspect": "3:4",
+      "width": 360,
+      "quality": 80,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "w6-photo",
+      "prompt": "A child's photographic inkjet print of an old stone arch bridge over a small town river in autumn. Three large recognizable mallard ducks on the water in the near foreground. Clean white paper border, flat front view, entire rectangular sheet visible on flat pure magenta #FF00FF. Natural afternoon light from left. No text, people or logos.",
+      "aspect": "4:3",
+      "width": 440,
+      "quality": 80,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": false,
+      "house_style": "A natural camera photograph inside a tangible inkjet print; photographic detail, not painted strokes."
+    },
+    {
+      "name": "w7-weaving",
+      "prompt": "A child's small hand-woven yarn wall hanging with wavy blue and green stripes like moving water and loose fringe, hanging from a simple natural wooden stick. Flat front view, whole stick and fringe visible, 3:4 portrait. Rich irregular wool fibers and loops, handmade character. Isolated with breathing room on flat pure magenta #FF00FF.",
+      "aspect": "3:4",
+      "width": 360,
+      "quality": 80,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "w8-poster",
+      "prompt": "A child's marker drawing of a striped orange cat sitting beside a fish tank with fish clearly visible inside the water. Bold marker lines, bright flat colors, charming grade 4 drawing on white paper, overlapping felt-tip strokes. Flat front view of entire 3:4 portrait paper, isolated with clean gap on flat pure magenta #FF00FF. No people or writing.",
+      "aspect": "3:4",
+      "width": 360,
+      "quality": 80,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": false
+    },
+    {
+      "name": "librarian",
+      "prompt": "A friendly middle-aged town librarian with medium brown skin, short salt-and-pepper curly hair, brick cardigan, cream shirt, navy trousers and practical shoes. Full body standing, holding a blank blue book at waist height. Natural hands, relaxed posture, gouache and colored pencil, light from the left. Isolated on flat pure green #00FF00, no text or scenery.",
+      "aspect": "3:4",
+      "width": 260,
+      "quality": 80,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "despill": true
+    }
+  ]
+}

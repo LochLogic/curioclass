@@ -1,0 +1,23 @@
+{
+  "id": "place-mood-makeover",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Give an ordinary place a mood, one visual clue at a time.",
+  "outcome": "Read, revise and explain how visual clues create a mood in a place.",
+  "driver": "students or teacher",
+  "minutes": "15-25",
+  "modes": [
+    "Three artists",
+    "Makeover"
+  ],
+  "grades_label": "Grades 3-5",
+  "sources": [
+    "Getty Museum Education, Elements of Art: Color; Gene Mittler and Rosalind Ragans, ArtTalk, chapter on color.",
+    "Smithsonian American Art Museum, American Scene and Edward Hopper collection notes.",
+    "Art Institute of Chicago, Ink and Gouache glossary entries.",
+    "Reader weights are teaching conventions supplied by the tool specification, not measured facts.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-01"
+}

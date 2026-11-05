@@ -1,0 +1,95 @@
+{
+  "target": 44,
+  "keep": [
+    "#hint",
+    "#band-wrap",
+    "#mini"
+  ],
+  "states": [
+    {
+      "name": "opened-work",
+      "steps": [
+        {
+          "click": "[data-era='1500']"
+        },
+        {
+          "click": "#card-rhino"
+        }
+      ],
+      "keep": [
+        ".art-viewport"
+      ]
+    },
+    {
+      "name": "thread-drawn",
+      "steps": [
+        {
+          "click": "[data-era='1500']"
+        },
+        {
+          "click": "#card-rhino"
+        },
+        {
+          "click": "#thread-t1"
+        }
+      ]
+    },
+    {
+      "name": "clusters",
+      "steps": [
+        {
+          "click": "#zoom-out",
+          "times": 5,
+          "gap": 0.1
+        }
+      ]
+    },
+    {
+      "name": "all-threads",
+      "steps": [
+        {
+          "click": "#all"
+        }
+      ]
+    },
+    {
+      "name": "event-dealt",
+      "steps": [
+        {
+          "click": "#m-changed"
+        }
+      ],
+      "keep": [
+        "#deal"
+      ]
+    },
+    {
+      "name": "benin-context",
+      "steps": [
+        {
+          "click": "[data-era='1500']"
+        },
+        {
+          "click": "#card-benin"
+        }
+      ],
+      "keep": [
+        ".benin-note",
+        ".thread-buttons"
+      ]
+    },
+    {
+      "name": "completed-connections",
+      "steps": [
+        {
+          "js": "\nconst t=__tool;t.setMode('changed');\nfor(let i=0;i<11;i++){\n const r=t.rightThreads(t.current().id)[0];\n t.place(r.target);\n if(i<10)t.nextEvent();\n}\nreturn {placed:t.state.placed.size,recap:document.querySelectorAll('#recap button').length,\n hint:document.querySelector('#hint').textContent,round:t.state.round,lines:t.allLines(),\n voice:t.vlog,active:document.activeElement.id};\n"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

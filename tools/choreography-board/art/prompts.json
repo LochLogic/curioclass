@@ -1,0 +1,299 @@
+{
+  "house_style": "Painterly realistic editorial gouache for a middle-school dance studio. Soft visible brush texture, natural anatomy and fabric folds, warm upper-left stage light, crisp dark contours, no text, letters, numbers or logos.",
+  "assets": [
+    {
+      "name": "cb-blackbox",
+      "prompt": "An empty black box theater stage seen from the middle of the audience, a warm honey-colored wooden floor in gentle perspective, tall black curtain wings on both sides, a plain smooth pale gray cyclorama cloth across the back, soft even stage light, quiet and clean, painterly realistic illustration. The pale cyclorama occupies the central back wall from 12 percent to 87 percent of the width and 12 percent to 60 percent of the height. The wooden floor meets the cyclorama at 60 percent of the height and extends to the bottom edge. Symmetrical audience camera. The central stage is empty and unobstructed. No people or body parts. No text, letters, numbers or logos.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "placement": {
+        "floor": {
+          "x0": 8,
+          "x1": 92,
+          "yBack": 59,
+          "yFront": 94
+        },
+        "cyclorama": [
+          22.3,
+          9,
+          54.8,
+          50
+        ]
+      }
+    },
+    {
+      "name": "cb-dancer-cast",
+      "prompt": "A production sprite atlas of four diverse adolescent dancers, each shown twice: front view in the top row, matching back view directly underneath. Exactly four equal columns and two equal rows, eight full-body figures total, centered in equal cells with broad empty gutters. All stand in a neutral T pose, arms straight horizontally out at shoulder height, fingers together, feet slightly apart and facing straight forward. Every entire head, fingertips and shoe visible. The four dancers from left to right are: a dark-skinned Black girl with short natural coils and a coral short-sleeve practice shirt, dark burgundy loose dance trousers, cream soft dance shoes; a light-skinned boy with short wavy brown hair and a sky-blue short-sleeve shirt, navy trousers, cream shoes; a medium-brown South Asian girl with black hair in a compact bun, a sunflower-yellow short-sleeve shirt, dark olive loose trousers, cream shoes, fuller body; a light-brown boy with short dark hair, a pink short-sleeve shirt, plum trousers, cream shoes, a modestly visible sports prosthesis below his left knee. Plain solid pure green #00FF00 background everywhere between figures. Natural friendly faces, comfortable modest rehearsal clothing, equal importance and confident bearing. Front and back clothing and body proportions match exactly. Symmetric level shoulders, straight vertical torso, hands separated from torso for articulated animation. No cast shadows, no props, no floor, no grid lines, no writing. This single neutral-pose atlas will be cut into painted articulated parts so all dance poses remain driven by precise joint data.",
+      "aspect": "4:3",
+      "cutout": true,
+      "people": true,
+      "width": 2048,
+      "quality": 82,
+      "drawn_by": "codex",
+      "status": "drawn; neutral articulated cast with front/back views",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "cb-grounded-cast",
+      "people": true,
+      "cutout": true,
+      "despill": true,
+      "holes": true,
+      "width": 2048,
+      "quality": 84,
+      "drawn_by": "codex",
+      "prompt": "Painterly realistic editorial gouache for a middle-school dance studio. Soft visible brush texture, natural anatomy and fabric folds, warm upper-left stage light, crisp dark contours, no text, letters, numbers or logos. Match the four painted dancers in cb-dancer-cast, all costume details and natural bodies including dancer four anatomical left below-knee prosthesis. Equal four-column atlas, four rows: compact curl low, kneeling on heels with arms reaching upward, deep balanced crouch with knees bent, seated with legs comfortably extended and looking up. Every row repeats the four dancers in their existing order, one full-body pose per cell, clear gutters, all limbs and faces attached naturally, natural anatomy and fabric folds. Audience-facing clear educational silhouettes, arms naturally integrated. Solid pure green #00FF00 background, no floor, cast shadows, text, letters, numbers or logos. Dedicated fully painted grounded and bending poses, not warped upright figures.",
+      "status": "drawn during cold review; dedicated low and waist-bend poses",
+      "registration": {
+        "curl": {
+          "atlas": "cb-grounded-cast",
+          "w": 2048,
+          "h": 2656,
+          "ratio": 0.4,
+          "cells": [
+            [
+              79,
+              4,
+              312,
+              535
+            ],
+            [
+              614,
+              2,
+              305,
+              537
+            ],
+            [
+              1125,
+              0,
+              332,
+              539
+            ],
+            [
+              1666,
+              7,
+              306,
+              532
+            ]
+          ]
+        },
+        "kneel": {
+          "atlas": "cb-grounded-cast",
+          "w": 2048,
+          "h": 2656,
+          "ratio": 0.77,
+          "cells": [
+            [
+              107,
+              627,
+              286,
+              684
+            ],
+            [
+              628,
+              627,
+              294,
+              684
+            ],
+            [
+              1128,
+              627,
+              331,
+              684
+            ],
+            [
+              1674,
+              628,
+              298,
+              682
+            ]
+          ]
+        },
+        "crouch": {
+          "atlas": "cb-grounded-cast",
+          "w": 2048,
+          "h": 2656,
+          "ratio": 0.49,
+          "cells": [
+            [
+              31,
+              1429,
+              442,
+              535
+            ],
+            [
+              565,
+              1427,
+              427,
+              537
+            ],
+            [
+              1066,
+              1435,
+              450,
+              529
+            ],
+            [
+              1588,
+              1434,
+              460,
+              530
+            ]
+          ]
+        },
+        "sit": {
+          "atlas": "cb-grounded-cast",
+          "w": 2048,
+          "h": 2656,
+          "ratio": 0.52,
+          "cells": [
+            [
+              0,
+              2070,
+              512,
+              584
+            ],
+            [
+              512,
+              2062,
+              470,
+              592
+            ],
+            [
+              1029,
+              2075,
+              485,
+              579
+            ],
+            [
+              1549,
+              2070,
+              487,
+              585
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "name": "cb-floor-bow-cast",
+      "people": true,
+      "cutout": true,
+      "despill": true,
+      "holes": true,
+      "width": 2048,
+      "quality": 84,
+      "drawn_by": "codex",
+      "prompt": "Painterly realistic editorial gouache for a middle-school dance studio. Soft visible brush texture, natural anatomy and fabric folds, warm upper-left stage light, crisp dark contours, no text, letters, numbers or logos. Match the four painted dancers in cb-dancer-cast, all costume details and natural bodies including dancer four anatomical left below-knee prosthesis. Equal four-column atlas, three rows: lying on the side with a long body, compact side roll with knees drawn safely in, standing bow hinging gracefully forward at the waist. Every row repeats the four dancers in their existing order, one full-body pose per cell, clear gutters, all limbs and faces attached naturally, natural anatomy and fabric folds. Audience-facing clear educational silhouettes, arms naturally integrated. Solid pure green #00FF00 background, no floor, cast shadows, text, letters, numbers or logos. Dedicated fully painted grounded and bending poses, not warped upright figures.",
+      "status": "drawn during cold review; dedicated low and waist-bend poses",
+      "registration": {
+        "lie": {
+          "atlas": "cb-floor-bow-cast",
+          "w": 2048,
+          "h": 1329,
+          "ratio": 0.24,
+          "cells": [
+            [
+              0,
+              2,
+              491,
+              187
+            ],
+            [
+              520,
+              0,
+              489,
+              191
+            ],
+            [
+              1039,
+              0,
+              491,
+              190
+            ],
+            [
+              1559,
+              5,
+              489,
+              186
+            ]
+          ]
+        },
+        "roll": {
+          "atlas": "cb-floor-bow-cast",
+          "w": 2048,
+          "h": 1329,
+          "ratio": 0.38,
+          "cells": [
+            [
+              39,
+              434,
+              393,
+              209
+            ],
+            [
+              566,
+              436,
+              382,
+              213
+            ],
+            [
+              1074,
+              433,
+              385,
+              220
+            ],
+            [
+              1610,
+              433,
+              401,
+              220
+            ]
+          ]
+        },
+        "bow": {
+          "atlas": "cb-floor-bow-cast",
+          "w": 2048,
+          "h": 1329,
+          "ratio": 0.78,
+          "cells": [
+            [
+              148,
+              763,
+              190,
+              566
+            ],
+            [
+              661,
+              760,
+              202,
+              569
+            ],
+            [
+              1177,
+              759,
+              211,
+              570
+            ],
+            [
+              1706,
+              766,
+              198,
+              563
+            ]
+          ]
+        }
+      }
+    }
+  ],
+  "painted_dancer_handoff": {
+    "people": true,
+    "status": "Implemented: four upright rigs front/back plus seven complete grounded and bow poses each; owner correction applied.",
+    "adapter": "paintedRig, groundedPoses, groundedKey, addPaintedRig, createPerformer, paintPerformer, paintIcon. Atlas cells and floor contact are isolated for easy replacement."
+  }
+}

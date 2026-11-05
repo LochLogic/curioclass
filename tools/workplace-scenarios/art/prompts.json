@@ -9,7 +9,7 @@
       "width": 1400,
       "quality": 70,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "wp-craft",
@@ -19,7 +19,7 @@
       "width": 1400,
       "quality": 70,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "wp-path",
@@ -29,7 +29,7 @@
       "width": 1400,
       "quality": 70,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "wp-lunch",
@@ -39,7 +39,7 @@
       "width": 1400,
       "quality": 70,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "wp-field",
@@ -49,7 +49,7 @@
       "width": 1400,
       "quality": 70,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "wp-gym",
@@ -60,7 +60,7 @@
       "quality": 70,
       "sd": "An empty school gym seen from the floor on a rainy day, rain streaks running down the tall windows, dark gray storm clouds outside, dim gray light on the wooden floor, plain walls with no signs, no scoreboard, no posters.",
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "wp-pickup",
@@ -71,7 +71,7 @@
       "quality": 70,
       "sd": "The front curb of a plain one-story brick community building in late afternoon, two plain parked cars seen from the side, a wooden bench on the sidewalk, long warm shadows, no signs, no lettering.",
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "wp-staff",
@@ -81,7 +81,143 @@
       "width": 1400,
       "quality": 70,
       "source": "flux1-schnell (local)",
+      "review": "ok"
+    },
+    {
+      "name": "wp-clipboard",
+      "prompt": "A single a clipboard with a pen centered, filling 80 percent of the square, on flat pure green (#00FF00). Soft painterly flat illustration, warm summer daylight, gentle colors, small true material details. No people, body parts, text, letters, numbers or logos.",
+      "aspect": "1:1",
+      "cutout": true,
+      "quality": 78,
+      "drawn_by": "codex",
+      "review": "ok",
+      "source": "OpenAI gpt-image (built-in image_gen)",
+      "height": 256
+    },
+    {
+      "name": "wp-radio",
+      "prompt": "A single a black two-way radio centered, filling 80 percent of the square, on flat pure green (#00FF00). Soft painterly flat illustration, warm summer daylight, gentle colors, small true material details. No people, body parts, text, letters, numbers or logos.",
+      "aspect": "1:1",
+      "cutout": true,
+      "quality": 78,
+      "drawn_by": "codex",
+      "review": "ok",
+      "source": "OpenAI gpt-image (built-in image_gen)",
+      "height": 256
+    },
+    {
+      "name": "wp-phone",
+      "prompt": "A single a smartphone with a dark screen centered, filling 80 percent of the square, on flat pure green (#00FF00). Soft painterly flat illustration, warm summer daylight, gentle colors, small true material details. No people, body parts, text, letters, numbers or logos.",
+      "aspect": "1:1",
+      "cutout": true,
+      "quality": 78,
+      "drawn_by": "codex",
+      "review": "ok",
+      "source": "OpenAI gpt-image (built-in image_gen)",
+      "height": 256
+    },
+    {
+      "name": "wp-owl",
+      "prompt": "A single a folded paper owl craft with exactly three googly eyes centered, filling 80 percent of the square, on flat pure green (#00FF00). Soft painterly flat illustration, warm summer daylight, gentle colors, small true material details. No people, body parts, text, letters, numbers or logos.",
+      "aspect": "1:1",
+      "cutout": true,
+      "quality": 78,
+      "drawn_by": "codex",
+      "review": "ok",
+      "source": "OpenAI gpt-image (built-in image_gen)",
+      "width": 256
+    },
+    {
+      "name": "wp-shoe",
+      "prompt": "A single a small blue sneaker with a loose lace centered, filling 80 percent of the square, on flat pure green (#00FF00). Soft painterly flat illustration, warm summer daylight, gentle colors, small true material details. No people, body parts, text, letters, numbers or logos.",
+      "aspect": "1:1",
+      "cutout": true,
+      "quality": 78,
+      "drawn_by": "codex",
+      "review": "ok",
+      "source": "OpenAI gpt-image (built-in image_gen)",
+      "width": 256
+    },
+    {
+      "name": "wp-keys",
+      "prompt": "A single a ring of car keys centered, filling 80 percent of the square, on flat pure green (#00FF00). Soft painterly flat illustration, warm summer daylight, gentle colors, small true material details. No people, body parts, text, letters, numbers or logos.",
+      "aspect": "1:1",
+      "cutout": true,
+      "quality": 78,
+      "drawn_by": "codex",
+      "review": "ok",
+      "source": "OpenAI gpt-image (built-in image_gen)",
+      "height": 256
+    },
+    {
+      "name": "wp-car-v2",
+      "prompt": "The back seat of a family car stopped in morning traffic, a phone lying face down on the seat, a sunlit windshield and red brake lights ahead. Wide view with the windshield, road and traffic clearly visible across the upper two thirds. Close foreground seat edge at the lower right supports the phone. Camera centered behind the front seats, modest headrests, minimal ceiling. Blank surfaces. Warm morning light from upper left. Empty car, no people, faces, hands or body parts. No text, letters, numbers or logos.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 72,
+      "cutout": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image_gen)",
       "review": "pending"
+    },
+    {
+      "name": "wp-car-final",
+      "prompt": "The back seat of a family car stopped in morning traffic, a phone lying face down on the seat, a sunlit windshield and red brake lights ahead. Wide view with the windshield, road and traffic clearly visible across the upper two thirds. Close foreground seat edge at the lower right supports the phone. Camera centered behind the front seats, modest headrests, minimal ceiling. Blank surfaces. Warm morning light from upper left. Empty car, no people, faces, hands or body parts. No text, letters, numbers or logos. Final edit: all cars are unbranded, license plates and dashboard controls plain and blank; softly simplified painterly rendering.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 72,
+      "cutout": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image_gen)",
+      "review": "ok"
+    },
+    {
+      "name": "wp-gym-review",
+      "prompt": "An empty school gym during a summer thunderstorm, folded wooden bleachers, a wire ball cart, high closed windows with rain streaking the OUTSIDE glass and dark gray clouds visible outdoors. Dry interior air and dry wooden floor, soft gray diffused light from the left windows. No rain indoors, no sunbeams. Keep the room readable in the upper two thirds behind a story card. No people, text, letters, numbers or logos. Full-bleed scene from edge to edge, with no user interface, banner, panel, border or frame.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1400,
+      "quality": 72,
+      "drawn_by": "codex",
+      "people": false,
+      "source": "OpenAI gpt-image (built-in image_gen)",
+      "review": "ok"
+    },
+    {
+      "name": "wp-craft-review",
+      "prompt": "A long craft table in a bright rec center room, plastic bins of colored paper and blank glue sticks, a rolling craft cart with exactly two recognizable hot glue guns upright on wire stands and tidy cords. Put cart and glue guns in the right upper-middle portion, visible above the lower-third story card. Blank bulletin boards, no clock, blank bottles. Warm summer daylight from the right windows. Empty room, no people, text, letters, numbers or logos. Full-bleed scene from edge to edge, with no user interface, banner, panel, border or frame.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1400,
+      "quality": 72,
+      "drawn_by": "codex",
+      "people": false,
+      "source": "OpenAI gpt-image (built-in image_gen)",
+      "review": "ok"
+    },
+    {
+      "name": "wp-staff-review",
+      "prompt": "Small summer-camp staff room in warm late-afternoon light, blank whiteboard, round table with mugs and clipboards. Warm painterly flat illustration, natural material details, light from left windows. All boards completely blank, no clock, no wall notices, no people, text, letters, numbers or logos. Room reads in upper two thirds behind a story card. Full-bleed scene from edge to edge, with no user interface, banner, panel, border or frame.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1400,
+      "quality": 72,
+      "drawn_by": "codex",
+      "people": false,
+      "source": "OpenAI gpt-image (built-in image_gen)",
+      "review": "ok"
+    },
+    {
+      "name": "wp-lunch-review",
+      "prompt": "Empty picnic tables under a wooden pavilion with lunch boxes and plain juice boxes on the tables, white paper towel roll on a wooden post. Warm summer daylight, soft painterly flat illustration, clean shapes and gentle texture. All surfaces blank, no text, letters, numbers, logos or people. Pavilion and tables read in upper two thirds behind a story card. Full-bleed scene from edge to edge, with no user interface, banner, panel, border or frame.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1400,
+      "quality": 72,
+      "drawn_by": "codex",
+      "people": false,
+      "source": "OpenAI gpt-image (built-in image_gen)",
+      "review": "ok"
     }
   ]
 }

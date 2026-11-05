@@ -1,0 +1,1399 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Traveling Art Show · Curio Class</title>
+<meta name="description" content="Choose, protect, place and label six artworks for a library show. Watch a month reveal what each material needs. Grades 3-5, offline.">
+<!--
+Traveling Art Show, Curio Class. Grades 3-5 visual arts: VA:Pr4, VA:Pr5, VA:Pr6, VA:Re9.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Conservation model from CCI, Library of Congress, NEDCC and IPI. Full sources in notes.md.
+The one-month damage model is an educational simplification. One file, no network requests.
+Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f6f1e9; --ink:#2a201c; --muted:#665a52; --line:#d4c3a8; --focus:#155b9a;
+  --brand:#8a2b1f; --btn:#712116; --btn-line:#be7765; --head-ink:#fff; --panel:#f6f1e9;
+  --gold:#f3d36b; --fine:#2e6b3a;
+}
+body { height:100dvh; min-height:0; overflow:hidden; grid-template-rows:auto auto 1fr; }
+header { padding:10px 20px; gap:8px; background:var(--paper); color:var(--ink); border-top:5px solid var(--brand); }
+h1 { font:700 clamp(23px,2.5vw,34px)/1 Georgia,serif; letter-spacing:-.035em; }
+h1 small { font:500 13px/1.5 'Segoe UI',sans-serif; letter-spacing:0; color:var(--muted); opacity:1; }
+button,select,input { font:inherit; }
+button,select { min-height:44px; min-width:44px; }
+button { touch-action:manipulation; }
+button:active { box-shadow:inset 0 2px 3px #0003; }
+.icon-btn { min-height:44px; padding:0 12px; font-size:13px; color:var(--ink); background:#fffaf3; border:1px solid var(--line); }
+#sound { width:88px; } #motion { width:100px; } #read { width:80px; }
+.modebar { display:flex; align-items:center; justify-content:space-between; padding:0 20px 8px; gap:12px; }
+.seg { border:1px solid var(--line); border-radius:8px; }
+.seg button { min-height:44px; font-size:14px; padding:0 18px; color:var(--ink); background:#e9dfcf; }
+.seg button[aria-pressed=true] { background:var(--brand); color:#fff; }
+.save-note { color:var(--muted); font-size:12px; }
+main { grid-template-columns:minmax(0,1fr) 320px; min-height:0; }
+.stage { grid-column:1; grid-row:1; min-height:0; overflow:hidden; padding:10px 14px;
+  background:radial-gradient(ellipse at 40% 20%,#f7e7c5,#ddc8a7); }
+.room-top { display:flex; justify-content:space-between; align-items:center; min-height:28px; margin-bottom:6px; gap:8px; }
+.eyebrow { text-transform:uppercase; letter-spacing:.1em; font-size:11px; font-weight:800; color:#68472d; }
+.calendar { font:700 18px Georgia,serif; background:#fff9ed; border:1px solid #bba17c; border-radius:4px; padding:4px 10px; }
+.wall-wrap { display:flex; justify-content:center; }
+.wall { position:relative; width:min(100%,calc((100dvh - 355px)*1.77778)); aspect-ratio:16/9; isolation:isolate;
+  box-shadow:0 8px 18px #54341c35; border:4px solid #6f4828; border-radius:4px; background:#e4d3b7; }
+.room-art { position:absolute; inset:0; width:100%; height:100%; object-fit:fill; z-index:-2; }
+.library-host { position:absolute; right:2%; bottom:3%; height:43%; width:auto; pointer-events:none;
+  filter:drop-shadow(2px 3px 2px #49342350); }
+.room-card { position:relative; }
+.room-picture { position:relative; line-height:0; }
+.room-card .library-host { height:43%; width:auto; aspect-ratio:auto; border:0; box-shadow:none; bottom:4%; right:3%; }
+.label-preview { flex:1; min-width:0; background:white; border:1px solid #c7b597; padding:8px 10px;
+  box-shadow:2px 3px 0 #67482b20; }
+.label-preview b { display:block; font:700 17px Georgia,serif; }
+.label-preview p { overflow-wrap:anywhere; }
+.label-card { position:relative; padding-left:55px; }
+.label-thumb { position:absolute; left:5px; top:8px; width:42px; height:42px; object-fit:contain; }
+.label-card:focus-within { border:2px solid var(--brand); padding:7px 7px 7px 54px; background:#fffcf2; }
+.label-count { font-size:12px; font-weight:700; margin:0 0 5px; }
+.dust { position:absolute; width:3px; height:3px; border-radius:50%; background:#fff9; left:18%; top:28%;
+  box-shadow:55px 80px #fff7,20px 20px #fff8,-30px 40px #fff6; animation:dust 8s ease-in-out infinite alternate; pointer-events:none; }
+@keyframes dust { to { transform:translate(20px,-13px); opacity:.35; } }
+.spot { position:absolute; transform:translate(-50%,-50%); width:clamp(44px,7.2vw,98px); height:clamp(44px,6.2vw,84px); }
+.spot-button { position:absolute; inset:0; width:100%; height:100%; padding:0; border:0; background:transparent; border-radius:5px; }
+.spot:not(.has-work) .spot-button { inset:auto; width:44px; height:44px; left:50%; top:50%; transform:translate(-50%,-50%); }
+.number { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); display:grid; place-items:center;
+  width:44px; height:44px; border:2px solid #fff6d9; border-radius:50%; background:#763427ed; color:#fff;
+  font:800 17px Georgia,serif; box-shadow:0 2px 5px #39200d88; }
+.spot-button:hover .number,.spot.chosen .number { outline:3px solid var(--gold); }
+.spot.has-work .number { width:25px; height:25px; left:0; top:auto; bottom:-7px; transform:none; font-size:12px; }
+.work-image { width:100%; height:100%; object-fit:contain; filter:drop-shadow(2px 4px 2px #40250f66); }
+.mounted { position:absolute; inset:4px; transform-origin:50% 85%; transition:filter .35s,transform .35s; }
+.three-d .mounted { translate:0 -50%; }
+.three-d#spot-S7 .mounted { translate:0 30%; }
+.three-d#spot-S8 .mounted { translate:0 -100%; }
+.three-d .work-image { object-position:bottom; }
+.privacy-compact { display:none; font-size:10px; color:var(--muted); }
+.glass .mounted { border:5px ridge #bd8e44; background:#fff6; box-shadow:0 2px 4px #0005; }
+.glass .mounted:after,.cover .mounted:after,.sleeve .mounted:after { content:''; position:absolute; inset:0;
+  background:linear-gradient(120deg,transparent 32%,#fff8 33%,#fff2 37%,transparent 38%,transparent 68%,#fff4 69%,transparent 73%);
+  border:1px solid #eefaffaa; pointer-events:none; }
+.cover .mounted { border:2px solid #e5f8ffb3; border-radius:35% 35% 5px 5px; background:#edfaff22; }
+.sleeve .mounted { border:2px solid #f3fbffcc; background:#d9e8ee22; }
+.wall-label { position:absolute; top:100%; left:13px; width:96px; background:#fff; box-shadow:0 1px 3px #0004;
+  color:var(--ink); padding:2px 3px; font-size:10px; text-align:left; line-height:1.1; overflow:hidden; white-space:nowrap; }
+.wall-label b { display:block; font-size:10px; }
+.wall-label,.wall-label b { text-overflow:ellipsis; overflow:hidden; }
+.wall-label { pointer-events:none; }
+.hazard-icons { position:absolute; top:-16px; left:50%; transform:translateX(-50%); white-space:nowrap; background:#fff9e8;
+  border:1px solid #9e7854; border-radius:12px; padding:1px 4px; font-size:12px; pointer-events:none; min-width:22px; text-align:center; }
+.effect { pointer-events:none; position:absolute; inset:0; z-index:3; opacity:var(--damage,0); }
+.faded .mounted { filter:saturate(calc(1 - var(--damage)*.7)) brightness(calc(1 + var(--damage)*.15)); }
+.faded .effect { background:#ffdb6d30; mix-blend-mode:multiply; }
+.curled .mounted { transform:skewY(calc(var(--damage)*-5deg)); box-shadow:6px 9px 8px #4e382355; }
+.curled .effect:after { content:''; position:absolute; right:3px; bottom:3px; width:24%; height:27%;
+  background:linear-gradient(135deg,#7c6b45,#fff7d9 40%,#fff); clip-path:polygon(100% 0,100% 100%,0 100%); }
+.curled .work-image { border-radius:0 0 25% 0; }
+.curled .work-image { filter:url(#paper-wave); }
+.month-running .sun-patch { animation-duration:.2667s; }
+.smudged .effect,.bent .effect { background:repeating-linear-gradient(22deg,transparent 0 18%,#59494388 20%,transparent 26%);
+  filter:blur(2px); border-radius:20%; }
+.bent .mounted { transform:skewX(calc(var(--damage)*7deg)); }
+.pulled .effect svg,.cracked .effect svg { width:100%; height:100%; overflow:visible; }
+.crushed .mounted { transform:rotate(calc(var(--damage)*29deg)) scaleY(calc(1 - var(--damage)*.7)); }
+.spot.shake { animation:shake .3s ease-in-out; }
+@keyframes shake { 25%,75% { translate:-5px; } 50% { translate:5px; } }
+.hazard-loop { position:absolute; inset:-10px; pointer-events:none; z-index:-1; }
+.sun-patch { position:absolute; inset:-15px; background:#ffe25c7a; clip-path:polygon(0 5%,65% 0,100% 95%,45% 100%);
+  mix-blend-mode:multiply; animation:sweep 1.3s ease-in-out infinite alternate; }
+@keyframes sweep { from { transform:translateX(-15px) skewX(-10deg); } to { transform:translateX(17px) skewX(9deg); } }
+.heat-lines { color:#a93f20; font-size:42px; text-shadow:1px 1px #fff; text-align:center; animation:heat 1s ease-out infinite; }
+@keyframes heat { to { transform:translateY(-23px); opacity:.2; } }
+.touch-icon,.cart-icon { position:absolute; width:38px; height:38px; bottom:0; right:-6px;
+  filter:drop-shadow(1px 2px 1px #0005); animation:tap .7s ease-in-out infinite alternate; }
+@keyframes tap { to { transform:translate(-7px,-7px) rotate(-8deg); } }
+.no-hazard { position:absolute; inset:0; border:3px dotted #6e7c61; border-radius:20%; background:#fff2; }
+.stage-tools { display:flex; align-items:center; justify-content:center; gap:10px; min-height:52px; }
+.stage-tools .seg button { padding:0 14px; background:#f7eddc; color:var(--ink); }
+.stage-tools .seg button[aria-pressed=true] { background:#633e27; color:#fff; }
+.detail { min-height:94px; max-width:1000px; margin:0 auto; display:flex; gap:12px; align-items:center; padding:7px 10px;
+  border:1px solid #b79c78; border-radius:6px; background:#fff9eee8; box-shadow:0 3px 0 #6b49271c; }
+.detail-art { width:130px; height:104px; object-fit:contain; flex:none; }
+.detail-copy { flex:1; min-width:0; }
+.detail h2 { margin:0 0 3px; font:700 19px Georgia,serif; }
+.detail p { margin:3px 0; font-size:13px; line-height:1.35; }
+.fears { display:grid; grid-template-columns:repeat(4,1fr); gap:3px; margin-top:5px; }
+.fear { font-size:12px; border:1px solid #d6c6ad; padding:3px; background:#fff9ed; border-radius:4px; text-align:left; }
+.fear b { display:block; }
+.fear-note { min-height:32px; }
+.protect { display:flex; gap:5px; flex-wrap:wrap; }
+.protect button { font-size:13px; background:#fff9ed; border:1px solid #ad8e65; border-radius:6px; padding:0 10px; }
+.protect button[aria-pressed=true] { background:var(--gold); border:2px solid #876525; font-weight:700; }
+.panel { grid-column:2; grid-row:1; border-left:4px solid #92704b; padding:12px; gap:8px;
+  background:linear-gradient(90deg,#e8dcc5 0,#f9f4e9 5%); overflow:auto; }
+.panel-head { display:flex; flex-direction:column; gap:6px; position:sticky; top:0; z-index:10;
+  background:var(--panel); flex-shrink:0; }
+.panel-actions { display:grid; gap:4px; }
+.panel-actions:has(#primary[hidden]):has(#reveal-again[hidden]) { display:none; }
+.panel-actions:has(#reveal-again:not([hidden])) { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+.panel-actions:has(#reveal-again:not([hidden])) .big-btn { font-size:14px; padding:6px; }
+.hint { margin:0; min-height:62px; font-size:14px; line-height:1.4; border-left:3px solid var(--brand); padding:5px 8px; }
+.panel h2 { font:700 22px/1.1 Georgia,serif; margin:2px 0; }
+.brief { font-size:13px; margin:0; }
+.steps { display:grid; grid-template-columns:repeat(4,1fr); gap:3px; }
+.steps button { padding:3px 0; border:1px solid #bda587; background:#ede1cd; font-size:11px; border-radius:3px; }
+.steps button[aria-current=step] { background:var(--brand); color:#fff; font-weight:800; }
+.big-btn { min-height:44px; border-radius:5px; font-size:16px; padding:7px 12px; box-shadow:0 3px 0 #472617; }
+.secondary { min-height:44px; border:1px solid #a58c6c; background:#fff9ee; border-radius:5px; font-size:13px; padding:6px 8px; }
+.crate { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; }
+.work-card { position:relative; display:flex; flex-direction:column; align-items:center; padding:5px 4px 7px;
+  border:1px solid #c8b69a; border-bottom:3px solid #ae8c61; border-radius:5px; background:#fffdf6; text-align:center;
+  color:var(--ink); min-width:0; touch-action:none; }
+.work-card img { width:100%; height:65px; object-fit:contain; pointer-events:none; }
+.work-card b { font:700 13px/1.15 Georgia,serif; margin-top:4px; }
+.work-card small { font-size:10px; line-height:1.2; color:var(--muted); display:block; margin-top:2px; }
+.work-card[aria-pressed=true] { border:2px solid #8a2b1f; padding:4px 3px 6px; background:#fff3c9; }
+.ribbon { position:absolute; top:3px; right:3px; background:var(--gold); color:var(--ink); font-size:10px;
+  font-weight:800; padding:2px 4px; transform:rotate(3deg); box-shadow:1px 2px 2px #0002; }
+.theme-mark { font-size:10px; font-weight:700; padding-top:3px; }
+.criterion { font-size:12px; line-height:1.35; border-left:3px solid #b79a56; padding-left:7px; }
+.progress { font-size:12px; font-weight:700; color:var(--muted); }
+.nav-shows { display:flex; gap:4px; margin-top:auto; }
+.nav-shows button { flex:1; font-size:11px; padding:3px; }
+.label-list,.result-list { display:flex; flex-direction:column; gap:7px; }
+.label-card { padding:8px; background:#fff; border:1px solid #d2c0a4; border-radius:4px; }
+.label-card b { display:block; font:700 15px Georgia,serif; }
+.label-card { padding-left:55px; }
+.label-card small { font-size:11px; }
+.label-card select,.label-card input { width:100%; min-height:44px; border:1px solid #a88e6b; border-radius:3px;
+  margin-top:5px; font-size:12px; background:#fffdf7; color:var(--ink); padding:4px; }
+.result-card { display:grid; grid-template-columns:48px 1fr; gap:8px; border-bottom:1px solid #cbb698; padding:4px 0 7px; }
+.result-card img { width:48px; height:48px; object-fit:contain; }
+.result-card b { display:block; font:700 14px Georgia,serif; }
+.result-card p { margin:4px 0 0; font-size:12px; line-height:1.35; }
+.result-chip { display:inline-block; color:#fff; background:var(--brand); font-size:11px; border-radius:4px; padding:3px 6px; }
+.result-chip.fine { background:var(--fine); }
+.sticky { background:#ffec99; padding:5px; box-shadow:1px 2px 3px #6b4b1633; transform:rotate(-1deg); }
+.compare { height:100%; display:flex; flex-direction:column; gap:10px; }
+.rooms { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.room-card { margin:0; }
+.room-card img { width:100%; aspect-ratio:16/9; object-fit:cover; border:4px solid #886342; box-shadow:0 4px 8px #0002; }
+.room-card figcaption { font:700 20px Georgia,serif; padding:5px 0; }
+.compare-table { display:grid; grid-template-columns:1fr 1fr; gap:0 12px; }
+.compare-fact { padding:6px 10px; border-bottom:1px solid #bda585; background:#fbf6ebbd; font-size:14px; line-height:1.35; }
+.compare-fact.active { background:#fff0b4; box-shadow:inset 4px 0 var(--brand); }
+.compare-fact strong { display:block; font-size:12px; color:var(--muted); margin-bottom:3px; }
+.compare-buttons { display:grid; gap:6px; }
+.compare-buttons button { text-align:left; }
+.compare-buttons button[aria-pressed=true] { background:var(--gold); border:2px solid #896122; }
+.closing { font:700 20px/1.35 Georgia,serif; color:#673421; margin:6px 0; }
+.custom { display:grid; grid-template-columns:1fr 1fr; gap:5px; }
+.custom select { width:100%; font-size:12px; background:#fffdf4; border:1px solid #b1956f; border-radius:4px; }
+.drag-ghost { position:fixed; width:110px; height:90px; object-fit:contain; z-index:20; pointer-events:none;
+  filter:drop-shadow(4px 6px 4px #0005); transform:translate(-50%,-50%) rotate(-4deg); }
+.calm .dust,.calm .sun-patch,.calm .heat-lines,.calm .touch-icon,.calm .cart-icon { animation:none!important; }
+.calm .mounted { transition:none; }
+@media (min-width:1001px) {
+  #stage:has(.fears) .wall { width:min(100%,calc((100dvh - 385px)*1.77778)); }
+}
+@media (min-width:1600px) {
+  main { grid-template-columns:minmax(0,1fr) 390px; } .work-card img { height:100px; }
+  .spot { width:140px; height:110px; }
+  .work-card b { font-size:15px; } .work-card small { font-size:12px; } .hint { font-size:16px; }
+}
+@media (max-height:800px) and (min-width:601px) {
+  header { padding:6px 14px; } h1 { font-size:25px; } .modebar { padding:0 14px 6px; }
+  .stage { padding:6px 10px; } .detail { min-height:80px; } .detail-art { width:75px; height:70px; }
+  .wall { width:min(100%,calc((100dvh - 355px)*1.77778)); }
+  .panel { padding:8px; gap:6px; } .work-card img { height:52px; } .hint { min-height:54px; font-size:13px; }
+  .crate { grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .work-card b { font-size:12px; } .work-card small { font-size:10px; }
+  .ribbon-words { display:none; }
+  .detail-art { width:120px; height:98px; }
+}
+@media (max-width:1000px) and (min-width:601px) {
+  main { grid-template-columns:minmax(0,1fr) 255px; } .save-note { display:none; }
+  header { padding:5px 10px; } h1 { font-size:23px; } .modebar { padding:0 10px 5px; }
+  .seg button { padding:0 12px; font-size:12px; } .icon-btn { padding:0 8px; }
+  .stage { padding:5px; } .room-top { margin-bottom:3px; } .eyebrow { font-size:10px; }
+  .wall { border-width:2px; } .spot { width:48px; height:48px; }
+  .wall-label { top:91%; left:9px; width:65px; } .detail { padding:6px; gap:6px; min-height:85px; }
+  .detail-art { width:58px; height:65px; } .detail h2 { font-size:16px; } .detail p { font-size:11px; } .fear { font-size:10px; }
+  .protect { gap:3px; } .protect button { font-size:11px; padding:0 5px; }
+  .work-card img { height:43px; } .work-card b { font-size:12px; } .work-card small { font-size:10px; }
+  .panel h2 { font-size:19px; } .hint { font-size:12px; min-height:53px; }
+  .compare-fact { font-size:12px; padding:6px; } .room-card figcaption { font-size:16px; }
+  .privacy-compact { display:inline; } #room-name { display:none; }
+}
+@media (max-height:550px) and (min-width:601px) {
+  header { padding:3px 8px; border-top-width:3px; } h1 { font-size:20px; } h1 small { display:none; }
+  .modebar { padding:0 8px 3px; } main { grid-template-columns:minmax(0,1fr) 245px; }
+  .stage { padding:3px 5px; } .room-top { min-height:20px; }
+  .calendar { font-size:13px; padding:1px 5px; } .wall { width:min(100%,calc((100dvh - 260px)*1.77778)); }
+  .stage-tools { min-height:46px; gap:3px; } .stage-tools .seg button { padding:0 7px; font-size:11px; }
+  .detail { min-height:48px; padding:3px 5px; gap:4px; } .detail-art { width:40px; height:38px; }
+  .detail h2 { font-size:13px; } .detail p { font-size:10px; line-height:1.2; margin:0; }
+  .fears { margin:0; gap:2px; } .fear { padding:0; border:0; } .fear b { display:block; }
+  .fear-note { display:none; }
+  .panel { padding:4px 6px; gap:4px; } .panel h2 { font-size:16px; margin:0; } .brief { font-size:11px; }
+  .panel-head { gap:4px; }
+  .spot { width:44px; height:44px; }
+  #spot-S1 { left:14%!important; top:22%!important; }
+  #spot-S2 { left:8%!important; top:65%!important; }
+  #spot-S3 { left:30%!important; top:45%!important; }
+  #spot-S4 { left:24%!important; top:83%!important; }
+  #spot-S5 { left:44%!important; top:14%!important; }
+  #spot-S6 { left:46%!important; top:68%!important; }
+  #spot-S7 { left:64%!important; top:36%!important; }
+  #spot-S8 { left:61%!important; top:82%!important; }
+  #spot-S9 { left:79%!important; top:23%!important; }
+  #spot-S10 { left:91%!important; top:55%!important; }
+  .hint { min-height:39px; font-size:11px; padding:2px 5px; line-height:1.25; }
+  .crate { grid-template-columns:repeat(4,minmax(0,1fr)); gap:3px; }
+  .work-card { min-height:58px; padding:2px; } .work-card[aria-pressed=true] { padding:1px; }
+  .work-card img { height:27px; } .work-card b { font-size:10px; line-height:1.05; margin-top:1px; }
+  .work-card small { display:none; } .ribbon { font-size:10px; padding:0 2px; right:0; top:0; }
+  .ribbon-words { display:none; } .criterion { font-size:10px; line-height:1.15; }
+  .progress { font-size:10px; } .theme-mark { font-size:10px; } .nav-shows { margin-top:0; }
+  #context > .brief,#context > .progress { display:none; }
+  .your-show #context h2 { display:none; }
+  .your-show .work-card { min-height:44px; padding:1px; }
+  .your-show .work-card[aria-pressed=true] { padding:0; }
+  .your-show .work-card img { height:18px; }
+  .your-show .hint { min-height:27px; }
+  .nav-shows button { font-size:10px; } .closing { font-size:14px; } .compare { gap:4px; }
+  .compare { overflow:auto; }
+  .rooms { gap:5px; } .compare-table { gap:0 5px; } .compare-fact { font-size:10px; padding:3px; }
+  .compare-fact strong { font-size:10px; margin:0; } .compare-buttons { gap:2px; } .compare-buttons button { font-size:11px; }
+}
+@media (max-width:600px) {
+  body { height:auto; min-height:100dvh; overflow:auto; }
+  header { padding:5px 8px; gap:4px; border-top-width:3px; } h1 { width:100%; font-size:25px; margin-bottom:3px; }
+  h1 small { display:none; } .modebar { padding:2px 8px 6px; }
+  .modebar .seg { display:flex; width:100%; } .modebar .seg button { flex:1; font-size:12px; padding:0 6px; }
+  .save-note { display:none; } main { display:flex; flex-direction:column; }
+  .privacy-compact { display:inline; } #room-name { display:none; }
+  .stage { order:0; padding:5px; overflow:visible; } .room-top { min-height:22px; margin-bottom:3px; }
+  .wall { width:100%; border-width:2px; } .spot { width:44px; height:44px; }
+  .number { font-size:15px; } .wall-label { width:55px; max-height:23px; left:5px; }
+  .stage-tools { min-height:48px; } .stage-tools .seg button { font-size:12px; padding:0 12px; }
+  .detail { min-height:71px; gap:6px; padding:5px; } .detail-art { width:60px; height:60px; }
+  .detail h2 { font-size:16px; } .detail p { font-size:11px; } .fear { font-size:10px; }
+  .detail:not(:has(.detail-art)),.choosing .detail { display:none; }
+  .fear-note { display:none; }
+  .showing .stage-tools { min-height:22px; }
+  .panel { order:1; border-left:0; border-top:4px solid #92704b; padding:7px; gap:4px; overflow:visible; }
+  .panel-head { gap:4px; }
+  #primary { order:-2; }
+  .panel-actions { order:-2; }
+  .choosing #context > .brief,.choosing #context > .progress { display:none; }
+  .placing:has(.detail-art) #context { display:none; }
+  .your-show .wall { width:min(100%,320px); }
+  .stage:has(.fears) .wall { width:min(100%,340px); }
+  .your-show .work-card img { height:24px; }
+  .comparing .panel { order:0; }
+  .comparing .stage { order:1; }
+  .hint { min-height:40px; font-size:12px; } .crate { grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; }
+  .work-card img { height:32px; } .work-card b { font-size:11px; } .work-card small { font-size:10px; }
+  .panel h2 { font-size:19px; } .rooms { gap:5px; } .compare { gap:5px; }
+  .compare-fact { font-size:11px; padding:5px; } .compare-table { gap:0 5px; }
+  .compare-fact strong { font-size:10px; } .room-card figcaption { font-size:17px; }
+  .closing { font-size:17px; } .protect button { font-size:11px; padding:0 6px; }
+}
+@media (max-height:550px) and (min-width:601px) {
+  .showing .wall { width:min(100%,calc((100dvh - 224px)*1.77778)); }
+  .showing .stage-tools { min-height:24px; }
+  .your-show .work-card b { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+    overflow:hidden; text-overflow:ellipsis; }
+  .your-show .theme-mark { position:absolute; top:1px; left:1px; padding:0 2px; background:#fff9e9;
+    border:1px solid #a48658; border-radius:3px; line-height:12px; }
+}
+@media (max-width:1000px) and (min-width:601px) and (max-height:800px) {
+  .choosing #context > .brief { display:none; }
+}
+@media (max-width:600px) {
+  .your-show.choosing #context h2 { display:none; }
+  .showing .panel { gap:3px; }
+  .placing .wall { width:min(100%,320px); }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Traveling Art Show <small>getting art ready for a show</small></h1>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+</header>
+<nav class="modebar" aria-label="Tool modes">
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-look" aria-pressed="true">Look around</button>
+    <button id="m-shows" aria-pressed="false">Shows</button>
+    <button id="m-compare" aria-pressed="false">Library and museum</button>
+  </div>
+  <span class="save-note">Show progress saves here. It never leaves this device.</span>
+</nav>
+<main>
+  <!-- The panel comes first for keyboard access to choices before spot markers. -->
+  <aside class="panel" id="panel">
+    <div class="panel-head">
+      <div class="steps" id="steps" hidden></div>
+      <p class="hint" id="hint" aria-live="polite"></p>
+      <div class="panel-actions">
+        <button class="big-btn gold" id="primary" hidden></button>
+        <button class="secondary" id="reveal-again" hidden>Look around this month</button>
+      </div>
+    </div>
+    <div id="context"></div>
+    <div class="crate" id="crate" aria-label="Crate of artworks"></div>
+    <div id="extra"></div>
+    <div class="nav-shows" id="show-nav" hidden>
+      <button class="secondary" id="previous">Previous show</button>
+      <button class="secondary" id="restart">Start show over</button>
+      <button class="secondary" id="next">Next show</button>
+    </div>
+  </aside>
+  <section class="stage" id="stage" aria-label="Library display">
+    <div id="library">
+      <div class="room-top"><span class="eyebrow" id="room-name">Town library · Explore</span>
+        <span class="privacy-compact">Saved here only. Nothing leaves this device.</span><span class="calendar" id="calendar">One day</span></div>
+      <div class="wall-wrap"><div class="wall" id="wall" aria-label="Ten library display spots">
+        <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><filter id="paper-wave">
+          <feTurbulence type="fractalNoise" baseFrequency=".025 .06" numOctaves="1" seed="3" result="noise"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" xChannelSelector="R" yChannelSelector="G"/>
+        </filter></defs></svg>
+        <img class="room-art" src="art:library-wall" alt="Library with sunny window, heater, story rug, door shelf, glass case, pedestal, nook and desk.">
+        <img class="library-host" src="art:librarian" alt="The town librarian welcomes visitors beside the desk.">
+        <div class="dust" aria-hidden="true"></div>
+      </div></div>
+      <div class="stage-tools" id="stage-tools"></div>
+      <div class="detail" id="detail"></div>
+    </div>
+    <div class="compare" id="compare" hidden></div>
+  </section>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const MONTHS = ['October','January','June'];
+  const ICON = {sun:'☀',heat:'♨',hands:'☝',bumps:'▣'};
+  const WORKS = [
+    ['W1','Pumpkin Patch','Rosa M.','chalk pastel on colored paper','Chalk pastel','flat','art:w1-pastel',
+      'The farm stand on Mill Road, with crows on the fence.',['sun','hands'],['glass']],
+    ['W2','Rainy Main Street','Theo K.','watercolor on paper','Watercolor','flat','art:w2-watercolor',
+      'Main Street shops in the rain, with puddles.',['sun','heat','hands'],['glass','sleeve']],
+    ['W3','Pond Bowl','Ana P.','fired, glazed clay','Glazed clay','3D','art:w3-bowl',
+      'Frogs painted around the town pond.',['hands','bumps'],['cover']],
+    ['W4','Leaf Parade','Jamal R.','glued paper collage','Paper collage','flat','art:w4-collage',
+      'The fall parade on Main Street, with dogs marching.',['sun','heat','hands'],['glass']],
+    ['W5','Paper Heron','Mei L.','folded paper sculpture','Folded paper','3D','art:w5-heron',
+      'A heron standing in a river.',['heat','hands','bumps'],['cover']],
+    ['W6','Our Bridge','Sam O.','printed photo (inkjet)','Inkjet photo','flat','art:w6-photo',
+      'The old bridge over the river, with ducks below.',['sun','heat','hands'],['glass','sleeve']],
+    ['W7','River Stripes','Lily A.','yarn weaving','Yarn weaving','flat','art:w7-weaving',
+      'Blue and green stripes like moving water.',['sun','hands'],['glass']],
+    ['W8','Library Cat','Omar D.','marker poster','Marker poster','flat','art:w8-poster',
+      'The library’s cat watching the fish tank.',['sun','hands'],['glass','sleeve']]
+  ].map(([id,title,artist,material,short,kind,art,subject,fears,stops]) => ({id,title,artist,material,short,kind,art,subject,fears,stops}));
+  const SPOTS = [
+    ['S1','window wall','wall',18,15,['sun','sun','sun']],
+    ['S2','window sill','shelf',6.5,54,['sun','sun','sun']],
+    ['S3','wall over the heater vent','wall',28,42,['','heat','']],
+    ['S4','story rug wall, low','wall',20,66,['hands','hands','hands']],
+    ['S5','story rug wall, high','wall',43,17,['','','']],
+    ['S6','shelf by the front door','shelf',42,60,['bumps','bumps','bumps']],
+    ['S7','locked glass case','case',63,46,['','','']],
+    ['S8','pedestal in the middle','pedestal',55,74,['','sun','hands']],
+    ['S9','quiet nook wall','wall',79,50,['','','sun']],
+    ['S10','wall behind the desk','wall',90,19,['','','']]
+  ].map(([id,name,kind,x,y,hazards]) => ({id,name,kind,x,y,hazards}));
+  const SHOWS = [
+    {title:'Our Town',month:0,criterion:'Shows a place in our town.',brief:'The town library wants six works about places in our town.',
+      fit:['W1','W2','W3','W4','W6','W8'],reasons:{W5:'a heron, but no place in town',W7:'stripes, no place in town'}},
+    {title:'Water All Around',month:1,criterion:'Shows water.',brief:'Find six works that show water, even in an unexpected place.',
+      fit:['W2','W3','W5','W6','W7','W8'],reasons:{W1:'no water in this scene',W4:'a parade, but no water'}},
+    {title:'Animals We Know',month:2,criterion:'Shows an animal.',brief:'Find six works with animals. Look carefully at the little details.',
+      fit:['W1','W3','W4','W5','W6','W8'],reasons:{W2:'shops and puddles, but no animal',W7:'stripes, but no animal'}}
+  ];
+  const COMPARE = [
+    ['Who watches the art?','The librarian, now and then.','Guards and cameras, all day.'],
+    ['Light?','Sunny windows.','Low light for works on paper: about 50 lux, a tenth of a bright office.'],
+    ['Air?','Heater in winter, open doors.','Temperature and humidity kept steady all year.'],
+    ['Can people touch?','Kids can reach the low walls.','Barriers, cases and “please do not touch”.'],
+    ['What is it for?','Lending books and bringing neighbors together.','Collecting, caring for, studying and showing art.']
+  ];
+  const WHY = {
+    sun:'Light fades dyes and colored paper. Marker and construction paper fade fastest.',
+    heat:'Warm, dry air from a vent makes paper curl and wave and glue let go.',
+    hands:'Fingers smudge chalk, pull yarn, and bend paper.',
+    bumps:'A knock sends a bowl or a paper sculpture to the floor.'
+  };
+  const L = {
+    welcomeLook:'Welcome to the library. Tap a number on the wall to watch one day in that spot.',
+    fearHow:'Now tap an artwork to see what it is afraid of.',
+    tryHow:'Drag an artwork onto a spot to see a month there. Or tap a card, then tap a spot.',
+    welcomeShows:'Read the theme. Tap six artworks to put them in the show, then tap Check my six.',
+    placeHow:'Tap Look around this month to find the dangers. Then drag each artwork to a safe spot.',
+    protectHow:'Pick how to protect it: a glass frame, a sleeve, or nothing.',
+    labelHow:'Pick the right material for each label. Then tap Open the show.',
+    moveHow:'Tap an artwork, then tap a numbered spot. Pick protection below the wall.',
+    openHow:'Tap Open the show to watch a month. Tap anywhere during the run to jump to results.',
+    allFine:'All six look just like the day they arrived. The show was a success.',
+    compareWelcome:'Tap a row to compare the library and the museum.',
+    fine:'Looks just like the day it arrived.'
+  };
+  function resultPhrase(w,c) {
+    if (c === 'sun') return 'faded: the sun hit it about 4 hours a day.';
+    if (c === 'heat') return 'curled: the heater blew warm, dry air on it all month.';
+    if (c === 'sleeve') return 'smudged inside its sleeve: plastic rubs chalk.';
+    if (c === 'bumps') return w.id === 'W3' ? 'cracked: knocked off the shelf.' : 'crushed: knocked off the shelf.';
+    if (w.id === 'W1') return 'smudged: fingers rubbed the chalk.';
+    if (w.id === 'W7') return 'has pulled threads: fingers pulled the yarn.';
+    if (w.id === 'W3') return 'cracked: picked up and dropped.';
+    if (w.id === 'W5') return 'crushed: busy hands bent the paper.';
+    return 'bent and fingerprinted: busy hands touched the paper.';
+  }
+  WORKS.forEach(w => {
+    [...w.fears,...(w.id === 'W1' ? ['sleeve'] : [])].forEach(c => L[w.id+'-'+c] = w.title+' '+resultPhrase(w,c));
+    SHOWS.forEach((s,i) => { if (s.reasons[w.id]) L['wrong-'+i+'-'+w.id] = w.title+': '+s.reasons[w.id]+'.';
+    });
+  });
+  Object.entries(WHY).forEach(([k,v]) => { L['why-'+k] = v;
+  });
+  L.claySun = 'Fired clay glaze does not fade in a month.';
+  L.yarnHeat = 'Yarn does not curl in warm air.';
+  COMPARE.forEach((r,i) => { L['compare-'+i] = r[0]+' Library: '+r[1]+' Museum: '+r[2];
+  });
+  const blank = () => ({chosen:[],placed:{},protect:{},labels:{},ideas:{},step:1,reached:1,
+    checked:false,revealed:false,finished:false,theme:0,month:0});
+  const state = {mode:'look',show:0,month:0,selected:null,spot:null,compareRow:0,shows:[0,1,2,3].map(blank),
+    explore:{},exploreProtect:{},running:false,results:false,day:0,runToken:0,preview:null,loops:[],loopToken:0};
+  let labelLayoutKey = '';
+  const current = () => state.shows[state.show];
+  const theme = () => SHOWS[state.show === 3 ? current().theme : state.show];
+  const month = () => state.mode === 'look' ? state.month : state.show === 3 ? current().month : theme().month;
+  const placements = () => state.mode === 'look' ? state.explore : current().placed;
+  const protections = () => state.mode === 'look' ? state.exploreProtect : current().protect;
+  const work = id => WORKS.find(w => w.id === id);
+  const spot = id => SPOTS.find(s => s.id === id);
+  const esc = text => String(text).replace(/[&<>"']/g,c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  try {
+    const saved = JSON.parse(localStorage.getItem('traveling-art-show') || 'null');
+    if (saved && Array.isArray(saved.shows)) {
+      state.shows = state.shows.map((s,i) => {
+        const p = saved.shows[i];
+        if (!p || !Array.isArray(p.chosen)) return s;
+        s.chosen = [...new Set(p.chosen.filter(id => work(id)))].slice(0,6);
+        for (const [id,sid] of Object.entries(p.placed || {})) {
+          if (s.chosen.includes(id) && spot(sid) && !Object.values(s.placed).includes(sid)) s.placed[id] = sid;
+        }
+        for (const id of s.chosen) {
+          s.protect[id] = ['glass','sleeve','cover','nothing'].includes(p.protect?.[id]) ? p.protect[id] : 'nothing';
+          s.labels[id] = typeof p.labels?.[id] === 'string' ? p.labels[id] : '';
+          s.ideas[id] = typeof p.ideas?.[id] === 'string' ? p.ideas[id].slice(0,120) : '';
+        }
+        s.step = Math.max(1,Math.min(4,Number(p.step)||1));
+        s.reached = Math.max(s.step,Math.min(4,Number(p.reached)||1));
+        s.checked = !!p.checked;
+        s.revealed = !!p.revealed;
+        s.finished = !!p.finished;
+        s.theme = Math.max(0,Math.min(2,Number(p.theme)||0));
+        s.month = Math.max(0,Math.min(2,Number(p.month)||0));
+        return s;
+      });
+      state.show = Math.max(0,Math.min(3,Number(saved.show)||0));
+    }
+  } catch {}
+  const save = () => {
+    try { localStorage.setItem('traveling-art-show',JSON.stringify({show:state.show,shows:state.shows}));
+    } catch {}
+  };
+  const hint = text => { $('hint').textContent = text;
+  };
+  SPOTS.forEach(s => MONTHS.forEach((_,m) => { L['spot-'+s.id+'-'+m] = describeSpot(s.id,m); }));
+  WORKS.forEach(w => {
+    L[w.id+'-fine'] = w.title+'. '+L.fine;
+    L[w.id+'-kind'] = w.title+' needs '+(w.kind === 'flat' ? 'a wall spot or the case.' : 'a shelf, a pedestal or the case.');
+  });
+  for (let n=0;n<6;n++) L['choose-count-'+n] = 'Choose exactly six works. You have '+n+'.';
+  L.fineEnemy = 'Fine with this enemy in our one-month model.';
+  const V = Curio.voice({lines:L,scope:() => state.mode+':'+state.show,hint:false,read:() => $('hint').textContent,
+    welcome:() => {
+      if (state.mode === 'look' && !state.selected && !state.spot) return ['welcomeLook',{valid:() => !state.selected && !state.spot}];
+      if (state.mode === 'shows' && current().step === 1) return ['welcomeShows',{valid:() => !current().chosen.length}];
+      return state.mode === 'compare' ? 'compareWelcome' : null;
+    },speaks:'.spot-button,.work-card,#primary'});
+  function how(key,valid=() => true,needs) {
+    hint(L[key]);
+    V.how(key,{valid,needs,hint:false});
+  }
+  function keepFocus(fn) {
+    const id = document.activeElement?.id;
+    fn();
+    if (id && $(id) && !$(id).disabled) $(id).focus({preventScroll:true});
+  }
+  function damageFor(w,sid,p='nothing',m=month()) {
+    const s = spot(sid), effects = [];
+    if (!s) return effects;
+    if (w.id === 'W1' && p === 'sleeve') effects.push('sleeve');
+    const h = s.hazards[m];
+    if (w.fears.includes(h) && !(h === 'hands' && w.stops.includes(p))) effects.push(h);
+    return effects;
+  }
+  function effectClass(w,c) {
+    if (c === 'sun') return 'faded';
+    if (c === 'heat') return 'curled';
+    if (c === 'sleeve') return 'smudged';
+    if (c === 'bumps' || c === 'hands' && w.kind === '3D') return w.id === 'W3' ? 'cracked' : 'crushed';
+    return w.id === 'W1' ? 'smudged' : w.id === 'W7' ? 'pulled' : 'bent';
+  }
+  function effectSVG(w,causes) {
+    if (causes.some(c => effectClass(w,c) === 'cracked')) {
+      return '<svg viewBox="0 0 100 100"><path d="M44 18 56 39 45 48 61 64 53 82 M45 48 30 53 M61 64 76 61" '
+        +'fill="none" stroke="#35251d" stroke-width="3"/><path d="M47 19 59 39 48 48 64 64 56 82" '
+        +'fill="none" stroke="#fff4d2" stroke-width="1"/></svg>';
+    }
+    if (causes.some(c => effectClass(w,c) === 'pulled')) {
+      return '<svg viewBox="0 0 100 100"><path d="M29 43 Q5 75 29 80 T45 67 Q52 102 63 78 T88 84 M43 32 Q65 58 85 39" '
+        +'fill="none" stroke="#216f72" stroke-width="4"/></svg>';
+    }
+    return '';
+  }
+  const HAND = '<svg class="touch-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M11 22V8q0-5 5-4v17V13q0-4 5-3v12-7'
+    +'q0-4 5-2v11-5q0-3 5-1v12q0 7-8 8H14L4 25q-2-5 3-5z" fill="#f3d36b" stroke="#674b2f" stroke-width="2"/></svg>';
+  const CART = '<svg class="cart-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M3 6h6l5 24h20M11 13h24l-4 12H14" '
+    +'fill="#ac9b83" stroke="#65492d" stroke-width="3"/><circle cx="17" cy="34" r="3" fill="#49382b"/>'
+    +'<circle cx="30" cy="34" r="3" fill="#49382b"/><path d="M15 9h14v9H15z" fill="#8a2b1f"/></svg>';
+  function hazardHTML(h) {
+    if (h === 'sun') return '<div class="sun-patch"></div>';
+    if (h === 'heat') return '<div class="heat-lines">∿ ∿ ∿</div>';
+    return h === 'hands' ? HAND : h === 'bumps' ? CART : '<div class="no-hazard"></div>';
+  }
+  const protectionName = p => ({glass:'Glass frame',sleeve:'Sleeve',cover:'Clear cover',nothing:'Nothing'}[p] || 'Nothing');
+  function buildSpots() {
+    SPOTS.forEach((s,i) => {
+      const el = document.createElement('div');
+      el.id = 'spot-'+s.id;
+      el.className = 'spot';
+      el.style.left = s.x+'%';
+      el.style.top = s.y+'%';
+      el.innerHTML = '<div class="hazard-loop" hidden></div><button class="spot-button" id="place-'+s.id+'">'
+        +'<span class="mounted" hidden></span><span class="effect"></span><span class="number">'+(i+1)+'</span></button>'
+        +'<span class="hazard-icons" hidden></span><div class="wall-label" hidden></div>';
+      el.querySelector('button').onclick = () => tapSpot(s.id);
+      el.querySelector('button').onkeydown = e => {
+        const d = ['ArrowRight','ArrowDown'].includes(e.key) ? 1 : ['ArrowLeft','ArrowUp'].includes(e.key) ? -1 : 0;
+        if (d) { e.preventDefault();
+          $('place-'+SPOTS[(i+d+10)%10].id).focus({preventScroll:true});
+        }
+      };
+      $('wall').append(el);
+    });
+  }
+  function paintSpots() {
+    $('wall').classList.toggle('month-running',state.running);
+    const placed = placements();
+    for (const s of SPOTS) {
+      const id = Object.keys(placed).find(id => placed[id] === s.id), w = work(id), el = $('spot-'+s.id);
+      const p = id ? protections()[id] || 'nothing' : 'nothing';
+      let causes = [], level = 0;
+      if (w && state.mode === 'shows' && (state.running || state.results)) {
+        causes = damageFor(w,s.id,p);
+        level = state.day < 10 ? 0 : state.day < 20 ? .34 : state.day < 30 ? .67 : 1;
+      }
+      if (w && state.mode === 'look' && state.preview?.spot === s.id) { causes = damageFor(w,s.id,p);
+        level = state.preview.level;
+      }
+      const classes = w && level > 0 ? causes.map(c => effectClass(w,c)) : [];
+      el.className = ['spot',w ? 'has-work' : '',w?.kind === '3D' ? 'three-d' : '',
+        state.spot === s.id ? 'chosen' : '',p,...classes].join(' ');
+      el.style.setProperty('--damage',level);
+      $('place-'+s.id).setAttribute('aria-label',s.id+' '+s.name+', '+s.kind+(w ? ', '+w.title+', '+protectionName(p) : ', empty'));
+      const mount = el.querySelector('.mounted');
+      mount.hidden = !w;
+      if (w && mount.dataset.work !== id) { mount.innerHTML = '<img class="work-image" src="'+w.art+'" alt="">';
+        mount.dataset.work = id;
+      }
+      el.querySelector('.effect').innerHTML = w ? effectSVG(w,causes) : '';
+      const lb = el.querySelector('.wall-label');
+      lb.hidden = !(w && state.mode === 'shows' && current().step >= 3);
+      if (!lb.hidden) {
+        lb.innerHTML = '<b>'+s.id.slice(1)+' · '+w.title+'</b><span class="byline">by '+w.artist+'</span>';
+        lb.title = w.title+' by '+w.artist+'. '+(current().labels[id] || 'Material not chosen.')+' '+(current().ideas[id] || '');
+      }
+      const ic = el.querySelector('.hazard-icons');
+      ic.hidden = !(state.mode === 'shows' && current().revealed && s.hazards[month()]);
+      ic.textContent = ICON[s.hazards[month()]] || '';
+      ic.title = s.hazards[month()] || 'none';
+      ic.setAttribute('aria-label',ic.title);
+      const loop = el.querySelector('.hazard-loop'), active = state.loops.includes(s.id) || state.running && !!s.hazards[month()];
+      loop.hidden = !active;
+      if (active && loop.dataset.hazard !== s.hazards[month()]) {
+        loop.innerHTML = hazardHTML(s.hazards[month()]);
+        loop.dataset.hazard = s.hazards[month()];
+      }
+    }
+    $('calendar').textContent = state.running ? Curio.reduce ? 'Month running…' : 'Day '+state.day+' / 30'
+      : state.results ? 'Day 30 / 30' : 'One day';
+    arrangeLabels();
+  }
+  function arrangeLabels() {
+    const labels = [...$('wall').querySelectorAll('.wall-label:not([hidden])')];
+    const badges = [...$('wall').querySelectorAll('.hazard-icons:not([hidden])')];
+    if (!labels.length && !badges.length) { labelLayoutKey = '';
+      return;
+    }
+    const wall = $('wall').getBoundingClientRect();
+    const key = [wall.x,wall.y,wall.width,wall.height,state.mode,state.show,current().revealed,
+      ...labels.map(l => l.title+':'+l.parentElement.id),...badges.map(l => l.title+':'+l.parentElement.id),
+      ...Object.entries(placements()).flat()].join('|');
+    if (key === labelLayoutKey) return;
+    labelLayoutKey = key;
+    const obstacles = [...$('wall').querySelectorAll('.mounted:not([hidden]),.spot-button,.number')]
+      .map(e => e.getBoundingClientRect());
+    const overlap = (a,b) => Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left)+3)
+      * Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)+3);
+    for (const label of [...badges,...labels]) {
+      const parent = label.parentElement.getBoundingClientRect();
+      const isBadge = label.classList.contains('hazard-icons');
+      const compactLabel = !isBadge && wall.width < 350;
+      const width = isBadge ? 22 : compactLabel ? 48 : innerWidth <= 1000 ? 64 : 96;
+      const height = isBadge ? 20 : compactLabel ? 14 : 26;
+      if (!isBadge) label.querySelector('.byline').hidden = compactLabel;
+      const cx = parent.x+parent.width/2, cy = parent.y+parent.height/2;
+      let best = null;
+      const step = wall.width < 500 ? 3 : 8;
+      for (let y=wall.top+5; y+height<wall.bottom-3; y+=step) {
+        for (let x=wall.left+5; x+width<wall.right-3; x+=step) {
+          const b = {left:x,top:y,right:x+width,bottom:y+height};
+          const collision = obstacles.reduce((sum,o) => sum+overlap(b,o),0);
+          const distance = Math.hypot(x+width/2-cx,y+height/2-cy);
+          const score = collision*10000+distance;
+          if (!best || score < best.score) best = {x,y,b,score};
+        }
+      }
+      if (!best) continue;
+      label.style.left = best.x-parent.left+'px';
+      label.style.top = best.y-parent.top+'px';
+      label.style.width = width+'px';
+      label.style.maxHeight = height+'px';
+      label.style.lineHeight = compactLabel ? '1' : '';
+      label.style.transform = 'none';
+      obstacles.push(best.b);
+    }
+  }
+  function reveal(ids) {
+    const token = ++state.loopToken;
+    state.loops = ids;
+    paintSpots();
+    setTimeout(() => {
+      if (token !== state.loopToken) return;
+      state.loops = [];
+      paintSpots();
+      if (state.mode === 'look' && !state.selected) how('fearHow',() => state.mode === 'look' && !state.selected,'.work-card');
+    },4000);
+  }
+  function cancelTransient() {
+    state.runToken++;
+    state.loopToken++;
+    state.loops = [];
+    state.preview = null;
+    state.running = false;
+  }
+  function setMode(m) {
+    if (!['look','shows','compare'].includes(m) || state.mode === m) return;
+    V.hush();
+    cancelTransient();
+    state.mode = m;
+    state.selected = null;
+    state.spot = null;
+    state.results = false;
+    state.day = 0;
+    render();
+    const k = m === 'look' ? 'welcomeLook' : m === 'compare' ? 'compareWelcome' : current().step === 1 ? 'welcomeShows'
+      : current().step === 2 ? current().revealed ? 'moveHow' : 'placeHow' : current().step === 3 ? 'labelHow' : 'openHow';
+    hint(L[k]);
+    V.welcome() || V.how(k,{hint:false});
+    Curio.tone(390,.07,.03);
+  }
+  function describeSpot(sid,m=month()) {
+    const s = spot(sid), h = s.hazards[m];
+    const what = h === 'sun' ? 'about 4 hours of direct sun a day' : h === 'heat' ? 'warm, dry air from the heater'
+      : h === 'hands' ? 'busy hands can reach the art' : h === 'bumps' ? 'a passing cart can bump the shelf'
+      : s.id === 'S3' ? 'no hazards; the heater is off' : s.id === 'S7' ? 'no hazards; locked, shaded and safe from bumps' : 'no hazards this month';
+    return s.id+' '+s.name+' in '+MONTHS[m]+': '+what+'.';
+  }
+  function changeMonth(m) {
+    V.hush();
+    state.month = m;
+    state.preview = null;
+    state.runToken++;
+    if (state.spot) { hint(describeSpot(state.spot)+' Tap an artwork to try it.');
+      reveal([state.spot]);
+    }
+    else hint('Tap a numbered spot to watch one day in '+MONTHS[m]+'.');
+    MONTHS.forEach((_,i) => $('month-'+i).setAttribute('aria-pressed',i === m));
+    paintSpots();
+    renderDetail();
+    Curio.tone(430,.07,.03);
+  }
+  function tapSpot(sid) {
+    V.dropQueued();
+    if (state.mode === 'shows' && current().step !== 2) {
+      state.spot = sid;
+      const id = Object.keys(placements()).find(k => placements()[k] === sid);
+      if (id) state.selected = id;
+      hint(state.results ? 'Tap Fix and run again to try safer spots.' : 'Tap 2 Place to move artworks.');
+      renderDetail();
+      paintSpots();
+      return;
+    }
+    if (state.selected) { placeWork(state.selected,sid);
+      return;
+    }
+    if (state.mode === 'shows' && !current().revealed) {
+      hint('Tap Look around this month to reveal the dangers, then pick an artwork and a numbered spot.');
+      Curio.tone(370,.07,.03);
+      return;
+    }
+    state.spot = sid;
+    reveal([sid]);
+    renderDetail();
+    const text = describeSpot(sid);
+    hint(text+' Tap an artwork, then tap a spot to try it.');
+    V.say(text,{valid:() => state.spot === sid && !state.selected,hint:false});
+    Curio.tone(370,.08,.04);
+  }
+  function selectWork(id) {
+    V.dropQueued();
+    state.runToken++;
+    state.preview = null;
+    if (state.mode === 'shows' && current().step === 1) {
+      const s = current(), at = s.chosen.indexOf(id);
+      if (at >= 0) { s.chosen.splice(at,1);
+        delete s.placed[id];
+        delete s.labels[id];
+        delete s.protect[id];
+      }
+      else if (s.chosen.length < 6) s.chosen.push(id);
+      else { hint('Six are already in the show. Tap one to return it to the crate, then choose another.');
+        return;
+      }
+      s.checked = false;
+      s.finished = false;
+      s.reached = 1;
+      state.selected = id;
+      keepFocus(renderPanel);
+      hint((innerWidth <= 600 ? work(id).subject+' ' : '')+s.chosen.length+' of 6 chosen. Tap Check my six when ready.');
+      renderDetail();
+      paintSpots();
+      save();
+      Curio.tone(at >= 0 ? 270 : 470,.08,.035);
+      return;
+    }
+    state.selected = state.selected === id ? null : id;
+    state.spot = state.selected ? placements()[id] || null : null;
+    keepFocus(renderCrate);
+    renderDetail();
+    paintSpots();
+    if (state.selected) {
+      if (state.mode === 'look') how('tryHow',() => state.selected === id,'.spot-button');
+      else hint(work(id).title+' is picked up. Tap a '+(work(id).kind === 'flat' ? 'wall spot or the case.' : 'shelf, pedestal or the case.'));
+    } else hint('Tap an artwork to pick it up, then tap a numbered spot.');
+    Curio.tone(440,.07,.03);
+  }
+  function placeWork(id,sid) {
+    const w = work(id), s = spot(sid);
+    if (!w || !s) return;
+    if (s.kind !== 'case' && (w.kind === 'flat' ? s.kind !== 'wall' : s.kind === 'wall')) {
+      const el = $('spot-'+sid);
+      el.classList.add('shake');
+      setTimeout(() => el.classList.remove('shake'),350);
+      const text = w.title+' needs '+(w.kind === 'flat' ? 'a wall spot or the case.' : 'a shelf, a pedestal or the case.');
+      hint(text);
+      V.say(text,{valid:() => state.selected === id,hint:false});
+      Curio.tone(170,.12,.04);
+      return;
+    }
+    V.dropQueued();
+    const placed = placements(), old = Object.keys(placed).find(k => placed[k] === sid && k !== id);
+    if (old) delete placed[old];
+    placed[id] = sid;
+    protections()[id] ||= 'nothing';
+    state.spot = sid;
+    if (state.mode === 'shows') {
+      current().finished = false;
+      save();
+      refreshProgress();
+      hint(w.title+' placed at '+sid+'. Pick protection below the wall, then tap another artwork.');
+    } else {
+      const token = ++state.runToken;
+      state.preview = {spot:sid,work:id,level:0};
+      hint('Watching 30 days at '+sid+'… Tap protection below the wall to try a different cover.');
+      for (const [delay,level] of [[650,.34],[1300,.67],[2000,1]]) setTimeout(() => {
+        if (state.runToken !== token || state.mode !== 'look') return;
+        state.preview.level = level;
+        paintSpots();
+        if (level === 1) {
+          const causes = damageFor(w,sid,protections()[id]);
+          hint(w.title+': '+(causes.length ? causes.map(c => resultPhrase(w,c)).join(' Also ') : L.fine)+' Tap another spot or change protection.');
+          V.say(causes.length ? causes.map(c => L[id+'-'+c]) : w.title+'. '+L.fine,{valid:() => state.runToken === token,hint:false});
+        }
+      },delay);
+    }
+    keepFocus(renderCrate);
+    renderDetail();
+    paintSpots();
+    Curio.tone(520,.1,.04);
+    if (state.mode === 'shows' && w.kind === 'flat') {
+      V.how('protectHow',{valid:() => state.selected === id && state.spot === sid,hint:false,needs:'.protect button'});
+    }
+  }
+  function setProtection(p) {
+    const id = state.selected;
+    if (!id || !placements()[id]) return;
+    protections()[id] = p;
+    if (state.mode === 'look') placeWork(id,placements()[id]);
+    else {
+      current().finished = false;
+      save();
+      refreshProgress();
+      paintSpots();
+      document.querySelectorAll('.protect button').forEach(b => b.setAttribute('aria-pressed',b.id === 'protect-'+p));
+      hint(work(id).title+': '+protectionName(p)+'. Tap another artwork, or tap Make labels when all six are placed.');
+    }
+    Curio.tone(p === 'nothing' ? 300 : 650,.08,.04);
+  }
+  function checkSix() {
+    const s = current();
+    s.checked = true;
+    const wrong = s.chosen.filter(id => !theme().fit.includes(id));
+    const lines = wrong.map(id => work(id).title+': '+theme().reasons[id]+'.');
+    if (s.chosen.length !== 6) lines.unshift('Choose exactly six works. You have '+s.chosen.length+'.');
+    if (wrong.length || s.chosen.length !== 6) {
+      keepFocus(renderCrate);
+      hint(lines.join(' ')+' Tap cards to change your six.');
+      V.say(lines,{valid:() => current().checked,hint:false});
+      Curio.tone(190,.1,.04);
+      save();
+      return;
+    }
+    s.reached = Math.max(2,s.reached);
+    s.step = 2;
+    state.selected = null;
+    render();
+    $('primary').focus({preventScroll:true});
+    how('placeHow',() => state.mode === 'shows' && current().step === 2 && !current().revealed,'#primary');
+    Curio.yes();
+    save();
+  }
+  function goStep(n) {
+    if (state.mode !== 'shows' || n > current().reached) return;
+    V.hush();
+    state.results = false;
+    state.day = 0;
+    current().step = n;
+    state.selected = null;
+    state.spot = null;
+    keepFocus(render);
+    if (n === 1) how('welcomeShows',() => current().step === 1);
+    else if (n === 2) how(current().revealed ? 'moveHow' : 'placeHow',() => current().step === 2);
+    else if (n === 3) how('labelHow',() => current().step === 3);
+    else hint('Tap Open the show to watch a month. Tap anywhere during the run to jump to results.');
+    save();
+  }
+  function nextStep() {
+    const s = current();
+    if (s.step === 1) { checkSix();
+      return;
+    }
+    if (s.step === 2) {
+      if (!s.revealed) {
+        s.revealed = true;
+        reveal(SPOTS.map(x => x.id));
+        keepFocus(renderPanel);
+        hint('Watch the dangers. Tap an artwork, then a spot. Pick protection below the wall.');
+        save();
+        return;
+      }
+      if (Object.keys(s.placed).length !== 6) { hint('Place all six artworks first. Tap an artwork, then a spot.');
+        return;
+      }
+      s.reached = Math.max(3,s.reached);
+      goStep(3);
+      return;
+    }
+    if (s.step === 3) {
+      if (s.chosen.some(id => !s.labels[id])) { hint('Pick a material on every label, then tap Open the show.');
+        return;
+      }
+      s.reached = 4;
+      s.step = 4;
+      startRun();
+      return;
+    }
+    startRun();
+  }
+  function startRun() {
+    const s = current();
+    if (Object.keys(s.placed).length !== 6 || s.chosen.some(id => !s.labels[id])) {
+      hint('Finish placing and labeling all six artworks before opening the show.');
+      return;
+    }
+    V.hush();
+    state.running = true;
+    state.results = false;
+    state.day = 0;
+    state.selected = null;
+    const token = ++state.runToken;
+    keepFocus(render);
+    hint('The library is open for a month. Tap anywhere to jump to the results.');
+    Curio.tone(523,.14,.04);
+    const start = performance.now();
+    const timer = setInterval(() => {
+      if (token !== state.runToken || !state.running) { clearInterval(timer);
+        return;
+      }
+      const day = Math.min(30,Math.floor((performance.now()-start)/8000*30));
+      if (!Curio.reduce && day !== state.day) { state.day = day;
+        paintSpots();
+      }
+      if (performance.now()-start >= 8000) { clearInterval(timer);
+        finishRun();
+      }
+    },40);
+  }
+  function finishRun() {
+    if (!state.running) return;
+    state.runToken++;
+    state.running = false;
+    state.results = true;
+    state.day = 30;
+    state.loops = [];
+    V.hush();
+    const s = current(), bad = s.chosen.filter(id => damageFor(work(id),s.placed[id],s.protect[id]).length);
+    s.finished = bad.length === 0;
+    save();
+    keepFocus(render);
+    hint(bad.length ? bad.length+' artwork'+(bad.length === 1 ? '' : 's')+' changed. Tap Fix and run again to try safer spots or different protection.'
+      : 'All six artworks survived. Check the labels, or tap Next show for a new season.');
+    const ordered = s.chosen.slice().sort((a,b) => Number(s.placed[a].slice(1))-Number(s.placed[b].slice(1)));
+    const lines = ordered.flatMap(id => damageFor(work(id),s.placed[id],s.protect[id]).map(c => L[id+'-'+c]));
+    if (!bad.length) { V.say('allFine',{valid:() => state.results,hint:false});
+      Curio.yes();
+    }
+    else { V.say(lines,{valid:() => state.results,hint:false});
+      Curio.tone(220,.16,.03);
+    }
+  }
+  function fixAgain() {
+    V.hush();
+    state.results = false;
+    state.day = 0;
+    state.selected = null;
+    state.spot = null;
+    current().step = 2;
+    keepFocus(render);
+    hint('Every artwork is new again. Tap a work, then a safer spot, or change protection. Placements are kept.');
+    save();
+  }
+  function changeShow(delta) {
+    V.hush();
+    cancelTransient();
+    state.show = (state.show+delta+4)%4;
+    state.results = false;
+    state.day = 0;
+    state.selected = null;
+    state.spot = null;
+    keepFocus(render);
+    $('panel').scrollTop = 0;
+    $('primary').focus({preventScroll:true});
+    hint(current().step === 1 ? L.welcomeShows : current().step === 2 ? current().revealed ? L.moveHow : L.placeHow
+      : current().step === 3 ? L.labelHow : L.openHow);
+    V.welcome();
+    save();
+    Curio.tone(390,.1,.03);
+    if (state.show === 3 && current().step === 1) hint('Choose six for this theme. Tap Check my six.');
+  }
+  function restart() {
+    V.hush();
+    cancelTransient();
+    state.shows[state.show] = blank();
+    state.results = false;
+    state.selected = null;
+    state.spot = null;
+    state.day = 0;
+    keepFocus(render);
+    hint('This show is cleared. Tap six artworks, then tap Check my six.');
+    save();
+  }
+  function renderCrate() {
+    const choose = state.mode === 'shows' && current().step === 1;
+    const show = state.mode === 'look' || state.mode === 'shows' && current().step <= 2;
+    $('crate').hidden = !show;
+    if (!show) return;
+    const ids = state.mode === 'look' || choose ? WORKS.map(w => w.id) : current().chosen;
+    const same = [...$('crate').children].map(b => b.id.slice(5)).join(',') === ids.join(',');
+    if (!same) $('crate').innerHTML = ids.map(id => {
+      const w = work(id), chosen = choose && current().chosen.includes(id), selected = !choose && state.selected === id;
+      const fit = choose && current().checked ? '<span class="theme-mark">'+(theme().fit.includes(id) ? '✓ fits this theme' : '× different theme')+'</span>' : '';
+      return '<button class="work-card" id="card-'+id+'" aria-pressed="'+(chosen || selected)+'" aria-label="'
+        +esc(w.title+', '+w.material+'. '+w.subject+(choose ? ' Finished and signed.' : ' Pick up.'))+'">'
+        +'<img src="'+w.art+'" alt=""><b>'+w.title+'</b><small>'+w.short+'</small>'
+        +(chosen ? '<span class="ribbon">✓<span class="ribbon-words"> In the show</span></span>' : '')+fit+'</button>';
+    }).join('');
+    ids.forEach(id => {
+      const b = $('card-'+id), chosen = choose && current().chosen.includes(id);
+      const w = work(id);
+      b.setAttribute('aria-label',w.title+', '+w.material+'. '+w.subject+(choose ? ' Finished and signed.' : ' Pick up.'));
+      b.setAttribute('aria-pressed',chosen || !choose && state.selected === id);
+      let ribbon = b.querySelector('.ribbon');
+      if (chosen && !ribbon) {
+        ribbon = document.createElement('span');
+        ribbon.className = 'ribbon';
+        ribbon.innerHTML = '✓<span class="ribbon-words"> In the show</span>';
+        b.append(ribbon);
+      }
+      if (!chosen && ribbon) ribbon.remove();
+      let fit = b.querySelector('.theme-mark');
+      if (choose && current().checked) {
+        if (!fit) { fit = document.createElement('span');
+          fit.className = 'theme-mark';
+          b.append(fit);
+        }
+        fit.textContent = theme().fit.includes(id) ? '✓' : '×';
+        fit.title = theme().fit.includes(id) ? 'Fits this theme' : 'Different theme';
+        fit.setAttribute('aria-label',fit.title);
+      } else fit?.remove();
+      b.onclick = () => selectWork(id);
+    });
+  }
+  function renderSteps() {
+    $('steps').hidden = state.mode !== 'shows';
+    if (state.mode !== 'shows') return;
+    if (!$('step-1')) $('steps').innerHTML = ['Choose','Place','Label','Open'].map((name,i) => '<button id="step-'+(i+1)+'" '
+      +(current().step === i+1 ? 'aria-current="step" ' : '')+(current().reached < i+1 ? 'disabled ' : '')+'>'+(i+1)+' '+name+'</button>').join('');
+    for (let i=1;i<=4;i++) {
+      $('step-'+i).disabled = current().reached < i;
+      if (current().step === i) $('step-'+i).setAttribute('aria-current','step');
+      else $('step-'+i).removeAttribute('aria-current');
+      $('step-'+i).onclick = () => { if (current().step !== i || state.results) goStep(i);
+      };
+    }
+  }
+  function renderPanel() {
+    renderSteps();
+    $('context').innerHTML = '';
+    $('extra').innerHTML = '';
+    $('next').hidden = false;
+    $('primary').hidden = state.mode !== 'shows';
+    $('show-nav').hidden = state.mode !== 'shows';
+    $('reveal-again').hidden = !(state.mode === 'shows' && current().step === 2 && current().revealed);
+    if (state.mode === 'look') {
+      $('context').innerHTML = '<h2>The traveling crate</h2><p class="brief">Eight signed, finished works. Tap one to look closer.</p>';
+    } else if (state.mode === 'shows') {
+      const s = current();
+      $('primary').textContent = state.results ? 'Fix and run again' : s.step === 1 ? 'Check my six'
+        : s.step === 2 ? s.revealed ? 'Make labels →' : 'Look around this month' : 'Open the show';
+      $('primary').onclick = () => state.results ? fixAgain() : nextStep();
+      $('context').innerHTML = '<h2>'+(state.show === 3 ? 'Your show' : theme().title)+'</h2><span class="progress" id="show-progress">'
+        +MONTHS[month()]+' · '+(state.show+1)+' of 4'+(s.finished ? ' · ✓ survived' : '')+'</span>';
+      if (s.step === 1) $('context').innerHTML += '<p class="brief">'+theme().brief+'</p><div class="criterion">'
+        +theme().criterion+'<br>Is finished and signed.</div>';
+      if (state.show === 3 && s.step === 1) {
+        const box = document.createElement('div');
+        box.className = 'custom';
+        box.innerHTML = '<select id="custom-theme" aria-label="Your show theme">'+SHOWS.map((x,i) => '<option value="'+i+'">'+x.title+'</option>').join('')
+          +'</select><select id="custom-month" aria-label="Your show month">'+MONTHS.map((x,i) => '<option value="'+i+'">'+x+'</option>').join('')+'</select>';
+        $('context').append(box);
+        $('custom-theme').value = s.theme;
+        $('custom-month').value = s.month;
+        $('custom-theme').onchange = e => {
+          s.theme = Number(e.target.value);
+          s.checked = false;
+          s.reached = 1;
+          s.finished = false;
+          V.hush();
+          keepFocus(render);
+          hint('New theme. Check your six against the new checklist.');
+          save();
+        };
+        $('custom-month').onchange = e => {
+          s.month = Number(e.target.value);
+          s.revealed = false;
+          s.finished = false;
+          V.hush();
+          keepFocus(render);
+          hint('New month chosen. Its dangers may change.');
+          save();
+        };
+      }
+      if (s.step === 2) {
+        $('context').innerHTML += '<p class="brief" id="placement-count">'+Object.keys(s.placed).length
+          +' of 6 placed. Pick up a work, then tap a number.</p>';
+      }
+      if (s.step === 3) renderLabels();
+      if (state.results) renderResults();
+      if (state.running) $('extra').innerHTML = '<p class="brief">30 days in about 8 seconds. Tap anywhere to jump to results.</p>';
+    } else {
+      $('context').innerHTML = '<h2>Same art, different rooms</h2><p class="brief">Tap a row to compare both places.</p>';
+      $('extra').innerHTML = '<div class="compare-buttons">'+COMPARE.map((r,i) => '<button class="secondary" id="compare-'+i+'" '
+        +'aria-pressed="'+(state.compareRow === i)+'">'+r[0]+'</button>').join('')+'</div>';
+      COMPARE.forEach((r,i) => { $('compare-'+i).onclick = () => {
+        state.compareRow = i;
+        COMPARE.forEach((_,j) => $('compare-'+j).setAttribute('aria-pressed',i === j));
+        renderCompare();
+          hint(r[0]+' Library: '+r[1]+' Museum: '+r[2]+' Tap another row.');
+        V.how('compare-'+i,{valid:() => state.mode === 'compare' && state.compareRow === i,hint:false});
+          Curio.tone(440,.07,.03);
+      };
+      });
+    }
+    renderCrate();
+  }
+  function refreshProgress() {
+    if ($('placement-count')) $('placement-count').textContent = Object.keys(current().placed).length
+      +' of 6 placed. Pick up a work, then tap a number.';
+    if ($('show-progress')) $('show-progress').textContent = MONTHS[month()]+' · '+(state.show+1)
+      +' of 4'+(current().finished ? ' · ✓ survived' : '');
+  }
+  function materialOptions(w) {
+    const index = WORKS.indexOf(w), choices = [w.material,WORKS[(index+3)%8].material,WORKS[(index+5)%8].material];
+    return choices.map((_,i) => choices[(i+index)%3]);
+  }
+  function renderLabels() {
+    const s = current();
+    $('extra').innerHTML = '<p class="label-count" id="label-count"></p><div class="label-list">'+s.chosen.map(id => {
+      const w = work(id);
+      return '<div class="label-card"><img class="label-thumb" src="'+w.art+'" alt=""><b>'+w.title+'</b><small>by '+w.artist+'</small>'
+        +'<select id="material-'+id+'" aria-label="Material for '+w.title+'"><option value="">Pick the material</option>'
+        +materialOptions(w).map(m => '<option>'+esc(m)+'</option>').join('')+'</select>'
+        +'<input id="idea-'+id+'" aria-label="Optional idea sentence for '+w.title+'" maxlength="120" '
+        +'placeholder="One sentence about the idea (optional)" value="'+esc(s.ideas[id] || '')+'"></div>';
+    }).join('')+'</div>';
+    updateLabelCount();
+    s.chosen.forEach(id => {
+      $('material-'+id).value = s.labels[id] || '';
+      $('material-'+id).onchange = e => {
+        s.labels[id] = e.target.value;
+        s.finished = false;
+        state.selected = id;
+        V.dropQueued();
+        paintSpots();
+        renderDetail();
+        updateLabelCount();
+        save();
+        hint('Label saved. Pick the next material, or tap Open the show when all six have a material.');
+        Curio.tone(500,.06,.03);
+      };
+      $('idea-'+id).oninput = e => { s.ideas[id] = e.target.value.slice(0,120);
+        state.selected = id;
+        save();
+        paintSpots();
+        renderDetail();
+      };
+      for (const field of ['material-','idea-']) $(field+id).onfocus = () => {
+        state.selected = id;
+        renderDetail();
+      };
+    });
+  }
+  function updateLabelCount() {
+    if ($('label-count')) $('label-count').textContent = current().chosen.filter(id => current().labels[id]).length+' of 6 materials labeled';
+  }
+  function renderResults() {
+    const s = current();
+    $('next').hidden = s.finished;
+    $('extra').innerHTML = (s.finished ? '<button class="secondary" id="next-win">Next show →</button>' : '')
+      +'<div class="result-list">'+s.chosen.map(id => {
+      const w = work(id), causes = damageFor(w,s.placed[id],s.protect[id]);
+      return '<article class="result-card"><img src="'+w.art+'" alt=""><div><b>'+w.title+'</b>'
+        +'<span class="result-chip '+(!causes.length ? 'fine' : '')+'">'+(!causes.length ? '✓ fine' : '△ '+effectClass(w,causes[0]))+'</span>'
+        +'<p>'+(!causes.length ? L.fine : causes.map(c => esc(resultPhrase(w,c))).join(' Also '))+'</p>'
+        +(s.labels[id] !== w.material ? '<p class="sticky">Visitor note: This label says '+esc(s.labels[id])+'; it is '+w.material+'.</p>' : '')
+        +'</div></article>';
+    }).join('')+'</div>';
+    if ($('next-win')) $('next-win').onclick = () => changeShow(1);
+  }
+  function renderTools() {
+    if (state.mode === 'look') {
+      $('stage-tools').innerHTML = '<div class="seg" role="group" aria-label="Month">'+MONTHS.map((m,i) => '<button id="month-'+i+'" '
+        +'aria-pressed="'+(state.month === i)+'">'+m+'</button>').join('')+'</div>';
+      MONTHS.forEach((m,i) => { $('month-'+i).onclick = () => { if (state.month !== i) changeMonth(i);
+        };
+      });
+    } else $('stage-tools').innerHTML = '<span class="eyebrow">'+(state.show === 3 ? 'Your show · ' : '')+MONTHS[month()]+' · '+(state.results ? 'The month is over'
+      : state.running ? 'Tap anywhere to see results' : current().step === 1 ? 'Choose with a theme.' : 'Ten spots. Six artworks. Your choices.')+'</span>';
+  }
+  function renderDetail() {
+    const w = work(state.selected), sid = w && placements()[w.id];
+    if (!(state.mode === 'shows' && current().step === 3 && !state.results)) $('wall').style.width = '';
+    if (state.mode === 'shows' && current().step === 3 && !state.results) {
+      const shown = w || work(current().chosen[0]);
+      if (shown) {
+        const s = current();
+        $('detail').innerHTML = '<img class="detail-art" src="'+shown.art+'" alt="'+esc(shown.title)+'">'
+          +'<div class="label-preview"><b>'+shown.title+'</b><p>by '+shown.artist+'</p><p>'
+          +esc(s.labels[shown.id] || 'Choose its material in the label card.')+'</p>'
+          +(s.ideas[shown.id] ? '<p>'+esc(s.ideas[shown.id])+'</p>' : '')+'</div>';
+        requestAnimationFrame(fitLabelWall);
+        return;
+      }
+    }
+    if (w) {
+      const choose = state.mode === 'shows' && current().step === 1;
+      const protection = !!sid && !choose && !state.results && !state.running;
+      $('detail').innerHTML = '<img class="detail-art" src="'+w.art+'" alt="'+esc(w.title)+'"><div class="detail-copy">'
+        +'<h2>'+w.title+' <span style="font:400 11px Segoe UI">by '+w.artist+'</span></h2><p>'+esc(w.subject)+'</p>'
+        +(choose ? '<p>'+w.material+' · Finished and signed.</p>' : protection ? '<div class="protect" role="group" aria-label="Protection for '+w.title+'">'
+          +(w.kind === 'flat' ? ['glass','sleeve','nothing'] : ['cover','nothing']).map(p => '<button id="protect-'+p+'" '
+            +'aria-pressed="'+((protections()[w.id] || 'nothing') === p)+'">'+protectionName(p)+'</button>').join('')+'</div>'
+          : '<div class="fears">'+['sun','heat','hands','bumps'].map(e => '<button class="fear" id="fear-'+e+'" title="'+esc(w.fears.includes(e) ? WHY[e]
+            : w.id === 'W3' && e === 'sun' ? 'Fired clay glaze does not fade in a month.' : w.id === 'W7' && e === 'heat'
+              ? 'Yarn does not curl in warm air.' : 'Fine with this enemy in our one-month model.')+'"><b>'+ICON[e]+' '+e+'</b> '
+            +(w.fears.includes(e) ? '△ hurts it' : '✓ fine')+'</button>').join('')+'</div><p class="fear-note" id="fear-note">'
+            +esc(WHY[w.fears[0]])+'</p>')+'</div>';
+      if (!choose && !protection) ['sun','heat','hands','bumps'].forEach(e => {
+        $('fear-'+e).onclick = () => {
+          const text = $('fear-'+e).title;
+          $('fear-note').textContent = text;
+          hint(text+' Tap a spot to try this artwork.');
+          V.how(text,{valid:() => state.selected === w.id,hint:false});
+          Curio.tone(400,.06,.03);
+        };
+      });
+      if (protection) (w.kind === 'flat' ? ['glass','sleeve','nothing'] : ['cover','nothing']).forEach(p => {
+        $('protect-'+p).onclick = () => setProtection(p);
+      });
+    } else if (state.spot) $('detail').innerHTML = '<div class="detail-copy"><h2>'+state.spot+' · '+spot(state.spot).name+'</h2><p>'
+      +describeSpot(state.spot)+'</p><p>Tap an artwork in the crate, then tap a spot to try a month.</p></div>';
+    else $('detail').innerHTML = '<div class="detail-copy"><h2>'+(state.results ? 'Your month at the library'
+      : state.mode === 'shows' && current().step === 1 ? 'Choose for '+theme().title : 'Every material has its enemies.')+'</h2><p>'
+      +(state.mode === 'look' ? '☀ Sun fades. ♨ Heat curls. ☝ Hands smudge. ▣ Bumps break.' : state.results
+        ? 'Look at the artworks and their result cards. A new spot can make all the difference.' : current().step === 1
+        ? theme().brief
+          : 'A glass frame, sleeve or clear cover stops hands only. Sun and heat need a different spot.')+'</p></div>';
+  }
+  function fitLabelWall() {
+    if (innerWidth <= 600 || state.mode !== 'shows' || current().step !== 3 || state.results) return;
+    const stage = $('stage'), top = document.querySelector('.room-top');
+    const css = getComputedStyle(stage);
+    const padX = parseFloat(css.paddingLeft)+parseFloat(css.paddingRight);
+    const padY = parseFloat(css.paddingTop)+parseFloat(css.paddingBottom);
+    const available = stage.clientHeight-padY-top.offsetHeight-parseFloat(getComputedStyle(top).marginBottom)
+      -$('stage-tools').offsetHeight-$('detail').offsetHeight-3;
+    const width = Math.floor(Math.min(stage.clientWidth-padX,Math.max(100,available)*16/9));
+    if ($('wall').style.width !== width+'px') $('wall').style.width = width+'px';
+  }
+  function renderCompare() {
+    $('compare').innerHTML = '<div class="rooms"><figure class="room-card"><div class="room-picture">'
+      +'<img src="art:library-wall" alt="Sunny town library.">'
+      +'<img class="library-host" src="art:librarian" alt="The librarian holds a book beside the desk."></div>'
+      +'<figcaption>The library</figcaption></figure><figure class="room-card"><img src="art:museum-gallery" '
+      +'alt="Quiet museum with cases and barriers."><figcaption>The museum</figcaption></figure></div>'
+      +'<div class="compare-table">'+COMPARE.map((r,i) => r.slice(1).map(t => '<div class="compare-fact '+(state.compareRow === i ? 'active' : '')+'">'
+        +'<strong>'+r[0]+'</strong>'+t+'</div>').join('')).join('')+'</div>'
+      +'<p class="closing">Your library show has to do a museum’s job without a museum’s tools.</p>';
+  }
+  function render() {
+    document.body.classList.toggle('your-show',state.mode === 'shows' && state.show === 3);
+    document.body.classList.toggle('showing',state.mode === 'shows');
+    document.body.classList.toggle('choosing',state.mode === 'shows' && current().step === 1);
+    document.body.classList.toggle('placing',state.mode === 'shows' && current().step === 2);
+    document.body.classList.toggle('comparing',state.mode === 'compare');
+    for (const m of ['look','shows','compare']) $('m-'+m).setAttribute('aria-pressed',state.mode === m);
+    $('library').hidden = state.mode === 'compare';
+    $('compare').hidden = state.mode !== 'compare';
+    $('room-name').textContent = 'Town library · '+(state.mode === 'look' ? 'Explore' : state.show === 3 ? 'Your show' : theme().title);
+    renderPanel();
+    renderTools();
+    renderDetail();
+    paintSpots();
+    if (state.mode === 'compare') renderCompare();
+  }
+  let drag = null, ghost = null, suppressClick = false, skipClickUntil = 0;
+  $('crate').addEventListener('pointerdown',e => {
+    const card = e.target.closest('.work-card');
+    if (!card || state.mode === 'shows' && current().step !== 2) return;
+    drag = {id:card.id.slice(5),x:e.clientX,y:e.clientY,moved:false,pointer:e.pointerId};
+  });
+  addEventListener('pointermove',e => {
+    if (!drag || e.pointerId !== drag.pointer) return;
+    if (!drag.moved && Math.hypot(e.clientX-drag.x,e.clientY-drag.y) > 8) {
+      drag.moved = true;
+      ghost = document.createElement('img');
+      ghost.className = 'drag-ghost';
+      ghost.src = work(drag.id).art;
+      ghost.alt = '';
+      document.body.append(ghost);
+      state.selected = drag.id;
+    }
+    if (drag.moved) { e.preventDefault();
+      ghost.style.left = e.clientX+'px';
+      ghost.style.top = e.clientY+'px';
+    }
+  },{passive:false});
+  addEventListener('pointerup',e => {
+    if (!drag) return;
+    const d = drag;
+    drag = null;
+    if (d.moved) {
+      ghost.remove();
+      ghost = null;
+      suppressClick = true;
+      const target = document.elementFromPoint(e.clientX,e.clientY)?.closest('.spot');
+      if (target) placeWork(d.id,target.id.slice(5));
+      else { renderDetail();
+        keepFocus(renderCrate);
+        hint('Artwork picked up. Tap a numbered spot to place it.');
+      }
+      setTimeout(() => { suppressClick = false;
+      },0);
+    }
+  });
+  addEventListener('pointercancel',() => { drag = null;
+    ghost?.remove();
+    ghost = null;
+  });
+  addEventListener('click',e => {
+    if (suppressClick || performance.now() < skipClickUntil) { e.preventDefault();
+      e.stopImmediatePropagation();
+    }
+  },true);
+  for (const ev of ['pointerdown','keydown']) addEventListener(ev,e => {
+    if (!state.running || ev === 'keydown' && !['Enter',' ','Escape'].includes(e.key)) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    skipClickUntil = performance.now()+500;
+    finishRun();
+  },true);
+  for (const m of ['look','shows','compare']) $('m-'+m).onclick = () => setMode(m);
+  $('previous').onclick = () => changeShow(-1);
+  $('next').onclick = () => changeShow(1);
+  $('restart').onclick = restart;
+  $('reveal-again').onclick = () => {
+    reveal(SPOTS.map(x => x.id));
+    hint('Watch the spots. Covers stop hands only; a safe spot avoids sun and heat.');
+    Curio.tone(390,.07,.03);
+  };
+  buildSpots();
+  render();
+  hint(L.welcomeLook);
+  Curio.init({clips:"voice:*",rate:.9,readFallback:() => $('hint').textContent});
+  Curio.onMotion(() => paintSpots());
+  new ResizeObserver(() => arrangeLabels()).observe($('wall'));
+  const labelFit = new ResizeObserver(fitLabelWall);
+  labelFit.observe($('stage'));
+  labelFit.observe($('detail'));
+  window.__tool = {state,setMode,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;
+    },WORKS,SPOTS,SHOWS,
+    damageFor,placeWork,selectWork,checkSix,goStep,startRun,finishRun,fixAgain,changeShow,render,
+    get diagnostics(){return {month:month(),progress:current(),storage:'traveling-art-show'};
+    }};
+})();
+</script>
+</body>
+</html>

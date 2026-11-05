@@ -1,0 +1,769 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "picked-card",
+      "steps": [
+        {
+          "click": "#tile-turtle"
+        },
+        {
+          "click": "#pick"
+        }
+      ],
+      "keep": [
+        "#close-art",
+        "#reasons",
+        "#card-read"
+      ]
+    },
+    {
+      "name": "kid-high",
+      "steps": [
+        {
+          "click": "#tile-fox"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-theme"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-turtle"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-theme"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-tree"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-colors"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-butterfly"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-theme"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-robot"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-story"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#m-setup"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#bay-0"
+        },
+        {
+          "click": "#tray-1"
+        },
+        {
+          "click": "#bay-1"
+        },
+        {
+          "click": "#tray-2"
+        },
+        {
+          "click": "#bay-2"
+        },
+        {
+          "click": "#tray-3"
+        },
+        {
+          "click": "#bay-3"
+        },
+        {
+          "click": "#tray-4"
+        },
+        {
+          "click": "#bay-4"
+        },
+        {
+          "click": "#kid"
+        }
+      ],
+      "keep": [
+        "#homes",
+        "#kid",
+        "#check"
+      ]
+    },
+    {
+      "name": "height-low",
+      "steps": [
+        {
+          "click": "#tile-fox"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-theme"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-turtle"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-theme"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-tree"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-colors"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-butterfly"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-theme"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-robot"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-story"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#m-setup"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#bay-0"
+        },
+        {
+          "click": "#tray-1"
+        },
+        {
+          "click": "#bay-1"
+        },
+        {
+          "click": "#tray-2"
+        },
+        {
+          "click": "#bay-2"
+        },
+        {
+          "click": "#tray-3"
+        },
+        {
+          "click": "#bay-3"
+        },
+        {
+          "click": "#tray-4"
+        },
+        {
+          "click": "#bay-4"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#down",
+          "times": 21,
+          "gap": 0.05
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#homes",
+        "#check"
+      ]
+    },
+    {
+      "name": "checks",
+      "steps": [
+        {
+          "click": "#tile-fox"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-theme"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-turtle"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-theme"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-tree"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-colors"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-butterfly"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-theme"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-robot"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-story"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#m-setup"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#bay-0"
+        },
+        {
+          "click": "#tray-1"
+        },
+        {
+          "click": "#bay-1"
+        },
+        {
+          "click": "#tray-2"
+        },
+        {
+          "click": "#bay-2"
+        },
+        {
+          "click": "#tray-3"
+        },
+        {
+          "click": "#bay-3"
+        },
+        {
+          "click": "#tray-4"
+        },
+        {
+          "click": "#bay-4"
+        },
+        {
+          "click": "#check"
+        }
+      ],
+      "keep": [
+        "#close-check",
+        "#check-read"
+      ]
+    },
+    {
+      "name": "ready-opening",
+      "steps": [
+        {
+          "click": "#tile-fox"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-theme"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-turtle"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-theme"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-tree"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-colors"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-butterfly"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-theme"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-robot"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-story"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#m-setup"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#bay-0"
+        },
+        {
+          "click": "#tray-1"
+        },
+        {
+          "click": "#bay-1"
+        },
+        {
+          "click": "#tray-2"
+        },
+        {
+          "click": "#bay-2"
+        },
+        {
+          "click": "#tray-3"
+        },
+        {
+          "click": "#bay-3"
+        },
+        {
+          "click": "#tray-4"
+        },
+        {
+          "click": "#bay-4"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#home-frame"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "click": "#tray-1"
+        },
+        {
+          "click": "#home-case"
+        },
+        {
+          "click": "#level-middle"
+        },
+        {
+          "click": "#tray-2"
+        },
+        {
+          "click": "#home-window"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "click": "#tray-3"
+        },
+        {
+          "click": "#home-rod"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "click": "#tray-4"
+        },
+        {
+          "click": "#home-stand"
+        },
+        {
+          "click": "#level-middle"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#m-opening"
+        },
+        {
+          "click": "#role-guide"
+        }
+      ],
+      "keep": [
+        "#prompt",
+        "#next-prompt",
+        "#next-piece"
+      ]
+    },
+    {
+      "name": "start-over",
+      "steps": [
+        {
+          "click": "#reset"
+        }
+      ],
+      "keep": [
+        "#reset-yes",
+        "#reset-no"
+      ]
+    },
+    {
+      "name": "height-high",
+      "steps": [
+        {
+          "click": "#tile-fox"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-theme"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-turtle"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-theme"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-tree"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-colors"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-butterfly"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-theme"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-robot"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-story"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#m-setup"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#bay-0"
+        },
+        {
+          "click": "#tray-1"
+        },
+        {
+          "click": "#bay-1"
+        },
+        {
+          "click": "#tray-2"
+        },
+        {
+          "click": "#bay-2"
+        },
+        {
+          "click": "#tray-3"
+        },
+        {
+          "click": "#bay-3"
+        },
+        {
+          "click": "#tray-4"
+        },
+        {
+          "click": "#bay-4"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#up",
+          "times": 11,
+          "gap": 0.05
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#homes",
+        "#check"
+      ]
+    },
+    {
+      "name": "opening-empty",
+      "steps": [
+        {
+          "click": "#m-opening"
+        },
+        {
+          "click": "#role-guide"
+        }
+      ],
+      "keep": [
+        "#prompt",
+        "#next-piece"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "low-pedestal",
+      "steps": [
+        {
+          "click": "#tile-fox"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-theme"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-turtle"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-theme"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-tree"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-colors"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-butterfly"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-theme"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#tile-robot"
+        },
+        {
+          "click": "#pick"
+        },
+        {
+          "click": "#reason-story"
+        },
+        {
+          "click": "#close-art"
+        },
+        {
+          "click": "#m-setup"
+        },
+        {
+          "click": "#tray-0"
+        },
+        {
+          "click": "#bay-0"
+        },
+        {
+          "click": "#tray-1"
+        },
+        {
+          "click": "#bay-1"
+        },
+        {
+          "click": "#tray-2"
+        },
+        {
+          "click": "#bay-2"
+        },
+        {
+          "click": "#tray-3"
+        },
+        {
+          "click": "#bay-3"
+        },
+        {
+          "click": "#tray-4"
+        },
+        {
+          "click": "#bay-4"
+        },
+        {
+          "click": "#tray-1"
+        },
+        {
+          "click": "#home-case"
+        },
+        {
+          "click": "#level-low"
+        },
+        {
+          "click": "#check"
+        }
+      ],
+      "keep": [
+        "#close-check"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

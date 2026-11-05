@@ -1,0 +1,19 @@
+{
+  "house_style": "Rich painterly realistic editorial illustration for a middle-school design studio. Soft gouache texture, subtle material grain, restrained forest green-gray, warm ivory and electric indigo accents. Directional daylight from upper left. Strict overhead view, no perspective tilt. No people, body parts, text, letters, numbers or logos.",
+  "assets": [
+    {
+      "name": "df-desk",
+      "prompt": "A designer's work desk seen straight from above, a large dark green-gray self-healing cutting mat filling the middle, a long steel ruler, a fan of blank paint color swatch cards and a roll of masking tape along the edges, the center of the mat empty, soft daylight, painterly realistic illustration. The empty usable mat extends across the middle 70 percent of the width and 94 percent of the height. Keep all objects in the outer side edges. Finely scored unnumbered grid, realistic brushed metal, layered swatch edges and fibrous masking tape. No poster or paper in the center. Landscape 16:10.",
+      "aspect": "16:10",
+      "width": 1500,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "empty_center_percent": {"left": 18, "right": 84, "top": 2, "bottom": 97},
+      "placement_note": "Poster centered on cover-cropped mat, fit to 90 percent of available mat height with an 82 percent stage-width guard."
+    }
+  ]
+}

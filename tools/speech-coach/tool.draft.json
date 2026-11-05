@@ -1,0 +1,27 @@
+{
+  "id": "speech-coach",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Plan it. Run it. Read the marks.",
+  "outcome": "Rehearse a clear perspective with purposeful slides and use measured runs to revise delivery.",
+  "driver": "students",
+  "minutes": "25-45",
+  "modes": [
+    "Build",
+    "Rehearse",
+    "Review"
+  ],
+  "grades_label": "Grade 12",
+  "sources": [
+    "Original sample talk and tasks written for Curio Class",
+    "CDC MMWR 67(3), January 26, 2018, 2015 YRBS sleep data",
+    "AASM consensus, Paruthi et al., JCSM 12(6), 2016",
+    "AAP, School Start Times for Adolescents, Pediatrics 134(3), 2014",
+    "California SB 328, 2019, Education Code 46148",
+    "The Met Open Access: 437878 and 435809 (CC0)",
+    "Art Institute of Chicago: 57819 (CC0)",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-03"
+}

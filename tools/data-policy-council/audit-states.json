@@ -1,0 +1,198 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "blank",
+      "steps": [
+        {
+          "click": "#preset-blank"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#vote"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "private-vote",
+      "steps": [
+        {
+          "click": "#preset-private"
+        },
+        {
+          "click": "#vote"
+        },
+        {
+          "wait": 3900
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#result",
+        "#vote"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "math",
+      "steps": [
+        {
+          "click": "#math"
+        }
+      ],
+      "keep": [],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "1920x1080"
+      ]
+    },
+    {
+      "name": "counsel-note",
+      "steps": [
+        {
+          "click": "#read-draft"
+        }
+      ],
+      "keep": [
+        "#draft-dialog"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "maximum-trail",
+      "steps": [
+        {
+          "click": "#clause-L"
+        },
+        {
+          "click": "#L4"
+        },
+        {
+          "click": "#clause-E"
+        },
+        {
+          "click": "#E2"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#vote"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "three-pins",
+      "steps": [
+        {
+          "click": "#pin"
+        },
+        {
+          "click": "#preset-private"
+        },
+        {
+          "click": "#pin"
+        },
+        {
+          "click": "#preset-vendor"
+        },
+        {
+          "click": "#clause-S"
+        },
+        {
+          "click": "#S2"
+        },
+        {
+          "click": "#pin"
+        },
+        {
+          "click": "#m-compare"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#load-0",
+        "#load-1",
+        "#load-2"
+      ]
+    },
+    {
+      "name": "ask",
+      "steps": [
+        {
+          "click": "#ask"
+        }
+      ],
+      "keep": [
+        "#member-dialog"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "all-flags",
+      "steps": [
+        {
+          "click": "#clause-L"
+        },
+        {
+          "click": "#L4"
+        },
+        {
+          "click": "#clause-A"
+        },
+        {
+          "click": "#A4"
+        },
+        {
+          "click": "#clause-S"
+        },
+        {
+          "click": "#S4"
+        },
+        {
+          "click": "#clause-E"
+        },
+        {
+          "click": "#E2"
+        },
+        {
+          "click": "#clause-F"
+        },
+        {
+          "click": "#F3"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#vote"
+      ],
+      "sizes": [
+        "680x425",
+        "1000x625",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

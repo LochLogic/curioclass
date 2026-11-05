@@ -1,0 +1,261 @@
+{
+  "target": 24,
+  "target_reason": "The spec permits 24 px map pins, 32 px on touch. Every other control is checked separately against 44 px.",
+  "keep": [
+    "#station",
+    ".seg",
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "key-question",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#m-key"
+        }
+      ],
+      "keep": [
+        "#question"
+      ]
+    },
+    {
+      "name": "reveal",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#m-key"
+        },
+        {
+          "click": "[data-answer=false]",
+          "times": 3,
+          "gap": 0.2
+        },
+        {
+          "click": "[data-answer=true]"
+        },
+        {
+          "click": "[data-answer='1']"
+        },
+        {
+          "click": "#reveal"
+        }
+      ],
+      "keep": [
+        "#reveal-cards"
+      ]
+    },
+    {
+      "name": "recovery",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#m-key"
+        },
+        {
+          "click": "[data-answer=false]",
+          "times": 3,
+          "gap": 0.2
+        },
+        {
+          "click": "[data-answer=true]"
+        },
+        {
+          "click": "[data-answer='1']"
+        },
+        {
+          "click": "#m-change"
+        },
+        {
+          "click": "#disturb"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "wait": 2400
+        },
+        {
+          "click": "#play"
+        }
+      ],
+      "keep": [
+        "#landscape",
+        "#play"
+      ]
+    },
+    {
+      "name": "unkeyed",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#m-change"
+        }
+      ],
+      "keep": [
+        "#need-key",
+        "#go-key"
+      ]
+    },
+    {
+      "name": "number-chips",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#m-key"
+        },
+        {
+          "click": "[data-answer=false]",
+          "times": 3,
+          "gap": 0.2
+        },
+        {
+          "click": "[data-answer=true]"
+        }
+      ],
+      "keep": [
+        "#answers",
+        "#question"
+      ]
+    },
+    {
+      "name": "climate-max",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#m-key"
+        },
+        {
+          "click": "[data-answer=false]",
+          "times": 3,
+          "gap": 0.2
+        },
+        {
+          "click": "[data-answer=true]"
+        },
+        {
+          "click": "[data-answer='1']"
+        },
+        {
+          "click": "#m-change"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#temperature').getBoundingClientRect();return [[r.x+r.width/2,r.y+r.height/2],[r.right-2,r.y+r.height/2]]})();"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#precipitation').getBoundingClientRect();return [[r.x+r.width/2,r.y+r.height/2],[r.right-2,r.y+r.height/2]]})();"
+        }
+      ],
+      "keep": [
+        "#landscape",
+        "#play",
+        "#temperature",
+        "#precipitation"
+      ]
+    },
+    {
+      "name": "climate-min",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#m-key"
+        },
+        {
+          "click": "[data-answer=false]",
+          "times": 3,
+          "gap": 0.2
+        },
+        {
+          "click": "[data-answer=true]"
+        },
+        {
+          "click": "[data-answer='1']"
+        },
+        {
+          "click": "#m-change"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#temperature').getBoundingClientRect();return [[r.x+r.width/2,r.y+r.height/2],[r.x+2,r.y+r.height/2]]})();"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#precipitation').getBoundingClientRect();return [[r.x+r.width/2,r.y+r.height/2],[r.x+2,r.y+r.height/2]]})();"
+        }
+      ],
+      "keep": [
+        "#landscape",
+        "#play",
+        "#temperature",
+        "#precipitation"
+      ]
+    },
+    {
+      "name": "wrong-comparison-open",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#m-key"
+        },
+        {
+          "click": "[data-answer=true]"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#reveal"
+        }
+      ],
+      "keep": [
+        "#check-results",
+        "#reveal-cards"
+      ]
+    },
+    {
+      "name": "all-stations",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#show-all"
+        }
+      ],
+      "keep": [
+        "#climo"
+      ]
+    },
+    {
+      "name": "real-layer-hidden",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#m-key"
+        },
+        {
+          "click": "#layer-real"
+        }
+      ],
+      "keep": [
+        "#question"
+      ]
+    }
+  ]
+}

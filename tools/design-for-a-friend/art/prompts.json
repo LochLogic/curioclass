@@ -1,6 +1,101 @@
 {
-  "style": "Three friend portraits in one shared flat illustration style: clean shapes, soft shading, warm palette, chest up, plain cream background, friendly and natural.",
+  "house_style": "Warm editorial storybook illustration for Grade 5. Rich gouache and colored-pencil grain, clean flat shapes with dimensional shading, warm morning light from upper left, deep garden greens, golden cream and sky blue. Carefully observed botanical detail. No text, letters, numbers, logos, people, faces or body parts.",
   "assets": [
+    {
+      "name": "garden-backdrop",
+      "prompt": "A small neighborhood community garden on a sunny morning. Raised wooden plots with tomatoes, climbing beans and sunflowers, a blue watering can on a gravel path in the foreground, low fence, small shed with a blank wooden sign. Layered foreground plants, middle ground beds, distant trees. Wide welcoming composition with open central path.",
+      "aspect": "16:9",
+      "width": 1440,
+      "quality": 75,
+      "drawn_by": "codex",
+      "skip_style": true,
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "review": "ok"
+    },
+    {
+      "name": "plant-tomato",
+      "prompt": "A single red tomato on its short leafy vine, centered botanical object, entirely in frame, on perfectly flat pure magenta #FF00FF. Fine leaf veins, softly shaded red fruit and tiny stem hairs. No ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 160,
+      "cutout": true,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "skip_style": true,
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "review": "ok",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "plant-zucchini",
+      "prompt": "A single dark green zucchini with its small yellow blossom, centered botanical object, entirely in frame, on perfectly flat pure magenta #FF00FF. Fine speckled skin and ribbed stem. No ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 160,
+      "cutout": true,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "skip_style": true,
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "review": "ok",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "plant-kohlrabi",
+      "prompt": "A single botanically recognizable pale-green kohlrabi: round swollen above-ground stem with small leaf-stem scars, five or six branching long stems ending in broad blue-green leaves, tiny short root beneath. Warm storybook gouache and colored pencil, clean confident shapes, dimensional shading, upper-left light. Centered square composition, entirely in frame, simple readable silhouette at 60 pixels. Perfectly flat pure magenta #FF00FF background. No ground, cast shadow, text, letters, numbers, logos, border or extra objects.",
+      "aspect": "1:1",
+      "width": 160,
+      "cutout": true,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "skip_style": true,
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "review": "Cold review redraw: cleaner botanical silhouette and cutout; checked at final size.",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "plant-beans",
+      "prompt": "A single small botanical cluster of green bean pods attached to a stem with one leaf, centered, entirely in frame, on perfectly flat pure magenta #FF00FF. Fine pod seams and soft dimensional shading. No ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 160,
+      "cutout": true,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "skip_style": true,
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "review": "ok",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "plant-strawberry",
+      "prompt": "A single ripe strawberry with green calyx and a small trifoliate leaf, centered botanical object, entirely in frame, on perfectly flat pure magenta #FF00FF. Rich red skin, precise tiny seeds. No ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 160,
+      "cutout": true,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "skip_style": true,
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "review": "ok",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "plant-sunflower",
+      "prompt": "A single sunflower head with a short stem and two leaves, centered botanical object, entirely in frame, on perfectly flat pure magenta #FF00FF. Golden layered petals and a detailed dark seed disk. No ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 160,
+      "cutout": true,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "skip_style": true,
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "review": "ok",
+      "despill": true,
+      "holes": true
+    },
     {
       "name": "friend-lou",
       "prompt": "Portrait of a friendly older man, about 72, with reading glasses pushed up on his head, a straw sun hat and a gardening apron, holding a tomato, warm natural light, flat illustration, plain cream background, chest up.",
@@ -12,7 +107,8 @@
       "quality": 82,
       "source": "gpt-image-2 (Codex)",
       "review": "pending",
-      "despill": true
+      "despill": true,
+      "house_style": "Three friend portraits in one shared flat illustration style: clean shapes, soft shading, warm palette, chest up, plain cream background, friendly and natural."
     },
     {
       "name": "friend-ana",
@@ -27,7 +123,8 @@
       "ref_mode": "style",
       "source": "gpt-image-2 (Codex)",
       "review": "pending",
-      "despill": true
+      "despill": true,
+      "house_style": "Three friend portraits in one shared flat illustration style: clean shapes, soft shading, warm palette, chest up, plain cream background, friendly and natural."
     },
     {
       "name": "friend-kofi",
@@ -43,7 +140,9 @@
       "note": "redrawn so the three friends are not all alike (all three first came back white); spec gives no appearance",
       "despill": true,
       "source": "gpt-image-2 (Codex)",
-      "review": "pending"
+      "review": "pending",
+      "house_style": "Three friend portraits in one shared flat illustration style: clean shapes, soft shading, warm palette, chest up, plain cream background, friendly and natural."
     }
-  ]
+  ],
+  "style": "Three friend portraits in one shared flat illustration style: clean shapes, soft shading, warm palette, chest up, plain cream background, friendly and natural."
 }

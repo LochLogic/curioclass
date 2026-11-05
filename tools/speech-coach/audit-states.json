@@ -1,0 +1,17 @@
+{
+  "keep": [],
+  "states": [
+    {"name":"rehearse-ready","steps":[{"click":"#m-rehearse"}],"keep":["#advance","#total-clock","#run-slide"]},
+    {"name":"live-run","sizes":["680x425","1366x768"],"steps":[{"click":"#m-rehearse"},{"click":"#advance"},{"wait":3150}],"keep":["#advance","#total-clock","#run-slide"]},
+    {"name":"review-with-run","steps":[{"click":"#m-rehearse"},{"click":"#advance"},{"wait":3150},{"click":"#advance","times":6,"gap":0.15}],"keep":["#review"]},
+    {"name":"thread-open","sizes":["680x425","1366x768","375x812"],"steps":[{"click":"#thread"}],"keep":["#thread-dialog","#listener-test"]},
+    {"name":"club-limit","sizes":["680x425","1366x768"],"steps":[{"click":"[data-task='1']"}],"keep":["#hint"]},
+    {"name":"busy-slide-small","sizes":["680x425"],"steps":[{"click":"#next-section","times":4,"gap":0.15}],"keep":["#build-slide"]},
+    {"name":"busy-card-phone","sizes":["375x812"],"steps":[{"click":"#next-section","times":4,"gap":0.15}],"keep":["#role","#signpost"]},
+    {"name":"busy-slide-laptop","sizes":["1366x768"],"steps":[{"click":"#sections [data-index='4']"}],"keep":["#build-slide"]},
+    {"name":"clear-confirmation","sizes":["680x425","1366x768"],"steps":[{"click":"#clear"}],"keep":["#confirm-dialog"]},
+    {"name":"phone-task","sizes":["375x812"],"steps":[{"click":"#task-drawer-toggle"}],"keep":["#task-dialog"]},
+    {"name":"review-trial-focus","sizes":["680x425","1366x768","375x812"],"steps":[{"click":"#m-rehearse"},{"click":"#advance"},{"wait":3150},{"click":"#mark-f"},{"click":"#mark-l"},{"click":"#advance","times":6,"gap":0.15}],"keep":[".trial-focus"]},
+    {"name":"editor-actions","sizes":["680x425","1366x768"],"steps":[{"click":"#add"}],"keep":["#add","#delete","#up","#down"]}
+  ]
+}

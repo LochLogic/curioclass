@@ -1,0 +1,1181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Data Policy Council · Linden Valley Unified · Curio Class</title>
+<meta name="description"
+  content="Write a school data policy, watch a student's data trail change, and bring your draft to a council vote. Grades 9-12. Works offline.">
+<!--
+Data Policy Council (Curio Class). Students or teacher, Grades 9-12 computer science and civics.
+CSTA 2026: HS-ALG-IM-10, HS-DAT-IM-28, HS-SYS-IM-36, HS-SOC-HI-39, HS-DAT-IM-27.
+2017 crosswalk: 3A-IC-24, 3A-IC-29, 3A-IC-30. Sources and model boundaries: notes.md and spec.md.
+FERPA: 20 USC 1232g, 34 CFR Part 99; FTC COPPA FAQ section N; California BPC 22584 (SOPIPA).
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Six editorial portraits checked in the cold review; people assets are marked in art/prompts.json.
+One file, no network requests. Pins last only for this page load. Content CC BY 4.0, code MIT.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f3f1ec; --panel:#fff; --ink:#1c2330; --muted:#555e6e; --line:#d9d4c8;
+  --brand:#1f4e79; --btn:#1c2330; --btn-line:#68829a; --head-ink:#fff; --focus:#b45309;
+  --flag:#9f1239; --yes:#166534; --day:#e3ecf5;
+}
+body { height:100dvh; min-height:0; overflow:hidden; }
+header { padding:10px 18px; gap:8px; box-shadow:0 2px 9px #15283c33; z-index:2; }
+h1 { font-family:Georgia,serif; font-weight:500; letter-spacing:-.6px; font-size:29px; }
+h1 small { font-size:12px; letter-spacing:1.4px; text-transform:uppercase; margin-top:5px; }
+button { min-height:44px; border:1px solid var(--line); background:#fff; border-radius:6px; padding:8px 12px; }
+.seg button,.icon-btn { min-width:44px; }
+button:hover { box-shadow:inset 0 0 0 2px #1f4e7940; }
+button[aria-pressed="true"] { background:#e3ecf5; border-color:var(--brand); color:var(--brand); }
+.seg { border-radius:6px; border-width:1px; }
+.seg button { min-height:44px; font-size:14px; padding:0 14px; }
+.seg button[aria-pressed="true"] { background:var(--paper); color:var(--brand); }
+.icon-btn { font-size:12px; min-height:44px; padding:0 10px; border-radius:6px; border-width:1px; }
+main { grid-template-columns:minmax(0,1fr) 368px; overflow:hidden; }
+.stage { min-height:0; background:var(--paper); display:flex; flex-direction:column; overflow:hidden; }
+.stage { order:0; }
+.panel { order:1; }
+.draft-stage { display:flex; flex-direction:column; flex:1; min-height:0; }
+.eyebrow { text-transform:uppercase; letter-spacing:1.6px; font-size:10px; font-weight:700; color:var(--muted); }
+.dais { position:relative; flex:0 0 29%; min-height:142px; padding:12px 14px 9px; isolation:isolate; }
+.chamber { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 45%; z-index:-2; }
+.dais::before { content:""; position:absolute; inset:0; background:linear-gradient(#f3f1ec22,#f3f1ecbb); z-index:-1; }
+.room-title { display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:12px; }
+.room-title .eyebrow { color:#243747; background:#f9f6ebed; padding:4px 7px; border:1px solid #d4c4a8; }
+.live-dot { display:inline-block; width:6px; height:6px; background:var(--brand); border-radius:50%; margin-right:5px;
+  animation:breathe 3s ease-in-out infinite; }
+@keyframes breathe { 50% { opacity:.3; } }
+.plates { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:7px; align-items:start; }
+.plate { min-width:0; padding:7px 6px 6px; position:relative; background:linear-gradient(115deg,#fffdf5,#e6dfcf);
+  border:1px solid #bbac8f; border-top:3px solid var(--brand); box-shadow:0 4px 0 #a18c6c,0 8px 12px #342a2020;
+  text-align:center; border-radius:3px; transition:transform .3s,background .3s; }
+.plate:nth-child(1),.plate:nth-child(6) { margin-top:13px; }
+.plate:nth-child(2),.plate:nth-child(5) { margin-top:5px; }
+.plate.selected { outline:2px solid var(--brand); outline-offset:2px; }
+.plate .name { display:block; font-size:12px; font-weight:700; line-height:1.15; }
+.plate .role { display:block; font-size:10px; color:var(--muted); margin:3px 0 5px; }
+.portrait { display:block; width:48px; height:48px; margin:-4px auto 5px; border-radius:50%; border:1px solid #c8b998;
+  background:radial-gradient(circle at 35% 25%,#f8f4e7,#c6c6ba); overflow:hidden; }
+.portrait img { width:100%; height:100%; object-fit:cover; display:block; }
+.plate .portrait { display:none; }
+@media (min-width:1101px) {
+  .plate { display:grid; grid-template-columns:54px minmax(0,1fr); column-gap:4px; align-items:center; }
+  .plate .portrait { display:block; width:54px; height:54px; grid-row:1/3; margin:0; }
+  .plate .name,.plate .role { grid-column:2; }
+  .plate .lean,.plate .lean-label,.plate .leaning,.plate .math,.plate .counsel-mark { grid-column:1/-1; }
+  .plate .role { margin:2px 0; }
+}
+.lean { display:block; height:7px; border-radius:8px; background:#c7c6bf; position:relative; margin:11px 3px 5px; }
+.lean::after { content:""; position:absolute; left:63.64%; height:13px; top:-3px; border-left:2px solid #273949; }
+.lean .needle { position:absolute; left:50%; width:9px; height:9px; border-radius:50%; top:-1px; transform:translateX(-50%);
+  background:var(--brand); box-shadow:0 0 0 2px white; transition:left .3s ease; }
+.lean-label { display:flex; justify-content:space-between; font-size:10px; color:var(--muted); }
+.lean-label span:last-child { color:var(--ink); }
+.leaning { display:block; font-size:11px; margin:6px 0 0; font-weight:700; }
+.leaning.yes { color:var(--yes); }
+.leaning.no { color:var(--flag); }
+.math { display:none; font-size:10px; line-height:1.5; margin-top:6px; text-align:left; }
+.math-on .math { display:block; }
+.math-on .dais { flex-basis:35%; }
+.math-on .plate .role { margin:2px 0; }
+.counsel-mark { font:24px Georgia,serif; height:26px; color:var(--brand); }
+.clerk { min-height:24px; display:flex; align-items:center; justify-content:center; gap:8px; font-size:12px; }
+.clerk strong { color:var(--flag); }
+.day { flex:1 1 45%; min-height:170px; background:linear-gradient(150deg,#edf3f8,#dce7f0);
+  padding:16px 14px 10px; border-top:1px solid #ced6da; border-bottom:1px solid #becbd5; position:relative;
+  display:flex; flex-direction:column; }
+.day-head { display:flex; justify-content:space-between; align-items:start; gap:8px; margin-bottom:10px; }
+.day h2 { font:500 clamp(19px,2.2vw,29px)/1 Georgia,serif; margin:3px 0 5px; letter-spacing:-.5px; }
+.day-sub { margin:0; color:var(--muted); font-size:12px; }
+.collected { text-align:right; font-size:12px; color:var(--brand); flex:none; }
+.collected b { display:block; font:500 27px/1.1 Georgia,serif; }
+.timeline-scroll { overflow-x:auto; overflow-y:hidden; flex:1; min-height:0; scrollbar-width:thin; }
+.timeline { display:grid; grid-template-columns:repeat(8,minmax(0,1fr)); gap:7px; height:100%; position:relative; }
+.moment { position:relative; min-width:0; min-height:0; display:flex; flex-direction:column; }
+.moment::before { content:""; position:absolute; left:50%; top:0; bottom:0; width:1px; background:#a8b5c1; }
+.moment-card { position:relative; min-height:0; border:2px solid #aab3bb; background:#f4f4f1; box-shadow:0 3px 7px #2435441c;
+  border-radius:5px; overflow:hidden; flex:1; transition:border-color .25s,box-shadow .25s; }
+.moment-card img { width:100%; height:clamp(60px,10vh,130px); object-fit:cover; display:block;
+  filter:grayscale(1); opacity:.58; transition:filter .3s,opacity .3s; }
+.moment.lit .moment-card { border-color:var(--brand); background:#fff; box-shadow:0 3px 9px #1f4e7924; }
+.moment.lit img { filter:none; opacity:1; }
+.moment.changed .moment-card { animation:illuminate .65s ease-out; }
+@keyframes illuminate { 0% { transform:translateY(0); } 35% { transform:translateY(-5px); box-shadow:0 8px 12px #1f4e7950; } }
+.moment-text { padding:6px 5px; }
+.moment-name { font-size:12px; font-weight:700; line-height:1.2; display:block; min-height:29px; }
+.moment-status { position:absolute; top:3px; left:3px; max-width:calc(100% - 6px); padding:2px 3px;
+  font-size:10px; margin-top:0; color:var(--muted); background:#fffffff2; border-radius:2px; }
+.moment.lit .moment-status { color:var(--brand); font-weight:700; }
+.chips { display:flex; flex-wrap:wrap; align-items:start; gap:3px; padding-top:5px; }
+.chip { display:block; background:#e9eff4; border:1px solid #d2dfe9; padding:2px 4px; font-size:10px; line-height:1.25;
+  border-radius:3px; color:#30495e; }
+.chip.risk { color:var(--flag); border-color:#e4b6c2; background:#fff0f2; }
+.chip-short { display:none; }
+@media (max-width:1500px) {
+  .chip-full { display:none; }
+  .chip-short { display:inline; }
+}
+.moment time { display:block; flex:0 0 27px; position:relative; text-align:center; font-size:11px; font-weight:700; padding-top:12px; }
+.moment time::before { content:""; width:6px; height:6px; position:absolute; left:calc(50% - 3px); top:4px;
+  border-radius:50%; background:#8c9eae; }
+.moment.lit time::before { background:var(--brand); box-shadow:0 0 0 3px #c3d4e4; }
+.trail-note { font-size:11px; color:var(--muted); margin:8px 0 0; }
+.trail-rules { display:none; font-size:10px; line-height:1.3; margin:0 0 5px; color:#30495e; }
+.trail-rules b { color:var(--ink); }
+.draft-bottom { flex:0 0 auto; padding:9px 14px; display:flex; flex-direction:column; gap:6px; min-height:98px;
+  background:linear-gradient(120deg,#f9f6ef,#ede7da); border-top:3px solid #d4c1a0; }
+.document-top { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.document-title { font:500 18px Georgia,serif; margin:0; }
+.document-title small { font:11px 'Segoe UI',sans-serif; color:var(--muted); display:block; margin-top:3px; }
+.document-preview { font-size:12px; margin:0; color:var(--muted); }
+#result { font:500 18px Georgia,serif; min-height:24px; margin:0; color:var(--brand); }
+#result.pass { color:var(--yes); }
+.legal { font-size:10px; color:var(--muted); text-align:center; padding:5px 8px; background:var(--paper); }
+.panel { padding:12px; border-left:1px solid var(--line); gap:9px; overflow:hidden; min-height:0; }
+.hint { font-size:13px; line-height:1.4; margin:0; min-height:57px; }
+.panel-label { font-size:10px; text-transform:uppercase; letter-spacing:1.2px; color:var(--muted); }
+.presets { display:grid; grid-template-columns:1.35fr 1fr .6fr; gap:4px; }
+.presets button { font-size:11px; padding:4px; }
+.clause-nav { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px; }
+.clause-nav button { text-align:left; font-size:12px; padding:6px; background:#f6f4ef; position:relative; }
+.clause-nav button[aria-pressed="true"] { background:var(--brand); color:#fff; border-color:var(--brand); }
+.clause-nav button.flagged { border-bottom:3px solid var(--flag); }
+.clause-nav small { display:block; font-size:10px; opacity:.8; margin-top:3px; }
+.editor { min-height:0; flex:1; display:flex; flex-direction:column; gap:6px; }
+.editor h2 { margin:4px 0 1px; font:500 22px Georgia,serif; }
+.option-group { display:flex; flex-direction:column; gap:5px; min-height:0; overflow:auto; padding:3px; margin:-3px; }
+.option-group button { text-align:left; font-size:13px; display:flex; gap:8px; align-items:center; min-height:47px;
+  flex:0 0 auto; padding:8px 9px; background:#fff; line-height:1.2; }
+.option-group button::before { content:""; width:13px; height:13px; border:1px solid #798593; flex:none; border-radius:50%; }
+.option-group button[aria-pressed="true"] { background:#e3ecf5; box-shadow:inset 3px 0 var(--brand); font-weight:700; }
+.option-group button[aria-pressed="true"]::before { background:var(--brand); box-shadow:inset 0 0 0 3px #e3ecf5; }
+.flag-tag { font-size:10px; font-weight:700; color:var(--flag); border:1px solid #c78b9b; border-radius:3px; padding:1px 3px;
+  margin-left:auto; }
+.option-detail { font-size:12px; line-height:1.4; color:var(--muted); margin:2px 0 0; min-height:50px; }
+.actions { margin-top:auto; flex:none; display:grid; grid-template-columns:1fr 1fr; gap:5px; padding-top:7px;
+  border-top:1px solid var(--line); }
+.actions button { font-size:12px; padding:5px; }
+#vote { background:var(--brand); color:#fff; border:1px solid var(--brand); font-weight:700; }
+#vote:disabled { background:#e8e3d9; border-color:#d4cabc; color:#655b51; cursor:default; }
+.pin-limit { font-size:10px; color:var(--muted); margin:0; text-align:center; }
+.compare-stage { min-height:0; flex:1; display:flex; flex-direction:column; padding:20px 16px 10px; overflow:auto; }
+.compare-stage h2 { font:500 29px Georgia,serif; margin:0 0 5px; }
+.compare-stage > p { font-size:12px; color:var(--muted); margin:0 0 16px; }
+.empty { margin:auto; text-align:center; max-width:420px; }
+.empty-symbol { font:85px Georgia,serif; color:#8d9ba6; }
+.compare-columns { order:2; flex:none; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:14px 0; }
+.compare-column { background:#fffdf8; border:1px solid #d9cbb1; padding:12px; box-shadow:0 3px 7px #3e302415; }
+.draft-letter { display:flex; justify-content:space-between; align-items:center; gap:5px; margin-bottom:8px; }
+.draft-letter b { font:500 27px Georgia,serif; color:var(--brand); }
+.draft-letter span { font-size:11px; }
+.choice-summary { font-size:11px; line-height:1.4; padding:5px 0; border-bottom:1px solid #e5e0d6; }
+.choice-summary strong { font-weight:600; }
+.forecast { font-size:11px; display:flex; flex-wrap:wrap; gap:4px 9px; margin-top:8px; }
+.forecast .yes { color:var(--yes); }
+.forecast .no { color:var(--flag); }
+.compare-days { order:1; flex:none; background:var(--day); padding:12px; border:1px solid #c5d3df; }
+.compare-day { padding:8px 0; border-bottom:1px solid #b6c8d7; }
+.compare-day:last-child { border:0; }
+.compare-row-title { font-size:12px; display:flex; justify-content:space-between; margin-bottom:7px; }
+.compare-day .timeline { gap:6px; min-width:0; }
+.compare-day .moment-card img { height:52px; }
+.compare-day .moment-name { min-height:0; font-size:10px; }
+.compare-day .moment-status { font-size:10px; }
+.compare-day .moment time { font-size:10px; }
+.compare-day .chips { display:none; }
+.pin-tools { display:flex; flex-direction:column; gap:8px; }
+.pin-tool { padding:10px; background:#f6f4ef; border:1px solid var(--line); }
+.pin-tool b { display:block; margin-bottom:6px; font:500 18px Georgia,serif; }
+.pin-tool div { display:flex; gap:5px; }
+.pin-tool button { flex:1; font-size:12px; padding:6px; }
+dialog { color:var(--ink); background:#fdfaf2; border:1px solid #bfae8a; border-top:5px solid var(--brand);
+  border-radius:5px; box-shadow:0 25px 80px #12253866; padding:0; max-width:min(700px,94vw); max-height:90dvh; }
+dialog::backdrop { background:#12253877; }
+.dialog-top { display:flex; justify-content:space-between; gap:15px; align-items:center; padding:12px 20px;
+  border-bottom:1px solid var(--line); }
+.dialog-top h2 { font:500 24px Georgia,serif; margin:0; }
+.dialog-body { padding:10px 22px 20px; overflow:auto; max-height:calc(90dvh - 80px); }
+.draft-section { margin:10px 0; padding:8px 10px; border-left:3px solid #c7c0b0; font-size:14px; line-height:1.5; }
+.draft-section.flagged { border-color:var(--flag); }
+.draft-section .flag-note { color:var(--flag); font-size:12px; display:block; margin-top:5px; }
+.member-card { display:flex; gap:20px; align-items:start; }
+.member-card .portrait { flex:none; width:160px; height:160px; margin:10px 0; }
+#member-quote { font:500 23px/1.35 Georgia,serif; margin:20px 0; }
+#member-role { color:var(--muted); font-size:13px; }
+.reply { padding:10px 14px; margin:0; font:500 15px/1.4 Georgia,serif; background:#fffdf6;
+  border-left:3px solid var(--brand); box-shadow:0 2px 5px #27394915; }
+.counsel-note { color:var(--flag); }
+.vote-flip { animation:flip .5s ease-out; }
+@keyframes flip { 0% { transform:rotateX(70deg); } 100% { transform:rotateX(0); } }
+@media (min-height:900px) and (min-width:1000px) {
+  .plate .portrait { display:block; width:72px; height:72px; }
+  .plate { grid-template-columns:72px minmax(0,1fr); }
+  .dais { flex-basis:29%; }
+  .draft-bottom { flex-basis:19%; }
+}
+@media (max-height:700px) and (min-width:801px) {
+  header { padding:6px 12px; }
+  h1 { font-size:22px; }
+  .dais { padding:6px 10px; min-height:133px; flex-basis:27%; }
+  .room-title { margin-bottom:4px; }
+  .plate { padding:4px; }
+  .plate .role { margin:2px 0; }
+  .plate .name { font-size:10px; }
+  .lean-label { font-size:10px; }
+  .day { padding:8px 10px 6px; }
+  .day-head { margin-bottom:6px; }
+  .day h2 { font-size:21px; }
+  .moment-text { padding:4px 3px; }
+  .moment-name { font-size:10px; min-height:24px; }
+  .moment-card img { height:65px; }
+  .chips { gap:2px; }
+  .chip { font-size:10px; padding:1px 2px; }
+  .draft-bottom { min-height:75px; padding:6px 10px; gap:2px; }
+  .document-preview { display:none; }
+  .hint { min-height:50px; font-size:12px; }
+  .panel { gap:6px; padding:8px; }
+  .editor h2 { font-size:19px; }
+  .option-detail { min-height:34px; font-size:11px; }
+}
+@media (max-width:1100px) and (min-width:801px) {
+  main { grid-template-columns:minmax(0,1fr) 330px; }
+  h1 { font-size:23px; }
+  .timeline { gap:5px; }
+  .moment-name { font-size:10px; }
+  .plate .name { font-size:10px; }
+  .plate .role { font-size:10px; }
+  .day-sub { font-size:11px; }
+  .compare-column { padding:8px; }
+  .moment-card img { height:48px; }
+  .chip-full { display:none; }
+  .chip-short { display:inline; }
+  .chip { padding:1px 2px; }
+}
+@media (max-height:800px) and (min-width:801px) {
+  .option-group { display:grid; grid-template-columns:1fr 1fr; overflow:visible; }
+  .option-group button { min-height:47px; font-size:12px; padding:7px; }
+  .document-preview { display:none; }
+  .draft-bottom { min-height:85px; padding:7px 14px; gap:3px; }
+  .dais { min-height:196px; }
+}
+@media (max-height:750px) and (min-width:1101px) {
+  .moment-card img { height:55px; }
+  .moment-name { min-height:24px; }
+}
+@media (max-width:800px) and (min-height:651px) {
+  main { grid-template-columns:1fr; grid-template-rows:minmax(0,44%) minmax(0,56%); }
+  header { padding:6px 10px; }
+  h1 { font-size:23px; }
+  .dais { min-height:140px; flex-basis:140px; padding:6px 10px; }
+  .room-title { display:none; }
+  .lean-label { display:none; }
+  .room-title { margin-bottom:3px; }
+  .plate { padding:4px; }
+  .plate .name { font-size:11px; }
+  .plate .role { font-size:10px; }
+  .day { padding:7px 10px; min-height:135px; }
+  .day-head { margin-bottom:6px; }
+  .day h2 { font-size:20px; }
+  .day .eyebrow { display:none; }
+  .day h2 { margin:2px 0 3px; }
+  .day-head { margin-bottom:3px; }
+  .moment-card img { height:42px; }
+  .moment-name { font-size:10px; min-height:25px; }
+  .moment-name { min-height:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .moment-text { padding:4px; }
+  .moment-status { font-size:10px; }
+  .chips { display:none; }
+  .trail-rules { display:block; }
+  .trail-note { display:none; }
+  .draft-bottom { padding:4px 10px; min-height:48px; flex-direction:row; justify-content:space-between; align-items:center; }
+  .document-title { font-size:15px; }
+  .document-title small,.document-preview { display:none; }
+  #result { font-size:14px; }
+  .panel { border-left:0; border-top:1px solid var(--line); padding:8px 12px; gap:5px; }
+  .hint { min-height:38px; font-size:12px; }
+  .presets { max-width:500px; }
+  .clause-nav { grid-template-columns:repeat(6,minmax(0,1fr)); }
+  .clause-nav small { display:none; }
+  .option-group { display:grid; grid-template-columns:1fr 1fr; overflow:visible; }
+  .option-group button { font-size:12px; min-height:44px; padding:6px; }
+  .editor h2 { font-size:18px; margin:0; }
+  .option-detail { font-size:11px; min-height:30px; }
+  .actions { grid-template-columns:repeat(4,1fr); padding-top:4px; }
+  .pin-limit { display:none; }
+  .compare-stage { padding:10px; }
+  .compare-column .choice-summary { display:none; }
+  .compare-day .moment-card img { height:38px; }
+  .compare-day .moment-text { display:none; }
+  .compare-stage > p { margin-bottom:8px; }
+}
+@media (max-height:650px) and (max-width:800px) {
+  header { padding:3px 8px; gap:4px; flex-wrap:nowrap; }
+  h1 { font-size:17px; letter-spacing:-.4px; }
+  h1 small { display:none; }
+  .seg button { padding:0 8px; font-size:11px; }
+  .icon-btn { padding:0 6px; font-size:10px; }
+  main { grid-template-columns:minmax(0,1fr) 300px; }
+  .panel { gap:4px; padding:5px 7px; }
+  .hint { font-size:11px; line-height:1.25; min-height:41px; }
+  .panel-label { display:none; }
+  .presets button { font-size:10px; }
+  .clause-nav { grid-template-columns:repeat(6,minmax(0,1fr)); gap:2px; }
+  .clause-nav button { font-size:10px; padding:3px 1px; text-align:center; }
+  .clause-nav small { display:none; }
+  .editor { gap:3px; }
+  .editor h2 { font-size:17px; margin:0; }
+  .option-group { display:grid; grid-template-columns:1fr 1fr; overflow:visible; gap:4px; padding:0; margin:0; }
+  .option-group button { font-size:11px; min-height:44px; padding:5px; gap:4px; }
+  .option-group button::before { width:9px; height:9px; }
+  .option-detail { font-size:10px; line-height:1.2; min-height:25px; }
+  .actions { padding-top:3px; gap:4px; }
+  .actions button { min-height:44px; font-size:11px; }
+  .pin-limit { display:none; }
+  .dais { min-height:126px; flex-basis:35%; padding:5px 6px; }
+  .room-title { margin-bottom:4px; }
+  .room-title .eyebrow { font-size:9px; letter-spacing:.5px; }
+  .room-title .eyebrow:last-child { display:none; }
+  .plates { gap:3px; }
+  .plate { padding:4px 1px; }
+  .plate .name { font-size:10px; }
+  .plate .role { display:none; }
+  .leaning { font-size:10px; }
+  .lean-label { font-size:10px; }
+  .lean-label span:first-child { display:none; }
+  .counsel-mark { font-size:18px; height:22px; }
+  .clerk { font-size:10px; }
+  .day { min-height:140px; padding:6px; }
+  .day h2 { font-size:18px; }
+  .day-head { margin-bottom:5px; }
+  .day-sub { font-size:10px; }
+  .day .eyebrow { display:none; }
+  .collected { font-size:10px; }
+  .collected b { font-size:20px; }
+  .timeline { min-width:640px; gap:5px; }
+  .moment-card img { height:44px; }
+  .moment-name { font-size:10px; min-height:24px; }
+  .moment-name { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-height:12px; }
+  .moment-status { font-size:10px; }
+  .chips { display:none; }
+  .trail-rules { display:block; }
+  .moment time { font-size:10px; }
+  .trail-note { display:none; }
+  .option-detail { display:none; }
+  .draft-bottom { min-height:54px; padding:3px 6px; gap:1px; }
+  .document-title { font-size:13px; }
+  .document-title small,.document-preview { display:none; }
+  #read-draft { padding:3px 6px; font-size:10px; }
+  #result { font-size:13px; }
+  .legal { font-size:10px; padding:2px; }
+}
+@media (max-width:500px) {
+  header { gap:4px; padding:5px 7px; flex-wrap:wrap; }
+  h1 { font-size:23px; width:100%; }
+  h1 small { display:none; }
+  .seg button { font-size:12px; padding:0 12px; }
+  .icon-btn { font-size:10px; padding:0 5px; flex:1; }
+  main { grid-template-columns:1fr; grid-template-rows:minmax(0,46%) minmax(0,54%); }
+  .dais { flex-basis:88px; min-height:88px; padding:5px 6px; }
+  .room-title { display:none; }
+  .plates { grid-template-columns:repeat(5,minmax(0,1fr)); gap:4px; }
+  .plate { padding:4px 1px; }
+  .plate:nth-child(n) { margin-top:0; }
+  .plate .name { font-size:10px; }
+  .plate .role { display:none; }
+  .plate[data-member="5"] { display:none; }
+  .lean { margin:9px 4px 4px; }
+  .lean-label { display:none; }
+  .leaning { font-size:10px; }
+  .clerk { font-size:10px; min-height:19px; margin-top:5px; }
+  .day { padding:5px 7px; min-height:130px; }
+  .day-head { margin-bottom:5px; }
+  .day h2 { font-size:19px; }
+  .day .eyebrow { display:none; }
+  .day-sub { font-size:10px; }
+  .collected b { font-size:20px; }
+  .collected { font-size:10px; }
+  .timeline { min-width:800px; gap:6px; }
+  .moment-card img { height:44px; }
+  .moment-text { padding:4px; }
+  .moment-name { min-height:0; font-size:10px; }
+  .moment-status { display:block; font-size:10px; margin-top:2px; }
+  .moment time { font-size:10px; }
+  .draft-bottom { min-height:49px; padding:3px 7px; }
+  .document-title { font-size:13px; }
+  .document-title small,.document-preview { display:none; }
+  #read-draft { min-height:44px; font-size:11px; padding:3px 6px; }
+  #result { font-size:12px; }
+  .legal { padding:2px; }
+  .panel { padding:6px 8px; gap:5px; border-left:0; }
+  .hint { font-size:12px; min-height:47px; }
+  .panel-label { display:none; }
+  .clause-nav { grid-template-columns:repeat(6,minmax(0,1fr)); gap:3px; }
+  .clause-nav button { padding:4px 1px; font-size:10px; text-align:center; }
+  .clause-nav small { display:none; }
+  .editor { gap:4px; }
+  .editor h2 { font-size:19px; }
+  .option-group { display:grid; grid-template-columns:1fr 1fr; overflow:auto; gap:5px; }
+  .option-group button { font-size:11px; padding:5px; }
+  .option-detail { display:none; }
+  .actions { grid-template-columns:1fr 1fr; padding-top:4px; }
+  .compare-stage { padding:9px; }
+  .compare-stage h2 { font-size:21px; }
+  .compare-columns { gap:5px; margin-bottom:8px; }
+  .compare-column { padding:5px; }
+  .compare-column .choice-summary { display:none; }
+  .draft-letter { margin-bottom:0; }
+  .draft-letter b { font-size:23px; }
+  .draft-letter span { font-size:10px; }
+  .forecast { font-size:10px; margin-top:3px; gap:2px; }
+  .compare-days { overflow:auto; padding:5px; }
+  .compare-day { min-width:640px; }
+  .compare-day .timeline { min-width:0; }
+  .compare-day .moment-card img { height:30px; }
+  .compare-day .moment time { padding-top:9px; }
+  .member-card { gap:12px; }
+  .member-card .portrait { width:80px; height:80px; }
+  #member-quote { font-size:18px; }
+}
+.calm .live-dot { animation:none; }
+.calm .moment.changed .moment-card,.calm .vote-flip { animation:none; }
+@media (max-width:800px) {
+  .math-on .math { display:none; }
+  .math-on .dais { flex-basis:auto; }
+  .pin-tools { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px; }
+  .pin-tool { padding:6px; min-width:0; }
+  .pin-tool b { font-size:16px; }
+  .pin-tool div { flex-direction:column; }
+  .pin-tool button { font-size:11px; padding:5px; }
+  .compare-column .choice-summary { display:block; }
+  .compare-days { overflow:auto; }
+  .compare-day { min-width:640px; }
+  .compare-day .moment-text { display:none; }
+}
+@media (max-width:800px) and (max-height:650px) {
+  #clerk { display:none; }
+  .room-title .eyebrow { font-size:10px; }
+}
+@media (max-width:800px) {
+  .day-head { align-items:center; }
+  .day-head > div:first-child { display:flex; align-items:baseline; flex-wrap:wrap; gap:3px 7px; }
+  .day h2 { margin:0; }
+  .day-sub { margin:0; }
+  .collected > span { display:none; }
+  .collected b { font-size:20px; white-space:nowrap; }
+}
+@media (min-width:801px) and (max-width:1100px) and (max-height:800px) {
+  .dais { min-height:160px; flex-basis:28%; }
+  .room-title { display:none; }
+  .moment-text { padding:3px; }
+  .moment-name { min-height:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+}
+@media (min-width:1101px) {
+  .dais { min-height:min-content; }
+}
+@media (max-width:500px) {
+  #clerk { display:none; }
+}
+@media (min-width:1101px) and (max-height:800px) {
+  .math-on .dais { padding-top:8px; padding-bottom:6px; }
+  .math-on .room-title { margin-bottom:4px; }
+  .math-on .plate .lean { margin-top:5px; margin-bottom:4px; }
+  .math-on .plate .leaning { margin-top:3px; }
+  .math-on .math { line-height:1.25; margin-top:3px; }
+  .math-on .day-head { align-items:center; margin-bottom:6px; }
+  .math-on .day-head > div:first-child { display:flex; align-items:baseline; flex-wrap:wrap; gap:3px 9px; }
+  .math-on .day .eyebrow { display:none; }
+  .math-on .day h2 { margin:0; }
+  .math-on .collected > span { display:none; }
+}
+</style>
+</head>
+<body class="theme-912">
+<header>
+  <h1>Data Policy Council <small>Linden Valley Unified</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-draft" aria-pressed="true">Draft</button>
+    <button id="m-compare" aria-pressed="false">Compare</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <section class="draft-stage" id="draft-stage" aria-label="Draft policy consequences">
+      <div class="dais">
+        <img class="chamber" src="art:council-chamber" alt="Empty, sunlit school district council chamber">
+        <div class="room-title">
+          <span class="eyebrow"><i class="live-dot"></i> Policy hearing</span>
+          <span class="eyebrow">5 members · 3 yes to pass</span>
+        </div>
+        <div class="plates" id="plates"></div>
+        <div class="clerk" id="clerk" aria-live="polite"></div>
+      </div>
+      <section class="day" aria-label="A day in the data">
+        <div class="day-head">
+          <div><div class="eyebrow">The policy leaves a trail</div><h2>A day in the data</h2>
+            <p class="day-sub">Jordan · age 12 · grade 7</p></div>
+          <div class="collected" id="collected" role="img" aria-label="Collected today: 4 of 8 moments">
+            <span>Collected today</span><b>4 of 8</b><span>moments</span></div>
+        </div>
+        <p class="trail-rules" id="trail-rules"></p>
+        <div class="timeline-scroll" tabindex="0" aria-label="Jordan's day. Scroll sideways on a narrow screen.">
+          <div class="timeline" id="timeline"></div>
+        </div>
+        <p class="trail-note" id="trail-note">A lit card becomes a record. Grey moments stay out of the app.</p>
+      </section>
+      <section class="draft-bottom">
+        <div class="document-top">
+          <h2 class="document-title">Aldermark Pass policy <small>California · 900 students · six clauses</small></h2>
+          <button id="read-draft">Read the draft ↗</button>
+        </div>
+        <p class="document-preview" id="document-preview"></p>
+        <p id="result" aria-live="polite"></p>
+      </section>
+    </section>
+    <section class="compare-stage" id="compare-stage" hidden aria-label="Pinned drafts"></section>
+    <footer class="legal">A classroom model, not legal advice.</footer>
+  </div>
+  <aside class="panel" aria-label="Policy desk">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div id="draft-desk" style="display:contents">
+      <div class="panel-label">Start from</div>
+      <div class="presets" role="group" aria-label="Start from">
+        <button id="preset-vendor" aria-pressed="true">Vendor proposal</button>
+        <button id="preset-private" aria-pressed="false">Most private</button>
+        <button id="preset-blank" aria-pressed="false">Blank</button>
+      </div>
+      <nav class="clause-nav" id="clause-nav" aria-label="Choose a clause"></nav>
+      <section class="editor" aria-label="Edit a clause">
+        <h2 id="clause-title"></h2>
+        <div id="option-groups"></div>
+        <p class="option-detail" id="option-detail"></p>
+      </section>
+      <div class="actions">
+        <button id="ask">Ask the room</button>
+        <button id="vote" disabled>Vote blocked · 1 flag</button>
+        <button id="pin">Pin draft · A</button>
+        <button id="math" aria-pressed="false">Show the math</button>
+      </div>
+      <p class="pin-limit">Pins stay on this page only. Nothing leaves this device.</p>
+    </div>
+    <div id="compare-desk" hidden>
+      <div class="pin-tools" id="pin-tools"></div>
+      <button id="clear-pins" style="width:100%;margin-top:10px">Clear pins</button>
+      <button id="back-draft" style="width:100%;margin-top:6px">Back to Draft</button>
+      <p class="pin-limit" style="margin-top:10px">Pins stay on this page only. Nothing leaves this device.</p>
+    </div>
+  </aside>
+</main>
+<dialog id="draft-dialog" aria-labelledby="draft-heading">
+  <div class="dialog-top"><h2 id="draft-heading">Aldermark Pass policy</h2><button id="close-draft">Close</button></div>
+  <div class="dialog-body" id="draft-document"></div>
+</dialog>
+<dialog id="member-dialog" aria-labelledby="member-heading">
+  <div class="dialog-top"><h2 id="member-heading"></h2><button id="close-member">Close</button></div>
+  <div class="dialog-body">
+    <div class="member-card"><div class="portrait" id="member-portrait"></div>
+      <div><p id="member-role"></p><p id="member-quote"></p></div></div>
+    <div id="member-breakdown"></div>
+  </div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const KEYS = ['L', 'R', 'A', 'S', 'E', 'F'];
+  const NAMES = {L:'Location', R:'Keep for', A:'Who can see', S:'Ads and selling', E:'Early warning', F:'Family rights'};
+  const SHORT = {L:'Where', R:'Keep', A:'Access', S:'Ads', E:'AI', F:'Rights'};
+  const OPTIONS = {
+    L: [
+      ['No location data', 'The app collects no location data.', [1,2,0,-2,0]],
+      ['Door check-ins', 'Door check-ins on school grounds only.', [1,1,1,1,0]],
+      ['Phone: school hours', 'Phone location during school hours, 8:00 am to 3:15 pm.', [-1,-2,0,2,0]],
+      ['Phone: all the time', 'Phone location all the time, including evenings and weekends.', [-3,-3,-1,1,0]]
+    ],
+    R: [
+      ['30 days', 'The district deletes app data after 30 days.', [1,1,-1,-1,1]],
+      ['End of school year', 'The district deletes app data at the end of each school year.', [1,1,1,1,0]],
+      ['Until graduation', 'The district keeps app data until graduation.', [-1,-1,1,1,0]],
+      ['No limit', 'The district sets no limit on how long it keeps app data.', [-2,-2,0,0,-1]]
+    ],
+    A: [
+      ['Family + staff who need it', 'The student, the family and staff who need it for their job can see the data.', [2,2,1,0,0]],
+      ['All district staff', 'All district staff can see the data.', [-1,-1,1,1,0]],
+      ['Also vendor analysts', "Also the vendor's analysts, under contract, for the district's purposes only.", [-1,-1,0,0,1]],
+      ['Also partner companies', "Also the vendor's partner companies can see the data.", [-3,-3,-1,-1,2]]
+    ],
+    S: [
+      ['No ads or sales · full price', 'No ads, never sold, full price.', [2,2,0,0,-2]],
+      ['De-identified use · discount', 'No ads; the vendor may use de-identified data to improve the app, for a discount.', [0,0,0,0,1]],
+      ['Targeted ads · free', 'Targeted ads in the free version.', [-3,-2,-1,0,3]],
+      ['Data may be sold', 'Data may be sold.', [-3,-3,-2,-1,3]]
+    ],
+    E: [
+      ['Off', 'Early-warning AI is off.', [0,1,-1,-1,1]],
+      ['On · counselor reviews', 'A counselor reviews every AI flag first; families can see the flag and its reasons.', [1,0,2,2,-1]],
+      ['On · automatic to teachers', "AI flags go automatically to all the student's teachers.", [-2,-3,-1,1,0]]
+    ],
+    F: [
+      ['See, correct, copy + opt out', 'Families can see, correct and get a copy of the data, and opt out of optional features.', [2,2,0,-1,-1]],
+      ['See + ask for corrections', 'Families can see the data and ask for corrections.', [0,0,0,0,0]],
+      ['No access', 'Families cannot access the data.', [-3,-2,-1,0,1]]
+    ]
+  };
+  const FLAG_TEXT = {
+    A4: "FERPA: the district needs a parent's written consent, or the student's once they turn 18, "
+      + "before sharing personal information from education records with outside companies.",
+    S3: "COPPA: for children under 13, targeted ads need a parent's verifiable consent, and a school can only consent for school use. "
+      + "California's SOPIPA bans targeted ads based on student data.",
+    S4: "California's SOPIPA bans selling student information, and FERPA limits sharing education records without consent.",
+    F3: "FERPA gives parents, and students once they turn 18, the right to inspect education records and ask for corrections."
+  };
+  const MEMBERS = [
+    {name:'Dana Ruiz', role:'Parent and PTA representative', short:'Parent', art:'art:member-dana-ruiz',
+      yes:'I can support this.', lines:{L:"Tracking a child's phone is a line I won't cross.", R:'Why keep it longer than the school year?',
+        A:'Only the people who need it should see it.', S:"My child's data isn't for sale, and it isn't for ads.",
+        E:'No label should follow a kid without a person checking it.', F:"Families have to be able to see what's kept."}},
+    {name:'Malik Owens', role:'Student representative, grade 11', short:'Student', art:'art:member-malik-owens',
+      yes:'Students can live with this.', lines:{L:"Students aren't suspects. Don't track our phones.", R:"One bad year shouldn't follow us to graduation.",
+        A:'Not every staff member needs my hall passes.', S:"We're not the product.",
+        E:"Automatic flags with no counselor? That's how kids get labeled.", F:'We should see and fix our own records.'}},
+    {name:'Priya Natarajan', role:'Grade 7 science teacher', short:'Teacher', art:'art:member-priya-natarajan',
+      yes:'This helps me teach.', lines:{L:"All-day tracking isn't our job, and families won't trust it.", R:'Thirty days is too short to spot a pattern.',
+        A:'Partner companies have no business with this.', S:"I won't put ads in front of my class.",
+        E:'Early warning should exist, and a counselor should check every flag.', F:'Families need some way to see this.'}},
+    {name:'Tom Becker', role:'Principal, Linden Valley Middle School', short:'Principal', art:'art:member-tom-becker',
+      yes:'I can run a school with this.', lines:{L:'During the school day I need to know students are safe in the building.',
+        R:"Thirty days won't cover a full investigation.", A:'Sharing with partners puts the district at risk.', S:'Selling data would end this app in a week.',
+        E:'Early warning helps us reach kids sooner.', F:'Opt-outs for every feature will be hard to run.'}},
+    {name:'Grace Lee', role:'District budget officer', short:'Budget', art:'art:member-grace-lee',
+      yes:'The numbers work.', lines:{R:'Keeping everything forever costs storage money.', S:'Full price breaks my budget.',
+        E:'The early-warning add-on costs extra.', F:'Copies and opt-outs take staff time.'}},
+    {name:'Ana Sorensen', role:'District counsel · non-voting', short:'Counsel', art:'art:member-ana-sorensen',
+      yes:'No legal flags. It can go to a vote.', lines:{}}
+  ];
+  const MOMENTS = [
+    {name:'Bus stop', time:'7:35 am', art:'art:moment-bus-stop', detail:'At the bus stop', test:d => d.L === 4},
+    {name:'Main door', time:'8:02 am', art:'art:moment-main-door', detail:'Walks through the main door', test:d => d.L >= 2},
+    {name:'Nurse pass', time:'10:14 am', art:'art:moment-nurse', detail:'Hall pass to the nurse; back at 10:26 am', test:() => true},
+    {name:'Lunch', time:'11:48 am', art:'art:moment-lunch', detail:'Buys lunch', test:() => true},
+    {name:'Quiz + attendance', time:'1:30 pm', art:'art:moment-quiz', detail:'Quiz grade and attendance reach early-warning AI', test:d => d.E >= 2},
+    {name:'Leaving school', time:'3:20 pm', art:'art:moment-leaving', detail:'Leaves through the school gate', test:d => d.L === 4},
+    {name:"Friend's house", time:'4:30 pm', art:'art:moment-friend', detail:"At a friend's house", test:d => d.L === 4},
+    {name:'At home', time:'9:00 pm', art:'art:moment-home', detail:'At home in the evening', test:d => d.L === 4}
+  ];
+  const LINES = {
+    'w-draft': "The vendor's proposal is on the table. Tap any option in the panel, and watch Jordan's day and the council respond.",
+    flag: 'Counsel has flagged a section. Tap a different option in that section to fix it.',
+    clear: "No legal flags. Press Call the vote when you're ready.",
+    ask: 'Members leaning no have named one change. Press Close, then choose the suggested clause and option.',
+    motion: 'The council will now vote on the draft.',
+    passes: 'The motion passes.',
+    fails: 'The motion fails. Press Ask the room, or change a section.',
+    'w-compare': 'Pinned drafts sit side by side. Press Load into Draft on any column to keep working on it.',
+    'w-compare-empty': 'No drafts pinned yet. Press Back to Draft, then Pin draft.'
+  };
+  const VENDOR = {L:3,R:4,A:3,S:3,E:3,F:2};
+  const PRIVATE = {L:1,R:1,A:1,S:1,E:1,F:1};
+  const state = {
+    mode:'draft', draft:{...VENDOR}, clause:'S', preset:'vendor', pins:[], math:false,
+    revision:0, voting:false, revealed:[], result:null, quotes:[], suggestions:[], touched:false
+  };
+  let voteToken = 0;
+  let returnFocus = null;
+  const escape = text => String(text).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const option = (k,d=state.draft) => OPTIONS[k][d[k]-1];
+  const complete = (d=state.draft) => KEYS.every(k => !!option(k,d));
+  function totals(d=state.draft) {
+    return Array.from({length:5},(_,i) => KEYS.reduce((n,k) => n + (option(k,d)?.[2][i] || 0),0));
+  }
+  function flags(d=state.draft) {
+    return KEYS.map(k => k+d[k]).filter(id => FLAG_TEXT[id]).map(id => ({id, clause:id[0], text:FLAG_TEXT[id]}));
+  }
+  function day(d=state.draft) {
+    return MOMENTS.map(m => m.test(d));
+  }
+  function chipTexts(d,i) {
+    const texts = [];
+    texts.push([['family and staff who need it','all staff','plus vendor analysts','plus partner companies'][d.A-1] || 'access unset',false]);
+    texts.push([['30 days','to June','to graduation','forever'][d.R-1] || 'retention unset',false]);
+    if (i === 4) texts.push([d.E === 2 ? 'counselor reviews' : 'sent to all teachers',false]);
+    if (d.S === 3) texts.push(['used for ads',true]);
+    if (d.S === 4) texts.push(['may be sold',true]);
+    if (d.F === 3) texts.push(["family can't see this",true]);
+    return texts;
+  }
+  const portrait = m => `<img src="${m.art}" alt="Portrait of ${escape(m.name)}">`;
+  function buildStatic() {
+    $('plates').innerHTML = MEMBERS.map((m,i) => `<button class="plate" id="member-${i}" data-member="${i}" aria-label="${m.name}, ${m.role}">
+      <span class="portrait">${portrait(m)}</span>
+      <span class="name">${m.name}</span><span class="role">${m.short}</span>
+      ${i<5 ? '<span class="lean"><span class="needle"></span></span><span class="lean-label"><span>No</span><span>Yes line</span></span>'
+        + '<span class="leaning"></span><span class="math"></span>' : '<span class="counsel-mark">§</span><span class="leaning">Counsel</span>'}
+      </button>`).join('');
+    $('clause-nav').innerHTML = KEYS.map((k,i) => `<button id="clause-${k}" data-clause="${k}" aria-pressed="${k===state.clause}">
+      <span class="clause-short">${SHORT[k]}</span><small>${i+1}. ${NAMES[k]}</small></button>`).join('');
+    $('option-groups').innerHTML = KEYS.map(k => `<div class="option-group" id="group-${k}" role="group"
+      aria-label="${NAMES[k]}" ${k===state.clause?'':'hidden'}>
+      ${OPTIONS[k].map((o,i) => `<button id="${k}${i+1}" data-option="${k}${i+1}" aria-pressed="false" title="${escape(o[1])}" tabindex="-1">
+      <span>${escape(o[0])}</span><span class="flag-tag" hidden>Flag</span></button>`).join('')}</div>`).join('');
+    $('timeline').innerHTML = momentMarkup();
+    $('pin-tools').innerHTML = ['A','B','C'].map((label,i) => `<section class="pin-tool" id="pin-tool-${i}" hidden>
+      <b>Draft ${label}</b><div><button id="load-${i}">Load into Draft</button><button id="unpin-${i}">Unpin ${label}</button></div></section>`).join('');
+    MEMBERS.forEach((_,i) => $('member-'+i).onclick = () => openMember(i));
+    KEYS.forEach(k => {
+      $('clause-'+k).onclick = () => selectClause(k);
+      OPTIONS[k].forEach((_,i) => {
+        const b = $(k+(i+1));
+        b.onclick = () => change(k,i+1);
+        b.onkeydown = e => {
+          if (!['ArrowRight','ArrowLeft','ArrowUp','ArrowDown','Home','End'].includes(e.key)) return;
+          e.preventDefault();
+          const n = OPTIONS[k].length;
+          const next = e.key==='Home' ? 0 : e.key==='End' ? n-1 : (i+(['ArrowRight','ArrowDown'].includes(e.key)?1:-1)+n)%n;
+          change(k,next+1);
+          $(k+(next+1)).focus({preventScroll:true});
+        };
+      });
+    });
+    for (let i=0;i<3;i++) {
+      $('load-'+i).onclick = () => loadPin(i);
+      $('unpin-'+i).onclick = () => unpin(i);
+    }
+  }
+  function momentMarkup() {
+    return MOMENTS.map((m,i) => `<article class="moment" data-moment="${i}" title="${escape(m.detail)}">
+      <div class="moment-card"><img src="${m.art}" alt="${escape(m.detail)}">
+      <div class="moment-text"><span class="moment-name">${escape(m.name)}</span><div class="moment-status"></div>
+      <div class="chips"></div></div></div><time>${m.time}</time></article>`).join('');
+  }
+  function renderDay(root,d,animate=false) {
+    const lit = day(d);
+    root.querySelectorAll('.moment').forEach((el,i) => {
+      const unknown=(!d.L && [0,1,5,6,7].includes(i)) || (!d.E && i===4);
+      const was = el.classList.contains('lit');
+      el.classList.toggle('lit',lit[i]);
+      el.querySelector('.moment-status').textContent = unknown ? 'clause unset' : lit[i] ? '● collected' : 'not collected';
+      const short = {'family and staff who need it':'Family + needed staff','all staff':'All staff','plus vendor analysts':'+ analysts',
+        'plus partner companies':'+ partners','30 days':'30 days','to June':'June','to graduation':'Graduation',forever:'Forever',
+        'counselor reviews':'Counselor reviews','sent to all teachers':'All teachers','used for ads':'Ads','may be sold':'Sale',
+        "family can't see this":'Family: no'};
+      el.querySelector('.chips').innerHTML = lit[i] ? chipTexts(d,i).map(([t,risk]) =>
+        `<span class="chip ${risk?'risk':''}" title="${escape(t)}"><span class="chip-full">${escape(t)}</span>`
+        + `<span class="chip-short">${escape(short[t] || t)}</span></span>`).join('') : '';
+      const status=unknown ? 'clause unset' : lit[i] ? 'collected, '+chipTexts(d,i).map(x=>x[0]).join(', ') : 'not collected';
+      el.setAttribute('aria-label', `${MOMENTS[i].time}, ${MOMENTS[i].detail}, ${status}`);
+      if (animate && (was!==lit[i] || lit[i])) {
+        el.classList.remove('changed');
+        void el.offsetWidth;
+        el.classList.add('changed');
+      }
+    });
+  }
+  function breakdown(i,d=state.draft) {
+    return KEYS.map(k => `${k}: ${option(k,d)?.[2][i] ?? 0}`).join(' · ');
+  }
+  function renderMembers() {
+    const scores=totals();
+    MEMBERS.forEach((m,i) => {
+      const el=$('member-'+i);
+      if (i===5) return;
+      const s=scores[i];
+      const revealed=state.revealed.includes(i);
+      const yes=s>=2;
+      const text=revealed ? (yes?'✓ Yes':'× No') : (yes?'Leaning yes':'Leaning no');
+      el.querySelector('.leaning').textContent=text;
+      el.querySelector('.leaning').className='leaning '+(yes?'yes':'no');
+      // All bars share the same scale, -12 to +10; the yes line is at 2.
+      el.querySelector('.needle').style.left=Math.max(0,Math.min(100,(s+12)/22*100))+'%';
+      el.querySelector('.math').textContent=breakdown(i)+' = '+s;
+      el.setAttribute('aria-label',`${m.name}, ${m.role}, ${text}, ${s} points, yes at 2`);
+    });
+    $('stage').classList.toggle('math-on',state.math);
+  }
+  function renderOptions() {
+    KEYS.forEach(k => {
+      const nav=$('clause-'+k);
+      nav.setAttribute('aria-pressed', k===state.clause);
+      nav.classList.toggle('flagged',!!FLAG_TEXT[k+state.draft[k]]);
+      nav.setAttribute('aria-label', `${NAMES[k]}${FLAG_TEXT[k+state.draft[k]]?', Flag':''}`);
+      $('group-'+k).hidden=k!==state.clause;
+      OPTIONS[k].forEach((_,i) => {
+        const b=$(k+(i+1));
+        const selected=state.draft[k]===i+1;
+        b.setAttribute('aria-pressed',selected);
+        b.tabIndex=selected || (!state.draft[k] && i===0) ? 0 : -1;
+        b.querySelector('.flag-tag').hidden=!(selected && FLAG_TEXT[k+(i+1)]);
+      });
+    });
+    const k=state.clause;
+    $('clause-title').textContent=(KEYS.indexOf(k)+1)+'. '+NAMES[k];
+    $('option-detail').textContent=option(k)?.[1] || 'Choose an option for this clause.';
+    for (const name of ['vendor','private','blank']) $('preset-'+name).setAttribute('aria-pressed', state.preset===name);
+  }
+  function renderDocument() {
+    $('draft-document').innerHTML = '<p class="eyebrow">Linden Valley Unified · California · 900 students</p>'
+      + '<p>Digital hall passes, lunch purchases and bus times. Hall-pass times and lunch purchases are always collected.</p>'
+      + KEYS.map((k,i) => `<section class="draft-section ${FLAG_TEXT[k+state.draft[k]]?'flagged':''}">
+        <strong>${i+1}. ${NAMES[k]}:</strong> ${escape(option(k)?.[1] || 'Not set.')}
+        ${FLAG_TEXT[k+state.draft[k]]?'<span class="flag-note"><b>Flag.</b> '+escape(FLAG_TEXT[k+state.draft[k]])+'</span>':''}</section>`).join('')
+      + '<p class="eyebrow">A classroom model, not legal advice.</p>';
+  }
+  function statusHint() {
+    const missing=KEYS.filter(k => !option(k));
+    if (missing.length) return 'Choose an option in '+missing.map(k=>NAMES[k]).join(', ')+'. Use the six clause buttons to move between sections.';
+    const f=flags();
+    if (f.length) return `Counsel flags ${f.length===1?'section':'sections'} ${f.map(x=>KEYS.indexOf(x.clause)+1).join(', ')}. `
+      + `Tap ${NAMES[f[0].clause]}, then choose a different option.`;
+    if (state.result) return state.result.pass ? state.pins.length>=3
+      ? 'The motion passes. Press Compare to review your pinned drafts, or change a clause.'
+      : 'The motion passes. Press Pin draft to keep it, or change a clause and test another draft.'
+      : 'The motion fails. Press Ask the room, or change a clause and try again.';
+    if (state.voting) return state.pins.length>=3
+      ? 'The vote is in progress. Change any clause to stop it. Your three pinned drafts are in Compare.'
+      : 'The vote is in progress. Change any clause to stop it, or press Pin draft to keep this policy.';
+    return 'No legal flags. Press Call the vote when ready, or Ask the room to hear what could change a no.';
+  }
+  function updateHint(text) {
+    $('hint').textContent=text || (state.mode==='draft' ? statusHint() : state.pins.length
+      ? 'Pins stay on this page and never leave this device. Press Load into Draft to revise one, or Unpin to make room.'
+      : 'No drafts pinned yet. Press Back to Draft, then Pin draft.');
+  }
+  function render() {
+    // The day updates first, before council scores or policy text.
+    renderDay($('timeline'),state.draft);
+    const count=day().filter(Boolean).length;
+    $('collected').innerHTML=`<span>Collected today</span><b>${count} of 8</b><span>moments</span>`;
+    $('collected').setAttribute('aria-label',`Collected today: ${count} of 8 moments`);
+    const rules=chipTexts(state.draft,0).map(x=>x[0]);
+    const ai=day()[4] ? ' AI flags: '+(state.draft.E===2 ? 'counselor reviews' : 'sent to all teachers')+'.' : '';
+    $('trail-rules').textContent='Records: '+rules.join(' · ')+'.'+ai;
+    renderMembers();
+    renderOptions();
+    renderDocument();
+    const f=flags();
+    const missing=!complete();
+    $('vote').disabled=f.length>0 || missing;
+    $('vote').textContent=f.length ? `Vote blocked · ${f.length} flag${f.length===1?'':'s'}` : missing ? 'Set all six clauses' : 'Call the vote';
+    $('pin').disabled=missing || state.pins.length>=3;
+    $('pin').textContent=state.pins.length>=3 ? 'Three drafts pinned' : 'Pin draft · '+String.fromCharCode(65+state.pins.length);
+    $('math').setAttribute('aria-pressed',state.math);
+    $('math').textContent=state.math ? 'Hide the math' : 'Show the math';
+    $('clerk').innerHTML=f.length ? `<strong>Flag · section ${f.map(x=>KEYS.indexOf(x.clause)+1).join(', ')}</strong> <span>Fix before voting</span>`
+      : missing ? 'Counsel: six clauses needed' : 'Counsel: no legal flags';
+    $('document-preview').textContent=f.length ? "Counsel: I can't send this to a vote. Fix the flagged sections first."
+      : 'Six clauses. One student’s day. What would you defend?';
+    $('result').textContent=state.result ? `The motion ${state.result.pass?'passes':'fails'}, ${state.result.yes} to ${5-state.result.yes}.`
+      : state.voting ? 'The council will now vote…' : f.length ? 'Draft held by Counsel' : missing ? 'Draft incomplete' : 'Ready for a roll-call vote';
+    $('result').className=state.result?.pass ? 'pass' : '';
+    updateHint();
+  }
+  function stopVote() {
+    voteToken++;
+    state.voting=false;
+    state.revealed=[];
+    state.result=null;
+    $('plates').querySelectorAll('.vote-flip').forEach(el=>el.classList.remove('vote-flip'));
+    V.hush();
+  }
+  function selectClause(k) {
+    state.clause=k;
+    renderOptions();
+    const flag=FLAG_TEXT[k+state.draft[k]];
+    updateHint(flag ? `Flag in ${NAMES[k]}. Choose another option, or press Read the draft for Counsel's full note.`
+      : `Choose an option under ${NAMES[k]}. Watch Jordan's day, then tap a council nameplate for its response.`);
+    Curio.tone(340,.045,.02);
+  }
+  function change(k,value) {
+    if (state.draft[k]===value) return;
+    const before={...state.draft};
+    const oldFlags=flags();
+    const oldTotals=totals();
+    stopVote();
+    state.draft[k]=value;
+    state.revision++;
+    state.touched=true;
+    state.preset=null;
+    state.suggestions=[];
+    renderDay($('timeline'),state.draft,true);
+    const scores=totals();
+    const newPoints=option(k)[2];
+    let speaker=0;
+    for (let i=1;i<5;i++) if (Math.abs(scores[i]-oldTotals[i])>Math.abs(scores[speaker]-oldTotals[speaker])) speaker=i;
+    state.quotes=MEMBERS.map((m,i) => i<5 && newPoints[i]<0 && m.lines[k] ? m.lines[k] : scores[i]>=2 ? m.yes : '');
+    render();
+    const oldCount=day(before).filter(Boolean).length;
+    const newCount=day().filter(Boolean).length;
+    const consequence=newCount===oldCount ? 'Same '+newCount+' moments; the rules on those records changed.'
+      : newCount+' of 8 moments collected, '+Math.abs(newCount-oldCount)+(newCount>oldCount?' more':' fewer')+' than before.';
+    $('trail-note').textContent=NAMES[k]+': '+option(k)[0]+'. '+consequence;
+    showReply(speaker);
+    Curio.tone(410+value*45,.08,.035);
+    const rev=state.revision;
+    if (FLAG_TEXT[k+value]) V.say('flag',{valid:()=>state.revision===rev && !!FLAG_TEXT[k+state.draft[k]]});
+    else if (oldFlags.length && !flags().length && complete()) V.say('clear',{valid:()=>state.revision===rev && !flags().length && complete(),needs:'#vote'});
+  }
+  function showReply(i) {
+    const text=state.quotes[i];
+    if (!text) return;
+    $('document-preview').textContent=MEMBERS[i].name+': “'+text+'”';
+    $('document-preview').classList.add('reply');
+    $('clerk').textContent=MEMBERS[i].name+': “'+text+'”';
+    $('plates').querySelectorAll('.plate').forEach((p,j)=>p.classList.toggle('selected',i===j));
+  }
+  function setDraft(d) {
+    stopVote();
+    state.draft=Object.fromEntries(KEYS.map(k=>[k, Number(d[k])>=1 && Number(d[k])<=OPTIONS[k].length ? Number(d[k]) : null]));
+    state.revision++;
+    state.quotes=[];
+    state.suggestions=[];
+    state.preset=null;
+    state.touched=true;
+    $('document-preview').classList.remove('reply');
+    $('plates').querySelectorAll('.selected').forEach(el=>el.classList.remove('selected'));
+    $('trail-note').textContent='A lit card becomes a record. Grey moments stay out of the app.';
+    render();
+  }
+  function preset(name) {
+    const clause=name==='vendor' ? 'S' : 'L';
+    const unchanged=state.preset===name && state.clause===clause && !state.voting && !state.result
+      && !state.quotes.length && !state.suggestions.length;
+    if (unchanged) {
+      updateHint();
+      return;
+    }
+    setDraft(name==='vendor' ? VENDOR : name==='private' ? PRIVATE : {});
+    state.preset=name;
+    state.touched=name!=='vendor';
+    state.clause=clause;
+    render();
+    Curio.tone(300,.09,.03);
+  }
+  function suggestion(i,d=state.draft) {
+    const current=totals(d)[i];
+    let best=null;
+    for (const k of KEYS) {
+      OPTIONS[k].forEach((o,j) => {
+        if (j+1===d[k] || FLAG_TEXT[k+(j+1)]) return;
+        const total=current-(option(k,d)?.[2][i] || 0)+o[2][i];
+        if (!best || total>best.total) best={member:i,clause:k,value:j+1,total,delta:total-current,yes:total>=2};
+      });
+    }
+    return best;
+  }
+  function ask() {
+    const scores=totals();
+    state.suggestions=MEMBERS.slice(0,5).map((m,i) => scores[i]<2 ? suggestion(i) : null);
+    state.quotes=MEMBERS.map((m,i) => {
+      if (i===5) return flags().length ? FLAG_TEXT[flags()[0].id] : m.yes;
+      const s=state.suggestions[i];
+      if (!s) return m.yes;
+      return s.yes ? `Change ${NAMES[s.clause]} to ${OPTIONS[s.clause][s.value-1][0]} and I'm a yes.`
+        : `Even with ${NAMES[s.clause]} changed to ${OPTIONS[s.clause][s.value-1][0]}, I'm still a no.`;
+    });
+    openMember(scores.findIndex(s=>s<2)>=0 ? scores.findIndex(s=>s<2) : 0);
+    updateHint('Members leaning no have named one change. Close the card, then choose that clause and option to try it.');
+    const rev=state.revision;
+    if (!V.heard('ask')) V.how('ask',{valid:()=>state.revision===rev});
+    Curio.tone(370,.1,.035);
+    return state.suggestions;
+  }
+  async function vote() {
+    if (!complete() || flags().length || state.voting) return false;
+    stopVote();
+    state.voting=true;
+    const token=voteToken;
+    const scores=totals();
+    render();
+    V.say('motion',{valid:()=>state.voting && token===voteToken});
+    Curio.tone(190,.14,.04,'triangle');
+    await Curio.wait(600);
+    for (let i=0;i<5;i++) {
+      if (token!==voteToken) return false;
+      state.revealed.push(i);
+      renderMembers();
+      const plate=$('member-'+i);
+      plate.classList.add('vote-flip');
+      setTimeout(()=>plate.classList.remove('vote-flip'),550);
+      state.quotes[i]=scores[i]>=2 ? MEMBERS[i].yes : MEMBERS[i].lines[KEYS.find(k=>(option(k)?.[2][i] || 0)<0)] || 'I cannot support this draft.';
+      $('result').textContent=MEMBERS[i].name+': '+(scores[i]>=2?'Yes. ':'No. ')+state.quotes[i];
+      $('document-preview').textContent=MEMBERS[i].name+': “'+state.quotes[i]+'”';
+      Curio.tone(scores[i]>=2?510:250,.08,.03);
+      await Curio.wait(600);
+    }
+    if (token!==voteToken) return false;
+    const yes=scores.filter(s=>s>=2).length;
+    state.voting=false;
+    state.result={yes,pass:yes>=3};
+    render();
+    V.dropQueued(x=>x.key==='motion');
+    V.say(yes>=3?'passes':'fails',{valid:()=>token===voteToken && !!state.result});
+    return state.result;
+  }
+  function openMember(i) {
+    const m=MEMBERS[i];
+    $('member-heading').textContent=m.name;
+    $('member-role').textContent=m.role;
+    $('member-portrait').innerHTML=portrait(m);
+    const f=flags();
+    $('member-quote').textContent=i===5 ? f.length ? f.map(x=>x.text).join(' ') : m.yes
+      : state.quotes[i] || (totals()[i]>=2 ? m.yes : m.lines[KEYS.find(k=>(option(k)?.[2][i] || 0)<0)] || 'I need a different draft.');
+    const s=state.suggestions[i];
+    $('member-breakdown').innerHTML=i<5 ? `<p>${totals()[i]} points · Yes line: 2 · ${totals()[i]>=2?'Leaning yes':'Leaning no'}</p>
+      <p>${breakdown(i)}</p><p>Council rule: 3 of 5 yes votes passes; any Flag blocks the vote.</p>
+      ${s?'<p>One change: '+escape(NAMES[s.clause])+' → '+escape(OPTIONS[s.clause][s.value-1][0])
+      +'. New total: '+s.total+'. '+(s.yes?'Reaches the Yes line.':'Still below the Yes line.')+'</p>':''}` : '';
+    if (!$('member-dialog').open) {
+      V.hush();
+      returnFocus=document.activeElement;
+      $('member-dialog').showModal();
+    }
+    updateHint(`Read ${m.name}'s card, then press Close to return to the policy desk.`);
+  }
+  function pin() {
+    if (!complete() || state.pins.length>=3) return;
+    state.pins.push({draft:{...state.draft}});
+    render();
+    updateHint(`Draft ${String.fromCharCode(64+state.pins.length)} stays on this page and never leaves this device. `
+      + 'Press Compare to line up your drafts.');
+    Curio.tone(660,.12,.03);
+    if ($('pin').disabled && document.activeElement===$('pin')) $('m-compare').focus({preventScroll:true});
+  }
+  function renderCompare() {
+    $('clear-pins').disabled=!state.pins.length;
+    for (let i=0;i<3;i++) $('pin-tool-'+i).hidden=i>=state.pins.length;
+    if (!state.pins.length) {
+      $('compare-stage').innerHTML='<div class="empty"><div class="empty-symbol">▤</div><h2>No drafts pinned yet</h2>'
+        + '<p>Build a policy, then pin it to bring its trail here.</p><button id="empty-back">Back to Draft</button></div>';
+      $('empty-back').onclick=()=>setMode('draft');
+      return;
+    }
+    $('compare-stage').innerHTML='<h2>Put your drafts on the record.</h2><p>Same student. Different rules. Lit moments line up below.</p>'
+      + '<div class="compare-columns">'+state.pins.map((p,i) => {
+        const d=p.draft;
+        const f=flags(d);
+        const scores=totals(d);
+        const n=scores.filter(x=>x>=2).length;
+        return `<article class="compare-column"><div class="draft-letter"><b>${String.fromCharCode(65+i)}</b>
+          <span>${f.length?'Flag · vote blocked':n+' yes · '+(n>=3?'passes':'fails')}</span></div>`
+          + KEYS.map(k=>`<div class="choice-summary"><strong>${NAMES[k]}</strong><br>${escape(option(k,d)[0])}${FLAG_TEXT[k+d[k]]?' · Flag':''}</div>`).join('')
+          + '<div class="forecast">'+scores.map((s,j)=>`<span class="${s>=2?'yes':'no'}">${s>=2?'✓':'×'}
+          ${MEMBERS[j].name.split(' ')[0]} ${s>=2?'Yes':'No'}</span>`).join('')+'</div></article>';
+      }).join('')+'</div><div class="compare-days">'+state.pins.map((p,i)=>`<section class="compare-day" id="compare-day-${i}">
+        <div class="compare-row-title"><strong>Draft ${String.fromCharCode(65+i)}</strong>
+        <span>${day(p.draft).filter(Boolean).length} of 8 moments collected</span></div>
+        <div class="timeline">${momentMarkup()}</div></section>`).join('')+'</div>';
+    state.pins.forEach((p,i)=>renderDay($('compare-day-'+i),p.draft));
+  }
+  function unpin(i) {
+    state.pins.splice(i,1);
+    V.hush();
+    renderCompare();
+    render();
+    updateHint();
+    if ($('unpin-'+i).closest('[hidden]')) $('back-draft').focus({preventScroll:true});
+  }
+  function loadPin(i) {
+    const d={...state.pins[i].draft};
+    setDraft(d);
+    setMode('draft');
+    $('clause-'+state.clause).focus({preventScroll:true});
+  }
+  function setMode(mode) {
+    if (!['draft','compare'].includes(mode)) return;
+    if (mode===state.mode) {
+      updateHint();
+      return;
+    }
+    V.hush();
+    if (state.voting) stopVote();
+    state.mode=mode;
+    $('m-draft').setAttribute('aria-pressed',mode==='draft');
+    $('m-compare').setAttribute('aria-pressed',mode==='compare');
+    $('draft-stage').hidden=mode!=='draft';
+    $('compare-stage').hidden=mode!=='compare';
+    $('draft-desk').hidden=mode!=='draft';
+    $('compare-desk').hidden=mode!=='compare';
+    if (mode==='compare') renderCompare();
+    updateHint();
+    V.welcome();
+    if (document.activeElement.closest('[hidden]')) $('m-'+mode).focus({preventScroll:true});
+  }
+  function countPassing() {
+    let legal=0,passing=0,unanimous=0;
+    function walk(d,index) {
+      if (index===6) {
+        if (flags(d).length) return;
+        legal++;
+        const yes=totals(d).filter(x=>x>=2).length;
+        if (yes>=3) passing++;
+        if (yes===5) unanimous++;
+        return;
+      }
+      const k=KEYS[index];
+      for (let i=1;i<=OPTIONS[k].length;i++) walk({...d,[k]:i},index+1);
+    }
+    walk({},0);
+    return {passing,legal,unanimous};
+  }
+  const V=Curio.voice({
+    lines:LINES, scope:()=>state.mode, hint:false, read:()=>$('hint').textContent,
+    speaks:'#ask, #read-draft, .plate',
+    welcome:()=>{
+      if ($('member-dialog').open || $('draft-dialog').open) return null;
+      if (state.mode==='draft') return !state.touched ? ['w-draft',{valid:()=>!state.touched}] : null;
+      const revision=state.revision;
+      return [state.pins.length ? 'w-compare' : 'w-compare-empty',{valid:()=>state.revision===revision}];
+    }
+  });
+  buildStatic();
+  document.querySelector('main').insertBefore(document.querySelector('.panel'),$('stage'));
+  $('m-draft').onclick=()=>setMode('draft');
+  $('m-compare').onclick=()=>setMode('compare');
+  ['vendor','private','blank'].forEach(name=>$('preset-'+name).onclick=()=>preset(name));
+  $('ask').onclick=ask;
+  $('vote').onclick=vote;
+  $('pin').onclick=pin;
+  $('math').onclick=()=>{
+    state.math=!state.math;
+    render();
+    if (state.math && innerWidth<=800) openMember(0);
+    Curio.tone(310,.07,.02);
+  };
+  $('read-draft').onclick=()=>{
+    V.hush();
+    returnFocus=$('read-draft');
+    renderDocument();
+    $('draft-dialog').showModal();
+    updateHint('Read the six numbered policy sections, then press Close to return to the policy desk.');
+  };
+  for (const name of ['draft','member']) {
+    $('close-'+name).onclick=()=>$(name+'-dialog').close();
+    $(name+'-dialog').addEventListener('close',()=>{
+      V.hush();
+      updateHint(name==='member' && state.suggestions.length
+        ? "Choose a clause and option from the member's suggestion, or tap another council nameplate." : undefined);
+      returnFocus?.focus({preventScroll:true});
+    });
+  }
+  $('back-draft').onclick=()=>{setMode('draft'); $('m-draft').focus({preventScroll:true});};
+  $('clear-pins').onclick=()=>{
+    state.pins=[];
+    V.hush();
+    renderCompare();
+    render();
+    updateHint();
+    $('back-draft').focus({preventScroll:true});
+  };
+  Curio.init({clips:"voice:*",rate:.95});
+  window.__tool={state,setMode,setDraft,totals,flags,vote,ask,countPassing,day,suggestion,
+    allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},pin,OPTIONS,KEYS,change};
+  render();
+})();
+</script>
+</body>
+</html>

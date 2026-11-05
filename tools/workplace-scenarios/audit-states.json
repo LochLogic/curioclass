@@ -1,0 +1,377 @@
+{
+  "keep": [
+    "#hint",
+    "#job"
+  ],
+  "states": [
+    {
+      "name": "result",
+      "steps": [
+        {
+          "click": "#choice-0"
+        }
+      ],
+      "keep": [
+        "#result",
+        "#next"
+      ]
+    },
+    {
+      "name": "craft-arrival",
+      "steps": [
+        {
+          "click": "#choice-1"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#story",
+        "#choice-0",
+        "#choice-1",
+        "#choice-2"
+      ]
+    },
+    {
+      "name": "field-two-arrivals",
+      "steps": [
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-2"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#story",
+        "#choice-2"
+      ]
+    },
+    {
+      "name": "all-A-map",
+      "steps": [
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        }
+      ]
+    },
+    {
+      "name": "all-C-map",
+      "steps": [
+        {
+          "click": "#choice-2"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-2"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-2"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-2"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-2"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-2"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-2"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-2"
+        },
+        {
+          "click": "#next"
+        }
+      ]
+    },
+    {
+      "name": "thread-open",
+      "steps": [
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": ".thread-pick"
+        }
+      ],
+      "keep": [
+        "#thread-detail"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "rewind",
+      "steps": [
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": ".rewind[data-stop=\"3\"]"
+        }
+      ],
+      "keep": [
+        "#story",
+        "#choice-0"
+      ]
+    },
+    {
+      "name": "job-card",
+      "steps": [
+        {
+          "click": "#job"
+        }
+      ],
+      "keep": [
+        "#close-job",
+        "#job-title",
+        "#read-job"
+      ]
+    },
+    {
+      "name": "note-open",
+      "steps": [
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": ".note-port[data-person=\"ortega\"]"
+        }
+      ],
+      "keep": [
+        "#thread-detail"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    }
+  ]
+}

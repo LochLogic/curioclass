@@ -1,0 +1,3253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Challenge Studio · Curio Class</title>
+<meta name="description" content="Break down an engineering challenge, test designs, and weigh trade-offs. Grade 12. Works offline.">
+<link rel="icon" href="data:,">
+<!--
+Design Challenge Studio, Curio Class. Grade 12 Engineering for Global Challenges.
+HS-ETS1-1, HS-ETS1-2, HS-ETS1-3, HS-ETS1-4. Students drive all four stations.
+Sources: US GAO 2020 GAO-20-494; WHO/UNICEF JMP 2023; CDC travel water treatment 2025;
+DOE Energy Saver; ASHRAE Fundamentals 2021 and Standard 55-2020; EIA electricity FAQ.
+Room geometry, heat-wave curve, option costs and water time/cost categories are classroom assumptions.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Four retained local FLUX paintings.
+One offline file. Content CC BY 4.0, code MIT. No network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --brand:#00f28d;
+  --brand-ink:#10161f;
+  --wall:#111820;
+  --card:#1c2532;
+  --amber:#ffd28a
+}
+body {
+  display:flex;
+  flex-direction:column;
+  height:100dvh;
+  min-height:0;
+  overflow:hidden
+}
+header {
+  min-height:62px;
+  padding:8px 20px;
+  gap:8px;
+  flex-wrap:nowrap;
+  border-bottom:1px solid #3c4d60;
+  flex:none
+}
+h1 {
+  font-size:22px;
+  letter-spacing:-.5px
+}
+h1 small {
+  font-size:11px;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  margin-top:5px
+}
+.brand-mark {
+  width:29px;
+  height:29px;
+  margin-right:6px;
+  flex:none;
+  color:var(--brand)
+}
+.icon-btn {
+  min-height:44px;
+  font-size:13px;
+  padding:0 12px;
+  border-radius:6px
+}
+button,input,textarea {
+  touch-action:manipulation
+}
+button {
+  min-width:44px
+}
+button:active {
+  transform:translateY(1px)
+}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible {
+  outline:3px solid var(--focus);
+  outline-offset:2px
+}
+.eyebrow {
+  color:var(--brand);
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:11px;
+  font-weight:700
+}
+#home {
+  display:flex;
+  flex:1;
+  min-height:0;
+  flex-direction:column;
+  padding:28px clamp(16px,4vw,66px) 22px;
+  gap:22px;
+  background:radial-gradient(ellipse at 30% 0,#18383166,transparent 60%),#0d1219;
+  overflow:auto
+}
+.home-title {
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:20px
+}
+.home-title h2 {
+  font-size:clamp(25px,3vw,44px);
+  line-height:1.1;
+  font-weight:500;
+  margin:8px 0;
+  letter-spacing:-1.5px
+}
+.home-title p {
+  color:var(--muted);
+  font-size:14px;
+  max-width:380px;
+  line-height:1.5;
+  margin:0
+}
+.challenge-cards {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:22px;
+  flex:1;
+  min-height:0
+}
+.challenge-card {
+  border:1px solid #465469;
+  background:linear-gradient(145deg,#242f3c,#151e29);
+  border-radius:10px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  box-shadow:0 16px 40px #0005
+}
+.challenge-card:before {
+  content:'';
+  height:3px;
+  background:var(--brand);
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1
+}
+.challenge-card img {
+  display:block;
+  width:100%;
+  height:clamp(110px,29vh,280px);
+  object-fit:cover;
+  border-bottom:1px solid #465469
+}
+.card-body {
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  flex:1
+}
+.card-body h3 {
+  font-size:23px;
+  font-weight:600;
+  margin:0;
+  letter-spacing:-.4px
+}
+.card-body p {
+  font-size:13px;
+  line-height:1.5;
+  color:#bdc9d7;
+  margin:0
+}
+.card-body .fact {
+  font-size:12px;
+  color:#aebdce;
+  border-left:2px solid #62789a;
+  padding-left:10px
+}
+.start {
+  align-self:start;
+  margin-top:auto;
+  min-width:120px
+}
+.home-footer {
+  font-size:12px;
+  color:var(--muted);
+  display:flex;
+  justify-content:space-between;
+  gap:12px
+}
+#studio {
+  display:flex;
+  flex:1;
+  min-height:0;
+  flex-direction:column
+}
+.station-nav {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  padding:0 20px;
+  background:#141c27;
+  border-bottom:1px solid #3c4d60;
+  flex:none
+}
+.station-nav button {
+  background:transparent;
+  border:0;
+  color:var(--muted);
+  min-height:54px;
+  font-size:14px;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  border-bottom:3px solid transparent
+}
+.station-nav button[aria-pressed=true] {
+  color:var(--brand);
+  border-bottom-color:var(--brand);
+  background:#00f28d08
+}
+.nav-number {
+  width:23px;
+  height:23px;
+  border:1px solid #62789a;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font:12px Consolas,monospace
+}
+.station-nav .done .nav-number {
+  background:var(--brand);
+  color:var(--brand-ink);
+  border-color:var(--brand)
+}
+.instruction {
+  display:flex;
+  align-items:center;
+  gap:20px;
+  padding:9px 20px;
+  border-bottom:1px solid #2b3646;
+  background:#18212d;
+  flex:none;
+  min-height:68px
+}
+#hint {
+  font-size:14px;
+  line-height:1.4;
+  flex:1;
+  min-height:40px;
+  display:flex;
+  align-items:center;
+  margin:0;
+  color:#d5dfeb
+}
+.action {
+  background:var(--brand);
+  color:var(--brand-ink);
+  border:1px solid #76ffc5;
+  border-radius:6px;
+  min-height:44px;
+  padding:6px 20px;
+  font-weight:750;
+  font-size:14px;
+  box-shadow:0 2px 0 #0006;
+  white-space:nowrap
+}
+#workspace {
+  display:grid;
+  grid-template-columns:minmax(0,1.7fr) minmax(300px,1fr);
+  flex:1;
+  min-height:0
+}
+.stage {
+  min-height:0;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  background-color:var(--wall);
+  background-image:linear-gradient(#1a243080 1px,transparent 1px),linear-gradient(90deg,#1a243080 1px,transparent 1px);
+  background-size:24px 24px;
+  overflow:auto;
+  border-right:1px solid #3c4d60
+}
+.panel {
+  padding:18px;
+  gap:12px;
+  border:0;
+  min-width:0;
+  background:linear-gradient(130deg,#202b39,#141b25);
+  overflow:auto
+}
+.panel h3,.stage h3 {
+  margin:0;
+  font-size:14px
+}
+.panel p {
+  margin:0;
+  line-height:1.45;
+  font-size:13px
+}
+.stage-head {
+  display:flex;
+  align-items:start;
+  justify-content:space-between;
+  gap:12px;
+  flex:none
+}
+.stage-head h2 {
+  margin:3px 0 0;
+  font-size:clamp(19px,2vw,28px);
+  font-weight:500;
+  letter-spacing:-.6px
+}
+.stage-head .counter {
+  border:1px solid #52657e;
+  color:#cad6e4;
+  border-radius:5px;
+  padding:5px 8px;
+  font:12px Consolas,monospace;
+  white-space:nowrap
+}
+.subtle {
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.4
+}
+.stage p {
+  margin:0
+}
+.root-card {
+  align-self:center;
+  text-align:center;
+  max-width:80%;
+  border:1px solid var(--brand);
+  padding:14px 22px;
+  background:#1c2e30;
+  border-radius:7px;
+  box-shadow:0 0 32px #00f28d0b;
+  font-size:15px;
+  position:relative
+}
+.root-card:after {
+  content:'';
+  position:absolute;
+  height:22px;
+  width:1px;
+  background:#62789a;
+  top:100%;
+  left:50%
+}
+.branches {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+  margin-top:20px;
+  position:relative;
+  flex:1;
+  min-height:140px
+}
+.branches:before {
+  content:'';
+  position:absolute;
+  left:16%;
+  right:16%;
+  top:-12px;
+  border-top:1px solid #62789a
+}
+.branch {
+  border:1px solid #62789a;
+  background:linear-gradient(#202d3b,#17212e);
+  border-radius:6px;
+  padding:9px;
+  min-width:0;
+  position:relative;
+  box-shadow:inset 0 1px #ffffff12;
+  display:flex;
+  flex-direction:column;
+  gap:7px
+}
+.branch:before {
+  content:'';
+  position:absolute;
+  top:-13px;
+  height:12px;
+  left:50%;
+  border-left:1px solid #62789a
+}
+.branch-target {
+  width:100%;
+  min-height:44px;
+  border:1px dashed #62789a;
+  background:#101923;
+  color:#e8edf3;
+  font-size:13px;
+  padding:7px;
+  border-radius:4px
+}
+.branch-target:hover,.branch-target.hover {
+  border-color:var(--brand);
+  background:#16372f
+}
+.branch-list {
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  min-height:55px
+}
+.tree-card {
+  min-height:44px;
+  width:100%;
+  border:1px solid #62789a;
+  border-radius:4px;
+  background:linear-gradient(140deg,#2a3545,#1c2532);
+  text-align:left;
+  padding:7px 9px;
+  font-size:13px;
+  line-height:1.25;
+  box-shadow:0 3px 5px #0003;
+  touch-action:none
+}
+.tree-card[aria-pressed=true] {
+  border-color:var(--brand);
+  box-shadow:0 0 0 2px #00f28d44;
+  background:#21413b
+}
+.tree-card.good {
+  border-left:4px solid var(--brand)
+}
+.tree-card.wrong {
+  border-left:4px solid var(--warn)
+}
+.tree-card small {
+  display:block;
+  font-size:11px;
+  line-height:1.3;
+  margin-top:5px;
+  color:#c6d2e0
+}
+.deck {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+  align-content:start
+}
+.custom-row {
+  display:flex;
+  gap:6px
+}
+.custom-row input {
+  width:100%;
+  min-width:0
+}
+input:not([type]),input[type=text],input[type=number],select,textarea {
+  background:#0d1621;
+  color:var(--ink);
+  border:1px solid #62789a;
+  border-radius:5px;
+  min-height:44px;
+  padding:8px;
+  font:inherit;
+  font-size:14px;
+  width:100%;
+  min-width:0
+}
+.btn {
+  border-radius:5px;
+  font-size:13px;
+  padding:6px 10px;
+  line-height:1.25
+}
+.chip-row {
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px
+}
+.chip {
+  padding:4px 7px;
+  border:1px solid #3e526b;
+  border-radius:4px;
+  color:#aab9ca;
+  font-size:11px
+}
+.chip.lit {
+  color:#bbffe1;
+  background:#164435;
+  border-color:#00a463
+}
+.sort-list {
+  display:grid;
+  gap:7px;
+  align-content:start;
+  flex:1
+}
+.sort-row {
+  display:grid;
+  grid-template-columns:minmax(120px,1fr) auto minmax(110px,.75fr);
+  align-items:center;
+  gap:8px;
+  border:1px solid #405067;
+  border-radius:6px;
+  background:linear-gradient(110deg,#243140,#1b2532);
+  padding:6px 10px;
+  min-height:62px
+}
+.sort-title {
+  font-size:13px;
+  line-height:1.2
+}
+.sort-title small {
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:3px
+}
+.sort-buttons {
+  display:flex;
+  gap:4px
+}
+.sort-buttons .btn {
+  font-size:11px;
+  padding:4px 7px;
+  min-width:44px
+}
+.weight {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-width:0;
+  font-size:12px
+}
+.weight input {
+  min-width:25px;
+  flex:1
+}
+.weight output {
+  font:700 17px Consolas,monospace;
+  color:var(--brand);
+  min-width:13px
+}
+.limit {
+  display:flex;
+  align-items:center;
+  gap:5px;
+  font-size:12px
+}
+.limit input {
+  max-width:86px;
+  padding:4px;
+  font-size:13px
+}
+.feedback {
+  color:#bbffe1;
+  font-size:12px;
+  line-height:1.4;
+  min-height:18px
+}
+.option-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px
+}
+.option {
+  display:grid;
+  grid-template-columns:66px 1fr;
+  gap:6px;
+  align-items:center;
+  min-height:90px;
+  background:linear-gradient(145deg,#2a3746,#1a2432);
+  border:1px solid #62789a;
+  border-radius:6px;
+  padding:6px;
+  text-align:left;
+  position:relative;
+  box-shadow:0 4px 8px #0004;
+  overflow:hidden
+}
+.option img {
+  width:66px;
+  height:66px;
+  object-fit:contain;
+  object-position:center bottom;
+  filter:drop-shadow(0 4px 3px #0007)
+}
+.option b {
+  display:block;
+  font-size:12px;
+  line-height:1.2;
+  padding-right:5px;
+  font-weight:600
+}
+.option small {
+  display:block;
+  margin-top:5px;
+  font:12px Consolas,monospace;
+  color:#b6c8dc
+}
+.option[aria-pressed=true] {
+  border-color:var(--brand);
+  background:linear-gradient(130deg,#255244,#1b3435);
+  box-shadow:inset 0 0 0 1px #00f28d55
+}
+.option[aria-pressed=true]:after {
+  content:'✓';
+  position:absolute;
+  right:4px;
+  top:2px;
+  font-size:12px;
+  color:var(--brand)
+}
+.slider-box {
+  padding:8px 12px;
+  border:1px solid #40546a;
+  border-radius:6px;
+  background:#111d29;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:12px
+}
+.slider-box input {
+  flex:1;
+  min-width:40px
+}
+.slider-box output {
+  color:var(--brand);
+  font:17px Consolas,monospace;
+  white-space:nowrap
+}
+.chart-shell {
+  position:relative;
+  border:1px solid #46576c;
+  border-radius:7px;
+  flex:1;
+  min-height:200px;
+  overflow:hidden;
+  background:#0f1820
+}
+.chart-shell>img {
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.2;
+  pointer-events:none
+}
+#chart {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  overflow:visible;
+  display:block
+}
+.legend {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  font-size:11px;
+  color:#c1d0e0
+}
+.legend i {
+  display:inline-block;
+  width:20px;
+  border-top:2px solid;
+  vertical-align:middle;
+  margin-right:4px
+}
+.legend .out {
+  color:var(--gr-4);
+  border-top-style:dashed
+}
+.legend .in {
+  color:var(--brand)
+}
+.legend .feel {
+  color:var(--gr-1);
+  border-top-style:dotted
+}
+.results {
+  border:1px solid #496075;
+  background:#172330;
+  border-radius:6px;
+  padding:10px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  flex:none
+}
+.metric {
+  font-size:10px;
+  color:#b8c7d8
+}
+.metric b {
+  display:block;
+  color:#edf4ff;
+  font:22px/1.2 Consolas,monospace;
+  margin-top:3px;
+  white-space:nowrap
+}
+.metric small {
+  display:block;
+  font-size:10px;
+  margin-top:3px
+}
+.pass {
+  color:#84efb5
+}
+.fail {
+  color:#ffb8a8
+}
+.constraint-list {
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px 14px;
+  font-size:11px;
+  grid-column:1/-1;
+  border-top:1px solid #3c4d60;
+  padding-top:6px
+}
+.source-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px
+}
+.source {
+  padding:0;
+  overflow:hidden;
+  border:1px solid #62789a;
+  background:#1b2938;
+  border-radius:5px;
+  font-size:11px;
+  min-height:82px
+}
+.source img {
+  width:100%;
+  height:54px;
+  object-fit:cover;
+  display:block
+}
+.source span {
+  display:block;
+  padding:5px
+}
+.source[aria-pressed=true] {
+  border:2px solid var(--brand);
+  color:var(--brand)
+}
+.steps-row {
+  display:flex;
+  gap:8px;
+  min-height:100px;
+  align-items:stretch;
+  flex:none
+}
+.step-chosen {
+  width:31%;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  border:1px solid #536d86;
+  border-radius:6px;
+  background:#253440;
+  padding:7px;
+  font-size:12px;
+  position:relative
+}
+.step-chosen img {
+  width:80px;
+  height:80px;
+  object-fit:contain;
+  object-position:center bottom
+}
+.step-chosen .badge {
+  position:absolute;
+  left:3px;
+  top:2px;
+  color:var(--brand);
+  font:11px Consolas
+}
+.steps-empty {
+  border:1px dashed #52657e;
+  border-radius:6px;
+  padding:25px;
+  color:#a6b3c4;
+  width:100%;
+  font-size:14px;
+  text-align:center
+}
+.protection {
+  display:flex;
+  flex:1;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:6px;
+  padding:4px;
+  min-height:190px
+}
+.protection-label {
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  font-size:13px;
+  line-height:1.2;
+  margin-bottom:4px
+}
+.protection-label b {
+  font-size:12px;
+  font-weight:500
+}
+.bar-track {
+  height:20px;
+  background:repeating-linear-gradient(90deg,#223044 0,#223044 calc(20% - 2px),#111820 calc(20% - 2px),#111820 20%);
+  border-radius:4px;
+  overflow:hidden;
+  border:1px solid #3c5069
+}
+.bar-fill {
+  height:100%;
+  background:linear-gradient(90deg,#366d9e,#5aa9ff);
+  transition:width .22s ease;
+  border-right:2px solid #d5ebff
+}
+.water-note {
+  border-left:2px solid #ffcb87;
+  padding-left:10px;
+  color:#e9d0a8;
+  font-size:11px;
+  line-height:1.4
+}
+.table-wrap {
+  flex:1;
+  min-height:160px;
+  overflow:auto;
+  border:1px solid #54677f;
+  border-radius:6px;
+  background:#141e2a
+}
+table {
+  border-collapse:collapse;
+  width:100%;
+  font-variant-numeric:tabular-nums;
+  font-size:12px
+}
+th,td {
+  padding:12px 9px;
+  border-right:1px solid #3d4f65;
+  border-bottom:1px solid #3d4f65;
+  text-align:left
+}
+th {
+  background:#243243;
+  font-weight:600;
+  color:#cad8e7;
+  vertical-align:top
+}
+th:first-child {
+  min-width:90px
+}
+th .weight {
+  min-width:85px;
+  max-width:150px
+}
+td b {
+  display:block;
+  font:20px Consolas,monospace;
+  color:#eff7ff
+}
+td small {
+  display:block;
+  color:#b7c9dc;
+  font-size:10px;
+  margin-top:6px
+}
+tr.top td {
+  background:#00f28d10
+}
+tr.top td:first-child {
+  border-left:4px solid var(--brand)
+}
+tr.excluded {
+  color:#b5bec9;
+  background:#30343b
+}
+tr.excluded td b {
+  color:#b8c0cb
+}
+.top-tag {
+  display:inline-block;
+  background:var(--brand);
+  color:#10161f;
+  border-radius:3px;
+  padding:2px 5px;
+  font-size:10px;
+  margin-top:6px
+}
+.flip-flash {
+  animation:flash .3s ease-out
+}
+@keyframes flash {
+  from {
+    box-shadow:inset 0 0 0 3px #00f28d
+  }
+  to {
+    box-shadow:inset 0 0 0 3px transparent
+  }
+}
+.flip-list {
+  display:flex;
+  flex-direction:column;
+  gap:8px
+}
+.flip-item {
+  border:1px solid #4f657e;
+  padding:10px;
+  border-radius:5px;
+  background:#17232e;
+  font-size:12px;
+  line-height:1.4
+}
+.flip-item strong {
+  color:var(--brand);
+  display:block;
+  font-weight:500;
+  margin-top:3px
+}
+.why-box {
+  margin-top:auto
+}
+.why-box label {
+  display:block;
+  font-size:14px;
+  margin-bottom:6px
+}
+.why-box textarea {
+  height:92px;
+  resize:vertical;
+  font-size:13px
+}
+.own-editor {
+  display:grid;
+  gap:8px
+}
+.own-editor label {
+  font-size:12px;
+  color:#c5d4e4
+}
+.own-editor input {
+  margin-top:4px
+}
+.own-value {
+  width:70px!important
+}
+.own-config {
+  display:flex;
+  gap:5px;
+  align-items:center
+}
+.own-config input {
+  width:auto;
+  flex:1
+}
+.empty-comparison {
+  padding:30px;
+  color:#b8c7d8;
+  line-height:1.5;
+  font-size:17px
+}
+.status-strip {
+  min-height:28px;
+  padding:5px 20px;
+  border-top:1px solid #3b5066;
+  background:#101923;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  font:11px Consolas,monospace;
+  color:#a9bdce;
+  flex:none
+}
+.live-dot {
+  display:inline-block;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--brand);
+  margin-right:7px;
+  animation:breathe 3s ease-in-out infinite
+}
+@keyframes breathe {
+  50% {
+    opacity:.35
+  }
+}
+.calm .live-dot {
+  animation:none
+}
+.calm .flip-flash {
+  animation:none
+}
+dialog {
+  background:#1c2939;
+  color:var(--ink);
+  border:1px solid #7893b1;
+  border-radius:10px;
+  padding:22px;
+  max-width:90vw;
+  box-shadow:0 20px 100px #000b
+}
+dialog::backdrop {
+  background:#030811b3
+}
+dialog h2 {
+  font-size:20px;
+  margin:0 0 12px
+}
+dialog p {
+  font-size:14px;
+  max-width:370px;
+  line-height:1.4
+}
+.dialog-buttons {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:18px
+}
+@media(min-width:1500px) {
+  .option {
+    min-height:110px;
+    grid-template-columns:90px 1fr
+  }
+  .option img {
+    width:90px;
+    height:90px
+  }
+  .option b {
+    font-size:15px
+  }
+  .option small {
+    font-size:14px
+  }
+  .panel {
+    padding:24px;
+    gap:18px
+  }
+  .sort-row {
+    min-height:74px
+  }
+  .tree-card {
+    font-size:15px
+  }
+  .card-body {
+    padding:25px
+  }
+  .card-body p {
+    font-size:15px
+  }
+}
+@media(max-height:850px) {
+  .panel {
+    padding:12px;
+    gap:9px
+  }
+  .stage {
+    padding:14px;
+    gap:9px
+  }
+  .option {
+    min-height:79px;
+    grid-template-columns:58px 1fr
+  }
+  .option img {
+    width:58px;
+    height:58px
+  }
+  .option-grid {
+    gap:6px
+  }
+  .sort-row {
+    min-height:57px
+  }
+  .steps-row {
+    min-height:85px
+  }
+  .step-chosen img {
+    width:60px;
+    height:60px
+  }
+}
+@media(max-width:1100px) {
+  h1 {
+    font-size:19px
+  }
+  .stage {
+    padding:12px
+  }
+  #workspace {
+    grid-template-columns:minmax(0,1.5fr) minmax(275px,1fr)
+  }
+  .sort-row {
+    grid-template-columns:minmax(90px,1fr) auto
+  }
+  .sort-row .weight,.sort-row .limit {
+    grid-column:1/-1
+  }
+  .sort-list {
+    grid-template-columns:1fr 1fr;
+    gap:6px
+  }
+  .sort-buttons {
+    gap:2px
+  }
+  .sort-buttons .btn {
+    font-size:10px;
+    padding:2px 4px
+  }
+  .sort-title {
+    font-size:11px
+  }
+  .sort-row {
+    padding:5px;
+    gap:4px
+  }
+  .branches {
+    gap:6px
+  }
+  .branch {
+    padding:5px
+  }
+  .tree-card {
+    font-size:11px;
+    padding:5px
+  }
+  .results {
+    padding:7px;
+    gap:5px
+  }
+  .metric b {
+    font-size:17px
+  }
+  .option {
+    grid-template-columns:46px 1fr;
+    min-height:75px
+  }
+  .option img {
+    width:46px;
+    height:54px
+  }
+  .option b {
+    font-size:11px
+  }
+  .option small {
+    font-size:10px
+  }
+}
+@media(max-height:650px) {
+  header {
+    min-height:50px;
+    padding:3px 12px
+  }
+  .brand-mark {
+    display:none
+  }
+  h1 {
+    font-size:18px
+  }
+  h1 small {
+    display:none
+  }
+  .station-nav {
+    padding:0 8px
+  }
+  .station-nav button {
+    min-height:44px;
+    font-size:12px
+  }
+  .instruction {
+    padding:4px 12px;
+    min-height:56px;
+    gap:10px
+  }
+  #hint {
+    font-size:12px;
+    min-height:38px
+  }
+  .action {
+    padding:5px 12px;
+    font-size:12px
+  }
+  .stage-head h2 {
+    font-size:19px
+  }
+  .stage-head .eyebrow {
+    display:none
+  }
+  .stage {
+    gap:6px;
+    padding:9px
+  }
+  .panel {
+    padding:9px;
+    gap:6px
+  }
+  .stage-head .counter {
+    font-size:10px
+  }
+  .root-card {
+    padding:7px;
+    font-size:12px
+  }
+  .branches {
+    margin-top:13px;
+    min-height:100px
+  }
+  .branch-target {
+    font-size:11px;
+    padding:3px
+  }
+  .deck {
+    gap:4px
+  }
+  .tree-card {
+    font-size:10px;
+    padding:4px;
+    min-height:44px
+  }
+  .custom-row .btn {
+    font-size:10px
+  }
+  .panel h3 {
+    font-size:12px
+  }
+  .subtle {
+    font-size:10px
+  }
+  .chip {
+    font-size:10px;
+    padding:3px
+  }
+  .chart-shell {
+    min-height:115px
+  }
+  .option {
+    min-height:54px;
+    grid-template-columns:40px 1fr;
+    padding:3px;
+    gap:3px
+  }
+  .option img {
+    width:40px;
+    height:44px
+  }
+  .option b {
+    font-size:10px
+  }
+  .option small {
+    font-size:10px;
+    margin-top:2px
+  }
+  .option-grid {
+    gap:4px
+  }
+  .slider-box {
+    padding:0 7px
+  }
+  .legend {
+    font-size:10px;
+    gap:8px
+  }
+  .metric b {
+    font-size:16px
+  }
+  .metric small {
+    font-size:10px
+  }
+  .results {
+    padding:5px
+  }
+  .constraint-list {
+    padding-top:3px;
+    font-size:10px;
+    gap:3px 8px
+  }
+  .status-strip {
+    min-height:22px;
+    padding:3px 12px;
+    font-size:10px
+  }
+  .sort-list {
+    grid-template-columns:1fr 1fr
+  }
+  .sort-row {
+    min-height:70px;
+    grid-template-columns:1fr auto;
+    padding:3px;
+    gap:1px 4px
+  }
+  .sort-row .weight {
+    height:26px
+  }
+  .sort-row .weight input {
+    height:26px
+  }
+  .sort-row .limit {
+    grid-column:auto
+  }
+  .sort-row .limit input {
+    min-height:30px;
+    height:30px;
+    width:65px
+  }
+  .sort-buttons .btn {
+    min-height:44px
+  }
+  .sort-title small {
+    font-size:10px
+  }
+  .sort-feedback {
+    display:none
+  }
+  .steps-row {
+    min-height:66px
+  }
+  .step-chosen {
+    padding:4px;
+    font-size:10px
+  }
+  .step-chosen img {
+    width:40px;
+    height:45px
+  }
+  .protection {
+    min-height:90px;
+    gap:5px;
+    padding:2px
+  }
+  .protection-label {
+    font-size:11px;
+    margin-bottom:3px
+  }
+  .protection-label b {
+    font-size:10px
+  }
+  .bar-track {
+    height:15px
+  }
+  .source {
+    min-height:64px
+  }
+  .source img {
+    height:35px
+  }
+  .source span {
+    font-size:10px;
+    padding:3px
+  }
+  .water-note {
+    font-size:10px
+  }
+  .flip-item {
+    padding:6px;
+    font-size:11px
+  }
+  .flip-list {
+    gap:5px
+  }
+  .why-box textarea {
+    height:55px;
+    min-height:44px
+  }
+  th,td {
+    padding:7px 6px
+  }
+  td b {
+    font-size:16px
+  }
+  .table-wrap {
+    min-height:90px
+  }
+  .home-title h2 {
+    font-size:26px
+  }
+  .home-title p {
+    font-size:12px
+  }
+  #home {
+    padding:14px 20px;
+    gap:12px
+  }
+  .challenge-cards {
+    gap:12px
+  }
+  .challenge-card img {
+    height:80px
+  }
+  .card-body {
+    padding:10px;
+    gap:6px
+  }
+  .card-body h3 {
+    font-size:18px
+  }
+  .card-body p {
+    font-size:11px
+  }
+  .card-body .fact {
+    font-size:10px
+  }
+  .home-footer {
+    font-size:10px
+  }
+  .challenge-card {
+    padding-bottom:54px
+  }
+  .card-body {
+    overflow:auto;
+    min-height:0
+  }
+  .card-body .start {
+    position:absolute;
+    bottom:8px;
+    left:10px;
+    margin:0;
+    min-height:44px
+  }
+  .home-title {
+    min-height:48px
+  }
+  .home-title h2 {
+    font-size:23px
+  }
+  .home-title p {
+    max-width:250px
+  }
+}
+@media(max-width:760px) and (min-height:600px) {
+  header {
+    padding:5px 10px;
+    min-height:55px;
+    gap:4px;
+    flex-wrap:wrap
+  }
+  h1 {
+    font-size:17px;
+    flex:1
+  }
+  h1 small {
+    display:none
+  }
+  .brand-mark {
+    display:none
+  }
+  .icon-btn {
+    font-size:11px;
+    padding:0 7px
+  }
+  #reset {
+    min-width:44px
+  }
+  .station-nav {
+    padding:0
+  }
+  .station-nav button {
+    min-height:54px;
+    gap:4px;
+    flex-direction:column;
+    font-size:10px;
+    padding:3px
+  }
+  .nav-number {
+    height:18px;
+    width:18px;
+    font-size:10px
+  }
+  .instruction {
+    min-height:62px;
+    padding:5px 10px;
+    gap:8px
+  }
+  #hint {
+    font-size:11px;
+    min-height:44px
+  }
+  .action {
+    padding:5px 9px;
+    font-size:12px
+  }
+  #workspace {
+    display:flex;
+    flex-direction:column;
+    overflow:auto
+  }
+  .stage {
+    flex:none;
+    overflow:visible;
+    border-right:0;
+    border-bottom:1px solid #52657e;
+    padding:10px;
+    gap:8px;
+    min-height:255px
+  }
+  .panel {
+    flex:none;
+    padding:10px;
+    overflow:visible;
+    gap:8px
+  }
+  .stage-head h2 {
+    font-size:20px
+  }
+  .stage-head .eyebrow {
+    font-size:10px
+  }
+  .stage-head .counter {
+    font-size:10px
+  }
+  .root-card {
+    font-size:12px;
+    padding:9px
+  }
+  .branches {
+    min-height:110px;
+    margin-top:13px
+  }
+  .branch-target {
+    font-size:11px
+  }
+  .tree-card {
+    font-size:11px
+  }
+  .deck {
+    grid-template-columns:repeat(3,1fr);
+    gap:5px
+  }
+  .tree-card {
+    min-height:50px
+  }
+  .chip-row {
+    gap:3px
+  }
+  .chip {
+    font-size:10px
+  }
+  .sort-list {
+    grid-template-columns:1fr
+  }
+  .sort-row {
+    grid-template-columns:1fr auto 85px;
+    min-height:58px;
+    gap:5px
+  }
+  .sort-row .weight,.sort-row .limit {
+    grid-column:auto
+  }
+  .sort-title {
+    font-size:11px
+  }
+  .sort-title small {
+    font-size:10px
+  }
+  .sort-buttons .btn {
+    font-size:10px;
+    padding:2px 4px
+  }
+  .sort-row .limit input {
+    width:65px;
+    min-height:44px
+  }
+  .sort-row .weight {
+    gap:4px
+  }
+  .option-grid {
+    grid-template-columns:repeat(4,1fr);
+    gap:5px
+  }
+  .option {
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    min-height:94px;
+    justify-content:start;
+    text-align:center;
+    padding:4px 2px
+  }
+  .option img {
+    width:52px;
+    height:44px
+  }
+  .option b {
+    font-size:10px;
+    font-weight:500;
+    padding:0
+  }
+  .option small {
+    font-size:10px;
+    margin-top:2px
+  }
+  .chart-shell {
+    height:165px;
+    min-height:165px;
+    flex:none
+  }
+  .metric b {
+    font-size:16px
+  }
+  .results {
+    padding:6px
+  }
+  .metric {
+    font-size:10px
+  }
+  .metric small {
+    font-size:10px
+  }
+  .constraint-list {
+    font-size:10px
+  }
+  .legend {
+    font-size:10px;
+    gap:8px
+  }
+  .stage:has(.sort-list) {
+    min-height:0
+  }
+  .panel:has(.criteria-note) {
+    padding-top:8px
+  }
+  .panel p {
+    font-size:11px
+  }
+  .steps-row {
+    min-height:72px
+  }
+  .step-chosen img {
+    width:44px;
+    height:52px
+  }
+  .step-chosen {
+    font-size:10px;
+    padding:4px;
+    flex:1;
+    width:auto
+  }
+  .protection {
+    min-height:150px;
+    gap:8px
+  }
+  .bar-track {
+    height:19px
+  }
+  .protection-label {
+    font-size:12px
+  }
+  .source-grid {
+    grid-template-columns:repeat(3,1fr)
+  }
+  .source {
+    min-height:70px
+  }
+  .source img {
+    height:42px
+  }
+  .water-note {
+    font-size:10px
+  }
+  .panel .water-note {
+    display:none
+  }
+  .table-wrap {
+    min-height:170px
+  }
+  .table-wrap table {
+    min-width:450px
+  }
+  .flip-list {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:5px
+  }
+  .flip-item {
+    font-size:11px;
+    padding:6px
+  }
+  .why-box textarea {
+    height:60px
+  }
+  .status-strip {
+    padding:4px 10px;
+    font-size:10px
+  }
+  .status-strip .right-status {
+    display:none
+  }
+  #home {
+    padding:15px 12px;
+    gap:12px
+  }
+  .home-title {
+    display:block
+  }
+  .home-title h2 {
+    font-size:28px
+  }
+  .home-title p {
+    font-size:12px
+  }
+  .challenge-cards {
+    gap:8px;
+    grid-template-columns:1fr
+  }
+  .challenge-card {
+    display:grid;
+    grid-template-columns:115px 1fr;
+    min-height:175px;
+    flex:none
+  }
+  .challenge-card img {
+    height:100%;
+    width:115px;
+    border:0
+  }
+  .card-body {
+    padding:10px;
+    gap:5px
+  }
+  .card-body h3 {
+    font-size:17px
+  }
+  .card-body p {
+    font-size:11px
+  }
+  .card-body .fact {
+    font-size:10px
+  }
+  .start {
+    min-width:100px
+  }
+  .home-footer {
+    font-size:10px;
+    display:block
+  }
+}
+@media(max-width:700px) and (max-height:599px) {
+  #workspace {
+    grid-template-columns:minmax(0,1.22fr) minmax(275px,1fr)
+  }
+  .station-nav button {
+    font-size:11px;
+    gap:5px
+  }
+  .nav-number {
+    width:18px;
+    height:18px;
+    font-size:10px
+  }
+  .icon-btn {
+    padding:0 7px;
+    font-size:11px
+  }
+  .stage-head h2 {
+    font-size:17px
+  }
+  .stage-head .counter {
+    display:none
+  }
+  .results {
+    grid-template-columns:repeat(2,1fr)
+  }
+  .metric b {
+    font-size:14px
+  }
+  .metric small {
+    display:none
+  }
+  .constraint-list {
+    grid-column:1/-1
+  }
+  .sort-row {
+    grid-template-columns:1fr;
+    position:relative;
+    min-height:78px;
+    padding-right:94px
+  }
+  .sort-buttons {
+    position:absolute;
+    right:3px;
+    top:3px;
+    display:flex
+  }
+  .sort-buttons .btn {
+    writing-mode:vertical-rl;
+    height:66px;
+    font-size:10px;
+    width:44px
+  }
+  .sort-row .weight,.sort-row .limit {
+    grid-column:1
+  }
+  .sort-title {
+    font-size:10px
+  }
+  .sort-title small {
+    display:none
+  }
+  .sort-list {
+    grid-template-columns:1fr
+  }
+  #workspace.criteria-work {
+    grid-template-columns:1fr 180px
+  }
+  .criteria-work .sort-list {
+    grid-template-columns:1fr 1fr
+  }
+  .criteria-work .sort-row {
+    min-height:53px;
+    padding:3px
+  }
+  .criteria-work .sort-buttons {
+    position:static
+  }
+  .criteria-work .sort-buttons .btn {
+    writing-mode:horizontal-tb;
+    height:44px;
+    font-size:10px;
+    width:auto
+  }
+  .criteria-work .sort-row {
+    grid-template-columns:1fr auto
+  }
+  .criteria-work .sort-row .weight {
+    grid-column:1/-1
+  }
+  .branch {
+    padding:3px
+  }
+  .branches {
+    gap:4px
+  }
+  .branch-target {
+    font-size:10px
+  }
+  .tree-card small {
+    font-size:10px
+  }
+  .protection-label {
+    font-size:10px
+  }
+  .steps-row {
+    gap:3px
+  }
+  .step-chosen {
+    padding:3px;
+    display:block
+  }
+  .step-chosen img {
+    width:45px;
+    height:40px;
+    display:block
+  }
+  .step-chosen {
+    font-size:10px
+  }
+}
+@media(max-height:650px) {
+  .tree-work .deck {
+    grid-template-columns:repeat(3,1fr);
+    gap:4px
+  }
+  .tree-work .panel>p.subtle {
+    display:none
+  }
+  .tree-work .tree-card {
+    line-height:1.1
+  }
+  .prototype-work .panel:has(#comfort) {
+    padding:6px;
+    gap:5px
+  }
+  .prototype-work .panel:has(#comfort)>h3,.prototype-work .panel:has(#comfort)>p.subtle {
+    display:none
+  }
+  .prototype-work .panel:has(#comfort) .option-grid {
+    gap:3px
+  }
+  .prototype-work .panel:has(#comfort) .option {
+    height:44px;
+    min-height:44px;
+    grid-template-columns:34px 1fr;
+    padding:2px
+  }
+  .prototype-work .panel:has(#comfort) .option img {
+    width:32px;
+    height:36px
+  }
+  #workspace.criteria-work {
+    grid-template-columns:minmax(0,1fr) 180px
+  }
+  .criteria-work .sort-list {
+    grid-template-columns:1fr 1fr;
+    gap:3px;
+    align-content:start
+  }
+  .criteria-work .sort-row {
+    grid-template-columns:minmax(50px,1fr) auto 46px;
+    min-height:48px;
+    padding:2px;
+    gap:2px;
+    position:static
+  }
+  .criteria-work .sort-title {
+    font-size:10px;
+    line-height:1.1
+  }
+  .criteria-work .sort-title small {
+    display:none
+  }
+  .criteria-work .sort-buttons {
+    position:static;
+    gap:2px
+  }
+  .criteria-work .sort-buttons .btn {
+    height:44px;
+    min-height:44px;
+    writing-mode:horizontal-tb;
+    padding:2px 4px;
+    font-size:10px;
+    width:auto
+  }
+  .criteria-work .sort-row .weight,.criteria-work .sort-row .limit {
+    grid-column:auto;
+    height:44px;
+    gap:2px
+  }
+  .criteria-work .sort-row .weight input {
+    height:44px;
+    min-width:20px
+  }
+  .criteria-work .sort-row .weight>span,.criteria-work .sort-row .limit span {
+    display:none
+  }
+  .criteria-work .sort-row .limit input {
+    height:44px;
+    min-height:44px;
+    width:44px;
+    padding:2px;
+    font-size:11px;
+    appearance:textfield
+  }
+  .criteria-work .sort-row .limit input::-webkit-inner-spin-button {
+    display:none
+  }
+  .prototype-work .results {
+    grid-template-columns:repeat(4,1fr)
+  }
+}
+@media(max-width:760px) and (min-height:600px) {
+  #workspace.prototype-work {
+    display:grid;
+    grid-template-columns:1fr;
+    grid-template-rows:minmax(190px,1fr) auto;
+    overflow:hidden
+  }
+  .prototype-work .stage {
+    overflow:auto;
+    min-height:0
+  }
+  .prototype-work .stage-head .counter {
+    display:none
+  }
+  .prototype-work .stage-head h2 {
+    font-size:18px
+  }
+  .prototype-work .chart-shell {
+    height:130px;
+    min-height:130px
+  }
+  .prototype-work .panel {
+    padding:7px;
+    gap:5px
+  }
+  .prototype-work .panel .option {
+    min-height:77px;
+    height:77px
+  }
+  .prototype-work .panel .option img {
+    height:32px;
+    width:44px
+  }
+  .prototype-work .panel .option b {
+    line-height:1.1
+  }
+  .prototype-work .panel .option small {
+    margin-top:1px
+  }
+  .prototype-work .panel:has(#comfort)>p.subtle {
+    display:none
+  }
+  .prototype-work .slider-box {
+    padding:0 6px
+  }
+  .prototype-work .panel .source {
+    min-height:62px
+  }
+  .prototype-work .panel .source img {
+    height:32px
+  }
+  .prototype-work .panel:has(.source-grid) .option-grid {
+    grid-template-columns:repeat(3,1fr)
+  }
+  .prototype-work .stage .subtle,.prototype-work .stage .water-note {
+    font-size:10px;
+    line-height:1.25
+  }
+}
+@media (max-height:760px) and (min-width:1101px) {
+  .criteria-work .sort-list {
+    gap:5px;
+  }
+  .criteria-work .sort-row {
+    min-height:52px;
+    padding:4px 8px;
+  }
+}
+@media (max-height:650px) {
+  #workspace.trade-work {
+    grid-template-columns:minmax(0,1fr) 180px;
+  }
+  .trade-work .stage-head .counter {
+    display:none;
+  }
+  .trade-work .stage-head h2 {
+    font-size:16px;
+  }
+  .trade-work .table-wrap {
+    min-height:100px;
+  }
+  .trade-work table {
+    table-layout:fixed;
+    font-size:10px;
+    line-height:1.1;
+  }
+  .trade-work th,.trade-work td {
+    padding:2px 4px;
+    overflow-wrap:anywhere;
+  }
+  .trade-work th:first-child {
+    min-width:0;
+    width:60px;
+  }
+  .trade-work th:last-child {
+    width:43px;
+  }
+  .trade-work th .weight {
+    min-width:0;
+    width:100%;
+    gap:2px;
+  }
+  .trade-work th input {
+    min-width:0;
+  }
+  .trade-work td b {
+    font-size:14px;
+  }
+  .trade-work td small {
+    margin-top:2px;
+  }
+  .trade-work .top-tag {
+    margin-top:2px;
+    padding:0 3px;
+  }
+  .trade-work .stage>p.subtle:last-child,.trade-work .panel>p.subtle {
+    display:none;
+  }
+  .trade-work .flip-list {
+    max-height:124px;
+    overflow:auto;
+  }
+  .trade-work .why-box {
+    margin-top:0;
+  }
+  .trade-work .why-box textarea {
+    height:44px;
+    min-height:44px;
+  }
+  .trade-work .why-box p {
+    font-size:10px;
+  }
+  .trade-work #winner-summary {
+    display:none;
+  }
+}
+@media (max-width:760px) and (min-height:600px) {
+  .trade-work .table-wrap table {
+    min-width:0;
+    table-layout:fixed;
+    font-size:10px;
+    line-height:1.1;
+  }
+  .trade-work th,.trade-work td {
+    padding:4px 3px;
+    overflow-wrap:anywhere;
+  }
+  .trade-work th:first-child {
+    min-width:0;
+    width:48px;
+  }
+  .trade-work th:last-child {
+    width:38px;
+  }
+  .trade-work th .weight {
+    min-width:0;
+    gap:2px;
+  }
+  .trade-work th input {
+    min-width:0;
+  }
+  .trade-work td b {
+    font-size:14px;
+  }
+  #workspace.trade-work {
+    display:grid;
+    grid-template-columns:1fr;
+    grid-template-rows:minmax(0,1fr) auto;
+    overflow:hidden;
+  }
+  .trade-work .stage {
+    overflow:auto;
+    min-height:0;
+  }
+  .trade-work .panel {
+    padding:7px;
+    gap:5px;
+  }
+  .trade-work .panel>p.subtle {
+    display:none;
+  }
+  .trade-work .flip-item {
+    padding:5px;
+  }
+  .trade-work .why-box textarea {
+    height:44px;
+    min-height:44px;
+  }
+  .prototype-work .stage:has(#protection) .steps-row {
+    min-height:50px;
+  }
+  .prototype-work .stage:has(#protection) .step-chosen img {
+    height:36px;
+    width:36px;
+  }
+  .prototype-work .stage:has(#protection) .protection {
+    min-height:140px;
+    gap:4px;
+    padding:3px;
+  }
+  .prototype-work .stage:has(#protection) .protection-label {
+    font-size:11px;
+    margin-bottom:3px;
+  }
+  .prototype-work .stage:has(#protection) .bar-track {
+    height:14px;
+  }
+}
+
+.challenge-card>.start {
+  position:static;
+  flex:none;
+  margin:0 18px 18px;
+}
+#home-hint-slot #hint {
+  min-height:0;
+  font-size:12px;
+  line-height:1.3;
+  color:var(--muted);
+}
+@media (max-height:650px) {
+  .challenge-card {
+    padding-bottom:0;
+  }
+  .challenge-card>.start {
+    margin:6px 10px 8px;
+  }
+  #home-hint-slot #hint {
+    font-size:10px;
+  }
+}
+@media (max-width:760px) and (min-height:600px) {
+  .challenge-card {
+    grid-template-rows:minmax(0,1fr) 52px;
+    padding-bottom:0;
+    min-height:175px;
+  }
+  .challenge-card>img {
+    grid-column:1;
+    grid-row:1 / 3;
+  }
+  .card-body {
+    grid-column:2;
+    grid-row:1;
+  }
+  .challenge-card>.start {
+    grid-column:2;
+    grid-row:2;
+    justify-self:start;
+    margin:0 10px 8px;
+  }
+  #home-hint-slot #hint {
+    font-size:10px;
+  }
+}
+.card-body {
+  min-height:0;
+  overflow:auto;
+}
+.limit input {
+  min-width:44px;
+  flex:none;
+}
+@media (max-height:650px) {
+  .prototype-work .stage:has(#protection) .stage-head .counter {
+    display:none;
+  }
+  .prototype-work .stage:has(#protection) .stage-head h2 {
+    font-size:16px;
+  }
+  .prototype-work .stage:has(#protection) .protection {
+    flex:none;
+    min-height:150px;
+    gap:5px;
+    padding:2px;
+  }
+  .prototype-work .stage:has(#protection) .steps-row {
+    min-height:44px;
+  }
+  .prototype-work .stage:has(#protection) .step-chosen {
+    display:flex;
+    align-items:center;
+    min-height:44px;
+    padding:3px;
+    gap:3px;
+  }
+  .prototype-work .stage:has(#protection) .step-chosen img {
+    width:32px;
+    height:32px;
+  }
+  .prototype-work .panel:has(.source-grid) {
+    padding:6px;
+    gap:5px;
+  }
+  .prototype-work .panel:has(.source-grid)>h3 {
+    display:none;
+  }
+  .prototype-work .panel:has(.source-grid) .option-grid {
+    gap:3px;
+  }
+  .prototype-work .panel:has(.source-grid) .option {
+    min-height:48px;
+    grid-template-columns:34px 1fr;
+    padding:2px;
+  }
+  .prototype-work .panel:has(.source-grid) .option img {
+    width:32px;
+    height:36px;
+  }
+}
+@media (max-width:760px) and (min-height:600px) {
+  .sort-row .limit {
+    gap:3px;
+  }
+  .sort-row .limit input {
+    width:44px;
+    max-width:44px;
+    padding:2px;
+    appearance:textfield;
+  }
+  .sort-row .limit input::-webkit-inner-spin-button {
+    display:none;
+  }
+}
+.save-receipt {
+  border-left:3px solid var(--brand);
+  background:linear-gradient(90deg,#163c32,#172330);
+  color:#d8ffec;
+  padding:8px 10px;
+  font-size:12px;
+}
+.save-receipt.failed { border-color:#ffb8a8; color:#ffdbd2; }
+input[aria-invalid=true] { border-color:#ffb8a8; outline:2px solid #ffb8a8; }
+.limit-unit { overflow-wrap:anywhere; }
+@media(max-height:850px), (max-width:760px) { .save-receipt { display:none; } }
+.feedback:empty { display:none; }
+@media(max-height:650px) {
+  .own-challenge.criteria-work .criteria-note { display:none; }
+  .own-challenge .own-editor { gap:6px; }
+  .own-challenge .own-editor label { display:grid; gap:2px; }
+  .own-challenge .own-editor input { margin:0; }
+}
+@media(max-width:760px) and (min-height:600px) {
+  #workspace.criteria-work.own-challenge {
+    display:grid;
+    grid-template-columns:1fr;
+    grid-template-rows:minmax(100px,1fr) auto;
+    overflow:hidden;
+  }
+  .criteria-work.own-challenge .stage { min-height:0; overflow:auto; }
+  .criteria-work.own-challenge .criteria-note { display:none; }
+  .criteria-work.own-challenge .own-editor { grid-template-columns:1fr 1fr; }
+  .criteria-work.own-challenge .own-editor label { display:grid; gap:3px; }
+  .criteria-work.own-challenge .own-editor .btn,
+  .criteria-work.own-challenge .own-editor p { grid-column:1/-1; }
+  .criteria-work.own-challenge #new-direction { grid-column:auto; width:100%; }
+}
+@media(max-height:650px) {
+  .criteria-work:not(.own-challenge) #sort-feedback:not(:empty) {
+    display:block;
+    min-height:44px;
+    overflow:auto;
+  }
+}
+@media(max-height:650px) { .trade-work td:last-child b { font-size:11px; white-space:nowrap; } }
+@media(max-width:760px) and (min-height:600px) { .trade-work td:last-child b { font-size:10px; white-space:nowrap; } }
+@media(max-height:650px) {
+  .criteria-work:has(#sort-feedback:not(:empty)) .criteria-note { display:none; }
+}
+@media(max-width:760px) and (min-height:600px) {
+  .trade-work .stage-head { display:block; }
+  .trade-work .stage-head .counter { display:inline-block; margin-top:5px; }
+}
+</style>
+</head>
+<body>
+<header>
+ <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 3h26v26H3zM3 12h26M12 3v26M20 3v26M3 20h26" fill="none" stroke="currentColor"/><path d="m8 25 17-17" stroke="currentColor" stroke-width="3"/></svg>
+ <h1>Design Challenge Studio<small>Curio Class · Engineering for global challenges</small></h1>
+ <button class="icon-btn" id="reset" title="Return to challenge cards">Reset</button>
+ <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+ <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+ <button class="icon-btn" id="read">Read</button>
+</header>
+<section id="home">
+ <div class="home-title"><div><span class="eyebrow">A design is a decision</span><h2>What does better look like?</h2></div>
+ <p>Break the problem apart. Test possibilities.<br>Then find out which priorities decide the winner.</p></div>
+ <div class="challenge-cards">
+  <article class="challenge-card"><img src="art:classroom" alt="Sunlight across an empty classroom">
+   <div class="card-body"><span class="eyebrow">01 / Heat</span><h3>Cool classroom</h3>
+   <p>38.6 °C on a hot afternoon. Make it safer to learn without using more electricity.</p>
+   <p class="fact">About 41% of US school districts needed HVAC updates in at least half their schools. GAO, 2020.</p>
+   </div><button class="action start" id="start-room" data-start="room">Start →</button></article>
+  <article class="challenge-card"><img src="art:dc-water-jug" alt="A clear jug and cooking pot beside a window">
+   <div class="card-body"><span class="eyebrow">02 / Water</span><h3>Safe water at home</h3>
+   <p>A family of four needs safe drinking water every day. Choose a treatment sequence.</p>
+   <p class="fact">2.2 billion people lacked safely managed drinking water in 2022. WHO / UNICEF.</p>
+   <p class="water-note">Simulation. For real water, follow your local health department or the product label.</p>
+   </div><button class="action start" id="start-water" data-start="water">Start →</button></article>
+  <article class="challenge-card"><img src="art:dc-own" alt="An open blank sketchbook and drafting tools">
+   <div class="card-body"><span class="eyebrow">03 / Your brief</span><h3>Your own challenge</h3>
+   <p>Name the problem, build its tree, and compare your own design evidence.</p>
+   <p class="fact">Your challenge saves on this device. Typed work never leaves it. The Why box is session only.</p>
+   </div><button class="action start" id="start-own" data-start="own">Start →</button></article>
+ </div>
+ <div class="home-footer"><span id="home-hint-slot">Four stations. Open them in any order.</span><span>Grade 12 · Engineering design · 30 to 50 minutes</span></div>
+</section>
+<section id="studio" hidden>
+ <nav class="station-nav" aria-label="Stations">
+  <button id="tab-tree" data-station="tree" aria-pressed="true"><span class="nav-number">1</span><span>Break it down</span></button>
+  <button id="tab-criteria" data-station="criteria" aria-pressed="false"><span class="nav-number">2</span><span>Criteria</span></button>
+  <button id="tab-prototype" data-station="prototype" aria-pressed="false"><span class="nav-number">3</span><span>Prototype</span></button>
+  <button id="tab-trade" data-station="trade" aria-pressed="false"><span class="nav-number">4</span><span>Trade-offs</span></button>
+ </nav>
+ <div class="instruction"><p id="hint" aria-live="polite">Pick a challenge card and press Start.</p><button id="primary" class="action">Check tree</button></div>
+ <div id="workspace"><section class="stage" id="stage" aria-label="Design studio wall"></section><aside class="panel" id="panel"></aside></div>
+ <div class="status-strip"><span><i class="live-dot"></i><span id="status">Ready</span></span><span class="right-status" id="design-count">0 / 4 designs saved</span></div>
+</section>
+<dialog id="dialog" aria-labelledby="dialog-title"><h2 id="dialog-title"></h2><p id="dialog-text"></p><div class="dialog-buttons" id="dialog-buttons"></div></dialog>
+<div hidden id="art-bank">
+ <img id="art-shades" src="art:dc-o-shades" alt=""><img id="art-roof" src="art:dc-o-cool-roof" alt="">
+ <img id="art-insulation" src="art:dc-o-insulation" alt=""><img id="art-vents" src="art:dc-o-vents" alt="">
+ <img id="art-fan" src="art:dc-o-fan" alt=""><img id="art-switch" src="art:dc-o-switch" alt="">
+ <img id="art-tree" src="art:dc-o-tree" alt=""><img id="art-ac" src="art:dc-o-ac" alt="">
+ <img id="art-settle" src="art:dc-s-settle" alt=""><img id="art-cloth" src="art:dc-s-cloth" alt="">
+ <img id="art-microfilter" src="art:dc-s-microfilter" alt=""><img id="art-boil" src="art:dc-s-boil" alt="">
+ <img id="art-chlorine" src="art:dc-s-chlorine" alt=""><img id="art-dioxide" src="art:dc-s-dioxide" alt="">
+ <img id="art-stream" src="art:stream" alt=""><img id="art-river" src="art:river" alt=""><img id="art-barrel" src="art:rain-barrel" alt="">
+ <img id="art-room" src="art:classroom" alt="">
+</div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+ 'use strict';
+ const $ = id => document.getElementById(id);
+ const escape = text => String(text).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const img = (key, alt = '') => `<img src="${$('art-' + key).src}" alt="${escape(alt)}">`;
+ const money = v => '$' + Math.round(v).toLocaleString('en-US');
+ const fixed = (v, n = 2) => Number(v).toFixed(n);
+ const clone = value => JSON.parse(JSON.stringify(value));
+ const titles = {room:'Cool classroom', water:'Safe water at home', own:'Your own challenge'};
+ const L = {
+  wStart:'Pick a challenge card and press Start.',
+  wTree:'Drag each card onto the branch where it belongs, or tap a card and then a branch. Then press Check tree.',
+  wCriteria:'Sort each item with Criterion or Constraint. Then use each criterion’s slider to say how much it matters.',
+  wProtoRoom:'Turn the option tiles on and off and watch the hottest day change. Press Save design to keep one.',
+  wProtoWater:'Pick a Source, then tap up to three Steps in order. Press Save design to keep one.',
+  wOwnEmpty:'Open Criteria and press Add item before entering design evidence.',
+  wProtoOwn:'Type your design names, then give each one a score for every criterion. Press Save design when done.',
+  wTradeEmpty:'Save at least two designs in Prototype first. Then come back here to compare them.',
+  wTrade:'Move the weight sliders in the column headers. Watch whether the top design changes.',
+  flip:'The top design just changed. That weight is doing a lot of work.',
+  fail:'That design breaks a constraint. It cannot win until you change it.',
+  place:'Card placed. Tap another card, or press Check tree.',
+  checked:'Tree checked. Read the feedback on each card, then move any card you want to rethink.',
+  sorted:'Sort checked. Edit a sort or limit, or open Prototype to test your priorities.',
+  saved:'Design saved. Change some options to test a different idea, or open Trade-offs.',
+  limit:'Three steps is the limit here. Tap a chosen step to remove it.',
+  ownTree:'Name your three branches. Add a card, then tap a branch to place it.',
+  ownCriteria:'Type a criterion or constraint, choose its direction, and press Add item.',
+  clear:'Your challenge has been cleared on this device.',
+  savedOwn:'Design saved. Change the design name and values to test another idea, or open Trade-offs.'
+ };
+ const ROOM_OPTIONS = [
+  ['shades','Exterior west shades',1200],['roof','Cool white roof',2500],['insulation','Roof insulation',6000],
+  ['vents','Night vents, lockable',1500],['fan','Ceiling fans',1200],['switch','Lights & screens off',0],
+  ['tree','Shade trees',900],['ac','Window air conditioners',6000]
+ ];
+ const STEPS = [
+  ['settle','Settle and pour off',30,[0,0,0,0],0,0,2],['cloth','Cloth filter',2,[0,0,0,0],0,0,2],
+  ['microfilter','Microfilter, 0.2 micron',8,[3,3,2,0],2,0,2],['boil','Boil 1 minute',15,[4,4,4,4],1,1,0],
+  ['chlorine','Chlorine drops / tablets',30,[1,0,3,3],1,0,0],['dioxide','Chlorine dioxide',30,[3,1,3,3],1.5,0,1]
+ ];
+ const RATINGS = ['Not effective','Low to moderate','Moderate','High','Very high'];
+ const roomCards = [
+  ['Sun on a dark roof',0,'The roof absorbs sunlight.','roof,insulation'],
+  ['Sun through west windows',0,'Sunlight carries heat into the room.','shades,tree'],
+  ['Hot outdoor air through open windows',0,'Outdoor air brings heat in.',''],
+  ["30 students’ body heat",1,'Bodies release heat inside.',''],
+  ['Lights and screens',1,'Electrical equipment releases heat.','switch'],
+  ['Hot air trapped overnight',2,'Stored heat cannot escape.','vents'],
+  ['Still air, no breeze',2,'Moving air can lower feels-like temperature.','fan'],
+  ['Students are too loud',-1,'Not part of this heat problem.',''],
+  ['The hallway is cold in winter',-1,'A different place and season.','']
+ ];
+ const waterCards = [
+  ['Giardia and Cryptosporidium',0,'These are parasite groups.','microfilter,boil'],
+  ['Bacteria',0,'Bacteria are germs.','boil,chlorine,dioxide'],['Viruses',0,'Viruses are germs.','boil,chlorine,dioxide'],
+  ['Cloudy water hides germs from chemicals',1,'Particles can shield germs.','settle,cloth,microfilter'],
+  ['Filters clog',1,'Dirt affects filter flow.','settle,cloth'],
+  ['Fuel or power costs money',2,'Daily resources affect use.',''],['Taste puts people off',2,'Taste affects everyday use.',''],
+  ['Time every day',2,'The family must repeat the process.',''],
+  ['Chemicals like nitrate or lead',-1,'Needs testing and different treatment; none of these steps remove them.','']
+ ];
+ function criterion(id, label, dir, unit, sort = 'criterion', limit = 0, min = 0, max = 100) {
+  return {id,label,dir,unit,sort,suggested:sort,weight:3,limit,min,max};
+ }
+ function roomCriteria() {
+  return [criterion('hours','Hours over comfort line',-1,'h'),criterion('feel','Hottest feels-like',-1,'°C'),
+   criterion('cost','Cost',-1,'$'),criterion('energy','Electricity per school day',-1,'kWh','constraint',7.3,0,40),
+   criterion('budget','Budget',-1,'$','constraint',5000,2000,15000),criterion('ready','Ready this summer',1,'yes'),
+   criterion('safe','Vents safe at night',1,'yes','constraint',1,0,1)];
+ }
+ function waterCriteria() {
+  return [criterion('protection','Germ protection, weakest group',1,'rating','constraint',3,0,4),
+   criterion('time','Minimum time per 4 L batch',-1,'min'),criterion('cost','Cost level',-1,'level'),
+   criterion('fuel','Needs fuel',-1,'fuel'),criterion('taste','Taste',1,'taste')];
+ }
+ const state = {challenge:null,station:'start',tree:[],criteria:[],designs:[],options:Array(8).fill(false),
+  steps:[],source:0,comfort:27,selected:null,branchCursor:0,checked:false,progress:{},why:'',own:null,
+  draft:{name:'',values:{}},scores:[],winner:null,flips:[],revision:0};
+ function blankOwn() { return {title:'My design challenge',branches:['Branch 1','Branch 2','Branch 3'],cards:[],criteria:[],designs:[],draft:{name:'',values:{}}}; }
+ function readOwn() {
+  try {
+   const value = JSON.parse(localStorage.getItem('design-challenge-studio'));
+   if (value && typeof value.title === 'string' && Array.isArray(value.branches) && value.branches.length === 3 &&
+       Array.isArray(value.cards) && Array.isArray(value.criteria) && Array.isArray(value.designs)) return value;
+  } catch (e) { /* Storage may be blocked on school devices. */ }
+  return blankOwn();
+ }
+ function persist() {
+  if (state.challenge !== 'own') return;
+  state.own.cards = state.tree;
+  state.own.criteria = state.criteria;
+  state.own.designs = state.designs;
+  state.own.draft = state.draft;
+  try { localStorage.setItem('design-challenge-studio', JSON.stringify(state.own)); }
+  catch (e) { status('Storage unavailable. Keep this tab open to retain your work.'); }
+ }
+ function welcomeKey() {
+  if (!state.challenge) return 'wStart';
+  if (state.station === 'tree') return state.tree.some(c => c.branch !== null) ? null : state.challenge === 'own' ? 'ownTree' : 'wTree';
+  if (state.station === 'criteria') return state.progress.criteria ? null : state.challenge === 'own' ? 'ownCriteria' : 'wCriteria';
+  if (state.station === 'prototype' && state.challenge === 'own' && !state.criteria.length) return 'wOwnEmpty';
+  if (state.station === 'prototype') return state.progress.prototype ? null : {room:'wProtoRoom',water:'wProtoWater',own:'wProtoOwn'}[state.challenge];
+  return state.designs.length < 2 ? 'wTradeEmpty' : state.progress.trade ? null : 'wTrade';
+ }
+ const V = Curio.voice({lines:L,scope:() => state.station,hint:false,read:() => $('hint').textContent,
+  welcome:() => welcomeKey(),speaks:'#primary,.tree-card,.option'});
+ const hint = text => { $('hint').textContent = L[text] || text; };
+ const status = text => { $('status').textContent = text; };
+ function tick(pitch = 400) { Curio.tone(pitch,.07,.025,'sine'); }
+ function mark(station) {
+  state.progress[station] = true;
+  $('tab-' + station).classList.add('done');
+  $('tab-' + station).querySelector('.nav-number').textContent = '✓';
+ }
+ function modal(title, text, choices) {
+  const previous = document.activeElement;
+  $('dialog-title').textContent = title;
+  $('dialog-text').textContent = text;
+  $('dialog-buttons').replaceChildren();
+  choices.forEach(([label, fn]) => {
+   const b = document.createElement('button');
+   b.className = 'btn';
+   b.textContent = label;
+   b.onclick = () => { $('dialog').close(); fn?.(); previous?.isConnected && previous.focus({preventScroll:true}); };
+   $('dialog-buttons').append(b);
+  });
+  $('dialog').showModal();
+ }
+ function start(challenge) {
+  if (state.designs.length && state.challenge && state.challenge !== challenge) {
+   modal('Change challenge?', 'Changing challenge clears the current comparison. Your own challenge stays saved on this device.',
+    [['Keep working'],['Change challenge',() => enter(challenge)]]);
+  } else enter(challenge);
+ }
+ function enter(challenge) {
+  V.hush();
+  state.challenge = challenge;
+  state.station = 'start';
+  state.options = Array(8).fill(false);
+  state.steps = [];
+  state.source = 0;
+  state.comfort = 27;
+  state.selected = null;
+  state.checked = false;
+  state.progress = {};
+  state.why = '';
+  state.own = challenge === 'own' ? readOwn() : null;
+  const data = challenge === 'room' ? roomCards : waterCards;
+  state.tree = challenge === 'own' ? state.own.cards : data.map((d,i) => ({id:'card-' + i,text:d[0],correct:d[1],why:d[2],links:d[3],branch:null}));
+  state.criteria = challenge === 'room' ? roomCriteria() : challenge === 'water' ? waterCriteria() : state.own.criteria;
+  state.designs = challenge === 'own' ? state.own.designs.slice(0,4) : [];
+  state.draft = challenge === 'own' ? state.own.draft || {name:'',values:{}} : {name:'',values:{}};
+  document.querySelector('.instruction').prepend($('hint'));
+  $('home').hidden = true;
+  $('studio').hidden = false;
+  document.querySelectorAll('.station-nav button').forEach((b,i) => {
+   b.classList.remove('done');
+   b.querySelector('.nav-number').textContent = i + 1;
+  });
+  setMode('tree');
+  $('tab-tree').focus({preventScroll:true});
+  tick(420);
+ }
+ function reset() {
+  if (!state.challenge) { hint("wStart"); return; }
+  const previousChallenge = state.challenge || 'room';
+  const run = () => {
+   persist();
+   V.hush();
+   state.challenge = null;
+   state.station = 'start';
+   $('home-hint-slot').replaceChildren($('hint'));
+   $('home').hidden = false;
+   $('studio').hidden = true;
+   hint('wStart');
+   V.welcome();
+   $('start-' + previousChallenge).focus({preventScroll:true});
+  };
+  if (state.challenge && state.designs.length) modal('Return to challenge cards?', 'Your current comparison clears when you start another challenge.',
+   [['Keep working'],['Return',run]]);
+  else run();
+ }
+ function heading(kicker, title, count = '') {
+  return `<div class="stage-head"><div><span class="eyebrow">${escape(kicker)}</span><h2>${escape(title)}</h2></div>` +
+   (count ? `<span class="counter">${escape(count)}</span>` : '') + '</div>';
+ }
+ function setMode(station) {
+  if (!state.challenge) return;
+  if (state.station === station && $('stage').childElementCount) return;
+  V.hush();
+  state.station = station;
+  state.revision++;
+  document.querySelectorAll('[data-station]').forEach(b => b.setAttribute('aria-pressed', b.dataset.station === station));
+  $('workspace').className = station + '-work' + (state.challenge === 'own' ? ' own-challenge' : '');
+  $('primary').textContent = {tree:'Check tree',criteria:'Check sort',prototype:'Save design',trade:'Back to Prototype'}[station];
+  $('primary').onclick = {tree:checkTree,criteria:checkSort,prototype:saveDesign,trade:() => setMode('prototype')}[station];
+  ({tree:renderTree,criteria:renderCriteria,prototype:renderPrototype,trade:renderTrade})[station]();
+  const key = welcomeKey();
+  hint(key || ({tree:'Tap a card and then a branch, or press Check tree.',criteria:'Change a sort or weight, then open Trade-offs.',
+   prototype:state.challenge === 'own' ? 'Change the design name and values, then press Save design.' :
+    state.challenge === 'water' ? 'Choose a Source and up to three Steps, then press Save design.' :
+    'Change the option tiles, then press Save design.',trade:'Move a weight slider or write why you chose a design.'}[station]));
+  V.welcome();
+  $('design-count').textContent = state.designs.length + ' / 4 designs saved';
+  status(titles[state.challenge] + ' / ' + {tree:'Break it down',criteria:'Criteria',prototype:'Prototype',trade:'Trade-offs'}[station]);
+ }
+ function branches() {
+  return state.challenge === 'room' ? ['Heat comes in','Heat made inside','Heat stays in'] :
+   state.challenge === 'water' ? ['Germs','Dirt and cloudiness','Daily life'] : state.own.branches;
+ }
+ function treeCard(c) {
+  return `<button class="tree-card" id="${c.id}" data-card="${c.id}" aria-pressed="false" draggable="false">${escape(c.text)}</button>`;
+ }
+ function renderTree() {
+  $('stage').innerHTML = heading('01 / Structure',titles[state.challenge],'Cause → smaller problems') +
+   (state.challenge === 'own' ? '<label class="subtle">Challenge name<input id="own-title" type="text" maxlength="80" value="' + escape(state.own.title) + '"></label>' : '') +
+   `<div class="root-card">${escape(state.challenge === 'room' ? 'A classroom gets too hot' : state.challenge === 'water' ? 'Safe drinking water, every day' : state.own.title)}</div>` +
+   `<div class="branches">${branches().map((b,i) => `<div class="branch" data-branch="${i}">` +
+   (state.challenge === 'own' ? `<input type="text" aria-label="Branch ${i+1} name" data-branch-name="${i}" maxlength="40" value="${escape(b)}">` : '') +
+   `<button class="branch-target" id="branch-${i}" data-drop="${i}">${escape(b)}</button><div class="branch-list" id="branch-list-${i}"></div></div>`).join('')}</div>` +
+   '<div class="chip-row" id="links"></div>';
+  $('panel').innerHTML = '<h3>Sub-problem cards</h3><div class="deck" id="deck"></div>' +
+   '<div class="custom-row"><input id="custom-card" type="text" maxlength="40" aria-label="My own sub-problem" placeholder="My own sub-problem…">' +
+   '<button class="btn" id="add-card">Add my own card</button></div>' +
+   '<p class="subtle">Keyboard: Enter picks a card. Arrows choose a branch. Enter drops. Escape cancels.</p>' +
+   '<p class="feedback" id="tree-feedback" aria-live="polite"></p>';
+  state.tree.forEach(c => { $('branch-list-' + c.branch)?.insertAdjacentHTML('beforeend',treeCard(c)) ||
+   (c.branch === null && $('deck').insertAdjacentHTML('beforeend',treeCard(c))); });
+  $('add-card').onclick = addCard;
+  $('custom-card').onkeydown = e => { if (e.key === 'Enter') addCard(); };
+  if ($('own-title')) $('own-title').oninput = e => { state.own.title = e.target.value; $('stage').querySelector('.root-card').textContent = e.target.value; persist(); };
+  $('stage').querySelectorAll('[data-branch-name]').forEach(input => input.oninput = e => {
+   state.own.branches[+input.dataset.branchName] = e.target.value;
+   $('branch-' + input.dataset.branchName).textContent = e.target.value;
+   persist();
+  });
+  wireCards();
+  document.querySelectorAll('[data-drop]').forEach(b => b.onclick = () => place(+b.dataset.drop));
+ }
+ function wireCards() {
+  document.querySelectorAll('[data-card]').forEach(button => {
+   button.onclick = () => selectCard(button.dataset.card);
+   button.onpointerdown = e => {
+    if (e.button !== 0) return;
+    const sx = e.clientX;
+    const sy = e.clientY;
+    let dragging = false;
+    const move = ev => {
+     if (Math.hypot(ev.clientX-sx,ev.clientY-sy) > 7) dragging = true;
+     if (dragging) {
+      selectCard(button.dataset.card, true);
+      const target = document.elementFromPoint(ev.clientX,ev.clientY)?.closest('[data-branch]');
+      document.querySelectorAll('.branch-target').forEach(b => b.classList.toggle('hover', b.dataset.drop === target?.dataset.branch));
+     }
+    };
+    const up = ev => {
+     document.removeEventListener('pointermove',move);
+     document.removeEventListener('pointerup',up);
+     document.querySelectorAll('.branch-target').forEach(b => b.classList.remove('hover'));
+     if (!dragging) return;
+     const target = document.elementFromPoint(ev.clientX,ev.clientY)?.closest('[data-branch]');
+     if (target) place(+target.dataset.branch);
+     const suppress = event => { event.stopPropagation(); event.preventDefault(); };
+     button.addEventListener('click',suppress,{once:true,capture:true});
+    };
+    document.addEventListener('pointermove',move);
+    document.addEventListener('pointerup',up,{once:true});
+   };
+  });
+ }
+ function selectCard(id, silent = false) {
+  state.selected = id;
+  document.querySelectorAll('[data-card]').forEach(b => b.setAttribute('aria-pressed',b.id === id));
+  if (!silent) { tick(520); hint('Now tap a branch, or use arrow keys and Enter to place this card.'); }
+ }
+ function place(branch) {
+  const c = state.tree.find(c => c.id === state.selected);
+  if (!c) { hint('Tap a sub-problem card first. Then tap a branch.'); return; }
+  c.branch = branch;
+  const element = $(c.id);
+  const before = element.getBoundingClientRect();
+  $('branch-list-' + branch).append(element);
+  const after = element.getBoundingClientRect();
+  if (!Curio.reduce) element.animate([
+   {transform:`translate(${before.x-after.x}px,${before.y-after.y}px)`,opacity:.7},
+   {transform:'translate(0,0)',opacity:1}
+  ],{duration:180,easing:'cubic-bezier(.2,.8,.2,1)'});
+  element.focus({preventScroll:true});
+  element.setAttribute('aria-pressed','false');
+  element.classList.remove('good','wrong');
+  element.querySelector('small')?.remove();
+  state.selected = null;
+  state.checked = false;
+  mark('tree');
+  tick(660);
+  hint('place');
+  V.how('place',{valid:() => state.station === 'tree',needs:'#primary'});
+  updateLinks();
+  persist();
+ }
+ function updateLinks() {
+  if (!$('links')) return;
+  const active = new Set(state.tree.filter(c => c.branch === c.correct).flatMap(c => (c.links || '').split(',')));
+  const choices = state.challenge === 'room' ? ROOM_OPTIONS : state.challenge === 'water' ? STEPS : [];
+  $('links').innerHTML = choices.filter(o => active.has(o[0])).map(o =>
+   `<span class="chip lit">${escape(o[1])}</span>`).join('');
+ }
+ function addCard() {
+  const text = $('custom-card').value.trim().slice(0,40);
+  if (!text) { hint('Type your sub-problem in the box, then press Add my own card.'); return; }
+  const c = {id:'custom-' + Date.now() + '-' + state.tree.length,text,correct:null,branch:null,
+   why:'Your card is not graded.',links:''};
+  state.tree.push(c);
+  $('deck').insertAdjacentHTML('beforeend',treeCard(c));
+  $('custom-card').value = '';
+  wireCards();
+  selectCard(c.id);
+  persist();
+ }
+ function checkTree() {
+  state.checked = true;
+  state.tree.forEach(c => {
+   const b = $(c.id);
+   if (!b) return;
+   b.querySelector('small')?.remove();
+   const own = c.correct === null;
+   const fit = c.branch === c.correct;
+   const result = own ? 'Your card: not graded.' : c.correct === -1 ? 'Not part of this problem. ' + c.why :
+    c.branch === null ? 'Place this card, then check again.' : fit ? 'Fits. ' + c.why : 'Try ' + branches()[c.correct] + '. ' + c.why;
+   b.classList.toggle('good',!own && fit);
+   b.classList.toggle('wrong',!own && !fit);
+   b.insertAdjacentHTML('beforeend','<small>' + escape(result) + '</small>');
+  });
+  updateLinks();
+  hint('checked');
+  V.say('checked',{valid:() => state.checked});
+  tick(580);
+ }
+ function valueOf(result, c) { return c.id === 'budget' ? result.cost : Number(result[c.id] ?? NaN); }
+ function displayValue(value, c) {
+  if (!Number.isFinite(value)) return 'No value';
+  if (c.unit === '$') return money(value);
+  if (c.unit === 'yes') return value >= 1 ? 'Yes' : 'No';
+  if (c.unit === 'rating') return RATINGS[Math.round(value)] || 'Not effective';
+  if (c.unit === 'level') return value <= 0 ? 'None' : value <= 1 ? 'Low' : value <= 1.5 ? 'Low to medium' : 'Medium';
+  if (c.unit === 'fuel') return value ? 'Yes' : 'No';
+  if (c.unit === 'taste') return ['Flat / chlorine','Slight taste','Unchanged'][Math.round(value)] || 'Unchanged';
+  return (c.unit === 'min' ? fixed(value,0) : fixed(value)) + (c.unit ? ' ' + c.unit : '');
+ }
+ function passed(result, c) { return c.dir < 0 ? valueOf(result,c) <= +c.limit + 1e-8 : valueOf(result,c) >= +c.limit - 1e-8; }
+ function failures(design) {
+  return state.criteria.filter(c => !Number.isFinite(valueOf(design.result,c)) ||
+   (c.sort === 'constraint' && !passed(design.result,c)));
+ }
+ function criterionControls(c) {
+  if (c.sort === 'criterion') return `<label class="weight"><span>Weight</span><input type="range" min="0" max="5" step="1" value="${c.weight}" data-weight="${c.id}" aria-label="${escape(c.label)} weight"><output>${c.weight}</output></label>`;
+  const unit = c.unit === 'rating' ? RATINGS[Math.round(c.limit)] : c.unit === 'yes' ? (c.limit ? 'Yes' : 'No') : c.unit;
+  return `<label class="limit"><span>${c.dir < 0 ? '≤' : '≥'}</span><input type="number" step="${c.unit === 'kWh' ? '.1' : '1'}" data-limit="${c.id}" min="${c.min}" max="${c.max}" value="${c.limit}" aria-label="${escape(c.label)} limit"><span class="limit-unit">${escape(unit)}</span></label>`;
+ }
+ function sortRow(c) {
+  return `<div class="sort-row" id="sort-${c.id}"><div class="sort-title">${escape(c.label)}<small>${c.dir < 0 ? 'Less is better' : 'More is better'}</small></div>` +
+   `<div class="sort-buttons"><button class="btn" id="criterion-${c.id}" data-sort="criterion" data-item="${c.id}" aria-pressed="${c.sort === 'criterion'}">Criterion</button>` +
+   `<button class="btn" id="constraint-${c.id}" data-sort="constraint" data-item="${c.id}" aria-pressed="${c.sort === 'constraint'}">Constraint</button></div>` +
+   `<div class="criterion-control">${criterionControls(c)}</div></div>`;
+ }
+ function renderCriteria() {
+  $('stage').innerHTML = heading('02 / Priorities','What counts as better?','Criteria weigh · constraints gate') +
+   '<div class="sort-list" id="sort-list">' + state.criteria.map(sortRow).join('') + '</div>';
+  $('panel').innerHTML = '<div class="criteria-note"><h3>Two different jobs</h3><p>A criterion can trade against another criterion. A constraint is a gate: a design must pass it to compete.</p></div>' +
+   '<p class="feedback" id="sort-feedback" aria-live="polite"></p>' +
+   (state.challenge === 'own' ? '<div class="own-editor"><label>New item<input type="text" id="new-criterion" aria-label="New criterion or constraint" maxlength="40" placeholder="For example, durability"></label>' +
+   '<label>Direction<select class="btn" id="new-direction"><option value="1">More is better</option><option value="-1">Less is better</option></select></label>' +
+   '<button id="add-criterion" class="btn">Add item</button><p class="subtle">Values use a 0 to 10 scale. Constraint limits use the same scale.</p></div>' :
+   '<p class="subtle">The suggested sort is a starting point. Any sort you choose carries through to Prototype and Trade-offs.</p>');
+  wireCriteria();
+  if ($('add-criterion')) $('add-criterion').onclick = () => {
+   const label = $('new-criterion').value.trim();
+   if (!label) return;
+   if (state.criteria.length >= 8) { hint('Eight items is the limit here. Refine the items you have.'); return; }
+   const c = criterion('own-' + Date.now() + '-' + state.criteria.length,label,+$('new-direction').value,'','criterion',5,0,10);
+   state.criteria.push(c);
+   $('sort-list').insertAdjacentHTML('beforeend',sortRow(c));
+   $('new-criterion').value = '';
+   wireCriteria();
+   mark('criteria');
+   persist();
+   tick(590);
+  };
+ }
+ function wireCriteria() {
+  $('stage').querySelectorAll('[data-sort]').forEach(b => b.onclick = () => {
+   const c = state.criteria.find(c => c.id === b.dataset.item);
+   c.sort = b.dataset.sort;
+   const row = $('sort-' + c.id);
+   row.querySelectorAll('[data-sort]').forEach(button => button.setAttribute('aria-pressed',button.dataset.sort === c.sort));
+   row.querySelector('.criterion-control').innerHTML = criterionControls(c);
+   wireWeights();
+   mark('criteria');
+   persist();
+   hint('Use the weight slider for a criterion, or edit the limit for a constraint. Then press Check sort.');
+   tick(450);
+  });
+  wireWeights();
+ }
+ function wireWeights() {
+  document.querySelectorAll('[data-weight]').forEach(input => input.oninput = () => {
+   const c = state.criteria.find(c => c.id === input.dataset.weight);
+   const old = JSON.stringify(state.winner);
+   const revision = ++state.revision;
+   c.weight = +input.value;
+   input.nextElementSibling.textContent = c.weight;
+   mark(state.station === 'trade' ? 'trade' : 'criteria');
+   if (state.station === 'trade') {
+    updateTradeBody();
+    const changed = old !== JSON.stringify(state.winner);
+    if (changed) {
+     document.querySelector('tr.top')?.classList.remove('flip-flash');
+     void $('trade-body').offsetWidth;
+     document.querySelector('tr.top')?.classList.add('flip-flash');
+     V.say('flip',{valid:() => revision === state.revision});
+     hint('flip');
+     tick(740);
+    } else hint('Move a weight slider to test another priority, or write your reason in the Why box.');
+   }
+   persist();
+  });
+  document.querySelectorAll('[data-limit]').forEach(input => {
+   input.oninput = () => {
+    const c = state.criteria.find(c => c.id === input.dataset.limit);
+    const valid = Number.isFinite(input.valueAsNumber) && input.valueAsNumber >= c.min && input.valueAsNumber <= c.max;
+    input.setAttribute('aria-invalid',!valid);
+    if (!valid) {
+     hint('Enter a limit from ' + c.min + ' to ' + c.max + '. The last valid limit still applies.');
+     return;
+    }
+    c.limit = input.valueAsNumber;
+    hint('Constraint updated. Edit another item or press Check sort.');
+    const unit = input.closest('.limit').querySelector('.limit-unit');
+    if (c.unit === 'rating') unit.textContent = RATINGS[Math.round(c.limit)];
+    if (c.unit === 'yes') unit.textContent = c.limit ? 'Yes' : 'No';
+    mark('criteria');
+    persist();
+    status('Constraint updated. All saved designs will be checked against this limit.');
+   };
+   input.onchange = () => { const c = state.criteria.find(c => c.id === input.dataset.limit); input.value = c.limit; input.setAttribute('aria-invalid','false'); hint('Edit another item or press Check sort.'); };
+  });
+ }
+ function checkSort() {
+  const correct = state.criteria.filter(c => c.sort === c.suggested).length;
+  $('sort-feedback').textContent = state.challenge === 'own' ? 'Your criteria and constraints define this challenge.' :
+   `${correct} of ${state.criteria.length} match the suggested sort. ` +
+   state.criteria.filter(c => c.sort !== c.suggested).map(c => `${c.label}: suggested ${c.suggested}.`).join(' ');
+  const weighted = state.criteria.filter(c => c.sort === 'criterion').length;
+  const gates = state.criteria.length - weighted;
+  const summary = weighted + ' weighted ' + (weighted === 1 ? 'criterion' : 'criteria') + ' / ' +
+   gates + ' ' + (gates === 1 ? 'constraint' : 'constraints');
+  $('sort-feedback').insertAdjacentHTML('afterbegin','<strong>' + summary + '</strong><br>');
+  hint(summary + '. ' + L.sorted);
+  V.say('sorted');
+  mark('criteria');
+  tick(620);
+ }
+ // Explicit Euler, sixty-second steps, three days. Only the third day is reported.
+ function roomModel(options = state.options, comfort = state.comfort) {
+  const [shades,roof,insulation,vents,fans,off,trees,ac] = options;
+  let temp = 30;
+  let energy = 0;
+  let hours = 0;
+  let peak = -100;
+  let feelPeak = -100;
+  const trace = [];
+  for (let step = 0; step < 4320; step++) {
+   const t = (step % 1440) / 60;
+   const school = t >= 8 && t < 15;
+   const outside = 28.5 + 6.5 * Math.cos(2 * Math.PI * (t - 16) / 24);
+   const sun = t >= 6 && t <= 19 ? 900 * Math.sin(Math.PI * (t - 6) / 13) : 0;
+   const west = t >= 12 && t <= 19 ? Math.max(80,700 * Math.sin(Math.PI * (t - 12) / 7)) : t >= 6 && t < 12 ? 80 : 0;
+   const power = school ? off ? 500 : 800 : 100;
+   const fanPower = school && fans ? 240 : 0;
+   let exchange = 200 + (school ? 216 : 0);
+   if (vents && (t >= 19 || t < 7) && outside < temp) exchange += 576;
+   let heat = exchange * (outside - temp);
+   heat += 72 * (insulation ? .35 : 1) * (outside + (roof ? .3 : .9) * sun / 20 - temp);
+   heat += 8 * .6 * west * (shades ? .23 : 1) * (trees ? .5 : 1);
+   heat += (school ? 2100 : 0) + power + fanPower;
+   const cooling = ac && t >= 7 && t < 15 && temp > 26 ? Math.min(10500,Math.max(0,(temp-26)*20e6/60 + heat)) : 0;
+   temp += (heat - cooling) * 60 / 20e6;
+   if (step < 2880) continue;
+   const feel = temp - (fans && school ? 2.5 : 0);
+   energy += (power + fanPower + cooling / 3) / 60000;
+   if (school) {
+    peak = Math.max(peak,temp);
+    feelPeak = Math.max(feelPeak,feel);
+    if (feel > comfort) hours += 1 / 60;
+   }
+   if (step % 10 === 0) trace.push([t,outside,temp,feel]);
+  }
+  return {peak,feel:feelPeak,hours,energy,cost:ROOM_OPTIONS.reduce((sum,o,i) => sum + (options[i] ? o[2] : 0),0),
+   ready:trees ? 0 : 1,safe:1,carbon:energy*.367,trace};
+ }
+ function waterModel(steps = state.steps, source = state.source) {
+  const protection = [0,0,0,0];
+  let clear = source !== 1;
+  let time = 0;
+  let cost = 0;
+  let fuel = 0;
+  let taste = 2;
+  let filtered = false;
+  let disinfectedAfterFilter = false;
+  steps.forEach(index => {
+   const step = STEPS[index];
+   let ratings = step[3].slice();
+   if ((index === 4 || index === 5) && !clear) ratings = ratings.map(v => Math.max(0,v-1));
+   if ((index === 4 || index === 5) && filtered) disinfectedAfterFilter = true;
+   ratings.forEach((v,i) => protection[i] = Math.max(protection[i],v));
+   if (index <= 2) clear = true;
+   if (index === 2) filtered = true;
+   time += step[2];
+   cost = Math.max(cost,step[4]);
+   fuel = Math.max(fuel,step[5]);
+   taste = Math.min(taste,step[6]);
+  });
+  if (disinfectedAfterFilter) protection.fill(4);
+  // CDC's combination is microfilter plus chemical disinfection; pre-cleaning order remains important in cloudy water.
+  if (source !== 1 && steps.includes(2) && (steps.includes(4) || steps.includes(5))) protection.fill(4);
+  const dioxide = steps.includes(5);
+  return {protection:Math.min(...protection),ratings:protection,time,cost,fuel,taste,
+   longWait:dioxide,timeMax:time + (dioxide ? 210 : 0)};
+ }
+ function optionTile(o, index, water = false) {
+  const selected = water ? state.steps.includes(index) : state.options[index];
+  return `<button class="option" id="${water ? 'step' : 'option'}-${index}" data-${water ? 'step' : 'option'}="${index}" aria-pressed="${selected}">` +
+   img(o[0]) + `<span><b>${escape(o[1])}</b><small>${water ? o[2] + ' min' : money(o[2])}</small></span></button>`;
+ }
+ function renderPrototype() {
+  if (state.challenge === 'own') { renderOwnPrototype(); return; }
+  const room = state.challenge === 'room';
+  $('stage').innerHTML = heading('03 / Prototype',room ? 'One room. One hottest day.' : 'Build a treatment sequence.',room ? 'Day 3 / 60 s model' : '4 L / up to 3 steps') +
+   (room ? '<div class="chart-shell">' + img('room') + '<svg id="chart" role="img" aria-label="Outdoor, indoor and feels-like temperatures over twenty-four hours"></svg></div>' +
+   '<div class="legend"><span><i class="out"></i>Outdoor</span><span><i class="in"></i>Indoor</span><span><i class="feel"></i>Feels-like</span><span>Shaded: school 08 to 15</span></div>' :
+   '<div class="steps-row" id="chosen-steps"></div><div class="protection" id="protection"></div>') +
+   '<div class="results" id="results" aria-live="polite"></div>' +
+   `<p class="${room ? 'subtle' : 'water-note'}">${room ? 'Classroom model: one room and one heat-wave shape; humidity, individual heat safety and wall differences are omitted. Room and costs are made up.' :
+   'Simulation only. For real water, follow your local health department or product label. None of these steps removes nitrate or lead.'}</p>`;
+  $('panel').innerHTML = room ? '<h3>Interventions <span class="subtle">/ assumed costs</span></h3><div class="option-grid">' +
+   ROOM_OPTIONS.map((o,i) => optionTile(o,i)).join('') + '</div>' +
+   `<label class="slider-box">Comfort line<input type="range" id="comfort" min="25" max="29" step="1" value="${state.comfort}"><output id="comfort-value">${state.comfort} °C</output></label>` +
+   '<p class="subtle">Trees take about 15 years. Night vents are lockable. Fans lower feels-like by 2.5 °C during school.</p>' :
+   '<h3>Source</h3><div class="source-grid">' + [['stream','Clear stream'],['river','Cloudy river after rain'],['barrel','Rain barrel']].map((s,i) =>
+   `<button class="source" id="source-${i}" data-source="${i}" aria-pressed="${state.source === i}">${img(s[0])}<span>${s[1]}</span></button>`).join('') +
+   '</div><h3>Steps <span class="subtle">/ tap in order; tap again to remove</span></h3><div class="option-grid">' + STEPS.map((o,i) => optionTile(o,i,true)).join('') +
+   '</div><p class="water-note">Boil 3 minutes above 2,000 m. Chlorine dioxide can need up to 4 hours for Cryptosporidium: follow the label.</p>';
+  document.querySelectorAll('[data-option]').forEach(b => b.onclick = () => {
+   const index = +b.dataset.option;
+   state.options[index] = !state.options[index];
+   b.setAttribute('aria-pressed',state.options[index]);
+   updatePrototype();
+   mark('prototype');
+   hint('Change another option tile or press Save design to keep this result.');
+   tick(440 + index * 30);
+  });
+  document.querySelectorAll('[data-step]').forEach(b => b.onclick = () => {
+   const index = +b.dataset.step;
+   if (state.steps.includes(index)) state.steps = state.steps.filter(v => v !== index);
+   else if (state.steps.length < 3) state.steps.push(index);
+   else { hint('limit'); V.say('limit'); tick(180); return; }
+   b.setAttribute('aria-pressed',state.steps.includes(index));
+   updatePrototype();
+   mark('prototype');
+   hint('Tap the next step tile, tap a chosen step to remove it, or press Save design.');
+   tick(520);
+  });
+  document.querySelectorAll('[data-source]').forEach(b => b.onclick = () => {
+   state.source = +b.dataset.source;
+   document.querySelectorAll('[data-source]').forEach(button => button.setAttribute('aria-pressed',button === b));
+   updatePrototype();
+   tick(450);
+  });
+  if ($('comfort')) $('comfort').oninput = e => {
+   state.comfort = +e.target.value;
+   $('comfort-value').textContent = state.comfort + ' °C';
+   state.designs.forEach(d => {
+    d.settings.comfort = state.comfort;
+    const r = roomModel(d.settings.options,state.comfort);
+    delete r.trace;
+    d.result = r;
+   });
+   updatePrototype();
+  };
+  updatePrototype();
+ }
+ function resultCard(result) {
+  const room = state.challenge === 'room';
+  const metrics = room ? [['Hottest indoor',fixed(result.peak)+' °C','School hours'],['Hottest feels-like',fixed(result.feel)+' °C','With selected options'],
+   ['Over '+state.comfort+' °C',fixed(result.hours)+' h','School feels-like'],['Electricity',fixed(result.energy)+' kWh',fixed(result.carbon)+' kg CO₂ / day']] :
+   [['Batch time',result.longWait ? result.time+'–'+result.timeMax+' min' : result.time+' min','Minimum estimate; label may require longer'],
+   ['Cost level',displayValue(result.cost,{unit:'level'}),'Highest step cost'],['Needs fuel',result.fuel ? 'Yes' : 'No','Per batch'],
+   ['Taste',displayValue(result.taste,{unit:'taste'}),'Classroom category']];
+  return metrics.map(m => `<div class="metric">${escape(m[0])}<b style="${m[1].length > 14 ? 'font-size:13px' : ''}">${escape(m[1])}</b><small>${escape(m[2])}</small></div>`).join('') +
+   '<div class="constraint-list">' + state.criteria.map(c => {
+    const value = displayValue(valueOf(result,c),c);
+    return c.sort === 'constraint' ? `<span class="${passed(result,c) ? 'pass' : 'fail'}">${passed(result,c) ? 'PASS' : 'FAIL'} ${escape(c.label)}: ${escape(value)}</span>` :
+     `<span>${escape(c.label)}: ${escape(value)}</span>`;
+   }).join('') + '</div>';
+ }
+ function updatePrototype() {
+  if (state.challenge === 'own') return;
+  const result = state.challenge === 'room' ? roomModel() : waterModel();
+  state.result = result;
+  $('results').innerHTML = resultCard(result);
+  if (state.challenge === 'room') drawChart(result);
+  else {
+   $('chosen-steps').innerHTML = state.steps.length ? state.steps.map((index,i) =>
+    `<button class="step-chosen" data-remove="${index}" aria-label="Remove step ${i+1}: ${escape(STEPS[index][1])}"><span class="badge">${i+1}</span>${img(STEPS[index][0])}<span>${escape(STEPS[index][1])}</span></button>`).join('') :
+    '<div class="steps-empty">Tap a step tile to build the first barrier.</div>';
+   $('chosen-steps').querySelectorAll('[data-remove]').forEach(b => b.onclick = () => {
+    const index = +b.dataset.remove;
+    state.steps = state.steps.filter(v => v !== index);
+    $('step-' + index).setAttribute('aria-pressed','false');
+    updatePrototype();
+    $('step-' + index).focus({preventScroll:true});
+    tick(400);
+   });
+   if (!$('protection').childElementCount) {
+    $('protection').innerHTML = ['Giardia','Cryptosporidium','Bacteria','Viruses'].map((name,i) =>
+     `<div><div class="protection-label"><span>${name}</span><b id="rating-${i}"></b></div>` +
+     `<div class="bar-track"><div class="bar-fill" id="bar-${i}" style="width:0%;${i%2 ? 'background:linear-gradient(90deg,#6b529c,#c9a0ff)' : ''}"></div></div></div>`).join('');
+   }
+   result.ratings.forEach((rating,i) => {
+    $('rating-' + i).textContent = RATINGS[rating];
+    $('bar-' + i).style.width = rating * 25 + '%';
+   });
+  }
+  status((state.challenge === 'room' ? money(result.cost) + ' · ' + fixed(result.hours) + ' h over comfort' : 'Weakest group: ' + RATINGS[result.protection]) +
+   ' · ' + (failures({result}).length ? 'Constraint not met' : 'All constraints pass'));
+ }
+ function drawChart(result) {
+  const svg = $('chart');
+  if (!svg) return;
+  const {width:w,height:h} = svg.getBoundingClientRect();
+  if (w < 10 || h < 10) return;
+  const left = 34;
+  const top = 20;
+  const right = w - 14;
+  const bottom = h - 26;
+  const x = t => left + (right-left) * t / 24;
+  const y = t => bottom - (bottom-top) * (t-20) / 24;
+  const path = column => result.trace.map((p,i) => (i ? 'L' : 'M') + fixed(x(p[0]),1) + ' ' + fixed(y(p[column]),1)).join(' ');
+  let content = `<defs><linearGradient id="wash" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#00f28d" stop-opacity=".12"/><stop offset="1" stop-color="#00f28d" stop-opacity="0"/></linearGradient></defs>`;
+  content += `<rect x="${x(8)}" y="${top}" width="${x(15)-x(8)}" height="${bottom-top}" fill="#ffffff" opacity=".05"/>`;
+  for (let t = 20; t <= 44; t += 4) content += `<path d="M${left} ${y(t)}H${right}" stroke="#ffffff20"/><text x="${left-7}" y="${y(t)+4}" text-anchor="end" fill="#becddd" font-size="10">${t}°</text>`;
+  for (let t = 0; t <= 24; t += w < 400 ? 6 : 4) content += `<text x="${x(t)}" y="${h-8}" text-anchor="middle" fill="#becddd" font-size="10">${t}:00</text>`;
+  content += `<path d="M${left} ${y(state.comfort)}H${right}" stroke="#ffd28a" stroke-dasharray="3 3"/>`;
+  content += `<text x="${right}" y="${y(state.comfort)-5}" text-anchor="end" fill="#ffd28a" font-size="10">Comfort ${state.comfort}°</text>`;
+  content += `<path d="${path(2)} L${x(result.trace.at(-1)[0])} ${bottom}H${left}Z" fill="url(#wash)"/>`;
+  content += `<path d="${path(1)}" fill="none" stroke="#ff8a8a" stroke-width="1.8" stroke-dasharray="6 5"/>`;
+  content += `<path d="${path(2)}" fill="none" stroke="#00f28d" stroke-width="2.8"/>`;
+  content += `<path d="${path(3)}" fill="none" stroke="#5aa9ff" stroke-width="2" stroke-dasharray="2 5"/>`;
+  svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
+  svg.innerHTML = content;
+ }
+ function renderOwnPrototype() {
+  $('stage').innerHTML = heading('03 / Evidence','Your design value table','Your evidence / 0 to 10') +
+   '<p class="subtle">Higher or lower follows the direction you chose in Criteria. Values are your evidence, not simulated results.</p>' +
+   '<div class="table-wrap"><table><thead><tr><th>Design name</th>' + state.criteria.map(c => `<th>${escape(c.label)}<br><span class="subtle">${c.dir > 0 ? 'More' : 'Less'} is better</span></th>`).join('') +
+   '</tr></thead><tbody><tr><td><input id="design-name" type="text" maxlength="40" aria-label="Design name" value="' + escape(state.draft.name) + '" placeholder="Design name"></td>' +
+   state.criteria.map(c => `<td><input class="own-value" data-value="${c.id}" type="number" min="0" max="10" step="1" aria-label="${escape(c.label)} value" value="${state.draft.values[c.id] ?? 5}"></td>`).join('') +
+   '</tr>' + state.designs.map(d => '<tr class="saved-evidence"><td>' + escape(d.name) + '<small>Saved</small></td>' +
+    state.criteria.map(c => '<td>' + (Number.isFinite(valueOf(d.result,c)) ? fixed(valueOf(d.result,c),0) : 'No value') + '</td>').join('') + '</tr>').join('') +
+   '</tbody></table></div><div class="results" id="results"></div>';
+  $('panel').innerHTML = '<h3>Evidence before preference</h3><p>Name the design, then enter a value for every item. Save up to four designs.</p>' +
+   '<p class="subtle">Your challenge saves only on this device. Nothing leaves it. The Why box is not saved.</p>' +
+   '<button class="btn" id="clear-own">Clear my challenge</button>' +
+   (!state.criteria.length ? '<p class="water-note">Add criteria in the Criteria station before saving designs.</p>' : '');
+  $('design-name').oninput = e => { state.draft.name = e.target.value; mark('prototype'); persist(); };
+  document.querySelectorAll('[data-value]').forEach(input => input.oninput = () => {
+   const valid = Number.isFinite(input.valueAsNumber) && input.valueAsNumber >= 0 && input.valueAsNumber <= 10;
+   input.setAttribute('aria-invalid',!valid);
+   if (!valid) { status('Enter a value from 0 to 10.'); return; }
+   state.draft.values[input.dataset.value] = input.valueAsNumber;
+   updateOwnResults();
+   mark('prototype');
+   persist();
+  });
+  $('clear-own').onclick = () => modal('Clear my challenge?', 'This removes your saved challenge, cards, criteria and designs from this device.',
+   [['Keep challenge'],['Clear my challenge',() => {
+    try { localStorage.removeItem('design-challenge-studio'); } catch (e) { /* Device storage unavailable. */ }
+    enter('own');
+    $('own-title').focus({preventScroll:true});
+    hint('clear');
+   }]]);
+  updateOwnResults();
+ }
+ function ownResult() {
+  return Object.fromEntries(state.criteria.map(c => [c.id,Number(state.draft.values[c.id] ?? 5)]));
+ }
+ function updateOwnResults() {
+  const result = ownResult();
+  $('results').innerHTML = '<div class="constraint-list">' + state.criteria.map(c =>
+   `<span class="${c.sort === 'constraint' ? passed(result,c) ? 'pass' : 'fail' : ''}">${c.sort === 'constraint' ? passed(result,c) ? 'PASS ' : 'FAIL ' : ''}${escape(c.label)}: ${valueOf(result,c)}</span>`).join('') + '</div>';
+ }
+ function showSaved(design,fail) {
+  let receipt = $('save-receipt');
+  if (!receipt) {
+   receipt = document.createElement('p');
+   receipt.id = 'save-receipt';
+   receipt.className = 'save-receipt';
+   receipt.setAttribute('role','status');
+   $('panel').append(receipt);
+  }
+  receipt.classList.toggle('failed',fail);
+  receipt.textContent = design.name + ' saved • ' + (fail ? 'Constraint not met' : 'All constraints pass');
+  if (!Curio.reduce) receipt.animate([{opacity:.35},{opacity:1}],{duration:300});
+ }
+ function saveDesign() {
+  if (state.challenge === 'own' && !state.criteria.length) { hint('Open Criteria and press Add item before saving a design.'); return; }
+  const invalid = [...document.querySelectorAll('[data-value]')].find(input =>
+   !Number.isFinite(input.valueAsNumber) || input.valueAsNumber < 0 || input.valueAsNumber > 10);
+  if (invalid) {
+   hint('Enter a value from 0 to 10 in each design cell, then press Save design.');
+   invalid.focus({preventScroll:true});
+   return;
+  }
+  const result = state.challenge === 'room' ? roomModel() : state.challenge === 'water' ? waterModel() : ownResult();
+  const name = state.challenge === 'own' ? state.draft.name.trim() : '';
+  const design = {name:name || 'Design ' + (state.designs.length + 1),result,
+   settings:{options:state.options.slice(),comfort:state.comfort,steps:state.steps.slice(),source:state.source}};
+  // Recalculate saved hours at the common comfort line if it changes, so comparisons use one definition.
+  design.result.trace = undefined;
+  const storeDesign = index => {
+   if (index < 4 && index < state.designs.length) {
+    if (!name) design.name = 'Design ' + (index + 1);
+    state.designs[index] = design;
+   } else state.designs.push(design);
+   $('design-count').textContent = state.designs.length + ' / 4 designs saved';
+   mark('prototype');
+   persist();
+   if (state.challenge === 'own') {
+    const values = document.querySelector('.table-wrap tbody');
+    values.querySelectorAll('tr.saved-evidence').forEach(row => row.remove());
+    values.insertAdjacentHTML('beforeend',state.designs.map(d => '<tr class="saved-evidence"><td>' + escape(d.name) + '<small>Saved</small></td>' +
+     state.criteria.map(c => '<td>' + (Number.isFinite(valueOf(d.result,c)) ? fixed(valueOf(d.result,c),0) : 'No value') + '</td>').join('') + '</tr>').join(''));
+   }
+   const fail = failures(design).length > 0;
+   const constraintKey = JSON.stringify(state.criteria.filter(c => c.sort === 'constraint'));
+   const savedKey = state.challenge === 'own' ? 'savedOwn' : 'saved';
+   hint(design.name + ' saved. ' + L[fail ? 'fail' : savedKey]);
+   showSaved(design,fail);
+   V.say(fail ? 'fail' : savedKey,{valid:() => state.designs.includes(design) &&
+    (!fail || constraintKey === JSON.stringify(state.criteria.filter(c => c.sort === 'constraint')))});
+   status(design.name + ' saved · ' + (fail ? 'Constraint not met' : 'All constraints pass'));
+   Curio.yes();
+  };
+  if (state.designs.length < 4) storeDesign(state.designs.length);
+  else modal('Replace which design?', 'Four designs are already saved. Choose one to replace.',
+   [...state.designs.map((d,i) => [d.name,() => storeDesign(i)]),['Cancel']]);
+ }
+ function score(weights = null) {
+  const criteria = state.criteria.filter(c => c.sort === 'criterion');
+  const passing = state.designs.filter(d => !failures(d).length);
+  const ranges = criteria.map(c => passing.map(d => valueOf(d.result,c)));
+  const rows = state.designs.map(d => {
+   const failed = failures(d);
+   const values = criteria.map((c,i) => {
+    const raw = valueOf(d.result,c);
+    const min = Math.min(...ranges[i]);
+    const max = Math.max(...ranges[i]);
+    const normalized = failed.length ? null : max === min ? 10 : (c.dir > 0 ? raw-min : max-raw) * 10 / (max-min);
+    return {raw,score:normalized};
+   });
+   return {name:d.name,failed:failed.map(c => Number.isFinite(valueOf(d.result,c)) ? c.label : 'Missing value: '+c.label),
+    values,total:failed.length ? null :
+    values.reduce((sum,v,i) => sum + v.score * (weights ? weights[i] : criteria[i].weight),0)};
+  });
+  const max = Math.max(...rows.filter(r => r.total !== null).map(r => r.total));
+  const winners = rows.map((r,i) => r.total !== null && Math.abs(r.total-max) < 1e-7 ? i : -1).filter(i => i >= 0);
+  return {rows,winners,criteria};
+ }
+ function findFlips(base) {
+  const current = JSON.stringify(base.winners);
+  return base.criteria.map((c,index) => {
+   for (let distance = 1; distance <= 5; distance++) {
+    for (const weight of [c.weight-distance,c.weight+distance]) {
+     if (weight < 0 || weight > 5) continue;
+     const weights = base.criteria.map(item => item.weight);
+     weights[index] = weight;
+     const result = score(weights);
+     if (JSON.stringify(result.winners) !== current) return {id:c.id,label:c.label,from:c.weight,to:weight,
+      winners:result.winners,names:result.winners.map(i => state.designs[i].name)};
+    }
+   }
+   return {id:c.id,label:c.label,from:c.weight,to:null};
+  });
+ }
+ function renderTrade() {
+  const criteria = state.criteria.filter(c => c.sort === 'criterion');
+  $('stage').innerHTML = heading('04 / Trade-offs','Which design earns the choice?','Weighted evidence') +
+   (state.designs.length < 2 ? '<div class="table-wrap"><p class="empty-comparison">Save at least two designs to compare.<br><span class="subtle">Open Prototype and press Save design for each idea.</span></p></div>' :
+   '<div class="table-wrap"><table id="trade-table"><thead><tr><th>Design</th>' + criteria.map(c =>
+   `<th>${escape(c.label)}<label class="weight"><input data-weight="${c.id}" type="range" min="0" max="5" step="1" value="${c.weight}" aria-label="${escape(c.label)} weight"><output>${c.weight}</output></label></th>`).join('') +
+   '<th>Total</th></tr></thead><tbody id="trade-body"></tbody></table></div>') +
+   '<p class="subtle" id="winner-summary"></p><p class="subtle">Score: best passing = 10; worst passing = 0; equal = 10. Total = sum of weight × score. Failed designs never set the scale.</p>' +
+   (state.challenge === 'water' ? '<p class="subtle">Time scores use minimum batch estimates. Chlorine dioxide may need up to 210 minutes longer; follow the label.</p>' : '');
+  $('panel').innerHTML = '<h3>Flip finder</h3><p class="subtle">Smallest single weight change, in whole steps. A tie counts as a change.</p>' +
+   '<div class="flip-list" id="flip-list"></div><div class="why-box"><label for="why">Why this design?</label>' +
+   '<textarea id="why" aria-label="Why this design?" maxlength="2000" placeholder="We chose Design 2 because …, even though …"></textarea><p class="subtle">Session only. This explanation is not saved.</p></div>';
+  $('why').value = state.why;
+  $('why').oninput = e => { state.why = e.target.value; };
+  wireWeights();
+  updateTradeBody();
+ }
+ function updateTradeBody() {
+  const result = score();
+  state.scores = result.rows;
+  state.winner = result.winners.length === 1 ? result.winners[0] : null;
+  state.flips = findFlips(result);
+  if (!$('trade-body')) {
+   $('flip-list').innerHTML = '<p class="subtle">Save two designs to find a meaningful flip.</p>';
+   return;
+  }
+  $('trade-body').innerHTML = result.rows.map((r,i) => `<tr class="${r.failed.length ? 'excluded' : state.winner === i ? 'top' : ''}"><td>${escape(r.name)}` +
+   (r.failed.length ? '<small>FAIL: ' + escape(r.failed.join(', ')) + '</small>' : state.winner === i ? '<span class="top-tag">top</span>' : '') + '</td>' +
+   r.values.map((v,k) => `<td>${escape(displayValue(v.raw,result.criteria[k]))}<small>${v.score === null ? 'Excluded' : fixed(v.score,1)+' / 10'}</small></td>`).join('') +
+   `<td><b>${r.total === null ? 'FAIL' : fixed(r.total,1)}</b></td></tr>`).join('');
+  $('winner-summary').textContent = result.winners.length === 0 ? 'No passing designs. Change an option or a constraint.' :
+   result.winners.length > 1 ? 'tie, no top design' : state.designs[state.winner].name + ' is top under these priorities.';
+  $('flip-list').innerHTML = state.flips.map(f => `<div class="flip-item">${escape(f.label)}<strong>${f.to === null ? 'no single change flips it' :
+   f.from + ' → ' + f.to + ': ' + (f.names.length === 1 ? escape(f.names[0]) + ' becomes top' : 'tie, no top design')}</strong></div>`).join('') ||
+   '<p class="subtle">There are no weighted criteria. Every passing design ties.</p>';
+  status($('winner-summary').textContent);
+ }
+ document.querySelectorAll('[data-start]').forEach(b => b.onclick = () => start(b.dataset.start));
+ document.querySelectorAll('[data-station]').forEach(b => b.onclick = () => { setMode(b.dataset.station); tick(380); });
+ $('reset').onclick = reset;
+ document.addEventListener('keydown',e => {
+  if (!state.selected || !['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Enter','Escape'].includes(e.key)) return;
+  if (e.target.matches('input,textarea')) return;
+  e.preventDefault();
+  if (e.key === 'Escape') {
+   state.selected = null;
+   document.querySelectorAll('[data-card]').forEach(b => b.setAttribute('aria-pressed','false'));
+   hint('Tap a sub-problem card, then tap a branch. Press Check tree when you are ready.');
+  } else if (e.key === 'Enter') place(state.branchCursor);
+  else {
+   state.branchCursor = (state.branchCursor + (['ArrowRight','ArrowDown'].includes(e.key) ? 1 : 2)) % 3;
+   $('branch-' + state.branchCursor).focus({preventScroll:true});
+   hint('Press Enter to place the card in ' + branches()[state.branchCursor] + '.');
+  }
+ });
+ new ResizeObserver(() => { if (state.station === 'prototype' && state.challenge === 'room' && state.result) drawChart(state.result); }).observe($('stage'));
+ window.__tool = {state,start,setMode,roomModel,waterModel,score,findFlips,saveDesign,allLines:V.allLines,vlog:V.log,
+  get challenge(){return state.challenge;},get station(){return state.station;},get tree(){return state.tree;},
+  get criteria(){return state.criteria;},get designs(){return state.designs;},get scores(){return state.scores;},
+  get winner(){return state.winner;},get flips(){return state.flips;}};
+ Curio.init({clips:"voice:*",rate:.95});
+ document.querySelectorAll('.card-body').forEach(body => {
+  body.tabIndex = 0;
+  body.setAttribute('aria-label',body.querySelector('h3').textContent + ' facts');
+ });
+ $('home-hint-slot').replaceChildren($('hint'));
+ hint('wStart');
+})();
+</script>
+</body>
+</html>

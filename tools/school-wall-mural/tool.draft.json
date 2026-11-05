@@ -1,0 +1,26 @@
+{
+  "id": "school-wall-mural",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Six neighbors. Four murals. Your priorities pick the wall.",
+  "outcome": "Build and defend community art criteria using evidence from placement and paint tests",
+  "driver": "students",
+  "minutes": "25-40",
+  "modes": [
+    "Listen",
+    "Judge",
+    "Street test",
+    "Board"
+  ],
+  "grades_label": "Grades 6-8",
+  "sources": [
+    "National Core Arts Standards: VA:Pr4, Pr5, Pr6, Re9, Cn10",
+    "American Academy of Ophthalmology, EyeWiki: Visual Acuity",
+    "ASTM D4303 and D5098: artists paint lightfastness",
+    "Bruce MacEvoy, Handprint: Guide to watercolor pigments; Golden Artist Colors pigment data",
+    "Fictional neighbors, scores, glance guide and fade model written for Curio Class",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-04"
+}

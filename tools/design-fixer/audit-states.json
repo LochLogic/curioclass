@@ -1,0 +1,128 @@
+{
+  "keep": [
+    "#poster",
+    "#squint-row"
+  ],
+  "states": [
+    {
+      "name": "squint-selected",
+      "steps": [
+        {
+          "click": "#el-cupcake"
+        },
+        {
+          "click": "#squint-btn"
+        }
+      ]
+    },
+    {
+      "name": "fixed-wipe",
+      "steps": [
+        {
+          "click": "#m-fix"
+        },
+        {
+          "drag": "let r=document.querySelector('#poster').getBoundingClientRect();\nlet x=r.x+240*r.width/1000,y=r.y+630*r.height/1414;\nreturn Array.from({length:16},(_,i)=>[x+590*r.width/1000*i/15,y+(i%3-1)*.5]);"
+        },
+        {
+          "click": "#before"
+        }
+      ]
+    },
+    {
+      "name": "locked-cat",
+      "steps": [
+        {
+          "click": "#m-fix"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#el-cat"
+        }
+      ]
+    },
+    {
+      "name": "science-contrast",
+      "steps": [
+        {
+          "click": "#m-fix"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        },
+        {
+          "click": "#el-date"
+        }
+      ]
+    },
+    {
+      "name": "rhythm",
+      "steps": [
+        {
+          "click": "#m-fix"
+        },
+        {
+          "click": "#next",
+          "times": 6
+        },
+        {
+          "click": "#el-bin2"
+        }
+      ]
+    },
+    {
+      "name": "unity",
+      "steps": [
+        {
+          "click": "#m-fix"
+        },
+        {
+          "click": "#next",
+          "times": 8
+        },
+        {
+          "click": "#el-title"
+        }
+      ]
+    },
+    {
+      "name": "final-mix",
+      "steps": [
+        {
+          "click": "#m-fix"
+        },
+        {
+          "click": "#next",
+          "times": 9
+        },
+        {
+          "click": "#el-price"
+        }
+      ]
+    },
+    {
+      "name": "part-menu",
+      "sizes": [
+        "1366x768",
+        "1280x720"
+      ],
+      "steps": [
+        {
+          "click": "#selected-name"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#bigger"
+        }
+      ]
+    }
+  ]
+}

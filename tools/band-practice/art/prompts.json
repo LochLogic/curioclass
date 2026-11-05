@@ -1,0 +1,57 @@
+{
+  "house_style": "Soft painted gouache with fine colored-pencil grain, sophisticated music-room illustration for ages 11 to 14. Dim cool slate shadows, warm evening light from upper left, authentic instruments with tactile wood and metal detail. No people, faces or body parts. No text, letters, numbers or logos.",
+  "assets": [
+    {
+      "name": "rehearsal-room",
+      "prompt": "An empty school band rehearsal room in dim evening light, pale painted brick walls, rows of empty black music stands and folding chairs at the back, a worn wooden floor with a few cables, a warm lamp glow in the left corner. Wide open foreground for four instrument stations. No instruments in this background.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 74,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "drums",
+      "prompt": "A small drum kit with a kick drum with a blank head, a snare, a hi-hat and one cymbal, with sticks resting on the snare. Front three-quarter view, whole object visible, centered, on flat pure green #00FF00 background.",
+      "aspect": "4:3",
+      "width": 440,
+      "quality": 80,
+      "cutout": true,
+      "drawn_by": "codex",
+      "holes": true,
+      "despill": true
+    },
+    {
+      "name": "bass",
+      "prompt": "A red four-string electric bass guitar leaning against a small black amplifier with a blank front. Front three-quarter view, whole object visible, centered, on flat pure green #00FF00 background.",
+      "aspect": "4:3",
+      "width": 440,
+      "quality": 80,
+      "cutout": true,
+      "drawn_by": "codex",
+      "holes": true,
+      "despill": true
+    },
+    {
+      "name": "keys",
+      "prompt": "A black electronic keyboard with accurate alternating black and white keys on a simple X stand. Front three-quarter view, whole object visible, centered, on flat pure green #00FF00 background.",
+      "aspect": "4:3",
+      "width": 440,
+      "quality": 80,
+      "cutout": true,
+      "drawn_by": "codex",
+      "holes": true,
+      "despill": true
+    },
+    {
+      "name": "shaker",
+      "prompt": "One small hand-sized egg-shaped wooden percussion shaker resting on a tall worn four-legged wooden music stool. The shaker is one-quarter the width of the round stool seat, with subtle wood grain and a fine equatorial join. Believable four legs and sturdy crossbars, fully visible. Front three-quarter view, warm upper-left light, restrained amber highlights, cool dark undersides. Whole stool and shaker centered with margin, on flat pure green #00FF00 including the holes between legs. No ground plane, people, text or logos.",
+      "aspect": "4:3",
+      "width": 440,
+      "quality": 80,
+      "cutout": true,
+      "drawn_by": "codex",
+      "holes": true,
+      "despill": true
+    }
+  ]
+}

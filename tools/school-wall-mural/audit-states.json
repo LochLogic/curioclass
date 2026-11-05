@@ -1,0 +1,293 @@
+{
+  "keep": [
+    "#leader"
+  ],
+  "states": [
+    {
+      "name": "ranking",
+      "steps": [
+        {
+          "click": "#m-judge"
+        }
+      ],
+      "keep": [
+        "#ranking",
+        "#leader"
+      ]
+    },
+    {
+      "name": "large-sketch",
+      "steps": [
+        {
+          "click": "#m-judge"
+        },
+        {
+          "click": "#sketch-1"
+        }
+      ]
+    },
+    {
+      "name": "across",
+      "steps": [
+        {
+          "click": "#m-street"
+        },
+        {
+          "click": "#view-across"
+        }
+      ]
+    },
+    {
+      "name": "bus-recall",
+      "steps": [
+        {
+          "click": "#m-street"
+        },
+        {
+          "click": "#view-bus"
+        },
+        {
+          "click": "#ride"
+        },
+        {
+          "wait": 1850
+        }
+      ]
+    },
+    {
+      "name": "summer-five",
+      "steps": [
+        {
+          "click": "#m-street"
+        },
+        {
+          "click": "#view-summers"
+        },
+        {
+          "click": "#summers"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        }
+      ]
+    },
+    {
+      "name": "board-reply",
+      "steps": [
+        {
+          "click": "#m-board"
+        },
+        {
+          "click": "#unanswered",
+          "times": 3,
+          "gap": 0.2
+        }
+      ]
+    },
+    {
+      "name": "all-weights-zero",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#m-judge"
+        },
+        {
+          "click": "#minus-0",
+          "times": 2,
+          "gap": 0.15
+        },
+        {
+          "click": "#minus-1",
+          "times": 2,
+          "gap": 0.15
+        },
+        {
+          "click": "#minus-2",
+          "times": 2,
+          "gap": 0.15
+        },
+        {
+          "click": "#minus-3",
+          "times": 2,
+          "gap": 0.15
+        },
+        {
+          "click": "#minus-4",
+          "times": 2,
+          "gap": 0.15
+        },
+        {
+          "click": "#minus-5",
+          "times": 2,
+          "gap": 0.15
+        },
+        {
+          "click": "#minus-6",
+          "times": 2,
+          "gap": 0.15
+        }
+      ]
+    },
+    {
+      "name": "all-weights-three",
+      "sizes": [
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#m-judge"
+        },
+        {
+          "click": "#plus-0"
+        },
+        {
+          "click": "#plus-1"
+        },
+        {
+          "click": "#plus-2"
+        },
+        {
+          "click": "#plus-3"
+        },
+        {
+          "click": "#plus-4"
+        },
+        {
+          "click": "#plus-5"
+        },
+        {
+          "click": "#plus-6"
+        }
+      ]
+    },
+    {
+      "name": "criterion-list",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#m-judge"
+        },
+        {
+          "click": "#add"
+        }
+      ]
+    },
+    {
+      "name": "custodian-open",
+      "steps": [
+        {
+          "click": "#neighbor-5"
+        }
+      ]
+    },
+    {
+      "name": "paint-swaps",
+      "steps": [
+        {
+          "click": "#m-street"
+        },
+        {
+          "click": "#view-summers"
+        },
+        {
+          "click": "#swap-0"
+        },
+        {
+          "click": "#swap-1"
+        }
+      ]
+    },
+    {
+      "name": "board-supported",
+      "steps": [
+        {
+          "click": "#m-judge"
+        },
+        {
+          "click": "#m-street"
+        },
+        {
+          "click": "#view-summers"
+        },
+        {
+          "click": "#swap-0"
+        },
+        {
+          "click": "#swap-1"
+        },
+        {
+          "click": "#m-board"
+        },
+        {
+          "click": "#answer-0",
+          "times": 3,
+          "gap": 0.3
+        }
+      ]
+    },
+    {
+      "name": "changes-open",
+      "steps": [
+        {
+          "click": "#m-street"
+        },
+        {
+          "click": "#view-summers"
+        },
+        {
+          "click": "#swap-0"
+        },
+        {
+          "click": "#swap-1"
+        },
+        {
+          "click": "#change-details summary"
+        }
+      ],
+      "keep": [
+        ".change-list"
+      ]
+    },
+    {
+      "name": "undo-paint",
+      "steps": [
+        {
+          "click": "#m-street"
+        },
+        {
+          "click": "#view-summers"
+        },
+        {
+          "click": "#swap-0"
+        },
+        {
+          "click": "#swap-1"
+        },
+        {
+          "click": "#change-details summary"
+        },
+        {
+          "click": "#undo-1-0"
+        }
+      ]
+    }
+  ]
+}

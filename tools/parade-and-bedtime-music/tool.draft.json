@@ -1,0 +1,23 @@
+{
+  "id": "parade-and-bedtime-music",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Can the same tune fit a parade and bedtime?",
+  "outcome": "Explain how speed and loudness help music fit everyday moments.",
+  "driver": "teacher",
+  "minutes": "15-20",
+  "modes": [
+    "Sort",
+    "Turn it"
+  ],
+  "grades_label": "Grades K-2",
+  "sources": [
+    "National Core Arts Standards, Music K-2: MU:Re8, MU:Re9, MU:Cn11",
+    "Trehub and Trainor (1998), Singing to infants: lullabies and play songs, Advances in Infancy Research 12, 43-77",
+    "US Army FM 3-21.5, Drill and Ceremonies, quick time: 120 steps per minute",
+    "Eight original melodies synthesized with Web Audio",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-04"
+}

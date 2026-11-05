@@ -1,0 +1,166 @@
+{
+  "keep": [
+    "#hint",
+    "#power"
+  ],
+  "states": [
+    {
+      "name": "locked-second",
+      "steps": [
+        {
+          "click": "#power"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#dial-controls"
+      ]
+    },
+    {
+      "name": "compare-ready",
+      "steps": [
+        {
+          "click": "#power"
+        },
+        {
+          "click": "#compare"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#flip"
+      ]
+    },
+    {
+      "name": "desk-extreme",
+      "steps": [
+        {
+          "click": "#m-desk"
+        },
+        {
+          "click": "#mix-sound"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        }
+      ],
+      "keep": [
+        "#mixing"
+      ]
+    },
+    {
+      "name": "mystery-covered",
+      "steps": [
+        {
+          "click": "#m-mystery"
+        }
+      ],
+      "keep": [
+        "#reveal",
+        "#guess"
+      ]
+    },
+    {
+      "name": "mystery-reveal",
+      "steps": [
+        {
+          "click": "#m-mystery"
+        },
+        {
+          "click": "#reveal"
+        }
+      ],
+      "keep": [
+        "#advance"
+      ]
+    },
+    {
+      "name": "gamelan-context",
+      "steps": [
+        {
+          "click": "#next",
+          "times": 6,
+          "gap": 0.12
+        }
+      ],
+      "keep": [
+        "#dial-controls"
+      ]
+    },
+    {
+      "name": "complete-set",
+      "steps": [
+        {
+          "click": "#m-mystery"
+        },
+        {
+          "click": "#reveal"
+        },
+        {
+          "click": "#advance"
+        },
+        {
+          "click": "#reveal"
+        },
+        {
+          "click": "#advance"
+        },
+        {
+          "click": "#reveal"
+        },
+        {
+          "click": "#advance"
+        },
+        {
+          "click": "#reveal"
+        },
+        {
+          "click": "#advance"
+        },
+        {
+          "click": "#reveal"
+        },
+        {
+          "click": "#advance"
+        },
+        {
+          "click": "#reveal"
+        }
+      ],
+      "keep": [
+        "#advance",
+        "#guess-label"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

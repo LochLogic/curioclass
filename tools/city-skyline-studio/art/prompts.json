@@ -1,4 +1,15 @@
 {
-  "style": "None needed: the city, sky, street grid, guides, vanishing points, plan inset and ink are all drawn in code.",
-  "assets": []
+  "style": "Atmospheric architectural illustration for a serious high-school drawing studio.",
+  "house_style": "Rich architectural concept painting, refined cinematic gouache and fine paper grain, restrained dusk navy, mauve and warm apricot light, spacious and sophisticated. No people, faces, body parts, text, letters, numbers or logos.",
+  "assets": [
+    {
+      "name": "dusk-sky",
+      "prompt": "A panoramic sky-only background for an interactive architectural perspective studio. Deep midnight-blue zenith blends through smoky violet into a luminous apricot sunset along the entire lower edge. Long delicate cloud ribbons, softly painted vapor, intricate subtle grain, warm directional light from the left. Broad open central space. The picture contains only sky and clouds, with no ground, buildings, objects, people, text, letters, numbers or logos. Edge-to-edge painting.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 78,
+      "cutout": false,
+      "drawn_by": "codex"
+    }
+  ]
 }

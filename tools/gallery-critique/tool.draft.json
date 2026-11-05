@@ -1,0 +1,24 @@
+{
+  "id": "gallery-critique",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Take a seat. Every claim has to point at the painting.",
+  "outcome": "Describe, analyze, interpret and judge a painting using visible evidence and stated criteria.",
+  "driver": "students",
+  "minutes": "20-40",
+  "modes": ["Choose", "Panel", "Record"],
+  "grades_label": "Grades 9-12",
+  "sources": [
+    "National Core Arts Standards, Visual Arts VA:Re7, VA:Re8, VA:Re9: https://www.nationalartsstandards.org/",
+    "Edmund Burke Feldman, Varieties of Visual Experience, Abrams, 1972; fourth edition 1992.",
+    "Rosalind Ragans, ArtTalk, chapter 2, Art Criticism and Aesthetic Judgment.",
+    "Smithsonian Guidelines for Accessible Exhibition Design, section III: https://www.sifacilities.si.edu/sites/default/files/Files/Accessibility/accessible-exhibition-design1.pdf",
+    "Paris Street; Rainy Day: https://www.artic.edu/artworks/20684 (public domain / CC0)",
+    "The Gulf Stream: https://www.metmuseum.org/art/collection/search/11122 (Met Open Access / CC0)",
+    "The Child's Bath: https://www.artic.edu/artworks/111442 (public domain / CC0)",
+    "Panelists are fictional. Support tables are teaching judgments supplied in the tool specification.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-01"
+}

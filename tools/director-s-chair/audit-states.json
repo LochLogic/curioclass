@@ -1,0 +1,235 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "arrival-masks",
+      "steps": [
+        {
+          "click": "#house-commedia"
+        }
+      ],
+      "keep": [
+        "#begin"
+      ]
+    },
+    {
+      "name": "scene-choice",
+      "steps": [
+        {
+          "click": "#house-greek"
+        },
+        {
+          "click": "#begin"
+        }
+      ],
+      "keep": [
+        "#houseView",
+        "#choice",
+        "#next"
+      ]
+    },
+    {
+      "name": "scene-notice",
+      "steps": [
+        {
+          "click": "#house-greek"
+        },
+        {
+          "click": "#begin"
+        },
+        {
+          "click": "#option-0"
+        },
+        {
+          "wait": 1200
+        }
+      ],
+      "keep": [
+        "#houseView",
+        "#notice",
+        "#next"
+      ]
+    },
+    {
+      "name": "program-note",
+      "steps": [
+        {
+          "click": "#house-greek"
+        },
+        {
+          "click": "#begin"
+        },
+        {
+          "click": "#option-0"
+        },
+        {
+          "click": "#next",
+          "times": 4
+        },
+        {
+          "click": "#option-1"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#option-1"
+        },
+        {
+          "click": "#program-button"
+        }
+      ],
+      "keep": [
+        "#program summary",
+        "#change",
+        "#program-button"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "760x900",
+        "375x812"
+      ]
+    },
+    {
+      "name": "program-and-compare",
+      "steps": [
+        {
+          "click": "#house-greek"
+        },
+        {
+          "click": "#begin"
+        },
+        {
+          "click": "#option-0"
+        },
+        {
+          "click": "#next",
+          "times": 4
+        },
+        {
+          "click": "#option-1"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#option-1"
+        },
+        {
+          "click": "#back"
+        },
+        {
+          "click": "#house-commedia"
+        },
+        {
+          "click": "#begin"
+        },
+        {
+          "click": "#option-1"
+        },
+        {
+          "click": "#next",
+          "times": 3
+        },
+        {
+          "click": "#option-0"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        },
+        {
+          "click": "#option-0"
+        },
+        {
+          "click": "#m-compare"
+        }
+      ],
+      "keep": [
+        "#compare-grid",
+        "#note",
+        "#save"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "760x900",
+        "375x812"
+      ]
+    },
+    {
+      "name": "noh-live-controls",
+      "steps": [
+        {
+          "click": "#house-noh"
+        },
+        {
+          "click": "#begin"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "click": "#seat"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#houseView",
+        "#next"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "adjust-after-house-switch",
+      "steps": [
+        {
+          "click": "#house-noh"
+        },
+        {
+          "click": "#begin"
+        },
+        {
+          "click": "#adjust"
+        },
+        {
+          "js": "document.getElementById('actor').value='singer7';document.getElementById('actor').dispatchEvent(new Event('change'));"
+        },
+        {
+          "click": "#back"
+        },
+        {
+          "click": "#house-box"
+        },
+        {
+          "click": "#begin"
+        },
+        {
+          "click": "#adjust"
+        },
+        {
+          "click": "#turn-left"
+        }
+      ],
+      "keep": [
+        "#actor",
+        "#turn-left",
+        "#next",
+        "#plan"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Span and Spire · Pulled or squeezed? · Curio Class</title>
+<meta name="description" content="Build a bridge, roll real axle loads across it, then pluck a tower and try a steady shake. Grades 6-12 engineering design. Works offline.">
+<!--
+Span and Spire (Curio Class). Starter: kit/starter/src.html.
+Students, grades 6-12. MS-ETS1-1 through MS-ETS1-4 and HS-ETS1-2 through HS-ETS1-4.
+Pin-jointed axial trusses: direct stiffness, Euler buckling, tension-only cables.
+Towers: six mass-normalized modes, five percent damping, nonlinear explicit collapse.
+Sources: Hibbeler Structural Analysis; USDA Wood Handbook FPL-GTR-282; ASTM A36;
+FHWA Bridge Formula Weights; Chopra Dynamics of Structures; OpenStax hydrostatics.
+Prices are game prices. Timber uses one simplified 20 MPa strength in both directions.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0. Code MIT. One offline file, no network requests. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#0f1a24; --panel:#16232f; --ink:#eef3f7; --muted:#a7b6c2; --line:#2b3d4c;
+  --brand:#ff6fae; --focus:#7aa2ff; --btn:#20323f; --btn-line:#465867; --head-ink:#eef3f7;
+  --pull:#3fc8ff; --push:#ffab2e; --good:#95e1b5;
+  font-variant-numeric:tabular-nums;
+}
+body { height:100%; overflow:hidden; }
+header { background:linear-gradient(#192a38,#101b25); border-bottom:1px solid #445260; padding:10px 18px; gap:8px; }
+h1 { font-size:25px; letter-spacing:.02em; }
+h1 small { font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+h1 b { color:var(--brand); font-weight:800; }
+button { min-height:44px; min-width:44px; }
+.seg { border:1px solid #465867; border-radius:10px; }
+.seg button { min-height:44px; font-size:14px; padding:0 15px; }
+.seg button[aria-pressed="true"] { background:var(--brand); color:#2a0614; }
+.icon-btn { min-height:44px; font-size:13px; padding:0 12px; border-radius:9px; border-width:1px; }
+main { grid-template-columns:minmax(0,1fr) 324px; grid-template-rows:minmax(0,1fr) auto; }
+.stage { grid-column:1; grid-row:1; min-height:0; background:#243944; isolation:isolate; }
+#world { position:absolute; inset:0; width:100%; height:100%; touch-action:none; cursor:crosshair; }
+#world:focus-visible { outline-offset:-5px; }
+.panel { grid-column:2; grid-row:1 / span 2; border-left:1px solid #485260; padding:12px; gap:9px;
+  background:linear-gradient(115deg,#1c2c38,#14212d); }
+.panel h2 { font-size:11px; text-transform:uppercase; letter-spacing:.16em; color:var(--muted); margin:0 0 5px; }
+.row { display:flex; gap:6px; }
+.row>* { flex:1; min-width:0; }
+.btn { background:linear-gradient(#2b3e4b,#1e303d); border:1px solid #4a5e6e; border-radius:7px; padding:5px 8px;
+  font-weight:650; font-size:13px; box-shadow:inset 0 1px #ffffff12,0 2px 2px #0003; }
+.btn:hover { border-color:#9daebb; }
+.btn[aria-pressed="true"] { border-color:var(--brand); background:#573148; color:#fff; box-shadow:inset 0 -3px var(--brand); }
+.btn:disabled { opacity:.45; cursor:default; }
+.run { min-height:52px; background:linear-gradient(#ff92c2,#ff6fae); color:#2a0614; border:1px solid #ffbad8;
+  font-size:22px; letter-spacing:.04em; box-shadow:inset 0 1px #ffe3ef,0 4px 0 #733852; }
+.run kbd { font:11px 'Segoe UI',sans-serif; opacity:.8; }
+.shelf { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:4px; }
+.truck { padding:3px 1px 5px; font-size:10px; line-height:1.2; }
+.truck img { display:block; width:100%; height:32px; object-fit:contain; margin-bottom:2px; pointer-events:none; }
+.truck strong { display:block; font-size:11px; }
+.piece { padding:4px 1px; font-size:10px; line-height:1.1; }
+.piece i { display:block; width:26px; height:6px; margin:3px auto 5px; border:1px solid #d0a172;
+  background:repeating-linear-gradient(0deg,#755039 0 2px,#b48d61 2px 3px); box-shadow:0 1px 2px #0008; }
+.piece[data-piece="1"] i { height:9px; }
+.piece[data-piece="2"] i,.piece[data-piece="3"] i { background:linear-gradient(#f3f7fc,#71879b,#d2dee9); border-color:#b0c5d4; }
+.piece[data-piece="3"] i { height:9px; }
+.piece[data-piece="4"] i { height:3px; border:0; background:#c0cbd3; }
+.piece strong { display:block; font-size:10px; font-weight:600; margin-top:3px; color:var(--muted); }
+.tools .btn { padding:4px 2px; font-size:12px; }
+.tools { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; }
+.switches { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.switches .btn { font-size:12px; }
+.cost { font:700 14px Consolas,monospace; display:flex; flex-wrap:wrap; justify-content:space-between; gap:4px;
+  padding:8px; background:#0d1922; border:1px solid #344855; border-radius:5px; color:#e9d2ac; }
+.cost small { font:11px 'Segoe UI',sans-serif; color:var(--muted); }
+.promises { border:1px solid #3e5261; border-radius:6px; background:#0f1a2480; }
+summary { min-height:44px; display:flex; align-items:center; padding:5px 9px; font-size:13px; font-weight:700; cursor:pointer; }
+summary::before { content:'▸'; margin-right:7px; color:var(--brand); }
+details[open]>summary::before { content:'▾'; }
+.promise-list { padding:0 6px 6px; }
+.promise { display:grid; grid-template-columns:44px 35px 1fr 22px; gap:5px; align-items:center; min-height:44px;
+  border-top:1px solid #31414e; font-size:11px; cursor:pointer; line-height:1.25; }
+.promise input { appearance:none; width:44px; height:44px; margin:0; display:grid; place-items:center; border-radius:5px; cursor:pointer; }
+.promise input::after { content:''; width:17px; height:17px; border:1px solid #adc0cd; border-radius:3px; background:#172936; }
+.promise input:checked::after { content:'✓'; color:#2a0614; background:var(--brand); border-color:var(--brand); text-align:center; font-weight:900; }
+.promise img { width:33px; height:32px; object-fit:contain; }
+.promise strong { display:block; font-size:12px; }
+.promise output { color:var(--good); font-size:16px; }
+.hint { margin:0; font-size:13px; line-height:1.4; color:#eef3f7; min-height:54px; padding:7px 9px;
+  background:#0e1b25; border-left:3px solid var(--brand); border-radius:3px; }
+.privacy { margin:0; font-size:10px; color:var(--muted); line-height:1.3; }
+.apron { grid-column:1; grid-row:2; background:linear-gradient(#182a37,#0e1a24); border-top:1px solid #3e5261; padding:8px 14px; min-height:42px;
+  display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:6px; font-size:11px; color:var(--muted); }
+.legend { display:flex; gap:16px; align-items:center; }
+.legend span { display:flex; align-items:center; gap:6px; }
+.legend i { font-size:18px; color:var(--pull); font-style:normal; }
+.legend span:nth-child(2) i { color:var(--push); }
+.legend span:nth-child(3) i { color:#b9c5ce; }
+.sliders { display:grid; grid-template-columns:1fr 1fr; gap:0 10px; }
+.slider { display:flex; flex-direction:column; font-size:11px; color:var(--muted); gap:2px; }
+.slider output { color:var(--ink); font-weight:700; }
+input[type=range] { width:100%; height:44px; margin:0; accent-color:var(--brand); }
+.tower-controls { display:flex; flex-direction:column; gap:4px; }
+.tower-controls h2 { margin-top:3px; }
+.tower-controls .row button { font-size:11px; }
+.wind-row { display:grid; grid-template-columns:65px 1fr; gap:8px; align-items:center; }
+.wind-scale { color:var(--muted); font-size:10px; line-height:1.3; }
+#tower-readout { font-size:12px; color:#ddeaf5; padding:4px 0; min-height:20px; }
+#stage-chips { position:absolute; top:12px; left:12px; right:12px; pointer-events:none; display:flex; flex-wrap:wrap; gap:6px;
+  align-content:flex-start; z-index:2; }
+.chip { background:#0f1a24ed; border:1px solid #69808b70; box-shadow:0 2px 7px #0003; color:#eef3f7; padding:7px 10px;
+  font-size:12px; line-height:1.2; border-radius:5px; }
+.chip strong { color:#fff; }
+.chip.sub { color:#b9cad7; }
+#result { position:absolute; left:50%; bottom:48px; transform:translateX(-50%); padding:11px 22px; font-size:18px;
+  font-weight:800; color:#ffecf4; background:#392336ef; border:2px solid var(--brand); border-radius:4px; text-align:center;
+  pointer-events:none; box-shadow:0 5px 18px #0005; z-index:3; max-width:90%; }
+#result small { display:block; font-size:11px; font-weight:500; margin-top:4px; }
+#build-cue { position:absolute; bottom:12px; left:12px; color:#eef3f7; background:#0f1a24e8; border:1px solid #617484;
+  border-radius:4px; padding:5px 8px; font-size:11px; pointer-events:none; }
+#tag-toast { position:absolute; right:15px; bottom:65px; padding:12px 16px; background:#ffd6e8; color:#40213a;
+  border:3px double #83445e; transform:rotate(-5deg); box-shadow:0 8px 20px #0005; font-size:14px; z-index:4; pointer-events:none; }
+#tag-toast.stamp { animation:stamp .45s ease-out; }
+@keyframes stamp { from { transform:scale(1.5) rotate(-14deg); opacity:0; } to { transform:scale(1) rotate(-5deg); opacity:1; } }
+.go-breathe { animation:breathe 1.2s ease-out 1; }
+@keyframes breathe { 50% { box-shadow:0 0 0 7px #ff6fae40,0 4px 0 #733852; } }
+.calm .go-breathe,.calm #tag-toast.stamp { animation:none; }
+#yard { position:absolute; inset:0; overflow:auto; background:radial-gradient(ellipse at 40% 0,#283748,#101c27 75%); padding:20px; }
+#yard h2 { font:800 24px 'Trebuchet MS',sans-serif; margin:0; }
+#yard p { font-size:12px; color:var(--muted); margin:6px 0 15px; }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(90px,1fr)); gap:8px; margin-bottom:14px; }
+.design-card { min-width:0; max-width:200px; text-align:left; padding:8px; border:1px solid #5d6e79; background:linear-gradient(145deg,#293d4c,#172836);
+  border-radius:6px; box-shadow:0 6px 10px #0004; }
+.design-card[aria-pressed="true"] { border:2px solid var(--brand); padding:7px; background:linear-gradient(145deg,#58384d,#26313f); }
+.design-card svg { display:block; width:100%; height:85px; background:#0b1924; border:1px solid #4c6171; margin-bottom:8px; }
+.design-card strong { display:block; font-size:14px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.design-card small { display:block; font-size:11px; margin-top:5px; color:#cedae4; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.cards.crowded .design-card svg { height:28px; }
+.compare-wrap { overflow:auto; border:1px solid #566674; border-radius:5px; }
+table { border-collapse:collapse; width:100%; font-size:12px; background:#12212c; }
+th,td { border-bottom:1px solid #364957; padding:10px; text-align:left; min-width:115px; }
+th:first-child { min-width:160px; color:#b8c8d6; }
+thead th { color:#ffd6e8; background:#293a48; }
+#yard-actions { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.drawer { position:fixed; inset:0; background:#0009; z-index:20; display:grid; place-items:center; padding:14px; }
+.book { background:linear-gradient(130deg,#233441,#14212d); border:1px solid #8193a1; border-radius:8px; padding:16px;
+  width:min(860px,100%); max-height:90vh; overflow:auto; box-shadow:0 15px 90px #0009; }
+.book .book-head { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+.book h2 { margin:0; font-size:21px; }
+.tag-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin-top:14px; }
+.tag { border:1px dashed #78909f; border-radius:3px 14px 3px 3px; padding:10px; min-height:112px; background:#142530;
+  position:relative; font-size:11px; color:#b7c9d8; }
+.tag.found { background:linear-gradient(130deg,#f5cfdb,#c9a5b2); border:3px double #70354e; color:#3c1b2c; }
+.tag img { width:42px; height:30px; object-fit:contain; float:right; }
+.tag strong { display:block; font-size:13px; margin:4px 0; }
+.tag time { display:block; margin-top:5px; font:10px Consolas,monospace; }
+dialog { color:var(--ink); background:#1b2e3d; border:1px solid #8e9dad; border-radius:8px; padding:20px; max-width:90vw; }
+dialog::backdrop { background:#000a; }
+dialog p { max-width:350px; font-size:15px; line-height:1.5; }
+dialog input { min-height:44px; background:#10202c; color:var(--ink); border:1px solid #8e9dad; padding:8px; width:100%; margin-bottom:12px; }
+.sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
+body.compact header { padding:4px 7px; gap:4px; flex-wrap:nowrap; }
+body.compact h1 { font-size:16px; white-space:nowrap; }
+body.compact h1 small { display:none; }
+body.compact .seg button { padding:0 8px; font-size:12px; }
+body.compact .icon-btn { padding:0 7px; font-size:11px; }
+body.compact main { grid-template-columns:minmax(0,1fr) 270px; }
+body.compact .panel { padding:7px; gap:5px; }
+body.compact .panel h2 { display:none; }
+body.compact .truck img { height:22px; }
+body.compact .truck { font-size:10px; }
+body.compact .run { min-height:44px; font-size:18px; }
+body.compact .cost { padding:4px 6px; font-size:11px; }
+body.compact .cost small { font-size:10px; }
+body.compact .hint { font-size:11px; min-height:44px; padding:5px 7px; position:fixed; left:8px; bottom:43px;
+  width:calc(100vw - 290px); max-width:530px; z-index:5; background:#0e1b25f5; }
+body.compact #build-cue { display:none; }
+body.compact[data-mode="yard"] .hint { position:static; width:auto; max-width:none; }
+body.compact[data-mode="tower"] .hint { top:118px; bottom:auto; width:clamp(130px,calc((100vw - 345px)/2 - 12px),300px); }
+body.compact #result { bottom:100px; }
+body.compact .apron { padding:4px 8px; min-height:31px; font-size:10px; }
+body.compact .legend { gap:8px; }
+body.compact .legend i { font-size:14px; }
+body.compact .privacy { font-size:10px; }
+body.compact .chip { padding:5px 7px; font-size:10px; }
+body.compact #stage-chips { top:8px; left:8px; right:8px; gap:4px; }
+body.compact #result { bottom:100px; padding:8px 12px; font-size:14px; }
+body.compact .tower-controls { gap:0; }
+body.compact .tower-controls .row button { min-height:44px; }
+body.compact #tower-readout { font-size:10px; }
+body.compact #yard { padding:12px; }
+body.compact .design-card { padding:5px; }
+body.compact .design-card[aria-pressed="true"] { padding:4px; }
+body.compact .design-card svg { height:34px; margin-bottom:4px; }
+body.compact .design-card strong { font-size:11px; }
+body.compact .design-card small { font-size:10px; margin-top:3px; }
+body.stack { height:100%; }
+body.stack main { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(180px,1fr) auto auto; }
+body.stack .stage { grid-row:1; }
+body.stack .apron { grid-row:2; }
+body.stack .panel { grid-column:1; grid-row:3; max-height:48vh; border-left:0; border-top:1px solid #51616f; }
+body.stack .panel-primary { display:grid; grid-template-columns:110px 1fr 1fr; gap:8px; align-items:stretch; }
+body.stack[data-mode="tower"] .panel-primary { grid-template-columns:110px minmax(0,1fr); }
+body.stack[data-mode="tower"] .pieces { grid-column:auto; }
+body.stack .panel h2 { display:none; }
+body.stack .run-row { align-self:stretch; }
+body.stack .run-row .run { width:100%; }
+body.stack .truck img { height:23px; }
+body.stack .truck { font-size:10px; }
+body.stack .piece strong { display:none; }
+body.stack .piece { font-size:10px; }
+body.stack #hint { order:-1; min-height:42px; }
+body.stack .panel-primary { order:-2; }
+body.stack .cost,body.stack #yard-actions { order:0; }
+@media (max-width:560px) {
+  header { padding:6px; gap:5px; }
+  h1 { font-size:18px; }
+  h1 small { display:none; }
+  .seg { order:2; width:100%; display:grid; grid-template-columns:1fr 1fr 1fr; }
+  .seg button { font-size:13px; }
+  .icon-btn { font-size:11px; padding:0 7px; }
+  #tags { margin-left:auto; }
+  #motion,#sound,#read { min-width:44px; max-width:72px; }
+  body.stack main { grid-template-rows:minmax(200px,1fr) auto auto; }
+  body.stack .panel { max-height:47vh; padding:7px; gap:5px; }
+  body.stack .panel-primary { grid-template-columns:84px 1fr; gap:5px; }
+  body.stack[data-mode="tower"] .panel-primary { grid-template-columns:84px minmax(0,1fr); }
+  body.stack .run-row { flex-direction:column; }
+  body.stack .run { font-size:18px; min-height:44px; padding:4px 3px; white-space:nowrap; }
+  body.stack .pieces { grid-column:1 / -1; }
+  body.stack .piece strong { display:block; font-size:10px; }
+  body.stack .piece i { display:none; }
+  body.stack .run kbd { display:none; }
+  .chip { font-size:10px; padding:4px 6px; }
+  #stage-chips { left:7px; top:7px; right:7px; gap:4px; }
+  #build-cue { font-size:10px; bottom:8px; left:7px; max-width:95%; }
+  .apron { min-height:29px; padding:4px 7px; font-size:10px; }
+  .legend { gap:10px; }
+  .apron .scale-note { display:none; }
+  .legend i { font-size:14px; }
+  #yard { padding:10px; }
+  .design-card { padding:5px; }
+  .design-card[aria-pressed="true"] { padding:4px; }
+  .design-card svg { height:34px; margin-bottom:4px; }
+  .design-card strong { font-size:11px; }
+  .design-card small { font-size:10px; margin-top:3px; }
+  #yard h2 { font-size:19px; }
+}
+@media (min-width:1000px) {
+  body.compact main { grid-template-columns:minmax(0,1fr) 324px; }
+  body.compact .hint { width:calc(100vw - 350px); }
+}
+/* The primary shelves remain available while the test notebook scrolls. */
+.panel-primary { position:sticky; top:-7px; z-index:6; background:#1a2b38; }
+#top-loads { margin-top:5px; }
+body.stack #top-loads { grid-column:1 / -1; margin-top:0; }
+.promise .reason { display:block; margin-top:3px; color:#d4e0e9; font-size:11px; font-weight:400; }
+.cards { grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); }
+body.compact .design-card svg, .cards.crowded .design-card svg { height:64px; }
+@media (max-width:560px) { .design-card svg { height:60px; } }
+#promise-dialog { width:min(650px,calc(100vw - 24px)); max-height:calc(100vh - 24px); padding:12px; }
+#promise-dialog .book-head { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+#promise-dialog h2 { margin:0; font-size:18px; }
+#promise-dialog .promise-list { padding:6px 0 0; }
+@media (min-width:600px) {
+  #promise-dialog .promise-list { display:grid; grid-template-columns:1fr 1fr; gap:0 12px; }
+  #promise-dialog .promise { grid-template-columns:44px 28px 1fr 18px; }
+  #promise-dialog .promise img { width:26px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Span <b>&amp;</b> Spire <small>Pulled or squeezed?</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-bridge" aria-pressed="true">Bridge</button>
+    <button id="m-tower" aria-pressed="false">Tower</button>
+    <button id="m-yard" aria-pressed="false">Yard</button>
+  </div>
+  <button class="icon-btn" id="tags" aria-haspopup="dialog">Tags <span id="tag-count">0</span></button>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <section class="stage" id="stage" aria-label="Structure test yard">
+    <canvas id="world" tabindex="0" aria-label="Build grid. Arrows move. Enter starts and ends a beam. Delete erases. Shift drag moves a joint."></canvas>
+    <div id="stage-chips">
+      <div class="chip" id="load-chip"></div>
+      <div class="chip sub" id="force-chip"></div>
+    </div>
+    <div id="result" hidden></div>
+    <div id="build-cue">Drag from a joint to build · Space to Go</div>
+    <div id="tag-toast" hidden></div>
+    <section id="yard" hidden aria-label="Saved designs">
+      <h2>The county test yard</h2>
+      <p id="yard-intro">Save your design, then compare it here. Saved on this device, never sent anywhere.</p>
+      <div class="cards" id="cards"></div>
+      <div class="compare-wrap"><table id="compare" aria-label="Design comparison"></table></div>
+    </section>
+  </section>
+  <aside class="panel" id="panel">
+    <div class="panel-primary" id="primary">
+      <div class="row run-row">
+        <button class="btn run go-breathe" id="go">▶ Go <kbd>Space</kbd></button>
+        <button class="btn" id="rebuild" hidden>Rebuild</button>
+      </div>
+      <section id="trucks">
+        <h2>Choose a load</h2>
+        <div class="shelf" id="truck-shelf"></div>
+      </section>
+      <section class="pieces" id="pieces">
+        <h2>New pieces · game prices per meter</h2>
+        <div class="shelf" id="piece-shelf"></div>
+      </section>
+      <div class="row" id="top-loads" role="group" aria-label="Top load">
+        <button class="btn" data-top="0" aria-pressed="false">None</button>
+        <button class="btn" data-top="2000" aria-pressed="false">Bell 2 t</button>
+        <button class="btn" data-top="8000" aria-pressed="true">Tank 8 t</button>
+      </div>
+    </div>
+    <section class="tower-controls" id="tower-controls" hidden>
+      <div class="sliders">
+        <label class="slider">Strength <output id="strength-out">0.30 g</output>
+          <input id="strength" type="range" min="0.05" max="0.60" step="0.05" value="0.30"></label>
+        <label class="slider">Speed <output id="speed-out">1.20 a second</output>
+          <input id="speed" type="range" min="0.40" max="4" step="0.05" value="1.20"></label>
+      </div>
+      <button class="btn" id="valley">Valley quake · 0.30 g / 1.20 a second</button>
+      <div class="wind-row">
+        <button class="btn" id="wind" aria-pressed="false">Wind</button>
+        <label class="slider">Wind speed <output id="wind-out">30 m/s</output>
+          <input id="wind-speed" type="range" min="0" max="70" step="5" value="30">
+          <span class="wind-scale">10 breezy · 20 gale · 33 hurricane · 70 top hurricane</span></label>
+      </div>
+      <div id="tower-readout"></div>
+    </section>
+    <div class="tools" id="tools" role="group" aria-label="Build tools">
+      <button class="btn" id="build" aria-pressed="true">Build</button>
+      <button class="btn" id="erase" aria-pressed="false">Erase</button>
+      <button class="btn" id="undo">↶ Undo</button>
+      <button class="btn" id="redo">↷ Redo</button>
+    </div>
+    <div class="switches" id="views">
+      <button class="btn" id="worst" aria-pressed="false">Worst spots</button>
+      <button class="btn" id="true-size" aria-pressed="false">True size</button>
+    </div>
+    <div class="cost" id="cost"></div>
+    <details class="promises" id="promises">
+      <summary>Promises <span id="promise-ticks"></span></summary>
+      <div class="promise-list" id="promise-list"></div>
+    </details>
+    <div class="row" id="save-row">
+      <button class="btn" id="save">Save to Yard</button>
+      <button class="btn" id="new">New</button>
+    </div>
+    <div class="row" id="borrow-row" hidden>
+      <button class="btn" id="borrow-all">Borrow all</button>
+      <button class="btn" id="borrow-done">Done</button>
+    </div>
+    <div id="yard-actions" hidden>
+      <button class="btn" id="test-all">Test all</button>
+      <button class="btn" id="open">Open</button>
+      <button class="btn" id="borrow">Borrow</button>
+      <button class="btn" id="replay">Replay</button>
+      <button class="btn" id="rename">Rename</button>
+      <button class="btn" id="delete">Delete</button>
+    </div>
+    <p class="hint" id="hint" aria-live="polite">Press Go to send the pickup across. Or drag the truck onto the road.</p>
+    <p class="privacy" id="storage-note">Save on this device. Your designs never leave it.</p>
+  </aside>
+  <footer class="apron">
+    <div class="legend"><span><i>↔</i> Pull</span><span><i>⇥⇤</i> Squeeze</span><span><i>∿</i> Slack</span></div>
+    <span class="scale-note" id="magnification">Sag ×20 · each side carries half the truck</span>
+  </footer>
+</main>
+<div class="drawer" id="tag-drawer" role="dialog" aria-modal="true" aria-labelledby="tag-title" hidden>
+  <div class="book">
+    <div class="book-head"><h2 id="tag-title">Inspection tags</h2><button class="btn" id="close-tags">Close</button></div>
+    <p class="privacy">Optional targets. Nothing is locked. Tags stay on this device.</p>
+    <div class="tag-grid" id="tag-grid"></div>
+  </div>
+</div>
+<dialog id="promise-dialog" aria-labelledby="promise-title">
+  <div class="book-head"><h2 id="promise-title">Choose your promises</h2><button class="btn" id="close-promises">Done</button></div>
+  <div id="promise-slot"></div>
+</dialog>
+<dialog id="confirm-dialog"><form method="dialog">
+  <p id="confirm-text"></p>
+  <input id="name-input" aria-label="Design name" maxlength="48" hidden>
+  <div class="row"><button class="btn" id="confirm-yes" value="yes">Start over</button>
+    <button class="btn" id="confirm-no" value="no">Keep building</button></div>
+</form></dialog>
+<div class="sr" id="live" aria-live="polite"></div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+'use strict';
+const $ = id => document.getElementById(id);
+const clone = x => JSON.parse(JSON.stringify(x));
+const G = 9.81;
+const TAU = 2 * Math.PI;
+const MATERIALS = [
+  {name:'Timber', E:12e9, A:.15**2, I:.15**4/12, density:11.2, price:50, pull:450e3, width:.15},
+  {name:'Big timber', E:12e9, A:.25**2, I:.25**4/12, density:31.2, price:120, pull:1250e3, width:.25},
+  {name:'Steel', E:200e9, A:.15**2-.134**2, I:(.15**4-.134**4)/12, density:35.7, price:150, pull:1136e3, width:.15},
+  {name:'Big steel', E:200e9, A:.25**2-.23**2, I:(.25**4-.23**4)/12, density:75.4, price:320, pull:2400e3, width:.25},
+  {name:'Cable', E:160e9, A:.000754, I:0, density:6, price:40, pull:1000e3, width:.04}
+];
+const TRUCKS = [
+  {name:'Pickup', label:'Pickup', mass:3, length:5.8, art:'sas-pickup', axles:[[0,1.4],[3.7,1.6]],
+    fact:"Loaded, more of a pickup's weight rides on the back axle."},
+  {name:'School bus', label:'Bus', mass:13.6, length:11.6, art:'sas-bus', axles:[[0,4.6],[6.1,9]],
+    fact:'Full-size school buses are Class 7: 26,001 to 33,000 pounds.'},
+  {name:'Fire engine', label:'Fire', mass:20, length:10, art:'sas-fire', axles:[[0,8.2],[5,5.9],[6.3,5.9]],
+    fact:'A pumper must carry at least 300 gallons (1,136 liters) of water.'},
+  {name:'Grain truck', label:'Grain', mass:23.4, length:9.4, art:'sas-grain', axles:[[0,8],[5.5,7.71],[6.8,7.71]],
+    fact:'The Federal Bridge Formula allows about 23.9 t on three axles this close.'},
+  {name:'Semi', label:'Semi', mass:36.3, length:21, art:'sas-semi', axles:[[0,5.44],[5.5,7.71],[6.8,7.71],[17,7.71],[18.3,7.71]],
+    fact:'80,000 pounds is the most the federal law allows on the Interstate.'}
+];
+const ART = {
+  'sas-hills':'art:sas-hills', 'sas-bank':'art:sas-bank', 'sas-grass':'art:sas-grass',
+  'sas-abutment':'art:sas-abutment', 'sas-footing':'art:sas-footing', 'sas-pickup':'art:sas-pickup',
+  'sas-bus':'art:sas-bus', 'sas-fire':'art:sas-fire', 'sas-grain':'art:sas-grain', 'sas-semi':'art:sas-semi',
+  'sas-hook':'art:sas-hook', 'sas-splash':'art:sas-splash', 'sas-canoe':'art:sas-canoe', 'sas-trout':'art:sas-trout',
+  'sas-ledger':'art:sas-ledger', 'sas-yard':'art:sas-yard', 'sas-table':'art:sas-table', 'sas-tank':'art:sas-tank',
+  'sas-bell':'art:sas-bell', 'sas-sock-limp':'art:sas-sock-limp', 'sas-sock-full':'art:sas-sock-full',
+  'sas-cloud-a':'art:sas-cloud-a', 'sas-cloud-b':'art:sas-cloud-b', 'sas-dust':'art:sas-dust',
+  'sas-tap':'art:sas-tap', 'sas-quake':'art:sas-quake', 'sas-card':'art:sas-card'
+};
+const images = {};
+for (const [key,src] of Object.entries(ART)) {
+  const img = new Image();
+  img.src = src;
+  images[key] = img;
+}
+const L = {
+  bWelcome:'Press Go to send the pickup across. Or drag the truck onto the road.',
+  bBuild:'Drag up from a joint to add a beam. Triangles hold their shape.',
+  bLoose:'Those shaking joints are loose. Close a triangle with a beam.',
+  bGap:'Add a road beam.',
+  bPass0:'The pickup made it across.', bPass1:'The school bus made it across.',
+  bPass2:'The fire engine made it across.', bPass3:'The grain truck made it across.', bPass4:'The semi made it across.',
+  bBuckle:'A squeezed beam buckled.', bSnap:'A stretched beam snapped.',
+  bSlack:'The cables went slack. A cable can pull but never push.',
+  bWorst:'Each beam shows its hardest moment as the truck crosses. Tap Worst spots again for live forces.',
+  bPromise:'Tick the promises your bridge must keep. The Yard scores them.',
+  bLimit:'The yard is out of members. Erase one to add one.',
+  tWelcome:'Drag up from the table to build. Then press Shake or turn on the wind.',
+  tPluck:'Drag the top sideways and let go to feel its sway.',
+  tFold:'A loose part folded. Connect it with a triangle.', tShakeFail:'It shook apart.', tWindFail:'The wind pushed it over.',
+  tHold:'It rode out the shake.', tResonance:"The table shook at the tower's own sway speed. That is resonance.",
+  yWelcome:'Tap up to three designs to compare them. Tap Borrow to copy parts.', tag:'New inspection tag.'
+};
+const EVENT_IDS = new Set(['bLoose','bGap','bPass0','bPass1','bPass2','bPass3','bPass4','bBuckle','bSnap','bSlack',
+  'bLimit','tFold','tShakeFail','tWindFail','tHold','tResonance','tag']);
+const BP = [
+  ['Farmer','Carry the grain truck (23.4 t)','sas-grain'],
+  ['Fire chief','Carry the fire engine (20.0 t)','sas-fire'],
+  ['School district','Carry the school bus (13.6 t)','sas-bus'],
+  ['Trout biologist','Nothing in the stream','sas-trout'],
+  ['Canoe club','Keep the canoe opening clear','sas-canoe'],
+  ['County','$9,000 or less; worst beam at most 2/3','sas-ledger']
+];
+const TP = [
+  ['Water district','40 psi or more at the taps','sas-tap'],
+  ['Weather','Tank holds a 50 m/s wind','sas-cloud-a'],
+  ['Earthquake','Ride out the Valley quake','sas-quake']
+];
+const TAGS = [
+  ['Crossed','Get the pickup across','sas-pickup'], ['Folded','Watch a frame fold','sas-hook'],
+  ['Buckled','See a squeezed beam buckle','sas-abutment'], ['Snapped','See a stretched beam snap','sas-hook'],
+  ['School run','Get the bus across','sas-bus'], ['Fire call','Get the fire engine across','sas-fire'],
+  ['Harvest','Get the grain truck across','sas-grain'], ['Big rig','Get the semi across','sas-semi'],
+  ['Old bridge','Find what broke the old bridge','sas-ledger'], ['On the edge','Semi across; worst use 95 to 100%','sas-semi'],
+  ['Margin','Semi across; worst use at most 66.7%','sas-semi'], ['County budget','Margin for $9,000 or less','sas-ledger'],
+  ['Shoestring','Margin for $8,500 or less','sas-ledger'], ['Pull only','Semi across with at least 8 cables','sas-hook'],
+  ['Taking turns','A cable goes slack and the bridge holds','sas-hook'], ['Brace it','Brace a buckled member at its middle','sas-abutment'],
+  ['Pier shortcut','Semi across with a stream footing','sas-trout'], ['Every promise','Tick and keep all six bridge promises','sas-ledger'],
+  ['Stand tall','Tank stands at 10 m or higher','sas-tank'], ['Pluck','Count at least three free sways','sas-bell'],
+  ['Gale','Tank at 20 m; hold wind 50 for 5 s','sas-sock-full'], ['Spire','Tank at 30 m; hold wind 70 for 5 s','sas-cloud-b'],
+  ['Resonance','Shake a tower apart at its own sway speed','sas-quake'],
+  ['Stiffer is not safer','Survive the shake that broke a stiffer tower','sas-table'],
+  ['Town tower','Tank at 26 m; hold wind 50 and Valley quake','sas-tap']
+];
+function fresh(mode) {
+  const p = mode === 'bridge' ? Array.from({length:7},(_,i) => ({x:i*4,y:0})) : [{x:-1,y:0},{x:1,y:0}];
+  const b = mode === 'bridge' ? Array.from({length:6},(_,i) => ({a:i,b:i+1,m:0})) : [];
+  return {mode,p,b,promises:Array(mode === 'bridge' ? 6 : 3).fill(false),tests:{},dots:[],top:8000,
+    truck:0,front:-1,plucked:false,settings:{strength:.3,speed:1.2,wind:30,windOn:false},name:'',old:false};
+}
+const state = {
+  mode:'bridge', designs:{bridge:fresh('bridge'),tower:fresh('tower')}, piece:0, tool:'build', running:false,
+  run:null, failed:false, worst:false, trueSize:false, selected:[], yard:[], tags:{}, firstSaved:false,
+  ghost:null, origin:'bridge', cursor:{x:0,y:0}, anchor:null, pointer:null, result:null,
+  storageOK:true, failures:[], lastBuckle:null, frames:[], time:0, testBusy:false
+};
+let designRevision = 0;
+let current = null;
+let towerModel = null;
+let explicit = null;
+let loadResult = null;
+let worstResult = null;
+let pluck = null;
+let lastFrame = performance.now();
+const history = {bridge:{undo:[],redo:[]},tower:{undo:[],redo:[]}};
+const memo = new WeakMap();
+const modeSessions = new Map();
+let activeDesignRef = state.designs.bridge;
+const D = () => state.designs[state.mode === 'yard' ? state.origin : state.mode];
+const V = Curio.voice({
+  lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
+  welcome:() => !$('tag-drawer').hidden || $('confirm-dialog').open || $('promise-dialog').open ? null : state.mode === 'bridge'
+    ? (!state.running && !D().tests.first && D().truck === 0
+      ? ['bWelcome',{valid:() => !state.running && !D().tests.first && D().truck === 0}] : null)
+    : state.mode === 'tower' ? ['tWelcome',{valid:() => !state.running}] : 'yWelcome',
+  speaks:'#go,#world'
+});
+function hint(text) {
+  $('hint').textContent = text;
+}
+function voice(id,valid = () => true) {
+  const opts = {valid,hint:false};
+  if (EVENT_IDS.has(id)) V.say(id,opts);
+  else V.how(id,opts);
+}
+function sound(kind,m = state.piece) {
+  if (kind === 'place') Curio.tone(m === 4 ? 530 : m > 1 ? 230 : 140,.09,.12,m === 4 ? 'triangle' : 'sine');
+  if (kind === 'refuse') Curio.tone(65,.14,.15,'triangle');
+  if (kind === 'crack') { Curio.tone(75,.2,.15,'sawtooth');
+    Curio.tone(390,.06,.08,'triangle');
+  }
+  if (kind === 'splash') { Curio.tone(85,.4,.13,'sawtooth');
+    Curio.tone(125,.23,.1,'triangle');
+  }
+  if (kind === 'tag') Curio.tone(110,.1,.18,'triangle');
+  if (kind === 'pass') {
+    [440,554,659].forEach((f,i) => setTimeout(() => Curio.tone(f,.22,.1,'sine'),i*120));
+  }
+}
+// Ambient sound belongs to the test, stays inside the Sound switch, and starts only on a real gesture.
+let ambience = null;
+function startAmbience() {
+  if (ambience) return;
+  const AudioClass = window.AudioContext || window.webkitAudioContext;
+  if (!AudioClass) return;
+  const audio = new AudioClass();
+  const engine = audio.createOscillator();
+  const engineFilter = audio.createBiquadFilter();
+  const engineGain = audio.createGain();
+  engine.type = 'sawtooth';
+  engine.frequency.value = 55;
+  engineFilter.type = 'lowpass';
+  engineFilter.frequency.value = 180;
+  engineGain.gain.value = 0;
+  engine.connect(engineFilter).connect(engineGain).connect(audio.destination);
+  engine.start();
+  const buffer = audio.createBuffer(1,audio.sampleRate*2,audio.sampleRate);
+  const samples = buffer.getChannelData(0);
+  for (let i=0;i<samples.length;i++) samples[i] = Math.random()*2-1;
+  const wind = audio.createBufferSource();
+  wind.buffer = buffer;
+  wind.loop = true;
+  const windFilter = audio.createBiquadFilter();
+  windFilter.type = 'lowpass';
+  windFilter.frequency.value = 650;
+  const windGain = audio.createGain();
+  windGain.gain.value = 0;
+  wind.connect(windFilter).connect(windGain).connect(audio.destination);
+  wind.start();
+  ambience = {audio,engine,engineGain,windGain};
+  audio.resume().catch(() => {});
+}
+addEventListener('pointerdown',startAmbience,{once:true,capture:true});
+addEventListener('keydown',startAmbience,{once:true,capture:true});
+function updateAmbience() {
+  if (!ambience) return;
+  const d = D();
+  const at = ambience.audio.currentTime;
+  const on = Curio.sound;
+  ambience.engine.frequency.setTargetAtTime(70-d.truck*5+(state.running ? 16 : 0),at,.08);
+  ambience.engineGain.gain.setTargetAtTime(on && state.mode === 'bridge' && !state.failed ? .007 : 0,at,.04);
+  ambience.windGain.gain.setTargetAtTime(on && state.mode === 'tower' && d.settings.windOn ? d.settings.wind/70*.03 : 0,at,.08);
+}
+function ground(x) {
+  if (x <= 0 || x >= 24) return 0;
+  if (x < 5) return -x;
+  if (x > 19) return x-24;
+  return -5;
+}
+function fixed(d,i) {
+  const p = d.p[i];
+  if (d.mode === 'tower') return p.y === 0 && p.x >= -6 && p.x <= 6 ? [true,true] : [false,false];
+  if (p.x === 24 && p.y === 0) return [false,true];
+  return Math.abs(p.y-ground(p.x)) < 1e-6 ? [true,true] : [false,false];
+}
+function length(d,b) {
+  return Math.hypot(d.p[b.b].x-d.p[b.a].x,d.p[b.b].y-d.p[b.a].y);
+}
+function cost(d) {
+  let v = d.p.length*300;
+  for (const b of d.b) v += length(d,b)*MATERIALS[b.m].price;
+  if (d.mode === 'bridge') {
+    d.p.forEach((p,i) => {
+      if (fixed(d,i)[0] && !(p.y === 0 && (p.x === 0 || p.x === 24))) v += 2000;
+    });
+  }
+  return Math.round(v);
+}
+function matrix(n) { return new Float64Array(n*n);
+}
+function factor(A,n) {
+  const L = A.slice();
+  let max = 0;
+  for (let i=0;i<n;i++) max = Math.max(max,L[i*n+i]);
+  if (!max) return null;
+  for (let i=0;i<n;i++) {
+    for (let j=0;j<=i;j++) {
+      let s = L[i*n+j];
+      for (let k=0;k<j;k++) s -= L[i*n+k]*L[j*n+k];
+      if (i === j) {
+        if (s < max*1e-9) return null;
+        L[i*n+j] = Math.sqrt(s);
+      } else L[i*n+j] = s/L[j*n+j];
+    }
+  }
+  return L;
+}
+function solveFactor(L,F,n) {
+  const x = F.slice();
+  for (let i=0;i<n;i++) {
+    for (let j=0;j<i;j++) x[i] -= L[i*n+j]*x[j];
+    x[i] /= L[i*n+i];
+  }
+  for (let i=n-1;i>=0;i--) {
+    for (let j=i+1;j<n;j++) x[i] -= L[j*n+i]*x[j];
+    x[i] /= L[i*n+i];
+  }
+  return x;
+}
+// Cyclic Jacobi on a symmetric matrix. Used only after an edit, never per animation frame.
+function eigen(A,n) {
+  const a = A.slice();
+  const v = matrix(n);
+  for (let i=0;i<n;i++) v[i*n+i] = 1;
+  for (let sweep=0;sweep<35;sweep++) {
+    let max = 0;
+    let diag = 0;
+    for (let i=0;i<n;i++) diag = Math.max(diag,Math.abs(a[i*n+i]));
+    for (let p=0;p<n-1;p++) for (let q=p+1;q<n;q++) {
+      const apq = a[p*n+q];
+      max = Math.max(max,Math.abs(apq));
+      if (Math.abs(apq) < diag*1e-13) continue;
+      const tau = (a[q*n+q]-a[p*n+p])/(2*apq);
+      const t = (tau >= 0 ? 1 : -1)/(Math.abs(tau)+Math.sqrt(1+tau*tau));
+      const c = 1/Math.sqrt(1+t*t);
+      const s = t*c;
+      a[p*n+p] -= t*apq;
+      a[q*n+q] += t*apq;
+      a[p*n+q] = a[q*n+p] = 0;
+      for (let r=0;r<n;r++) {
+        if (r !== p && r !== q) {
+          const x = a[r*n+p];
+          const y = a[r*n+q];
+          a[r*n+p] = a[p*n+r] = c*x-s*y;
+          a[r*n+q] = a[q*n+r] = s*x+c*y;
+        }
+        const x = v[r*n+p];
+        const y = v[r*n+q];
+        v[r*n+p] = c*x-s*y;
+        v[r*n+q] = s*x+c*y;
+      }
+    }
+    if (max < diag*1e-11) break;
+  }
+  const order = Array.from({length:n},(_,i) => i).sort((i,j) => a[i*n+i]-a[j*n+j]);
+  return {values:order.map(i => a[i*n+i]),vectors:order.map(i => Float64Array.from({length:n},(_,j) => v[j*n+i]))};
+}
+function assemble(d,active) {
+  const n = d.p.length*2;
+  const K = matrix(n);
+  const gravity = new Float64Array(n);
+  const mass = new Float64Array(n).fill(20);
+  const members = [];
+  const deck = d.p.map((p,i) => ({...p,i})).filter(p => p.y === 0 && p.x >= 0 && p.x <= 24).sort((a,b) => a.x-b.x);
+  for (let e=0;e<d.b.length;e++) {
+    const b = d.b[e];
+    const a = d.p[b.a];
+    const z = d.p[b.b];
+    const m = MATERIALS[b.m];
+    const len = Math.hypot(z.x-a.x,z.y-a.y);
+    const c = (z.x-a.x)/len;
+    const s = (z.y-a.y)/len;
+    const k = m.E*m.A/len;
+    const dof = [2*b.a,2*b.a+1,2*b.b,2*b.b+1];
+    const dir = [-c,-s,c,s];
+    if (!active || active[e]) {
+      for (let i=0;i<4;i++) for (let j=0;j<4;j++) K[dof[i]*n+dof[j]] += k*dir[i]*dir[j];
+      if (d.mode === 'tower' && b.m === 4) {
+        const t = [-s,c,s,-c];
+        for (let i=0;i<4;i++) for (let j=0;j<4;j++) K[dof[i]*n+dof[j]] += 100000/len*t[i]*t[j];
+      }
+    }
+    const weight = m.density*len*G/2;
+    gravity[2*b.a+1] -= weight;
+    gravity[2*b.b+1] -= weight;
+    for (const i of dof) mass[i] += m.density*len/2;
+    members.push({a:b.a,b:b.b,m:b.m,len,c,s,k,dof,dir,pull:m.pull,push:Math.min(m.pull,Math.PI**2*m.E*m.I/len**2)});
+  }
+  if (d.mode === 'bridge') {
+    for (let j=1;j<deck.length;j++) {
+      const a = deck[j-1];
+      const b = deck[j];
+      if (b.x-a.x <= 4) {
+        gravity[2*a.i+1] -= (b.x-a.x)*1000;
+        gravity[2*b.i+1] -= (b.x-a.x)*1000;
+        for (const i of [a.i,b.i]) {
+          mass[2*i] += (b.x-a.x)*1000/G;
+          mass[2*i+1] += (b.x-a.x)*1000/G;
+        }
+      }
+    }
+  } else {
+    const high = Math.max(...d.p.map(p => p.y));
+    const ids = d.p.map((p,i) => p.y === high ? i : -1).filter(i => i >= 0);
+    for (const i of ids) {
+      gravity[2*i+1] -= d.top*G/ids.length;
+      mass[2*i] += d.top/ids.length;
+      mass[2*i+1] += d.top/ids.length;
+    }
+  }
+  const free = [];
+  d.p.forEach((p,i) => fixed(d,i).forEach((v,j) => { if (!v) free.push(2*i+j);
+  }));
+  const nf = free.length;
+  const reduced = matrix(nf);
+  for (let i=0;i<nf;i++) for (let j=0;j<nf;j++) reduced[i*nf+j] = K[free[i]*n+free[j]];
+  const stiffnessEigen = nf ? eigen(reduced,nf) : null;
+  const singular = stiffnessEigen && stiffnessEigen.values[0] < stiffnessEigen.values.at(-1)*1e-9;
+  const chol = nf ? singular ? null : factor(reduced,nf) : new Float64Array();
+  let looseMode = null;
+  if (!chol) {
+    const mode = stiffnessEigen.vectors[0];
+    const largest = Math.max(...mode.map(Math.abs),1e-12);
+    looseMode = new Float64Array(n);
+    free.forEach((v,i) => { looseMode[v] = mode[i]/largest;
+    });
+  }
+  return {n,K,gravity,mass,members,deck,free,nf,reduced,chol,looseMode};
+}
+function dataFor(d,active) {
+  let cache = memo.get(d);
+  if (!cache) { cache = new Map();
+    memo.set(d,cache);
+  }
+  const key = active ? active.map(v => v ? '1' : '0').join('') : 'all';
+  if (!cache.has(key)) cache.set(key,assemble(d,active));
+  return cache.get(key);
+}
+function forces(model,u,active,pretension = false) {
+  const f = new Float64Array(model.members.length);
+  const use = new Float64Array(f.length);
+  for (let e=0;e<f.length;e++) {
+    const b = model.members[e];
+    let value = 0;
+    for (let j=0;j<4;j++) value += b.dir[j]*u[b.dof[j]]*b.k;
+    if (pretension && b.m === 4) value += 100000;
+    f[e] = active && !active[e] ? 0 : value;
+    use[e] = b.m === 4 && f[e] <= 0 ? 0 : Math.abs(f[e])/(f[e] >= 0 ? b.pull : b.push || 1e-20);
+  }
+  return {f,use};
+}
+function staticSolve(d,truck = d.truck,front = d.front,wind = 0) {
+  const cables = d.b.map((b,i) => b.m === 4 ? i : -1).filter(i => i >= 0);
+  const active = d.b.map(() => true);
+  let model;
+  for (let attempt=0;attempt<=2*cables.length+1;attempt++) {
+    model = dataFor(d,active);
+    const F = model.gravity.slice();
+    if (d.mode === 'bridge') {
+      for (const [off,t] of TRUCKS[truck].axles) {
+        const x = front-off;
+        if (x < 0 || x > 24) continue;
+        for (let j=1;j<model.deck.length;j++) {
+          const a = model.deck[j-1];
+          const b = model.deck[j];
+          if (x >= a.x && x <= b.x && b.x-a.x <= 4) {
+            F[2*a.i+1] -= t*1000*G/2*(b.x-x)/(b.x-a.x);
+            F[2*b.i+1] -= t*1000*G/2*(x-a.x)/(b.x-a.x);
+            break;
+          }
+        }
+      }
+    } else {
+      if (wind) addWind(d,model,F,wind);
+      for (let e=0;e<model.members.length;e++) {
+        const b = model.members[e];
+        if (b.m !== 4 || !active[e]) continue;
+        F[2*b.a] += 100000*b.c;
+        F[2*b.a+1] += 100000*b.s;
+        F[2*b.b] -= 100000*b.c;
+        F[2*b.b+1] -= 100000*b.s;
+      }
+    }
+    if (!model.chol) return {loose:true,model,F,u:new Float64Array(model.n),f:new Float64Array(d.b.length),use:new Float64Array(d.b.length),active};
+    const part = solveFactor(model.chol,Float64Array.from(model.free,i => F[i]),model.nf);
+    const u = new Float64Array(model.n);
+    model.free.forEach((v,i) => { u[v] = part[i];
+    });
+    const res = forces(model,u,active,d.mode === 'tower');
+    if (cables.length) {
+      const raw = forces(model,u,null,d.mode === 'tower').f;
+      const add = cables.find(e => !active[e] && raw[e] > .00001);
+      if (add !== undefined) { active[add] = true;
+        continue;
+      }
+      let drop = -1;
+      for (const e of cables) if (active[e] && raw[e] < -.00001 && (drop < 0 || raw[e] < raw[drop])) drop = e;
+      if (drop >= 0) { active[drop] = false;
+        continue;
+      }
+    }
+    return {...res,model,F,u,active,loose:false,max:Math.max(0,...res.use)};
+  }
+  return {loose:true,model,u:new Float64Array(model.n),f:new Float64Array(d.b.length),use:new Float64Array(d.b.length),active};
+}
+function addWind(d,model,F,speed) {
+  for (const b of model.members) {
+    const a = d.p[b.a];
+    const z = d.p[b.b];
+    const height = Math.max(2,(a.y+z.y)/2);
+    const v = speed*(height/10)**(1/7);
+    const f = .5*1.225*v*v*2*MATERIALS[b.m].width*Math.abs(z.y-a.y);
+    F[2*b.a] += f/2;
+    F[2*b.b] += f/2;
+  }
+  const high = Math.max(...d.p.map(p => p.y));
+  const top = d.p.map((p,i) => p.y === high ? i : -1).filter(i => i >= 0);
+  const [area,cd] = d.top === 8000 ? [9,.8] : d.top === 2000 ? [1.5,1.2] : [0,0];
+  const v = speed*(Math.max(2,high)/10)**(1/7);
+  for (const i of top) F[2*i] += .5*1.225*v*v*area*cd/top.length;
+}
+function roadOK(d) {
+  if (d.mode !== 'bridge') return true;
+  const reach = new Set(d.p.map((p,i) => p.x === 0 && p.y === 0 ? i : -1));
+  reach.delete(-1);
+  for (let k=0;k<d.p.length;k++) for (const b of d.b) {
+    const a = d.p[b.a];
+    const z = d.p[b.b];
+    if (a.y || z.y || Math.abs(a.x-z.x) > 4) continue;
+    if (reach.has(b.a)) reach.add(b.b);
+    if (reach.has(b.b)) reach.add(b.a);
+  }
+  return d.p.some((p,i) => p.x === 24 && p.y === 0 && reach.has(i));
+}
+function sweep(d,t) {
+  const uses = new Float64Array(d.b.length);
+  const at = new Float64Array(d.b.length);
+  const signs = new Float64Array(d.b.length);
+  let max = 0;
+  let slack = false;
+  let firstFailure = null;
+  const end = 26+TRUCKS[t].axles.at(-1)[0];
+  for (let k=0;k<=Math.ceil(end/.05);k++) {
+    const x = k*.05;
+    const r = staticSolve(d,t,x);
+    if (r.loose) return {loose:true,pass:false,max:null,uses:Array.from(uses),at:Array.from(at),front:x,slack};
+    for (let e=0;e<uses.length;e++) {
+      if (r.use[e] > uses[e]) { uses[e] = r.use[e];
+        at[e] = x;
+        signs[e] = r.f[e];
+      }
+      if (d.b[e].m === 4 && !r.active[e]) slack = true;
+    }
+    max = Math.max(max,r.max);
+    if (!firstFailure && r.max > 1) {
+      const e = r.use.indexOf(r.max);
+      firstFailure = {x,e,force:r.f[e],kind:r.f[e] < 0 ? 'buckle' : 'snap'};
+    }
+  }
+  return {loose:false,pass:roadOK(d) && max <= 1,max,uses:Array.from(uses),at:Array.from(at),signs:Array.from(signs),slack,firstFailure};
+}
+function modes(d) {
+  const base = staticSolve(d,0,-1,d.settings.windOn ? d.settings.wind : 0);
+  if (base.loose || !base.model.nf) return {loose:true,base};
+  const m = base.model;
+  const A = matrix(m.nf);
+  for (let i=0;i<m.nf;i++) for (let j=0;j<m.nf;j++) {
+    A[i*m.nf+j] = m.reduced[i*m.nf+j]/Math.sqrt(m.mass[m.free[i]]*m.mass[m.free[j]]);
+  }
+  const eig = eigen(A,m.nf);
+  if (eig.values[0] < eig.values.at(-1)*1e-9) return {loose:true,base};
+  const count = Math.min(6,m.nf);
+  const phi = eig.vectors.slice(0,count).map(v => Float64Array.from(v,(x,i) => x/Math.sqrt(m.mass[m.free[i]])));
+  const omega = eig.values.slice(0,count).map(Math.sqrt);
+  const gamma = phi.map(v => v.reduce((s,x,i) => s+(m.free[i]%2 === 0 ? x*m.mass[m.free[i]] : 0),0));
+  const full = phi.map(v => {
+    const u = new Float64Array(m.n);
+    m.free.forEach((j,i) => { u[j] = v[i];
+    });
+    return u;
+  });
+  return {loose:false,base,phi:full,omega,gamma,f:omega[0]/TAU,q:new Float64Array(count),v:new Float64Array(count),
+    t:0,max:0,maxSway:0,failAt:null};
+}
+// The shake source has one interface so a later checked acceleration record can replace a steady sine.
+const shakeInput = {
+  acceleration(t,settings) { return settings.strength*G*Math.min(1,t/2)*Math.sin(TAU*settings.speed*t);
+  },
+  displacement(t,settings) {
+    return -settings.strength*G/(TAU*settings.speed)**2*Math.min(1,t/2)*Math.sin(TAU*settings.speed*t);
+  }
+};
+function modalStep(d,model,dt = .001,shaking = true) {
+  const a = shaking ? shakeInput.acceleration(model.t,d.settings) : 0;
+  for (let k=0;k<model.q.length;k++) {
+    const w = model.omega[k];
+    model.v[k] += (-2*.05*w*model.v[k]-w*w*model.q[k]-model.gamma[k]*a)*dt;
+    model.q[k] += model.v[k]*dt;
+  }
+  model.t += dt;
+}
+function modalResult(model) {
+  const u = model.base.u.slice();
+  for (let k=0;k<model.q.length;k++) for (let j=0;j<u.length;j++) u[j] += model.phi[k][j]*model.q[k];
+  const result = forces(model.base.model,u,null,true);
+  let sway = 0;
+  for (let j=0;j<u.length;j+=2) sway = Math.max(sway,Math.abs(u[j]-model.base.u[j]));
+  const max = Math.max(0,...result.use);
+  model.max = Math.max(model.max,max);
+  model.maxSway = Math.max(model.maxSway,sway);
+  return {...result,u,model:model.base.model,max,loose:false,sway};
+}
+function towerTest(d,strength,speed,wind = 0) {
+  const copy = clone(d);
+  copy.settings = {...copy.settings,strength,speed,wind,windOn:wind > 0};
+  const model = modes(copy);
+  if (model.loose) return {pass:false,loose:true,max:null,f:null,strength,speed,wind};
+  let nonlinear = null;
+  for (let i=0;i<15000;i++) {
+    if (nonlinear) {
+      const substeps = Math.ceil(.001/nonlinear.dt);
+      const dt = .001/substeps;
+      for (let j=0;j<substeps;j++) explicitStep(copy,dt,i*.001,nonlinear,true);
+      for (let e=0;e<copy.b.length;e++) {
+        const b = nonlinear.model.members[e];
+        const f = nonlinear.forces[e];
+        const use = Math.abs(f)/(f >= 0 ? b.pull : b.push || 1e-20);
+        model.max = Math.max(model.max,use);
+        if (use > 1 && model.failAt === null) model.failAt = i*.001;
+      }
+      continue;
+    }
+    modalStep(copy,model);
+    if (i%4 === 0) {
+      const r = modalResult(model);
+      if (r.max > 1 && model.failAt === null) model.failAt = model.t;
+      if (copy.b.some((b,e) => b.m === 4 && r.f[e] < 0)) nonlinear = makeExplicit(copy,r,-1,model);
+    }
+  }
+  return {pass:model.max <= 1,max:model.max,f:model.f,sway:model.maxSway,failAt:model.failAt,strength,speed,wind};
+}
+function makeExplicit(d,result,broken = -1,velocityModel = null) {
+  const original = result.model || dataFor(d);
+  const m = {...original,mass:original.mass.slice()};
+  const truckMass = new Float64Array(m.n);
+  if (d.mode === 'bridge') {
+    for (const [off,t] of TRUCKS[d.truck].axles) {
+      const x = d.front-off;
+      for (let k=1;k<m.deck.length;k++) {
+        const a = m.deck[k-1];
+        const b = m.deck[k];
+        if (x < a.x || x > b.x) continue;
+        const share = (x-a.x)/(b.x-a.x);
+        for (const [i,fraction] of [[a.i,1-share],[b.i,share]]) {
+          truckMass[2*i] += t*500*fraction;
+          truckMass[2*i+1] += t*500*fraction;
+        }
+        break;
+      }
+    }
+    for (let i=0;i<m.n;i++) m.mass[i] += truckMass[i];
+  }
+  const n = m.n;
+  const x = new Float64Array(n);
+  const v = new Float64Array(n);
+  d.p.forEach((p,i) => {
+    x[2*i] = p.x+(result.u?.[2*i] || 0);
+    x[2*i+1] = p.y+(result.u?.[2*i+1] || 0);
+  });
+  if (velocityModel && !velocityModel.loose) {
+    for (let k=0;k<velocityModel.v.length;k++) for (let i=0;i<n;i++) v[i] += velocityModel.phi[k][i]*velocityModel.v[k];
+  }
+  const alive = d.b.map((b,i) => i !== broken);
+  const row = new Float64Array(n);
+  for (const b of m.members) for (const i of b.dof) row[i] += b.k*2;
+  let bound = 1;
+  for (const i of m.free) bound = Math.max(bound,row[i]/original.mass[i]);
+  const w1 = velocityModel && !velocityModel.loose ? velocityModel.omega[0] : 3;
+  const w2 = velocityModel && !velocityModel.loose ? velocityModel.omega[1] || w1*3 : 9;
+  const alpha = .1*w1*w2/(w1+w2);
+  const beta = .1/(w1+w2);
+  const dt = Math.min(.001,.7/Math.sqrt(bound));
+  // Centered Rayleigh damping is implicit in the difference increment. This avoids an artificial damping time-step limit.
+  const prev = Float64Array.from(x,(q,i) => q-v[i]*dt);
+  return {x,prev,v,alive,model:m,dt,alpha,beta,dampingFactor:null,dampingDirty:true,factorDt:0,
+    t:0,accum:0,slow:false,broken,truckMass,truckDetached:false,forces:new Float64Array(d.b.length)};
+}
+function explicitDamping(e,dt) {
+  const m = e.model;
+  const K = m.reduced.slice();
+  const indices = new Map(m.free.map((v,i) => [v,i]));
+  m.members.forEach((b,k) => {
+    if (e.alive[k]) return;
+    for (let i=0;i<4;i++) for (let j=0;j<4;j++) {
+      const a = indices.get(b.dof[i]);
+      const z = indices.get(b.dof[j]);
+      if (a !== undefined && z !== undefined) K[a*m.nf+z] -= b.k*b.dir[i]*b.dir[j];
+    }
+  });
+  const A = matrix(m.nf);
+  for (let i=0;i<m.nf;i++) for (let j=0;j<m.nf;j++) {
+    A[i*m.nf+j] = e.beta*K[i*m.nf+j]*dt/2;
+    if (i === j) A[i*m.nf+j] += m.mass[m.free[i]]*(1+e.alpha*dt/2);
+  }
+  e.dampingFactor = factor(A,m.nf);
+  e.dampingDirty = false;
+  e.factorDt = dt;
+}
+function startExplicit(d,result,broken = -1) {
+  explicit = makeExplicit(d,result,broken,towerModel);
+}
+function explicitStep(d,dt,shakeTime = 0,engine = explicit,shaking = false) {
+  const e = engine;
+  const m = e.model;
+  const F = m.gravity.slice();
+  if (d.mode === 'tower' && d.settings.windOn) addWind(d,m,F,d.settings.wind);
+  if (d.mode === 'tower' && shaking) {
+    const a = shakeInput.acceleration(shakeTime,d.settings);
+    for (let j=0;j<m.n;j+=2) F[j] -= m.mass[j]*a;
+  }
+  if (d.mode === 'bridge') {
+    if (!failAnim?.truck?.sliding && loadResult?.F) F.set(loadResult.F);
+    else if (!e.truckDetached) {
+      for (let j=0;j<m.n;j++) m.mass[j] -= e.truckMass[j];
+      e.truckDetached = true;
+      e.dampingDirty = true;
+    }
+  }
+  for (let k=0;k<m.members.length;k++) {
+    if (!e.alive[k]) continue;
+    const b = m.members[k];
+    const ia = 2*b.a;
+    const ib = 2*b.b;
+    const dx = e.x[ib]-e.x[ia];
+    const dy = e.x[ib+1]-e.x[ia+1];
+    const len = Math.max(.001,Math.hypot(dx,dy));
+    const cx = dx/len;
+    const cy = dy/len;
+    let f = b.k*(len-b.len)+(d.mode === 'tower' && b.m === 4 ? 100000 : 0);
+    if (b.m === 4) f = Math.max(0,f);
+    e.forces[k] = f;
+    F[ia] += f*cx;
+    F[ia+1] += f*cy;
+    F[ib] -= f*cx;
+    F[ib+1] -= f*cy;
+    const use = Math.abs(e.forces[k])/(e.forces[k] >= 0 ? b.pull : b.push || 1e-20);
+    if (use > 1.002 && e.t > .02) { e.alive[k] = false;
+      e.dampingDirty = true;
+    }
+  }
+  if (e.dampingDirty || e.factorDt !== dt) explicitDamping(e,dt);
+  const rhs = Float64Array.from(m.free,j => 2*m.mass[j]*(e.x[j]-e.prev[j])+F[j]*dt*dt);
+  const delta = solveFactor(e.dampingFactor,rhs,m.nf);
+  for (let k=0;k<m.free.length;k++) {
+    const j = m.free[k];
+    const old = e.x[j];
+    const next = e.prev[j]+delta[k];
+    e.x[j] = next;
+    e.prev[j] = old;
+    e.v[j] = (next-old)/dt;
+    if (j%2 === 1) {
+      const floor = d.mode === 'bridge' ? ground(e.x[j-1]) : -.45;
+      if (e.x[j] < floor) { e.x[j] = floor;
+        e.v[j] *= -.12;
+        e.prev[j] = floor+e.v[j]*dt;
+      }
+    }
+  }
+  if (d.mode === 'tower') {
+    const base = shaking ? 0 : ['shake','explicit-shake'].includes(state.run?.kind) ? shakeInput.displacement(shakeTime,d.settings) : 0;
+    d.p.forEach((p,i) => {
+      if (fixed(d,i)[0]) {
+        e.x[2*i] = p.x+base;
+        e.prev[2*i] = e.x[2*i];
+      }
+    });
+  }
+  e.t += dt;
+}
+/* UI, rendering and interaction are below. The solver above has no DOM dependencies. */
+const canvas = $('world');
+const ctx = canvas.getContext('2d');
+let W = 800;
+let H = 500;
+let view = {scale:20,x:0,y:0};
+let baseView = null;
+let wantsFrame = true;
+let tagTimer = null;
+let resultTimer = null;
+let lastUI = 0;
+let tagReturn = null;
+let tagHint = null;
+let lastWindSound = 0;
+let failAnim = null;
+const mouse = {x:0,y:0};
+function px(x) { return view.x+x*view.scale;
+}
+function py(y) { return view.y-y*view.scale;
+}
+function screenPoint(x,y) {
+  const r = canvas.getBoundingClientRect();
+  return [r.left+px(x),r.top+py(y)];
+}
+function point(event) {
+  const r = canvas.getBoundingClientRect();
+  return {x:(event.clientX-r.left-view.x)/view.scale,y:(view.y-event.clientY+r.top)/view.scale};
+}
+function formatCost(n) { return '$'+n.toLocaleString('en-US');
+}
+function reportResult(title,sub = '',ms = 0) {
+  clearTimeout(resultTimer);
+  $('result').replaceChildren();
+  $('result').append(document.createTextNode(title));
+  if (sub) {
+    const small = document.createElement('small');
+    small.textContent = sub;
+    $('result').append(small);
+  }
+  $('result').hidden = false;
+  state.result = title;
+  if (ms) resultTimer = setTimeout(() => { $('result').hidden = true;
+    state.result = null;
+  },ms);
+}
+function loadStorage() {
+  try {
+    const raw = localStorage.getItem('curio-span-and-spire');
+    if (!raw) return;
+    const saved = JSON.parse(raw);
+    state.tags = saved.tags && typeof saved.tags === 'object' ? saved.tags : {};
+    state.yard = Array.isArray(saved.yard) ? saved.yard.filter(validDesign).slice(0,12) : [];
+    state.firstSaved = !!saved.firstSaved;
+    state.failures = Array.isArray(saved.failures) ? saved.failures.slice(-20) : [];
+  } catch { storageFailed();
+  }
+}
+function validDesign(d) {
+  return d && ['bridge','tower'].includes(d.mode) && Array.isArray(d.p) && Array.isArray(d.b)
+    && d.p.length <= 40 && d.b.length <= 60 && d.p.length >= 2
+    && d.p.every(p => Number.isFinite(p.x) && Number.isFinite(p.y))
+    && d.b.every(b => Number.isInteger(b.a) && Number.isInteger(b.b) && b.a >= 0 && b.b >= 0
+      && b.a < d.p.length && b.b < d.p.length && b.a !== b.b && MATERIALS[b.m]);
+}
+function storageFailed() {
+  state.storageOK = false;
+  $('storage-note').textContent = 'Not saved on this device. The Yard still works for this session.';
+}
+function persist() {
+  try {
+    localStorage.setItem('curio-span-and-spire',JSON.stringify({version:1,yard:state.yard,tags:state.tags,
+      firstSaved:state.firstSaved,failures:state.failures.slice(-20)}));
+  } catch { storageFailed();
+  }
+}
+function earn(n) {
+  if (state.tags[n]) return;
+  state.tags[n] = new Date().toLocaleDateString('en-US');
+  $('tag-count').textContent = Object.keys(state.tags).length;
+  const toast = $('tag-toast');
+  toast.textContent = TAGS[n-1][0]+' · inspection stamped';
+  toast.hidden = false;
+  toast.classList.remove('stamp');
+  void toast.offsetWidth;
+  toast.classList.add('stamp');
+  clearTimeout(tagTimer);
+  tagTimer = setTimeout(() => { toast.hidden = true;
+  },2400);
+  sound('tag');
+  voice('tag',() => !toast.hidden);
+  persist();
+}
+function checkpoint() {
+  const h = history[D().mode];
+  h.undo.push(clone(D()));
+  if (h.undo.length > 50) h.undo.shift();
+  h.redo.length = 0;
+}
+function editDone(text = 'Drag from another joint to add a beam. Press Go to test.') {
+  const d = D();
+  designRevision++;
+  state.windHold = 0;
+  pluck = null;
+  memo.delete(d);
+  d.tests = {};
+  d.dots = [];
+  d.plucked = false;
+  d.old = false;
+  worstResult = null;
+  failAnim = null;
+  explicit = null;
+  if (state.run) { state.run.removed = [];
+    state.run.activeDesign = null;
+  }
+  state.failed = false;
+  if (d.mode === 'tower') {
+    towerModel = modes(d);
+    if (state.running && !towerModel.loose) restartShakeWindow();
+  }
+  solveLive();
+  if (loadResult.loose && d.b.length > (d.mode === 'bridge' ? 6 : 2)) {
+    const mode = loadResult.model.looseMode;
+    let joint = 0;
+    let largest = 0;
+    d.p.forEach((p,i) => {
+      const size = Math.hypot(mode?.[2*i] || 0,mode?.[2*i+1] || 0);
+      if (size > largest) { largest = size;
+        joint = i;
+      }
+    });
+    const p = d.p[joint];
+    hint('Joint ('+p.x+', '+p.y+') still moves freely. Connect that loose part to a braced part, then test.');
+  } else hint(text);
+  sound('place');
+  refresh();
+  wantsFrame = true;
+  if (state.worst && d.mode === 'bridge') refreshWorst();
+}
+function undo(redo = false) {
+  const d = D();
+  const h = history[d.mode];
+  const from = redo ? h.redo : h.undo;
+  if (!from.length) { sound('refuse');
+    hint(redo ? 'No redo yet. Build or change a beam.' : 'No undo yet. Drag from a joint to add a beam.');
+    return;
+  }
+  (redo ? h.undo : h.redo).push(clone(d));
+  state.designs[d.mode] = from.pop();
+  editDone('Drag from a joint to build, or press '+(d.mode === 'bridge' ? 'Go.' : 'Shake.'));
+}
+function reject(text) {
+  hint(text);
+  sound('refuse');
+  state.rejectUntil = performance.now()+300;
+  wantsFrame = true;
+}
+function canPlace(d,p) {
+  if (d.mode === 'bridge') return p.x >= -6 && p.x <= 30 && p.y <= 12 && p.y >= ground(p.x)-.001;
+  return p.x >= -8 && p.x <= 8 && p.y >= 0 && p.y <= 32;
+}
+function addBeam(a,p,material = state.piece,saveStep = true) {
+  const d = D();
+  const existing = d.p.findIndex(q => q.x === p.x && q.y === p.y);
+  const from = d.p[a];
+  if (!from || !canPlace(d,p)) { reject('Choose a grid point above the ground.');
+    return false;
+  }
+  if (existing === a) return false;
+  if (d.b.some(b => (b.a === a && b.b === existing) || (b.b === a && b.a === existing))) {
+    reject('That pair already has a beam. Tap it to change its piece.');
+    return false;
+  }
+  const len = Math.hypot(from.x-p.x,from.y-p.y);
+  if (len > (material === 4 ? 30 : 12)+.001) { reject(material === 4 ? 'Cable reaches 30 m. Choose a nearer joint.' : 'Beams reach 12 m. Choose a nearer joint.');
+    return false;
+  }
+  if (d.b.length >= 60 || (existing < 0 && d.p.length >= 40)) {
+    reject(d.b.length >= 60 ? 'The yard is out of members (60). Erase one to add one.' : 'The yard is out of joints (40). Erase one to add one.');
+    voice('bLimit');
+    return false;
+  }
+  if (saveStep) checkpoint();
+  let b = existing;
+  if (b < 0) { b = d.p.length;
+    d.p.push({x:p.x,y:p.y});
+  }
+  d.b.push({a,b,m:material});
+  if (saveStep) editDone(d.mode === 'bridge' ? 'Close a triangle with the next beam. Press Go to test.' : 'Build up in triangles. Drag the top sideways to pluck.');
+  return true;
+}
+function deleteBeam(e) {
+  if (e < 0) { reject('Tap a beam to erase it, or choose Build.');
+    return;
+  }
+  checkpoint();
+  const d = D();
+  d.b.splice(e,1);
+  for (let i=d.p.length-1;i>=0;i--) {
+    if (fixed(d,i).some(Boolean) || d.b.some(b => b.a === i || b.b === i)) continue;
+    d.p.splice(i,1);
+    for (const b of d.b) { if (b.a > i) b.a--;
+      if (b.b > i) b.b--;
+    }
+  }
+  editDone('Tap another beam to erase it, or choose Build.');
+}
+function moveJoint(i,p) {
+  const d = D();
+  if (fixed(d,i).some(Boolean)) { reject('A support stays on its footing. Build from it instead.');
+    return;
+  }
+  if (!canPlace(d,p) || d.p.some((q,j) => j !== i && q.x === p.x && q.y === p.y)) { reject('Choose an empty grid point above ground.');
+    return;
+  }
+  for (const b of d.b.filter(b => b.a === i || b.b === i)) {
+    const other = d.p[b.a === i ? b.b : b.a];
+    if (Math.hypot(other.x-p.x,other.y-p.y) > (b.m === 4 ? 30 : 12)+.001) { reject('That move would make a beam too long.');
+      return;
+    }
+  }
+  checkpoint();
+  d.p[i] = p;
+  editDone('Joint moved. Press '+(d.mode === 'bridge' ? 'Go' : 'Shake')+' to test the new shape.');
+}
+function solveLive() {
+  const d = D();
+  activeDesignRef = d;
+  if (d.mode === 'bridge' && state.run?.removed?.length) {
+    const run = state.run;
+    if (!run.activeDesign) {
+      run.activeDesign = clone(d);
+      run.activeMap = d.b.map((b,i) => i).filter(i => !run.removed.includes(i));
+      run.activeDesign.b = run.activeMap.map(i => clone(d.b[i]));
+    }
+    const r = staticSolve(run.activeDesign,d.truck,d.front);
+    const f = new Float64Array(d.b.length);
+    const use = new Float64Array(d.b.length);
+    const active = d.b.map(() => false);
+    run.activeMap.forEach((e,i) => { f[e] = r.f[i];
+      use[e] = r.use[i];
+      active[e] = r.active[i];
+    });
+    loadResult = {...r,f,use,active,model:dataFor(d)};
+  } else loadResult = staticSolve(d,d.truck,d.front,d.mode === 'tower' && d.settings.windOn ? d.settings.wind : 0);
+  current = loadResult;
+  if (d.mode === 'tower' && towerModel && !towerModel.loose && !loadResult.loose) towerModel.base = loadResult;
+  if (d.mode === 'tower' && !towerModel) towerModel = modes(d);
+  if (d.mode === 'tower' && !loadResult.loose && loadResult.max <= 1 && d.top === 8000 && topHeight(d) >= 10) {
+    earn(19);
+    if (!d.plucked && !V.heard('tPluck')) voice('tPluck',() => state.mode === 'tower' && !D().plucked && !state.failed);
+  }
+  const entering = d.mode === 'bridge' && state.run?.kind === 'crossing' && d.front < .3;
+  if (state.running && !entering && (loadResult.loose || loadResult.max > 1)) beginFailure(loadResult);
+}
+function topHeight(d) { return Math.max(0,...d.p.map(p => p.y));
+}
+function setMode(mode) {
+  if (!['bridge','tower','yard'].includes(mode)) return;
+  if (state.mode !== 'yard' && current) {
+    modeSessions.set(state.mode,{design:activeDesignRef,running:state.running,failed:state.failed,run:state.run,
+      explicit,failAnim,current,loadResult,towerModel,pluck,worstResult,hint:$('hint').textContent});
+  }
+  V.hush();
+  if (state.mode !== 'yard') state.origin = state.mode;
+  if (state.ghost && state.ghost.mode !== mode) state.ghost = null;
+  state.mode = mode;
+  state.windHold = 0;
+  document.body.dataset.mode = mode;
+  state.running = false;
+  state.run = null;
+  state.failed = false;
+  failAnim = null;
+  explicit = null;
+  pluck = null;
+  state.pointer = null;
+  state.anchor = null;
+  $('result').hidden = true;
+  $('tag-toast').hidden = true;
+  $('tag-drawer').hidden = true;
+  towerModel = null;
+  worstResult = null;
+  for (const m of ['bridge','tower','yard']) $('m-'+m).setAttribute('aria-pressed',m === mode);
+  $('yard').hidden = mode !== 'yard';
+  for (const id of ['primary','tower-controls','tools','views','cost','promises','save-row']) {
+    $(id).hidden = mode === 'yard' || (id === 'tower-controls' && mode !== 'tower');
+  }
+  $('trucks').hidden = mode !== 'bridge';
+  $('top-loads').hidden = mode !== 'tower';
+  $('yard-actions').hidden = mode !== 'yard';
+  $('stage-chips').hidden = mode === 'yard';
+  $('build-cue').hidden = mode === 'yard';
+  canvas.hidden = mode === 'yard';
+  $('borrow-row').hidden = !state.ghost || mode === 'yard';
+  state.cursor = mode === 'tower' ? {x:-1,y:0} : {x:0,y:0};
+  hint(L[mode === 'bridge' ? 'bWelcome' : mode === 'tower' ? 'tWelcome' : 'yWelcome']);
+  if (mode === 'bridge' && D().truck !== 0) hint('Press Go to send the '+TRUCKS[D().truck].name.toLowerCase()+' across, or drag it along the road.');
+  if (mode === 'yard') renderYard();
+  else {
+    makePromises();
+    const previous = modeSessions.get(mode);
+    if (previous?.design === D()) {
+      state.running = previous.running;
+      state.failed = previous.failed;
+      state.run = previous.run;
+      explicit = previous.explicit;
+      failAnim = previous.failAnim;
+      current = previous.current;
+      loadResult = previous.loadResult;
+      towerModel = previous.towerModel;
+      pluck = previous.pluck;
+      worstResult = previous.worstResult;
+      hint(previous.hint);
+      activeDesignRef = D();
+    } else solveLive();
+  }
+  refresh();
+  relayout();
+  V.welcome();
+}
+function rebuild() {
+  if (!state.failed) return;
+  explicit = null;
+  failAnim = null;
+  state.failed = false;
+  state.running = false;
+  state.run = null;
+  D().front = -1;
+  $('result').hidden = true;
+  towerModel = null;
+  solveLive();
+  refresh();
+  hint(D().mode === 'bridge' ? L.bBuild : L.tWelcome);
+  if (D().mode === 'bridge' && !V.heard('bBuild')) voice('bBuild',() => !state.failed && !state.running);
+  sound('place');
+}
+function beginRun() {
+  if (state.mode === 'yard') return;
+  if (state.running) {
+    state.running = false;
+    state.run = null;
+    hint('Press '+(state.mode === 'bridge' ? 'Go' : 'Shake')+' to test again, or change a piece.');
+    refresh();
+    return;
+  }
+  if (state.failed) rebuild();
+  explicit = null;
+  pluck = null;
+  const d = D();
+  state.cinematic = false;
+  V.dropQueued();
+  $('result').hidden = true;
+  d.tests.first = true;
+  state.running = true;
+  state.failed = false;
+  if (d.mode === 'bridge') {
+    if (!roadOK(d)) {
+      state.running = false;
+      hint('Choose Build and connect the gap along the road. Press Go to test it.');
+      voice('bGap',() => !roadOK(D()));
+      reportResult('Road gap','Add beams along the road.');
+      refresh();
+      return;
+    }
+    d.front = -.5;
+    state.run = {kind:'crossing',t:0,max:0,slack:false,truck:d.truck,revision:designRevision};
+    hint('Drag the truck to move the load. Tap a beam to change its piece while it crosses.');
+    Curio.tone(65,.18,.08,'sawtooth');
+  } else {
+    if (!d.b.length || topHeight(d) <= 0) {
+      state.running = false;
+      state.run = null;
+      hint(L.tWelcome);
+      voice('tWelcome',() => !state.running && topHeight(D()) <= 0);
+      reportResult('Build up from the table','Drag from a table joint to add a beam.',2500);
+      refresh();
+      return;
+    }
+    towerModel = modes(d);
+    state.run = {kind:'shake',t:0,max:0,speed:d.settings.speed,strength:d.settings.strength,revision:designRevision,
+      envelope:new Float64Array(d.b.length),envelopeSigns:new Float64Array(d.b.length)};
+    hint('Move Strength or Speed to change the shake at once. Press Stop to stop.');
+    if (towerModel.loose || towerModel.base.max > 1) beginFailure(towerModel.base);
+  }
+  solveLive();
+  refresh();
+}
+function beginFailure(result) {
+  if (state.failed || failAnim) return;
+  const d = D();
+  const loose = result.loose;
+  let member = -1;
+  let kind = 'fold';
+  if (!loose) {
+    member = result.use.indexOf(Math.max(...result.use));
+    const b = result.model.members[member];
+    kind = result.f[member] < 0 ? b.push < b.pull ? 'buckle' : 'crush' : 'snap';
+  }
+  state.failed = true;
+  failAnim = {kind,member,t:0,front:d.front,loose,result,started:performance.now()};
+  if (d.mode === 'bridge') {
+    failAnim.truck = {front:d.front,y:0,vx:state.running ? 5 : 0,vy:0,angle:0,sliding:false,splashed:false};
+  }
+  if (kind === 'buckle') {
+    const b = d.b[member];
+    state.lastBuckle = {p:clone(d.p[b.a]),q:clone(d.p[b.b]),truck:d.truck};
+    earn(3);
+  } else {
+    state.lastBuckle = null;
+    if (kind === 'snap') earn(4);
+    if (loose) earn(2);
+  }
+  const cableMechanism = loose && d.b.some((b,e) => b.m === 4 && result.active?.[e] === false);
+  const id = d.mode === 'bridge' ? loose ? cableMechanism ? 'bSlack' : 'bLoose' : kind === 'buckle' ? 'bBuckle' : kind === 'snap' ? 'bSnap' : null
+    : loose ? 'tFold' : ['shake','explicit-shake'].includes(state.run?.kind) ? 'tShakeFail' : d.settings.windOn ? 'tWindFail' : null;
+  hint(d.mode === 'bridge' ? 'Watch the load path fail. Then drag from a joint to close a triangle, or press Rebuild.'
+    : 'Watch where the tower gives way. Press Rebuild, then change its shape or shake speed.');
+  if (id) voice(id,() => state.failed);
+  if (d.old) earn(9);
+  if (d.mode === 'bridge') {
+    d.tests.trucks ||= {};
+    d.tests.trucks[d.truck] = {pass:false,loose,max:loose ? null : result.max,kind};
+  } else if (state.run?.kind !== 'shake') {
+    d.tests.wind ||= {};
+    d.tests.wind[d.settings.wind] = {pass:false,max:result.max || 0,loose};
+  }
+  if (d.mode === 'tower' && ['shake','explicit-shake'].includes(state.run?.kind) && towerModel && !towerModel.loose) {
+    const near = Math.abs(d.settings.speed-towerModel.f)/towerModel.f <= .15;
+    if (near) { earn(23);
+      voice('tResonance',() => state.failed && D().mode === 'tower');
+    }
+    state.failures.push({speed:d.settings.speed,strength:d.settings.strength,f:towerModel.f,
+      wind:d.settings.windOn ? d.settings.wind : 0});
+    d.tests.shake = {pass:false,max:towerModel.max,f:towerModel.f,speed:d.settings.speed,strength:d.settings.strength,
+      wind:d.settings.windOn ? d.settings.wind : 0,failAt:state.run.t};
+    if (!d.settings.windOn && d.settings.strength === .3 && d.settings.speed === 1.2) d.tests.valley = {...d.tests.shake};
+    addDot(d,towerModel,false);
+    persist();
+  }
+  if (loose) startExplicit(d,result);
+  sound('crack');
+  reportResult(loose ? 'A frame can fold.' : kind === 'buckle' ? 'Squeeze. Bow. Buckle.' : kind === 'crush' ? 'Squeeze. Crush.' : 'Pull. Snap.',
+    loose ? 'Close a triangle and try the same load.' : 'Slow motion · your design is kept');
+  refresh();
+}
+function braceRepaired(d) {
+  const old = state.lastBuckle;
+  if (!old || d.truck !== old.truck) return false;
+  const a = d.p.findIndex(p => p.x === old.p.x && p.y === old.p.y);
+  const b = d.p.findIndex(p => p.x === old.q.x && p.y === old.q.y);
+  if (a < 0 || b < 0) return false;
+  const dx = old.q.x-old.p.x;
+  const dy = old.q.y-old.p.y;
+  return d.p.some((x,i) => {
+    if (i === a || i === b) return false;
+    const t = ((x.x-old.p.x)*dx+(x.y-old.p.y)*dy)/(dx*dx+dy*dy);
+    const on = t > 0 && t < 1 && Math.abs((x.x-old.p.x)*dy-(x.y-old.p.y)*dx) < .001;
+    const joins = j => d.b.some(e => (e.a === i && e.b === j) || (e.b === i && e.a === j));
+    return on && joins(a) && joins(b) && d.b.filter(e => e.a === i || e.b === i).length >= 3;
+  });
+}
+function passed() {
+  const d = D();
+  const run = state.run;
+  const truckAtFinish = d.truck;
+  const revisionAtFinish = designRevision;
+  state.running = false;
+  state.run = null;
+  if (d.mode === 'bridge') {
+    const result = run.removed?.length ? {pass:false,completed:true,max:run.max,removed:run.removed.length} : sweep(d,d.truck);
+    d.tests.trucks ||= {};
+    d.tests.trucks[d.truck] = result;
+    if (!result.pass && !result.completed) { refresh();
+      return;
+    }
+    if (d.truck !== 0 || result.pass) earn([1,5,6,7,8][d.truck]);
+    if (result.slack || run.slack) earn(15);
+    if (d.truck === 4) {
+      if (result.max >= .95 && result.max <= 1) earn(10);
+      if (result.max <= .667) {
+        earn(11);
+        if (cost(d) <= 9000) earn(12);
+        if (cost(d) <= 8500) earn(13);
+      }
+      if (d.b.filter(b => b.m === 4).length >= 8) earn(14);
+      if (d.p.some((p,i) => fixed(d,i)[0] && p.y < -2)) earn(17);
+    }
+    if (braceRepaired(d)) earn(16);
+    voice('bPass'+truckAtFinish,() => !state.failed && D() === d && d.truck === truckAtFinish
+      && designRevision === revisionAtFinish && d.tests.trucks?.[truckAtFinish]?.pass);
+    reportResult(TRUCKS[d.truck].name+' crossed',result.removed ? result.removed+' member lost · rebuild before another test'
+      : 'Worst use '+(result.max*100).toFixed(1)+'% · saved in this design’s results',5000);
+    hint('Choose a heavier truck, drag it by hand, or Save to Yard to compare this design.');
+    setTimeout(() => { if (!state.running && !state.failed && D() === d) { d.front = -1;
+      solveLive();
+    } },1000);
+  } else {
+    d.tests.shake = {pass:true,max:towerModel.max,f:towerModel.f,speed:d.settings.speed,strength:d.settings.strength,
+      wind:d.settings.windOn ? d.settings.wind : 0,
+      duration:15,sway:towerModel.maxSway};
+    if (!d.settings.windOn && d.settings.strength === .3 && d.settings.speed === 1.2) d.tests.valley = {...d.tests.shake};
+    addDot(d,towerModel,true);
+    voice('tHold',() => !!D().tests.shake?.pass);
+    for (const failure of state.failures) {
+      if (Math.abs(failure.speed-d.settings.speed) < .0001 && Math.abs(failure.strength-d.settings.strength) < .0001
+        && (failure.wind || 0) === (d.settings.windOn ? d.settings.wind : 0)
+        && failure.f > towerModel.f) earn(24);
+    }
+    reportResult('15 seconds. Still standing.','Worst use '+(towerModel.max*100).toFixed(1)+'% · try another speed',5000);
+    hint('Change Speed and Shake again. Pluck the top to compare its own sway speed with the table.');
+    checkTown(d);
+  }
+  sound('pass');
+  refresh();
+}
+function addDot(d,model,pass) {
+  d.dots.push({speed:d.settings.speed,sway:model.maxSway*100,pass});
+  if (d.dots.length > 40) d.dots.shift();
+}
+function checkTown(d) {
+  if (d.top !== 8000 || topHeight(d) < 26) return;
+  const quake = d.tests.valley || d.tests.shake;
+  if (d.tests.wind?.[50]?.pass && quake?.pass && quake.duration >= 15
+    && !quake.wind && Math.abs(quake.strength-.3) < .00001 && Math.abs(quake.speed-1.2) < .00001) earn(25);
+}
+function refreshWorst() {
+  const d = D();
+  if (d.mode === 'bridge') {
+    const started = performance.now();
+    worstResult = sweep(d,d.truck);
+    state.worstMillis = performance.now()-started;
+    if (worstResult.loose) hint('The frame is loose. Drag a beam to close a triangle, then try Worst spots again.');
+  }
+}
+function makePromises() {
+  const d = D();
+  const rows = d.mode === 'bridge' ? BP : TP;
+  $('promise-list').replaceChildren();
+  rows.forEach((row,i) => {
+    const label = document.createElement('label');
+    label.className = 'promise';
+    const box = document.createElement('input');
+    box.type = 'checkbox';
+    box.checked = !!d.promises[i];
+    box.id = 'promise-'+i;
+    box.setAttribute('aria-label',row[0]+': '+row[1]);
+    box.onchange = () => {
+      d.promises[i] = box.checked;
+      if (d.mode === 'bridge') voice('bPromise',() => D().promises.some(Boolean));
+      hint('Save to Yard, then use Test all to score the promises you chose.');
+      refreshPromises();
+      sound('place');
+    };
+    const img = document.createElement('img');
+    img.src = ART[row[2]];
+    img.alt = '';
+    const text = document.createElement('span');
+    const title = document.createElement('strong');
+    title.textContent = row[0];
+    text.append(title,document.createTextNode(row[1]));
+    const out = document.createElement('output');
+    out.id = 'promise-result-'+i;
+    label.append(box,img,text,out);
+    $('promise-list').append(label);
+  });
+}
+function segmentBox(a,b,x0,x1,y0,y1) {
+  let lo = 0;
+  let hi = 1;
+  const dx = b.x-a.x;
+  const dy = b.y-a.y;
+  for (const [p,q] of [[-dx,a.x-x0],[dx,x1-a.x],[-dy,a.y-y0],[dy,y1-a.y]]) {
+    if (Math.abs(p) < 1e-10) { if (q < 0) return false;
+    }
+    else {
+      const t = q/p;
+      if (p < 0) lo = Math.max(lo,t);
+      else hi = Math.min(hi,t);
+      if (lo > hi) return false;
+    }
+  }
+  return true;
+}
+function promiseResults(d) {
+  if (d.mode === 'tower') {
+    const psi = 9.81*(topHeight(d)+3)/6.895;
+    const q = d.tests.valley || d.tests.shake;
+    return [
+      {pass:d.top === 8000 && psi >= 40,reason:psi.toFixed(1)+' psi; tank required'},
+      {pass:d.tests.wind?.[50]?.pass ?? null,reason:d.tests.wind?.[50]?.pass === false
+        ? d.tests.wind[50].loose ? 'The frame is loose' : 'Wind 50 exceeded a member limit' : 'Run wind 50 for 5 s'},
+      {pass:q && (!q.pass || q.duration >= 15) && !q.wind && q.strength === .3 && q.speed === 1.2 ? q.pass : null,
+        reason:'Test 0.30 g, 1.20 a second for 15 s with Wind off'}
+    ];
+  }
+  const tests = d.tests.trucks || {};
+  const stream = d.p.find((p,i) => fixed(d,i)[0] && p.y < -2);
+  const blocked = d.b.some(b => segmentBox(d.p[b.a],d.p[b.b],8.001,15.999,-3.999,-1.001));
+  const heaviest = d.promises[0] ? 3 : d.promises[1] ? 2 : d.promises[2] ? 1 : 0;
+  const limit = tests[heaviest];
+  const truckReason = i => !tests[i] ? 'Test the '+TRUCKS[i].name.toLowerCase() : tests[i].loose
+    ? 'The frame is loose' : 'Worst beam '+(tests[i].max*100).toFixed(1)+'% with '+TRUCKS[i].name;
+  return [
+    {pass:tests[3]?.pass ?? null,reason:truckReason(3)},
+    {pass:tests[2]?.pass ?? null,reason:truckReason(2)},
+    {pass:tests[1]?.pass ?? null,reason:truckReason(1)},
+    {pass:!stream,reason:stream ? `Footing at (${stream.x}, ${stream.y}) is in the stream` : 'No footing below spring flood'},
+    {pass:!blocked,reason:blocked ? 'A beam passes through the canoe opening' : 'Opening is clear'},
+    {pass:cost(d) > 9000 ? false : !limit ? null : limit.pass && limit.max <= 2/3,
+      reason:cost(d) > 9000 ? 'Over $9,000' : !limit ? 'Test the heaviest promised truck' :
+        limit.loose ? 'Loose frame' : 'Worst beam '+(limit.max*100).toFixed(1)+'% with '+TRUCKS[heaviest].name+'; limit 66.7%'}
+  ];
+}
+function refreshPromises() {
+  const d = D();
+  const results = promiseResults(d);
+  const symbols = results.map((r,i) => !d.promises[i] ? '○' : r.pass === null ? '?' : r.pass ? '✓' : '×');
+  $('promise-ticks').textContent = ' '+symbols.join(' ');
+  results.forEach((r,i) => {
+    const out = $('promise-result-'+i);
+    if (!out) return;
+    out.textContent = d.promises[i] ? r.pass === null ? '?' : r.pass ? '✓' : '×' : '';
+    out.title = r.reason;
+    out.style.color = r.pass === false ? '#ffb9b9' : 'var(--good)';
+    out.parentElement.title = r.reason;
+    const label = out.parentElement.querySelector('span');
+    let reason = label.querySelector('.reason');
+    if (d.promises[i]) {
+      if (!reason) { reason = document.createElement('small');
+        reason.className = 'reason';
+        label.append(reason);
+      }
+      reason.textContent = r.reason;
+    } else reason?.remove();
+  });
+  if (d.mode === 'bridge' && d.promises.every(Boolean) && results.every(r => r.pass)) earn(18);
+}
+function refresh() {
+  wantsFrame = true;
+  const d = D();
+  $('go').innerHTML = state.running ? '■ Stop' : state.mode === 'tower' ? '≈ Shake <kbd>Space</kbd>' : '▶ Go <kbd>Space</kbd>';
+  $('rebuild').hidden = !state.failed;
+  $('worst').setAttribute('aria-pressed',state.worst);
+  $('true-size').setAttribute('aria-pressed',state.trueSize);
+  $('build').setAttribute('aria-pressed',state.tool === 'build');
+  $('erase').setAttribute('aria-pressed',state.tool === 'erase');
+  for (const b of document.querySelectorAll('[data-piece]')) b.setAttribute('aria-pressed',+b.dataset.piece === state.piece);
+  for (const b of document.querySelectorAll('[data-truck]')) b.setAttribute('aria-pressed',+b.dataset.truck === d.truck);
+  for (const b of document.querySelectorAll('[data-top]')) b.setAttribute('aria-pressed',+b.dataset.top === d.top);
+  $('cost').innerHTML = '<span>'+formatCost(cost(d))+' <small>game prices</small></span><small>'+d.b.length+'/60 members · '+d.p.length+'/40 joints</small>';
+  $('tag-count').textContent = Object.keys(state.tags).length;
+  if (state.mode !== 'yard') refreshPromises();
+  if (d.mode === 'tower') {
+    $('strength').value = d.settings.strength;
+    $('speed').value = d.settings.speed;
+    $('wind-speed').value = d.settings.wind;
+    $('strength-out').textContent = d.settings.strength.toFixed(2)+' g';
+    $('speed-out').textContent = d.settings.speed.toFixed(2)+' a second';
+    $('wind-out').textContent = d.settings.wind+' m/s';
+    $('wind').setAttribute('aria-pressed',d.settings.windOn);
+    const height = topHeight(d);
+    const pressure = 9.81*(height+3);
+    $('tower-readout').textContent = (d.top === 8000 ? height+' m · '+Math.round(pressure)+' kPa ('+(pressure/6.895).toFixed(1)+' psi)' : 'Height '+height+' m')
+      +(d.plucked && towerModel && !towerModel.loose ? ' · Sway '+towerModel.f.toFixed(2)+'/s' : '');
+  }
+  $('magnification').textContent = d.mode === 'bridge' ? (state.trueSize ? 'True sag' : 'Sag ×20')+' · each side carries half'
+    : state.trueSize ? 'True displacement' : ['shake','explicit-shake'].includes(state.run?.kind) ? 'Sway ×5 · table at true size' : 'Sway ×20 · table at true size';
+  $('build-cue').textContent = state.ghost ? 'Pink ghost: tap a beam to adopt it · Borrow all / Done'
+    : state.tool === 'erase' ? 'Tap a beam to erase · choose Build to add'
+    : state.mode === 'bridge' ? 'Drag from a joint · Shift drag to move · Space to Go'
+    : 'Build from the table · drag the top to pluck · Space to Shake';
+  updateChips();
+}
+function updateChips() {
+  const d = D();
+  if (d.mode === 'bridge') {
+    $('load-chip').innerHTML = '<strong>'+TRUCKS[d.truck].name+' · '+TRUCKS[d.truck].mass.toFixed(1)+' t</strong>'
+      +'<br>Each side carries half: '+(TRUCKS[d.truck].mass/2).toFixed(1)+' t';
+  } else {
+    const t = state.run?.t || 0;
+    $('load-chip').innerHTML = '<strong>'+(d.top === 8000 ? 'Tank · 8 t' : d.top === 2000 ? 'Bell · 2 t' : 'No top load')+'</strong><br>'
+      +(['shake','explicit-shake'].includes(state.run?.kind) ? t.toFixed(1)+' / 15 s · '+d.settings.speed.toFixed(2)+' shakes/s'
+        : pluck && towerModel && !towerModel.loose ? Math.floor(pluck.t*towerModel.f)+' sways · '+towerModel.f.toFixed(2)+'/s'
+        : d.settings.windOn ? 'Wind '+d.settings.wind+' m/s'
+          : d.plucked && towerModel && !towerModel.loose ? 'Own sway '+towerModel.f.toFixed(2)+'/s' : 'Pluck to find its own sway');
+  }
+  let pull = 0;
+  let push = 0;
+  let pu = 0;
+  let su = 0;
+  for (let i=0;i<(current?.f.length || 0);i++) {
+    if (current.f[i] > pull) { pull = current.f[i];
+      pu = current.use[i];
+    }
+    if (-current.f[i] > push) { push = -current.f[i];
+      su = current.use[i];
+    }
+  }
+  $('force-chip').textContent = current?.loose ? 'Loose joints · triangles close the load path'
+    : '↔ '+Math.round(pull/1000)+' kN ('+Math.round(pu*100)+'%) · ⇥⇤ '+Math.round(push/1000)+' kN ('+Math.round(su*100)+'%)';
+}
+function roundRect(x,y,w,h,r,fill,stroke) {
+  ctx.beginPath();
+  ctx.roundRect(x,y,w,h,r);
+  if (fill) { ctx.fillStyle = fill;
+    ctx.fill();
+  }
+  if (stroke) { ctx.strokeStyle = stroke;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+}
+function line(x1,y1,x2,y2,color,width = 1) {
+  ctx.beginPath();
+  ctx.moveTo(x1,y1);
+  ctx.lineTo(x2,y2);
+  ctx.strokeStyle = color;
+  ctx.lineWidth = width;
+  ctx.stroke();
+}
+function text(str,x,y,size = 11,color = '#eef3f7',align = 'left') {
+  ctx.fillStyle = color;
+  ctx.font = '600 '+size+'px "Segoe UI",sans-serif';
+  ctx.textAlign = align;
+  ctx.fillText(str,x,y);
+}
+function art(name,x,y,w,h,alpha = 1) {
+  const img = images[name];
+  if (!img?.complete || !img.naturalWidth) return;
+  ctx.save();
+  ctx.globalAlpha *= alpha;
+  ctx.drawImage(img,x,y,w,h);
+  ctx.restore();
+}
+function gradient(x1,y1,x2,y2,stops) {
+  const g = ctx.createLinearGradient(x1,y1,x2,y2);
+  stops.forEach(([at,c]) => g.addColorStop(at,c));
+  return g;
+}
+function chip(str,x,y,align = 'left',color = '#eef3f7',size = 11) {
+  ctx.font = '600 '+size+'px "Segoe UI",sans-serif';
+  const w = ctx.measureText(str).width+12;
+  if (align === 'right') x -= w;
+  else if (align === 'center') x -= w/2;
+  roundRect(x,y-13,w,20,3,'#0f1a24eb','#63748165');
+  text(str,x+6,y+1,size,color);
+}
+function relayout() {
+  const compact = innerWidth >= 600 && (innerWidth < 1000 || innerHeight < 900);
+  const stack = innerWidth < 600 || (innerWidth < 1000 && innerHeight >= 650);
+  document.body.classList.toggle('compact',compact && !stack);
+  document.body.classList.toggle('stack',stack);
+  const r = $('stage').getBoundingClientRect();
+  W = Math.max(1,r.width);
+  H = Math.max(1,r.height);
+  const ratio = Math.min(devicePixelRatio || 1,2);
+  canvas.width = Math.round(W*ratio);
+  canvas.height = Math.round(H*ratio);
+  ctx.setTransform(ratio,0,0,ratio,0,0);
+  if (D().mode === 'bridge') {
+    const scale = Math.min((W-24)/36,(H-54)/18);
+    view = {scale,x:W/2-12*scale,y:Math.min(H-6*scale-12,68+12*scale)};
+  } else {
+    const scale = Math.min((H-65)/33,(W-34)/16);
+    view = {scale,x:W/2,y:H-28-scale};
+  }
+  baseView = {...view};
+  if (compact || stack) $('promises').open = false;
+  else if (innerHeight >= 900) $('promises').open = true;
+  wantsFrame = true;
+  draw();
+}
+function drawBackdrop() {
+  const d = D();
+  if (d.mode === 'bridge') {
+    ctx.fillStyle = gradient(0,0,0,H,[[0,'#173c50'],[.37,'#6e9294'],[.65,'#dba983'],[1,'#354d49']]);
+    ctx.fillRect(0,0,W,H);
+    art('sas-hills',0,-H*.08,W,H*.7,.82);
+    const light = ctx.createRadialGradient(W*.76,H*.35,5,W*.76,H*.35,W*.7);
+    light.addColorStop(0,'#ffd7a32e');
+    light.addColorStop(1,'#ffb96c00');
+    ctx.fillStyle = light;
+    ctx.fillRect(0,0,W,H);
+    drawTerrain();
+    const waterY = py(-4);
+    ctx.fillStyle = gradient(0,waterY,0,H,[[0,'#548c92'],[.25,'#316b76'],[1,'#143c51']]);
+    ctx.beginPath();
+    ctx.moveTo(px(4),waterY);
+    ctx.lineTo(px(20),waterY);
+    ctx.lineTo(px(19),py(-5));
+    ctx.lineTo(px(5),py(-5));
+    ctx.closePath();
+    ctx.fill();
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(px(4),waterY,16*view.scale,Math.max(1,py(-5)-waterY));
+    ctx.clip();
+    const t = Curio.reduce ? 0 : state.time;
+    for (let k=0;k<12;k++) {
+      const x = px(3+((k*1.71+t*.17)%18));
+      const y = waterY+4+(k%4)*view.scale*.2;
+      line(x,y,x+view.scale*(.4+k%3*.2),y,'#c9e6d34a',1);
+    }
+    ctx.restore();
+    line(px(2),py(-2),px(22),py(-2),'#b3d0cc8a');
+    ctx.setLineDash([4,4]);
+    line(px(2),py(-2),px(22),py(-2),'#b4d5d6a0');
+    ctx.setLineDash([]);
+    chip('spring flood',px(3),py(-2)-5,'left','#c8dedf',10);
+    ctx.setLineDash([2,5]);
+    ctx.strokeStyle = '#d0e8e16b';
+    ctx.strokeRect(px(8),py(-1),8*view.scale,3*view.scale);
+    ctx.setLineDash([]);
+    art('sas-canoe',px(10),py(-3.5),4*view.scale,view.scale);
+    for (const x of [0,24]) art('sas-abutment',px(x)-view.scale*.7,py(0),view.scale*1.4,view.scale*1.5);
+    d.p.forEach((p,i) => {
+      if (fixed(d,i)[0] && !(p.y === 0 && (p.x === 0 || p.x === 24))) {
+        art('sas-footing',px(p.x)-view.scale*.5,py(p.y),view.scale,view.scale);
+      }
+    });
+    const sx = 15;
+    const sy = H-43;
+    line(sx,sy,sx+4*view.scale,sy,'#e8f2ee',2);
+    line(sx,sy-4,sx,sy+4,'#e8f2ee',2);
+    line(sx+4*view.scale,sy-4,sx+4*view.scale,sy+4,'#e8f2ee',2);
+    text('4 m',sx+2*view.scale,sy-6,10,'#e8f2ee','center');
+  } else {
+    ctx.fillStyle = gradient(0,0,0,H,[[0,'#70a6c0'],[.65,'#d0dfd4'],[1,'#778a8c']]);
+    ctx.fillRect(0,0,W,H);
+    art('sas-yard',0,0,W,H,.78);
+    const t = Curio.reduce ? 0 : state.time;
+    const wind = d.settings.windOn ? d.settings.wind : 0;
+    art('sas-cloud-a',(W*.07+t*wind*.12)%(W+130)-65,H*.12,W*.22,W*.11,.42);
+    art('sas-cloud-b',(W*.6+t*wind*.08)%(W+130)-65,H*.22,W*.18,W*.09,.4);
+    ctx.fillStyle = gradient(0,H-60,0,H,[[0,'#9da7a0'],[1,'#586c6e']]);
+    ctx.fillRect(0,py(-.1),W,H-py(-.1));
+    const base = ['shake','explicit-shake'].includes(state.run?.kind) && state.run.t < 15 && !Curio.reduce
+      ? shakeInput.displacement(state.run.t,d.settings)*view.scale : 0;
+    art('sas-table',px(-6)+base,py(0)-1,12*view.scale,2.4*view.scale);
+    art(d.settings.windOn && wind > 0 ? 'sas-sock-full' : 'sas-sock-limp',px(-6)-view.scale,py(6),2*view.scale,5*view.scale);
+    if (wind) {
+      ctx.save();
+      ctx.globalAlpha = .25;
+      for (let i=0;i<Math.ceil(wind/3);i++) {
+        const y = 65+(i*43)%(H-100);
+        const x = (i*109+t*wind*3)%(W+90)-45;
+        line(x,y,x+10+wind*.25,y,'#f6fbff',1);
+      }
+      ctx.restore();
+    }
+    const rulerX = px(-4.8);
+    for (let y=0;y<=30;y+=2) {
+      const sy = py(y);
+      line(rulerX-4,sy,rulerX,sy,'#243d4eaa');
+      if (H > 380 || y%4 === 0) text(y+' m',rulerX-8,sy+3,10,'#193a4f','right');
+    }
+    line(rulerX,py(0),rulerX,py(32),'#244455aa');
+    drawResonance(d);
+  }
+}
+function drawTerrain() {
+  const terrain = (left) => {
+    ctx.beginPath();
+    if (left) {
+      ctx.moveTo(0,py(0));
+      ctx.lineTo(px(0),py(0));
+      ctx.lineTo(px(5),py(-5));
+      ctx.lineTo(px(12),H);
+      ctx.lineTo(0,H);
+    } else {
+      ctx.moveTo(px(19),py(-5));
+      ctx.lineTo(px(24),py(0));
+      ctx.lineTo(W,py(0));
+      ctx.lineTo(W,H);
+      ctx.lineTo(px(12),H);
+    }
+    ctx.closePath();
+  };
+  for (const left of [true,false]) {
+    ctx.save();
+    terrain(left);
+    ctx.clip();
+    ctx.fillStyle = gradient(0,py(0),0,H,[[0,'#82734e'],[.15,'#68513c'],[.7,'#3b3833'],[1,'#243438']]);
+    ctx.fillRect(0,py(0),W,H);
+    art('sas-bank',left ? -W*.1 : W*.5,py(0),W*.6,H-py(0),.65);
+    for (let k=0;k<22;k++) {
+      const y = py(0)+k*9+4;
+      line(0,y,W,y+(k%3-1)*7,k%3 === 0 ? '#c4a27018' : '#19272d18');
+    }
+    ctx.restore();
+  }
+  art('sas-grass',0,py(0)-view.scale*.4,Math.max(1,px(0)),view.scale*.55);
+  art('sas-grass',px(24),py(0)-view.scale*.4,Math.max(1,W-px(24)),view.scale*.55);
+  line(0,py(0),px(0),py(0),'#83a375',2);
+  line(px(24),py(0),W,py(0),'#83a375',2);
+}
+function drawGrid() {
+  const d = D();
+  const minX = d.mode === 'bridge' ? -6 : -8;
+  const maxX = d.mode === 'bridge' ? 30 : 8;
+  const minY = d.mode === 'bridge' ? -5 : 0;
+  const maxY = d.mode === 'bridge' ? 12 : 32;
+  ctx.fillStyle = d.mode === 'bridge' ? '#e4eee52d' : '#1c425c2c';
+  for (let x=minX;x<=maxX;x++) for (let y=minY;y<=maxY;y++) {
+    if (d.mode === 'bridge' && y < ground(x)) continue;
+    ctx.beginPath();
+    ctx.arc(px(x),py(y),.85,0,TAU);
+    ctx.fill();
+  }
+}
+function drawResonance(d) {
+  const width = Math.max(95,Math.min(210,W*.25));
+  const height = Math.max(90,Math.min(145,H*.25));
+  const x = W-width-12;
+  const y = Math.max(88,H*.28);
+  if (W < 280) return;
+  roundRect(x,y,width,height,5,'#11232eeb','#6d8a9a');
+  text('RESONANCE',x+10,y+17,10,'#c8d8e4');
+  const gx = x+25;
+  const gy = y+height-25;
+  const gw = width-40;
+  const gh = height-(width < 160 ? 70 : 55);
+  line(gx,gy-gh,gx,gy,'#8198a5');
+  line(gx,gy,gx+gw,gy,'#8198a5');
+  text('0.4',gx,gy+13,10,'#a8bfce','center');
+  text('4',gx+gw,gy+13,10,'#a8bfce','center');
+  const largest = Math.max(10,...d.dots.map(p => p.sway));
+  for (const dot of d.dots) {
+    const xx = gx+(dot.speed-.4)/3.6*gw;
+    const yy = gy-dot.sway/largest*gh;
+    ctx.fillStyle = dot.pass ? '#3fc8ff' : '#ffab2e';
+    ctx.beginPath();
+    ctx.arc(xx,yy,4,0,TAU);
+    ctx.fill();
+    if (!dot.pass) {
+      line(xx-2,yy-2,xx+2,yy+2,'#172733');
+      line(xx+2,yy-2,xx-2,yy+2,'#172733');
+    }
+  }
+  if (d.plucked && towerModel && !towerModel.loose) {
+    const xx = gx+(towerModel.f-.4)/3.6*gw;
+    if (xx >= gx && xx <= gx+gw) {
+      ctx.setLineDash([3,3]);
+      line(xx,gy-gh,xx,gy,'#ff8abb');
+      ctx.setLineDash([]);
+    }
+  }
+  if (width >= 160) text('top sway cm · '+Math.round(largest),x+width-8,y+17,10,'#a8bfce','right');
+  else text('top sway (cm)',x+width/2,y+32,10,'#a8bfce','center');
+  if (!d.dots.length) text(width < 160 ? 'Shake → dot' : 'Shake to add a dot',x+width/2,gy-gh*.4,10,'#afc6d6','center');
+}
+function displacedPoints() {
+  const d = D();
+  const mag = state.trueSize ? 1 : d.mode === 'bridge' ? 20 : ['shake','explicit-shake'].includes(state.run?.kind) ? 5 : 20;
+  if (explicit && (state.failed || state.run?.kind === 'explicit-shake')) {
+    if (Curio.reduce) {
+      const stage = explicit.t >= 8 ? 2 : explicit.t >= 3 ? 1 : 0;
+      if (stage && stage !== explicit.calmStage) {
+        explicit.calmPose = explicit.x.slice();
+        explicit.calmStage = stage;
+      }
+      if (explicit.calmPose) return d.p.map((p,i) => ({x:explicit.calmPose[2*i],y:explicit.calmPose[2*i+1]}));
+    } else {
+      const base = ['shake','explicit-shake'].includes(state.run?.kind) && state.run.t < 15 ? shakeInput.displacement(state.run.t,d.settings) : 0;
+      return d.p.map((p,i) => ({x:explicit.x[2*i]+base,y:explicit.x[2*i+1]}));
+    }
+  }
+  return d.p.map((p,i) => {
+    let x = p.x;
+    let y = p.y;
+    if (current && !current.loose && !Curio.reduce) {
+      x += (current.u?.[2*i] || 0)*mag;
+      y += (current.u?.[2*i+1] || 0)*mag;
+    }
+    if (current?.loose && !fixed(d,i).some(Boolean) && !Curio.reduce) {
+      const amplitude = Math.sin(state.time*14)*.12;
+      x += (current.model.looseMode?.[2*i] || 0)*amplitude;
+      y += (current.model.looseMode?.[2*i+1] || 0)*amplitude;
+    }
+    if (d.mode === 'tower' && state.running && ['shake','explicit-shake'].includes(state.run?.kind) && !Curio.reduce) {
+      x += shakeInput.displacement(state.run.t,d.settings);
+    }
+    return {x,y};
+  });
+}
+function arrows(ax,ay,bx,by,squeeze,color) {
+  const dx = bx-ax;
+  const dy = by-ay;
+  const len = Math.hypot(dx,dy);
+  if (len < 22) return;
+  const cx = dx/len;
+  const cy = dy/len;
+  const size = Math.min(5,len*.12);
+  for (const t of [.28,.72]) {
+    const sign = squeeze ? t < .5 ? 1 : -1 : t < .5 ? -1 : 1;
+    const x = ax+dx*t;
+    const y = ay+dy*t;
+    ctx.beginPath();
+    ctx.moveTo(x-cx*sign*size-cy*size*.55,y-cy*sign*size+cx*size*.55);
+    ctx.lineTo(x,y);
+    ctx.lineTo(x-cx*sign*size+cy*size*.55,y-cy*sign*size-cx*size*.55);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1.4;
+    ctx.stroke();
+  }
+}
+function drawMember(d,b,e,points,ghost = false) {
+  const a = points[b.a];
+  const z = points[b.b];
+  const ax = px(a.x);
+  const ay = py(a.y);
+  const bx = px(z.x);
+  const by = py(z.y);
+  const mat = MATERIALS[b.m];
+  const dx = bx-ax;
+  const dy = by-ay;
+  const len = Math.max(1,Math.hypot(dx,dy));
+  let use = current?.use[e] || 0;
+  let force = current?.f[e] || 0;
+  if (state.worst && d.mode === 'tower' && d.tests.memberWorst?.[e] !== undefined) {
+    use = d.tests.memberWorst[e];
+    force = d.tests.memberSigns[e];
+  }
+  if (state.worst && worstResult?.uses?.[e] !== undefined) {
+    use = worstResult.uses[e];
+    force = worstResult.signs?.[e] || 0;
+  }
+  const slack = b.m === 4 && force <= .001;
+  const squeeze = force < -.001;
+  const color = ghost ? '#ff8cbe' : slack ? '#acb6bf' : squeeze ? '#ffab2e' : '#3fc8ff';
+  const width = b.m === 4 ? 1.6 : b.m === 1 || b.m === 3 ? 7 : 4.5;
+  const broken = explicit && !explicit.alive[e];
+  if (state.run?.removed?.includes(e)) return;
+  if (broken && (failAnim?.member !== e || failAnim.t > 2.5)) return;
+  ctx.save();
+  ctx.lineCap = 'round';
+  if (ghost) ctx.setLineDash([5,4]);
+  const isFailing = failAnim?.member === e && !failAnim.loose;
+  let bow = 0;
+  if (isFailing && failAnim.kind === 'buckle' && !Curio.reduce) bow = Math.min(1,failAnim.t/1.2)*len*.3;
+  function path(offset = 0,cut = false) {
+    ctx.beginPath();
+    const nx = -dy/len;
+    const ny = dx/len;
+    for (let k=0;k<=16;k++) {
+      const t = k/16;
+      const wave = slack ? Math.sin(t*Math.PI*4)*Math.min(3,len*.035) : 0;
+      const sag = bow*Math.sin(t*Math.PI)+wave;
+      const x = ax+dx*t+nx*(sag+offset);
+      const y = ay+dy*t+ny*(sag+offset);
+      if (k === 0 || (cut && k === 9)) ctx.moveTo(x,y);
+      else ctx.lineTo(x,y);
+    }
+  }
+  const snap = isFailing && failAnim.kind === 'snap' && failAnim.t > .5;
+  path(2,snap);
+  ctx.strokeStyle = '#07131bb0';
+  ctx.lineWidth = width+3;
+  ctx.stroke();
+  path(0,snap);
+  ctx.strokeStyle = b.m < 2 ? '#b18b5c' : b.m < 4 ? '#9cadba' : '#b9c5cf';
+  ctx.lineWidth = width;
+  ctx.stroke();
+  path(-.8,snap);
+  ctx.strokeStyle = b.m < 2 ? '#ead4a090' : '#f8fbff90';
+  ctx.lineWidth = Math.max(.7,width*.2);
+  ctx.stroke();
+  if (b.m < 2) {
+    ctx.setLineDash([8,5,2,6]);
+    path(.8,snap);
+    ctx.strokeStyle = '#5e3e3085';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+  if (ghost || (Math.abs(force) > 1 && !slack)) {
+    const pulse = use > .9 && !Curio.reduce ? .75+.25*Math.sin(state.time*8) : 1;
+    ctx.globalAlpha = ghost ? .8 : Math.min(1,.18+use)*pulse;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = use > .7 ? 8 : 3;
+    path(squeeze ? -1.5 : 0,snap);
+    ctx.strokeStyle = isFailing ? '#fff4e0' : color;
+    ctx.lineWidth = use > .7 ? 2.5 : 1.5;
+    ctx.stroke();
+    if (squeeze) { path(1.5,snap);
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+    ctx.shadowBlur = 0;
+    if (!bow) arrows(ax,ay,bx,by,squeeze,color);
+    if (!squeeze && !Curio.reduce && use > .3) {
+      const t = (state.time*.2)%1;
+      ctx.setLineDash([2,8]);
+      ctx.lineDashOffset = -t*10;
+      path();
+      ctx.strokeStyle = '#e5faff80';
+      ctx.lineWidth = .7;
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+  }
+  ctx.restore();
+  if (state.worst && !ghost && (worstResult || d.mode === 'tower') && len > 15) {
+    chip(worstResult?.loose ? '?' : (use*100).toFixed(1)+'%',(ax+bx)/2,(ay+by)/2,'center',color,10);
+  }
+}
+function drawStructure() {
+  const d = D();
+  const points = displacedPoints();
+  if (d.mode === 'bridge') {
+    for (const b of d.b) {
+      if (d.p[b.a].y || d.p[b.b].y || Math.abs(d.p[b.a].x-d.p[b.b].x) > 4) continue;
+      const a = points[b.a];
+      const z = points[b.b];
+      line(px(a.x),py(a.y)-3,px(z.x),py(z.y)-3,'#323b40',8);
+      line(px(a.x),py(a.y)-5,px(z.x),py(z.y)-5,'#d6c8a6',1.5);
+    }
+  }
+  if (d.mode === 'bridge') drawTruck(d,points);
+  d.b.forEach((b,e) => drawMember(d,b,e,points));
+  d.p.forEach((p,i) => {
+    const x = px(points[i].x);
+    const y = py(points[i].y);
+    const support = fixed(d,i).some(Boolean);
+    const looseAmount = Math.hypot(current?.model.looseMode?.[2*i] || 0,current?.model.looseMode?.[2*i+1] || 0);
+    const pulse = current?.loose && looseAmount > .01 && !support && !Curio.reduce ? .5+.5*Math.sin(state.time*10-i) : 0;
+    if (pulse > 0) {
+      ctx.beginPath();
+      ctx.arc(x,y,8+pulse*4,0,TAU);
+      ctx.strokeStyle = '#ffe2f3'+Math.round(pulse*150+60).toString(16);
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+    const recovery = state.time-(state.recoverPulse || -100)-i*.12;
+    if (d.mode === 'bridge' && recovery > 0 && recovery < .6 && !Curio.reduce) {
+      ctx.beginPath();
+      ctx.arc(x,y,8+Math.sin(recovery/.6*Math.PI)*7,0,TAU);
+      ctx.strokeStyle = '#ff8cbe';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+    roundRect(x-4,y-4,8,8,1,gradient(x-4,y-4,x+4,y+4,[[0,'#f1d7af'],[.5,'#8e8b7d'],[1,'#383e43']]),'#22323d');
+    ctx.fillStyle = '#eff7f5';
+    ctx.fillRect(x-2,y-2,1,1);
+    ctx.fillStyle = '#26343c';
+    ctx.fillRect(x+1,y+1,1,1);
+    if (support && d.mode === 'bridge' && p.x === 24 && p.y === 0) {
+      for (const off of [-3,3]) {
+        ctx.beginPath();
+        ctx.arc(x+off,y+7,2.5,0,TAU);
+        ctx.fillStyle = '#c6d2d5';
+        ctx.fill();
+      }
+    }
+  });
+  if (d.mode === 'tower' && topHeight(d) > 0 && d.top) {
+    const ids = d.p.map((p,i) => p.y === topHeight(d) ? i : -1).filter(i => i >= 0);
+    const topX = ids.reduce((s,i) => s+points[i].x,0)/ids.length;
+    const topY = ids.reduce((s,i) => s+points[i].y,0)/ids.length;
+    art(d.top === 8000 ? 'sas-tank' : 'sas-bell',px(topX)-1.5*view.scale,py(topY)-3*view.scale,3*view.scale,3*view.scale);
+    if (d.plucked && towerModel && !towerModel.loose) {
+      chip('Sway: '+towerModel.f.toFixed(2)+' a second ('+(1/towerModel.f).toFixed(2)+' s each)',W/2,79,'center');
+    }
+  }
+  if (state.ghost) {
+    const donor = state.ghost;
+    donor.b.forEach((b,e) => drawMember(donor,b,e,donor.p,true));
+  }
+  if (state.pointer?.type === 'build' && state.pointer.a >= 0) {
+    const p = d.p[state.pointer.a];
+    const q = state.pointer.target;
+    line(px(p.x),py(p.y),px(q.x),py(q.y),state.rejectUntil > performance.now() ? '#ff7272' : '#ff90c2',3);
+    ctx.beginPath();
+    ctx.arc(px(q.x),py(q.y),6,0,TAU);
+    ctx.strokeStyle = '#ff9cc9';
+    ctx.stroke();
+    chip(Math.hypot(q.x-p.x,q.y-p.y).toFixed(1)+' m',px(q.x)+10,py(q.y)-9);
+  }
+  if (document.activeElement === canvas || state.anchor) {
+    const p = state.cursor;
+    line(px(p.x)-9,py(p.y),px(p.x)+9,py(p.y),'#ffb4d5',2);
+    line(px(p.x),py(p.y)-9,px(p.x),py(p.y)+9,'#ffb4d5',2);
+    if (state.anchor) line(px(state.anchor.x),py(state.anchor.y),px(p.x),py(p.y),'#ff84ba',2);
+  }
+  if (failAnim) drawFailure(d);
+  if (d.mode === 'tower' && state.running && ['shake','explicit-shake'].includes(state.run?.kind)) {
+    roundRect(12,H-16,W-24,4,2,'#233a47');
+    roundRect(12,H-16,(W-24)*Math.min(1,state.run.t/15),4,2,'#ff81b8');
+  }
+}
+function truckY(d,points,x) {
+  const deck = d.p.map((p,i) => ({...p,i})).filter(p => p.y === 0).sort((a,b) => a.x-b.x);
+  for (let k=1;k<deck.length;k++) {
+    const a = deck[k-1];
+    const b = deck[k];
+    if (x >= a.x && x <= b.x) {
+      const t = (x-a.x)/(b.x-a.x);
+      return points[a.i].y*(1-t)+points[b.i].y*t;
+    }
+  }
+  return 0;
+}
+function truckBounds(d,front = d.front) {
+  const t = TRUCKS[d.truck];
+  const img = images[t.art];
+  const aspect = img?.naturalWidth && img?.naturalHeight ? img.naturalWidth/img.naturalHeight
+    : d.truck === 4 ? 5 : d.truck === 1 ? 4 : 16/9;
+  const height = t.length/aspect*view.scale;
+  const right = px(front+1.2);
+  const width = t.length*view.scale;
+  return {x:right-width,y:py(0)-height-5,w:width,h:height};
+}
+function drawTruck(d,points) {
+  const truck = TRUCKS[d.truck];
+  let front = d.front;
+  let y = truckY(d,points,d.front);
+  let angle = 0;
+  if (failAnim?.truck) {
+    const body = failAnim.truck;
+    front = body.front;
+    y = body.y;
+    angle = body.angle;
+    if (Curio.reduce) {
+      front = body.splashed ? body.front : failAnim.front;
+      y = body.splashed ? -4 : 0;
+      angle = 0;
+    }
+    if (failAnim.t > 4) {
+      const recovery = Curio.reduce ? 0 : Math.min(1,(failAnim.t-4)/2.2);
+      front = body.front*(1-recovery)-recovery;
+      y = body.y*(1-recovery);
+      angle *= 1-recovery;
+    }
+    failAnim.truckDrawFront = front;
+  }
+  const bounds = truckBounds(d,front);
+  ctx.save();
+  const center = bounds.x+bounds.w/2;
+  const bottom = py(y)-5;
+  ctx.translate(center,bottom);
+  ctx.rotate(angle);
+  art(truck.art,-bounds.w/2,-bounds.h,bounds.w,bounds.h);
+  if (!failAnim) {
+    for (const [off] of truck.axles) {
+      const x = px(d.front-off)-center;
+      const wheelY = -view.scale*.24;
+      const r = Math.max(1.1,view.scale*.1);
+      const theta = Curio.reduce ? 0 : d.front*4;
+      line(x,wheelY,x+Math.cos(theta)*r,wheelY+Math.sin(theta)*r,'#e2e8e7',.9);
+    }
+  }
+  ctx.restore();
+  if (!D().tests.first && !state.running && !state.failed) {
+    const bob = Curio.reduce ? 0 : state.time < 4 ? Math.sin(state.time*Math.PI)*4 : 0;
+    chip('↔ drag me',Math.max(60,bounds.x+bounds.w*.65),bounds.y-12+bob,'center','#ffd7e9',11);
+  }
+}
+function drawFailure(d) {
+  const t = failAnim.t;
+  if (d.mode === 'bridge') {
+    const center = (failAnim.truckDrawFront ?? failAnim.front)+1.2-TRUCKS[d.truck].length/2;
+    const x = px(center);
+    if (failAnim.splashAt !== undefined && t < 4) {
+      const age = t-failAnim.splashAt;
+      const progress = Math.min(1,age/.5);
+      art('sas-splash',x-view.scale*2,py(-4)-view.scale*2,view.scale*4,view.scale*2.8,1-progress*.4);
+      if (!Curio.reduce) {
+        for (let k=0;k<3;k++) {
+          ctx.beginPath();
+          ctx.ellipse(x,py(-4)+3,(age+k*.2)*view.scale*1.4,Math.max(1,(age+k*.2)*view.scale*.15),0,0,TAU);
+          ctx.strokeStyle = '#eef9ed88';
+          ctx.stroke();
+        }
+      }
+    }
+    if (t > 3.7 && t < 6.2) {
+      const top = py(Curio.reduce ? 5 : Math.min(9,(t-3.7)*3));
+      line(x,0,x,top,'#c3d0d0',1.5);
+      art('sas-hook',x-view.scale*.4,top,view.scale*.8,view.scale*1.5);
+    }
+  } else if (explicit && t > 2) {
+    art('sas-dust',W/2-3*view.scale,py(3),6*view.scale,3*view.scale,.7);
+  }
+  if (explicit?.slow) chip('slow motion',W-12,H-35,'right','#ffb5d4');
+}
+function moveFallingTruck(d,dt) {
+  const body = failAnim?.truck;
+  if (!body || !explicit || failAnim.t >= 4) return;
+  if (!body.sliding) {
+    const b = d.b.find(b => d.p[b.a].y === 0 && d.p[b.b].y === 0
+      && body.front >= Math.min(d.p[b.a].x,d.p[b.b].x) && body.front <= Math.max(d.p[b.a].x,d.p[b.b].x));
+    if (b) {
+      const a = d.p[b.a].x < d.p[b.b].x ? b.a : b.b;
+      const z = a === b.a ? b.b : b.a;
+      const ax = explicit.x[2*a];
+      const ay = explicit.x[2*a+1];
+      const bx = explicit.x[2*z];
+      const by = explicit.x[2*z+1];
+      const ratio = Math.max(0,Math.min(1,(body.front-ax)/Math.max(.001,bx-ax)));
+      body.y = ay+(by-ay)*ratio;
+      body.angle = Math.atan2(ay-by,bx-ax);
+      if (Math.abs(body.angle) > 20*Math.PI/180) body.sliding = true;
+    } else body.sliding = true;
+  }
+  if (body.sliding && !body.splashed) {
+    body.vx += G*Math.max(.15,Math.sin(Math.abs(body.angle)))*dt;
+    body.vy -= G*dt;
+    body.front += body.vx*dt;
+    body.y += body.vy*dt;
+    body.angle = Math.min(1.1,body.angle+dt*.25);
+    const center = body.front+1.2-TRUCKS[d.truck].length/2;
+    if (body.y <= -4 && center >= 4 && center <= 20) {
+      body.y = -4.2;
+      body.splashed = true;
+      failAnim.splashAt = failAnim.t;
+      sound('splash');
+    }
+  }
+}
+function draw() {
+  if (state.mode === 'yard') return;
+  ctx.clearRect(0,0,W,H);
+  drawBackdrop();
+  drawGrid();
+  drawStructure();
+  wantsFrame = false;
+}
+function tick(time) {
+  const started = performance.now();
+  const dt = Math.min(.04,(time-lastFrame)/1000);
+  lastFrame = time;
+  state.time += dt;
+  if (state.mode !== 'yard') {
+    const d = D();
+    if (baseView) {
+      view = {...baseView};
+      if (state.cinematic && state.running && !Curio.reduce) {
+        const zoom = 1.12;
+        const focus = d.mode === 'bridge' ? Math.max(7,Math.min(17,d.front-2)) : 0;
+        view.scale *= zoom;
+        view.x = W/2-focus*view.scale;
+        view.y = baseView.y+(H*.6-baseView.y)*.08;
+      }
+    }
+    if (failAnim) {
+      const before = failAnim.t;
+      failAnim.t += dt;
+      if (d.mode === 'tower' && ['shake','explicit-shake'].includes(state.run?.kind)) state.run.t = Math.min(15,state.run.t+dt);
+      if (failAnim.member >= 0 && d.mode === 'bridge' && failAnim.t >= 2.5 && !failAnim.triedRemainder) {
+        failAnim.triedRemainder = true;
+        const run = state.run;
+        if (run) {
+          run.removed ||= [];
+          run.removed.push(failAnim.member);
+          run.activeDesign = null;
+          const remaining = clone(d);
+          remaining.b = remaining.b.filter((b,i) => !run.removed.includes(i));
+          const r = staticSolve(remaining,d.truck,d.front);
+          if (!r.loose && roadOK(remaining)) {
+            run.max = Math.max(run.max,failAnim.result.max);
+            failAnim = null;
+            explicit = null;
+            state.failed = false;
+            solveLive();
+            reportResult('A member failed. The rest holds.','The truck continues on the remaining load paths.',2500);
+            refresh();
+          }
+        }
+      }
+      if (failAnim && !explicit && failAnim.t >= 2.5) startExplicit(d,failAnim.result,failAnim.member);
+      if (explicit && failAnim && (d.mode === 'tower' ? explicit.t < 8 : failAnim.t < 5.8)) {
+        const slow = !failAnim.loose && failAnim.t < 2.5 ? .2 : 1;
+        const target = dt*slow;
+        const count = Math.min(600,Math.ceil(target/explicit.dt));
+        explicit.slow = Math.ceil(target/explicit.dt) > 600;
+        const shaking = d.mode === 'tower' && ['shake','explicit-shake'].includes(state.run?.kind) && state.run.t < 15;
+        for (let i=0;i<count;i++) explicitStep(d,explicit.dt,state.run?.t || 0,explicit,shaking);
+        if (d.mode === 'bridge') moveFallingTruck(d,target);
+        const f = Float64Array.from(explicit.forces,(v,i) => explicit.alive[i] ? v : 0);
+        const use = Float64Array.from(f,(v,i) => {
+          const b = explicit.model.members[i];
+          return b.m === 4 && v <= 0 ? 0 : Math.abs(v)/(v >= 0 ? b.pull : b.push || 1e-20);
+        });
+        current = {...current,f,use,max:Math.max(0,...use)};
+      }
+      if (failAnim && failAnim.t >= 6.2 && d.mode === 'bridge') {
+        failAnim = null;
+        explicit = null;
+        state.running = false;
+        state.run = null;
+        d.front = -1;
+        current = staticSolve(d);
+        state.recoverPulse = state.time;
+        $('result').hidden = true;
+        hint(L.bBuild);
+        voice('bBuild',() => D().b.length === 6 && !state.running);
+        refresh();
+      }
+      const failureFinished = ['shake','explicit-shake'].includes(state.run?.kind) ? state.run.t >= 15 : failAnim && failAnim.t >= 5.8;
+      if (failAnim && failureFinished && d.mode === 'tower' && state.running) {
+        state.running = false;
+        refresh();
+      }
+    } else if (state.running && state.run) {
+      state.run.t += dt;
+      if (state.run.kind === 'crossing') {
+        d.front += dt*5;
+        solveLive();
+        if (!state.failed) {
+          state.run.max = Math.max(state.run.max,current.max || 0);
+          if (d.b.some((b,i) => b.m === 4 && !current.active?.[i])) state.run.slack = true;
+          if (d.front > 26+TRUCKS[d.truck].axles.at(-1)[0]) passed();
+        }
+      } else if (state.run.kind === 'shake' && towerModel && !towerModel.loose) {
+        const steps = Math.max(1,Math.round(dt/.001));
+        for (let i=0;i<steps;i++) modalStep(d,towerModel,.001);
+        current = modalResult(towerModel);
+        if (state.run.envelope?.length === d.b.length) {
+          for (let e=0;e<d.b.length;e++) {
+            if (current.use[e] > state.run.envelope[e]) {
+              state.run.envelope[e] = current.use[e];
+              state.run.envelopeSigns[e] = current.f[e];
+            }
+          }
+          d.tests.memberWorst = Array.from(state.run.envelope);
+          d.tests.memberSigns = Array.from(state.run.envelopeSigns);
+        }
+        const slack = d.b.some((b,i) => b.m === 4 && current.f[i] < 0);
+        if (current.max > 1) beginFailure(current);
+        else if (slack) {
+          startExplicit(d,current);
+          state.run.kind = 'explicit-shake';
+        } else if (state.run.t >= 15) passed();
+      } else if (state.run.kind === 'explicit-shake' && explicit) {
+        const count = Math.min(600,Math.ceil(dt/explicit.dt));
+        explicit.slow = Math.ceil(dt/explicit.dt) > 600;
+        state.run.t += count*explicit.dt-dt;
+        for (let k=0;k<count;k++) explicitStep(d,explicit.dt,state.run.t,explicit,true);
+        const f = explicit.forces.slice();
+        const use = Float64Array.from(f,(v,i) => {
+          const b = explicit.model.members[i];
+          return b.m === 4 && v <= 0 ? 0 : Math.abs(v)/(v >= 0 ? b.pull : b.push || 1e-20);
+        });
+        const u = Float64Array.from(explicit.x,(v,i) => v-(i%2 ? d.p[(i-1)/2].y : d.p[i/2].x));
+        const max = Math.max(0,...use);
+        let sway = 0;
+        for (let i=0;i<d.p.length;i++) {
+          if (d.p[i].y === topHeight(d)) sway = Math.max(sway,Math.abs(u[2*i]-towerModel.base.u[2*i]));
+        }
+        towerModel.max = Math.max(towerModel.max,max);
+        towerModel.maxSway = Math.max(towerModel.maxSway,sway);
+        current = {f,use,u,max,sway,model:explicit.model,loose:false};
+        if (max > 1 || explicit.alive.some(v => !v)) beginFailure(current);
+        else if (state.run.t >= 15) passed();
+      }
+    } else if (pluck && towerModel && !towerModel.loose) {
+      pluck.t += dt;
+      const w = towerModel.omega[0];
+      towerModel.q[0] = pluck.amplitude*Math.cos(w*Math.sqrt(1-.05**2)*pluck.t)*Math.exp(-.05*w*pluck.t);
+      current = modalResult(towerModel);
+      if (current.max > 1) { pluck = null;
+        beginFailure(current);
+      }
+      const sways = pluck ? Math.floor(pluck.t*towerModel.f) : 0;
+      if (sways >= 3) earn(20);
+      if (pluck && pluck.t > Math.max(8,5/towerModel.f)) { pluck = null;
+        current = towerModel.base;
+      }
+    } else if (d.mode === 'tower' && d.settings.windOn && d.b.length) {
+      current = staticSolve(d,0,-1,d.settings.wind);
+      if (current.loose || current.max > 1) beginFailure(current);
+      else {
+        state.windHold = (state.windHold || 0)+dt;
+        if (state.windHold >= 5) {
+          d.tests.wind ||= {};
+          d.tests.wind[d.settings.wind] = {pass:true,max:current.max,duration:5};
+          if (d.top === 8000 && topHeight(d) >= 20 && d.settings.wind === 50) earn(21);
+          if (d.top === 8000 && topHeight(d) >= 30 && d.settings.wind === 70) earn(22);
+          checkTown(d);
+          state.windHold = -1e9;
+          refresh();
+        }
+      }
+    }
+    if (state.running && current?.max > .7 && time-lastWindSound > 800) {
+      lastWindSound = time;
+      Curio.tone(80+Math.min(1.5,current.max)*90,.12,.025,'triangle');
+    }
+    if (!Curio.reduce || wantsFrame || state.running || failAnim || pluck) draw();
+    if (time-lastUI > 150) { updateChips();
+      updateAmbience();
+      lastUI = time;
+    }
+  }
+  if (state.mode === 'yard') updateAmbience();
+  state.frames.push(performance.now()-started);
+  if (state.frames.length > 600) state.frames.shift();
+  requestAnimationFrame(tick);
+}
+function oldFarm() {
+  const d = fresh('bridge');
+  function index(x,y) {
+    let i = d.p.findIndex(p => p.x === x && p.y === y);
+    if (i < 0) { i = d.p.length;
+      d.p.push({x,y});
+    }
+    return i;
+  }
+  const add = (x,y,z,w) => d.b.push({a:index(x,y),b:index(z,w),m:0});
+  add(0,0,4,2);
+  add(24,0,20,2);
+  for (let x=4;x<=20;x+=4) {
+    add(x,0,x,2);
+    if (x < 20) add(x,2,x+4,2);
+  }
+  for (const [x,y,z,w] of [[4,0,8,2],[8,0,12,2],[12,2,16,0],[16,2,20,0]]) add(x,y,z,w);
+  d.name = 'Old farm bridge';
+  d.id = 'old-farm-bridge';
+  d.sample = true;
+  d.old = true;
+  return d;
+}
+const sample = oldFarm();
+function allYard() { return [...state.yard,sample];
+}
+function picked() { return allYard().filter(d => state.selected.includes(d.id));
+}
+function thumbnail(d) {
+  const xs = d.p.map(p => p.x);
+  const ys = d.p.map(p => p.y);
+  const minX = Math.min(...xs);
+  const maxX = Math.max(...xs);
+  const minY = Math.min(...ys);
+  const maxY = Math.max(...ys);
+  const scale = Math.min(145/Math.max(1,maxX-minX),65/Math.max(4,maxY-minY));
+  const x = p => 85+(p.x-(minX+maxX)/2)*scale;
+  const y = p => 66-(p.y-minY)*scale;
+  const members = d.b.map(b => {
+    const a = d.p[b.a];
+    const z = d.p[b.b];
+    return `<line x1="${x(a)}" y1="${y(a)}" x2="${x(z)}" y2="${y(z)}" stroke="${b.m === 4 ? '#a6d3e6' : '#c4a274'}" stroke-width="2"/>`;
+  }).join('');
+  return '<svg viewBox="0 0 170 85" aria-hidden="true">'+members+'</svg>';
+}
+function showTest(result) {
+  return result === null || result === undefined ? 'not tested' : result ? '✓' : '×';
+}
+function renderYard() {
+  $('cards').replaceChildren();
+  $('cards').classList.toggle('crowded',allYard().length > 6);
+  for (const d of allYard()) {
+    const card = document.createElement('button');
+    card.className = 'design-card';
+    card.dataset.id = d.id;
+    card.setAttribute('aria-pressed',state.selected.includes(d.id));
+    card.innerHTML = thumbnail(d);
+    const name = document.createElement('strong');
+    name.textContent = d.name;
+    name.title = d.name;
+    const meta = document.createElement('small');
+    meta.textContent = formatCost(cost(d))+' · '+d.b.length+' members';
+    meta.title = meta.textContent;
+    const info = document.createElement('small');
+    const best = Object.entries(d.tests.trucks || {}).filter(([k,v]) => v.pass).map(([k]) => +k).sort((a,b) => b-a)[0];
+    info.textContent = d.sample ? 'Built for horses and Model Ts. Test the farmer’s grain truck.'
+      : d.mode === 'tower' ? 'Tower · '+topHeight(d)+' m · '+(d.tests.shake?.pass ? 'shake held' : 'test the shake')
+        : best === undefined ? 'Bridge · not tested' : TRUCKS[best].name+' crossed';
+    info.title = info.textContent;
+    card.setAttribute('aria-label',d.name+'. '+meta.textContent+'. '+info.textContent);
+    card.append(name,meta,info);
+    card.onclick = () => {
+      if (state.selected.includes(d.id)) state.selected = state.selected.filter(x => x !== d.id);
+      else if (state.selected.length < 3) state.selected.push(d.id);
+      else { reject('Pick up to three designs. Tap a selected card to put it back.');
+        return;
+      }
+      card.setAttribute('aria-pressed',state.selected.includes(d.id));
+      renderCompare();
+      hint('Use Test all to fill the table. Open one design, or Borrow its pieces into your current design.');
+      sound('place');
+    };
+    $('cards').append(card);
+  }
+  $('yard-intro').textContent = state.firstSaved
+    ? 'Pick up to three designs. Saved here on this device, never sent anywhere.'
+    : 'Try the Old farm bridge: pick its card, then Test all. Save your own design to compare them.';
+  renderCompare();
+}
+function renderCompare() {
+  const list = picked();
+  const table = $('compare');
+  table.replaceChildren();
+  const head = table.createTHead().insertRow();
+  const title = document.createElement('th');
+  title.textContent = 'Inspection ledger';
+  head.append(title);
+  for (const d of list) {
+    const th = document.createElement('th');
+    th.scope = 'col';
+    th.textContent = d.name;
+    head.append(th);
+  }
+  const body = table.createTBody();
+  const row = (name,fn) => {
+    const tr = body.insertRow();
+    const th = document.createElement('th');
+    th.scope = 'row';
+    th.textContent = name;
+    tr.append(th);
+    for (const d of list) {
+      const td = tr.insertCell();
+      const value = fn(d);
+      td.textContent = typeof value === 'object' ? value.text : value;
+      if (value?.reason) td.title = value.reason;
+    }
+  };
+  row('Cost · game prices',d => formatCost(cost(d)));
+  row('Members / joints',d => d.b.length+' / '+d.p.length);
+  row('Heaviest crossed',d => {
+    const best = Object.entries(d.tests.trucks || {}).filter(([k,r]) => r.pass).map(([k]) => +k).sort((a,b) => b-a)[0];
+    return best === undefined ? 'not tested' : TRUCKS[best].name;
+  });
+  TRUCKS.forEach((t,i) => row(t.name+' · worst use',d => {
+    const r = d.tests.trucks?.[i];
+    return d.mode !== 'bridge' ? 'not applicable' : !r ? 'not tested' : r.loose ? '× loose' : showTest(r.pass)+' '+(r.max*100).toFixed(1)+'%';
+  }));
+  for (let i=0;i<6;i++) {
+    row(BP[i][0],d => d.mode !== 'bridge' ? 'not applicable' : {text:showTest(promiseResults(d)[i].pass),reason:promiseResults(d)[i].reason});
+  }
+  for (let i=0;i<3;i++) {
+    row(TP[i][0],d => d.mode !== 'tower' ? 'not applicable' : {text:showTest(promiseResults(d)[i].pass),reason:promiseResults(d)[i].reason});
+  }
+  row('Own sway / second',d => d.tests.modal ? d.tests.modal.f.toFixed(2) : 'not tested');
+  row('Wind 50 m/s',d => !d.tests.wind?.[50] ? 'not tested' : showTest(d.tests.wind[50].pass)+' '+(d.tests.wind[50].max*100).toFixed(1)+'%');
+  row('Valley quake',d => {
+    const q = d.tests.valley;
+    return !q ? 'not tested' : showTest(q.pass)+(q.max !== null ? ' '+(q.max*100).toFixed(1)+'%' : ' loose');
+  });
+  row('Last shake',d => {
+    const q = d.tests.shake;
+    return !q ? 'not tested' : showTest(q.pass)+' '+q.strength.toFixed(2)+' g · '+q.speed.toFixed(2)+'/s';
+  });
+}
+function saveDesign() {
+  if (state.yard.length >= 12) { reject('The Yard holds 12 designs. Delete a saved design to make room.');
+    return;
+  }
+  const d = clone(D());
+  d.id = 'design-'+Date.now()+'-'+Math.random().toString(36).slice(2,7);
+  d.name = (d.mode === 'bridge' ? 'Bridge ' : 'Tower ')+(state.yard.length+1);
+  d.sample = false;
+  state.yard.push(d);
+  state.firstSaved = true;
+  persist();
+  reportResult('Saved: '+d.name,state.storageOK ? 'Your design stays on this device.' : 'Session only: storage is unavailable.',2500);
+  hint('Open Yard to compare this design and the Old farm bridge. Use Test all to fill their results.');
+  sound('place');
+}
+async function testAll() {
+  const list = picked();
+  if (!list.length) { reject('Tap one, two or three Yard cards, then Test all.');
+    return;
+  }
+  if (state.testBusy) return;
+  state.testBusy = true;
+  for (const d of list) {
+    hint('Testing '+d.name+'. You can keep comparing the ledger.');
+    if (d.mode === 'bridge') {
+      d.tests.trucks ||= {};
+      for (let i=0;i<5;i++) {
+        await Curio.wait(15);
+        d.tests.trucks[i] = sweep(d,i);
+        if (state.mode === 'yard') renderCompare();
+      }
+    } else {
+      const model = modes(d);
+      if (!model.loose) d.tests.modal = {f:model.f};
+      const wind = staticSolve(d,0,-1,50);
+      d.tests.wind ||= {};
+      d.tests.wind[50] = {pass:!wind.loose && wind.max <= 1,max:wind.max || 0,duration:5,loose:wind.loose};
+      await Curio.wait(15);
+      d.tests.valley = towerTest(d,.3,1.2);
+      d.tests.valley.duration = 15;
+      d.tests.shake = d.tests.valley;
+      checkTown(d);
+    }
+    if (d.mode === 'bridge' && d.promises.every(Boolean) && promiseResults(d).every(r => r.pass)) earn(18);
+  }
+  state.testBusy = false;
+  persist();
+  if (state.mode === 'yard') { renderCompare();
+    hint('Compare the results. Open a design to change it, or Borrow pieces from another.');
+  }
+  sound('pass');
+}
+function openPicked(replay = false) {
+  const d = picked()[0];
+  if (!d) { reject('Tap a Yard card, then Open or Replay.');
+    return;
+  }
+  const copy = clone(d);
+  copy.sample = false;
+  if (d.sample) { copy.old = true;
+    copy.name = 'Old farm bridge copy';
+  }
+  state.designs[d.mode] = copy;
+  state.ghost = null;
+  history[d.mode] = {undo:[],redo:[]};
+  setMode(d.mode);
+  hint('Your saved version stays in the Yard. Change this copy, or press '+(d.mode === 'bridge' ? 'Go.' : 'Shake.'));
+  if (replay) {
+    const best = Object.entries(d.tests.trucks || {}).filter(([k,r]) => r.pass).map(([k]) => +k).sort((a,b) => b-a)[0];
+    if (d.mode === 'bridge') copy.truck = best ?? 0;
+    else {
+      const bestShake = [d.tests.shake,d.tests.valley].find(r => r?.pass);
+      if (bestShake) Object.assign(copy.settings,{strength:bestShake.strength,speed:bestShake.speed,
+        windOn:!!bestShake.wind,wind:bestShake.wind || copy.settings.wind});
+    }
+    beginRun();
+    state.cinematic = true;
+  }
+}
+function borrowPicked() {
+  const donor = picked()[0];
+  if (!donor) { reject('Tap a Yard card, then Borrow.');
+    return;
+  }
+  if (donor.mode !== state.origin) { reject('Open a '+donor.mode+' design first, then borrow from another '+donor.mode+'.');
+    return;
+  }
+  const ghost = clone(donor);
+  setMode(state.origin);
+  state.ghost = ghost;
+  $('borrow-row').hidden = false;
+  hint('Tap a pink ghost beam to adopt it, or press Borrow all. Press Done to put the ghost away.');
+  refresh();
+}
+function adopt(e) {
+  const donor = state.ghost;
+  if (!donor || !donor.b[e]) return;
+  const b = donor.b[e];
+  const d = D();
+  const a = donor.p[b.a];
+  const z = donor.p[b.b];
+  let i = d.p.findIndex(p => p.x === a.x && p.y === a.y);
+  let j = d.p.findIndex(p => p.x === z.x && p.y === z.y);
+  const existing = i < 0 || j < 0 ? -1
+    : d.b.findIndex(q => (q.a === i && q.b === j) || (q.a === j && q.b === i));
+  if (existing >= 0) {
+    if (d.b[existing].m === b.m) return;
+    checkpoint();
+    d.b[existing].m = b.m;
+    editDone('Material borrowed. Tap another pink beam, or press Done.');
+    return;
+  }
+  if (d.b.length >= 60 || d.p.length+(i < 0 ? 1 : 0)+(j < 0 ? 1 : 0) > 40) {
+    reject('The yard is out of members (60) or joints (40). Erase one to add one.');
+    voice('bLimit');
+    return;
+  }
+  checkpoint();
+  if (i < 0) { i = d.p.length;
+    d.p.push(clone(a));
+  }
+  if (j < 0) { j = d.p.length;
+    d.p.push(clone(z));
+  }
+  d.b.push({a:i,b:j,m:b.m});
+  editDone('Piece borrowed. Tap another pink beam, or press Done.');
+}
+function ask(message,yes,no,action,rename = false,value = '') {
+  V.hush();
+  const dlg = $('confirm-dialog');
+  const prior = document.activeElement;
+  $('confirm-text').textContent = message;
+  $('confirm-yes').textContent = yes;
+  $('confirm-no').textContent = no;
+  $('name-input').hidden = !rename;
+  $('name-input').value = value;
+  dlg.returnValue = '';
+  dlg.onclose = () => {
+    if (dlg.returnValue === 'yes') action($('name-input').value.trim());
+    if (prior?.isConnected) prior.focus({preventScroll:true});
+    V.welcome();
+  };
+  dlg.showModal();
+  (rename ? $('name-input') : $('confirm-no')).focus({preventScroll:true});
+}
+function showTags() {
+  V.hush();
+  tagHint = {previous:$('hint').textContent,text:'Browse the inspection tags. Press Close to return to your design.'};
+  hint(tagHint.text);
+  tagReturn = document.activeElement;
+  $('tag-grid').replaceChildren();
+  TAGS.forEach(([name,target,img],i) => {
+    const el = document.createElement('article');
+    el.className = 'tag'+(state.tags[i+1] ? ' found' : '');
+    const icon = document.createElement('img');
+    icon.src = ART[img];
+    icon.alt = '';
+    const title = document.createElement('strong');
+    title.textContent = (i+1)+'. '+name;
+    const desc = document.createElement('span');
+    desc.textContent = target;
+    el.append(icon,title,desc);
+    if (state.tags[i+1]) {
+      const time = document.createElement('time');
+      time.textContent = 'INSPECTED '+state.tags[i+1];
+      el.append(time);
+    }
+    $('tag-grid').append(el);
+  });
+  $('tag-drawer').hidden = false;
+  $('close-tags').focus({preventScroll:true});
+}
+function closeTags() {
+  $('tag-drawer').hidden = true;
+  if (tagHint && $('hint').textContent === tagHint.text) hint(tagHint.previous);
+  tagReturn?.focus({preventScroll:true});
+  V.welcome();
+}
+function distanceSegment(p,a,b) {
+  const dx = b.x-a.x;
+  const dy = b.y-a.y;
+  const t = Math.max(0,Math.min(1,((p.x-a.x)*dx+(p.y-a.y)*dy)/(dx*dx+dy*dy)));
+  return Math.hypot(p.x-a.x-dx*t,p.y-a.y-dy*t);
+}
+function beamAt(p,d = D()) {
+  let best = -1;
+  let dist = 10/view.scale;
+  d.b.forEach((b,e) => {
+    const q = distanceSegment(p,d.p[b.a],d.p[b.b]);
+    if (q < dist) { best = e;
+      dist = q;
+    }
+  });
+  return best;
+}
+function jointAt(p) {
+  let best = -1;
+  let dist = 22/view.scale;
+  D().p.forEach((q,i) => {
+    const v = Math.hypot(q.x-p.x,q.y-p.y);
+    if (v < dist) { best = i;
+      dist = v;
+    }
+  });
+  return best;
+}
+function isTruck(event) {
+  if (D().mode !== 'bridge') return false;
+  const b = truckBounds(D());
+  const r = canvas.getBoundingClientRect();
+  const x = event.clientX-r.left;
+  const y = event.clientY-r.top;
+  return x >= b.x && x <= b.x+b.w && y >= b.y && y <= b.y+b.h-10;
+}
+function topLoadAt(p) {
+  const d = D();
+  if (d.mode !== 'tower' || !d.top || !topHeight(d)) return -1;
+  const high = topHeight(d);
+  const ids = d.p.map((q,i) => q.y === high ? i : -1).filter(i => i >= 0);
+  const center = ids.reduce((sum,i) => sum+d.p[i].x,0)/ids.length;
+  if (Math.abs(p.x-center) > 1.5 || p.y < high+.2 || p.y > high+3) return -1;
+  return ids.sort((a,b) => Math.abs(d.p[a].x-p.x)-Math.abs(d.p[b].x-p.x))[0];
+}
+canvas.addEventListener('pointerdown',event => {
+  if (event.button !== 0) return;
+  const p = point(event);
+  const d = D();
+  const i = jointAt(p);
+  const snap = {x:Math.round(p.x),y:Math.round(p.y)};
+  mouse.x = event.clientX;
+  mouse.y = event.clientY;
+  if (state.ghost && beamAt(p,state.ghost) >= 0) { adopt(beamAt(p,state.ghost));
+    return;
+  }
+  if (state.tool === 'erase') { deleteBeam(beamAt(p));
+    return;
+  }
+  const loadTop = topLoadAt(p);
+  if (loadTop >= 0 && !current?.loose) {
+    state.running = false;
+    state.run = null;
+    state.pointer = {type:'pluck',a:loadTop,start:p,target:snap};
+    sound('place');
+  } else if (isTruck(event) && i < 0) {
+    state.pointer = {type:'truck',start:p,front:d.front,dx:p.x-d.front};
+    $('result').hidden = true;
+    Curio.tone(85,.12,.08,'sawtooth');
+  } else if (i >= 0) {
+    const top = d.mode === 'tower' && d.p[i].y === topHeight(d) && d.p[i].y > 0;
+    if (top && !event.shiftKey && !current?.loose && Math.abs(p.x-d.p[i].x) > .2) {
+      state.pointer = {type:'pluck',a:i,start:p,target:snap};
+    } else state.pointer = {type:event.shiftKey ? 'move' : 'build',a:i,start:p,target:snap};
+    sound('place');
+  } else {
+    const e = beamAt(p);
+    if (e >= 0) {
+      if (d.b[e].m !== state.piece) {
+        checkpoint();
+        d.b[e].m = state.piece;
+        editDone('Piece changed. Press '+(d.mode === 'bridge' ? 'Go' : 'Shake')+' to test.');
+      } else sound('place');
+      const b = d.b[e];
+      const mat = MATERIALS[b.m];
+      const limit = Math.min(mat.pull,Math.PI**2*mat.E*mat.I/length(d,b)**2);
+      hint(mat.name+' · '+length(d,b).toFixed(2)+' m · pull '+Math.round(mat.pull/1000)+' kN · squeeze '+Math.round(limit/1000)+' kN.');
+    } else if (d.mode === 'tower' && snap.y === 0 && snap.x >= -6 && snap.x <= 6) {
+      if (d.p.length >= 40) { reject('The yard is out of joints (40). Erase one to add one.');
+        return;
+      }
+      checkpoint();
+      d.p.push(snap);
+      editDone('Footing placed. Drag from it to start a beam.');
+    } else hint('Drag from a glowing joint to add a beam. Hold Shift and drag to move a joint.');
+  }
+  if (state.pointer?.type === 'pluck') { state.running = false;
+    state.run = null;
+    refresh();
+  }
+  if (state.pointer) canvas.setPointerCapture(event.pointerId);
+  wantsFrame = true;
+});
+canvas.addEventListener('pointermove',event => {
+  if (!state.pointer) return;
+  const p = point(event);
+  const active = state.pointer;
+  active.target = {x:Math.round(p.x),y:Math.round(p.y)};
+  if (active.type === 'truck') {
+    D().front = Math.max(-14,Math.min(44,p.x-active.dx));
+    solveLive();
+  }
+  if (active.type === 'build' && D().mode === 'tower' && !current?.loose && D().p[active.a].y === topHeight(D())
+    && Math.abs(p.x-active.start.x) > .25 && Math.abs(p.y-active.start.y) < .75) {
+      active.type = 'pluck';
+      state.running = false;
+      state.run = null;
+      refresh();
+    }
+  if (active.type === 'pluck') {
+    if (!towerModel || towerModel.loose) towerModel = modes(D());
+    if (towerModel && !towerModel.loose) {
+      const amount = Math.max(-1,Math.min(1,(p.x-active.start.x)/(state.trueSize ? 1 : 20)));
+      let maximum = 0;
+      for (let j=0;j<towerModel.phi[0].length;j+=2) maximum = Math.max(maximum,Math.abs(towerModel.phi[0][j]));
+      const sign = Math.sign(towerModel.phi[0][2*active.a]) || 1;
+      towerModel.q[0] = amount/Math.max(1e-12,maximum)*sign;
+      current = modalResult(towerModel);
+    }
+  }
+  wantsFrame = true;
+});
+canvas.addEventListener('pointerup',event => {
+  const active = state.pointer;
+  state.pointer = null;
+  if (!active) return;
+  const p = point(event);
+  const target = {x:Math.round(p.x),y:Math.round(p.y)};
+  if (active.type === 'build') addBeam(active.a,target);
+  if (active.type === 'move') moveJoint(active.a,target);
+  if (active.type === 'truck') {
+    hint(TRUCKS[D().truck].fact+' Drag the truck again, or press Go.');
+    if (current?.loose && !state.failed) beginFailure(current);
+  }
+  if (active.type === 'pluck' && towerModel && !towerModel.loose) {
+    pluck = {amplitude:towerModel.q[0],t:0};
+    state.running = false;
+    D().plucked = true;
+    D().tests.modal = {f:towerModel.f};
+    hint('Sway: '+towerModel.f.toFixed(2)+' a second. Set Speed near or far from it, then press Shake.');
+    Curio.tone(150+towerModel.f*100,.24,.1,'triangle');
+    refresh();
+  }
+  wantsFrame = true;
+});
+canvas.addEventListener('pointercancel',() => { state.pointer = null;
+  wantsFrame = true;
+});
+canvas.addEventListener('keydown',event => {
+  const arrows = {ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,1],ArrowDown:[0,-1]};
+  if (arrows[event.key]) {
+    event.preventDefault();
+    const [dx,dy] = arrows[event.key];
+    state.cursor.x += dx;
+    state.cursor.y += dy;
+    state.cursor.x = Math.max(D().mode === 'bridge' ? -6 : -8,Math.min(D().mode === 'bridge' ? 30 : 8,state.cursor.x));
+    state.cursor.y = Math.max(D().mode === 'bridge' ? -5 : 0,Math.min(D().mode === 'bridge' ? 12 : 32,state.cursor.y));
+    $('live').textContent = 'Grid '+state.cursor.x+', '+state.cursor.y;
+    if (event.shiftKey && D().mode === 'tower' && towerModel && !towerModel.loose && topHeight(D()) > 0) {
+      let max = 0;
+      for (let i=0;i<towerModel.phi[0].length;i+=2) max = Math.max(max,Math.abs(towerModel.phi[0][i]));
+      pluck = {amplitude:.025/Math.max(max,1e-12),t:0};
+      D().plucked = true;
+      hint('Plucked. Press Shake to compare the table speed with the tower’s own sway.');
+    }
+  } else if (event.key === 'Enter') {
+    event.preventDefault();
+    if (state.ghost) {
+      const e = beamAt(state.cursor,state.ghost);
+      if (e >= 0) adopt(e);
+      else reject('Move the grid cursor onto a pink ghost beam and press Enter to borrow it.');
+      return;
+    }
+    if (!state.anchor) {
+      const i = D().p.findIndex(p => p.x === state.cursor.x && p.y === state.cursor.y);
+      if (i < 0) { reject('Move the cursor onto an existing joint, then press Enter.');
+        return;
+      }
+      state.anchor = {...state.cursor,i};
+      hint('Use arrows to choose the next grid point. Press Enter to finish this beam.');
+    } else {
+      addBeam(state.anchor.i,{...state.cursor});
+      state.anchor = null;
+    }
+  } else if (event.key === 'Delete') {
+    event.preventDefault();
+    deleteBeam(beamAt(state.cursor));
+  } else if (event.key === 'Escape') state.anchor = null;
+  wantsFrame = true;
+});
+document.addEventListener('keydown',event => {
+  if ($('promise-dialog').open) return;
+  if (!$('tag-drawer').hidden) {
+    if (event.key === 'Escape') closeTags();
+    if (event.key === 'Tab') { event.preventDefault();
+      $('close-tags').focus({preventScroll:true});
+    }
+    return;
+  }
+  if ($('confirm-dialog').open || ['INPUT','TEXTAREA','SELECT'].includes(event.target.tagName)) return;
+  if (event.key === ' ' && !event.target.closest('button')) { event.preventDefault();
+    beginRun();
+  }
+  if (event.key.toLowerCase() === 'r') rebuild();
+  if (/^[1-5]$/.test(event.key)) {
+    state.piece = +event.key-1;
+    refresh();
+    sound('place');
+  }
+});
+TRUCKS.forEach((t,i) => {
+  const b = document.createElement('button');
+  b.className = 'btn truck';
+  b.id = 'truck-'+i;
+  b.dataset.truck = i;
+  b.title = t.name+' '+t.mass.toFixed(1)+' t. '+t.fact;
+  b.setAttribute('aria-label',t.name+' '+t.mass.toFixed(1)+' tonnes');
+  b.setAttribute('aria-pressed',i === 0);
+  const img = document.createElement('img');
+  img.src = ART[t.art];
+  img.alt = '';
+  const name = document.createElement('span');
+  name.textContent = t.label;
+  const mass = document.createElement('strong');
+  mass.textContent = t.mass.toFixed(1)+' t';
+  b.append(img,name,mass);
+  b.onclick = () => {
+    D().truck = i;
+    solveLive();
+    if (state.worst) refreshWorst();
+    hint('Drag the '+t.name.toLowerCase()+' along the road, or press Go. '+t.fact);
+    sound('place');
+    refresh();
+  };
+  $('truck-shelf').append(b);
+});
+MATERIALS.forEach((m,i) => {
+  const b = document.createElement('button');
+  b.className = 'btn piece';
+  b.id = 'piece-'+i;
+  b.dataset.piece = i;
+  b.setAttribute('aria-pressed',i === 0);
+  b.title = m.name+' · $'+m.price+'/m. Game prices, not real quotes.';
+  b.setAttribute('aria-label',m.name+', '+m.price+' game dollars per meter');
+  b.innerHTML = '<i></i>'+m.name+'<strong>$'+m.price+'/m</strong>';
+  b.onclick = () => {
+    state.piece = i;
+    hint('Drag from a joint to add '+m.name.toLowerCase()+', or tap an existing beam to change it. Game prices, not real costs.');
+    sound('place',i);
+    refresh();
+  };
+  $('piece-shelf').append(b);
+});
+for (const m of ['bridge','tower','yard']) $('m-'+m).onclick = () => setMode(m);
+$('go').onclick = beginRun;
+$('rebuild').onclick = rebuild;
+$('build').onclick = () => { state.tool = 'build';
+  hint('Drag from a joint to add a beam. Hold Shift and drag to move a joint.');
+  refresh();
+  sound('place');
+};
+$('erase').onclick = () => { state.tool = 'erase';
+  hint('Tap a beam to erase it. Choose Build to add pieces again.');
+  refresh();
+  sound('place');
+};
+$('undo').onclick = () => undo();
+$('redo').onclick = () => undo(true);
+$('worst').onclick = () => {
+  state.worst = !state.worst;
+  if (state.worst) {
+    refreshWorst();
+    if (D().mode === 'bridge' && !worstResult?.loose) hint(L.bWorst);
+    voice('bWorst',() => state.worst && D().mode === 'bridge');
+    if (D().mode === 'tower') hint('The force colors show this tower test. Press Shake, or turn on Wind.');
+  } else hint('Live forces restored. Move the load, or test again.');
+  sound('place');
+  refresh();
+  wantsFrame = true;
+};
+$('true-size').onclick = () => {
+  state.trueSize = !state.trueSize;
+  hint(state.trueSize ? 'Displacement is now true size. Toggle True size off to magnify it.' : 'Displacement is magnified so you can see the load path.');
+  refresh();
+  wantsFrame = true;
+  sound('place');
+};
+$('save').onclick = saveDesign;
+$('new').onclick = () => ask('Start over? Your design stays if you saved it.','Start over','Keep building',() => {
+  checkpoint();
+  const mode = D().mode;
+  state.designs[mode] = fresh(mode);
+  setMode(mode);
+});
+$('test-all').onclick = testAll;
+$('open').onclick = () => openPicked();
+$('replay').onclick = () => openPicked(true);
+$('borrow').onclick = borrowPicked;
+$('rename').onclick = () => {
+  const d = picked()[0];
+  if (!d) { reject('Tap one Yard card, then Rename.');
+    return;
+  }
+  if (d.sample) { reject('Old farm bridge stays as a sample. Open and save a copy to name your own version.');
+    return;
+  }
+  ask('Name this design.','Save name','Cancel',name => { d.name = name || d.name;
+    persist();
+    renderYard();
+  },true,d.name);
+};
+$('delete').onclick = () => {
+  const d = picked()[0];
+  if (!d) { reject('Tap one Yard card, then Delete.');
+    return;
+  }
+  if (d.sample) { reject('Old farm bridge stays as a sample. Delete one of your saved designs instead.');
+    return;
+  }
+  ask('Delete '+d.name+' from this device?','Delete','Keep it',() => {
+    state.yard = state.yard.filter(q => q.id !== d.id);
+    state.selected = state.selected.filter(id => id !== d.id);
+    persist();
+    renderYard();
+  });
+};
+$('borrow-all').onclick = () => {
+  if (!state.ghost) return;
+  for (let i=0;i<state.ghost.b.length;i++) adopt(i);
+  hint('Pieces borrowed. Press Done, then test this combined design.');
+};
+$('borrow-done').onclick = () => {
+  state.ghost = null;
+  $('borrow-row').hidden = true;
+  hint('Press '+(D().mode === 'bridge' ? 'Go' : 'Shake')+' to test your combined design.');
+  refresh();
+  wantsFrame = true;
+};
+function restartShakeWindow() {
+  if (!state.running || !['shake','explicit-shake'].includes(state.run?.kind) || !towerModel || towerModel.loose) return;
+  state.run.kind = 'shake';
+  explicit = null;
+  state.run.t = 0;
+  towerModel.t = 0;
+  state.run.speed = D().settings.speed;
+  state.run.strength = D().settings.strength;
+  state.run.envelope?.fill(0);
+  state.run.envelopeSigns?.fill(0);
+  towerModel.max = 0;
+  towerModel.maxSway = 0;
+  hint('Setting changed. Keep it steady for a new 15 second test, or press Stop.');
+}
+for (const [id,key] of [['strength','strength'],['speed','speed'],['wind-speed','wind']]) $(id).oninput = () => {
+  D().settings[key] = +$(id).value;
+  restartShakeWindow();
+  state.windHold = 0;
+  if (key === 'wind') solveLive();
+  refresh();
+  wantsFrame = true;
+};
+$('valley').onclick = () => {
+  D().settings.strength = .3;
+  D().settings.speed = 1.2;
+  restartShakeWindow();
+  hint('Valley quake set. Press Shake to test 15 seconds at 0.30 g and 1.20 shakes a second.');
+  refresh();
+  sound('place');
+};
+$('wind').onclick = () => {
+  D().settings.windOn = !D().settings.windOn;
+  restartShakeWindow();
+  state.windHold = 0;
+  hint(D().settings.windOn ? 'Move Wind speed to change the pressure. Let it hold for 5 seconds.' : 'Wind is off. Drag the top sideways to pluck it, or press Shake.');
+  solveLive();
+  refresh();
+  sound('place');
+};
+for (const b of document.querySelectorAll('[data-top]')) b.onclick = () => {
+  checkpoint();
+  D().top = +b.dataset.top;
+  editDone('Top load changed. Pluck it again, then press Shake at the same speed to compare.');
+};
+// Compact promise choices use the available width, without hiding a short set in the panel scroll.
+$('promises').addEventListener('toggle',() => {
+  if (!$('promises').open || !document.body.matches('.compact,.stack')) return;
+  $('promise-slot').append($('promise-list'));
+  $('promises').open = false;
+  $('promise-dialog').showModal();
+  $('close-promises').focus({preventScroll:true});
+});
+$('close-promises').onclick = () => $('promise-dialog').close();
+$('promise-dialog').addEventListener('close',() => {
+  $('promises').append($('promise-list'));
+  $('promises').querySelector('summary').focus({preventScroll:true});
+});
+$('tags').onclick = showTags;
+$('close-tags').onclick = closeTags;
+$('tag-drawer').addEventListener('click',event => { if (event.target === $('tag-drawer')) closeTags();
+});
+Curio.onMotion(() => { wantsFrame = true;
+  draw();
+});
+Curio.onSound(updateAmbience);
+Curio.init({clips:"voice:*",rate:.9,readFallback:() => $('hint').textContent});
+loadStorage();
+setMode('bridge');
+new ResizeObserver(relayout).observe($('stage'));
+addEventListener('resize',relayout);
+// The panel comes before the grid in the DOM; CSS keeps the stage to its left.
+$('stage').before($('panel'));
+canvas.addEventListener('focus',() => { wantsFrame = true;
+});
+window.__tool = {
+  state,setMode,allLines:V.allLines,vlog:V.log,get vq() { return V.queue;
+  },
+  materials:MATERIALS,trucks:TRUCKS,staticSolve,sweep,modes,towerTest,cost,fresh,oldFarm,roadOK,promiseResults,
+  screenPoint,addBeam,solveLive,refresh,editDone,rebuild,
+  get design() { return D();
+  },get current() { return current;
+  },get towerModel() { return towerModel;
+  },
+  get view() { return {...view,W,H};
+  },get explicit() { return explicit;
+  },
+  get performance() {
+    const sorted = state.frames.slice().sort((a,b) => a-b);
+    return {mean:sorted.reduce((s,x) => s+x,0)/sorted.length,p95:sorted[Math.floor(sorted.length*.95)],
+      max:Math.max(...sorted),worstMillis:state.worstMillis};
+  }
+};
+requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

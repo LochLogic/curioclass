@@ -1,0 +1,24 @@
+{
+  "id": "art-style-match",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Play the tells. Find the style. Paint the recipe.",
+  "outcome": "Recognize six painting styles by visible clues and connect them to artists and cultural contexts",
+  "driver": "students or teacher",
+  "minutes": "15-30",
+  "modes": [
+    "Look",
+    "Match",
+    "Make",
+    "Album"
+  ],
+  "grades_label": "Grades 3-5",
+  "sources": [
+    "The Metropolitan Museum of Art Open Access, eight works, CC0",
+    "Art Institute of Chicago Open Access, ten works, public domain / CC0",
+    "National Core Arts Standards VA:Re7 and VA:Cn11",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-10-31"
+}

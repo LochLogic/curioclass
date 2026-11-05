@@ -1,0 +1,190 @@
+{
+  "target": 44,
+  "states": [
+    {
+      "name": "syria-card",
+      "steps": [
+        {
+          "click": "#pin-syria"
+        }
+      ],
+      "keep": [
+        "#play-cycle"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "java-cycle",
+      "steps": [
+        {
+          "click": "#pin-java"
+        },
+        {
+          "click": "#play-cycle"
+        }
+      ],
+      "keep": [
+        "#play-cycle"
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "japan-bridges",
+      "steps": [
+        {
+          "click": "#pin-japan"
+        },
+        {
+          "click": "[data-option]"
+        }
+      ],
+      "sizes": [
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "mbira-part",
+      "steps": [
+        {
+          "click": "#pin-zimbabwe"
+        },
+        {
+          "click": "[data-option='Kutsinhira']"
+        }
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "compare-playing",
+      "steps": [
+        {
+          "click": "#m-compare"
+        },
+        {
+          "click": "#both-cycles"
+        }
+      ],
+      "keep": [
+        "#both-cycles"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "mystery",
+      "steps": [
+        {
+          "click": "#m-where"
+        },
+        {
+          "js": "const hint=document.querySelector('#hint').textContent; __tool.state.mystery='zimbabwe'; __tool.openStop('zimbabwe',false); document.querySelector('#hint').textContent=hint;"
+        }
+      ],
+      "sizes": [
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "india-drone-off",
+      "steps": [
+        {
+          "click": "#pin-india"
+        },
+        {
+          "click": "[data-option]"
+        }
+      ],
+      "keep": [
+        "#play-cycle"
+      ],
+      "sizes": [
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "china-slides-off",
+      "steps": [
+        {
+          "click": "#pin-china"
+        },
+        {
+          "click": "[data-option]"
+        }
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "siku-one-row",
+      "steps": [
+        {
+          "click": "#pin-andes"
+        },
+        {
+          "click": "[data-option='Ira']"
+        }
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "scotland-card",
+      "steps": [
+        {
+          "click": "#pin-scotland"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "cuba-art",
+      "steps": [
+        {
+          "click": "#pin-cuba"
+        }
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "mystery-revealed",
+      "steps": [
+        {
+          "click": "#m-where"
+        },
+        {
+          "js": "__tool.state.mystery='cuba'; __tool.openStop('cuba',false); __tool.choosePin('cuba');"
+        }
+      ],
+      "keep": [
+        "#play-cycle",
+        "#next-mystery"
+      ],
+      "sizes": [
+        "1366x768",
+        "375x812",
+        "680x425"
+      ]
+    }
+  ]
+}

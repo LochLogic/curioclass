@@ -1,0 +1,24 @@
+{
+  "id": "world-music-map",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Ten places. Ten ways to place a note and bring a cycle around.",
+  "outcome": "Compare tuning and rhythm systems and connect instruments to musical traditions",
+  "driver": "students or teacher",
+  "minutes": "15-35",
+  "modes": [
+    "Map",
+    "Compare",
+    "Where in the world?"
+  ],
+  "grades_label": "Grades 6-8",
+  "sources": [
+    "Source details in spec.md and notes.md",
+    "The Metropolitan Museum of Art, Open Access CC0",
+    "Natural Earth 1:110m land, public domain",
+    "Phrases and marked parts written for Curio Class",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-01"
+}

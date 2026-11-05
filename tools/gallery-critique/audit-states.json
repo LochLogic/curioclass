@@ -1,0 +1,1002 @@
+{
+  "target": 44,
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "describe",
+      "steps": [
+        {
+          "click": "#work-rain"
+        },
+        {
+          "click": "#seat-Critic"
+        },
+        {
+          "click": "#take-seat"
+        }
+      ],
+      "keep": [
+        "#painting",
+        "#floor",
+        "#pin-own",
+        "#next-round"
+      ]
+    },
+    {
+      "name": "pinning",
+      "steps": [
+        {
+          "click": "#work-rain"
+        },
+        {
+          "click": "#seat-Critic"
+        },
+        {
+          "click": "#take-seat"
+        },
+        {
+          "click": "#card-rain-0 [data-act=pin]"
+        }
+      ],
+      "keep": [
+        "#painting",
+        "#floor",
+        "#hint"
+      ]
+    },
+    {
+      "name": "challenge",
+      "steps": [
+        {
+          "click": "#work-rain"
+        },
+        {
+          "click": "#seat-Critic"
+        },
+        {
+          "click": "#take-seat"
+        },
+        {
+          "click": "#card-rain-0 [data-act=challenge]"
+        }
+      ],
+      "keep": [
+        "#painting",
+        "#floor"
+      ]
+    },
+    {
+      "name": "record",
+      "steps": [
+        {
+          "click": "#work-bath"
+        },
+        {
+          "click": "#seat-Curator"
+        },
+        {
+          "click": "#take-seat"
+        },
+        {
+          "click": "#record"
+        }
+      ],
+      "keep": [
+        "#print",
+        "#back"
+      ]
+    },
+    {
+      "name": "analyze-680x425",
+      "steps": [
+        {
+          "click": "#work-rain"
+        },
+        {
+          "click": "#seat-Critic"
+        },
+        {
+          "click": "#take-seat"
+        },
+        {
+          "click": "#card-rain-0 [data-act=pin]"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#card-rain-0 [data-act=done]"
+        },
+        {
+          "click": "#next-card"
+        },
+        {
+          "click": "#card-rain-1 [data-act=pin]"
+        },
+        {
+          "click": "#spot-2"
+        },
+        {
+          "click": "#card-rain-1 [data-act=done]"
+        },
+        {
+          "click": "#next-card"
+        },
+        {
+          "click": "#card-rain-2 [data-act=challenge]"
+        },
+        {
+          "click": "#card-rain-2 [data-reason=\"1\"]"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#next-round"
+        }
+      ],
+      "keep": [
+        "#painting",
+        "#floor",
+        "#pin-own"
+      ],
+      "sizes": [
+        "680x425"
+      ]
+    },
+    {
+      "name": "interpret-680x425",
+      "steps": [
+        {
+          "click": "#work-rain"
+        },
+        {
+          "click": "#seat-Critic"
+        },
+        {
+          "click": "#take-seat"
+        },
+        {
+          "click": "#card-rain-0 [data-act=pin]"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#card-rain-0 [data-act=done]"
+        },
+        {
+          "click": "#next-card"
+        },
+        {
+          "click": "#card-rain-1 [data-act=pin]"
+        },
+        {
+          "click": "#spot-2"
+        },
+        {
+          "click": "#card-rain-1 [data-act=done]"
+        },
+        {
+          "click": "#next-card"
+        },
+        {
+          "click": "#card-rain-2 [data-act=challenge]"
+        },
+        {
+          "click": "#card-rain-2 [data-reason=\"1\"]"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#next-round"
+        },
+        {
+          "click": "#card-rain-3 [data-act=pin]"
+        },
+        {
+          "click": "#spot-2"
+        },
+        {
+          "click": "#card-rain-3 [data-act=done]"
+        },
+        {
+          "click": "#next-card"
+        },
+        {
+          "click": "#card-rain-4 [data-act=pin]"
+        },
+        {
+          "click": "#spot-4"
+        },
+        {
+          "click": "#card-rain-4 [data-act=done]"
+        },
+        {
+          "click": "#next-card"
+        },
+        {
+          "click": "#card-rain-5 [data-act=pin]"
+        },
+        {
+          "click": "#spot-5"
+        },
+        {
+          "click": "#card-rain-5 [data-act=done]"
+        },
+        {
+          "click": "#element"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#next-round"
+        }
+      ],
+      "keep": [
+        "#painting",
+        "#floor",
+        "#pin-own"
+      ],
+      "sizes": [
+        "680x425"
+      ]
+    },
+    {
+      "name": "judge-680x425",
+      "steps": [
+        {
+          "click": "#work-rain"
+        },
+        {
+          "click": "#seat-Critic"
+        },
+        {
+          "click": "#take-seat"
+        },
+        {
+          "click": "#card-rain-0 [data-act=pin]"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#card-rain-0 [data-act=done]"
+        },
+        {
+          "click": "#next-card"
+        },
+        {
+          "click": "#card-rain-1 [data-act=pin]"
+        },
+        {
+          "click": "#spot-2"
+        },
+        {
+          "click": "#card-rain-1 [data-act=done]"
+        },
+        {
+          "click": "#next-card"
+        },
+        {
+          "click": "#card-rain-2 [data-act=challenge]"
+        },
+        {
+          "click": "#card-rain-2 [data-reason=\"1\"]"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#next-round"
+        },
+        {
+          "click": "#card-rain-3 [data-act=pin]"
+        },
+        {
+          "click": "#spot-2"
+        },
+        {
+          "click": "#card-rain-3 [data-act=done]"
+        },
+        {
+          "click": "#next-card"
+        },
+        {
+          "click": "#card-rain-4 [data-act=pin]"
+        },
+        {
+          "click": "#spot-4"
+        },
+        {
+          "click": "#card-rain-4 [data-act=done]"
+        },
+        {
+          "click": "#next-card"
+        },
+        {
+          "click": "#card-rain-5 [data-act=pin]"
+        },
+        {
+          "click": "#spot-5"
+        },
+        {
+          "click": "#card-rain-5 [data-act=done]"
+        },
+        {
+          "click": "#element"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#next-round"
+        },
+        {
+          "click": "#card-rain-6 [data-act=pin]"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#card-rain-6 [data-act=done]"
+        },
+        {
+          "click": "#next-card"
+        },
+        {
+          "click": "#card-rain-7 [data-act=challenge]"
+        },
+        {
+          "click": "#card-rain-7 [data-reason=\"2\"]"
+        },
+        {
+          "click": "#next-card"
+        },
+        {
+          "click": "#card-rain-8 [data-act=pin]"
+        },
+        {
+          "click": "#spot-3"
+        },
+        {
+          "click": "#card-rain-8 [data-act=done]"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#next-round"
+        }
+      ],
+      "keep": [
+        "#painting",
+        "#floor",
+        "#lens",
+        "#pin-own"
+      ],
+      "sizes": [
+        "680x425"
+      ]
+    },
+    {
+      "name": "analyze-1366x768",
+      "steps": [
+        {
+          "click": "#work-rain"
+        },
+        {
+          "click": "#seat-Critic"
+        },
+        {
+          "click": "#take-seat"
+        },
+        {
+          "click": "#card-rain-0 [data-act=pin]"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#card-rain-0 [data-act=done]"
+        },
+        {
+          "click": "#card-rain-1 [data-act=pin]"
+        },
+        {
+          "click": "#spot-2"
+        },
+        {
+          "click": "#card-rain-1 [data-act=done]"
+        },
+        {
+          "click": "#card-rain-2 [data-act=challenge]"
+        },
+        {
+          "click": "#card-rain-2 [data-reason=\"1\"]"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#next-round"
+        }
+      ],
+      "keep": [
+        "#painting",
+        "#floor",
+        "#pin-own"
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "interpret-1366x768",
+      "steps": [
+        {
+          "click": "#work-rain"
+        },
+        {
+          "click": "#seat-Critic"
+        },
+        {
+          "click": "#take-seat"
+        },
+        {
+          "click": "#card-rain-0 [data-act=pin]"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#card-rain-0 [data-act=done]"
+        },
+        {
+          "click": "#card-rain-1 [data-act=pin]"
+        },
+        {
+          "click": "#spot-2"
+        },
+        {
+          "click": "#card-rain-1 [data-act=done]"
+        },
+        {
+          "click": "#card-rain-2 [data-act=challenge]"
+        },
+        {
+          "click": "#card-rain-2 [data-reason=\"1\"]"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#next-round"
+        },
+        {
+          "click": "#card-rain-3 [data-act=pin]"
+        },
+        {
+          "click": "#spot-2"
+        },
+        {
+          "click": "#card-rain-3 [data-act=done]"
+        },
+        {
+          "click": "#card-rain-4 [data-act=pin]"
+        },
+        {
+          "click": "#spot-4"
+        },
+        {
+          "click": "#card-rain-4 [data-act=done]"
+        },
+        {
+          "click": "#card-rain-5 [data-act=pin]"
+        },
+        {
+          "click": "#spot-5"
+        },
+        {
+          "click": "#card-rain-5 [data-act=done]"
+        },
+        {
+          "click": "#element"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#next-round"
+        }
+      ],
+      "keep": [
+        "#painting",
+        "#floor",
+        "#pin-own"
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "judge-1366x768",
+      "steps": [
+        {
+          "click": "#work-rain"
+        },
+        {
+          "click": "#seat-Critic"
+        },
+        {
+          "click": "#take-seat"
+        },
+        {
+          "click": "#card-rain-0 [data-act=pin]"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#card-rain-0 [data-act=done]"
+        },
+        {
+          "click": "#card-rain-1 [data-act=pin]"
+        },
+        {
+          "click": "#spot-2"
+        },
+        {
+          "click": "#card-rain-1 [data-act=done]"
+        },
+        {
+          "click": "#card-rain-2 [data-act=challenge]"
+        },
+        {
+          "click": "#card-rain-2 [data-reason=\"1\"]"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#next-round"
+        },
+        {
+          "click": "#card-rain-3 [data-act=pin]"
+        },
+        {
+          "click": "#spot-2"
+        },
+        {
+          "click": "#card-rain-3 [data-act=done]"
+        },
+        {
+          "click": "#card-rain-4 [data-act=pin]"
+        },
+        {
+          "click": "#spot-4"
+        },
+        {
+          "click": "#card-rain-4 [data-act=done]"
+        },
+        {
+          "click": "#card-rain-5 [data-act=pin]"
+        },
+        {
+          "click": "#spot-5"
+        },
+        {
+          "click": "#card-rain-5 [data-act=done]"
+        },
+        {
+          "click": "#element"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#next-round"
+        },
+        {
+          "click": "#card-rain-6 [data-act=pin]"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#card-rain-6 [data-act=done]"
+        },
+        {
+          "click": "#card-rain-7 [data-act=challenge]"
+        },
+        {
+          "click": "#card-rain-7 [data-reason=\"2\"]"
+        },
+        {
+          "click": "#card-rain-8 [data-act=pin]"
+        },
+        {
+          "click": "#spot-3"
+        },
+        {
+          "click": "#card-rain-8 [data-act=done]"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#next-round"
+        }
+      ],
+      "keep": [
+        "#painting",
+        "#floor",
+        "#lens",
+        "#pin-own"
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "finished-product",
+      "steps": [
+        {
+          "click": "#work-rain"
+        },
+        {
+          "click": "#seat-Critic"
+        },
+        {
+          "click": "#take-seat"
+        },
+        {
+          "click": "#card-rain-0 [data-act=pin]"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#card-rain-0 [data-act=done]"
+        },
+        {
+          "click": "#card-rain-1 [data-act=pin]"
+        },
+        {
+          "click": "#spot-2"
+        },
+        {
+          "click": "#card-rain-1 [data-act=done]"
+        },
+        {
+          "click": "#card-rain-2 [data-act=challenge]"
+        },
+        {
+          "click": "#card-rain-2 [data-reason=\"1\"]"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#next-round"
+        },
+        {
+          "click": "#card-rain-3 [data-act=pin]"
+        },
+        {
+          "click": "#spot-2"
+        },
+        {
+          "click": "#card-rain-3 [data-act=done]"
+        },
+        {
+          "click": "#card-rain-4 [data-act=pin]"
+        },
+        {
+          "click": "#spot-4"
+        },
+        {
+          "click": "#card-rain-4 [data-act=done]"
+        },
+        {
+          "click": "#card-rain-5 [data-act=pin]"
+        },
+        {
+          "click": "#spot-5"
+        },
+        {
+          "click": "#card-rain-5 [data-act=done]"
+        },
+        {
+          "click": "#element"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#next-round"
+        },
+        {
+          "click": "#card-rain-6 [data-act=pin]"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#card-rain-6 [data-act=done]"
+        },
+        {
+          "click": "#card-rain-7 [data-act=challenge]"
+        },
+        {
+          "click": "#card-rain-7 [data-reason=\"2\"]"
+        },
+        {
+          "click": "#card-rain-8 [data-act=pin]"
+        },
+        {
+          "click": "#spot-3"
+        },
+        {
+          "click": "#card-rain-8 [data-act=done]"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#next-round"
+        },
+        {
+          "click": "#lens"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#card-rain-9 [data-act=pin]"
+        },
+        {
+          "click": "#spot-2"
+        },
+        {
+          "click": "#card-rain-9 [data-act=done]"
+        },
+        {
+          "click": "#card-rain-10 [data-act=challenge]"
+        },
+        {
+          "click": "#card-rain-10 [data-reason=\"0\"]"
+        },
+        {
+          "click": "#lens"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#card-rain-11 [data-act=pin]"
+        },
+        {
+          "click": "#spot-3"
+        },
+        {
+          "click": "#card-rain-11 [data-act=done]"
+        },
+        {
+          "click": "#judge-spot"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#spot-3"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#next-round"
+        }
+      ],
+      "keep": [
+        "#product",
+        "#counts",
+        "#print",
+        "#back"
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "own-miss",
+      "steps": [
+        {
+          "click": "#work-rain"
+        },
+        {
+          "click": "#seat-Critic"
+        },
+        {
+          "click": "#take-seat"
+        },
+        {
+          "click": "#pin-own"
+        },
+        {
+          "click": "#spot-2"
+        },
+        {
+          "click": "#pin-own"
+        }
+      ],
+      "keep": [
+        "#painting",
+        "#pin-own",
+        "#cancel-own",
+        "#hint"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    }
+  ]
+}

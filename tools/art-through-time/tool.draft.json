@@ -1,0 +1,22 @@
+{
+  "id": "art-through-time",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Pull a thread between a work of art and the change it answered.",
+  "outcome": "Connect visual choices in art with inventions, trade and artistic ideas across time.",
+  "driver": "students or teacher",
+  "minutes": "15-30",
+  "modes": [
+    "Timeline",
+    "What Changed?"
+  ],
+  "grades_label": "Grades 6-8",
+  "sources": [
+    "The Metropolitan Museum of Art Open Access, public domain / CC0",
+    "Art Institute of Chicago Open Access, public domain / CC0",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Historical references and checked museum links in notes.md"
+  ],
+  "third_party": [],
+  "updated": "2026-11-03"
+}

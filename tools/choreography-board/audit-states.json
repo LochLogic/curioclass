@@ -1,0 +1,201 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "selected",
+      "steps": [
+        {
+          "click": "[data-block='1']"
+        }
+      ],
+      "keep": [
+        "#stage",
+        "#timeline",
+        "#play",
+        "#devices"
+      ]
+    },
+    {
+      "name": "tempo",
+      "steps": [
+        {
+          "click": "[data-block='0']"
+        },
+        {
+          "click": "#device-tempo"
+        },
+        {
+          "js": "const p=document.querySelector('#device-option-picker');if(p.getBoundingClientRect().width){p.value='2';p.dispatchEvent(new Event('change'))}else document.querySelector('[data-option=\"2\"]').click()"
+        }
+      ],
+      "keep": [
+        "#stage",
+        "#timeline"
+      ]
+    },
+    {
+      "name": "canon",
+      "steps": [
+        {
+          "click": "[data-block=\"0\"]"
+        },
+        {
+          "click": "[data-page=\"cast\"]"
+        },
+        {
+          "js": "const p=document.querySelector('#cast-picker');if(p.getBoundingClientRect().width){p.value='4';p.dispatchEvent(new Event('change'))}else document.querySelector('#dancers-4').click()"
+        },
+        {
+          "click": "[data-page=\"devices\"]"
+        },
+        {
+          "click": "#device-canon"
+        },
+        {
+          "js": "const p=document.querySelector('#device-option-picker');if(p.getBoundingClientRect().width){p.value='2';p.dispatchEvent(new Event('change'))}else document.querySelector('[data-option=\"2\"]').click()"
+        }
+      ],
+      "keep": [
+        "#stage",
+        "#timeline"
+      ]
+    },
+    {
+      "name": "compare-revised",
+      "steps": [
+        {
+          "click": "[data-block='0']"
+        },
+        {
+          "click": "#device-retro"
+        },
+        {
+          "click": "#m-compare"
+        }
+      ],
+      "keep": [
+        "#stage"
+      ]
+    },
+    {
+      "name": "ghost",
+      "steps": [
+        {
+          "click": "[data-block='0']"
+        },
+        {
+          "click": "#device-mirror"
+        },
+        {
+          "click": "#m-compare"
+        },
+        {
+          "click": "#ghost"
+        }
+      ],
+      "keep": [
+        "#stage"
+      ]
+    },
+    {
+      "name": "phrase-editor",
+      "steps": [
+        {
+          "click": "[data-page=\"phrases\"]"
+        },
+        {
+          "click": "#make"
+        }
+      ],
+      "keep": [
+        "#stage",
+        "#slots",
+        "#try",
+        "#save-phrase"
+      ]
+    },
+    {
+      "name": "reset-confirmation",
+      "steps": [
+        {
+          "click": "[data-page=\"history\"]"
+        },
+        {
+          "js": "const p=document.querySelector('#history-action');if(p.getBoundingClientRect().width){p.value='new';p.dispatchEvent(new Event('change'))}else document.querySelector('#new').click()"
+        }
+      ],
+      "keep": [
+        "#confirm-yes",
+        "#confirm-no"
+      ]
+    },
+    {
+      "name": "phrase-library",
+      "steps": [
+        {
+          "click": "[data-page=\"phrases\"]"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#make"
+      ]
+    },
+    {
+      "name": "cast-options",
+      "steps": [
+        {
+          "click": "[data-block=\"0\"]"
+        },
+        {
+          "click": "[data-page=\"cast\"]"
+        }
+      ],
+      "keep": [
+        "#block-controls"
+      ]
+    },
+    {
+      "name": "revision-reasons",
+      "steps": [
+        {
+          "click": "[data-block='0']"
+        },
+        {
+          "click": "#device-retro"
+        },
+        {
+          "click": "#m-compare"
+        },
+        {
+          "click": "[data-compare-page='reasons']"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#compare-reasons"
+      ]
+    },
+    {
+      "name": "change-measures",
+      "steps": [
+        {
+          "click": "[data-block='0']"
+        },
+        {
+          "click": "#device-retro"
+        },
+        {
+          "click": "#m-compare"
+        },
+        {
+          "click": "[data-compare-page='measures']"
+        }
+      ],
+      "keep": [
+        "#stage",
+        "#play"
+      ]
+    }
+  ]
+}

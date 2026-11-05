@@ -1,0 +1,1291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Place Mood Makeover · Curio Class</title>
+<meta name="description" content="Give an ordinary place a mood with light, color, weather and details. Grades 3-5 visual arts. Works offline.">
+<!--
+Place Mood Makeover, Curio Class. Grades 3-5 visual arts: VA:Cr1, VA:Cr3, VA:Re8, VA:Cn10.
+Students or teacher, Three artists and Makeover. Visual clues carry mood; artists can defend a different reading.
+Sources: Getty Elements of Art: Color; Mittler and Ragans, ArtTalk; Smithsonian American Scene notes;
+Art Institute of Chicago media glossary. Reader weights are the specification's own teaching conventions.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Content CC BY 4.0, code MIT.
+No network requests. Saved work never leaves this device. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="icon" href="data:,">
+<style>
+:root {
+  --paper:#f2f0ec; --ink:#1e2233; --muted:#5a5e6e; --line:#d6d3ca; --focus:#a04c15;
+  --brand:#2b3a67; --btn:#354674; --btn-line:#7d89a8; --head-ink:#fff; --panel:#fffdfa;
+  --gold:#f2c14e;
+}
+body { grid-template-rows:auto minmax(0,1fr); }
+header { padding:10px 18px; gap:8px; }
+h1 { font-size:clamp(19px,2.1vw,30px); font-family:Georgia,serif; font-weight:600; }
+h1 small { font-size:13px; letter-spacing:.035em; }
+header button, .seg button { min-height:44px; font-size:14px; padding:0 12px; }
+main { display:grid; grid-template-columns:minmax(0,1fr) 350px; min-height:0; }
+button { border:1px solid #b9b7b0; background:#fffefa; border-radius:8px; min-height:44px; padding:6px 10px; }
+button:hover { border-color:var(--brand); box-shadow:0 2px 0 #2b3a6720; }
+button[aria-pressed="true"] { background:var(--brand); color:white; border-color:var(--brand); }
+button:disabled { opacity:.5; cursor:default; }
+button.primary { background:var(--brand); color:#fff; font-weight:700; }
+button.gold { background:var(--gold); color:var(--ink); font-weight:700; border-color:#b88d26; }
+.workbench { min-width:0; min-height:0; overflow:auto; padding:18px; background:
+  radial-gradient(ellipse at 10% 10%,#ffffff90,transparent 65%), repeating-linear-gradient(0deg,#c9bda70c 0 1px,transparent 1px 5px),#e7e1d5; }
+.workbench { grid-column:1; grid-row:1; }
+.panel { grid-column:2; grid-row:1; }
+.eyebrow { text-transform:uppercase; font-size:11px; font-weight:800; letter-spacing:.15em; color:var(--muted); }
+.stage-top { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:0 0 10px; }
+.stage-top h2 { font:600 clamp(18px,2vw,25px) Georgia,serif; margin:0; }
+.stage-top span { font-size:12px; color:var(--muted); }
+.gallery-frame { position:relative; padding:9px; background:#fcfaf4; border:1px solid #bfb6a5;
+  box-shadow:0 8px 24px #39301b24,0 1px 2px #39301b33; transform:rotate(-.25deg); }
+.picture { position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; isolation:isolate; background:#b9cbd4; }
+.picture img { user-select:none; -webkit-user-drag:none; }
+#painting { width:100%; height:100%; display:block; object-fit:cover; }
+.hotspot { position:absolute; transform:translate(-50%,-50%); border:2px solid transparent; border-radius:50%;
+  background:transparent; min-width:44px; min-height:44px; padding:0; box-shadow:none; }
+.hotspot:hover { background:#fff4; border:2px dashed #fff; }
+.hotspot.found { border:3px solid #f2c14e; box-shadow:0 0 0 3px #1e223388; background:#f2c14e22; }
+.hotspot.found::after { content:'✓'; position:absolute; top:-5px; right:-5px; color:#1e2233; background:#f2c14e;
+  border-radius:50%; width:22px; height:22px; font-size:15px; font-weight:900; }
+.artists-strip { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:16px; }
+.artist-thumb { display:grid; grid-template-columns:76px 1fr; gap:10px; text-align:left; align-items:center;
+  background:#fffdf7; padding:6px; min-height:60px; box-shadow:0 3px 6px #39301b12; }
+.artist-thumb img { width:76px; aspect-ratio:16/9; object-fit:cover; border-radius:3px; }
+.artist-thumb strong { font-size:13px; }
+.artist-thumb[aria-pressed="true"] { background:#fffdf7; color:var(--brand); outline:3px solid var(--brand); }
+.caption { font-size:13px; color:var(--muted); margin:12px 0 0; line-height:1.45; }
+.panel { padding:14px; gap:10px; border-left:1px solid #c7c1b7; box-shadow:-3px 0 12px #39301b08; }
+.panel h2 { margin:0; font:600 24px Georgia,serif; }
+.hint { font-size:15px; line-height:1.4; margin:0; min-height:44px; padding:10px 12px;
+  border-left:3px solid #9c875b; background:#fffdf5; border-radius:0 7px 7px 0; }
+.mood-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; }
+.mood-grid button:last-child:nth-child(odd) { grid-column:1/-1; }
+.mood-button { display:flex; align-items:center; gap:8px; font-weight:700; font-size:15px; }
+.mood-icon { width:25px; height:25px; flex:none; }
+.mood-button .mood-icon { color:var(--mood); }
+.mood-button[aria-pressed="true"] .mood-icon { color:inherit; }
+.clue-receipts { display:flex; gap:6px; flex-wrap:wrap; }
+.receipt { border:1px solid #bfb6a5; background:#fffdf6; border-radius:5px; padding:7px 9px; font-size:13px; }
+#reveal { background:#f1e9d6; border-left:4px solid #a78a4a; padding:12px; line-height:1.45; font-size:15px; }
+.controls { display:flex; flex-direction:column; gap:9px; }
+.control-label { display:block; font-size:12px; font-weight:800; color:var(--muted); margin-bottom:4px; }
+.row-buttons { display:flex; gap:3px; }
+.row-buttons button { flex:1; padding:5px 3px; font-size:13px; }
+.goal-buttons { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:3px; }
+.goal-buttons button { display:flex; flex-direction:column; gap:2px; align-items:center; font-size:10px; padding:5px 1px; }
+.goal-buttons .mood-icon { width:20px; height:20px; }
+.detail-options { display:flex; flex-wrap:wrap; gap:5px; }
+.detail-options button { font-size:12px; text-align:left; flex:1 0 42%; }
+.detail-options button::before { content:'＋ '; font-weight:800; }
+.detail-options button[aria-pressed="true"]::before { content:'✓ '; }
+.makeover-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(220px,.4fr); gap:16px; align-items:center; }
+.scene-frame { position:relative; min-width:0; padding:7px; background:#fffdf6; box-shadow:0 8px 24px #39301b24;
+  border:1px solid #bfb6a5; }
+.scene-layer, .sky, .plate, .treatment, .weather { position:absolute; inset:0; width:100%; height:100%; }
+.sky,.plate { object-fit:fill; }
+.scene-layer { transform:translateZ(0); }
+.detail-art { position:absolute; transform:translateX(-50%); height:auto; max-height:75%; object-fit:contain; }
+.detail-art[data-detail-art="bus-glove"] { transform:translateX(-50%) rotate(-75deg); }
+.glow { filter:drop-shadow(0 0 3px #ffe293) drop-shadow(0 0 10px #ffd073); }
+.night-glow { filter:brightness(1.7) drop-shadow(0 0 6px #ffdf92) drop-shadow(0 0 22px #ffb13f); }
+.flicker { animation:flicker 1.3s steps(1) infinite; }
+@keyframes flicker { 0%,72%,91% { opacity:1; } 74%,95% { opacity:.25; } 85% { opacity:.6; } }
+.calm .flicker { animation:none!important; opacity:.55; }
+.treatment { pointer-events:none; }
+.weather { pointer-events:none; overflow:hidden; }
+.rain-drop { position:absolute; width:1px; height:7%; background:linear-gradient(transparent,#d6e5f2); transform:rotate(18deg);
+  animation:fall .75s linear infinite; }
+.snow-flake { position:absolute; width:4px; height:4px; background:#f1f3f6; border-radius:50%; box-shadow:0 1px 3px #8392a6;
+  animation:fall 4s linear infinite; }
+.wind-leaf { position:absolute; width:7%; animation:blow 4s linear infinite; }
+@keyframes fall { from { translate:0 -80px; } to { translate:-15px 180px; } }
+@keyframes blow { from { translate:-70px 0; rotate:0deg; } to { translate:600px 40px; rotate:220deg; } }
+.calm .rain-drop,.calm .snow-flake,.calm .wind-leaf { animation:none!important; }
+.fog { background:linear-gradient(to bottom,#c9ced7bb 8%,#d6d9dd99 42%,#e5e6e844 65%,transparent 88%); }
+.sky-idle { animation:sky-breathe 14s ease-in-out infinite alternate; }
+@keyframes sky-breathe { to { filter:brightness(1.035); } }
+.calm .sky-idle { animation:none!important; }
+.compass-card { min-width:0; text-align:center; background:#f7f4e9; border:1px solid #c9c0ac;
+  border-radius:50% 50% 12px 12px / 13% 13% 12px 12px; padding:12px 8px 10px; box-shadow:0 4px 10px #39301b12; }
+.compass-card h3 { font:600 18px Georgia,serif; margin:0 0 3px; }
+#compass { width:100%; max-width:290px; display:block; margin:auto; aspect-ratio:1; overflow:visible; }
+#compass-summary { font-size:12px; margin:2px 0 0; line-height:1.4; min-height:34px; }
+.compass-card.done { border-color:#c69d31; background:#fff7d9; box-shadow:0 0 0 3px #f2c14e; }
+.compass-note { font-size:11px; color:var(--muted); margin:8px 0 0; }
+.action-bar { display:flex; flex-wrap:wrap; gap:7px; margin-top:14px; }
+.action-bar button { flex:1; font-size:13px; }
+.clue-book { margin-top:18px; padding:14px; background:#fffdf6; border:1px solid #cfc5b2; box-shadow:0 3px 7px #39301b12; }
+.clue-book h3 { margin:0 0 10px; font:600 20px Georgia,serif; }
+#my-clues { display:flex; flex-wrap:wrap; gap:7px; }
+.clue-chip { display:flex; align-items:center; gap:5px; border-left:5px solid var(--clue-color); font-size:12px; }
+.clue-chip .mood-icon { width:20px; height:20px; }
+.clue-chip.tug { border-style:dashed; border-left-style:solid; }
+.tag-marker { font-size:11px; color:#4e5361; }
+.saved-note { font-size:11px; color:var(--muted); margin:9px 0 0; }
+.sentence-card { margin-top:14px; padding:16px; border:1px solid #b9af9c; background:#fffdf6; }
+.sentence-card h3 { margin:0 0 10px; font:600 21px Georgia,serif; }
+textarea,input { font:inherit; font-size:15px; color:var(--ink); background:white; border:1px solid #8e8c85;
+  border-radius:6px; padding:10px; min-height:44px; width:100%; }
+textarea { min-height:80px; resize:vertical; }
+.sentence-card label { display:block; font-size:14px; line-height:1.5; margin:10px 0 4px; }
+.partner-card { margin-top:14px; padding:14px; border:1px solid #a6a087; background:#fffdf6; }
+.partner-card h3 { margin:0 0 10px; font:600 20px Georgia,serif; }
+.partner-card .mood-grid { grid-template-columns:repeat(5,minmax(0,1fr)); }
+.partner-card .mood-button { flex-direction:column; gap:2px; font-size:12px; }
+.partner-card .mood-grid button:last-child { grid-column:auto; }
+#partner-result { font-size:15px; padding:12px; background:#ede8d8; border-radius:7px; margin:12px 0 0; }
+#before-wrap { position:absolute; inset:0; pointer-events:none; z-index:4; }
+#before-wrap img { width:100%; height:100%; object-fit:fill; }
+#wipe { appearance:none; position:absolute; z-index:5; inset:0; width:100%; height:100%; background:transparent; border:0;
+  padding:0; margin:0; cursor:ew-resize; }
+#wipe::-webkit-slider-thumb { appearance:none; width:9px; height:1000px; background:#fff8db; border:2px solid #7e6b43; }
+.wipe-label { position:absolute; z-index:6; bottom:10px; padding:5px 8px; background:#fff8db; border:1px solid #897249;
+  font-size:12px; pointer-events:none; }
+.wipe-label.before { left:10px; } .wipe-label.after { right:10px; }
+dialog { border:1px solid #8b8068; border-radius:12px; padding:20px; width:min(470px,calc(100% - 28px)); color:var(--ink);
+  background:#fffdf6; box-shadow:0 15px 70px #1e223344; max-height:85vh; overflow:auto; }
+dialog::backdrop { background:#1e22335c; }
+dialog h3 { margin:0 35px 8px 0; font:600 22px Georgia,serif; }
+dialog p { font-size:14px; line-height:1.5; }
+dialog .mood-grid { grid-template-columns:repeat(5,minmax(0,1fr)); }
+dialog .mood-button { flex-direction:column; font-size:11px; padding:5px 1px; }
+dialog .mood-grid button:last-child { grid-column:auto; }
+dialog .mood-grid button:last-child:nth-child(odd) { grid-column:auto; }
+.close-dialog { position:absolute; top:10px; right:10px; width:44px; font-size:20px; }
+.dialog-actions { display:flex; gap:6px; margin-top:12px; }
+.dialog-actions button { flex:1; font-size:13px; }
+#reason-box { margin-top:12px; }
+#reason-box label { display:block; margin:0 0 10px; font-size:14px; }
+#reason-error { color:#8d3025; font-size:12px; }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+@media (min-width:1550px) { .makeover-layout { grid-template-columns:minmax(0,1fr) 300px; } }
+@media (max-width:1100px) {
+  main { grid-template-columns:minmax(0,1fr) 320px; }
+  .workbench { padding:12px; }
+  .makeover-layout { grid-template-columns:minmax(0,1fr); gap:8px; }
+  .compass-card { display:grid; grid-template-columns:142px minmax(0,1fr); align-items:center; border-radius:12px;
+    padding:5px 10px; text-align:left; }
+  #compass { grid-row:1/5; width:142px; }
+  .compass-card h3 { font-size:16px; }
+  #compass text { font-size:20px; }
+  .compass-card .compass-note { margin:2px 0; }
+  .artists-strip { gap:7px; margin-top:10px; }
+  .artist-thumb { grid-template-columns:1fr; gap:3px; text-align:center; }
+  .artist-thumb img { width:100%; max-height:70px; object-fit:cover; }
+}
+@media (max-height:900px) and (min-width:901px) {
+  .panel { padding:10px; gap:5px; }
+  .controls { gap:4px; }
+  #makeover-panel > div:nth-child(2) > .control-label { display:none; }
+  #treatment-controls > div { position:relative; padding-left:51px; }
+  #treatment-controls > div > .control-label { position:absolute; left:0; top:15px; font-size:11px; }
+  .detail-options { gap:4px; }
+  .hint { padding:6px 9px; min-height:44px; font-size:14px; }
+}
+@media (min-width:901px) { header #sound { min-width:120px; } }
+@media (min-height:551px) and (max-height:700px) and (min-width:901px) and (max-width:1100px) {
+  .scene-frame { width:100%; max-width:calc((100vh - 310px)*16/9); justify-self:center; }
+}
+@media (max-width:900px) {
+  header { padding:5px 8px; gap:4px; }
+  h1 { font-size:18px; }
+  h1 small { display:none; }
+  header button,.seg button { font-size:12px; padding:0 7px; }
+  main { grid-template-columns:minmax(0,1fr) 310px; }
+  .panel { padding:8px; gap:7px; }
+  .workbench { padding:9px; }
+  .stage-top { margin-bottom:6px; }
+  .stage-top h2 { font-size:18px; }
+  .stage-top span { font-size:10px; }
+  .controls { gap:4px; }
+  .control-label { font-size:10px; margin-bottom:1px; }
+  .row-buttons button { font-size:11px; }
+  .goal-buttons button { font-size:10px; min-height:44px; padding:2px 0; }
+  .goal-buttons .mood-icon { width:18px; height:18px; }
+  .detail-options { flex-wrap:nowrap; overflow-x:auto; padding:1px 1px 4px; scroll-padding:4px; }
+  .detail-options button { flex:0 0 128px; font-size:11px; }
+  .hint { font-size:12px; padding:6px 8px; min-height:44px; }
+  .clue-book { margin-top:10px; padding:9px; }
+  .clue-book h3 { font-size:16px; }
+  .action-bar { gap:4px; margin-top:8px; }
+  .action-bar button { font-size:11px; padding:5px; }
+}
+@media (max-height:550px) and (min-width:600px) {
+  .stage-top { display:none; }
+  .workbench { padding:6px; }
+  .compass-card { grid-template-columns:100px minmax(0,1fr); padding:0 6px; gap:0; }
+  #compass { width:100px; }
+  #compass text { font-size:28px; }
+  .workbench .hint { margin-top:4px; padding:4px 6px; font-size:11px; line-height:1.3; min-height:34px; }
+  #compass-summary { font-size:10px; min-height:28px; }
+  .compass-card h3 { font-size:13px; }
+  .compass-note { font-size:10px; }
+  .scene-frame { padding:3px; }
+  .makeover-layout { gap:5px; }
+  .controls { gap:1px; }
+  .control-label { font-size:10px; line-height:11px; }
+  #panel > .hint { order:2; }
+  #makeover-panel { order:1; }
+  #makeover-panel > div:nth-child(2) > .control-label { display:none; }
+  #treatment-controls > div { position:relative; padding-left:48px; }
+  #treatment-controls > div > .control-label { position:absolute; left:0; top:16px; font-size:10px; }
+  #makeover-panel { gap:2px; }
+  .panel h2 { font-size:18px; }
+  .artists-strip { margin-top:8px; }
+  .artist-thumb { grid-template-columns:1fr; min-height:44px; }
+  .artist-thumb img { max-height:40px; }
+  .caption { display:none; }
+}
+@media (max-width:599px) {
+  body { display:block; min-height:100vh; height:auto; }
+  header { display:grid; grid-template-columns:repeat(3,1fr); gap:5px; padding:8px; }
+  h1 { grid-column:1/-1; text-align:center; font-size:23px; margin:0; }
+  header .seg { grid-column:1/-1; justify-self:center; }
+  #read { grid-column:3; grid-row:3; } #motion { grid-column:1; grid-row:3; } #sound { grid-column:2; grid-row:3; }
+  header button,.seg button { font-size:12px; }
+  main { display:flex; flex-direction:column; }
+  .workbench { order:0; overflow:visible; padding:10px; }
+  .panel { order:1; overflow:visible; border-left:0; border-top:1px solid #c7c1b7; padding:12px; }
+  .stage-top span { display:none; }
+  .artists-strip { gap:8px; }
+  .artist-thumb img { max-height:none; }
+  .artist-thumb { min-height:68px; }
+  .makeover-layout { gap:9px; }
+  .compass-card { grid-template-columns:146px minmax(0,1fr); }
+  #compass { width:146px; }
+  .compass-card h3 { font-size:16px; }
+  .clue-book { margin-top:12px; }
+  .controls { gap:8px; }
+  .control-label { font-size:12px; margin-bottom:3px; }
+  .detail-options { display:grid; grid-template-columns:1fr 1fr; overflow:visible; }
+  .detail-options button { font-size:12px; }
+  .row-buttons button { font-size:12px; }
+  .goal-buttons button { font-size:11px; }
+  .action-bar button { font-size:12px; }
+  .partner-card .mood-grid { grid-template-columns:repeat(3,1fr); }
+  body.makeover main { gap:0; }
+  body.makeover .workbench, body.makeover #makeover-stage { display:contents; }
+  body.makeover .stage-top { order:0; margin:10px; }
+  body.makeover .makeover-layout { order:1; margin:0 10px 10px; }
+  body.makeover .panel { order:2; }
+  body.makeover .action-bar { order:3; margin:10px; }
+  body.makeover .clue-book { order:4; margin:0 10px 10px; }
+  body.makeover .sentence-card { order:5; margin:0 10px 10px; }
+  body.makeover .partner-card { order:2; margin:10px; }
+  body.makeover #partner-result { order:3; margin:10px; }
+}
+/* Keep the picture in reach while students revise the smaller studio. */
+.scene-frame.complete { border-color:#bd8d1d; box-shadow:0 0 0 3px #f2c14e,0 8px 24px #39301b24; }
+.scene-frame.respond { animation:picture-answer .32s ease-out; }
+@keyframes picture-answer { from { box-shadow:0 0 0 4px #f2c14e; } }
+.calm .scene-frame.respond { animation:none; }
+.detail-art { transform-origin:50% 100%; }
+.detail-art[data-detail-art="bus-crows"] { transform:translateX(-50%) rotate(1deg); }
+.detail-art[data-detail-art="bus-sign"] { transform:translateX(-50%) rotate(-12deg); }
+.detail-art[data-detail-art="play-chalk"] { transform:translateX(-50%) scaleY(.36); }
+.detail-art[data-detail-art="bus-puddles"],
+.detail-art[data-detail-art="play-puddle"] { transform:translateX(-50%) scaleY(.5); }
+dialog { padding-top:14px; scroll-padding-top:60px; }
+.dialog-heading { position:sticky; top:-14px; z-index:2; background:#fffdf6; padding:12px 45px 12px 0; }
+.dialog-heading h3 { margin:0; }
+.dialog-heading .close-dialog { top:3px; right:-4px; }
+#reader-line { margin-top:3px; }
+@media (max-height:900px) and (min-width:901px) {
+  #treatment-controls > div > .control-label { font-size:10px; }
+  .detail-options { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .detail-options button { font-size:11px; padding:5px; }
+}
+@media (max-width:1100px) and (min-width:600px) {
+  .panel { overflow:auto; }
+  .goal-buttons button { min-width:44px; }
+  .row-buttons button { min-width:44px; }
+}
+@media (max-height:700px) and (min-width:901px) and (max-width:1100px) {
+  .detail-options { display:flex; flex-wrap:nowrap; overflow-x:auto; padding-bottom:4px; }
+  .detail-options button { flex:0 0 128px; }
+}
+@media (min-height:800px) and (min-width:600px) and (max-width:900px) {
+  .detail-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); overflow:visible; }
+}
+@media (max-height:550px) and (min-width:600px) {
+  header { padding:3px 6px; }
+  h1 { font-size:16px; }
+  header .seg button,header button { padding:0 6px; font-size:11px; }
+  main { grid-template-columns:minmax(0,1fr) 310px; }
+  .panel { padding:4px; }
+  .goal-buttons button { min-width:44px; }
+  #makeover-panel { gap:1px; }
+  .control-label { line-height:10px; }
+  #treatment-controls > div { padding-left:48px; }
+  #treatment-controls > div > .control-label { top:16px; font-size:10px; }
+  .row-buttons { gap:1px; }
+  .detail-options { gap:3px; }
+  .detail-options button { flex-basis:126px; }
+  #makeover-panel { display:grid; grid-template-columns:minmax(0,1fr) 110px; }
+  #makeover-panel > div { grid-column:1/-1; min-width:0; }
+  #makeover-panel > div:last-of-type { grid-column:1; }
+  #reset { grid-column:2; grid-row:4; align-self:end; margin-bottom:5px; }
+  body.makeover .workbench .hint { margin-bottom:3px; }
+  .compass-card { min-height:104px; }
+  .workbench { scroll-padding-top:56px; }
+  .workbench .hint { position:sticky; top:0; z-index:2; }
+  .partner-card { padding:8px; margin-top:8px; }
+  .partner-card h3 { font-size:16px; margin-bottom:4px; }
+  .partner-card .mood-button { font-size:10px; min-height:44px; }
+  .partner-card .mood-icon { width:20px; height:20px; }
+  dialog { max-height:calc(100vh - 16px); padding:10px 14px; }
+  .dialog-heading { top:-10px; padding-top:5px; padding-bottom:8px; }
+  dialog p { margin:6px 0; line-height:1.3; }
+  dialog .mood-button { min-height:44px; }
+  .dialog-actions,#reason-box { margin-top:7px; }
+  #reason-box label { margin-bottom:4px; }
+}
+@media (max-width:599px) {
+  header { grid-template-columns:repeat(6,1fr); padding:4px 6px; gap:3px; }
+  h1 { font-size:20px; grid-column:1/-1; }
+  header .seg { grid-column:1/4; grid-row:2; justify-self:stretch; }
+  header .seg button { padding:0 5px; font-size:10px; }
+  #read { grid-column:6; grid-row:2; }
+  #motion { grid-column:4; grid-row:2; }
+  #sound { grid-column:5; grid-row:2; }
+  header .icon-btn { min-width:44px; padding:0 3px; font-size:10px; white-space:nowrap; }
+  body.makeover { height:100dvh; display:grid; grid-template-rows:auto minmax(0,1fr); overflow:hidden; }
+  body.makeover main { min-height:0; overflow:auto; position:relative; scroll-padding-top:var(--studio-inset,0px); }
+  body.makeover .stage-top { margin:0 10px; }
+  body.makeover .stage-top h2 { font-size:16px; }
+  body.makeover .makeover-layout { position:sticky; top:0; z-index:3; background:#e7e1d5; margin:0; padding:5px 10px; gap:5px; }
+  body.makeover .makeover-layout > .hint { min-height:44px; height:44px; margin:0; }
+  body.makeover .compass-card { grid-template-columns:104px minmax(0,1fr); min-height:108px; padding:2px 8px; }
+  body.makeover #compass { width:104px; }
+  body.makeover #compass text { font-size:27px; }
+  body.makeover .compass-card h3 { font-size:15px; }
+  body.makeover #compass-summary { font-size:11px; min-height:0; }
+  body.makeover .compass-note { font-size:10px; line-height:1.3; }
+  body.makeover .panel { padding:7px 10px; }
+  body.makeover .controls { gap:4px; }
+  body.makeover #treatment-controls > div { display:grid; grid-template-columns:48px minmax(0,1fr); align-items:center; }
+  body.makeover .control-label { font-size:10px; margin:0; }
+  body.makeover .row-buttons button { font-size:11px; min-width:44px; padding:4px 1px; }
+  body.makeover .detail-options { display:flex; flex-wrap:wrap; }
+  body.makeover .detail-options button { flex:1 0 43%; }
+  body.makeover .hint { font-size:11px; min-height:34px; padding:5px 7px; }
+  body.makeover .sentence-card, body.makeover .clue-book { scroll-margin-top:0; }
+  body.makeover .partner-card { margin-top:5px; }
+  body.makeover .partner-card .mood-grid { grid-template-columns:repeat(5,minmax(0,1fr)); }
+  body.makeover .partner-card .mood-button { font-size:10px; }
+  body.makeover .action-bar { margin:4px 10px 8px; }
+  body:not(.makeover) .panel { padding:8px; gap:5px; }
+  body:not(.makeover) #artists-panel { gap:5px; }
+  body:not(.makeover) .panel h2 { font-size:21px; }
+  body:not(.makeover) .receipt { font-size:12px; padding:5px 7px; }
+  body:not(.makeover) #reveal { padding:8px; font-size:14px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Place Mood Makeover <small>giving a place a mood · Curio Class</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-artists" aria-pressed="true">Three artists</button>
+    <button id="m-makeover" aria-pressed="false">Makeover</button>
+  </div>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+</header>
+<main>
+  <section class="workbench" aria-label="Art studio">
+    <div id="artists-stage">
+      <div class="stage-top"><h2>One place. Three ways to feel.</h2><span id="artist-progress">Look closely</span></div>
+      <div class="gallery-frame">
+        <div class="picture" id="artist-picture">
+          <img id="painting" alt="A finished painting of an empty bus stop">
+          <div id="hotspots"></div>
+        </div>
+      </div>
+      <div class="artists-strip" id="artists-strip" role="group" aria-label="Choose an artist"></div>
+      <p class="caption">Same kind of place, different choices. What catches your eye?</p>
+    </div>
+    <div id="makeover-stage" hidden>
+      <div class="stage-top"><h2 id="place-title">An ordinary bus stop</h2><span>YOUR PICTURE STUDIO</span></div>
+      <div class="makeover-layout">
+        <div class="scene-frame">
+          <div class="picture" id="place-picture" role="img" aria-label="Your bus stop makeover">
+            <div class="scene-layer" id="place-group">
+              <img class="sky sky-idle" id="sky" alt="">
+              <div id="plate-group" class="scene-layer">
+                <img class="plate" id="plate" alt="">
+                <div class="scene-layer" id="detail-layer"></div>
+                <div class="treatment" id="night-treatment"></div>
+              </div>
+              <div class="weather" id="weather"></div>
+              <div class="treatment" id="dusk-treatment"></div>
+              <div class="treatment" id="light-treatment"></div>
+            </div>
+            <div class="scene-layer" id="glow-layer"></div>
+            <div id="before-wrap" hidden><img id="before-sky" alt=""><img class="plate" id="before-plate" alt=""></div>
+            <input id="wipe" type="range" min="0" max="100" value="50" aria-label="Before and after divider" hidden>
+            <span class="wipe-label before" id="before-label" hidden>Before</span>
+            <span class="wipe-label after" id="after-label" hidden>After</span>
+          </div>
+        </div>
+        <div class="compass-card" id="compass-card">
+          <h3>Mood Reader</h3>
+          <svg id="compass" viewBox="0 0 280 280" role="img" aria-label="Mood compass"></svg>
+          <p id="compass-summary" aria-live="polite"></p>
+          <p class="compass-note">Thick: strong. Thin: some.<br>Reader conventions, not rules.<br>Artists break these on purpose.</p>
+        </div>
+      </div>
+      <div class="partner-card" id="partner-card" hidden>
+        <h3>What mood do you read?</h3>
+        <div class="mood-grid" id="partner-moods"></div>
+      </div>
+      <p id="partner-result" hidden aria-live="polite"></p>
+      <div class="action-bar" id="action-bar">
+        <button id="partner">Partner guess</button>
+        <button id="compare" aria-pressed="false">Before and after</button>
+        <button id="write" class="gold" hidden>Write about it</button>
+      </div>
+      <div class="clue-book" id="clue-book">
+        <h3>My clues <span class="eyebrow">tap to tag your intention</span></h3>
+        <div id="my-clues"></div>
+        <p class="saved-note" id="save-status">Saved on this device. Your picture and words never leave it.</p>
+      </div>
+      <section class="sentence-card" id="sentence-card" hidden>
+        <h3>A picture with something to say</h3>
+        <label for="sentence-one">I made the <strong id="sentence-place"></strong> feel <strong id="sentence-mood"></strong> because...</label>
+        <textarea id="sentence-one" maxlength="400" aria-label="I made this place feel this way because"></textarea>
+        <label for="sentence-two">A place in my life that feels like this is...</label>
+        <textarea id="sentence-two" maxlength="400" aria-label="A place in my life that feels like this is"></textarea>
+        <p class="saved-note">Your words save here on this device.</p>
+      </section>
+    </div>
+  </section>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div id="artists-panel" class="controls">
+      <span class="eyebrow">READ THE PICTURE</span>
+      <h2 id="artist-question">What mood is this?</h2>
+      <div class="mood-grid" id="artist-moods"></div>
+      <div id="found-clues" class="clue-receipts" aria-live="polite"></div>
+      <div id="reveal" hidden></div>
+      <button id="next-artist" class="primary" hidden>Next artist</button>
+      <button id="make-own" class="gold" hidden>Make your own</button>
+    </div>
+    <div id="makeover-panel" class="controls" hidden>
+      <div id="goal-section"><span class="control-label">I want it to feel</span><div id="goal-moods" class="goal-buttons"></div></div>
+      <div><span class="control-label">Place</span><div id="places" class="row-buttons" role="group" aria-label="Place"></div></div>
+      <div id="treatment-controls" class="controls"></div>
+      <div><span class="control-label">Details <span class="detail-help">· add or remove</span></span>
+        <div id="details" class="detail-options" role="group" aria-label="Painted details"></div></div>
+      <button id="reset">Start over</button>
+    </div>
+  </aside>
+</main>
+<dialog id="tag-dialog" aria-labelledby="tag-title">
+  <div class="dialog-heading">
+    <button id="close-tag" class="close-dialog" aria-label="Close clue card">×</button>
+    <h3 id="tag-title"></h3>
+  </div>
+  <p id="reader-line"></p>
+  <p>What mood did you mean?</p>
+  <div id="tag-moods" class="mood-grid"></div>
+  <div id="disagreement" hidden>
+    <p id="reader-disagreement"></p>
+    <div class="dialog-actions">
+      <button id="change-clue">Change it</button>
+      <button id="keep-clue">Keep it, here's why</button>
+    </div>
+  </div>
+  <div id="reason-box" hidden>
+    <label for="reason-input">My reason <span id="reason-count">0 / 100</span></label>
+    <input id="reason-input" maxlength="100" autocomplete="off" aria-label="My reason, up to 100 characters">
+    <p id="reason-error" hidden>Give your reason in a few words first.</p>
+    <div class="dialog-actions"><button id="save-reason" class="gold">Keep my reason</button></div>
+  </div>
+</dialog>
+<template id="art-assets">
+  <img data-name="sky-dawn" src="art:sky-dawn" alt="">
+  <img data-name="sky-noon" src="art:sky-noon" alt="">
+  <img data-name="sky-dusk" src="art:sky-dusk" alt="">
+  <img data-name="sky-night" src="art:sky-night" alt="">
+  <img data-name="place-busstop" src="art:place-busstop" alt="">
+  <img data-name="place-porch" src="art:place-porch" alt="">
+  <img data-name="place-playground" src="art:place-playground" alt="">
+  <img data-name="bus-window" src="art:bus-window" alt="">
+  <img data-name="bus-lights" src="art:bus-lights" alt="">
+  <img data-name="bus-glove" src="art:bus-glove" alt="">
+  <img data-name="bus-puddles" src="art:bus-puddles" alt="">
+  <img data-name="bus-cat" src="art:bus-cat" alt="">
+  <img data-name="bus-balloon" src="art:bus-balloon" alt="">
+  <img data-name="bus-broken-lamp" src="art:bus-broken-lamp" alt="">
+  <img data-name="bus-sign" src="art:bus-sign" alt="">
+  <img data-name="bus-crows" src="art:bus-crows" alt="">
+  <img data-name="bus-planter" src="art:bus-planter" alt="">
+  <img data-name="porch-chair" src="art:porch-chair" alt="">
+  <img data-name="porch-pumpkins" src="art:porch-pumpkins" alt="">
+  <img data-name="porch-chimes" src="art:porch-chimes" alt="">
+  <img data-name="porch-boarded" src="art:porch-boarded" alt="">
+  <img data-name="porch-dog" src="art:porch-dog" alt="">
+  <img data-name="porch-mailbox" src="art:porch-mailbox" alt="">
+  <img data-name="porch-lemonade" src="art:porch-lemonade" alt="">
+  <img data-name="porch-lantern" src="art:porch-lantern" alt="">
+  <img data-name="porch-webs" src="art:porch-webs" alt="">
+  <img data-name="porch-flowers" src="art:porch-flowers" alt="">
+  <img data-name="play-swing" src="art:play-swing" alt="">
+  <img data-name="play-balloons" src="art:play-balloons" alt="">
+  <img data-name="play-puddle" src="art:play-puddle" alt="">
+  <img data-name="play-teddy" src="art:play-teddy" alt="">
+  <img data-name="play-chalk" src="art:play-chalk" alt="">
+  <img data-name="play-crow" src="art:play-crow" alt="">
+  <img data-name="play-feeder" src="art:play-feeder" alt="">
+  <img data-name="play-leaves" src="art:play-leaves" alt="">
+  <img data-name="play-glow" src="art:play-glow" alt="">
+  <img data-name="play-flags" src="art:play-flags" alt="">
+  <img data-name="leaf-blow" src="art:leaf-blow" alt="">
+  <img data-name="artist-lonely" src="art:artist-lonely" alt="">
+  <img data-name="artist-cozy" src="art:artist-cozy" alt="">
+  <img data-name="artist-spooky" src="art:artist-spooky" alt="">
+</template>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  document.querySelector('main').prepend($('panel'));
+  const DATA = "json:content";
+  const MOODS = DATA.moods;
+  const COLORS = ['#4a5a6a','#8a5a00','#7a4b8c','#f2c14e','#2f6f5e'];
+  const PLACES = {busstop:'Bus stop',porch:'Front porch',playground:'Playground'};
+  const STORAGE = 'place-mood-makeover';
+  const A = Object.fromEntries([...$('art-assets').content.querySelectorAll('img')].map(img => [img.dataset.name,img.src]));
+  const imageCache = Object.values(A).map(src => { const img = new Image(); img.src = src; return img; });
+  const blank = () => ({Time:'Plain',Light:'Plain',Colors:'Plain',Weather:'None',details:[],tags:{},reasons:{},
+    goal:4,sentences:['',''],writing:false});
+  const state = {mode:'artists',place:'busstop',artist:0,readings:[0,1,2].map(() => ({guess:null,found:[],revealed:false})),
+    places:{busstop:blank(),porch:blank(),playground:blank()},partner:false,compare:false,tag:null,revision:0,done:false};
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE) || 'null');
+    if (saved && saved.places) {
+      for (const place of Object.keys(PLACES)) {
+        const p = saved.places[place];
+        if (!p || typeof p !== 'object') continue;
+        const next = blank();
+        for (const group of Object.keys(DATA.rows)) {
+          if (DATA.rows[group].some(row => row[0] === p[group])) next[group] = p[group];
+        }
+        next.details = Array.isArray(p.details) ? p.details.filter(id => DATA.details[place].some(d => d[0] === id)) : [];
+        next.tags = p.tags && typeof p.tags === 'object' ? p.tags : {};
+        next.reasons = p.reasons && typeof p.reasons === 'object' ? p.reasons : {};
+        next.goal = Number.isInteger(p.goal) && p.goal >= 0 && p.goal < 5 ? p.goal : 4;
+        next.sentences = Array.isArray(p.sentences) ? p.sentences.slice(0,2).map(x => String(x).slice(0,400)) : ['',''];
+        next.writing = !!p.writing;
+        state.places[place] = next;
+      }
+      if (PLACES[saved.place]) state.place = saved.place;
+    }
+  } catch {}
+  const current = () => state.places[state.place];
+  const reading = () => state.readings[state.artist];
+  const icons = [
+    '<circle cx="5" cy="13" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="22" cy="13" r="2"/><circle cx="18" cy="18" r="2"/>',
+    '<path d="M5 10h15v7q0 6-7 6t-7-6zM20 11h2q6 5-2 7M9 7q-3-3 0-6M15 7q-3-3 0-6"/>',
+    '<path d="M19 3a10 10 0 1 0 4 16A10 10 0 0 1 19 3zM13 18q-7 2 0 5t0 4"/>',
+    '<circle cx="14" cy="14" r="6"/><path d="M14 1v4M14 23v4M1 14h4M23 14h4M5 5l3 3M20 20l3 3M5 23l3-3M20 8l3-3"/>',
+    '<path d="M2 10q6-7 12 0t12 0M2 17q6-7 12 0t12 0M2 24q6-7 12 0t12 0"/>'
+  ];
+  const icon = m => `<svg class="mood-icon" viewBox="0 0 28 28" aria-hidden="true" fill="none"
+    stroke="currentColor" stroke-width="1.8" stroke-linecap="round">${icons[m]}</svg>`;
+  function moodButtons(container, handler, cls='mood-button') {
+    MOODS.forEach((name,m) => {
+      const b = document.createElement('button');
+      b.className = cls;
+      b.dataset.mood = m;
+      b.style.setProperty('--mood',COLORS[m]);
+      b.innerHTML = icon(m) + `<span>${name}</span>`;
+      b.setAttribute('aria-pressed','false');
+      b.onclick = () => handler(m,b);
+      container.append(b);
+    });
+  }
+  function setHint(key) { $('hint').textContent = DATA.lines[key] || key; }
+  const V = Curio.voice({lines:DATA.lines,scope:() => state.mode,hint:false,read:() => $('hint').textContent,
+    welcome:() => state.mode === 'artists' && reading().guess === null ? 'welcomeArtists' :
+      state.mode === 'makeover' && !activeClues().length ? 'welcomeMakeover' : null});
+  function how(key,valid=() => true,needs=[]) {
+    if (!V.heard(key)) V.how(key,{valid,needs});
+  }
+  function save() {
+    try {
+      localStorage.setItem(STORAGE,JSON.stringify({place:state.place,places:state.places}));
+      $('save-status').textContent = 'Saved on this device. Your picture and words never leave it.';
+    } catch { $('save-status').textContent = DATA.lines.storageError; }
+  }
+  function activeClues() {
+    const p = current();
+    const list = [];
+    for (const group of Object.keys(DATA.rows)) {
+      const row = DATA.rows[group].find(r => r[0] === p[group]);
+      if (row && row[1].some(Boolean)) list.push({id:group+':'+row[0],group,name:row[0],label:group+' '+row[0],weights:row[1],line:row[2]});
+    }
+    for (const d of DATA.details[state.place]) {
+      if (p.details.includes(d[0])) {
+        const top = d[2].indexOf(Math.max(...d[2]));
+        list.push({id:d[0],name:d[1],label:d[1],weights:d[2],line:d[1]+'. Most people read '+MOODS[top].toLowerCase()+'.'});
+      }
+    }
+    return list;
+  }
+  function effective(clue) {
+    const p = current(), tag = p.tags[clue.id];
+    if (Number.isInteger(tag) && tag >= 0 && tag < 5 && typeof p.reasons[clue.id] === 'string' && p.reasons[clue.id].trim()) {
+      return clue.weights.map((_,i) => +(i === tag)*2);
+    }
+    return clue.weights;
+  }
+  const aligns = clue => effective(clue)[current().goal] > 0;
+  const isDone = () => { const clues = activeClues(); return clues.length >= 3 && clues.every(aligns); };
+  function makeButton(text,id,handler) {
+    const b = document.createElement('button');
+    b.textContent = text;
+    b.id = id;
+    b.onclick = handler;
+    return b;
+  }
+  moodButtons($('artist-moods'),guessArtist);
+  moodButtons($('goal-moods'),m => {
+    if (current().goal === m) return;
+    current().goal = m;
+    state.partner = false;
+    $('partner-result').hidden = true;
+    changed();
+  });
+  moodButtons($('partner-moods'),m => {
+    state.partner = false;
+    const line = `Your partner read ${MOODS[m].toLowerCase()}. You meant ${MOODS[current().goal].toLowerCase()}.`;
+    $('partner-result').textContent = line;
+    $('partner-result').hidden = false;
+    update();
+    setHint('reviseHow');
+    const revision = state.revision;
+    V.say(line,{valid:() => !state.partner && state.revision === revision,now:true});
+    $('partner').focus({preventScroll:true});
+  });
+  moodButtons($('tag-moods'),m => {
+    if (current().tags[state.tag] === m) return;
+    current().tags[state.tag] = m;
+    delete current().reasons[state.tag];
+    state.revision++;
+    updateTag();
+    update();
+    save();
+  });
+  for (const [place,label] of Object.entries(PLACES)) {
+    $('places').append(makeButton(label,'place-'+place,() => switchPlace(place)));
+  }
+  for (const [group,rows] of Object.entries(DATA.rows)) {
+    const block = document.createElement('div');
+    const label = document.createElement('span');
+    label.className = 'control-label';
+    label.textContent = group;
+    const controls = document.createElement('div');
+    controls.className = 'row-buttons';
+    controls.setAttribute('role','group');
+    controls.setAttribute('aria-label',group);
+    for (const [name] of rows) {
+      const b = makeButton(name,group.toLowerCase()+'-'+name.toLowerCase(),() => {
+        const previous = current()[group];
+        if (previous === name) return;
+        delete current().tags[group+':'+previous];
+        delete current().reasons[group+':'+previous];
+        current()[group] = name;
+        changed(group+':'+name);
+      });
+      b.dataset.group = group;
+      b.dataset.choice = name;
+      controls.append(b);
+    }
+    block.append(label,controls);
+    $('treatment-controls').append(block);
+  }
+  function renderDetails() {
+    $('details').replaceChildren();
+    $('detail-layer').replaceChildren();
+    $('glow-layer').replaceChildren();
+    for (const [id,label,weights,pos,glow] of DATA.details[state.place]) {
+      const b = makeButton(label,'detail-'+id,() => {
+        const p = current();
+        if (p.details.includes(id)) {
+          p.details = p.details.filter(x => x !== id);
+          delete p.tags[id];
+          delete p.reasons[id];
+        } else p.details.push(id);
+        changed(id);
+      });
+      b.dataset.detail = id;
+      $('details').append(b);
+      const img = document.createElement('img');
+      img.src = A[id];
+      img.alt = '';
+      img.className = 'detail-art' + (glow ? ' glow' : '') + (id === 'bus-broken-lamp' ? ' flicker' : '');
+      img.dataset.detailArt = id;
+      img.style.left = pos[0]+'%';
+      img.style.bottom = (100-pos[1])+'%';
+      img.style.width = pos[2]+'%';
+      if (id === 'play-swing') {
+        img.style.height = '37%';
+        img.style.objectFit = 'fill';
+      }
+      if (id === 'play-glow') {
+        img.style.top = '7%';
+        img.style.bottom = 'auto';
+        img.style.width = '6%';
+        img.style.maskImage = 'linear-gradient(#000 0 22%,transparent 30%)';
+      }
+      if (id === 'play-flags') img.style.zIndex = '-1';
+      if (id === 'bus-broken-lamp') img.style.clipPath = 'inset(30% 0 0 20%)';
+      (glow ? $('glow-layer') : $('detail-layer')).append(img);
+      if (id === 'porch-lemonade') {
+        const text = document.createElement('span');
+        text.className = 'detail-art';
+        text.dataset.detailArt = id;
+        text.textContent = 'LEMONADE';
+        text.style.cssText = 'left:16%;bottom:25%;width:11%;font-size:10px;text-align:center;color:#402d20;font-weight:800';
+        $('detail-layer').append(text);
+      }
+    }
+  }
+  let weatherKey = '';
+  function renderWeather() {
+    const type = current().Weather;
+    if (type === weatherKey) return;
+    weatherKey = type;
+    $('weather').className = 'weather' + (type === 'Fog' ? ' fog' : '');
+    $('weather').replaceChildren();
+    const count = type === 'Rain' ? 50 : type === 'Snow' ? 36 : type === 'Wind' ? 6 : 0;
+    for (let i=0;i<count;i++) {
+      const item = document.createElement(type === 'Wind' ? 'img' : 'span');
+      item.className = type === 'Rain' ? 'rain-drop' : type === 'Snow' ? 'snow-flake' : 'wind-leaf';
+      if (type === 'Wind') { item.src = A['leaf-blow']; item.alt = ''; }
+      item.style.left = ((i*37+11)%100)+'%';
+      item.style.top = ((i*23+7)%100)+'%';
+      item.style.animationDelay = (-i*.173)+'s';
+      $('weather').append(item);
+    }
+  }
+  function renderScene() {
+    const p = current();
+    const filters = {Plain:'none',Bright:'saturate(1.4)',Soft:'saturate(.6) brightness(1.1) contrast(.85)',
+      Dark:'brightness(.65) contrast(1.1)',Gray:'saturate(.15)'};
+    $('sky').src = A['sky-'+(p.Time === 'Plain' ? 'noon' : p.Time.toLowerCase())];
+    $('sky').style.filter = p.Time === 'Plain' ? 'saturate(.4)' : '';
+    $('plate').src = A['place-'+state.place];
+    $('place-group').style.filter = filters[p.Colors];
+    $('glow-layer').style.filter = filters[p.Colors];
+    $('night-treatment').style.background = p.Time === 'Night' ? '#27305c' : 'transparent';
+    $('night-treatment').style.opacity = '.65';
+    $('night-treatment').style.mixBlendMode = 'multiply';
+    $('dusk-treatment').style.background = p.Time === 'Dusk' ? 'linear-gradient(#65487f,#fa9c4d)' : 'transparent';
+    $('dusk-treatment').style.opacity = '.3';
+    $('light-treatment').style.background = p.Light === 'Warm' ? '#ffb066' : p.Light === 'Cool' ? '#6fa8ff' : 'transparent';
+    $('light-treatment').style.opacity = '.35';
+    $('light-treatment').style.mixBlendMode = 'soft-light';
+    document.querySelectorAll('[data-detail-art]').forEach(img => {
+      img.hidden = !p.details.includes(img.dataset.detailArt);
+      if (img.classList.contains('glow')) img.classList.toggle('night-glow',p.Time === 'Night');
+    });
+    renderWeather();
+    $('before-sky').src = A['sky-noon'];
+    $('before-sky').style.filter = 'saturate(.4)';
+    $('before-plate').src = A['place-'+state.place];
+    $('place-picture').setAttribute('aria-label',PLACES[state.place]+' with '+activeClues().map(c => c.label).join(', '));
+  }
+  function renderCompass() {
+    const p = current(), clues = activeClues();
+    const center = [140,145], radius = 85;
+    const point = (m,r=radius) => {
+      const a = (-90+m*72)*Math.PI/180;
+      return [center[0]+Math.cos(a)*r,center[1]+Math.sin(a)*r];
+    };
+    let svg = '<defs>';
+    COLORS.forEach((color,m) => {
+      svg += `<marker id="arrow-${m}" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5"
+        orient="auto-start-reverse"><path d="M0 0L8 4L0 8Z" fill="${color}"/></marker>`;
+    });
+    svg += '</defs><circle cx="140" cy="145" r="86" fill="#fffdf4" stroke="'+(state.done ? '#f2c14e' : '#d7d0bd')+'" stroke-width="5"/>';
+    MOODS.forEach((name,m) => {
+      const [x,y] = point(m,112);
+      const [tx,ty] = point(m,85);
+      svg += `<line x1="140" y1="145" x2="${tx}" y2="${ty}" stroke="#ddd6c7" stroke-width="1"/>`;
+      if (m === p.goal) svg += `<rect x="${x-33}" y="${y-22}" width="66" height="42" rx="10" fill="#fdf0c0" stroke="#b68718" stroke-width="2"/>`;
+      svg += `<g transform="translate(${x-11},${y-21})" color="${m === 3 ? '#8a6500' : COLORS[m]}">
+        <svg width="22" height="22" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8">${icons[m]}</svg></g>
+        <text x="${x}" y="${y+15}" text-anchor="middle" fill="#1e2233" font-size="12" font-weight="700">${name}</text>`;
+    });
+    clues.forEach((clue,i) => {
+      const w = effective(clue), solid = aligns(clue);
+      const offset = (i-(clues.length-1)/2)*3;
+      const reason = !!p.reasons[clue.id];
+      for (let m=0;m<5;m++) {
+        if (!w[m]) continue;
+        const [ex,ey] = point(m,58+(i%5)*5);
+        const a = m*72*Math.PI/180;
+        const ox = Math.cos(a)*offset, oy = Math.sin(a)*offset;
+        svg += `<g><title>${clue.label}: ${MOODS[m]}${reason ? ', your reason' : w[m] === 2 ? ', strong pull' : ', some pull'}${solid ? '' : ', tug'}</title>
+          <path d="M${140+ox} ${145+oy}Q${140+ox*1.6} ${145+oy*1.6} ${ex+ox*.3} ${ey+oy*.3}"
+          fill="none" stroke="${COLORS[m]}" stroke-width="${w[m] === 2 ? 2.6 : 1.4}" ${solid ? '' : 'stroke-dasharray="4 3"'}
+          opacity="${w[m] === 2 ? .95 : .65}" marker-end="url(#arrow-${m})"/>
+          ${reason ? `<text x="${ex+5}" y="${ey-5}" font-size="10" fill="#1e2233">*</text>` : ''}</g>`;
+      }
+      if (!solid) {
+        const m = w.indexOf(Math.max(...w));
+        const [mx,my] = point(m,40+(i%5)*9);
+        const a = m*72*Math.PI/180;
+        const x = mx+Math.cos(a)*offset*1.3;
+        const y = my+Math.sin(a)*offset*1.3;
+        svg += `<path d="M${x-4} ${y-5}l5 3 -4 4 6 3" fill="none" stroke="#1e2233" stroke-width="1.4">
+          <title>Tug: ${clue.label}</title></path>`;
+      }
+    });
+    svg += '<circle cx="140" cy="145" r="6" fill="#2b3a67" stroke="#fff" stroke-width="2"/>';
+    $('compass').innerHTML = svg;
+    $('compass-card').classList.toggle('done',state.done);
+    let summary;
+    if (!clues.length) summary = 'Change something to add a clue.';
+    else if (clues.length === 1) summary = "One clue isn't a mood yet. Add two more.";
+    else if (state.done) summary = 'Every clue points to '+MOODS[p.goal]+'.';
+    else {
+      const withGoal = clues.filter(aligns).length;
+      const tugs = clues.filter(c => !aligns(c));
+      summary = `${clues.length} clues: ${withGoal} point to ${MOODS[p.goal]}`;
+      if (tugs.length) {
+        const c = tugs[0], w = effective(c), m = w.indexOf(Math.max(...w));
+        summary += `, ${tugs.length} ${tugs.length === 1 ? 'pulls' : 'pull'} away (${c.name}: ${MOODS[m]}).`;
+      } else summary += '. Add another clue.';
+    }
+    const totals = MOODS.map((_,m) => clues.filter(c => effective(c)[m]).length);
+    const max = Math.max(...totals);
+    const ties = MOODS.filter((_,m) => totals[m] === max);
+    if (clues.length > 1 && ties.length > 1 && !state.done) summary += ' Tie for most pulls: '+ties.join(' and ')+'.';
+    $('compass-summary').textContent = summary;
+    $('compass').setAttribute('aria-label','Mood compass. '+summary+' An asterisk means your reason.');
+  }
+  function renderChips() {
+    const p = current(), clues = activeClues();
+    const existing = new Map([...$('my-clues').querySelectorAll('button')].map(b => [b.dataset.clue,b]));
+    for (const [id,b] of existing) if (!clues.some(c => c.id === id)) b.remove();
+    $('my-clues').querySelectorAll('.empty-clues').forEach(e => e.remove());
+    if (!clues.length) {
+      const empty = document.createElement('p');
+      empty.className = 'empty-clues caption';
+      empty.textContent = 'Every change becomes a clue. Start with the light.';
+      $('my-clues').append(empty);
+    }
+    for (const clue of clues) {
+      let b = existing.get(clue.id);
+      if (!b) {
+        b = makeButton('', 'clue-'+clue.id.replace(':','-'), () => openTag(clue.id));
+        b.dataset.clue = clue.id;
+        $('my-clues').append(b);
+      }
+      const weights = effective(clue), m = weights.indexOf(Math.max(...weights));
+      b.className = 'clue-chip'+(aligns(clue) ? '' : ' tug');
+      b.style.setProperty('--clue-color',COLORS[m]);
+      b.replaceChildren();
+      const drawing = document.createElement('span');
+      drawing.innerHTML = icon(m);
+      const name = document.createElement('span');
+      name.textContent = (aligns(clue) ? '↗ ' : '↯ ')+clue.label;
+      b.append(drawing,name);
+      if (Number.isInteger(p.tags[clue.id])) {
+        const tag = document.createElement('span');
+        tag.className = 'tag-marker';
+        tag.textContent = '· '+MOODS[p.tags[clue.id]]+(p.reasons[clue.id] ? ' · your reason *' : '');
+        b.append(tag);
+      }
+      b.title = clue.line+(p.reasons[clue.id] ? ' Your reason: '+p.reasons[clue.id] : '');
+    }
+  }
+  function update() {
+    const p = current();
+    state.done = isDone();
+    document.querySelectorAll('#goal-moods button').forEach(b => b.setAttribute('aria-pressed',+b.dataset.mood === p.goal));
+    Object.keys(PLACES).forEach(place => $('place-'+place).setAttribute('aria-pressed',place === state.place));
+    document.querySelectorAll('[data-choice]').forEach(b => b.setAttribute('aria-pressed',p[b.dataset.group] === b.dataset.choice));
+    document.querySelectorAll('[data-detail]').forEach(b => b.setAttribute('aria-pressed',p.details.includes(b.dataset.detail)));
+    $('place-title').textContent = state.done && !state.partner ?
+      'My '+MOODS[p.goal].toLowerCase()+' '+PLACES[state.place].toLowerCase() : 'An ordinary '+PLACES[state.place].toLowerCase();
+    document.querySelector('.scene-frame').classList.toggle('complete',state.done && !state.partner);
+    $('write').hidden = !state.done;
+    $('sentence-card').hidden = !p.writing || !state.done || state.partner;
+    $('sentence-place').textContent = PLACES[state.place].toLowerCase();
+    $('sentence-mood').textContent = MOODS[p.goal].toLowerCase();
+    $('compass-card').hidden = state.partner;
+    $('clue-book').hidden = state.partner;
+    $('makeover-panel').hidden = state.mode !== 'makeover' || state.partner;
+    $('partner-card').hidden = !state.partner;
+    $('action-bar').hidden = state.partner;
+    $('partner-result').hidden = state.partner || !$('partner-result').textContent;
+    $('before-wrap').hidden = !state.compare;
+    $('wipe').hidden = !state.compare;
+    $('before-label').hidden = !state.compare;
+    $('after-label').hidden = !state.compare;
+    $('compare').setAttribute('aria-pressed',state.compare);
+    updateWipeView();
+    renderScene();
+    renderCompass();
+    renderChips();
+  }
+  function changed(id) {
+    const wasDone = state.done;
+    state.revision++;
+    const revision = state.revision;
+    $('partner-result').textContent = '';
+    const speaking = V.playing;
+    if (speaking && (speaking.includes(' pulls toward ') || speaking.startsWith('Every clue points to ') ||
+      speaking === DATA.lines.welcomeMakeover)) V.hush();
+    else V.dropQueued();
+    update();
+    const frame = document.querySelector('.scene-frame');
+    frame.classList.remove('respond');
+    void frame.offsetWidth;
+    frame.classList.add('respond');
+    save();
+    const clue = activeClues().find(c => c.id === id);
+    const n = activeClues().length;
+    if (state.done) {
+      setHint('Every clue points to '+MOODS[current().goal]+'. Tap Write about it.');
+      if (!wasDone) V.say(`Every clue points to ${MOODS[current().goal].toLowerCase()}. Tap Write about it.`,
+        {valid:() => state.revision === revision && state.done,needs:'#write',now:true});
+    } else if (clue && !aligns(clue)) {
+      const top = clue.weights.indexOf(Math.max(...clue.weights));
+      const plural = ['bus-lights','bus-puddles','bus-crows','porch-pumpkins','porch-chimes',
+        'porch-webs','porch-flowers','play-balloons','play-chalk','play-flags'].includes(clue.id);
+      const pull = plural ? ' pull toward ' : ' pulls toward ';
+      setHint(clue.label+pull+MOODS[top]+'. Tap its chip in My clues to explain it, or revise it.');
+      V.say(clue.label+pull+MOODS[top].toLowerCase()+'.',{valid:() => state.revision === revision,now:true});
+    } else if (n === 0) setHint('welcomeMakeover');
+    else if (n < 3 && !V.heard('compassHow')) {
+      setHint('compassHow'); how('compassHow',() => activeClues().length > 0 && activeClues().length < 3);
+    } else if (n >= 3 && !V.heard('tagHow')) {
+      setHint('tagHow'); how('tagHow',() => activeClues().length >= 3 && !$('tag-dialog').open, '#my-clues');
+    } else setHint(n < 3 ? 'moreHow' : 'reviseHow');
+  }
+  function switchPlace(place) {
+    if (place === state.place) return;
+    V.hush();
+    const previous = current();
+    state.place = place;
+    const p = current();
+    for (const group of Object.keys(DATA.rows)) {
+      if (p[group] !== previous[group]) {
+        for (const key of Object.keys(p.tags)) if (key.startsWith(group+':')) delete p.tags[key];
+        for (const key of Object.keys(p.reasons)) if (key.startsWith(group+':')) delete p.reasons[key];
+      }
+      p[group] = previous[group];
+    }
+    state.partner = false;
+    state.compare = false;
+    state.tag = null;
+    $('partner-result').textContent = '';
+    $('sentence-one').value = p.sentences[0] || '';
+    $('sentence-two').value = p.sentences[1] || '';
+    renderDetails();
+    state.done = false;
+    changed();
+  }
+  function openTag(id) {
+    if (V.playing) V.hush();
+    else V.dropQueued();
+    state.tag = id;
+    updateTag();
+    $('tag-dialog').showModal();
+    setHint('tagPrompt');
+    how('tagPrompt',() => $('tag-dialog').open,'#tag-moods');
+  }
+  function updateTag() {
+    const p = current(), clue = activeClues().find(c => c.id === state.tag);
+    if (!clue) return;
+    $('tag-title').textContent = clue.label;
+    $('reader-line').textContent = clue.line;
+    const tag = p.tags[clue.id];
+    $('tag-moods').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed',+b.dataset.mood === tag));
+    const disagreement = Number.isInteger(tag) && !clue.weights[tag];
+    $('disagreement').hidden = !disagreement;
+    const conventional = MOODS.filter((_,m) => clue.weights[m]);
+    $('reader-disagreement').textContent = 'Most people read this as '+conventional.map(m => m.toLowerCase()).join(' or ')+'.';
+    $('reason-box').hidden = !p.reasons[clue.id];
+    $('reason-input').value = p.reasons[clue.id] || '';
+    $('reason-count').textContent = $('reason-input').value.length+' / 100';
+    $('reason-error').hidden = true;
+  }
+  function closeTag() {
+    const id = state.tag;
+    $('tag-dialog').close();
+    state.tag = null;
+    setHint(isDone() ? 'Every clue points to '+MOODS[current().goal]+'. Tap Write about it.' : 'reviseHow');
+    const button = [...$('my-clues').querySelectorAll('button')].find(b => b.dataset.clue === id);
+    if (button) button.focus({preventScroll:true});
+  }
+  $('close-tag').onclick = closeTag;
+  $('tag-dialog').addEventListener('cancel',e => { e.preventDefault(); closeTag(); });
+  $('keep-clue').onclick = () => {
+    $('reason-box').hidden = false;
+    $('reason-input').focus({preventScroll:true});
+    $('tag-dialog').scrollTop = $('tag-dialog').scrollHeight;
+    setHint('reasonHow');
+    how('reasonHow',() => $('tag-dialog').open && !$('reason-box').hidden,'#save-reason');
+  };
+  $('reason-input').oninput = () => { $('reason-count').textContent = $('reason-input').value.length+' / 100'; };
+  $('save-reason').onclick = () => {
+    const text = $('reason-input').value.trim().slice(0,100);
+    if (!text) { $('reason-error').hidden = false; return; }
+    current().reasons[state.tag] = text;
+    closeTag();
+    changed();
+  };
+  $('change-clue').onclick = () => {
+    const id = state.tag;
+    const clue = activeClues().find(c => c.id === id);
+    if (!clue) return;
+    if (clue.group) current()[clue.group] = clue.group === 'Weather' ? 'None' : 'Plain';
+    else current().details = current().details.filter(d => d !== id);
+    delete current().tags[id];
+    delete current().reasons[id];
+    $('tag-dialog').close();
+    state.tag = null;
+    changed();
+    $(clue.group ? clue.group.toLowerCase()+'-'+(clue.group === 'Weather' ? 'none' : 'plain') : 'detail-'+id).focus({preventScroll:true});
+  };
+  $('write').onclick = () => {
+    current().writing = true;
+    update();
+    save();
+    setHint('writeHow');
+    how('writeHow',() => current().writing,'#sentence-card');
+    if (current().writing) $('sentence-card').scrollIntoView({
+      block:matchMedia('(max-width:599px)').matches ? 'start' : 'nearest',behavior:'instant'});
+  };
+  [$('sentence-one'),$('sentence-two')].forEach((el,i) => {
+    el.oninput = () => { current().sentences[i] = el.value; save(); };
+  });
+  $('partner').onclick = () => {
+    V.hush();
+    state.partner = true;
+    state.compare = false;
+    update();
+    setHint('partnerHow');
+    how('partnerHow',() => state.partner,'#partner-moods');
+    $('partner-moods').querySelector('button').focus({preventScroll:true});
+    document.querySelector('.workbench').scrollTop = 0;
+    document.querySelector('main').scrollTop = 0;
+  };
+  $('compare').onclick = () => {
+    state.compare = !state.compare;
+    update();
+    setHint(state.compare ? 'Drag the divider, or use its arrow keys, to compare before and after.' :
+      state.done ? 'Every clue points to '+MOODS[current().goal]+'. Tap Write about it.' : 'reviseHow');
+    if (state.compare) {
+      document.querySelector('.workbench').scrollTop = 0;
+      document.querySelector('main').scrollTop = 0;
+    }
+  };
+  function updateWipeView() {
+    const value = +$('wipe').value;
+    $('before-wrap').style.clipPath = 'inset(0 '+(100-value)+'% 0 0)';
+    $('before-label').hidden = !state.compare || value === 0;
+    $('after-label').hidden = !state.compare || value === 100;
+  }
+  $('wipe').oninput = updateWipeView;
+  let wipeStart = null;
+  $('wipe').addEventListener('pointerdown',e => {
+    wipeStart = {x:e.clientX,value:+$('wipe').value};
+    const r = $('wipe').getBoundingClientRect();
+    $('wipe').value = Math.round((e.clientX-r.left)/r.width*100);
+    $('wipe').oninput();
+  });
+  $('wipe').addEventListener('pointerup',e => {
+    if (wipeStart && Math.abs(e.clientX-wipeStart.x) < 4) {
+      $('wipe').value = wipeStart.value <= 50 ? 100 : 0;
+      $('wipe').oninput();
+    }
+    wipeStart = null;
+  });
+  $('reset').onclick = () => {
+    V.hush();
+    state.places[state.place] = blank();
+    state.compare = false;
+    state.partner = false;
+    $('partner-result').textContent = '';
+    $('sentence-one').value = '';
+    $('sentence-two').value = '';
+    changed();
+  };
+  const ARTISTS = [
+    {mood:0,art:'artist-lonely',style:'American Scene realism',spots:[
+      [26,38,20,28,'one lit shelter, nobody waiting'],[49,27,16,20,'cool blue-green light'],
+      [78,67,30,24,'an empty street running far away'],[27,68,12,13,'one lost glove on the bench']]},
+    {mood:1,art:'artist-cozy',style:'Storybook gouache',spots:[
+      [33,23,36,14,'string lights on the shelter'],[35,64,18,17,'a cat curled on the bench'],
+      [91,48,17,26,'warm lit shop window'],[70,20,30,20,'soft snow']]},
+    {mood:2,art:'artist-spooky',style:'Ink and gray wash',spots:[
+      [77,66,28,28,'fog swallowing the street'],[88,24,17,24,'a flickering lamp'],
+      [70,8,30,12,'crows on the wire'],[10,36,14,25,'a crooked sign']]}
+  ];
+  ARTISTS.forEach((artist,i) => {
+    const b = makeButton('', 'artist-'+i, () => selectArtist(i));
+    b.className = 'artist-thumb';
+    b.innerHTML = `<img src="${A[artist.art]}" alt=""><strong>Artist ${i+1}</strong>`;
+    $('artists-strip').append(b);
+  });
+  function selectArtist(i) {
+    if (state.artist === i) return;
+    V.hush();
+    state.artist = i;
+    renderArtist();
+    setHint(reading().guess === null ? 'welcomeArtists' : reading().revealed ? artistNextHint() : 'cluesHow');
+    if (reading().guess === null) V.welcome();
+  }
+  function guessArtist(m) {
+    const r = reading();
+    if (r.revealed) return;
+    r.guess = m;
+    updateArtistPanel();
+    document.querySelectorAll('.hotspot').forEach(b => { b.disabled = false; });
+    setHint('cluesHow');
+    how('cluesHow',() => reading() === r && r.guess !== null && !r.found.length,'#hotspots');
+  }
+  function findClue(i) {
+    const r = reading();
+    if (r.guess === null || r.found.includes(i)) return;
+    V.dropQueued();
+    r.found.push(i);
+    if (r.found.length >= 2 && !r.revealed) {
+      r.revealed = true;
+      const a = ARTISTS[state.artist], end = state.artist === 0 ? 'Cool light can feel both ways.' : 'Different readers can notice different clues.';
+      const line = `Artist ${state.artist+1} meant ${MOODS[a.mood].toLowerCase()}. You said ${MOODS[r.guess].toLowerCase()}. ${end}`;
+      V.say(line,{valid:() => reading() === r,now:true});
+      setHint(artistNextHint());
+    } else {
+      const clue = ARTISTS[state.artist].spots[i][4];
+      V.say(clue+'. Tap another clue in the painting.',{valid:() => reading() === r && !r.revealed,now:true});
+      setHint('Tap another thing in the painting that helped you read its mood.');
+    }
+    updateArtistPanel();
+  }
+  function renderArtist() {
+    const a = ARTISTS[state.artist], r = reading();
+    $('painting').src = A[a.art];
+    $('painting').alt = 'Artist '+(state.artist+1)+': an empty bus stop, painted in '+a.style+'.';
+    $('hotspots').replaceChildren();
+    a.spots.forEach((spot,i) => {
+      const b = makeButton('', 'hotspot-'+i, () => findClue(i));
+      b.className = 'hotspot';
+      b.style.cssText = `left:${spot[0]}%;top:${spot[1]}%;width:${spot[2]}%;height:${spot[3]}%`;
+      b.setAttribute('aria-label','Look closely at picture region '+(i+1));
+      b.disabled = r.guess === null;
+      $('hotspots').append(b);
+    });
+    updateArtistPanel();
+  }
+  function updateArtistPanel() {
+    const r = reading(), a = ARTISTS[state.artist];
+    $('artist-moods').querySelectorAll('button').forEach(b => {
+      b.setAttribute('aria-pressed',+b.dataset.mood === r.guess);
+      b.setAttribute('aria-disabled',r.revealed ? 'true' : 'false');
+    });
+    $('artist-question').textContent = r.revealed ? 'Your reading, their intention' : r.guess === null ? 'What mood is this?' : 'Now find two clues';
+    $('found-clues').replaceChildren();
+    const found = r.revealed ? [0,1,2,3] : r.found;
+    for (const i of found) {
+      const chip = document.createElement('span');
+      chip.className = 'receipt';
+      chip.textContent = a.spots[i][4];
+      $('found-clues').append(chip);
+    }
+    $('hotspots').querySelectorAll('button').forEach((b,i) => {
+      b.classList.toggle('found',found.includes(i));
+      if (r.revealed) b.setAttribute('aria-label',a.spots[i][4]);
+    });
+    $('artist-moods').hidden = r.revealed;
+    $('reveal').hidden = !r.revealed;
+    $('reveal').textContent = r.revealed ? 'Artist '+(state.artist+1)+' meant '+MOODS[a.mood].toLowerCase()+'. You said '+
+      MOODS[r.guess].toLowerCase()+'. '+(state.artist === 0 ? 'The cool light reads both ways.' : 'Your clues explain your reading.') : '';
+    $('next-artist').hidden = !r.revealed || state.readings.every(r => r.revealed);
+    $('make-own').hidden = !state.readings.every(r => r.revealed);
+    $('artist-progress').textContent = 'Artist '+(state.artist+1)+' · '+(r.revealed ? a.style : 'look for the clues');
+    ARTISTS.forEach((_,i) => {
+      $('artist-'+i).setAttribute('aria-pressed',state.artist === i);
+      $('artist-'+i).querySelector('strong').textContent = 'Artist '+(i+1)+(state.readings[i].revealed ? ' ✓' : '');
+    });
+  }
+  $('next-artist').onclick = () => {
+    const unseen = state.readings.findIndex((r,i) => !r.revealed && i !== state.artist);
+    selectArtist(unseen >= 0 ? unseen : (state.artist+1)%3);
+    $('artist-moods').querySelector('button').focus({preventScroll:true});
+  };
+  function artistNextHint() {
+    return state.readings.every(r => r.revealed) ? 'Tap Make your own to give a place a mood.' :
+      'Tap Next artist, or choose another painting below the picture.';
+  }
+  $('make-own').onclick = () => {
+    switchPlace('busstop');
+    setMode('makeover');
+    $('goal-moods').querySelector('button').focus({preventScroll:true});
+  };
+  function setMode(mode) {
+    V.hush();
+    state.mode = mode;
+    document.body.classList.toggle('makeover',mode === 'makeover');
+    state.partner = false;
+    $('m-artists').setAttribute('aria-pressed',mode === 'artists');
+    $('m-makeover').setAttribute('aria-pressed',mode === 'makeover');
+    $('artists-stage').hidden = mode !== 'artists';
+    $('artists-panel').hidden = mode !== 'artists';
+    $('makeover-stage').hidden = mode !== 'makeover';
+    $('makeover-panel').hidden = mode !== 'makeover';
+    if (mode === 'artists') {
+      renderArtist();
+      setHint(reading().guess === null ? 'welcomeArtists' : reading().revealed ?
+        artistNextHint() : 'cluesHow');
+    } else {
+      update();
+      setHint(activeClues().length ? state.done ? 'Every clue points to '+MOODS[current().goal]+'. Tap Write about it.' : 'reviseHow' : 'welcomeMakeover');
+    }
+    layoutHint();
+    V.welcome();
+  }
+  function layoutHint() {
+    if (state.mode === 'makeover' && matchMedia('(max-width:599px)').matches) {
+      document.querySelector('.makeover-layout').append($('hint'));
+    } else if (matchMedia('(max-height:550px) and (min-width:600px)').matches) {
+      if (state.mode === 'artists') $('artists-stage').append($('hint'));
+      else document.querySelector('.makeover-layout').after($('hint'));
+    } else $('panel').prepend($('hint'));
+    syncStudioInset();
+  }
+  function syncStudioInset() {
+    const pinned = state.mode === 'makeover' && matchMedia('(max-width:599px)').matches;
+    const height = pinned ? document.querySelector('.makeover-layout').getBoundingClientRect().height+8 : 0;
+    document.querySelector('main').style.setProperty('--studio-inset',height+'px');
+  }
+  new ResizeObserver(syncStudioInset).observe(document.querySelector('.makeover-layout'));
+  addEventListener('resize',layoutHint);
+  $('m-artists').onclick = () => { if (state.mode !== 'artists') setMode('artists'); };
+  $('m-makeover').onclick = () => { if (state.mode !== 'makeover') setMode('makeover'); };
+  Curio.init({clips:"voice:*",rate:.9,readFallback:() => $('hint').textContent});
+  renderDetails();
+  $('sentence-one').value = current().sentences[0] || '';
+  $('sentence-two').value = current().sentences[1] || '';
+  setMode('artists');
+  window.__tool = {state,setMode,allLines:() => DATA.allLines,vlog:V.log,V,activeClues,effective,isDone,changed,switchPlace,save,
+    imageCache,ARTISTS,update,DATA};
+})();
+</script>
+</body>
+</html>

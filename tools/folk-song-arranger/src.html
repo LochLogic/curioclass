@@ -1,0 +1,1364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Folk Song Arranger · Curio Class</title>
+<meta name="description" content="Arrange Skip to My Lou for a small band and an occasion. Listen, check range and balance, and revise. Grades 6-8. Offline.">
+<link rel="icon" href="data:,">
+<!--
+Folk Song Arranger, Curio Class. Grades 6-8 music. NCAS MU:Cr2, MU:Cr3, MU:Pr4.
+Students arrange, interpret and revise a public-domain tune. Content CC BY 4.0; code MIT.
+Tune printing and transcription evidence: notes.md. The tune is instrumental here.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+School ranges, loudness units, occasion windows and balance threshold are teaching models.
+Borrows music-studio 1.1. New voices and live event adapters stay local to this tool.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f6f0e2; --ink:#2b2418; --muted:#6a5d48; --line:#cfc2a5; --focus:#b04a1f;
+  --brand:#456f22; --btn:#36591b; --btn-line:#8da276; --head-ink:#fffaf0; --panel:#fffaf0;
+  --melody:#b04a1f; --chords:#2d5f8a; --bass:#5b3d82; --beat:#8a6a12; --rest:#d8d0bf;
+}
+body { overflow:hidden; }
+button, input { touch-action:manipulation; }
+button { min-height:44px; border:1px solid #b9aa8c; border-radius:7px; background:#fffaf0; font-weight:650; }
+button:hover { filter:brightness(1.06); }
+button:active { transform:translateY(1px); }
+button:disabled { opacity:.5; cursor:default; }
+button[aria-pressed="true"] { box-shadow:inset 0 0 0 2px var(--brand); }
+header { background:#253d20; padding:12px 22px; gap:9px; border-bottom:3px solid #c9a664; }
+h1 { font:700 clamp(20px,2.25vw,31px)/1 Georgia,serif; letter-spacing:-.5px; }
+h1 small { font-size:13px; margin-top:7px; letter-spacing:.1px; }
+.seg { border-radius:8px; }
+.seg button,.icon-btn { font-size:14px; min-height:44px; border-radius:6px; padding:0 12px; }
+.seg button[aria-pressed="true"] { background:#f6f0e2; color:#253d20; }
+main { grid-template-columns:minmax(0,1fr) 280px; height:100%; overflow:hidden; }
+.stage { grid-column:1; grid-row:1; }
+.panel { grid-column:2; grid-row:1; }
+.panel { padding:15px; gap:10px; border-left:1px solid #ae966e; box-shadow:-6px 0 20px #28180012; }
+.hint { margin:0; min-height:84px; font-size:15px; line-height:1.4; flex-shrink:0; }
+#read { min-width:44px; }
+@media (min-width:600px) {
+  html,body { overflow:clip; }
+  .panel > .hint { position:sticky; top:0; z-index:4; background:var(--panel); }
+}
+.transport { background:#34571d; color:#fff; border:1px solid #1d3611; min-height:54px; font-size:21px;
+  box-shadow:0 4px 0 #203a15; border-radius:8px; letter-spacing:.2px; }
+.transport.playing { background:#80391f; box-shadow:0 4px 0 #592410; }
+.eyebrow { text-transform:uppercase; letter-spacing:2px; font-size:11px; font-weight:750; color:var(--muted); }
+.occasion { display:grid; gap:5px; }
+.occasion button { text-align:left; padding:6px 10px; font-size:13px; }
+.occasion button[aria-pressed="true"] { background:#e7eddb; border-color:#456f22; }
+.tempo-line { display:flex; justify-content:space-between; align-items:center; font-weight:700; font-size:14px; }
+#tempo { width:100%; height:44px; accent-color:#456f22; margin:0; }
+.add-row { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+.add-row button { font-size:13px; }
+.smallprint { color:var(--muted); font-size:11px; line-height:1.4; margin:0; }
+#save-status { margin-top:auto; padding-top:6px; }
+.stage { min-height:0; background:#ad8251; display:flex; flex-direction:column; padding:16px 18px 8px; gap:0;
+  background-image:radial-gradient(ellipse at 15% 0%,#e8c68b99,transparent 70%),
+    repeating-linear-gradient(1deg,transparent 0 5px,#38200a09 6px 7px),linear-gradient(90deg,#78532f,#c09b66 45%,#8e643d); }
+.venue { flex:0 0 126px; position:relative; overflow:hidden; border:1px solid #684c2b; border-radius:9px 9px 0 0;
+  box-shadow:0 4px 12px #24140040; background:#493c28; }
+.venue img { width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+.venue:after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,#171c12e8,transparent 85%); }
+.venue-copy { position:relative; z-index:1; color:white; padding:17px 22px; max-width:660px; text-shadow:0 1px 3px #000; }
+.venue-copy .eyebrow { color:#e3cd9c; }
+.venue h2 { margin:7px 0; font:700 clamp(20px,2.1vw,31px)/1.1 Georgia,serif; }
+.venue p { margin:0; font-size:13px; color:#fff5db; }
+.venue .glimmer { position:absolute; z-index:1; top:15%; right:13%; width:8px; height:8px; background:#ffdc86;
+  border-radius:50%; box-shadow:0 0 20px 10px #ffda7044; animation:glimmer 4s ease-in-out infinite alternate; }
+@keyframes glimmer { to { opacity:.5; box-shadow:0 0 25px 15px #ffda7022; } }
+.calm .glimmer { animation:none; }
+.desk { display:flex; flex:1; min-height:0; flex-direction:column; background:var(--paper); border:1px solid #8c7048;
+  border-top:0; box-shadow:0 5px 12px #24140040; }
+.desk-title { display:flex; align-items:center; justify-content:space-between; min-height:41px; padding:6px 14px; border-bottom:1px solid #b8a888; }
+.desk-title strong { font:700 20px Georgia,serif; }
+.desk-title span { font:600 12px 'Segoe UI',sans-serif; color:var(--muted); }
+.gridbox { flex:1; min-height:0; overflow:auto; position:relative; isolation:isolate; }
+#arrangement { display:grid; width:100%; height:100%; min-height:170px; gap:0; }
+.corner { display:flex; align-items:center; justify-content:center; padding:5px; color:var(--muted); font-size:11px;
+  background:#e8dfcd; border-bottom:1px solid #bbac90; position:sticky; left:0; z-index:2; }
+.section-head { border:0; border-radius:0; border-left:1px solid #cdbf9f; border-bottom:1px solid #a89572;
+  background:linear-gradient(#fffaf0,#e5d9bf); font-size:12px; padding:4px 2px; position:relative; min-width:44px; }
+.section-head strong { display:block; font:700 17px Georgia,serif; }
+.section-head small { display:block; font-size:10px; margin-top:2px; color:var(--muted); }
+.player { border:0; border-radius:0; border-bottom:1px solid #bbac90; background:linear-gradient(100deg,#e6dbc4,#f8f1e2);
+  display:flex; align-items:center; justify-content:center; flex-direction:column; padding:4px; position:sticky; left:0; z-index:2; }
+.player img { height:clamp(60px,15vh,150px); max-height:calc(100% - 36px); max-width:110px; width:auto; object-fit:contain;
+  filter:drop-shadow(2px 3px 2px #281d1944); }
+.player strong { font-size:12px; }
+.player small { font-size:10px; color:var(--muted); }
+.player.solo { background:#e1eaca; box-shadow:inset 0 0 0 3px #456f22; }
+.cell { margin:9px 5px; border:0; border-radius:6px; background:var(--c); color:#fff; position:relative;
+  display:flex; flex-direction:column; justify-content:center; align-items:center; gap:5px; min-width:44px;
+  box-shadow:inset 0 1px 0 #fff5,inset 0 -5px 0 #0002,0 2px 4px #20190e28; overflow:hidden; }
+.preset-cue { font:600 10px 'Segoe UI',sans-serif; z-index:1; }
+.cell.sounding { animation:note-glow .35s ease-out; }
+.player.sounding img { animation:player-note .35s ease-out; }
+@keyframes note-glow { from { box-shadow:inset 0 0 0 4px #ffe9a7,0 0 12px #e6ba6280; } }
+@keyframes player-note { 35% { filter:drop-shadow(0 0 6px #dcb650); transform:translateY(-2px); } }
+.calm .sounding,.calm .sounding img { animation:none; }
+.cell:before { content:""; position:absolute; inset:0; pointer-events:none;
+  background:repeating-linear-gradient(90deg,transparent 0 calc(25% - 1px),#fff2 calc(25% - 1px) 25%); }
+.cell .role { font:700 var(--role-size,19px) Georgia,serif; z-index:1; }
+.music-mark { width:78%; height:25px; position:absolute; top:8px; left:11%; opacity:.32; pointer-events:none; }
+.compact-rows .music-mark { display:none; }
+.compact-rows .cell { gap:1px; margin:5px 3px; }
+.compact-rows .cell .role { line-height:1.1; }
+.compact-rows .cell .dyn { font-size:15px; line-height:1; }
+.compact-rows .cell .oct { line-height:1; }
+.dense .cell { margin-left:0; margin-right:0; border-radius:3px; padding:2px; }
+.dense .section-head strong { font-size:14px; }
+.compact-rows .player small { display:none; }
+.cell { background-image:linear-gradient(120deg,transparent 50%,#0001); }
+.cell .dyn { font:italic 700 18px Georgia,serif; opacity:.93; }
+.cell .oct { font-size:10px; }
+.cell.rest { color:#494337; }
+.cell.now { outline:3px solid #2b2418; outline-offset:0; filter:brightness(1.1); }
+.cell.marked { outline:4px dashed #2b2418; outline-offset:-5px; }
+.cell:focus-visible,.player:focus-visible,.section-head:focus-visible { z-index:4; outline-offset:-4px; }
+.section-head.now { box-shadow:inset 0 0 0 3px #456f22; background:#dce8c7; }
+#playhead { position:absolute; width:3px; background:#fff4b0; box-shadow:0 0 0 1px #3b341d; pointer-events:none; z-index:3; }
+.checks { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:7px; padding:10px; background:#ded2b9; }
+.check { text-align:left; padding:8px; border:1px solid #b9a886; min-height:73px; font-size:11px; background:#fffaf0; }
+.check strong { display:flex; gap:6px; align-items:center; font-size:14px; margin-bottom:4px; }
+.light { display:inline-grid; place-items:center; width:20px; height:20px; border-radius:50%; background:#a8600a;
+  box-shadow:inset 0 2px 4px #0003,0 0 0 2px #d0ba91; color:#fff; }
+.green .light { background:#2f7a3a; }
+.check[aria-pressed="true"] { outline:2px solid #2b2418; }
+.check span.reason { display:block; line-height:1.3; }
+.footer-note { margin:6px 0 0; color:#2b2418; font-size:10px; text-align:center; }
+.reasonbox { background:#f0e6cf; padding:9px; border:1px solid #c9b894; border-radius:7px; }
+.reasonbox h3 { margin:0 0 5px; font:700 16px Georgia,serif; }
+.reason-open { display:none; }
+.chips { display:grid; grid-template-columns:1fr 1fr; gap:4px; }
+.chips button { min-height:44px; padding:4px; font-size:11px; }
+#reason-text { width:100%; min-height:44px; padding:8px; border:1px solid #b9aa8c; border-radius:5px; background:#fffaf0; }
+#log { margin:0; padding:0; list-style:none; font-size:11px; line-height:1.4; }
+#log li { padding:7px 0; border-bottom:1px solid #dbcdb0; }
+#undo { width:100%; margin-top:6px; }
+.program { flex:1; min-height:0; overflow:auto; background:#eee2cb; padding:20px; border-radius:8px;
+  box-shadow:0 5px 20px #2f200a50; background-image:url('art:paper-card'); background-size:cover; }
+.program-inner { max-width:850px; margin:auto; padding:15px 24px; border:1px solid #98845c; }
+.program .eyebrow { text-align:center; }
+.program h2 { margin:12px 0; font:700 clamp(24px,3.5vw,48px) Georgia,serif; text-align:center; }
+.program h3 { font:700 20px Georgia,serif; margin:18px 0 7px; }
+.program .credit { text-align:center; color:#6a5d48; font-size:13px; }
+.band-line { display:flex; flex-wrap:wrap; justify-content:center; gap:18px; margin-top:12px; }
+.band-line figure { margin:0; text-align:center; font-size:12px; }
+.band-line img { height:100px; max-width:110px; object-fit:contain; }
+.plan-strip { display:flex; gap:5px; flex-wrap:wrap; }
+.plan-tile { padding:10px; background:#e0d4b8; border:1px solid #b2a07b; border-radius:3px; font-size:12px; }
+.plan-tile.now { outline:3px solid #456f22; background:#dce8c7; }
+.program li { margin:6px 0; font-size:13px; }
+.program #still { border-left:4px solid #a8600a; padding-left:12px; }
+dialog { border:1px solid #a48d66; background:#fffaf0; color:#2b2418; border-radius:12px; padding:18px;
+  max-width:min(560px,94vw); max-height:94vh; box-shadow:0 20px 90px #0006; }
+dialog::backdrop { background:#241b1380; }
+.dialog-top { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:10px; }
+.dialog-top h2 { margin:0; font:700 22px Georgia,serif; }
+#close-dialog { min-width:44px; }
+.pick-group { display:flex; flex-wrap:wrap; gap:5px; margin:7px 0 12px; }
+.pick-group button { flex:1; padding:8px; }
+.pick-label { font-size:12px; color:var(--muted); font-weight:700; }
+.instrument-palette { display:grid; grid-template-columns:repeat(4,1fr); gap:7px; }
+.instrument-palette button { min-width:90px; padding:6px; font-size:12px; }
+.instrument-palette img { display:block; width:100%; height:110px; object-fit:contain; margin-bottom:5px; }
+.section-palette { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+.section-palette button { padding:8px; text-align:left; font-size:13px; }
+.section-palette small { display:block; color:var(--muted); font-size:11px; margin-top:3px; }
+.dialog-note { font-size:12px; color:var(--muted); line-height:1.4; margin:6px 0 12px; }
+@media (min-width:1600px) and (min-height:900px) {
+  main { grid-template-columns:minmax(0,1fr) 330px; }
+  .venue { flex-basis:180px; }
+  .panel { padding:22px; gap:14px; }
+  .hint { font-size:17px; }
+  .cell .role { font-size:23px; }
+  .player img { height:160px; max-width:140px; }
+  .player strong { font-size:15px; }
+}
+@media (max-width:1050px), (max-height:640px) {
+  header { padding:7px 10px; gap:6px; }
+  h1 { font-size:22px; }
+  h1 small { font-size:11px; }
+  .seg button,.icon-btn { padding:0 7px; font-size:12px; }
+  main { grid-template-columns:minmax(0,1fr) 225px; }
+  .stage { padding:9px 9px 5px; }
+  .venue { flex-basis:92px; }
+  .venue-copy { padding:10px 12px; }
+  .venue h2 { font-size:22px; margin:4px 0; }
+  .venue p { font-size:11px; }
+  .venue-copy .eyebrow { font-size:10px; }
+  .desk-title { min-height:30px; padding:4px 8px; }
+  .desk-title strong { font-size:16px; }
+  .desk-title span { font-size:10px; }
+  .panel { padding:10px; gap:8px; }
+  .hint { font-size:13px; min-height:84px; }
+  .transport { min-height:44px; }
+  .checks { gap:4px; padding:6px; }
+  .check { padding:5px; font-size:10px; min-height:70px; }
+  .check strong { font-size:12px; gap:4px; }
+  .cell { margin:6px 3px; gap:3px; }
+  .cell .dyn { font-size:15px; }
+  .cell .role { font-size:var(--role-size,12px); }
+  .player img { max-width:65px; height:clamp(35px,9vh,85px); }
+}
+@media (max-height:510px) and (min-width:600px) {
+  header { flex-wrap:nowrap; gap:4px; }
+  h1 { font-size:17px; }
+  h1 small { max-width:155px; font-size:10px; }
+  .seg button,.icon-btn { font-size:11px; padding:0 5px; }
+  main { grid-template-columns:minmax(0,1fr) 208px; }
+  .stage { padding:6px; }
+  .venue { flex-basis:68px; }
+  .venue h2 { font-size:17px; }
+  .venue-copy { padding:6px 9px; }
+  .venue-copy .eyebrow { display:none; }
+  .venue p { max-width:340px; font-size:10px; }
+  .desk-title { min-height:26px; }
+  .checks { padding:4px; }
+  .check { min-height:65px; }
+  .player small { display:none; }
+  .music-mark { display:none; }
+  .footer-note { display:none; }
+  .hint { min-height:68px; font-size:12px; }
+  .panel { padding:7px; gap:6px; }
+  .occasion { gap:3px; }
+  .occasion { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .occasion .eyebrow { grid-column:1/-1; }
+  .occasion button { font-size:11px; text-align:center; padding:4px; }
+  .program { padding:10px; }
+  .program-inner { padding:10px 12px; }
+  .band-line img { height:65px; }
+}
+@media (max-width:599px) {
+  body { overflow:auto; height:auto; min-height:100vh; display:block; }
+  header { gap:5px; padding:8px; }
+  h1 { width:100%; font-size:24px; }
+  h1 small { font-size:11px; margin:4px 0; }
+  header .seg { flex:1; }
+  .seg button { flex:1; }
+  .icon-btn { padding:0 8px; font-size:11px; }
+  main { display:flex; flex-direction:column; height:auto; overflow:visible; }
+  .panel { display:contents; }
+  .hint { order:1; padding:10px 12px 5px; min-height:48px; font-size:13px; }
+  .transport { order:2; margin:4px 10px; }
+  .occasion { order:3; grid-template-columns:repeat(3,1fr); padding:4px 10px; }
+  .occasion .eyebrow { display:none; }
+  .occasion button { text-align:center; font-size:11px; padding:4px; }
+  .stage { order:4; min-height:390px; height:420px; padding:7px; }
+  .venue { flex-basis:72px; }
+  .venue-copy { padding:7px 9px; }
+  .venue .eyebrow { display:none; }
+  .venue h2 { font-size:17px; }
+  .venue p { font-size:10px; }
+  .desk-title { min-height:30px; }
+  .desk-title strong { font-size:16px; }
+  #arrangement { min-height:0; }
+  .player { position:sticky; top:0; left:auto; min-height:55px; }
+  .player img { height:36px; max-height:36px; }
+  .player strong { font-size:10px; }
+  .player small { display:none; }
+  .corner { position:sticky; top:0; left:0; }
+  .section-head { min-height:54px; }
+  .section-head strong { font-size:14px; }
+  .section-head small { font-size:10px; }
+  .cell { min-height:44px; margin:4px; gap:1px; }
+  .cell .role { font-size:11px; }
+  .cell .dyn { font-size:12px; }
+  .cell .oct { font-size:10px; }
+  .checks { grid-template-columns:1fr 1fr; }
+  .check { min-height:54px; }
+  .check strong { margin-bottom:2px; }
+  .footer-note { display:none; }
+  .tempo-control,.add-row,.reasonbox,#reset,#save-status,#back { order:5; margin:7px 10px; }
+  #save-status { margin-bottom:15px; }
+  .instrument-palette { grid-template-columns:repeat(4,1fr); gap:4px; }
+  .instrument-palette button { min-width:0; font-size:10px; }
+  .instrument-palette img { height:70px; }
+  dialog { padding:12px; }
+  .program { padding:9px; }
+  .program-inner { padding:9px; }
+  .program h2 { font-size:25px; }
+  .band-line { gap:7px; }
+  .band-line img { height:64px; max-width:65px; }
+}
+@media (max-width:599px), (max-height:640px) {
+  .reason-open { display:block; width:100%; }
+  .reasonbox > h3,.reasonbox > .chips,.reasonbox > label,.reasonbox > input { display:none; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Folk Song Arranger<small>Arrange a folk tune for an occasion · Curio Class</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-arrange" aria-pressed="true">Arrange</button>
+    <button id="m-card" aria-pressed="false">Concert card</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="venue" id="venue">
+      <img id="venue-image" src="art:venue-library" alt="A lamplit library reading corner">
+      <div class="venue-copy"><div class="eyebrow">The job for your band</div><h2 id="occasion-title"></h2><p id="occasion-needs"></p></div>
+      <i class="glimmer" aria-hidden="true"></i>
+    </div>
+    <div class="desk" id="desk">
+      <div class="desk-title"><strong>Skip to My Lou</strong><span id="duration"></span></div>
+      <div class="gridbox" id="gridbox"><div id="arrangement" aria-label="Arrangement grid"></div><div id="playhead" hidden></div></div>
+      <div class="checks" id="checks"></div>
+    </div>
+    <div class="program" id="program" hidden></div>
+    <p class="footer-note">Tap an instrument, heading or block to edit. Curio Class models: school ranges, occasion windows,
+      loudness and checks. Seconds = bars × 240 ÷ BPM.</p>
+  </div>
+  <aside class="panel">
+    <p class="hint" id="hint"></p>
+    <button class="transport" id="play">▶ Play</button>
+    <div class="occasion" id="occasion-controls"><span class="eyebrow">Occasion</span>
+      <button id="occasion-library" data-occasion="library">Lullaby night</button>
+      <button id="occasion-barn" data-occasion="barn">Square dance</button>
+      <button id="occasion-courtyard" data-occasion="courtyard">Eighth-grade walk</button>
+    </div>
+    <div class="tempo-control"><label class="tempo-line" for="tempo">Tempo <output id="bpm">72 BPM</output></label>
+      <input id="tempo" type="range" min="40" max="140" value="72" aria-label="Tempo in beats a minute">
+    </div>
+    <div class="add-row"><button id="add-player">+ Add player</button><button id="add-section">+ Add section</button></div>
+    <div class="reasonbox" id="reasonbox" hidden>
+      <h3>Why?</h3><button class="reason-open" id="open-reason">Why this change?</button><div class="chips" id="reason-chips"></div>
+      <label class="smallprint" for="reason-text">Your reason, up to 60 characters</label>
+      <input id="reason-text" maxlength="60" aria-label="Your reason, up to 60 characters" autocomplete="off">
+      <ul id="log"></ul><button id="undo">Undo newest change</button>
+    </div>
+    <button id="back" hidden>Back to Arrange</button>
+    <button id="reset">Reset</button>
+    <p class="smallprint" id="save-status">Saved on this device only. Nothing leaves it. Headphones suggested.</p>
+  </aside>
+</main>
+<dialog id="picker" aria-labelledby="picker-title">
+  <div class="dialog-top"><h2 id="picker-title"></h2><button id="close-dialog" aria-label="Close editor">✕</button></div>
+  <div id="picker-body"></div>
+</dialog>
+<script src="kit:curio"></script>
+<script src="kit:music-studio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const clone = o => JSON.parse(JSON.stringify(o));
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const INSTRUMENTS = [
+    {id:'fiddle', name:'Fiddle', lo:'G3', hi:'E6', full:'G3 to E7', loud:3, roles:['Melody','Chords','Rest']},
+    {id:'flute', name:'Flute', lo:'C4', hi:'G6', full:'C4 to C7', loud:2, roles:['Melody','Rest']},
+    {id:'guitar', name:'Guitar', lo:'E2', hi:'E5', full:'E2 to about B5', loud:2, roles:['Melody','Chords','Bass','Rest']},
+    {id:'banjo', name:'Banjo', lo:'D3', hi:'D5', full:'D3 to about D6', loud:4, roles:['Melody','Chords','Rest']},
+    {id:'upright-bass', name:'Upright bass', lo:'E1', hi:'G3', full:'E1 to about G4', loud:3, roles:['Bass','Rest']},
+    {id:'accordion', name:'Accordion', lo:'F3', hi:'C6', full:'F3 to A6 (treble)', loud:4, roles:['Melody','Chords','Bass','Rest']},
+    {id:'hand-drum', name:'Hand drum', lo:null, hi:null, full:'Unpitched', loud:4, roles:['Beat','Rest']},
+  ];
+  const ART = {
+    fiddle:'art:fiddle', flute:'art:flute', guitar:'art:guitar', banjo:'art:banjo',
+    'upright-bass':'art:upright-bass', accordion:'art:accordion', 'hand-drum':'art:hand-drum',
+  };
+  const VENUES = {library:'art:venue-library', barn:'art:venue-barn', courtyard:'art:venue-courtyard'};
+  const OCCASIONS = {
+    library:{name:'Lullaby night at the library', tempo:[60,76], length:[90,150], need:'No Beat and no f dynamics', alt:'A lamplit library reading corner'},
+    barn:{name:'Harvest square dance in the barn', tempo:[112,128], length:[120,180], need:'Bass or Beat in every A', alt:'An empty barn with string lights and an open dance floor'},
+    courtyard:{name:'Eighth-grade walk in the courtyard', tempo:[84,100], length:[180,210], need:'180 seconds for 120 walkers; a clean outro', alt:'An empty school courtyard prepared for a ceremony'},
+  };
+  const TYPES = {
+    introChords:{label:'Intro', detail:'Chords only', bars:4, kind:'intro'},
+    introBass:{label:'Intro', detail:'Bass walk-up', bars:4, kind:'intro'},
+    introDrum:{label:'Intro', detail:'Drum call', bars:4, kind:'intro'},
+    a:{label:'A', detail:'The tune', bars:8, kind:'a'},
+    minor:{label:'New', detail:'Minor turn', bars:8, kind:'new'},
+    call:{label:'New', detail:'Call and answer', bars:8, kind:'new'},
+    counter:{label:'New', detail:'Counter-line', bars:8, kind:'new'},
+    outroTwice:{label:'Outro', detail:'Last line twice', bars:4, kind:'outro'},
+    outroHold:{label:'Outro', detail:'Hold', bars:1, kind:'outro'},
+  };
+  const COLORS = {Melody:'#b04a1f',Chords:'#2d5f8a',Bass:'#5b3d82',Beat:'#8a6a12',Rest:'#d8d0bf'};
+  const DYNAMICS = {p:.5,mf:1,f:1.5};
+  const REASONS = ['So the melody is heard','To fit the occasion','To keep it in range','For variety',
+    'To give a player a rest','So the ending feels finished'];
+  const L = {
+    welcomeArrange:"Here's an old tune and a job to do. Press Play to hear it, then tap a block to change who plays what.",
+    checksHow:'Amber means a real band would trip there. Tap the light to see where.',
+    reasonHow:'Every change gets a reason. Tap one, or type your own.',
+    allGreen:"That'll work. Every check is green.",
+    occasionChange:'Same plan, new job. See what the checks say now.',
+    welcomeCard:"Here's your program. Press Play to hear the final version.",
+    cellHow:'Tap a role and a dynamic. Use Octave for Melody or Bass, then close the editor.',
+    presetHow:'Tap an available role and a dynamic, then close the editor.',
+    playerHow:'Tap an instrument to add a player. Then tap its blocks to give it a part.',
+    sectionHow:'Tap a section to add it. Tap its heading in the grid to move it or play from there.',
+    arrangeHow:'Press Play to listen. Tap a block to edit a part, or tap a check to see what needs work.',
+    cardHow:'Press Play to hear your program, or press Back to Arrange to revise it.',
+    columnHow:'Press Play from here to hear this section onward. Close the editor to keep arranging.',
+    instrumentHow:'Use Solo to hear this player alone during Play. Close the editor to keep arranging.',
+    resetHow:"Clear this occasion's arrangement? Press Clear, or press Keep to return to your plan.",
+  };
+  let uid = 10;
+  const state = {mode:'arrange', occasion:'library', plan:null, log:[], looked:[], reasons:false, revision:0,
+    playing:false, currentSection:-1, currentBeat:0, selectedCheck:null, solo:null, firstEdited:false};
+  const makeCell = (role='Rest',dyn='mf') => ({role,dyn,oct:0});
+  function defaultPlan() {
+    const sections = ['introChords','a','a','outroHold'].map((type,i) => ({id:'s'+i,type}));
+    const players = [{id:'p0',inst:'fiddle'},{id:'p1',inst:'guitar'}];
+    const cells = {};
+    players.forEach(p => {
+      cells[p.id] = {};
+      sections.forEach(s => { cells[p.id][s.id] = makeCell(p.inst==='fiddle'?'Melody':'Chords',p.inst==='fiddle'?'mf':'p'); });
+    });
+    return {bpm:72,players,sections,cells};
+  }
+  let saves = {};
+  try { saves = JSON.parse(localStorage.getItem('curio-folk-arranger-v1') || '{}'); } catch {}
+  function validPlan(p) {
+    return p && p.bpm>=40 && p.bpm<=140 && Array.isArray(p.players) && p.players.length<=5 && p.players.length>0 &&
+      p.players.every(x => INSTRUMENTS.some(i=>i.id===x.inst)) && Array.isArray(p.sections) && p.sections.length>0 &&
+      p.sections.length<=14 && p.sections.every(s=>TYPES[s.type]) && p.players.every(x=>p.sections.every(s=>{
+        const c=p.cells?.[x.id]?.[s.id];
+        return c && INSTRUMENTS.find(i=>i.id===x.inst).roles.includes(c.role) && DYNAMICS[c.dyn] && [-1,0,1].includes(c.oct);
+      }));
+  }
+  if (validPlan(saves.library?.plan)) {
+    state.plan = clone(saves.library.plan);
+    state.log = Array.isArray(saves.library.log) ? saves.library.log.slice(-8) : [];
+    state.reasons = !!saves.library.reasons;
+  } else state.plan = defaultPlan();
+  const nextId = prefix => {
+    while([...state.plan.players,...state.plan.sections].some(x=>x.id===prefix+uid)) uid++;
+    return prefix+(uid++);
+  };
+  const instrument = p => INSTRUMENTS.find(i=>i.id===p.inst);
+  const bars = () => state.plan.sections.reduce((n,s)=>n+TYPES[s.type].bars,0);
+  const seconds = () => bars()*240/state.plan.bpm;
+  const time = n => `${Math.floor(Math.round(n)/60)}:${String(Math.round(n)%60).padStart(2,'0')}`;
+  const barLabel = n => `${n} ${n===1?'bar':'bars'}`;
+  const V = Curio.voice({lines:L,scope:()=>state.mode,hint:false,read:()=>$('hint').textContent,
+    speaks:'#play,.cell', welcome:()=>state.playing || state.firstEdited ? null :
+      [state.mode==='arrange'?'welcomeArrange':'welcomeCard',{valid:()=>!state.playing}]});
+  const hint = text => { $('hint').textContent = text; };
+  function how(key) {
+    hint(L[key]);
+    if (!state.playing) V.how(key,{hint:false,valid:()=>!state.playing && $('hint').textContent===L[key]});
+  }
+  function save() {
+    saves[state.occasion] = {plan:clone(state.plan),log:clone(state.log),reasons:state.reasons,undo:clone(undoSnapshot)};
+    try {
+      localStorage.setItem('curio-folk-arranger-v1',JSON.stringify(saves));
+      $('save-status').textContent='Saved on this device only. Nothing leaves it. Headphones suggested.';
+    } catch { $('save-status').textContent='Saving is unavailable. This plan stays open here. Nothing leaves this device.'; }
+  }
+
+  // Chorus melody: Zebra Keys, Skip To My Lou (2007 engraving), p. 1, traditional melody.
+  // Transposed C to F (+5 semitones); same-printing harmony C C G G C C G C becomes F F C C F F C F.
+  // This is a modern source for public-domain material, not a historical public-domain engraving. See notes.md.
+  const TUNE_TEXT = [
+    'A4:h F4:h', 'A4 A4:e A4:e C5:h', 'G4:h E4:h', 'G4 G4:e G4:e Bb4:h',
+    'A4:h F4:h', 'A4 A4:e A4:e C5:h', 'G4 A4:e Bb4:e A4 G4', 'F4:h F4:h',
+  ].join(' | ');
+  const TUNE = MS.parse(TUNE_TEXT);
+  const COUNTER = MS.parse('F4:h A4:h C5:h A4:h | C5:h E5:h G5:h E5:h | F4:h A4:h C5:h A4:h | C5:h E5:h F5:h -:h');
+  const CHORDS = ['F','F','C','C','F','F','C','F'];
+  const MINOR_CHORDS = ['Dm','Dm','A','A','Dm','Dm','A','Dm'];
+  const CHORD_NOTES = {F:['F3','A3','C4'],C:['C3','E3','G3'],Dm:['D3','F3','A3'],A:['A2','C#3','E3']};
+  function minorSemi(s) {
+    const map = {5:2,7:4,9:5,10:7,0:9,2:10,4:12};
+    const pc = ((s%12)+12)%12;
+    const octave = Math.floor((s-5)/12);
+    const mapped = map[pc];
+    return mapped + octave*12;
+  }
+  function chordFor(s,b) {
+    let index=Math.floor(b/4)%8;
+    if (s.type==='introChords') index+=4;
+    if (s.type==='outroTwice') index=6+Math.floor(b/4)%2;
+    if (s.type==='outroHold') return 'F';
+    return (s.type==='minor'?MINOR_CHORDS:CHORDS)[index%8];
+  }
+  function melodyFor(s,p) {
+    if (TYPES[s.type].kind==='intro' || s.type==='outroHold') return [];
+    let events = TUNE.events.map(e=>({...e}));
+    if (s.type==='minor') events=events.map(e=>({...e,semi:minorSemi(e.semi)}));
+    if (s.type==='counter') {
+      const melodyPlayers=state.plan.players.filter(x=>state.plan.cells[x.id][s.id].role==='Melody');
+      if (melodyPlayers.length===1 || melodyPlayers.indexOf(p)>0) events=COUNTER.events;
+    }
+    if (s.type==='call') {
+      const melodyPlayers=state.plan.players.filter(x=>state.plan.cells[x.id][s.id].role==='Melody');
+      const lead=melodyPlayers[0]?.id===p.id;
+      events=[];
+      for(let phrase=0;phrase<2;phrase++) {
+        const phraseEvents=TUNE.events.filter(e=>e.beat>=phrase*8 && e.beat<phrase*8+8);
+        for(const e of phraseEvents) {
+          if(lead) events.push({...e,beat:phrase*16+e.beat-phrase*8});
+          else events.push({...e,beat:phrase*16+8+e.beat-phrase*8,semi:e.semi+12});
+        }
+      }
+    }
+    if (s.type==='outroTwice') {
+      const ending=events.filter(e=>e.beat>=24).map(e=>({...e,beat:e.beat-24}));
+      events=ending.concat(ending.map(e=>({...e,beat:e.beat+8})));
+    }
+    return events;
+  }
+  function sectionRoles(inst,s) {
+    const roles=s.type==='introChords'?['Chords','Rest']:
+      s.type==='introBass'?['Bass','Chords','Rest']:
+      s.type==='introDrum'?['Beat','Chords','Rest']:
+      s.type==='outroHold'?['Melody','Chords','Bass','Rest']:Object.keys(COLORS);
+    return inst.roles.filter(role=>roles.includes(role));
+  }
+  function soundingRole(p,s,cell) {
+    return sectionRoles(instrument(p),s).includes(cell.role)?cell.role:'Rest';
+  }
+  function notesFor(p,s,cell) {
+    if(soundingRole(p,s,cell)==='Rest') return [];
+    if(cell.role==='Bass' && s.type==='outroHold') return [MS.semi('F2')+cell.oct*12];
+    if(cell.role==='Melody' && s.type==='outroHold') return [MS.semi('F4')+cell.oct*12];
+    if (cell.role==='Melody') return melodyFor(s,p).map(e=>e.semi+cell.oct*12);
+    if (cell.role!=='Bass') return [];
+    if(s.type==='introBass') return ['F2','G2','A2','C3'].map(MS.semi)
+      .map(n=>n+cell.oct*12);
+    return Array.from({length:TYPES[s.type].bars},(_,i)=>chordFor(s,i*4)).flatMap(c=>{
+      const root=MS.semi(CHORD_NOTES[c][0])-12;
+      return [root+cell.oct*12,root+7+cell.oct*12];
+    });
+  }
+  const noteName = s => {
+    const midi=s+60;
+    return ['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B'][((midi%12)+12)%12]+(Math.floor(midi/12)-1);
+  };
+  function checks() {
+    const plan=state.plan, occ=OCCASIONS[state.occasion];
+    const result={Range:{ok:true,reason:'Inside each school range.',cells:[]},
+      Balance:{ok:true,reason:'The tune has room to be heard.',cells:[]},
+      Length:{ok:seconds()>=occ.length[0]-1e-8 && seconds()<=occ.length[1]+1e-8,
+        reason:`${time(seconds())} (${+seconds().toFixed(1)} s). Needs ${time(occ.length[0])} to ${time(occ.length[1])}.`,cells:[]},
+      Fit:{ok:true,reason:'Tempo, occasion, Intro and New fit.',cells:[]}};
+    const fail=(key,reason,cells=[])=>{
+      result[key].ok=false;
+      if(!result[key].cells.length) result[key].reason=reason;
+      result[key].cells.push(...cells);
+    };
+    for(const s of plan.sections) {
+      for(const p of plan.players) {
+        const cell=plan.cells[p.id][s.id], inst=instrument(p), ns=notesFor(p,s,cell);
+        if(!ns.length || !inst.lo) continue;
+        const low=Math.min(...ns), high=Math.max(...ns);
+        if(low<MS.semi(inst.lo)) fail('Range',`${inst.name}, ${TYPES[s.type].detail}: low ${noteName(low)} is below ${inst.lo}. Try Octave up.`,[p.id+':'+s.id]);
+        else if(high>MS.semi(inst.hi)) fail('Range',`${inst.name}, ${TYPES[s.type].detail}: high ${noteName(high)} is above ${inst.hi}. Try Octave down.`,[p.id+':'+s.id]);
+      }
+      if(!['intro','outro'].includes(TYPES[s.type].kind)) {
+        let melody=0,rest=0;
+        plan.players.forEach(p=>{
+          const c=plan.cells[p.id][s.id], loud=instrument(p).loud*DYNAMICS[c.dyn];
+          if(c.role==='Melody') melody+=loud;
+          else if(c.role!=='Rest') rest+=loud;
+        });
+        const cells=plan.players.map(p=>p.id+':'+s.id);
+        if(s.type==='call' && plan.players.filter(p=>plan.cells[p.id][s.id].role==='Melody').length<2) {
+          fail('Balance','Call and answer needs two Melody players. Add a player or change a part.',cells);
+        } else if(!melody) fail('Balance',`Who has the tune in ${TYPES[s.type].detail}?`,cells);
+        else if(rest>2*melody) fail('Balance',`${TYPES[s.type].detail}, bar 1: melody ${melody} against ${rest}. The melody is buried.`,cells);
+      }
+    }
+    const allCells=plan.players.flatMap(p=>plan.sections.map(s=>p.id+':'+s.id));
+    if(plan.bpm<occ.tempo[0] || plan.bpm>occ.tempo[1]) fail('Fit',`Use ${occ.tempo[0]} to ${occ.tempo[1]} BPM for this occasion.`,allCells);
+    else if(state.occasion==='library') {
+      const bad=plan.players.flatMap(p=>plan.sections.filter(s=>{
+        const c=plan.cells[p.id][s.id]; return c.role==='Beat' || c.dyn==='f';
+      }).map(s=>p.id+':'+s.id));
+      if(bad.length) fail('Fit','Lullaby night needs no Beat role and no f dynamics.',bad);
+    } else if(state.occasion==='barn') {
+      const bad=plan.sections.filter(s=>s.type==='a' && !plan.players.some(p=>['Bass','Beat'].includes(plan.cells[p.id][s.id].role)));
+      if(bad.length) fail('Fit','Every A needs Bass or Beat so dancers can keep the pulse.',bad.flatMap(s=>plan.players.map(p=>p.id+':'+s.id)));
+    } else if(state.occasion==='courtyard') {
+      if(seconds()<180) fail('Fit','120 walkers × 1.5 seconds need at least 180 seconds.',allCells);
+      else if(!['outroHold','outroTwice'].includes(plan.sections.at(-1)?.type)) fail('Fit','Finish with Hold or Last line twice for a clean ending.',allCells);
+    }
+    if(result.Fit.ok && !plan.sections.some(s=>TYPES[s.type].kind==='intro')) fail('Fit','Add an Intro to prepare the entrance.',allCells);
+    if(result.Fit.ok && !plan.sections.some(s=>TYPES[s.type].kind==='new')) fail('Fit','Add a New section for variety.',allCells);
+    return result;
+  }
+  let lastChecks=checks(), undoSnapshot=validPlan(saves.library?.undo?.plan)?clone(saves.library.undo):null;
+  let reasonIndex=state.log.length?state.log.length-1:null, pendingGreen=false, reasonPending=false;
+  const compactReasons=()=>innerWidth<600 || innerHeight<640;
+  function snapshot() { return {plan:clone(state.plan),log:clone(state.log)}; }
+  function change(description,action,structural=false) {
+    const before=snapshot();
+    const wasGreen=Object.values(lastChecks).every(c=>c.ok);
+    action();
+    syncVoices();
+    undoSnapshot=before;
+    state.revision++;
+    state.firstEdited=true;
+    V.dropQueued(it=>it.kind==='event');
+    if(state.reasons) {
+      state.log.push({change:description,reason:'(no reason given)'});
+      state.log=state.log.slice(-8);
+      reasonIndex=state.log.length-1;
+      reasonPending=true;
+      $('reason-text').value='';
+    }
+    render(structural);
+    save();
+    if(reasonPending && compactReasons() && !$('picker').open && !state.playing) openReasonEditor();
+    const green=Object.values(lastChecks).every(c=>c.ok);
+    pendingGreen=green && !wasGreen;
+    if(pendingGreen && !state.playing) greenEvent();
+    else if(!state.playing && !state.reasons && Object.values(lastChecks).some(c=>!c.ok) && !V.heard('checksHow')) {
+      V.how('checksHow',{hint:false,valid:()=>!state.playing && Object.values(lastChecks).some(c=>!c.ok)});
+    }
+    if(state.reasons && !$('picker').open && !state.playing && !V.heard('reasonHow')) {
+      V.how('reasonHow',{hint:false,valid:()=>state.reasons && !state.playing && !$('picker').open});
+    }
+    Curio.tone(330,.07,.025);
+  }
+  function greenEvent() {
+    pendingGreen=false;
+    const rev=state.revision;
+    V.say('allGreen',{hint:false,valid:()=>!state.playing && rev===state.revision && Object.values(lastChecks).every(c=>c.ok)});
+    if(!state.playing) Curio.yes();
+  }
+  function logRender() {
+    $('reasonbox').hidden=!state.reasons || !state.log.length || state.mode!=='arrange';
+    $('log').innerHTML=state.log.slice().reverse().map(e=>`<li><b>${esc(e.change)}</b><br>${esc(e.reason)}</li>`).join('');
+    $('undo').disabled=!undoSnapshot;
+    $('reason-chips').querySelectorAll('button').forEach(b=>{
+      b.disabled=reasonIndex===null;
+      b.setAttribute('aria-pressed',state.log[reasonIndex]?.reason===b.textContent);
+    });
+    $('reason-text').disabled=reasonIndex===null;
+    $('open-reason').disabled=reasonIndex===null;
+  }
+  function renderCheckLights() {
+    lastChecks=checks();
+    for(const [name,c] of Object.entries(lastChecks)) {
+      const b=$('check-'+name);
+      b.className='check'+(c.ok?' green':'');
+      b.setAttribute('aria-pressed',state.selectedCheck===name);
+      b.querySelector('.light').textContent=c.ok?'✓':'!';
+      b.querySelector('.reason').textContent=c.reason;
+    }
+    document.querySelectorAll('.cell').forEach(b=>{
+      const c=lastChecks[state.selectedCheck];
+      b.classList.toggle('marked',!!c && (!c.cells.length || c.cells.includes(b.dataset.player+':'+b.dataset.section)));
+    });
+  }
+  function cellUpdate(b,p,s) {
+    const stored=state.plan.cells[p.id][s.id];
+    const c={...stored,role:soundingRole(p,s,stored)};
+    b.style.setProperty('--c',COLORS[c.role]);
+    b.classList.toggle('rest',c.role==='Rest');
+    const glyph=c.role==='Melody'?'<path d="M12 28v-16m25 8V4m25 25V12m25 9V5"/><ellipse cx="8" cy="28" rx="5" ry="3"/><ellipse cx="33" cy="20" rx="5" ry="3"/><ellipse cx="58" cy="29" rx="5" ry="3"/><ellipse cx="83" cy="21" rx="5" ry="3"/>':
+      c.role==='Chords'?'<path d="M20 30V3m30 27V3m30 27V3"/><path d="M12 15h9m-9 7h9m-9 7h9m21-14h9m-9 7h9m-9 7h9m21-14h9m-9 7h9m-9 7h9"/>':
+      c.role==='Bass'?'<ellipse cx="21" cy="29" rx="6" ry="4"/><ellipse cx="70" cy="20" rx="6" ry="4"/><path d="M27 29V4m49 16V2"/>':
+      c.role==='Beat'?'<path d="M13 12l10 10m0-10L13 22m20-10l10 10m0-10L33 22m20-10l10 10m0-10L53 22m20-10l10 10m0-10L73 22"/>':'';
+    b.innerHTML=`<svg class="music-mark" viewBox="0 0 96 38" aria-hidden="true" fill="currentColor" stroke="currentColor" stroke-width="2">${glyph}</svg>`+
+      `<span class="role">${c.role}</span><span class="dyn">${c.role==='Rest'?'·':c.dyn}</span>`+
+      (['Melody','Bass'].includes(c.role)?`<span class="oct">${c.oct===0?'normal':c.oct>0?'↑ octave':'↓ octave'}</span>`:'');
+    if(s.type==='introBass' || s.type==='introDrum') {
+      const cue=c.role==='Chords'?'last 2 bars':c.role==='Rest'?'': 'first 2 bars';
+      if(cue) b.insertAdjacentHTML('beforeend',`<span class="preset-cue">${cue}</span>`);
+    }
+    b.setAttribute('aria-label',`${instrument(p).name}, section ${state.plan.sections.indexOf(s)+1}, ${TYPES[s.type].detail}: ${c.role}, ${c.dyn}, octave ${c.oct}`);
+  }
+  let lastShape='', mobile=innerWidth<600;
+  function gridRender(force=false) {
+    const plan=state.plan;
+    const shape=plan.players.map(p=>p.id).join(',')+'|'+plan.sections.map(s=>s.id).join(',')+'|'+mobile;
+    const grid=$('arrangement');
+    grid.classList.toggle('compact-rows',plan.players.length>2 || innerHeight<640);
+    grid.classList.toggle('dense',!mobile && ($('gridbox').clientWidth-(innerWidth<1050?82:140))/plan.sections.length<60);
+    if(shape!==lastShape || force) {
+      lastShape=shape;
+      const active=document.activeElement?.id;
+      grid.replaceChildren();
+      const corner=document.createElement('div');
+      corner.className='corner';
+      corner.textContent=mobile?'Sections ↓':'Players / seconds →';
+      grid.append(corner);
+      function head(s,j) {
+        const b=document.createElement('button');
+        b.id='section-'+s.id;
+        b.className='section-head';
+        const sec=plan.sections.slice(0,j).reduce((n,x)=>n+TYPES[x.type].bars,0)*240/plan.bpm;
+        b.innerHTML=`<strong>${TYPES[s.type].label}</strong><small>${time(sec)} · ${barLabel(TYPES[s.type].bars)}</small>`;
+        b.title=TYPES[s.type].detail;
+        b.setAttribute('aria-label',`Section ${j+1}: ${TYPES[s.type].detail}. Edit or play from here.`);
+        b.onclick=()=>openColumn(s.id);
+        return b;
+      }
+      function playerButton(p) {
+        const b=document.createElement('button');
+        b.className='player';
+        b.id='player-'+p.id;
+        b.innerHTML=`<img src="${ART[p.inst]}" alt=""><strong>${instrument(p).name}</strong><small>Tap for Solo or Remove</small>`;
+        b.setAttribute('aria-label',`${instrument(p).name}: Solo or Remove player`);
+        b.onclick=()=>openPlayer(p.id);
+        return b;
+      }
+      function cellButton(p,s) {
+        const b=document.createElement('button');
+        b.className='cell';
+        b.id='cell-'+p.id+'-'+s.id;
+        b.dataset.player=p.id;
+        b.dataset.section=s.id;
+        b.onclick=()=>openCell(p.id,s.id);
+        return b;
+      }
+      if(mobile) {
+        plan.players.forEach(p=>grid.append(playerButton(p)));
+        plan.sections.forEach((s,j)=>{
+          grid.append(head(s,j));
+          plan.players.forEach(p=>grid.append(cellButton(p,s)));
+        });
+      } else {
+        plan.sections.forEach((s,j)=>grid.append(head(s,j)));
+        plan.players.forEach(p=>{
+          grid.append(playerButton(p));
+          plan.sections.forEach(s=>grid.append(cellButton(p,s)));
+        });
+      }
+      if(active && $(active)) $(active).focus({preventScroll:true});
+    }
+    if(mobile) {
+      grid.style.gridTemplateColumns=`74px repeat(${plan.players.length},minmax(52px,1fr))`;
+      grid.style.gridTemplateRows=`60px repeat(${plan.sections.length},minmax(60px,1fr))`;
+      grid.style.minWidth=(74+plan.players.length*52)+'px';
+      grid.style.minHeight=(60+plan.sections.length*60)+'px';
+    } else {
+      grid.style.gridTemplateColumns=`${innerWidth<1050?82:140}px repeat(${plan.sections.length},minmax(44px,1fr))`;
+      grid.style.gridTemplateRows=`52px repeat(${plan.players.length},minmax(58px,1fr))`;
+      grid.style.minWidth=((innerWidth<1050?82:140)+plan.sections.length*44)+'px';
+      grid.style.minHeight=(52+plan.players.length*58)+'px';
+      const available=($('gridbox').clientWidth-(innerWidth<1050?82:140))/plan.sections.length-12;
+      grid.style.setProperty('--role-size',Math.max(10,Math.min(innerWidth<1050?12:19,available/4.7))+'px');
+    }
+    plan.players.forEach(p=>{
+      $('player-'+p.id)?.classList.toggle('solo',state.solo===p.id);
+      plan.sections.forEach(s=>cellUpdate($('cell-'+p.id+'-'+s.id),p,s));
+    });
+    plan.sections.forEach((s,j)=>{
+      const n=plan.sections.slice(0,j).reduce((a,x)=>a+TYPES[x.type].bars,0)*240/plan.bpm;
+      $('section-'+s.id).querySelector('small').textContent=`${time(n)} · ${barLabel(TYPES[s.type].bars)}`;
+    });
+  }
+  function programRender() {
+    $('program').innerHTML=`<div class="program-inner"><div class="eyebrow">Curio Class · Concert program</div>
+      <h2>${OCCASIONS[state.occasion].name}</h2><p class="credit">Skip to My Lou · American traditional, public domain<br>
+      Arranged on this device · ${state.plan.bpm} BPM · ${barLabel(bars())} · ${time(seconds())}</p>
+      <div class="band-line">${state.plan.players.map(p=>`<figure><img src="${ART[p.inst]}" alt=""><figcaption>${instrument(p).name}</figcaption></figure>`).join('')}</div>
+      <h3>The section plan</h3><div class="plan-strip">${state.plan.sections.map((s,j)=>
+        `<span class="plan-tile" id="card-section-${j}"><b>${TYPES[s.type].label}</b> · ${TYPES[s.type].detail}</span>`).join('')}</div>
+      <h3>Why we changed it</h3>${state.log.length?'<ul>'+state.log.map(e=>`<li><b>${esc(e.change)}:</b> ${esc(e.reason)}</li>`).join('')+'</ul>':
+        '<p class="smallprint">No revision reasons yet. Look at all four checks in Arrange, then make a change and give it a reason.</p>'}
+      ${Object.values(lastChecks).some(c=>!c.ok)?`<div id="still"><h3>Still to solve</h3><ul>${Object.entries(lastChecks)
+        .filter(([,c])=>!c.ok).map(([n,c])=>`<li><b>${n}:</b> ${esc(c.reason)}</li>`).join('')}</ul></div>`:
+        '<h3>✓ Ready for this occasion</h3><p class="smallprint">All four arranger checks pass. Listen once more and decide whether the musical choices carry your intention.</p>'}
+      <p class="credit">Tune edition and teaching models: teacher notes. New strains written for Curio Class.</p></div>`;
+  }
+  function render(structural=false) {
+    const occ=OCCASIONS[state.occasion];
+    $('occasion-title').textContent=occ.name;
+    $('occasion-needs').textContent=`Model: ${occ.tempo.join(' to ')} BPM · ${time(occ.length[0])} to ${time(occ.length[1])} · ${occ.need}`;
+    $('venue-image').src=VENUES[state.occasion];
+    $('venue-image').alt=occ.alt;
+    $('duration').textContent=`${barLabel(bars())} · ${time(seconds())} · F major`;
+    $('bpm').textContent=state.plan.bpm+' BPM';
+    if(+$('tempo').value!==state.plan.bpm) $('tempo').value=state.plan.bpm;
+    document.querySelectorAll('[data-occasion]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.occasion===state.occasion));
+    $('add-player').disabled=state.plan.players.length>=5;
+    $('add-player').title=state.plan.players.length>=5?'Five players is the most.':'Add an instrument';
+    $('add-section').disabled=state.plan.sections.length>=14;
+    $('add-section').title=state.plan.sections.length>=14?'Fourteen sections is the most.':'Add a section';
+    gridRender(structural);
+    renderCheckLights();
+    logRender();
+    if(state.mode==='card') programRender();
+    paintPlayhead();
+  }
+
+  // Native modal keeps the small choice sets together and supports Tab and Escape.
+  let returnFocus=null, pickerSelection=null;
+  function openDialog(title,html,origin,howKey) {
+    if(V.playing===L.welcomeArrange || V.playing===L.welcomeCard) V.hush();
+    $('picker').dataset.kind='standard';
+    returnFocus=origin || document.activeElement;
+    $('picker-title').textContent=title;
+    $('picker-body').innerHTML=html;
+    if(!$('picker').open) $('picker').showModal();
+    if(howKey) how(howKey);
+    $('close-dialog').focus({preventScroll:true});
+  }
+  function closeDialog() {
+    const isReason=$('picker').dataset.kind==='reason';
+    if([L.cellHow,L.presetHow,L.columnHow,L.instrumentHow,L.reasonHow,L.resetHow,L.playerHow,L.sectionHow].includes(V.playing)) V.hush();
+    $('picker').close();
+    const target=returnFocus?.isConnected?returnFocus:$(returnFocus?.id);
+    if(target && !target.disabled) target.focus({preventScroll:true});
+    else $('play').focus({preventScroll:true});
+    hint(state.playing?'Listen to your live revision. Press Stop when you are ready.':state.mode==='card'?L.cardHow:L.arrangeHow);
+    if(!isReason && reasonPending && compactReasons() && !state.playing && state.mode==='arrange') {
+      openReasonEditor();
+      return;
+    }
+    if(!isReason && state.reasons && state.log.length && !state.playing && !V.heard('reasonHow')) {
+      hint(L.reasonHow);
+      V.how('reasonHow',{hint:false,valid:()=>!state.playing && !$('picker').open && state.reasons});
+    }
+  }
+  $('close-dialog').onclick=closeDialog;
+  $('picker').addEventListener('cancel',e=>{e.preventDefault();closeDialog();});
+  function openReasonEditor() {
+    if(reasonIndex===null || !state.log[reasonIndex]) return;
+    reasonPending=false;
+    openDialog('Why this change?',`<p class="dialog-note">${esc(state.log[reasonIndex].change)}. A reason is optional.</p>
+      <div class="chips" id="modal-reason-chips">${REASONS.map((r,i)=>`<button data-reason="${i}">${r}</button>`).join('')}</div>
+      <label class="dialog-note" for="modal-reason-text">Your reason, up to 60 characters</label>
+      <input id="modal-reason-text" maxlength="60" aria-label="Your reason, up to 60 characters"
+        style="width:100%;min-height:44px;padding:8px;margin:6px 0" autocomplete="off">
+      <button id="reason-done" style="width:100%">Done</button>`,document.activeElement,'reasonHow');
+    $('picker').dataset.kind='reason';
+    $('modal-reason-text').value=state.log[reasonIndex].reason==='(no reason given)'?'':state.log[reasonIndex].reason;
+    document.querySelectorAll('[data-reason]').forEach(b=>b.onclick=()=>{
+      state.log[reasonIndex].reason=REASONS[+b.dataset.reason];
+      $('reason-text').value='';
+      save();logRender();closeDialog();
+    });
+    $('modal-reason-text').oninput=e=>{
+      state.log[reasonIndex].reason=e.target.value.trim().slice(0,60) || '(no reason given)';
+      $('reason-text').value=e.target.value;
+      save();logRender();
+    };
+    $('reason-done').onclick=closeDialog;
+  }
+  $('open-reason').onclick=openReasonEditor;
+  function openCell(pid,sid) {
+    state.firstEdited=true;
+    if(V.playing===L.welcomeArrange) V.hush();
+    else V.dropQueued(it=>it.kind!=='event');
+    pickerSelection={pid,sid};
+    const p=state.plan.players.find(x=>x.id===pid), s=state.plan.sections.find(x=>x.id===sid), inst=instrument(p);
+    openDialog(`${inst.name} · ${TYPES[s.type].detail}`,
+      `<p class="dialog-note">School range: ${inst.lo?inst.lo+' to '+inst.hi:'unpitched'} (comfortable range used by this tool).
+      Full range: ${inst.full}.${p.inst==='fiddle'?' Chords use double stops.':''}</p>
+      ${TYPES[s.type].kind==='intro'?'<p class="dialog-note">This Intro uses its named parts only. Other roles rest; Chords enter after the first two bars of a walk-up or drum call.</p>':''}
+      ${s.type==='outroHold'?'<p class="dialog-note">Hold ends on F: Melody sustains F, Chords sustain the F chord, and Bass sustains F2 at the chosen octave.</p>':''}
+      <div class="pick-label">Role</div><div class="pick-group" id="roles">${Object.keys(COLORS).map(role=>
+        `<button data-role="${role}" ${sectionRoles(inst,s).includes(role)?'':'disabled'}>${role}</button>`).join('')}</div>
+      <div class="pick-label">Dynamic</div><div class="pick-group" id="dynamics">${['p','mf','f'].map(d=>
+        `<button data-dyn="${d}" title="${{p:'Soft',mf:'Medium',f:'Loud'}[d]}">${d}</button>`).join('')}</div>
+      <div id="octave-group"><div class="pick-label">Octave</div><div class="pick-group">${[-1,0,1].map(o=>
+        `<button data-oct="${o}">${o<0?'Down':o>0?'Up':'Normal'}</button>`).join('')}</div></div>
+      ${s.type==='call'?'<p class="dialog-note">Use two Melody players: the first calls, the others answer an octave higher.</p>':''}
+      ${s.type==='counter'?'<p class="dialog-note">One Melody player plays the counter-line. With two, the first keeps A and the other plays the slower line.</p>':''}`,
+      $('cell-'+pid+'-'+sid),sectionRoles(inst,s).some(r=>['Melody','Bass'].includes(r))?'cellHow':'presetHow');
+    const update=()=>{
+      const c=state.plan.cells[pid][sid];
+      document.querySelectorAll('[data-role]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.role===soundingRole(p,s,c)));
+      document.querySelectorAll('[data-dyn]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.dyn===c.dyn));
+      document.querySelectorAll('[data-oct]').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.oct===c.oct));
+      $('octave-group').hidden=!['Melody','Bass'].includes(soundingRole(p,s,c));
+    };
+    document.querySelectorAll('[data-role]').forEach(b=>b.onclick=()=>{
+      if(state.plan.cells[pid][sid].role===b.dataset.role) return;
+      change(`${inst.name}, ${TYPES[s.type].detail}: ${b.dataset.role}`,()=>{state.plan.cells[pid][sid].role=b.dataset.role;}); update();
+    });
+    document.querySelectorAll('[data-dyn]').forEach(b=>b.onclick=()=>{
+      if(state.plan.cells[pid][sid].dyn===b.dataset.dyn) return;
+      change(`${inst.name}, ${TYPES[s.type].detail}: ${b.dataset.dyn}`,()=>{state.plan.cells[pid][sid].dyn=b.dataset.dyn;}); update();
+    });
+    document.querySelectorAll('[data-oct]').forEach(b=>b.onclick=()=>{
+      if(state.plan.cells[pid][sid].oct===+b.dataset.oct) return;
+      change(`${inst.name}, ${TYPES[s.type].detail}: octave ${b.dataset.oct}`,()=>{state.plan.cells[pid][sid].oct=+b.dataset.oct;}); update();
+    });
+    update();
+  }
+  function openColumn(sid) {
+    const j=state.plan.sections.findIndex(x=>x.id===sid), s=state.plan.sections[j];
+    openDialog(`Section ${j+1} · ${TYPES[s.type].detail}`,
+      `<div class="pick-group"><button id="move-left" ${j===0?'disabled':''}>Move left</button>
+      <button id="move-right" ${j===state.plan.sections.length-1?'disabled':''}>Move right</button></div>
+      <div class="pick-group"><button id="remove-section" ${state.plan.sections.length===1?'disabled':''}>Remove</button>
+      <button id="play-here">Play from here</button></div>`, $('section-'+sid),'columnHow');
+    const move=d=>{
+      const was=state.playing, pos=position();
+      change(`Moved ${TYPES[s.type].detail} ${d<0?'left':'right'}`,()=>{
+        const list=state.plan.sections, i=list.findIndex(x=>x.id===sid);
+        [list[i],list[i+d]]=[list[i+d],list[i]];
+      },true);
+      if(was) restartAt(pos.sid,pos.local);
+      closeDialog();
+    };
+    $('move-left').onclick=()=>move(-1);
+    $('move-right').onclick=()=>move(1);
+    $('play-here').onclick=()=>{closeDialog();start(j);};
+    $('remove-section').onclick=()=>{
+      const was=state.playing, pos=position();
+      const next=state.plan.sections[j+1]?.id || state.plan.sections[j-1]?.id;
+      change(`Removed ${TYPES[s.type].detail}`,()=>{
+        state.plan.sections.splice(j,1);
+        state.plan.players.forEach(p=>delete state.plan.cells[p.id][sid]);
+      },true);
+      if(was) restartAt(pos.sid===sid?next:pos.sid,pos.sid===sid?0:pos.local);
+      closeDialog();
+    };
+  }
+  function openPlayer(pid) {
+    const p=state.plan.players.find(x=>x.id===pid), inst=instrument(p);
+    openDialog(inst.name,`<p class="dialog-note">School range: ${inst.lo?inst.lo+' to '+inst.hi:'unpitched'}.
+      Loudness: ${inst.loud} on the tool's scale. ${p.inst==='banjo'?'Five strings, open G tuning.':''}
+      ${p.inst==='upright-bass'?'Pitches shown are sounding, an octave below standard notation.':''}</p>
+      <div class="pick-group"><button id="solo-player" aria-pressed="${state.solo===pid}">Solo</button>
+      <button id="remove-player" ${state.plan.players.length===1?'disabled':''}>Remove player</button></div>`,
+      $('player-'+pid),'instrumentHow');
+    $('solo-player').onclick=()=>{
+      state.solo=state.solo===pid?null:pid;
+      syncVoices();
+      $('solo-player').setAttribute('aria-pressed',state.solo===pid);
+      $('solo-player').textContent=state.solo===pid?'Solo on':'Solo';
+      gridRender();
+      Curio.tone(440,.08,.03);
+    };
+    $('remove-player').onclick=()=>{
+      const was=state.playing,pos=position();
+      change(`Removed ${inst.name}`,()=>{
+        state.plan.players=state.plan.players.filter(x=>x.id!==pid);
+        delete state.plan.cells[pid];
+        if(state.solo===pid) state.solo=null;
+      },true);
+      if(was) restartAt(pos.sid,pos.local);
+      closeDialog();
+    };
+  }
+  function addPlayer(instId) {
+    if(state.plan.players.length>=5) return;
+    const inst=INSTRUMENTS.find(i=>i.id===instId), was=state.playing,pos=position();
+    change(`Added ${inst.name}`,()=>{
+      const p={id:nextId('p'),inst:instId};
+      state.plan.players.push(p);
+      state.plan.cells[p.id]={};
+      state.plan.sections.forEach(s=>{state.plan.cells[p.id][s.id]=makeCell(inst.roles[0],'p');});
+    },true);
+    if(was) restartAt(pos.sid,pos.local);
+  }
+  $('add-player').onclick=()=>{
+    openDialog('Add a player',`<div class="instrument-palette">${INSTRUMENTS.map(i=>
+      `<button data-inst="${i.id}"><img src="${ART[i.id]}" alt="">${i.name}</button>`).join('')}</div>`,$('add-player'),'playerHow');
+    document.querySelectorAll('[data-inst]').forEach(b=>b.onclick=()=>{addPlayer(b.dataset.inst);closeDialog();});
+  };
+  function addSection(type) {
+    if(state.plan.sections.length>=14) return;
+    const was=state.playing,pos=position();
+    change(`Added ${TYPES[type].detail}`,()=>{
+      const s={id:nextId('s'),type};
+      const list=state.plan.sections;
+      const where=TYPES[type].kind==='intro'?0:TYPES[type].kind==='outro'?list.length:
+        TYPES[list.at(-1).type].kind==='outro'?list.length-1:list.length;
+      list.splice(where,0,s);
+      state.plan.players.forEach(p=>{
+        const inst=instrument(p);
+        const prev=Object.values(state.plan.cells[p.id]).find(c=>c.role!=='Rest');
+        state.plan.cells[p.id][s.id]=clone(prev || makeCell(inst.roles[0],'p'));
+      });
+    },true);
+    if(was) restartAt(pos.sid,pos.local);
+  }
+  $('add-section').onclick=()=>{
+    openDialog('Add a section',`<div class="section-palette">${Object.entries(TYPES).map(([k,t])=>
+        `<button data-type="${k}"><b>${t.label}: ${t.detail}</b><small>${barLabel(t.bars)}${k==='call'?' · two Melody players':k==='counter'?' · two to hear both':''}</small></button>`).join('')}</div>`,
+      $('add-section'),'sectionHow');
+    document.querySelectorAll('[data-type]').forEach(b=>b.onclick=()=>{addSection(b.dataset.type);closeDialog();});
+  };
+  function inspectCheck(name) {
+    state.selectedCheck=state.selectedCheck===name?null:name;
+    if(!state.looked.includes(name)) state.looked.push(name);
+    if(state.looked.length===4) {state.reasons=true;save();}
+    let text=lastChecks[name].reason;
+    if(name==='Range' && !lastChecks[name].ok) text=text.replace('Try Octave','Tap its block, then Octave');
+    else if(name==='Balance') text=lastChecks[name].ok?
+      'Backing is no more than twice the melody. Tap a block to change a part.':text+' Tap marked blocks to rebalance.';
+    else if(name==='Length') text+=' Use Tempo or Add section.';
+    else text+=' Tap a marked block, or use Add section.';
+    hint(text);
+    renderCheckLights();
+    logRender();
+    const first=lastChecks[name].cells[0];
+    if(first) {
+      const [pid,sid]=first.split(':');
+      $('cell-'+pid+'-'+sid)?.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});
+    }
+    Curio.tone(lastChecks[name].ok?523:294,.12,.03);
+  }
+  Object.keys(lastChecks).forEach(name=>{
+    const b=document.createElement('button');
+    b.id='check-'+name;
+    b.className='check';
+    b.innerHTML=`<strong><span class="light"></span>${name}</strong><span class="reason"></span>`;
+    b.onclick=()=>inspectCheck(name);
+    $('checks').append(b);
+  });
+  REASONS.forEach(reason=>{
+    const b=document.createElement('button');
+    b.textContent=reason;
+    b.onclick=()=>{
+      if(reasonIndex===null || !state.log[reasonIndex]) return;
+      state.log[reasonIndex].reason=reason;
+      reasonPending=false;
+      $('reason-text').value='';
+      save();logRender();
+      Curio.tone(392,.08,.025);
+    };
+    $('reason-chips').append(b);
+  });
+  $('reason-text').oninput=e=>{
+    if(reasonIndex===null || !state.log[reasonIndex]) return;
+    state.log[reasonIndex].reason=e.target.value.trim().slice(0,60) || '(no reason given)';
+    reasonPending=false;
+    save();
+    $('log').innerHTML=state.log.slice().reverse().map(x=>`<li><b>${esc(x.change)}</b><br>${esc(x.reason)}</li>`).join('');
+  };
+  $('undo').onclick=()=>{
+    if(!undoSnapshot) return;
+    const wasGreen=Object.values(lastChecks).every(c=>c.ok);
+    const was=state.playing,pos=position();
+    state.plan=clone(undoSnapshot.plan);
+    state.log=clone(undoSnapshot.log);
+    state.revision++;
+    undoSnapshot=null;reasonIndex=null;reasonPending=false;
+    render(true);save();
+    pendingGreen=Object.values(lastChecks).every(c=>c.ok) && !wasGreen;
+    if(pendingGreen && !was) greenEvent();
+    if(was) restartAt(pos.sid,pos.local);
+    hint('Newest change undone. Press Play to listen, or tap a block to revise.');
+    $('play').focus({preventScroll:true});
+  };
+  let tempoBefore=null;
+  $('tempo').addEventListener('pointerdown',()=>{tempoBefore=snapshot();});
+  $('tempo').addEventListener('keydown',()=>{if(!tempoBefore) tempoBefore=snapshot();});
+  $('tempo').oninput=e=>{
+    state.plan.bpm=+e.target.value;
+    players.forEach(p=>{p.bpm=state.plan.bpm;});
+    render();
+    hint(state.playing?`Tempo ${state.plan.bpm} beats a minute. Listen to the live change, or press Stop.`:
+      `Tempo ${state.plan.bpm} beats a minute. Press Play to compare, or tap Length to inspect the timing.`);
+  };
+  $('tempo').onchange=()=>{
+    const target=state.plan.bpm;
+    if(tempoBefore && target===tempoBefore.plan.bpm) {tempoBefore=null;return;}
+    if(tempoBefore) state.plan=clone(tempoBefore.plan);
+    lastChecks=checks();
+    change(`Tempo to ${target} BPM`,()=>{state.plan.bpm=target;});
+    tempoBefore=null;
+  };
+  function switchOccasion(id) {
+    if(id===state.occasion) return;
+    stop();save();V.hush();
+    const carried=clone(state.plan);
+    state.occasion=id;
+    state.plan=validPlan(saves[id]?.plan)?clone(saves[id].plan):carried;
+    state.log=Array.isArray(saves[id]?.log)?clone(saves[id].log):clone(state.log);
+    state.reasons=!!saves[id]?.reasons || state.reasons;
+    state.revision++;state.selectedCheck=null;state.solo=null;reasonIndex=null;reasonPending=false;
+    undoSnapshot=validPlan(saves[id]?.undo?.plan)?clone(saves[id].undo):null;
+    render(true);save();
+    hint('Same plan, new job. Tap a check to inspect it, then revise a block or the tempo.');
+    const rev=state.revision;
+    if(Object.values(lastChecks).some(c=>!c.ok)) V.say('occasionChange',{hint:false,valid:()=>!state.playing && rev===state.revision});
+  }
+  document.querySelectorAll('[data-occasion]').forEach(b=>b.onclick=()=>switchOccasion(b.dataset.occasion));
+  $('reset').onclick=()=>{
+    openDialog('Clear this occasion’s arrangement?',
+      '<p class="dialog-note">Return this occasion to the starting band and remove its revision log.</p><div class="pick-group"><button id="clear">Clear</button><button id="keep">Keep</button></div>',
+      $('reset'),'resetHow');
+    $('keep').onclick=closeDialog;
+    $('clear').onclick=()=>{
+      stop();V.hush();state.plan=defaultPlan();state.log=[];state.reasons=false;state.looked=[];
+      state.selectedCheck=null;state.solo=null;state.firstEdited=false;state.revision++;reasonIndex=null;undoSnapshot=null;
+      render(true);save();closeDialog();
+    };
+  };
+
+  // Live sound adapter. The engine schedules small dispatch events inside its 150 ms horizon.
+  // Each dispatch reads the current cell rather than a frozen arrangement. The engine still owns clock, buses and Stop.
+  let players=[], playStart=0, serial=0, activeSerial=0, frame=0, latestDispatch=[];
+  const activeVoices=new Set();
+  function syncVoices() {
+    for(const v of activeVoices) {
+      const c=state.plan.cells[v.pid]?.[v.sid];
+      const gain=Curio.sound && c && c.role===v.role && (!state.solo || state.solo===v.pid)?
+        DYNAMICS[c.dyn]*v.base:0;
+      const ac=MS.ctx();
+      v.gain.gain.setTargetAtTime(gain,ac.currentTime,.012);
+      v.room.gain.setTargetAtTime(gain*.45,ac.currentTime,.012);
+    }
+  }
+  function reed(f,t,d,b) {
+    if(!Curio.sound) return;
+    const ac=MS.ctx();
+    const filter=ac.createBiquadFilter(), g=ac.createGain();
+    filter.type='lowpass';filter.frequency.value=1800;
+    g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(.095,t+.035);
+    g.gain.setValueAtTime(.08,t+Math.max(.05,d-.06));g.gain.linearRampToValueAtTime(.0001,t+d+.07);
+    filter.connect(g);g.connect(b.m);g.connect(b.r);
+    [-5,5].forEach(detune=>{
+      const o=ac.createOscillator();o.type='sawtooth';o.frequency.value=f;o.detune.value=detune;
+      o.connect(filter);o.start(t);o.stop(t+d+.1);
+    });
+  }
+  let drumBuffer=null;
+  function drum(t,b,accent) {
+    if(!Curio.sound) return;
+    const ac=MS.ctx();
+    if(!drumBuffer) {
+      drumBuffer=ac.createBuffer(1,Math.floor(ac.sampleRate*.13),ac.sampleRate);
+      const data=drumBuffer.getChannelData(0);
+      for(let i=0;i<data.length;i++) data[i]=(Math.random()*2-1)*(1-i/data.length)**3;
+    }
+    const n=ac.createBufferSource(),filter=ac.createBiquadFilter(),g=ac.createGain();
+    n.buffer=drumBuffer;filter.type='lowpass';filter.frequency.value=1700;g.gain.value=accent?.12:.075;
+    n.connect(filter).connect(g);g.connect(b.m);g.connect(b.r);n.start(t);
+    MS.pluck(accent?130:160,t,.18,{gain:accent?.26:.16,partials:[[1,1],[1.7,.18]]},b);
+  }
+  function voice(p,semi,t,d,b,dyn,sid) {
+    if(!Curio.sound) return;
+    const ac=MS.ctx(), gain=ac.createGain(), room=ac.createGain();
+    gain.gain.value=DYNAMICS[dyn]*instrument(p).loud*.07;
+    room.gain.value=gain.gain.value*.45;
+    gain.connect(b.m);room.connect(b.r);
+    const ref={pid:p.id,sid,role:state.plan.cells[p.id][sid].role,base:instrument(p).loud*.07,gain,room};
+    activeVoices.add(ref);
+    const bus={m:gain,r:room},f=MS.freq('C',semi);
+    if(p.inst==='flute') MS.blow(f,t,d,bus);
+    else if(p.inst==='fiddle') {
+      const filter=ac.createBiquadFilter();filter.type='lowpass';filter.frequency.value=3800;
+      filter.connect(gain);
+      MS.blow(f,t,d,{m:filter,r:room});
+    } else if(p.inst==='accordion') reed(f,t,d,bus);
+    else if(p.inst==='hand-drum') drum(t,bus,semi===1);
+    else MS.pluck(f,t,p.inst==='banjo'?.32:Math.min(1.6,d+.35),
+      {gain:p.inst==='upright-bass'?.42:.3,partials:p.inst==='banjo'?[[1,1],[2,.65],[3,.35],[4,.18]]:[[1,1],[2,.35],[3,.12]],
+        type:p.inst==='banjo'?'triangle':'sine',cutoff:p.inst==='banjo'?6800:2400},bus);
+    setTimeout(()=>{gain.disconnect();room.disconnect();activeVoices.delete(ref);},Math.max(2500,(t-ac.currentTime+d+1)*1000));
+  }
+  function locate(beat) {
+    let start=0;
+    for(let i=0;i<state.plan.sections.length;i++) {
+      const s=state.plan.sections[i],end=start+TYPES[s.type].bars*4;
+      if(beat<end-1e-6) return {i,s,local:Math.max(0,beat-start),start,sid:s.id};
+      start=end;
+    }
+    const s=state.plan.sections.at(-1);
+    return {i:state.plan.sections.length-1,s,local:TYPES[s.type].bars*4,start:start-TYPES[s.type].bars*4,sid:s.id};
+  }
+  function position() {
+    const beat=state.playing && players[0]?playStart+Math.max(0,players[0].beat):0;
+    return locate(beat);
+  }
+  function dispatch(pid,beat,t,beatSeconds,b) {
+    const p=state.plan.players.find(x=>x.id===pid);
+    if(!p || (state.solo && state.solo!==pid)) return;
+    const {s,local}=locate(beat);
+    const cell=state.plan.cells[pid][s.id];
+    if(soundingRole(p,s,cell)==='Rest') return;
+    const whole=Math.abs(local-Math.round(local))<.01;
+    const playNote=(semi,dur,delay=0)=>{
+      voice(p,semi,t+delay,dur*beatSeconds,b,cell.dyn,s.id);
+      const token=activeSerial;
+      const ac=MS.ctx();
+      setTimeout(()=>{
+        if(!state.playing || activeSerial!==token || Curio.reduce) return;
+        for(const id of ['player-'+p.id,'cell-'+p.id+'-'+s.id]) {
+          const el=$(id);
+          if(!el) continue;
+          el.classList.remove('sounding');
+          void el.offsetWidth;
+          el.classList.add('sounding');
+        }
+      },Math.max(0,(t+delay-ac.currentTime)*1000));
+    };
+    latestDispatch.push({at:performance.now(),pid,beat,role:cell.role,dyn:cell.dyn,oct:cell.oct,bpm:state.plan.bpm});
+    if(latestDispatch.length>100) latestDispatch.shift();
+    if(TYPES[s.type].kind==='intro') {
+      if(s.type==='introBass' && local<8) {
+        if(cell.role==='Bass' && whole) playNote(MS.semi(['F2','G2','A2','C3'][Math.round(local)%4])+cell.oct*12,.85);
+        return;
+      }
+      if(s.type==='introDrum' && local<8) {
+        if(cell.role==='Beat' && whole) playNote(local%4===0?1:0,.2);
+        return;
+      }
+      if(cell.role!=='Chords') return;
+    }
+    if(s.type==='outroHold') {
+      if(local>.01) return;
+      if(cell.role==='Melody') playNote(MS.semi('F4')+cell.oct*12,3.9);
+      if(cell.role==='Chords') {
+        const ns=p.inst==='fiddle'?['F4','C5']:CHORD_NOTES.F;
+        ns.forEach((n,i)=>playNote(MS.semi(n),3.9,i*.025));
+      }
+      if(cell.role==='Bass') playNote(MS.semi('F2')+cell.oct*12,3.9);
+      return;
+    }
+    if(cell.role==='Melody') {
+      melodyFor(s,p).filter(e=>Math.abs(e.beat-local)<.01).forEach(e=>playNote(e.semi+cell.oct*12,e.dur*.91));
+    } else if(cell.role==='Beat' && whole) playNote(local%4===0?1:0,.2);
+    else if(cell.role==='Bass' && whole && local%2===0) {
+      const root=MS.semi(CHORD_NOTES[chordFor(s,local)][0])-12;
+      playNote(root+(local%4===0?0:7)+cell.oct*12,1.75);
+    } else if(cell.role==='Chords' && whole && (local%4===0 || (p.inst!=='fiddle' && local%4===2))) {
+      let ns=CHORD_NOTES[chordFor(s,local)].map(MS.semi);
+      if(p.inst==='fiddle') ns=[ns[0]+12,ns[2]+12];
+      ns.forEach((n,i)=>playNote(n,1.7,i*.025));
+    }
+  }
+  function start(index=0,local=0) {
+    stop(false);
+    V.hush();
+    state.playing=true;
+    playStart=state.plan.sections.slice(0,index).reduce((n,s)=>n+TYPES[s.type].bars*4,0)+local;
+    const remaining=bars()*4-playStart;
+    const token=++serial;activeSerial=token;
+    latestDispatch=[];
+    state.currentSection=index;
+    state.currentBeat=local;
+    $('play').textContent='■ Stop';$('play').classList.add('playing');
+    hint(state.mode==='card'?'Listen as the section strip highlights. Press Stop to pause, or Back to Arrange to revise.':
+      'Listen as the light moves. Tap a block, instrument or Tempo to hear a live revision. Press Stop when you are ready.');
+    MS.ctx();
+    for(const p of state.plan.players) {
+      const events=[];
+      for(let b=0;b<remaining-1e-6;b+=.5) {
+        const absolute=playStart+b;
+        const key='arr-'+token+'-'+p.id+'-'+b;
+        MS.INSTR[key]={name:'Live arrangement',play:(_f,t,d,bus)=>{
+          if(state.playing && activeSerial===token) dispatch(p.id,absolute,t,d,bus);
+        }};
+        events.push({beat:b,semi:0,dur:1,instr:key});
+      }
+      const isFirst=players.length===0;
+      const handle=MS.play(events,{bpm:state.plan.bpm,beats:remaining,exclusive:false,
+        onStep:isFirst?()=>{
+          const pos=position();
+          state.currentSection=pos.i;state.currentBeat=pos.local;
+          const factor=pos.s.type==='outroTwice' && pos.local>=12?1-(Math.floor(pos.local)-12)*.08:1;
+          players.forEach(x=>{x.bpm=state.plan.bpm*factor;});
+          paintPlayhead();
+        }:undefined,
+        onEnd:isFirst?why=>{
+          if(token!==activeSerial || why!=='end') return;
+          state.reasons=true;state.looked=['Range','Balance','Length','Fit'];
+          stop();logRender();save();
+          hint(state.mode==='card'?'Your program has finished. Press Back to Arrange to revise it, or Play to listen again.':
+            'Your plan has finished. Tap a check, then change a block and give your revision a reason.');
+          if(pendingGreen) greenEvent();
+        }:undefined});
+      players.push(handle);
+    }
+    function animate() {
+      if(!state.playing || token!==activeSerial) return;
+      if(!Curio.reduce) paintPlayhead();
+      frame=requestAnimationFrame(animate);
+    }
+    frame=requestAnimationFrame(animate);
+  }
+  function stop(showHint=true) {
+    activeSerial=0;
+    state.playing=false;
+    players.forEach(p=>p.stop());players=[];
+    cancelAnimationFrame(frame);
+    $('play').textContent='▶ Play';$('play').classList.remove('playing');
+    $('playhead').hidden=true;
+    document.querySelectorAll('.now,.sounding').forEach(x=>x.classList.remove('now','sounding'));
+    Object.keys(MS.INSTR).filter(k=>k.startsWith('arr-')).forEach(k=>delete MS.INSTR[k]);
+    if(showHint) hint(state.mode==='card'?L.cardHow:L.arrangeHow);
+    if(pendingGreen && showHint) greenEvent();
+  }
+  function restartAt(sid,local) {
+    let index=state.plan.sections.findIndex(s=>s.id===sid);
+    if(index<0) index=Math.min(state.currentSection,state.plan.sections.length-1);
+    start(index,Math.min(local,TYPES[state.plan.sections[index].type].bars*4-.5));
+  }
+  function paintPlayhead() {
+    if(!state.playing) return;
+    const pos=position();state.currentSection=pos.i;state.currentBeat=pos.local;
+    const first=state.plan.players[0];
+    const cell=$('cell-'+first.id+'-'+pos.s.id),head=$('section-'+pos.s.id);
+    if(!cell) return;
+    document.querySelectorAll('.section-head,.cell,.plan-tile').forEach(x=>{
+      x.classList.toggle('now',x.id==='section-'+pos.s.id || x.dataset.section===pos.s.id || x.id==='card-section-'+pos.i);
+    });
+    const a=cell.getBoundingClientRect(),g=$('gridbox').getBoundingClientRect();
+    const fraction=(Curio.reduce?Math.floor(pos.local):pos.local)/(TYPES[pos.s.type].bars*4);
+    const h=$('playhead');h.hidden=state.mode==='card';
+    if(mobile) {
+      Object.assign(h.style,{left:($('gridbox').scrollLeft+74)+'px',top:(a.top-g.top+$('gridbox').scrollTop+fraction*a.height)+'px',
+        width:Math.max(0,$('gridbox').clientWidth-74)+'px',height:'3px'});
+    } else {
+      Object.assign(h.style,{left:(a.left-g.left+$('gridbox').scrollLeft+fraction*a.width)+'px',top:'52px',
+        width:'3px',height:Math.max(0,$('arrangement').clientHeight-52)+'px'});
+    }
+  }
+  $('play').onclick=()=>state.playing?stop():start();
+  function setMode(mode) {
+    if(state.mode===mode) return;
+    stop();V.hush();state.mode=mode;
+    $('m-arrange').setAttribute('aria-pressed',mode==='arrange');
+    $('m-card').setAttribute('aria-pressed',mode==='card');
+    $('desk').hidden=mode==='card';$('venue').hidden=mode==='card';$('program').hidden=mode!=='card';
+    $('back').hidden=mode!=='card';
+    ['occasion-controls','tempo','add-player','add-section','reset'].forEach(id=>{
+      const el=$(id);const parent=id==='tempo'?el.closest('.tempo-control'):el;
+      parent.hidden=mode==='card';
+    });
+    document.querySelector('.add-row').hidden=mode==='card';
+    document.querySelector('.footer-note').hidden=mode==='card';
+    render();
+    hint(mode==='card'?L.welcomeCard:L.arrangeHow);
+    if(!state.playing) V.how(mode==='card'?'welcomeCard':'arrangeHow',{hint:false,valid:()=>!state.playing});
+  }
+  $('m-arrange').onclick=()=>setMode('arrange');
+  $('m-card').onclick=()=>setMode('card');
+  $('back').onclick=()=>{setMode('arrange');$('play').focus({preventScroll:true});};
+  addEventListener('resize',()=>{
+    const newMobile=innerWidth<600;
+    const changed=newMobile!==mobile;
+    mobile=newMobile;
+    gridRender(changed);
+    paintPlayhead();
+  });
+  addEventListener('keydown',e=>{
+    if(e.key===' ' && !e.target.matches('input,textarea,button') && !$('picker').open) {
+      e.preventDefault();$('play').click();
+    }
+    if(e.key==='Escape' && !$('picker').open && state.playing) stop();
+  });
+  document.querySelector('main').prepend(document.querySelector('.panel'));
+  Curio.init({clips:"voice:*",rate:.95});
+  $('read').onclick=()=>{stop();V.read();};
+  Curio.onSound(on=>{
+    syncVoices();
+    if(state.playing) {V.hush();if(on) {const pos=position();restartAt(pos.sid,pos.local);}}
+  });
+  Curio.onMotion(()=>paintPlayhead());
+  addEventListener('pagehide',()=>stop(false));
+  render(true);hint(L.welcomeArrange);
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},checks,
+    addPlayer,addSection,openCell,openColumn,openPlayer,inspectCheck,switchOccasion,start,stop,render,
+    get dispatchLog(){return latestDispatch;},TUNE,COUNTER,TYPES,INSTRUMENTS,seconds,notesFor,position,
+    defaultPlan,save,change,get players(){return players;}};
+})();
+</script>
+</body>
+</html>

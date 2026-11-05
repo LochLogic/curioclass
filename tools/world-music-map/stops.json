@@ -1,0 +1,1439 @@
+[
+  {
+    "id": "java",
+    "title": "Gamelan",
+    "place": "Central Java, Indonesia",
+    "short": "Java",
+    "lon": 110.4,
+    "lat": -7.8,
+    "instruments": "Saron and gongs",
+    "classes": [
+      "body"
+    ],
+    "art": [
+      "pd-met-501374"
+    ],
+    "base": 261.625565,
+    "voice": "bronze",
+    "scale": [
+      {
+        "name": "1",
+        "cents": 0
+      },
+      {
+        "name": "2",
+        "cents": 240
+      },
+      {
+        "name": "3",
+        "cents": 480
+      },
+      {
+        "name": "5",
+        "cents": 720
+      },
+      {
+        "name": "6",
+        "cents": 960
+      }
+    ],
+    "scaleLabel": "Slendro: an evenly spaced model",
+    "length": 16,
+    "bpm": 80,
+    "cycle": "Lancaran",
+    "parts": [
+      {
+        "name": "kethuk",
+        "hits": [
+          1,
+          3,
+          5,
+          7,
+          9,
+          11,
+          13,
+          15
+        ],
+        "voice": "bronze",
+        "shape": "circle"
+      },
+      {
+        "name": "kempul",
+        "hits": [
+          6,
+          10,
+          14
+        ],
+        "voice": "gong",
+        "shape": "square"
+      },
+      {
+        "name": "kenong",
+        "hits": [
+          4,
+          8,
+          12,
+          16
+        ],
+        "voice": "bronze",
+        "shape": "triangle"
+      },
+      {
+        "name": "gong",
+        "hits": [
+          16
+        ],
+        "voice": "gong",
+        "shape": "diamond"
+      }
+    ],
+    "phrase": [
+      {
+        "at": 0,
+        "note": 1,
+        "dur": 1
+      },
+      {
+        "at": 1,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 2,
+        "note": 1,
+        "dur": 1
+      },
+      {
+        "at": 3,
+        "note": 0,
+        "dur": 1
+      },
+      {
+        "at": 4,
+        "note": 1,
+        "dur": 1
+      },
+      {
+        "at": 5,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 6,
+        "note": 3,
+        "dur": 1
+      },
+      {
+        "at": 7,
+        "note": 4,
+        "dur": 1
+      },
+      {
+        "at": 8,
+        "note": 3,
+        "dur": 1
+      },
+      {
+        "at": 9,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 10,
+        "note": 1,
+        "dur": 1
+      },
+      {
+        "at": 11,
+        "note": 0,
+        "dur": 1
+      },
+      {
+        "at": 12,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 13,
+        "note": 1,
+        "dur": 1
+      },
+      {
+        "at": 14,
+        "note": 0,
+        "dur": 1
+      },
+      {
+        "at": 15,
+        "note": 1,
+        "dur": 1
+      }
+    ],
+    "options": [
+      "Gongs only"
+    ],
+    "tryText": "The biggest sound, the gong, comes at the end of the cycle, on 16.",
+    "facts": [
+      "A gamelan is a set of bronze keys, gongs and drums made and tuned together.",
+      "Slendro tuning has five notes in each octave, spaced almost evenly.",
+      "No two gamelans are tuned exactly alike."
+    ],
+    "default": false,
+    "phraseLength": 16,
+    "count": 5
+  },
+  {
+    "id": "syria",
+    "title": "Maqam music",
+    "place": "Damascus, Syria",
+    "short": "Syria",
+    "lon": 36.3,
+    "lat": 33.5,
+    "instruments": "Ud",
+    "classes": [
+      "strings"
+    ],
+    "art": [
+      "pd-met-500996"
+    ],
+    "base": 261.625565,
+    "voice": "ud",
+    "scale": [
+      {
+        "name": "C",
+        "cents": 0
+      },
+      {
+        "name": "D",
+        "cents": 200
+      },
+      {
+        "name": "E half-flat",
+        "cents": 350
+      },
+      {
+        "name": "F",
+        "cents": 500
+      },
+      {
+        "name": "G",
+        "cents": 700
+      },
+      {
+        "name": "A",
+        "cents": 900
+      },
+      {
+        "name": "B half-flat",
+        "cents": 1050
+      }
+    ],
+    "scaleLabel": "Maqam Rast on C",
+    "length": 8,
+    "bpm": 200,
+    "cycle": "Maqsum",
+    "parts": [
+      {
+        "name": "dum",
+        "hits": [
+          1,
+          5
+        ],
+        "voice": "hand",
+        "shape": "circle"
+      },
+      {
+        "name": "tek",
+        "hits": [
+          2,
+          4,
+          7
+        ],
+        "voice": "block",
+        "shape": "square"
+      }
+    ],
+    "phrase": [
+      {
+        "at": 0,
+        "note": 0,
+        "dur": 1
+      },
+      {
+        "at": 1,
+        "note": 1,
+        "dur": 1
+      },
+      {
+        "at": 2,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 3,
+        "note": 3,
+        "dur": 1
+      },
+      {
+        "at": 4,
+        "note": 4,
+        "dur": 2
+      },
+      {
+        "at": 6,
+        "note": 3,
+        "dur": 1
+      },
+      {
+        "at": 7,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 8,
+        "note": 1,
+        "dur": 1
+      },
+      {
+        "at": 9,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 10,
+        "note": 3,
+        "dur": 1
+      },
+      {
+        "at": 11,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 12,
+        "note": 1,
+        "dur": 2
+      },
+      {
+        "at": 14,
+        "note": 0,
+        "dur": 2
+      }
+    ],
+    "options": [
+      "Piano notes"
+    ],
+    "tryText": "Now it is a plain major scale. Hear the color change?",
+    "facts": [
+      "The ud is a short-necked lute with no frets.",
+      "Maqam music is shared across the Arab world.",
+      "Maqam Rast has two notes that fall between the piano's keys."
+    ],
+    "default": false,
+    "phraseLength": 16,
+    "count": 7
+  },
+  {
+    "id": "india",
+    "title": "Hindustani music",
+    "place": "Varanasi, India",
+    "short": "India",
+    "lon": 83,
+    "lat": 25.3,
+    "instruments": "Sitar, tabla and tanpura",
+    "classes": [
+      "strings",
+      "skin"
+    ],
+    "art": [
+      "pd-met-500750",
+      "pd-met-500712"
+    ],
+    "base": 261.625565,
+    "voice": "sitar",
+    "scale": [
+      {
+        "name": "Sa",
+        "cents": 0
+      },
+      {
+        "name": "Re",
+        "cents": 200
+      },
+      {
+        "name": "Ga",
+        "cents": 400
+      },
+      {
+        "name": "Ma sharp",
+        "cents": 600
+      },
+      {
+        "name": "Pa",
+        "cents": 700
+      },
+      {
+        "name": "Dha",
+        "cents": 900
+      },
+      {
+        "name": "Ni",
+        "cents": 1100
+      }
+    ],
+    "scaleLabel": "Raga Yaman, Sa on C",
+    "length": 16,
+    "bpm": 80,
+    "cycle": "Teental",
+    "parts": [
+      {
+        "name": "tabla",
+        "hits": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "voice": "tabla",
+        "shape": "circle"
+      }
+    ],
+    "phrase": [
+      {
+        "at": 0,
+        "note": -100,
+        "dur": 1
+      },
+      {
+        "at": 1,
+        "note": 1,
+        "dur": 1
+      },
+      {
+        "at": 2,
+        "note": 2,
+        "dur": 2
+      },
+      {
+        "at": 4,
+        "note": 1,
+        "dur": 1
+      },
+      {
+        "at": 5,
+        "note": 0,
+        "dur": 3
+      },
+      {
+        "at": 8,
+        "note": -100,
+        "dur": 1
+      },
+      {
+        "at": 9,
+        "note": 1,
+        "dur": 1
+      },
+      {
+        "at": 10,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 11,
+        "note": 3,
+        "dur": 1
+      },
+      {
+        "at": 12,
+        "note": 4,
+        "dur": 4
+      }
+    ],
+    "options": [
+      "Drone"
+    ],
+    "default": true,
+    "tryText": "Tanpura: Pa, Sa, Sa, low Sa. The raga is more than its scale.",
+    "facts": [
+      "The sitar has movable frets and extra strings that ring by themselves.",
+      "A raga is more than a scale: it has its own phrases and mood. Yaman is played in the evening.",
+      "Tabla players bend the left drum's pitch with the heel of the hand."
+    ],
+    "phraseLength": 16,
+    "count": 7
+  },
+  {
+    "id": "japan",
+    "title": "Koto",
+    "place": "Kyoto, Japan",
+    "short": "Japan",
+    "lon": 135.8,
+    "lat": 35,
+    "instruments": "Thirteen-string koto",
+    "classes": [
+      "strings"
+    ],
+    "art": [
+      "pd-met-500576"
+    ],
+    "base": 293.664768,
+    "voice": "koto",
+    "scale": [
+      {
+        "name": "D",
+        "cents": 0
+      },
+      {
+        "name": "E flat",
+        "cents": 100
+      },
+      {
+        "name": "G",
+        "cents": 500
+      },
+      {
+        "name": "A",
+        "cents": 700
+      },
+      {
+        "name": "B flat",
+        "cents": 800
+      }
+    ],
+    "scaleLabel": "Hirajoshi on D",
+    "length": 8,
+    "bpm": 72,
+    "cycle": "A plain beat",
+    "parts": [
+      {
+        "name": "beat",
+        "hits": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "voice": "block",
+        "shape": "circle"
+      }
+    ],
+    "phrase": [
+      {
+        "at": 0,
+        "note": 7,
+        "dur": 1
+      },
+      {
+        "at": 1,
+        "note": 7,
+        "dur": 1
+      },
+      {
+        "at": 2,
+        "note": 8,
+        "dur": 2
+      },
+      {
+        "at": 4,
+        "note": 7,
+        "dur": 1
+      },
+      {
+        "at": 5,
+        "note": 6,
+        "dur": 1
+      },
+      {
+        "at": 6,
+        "note": 5,
+        "dur": 2
+      },
+      {
+        "at": 8,
+        "note": 9,
+        "dur": 1
+      },
+      {
+        "at": 9,
+        "note": 8,
+        "dur": 1
+      },
+      {
+        "at": 10,
+        "note": 7,
+        "dur": 2
+      },
+      {
+        "at": 12,
+        "note": 5,
+        "dur": 1
+      },
+      {
+        "at": 13,
+        "note": 4,
+        "dur": 1
+      },
+      {
+        "at": 14,
+        "note": 5,
+        "dur": 2
+      }
+    ],
+    "options": [
+      "Move the bridges"
+    ],
+    "tryText": "A tuning for comparison: major pentatonic. The phrase keeps the same string numbers.",
+    "facts": [
+      "The koto has 13 strings, each over its own movable bridge.",
+      "Players move the bridges to retune between pieces.",
+      "Picks on the thumb and two fingers pluck the strings."
+    ],
+    "default": false,
+    "phraseLength": 16,
+    "count": 5
+  },
+  {
+    "id": "ghana",
+    "title": "Ewe drumming",
+    "place": "Volta Region, Ghana",
+    "short": "Ghana",
+    "lon": 0.5,
+    "lat": 6.6,
+    "instruments": "Gankogui, axatse, sogo and kidi",
+    "classes": [
+      "body",
+      "skin"
+    ],
+    "art": [
+      "wmm-ewe"
+    ],
+    "base": 392,
+    "voice": "bell",
+    "scale": [
+      {
+        "name": "Low bell",
+        "cents": 0
+      },
+      {
+        "name": "High bell",
+        "cents": 700
+      }
+    ],
+    "scaleLabel": "Two bell tones: a fifth apart in this sketch",
+    "length": 12,
+    "bpm": 300,
+    "cycle": "Seven bell strokes, four beats",
+    "parts": [
+      {
+        "name": "bell",
+        "hits": [
+          1,
+          3,
+          5,
+          6,
+          8,
+          10,
+          12
+        ],
+        "voice": "bell",
+        "shape": "circle"
+      },
+      {
+        "name": "rattle",
+        "hits": [
+          1,
+          4,
+          7,
+          10
+        ],
+        "voice": "rattle",
+        "shape": "square"
+      },
+      {
+        "name": "drum sketch",
+        "hits": [
+          4,
+          5,
+          10,
+          11
+        ],
+        "voice": "hand",
+        "shape": "triangle"
+      }
+    ],
+    "phrase": [],
+    "phraseLength": 24,
+    "options": [
+      "Hear the four beats"
+    ],
+    "tryText": "A soft foot tap marks pulses 1, 4, 7 and 10: four beats against seven bell strokes.",
+    "facts": [
+      "The bell plays one 12-pulse pattern, and every drummer keeps their place by it.",
+      "The pattern has 7 strokes spread over 4 main beats.",
+      "This music is about pattern, not scale."
+    ],
+    "default": false,
+    "count": 2
+  },
+  {
+    "id": "zimbabwe",
+    "title": "Mbira",
+    "place": "Shona people, Zimbabwe",
+    "short": "Zimbabwe",
+    "lon": 31.05,
+    "lat": -17.8,
+    "instruments": "Mbira dzavadzimu",
+    "classes": [
+      "body"
+    ],
+    "art": [
+      "wmm-mbira"
+    ],
+    "base": 196,
+    "voice": "lamella",
+    "scale": [
+      {
+        "name": "G",
+        "cents": 0
+      },
+      {
+        "name": "A",
+        "cents": 200
+      },
+      {
+        "name": "B",
+        "cents": 400
+      },
+      {
+        "name": "C",
+        "cents": 500
+      },
+      {
+        "name": "D",
+        "cents": 700
+      },
+      {
+        "name": "E",
+        "cents": 900
+      },
+      {
+        "name": "F sharp",
+        "cents": 1100
+      }
+    ],
+    "scaleLabel": "Tunings differ. This sketch uses piano notes.",
+    "length": 48,
+    "bpm": 360,
+    "cycle": "Four quarters of twelve",
+    "parts": [
+      {
+        "name": "kushaura",
+        "hits": [
+          1,
+          3,
+          5,
+          7,
+          9,
+          11,
+          13,
+          15,
+          17,
+          19,
+          21,
+          23,
+          25,
+          27,
+          29,
+          31,
+          33,
+          35,
+          37,
+          39,
+          41,
+          43,
+          45,
+          47
+        ],
+        "voice": "lamella",
+        "shape": "circle"
+      },
+      {
+        "name": "kutsinhira",
+        "hits": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20,
+          22,
+          24,
+          26,
+          28,
+          30,
+          32,
+          34,
+          36,
+          38,
+          40,
+          42,
+          44,
+          46,
+          48
+        ],
+        "voice": "lamella",
+        "shape": "square"
+      }
+    ],
+    "phrase": [],
+    "phraseLength": 48,
+    "options": [
+      "Kushaura",
+      "Kutsinhira",
+      "Both"
+    ],
+    "default": "Both",
+    "tryText": "Kushaura leads; kutsinhira fills the gaps. Isolate a part, then hear them interlock.",
+    "facts": [
+      "The keys are plucked with both thumbs and the right forefinger.",
+      "Shells or bottle caps on the board add a buzz on purpose.",
+      "Two players interlock: kushaura leads and kutsinhira fills the gaps."
+    ],
+    "count": 7
+  },
+  {
+    "id": "andes",
+    "title": "Siku panpipes",
+    "place": "Lake Titicaca, Peru and Bolivia",
+    "short": "Andes",
+    "lon": -69.5,
+    "lat": -15.8,
+    "instruments": "Siku: ira and arka rows",
+    "classes": [
+      "air"
+    ],
+    "art": [
+      "wmm-siku"
+    ],
+    "base": 440,
+    "voice": "breath",
+    "scale": [
+      {
+        "name": "A",
+        "cents": 0
+      },
+      {
+        "name": "C",
+        "cents": 300
+      },
+      {
+        "name": "D",
+        "cents": 500
+      },
+      {
+        "name": "E",
+        "cents": 700
+      },
+      {
+        "name": "G",
+        "cents": 1000
+      },
+      {
+        "name": "A octave",
+        "cents": 1200
+      }
+    ],
+    "scaleLabel": "Ira and arka alternate",
+    "length": 8,
+    "bpm": 100,
+    "cycle": "Eight beats, two rows",
+    "parts": [
+      {
+        "name": "ira",
+        "hits": [
+          1,
+          3,
+          5,
+          7
+        ],
+        "voice": "breath",
+        "shape": "circle"
+      },
+      {
+        "name": "arka",
+        "hits": [
+          2,
+          4,
+          6,
+          8
+        ],
+        "voice": "breath",
+        "shape": "square"
+      }
+    ],
+    "phrase": [
+      {
+        "at": 0,
+        "note": 0,
+        "dur": 1
+      },
+      {
+        "at": 1,
+        "note": 1,
+        "dur": 1
+      },
+      {
+        "at": 2,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 3,
+        "note": 3,
+        "dur": 1
+      },
+      {
+        "at": 4,
+        "note": 4,
+        "dur": 1
+      },
+      {
+        "at": 5,
+        "note": 3,
+        "dur": 1
+      },
+      {
+        "at": 6,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 7,
+        "note": 1,
+        "dur": 1
+      },
+      {
+        "at": 8,
+        "note": 3,
+        "dur": 1
+      },
+      {
+        "at": 9,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 10,
+        "note": 1,
+        "dur": 1
+      },
+      {
+        "at": 11,
+        "note": 0,
+        "dur": 3
+      },
+      {
+        "at": 14,
+        "note": null,
+        "dur": 2
+      }
+    ],
+    "options": [
+      "Ira",
+      "Arka",
+      "Both"
+    ],
+    "default": "Both",
+    "tryText": "One row alone leaves holes. Both rows make one tune.",
+    "facts": [
+      "A siku is split into two rows of pipes, ira and arka.",
+      "Two players alternate notes to make one tune.",
+      "Sikuri groups play with many pairs at once."
+    ],
+    "phraseLength": 16,
+    "count": 5
+  },
+  {
+    "id": "cuba",
+    "title": "Son",
+    "place": "Santiago de Cuba, Cuba",
+    "short": "Cuba",
+    "lon": -75.8,
+    "lat": 20,
+    "instruments": "Claves, bongos and tres",
+    "classes": [
+      "body",
+      "skin",
+      "strings"
+    ],
+    "art": [
+      "wmm-cuba"
+    ],
+    "base": 261.625565,
+    "voice": "tres",
+    "scale": [
+      {
+        "name": "C",
+        "cents": 0
+      },
+      {
+        "name": "D",
+        "cents": 200
+      },
+      {
+        "name": "E",
+        "cents": 400
+      },
+      {
+        "name": "F",
+        "cents": 500
+      },
+      {
+        "name": "G",
+        "cents": 700
+      },
+      {
+        "name": "A",
+        "cents": 900
+      },
+      {
+        "name": "B",
+        "cents": 1100
+      }
+    ],
+    "scaleLabel": "C major: piano notes",
+    "length": 16,
+    "bpm": 200,
+    "cycle": "Son clave, two bars of eighths",
+    "parts": [
+      {
+        "name": "clave",
+        "hits": [
+          1,
+          4,
+          7,
+          11,
+          13
+        ],
+        "voice": "block",
+        "shape": "circle"
+      },
+      {
+        "name": "bass sketch",
+        "hits": [
+          4,
+          7,
+          12,
+          15
+        ],
+        "voice": "ud",
+        "shape": "square"
+      },
+      {
+        "name": "tres sketch",
+        "hits": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16
+        ],
+        "voice": "tres",
+        "shape": "triangle"
+      }
+    ],
+    "phrase": [
+      {
+        "at": 0,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 1,
+        "note": 4,
+        "dur": 1
+      },
+      {
+        "at": 2,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 3,
+        "note": 0,
+        "dur": 1
+      },
+      {
+        "at": 4,
+        "note": 1,
+        "dur": 2
+      },
+      {
+        "at": 6,
+        "note": null,
+        "dur": 2
+      },
+      {
+        "at": 8,
+        "note": 4,
+        "dur": 1
+      },
+      {
+        "at": 9,
+        "note": 5,
+        "dur": 1
+      },
+      {
+        "at": 10,
+        "note": 4,
+        "dur": 1
+      },
+      {
+        "at": 11,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 12,
+        "note": 3,
+        "dur": 2
+      },
+      {
+        "at": 14,
+        "note": null,
+        "dur": 2
+      }
+    ],
+    "options": [
+      "3-2",
+      "2-3"
+    ],
+    "default": "3-2",
+    "tryText": "Flip the clave: the same five strokes move to the other side of the two-bar cycle.",
+    "facts": [
+      "Claves are two hardwood sticks struck together.",
+      "The clave pattern is 3 strokes then 2, and the band fits around it.",
+      "Son uses the piano's twelve notes; its rhythm is what makes it son."
+    ],
+    "phraseLength": 16,
+    "count": 7
+  },
+  {
+    "id": "scotland",
+    "title": "Great Highland bagpipe",
+    "place": "Scotland",
+    "short": "Scotland",
+    "lon": -4.2,
+    "lat": 57.5,
+    "instruments": "Chanter and three drones",
+    "classes": [
+      "air"
+    ],
+    "art": [
+      "pd-met-501474"
+    ],
+    "base": 440,
+    "voice": "reed",
+    "scale": [
+      {
+        "name": "Low G",
+        "cents": -200
+      },
+      {
+        "name": "A",
+        "cents": 0
+      },
+      {
+        "name": "B",
+        "cents": 204
+      },
+      {
+        "name": "C sharp",
+        "cents": 386
+      },
+      {
+        "name": "D",
+        "cents": 498
+      },
+      {
+        "name": "E",
+        "cents": 702
+      },
+      {
+        "name": "F sharp",
+        "cents": 884
+      },
+      {
+        "name": "G",
+        "cents": 1000
+      },
+      {
+        "name": "High A",
+        "cents": 1200
+      }
+    ],
+    "scaleLabel": "Simple-ratio model, tuned to the drone; pipers tune by ear.",
+    "length": 8,
+    "bpm": 220,
+    "cycle": "March in two bars",
+    "parts": [
+      {
+        "name": "march",
+        "hits": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "voice": "block",
+        "shape": "circle"
+      }
+    ],
+    "phrase": [
+      {
+        "at": 0,
+        "note": 1,
+        "dur": 1
+      },
+      {
+        "at": 1,
+        "note": 1,
+        "dur": 1
+      },
+      {
+        "at": 2,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 3,
+        "note": 3,
+        "dur": 1
+      },
+      {
+        "at": 4,
+        "note": 5,
+        "dur": 2
+      },
+      {
+        "at": 6,
+        "note": 3,
+        "dur": 1
+      },
+      {
+        "at": 7,
+        "note": 1,
+        "dur": 1
+      },
+      {
+        "at": 8,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 9,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 10,
+        "note": 3,
+        "dur": 1
+      },
+      {
+        "at": 11,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 12,
+        "note": 1,
+        "dur": 2
+      },
+      {
+        "at": 14,
+        "note": 1,
+        "dur": 1
+      },
+      {
+        "at": 15,
+        "note": 1,
+        "dur": 1
+      }
+    ],
+    "options": [
+      "Grace notes"
+    ],
+    "tryText": "Grace notes split repeated notes with a 30 millisecond high G.",
+    "facts": [
+      "The piper blows into a bag that keeps the sound going without a break.",
+      "Three drones hold one low note under the tune.",
+      "Because the sound never stops, pipers split repeated notes with quick grace notes."
+    ],
+    "default": false,
+    "phraseLength": 16,
+    "count": 9
+  },
+  {
+    "id": "china",
+    "title": "Erhu",
+    "place": "Beijing, China",
+    "short": "China",
+    "lon": 116.4,
+    "lat": 39.9,
+    "instruments": "Two-string bowed erhu",
+    "classes": [
+      "strings"
+    ],
+    "art": [
+      "pd-met-500616"
+    ],
+    "base": 293.664768,
+    "voice": "bowed",
+    "scale": [
+      {
+        "name": "D",
+        "cents": 0
+      },
+      {
+        "name": "E",
+        "cents": 200
+      },
+      {
+        "name": "F sharp",
+        "cents": 400
+      },
+      {
+        "name": "A",
+        "cents": 700
+      },
+      {
+        "name": "B",
+        "cents": 900
+      }
+    ],
+    "scaleLabel": "Gong, shang, jue, zhi, yu",
+    "length": 8,
+    "bpm": 72,
+    "cycle": "Eight beats",
+    "parts": [
+      {
+        "name": "beat",
+        "hits": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "voice": "block",
+        "shape": "circle"
+      }
+    ],
+    "phrase": [
+      {
+        "at": 0,
+        "note": 3,
+        "dur": 1
+      },
+      {
+        "at": 1,
+        "note": 4,
+        "dur": 1
+      },
+      {
+        "at": 2,
+        "note": 3,
+        "dur": 1
+      },
+      {
+        "at": 3,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 4,
+        "note": 1,
+        "dur": 1
+      },
+      {
+        "at": 5,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 6,
+        "note": 0,
+        "dur": 2
+      },
+      {
+        "at": 8,
+        "note": 1,
+        "dur": 1
+      },
+      {
+        "at": 9,
+        "note": 2,
+        "dur": 1
+      },
+      {
+        "at": 10,
+        "note": 3,
+        "dur": 1
+      },
+      {
+        "at": 11,
+        "note": 4,
+        "dur": 1
+      },
+      {
+        "at": 12,
+        "note": 3,
+        "dur": 4
+      }
+    ],
+    "options": [
+      "Slides"
+    ],
+    "default": true,
+    "tryText": "A 120 millisecond glide connects each note to the one before.",
+    "facts": [
+      "The erhu has two strings, and the bow hair runs between them.",
+      "There is no fingerboard: fingers press the strings in the air, so notes can slide.",
+      "The five-note scale gong, shang, jue, zhi, yu matches do, re, mi, sol, la."
+    ],
+    "phraseLength": 16,
+    "count": 5
+  }
+]

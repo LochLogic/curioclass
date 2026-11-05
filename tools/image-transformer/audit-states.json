@@ -1,0 +1,203 @@
+{
+  "keep": [
+    "#hint",
+    "#stages",
+    "#readstrip"
+  ],
+  "states": [
+    {
+      "name": "animate-interrupted",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "[data-preset='Shear']"
+        },
+        {
+          "click": "#animate"
+        },
+        {
+          "wait": 250
+        },
+        {
+          "click": "[data-preset='Reflect']"
+        }
+      ]
+    },
+    {
+      "name": "shear",
+      "steps": [
+        {
+          "click": "[data-preset='Shear']"
+        }
+      ]
+    },
+    {
+      "name": "flatten",
+      "steps": [
+        {
+          "click": "[data-preset='Flatten']"
+        }
+      ]
+    },
+    {
+      "name": "matrix-limit",
+      "steps": [
+        {
+          "click": "#M-0"
+        },
+        {
+          "js": "document.getElementById('M-0').value='10';document.getElementById('M-0').dispatchEvent(new Event('input'))"
+        }
+      ]
+    },
+    {
+      "name": "order-sum",
+      "steps": [
+        {
+          "click": "#m-order"
+        },
+        {
+          "click": "#sum"
+        }
+      ]
+    },
+    {
+      "name": "undo-attempt",
+      "steps": [
+        {
+          "click": "#m-undo"
+        },
+        {
+          "click": "#apply"
+        },
+        {
+          "click": "#apply"
+        },
+        {
+          "click": "#formula"
+        }
+      ]
+    },
+    {
+      "name": "singular",
+      "steps": [
+        {
+          "click": "#m-undo"
+        },
+        {
+          "click": "[data-move='3']"
+        },
+        {
+          "click": "#impossible"
+        }
+      ]
+    },
+    {
+      "name": "pixel",
+      "steps": [
+        {
+          "click": "#m-undo"
+        },
+        {
+          "click": "#card-pixel"
+        }
+      ]
+    },
+    {
+      "name": "color-inverse",
+      "steps": [
+        {
+          "click": "#m-undo"
+        },
+        {
+          "click": "#card-color"
+        },
+        {
+          "click": "#formula"
+        }
+      ]
+    },
+    {
+      "name": "gray",
+      "steps": [
+        {
+          "click": "#m-undo"
+        },
+        {
+          "click": "#card-color"
+        },
+        {
+          "click": "#gray"
+        },
+        {
+          "click": "#impossible"
+        }
+      ]
+    },
+    {
+      "name": "zero-point",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "js": "document.getElementById('scalar').value='0'"
+        },
+        {
+          "click": "#scale"
+        }
+      ]
+    },
+    {
+      "name": "color-recovered",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-undo"
+        },
+        {
+          "click": "#card-color"
+        },
+        {
+          "js": "['r','g','b'].forEach((c,i)=>document.getElementById('answer-'+c).value=[200,100,40][i])"
+        },
+        {
+          "click": "#apply"
+        }
+      ]
+    },
+    {
+      "name": "color-help-after-misses",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-undo"
+        },
+        {
+          "click": "#card-color"
+        },
+        {
+          "click": "#apply"
+        },
+        {
+          "click": "#apply"
+        },
+        {
+          "click": "#formula"
+        }
+      ]
+    }
+  ]
+}

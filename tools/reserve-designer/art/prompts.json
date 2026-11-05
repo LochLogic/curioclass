@@ -1,5 +1,5 @@
 {
-  "house_style": "Realistic wildlife field-guide painting for a high school ecology builder: one North American animal centered in its natural habitat, accurate anatomy and true natural colors for its species, soft daylight, naturalistic detail, calm. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "house_style": "Naturalistic wildlife field-guide painting for high school ecology. Soft daylight from the upper left, muted natural colors, rich botanical texture, accurate anatomy. No people, text, letters, numbers, logos or watermarks.",
   "style": "One set of six sibling portraits shown as small squares in species rows and as larger cards: every animal in the same painted field-guide style and soft daylight, the animal large and centered, filling about half of the frame, with its habitat around it.",
   "assets": [
     {
@@ -11,7 +11,7 @@
       "quality": 78,
       "people": false,
       "source": "flux1-schnell (local)",
-      "review": "pending",
+      "review": "ok",
       "sd": "A bull elk standing in a grassy meadow at the edge of a conifer forest, side view facing left, whole body in frame, large branching antlers, tan-brown body, a darker chocolate brown neck mane and legs, a pale cream rump patch. Clean unsigned painting, the corners of the picture are plain grass and sky with no marks."
     },
     {
@@ -23,7 +23,7 @@
       "quality": 78,
       "people": false,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "rd-wood-frog",
@@ -34,7 +34,7 @@
       "quality": 78,
       "people": false,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "rd-bear",
@@ -45,20 +45,21 @@
       "quality": 78,
       "people": false,
       "source": "flux1-schnell (local)",
-      "review": "pending",
+      "review": "ok",
       "sd": "An American black bear walking through a sunny forest clearing, side view facing left, whole body in frame, glossy black fur, a tan-brown muzzle, a straight face profile, rounded upright ears, a level back line with the shoulders no higher than the rump. Clean unsigned painting, the corners of the picture are plain grass and trees with no marks."
     },
     {
       "name": "rd-ovenbird",
-      "prompt": "An ovenbird, a small songbird of the warbler family, standing on the forest floor among brown fallen leaves, side view, whole bird in frame, plain olive-brown back and wings, a white chest and belly with bold dark streaks, a bold white eye ring, an orange crown stripe bordered by two black stripes on top of the head, pinkish legs.",
+      "prompt": "Use case: scientific-educational. Square naturalistic wildlife field-guide painting for high school ecology, soft daylight from the upper left, muted natural colors, rich brown leaf-litter texture and softly painted shaded deciduous forest background. A scientifically accurate Ovenbird (Seiurus aurocapilla), small North American ground-dwelling warbler, standing alert in side three-quarter view on the forest floor, whole body with both pink legs and feet fully visible, centered large at about 60 percent of frame height. Olive-brown upperparts and unbarred wings, white underparts with bold dark breast streaks. Head has olive-brown cheek and face, a thin COMPLETE pale eye ring around a large dark eye, and a narrow orange central crown stripe bordered by two thin black stripes ON TOP OF THE HEAD. Slender pointed bill. Natural bird anatomy. Important: the face is plain olive with a pale circular eye ring, NOT a black eye mask, not a white eyebrow. Match a realistic painted field guide, not cartoon. No text, no letters, no logo, no people.",
       "aspect": "1:1",
       "cutout": false,
       "width": 512,
       "quality": 78,
       "people": false,
-      "sd": "An ovenbird, a small plump ground-walking songbird that looks like a tiny thrush, standing on brown fallen leaves on the forest floor, side view, whole bird in frame: plain olive-brown back, wings and tail; a white breast and belly covered in rows of bold black spots and streaks like a thrush; a bold white ring around a large dark eye; on top of the head a dull orange stripe running from the forehead to the back of the head, bordered on each side by a thin black stripe; thin pink legs.",
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "source": "OpenAI gpt-image",
+      "review": "cold review redraw",
+      "drawn_by": "codex",
+      "skip_style": true
     },
     {
       "name": "rd-otter",
@@ -69,7 +70,206 @@
       "quality": 78,
       "people": false,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
+    },
+    {
+      "name": "rd-tile-forest",
+      "prompt": "A seamless square map tile of land seen straight down from high above, even flat daylight, no horizon. Dense dark green conifer and broadleaf tree crowns, average tone dark green #2f5d3a.",
+      "aspect": "1:1",
+      "width": 128,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "skip_style": true
+    },
+    {
+      "name": "rd-tile-meadow",
+      "prompt": "A seamless square map tile of land seen straight down from high above, even flat daylight, no horizon. Open green-gold grass with a few tiny wildflowers, average tone #8fae5a.",
+      "aspect": "1:1",
+      "width": 128,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "skip_style": true
+    },
+    {
+      "name": "rd-tile-wetland",
+      "prompt": "A seamless square map tile of land seen straight down from high above, even flat daylight, no horizon. Reeds and sedges around small dark blue-green pools, average tone #4f7f86.",
+      "aspect": "1:1",
+      "width": 128,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "skip_style": true
+    },
+    {
+      "name": "rd-tile-farm",
+      "prompt": "A seamless square map tile of land seen straight down from high above, even flat daylight, no horizon. Straight parallel rows of tan-gold crops with bare soil between, average tone #c9b56a.",
+      "aspect": "1:1",
+      "width": 128,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "skip_style": true
+    },
+    {
+      "name": "rd-tile-town",
+      "prompt": "A seamless square map tile of land seen straight down from high above, even flat daylight, no horizon. Small gray rooftops, little yards and a few trees, average tone #7a7a80.",
+      "aspect": "1:1",
+      "width": 128,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "skip_style": true
+    },
+    {
+      "name": "rd-tile-river",
+      "prompt": "A seamless square map tile of land seen straight down from high above, even flat daylight, no horizon. A blue river flowing straight from top edge to bottom edge, narrow green banks on left and right. Average tone #3f7fbf.",
+      "aspect": "1:1",
+      "width": 128,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "skip_style": true
+    },
+    {
+      "name": "rd-tile-highway",
+      "prompt": "Use case: scientific-educational. Production art asset, square seamless map terrain tile viewed perfectly straight down from high above, fills the whole square with no frame or margins. Naturalistic painted aerial landscape, muted colors, soft daylight upper left. A dark asphalt TWO-LANE HIGHWAY runs exactly horizontally from left edge to right edge, centered on y=50 percent and occupying 46 percent of the full tile height. Clear narrow dashed pale yellow center line and pale white solid edge lines, weathered asphalt with fine grain. The road joins both side edges at exactly the same level and width. Above and below the road are even green grass verges, sparse tiny shrubs and trees, detailed realistic brush textures. The asphalt itself has average tone charcoal #3a3a3a. This depicts a significant barrier for wildlife in a conservation map, readable at 32 pixels square. No perspective, no horizon, no vehicles, no people, no text, no letters, no logos.",
+      "aspect": "1:1",
+      "width": 128,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "cold review redraw",
+      "skip_style": true
+    },
+    {
+      "name": "rd-tile-bridge",
+      "prompt": "Use case scientific-educational. A square seamless terrain map tile, aerial perfectly straight down, fills whole frame. Naturalistic detailed painting, muted natural colors, soft daylight upper left, realistic brush texture. Dark charcoal two-lane asphalt highway runs exactly horizontally from left edge to right edge, centered at 50 percent of image height and occupying 46 percent of tile height. Pale yellow dashed center line, thin white road edge lines, realistic grain. Sparse low vegetation on green verges, no horizon, no perspective, no vehicles, no people, no text, no logo. The road reaches both side edges with exactly the same width and position. A narrow blue river flows exactly vertically through the middle of the tile from the top edge to the bottom edge, occupying 45 percent of image width with narrow grassy banks. A flat gray highway bridge carries BOTH LANES horizontally OVER THE RIVER, its railings visible along top and bottom road edges, tiny bridge shadow cast on water. The water continues underneath the bridge. Legible at 32 pixels.",
+      "aspect": "1:1",
+      "width": 128,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "cold review redraw",
+      "skip_style": true
+    },
+    {
+      "name": "rd-tile-crossing",
+      "prompt": "Use case scientific-educational. A square seamless terrain map tile, aerial perfectly straight down, fills whole frame. Naturalistic detailed painting, muted natural colors, soft daylight upper left, realistic brush texture. Dark charcoal two-lane asphalt highway runs exactly horizontally from left edge to right edge, centered at 50 percent of image height and occupying 46 percent of tile height. Pale yellow dashed center line, thin white road edge lines, realistic grain. Sparse low vegetation on green verges, no horizon, no perspective, no vehicles, no people, no text, no logo. The road reaches both side edges with exactly the same width and position. A broad grassy wildlife OVERPASS runs vertically from upper grass verge to lower grass verge, crossing OVER BOTH HIGHWAY LANES in the middle of the tile. The overpass deck is green meadow and low shrubs, 44 percent of image width. The dark road goes UNDER this green deck and appears on the left and right. Two light curved retaining edges define the bridge and the shrubs taper smoothly into the north and south habitats. Bridge shadow below it, wildlife route clearly open from top to bottom. Legible at 32 pixels.",
+      "aspect": "1:1",
+      "width": 128,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "cold review redraw",
+      "skip_style": true
+    },
+    {
+      "name": "rd-herd-meadow",
+      "prompt": "A high mountain meadow in early autumn, golden grass in front, dark spruce forest edge behind, rocky peaks in the distance. Open grass across the lower two thirds. Empty habitat, no animals.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "skip_style": true
+    },
+    {
+      "name": "rd-colony",
+      "prompt": "A wide short-grass prairie under a big pale sky, gently rolling, scattered low bare dirt mounds. Open short grass across the lower two thirds. Empty habitat, no animals.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "skip_style": true
+    },
+    {
+      "name": "rd-elk-alert",
+      "prompt": "A single cow elk in full side view, whole body fully in frame, head raised high, ears forward, watching. Tan body, dark neck, cream rump, no antlers. Plain pure green #00FF00 background.",
+      "aspect": "4:3",
+      "width": 320,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "despill": true,
+      "skip_style": true
+    },
+    {
+      "name": "rd-elk-graze",
+      "prompt": "A single cow elk in full side view, whole body fully in frame, head down low grazing. Tan body, dark neck, cream rump, no antlers. Plain pure green #00FF00 background.",
+      "aspect": "4:3",
+      "width": 320,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "despill": true,
+      "skip_style": true
+    },
+    {
+      "name": "rd-pd-up",
+      "prompt": "A single black-tailed prairie dog standing upright, front view, whole body fully in frame. Tan fur, small rounded ears. Plain pure green #00FF00 background.",
+      "aspect": "1:1",
+      "width": 180,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "despill": true,
+      "skip_style": true
+    },
+    {
+      "name": "rd-pd-mound",
+      "prompt": "A single low round mound of bare dirt with a dark burrow hole at its top, front view. Whole mound fully in frame. Plain pure green #00FF00 background.",
+      "aspect": "1:1",
+      "width": 180,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok",
+      "despill": true,
+      "skip_style": true
     }
   ]
 }

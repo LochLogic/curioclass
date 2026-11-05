@@ -9,17 +9,18 @@
       "width": 1280,
       "quality": 70,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "checked at final size"
     },
     {
       "name": "fa-cafeteria",
-      "prompt": "An empty school cafeteria with long tables and lunch trays on one table.",
+      "prompt": "An empty school cafeteria with long tables and lunch trays on one table. Cold review edit of the existing painting: preserve all architecture, tables, perspective, light and style; replace any sign lettering with blank wall-colored panels. No text, letters, numbers, logos or people.",
       "aspect": "16:9",
       "cutout": false,
       "width": 1280,
       "quality": 70,
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "source": "gpt-image (Codex built-in)",
+      "review": "Cold review: existing composition preserved; exit sign lettering removed; checked at final size",
+      "drawn_by": "codex"
     },
     {
       "name": "fa-shop",
@@ -29,28 +30,29 @@
       "width": 1280,
       "quality": 70,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "checked at final size"
     },
     {
       "name": "fa-kitchen",
-      "prompt": "A school teaching kitchen with a stove, a pan on a burner and plain blank cabinets.",
+      "prompt": "Empty school teaching kitchen, stove with an ordinary metal frying pan with a long handle on one burner, nearby sink, plain blank cabinets, countertop and tiled wall. Soft realistic painted school environment, warm upper-left natural light, muted colors, tactile surfaces, three layers of depth. No people, fire, smoke, text, letters, numbers, logos or emblems.",
       "aspect": "16:9",
       "cutout": false,
       "width": 1280,
       "quality": 70,
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "source": "gpt-image (Codex built-in)",
+      "review": "Cold review: checked raw and final-size placed art, 2026-11-03",
+      "drawn_by": "codex"
     },
     {
       "name": "fa-field",
-      "prompt": "An empty high school practice field on a hot summer afternoon, bright sun, a water cooler on a bench.",
+      "prompt": "Sunbaked high school football practice field at midday, white yard lines without numbers, a padded blocking sled, open-sided shade tent on the sideline, school in the distance, heat haze, sun from upper left. Soft realistic painted school environment, muted natural colors, clean shapes and tactile surfaces. Empty place, no people, text, letters, numbers, logos or emblems.",
       "aspect": "16:9",
       "cutout": false,
       "width": 1280,
       "quality": 70,
-      "sd": "An empty grass practice field outdoors behind a high school on a hot summer afternoon, bright sun, open blue sky, trees at the far edge, a wooden bench in front with a big orange water cooler on it, plain grass with no painted numbers, deserted.",
-      "source": "flux2-klein-4b (Cloudflare)",
-      "review": "pending"
+      "source": "gpt-image (Codex built-in)",
+      "review": "Cold review: checked raw and final-size placed art, 2026-11-03",
+      "drawn_by": "codex"
     },
     {
       "name": "fa-hallway",
@@ -60,7 +62,50 @@
       "width": 1280,
       "quality": 70,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "checked at final size"
+    },
+    {
+      "name": "fa-aed",
+      "prompt": "A portable AED device in a bright yellow case with its lid open, two folded electrode pads, coiled cables and a blank grey screen. Accurate equipment still life, three quarter view, tactile plastic, soft upper left light. Isolated on flat pure magenta (#FF00FF). No people, body parts, text, letters, numbers, logos or red cross.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 480,
+      "quality": 78,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true,
+      "source": "gpt-image (Codex built-in)",
+      "review": "checked at final size"
+    },
+    {
+      "name": "fa-kit",
+      "prompt": "A plain mint green zippered first aid bag with a blank front, gauze rolls, folded white dressing and a pair of empty blue disposable gloves beside it. Accurate equipment still life, three quarter view, tactile woven fabric, soft upper left light. Isolated on flat pure magenta (#FF00FF). No people, body parts, text, letters, numbers, logos or red cross.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 480,
+      "quality": 78,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true,
+      "source": "gpt-image (Codex built-in)",
+      "review": "checked at final size"
+    },
+    {
+      "name": "fa-manikin",
+      "prompt": "Adult CPR training manikin torso, straight overhead, smooth light grey molded plastic, no head, faceless neck stump, shoulders and lower ribcage fully visible. Soft realistic painterly equipment illustration, upper-left light, tactile plastic, neutral contours. Centered entire torso with margin, 4:3 canvas, flat pure magenta (#FF00FF) cutout background. No people, hands, skin, blood, printed target, text, letters, numbers, logos or emblems.",
+      "aspect": "4:3",
+      "cutout": true,
+      "people": true,
+      "width": 520,
+      "review": "Cold review: checked raw and final-size placed art, 2026-11-03",
+      "drawn_by": "codex",
+      "source": "gpt-image (Codex built-in)",
+      "key": "magenta",
+      "quality": 78,
+      "despill": true,
+      "holes": true
     }
   ]
 }

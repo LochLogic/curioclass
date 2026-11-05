@@ -1,0 +1,894 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Act It Out · Pretend play and acting out a story · Curio Class</title>
+<meta name="description"
+  content="The class is the cast. Act out three folktales, trade parts, and invent characters with a painted dress-up trunk. Grades K-2. Works offline.">
+<!--
+Act It Out, Curio Class. Teacher-led theater, grades K-2. TH:Cr1, TH:Cr2, TH:Pr4, TH:Pr5, TH:Pr6.
+Original retellings of public-domain tales, sources in notes.md. Children act; the toys only wear costumes.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Six existing backdrop paintings made with FLUX.1-schnell (Apache 2.0), edited for Curio Class.
+Content CC BY 4.0, code MIT. One offline file, no network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#fbf4ea; --ink:#2a1f2b; --muted:#6a5a68; --line:#d8c7b2; --focus:#116182;
+  --brand:#7d2e7f; --btn:#672469; --btn-line:#b47bb3; --head-ink:#fff; --panel:#fbf4ea;
+  --gold:#f2b632;
+}
+body { min-height:0; height:100dvh; overflow:hidden; }
+header { padding:10px 18px; gap:10px; background:linear-gradient(110deg,#602063,#7d2e7f); z-index:5; }
+h1 { font-size:30px; letter-spacing:-.7px; }
+h1 small { font-size:13px; letter-spacing:0; opacity:1; margin-top:4px; }
+button { touch-action:manipulation; }
+button:active:not(:disabled) { filter:brightness(1.1); }
+button:disabled { cursor:default; opacity:.48; }
+.seg button,.icon-btn { min-width:60px; min-height:60px; padding:0 13px; }
+.seg { border-radius:16px; }
+.icon-btn { border-radius:15px; }
+main { display:flex; flex-direction:column; min-height:0; }
+.world { position:relative; flex:1; min-height:0; overflow:hidden; background:#5a1f5c; isolation:isolate; }
+.backdrop { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-3; }
+.world::before { content:''; position:absolute; inset:0; pointer-events:none; z-index:-1;
+  background:linear-gradient(90deg,#30132966,transparent 15%,transparent 85%,#30132966); }
+.world::after { content:''; position:absolute; left:0; right:0; bottom:0; height:15px; pointer-events:none;
+  background:linear-gradient(#d6a15d,#986139 35%,#5d341f 50%,#ba854c 60%,#714123); z-index:4; }
+.home { display:flex; align-items:center; justify-content:center; flex-direction:column; gap:20px; padding:28px 5%; }
+.home h2 { color:#fff; text-shadow:0 2px 8px #2a102c; margin:0; font:800 clamp(24px,3vw,42px) Georgia,serif; }
+.home-note { margin:0; color:#fff; background:#451347ea; border:1px solid #ce9b69; padding:10px 24px;
+  border-radius:30px; font-size:18px; }
+.story-tiles { width:min(1100px,100%); display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.story-tile { position:relative; border:3px solid #e8bd6c; border-radius:18px; padding:0; overflow:hidden;
+  background:var(--paper); box-shadow:0 9px 0 #35122c,0 16px 24px #260b2a77; transform:rotate(-1deg); }
+.story-tile:nth-child(2) { transform:rotate(1deg); }
+.story-tile img.landscape { display:block; width:100%; height:clamp(100px,23vh,260px); object-fit:cover; }
+.story-tile .keepsake { position:absolute; width:38%; height:43%; object-fit:contain; right:3%; top:28%;
+  filter:drop-shadow(0 5px 3px #2a102c77); }
+.story-tile b { display:block; padding:18px 8px; font:800 clamp(19px,2.3vw,30px) Georgia,serif; }
+.story-tile b::before { content:'▶ '; color:var(--brand); font:700 .7em system-ui; }
+.story-tile:focus-visible,.story-tile:hover { transform:translateY(-5px); }
+.marquee { color:#fff7db; font:700 12px system-ui; letter-spacing:3px; text-transform:uppercase; }
+.player { display:flex; flex-direction:column; padding:12px 3% 18px; }
+.beat-card { position:relative; z-index:3; width:min(1150px,100%); margin:0 auto; padding:12px 24px;
+  background:linear-gradient(110deg,#fffaf0,#fbf0dd); border:2px solid #e2bd77; border-radius:16px;
+  box-shadow:0 5px 0 #4e2b3433,0 7px 18px #27102922; }
+.beat-top { display:flex; align-items:center; gap:12px; margin-bottom:5px; }
+.beat-kind { font-size:13px; text-transform:uppercase; letter-spacing:1.5px; font-weight:800; color:var(--brand); }
+.beat-count { font-size:12px; color:var(--muted); margin-left:auto; }
+.badge { padding:5px 12px; background:#f2b632; border:1px solid #b07a19; border-radius:30px; color:var(--ink);
+  font-weight:800; font-size:15px; white-space:nowrap; }
+.badge.moon { background:#2c3e7a; border-color:#1c2c59; color:#fff; }
+.badge.everyone { background:#fff; border-color:var(--brand); color:var(--brand); }
+.beat-line { margin:0; font:700 clamp(18px,2vw,29px)/1.28 'Trebuchet MS',sans-serif; }
+.performance { position:relative; flex:1; min-height:0; }
+.cast { position:absolute; inset:0 0 6px; display:flex; justify-content:space-around; align-items:flex-end; }
+.cast-slot { position:relative; display:flex; justify-content:center; align-items:flex-end; height:100%; width:36%; }
+.cast-slot::before { content:''; position:absolute; inset:0 -10% -3%;
+  background:radial-gradient(ellipse at 50% 90%,#fff4acb3,transparent 65%); opacity:0; }
+.cast-slot.lit::before { opacity:1; }
+.side-label { position:absolute; top:9%; z-index:3; }
+.doll { position:relative; height:74%; aspect-ratio:360/832; max-height:390px; margin-bottom:0; transform-origin:50% 95%;
+  filter:drop-shadow(4px 8px 3px #2d182b66); }
+.cast-slot:not(.lit) .doll { opacity:.6; }
+.doll::after { content:''; position:absolute; width:78%; height:6%; left:11%; bottom:-1%; border-radius:50%;
+  background:#38201366; filter:blur(3px); z-index:-1; }
+.doll .wood { position:absolute; inset:0; width:100%; height:100%; object-fit:fill; z-index:1; }
+.face { position:absolute; width:100%; height:100%; inset:0; z-index:3; overflow:visible; }
+.face .eyes { fill:#3a2a1c; }
+.face .mouth { fill:none; stroke:#3a2a1c; stroke-width:2.1; stroke-linecap:round; }
+.face.moon { filter:drop-shadow(0 0 1px #fff1c9) drop-shadow(0 0 .5px #fff1c9); }
+.piece { position:absolute; z-index:4; object-fit:fill; pointer-events:none; }
+.piece.head { width:118%; height:45%; left:-9%; top:-10%; }
+.piece.face { width:42%; height:14%; left:29%; top:24%; z-index:5; }
+.piece.body { width:87%; height:44%; left:6.5%; top:46%; }
+.piece.feet { width:88%; height:23%; left:6%; top:77%; z-index:5; }
+.piece.tail { width:65%; height:56%; left:63%; top:40%; z-index:0; }
+.piece.straw-hat { height:26%; top:-10%; width:145%; left:-22.5%; }
+.piece.crown { height:26%; top:-10%; }
+.piece.wizard-hat { height:40%; top:-20%; width:150%; left:-25%; }
+.piece.hair-bow { width:53%; left:24%; height:22%; top:-3%; }
+.piece.cow-bell { height:67%; top:-12%; }
+.piece.icing-buttons { width:22%; left:39%; height:28%; top:56%; object-fit:contain; }
+.piece.candy-bow { width:68%; height:19%; left:16%; top:46%; }
+.piece.cat-whiskers { width:81%; left:9.5%; height:17%; }
+.piece.shaggy-cape { z-index:2; width:105%; left:-2.5%; }
+.lit .doll { animation:sway 3.8s ease-in-out infinite alternate; }
+@keyframes sway { from { transform:rotate(-1.8deg); } to { transform:rotate(1.8deg); } }
+.calm .doll { animation:none!important; }
+.frozen .doll { animation-play-state:paused; }
+.freeze-frame { position:absolute; inset:8px; border:7px double #f2b632; border-radius:12px;
+  box-shadow:inset 0 0 0 2px #694614,0 0 15px #f7cd6066; z-index:6; pointer-events:none; }
+.freeze-frame b { position:absolute; bottom:8px; left:50%; transform:translateX(-50%); color:#3a2b0c;
+  background:#f7cd60; border-radius:9px; padding:4px 18px; font:900 clamp(20px,4vw,38px) Georgia,serif; }
+.dress-trunk { position:absolute; width:18%; height:35%; bottom:0; left:41%; object-fit:contain; z-index:5; }
+.player.garden-story .dress-trunk { left:2%; width:16%; height:30%; }
+.player.curtain-call .side-label { visibility:hidden; }
+.choices { position:absolute; inset:auto 14% 1%; z-index:7; display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+.choices button { min-height:66px; padding:8px 12px; border:3px solid #e5c385; border-radius:15px; background:#fff9ec;
+  font-weight:800; font-size:20px; box-shadow:0 4px 0 #673757; }
+.choices button[aria-pressed=true] { border:5px solid var(--brand); background:#ffefd1; }
+.choices .symbol { display:block; font-size:26px; line-height:1.1; }
+.choosing .cast { opacity:1; filter:brightness(.8); }
+.ending { position:absolute; inset:0; z-index:5; background:#4c1648d9; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:16px; color:white; }
+.ending h2 { font:700 clamp(40px,6vw,76px) Georgia,serif; color:#ffe4a0; margin:0; }
+.ending p { margin:0; font-size:18px; }
+.ending button { padding:8px 20px; min-height:60px; background:#f2b632; color:var(--ink); font-weight:800;
+  border:2px solid #ffe3a0; border-radius:14px; font-size:20px; }
+.teacher-bar { display:grid; grid-template-columns:repeat(5,minmax(60px,1fr)) minmax(110px,1.3fr); gap:9px;
+  padding:10px 16px 12px; background:linear-gradient(#f7ebd8,#ead8bc); border-top:3px solid #b78a50; }
+.teacher-bar button,.trunk-actions button,.sound-row button { min-height:60px; min-width:60px; padding:5px 10px;
+  border:2px solid #b99b79; border-radius:12px; background:#fffbf2; font-weight:800; font-size:17px;
+  box-shadow:0 3px 0 #aa856044; }
+.teacher-bar #next { grid-column:6; grid-row:1; background:linear-gradient(#ffda75,#f2b632); border-color:var(--brand); }
+.teacher-bar #effect { font-size:15px; }
+.teacher-bar #effect small { display:block; font-size:12px; font-weight:600; }
+.trunk-view { display:flex; flex:1; min-height:0; flex-direction:column; }
+.trunk-top { display:grid; grid-template-columns:minmax(0,1fr) minmax(230px,32%); flex:1; min-height:0; }
+.trunk-stage { padding:14px 12px 18px; display:flex; flex-direction:column; }
+.trunk-hint { position:relative; z-index:3; margin:0 auto; max-width:90%; min-height:50px;
+  background:#fff9edee; padding:8px 15px; border:2px solid #e1b467; border-radius:13px; font-size:19px; font-weight:700; }
+.trunk-performance { position:relative; flex:1; min-height:0; display:flex; justify-content:center; align-items:flex-end; padding-bottom:14px; }
+.trunk-performance .doll { height:83%; max-height:620px; }
+.trunk-performance .dress-trunk { width:24%; height:27%; left:4%; bottom:2%; }
+.wardrobe { background:linear-gradient(90deg,#f3e3cc,#fbf3e7); border-left:4px solid #b18a57; overflow:auto; min-height:0;
+  padding:6px 10px 10px; }
+.wardrobe h3 { position:sticky; top:-6px; z-index:2; padding:7px 0; margin:0; background:#f4e5d0;
+  text-transform:uppercase; letter-spacing:1.6px; color:var(--brand); font-size:12px; }
+.piece-group { display:grid; grid-template-columns:repeat(3,minmax(60px,1fr)); gap:7px; margin-bottom:7px; }
+.costume-button { min-width:60px; min-height:90px; padding:3px; border:2px solid #c8ad88; border-radius:12px;
+  background:#fffaf0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; }
+.costume-button img { height:53px; width:64px; max-width:95%; object-fit:contain; }
+.costume-button span { font-size:12px; font-weight:700; line-height:1.15; }
+.costume-button[aria-pressed=true] { border:4px solid var(--brand); background:#f6e1ef; }
+.trunk-actions { display:grid; grid-template-columns:repeat(5,minmax(60px,1fr)); padding:8px 12px; gap:8px;
+  background:#ead7b9; border-top:3px solid #a57946; }
+.trunk-actions #surprise { background:#f9d477; border-color:var(--brand); }
+.sound-row { display:grid; grid-template-columns:repeat(8,minmax(60px,1fr)); gap:7px; padding:0 12px 9px;
+  background:#ead7b9; }
+.sound-row button { font-size:13px; }
+.sound-row button span { display:block; font-size:21px; }
+.sound-row button.ping { background:#f2b632; border-color:var(--brand); }
+.turnip { position:absolute; bottom:2%; left:38%; width:24%; height:76%; z-index:1; }
+.turnip img { position:absolute; width:100%; height:100%; object-fit:contain; bottom:0; }
+.turnip .sprout { width:40%; height:30%; left:30%; }
+.turnip .giant { transform-origin:50% 90%; }
+.soil { position:absolute; bottom:-2%; left:0; right:0; height:44%; border-radius:50% 50% 8% 8%;
+  background:radial-gradient(ellipse at 28% 32%,#c39761 0 1.5%,transparent 2.5%),
+    radial-gradient(ellipse at 72% 58%,#b18458 0 2%,transparent 3%),
+    linear-gradient(#a87949,#69432e 70%,#4e3022);
+  box-shadow:inset 0 5px 0 #c49965,inset 0 -8px 12px #36231966,0 5px 8px #37231844; z-index:2; }
+.soil::before { content:''; position:absolute; left:12%; right:12%; top:37%; height:32%; opacity:.6;
+  background:linear-gradient(125deg,transparent 20%,#d9bd8a 21% 22%,transparent 23%),
+    linear-gradient(48deg,transparent 55%,#bb9765 56% 57%,transparent 58%); }
+.turnip.popped .soil { height:13%; border-radius:50%;
+  background:radial-gradient(ellipse,#35231e 0 36%,#533522 40% 57%,#a87949 61% 68%,#725035 74%); }
+.turnip.popped .soil::before { opacity:0; }
+.turnip.popped .giant { bottom:17%; }
+#hint { margin:0; flex:none; min-height:32px; padding:5px 12px; text-align:center;
+  background:#fbf4ea; color:var(--ink); border-top:1px solid #c8ad88; font-size:15px; line-height:1.35; }
+#hint[hidden] { display:none; }
+.story-hint { order:1; }
+#home #hint { max-width:850px; min-height:0; color:#fff; background:#451347ea;
+  border:1px solid #ce9b69; padding:10px 20px; border-radius:24px; font-size:18px; }
+#trunk-hint #hint { padding:0; border:0; background:transparent; font:inherit; text-align:left; min-height:0; }
+.cast-slot:not(.lit) .doll { opacity:1; filter:brightness(.6) drop-shadow(4px 8px 3px #2d182b66); }
+.effect-flash { background:#f2b632!important; border-color:var(--brand)!important; }
+.trunk-performance .doll { animation:sway 3.8s ease-in-out infinite alternate; }
+.calm .trunk-performance .doll { animation:none!important; }
+.frozen .doll { animation-play-state:paused; }
+.seg:focus-within { outline:3px solid #ffe4a0; outline-offset:3px; }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; clip-path:inset(50%); overflow:hidden; }
+@media (max-width:1050px) {
+  h1 { font-size:25px; }
+  h1 small { display:none; }
+  header { gap:7px; padding:7px 10px; }
+  .icon-btn,.seg button { font-size:14px; padding:0 10px; }
+  .story-tiles { gap:14px; }
+  .trunk-top { grid-template-columns:minmax(0,1fr) 260px; }
+}
+@media (max-height:540px) and (min-width:600px) {
+  header { padding:4px 8px; gap:6px; }
+  h1 { font-size:21px; }
+  .seg button,.icon-btn { padding:0 8px; font-size:13px; }
+  .home { gap:12px; padding:12px 7%; }
+  .home h2 { font-size:26px; }
+  .home-note { font-size:14px; padding:7px 15px; }
+  #home #hint { font-size:14px; padding:7px 15px; }
+  .story-tile b { padding:13px 4px; font-size:21px; }
+  .story-tile img.landscape { height:115px; }
+  .marquee { display:none; }
+  .player { padding:6px 2% 15px; }
+  .beat-card { padding:6px 12px; }
+  .beat-line { font-size:17px; }
+  .beat-top { margin-bottom:2px; gap:6px; }
+  .beat-kind,.beat-count { font-size:10px; }
+  .badge { font-size:12px; padding:3px 8px; }
+  .side-label { top:4%; }
+  .doll { height:71%; }
+  .teacher-bar { padding:5px 8px 7px; gap:5px; }
+  .teacher-bar button { font-size:14px; padding:3px; }
+  .teacher-bar #effect { font-size:12px; }
+  .choices { inset:auto 8% 1%; }
+  .choices button { font-size:15px; min-height:60px; padding:5px; }
+  .choices .symbol { font-size:21px; }
+  .trunk-top { grid-template-columns:minmax(0,1fr) 250px; }
+  .trunk-hint { font-size:15px; min-height:42px; }
+  .trunk-stage { padding:6px 6px 15px; }
+  .trunk-performance { padding-bottom:0; }
+  .trunk-performance .doll { height:98%; }
+  .trunk-actions { padding:5px 8px; gap:5px; }
+  .trunk-actions button { font-size:13px; padding:3px; }
+  .sound-row { padding:0 8px 5px; gap:4px; }
+  .sound-row button { font-size:11px; padding:3px; }
+  .costume-button { min-height:76px; }
+  .costume-button img { height:43px; }
+  .ending {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    align-content:center;
+    justify-content:stretch;
+    gap:6px;
+    padding:8px 6%;
+  }
+  .ending h2 { font-size:32px; grid-column:1/-1; text-align:center; }
+  .ending p { font-size:14px; grid-column:1/-1; text-align:center; }
+  .ending button { font-size:17px; padding:6px; }
+}
+@media (max-width:599px) {
+  header { gap:5px; padding:6px; display:grid; grid-template-columns:repeat(3,1fr); }
+  h1 { font-size:23px; grid-column:1; }
+  .seg { grid-column:2/4; width:100%; }
+  .seg button { flex:1; }
+  .seg button,.icon-btn { min-height:60px; padding:0 6px; font-size:14px; }
+  .home { padding:16px 24px 25px; gap:12px; }
+  .home h2 { font-size:27px; }
+  .story-tiles { grid-template-columns:1fr; width:100%; gap:12px; }
+  .story-tile { display:grid; grid-template-columns:43% 1fr; min-height:116px; align-items:center; }
+  .story-tile img.landscape { height:116px; }
+  .story-tile .keepsake { width:24%; height:70%; left:16%; top:20%; }
+  .story-tile b { font-size:22px; padding:10px; }
+  .marquee { display:none; }
+  .home-note { font-size:14px; text-align:center; padding:8px 12px; }
+  #home #hint { font-size:14px; padding:8px 12px; }
+  .player { padding:8px 8px 20px; }
+  .beat-card { padding:9px 12px; }
+  .beat-line { font-size:20px; }
+  .beat-kind { font-size:10px; letter-spacing:.5px; }
+  .badge { font-size:12px; padding:4px 7px; }
+  .beat-count { font-size:10px; }
+  .beat-top { gap:5px; flex-wrap:wrap; }
+  .cast-slot { width:43%; }
+  .doll { height:70%; width:auto; max-width:90%; max-height:none; }
+  .side-label { top:8%; }
+  .dress-trunk { width:26%; left:37%; height:24%; }
+  .player.garden-story .dress-trunk { left:1%; width:18%; height:23%; }
+  .choices { inset:auto 1% 3%; gap:8px; }
+  .choices button { font-size:16px; padding:6px; }
+  .teacher-bar { grid-template-columns:repeat(3,1fr); padding:6px; gap:6px; }
+  .teacher-bar #next { grid-column:3; grid-row:2; }
+  .teacher-bar button { font-size:15px; }
+  .teacher-bar #effect { font-size:12px; }
+  .trunk-top { grid-template-columns:minmax(0,1fr) 150px; }
+  .piece-group { grid-template-columns:repeat(2,minmax(60px,1fr)); gap:5px; }
+  .wardrobe { padding:4px; border-width:2px; }
+  .costume-button { min-height:78px; }
+  .costume-button span { font-size:11px; }
+  .costume-button img { height:42px; }
+  .trunk-stage { padding:8px 3px 17px; }
+  .trunk-hint { max-width:98%; font-size:15px; padding:6px; }
+  .trunk-performance .doll { width:auto; height:80%; max-width:70%; max-height:none; }
+  .trunk-performance .dress-trunk { width:30%; left:0; height:23%; }
+  .trunk-actions { grid-template-columns:repeat(3,1fr); padding:6px; gap:6px; }
+  .trunk-actions button { font-size:13px; }
+  .sound-row { grid-template-columns:repeat(4,1fr); padding:0 6px 6px; gap:6px; }
+  .sound-row button { font-size:11px; padding:2px; }
+  .ending { gap:14px; padding:12px; text-align:center; }
+  .ending p { font-size:16px; }
+  .turnip { width:30%; left:35%; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Act It Out<small>Pretend play and acting out a story</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-stories" aria-pressed="true">▤ Stories</button>
+    <button id="m-trunk" aria-pressed="false">▣ Trunk</button>
+  </div>
+  <button class="icon-btn" id="read">🔊 Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<main>
+  <section class="world home" id="home" aria-label="Choose a story">
+    <img class="backdrop" data-art="little-stage" alt="">
+    <div class="marquee">The class is the cast</div>
+    <h2>Which story shall we become?</h2>
+    <div class="story-tiles">
+      <button class="story-tile" id="story-goats">
+        <img class="landscape" data-art="meadow-bridge" alt="A little bridge to a grassy hill">
+        <img class="keepsake" data-art="little-horns" alt=""><b>Billy Goats</b>
+      </button>
+      <button class="story-tile" id="story-gingerbread">
+        <img class="landscape" data-art="cottage-kitchen" alt="A cozy kitchen with an oven">
+        <img class="keepsake" data-art="icing-buttons" alt=""><b>Gingerbread Boy</b>
+      </button>
+      <button class="story-tile" id="story-turnip">
+        <img class="landscape" data-art="veggie-garden" alt="A leafy vegetable garden">
+        <img class="keepsake" data-art="straw-hat" alt=""><b>Big Turnip</b>
+      </button>
+    </div>
+    <p id="hint" class="home-note" aria-live="polite"></p>
+  </section>
+  <section class="world player" id="player" hidden aria-label="Story stage">
+    <img class="backdrop" id="story-backdrop" alt="">
+    <div class="beat-card">
+      <div class="beat-top"><span class="beat-kind" id="beat-kind"></span><span class="badge" id="acting"></span>
+        <span class="beat-count" id="beat-count"></span></div>
+      <p class="beat-line" id="beat-line"></p>
+    </div>
+    <div class="performance" id="performance">
+      <div class="cast">
+        <div class="cast-slot" id="sun-slot"><span class="badge side-label">☀ Sun side</span><div class="doll" id="sun-doll"></div></div>
+        <div class="cast-slot" id="moon-slot"><span class="badge moon side-label">☾ Moon side</span><div class="doll" id="moon-doll"></div></div>
+      </div>
+      <img class="dress-trunk" id="story-trunk" data-art="trunk-closed" alt="Dress-up trunk" hidden>
+      <div class="turnip" id="turnip" hidden>
+        <img class="sprout" id="sprout" data-art="turnip-sprout" alt="A tiny turnip sprout">
+        <img class="giant" id="giant" data-art="turnip-giant" alt="A giant turnip"><div class="soil"></div>
+      </div>
+      <div class="choices" id="choices" hidden>
+        <button id="choice-a" aria-pressed="false"><span class="symbol"></span><span class="choice-word"></span></button>
+        <button id="choice-b" aria-pressed="false"><span class="symbol"></span><span class="choice-word"></span></button>
+      </div>
+      <div class="ending" id="ending" hidden>
+        <h2>The end</h2><p id="end-story"></p><button id="replay">⇄ Swap and play again</button><button id="end-home">⌂ Home</button>
+      </div>
+    </div>
+    <div class="freeze-frame" id="story-frame" hidden><b>Freeze!</b></div>
+  </section>
+  <nav class="teacher-bar" id="teacher-bar" aria-label="Teacher story controls" hidden>
+    <button id="back">← Back</button><button id="swap">⇄ Swap</button><button id="freeze">❄ Freeze</button>
+    <button id="effect">♫ Sound effect<small id="effect-name"></small></button><button id="go-home">⌂ Home</button>
+    <button id="next">Next ▶</button>
+  </nav>
+  <section class="trunk-view" id="trunk-view" hidden aria-label="Dress-up trunk">
+    <div class="trunk-top">
+      <div class="world trunk-stage" id="trunk-stage">
+        <img class="backdrop" id="trunk-backdrop" data-art="little-stage" alt="">
+        <div class="trunk-hint" id="trunk-hint"></div>
+        <div class="trunk-performance" id="trunk-performance">
+          <div class="doll" id="trunk-doll"></div><img class="dress-trunk" data-art="trunk-open" alt="Open dress-up trunk">
+        </div>
+        <div class="freeze-frame" id="trunk-frame" hidden><b>Freeze!</b></div>
+      </div>
+      <div class="wardrobe" id="wardrobe" aria-label="Costume pieces grouped by place"></div>
+    </div>
+    <div class="trunk-actions">
+      <button id="backdrop">▧ Backdrop</button><button id="surprise">⚄ Surprise me</button>
+      <button id="clear">↥ Take it all off</button><button id="ask">? Ask</button><button id="trunk-freeze">❄ Freeze</button>
+    </div>
+    <div class="sound-row" id="sound-row" aria-label="Sound effects"></div>
+  </section>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const DATA = "json:content";
+  const ART = {
+    'turnip-sprout':'art:turnip-sprout', 'turnip-giant':'art:turnip-giant',
+    'little-stage':'art:little-stage', 'meadow-bridge':'art:meadow-bridge', 'cottage-kitchen':'art:cottage-kitchen',
+    'country-road':'art:country-road', 'wide-river':'art:wide-river', 'veggie-garden':'art:veggie-garden',
+    'puppet-sun':'art:puppet-sun', 'puppet-moon':'art:puppet-moon', 'trunk-open':'art:trunk-open', 'trunk-closed':'art:trunk-closed',
+    'little-horns':'art:little-horns', 'curly-horns':'art:curly-horns', 'straw-hat':'art:straw-hat', 'crown':'art:crown',
+    'wizard-hat':'art:wizard-hat', 'fox-ears':'art:fox-ears', 'dog-ears':'art:dog-ears', 'mouse-ears':'art:mouse-ears',
+    'cow-bell':'art:cow-bell', 'hair-bow':'art:hair-bow', 'pig-snout':'art:pig-snout', 'cat-whiskers':'art:cat-whiskers',
+    'troll-nose':'art:troll-nose', 'icing-buttons':'art:icing-buttons', 'candy-bow':'art:candy-bow', 'apron':'art:apron',
+    'shawl':'art:shawl', 'shaggy-cape':'art:shaggy-cape', 'big-boots':'art:big-boots', 'bushy-tail':'art:bushy-tail'
+  };
+  document.querySelectorAll('[data-art]').forEach(img => { img.src=ART[img.dataset.art]; });
+  const pieces = DATA.pieces;
+  const state = {
+    mode:'stories', story:null, beat:0, swapped:false, frozen:false, choice:{}, outfits:[{},{}],
+    trunk:{outfit:{}, backdrop:0, ask:0, taps:0, visitTaps:0}, revision:0
+  };
+  const backgrounds = ['little-stage','meadow-bridge','cottage-kitchen','country-road','wide-river','veggie-garden'];
+  const L = DATA.lines;
+  const swappedText = text => state.swapped ? text.replace(/Sun side|Moon side/g, word => word === 'Sun side' ? 'Moon side' : 'Sun side') : text;
+  const currentBeat = () => state.story ? DATA.stories[state.story].beats[state.beat] : null;
+  const V = Curio.voice({
+    lines:DATA.voiceLines, scope:() => state.mode + ':' + state.story, hint:false,
+    read:() => currentBeat() && state.mode === 'stories' ? [beatText(), $('hint').textContent] : $('hint').textContent,
+    welcome:() => state.mode === 'trunk' ? ['trunkWelcome',L.trunkWelcome,
+      {valid:() => state.trunk.taps === state.trunk.visitTaps}]
+      : !state.story ? ['welcome',L.welcome,{valid:() => !state.story}] : null,
+    speaks:'.story-tile, .costume-button, #surprise, #clear, #ask, #next, #replay'
+  });
+  let animations = [];
+  let timers = [];
+  let nodes = [];
+  function settle() {
+    state.revision++;
+    timers.forEach(clearTimeout);
+    timers = [];
+    animations.forEach(a => { try { a.finish(); a.cancel(); } catch {} });
+    animations = [];
+    nodes.forEach(n => { try { n.stop(); } catch {} });
+    nodes = [];
+    document.querySelectorAll('.ping,.effect-flash').forEach(el => el.classList.remove('ping','effect-flash'));
+    if (state.story === 'turnip' && state.beat === 1) {
+      $('sprout').hidden=true;
+      $('giant').style.opacity='1';
+      $('giant').style.transform='none';
+    }
+  }
+  function interrupt() { settle(); V.hush(); }
+  function animate(el, frames, duration) {
+    if (Curio.reduce || !el) return;
+    animations.push(el.animate(frames, {duration,easing:'cubic-bezier(.2,.7,.3,1)'}));
+  }
+  function later(fn, delay) {
+    const revision = state.revision;
+    timers.push(setTimeout(() => { if (revision === state.revision) fn(); },delay));
+  }
+  function feedback() { Curio.tone(660,.075,.018); }
+  function sound(name) {
+    if (!Curio.sound) return;
+    try {
+      const ctx = Curio.audio();
+      if (ctx.state === 'suspended') ctx.resume();
+      const t = ctx.currentTime;
+      function tone(f, time, duration=.09, gain=.07, end) {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.frequency.setValueAtTime(f,time);
+        if (end) o.frequency.exponentialRampToValueAtTime(end,time+duration);
+        g.gain.setValueAtTime(.0001,time);
+        g.gain.exponentialRampToValueAtTime(gain,time+.006);
+        g.gain.exponentialRampToValueAtTime(.0001,time+duration);
+        o.connect(g).connect(ctx.destination);
+        o.start(time);
+        o.stop(time+duration+.02);
+        nodes.push(o);
+      }
+      function noise(up) {
+        const duration=.65;
+        const b = ctx.createBuffer(1,ctx.sampleRate*duration,ctx.sampleRate);
+        const data = b.getChannelData(0);
+        for (let i=0;i<data.length;i++) data[i] = Math.random()*2-1;
+        const source = ctx.createBufferSource();
+        const filter = ctx.createBiquadFilter();
+        const gain = ctx.createGain();
+        source.buffer=b;
+        filter.type='lowpass';
+        filter.frequency.setValueAtTime(up?300:2000,t);
+        filter.frequency.exponentialRampToValueAtTime(up?2000:300,t+duration);
+        gain.gain.setValueAtTime(.0001,t);
+        gain.gain.exponentialRampToValueAtTime(.09,t+.05);
+        gain.gain.exponentialRampToValueAtTime(.0001,t+duration);
+        source.connect(filter).connect(gain).connect(ctx.destination);
+        source.start(t);
+        source.stop(t+duration);
+        nodes.push(source);
+      }
+      if (name === 'Trip trap') { tone(900,t); tone(1100,t+.12); }
+      if (name === 'TRIP TRAP') { tone(450,t,.13,.1); tone(550,t+.22,.13,.1); }
+      if (name === 'Splash') noise(false);
+      if (name === 'Heave-ho') noise(true);
+      if (name === 'Oven ding') { tone(1320,t,.85,.08); tone(2640,t,.45,.018); }
+      if (name === 'Running feet') for (let i=0;i<8;i++) tone(i%2?850:700,t+i*.1,.055,.04);
+      if (name === 'Snap') { tone(1700,t,.028,.055); tone(100,t,.15,.06); }
+      if (name === 'Pop') { tone(600,t,.2,.08,150); tone(95,t,.17,.055); }
+      if (name === 'sparkle') [1046.502,1318.51,1567.982].forEach((f,i) => tone(f,t+i*.09,.35,.04));
+      if (name === 'camera') { tone(1800,t,.025,.025); tone(900,t+.035,.04,.018); }
+    } catch {}
+  }
+  function setHint(text) {
+    $('hint').textContent=text;
+  }
+  function doll(el, side, outfit) {
+    el.replaceChildren();
+    const wood = document.createElement('img');
+    wood.src=ART['puppet-'+side];
+    wood.alt=(side === 'sun' ? 'Sun' : 'Moon')+' wooden peg puppet';
+    wood.className='wood';
+    el.append(wood);
+    const ns='http://www.w3.org/2000/svg';
+    const face=document.createElementNS(ns,'svg');
+    face.setAttribute('viewBox','0 0 100 231.111');
+    face.setAttribute('class','face '+side);
+    face.setAttribute('aria-hidden','true');
+    const smile=el.closest('.lit') || state.mode === 'trunk' ? 'M41 64 Q50 77 59 64' : 'M43 65 Q50 71 57 65';
+    face.innerHTML='<circle class="eyes" cx="39" cy="49" r="2.2"/><circle class="eyes" cx="61" cy="49" r="2.2"/>'
+      +'<path class="mouth" d="'+(state.frozen?'M47 65 a4 5 0 1 0 8 0 a4 5 0 1 0 -8 0':smile)+'"/>';
+    el.append(face);
+    for (const id of Object.values(outfit)) {
+      const piece=document.createElement('img');
+      piece.src=ART[id];
+      piece.alt=pieces[id].name;
+      piece.className='piece '+pieces[id].place+' '+id;
+      el.append(piece);
+    }
+  }
+  function updateFreeze() {
+    for (const prefix of ['story','trunk']) $(prefix+'-frame').hidden=!state.frozen;
+    for (const id of ['freeze','trunk-freeze']) {
+      $(id).textContent=state.frozen?'♨ Unfreeze':'❄ Freeze';
+      $(id).setAttribute('aria-pressed',state.frozen);
+    }
+    $('player').classList.toggle('frozen',state.frozen);
+    $('trunk-stage').classList.toggle('frozen',state.frozen);
+  }
+  function freeze() {
+    interrupt();
+    state.frozen=!state.frozen;
+    updateFreeze();
+    if (state.mode === 'trunk') doll($('trunk-doll'),'sun',state.trunk.outfit);
+    else drawCast();
+    const key=state.frozen?'freeze':'unfreeze';
+    V.say(L[key],{valid:() => state.frozen === (key === 'freeze')});
+    feedback();
+  }
+  function beatText() {
+    const beat=currentBeat();
+    if (!beat) return '';
+    if (state.story === 'turnip' && beat.type === 'choose' && state.choice[state.beat] === 'b') return L.bear;
+    let text=beat.line;
+    if (beat.variants) text=beat.variants[state.choice[beat.choiceFrom] || 'a'];
+    return swappedText(text);
+  }
+  function restoreCostumes() {
+    state.outfits=[{},{}];
+    const beats=DATA.stories[state.story].beats;
+    for (let i=0;i<=state.beat;i++) {
+      const b=beats[i];
+      if (!b.pieces) continue;
+      for (const [role,ids] of Object.entries(b.pieces)) {
+        const targets=role === 'both' ? [0,1] : [Number(role) ^ Number(state.swapped)];
+        for (const target of targets) for (const id of ids) state.outfits[target][pieces[id].place]=id;
+      }
+    }
+  }
+  function drawCast() {
+    const b=currentBeat();
+    const acting=b?.side;
+    const both=acting === 'both' || acting == null;
+    const active=Number(acting) ^ Number(state.swapped);
+    $('sun-slot').classList.toggle('lit',both || active === 0);
+    $('moon-slot').classList.toggle('lit',both || active === 1);
+    doll($('sun-doll'),'sun',state.outfits[0]);
+    doll($('moon-doll'),'moon',state.outfits[1]);
+  }
+  function growTurnip(moving=true) {
+    const b=state.beat;
+    $('turnip').hidden=state.story !== 'turnip' || b === 0;
+    if (state.story !== 'turnip') return;
+    $('turnip').classList.toggle('popped',b >= 9);
+    $('sprout').hidden=b !== 1 || !moving;
+    $('giant').style.opacity=b === 1 && moving?'0':'1';
+    $('giant').style.transform='none';
+    if (b === 1 && moving) {
+      if (Curio.reduce) {
+        $('giant').style.opacity='.25';
+        $('giant').style.transform='scale(.25)';
+        later(() => { $('giant').style.opacity='.65'; $('giant').style.transform='scale(.6)'; },2000);
+        later(() => { $('giant').style.opacity='1'; $('giant').style.transform='none'; $('sprout').hidden=true; },4000);
+      } else {
+        animate($('giant'),[{transform:'scale(.08)',opacity:0},{transform:'scale(1)',opacity:1}],4000);
+        $('giant').style.opacity='1';
+        animate($('sprout'),[{opacity:1},{opacity:0}],4000);
+        later(() => { $('sprout').hidden=true; },4000);
+      }
+    }
+    if (b === 9 && moving) animate($('giant'),[{transform:'translateY(35%) rotate(-6deg)'},{transform:'translateY(-12%) rotate(7deg)'},
+      {transform:'translateY(0) rotate(0)'}],650);
+  }
+  function paintBeat(moving=true) {
+    const b=currentBeat();
+    restoreCostumes();
+    $('story-backdrop').src=ART[b.backdrop];
+    $('player').classList.toggle('garden-story',state.story === 'turnip');
+    $('player').classList.toggle('curtain-call',b.type === 'end');
+    $('beat-line').textContent=beatText();
+    $('beat-kind').textContent={tell:'▤ Story',dress:'▣ Dress up',act:'★ Your turn',choose:'? Choose',freeze:'❄ Freeze',end:'★ Curtain call'}[b.type];
+    $('beat-count').textContent=(state.beat+1)+' / '+DATA.stories[state.story].beats.length;
+    const bear=state.story === 'turnip' && b.type === 'choose' && state.choice[state.beat] === 'b';
+    const side=bear || b.side === 'both' ? 'both' : b.side == null ? null : Number(b.side)^Number(state.swapped);
+    $('acting').hidden=side == null;
+    $('acting').textContent=side === 'both' ? '☀ ☾ Everyone' : side === 0 ? '☀ Sun side' : '☾ Moon side';
+    $('acting').className='badge'+(side === 'both'?' everyone':side === 1?' moon':'');
+    $('choices').hidden=b.type !== 'choose';
+    $('performance').classList.toggle('choosing',b.type === 'choose');
+    $('ending').hidden=b.type !== 'end';
+    $('end-story').textContent=DATA.stories[state.story].title;
+    $('back').disabled=state.beat === 0;
+    $('next').disabled=b.type === 'end' || (b.type === 'choose' && !state.choice[state.beat]);
+    $('effect').disabled=!b.sound;
+    $('effect-name').textContent=b.sound || 'No sound this beat';
+    if ($('next').disabled && document.activeElement === $('next')) {
+      $(b.type === 'choose' ? 'choice-a' : 'replay').focus({preventScroll:true});
+    }
+    if ($('back').disabled && document.activeElement === $('back')) $('next').focus({preventScroll:true});
+    if (b.type === 'choose') {
+      for (const key of ['a','b']) {
+        const btn=$('choice-'+key);
+        btn.querySelector('.symbol').textContent=b.choices[key].icon;
+        btn.querySelector('.choice-word').textContent=b.choices[key].name;
+        btn.setAttribute('aria-pressed',state.choice[state.beat] === key);
+      }
+    }
+    $('story-trunk').hidden=b.type !== 'dress';
+    $('story-trunk').src=ART['trunk-closed'];
+    drawCast();
+    updateFreeze();
+    growTurnip(moving);
+    const hint=b.type === 'choose' && !state.choice[state.beat] ? L.chooseHint : b.type === 'end' ? L.endHint
+      : ['act','dress','freeze'].includes(b.type) || bear ? L.actHint : L.nextHint;
+    setHint(hint);
+    if (moving && b.type === 'dress') {
+      $('story-trunk').src=ART['trunk-open'];
+      sound('sparkle');
+      const trunk=$('story-trunk').getBoundingClientRect();
+      const newPieces=Object.values(b.pieces || {}).flat();
+      for (const slot of [0,1]) {
+        for (const img of $(slot?'moon-doll':'sun-doll').querySelectorAll('.piece')) {
+          if (!newPieces.includes(img.classList[2])) continue;
+          const target=img.getBoundingClientRect();
+          const x=trunk.x+trunk.width/2-target.x-target.width/2;
+          const y=trunk.y+trunk.height/2-target.y-target.height/2;
+          animate(img,[{transform:'translate('+x+'px,'+y+'px) scale(.25)',opacity:.3},
+            {transform:'translate(0,0) scale(1)',opacity:1}],500);
+        }
+      }
+    }
+    if (b.sound) sound(b.sound);
+  }
+  function narrateBeat(start=false) {
+    const revision=state.revision;
+    const valid=() => state.revision === revision;
+    V.say(beatText(),{valid,key:'beat-'+state.story+'-'+state.beat});
+    if (start) V.say(DATA.stories[state.story].title,{valid});
+    const type=currentBeat().type;
+    const key=type === 'choose'?'chooseHint':type === 'end'?'endHint':type === 'act' || type === 'dress'?'actHint':'nextHint';
+    if (!V.heard(key)) V.how(L[key],{key,valid,needs:type === 'choose'?'#choice-a':type === 'end'?'#replay':'#next'});
+  }
+  function visit(index) {
+    interrupt();
+    state.beat=index;
+    state.frozen=currentBeat().type === 'freeze';
+    paintBeat();
+    narrateBeat();
+  }
+  function startStory(id, swapped=false) {
+    interrupt();
+    state.mode='stories';
+    state.story=id;
+    state.beat=0;
+    state.swapped=swapped;
+    state.frozen=false;
+    state.choice={};
+    const departed=document.activeElement;
+    showMode();
+    paintBeat();
+    if (departed && (departed.classList.contains('story-tile') || departed.id === 'replay')) {
+      $('next').focus({preventScroll:true});
+    }
+    narrateBeat(true);
+    feedback();
+  }
+  function next() {
+    if (state.mode !== 'stories' || !state.story || $('next').disabled) return;
+    const wasFrozen=state.frozen;
+    if (wasFrozen) sound('camera');
+    visit(state.beat+1);
+    if (wasFrozen) sound('camera');
+    else feedback();
+  }
+  function back() {
+    if (state.mode === 'stories' && state.story && state.beat > 0) { visit(state.beat-1); feedback(); }
+  }
+  function swap() {
+    if (state.mode !== 'stories' || !state.story) return;
+    interrupt();
+    state.swapped=!state.swapped;
+    paintBeat(false);
+    animate($('sun-doll'),[{transform:'translateX(80%)',opacity:.4},{transform:'translateX(0)',opacity:1}],400);
+    animate($('moon-doll'),[{transform:'translateX(-80%)',opacity:.4},{transform:'translateX(0)',opacity:1}],400);
+    V.say(L.swap);
+    feedback();
+  }
+  function choose(key) {
+    interrupt();
+    state.choice[state.beat]=key;
+    paintBeat(false);
+    if (state.story === 'turnip' && key === 'b') V.say(L.bear);
+    else V.say(currentBeat().choices[key].name);
+    setHint(state.story === 'turnip' && key === 'b' ? L.actHint : L.nextHint);
+    feedback();
+  }
+  function showMode() {
+    const trunk=state.mode === 'trunk';
+    $('m-stories').setAttribute('aria-pressed',!trunk);
+    $('m-trunk').setAttribute('aria-pressed',trunk);
+    $('home').hidden=trunk || !!state.story;
+    $('player').hidden=trunk || !state.story;
+    $('teacher-bar').hidden=trunk || !state.story;
+    $('trunk-view').hidden=!trunk;
+    $('hint').className=state.story ? 'story-hint' : '';
+    (trunk ? $('trunk-hint') : state.story ? document.querySelector('main') : $('home')).append($('hint'));
+  }
+  function setMode(mode) {
+    interrupt();
+    state.mode=mode;
+    state.frozen=false;
+    state.story=null;
+    const departed=document.activeElement;
+    showMode();
+    if (mode === 'stories' && departed && ['go-home','end-home'].includes(departed.id)) {
+      $('story-goats').focus({preventScroll:true});
+    }
+    updateFreeze();
+    if (mode === 'trunk') {
+      state.trunk.visitTaps=state.trunk.taps;
+      renderTrunk();
+      setHint(L.trunkWelcome);
+    } else setHint(L.welcome);
+    V.welcome();
+    feedback();
+  }
+  function renderTrunk() {
+    doll($('trunk-doll'),'sun',state.trunk.outfit);
+    $('trunk-backdrop').src=ART[backgrounds[state.trunk.backdrop]];
+    for (const btn of $('wardrobe').querySelectorAll('button')) {
+      const id=btn.dataset.piece;
+      btn.setAttribute('aria-pressed',state.trunk.outfit[pieces[id].place] === id);
+    }
+    updateFreeze();
+  }
+  function wear(id) {
+    interrupt();
+    const place=pieces[id].place;
+    const removing=state.trunk.outfit[place] === id;
+    if (removing) delete state.trunk.outfit[place];
+    else state.trunk.outfit[place]=id;
+    state.trunk.taps++;
+    renderTrunk();
+    animate($('trunk-doll'),[{transform:'translateY(8px)'},{transform:'translateY(-8px)'},{transform:'translateY(0)'}],350);
+    sound('sparkle');
+    V.say(pieces[id].name+(removing?' off.':' on.'),{valid:() =>
+      removing ? state.trunk.outfit[place] !== id : state.trunk.outfit[place] === id});
+    setHint(state.trunk.taps >= 2 ? L.askHint : L.trunkWelcome);
+    if (state.trunk.taps >= 2 && !V.heard('askHint')) V.how(L.askHint,{key:'askHint',needs:'#ask'});
+  }
+  function surprise() {
+    interrupt();
+    const places=['head','face','body','feet','tail'].sort(() => Math.random()-.5).slice(0,Math.random()<.5?3:4);
+    state.trunk.outfit={};
+    for (const place of places) {
+      const options=Object.keys(pieces).filter(id => pieces[id].place === place);
+      state.trunk.outfit[place]=options[Math.floor(Math.random()*options.length)];
+    }
+    state.trunk.taps++;
+    renderTrunk();
+    animate($('trunk-doll'),[{transform:'scale(.9) rotate(-4deg)'},{transform:'scale(1.03) rotate(3deg)'},{transform:'none'}],450);
+    sound('sparkle');
+    setHint(L.askHint);
+    V.say(L.surprise);
+  }
+  function clear() {
+    interrupt();
+    state.trunk.outfit={};
+    state.trunk.taps++;
+    renderTrunk();
+    animate($('trunk-doll'),[{transform:'translateY(0)'},{transform:'translateY(-16px)'},{transform:'translateY(0)'}],350);
+    sound('Pop');
+    setHint(L.trunkWelcome);
+    V.say(L.clear);
+  }
+  function ask() {
+    interrupt();
+    state.trunk.taps++;
+    const text=DATA.questions[state.trunk.ask%DATA.questions.length];
+    state.trunk.ask++;
+    setHint(text+' '+L.askAgain);
+    V.say(text);
+    V.how(L.askAgain,{key:'askAgain',needs:'#ask'});
+    feedback();
+  }
+  function setupWardrobe() {
+    for (const place of ['head','face','body','feet','tail']) {
+      const title=document.createElement('h3');
+      title.textContent={head:'Head',face:'Face',body:'Body',feet:'Feet',tail:'Tail'}[place];
+      const group=document.createElement('div');
+      group.className='piece-group';
+      for (const [id,piece] of Object.entries(pieces).filter(([,p]) => p.place === place)) {
+        const btn=document.createElement('button');
+        btn.className='costume-button';
+        btn.id='wear-'+id;
+        btn.dataset.piece=id;
+        btn.setAttribute('aria-pressed','false');
+        btn.innerHTML='<img src="'+ART[id]+'" alt=""><span>'+piece.name+'</span>';
+        btn.onclick=() => wear(id);
+        group.append(btn);
+      }
+      $('wardrobe').append(title,group);
+    }
+    DATA.sounds.forEach((entry,i) => {
+      const btn=document.createElement('button');
+      btn.id='sound-'+i;
+      btn.innerHTML='<span>'+entry.icon+'</span>'+entry.name;
+      btn.onclick=() => {
+        interrupt();
+        state.trunk.taps++;
+        sound(entry.name);
+        btn.classList.add('ping');
+        later(() => btn.classList.remove('ping'),300);
+      };
+      $('sound-row').append(btn);
+    });
+  }
+  $('m-stories').onclick=() => setMode('stories');
+  $('m-trunk').onclick=() => setMode('trunk');
+  for (const id of Object.keys(DATA.stories)) $('story-'+id).onclick=() => startStory(id);
+  $('next').onclick=next;
+  $('back').onclick=back;
+  $('swap').onclick=swap;
+  $('freeze').onclick=freeze;
+  $('trunk-freeze').onclick=freeze;
+  $('effect').onclick=() => {
+    interrupt();
+    sound(currentBeat().sound);
+    $('effect').classList.add('effect-flash');
+    later(() => $('effect').classList.remove('effect-flash'),400);
+  };
+  $('go-home').onclick=$('end-home').onclick=() => setMode('stories');
+  $('replay').onclick=() => startStory(state.story,!state.swapped);
+  $('choice-a').onclick=() => choose('a');
+  $('choice-b').onclick=() => choose('b');
+  $('backdrop').onclick=() => {
+    interrupt();
+    state.trunk.taps++;
+    state.trunk.backdrop=(state.trunk.backdrop+1)%backgrounds.length;
+    renderTrunk();
+    feedback();
+  };
+  $('surprise').onclick=surprise;
+  $('clear').onclick=clear;
+  $('ask').onclick=ask;
+  document.addEventListener('keydown',event => {
+    if (event.altKey || event.ctrlKey || event.metaKey) return;
+    if (event.key === 'ArrowRight') { event.preventDefault(); next(); }
+    if (event.key === 'ArrowLeft') { event.preventDefault(); back(); }
+    if (event.key.toLowerCase() === 'f') { event.preventDefault(); if (state.story || state.mode === 'trunk') freeze(); }
+    if (event.key.toLowerCase() === 's') { event.preventDefault(); swap(); }
+  });
+  Curio.onMotion(() => { settle(); V.hush(); });
+  Curio.onSound(() => {
+    settle();
+    if (Curio.sound && state.mode === 'trunk') {
+      state.trunk.visitTaps=state.trunk.taps;
+      V.welcome();
+    }
+  });
+  Curio.init({clips:"voice:*",rate:.9});
+  const readCurrent=$('read').onclick;
+  $('read').onclick=() => {
+    settle();
+    readCurrent();
+  };
+  setupWardrobe();
+  setHint(L.welcome);
+  showMode();
+  window.__tool={state,setMode,startStory,next,back,swap,freeze,choose,wear,surprise,ask,clear,DATA,allLines:V.allLines,vlog:V.log,
+    renderDoll:doll, get vq() { return V.queue; }, get voice() { return V; }};
+})();
+</script>
+</body>
+</html>

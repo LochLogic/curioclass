@@ -1,0 +1,170 @@
+{
+  "target": 44,
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "look-open",
+      "steps": [
+        {
+          "click": ".painting-card"
+        }
+      ],
+      "keep": [
+        "#look-frame",
+        "#tells",
+        "#next"
+      ]
+    },
+    {
+      "name": "look-pins",
+      "steps": [
+        {
+          "click": ".painting-card"
+        },
+        {
+          "click": "#tells"
+        }
+      ],
+      "keep": [
+        "#look-frame"
+      ]
+    },
+    {
+      "name": "match-dealt",
+      "steps": [
+        {
+          "click": "#m-match"
+        },
+        {
+          "click": "#deal"
+        }
+      ],
+      "keep": [
+        "#match-frame",
+        "#hand",
+        "#deal"
+      ]
+    },
+    {
+      "name": "match-selected",
+      "steps": [
+        {
+          "click": "#m-match"
+        },
+        {
+          "click": "#deal"
+        },
+        {
+          "click": "#hand-0"
+        }
+      ],
+      "keep": [
+        "#match-frame",
+        "#hand",
+        "#deal"
+      ]
+    },
+    {
+      "name": "make-recipe",
+      "steps": [
+        {
+          "click": "#m-make"
+        },
+        {
+          "click": "#make-style-4"
+        }
+      ],
+      "keep": [
+        "#painting-canvas",
+        "#save-picture"
+      ]
+    },
+    {
+      "name": "make-all",
+      "steps": [
+        {
+          "click": "#m-make"
+        },
+        {
+          "click": "#make-gold"
+        },
+        {
+          "click": "#make-tiny"
+        },
+        {
+          "click": "#make-outline"
+        }
+      ],
+      "keep": [
+        "#painting-canvas"
+      ]
+    },
+    {
+      "name": "album-empty",
+      "steps": [
+        {
+          "click": "#m-album"
+        }
+      ],
+      "keep": [
+        "#hint"
+      ]
+    },
+    {
+      "name": "review-won",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "js": "__tool.setMode('match');__tool.deal('bedroom');__tool.state.hand=['outline','thick','gold','dots'];__tool.playTell('outline');__tool.playTell('thick');__tool.chooseStyle(5);__tool.chooseArtist('Vincent van Gogh');"
+        }
+      ],
+      "keep": [
+        "#match-frame",
+        "#collection-receipt",
+        "#deal"
+      ]
+    },
+    {
+      "name": "review-full-album",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "js": "__tool.state.album=new Set(__tool.works.map(w=>w.id));__tool.setMode('album');"
+        }
+      ],
+      "keep": [
+        "#clear-album"
+      ]
+    },
+    {
+      "name": "review-clear-confirm",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "js": "__tool.state.album=new Set(['bedroom']);__tool.setMode('album');"
+        },
+        {
+          "click": "#clear-album"
+        }
+      ],
+      "keep": [
+        "#clear-yes",
+        "#clear-no"
+      ]
+    }
+  ]
+}

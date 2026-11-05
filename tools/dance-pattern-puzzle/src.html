@@ -1,0 +1,2373 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Dance Pattern Puzzle · Curio Class</title>
+<meta name="description" content="Find repeating moves, sides, levels and facings. Repair 18 dance puzzles and compose your own dance. Grades 3–5. Works offline.">
+<!--
+Dance Pattern Puzzle, Curio Class. Grades 3-5 dance: DA:Cr2.1.3a-5a, DA:Pr5.1.3b,
+DA:Cn11.1.3a-5a, DA:Re7.1.3a. Students or teacher. One offline file; no requests or collection.
+Sources: NCAS Dance (2014); Anne Green Gilbert, Creative Dance for All Ages (2015);
+Elizabeth Burchenal, Folk-Dances of Denmark (1915);
+Francisca Reyes Aquino, Philippine Folk Dances, vol. 1 (1953); NCCA Philippines.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Original synthesized tunes, not traditional melodies. Content CC BY 4.0, code MIT.
+Started from kit/starter/src.html. Jointed figures, floor, clock, music and counts use kit/dance.js.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#fff8ec; --ink:#1b2233; --muted:#535d73; --line:#ead9bd; --focus:#b45309;
+  --brand:#1f63c7; --btn:#174f9f; --btn-line:#8aafe2; --head-ink:#fff; --panel:#fffdf8;
+}
+body {overflow:hidden}
+header {padding:10px 18px; gap:8px; box-shadow:0 3px 0 #102e5f; z-index:2}
+h1 {font-size:27px; letter-spacing:-.5px}
+h1 small {font-size:13px; letter-spacing:.25px; margin-top:4px}
+header button {min-height:44px!important}
+.seg button,.icon-btn {font-size:14px; padding:0 12px}
+main {grid-template-columns:minmax(0,1fr) 348px; gap:0}
+.panel {grid-column:2; grid-row:1; padding:12px; gap:9px; border-left:2px solid #dbc5a3;
+  background:linear-gradient(100deg,#f8eddc,#fffdf9 9%); scrollbar-width:thin}
+.stage {grid-column:1; grid-row:1; min-height:0; overflow:auto; background:#f3e4ca;
+  background-image:radial-gradient(#b0906630 .7px,transparent .7px); background-size:5px 5px}
+.hint {margin:0; min-height:78px; height:78px; flex:none; padding:9px 11px; border-left:4px solid var(--brand); border-radius:3px 10px 10px 3px;
+  background:#eaf1ff; font-size:14px; line-height:1.35}
+button:focus-visible {outline-offset:1px; z-index:4; position:relative}
+.btn {min-height:44px; min-width:44px; border:1.5px solid #c5b18e; border-radius:9px;
+  background:linear-gradient(#fff,#f7efdf); box-shadow:0 2px 0 #a68a5f33; font-size:13px; font-weight:700; padding:5px 8px}
+.btn:hover {border-color:var(--brand); background:#edf3ff}
+.btn[aria-pressed=true] {background:var(--brand); color:#fff; border-color:var(--brand)}
+.btn:disabled {opacity:.45; cursor:default}
+#maker {border:0; margin:0; padding:0; min-width:0; display:grid; gap:6px}
+#maker legend {font:800 16px 'Trebuchet MS',sans-serif; padding:0; margin-bottom:6px}
+.choice-row {display:grid; grid-template-columns:38px repeat(var(--n),minmax(0,1fr)); align-items:center; gap:4px}
+.choice-row>span {font-size:11px; font-weight:800; color:var(--muted)}
+#moves {display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px}
+.move {display:flex; align-items:center; justify-content:center; gap:2px; padding:2px; font-size:11px}
+.move svg {width:24px; height:35px; flex:none}
+.move>* {pointer-events:none}
+.facing-btn {padding:3px 1px; font-size:11px}
+.big-btn {min-height:49px; font-size:19px; border:2px solid #a67a08; box-shadow:0 3px 0 #9c6d15; border-radius:11px}
+#playrow {display:flex; flex-wrap:wrap; gap:6px}
+#go {flex:1}
+#stop {background:#fff1e6; color:#8f291f; border-color:#a24837}
+.tempo {display:grid; grid-template-columns:repeat(3,1fr); gap:4px}
+.tempo .btn {font-size:12px}
+.label {font-size:11px; font-weight:800; color:var(--muted); letter-spacing:.06em; text-transform:uppercase}
+.pair {display:grid; grid-template-columns:1fr 1fr; gap:5px}
+#more {display:grid; gap:8px}
+#mine-actions {display:grid; grid-template-columns:repeat(3,1fr); gap:4px; flex-basis:100%}
+#challenge {text-align:left; background:#fff4ce; border-color:#b49639; font-weight:600; line-height:1.35; padding:8px}
+#challenge strong {display:block; color:#755400; font-size:11px; letter-spacing:.06em}
+#challenge .met {color:#23643c}
+.privacy {margin:0; font-size:11px; line-height:1.4; color:var(--muted)}
+.map-open .panel {display:none}
+.map-open main {grid-template-columns:1fr}
+#map {position:absolute; inset:0; padding:28px; display:flex; flex-direction:column; justify-content:center; isolation:isolate}
+#map::before {content:""; position:absolute; inset:0; background:linear-gradient(#10233b33,#162a4caa),url('art:festival-square') center/cover;
+  z-index:-2}
+.map-title {color:#fff; text-shadow:0 2px 5px #172a3d; margin-bottom:24px}
+.map-title .eyebrow {font-size:12px; font-weight:800; letter-spacing:.15em; text-transform:uppercase; color:#fff}
+.map-title h2 {font:800 clamp(28px,4vw,52px)/1.08 'Trebuchet MS',sans-serif; margin:8px 0}
+.map-title p {font-size:17px; margin:6px 0; max-width:500px}
+#chapters {display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:12px; align-items:start}
+.chapter {background:linear-gradient(125deg,#fffef9,#f8e7c7); border:2px solid #d7b77a; border-radius:15px;
+  padding:12px 8px 9px; box-shadow:0 7px 0 #3f2c1d66,0 10px 25px #17233533; transform:rotate(var(--tilt))}
+.chapter.next {border-color:#ffd34d; box-shadow:0 0 0 4px #ffd34d66,0 8px 0 #3f2c1d66}
+.chapter-open {border:0; background:none; width:100%; padding:0; min-height:125px; display:grid; justify-items:center; gap:6px;
+  font:800 17px 'Trebuchet MS',sans-serif}
+.chapter-open svg {width:80px; height:75px}
+.chapter-num {font:700 11px 'Segoe UI',sans-serif; letter-spacing:.12em; color:#6d5533}
+.dots {display:flex; justify-content:center; gap:3px; margin-top:8px}
+.dot {min-width:44px; min-height:44px; border:1px solid #b8a17c; border-radius:50%; background:#fffaf0; font-weight:800}
+.dot.solved {background:#1f63c7; border-color:#1f63c7; color:#fff}
+.map-footer {margin:24px 0 0; color:#fff; text-shadow:0 1px 3px #173452; font-size:13px}
+#work {height:100%; padding:16px; display:flex; flex-direction:column; gap:10px}
+.work-head {display:flex; justify-content:space-between; align-items:center; gap:10px; flex:none}
+.work-head h2 {font:800 24px 'Trebuchet MS',sans-serif; margin:2px 0 0; letter-spacing:-.3px}
+.eyebrow {color:#5b4a34; font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase}
+#progress {border:1px solid #bda06e; border-radius:30px; padding:6px 10px; white-space:nowrap; font-size:12px; background:#fff9e9}
+#theatre {position:relative; flex:1 1 auto; min-height:140px; max-height:355px; border:2px solid #967043;
+  border-radius:18px 18px 5px 5px; overflow:hidden; box-shadow:0 4px 0 #b58b53,0 10px 18px #7b542122}
+#floor {display:block; width:100%; height:100%}
+.dz-bg image {filter:brightness(.8)}
+#live-pose {position:absolute; left:12px; top:10px; color:#233348; background:#fff8ecee; padding:7px 10px;
+  border:1px solid #d6b679; border-radius:9px; font-size:13px; font-weight:800; max-width:70%}
+#countin {position:absolute; right:14px; top:10px; font:900 35px 'Trebuchet MS',sans-serif; color:#fff;
+  text-shadow:0 2px 5px #242633; background:#1b2233a6; border-radius:10px; padding:2px 12px}
+.lantern-glow {position:absolute; top:7%; right:12%; width:15px; height:15px; background:#ffe6a280;
+  box-shadow:0 0 25px 12px #ffda7c44; border-radius:50%; animation:glow 4s ease-in-out infinite alternate; pointer-events:none}
+@keyframes glow {to {opacity:.4; transform:translateY(3px)}}
+.calm .lantern-glow {animation:none}
+#culture {display:grid; grid-template-columns:155px minmax(0,1fr); gap:12px; background:#fffaf0; border:1px solid #cdb48a;
+  border-radius:12px; padding:7px; flex:none}
+#culture img {width:155px; height:100px; object-fit:cover; border-radius:7px}
+#culture p {font-size:12px; line-height:1.4; margin:4px 0}
+#culture b {font-size:14px; color:#284c88}
+#culture small {font-size:11px; color:#673d14}
+#strip-wrap {flex:none; padding:5px 0; min-width:0}
+#counts {display:block; width:100%; height:30px; margin-bottom:5px; transform:translateY(-12px)}
+#strip {display:grid; grid-template-columns:repeat(var(--cards,8),minmax(0,1fr)); gap:7px; align-items:start}
+#strip.seven {grid-template-columns:repeat(4,minmax(0,1fr)); row-gap:23px}
+#strip.seven .card:nth-child(4) {grid-column:1}
+#strip.seven .card {min-height:92px}
+#strip.seven .card .pose {height:30px}
+#strip.seven .card .question {height:44px}
+#strip.facing .face-mark {width:28px; height:28px; font-size:22px}
+.card {display:flex; flex-direction:column; align-items:center; position:relative; min-width:0; min-height:130px;
+  padding:4px 3px 0; background:linear-gradient(120deg,#fff,#fffdf6); border:2px solid #c5b18f; border-radius:10px;
+  box-shadow:0 4px 0 #bd9c6a66; transition:transform .15s; isolation:isolate}
+.card.selected {border-color:#1f63c7; box-shadow:0 0 0 3px #1f63c733,0 5px 0 #1f63c7; transform:translateY(-5px)}
+.card.active {outline:4px solid #754f00; outline-offset:1px; background:#fff0ae; z-index:2}
+.card.wrong {border-color:#c0392b; outline:3px solid #c0392b; outline-offset:1px; animation:wobble .5s ease-in-out 2}
+@keyframes wobble {25%{transform:rotate(-5deg)}75%{transform:rotate(5deg)}}
+.calm .card {transition:none}
+.calm .card.wrong {animation:none}
+.card>* {pointer-events:none}
+.card .pose {width:100%; height:57px; flex:none}
+.card .move-name {font-size:11px; font-weight:800; min-height:14px; white-space:nowrap}
+.card .question {height:71px; display:grid; place-items:center; color:#275b9b; font:900 44px 'Trebuchet MS',sans-serif}
+.card.blank .move-name {display:none}
+.card.blank {border-style:dashed; background:repeating-linear-gradient(135deg,#f6f0e3 0 7px,#fff9ee 7px 14px)}
+.marks {display:flex; align-items:center; justify-content:space-evenly; gap:2px; width:100%; padding:3px 0; min-height:26px}
+.mark {font-size:11px; font-weight:800; display:inline-flex; align-items:center; justify-content:center; min-width:16px}
+.level-mark {display:flex; flex-direction:column; gap:2px; width:12px}
+.level-mark i {display:block; width:11px; height:3px; border:1px solid #1b2233; background:#fff}
+.level-mark i.on {background:#1b2233}
+.face-mark {border:1px solid #1b2233; border-radius:50%; width:20px; height:20px; font-size:14px}
+.card .letter {min-height:24px; width:calc(100% + 6px); margin-top:auto; border-radius:0 0 7px 7px; font-weight:900; font-size:16px;
+  background:#efe5d2; color:#1b2233; display:grid; place-items:center}
+.card .letter:not(:empty) {background:#1f63c7; color:#fff}
+.count-label {position:absolute; top:-18px; font-size:10px; color:#535d73; font-weight:700}
+#strip-wrap {margin-top:12px}
+#strip.lens .mark,#strip.lens .move-name {opacity:.3}
+#strip.lens .watch {opacity:1; outline:2px solid #b45309; outline-offset:2px; border-radius:3px}
+#pattern {min-height:28px; padding:4px 8px; font-weight:800; color:#224c88; font-size:14px; text-align:center; margin:0}
+#polerow {display:grid; grid-template-columns:repeat(9,1fr); text-align:center; gap:4px; margin-bottom:22px}
+#polerow span {font-size:11px; background:#ecdfbf; border-radius:4px; padding:4px 0; color:#45381f}
+#polerow span.close {font-weight:800; background:#ead0a0}
+.phrase-gap {border-left:5px solid #a17a35}
+#clear-dialog {border:2px solid #7e5e2c; border-radius:16px; background:#fff8ec; padding:22px; max-width:340px; color:var(--ink)}
+#clear-dialog::backdrop {background:#13274199}
+#clear-dialog p {line-height:1.5}
+@media (min-width:1600px) {
+  main {grid-template-columns:minmax(0,1fr) 400px}
+  .panel {padding:22px; gap:13px}
+  #theatre {max-height:520px}
+  .card {min-height:166px}
+  .card .pose {height:88px}
+  .card .move-name {font-size:14px}
+  #work {padding:25px; gap:18px}
+}
+@media (max-height:690px) and (min-width:600px) {
+  header {padding:4px 8px; gap:5px; flex-wrap:nowrap}
+  h1 {font-size:18px; min-width:0}
+  h1 small {display:none}
+  .seg button,.icon-btn {font-size:12px; padding:0 8px; white-space:nowrap}
+  main {grid-template-columns:minmax(0,1fr) 300px}
+  .panel {padding:7px; gap:6px}
+  .hint {min-height:56px; height:56px; font-size:11.5px; padding:5px 7px}
+  #maker {gap:4px}
+  #maker legend {font-size:13px; margin-bottom:3px}
+  #work {padding:9px; gap:7px}
+  .work-head h2 {font-size:19px}
+  #theatre {min-height:100px; max-height:230px}
+  .card {min-height:112px}
+  .card .pose {height:45px}
+  .card .question {height:64px}
+  #culture {grid-template-columns:110px minmax(0,1fr); gap:6px; padding:4px}
+  #culture img {width:110px; height:78px}
+  #culture p {font-size:11px; line-height:1.25; margin:1px 0}
+  #culture b {font-size:12px}
+  #counts {height:23px}
+  #pattern {font-size:12px; min-height:20px}
+}
+@media (max-width:850px) and (min-width:600px) and (max-height:690px) {
+  main {grid-template-columns:minmax(0,1fr) 300px}
+  h1 {font-size:15px}
+  .seg button,.icon-btn {font-size:11px; padding:0 5px}
+  .choice-row {grid-template-columns:29px repeat(var(--n),minmax(0,1fr))}
+  .choice-row>span {font-size:10px}
+  .card .move-name {font-size:10px}
+  #strip {gap:4px; grid-template-columns:repeat(5,minmax(0,1fr))}
+  .card {min-height:88px}
+  .card .pose {height:25px}
+  .card .question {height:37px}
+  .card .move-name {min-height:12px}
+  .card .letter {min-height:18px; font-size:12px}
+  .marks {min-height:20px; padding:1px 0}
+  #theatre {min-height:50px; max-height:110px}
+  #counts {height:20px}
+  #strip-wrap {margin-top:4px}
+  #strip {row-gap:23px}
+  #live-pose {font-size:10px; padding:3px 5px; top:4px; left:5px}
+  #progress {font-size:10px; padding:4px}
+  .work-head h2 {font-size:16px}
+  #culture {grid-template-columns:70px 1fr}
+  #culture img {width:70px; height:65px}
+  #culture p {font-size:10px}
+  #chapters {gap:6px; grid-template-columns:repeat(3,1fr)}
+  .chapter-open {min-height:60px; grid-template-columns:45px 1fr; font-size:14px; gap:2px}
+  .chapter-open svg {width:45px; height:45px; grid-row:1 / 3}
+  .chapter {padding:5px}
+  .dots {margin-top:3px}
+  #map {padding:16px}
+  .map-title {margin-bottom:8px}
+  .map-title h2 {font-size:27px; margin:3px 0}
+  .map-title p {font-size:13px}
+  .map-footer {margin-top:10px; font-size:11px}
+  .map-title .eyebrow {display:none}
+  .chapter-open {min-height:50px}
+  .dots {margin-top:0}
+  #map {padding-block:10px}
+  #moves {grid-template-columns:repeat(6,minmax(0,1fr))}
+  .move {flex-direction:column; font-size:10px; gap:0; line-height:1}
+  .move svg {width:18px; height:18px}
+  #pattern {display:none}
+  #strip.facing .face-mark {width:22px; height:22px; font-size:16px}
+  .panel {gap:3px}
+  #maker {gap:3px}
+  #maker legend {margin-bottom:0}
+}
+@media (min-width:600px) and (max-width:999px) and (min-height:691px) {
+  main {grid-template-columns:minmax(0,1fr) 300px}
+  header {padding:7px 10px; gap:5px}
+  h1 {font-size:20px}
+  h1 small {display:none}
+  .seg button,.icon-btn {font-size:12px; padding:0 7px}
+  #strip {grid-template-columns:repeat(5,minmax(0,1fr)); row-gap:23px}
+  #work {padding:10px}
+  .work-head h2 {font-size:19px}
+  #chapters {grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:599px) {
+  body {overflow:auto; height:auto; min-height:100vh}
+  header {padding:7px 10px; gap:5px}
+  h1 {width:100%; font-size:21px}
+  h1 small {display:none}
+  .seg {flex:1}
+  .seg button {flex:1; font-size:12px; padding:0 7px}
+  .icon-btn {font-size:11px; padding:0 6px}
+  main {display:flex; flex-direction:column}
+  .stage {min-height:410px; flex:none; order:1}
+  .panel {order:2; overflow:visible; padding:10px; border-left:0; border-top:2px solid #c8aa78}
+  #work {padding:10px; gap:8px}
+  #theatre {height:180px; flex:none}
+  #strip {grid-template-columns:repeat(5,minmax(0,1fr)); row-gap:23px; gap:23px 5px}
+  .card {min-height:108px}
+  .card .pose {height:42px}
+  .card .question {height:60px}
+  #map {position:relative; min-height:660px; padding:18px}
+  #chapters {grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px}
+  .chapter-open {font-size:14px; min-height:105px}
+  .chapter-open svg {width:65px; height:60px}
+  .dot {min-width:27px; width:100%; min-height:44px; border-radius:9px}
+  .map-open .stage {min-height:660px}
+  #culture {grid-template-columns:130px 1fr}
+  #culture img {width:130px; height:100%}
+}
+@media (max-width:599px) {
+  header {padding:5px 9px}
+  h1 {font-size:18px}
+  .panel {padding:8px; gap:5px}
+  .hint {height:50px; min-height:50px; font-size:12px; padding:5px 8px}
+  #maker {gap:3px}
+  #maker legend {font-size:13px; margin-bottom:2px}
+  body.mine-mode #playrow {flex-wrap:nowrap; gap:4px}
+  body.mine-mode #mine-actions {display:contents}
+  body.mine-mode #mine-actions .btn {width:59px; padding:2px; font-size:11px}
+  body.mine-mode #go {font-size:14px; padding:0 4px; min-width:80px}
+  .stage {min-height:0}
+  #work {height:auto; padding:6px; gap:5px}
+  .work-head h2 {font-size:17px}
+  #theatre {height:50px; min-height:50px}
+  #strip {row-gap:18px}
+  .card {min-height:80px}
+  .card .pose {height:22px}
+  .card .question {height:34px}
+  .card .move-name {font-size:10px; min-height:12px}
+  .card .letter {font-size:12px; min-height:18px}
+  .marks {padding:1px 0; min-height:20px}
+  #counts {height:20px}
+  #pattern {display:none}
+  #map {min-height:690px; padding:15px}
+  #chapters {grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px}
+  .chapter {transform:none; padding:7px}
+  .chapter-open {min-height:90px; font-size:14px; gap:2px}
+  .chapter-open svg {height:50px; width:60px}
+  .dots {gap:4px; margin-top:3px}
+  .dot {min-width:44px}
+  .map-title h2 {font-size:31px}
+  .map-title p {font-size:14px}
+  .map-title {margin-bottom:15px}
+  .map-footer {font-size:11px; margin-top:14px}
+  #live-pose {font-size:11px; padding:4px 7px; top:5px; left:6px}
+  #culture {grid-template-columns:100px 1fr; gap:7px}
+  #culture img {width:100px; min-height:125px}
+}
+/* Keep the card maker fixed while occasional settings scroll independently. */
+.panel {overflow:hidden}
+#maker,#playrow {flex:none}
+#more {min-height:0; overflow:auto; flex:1 1 auto; scrollbar-width:thin; padding:2px; align-content:start}
+#attributes {display:grid; gap:6px}
+#challenge {min-height:96px}
+#culture {scroll-margin:8px}
+.finish #theatre {box-shadow:0 4px 0 #b58b53,0 0 0 4px #e6bb48,0 10px 18px #7b542122}
+@media (max-height:690px) and (min-width:600px), (max-width:599px) {
+  #attributes {grid-template-columns:2fr 3fr; gap:4px}
+  #attributes .choice-row {grid-template-columns:repeat(var(--n),minmax(0,1fr)); gap:3px}
+  #attributes .choice-row>span {display:none}
+  #attributes .choice-row:last-child {grid-column:1 / -1}
+  #maker {gap:4px}
+  .hint {min-height:52px; height:52px}
+  #playrow {gap:4px; flex-wrap:nowrap; align-items:stretch}
+  #go {font-size:14px; min-height:44px; min-width:76px; padding:1px 3px}
+  #stop {font-size:10px; min-width:44px; padding:1px 2px}
+  body.mine-mode #mine-actions {display:contents}
+  body.mine-mode #mine-actions .btn {min-width:44px; width:44px; font-size:10px; padding:1px}
+  #culture {grid-template-columns:92px 1fr; gap:7px}
+  #culture img {width:92px; height:95px; min-height:0}
+  #culture p {font-size:11px}
+  #theatre {min-height:70px; max-height:110px}
+  .folk-mode #theatre {min-height:62px; max-height:90px}
+  #strip.seven .card {min-height:80px}
+  #strip.seven .card .pose {height:25px}
+  #strip.seven .card .question {height:37px}
+  .poles-mode #counts {display:none}
+  #polerow {margin-bottom:18px}
+  .mark {white-space:nowrap; font-size:10px; min-width:12px}
+  .level-mark {width:8px}
+  .level-mark i {width:7px}
+  .face-mark {width:16px; height:16px; font-size:12px}
+  .marks {gap:1px}
+}
+@media (max-width:850px) and (min-width:600px) and (max-height:690px) {
+  #theatre,.folk-mode #theatre {min-height:62px; max-height:70px}
+  #strip {row-gap:20px}
+  .poles-mode #work {gap:4px}
+  .dots {margin-top:4px}
+  #more>.label {display:none}
+}
+@media (max-width:599px) {
+  main {gap:5px; padding-bottom:12px}
+  .panel {display:contents}
+  .stage {order:1}
+  #hint {order:2; margin:0 8px}
+  #maker {order:3; margin:0 8px}
+  #playrow {order:4; margin:0 8px}
+  #more {order:5; margin:0 8px; overflow:visible; flex:none}
+  #moves {grid-template-columns:repeat(6,minmax(0,1fr))}
+  .move {flex-direction:column; gap:0; font-size:10px}
+  .move svg {width:18px; height:18px}
+  #theatre {height:90px; max-height:none}
+  .folk-mode #theatre {height:75px; max-height:none}
+  #maker legend {font-size:12px; margin-bottom:1px}
+  #pattern {display:block; font-size:11px; min-height:18px; padding:0}
+  #work {gap:4px}
+}
+
+header button:focus-visible {outline-color:#fff; outline-offset:1px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Dance Pattern Puzzle<small>Patterns, tempo and folk dances</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-puzzles" aria-pressed="true">🧩 Puzzles</button>
+    <button id="m-mine" aria-pressed="false">♫ My dance</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <aside class="panel">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <fieldset id="maker" disabled>
+      <legend id="maker-label">Pick a question card</legend>
+      <div id="moves" role="group" aria-label="Move, keys 1 to 8"></div>
+      <div id="attributes"><div class="choice-row" style="--n:2" role="group" aria-label="Side, keys Q and W">
+        <span>Side</span><button class="btn" data-side="L">◀ L</button><button class="btn" data-side="R">R ▶</button>
+      </div>
+      <div class="choice-row" style="--n:3" role="group" aria-label="Level, keys A S D">
+        <span>Level</span><button class="btn" data-level="high">High</button>
+        <button class="btn" data-level="middle">Middle</button><button class="btn" data-level="low">Low</button>
+      </div>
+      <div class="choice-row" style="--n:4" role="group" aria-label="Facing, keys Z X C V">
+        <span>Face</span><button class="btn facing-btn" data-facing="front">↓ Front</button>
+        <button class="btn facing-btn" data-facing="right">→ Right</button>
+        <button class="btn facing-btn" data-facing="back">↑ Back</button>
+        <button class="btn facing-btn" data-facing="left">← Left</button>
+      </div></div>
+    </fieldset>
+    <div id="playrow"><button id="go" class="big-btn gold">▶ Dance it</button><button id="stop" class="btn" hidden>■ Stop</button>
+    <div id="mine-actions" hidden>
+      <button id="copy" class="btn">＋ Copy</button><button id="mirror" class="btn">↔ Mirror</button><button id="remove" class="btn">Remove</button>
+    </div></div>
+    <div id="more">
+      <span class="label">Tempo · beats a minute</span>
+      <div class="tempo" role="group" aria-label="Tempo">
+        <button class="btn" data-bpm="72">Slow · 72</button><button class="btn" data-bpm="96" aria-pressed="true">Medium · 96</button>
+        <button class="btn" data-bpm="120">Fast · 120</button>
+      </div>
+      <button class="btn" id="faster" hidden aria-pressed="true">Faster and faster: on</button>
+      <button class="btn" id="loop" hidden aria-pressed="false">↻ Loop: off</button>
+      <button class="btn" id="challenge" hidden><strong>CHALLENGE CARD · TAP FOR NEXT</strong><span id="challenge-text"></span></button>
+      <div id="puzzle-actions" class="pair">
+        <button class="btn" id="lens" aria-pressed="false">⌕ Pattern lens</button><button class="btn" id="reset">↺ Reset puzzle</button>
+        <button class="btn" id="map-button">▦ Chapters</button><button class="btn" id="next">Next puzzle ▷</button>
+      </div>
+      <button class="btn" id="clear" hidden>Clear dance and progress</button>
+      <p class="privacy">Saved on this device. Your dance and puzzle progress never leave it.</p>
+    </div>
+  </aside>
+  <section class="stage" id="stage" aria-label="Dance pattern stage">
+    <div id="map">
+      <div class="map-title"><span class="eyebrow">A festival of patterns</span><h2>What repeats<br>in a dance?</h2>
+        <p>Pick a chapter. Find the missing moves. Bring the pattern to life.</p></div>
+      <div id="chapters"></div>
+      <p class="map-footer" id="map-footer">Every puzzle is open. Start anywhere. · Curio Class</p>
+    </div>
+    <div id="work" hidden>
+      <div class="work-head"><div><span class="eyebrow" id="chapter-label"></span><h2 id="puzzle-title"></h2></div><span id="progress"></span></div>
+      <div id="theatre"><svg id="floor" aria-label="Dancer on a wooden festival platform" role="img"></svg>
+        <span id="live-pose">Find what repeats.</span><span id="countin" hidden></span><i class="lantern-glow"></i></div>
+      <div id="culture" hidden><img id="culture-image" alt=""><div><b id="culture-name"></b><p id="culture-text"></p><small id="culture-note"></small></div></div>
+      <div id="strip-wrap"><svg id="counts" aria-label="Dance counts" role="img"></svg><div id="polerow" hidden></div>
+        <div id="strip" aria-label="Dance cards"></div></div>
+      <p id="pattern" aria-live="polite"></p>
+    </div>
+  </section>
+</main>
+<dialog id="clear-dialog" aria-labelledby="clear-title"><h2 id="clear-title">Clear this device's dance?</h2>
+  <p>This also clears all solved puzzle dots. Start again with an empty dance?</p>
+  <div class="pair"><button class="btn" id="clear-no">Keep it</button><button class="btn" id="clear-yes">Yes, clear</button></div>
+</dialog>
+<script src="kit:curio"></script>
+<script src="kit:dance"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  const PUZZLES = [
+  {
+    "ch": 0,
+    "name": "Clap and jump",
+    "answer": [
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Jump",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Jump",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Jump",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Jump",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      }
+    ],
+    "blanks": [
+      5,
+      7
+    ],
+    "letters": null
+  },
+  {
+    "ch": 0,
+    "name": "Two claps",
+    "answer": [
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Stamp",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Stamp",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      }
+    ],
+    "blanks": [
+      6,
+      7
+    ],
+    "letters": null
+  },
+  {
+    "ch": 0,
+    "name": "Three in a row",
+    "answer": [
+      {
+        "move": "Reach",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Jump",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Reach",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Jump",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Reach",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      }
+    ],
+    "blanks": [
+      4,
+      7
+    ],
+    "letters": null
+  },
+  {
+    "ch": 1,
+    "name": "Right, left",
+    "answer": [
+      {
+        "move": "Step",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Step",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Step",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Step",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Step",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Step",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Step",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Step",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      }
+    ],
+    "blanks": [
+      3,
+      5
+    ],
+    "letters": null
+  },
+  {
+    "ch": 1,
+    "name": "Two and two",
+    "answer": [
+      {
+        "move": "Point",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Point",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Point",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Point",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Point",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Point",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Point",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Point",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      }
+    ],
+    "blanks": [
+      5,
+      7
+    ],
+    "letters": null
+  },
+  {
+    "ch": 1,
+    "name": "Kick and clap",
+    "answer": [
+      {
+        "move": "Kick",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Kick",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Kick",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Kick",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      }
+    ],
+    "blanks": [
+      6,
+      7
+    ],
+    "letters": null
+  },
+  {
+    "ch": 2,
+    "name": "Sky and floor",
+    "answer": [
+      {
+        "move": "Reach",
+        "side": "R",
+        "level": "high",
+        "facing": "front"
+      },
+      {
+        "move": "Reach",
+        "side": "R",
+        "level": "low",
+        "facing": "front"
+      },
+      {
+        "move": "Reach",
+        "side": "R",
+        "level": "high",
+        "facing": "front"
+      },
+      {
+        "move": "Reach",
+        "side": "R",
+        "level": "low",
+        "facing": "front"
+      },
+      {
+        "move": "Reach",
+        "side": "R",
+        "level": "high",
+        "facing": "front"
+      },
+      {
+        "move": "Reach",
+        "side": "R",
+        "level": "low",
+        "facing": "front"
+      },
+      {
+        "move": "Reach",
+        "side": "R",
+        "level": "high",
+        "facing": "front"
+      },
+      {
+        "move": "Reach",
+        "side": "R",
+        "level": "low",
+        "facing": "front"
+      }
+    ],
+    "blanks": [
+      4,
+      6
+    ],
+    "letters": null
+  },
+  {
+    "ch": 2,
+    "name": "Elevator",
+    "answer": [
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "high",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "low",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "high",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "low",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      }
+    ],
+    "blanks": [
+      5,
+      6
+    ],
+    "letters": null
+  },
+  {
+    "ch": 2,
+    "name": "Two things change",
+    "answer": [
+      {
+        "move": "Step",
+        "side": "R",
+        "level": "high",
+        "facing": "front"
+      },
+      {
+        "move": "Step",
+        "side": "L",
+        "level": "high",
+        "facing": "front"
+      },
+      {
+        "move": "Step",
+        "side": "R",
+        "level": "low",
+        "facing": "front"
+      },
+      {
+        "move": "Step",
+        "side": "L",
+        "level": "low",
+        "facing": "front"
+      },
+      {
+        "move": "Step",
+        "side": "R",
+        "level": "high",
+        "facing": "front"
+      },
+      {
+        "move": "Step",
+        "side": "L",
+        "level": "high",
+        "facing": "front"
+      },
+      {
+        "move": "Step",
+        "side": "R",
+        "level": "low",
+        "facing": "front"
+      },
+      {
+        "move": "Step",
+        "side": "L",
+        "level": "low",
+        "facing": "front"
+      }
+    ],
+    "blanks": [
+      6,
+      7
+    ],
+    "letters": null
+  },
+  {
+    "ch": 3,
+    "name": "Around the square",
+    "answer": [
+      {
+        "move": "Turn",
+        "side": "R",
+        "level": "middle",
+        "facing": "right"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "right"
+      },
+      {
+        "move": "Turn",
+        "side": "R",
+        "level": "middle",
+        "facing": "back"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "back"
+      },
+      {
+        "move": "Turn",
+        "side": "R",
+        "level": "middle",
+        "facing": "left"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "left"
+      },
+      {
+        "move": "Turn",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      }
+    ],
+    "blanks": [
+      6,
+      7
+    ],
+    "letters": []
+  },
+  {
+    "ch": 3,
+    "name": "Stamp and turn",
+    "answer": [
+      {
+        "move": "Stamp",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Stamp",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Turn",
+        "side": "L",
+        "level": "middle",
+        "facing": "left"
+      },
+      {
+        "move": "Stamp",
+        "side": "R",
+        "level": "middle",
+        "facing": "left"
+      },
+      {
+        "move": "Stamp",
+        "side": "L",
+        "level": "middle",
+        "facing": "left"
+      },
+      {
+        "move": "Turn",
+        "side": "L",
+        "level": "middle",
+        "facing": "back"
+      },
+      {
+        "move": "Stamp",
+        "side": "R",
+        "level": "middle",
+        "facing": "back"
+      },
+      {
+        "move": "Stamp",
+        "side": "L",
+        "level": "middle",
+        "facing": "back"
+      }
+    ],
+    "blanks": [
+      6,
+      7
+    ],
+    "letters": [
+      "A",
+      "A\u2032",
+      "B",
+      "A",
+      "A\u2032",
+      "B",
+      "A",
+      "A\u2032"
+    ]
+  },
+  {
+    "ch": 3,
+    "name": "Back to front",
+    "answer": [
+      {
+        "move": "Jump",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Turn",
+        "side": "R",
+        "level": "middle",
+        "facing": "right"
+      },
+      {
+        "move": "Jump",
+        "side": "R",
+        "level": "middle",
+        "facing": "right"
+      },
+      {
+        "move": "Turn",
+        "side": "R",
+        "level": "middle",
+        "facing": "back"
+      },
+      {
+        "move": "Jump",
+        "side": "R",
+        "level": "middle",
+        "facing": "back"
+      },
+      {
+        "move": "Turn",
+        "side": "R",
+        "level": "middle",
+        "facing": "left"
+      },
+      {
+        "move": "Jump",
+        "side": "R",
+        "level": "middle",
+        "facing": "left"
+      },
+      {
+        "move": "Turn",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      }
+    ],
+    "blanks": [
+      4,
+      5
+    ],
+    "letters": [
+      "A",
+      "B",
+      "A",
+      "B",
+      "A",
+      "B",
+      "A",
+      "B"
+    ]
+  },
+  {
+    "ch": 4,
+    "name": "Adding on",
+    "answer": [
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Stamp",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Clap",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Stamp",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Jump",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      }
+    ],
+    "blanks": [
+      4
+    ],
+    "letters": null
+  },
+  {
+    "ch": 4,
+    "name": "Going down",
+    "answer": [
+      {
+        "move": "Reach",
+        "side": "R",
+        "level": "high",
+        "facing": "front"
+      },
+      {
+        "move": "Reach",
+        "side": "R",
+        "level": "high",
+        "facing": "front"
+      },
+      {
+        "move": "Reach",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Reach",
+        "side": "R",
+        "level": "high",
+        "facing": "front"
+      },
+      {
+        "move": "Reach",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Reach",
+        "side": "R",
+        "level": "low",
+        "facing": "front"
+      }
+    ],
+    "blanks": [
+      4
+    ],
+    "letters": null
+  },
+  {
+    "ch": 4,
+    "name": "Four rounds",
+    "answer": [
+      {
+        "move": "Step",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Step",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Step",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Step",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Step",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Point",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Step",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Step",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Point",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Point",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      }
+    ],
+    "blanks": [
+      6,
+      7,
+      8
+    ],
+    "letters": null
+  },
+  {
+    "ch": 5,
+    "name": "Grapevine pattern",
+    "answer": [
+      {
+        "move": "Cross-front",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Side",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Cross-behind",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Side",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Cross-front",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Side",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Cross-behind",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Side",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      }
+    ],
+    "blanks": [
+      2,
+      6
+    ],
+    "letters": null
+  },
+  {
+    "ch": 5,
+    "name": "Seven Jumps",
+    "answer": [
+      {
+        "move": "Knee-up",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Knee-up",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Kneel",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Knee-up",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Knee-up",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Kneel",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Kneel",
+        "side": "L",
+        "level": "middle",
+        "facing": "front"
+      }
+    ],
+    "blanks": [
+      3,
+      4,
+      5
+    ],
+    "letters": null
+  },
+  {
+    "ch": 5,
+    "name": "Tinikling",
+    "answer": [
+      {
+        "move": "In",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "In",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Out",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "In",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "In",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Out",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "In",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "In",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      },
+      {
+        "move": "Out",
+        "side": "R",
+        "level": "middle",
+        "facing": "front"
+      }
+    ],
+    "blanks": [
+      4,
+      6,
+      8
+    ],
+    "letters": [
+      "In",
+      "In",
+      "Out",
+      "In",
+      "In",
+      "Out",
+      "In",
+      "In",
+      "Out"
+    ]
+  }
+];
+  const CHAPTERS = ['Moves','Sides','Levels','Facing','Adding on','Folk dances'];
+  const BASIC = ['Step','Clap','Stamp','Point','Kick','Reach','Jump','Turn'];
+  const FOLK = ['Cross-front','Side','Cross-behind','Knee-up','Kneel','In','Out'];
+  const FACE = {front:0,right:90,back:180,left:270};
+  const ARROW = {front:'↓',right:'→',back:'↑',left:'←'};
+  const COLORS = {top:'#1f63c7',bottom:'#f4dfb6',skin:'#bd8058',hair:'#332b26',shoe:'#28354c',badge:'diamond'};
+  const ART = {square:'art:festival-square',pole:'art:bamboo-pole',
+    syvspring:'art:culture-syvspring',tikling:'art:culture-tikling'};
+  // Three painted views per cast member, reused as articulated paper puppets.
+  // Swapping PAINTED_ATLAS and these source rectangles replaces the entire cast.
+  const PAINTED_ATLAS = 'art:dancer-cast';
+  const CAST_RECTS = [
+    {head:[165,8,95,77], profile:[568,8,98,77], back:[991,8,98,77], body:[173,82,78,138],
+      bodyBack:[1001,82,78,138], upper:[250,86,77,28], fore:[323,87,78,27], thigh:[222,210,40,79],
+      shin:[234,285,37,86], shoe:[234,367,50,38]},
+    {head:[170,425,85,78], profile:[570,425,93,78], back:[997,425,91,78], body:[176,500,74,137],
+      bodyBack:[1004,500,75,137], upper:[248,502,77,27], fore:[321,504,78,26], thigh:[220,632,40,78],
+      shin:[231,706,39,84], shoe:[232,786,50,38]},
+    {head:[165,842,94,80], profile:[571,842,95,80], back:[992,842,98,80], body:[168,920,88,139],
+      bodyBack:[998,920,88,139], upper:[252,921,78,35], fore:[325,923,80,32], thigh:[222,1053,44,79],
+      shin:[235,1127,41,87], shoe:[235,1209,53,38]}
+  ];
+  function paintDancer(d, castIndex = 0) {
+    const ns = 'http://www.w3.org/2000/svg';
+    const make = (name, attrs, parent) => {
+      const e = document.createElementNS(ns, name);
+      for (const [k,v] of Object.entries(attrs || {})) e.setAttribute(k,v);
+      if (parent) parent.appendChild(e);
+      return e;
+    };
+    const sprites = {};
+    const uid = 'paint-' + Math.random().toString(36).slice(2);
+    const defs = make('defs',{},d.g);
+    for (const [name,part] of Object.entries(d.parts)) {
+      if (!part.e) continue;
+      for (const child of part.e.children) child.style.display = 'none';
+      if (name === 'hair') continue;
+      const g = make('g',{},part.e);
+      const crop = make('svg',{overflow:'hidden',preserveAspectRatio:'none'},g);
+      const clip = make('clipPath',{id:uid+'-'+name,clipPathUnits:'userSpaceOnUse'},defs);
+      const mask = make('rect',{},clip);
+      make('image',{href:PAINTED_ATLAS,x:15,y:8,width:1225,height:1240,preserveAspectRatio:'none',
+        'clip-path':'url(#'+uid+'-'+name+')'},crop);
+      sprites[name] = {g,crop,mask};
+    }
+    const draw = () => {
+      const r = CAST_RECTS[castIndex % CAST_RECTS.length], S = d.sj;
+      if (!S) return;
+      const k = d.floor.scale(d.z) * d.height;
+      const a = ((d.facing % 360) + 360) % 360;
+      const back = a > 135 && a < 225, side = a >=45 && a <=135 || a >=225 && a <=315;
+      const set = (name,rect,x,y,w,h,transform) => {
+        const s=sprites[name];
+        s.crop.setAttribute('viewBox',rect.join(' '));
+        const [rx,ry,rw,rh]=rect;
+        for (const [key,value] of Object.entries({x:rx,y:ry,width:rw,height:rh,
+          rx:name==='torso' ? rw*.16 : /Th|Sn/.test(name) ? rw*.4 : 0,
+          ry:name==='torso' ? rh*.05 : /Th|Sn/.test(name) ? rh*.07 : 0})) s.mask.setAttribute(key,value);
+        for (const [key,value] of Object.entries({x,y,width:w,height:h})) s.crop.setAttribute(key,value);
+        s.g.setAttribute('transform',transform || '');
+      };
+      for (const s of ['l','r']) {
+        for (const [part,from,to,key,width,horizontal] of [
+          ['Ua','Sh','El','upper',.08,true],['Fa','El','Ha','fore',.065,true],
+          ['Th','Hi','Kn','thigh',castIndex === 2 ? .13 : .105,false],
+          ['Sn','Kn','An','shin',castIndex === 2 ? .11 : .092,false]
+        ]) {
+          const A=S[s+from],B=S[s+to],len=Math.max(horizontal ? k*.065 : 0,Math.hypot(B[0]-A[0],B[1]-A[1]));
+          const ang=Math.atan2(B[1]-A[1],B[0]-A[0])*180/Math.PI;
+          const w=k*width, overlap=k*.025;
+          const source = horizontal ? r[key] : [r[key][0]+r[key][2]*.3,r[key][1]+r[key][3]*.12,r[key][2]*.4,r[key][3]*.75];
+          set(s+part,source,horizontal ? -overlap : -w/2,horizontal ? -w/2 : -overlap,
+            horizontal ? len+overlap*2 : w,horizontal ? w : len+overlap*2,
+            `translate(${A[0]} ${A[1]}) rotate(${ang-(horizontal ? 0 : 90)})`);
+        }
+        const F=S[s+'An'];
+        set(s+'Ft',r.shoe,-k*.045,-k*.025,k*.11,k*.075,`translate(${F[0]} ${F[1]})`);
+      }
+      const sh=[(S.lSh[0]+S.rSh[0])/2,(S.lSh[1]+S.rSh[1])/2];
+      const hi=[(S.lHi[0]+S.rHi[0])/2,(S.lHi[1]+S.rHi[1])/2];
+      const torsoWidth=Math.max(k*.12,Math.hypot(S.lSh[0]-S.rSh[0],S.lSh[1]-S.rSh[1])+k*.065);
+      const len=Math.hypot(hi[0]-sh[0],hi[1]-sh[1]);
+      const tilt=Math.atan2(hi[1]-sh[1],hi[0]-sh[0])*180/Math.PI-90;
+      set('torso',back ? r.bodyBack : r.body,-torsoWidth/2,-k*.055,torsoWidth,len+k*.08,
+        `translate(${sh[0]} ${sh[1]}) rotate(${tilt})`);
+      const H=S.head, headW=k*(side ? .16 : .18),headH=k*.20;
+      const rotation=d.parts.head.el.getAttribute('transform') || '';
+      const flip=side && a>180;
+      set('head',side ? r.profile : back ? r.back : r.head,flip ? -H[0]-headW/2 : H[0]-headW/2,
+        H[1]-headH*.56,headW,headH,rotation+(flip ? ' scale(-1 1)' : ''));
+      for (const s of ['l','r']) d.parts[s+'Sn'].e.after(d.parts[s+'Ft'].e);
+    };
+    d.onMove(draw);
+    const render=d.render.bind(d);
+    d.render=()=>{ render(); draw(); };
+    d.paintCast=index=>{ castIndex=index; draw(); };
+    draw();
+    return d;
+  }
+  const CULTURES = [
+    {name:'Grapevine pattern',image:ART.square,alt:'An open-air dance platform in a sunny town square.',
+      text:'A grapevine crosses one foot in front, steps to the side, crosses behind, then steps to the side. '
+        + 'Here it is a movement pattern, not a complete named folk dance.'},
+    {name:'Seven Jumps · Denmark',image:ART.syvspring,alt:'A white Danish farmhouse with a red tile roof beside a meadow.',
+      text:'A Danish folk dance adds a held action each round. Later actions move down toward the floor.',
+      note:'This short classroom adaptation uses knee lifts and kneeling. It is not the complete traditional dance.'},
+    {name:'Tinikling · Philippines',image:ART.tikling,alt:'A brown barred rail bird stepping in grass near bamboo poles.',
+      text:'A dance from the Philippines, named for the tikling bird. Two people tap bamboo poles on the ground twice, '
+        + 'then close them. The dancer hops in, in, and out, and the poles get faster.',
+      note:'In class, use tape lines or ropes on the floor instead of poles.'}
+  ];
+  const L = {
+    wMap:'Tap a chapter to open its first puzzle.',
+    wPuzzles:'Find what repeats. Tap a question card, then pick its move, side, level and facing. Then tap Dance it.',
+    wMine:'Build your own dance. Tap a slot, then pick a move, and watch the letters show your pattern.',
+    countIn:'Five, six, seven, eight!',
+    lookMove:'Look at the move.', lookSide:'Look at the side.', lookLevel:'Look at the level.', lookFacing:'Look at the facing.',
+    fixHow:'Tap the wobbly card and change it. Then tap Dance it again.',
+    solved:'The pattern holds! Watch it again with the letters.',
+    nextHow:'Tap Next puzzle for a new one, or Chapters for the map.',
+    ch1:'Moves: the pattern is in which move comes next.', ch2:'Sides: same move, but watch which side.',
+    ch3:'Levels: same move, but watch how high or low.', ch4:'Facing: watch which way the dancer faces.',
+    ch5:'Adding on: each round adds one more card.', ch6:'Folk dances: real dances use patterns too.',
+    lens:'The pattern lens shows what changes. The answer is still yours to find.',
+    allChapter:'You solved a whole chapter! Tap Chapters to pick another one.',
+    challengeMet:'That fits the challenge card!', emptyStrip:'Tap a slot and pick a move first.',
+    selectHow:'Pick the move, side, level and facing. Tap another question card, or Dance it.',
+    buildHow:'Pick the move, side, level and facing. Tap another slot, or Dance it.',
+    missing:'Tap a question card and pick a move before you dance.',
+    mineDone:'Your dance is ready to change or dance again. Tap a card to edit it.',
+    culture:CULTURES.map(c => c.text + (c.note ? ' ' + c.note : ''))
+  };
+  const state = {mode:'puzzles',puzzle:0,map:true,selected:-1,cards:[],mine:Array(8).fill(null),solved:[],
+    bpm:96,lens:false,running:false,phase:'idle',active:-1,wrong:-1,letters:false,loop:false,faster:true,challenge:0,version:0};
+  let lastPuzzle = null;
+  let runToken = 0;
+  let previewToken = 0;
+  let clock = null;
+  let player = null;
+  let music = null;
+  let leadBus = null;
+  let challengeWasMet = false;
+  let previewTimer = null;
+  const savedKey = 'dance-pattern-puzzle';
+  const clone = v => v == null ? null : {...v};
+  const sided = c => c && !['Clap','Jump'].includes(c.move);
+  const displayMove = m => m.replaceAll('-', ' ');
+  const freshCard = () => ({move:'Step',side:'R',level:'middle',facing:'front'});
+  function validCard(c) {
+    return c === null || c && [...BASIC,...FOLK].includes(c.move) && ['R','L'].includes(c.side)
+      && ['high','middle','low'].includes(c.level) && Object.hasOwn(FACE,c.facing);
+  }
+  try {
+    const saved = JSON.parse(localStorage.getItem(savedKey));
+    if (saved && Array.isArray(saved.mine) && saved.mine.length === 8 && saved.mine.every(validCard)) state.mine = saved.mine;
+    if (saved && Array.isArray(saved.solved)) state.solved = saved.solved.filter(n => Number.isInteger(n) && n >= 0 && n < 18);
+    if (saved && Number.isInteger(saved.last) && saved.last >= 0 && saved.last < 18) lastPuzzle = saved.last;
+  } catch {}
+  function save() {
+    try { localStorage.setItem(savedKey,JSON.stringify({mine:state.mine,solved:state.solved,last:lastPuzzle})); } catch {}
+  }
+  const V = Curio.voice({lines:L,scope:() => state.mode + ':' + state.puzzle,hint:false,
+    welcome:() => state.running ? null : state.mode === 'mine'
+      ? ['wMine',{valid:() => state.selected < 0}]
+      : state.map ? ['wMap',{valid:() => state.map}] : ['wPuzzles',{valid:() => state.selected < 0 || !PUZZLES[state.puzzle].blanks.includes(state.selected)}],
+    speaks:'#go, .chapter-open, .dot',read:() => $('hint').textContent
+      + (state.mode === 'puzzles' && !state.map && state.puzzle >= 15 ? ' ' + L.culture[state.puzzle - 15] : ''),
+    est:text => text === L.countIn ? 240000 / state.bpm : 600 + 62 * text.length});
+  function hint(text) { $('hint').textContent = text; }
+  function how(key,valid = () => true) {
+    if (!V.heard(key)) V.how(key,{valid});
+  }
+  function svg(tag,attrs,parent) {
+    const el = document.createElementNS(NS,tag);
+    for (const k in attrs) el.setAttribute(k,attrs[k]);
+    if (parent) parent.appendChild(el);
+    return el;
+  }
+  // Tool-specific movement keyframes. Engine's point is an arm point; this tool teaches a toe point.
+  const MOVES = {
+    Step:{rLeg:[0,25,8],lLeg:[0,3,5],arms:[36,0,42,10]},
+    Clap:Dance.poses.clap,
+    Stamp:Dance.poses.stamp,
+    Point:{rLeg:[5,22,0],rToe:1,arms:[40,0,45,10]},
+    Kick:{rLeg:[50,8,0],rToe:1,arms:[75,0,80,0]},
+    Reach:{rArm:[105,0,115,0],lArm:[15,0,20,0]},
+    Jump:{legs:[0,12,8],arms:[120,0,125,0],lift:.1},
+    Turn:{arms:[65,50,80,60],rLeg:[8,4,10],lLeg:[0,4,5]},
+    'Cross-front':{rLeg:[24,-20,8],rToe:.3,arms:[85,0,90,0]},
+    Side:{rLeg:[0,27,4],arms:[85,0,90,0]},
+    'Cross-behind':{rLeg:[-24,-20,25],rToe:.5,arms:[85,0,90,0]},
+    'Knee-up':{rLeg:[78,6,110],rToe:1,arms:[65,0,70,0]},
+    Kneel:{rLeg:[0,5,92],lLeg:[85,5,90],rToe:1,arms:[35,0,40,0]},
+    In:{legs:[0,3,12],arms:[40,30,55,45],lift:.07},
+    Out:{legs:[0,30,12],arms:[65,0,70,0],lift:.07}
+  };
+  for (const m in MOVES) Dance.poses['puzzle-' + m.toLowerCase()] = MOVES[m];
+  function poseFor(c) {
+    let p = Dance.level(MOVES[c.move],c.level);
+    if (sided(c) && c.side === 'L') p = Dance.mirror(p);
+    return p;
+  }
+  const renderer = {
+    icon(el,c,cast = state.mode === 'mine' ? 1 : Math.floor(state.puzzle/3)%3) {
+      return paintDancer(Dance.icon(el,poseFor(c),{...COLORS,facing:FACE[c.facing]}),cast);
+    },
+    preview(c,immediate = false) {
+      const tok = ++previewToken;
+      clearTimeout(previewTimer);
+      $('live-pose').textContent = cardDescription(c);
+      const z = state.mode === 'puzzles' && state.puzzle === 17 && c.move === 'Out' ? 57 : 42;
+      if (immediate || Curio.reduce) actor.set({pose:poseFor(c),facing:FACE[c.facing],x:50,z});
+      else Dance.tween(actor,{pose:poseFor(c),facing:FACE[c.facing],x:50,z},160,() => tok === previewToken);
+      previewTimer = setTimeout(() => {
+        if (tok === previewToken && !state.running && !Curio.reduce) {
+          actor.set({pose:poseFor(c),facing:FACE[c.facing]});
+        }
+      },Math.max(160,120000 / state.bpm-160));
+    },
+    frame(c,count) { /* Painted parts follow engine joints; retained as the renderer adapter's per-frame hook. */ },
+    atlas:PAINTED_ATLAS
+  };
+  function cardDescription(c) {
+    return displayMove(c.move) + (sided(c) ? ' ' + c.side : '') + ' · ' + c.level + ' · faces ' + c.facing;
+  }
+  const floor = Dance.floor($('floor'),'square',{backdrop:ART.square,dancerFrac:.66});
+  const actor = paintDancer(Dance.dancer(floor.layers.actors,{floor,...COLORS}),0);
+  actor.set({x:50,z:42,pose:Dance.pose('clap'),facing:0});
+  const poleLayer = svg('g',{},floor.layers.marks);
+  const poles = [0,1].map(() => svg('image',{href:ART.pole,preserveAspectRatio:'none'},poleLayer));
+  function makeCounts(n) {
+    const c = Dance.counts($('counts'),null,{n,mode:'numbers',on:'#ffd34d',offLine:'#aa946e'});
+    const draw = c.draw;
+    c.draw = () => {
+      draw();
+      c.g.querySelectorAll('text').forEach(el => el.setAttribute('font-size',Math.max(10,Number(el.getAttribute('font-size')))));
+    };
+    c.draw();
+    return c;
+  }
+  let countStrip = makeCounts(16);
+  function layout() {
+    const compact = innerWidth < 600 || innerHeight <= 690;
+    const parent = compact ? $('more') : $('work');
+    if ($('culture').parentElement !== parent) {
+      if (compact) parent.appendChild($('culture'));
+      else parent.insertBefore($('culture'),$('strip-wrap'));
+    }
+    const w = $('theatre').clientWidth || 700;
+    const h = $('theatre').clientHeight || 240;
+    $('floor').setAttribute('viewBox',`0 0 ${w} ${h}`);
+    floor.resize(w,h,{x0:w*.05,x1:w*.95,yBack:h*.59,yFront:h*.91});
+    actor.scale = Math.min(1,h*.65 / (floor.dancerHeight*floor.scale(42)));
+    const defs = svg('defs',{},floor.layers.floor);
+    const gradient = svg('linearGradient',{id:'warm-wood',x1:0,y1:0,x2:0,y2:1},defs);
+    for (const [offset,color] of [[0,'#c08b50'],[.45,'#e3b77c'],[1,'#bb844b']]) {
+      svg('stop',{offset,'stop-color':color},gradient);
+    }
+    floor.layers.floor.querySelector('polygon').setAttribute('fill','url(#warm-wood)');
+    for (let x=5;x<100;x+=10) {
+      const a = floor.map(x,4);
+      const b = floor.map(x+.6,55);
+      svg('path',{d:`M ${a.x} ${a.y} Q ${a.x+3} ${(a.y+b.y)/2} ${b.x} ${b.y}`,
+        fill:'none',stroke:'#895a31','stroke-width':.65,opacity:.35},floor.layers.floor);
+      for (const z of [3,55]) {
+        const p = floor.map(x,z);
+        svg('circle',{cx:p.x,cy:p.y,r:Math.max(.6,w/1100),fill:'#745535',opacity:.6},floor.layers.floor);
+      }
+    }
+    actor.render();
+    countStrip.layout({x:0,y:0,w:$('counts').clientWidth || w,h:$('counts').clientHeight || 28});
+    drawPoles(state.active >= 0 ? state.active % 3 : 0);
+  }
+  new ResizeObserver(layout).observe($('theatre'));
+  function drawPoles(beat) {
+    poleLayer.style.display = state.mode === 'puzzles' && state.puzzle === 17 && !state.map ? '' : 'none';
+    const close = beat === 2;
+    for (let i = 0; i < 2; i++) {
+      const a = floor.map(12,(close ? 40 : i ? 51 : 29) + (close ? i * 4 : 0));
+      const b = floor.map(88,(close ? 40 : i ? 51 : 29) + (close ? i * 4 : 0));
+      const e = poles[i];
+      e.setAttribute('x',a.x); e.setAttribute('y',a.y - 4); e.setAttribute('width',b.x-a.x); e.setAttribute('height',8);
+    }
+  }
+  function letters(cards,ignoreFacing = false) {
+    const base = [];
+    const key = c => [c.move,sided(c) ? c.side : '',c.level,ignoreFacing ? '' : c.facing].join('|');
+    return cards.map(c => {
+      if (!c) return '';
+      let i = base.findIndex(b => key(b) === key(c));
+      if (i >= 0) return String.fromCharCode(65+i);
+      if (sided(c)) {
+        i = base.findIndex(b => key(b) === key({...c,side:c.side === 'R' ? 'L' : 'R'}));
+        if (i >= 0) return String.fromCharCode(65+i) + '′';
+      }
+      base.push(c);
+      return String.fromCharCode(64+base.length);
+    });
+  }
+  function normalized(ls) {
+    const seen = [];
+    return ls.filter(Boolean).map(l => {
+      if (!seen.includes(l)) seen.push(l);
+      return String.fromCharCode(65 + seen.indexOf(l));
+    }).join('');
+  }
+  function patternName(cards) {
+    const s = normalized(letters(cards));
+    for (const p of ['AB','AAB','ABB','ABC','AABB','ABBA','ABAC']) {
+      if (s.length && s.length % p.length === 0 && s === p.repeat(s.length / p.length)) return p;
+    }
+    return 'No repeat yet';
+  }
+  const CHALLENGES = [
+    'Make an AB pattern with one move and two levels.',
+    'Make an AABB pattern where only the side changes.',
+    'Make an ABC pattern that ends facing front.',
+    'Make an ABBA pattern.',
+    'Make an adding-on dance: A, AB, ABC.',
+    'Use all three levels in one pattern.'
+  ];
+  function challengeFits(cards,n) {
+    const cs = cards.filter(Boolean);
+    const ls = normalized(letters(cs));
+    const name = patternName(cs);
+    const same = keys => cs.every(c => keys.every(k => c[k] === cs[0][k]));
+    if (!cs.length) return false;
+    if (n === 0) return name === 'AB' && same(['move','facing'])
+      && cs.every(c => !sided(c) || c.side === cs[0].side) && new Set(cs.map(c => c.level)).size === 2;
+    if (n === 1) return name === 'AABB' && same(['move','level','facing']) && cs.every(sided) && new Set(cs.map(c => c.side)).size === 2;
+    if (n === 2) return name === 'ABC' && cs.at(-1).facing === 'front';
+    if (n === 3) return name === 'ABBA';
+    if (n === 4) return cs.length === 6 && ls === 'AABABC';
+    return new Set(cs.map(c => c.level)).size === 3 && name !== 'No repeat yet';
+  }
+  function currentCards() { return state.mode === 'mine' ? state.mine : state.cards; }
+  function actualLetters() {
+    if (state.mode === 'mine') return letters(state.mine);
+    if (!state.letters) return [];
+    return PUZZLES[state.puzzle].letters || letters(state.cards);
+  }
+  function watchAttrs() {
+    const ch = PUZZLES[state.puzzle].ch;
+    if (state.puzzle === 8) return ['side','level'];
+    if (ch === 0 || ch === 4 || ch === 5) return ['move'];
+    return [ch === 1 ? 'side' : ch === 2 ? 'level' : 'facing'];
+  }
+  function patternText() {
+    if (state.mode === 'mine') return patternName(state.mine) + ' · ' + letters(state.mine).filter(Boolean).join(' ');
+    if (state.lens) {
+      if (state.puzzle === 9) return 'Watch the facing: a quarter turn every 2 cards.';
+      if (state.puzzle === 8) return 'Watch the side and the level.';
+      if (PUZZLES[state.puzzle].ch === 4 || state.puzzle === 16) return 'Watch each round add one more card.';
+      return 'Watch the ' + watchAttrs().join(' and ') + '.';
+    }
+    if (!state.letters) return state.puzzle === 16 ? 'Round 3: three holds. Round 4: one more hold.' : 'Find the rule. Keep it going.';
+    if (state.puzzle === 9) return 'The pattern is in the facing: a quarter turn every two cards.';
+    if (state.puzzle === 10 || state.puzzle === 11) return 'Same moves, new facing each time. Letters ignore facing here.';
+    if (PUZZLES[state.puzzle].ch === 4) return 'Each round adds a card. Read the groups from left to right.';
+    return 'The pattern holds! Your dance is ready.';
+  }
+  function renderStrip(rebuild = false) {
+    const cards = currentCards();
+    if (state.mode === 'mine') {
+      const filled = cards.filter(Boolean).length;
+      const n = filled ? filled*2 : 16;
+      if (countStrip.st.n !== n) {
+        countStrip.g.remove();
+        countStrip = makeCounts(n);
+        countStrip.layout({x:0,y:0,w:$('counts').clientWidth,h:$('counts').clientHeight || 28});
+      }
+      $('chapter-label').textContent = filled ? `Your own phrase · ${filled*2} counts` : 'Your own phrase · up to 16 counts';
+      $('progress').textContent = `${filled} of 8 cards`;
+    }
+    const strip = $('strip');
+    if (rebuild || strip.children.length !== cards.length) {
+      strip.textContent = '';
+      cards.forEach((_,i) => {
+        const b = document.createElement('button');
+        b.className = 'card'; b.id = 'card-' + i; b.type = 'button';
+        b.innerHTML = '<span class="count-label"></span><svg class="pose" aria-hidden="true"></svg>'
+          + '<span class="question">?</span><span class="move-name"></span><span class="marks"></span><span class="letter"></span>';
+        b.onclick = () => selectCard(i);
+        strip.appendChild(b);
+      });
+    }
+    strip.style.setProperty('--cards',cards.length);
+    strip.classList.toggle('lens',state.lens && state.mode === 'puzzles');
+    strip.classList.toggle('seven',state.mode === 'puzzles' && state.puzzle === 16);
+    strip.classList.toggle('facing',state.mode === 'puzzles' && PUZZLES[state.puzzle].ch === 3);
+    const ls = actualLetters();
+    let filledRank = 0;
+    cards.forEach((c,i) => {
+      const b = strip.children[i];
+      b.classList.toggle('blank',!c); b.classList.toggle('selected',state.selected === i);
+      b.classList.toggle('active',state.active === i); b.classList.toggle('wrong',state.wrong === i);
+      const editable = state.mode === 'mine' || PUZZLES[state.puzzle].blanks.includes(i);
+      b.setAttribute('aria-label',`Card ${i+1}: ${c ? cardDescription(c) : 'question card'}. ${editable ? 'Tap to edit.' : 'Given card.'}`);
+      b.setAttribute('aria-pressed',state.selected === i);
+      b.querySelector('.pose').style.display = c ? '' : 'none';
+      b.querySelector('.question').style.display = c ? 'none' : '';
+      b.querySelector('.move-name').textContent = c ? displayMove(c.move) : '';
+      b.querySelector('.move-name').classList.toggle('watch',watchAttrs().includes('move'));
+      b.querySelector('.count-label').textContent = state.puzzle === 17 && state.mode === 'puzzles'
+        ? String(i+1) : `${i*2+1}–${i*2+2}`;
+      if (state.puzzle === 16 && state.mode === 'puzzles') b.querySelector('.count-label').textContent = `${(i < 3 ? i : i-3)*2+1}–${(i < 3 ? i : i-3)*2+2}`;
+      if (state.mode === 'mine') {
+        b.querySelector('.count-label').textContent = c ? `${filledRank*2+1}–${filledRank*2+2}` : '';
+        if (c) filledRank++;
+      }
+      const ms = b.querySelector('.marks');
+      ms.innerHTML = '';
+      if (c) {
+        renderer.icon(b.querySelector('.pose'),c);
+        const side = document.createElement('span'); side.className = 'mark side-mark' + (watchAttrs().includes('side') ? ' watch' : '');
+        side.textContent = sided(c) ? c.side === 'L' ? '◀ L' : 'R ▶' : '·';
+        const lv = document.createElement('span'); lv.className = 'mark level-mark' + (watchAttrs().includes('level') ? ' watch' : '');
+        lv.title = c.level;
+        for (const l of ['high','middle','low']) {
+          const tick = document.createElement('i'); tick.className = c.level === l ? 'on' : ''; lv.appendChild(tick);
+        }
+        const face = document.createElement('span'); face.className = 'mark face-mark' + (watchAttrs().includes('facing') ? ' watch' : '');
+        face.textContent = ARROW[c.facing]; face.title = 'Faces ' + c.facing;
+        ms.append(side,lv,face);
+      }
+      b.querySelector('.letter').textContent = ls[i] || '';
+      const starts = state.mode === 'puzzles' && (state.puzzle === 16 ? [3] : state.puzzle === 14 ? [1,3,6]
+        : [12,13].includes(state.puzzle) ? [1,3] : []);
+      b.classList.toggle('phrase-gap',!!starts && starts.includes(i));
+    });
+    $('pattern').textContent = patternText();
+    $('go').disabled = state.mode === 'mine' && !cards.some(Boolean);
+    if (state.mode === 'mine') {
+      const met = challengeFits(state.mine,state.challenge);
+      $('challenge-text').textContent = (met ? '✓ ' : '') + CHALLENGES[state.challenge];
+      $('challenge-text').classList.toggle('met',met);
+      if (met && !challengeWasMet) V.say('challengeMet',{valid:() => challengeFits(state.mine,state.challenge)});
+      challengeWasMet = met;
+    }
+  }
+  function makeMoveButtons() {
+    const folkMoves = state.puzzle === 15 ? FOLK.slice(0,3) : state.puzzle === 16 ? FOLK.slice(3,5) : FOLK.slice(5);
+    const list = BASIC.concat(state.mode === 'puzzles' && state.puzzle >= 15 ? folkMoves : []);
+    $('moves').textContent = '';
+    list.forEach((m,i) => {
+      const b = document.createElement('button'); b.className = 'btn move'; b.dataset.move = m;
+      b.setAttribute('aria-label',displayMove(m) + (i < 8 ? ', key ' + (i+1) : ''));
+      b.innerHTML = '<svg aria-hidden="true"></svg><span></span>';
+      b.querySelector('span').textContent = displayMove(m);
+      renderer.icon(b.querySelector('svg'),{...freshCard(),move:m});
+      b.onclick = () => edit('move',m);
+      $('moves').appendChild(b);
+    });
+  }
+  function makerValues() {
+    const c = currentCards()[state.selected] || currentCards()[Math.max(0,state.selected-1)] || freshCard();
+    $('maker').disabled = state.selected < 0 || state.mode === 'puzzles' && !PUZZLES[state.puzzle].blanks.includes(state.selected);
+    $('maker-label').textContent = $('maker').disabled
+      ? state.mode === 'mine' ? 'Pick a slot or card' : 'Pick a question card' : 'Make card ' + (state.selected+1);
+    for (const attr of ['move','side','level','facing']) {
+      document.querySelectorAll('[data-' + attr + ']').forEach(b => {
+        b.setAttribute('aria-pressed',b.dataset[attr] === c[attr]);
+        if (attr === 'side') b.disabled = !sided(c);
+      });
+    }
+    for (const k of ['copy','mirror','remove']) $(k).disabled = state.selected < 0 || !state.mine[state.selected];
+    const focus = document.activeElement;
+    if (focus.closest('#maker') && focus.disabled && state.selected >= 0) $('card-' + state.selected).focus({preventScroll:true});
+  }
+  function stopRun(hush = true) {
+    runToken++; previewToken++;
+    document.body.classList.remove('finish');
+    clearTimeout(previewTimer);
+    if (player) player.stop();
+    if (music) music.stop();
+    if (clock) clock.stop();
+    if (leadBus) { leadBus.disconnect(); leadBus = null; }
+    player = music = clock = null;
+    state.running = false; state.phase = 'idle'; state.active = -1;
+    countStrip.set(null);
+    $('stop').hidden = true; $('countin').hidden = true;
+    if (hush) V.hush();
+  }
+  function selectCard(i) {
+    const editable = state.mode === 'mine' || PUZZLES[state.puzzle].blanks.includes(i);
+    const introLines = [L.wPuzzles,...[1,2,3,4,5,6].map(n => L['ch'+n])];
+    const introPending = V.queue.some(entry => introLines.includes(typeof entry === 'string' ? entry : entry.text));
+    const keepIntro = !editable && !state.running && (introLines.includes(V.playing) || introPending);
+    stopRun(!keepIntro);
+    state.selected = i; state.wrong = -1;
+    hint(editable ? state.mode === 'mine' ? L.buildHow : L.selectHow : 'This card is given. Tap a question card to change the pattern.');
+    if (editable) how(state.mode === 'mine' ? 'buildHow' : 'selectHow',() => state.selected >= 0);
+    const c = currentCards()[i];
+    if (c) renderer.preview(c);
+    else if (currentCards()[i-1]) renderer.preview(currentCards()[i-1]);
+    Curio.tone(450 + i*30,.05,.035,'sine');
+    makerValues(); renderStrip();
+  }
+  function edit(attr,value) {
+    if ($('maker').disabled) return;
+    stopRun();
+    const cards = currentCards();
+    const i = state.selected;
+    let c = clone(cards[i] || cards[i-1] || freshCard());
+    c[attr] = value;
+    cards[i] = c;
+    state.letters = false; state.wrong = -1; state.version++;
+    hint(state.mode === 'mine' ? 'Tap another slot, Copy or Mirror to build. Tap Dance it to hear your pattern.'
+      : 'Your card is in. Tap another question card, or Dance it to test the pattern.');
+    renderer.preview(c);
+    Curio.tone(attr === 'level' ? {high:740,middle:554,low:370}[value] : 660,.07,.04,'triangle');
+    makerValues(); renderStrip(); save();
+  }
+  function renderMap() {
+    $('chapters').textContent = '';
+    const next = Array.from({length:18},(_,i) => i).find(i => !state.solved.includes(i));
+    CHAPTERS.forEach((name,ch) => {
+      const tile = document.createElement('div'); tile.className = 'chapter' + (Math.floor((next ?? 0)/3) === ch ? ' next' : '');
+      tile.style.setProperty('--tilt',(ch % 2 ? 1 : -1) + 'deg');
+      const b = document.createElement('button'); b.className = 'chapter-open'; b.id = 'chapter-' + ch;
+      b.innerHTML = '<svg aria-hidden="true"></svg><span class="chapter-num">CHAPTER ' + (ch+1) + '</span><span>' + name + '</span>';
+      renderer.icon(b.querySelector('svg'),PUZZLES[ch*3].answer[0],ch%3);
+      b.onclick = () => openPuzzle(ch*3,true);
+      tile.appendChild(b);
+      const dots = document.createElement('div'); dots.className = 'dots';
+      for (let j = 0; j < 3; j++) {
+        const dot = document.createElement('button'); dot.className = 'dot' + (state.solved.includes(ch*3+j) ? ' solved' : '');
+        dot.id = 'puzzle-' + (ch*3+j); dot.textContent = state.solved.includes(ch*3+j) ? '✓' : String(j+1);
+        dot.setAttribute('aria-label',`${name}, puzzle ${j+1}: ${PUZZLES[ch*3+j].name}${state.solved.includes(ch*3+j) ? ', solved' : ''}`);
+        dot.onclick = () => openPuzzle(ch*3+j,true); dots.appendChild(dot);
+      }
+      tile.appendChild(dots); $('chapters').appendChild(tile);
+    });
+    $('map-footer').textContent = `${state.solved.length} of 18 puzzles solved on this device. Every puzzle is open. · Curio Class`;
+  }
+  function showMap(focusChapter = false) {
+    stopRun(); state.mode = 'puzzles'; state.map = true; state.selected = -1;
+    document.body.classList.add('map-open'); $('map').hidden = false; $('work').hidden = true;
+    document.body.classList.remove('mine-mode');
+    $('m-puzzles').setAttribute('aria-pressed','true'); $('m-mine').setAttribute('aria-pressed','false');
+    hint(L.wMap); renderMap(); V.welcome();
+    if (focusChapter) {
+      const next = Array.from({length:18},(_,i) => i).find(i => !state.solved.includes(i)) ?? 0;
+      $('chapter-' + Math.floor(next/3)).focus({preventScroll:true});
+    }
+  }
+  function openPuzzle(n,focusCard = false) {
+    stopRun(); state.mode = 'puzzles'; state.map = false; state.puzzle = n;
+    state.selected = -1; state.wrong = -1; state.letters = false; state.lens = false; state.faster = true;
+    state.cards = PUZZLES[n].answer.map((c,i) => PUZZLES[n].blanks.includes(i) ? null : clone(c));
+    lastPuzzle = n; save();
+    renderWork(); hint(L.wPuzzles);
+    if (focusCard) $('card-' + PUZZLES[n].blanks[0]).focus({preventScroll:true});
+    const intro = ['wPuzzles','ch' + (PUZZLES[n].ch+1)].filter(k => !V.heard(k));
+    if (intro.length) V.how(intro,{valid:() => !state.map && !state.running
+      && (state.selected < 0 || !PUZZLES[state.puzzle].blanks.includes(state.selected))});
+  }
+  function setMode(m) {
+    if (m === 'puzzles') {
+      if (lastPuzzle !== null) openPuzzle(lastPuzzle);
+      else showMap();
+      return;
+    }
+    stopRun(); state.mode = 'mine'; state.map = false; state.selected = -1; state.lens = false; state.wrong = -1;
+    challengeWasMet = false;
+    renderWork(); hint(state.mine.some(Boolean) ? 'Tap a card to change it, or tap Dance it to hear your saved dance.' : L.wMine);
+    V.welcome();
+  }
+  function renderWork() {
+    document.body.classList.remove('map-open'); $('map').hidden = true; $('work').hidden = false;
+    const mine = state.mode === 'mine';
+    document.body.classList.toggle('mine-mode',mine);
+    document.body.classList.toggle('folk-mode',!mine && state.puzzle >= 15);
+    document.body.classList.toggle('poles-mode',!mine && state.puzzle === 17);
+    actor.paintCast(mine ? 1 : Math.floor(state.puzzle/3)%3);
+    const totalCounts = (mine ? 8 : PUZZLES[state.puzzle].answer.length) * (!mine && state.puzzle === 17 ? 1 : 2);
+    if (countStrip.st.n !== totalCounts) {
+      countStrip.g.remove();
+      countStrip = makeCounts(totalCounts);
+    }
+    $('m-puzzles').setAttribute('aria-pressed',!mine); $('m-mine').setAttribute('aria-pressed',mine);
+    $('chapter-label').textContent = mine ? 'Your own 16-count phrase' : `Chapter ${PUZZLES[state.puzzle].ch+1} · ${CHAPTERS[PUZZLES[state.puzzle].ch]}`;
+    $('puzzle-title').textContent = mine ? 'My dance' : PUZZLES[state.puzzle].name;
+    $('progress').textContent = mine ? '8 cards' : `${state.puzzle+1} / 18${state.solved.includes(state.puzzle) ? ' · ✓' : ''}`;
+    $('mine-actions').hidden = !mine; $('puzzle-actions').hidden = mine;
+    for (const k of ['challenge','loop','clear']) $(k).hidden = !mine;
+    $('faster').hidden = mine || state.puzzle !== 17;
+    $('faster').textContent = 'Faster and faster: ' + (state.faster ? 'on' : 'off');
+    $('culture').hidden = mine || state.puzzle < 15;
+    if (!mine && state.puzzle >= 15) {
+      const c = CULTURES[state.puzzle-15];
+      $('culture-image').src = c.image; $('culture-image').alt = c.alt;
+      $('culture-name').textContent = c.name; $('culture-text').textContent = c.text; $('culture-note').textContent = c.note || '';
+    }
+    $('polerow').hidden = mine || state.puzzle !== 17;
+    $('polerow').innerHTML = Array.from({length:9},(_,i) => `<span class="${i%3 === 2 ? 'close' : ''}">${i%3 === 2 ? 'close' : 'tap'}</span>`).join('');
+    $('lens').setAttribute('aria-pressed',state.lens);
+    makeMoveButtons(); makerValues(); renderStrip(true); layout();
+    renderer.preview((mine ? state.mine.find(Boolean) : state.cards.find(Boolean)) || freshCard(),true);
+  }
+  function firstBroken(c,answer) {
+    if (!c || c.move !== answer.move) return 'move';
+    if (sided(answer) && c.side !== answer.side) return 'side';
+    if (c.level !== answer.level) return 'level';
+    if (c.facing !== answer.facing) return 'facing';
+    return null;
+  }
+  function phraseFor(cards) {
+    const one = state.mode === 'puzzles' && state.puzzle === 17;
+    const ph = Dance.phrase(cards.map(c => ({poses:one ? [MOVES[c.move],{...MOVES[c.move],lift:0}]
+      : state.puzzle === 16 && state.mode === 'puzzles' ? [MOVES[c.move]] : [Dance.poses.stand,MOVES[c.move]],counts:one ? 1 : 2,
+      side:sided(c) ? c.side : 'R',facing:FACE[c.facing],level:c.level,at:{x:50,z:one && c.move === 'Out' ? 57 : 42}})));
+    const at = ph.at;
+    ph.at = count => {
+      const s = at(count);
+      const i = Math.min(cards.length-1,Math.floor(count / (one ? 1 : 2)));
+      if (cards[i].move === 'Turn' && !Curio.reduce) {
+        const progress = Math.max(0,Math.min(1,(count-i*2)/2));
+        s.facing = FACE[cards[i].facing] - (cards[i].side === 'R' ? 90 : -90) * (1-progress);
+      }
+      if (Curio.reduce) s.pose = poseFor(cards[i]);
+      return s;
+    };
+    return ph;
+  }
+  const TRACKS = [
+    {len:8,sub:2,vol:.35,parts:{pluck:[[60,64,67],null,null,null,[65,69,72],null,null,null,[60,64,67],null,null,null,[67,71,74],null,null,null],
+      bass:[48,null,null,null,53,null,null,null,48,null,null,null,55,null,null,null],wood:'x...x...x...x...',shaker:'..x...x...x...x.'}},
+    {len:8,sub:2,vol:.35,parts:{piano:[69,null,72,null,71,null,69,null,64,null,67,null,68,null,64,null],
+      bass:[45,null,null,null,45,null,null,null,52,null,null,null,52,null,null,null],tap:'x.x...x.x.x...x.'}},
+    {len:8,sub:2,vol:.35,parts:{pad:[[62,65,69],null,null,null,[65,69,72],null,null,null,[62,65,69],null,null,null,[57,62,65],null,null,null],
+      bass:[50,null,null,null,53,null,null,null,50,null,null,null,45,null,null,null]}},
+    {len:3,sub:1,vol:.4,parts:{wood:'xx.',clap:'..x',pluck:[72,76,79],bass:[48,null,55]}}
+  ];
+  // An accordion-like square lead supplements the engine's guitar, bass and light percussion.
+  function leadNote(n,clk,track) {
+    if (!Curio.sound || !Dance.heard || n <= 0 || track !== 0) return;
+    const a = Curio.audio();
+    if (!leadBus) { leadBus = a.createGain(); leadBus.gain.value = .035; leadBus.connect(a.destination); }
+    const t = a.currentTime;
+    const note = [72,76,79,76,74,77,81,79][(n-1)%8];
+    const o = a.createOscillator(); const g = a.createGain();
+    o.type = 'square'; o.frequency.value = 440 * 2 ** ((note-69)/12);
+    g.gain.setValueAtTime(.001,t); g.gain.linearRampToValueAtTime(.7,t+.015);
+    g.gain.exponentialRampToValueAtTime(.001,t + .7 * 60/clk.bpm);
+    o.connect(g).connect(leadBus); o.start(); o.stop(t + 60/clk.bpm);
+  }
+  function retime(bpm) {
+    state.bpm = bpm;
+    document.querySelectorAll('[data-bpm]').forEach(b => b.setAttribute('aria-pressed',Number(b.dataset.bpm) === bpm));
+    if (clock) {
+      // setBpm waits for the next count in this engine. Pause first to preserve this exact fractional position.
+      clock.pause(); clock.setBpm(bpm); clock.resume();
+    }
+    Curio.tone(500,.045,.035,'sine');
+  }
+  function markActive(i) {
+    state.active = i;
+    [...$('strip').children].forEach((b,j) => b.classList.toggle('active',i === j));
+  }
+  async function dance() {
+    const cards = currentCards().filter(Boolean);
+    if (!cards.length) { hint(L.emptyStrip); V.say('emptyStrip'); return; }
+    if (state.mode === 'puzzles' && currentCards().some(c => !c)) {
+      hint(L.missing); V.say('missing',{valid:() => currentCards().some(c => !c)});
+      const i = state.cards.findIndex(c => !c); $('card-' + i).focus({preventScroll:true}); return;
+    }
+    stopRun();
+    const tok = runToken;
+    state.running = true; state.phase = 'countin'; state.wrong = -1; state.active = -1;
+    $('stop').hidden = false; $('countin').hidden = false; $('countin').textContent = '5';
+    hint('Five, six, seven, eight! Watch the lit card. Tap Stop or a card to change it.');
+    const spoken = V.say('countIn',{wait:true,now:true,valid:() => tok === runToken});
+    let ready = false;
+    Promise.resolve(spoken).then(() => { ready = true; if (tok === runToken && clock && clock.paused) clock.resume(); });
+    let pass = 0;
+    const baseBpm = state.bpm;
+    const per = state.mode === 'puzzles' && state.puzzle === 17 ? 1 : 2;
+    const track = state.mode === 'puzzles' && state.puzzle >= 15 ? state.puzzle-14 : 0;
+    function startPass(countIn) {
+      if (tok !== runToken) return;
+      const ph = phraseFor(cards);
+      clock = Dance.clock(state.bpm,{meter:track === 3 ? 3 : track === 2 ? 2 : 4,countIn:countIn ? 4 : 0});
+      countStrip.bind(clock,1);
+      music = Dance.music({...TRACKS[track],countIn:false},clock);
+      clock.onCount((n) => {
+        if (tok !== runToken) return;
+        if (n <= 0) { $('countin').textContent = String(n+8); return; }
+        if (n > ph.total) return;
+        if (countIn && n === 1 && !ready) clock.pause();
+        $('countin').hidden = true; state.phase = pass ? 'replay' : 'dance';
+        leadNote(n,clock,track);
+        const ix = Math.floor((n-1)/per);
+        const actualIndex = state.mode === 'mine' ? state.mine.map((c,i) => c ? i : -1).filter(i => i >= 0)[ix] : ix;
+        markActive(actualIndex);
+        $('live-pose').textContent = (pass ? 'Encore · ' + state.bpm + ' BPM · ' : '') + cardDescription(cards[ix]);
+        drawPoles(ix % 3);
+        if (!pass && state.mode === 'puzzles') {
+          const broken = firstBroken(cards[ix],PUZZLES[state.puzzle].answer[ix]);
+          if (broken) {
+            actor.set({pose:poseFor(cards[ix]),facing:FACE[cards[ix].facing]});
+            stopRun(); state.wrong = ix; state.selected = ix;
+            const k = 'look' + broken[0].toUpperCase() + broken.slice(1);
+            hint(L[k] + ' Tap the outlined card and change it. Then tap Dance it again.');
+            renderStrip(); makerValues();
+            Curio.tone(180,.12,.07,'triangle');
+            V.say(k,{valid:() => state.wrong === ix}); how('fixHow',() => state.wrong === ix);
+          }
+        }
+      });
+      player = Dance.play(actor,ph,{clock,onFrame:pos => {
+        const ix = Math.min(cards.length-1,Math.max(0,Math.floor(pos/per)));
+        renderer.frame(cards[ix],pos/per-ix);
+      },onEnd:async () => {
+        if (tok !== runToken) return;
+        music.stop(); clock.stop();
+        if (leadBus) { leadBus.disconnect(); leadBus = null; }
+        if (state.mode === 'mine') {
+          if (state.loop) { pass++; startPass(false); return; }
+          stopRun(false);
+          actor.set({pose:poseFor(cards.at(-1)),facing:FACE[cards.at(-1).facing]});
+          $('live-pose').textContent = 'Your finish · ' + cardDescription(cards.at(-1));
+          document.body.classList.add('finish');
+          renderStrip(); hint(L.mineDone); return;
+        }
+        if (!pass) {
+          state.letters = true;
+          if (!state.solved.includes(state.puzzle)) state.solved.push(state.puzzle);
+          save(); renderStrip(); $('progress').textContent = `${state.puzzle+1} / 18 · ✓`;
+          Curio.yes(); hint('The pattern holds! Watch the letters light up. Tap Next puzzle when you are ready.');
+          state.phase = 'solved';
+          V.say('solved',{valid:() => tok === runToken});
+          if (tok !== runToken) return;
+          pass = 1; startPass(false); return;
+        }
+        const passes = state.puzzle === 17 && state.faster ? 4 : 1;
+        if (pass < passes) {
+          pass++;
+          retime(Math.min(120,baseBpm+8*(pass-1)));
+          startPass(false); return;
+        }
+        stopRun(false);
+        actor.set({pose:poseFor(cards.at(-1)),facing:FACE[cards.at(-1).facing]});
+        $('live-pose').textContent = 'Pattern complete · ' + cardDescription(cards.at(-1));
+        document.body.classList.add('finish');
+        renderStrip();
+        hint(L.nextHow);
+        const ch = PUZZLES[state.puzzle].ch;
+        if ([0,1,2].every(j => state.solved.includes(ch*3+j))) V.say('allChapter',{valid:() => !state.map});
+        else how('nextHow',() => !state.map && !state.running);
+      }});
+      clock.start(countIn ? -4 : 0);
+    }
+    startPass(true);
+  }
+  function duplicate(mirror) {
+    const c = state.mine[state.selected];
+    if (!c) return;
+    const i = state.mine.findIndex((x,j) => !x && j > state.selected);
+    const next = i < 0 ? state.mine.findIndex(x => !x) : i;
+    if (next < 0) { hint('All eight slots are filled. Tap a card to edit it or Remove to make room.'); return; }
+    stopRun(); state.mine[next] = clone(c);
+    if (mirror && sided(c)) state.mine[next].side = c.side === 'R' ? 'L' : 'R';
+    state.selected = next; state.version++; save(); renderStrip(); makerValues(); renderer.preview(state.mine[next]);
+    hint('Your copy is in. Tap Copy, Mirror, another slot or Dance it.'); Curio.tone(mirror ? 780 : 620,.08,.04,'triangle');
+  }
+  $('m-puzzles').onclick = () => { if (state.mode !== 'puzzles') setMode('puzzles'); };
+  $('m-mine').onclick = () => { if (state.mode !== 'mine') setMode('mine'); };
+  $('go').onclick = dance;
+  $('stop').onclick = () => { stopRun(); renderStrip(); hint('Stopped. Tap a card to edit, or Dance it to begin again.'); };
+  $('map-button').onclick = () => showMap(true);
+  $('next').onclick = () => openPuzzle((state.puzzle+1)%18,true);
+  $('reset').onclick = () => openPuzzle(state.puzzle,true);
+  $('lens').onclick = () => {
+    Curio.tone(610,.06,.035,'sine');
+    state.lens = !state.lens; $('lens').setAttribute('aria-pressed',state.lens); renderStrip();
+    hint(state.lens ? patternText() + ' Tap a question card and make your choice.' : 'Lens off. Tap a question card or Dance it.');
+    how('lens',() => state.lens && !state.map);
+  };
+  document.querySelectorAll('[data-side],[data-level],[data-facing]').forEach(b => {
+    b.onclick = () => { for (const k of ['side','level','facing']) if (b.dataset[k]) edit(k,b.dataset[k]); };
+  });
+  document.querySelectorAll('[data-bpm]').forEach(b => { b.onclick = () => retime(Number(b.dataset.bpm)); });
+  $('faster').onclick = () => {
+    state.faster = !state.faster; $('faster').setAttribute('aria-pressed',state.faster);
+    $('faster').textContent = 'Faster and faster: ' + (state.faster ? 'on' : 'off');
+  };
+  $('loop').onclick = () => {
+    state.loop = !state.loop; $('loop').setAttribute('aria-pressed',state.loop); $('loop').textContent = '↻ Loop: ' + (state.loop ? 'on' : 'off');
+  };
+  $('copy').onclick = () => duplicate(false); $('mirror').onclick = () => duplicate(true);
+  $('remove').onclick = () => {
+    stopRun(); if (state.selected >= 0) state.mine[state.selected] = null;
+    state.version++; save(); renderStrip(); makerValues(); hint('Tap an empty slot, then pick a move to fill it.');
+    if (state.selected >= 0) $('card-' + state.selected).focus({preventScroll:true});
+  };
+  $('challenge').onclick = () => { state.challenge = (state.challenge+1)%6; challengeWasMet = false; renderStrip(); };
+  $('clear').onclick = () => { stopRun(); $('clear-dialog').showModal(); };
+  $('clear-no').onclick = () => { $('clear-dialog').close(); $('clear').focus({preventScroll:true}); };
+  $('clear-yes').onclick = () => {
+    state.mine = Array(8).fill(null); state.solved = []; state.selected = -1; lastPuzzle = null; state.version++;
+    try { localStorage.removeItem(savedKey); } catch {}
+    $('clear-dialog').close(); renderStrip(); makerValues(); hint(L.wMine); $('clear').focus({preventScroll:true});
+  };
+  document.addEventListener('keydown',e => {
+    if ($('clear-dialog').open || e.altKey || e.ctrlKey || e.metaKey) return;
+    const key = e.key.toLowerCase();
+    if (e.code === 'Space' && !state.map) { e.preventDefault(); dance(); return; }
+    if (state.map) return;
+    if (e.key.startsWith('Arrow') && document.activeElement.closest('#strip')) {
+      e.preventDefault();
+      const i = [...$('strip').children].indexOf(document.activeElement);
+      const delta = e.key === 'ArrowLeft' ? -1 : e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' ? -5 : 5;
+      const j = Math.max(0,Math.min(currentCards().length-1,i+delta));
+      $('card-' + j).focus({preventScroll:true}); return;
+    }
+    if (state.selected < 0 || $('maker').disabled) return;
+    if (/^[1-8]$/.test(key)) { e.preventDefault(); edit('move',BASIC[Number(key)-1]); }
+    const shortcuts = {q:['side','L'],w:['side','R'],a:['level','high'],s:['level','middle'],d:['level','low'],
+      z:['facing','front'],x:['facing','right'],c:['facing','back'],v:['facing','left']};
+    if (shortcuts[key]) {
+      e.preventDefault();
+      if (shortcuts[key][0] !== 'side' || sided(currentCards()[state.selected] || currentCards()[state.selected-1] || freshCard())) edit(...shortcuts[key]);
+    }
+  });
+  Curio.init({clips:"voice:*",rate:.95});
+  Curio.onSound(on => { if (leadBus) leadBus.gain.value = on ? .035 : 0; });
+  Curio.onMotion(() => { if (!state.running && state.selected >= 0 && currentCards()[state.selected]) renderer.preview(currentCards()[state.selected],true); });
+  window.__tool = {state,setMode,openPuzzle,showMap,allLines:V.allLines,vlog:V.log,get vq() {return V.queue;},
+    puzzles:PUZZLES,letters,patternName,challengeFits,firstBroken,poseFor,selectCard,edit,dance,stopRun,retime,renderer,
+    get clock() {return clock;},get runToken() {return runToken;},get actor() {return actor;}};
+  if (lastPuzzle !== null) openPuzzle(lastPuzzle);
+  else showMap();
+})();
+</script>
+</body>
+</html>

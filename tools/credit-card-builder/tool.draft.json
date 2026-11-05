@@ -1,0 +1,21 @@
+{
+  "id": "credit-card-builder",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Build a credit. Follow its trail. Get a thank-you to the maker.",
+  "outcome": "Find and credit the author, title, date and source of borrowed work",
+  "driver": "students or teacher",
+  "minutes": "15-25",
+  "modes": ["Build", "Creator's Corner"],
+  "grades_label": "Grades 3-5",
+  "sources": [
+    "AASL National School Library Standards, Engage VI.B.2 and VI.B.3 (2018)",
+    "MLA Style Center: Works Cited, A Quick Guide. Cards use a simplified classroom format.",
+    "U.S. Copyright Office, Circular 1: Copyright Basics",
+    "Cornell Lab of Ornithology: Barn Owl; USDA ARS: Honey bee facts; NASA Science: Moon facts and phases",
+    "All source documents, websites, creators and stories are fictional examples for Curio Class.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-10-31"
+}

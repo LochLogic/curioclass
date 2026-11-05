@@ -11,18 +11,20 @@
       "width": 240,
       "quality": 82,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok: viewed on dark contact sheet, no people"
     },
     {
       "name": "gdf-toast",
-      "prompt": "Two slices of whole-wheat toast on a plain white plate.",
+      "prompt": "Exactly two slices of toasted whole-wheat bread on a plain white ceramic plate. Brown whole-grain crumb with tiny grain flecks, darker golden crisp crust, toasted surface. Top three-quarter view. Clear appetizing shapes readable as a small food-shelf picture.",
       "aspect": "1:1",
       "cutout": true,
       "key": "magenta",
       "width": 240,
       "quality": 82,
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "source": "OpenAI gpt-image",
+      "review": "Viewed at shelf and chip sizes on the dark tool surface: true to named food, clean cutout, matching soft illustration style, no people or text.",
+      "previous_prompt": "Two slices of whole-wheat toast on a plain white plate.",
+      "drawn_by": "codex"
     },
     {
       "name": "gdf-eggs",
@@ -33,7 +35,7 @@
       "width": 240,
       "quality": 82,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok: viewed on dark contact sheet, no people"
     },
     {
       "name": "gdf-bagel-pb",
@@ -44,29 +46,33 @@
       "width": 240,
       "quality": 82,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok: viewed on dark contact sheet, no people"
     },
     {
       "name": "gdf-turkey",
-      "prompt": "A turkey sandwich on whole-wheat bread with lettuce and tomato, on a plain white plate.",
+      "prompt": "One turkey sandwich made with brown whole-wheat sandwich bread, filled with thin folded slices of turkey, green lettuce and red tomato, on a plain white plate. Brown crumb with grain flecks and golden crust. One sandwich in top three-quarter view, appetizing and readable as a small food-shelf picture.",
       "aspect": "1:1",
       "cutout": true,
       "key": "magenta",
       "width": 240,
       "quality": 82,
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "source": "OpenAI gpt-image",
+      "review": "Viewed at shelf and chip sizes on the dark tool surface: true to named food, clean cutout, matching soft illustration style, no people or text.",
+      "previous_prompt": "A turkey sandwich on whole-wheat bread with lettuce and tomato, on a plain white plate.",
+      "drawn_by": "codex"
     },
     {
       "name": "gdf-pbj",
-      "prompt": "A peanut butter and strawberry jelly sandwich cut in half, on a plain white plate.",
+      "prompt": "One peanut butter and strawberry jelly sandwich made with brown whole-wheat bread, cut diagonally into two triangular halves on a plain white plate. One half leans against the other so the peanut butter and red jelly layers are visible. Brown crumb, grain flecks and golden crust. Top three-quarter view.",
       "aspect": "1:1",
       "cutout": true,
       "key": "magenta",
       "width": 240,
       "quality": 82,
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "source": "OpenAI gpt-image",
+      "review": "Viewed at shelf and chip sizes on the dark tool surface: true to named food, clean cutout, matching soft illustration style, no people or text.",
+      "previous_prompt": "A peanut butter and strawberry jelly sandwich cut in half, on a plain white plate.",
+      "drawn_by": "codex"
     },
     {
       "name": "gdf-pasta",
@@ -77,7 +83,7 @@
       "width": 240,
       "quality": 82,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok: viewed on dark contact sheet, no people"
     },
     {
       "name": "gdf-ricebowl",
@@ -88,7 +94,7 @@
       "width": 240,
       "quality": 82,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok: viewed on dark contact sheet, no people"
     },
     {
       "name": "gdf-burrito",
@@ -99,18 +105,20 @@
       "width": 240,
       "quality": 82,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok: viewed on dark contact sheet, no people"
     },
     {
       "name": "gdf-pizza",
-      "prompt": "One slice of cheese pizza on a plain white plate.",
+      "prompt": "One triangular slice of plain cheese pizza on a plain white ceramic plate. Golden melted mozzarella, a little red tomato sauce along the edge, golden raised crust. Only cheese and tomato sauce on the pizza. Top three-quarter view, clear appetizing shapes readable as a small food-shelf picture.",
       "aspect": "1:1",
       "cutout": true,
       "key": "magenta",
       "width": 240,
       "quality": 82,
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "source": "OpenAI gpt-image",
+      "review": "Viewed at shelf and chip sizes on the dark tool surface: true to named food, clean cutout, matching soft illustration style, no people or text.",
+      "previous_prompt": "One slice of cheese pizza on a plain white plate.",
+      "drawn_by": "codex"
     },
     {
       "name": "gdf-salmon",
@@ -121,7 +129,7 @@
       "width": 240,
       "quality": 82,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok: viewed on dark contact sheet, no people"
     },
     {
       "name": "gdf-potato",
@@ -132,7 +140,7 @@
       "width": 240,
       "quality": 82,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok: viewed on dark contact sheet, no people"
     },
     {
       "name": "gdf-salad",
@@ -143,7 +151,7 @@
       "width": 240,
       "quality": 82,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok: viewed on dark contact sheet, no people"
     },
     {
       "name": "gdf-broccoli",
@@ -154,7 +162,7 @@
       "width": 240,
       "quality": 82,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok: viewed on dark contact sheet, no people"
     },
     {
       "name": "gdf-chicken-sandwich",
@@ -165,7 +173,7 @@
       "width": 240,
       "quality": 82,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok: viewed on dark contact sheet, no people"
     },
     {
       "name": "gdf-fries",
@@ -176,7 +184,7 @@
       "width": 240,
       "quality": 82,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok: viewed on dark contact sheet, no people"
     },
     {
       "name": "gdf-smoothie",
@@ -187,8 +195,185 @@
       "width": 240,
       "quality": 82,
       "source": "flux1-schnell (local)",
-      "review": "pending",
+      "review": "ok: viewed on dark contact sheet, no people",
       "despill": true
+    },
+    {
+      "name": "gdf-gear-ana",
+      "prompt": "A black and white soccer ball beside a pair of soccer cleats.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 400,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok: viewed on dark contact sheet, no people",
+      "full_generation_prompt": "Soft flat editorial gouache illustration, appetizing true-to-life materials, clean shapes, subtle colored pencil grain and soft shading, top three-quarter view. Match a sophisticated school nutrition illustration set, rich but natural color, upper-left light. No text, letters, numbers, logos, watermarks, people, faces or body parts. A black and white soccer ball beside a pair of soccer cleats. Center all objects fully visible on a perfectly flat pure magenta #FF00FF background for chroma key. No ground or cast shadow.",
+      "generation_tool": "built-in image_gen"
+    },
+    {
+      "name": "gdf-gear-priya",
+      "prompt": "An orange basketball beside a pair of high-top basketball shoes.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 400,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok: viewed on dark contact sheet, no people",
+      "full_generation_prompt": "Soft flat editorial gouache illustration, appetizing true-to-life materials, clean shapes, subtle colored pencil grain and soft shading, top three-quarter view. Match a sophisticated school nutrition illustration set, rich but natural color, upper-left light. No text, letters, numbers, logos, watermarks, people, faces or body parts. An orange basketball beside a pair of high-top basketball shoes. Center all objects fully visible on a perfectly flat pure magenta #FF00FF background for chroma key. No ground or cast shadow.",
+      "generation_tool": "built-in image_gen"
+    },
+    {
+      "name": "gdf-gear-marcus",
+      "prompt": "Swim goggles and a plain swim cap on a folded striped towel.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 400,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok: viewed on dark contact sheet, no people",
+      "full_generation_prompt": "Soft flat editorial gouache illustration, appetizing true-to-life materials, clean shapes, subtle colored pencil grain and soft shading, top three-quarter view. Match a sophisticated school nutrition illustration set, rich but natural color, upper-left light. No text, letters, numbers, logos, watermarks, people, faces or body parts. Swim goggles and a plain swim cap on a folded blue and cream striped towel. Center all objects fully visible on a perfectly flat pure magenta #FF00FF background for chroma key. No ground or cast shadow.",
+      "generation_tool": "built-in image_gen"
+    },
+    {
+      "name": "gdf-gear-kai",
+      "prompt": "A pair of lightweight running spikes on a patch of grass beside a water bottle.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 400,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok: viewed on dark contact sheet, no people",
+      "full_generation_prompt": "Soft flat editorial gouache illustration, appetizing true-to-life materials, clean shapes, subtle colored pencil grain and soft shading, top three-quarter view. Match a sophisticated school nutrition illustration set, rich but natural color, upper-left light. No text, letters, numbers, logos, watermarks, people, faces or body parts. A pair of lightweight running spikes on a small patch of grass beside a water bottle. Center all objects fully visible on a perfectly flat pure magenta #FF00FF background for chroma key. No ground or cast shadow.",
+      "generation_tool": "built-in image_gen"
+    },
+    {
+      "name": "gdf-bench",
+      "prompt": "Empty school sports equipment room, blue dusk daylight from high windows on the left, dark navy lockers at the back, an oak equipment bench in the foreground, a strip of soccer pitch visible through an open doorway at the far right. Blank surfaces, no people, no text.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok: viewed on dark contact sheet, no people",
+      "full_generation_prompt": "Soft flat editorial gouache illustration, appetizing true-to-life materials, clean shapes, subtle colored pencil grain and soft shading, top three-quarter view. Match a sophisticated school nutrition illustration set, rich but natural color, upper-left light. No text, letters, numbers, logos, watermarks, people, faces or body parts. Wide cinematic empty school sports equipment room, blue dusk daylight from high windows on the left, dark navy lockers at the back, an oak equipment bench in the foreground, a strip of soccer pitch visible through an open doorway at far right. Quiet atmospheric depth, subtle brushed surfaces. Blank surfaces. Landscape 16:9.",
+      "generation_tool": "built-in image_gen"
+    },
+    {
+      "name": "apple",
+      "prompt": "Reused exactly from label-detective: Apple",
+      "source": "label-detective",
+      "width": 240,
+      "people": false,
+      "review": "ok: viewed on dark contact sheet, no people"
+    },
+    {
+      "name": "banana",
+      "prompt": "Reused exactly from label-detective: Banana",
+      "source": "label-detective",
+      "width": 240,
+      "people": false,
+      "review": "ok: viewed on dark contact sheet, no people"
+    },
+    {
+      "name": "plainoats",
+      "prompt": "Reused exactly from label-detective: Plain oatmeal",
+      "source": "label-detective",
+      "width": 240,
+      "people": false,
+      "review": "ok: viewed on dark contact sheet, no people"
+    },
+    {
+      "name": "greekyogurt",
+      "prompt": "Reused exactly from label-detective: Plain Greek yogurt",
+      "source": "label-detective",
+      "width": 240,
+      "people": false,
+      "review": "ok: viewed on dark contact sheet, no people"
+    },
+    {
+      "name": "milk",
+      "prompt": "Reused exactly from label-detective: White milk",
+      "source": "label-detective",
+      "width": 240,
+      "people": false,
+      "review": "ok: viewed on dark contact sheet, no people"
+    },
+    {
+      "name": "chocmilk",
+      "prompt": "Reused exactly from label-detective: Chocolate milk",
+      "source": "label-detective",
+      "width": 240,
+      "people": false,
+      "review": "ok: viewed on dark contact sheet, no people"
+    },
+    {
+      "name": "stringcheese",
+      "prompt": "Reused exactly from label-detective: String cheese",
+      "source": "label-detective",
+      "width": 240,
+      "people": false,
+      "review": "ok: viewed on dark contact sheet, no people"
+    },
+    {
+      "name": "carrots",
+      "prompt": "Reused exactly from label-detective: Carrots and hummus",
+      "source": "label-detective",
+      "width": 240,
+      "people": false,
+      "review": "ok: viewed on dark contact sheet, no people"
+    },
+    {
+      "name": "pretzels",
+      "prompt": "Reused exactly from label-detective: Pretzels",
+      "source": "label-detective",
+      "width": 240,
+      "people": false,
+      "review": "ok: viewed on dark contact sheet, no people"
+    },
+    {
+      "name": "granola",
+      "prompt": "Reused exactly from label-detective: Granola bar",
+      "source": "label-detective",
+      "width": 240,
+      "people": false,
+      "review": "ok: viewed on dark contact sheet, no people"
+    },
+    {
+      "name": "trailmix",
+      "prompt": "Reused exactly from label-detective: Trail mix",
+      "source": "label-detective",
+      "width": 240,
+      "people": false,
+      "review": "ok: viewed on dark contact sheet, no people"
+    },
+    {
+      "name": "sportsdrink",
+      "prompt": "Reused exactly from label-detective: Sports drink",
+      "source": "label-detective",
+      "width": 240,
+      "people": false,
+      "review": "ok: viewed on dark contact sheet, no people"
+    },
+    {
+      "name": "water",
+      "prompt": "Reused exactly from label-detective: Water",
+      "source": "label-detective",
+      "width": 240,
+      "people": false,
+      "review": "ok: viewed on dark contact sheet, no people"
     }
   ]
 }

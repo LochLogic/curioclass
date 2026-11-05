@@ -1,0 +1,36 @@
+{
+  "id": "brand-builder",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Make a mark. Make it work on eight real-world surfaces.",
+  "outcome": "Develop and refine a brand against a client brief and reproduction tests.",
+  "driver": "students",
+  "minutes": "25-45",
+  "modes": [
+    "Brief",
+    "Design",
+    "Test",
+    "Sheet"
+  ],
+  "grades_label": "Grades 9-12",
+  "sources": [
+    "W3C WCAG 2.1, criteria 1.4.3 and 1.4.11",
+    "National Core Arts Standards: MA:Cr2.1.HSI, MA:Cr3.1.HSI, VA:Cr3.1.HSI, MA:Re9.1.HSI",
+    "Ellen Lupton, Thinking with Type, second edition (2010)",
+    "Alina Wheeler, Designing Brand Identity, fifth edition (2017)",
+    "MDN link rel=icon sizes",
+    "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [
+    "Instrument Sans, SIL Open Font License 1.1 (site-supplied variable woff2)",
+    "Fraunces, SIL Open Font License 1.1 (site-supplied variable woff2)",
+    "Montserrat, SIL Open Font License 1.1 (locally installed; embedded Latin WOFF2 subset)",
+    "Quicksand, SIL Open Font License 1.1 (locally installed; embedded Latin WOFF2 subset)",
+    "Playfair Display, SIL Open Font License 1.1 (locally installed; embedded Latin WOFF2 subset)",
+    "Arvo, SIL Open Font License 1.1 (locally installed; embedded Latin WOFF2 subset)",
+    "Bebas Neue, SIL Open Font License 1.1 (locally installed; embedded Latin WOFF2 subset)",
+    "Pacifico, SIL Open Font License 1.1 (locally installed; embedded Latin WOFF2 subset)"
+  ],
+  "updated": "2026-11-03"
+}

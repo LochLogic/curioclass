@@ -1,0 +1,1325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World Music Map · Curio Class</title>
+<meta name="description" content="Play ten musical traditions through pitch rulers and rhythm circles. Grades 6-8. Works offline.">
+<!--
+World Music Map, Curio Class. NCAS MU:Cn11 and MU:Re7. Student or teacher driven.
+Instrument photos: The Metropolitan Museum of Art, Open Access CC0. Natural Earth land: public domain.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Local audio adapter based on orchestra-zoo recipes. Musical sources and sketch limits are in spec.md and notes.md.
+No recordings, automatic network calls or personal data. Content CC BY 4.0; code MIT.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root{
+  --brand:#7a2e8a;--paper:#f6f3ee;--ink:#221a2b;--muted:#5e5468;--line:#d7cddd;--focus:#c37320;
+  --btn:#652576;--btn-line:#b68aba;--head-ink:#fff;--panel:#faf8f4;--arka:#0f6a6a;
+}
+body{height:100dvh;min-height:0;overflow:hidden;grid-template-rows:auto auto minmax(0,1fr)}
+header{padding:12px 22px;gap:8px;background:linear-gradient(110deg,#48234e,#7a2e8a);box-shadow:0 3px 14px #28152d26;z-index:4}
+h1{font:700 28px/1.1 Georgia,serif;letter-spacing:-.7px}
+h1 small{font-size:12px;letter-spacing:0;margin-top:5px}
+button,select{min-height:44px;min-width:44px}
+.seg{border:1px solid #b68aba;border-radius:10px}
+.seg button,.icon-btn{min-height:44px;font-size:13px;padding:0 12px}
+.seg button[aria-pressed=true]{background:#f6e4bd;color:#492441}
+.icon-btn{border-width:1px;border-radius:10px;padding:0 9px}
+.toolbar{display:flex;align-items:center;gap:16px;padding:10px 22px;border-bottom:1px solid var(--line);background:#f6f3ee;z-index:3}
+.hint{margin:0;font-size:14px;line-height:1.4;flex:1;min-height:40px;display:flex;align-items:center;max-width:560px}
+.layerbox{margin-left:auto;display:flex;gap:10px;align-items:center}.layers{display:flex;gap:5px}
+.layers button,.plain{border:1px solid #c9bccc;background:#fffcf8;border-radius:8px;padding:0 13px;font-size:13px;font-weight:650}
+.layers button[aria-pressed=true]{background:#7a2e8a;color:#fff;border-color:#7a2e8a}
+#legend{font-size:11px;color:var(--muted);width:var(--legend-width,220px);flex:0 0 var(--legend-width,220px);line-height:1.45}
+main{display:flex;position:relative;min-height:0;overflow:hidden;isolation:isolate}
+.mapbox{position:relative;flex:1;min-width:0;overflow:hidden;background:radial-gradient(ellipse at 40% 25%,#f6f2fa,#e6e1ef 70%)}
+.mapbox::after{content:"";position:absolute;inset:10px;border:1px solid #a393ad55;border-radius:10px;pointer-events:none;z-index:2}
+#map-svg{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab}
+#land{fill:url(#landlight);stroke:#9fb39a;stroke-width:.65;filter:url(#relief)}
+#pins{position:absolute;inset:0;pointer-events:none;list-style:none;padding:0;margin:0}
+.pin{position:absolute;width:44px;height:44px;border-radius:50%;border:3px solid #f6f3ee;color:white;
+  background:radial-gradient(circle at 35% 25%,#a34db3,#682776 75%);box-shadow:0 3px 8px #351d4660;
+  transform:translate(-50%,-50%);font-size:18px;font-weight:750;pointer-events:auto;padding:0;z-index:2}
+.pin[aria-pressed=true]{outline:3px solid #7a2e8a;outline-offset:3px;background:#0f6a6a}.pin:hover{background:#4d1b5a;z-index:5}
+.pin svg{width:25px;height:25px;vertical-align:middle;pointer-events:none}
+.pin.multi svg{width:17px;height:22px}.pin.multi svg:nth-child(3){position:absolute;bottom:0;left:10px;width:16px;height:16px}
+.pin-name{position:absolute;left:50%;top:44px;transform:translateX(-50%);color:#34213e;background:#f6f3eef0;
+  padding:2px 5px;border-radius:4px;font-size:11px;white-space:nowrap;box-shadow:0 1px 2px #221a2b20;pointer-events:none}
+.map-title{position:absolute;left:5%;top:6%;pointer-events:none;max-width:270px}
+.eyebrow{font-size:10px;letter-spacing:.15em;text-transform:uppercase;font-weight:750;color:#7a2e8a}
+.map-title h2{font:normal clamp(25px,3vw,45px)/1.08 Georgia,serif;letter-spacing:-1px;margin:9px 0;color:#48234e}
+.map-title p{font-size:13px;color:#5e5468;max-width:210px;line-height:1.5}
+.map-tools{position:absolute;right:24px;top:22px;display:flex;gap:5px;z-index:3}
+.map-tools button{background:#f6f3eee8;border:1px solid #baabc5;border-radius:7px;font-size:21px;color:#682776}
+#zoom-level{min-width:44px;display:grid;place-items:center;font-size:12px;background:#f6f3eed9;border-radius:7px}
+.map-credit{position:absolute;left:25px;bottom:17px;font-size:10px;color:#5e5468}
+.exhibit{position:absolute;left:5%;bottom:8%;display:flex;align-items:end;gap:12px;pointer-events:none}
+.exhibit figure{margin:0;width:120px;text-align:center;position:relative}.exhibit img{width:100%;height:105px;object-fit:contain;
+  filter:drop-shadow(0 8px 5px #39214930)}
+.exhibit figcaption{border-top:1px solid #a99ab6;padding-top:7px;font:11px Georgia,serif;color:#513757}
+.exhibit::before{content:"";position:absolute;left:-25px;right:-30px;bottom:14px;height:17px;
+  background:linear-gradient(#c6b7cf,#e4dbea);transform:skewX(-25deg);box-shadow:0 15px 16px #35234215}
+.idle-ring{fill:none;stroke:#a978b5;stroke-width:.6;animation:breathe 5s ease-in-out infinite}
+@keyframes breathe{50%{opacity:.2}}.calm .idle-ring{animation:none}
+.has-stop .mapbox{flex:0 0 40%}.has-stop .map-title,.has-stop .exhibit{display:none}
+.has-stop .map-credit{display:none}
+.mystery .map-tools{display:none}
+#mapbox{order:0}#card{order:1}
+.card{width:60%;min-width:0;background:linear-gradient(135deg,#fffcf8,#f3eee7);border-left:1px solid #bfabc8;
+  box-shadow:-8px 0 24px #42244a14;display:flex;flex-direction:column;overflow:auto;position:relative;padding:12px 22px 10px;gap:7px}
+.card-head{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.card-head h2{font:normal 27px/1.05 Georgia,serif;letter-spacing:-.6px;margin:3px 0 2px}
+.card-head p{font-size:12px;color:#5e5468;margin:0}.card-head button{margin-left:auto;flex-shrink:0}
+.instrument{display:flex;gap:16px;align-items:center;min-height:96px;flex-shrink:0}
+.artbox{flex:0 0 32%;height:106px;position:relative;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse at center,#ded4c444,transparent 70%);border-bottom:1px solid #d3c4b3}
+.artbox img{max-width:100%;height:104px;min-width:0;object-fit:contain;filter:drop-shadow(0 6px 4px #35222d25)}
+.artbox img:only-child{width:100%;max-width:280px}.artbox img:not(:only-child){width:50%}
+.facts{font-size:12px;line-height:1.4;flex:1;margin:0;padding:0;list-style:none}.facts li{margin:0 0 5px;padding-left:12px;position:relative}
+.facts li::before{content:"·";position:absolute;left:0;color:#7a2e8a;font-weight:900}
+.specimen-note{display:block;font-size:10px;line-height:1.3;color:#5e5468;margin-top:3px}
+.ruler-block{flex-shrink:0;background:#fffdfa;border:1px solid #d9ced8;border-radius:10px;box-shadow:0 2px 1px #fff inset;padding:7px 12px 5px}
+.ruler-top{display:flex;justify-content:space-between;font-size:11px;gap:8px;align-items:center;color:#5e5468}
+.ruler-top strong{color:#48234e;font-size:12px}.ruler{position:relative;height:117px;margin:0 8px}
+.ruler svg{width:100%;height:100%;overflow:visible;display:block}
+.note{position:absolute;top:0;width:44px;min-width:44px;height:44px;padding:0;border:0;border-radius:7px;
+  transform:translateX(-50%);background:transparent;color:#7a2e8a;font-size:11px;font-weight:700;line-height:1.1;z-index:1}
+.note:nth-of-type(even){top:44px}.note[aria-current=true]{background:#eedbf0;box-shadow:0 0 0 2px #7a2e8a}
+.note:active{background:#e3c8e9}.note .name{display:block;background:#fffdfae8;border-radius:4px;padding:3px 0}
+.performance{display:grid;grid-template-columns:260px minmax(0,1fr);gap:16px;align-items:center;flex:0 0 auto;min-height:280px}
+.cycle-wrap{position:relative;width:260px;max-width:100%;aspect-ratio:1}.cycle-svg{display:block;width:100%;height:100%;overflow:visible}
+.cycle-svg text{font-family:'Segoe UI',sans-serif;fill:#5e5468;font-size:13px}.cycle-svg .count{font:600 36px Georgia,serif;fill:#48234e}
+.cycle-svg .cycle-name{font-size:10px;fill:#5e5468}.cycle-svg .active{fill:#d5aa47;stroke:#48234e;stroke-width:2}
+.cycle-svg .special{font-size:11px;font-weight:700;fill:#7a2e8a}
+.transport{display:flex;flex-direction:column;gap:9px;min-width:0;align-self:stretch;justify-content:center}
+.play-buttons{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.play-buttons button{border:1px solid #c2aec9;border-radius:8px;background:#fffdfa;color:#672674;
+  padding:0 9px;font-size:12px;font-weight:700;box-shadow:0 2px 0 #d9cddb}
+.play-buttons .cycle-button{background:#7a2e8a;color:#fff;border-color:#7a2e8a;grid-column:1/-1;font-size:15px}
+.play-buttons:has(#next-mystery) .cycle-button{grid-column:auto}
+.play-buttons button[aria-pressed=true]{background:#4d2157;color:white}.try-panel{border-top:1px solid #d8cbd9;padding-top:9px}
+.try-panel h3{font-size:10px;margin:0 0 5px;text-transform:uppercase;letter-spacing:.12em;color:#7a2e8a}
+.try-options{display:flex;gap:4px;flex-wrap:wrap}.try-options button{flex:1;border:1px solid #bfacc6;border-radius:7px;
+  background:#fffdfa;font-size:12px;padding:0 8px;font-weight:650}
+.try-options button[aria-pressed=true]{background:#e8d3ed;color:#582264;box-shadow:inset 0 0 0 1px #7a2e8a}
+.try-text{font-size:11px;line-height:1.4;margin:6px 0 0;color:#5e5468;min-height:31px}
+.part-key{display:flex;flex-wrap:wrap;gap:3px 10px;font-size:10px;color:#5e5468;margin-top:3px}.part-key span{white-space:nowrap}
+.disclaimer{font-size:10px;color:#5e5468;line-height:1.35;margin:0;border-top:1px solid #d7cddd;padding-top:6px;flex-shrink:0}
+.disclaimer a{color:#7a2e8a;display:inline-flex;align-items:center;min-height:44px}
+#note-info{font-size:11px;color:#a34a00;min-height:15px;margin:0}
+.compare{width:100%;display:grid;grid-template-columns:250px minmax(0,1fr);gap:20px;padding:20px;background:#eee7f0;overflow:auto}
+.compare-panel{display:flex;flex-direction:column;gap:16px;padding:20px;background:#fffaf3;
+  border:1px solid #d4c3d8;border-radius:12px;align-self:start}.compare-panel h2{font:normal 27px Georgia,serif;margin:0}
+.compare-panel label{font-size:12px;display:flex;flex-direction:column;gap:5px;font-weight:650}
+select{width:100%;font:14px 'Segoe UI',sans-serif;padding:8px;border-radius:6px;border:1px solid #b7a3bd;background:white;color:#48234e}
+.compare-panel .plain{font-size:12px}#lineup{font:normal 18px/1.4 Georgia,serif;color:#54245c;margin:0;min-height:100px}
+.compare-desk{display:flex;flex-direction:column;gap:9px;min-width:0}
+.compare-circles{display:flex;justify-content:space-evenly;gap:20px;flex:1;align-items:center}
+.compare-circles .cycle-wrap{width:min(36vh,320px);flex-shrink:0}
+.compare .ruler{height:117px}.compare .ruler-block{padding-top:5px}.compare-circles .cycle-wrap{width:min(29vh,270px)}
+.compare{padding-top:12px;padding-bottom:12px}.compare .cycle-svg text{font-size:17px}
+.compare .cycle-svg .count{font-size:36px}.compare .cycle-svg .cycle-name{font-size:12px}
+.compare .cycle-svg[data-length="48"] text:not(.count):not(.cycle-name){font-size:13px}
+.offsets{font-size:11px;color:#a34a00;margin:0 2px;line-height:1.3;display:flex;gap:4px 14px;flex-wrap:wrap}
+.offsets span{white-space:nowrap}
+.compare-title{font:16px Georgia,serif;color:#572460;text-align:center;margin:2px 0}.sync{font-size:12px;color:#0f6a6a;min-height:18px;text-align:center}
+.compare-circles.in-sync .cycle-wrap{border-radius:50%;box-shadow:0 0 0 3px #0f6a6a,0 0 22px #0f6a6a33}
+.sync.met{font-weight:700;color:#48234e;background:#f6e4bd;border-radius:6px}
+.mystery .instrument{display:none}.mystery .card-head h2{font-style:italic}#found{font-size:11px;letter-spacing:.06em;color:#7a2e8a;font-weight:700}
+#koto{width:100%;height:62px;border-radius:50% 12px 12px 50%;background:linear-gradient(100deg,#64402b,#bf8b54 40%,#80512c);
+  box-shadow:0 4px 6px #221a2b30,inset 0 0 0 2px #9c7045;position:relative;overflow:hidden;margin:4px 0}
+.koto-string{position:absolute;left:0;right:0;height:1px;background:#e8d4a2;box-shadow:0 1px #513824}
+.bridge{position:absolute;width:7px;height:8px;top:-4px;background:#efe5ca;clip-path:polygon(50% 0,100% 100%,0 100%);
+  transition:left .6s}.koto-string.lit{background:#fff;box-shadow:0 0 5px #ffd34d}
+@media(min-width:1000px) and (max-height:740px){
+  header{padding:7px 16px}h1{font-size:25px}.toolbar{padding:6px 16px}.hint{font-size:13px;min-height:36px}
+  .card{padding:8px 16px;gap:5px}.card-head h2{font-size:23px}.instrument{min-height:80px}.artbox{height:82px}.artbox img{height:80px}
+  .facts{font-size:11px}.facts li{margin-bottom:3px}.performance{min-height:260px;grid-template-columns:260px minmax(0,1fr);gap:10px}
+  .cycle-wrap{width:260px}.ruler{height:110px}.ruler-block{padding-top:5px}.disclaimer a{min-height:44px}
+}
+@media(max-width:1100px){
+  :root{--legend-width:170px}
+  h1{font-size:23px}h1 small{max-width:270px}.toolbar{gap:10px;padding:7px 12px}#legend{max-width:170px}
+  .card{padding:10px 14px}.performance{gap:8px}.card-head h2{font-size:23px}.compare{padding:12px;gap:12px;grid-template-columns:220px 1fr}
+}
+@media(max-width:999px){
+  :root{--legend-width:165px}
+  header{padding:7px 10px;gap:5px}h1{font-size:22px}h1 small{display:none}.seg button,.icon-btn{padding:0 8px;font-size:12px}
+  .toolbar{flex-wrap:wrap;gap:5px}.hint{max-width:none;font-size:12px;min-height:32px}.layerbox{gap:6px}.layers button{font-size:11px;padding:0 8px}
+  #legend{font-size:10px;max-width:165px}.has-stop{flex-direction:column}.has-stop .mapbox{flex:0 0 24%;min-height:110px}
+  .card{width:100%;border-left:0;border-top:1px solid #bfabc8;flex:1;min-height:0;padding:10px 18px;gap:6px}
+  .instrument{min-height:80px}.artbox{height:90px;flex-basis:28%}.artbox img{height:88px}.facts{font-size:12px}
+  .card-head h2{font-size:23px}.map-title h2{font-size:31px}.map-title{top:4%}
+  .exhibit{bottom:7%}.exhibit figure{width:95px}.exhibit img{height:75px}
+  .performance{grid-template-columns:260px 1fr;min-height:260px}.cycle-wrap{width:260px}.disclaimer a{min-height:44px}
+  .compare{grid-template-columns:180px 1fr;gap:9px;padding:10px}.compare-panel{padding:12px;gap:10px}.compare-panel h2{font-size:23px}
+  .compare-circles{gap:8px}.compare-circles>div{width:calc(50% - 4px);min-width:0}
+  .compare-circles .cycle-wrap{width:100%;margin-inline:auto}#lineup{font-size:16px}
+}
+@media(max-height:550px) and (min-width:600px){
+  :root{--legend-width:105px}
+  header{padding:4px 10px}h1{font-size:19px}.seg button,.icon-btn{font-size:11px;padding:0 7px}h1 small{display:none}
+  .toolbar{padding:3px 10px;gap:5px;flex-wrap:nowrap}.hint{min-height:32px;font-size:11px}#legend{font-size:11px;max-width:105px}
+  .has-stop{flex-direction:row}.has-stop .mapbox{flex:0 0 40%}.card{width:60%;border-top:0;gap:5px;padding:8px 12px}
+  .card-head h2{font-size:21px}.card-head p{font-size:11px}.card-head .eyebrow{display:none}.instrument{order:4}
+  .performance{order:2;min-height:230px;grid-template-columns:215px 1fr}.cycle-wrap{width:215px}.ruler-block{order:3}
+  .disclaimer{order:5}.card-head{order:0}.ruler{height:120px}.map-title p{display:none}.map-title h2{font-size:25px}
+  .exhibit{display:none}.compare-panel{gap:7px}.compare{grid-template-columns:180px 1fr}.compare-circles .cycle-wrap{width:170px}
+  .compare-circles{min-height:190px}.compare-title{font-size:13px}
+  .compare-panel{gap:3px;padding:8px}
+  .compare-panel>div:first-child,.compare-panel>div:last-child{display:none}
+  .compare-panel label{gap:0;font-size:11px}
+  .compare-panel select{font-size:12px;padding:5px;min-height:44px;height:44px}
+  #lineup{font-size:12px;line-height:1.2;min-height:0}
+}
+@media(max-width:599px){
+  :root{--legend-width:120px}
+  header{gap:5px;padding:7px 8px}h1{font-size:23px;flex-basis:100%;margin-bottom:2px}.seg{flex:1}
+  .seg button{flex:1;font-size:11px;padding:0 7px}.icon-btn{font-size:11px;padding:0;min-width:44px;width:44px;line-height:1.1}
+  .icon-btn::first-letter{font-size:16px}.toolbar{padding:5px 10px;display:block}.hint{font-size:12px;min-height:38px}
+  .layerbox{justify-content:space-between}.layers{gap:3px}.layers button{min-height:44px;font-size:11px;padding:0 8px}
+  #legend{max-width:120px;font-size:10px}.map-title{left:7%;top:6%;max-width:210px}.map-title h2{font-size:30px}
+  .map-title p{font-size:12px}.map-tools{top:auto;bottom:32px;right:22px}.exhibit{left:7%;bottom:13%;gap:5px}
+  .exhibit figure{width:75px}.exhibit img{height:72px}.exhibit figcaption{font-size:10px}
+  .has-stop .mapbox{display:none}.has-stop.mystery .mapbox{display:block;flex:0 0 34%;min-height:190px}
+  .mystery .map-tools,.mystery .map-credit{display:none}
+  .has-stop.mystery .map-title{display:none}.has-stop.mystery .card{min-height:240px}
+  .card{padding:10px 14px;gap:9px}.card-head h2{font-size:23px}.card-head p{font-size:11px}.card-head .eyebrow{font-size:10px}
+  .instrument{order:4;align-items:center}.artbox{height:150px;flex-basis:40%}.artbox img{height:145px}.facts{font-size:12px}
+  .performance{display:contents}.cycle-wrap{width:250px;flex-shrink:0}
+  #circle-slot{order:3;align-self:center}.transport{order:1;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .try-panel{border:0;padding:0}
+  .try-options:has(button:nth-child(3)){flex-direction:column}
+  .play-buttons{grid-template-columns:1fr}.play-buttons .cycle-button{grid-row:1}.play-buttons button{font-size:11px}
+  .mystery .transport{display:block}
+  .mystery .play-buttons{grid-template-columns:repeat(3,1fr)}
+  .mystery .play-buttons .cycle-button{grid-column:auto;grid-row:auto}
+  .ruler-block{order:2;padding:8px}.ruler-top{font-size:10px}.ruler-top strong{font-size:11px}.ruler{height:130px;margin:0 13px}
+  .disclaimer{order:5}.note{font-size:10px}.try-options button{font-size:11px}.try-text{font-size:10px}
+  #note-info{order:3;font-size:11px}.compare{display:flex;flex-direction:column;padding:10px;gap:10px}
+  .compare-panel{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px}.compare-panel h2{grid-column:1/-1;font-size:24px}
+  #lineup{grid-column:1/-1;font-size:16px;min-height:0}.compare-panel label{min-width:0;font-size:11px}.compare-panel select{font-size:12px}
+  .compare-circles{flex-direction:column}.compare-circles>div{width:100%}
+  .compare-circles .cycle-wrap{width:260px}.compare-desk{flex-shrink:0}
+}
+@media(min-width:1000px) and (min-height:1000px){
+  .instrument{min-height:180px}.artbox{height:180px}.artbox img{height:176px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>World Music Map <small>Instruments, scales and rhythm cycles around the world</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-map" aria-pressed="true">Map</button><button id="m-compare" aria-pressed="false">Compare</button>
+    <button id="m-where" aria-pressed="false">Where in the world?</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Motion">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true" title="Sound">🔔 Sound</button>
+  <button class="icon-btn" id="read" title="Read the current hint">🔊 Read</button>
+</header>
+<section class="toolbar" aria-label="Explorer controls">
+  <p class="hint" id="hint" aria-live="polite"></p><div class="layerbox" id="layerbox">
+    <div class="layers" role="group" aria-label="Map layer"><button id="layer-instruments" aria-pressed="true">Instruments</button>
+      <button id="layer-scales" aria-pressed="false">Scales</button><button id="layer-cycles" aria-pressed="false">Cycles</button></div>
+    <div id="legend"></div></div>
+</section>
+<main id="main">
+  <section class="mapbox" id="mapbox" aria-label="World map">
+    <svg id="map-svg" aria-hidden="true"><defs>
+      <linearGradient id="landlight" x2=".4" y2="1"><stop stop-color="#e1e8d8"/><stop offset="1" stop-color="#becfb4"/></linearGradient>
+      <filter id="relief" x="-10%" y="-10%" width="120%" height="130%">
+        <feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#675373" flood-opacity=".17"/></filter></defs>
+      <g id="map-group"><g id="graticule" stroke="#b5a5c2" stroke-width=".5" opacity=".45" fill="none"></g>
+        <path id="land"></path><g id="beacons"></g><g id="leaders" stroke="#7a2e8a" stroke-width="1" opacity=".6"></g></g>
+    </svg>
+    <div class="map-title"><div class="eyebrow">A listening atlas</div><h2>Ten places.<br>Many ways<br>to listen.</h2>
+      <p>Tap a pin. Discover where the notes fall and how the rhythm comes around.</p></div>
+    <div class="map-tools"><button id="zoom-out" aria-label="Zoom out">−</button><span id="zoom-level">1×</span>
+      <button id="zoom-in" aria-label="Zoom in">+</button></div>
+    <ol id="pins" aria-label="Ten musical traditions"></ol>
+    <div class="exhibit" aria-hidden="true"><figure><img src="art:pd-met-500996" alt=""><figcaption>Strings</figcaption></figure>
+      <figure><img src="art:wmm-mbira" alt=""><figcaption>Struck body</figcaption></figure>
+      <figure><img src="art:wmm-siku" alt=""><figcaption>Air</figcaption></figure></div>
+    <span class="map-credit">Equal Earth · Natural Earth land<br>Motion setting stays on this device.</span>
+  </section>
+  <section class="card" id="card" aria-label="Musical stop" hidden tabindex="-1"></section>
+  <section class="compare" id="compare" aria-label="Compare traditions" hidden>
+    <aside class="compare-panel"><div><div class="eyebrow">Two musical rule sets</div><h2>Listen side by side.</h2></div>
+      <label>First stop<select id="pick-a"></select></label><label>Second stop<select id="pick-b"></select></label>
+      <button class="plain" id="both-scales">▶ Play both scales</button>
+      <button class="plain" id="both-cycles" aria-pressed="false">▶ Play both cycles</button><p id="lineup"></p>
+      <div class="eyebrow">Same speed: 200 pulses/min</div></aside>
+    <div class="compare-desk"><div id="compare-rulers"></div><div class="compare-circles" id="compare-circles"></div>
+      <div class="sync" id="sync">Press Play both cycles. Watch their first pulses meet.</div></div>
+  </section>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+'use strict';
+const $ = id => document.getElementById(id);
+const STOPS = "json:stops";
+const WORLD = "json:world";
+const ART = {
+  'pd-met-501374':'art:pd-met-501374', 'pd-met-500996':'art:pd-met-500996',
+  'pd-met-500750':'art:pd-met-500750', 'pd-met-500712':'art:pd-met-500712',
+  'pd-met-500576':'art:pd-met-500576', 'pd-met-501474':'art:pd-met-501474',
+  'pd-met-500616':'art:pd-met-500616', 'wmm-ewe':'art:wmm-ewe',
+  'wmm-mbira':'art:wmm-mbira', 'wmm-siku':'art:wmm-siku', 'wmm-cuba':'art:wmm-cuba'
+};
+const ART_ALT = {
+  'pd-met-501374':'A bronze-key saron in its carved wooden frame.',
+  'pd-met-500996':'A historical ud with a short, fretless neck.',
+  'pd-met-500750':'A historical six-string sitar without sympathetic strings.',
+  'pd-met-500712':'A historical tabla drum.',
+  'pd-met-500576':'A historical thirteen-string koto.',
+  'pd-met-501474':'A Great Highland bagpipe with a chanter and three drones.',
+  'pd-met-500616':'A historical erhu and its bow.',
+  'wmm-ewe':'An iron double bell, beaded gourd rattle and two pegged Ewe drums.',
+  'wmm-mbira':'An mbira with metal keys and bottle-cap buzzers inside a calabash.',
+  'wmm-siku':'Two separate siku rows with seven and six bamboo pipes.',
+  'wmm-cuba':'Claves, joined bongos and a Cuban tres with three paired string courses.'
+};
+const BY = Object.fromEntries(STOPS.map(s => [s.id,s]));
+const state = {mode:'map',stop:null,layer:'instruments',zoom:1,panX:0,panY:0,option:false,
+  drone:true,slides:true,sounding:false,kind:null,found:[],mystery:null,misses:0,revealed:false,a:'ghana',b:'india'};
+const L = {
+  welcomeMap:'Tap a pin to open a stop. Then press Play cycle and watch the circle.',
+  rulerHow:'Tap a ruler mark to hear a note. The piano keys underneath are only for comparison.',
+  tryHow:'Each stop has a Try this switch. Flip it and listen for the change.',
+  layerHow:'The badges on the pins changed. Count notes or pulses, then tap a pin to hear them.',
+  welcomeCompare:'Pick two stops in the pickers. Then press Play both cycles and listen for when they line up.',
+  welcomeWhere:'Press Play phrase, look at the ruler and the circle, then tap the pin where you think it comes from.',
+  whereRight:"That's it. Tap Next mystery when you are ready.",
+  whereMiss1:'Not there. Look at the ruler: does it use piano keys? Tap another pin.',
+  whereMiss2:'Look at the circle. How many pulses go around? Tap another pin.',
+  whereAnswer:'Here it is. Tap Next mystery when you are ready.'
+};
+STOPS.forEach(s => L['intro.'+s.id] = s.facts[0]);
+const setHint = text => { $('hint').textContent = text;
+};
+let soloUntil=0;
+const welcomeKey = () => state.sounding||performance.now()<soloUntil ? null : state.mode==='compare' ? 'welcomeCompare'
+  : state.mode==='where' && !state.revealed ? 'welcomeWhere' : !state.stop ? 'welcomeMap' : null;
+const V = Curio.voice({lines:L,scope:() => state.mode+':'+state.stop,hint:false,
+  read:() => $('hint').textContent,welcome:welcomeKey,speaks:'.pin,.play-buttons button,#both-scales,#both-cycles'});
+const how = (key,valid=() => true) => V.how(key,{valid:() => !state.sounding&&performance.now()>=soloUntil&&valid(),hint:false});
+const NS = 'http://www.w3.org/2000/svg';
+function svgEl(tag,attrs,parent) {
+  const el = document.createElementNS(NS,tag);
+  Object.entries(attrs).forEach(([k,v]) => el.setAttribute(k,v));
+  if(parent) parent.append(el);
+  return el;
+}
+function proj(lon,lat) {
+  const t = Math.asin(Math.sqrt(3)/2*Math.sin(lat*Math.PI/180));
+  const x = 2*Math.sqrt(3)*(lon*Math.PI/180)*Math.cos(t)
+    /(3*(9*.003796*t**8+7*.000893*t**6+3*(-.081106)*t*t+1.340264));
+  const y = .003796*t**9+.000893*t**7-.081106*t**3+1.340264*t;
+  return [(x+WORLD.xmax)*WORLD.s,(WORLD.ymax-y)*WORLD.s];
+}
+const ICONS = {
+  strings:'<path d="M7 5L19 23M11 3L23 21M5 10L18 27M7 23Q0 20 6 15L17 7Q23 3 26 9L24 15Z"/>',
+  air:'<path d="M5 7H24M5 14H19M5 21H24M21 4L27 7 21 10M16 11L22 14 16 17M21 18L27 21 21 24"/>',
+  body:'<path d="M6 20Q7 8 13 8Q18 9 19 20ZM17 24Q18 13 24 13Q28 14 29 24ZM13 8L21 4 24 13M5 20H20M17 24H29"/>',
+  skin:'<ellipse cx="16" cy="9" rx="11" ry="5"/><path d="M5 9L7 25Q16 30 25 25L27 9M7 14L25 23M25 14L7 23"/>'
+};
+function icon(cls) { return `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">${ICONS[cls]}</svg>`; }
+function initMap() {
+  $('land').setAttribute('d',WORLD.d);
+  for(const s of [BY.java,BY.ghana,BY.andes]) {
+    const [x,y]=proj(s.lon,s.lat);
+    svgEl('circle',{cx:x,cy:y,r:24,class:'idle-ring'},$('beacons'));
+  }
+  for(let lat=-60;lat<=60;lat+=30) {
+    const pts=[];
+    for(let lon=-180;lon<=180;lon+=5) pts.push(proj(lon,lat).join(','));
+    svgEl('polyline',{points:pts.join(' ')},$('graticule'));
+  }
+  for(let lon=-180;lon<=180;lon+=30) {
+    const pts=[];
+    for(let lat=-80;lat<=80;lat+=4) pts.push(proj(lon,lat).join(','));
+    svgEl('polyline',{points:pts.join(' ')},$('graticule'));
+  }
+  STOPS.forEach(s => {
+    const li=document.createElement('li'),b=document.createElement('button');
+    b.className='pin';
+    b.id='pin-'+s.id;
+    b.setAttribute('aria-label',s.title+', '+s.place);
+    b.title=s.title+', '+s.place;
+    b.onclick=() => choosePin(s.id);
+    li.append(b);
+    $('pins').append(li);
+  });
+  updatePins();
+}
+let mapMetrics=null;
+function layoutMap() {
+  const r=$('mapbox').getBoundingClientRect();
+  if(!r.width || !r.height) return;
+  const scale=Math.min((r.width-40)/1000,(r.height-80)/437)*state.zoom;
+  const ox=(r.width-1000*scale)/2+state.panX,oy=(r.height-437*scale)/2+state.panY;
+  mapMetrics={scale,ox,oy}; $('map-group').setAttribute('transform',`translate(${ox} ${oy}) scale(${scale})`);
+  const placed=[];
+  const obstacles=[...$('mapbox').querySelectorAll('.map-title,.map-tools,.exhibit,.map-credit')]
+    .filter(el => el.getClientRects().length)
+    .map(el => {
+      const box=el.getBoundingClientRect();
+      return {left:box.left-r.left-5,right:box.right-r.left+5,top:box.top-r.top-5,bottom:box.bottom-r.top+5};
+    });
+  $('leaders').replaceChildren();
+  const mapOrder=state.mode==='map'&&state.stop?[BY[state.stop],...STOPS.filter(s => s.id!==state.stop)]:STOPS;
+  mapOrder.forEach(s => {
+    const [x,y]=proj(s.lon,s.lat);
+    const raw=[x*scale+ox,y*scale+oy];
+    const b=$('pin-'+s.id);
+    const label=b.querySelector('.pin-name');
+    b.hidden=false;
+    label.textContent=state.zoom>=3?s.place:s.short;
+    const width=Math.max(48,label.getBoundingClientRect().width+6);
+    const boxAt=(cx,cy) => ({left:cx-width/2,right:cx+width/2,top:cy-24,bottom:cy+46});
+    const intersects=(a,c) => a.left<c.right+3&&a.right>c.left-3&&a.top<c.bottom+3&&a.bottom>c.top-3;
+    const inBounds=box => box.left>=8&&box.right<=r.width-8&&box.top>=8&&box.bottom<=r.height-8;
+    const clear=(cx,cy) => {
+      const box=boxAt(cx,cy);
+      return inBounds(box)&&!placed.some(p => intersects(box,p))&&!obstacles.some(p => intersects(box,p));
+    };
+    if(state.zoom>1&&(raw[0]<22||raw[0]>r.width-22||raw[1]<22||raw[1]>r.height-22)) {
+      b.hidden=true;
+      return;
+    }
+    let [px,py]=raw;
+    if(!clear(px,py)||(state.zoom===1&&r.width<500)) {
+      let best=null;
+      for(let cy=34;cy<=r.height-54;cy+=76) for(let cx=44;cx<=r.width-28;cx+=64) {
+        if(!clear(cx,cy)) continue;
+        const distance=Math.hypot(cx-raw[0],cy-raw[1]);
+        if(!best||distance<best.distance) best={cx,cy,distance};
+      }
+      if(best) {
+        px=best.cx;
+        py=best.cy;
+      } else {
+        // A zoomed edge may have no room for its full label. Pan to bring it into view.
+        b.hidden=true;
+        return;
+      }
+    }
+    placed.push(boxAt(px,py));
+    b.style.left=px+'px';
+    b.style.top=py+'px';
+    if(Math.hypot(px-raw[0],py-raw[1])>5) svgEl('line',{x1:x,y1:y,x2:(px-ox)/scale,y2:(py-oy)/scale},$('leaders'));
+  });
+  $('zoom-level').textContent=state.zoom.toFixed(state.zoom%1?1:0)+'×';
+}
+function updatePins() {
+  const mystery=state.mode==='where'&&!state.revealed;
+  STOPS.forEach(s => {
+    const b=$('pin-'+s.id);
+    const badge=state.layer==='scales'?s.count:state.layer==='cycles'?s.length:s.classes.map(icon).join('');
+    b.classList.toggle('multi',state.layer==='instruments'&&s.classes.length>1&&!mystery);
+    b.innerHTML=(mystery?'•':badge)+`<span class="pin-name">${s.short}</span>`;
+    b.setAttribute('aria-pressed',state.stop===s.id&&!mystery);
+  });
+  $('legend').textContent=state.layer==='scales'?'Badges: notes per octave; Scotland: 9-note chanter range'
+    :state.layer==='cycles'?'Badges: pulses per cycle'
+    :'Strings: string · Air: air · Struck body: body · Skin: stretched skin';
+  for(const k of ['instruments','scales','cycles']) $('layer-'+k).setAttribute('aria-pressed',state.layer===k);
+  layoutMap();
+}
+function zoom(d) {
+  state.zoom=Math.max(1,Math.min(3,state.zoom+d));
+  if(state.zoom===1) { state.panX=0;
+    state.panY=0;
+  }
+  layoutMap();
+}
+let drag=null;
+$('map-svg').onpointerdown=e => {
+  drag={x:e.clientX,y:e.clientY,px:state.panX,py:state.panY};
+  e.currentTarget.setPointerCapture(e.pointerId);
+};
+$('map-svg').onpointermove=e => {
+  if(!drag) return;
+  state.panX=drag.px+e.clientX-drag.x;
+  state.panY=drag.py+e.clientY-drag.y;
+  layoutMap();
+};
+$('map-svg').onpointerup=$('map-svg').onpointercancel=() => { drag=null;
+};
+$('map-svg').addEventListener('wheel',e => { e.preventDefault();
+  zoom(e.deltaY<0?.25:-.25);
+},{passive:false});
+$('zoom-in').onclick=() => zoom(.25);
+$('zoom-out').onclick=() => zoom(-.25);
+function offset(c,base=0) {
+  const key=Math.floor(c/100+.5)*100,delta=Math.round(c-key);
+  if(Math.abs(delta)<=5) return '';
+  const names=['C','C sharp','D','E flat','E','F','F sharp','G','A flat','A','B flat','B'];
+  return `${Math.abs(delta)} ${delta>0?'above':'below'} ${names[((key/100+base)%12+12)%12]}`;
+}
+const referenceBase=s => Math.round(12*Math.log2(s.base/261.625565));
+const referenceOffset=(s,c) => offset(c,referenceBase(s));
+function currentScale(s) {
+  const sc=s.scale.map(n => ({...n}));
+  if(state.stop===s.id&&state.mode!=='compare') {
+    if(s.id==='syria'&&state.option) { sc[2]={name:'E',cents:400};
+      sc[6]={name:'B',cents:1100};
+    }
+    if(s.id==='japan'&&state.option) { sc[1]={name:'E',cents:200};
+      sc[4]={name:'B',cents:900};
+    }
+  }
+  return sc;
+}
+function rulerHTML(s,prefix,mystery=false) {
+  const extended=state.mode==='compare'?[state.a,state.b].includes('scotland'):s.id==='scotland';
+  const notes=currentScale(s),min=extended?-200:0,rows=innerWidth<1000?3:2;
+  const modified=state.stop===s.id&&state.mode!=='compare'&&state.option;
+  const scaleTitle=modified&&s.id==='syria'?'Piano notes: C major, for comparison'
+    :modified&&s.id==='japan'?'Major pentatonic: a tuning for comparison':s.scaleLabel;
+  const x=c => 7+(c-min)/(1200-min)*86;
+  let keys='',lines='';
+  for(let c=min;c<1200;c+=100) {
+    const black=[1,3,6,8,10].includes(((c/100+referenceBase(s))%12+12)%12);
+    keys+=`<rect x="${x(c)}" y="87" width="${86/(12-min/100)}" height="${black?21:28}"
+      fill="${black?'#483a4c':'#f1e9db'}" stroke="#a797a8" stroke-width=".2"/>`;
+  }
+  notes.forEach((n,i) => {
+    const xx=x(n.cents);
+    const markY=rows===3?(i%3)*28+20:i%2?70:29;
+    lines+=`<line class="pitch-line" data-i="${i}" x1="${xx}" y1="${markY}" x2="${xx}" y2="85"
+      stroke="#7a2e8a" stroke-width=".45"/>
+      <line x1="${xx}" y1="85" x2="${xx}" y2="114" stroke="#7a2e8a" stroke-width=".18" stroke-dasharray="1 1"/>`;
+  });
+  const buttons=notes.map((n,i) => {
+    const name=mystery?'♪':n.name,row=s.id==='andes'?(i%2===0?'ira':'arka'):'';
+    return `<button class="note" data-stop="${s.id}" data-note="${i}" id="${prefix}-note-${i}"
+      style="left:${x(n.cents)}%;top:${i%rows*44}px"
+      tabindex="${i===0?0:-1}" aria-label="${mystery?'Note '+(i+1):n.name+', '+n.cents+' cents, '+referenceOffset(s,n.cents)}">
+      <span class="name">${name}${row&&!mystery?'<br>'+row:''}</span></button>`;
+  }).join('');
+  return `<div class="ruler-block"><div class="ruler-top"><strong>${mystery?'Mystery tuning':scaleTitle}</strong>
+    <span>${mystery?'Pitch positions':min<0?state.mode==='compare'?'-200 to 1200 cents':'Low G to high A':'0 to 1200 cents'}</span></div>
+    <div class="ruler" id="${prefix}-ruler" ${rows===3?'style="height:170px"':''}>
+    <svg viewBox="0 0 100 122" preserveAspectRatio="none" aria-hidden="true">${keys}${lines}
+      <line x1="7" y1="83" x2="93" y2="83" stroke="#a99aad" stroke-width=".3"/></svg>${buttons}</div>
+    ${mystery?'':`<p class="offsets">${notes.filter(n => referenceOffset(s,n.cents)).map(n =>
+      `<span>${n.name}: ${referenceOffset(s,n.cents)}</span>`).join('')}</p>`}</div>`;
+}
+const colors=['#7a2e8a','#0f6a6a','#a34a00','#524b70'],shapes=['●','■','▲','◆'];
+function shapeHTML(shape,x,y,r,attrs='') {
+  if(shape==='square') return `<rect x="${x-r}" y="${y-r}" width="${2*r}" height="${2*r}" ${attrs}/>`;
+  if(shape==='triangle') return `<path d="M${x} ${y-r-1}L${x+r} ${y+r}H${x-r}Z" ${attrs}/>`;
+  if(shape==='diamond') return `<path d="M${x} ${y-r-1}L${x+r+1} ${y} ${x} ${y+r+1} ${x-r-1} ${y}Z" ${attrs}/>`;
+  return `<circle cx="${x}" cy="${y}" r="${r}" ${attrs}/>`;
+}
+function activeParts(s) {
+  const parts=s.parts.map((p,i) => ({...p,hits:[...p.hits],color:colors[i]}));
+  if(state.mode==='compare'||state.stop!==s.id) return parts;
+  if(s.id==='java'&&state.option) return parts.filter(p => p.name!=='kethuk');
+  if(s.id==='ghana'&&state.option) parts.push({name:'four beats',hits:[1,4,7,10],voice:'foot',shape:'diamond',color:colors[3]});
+  if(s.id==='zimbabwe'&&state.option!=='Both') return parts.filter(p => p.name===state.option.toLowerCase());
+  if(s.id==='andes'&&state.option!=='Both') return parts.filter(p => p.name===state.option.toLowerCase());
+  if(s.id==='cuba'&&state.option==='2-3') parts[0].hits=[3,5,9,12,15];
+  return parts;
+}
+function circleHTML(s,prefix,mystery=false) {
+  const parts=activeParts(s);
+  let circles='';
+  for(let j=0;j<parts.length;j++) {
+    const rad=108-j*16;
+    circles+=`<circle cx="140" cy="140" r="${rad}" fill="none" stroke="#c4b7c7" stroke-width=".65"/>`;
+    for(let p=1;p<=s.length;p++) {
+      const a=(p-1)/s.length*2*Math.PI-Math.PI/2,x=140+Math.cos(a)*rad,y=140+Math.sin(a)*rad;
+      const hit=parts[j].hits.includes(p),r=s.length===48?3.1:4.6;
+      circles+=shapeHTML(parts[j].shape,x,y,r,`class="pulse" data-p="${p}" data-part="${parts[j].name}" data-hit="${hit}"
+        fill="${hit?parts[j].color:'#f9f4ed'}" stroke="${hit?parts[j].color:'#c1b4c3'}" stroke-width=".9"`);
+    }
+  }
+  for(let p=1;p<=s.length;p++) {
+    const a=(p-1)/s.length*2*Math.PI-Math.PI/2;
+    const special=s.id==='india'?({1:'X',5:'2',9:'0',13:'3'}[p]||''):s.id==='java'&&p===16?'G':'';
+    const labelRadius=s.length===48?(p%2===0?133:121):125;
+    circles+=`<text x="${140+Math.cos(a)*labelRadius}" y="${140+Math.sin(a)*labelRadius+3}"
+      text-anchor="middle" class="${special?'special':''}">${special||p}</text>`;
+    if(special) circles+=`<text x="${140+Math.cos(a)*92}" y="${140+Math.sin(a)*92+3}"
+      text-anchor="middle" class="special">${p}</text>`;
+  }
+  const symbols={circle:'●',square:'■',triangle:'▲',diamond:'◆'};
+  const key=parts.map((p,i) => `<span style="color:${p.color}">${symbols[p.shape]} ${mystery?'Part '+(i+1):p.name}</span>`).join('');
+  return `<div><div class="cycle-wrap" id="${prefix}-cycle"><svg class="cycle-svg" data-length="${s.length}" viewBox="0 0 280 280"
+    role="img" aria-label="${s.length} pulses, ${mystery?'mystery cycle':s.cycle}">
+    <defs><radialGradient id="disc-${prefix}"><stop stop-color="#fffdf8"/><stop offset="1" stop-color="#ece2eb"/></radialGradient></defs>
+    <circle cx="140" cy="140" r="117" fill="url(#disc-${prefix})" stroke="#d2c2d5" stroke-width="1"/>
+    ${circles}<line class="hand" x1="140" y1="140" x2="140" y2="30" stroke="#7a2e8a" stroke-width="1.5" opacity=".6"/>
+    <circle cx="140" cy="140" r="43" fill="#fffcf6" stroke="#d6c8d7"/>
+    <text class="count" x="140" y="145" text-anchor="middle">${s.length}</text>
+    <text class="cycle-name" x="140" y="173" text-anchor="middle">pulses / cycle</text>
+    </svg></div><div class="part-key">${key}</div></div>`;
+}
+function bindRulers(root) {
+  root.querySelectorAll('.note').forEach(b => {
+    b.onclick=() => {
+      const s=BY[b.dataset.stop],i=+b.dataset.note,n=currentScale(s)[i];
+      V.hush();
+      const c=audio();
+      if(c) {
+        soloUntil=performance.now()+1000;
+        playMelody(s,i,c.currentTime,.65,.18,true);
+        if(!state.sounding&&hasDrone(s)) droneAt(s,c.currentTime,.85);
+      }
+      root.querySelectorAll('.note').forEach(el => el.removeAttribute('aria-current'));
+      b.setAttribute('aria-current','true');
+      const info=$('note-info');
+      if(info) info.textContent=state.mode==='where'&&!state.revealed?'Listen, then tap a place on the map.'
+    :`${n.name}: ${n.cents} cents${referenceOffset(s,n.cents)?' · '+referenceOffset(s,n.cents):' · on a piano key'}`;
+    };
+    b.onkeydown=e => {
+      if(!['ArrowLeft','ArrowRight'].includes(e.key)) return;
+      e.preventDefault();
+      const bs=[...b.parentElement.querySelectorAll('.note')];
+      const next=bs[(bs.indexOf(b)+(e.key==='ArrowRight'?1:bs.length-1))%bs.length];
+      bs.forEach(el => el.tabIndex=-1);
+      next.tabIndex=0;
+      next.focus({preventScroll:true});
+    };
+  });
+  requestAnimationFrame(fitRulers);
+}
+function fitRulers() {
+  document.querySelectorAll('.ruler').forEach(r => {
+    const buttons=[...r.querySelectorAll('.note')];
+    const minGap=Math.min(...buttons.slice(1).map((b,i) =>
+      Math.abs(parseFloat(b.style.left)-parseFloat(buttons[i].style.left))*r.clientWidth/100));
+    const rows=r.clientWidth<450||r.closest('#compare')&&minGap<44?3:2;
+    const compact=rows===2&&r.closest('#compare');
+    r.style.height=rows===3?'170px':compact?'105px':'117px';
+    buttons.forEach((b,i) => { b.style.top=i%rows*(compact?32:44)+'px';
+    });
+    r.querySelectorAll('.pitch-line').forEach(line => {
+      const i=+line.dataset.i;
+      line.setAttribute('y1',rows===3?(i%3)*28+20:i%2?70:29);
+    });
+  });
+}
+function kotoHTML() {
+  return `<div id="koto" role="button" tabindex="0" aria-label="Play koto strings. Up and Down select a string; Enter plucks.">
+    ${Array.from({length:13},(_,i) =>
+    `<div class="koto-string" data-string="${i+1}" style="top:${5+i*4}px"><i class="bridge"
+      style="left:${28+i*2+(state.option&&[2,4,7,9,12].includes(i)?15:0)}%"></i></div>`).join('')}</div>`;
+}
+let kotoString=7;
+function bindKoto() {
+  const k=$('koto');
+  if(!k) return;
+  const pluck=() => {
+    V.hush();
+    soloUntil=performance.now()+1000;
+    audio();
+    playMelody(BY.japan,kotoString,ac.currentTime,.7);
+    k.querySelectorAll('.koto-string').forEach(el => el.classList.toggle('lit',+el.dataset.string===kotoString));
+    $('note-info').textContent='Koto string '+kotoString+'. Press Play phrase to hear these strings in order.';
+  };
+  k.onclick=e => {
+    const r=k.getBoundingClientRect();
+    kotoString=Math.max(1,Math.min(13,Math.floor((e.clientY-r.top)/r.height*13)+1));
+    pluck();
+  };
+  k.onkeydown=e => {
+    if(['ArrowUp','ArrowDown'].includes(e.key)) {
+      e.preventDefault();
+      kotoString=Math.max(1,Math.min(13,kotoString+(e.key==='ArrowUp'?-1:1)));
+      k.setAttribute('aria-label','Koto string '+kotoString+'. Enter plucks; Up and Down select.');
+      k.querySelectorAll('.koto-string').forEach(el => el.classList.toggle('lit',+el.dataset.string===kotoString));
+    }
+    if(e.key==='Enter'||e.code==='Space') { e.preventDefault();
+      e.stopPropagation();
+      pluck();
+    }
+  };
+}
+function defaultOption(s) { return s.id==='india'?state.drone:s.id==='china'?state.slides:s.default;
+}
+function renderCard() {
+  const s=BY[state.stop];
+  if(!s) { $('card').hidden=true;
+    return;
+  }
+  const mystery=state.mode==='where'&&!state.revealed;
+  $('main').classList.toggle('mystery',mystery);
+  const options=s.options.map(o => `<button data-option="${o}" aria-pressed="${s.options.length===1?!!state.option:state.option===o}">
+    ${s.options.length===1?(state.option?'✓ ':'○ '):''}${o}</button>`).join('');
+  $('card').innerHTML=`<div class="card-head"><div><div class="eyebrow">${mystery?'Where in the world?':s.place}</div>
+    <h2>${mystery?'A mystery to hear':s.title}</h2><p>${mystery?'Listen to the ruler. Read the circle.':s.instruments}
+    ${state.mode==='where'?`<span id="found"> · Found ${state.found.length} of 10</span>`:''}</p></div>
+    <button class="plain" id="close">${innerWidth<600?'Back to map':'Close'}</button></div>
+    <div class="instrument"><div class="artbox">${s.art.map(n => `<img src="${ART[n]}" alt="${ART_ALT[n]}">`).join('')}</div>
+      <div class="facts"><ul class="facts">${s.facts.map(f => `<li>${f}</li>`).join('')}</ul>
+      ${s.id==='india'?'<small class="specimen-note">Historical Met sitar: this specimen has no sympathetic strings.</small>':''}</div></div>
+    ${rulerHTML(s,'stop',mystery)}<div class="performance"><div id="circle-slot">${circleHTML(s,'stop',mystery)}</div>
+      <div class="transport"><div class="play-buttons"><button id="play-scale">▶ Play scale</button>
+        <button id="play-phrase">▶ Play phrase</button><button class="cycle-button" id="play-cycle" aria-pressed="false">▶ Play cycle</button>
+        ${state.mode==='where'&&state.revealed?'<button id="next-mystery">Next mystery →</button>':''}</div>
+        ${mystery?'':`<div class="try-panel"><h3>Try this</h3><div class="try-options">${options}</div>
+        <p class="try-text">${optionText(s)}</p>
+        ${s.id==='japan'?kotoHTML():''}</div>`}
+        </div></div>
+    <p id="note-info">${mystery?'Tap a map pin to make your choice.':'Tap a ruler mark to hear its pitch. The piano is only a reference.'}</p>
+    ${mystery?'':`<p class="disclaimer">Sounds are made in the browser: sketches to show the scale and the cycle, not recordings.
+      Phrases are sketches written for Curio Class, not traditional pieces.
+      <a href="https://folkways.si.edu/search?query=${encodeURIComponent(s.title+' '+s.short)}" target="_blank" rel="noopener">Hear the real thing ↗</a></p>`}`;
+  $('card').hidden=false;
+  $('card').scrollTop=0;
+  $('close').onclick=closeStop;
+  $('play-scale').onclick=() => play('scale');
+  $('play-phrase').onclick=() => play('phrase');
+  $('play-cycle').onclick=() => state.sounding?stopAll():play('cycle');
+  $('card').querySelectorAll('[data-option]').forEach(b => b.onclick=() => changeOption(b.dataset.option));
+  if($('next-mystery')) $('next-mystery').onclick=nextMystery;
+  bindRulers($('card'));
+  bindKoto();
+}
+function optionText(s) {
+  if(s.options.length!==1||state.option) return s.tryText;
+  if(s.id==='india') return 'Drone off: hear the melody without the tanpura. Switch Drone on to hear its steady reference.';
+  if(s.id==='china') return 'Slides off: notes start at their own pitch. Switch Slides on to hear them glide.';
+  if(s.id==='scotland') return 'Grace notes off: repeated notes join. Switch Grace notes on to hear the separation.';
+  return 'Flip the switch, then listen for the change.';
+}
+function changeOption(option) {
+  const s=BY[state.stop];
+  state.option=s.options.length===1?!state.option:option;
+  state.tryTouched=true;
+  if(s.id==='india') state.drone=state.option;
+  if(s.id==='china') state.slides=state.option;
+  $('card').querySelectorAll('[data-option]').forEach(b => {
+    const on=s.options.length===1?!!state.option:state.option===b.dataset.option;
+    b.setAttribute('aria-pressed',on);
+    b.textContent=(s.options.length===1?(on?'✓ ':'○ '):'')+b.dataset.option;
+  });
+  const tryText=$('card').querySelector('.try-text');
+  if(tryText) tryText.textContent=optionText(s);
+  $('circle-slot').innerHTML=circleHTML(s,'stop');
+  if(['syria','japan'].includes(s.id)) {
+    const old=$('stop-ruler').closest('.ruler-block'),box=document.createElement('div');
+    box.innerHTML=rulerHTML(s,'stop');
+    old.replaceWith(box.firstElementChild);
+    bindRulers($('card'));
+    $('note-info').textContent='Tap a ruler mark to hear its pitch in this tuning.';
+  }
+  if(s.id==='japan') $('koto').querySelectorAll('.bridge').forEach((b,i) => {
+    b.style.left=(28+i*2+(state.option&&[2,4,7,9,12].includes(i)?15:0))+'%';
+  });
+  if(s.id==='india'&&!state.drone&&ac) sources.forEach(item => {
+    if(item.role==='drone') { try { item.src.stop(ac.currentTime+.025);
+      } catch {} sources.delete(item);
+    }
+  });
+  reviseFuture();
+  setHint(state.sounding?'The setting changed. Tap a ruler mark, or press Stop to finish.'
+    :'Press Play phrase to hear this setting, or tap a ruler mark.');
+  if(!state.sounding) Curio.tone(state.option?440:330,.09,.08);
+}
+function openStop(id,narrate=true) {
+  stopAll();
+  V.hush();
+  state.stop=id;
+  state.option=defaultOption(BY[id]);
+  state.tryTouched=false;
+  $('main').classList.add('has-stop');
+  renderCard();
+  updatePins();
+  if(narrate) $('close').focus({preventScroll:true});
+  requestAnimationFrame(() => {
+    if(innerWidth>=1000 && mapMetrics && state.mode==='map' && state.stop===id) {
+      const r=$('mapbox').getBoundingClientRect(),p=proj(BY[id].lon,BY[id].lat);
+      state.zoom=1.6;
+      const sc=Math.min((r.width-40)/1000,(r.height-80)/437)*state.zoom;
+      state.panX=(500-p[0])*sc;
+      state.panY=(218.5-p[1])*sc;
+      layoutMap();
+    }
+  });
+  setHint(BY[id].facts[0]+' Press Play cycle, or tap a ruler mark.');
+  if(narrate) {
+    const keys=['intro.'+id,...(!V.heard('rulerHow')?['rulerHow']:[]),
+      ...(!V.heard('tryHow')?[['tryHow',{valid:() => !state.tryTouched}]]:[])];
+    V.how(keys,{valid:() => state.stop===id&&!state.sounding&&performance.now()>=soloUntil,hint:false});
+  }
+}
+function closeStop() {
+  stopAll();
+  V.hush();
+  const old=state.stop;
+  if(state.mode==='where') {
+    setMode('map');
+    if(old) $('pin-'+old).focus({preventScroll:true});
+    return;
+  }
+  state.stop=null;
+  state.revealed=false;
+  state.zoom=1;
+  state.panX=0;
+  state.panY=0;
+  $('card').hidden=true;
+  $('main').classList.remove('has-stop','mystery');
+  setHint(L.welcomeMap);
+  updatePins();
+  if(old) $('pin-'+old).focus({preventScroll:true});
+}
+function choosePin(id) {
+  if(state.mode==='where'&&!state.revealed) {
+    stopAll();
+    V.hush();
+    if(id===state.mystery) {
+      if(!state.found.includes(id)) state.found.push(id);
+      state.revealed=true;
+      openStop(id,false);
+      if(innerWidth<600) $('next-mystery').focus({preventScroll:true});
+      setHint("That's it. "+BY[id].facts[0]+' Tap Next mystery.');
+      V.say(['whereRight','intro.'+id],{valid:() => state.revealed&&!state.sounding,hint:false});
+    } else {
+      state.misses++;
+      if(state.misses<3) {
+        const key=state.misses===1?'whereMiss1':'whereMiss2';
+        setHint(L[key]);
+        const attempt=state.misses;
+        V.say(key,{valid:() => state.misses===attempt&&!state.revealed&&!state.sounding,hint:false});
+        if(!Curio.reduce) $('pin-'+id).animate([{boxShadow:'0 0 0 5px #a34a00'},{boxShadow:'0 0 0 0px #a34a0000'}],{duration:450});
+      } else {
+        state.revealed=true;
+        openStop(state.mystery,false);
+        setHint(L.whereAnswer);
+        if(innerWidth<600) $('next-mystery').focus({preventScroll:true});
+        V.say('whereAnswer',{valid:() => state.revealed&&!state.sounding,hint:false});
+      }
+    }
+    return;
+  }
+  openStop(id);
+}
+const gcd=(a,b) => b?gcd(b,a%b):a;
+const lcm=(a,b) => a*b/gcd(a,b);
+function lineupText(a,b) {
+  const n=lcm(a,b),small=Math.min(a,b),big=Math.max(a,b);
+  if(a===b) return `Both cycles are ${a} pulses, so they line up every time around.`;
+  if(big%small===0) return `The ${small}-pulse cycle fits exactly ${big/small} times into the ${big}. They meet every ${n} pulses.`;
+  return `A ${a}-pulse cycle and a ${b}-pulse cycle line up again every ${n} pulses.`;
+}
+function renderCompare() {
+  $('pick-a').innerHTML=STOPS.map(s => `<option value="${s.id}" ${s.id===state.a?'selected':''}>${s.title} · ${s.short}</option>`).join('');
+  $('pick-b').innerHTML=STOPS.filter(s => s.id!==state.a).map(s =>
+    `<option value="${s.id}" ${s.id===state.b?'selected':''}>${s.title} · ${s.short}</option>`).join('');
+  const a=BY[state.a],b=BY[state.b];
+  $('compare-rulers').innerHTML=`<div class="compare-title">${a.title} · ${a.short}</div>${rulerHTML(a,'a')}
+    <div class="compare-title">${b.title} · ${b.short}</div>${rulerHTML(b,'b')}`;
+  $('compare-circles').innerHTML=`<div><div class="compare-title">${a.cycle}</div>${circleHTML(a,'a')}</div>
+    <div><div class="compare-title">${b.cycle}</div>${circleHTML(b,'b')}</div>`;
+  $('lineup').textContent=lineupText(a.length,b.length);
+  bindRulers($('compare'));
+}
+$('pick-a').onchange=e => {
+  stopAll();
+  V.hush();
+  state.a=e.target.value;
+  if(state.a===state.b) state.b=STOPS.find(s => s.id!==state.a).id;
+  renderCompare();
+  setHint('Press Play both cycles. Follow each first pulse until they meet.');
+};
+$('pick-b').onchange=e => {
+  stopAll();
+  V.hush();
+  state.b=e.target.value;
+  renderCompare();
+  setHint('Press Play both cycles. Watch their first pulses meet.');
+};
+$('both-cycles').onclick=() => state.sounding?stopAll():play('both-cycles');
+$('both-scales').onclick=() => play('both-scales');
+let deck=[];
+function nextMystery() {
+  const fromNext=document.activeElement?.id==='next-mystery';
+  stopAll();
+  V.hush();
+  if(state.found.length===10) { state.found=[];
+    deck=[];
+  }
+  if(!deck.length) {
+    deck=STOPS.map(s => s.id).filter(id => !state.found.includes(id));
+    for(let i=deck.length-1;i>0;i--) {
+      const j=Math.floor(Math.random()*(i+1));
+      [deck[i],deck[j]]=[deck[j],deck[i]];
+    }
+  }
+  state.mystery=deck.pop();
+  state.revealed=false;
+  state.misses=0;
+  openStop(state.mystery,false);
+  state.zoom=1;
+  state.panX=0;
+  state.panY=0;
+  updatePins();
+  setHint(L.welcomeWhere);
+  how('welcomeWhere',() => !state.revealed);
+  if(fromNext) $('play-phrase').focus({preventScroll:true});
+}
+let enteredMode=false;
+function setMode(m) {
+  if(enteredMode&&state.mode===m) {
+    if(m==='map'&&state.stop) closeStop();
+    else V.welcome();
+    return;
+  }
+  enteredMode=true;
+  stopAll();
+  V.hush();
+  state.mode=m;
+  state.stop=null;
+  state.zoom=1;
+  state.panX=0;
+  state.panY=0;
+  $('main').classList.remove('has-stop','mystery');
+  $('card').hidden=true;
+  $('mapbox').hidden=m==='compare';
+  $('compare').hidden=m!=='compare';
+  $('layerbox').hidden=m==='compare';
+  for(const k of ['map','compare','where']) $('m-'+k).setAttribute('aria-pressed',k===m);
+  if(m==='compare') { renderCompare();
+    setHint(L.welcomeCompare);
+  }
+  else if(m==='where') nextMystery();
+  else { setHint(L.welcomeMap);
+    updatePins();
+  }
+  V.welcome();
+}
+for(const m of ['map','compare','where']) $('m-'+m).onclick=() => setMode(m);
+for(const layer of ['instruments','scales','cycles']) $('layer-'+layer).onclick=() => {
+  state.layer=layer;
+  updatePins();
+  setHint(L.layerHow);
+  how('layerHow',() => !state.stop);
+  if(!state.sounding) Curio.tone(320+['instruments','scales','cycles'].indexOf(layer)*90,.06,.06);
+};
+// Local instruments adapter: the build scope forbids editing the future shared kit/instruments.js.
+// Sources retain scheduled start times so live settings can replace the lookahead window.
+let ac=null,master=null,noise=null,schedulingRole='note';
+const sources=new Set(),pluckCache=new Map(),audioLog=[];
+function newMaster() {
+  const comp=ac.createDynamicsCompressor();
+  comp.threshold.value=-16;
+  comp.ratio.value=5;
+  master=ac.createGain();
+  master.gain.value=.65;
+  master.connect(comp).connect(ac.destination);
+}
+function audio() {
+  if(!ac) {
+    try { ac=new (window.AudioContext||window.webkitAudioContext)();
+    } catch { return null;
+    }
+    newMaster();
+    noise=ac.createBuffer(1,ac.sampleRate,ac.sampleRate);
+    const d=noise.getChannelData(0);
+    for(let i=0;i<d.length;i++) d[i]=Math.random()*2-1;
+  }
+  if(ac.state==='suspended') ac.resume();
+  return ac;
+}
+function track(src,t,end) {
+  const item={src,t,end,role:schedulingRole};
+  sources.add(item);
+  src.onended=() => { sources.delete(item);
+    try { src.disconnect();
+    } catch {} };
+  src.start(t);
+  src.stop(end);
+}
+function envelope(t,dur,vol,attack=.008,sustain=false) {
+  const g=ac.createGain();
+  g.gain.setValueAtTime(.0001,t);
+  g.gain.linearRampToValueAtTime(vol,t+attack);
+  if(sustain) g.gain.setValueAtTime(vol,t+Math.max(attack,dur-.035));
+  g.gain.exponentialRampToValueAtTime(.0001,t+Math.max(dur,attack+.02));
+  g.connect(master);
+  return g;
+}
+function osc(freq,t,dur,vol,type='sine',glide=null,sustain=false) {
+  const o=ac.createOscillator();
+  o.type=type;
+  o.frequency.setValueAtTime(glide||freq,t);
+  if(glide) o.frequency.exponentialRampToValueAtTime(freq,t+.12);
+  const attack=Math.min(dur*.2,type==='sawtooth'?.045:.008);
+  const g=envelope(t,dur,vol,attack,sustain);
+  const filter=ac.createBiquadFilter();
+  filter.type='lowpass';
+  filter.frequency.value=type==='sawtooth'?1800:4200;
+  o.connect(filter).connect(g);
+  track(o,t,t+dur+(dur<=.031?0:.04));
+  return o;
+}
+function noiseHit(t,dur,vol,frequency=1800) {
+  const src=ac.createBufferSource();
+  src.buffer=noise;
+  const f=ac.createBiquadFilter();
+  f.type='bandpass';
+  f.frequency.value=frequency;
+  f.Q.value=.7;
+  src.connect(f).connect(envelope(t,dur,vol));
+  track(src,t,t+dur+.02);
+}
+function ks(freq,t,dur,vol,bright=.5,buzz=false) {
+  const key=Math.round(freq*100)+':'+bright;
+  let buf=pluckCache.get(key);
+  if(!buf) {
+    const period=Math.floor(ac.sampleRate/freq);
+    buf=ac.createBuffer(1,Math.ceil(ac.sampleRate*2),ac.sampleRate);
+    const d=buf.getChannelData(0);
+    for(let i=0;i<period;i++) d[i]=(Math.random()*2-1)*.7;
+    for(let i=period;i<d.length;i++) d[i]=(.495+bright*.004)*(d[i-period]+(i>period?d[i-period-1]:0));
+    pluckCache.set(key,buf);
+  }
+  const src=ac.createBufferSource();
+  src.buffer=buf;
+  // Averaging adds half a sample to the ring delay; playback correction retains exact cents.
+  src.playbackRate.value=freq/(ac.sampleRate/(Math.floor(ac.sampleRate/freq)+.5));
+  let output=src;
+  if(buzz) {
+    const wave=ac.createWaveShaper(),curve=new Float32Array(256);
+    for(let i=0;i<curve.length;i++) curve[i]=Math.tanh((i/127.5-1)*2.2)*.6;
+    wave.curve=curve;
+    src.connect(wave);
+    output=wave;
+  }
+  output.connect(envelope(t,Math.min(1.95,dur+.4),vol));
+  track(src,t,t+Math.min(1.98,dur+.45));
+}
+function synth(voice,freq,t,dur=.3,vol=.15,from=null) {
+  if(!Curio.sound||!ac) return;
+  if(['ud','sitar','koto','tres','ks'].includes(voice)) return ks(freq,t,dur,vol,voice==='koto'?.8:.45,voice==='sitar');
+  if(voice==='bowed') {
+    const o=osc(freq,t,dur,vol,'sawtooth',from,true),lfo=ac.createOscillator(),g=ac.createGain();
+    lfo.frequency.value=5.5;
+    g.gain.value=3;
+    lfo.connect(g).connect(o.frequency);
+    track(lfo,t,t+dur+.04);
+    return;
+  }
+  if(voice==='breath') { osc(freq,t,dur,vol,'sine',null,true);
+    noiseHit(t,dur,vol*.15,freq*2);
+    return;
+  }
+  if(voice==='reed') { osc(freq,t,dur,vol*.6,'sawtooth',null,true);
+    osc(freq*2,t,dur,vol*.13,'square',null,true);
+    return;
+  }
+  if(voice==='drone') { osc(freq,t,dur,vol,'sawtooth',null,true);
+    return;
+  }
+  if(['bronze','gong','bell','lamella'].includes(voice)) {
+    const ratios=voice==='bronze'?[1,2.76,5.4]:voice==='gong'?[1,1.52,2.07,2.71]:voice==='bell'?[1,2.71]:[1,2,3.98];
+    ratios.forEach((r,i) => {
+      const o=osc(freq*r,t,voice==='gong'?2.2:Math.max(.3,dur+.25),vol/(i*2+1));
+      if(voice==='gong') { o.frequency.setValueAtTime(freq*r*1.04,t);
+        o.frequency.exponentialRampToValueAtTime(freq*r,t+.3);
+      }
+    });
+    if(voice==='lamella') noiseHit(t,.06,vol*.18,2100);
+    return;
+  }
+  if(voice==='rattle') { noiseHit(t,.1,vol,5000);
+    return;
+  }
+  if(voice==='tabla') {
+    const o=osc(freq,t,.45,vol);
+    o.frequency.setValueAtTime(freq*1.3,t);
+    o.frequency.exponentialRampToValueAtTime(freq,t+.11);
+    osc(freq*2.76,t,.25,vol*.4);
+    noiseHit(t,.035,vol*.25,2300);
+    return;
+  }
+  if(voice==='hand'||voice==='foot') {
+    const o=osc(freq,t,.16,vol);
+    o.frequency.setValueAtTime(freq*1.7,t);
+    o.frequency.exponentialRampToValueAtTime(freq,t+.08);
+    noiseHit(t,.07,vol*.4,voice==='foot'?240:900);
+    return;
+  }
+  osc(freq,t,.055,vol,'triangle');
+}
+function hasDrone(s) { return s.id==='scotland'||s.id==='india'&&state.drone;
+}
+function droneAt(s,t,dur) {
+  const oldRole=schedulingRole;
+  schedulingRole='drone';
+  if(s.id==='scotland') {
+    synth('drone',s.base/2,t,dur,.045);
+    synth('drone',s.base/4,t,dur,.06);
+    synth('drone',s.base/4,t,dur,.02);
+  } else if(s.id==='india'&&state.drone) {
+    [700,0,0,-1200].forEach((c,i) => synth('sitar',s.base*2**(c/1200),t+i*dur/4,dur*.7,.04));
+  }
+  schedulingRole=oldRole;
+}
+function centsFor(s,n) {
+  if(n===null||n===undefined) return null;
+  if(s.id==='japan') {
+    const normal=[-700,-500,-400,0,100,500,700,800,1200,1300,1700,1900,2000];
+    const alt=[-700,-500,-300,0,200,500,700,900,1200,1400,1700,1900,2100];
+    return (state.option?alt:normal)[n-1];
+  }
+  if(n<0) return n;
+  return currentScale(s)[n].cents;
+}
+let previousPitch={};
+function playMelody(s,n,t,dur,vol=.18,isRuler=false) {
+  if(s.id==='java'&&state.option&&!isRuler) return;
+  const cents=isRuler?currentScale(s)[n].cents:centsFor(s,n);
+  if(cents===null) return;
+  if(s.id==='andes'&&state.mode!=='compare'&&!isRuler) {
+    const row=n%2===0?'Ira':'Arka';
+    if(state.option!=='Both'&&state.option!==row) return;
+  }
+  const freq=s.base*2**(cents/1200),from=s.id==='china'&&state.slides?previousPitch[s.id]:null;
+  synth(s.voice,freq,t,Math.max(.08,dur*.95),vol,from);
+  previousPitch[s.id]=freq;
+  audioLog.push({type:'note',stop:s.id,t,cents,freq,dur,from,option:state.option});
+  if(audioLog.length>2000) audioLog.splice(0,1000);
+}
+const mbiraLead=[0,2,4,2,0,2,1,3,5,3,1,3,0,2,4,2,0,2,6,1,4,1,6,1];
+const mbiraReply=[4,0,2,0,4,0,5,1,3,1,5,1,4,0,2,0,4,0,4,6,1,6,4,6];
+const THEKA=['Dha','Dhin','Dhin','Dha','Dha','Dhin','Dhin','Dha','Dha','Tin','Tin','Ta','Ta','Dhin','Dhin','Dha'];
+let timer=null,clock=null;
+function cycleStep(s,p,t,beat,quiet=false) {
+  const pulse=p%s.length+1;
+  let parts=activeParts(s);
+  if(quiet&&!['ghana','zimbabwe'].includes(s.id)) parts=parts.slice(-1);
+  parts.forEach((part,j) => {
+    if(!part.hits.includes(pulse)) return;
+    let freq=part.voice==='gong'?65:part.voice==='bronze'?300+j*90
+      :part.voice==='foot'?60:part.voice==='hand'?(pulse%4===1?95:160):650;
+    if(s.id==='java'&&part.name==='kempul') freq=110;
+    if(s.id==='java'&&part.name==='gong') freq=48;
+    if(s.id==='ghana'&&part.name==='bell') freq=pulse===1?392:392*2**(700/1200);
+    if(s.id==='zimbabwe') {
+      const idx=Math.floor((pulse-1)/2),n=part.name==='kushaura'?mbiraLead[idx]:mbiraReply[idx];
+      freq=s.base*2**(s.scale[n].cents/1200);
+    }
+    if(s.id==='india') {
+      const bol=THEKA[pulse-1];
+      if(['Dha','Dhin'].includes(bol)) synth('tabla',110,t,.4,quiet?.025:.06);
+      freq=bol==='Tin'?300:bol==='Ta'?350:220;
+    }
+    if(s.id==='cuba'&&part.name==='bass sketch') freq=[4,12].includes(pulse)?130.8128:195.9977;
+    if(s.id==='cuba'&&part.name==='tres sketch') freq=s.base*2**(s.scale[(Math.floor(pulse/2)-1)%7].cents/1200);
+    if(s.id==='andes') freq=s.base*2**(s.scale[s.phrase[pulse-1].note].cents/1200);
+    const volume=part.name==='gong'?(quiet?.07:.16):quiet?.045:.095;
+    synth(part.voice,freq,t,Math.min(.5,beat*.7),volume);
+    audioLog.push({type:'hit',stop:s.id,pulse,part:part.name,t,freq,bol:s.id==='india'?THEKA[pulse-1]:null});
+  });
+  if(s.id==='india'&&state.drone) {
+    const oldRole=schedulingRole;
+    schedulingRole='drone';
+    const cents=[700,0,0,-1200][p%4];
+    synth('sitar',s.base*2**(cents/1200),t,beat*2.8,.04);
+    schedulingRole=oldRole;
+    audioLog.push({type:'drone',stop:s.id,t,pulse,cents});
+  } else if(s.id==='scotland'&&p%4===0) droneAt(s,t,beat*4);
+}
+function pulseSchedule(p,t) {
+  const c=clock;
+  if(!c) return;
+  if(c.kind==='both-cycles') { cycleStep(BY[state.a],p,t,c.beat);
+    cycleStep(BY[state.b],p,t,c.beat);
+    return;
+  }
+  if(c.kind==='both-scales') {
+    const a=BY[state.a],b=BY[state.b],list=[...a.scale.map((_,i) => [a,i]),null,...b.scale.map((_,i) => [b,i])];
+    if(list[p]) playMelody(list[p][0],list[p][1],t,c.beat,.17,true);
+    return;
+  }
+  const s=BY[state.stop];
+  if(c.kind==='scale') {
+    if(p<s.scale.length) playMelody(s,p,t,c.beat,.18,true);
+    if(hasDrone(s)&&p%4===0) droneAt(s,t,c.beat*4);
+    return;
+  }
+  if(!(s.id==='andes'&&c.kind==='phrase')) cycleStep(s,p,t,c.beat,c.kind==='phrase');
+  if(c.kind==='phrase') {
+    const i=s.phrase.findIndex(n => n.at===p);
+    if(i<0) return;
+    const event=s.phrase[i];
+    if(event.note===null) return;
+    let dur=event.dur*c.beat,delay=0;
+    if(s.id==='scotland') {
+      const repeat=i>0&&s.phrase[i-1].note===event.note;
+      if(repeat&&state.option) { synth('reed',s.base*2**(1000/1200),t,.03,.13);
+        delay=.03;
+      }
+      if(repeat&&!state.option) return;
+      if(!state.option) {
+        for(let j=i+1;j<s.phrase.length&&s.phrase[j].note===event.note;j++) dur+=s.phrase[j].dur*c.beat;
+      }
+    }
+    playMelody(s,event.note,t+delay,dur);
+  }
+}
+function tick() {
+  if(!clock||!ac) return;
+  const now=ac.currentTime;
+  while(clock.nextTime<now+.15&&clock.next<clock.total) {
+    pulseSchedule(clock.next,clock.nextTime);
+    clock.next++;
+    clock.nextTime=clock.start+clock.next*clock.beat;
+  }
+  if(Number.isFinite(clock.total)&&now>=clock.start+clock.total*clock.beat+.25) stopAll();
+}
+function play(kind) {
+  stopAll();
+  V.hush();
+  if(!audio()) { setHint('Audio is unavailable in this browser. Inspect the ruler and circle.');
+    return;
+  }
+  const s=BY[state.stop],compare=kind.startsWith('both'),beat=compare?.3:kind==='scale'?.38:60/s.bpm;
+  const total=kind==='scale'?s.scale.length:kind==='phrase'?s.phraseLength
+    :kind==='both-scales'?BY[state.a].scale.length+BY[state.b].scale.length+1:Infinity;
+  state.sounding=true;
+  state.kind=kind;
+  previousPitch={};
+  clock={kind,beat,total,start:ac.currentTime+.025,next:0,nextTime:ac.currentTime+.025};
+  tick();
+  timer=setInterval(tick,25);
+  updatePlayButtons();
+  setHint(kind==='both-cycles'?'The circles share a pulse. Watch their first pulses meet. Press Stop to finish.'
+    :kind==='both-scales'?'Listen to the first scale, then the second. Tap a ruler mark, or press Stop to finish.'
+    :state.mode==='where'&&!state.revealed?'Listen and follow the circle. Tap a map pin to choose, or press Stop.'
+    :'Tap a ruler mark or change Try this while it plays. Press Stop to finish.');
+}
+function updatePlayButtons() {
+  if($('play-cycle')) {
+    $('play-cycle').textContent=state.sounding?'■ Stop':'▶ Play cycle';
+    $('play-cycle').setAttribute('aria-pressed',state.sounding);
+  }
+  $('both-cycles').textContent=state.sounding?'■ Stop':'▶ Play both cycles';
+  $('both-cycles').setAttribute('aria-pressed',state.sounding);
+}
+function stopAll() {
+  const wasPlaying=state.sounding;
+  clearInterval(timer);
+  timer=null;
+  clock=null;
+  if(ac&&master) {
+    const old=master;
+    old.gain.setTargetAtTime(0,ac.currentTime,.008);
+    setTimeout(() => old.disconnect(),100);
+    newMaster();
+    sources.forEach(item => { try { item.src.stop(ac.currentTime+.035);
+      } catch {} });
+    sources.clear();
+  }
+  state.sounding=false;
+  state.kind=null;
+  updatePlayButtons();
+  document.querySelectorAll('.pulse.active').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.cycle-svg').forEach(svg => {
+    svg.querySelector('.count').textContent=svg.dataset.length;
+    svg.querySelector('.cycle-name').textContent='pulses / cycle';
+    svg.querySelector('.hand').removeAttribute('transform');
+  });
+  $('sync').textContent='Press Play both cycles. Watch their first pulses meet.';
+  $('sync').classList.remove('met');
+  $('compare-circles').classList.remove('in-sync');
+  if(wasPlaying) setHint(state.mode==='compare'?'Press Play both cycles to hear this pair again.'
+    :state.mode==='where'&&!state.revealed?'Press Play phrase, then tap a pin on the map.'
+    :'Press Play cycle, Play phrase, or tap a ruler mark.');
+}
+function reviseFuture() {
+  if(!clock||!ac) return;
+  const now=ac.currentTime;
+  audioLog.forEach(event => { if(event.t>now+.003) event.cancelled=true;
+  });
+  const previous=audioLog.filter(event =>
+    event.type==='note'&&event.stop==='china'&&!event.cancelled&&event.t>=clock.start&&event.t<=now).at(-1);
+  if(previous) previousPitch.china=previous.freq;
+  else delete previousPitch.china;
+  sources.forEach(item => {
+    if(item.t>now+.003) { try { item.src.stop(now);
+      } catch {} sources.delete(item);
+    }
+  });
+  clock.next=Math.max(0,Math.floor((now-clock.start)/clock.beat)+1);
+  clock.nextTime=clock.start+clock.next*clock.beat;
+  tick();
+}
+function animate() {
+  if(clock&&ac) {
+    const elapsed=Math.max(0,(ac.currentTime-clock.start)/clock.beat);
+    const ids=state.mode==='compare'?[[BY[state.a],'a'],[BY[state.b],'b']]:[[BY[state.stop],'stop']];
+    ids.forEach(([s,prefix]) => {
+      const wrap=$(prefix+'-cycle');
+      if(!wrap) return;
+      const pulse=Math.floor(elapsed)%s.length+1,hand=wrap.querySelector('.hand');
+      hand.style.display=Curio.reduce?'none':'';
+      if(!Curio.reduce) hand.setAttribute('transform',`rotate(${elapsed/s.length*360} 140 140)`);
+      const sikuEvent=s.id==='andes'&&clock.kind==='phrase'
+        ?s.phrase.find(n => elapsed>=n.at&&elapsed<n.at+n.dur):null;
+      wrap.querySelectorAll('.pulse').forEach(el => {
+        let hit=el.dataset.hit==='true';
+        if(s.id==='andes'&&clock.kind==='phrase') {
+          const row=sikuEvent&&sikuEvent.note!==null?(sikuEvent.note%2===0?'ira':'arka'):null;
+          hit=el.dataset.part===row;
+        }
+        el.classList.toggle('active',+el.dataset.p===pulse&&hit);
+      });
+      wrap.querySelector('.count').textContent=pulse;
+      wrap.querySelector('.cycle-name').textContent=s.id==='india'&&!(state.mode==='where'&&!state.revealed)?THEKA[pulse-1]
+        +(pulse===1?' · sam X':pulse===9?' · khali 0':''):'of '+s.length+' pulses';
+    });
+    if(state.mode==='compare'&&clock.kind==='both-cycles') {
+      const n=lcm(BY[state.a].length,BY[state.b].length),p=Math.floor(elapsed);
+      const together=p>=n&&elapsed%n<2,meeting=Math.floor(p/n)*n;
+      $('compare-circles').classList.toggle('in-sync',together);
+      $('sync').classList.toggle('met',together);
+      $('sync').textContent=together?'Together again · '+meeting+' pulses'
+        :'Next shared first pulse: '+(Math.floor(p/n)+1)*n;
+    }
+    if(state.stop==='japan'&&clock.kind==='phrase') {
+      const note=BY.japan.phrase.find(n => elapsed>=n.at&&elapsed<n.at+n.dur);
+      document.querySelectorAll('.koto-string').forEach(el => el.classList.toggle('lit',note&&+el.dataset.string===note.note));
+    }
+  }
+  requestAnimationFrame(animate);
+}
+$('card').onkeydown=e => {
+  if(e.code==='Space'&&!e.target.closest('button,select,a')) { e.preventDefault();
+    state.sounding?stopAll():play('cycle');
+  }
+};
+document.addEventListener('keydown',e => { if(e.key==='Escape') stopAll();
+});
+Curio.init({clips:"voice:*",rate:.9});
+Curio.onSound(on => { if(!on) stopAll();
+});
+const kitRead=$('read').onclick;
+$('read').onclick=() => { stopAll();
+  kitRead();
+};
+$('main').prepend($('card'));
+initMap();
+new ResizeObserver(layoutMap).observe($('mapbox'));
+new ResizeObserver(fitRulers).observe($('main'));
+window.__tool={state,setMode,openStop,closeStop,choosePin,nextMystery,play,stopAll,changeOption,STOPS,BY,
+  allLines:V.allLines,vlog:V.log,get vq(){return V.queue;
+  },offset,lcm,lineupText,audioLog,
+  get clock(){return clock;
+  },get context(){return ac;
+  },currentScale,activeParts};
+setMode('map');
+requestAnimationFrame(animate);
+})();
+</script>
+</body>
+</html>

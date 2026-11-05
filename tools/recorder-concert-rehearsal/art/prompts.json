@@ -1,0 +1,111 @@
+{
+  "house_style": "Warm painted storybook look, soft gouache and colored pencil texture, soft light from upper left, friendly animal characters, for a grade 4 music lesson. Rich warm materials, clear silhouettes. No text, letters, numbers, logos, people or human body parts.",
+  "assets": [
+    {
+      "name": "music-room",
+      "prompt": "A cheerful elementary school music room, four empty music stands in a row on a honey-colored wooden floor, a piano against the far left wall, a blank olive chalkboard, a window with plants, xylophones on a shelf. Straight-on wide view, lower central floor spacious for four animal musicians to be added. Layered foreground floor, middle room, soft sunlit background.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 76,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "school-stage",
+      "prompt": "An elementary school stage seen from the audience, red velvet curtains open at the sides, five empty slim music stands, warm stage lights, a wooden floor. Straight-on wide view, center floor spacious for animal musicians to be added. Rich velvet folds, brass light fixtures and polished timber.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 76,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "juniper-rest",
+      "prompt": "A small brown rabbit with a red scarf, standing upright, whole body and feet visible with margin, resting, holding a plain wooden soprano recorder down in front in its animal paws or wings. Friendly expressive animal face, anatomically animal paws or wings. Single isolated character on flat pure green #00FF00 background, no ground shadow.",
+      "aspect": "3:4",
+      "width": 380,
+      "quality": 80,
+      "cutout": true,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "juniper-play",
+      "prompt": "A small brown rabbit with a red scarf, standing upright, whole body and feet visible with margin, playing a plain wooden soprano recorder vertically from its mouth, animal paws or wings covering the upper holes. Friendly expressive animal face, anatomically animal paws or wings. Single isolated character on flat pure green #00FF00 background, no ground shadow.",
+      "aspect": "3:4",
+      "width": 380,
+      "quality": 80,
+      "cutout": true,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "otis-rest",
+      "prompt": "A round gray owl with a blue bow tie, standing upright, whole body and feet visible with margin, resting, holding a plain wooden soprano recorder down in front in its animal paws or wings. Friendly expressive animal face, anatomically animal paws or wings. Single isolated character on flat pure green #00FF00 background, no ground shadow.",
+      "aspect": "3:4",
+      "width": 380,
+      "quality": 80,
+      "cutout": true,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "otis-play",
+      "prompt": "Use case: identity-preserve\nAsset type: playing-pose cutout for Recorder Concert Rehearsal.\nReference: art/otis-rest.webp is Otis, whose identity, eye color, gray plumage, blue bow tie, round body, feet and painted style must stay consistent.\nChange his pose only: hold the same plain wooden soprano recorder to his beak, with his left wing at the upper holes and right wing below. Keep the soprano recorder recognizable, full body and feet fully in frame, gentle face, matching amber eyes. Warm painted storybook look, gouache and colored pencil, light from upper left, friendly grade 4 music character. One isolated owl centered on flat pure green #00FF00, no ground shadow. No text, letters, numbers, logos or people.\n",
+      "aspect": "3:4",
+      "width": 380,
+      "quality": 80,
+      "cutout": true,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true,
+      "ref": "otis-rest",
+      "review_redraw": "2026-11-04, built-in imagegen; matched resting identity and amber eyes"
+    },
+    {
+      "name": "bea-rest",
+      "prompt": "A badger with a purple cardigan, standing upright, whole body and feet visible with margin, resting, holding a plain wooden soprano recorder down in front in its animal paws or wings. Friendly expressive animal face, anatomically animal paws or wings. Single isolated character on flat pure green #00FF00 background, no ground shadow.",
+      "aspect": "3:4",
+      "width": 380,
+      "quality": 80,
+      "cutout": true,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "bea-play",
+      "prompt": "A badger with a purple cardigan, standing upright, whole body and feet visible with margin, playing a plain wooden soprano recorder vertically from its mouth, animal paws or wings covering the upper holes. Friendly expressive animal face, anatomically animal paws or wings. Single isolated character on flat pure green #00FF00 background, no ground shadow.",
+      "aspect": "3:4",
+      "width": 380,
+      "quality": 80,
+      "cutout": true,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "finn-rest",
+      "prompt": "A red fox with a yellow vest, standing upright, whole body and feet visible with margin, resting, holding a plain wooden soprano recorder down in front in its animal paws or wings. Friendly expressive animal face, anatomically animal paws or wings. Single isolated character on flat pure green #00FF00 background, no ground shadow.",
+      "aspect": "3:4",
+      "width": 380,
+      "quality": 80,
+      "cutout": true,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "finn-play",
+      "prompt": "A red fox with a yellow vest, standing upright, whole body and feet visible with margin, playing a plain wooden soprano recorder vertically from its mouth, animal paws or wings covering the upper holes. Friendly expressive animal face, anatomically animal paws or wings. Single isolated character on flat pure green #00FF00 background, no ground shadow.",
+      "aspect": "3:4",
+      "width": 380,
+      "quality": 80,
+      "cutout": true,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    }
+  ]
+}

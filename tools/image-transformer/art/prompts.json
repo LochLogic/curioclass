@@ -10,18 +10,19 @@
       "width": 800,
       "quality": 80,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "cold reviewed at final size; no people or lettering"
     },
     {
       "name": "imt-balloon",
-      "prompt": "One bright striped hot air balloon floating over green rolling fields, a simple clear blue sky, plain colored stripes on the balloon.",
+      "prompt": "One bright red and yellow vertically striped hot air balloon floating above green rolling fields under a clear blue afternoon sky. Crisp photo-like painted illustration, detailed taut fabric gores, suspension ropes and an empty wicker basket, distant layered fields and foreground grasses. Sunlight from upper left. Full balloon and basket visible, strong asymmetric landscape for flips. Full-frame 4:3 composition, one subject large enough to read on a coordinate grid. No people, faces, body parts, text, letters, numbers or logos.",
       "aspect": "4:3",
       "cutout": false,
       "width": 800,
       "quality": 80,
       "sd": "One bright hot air balloon with wide vertical stripes of red, yellow and blue floating high in the sky, far away and small, over green rolling fields, a small empty wicker basket hanging below it, a simple clear blue sky.",
-      "source": "flux2-klein-4b (Cloudflare)",
-      "review": "pending"
+      "source": "OpenAI gpt-image",
+      "review": "cold reviewed at final size; no people or lettering",
+      "drawn_by": "codex"
     },
     {
       "name": "imt-fox",
@@ -31,7 +32,7 @@
       "width": 800,
       "quality": 80,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "cold reviewed at final size; no people or lettering"
     }
   ]
 }

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+<defs><linearGradient id="b" x2="1" y2="1"><stop stop-color="#27392f"/><stop offset="1" stop-color="#0d1219"/></linearGradient></defs>
+<rect width="800" height="500" fill="url(#b)"/>
+<path d="M0 81H800" stroke="#5ee07a" stroke-width="3"/>
+<text x="35" y="50" fill="#e8edf3" font-family="Segoe UI,sans-serif" font-size="28" font-weight="700">Speech Coach</text>
+<text x="35" y="113" fill="#a6b3c4" font-family="Segoe UI,sans-serif" font-size="14" letter-spacing="2">PLAN IT. RUN IT. READ THE MARKS.</text>
+<rect x="35" y="145" width="475" height="225" rx="8" fill="#101a21" stroke="#60756a"/>
+<path d="M37 147V368" stroke="#5ee07a" stroke-width="4"/>
+<text x="60" y="185" fill="#5ee07a" font-family="monospace" font-size="13">03 / 06 · REASON</text>
+<text x="60" y="240" fill="#e8edf3" font-family="Segoe UI,sans-serif" font-size="29">Give your words</text>
+<text x="60" y="280" fill="#e8edf3" font-family="Segoe UI,sans-serif" font-size="29">the time they need.</text>
+<text x="60" y="337" fill="#a6b3c4" font-family="monospace" font-size="16">SECTION 0:17     TOTAL 0:57</text>
+<rect x="540" y="145" width="225" height="125" rx="6" fill="#19342a" stroke="#5ee07a"/>
+<path d="M560 240H735M560 218H690M560 196H715" stroke="#5ee07a" stroke-width="10"/>
+<rect x="540" y="289" width="225" height="81" rx="6" fill="#18232d" stroke="#60756a"/>
+<text x="565" y="322" fill="#ff8a8a" font-family="monospace" font-size="24">▶ 180 fast</text>
+<text x="565" y="349" fill="#a6b3c4" font-family="Segoe UI,sans-serif" font-size="14">Find your next change.</text>
+<rect x="35" y="397" width="220" height="57" rx="6" fill="#5ee07a"/>
+<text x="69" y="433" fill="#1c1203" font-family="Segoe UI,sans-serif" font-size="22" font-weight="700">Next section →</text>
+<path d="M280 431H765" stroke="#42584a" stroke-width="17"/>
+<path d="M280 431H510" stroke="#5ee07a" stroke-width="17"/>
+<path d="M350 419V443M420 419V443M510 419V443M605 419V443M705 419V443" stroke="#0d1219" stroke-width="4"/>
+</svg>

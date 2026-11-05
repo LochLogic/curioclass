@@ -1,0 +1,185 @@
+{
+  "states": [
+    {
+      "name": "room-tree",
+      "steps": [
+        {
+          "click": "#start-room"
+        },
+        {
+          "click": "#card-0"
+        },
+        {
+          "click": "#branch-0"
+        }
+      ],
+      "keep": [
+        "#primary"
+      ]
+    },
+    {
+      "name": "room-criteria",
+      "steps": [
+        {
+          "click": "#start-room"
+        },
+        {
+          "click": "#tab-criteria"
+        }
+      ],
+      "keep": [
+        "#primary"
+      ]
+    },
+    {
+      "name": "room-prototype",
+      "steps": [
+        {
+          "click": "#start-room"
+        },
+        {
+          "click": "#tab-prototype"
+        },
+        {
+          "click": "#option-0"
+        },
+        {
+          "click": "#option-3"
+        },
+        {
+          "click": "#option-4"
+        },
+        {
+          "click": "#option-5"
+        }
+      ],
+      "keep": [
+        "#primary"
+      ]
+    },
+    {
+      "name": "room-trade",
+      "steps": [
+        {
+          "click": "#start-room"
+        },
+        {
+          "click": "#tab-prototype"
+        },
+        {
+          "click": "#primary"
+        },
+        {
+          "click": "#option-0"
+        },
+        {
+          "click": "#primary"
+        },
+        {
+          "click": "#tab-trade"
+        }
+      ],
+      "keep": [
+        "#primary"
+      ]
+    },
+    {
+      "name": "water-prototype",
+      "steps": [
+        {
+          "click": "#start-water"
+        },
+        {
+          "click": "#tab-prototype"
+        },
+        {
+          "click": "#source-1"
+        },
+        {
+          "click": "#step-4"
+        }
+      ],
+      "keep": [
+        "#primary"
+      ]
+    },
+    {
+      "name": "own-prototype",
+      "steps": [
+        {
+          "click": "#start-own"
+        },
+        {
+          "click": "#tab-prototype"
+        }
+      ],
+      "keep": [
+        "#primary"
+      ]
+    },
+    {
+      "name": "replace-dialog",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#start-room"
+        },
+        {
+          "click": "#tab-prototype"
+        },
+        {
+          "click": "#primary",
+          "times": 5,
+          "gap": 0.15
+        }
+      ],
+      "keep": [
+        "#dialog"
+      ]
+    },
+    {
+      "name": "own-editable-fields",
+      "steps": [
+        {
+          "click": "#start-own"
+        },
+        {
+          "click": "#tab-criteria"
+        },
+        {
+          "js": "document.querySelector('#new-criterion').value='Durability';document.querySelector('#add-criterion').click();"
+        }
+      ],
+      "keep": [
+        "#primary"
+      ]
+    },
+    {
+      "name": "water-filter-then-disinfect",
+      "steps": [
+        {
+          "click": "#start-water"
+        },
+        {
+          "click": "#tab-prototype"
+        },
+        {
+          "click": "#source-1"
+        },
+        {
+          "click": "#step-2"
+        },
+        {
+          "click": "#step-4"
+        }
+      ],
+      "keep": [
+        "#primary"
+      ]
+    }
+  ]
+}

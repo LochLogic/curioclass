@@ -1,0 +1,24 @@
+{
+  "id": "folk-song-arranger",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Give one old tune a band, a plan and a reason.",
+  "outcome": "Arrange a folk melody for an occasion and explain revisions using range, balance, length and fit.",
+  "driver": "students",
+  "minutes": "25-40",
+  "modes": [
+    "Arrange",
+    "Concert card"
+  ],
+  "grades_label": "Grades 6-8",
+  "sources": [
+    "Skip to My Lou, traditional public-domain chorus, transcribed and transposed from Zebra Keys (2007 engraving), p. 1: https://www.zebrakeys.com/pdf/skip_to_my_lou.pdf . Historical-printing requirement remains open; see notes.md.",
+    "National Core Arts Standards: Music MU:Cr2, MU:Cr3, MU:Pr4, https://www.nationalartsstandards.org/",
+    "Instrument range references: Samuel Adler, The Study of Orchestration; Vienna Symphonic Library Academy, https://www.vsl.co.at/en/Academy",
+    "CALLERLAB, Music As Used By Callers (1994), https://knowledge.callerlab.org/wp-content/uploads/2023/09/2023-09-30-MusicAsUsedByCallers-1994.pdf",
+    "Occasion windows, school ranges, loudness units, balance threshold and new strains are Curio Class teaching choices.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-04"
+}

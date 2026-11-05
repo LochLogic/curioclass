@@ -6,7 +6,11 @@
   "outcome": "Set up two- and three-point perspective from eye height, viewing angle and lens, and draw, hatch, fill and refine a city drawing that follows it",
   "driver": "students",
   "minutes": "20-45",
-  "modes": ["Build", "Ink", "Find the Camera"],
+  "modes": [
+    "Build",
+    "Ink",
+    "Find the Camera"
+  ],
   "grades_label": "Grades 9-12",
   "sources": [
     "NCAS Visual Arts VA:Cr2, VA:Cr3: https://www.nationalartsstandards.org/",
@@ -14,9 +18,11 @@
     "Perspective (graphical), Wikipedia: https://en.wikipedia.org/wiki/Perspective_(graphical)",
     "Richard Szeliski, Computer Vision: Algorithms and Applications, 2nd ed. (2022), section 2.1: https://szeliski.org/Book/",
     "Angle of view (photography), Wikipedia: https://en.wikipedia.org/wiki/Angle_of_view_(photography)",
-    "Settings, not facts: 3.5 m per floor, the lot grid, the example city and the eye standing back 6 m per meter of height",
-    "City, sky, guides and plan drawn in code"
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Some narration generated with Qwen3-TTS (Apache 2.0)",
+    "Settings, not facts: 3.5 m per floor, the lot grid, example city, and stand-back 120 + 0.6 (eye - 1.6) m",
+    "City, street grid, guides and plan drawn in code with kit/perspective.js"
   ],
   "third_party": [],
-  "updated": "2026-10-28"
+  "updated": "2026-11-01"
 }

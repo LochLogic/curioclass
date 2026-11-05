@@ -1,0 +1,198 @@
+{
+  "house_style": "Warm, richly textured colored-pencil storybook art for kindergarten through second grade. Honey wood, raspberry accents, soft daylight from upper left, careful shading and true small details. Friendly, beautiful, tactile. Absolutely no people, human faces, human hands, text, letters, numbers or logos.",
+  "assets": [
+    {
+      "name": "art-room",
+      "prompt": "A sunny elementary school art room, long honey wooden table across foreground, jars of crayons and brushes at the far edges, little abstract paintings pinned on cork wall, soft window light from left, center calm and plain. Layered depth, lovely wood grain, gentle shadows.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 73,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "paper-texture",
+      "prompt": "Close-up of plain white drawing paper with a soft fiber texture, full frame, even light, subtle natural fibers. Flat texture for use underneath a drawing.",
+      "aspect": "4:3",
+      "width": 1000,
+      "quality": 70,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pip-listen",
+      "prompt": "A small round brown and cream sparrow, chestnut head, cream fluffy breast, tiny charcoal beak, bright kind dark eyes, perched, head tilted to one side listening. Soft colored pencil, complete bird with feet, generous clear margin. Flat pure green #00FF00 background.",
+      "aspect": "1:1",
+      "cutout": true,
+      "width": 260,
+      "quality": 80,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pip-ask",
+      "prompt": "A small round brown and cream sparrow, chestnut head, cream fluffy breast, tiny charcoal beak, bright kind dark eyes, perched, beak open with one wing raised like asking. Soft colored pencil, complete bird with feet, generous clear margin. Flat pure green #00FF00 background.",
+      "aspect": "1:1",
+      "cutout": true,
+      "width": 260,
+      "quality": 80,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pip-happy",
+      "prompt": "A small round brown and cream sparrow, chestnut head, cream fluffy breast, tiny charcoal beak, bright kind dark eyes, perched, both wings up, cheerful. Soft colored pencil, complete bird with feet, generous clear margin. Flat pure green #00FF00 background.",
+      "aspect": "1:1",
+      "cutout": true,
+      "width": 260,
+      "quality": 80,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pip-look",
+      "prompt": "A small round brown and cream sparrow, chestnut head, cream fluffy breast, tiny charcoal beak, bright kind dark eyes, perched, leaning forward looking down. Soft colored pencil, complete bird with feet, generous clear margin. Flat pure green #00FF00 background.",
+      "aspect": "1:1",
+      "cutout": true,
+      "width": 260,
+      "quality": 80,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "sun",
+      "prompt": "A round yellow sun with rays, a child's wax crayon drawing, bold simple shapes, bright colors, rich wax grain, shaded edges, charming tiny details. One complete isolated object, generous clear margin. Flat pure green #00FF00 background.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "green",
+      "width": 500,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "cloud",
+      "prompt": "A white puffy cloud, a child's wax crayon drawing, bold simple shapes, bright colors, rich wax grain, shaded edges, charming tiny details. One complete isolated object, generous clear margin. Flat pure green #00FF00 background.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "green",
+      "width": 500,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "rain-cloud",
+      "prompt": "A grey rain cloud with blue drops, a child's wax crayon drawing, bold simple shapes, bright colors, rich wax grain, shaded edges, charming tiny details. One complete isolated object, generous clear margin. Flat pure green #00FF00 background.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "green",
+      "width": 500,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "tree",
+      "prompt": "A green tree with a brown trunk, a child's wax crayon drawing, bold simple shapes, bright colors, rich wax grain, shaded edges, charming tiny details. One complete isolated object, generous clear margin. Flat pure magenta #FF00FF background.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 500,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "flower",
+      "prompt": "A red flower with a stem and green leaves, a child's wax crayon drawing, bold simple shapes, bright colors, rich wax grain, shaded edges, charming tiny details. One complete isolated object, generous clear margin. Flat pure magenta #FF00FF background.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 500,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "house",
+      "prompt": "A small house with a door and window, a child's wax crayon drawing, bold simple shapes, bright colors, rich wax grain, shaded edges, charming tiny details. One complete isolated object, generous clear margin. Flat pure magenta #FF00FF background.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 500,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "slide",
+      "prompt": "A playground slide with ladder, a child's wax crayon drawing, bold simple shapes, bright colors, rich wax grain, shaded edges, charming tiny details. One complete isolated object, generous clear margin. Flat pure magenta #FF00FF background.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 500,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "ball",
+      "prompt": "A red ball, a child's wax crayon drawing, bold simple shapes, bright colors, rich wax grain, shaded edges, charming tiny details. One complete isolated object, generous clear margin. Flat pure green #00FF00 background.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "green",
+      "width": 500,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "dog",
+      "prompt": "A single friendly brown dog sitting in three-quarter view, entire dog including tail, paws and floppy ears. Rich layered wax-crayon strokes and visible paper grain form its honey-brown fur, three tonal levels, rounded shapes, cream muzzle and chest, a small dark nose and calm animal eyes. Soft daylight from upper left. Beautiful tactile crayon drawing with a readable silhouette at 60 pixels. Clear flat pure green #00FF00 surrounds the complete contour with generous margin. Freestanding animal sticker cutout. No card, scene, text, letters, numbers, logos or people.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "green",
+      "width": 500,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex",
+      "redrawn": "Build: removed picture card. Cold review: redrew with visible wax grain to match the sticker set.",
+      "review_generator": "Built-in imagegen, OpenAI gpt-image",
+      "despill": true
+    },
+    {
+      "name": "cat",
+      "prompt": "An orange cat sitting, a child's wax crayon drawing, bold simple shapes, bright colors, rich wax grain, shaded edges, charming tiny details. One complete isolated object, generous clear margin. Flat pure green #00FF00 background.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "green",
+      "width": 500,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "cake",
+      "prompt": "A birthday cake with candles, a child's wax crayon drawing, bold simple shapes, bright colors, rich wax grain, shaded edges, charming tiny details. One complete isolated object, generous clear margin. Flat pure green #00FF00 background.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "green",
+      "width": 500,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "kite",
+      "prompt": "A diamond kite with a tail, a child's wax crayon drawing, bold simple shapes, bright colors, rich wax grain, shaded edges, charming tiny details. One complete isolated object, generous clear margin. Flat pure magenta #FF00FF background.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 500,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex"
+    }
+  ]
+}

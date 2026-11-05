@@ -1,0 +1,136 @@
+{
+  "house_style": "Warm painted illustration, wood and lamplight, sophisticated gouache and fine colored-pencil detail, tactile wood grain and soft directional light from upper left, rich amber, cream and moss palette. Accurate instrument construction. No people, faces, hands, body parts, text, letters, numbers or logos.",
+  "assets": [
+    {
+      "name": "fiddle",
+      "prompt": "A violin with four strings, carved bridge, two f holes, chin rest and its bow resting diagonally across it, standing alone on a simple wooden stand, front view, complete object with generous margin, flat pure green #00FF00 background.",
+      "cutout": true,
+      "aspect": "3:4",
+      "width": 320,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "self-checked in contact sheet and placed tool frames",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "flute",
+      "prompt": "A silver concert flute with accurate shiny keywork on a slim stand, standing alone on a simple wooden stand, front view, complete object with generous margin, flat pure green #00FF00 background.",
+      "cutout": true,
+      "aspect": "3:4",
+      "width": 320,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "self-checked in contact sheet and placed tool frames",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "guitar",
+      "prompt": "A six-string acoustic guitar with a worn spruce top, round sound hole and dark bridge, standing alone on a simple wooden stand, front view, complete object with generous margin, flat pure green #00FF00 background.",
+      "cutout": true,
+      "aspect": "3:4",
+      "width": 320,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "self-checked in contact sheet and placed tool frames",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "banjo",
+      "prompt": "A five-string banjo with a round cream head, metal rim and short fifth-string tuning peg, standing alone on a simple wooden stand, front view, complete object with generous margin, flat pure green #00FF00 background.",
+      "cutout": true,
+      "aspect": "3:4",
+      "width": 320,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "self-checked in contact sheet and placed tool frames",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "upright-bass",
+      "prompt": "An upright double bass with four strings, carved bridge, endpin and its bow, standing alone on a simple wooden stand, front view, complete object with generous margin, flat pure green #00FF00 background.",
+      "cutout": true,
+      "aspect": "3:4",
+      "width": 320,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "self-checked in contact sheet and placed tool frames",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "accordion",
+      "prompt": "A red piano accordion with black and mother-of-pearl keys, bass buttons and folded bellows, standing alone on a simple wooden stand, front view, complete object with generous margin, flat pure green #00FF00 background.",
+      "cutout": true,
+      "aspect": "3:4",
+      "width": 320,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "self-checked in contact sheet and placed tool frames",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "hand-drum",
+      "prompt": "A round frame drum with a goatskin head and wooden rim, standing alone on a simple wooden stand, front view, complete object with generous margin, flat pure green #00FF00 background.",
+      "cutout": true,
+      "aspect": "3:4",
+      "width": 320,
+      "quality": 78,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "self-checked in contact sheet and placed tool frames",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "venue-library",
+      "prompt": "A cozy library reading corner at night with glowing floor lamps, beanbags, shelves of books and a small rug. Panoramic composition with foreground detail, middle ground and deep background, full frame edge to edge, blank book spines and surfaces, empty venue.",
+      "aspect": "5:1",
+      "width": 1400,
+      "quality": 76,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "self-checked in contact sheet and placed tool frames"
+    },
+    {
+      "name": "venue-barn",
+      "prompt": "The inside of a big wooden barn set for a dance with hay bales, string lights and an open dance floor. Panoramic composition with foreground detail, middle ground and deep background, full frame edge to edge, blank book spines and surfaces, empty venue.",
+      "aspect": "5:1",
+      "width": 1400,
+      "quality": 76,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "self-checked in contact sheet and placed tool frames"
+    },
+    {
+      "name": "venue-courtyard",
+      "prompt": "A school courtyard set for a ceremony, rows of empty folding chairs on grass, a center aisle and a small wooden stage with steps under a balloon arch. Panoramic composition with foreground detail, middle ground and deep background, full frame edge to edge, blank book spines and surfaces, empty venue.",
+      "aspect": "5:1",
+      "width": 1400,
+      "quality": 76,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "self-checked in contact sheet and placed tool frames"
+    },
+    {
+      "name": "paper-card",
+      "prompt": "A full-frame sheet of cream handmade concert program paper, viewed square-on. Fine gouache and colored-pencil fiber detail, delicate deckled edges, a very gentle upper-left lamplight gradient and tiny warm fibers concentrated near the margins. Quiet smooth ivory center for crisp dark typesetting. The whole sheet is flat and carefully made, with tactile thickness at its edges. No printed marks, text, letters, numbers, logos, objects or people.",
+      "aspect": "3:4",
+      "width": 1000,
+      "quality": 75,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "Cold review redraw: gentler center, tactile handmade margins."
+    }
+  ]
+}

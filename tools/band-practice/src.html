@@ -1,0 +1,1065 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Band Practice · Play in time · Curio Class</title>
+<meta name="description" content="Play with a four-piece band. See your timing, hold a solo break and race your best take. Grades 6-8 music. Works offline.">
+<!--
+Band Practice, Curio Class. Grades 6-8, NCAS MU:Pr5 and MU:Pr6.
+Audio synthesis and lookahead clock adapted from the Curio Class Beat Buddies reference.
+Timing choices and original songs: tools/band-practice/spec.md. Web Audio: W3C Web Audio API.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. One offline file. No data leaves this device.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#14161c; --panel:#1d2029; --ink:#eef1f6; --muted:#9aa3b5; --brand:#38d1e8;
+  --line:#3d4555; --focus:#6ee7a0; --btn:#252c38; --btn-line:#465364; --head-ink:#eef1f6;
+}
+body { min-height:100dvh; }
+header { background:#191d25; padding:12px 20px; gap:10px; border-bottom:1px solid #414b59; }
+h1 { font-family:Georgia,serif; font-size:30px; font-weight:500; letter-spacing:-.03em; }
+h1 small { font-size:12px; color:var(--muted); letter-spacing:.035em; margin-top:4px; }
+.seg { border-radius:8px; border-width:1px; }
+.seg button { min-height:44px; padding:0 15px; font-size:14px; }
+.seg button[aria-pressed="true"] { background:var(--brand); color:#14161c; }
+.icon-btn { min-height:44px; min-width:44px; font-size:13px; padding:0 12px; border-width:1px; border-radius:8px; }
+#sound { min-width:88px; }
+main { grid-template-columns:minmax(0,1fr) 304px; padding:14px; gap:14px; }
+.stage { min-height:0; display:grid; grid-template-rows:minmax(90px,24%) 64px minmax(170px,1fr) 128px;
+  gap:10px; overflow:visible; background:transparent; }
+.band { position:relative; display:grid; grid-template-columns:repeat(4,1fr); border:1px solid #52606b;
+  border-radius:12px; overflow:hidden; isolation:isolate; background:#232a32; }
+.band::before { content:""; position:absolute; inset:0; z-index:-2;
+  background:linear-gradient(#14161c4d,#14161c4d),url(art:rehearsal-room) center 22%/cover; }
+.band::after { content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(transparent,#14161cbf); }
+.station { position:relative; display:grid; place-items:center; padding:10px 10px 26px; min-width:0;
+  border:2px solid transparent; border-radius:10px; transition:filter .08s; }
+.station::before { content:""; position:absolute; bottom:16px; width:85%; height:20%; border-radius:50%;
+  background:radial-gradient(ellipse,#b6d9db33,transparent 70%); }
+.station img { position:absolute; inset:4px 8px 25px; height:calc(100% - 29px); width:calc(100% - 16px);
+  object-fit:contain; filter:drop-shadow(4px 8px 4px #0008); }
+.station.you { border-color:var(--brand); background:#38d1e80b; }
+.station.hit { background:#38d1e830; box-shadow:inset 0 0 25px #38d1e845; }
+.station.hit img { filter:brightness(1.35) drop-shadow(0 0 6px #38d1e880); }
+.station.muted img { filter:brightness(.35) saturate(.3); }
+.station.muted::before { opacity:.2; }
+.station .tag { position:absolute; bottom:5px; font-size:12px; background:#14161ce8; padding:3px 8px; border-radius:4px; }
+.station.you .tag { background:var(--brand); color:#14161c; font-weight:700; }
+.live-led { position:absolute; left:12px; top:10px; width:5px; height:5px; border-radius:50%; background:#6ee7a0;
+  box-shadow:0 0 8px #6ee7a0; animation:breathe 3s ease-in-out infinite; }
+@keyframes breathe { 50% { opacity:.3; } }
+.calm .live-led { animation:none; }
+.part-card { padding:7px 12px; background:#1d2029; border:1px solid var(--line); border-radius:8px; }
+.part-heading { display:flex; justify-content:space-between; align-items:center; font-size:11px; color:var(--muted); margin-bottom:5px; }
+.part-heading strong { color:var(--ink); font-weight:600; }
+.grid { display:grid; gap:3px; }
+.cell { height:25px; display:grid; place-items:center; font-size:11px; color:#aeb8c9;
+  border:1px solid #394252; background:#242a35; border-radius:3px; position:relative; }
+.cell.note { background:#31565e; border-color:#72b4bc; color:#fff; font-weight:700; }
+.cell.note::before { content:""; width:5px; height:5px; background:var(--brand); border-radius:50%; position:absolute; top:2px; }
+.cell.now { outline:2px solid #eef1f6; outline-offset:0; }
+.trace-shell { min-height:0; position:relative; border:1px solid #465162; border-radius:10px; background:#14161c;
+  overflow:hidden; box-shadow:inset 0 0 35px #0003; }
+#trace { width:100%; height:100%; display:block; }
+.lower { display:grid; grid-template-columns:minmax(0,1fr) 180px; gap:12px; }
+.take-desk { border:1px solid var(--line); border-radius:10px; background:linear-gradient(120deg,#252b36,#1d2029);
+  padding:12px 16px; min-width:0; display:flex; flex-direction:column; justify-content:center; }
+.eyebrow { color:var(--brand); text-transform:uppercase; letter-spacing:.14em; font-size:11px; font-weight:700; }
+#status { font-family:Georgia,serif; font-size:26px; margin:3px 0; }
+#live-detail { font-size:13px; color:var(--muted); }
+#feedback { color:#6ee7a0; font-size:14px; min-height:19px; margin-top:4px; }
+#pad { min-height:120px; min-width:120px; border:1px solid #65deec; border-radius:16px; color:#14161c;
+  background:radial-gradient(ellipse at 35% 10%,#8ce8f2,#38d1e8 65%,#188c9c);
+  box-shadow:inset 0 2px 1px #d6faffbb,0 5px 0 #12616f,0 8px 25px #38d1e81c;
+  font-size:27px; font-weight:800; touch-action:manipulation; user-select:none; }
+#pad small { display:block; font-size:12px; font-weight:600; margin-top:7px; }
+#pad.pressed { box-shadow:inset 0 3px 12px #12616f99; background:#94f0fa; }
+.panel { border:1px solid #434d5d; border-radius:12px; gap:11px; padding:15px; background:linear-gradient(#242a35,#1d2029);
+  overflow:auto; }
+.hint { font-size:14px; line-height:1.4; margin:0; min-height:59px; color:var(--ink); }
+button,select { min-height:44px; }
+#play { min-height:49px; background:var(--brand); color:#14161c; border:0; border-radius:8px;
+  font-size:18px; font-weight:800; box-shadow:inset 0 1px #a6f4ff; }
+.field { display:grid; gap:4px; }
+.field>label,.label-row { font-size:12px; color:var(--muted); display:flex; justify-content:space-between; align-items:center; }
+select { width:100%; border:1px solid #536073; border-radius:6px; background:#14161c; color:var(--ink); padding:0 9px; font:inherit; font-size:14px; }
+.parts,.mixer { display:grid; grid-template-columns:repeat(4,1fr); gap:5px; }
+.parts button,.mixer button { background:#14161c; border:1px solid #515d70; border-radius:6px; padding:5px 2px; font-size:11px; }
+.parts button[aria-pressed="true"] { border-color:var(--brand); background:#23414a; color:#a4f4ff; }
+.parts img { display:block; width:100%; height:25px; object-fit:contain; margin-bottom:2px; }
+.mixer button[aria-pressed="true"]::before { content:"● "; color:#6ee7a0; }
+.mixer button[aria-pressed="false"]::before { content:"○ "; }
+.mixer button:disabled { opacity:.7; cursor:default; }
+input[type=range] { width:100%; height:44px; accent-color:var(--brand); margin:0; cursor:pointer; }
+.check { display:flex; align-items:center; gap:8px; font-size:13px; min-height:44px; }
+.check input { appearance:none; width:44px; height:44px; margin:0; cursor:pointer;
+  background:linear-gradient(#59687a,#59687a) center/22px 22px no-repeat; }
+.check input:checked { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='4' fill='%2338d1e8'/%3E%3Cpath d='m5 12 4 4 10-10' fill='none' stroke='%2314161c' stroke-width='3'/%3E%3C/svg%3E"); }
+.small-row { display:flex; gap:6px; }
+.small-row button { flex:1; background:#2c3442; border:1px solid #536073; border-radius:6px; font-size:12px; padding:5px; }
+.latency { font-size:11px; color:var(--muted); margin-top:-6px; }
+.summary { border-top:1px solid #465162; padding-top:11px; font-size:12px; line-height:1.5; }
+.summary strong { font-size:18px; font-weight:600; color:var(--ink); }
+.summary p { margin:4px 0; }
+.privacy { font-size:11px; line-height:1.4; color:var(--muted); margin:0; }
+.setup { font-size:12px; color:#c4cddd; border-left:2px solid var(--brand); padding-left:9px; margin:0; }
+dialog { color:var(--ink); background:#242b36; border:1px solid #74cbd8; border-radius:14px; padding:22px; max-width:340px; }
+dialog::backdrop { background:#090e17ba; }
+dialog h2 { margin:0 0 10px; font:25px Georgia,serif; }
+dialog button { border-radius:7px; padding:0 14px; border:1px solid #66b7c3; background:#38d1e8; color:#14161c; font-weight:700; }
+dialog .small-row button { background:var(--brand); color:#14161c; }
+#ghost-meter { width:100%; height:5px; accent-color:var(--brand); }
+@media (max-height:899px) and (min-width:601px) {
+  .stage { grid-template-rows:120px 64px minmax(165px,1fr) 128px; }
+  .station { padding-top:4px; }
+  .panel { gap:8px; padding:12px; }
+}
+@media (max-width:1000px) and (min-width:601px) {
+  main { grid-template-columns:minmax(0,1fr) 245px; padding:8px; gap:8px; }
+  header { padding:6px 10px; gap:6px; }
+  h1 { font-size:23px; }
+  h1 small { display:none; }
+  .seg button { padding:0 10px; font-size:12px; }
+  .icon-btn { padding:0 9px; font-size:11px; }
+  .lower { grid-template-columns:minmax(0,1fr) 130px; gap:7px; }
+  #status { font-size:21px; }
+  .take-desk { padding:8px; }
+}
+@media (max-height:550px) and (min-width:601px) {
+  body { height:100dvh; }
+  header { padding:4px 8px; gap:5px; }
+  h1 { font-size:20px; }
+  .seg button { padding:0 8px; font-size:11px; }
+  .icon-btn { padding:0 6px; font-size:11px; }
+  main { padding:6px; gap:7px; grid-template-columns:minmax(0,1fr) 228px; }
+  .stage { grid-template-rows:58px 56px minmax(105px,1fr) 120px; gap:5px; }
+  .station { padding:1px 4px 19px; }
+  .station .tag { font-size:11px; bottom:1px; padding:1px 5px; }
+  .part-card { padding:4px 7px; }
+  .part-heading { margin-bottom:3px; }
+  .cell { height:24px; }
+  .lower { grid-template-columns:minmax(0,1fr) 120px; gap:5px; }
+  #status { font-size:18px; }
+  #live-detail,#feedback { font-size:11px; }
+  .eyebrow { font-size:11px; letter-spacing:.05em; }
+  .panel { gap:5px; padding:8px; }
+  .hint { min-height:52px; font-size:12px; line-height:1.35; }
+  .parts img { height:17px; }
+  .parts button { padding:3px 1px; }
+  .setup { font-size:11px; }
+}
+@media (max-width:600px) {
+  body { height:auto; }
+  header { padding:8px; gap:6px; }
+  h1 { flex-basis:100%; font-size:25px; }
+  h1 small { display:none; }
+  .seg { flex:1 1 100%; }
+  .seg button { flex:1; padding:0 8px; font-size:13px; }
+  .icon-btn { flex:1; }
+  main { display:flex; flex-direction:column; padding:8px; gap:10px; }
+  .panel { display:contents; }
+  .stage { order:2; grid-template-rows:64px 64px 160px 185px; gap:7px; }
+  .panel-top { order:1; display:grid; grid-template-columns:1fr 90px; gap:7px; align-items:center; }
+  .hint { min-height:0; font-size:12px; margin:0; }
+  #play { height:48px; }
+  .panel .field,.panel .check,.panel .small-row,.panel .latency,.panel .summary,.panel .privacy,.panel .setup { order:3; }
+  .lower { grid-template-columns:1fr; grid-template-rows:58px 120px; gap:7px; }
+  .take-desk { padding:5px 9px; display:flex; flex-direction:column; justify-content:center; }
+  .take-desk .eyebrow { display:none; }
+  #status { font-size:17px; margin:0; }
+  #live-detail,#feedback { font-size:11px; margin:0; }
+  .station { padding:2px 5px 24px; }
+  .panel .field:has(#parts) { order:1; }
+  .parts button { font-size:12px; padding:3px 2px; }
+  .parts img { height:20px; }
+  .summary { padding:12px; background:#1d2029; border-radius:8px; }
+}
+@media (max-height:460px) and (min-width:601px) {
+  .panel .field { order:3; }
+  .panel .field:has(#parts),.panel .field:has(#mixer) { order:1; }
+  .panel>.check,.panel>.small-row,.panel>.latency,.panel>.setup,.panel>.summary,.panel>.privacy { order:4; }
+}
+@media (min-width:601px) { .panel-top { display:contents; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Band Practice <small>Playing in time with a band · Curio Class</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-rehearse" aria-pressed="true">Rehearse</button>
+    <button id="m-break" aria-pressed="false">Solo break</button>
+    <button id="m-ghost" aria-pressed="false">Ghost race</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <section class="stage" id="stage" aria-label="Rehearsal stage">
+    <div class="band" id="band" aria-label="Four instrument stations"></div>
+    <div class="part-card">
+      <div class="part-heading"><strong id="part-title">Your part</strong><span id="meter">4/4 · one bar</span></div>
+      <div id="part-grid" class="grid" aria-label="One bar of your part"></div>
+    </div>
+    <div class="trace-shell" id="trace-shell">
+      <canvas id="trace" role="img" aria-label="Timing trace. Early notes above the center line, late notes below."></canvas>
+    </div>
+    <div class="lower">
+      <div class="take-desk">
+        <span class="eyebrow" id="take-label">LIVE ROOM / TAKE 01</span>
+        <div id="status" role="status">Find your pocket.</div>
+        <div id="live-detail">Listen first. Then play your part.</div>
+        <div id="feedback">● pocket &nbsp; ▲ early &nbsp; ▼ late</div>
+        <meter id="ghost-meter" min="-150" max="150" value="0" hidden aria-label="Timing advantage over ghost"></meter>
+      </div>
+      <button id="pad" aria-label="Tap, Space, J or F">Tap<small>Space, J or F</small></button>
+    </div>
+  </section>
+  <aside class="panel" aria-label="Band controls">
+    <div class="panel-top"><p class="hint" id="hint"></p><button id="play">▶ Play</button></div>
+    <div class="field"><label for="song">Song</label><select id="song">
+      <option value="funk">Hallway Funk</option><option value="bus">Night Bus</option><option value="waltz">Waltz for the Rain</option>
+    </select></div>
+    <div class="field"><div class="label-row">Your part <span>cyan = you</span></div><div class="parts" id="parts"></div></div>
+    <div class="field"><label for="speed"><span>Speed</span><span id="speed-label">96 beats/min</span></label>
+      <input type="range" id="speed" min="70" max="120" value="96" step="1" aria-label="Speed, beats a minute"></div>
+    <div class="field"><div class="label-row">Who you hear <span>your taps stay on</span></div><div class="mixer" id="mixer"></div></div>
+    <label class="check"><input type="checkbox" id="count-in" checked> One-bar count-in</label>
+    <div class="small-row"><button id="calibrate">Calibrate</button><button id="reset-cal">Reset calibration</button></div>
+    <div class="latency" id="latency">Timing: device default</div>
+    <p class="setup">Headphones strongly suggested. Use one key or the pad, and listen to the other parts.</p>
+    <section class="summary" id="summary" aria-label="Take summary"><span class="eyebrow">Your take</span>
+      <p>Play a take to see your timing.</p></section>
+    <div class="small-row"><button id="clear-bests">Clear bests</button></div>
+    <p class="privacy">Bests and calibration stay on this device. No audio is recorded or sent.</p>
+  </aside>
+</main>
+<dialog id="cal-offer"><h2>Set your timing?</h2><p>Calibrate first? It takes about ten seconds.</p>
+  <p>Tap along with eight clicks. This helps account for your device and headphones.</p>
+  <div class="small-row"><button id="offer-cal">Calibrate</button><button id="skip">Skip</button></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  function setText(id,text) { if($(id).textContent!==text) $(id).textContent=text; }
+  const PARTS = ['drums', 'bass', 'keys', 'shaker'];
+  const NAMES = {drums:'Drums', bass:'Bass', keys:'Keys', shaker:'Shaker'};
+  const IMG = {drums:'art:drums', bass:'art:bass', keys:'art:keys', shaker:'art:shaker'};
+  const SONGS = {
+    funk: {name:'Hallway Funk', bpm:96, min:70, max:120, beats:4,
+      chords:['Em7','Em7','A7','A7','Em7','G','A','B7'],
+      parts:{drums:[4,12], bass:[0,6,8,10], keys:[2,6,10,14], shaker:[0,2,4,6,8,10,12,14]}},
+    bus: {name:'Night Bus', bpm:76, min:60, max:96, beats:4,
+      chords:['Am','Am','Dm','Dm','Am','Am','E7','E7'],
+      parts:{drums:[8], bass:[0,6,10,11], keys:[4,12], shaker:[0,2,4,6,8,10,12,14]}},
+    waltz: {name:'Waltz for the Rain', bpm:132, min:96, max:160, beats:3,
+      chords:['C','Am','F','G','C','Am','G7','C'],
+      parts:{drums:[0,4,8], bass:[0], keys:[4,8], shaker:[0,2,4,6,8,10]}}
+  };
+  const CHORDS = {
+    Em7:[40,[64,67,71,74]], A7:[45,[61,64,67,69]], G:[43,[62,67,71]], A:[45,[61,64,69]], B7:[47,[63,66,69,71]],
+    Am:[45,[60,64,69]], Dm:[38,[62,65,69]], E7:[40,[62,64,68,71]], C:[36,[60,64,67]], F:[41,[60,65,69]], G7:[43,[62,65,67,71]]
+  };
+  const L = {
+    welcome:'Pick a part and press Play. Tap your part on the pad or the space bar.',
+    calibrateHow:'Tap the pad or the space bar with each click. Eight clicks, as steady as you can.',
+    calibrateReady:'Press Calibrate to start the eight clicks, or press Play to join the band.',
+    calibrated:'Got it. Your timing is set.',
+    calibrateUneven:'Those taps were uneven. Press Calibrate and try again.',
+    traceHow:'Dots above the line were early. Dots below were late. Try to keep them on the line.',
+    listenHow:"Fewer players now. Listen to who's left and lock in with them.",
+    welcomeBreak:'Press Play. The band plays four bars, drops out for four, then comes back. Keep tapping on your own.',
+    breakRushed:'You rushed while the band was out.', breakDragged:'You dragged while the band was out.',
+    breakSteady:'You held steady on your own.', breakUneven:'Your taps were too uneven to tell. Try again, nice and even.',
+    landedWith:'When the band came back, you were right with them.',
+    landedApart:'When the band came back, you were apart. Listen for beat one.',
+    welcomeGhost:'Play eight bars. Your best take becomes the ghost to beat. Press Play.',
+    ghostNew:"New best. That's your new ghost.", ghostHolds:'The ghost holds. Press Play to try again.',
+    noTaps:'No taps yet. Press Play, then tap the space bar or the pad on your part\'s notes.',
+    manyMissed:'A lot of notes went by. Slide Speed down and press Play.'
+  };
+  const state = {mode:'rehearse', song:'funk', part:'drums', bpm:96, playing:false, calibrating:false,
+    heard:{drums:true,bass:true,keys:true,shaker:true}, expected:[], dots:[], extras:[], dividers:[], take:1,
+    position:0, lastOffset:0, landing:null, summary:null, offered:false, pendingRead:false, archive:[]};
+  const storage = {
+    get(key) { try { return JSON.parse(localStorage.getItem(key)); } catch { return null; } },
+    set(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch {} },
+    remove(key) { try { localStorage.removeItem(key); } catch {} }
+  };
+  const storedBests=storage.get('curio-band-bests');
+  let bests=storedBests && typeof storedBests==='object' && !Array.isArray(storedBests)?storedBests:{};
+  for(const key of Object.keys(bests)) {
+    const b=bests[key];
+    if(!b || !Number.isFinite(b.score) || !Array.isArray(b.dots) ||
+      b.dots.some(e=>!e || !Number.isFinite(e.bar) || (e.status!=='miss' && !Number.isFinite(e.offset)))) delete bests[key];
+  }
+  let savedLatency = storage.get('curio-tap-latency');
+  if(!Number.isFinite(savedLatency) || savedLatency<-.05 || savedLatency>.3) savedLatency=null;
+  let ctx, master, comp, room, noiseBuffer, clock = null, events = [], voices = [], channels = {};
+  let cal = null, lastDraw = 0, padUntil = 0, listenedChanged = false, preparingCal = false;
+  const stationUntil = {};
+  const song = () => SONGS[state.song];
+  const steps = () => song().beats * 4;
+  const barDuration = () => song().beats * 60 / state.bpm;
+  const busy = () => state.playing || state.calibrating;
+  const welcomeKey = () => ({rehearse:'welcome', break:'welcomeBreak', ghost:'welcomeGhost'})[state.mode];
+  const V = Curio.voice({lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
+    welcome:() => [welcomeKey(), {valid:() => !busy()}], speaks:'#play, #calibrate'});
+  function hint(text) { $('hint').textContent = text; }
+  function cue(key, how = false) {
+    const take = state.take;
+    V[how ? 'how' : 'say'](key, {valid:() => !busy() && state.take === take &&
+      (key!=='listenHow' || PARTS.some(p=>p!==state.part&&!state.heard[p])), hint:false});
+  }
+
+  // Local rhythm adapter. The shared kit/rhythm.js is absent; shared files are outside this build's write scope.
+  function audio() {
+    if (!ctx) {
+      ctx = new (window.AudioContext || window.webkitAudioContext)({latencyHint:'interactive'});
+      master = ctx.createGain(); master.gain.value = Curio.sound ? .78 : 0;
+      comp = ctx.createDynamicsCompressor(); comp.threshold.value = -14; comp.ratio.value = 4;
+      master.connect(comp).connect(ctx.destination);
+      room = ctx.createDelay(); room.delayTime.value = .11;
+      const fb = ctx.createGain(), wet = ctx.createGain(), lp = ctx.createBiquadFilter();
+      fb.gain.value = .16; wet.gain.value = .12; lp.type = 'lowpass'; lp.frequency.value = 2400;
+      room.connect(lp).connect(fb).connect(room); lp.connect(wet).connect(master);
+      for (const part of [...PARTS,'tap','click']) {
+        channels[part] = ctx.createGain(); channels[part].connect(master);
+      }
+      noiseBuffer = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
+      const data = noiseBuffer.getChannelData(0);
+      for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
+    }
+    if (ctx.state === 'suspended') ctx.resume();
+    return ctx;
+  }
+  function latency() { return savedLatency ?? ctx?.outputLatency ?? ctx?.baseLatency ?? 0; }
+  function tapTime(event, corrected = true) {
+    audio();
+    let time = ctx.currentTime;
+    const stamp = event.timeStamp > 1e12 ? event.timeStamp - performance.timeOrigin : event.timeStamp;
+    if (ctx.getOutputTimestamp) {
+      const out = ctx.getOutputTimestamp();
+      if (out.performanceTime > 0 && Math.abs(stamp - performance.now()) < 10000) {
+        time = out.contextTime + (stamp - out.performanceTime) / 1000;
+      }
+    }
+    return time - (corrected ? latency() : 0);
+  }
+  function route(node, gain, time, duration, channel) {
+    node.connect(gain).connect(channels[channel]);
+    voices.push({node, time, channel});
+    node.start(time); node.stop(time + duration + .03);
+  }
+  function tone(f, t, dur, {gain=.15,type='triangle',channel='tap',partials=null} = {}) {
+    for (const [ratio,level] of partials || [[1,1]]) {
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = type; o.frequency.setValueAtTime(f * ratio,t);
+      g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(gain * level,t+.005);
+      g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+      route(o,g,t,dur,channel);
+    }
+  }
+  function pluck(f,t,dur,o={}) { tone(f,t,dur,{partials:[[1,1],[2,.3],[3,.08]],...o}); }
+  // Buffer sources use the same envelope routing but are the actual startable nodes.
+  function hiss(t,dur,gain,freq,type='bandpass',channel='tap') {
+    const s = ctx.createBufferSource(), f = ctx.createBiquadFilter(), g = ctx.createGain();
+    s.buffer = noiseBuffer; f.type = type; f.frequency.value = freq; f.Q.value = .7;
+    g.gain.setValueAtTime(gain,t); g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+    s.connect(f).connect(g).connect(channels[channel]);
+    voices.push({node:s,time:t,channel}); s.start(t); s.stop(t+dur+.02);
+  }
+  const hz = midi => 440 * 2 ** ((midi - 69) / 12);
+  const SND = {
+    kick(t,channel='drums',v=.55) {
+      const o=ctx.createOscillator(),g=ctx.createGain();
+      o.frequency.setValueAtTime(130,t); o.frequency.exponentialRampToValueAtTime(42,t+.18);
+      g.gain.setValueAtTime(v,t); g.gain.exponentialRampToValueAtTime(.001,t+.28);
+      route(o,g,t,.3,channel);
+    },
+    snare(t,channel='tap') { hiss(t,.14,.23,1800,'bandpass',channel); tone(190,t,.08,{gain:.07,channel}); },
+    block(t,channel='click',f=1100) { tone(f,t,.055,{type:'sine',gain:.24,channel}); },
+    brush(t,channel='tap') { hiss(t,.13,.13,3200,'highpass',channel); },
+    shaker(t,channel='shaker',v=.12) { hiss(t,.065,v,6500,'highpass',channel); }
+  };
+  function note(part,t,bar,step,channel=part) {
+    const chord=CHORDS[song().chords[((Math.floor(bar)%8)+8)%8]];
+    if (part === 'drums') {
+      if (state.song === 'bus') SND.block(t,channel,850);
+      else if (state.song === 'waltz') SND.brush(t,channel);
+      else SND.snare(t,channel);
+    }
+    if (part === 'bass') {
+      const index = song().parts.bass.indexOf(step);
+      const interval = state.song === 'waltz' ? 0 : [0,0,7,12][Math.max(0,index)];
+      pluck(hz(chord[0]+interval),t,.28,{gain:.22,channel});
+    }
+    if (part === 'keys') chord[1].forEach(m => pluck(hz(m),t,state.song==='waltz'?.22:.13,{gain:.055,channel}));
+    if (part === 'shaker') SND.shaker(t,channel,state.song==='funk'&&[4,12].includes(step)?.17:.1);
+    at(t,() => { stationUntil[part]=t+.11; });
+  }
+  const at = (t,fn) => events.push({t,fn});
+  function cancel(channel=null, futureOnly=false) {
+    const now=ctx?.currentTime || 0;
+    voices=voices.filter(v => {
+      if ((!channel || v.channel===channel) && (!futureOnly || v.time>=now)) {
+        try { v.node.stop(now); } catch {}
+        return false;
+      }
+      return v.time>now-2;
+    });
+  }
+  function positionAt(t) { return state.anchorBar + (t-state.anchorTime)/barDuration(); }
+  function timeAt(bar) { return state.anchorTime + (bar-state.anchorBar)*barDuration(); }
+  function startClock() {
+    stopClock(false);
+    clock={next:Math.ceil(positionAt(ctx.currentTime)*steps()-1e-7)};
+    const tick=() => {
+      if (!state.playing || !clock) return;
+      voices=voices.filter(v=>v.time>ctx.currentTime-2);
+      while (timeAt(clock.next/steps())<ctx.currentTime+.15) {
+        const n=clock.next++, bar=n/steps(), t=timeAt(bar);
+        if (t<ctx.currentTime-.02) continue;
+        if (bar<0) {
+          if (n%4===0) { SND.block(t,'click',n===-steps()?1400:1000); at(t,() => showCount(n)); }
+        } else if (state.mode==='rehearse' || bar<state.length) schedule(n,t);
+      }
+      clock.timer=setTimeout(tick,25);
+    };
+    tick();
+  }
+  function stopClock(clear=true) {
+    if(clock) clearTimeout(clock.timer);
+    clock=null;
+    if(clear) events=[];
+  }
+  function schedule(n,t) {
+    const bar=Math.floor(n/steps()), step=n%steps();
+    if (state.mode==='break' && bar>=4 && bar<8) return;
+    for (const p of PARTS) {
+      if (p===state.part || !state.heard[p]) continue;
+      if (p==='drums') {
+        if(state.song==='funk') {
+          if([0,6,10].includes(step)) SND.kick(t);
+          if(step%2===0) hiss(t,.045,.07,7500,'highpass','drums');
+        } else if(state.song==='bus') {
+          if(step===8) SND.kick(t);
+          if(step%2===0) hiss(t,.045,.065,7500,'highpass','drums');
+        } else if(step===0) SND.kick(t,'drums',.23);
+      }
+      if(song().parts[p].includes(step)) note(p,t,bar,step);
+    }
+  }
+  function showCount(n) {
+    $('status').textContent='Count in '+(song().beats+n/4+1);
+    $('live-detail').textContent='Then play '+NAMES[state.part]+'.';
+  }
+  function buildExpected(fromBar=0) {
+    const pattern=song().parts[state.part], count=steps();
+    const last=state.mode==='rehearse' ? Math.ceil(Math.max(0,fromBar))+24 : state.length;
+    for (let b=Math.max(0,Math.floor(fromBar)); b<last; b++) {
+      for (let i=0;i<pattern.length;i++) {
+        const fraction=b+pattern[i]/count;
+        if(fraction<fromBar-1e-7) continue;
+        const prev=i ? pattern[i-1] : pattern.at(-1)-count;
+        const next=i<pattern.length-1 ? pattern[i+1] : count+pattern[0];
+        const win=Math.min(.15,Math.min(pattern[i]-prev,next-pattern[i])*60/state.bpm/4/2);
+        state.expected.push({time:timeAt(fraction),bar:fraction,step:pattern[i],win,status:'pending'});
+      }
+    }
+    state.builtUntil=last;
+  }
+  function judge(t,expected,maxWin=.15) {
+    let best=null, distance=Infinity;
+    for (const e of expected) {
+      if(e.status!=='pending') continue;
+      const moving=state.mode==='break' && e.bar>=4 && e.bar<8;
+      const center=e.time-(moving ? state.lastOffset/1000 : 0);
+      const d=Math.abs(t-center);
+      if(d<=Math.min(maxWin,e.win)+1e-8 && d<distance) { best=e; distance=d; }
+    }
+    return best ? {expected:best,offset:(best.time-t)*1000} : {extra:true};
+  }
+  function receiveTap(t,raw=t) {
+    $('pad').classList.add('pressed'); padUntil=performance.now()+90;
+    if(state.calibrating) { calibrationTap(raw); return; }
+    const pos=state.playing ? positionAt(t) : state.position;
+    const upcoming=state.expected.find(e => e.status==='pending' && e.time>=t-.15);
+    if(!state.playing || t<timeAt(0)-.15) {
+      note(state.part,ctx.currentTime,Math.max(0,pos),song().parts[state.part][0],'tap');
+      return;
+    }
+    let match;
+    if(state.mode==='break' && state.landing===null && pos>=8 && pos<9) {
+      const candidates=state.expected.filter(e=>e.bar>=8 && e.bar<9 && e.status==='pending');
+      const e=candidates.sort((a,b)=>Math.abs(t-a.time)-Math.abs(t-b.time))[0];
+      if(e) { match={expected:e,offset:(e.time-t)*1000}; state.landing=match.offset; }
+    }
+    match ||= judge(t,state.expected);
+    const played=match.expected || upcoming;
+    note(state.part,ctx.currentTime,played?.bar ?? Math.max(0,pos),played?.step ?? song().parts[state.part][0],'tap');
+    if(match.extra) {
+      state.extras.push({bar:pos,time:t}); $('feedback').textContent='Extra tap · listen for your next note.';
+      $('feedback').style.color='#b3bdcc';
+    } else {
+      const e=match.expected; e.status='hit'; e.offset=match.offset; e.tap=t;
+      state.lastOffset=match.offset;
+      state.dots.push(e);
+      const label=category(e.offset);
+      $('feedback').textContent=(Math.abs(e.offset)<=25?'● In the pocket':(e.offset>0?'▲ ':'▼ ')+label)
+        +' · '+Math.round(Math.abs(e.offset))+' ms';
+      $('feedback').style.color=color(e.offset);
+    }
+    updateGhost();
+    draw();
+  }
+  function tap(event) { receiveTap(tapTime(event),tapTime(event,false)); }
+  function expire(t) {
+    for(const e of state.expected) {
+      const moving=state.mode==='break' && e.bar>=4 && e.bar<8;
+      const deadline=e.time-(moving?state.lastOffset/1000:0)+e.win+.008;
+      const landingPending=state.mode==='break' && e.bar>=8 && e.bar<9 && state.landing===null && positionAt(t)<9;
+      if(e.status==='pending' && t>deadline && !landingPending) {
+        e.status='miss'; state.dots.push(e);
+      }
+    }
+  }
+  function category(o) {
+    if(Math.abs(o)<=25) return 'in the pocket';
+    return (Math.abs(o)<=60?'a little ':'')+(o>0?'early':'late');
+  }
+  const color=o => Math.abs(o)<=25?'#6ee7a0':o>0?'#ff8a5c':'#a98bff';
+  const mean=a => a.length?a.reduce((x,y)=>x+y,0)/a.length:0;
+  const count=(n,word,plural=word+'s')=>n+' '+(n===1?word:plural);
+  function fitLine(xs,ys) {
+    const n=xs.length, xm=mean(xs), ym=mean(ys);
+    const xx=xs.reduce((s,x)=>s+(x-xm)**2,0);
+    if(n<2 || !xx) return {slope:0,se:Infinity,intercept:ym};
+    const slope=xs.reduce((s,x,i)=>s+(x-xm)*(ys[i]-ym),0)/xx;
+    const intercept=ym-slope*xm;
+    const residual=xs.reduce((s,x,i)=>s+(ys[i]-intercept-slope*x)**2,0);
+    return {slope,intercept,se:n>2?Math.sqrt(residual/(n-2)/xx):Infinity};
+  }
+  function critical(n) {
+    const table=[0,0,0,12.706,4.303,3.182,2.776,2.571,2.447,2.365,2.306,2.262,2.228,2.201,2.179,2.160,
+      2.145,2.131,2.120,2.110,2.101,2.093,2.086,2.080,2.074,2.069,2.064,2.060,2.056,2.052,2.048,2.045,2.042];
+    if(n<table.length) return table[n];
+    const df=n-2, z=1.95996398454;
+    return z+(z**3+z)/(4*df)+(5*z**5+16*z**3+3*z)/(96*df**2)
+      +(3*z**7+19*z**5+17*z**3-15*z)/(384*df**3);
+  }
+  function trend(dots) {
+    const hits=dots.filter(e=>e.status==='hit');
+    const fit=fitLine(hits.map(e=>e.bar),hits.map(e=>e.offset));
+    let label='too uneven to tell';
+    if(hits.length>=4) {
+      if(Math.abs(fit.slope)*4<60) label='held steady';
+      else if(Math.abs(fit.slope)>critical(hits.length)*fit.se) label=fit.slope>0?'rushed':'dragged';
+    }
+    return {...fit,label,n:hits.length};
+  }
+  function stats(dots=state.dots,extras=state.extras) {
+    const hits=dots.filter(e=>e.status==='hit'), misses=dots.filter(e=>e.status==='miss').length;
+    const offsets=hits.map(e=>e.offset), groups={};
+    offsets.forEach(o => {const c=category(o); groups[c]=(groups[c]||0)+1;});
+    return {hits:hits.length,misses,extras:extras.length,average:mean(offsets),error:mean(offsets.map(Math.abs)),
+      score:(offsets.reduce((s,o)=>s+Math.abs(o),0)+misses*150)/(hits.length+misses||1),
+      common:Object.entries(groups).sort((a,b)=>b[1]-a[1])[0]?.[0] || '', offsets};
+  }
+  const bestKey=() => state.song+':'+state.part;
+  function updateGhost() {
+    if(state.mode!=='ghost') return;
+    const ghost=state.ghost;
+    $('ghost-meter').hidden=!ghost;
+    if(!ghost) return;
+    // Compare exactly the same resolved chart notes, including newly expired misses.
+    const resolved=new Set(state.dots.map(e=>e.bar));
+    if(!resolved.size) {
+      $('ghost-meter').value=0;
+      setText('live-detail','Your ghost is ready. Play your filled cells.');
+      return;
+    }
+    const current=stats();
+    const old=stats(ghost.dots.filter(e=>resolved.has(e.bar)),[]);
+    const lead=old.score-current.score;
+    $('ghost-meter').value=lead;
+    setText('live-detail',(Math.abs(lead)<.5?'Level with your ghost':
+      (lead>0?'You ahead by ':'Ghost ahead by ')+Math.round(Math.abs(lead))+' ms race error'));
+  }
+  function syncControls() {
+    $('song').value=state.song;
+    $('speed').min=song().min; $('speed').max=song().max; $('speed').value=state.bpm;
+    $('speed').disabled=state.mode==='ghost';
+    $('speed-label').textContent=state.bpm+' beats/min'+(state.mode==='ghost'?' · locked':'');
+    for(const p of PARTS) {
+      $('part-'+p).setAttribute('aria-pressed',p===state.part);
+      $('hear-'+p).setAttribute('aria-pressed',state.heard[p]);
+      $('hear-'+p).disabled=p===state.part;
+      $('station-'+p).classList.toggle('you',p===state.part);
+      $('station-'+p).querySelector('.tag').textContent=NAMES[p]+(p===state.part?' · You':'');
+    }
+    $('part-title').textContent=NAMES[state.part]+' · your hits';
+    $('meter').textContent=song().beats+'/4 · one bar';
+    $('part-grid').style.gridTemplateColumns='repeat('+steps()+',1fr)';
+    const counts=['e','&','a'];
+    $('part-grid').innerHTML=Array.from({length:steps()},(_,i)=>'<div class="cell '+
+      (song().parts[state.part].includes(i)?'note':'')+'">'+(i%4===0?i/4+1:counts[i%4-1])+'</div>').join('');
+    $('latency').textContent='Timing: '+(savedLatency===null?'device default':Math.round(savedLatency*1000)+' ms calibrated');
+    $('take-label').textContent=(state.mode==='ghost'?'GHOST RACE':state.mode==='break'?'SOLO BREAK':'LIVE ROOM')
+      +' / TAKE '+String(state.take).padStart(2,'0');
+    showStations();
+  }
+  function showStations() {
+    const out=state.playing && state.mode==='break' && state.position>=4 && state.position<8;
+    for(const p of PARTS) {
+      const el=$('station-'+p);
+      el.classList.toggle('muted',p!==state.part && (!state.heard[p] || out));
+      el.classList.toggle('hit',(!out || p===state.part) && (stationUntil[p]||0)>(ctx?.currentTime||0));
+    }
+  }
+  function start(force=false) {
+    preparingCal=false;
+    if(state.calibrating) { finishCalibration(true); return; }
+    if(state.playing) { stop(); return; }
+    audio();
+    if(!force && savedLatency===null && !state.offered) {
+      state.offered=true; V.hush(); $('cal-offer').showModal(); return;
+    }
+    V.hush(); cancel(); events=[];
+    if(state.summary) state.take++;
+    state.playing=true; state.summary=null; state.expected=[]; state.dots=[]; state.extras=[]; state.dividers=[]; state.archive=[];
+    state.lastOffset=0; state.landing=null; state.position=0; state.length=state.mode==='break'?12:8;
+    state.raceEligible=true;
+    state.anchorBar=0; state.anchorTime=ctx.currentTime+.18+($('count-in').checked?barDuration():0);
+    state.ghost=bests[bestKey()] || null;
+    state.takeStart=ctx.currentTime; state.takeBpm=state.bpm; state.heardAtTake={...state.heard};
+    syncControls();
+    buildExpected(); startClock();
+    $('play').textContent='■ Stop';
+    $('status').textContent=$('count-in').checked?'Count in':'Play your part.';
+    $('live-detail').textContent=song().name+' · '+state.bpm+' beats/min';
+    $('feedback').textContent='● pocket · ▲ early · ▼ late';
+    $('feedback').style.color='#6ee7a0';
+    updateGhost();
+    $('summary').innerHTML='<span class="eyebrow">Take in progress</span><p>Your taps make the music. Miss a note and hear the space.</p>';
+    hint('Tap Space, J, F or the pad on your filled cells. Press Stop whenever you need.');
+    $('pad').focus({preventScroll:true});
+  }
+  function stop(quiet=false) {
+    if(!state.playing) return;
+    const now=ctx.currentTime;
+    state.position=Math.max(0,positionAt(now));
+    expire(now);
+    state.expected.forEach(e=> {
+      if(e.status==='pending' && e.time<=now) {e.status='miss'; state.dots.push(e);}
+    });
+    state.playing=false; stopClock(); cancel();
+    state.dots.sort((a,b)=>a.bar-b.bar);
+    state.summary=stats();
+    renderSummary(quiet);
+    $('play').textContent='▶ Play';
+    $('status').textContent=state.summary.hits?Math.round(state.summary.error)+' ms timing error':
+      state.summary.extras?'No matched notes.':'No taps yet.';
+    $('live-detail').textContent=count(state.summary.hits,'hit')+' · '+state.summary.misses+' missed · '+count(state.summary.extras,'extra');
+    const drift=trend(state.dots.filter(e=>e.bar>=4&&e.bar<8));
+    $('feedback').textContent=!state.summary.hits?'Press Play, then tap your filled cells.':
+      state.mode==='break'?drift.label+' · '+drift.slope.toFixed(1)+' ms/bar':
+      'Average '+(state.summary.average>=0?'+':'')+Math.round(state.summary.average)+' ms · '+
+      (Math.abs(state.summary.average)<.5?'with the band':state.summary.average>=0?'early':'late');
+    $('feedback').style.color='#c4cddd';
+    if(state.summary.hits && state.mode==='break') {
+      const s=state.summary;
+      $('status').textContent=drift.label[0].toUpperCase()+drift.label.slice(1)+' · '+
+        (drift.n>=4?(drift.slope>=0?'+':'')+drift.slope.toFixed(1)+' ms/bar':'more break taps needed');
+      $('live-detail').textContent=s.tempo?'Your tempo '+s.tempo+' · band '+state.bpm+' beats/min':
+        'Not enough even break taps to estimate tempo.';
+      $('feedback').textContent=state.landing===null?'No landing tap in bar 9.':
+        'Landing '+Math.round(Math.abs(state.landing))+' ms '+(state.landing>=0?'early':'late')+' · '+
+        (Math.abs(state.landing)<=60?'right with them':'apart');
+    } else if(state.summary.hits && state.mode==='ghost') {
+      const s=state.summary;
+      $('status').textContent='Race error '+Math.round(s.score)+' ms';
+      $('live-detail').textContent=(s.oldScore===null?'First ghost': 'Ghost '+Math.round(s.oldScore)+' ms')+' · '+
+        (s.newBest?'New best saved':s.complete?'Ghost holds':'Finish eight unchanged bars to save');
+      $('feedback').textContent=count(s.hits,'hit')+' · '+s.misses+' missed · '+count(s.extras,'extra');
+    }
+    showStations(); draw();
+    if(state.pendingRead) {state.pendingRead=false; if(!quiet) V.read();}
+  }
+  function renderSummary(quiet=false) {
+    const s=state.summary, direction=s.average>=0?'early':'late';
+    let html='<span class="eyebrow">Take summary</span>';
+    if(!s.hits) {
+      if(!s.extras) {
+        html+='<p>No taps yet. Press Space or the pad on your part\'s notes.</p>';
+        hint(L.noTaps); if(!quiet) cue('noTaps');
+      } else {
+        html+='<p>No matched notes yet. '+count(s.extras,'extra')+' · '+s.misses+' missed.</p>';
+        hint('Your taps fell between your notes. Press Play, then tap on the filled cells.');
+      }
+    } else {
+      html+='<p><strong>'+Math.round(s.error)+' ms</strong> timing error</p>'+
+        '<p>'+count(s.hits,'hit')+' · '+s.misses+' missed · '+count(s.extras,'extra')+'</p>'+
+        '<p>On average '+(Math.abs(s.average)<.5?'with the band (0 ms)':
+          (s.average>=0?'+':'')+Math.round(s.average)+' ms ('+Math.round(Math.abs(s.average))+' ms '+direction+')')+'.</p>'+
+        (s.hits?'<p>Most of your notes were '+s.common+'.</p>':'');
+      hint('Read the trace, then press Play to try again.'+
+        (s.misses/(s.hits+s.misses)>.25 && state.mode!=='ghost'?' Try a slower Speed.':''));
+      if(!quiet) cue('traceHow',true);
+      if(state.mode==='break') {
+        const hits=state.dots.filter(e=>e.status==='hit'&&e.bar>=4&&e.bar<8), drift=trend(hits);
+        const fit=fitLine(hits.map(e=>e.time),hits.map(e=>e.tap));
+        const tempo=hits.length>=4 && fit.slope>0?Math.round(state.bpm/fit.slope):null;
+        s.tempo=tempo;
+        html+='<p><b>Break: '+drift.label+'</b> · '+(drift.slope>=0?'+':'')+drift.slope.toFixed(1)+' ms/bar.</p>';
+        html+=tempo?'<p>You played at about '+tempo+' beats a minute. The band was at '+state.bpm+'.</p>':
+          '<p>More break taps needed to estimate your tempo.</p>';
+        if(state.landing!==null) html+='<p>Landing: '+Math.round(Math.abs(state.landing))+' ms '+
+          (state.landing>=0?'early':'late')+' · '+(Math.abs(state.landing)<=60?'right with them':'apart')+'.</p>';
+        else html+='<p>No landing tap in bar 9 yet.</p>';
+        if(!quiet) {
+          cue({rushed:'breakRushed',dragged:'breakDragged','held steady':'breakSteady','too uneven to tell':'breakUneven'}[drift.label]);
+          if(state.landing!==null) cue(Math.abs(state.landing)<=60?'landedWith':'landedApart');
+        }
+      }
+      if(state.mode==='ghost') {
+        const old=bests[bestKey()];
+        const complete=state.position>=state.length-.015 && state.raceEligible;
+        s.oldScore=old?.score ?? null; s.complete=complete; s.newBest=false;
+        html+='<p>Race error '+Math.round(s.score)+' ms'+(old?' (ghost '+Math.round(old.score)+' ms)':' (no ghost yet)')+'.</p>';
+        if(complete && s.hits && (!old || s.score<old.score)) {
+          s.newBest=true;
+          bests[bestKey()]={score:s.score,dots:state.dots.map(e=>({bar:e.bar,offset:e.offset,status:e.status})),song:state.song,part:state.part};
+          storage.set('curio-band-bests',bests); html+='<p><b>New best. Your ghost is saved.</b></p>';
+          if(!quiet) cue('ghostNew');
+        } else if(!complete) html+='<p>Finish eight bars with the same setup to save a ghost.</p>';
+        else if(!quiet) cue('ghostHolds');
+      }
+      if(s.misses/(s.hits+s.misses)>.25 && state.mode!=='ghost' && !quiet) cue('manyMissed');
+    }
+    const heard=PARTS.filter(p=>p!==state.part && state.heardAtTake[p]).map(p=>NAMES[p]);
+    html+='<p>With '+(heard.length?heard.join(' and ')+' only':'your own part only')+'.</p>';
+    $('summary').innerHTML=html;
+    if(listenedChanged && !quiet) {cue('listenHow',true); listenedChanged=false;}
+  }
+  function reconfigure() {
+    if(state.playing) {
+      const now=ctx.currentTime, pos=positionAt(now);
+      if(state.mode==='ghost' && pos>0) state.raceEligible=false;
+      expire(now); state.dividers.push({bar:Math.max(0,pos),label:'new take'});
+      state.anchorBar=pos; state.anchorTime=now;
+      state.expected=state.expected.filter(e=>e.time<now && e.status!=='pending');
+      state.archive.push(...state.dots);
+      state.dots=[]; state.extras=[]; state.lastOffset=0; state.landing=null; state.take++;
+      state.heardAtTake={...state.heard};
+      cancel(null,true); events=[]; buildExpected(Math.max(0,pos)); startClock();
+      hint('New take starts at the divider. Keep tapping your part; press Stop to review it.');
+    }
+    syncControls(); draw();
+  }
+  function preserveChange(change) {
+    const pos=state.playing?positionAt(ctx.currentTime):0;
+    change();
+    if(state.playing) {state.anchorBar=pos; state.anchorTime=ctx.currentTime;}
+    else clearTake();
+    state.ghost=state.mode==='ghost'?(bests[bestKey()] || null):null;
+    $('ghost-meter').hidden=!state.ghost;
+    reconfigure();
+  }
+  function clearTake() {
+    state.summary=null; state.dots=[]; state.archive=[]; state.expected=[]; state.dividers=[]; state.extras=[];
+    state.position=0; state.lastOffset=0; state.landing=null; state.pendingRead=false;
+    $('status').textContent=state.mode==='break'?'Hold it on your own.':state.mode==='ghost'?'Race your own timing.':'Find your pocket.';
+    $('live-detail').textContent=state.mode==='break'?'4 bars in · 4 out · 4 back':
+      state.mode==='ghost'?'Eight bars. Lower race error wins.':'Listen first. Then play your part.';
+    $('feedback').textContent='● pocket · ▲ early · ▼ late';
+    $('feedback').style.color='#6ee7a0';
+    $('summary').innerHTML='<span class="eyebrow">Your take</span><p>Press Play to begin.</p>';
+    hint(L[welcomeKey()]);
+  }
+  function setMode(mode) {
+    if(!['rehearse','break','ghost'].includes(mode)) return;
+    if(state.mode===mode && !busy() && !preparingCal) {hint(L[welcomeKey()]);V.welcome();return;}
+    state.calToken=(state.calToken||0)+1;
+    preparingCal=false;
+    if(state.playing) stop(true);
+    if(state.calibrating) finishCalibration(true);
+    V.hush(); state.mode=mode; state.dots=[]; state.archive=[]; state.expected=[]; state.dividers=[]; state.extras=[]; state.position=0;
+    state.summary=null; state.pendingRead=false;
+    if(mode==='ghost') state.bpm=song().bpm;
+    for(const k of ['rehearse','break','ghost']) $('m-'+k).setAttribute('aria-pressed',k===mode);
+    $('status').textContent=mode==='break'?'Hold it on your own.':mode==='ghost'?'Race your own timing.':'Find your pocket.';
+    $('live-detail').textContent=mode==='break'?'4 bars in · 4 out · 4 back':
+      mode==='ghost'?'Eight bars. Lower error wins.':'Listen first. Then play your part.';
+    $('summary').innerHTML='<span class="eyebrow">Your take</span><p>Press Play to begin.</p>';
+    $('ghost-meter').hidden=true;
+    $('feedback').textContent='● pocket · ▲ early · ▼ late';
+    $('feedback').style.color='#6ee7a0';
+    hint(L[welcomeKey()]); V.welcome(); syncControls(); draw();
+  }
+  async function calibrate() {
+    if(state.playing) stop(true);
+    if(state.calibrating) finishCalibration(true);
+    audio(); V.hush(); hint(L.calibrateHow);
+    preparingCal=true;
+    const token=++state.calToken || (state.calToken=1);
+    await V.how('calibrateHow',{wait:true,valid:()=>state.calToken===token&&!state.playing,hint:false});
+    if(state.calToken!==token || state.playing) return;
+    preparingCal=false;
+    V.hush(); state.calibrating=true; cancel(); events=[];
+    cal={start:ctx.currentTime+.65,taps:[],times:[],end:ctx.currentTime+.65+4.2+.45};
+    for(let i=0;i<8;i++) {
+      const t=cal.start+i*.6; cal.times.push(t); SND.block(t,'click',i===0?1400:1100);
+      at(t,()=>{$('status').textContent='Click '+(i+1)+' of 8';});
+    }
+    $('play').textContent='■ Stop'; $('status').textContent='Ready for eight clicks.';
+    $('live-detail').textContent='Tap with every click.'; $('pad').focus({preventScroll:true});
+  }
+  function calibrationTap(t) {
+    if(!cal) return;
+    const index=cal.taps.length;
+    if(index<8 && t>=cal.start-.3) {
+      cal.taps.push((t-cal.times[index])*1000);
+      $('feedback').textContent='Tap '+(index+1)+' received';
+    }
+  }
+  function acceptCalibration(values) {
+    if(values.length!==6 || Array.from(values).some(v=>!Number.isFinite(v))) return false;
+    const sorted=values.slice().sort((a,b)=>a-b), median=(sorted[2]+sorted[3])/2;
+    if(values.some(v=>Math.abs(v-median)>60)) return false;
+    savedLatency=Math.max(-50,Math.min(300,median))/1000;
+    storage.set('curio-tap-latency',savedLatency); return true;
+  }
+  function finishCalibration(abort=false) {
+    if(!state.calibrating) {state.calToken=(state.calToken||0)+1; return;}
+    const values=cal.taps.slice(2,8);
+    const ok=!abort && acceptCalibration(values);
+    state.calibrating=false; cal=null; cancel(); events=[];
+    $('play').textContent='▶ Play'; $('status').textContent=abort?'Calibration stopped.':ok?'Timing is set.':'Try eight even taps.';
+    hint(abort?L[welcomeKey()]:ok?'Timing is set. Press Play to join the band.':L.calibrateUneven);
+    syncControls();
+    if(state.pendingRead) {state.pendingRead=false;V.read();}
+    else if(!abort) cue(ok?'calibrated':'calibrateUneven');
+  }
+
+  // Canvas is laid out in real CSS pixels, so labels stay readable in the preview.
+  function draw() {
+    const canvas=$('trace'), box=canvas.getBoundingClientRect(), w=box.width,h=box.height;
+    if(w<10 || h<10) return;
+    const dpr=window.devicePixelRatio||1;
+    if(canvas.width!==Math.round(w*dpr) || canvas.height!==Math.round(h*dpr)) {
+      canvas.width=Math.round(w*dpr); canvas.height=Math.round(h*dpr);
+    }
+    const c=canvas.getContext('2d'); c.setTransform(dpr,0,0,dpr,0,0); c.clearRect(0,0,w,h);
+    const compact=h<170, left=w<440?44:58, right=14, top=compact?24:35, bottom=compact?40:64;
+    const mid=top+(h-top-bottom)/2, amp=(h-top-bottom)/2, plotW=w-left-right;
+    const end=Math.max(8,state.position+.35), start=Math.max(0,end-8), span=8;
+    const x=bar=>left+(bar-start)/span*plotW;
+    const y=offset=>mid-Math.max(-150,Math.min(150,offset))/150*amp;
+    c.font='11px Segoe UI, sans-serif';
+    if(state.mode==='break') {
+      const a=Math.max(left,x(4)), b=Math.min(w-right,x(8));
+      if(b>a) {c.fillStyle='#a98bff10'; c.fillRect(a,top,b-a,h-top-bottom);
+        c.fillStyle='#c7b7ef'; c.fillText('BAND OUT',a+5,top+13);}
+    }
+    c.fillStyle='#6ee7a00c'; c.fillRect(left,y(25),plotW,y(-25)-y(25));
+    for(const v of [150,75,0,-75,-150]) {
+      c.strokeStyle=v===0?'#8b9caf':'#303846'; c.lineWidth=v===0?1.3:1;
+      c.beginPath(); c.moveTo(left,y(v)); c.lineTo(w-right,y(v)); c.stroke();
+    }
+    c.fillStyle='#eef1f6'; c.fillText('TIMING TRACE',12,16);
+    c.fillStyle='#ffb094'; c.fillText('+150',5,top+6);
+    c.fillStyle='#bdabf1'; c.fillText('−150',5,h-bottom+2);
+    c.fillStyle='#b8c3d3';
+    c.fillText(compact?'early ↑ / late ↓':'early ↑     with the band     late ↓',w<420?113:w/2-100,16);
+    if(!compact) {c.fillStyle='#9aa3b5'; c.fillText('ms',9,mid+4);}
+    for(let bar=Math.ceil(start);bar<=start+span;bar++) {
+      if(x(bar)>w-right) continue;
+      c.strokeStyle='#303846'; c.beginPath(); c.moveTo(x(bar),top); c.lineTo(x(bar),h-bottom); c.stroke();
+      c.fillStyle='#aeb9ca'; c.fillText(String(bar+1),x(bar)+3,h-bottom+14);
+      const hits=state.dots.filter(e=>Math.floor(e.bar)===bar&&e.status==='hit');
+      if(hits.length) {
+        const avg=mean(hits.map(e=>e.offset)); c.fillStyle=color(avg);
+        const height=Math.min(compact?9:15,Math.abs(avg)/150*(compact?9:15));
+        c.fillRect(x(bar)+4,h-bottom+19+(avg>=0?8-height:8),Math.max(3,plotW/8-9),Math.max(1,height));
+      }
+    }
+    for(const divider of state.dividers) {
+      if(divider.bar<start) continue;
+      c.setLineDash([3,4]); c.strokeStyle='#38d1e8'; c.beginPath();
+      c.moveTo(x(divider.bar),top); c.lineTo(x(divider.bar),h-bottom); c.stroke(); c.setLineDash([]);
+    }
+    const occupied={up:[],down:[]};
+    const offscale=[...state.archive,...state.dots].filter(e=>e.status==='hit' &&
+      e.bar>=start && e.bar<=start+span && Math.abs(e.offset)>150);
+    const compactLabels=w<700;
+    const detail=offscale.map(e=>'Bar '+(e.bar+1).toFixed(2)+': '+Math.round(Math.abs(e.offset))+' ms '+
+      (e.offset>0?'early':'late')).join('\n');
+    canvas.title=detail;
+    canvas.setAttribute('aria-label','Timing trace. Early notes above the center line, late notes below.'+
+      (detail?' Off-scale taps: '+detail:''));
+    function mark(e,ghost=false) {
+      if(e.bar<start || e.bar>start+span) return;
+      const px=x(e.bar), py=e.status==='miss'?mid:y(e.offset);
+      c.globalAlpha=ghost?.23:1; c.strokeStyle=ghost?'#eef1f6':e.status==='miss'?'#aeb8c9':color(e.offset);
+      c.fillStyle=c.strokeStyle; c.lineWidth=1.5;
+      c.beginPath();
+      if(e.status==='miss') {c.moveTo(px-4,py-4); c.lineTo(px+4,py+4); c.moveTo(px+4,py-4); c.lineTo(px-4,py+4);c.stroke();}
+      else if(Math.abs(e.offset)<=25) {c.arc(px,py,4,0,Math.PI*2);c.fill();}
+      else {const sign=e.offset>0?1:-1;c.moveTo(px,py-5*sign);c.lineTo(px+4,py+4*sign);c.lineTo(px-4,py+4*sign);c.closePath();c.fill();}
+      if(!ghost && Math.abs(e.offset)>150 && !compactLabels) {
+        const up=e.offset>0, text=(up?'↑':'↓')+Math.round(Math.abs(e.offset));
+        const lx=Math.min(w-45,px+4), lanes=occupied[up?'up':'down'];
+        let lane=0;
+        while(lane<8 && lanes[lane]>lx-3) lane++;
+        lanes[lane]=lx+c.measureText(text).width;
+        const ly=py+(up?14+lane*13:-7-lane*13);
+        if(ly>top+8 && ly<h-bottom-5) c.fillText(text,lx,ly);
+      }
+      c.globalAlpha=1;
+    }
+    if(state.mode==='ghost' && state.ghost) state.ghost.dots.forEach(e=>mark(e,true));
+    [...state.archive,...state.dots].forEach(e=>mark(e));
+    if(compactLabels) for(const up of [true,false]) {
+      const offsets=offscale.filter(e=>(e.offset>0)===up).map(e=>Math.round(Math.abs(e.offset)));
+      if(!offsets.length) continue;
+      const low=Math.min(...offsets), high=Math.max(...offsets);
+      c.fillStyle=up?'#ffb094':'#bdabf1';
+      c.fillText((up?'↑':'↓')+low+(low!==high?'–'+high:'')+' ms · '+count(offsets.length,'tap'),
+        left+(state.mode==='break'&&up?76:5),up?top+13:h-bottom-8);
+    }
+    state.extras.filter(e=>e.bar>=start&&e.bar<=start+span).forEach(e=> {
+      c.strokeStyle='#9aa3b5'; c.beginPath();c.moveTo(x(e.bar),top-2);c.lineTo(x(e.bar),top+4);c.stroke();
+    });
+    if(state.playing && state.position>=0) {
+      c.strokeStyle='#38d1e8'; c.beginPath();c.moveTo(x(state.position),top);c.lineTo(x(state.position),h-bottom);c.stroke();
+    }
+    if(!state.dots.length && !state.playing) {
+      c.textAlign='center'; c.fillStyle='#b1bdcc';
+      c.fillText('Your taps land here.',left+plotW/(state.mode==='break'?4:2),mid-10); c.textAlign='left';
+    }
+    if(!compact) {
+      const recent=state.mode==='break'?state.dots.filter(e=>e.bar>=4&&e.bar<8):
+        state.dots.filter(e=>e.bar>=Math.max(0,state.position-4));
+      const label=state.mode==='ghost'?'':state.mode==='break'?' · break: '+trend(recent).label:' · '+trend(recent).label;
+      c.fillStyle='#9aa3b5';c.fillText('bar averages'+label,left,h-7);
+    }
+  }
+  function frame() {
+    const now=ctx?.currentTime||0;
+    const due=events.filter(e=>e.t<=now); events=events.filter(e=>e.t>now); due.forEach(e=>e.fn());
+    if(state.calibrating && now>cal.end) finishCalibration();
+    if(state.playing) {
+      state.position=Math.max(0,positionAt(now)); expire(now-latency());
+      if(state.mode==='ghost') updateGhost();
+      if(state.mode==='rehearse' && state.position>state.builtUntil-8) buildExpected(state.builtUntil);
+      const raw=positionAt(now), step=Math.floor(Math.max(0,raw)*steps())%steps();
+      [...$('part-grid').children].forEach((el,i)=>el.classList.toggle('now',raw>=0&&i===step));
+      if(raw>=0) {
+        const bar=Math.floor(raw)+1;
+        setText('status',state.mode==='break'&&bar>=5&&bar<=8?'Band out · hold it.':
+          state.mode==='break'&&bar>=9?'Band back. Lock in.':'Bar '+bar+(state.mode==='rehearse'?'':' / '+state.length));
+        if(state.mode!=='ghost') setText('live-detail',song().chords[Math.floor(raw)%8]+' · '+state.bpm+' beats/min');
+      }
+      if(state.mode!=='rehearse' && raw>=state.length+.15/barDuration()) stop();
+    }
+    showStations();
+    if(performance.now()>padUntil) $('pad').classList.remove('pressed');
+    if(performance.now()-lastDraw>30) {draw();lastDraw=performance.now();}
+    requestAnimationFrame(frame);
+  }
+  for(const p of PARTS) {
+    $('band').insertAdjacentHTML('beforeend','<div class="station" id="station-'+p+'"><img src="'+IMG[p]+
+      '" alt="Painted '+NAMES[p]+' station"><span class="tag">'+NAMES[p]+'</span></div>');
+    $('parts').insertAdjacentHTML('beforeend','<button id="part-'+p+'" aria-pressed="false"><img src="'+IMG[p]+'" alt="">'+NAMES[p]+'</button>');
+    $('mixer').insertAdjacentHTML('beforeend','<button id="hear-'+p+'" aria-pressed="true" aria-label="Hear '+NAMES[p]+'">'+NAMES[p]+'</button>');
+    $('part-'+p).onclick=()=> {
+      if(p===state.part) return;
+      if(state.calibrating) finishCalibration(true);
+      preserveChange(()=>{
+        state.part=p;state.heard[p]=true;
+        if(ctx) {channels[p].gain.cancelScheduledValues(ctx.currentTime);channels[p].gain.setValueAtTime(1,ctx.currentTime);}
+      });
+      if(!state.playing) {audio();note(p,ctx.currentTime,0,song().parts[p][0],'tap');hint('Press Play, then tap the filled cells for '+NAMES[p]+'.');}
+    };
+    $('hear-'+p).onclick=()=> {
+      state.heard[p]=!state.heard[p];
+      if(ctx) {
+        const g=channels[p].gain;g.cancelScheduledValues(ctx.currentTime);g.setValueAtTime(g.value,ctx.currentTime);
+        g.linearRampToValueAtTime(state.heard[p]?1:0,ctx.currentTime+.02);
+        if(!state.heard[p]) cancel(p,true);
+      }
+      listenedChanged=true; reconfigure();
+      const fewer=PARTS.some(part=>part!==state.part&&!state.heard[part]);
+      if(!state.playing) {
+        hint(fewer?'Listen to the remaining players. Press Play to try your part.':L[welcomeKey()]);
+        if(fewer) cue('listenHow',true);
+        listenedChanged=false;
+      } else listenedChanged=fewer;
+    };
+  }
+  $('band').insertAdjacentHTML('beforeend','<span class="live-led" aria-hidden="true"></span>');
+  $('play').onclick=()=> {state.calToken=(state.calToken||0)+1;start();};
+  $('pad').addEventListener('pointerdown',e=>{
+    e.preventDefault();
+    if(e.button===0) {$('pad').focus({preventScroll:true});tap(e);}
+  });
+  document.addEventListener('keydown',e=> {
+    if(!['Space','KeyJ','KeyF'].includes(e.code)) return;
+    if(busy()) {e.preventDefault();e.stopImmediatePropagation();if(!e.repeat)tap(e);}
+    else if(e.target===$('pad')) {e.preventDefault();if(!e.repeat)tap(e);}
+  },true);
+  $('song').onchange=()=>preserveChange(()=>{state.song=$('song').value;state.bpm=song().bpm;});
+  $('speed').oninput=()=>preserveChange(()=>{state.bpm=+$('speed').value;});
+  for(const k of ['rehearse','break','ghost']) $('m-'+k).onclick=()=>setMode(k);
+  $('calibrate').onclick=calibrate;
+  $('reset-cal').onclick=()=> {
+    if(preparingCal) {state.calToken++;preparingCal=false;V.hush();}
+    if(state.calibrating) finishCalibration(true);
+    savedLatency=null;storage.remove('curio-tap-latency');syncControls();
+    hint('Calibration reset. Press Calibrate to set your timing, or press Play.');
+  };
+  $('skip').onclick=()=>{$('cal-offer').close();start(true);};
+  $('offer-cal').onclick=()=>{$('cal-offer').close();calibrate();};
+  $('cal-offer').addEventListener('close',()=>{if(!busy()) $('play').focus({preventScroll:true});});
+  $('clear-bests').onclick=()=> {
+    $('clear-bests').focus({preventScroll:true});
+    bests={};storage.remove('curio-band-bests');state.ghost=null;$('ghost-meter').hidden=true;
+    $('feedback').textContent='Bests cleared on this device.';
+    $('feedback').style.color='#c4cddd';
+    hint('Bests cleared on this device. '+(state.mode==='ghost'?'Press Play to set a new ghost.':
+      'Pick Ghost race to set a new ghost.'));draw();
+  };
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden) {
+      state.calToken=(state.calToken||0)+1;preparingCal=false;
+      if(state.playing) stop();
+      if(state.calibrating) finishCalibration(true);
+    }
+  });
+  Curio.init({clips:"voice:*",rate:.94});
+  $('read').onclick=()=> {
+    if(preparingCal) {state.calToken++;preparingCal=false;hint(L.calibrateReady);}
+    if(busy()) {state.pendingRead=true;hint('Read is queued. Keep tapping, or press Stop to hear the hint.');}
+    else V.read();
+  };
+  Curio.onSound(on=> {
+    if(master) master.gain.setTargetAtTime(on?.78:0,ctx.currentTime,.006);
+    if(busy()) V.hush();
+  });
+  new ResizeObserver(draw).observe($('trace-shell'));
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},
+    start,stop,audio,tapTime,judge,fitLine,trend,stats,acceptCalibration,receiveTap,
+    get context(){return ctx;},get calibration(){return cal;},get latency(){return latency();},
+    get bests(){return bests;},get channels(){return channels;},get voices(){return voices;},draw,syncControls,SONGS};
+  syncControls();hint(L.welcome);requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

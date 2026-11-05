@@ -1,0 +1,27 @@
+{
+  "id": "music-history-radio",
+  "stage": "built",
+  "status": "beta",
+  "hook": "One tune. Twelve ways to hear history.",
+  "outcome": "Compare musical sound, notation and cultural context across eras",
+  "driver": "students or teacher",
+  "minutes": "15-30",
+  "modes": [
+    "Dial",
+    "Mixing desk",
+    "Mystery station"
+  ],
+  "grades_label": "Grades 9-12",
+  "sources": [
+    "National Core Arts Standards: MU:Re7, MU:Cn11",
+    "Historical sources listed in spec.md and notes.md",
+    "The Traveler: original tune and arrangements written for Curio Class",
+    "Smithsonian Folkways, Music of Indonesia Vol. 14, SFW40441, revised liner-note supplement",
+    "UNESCO, Gamelan nomination 01607",
+    "Philharmonie de Paris, L’orchestre au cœur d’un musée vivant, 2025",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Smithsonian National Museum of Asian Art, Sumarsam, Dualisms in Javanese Performing Arts"
+  ],
+  "third_party": [],
+  "updated": "2026-11-03"
+}
