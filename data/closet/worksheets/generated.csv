@@ -1,0 +1,677 @@
+unit,n,gen,query,note
+math-3,16,number-ops,grade=3&skill=addsub&count=12,"Grade 3 addsub builds 12 stacked addition and subtraction problems with 3-digit numbers, sums kept within 1000, any method fits the work space; the estimate check is not printed, the teacher can ask for it."
+math-3,23,fractions,grade=3&skill=compare&count=l,"Grade 3 compare makes pairs with the same numerator or the same denominator, each drawn as two equal bars to shade and compare with <, > or =; count l gives 10 pairs (closest to 12); the written reason is not prompted but the bars are the reason."
+math-3,35,measure-shapes,grade=3&skill=compo&count=6,"Grade 3 compo draws 6 L-shaped figures with all six sides labeled and asks for the area; the key and teacher page show the split-into-rectangles or big-minus-small working."
+math-4,5,number-ops,grade=4&skill=addsub&regroup=with&count=12,"Grade 4 addsub stacks 12 problems with 4- and 5-digit numbers in standard-algorithm layout; regroup=with makes every problem regroup, though regrouping across zeros is not guaranteed on every sheet."
+math-4,12,number-ops,grade=4&skill=mul&count=12,"Grade 4 mul gives 12 stacked problems (2-digit by 2-digit and up to 4-digit by 1-digit) with space to write partial products; the estimate check on 3 of them is not printed."
+math-4,13,number-ops,grade=4&skill=div&count=12,"Grade 4 div gives 12 long-division bracket problems, 3- and 4-digit dividends by 1-digit divisors with remainders written as R; partial quotients fit the bracket layout, drawings are the student's own."
+math-4,28,fractions,grade=4&skill=mixed&count=m,"Grade 4 mixed adds and subtracts mixed numbers with like denominators, 12 problems (closest to 10), answers in simplest mixed form and worked steps on the teacher page including regrouping a whole."
+math-4,39,measure-shapes,grade=4&skill=missing&count=9,"Grade 4 missing gives 9 text problems (closest to 8): a rectangle with a given area or perimeter and one side, find the other side; key shows the working."
+math-5,11,number-ops,grade=5&skill=mul&count=12,"Grade 5 mul stacks 12 problems of 3-digit by 2-digit numbers for the standard algorithm; the estimate check is not printed."
+math-5,12,number-ops,grade=5&skill=div&count=12,"Grade 5 div gives 12 long-division problems, 4-digit dividends by 2-digit divisors (11 to 49), remainders as R; the bracket layout takes partial quotients, area models are the student's own."
+math-5,17,fractions,grade=5&skill=addunlike&count=m,"Grade 5 addunlike adds and subtracts fractions with unlike denominators (LCD at most 60), 12 problems, steps on the teacher page show the renaming; about 3 in 10 involve a mixed number."
+math-5,34,measure-shapes,grade=5&skill=volc&count=6,"Grade 5 volc draws 6 solids made of two joined boxes (an L in front view) with all dimensions labeled; the key adds the two prism volumes."
+math-7,18,equations,grade=7&skill=ineq2&count=l,"Grade 7 ineq2 gives 8 two-step inequalities with a blank number line under each; coefficients range over negatives so some flip the sign, and the key graphs each answer."
+math-8,13,equations,grade=8&skill=dist&count=m,"Grade 8 dist gives 8 equations of the form p(x + q) = r that need the distributive property, with integer (so rational) coefficients and stepwise solutions on the teacher page."
+science-3,20,word-puzzles,subject=science&band=35&mod=science-3-life-cycles&kind=cross&count=10,"Crossword built from the Life Cycles Word Wall with meanings as clues; 10 words (the largest count) instead of 12, and the order-a-scrambled-cycle extra is not made."
+science-3,24,writing-frame,grade=3&genre=cer&topic=Does+a+meerkat+survive+better+alone+or+in+a+group,"Grade 3 claim-evidence-reasoning frame (question, claim, two evidence boxes, reasoning, conclusion) with the meerkat question as the printed prompt."
+science-4,20,writing-frame,grade=4&genre=cer&topic=How+two+cactus+structures+help+it+survive+in+the+desert,"Grade 4 claim-evidence-reasoning frame with the cactus prompt printed; students supply the two structures as evidence."
+science-5,18,planner-log,kind=science&band=35&topic=Decomposer+bottle,"Grade 3-5 science observation log: prediction line plus four dated observation boxes with a drawing space, one per week, and two reflection prompts."
+science-5,30,writing-frame,grade=5&genre=cer&topic=Why+the+sun+looks+brighter+than+other+stars,"Grade 5 claim-evidence-reasoning frame with the sun-brightness question as the printed prompt."
+science-ms-8,20,punnett,grade=8&cross=mono&count=4,"Single-trait complete-dominance crosses with real traits; students fill each square and give genotype and phenotype ratios plus one probability. Four crosses per sheet (the largest count), not eight."
+science-ms-8,23,organizer,layout=venn2&band=68&topic=Sexual+and+asexual+reproduction,"Two-circle Venn labeled Sexual and Asexual with a sum-it-up box; students add their own organism examples in the circles."
+earth-space,25,planner-log,kind=science&band=912&topic=Erosion+in+a+stream+table,"Grade 9-12 science log: hypothesis, independent, dependent and controlled variable boxes, a trial data table, sketch or graph space and a sources-of-error box; the student names the one variable tested."
+earth-space,34,writing-frame,grade=9&genre=cer&topic=How+one+climate+feedback+amplifies+warming,"Grade 9 claim-evidence-reasoning frame with alternate explanation, rebuttal and limitations; the topic prompt asks for the feedback and its evidence."
+biology,37,writing-frame,grade=9&genre=cer&topic=How+the+rock+pocket+mouse+population+changed+color,"Grade 9 claim-evidence-reasoning frame with the pocket mouse prompt; variation, inheritance, selection and time go in the reasoning section."
+ss-3,7,map-skills,grade=3,"Grade 3 map-skills draws one map with a lettered-and-numbered grid, a compass rose with NE/SE/SW/NW, a key and a scale bar (1 square = 100 m), then asks about 8 questions that use all four: what is in a square, which square a place is in, cardinal and intermediate directions, a scale distance, a route and a draw-a-star. Only gap: the map is a made-up town, not a state map, and the row says 10 questions."
+us-hist-8,37,writing-frame,grade=8&genre=opinion&topic=Slavery+caused+the+Civil+War&space=draft,"Grade 8 argument frame (2-page drafting space) with the claim printed as the topic: introduction with claim, Body 1 and Body 2 reason-evidence-explanation, Body 3 opposing claim answered with evidence, conclusion, plus a linking-word bank and a standards checklist. Gap: two evidence bodies instead of three, and the sheet does not reference the corkboard from row 35."
+math-1,12,number-ops,grade=1&skill=missing&count=12,"12 missing-number equations within 20 with the unknown in either operand spot (? + 8 = 11 and 8 + ? = 11, plus subtraction forms); the key shows the undo step. Does not reverse the equal sign as in 5 = ? - 3."
+math-3,19,fractions,grade=3&skill=unit&count=l,"10 shaded bars; each asks either k/d = ? copies of 1/d or k copies of 1/d = ?, so students name the shaded fraction as copies of a unit fraction."
+math-3,29,graph-reading,grade=3&graph=picture&data=books&key=5,"Picture graph of Books Read This Month where each book icon stands for 5, with read, most/fewest, how-many-more, together, total and two-step comparison questions."
+math-3,33,measure-shapes,grade=3&skill=grid&count=9,"9 rectangles and L-shapes drawn on a grid of unit squares; students count squares and answer in square units (row asks for 8; 9 is the nearest count)."
+math-4,10,word-problems,grade=4&topic=remainders&count=6,"6 division stories that each leave a remainder; directions tell students to say what the remainder means: round up, drop it or report it."
+math-5,18,fractions,grade=5&skill=mixedunlike&count=s,"8 add and subtract problems with mixed numbers and unlike denominators; the checker requires a mixed number with unlike denominators and the key covers regrouping when the fraction part is larger."
+math-5,36,coordinate-plane,grade=5&skill=plot1&count=l,"First-quadrant plane, two pages of 8 items each split between naming lettered points and plotting given points (8 plot, 8 name; row says 10 and 6)."
+math-6,19,equations,grade=6&skill=expo&count=m,"12 expressions with whole-number exponents evaluated by the order of operations; every answer is a whole number and the key shows the exponent step first."
+math-7,14,equations,grade=7&skill=expand&count=m,"12 items alternating expand and factor with the distributive property (6 of each), factoring out the greatest common factor like 4x - 12 = 4(x - 3)."
+math-8,12,equations,grade=8&skill=special&count=l,"12 both-sides equations, about a third each with one solution, no solution and identity; students solve and write x = n, no solution or all real numbers (row asks for 10; 12 is the nearest option after 8)."
+science-3,17,organizer,"layout=compare&band=35&subjects=3&cols=Chicken,Frog,Bean+plant&rows=Birth,Growth,Reproduction,Death&topic=Life+Cycles","Compare chart with the three organisms as typed column headers and the four life stages as typed row labels; the grade 3-5 chart adds a Same or different column."
+science-3,19,graph-reading,"grade=3&graph=bar&custom=Life+span+(years):+Dog=13,+Cat=15,+Horse=30,+Frog=10,+Chicken=8,+Elephant=70","Grade 3 bar graph of six animal life spans from custom data; the questions read, compare and add values and the last asks for a reason."
+science-3,27,organizer,"layout=tchart&band=35&cols=Inherited,Shaped+by+where+it+lives&cards=fur+color,a+dog's+tricks,a+plant+leaning+to+light,beak+shape,eye+color,a+scar+from+a+fall,the+language+a+child+speaks,a+tree+bent+by+strong+wind,flower+color,a+sunburned+nose&topic=Traits+and+Variation","T-chart sort with the two headers and a cut-out strip of ten trait cards (the row's four plus six more of the same kind)."
+science-4,8,planner-log,kind=design&band=35&topic=Rubber+Band+Car,"Design planner has the problem, criteria, constraints, three ideas, a labeled sketch of the chosen idea, a materials list and a test plan; covers the sketch, materials and criteria the row asks for."
+science-4,40,planner-log,kind=design&band=35&topic=Flood+Barrier+for+a+Riverside+Town,"Design planner with a labeled sketch, materials and a How I will test it box; the sand tray test is what students write in that box."
+science-5,23,planner-log,kind=science&band=35&topic=Shadow+Stick+Log,"Science observation log: Date, Time, Conditions, Measurement (with units) and What I observe columns with six rows, enough for five shadow readings in one day with direction in the observation column."
+science-ms-6,38,planner-log,kind=design&band=68&topic=Ice+Cube+Keeper,"Design planner for grades 6-8 has criteria, constraints, three ideas, a chosen labeled sketch, materials, a test plan (what to measure and how), results and improve."
+chemistry,44,organizer,"layout=compare&band=912&subjects=2&cols=Fission,Fusion&rows=Fuel,Products,Energy+released,Real+examples&topic=Fission+and+Fusion","Compare chart with Fission and Fusion as columns and the row's four criteria as typed row labels, plus a Why the difference matters column; two spare rows stay blank."
+physics,12,science-calc,grade=11&topic=momcons&count=8,"Eight conservation of momentum problems: carts, train cars, clay and blocks and tackles that stick together, plus skaters, an astronaut and a cannon pushing apart from rest (explosions), with formula and worked key."
+physics,21,science-calc,grade=11&topic=work&topic2=power&count=8,"Eight problems alternating work (W = F x d: pushing boxes, lifting onto a shelf, pushing a car) and power (P = W / t: running up stairs, elevator, crane, winch), with formula, units and worked key."
+physics,33,science-calc,grade=11&topic=wave&count=8,"Eight v = f x lambda problems on rope, spring, pool and ocean waves and sound in air at 343 m/s; no seismic context, so two of the row's three wave kinds."
+environmental,40,planner-log,kind=trial&band=912&entries=4&unit=Trial&topic=Prototype+Test,"Trial log with four numbered rows (Date, What I did, What I measured or saw, Notes) and a summary box; failures and the change per round go in the Notes column."
+ss-3,24,writing-frame,grade=3&genre=letter&topic=A+letter+to+the+principal+about+a+problem+at+school,"Grade 3 persuasive letter frame: opening with the problem, my idea (the fix), reason 1, reason 2, closing that asks the principal to act; the offer to help goes in the closing box."
+ss-3,40,organizer,"layout=compare&band=35&topic=Daily+life+in+Nuuk+and+Lagos&subjects=2&cols=Nuuk,Lagos&rows=Weather,Homes,Clothes,Food,Travel","Compare chart with Nuuk and Lagos as columns and the five rows the row names, plus a same/different column and a sum-up box."
+ss-4,25,writing-frame,grade=4&genre=letter&topic=A+letter+to+a+state+legislator+about+a+statewide+issue,"Grade 4-5 persuasive letter frame: paragraph 1 the problem, paragraph 2 what I propose (the law), two reason paragraphs, closing ask; date and sign-off printed."
+ss-4,27,graph-reading,"grade=4&graph=bar&build=1&custom=Top+State+Products+%28millions+%24%29%3A+Corn%3D85,+Soybeans%3D60,+Hogs%3D45,+Eggs%3D30,+Dairy%3D20","Build mode prints a 5-product table for a sample state and an empty grid; students draw the bar graph, then answer the generated reading questions. Values are invented for a made-up state."
+ss-5,17,organizer,"layout=compare&band=35&topic=The+three+colonial+regions&subjects=3&cols=New+England,Middle,Southern&rows=Climate,Land,Main+crops+or+industries,Labor",Three-subject compare chart with the colonial regions as columns and the four rows the row names.
+ss-5,27,organizer,"layout=compare&band=35&topic=People+of+the+American+Revolution&subjects=4&cols=Mercy+Otis+Warren,James+Armistead+Lafayette,Deborah+Sampson,Joseph+Brant&rows=Role+in+the+Revolution,Side+chosen,Why+that+side","Four-subject compare chart with the four named people as columns and rows for role, side and reason; content comes from the module lessons."
+world-geo-6,9,organizer,"layout=compare&band=68&topic=Hunter-gatherer+life+and+farming+life&subjects=2&cols=Hunter-gatherers,Farmers&rows=Food,Shelter,Population,Tools,Social+roles","Compare chart with the five rows the row names; the sum-up box asks which difference matters most, which is the biggest-change question."
+world-geo-6,22,organizer,"layout=compare&band=68&topic=Belief+systems+of+ancient+India+and+China&subjects=3&cols=Hinduism,Buddhism,Confucianism&rows=Origin,Key+teachings,How+it+guided+daily+life",Three-subject compare chart with the three belief systems as columns and the three rows the row names.
+world-geo-6,44,organizer,"layout=compare&band=68&topic=Fixing+a+smoky+factory&subjects=3&cols=Tax,Ban,Subsidy&rows=Who+pays,How+it+changes+behavior,Side+effects","Three-subject compare chart for a tax, a ban and a subsidy with the who-pays and behavior rows the row names, plus one extra row."
+world-hist-7,35,organizer,"layout=compare&band=68&topic=Maya,+Aztec+and+Inca&subjects=3&cols=Maya,Aztec,Inca&rows=Government,Farming,Religion,Achievements,How+the+empire+ended",Three-subject compare chart with the five rows the row names.
+world-hist-7,46,organizer,"layout=compare&band=68&topic=Effects+of+the+Age+of+Exploration&subjects=4&cols=Americas,Africa,Europe,Asia&rows=Population,Trade,Food,Power",Four-subject compare chart with the four regions as columns and the four rows the row names.
+us-hist-8,7,organizer,"layout=compare&band=68&topic=Compromises+at+the+Constitutional+Convention&subjects=3&cols=Great+Compromise,Three-Fifths+Compromise,Slave+trade+clause&rows=Positions+on+each+side,The+deal,Who+was+left+out",Three-subject compare chart with the three compromises as columns and the three rows the row names.
+us-hist-8,12,organizer,"layout=compare&band=68&topic=How+groups+decide%3A+planning+a+class+trip&subjects=4&cols=Majority+vote,Consensus,Ranked+choice,A+leader+decides&rows=Speed,Fairness,Buy-in","Four-subject compare chart of the four decision methods on speed, fairness and buy-in; the class trip scenario is the chart title."
+us-hist-8,17,writing-frame,grade=8&genre=brief&topic=Marbury+v.+Madison+%281803%29,"Grade 6-8 case brief frame: facts, question, ruling, reasoning, why it matters (judicial review goes there)."
+us-hist-8,20,organizer,"layout=compare&band=68&topic=Citizen+tools+at+every+level+of+government&subjects=3&cols=Local,State,National&rows=Vote,Testify,Petition,Run+for+office,Organize","Compare chart with local, state and national as columns and the five citizen tools as rows; each cell holds the historic example."
+world-hist-hs,5,organizer,"layout=compare&band=912&topic=The+Atlantic+revolutions&subjects=4&cols=American,French,Haitian,Latin+American&rows=Causes,Leaders,Who+gained+rights,Outcomes",Four-subject compare chart with the four revolutions as columns and the four rows the row names.
+world-hist-hs,12,organizer,"layout=compare&band=912&topic=Responses+to+industrial+capitalism&subjects=3&cols=Adam+Smith,Karl+Marx,Labor+reformers&rows=Who+should+own+industry,How+workers+should+be+protected,Key+writing+or+action",Three-subject compare chart with the two rows the row names plus one extra row.
+world-hist-hs,23,organizer,"layout=compare&band=912&topic=Totalitarian+states+between+the+wars&subjects=3&cols=Mussolini%27s+Italy,Stalin%27s+Soviet+Union,Hitler%27s+Germany&rows=Ideology,Control+of+media,Terror,Economy",Three-subject compare chart with the three states as columns and the four rows the row names.
+us-hist-hs,3,organizer,"layout=compare&band=912&topic=Strikes+of+the+Gilded+Age&subjects=4&cols=1877+Railroad+Strike,Haymarket,Homestead,Pullman&rows=Causes,Worker+demands,Government+response,Outcome",Four-subject compare chart with the four strikes as columns and the four rows the row names.
+us-hist-hs,11,organizer,"layout=compare&band=912&topic=The+Progressive+Era+amendments&subjects=4&cols=16th+Amendment,17th+Amendment,18th+Amendment,19th+Amendment&rows=Problem+it+addressed,Who+pushed+it,Its+effect",Four-subject compare chart with the four amendments as columns and the three rows the row names.
+us-hist-hs,31,organizer,"layout=compare&band=912&topic=Civil+rights+movement+strategies&subjects=4&cols=NAACP,SNCC,Nation+of+Islam,Black+Panthers&rows=Goals,Methods,Results",Four-subject compare chart with the four organizations as columns and the three rows the row names.
+us-hist-hs,32,organizer,"layout=compare&band=912&topic=Many+movements+of+the+1960s+and+1970s&subjects=4&cols=Delano+grape+strike,Section+504+sit-in,American+Indian+Movement,Women%27s+movement&rows=Leaders,Tactics,Wins","Four-subject compare chart with the four campaigns as columns and leaders, tactics and wins as rows."
+us-hist-hs,36,timeline,grade=11&set=space&from=1957&to=1969,"The space set holds exactly 10 events from Sputnik (1957) to Apollo 11 (1969) and grade 11 sheets use 10, so the sheet sequences those 10 Soviet and US firsts with before/after and years-between questions; the Cold War stakes discussion is not on the sheet."
+us-hist-hs,45,organizer,"layout=compare&band=912&topic=Technology+changes+everything,+1980+to+today&subjects=3&cols=Personal+computer,Internet,Smartphones&rows=Work,Communication,Politics",Three-subject compare chart with the three technologies as columns and the three rows the row names.
+government,9,writing-frame,grade=12&genre=brief&topic=McCulloch+v.+Maryland+%281819%29,"Grade 9-12 case brief frame: facts, question, ruling, reasoning (where the Necessary and Proper Clause reading goes), dissent or concurrence, why it matters."
+economics,4,organizer,"layout=compare&band=912&topic=How+economic+systems+answer+the+three+questions&subjects=4&cols=Traditional,Command,Market,Mixed&rows=What+to+produce,How+to+produce,For+whom+to+produce",Four-subject compare chart with the four systems as columns and the three economic questions as rows.
+economics,14,organizer,"layout=compare&band=912&topic=The+four+market+structures&subjects=4&cols=Perfect+competition,Monopolistic+competition,Oligopoly,Monopoly&rows=Number+of+firms,Barriers+to+entry,Price+power,Example+industry",Four-subject compare chart with the four structures as columns and the rows the row names plus an example row.
+economics,23,organizer,"layout=compare&band=912&topic=Institutions+that+reduce+risk+in+a+market+economy&subjects=4&cols=Contracts,Courts,Patents,Bankruptcy+law&rows=How+it+reduces+risk,Example",Four-subject compare chart with the four institutions as columns and how-it-reduces-risk and example rows.
+economics,33,organizer,"layout=compare&band=912&topic=The+Fed%27s+toolbox&subjects=3&cols=Open+market+operations,Interest+on+reserves,Discount+rate&rows=How+it+works,Effect+on+the+money+supply,Effect+on+the+economy",Three-subject compare chart with the three Fed tools as columns and how-it-works and effect rows.
+psychology,6,organizer,"layout=compare&band=912&topic=Brain+research+methods&subjects=4&cols=EEG,fMRI,PET,Lesion+studies&rows=What+it+shows,Strengths,Limits",Four-subject compare chart with the four methods as columns and the three rows the row names.
+psychology,33,organizer,"layout=compare&band=912&topic=Personality+theories&subjects=4&cols=Psychodynamic,Humanistic,Trait,Social-cognitive&rows=Key+ideas,Methods,Criticisms",Four-subject compare chart with the four theories as columns and the three rows the row names.
+psychology,40,organizer,"layout=compare&band=912&topic=Treatment+approaches&subjects=4&cols=Psychodynamic,Cognitive+behavioral,Humanistic,Biomedical&rows=Methods,Goals,Evidence",Four-subject compare chart with the four treatments as columns and the three rows the row names.
+ela-3,14,writing-frame,grade=3&genre=opinion&topic=Should+recess+be+longer&space=draft,"Grade 3 opinion frame is one paragraph: opinion topic sentence, Reason 1-3 each with an example line, concluding sentence; its grade 3 transition bank is because, therefore, since, for example; checklist is W.3.1."
+ela-6,41,writing-frame,grade=6&genre=informative&topic=Recycling&space=plan,"Grade 6 informative planning frame: Introduction with thesis, Body 1-3 (topic sentence, facts, explanation), Conclusion, on one page. Bodies are the three sections; the sheet has no printed heading line per body, so students write their own heading in the first line."
+ela-6,42,writing-frame,grade=6&genre=narrative&space=plan,"Grade 6 narrative planning frame: Exposition (narrator, point of view, characters), Rising action (dialogue and description), Climax, Falling action, Resolution and reflection; checklist is W.6.3 (sequence, dialogue, pacing, conclusion). Topic left open for a made-up narrative."
+math-8,2,algebra,course=g8&skill=squeeze&count=m,8 roots trapped between whole numbers then tenths
+math-8,4,algebra,course=g8&skill=expo&count=m,8 discovery expansions then 8 rule problems
+math-8,6,algebra,course=g8&skill=roots&count=m,10 x² = p and x³ = p equations with exact roots
+math-8,11,algebra,course=g8&skill=slope&count=l,10 slopes from graphs and point pairs
+math-8,14,algebra,course=g8&skill=sysgraph&count=m,4 systems to graph on printed grids
+math-8,16,algebra,course=g8&skill=sysword&story=plans&count=m,4 membership and phone plan comparisons
+math-8,18,algebra,course=g8&skill=fnornot&count=m,12 cut-and-sort cards: tables mappings graphs ordered pairs
+math-8,23,algebra,course=g8&skill=line&count=m,8 lines from two points
+algebra-1,8,algebra,course=alg1&skill=factor&count=m,15 factoring task card strips
+algebra-1,10,algebra,course=alg1&skill=forms&count=m,4 quadratics in standard factored and vertex form
+algebra-1,12,algebra,course=alg1&skill=polymul&count=m,8 area model products
+algebra-1,18,algebra,course=alg1&skill=compound&count=m,8 compound and literal inequalities
+algebra-1,20,algebra,course=alg1&skill=sysgraph&count=m,4 systems to graph
+algebra-1,21,algebra,course=alg1&skill=sysalg&count=m,8 substitution and elimination systems
+algebra-1,22,algebra,course=alg1&skill=sysword&story=mix&count=l,5 ticket mixture and travel systems
+algebra-1,23,algebra,course=alg1&skill=sysineq&count=m,3 systems of inequalities to shade
+algebra-1,25,algebra,course=alg1&skill=fnnot&count=l,12 evaluate and interpret f(x)
+algebra-1,28,algebra,course=alg1&skill=rate&count=m,4 average rate of change sets
+algebra-1,29,algebra,course=alg1&skill=linexp&count=m,6 tables to label linear or exponential with rule
+algebra-1,34,algebra,course=alg1&skill=qfactor&count=m,10 solve by factoring
+algebra-1,35,algebra,course=alg1&skill=qsquare&count=m,8 square roots and completing the square
+algebra-1,36,algebra,course=alg1&skill=qformula&count=m,8 quadratic formula with discriminant
+algebra-1,37,algebra,course=alg1&skill=proj&count=m,4 projectile height problems
+algebra-2,2,algebra,course=alg2&skill=complex&count=m,12 complex arithmetic
+algebra-2,3,algebra,course=alg2&skill=qcomplex&count=m,8 quadratics with complex roots plus a root check
+algebra-2,6,algebra,course=alg2&skill=remainder&count=m,10 remainder theorem by substitution
+algebra-2,11,algebra,course=alg2&skill=ratsimp&count=m,10 simplify rational expressions with restrictions
+algebra-2,12,algebra,course=alg2&skill=ratadd&count=m,8 add and subtract rational expressions
+algebra-2,13,algebra,course=alg2&skill=extraneous&count=m,8 radical and rational equations; mark extraneous roots
+algebra-2,16,algebra,course=alg2&skill=logform&count=m,12 form switches then 6 evaluations
+algebra-2,17,algebra,course=alg2&skill=logprop&count=m,12 expand/condense match-up plus 4 checks
+algebra-2,18,algebra,course=alg2&skill=expeq&count=m,8 exponential equations with exact log and decimal
+algebra-2,19,algebra,course=alg2&skill=growth&count=m,6 half-life and compound interest
+algebra-2,27,algebra,course=alg2&skill=combine&count=m,8 sum product and composition with domain
+algebra-2,28,algebra,course=alg2&skill=inverse&count=m,8 inverses of linear radical cubic log rational
+algebra-2,31,algebra,course=alg2&skill=seqsort&count=m,12 cards to sort then 6 formula pairs
+algebra-2,32,algebra,course=alg2&skill=arithword&count=m,4 seat rows and similar; nth term sum and which term
+algebra-2,33,algebra,course=alg2&skill=series&count=m,guided derivation then 6 finite geometric sums
+algebra-2,35,algebra,course=alg2&skill=seqmissing&count=m,8 missing terms puzzles
+geometry,26,algebra,course=geo&skill=circles&count=m,8 complete the square for center and radius plus 2 graphs
+precalculus,2,algebra,course=pre&skill=compose&count=m,6 compositions then 4 decompositions
+precalculus,3,algebra,course=pre&skill=inverse&count=s,6 inverses with domain restrictions
+precalculus,4,algebra,course=pre&skill=rational&count=m,8 asymptotes holes end behavior plus 2 sketches
+precalculus,28,algebra,course=pre&skill=matrix&count=m,6 inverse matrices then 4 systems
+precalculus,37,algebra,course=pre&skill=ellhyp&count=m,8 ellipses and hyperbolas plus 2 sketches
+precalculus,38,algebra,course=pre&skill=conicclass&count=m,6 complete the square to classify conics
+cs-k,3,code-logic,grade=k&skill=follow&count=m,6 arrow paths on a 4x4 animal grid
+cs-k,4,code-logic,grade=k&skill=maze&count=m,3 mazes; draw the arrow program to the apple
+cs-k,11,code-logic,grade=k&skill=hop&count=m,5 bunny programs; circle the carrot
+cs-1,3,code-logic,grade=1&skill=debug&count=m,5 programs; cross out and draw the fix
+cs-1,4,code-logic,grade=1&skill=collect&count=s,walls and puddles; arrows plus pick-up for 3 stars
+cs-1,17,code-logic,grade=1&skill=boxes&count=s,one named box through 5 story steps
+cs-1,19,code-logic,grade=1&skill=shapes&count=m,6-shape key; decode 4 words and draw them
+cs-1,20,code-logic,grade=1&skill=pixel&count=s,8x8 row codes reveal an animal
+cs-1,21,code-logic,grade=1&skill=hop&count=m,5 frog programs; write the lily pad number
+cs-2,2,code-logic,grade=2&skill=loops&count=m,4 paths with repeat blocks; arrows saved
+cs-2,17,code-logic,grade=2&skill=boxes&count=s,Cookies and Money boxes through 6 steps
+cs-2,20,code-logic,grade=2&skill=beads&count=s,decode a 4-letter word; encode a 3-letter animal
+cs-2,21,code-logic,grade=2&skill=predict&count=m,5 loop programs with event blocks; end square or speech
+cs-3,5,code-logic,grade=3&skill=ifgrid&count=m,4 runs of an if-then color-square robot
+cs-3,7,code-logic,grade=3&skill=output&count=m,4 repeat-plus-if block programs; what it says
+cs-3,11,code-logic,grade=3&skill=score&count=s,10-step game program; score after each step
+cs-3,14,code-logic,grade=3&skill=start&count=m,6 work-backwards starting-value puzzles
+cs-4,4,code-logic,grade=4&skill=trace&count=s,2 variables through a 6-line program
+cs-4,5,code-logic,grade=4&skill=looptrace&count=s,5-pass loop; counter and running total
+cs-5,19,code-logic,grade=5&skill=caesar&count=m,5 messages encode and decode; confidentiality explain
+cs-5,20,code-logic,grade=5&skill=checksum&count=m,6 number messages; find the changed ones
+cs-6,4,code-logic,grade=6&skill=types&count=m,15 values into 4 types plus a use for each
+cs-6,5,code-logic,grade=6&skill=memory&count=m,3 programs; cross out and update memory boxes
+cs-6,35,code-logic,grade=6&skill=passwords&count=m,5 rules counted; pick the hardest to guess
+cs-7,4,code-logic,grade=7&skill=lists&count=s,list operations traced after each line
+cs-7,34,code-logic,grade=7&skill=keyword&count=m,4 messages; compare to a shift cipher
+cs-8,4,code-logic,grade=8&skill=scope&count=m,4 local and global programs; predict prints
+cs-8,34,code-logic,grade=8&skill=hash&count=m,6 passwords hashed; explain stored hashes
+cs-9,2,code-logic,grade=9&skill=sort&alg=selection&count=s,8 numbers; list after every selection pass
+cs-9,19,code-logic,grade=9&skill=passwords&count=m,entropy in bits for 6 policies; rank them
+cs-9,43,code-logic,grade=9&skill=steps&count=m,count loop steps in 4 algorithms; most wasteful
+cs-10,3,code-logic,grade=10&skill=stack&count=s,8 push pop enqueue dequeue operations traced
+cs-10,18,code-logic,grade=10&skill=rsa&count=m,small-number RSA for 3 numbers; why it works
+cs-11,2,code-logic,grade=11&skill=recur&count=m,4 recursive procedures with call stack tables
+cs-11,3,code-logic,grade=11&skill=hashtab&count=m,10 keys into a table of 13 with probing
+cs-12,2,code-logic,grade=12&skill=dijkstra&count=m,weighted map with Dijkstra distance table
+cs-12,3,code-logic,grade=12&skill=change&count=m,DP fewest-coins table; 6 amounts with 3 coins
+science-ms-8,18,code-logic,grade=8&skill=pixel&count=m,decode 1s and 0s; encode a shape for a partner
+eld-1,15,early-number,grade=1&skill=compare&task=pics&frames=1&count=m,6 ten frame pairs with greater-than sentence frames
+eld-1,19,early-number,grade=1&skill=length&task=cubes&frames=1&count=s,4 objects in printed cubes plus longer/shorter sentences
+eld-2,17,early-number,grade=2&skill=compare&task=pairs&frames=1&count=s,8 pairs with symbol and sentence
+eld-k,15,early-number,grade=k&skill=trace&range=5&words=1&count=s,trace 1 to 5 and words under dot pictures
+eld-k,17,early-number,grade=k&skill=compare&task=more&count=m,6 picture pairs circle more
+math-1,5,early-number,grade=1&skill=maketen&count=l,10 double ten frame facts as 8 + 2 + 3
+math-1,15,early-number,grade=1&skill=seq&task=next&range=120&count=s,8 runs near or past 100 up to 120
+math-1,18,early-number,grade=1&skill=blocks&task=draw&count=m,draw rods and cubes for 8 with chart
+math-1,19,early-number,grade=1&skill=blocks&task=two&count=s,6 numbers two ways with drawing
+math-1,20,early-number,grade=1&skill=compare&task=num&count=m,12 pairs plus explain one
+math-1,28,early-number,grade=1&skill=length&task=order&count=l,6 sets of three plus one indirect comparison
+math-1,32,early-number,grade=1&skill=clock&task=hour&count=s,draw the hour hand on 6 clocks
+math-1,34,early-number,grade=1&skill=clock&task=draw&count=m,draw both hands on 8 clocks
+math-2,9,early-number,grade=2&skill=evenodd&task=pairs&count=l,10 scattered groups up to 20
+math-2,10,early-number,grade=2&skill=evenodd&task=doubles&count=m,8 doubles plus odd-number explanation
+math-2,11,early-number,grade=2&skill=arrays&task=draw&count=m,draw 6 arrays up to 5 by 5
+math-2,12,early-number,grade=2&skill=arrays&task=read&count=m,6 real-life arrays by rows and columns
+math-2,14,early-number,grade=2&skill=blocks&task=draw&count=l,draw 8 numbers including zero tens
+math-2,15,early-number,grade=2&skill=expanded&count=m,8 rows in a three-form table
+math-2,17,early-number,grade=2&skill=compare&task=order&count=m,10 pairs then 2 sets of four
+math-2,28,early-number,grade=2&skill=length&task=diff&count=m,5 pencil pairs on a cm ruler
+math-2,30,early-number,grade=2&skill=clock&task=mix&count=l,read 8 clocks and draw 4
+math-2,32,early-number,grade=2&skill=coins&task=count&count=m,8 coin mixes with cent sign
+math-2,34,early-number,grade=2&skill=coins&task=make&count=m,4 amounts three ways with fewest starred
+math-k,3,early-number,grade=k&skill=seq&task=next&range=100&count=m,8 rows: given number then next four
+math-k,6,early-number,grade=k&skill=count&task=circle&range=10&count=l,10 boxes up to 10 with three choices
+math-k,11,early-number,grade=k&skill=compare&task=more&count=l,8 pairs; shapes not cookies; match with lines
+math-k,21,early-number,grade=k&skill=teen&count=l,8 teen ten frames with 10 + ___
+math-k,25,early-number,grade=k&skill=length&task=longer&count=l,8 pairs lined up at one edge
+ss-2,25,early-number,grade=2&skill=coins&task=buy&count=m,6 piggy banks buy now or save
+algebra-2,34,finance,grade=11&area=credit&skill=loan&count=m,payment formula from geometric series plus total interest
+cte-explore-6,17,finance,grade=6&area=econ&skill=demand&market=goods,graph a demand schedule and describe the pattern
+cte-explore-6,26,finance,grade=6&area=save&skill=simple&count=m,six simple interest problems after a worked example
+cte-explore-6,28,finance,grade=6&area=save&skill=sgraph,table and graph at two simple interest rates
+cte-explore-6,30,finance,grade=6&area=save&skill=simple&count=s,simple interest plus rate change and who benefits
+cte-explore-6,33,finance,grade=6&area=risk&skill=basket,five made-up companies against a basket with graph
+cte-explore-6,36,finance,grade=6&area=spend&skill=costs&ctx=bike&count=m,e-bike price plus gear and repairs first year
+cte-explore-6,39,finance,grade=6&area=risk&skill=insure&ins=bike,warranty insurance or repair fund across three mishaps
+cte-explore-7,16,finance,grade=7&area=econ&skill=supply&market=goods,graph a supply schedule and explain the slope
+cte-explore-7,17,finance,grade=7&area=econ&skill=sd&market=goods,equilibrium on one graph with shortage at low price
+cte-explore-7,19,finance,grade=7&area=econ&skill=sd&market=labor,labor market wage with shortage and surplus
+cte-explore-7,24,finance,grade=7&area=save&skill=infl&count=m,four workers raises against inflation and buying power
+cte-explore-7,26,finance,grade=7&area=save&skill=svc&count=m,simple and compound side by side for five years
+cte-explore-7,27,finance,grade=7&area=credit&skill=grid&graph=1,loan totals at four rates with a bar graph
+cte-explore-7,28,finance,grade=7&area=credit&skill=card,card balance six months at a monthly rate
+cte-explore-7,31,finance,grade=7&area=risk&skill=pctchg&count=s,five companies share prices and percent change
+cte-explore-7,32,finance,grade=7&area=risk&skill=basket,one company or split five ways with failure
+cte-explore-7,36,finance,grade=7&area=save&skill=goal&count=s,weeks to save for a goal at three amounts
+cte-explore-7,37,finance,grade=7&area=spend&skill=tax&count=s,sales tax and totals on six bike gear receipts
+cte-explore-8,16,finance,grade=8&area=econ&skill=elastic&count=m,total revenue test on elastic and inelastic goods
+cte-explore-8,17,finance,grade=8&area=econ&skill=ceiling,price ceiling and wage floor graphs with gaps
+cte-explore-8,26,finance,grade=8&area=save&skill=rule72,rule of 72 for 8 rates and two check tables
+cte-explore-8,27,finance,grade=8&area=save&skill=apy&count=s,APR to APY for four accounts and pick best
+cte-explore-8,29,finance,grade=8&area=credit&skill=grid&graph=1,two rates by three terms grid with graph
+cte-explore-8,34,finance,grade=8&area=risk&skill=basket,one stock against a five-company basket over ten years
+cte-explore-8,36,finance,grade=8&area=risk&skill=own&own=commute,e-bike bus pass or used car five-year cost
+cte-explore-8,37,finance,grade=8&area=risk&skill=deprec,depreciation table over five years with a graph
+cte-pathways,18,finance,grade=10&area=spend&skill=costs&ctx=booth&count=l,booth startup and monthly costs from a price list
+cte-pathways,19,finance,grade=10&area=econ&skill=breakeven,break-even at three prices with a graph
+cte-pathways,6,finance,grade=11&area=credit&skill=aid,two award letters net cost and total loans
+dance-10,34,finance,grade=10&area=spend&skill=costs&ctx=show&graph=1,site show budget by category with bar graph
+dance-12,32,finance,grade=12&area=spend&skill=costs&ctx=concert&graph=1,concert income and expenses with cost graph
+economics,10,finance,grade=11&area=econ&skill=double&count=m,six double shifts with the ambiguous result marked
+economics,11,finance,grade=11&area=econ&skill=elastic&count=m,midpoint elasticity for six goods and classify
+economics,15,finance,grade=11&area=econ&skill=profit,marginal revenue meets marginal cost and profit
+economics,2,finance,grade=11&area=econ&skill=ppf,plot a PPF and classify three points
+economics,24,finance,grade=11&area=econ&skill=gdp&count=m,expenditure approach GDP and items not counted
+economics,25,finance,grade=11&area=save&skill=index&count=m,six nominal values to real with a price index
+economics,32,finance,grade=11&area=econ&skill=multiplier,deposit through five banks and the multiplier
+economics,39,finance,grade=11&area=econ&skill=exchange&count=s,convert prices then a stronger dollar's winners and losers
+economics,6,finance,grade=11&area=econ&skill=marginal,study pizzas and workers by marginal benefit and cost
+economics,8,finance,grade=11&area=econ&skill=shift&count=l,ten events shift or slide with the determinant
+economics,9,finance,grade=11&area=econ&skill=sd&market=goods,plot supply and demand and label shortage and surplus
+health-11,3,finance,grade=11&area=spend&skill=unit&count=m,unit prices for eight grocery pairs and better buy
+math-5,15,finance,grade=5&area=spend&skill=costs&ctx=picnic&count=m,picnic list totals under a dollar limit
+media-arts-11,29,finance,grade=11&area=spend&skill=costs&ctx=doc&count=l,crew equipment travel and archival budget
+media-arts-11,9,finance,grade=11&area=spend&skill=costs&ctx=film&count=l,equipment locations and food film budget
+music-12,28,finance,grade=12&area=spend&skill=costs&ctx=recording&graph=1,rehearsal players printing budget with graph
+personal-finance,11,finance,grade=11&area=spend&skill=log&count=m,two-week log totals by category against budget
+personal-finance,12,finance,grade=11&area=spend&skill=unit&count=m,eight unit prices and monthly savings from switching
+personal-finance,13,finance,grade=11&area=spend&skill=circle,budget percents and circle graph plus a saving change
+personal-finance,15,finance,grade=11&area=save&skill=goal&count=m,3 and 6 month funds and months to build
+personal-finance,16,finance,grade=11&area=save&skill=compound&count=m,compound formula balances for six accounts
+personal-finance,17,finance,grade=11&area=save&skill=deposits&count=s,monthly deposits and start-early table with graph
+personal-finance,18,finance,grade=11&area=save&skill=freq&count=s,annual monthly and daily compounding compared
+personal-finance,2,finance,grade=11&area=earn&skill=stub,label a pay stub and answer eight questions
+personal-finance,20,finance,grade=11&area=save&skill=infl&count=s,real return for four accounts against inflation
+personal-finance,24,finance,grade=11&area=credit&skill=card,minimum payment against a fixed payment at an APR
+personal-finance,25,finance,grade=11&area=credit&skill=amort&count=m,first six amortization rows and total interest
+personal-finance,3,finance,grade=11&area=earn&skill=pay&count=m,five hourly workers with overtime plus salaries
+personal-finance,37,finance,grade=11&area=risk&skill=insure&ins=renters,renters plans in quiet theft and fire years
+personal-finance,38,finance,grade=11&area=risk&skill=insure&ins=health,two health plans across three medical years
+personal-finance,6,finance,grade=11&area=earn&skill=taxret&count=m,standard deduction brackets refund or amount owed
+personal-finance,9,finance,grade=11&area=spend&skill=b50,50/30/20 split sort and rebalance after rent rises
+theater-12,22,finance,grade=12&area=risk&skill=own&own=lights,LED or tungsten rig cost over five years
+us-hist-hs,18,finance,grade=11&area=risk&skill=margin&count=m,four investors on 10 percent margin around 1929
+world-geo-6,46,finance,grade=6&area=econ&skill=exchange&count=m,convert six prices and say where cheaper
+cte-pathways,33,grammar-words,grade=10&skill=roots&focus=med&count=l,15 medical terms split and defined
+ela-1,17,grammar-words,grade=1&skill=tense&count=l,writes verb forms on time line; no cutting
+ela-1,20,grammar-words,grade=1&skill=pattern&focus=fam&count=l,15-word family sort plus new words
+ela-1,22,grammar-words,grade=1&skill=rootword&count=m,6 root word trees with endings
+ela-2,21,grammar-words,grade=2&skill=contract&count=s,8 contractions written; no cutting
+ela-2,23,grammar-words,grade=2&skill=compound&count=l,10 compounds from a box plus drawings
+ela-2,24,grammar-words,grade=2&skill=shades&count=m,paint-strip ladders plus one sentence
+ela-2,3,grammar-words,grade=2&skill=affix&count=m,8 words with un- re- -ful -less -ly
+ela-3,17,grammar-words,grade=3&skill=quotes&count=m,8 dialogue lines punctuated
+ela-3,19,grammar-words,grade=3&skill=tense&count=m,8 verbs on time line with irregulars
+ela-3,22,grammar-words,grade=3&skill=figlit&count=l,12 sentences sorted; rewrite 3 plainly
+ela-4,21,grammar-words,grade=4&skill=roots&focus=tpg&count=l,10 words split with part box; invent one
+ela-4,34,grammar-words,grade=4&skill=pov&count=l,8 passages labeled; rewrite 2
+ela-5,20,grammar-words,grade=5&skill=commas&count=l,12 sentences; grade mix adds dates and dialogue
+ela-5,21,grammar-words,grade=5&skill=titles&count=m,10 titles underlined or quoted
+ela-5,22,grammar-words,grade=5&skill=perfect&count=m,8 perfect-tense fill-ins with time clues
+ela-5,27,grammar-words,grade=5&skill=roots&focus=bgt&count=l,10 science words from bio geo therm
+ela-5,28,grammar-words,grade=5&skill=link&count=s,8 linking-word choices incl however moreover
+ela-6,20,grammar-words,grade=6&skill=connot&count=m,connotation thermometers positive to negative
+ela-6,34,grammar-words,grade=6&skill=roots&focus=avd&count=l,12 words from aud vis dict
+ela-7,16,grammar-words,grade=7&skill=clause&count=l,15 phrases and clauses labeled
+ela-7,21,grammar-words,grade=7&skill=concise&count=l,10 wordy sentences revised; no paragraph
+ela-7,33,grammar-words,grade=7&skill=roots&focus=bcd&count=l,12 words from bell cred dict
+ela-7,35,grammar-words,grade=7&skill=coord&count=l,12 pairs with and test; write sentences
+ela-7,37,grammar-words,grade=7&skill=sufspell&count=l,15 suffix words with rule named
+ela-8,15,grammar-words,grade=8&skill=verbal&count=l,12 verbals named with function
+ela-8,16,grammar-words,grade=8&skill=voice&count=l,10 voice switches; teacher note on passive
+ela-8,17,grammar-words,grade=8&skill=mood&count=l,12 sentences by mood plus one shift fix
+ela-8,33,grammar-words,grade=8&skill=roots&focus=ced&count=l,12 words from cede ceed cess
+ela-9,22,grammar-words,grade=9&skill=parallel&count=l,12 faulty parallel sentences revised
+ela-10,19,grammar-words,grade=10&skill=semi&count=l,12 sentences with mark and reason
+ela-11,25,grammar-words,grade=11&skill=hyphen&count=l,15 modifiers plus paragraph fix
+eld-1,33,grammar-words,grade=1&skill=frames&focus=ask&level=e&count=s&topic=a classroom visitor's job,4 question frames for a visitor
+eld-12,5,grammar-words,grade=12&skill=nominal&count=l,8 academic rewrites plus verb-noun table
+eld-2,5,grammar-words,grade=2&skill=signal&focus=seq&count=l,9 sequence words sorted; use 3
+eld-3,27,grammar-words,grade=3&skill=signal&focus=ce&count=l&topic=weather,cause and effect sort; sentences about weather
+eld-3,33,grammar-words,grade=3&skill=tensechange&count=l,10 present sentences changed to past
+eld-3,9,grammar-words,grade=3&skill=factop&count=m,10 fact or opinion with signal words
+eld-5,12,grammar-words,grade=5&skill=shades&count=s,5 strength ladders; one sentence
+eld-5,29,grammar-words,grade=5&skill=nominal&count=s,6 verbs to nouns plus formal sentences
+eld-5,4,grammar-words,grade=5&skill=register&count=m,10 sentences sorted; rewrite 3 formally
+eld-6,29,grammar-words,grade=6&skill=idiom&count=m,10 idioms matched; draw 2 literal meanings
+eld-6,31,grammar-words,grade=6&skill=phrasal&count=l,10 phrasal verbs from a bank
+eld-7,31,grammar-words,grade=7&skill=colloc&count=s,10 make take do have fill-ins
+music-1,4,music-notation,grade=1&skill=rests&count=l,circle the rest in 6 rhythms; trace rests
+music-1,5,music-notation,grade=1&skill=listen&count=m,5 clapped rows; circle matching stick notation
+music-1,34,music-notation,grade=1&skill=staff&lines=two&bars=1,2-line so-mi staff with ta/ti-ti line
+music-1,35,music-notation,grade=1&skill=staff&lines=rhythm&bars=1,one 4-beat rhythm measure for a drum ostinato
+music-2,2,music-notation,grade=2&skill=barlines&count=l,6 rhythm strings; draw bar lines and double bar
+music-2,3,music-notation,grade=2&skill=fix&count=l,12 measures in 4/4; 8 do not add up
+music-2,6,music-notation,grade=2&skill=staff&lines=rhythm&bars=4,4-measure rhythm line with ta and ti-ti words
+music-2,10,music-notation,grade=2&skill=solfa&count=m,6 so-mi-la patterns on a 3-line staff
+music-2,34,music-notation,grade=2&skill=staff&lines=three&bars=2,8-beat so-mi-la melody with rhythm words
+music-3,2,music-notation,grade=3&skill=names&count=m&spell=1,12 treble notes plus 4 hidden words
+music-3,3,music-notation,grade=3&skill=words&count=m,decode 8 note words; write 2 for a partner
+music-3,6,music-notation,grade=3&skill=barlines&meter=mix&count=l,6 lines in mixed meters; fill short measures
+music-3,15,music-notation,grade=3&skill=motion&count=s,10 moves labeled; write your own 6-note melody
+music-3,16,music-notation,grade=3&skill=scales&tonic=c,C major on staff with degrees and keyboard
+music-3,28,music-notation,grade=3&skill=staff&form=ab,8-measure AB staff paper with title and checklist
+music-4,2,music-notation,grade=4&skill=rhythm&focus=six&count=l,8 rhythm lines with sixteenths; write 1 e & a
+music-4,3,music-notation,grade=4&skill=rhythm&focus=dot&meter=mix&fixpart=1,dotted half and whole counts in 3/4 and 4/4; fix 4
+music-4,10,music-notation,grade=4&skill=dictate&focus=six,4 clapped rhythms in 4/4 with sixteenths
+music-4,13,music-notation,grade=4&skill=steps&count=m,10 key pairs W or H; both natural half steps
+music-4,14,music-notation,grade=4&skill=scales&tonic=first&count=l,"C, G and F major on staff and keyboard"
+music-5,2,music-notation,grade=5&skill=names&clef=grand,12 notes across the grand staff
+music-5,3,music-notation,grade=5&skill=rhythm&focus=dotq&count=l,8 dotted quarter rhythms with counts
+music-5,14,music-notation,grade=5&skill=scales&scale=nmin&tonic=first&count=l,"A, D and E natural minor on staff and keyboard"
+music-5,24,music-notation,grade=5&skill=staff&bars=16,16-measure staff paper with title tempo and dynamics
+music-7,2,music-notation,grade=7&skill=inversions&count=l,"C, F, G in all three positions with bass note"
+music-7,3,music-notation,grade=7&skill=diatonic&tonic=first,"all 7 triads in C and G, numerals, sorted"
+music-8,4,music-notation,grade=8&skill=symbols,10 chord symbols on staff and keyboard
+music-9,2,music-notation,grade=9&skill=keysig&keys=mix&clef=both&count=l,name 20 keys and write 8 in both clefs
+music-9,3,music-notation,grade=9&skill=scales&scale=forms&tonic=first&count=l,"A, D, E minor in three forms; explain why"
+music-9,4,music-notation,grade=9&skill=diatonic&chords=sev&tonic=d&count=s,7 diatonic seventh chords in D major with qualities
+library-1,23,project-frames,kind=research&band=k2&count=1&topic=Animal Homes,wonder question; book; draw findings
+library-3,12,project-frames,kind=research&band=35&count=2,keywords synonyms first and backup place
+library-3,25,project-frames,kind=research&band=35&count=2,two sources note boxes source list
+library-4,22,project-frames,kind=research&band=35&count=3,three sources notes bibliography
+library-4,36,project-frames,kind=research&band=35&count=3,question to sources notes bibliography
+library-5,10,project-frames,kind=research&band=35&count=2,AND OR search; first and backup place
+library-5,36,project-frames,kind=research&band=35&count=3,question search sources notes works cited
+library-9,27,project-frames,kind=research&band=912&count=3,supporting questions source types timeline
+ss-4,4,project-frames,kind=research&band=35&count=3,3 supporting questions; source type each
+ela-1,42,project-frames,kind=present&band=k2&form=report&count=3,show and tell sentences plus drawing
+ela-3,41,project-frames,kind=present&band=35&form=report&count=3&mins=1,one-minute talk 3 facts visual pace
+ela-5,41,project-frames,kind=present&band=35&form=opinion&count=3&mins=3,3-minute opinion talk visuals per reason
+ela-6,32,project-frames,kind=present&band=68&form=opinion&count=3&mins=3,claim ordered findings details visuals
+ela-7,31,project-frames,kind=present&band=68&form=report&count=3,points details evidence media each
+ela-8,14,project-frames,kind=present&band=68&form=opinion&count=3,claims evidence reasoning multimedia
+ela-8,31,project-frames,kind=present&band=68&form=report&count=3,audience purpose details transitions
+ela-9,34,project-frames,kind=present&band=912&form=report&count=3,findings evidence visuals for audience
+eld-12,32,project-frames,kind=present&band=912&form=report&count=3&mins=3,opening 3 points transitions visuals close
+eld-5,14,project-frames,kind=present&band=35&form=opinion&count=2&mins=1,hook claim 2 reasons counterclaim
+library-3,34,project-frames,kind=present&band=35&form=booktalk&mins=1,hook 3 details no spoilers
+library-8,17,project-frames,kind=present&band=68&form=report&count=3&mins=5,5-minute talk visuals citations practice
+cte-explore-8,33,project-frames,kind=present&band=68&form=pitch&mins=1,problem solution customers costs risks
+visual-arts-7,39,project-frames,kind=present&band=68&form=pitch&mins=2,mural pitch with the ask
+library-6,18,project-frames,kind=slides&band=68&count=6,slides sketched with speaker notes
+cte-pathways,22,project-frames,kind=slides&band=912&count=6&titles=Problem%2C Solution%2C Market%2C Numbers%2C Team%2C The ask,six named pitch slides
+ela-2,46,project-frames,kind=slides&band=k2&count=4,title words sketch per slide
+media-arts-1,17,project-frames,kind=slides&band=k2&count=6,6 slides sketch and caption
+media-arts-k,16,project-frames,kind=slides&band=k2&count=4,4 pictures in order
+media-arts-k,6,project-frames,kind=storyboard&band=k2&count=3,beginning middle end boxes
+media-arts-3,5,project-frames,kind=storyboard&band=35&count=6,6-panel stop-motion story
+media-arts-12,19,project-frames,kind=storyboard&band=912&count=8,8-frame logo storyboard
+media-arts-9,4,project-frames,kind=storyboard&band=912&count=12,12 frames shot and movement
+media-arts-8,23,project-frames,kind=storyboard&band=68&count=8&lines=Shot and angle%2C Action%2C Sound%2C Text card,8 shots with text cards
+media-arts-10,8,project-frames,kind=storyboard&band=912&count=6,shot reverse shot conversation
+media-arts-12,4,project-frames,kind=storyboard&band=912&count=12,shot numbers and transitions
+media-arts-6,23,project-frames,kind=storyboard&band=68&count=6&lines=Caption%2C Dialogue,6-panel comic version
+media-arts-10,5,project-frames,kind=storyboard&band=912&count=8,8-shot montage with seconds
+media-arts-7,5,project-frames,kind=storyboard&band=68&count=6&lines=Photo role%2C Subject%2C Caption,6-photo essay plan
+asl-advanced,18,project-frames,kind=storyboard&band=912&count=8&lines=Shot%2C Classifier%2C Non-manual marker,ASL lines under 8 frames
+media-arts-3,8,project-frames,kind=shotlist&band=35&count=8&timing=12&cols=What moves%2C Camera spot,frames what moves camera
+media-arts-9,34,project-frames,kind=shotlist&band=912&count=12&cols=What it shows%2C Interview line%2C Shot and angle%2C Location,12 B-roll shots
+media-arts-9,5,project-frames,kind=shotlist&band=912&count=12,grouped by setup column
+media-arts-11,6,project-frames,kind=shotlist&band=912&count=8&cols=Coverage%2C Subject%2C Angle%2C Lines covered,master medium CU insert
+media-arts-11,31,project-frames,kind=shotlist&band=912&count=8,angles and coverage list
+media-arts-5,5,project-frames,kind=shotlist&band=35&count=10&cols=Panel shows%2C Dialogue or sound,seconds per panel
+media-arts-8,13,project-frames,kind=shotlist&band=68&count=12&timing=24&cols=Panel shows%2C Dialogue%2C Sound,12-panel animatic timing
+media-arts-5,2,project-frames,kind=shotlist&band=35&count=10&timing=12&cols=Pose%2C Who moves%2C How far,10 poses frame counts
+media-arts-6,16,project-frames,kind=shotlist&band=68&count=8&timing=12&cols=Key pose%2C What moves%2C Camera position,frame counts poses camera
+theater-2,26,project-frames,kind=script&band=k2&count=6,6 lines with direction box
+theater-3,10,project-frames,kind=script&band=35&count=8&topic=The lost library book,8 lines two characters directions
+theater-3,22,project-frames,kind=script&band=35&count=8,8-line scene with directions
+theater-6,22,project-frames,kind=script&band=68&count=10,10-line script names directions
+theater-7,22,project-frames,kind=script&band=68&count=12,12 lines with the turn
+media-arts-2,4,project-frames,kind=script&band=k2&count=6&cue=sound,6 lines sound cues model
+media-arts-6,25,project-frames,kind=script&band=68&count=12&cue=sound,podcast narration and cues
+media-arts-7,24,project-frames,kind=script&band=68&count=16&cue=sound,audio drama sound music cues
+media-arts-5,4,project-frames,kind=script&band=35&count=12&cue=action,animation action and dialogue
+media-arts-10,10,project-frames,kind=script&band=912&count=16&cue=action,genre short script
+dance-2,2,project-frames,kind=counts&band=k2&count=8,move on each count grid
+dance-3,5,project-frames,kind=counts&band=35&count=8,symbol key plus 8-count phrase
+dance-3,22,project-frames,kind=counts&band=35&count=16&layers=Symbol%2C Level,phrase in class symbols
+dance-3,11,project-frames,kind=counts&band=35&count=16&layers=Dancer A%2C Dancer B%2C Dancer C,unison then canon by count
+dance-4,4,project-frames,kind=counts&band=35&count=16&layers=Dancer A%2C Dancer B%2C Dancer C%2C Dancer D,4-dancer canon grid
+dance-4,6,project-frames,kind=counts&band=35&count=16&layers=Symbol%2C Level%2C Direction%2C Turn or hold,16-count symbol grid
+dance-4,19,project-frames,kind=counts&band=35&count=32&layers=Sound%2C Move,32-count sound score
+dance-5,2,project-frames,kind=counts&band=35&count=32,theme plus 3 variations by eight
+dance-5,4,project-frames,kind=counts&band=35&count=32&ands=1&layers=Clap or stomp,offbeat patterns with ands
+dance-5,10,project-frames,kind=counts&band=35&count=32&layers=Move or symbol%2C Level%2C Direction%2C Turn or accent,32-count rondo symbols
+dance-5,22,project-frames,kind=counts&band=35&count=16&layers=Dancer A%2C Dancer B%2C Dancer C%2C Dancer D,4-dancer score
+dance-6,3,project-frames,kind=counts&band=68&count=32,motif development by eight
+dance-6,6,project-frames,kind=counts&band=68&count=16&layers=Move%2C Effort action%2C Level,16 counts effort actions
+dance-6,8,project-frames,kind=counts&band=68&count=32,arc sections and transitions
+theater-5,8,project-frames,kind=stage&band=35&count=5,5 moves with why
+dance-3,36,project-frames,kind=stage&band=35&count=4,4 dancers start spots paths
+dance-4,31,project-frames,kind=stage&band=35&count=6,6 dancers; teacher reads directions
+dance-7,24,project-frames,kind=stage&band=68&count=5,5 spike marks and notes
+dance-7,8,project-frames,kind=stage&band=68&count=f6,6 formations with transitions
+visual-arts-1,9,project-frames,kind=art&band=k2&count=2&focus=elements,shape line color banks sketch
+visual-arts-2,9,project-frames,kind=art&band=k2&count=2&focus=elements,line shape texture color banks
+visual-arts-3,7,project-frames,kind=art&band=35&count=2&focus=color,warm cool swatches sketch
+visual-arts-3,37,project-frames,kind=art&band=35&count=2&focus=color,mood colors 2 thumbnails
+visual-arts-4,7,project-frames,kind=art&band=35&count=3&focus=color,scheme swatches justify mood
+visual-arts-5,7,project-frames,kind=art&band=35&count=3&focus=color,scheme test swatches justify
+visual-arts-5,37,project-frames,kind=art&band=35&count=3&focus=color,thumbnails scheme medium
+visual-arts-6,9,project-frames,kind=art&band=68&count=3&focus=principles,2 principles 3 thumbnails notes
+visual-arts-7,9,project-frames,kind=art&band=68&count=4&focus=principles,4 thumbnails principles choose
+visual-arts-8,8,project-frames,kind=art&band=68&count=3&focus=principles,idea principles 3 thumbnails
+visual-arts-9,18,project-frames,kind=art&band=912&count=3&focus=value,thumbnails value plan focal point
+visual-arts-10,18,project-frames,kind=art&band=912&count=3&focus=value,3 value plans choose one
+visual-arts-11,18,project-frames,kind=art&band=912&count=3&focus=value,perspective and value plan
+visual-arts-12,16,project-frames,kind=art&band=912&count=4&focus=value,perspective 4 thumbnails rationale
+media-arts-1,36,project-frames,kind=art&band=k2&count=2&focus=poster,picture words colors where hung
+media-arts-2,36,project-frames,kind=art&band=k2&count=2&focus=poster,audience picture slogan colors
+media-arts-4,37,project-frames,kind=art&band=35&count=3&focus=poster,audience image slogan
+health-8,9,project-frames,kind=art&band=68&count=2&focus=poster,message facts sources call to action
+cs-5,46,project-frames,kind=matrix&band=35&count=3&crit=Cost%2C Benefit%2C Privacy%2C Planet,3 gadgets 4 criteria recommend
+cte-explore-8,9,project-frames,kind=matrix&band=68&count=3&weights=1&crit=Interest%2C Pay%2C Training%2C Outlook%2C Location,5 weighted career factors
+cte-pathways,28,project-frames,kind=matrix&band=912&count=3&weights=1&crit=Cost%2C Strength%2C Ease to build,weighted design choice
+environmental,23,project-frames,kind=matrix&band=912&count=5&crit=Cost%2C Emissions%2C Land use%2C Reliability,5 energy sources recommend mix
+environmental,37,project-frames,kind=matrix&band=912&count=4&weights=1&crit=Cost%2C Safety%2C Reliability%2C Environmental impact,4 flood solutions weighed
+science-ms-8,49,project-frames,kind=matrix&band=68&count=4&weights=1,4 designs weighted criteria
+music-9,31,project-frames,kind=matrix&band=912&count=4&crit=Difficulty%2C Contrast%2C Length%2C Fit with strengths,4 pieces choose program
+visual-arts-9,23,project-frames,kind=matrix&band=912&count=6&crit=Skill%2C Idea%2C Growth%2C Variety,rank 6 pieces pick 3
+dance-7,12,project-frames,kind=matrix&band=68&count=4&crit=Impact%2C Ease (low effort),4 revisions impact effort
+media-arts-12,6,project-frames,kind=matrix&band=912&count=3&crit=Light%2C Sound%2C Access%2C Permissions,score 3 locations
+library-11,4,project-frames,kind=matrix&band=912&count=4&crit=Sources available%2C Scope%2C Time,test 4 questions choose
+theater-6,16,project-frames,kind=matrix&band=68&count=6&crit=Conflict%2C Stakes,rate 6 issues choose one
+library-1,28,project-frames,kind=interview&band=k2&count=3,3 questions with question starters
+library-2,31,project-frames,kind=interview&band=k2&count=4,4 open questions to classmate
+library-2,32,project-frames,kind=interview&band=k2&count=4,answer box per question
+cs-8,43,project-frames,kind=interview&band=68&count=6&groups=Tools%2C Teamwork%2C Training,6 questions in 3 groups
+cte-explore-7,9,project-frames,kind=interview&band=68&count=8&groups=Skills%2C Training%2C A typical day%2C Challenges,8 career speaker questions
+eld-11,35,project-frames,kind=interview&band=912&count=8,8 questions follow-ups notes
+ss-3,13,project-frames,kind=interview&band=35&count=6,6 open questions about change
+ss-4,43,project-frames,kind=interview&band=35&count=8&groups=What they do%2C Skills%2C Training%2C Pay,career talk question groups
+eld-9,6,project-frames,kind=debate&band=912&count=3,claim reasons evidence rebuttals frames
+french-advanced,28,project-frames,kind=debate&band=912&count=3&lang=fr,arguments rebuttals roles French frames
+spanish-advanced,27,project-frames,kind=debate&band=912&count=3&lang=es,arguments rebuttals roles Spanish frames
+pe-6,39,project-frames,kind=coach&band=68,skill cues drill tries feedback
+pe-7,34,project-frames,kind=coach&band=68,drill setup reps success criteria
+pe-9,32,project-frames,kind=coach&band=912,observation feedback drill success check
+pe-11,30,project-frames,kind=coach&band=912,learning stage practice type feedback plan
+asl-advanced,32,rubric-checklist,grade=11&subject=lang&who=group&crit=Role+shift;Eye+gaze;Classifiers;Pacing,rate four storytelling criteria with evidence
+asl-advanced,33,rubric-checklist,kind=feedback&grade=11&subject=lang&protocol=glow22,two strengths and two next steps with checklist
+asl-advanced,38,rubric-checklist,grade=11&subject=lang&who=self&count=6&after=change,six criteria with reasons and one moment to redo
+asl-advanced,40,rubric-checklist,kind=cando&grade=11&level=intermediate&lang=asl&form=portfolio,three pieces rated on Intermediate sublevels
+asl-intermediate,24,rubric-checklist,grade=10&subject=lang&crit=Clear+placement;Consistent+space;Handshape+choice,classifier scene peer rubric
+asl-intermediate,39,rubric-checklist,kind=cando&grade=10&level=intermediate&lang=asl,12 ASL statements with evidence and 2 goals
+asl-novice,41,rubric-checklist,kind=cando&grade=9&level=novice&lang=asl,12 ASL statements with examples and 2 goals
+cte-explore-6,15,rubric-checklist,grade=6&subject=general&who=self&count=6,six workplace skills with evidence and next step
+cte-pathways,15,rubric-checklist,grade=11&subject=general&crit=Eye+contact;Clarity;Examples;Questions+asked,mock interview scorecard with evidence
+dance-1,15,rubric-checklist,kind=faces&grade=1&subject=dance&who=self&draw=none,faces for the four safety habits
+dance-1,27,rubric-checklist,kind=faces&grade=1&who=self&crit=Practice;Clear+end+shape;Strong+face&draw=change,rate what helped and draw one change
+dance-10,13,rubric-checklist,grade=10&perf=3&crit=Technique;Intent;Performance,panel grid for 3 solos with comments
+dance-10,23,rubric-checklist,kind=feedback&grade=10&protocol=clr&checks=0,the four Critical Response steps
+dance-10,37,rubric-checklist,grade=10&who=group&crit=Site+use;Transitions;Audience+flow;Safety,dress rehearsal critique with next steps
+dance-11,23,rubric-checklist,kind=feedback&grade=11&protocol=clr&checks=0,record meaning and questions and opinions
+dance-11,37,rubric-checklist,grade=11&who=group&crit=Artistic+quality;Production;Audience+experience,concert critique with evidence
+dance-12,23,rubric-checklist,kind=feedback&grade=12&protocol=glow22&crit=Concept;Structure;Originality;Execution,structured capstone draft critique
+dance-12,37,rubric-checklist,grade=12&who=group&crit=Artistry;Production;Site+integration,final concert rubric with evidence
+dance-2,24,rubric-checklist,kind=feedback&grade=2&crit=Clear+start;Feeling+shown;Still+ending,check 3 criteria then glow and grow
+dance-3,14,rubric-checklist,kind=feedback&grade=3&crit=Timing;Clear+repeats;Smooth+transitions,checklist plus one suggestion
+dance-3,39,rubric-checklist,grade=3&who=self&crit=Spacing;Focus;Energy;Audience+connection,self rubric and one next step
+dance-4,13,rubric-checklist,grade=4&who=group&crit=Form+clarity;Canon+timing;Unison,group critique with evidence lines
+dance-4,38,rubric-checklist,"kind=skill&grade=4&skill=custom&cues=Eye+line,Stillness,Breath&tries=3",partner checks focus cues each run
+dance-4,39,rubric-checklist,grade=4&who=self&crit=Spacing;Focus;Energy;Timing&after=goals,self rubric and two goals
+dance-5,14,rubric-checklist,grade=5&who=group&perf=2&crit=Theme+recognizable;Clear+variations;Exact+timing,judge 2 groups on one grid
+dance-5,23,rubric-checklist,kind=feedback&grade=5&who=group&crit=Idea+clarity;Variety;Transitions,group feedback with criteria checklist
+dance-5,38,rubric-checklist,"kind=skill&grade=5&who=self&skill=custom&cues=Projection,Focus,Breath,Energy,Recovery&tries=1",five stage presence cues as self-check
+dance-6,11,rubric-checklist,kind=feedback&grade=6&protocol=das,describe ask suggest with count lines
+dance-6,25,rubric-checklist,grade=6&who=group&crit=Use+of+space;Safety;Audience+connection,nontraditional space critique
+dance-6,26,rubric-checklist,grade=6&who=self&crit=Technique;Spacing;Note-taking&after=goals,readiness self-check and two goals
+dance-7,11,rubric-checklist,kind=feedback&grade=7&who=group&crit=Device+use;Structure+clarity;Transitions,group feedback citing counts
+dance-7,25,rubric-checklist,grade=7&who=group&crit=Sightlines;Spacing;Safety;Energy,venue adaptation critique
+dance-8,25,rubric-checklist,grade=8&who=group&crit=Space;Energy;Safety,venue critique with evidence
+dance-8,9,rubric-checklist,kind=feedback&grade=8&crit=Intent;Structure;Variety;Performance+quality,draft showing criteria feedback
+dance-9,23,rubric-checklist,kind=feedback&grade=9&crit=Clarity+of+message;Structure;Originality;Respect,draft critique with checklist
+dance-9,36,rubric-checklist,grade=9&who=group&crit=Use+of+the+site;Audience+flow;Safety,site run-through critique
+dance-9,5,rubric-checklist,kind=build&grade=9&crit=Technique;Choreography;Performance;Production,students write 4 levels per criterion
+dance-k,26,rubric-checklist,kind=faces&grade=k&who=self&mark=stars&crit=I+looked+up;I+stayed+in+my+space;I+held+my+end+shape&draw=none,a star for each sharing step
+french-advanced,37,rubric-checklist,grade=11&subject=lang&who=self&crit=Fluency;Evidence;Listening;Register&after=goals,debate self-rubric and two goals
+french-advanced,40,rubric-checklist,kind=cando&grade=12&level=advanced&form=portfolio,three pieces against Advanced descriptors
+french-intermediate,40,rubric-checklist,kind=cando&grade=10&level=intermediate,12 statements with evidence and 2 goals
+french-novice,41,rubric-checklist,kind=cando&grade=9&level=novice,12 statements by mode with examples and goals
+media-arts-1,13,rubric-checklist,kind=faces&grade=1&subject=media&who=peer&mark=stars&crit=Order;Sound;Pictures,stars for order and sound and pictures
+media-arts-1,25,rubric-checklist,kind=faces&grade=1&subject=media&who=self&crit=I+shared;I+listened;I+helped&draw=change,crew faces and draw one change
+media-arts-1,38,rubric-checklist,kind=faces&grade=1&subject=media&who=peer&perf=2&mark=stars&crit=Clear+message;Eye-catching+design&draw=none,stars for 2 posters
+media-arts-10,12,rubric-checklist,grade=10&subject=media&perf=2&crit=Genre+conventions;Technique,panel grid for 2 shorts
+media-arts-11,35,rubric-checklist,kind=single&grade=11&subject=media&crit=Pacing;Clarity;Fairness,single-point fine-cut notes
+media-arts-12,11,rubric-checklist,grade=12&subject=media&perf=3,panel rubric for 3 cuts
+media-arts-2,11,rubric-checklist,kind=feedback&grade=2&subject=media&protocol=stars&crit=Order;Sound;Shots,two stars and a wish on a storyboard
+media-arts-2,24,rubric-checklist,kind=faces&grade=2&subject=media&who=group&mark=stars&crit=Clear+story;Readable+slides;Good+narration;Teamwork&draw=none,slideshow stars on 4 criteria
+media-arts-2,38,rubric-checklist,kind=feedback&grade=2&subject=media&crit=Honest;Clear;Eye-catching,ad checklist plus one suggestion
+media-arts-3,11,rubric-checklist,grade=3&subject=media&crit=Smooth+motion;Story;Set,stop-motion rubric and comments
+media-arts-3,24,rubric-checklist,grade=3&subject=media&who=group&crit=Timing;Mood+match;Clarity,live score rubric
+media-arts-4,12,rubric-checklist,grade=4&subject=media&perf=2&crit=Smooth+motion;Timing;Story,2 animations on one grid
+media-arts-4,23,rubric-checklist,grade=4&subject=media&who=group&crit=Mood+match;Timing;Balance,group score critique
+media-arts-5,12,rubric-checklist,grade=5&subject=media&perf=2&crit=Story;Motion;Sound;Craft,2 films on a 4-criteria panel
+media-arts-5,24,rubric-checklist,grade=5&subject=media&who=group&crit=Mood;Timing;Balance;Cultural+respect,score critique on 4 criteria
+media-arts-6,28,rubric-checklist,kind=single&grade=6&subject=media&crit=Consistent+story;Audience+fit,single-point plan feedback
+media-arts-7,27,rubric-checklist,kind=single&grade=7&subject=media&crit=Consistent+characters;Style;Message,consistency single-point check
+media-arts-7,9,rubric-checklist,kind=single&grade=7&subject=media&crit=Sequence;Variety;Message,photo essay plan critique
+media-arts-8,28,rubric-checklist,grade=8&subject=media,campaign rubric with built-in media criteria
+media-arts-9,13,rubric-checklist,kind=single&grade=9&subject=media&crit=Clarity;Pacing,paper edit single-point critique
+media-arts-9,24,rubric-checklist,grade=9&subject=media&perf=3,3 flyers; teacher types the brief goals as criteria
+media-arts-9,37,rubric-checklist,kind=single&grade=9&subject=media&crit=Clarity;Fairness,structured rough cut notes
+media-arts-k,13,rubric-checklist,kind=faces&grade=k&subject=media&who=self&mark=stars&crit=Clear+order;A+good+sound;A+picture+I+like&draw=none,stars for three story qualities
+music-1,38,rubric-checklist,kind=feedback&grade=1&subject=music&protocol=stars&checks=0,draw two stars and a wish
+music-10,28,rubric-checklist,kind=feedback&grade=10&subject=music&perf=3&crit=Form;Melody;Harmony;Text+setting,3 pieces with checklist and comments
+music-10,36,rubric-checklist,grade=10&subject=music&perf=3,mock panel with strength and next step each
+music-12,26,rubric-checklist,kind=feedback&grade=12&subject=music&protocol=glow22&crit=Structure;Orchestration;Originality,criteria-based workshop feedback
+music-12,36,rubric-checklist,kind=feedback&grade=12&subject=music&who=recv&perf=2&crit=Interpretation;Stamina;Transitions;Stage+presence,collect critique from 2 listeners
+music-2,39,rubric-checklist,kind=feedback&grade=2&subject=music&perf=2&crit=Melody;Words;Expression,2 songs with checklist and suggestion
+music-3,37,rubric-checklist,grade=3&subject=music&who=group&levels=3&crit=Steady+beat;Balance;Dynamics;Ending,3-level ensemble rubric
+music-3,39,rubric-checklist,grade=3&subject=music&who=self,4 criteria with strength and next step
+music-4,29,rubric-checklist,kind=feedback&grade=4&subject=music&crit=Contrast;Correct+beats;Clear+ending,checklist then one glow and one grow
+music-4,37,rubric-checklist,grade=4&subject=music&who=group&crit=Tone;Accuracy;Balance;Expression,4-criteria rubric with evidence
+music-4,39,rubric-checklist,grade=4&subject=music&who=self&crit=Preparation;Focus;Teamwork,self rubric and next step
+music-5,35,rubric-checklist,kind=feedback&grade=5&subject=music&who=group,section feedback with criteria and a suggestion
+music-5,39,rubric-checklist,grade=5&subject=music&who=group&after=goals,teacher types class criteria; evidence and 2 goals
+music-6,24,rubric-checklist,grade=6&subject=music&who=self&count=6&after=lowest,six skills and a plan for the lowest
+music-6,30,rubric-checklist,kind=feedback&grade=6&subject=music&crit=Texture;Balance;Interest,measure-anchored arrangement feedback
+music-6,36,rubric-checklist,kind=build&grade=6&subject=music&levels=3&crit=Accuracy;Tone;Expression;Interpretation,students describe 3 levels
+music-7,23,rubric-checklist,kind=feedback&grade=7&subject=music&who=group&crit=Intonation;Rhythm;Balance,section critique with measure numbers
+music-7,30,rubric-checklist,kind=feedback&grade=7&subject=music&who=group&protocol=das&crit=Balance;Contrast;Playability,describe ask suggest by measure
+music-8,19,rubric-checklist,grade=8&subject=music&who=group&crit=Tone;Intonation;Technique;Balance;Musicianship,festival-style rubric with comments
+music-8,31,rubric-checklist,kind=feedback&grade=8&subject=music&crit=Range;Readability;Balance;Interest,measure-specific peer review
+music-9,27,rubric-checklist,kind=feedback&grade=9&subject=music&perf=2&crit=Unity;Contrast;Cadences;Text+setting,2 compositions with criteria
+music-9,35,rubric-checklist,kind=feedback&grade=9&subject=music&who=recv&perf=3&crit=Accuracy;Tone;Expression;Stage+presence,collect written feedback from a group
+music-9,38,rubric-checklist,grade=9&subject=music&who=self&count=5&after=goals,5 criteria and 2 goals
+music-k,38,rubric-checklist,kind=faces&grade=k&subject=music&who=self&mark=stars&crit=Singing+voice;Steady+beat;Brave+sharing&draw=none,stars for three sharing skills
+pe-1,9,rubric-checklist,kind=skill&grade=1&skill=skip&tries=1,smiles per skip cue (not thumbs)
+pe-10,29,rubric-checklist,kind=skill&grade=10&skill=overhand,5 throw mechanics on a grid
+pe-2,19,rubric-checklist,kind=skill&grade=2&skill=overhand&tries=5,5 throws with cues per try
+pe-4,30,rubric-checklist,kind=skill&grade=4&skill=scarf&tries=1&after=praise,5 juggling cues with praise and tip
+pe-4,8,rubric-checklist,grade=4&subject=pe&who=group&crit=Space;Passing;Defense;Teamwork,score plays on 4 criteria
+pe-5,30,rubric-checklist,kind=skill&grade=5&skill=scarf&tries=10&after=praise,10 tosses and 5 cues with praise and tip
+pe-6,30,rubric-checklist,kind=skill&grade=6&skill=overhand&tries=5&after=cues,5 throws with cue grid and missed cue
+pe-7,29,rubric-checklist,kind=skill&grade=7&skill=forearm&tries=8&after=cues,8 passes and 5 cues with pattern line
+pe-8,28,rubric-checklist,kind=skill&grade=8&skill=batting&tries=6&after=cues,6 swings and the most consistent miss
+pe-9,28,rubric-checklist,kind=skill&grade=9&skill=forehand&tries=6,6 attempts and 5 cues (chip preset too)
+pe-k,24,rubric-checklist,"kind=skill&grade=k&skill=catch&cues=Ready+hands,Eyes+on+it,Hands+give&tries=1",color a smile per catch cue
+spanish-advanced,39,rubric-checklist,grade=11&subject=lang&who=self&crit=Fluency;Evidence;Listening;Register&after=goals,debate self-rubric and two goals
+spanish-advanced,40,rubric-checklist,kind=cando&grade=12&level=advanced&form=portfolio,three pieces against Advanced descriptors
+spanish-intermediate,43,rubric-checklist,kind=cando&grade=10&level=intermediate,12 statements with evidence and 2 goals
+spanish-novice,42,rubric-checklist,kind=cando&grade=9&level=novice,12 statements by mode with examples and goals
+theater-1,13,rubric-checklist,kind=feedback&grade=1&subject=theater&protocol=stars&checks=0,draw 2 stars and write a wish
+theater-1,39,rubric-checklist,kind=faces&grade=1&subject=theater&who=self&mark=yesno&crit=I+stayed+in+role;I+listened;I+used+a+fact;I+used+my+prop&draw=goal,yes or not yet and draw a goal
+theater-10,37,rubric-checklist,grade=10&subject=theater&crit=Clarity;Scansion;Operative+words;Intention,verse-speaking peer rubric
+theater-11,13,rubric-checklist,grade=11&subject=theater&who=self&crit=Concept+clarity;Communication+with+actors;Stage+pictures,directing self-rubric and goal
+theater-11,26,rubric-checklist,kind=single&grade=11&subject=theater&crit=Concept+support;Clarity;Practicality,single-point plot critique
+theater-11,37,rubric-checklist,grade=11&subject=theater&crit=Slate;Choices;Connection;Timing,audition panel feedback
+theater-12,26,rubric-checklist,kind=single&grade=12&subject=theater&crit=Clarity;Evidence+of+process;Visual+presentation,portfolio page critique
+theater-12,36,rubric-checklist,grade=12&subject=theater&count=6,6-criterion audition rubric
+theater-2,14,rubric-checklist,kind=feedback&grade=2&subject=theater&protocol=glow2&checks=0,two glows and a grow with word bank
+theater-2,22,rubric-checklist,kind=faces&grade=2&subject=theater&who=group&mark=stars&reason=1&crit=Clear+feelings;Clear+voices;Story,stars plus a reason each
+theater-3,13,rubric-checklist,grade=3&subject=theater&who=self&crit=Voice;Body;Face,self rubric and one choice to strengthen
+theater-3,32,rubric-checklist,kind=build&grade=3&subject=theater&bform=lookfor&blank=1&count=3,choose 3 criteria and describe them onstage
+theater-4,13,rubric-checklist,grade=4&subject=theater&who=self&crit=Objective;Voice;Body;Blocking,4-level self rubric and what to improve
+theater-4,28,rubric-checklist,kind=build&grade=4&subject=theater&bform=lookfor&blank=1,choose 4 criteria then notes while watching
+theater-4,37,rubric-checklist,kind=feedback&grade=4&subject=theater&protocol=notice&perf=3&checks=0,three rounds of notice wonder what if
+theater-5,13,rubric-checklist,grade=5&subject=theater&who=self&crit=Objective;Subtext;Voice;Body;Focus&after=lowest,5 criteria and a plan for one area
+theater-5,31,rubric-checklist,kind=build&grade=5&subject=theater&blank=1&count=3,blank 4-level rubric with 3 criteria
+theater-5,35,rubric-checklist,kind=single&grade=5&subject=theater&crit=Set;Costume;Lights;Sound,design elements and how each helped
+theater-6,13,rubric-checklist,grade=6&subject=theater&who=self&crit=Blocking;Notation;Stage+picture&after=goals,staging self-check and goals
+theater-6,26,rubric-checklist,kind=feedback&grade=6&subject=theater&who=group&crit=Clear+viewpoints;Pacing;The+turn+lands,devised scene feedback
+theater-7,26,rubric-checklist,grade=7&subject=theater&who=group&crit=Viewpoints;Structure;Physical+storytelling;Ensemble,devised work critique with evidence
+theater-8,26,rubric-checklist,kind=feedback&grade=8&subject=theater&who=group&protocol=daij,describe analyze interpret judge
+theater-9,37,rubric-checklist,kind=feedback&grade=9&subject=theater&crit=Clear+objective;Vocal+variety;Physical+choices;Truthfulness,monologue checklist and comments
+theater-9,38,rubric-checklist,grade=9&subject=theater&who=self&count=5,5-part self rubric with strength and next step
+theater-k,39,rubric-checklist,kind=faces&grade=k&subject=theater&who=self&count=3&crit=I+stayed+in+role;I+used+my+prop;I+listened&draw=fav,faces for 3 questions and a drawing
+visual-arts-1,38,rubric-checklist,kind=feedback&grade=1&subject=visual&protocol=card&checks=0,notice and kind question card
+visual-arts-11,29,rubric-checklist,grade=11&subject=visual&crit=Inquiry;Practice;Synthesis,investigation peer rubric
+visual-arts-2,28,rubric-checklist,kind=feedback&grade=2&subject=visual&protocol=stars&checks=0,stars and a wish with art word bank
+visual-arts-2,39,rubric-checklist,kind=faces&grade=2&subject=visual&who=group&mark=stars&crit=Neat;Spaced;Labeled;Easy+to+see&draw=change,display stars and draw one fix
+visual-arts-4,32,rubric-checklist,grade=4&subject=visual&who=group&count=5,5-criteria exhibit rubric with next steps
+visual-arts-5,38,rubric-checklist,kind=feedback&grade=5&subject=visual&who=recv&perf=3,feedback from 3 peers then decide
+visual-arts-7,37,rubric-checklist,grade=7&subject=visual&perf=3,peer jury on 3 designs
+visual-arts-8,9,rubric-checklist,grade=8&subject=visual&who=self&crit=Balance;Emphasis;Contrast;Unity;Movement&after=goals,principles self-check and 2 goals
+visual-arts-9,8,rubric-checklist,kind=feedback&grade=9&subject=visual&protocol=wcq&checks=0,warm cool question and artist response
+algebra-1,39,statistics,grade=9&skill=compare&count=m,"two box plots with outliers, compare"
+algebra-1,40,statistics,grade=9&skill=twoway&count=s,"joint, marginal, conditional, association"
+asl-novice-k5,23,statistics,grade=2&skill=survey&choices=Red%2C+Blue%2C+Green%2C+Yellow&people=10,"color survey, tally, picture bar graph"
+cs-1,30,statistics,grade=1&skill=survey&people=10,"class question, picture answers, tally, 10 names"
+cs-2,30,statistics,grade=2&skill=survey&people=10,"question, choices, tally sheet, who to ask"
+cs-2,31,statistics,grade=2&skill=tally&from=tally&count=m,"20-vote tally to bar graph, 4 questions"
+cs-3,29,statistics,grade=3&skill=tally,24 answers to frequency table and graph
+cs-3,31,statistics,grade=3&skill=odd&count=m,"circle the outlier, give a reason"
+cs-5,14,statistics,grade=5&skill=confusion,"right and wrong box, accuracy"
+cs-5,26,statistics,grade=5&skill=twoway&count=m,"40 answers to two-way table, 3 findings"
+cs-5,27,statistics,grade=5&skill=center&count=m,mean and median with and without outlier
+cs-6,15,statistics,grade=6&skill=confusion&count=m,"20 predictions, accuracy, error pattern"
+cs-7,14,statistics,grade=7&skill=confusion&count=m,"30 leaf predictions, confusion matrix"
+cs-8,14,statistics,grade=8&skill=confusion&count=s,"accuracy for 3 groups, describe gap"
+cs-10,8,statistics,grade=10&skill=confusion&count=s,"precision and recall, 3 spam filters"
+cs-12,8,statistics,grade=12&skill=confusion&count=s,false positive rates for 3 groups
+cs-k,25,statistics,grade=k&skill=survey,"pick a question, draw choices, tally boxes"
+french-intermediate,6,statistics,grade=9&skill=survey&form=grid&lang=fr&people=10,"how-often grid, graph, French frames"
+french-novice,31,statistics,grade=6&skill=survey&form=grid&scale=Oui%2C+Non&lang=fr&people=10,"5 foods yes or no, graph, French frames"
+spanish-intermediate,9,statistics,grade=9&skill=survey&form=grid&lang=es&people=10,"how-often grid, graph, Spanish frames"
+spanish-novice-k5,41,statistics,grade=2&skill=survey&form=grid&scale=S%C3%AD%2C+No&lang=es&people=10,"4 fruits sí or no, tally, graph"
+geometry,39,statistics,grade=10&skill=venn&count=m,"4 Venn diagrams, addition rule explained"
+geometry,40,statistics,grade=10&skill=twoway&count=m,"2 tables, conditional probability, independence"
+geometry,42,statistics,grade=10&skill=hidden&count=s,"6 clues, rebuild table, 3 conditionals"
+math-5,31,statistics,grade=5&skill=lineplot&count=s,"beakers in eighths, line plot, equal share"
+math-6,39,statistics,grade=6&skill=dothist&count=m,"20 travel times, dot plot and histogram"
+math-6,40,statistics,grade=6&skill=box&count=m,"3 five-number summaries, shared-scale box plots"
+math-6,41,statistics,grade=6&skill=mad&count=m,"4 sets, mean and MAD deviation table"
+math-6,42,statistics,grade=6&skill=choose&count=m,"5 sets, mean or median with reasons"
+math-7,39,statistics,grade=7&skill=bags&count=m,"6 marble bag pairs, fractions"
+math-7,40,statistics,grade=7&skill=spinner&count=m,40-spin paper-clip spinner lab
+math-7,41,statistics,grade=7&skill=compound&count=m,"5 events by tree, table, list"
+math-8,37,statistics,grade=8&skill=scatter&count=m,"2 scatter plots, association, outliers"
+math-8,38,statistics,grade=8&skill=fit&count=m,"3 lines of fit, equation, prediction"
+math-8,39,statistics,grade=8&skill=slope&count=s,"4 models, slope and intercept meaning"
+math-8,40,statistics,grade=8&skill=twoway&count=m,"2 tables to complete, row percents"
+psychology,34,statistics,grade=11&skill=normal&ctx=iq&count=s,"IQ normal curve, percents, test limits"
+statistics,3,statistics,grade=12&skill=fences&count=m,"4 sets, fences, flag outliers"
+statistics,4,statistics,grade=12&skill=zscore&count=m,6 z-score comparisons across scales
+statistics,6,statistics,grade=12&skill=segbar&count=s,segmented bars from two-way table
+statistics,7,statistics,grade=12&skill=lsr&count=s,"regression line, r, r squared by hand"
+statistics,16,statistics,grade=12&skill=tree&count=m,"screening test tree, false positive, 3 problems"
+statistics,17,statistics,grade=12&skill=ev&count=m,"4 carnival games, E(X), SD, fair"
+statistics,18,statistics,grade=12&skill=combine&count=m,6 sum and difference problems
+statistics,23,statistics,grade=12&skill=sampprop&count=l,8 sample proportion problems with conditions
+statistics,27,statistics,grade=12&skill=ci&count=m,6 one-proportion and one-mean intervals
+statistics,35,statistics,grade=12&skill=gof&count=m,"candy colors goodness of fit, own bag"
+statistics,37,statistics,grade=12&skill=chisq&count=s,"chi-square independence, conclusion in context"
+spanish-novice-k5,9,world-language,lang=es&level=k5&skill=count&count=l,10 count boxes with numeral and traced word
+spanish-novice-k5,10,world-language,lang=es&level=k5&skill=colors&count=m,8 color words to crayons plus 4 drawings
+spanish-novice-k5,14,world-language,lang=es&level=k5&skill=months&count=l,12 months from word bank plus 4 drawings; cars not wheel
+spanish-novice-k5,29,world-language,lang=es&level=k5&skill=clock&count=m,draw hands on 6 clocks on the hour
+spanish-novice,4,world-language,lang=es&level=novice&skill=nation&count=l,ser chart then 10 nationality agreement sentences
+spanish-novice,9,world-language,lang=es&level=novice&skill=numbers&range=100&count=m,tens line then 10 numbers 21-100 in words
+spanish-novice,11,world-language,lang=es&level=novice&skill=colors&count=m,12 color agreement phrases; no gender-circling step
+spanish-novice,26,world-language,lang=es&level=novice&skill=time&count=l,10 clocks to write plus 4 to draw
+spanish-novice,35,world-language,lang=es&level=novice&skill=gustar&count=m,10 gusta or gustan sentences with pronouns
+spanish-intermediate,1,world-language,lang=es&level=intermediate&skill=conj&tense=pres&verbs=reg&fmt=both&count=l,6 regular charts plus 12 sentences
+spanish-intermediate,22,world-language,lang=es&level=intermediate&skill=conj&tense=pret&verbs=reg&fmt=both&count=l,6 regular preterite charts plus 12 sentences
+spanish-intermediate,23,world-language,lang=es&level=intermediate&skill=conj&tense=pret&verbs=irr&fmt=both&count=l,6 irregular preterite charts plus 12 sentences
+spanish-intermediate,26,world-language,lang=es&level=intermediate&skill=pastmix&count=l,16 signal-word sentences with tense and reason
+spanish-advanced,1,world-language,lang=es&level=advanced&skill=conj&tense=subj&verbs=mix&fmt=both&count=l,6 subjunctive charts plus 12 trigger sentences
+spanish-advanced,2,world-language,lang=es&level=advanced&skill=conj&tense=subj&verbs=irr&fmt=both&count=l,6 irregular subjunctive charts plus 12 sentences
+spanish-advanced,4,world-language,lang=es&level=advanced&skill=mood&count=l,15 mood choices each with a reason
+spanish-advanced,16,world-language,lang=es&level=advanced&skill=si&sitype=unreal&count=l,10 hypothetical si clauses; formation in example only
+spanish-advanced,18,world-language,lang=es&level=advanced&skill=review&count=l,20 mixed items; no written response
+french-novice,8,world-language,lang=fr&level=novice&skill=numbers&range=99&count=m,10 numbers 70-99 as math and words
+french-novice,9,world-language,lang=fr&level=novice&skill=colors&count=m,12 color agreement phrases after the noun
+french-novice,17,world-language,lang=fr&level=novice&skill=possess&count=m,12 possessives matched to thing owned
+french-novice,23,world-language,lang=fr&level=novice&skill=time24&count=l,10 times 24-hour to everyday and French
+french-novice,30,world-language,lang=fr&level=novice&skill=articles&art=part&count=m,12 partitives with some ne pas de items
+french-intermediate,12,world-language,lang=fr&level=intermediate&skill=places&count=m,country articles then 12 en au aux à
+french-intermediate,19,world-language,lang=fr&level=intermediate&skill=conj&tense=pc&verbs=etre&fmt=sent&count=s,12 être passé composé sentences with agreement
+french-intermediate,22,world-language,lang=fr&level=intermediate&skill=pastmix&count=l,16 signal-word sentences with tense and reason
+french-advanced,4,world-language,lang=fr&level=advanced&skill=conj&tense=pqp&verbs=mix&fmt=sent&count=s,12 plus-que-parfait sentences after a past event
+french-advanced,5,world-language,lang=fr&level=advanced&skill=conj&tense=subj&verbs=mix&fmt=both&count=l,6 subjonctif charts plus 12 trigger sentences
+french-advanced,7,world-language,lang=fr&level=advanced&skill=mood&count=l,15 mood choices incl je pense / ne pense pas
+french-advanced,13,world-language,lang=fr&level=advanced&skill=review&count=l,20 mixed advanced items; no paragraph

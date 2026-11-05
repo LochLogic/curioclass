@@ -1,0 +1,22 @@
+{
+  "id": "nonsense-words",
+  "status": "beta",
+  "hook": "One made-up word. Sound it out, then try the next.",
+  "outcome": "Practice decoding made-up words in eight phonics patterns: CVC, CVCe, digraphs, blends, vowel teams, diphthongs, r-controlled, word endings.",
+  "driver": "students",
+  "minutes": "5-10",
+  "modes": [
+    "Explore",
+    "Practice test",
+    "Challenge"
+  ],
+  "grades_label": "Grades 1-3",
+  "sources": [
+    "Owner-provided words.txt (200 entries, 2026-11-03), grown to 894 by pattern: generated, screened against real words and sound-alikes (wordfreq, CMU dictionary), then a cold wording review",
+    "CCSS RF.2.3a, as specified in spec.md",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-03",
+  "hero": "card"
+}

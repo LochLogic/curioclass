@@ -6,9 +6,9 @@
   <section class="hero">
     <div class="hero-grid">
       <div>
-        <p class="eyebrow">Free for every classroom, K-12</p>
+        <p class="eyebrow">Free for everyone, always</p>
         <h1>A cabinet of <em>curious</em> things to learn with.</h1>
-        <p class="lede">Interactive tools to project, share or download. Explore the elements, find every state, build a bridge. Some are games, most are just good to poke at.</p>
+        <p class="lede">Interactive tools to project or share, printables to hand out, and a desk full of classroom helpers. Explore the elements, find every state, build a bridge. Some are games, most are just good to poke at.</p>
         <form class="search" role="search" action="/search/">
           <label class="sr-only" for="q">Search tools</label>
           <input id="q" name="q" type="search" placeholder="Search a topic, grade or standard">
@@ -32,7 +32,7 @@
   </div>
 
   <section class="block" aria-labelledby="grades-h">
-    <div class="block-head"><h2 id="grades-h">Pick a grade</h2><a href="/grades/">All grades and bands →</a></div>
+    <div class="block-head"><h2 id="grades-h">Pick a grade</h2><a href="/classrooms/">Classrooms by grade and subject →</a></div>
     <div class="grades">
       {% for bid, b in bands.items() %}
       <div class="band">
@@ -45,19 +45,25 @@
     </div>
   </section>
 
-  <section class="block" aria-labelledby="ready-h">
-    <div class="block-head"><h2 id="ready-h">Ready to use</h2><a href="/tools/">All {{ n_built }} →</a></div>
-    <div class="shelf">{% for t in built %}{{ card(t) }}{% endfor %}</div>
-  </section>
 
-  <section class="block" aria-labelledby="styles-h">
-    <div class="block-head"><h2 id="styles-h">Pick a play style</h2><a href="/styles/">All {{ formats | length }} styles →</a></div>
-    <div class="styles">
-      <a class="style-card free" href="/styles/#explore"><b>Just explore</b><span>No score, no quiz. Click around and wonder.</span></a>
-      {% for fid in ['showdown', 'mystery', 'simulator', 'tycoon', 'studio'] %}
-      <a class="style-card" href="/styles/{{ fid }}/"><b>{{ formats[fid].label }}</b><span>{{ formats[fid].what_it_feels_like.split(';')[0] }}</span></a>
-      {% endfor %}
+  {% if closet_live or library_live %}
+  <section class="block" aria-labelledby="doors-h">
+    <div class="block-head"><h2 id="doors-h">Beyond the tools</h2></div>
+    <div class="doors">
+      {% if closet_live %}
+      <a class="door" href="/closet/" style="--door:var(--teal)"><span class="kicker">Supply Closet</span><b>Print and go</b><span>Printables, worksheets, word walls, anchor charts, game night and a sub day packet.</span></a>
+      <a class="door" href="/closet/teacher-desk/" style="--door:var(--accent)"><span class="kicker">Teacher Desk</span><b>Run the room</b><span>The Desk Dock: a timer, signal sounds, a noise meter and a group maker, ready on the projector.</span></a>
+      {% endif %}
+      {% if library_live %}
+      <a class="door" href="/library/" style="--door:var(--ela)"><span class="kicker">Reading Room</span><b>Read together</b><span>Stories, speeches and myths to read on screen or in print.</span></a>
+      {% endif %}
     </div>
+  </section>
+  {% endif %}
+
+  <section class="block" aria-labelledby="ready-h">
+    <div class="block-head"><h2 id="ready-h">Ready to use</h2><a href="/tools/">All {{ n_built }} tools →</a></div>
+    <div class="shelf">{% for t in picks %}{{ card(t) }}{% endfor %}</div>
   </section>
 
   <section class="block" aria-labelledby="subj-h">
@@ -67,10 +73,5 @@
     </div>
   </section>
 
-  <section class="block" aria-labelledby="bench-h">
-    <div class="block-head"><h2 id="bench-h">On the bench</h2><a href="/bench/">See all {{ n_bench }} →</a></div>
-    <p style="margin:-10px 0 20px;color:var(--muted);max-width:60ch">Tools we've sketched but haven't built yet. They show up here first.</p>
-    <div class="bench">{% for t in bench_sample %}{{ card(t) }}{% endfor %}</div>
-  </section>
 </div>
 {% endblock %}

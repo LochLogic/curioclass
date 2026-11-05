@@ -27,8 +27,8 @@ stays here. Public copy says "a free, complete classroom toolkit" and never name
 
 ## Where things stand (2026-11-03)
 
-798 tool concepts, 81 live, 238 more specs, about 80 more built by Codex and waiting on review; 1,008 worksheets
-written (of 8,947 planned); Word Walls for every module; about 700 Reading Room stories processed.
+800 tool concepts, 83 live, 238 more specs, about 80 more built by Codex and waiting on review; 1,008 worksheets
+written (of 8,947 planned); Word Walls for 762 of 797 modules; about 700 Reading Room stories processed.
 
 ## The pillars and where each one lives
 
@@ -42,7 +42,7 @@ written (of 8,947 planned); Word Walls for every module; about 700 Reading Room 
 | Adaptive practice and mastery receipts | Score codes (a code and QR a student shows; scanned locally), later | After the units pilot |
 | Differentiation: accessibility bar, reading-level text, word help, sentence frames | Kit (accessibility bar), Reading Room (levels), Supply Closet: Learning Supports shelf | Accessibility bar after the cohort kit fixes |
 | IEP goal bank | Parked | Needs a special-education reviewer |
-| Supply Closet expansion: worksheets, printables, course cartridges, district pack | Supply Closet; the worksheet generator stays parked; LMS cartridges with the Binder | Worksheets now |
+| Supply Closet expansion: worksheets, printables, course cartridges, district pack | Supply Closet; worksheets and a 15-generator test group live; LMS cartridges with the Binder | Worksheets now |
 | Beyond school: test prep, certifications, trades | Beyond School track | Late; ACT/SAT-style practice first, never trademarked names |
 
 ## What we will not do

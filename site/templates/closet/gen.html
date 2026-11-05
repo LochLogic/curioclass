@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% block title %}{{ g.title }} worksheet generator, grades {{ g.grades }} · Curio Class{% endblock %}
+{% block description %}{{ g.blurb }} A new printable sheet with its answer key every time. Free, no sign-up.{% endblock %}
+{% block head %}
+<style>
+.pr { display: grid; grid-template-columns: 290px 1fr; gap: 28px; align-items: start; margin-top: 10px; }
+.pr-side { position: sticky; top: 84px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
+.pr-field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; font-size: 15px; }
+.pr-field label { font-weight: 600; }
+.pr-field.check label { font-weight: 500; display: flex; gap: 8px; align-items: center; }
+.pr-field input[type=text], .pr-field input[type=number], .pr-field select { font: inherit; border: 1.5px solid var(--line); border-radius: 10px; padding: 8px 10px; background: #fff; color: var(--ink); }
+.pr-field input[type=checkbox] { width: 18px; height: 18px; accent-color: var(--teal); }
+.pr-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 4px; }
+.pr-note { font-size: 13px; color: var(--muted); margin: 12px 0 0; }
+.gen-copy { border: 0; padding: 0; margin: 0 0 14px; font-size: 15px; }
+.gen-copy legend { font-weight: 600; margin-bottom: 4px; }
+.gen-copy label { display: flex; gap: 8px; align-items: center; margin: 2px 0; }
+.gen-view .ws-sheet, .gen-view .ws-teacher { margin-top: 0; }
+@media (max-width: 860px) { .pr { grid-template-columns: 1fr; } .pr-side { position: static; } }
+@media print {
+  .crumbs, .page-head, .pr-side, .site-head, .site-foot, .skip, .gen-more { display: none !important; }
+  .wrap, main { padding: 0 !important; margin: 0 !important; max-width: none !important; }
+  .pr { display: block; margin: 0; }
+}
+</style>
+{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([('Supply Closet', '/closet/'), ('Worksheets', '/closet/worksheets/'), ('Generators', '/closet/worksheets/make/'), (g.title, None)]) }}
+  <div class="page-head"><h1>{{ g.title }}</h1><p>{{ g.blurb }} Grades {{ g.grades }}. Pick the settings, then press New sheet for as many different sheets as you need. Each one has its answer key.</p></div>
+  <div class="pr" id="gen" data-gen="{{ g.id }}" data-title="{{ g.title }}">
+    <aside class="pr-side" aria-label="Settings">
+      <form id="gen-form" onsubmit="return false"></form>
+      <fieldset class="gen-copy"><legend>Copy</legend>
+        <label><input type="radio" name="copy" value="student" checked> Student copy</label>
+        <label><input type="radio" name="copy" value="key"> Answer key and teacher page</label>
+      </fieldset>
+      <div class="pr-actions"><button type="button" class="btn primary" id="gen-new">New sheet</button><button type="button" class="btn" id="gen-print">Print</button></div>
+      <p class="pr-note"><span class="gen-code" id="gen-code"></span>. The page address keeps this exact sheet: bookmark it or share it to print the same one again.</p>
+      <p class="pr-note">Letter paper. Print the student copy for the class, then switch to the key and print one for you.</p>
+    </aside>
+    <div class="gen-view ws-view" id="gen-view" aria-live="polite"><p class="ws-msg">Making a sheet…</p></div>
+  </div>
+  {% if more %}<section class="group gen-more"><h2>More generators</h2><div class="module-grid">
+    {% for m in more %}<article class="module-card"><h3><a href="/closet/worksheets/make/{{ m.id }}/">{{ m.title }}</a></h3><p class="desc">{{ m.blurb }}</p></article>{% endfor %}
+  </div></section>{% endif %}
+</div>
+{% endblock %}
+{% block scripts %}<script src="/assets/gen/engine.js"></script>{% if g.data_js %}<script src="/assets/gen/{{ g.id }}-data.js"></script>{% endif %}<script src="/assets/gen/{{ g.id }}.js"></script>{% endblock %}

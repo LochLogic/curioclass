@@ -32,7 +32,7 @@ body {
   min-height: 100%;
   border: 7px solid var(--brand);
   overflow: hidden;
-  background: var(--paper) url(art:parchment) center / cover no-repeat;
+  background: var(--paper) url(art:parchment) center / cover;
   grid-template-rows: auto minmax(0, 1fr);
 }
 button, select { min-height: 60px; min-width: 60px; }
@@ -79,6 +79,7 @@ main {
 }
 .settings { grid-row: 1; display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
 .kinds, .length { display: flex; align-items: center; gap: 6px; }
+#pattern { min-height:44px; max-width:min(440px, 86vw); padding:6px 40px 6px 16px; border-radius:999px; background:#fffaf0; font-size:17px; }
 .settings button { font-size: 16px; padding: 0 14px; }
 .settings .label { font-size: 14px; color: var(--muted); margin-right: 4px; }
 .length button { width: 60px; padding: 0; }
@@ -99,9 +100,7 @@ main {
 #word-flag { position: absolute; right: -40px; top: 0; font-size: 24px; color: var(--brand); }
 #count { margin: 16px 0 0; font-size: 15px; color: var(--muted); }
 #clock { position: absolute; top: 6px; right: 8px; color: var(--muted); font-size: 16px; font-variant-numeric: tabular-nums; }
-.hourglass { width: 35px; height: 49px; flex: none; }
-.hourglass svg { width: 35px; height: 49px; display: block; }
-#sand { fill: #31734d; }
+.hourglass { width: 44px; height: 44px; flex: none; }
 #pace { min-width: 120px; font-size: 14px; color: var(--muted); text-align: center; margin: 8px 0 0; }
 .ready { text-align: center; max-width: 460px; }
 .ready h2 { font-size: 26px; margin: 8px 0 12px; font-weight: 600; }
@@ -126,10 +125,10 @@ main {
 #score { font-size: 28px; color: var(--ink); }
 .review-words { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px 15px; font-size: 19px; margin: 12px 0; }
 #missed { max-height: 105px; overflow: auto; }
-#perfect { background: var(--brand); color: #fff; padding: 18px; width: 100%; font-size: 28px; border-radius: 4px; }
+#perfect { background: var(--brand); color: #fff; padding: 18px; width: 100%; font-size: 28px; border-radius: 16px; }
 .result .detail { font-size: 14px; color: var(--muted); }
 dialog { width: min(660px, calc(100vw - 30px)); max-height: calc(100dvh - 30px); border: 3px solid var(--brand);
-  border-radius: 9px; background: var(--paper) url(art:parchment) center / cover no-repeat; padding: 18px; color: var(--ink); }
+  border-radius: 9px; background: var(--paper) url(art:parchment) center / cover; padding: 18px; color: var(--ink); }
 dialog::backdrop { background: #152a3d80; }
 .dialog-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .dialog-top h2 { margin: 0; font-size: 23px; }
@@ -151,10 +150,10 @@ dialog::backdrop { background: #152a3d80; }
   h1 { font-size: 21px; }
   h1 small { display: none; }
   .identity img { width: 34px; height: 34px; }
-  .icon-btn { min-height: 60px; }
+  .icon-btn { min-height: 44px; }
   main { padding: 6px 16px; gap: 5px; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
     grid-template-rows: auto minmax(90px, 1fr) auto auto auto; }
-  .settings, .stage, .hint { grid-column: 1 / -1; }
+  .settings, .stage, .hint, .hint-row { grid-column: 1 / -1; }
   .actions { grid-column: 1; grid-row: 4; gap: 6px; }
   .actions button { min-width: 100px; }
   .bottom { display: contents; }
@@ -183,11 +182,6 @@ dialog::backdrop { background: #152a3d80; }
   .result .detail { font-size: 12px; }
   #perfect { padding: 9px; font-size: 22px; }
 }
-@media (max-height: 450px) and (min-width: 600px) {
-  #perfect { padding: 7px; }
-  .result:has(#perfect:not([hidden])) #result-title { display: none; }
-  .result:has(#perfect:not([hidden])) p { margin: 1px 0; }
-}
 @media (max-width: 599px) {
   body { border-width: 5px; }
   header { grid-template-columns: 1fr; padding: 8px; gap: 8px; }
@@ -196,7 +190,7 @@ dialog::backdrop { background: #152a3d80; }
   h1 small { display: none; }
   .identity img { height: 32px; width: 32px; }
   .utilities { grid-row: 3; justify-content: center; }
-  .utilities button { min-height: 60px; }
+  .utilities button { min-height: 44px; }
   .seg { grid-row: 2; gap: 5px; }
   .seg button { padding: 0 10px; font-size: 15px; }
   main { padding: 8px 10px; gap: 8px; grid-template-rows: auto minmax(105px, 1fr) auto auto auto; }
@@ -219,12 +213,55 @@ dialog::backdrop { background: #152a3d80; }
   .result h2 { font-size: 25px; }
   #perfect { padding: 10px; font-size: 23px; }
 }
+
+/* Polish (Curio Class): rounder, softly lit controls, pie countdown, ring timer */
+button, select { border-radius:14px; box-shadow:inset 0 1px 0 #ffffffc8, inset 0 -2px 0 #1c2c400d, 0 2px 5px #1c2c401f;
+  transition:background-color .15s, box-shadow .15s, transform .08s; }
+button:hover:not(:disabled) { box-shadow:inset 0 1px 0 #ffffffc8, inset 0 -2px 0 #1c2c400d, 0 4px 11px #1c2c402b; }
+button:active:not(:disabled) { transform:translateY(1px); box-shadow:inset 0 2px 3px #1c2c4026; }
+button.primary, button[aria-pressed="true"] { box-shadow:inset 0 1px 0 #ffffff40, inset 0 -2px 0 #0000001f, 0 2px 6px #1c2c4033; }
+.seg button, .modes button, .utilities button, .list-tabs button { border-radius:999px; }
+.calm button { transition:none; } .calm button:active:not(:disabled) { transform:none; }
+dialog { border-radius:18px; }
+.hint-row { grid-row:3; display:flex; align-items:center; justify-content:center; gap:10px; }
+.speak { min-width:52px; min-height:52px; width:52px; height:52px; padding:0; border-radius:50%; flex:none;
+  display:inline-grid; place-items:center; color:var(--brand); }
+.speak svg { width:24px; height:24px; }
+#hourglass svg { width:44px; height:44px; display:block; margin:0 auto; }
+.pie-face { fill:#fffaf0; stroke:#9aa3a9; stroke-width:1.5; }
+#pie { fill:none; stroke-width:20; stroke:#3f8158; }
+#hourglass[data-phase="yellow"] #pie { stroke:#c19225; }
+#hourglass[data-phase="red"] #pie { stroke:#b46a5c; opacity:.55; }
+.ring-timer { display:inline-flex; align-items:center; gap:7px; color:var(--muted); font-variant-numeric:tabular-nums; }
+.ring-timer[hidden] { display:none; }
+.ring-timer svg { width:28px; height:28px; }
+.ring-track { fill:none; stroke:#23304a1a; stroke-width:4; }
+#ring { fill:none; stroke:var(--brand); stroke-width:4; stroke-linecap:round; opacity:.75; }
+#reset-dialog p { margin:8px 0 18px; line-height:1.5; }
+.reset-actions { display:flex; gap:10px; justify-content:flex-end; }
+
+main:has(#results:not([hidden])) .actions { flex-wrap:wrap; }
+main:has(#results:not([hidden])) #again { order:-1; flex:0 0 auto; width:min(380px,100%); margin:0 calc(50% - min(190px,50%)); min-height:68px; font-size:26px; }
+.btn-word { color:var(--brand); font-weight:700; }
+/* Card look (Curio Class): match the card art. The word sits on a framed card; buttons get a navy edge and a lip. */
+#word { display:inline-block; position:relative; min-width:4.4em; padding:.16em .7em .2em; background:#fffaf0;
+  border:4px solid var(--brand); border-radius:30px; box-shadow:0 10px 26px #1c2c4029, 0 2px 0 #1c2c4014; }
+#word:empty { visibility:hidden; }
+button, select { border:2px solid #234d77b8; color:var(--brand); font-weight:700;
+  box-shadow:inset 0 1px 0 #ffffffd0, 0 3px 0 #234d7726, 0 4px 10px #1c2c401a; }
+button:hover:not(:disabled) { border-color:var(--brand); box-shadow:inset 0 1px 0 #ffffffd0, 0 3px 0 #234d7740, 0 6px 14px #1c2c4024; }
+button:active:not(:disabled) { transform:translateY(2px); box-shadow:inset 0 2px 3px #1c2c4026, 0 1px 0 #234d7726; }
+button.primary, button[aria-pressed="true"] { background:var(--brand); border-color:var(--brand); color:#fffaf0;
+  box-shadow:inset 0 1px 0 #ffffff38, 0 3px 0 #10253c, 0 5px 12px #1c2c4038; }
+button:disabled { box-shadow:none; }
+.utilities button[aria-pressed="true"] { box-shadow:inset 0 1px 0 #ffffffd0, 0 3px 0 #234d7726; }
+.calm button:active:not(:disabled) { transform:none; }
 </style>
 </head>
 <body>
 <header>
   <div class="identity"><img src="art:quill" alt=""><h1>Nonsense Words<small>CURIO CLASS · READ IT SOUND BY SOUND</small></h1></div>
-  <nav class="seg" role="group" aria-label="Mode">
+  <nav class="seg" aria-label="Mode">
     <button id="m-explore" aria-pressed="true">Explore</button>
     <button id="m-practice" aria-pressed="false">Practice test</button>
     <button id="m-challenge" aria-pressed="false">Challenge</button>
@@ -232,17 +269,15 @@ dialog::backdrop { background: #152a3d80; }
   <div class="utilities">
     <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
     <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
-    <button class="icon-btn" id="read" aria-label="Read the instructions">◖ Read</button>
+    <button class="icon-btn" id="my-flags" title="Explore every word you have flagged">⚑ All flagged (0)</button>
+    <button class="icon-btn" id="reset" title="Clear saved flags, choices and best scores on this device">Reset</button>
   </div>
 </header>
 <main>
   <div class="settings" id="settings">
-    <div class="kinds" role="group" aria-label="Word kinds">
-      <span class="label">Word kinds</span>
-      <button id="kind-cvc" aria-pressed="true" title="Short vowel, consonant vowel consonant">CVC</button>
-      <button id="kind-cvce" aria-pressed="true" title="Long vowel with silent e">CVCe</button>
-      <button id="kind-pairs" aria-pressed="true" title="Letter pairs sh, ch, th">sh ch th</button>
-    </div>
+    <label class="kinds"><span class="label">Words</span>
+      <select id="pattern" aria-label="Which words to read"></select>
+    </label>
     <div id="length" class="length" role="group" aria-label="Practice session length" hidden>
       <span class="label">Words</span>
       <button id="len-10" aria-pressed="false">10</button>
@@ -251,16 +286,12 @@ dialog::backdrop { background: #152a3d80; }
     </div>
   </div>
   <section class="stage" id="stage" aria-label="Reading area">
-    <span id="clock" hidden>1:00</span>
+    <span id="clock" class="ring-timer" hidden><svg viewBox="0 0 36 36" aria-hidden="true"><circle class="ring-track" cx="18" cy="18" r="15"/><circle id="ring" cx="18" cy="18" r="15" pathLength="100" stroke-dasharray="100 100" transform="rotate(-90 18 18)"/></svg><span id="clock-text">1:00</span></span>
     <div id="reading">
       <div class="word-row">
         <div id="word"></div><span id="word-flag" aria-label="Flagged" hidden>⚑</span>
         <div class="hourglass" id="hourglass" hidden>
-          <svg viewBox="0 0 35 49" role="img" aria-label="Reading pace hourglass">
-            <path d="M5 4h25M5 45h25M8 5c0 11 1 14 9.5 20C9 31 8 34 8 44h19c0-10-1-13-9.5-19C26 19 27 16 27 5Z"
-              fill="#fcf8ee" stroke="#66737b" stroke-width="2.5" stroke-linejoin="round"/>
-            <path id="sand" d="M10 11h15c-1 5-3 8-7.5 11C13 19 11 16 10 11ZM11 41l6.5-9 6.5 9Z"/>
-          </svg>
+          <svg viewBox="0 0 44 44" aria-hidden="true"><circle class="pie-face" cx="22" cy="22" r="20.5"/><circle id="pie" cx="22" cy="22" r="10" pathLength="100" stroke-dasharray="100 100" transform="rotate(-90 22 22)"/></svg>
         </div>
       </div>
       <p id="pace" hidden>Read aloud</p>
@@ -277,12 +308,12 @@ dialog::backdrop { background: #152a3d80; }
       <p id="unseen" class="detail"></p>
     </div>
   </section>
-  <p class="hint" id="hint"></p>
+  <div class="hint-row"><p class="hint" id="hint"></p><button id="read" class="speak" aria-label="Read the instructions aloud" title="Read the instructions"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></button></div>
   <div class="actions">
     <button id="back">← Back</button><button id="next" class="primary">Next →</button>
     <button id="start" class="primary" hidden>▶ Start</button>
     <button id="notyet" class="notyet" hidden>✕ Not yet</button><button id="right" class="right" hidden>✓ Right</button>
-    <button id="again" class="primary" hidden>↻ Again</button>
+    <button id="again" class="primary" hidden>↻ Try again</button>
     <button id="practice-these" hidden>↗ Practice these</button>
   </div>
   <div class="bottom">
@@ -291,12 +322,17 @@ dialog::backdrop { background: #152a3d80; }
       <button id="flag" aria-pressed="false">⚑ Flag</button><button id="flagged">⚑ Flagged (0)</button>
       <button id="all" hidden>↩ All</button>
     </div>
-    <p class="privacy" id="privacy">Flags, settings and best scores stay on this device.</p>
+    <p class="privacy" id="privacy" hidden>Flags, settings and best scores stay on this device.</p>
   </div>
 </main>
 <dialog id="flags" aria-labelledby="flags-title">
   <div class="dialog-top"><h2 id="flags-title">Flagged words</h2><button id="close-flags">✕ Close</button></div>
   <p id="flags-help">Tap a word to open it in Explore.</p><div id="flag-list"></div>
+</dialog>
+<dialog id="reset-dialog" aria-labelledby="reset-title">
+  <h2 id="reset-title">Reset this device?</h2>
+  <p>This clears the flags, choices and best scores saved in this browser, so the next reader starts fresh.</p>
+  <div class="reset-actions"><button id="reset-cancel">Cancel</button><button id="reset-yes" class="primary">Reset</button></div>
 </dialog>
 <div class="confetti" id="confetti" aria-hidden="true"></div>
 <script src="kit:curio"></script>
@@ -419,11 +455,31 @@ dialog::backdrop { background: #152a3d80; }
     {"word": "vop", "kind": "cvc"},
     {"word": "sog", "kind": "cvc"},
     {"word": "fot", "kind": "cvc"},
+    {"word": "zib", "kind": "cvc"},
+    {"word": "wum", "kind": "cvc"},
+    {"word": "gub", "kind": "cvc"},
+    {"word": "tud", "kind": "cvc"},
+    {"word": "zeg", "kind": "cvc"},
+    {"word": "geg", "kind": "cvc"},
+    {"word": "keb", "kind": "cvc"},
+    {"word": "fub", "kind": "cvc"},
+    {"word": "jup", "kind": "cvc"},
+    {"word": "wob", "kind": "cvc"},
+    {"word": "kug", "kind": "cvc"},
+    {"word": "mub", "kind": "cvc"},
+    {"word": "vun", "kind": "cvc"},
+    {"word": "kag", "kind": "cvc"},
+    {"word": "vug", "kind": "cvc"},
+    {"word": "fup", "kind": "cvc"},
+    {"word": "wup", "kind": "cvc"},
+    {"word": "gug", "kind": "cvc"},
+    {"word": "vut", "kind": "cvc"},
+    {"word": "wug", "kind": "cvc"},
     {"word": "vame", "kind": "cvce"},
-    {"word": "nife", "kind": "cvce"},
+    {"word": "bime", "kind": "cvce"},
     {"word": "hobe", "kind": "cvce"},
     {"word": "zube", "kind": "cvce"},
-    {"word": "vape", "kind": "cvce"},
+    {"word": "jome", "kind": "cvce"},
     {"word": "fipe", "kind": "cvce"},
     {"word": "toge", "kind": "cvce"},
     {"word": "vuge", "kind": "cvce"},
@@ -469,56 +525,724 @@ dialog::backdrop { background: #152a3d80; }
     {"word": "labe", "kind": "cvce"},
     {"word": "nibe", "kind": "cvce"},
     {"word": "zobe", "kind": "cvce"},
-    {"word": "dach", "kind": "pairs"},
-    {"word": "neth", "kind": "pairs"},
-    {"word": "lish", "kind": "pairs"},
-    {"word": "chof", "kind": "pairs"},
-    {"word": "thub", "kind": "pairs"},
-    {"word": "lach", "kind": "pairs"},
-    {"word": "vish", "kind": "pairs"},
-    {"word": "poch", "kind": "pairs"},
-    {"word": "shug", "kind": "pairs"},
-    {"word": "zash", "kind": "pairs"},
-    {"word": "peth", "kind": "pairs"},
-    {"word": "thim", "kind": "pairs"},
-    {"word": "shog", "kind": "pairs"},
-    {"word": "zuch", "kind": "pairs"},
-    {"word": "jach", "kind": "pairs"},
-    {"word": "pesh", "kind": "pairs"},
-    {"word": "zith", "kind": "pairs"},
-    {"word": "thod", "kind": "pairs"},
-    {"word": "shub", "kind": "pairs"},
-    {"word": "vash", "kind": "pairs"},
-    {"word": "jeth", "kind": "pairs"},
-    {"word": "thit", "kind": "pairs"},
-    {"word": "foth", "kind": "pairs"},
-    {"word": "luch", "kind": "pairs"},
-    {"word": "thaf", "kind": "pairs"},
-    {"word": "nesh", "kind": "pairs"},
-    {"word": "fith", "kind": "pairs"},
-    {"word": "joch", "kind": "pairs"},
-    {"word": "thup", "kind": "pairs"},
-    {"word": "dush", "kind": "pairs"},
-    {"word": "gesh", "kind": "pairs"},
-    {"word": "hith", "kind": "pairs"},
-    {"word": "jich", "kind": "pairs"},
-    {"word": "nuch", "kind": "pairs"},
-    {"word": "puth", "kind": "pairs"},
-    {"word": "ruch", "kind": "pairs"}
+    {"word": "vube", "kind": "cvce"},
+    {"word": "goge", "kind": "cvce"},
+    {"word": "zoge", "kind": "cvce"},
+    {"word": "nuge", "kind": "cvce"},
+    {"word": "dite", "kind": "cvce"},
+    {"word": "pobe", "kind": "cvce"},
+    {"word": "puve", "kind": "cvce"},
+    {"word": "vime", "kind": "cvce"},
+    {"word": "fute", "kind": "cvce"},
+    {"word": "vove", "kind": "cvce"},
+    {"word": "zipe", "kind": "cvce"},
+    {"word": "mive", "kind": "cvce"},
+    {"word": "tibe", "kind": "cvce"},
+    {"word": "fize", "kind": "cvce"},
+    {"word": "tufe", "kind": "cvce"},
+    {"word": "moge", "kind": "cvce"},
+    {"word": "rige", "kind": "cvce"},
+    {"word": "nafe", "kind": "cvce"},
+    {"word": "pame", "kind": "cvce"},
+    {"word": "mave", "kind": "cvce"},
+    {"word": "kige", "kind": "cvce"},
+    {"word": "dofe", "kind": "cvce"},
+    {"word": "suve", "kind": "cvce"},
+    {"word": "bave", "kind": "cvce"},
+    {"word": "bofe", "kind": "cvce"},
+    {"word": "jipe", "kind": "cvce"},
+    {"word": "jume", "kind": "cvce"},
+    {"word": "sape", "kind": "cvce"},
+    {"word": "tofe", "kind": "cvce"},
+    {"word": "duve", "kind": "cvce"},
+    {"word": "mume", "kind": "cvce"},
+    {"word": "jate", "kind": "cvce"},
+    {"word": "bibe", "kind": "cvce"},
+    {"word": "vate", "kind": "cvce"},
+    {"word": "hofe", "kind": "cvce"},
+    {"word": "buke", "kind": "cvce"},
+    {"word": "dage", "kind": "cvce"},
+    {"word": "fafe", "kind": "cvce"},
+    {"word": "ruve", "kind": "cvce"},
+    {"word": "kuge", "kind": "cvce"},
+    {"word": "zude", "kind": "cvce"},
+    {"word": "sote", "kind": "cvce"},
+    {"word": "gake", "kind": "cvce"},
+    {"word": "lige", "kind": "cvce"},
+    {"word": "noge", "kind": "cvce"},
+    {"word": "pime", "kind": "cvce"},
+    {"word": "zabe", "kind": "cvce"},
+    {"word": "tave", "kind": "cvce"},
+    {"word": "hube", "kind": "cvce"},
+    {"word": "guge", "kind": "cvce"},
+    {"word": "rofe", "kind": "cvce"},
+    {"word": "gime", "kind": "cvce"},
+    {"word": "joge", "kind": "cvce"},
+    {"word": "nime", "kind": "cvce"},
+    {"word": "hige", "kind": "cvce"},
+    {"word": "foge", "kind": "cvce"},
+    {"word": "koge", "kind": "cvce"},
+    {"word": "nofe", "kind": "cvce"},
+    {"word": "hife", "kind": "cvce"},
+    {"word": "fabe", "kind": "cvce"},
+    {"word": "nufe", "kind": "cvce"},
+    {"word": "zige", "kind": "cvce"},
+    {"word": "mide", "kind": "cvce"},
+    {"word": "kuve", "kind": "cvce"},
+    {"word": "vobe", "kind": "cvce"},
+    {"word": "huke", "kind": "cvce"},
+    {"word": "tife", "kind": "cvce"},
+    {"word": "libe", "kind": "cvce"},
+    {"word": "dach", "kind": "digraphs"},
+    {"word": "neth", "kind": "digraphs"},
+    {"word": "lish", "kind": "digraphs"},
+    {"word": "chof", "kind": "digraphs"},
+    {"word": "thub", "kind": "digraphs"},
+    {"word": "lach", "kind": "digraphs"},
+    {"word": "vish", "kind": "digraphs"},
+    {"word": "poch", "kind": "digraphs"},
+    {"word": "shug", "kind": "digraphs"},
+    {"word": "zash", "kind": "digraphs"},
+    {"word": "peth", "kind": "digraphs"},
+    {"word": "thim", "kind": "digraphs"},
+    {"word": "shog", "kind": "digraphs"},
+    {"word": "zuch", "kind": "digraphs"},
+    {"word": "jach", "kind": "digraphs"},
+    {"word": "pesh", "kind": "digraphs"},
+    {"word": "zith", "kind": "digraphs"},
+    {"word": "thod", "kind": "digraphs"},
+    {"word": "shub", "kind": "digraphs"},
+    {"word": "vash", "kind": "digraphs"},
+    {"word": "jeth", "kind": "digraphs"},
+    {"word": "thit", "kind": "digraphs"},
+    {"word": "foth", "kind": "digraphs"},
+    {"word": "luch", "kind": "digraphs"},
+    {"word": "thaf", "kind": "digraphs"},
+    {"word": "nesh", "kind": "digraphs"},
+    {"word": "fith", "kind": "digraphs"},
+    {"word": "joch", "kind": "digraphs"},
+    {"word": "thup", "kind": "digraphs"},
+    {"word": "dush", "kind": "digraphs"},
+    {"word": "gesh", "kind": "digraphs"},
+    {"word": "hith", "kind": "digraphs"},
+    {"word": "jich", "kind": "digraphs"},
+    {"word": "nuch", "kind": "digraphs"},
+    {"word": "puth", "kind": "digraphs"},
+    {"word": "ruch", "kind": "digraphs"},
+    {"word": "keth", "kind": "digraphs"},
+    {"word": "reng", "kind": "digraphs"},
+    {"word": "futh", "kind": "digraphs"},
+    {"word": "juch", "kind": "digraphs"},
+    {"word": "sheg", "kind": "digraphs"},
+    {"word": "whem", "kind": "digraphs"},
+    {"word": "reth", "kind": "digraphs"},
+    {"word": "losh", "kind": "digraphs"},
+    {"word": "zath", "kind": "digraphs"},
+    {"word": "buth", "kind": "digraphs"},
+    {"word": "zesh", "kind": "digraphs"},
+    {"word": "joth", "kind": "digraphs"},
+    {"word": "soch", "kind": "digraphs"},
+    {"word": "toch", "kind": "digraphs"},
+    {"word": "nech", "kind": "digraphs"},
+    {"word": "thid", "kind": "digraphs"},
+    {"word": "vech", "kind": "digraphs"},
+    {"word": "hish", "kind": "digraphs"},
+    {"word": "wuth", "kind": "digraphs"},
+    {"word": "veth", "kind": "digraphs"},
+    {"word": "veng", "kind": "digraphs"},
+    {"word": "nush", "kind": "digraphs"},
+    {"word": "fush", "kind": "digraphs"},
+    {"word": "vush", "kind": "digraphs"},
+    {"word": "guch", "kind": "digraphs"},
+    {"word": "wung", "kind": "digraphs"},
+    {"word": "duth", "kind": "digraphs"},
+    {"word": "sath", "kind": "digraphs"},
+    {"word": "dech", "kind": "digraphs"},
+    {"word": "gith", "kind": "digraphs"},
+    {"word": "tuth", "kind": "digraphs"},
+    {"word": "wuch", "kind": "digraphs"},
+    {"word": "sush", "kind": "digraphs"},
+    {"word": "zoch", "kind": "digraphs"},
+    {"word": "hech", "kind": "digraphs"},
+    {"word": "jesh", "kind": "digraphs"},
+    {"word": "thop", "kind": "digraphs"},
+    {"word": "dith", "kind": "digraphs"},
+    {"word": "jash", "kind": "digraphs"},
+    {"word": "voch", "kind": "digraphs"},
+    {"word": "fosh", "kind": "digraphs"},
+    {"word": "zoth", "kind": "digraphs"},
+    {"word": "weth", "kind": "digraphs"},
+    {"word": "wech", "kind": "digraphs"},
+    {"word": "vung", "kind": "digraphs"},
+    {"word": "zish", "kind": "digraphs"},
+    {"word": "whep", "kind": "digraphs"},
+    {"word": "gach", "kind": "digraphs"},
+    {"word": "shid", "kind": "digraphs"},
+    {"word": "chag", "kind": "digraphs"},
+    {"word": "vath", "kind": "digraphs"},
+    {"word": "bith", "kind": "digraphs"},
+    {"word": "feth", "kind": "digraphs"},
+    {"word": "jech", "kind": "digraphs"},
+    {"word": "gick", "kind": "digraphs"},
+    {"word": "vosh", "kind": "digraphs"},
+    {"word": "hosh", "kind": "digraphs"},
+    {"word": "wush", "kind": "digraphs"},
+    {"word": "jick", "kind": "digraphs"},
+    {"word": "vach", "kind": "digraphs"},
+    {"word": "whug", "kind": "digraphs"},
+    {"word": "geck", "kind": "digraphs"},
+    {"word": "fesh", "kind": "digraphs"},
+    {"word": "jush", "kind": "digraphs"},
+    {"word": "sish", "kind": "digraphs"},
+    {"word": "chab", "kind": "digraphs"},
+    {"word": "zosh", "kind": "digraphs"},
+    {"word": "gech", "kind": "digraphs"},
+    {"word": "dath", "kind": "digraphs"},
+    {"word": "jith", "kind": "digraphs"},
+    {"word": "shig", "kind": "digraphs"},
+    {"word": "thib", "kind": "digraphs"},
+    {"word": "vesh", "kind": "digraphs"},
+    {"word": "spom", "kind": "blends"},
+    {"word": "preb", "kind": "blends"},
+    {"word": "stid", "kind": "blends"},
+    {"word": "brud", "kind": "blends"},
+    {"word": "flug", "kind": "blends"},
+    {"word": "skeb", "kind": "blends"},
+    {"word": "plud", "kind": "blends"},
+    {"word": "frad", "kind": "blends"},
+    {"word": "smop", "kind": "blends"},
+    {"word": "trup", "kind": "blends"},
+    {"word": "drod", "kind": "blends"},
+    {"word": "swud", "kind": "blends"},
+    {"word": "crin", "kind": "blends"},
+    {"word": "slin", "kind": "blends"},
+    {"word": "glab", "kind": "blends"},
+    {"word": "skug", "kind": "blends"},
+    {"word": "treb", "kind": "blends"},
+    {"word": "sleg", "kind": "blends"},
+    {"word": "twen", "kind": "blends"},
+    {"word": "drad", "kind": "blends"},
+    {"word": "prum", "kind": "blends"},
+    {"word": "clib", "kind": "blends"},
+    {"word": "fleb", "kind": "blends"},
+    {"word": "plib", "kind": "blends"},
+    {"word": "frep", "kind": "blends"},
+    {"word": "spub", "kind": "blends"},
+    {"word": "stom", "kind": "blends"},
+    {"word": "sneb", "kind": "blends"},
+    {"word": "blid", "kind": "blends"},
+    {"word": "crun", "kind": "blends"},
+    {"word": "smun", "kind": "blends"},
+    {"word": "swug", "kind": "blends"},
+    {"word": "brep", "kind": "blends"},
+    {"word": "tweg", "kind": "blends"},
+    {"word": "trid", "kind": "blends"},
+    {"word": "smot", "kind": "blends"},
+    {"word": "cled", "kind": "blends"},
+    {"word": "flun", "kind": "blends"},
+    {"word": "bleg", "kind": "blends"},
+    {"word": "snab", "kind": "blends"},
+    {"word": "crig", "kind": "blends"},
+    {"word": "stog", "kind": "blends"},
+    {"word": "frip", "kind": "blends"},
+    {"word": "prid", "kind": "blends"},
+    {"word": "spid", "kind": "blends"},
+    {"word": "skom", "kind": "blends"},
+    {"word": "glun", "kind": "blends"},
+    {"word": "slan", "kind": "blends"},
+    {"word": "lelt", "kind": "blends"},
+    {"word": "kend", "kind": "blends"},
+    {"word": "nink", "kind": "blends"},
+    {"word": "jelf", "kind": "blends"},
+    {"word": "dosp", "kind": "blends"},
+    {"word": "risp", "kind": "blends"},
+    {"word": "lolf", "kind": "blends"},
+    {"word": "zalf", "kind": "blends"},
+    {"word": "jusp", "kind": "blends"},
+    {"word": "dulf", "kind": "blends"},
+    {"word": "valp", "kind": "blends"},
+    {"word": "mosp", "kind": "blends"},
+    {"word": "hilp", "kind": "blends"},
+    {"word": "melp", "kind": "blends"},
+    {"word": "telt", "kind": "blends"},
+    {"word": "hift", "kind": "blends"},
+    {"word": "pesk", "kind": "blends"},
+    {"word": "jast", "kind": "blends"},
+    {"word": "nasp", "kind": "blends"},
+    {"word": "tenk", "kind": "blends"},
+    {"word": "polf", "kind": "blends"},
+    {"word": "jonk", "kind": "blends"},
+    {"word": "jeft", "kind": "blends"},
+    {"word": "tusp", "kind": "blends"},
+    {"word": "sond", "kind": "blends"},
+    {"word": "fomp", "kind": "blends"},
+    {"word": "beld", "kind": "blends"},
+    {"word": "valt", "kind": "blends"},
+    {"word": "tist", "kind": "blends"},
+    {"word": "nolt", "kind": "blends"},
+    {"word": "jelt", "kind": "blends"},
+    {"word": "geft", "kind": "blends"},
+    {"word": "peft", "kind": "blends"},
+    {"word": "tomp", "kind": "blends"},
+    {"word": "zult", "kind": "blends"},
+    {"word": "gusk", "kind": "blends"},
+    {"word": "fusk", "kind": "blends"},
+    {"word": "dift", "kind": "blends"},
+    {"word": "kift", "kind": "blends"},
+    {"word": "runk", "kind": "blends"},
+    {"word": "kest", "kind": "blends"},
+    {"word": "gosp", "kind": "blends"},
+    {"word": "ront", "kind": "blends"},
+    {"word": "nomp", "kind": "blends"},
+    {"word": "dund", "kind": "blends"},
+    {"word": "boft", "kind": "blends"},
+    {"word": "fuft", "kind": "blends"},
+    {"word": "hosk", "kind": "blends"},
+    {"word": "bult", "kind": "blends"},
+    {"word": "folp", "kind": "blends"},
+    {"word": "dolp", "kind": "blends"},
+    {"word": "zolp", "kind": "blends"},
+    {"word": "beeg", "kind": "teams"},
+    {"word": "graif", "kind": "teams"},
+    {"word": "joap", "kind": "teams"},
+    {"word": "snay", "kind": "teams"},
+    {"word": "laig", "kind": "teams"},
+    {"word": "snean", "kind": "teams"},
+    {"word": "vight", "kind": "teams"},
+    {"word": "veam", "kind": "teams"},
+    {"word": "seeb", "kind": "teams"},
+    {"word": "paim", "kind": "teams"},
+    {"word": "vait", "kind": "teams"},
+    {"word": "troab", "kind": "teams"},
+    {"word": "floag", "kind": "teams"},
+    {"word": "doab", "kind": "teams"},
+    {"word": "jeeg", "kind": "teams"},
+    {"word": "zoab", "kind": "teams"},
+    {"word": "bleem", "kind": "teams"},
+    {"word": "sneep", "kind": "teams"},
+    {"word": "gaif", "kind": "teams"},
+    {"word": "hoab", "kind": "teams"},
+    {"word": "fleem", "kind": "teams"},
+    {"word": "toag", "kind": "teams"},
+    {"word": "deeg", "kind": "teams"},
+    {"word": "faib", "kind": "teams"},
+    {"word": "zeeb", "kind": "teams"},
+    {"word": "treag", "kind": "teams"},
+    {"word": "reeb", "kind": "teams"},
+    {"word": "feap", "kind": "teams"},
+    {"word": "traig", "kind": "teams"},
+    {"word": "treep", "kind": "teams"},
+    {"word": "foad", "kind": "teams"},
+    {"word": "steab", "kind": "teams"},
+    {"word": "peam", "kind": "teams"},
+    {"word": "loat", "kind": "teams"},
+    {"word": "fleap", "kind": "teams"},
+    {"word": "haib", "kind": "teams"},
+    {"word": "veem", "kind": "teams"},
+    {"word": "waib", "kind": "teams"},
+    {"word": "greem", "kind": "teams"},
+    {"word": "flaib", "kind": "teams"},
+    {"word": "zaib", "kind": "teams"},
+    {"word": "poan", "kind": "teams"},
+    {"word": "naid", "kind": "teams"},
+    {"word": "blail", "kind": "teams"},
+    {"word": "voab", "kind": "teams"},
+    {"word": "feep", "kind": "teams"},
+    {"word": "groad", "kind": "teams"},
+    {"word": "snaig", "kind": "teams"},
+    {"word": "moag", "kind": "teams"},
+    {"word": "stoap", "kind": "teams"},
+    {"word": "geeg", "kind": "teams"},
+    {"word": "koag", "kind": "teams"},
+    {"word": "steeb", "kind": "teams"},
+    {"word": "daip", "kind": "teams"},
+    {"word": "meeg", "kind": "teams"},
+    {"word": "gight", "kind": "teams"},
+    {"word": "snoan", "kind": "teams"},
+    {"word": "weeg", "kind": "teams"},
+    {"word": "staip", "kind": "teams"},
+    {"word": "maif", "kind": "teams"},
+    {"word": "heeg", "kind": "teams"},
+    {"word": "teeb", "kind": "teams"},
+    {"word": "goam", "kind": "teams"},
+    {"word": "bleag", "kind": "teams"},
+    {"word": "taib", "kind": "teams"},
+    {"word": "gright", "kind": "teams"},
+    {"word": "jaig", "kind": "teams"},
+    {"word": "teab", "kind": "teams"},
+    {"word": "noag", "kind": "teams"},
+    {"word": "soab", "kind": "teams"},
+    {"word": "saib", "kind": "teams"},
+    {"word": "jeag", "kind": "teams"},
+    {"word": "baif", "kind": "teams"},
+    {"word": "boap", "kind": "teams"},
+    {"word": "keeg", "kind": "teams"},
+    {"word": "jight", "kind": "teams"},
+    {"word": "bloab", "kind": "teams"},
+    {"word": "noab", "kind": "teams"},
+    {"word": "troam", "kind": "teams"},
+    {"word": "voad", "kind": "teams"},
+    {"word": "geeb", "kind": "teams"},
+    {"word": "veed", "kind": "teams"},
+    {"word": "woan", "kind": "teams"},
+    {"word": "moam", "kind": "teams"},
+    {"word": "sneab", "kind": "teams"},
+    {"word": "groam", "kind": "teams"},
+    {"word": "goap", "kind": "teams"},
+    {"word": "traim", "kind": "teams"},
+    {"word": "foag", "kind": "teams"},
+    {"word": "staif", "kind": "teams"},
+    {"word": "sneeg", "kind": "teams"},
+    {"word": "greep", "kind": "teams"},
+    {"word": "saip", "kind": "teams"},
+    {"word": "haif", "kind": "teams"},
+    {"word": "paib", "kind": "teams"},
+    {"word": "fleeb", "kind": "teams"},
+    {"word": "reeg", "kind": "teams"},
+    {"word": "zoad", "kind": "teams"},
+    {"word": "heem", "kind": "teams"},
+    {"word": "peab", "kind": "teams"},
+    {"word": "meeb", "kind": "teams"},
+    {"word": "stoag", "kind": "teams"},
+    {"word": "bleab", "kind": "teams"},
+    {"word": "bloap", "kind": "teams"},
+    {"word": "daig", "kind": "teams"},
+    {"word": "snoag", "kind": "teams"},
+    {"word": "vead", "kind": "teams"},
+    {"word": "snait", "kind": "teams"},
+    {"word": "keeb", "kind": "teams"},
+    {"word": "treeb", "kind": "teams"},
+    {"word": "blaif", "kind": "teams"},
+    {"word": "jeeb", "kind": "teams"},
+    {"word": "soust", "kind": "diphthongs"},
+    {"word": "floup", "kind": "diphthongs"},
+    {"word": "haud", "kind": "diphthongs"},
+    {"word": "foig", "kind": "diphthongs"},
+    {"word": "grawn", "kind": "diphthongs"},
+    {"word": "paub", "kind": "diphthongs"},
+    {"word": "blaup", "kind": "diphthongs"},
+    {"word": "gaum", "kind": "diphthongs"},
+    {"word": "blawl", "kind": "diphthongs"},
+    {"word": "jawl", "kind": "diphthongs"},
+    {"word": "goug", "kind": "diphthongs"},
+    {"word": "woint", "kind": "diphthongs"},
+    {"word": "faum", "kind": "diphthongs"},
+    {"word": "soip", "kind": "diphthongs"},
+    {"word": "spoug", "kind": "diphthongs"},
+    {"word": "snown", "kind": "diphthongs"},
+    {"word": "noid", "kind": "diphthongs"},
+    {"word": "snoint", "kind": "diphthongs"},
+    {"word": "flowl", "kind": "diphthongs"},
+    {"word": "floist", "kind": "diphthongs"},
+    {"word": "koib", "kind": "diphthongs"},
+    {"word": "flaun", "kind": "diphthongs"},
+    {"word": "lowl", "kind": "diphthongs"},
+    {"word": "blowl", "kind": "diphthongs"},
+    {"word": "doib", "kind": "diphthongs"},
+    {"word": "zoit", "kind": "diphthongs"},
+    {"word": "voust", "kind": "diphthongs"},
+    {"word": "roim", "kind": "diphthongs"},
+    {"word": "graup", "kind": "diphthongs"},
+    {"word": "loip", "kind": "diphthongs"},
+    {"word": "traw", "kind": "diphthongs"},
+    {"word": "jaup", "kind": "diphthongs"},
+    {"word": "spoin", "kind": "diphthongs"},
+    {"word": "bloug", "kind": "diphthongs"},
+    {"word": "snoum", "kind": "diphthongs"},
+    {"word": "vaug", "kind": "diphthongs"},
+    {"word": "vown", "kind": "diphthongs"},
+    {"word": "rount", "kind": "diphthongs"},
+    {"word": "flawl", "kind": "diphthongs"},
+    {"word": "zaug", "kind": "diphthongs"},
+    {"word": "voig", "kind": "diphthongs"},
+    {"word": "saug", "kind": "diphthongs"},
+    {"word": "waug", "kind": "diphthongs"},
+    {"word": "poit", "kind": "diphthongs"},
+    {"word": "traup", "kind": "diphthongs"},
+    {"word": "spown", "kind": "diphthongs"},
+    {"word": "joum", "kind": "diphthongs"},
+    {"word": "spoy", "kind": "diphthongs"},
+    {"word": "groip", "kind": "diphthongs"},
+    {"word": "foup", "kind": "diphthongs"},
+    {"word": "troit", "kind": "diphthongs"},
+    {"word": "boist", "kind": "diphthongs"},
+    {"word": "hoint", "kind": "diphthongs"},
+    {"word": "wown", "kind": "diphthongs"},
+    {"word": "toib", "kind": "diphthongs"},
+    {"word": "joig", "kind": "diphthongs"},
+    {"word": "koug", "kind": "diphthongs"},
+    {"word": "woub", "kind": "diphthongs"},
+    {"word": "snaun", "kind": "diphthongs"},
+    {"word": "groy", "kind": "diphthongs"},
+    {"word": "tount", "kind": "diphthongs"},
+    {"word": "groud", "kind": "diphthongs"},
+    {"word": "troub", "kind": "diphthongs"},
+    {"word": "bloy", "kind": "diphthongs"},
+    {"word": "zount", "kind": "diphthongs"},
+    {"word": "snawk", "kind": "diphthongs"},
+    {"word": "snoy", "kind": "diphthongs"},
+    {"word": "spaug", "kind": "diphthongs"},
+    {"word": "goid", "kind": "diphthongs"},
+    {"word": "bloib", "kind": "diphthongs"},
+    {"word": "nount", "kind": "diphthongs"},
+    {"word": "flaub", "kind": "diphthongs"},
+    {"word": "zoid", "kind": "diphthongs"},
+    {"word": "hoim", "kind": "diphthongs"},
+    {"word": "woug", "kind": "diphthongs"},
+    {"word": "vaup", "kind": "diphthongs"},
+    {"word": "snaud", "kind": "diphthongs"},
+    {"word": "graut", "kind": "diphthongs"},
+    {"word": "waub", "kind": "diphthongs"},
+    {"word": "foib", "kind": "diphthongs"},
+    {"word": "gount", "kind": "diphthongs"},
+    {"word": "spound", "kind": "diphthongs"},
+    {"word": "poim", "kind": "diphthongs"},
+    {"word": "noim", "kind": "diphthongs"},
+    {"word": "groug", "kind": "diphthongs"},
+    {"word": "woit", "kind": "diphthongs"},
+    {"word": "jaum", "kind": "diphthongs"},
+    {"word": "spoib", "kind": "diphthongs"},
+    {"word": "zout", "kind": "diphthongs"},
+    {"word": "vound", "kind": "diphthongs"},
+    {"word": "traug", "kind": "diphthongs"},
+    {"word": "loig", "kind": "diphthongs"},
+    {"word": "snowl", "kind": "diphthongs"},
+    {"word": "floug", "kind": "diphthongs"},
+    {"word": "bloup", "kind": "diphthongs"},
+    {"word": "spaup", "kind": "diphthongs"},
+    {"word": "spowl", "kind": "diphthongs"},
+    {"word": "bloist", "kind": "diphthongs"},
+    {"word": "toig", "kind": "diphthongs"},
+    {"word": "troug", "kind": "diphthongs"},
+    {"word": "trawk", "kind": "diphthongs"},
+    {"word": "voib", "kind": "diphthongs"},
+    {"word": "soim", "kind": "diphthongs"},
+    {"word": "snount", "kind": "diphthongs"},
+    {"word": "goist", "kind": "diphthongs"},
+    {"word": "sount", "kind": "diphthongs"},
+    {"word": "foug", "kind": "diphthongs"},
+    {"word": "noust", "kind": "diphthongs"},
+    {"word": "doid", "kind": "diphthongs"},
+    {"word": "moip", "kind": "diphthongs"},
+    {"word": "floim", "kind": "diphthongs"},
+    {"word": "jount", "kind": "diphthongs"},
+    {"word": "blawn", "kind": "diphthongs"},
+    {"word": "grawl", "kind": "diphthongs"},
+    {"word": "roist", "kind": "diphthongs"},
+    {"word": "joim", "kind": "diphthongs"},
+    {"word": "troin", "kind": "diphthongs"},
+    {"word": "blaud", "kind": "diphthongs"},
+    {"word": "sorm", "kind": "rctrl"},
+    {"word": "morp", "kind": "rctrl"},
+    {"word": "twarn", "kind": "rctrl"},
+    {"word": "vorg", "kind": "rctrl"},
+    {"word": "jurn", "kind": "rctrl"},
+    {"word": "wirb", "kind": "rctrl"},
+    {"word": "hirg", "kind": "rctrl"},
+    {"word": "norp", "kind": "rctrl"},
+    {"word": "glard", "kind": "rctrl"},
+    {"word": "blerp", "kind": "rctrl"},
+    {"word": "narb", "kind": "rctrl"},
+    {"word": "dirg", "kind": "rctrl"},
+    {"word": "starm", "kind": "rctrl"},
+    {"word": "sparp", "kind": "rctrl"},
+    {"word": "parg", "kind": "rctrl"},
+    {"word": "kirm", "kind": "rctrl"},
+    {"word": "murb", "kind": "rctrl"},
+    {"word": "twur", "kind": "rctrl"},
+    {"word": "lorm", "kind": "rctrl"},
+    {"word": "storb", "kind": "rctrl"},
+    {"word": "lerg", "kind": "rctrl"},
+    {"word": "werp", "kind": "rctrl"},
+    {"word": "mirm", "kind": "rctrl"},
+    {"word": "gurb", "kind": "rctrl"},
+    {"word": "derd", "kind": "rctrl"},
+    {"word": "twerb", "kind": "rctrl"},
+    {"word": "kurg", "kind": "rctrl"},
+    {"word": "snorg", "kind": "rctrl"},
+    {"word": "snurb", "kind": "rctrl"},
+    {"word": "twirg", "kind": "rctrl"},
+    {"word": "zerm", "kind": "rctrl"},
+    {"word": "serm", "kind": "rctrl"},
+    {"word": "zorg", "kind": "rctrl"},
+    {"word": "sturb", "kind": "rctrl"},
+    {"word": "blirn", "kind": "rctrl"},
+    {"word": "vird", "kind": "rctrl"},
+    {"word": "zirp", "kind": "rctrl"},
+    {"word": "glerm", "kind": "rctrl"},
+    {"word": "snirp", "kind": "rctrl"},
+    {"word": "perg", "kind": "rctrl"},
+    {"word": "sirp", "kind": "rctrl"},
+    {"word": "wurg", "kind": "rctrl"},
+    {"word": "nerb", "kind": "rctrl"},
+    {"word": "tirp", "kind": "rctrl"},
+    {"word": "verg", "kind": "rctrl"},
+    {"word": "merg", "kind": "rctrl"},
+    {"word": "porb", "kind": "rctrl"},
+    {"word": "spirb", "kind": "rctrl"},
+    {"word": "firb", "kind": "rctrl"},
+    {"word": "forp", "kind": "rctrl"},
+    {"word": "spurp", "kind": "rctrl"},
+    {"word": "berb", "kind": "rctrl"},
+    {"word": "glorg", "kind": "rctrl"},
+    {"word": "blurm", "kind": "rctrl"},
+    {"word": "karm", "kind": "rctrl"},
+    {"word": "glird", "kind": "rctrl"},
+    {"word": "ferp", "kind": "rctrl"},
+    {"word": "dorb", "kind": "rctrl"},
+    {"word": "zurd", "kind": "rctrl"},
+    {"word": "sporp", "kind": "rctrl"},
+    {"word": "zarp", "kind": "rctrl"},
+    {"word": "snarg", "kind": "rctrl"},
+    {"word": "snerm", "kind": "rctrl"},
+    {"word": "harg", "kind": "rctrl"},
+    {"word": "lirb", "kind": "rctrl"},
+    {"word": "terb", "kind": "rctrl"},
+    {"word": "turg", "kind": "rctrl"},
+    {"word": "borb", "kind": "rctrl"},
+    {"word": "stirg", "kind": "rctrl"},
+    {"word": "nirg", "kind": "rctrl"},
+    {"word": "girg", "kind": "rctrl"},
+    {"word": "nurp", "kind": "rctrl"},
+    {"word": "varn", "kind": "rctrl"},
+    {"word": "glurb", "kind": "rctrl"},
+    {"word": "tworm", "kind": "rctrl"},
+    {"word": "jarp", "kind": "rctrl"},
+    {"word": "purb", "kind": "rctrl"},
+    {"word": "lart", "kind": "rctrl"},
+    {"word": "barp", "kind": "rctrl"},
+    {"word": "tarm", "kind": "rctrl"},
+    {"word": "gern", "kind": "rctrl"},
+    {"word": "hurp", "kind": "rctrl"},
+    {"word": "horg", "kind": "rctrl"},
+    {"word": "jirt", "kind": "rctrl"},
+    {"word": "torg", "kind": "rctrl"},
+    {"word": "gart", "kind": "rctrl"},
+    {"word": "lurp", "kind": "rctrl"},
+    {"word": "jerp", "kind": "rctrl"},
+    {"word": "sterp", "kind": "rctrl"},
+    {"word": "vurm", "kind": "rctrl"},
+    {"word": "blorp", "kind": "rctrl"},
+    {"word": "narp", "kind": "rctrl"},
+    {"word": "farn", "kind": "rctrl"},
+    {"word": "nirn", "kind": "rctrl"},
+    {"word": "norg", "kind": "rctrl"},
+    {"word": "zarg", "kind": "rctrl"},
+    {"word": "dirb", "kind": "rctrl"},
+    {"word": "zern", "kind": "rctrl"},
+    {"word": "garm", "kind": "rctrl"},
+    {"word": "snird", "kind": "rctrl"},
+    {"word": "marb", "kind": "rctrl"},
+    {"word": "lerm", "kind": "rctrl"},
+    {"word": "twirm", "kind": "rctrl"},
+    {"word": "blurg", "kind": "rctrl"},
+    {"word": "lurt", "kind": "rctrl"},
+    {"word": "glarn", "kind": "rctrl"},
+    {"word": "sirg", "kind": "rctrl"},
+    {"word": "gerp", "kind": "rctrl"},
+    {"word": "zorm", "kind": "rctrl"},
+    {"word": "traims", "kind": "endings"},
+    {"word": "mebs", "kind": "endings"},
+    {"word": "sneegs", "kind": "endings"},
+    {"word": "peths", "kind": "endings"},
+    {"word": "treeps", "kind": "endings"},
+    {"word": "reegs", "kind": "endings"},
+    {"word": "zoabs", "kind": "endings"},
+    {"word": "laigs", "kind": "endings"},
+    {"word": "seebs", "kind": "endings"},
+    {"word": "stoaps", "kind": "endings"},
+    {"word": "loats", "kind": "endings"},
+    {"word": "fomped", "kind": "endings"},
+    {"word": "vobed", "kind": "endings"},
+    {"word": "kifted", "kind": "endings"},
+    {"word": "jasted", "kind": "endings"},
+    {"word": "joaped", "kind": "endings"},
+    {"word": "foped", "kind": "endings"},
+    {"word": "snaited", "kind": "endings"},
+    {"word": "bulted", "kind": "endings"},
+    {"word": "lebbed", "kind": "endings"},
+    {"word": "heeming", "kind": "endings"},
+    {"word": "stomming", "kind": "endings"},
+    {"word": "naiding", "kind": "endings"},
+    {"word": "saiping", "kind": "endings"},
+    {"word": "dulfing", "kind": "endings"},
+    {"word": "mebbing", "kind": "endings"},
+    {"word": "vugging", "kind": "endings"},
+    {"word": "chabbing", "kind": "endings"},
+    {"word": "jashing", "kind": "endings"},
+    {"word": "nupping", "kind": "endings"},
+    {"word": "gosping", "kind": "endings"},
+    {"word": "mepping", "kind": "endings"},
+    {"word": "gusker", "kind": "endings"},
+    {"word": "dulfer", "kind": "endings"},
+    {"word": "kifter", "kind": "endings"},
+    {"word": "voader", "kind": "endings"},
+    {"word": "nolter", "kind": "endings"},
+    {"word": "jefter", "kind": "endings"},
+    {"word": "fradder", "kind": "endings"},
+    {"word": "jastest", "kind": "endings"},
+    {"word": "mefest", "kind": "endings"},
+    {"word": "stiddest", "kind": "endings"},
+    {"word": "jufest", "kind": "endings"},
+    {"word": "meppest", "kind": "endings"},
+    {"word": "leltest", "kind": "endings"},
+    {"word": "slannest", "kind": "endings"},
+    {"word": "vably", "kind": "endings"},
+    {"word": "sishly", "kind": "endings"},
+    {"word": "vefly", "kind": "endings"},
+    {"word": "pefly", "kind": "endings"},
+    {"word": "voshly", "kind": "endings"},
+    {"word": "goply", "kind": "endings"},
+    {"word": "vethly", "kind": "endings"},
+    {"word": "gomly", "kind": "endings"},
+    {"word": "flugful", "kind": "endings"},
+    {"word": "hegful", "kind": "endings"},
+    {"word": "foadful", "kind": "endings"},
+    {"word": "smotful", "kind": "endings"},
+    {"word": "rupful", "kind": "endings"},
+    {"word": "geegful", "kind": "endings"},
+    {"word": "gomful", "kind": "endings"},
+    {"word": "mibless", "kind": "endings"},
+    {"word": "jofless", "kind": "endings"},
+    {"word": "teebless", "kind": "endings"},
+    {"word": "thidless", "kind": "endings"},
+    {"word": "fodless", "kind": "endings"},
+    {"word": "jeebless", "kind": "endings"},
+    {"word": "lafness", "kind": "endings"},
+    {"word": "fepness", "kind": "endings"},
+    {"word": "stomness", "kind": "endings"},
+    {"word": "dundness", "kind": "endings"},
+    {"word": "jopness", "kind": "endings"},
+    {"word": "snebness", "kind": "endings"},
+    {"word": "pefness", "kind": "endings"},
+    {"word": "hiftness", "kind": "endings"},
+    {"word": "slition", "kind": "endings"},
+    {"word": "blution", "kind": "endings"},
+    {"word": "bletion", "kind": "endings"},
+    {"word": "bretion", "kind": "endings"},
+    {"word": "drotion", "kind": "endings"},
+    {"word": "blation", "kind": "endings"},
+    {"word": "drition", "kind": "endings"},
+    {"word": "dution", "kind": "endings"},
+    {"word": "grution", "kind": "endings"},
+    {"word": "plition", "kind": "endings"},
+    {"word": "plution", "kind": "endings"},
+    {"word": "grition", "kind": "endings"},
+    {"word": "sletion", "kind": "endings"},
+    {"word": "zution", "kind": "endings"},
+    {"word": "trution", "kind": "endings"},
+    {"word": "zetion", "kind": "endings"},
+    {"word": "vution", "kind": "endings"},
+    {"word": "zation", "kind": "endings"},
+    {"word": "spetion", "kind": "endings"}
   ];
   const L = {
-    explore: 'Read the word aloud. Tap Next for another word. Tap Flag to save a tricky word.',
-    exploreBack: 'Read aloud. Tap Back to read again, or Shuffle for a new order.',
-    exploreSingle: 'Read aloud. Tap All to return to your selected word kinds.',
-    practice: 'Read each word aloud. Tap Right or Not yet. The hourglass never skips a word.',
+    explore: 'Read the word aloud. Tap Next for another word, or Back to read it again.',
+    practice: 'Read each word aloud. Tap Right or Not yet. The timer never skips a word.',
     challenge: 'Read each word aloud. Tap Right or Not yet. Try thirty words in one minute.',
-    startPractice: 'Tap Start when you and your reading partner are ready.',
-    startChallenge: 'Tap Start when you are ready for one minute of reading.',
-    cheer: 'Thirty out of thirty! You did it!',
-    marking: 'Read aloud. Tap Right or Not yet. Tap Skip to move on.',
-    review: 'Tap Practice these to read the words that need another try.',
-    again: 'Tap Again for a new set.',
-    keepKind: 'Keep one word kind on. Tap another kind to add it.'
+    startPractice: 'Read each word aloud, then tap Right or Not yet. The timer never skips a word. Tap Start when you and your reading partner are ready.',
+    startChallenge: 'Read each word aloud, then tap Right or Not yet. Try thirty words in one minute. Tap Start when you are ready.',
+    cheer: 'Thirty out of thirty! You did it!'
   };
   const MODES = ['explore', 'practice', 'challenge'];
   const STORE = 'curio-nonsense-words-v1';
@@ -526,11 +1250,28 @@ dialog::backdrop { background: #152a3d80; }
     try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch { return {}; }
   }
   const saved = stored();
-  const validKinds = ['cvc', 'cvce', 'pairs'];
-  const kinds = Array.isArray(saved.kinds) ? saved.kinds.filter(k => validKinds.includes(k)) : validKinds.slice();
+  const KINDS = {
+    cvc: 'CVC: short vowels (vam)', cvce: 'CVCe: silent e (bave)', digraphs: 'Digraphs: sh ch th wh ck ng (shib)',
+    blends: 'Blends: bl st tr, -mp -nd (blib)', teams: 'Vowel teams: ai ay ee ea oa igh (fleem)',
+    diphthongs: 'Diphthongs: oi oy ou ow au aw (noist)', rctrl: 'R-controlled: ar or er ir ur (glarb)',
+    endings: 'Endings: -ed -ing -ly -tion (mebbing)'
+  };
+  const validKinds = Object.keys(KINDS);
+  const MIXES = [
+    ['starter', 'Starter mix: CVC, CVCe, digraphs', ['cvc', 'cvce', 'digraphs']],
+    ['short', 'Short vowels: CVC, digraphs, blends', ['cvc', 'digraphs', 'blends']],
+    ['shortlong', 'Short and long: CVC and CVCe', ['cvc', 'cvce']],
+    ['long', 'Long vowels: CVCe and vowel teams', ['cvce', 'teams']],
+    ['vowels', 'Vowel sounds: teams, diphthongs, r-controlled', ['teams', 'diphthongs', 'rctrl']],
+    ['bigger', 'Bigger words: blends, vowel teams, endings', ['blends', 'teams', 'endings']],
+    ['all', 'Everything', validKinds]
+  ];
+  const PICKS = Object.fromEntries([...validKinds.map(k => [k, [k]]), ...MIXES.map(m => [m[0], m[2]])]);
+  const pick = PICKS[saved.pick] ? saved.pick : 'starter';
+  const kinds = PICKS[pick];
   const state = {
     mode: MODES.includes(saved.mode) ? saved.mode : 'explore',
-    kinds: kinds.length ? kinds : validKinds.slice(),
+    pick, kinds: kinds.slice(),
     flags: new Set(Array.isArray(saved.flags) ? saved.flags.filter(w => BANK.some(b => b.word === w)) : []),
     bests: saved.bests && typeof saved.bests === 'object' ? saved.bests : {},
     length: 20, phase: 'explore', deck: [], index: 0, marks: [], review: null,
@@ -543,21 +1284,18 @@ dialog::backdrop { background: #152a3d80; }
     read: () => $('hint').textContent,
     welcome: () => {
       if (state.phase === 'done' || $('flags').open) return null;
-      if (state.mode === 'explore' && !$('next').disabled) {
-        return ['explore', {needs: '#next', valid: () => !$('next').disabled}];
-      }
-      if (state.mode === 'explore' && !$('back').disabled) return ['exploreBack', {needs: '#back'}];
-      if (state.mode === 'explore') return ['exploreSingle', {needs: '#all'}];
+      if (state.mode === 'explore' && !$('next').disabled) return ['explore', {needs: '#next'}];
+      if (state.mode === 'explore') return null;
       if (state.phase === 'ready') return [state.mode === 'practice' ? 'startPractice' : 'startChallenge', {needs: '#start'}];
-      return [state.mode, {valid: () => state.phase === 'running', needs: ['#right', '#notyet']}];
+      return null; // quiet once a run starts: the reader focuses
     }
   });
   function save() {
     try {
-      localStorage.setItem(STORE, JSON.stringify({mode: state.mode, kinds: state.kinds, flags: [...state.flags], bests: state.bests}));
+      localStorage.setItem(STORE, JSON.stringify({mode: state.mode, pick: state.pick, flags: [...state.flags], bests: state.bests}));
     } catch {
       state.storageOK = false;
-      $('privacy').textContent = 'Saving is unavailable. Your choices last until this page closes.';
+      $('privacy').hidden = false; $('privacy').textContent = 'Saving is unavailable. Your choices last until this page closes.';
     }
   }
   function pool() { return BANK.filter(w => state.kinds.includes(w.kind)); }
@@ -573,15 +1311,15 @@ dialog::backdrop { background: #152a3d80; }
   function bestKey() { return state.kinds.slice().sort().join('+'); }
   function hint() {
     if (state.phase === 'done') {
-      $('hint').textContent = state.lastResult.missed.length ? L.review : L.again;
+      $('hint').textContent = state.lastResult.missed.length ? 'Tap Practice these to read the words that need another try.' : 'Tap Try again for a new set.';
     } else if (state.phase === 'ready') {
       $('hint').textContent = L[state.mode === 'practice' ? 'startPractice' : 'startChallenge'];
     } else if (state.mode === 'explore') {
       $('hint').textContent = state.deck.length === 1
-        ? L.exploreSingle
-        : state.index === state.deck.length - 1 ? L.exploreBack : L.explore;
+        ? 'Read aloud. Tap All to return to your chosen words.'
+        : state.index === state.deck.length - 1 ? 'Read aloud. Tap Back to read again, or Shuffle for a new order.' : L.explore;
     } else {
-      $('hint').textContent = L.marking;
+      $('hint').textContent = 'Read aloud. Tap ✓ Right or ✕ Not yet. Tap Skip to move on.';
     }
   }
   function show(id, visible) { $(id).hidden = !visible; }
@@ -591,10 +1329,8 @@ dialog::backdrop { background: #152a3d80; }
     const done = state.phase === 'done';
     show('settings', !done);
     for (const m of MODES) $('m-' + m).setAttribute('aria-pressed', m === state.mode);
-    for (const k of validKinds) {
-      $('kind-' + k).setAttribute('aria-pressed', state.kinds.includes(k));
-      $('kind-' + k).disabled = active;
-    }
+    $('pattern').value = state.pick;
+    $('pattern').disabled = active;
     show('length', state.mode === 'practice' && !done);
     for (const n of [10, 20, 30]) {
       $('len-' + n).setAttribute('aria-pressed', n === state.length);
@@ -621,6 +1357,7 @@ dialog::backdrop { background: #152a3d80; }
     $('back').disabled = state.index === 0;
     $('next').disabled = state.index >= state.deck.length - 1;
     $('flagged').textContent = `⚑ Flagged (${pool().filter(w => state.flags.has(w.word)).length})`;
+    $('my-flags').textContent = `⚑ All flagged (${state.flags.size})`;
     if (explore || active) {
       $('word').textContent = current().word;
       $('count').textContent = `${state.index + 1} of ${state.deck.length}${state.review ? ' · practice words' : ''}`;
@@ -680,7 +1417,6 @@ dialog::backdrop { background: #152a3d80; }
     $('confetti').replaceChildren();
     render();
     $('right').focus({preventScroll: true});
-    V.how(state.mode, {valid: () => state.phase === 'running', needs: ['#right', '#notyet']});
   }
   function mark(value) {
     if (state.phase !== 'running') return;
@@ -704,9 +1440,7 @@ dialog::backdrop { background: #152a3d80; }
     $('score').textContent = `${right} of ${state.deck.length} right`;
     $('result-copy').textContent = state.mode === 'challenge'
       ? `${right} right ${timedOut ? 'in one minute' : 'within one minute'}. Try again when you are ready.`
-      : `${state.marks.length} words tried. ${missed.length
-        ? `Read ${missed.length === 1 ? 'this word' : 'these ' + missed.length + ' words'} together again.`
-        : 'You read every word right.'}`;
+      : 'A little practice goes a long way.';
     $('review-label').textContent = missed.length ? 'Not yet and skipped words' : 'No words marked Not yet or skipped.';
     $('missed').replaceChildren(...missed.map(w => {
       const el = document.createElement('span');
@@ -718,7 +1452,7 @@ dialog::backdrop { background: #152a3d80; }
     if (state.mode === 'challenge') {
       const previous = Number(state.bests[bestKey()]) || 0;
       state.bests[bestKey()] = Math.max(previous, right);
-      $('best').textContent = `Best for these word kinds: ${state.bests[bestKey()]} of 30`;
+      $('best').textContent = `Best for these words: ${state.bests[bestKey()]} of 30`;
       save();
     }
     show('perfect', perfect);
@@ -742,6 +1476,8 @@ dialog::backdrop { background: #152a3d80; }
     }
     setTimeout(() => $('confetti').replaceChildren(), 2900);
   }
+  function pie(f) { $('pie').style.strokeDasharray = (Math.max(0, Math.min(1, f)) * 100).toFixed(1) + ' 100'; }
+  function ring(left) { $('ring').style.strokeDasharray = (left / 60000 * 100).toFixed(1) + ' 100'; }
   function tick() {
     if (state.phase !== 'running') return;
     const now = performance.now();
@@ -749,28 +1485,29 @@ dialog::backdrop { background: #152a3d80; }
       const left = Math.max(0, 60000 - (now - state.started));
       if (!left) return finish(true);
       const seconds = Math.ceil(left / 1000);
-      $('clock').textContent = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
+      ring(left); $('clock-text').textContent = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
       $('clock').setAttribute('aria-label', `${seconds} seconds left`);
     } else {
       const elapsed = now - state.wordStarted;
       const phase = elapsed < 2000 ? 'green' : elapsed < 4000 ? 'yellow' : 'red';
       $('hourglass').dataset.phase = phase;
-      $('sand').style.fill = {green: '#31734d', yellow: '#ad7c16', red: '#9a493a'}[phase];
+      pie(phase === 'green' ? 1 - elapsed / 2000 : phase === 'yellow' ? 1 - (elapsed - 2000) / 2000 : 1);
       $('pace').textContent = {green: 'Read aloud', yellow: 'Keep trying', red: 'Take your time and try'}[phase];
     }
   }
   for (const mode of MODES) $('m-' + mode).onclick = () => {
     if (state.mode !== mode) setMode(mode);
   };
-  for (const kind of validKinds) $('kind-' + kind).onclick = () => {
+  {
+    const count = ks => BANK.filter(w => ks.includes(w.kind)).length;
+    const group = (label, items) => { const g = document.createElement('optgroup'); g.label = label;
+      g.append(...items.map(([id, text, ks]) => new Option(`${text} (${count(ks)})`, id))); return g; };
+    $('pattern').append(group('One pattern', validKinds.map(k => [k, KINDS[k], [k]])), group('Mixes', MIXES));
+  }
+  $('pattern').onchange = () => {
     if (state.phase === 'running') return;
-    if (state.kinds.includes(kind)) {
-      if (state.kinds.length === 1) {
-        $('hint').textContent = L.keepKind;
-        return;
-      }
-      state.kinds = state.kinds.filter(k => k !== kind);
-    } else state.kinds.push(kind);
+    state.pick = $('pattern').value;
+    state.kinds = PICKS[state.pick].slice();
     state.review = null;
     state.deck = pool();
     state.index = 0;
@@ -810,11 +1547,7 @@ dialog::backdrop { background: #152a3d80; }
     $('next').focus({preventScroll: true});
   };
   $('flagged').onclick = () => {
-    const interrupted = V.playing && V.log.slice().reverse().find(line =>
-      line.as === 'spoken' && line.kind === 'welcome' && line.text === V.playing);
     V.hush();
-    // An instruction stopped by the picker still needs a complete turn after Close.
-    if (interrupted) V.said.delete(interrupted.key);
     const words = pool().filter(w => state.flags.has(w.word));
     $('flags-help').textContent = words.length ? 'Tap a word to open it in Explore.' : 'No flags yet. Close this list, then tap Flag under a word.';
     $('flag-list').replaceChildren(...words.map(w => {
@@ -829,6 +1562,22 @@ dialog::backdrop { background: #152a3d80; }
     }));
     $('flags').showModal();
   };
+  // Button names in the hint are bold and blue, so a new reader can match them to the buttons.
+  const BTN_WORDS = /(?<!^|\. )\b(Practice these|Try again|Start|Next|Back|Right|Not yet|Skip|Shuffle|Flag|All)\b/g;
+  new MutationObserver(() => {
+    const h = $('hint'); if (h.querySelector('b')) return;
+    const t = h.textContent, html = t.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])).replace(BTN_WORDS, '<b class="btn-word">$1</b>');
+    if (html !== t) h.innerHTML = html;
+  }).observe($('hint'), {childList: true, characterData: true, subtree: true});
+  $('my-flags').onclick = () => {
+    const words = BANK.filter(w => state.flags.has(w.word));
+    if (!words.length) { $('flagged').onclick(); return; }
+    setMode('explore', {review: words});
+    $('next').disabled ? $('flag').focus({preventScroll: true}) : $('next').focus({preventScroll: true});
+  };
+  $('reset').onclick = () => $('reset-dialog').showModal();
+  $('reset-cancel').onclick = () => $('reset-dialog').close();
+  $('reset-yes').onclick = () => { try { localStorage.removeItem(STORE); } catch {} location.reload(); };
   $('close-flags').onclick = () => $('flags').close();
   $('flags').addEventListener('close', () => {
     $('flagged').focus({preventScroll: true});

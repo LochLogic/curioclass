@@ -1,0 +1,432 @@
+// Expressions and Equations generator, grades 6-9. Evaluate expressions (6.EE.2c, 7.NS.3), one-step equations and
+// inequalities (6.EE.7-8), two-step and distributive equations and inequalities (7.EE.4), variables on both sides with
+// integer or simple fraction answers (8.EE.7), multi-step equations and inequalities (A-REI.3).
+// Also: grade 6 numeric expressions with an exponent and the order of operations (6.EE.1), grade 7 combining like
+// terms and expanding or factoring with the distributive property (7.EE.1), and grade 8 both-sides equations that mix
+// one solution, no solution and identities (8.EE.7a).
+// Every equation is built from its answer, and the teacher page lists the steps of each solution.
+(() => {
+const H = Gen.h, { part, example, svg, esc } = H;
+const { gcd } = Gen.m;
+
+const GRADES = [['6', 'Grade 6'], ['7', 'Grade 7'], ['8', 'Grade 8'], ['9', 'Grade 9 (Algebra 1)']];
+const SKILLS = {
+  6: [['eval', 'Evaluate expressions'], ['one', 'One-step equations'], ['ineq1', 'One-step inequalities'], ['mix', 'Mixed review'], ['expo', 'Evaluate with exponents and order of operations']],
+  7: [['eval', 'Evaluate expressions with integers'], ['two', 'Two-step equations'], ['dist', 'Distributive property equations'], ['ineq2', 'Two-step inequalities'], ['mix', 'Mixed review'],
+    ['terms', 'Combine like terms'], ['expand', 'Expand and factor with the distributive property']],
+  8: [['two', 'Two-step equations'], ['both', 'Variables on both sides'], ['dist', 'Distributive property equations'], ['ineq2', 'Two-step inequalities'], ['mix', 'Mixed review'],
+    ['special', 'Both sides, including no solution and identity']],
+  9: [['both', 'Variables on both sides'], ['multi', 'Multi-step equations'], ['ineq', 'Multi-step inequalities'], ['mix', 'Mixed review']],
+};
+const MIXOF = { 6: ['eval', 'one', 'one', 'ineq1'], 7: ['eval', 'two', 'dist', 'ineq2'], 8: ['two', 'both', 'dist', 'ineq2'], 9: ['both', 'multi', 'ineq'] };
+const COUNTS = { eval: [8, 12, 16], ineq: [4, 6, 8], eq: [6, 8, 12], mix: [4, 6, 10] };
+const SHORT = ['eval', 'expo', 'terms', 'expand'];   // short items: counted like evaluate
+const countKey = s => SHORT.includes(s) ? 'eval' : s.startsWith('ineq') ? 'ineq' : 'eq';
+
+/* ---------- writing numbers and terms ---------- */
+const MINUS = '−';
+const num = n => (n < 0 ? MINUS : '') + Math.abs(n);
+const coef = (a, v) => a === 1 ? v : a === -1 ? MINUS + v : num(a) + v;
+const lin = (a, b, v) => { if (a === 0) return num(b); const t = coef(a, v); return b === 0 ? t : `${t} ${b < 0 ? MINUS : '+'} ${Math.abs(b)}`; };
+const ital = s => s.replace(/(^|[^a-zA-Z&])([a-z])(?![a-zA-Z;])/g, '$1<i>$2</i>');   // variables in italics on the sheet
+const fracH = (n, d) => `<span class="gen-frac"><span>${n}</span><span>${d}</span></span>`;
+// a value that may be a fraction {n, d}: text "5/2", html stacked
+const vtext = q => q.d === 1 ? num(q.n) : `${q.n < 0 ? MINUS : ''}${Math.abs(q.n)}/${q.d}`;
+const vhtml = q => q.d === 1 ? num(q.n) : `${q.n < 0 ? MINUS : ''}${fracH(Math.abs(q.n), q.d)}`;
+const FLIP = { '<': '>', '>': '<', '≤': '≥', '≥': '≤' };
+
+/* ---------- exact arithmetic parser for verify: + − * / ^ ( ), unary minus, variables ---------- */
+function evaluate(src, vars) {
+  const R = (n, d = 1) => { if (d < 0) { n = -n; d = -d; } const g = gcd(n, d) || 1; return { n: n / g, d: d / g }; };
+  const toks = src.replace(/−/g, '-').match(/\d+|[a-z]|[-+*/^()]/g) || [];
+  let i = 0;
+  const peek = () => toks[i], take = () => toks[i++];
+  function expr() { let a = term(); while (peek() === '+' || peek() === '-') { const op = take(), b = term(); a = op === '+' ? R(a.n * b.d + b.n * a.d, a.d * b.d) : R(a.n * b.d - b.n * a.d, a.d * b.d); } return a; }
+  function term() { let a = power(); while (peek() === '*' || peek() === '/') { const op = take(), b = power(); if (op === '/' && b.n === 0) throw new Error('divide by zero'); a = op === '*' ? R(a.n * b.n, a.d * b.d) : R(a.n * b.d, a.d * b.n); } return a; }
+  function power() { const a = unary(); if (peek() === '^') { take(); const e = unary(); let p = R(1); for (let k = 0; k < e.n; k++) p = R(p.n * a.n, p.d * a.d); return p; } return a; }
+  function unary() { if (peek() === '-') { take(); const a = unary(); return R(-a.n, a.d); } return atom(); }
+  function atom() { const t = take(); if (t === '(') { const a = expr(); take(); return a; } if (/\d/.test(t)) return R(+t); if (t in vars) return R(vars[t].n ?? vars[t], vars[t].d ?? 1); throw new Error('bad token ' + t); }
+  const out = expr();
+  if (i !== toks.length) throw new Error('left over ' + toks.slice(i).join(''));
+  return out;
+}
+
+/* ---------- problem makers: each returns {kind, disp, mach, ans, steps, ...} ---------- */
+const VARS = ['x', 'n', 'y', 'm', 'k', 'p', 'w', 'b'];
+const nz = (r, lo, hi) => { for (;;) { const x = r.int(lo, hi); if (x) return x; } };
+
+function makeEval(r, g) {
+  const neg = g === '7';
+  const val = () => neg ? nz(r, -9, 9) : r.int(1, 10);
+  const x = val(), y = val(), a = r.int(2, 9), b = r.int(1, 12), c = r.int(2, 5);
+  const T = r.int(1, 9);
+  let disp, mach, vars = { x, y }, uses = 'xy';
+  if (T === 1) { disp = `${a}x + ${b}`; mach = `${a}*x+${b}`; uses = 'x'; }
+  else if (T === 2) { disp = `${a}(x + ${b})`; mach = `${a}*(x+${b})`; uses = 'x'; }
+  else if (T === 3) { disp = `x^2 + ${b}`; mach = `x^2+${b}`; uses = 'x'; }
+  else if (T === 4) { disp = `${a}x − ${c}y`; mach = `${a}*x-${c}*y`; }
+  else if (T === 5) { if ((x + y) % c) return null; disp = `(x + y) ÷ ${c}`; mach = `(x+y)/${c}`; }
+  else if (T === 6) { disp = `xy − ${b}`; mach = `x*y-${b}`; }
+  else if (T === 7) { disp = `${c}x^2 − y`; mach = `${c}*x^2-y`; }
+  else if (T === 8) { const p = r.int(2, 9), q = r.int(2, 9), s = r.int(2, 6), t = r.int(1, 20);
+    const forms = [[`${t} + ${p} × ${q}`, `${t}+${p}*${q}`], [`(${t} + ${p}) × ${s}`, `(${t}+${p})*${s}`], [`${p}^2 − ${s} × ${q}`, `${p}^2-${s}*${q}`], [`${p * s} ÷ ${s} + ${q} × ${t % 6 + 2}`, `${p * s}/${s}+${q}*${t % 6 + 2}`]];
+    [disp, mach] = r.pick(forms); vars = {}; uses = ''; }
+  else { disp = `${b} − ${a}x + y`; mach = `${b}-${a}*x+y`; if (!neg && b - a * x + y < 0) return null; }
+  const ans = evaluate(mach, vars);   // exact; a quotient that is not whole is thrown out below
+  if (ans.d !== 1 || (!neg && ans.n < 0) || Math.abs(ans.n) > 400) return null;
+  const given = uses.split('').filter(Boolean).map(k => `${k} = ${num(vars[k])}`).join(' and ');
+  const subd = disp.replace(/(\d)([xy])/g, '$1·$2').replace(/xy/g, 'x·y').replace(/[xy]/g, k => vars[k] < 0 ? `(${num(vars[k])})` : String(vars[k]));
+  return { kind: 'eval', disp, mach, vars: uses ? vars : {}, given, ans: { n: ans.n, d: 1 }, q: `${disp} | ${given}`,
+    steps: [uses ? `${shown(subd)}` : shown(disp), num(ans.n)] };
+}
+const shown = s => s.replace(/\^2/g, '²').replace(/\^3/g, '³').replace(/-/g, MINUS);
+// a sum of terms [coef, name] ('' for a constant) in the order given: 3x − 7y + 5
+const poly = parts => { const ps = parts.filter(p => p[0]); if (!ps.length) return '0';
+  return ps.map(([c, n], i) => { const t = n ? coef(Math.abs(c), n) : String(Math.abs(c)); return i === 0 ? (c < 0 ? MINUS : '') + t : ` ${c < 0 ? MINUS : '+'} ${t}`; }).join(''); };
+const polyMach = parts => parts.map(([c, n]) => n ? `(${c})*${n}` : `(${c})`).join('+');
+
+// grade 6: a number expression with a square or cube and two more operations; steps for the key
+function makeExpo(r) {
+  const sq = x => x * x, F = r.int(1, 9);
+  let disp, mach, steps;
+  if (F === 1) { const a = r.int(2, 9), b = r.int(2, 9), c = r.int(2, 9); disp = `${a}^2 + ${b} × ${c}`; mach = `${a}^2+${b}*${c}`; steps = [`${sq(a)} + ${b} × ${c}`, `${sq(a)} + ${b * c}`]; }
+  else if (F === 2) { const a = r.int(1, 6), b = r.int(1, 6), c = r.int(1, 20); if (c > sq(a + b)) return null; disp = `(${a} + ${b})^2 − ${c}`; mach = `(${a}+${b})^2-${c}`; steps = [`${a + b}^2 − ${c}`, `${sq(a + b)} − ${c}`]; }
+  else if (F === 3) { const a = r.int(2, 5), b = r.int(2, 9), c = r.int(2, 9), plus = r.chance(.5); if (!plus && b * c >= a ** 3) return null;
+    const op = plus ? '+' : '−'; disp = `${a}^3 ${op} ${b} × ${c}`; mach = `${a}^3${plus ? '+' : '-'}${b}*${c}`; steps = [`${a ** 3} ${op} ${b} × ${c}`, `${a ** 3} ${op} ${b * c}`]; }
+  else if (F === 4) { const a = r.int(2, 6), b = r.int(2, 7), c = r.int(1, 20); if (c > a * sq(b)) return null; disp = `${a} × ${b}^2 − ${c}`; mach = `${a}*${b}^2-${c}`; steps = [`${a} × ${sq(b)} − ${c}`, `${a * sq(b)} − ${c}`]; }
+  else if (F === 5) { const a = r.int(2, 10), divs = [2, 3, 4, 5, 6, 8, 9, 10].filter(d => sq(a) % d === 0); if (!divs.length) return null;
+    const b = r.pick(divs), c = r.int(1, 15); disp = `${a}^2 ÷ ${b} + ${c}`; mach = `${a}^2/${b}+${c}`; steps = [`${sq(a)} ÷ ${b} + ${c}`, `${sq(a) / b} + ${c}`]; }
+  else if (F === 6) { const a = r.int(1, 20), b = r.int(2, 6), c = r.int(2, 6); disp = `${a} + ${b}^2 × ${c}`; mach = `${a}+${b}^2*${c}`; steps = [`${a} + ${sq(b)} × ${c}`, `${a} + ${sq(b) * c}`]; }
+  else if (F === 7) { const a = r.int(2, 6), b = r.int(3, 12), c = r.int(1, b - 2); disp = `${a} × (${b} − ${c})^2`; mach = `${a}*(${b}-${c})^2`; steps = [`${a} × ${b - c}^2`, `${a} × ${sq(b - c)}`]; }
+  else if (F === 8) { const b = r.int(2, 8), divs = [2, 3, 4, 6, 8].filter(d => sq(b) % d === 0); if (!divs.length) return null;
+    const c = r.pick(divs), a = r.int(2, 10); if (sq(a) <= sq(b) / c) return null; disp = `${a}^2 − ${b}^2 ÷ ${c}`; mach = `${a}^2-${b}^2/${c}`; steps = [`${sq(a)} − ${sq(b)} ÷ ${c}`, `${sq(a)} − ${sq(b) / c}`]; }
+  else { const a = r.int(1, 8), b = r.int(1, 8), c = r.int(2, 4); disp = `(${a} + ${b}) × ${c}^2`; mach = `(${a}+${b})*${c}^2`; steps = [`${a + b} × ${c}^2`, `${a + b} × ${sq(c)}`]; }
+  const ans = evaluate(mach, {});
+  if (ans.d !== 1 || ans.n < 0 || ans.n > 400) return null;
+  return { kind: 'eval', expo: true, disp, mach, vars: {}, given: '', ans: { n: ans.n, d: 1 }, q: disp, chain: steps, steps: [disp, ...steps, num(ans.n)] };
+}
+
+// grade 7: combine like terms; the answer is a simplified expression
+function makeTerms(r) {
+  const v = r.pick(VARS), w = r.pick(VARS.filter(x => x !== v)), T = r.int(1, 3);
+  let terms;
+  if (T === 1) terms = [[nz(r, -9, 9), v], [nz(r, -12, 12), ''], [nz(r, -9, 9), v], [nz(r, -12, 12), '']];
+  else if (T === 2) terms = [[nz(r, -9, 9), v], [nz(r, -9, 9), w], [nz(r, -9, 9), v], [nz(r, -9, 9), w]];
+  else terms = [[nz(r, -7, 7), v], [nz(r, -9, 9), v], [nz(r, -12, 12), ''], [nz(r, -7, 7), v], [nz(r, -12, 12), '']];
+  terms = r.shuffle(terms);
+  const sum = {}; for (const [c, n] of terms) sum[n] = (sum[n] || 0) + c;
+  const parts = [[sum[v] || 0, v], [sum[w] || 0, w], [sum[''] || 0, '']];
+  if (parts.every(p => !p[0]) || (!sum[v] && !sum[w])) return null;
+  const order = { [v]: 0, [w]: 1, '': 2 }, grouped = terms.slice().sort((a, b) => order[a[1]] - order[b[1]]);
+  const disp = poly(terms), ans = poly(parts);
+  return { kind: 'simp', verb: 'Simplify', v, w, disp, ans, mach: polyMach(terms), ansMach: polyMach(parts), q: `Simplify: ${disp}`,
+    steps: [disp, `${poly(grouped)}  (group the like terms)`, `${ans}  (add the coefficients of each group)`] };
+}
+
+// grade 7: expand p(ax + b), or factor pax + pb back to p(ax + b) with the greatest common factor out front
+function makeExpand(r, expand) {
+  const v = r.pick(VARS), p = expand ? nz(r, -6, 6) : r.int(2, 6), a = r.int(1, 6), b = nz(r, -9, 9);
+  if (Math.abs(p) === 1 || gcd(a, Math.abs(b)) !== 1) return null;
+  const fact = `${num(p)}(${lin(a, b, v)})`, open = lin(p * a, p * b, v);
+  const machF = `(${p})*((${a})*${v}+(${b}))`, machO = `(${p * a})*${v}+(${p * b})`;
+  if (expand) return { kind: 'simp', verb: 'Expand', v, disp: fact, ans: open, mach: machF, ansMach: machO, q: `Expand: ${fact}`,
+    steps: [fact, `(${num(p)})(${coef(a, v)}) + (${num(p)})(${num(b)})  (multiply each term inside by ${num(p)})`, open] };
+  return { kind: 'simp', verb: 'Factor', factor: true, v, disp: open, ans: fact, mach: machO, ansMach: machF, q: `Factor: ${open}`,
+    steps: [open, `${fact}  (the greatest common factor of ${num(p * a)} and ${num(p * b)} is ${p}; divide each term by it)`] };
+}
+
+// grade 8: variables on both sides where the variable may drop out: one solution, no solution or an identity
+const undo = (p, v) => p < 0 ? `add ${coef(-p, v)} to both sides` : `subtract ${coef(p, v)} from both sides`;
+function makeSpecial(r, type) {
+  if (type === 'one') { const p = makeEq(r, '8', 'both'); if (!p) return null; p.special = true; p.ansText = `${p.v} = ${vtext(p.ans)}`; return p; }
+  const v = r.pick(VARS), p = nz(r, -7, 7), q = nz(r, -9, 9), F = r.int(1, 3);
+  if (Math.abs(p) === 1) return null;
+  const shift = type === 'all' ? 0 : nz(r, -8, 8);
+  let left, right, mach, steps;
+  if (F === 1) {   // p(x + q) = px + d
+    const d = p * q + shift;
+    left = `${num(p)}(${lin(1, q, v)})`; right = lin(p, d, v); mach = `(${p})*(x+(${q}))=(${p})*x+(${d})`;
+    steps = [`${lin(p, p * q, v)} = ${lin(p, d, v)}  (distribute ${num(p)})`, `${num(p * q)} = ${num(d)}  (${undo(p, v)})`];
+  } else if (F === 2) {   // ax + b + cx = (a + c)x + d
+    const a = nz(r, -9, 9), c = p - a, b = nz(r, -9, 9), d = b + shift; if (!c) return null;
+    left = `${lin(a, b, v)} ${c < 0 ? MINUS : '+'} ${coef(Math.abs(c), v)}`; right = lin(p, d, v); mach = `(${a})*x+(${b})+(${c})*x=(${p})*x+(${d})`;
+    steps = [`${lin(p, b, v)} = ${lin(p, d, v)}  (combine like terms)`, `${num(b)} = ${num(d)}  (${undo(p, v)})`];
+  } else {   // px + b = d + px
+    const b = nz(r, -12, 12), d = b + shift;
+    left = lin(p, b, v); right = `${num(d)} ${p < 0 ? MINUS : '+'} ${coef(Math.abs(p), v)}`; mach = `(${p})*x+(${b})=(${d})+(${p})*x`;
+    steps = [`${num(b)} = ${num(d)}  (${undo(p, v)})`];
+  }
+  const disp = `${left} = ${right}`;
+  steps = [disp, ...steps, type === 'all' ? 'true for every value: all real numbers' : 'false, so no value works: no solution'];
+  return { kind: 'eq', special: true, v, disp, mach, ans: null, ansText: type === 'all' ? 'all real numbers' : 'no solution', q: disp, steps };
+}
+
+function makeEq(r, g, kind) {
+  const v = r.pick(VARS);
+  const V = s => s.replace(/x/g, v);
+  let disp, mach, sol, steps;
+  if (kind === 'one') {
+    const T = r.int(1, 4), s = r.int(0, 20), a = r.int(2, 12);
+    if (T === 1) { const b = s + a; disp = `${v} + ${a} = ${b}`; mach = `x+${a}=${b}`; steps = [disp, `${v} = ${b} − ${a}  (subtract ${a} from both sides)`]; }
+    else if (T === 2) { const b = s - a; if (b < 0) return null; disp = `${v} − ${a} = ${b}`; mach = `x-${a}=${b}`; steps = [disp, `${v} = ${b} + ${a}  (add ${a} to both sides)`]; }
+    else if (T === 3) { if (!s) return null; disp = `${a}${v} = ${a * s}`; mach = `${a}*x=${a * s}`; steps = [disp, `${v} = ${a * s} ÷ ${a}  (divide both sides by ${a})`]; }
+    else { const q = r.int(1, 12); disp = `${v}/${a} = ${q}`; mach = `x/${a}=${q}`; steps = [disp, `${v} = ${q} × ${a}  (multiply both sides by ${a})`]; sol = { n: q * a, d: 1 }; }
+    sol = sol || { n: s, d: 1 };
+  } else if (kind === 'two') {
+    const s = nz(r, -10, 12);
+    if (r.chance(.25)) {   // x/p + q = r
+      const p = r.int(2, 5), m = s * p, q = nz(r, -12, 12), rr = s + q;
+      disp = `${v}/${p} ${q < 0 ? MINUS : '+'} ${Math.abs(q)} = ${num(rr)}`; mach = `x/${p}+(${q})=${rr}`; sol = { n: m, d: 1 };
+      steps = [disp, `${v}/${p} = ${num(rr - q)}  (${q < 0 ? 'add ' + Math.abs(q) + ' to' : 'subtract ' + q + ' from'} both sides)`, `${v} = ${num(m)}  (multiply both sides by ${p})`];
+    } else {
+      const p = nz(r, g === '7' ? -6 : -9, 9), q = nz(r, -15, 15); if (Math.abs(p) === 1) return null;
+      const rr = p * s + q;
+      disp = `${V(lin(p, q, 'x'))} = ${num(rr)}`; mach = `(${p})*x+(${q})=${rr}`; sol = { n: s, d: 1 };
+      steps = [disp, `${coef(p, v)} = ${num(rr - q)}  (${q < 0 ? 'add ' + Math.abs(q) + ' to' : 'subtract ' + q + ' from'} both sides)`, `${v} = ${num(s)}  (divide both sides by ${num(p)})`];
+    }
+  } else if (kind === 'dist') {
+    const s = nz(r, -10, 10), p = nz(r, -8, 8), q = nz(r, -9, 9); if (Math.abs(p) === 1) return null;
+    const rr = p * (s + q);
+    disp = `${num(p)}(${V(lin(1, q, 'x'))}) = ${num(rr)}`; mach = `(${p})*(x+(${q}))=${rr}`; sol = { n: s, d: 1 };
+    steps = [disp, `${V(lin(p, p * q, 'x'))} = ${num(rr)}  (distribute ${num(p)})`, `${coef(p, v)} = ${num(rr - p * q)}  (${p * q < 0 ? 'add ' + Math.abs(p * q) + ' to' : 'subtract ' + p * q + ' from'} both sides)`, `${v} = ${num(s)}  (divide both sides by ${num(p)})`];
+  } else if (kind === 'both' || kind === 'multi') {
+    // a x + b = c x + d  (multi: p(x + q) on the left, expanded to a = p, b = p q)
+    const fracOk = g === '8' || g === '9';
+    const diff = nz(r, -6, 6), c = nz(r, -9, 9), a = c + diff; if (!a) return null;
+    let s, top;
+    if (fracOk && r.chance(.2) && Math.abs(diff) > 1) { top = nz(r, -20, 20); if (top % diff === 0) return null; s = { n: top, d: diff }; }
+    else { const k = nz(r, -10, 10); top = k * diff; s = { n: k, d: 1 }; }
+    let b, p = 0, q = 0;
+    if (kind === 'multi') { if (Math.abs(a) < 2) return null; p = a; q = nz(r, -8, 8); b = p * q; } else b = nz(r, -15, 15);
+    const d = b + top;   // a x + b = c x + d  ->  (a - c) x = d - b = top
+    const g2 = gcd(Math.abs(top), Math.abs(diff)); sol = { n: (diff < 0 ? -top : top) / g2, d: Math.abs(diff) / g2 };
+    const left = kind === 'multi' ? `${num(p)}(${V(lin(1, q, 'x'))})` : V(lin(a, b, 'x'));
+    disp = `${left} = ${V(lin(c, d, 'x'))}`;
+    mach = kind === 'multi' ? `(${p})*(x+(${q}))=(${c})*x+(${d})` : `(${a})*x+(${b})=(${c})*x+(${d})`;
+    steps = [disp];
+    if (kind === 'multi') steps.push(`${V(lin(a, b, 'x'))} = ${V(lin(c, d, 'x'))}  (distribute ${num(p)})`);
+    steps.push(`${V(lin(diff, b, 'x'))} = ${num(d)}  (${c < 0 ? 'add ' + coef(-c, v) + ' to' : 'subtract ' + coef(c, v) + ' from'} both sides)`);
+    steps.push(`${coef(diff, v)} = ${num(top)}  (${b < 0 ? 'add ' + Math.abs(b) + ' to' : 'subtract ' + b + ' from'} both sides)`);
+    steps.push(`${v} = ${vtext(sol)}  (divide both sides by ${num(diff)})`);
+    if (sol.d === 1 && diff === 1) steps.pop();
+  }
+  if (!disp) return null;
+  if (sol.d === 1) steps.push(`${v} = ${num(sol.n)}`);
+  // tidy: drop a last step that repeats the one before it
+  if (steps.length > 2 && steps[steps.length - 1] === steps[steps.length - 2].split('  (')[0]) steps.pop();
+  return { kind: 'eq', v, disp, mach, ans: sol, q: disp, steps };
+}
+
+function makeIneq(r, g, kind) {
+  const v = r.pick(VARS), V = s => s.replace(/x/g, v);
+  const rel = r.pick(['<', '>', '≤', '≥']);
+  let disp, mach, k, op = rel, steps;
+  if (kind === 'ineq1') {
+    k = r.int(0, 15); const a = r.int(2, 9), T = r.int(1, 3);
+    if (T === 1) { disp = `${v} + ${a} ${rel} ${k + a}`; mach = `x+${a}|${k + a}`; steps = [disp, `${v} ${rel} ${k}  (subtract ${a} from both sides)`]; }
+    else if (T === 2) { disp = `${v} − ${a} ${rel} ${k}`; mach = `x-${a}|${k}`; k += a; steps = [disp, `${v} ${rel} ${k}  (add ${a} to both sides)`]; }
+    else { if (!k) return null; disp = `${a}${v} ${rel} ${a * k}`; mach = `${a}*x|${a * k}`; steps = [disp, `${v} ${rel} ${k}  (divide both sides by ${a})`]; }
+  } else if (kind === 'ineq2') {
+    k = nz(r, -8, 8); const p = nz(r, -6, 6), q = nz(r, -12, 12); if (Math.abs(p) === 1) return null;
+    const rr = p * k + q;
+    disp = `${V(lin(p, q, 'x'))} ${rel} ${num(rr)}`; mach = `(${p})*x+(${q})|${rr}`;
+    if (p < 0) op = FLIP[rel];
+    steps = [disp, `${coef(p, v)} ${rel} ${num(rr - q)}  (${q < 0 ? 'add ' + Math.abs(q) + ' to' : 'subtract ' + q + ' from'} both sides)`,
+      `${v} ${op} ${num(k)}  (divide both sides by ${num(p)}${p < 0 ? '; dividing by a negative flips the sign' : ''})`];
+  } else {
+    // a(x + q) rel c x + d  or  a x + b rel c x + d
+    k = nz(r, -8, 8); const diff = nz(r, -5, 5), c = nz(r, -6, 6), a = c + diff; if (!a) return null;
+    const useP = Math.abs(a) > 1 && r.chance(.5), q = nz(r, -6, 6), b = useP ? a * q : nz(r, -12, 12), d = b + diff * k;
+    const left = useP ? `${num(a)}(${V(lin(1, q, 'x'))})` : V(lin(a, b, 'x'));
+    disp = `${left} ${rel} ${V(lin(c, d, 'x'))}`;
+    mach = useP ? `(${a})*(x+(${q}))|(${c})*x+(${d})` : `(${a})*x+(${b})|(${c})*x+(${d})`;
+    if (diff < 0) op = FLIP[rel];
+    steps = [disp];
+    if (useP) steps.push(`${V(lin(a, b, 'x'))} ${rel} ${V(lin(c, d, 'x'))}  (distribute ${num(a)})`);
+    steps.push(`${V(lin(diff, b, 'x'))} ${rel} ${num(d)}  (${c < 0 ? 'add ' + coef(-c, v) + ' to' : 'subtract ' + coef(c, v) + ' from'} both sides)`);
+    steps.push(`${coef(diff, v)} ${rel} ${num(diff * k)}  (${b < 0 ? 'add ' + Math.abs(b) + ' to' : 'subtract ' + b + ' from'} both sides)`);
+    steps.push(`${v} ${op} ${num(k)}  (divide both sides by ${num(diff)}${diff < 0 ? '; dividing by a negative flips the sign' : ''})`);
+    if (diff === 1) steps.pop();
+  }
+  return { kind: 'ineq', v, disp, mach, rel, op, k, q: disp, steps, ansText: `${v} ${op} ${num(k)}` };
+}
+
+function make1(r, g, skill) {
+  if (skill === 'eval') return makeEval(r, g);
+  if (skill === 'expo') return makeExpo(r);
+  if (skill === 'terms') return makeTerms(r);
+  if (skill === 'ineq1' || skill === 'ineq2' || skill === 'ineq') return makeIneq(r, g, skill);
+  return makeEq(r, g, skill);
+}
+
+// number line for an inequality: blank on the student copy, the graph on the key
+function ineqLine(k, op, lo) {
+  const x0 = 18, x1 = 302, y = 22, n = 10, step = (x1 - x0) / n, X = t => x0 + (t - lo) * step;
+  let s = `<line x1="${x0 - 12}" y1="${y}" x2="${x1 + 12}" y2="${y}" stroke="#222" stroke-width="1.5"/>` +
+    `<path d="M${x0 - 12} ${y} l8 -5 v10 z M${x1 + 12} ${y} l-8 -5 v10 z" fill="#222"/>`;
+  for (let t = lo; t <= lo + n; t++) s += `<line x1="${X(t)}" y1="${y - 6}" x2="${X(t)}" y2="${y + 6}" stroke="#222" stroke-width="1.2"/><text x="${X(t)}" y="${y + 21}" text-anchor="middle" font-size="12">${num(t)}</text>`;
+  const right = op === '>' || op === '≥', closed = op === '≤' || op === '≥', end = right ? x1 + 10 : x0 - 10;
+  s += `<g class="ws-keyonly"><line x1="${X(k)}" y1="${y}" x2="${end}" y2="${y}" stroke="#b03020" stroke-width="5"/>` +
+    `<circle cx="${X(k)}" cy="${y}" r="6" fill="${closed ? '#b03020' : '#fff'}" stroke="#b03020" stroke-width="2.5"/></g>`;
+  return svg(320, 48, s, `Number line from ${lo} to ${lo + n} for graphing the answer`);
+}
+
+Gen.add('equations', {
+  title: 'Expressions and Equations', type: 'Practice',
+  css: `.eq-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 30px;margin:6px 0 10px}
+.eq-cell{break-inside:avoid;display:flex;flex-direction:column;border-top:1px solid #ddd;padding-top:6px}
+.eq-cell > p{margin:0;font-size:17px}
+.eq-cell .eq-work{flex:1;min-height:.85in}
+.eq-cell.eq-eval .eq-work{min-height:.55in}
+.eq-cell.eq-simp .eq-work{min-height:.55in}
+.eq-cell.eq-ineq .eq-work{min-height:.5in}
+.eq-ans{margin:0 0 4px;text-align:right;font-size:16px}
+.eq-cell svg{max-width:3.1in;margin:2px 0 4px}
+.eq-steps{margin:4px 0;padding-left:1.8em;font-size:14px;columns:2;column-gap:24px}
+.eq-steps li{margin-bottom:6px;break-inside:avoid}
+.eq-steps span{display:block}`,
+  fields: [
+    { id: 'grade', label: 'Grade', type: 'select', options: GRADES, def: '7' },
+    { id: 'skill', label: 'Skill', type: 'select', options: v => SKILLS[v.grade], def: 'two' },
+    { id: 'count', label: 'Problems', type: 'select', def: 'm',
+      options: v => { const c = COUNTS[v.skill === 'mix' ? 'mix' : countKey(v.skill)]; return [['s', `Fewer (${c[0]})`], ['m', `Standard (${c[1]})`], ['l', `More (${c[2]})`]]; } },
+  ],
+  make(v, r) {
+    const g = v.grade, skill = v.skill, n = COUNTS[skill === 'mix' ? 'mix' : countKey(skill)][{ s: 0, m: 1, l: 2 }[v.count]];
+    const label = SKILLS[g].find(s => s[0] === skill)[1], gname = GRADES.find(x => x[0] === g)[1];
+    const pickSkill = () => skill === 'mix' ? r.pick(MIXOF[g]) : skill;
+    const key = p => p.q.replace(/\b[a-z]\b/g, 'x');
+    let ps;
+    if (skill === 'expand' || skill === 'special') {
+      // expand: alternate expand and factor; special: about a third each of one solution, no solution and identity
+      const types = skill === 'expand' ? Array.from({ length: n + 1 }, (_, i) => i % 2 === 0) : r.shuffle(Array.from({ length: n + 1 }, (_, i) => ['one', 'none', 'all'][i % 3]));
+      const seen = new Set(); ps = [];
+      for (const t of types) { const p = r.distinct(1, () => { const x = skill === 'expand' ? makeExpand(r, t) : makeSpecial(r, t); return x && !seen.has(key(x)) ? x : null; }, key)[0]; if (p) { seen.add(key(p)); ps.push(p); } }
+    } else ps = r.distinct(n + 1, () => make1(r, g, pickSkill()), key);
+    if (skill === 'mix') ps = [ps[0]].concat(ps.slice(1).sort((a, b) => ['eval', 'eq', 'ineq'].indexOf(a.kind) - ['eval', 'eq', 'ineq'].indexOf(b.kind)));
+    const ex = ps.shift();
+    const items = [], cells = [];
+    const answerOf = p => p.kind === 'ineq' ? p.ansText : p.kind === 'eval' ? num(p.ans.n) : p.special ? p.ansText : p.kind === 'simp' ? p.ans : vtext(p.ans);
+    ps.forEach((p, i) => {
+      const a = answerOf(p);
+      items.push({ q: p.q, a, kind: p.kind, mach: p.mach, vars: p.vars, v: p.v, rel: p.rel, chain: p.chain, special: p.special, ansMach: p.ansMach, w: p.w, verb: p.verb });
+      let head, foot = '';
+      if (p.kind === 'simp') { head = `${p.verb}: ${ital(shown(p.disp))}`; foot = `<p class="eq-ans">= ${H.blank(a, 5)}</p>`; }
+      else if (p.special) foot = `<p class="eq-ans">${H.blank(a, 7)}</p>`;
+      else if (p.kind === 'eval') { head = p.given ? `Evaluate ${ital(shown(p.disp))} when ${ital(p.given)}.` : `Evaluate ${shown(p.disp)}.`; foot = `<p class="eq-ans">= ${H.blank(a, 4)}</p>`; }
+      else if (p.kind === 'eq') foot = `<p class="eq-ans"><i>${p.v}</i> = <span class="ws-blank" style="min-width:4em"><span class="ws-ans">${vhtml(p.ans)}</span></span></p>`;
+      else { const lo = p.k - 5 + r.int(-3, 3); foot = `<p class="eq-ans">${H.blank(p.ansText, 5)}</p>${ineqLine(p.k, p.op, lo)}`; }
+      if (!head) head = `${p.kind === 'ineq' ? 'Solve and graph:' : 'Solve:'} ${ital(shown(p.disp))}`;
+      cells.push(`<div class="eq-cell eq-${p.kind}"><p><span class="ws-num">${i + 1}.</span> ${head}</p><div class="eq-work"></div>${foot}</div>`);
+    });
+    const exSteps = ex.steps.map(s => { const [m, why] = s.split('  ('); return `${ital(shown(m))}${why ? ` <span style="color:#555">(${esc(why.slice(0, -1))})</span>` : ''}`; });
+    const exHtml = example(ex.kind === 'eval' ? `Evaluate ${ital(shown(ex.disp))}${ex.given ? ` when ${ital(ex.given)}` : ''}: ${exSteps.map(s => s).join(' = ')}` : exSteps.join('<br>'),
+      skill === 'expo' ? 'Use the order of operations: parentheses first, then exponents, then multiply and divide from left to right, then add and subtract from left to right.'
+        : skill === 'terms' ? 'Like terms have the same variable part. Group them, then add their coefficients. The plain numbers are a group too.'
+        : skill === 'expand' ? 'To expand, multiply every term inside the parentheses by the number in front. To factor, find the greatest common factor of the terms, write it in front, and put what is left of each term inside.'
+        : skill === 'special' ? 'Get the variable terms together. If the variable disappears and what is left is true (like 6 = 6), every number works: all real numbers. If what is left is false (like 6 = 9), no number works: no solution.'
+        : ex.kind === 'eval' ? 'Put each value in place of its letter, then use the order of operations: parentheses, exponents, multiply and divide, add and subtract.'
+        : ex.kind === 'ineq' ? (g === '6' ? 'Solve it like an equation: do the same thing to both sides and keep the inequality sign. Then graph every number that works.' : 'Solve it like an equation. If you multiply or divide both sides by a negative number, flip the inequality sign.')
+          : 'Do the same thing to both sides to undo each step, in reverse order. Check by putting your answer back in.');
+    const parts = [part('', exHtml), part('Practice', `<div class="eq-grid">${cells.join('')}</div>`)];
+    const hasIneq = ps.some(p => p.kind === 'ineq'), hasEq = ps.some(p => p.kind === 'eq'), hasEval = ps.some(p => p.kind === 'eval');
+    const fracs = (g === '8' || g === '9') && ps.some(p => p.kind === 'eq' && p.ans && p.ans.d > 1);
+    const dirs = [];
+    if (skill === 'expo') dirs.push('Work out each expression with the order of operations and write the value on the line.');
+    else if (hasEval) dirs.push('For each expression, put in the values and write the result on the line.');
+    if (skill === 'terms') dirs.push('Simplify each expression by combining like terms. Write the simplified expression on the line.');
+    if (skill === 'expand') dirs.push('Expand or factor each expression as it says. Write the result on the line.');
+    if (skill === 'special') dirs.push('Solve each equation in the space. On the line, write the value of the variable (like x = 4), or write "no solution" or "all real numbers".');
+    else if (hasEq) dirs.push('Solve each equation in the space. Write the value of the variable on the line.' + ((g === '8' || g === '9') ? ' If it is not a whole number, write it as a fraction in simplest form.' : ''));
+    if (hasIneq) dirs.push('Solve each inequality and write it on the line, like x > 3. Then graph it on the number line: open circle for &lt; or &gt;, closed circle for ≤ or ≥.');
+    const teacher = `<h3>Solutions, step by step</h3><ol class="eq-steps">${ps.map(p => `<li>${p.steps.map(s => `<span>${ital(shown(esc(s)))}</span>`).join('')}${p.kind === 'eval' ? '' : ''}</li>`).join('')}</ol>`;
+    const mistakes = skill === 'expo' ? 'Multiplying the base by the exponent (3² as 6), and working left to right instead of doing exponents and multiplication first.'
+      : skill === 'terms' ? 'Adding unlike terms (3x + 2 as 5x), and losing a minus sign when a term is moved next to its like term.'
+      : skill === 'expand' ? 'Multiplying only the first term inside the parentheses, and factoring out less than the greatest common factor (2(3x + 6) for 6x + 12).'
+      : skill === 'special' ? 'Stopping at a line like 0 = 5 without saying what it means, and writing x = 0 for an identity.'
+      : [hasEval && 'Writing 3x with x = 4 as 34 instead of 3 × 4, and adding before multiplying.' + (g === '7' ? ' Squaring a negative: (−3)² is 9.' : ''),
+      hasEq && 'Undoing steps in the wrong order (dividing before subtracting), and changing only one side.' + (skill === 'dist' || skill === 'multi' ? ' Multiplying only the first term inside the parentheses.' : ''),
+      hasIneq && 'Forgetting to flip the sign when dividing by a negative, and using a closed circle for &lt; or &gt;.'].filter(Boolean).join(' ');
+    return {
+      title: `${label}: ${gname}`, level: gname,
+      ican: { eval: 'I can evaluate an expression by putting in values and using the order of operations.', one: 'I can solve one-step equations.', ineq1: 'I can solve and graph one-step inequalities.',
+        two: 'I can solve two-step equations.', dist: 'I can use the distributive property to solve equations.', ineq2: 'I can solve and graph two-step inequalities.',
+        both: 'I can solve equations with the variable on both sides.', expo: 'I can evaluate an expression with exponents using the order of operations.',
+        terms: 'I can simplify an expression by combining like terms.', expand: 'I can expand and factor expressions with the distributive property.',
+        special: 'I can solve an equation with the variable on both sides and tell when it has no solution or every number is a solution.', multi: 'I can solve multi-step equations.', ineq: 'I can solve and graph multi-step inequalities.',
+        mix: 'I can choose the steps to solve expressions, equations and inequalities.' }[skill],
+      directions: dirs.join(' '), minutes: n > 10 ? 30 : 25, materials: 'pencil',
+      parts, items, teacher, mistakes,
+      notes: skill === 'expo' ? 'Every answer is a whole number. The step list below shows the exponent worked first, then the multiplication or division, then the rest.'
+        : skill === 'terms' || skill === 'expand' ? 'Answers are expressions. An equivalent form in a different order (7 + 3x for 3x + 7) is fine. The step list below shows one clear way to simplify each.'
+        : skill === 'special' ? 'About a third of the equations have one solution, a third have no solution and a third are identities, in a shuffled order. The step list below shows where the variable drops out.'
+        : `Every problem is built from its answer, so answers are whole numbers${fracs ? ' or simple fractions' : ''}. The step list below shows one clear way to solve each; other correct orders are fine. Students can check an equation by putting the answer back in.${hasIneq ? ' The key shows each inequality graphed.' : ''}`,
+    };
+  },
+  verify(s) {
+    const out = [];
+    const read = t => { t = String(t).replace(/−/g, '-').trim(); let m = t.match(/^(-?\d+)\/(\d+)$/); if (m) return { n: +m[1], d: +m[2] }; m = t.match(/^-?\d+$/); return m ? { n: +t, d: 1 } : null; };
+    for (const it of s.items) {
+      try {
+        if (it.kind === 'eval') {
+          const want = evaluate(it.mach, it.vars), got = read(it.a);
+          if (!got || got.n * want.d !== want.n * got.d) out.push(`${it.q}: key says ${it.a}, works out to ${want.n}/${want.d}`);
+          // the worked steps on the key must each equal the answer
+          for (const st of it.chain || []) { const m = st.replace(/×/g, '*').replace(/÷/g, '/').replace(/²/g, '^2').replace(/³/g, '^3'), w = evaluate(m, {});
+            if (w.d !== 1 || w.n !== want.n) out.push(`${it.q}: step ${st} is not ${want.n}`); }
+          continue;
+        }
+        if (it.kind === 'simp') {
+          // both expressions must agree at two values of each variable, and the answer must be in finished form
+          const vars = [it.v, it.w].filter(Boolean);
+          for (const vals of [[2, 5], [-3, 7]]) {
+            const env = {}; vars.forEach((k, i) => { env[k] = vals[i]; });
+            const a = evaluate(it.mach, env), b = evaluate(it.ansMach, env);
+            if (a.n * b.d !== b.n * a.d) { out.push(`${it.q}: ${it.a} differs at ${vars.map((k, i) => k + ' = ' + vals[i]).join(', ')}`); break; }
+          }
+          const t = String(it.a).replace(/−/g, '-');
+          if (it.verb === 'Factor') {
+            const m = t.match(/^(\d+)\((-?\d*)([a-z]) ([-+]) (\d+)\)$/);
+            if (!m) out.push(`${it.q}: ${it.a} is not in the form k(ax + b)`);
+            else if (+m[1] < 2 || gcd(+(m[2] || 1), +m[5]) !== 1) out.push(`${it.q}: ${it.a} is not fully factored`);
+          } else {
+            if (/[()]/.test(t)) out.push(`${it.q}: ${it.a} still has parentheses`);
+            for (const k of vars) if ((t.match(new RegExp(k, 'g')) || []).length > 1) out.push(`${it.q}: ${it.a} still has like terms`);
+            if ((t.match(/(^|[-+] )\d+(?![a-z\d])/g) || []).length > 1) out.push(`${it.q}: ${it.a} has two constants`);
+          }
+          continue;
+        }
+        const [L, Rt] = it.mach.split(it.kind === 'eq' ? '=' : '|');
+        // each side is linear: find slope and intercept of left minus right from x = 0 and x = 1
+        const D = x => { const a = evaluate(L, { x }), b = evaluate(Rt, { x }); return { n: a.n * b.d - b.n * a.d, d: a.d * b.d }; };
+        const d0 = D(0), d1 = D(1);
+        const c = d0.n / d0.d, m = d1.n / d1.d - c;
+        if (it.special) {
+          const want = Math.abs(m) < 1e-12 ? (Math.abs(c) < 1e-12 ? 'all real numbers' : 'no solution') : null;
+          if (want) { if (it.a !== want) out.push(`${it.q}: key says ${it.a}, should be ${want}`); continue; }
+          const mm = String(it.a).replace(/−/g, '-').match(/^([a-z]) = (-?\d+(?:\/\d+)?)$/), got = mm && read(mm[2]);
+          if (!got || mm[1] !== it.v) { out.push(`${it.q}: cannot read ${it.a}`); continue; }
+          if (D({ n: got.n, d: got.d }).n !== 0) out.push(`${it.q}: ${it.a} does not make both sides equal`);
+          if (got.d > 1 && gcd(got.n, got.d) !== 1) out.push(`${it.q}: ${it.a} not in simplest form`);
+          continue;
+        }
+        if (Math.abs(m) < 1e-12) { out.push(`${it.q}: no single solution`); continue; }
+        if (it.kind === 'eq') {
+          const got = read(it.a);
+          if (!got) { out.push(`${it.q}: cannot read ${it.a}`); continue; }
+          const at = D({ n: got.n, d: got.d });
+          if (at.n !== 0) out.push(`${it.q}: ${it.a} does not make both sides equal`);
+          if (got.d > 1 && gcd(got.n, got.d) !== 1) out.push(`${it.q}: ${it.a} not in simplest form`);
+        } else {
+          const mm = String(it.a).replace(/−/g, '-').match(/^([a-z]) ([<>≤≥]) (-?\d+)$/);
+          if (!mm) { out.push(`${it.q}: cannot read ${it.a}`); continue; }
+          const k = +mm[3], holds = x => { const dd = D({ n: Math.round(x * 2), d: 2 }), val = dd.n / dd.d; return { '<': val < 0, '>': val > 0, '≤': val <= 0, '≥': val >= 0 }[it.rel]; };
+          const claims = x => ({ '<': x < k, '>': x > k, '≤': x <= k, '≥': x >= k }[mm[2]]);
+          for (const x of [k - 3, k - 1, k - 0.5, k, k + 0.5, k + 1, k + 3]) if (holds(x) !== claims(x)) { out.push(`${it.q}: key ${it.a} is wrong at ${it.v} = ${x}`); break; }
+        }
+      } catch (e) { out.push(`${it.q}: ${e.message}`); }
+    }
+    return out;
+  },
+});
+})();

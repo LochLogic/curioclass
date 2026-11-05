@@ -68,6 +68,10 @@ HOW MANY AT ONCE
 Up to three builds (groups A, B, C) and four reviews (groups A, B, C, D) at once. Never two builds, or two reviews, from
 the same group. A refresh changes the groups, so let running chats finish first.
 
+AWAY FROM THE PC
+Start Menu > Codex Queue runs these blocks for you, each in its own fresh session, until the queue is empty or the usage
+limit is reached. Log: S:\CurioClass-codex\_runner\summary.txt. Don't paste by hand while it runs.
+
 IF IT STICKS
 If a command hangs for about 20 minutes, press Esc and paste:
 

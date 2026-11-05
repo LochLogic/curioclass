@@ -7,15 +7,15 @@ before quoting it to a funder. Lines marked **(Cory)** need Cory's real numbers.
 
 | | Count |
 |---|---|
-| Tool concepts in the catalog | 797 |
-| Live | 76 |
-| Still to build | 721 (198 already specced) |
+| Tool concepts in the catalog | 800 |
+| Live | 83 |
+| Still to build | 717 (249 already specced) |
 | Also planned | Reading Room (about 700 public domain stories), Supply Closet (diagrams, charts per module, module kit, the Map), Spanish review, ASL collection |
 
 ## Why the AI bill is bigger than "tokens per tool"
 
 The measured pipeline cost is about 0.7M to 1M tokens a tool (build, three Refine lenses, polish, exit checks, lesson
-plan). For 721 tools that is roughly 500M to 720M tokens on its own. The real total is larger, because the work that
+plan). For 717 tools that is roughly 500M to 720M tokens on its own. The real total is larger, because the work that
 makes the tools good sits outside any one tool:
 
 - **Engines and the kit:** each tool family (number line, data desk, robot, stage, music studio...) gets a shared

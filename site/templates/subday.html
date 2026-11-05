@@ -19,6 +19,7 @@
       <a class="btn" href="{{ t.url }}">Back to the tool</a>
       <a class="btn" href="/closet/sub-day/">All Sub Day packets</a>
     </div>
+    {% if gens %}<p class="sub-more">Need more practice for the day? Make a worksheet with its answer key: {% for g in gens %}<a href="{{ g.url }}">{{ g.title }}</a>{{ ", " if not loop.last }}{% endfor %}.</p>{% endif %}
     <ol class="sub-toc">
       <li><a href="#sub-cover">Cover page</a></li><li><a href="#sub-plan">Lesson plan</a></li><li><a href="#sub-notes">Teacher notes</a></li>
       <li><a href="#sub-exit">{{ 'Exit checklist' if ex.kind == 'checklist' else 'Exit tickets' }}</a></li><li><a href="#sub-backup">Backup sheet</a></li>

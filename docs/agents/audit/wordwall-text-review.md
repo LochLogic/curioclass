@@ -1,0 +1,764 @@
+# Word Wall text review
+
+Made by `python scripts/check_words_review.py` over 4413 cards (English and Spanish). Review only, no card was changed. These are heuristics for a person to judge: root and example checks catch real problems but also some fine cards (a phrase whose main word is ordinary, an irregular form such as ran for run).
+
+## Counts
+
+| Check | Findings |
+|---|---|
+| Duplicates within a module | 0 |
+| Word or its root inside its own definition (English) | 236 |
+| Word or its root inside its own definition (Spanish) | 271 |
+| Example sentence without a form of the word (English) | 0 |
+| Example sentence without a form of the word (Spanish) | 35 |
+| Empty fields (not counting empties allowed by band) | 0 |
+| Spanish identical to English, or reading as English | 1 |
+| Spanish word spelled the same as the English word (often a true cognate; listed for a skim) | 140 |
+| Definitions too long or too hard for the grade band | 22 |
+| Diagram specs and svg cards that do not match | 0 |
+| House rules (em dash, "Curio" alone) | 0 |
+
+Empty by design and not counted: picture 779.
+
+## Duplicates within a module (0)
+
+None.
+
+## Word or its root inside its own definition (English) (236)
+
+- `arts:45 arts-3-5-color-theory-and-mixing / color wheel`: "a circle that shows how colors relate" uses colors (from color)
+- `arts:58 arts-3-5-famous-artists-and-movements / cave art`: "old paintings on cave walls" uses cave (from cave)
+- `arts:99 arts-6-8-drawing-and-one-point-perspective / one-point perspective`: "a drawing method where lines meet at one vanishing point" uses point (from point)
+- `arts:104 arts-6-8-drawing-and-one-point-perspective / cross-hatching`: "shading with crossing sets of lines" uses crossing (from cross)
+- `arts:115 arts-6-8-harmony-and-chords / chord progression`: "a series of chords in order" uses chords (from chord)
+- `arts:136 arts-6-8-choreography / movement phrase`: "a short series of movements, like a sentence in dance" uses movements (from movement)
+- `arts:148 arts-6-8-animation-basics / frame rate`: "how many frames show each second" uses frames (from frame)
+- `arts:159 arts-9-12-two-point-perspective-and-composition / two-point perspective`: "drawing with two vanishing points on the horizon" uses points (from point)
+- `arts:174 arts-9-12-music-theory / scale degree`: "a note's position in a scale" uses scale (from scale)
+- `arts:202 arts-9-12-film-and-video-production / close-up`: "a shot showing a subject up close" uses close (from close)
+- `arts:205 arts-9-12-film-and-video-production / shot list`: "a plan of every shot to film" uses shot (from shot)
+- `arts:236 arts-3-5-performing-and-watching-dance / lighting`: "the lights that show and color a performance" uses lights (from lighting)
+- `arts:249 arts-3-5-sound-and-picture-together / sound effect`: "a made sound that matches an action" uses sound (from sound)
+- `arts:272 arts-6-8-comparing-productions / staging`: "where and how actors move on the stage" uses stage (from staging)
+- `arts:323 arts-9-12-lighting-and-technical-design / lighting plot`: "a map of where each light hangs and points" uses light (from lighting)
+- `arts:330 arts-9-12-preparing-a-recital / practice plan`: "a schedule of goals for each practice session" uses practice (from practice)
+- `arts:348 arts-k-2-dancing-a-feeling / feeling`: "what you feel inside, like happy or sad" uses feel (from feeling)
+- `arts:384 arts-k-2-puppets-and-feelings / feeling`: "what someone feels inside" uses feels (from feeling)
+- `computer-science:160 computer-science-6-8-algorithms-and-fairness / algorithmic bias`: "unfair results built into an algorithm" uses algorithm (from algorithmic)
+- `computer-science:184 computer-science-9-12-simulation-and-data-science / data cleaning`: "fixing errors and gaps in data" uses data (from data)
+- `computer-science:187 computer-science-9-12-simulation-and-data-science / random seed`: "a starting value that makes random results repeatable" uses random (from random)
+- `computer-science:196 computer-science-9-12-cybersecurity / data breach`: "unauthorized access to private data" uses data (from data)
+- `computer-science:199 computer-science-9-12-cybersecurity / public key encryption`: "encryption using a public key to lock and a private key to unlock" uses public (from public), key (from key), encryption (from encryption)
+- `computer-science:201 computer-science-9-12-ethics-law-and-data-policy / data privacy`: "control over how personal data is collected and used" uses data (from data)
+- `computer-science:247 computer-science-3-5-why-data-varies / measurement`: "a number found by measuring" uses measuring (from measurement)
+- `computer-science:257 computer-science-6-8-cleaning-data-honestly / data quality`: "how complete, correct and useful data is" uses data (from data)
+- `computer-science:261 computer-science-6-8-cleaning-data-honestly / limitation`: "a weakness that limits what data can show" uses limits (from limitation)
+- `computer-science:264 computer-science-6-8-code-you-did-not-write / change log`: "a record of what was changed and why" uses changed (from change)
+- `computer-science:280 computer-science-6-8-data-metadata-and-you / personal data`: "information that can identify a person" uses person (from personal)
+- `computer-science:293 computer-science-9-12-a-technology-s-long-story / data center`: "a building full of servers that store and process data" uses data (from data)
+- `computer-science:302 computer-science-9-12-data-dictionaries-and-validation / data dictionary`: "a document that defines each field in a dataset" uses dataset (from data)
+- `computer-science:309 computer-science-9-12-design-test-and-refine / user testing`: "watching real users try a product to find problems" uses users (from user)
+- `computer-science:328 computer-science-9-12-reviewing-ai-written-code / code review`: "reading code carefully to find bugs and problems" uses code (from code)
+- `computer-science:357 computer-science-k-2-using-tech-well / screen time`: "time spent looking at a screen" uses screen (from screen), time (from time)
+- `computer-science:359 computer-science-k-2-using-tech-well / careful`: "doing something with care so nothing breaks" uses care (from careful)
+- `cte:34 cte-9-12-entrepreneurship / business plan`: "a document describing a business's goals and strategy" uses business (from business)
+- `cte:56 cte-9-12-earning-income-and-paychecks / pay stub`: "a record of earnings and deductions for a pay period" uses pay (from pay)
+- `cte:77 cte-9-12-investing-basics / index fund`: "a fund that tracks a whole market index" uses index (from index), fund (from fund)
+- `cte:86 cte-9-12-insurance-and-protecting-yourself / renters insurance`: "coverage for a renter's belongings" uses renter (from renters)
+- `ela:13 ela-3-characters-and-their-choices / feeling`: "how a character feels at a moment, like happy or scared" uses feels (from feeling)
+- `ela:51 ela-3-parts-of-speech / verb tense`: "the form of a verb that shows when something happens" uses verb (from verb)
+- `ela:75 ela-k-letter-sounds-and-sight-words / sound out`: "to say each sound and blend them into a word" uses sound (from sound)
+- `ela:124 ela-1-story-elements-and-lessons / feeling`: "how a character feels" uses feels (from feeling)
+- `ela:156 ela-2-long-vowels-and-two-syllable-words / vowel team`: "two vowels together that make one sound" uses vowels (from vowel)
+- `ela:208 ela-4-theme-and-summary / character trait`: "a word that describes how a character acts" uses character (from character)
+- `ela:222 ela-4-text-structures / text structure`: "how a text is organized" uses text (from text)
+- `ela:226 ela-4-text-structures / problem and solution`: "a structure that names a problem and how to fix it" uses problem (from problem)
+- `ela:262 ela-5-quoting-and-inferring / text evidence`: "words from the text that support an answer" uses text (from text)
+- `ela:348 ela-6-pronouns-and-sentence-variety / pronoun case`: "the form a pronoun takes for its job in a sentence" uses pronoun (from pronoun)
+- `ela:352 ela-6-pronouns-and-sentence-variety / sentence variety`: "mixing short, long and differently built sentences" uses sentences (from sentence)
+- `ela:372 ela-7-sound-and-form-in-poetry / rhyme scheme`: "the pattern of rhymes at the ends of lines" uses rhymes (from rhyme)
+- `ela:588 ela-11-college-personal-essay / word limit`: "the most words a piece may use" uses words (from word)
+- `ela:625 ela-12-media-literacy / media literacy`: "the ability to analyze and evaluate media" uses media (from media)
+- `ela:675 ela-3-5-pictures-panels-and-performances / read-aloud`: "a book read out loud to listeners" uses read (from read)
+- `ela:691 ela-3-5-revising-and-editing / word choice`: "picking the best words for the job" uses words (from word)
+- `ela:697 ela-4-showing-character-through-details / character trait`: "a word that describes what a character is like" uses character (from character)
+- `ela:749 ela-6-8-text-audio-and-film-versions / staging`: "how a play is set up and acted on stage" uses stage (from staging)
+- `ela:805 ela-k-2-comparing-two-books / fact book`: "a book with true facts" uses facts (from fact), book (from book)
+- `ela:816 ela-k-2-new-words-from-read-alouds / read-aloud`: "a book read out loud" uses read (from read)
+- `ela:825 ela-k-2-poems-and-songs-aloud / feeling word`: "a word that tells how someone feels" uses feels (from feeling), word (from word)
+- `eld:3 eld-k-2-classroom-language / line up`: "to stand one behind another in a line" uses line (from line)
+- `eld:98 eld-9-12-academic-argument / sentence frame`: "a starter that helps build a sentence" uses sentence (from sentence)
+- `health-pe:9 health-pe-k-2-food-groups / food group`: "foods that are alike and help your body in the same way" uses foods (from food)
+- `health-pe:15 health-pe-k-2-feelings-and-friends / feeling`: "how you feel inside, like happy or sad" uses feel (from feeling)
+- `health-pe:73 health-pe-3-5-fitness-components / heart rate`: "how many times your heart beats in a minute" uses heart (from heart)
+- `health-pe:100 health-pe-6-8-sport-skills-and-rules / net game`: "a game where players send an object over a net" uses net (from net), game (from game)
+- `health-pe:108 health-pe-6-8-personal-fitness-plans / target heart rate`: "the heart rate range for safe, effective exercise" uses heart (from heart)
+- `health-pe:116 health-pe-9-12-nutrition-and-fitness-planning / meal plan`: "a schedule of balanced meals" uses meals (from meal)
+- `health-pe:124 health-pe-9-12-accessing-valid-health-information / health claim`: "a statement that a product improves health" uses health (from health)
+- `health-pe:126 health-pe-9-12-accessing-valid-health-information / health care provider`: "a trained professional who gives medical care" uses care (from care)
+- `health-pe:146 health-pe-9-12-sportsmanship-and-leadership / team culture`: "the shared values and habits of a team" uses team (from team)
+- `health-pe:160 health-pe-3-5-safety-at-home-and-online / smoke alarm`: "a device that beeps when it senses smoke" uses smoke (from smoke)
+- `library:24 library-3-5-giving-credit / quote`: "someone's exact words in quotation marks" uses quotation (from quote)
+- `library:47 library-9-12-citation-copyright-and-fair-use / Creative Commons`: "licenses that let creators share work with set permissions" uses creators (from creative)
+- `library:71 library-k-2-many-voices-book / class book`: "a book the whole class makes together" uses class (from class), book (from book)
+- `math:12 math-3-times-tables-fluency / fact family`: "related multiplication and division facts that use the same numbers" uses facts (from fact)
+- `math:36 math-3-fractions-as-numbers / number line`: "a line with numbers in order, evenly spaced" uses numbers (from number), line (from line)
+- `math:39 math-3-time-volume-and-mass / liquid volume`: "how much liquid a container holds" uses liquid (from liquid)
+- `math:45 math-3-scaled-graphs / picture graph`: "a graph that uses pictures to show data" uses pictures (from picture), graph (from graph)
+- `math:48 math-3-scaled-graphs / line plot`: "a number line with X marks that show data" uses line (from line)
+- `math:51 math-3-area / square unit`: "a square that is 1 unit on each side, used to measure area" uses square (from square), unit (from unit)
+- `math:52 math-3-area / square foot`: "a square that is 1 foot on each side" uses square (from square), foot (from foot)
+- `math:98 math-k-longer-heavier-bigger / longer`: "more long than something else" uses long (from longer)
+- `math:132 math-1-fact-strategies / count on`: "to start at one number and count up" uses count (from count)
+- `math:133 math-1-fact-strategies / fact family`: "facts that use the same three numbers" uses facts (from fact)
+- `math:147 math-1-counting-to-120 / one hundred twenty`: "ten more than one hundred ten" uses hundred (from hundred)
+- `math:154 math-1-adding-tens-and-ones / add tens`: "to add groups of ten" uses add (from add)
+- `math:173 math-1-picture-graphs-and-tallies / picture graph`: "a graph that uses pictures" uses pictures (from picture), graph (from graph)
+- `math:184 math-2-two-step-word-problems / two-step problem`: "a word problem you solve with two steps" uses steps (from step), problem (from problem)
+- `math:191 math-2-fluency-within-20 / doubles plus one`: "a double, then one more" uses double (from doubles)
+- `math:202 math-2-hundreds-tens-and-ones / hundreds`: "groups of one hundred" uses hundred (from hundreds)
+- `math:205 math-2-hundreds-tens-and-ones / place value`: "what a digit is worth because of its place" uses place (from place)
+- `math:228 math-2-line-plots-and-bar-graphs / line plot`: "a number line with X marks for data" uses line (from line)
+- `math:262 math-4-place-value-to-a-million / word form`: "a number written in words" uses words (from word)
+- `math:298 math-4-angles-and-line-plots / line plot`: "a number line with Xs to show data" uses line (from line)
+- `math:304 math-4-lines-angles-and-symmetry / line of symmetry`: "a fold line that makes two matching halves" uses line (from line)
+- `math:322 math-5-powers-of-ten-and-decimals / place value chart`: "a chart that labels each digit's place" uses place (from place)
+- `math:346 math-5-units-and-line-plots / line plot`: "a number line with Xs for each data value" uses line (from line)
+- `math:367 math-6-ratios-and-rates / unit rate`: "a rate for one unit of something" uses unit (from unit), rate (from rate)
+- `math:369 math-6-ratios-and-rates / double number line`: "two parallel number lines that show equivalent ratios" uses number (from number)
+- `math:374 math-6-dividing-fractions / how many groups`: "a way to think about dividing: how many of the divisor fit" uses many (from many)
+- `math:375 math-6-dividing-fractions / multiply by the reciprocal`: "to divide fractions by flipping the divisor and multiplying" uses multiplying (from multiply)
+- `math:404 math-6-dependent-and-independent-variables / table of values`: "a table pairing inputs with outputs" uses table (from table)
+- `math:421 math-6-summarizing-data / mean absolute deviation`: "the average distance of values from the mean" uses mean (from mean)
+- `math:428 math-7-proportional-relationships / percent increase`: "how much an amount grows, as a percent of the original" uses percent (from percent)
+- `math:435 math-7-operations-with-rational-numbers / repeating decimal`: "a decimal with digits that repeat forever" uses repeat (from repeating), decimal (from decimal)
+- `math:443 math-7-multi-step-equations-and-inequalities / multi-step equation`: "an equation needing more than one step to solve" uses step (from step)
+- `math:453 math-7-scale-drawings-and-constructions / triangle inequality`: "any two sides of a triangle together must be longer than the third" uses triangle (from triangle)
+- `math:476 math-8-irrational-numbers / non-repeating decimal`: "a decimal that never ends and never repeats" uses repeats (from repeating)
+- `math:490 math-8-slope-and-proportional-relationships / unit rate`: "the change in y for each one-unit change in x" uses unit (from unit)
+- `math:502 math-8-defining-functions / vertical line test`: "a graph is a function if no vertical line hits it twice" uses vertical (from vertical), line (from line)
+- `math:529 math-8-bivariate-data / line of fit`: "a line that follows the trend of a scatter plot" uses line (from line)
+- `math:539 math-9-units-and-quantities / unit conversion`: "changing a measure from one unit to another" uses unit (from unit)
+- `math:583 math-9-linear-quadratic-and-exponential-models / growth factor`: "the number multiplied each step in exponential growth" uses growth (from growth)
+- `math:594 math-9-data-in-one-and-two-variables / correlation coefficient`: "a number from −1 to 1 measuring linear correlation" uses correlation (from correlation)
+- `math:596 math-9-data-in-one-and-two-variables / causation`: "when one variable directly causes a change in another" uses causes (from causation)
+- `math:614 math-10-similarity / AA similarity`: "two pairs of equal angles prove triangles similar" uses similar (from similarity)
+- `math:620 math-10-right-triangle-trigonometry / angle of elevation`: "the angle up from horizontal to a line of sight" uses angle (from angle)
+- `math:633 math-10-coordinate-geometry / slope criteria`: "rules for parallel and perpendicular lines using slope" uses slope (from slope)
+- `math:645 math-10-modeling-with-geometry / design constraint`: "a limit a design must respect" uses design (from design)
+- `math:659 math-11-polynomial-functions / remainder theorem`: "f(a) is the remainder when f(x) is divided by x − a" uses remainder (from remainder)
+- `math:675 math-11-exponential-and-logarithmic-functions / half-life`: "the time for an amount to decay to half" uses half (from half)
+- `math:678 math-11-trigonometric-functions / period`: "the length of one full cycle of a periodic function" uses periodic (from period)
+- `math:686 math-11-building-and-inverting-functions / horizontal line test`: "a graph has an inverse if no horizontal line hits it twice" uses horizontal (from horizontal), line (from line)
+- `math:700 math-11-statistical-inference / sampling distribution`: "the distribution of a statistic over many samples" uses samples (from sampling), distribution (from distribution)
+- `math:701 math-12-functions-and-their-graphs / function family`: "functions sharing a parent function" uses functions (from function)
+- `math:709 math-12-trigonometric-identities-and-equations / double-angle formula`: "a rule for the trig value of twice an angle" uses angle (from angle)
+- `math:738 math-12-limits-and-rates-of-change / instantaneous rate of change`: "the rate of change at one exact point" uses rate (from rate)
+- `math:747 math-12-exploring-data / least-squares regression line`: "the line that minimizes the sum of squared residuals" uses squared (from squares)
+- `math:752 math-12-sampling-and-experiments / stratified random sample`: "a sample drawn randomly from each subgroup" uses randomly (from random)
+- `math:759 math-12-probability-and-random-variables / probability distribution`: "a list of outcomes and their probabilities" uses probabilities (from probability)
+- `math:764 math-12-sampling-distributions / standard error`: "the standard deviation of a sampling distribution" uses standard (from standard)
+- `math:766 math-12-sampling-distributions / sampling variability`: "how a statistic changes from sample to sample" uses sample (from sampling)
+- `math:776 math-12-chi-square-and-regression-inference / test for independence`: "a test of whether two categorical variables are related" uses test (from test)
+- `math:777 math-12-chi-square-and-regression-inference / slope inference`: "testing or estimating the true slope of a regression line" uses slope (from slope)
+- `math:778 math-12-chi-square-and-regression-inference / residual plot`: "a graph of residuals against x" uses residuals (from residual)
+- `math:782 math-12-limits-and-continuity / intermediate value theorem`: "a continuous function hits every value between its endpoints" uses value (from value)
+- `math:788 math-12-the-derivative / product rule`: "a rule for differentiating a product of functions" uses product (from product), rule (from rule)
+- `math:810 math-12-differential-equations / slope field`: "a grid of short segments showing slopes" uses slopes (from slope)
+- `science:35 science-3-fossils-and-changing-environments / rock layer`: "a band of rock that formed at one time; lower ones are older" uses rock (from rock)
+- `science:45 science-3-weather-and-climate / weather hazard`: "dangerous weather, like a tornado or flood" uses weather (from weather)
+- `science:66 science-k-weather-watch / rainy`: "with rain falling" uses rain (from rainy)
+- `science:68 science-k-weather-watch / snowy`: "with snow falling" uses snow (from snowy)
+- `science:158 science-4-waves-and-information / signal`: "a sign or message sent over a distance" uses sign (from signal)
+- `science:166 science-4-rock-layers-and-earth-history / rock layer`: "a band of rock laid down over time" uses rock (from rock)
+- `science:181 science-4-natural-resources-and-hazards / natural hazard`: "a natural event that can cause harm" uses natural (from natural)
+- `science:202 science-5-food-webs-and-matter-cycles / food web`: "connected food chains in an ecosystem" uses food (from food)
+- `science:226 science-6-earth-sun-moon-system / moon phase`: "the shape of the lit part of the Moon we see from Earth" uses moon (from moon)
+- `science:238 science-6-geologic-time / geologic time scale`: "a timeline of Earth's history divided into eras and periods" uses timeline (from time)
+- `science:244 science-6-plate-tectonics / plate tectonics`: "the theory that Earth's outer layer is broken into moving plates" uses plates (from plate)
+- `science:247 science-6-plate-tectonics / rock cycle`: "the slow changes of rock from one type to another" uses rock (from rock)
+- `science:248 science-6-plate-tectonics / continental drift`: "the idea that continents slowly move across Earth" uses continents (from continental)
+- `science:253 science-6-water-cycle-and-weather / air mass`: "a large body of air with similar temperature and moisture" uses air (from air)
+- `science:255 science-6-water-cycle-and-weather / air pressure`: "the weight of air pressing down" uses air (from air)
+- `science:257 science-6-climate-and-ocean-circulation / ocean current`: "a steady flow of ocean water in one direction" uses ocean (from ocean)
+- `science:271 science-6-cells-and-body-systems / cell membrane`: "the thin layer that controls what enters and leaves a cell" uses cell (from cell)
+- `science:273 science-6-cells-and-body-systems / organ system`: "organs working together for a body function" uses organs (from organ)
+- `science:304 science-7-matter-and-energy-in-ecosystems / food web`: "connected food chains in an ecosystem" uses food (from food)
+- `science:308 science-7-matter-and-energy-in-ecosystems / energy pyramid`: "a diagram showing energy dropping at each feeding level" uses energy (from energy)
+- `science:309 science-7-matter-and-energy-in-ecosystems / carbon cycle`: "the movement of carbon through living things, air, water and rock" uses carbon (from carbon)
+- `science:316 science-7-earth-s-resources / natural resource`: "something from nature that people use" uses nature (from natural)
+- `science:328 science-8-electric-and-magnetic-forces / magnetic field`: "the area around a magnet where its force acts" uses magnet (from magnetic)
+- `science:336 science-8-kinetic-and-potential-energy / energy transfer`: "energy moving from one object to another" uses energy (from energy)
+- `science:355 science-8-evolution-and-natural-selection / fossil record`: "all known fossils and what they show about the past" uses fossils (from fossil)
+- `science:358 science-8-natural-hazards-and-human-impact / natural hazard`: "a natural event that can harm people" uses natural (from natural)
+- `science:383 science-9-cell-division-and-differentiation / cell cycle`: "the stages a cell goes through to grow and divide" uses cell (from cell)
+- `science:391 science-9-photosynthesis-and-cellular-respiration / light-dependent reactions`: "the photosynthesis steps that capture light energy" uses light (from light)
+- `science:399 science-9-dna-and-protein-synthesis / base pair`: "two matching DNA bases, A with T and C with G" uses bases (from base)
+- `science:409 science-9-evolution / speciation`: "the formation of a new species" uses species (from speciation)
+- `science:420 science-9-biodiversity-and-human-impact / habitat fragmentation`: "breaking a habitat into smaller, separate pieces" uses habitat (from habitat)
+- `science:433 science-9-orbits-and-earth-s-history / half-life`: "the time for half of a radioactive sample to decay" uses half (from half)
+- `science:449 science-9-climate-systems / carbon sink`: "something that absorbs more carbon than it releases" uses carbon (from carbon)
+- `science:451 science-9-climate-systems / ice core`: "a cylinder of ice drilled from a glacier to study past climate" uses ice (from ice)
+- `science:452 science-9-climate-systems / climate model`: "a computer simulation of Earth's climate" uses climate (from climate)
+- `science:457 science-9-resources-and-sustainability / cost-benefit analysis`: "comparing the costs and benefits of a choice" uses costs (from cost), benefits (from benefit)
+- `science:465 science-10-atomic-structure-and-the-periodic-table / periodic trend`: "a pattern in properties across the periodic table" uses periodic (from periodic)
+- `science:469 science-10-bonding-and-intermolecular-forces / hydrogen bond`: "a weak attraction between molecules involving hydrogen" uses hydrogen (from hydrogen)
+- `science:484 science-10-energy-in-reactions / bond energy`: "the energy needed to break a bond" uses bond (from bond), energy (from energy)
+- `science:489 science-10-energy-in-reactions / energy diagram`: "a graph of energy during a reaction" uses energy (from energy)
+- `science:490 science-10-reaction-rates-and-equilibrium / reaction rate`: "how fast reactants turn into products" uses reactants (from reaction)
+- `science:507 science-10-acids-bases-and-solutions / solute`: "the substance dissolved in a solution" uses solution (from solute)
+- `science:534 science-11-gravity-and-electrostatics / inverse square law`: "a force that weakens with the square of distance" uses square (from square)
+- `science:552 science-11-waves-and-sound / wave speed`: "frequency times wavelength" uses wavelength (from wave)
+- `science:556 science-11-light-and-the-electromagnetic-spectrum / electromagnetic spectrum`: "the full range of electromagnetic waves" uses electromagnetic (from electromagnetic)
+- `science:558 science-11-light-and-the-electromagnetic-spectrum / wave-particle duality`: "light acting as both a wave and a particle" uses wave (from wave), particle (from particle)
+- `science:570 science-12-population-and-resources / birth rate`: "births per 1,000 people per year" uses births (from birth)
+- `science:571 science-12-population-and-resources / age structure`: "the share of a population in each age group" uses age (from age)
+- `science:573 science-12-population-and-resources / resource depletion`: "using a resource faster than it is replaced" uses resource (from resource)
+- `science:578 science-12-energy-sources / energy storage`: "holding energy for later use" uses energy (from energy)
+- `science:579 science-12-energy-sources / energy return on investment`: "energy gained compared to energy spent to get it" uses energy (from energy)
+- `sel:3 sel-k-2-naming-feelings / feelings`: "what you feel inside" uses feel (from feelings)
+- `sel:52 sel-9-12-bias-and-first-impressions / first impression`: "the quick opinion formed when you first meet someone" uses first (from first)
+- `social-studies:18 social-studies-3-local-government-and-voting / city council`: "a group of people chosen to make laws for a city" uses city (from city)
+- `social-studies:74 social-studies-1-maps-and-globes / map key`: "a box that tells what map pictures mean" uses map (from map)
+- `social-studies:122 social-studies-2-natural-resources / natural resource`: "something from nature that people use" uses nature (from natural)
+- `social-studies:194 social-studies-6-early-humans-and-the-neolithic-revolution / hunter-gatherer`: "a person who gets food by hunting and collecting wild plants" uses hunting (from hunter)
+- `social-studies:212 social-studies-6-ancient-greece / city-state`: "a city that rules itself and the land around it" uses city (from city)
+- `social-studies:232 social-studies-7-fall-of-rome-and-the-byzantine-empire / Justinian Code`: "a collection of Roman laws ordered by Emperor Justinian" uses justinian (from justinian)
+- `social-studies:267 social-studies-7-renaissance-and-reformation / printing press`: "a machine that printed pages with movable type" uses printed (from printing)
+- `social-studies:281 social-studies-8-road-to-revolution / Declaration of Independence`: "the 1776 document declaring the colonies free from Britain" uses declaring (from declaration)
+- `social-studies:301 social-studies-8-westward-expansion / Oregon Trail`: "a wagon route from Missouri to Oregon" uses oregon (from oregon)
+- `social-studies:311 social-studies-8-slavery-and-sectionalism / Fugitive Slave Act`: "an 1850 law forcing the return of people who escaped slavery" uses slavery (from slave)
+- `social-studies:333 social-studies-9-industrial-revolution / steam engine`: "a machine powered by steam" uses steam (from steam)
+- `social-studies:337 social-studies-9-industrial-revolution / child labor`: "children working jobs, often in dangerous conditions" uses children (from child)
+- `social-studies:349 social-studies-9-world-war-i / Treaty of Versailles`: "the 1919 peace treaty that blamed Germany for the war" uses treaty (from treaty)
+- `social-studies:385 social-studies-11-industrialization-and-the-gilded-age / Chinese Exclusion Act`: "an 1882 law banning Chinese immigration" uses chinese (from chinese)
+- `social-studies:400 social-studies-11-roaring-twenties-and-the-great-depression / stock market crash`: "the sudden 1929 fall in stock prices" uses stock (from stock)
+- `social-studies:401 social-studies-11-roaring-twenties-and-the-great-depression / Dust Bowl`: "severe drought and dust storms on the Plains in the 1930s" uses dust (from dust)
+- `social-studies:403 social-studies-11-roaring-twenties-and-the-great-depression / buying on margin`: "buying stock with borrowed money" uses buying (from buying)
+- `social-studies:405 social-studies-11-world-war-ii-and-the-home-front / Japanese American internment`: "the forced removal of Japanese Americans to camps" uses japanese (from japanese), americans (from american)
+- `social-studies:413 social-studies-11-civil-rights-movement / Voting Rights Act`: "the 1965 law protecting voting rights" uses voting (from voting), rights (from rights)
+- `social-studies:418 social-studies-11-cold-war-america / space race`: "the U.S.-Soviet competition in space exploration" uses space (from space)
+- `social-studies:419 social-studies-11-cold-war-america / Cuban Missile Crisis`: "the 1962 standoff over Soviet missiles in Cuba" uses missiles (from missile)
+- `social-studies:421 social-studies-11-cold-war-america / Vietnam War`: "the long war in Vietnam that divided Americans" uses vietnam (from vietnam), war (from war)
+- `social-studies:424 social-studies-11-modern-america / internet age`: "the era shaped by widespread internet use" uses internet (from internet)
+- `social-studies:449 social-studies-12-civil-rights-and-liberties / equal protection`: "the guarantee that laws apply equally to all" uses equally (from equal)
+- `social-studies:455 social-studies-12-elections-parties-and-media / public opinion`: "what the public thinks about issues" uses public (from public)
+- `social-studies:458 social-studies-12-civic-action / city council`: "the lawmaking body of a city" uses city (from city)
+- `social-studies:459 social-studies-12-civic-action / public comment`: "time for residents to speak at a public meeting" uses public (from public)
+- `social-studies:487 social-studies-12-macroeconomics / consumer price index`: "a measure of price changes for a basket of goods" uses price (from price)
+- `social-studies:499 social-studies-12-global-trade / trade agreement`: "a deal between countries setting trade rules" uses trade (from trade)
+- `social-studies:506 social-studies-12-sensation-perception-and-memory / sensation`: "detecting stimuli through the senses" uses senses (from sensation)
+- `social-studies:509 social-studies-12-sensation-perception-and-memory / working memory`: "short-term memory used to hold and work with information" uses work (from working), memory (from memory)
+- `social-studies:544 social-studies-10-climate-on-the-move / climate migration`: "people moving because climate change harms where they live" uses climate (from climate)
+- `social-studies:694 social-studies-7-unlabeled-archive / sourcing`: "asking who made a source, when and why" uses source (from sourcing)
+- `world-languages:3 world-languages-6-12-asl-grammar-and-facial-expression / topic-comment`: "an ASL sentence order that names the topic first, then says something about it" uses topic (from topic)
+- `world-languages:5 world-languages-6-12-asl-grammar-and-facial-expression / wh-question`: "a question asking who, what, where, when, why or how" uses question (from question)
+- `world-languages:6 world-languages-6-12-asl-grammar-and-facial-expression / yes/no question`: "a question that can be answered yes or no" uses yes (from yes), question (from question)
+- `world-languages:10 world-languages-6-12-classifiers-and-space / signing space`: "the area in front of the signer's body used for signs" uses signer (from signing)
+- `world-languages:15 world-languages-6-12-deaf-culture-and-community / Deaf culture`: "the shared language, values and traditions of the Deaf community" uses deaf (from deaf)
+- `world-languages:18 world-languages-6-12-deaf-culture-and-community / Deaf President Now`: "the 1988 protest that won Gallaudet its first Deaf president" uses deaf (from deaf), president (from president)
+- `world-languages:24 world-languages-6-12-present-tense-verbs / stem-changing verb`: "a verb whose middle vowel changes when conjugated" uses changes (from changing)
+- `world-languages:39 world-languages-6-12-cultures-of-the-spanish-speaking-world / Spanish-speaking world`: "the countries and communities where Spanish is widely spoken" uses spanish (from spanish)
+- `world-languages:61 world-languages-k-12-numbers-colors-and-time / palm orientation`: "which way your palm faces" uses palm (from palm)
+- `world-languages:65 world-languages-k-12-the-five-parameters-of-a-sign / movement`: "how your hand moves in a sign" uses moves (from movement)
+- `world-languages:103 world-languages-k-12-school-and-daily-routine / o'clock`: "the exact hour on a clock" uses clock (from clock)
+
+## Word or its root inside its own definition (Spanish) (271)
+
+- `arts:24 arts-k-2-high-and-low-loud-and-soft / loud`: fuerte: "un sonido grande y fuerte" uses fuerte
+- `arts:28 arts-k-2-instrument-families / strings`: cuerdas: "instrumentos que se tocan pulsando o frotando cuerdas" uses cuerdas
+- `arts:30 arts-k-2-instrument-families / brass`: metales: "instrumentos de metal brillante que se tocan vibrando los labios" uses metal
+- `arts:99 arts-6-8-drawing-and-one-point-perspective / one-point perspective`: perspectiva de un punto: "un método de dibujo en que las líneas se juntan en un punto de fuga" uses punto
+- `arts:101 arts-6-8-drawing-and-one-point-perspective / orthogonal lines`: líneas de fuga: "líneas que llevan al punto de fuga" uses lineas, fuga
+- `arts:115 arts-6-8-harmony-and-chords / chord progression`: progresión de acordes: "una serie de acordes en orden" uses acordes
+- `arts:127 arts-6-8-ensemble-skills / intonation`: afinación: "qué tan afinada está una nota" uses afinada
+- `arts:130 arts-6-8-scripts-and-staging / upstage`: fondo del escenario: "la parte del escenario más lejos del público" uses escenario
+- `arts:134 arts-6-8-scripts-and-staging / stage manager`: director de escena: "la persona que dirige la función detrás del escenario" uses escenario
+- `arts:136 arts-6-8-choreography / movement phrase`: frase de movimiento: "una serie corta de movimientos, como una oración en el baile" uses movimientos
+- `arts:142 arts-6-8-photography-and-framing / rule of thirds`: regla de los tercios: "poner el sujeto sobre líneas que dividen el cuadro en tercios" uses tercios
+- `arts:148 arts-6-8-animation-basics / frame rate`: velocidad de cuadros: "cuántos cuadros se muestran por segundo" uses cuadros
+- `arts:159 arts-9-12-two-point-perspective-and-composition / two-point perspective`: perspectiva de dos puntos: "dibujar con dos puntos de fuga en el horizonte" uses dos, puntos
+- `arts:174 arts-9-12-music-theory / scale degree`: grado de la escala: "la posición de una nota en la escala" uses escala
+- `arts:197 arts-9-12-dance-styles-and-criticism / hip-hop`: hip-hop: "un estilo de baile urbano ligado a la cultura hip-hop" uses hip, hop
+- `arts:205 arts-9-12-film-and-video-production / shot list`: lista de tomas: "un plan de cada toma que se va a filmar" uses toma
+- `arts:208 arts-9-12-graphic-design / layout`: diseño de página: "cómo se acomodan el texto y las imágenes en una página" uses pagina
+- `arts:231 arts-3-5-mood-and-place-in-art / cool colors`: colores fríos: "azules, verdes y morados que se sienten tranquilos o fríos" uses frios
+- `arts:249 arts-3-5-sound-and-picture-together / sound effect`: efecto de sonido: "un sonido creado que va con una acción" uses sonido
+- `arts:272 arts-6-8-comparing-productions / staging`: puesta en escena: "dónde y cómo se mueven los actores en el escenario" uses escenario
+- `arts:319 arts-9-12-documentary-production / B-roll`: material de apoyo: "tomas extra que apoyan la historia principal" uses apoyan
+- `arts:324 arts-9-12-lighting-and-technical-design / gel`: filtro de color: "una lámina de color que se pone sobre una luz" uses color
+- `arts:338 arts-k-2-art-about-my-life / memory`: recuerdo: "algo que recuerdas" uses recuerdas
+- `arts:357 arts-k-2-drama-in-role / question`: pregunta: "algo que preguntas para saber" uses preguntas
+- `computer-science:5 computer-science-3-if-this-then-that / if-then`: si-entonces: "una regla: si algo es verdad, entonces se hace algo" uses entonces
+- `computer-science:62 computer-science-2-loops-and-events / sprite`: personaje: "un personaje en un programa de código" uses personaje
+- `computer-science:86 computer-science-4-tables-and-visualizations / sort`: ordenar: "poner datos en orden" uses orden
+- `computer-science:142 computer-science-6-8-data-detectives / sort`: ordenar: "acomodar datos en orden" uses orden
+- `computer-science:145 computer-science-6-8-data-detectives / dataset`: conjunto de datos: "una colección de datos relacionados" uses datos
+- `computer-science:184 computer-science-9-12-simulation-and-data-science / data cleaning`: limpieza de datos: "corregir errores y huecos en los datos" uses datos
+- `computer-science:193 computer-science-9-12-networks-of-networks / fault tolerance`: tolerancia a fallos: "la capacidad de seguir funcionando cuando fallan partes" uses fallan
+- `computer-science:196 computer-science-9-12-cybersecurity / data breach`: filtración de datos: "acceso no autorizado a datos privados" uses datos
+- `computer-science:199 computer-science-9-12-cybersecurity / public key encryption`: cifrado de clave pública: "cifrado con una clave pública para cerrar y una privada para abrir" uses cifrado, clave, publica
+- `computer-science:201 computer-science-9-12-ethics-law-and-data-policy / data privacy`: privacidad de datos: "el control de cómo se reúnen y usan los datos personales" uses datos
+- `computer-science:236 computer-science-3-5-hardware-and-software-together / troubleshoot`: solucionar problemas: "buscar y arreglar un problema paso a paso" uses problema
+- `computer-science:257 computer-science-6-8-cleaning-data-honestly / data quality`: calidad de datos: "qué tan completos, correctos y útiles son los datos" uses datos
+- `computer-science:261 computer-science-6-8-cleaning-data-honestly / limitation`: limitación: "una debilidad que limita lo que muestran los datos" uses limita
+- `computer-science:264 computer-science-6-8-code-you-did-not-write / change log`: registro de cambios: "una lista de qué se cambió y por qué" uses cambio
+- `computer-science:293 computer-science-9-12-a-technology-s-long-story / data center`: centro de datos: "un edificio lleno de servidores que guardan y procesan datos" uses datos
+- `computer-science:302 computer-science-9-12-data-dictionaries-and-validation / data dictionary`: diccionario de datos: "un documento que define cada campo de un conjunto de datos" uses datos
+- `computer-science:309 computer-science-9-12-design-test-and-refine / user testing`: pruebas con usuarios: "observar a usuarios reales probar un producto para hallar problemas" uses usuarios
+- `computer-science:328 computer-science-9-12-reviewing-ai-written-code / code review`: revisión de código: "leer código con cuidado para hallar errores y problemas" uses codigo
+- `computer-science:333 computer-science-k-2-asking-with-data / question`: pregunta: "algo que preguntas para saber" uses preguntas
+- `computer-science:357 computer-science-k-2-using-tech-well / screen time`: tiempo de pantalla: "el tiempo que pasas viendo una pantalla" uses tiempo, pantalla
+- `computer-science:360 computer-science-k-2-using-tech-well / break`: descanso: "un rato para descansar" uses descansar
+- `cte:28 cte-9-12-resumes-and-interviews / cover letter`: carta de presentación: "una carta que te presenta ante un empleador" uses carta, presenta
+- `cte:34 cte-9-12-entrepreneurship / business plan`: plan de negocios: "un documento que describe las metas y la estrategia de un negocio" uses negocio
+- `cte:54 cte-9-12-earning-income-and-paychecks / W-4`: formulario W-4: "el formulario que le dice al empleador cuánto impuesto retener" uses formulario
+- `cte:58 cte-9-12-budgeting-and-spending / need`: necesidad: "algo que necesitas para vivir" uses necesitas
+- `cte:70 cte-9-12-credit-and-debt / APR`: tasa anual: "el costo anual de pedir prestado" uses anual
+- `cte:90 cte-6-8-e-bike-buyer / comparison shopping`: comparar precios: "revisar precios y funciones en varios lugares antes de comprar" uses precios
+- `ela:81 ela-k-story-time-characters-and-setting / retell`: volver a contar: "contar un cuento otra vez con tus palabras" uses contar
+- `ela:90 ela-k-draw-tell-and-write / draw`: dibujar: "hacer un dibujo con lápiz o crayón" uses dibujo
+- `ela:97 ela-k-talk-it-over / question`: pregunta: "algo que preguntas para saber más" uses preguntas
+- `ela:125 ela-1-story-elements-and-lessons / retell`: volver a contar: "contar el cuento otra vez en orden" uses contar
+- `ela:156 ela-2-long-vowels-and-two-syllable-words / vowel team`: combinación de vocales: "dos vocales juntas que hacen un sonido en inglés" uses vocales
+- `ela:208 ela-4-theme-and-summary / character trait`: rasgo del personaje: "una palabra que describe cómo actúa un personaje" uses personaje
+- `ela:222 ela-4-text-structures / text structure`: estructura del texto: "cómo está organizado un texto" uses texto
+- `ela:262 ela-5-quoting-and-inferring / text evidence`: evidencia del texto: "palabras del texto que apoyan una respuesta" uses texto
+- `ela:313 ela-6-point-of-view / third person limited`: tercera persona limitada: "contado por un narrador externo que sabe lo que piensa un solo personaje" uses personaje
+- `ela:344 ela-6-collaborative-discussions / pose a question`: plantear una pregunta: "hacer una pregunta para que otros piensen" uses pregunta
+- `ela:348 ela-6-pronouns-and-sentence-variety / pronoun case`: caso del pronombre: "la forma que toma un pronombre según su función" uses pronombre
+- `ela:352 ela-6-pronouns-and-sentence-variety / sentence variety`: variedad de oraciones: "mezclar oraciones cortas, largas y de distintas formas" uses oraciones
+- `ela:372 ela-7-sound-and-form-in-poetry / rhyme scheme`: esquema de rima: "el patrón de rimas al final de los versos" uses rimas
+- `ela:421 ela-8-modern-takes-on-classic-stories / retelling`: nueva versión: "una versión nueva de una historia vieja" uses nueva, version
+- `ela:423 ela-8-modern-takes-on-classic-stories / hero's journey`: viaje del héroe: "un patrón de historia en que el héroe sale, enfrenta pruebas y regresa cambiado" uses heroe
+- `ela:464 ela-9-complex-characters / foil`: personaje de contraste: "un personaje que contrasta con otro para resaltar sus rasgos" uses personaje, contrasta
+- `ela:588 ela-11-college-personal-essay / word limit`: límite de palabras: "el máximo de palabras que puede tener un texto" uses palabras
+- `ela:613 ela-12-extended-research-project / research question`: pregunta de investigación: "la pregunta concreta que busca contestar una investigación" uses pregunta, investigacion
+- `ela:618 ela-12-extended-research-project / abstract`: resumen: "un resumen breve al principio de un trabajo" uses resumen
+- `ela:662 ela-3-5-main-idea-with-text-evidence / main idea`: idea principal: "de qué trata un texto principalmente" uses principalmente
+- `ela:668 ela-3-5-narrators-and-points-of-view / first person`: primera persona: "contado por un personaje que usa yo y mí" uses personaje
+- `ela:675 ela-3-5-pictures-panels-and-performances / read-aloud`: lectura en voz alta: "un libro leído en voz alta a quienes escuchan" uses voz, alta
+- `ela:691 ela-3-5-revising-and-editing / word choice`: elección de palabras: "escoger las mejores palabras para lo que quieres decir" uses palabras
+- `ela:697 ela-4-showing-character-through-details / character trait`: rasgo del personaje: "una palabra que dice cómo es un personaje" uses personaje
+- `ela:757 ela-8-puns-irony-and-allusion / pun`: juego de palabras: "un chiste con una palabra de dos significados" uses palabra
+- `ela:791 ela-9-presenting-findings-to-an-audience / delivery`: manera de hablar: "cómo usa quien habla la voz, el ritmo y los gestos" uses habla
+- `ela:795 ela-k-2-adding-details-and-fixing-sentences / period`: punto: "un puntito al final de una oración" uses puntito
+- `ela:805 ela-k-2-comparing-two-books / fact book`: libro de datos: "un libro con datos reales" uses libro, datos
+- `ela:808 ela-k-2-listening-and-asking-questions / ask`: preguntar: "decir una pregunta" uses pregunta
+- `ela:816 ela-k-2-new-words-from-read-alouds / read-aloud`: lectura en voz alta: "un libro que se lee en voz alta" uses voz, alta
+- `ela:818 ela-k-2-pictures-and-words-together / caption`: pie de foto: "palabras debajo de una foto que la explican" uses foto
+- `ela:831 ela-k-2-question-words-and-key-details / retell`: volver a contar: "contar otra vez una historia con tus palabras" uses contar
+- `eld:4 eld-k-2-classroom-language / raise your hand`: levantar la mano: "subir la mano para preguntar o contestar" uses mano
+- `eld:57 eld-3-5-then-and-now-language / long ago`: hace mucho tiempo: "un tiempo muy lejano en el pasado" uses tiempo
+- `eld:98 eld-9-12-academic-argument / sentence frame`: marco de oración: "un inicio que ayuda a formar una oración" uses oracion
+- `health-pe:19 health-pe-k-2-feelings-and-friends / ask for help`: pedir ayuda: "decirle a alguien que necesitas ayuda" uses ayuda
+- `health-pe:28 health-pe-k-2-locomotor-skills / hop`: brincar en un pie: "saltar en un solo pie" uses pie
+- `health-pe:36 health-pe-k-2-throwing-and-catching / overhand`: por arriba: "lanzar con la mano arriba del hombro" uses arriba
+- `health-pe:70 health-pe-3-5-fitness-components / strength`: fuerza: "cuánta fuerza pueden usar tus músculos" uses fuerza
+- `health-pe:100 health-pe-6-8-sport-skills-and-rules / net game`: juego de red: "un juego en que se manda un objeto sobre una red" uses juego, red
+- `health-pe:101 health-pe-6-8-sport-skills-and-rules / striking game`: juego de golpeo: "un juego en que se golpea un objeto y se corre" uses juego, golpea
+- `health-pe:116 health-pe-9-12-nutrition-and-fitness-planning / meal plan`: plan de comidas: "un horario de comidas balanceadas" uses comidas
+- `health-pe:124 health-pe-9-12-accessing-valid-health-information / health claim`: afirmación de salud: "una frase que dice que un producto mejora la salud" uses salud
+- `health-pe:146 health-pe-9-12-sportsmanship-and-leadership / team culture`: cultura de equipo: "los valores y hábitos que comparte un equipo" uses equipo
+- `health-pe:160 health-pe-3-5-safety-at-home-and-online / smoke alarm`: detector de humo: "un aparato que suena cuando siente humo" uses humo
+- `library:10 library-k-2-asking-good-questions / question`: pregunta: "algo que preguntas para aprender" uses preguntas
+- `library:18 library-3-5-search-like-a-pro / database`: base de datos: "una colección ordenada de artículos y datos para buscar" uses datos
+- `library:28 library-6-8-is-it-reliable / misinformation`: información falsa: "datos falsos que se comparten, muchas veces sin querer" uses falsos
+- `library:49 library-9-12-citation-copyright-and-fair-use / citation style`: estilo de citación: "reglas para citar fuentes, como MLA o APA" uses citar
+- `library:71 library-k-2-many-voices-book / class book`: libro de la clase: "un libro que hace toda la clase junta" uses libro, clase
+- `math:11 math-3-times-tables-fluency / times table`: tabla de multiplicar: "una lista de las multiplicaciones básicas" uses multiplicaciones
+- `math:19 math-3-patterns-and-two-step-problems / two-step problem`: problema de dos pasos: "un problema que se resuelve con dos operaciones" uses dos
+- `math:28 math-3-rounding-and-multi-digit-operations / sum`: suma: "el resultado de sumar" uses sumar
+- `math:39 math-3-time-volume-and-mass / liquid volume`: volumen líquido: "cuánto líquido cabe en un recipiente" uses liquido
+- `math:44 math-3-scaled-graphs / bar graph`: gráfica de barras: "una gráfica que usa barras para comparar cantidades" uses grafica, barras
+- `math:51 math-3-area / square unit`: unidad cuadrada: "un cuadrado que mide 1 unidad por lado y sirve para medir área" uses unidad, cuadrado
+- `math:52 math-3-area / square foot`: pie cuadrado: "un cuadrado que mide 1 pie por lado" uses pie, cuadrado
+- `math:54 math-3-area / tile`: cubrir con cuadrados: "cubrir una figura con cuadrados sin dejar huecos ni encimarlos" uses cubrir, cuadrados
+- `math:59 math-3-perimeter / width`: ancho: "qué tan ancho es algo de lado a lado" uses ancho
+- `math:70 math-k-counting-to-100 / ones`: de uno en uno: "contar de a uno" uses uno, uno
+- `math:71 math-k-counting-to-100 / tens`: de diez en diez: "contar por grupos de diez" uses diez, diez
+- `math:78 math-k-how-many / last number`: último número: "el último número que dices dice cuántos hay" uses ultimo, numero
+- `math:81 math-k-more-less-same / less`: menos: "una cantidad menor" uses menor
+- `math:92 math-k-teen-numbers / teen number`: número del 11 al 19: "un número entre el 11 y el 19" uses numero
+- `math:98 math-k-longer-heavier-bigger / longer`: más largo: "que mide más de largo" uses largo
+- `math:127 math-1-addition-and-subtraction-stories / sum`: suma: "el resultado de sumar" uses sumar
+- `math:133 math-1-fact-strategies / fact family`: familia de operaciones: "operaciones que usan los mismos tres números" uses operaciones
+- `math:161 math-1-measuring-length / longest`: el más largo: "más largo que todos los demás" uses largo
+- `math:162 math-1-measuring-length / shortest`: el más corto: "más corto que todos los demás" uses corto
+- `math:184 math-2-two-step-word-problems / two-step problem`: problema de dos pasos: "un problema que resuelves con dos pasos" uses problema, dos, pasos
+- `math:191 math-2-fluency-within-20 / doubles plus one`: dobles más uno: "un doble y luego uno más" uses doble, uno
+- `math:218 math-2-rulers-and-units / meter`: metro: "una unidad métrica de más o menos un paso grande" uses metrica
+- `math:223 math-2-time-and-money / penny`: centavo: "una moneda que vale 1 centavo" uses centavo
+- `math:224 math-2-time-and-money / dime`: moneda de diez centavos: "una moneda que vale 10 centavos" uses centavos
+- `math:225 math-2-time-and-money / quarter`: moneda de veinticinco centavos: "una moneda que vale 25 centavos" uses centavos
+- `math:227 math-2-line-plots-and-bar-graphs / bar graph`: gráfica de barras: "una gráfica con barras para comparar cantidades" uses grafica, barras
+- `math:246 math-4-factors-and-multiples / multiple`: múltiplo: "el resultado de multiplicar un número por otro entero" uses multiplicar
+- `math:262 math-4-place-value-to-a-million / word form`: forma escrita: "un número escrito con palabras" uses escrito
+- `math:310 math-5-expressions-and-order-of-operations / sum`: suma: "el resultado de sumar" uses sumar
+- `math:331 math-5-adding-unlike-fractions / least common multiple`: mínimo común múltiplo: "el número más pequeño que es múltiplo de los dos" uses multiplo
+- `math:349 math-5-volume / rectangular prism`: prisma rectangular: "una figura de caja con seis caras rectangulares" uses rectangulares
+- `math:369 math-6-ratios-and-rates / double number line`: recta numérica doble: "dos rectas numéricas paralelas que muestran razones equivalentes" uses numericas
+- `math:378 math-6-multi-digit-and-decimal-fluency / least common multiple`: mínimo común múltiplo: "el múltiplo más pequeño que comparten dos números" uses multiplo
+- `math:381 math-6-multi-digit-and-decimal-fluency / decimal`: decimal: "un número escrito con punto decimal" uses decimal
+- `math:384 math-6-negative-numbers / integer`: número entero: "un número entero positivo o negativo, o el cero" uses numero, entero
+- `math:421 math-6-summarizing-data / mean absolute deviation`: desviación media absoluta: "la distancia promedio de los valores a la media" uses media
+- `math:426 math-7-proportional-relationships / constant of proportionality`: constante de proporcionalidad: "la razón fija y/x en una relación proporcional" uses proporcional
+- `math:434 math-7-operations-with-rational-numbers / product of negatives`: producto de negativos: "dos negativos multiplicados dan un positivo" uses negativos
+- `math:440 math-7-equivalent-expressions / combine like terms`: reducir términos semejantes: "sumar o restar términos con la misma variable" uses terminos
+- `math:443 math-7-multi-step-equations-and-inequalities / multi-step equation`: ecuación de varios pasos: "una ecuación que necesita más de un paso para resolverse" uses paso
+- `math:453 math-7-scale-drawings-and-constructions / triangle inequality`: desigualdad triangular: "dos lados de un triángulo juntos deben medir más que el tercero" uses triangulo
+- `math:460 math-7-circles-angles-area-and-volume / vertical angles`: ángulos opuestos por el vértice: "ángulos opuestos que forman dos líneas que se cruzan" uses opuestos
+- `math:468 math-7-probability / outcome`: resultado: "un resultado posible" uses resultado
+- `math:482 math-8-exponents-roots-and-scientific-notation / zero exponent`: exponente cero: "cualquier base que no sea cero elevada a 0 da 1" uses cero
+- `math:492 math-8-linear-equations-and-systems / system of equations`: sistema de ecuaciones: "dos o más ecuaciones que se resuelven juntas" uses ecuaciones
+- `math:502 math-8-defining-functions / vertical line test`: prueba de la recta vertical: "una gráfica es función si ninguna línea vertical la toca dos veces" uses vertical
+- `math:504 math-8-modeling-with-functions / rate of change`: razón de cambio: "cuánto cambia una cantidad por cada unidad de otra" uses cambia
+- `math:535 math-9-rational-exponents-and-real-numbers / index`: índice: "el número pequeño que indica qué raíz sacar" uses indica
+- `math:539 math-9-units-and-quantities / unit conversion`: conversión de unidades: "cambiar una medida de una unidad a otra" uses unidad
+- `math:546 math-9-structure-of-expressions / completing the square`: completar el cuadrado: "reescribir una cuadrática como un cuadrado perfecto más una constante" uses cuadrado
+- `math:578 math-9-function-notation-and-graphs / x-intercept`: intersección con el eje x: "donde una gráfica cruza el eje x" uses eje
+- `math:594 math-9-data-in-one-and-two-variables / correlation coefficient`: coeficiente de correlación: "un número de −1 a 1 que mide la correlación lineal" uses correlacion
+- `math:616 math-10-similarity / center of dilation`: centro de dilatación: "el punto fijo desde el que se mide una dilatación" uses dilatacion
+- `math:633 math-10-coordinate-geometry / slope criteria`: criterios de pendiente: "reglas de pendiente para rectas paralelas y perpendiculares" uses pendiente
+- `math:645 math-10-modeling-with-geometry / design constraint`: restricción de diseño: "un límite que debe respetar un diseño" uses disen
+- `math:659 math-11-polynomial-functions / remainder theorem`: teorema del residuo: "f(a) es el residuo al dividir f(x) entre x − a" uses residuo
+- `math:668 math-11-rational-expressions-and-equations / least common denominator`: mínimo común denominador: "el denominador más pequeño que comparten varias fracciones" uses denominador
+- `math:678 math-11-trigonometric-functions / period`: periodo: "la longitud de un ciclo completo de una función periódica" uses periodica
+- `math:686 math-11-building-and-inverting-functions / horizontal line test`: prueba de la recta horizontal: "una gráfica tiene inversa si ninguna recta horizontal la toca dos veces" uses recta, horizontal
+- `math:701 math-12-functions-and-their-graphs / function family`: familia de funciones: "funciones que comparten una función madre" uses funciones
+- `math:709 math-12-trigonometric-identities-and-equations / double-angle formula`: fórmula del ángulo doble: "una regla para el valor trigonométrico del doble de un ángulo" uses angulo, doble
+- `math:729 math-12-polar-coordinates-and-complex-plane / rose curve`: rosa polar: "una gráfica polar con forma de pétalos" uses polar
+- `math:738 math-12-limits-and-rates-of-change / instantaneous rate of change`: razón de cambio instantánea: "la razón de cambio en un punto exacto" uses cambio
+- `math:747 math-12-exploring-data / least-squares regression line`: recta de regresión de mínimos cuadrados: "la recta que hace mínima la suma de los residuos al cuadrado" uses minima, cuadrado
+- `math:759 math-12-probability-and-random-variables / probability distribution`: distribución de probabilidad: "una lista de resultados y sus probabilidades" uses probabilidades
+- `math:764 math-12-sampling-distributions / standard error`: error estándar: "la desviación estándar de una distribución muestral" uses estandar
+- `math:777 math-12-chi-square-and-regression-inference / slope inference`: inferencia sobre la pendiente: "probar o estimar la pendiente real de una recta de regresión" uses pendiente
+- `math:778 math-12-chi-square-and-regression-inference / residual plot`: gráfica de residuos: "una gráfica de los residuos contra x" uses grafica, residuos
+- `math:782 math-12-limits-and-continuity / intermediate value theorem`: teorema del valor intermedio: "una función continua toma todos los valores entre sus extremos" uses valores
+- `math:788 math-12-the-derivative / product rule`: regla del producto: "una regla para derivar un producto de funciones" uses regla, producto
+- `math:810 math-12-differential-equations / slope field`: campo de pendientes: "una cuadrícula de segmentos cortos que muestran pendientes" uses pendientes
+- `math:812 math-12-differential-equations / separation of variables`: separación de variables: "pasar cada variable a su lado para resolver" uses variable
+- `math:815 math-12-solving-any-triangle / law of sines`: ley de los senos: "cada lado dividido entre el seno de su ángulo opuesto da el mismo valor" uses seno
+- `science:35 science-3-fossils-and-changing-environments / rock layer`: capa de roca: "una franja de roca que se formó en un tiempo; las de abajo son más viejas" uses roca
+- `science:52 science-k-sunlight-warms-the-earth / sunlight`: luz del sol: "la luz que viene del sol" uses luz, sol
+- `science:118 science-2-plants-need-water-and-light / sunlight`: luz del sol: "la luz que viene del sol" uses luz, sol
+- `science:166 science-4-rock-layers-and-earth-history / rock layer`: capa de roca: "una franja de roca que se formó con el tiempo" uses roca
+- `science:174 science-4-weathering-and-erosion / deposition`: sedimentación: "dejar sedimento en un lugar nuevo" uses sedimento
+- `science:181 science-4-natural-resources-and-hazards / natural hazard`: amenaza natural: "un suceso natural que puede causar daño" uses natural
+- `science:212 science-5-sun-stars-and-shadows / revolve`: girar alrededor: "viajar alrededor de otro objeto" uses alrededor
+- `science:238 science-6-geologic-time / geologic time scale`: escala de tiempo geológico: "una línea del tiempo de la historia de la Tierra dividida en eras y periodos" uses tiempo
+- `science:244 science-6-plate-tectonics / plate tectonics`: tectónica de placas: "la teoría de que la capa exterior de la Tierra está partida en placas que se mueven" uses placas
+- `science:247 science-6-plate-tectonics / rock cycle`: ciclo de las rocas: "los cambios lentos de un tipo de roca a otro" uses roca
+- `science:253 science-6-water-cycle-and-weather / air mass`: masa de aire: "un gran cuerpo de aire con temperatura y humedad parecidas" uses aire
+- `science:255 science-6-water-cycle-and-weather / air pressure`: presión del aire: "el peso del aire que empuja hacia abajo" uses aire
+- `science:271 science-6-cells-and-body-systems / cell membrane`: membrana celular: "la capa delgada que controla qué entra y sale de la célula" uses celula
+- `science:273 science-6-cells-and-body-systems / organ system`: sistema de órganos: "órganos que trabajan juntos para una función del cuerpo" uses organos
+- `science:293 science-7-photosynthesis-and-respiration / cellular respiration`: respiración celular: "cuando las células descomponen azúcar para liberar energía" uses celulas
+- `science:304 science-7-matter-and-energy-in-ecosystems / food web`: red alimentaria: "cadenas alimentarias conectadas en un ecosistema" uses alimentarias
+- `science:308 science-7-matter-and-energy-in-ecosystems / energy pyramid`: pirámide de energía: "un dibujo que muestra cómo baja la energía en cada nivel" uses energia
+- `science:309 science-7-matter-and-energy-in-ecosystems / carbon cycle`: ciclo del carbono: "el movimiento del carbono entre seres vivos, aire, agua y roca" uses carbono
+- `science:316 science-7-earth-s-resources / natural resource`: recurso natural: "algo de la naturaleza que la gente usa" uses naturaleza
+- `science:336 science-8-kinetic-and-potential-energy / energy transfer`: transferencia de energía: "energía que pasa de un objeto a otro" uses energia
+- `science:355 science-8-evolution-and-natural-selection / fossil record`: registro fósil: "todos los fósiles conocidos y lo que muestran del pasado" uses fosiles
+- `science:358 science-8-natural-hazards-and-human-impact / natural hazard`: peligro natural: "un suceso de la naturaleza que puede dañar a la gente" uses naturaleza
+- `science:383 science-9-cell-division-and-differentiation / cell cycle`: ciclo celular: "las etapas de una célula para crecer y dividirse" uses celula
+- `science:391 science-9-photosynthesis-and-cellular-respiration / light-dependent reactions`: reacciones dependientes de la luz: "los pasos de la fotosíntesis que captan la energía de la luz" uses luz
+- `science:399 science-9-dna-and-protein-synthesis / base pair`: par de bases: "dos bases de ADN que se unen, A con T y C con G" uses bases
+- `science:409 science-9-evolution / speciation`: especiación: "la formación de una especie nueva" uses especie
+- `science:420 science-9-biodiversity-and-human-impact / habitat fragmentation`: fragmentación del hábitat: "dividir un hábitat en pedazos pequeños y separados" uses habitat
+- `science:425 science-9-stars-and-the-big-bang / nuclear fusion`: fusión nuclear: "unir núcleos ligeros en otros más pesados, soltando energía" uses nucleos
+- `science:435 science-9-orbits-and-earth-s-history / seafloor spreading`: expansión del fondo oceánico: "nueva corteza que se forma en las dorsales oceánicas" uses oceanicas
+- `science:444 science-9-water-and-earth-materials / deposition`: sedimentación: "dejar sedimentos en un lugar nuevo" uses sedimentos
+- `science:449 science-9-climate-systems / carbon sink`: sumidero de carbono: "algo que absorbe más carbono del que suelta" uses carbono
+- `science:451 science-9-climate-systems / ice core`: núcleo de hielo: "un cilindro de hielo que se saca de un glaciar para estudiar el clima pasado" uses hielo
+- `science:457 science-9-resources-and-sustainability / cost-benefit analysis`: análisis de costo-beneficio: "comparar los costos y beneficios de una decisión" uses costos, beneficios
+- `science:465 science-10-atomic-structure-and-the-periodic-table / periodic trend`: tendencia periódica: "un patrón en las propiedades a lo largo de la tabla periódica" uses periodica
+- `science:469 science-10-bonding-and-intermolecular-forces / hydrogen bond`: puente de hidrógeno: "una atracción débil entre moléculas que involucra al hidrógeno" uses hidrogeno
+- `science:484 science-10-energy-in-reactions / bond energy`: energía de enlace: "la energía que se necesita para romper un enlace" uses energia, enlace
+- `science:489 science-10-energy-in-reactions / energy diagram`: diagrama de energía: "una gráfica de la energía durante una reacción" uses energia
+- `science:490 science-10-reaction-rates-and-equilibrium / reaction rate`: velocidad de reacción: "qué tan rápido los reactivos se vuelven productos" uses reactivos
+- `science:528 science-11-momentum-and-collisions / conservation of momentum`: conservación del momento: "el momento total no cambia en un sistema cerrado" uses momento
+- `science:534 science-11-gravity-and-electrostatics / inverse square law`: ley del inverso del cuadrado: "una fuerza que se debilita con el cuadrado de la distancia" uses cuadrado
+- `science:540 science-11-energy-and-work / conservation of energy`: conservación de la energía: "la energía no se crea ni se destruye, solo se transforma" uses energia
+- `science:552 science-11-waves-and-sound / wave speed`: rapidez de onda: "la frecuencia por la longitud de onda" uses onda
+- `science:556 science-11-light-and-the-electromagnetic-spectrum / electromagnetic spectrum`: espectro electromagnético: "todo el rango de ondas electromagnéticas" uses electromagneticas
+- `science:558 science-11-light-and-the-electromagnetic-spectrum / wave-particle duality`: dualidad onda-partícula: "la luz que actúa como onda y como partícula" uses onda, particula
+- `science:571 science-12-population-and-resources / age structure`: estructura por edades: "la parte de la población en cada grupo de edad" uses edad
+- `science:573 science-12-population-and-resources / resource depletion`: agotamiento de recursos: "usar un recurso más rápido de lo que se repone" uses recurso
+- `science:578 science-12-energy-sources / energy storage`: almacenamiento de energía: "guardar energía para usarla después" uses energia
+- `sel:12 sel-k-2-calm-down-strategies / break`: descanso: "un rato corto para descansar" uses descansar
+- `sel:39 sel-9-12-stress-and-resilience / stressor`: factor de estrés: "algo que causa estrés" uses estres
+- `social-studies:67 social-studies-k-symbols-and-holidays / Liberty Bell`: Campana de la Libertad: "una campana grande y antigua que representa la libertad" uses campana, libertad
+- `social-studies:74 social-studies-1-maps-and-globes / map key`: clave del mapa: "un cuadro que dice qué significan los dibujos del mapa" uses mapa
+- `social-studies:122 social-studies-2-natural-resources / natural resource`: recurso natural: "algo de la naturaleza que usa la gente" uses naturaleza
+- `social-studies:130 social-studies-4-state-history / statehood`: estatus de estado: "convertirse en un estado de Estados Unidos" uses estado
+- `social-studies:145 social-studies-4-state-government / bill`: proyecto de ley: "una idea para una ley" uses ley
+- `social-studies:166 social-studies-5-exploration-and-colonization / colonist`: colono: "una persona que vive en una colonia" uses colonia
+- `social-studies:168 social-studies-5-exploration-and-colonization / thirteen colonies`: trece colonias: "las colonias inglesas que se volvieron los primeros estados" uses colonias
+- `social-studies:207 social-studies-6-ancient-india-and-china / Mandate of Heaven`: Mandato del Cielo: "la creencia china de que el cielo da el poder a los gobernantes" uses cielo
+- `social-studies:232 social-studies-7-fall-of-rome-and-the-byzantine-empire / Justinian Code`: Código de Justiniano: "una colección de leyes romanas ordenada por el emperador Justiniano" uses justiniano
+- `social-studies:301 social-studies-8-westward-expansion / Oregon Trail`: Camino de Oregón: "una ruta de carretas de Misuri a Oregón" uses oregon
+- `social-studies:311 social-studies-8-slavery-and-sectionalism / Fugitive Slave Act`: Ley de Esclavos Fugitivos: "una ley de 1850 que obligaba a regresar a quienes escapaban de la esclavitud" uses esclavitud
+- `social-studies:320 social-studies-8-reconstruction / Reconstruction`: Reconstrucción: "la reconstrucción del Sur después de la Guerra Civil, de 1865 a 1877" uses reconstruccion
+- `social-studies:321 social-studies-8-reconstruction / Thirteenth Amendment`: Decimotercera Enmienda: "la enmienda de 1865 que acabó con la esclavitud" uses enmienda
+- `social-studies:322 social-studies-8-reconstruction / Fourteenth Amendment`: Decimocuarta Enmienda: "la enmienda de 1868 que dio ciudadanía e igual protección" uses enmienda
+- `social-studies:323 social-studies-8-reconstruction / Fifteenth Amendment`: Decimoquinta Enmienda: "la enmienda de 1870 que protegió el voto sin importar la raza" uses enmienda
+- `social-studies:333 social-studies-9-industrial-revolution / steam engine`: máquina de vapor: "una máquina que funciona con vapor" uses maquina, vapor
+- `social-studies:339 social-studies-9-imperialism / Scramble for Africa`: reparto de África: "la rápida toma de África por Europa, de 1881 a 1914" uses africa
+- `social-studies:376 social-studies-10-globalization-today / free trade`: libre comercio: "comercio sin aranceles ni límites" uses comercio
+- `social-studies:385 social-studies-11-industrialization-and-the-gilded-age / Chinese Exclusion Act`: Ley de Exclusión China: "una ley de 1882 que prohibió la inmigración china" uses china
+- `social-studies:388 social-studies-11-the-progressive-era / Nineteenth Amendment`: Decimonovena Enmienda: "la enmienda de 1920 que dio el voto a las mujeres" uses enmienda
+- `social-studies:389 social-studies-11-the-progressive-era / trust-busting`: disolución de monopolios: "romper los monopolios" uses monopolios
+- `social-studies:405 social-studies-11-world-war-ii-and-the-home-front / Japanese American internment`: internamiento de japoneses estadounidenses: "el traslado forzado de japoneses estadounidenses a campos" uses japoneses, estadounidenses
+- `social-studies:413 social-studies-11-civil-rights-movement / Voting Rights Act`: Ley de Derecho al Voto: "la ley de 1965 que protegió el derecho a votar" uses derecho
+- `social-studies:419 social-studies-11-cold-war-america / Cuban Missile Crisis`: Crisis de los misiles en Cuba: "el enfrentamiento de 1962 por los misiles soviéticos en Cuba" uses misiles, cuba
+- `social-studies:420 social-studies-11-cold-war-america / Korean War`: guerra de Corea: "la guerra de 1950 a 1953 entre Corea del Norte y del Sur" uses guerra, corea
+- `social-studies:421 social-studies-11-cold-war-america / Vietnam War`: guerra de Vietnam: "la larga guerra en Vietnam que dividió a los estadounidenses" uses guerra, vietnam
+- `social-studies:424 social-studies-11-modern-america / internet age`: era de internet: "la época marcada por el uso extendido de internet" uses internet
+- `social-studies:456 social-studies-12-elections-parties-and-media / gerrymandering`: manipulación de distritos: "trazar los distritos para favorecer a un grupo" uses distritos
+- `social-studies:459 social-studies-12-civic-action / public comment`: comentarios del público: "tiempo para que los vecinos hablen en una reunión pública" uses publica
+- `social-studies:461 social-studies-12-civic-action / advocacy`: defensa de causas: "trabajar para apoyar una causa o política" uses causa
+- `social-studies:485 social-studies-12-macroeconomics / business cycle`: ciclo económico: "las subidas y bajadas de la actividad económica" uses economica
+- `social-studies:487 social-studies-12-macroeconomics / consumer price index`: índice de precios al consumidor: "una medida del cambio de precios de una canasta de productos" uses precios
+- `social-studies:544 social-studies-10-climate-on-the-move / climate migration`: migración climática: "personas que se mudan porque el cambio climático daña donde viven" uses climatico
+- `social-studies:603 social-studies-3-ripple-street / ripple`: onda: "un efecto que se extiende como ondas en el agua" uses ondas
+- `social-studies:694 social-studies-7-unlabeled-archive / sourcing`: análisis de la fuente: "preguntar quién hizo una fuente, cuándo y por qué" uses fuente
+- `social-studies:712 social-studies-8-motion-on-the-floor / chair`: presidente de la reunión: "la persona que dirige una reunión" uses reunion
+- `world-languages:5 world-languages-6-12-asl-grammar-and-facial-expression / wh-question`: pregunta qu-: "una pregunta que pide quién, qué, dónde, cuándo, por qué o cómo" uses pregunta
+- `world-languages:6 world-languages-6-12-asl-grammar-and-facial-expression / yes/no question`: pregunta de sí o no: "una pregunta que se contesta con sí o no" uses pregunta
+- `world-languages:10 world-languages-6-12-classifiers-and-space / signing space`: espacio de señas: "el área frente al cuerpo de quien seña donde se hacen las señas" uses sen
+- `world-languages:15 world-languages-6-12-deaf-culture-and-community / Deaf culture`: cultura sorda: "el idioma, los valores y las tradiciones que comparte la comunidad sorda" uses sorda
+- `world-languages:18 world-languages-6-12-deaf-culture-and-community / Deaf President Now`: Presidente Sordo Ya: "la protesta de 1988 que logró el primer presidente sordo de Gallaudet" uses presidente, sordo
+- `world-languages:24 world-languages-6-12-present-tense-verbs / stem-changing verb`: verbo con cambio de raíz: "un verbo cuya vocal del medio cambia al conjugarlo" uses cambia
+- `world-languages:28 world-languages-6-12-travel-and-directions / turn left`: doblar a la izquierda: "ir hacia el lado izquierdo" uses izquierdo
+- `world-languages:46 world-languages-k-12-fingerspelling-and-the-manual-alphabet / fingerspell`: deletrear con las manos: "decir una palabra letra por letra con la mano" uses mano
+- `world-languages:47 world-languages-k-12-fingerspelling-and-the-manual-alphabet / handshape`: forma de la mano: "la figura que hace tu mano para una seña" uses mano
+- `world-languages:61 world-languages-k-12-numbers-colors-and-time / palm orientation`: orientación de la palma: "hacia dónde mira la palma de tu mano" uses palma
+- `world-languages:113 world-languages-9-12-subjunctive-and-opinions / trigger phrase`: expresión que exige subjuntivo: "una frase que pide el subjuntivo" uses subjuntivo
+- `world-languages:121 world-languages-9-12-current-events-and-debate / headline`: titular: "el título de una noticia" uses titulo
+
+## Example sentence without a form of the word (English) (0)
+
+None.
+
+## Example sentence without a form of the word (Spanish) (35)
+
+- `arts:166 arts-9-12-portfolio-and-curation / curate`: curar: "Cura diez obras para la exposición."
+- `computer-science:44 computer-science-1-code-a-path / turn`: girar: "Gira a la izquierda en el árbol."
+- `ela:8 ela-3-multisyllable-decoding / irregular spelling`: ortografía irregular: "La palabra "hola" tiene una h que no suena."
+- `ela:76 ela-k-letter-sounds-and-sight-words / blend`: unir: "Une m-a-r para decir "mar.""
+- `ela:258 ela-5-quoting-and-inferring / quote`: citar: "Cita la línea que prueba tu idea."
+- `ela:337 ela-6-research-and-citing-sources / quote`: citar: "Cita directamente a la científica."
+- `ela:664 ela-3-5-main-idea-with-text-evidence / quote`: citar: "Cita la línea que prueba tu respuesta."
+- `ela:707 ela-6-8-analysis-with-evidence-from-nonfiction / cite`: citar: "Cita el párrafo cuatro en tu respuesta."
+- `eld:21 eld-k-2-describing-what-i-see / see`: ver: "Veo un pájaro rojo."
+- `eld:25 eld-k-2-describing-what-i-see / smooth`: liso: "La piedra es lisa."
+- `eld:26 eld-k-2-describing-what-i-see / notice`: notar: "Noto que la hormiga lleva una hoja."
+- `eld:64 eld-6-8-summarizing-and-citing / cite`: citar: "Cita el número de párrafo cuando copies una frase."
+- `health-pe:5 health-pe-k-2-healthy-habits / wash`: lavar: "Lávate las manos antes de comer."
+- `health-pe:7 health-pe-k-2-healthy-habits / healthy`: sano: "El agua es una bebida sana."
+- `health-pe:66 health-pe-3-5-game-strategies / pass`: pasar: "Pásale el balón al jugador libre."
+- `math:61 math-3-perimeter / measure`: medir: "Mide cada lado con una regla."
+- `math:86 math-k-putting-together-and-taking-apart / add`: sumar: "Suma 2 manzanas y 3 manzanas."
+- `math:102 math-k-longer-heavier-bigger / taller`: más alto: "La jirafa es más alta que la cebra."
+- `math:103 math-k-longer-heavier-bigger / measure`: medir: "Mide el zapato con cubos."
+- `math:125 math-1-addition-and-subtraction-stories / add`: sumar: "Suma 8 patos y 5 patos."
+- `math:186 math-2-two-step-word-problems / add`: sumar: "Suma 25 y 13."
+- `math:209 math-2-adding-and-subtracting-to-1000 / add`: sumar: "Suma 256 y 132."
+- `math:368 math-6-ratios-and-rates / percent`: porcentaje: "El cuarenta por ciento de la clase camina a la escuela."
+- `math:590 math-9-quadratic-equations / root`: raíz: "La ecuación tiene dos raíces reales."
+- `science:5 science-3-balanced-and-unbalanced-forces / pull`: jalar: "Jala el carrito por la colina."
+- `science:47 science-k-pushes-and-pulls / pull`: jalar: "Jala el carrito."
+- `science:71 science-k-living-things-change-their-environment / dig`: cavar: "Las ardillas cavan para esconder nueces."
+- `science:109 science-2-properties-of-materials / hard`: duro: "Una piedra es dura."
+- `science:211 science-5-sun-stars-and-shadows / rotate`: rotar: "La Tierra rota una vez al día."
+- `sel:57 sel-k-2-making-and-keeping-friends / join`: unirse: "¿Me puedo unir a tu juego?"
+- `social-studies:19 social-studies-3-local-government-and-voting / vote`: votar: "Los adultos votan para elegir al alcalde."
+- `social-studies:100 social-studies-2-community-helpers-and-government / vote`: votar: "Votamos por el nombre de la mascota de la clase."
+- `social-studies:577 social-studies-2-how-do-you-know / know`: saber: "¿Cómo sabes que llovió?"
+- `social-studies:597 social-studies-3-pool-repair-vote / vote`: votar: "Los ciudadanos votan el plan en mayo."
+- `world-languages:100 world-languages-k-12-school-and-daily-routine / wake up`: despertarse: "Me despierto a las siete."
+
+## Empty fields (not counting empties allowed by band) (0)
+
+None.
+
+## Spanish identical to English, or reading as English (1)
+
+- `science:500 science-10-gases-and-kinetic-theory / ideal gas law`: es_definition identical to English: "PV = nRT"
+
+## Spanish word spelled the same as the English word (often a true cognate; listed for a skim) (140)
+
+- `arts:39 arts-k-2-moving-bodies / locomotor`: "locomotor"
+- `arts:44 arts-k-2-moving-bodies / tempo`: "tempo"
+- `arts:88 arts-3-5-patterns-in-dance / tempo`: "tempo"
+- `arts:120 arts-6-8-music-around-the-world / raga`: "raga"
+- `arts:122 arts-6-8-music-around-the-world / timbre`: "timbre"
+- `arts:125 arts-6-8-ensemble-skills / balance`: "balance"
+- `arts:138 arts-6-8-choreography / canon`: "canon"
+- `arts:181 arts-9-12-music-history / jazz`: "jazz"
+- `arts:186 arts-9-12-composing-and-producing / loop`: "loop"
+- `arts:189 arts-9-12-theater-history-and-directing / director`: "director"
+- `arts:191 arts-9-12-theater-history-and-directing / commedia dell'arte`: "commedia dell'arte"
+- `arts:195 arts-9-12-dance-styles-and-criticism / ballet`: "ballet"
+- `arts:197 arts-9-12-dance-styles-and-criticism / hip-hop`: "hip-hop"
+- `arts:251 arts-3-5-sound-and-picture-together / tempo`: "tempo"
+- `arts:258 arts-6-8-analyzing-viral-media / viral`: "viral"
+- `arts:262 arts-6-8-analyzing-viral-media / meme`: "meme"
+- `arts:269 arts-6-8-comparing-productions / director`: "director"
+- `arts:277 arts-6-8-dance-in-culture-and-history / ritual`: "ritual"
+- `arts:285 arts-6-8-listening-and-reviewing / timbre`: "timbre"
+- `arts:290 arts-6-8-media-production-and-distribution / transmedia`: "transmedia"
+- `arts:298 arts-6-8-public-art-and-murals / mural`: "mural"
+- `arts:328 arts-9-12-preparing-a-recital / recital`: "recital"
+- `arts:376 arts-k-2-picture-and-sound-stories / plan`: "plan"
+- `computer-science:9 computer-science-3-variables-in-programs / variable`: "variable"
+- `computer-science:15 computer-science-3-how-we-use-the-internet / internet`: "internet"
+- `computer-science:25 computer-science-k-step-by-step / robot`: "robot"
+- `computer-science:54 computer-science-1-parts-of-a-computer / hardware`: "hardware"
+- `computer-science:76 computer-science-4-trace-the-code / variable`: "variable"
+- `computer-science:129 computer-science-6-8-variables-data-types-and-procedures / variable`: "variable"
+- `computer-science:153 computer-science-6-8-cyber-attacks-and-defense / phishing`: "phishing"
+- `computer-science:171 computer-science-9-12-modular-programs-and-apis / API`: "API"
+- `computer-science:189 computer-science-9-12-networks-of-networks / internet`: "internet"
+- `computer-science:190 computer-science-9-12-networks-of-networks / DNS`: "DNS"
+- `computer-science:191 computer-science-9-12-networks-of-networks / TCP/IP`: "TCP/IP"
+- `computer-science:200 computer-science-9-12-cybersecurity / ransomware`: "ransomware"
+- `computer-science:218 computer-science-3-5-computing-inventions-and-inventors / inventor`: "inventor"
+- `computer-science:225 computer-science-3-5-computing-on-the-job / software`: "software"
+- `computer-science:232 computer-science-3-5-hardware-and-software-together / hardware`: "hardware"
+- `computer-science:233 computer-science-3-5-hardware-and-software-together / software`: "software"
+- `computer-science:246 computer-science-3-5-plan-it-before-you-code-it / variable`: "variable"
+- `computer-science:270 computer-science-6-8-computing-history-and-impact / debate`: "debate"
+- `computer-science:273 computer-science-6-8-computing-in-industry / sensor`: "sensor"
+- `cte:44 cte-9-12-engineering-and-design-process / CAD`: "CAD"
+- `cte:47 cte-9-12-healthcare-and-human-services-careers / HIPAA`: "HIPAA"
+- `ela:52 ela-3-literal-and-figurative-language / literal`: "literal"
+- `ela:105 ela-k-words-and-sentences / plural`: "plural"
+- `ela:213 ela-4-poetry-drama-and-prose / drama`: "drama"
+- `ela:254 ela-4-greek-and-latin-roots / tele`: "tele"
+- `ela:454 ela-8-presentations-and-media / multimedia`: "multimedia"
+- `ela:473 ela-9-author-s-choices-structure-and-time / in medias res`: "in medias res"
+- `ela:481 ela-9-rhetoric-and-purpose / ethos`: "ethos"
+- `ela:482 ela-9-rhetoric-and-purpose / pathos`: "pathos"
+- `ela:483 ela-9-rhetoric-and-purpose / logos`: "logos"
+- `ela:530 ela-10-evaluating-arguments-and-fallacies / ad hominem`: "ad hominem"
+- `ela:600 ela-12-british-and-world-literature / canon`: "canon"
+- `ela:638 ela-10-one-subject-in-many-media / multimedia`: "multimedia"
+- `ela:734 ela-6-8-presenting-claims-and-findings / formal`: "formal"
+- `eld:22 eld-k-2-describing-what-i-see / color`: "color"
+- `eld:31 eld-k-2-my-community-words / doctor`: "doctor"
+- `eld:70 eld-6-8-word-problems-decoded / total`: "total"
+- `eld:92 eld-6-8-idioms-and-everyday-expressions / literal`: "literal"
+- `health-pe:53 health-pe-3-5-germs-and-disease-prevention / virus`: "virus"
+- `health-pe:105 health-pe-6-8-personal-fitness-plans / FITT`: "FITT"
+- `library:47 library-9-12-citation-copyright-and-fair-use / Creative Commons`: "Creative Commons"
+- `math:8 math-3-meaning-of-multiplication-and-division / factor`: "factor"
+- `math:77 math-k-how-many / total`: "total"
+- `math:106 math-k-sort-and-count / color`: "color"
+- `math:143 math-1-counting-to-120 / numeral`: "numeral"
+- `math:245 math-4-factors-and-multiples / factor`: "factor"
+- `math:250 math-4-factors-and-multiples / divisible`: "divisible"
+- `math:268 math-4-multi-digit-multiplication-and-division / divisor`: "divisor"
+- `math:281 math-4-decimals / decimal`: "decimal"
+- `math:326 math-5-operations-with-whole-numbers-and-decimals / decimal`: "decimal"
+- `math:351 math-5-volume / base`: "base"
+- `math:373 math-6-dividing-fractions / divisor`: "divisor"
+- `math:381 math-6-multi-digit-and-decimal-fluency / decimal`: "decimal"
+- `math:389 math-6-expressions-and-exponents / variable`: "variable"
+- `math:411 math-6-area-surface-area-and-volume / base`: "base"
+- `math:458 math-7-circles-angles-area-and-volume / pi`: "pi"
+- `math:534 math-9-rational-exponents-and-real-numbers / radical`: "radical"
+- `math:559 math-9-creating-equations / viable`: "viable"
+- `math:621 math-10-right-triangle-trigonometry / SOH CAH TOA`: "SOH CAH TOA"
+- `math:627 math-10-circles / sector`: "sector"
+- `math:673 math-11-exponential-and-logarithmic-functions / e`: "e"
+- `math:713 math-12-vectors / vector`: "vector"
+- `math:754 math-12-sampling-and-experiments / placebo`: "placebo"
+- `math:797 math-12-the-integral / integral`: "integral"
+- `science:17 science-3-life-cycles / larva`: "larva"
+- `science:18 science-3-life-cycles / pupa`: "pupa"
+- `science:63 science-k-what-living-things-need / animal`: "animal"
+- `science:106 science-2-properties-of-materials / material`: "material"
+- `science:108 science-2-properties-of-materials / flexible`: "flexible"
+- `science:116 science-2-heating-and-cooling / reversible`: "reversible"
+- `science:117 science-2-heating-and-cooling / irreversible`: "irreversible"
+- `science:188 science-5-matter-is-made-of-particles / gas`: "gas"
+- `science:195 science-5-properties-and-mixtures / conductor`: "conductor"
+- `science:227 science-6-earth-sun-moon-system / eclipse`: "eclipse"
+- `science:249 science-6-plate-tectonics / magma`: "magma"
+- `science:267 science-6-thermal-energy / conductor`: "conductor"
+- `science:282 science-7-states-of-matter / gas`: "gas"
+- `science:320 science-7-earth-s-resources / mineral`: "mineral"
+- `science:376 science-9-homeostasis / homeostasis`: "homeostasis"
+- `science:382 science-9-cell-division-and-differentiation / mitosis`: "mitosis"
+- `science:388 science-9-photosynthesis-and-cellular-respiration / ATP`: "ATP"
+- `science:400 science-9-genetics-and-inheritance / meiosis`: "meiosis"
+- `science:424 science-9-stars-and-the-big-bang / Big Bang`: "Big Bang"
+- `science:427 science-9-stars-and-the-big-bang / supernova`: "supernova"
+- `science:439 science-9-earth-s-systems-and-feedback / albedo`: "albedo"
+- `science:503 science-10-acids-bases-and-solutions / base`: "base"
+- `science:504 science-10-acids-bases-and-solutions / pH`: "pH"
+- `science:517 science-11-motion-and-kinematics / vector`: "vector"
+- `science:525 science-11-newton-s-laws / newton`: "newton"
+- `science:543 science-11-energy-and-work / watt`: "watt"
+- `science:567 science-12-ecosystems-and-biomes / permafrost`: "permafrost"
+- `social-studies:36 social-studies-3-communities-around-the-world / rural`: "rural"
+- `social-studies:106 social-studies-2-urban-suburban-and-rural / rural`: "rural"
+- `social-studies:114 social-studies-2-heroes-and-changemakers / inventor`: "inventor"
+- `social-studies:135 social-studies-4-us-regions-and-states / capital`: "capital"
+- `social-studies:236 social-studies-7-islamic-civilizations / Islam`: "islam"
+- `social-studies:244 social-studies-7-medieval-africa / Mansa Musa`: "Mansa Musa"
+- `social-studies:246 social-studies-7-medieval-africa / griot`: "griot"
+- `social-studies:263 social-studies-7-civilizations-of-the-americas / chinampa`: "chinampa"
+- `social-studies:264 social-studies-7-civilizations-of-the-americas / quipu`: "quipu"
+- `social-studies:277 social-studies-7-age-of-exploration / conquistador`: "conquistador"
+- `social-studies:353 social-studies-10-between-the-wars / propaganda`: "propaganda"
+- `social-studies:372 social-studies-10-decolonization-and-independence / apartheid`: "apartheid"
+- `social-studies:391 social-studies-11-the-progressive-era / NAACP`: "NAACP"
+- `social-studies:401 social-studies-11-roaring-twenties-and-the-great-depression / Dust Bowl`: "Dust Bowl"
+- `social-studies:402 social-studies-11-roaring-twenties-and-the-great-depression / New Deal`: "New Deal"
+- `social-studies:440 social-studies-12-congress-the-president-and-the-courts / bicameral`: "bicameral"
+- `social-studies:442 social-studies-12-congress-the-president-and-the-courts / veto`: "veto"
+- `social-studies:561 social-studies-11-suburb-boom / redlining`: "redlining"
+- `social-studies:565 social-studies-12-causes-web / multicausal`: "multicausal"
+- `social-studies:659 social-studies-5-why-the-pony-express-ended / Pony Express`: "Pony Express"
+- `social-studies:691 social-studies-7-panel-of-experts / panel`: "panel"
+- `social-studies:706 social-studies-8-levers-of-power / local`: "local"
+- `social-studies:707 social-studies-8-levers-of-power / federal`: "federal"
+- `world-languages:44 world-languages-6-12-cultures-of-the-spanish-speaking-world / festival`: "festival"
+- `world-languages:58 world-languages-k-12-numbers-colors-and-time / color`: "color"
+- `world-languages:88 world-languages-k-12-numbers-colors-and-calendar / color`: "color"
+
+## Definitions too long or too hard for the grade band (22)
+
+- `computer-science:27 computer-science-k-count-and-decide / data`: [k2] "information we collect, like counts": long words: information
+- `computer-science:48 computer-science-1-what-is-ai / data`: [k2] "information a computer uses": long words: information
+- `computer-science:121 computer-science-5-human-centered-design / accessible`: [35] "easy for everyone to use, including people with disabilities": 2.1 syllables a word
+- `computer-science:158 computer-science-6-8-cyber-attacks-and-defense / CIA triad`: [68] "confidentiality, integrity and availability, the three goals of security": 2.8 syllables a word
+- `ela:115 ela-1-reading-fluency / expression`: [k2] "reading with feeling, like a storyteller": long words: storyteller
+- `ela:138 ela-1-writing-sentences-and-stories / first`: [k2] "what comes before everything else": long words: everything
+- `ela:215 ela-4-poetry-drama-and-prose / prose`: [35] "ordinary writing in sentences and paragraphs": 2.3 syllables a word
+- `library:35 library-6-8-the-research-process / database`: [68] "an organized, searchable collection of articles": 2.5 syllables a word
+- `math:175 math-1-picture-graphs-and-tallies / data`: [k2] "information we collect": long words: information
+- `science:70 science-k-living-things-change-their-environment / environment`: [k2] "everything around a living thing": long words: everything
+- `social-studies:93 social-studies-1-cultures-around-the-world / tradition`: [k2] "something families do again and again": 2.0 syllables a word
+- `social-studies:125 social-studies-2-natural-resources / conserve`: [k2] "to use carefully so it does not run out": long words: carefully
+- `social-studies:261 social-studies-7-civilizations-of-the-americas / Aztec`: [68] "a Mexica empire centered at Tenochtitlan": 2.3 syllables a word
+- `social-studies:321 social-studies-8-reconstruction / Thirteenth Amendment`: [68] "the 1865 amendment that abolished slavery": 2.4 syllables a word
+- `social-studies:325 social-studies-8-reconstruction / Jim Crow laws`: [68] "laws that enforced racial segregation after Reconstruction": 2.4 syllables a word
+- `social-studies:352 social-studies-10-between-the-wars / fascism`: [912] "a nationalist dictatorship that suppresses opposition": 2.8 syllables a word
+- `social-studies:435 social-studies-12-the-constitution-and-federalism / separation of powers`: [912] "dividing government into legislative, executive and judicial branches": 2.8 syllables a word
+- `social-studies:486 social-studies-12-macroeconomics / recession`: [912] "a significant decline in economic activity": 2.7 syllables a word
+- `social-studies:578 social-studies-2-how-do-you-know / source`: [k2] "where information comes from": long words: information
+- `social-studies:718 social-studies-8-shaping-our-week / institution`: [68] "an established organization that shapes society": 2.7 syllables a word
+- `world-languages:49 world-languages-k-12-fingerspelling-and-the-manual-alphabet / name sign`: [k2] "a special sign given to a person by the Deaf community": 11 words (cap 12), 1.5 syllables a word; long words: community
+- `world-languages:54 world-languages-k-12-greetings-and-introductions-in-asl / Deaf`: [k2] "part of the community that shares sign language and culture": long words: community
+
+## Diagram specs and svg cards that do not match (0)
+
+None.
+
+## House rules (em dash, "Curio" alone) (0)
+
+None.

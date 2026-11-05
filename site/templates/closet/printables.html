@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% block title %}{{ label }}: Supply Closet · Curio Class{% endblock %}
+{% block description %}{{ what }}{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([('Supply Closet', '/closet/'), (label, None)]) }}
+  <div class="page-head"><h1>{{ label }}</h1><p>{{ what }} Pick one, change the settings, and print. Nothing to sign up for, and every page prints on plain letter paper.</p></div>
+  {% for heading, blurb, items in groups %}
+  <section class="group">
+    <h2>{{ heading }}</h2>
+    <p class="desc" style="color:var(--muted);margin-top:-6px">{{ blurb }}</p>
+    <div class="module-grid">
+      {% for p in items %}
+      <article class="module-card">
+        <h3><a href="/closet/printables/{{ p.id }}/">{{ p.title }}</a></h3>
+        <p class="desc">{{ p.blurb }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+</div>
+{% endblock %}

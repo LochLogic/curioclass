@@ -27,8 +27,8 @@ LABEL = {g: 'Kindergarten' if g == 'k' else f'Grade {g}' for g in GRADES}
 TYPES = {'Practice', 'Apply', 'Read and respond', 'Organizer', 'Diagram', 'Data and graphs', 'Lab', 'Map',
          'Timeline', 'Source analysis', 'Writing frame', 'Vocabulary', 'Review', 'Planner', 'Reflection', 'Log',
          'Critique', 'Puzzle'}
-COUNT = (40, 50)
-MIN_PER_MODULE = 2
+COUNT = (30, 45)  # trimmed 2026-11-04: about 30 hand-written sheets a class, generator sheets on top
+MIN_PER_MODULE = 1  # was 2; the trim left 97 ELA modules with one sheet (docs/ROADMAP.md, thin areas after the trim)
 WORDS = 30  # max words in the Students cell
 
 # file -> [(course_id, mode)]; mode: 'grades' (one unit per grade), 'course' (one unit), 'levels' (language levels)
@@ -63,8 +63,8 @@ def span(g):
 
 def units():
     """unit id -> dict(label, file, modules=[titles])"""
-    courses = {r['course_id']: r for r in csv.DictReader(open(ROOT / 'data' / 'courses.csv'))}
-    mods = list(csv.DictReader(open(ROOT / 'data' / 'modules.csv')))
+    courses = {r['course_id']: r for r in csv.DictReader(open(ROOT / 'data' / 'courses.csv', encoding='utf-8'))}
+    mods = list(csv.DictReader(open(ROOT / 'data' / 'modules.csv', encoding='utf-8')))
     out = {}
     for f, parts in FILES.items():
         for cid, mode in parts:
@@ -97,7 +97,7 @@ ROW = re.compile(r'^\|\s*(\d+)\s*\|(.+)\|\s*$')
 def rows(f):
     """All concept rows of one file -> {unit id: [dict(n, title, type, module, does)]}"""
     out, unit = {}, None
-    for line in (DIR / f'{f}.md').read_text().splitlines():
+    for line in (DIR / f'{f}.md').read_text(encoding='utf-8').splitlines():
         if m := SECTION.match(line):
             unit = m.group(1)
             out[unit] = []
@@ -112,7 +112,7 @@ def check_file(f, U):
     path = DIR / f'{f}.md'
     if not path.exists():
         return [f'{f}: missing {path.relative_to(ROOT)}'], []
-    text = path.read_text()
+    text = path.read_text(encoding='utf-8')
     problems, titles = [], []
     say = problems.append
     heads = list(SECTION.finditer(text))
@@ -131,8 +131,8 @@ def check_file(f, U):
         rows = [ROW.match(l) for l in body.splitlines()]
         rows = [r for r in rows if r]
         nums = [int(r.group(1)) for r in rows]
-        if nums != list(range(1, len(rows) + 1)):
-            say(f'{uid}: rows not numbered 1..{len(rows)}')
+        if nums != sorted(set(nums)) or (nums and nums[0] < 1):
+            say(f'{uid}: rows not numbered in rising order (gaps are fine: numbers are ids since the 2026-11-04 trim)')
         if not COUNT[0] <= len(rows) <= COUNT[1]:
             say(f'{uid}: {len(rows)} worksheets, want {COUNT[0]}-{COUNT[1]}')
         mods = U[uid]['modules']

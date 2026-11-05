@@ -1,6 +1,9 @@
 # Phase 1: Module Map (K-12, all subjects)
 
-Status: DECIDED, 2026-10-22. 586 modules across 12 subjects and 13 grades. Every module has at least one standards code, and every code is checked against its framework's official list at build time.
+Superseded: the module list is data/modules.csv (797 modules today) and status lives in docs/ROADMAP.md. Kept for
+background; the open second-reader item moved to ROADMAP.
+
+Status: DECIDED, 2026-10-22. 586 modules at the time, across 12 subjects and 13 grades. Every module has at least one standards code, and every code is checked against its framework's official list at build time.
 The tool starter template is parked (templates/parked-tool-starter.html) so design stays open.
 
 ## What a module is

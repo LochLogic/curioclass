@@ -945,7 +945,7 @@ def concept_rows(unit):
     U = cw.units()
     if unit not in U:
         raise SheetError(f'unknown unit {unit}')
-    text = (cw.DIR / f'{U[unit]["file"]}.md').read_text()
+    text = (cw.DIR / f'{U[unit]["file"]}.md').read_text(encoding='utf-8')
     sec = re.search(rf'^## {re.escape(unit)}: .+?(?=^## |\Z)', text, re.M | re.S).group(0)
     rows = {}
     for m in re.finditer(r'^\|\s*(\d+)\s*\|(.+)\|\s*$', sec, re.M):
@@ -956,7 +956,7 @@ def concept_rows(unit):
 
 def load(unit):
     """-> (label, [(sheet, row)])  raising SheetError on a bad file"""
-    sheets = parse((DIR / f'{unit}.md').read_text(), unit)
+    sheets = parse((DIR / f'{unit}.md').read_text(encoding='utf-8'), unit)
     rows, label = concept_rows(unit)
     out = []
     for s in sheets:
@@ -1009,7 +1009,7 @@ def problems(unit):
             for w in c['passage_words']:
                 if not lo <= w <= hi:
                     out.append(f'{unit} #{s["n"]}: passage of {w} words, want {lo}-{hi} for this grade')
-    if '—' in (DIR / f'{unit}.md').read_text():
+    if '—' in (DIR / f'{unit}.md').read_text(encoding='utf-8'):
         out.append(f'{unit}: em dash')
     return out
 
@@ -1018,7 +1018,7 @@ def icon_problems():
     """Each icon file: one symbol named for its file, a 64 x 64 viewBox, black outline only, nothing external."""
     out = []
     for f in sorted(ICON_DIR.glob('*.svg')):
-        t = f.read_text()
+        t = f.read_text(encoding='utf-8')
         if not re.fullmatch(r'\s*<symbol id="i-' + re.escape(f.stem) + r'" viewBox="0 0 64 64">.*</symbol>\s*', t, re.S):
             out.append(f'icon {f.name}: must be one <symbol id="i-{f.stem}" viewBox="0 0 64 64">')
         if re.search(r'<image|href=|<script|<style|url\(', t):
@@ -1029,7 +1029,7 @@ def icon_problems():
 
 
 def sprite():
-    return ('<svg xmlns="http://www.w3.org/2000/svg">' + ''.join(f.read_text() for f in sorted(ICON_DIR.glob('*.svg'))) + '</svg>')
+    return ('<svg xmlns="http://www.w3.org/2000/svg">' + ''.join(f.read_text(encoding='utf-8') for f in sorted(ICON_DIR.glob('*.svg'))) + '</svg>')
 
 
 def built_units():
@@ -1039,8 +1039,8 @@ def built_units():
 def preview(unit, out):
     """A standalone page with every built sheet of a unit, student copy then key, for checking by eye or screenshot."""
     label, sheets = load(unit)
-    css = (ROOT / 'site' / 'assets' / 'curio.css').read_text()
-    sprite = ''.join(f.read_text() for f in sorted(ICON_DIR.glob('*.svg')))
+    css = (ROOT / 'site' / 'assets' / 'curio.css').read_text(encoding='utf-8')
+    sprite = ''.join(f.read_text(encoding='utf-8') for f in sorted(ICON_DIR.glob('*.svg')))
     parts = []
     for sh, row in sheets:
         frag, _ = build(unit, sh, row, label, None, {})

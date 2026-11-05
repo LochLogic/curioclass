@@ -1,17 +1,24 @@
 # Worksheets: printable practice sheets (plan)
 
-Status: CONCEPT LISTS, started 2026-11-01 (Cory). Track 2, Supply Closet, item 6 in docs/ROADMAP.md. Nothing is built
-or on the site yet.
+Status: LIVE 2026-11-03, 1,008 sheets built across 204 units; concept lists for all 215 classes (7,116 sheets after the 2026-11-04 trim, from 8,947).
+Started 2026-11-01 (Cory). Track 2, Supply Closet, item 6 in docs/ROADMAP.md.
 
 ## What it is
 
-A Supply Closet shelf of print-ready student worksheets a teacher can hand out tomorrow: **40 to 50 per class**, for
+A Supply Closet shelf of print-ready student worksheets a teacher can hand out tomorrow: **about 30 hand-written per
+class** (40 to 50 until the 2026-11-04 trim), plus generator sheets, for
 every class Curio Class covers, K-12. Each worksheet is hand-designed around one skill or idea from a module, prints
 on US Letter in black and white, and comes with a teacher page (answer key and notes).
 
-This is not the parked Worksheet Generator (docs/SUPPLY-CLOSET-PLAN.md, "Late roadmap"). The generator makes endless
-random practice from templates; these are authored sheets, each one designed. The two fit together later: an
-authored sheet can carry a "more like this" link to the generator for its module when the generator exists.
+This is not the Worksheet Generator (docs/SUPPLY-CLOSET-PLAN.md, "Generators"). The generator makes endless
+random practice from templates; these are authored sheets, each one designed. Since 2026-11-03 (Cory, after reviewing
+the 15 generators) the generators come first for procedural practice: a concept-list row a generator can make is
+backed by it rather than written (the row keeps its title and its place in the year; its link opens the generator with
+the right settings), and writers spend their time on the sheets a generator cannot make: K-2 picture sheets, passages,
+sources, hard history, arts, health and SEL. By type, about one planned sheet in six is a generator candidate; the
+layout types (organizers, planners, frames, logs, reflections) are covered when they do not name a particular text.
+The first 15 generators went live as a test group on 2026-11-03 (/closet/worksheets/make/, docs/SUPPLY-CLOSET-PLAN.md
+"Generators"); the worksheets shelf links to them.
 
 ## A class is a unit
 
@@ -24,7 +31,7 @@ Cory chose "by class" (2026-11-01): a list for each class a teacher actually tea
 | High school courses | course: Algebra I, Geometry, Algebra II, Precalculus, Statistics, Calculus; Earth and Space, Biology, Chemistry, Physics, Environmental; World History, US History since 1877, Government, Economics, Psychology | 16 |
 | CTE | grade 6-8 (Career Exploration), then course: Career Pathways, Personal Finance | 5 |
 | World Languages | proficiency level, not grade: Spanish and ASL Novice (K-5), Novice (6-12), Intermediate, Advanced; French Novice, Intermediate, Advanced | 11 |
-| **Total** | | **215 units, about 9,700 worksheets** |
+| **Total** | | **215 units, 7,116 worksheets** (8,947 before the 2026-11-04 trim) |
 
 `python scripts/check_worksheets.py --units` lists them all; `--modules <unit-id>` lists the modules a unit covers.
 The units come from `data/courses.csv` and `data/modules.csv`, so a new module shows up in its units automatically.
@@ -51,7 +58,9 @@ section, in course order:
 
 ### Rules for a unit's list
 
-1. **40 to 50 sheets.** Every module in the unit gets at least 2, and roughly in proportion to its size.
+1. **30 to 45 rows** (about 30 hand-written, generator rows on top, since the 2026-11-04 trim). Every module gets at
+   least 1 (2 where it fits; ELA's small modules are a roadmap item), roughly in proportion to its size. Row numbers
+   are ids: never renumber, gaps are fine.
 2. **In teaching order:** the order a teacher would use them across the year, module by module, with a few review
    sheets at natural checkpoints.
 3. **A real mix of types.** At least 4 types per unit, no type over 60%. Math leans on Practice and Apply; history on
@@ -149,7 +158,7 @@ texts by name. Each passage is checked for grade-level readability and never reu
 
 Agreed 2026-11-01 (Cory): keep the collection light by storing text, not pages, images or PDFs.
 
-- **Source is text.** One file per unit, `data/closet/worksheets/<unit-id>.md`, holding its 40 to 50 sheets as
+- **Source is text.** One file per unit, `data/closet/worksheets/<unit-id>.md`, holding its sheets as
   `key: value` headers and format blocks (above), with answers inline. About 2 to 4 KB per sheet, so 25 to 40 MB for
   the whole collection, and an edit is a one-line diff.
 - **No raster images and no PDFs.** Pictures come from the shared SVG icon library and generated diagrams. A teacher
@@ -243,7 +252,8 @@ row labels, the staff, graphs that print for students, code listings, teacher-on
 2. **Pilot:** DONE 2026-11-01, ten sheets (above). Cory's review of them comes next.
 3. **Build waves** by subject and band, core subjects first, with the answer-key check.
 4. **Site:** `/closet/worksheets/` by grade and subject, a sheet page that prints the student pages, and a separate
-   teacher page with the key (the key never prints on the student copy). Module pages get a Worksheets row.
+   teacher page with the key (the key never prints on the student copy). Module pages get a Worksheets row (done
+   2026-11-03: the module's authored sheets, ready ones linked, plus up to four generators preset for it).
 5. **Spanish** for the student pages, then the native-speaker review (closet rule 6).
-6. **Held collections** keep their holds: ASL sheets wait for the ASL design decision, hard history sheets get the
+6. **Held collections** keep their holds: ASL sheets wait for the ASL sign-strip sample, hard history sheets get the
    fresh review, Spanish-language sheets the native review.

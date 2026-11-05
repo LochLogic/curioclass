@@ -1,0 +1,3139 @@
+{
+  "note": "Research Cards (Supply Closet). Grades K-2 intro to research: page 1 is a short read with quick facts and words to know; page 2 is the child's research page. Facts checked by a fresh agent before publishing.",
+  "kinds": [
+    [
+      "person",
+      "People"
+    ],
+    [
+      "place",
+      "Places"
+    ],
+    [
+      "thing",
+      "Things"
+    ],
+    [
+      "animal",
+      "Animals"
+    ]
+  ],
+  "cards": [
+    {
+      "id": "harriet-tubman",
+      "kind": "person",
+      "title": "Harriet Tubman",
+      "emoji": "⭐",
+      "read": [
+        "Harriet Tubman was born around 1822 in Maryland. She was enslaved, which means she was not free. In 1849 she made a brave choice: she walked north and found her freedom.",
+        "Harriet wanted her family and friends to be free too. She went back about 13 times to guide them on the Underground Railroad. It was not a train. It was a secret path of safe houses and kind helpers.",
+        "Harriet was clever and careful. She traveled at night and used the North Star to find her way. Later she lived in Auburn, New York, where she opened her home to people who needed care."
+      ],
+      "facts": [
+        "She guided about 70 people to freedom.",
+        "She said she never lost a passenger.",
+        "In the Civil War she worked as a nurse, a scout and a spy.",
+        "She helped lead a mission that freed more than 700 people.",
+        "She loved to sing, and stories say she sometimes used songs as secret signals."
+      ],
+      "words": [
+        [
+          "freedom",
+          "being able to choose how you live"
+        ],
+        [
+          "enslaved",
+          "owned by another person and forced to work without pay"
+        ],
+        [
+          "Underground Railroad",
+          "a secret path of people who helped others escape to freedom"
+        ]
+      ],
+      "questions": [
+        "Where was Harriet Tubman born?",
+        "What was the Underground Railroad?",
+        "What helped Harriet find her way at night?"
+      ],
+      "modules": [
+        "social-studies-2-heroes-and-changemakers"
+      ]
+    },
+    {
+      "id": "mae-jemison",
+      "kind": "person",
+      "title": "Mae Jemison",
+      "emoji": "🚀",
+      "read": [
+        "Mae Jemison was born in 1956 in Alabama and grew up in Chicago. As a girl she loved science, space and dance.",
+        "Mae became a doctor and an engineer. Then she became an astronaut. In 1992 she flew on the Space Shuttle Endeavour. She was the first African American woman to go to space.",
+        "Mae took a poster of a dancer and other special things with her into space. Later she started a science camp for kids. She wants every child to keep asking questions about the world."
+      ],
+      "facts": [
+        "Her space trip lasted about 8 days.",
+        "She did science tests in space.",
+        "Before space, she was a Peace Corps doctor in West Africa.",
+        "She started college at age 16.",
+        "In space, the shuttle circled Earth in orbit."
+      ],
+      "words": [
+        [
+          "astronaut",
+          "a person trained to travel in space"
+        ],
+        [
+          "engineer",
+          "a person who designs and builds things"
+        ],
+        [
+          "orbit",
+          "the path something takes around a planet"
+        ]
+      ],
+      "questions": [
+        "What did Mae Jemison love as a girl?",
+        "What year did she go to space?",
+        "Name two jobs she had."
+      ],
+      "modules": [
+        "social-studies-2-heroes-and-changemakers",
+        "science-1-sun-moon-and-stars"
+      ]
+    },
+    {
+      "id": "wright-brothers",
+      "kind": "person",
+      "title": "The Wright Brothers",
+      "emoji": "✈️",
+      "read": [
+        "Wilbur and Orville Wright were brothers from Dayton, Ohio. They ran a bicycle shop. They also dreamed about flying.",
+        "They built gliders and tested them again and again. On December 17, 1903, at Kitty Hawk, North Carolina, they made the first flight of an airplane with an engine. Orville was the pilot, and he flew for 12 seconds.",
+        "The brothers studied how birds turn their wings. They used that idea to steer their plane. A few years later they built planes that could fly for more than an hour."
+      ],
+      "facts": [
+        "The first flight went 120 feet, about the length of 3 school buses.",
+        "They flew 4 times that day.",
+        "The longest flight that day lasted 59 seconds.",
+        "They used ideas from fixing bicycles.",
+        "Their airplane is in a museum in Washington, D.C."
+      ],
+      "words": [
+        [
+          "glider",
+          "a plane with no engine that floats on the wind"
+        ],
+        [
+          "engine",
+          "a machine that makes something move"
+        ],
+        [
+          "pilot",
+          "the person who flies a plane"
+        ]
+      ],
+      "questions": [
+        "What kind of shop did the brothers run?",
+        "Where did they fly the first airplane?",
+        "How long was the first flight?"
+      ],
+      "modules": [
+        "social-studies-2-heroes-and-changemakers",
+        "social-studies-k-then-and-now",
+        "science-k-pushes-and-pulls"
+      ]
+    },
+    {
+      "id": "jackie-robinson",
+      "kind": "person",
+      "title": "Jackie Robinson",
+      "emoji": "⚾",
+      "read": [
+        "Jackie Robinson was born in 1919 in Georgia and grew up in California. In college he played four sports: baseball, football, basketball and track.",
+        "Before 1947, Black players had been kept out of the major leagues, which was unfair. That year Jackie joined the Brooklyn Dodgers and changed baseball for good. Some people were unkind to him, but Jackie showed courage and played great baseball.",
+        "Jackie was fast and loved to steal bases, even home plate! He helped the Dodgers win the World Series in 1955. After baseball, he worked to make life fairer for everyone."
+      ],
+      "facts": [
+        "He was Rookie of the Year in 1947.",
+        "He wore number 42.",
+        "Every Major League team stopped giving out number 42 to new players, to honor him.",
+        "Every April 15 is Jackie Robinson Day, when every player wears 42 to honor him.",
+        "He helped open the door for many players."
+      ],
+      "words": [
+        [
+          "league",
+          "a group of teams that play each other"
+        ],
+        [
+          "rookie",
+          "a player in the first year"
+        ],
+        [
+          "courage",
+          "being brave when something is hard"
+        ]
+      ],
+      "questions": [
+        "What team did Jackie Robinson join in 1947?",
+        "What number did he wear?",
+        "What happens every April 15?"
+      ],
+      "modules": [
+        "social-studies-2-heroes-and-changemakers"
+      ]
+    },
+    {
+      "id": "grand-canyon",
+      "kind": "place",
+      "title": "The Grand Canyon",
+      "emoji": "🏞️",
+      "read": [
+        "The Grand Canyon is a giant, deep valley in Arizona. The Colorado River runs along the bottom.",
+        "Over millions of years, the river cut through the rock little by little. Now you can see layers of red, orange and tan rock, like stripes in a cake. The oldest layers are at the bottom.",
+        "Rangers lead hikes and tell stories about the rocks, plants and animals. Condors, some of the biggest birds in North America, fly over the canyon. At sunset the rocks seem to glow red and gold."
+      ],
+      "facts": [
+        "It is about 277 miles long.",
+        "At its deepest, it is more than a mile deep.",
+        "It became a national park in 1919.",
+        "Native American nations, like the Havasupai and the Hualapai, have lived in and near the canyon for a very long time, and they still do.",
+        "Millions of people visit every year."
+      ],
+      "words": [
+        [
+          "canyon",
+          "a deep valley with steep sides"
+        ],
+        [
+          "river",
+          "a long stream of moving water"
+        ],
+        [
+          "layer",
+          "one flat part on top of another"
+        ]
+      ],
+      "questions": [
+        "What state is the Grand Canyon in?",
+        "What river made the canyon?",
+        "Where are the oldest rock layers?"
+      ],
+      "modules": [
+        "science-2-changing-landforms",
+        "science-2-maps-of-land-and-water",
+        "social-studies-1-maps-and-globes"
+      ]
+    },
+    {
+      "id": "antarctica",
+      "kind": "place",
+      "title": "Antarctica",
+      "emoji": "🐧",
+      "read": [
+        "Antarctica is a continent at the bottom of the world. The South Pole is there. It is the coldest, windiest and driest continent on Earth.",
+        "Almost all of Antarctica is covered by thick ice. No one lives there all year as a home. Scientists and workers stay for a while to study the ice, the weather and the animals.",
+        "Emperor penguins huddle close together to stay warm in winter storms. Scientists drill deep into the ice to learn about Earth long ago. Many countries agreed to keep Antarctica a place for peace and science."
+      ],
+      "facts": [
+        "The ice is more than a mile thick in many places.",
+        "Penguins and seals live on the coast.",
+        "Most of Earth's fresh water is frozen there.",
+        "In winter the sun does not rise for weeks or months in many places.",
+        "The coldest air ever measured was there."
+      ],
+      "words": [
+        [
+          "continent",
+          "one of Earth's seven big pieces of land"
+        ],
+        [
+          "ice sheet",
+          "a huge layer of ice that covers land"
+        ],
+        [
+          "scientist",
+          "a person who studies the world to learn how it works"
+        ]
+      ],
+      "questions": [
+        "What is Antarctica covered by?",
+        "Who stays in Antarctica, and why?",
+        "Name one animal that lives there."
+      ],
+      "modules": [
+        "science-2-maps-of-land-and-water",
+        "science-2-habitats-and-biodiversity",
+        "social-studies-1-maps-and-globes"
+      ]
+    },
+    {
+      "id": "amazon-rainforest",
+      "kind": "place",
+      "title": "The Amazon Rainforest",
+      "emoji": "🌳",
+      "read": [
+        "The Amazon is the biggest rainforest in the world. It is in South America, and most of it is in Brazil. It rains a lot there.",
+        "The Amazon River winds through the forest. Tall trees make a roof of leaves called the canopy. Millions of kinds of plants, insects and animals live there. So do many Indigenous peoples.",
+        "Some trees in the Amazon are taller than a 15-story building. Pink river dolphins swim in its rivers. The forest makes clouds and rain that help water much of South America."
+      ],
+      "facts": [
+        "The Amazon reaches into 9 countries and territories, like Brazil, Peru and Colombia.",
+        "Sloths, jaguars and toucans live there.",
+        "The Amazon River carries more water than any other river.",
+        "Many medicines come from rainforest plants.",
+        "It is warm all year."
+      ],
+      "words": [
+        [
+          "rainforest",
+          "a thick forest where it rains a lot"
+        ],
+        [
+          "canopy",
+          "the roof of leaves at the top of a forest"
+        ],
+        [
+          "Indigenous",
+          "people whose families have lived in a place since long before others came"
+        ]
+      ],
+      "questions": [
+        "What continent is the Amazon on?",
+        "What is the canopy?",
+        "Name two animals that live in the Amazon."
+      ],
+      "modules": [
+        "science-2-habitats-and-biodiversity",
+        "science-2-maps-of-land-and-water"
+      ]
+    },
+    {
+      "id": "great-barrier-reef",
+      "kind": "place",
+      "title": "The Great Barrier Reef",
+      "emoji": "🐠",
+      "read": [
+        "The Great Barrier Reef is in the ocean near Australia. It is the biggest coral reef system in the world. Aboriginal and Torres Strait Islander peoples have cared for this sea for a very long time.",
+        "Coral looks like rock or plants, but it is made of tiny animals. They build hard homes that grow into reefs over many years. Fish, sea turtles and sharks find food and shelter there.",
+        "Clownfish hide in the stinging arms of sea anemones, where they are safe. Sea turtles swim back to the same beaches to lay their eggs. People work hard to keep the reef clean and healthy."
+      ],
+      "facts": [
+        "It is made of about 3,000 reefs.",
+        "It is about 1,400 miles long.",
+        "Astronauts can see parts of it from space.",
+        "More than 1,500 kinds of fish live there.",
+        "Warm water can make coral sick and turn white."
+      ],
+      "words": [
+        [
+          "coral",
+          "tiny sea animals that build hard homes"
+        ],
+        [
+          "reef",
+          "a long ridge of coral or rock under the sea"
+        ],
+        [
+          "shelter",
+          "a safe place to stay"
+        ]
+      ],
+      "questions": [
+        "What country is the reef near?",
+        "What is coral made of?",
+        "Name two animals that live on the reef."
+      ],
+      "modules": [
+        "science-2-habitats-and-biodiversity",
+        "science-2-maps-of-land-and-water"
+      ]
+    },
+    {
+      "id": "the-moon",
+      "kind": "thing",
+      "title": "The Moon",
+      "emoji": "🌕",
+      "read": [
+        "The Moon moves around Earth. It takes about a month to go all the way around. The Moon does not make its own light. It shines because sunlight bounces off it.",
+        "As the Moon moves, we see different amounts of its sunny side. These shapes are called phases. In 1969, astronaut Neil Armstrong became the first person to walk on the Moon.",
+        "The Moon has no air, so astronauts wore space suits to breathe. They brought back Moon rocks for scientists to study. The Moon's pull helps make the ocean tides go up and down."
+      ],
+      "facts": [
+        "The Moon is about 239,000 miles away.",
+        "Twelve astronauts have walked on it.",
+        "It is covered with holes called craters.",
+        "You would weigh much less on the Moon.",
+        "Footprints there can last a very long time, because there is no wind or rain."
+      ],
+      "words": [
+        [
+          "orbit",
+          "the path something takes around another thing"
+        ],
+        [
+          "crater",
+          "a round hole made when a space rock hits"
+        ],
+        [
+          "phase",
+          "the shape of the lit part of the Moon we see"
+        ]
+      ],
+      "questions": [
+        "Why does the Moon shine?",
+        "What are the Moon's shapes called?",
+        "Who was the first person to walk on the Moon?"
+      ],
+      "modules": [
+        "science-1-sun-moon-and-stars"
+      ]
+    },
+    {
+      "id": "volcanoes",
+      "kind": "thing",
+      "title": "Volcanoes",
+      "emoji": "🌋",
+      "read": [
+        "Deep under the ground, it is so hot that rock melts. This melted rock is called magma. A volcano is an opening where magma can come up.",
+        "When a volcano erupts, the melted rock pours out. Then it is called lava. When lava cools, it turns into new rock. Some islands, like Hawaii, were built by volcanoes.",
+        "Volcano ash can make the soil very rich, so plants grow well near some volcanoes. Scientists watch volcanoes with special tools to help warn people when an eruption may be coming. Some volcanoes are on other planets too, like Mars."
+      ],
+      "facts": [
+        "There are volcanoes on land and under the sea.",
+        "Lava can be hotter than an oven.",
+        "Some volcanoes are quiet for many years.",
+        "Mauna Loa in Hawaii is one of the biggest volcanoes on Earth.",
+        "Scientists who study volcanoes are called volcanologists."
+      ],
+      "words": [
+        [
+          "magma",
+          "melted rock under the ground"
+        ],
+        [
+          "lava",
+          "melted rock that has come out of the ground"
+        ],
+        [
+          "erupt",
+          "to burst out"
+        ]
+      ],
+      "questions": [
+        "What is magma?",
+        "What is melted rock called when it comes out?",
+        "Name a place that volcanoes built."
+      ],
+      "modules": [
+        "science-2-changing-landforms"
+      ]
+    },
+    {
+      "id": "rainbows",
+      "kind": "thing",
+      "title": "Rainbows",
+      "emoji": "🌈",
+      "read": [
+        "Sunlight looks white, but it is really made of many colors mixed together. When sunlight shines into raindrops, the drops bend the light and split it into its colors.",
+        "To see a rainbow, stand with the sun behind you and the rain in front of you. The colors always come in the same order: red, orange, yellow, green, blue, indigo and violet.",
+        "Rainbows often show up after a storm, when the sun comes out again. You may also see one in the spray of a waterfall. Each raindrop acts like a tiny prism that splits the light."
+      ],
+      "facts": [
+        "A rainbow is really a circle. From the ground we see only part.",
+        "Sometimes you can see two rainbows at once.",
+        "In a double rainbow, the colors of the second one are flipped.",
+        "You can make a rainbow with a garden hose on a sunny day.",
+        "Red is at the top, on the outside edge."
+      ],
+      "words": [
+        [
+          "light",
+          "what lets us see; it comes from the sun and lamps"
+        ],
+        [
+          "bend",
+          "to turn from a straight line"
+        ],
+        [
+          "indigo",
+          "a deep blue-purple color"
+        ]
+      ],
+      "questions": [
+        "What is sunlight really made of?",
+        "Where should the sun be when you look for a rainbow?",
+        "What color is at the top of a rainbow?"
+      ],
+      "modules": [
+        "science-1-light-and-shadows"
+      ]
+    },
+    {
+      "id": "bicycles",
+      "kind": "thing",
+      "title": "Bicycles",
+      "emoji": "🚲",
+      "read": [
+        "A bicycle has two wheels, a seat, handlebars and pedals. When you push the pedals, a chain turns the back wheel, and the bike rolls forward.",
+        "The first bike was made in 1817 in Germany. It had no pedals at all. Riders pushed it along with their feet, like a balance bike.",
+        "Bike tires are filled with air, which makes the ride softer. Gears help riders climb hills more easily. Some people ride bikes all the way across a country!"
+      ],
+      "facts": [
+        "There are about a billion bikes in the world.",
+        "Bikes do not need gas to go.",
+        "Riding is great exercise for your heart and legs.",
+        "Always wear a helmet when you ride. It protects your head if you fall.",
+        "Some bikes are built for two riders."
+      ],
+      "words": [
+        [
+          "pedal",
+          "the part you push with your foot"
+        ],
+        [
+          "chain",
+          "metal links that turn the wheel"
+        ],
+        [
+          "balance",
+          "staying steady without falling"
+        ]
+      ],
+      "questions": [
+        "What turns the back wheel?",
+        "What was missing from the first bike?",
+        "Why should you wear a helmet?"
+      ],
+      "modules": [
+        "science-k-pushes-and-pulls",
+        "social-studies-k-then-and-now"
+      ]
+    },
+    {
+      "id": "octopus",
+      "kind": "animal",
+      "title": "Octopus",
+      "emoji": "🐙",
+      "read": [
+        "An octopus lives in the ocean. It has eight arms covered with suckers. The suckers can grab, feel and even taste.",
+        "An octopus has no bones, so it can squeeze through tiny spaces. To hide, it uses camouflage. It changes its color and even the bumps on its skin. If a hungry fish comes close, it can squirt a cloud of ink and swim away.",
+        "Some baby octopuses are smaller than a grain of rice when they hatch. Octopuses are curious and like to explore. Some have learned to open jars to get food inside."
+      ],
+      "facts": [
+        "An octopus has three hearts.",
+        "Its blood is blue.",
+        "It is very smart and can solve puzzles.",
+        "It eats crabs, clams and fish.",
+        "Some octopuses carry shells to hide in."
+      ],
+      "words": [
+        [
+          "sucker",
+          "a round cup that sticks to things"
+        ],
+        [
+          "camouflage",
+          "colors or shapes that help an animal hide"
+        ],
+        [
+          "ink",
+          "a dark liquid an octopus squirts to escape"
+        ]
+      ],
+      "questions": [
+        "How many arms does an octopus have?",
+        "Name one way an octopus hides.",
+        "How many hearts does it have?"
+      ],
+      "modules": [
+        "science-1-plant-and-animal-parts",
+        "science-2-habitats-and-biodiversity"
+      ]
+    },
+    {
+      "id": "honeybee",
+      "kind": "animal",
+      "title": "Honeybee",
+      "emoji": "🐝",
+      "read": [
+        "Honeybees live together in a home called a hive. One hive can have thousands of bees. There is one queen, who lays the eggs. Worker bees do most of the other jobs.",
+        "Worker bees fly to flowers and drink a sweet juice called nectar. Back at the hive, they turn nectar into honey. As they visit flowers, they carry pollen from one flower to the next, which helps plants make seeds and fruit.",
+        "Bees keep the hive warm in winter by huddling close and shivering their wing muscles. One worker bee makes only a tiny bit of honey in its whole life. It takes many bees working together to fill a jar."
+      ],
+      "facts": [
+        "Bees do a waggle dance to show other bees where flowers are.",
+        "A bee has five eyes.",
+        "Bees help grow many foods we eat, like apples.",
+        "Wax for the hive comes from the bees' bodies.",
+        "A bee buzzes because its wings beat very fast."
+      ],
+      "words": [
+        [
+          "hive",
+          "the home where a big group of bees lives"
+        ],
+        [
+          "nectar",
+          "a sweet juice inside flowers"
+        ],
+        [
+          "pollen",
+          "a tiny, dusty powder that plants need to make seeds"
+        ]
+      ],
+      "questions": [
+        "Who lays the eggs in a hive?",
+        "What do bees make honey from?",
+        "How do bees help plants?"
+      ],
+      "modules": [
+        "science-1-plant-and-animal-parts",
+        "science-2-plants-need-water-and-light"
+      ]
+    },
+    {
+      "id": "polar-bear",
+      "kind": "animal",
+      "title": "Polar Bear",
+      "emoji": "🐻‍❄️",
+      "read": [
+        "Polar bears live in the Arctic, the cold land and sea near the North Pole. They spend much of their lives on sea ice and hunt seals.",
+        "A polar bear's fur looks white, but each hair is really clear. Under the fur, its skin is black, which helps soak up the sun's warmth. A thick layer of fat keeps it warm too.",
+        "A polar bear can smell a seal from far away, even under the snow. Mother bears stay in their dens with their cubs for months. In spring the cubs come out and learn to hunt."
+      ],
+      "facts": [
+        "Polar bears are great swimmers.",
+        "A big male can weigh more than 1,000 pounds.",
+        "Their big paws help them walk on ice and paddle in water.",
+        "Cubs are born in a snow den.",
+        "They need sea ice to hunt."
+      ],
+      "words": [
+        [
+          "Arctic",
+          "the cold area around the North Pole"
+        ],
+        [
+          "sea ice",
+          "frozen ocean water"
+        ],
+        [
+          "predator",
+          "an animal that hunts other animals for food"
+        ]
+      ],
+      "questions": [
+        "Where do polar bears live?",
+        "What color is a polar bear's skin?",
+        "What do polar bears hunt?"
+      ],
+      "modules": [
+        "science-1-plant-and-animal-parts",
+        "science-2-habitats-and-biodiversity"
+      ]
+    },
+    {
+      "id": "african-elephant",
+      "kind": "animal",
+      "title": "African Elephant",
+      "emoji": "🐘",
+      "read": [
+        "The African elephant is the biggest animal that lives on land. It lives in Africa, in grasslands and forests.",
+        "An elephant's trunk is its nose and upper lip together. It uses its trunk to smell, drink, eat, lift things and say hello. Elephants live in family groups called herds. An older female usually leads the herd.",
+        "Elephants greet each other by twisting their trunks together. They talk with low rumbles that other elephants can feel through the ground. Baby elephants drink milk and stay close to their mothers for years."
+      ],
+      "facts": [
+        "A big elephant can weigh as much as three or four cars.",
+        "Its trunk has thousands of muscles.",
+        "Big ears help it cool off.",
+        "It can eat more than 300 pounds of plants a day.",
+        "Elephants use their tusks to dig and to lift things."
+      ],
+      "words": [
+        [
+          "trunk",
+          "an elephant's long nose and upper lip"
+        ],
+        [
+          "herd",
+          "a group of animals that live together"
+        ],
+        [
+          "tusk",
+          "a long tooth that grows out of the mouth"
+        ]
+      ],
+      "questions": [
+        "Where do African elephants live?",
+        "Name two things an elephant does with its trunk.",
+        "Who leads the herd?"
+      ],
+      "modules": [
+        "science-1-plant-and-animal-parts",
+        "science-2-habitats-and-biodiversity"
+      ]
+    },
+    {
+      "id": "marie-curie",
+      "kind": "person",
+      "title": "Marie Curie",
+      "emoji": "🧪",
+      "read": [
+        "Marie Curie was born in 1867 in Warsaw, Poland. As a girl she loved to read and learn. Back then, women could not go to the university in Warsaw, so she moved to Paris, France, to study.",
+        "Marie became a scientist. With her husband, Pierre, she studied rocks that gave off a strange, invisible energy. She named this energy radioactivity, and she found two new elements called polonium and radium.",
+        "Marie worked very hard in her lab, often late into the night. She won two Nobel Prizes, one of the biggest awards in science. Her daughter Irène grew up to win a Nobel Prize too."
+      ],
+      "facts": [
+        "She was the first woman to win a Nobel Prize.",
+        "She is the only person to win Nobel Prizes in two different sciences, physics and chemistry.",
+        "She named polonium after Poland, the country where she was born.",
+        "She was the first woman to teach at her university in Paris.",
+        "She taught people to use X-ray machines so doctors could see broken bones."
+      ],
+      "words": [
+        [
+          "scientist",
+          "a person who studies the world to learn how it works"
+        ],
+        [
+          "element",
+          "one of the basic building blocks that everything is made of"
+        ],
+        [
+          "radioactivity",
+          "a kind of invisible energy that comes from some materials"
+        ]
+      ],
+      "questions": [
+        "Where was Marie Curie born?",
+        "What two new elements did she find?",
+        "How many Nobel Prizes did she win?"
+      ],
+      "modules": [
+        "social-studies-2-heroes-and-changemakers"
+      ]
+    },
+    {
+      "id": "wangari-maathai",
+      "kind": "person",
+      "title": "Wangari Maathai",
+      "emoji": "🌱",
+      "read": [
+        "Wangari Maathai was born in 1940 in Kenya, a country in Africa. As a girl she helped on her family's farm. She loved the big fig trees and clear streams near her home.",
+        "Wangari studied science in the United States and Germany, then came home to Kenya. She saw that many trees had been cut down, and women had to walk far for firewood and clean water. In 1977 she started the Green Belt Movement to plant trees.",
+        "Wangari taught women how to plant and care for tree seedlings. The trees gave them firewood, food and shade, and their roots helped hold the soil in place. Her idea spread to other countries in Africa and beyond."
+      ],
+      "facts": [
+        "The Green Belt Movement has planted more than 50 million trees.",
+        "In 2004 she won the Nobel Peace Prize.",
+        "She was the first African woman to win the Nobel Peace Prize.",
+        "She was the first woman in East and Central Africa to earn the highest college degree, called a doctorate.",
+        "She liked to tell a story about a little hummingbird that does the best it can to help."
+      ],
+      "words": [
+        [
+          "seedling",
+          "a very young plant"
+        ],
+        [
+          "soil",
+          "the dirt where plants grow"
+        ],
+        [
+          "movement",
+          "a group of people working together to make a change"
+        ]
+      ],
+      "questions": [
+        "In what country was Wangari Maathai born?",
+        "What did she start in 1977?",
+        "How do tree roots help the land?"
+      ],
+      "modules": [
+        "social-studies-2-heroes-and-changemakers",
+        "social-studies-2-natural-resources"
+      ]
+    },
+    {
+      "id": "katherine-johnson",
+      "kind": "person",
+      "title": "Katherine Johnson",
+      "emoji": "🧮",
+      "read": [
+        "Katherine Johnson was born in 1918 in West Virginia. She loved to count everything: steps, dishes and even silverware. She was so good at math that she started high school at age 10.",
+        "Katherine worked at NASA, the group that sends people into space. She did math to figure out the exact path a spaceship should fly. Her work helped astronauts get to space and come home safely.",
+        "In 1962, astronaut John Glenn was getting ready to circle Earth. Computers had worked out his path, but he asked for Katherine to check the numbers first. She did, and his trip was a success."
+      ],
+      "facts": [
+        "She helped plan the path for the first American in space, Alan Shepard, in 1961.",
+        "Her math helped Apollo 11 reach the Moon in 1969.",
+        "In 2015 she was given the Presidential Medal of Freedom.",
+        "A NASA building is named after her.",
+        "She lived to be 101 years old."
+      ],
+      "words": [
+        [
+          "math",
+          "working with numbers, shapes and patterns"
+        ],
+        [
+          "path",
+          "the way something moves from one place to another"
+        ],
+        [
+          "astronaut",
+          "a person trained to travel in space"
+        ]
+      ],
+      "questions": [
+        "What did Katherine Johnson love to count?",
+        "What did John Glenn ask her to do?",
+        "Where did her math help Apollo 11 go?"
+      ],
+      "modules": [
+        "social-studies-2-heroes-and-changemakers",
+        "science-1-sun-moon-and-stars"
+      ]
+    },
+    {
+      "id": "mary-anning",
+      "kind": "person",
+      "title": "Mary Anning",
+      "emoji": "🦴",
+      "read": [
+        "Mary Anning was born in 1799 in Lyme Regis, a town by the sea in England. The cliffs there are full of fossils. As a child she hunted for fossils on the beach with her family.",
+        "When Mary was about 12, she and her brother found the skeleton of a huge sea reptile. It was called an ichthyosaur, which means fish lizard. It had lived long, long before there were any people.",
+        "Storms and landslides uncovered new fossils in the cliffs, so Mary searched after bad weather. She found the first full skeleton of another sea reptile, the plesiosaur. Scientists came from far away to learn from her."
+      ],
+      "facts": [
+        "She sold fossils in her family's shop to help earn money.",
+        "In 1828 she found a pterosaur, a flying reptile.",
+        "Her dog, Tray, went with her on fossil hunts.",
+        "Some of her fossils are in the Natural History Museum in London.",
+        "People still find fossils on the beaches at Lyme Regis today."
+      ],
+      "words": [
+        [
+          "fossil",
+          "what is left of a plant or animal from long ago, kept in rock"
+        ],
+        [
+          "reptile",
+          "an animal with dry, scaly skin, like a lizard"
+        ],
+        [
+          "skeleton",
+          "all the bones of a body"
+        ]
+      ],
+      "questions": [
+        "Where did Mary Anning hunt for fossils?",
+        "What did she and her brother find when she was about 12?",
+        "What was her dog's name?"
+      ],
+      "modules": [
+        "social-studies-2-heroes-and-changemakers",
+        "social-studies-k-then-and-now",
+        "science-2-changing-landforms"
+      ]
+    },
+    {
+      "id": "mozart",
+      "kind": "person",
+      "title": "Wolfgang Amadeus Mozart",
+      "emoji": "🎹",
+      "read": [
+        "Wolfgang Amadeus Mozart was born in 1756 in Salzburg, a city in what is now Austria. His father was a music teacher. Little Wolfgang listened to his big sister, Nannerl, play the keyboard and wanted to play too.",
+        "Wolfgang learned fast. He wrote his first short pieces of music when he was about 5 years old. As children, he and Nannerl traveled across Europe to play for kings, queens and crowds.",
+        "When he grew up, Mozart wrote music for orchestras, pianos, singers and more. He wrote more than 600 pieces of music. People all over the world still play and love his music today."
+      ],
+      "facts": [
+        "He played the keyboard and the violin.",
+        "He wrote his first symphony when he was about 8.",
+        "He wrote many operas.",
+        "One of his famous operas is The Magic Flute.",
+        "The house where he was born in Salzburg is now a museum."
+      ],
+      "words": [
+        [
+          "orchestra",
+          "a big group of musicians who play together"
+        ],
+        [
+          "symphony",
+          "a long piece of music for an orchestra"
+        ],
+        [
+          "opera",
+          "a play where the actors sing the story"
+        ]
+      ],
+      "questions": [
+        "Where was Mozart born?",
+        "About how old was he when he wrote his first pieces of music?",
+        "Name two instruments he played."
+      ],
+      "modules": [
+        "social-studies-2-heroes-and-changemakers",
+        "science-1-sound-and-vibration"
+      ]
+    },
+    {
+      "id": "pele",
+      "kind": "person",
+      "title": "Pelé",
+      "emoji": "⚽",
+      "read": [
+        "Pelé was born in 1940 in Brazil. His real name was Edson Arantes do Nascimento. His family did not have much money, so as a boy he practiced soccer with a sock stuffed with paper or rags.",
+        "Pelé practiced and practiced. At 17, he played for Brazil in the World Cup and helped his team win. He scored goals with his feet, his head and amazing moves.",
+        "Pelé played soccer for about 20 years. Later he played in New York and helped many Americans fall in love with soccer. He was known around the world for his big smile and his kindness to fans."
+      ],
+      "facts": [
+        "He is the only player to win the World Cup three times.",
+        "He scored more than 1,000 goals, counting all kinds of games.",
+        "For most of his career, he played for a team in Brazil called Santos.",
+        "In Brazil, soccer is called futebol.",
+        "His nickname was The King."
+      ],
+      "words": [
+        [
+          "goal",
+          "a point scored by getting the ball into the net"
+        ],
+        [
+          "World Cup",
+          "a big soccer contest between teams from many countries"
+        ],
+        [
+          "practice",
+          "doing something again and again to get better"
+        ]
+      ],
+      "questions": [
+        "In what country was Pelé born?",
+        "What did he use as a ball when he was a boy?",
+        "How many times did he win the World Cup?"
+      ],
+      "modules": [
+        "social-studies-2-heroes-and-changemakers",
+        "social-studies-1-cultures-around-the-world"
+      ]
+    },
+    {
+      "id": "ibn-battuta",
+      "kind": "person",
+      "title": "Ibn Battuta",
+      "emoji": "🧭",
+      "read": [
+        "Ibn Battuta was born in 1304 in Tangier, a city in Morocco, in North Africa. When he was 21, he set out on the hajj, the Muslim trip to Mecca, a holy city in Arabia. He did not come home for about 24 years!",
+        "Ibn Battuta traveled by camel, by horse, by boat and on foot. He visited places in Africa, the Middle East, India and Asia, and he said he even reached China. Along the way he met kings, traders and everyday families.",
+        "After he came home, he went on more trips, even across the Sahara to the land of Mali. Then he told the story of all his travels to a writer. The book, called the Rihla, still helps us learn what the world was like long ago."
+      ],
+      "facts": [
+        "He traveled about 75,000 miles in his life.",
+        "He visited lands that are now more than 40 countries.",
+        "He worked as a judge in India and in the Maldives.",
+        "Rihla means journey.",
+        "His travels took about 30 years in all."
+      ],
+      "words": [
+        [
+          "journey",
+          "a long trip"
+        ],
+        [
+          "trader",
+          "a person who buys and sells things"
+        ],
+        [
+          "holy",
+          "very special to a religion"
+        ]
+      ],
+      "questions": [
+        "In what city was Ibn Battuta born?",
+        "Name two ways he traveled.",
+        "What is the name of his book?"
+      ],
+      "modules": [
+        "social-studies-2-heroes-and-changemakers",
+        "social-studies-1-maps-and-globes",
+        "social-studies-1-cultures-around-the-world"
+      ]
+    },
+    {
+      "id": "louis-braille",
+      "kind": "person",
+      "title": "Louis Braille",
+      "emoji": "📖",
+      "read": [
+        "Louis Braille was born in 1809 in a small town in France. When he was 3, he hurt his eye in his father's workshop. By age 5 he was blind in both eyes, which means he could not see.",
+        "Louis went to a special school in Paris for blind children. The school had only a few books, with big raised letters that were hard to read by touch. Louis wanted a better way.",
+        "When he was only 15, Louis made a code of raised dots. Each letter is made of up to six dots that you feel with your fingertips. Today blind people all over the world read with this code, called braille."
+      ],
+      "facts": [
+        "Each braille letter fits in a space with room for six dots.",
+        "Braille can show numbers and music too.",
+        "Louis grew up to be a teacher at his school.",
+        "You can find braille on elevator buttons and signs.",
+        "Braille is used for many languages."
+      ],
+      "words": [
+        [
+          "blind",
+          "not able to see"
+        ],
+        [
+          "code",
+          "a set of signs that stand for letters or words"
+        ],
+        [
+          "raised",
+          "sticking up so you can feel it"
+        ]
+      ],
+      "questions": [
+        "How old was Louis when he made his code?",
+        "How many dots can each letter have?",
+        "Where can you find braille today?"
+      ],
+      "modules": [
+        "social-studies-2-heroes-and-changemakers",
+        "social-studies-k-then-and-now"
+      ]
+    },
+    {
+      "id": "hokusai",
+      "kind": "person",
+      "title": "Katsushika Hokusai",
+      "emoji": "🌊",
+      "read": [
+        "Katsushika Hokusai was born in 1760 in Edo, the city now called Tokyo, in Japan. He started drawing when he was about 6 years old. He kept drawing for the rest of his long life.",
+        "Hokusai made pictures called woodblock prints. An artist drew a picture, and carvers cut it into blocks of wood. Then printers put ink on the blocks and pressed paper on top, so they could make many copies.",
+        "His most famous print is The Great Wave. It shows a giant wave curling over small boats, with Mount Fuji far behind. He made it when he was about 70 years old."
+      ],
+      "facts": [
+        "He made about 30,000 pictures in his life.",
+        "The Great Wave is part of a set called Thirty-Six Views of Mount Fuji.",
+        "He used more than 30 different artist names.",
+        "He filled books with sketches of people, animals and plants.",
+        "He lived to be about 88 years old."
+      ],
+      "words": [
+        [
+          "artist",
+          "a person who makes art, like drawings or paintings"
+        ],
+        [
+          "print",
+          "a picture made by pressing ink onto paper"
+        ],
+        [
+          "carver",
+          "a person who cuts shapes into wood or stone"
+        ]
+      ],
+      "questions": [
+        "What is the city of Edo called today?",
+        "What is Hokusai's most famous print?",
+        "How did printers make copies of a picture?"
+      ],
+      "modules": [
+        "social-studies-2-heroes-and-changemakers",
+        "social-studies-1-cultures-around-the-world"
+      ]
+    },
+    {
+      "id": "mount-everest",
+      "kind": "place",
+      "title": "Mount Everest",
+      "emoji": "🏔️",
+      "read": [
+        "Mount Everest is the tallest mountain on Earth, measured from the level of the sea. It is in the Himalaya mountains, on the border of Nepal and China. Its top pokes up above many clouds.",
+        "The air at the top is very cold and thin, so climbers often carry tanks of oxygen to help them breathe. In 1953, Tenzing Norgay and Edmund Hillary became the first people known to reach the summit, the very top.",
+        "The Sherpa people live in the valleys below Everest. Many Sherpa guides are expert climbers who help others reach the top. In Nepal the mountain is called Sagarmatha, and in Tibet it is called Chomolungma."
+      ],
+      "facts": [
+        "It is about 29,032 feet tall, which is more than 5 miles high.",
+        "Its rocks hold fossils of sea animals from long ago.",
+        "Strong winds blow across the top much of the year.",
+        "The Himalaya mountains are still growing taller, very slowly.",
+        "Tenzing Norgay was a Sherpa."
+      ],
+      "words": [
+        [
+          "summit",
+          "the very top of a mountain"
+        ],
+        [
+          "oxygen",
+          "the part of the air we need to breathe"
+        ],
+        [
+          "border",
+          "a line where one country ends and another begins"
+        ]
+      ],
+      "questions": [
+        "Which two countries is Mount Everest between?",
+        "Who first reached the top in 1953?",
+        "Why do climbers carry oxygen?"
+      ],
+      "modules": [
+        "science-2-maps-of-land-and-water",
+        "science-2-changing-landforms",
+        "social-studies-1-maps-and-globes"
+      ]
+    },
+    {
+      "id": "great-wall-of-china",
+      "kind": "place",
+      "title": "The Great Wall of China",
+      "emoji": "🧱",
+      "read": [
+        "The Great Wall of China is a very long wall that stretches across northern China. It winds over mountains, hills, deserts and grasslands.",
+        "People built and rebuilt walls here for more than 2,000 years to protect their land. Workers used dirt, stone, wood and bricks. Much of the wall people visit today was built about 500 years ago.",
+        "Guards watched from tall towers along the wall. To send a message fast, they could light fires or make smoke signals from tower to tower. Today millions of visitors come to walk along it."
+      ],
+      "facts": [
+        "With all its parts, it is more than 13,000 miles long.",
+        "You cannot see it from the Moon with just your eyes.",
+        "Some parts are wide enough for horses to ride along the top.",
+        "Some very old parts have crumbled away.",
+        "Its name in Chinese means the Long Wall."
+      ],
+      "words": [
+        [
+          "protect",
+          "to keep safe"
+        ],
+        [
+          "tower",
+          "a tall, narrow building"
+        ],
+        [
+          "signal",
+          "a sign that sends a message"
+        ]
+      ],
+      "questions": [
+        "What country is the Great Wall in?",
+        "What did workers use to build it?",
+        "How did guards send messages fast?"
+      ],
+      "modules": [
+        "social-studies-k-then-and-now",
+        "social-studies-1-cultures-around-the-world",
+        "social-studies-1-maps-and-globes"
+      ]
+    },
+    {
+      "id": "sahara-desert",
+      "kind": "place",
+      "title": "The Sahara Desert",
+      "emoji": "🏜️",
+      "read": [
+        "The Sahara is the biggest hot desert in the world. It covers much of North Africa. A desert is a place that gets very little rain.",
+        "Some parts of the Sahara have tall hills of sand called dunes. But most of it is rocky land, gravel and mountains. Days can be very hot, and nights can get cold.",
+        "Plants and animals in the Sahara have special ways to live with little water. Fennec foxes have big ears that help them stay cool. People cross the desert with camels, and some families move from place to place with their animals."
+      ],
+      "facts": [
+        "It is about as big as the United States.",
+        "Some sand dunes are more than 500 feet tall.",
+        "An oasis is a green spot in the desert where there is water.",
+        "Thousands of years ago, much of the Sahara was green, with lakes and grasslands.",
+        "Antarctica is a bigger desert, but it is a cold one."
+      ],
+      "words": [
+        [
+          "desert",
+          "a dry place that gets very little rain"
+        ],
+        [
+          "dune",
+          "a hill of sand made by the wind"
+        ],
+        [
+          "oasis",
+          "a green spot with water in a desert"
+        ]
+      ],
+      "questions": [
+        "On which continent is the Sahara?",
+        "What is a dune?",
+        "How do fennec foxes stay cool?"
+      ],
+      "modules": [
+        "science-2-habitats-and-biodiversity",
+        "science-2-maps-of-land-and-water",
+        "social-studies-1-maps-and-globes"
+      ]
+    },
+    {
+      "id": "nile-river",
+      "kind": "place",
+      "title": "The Nile River",
+      "emoji": "🛶",
+      "read": [
+        "The Nile is one of the longest rivers in the world. It flows north through Africa and ends in the Mediterranean Sea. Its water comes from rain and lakes far to the south.",
+        "Most of Egypt is desert, but the land beside the Nile is green. Long ago, the river flooded every summer and left rich mud on the fields. Farmers grew wheat and other crops in this good soil.",
+        "People in ancient Egypt built cities and pyramids near the Nile. They sailed boats up and down it to carry food and stone. Today, millions of people still use the river for water, farming and travel."
+      ],
+      "facts": [
+        "It is about 4,100 miles long.",
+        "The Nile and the rivers that feed it flow through about 11 countries.",
+        "Its two main branches are the White Nile and the Blue Nile.",
+        "The two branches meet in the city of Khartoum, in Sudan.",
+        "Crocodiles and hippos live along parts of the Nile."
+      ],
+      "words": [
+        [
+          "flood",
+          "when water spills over onto land that is usually dry"
+        ],
+        [
+          "crop",
+          "a plant that farmers grow for food"
+        ],
+        [
+          "ancient",
+          "from a very long time ago"
+        ]
+      ],
+      "questions": [
+        "Which way does the Nile flow?",
+        "What did the floods leave on the fields?",
+        "What are the Nile's two main branches?"
+      ],
+      "modules": [
+        "science-2-maps-of-land-and-water",
+        "social-studies-2-natural-resources",
+        "social-studies-1-maps-and-globes"
+      ]
+    },
+    {
+      "id": "statue-of-liberty",
+      "kind": "place",
+      "title": "The Statue of Liberty",
+      "emoji": "🗽",
+      "read": [
+        "The Statue of Liberty stands on an island in New York Harbor. She holds a torch high in her right hand. In her left arm she holds a tablet with the date July 4, 1776, the birthday of the United States.",
+        "The statue was a gift from the people of France to the people of the United States. A French artist named Frédéric Auguste Bartholdi designed it. It was finished in 1886.",
+        "The statue is made of copper, which was once shiny brown like a penny. Over many years, air and water turned the copper green. For many people arriving by ship, it was one of the first things they saw in America."
+      ],
+      "facts": [
+        "From her heel to the top of her torch, she is about 151 feet tall.",
+        "Her crown has 7 rays.",
+        "Her crown has 25 windows.",
+        "Gustave Eiffel, who built the Eiffel Tower, designed the metal frame inside.",
+        "Liberty means being free."
+      ],
+      "words": [
+        [
+          "liberty",
+          "being free"
+        ],
+        [
+          "torch",
+          "a stick with a light or fire at the top"
+        ],
+        [
+          "copper",
+          "a reddish-brown metal"
+        ]
+      ],
+      "questions": [
+        "Who gave the statue to the United States?",
+        "What does she hold in her right hand?",
+        "Why is the statue green?"
+      ],
+      "modules": [
+        "social-studies-k-then-and-now",
+        "social-studies-1-maps-and-globes"
+      ]
+    },
+    {
+      "id": "eiffel-tower",
+      "kind": "place",
+      "title": "The Eiffel Tower",
+      "emoji": "🗼",
+      "read": [
+        "The Eiffel Tower is a tall iron tower in Paris, France. It was built for a big world's fair in 1889. Gustave Eiffel's company designed and built it.",
+        "Many people did not like the tower at first. They thought it looked strange. Now it is one of the most loved buildings in the world, and millions of people visit every year.",
+        "Visitors can ride elevators or climb stairs to go up. From the top, you can see far across Paris. At night, thousands of lights make the tower sparkle."
+      ],
+      "facts": [
+        "It is about 1,083 feet tall.",
+        "It is made of about 18,000 metal pieces.",
+        "Painters give it a new coat of paint about every 7 years.",
+        "On hot days, the metal grows a few inches taller.",
+        "It was the tallest human-made structure in the world for about 40 years."
+      ],
+      "words": [
+        [
+          "iron",
+          "a strong, hard metal"
+        ],
+        [
+          "fair",
+          "a big event where people come to see new things"
+        ],
+        [
+          "elevator",
+          "a small room that carries people up and down"
+        ]
+      ],
+      "questions": [
+        "In what city is the Eiffel Tower?",
+        "In what year was it built?",
+        "What happens to the tower on hot days?"
+      ],
+      "modules": [
+        "social-studies-k-then-and-now",
+        "social-studies-1-maps-and-globes",
+        "science-k-sunlight-warms-the-earth"
+      ]
+    },
+    {
+      "id": "machu-picchu",
+      "kind": "place",
+      "title": "Machu Picchu",
+      "emoji": "⛰️",
+      "read": [
+        "Machu Picchu is an old stone city high in the Andes Mountains of Peru, in South America. The Inca people built it more than 500 years ago. Quechua people, who are descendants of the Inca, still live in the Andes today.",
+        "The Inca were amazing builders. They cut stones so carefully that the stones fit together without any mortar. Some walls are so tight that a knife blade cannot slide between the stones.",
+        "On the steep hillsides, the Inca made flat steps of land called terraces. The terraces helped them grow food and kept the soil from washing away. Today, visitors explore the ruins, and llamas sometimes wander by."
+      ],
+      "facts": [
+        "It sits about 8,000 feet above the sea.",
+        "Its name means old peak.",
+        "In 1911, explorer Hiram Bingham told the wider world about it, but local farmers already knew it was there.",
+        "Clouds often float around the mountains there.",
+        "It has about 200 buildings."
+      ],
+      "words": [
+        [
+          "terrace",
+          "a flat step of land cut into a hill"
+        ],
+        [
+          "ruins",
+          "what is left of very old buildings"
+        ],
+        [
+          "mortar",
+          "a paste that holds bricks or stones together"
+        ]
+      ],
+      "questions": [
+        "What country is Machu Picchu in?",
+        "Who built Machu Picchu?",
+        "How did the terraces help the Inca?"
+      ],
+      "modules": [
+        "social-studies-1-cultures-around-the-world",
+        "social-studies-k-then-and-now",
+        "social-studies-1-maps-and-globes"
+      ]
+    },
+    {
+      "id": "galapagos-islands",
+      "kind": "place",
+      "title": "The Galápagos Islands",
+      "emoji": "🐢",
+      "read": [
+        "The Galápagos Islands are a group of islands in the Pacific Ocean. They belong to Ecuador, a country in South America. The islands were made by volcanoes.",
+        "Many animals on the Galápagos live nowhere else on Earth. Giant tortoises munch on cactus, and marine iguanas swim in the sea to eat seaweed. Blue-footed boobies are birds that show off their bright blue feet.",
+        "In 1835, a young scientist named Charles Darwin visited the islands. He collected finches that had different beaks on different islands. Later, they helped him think about how living things change over a very long time."
+      ],
+      "facts": [
+        "The islands are about 600 miles from the coast of South America.",
+        "Giant tortoises can live more than 100 years.",
+        "The marine iguana is the only lizard that swims and feeds in the sea.",
+        "Most of the land is a national park.",
+        "Galápagos penguins live farther north than any other wild penguins."
+      ],
+      "words": [
+        [
+          "island",
+          "land with water all around it"
+        ],
+        [
+          "tortoise",
+          "a turtle that lives on land"
+        ],
+        [
+          "beak",
+          "the hard mouth of a bird"
+        ]
+      ],
+      "questions": [
+        "What country do the islands belong to?",
+        "What do marine iguanas eat?",
+        "What did Charles Darwin notice about the finches?"
+      ],
+      "modules": [
+        "science-2-habitats-and-biodiversity",
+        "science-2-maps-of-land-and-water",
+        "science-1-plant-and-animal-parts"
+      ]
+    },
+    {
+      "id": "uluru",
+      "kind": "place",
+      "title": "Uluru",
+      "emoji": "🪨",
+      "read": [
+        "Uluru is a giant red rock in the middle of Australia. It rises high above the flat, dry land around it. It is one of the biggest single rocks in the world.",
+        "Uluru is very special to the Anangu, an Aboriginal people, the traditional owners of this land. Their families have lived here for many thousands of years. Their stories, called Tjukurpa, teach how the land was made and how to care for it.",
+        "The rock seems to change color during the day. At sunrise and sunset it can glow bright orange and red. After rain, waterfalls pour down its sides, and small pools fill with water."
+      ],
+      "facts": [
+        "It is about 1,142 feet tall.",
+        "Its red color comes from iron in the rock that has rusted.",
+        "Anangu and park rangers look after the park together.",
+        "Since 2019, visitors may not climb it, out of respect for Anangu.",
+        "Much more of the rock is hidden under the ground."
+      ],
+      "words": [
+        [
+          "Aboriginal",
+          "one of the groups of first peoples of Australia"
+        ],
+        [
+          "rust",
+          "a red-brown coating that forms on iron"
+        ],
+        [
+          "ranger",
+          "a person whose job is to take care of a park"
+        ]
+      ],
+      "questions": [
+        "What country is Uluru in?",
+        "Who are the Anangu?",
+        "What happens to Uluru after rain?"
+      ],
+      "modules": [
+        "social-studies-1-cultures-around-the-world",
+        "science-2-maps-of-land-and-water",
+        "social-studies-1-maps-and-globes"
+      ]
+    },
+    {
+      "id": "the-sun",
+      "kind": "thing",
+      "title": "The Sun",
+      "emoji": "☀️",
+      "read": [
+        "The Sun is a star, a giant ball of hot, glowing gas. It is the closest star to Earth. It looks small only because it is very far away.",
+        "The Sun gives Earth light and heat. Plants use sunlight to make their food, and animals eat the plants. Without the Sun, Earth would be dark and frozen.",
+        "Earth spins like a top. When our side faces the Sun, it is day. When our side turns away, it is night. Earth also travels all the way around the Sun once a year."
+      ],
+      "facts": [
+        "The Sun is about 93 million miles away.",
+        "More than a million Earths could fit inside it.",
+        "Sunlight takes about 8 minutes to reach Earth.",
+        "Never look straight at the Sun. It can hurt your eyes.",
+        "The Sun is a medium-size star."
+      ],
+      "words": [
+        [
+          "star",
+          "a huge ball of hot, glowing gas in space"
+        ],
+        [
+          "spin",
+          "to turn around and around"
+        ],
+        [
+          "heat",
+          "warmth"
+        ]
+      ],
+      "questions": [
+        "What is the Sun?",
+        "Why is it day on our side of Earth?",
+        "How long does it take Earth to go around the Sun?"
+      ],
+      "modules": [
+        "science-1-sun-moon-and-stars",
+        "science-k-sunlight-warms-the-earth",
+        "science-2-plants-need-water-and-light"
+      ]
+    },
+    {
+      "id": "clouds",
+      "kind": "thing",
+      "title": "Clouds",
+      "emoji": "☁️",
+      "read": [
+        "Clouds are made of tiny drops of water or bits of ice in the air. The drops are so small and light that they float.",
+        "When the Sun warms water in lakes and oceans, some of it turns into a gas you cannot see, called water vapor. The vapor rises and cools high in the sky. Then it turns back into tiny drops, and a cloud forms.",
+        "Inside a cloud, the drops bump together and grow bigger and heavier. When they get too heavy, they fall as rain. If the air is cold enough, they fall as snow."
+      ],
+      "facts": [
+        "Puffy white clouds are called cumulus clouds.",
+        "Thin, wispy clouds high in the sky are called cirrus clouds. They are made of ice.",
+        "Dark gray clouds often bring rain.",
+        "Fog is a cloud that is down near the ground.",
+        "A big puffy cloud can weigh more than a million pounds."
+      ],
+      "words": [
+        [
+          "water vapor",
+          "water as a gas that you cannot see"
+        ],
+        [
+          "float",
+          "to stay up in the air or on top of water"
+        ],
+        [
+          "fog",
+          "a cloud that is down near the ground"
+        ]
+      ],
+      "questions": [
+        "What are clouds made of?",
+        "What makes the drops in a cloud fall as rain?",
+        "What is fog?"
+      ],
+      "modules": [
+        "science-k-weather-watch",
+        "science-k-sunlight-warms-the-earth"
+      ]
+    },
+    {
+      "id": "magnets",
+      "kind": "thing",
+      "title": "Magnets",
+      "emoji": "🧲",
+      "read": [
+        "A magnet can pull some metals toward it without even touching them. It pulls things made of iron and steel, like paper clips and nails.",
+        "Every magnet has two ends, called poles: a north pole and a south pole. Two different poles pull together. Two poles that are the same push each other apart.",
+        "Earth itself acts like a giant magnet. A compass has a tiny magnet needle that points north, so it helps people find their way. Magnets are also inside speakers, toys and fridge doors."
+      ],
+      "facts": [
+        "Magnets do not pull wood, plastic, paper or glass.",
+        "A magnet can pull through a sheet of paper.",
+        "Magnets are strongest at their poles.",
+        "Some fast trains float above their tracks using magnets.",
+        "Magnets can hold notes and pictures on a fridge."
+      ],
+      "words": [
+        [
+          "magnet",
+          "an object that pulls on iron and steel"
+        ],
+        [
+          "pole",
+          "one of the two ends of a magnet"
+        ],
+        [
+          "compass",
+          "a tool with a needle that points north"
+        ]
+      ],
+      "questions": [
+        "What kinds of metal do magnets pull?",
+        "What happens when two poles that are the same meet?",
+        "How does a compass help people?"
+      ],
+      "modules": [
+        "science-k-pushes-and-pulls",
+        "social-studies-1-maps-and-globes"
+      ]
+    },
+    {
+      "id": "trees",
+      "kind": "thing",
+      "title": "Trees",
+      "emoji": "🌳",
+      "read": [
+        "Trees are the biggest plants on Earth. A tree has roots, a trunk, branches and leaves. The roots hold the tree in the ground and drink up water.",
+        "Leaves use sunlight, water and air to make food for the tree. As they do, they give off oxygen, the part of air that we need to breathe. Trees also give birds, squirrels and insects a home.",
+        "In many trees, the trunk grows a new layer of wood each year. If a tree is cut down, you can count the rings in the trunk to find out how old it was. Some trees live for thousands of years."
+      ],
+      "facts": [
+        "The tallest trees, coast redwoods, can grow more than 350 feet tall.",
+        "Many trees lose their leaves in fall and grow new ones in spring.",
+        "Trees give us wood, fruit, nuts and shade.",
+        "Bark protects a tree, like skin.",
+        "Tree roots help hold soil in place."
+      ],
+      "words": [
+        [
+          "root",
+          "the part of a plant that grows under the ground"
+        ],
+        [
+          "bark",
+          "the hard outside covering of a tree"
+        ],
+        [
+          "ring",
+          "a circle of wood in a tree trunk; each one stands for one year"
+        ]
+      ],
+      "questions": [
+        "What do a tree's roots do?",
+        "What do leaves make for the tree?",
+        "How can you tell how old a tree was?"
+      ],
+      "modules": [
+        "science-1-plant-and-animal-parts",
+        "science-2-plants-need-water-and-light",
+        "social-studies-2-natural-resources"
+      ]
+    },
+    {
+      "id": "printing-press",
+      "kind": "thing",
+      "title": "The Printing Press",
+      "emoji": "📚",
+      "read": [
+        "Long ago in Europe, books were copied by hand, one letter at a time. It could take months to copy just one book, so books were rare.",
+        "Around 1450, a German man named Johannes Gutenberg built a printing press. He made small metal letters that could be moved and lined up to spell words. The letters were inked, and the press squeezed paper down on top.",
+        "Now many copies could be made quickly. Books became cheaper, and more people learned to read. Ideas and news could spread farther and faster than ever before."
+      ],
+      "facts": [
+        "Gutenberg's most famous book is the Gutenberg Bible, printed in the 1450s.",
+        "People in China and Korea printed with blocks and movable letters even earlier.",
+        "A press could make many more pages in a day than a person could copy by hand.",
+        "Gutenberg's idea came partly from presses used to squeeze grapes.",
+        "Today, books are printed by big, fast machines."
+      ],
+      "words": [
+        [
+          "press",
+          "a machine that pushes down hard"
+        ],
+        [
+          "copy",
+          "to make another one just the same"
+        ],
+        [
+          "rare",
+          "hard to find, because there are not many"
+        ]
+      ],
+      "questions": [
+        "How were books made before the printing press?",
+        "Who built a printing press around 1450?",
+        "What happened when books became cheaper?"
+      ],
+      "modules": [
+        "social-studies-k-then-and-now",
+        "social-studies-2-heroes-and-changemakers"
+      ]
+    },
+    {
+      "id": "snowflakes",
+      "kind": "thing",
+      "title": "Snowflakes",
+      "emoji": "❄️",
+      "read": [
+        "Snowflakes form high up in cold clouds. A tiny bit of water vapor freezes onto a speck of dust. More water freezes onto it, and it grows into an ice crystal.",
+        "Most snowflakes have six sides or six arms. As a snowflake falls, it passes through air that is colder, warmer, wetter or drier. Each change makes its arms grow in a different way.",
+        "In 1885, a farmer named Wilson Bentley took the first photo of a single snowflake, using a camera with a microscope. He took more than 5,000 snowflake pictures in his life. People called him Snowflake Bentley."
+      ],
+      "facts": [
+        "Snow looks white because it bounces back all the colors of light.",
+        "Fresh snow soaks up sound, so a snowy day can seem very quiet.",
+        "A snowflake can take about an hour to fall to the ground.",
+        "Snowflakes come in many shapes, like stars, flat plates and thin needles.",
+        "Many snowflakes can stick together to make one big flake."
+      ],
+      "words": [
+        [
+          "crystal",
+          "a solid with a neat, repeating shape and flat sides"
+        ],
+        [
+          "freeze",
+          "to turn into ice because of cold"
+        ],
+        [
+          "microscope",
+          "a tool that makes tiny things look big"
+        ]
+      ],
+      "questions": [
+        "Where do snowflakes form?",
+        "How many sides do most snowflakes have?",
+        "Who took the first photo of a single snowflake?"
+      ],
+      "modules": [
+        "science-k-weather-watch"
+      ]
+    },
+    {
+      "id": "lightning-and-thunder",
+      "kind": "thing",
+      "title": "Lightning and Thunder",
+      "emoji": "⚡",
+      "read": [
+        "Lightning is a giant spark of electricity in the sky. Inside a storm cloud, bits of ice bump and rub together. This builds up electricity until it jumps across the sky or down to the ground.",
+        "Lightning is very hot. It heats the air so fast that the air bursts outward with a boom. That sound is thunder.",
+        "Light travels much faster than sound, so you see lightning before you hear thunder. Count the seconds between the flash and the boom. If you count 5 seconds, the storm is about one mile away."
+      ],
+      "facts": [
+        "Lightning is hotter than the outside of the Sun.",
+        "When thunder roars, go indoors.",
+        "Lightning can flash inside one cloud or between two clouds.",
+        "Around the world, lightning flashes about 40 to 50 times every second.",
+        "You can sometimes hear thunder about 10 miles away."
+      ],
+      "words": [
+        [
+          "electricity",
+          "a kind of energy that can make sparks and run machines"
+        ],
+        [
+          "spark",
+          "a tiny, quick flash of light"
+        ],
+        [
+          "thunder",
+          "the loud boom that comes after lightning"
+        ]
+      ],
+      "questions": [
+        "What is lightning?",
+        "What makes the sound of thunder?",
+        "Why do we see lightning before we hear thunder?"
+      ],
+      "modules": [
+        "science-k-weather-watch",
+        "science-1-sound-and-vibration",
+        "science-1-light-and-shadows"
+      ]
+    },
+    {
+      "id": "shadows",
+      "kind": "thing",
+      "title": "Shadows",
+      "emoji": "👤",
+      "read": [
+        "A shadow is a dark shape that forms when something blocks light. Light travels in straight lines. When your body blocks the sunlight, a shadow shows up on the ground.",
+        "Shadows change during the day. In the morning and evening, when the Sun is low, shadows are long. Around noon, when the Sun is high in the sky, shadows are short.",
+        "Long ago, people used shadows to tell time. A sundial has a pointer that makes a shadow, and the shadow moves as the Sun moves across the sky. You can also make shadow puppets with your hands and a flashlight."
+      ],
+      "facts": [
+        "Your shadow is always on the side away from the light.",
+        "Clear glass lets most light through, so it makes only a faint shadow.",
+        "Things that block all light make the darkest shadows.",
+        "If you move closer to a flashlight, your shadow gets bigger.",
+        "When the Moon blocks the Sun, its shadow falls on Earth. This is called a solar eclipse."
+      ],
+      "words": [
+        [
+          "shadow",
+          "a dark shape made when something blocks light"
+        ],
+        [
+          "block",
+          "to stop something from getting through"
+        ],
+        [
+          "sundial",
+          "a clock that uses a shadow to tell time"
+        ]
+      ],
+      "questions": [
+        "What makes a shadow?",
+        "When are shadows the shortest?",
+        "How does a sundial tell time?"
+      ],
+      "modules": [
+        "science-1-light-and-shadows",
+        "science-1-sun-moon-and-stars"
+      ]
+    },
+    {
+      "id": "giraffe",
+      "kind": "animal",
+      "title": "Giraffe",
+      "emoji": "🦒",
+      "read": [
+        "Giraffes are the tallest animals in the world. They live in Africa, in grasslands and open woodlands called savannas.",
+        "A giraffe's long neck helps it reach leaves high in trees. It wraps its long, dark tongue around branches to pull off leaves, even from thorny acacia trees. Giraffes spend most of their day eating.",
+        "Every giraffe has its own pattern of spots, like a fingerprint. A baby giraffe, called a calf, can stand up within about an hour of being born. Giraffes sleep only a little at a time."
+      ],
+      "facts": [
+        "A giraffe's neck has 7 bones, the same number as yours.",
+        "A tall male giraffe can be about 18 feet tall.",
+        "Its tongue can be about 18 to 20 inches long.",
+        "To drink, a giraffe spreads its front legs wide and bends down.",
+        "A giraffe can run about 35 miles per hour."
+      ],
+      "words": [
+        [
+          "savanna",
+          "a big, grassy land with a few trees"
+        ],
+        [
+          "pattern",
+          "shapes or colors that repeat"
+        ],
+        [
+          "calf",
+          "a baby giraffe, cow, whale or elephant"
+        ]
+      ],
+      "questions": [
+        "Where do giraffes live?",
+        "How does a giraffe get leaves off a branch?",
+        "How many bones are in a giraffe's neck?"
+      ],
+      "modules": [
+        "science-1-plant-and-animal-parts",
+        "science-2-habitats-and-biodiversity"
+      ]
+    },
+    {
+      "id": "kangaroo",
+      "kind": "animal",
+      "title": "Kangaroo",
+      "emoji": "🦘",
+      "read": [
+        "Kangaroos live in Australia. They hop on their strong back legs and use their long tail for balance. They live in groups called mobs.",
+        "A kangaroo is a marsupial. That means the mother carries her baby in a pouch on her belly. A newborn baby, called a joey, is about the size of a jelly bean. It grows safely in the pouch for months.",
+        "Kangaroos eat grass and other plants. They rest in the shade during the hot day and come out to eat when it is cooler. To cool off, they lick their arms."
+      ],
+      "facts": [
+        "A big red kangaroo can jump up to 25 feet in one hop.",
+        "Kangaroos can hop about 35 miles per hour for a short time.",
+        "The red kangaroo is the biggest marsupial in the world.",
+        "A red kangaroo joey stays in the pouch for about 8 months.",
+        "Kangaroos are good swimmers."
+      ],
+      "words": [
+        [
+          "marsupial",
+          "an animal whose mother carries her baby in a pouch"
+        ],
+        [
+          "pouch",
+          "a pocket of skin on a mother's belly"
+        ],
+        [
+          "joey",
+          "a baby kangaroo"
+        ]
+      ],
+      "questions": [
+        "Where do kangaroos live?",
+        "What is a baby kangaroo called?",
+        "How do kangaroos cool off?"
+      ],
+      "modules": [
+        "science-1-plant-and-animal-parts",
+        "science-2-habitats-and-biodiversity"
+      ]
+    },
+    {
+      "id": "blue-whale",
+      "kind": "animal",
+      "title": "Blue Whale",
+      "emoji": "🐋",
+      "read": [
+        "The blue whale is the biggest animal that has ever lived, even bigger than the biggest dinosaurs. It lives in oceans all around the world.",
+        "Even though it is huge, a blue whale eats tiny animals called krill. It gulps a giant mouthful of water and krill. Then it pushes the water out through bristly plates called baleen, which trap the krill like a strainer.",
+        "A blue whale is a mammal, so it breathes air. It swims up to the surface and breathes out through blowholes on top of its head. The spray from its breath can shoot about 30 feet into the air."
+      ],
+      "facts": [
+        "It can grow close to 100 feet long.",
+        "Its heart can weigh about 400 pounds, more than a big grown-up gorilla.",
+        "In the busiest feeding season, it can eat up to about 4 tons of krill in one day.",
+        "Blue whales make very loud, low calls that travel far through the water.",
+        "A baby blue whale drinks its mother's milk."
+      ],
+      "words": [
+        [
+          "krill",
+          "tiny sea animals that look like shrimp"
+        ],
+        [
+          "baleen",
+          "bristly plates in a whale's mouth that strain out food"
+        ],
+        [
+          "mammal",
+          "an animal that breathes air and feeds its babies milk"
+        ]
+      ],
+      "questions": [
+        "What does a blue whale eat?",
+        "How does a blue whale breathe?",
+        "About how long can a blue whale grow?"
+      ],
+      "modules": [
+        "science-1-plant-and-animal-parts",
+        "science-2-habitats-and-biodiversity",
+        "science-1-sound-and-vibration"
+      ]
+    },
+    {
+      "id": "giant-panda",
+      "kind": "animal",
+      "title": "Giant Panda",
+      "emoji": "🐼",
+      "read": [
+        "Giant pandas live in cool, misty forests in the mountains of China. They have black and white fur and a round, fuzzy face.",
+        "Pandas eat mostly bamboo, a tall, woody grass. Bamboo does not give them much energy, so they eat for many hours a day. A panda has a special bump on its wrist that works like a thumb to help hold the bamboo.",
+        "A newborn panda cub is pink, tiny and almost hairless. It is about the size of a stick of butter. Its mother holds it close and keeps it warm."
+      ],
+      "facts": [
+        "A panda can eat more than 20 pounds of bamboo in a day.",
+        "Pandas can spend about half the day eating.",
+        "Pandas are good tree climbers.",
+        "Pandas do not sleep through the winter like some other bears.",
+        "A cub starts to grow black and white fur after a few weeks."
+      ],
+      "words": [
+        [
+          "bamboo",
+          "a tall, woody grass with a hollow stem"
+        ],
+        [
+          "cub",
+          "a baby bear, lion or panda"
+        ],
+        [
+          "wrist",
+          "the joint between your hand and your arm"
+        ]
+      ],
+      "questions": [
+        "Where do giant pandas live?",
+        "What do pandas mostly eat?",
+        "What helps a panda hold bamboo?"
+      ],
+      "modules": [
+        "science-1-plant-and-animal-parts",
+        "science-2-habitats-and-biodiversity"
+      ]
+    },
+    {
+      "id": "monarch-butterfly",
+      "kind": "animal",
+      "title": "Monarch Butterfly",
+      "emoji": "🦋",
+      "read": [
+        "Monarch butterflies have bright orange wings with black lines and white spots. Their bright colors warn birds that they taste bad.",
+        "A monarch starts life as a tiny egg on a milkweed plant. A caterpillar hatches and eats milkweed leaves. Then it makes a hard, green case called a chrysalis, and inside, it changes into a butterfly.",
+        "Every fall, many monarchs from the United States and Canada migrate, or fly south, to Mexico. Millions of them rest together on fir trees in the mountains there. In spring they start the trip north, and their young finish it."
+      ],
+      "facts": [
+        "Monarch caterpillars eat only milkweed.",
+        "Some monarchs fly more than 2,500 miles to Mexico.",
+        "A butterfly can taste with its feet.",
+        "Butterflies have four wings.",
+        "Monarchs drink nectar from flowers through a long tube, like a straw."
+      ],
+      "words": [
+        [
+          "caterpillar",
+          "the young, wormlike stage of a butterfly"
+        ],
+        [
+          "chrysalis",
+          "the hard case where a caterpillar changes into a butterfly"
+        ],
+        [
+          "migrate",
+          "to travel to another place when the season changes"
+        ]
+      ],
+      "questions": [
+        "What plant do monarch caterpillars eat?",
+        "What is a chrysalis?",
+        "Where do many monarchs fly in the fall?"
+      ],
+      "modules": [
+        "science-1-plant-and-animal-parts",
+        "science-2-habitats-and-biodiversity"
+      ]
+    },
+    {
+      "id": "camel",
+      "kind": "animal",
+      "title": "Camel",
+      "emoji": "🐫",
+      "read": [
+        "Camels are built for life in the desert. A dromedary camel has one hump, and a Bactrian camel has two.",
+        "A camel's hump does not hold water. It holds fat, which the camel's body can use for energy when food is hard to find. A thirsty camel can drink more than 30 gallons of water in about 13 minutes.",
+        "Camels have long eyelashes, and they can close their nostrils to keep out blowing sand. Their wide, flat feet help them walk on soft sand without sinking. People have used camels for thousands of years to carry loads and give milk."
+      ],
+      "facts": [
+        "A camel can go for days without drinking water.",
+        "Most dromedaries live in North Africa and the Middle East.",
+        "Bactrian camels live in cold deserts in Asia, like the Gobi.",
+        "Camels can eat thorny plants that many other animals cannot.",
+        "Camels are sometimes called ships of the desert."
+      ],
+      "words": [
+        [
+          "hump",
+          "a big, round bump on a camel's back"
+        ],
+        [
+          "nostril",
+          "one of the two holes in a nose"
+        ],
+        [
+          "desert",
+          "a dry place that gets very little rain"
+        ]
+      ],
+      "questions": [
+        "What does a camel's hump hold?",
+        "How do camels keep sand out of their noses?",
+        "How many humps does a Bactrian camel have?"
+      ],
+      "modules": [
+        "science-1-plant-and-animal-parts",
+        "science-2-habitats-and-biodiversity"
+      ]
+    },
+    {
+      "id": "cheetah",
+      "kind": "animal",
+      "title": "Cheetah",
+      "emoji": "🐆",
+      "read": [
+        "The cheetah is the fastest land animal in the world. It can run about 60 miles per hour, as fast as a car on the highway. It can only run that fast for a short time.",
+        "A cheetah's body is made for speed. It has long, thin legs, a light body and a bendy back. Its long tail helps it balance and turn while it runs.",
+        "Cheetahs live mostly in the grasslands of Africa. They hunt in the daytime, using their sharp eyes to spot animals like gazelles. Black lines called tear marks run from their eyes to their mouths and may help block the glare of the sun."
+      ],
+      "facts": [
+        "A cheetah can speed up from standing still to a very fast run in just a few seconds.",
+        "Cheetahs cannot roar, but they can purr and chirp.",
+        "Cheetah cubs have fluffy gray fur on their backs.",
+        "Its claws do not fully pull in, so they grip the ground like the spikes on running shoes.",
+        "A small number of cheetahs live in Iran, in Asia."
+      ],
+      "words": [
+        [
+          "speed",
+          "how fast something moves"
+        ],
+        [
+          "balance",
+          "staying steady without falling"
+        ],
+        [
+          "grip",
+          "to hold on tight"
+        ]
+      ],
+      "questions": [
+        "How fast can a cheetah run?",
+        "What helps a cheetah turn while it runs?",
+        "What sounds can cheetahs make?"
+      ],
+      "modules": [
+        "science-1-plant-and-animal-parts",
+        "science-2-habitats-and-biodiversity"
+      ]
+    },
+    {
+      "id": "bats",
+      "kind": "animal",
+      "title": "Bats",
+      "emoji": "🦇",
+      "read": [
+        "Bats are the only mammals that can truly fly. Their wings are made of thin skin stretched between long finger bones. There are more than 1,400 kinds of bats around the world.",
+        "Many bats sleep during the day, hanging upside down in caves, trees or buildings. They wake up at night to find food. Most bats eat insects, and some eat fruit or drink nectar from flowers.",
+        "Many bats find their way in the dark using echolocation. A bat makes high squeaks and listens for the echoes that bounce back. The echoes tell the bat where bugs and trees are."
+      ],
+      "facts": [
+        "One bat can eat hundreds of insects in one night.",
+        "Fruit bats help spread seeds and pollen, so new plants can grow.",
+        "The smallest bat, the bumblebee bat, weighs less than a penny.",
+        "Most bat squeaks are too high for people to hear.",
+        "Bats are not blind. They can see."
+      ],
+      "words": [
+        [
+          "echolocation",
+          "finding things by making sounds and listening for echoes"
+        ],
+        [
+          "echo",
+          "a sound that bounces back"
+        ],
+        [
+          "insect",
+          "a small animal with six legs"
+        ]
+      ],
+      "questions": [
+        "What are a bat's wings made of?",
+        "When do most bats look for food?",
+        "How do bats use echoes?"
+      ],
+      "modules": [
+        "science-1-sound-and-vibration",
+        "science-1-plant-and-animal-parts",
+        "science-2-habitats-and-biodiversity"
+      ]
+    },
+    {
+      "id": "leonardo-da-vinci",
+      "kind": "person",
+      "title": "Leonardo da Vinci",
+      "emoji": "🎨",
+      "read": [
+        "Leonardo da Vinci was born in 1452 near Vinci, a small town in what is now Italy. Leonardo loved nature. All his life he looked closely at rocks, plants, birds and rivers.",
+        "As a teenager, Leonardo went to the city of Florence to learn from an artist. He became a great painter. His most famous painting is the Mona Lisa, a portrait of a woman with a quiet smile.",
+        "Leonardo was an inventor too. He filled notebooks with drawings of machines, animals, people and moving water. He drew ideas for flying machines about 400 years before the first airplane flew."
+      ],
+      "facts": [
+        "He was left-handed.",
+        "He often wrote backward, in mirror writing.",
+        "The Mona Lisa hangs in the Louvre, a museum in Paris, France.",
+        "He watched birds closely to learn how they fly.",
+        "Thousands of pages from his notebooks still exist today."
+      ],
+      "words": [
+        [
+          "portrait",
+          "a picture of a person"
+        ],
+        [
+          "inventor",
+          "a person who thinks up new machines or ideas"
+        ],
+        [
+          "notebook",
+          "a book of blank pages for writing and drawing"
+        ]
+      ],
+      "questions": [
+        "Where was Leonardo da Vinci born?",
+        "What is his most famous painting?",
+        "What did he watch to learn about flying?"
+      ],
+      "modules": [
+        "social-studies-2-heroes-and-changemakers",
+        "social-studies-k-then-and-now",
+        "social-studies-1-cultures-around-the-world"
+      ]
+    },
+    {
+      "id": "albert-einstein",
+      "kind": "person",
+      "title": "Albert Einstein",
+      "emoji": "💡",
+      "read": [
+        "Albert Einstein was born in 1879 in Ulm, a city in Germany. When he was about 5 years old, his father showed him a compass. Albert wondered why the needle always pointed the same way.",
+        "Albert loved to ask big questions. What is light? How does gravity work? He liked to picture things in his mind, like riding next to a beam of light. He called these thought experiments.",
+        "His ideas changed how scientists think about light, time and space. In 1933 he moved to the United States. He worked in Princeton, New Jersey, for the rest of his life."
+      ],
+      "facts": [
+        "He won the Nobel Prize in Physics in 1921.",
+        "He loved to play the violin.",
+        "His most famous math idea is written E = mc².",
+        "A chemical element, einsteinium, is named after him.",
+        "He liked to go sailing."
+      ],
+      "words": [
+        [
+          "compass",
+          "a tool with a needle that points north"
+        ],
+        [
+          "gravity",
+          "the pull that makes things fall to the ground"
+        ],
+        [
+          "experiment",
+          "a test to find out something new"
+        ]
+      ],
+      "questions": [
+        "In what country was Albert Einstein born?",
+        "What did his father show him when he was a boy?",
+        "What instrument did he love to play?"
+      ],
+      "modules": [
+        "social-studies-2-heroes-and-changemakers",
+        "science-k-pushes-and-pulls"
+      ]
+    },
+    {
+      "id": "neil-armstrong",
+      "kind": "person",
+      "title": "Neil Armstrong",
+      "emoji": "👣",
+      "read": [
+        "Neil Armstrong was born in 1930 in Ohio. As a boy he built model airplanes and dreamed of flying. He took flying lessons and got his pilot's license when he turned 16.",
+        "Neil became a test pilot and then an astronaut for NASA. In July 1969 he flew to the Moon on Apollo 11 with Buzz Aldrin and Michael Collins. The trip took about 4 days.",
+        "On July 20, 1969, Neil stepped onto the Moon. He was the first person ever to walk there. He said, \"That's one small step for man, one giant leap for mankind.\""
+      ],
+      "facts": [
+        "He got his pilot's license before his driver's license.",
+        "Buzz Aldrin walked on the Moon with him.",
+        "Michael Collins stayed in orbit around the Moon.",
+        "Their footprints are still there, because the Moon has no wind.",
+        "They brought Moon rocks back for scientists to study."
+      ],
+      "words": [
+        [
+          "astronaut",
+          "a person trained to travel in space"
+        ],
+        [
+          "pilot",
+          "a person who flies an airplane"
+        ],
+        [
+          "orbit",
+          "to travel around a planet or moon"
+        ]
+      ],
+      "questions": [
+        "In what year did Neil Armstrong walk on the Moon?",
+        "Who walked on the Moon with him?",
+        "Why are their footprints still on the Moon?"
+      ],
+      "modules": [
+        "social-studies-2-heroes-and-changemakers",
+        "science-1-sun-moon-and-stars"
+      ]
+    },
+    {
+      "id": "george-washington-carver",
+      "kind": "person",
+      "title": "George Washington Carver",
+      "emoji": "🥜",
+      "read": [
+        "George Washington Carver was born around 1864 in Missouri. He was born enslaved, but slavery soon ended. As a boy he cared for plants and helped sick ones grow. People called him the Plant Doctor.",
+        "George worked hard to go to school. He studied plants and farming at a college in Iowa. In 1896 he began teaching at Tuskegee Institute in Alabama. He taught there for the rest of his life.",
+        "Many farmers grew only cotton, and it wore out their soil. George taught them to take turns planting other crops, like peanuts and sweet potatoes. These plants helped the soil get healthy again."
+      ],
+      "facts": [
+        "He is famous for finding about 300 ways to use peanuts.",
+        "He did not invent peanut butter, but many people think he did.",
+        "He was also a painter.",
+        "He taught farmers from a wagon called a movable school.",
+        "In 1943 he became the first Black American honored with a national monument."
+      ],
+      "words": [
+        [
+          "soil",
+          "the top layer of dirt where plants grow"
+        ],
+        [
+          "crop",
+          "a plant that farmers grow for food or to sell"
+        ],
+        [
+          "enslaved",
+          "forced to work for others without pay and without freedom"
+        ]
+      ],
+      "questions": [
+        "Why did people call George the Plant Doctor?",
+        "Where did he teach?",
+        "Which crops did he tell farmers to plant?"
+      ],
+      "modules": [
+        "social-studies-2-heroes-and-changemakers",
+        "social-studies-2-natural-resources",
+        "science-2-plants-need-water-and-light"
+      ]
+    },
+    {
+      "id": "sacagawea",
+      "kind": "person",
+      "title": "Sacagawea",
+      "emoji": "🌄",
+      "read": [
+        "Sacagawea was a Lemhi Shoshone girl. She was born around 1788 in what is now Idaho. When she was about 12, she was captured in a raid by another tribe. She was taken far from her family.",
+        "In 1804 Lewis and Clark, two explorers heading west across North America, came to the villages where she lived. In early 1805 she had a baby boy, Jean Baptiste. That spring she set out west with the explorers, carrying him on her back.",
+        "Sacagawea helped translate when the explorers met the Shoshone people. She found plants that were safe to eat. Along the way she met her brother, who had become a Shoshone chief. He helped the group get horses."
+      ],
+      "facts": [
+        "Captain Clark gave her baby the nickname Pomp.",
+        "The group reached the Pacific Ocean in 1805.",
+        "A U.S. dollar coin shows Sacagawea and her baby.",
+        "No one knows what she really looked like. There are no pictures of her.",
+        "Her name is spelled in different ways, like Sakakawea and Sacajawea."
+      ],
+      "words": [
+        [
+          "explorer",
+          "a person who travels to learn about new places"
+        ],
+        [
+          "tribe",
+          "a group of people who share a history, land and way of life"
+        ],
+        [
+          "translate",
+          "to change words from one language to another"
+        ]
+      ],
+      "questions": [
+        "What Native nation was Sacagawea part of?",
+        "Who did she carry on the trip?",
+        "Who did she meet along the way?"
+      ],
+      "modules": [
+        "social-studies-2-heroes-and-changemakers",
+        "social-studies-1-maps-and-globes",
+        "social-studies-5-indigenous-peoples-of-north-america"
+      ]
+    },
+    {
+      "id": "wilma-rudolph",
+      "kind": "person",
+      "title": "Wilma Rudolph",
+      "emoji": "🥇",
+      "read": [
+        "Wilma Rudolph was born in 1940 in Tennessee. She was the 20th of 22 children. When she was little, she got very sick with polio. It made her left leg weak.",
+        "Wilma's family helped her do leg exercises every day. She wore a metal brace on her leg. By about age 12, she could walk without it. Then she started to run, and she was fast!",
+        "At the 1960 Olympics in Rome, Italy, Wilma won three gold medals. She was the first American woman to win three golds in track and field at one Olympics. People called her the fastest woman in the world."
+      ],
+      "facts": [
+        "She won her first Olympic medal, a bronze, when she was 16.",
+        "She loved to play basketball too.",
+        "Her hometown of Clarksville held a parade for her.",
+        "She asked that everyone, Black and white, be welcome at it.",
+        "Later she became a teacher and a coach."
+      ],
+      "words": [
+        [
+          "polio",
+          "a sickness that can make muscles weak"
+        ],
+        [
+          "brace",
+          "a support worn to hold a body part steady"
+        ],
+        [
+          "Olympics",
+          "big sports games with athletes from many countries"
+        ]
+      ],
+      "questions": [
+        "What sickness did Wilma have as a child?",
+        "How did her family help her?",
+        "How many gold medals did she win in 1960?"
+      ],
+      "modules": [
+        "social-studies-2-heroes-and-changemakers"
+      ]
+    },
+    {
+      "id": "yellowstone",
+      "kind": "place",
+      "title": "Yellowstone National Park",
+      "emoji": "♨️",
+      "read": [
+        "Yellowstone National Park is in the western United States. Most of it is in Wyoming, with small parts in Montana and Idaho. In 1872 it became the first national park in the world.",
+        "Deep under Yellowstone, the ground is very hot. The heat warms water underground. Some of it bursts into the air as geysers. Old Faithful is a famous geyser that erupts many times each day.",
+        "Bison, elk, grizzly bears and wolves live in Yellowstone. Visitors must stay far away from the animals. Near hot springs they stay on boardwalks, because the ground can be thin and hot."
+      ],
+      "facts": [
+        "Yellowstone has more than 500 geysers.",
+        "That is about half of the active geysers in the world.",
+        "Old Faithful erupts about every 90 minutes.",
+        "Grand Prismatic Spring is the biggest hot spring in the United States.",
+        "Many of its rainbow colors come from tiny living things in the water."
+      ],
+      "words": [
+        [
+          "geyser",
+          "a hot spring that shoots water and steam into the air"
+        ],
+        [
+          "national park",
+          "land a country protects for everyone to enjoy"
+        ],
+        [
+          "bison",
+          "a big, shaggy animal with horns, also called a buffalo"
+        ]
+      ],
+      "questions": [
+        "In what year did Yellowstone become a national park?",
+        "What is a geyser?",
+        "Name two animals that live in Yellowstone."
+      ],
+      "modules": [
+        "science-2-changing-landforms",
+        "science-2-habitats-and-biodiversity",
+        "social-studies-1-maps-and-globes"
+      ]
+    },
+    {
+      "id": "mount-fuji",
+      "kind": "place",
+      "title": "Mount Fuji",
+      "emoji": "🗻",
+      "read": [
+        "Mount Fuji is the tallest mountain in Japan. It is 3,776 meters tall, or about 12,388 feet. On a clear day, people can see it from the big city of Tokyo, about 100 kilometers away.",
+        "Mount Fuji is a volcano. It last erupted in 1707, more than 300 years ago. Its shape is a smooth, tall cone. Snow covers its top for much of the year.",
+        "Mount Fuji is very special to the people of Japan. Artists have painted it for hundreds of years. Hokusai made a famous set of prints called Thirty-Six Views of Mount Fuji."
+      ],
+      "facts": [
+        "Many people climb it in summer, from July to early September.",
+        "Some climbers hike at night to see the sunrise from the top.",
+        "Five lakes sit near its base.",
+        "In Japan it is often called Fuji-san.",
+        "It is a World Heritage Site."
+      ],
+      "words": [
+        [
+          "volcano",
+          "an opening in the earth where hot melted rock comes out"
+        ],
+        [
+          "erupt",
+          "to burst out"
+        ],
+        [
+          "cone",
+          "a shape that is round at the bottom and pointed at the top"
+        ]
+      ],
+      "questions": [
+        "What country is Mount Fuji in?",
+        "When did Mount Fuji last erupt?",
+        "What covers its top for much of the year?"
+      ],
+      "modules": [
+        "science-2-changing-landforms",
+        "social-studies-1-cultures-around-the-world",
+        "social-studies-1-maps-and-globes"
+      ]
+    },
+    {
+      "id": "niagara-falls",
+      "kind": "place",
+      "title": "Niagara Falls",
+      "emoji": "💧",
+      "read": [
+        "Niagara Falls is on the Niagara River, on the border between the United States and Canada. The river carries water from Lake Erie to Lake Ontario. On the way, the water drops over a high cliff.",
+        "Niagara Falls is really three waterfalls. They are Horseshoe Falls, American Falls and Bridal Veil Falls. Horseshoe Falls is the biggest. It is curved like a horseshoe.",
+        "The falling water roars and sends up clouds of mist. On sunny days, rainbows shine in the mist. Visitors ride boats near the bottom of the falls and wear raincoats to stay dry."
+      ],
+      "facts": [
+        "A boat called the Maid of the Mist first sailed below the falls in 1846.",
+        "Most of Horseshoe Falls is in Canada.",
+        "Some of the river's water is used to make electricity.",
+        "Over thousands of years, the water has slowly worn the cliff back.",
+        "In very cold winters, ice builds up all around the falls."
+      ],
+      "words": [
+        [
+          "waterfall",
+          "water that falls over a cliff or rocks"
+        ],
+        [
+          "mist",
+          "tiny drops of water floating in the air"
+        ],
+        [
+          "border",
+          "the line where one country or state ends and another begins"
+        ]
+      ],
+      "questions": [
+        "Which two countries share Niagara Falls?",
+        "How many waterfalls make up Niagara Falls?",
+        "What can you see in the mist on sunny days?"
+      ],
+      "modules": [
+        "science-2-maps-of-land-and-water",
+        "science-2-changing-landforms",
+        "social-studies-2-natural-resources"
+      ]
+    },
+    {
+      "id": "pyramids-of-giza",
+      "kind": "place",
+      "title": "Pyramids of Giza",
+      "emoji": "🔺",
+      "read": [
+        "The Pyramids of Giza stand in the desert near Cairo, the capital of Egypt. They were built about 4,500 years ago. The three big ones were made as tombs for kings called pharaohs.",
+        "The biggest is the Great Pyramid. It was built for a pharaoh named Khufu. Workers used more than 2 million heavy stone blocks. They moved and stacked them with ropes, sleds, ramps and lots of teamwork.",
+        "Near the pyramids sits the Great Sphinx. It is a giant statue with the body of a lion and the head of a person. People come from all over the world to see these wonders."
+      ],
+      "facts": [
+        "For about 3,800 years, the Great Pyramid was the tallest building made by people.",
+        "It was once covered in smooth, shiny white stone.",
+        "It is the only Wonder of the Ancient World still standing.",
+        "The workers lived in a town near the pyramids.",
+        "Giza has three big pyramids and some smaller ones."
+      ],
+      "words": [
+        [
+          "pyramid",
+          "a shape with a square bottom and triangle sides that meet at the top"
+        ],
+        [
+          "pharaoh",
+          "a king of ancient Egypt"
+        ],
+        [
+          "tomb",
+          "a place where a person is buried"
+        ]
+      ],
+      "questions": [
+        "In what country are the Pyramids of Giza?",
+        "Who were the pyramids built for?",
+        "What animal's body does the Great Sphinx have?"
+      ],
+      "modules": [
+        "social-studies-k-then-and-now",
+        "social-studies-1-cultures-around-the-world",
+        "social-studies-1-maps-and-globes"
+      ]
+    },
+    {
+      "id": "venice",
+      "kind": "place",
+      "title": "Venice",
+      "emoji": "🚣",
+      "read": [
+        "Venice is a city in Italy. It is built on more than 100 small islands in a shallow lagoon by the sea. In Venice, many streets are made of water. They are called canals.",
+        "There are no cars on the streets of old Venice. People walk over bridges or ride in boats. Buses are boats, and even ambulances and fire trucks are boats! The biggest canal is the Grand Canal.",
+        "Long ago, builders pushed wooden poles deep into the mud. Then they built houses, churches and palaces on top. Many of those buildings have stood for hundreds of years."
+      ],
+      "facts": [
+        "Venice has about 400 bridges.",
+        "A gondola is a long, thin boat. Most gondolas are painted black.",
+        "A gondolier stands up and rows with one long oar.",
+        "Sometimes high tides flood the city's squares.",
+        "Venice is famous for colorful glass made on the island of Murano."
+      ],
+      "words": [
+        [
+          "canal",
+          "a waterway made or shaped by people"
+        ],
+        [
+          "lagoon",
+          "shallow water partly cut off from the sea"
+        ],
+        [
+          "gondola",
+          "a long, narrow boat used in Venice"
+        ]
+      ],
+      "questions": [
+        "What country is Venice in?",
+        "How do people get around in Venice?",
+        "What did builders push into the mud long ago?"
+      ],
+      "modules": [
+        "science-2-maps-of-land-and-water",
+        "social-studies-1-cultures-around-the-world",
+        "social-studies-1-maps-and-globes"
+      ]
+    },
+    {
+      "id": "the-arctic",
+      "kind": "place",
+      "title": "The Arctic",
+      "emoji": "🧊",
+      "read": [
+        "The Arctic is the cold land and sea around the North Pole, at the top of the world. In the middle is the Arctic Ocean. Much of it is covered by a thick layer of floating sea ice.",
+        "In summer the sun stays up all day and all night. In winter the sun may not rise for weeks. Polar bears, Arctic foxes, walruses and caribou live in the Arctic.",
+        "People have lived in the Arctic for thousands of years. The Inuit, the Sámi and many other Indigenous peoples call it home. They know the land, sea and ice well. Today many live in towns and cities."
+      ],
+      "facts": [
+        "There is no land at the North Pole, only ice floating on the ocean.",
+        "Eight countries have land in the Arctic.",
+        "Wild penguins do not live in the Arctic.",
+        "Most Arctic foxes grow white fur for winter.",
+        "A narwhal is an Arctic whale with a long tusk."
+      ],
+      "words": [
+        [
+          "North Pole",
+          "the most northern point on Earth"
+        ],
+        [
+          "sea ice",
+          "frozen ocean water"
+        ],
+        [
+          "Indigenous",
+          "the first peoples of a place, and their families today"
+        ]
+      ],
+      "questions": [
+        "What is in the middle of the Arctic?",
+        "What happens to the sun in the Arctic summer?",
+        "Name two animals that live in the Arctic."
+      ],
+      "modules": [
+        "science-2-habitats-and-biodiversity",
+        "science-2-maps-of-land-and-water",
+        "social-studies-1-maps-and-globes",
+        "social-studies-1-cultures-around-the-world"
+      ]
+    },
+    {
+      "id": "the-wheel",
+      "kind": "thing",
+      "title": "The Wheel",
+      "emoji": "🛞",
+      "read": [
+        "Long ago, people had to carry heavy loads or drag them on the ground. About 5,500 years ago, people made one of the best inventions ever: the wheel. Some of the first wheels spun clay to make pots.",
+        "Later, people put wheels on carts. A wheel needs an axle, a rod through its middle. The axle holds the wheel on while it turns. Wheels made it much easier to move heavy things.",
+        "The first wheels were solid wood. Later, people made wheels with spokes, which were lighter and faster. Today wheels are everywhere: on bikes, cars, trains, toys and even shopping carts."
+      ],
+      "facts": [
+        "One of the oldest wooden wheels ever found is more than 5,000 years old.",
+        "It was found in a marsh in Slovenia, a country in Europe.",
+        "A wheel rolls instead of scraping, so things move more easily.",
+        "Gears are wheels with teeth that help machines work.",
+        "A Ferris wheel is a giant wheel you can ride."
+      ],
+      "words": [
+        [
+          "axle",
+          "a rod that a wheel turns on"
+        ],
+        [
+          "spoke",
+          "a bar from the middle of a wheel to its edge"
+        ],
+        [
+          "invention",
+          "something new that someone makes for the first time"
+        ]
+      ],
+      "questions": [
+        "About how long ago did people make the first wheels?",
+        "What is an axle?",
+        "Name three things that have wheels."
+      ],
+      "modules": [
+        "science-k-pushes-and-pulls",
+        "social-studies-k-then-and-now"
+      ]
+    },
+    {
+      "id": "rockets",
+      "kind": "thing",
+      "title": "Rockets",
+      "emoji": "🚀",
+      "read": [
+        "A rocket is a machine that can fly into space. It burns fuel, which makes lots of hot gas. The gas blasts out the bottom of the rocket. As the gas pushes down, the rocket is pushed up!",
+        "People in China made the first rockets about 800 years ago. They were a lot like fireworks. In 1926 Robert Goddard, an American scientist, launched the first rocket that used liquid fuel.",
+        "Today big rockets carry astronauts, satellites and space robots into space. The Saturn V rocket carried astronauts to the Moon. It was about as tall as a 36-story building."
+      ],
+      "facts": [
+        "To circle Earth, a rocket must go about 17,500 miles per hour.",
+        "Rockets carry their own oxygen, so they can burn fuel in space.",
+        "Goddard's first liquid-fuel rocket flew about 41 feet high.",
+        "That flight lasted only about 2 and a half seconds.",
+        "Let go of a blown-up balloon and the air pushes it like a rocket."
+      ],
+      "words": [
+        [
+          "fuel",
+          "something burned to make power"
+        ],
+        [
+          "launch",
+          "to send something up into the air or space"
+        ],
+        [
+          "satellite",
+          "a machine that goes around Earth in space"
+        ]
+      ],
+      "questions": [
+        "What pushes a rocket up?",
+        "Where were the first rockets made?",
+        "Which rocket carried astronauts to the Moon?"
+      ],
+      "modules": [
+        "science-k-pushes-and-pulls",
+        "science-1-sun-moon-and-stars",
+        "social-studies-k-then-and-now"
+      ]
+    },
+    {
+      "id": "trains",
+      "kind": "thing",
+      "title": "Trains",
+      "emoji": "🚂",
+      "read": [
+        "A train is a line of cars pulled along a track by an engine called a locomotive. Trains carry people and goods from place to place. Steel wheels roll on steel rails, so trains can pull very heavy loads.",
+        "The first steam trains for the public ran about 200 years ago in England. Fire heated water to make steam. The steam pushed parts that turned the wheels. Steam trains puffed smoke and blew loud whistles.",
+        "In 1869 workers, many from China, finished the first railroad across the United States. Trips that took months now took about a week. Today the fastest trains in Japan, China and France go about 200 miles per hour."
+      ],
+      "facts": [
+        "A train track has two rails.",
+        "A golden spike marked the end of the railroad in 1869.",
+        "Japan's bullet trains began running in 1964.",
+        "Maglev trains use magnets to float above the track.",
+        "Some freight trains are more than a mile long."
+      ],
+      "words": [
+        [
+          "locomotive",
+          "the engine that pulls a train"
+        ],
+        [
+          "rail",
+          "a long steel bar that train wheels roll on"
+        ],
+        [
+          "freight",
+          "goods carried by a train, truck, ship or plane"
+        ]
+      ],
+      "questions": [
+        "What is the engine of a train called?",
+        "What made steam trains go?",
+        "What do maglev trains use to float?"
+      ],
+      "modules": [
+        "social-studies-k-then-and-now",
+        "science-k-pushes-and-pulls",
+        "social-studies-1-goods-and-services"
+      ]
+    },
+    {
+      "id": "dinosaurs",
+      "kind": "thing",
+      "title": "Dinosaurs",
+      "emoji": "🦕",
+      "read": [
+        "Dinosaurs were reptiles that lived on Earth for millions of years, long before people. Some were as big as a building. Some were as small as a chicken. Some ate plants, and some ate meat.",
+        "About 66 million years ago, a giant space rock crashed into Earth. The world changed, and the big dinosaurs died out. But not all dinosaurs! Birds are living dinosaurs.",
+        "We know about dinosaurs from fossils. Fossils are bones, teeth, eggs and footprints saved in rock for a very long time. Scientists who dig up and study fossils are called paleontologists."
+      ],
+      "facts": [
+        "The word dinosaur means \"terrible lizard.\"",
+        "Dinosaur fossils have been found on every continent, even Antarctica.",
+        "Tyrannosaurus rex had teeth about as long as bananas.",
+        "No person ever saw a living T. rex.",
+        "Some dinosaurs had feathers."
+      ],
+      "words": [
+        [
+          "fossil",
+          "a sign of a very old living thing saved in rock"
+        ],
+        [
+          "paleontologist",
+          "a scientist who studies fossils"
+        ],
+        [
+          "reptile",
+          "an animal with scaly skin, like a lizard or snake"
+        ]
+      ],
+      "questions": [
+        "About when did the big dinosaurs die out?",
+        "What animals alive today are dinosaurs?",
+        "How do we know about dinosaurs?"
+      ],
+      "modules": [
+        "science-3-fossils-and-changing-environments",
+        "science-1-plant-and-animal-parts",
+        "social-studies-k-then-and-now"
+      ]
+    },
+    {
+      "id": "maps",
+      "kind": "thing",
+      "title": "Maps",
+      "emoji": "🗺️",
+      "read": [
+        "A map is a drawing of a place, as if you were a bird looking down from the sky. Maps can show a room, a town, a country or the whole world. They help us find our way.",
+        "Many maps have helpers. A map key, or legend, tells what the little pictures and colors mean. A compass rose shows the directions north, south, east and west.",
+        "People have made maps for thousands of years. One of the oldest world maps is on a clay tablet from Babylon, in what is now Iraq. Today, pictures taken from space help people make very exact maps."
+      ],
+      "facts": [
+        "Most maps put north at the top.",
+        "A globe is a map shaped like a ball, just like Earth.",
+        "On many maps, blue means water.",
+        "A person who makes maps is called a cartographer.",
+        "You can draw a map of your own bedroom!"
+      ],
+      "words": [
+        [
+          "map key",
+          "a box that tells what the pictures on a map mean"
+        ],
+        [
+          "compass rose",
+          "a symbol that shows north, south, east and west"
+        ],
+        [
+          "globe",
+          "a round model of Earth"
+        ]
+      ],
+      "questions": [
+        "What does a map key tell you?",
+        "What are the four directions on a compass rose?",
+        "What is a globe?"
+      ],
+      "modules": [
+        "social-studies-1-maps-and-globes",
+        "science-2-maps-of-land-and-water",
+        "social-studies-k-my-place-in-the-world"
+      ]
+    },
+    {
+      "id": "the-ocean",
+      "kind": "thing",
+      "title": "The Ocean",
+      "emoji": "🌊",
+      "read": [
+        "The ocean is a huge body of salty water. It covers about 7 out of every 10 parts of Earth's surface. From space, Earth looks like a big blue marble.",
+        "All the ocean water is connected, but people give it five names. They are the Pacific, Atlantic, Indian, Southern and Arctic Oceans. The Pacific is the biggest and deepest of all.",
+        "The ocean is home to whales, fish, crabs, coral and tiny living things called plankton. Some plankton make much of the oxygen we breathe. Wind blowing across the water makes waves."
+      ],
+      "facts": [
+        "The deepest place in the ocean is almost 7 miles deep.",
+        "It is called the Challenger Deep.",
+        "Almost all of Earth's water is in the ocean.",
+        "Ocean water is too salty for people to drink.",
+        "People have not yet explored most of the ocean."
+      ],
+      "words": [
+        [
+          "ocean",
+          "a huge body of salty water"
+        ],
+        [
+          "plankton",
+          "tiny living things that drift in water"
+        ],
+        [
+          "oxygen",
+          "a gas in the air that people and animals need to breathe"
+        ]
+      ],
+      "questions": [
+        "How many named oceans are there?",
+        "Which ocean is the biggest?",
+        "What makes waves?"
+      ],
+      "modules": [
+        "science-2-maps-of-land-and-water",
+        "science-2-habitats-and-biodiversity",
+        "social-studies-2-natural-resources"
+      ]
+    },
+    {
+      "id": "emperor-penguin",
+      "kind": "animal",
+      "title": "Emperor Penguin",
+      "emoji": "🐧",
+      "read": [
+        "Emperor penguins are the biggest penguins in the world. A grown-up can be about as tall as a first grader. They live in Antarctica, one of the coldest places on Earth.",
+        "Emperor penguins cannot fly. Their wings work like flippers to help them swim. They dive deep into the icy sea to catch fish, squid and krill. Thick feathers and fat keep them warm.",
+        "In winter, a mother lays one egg. The father holds it on his feet, under a warm flap of skin, for about two months. He does not eat that whole time! The fathers huddle together to stay warm."
+      ],
+      "facts": [
+        "They can dive more than 500 meters, or 1,600 feet, deep.",
+        "They can hold their breath for more than 20 minutes.",
+        "Chicks are covered in fluffy gray feathers called down.",
+        "Penguins sometimes slide across the ice on their bellies.",
+        "Each penguin has its own call, so its family can find it."
+      ],
+      "words": [
+        [
+          "flipper",
+          "a flat body part used for swimming"
+        ],
+        [
+          "huddle",
+          "to crowd close together"
+        ],
+        [
+          "krill",
+          "tiny shrimp-like animals that live in the sea"
+        ]
+      ],
+      "questions": [
+        "Where do emperor penguins live?",
+        "What do their wings help them do?",
+        "Who keeps the egg warm?"
+      ],
+      "modules": [
+        "science-1-plant-and-animal-parts",
+        "science-2-habitats-and-biodiversity",
+        "science-1-parents-and-offspring"
+      ]
+    },
+    {
+      "id": "sea-turtle",
+      "kind": "animal",
+      "title": "Sea Turtle",
+      "emoji": "🐢",
+      "read": [
+        "Sea turtles live in oceans all around the world. They have flippers instead of feet, so they are strong swimmers. Unlike many land turtles, they cannot pull their heads into their shells.",
+        "A mother sea turtle swims back to the beach where she hatched, or one close by. At night, she digs a hole in the sand and lays about 100 eggs. Then she covers them up and goes back to the sea.",
+        "About two months later, the babies hatch. They are called hatchlings. They dig out of the sand, often at night, and crawl toward the bright water. Then they swim out to sea to begin their lives."
+      ],
+      "facts": [
+        "There are seven kinds of sea turtles.",
+        "The leatherback is the biggest. It can weigh more than 1,000 pounds.",
+        "Warm sand makes more girl turtles. Cooler sand makes more boys.",
+        "Green sea turtles eat seagrass and algae.",
+        "Sea turtles have lived on Earth for more than 100 million years."
+      ],
+      "words": [
+        [
+          "flipper",
+          "a flat body part used for swimming"
+        ],
+        [
+          "hatch",
+          "to come out of an egg"
+        ],
+        [
+          "hatchling",
+          "a baby animal that just came out of its egg"
+        ]
+      ],
+      "questions": [
+        "What do sea turtles have instead of feet?",
+        "Where does a mother sea turtle lay her eggs?",
+        "What do baby turtles do after they hatch?"
+      ],
+      "modules": [
+        "science-1-plant-and-animal-parts",
+        "science-2-habitats-and-biodiversity",
+        "science-1-parents-and-offspring"
+      ]
+    },
+    {
+      "id": "gray-wolf",
+      "kind": "animal",
+      "title": "Gray Wolf",
+      "emoji": "🐺",
+      "read": [
+        "Gray wolves are the biggest wild members of the dog family. They live in forests, mountains, grasslands and snowy places in North America, Europe and Asia. Their thick fur can be gray, brown, black or white.",
+        "Wolves live in family groups called packs. A pack is usually a mother, a father and their young. The pack hunts together, plays together and takes care of the pups.",
+        "Wolves howl to talk to each other. A howl can tell the pack where a wolf is or warn other wolves to stay away. Pups are born in a den. At first they cannot see or hear."
+      ],
+      "facts": [
+        "Pet dogs are relatives of wolves.",
+        "A wolf can eat about 20 pounds of meat in one meal.",
+        "A wolf's howl can be heard miles away.",
+        "Wolves were brought back to Yellowstone National Park in 1995.",
+        "Wolves have a very strong sense of smell."
+      ],
+      "words": [
+        [
+          "pack",
+          "a family group of wolves"
+        ],
+        [
+          "den",
+          "a safe hole or cave where some animals rest and raise babies"
+        ],
+        [
+          "pup",
+          "a baby wolf or dog"
+        ]
+      ],
+      "questions": [
+        "What is a family group of wolves called?",
+        "Why do wolves howl?",
+        "Where are wolf pups born?"
+      ],
+      "modules": [
+        "science-1-plant-and-animal-parts",
+        "science-2-habitats-and-biodiversity",
+        "science-1-parents-and-offspring",
+        "science-3-living-in-groups"
+      ]
+    },
+    {
+      "id": "owls",
+      "kind": "animal",
+      "title": "Owls",
+      "emoji": "🦉",
+      "read": [
+        "Owls are birds that are great hunters. There are more than 200 kinds of owls. They live on every continent except Antarctica. Most owls are nocturnal, which means they hunt at night.",
+        "Owls have big eyes that face forward. Their eyes cannot move around, so an owl turns its whole head instead. It can turn its head about three-quarters of the way around!",
+        "Owls fly almost without a sound. Soft, fringed feathers on their wings quiet the air. Owls also hear very well. Some can find a mouse under the snow just by listening."
+      ],
+      "facts": [
+        "The elf owl is about as big as a sparrow.",
+        "Owls often swallow small prey whole.",
+        "Later they cough up a pellet of bones and fur.",
+        "A barn owl's ears are at different heights, which helps it find sounds.",
+        "Snowy owls hunt in the daytime."
+      ],
+      "words": [
+        [
+          "nocturnal",
+          "awake and active at night"
+        ],
+        [
+          "pellet",
+          "a small ball of bones and fur that an owl coughs up"
+        ],
+        [
+          "prey",
+          "an animal that is hunted for food"
+        ]
+      ],
+      "questions": [
+        "Why does an owl turn its whole head?",
+        "How do owls fly so quietly?",
+        "What is in an owl pellet?"
+      ],
+      "modules": [
+        "science-1-plant-and-animal-parts",
+        "science-2-habitats-and-biodiversity",
+        "science-1-sound-and-vibration"
+      ]
+    },
+    {
+      "id": "frogs",
+      "kind": "animal",
+      "title": "Frogs",
+      "emoji": "🐸",
+      "read": [
+        "Frogs are amphibians. That means they live part of their lives in water and part on land. Frogs live on every continent except Antarctica. There are more than 7,000 kinds.",
+        "A frog starts life as a tiny egg in the water. The egg hatches into a tadpole, which has a tail and breathes with gills. Slowly it grows legs, loses its tail and becomes a frog.",
+        "Frogs do not drink water with their mouths. They soak it in through their skin. Many frogs catch bugs with long, sticky tongues. Strong back legs help them jump far and swim fast."
+      ],
+      "facts": [
+        "Frogs use their eyes to help them swallow.",
+        "The goliath frog is the biggest frog. It can grow about as long as a ruler.",
+        "Bright colors on poison dart frogs warn, \"Do not eat me!\"",
+        "Wood frogs can freeze in winter and thaw out in spring.",
+        "A group of frogs is sometimes called an army."
+      ],
+      "words": [
+        [
+          "amphibian",
+          "an animal that lives part of its life in water and part on land"
+        ],
+        [
+          "tadpole",
+          "a baby frog that lives in water"
+        ],
+        [
+          "gills",
+          "body parts that let an animal breathe under water"
+        ]
+      ],
+      "questions": [
+        "What is a baby frog called?",
+        "How do frogs drink water?",
+        "What helps frogs jump far?"
+      ],
+      "modules": [
+        "science-1-plant-and-animal-parts",
+        "science-1-parents-and-offspring",
+        "science-2-habitats-and-biodiversity",
+        "science-3-life-cycles"
+      ]
+    },
+    {
+      "id": "ants",
+      "kind": "animal",
+      "title": "Ants",
+      "emoji": "🐜",
+      "read": [
+        "Ants are insects. Like all insects, they have six legs and three body parts. They use the two antennae on their heads to smell, touch and talk to each other.",
+        "Ants live together in big groups called colonies. Each colony has at least one queen who lays eggs. Worker ants build the nest, find food and care for the young. Some colonies have millions of ants.",
+        "Ants talk with smells. When an ant finds food, it leaves a smelly trail on its way home. Other ants follow the trail to the food. That is why you often see ants marching in a line."
+      ],
+      "facts": [
+        "Ants can carry things many times heavier than their own bodies.",
+        "There are more than 12,000 kinds of ants.",
+        "Ants live on every continent except Antarctica.",
+        "Leafcutter ants grow gardens of fungus to eat.",
+        "Worker ants are all girls."
+      ],
+      "words": [
+        [
+          "insect",
+          "a small animal with six legs and three body parts"
+        ],
+        [
+          "colony",
+          "a big group of animals that live together"
+        ],
+        [
+          "antennae",
+          "feelers on an insect's head"
+        ]
+      ],
+      "questions": [
+        "How many legs does an ant have?",
+        "Who lays the eggs in an ant colony?",
+        "How do ants show each other where food is?"
+      ],
+      "modules": [
+        "science-1-plant-and-animal-parts",
+        "science-2-habitats-and-biodiversity",
+        "science-3-living-in-groups"
+      ]
+    },
+    {
+      "id": "tiger",
+      "kind": "animal",
+      "title": "Tiger",
+      "emoji": "🐅",
+      "read": [
+        "Tigers are the biggest wild cats in the world. They live in forests, grasslands and swamps in Asia. Each tiger has its own pattern of stripes. No two tigers have the same stripes.",
+        "Unlike most cats, tigers love water. They are strong swimmers and often cool off in rivers and pools. Tigers usually live and hunt alone. They hunt mostly at night and sneak up quietly on prey like deer and wild pigs.",
+        "A mother tiger has two to four cubs at a time. The cubs are born blind. They stay with their mother for about two years while she teaches them how to hunt."
+      ],
+      "facts": [
+        "A tiger's skin is striped too, not just its fur.",
+        "The Siberian tiger, also called the Amur tiger, is one of the biggest kinds.",
+        "A tiger's roar can be heard far away, maybe up to 2 miles.",
+        "Stripes help tigers hide in tall grass and shadows.",
+        "Only a few thousand tigers live in the wild, and people work to protect them."
+      ],
+      "words": [
+        [
+          "stripe",
+          "a long, thin line of color"
+        ],
+        [
+          "cub",
+          "a baby tiger, lion, bear or panda"
+        ],
+        [
+          "prey",
+          "an animal that is hunted for food"
+        ]
+      ],
+      "questions": [
+        "Where do wild tigers live?",
+        "How are tigers different from most cats?",
+        "How long do cubs stay with their mother?"
+      ],
+      "modules": [
+        "science-1-plant-and-animal-parts",
+        "science-2-habitats-and-biodiversity",
+        "science-1-parents-and-offspring"
+      ]
+    }
+  ],
+  "for_all": [
+    "library-k-2-finding-a-book",
+    "library-k-2-asking-good-questions",
+    "library-3-5-search-like-a-pro",
+    "library-3-5-giving-credit",
+    "social-studies-2-how-do-you-know"
+  ]
+}

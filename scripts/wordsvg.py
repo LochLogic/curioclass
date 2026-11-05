@@ -3160,7 +3160,7 @@ def rasterize(svgs, dest):
     for s in range(0, len(keys), per):
         batch = keys[s:s + per]
         rows = math.ceil(len(batch) / cols)
-        html = ('<html><head><style>body{margin:0;background:#fff}svg{position:absolute}</style></head><body>' +
+        html = ('<html><head><meta charset="utf-8"><style>body{margin:0;background:#fff}svg{position:absolute}</style></head><body>' +
                 ''.join(svgs[k].replace('<svg ', f'<svg style="left:{(i % cols) * SIZE}px;top:{(i // cols) * SIZE}px" ', 1) for i, k in enumerate(batch)) + '</body></html>')
         page = tmp / 'sheet.html'
         page.write_text(html, encoding='utf-8')

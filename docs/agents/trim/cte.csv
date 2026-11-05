@@ -1,0 +1,6 @@
+unit,n,title,type,module,reason
+cte-explore-6,7,Interest or Skill?,Practice,Interests and Skills,n8 Career Matchmaker already sorts interest from skill per match
+cte-explore-6,19,Help Wanted: Ski Shop Wages,Apply,Snow Season Prices,"repeats n18 Big Snow, New Rival: same price-shift explanation"
+cte-pathways,3,What Does Each Path Cost?,Apply,Education and Training Paths,n6 Two Award Letters (generated) and n1 already compute path costs
+cte-pathways,30,Iteration Report,Writing frame,Engineering and Design Process,repeats n29 Prototype Test Record: same test-and-change log
+cte-pathways,37,Hospital Shift Tracker,Read and respond,Healthcare and Human Services Careers,wordy story; n36 Healthcare Team Roles compares roles directly

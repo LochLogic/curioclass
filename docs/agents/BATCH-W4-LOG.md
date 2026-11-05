@@ -78,8 +78,8 @@ Open questions:
   (wise-mentor, light #5b63a6), audience-shift-briefing (casual-peer, light #a61188), ad-agency (lively-host, dark
   #a3ff19).
 - Family engines, each in full in one spec: kit/rhetoric.js (argument-map), kit/evidence.js (theme-ledger),
-  kit/fallacies.js (fallacy-field-guide), kit/founding-docs.js (premise-inspector; no docs/families/founding-docs.md
-  yet). ad-agency feeds kit/fact-check.js as fake-or-fact-lab describes it.
+  kit/fallacies.js (fallacy-field-guide), kit/founding-docs.js (premise-inspector; docs/families/founding-docs.md
+  not created). ad-agency feeds kit/fact-check.js as fake-or-fact-lab describes it.
 - For the joint review: voices repeat ela-research and ela-lit picks (firm-captain, knowing-guide, big-sister,
   gravel-ranger, news-reader, wise-mentor, casual-peer); check accents and voices across the whole wave.
 - Confirm at build (only Wikipedia checked): Jefferson as an enslaver, Apess's Pequot identity, New Jersey women voting
@@ -132,7 +132,7 @@ Open questions:
   #6e2c00; AIC 59281), inbox-simulator (9-12, easy-coach, light, #8c1c13), counterpoint-frames (9-12, firm-captain,
   dark, #ff6b6b).
 - Family engine: eld-talk (kit/eld-talk.js), in full in counterpoint-frames, built from the live
-  classroom-phrases-game; copy it to docs/families/eld-talk.md at build. chart-narrator uses data-desk only as a library.
+  classroom-phrases-game; copy it to docs/families/eld-talk.md at build (not created). chart-narrator uses data-desk only as a library.
 - Solo by default (made-up partners), Help setting Lots/Some/Little mapped to WIDA levels, no microphone, writing kept
   on the device with Clear. Codex people art in then-what-happened and counterpoint-frames.
 - Open question for Cory (the one wave 4 item past BASELINE): sourced, reviewed home-language glossaries for key frames

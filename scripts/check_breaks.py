@@ -1,19 +1,23 @@
-r"""Check the Break Box draft sheets (docs/break-box/grade-<g>.md) against docs/BREAK-BOX-PLAN.md.
+r"""Check the Break Box sheets (data/closet/breaks/<id>.md) against docs/BREAK-BOX-PLAN.md.
 
     python scripts/check_breaks.py              check every grade, exit 1 on any problem
     python scripts/check_breaks.py k 3 12       check some grades
 
-A grade file is a "# Break Box: ..." title, an index, then 30 sheets. Each sheet starts "## N. Title", then the info
-row table (Kind, Time, Where, Mess, Grown-up, Players), a **Materials:** line, then the ### parts in plan order.
+A sheet file is "key: value" header lines (title, grade, order, kind, time, where, mess, grownup, players, materials,
+then nice and night_before when the sheet has them), a blank line, then the ## parts in plan order. Each grade has 30
+sheets, ordered 1 to 30. build_site.py uses load() for /closet/break-box/ and runs problems() and grade_problems() so a
+bad sheet stops a closet build. The sheets were first drafted in docs/break-box/grade-<g>.md.
 """
 import re, sys
 from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DIR = ROOT / 'docs' / 'break-box'
+BREAKS = ROOT / 'data' / 'closet' / 'breaks'
 GRADES = ['k', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
 K2 = {'k', '1', '2'}
+HEADER = ['title', 'grade', 'order', 'kind', 'time', 'where', 'mess', 'grownup', 'players', 'materials']
+OPTIONAL = ['nice', 'night_before']
 PARTS = ['The big idea', 'Goals', 'Objectives', 'Get ready', 'Steps', 'Make it yours', 'Stuck?', 'Show it off',
          'Clean up', 'For the grown-up']
 KINDS = {'Build', 'Story', 'Art', 'Pretend', 'Science', 'Game', 'Puzzle', 'Music', 'Move', 'Outside', 'Kitchen',
@@ -23,56 +27,80 @@ MESS = {'Low', 'Medium', 'High'}
 GROWN = {'With you', 'Nearby', 'On your own'}
 PLAYERS = {'1', '1+', '2+'}
 WORDS = (180, 750)  # per sheet
-SHEET = re.compile(r'^## (\d+)\. (.+)$', re.M)
-ROW = re.compile(r'^\|\s*Kind\s*\|.*\n\|[-| ]+\|\n\|(.+)\|\s*$', re.M)
 
 
-def sheets(text):
-    heads = list(SHEET.finditer(text))
-    for i, m in enumerate(heads):
-        end = heads[i + 1].start() if i + 1 < len(heads) else len(text)
-        yield int(m.group(1)), m.group(2).strip(), text[m.end():end]
+def idea(big):
+    """One line for the shelf card: the big idea's first sentence (two when the first is very short)."""
+    s = re.sub(r'^Read aloud:\s*', '', ' '.join(big.split())).strip('"“” ')
+    parts = [p.strip() for p in re.findall(r'.+?[.!?]["”]?(?=\s|$)', s)] or [s]
+    line = parts[0]
+    if len(line.split()) < 7 and len(parts) > 1:
+        line += ' ' + parts[1]
+    line = line.strip('“” ')
+    if line.startswith('"') and line.endswith('"') and line.count('"') == 2:
+        line = line[1:-1]
+    return line + '"' if line.count('"') % 2 else line
 
 
-def check_sheet(grade, n, title, body):
+def load(grades=None):
+    """{sheet_id: sheet dict} for every sheet file (or the sheets of some grades)."""
+    out = {}
+    for f in sorted(BREAKS.glob('*.md')):
+        text = f.read_text(encoding='utf-8')
+        head, _, body = text.partition('\n\n')
+        s = {'id': f.stem, 'file': f.name, 'url': f'/closet/break-box/{f.stem}/', 'bad_lines': [], 'body': body}
+        for line in head.splitlines():
+            k, sep, v = line.partition(':')
+            if sep:
+                s[k.strip()] = v.strip()
+            else:
+                s['bad_lines'].append(line)
+        if grades and s.get('grade') not in grades:
+            continue
+        s['parts'] = [(m.group(1).strip(), m.group(2).strip())
+                      for m in re.finditer(r'^## ([^\n]+)\n(.*?)(?=^## |\Z)', body, re.M | re.S)]
+        s['idea'] = idea(dict(s['parts']).get('The big idea', ''))
+        s['solo'] = s.get('players') in ('1', '1+')
+        s['outside'] = s.get('where') in ('Outdoors', 'Either')
+        out[f.stem] = s
+    return out
+
+
+def problems(s):
     out = []
-    say = lambda msg: out.append(f'grade {grade} #{n} {title}: {msg}')
-    row = ROW.search(body)
-    if not row:
-        say('no info row')
-        cells = None
+    say = lambda msg: out.append(f"{s['file']} (grade {s.get('grade')} #{s.get('order')} {s.get('title')}): {msg}")
+    for line in s['bad_lines']:
+        say(f'header line {line!r}')
+    keys = [k for k in s if k in HEADER + OPTIONAL]
+    for k in HEADER:
+        if not s.get(k):
+            say(f'no {k}')
+    grade = s.get('grade')
+    if grade not in GRADES:
+        say(f'grade {grade!r}')
+    if s.get('kind') not in KINDS:
+        say(f"kind {s.get('kind')!r}")
+    t = re.fullmatch(r'(\d+)-(\d+) min', s.get('time', ''))
+    if not t:
+        say(f"time {s.get('time')!r}")
     else:
-        cells = [c.strip() for c in row.group(1).split('|')]
-        if len(cells) != 6:
-            say(f'info row has {len(cells)} cells')
-            cells = None
-    if cells:
-        kind, time, where, mess, grown, players = cells
-        if kind not in KINDS:
-            say(f'kind {kind!r}')
-        t = re.fullmatch(r'(\d+)-(\d+) min', time)
-        if not t:
-            say(f'time {time!r}')
-        else:
-            lo, hi = int(t.group(1)), int(t.group(2))
-            if not (45 <= lo < hi <= 120 and 60 <= (lo + hi) / 2 <= 120):
-                say(f'time {time!r} out of range')
-        if where not in WHERE:
-            say(f'where {where!r}')
-        if mess not in MESS:
-            say(f'mess {mess!r}')
-        if grown not in GROWN:
-            say(f'grown-up {grown!r}')
-        elif grade in K2 and grown != 'With you':
-            say('K-2 sheets need "With you"')
-        if players not in PLAYERS:
-            say(f'players {players!r}')
-    if '**Materials:**' not in body:
-        say('no **Materials:** line')
-    found = re.findall(r'^### (.+?)\s*$', body, re.M)
+        lo, hi = int(t.group(1)), int(t.group(2))
+        if not (45 <= lo < hi <= 120 and 60 <= (lo + hi) / 2 <= 120):
+            say(f"time {s['time']!r} out of range")
+    if s.get('where') not in WHERE:
+        say(f"where {s.get('where')!r}")
+    if s.get('mess') not in MESS:
+        say(f"mess {s.get('mess')!r}")
+    if s.get('grownup') not in GROWN:
+        say(f"grown-up {s.get('grownup')!r}")
+    elif grade in K2 and s['grownup'] != 'With you':
+        say('K-2 sheets need "With you"')
+    if s.get('players') not in PLAYERS:
+        say(f"players {s.get('players')!r}")
+    found = [name for name, _ in s['parts']]
     if found != PARTS:
         say(f'parts {found}')
-    secs = dict(zip(found, re.split(r'^### .+$', body, flags=re.M)[1:]))
+    secs = dict(s['parts'])
     goals = re.findall(r'^- ', secs.get('Goals', ''), re.M)
     if not 2 <= len(goals) <= 3:
         say(f'{len(goals)} goals')
@@ -91,62 +119,59 @@ def check_sheet(grade, n, title, body):
         say('no "Ask at dinner" question')
     if grade in K2 and 'Read aloud' not in flat('The big idea'):
         say('K-2 big idea needs "Read aloud"')
-    words = len(re.findall(r"[A-Za-z0-9']+", body))
+    text = ' '.join(s.get(k, '') for k in keys if k not in ('title', 'grade', 'order')) + '\n' + s['body']
+    words = len(re.findall(r"[A-Za-z0-9']+", text))
     if not WORDS[0] <= words <= WORDS[1]:
         say(f'{words} words')
-    if '—' in body or ' -- ' in body:
+    whole = s['title'] + '\n' + text if s.get('title') else text
+    if '\u2014' in whole or ' -- ' in whole:
         say('em dash')
-    if re.search(r'\bCurio\b(?! Class)', body):
+    if re.search(r'\bCurio\b(?! Class)', whole):
         say('"Curio" alone')
-    return out, cells
+    return out
 
 
-def check_grade(grade):
-    path = DIR / f'grade-{grade}.md'
-    if not path.exists():
-        return [f'grade {grade}: missing {path.relative_to(ROOT)}'], []
-    text = path.read_text()
-    problems, titles, rows = [], [], []
-    found = list(sheets(text))
-    if [n for n, _, _ in found] != list(range(1, 31)):
-        problems.append(f'grade {grade}: sheets numbered {[n for n, _, _ in found]}, want 1-30')
-    for n, title, body in found:
-        p, cells = check_sheet(grade, n, title, body)
-        problems += p
-        titles.append(title)
-        if cells:
-            rows.append(cells)
-    if rows:
-        kinds = Counter(r[0] for r in rows)
+def grade_problems(sheets):
+    """Balance rules for each grade's 30 sheets, plus titles that repeat across grades."""
+    out, seen = [], {}
+    for g in GRADES:
+        rows = sorted((s for s in sheets.values() if s.get('grade') == g), key=lambda s: int(s.get('order') or 0))
+        if not rows:
+            continue
+        if [s.get('order') for s in rows] != [str(i) for i in range(1, 31)]:
+            out.append(f"grade {g}: sheets ordered {[s.get('order') for s in rows]}, want 1-30")
+        kinds = Counter(s.get('kind') for s in rows)
         need = {('Build',): 3, ('Story',): 3, ('Art',): 3, ('Science',): 3, ('Pretend',): 3, ('Game', 'Puzzle'): 3,
                 ('Move', 'Outside'): 3, ('Music',): 2, ('Kitchen',): 1, ('Kindness',): 1}
         for ks, n in need.items():
             if sum(kinds[k] for k in ks) < n:
-                problems.append(f'grade {grade}: fewer than {n} {"/".join(ks)}')
-        if sum(r[5] in ('1', '1+') for r in rows) < 20:
-            problems.append(f'grade {grade}: fewer than 20 solo sheets')
-        if sum(r[2] in ('Outdoors', 'Either') for r in rows) < 6:
-            problems.append(f'grade {grade}: fewer than 6 outdoor sheets')
-        if sum(r[3] in ('Low', 'Medium') for r in rows) < 18:
-            problems.append(f'grade {grade}: fewer than 18 low or medium mess')
-    return problems, titles
+                out.append(f'grade {g}: fewer than {n} {"/".join(ks)}')
+        if sum(s['solo'] for s in rows) < 20:
+            out.append(f'grade {g}: fewer than 20 solo sheets')
+        if sum(s['outside'] for s in rows) < 6:
+            out.append(f'grade {g}: fewer than 6 outdoor sheets')
+        if sum(s.get('mess') in ('Low', 'Medium') for s in rows) < 18:
+            out.append(f'grade {g}: fewer than 18 low or medium mess')
+        for s in rows:
+            t = s.get('title', '')
+            key = re.sub(r'[^a-z0-9]+', ' ', t.lower().replace("'s ", ' ').replace("'", '')).strip()
+            if key in seen:
+                out.append(f'title {t!r} in grade {g} repeats grade {seen[key]}')
+            seen.setdefault(key, g)
+    return out
 
 
 def main(args):
     grades = args or GRADES
-    problems, seen = [], {}
+    sheets = load(grades)
+    problems_ = [p for s in sheets.values() for p in problems(s)] + grade_problems(sheets)
     for g in grades:
-        p, titles = check_grade(g)
-        problems += p
-        for t in titles:
-            key = re.sub(r'[^a-z0-9]+', ' ', t.lower().replace("'s ", ' ').replace("'", '')).strip()
-            if key in seen:
-                problems.append(f'title {t!r} in grade {g} repeats grade {seen[key]}')
-            seen.setdefault(key, g)
-    for p in problems:
+        if not any(s.get('grade') == g for s in sheets.values()):
+            problems_.append(f'grade {g}: no sheets in {BREAKS.relative_to(ROOT)}')
+    for p in problems_:
         print(p)
-    print(f'{len(seen)} sheets checked, {len(problems)} problems')
-    return 1 if problems else 0
+    print(f'{len(sheets)} sheets checked, {len(problems_)} problems')
+    return 1 if problems_ else 0
 
 
 if __name__ == '__main__':

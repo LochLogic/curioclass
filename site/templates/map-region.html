@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% block title %}{{ title }}: teaching map · Curio Class{% endblock %}
+{% block description %}A suggested teaching order for {{ title }} on Curio Class: {{ stops | length }} stops, with what is ready to use at each one.{% endblock %}
+{% block head %}
+<style>
+.trail-wrap { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; margin: 18px 0 8px; }
+.trail-map { display: block; width: 100%; height: auto; font-family: inherit; }
+.trail-map.phone { display: none; max-width: 420px; margin: 0 auto; }
+.trail-map .num { font: 700 15px var(--serif); pointer-events: none; }
+.trail-map .lbl { font-size: 13.5px; fill: var(--ink); }
+.trail-map .pin { font-size: 10px; font-weight: 700; fill: #fff; pointer-events: none; }
+.trail-map .stop:hover .lbl, .trail-map .stop:focus .lbl { text-decoration: underline; fill: var(--focus); }
+@media (max-width: 760px) { .trail-map.wide { display: none; } .trail-map.phone { display: block; } }
+.map-key { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; color: var(--muted); margin: 0 0 18px; }
+.map-key span { display: inline-flex; align-items: center; gap: 6px; }
+.map-key svg { flex: none; }
+.stop-list { list-style: none; padding: 0; margin: 10px 0 0; counter-reset: none; display: grid; gap: 10px; }
+.stop-list li { display: grid; grid-template-columns: 40px 1fr; gap: 4px 12px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; scroll-margin-top: 90px; }
+.stop-list .n { grid-row: span 3; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; font: 700 16px var(--serif); border: 2.5px solid var(--c); color: var(--c); }
+.stop-list .ready .n { background: var(--c); color: #fff; }
+.stop-list h3 { font-size: 18px; margin: 4px 0 0; }
+.stop-list p { margin: 0; font-size: 15px; }
+.stop-list .meta { color: var(--muted); font-size: 14px; }
+.stop-list .codes { font-variant-numeric: tabular-nums; }
+.region-nav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin: 26px 0 8px; }
+.map-basis { color: var(--muted); font-size: 14px; max-width: 760px; }
+</style>
+{% endblock %}
+{% block main %}
+<div class="wrap" style="--c: {{ color }}">
+  {{ crumbs([('Teaching map', '/map/'), (subject.short, '/map/#regions-h'), (grade_label(g), None)]) }}
+  <div class="page-head"><h1>{{ title }}</h1><p>{{ stops | length }} stops in a suggested teaching order. {{ ready }} {{ 'has' if ready == 1 else 'have' }} a tool ready; outlined stops are planned. Each stop opens its module page.</p></div>
+
+  <div class="trail-wrap">{{ wide | safe }}{{ phone | safe }}</div>
+  <p class="map-key">
+    <span><svg width="22" height="22" aria-hidden="true"><circle cx="11" cy="11" r="9" fill="{{ color }}"/></svg>Tool ready</span>
+    <span><svg width="22" height="22" aria-hidden="true"><circle cx="11" cy="11" r="8.5" fill="#fff" stroke="{{ color }}" stroke-width="2" stroke-dasharray="4 3"/></svg>Planned</span>
+    <span><svg width="26" height="26" aria-hidden="true"><circle cx="13" cy="13" r="11" fill="none" stroke="{{ color }}" stroke-width="2" stroke-dasharray="1 4" stroke-linecap="round"/><circle cx="13" cy="13" r="6" fill="{{ color }}"/></svg>Dotted ring: builds on an earlier grade</span>
+    <span>Pins: <b>T</b> tool{% if closet_live %}, <b>W</b> Word Wall, <b>C</b> anchor chart, <b>G</b> family game, <b>S</b> Sub Day{% endif %}</span>
+  </p>
+
+  <section class="group" aria-labelledby="stops-h">
+    <h2 id="stops-h">The stops in order</h2>
+    <ol class="stop-list">
+      {% for s in stops %}
+      <li id="stop-{{ s.n }}" class="{{ 'ready' if s.ready }}">
+        <span class="n" aria-hidden="true">{{ s.n }}</span>
+        <h3><a href="{{ s.m.url }}">{{ s.m.title }}</a></h3>
+        <p class="meta">{{ s.m.strand }} · <span class="codes">{{ s.m.codes | join(', ') }}</span></p>
+        <p>
+          {% if s.tools %}Ready: {% for t in s.tools %}<a href="{{ t.url }}">{{ t.title }}</a>{{ ', ' if not loop.last }}{% endfor %}.{% else %}No tool ready yet{% if s.planned %}; {{ s.planned }} planned{% endif %}.{% endif %}
+          {% if s.closet %} Supply Closet: {% for label, href in s.closet %}<a href="{{ href }}">{{ label }}</a>{{ ', ' if not loop.last }}{% endfor %}.{% endif %}
+          {% if s.links %} Builds on: {% for b in s.links %}<a href="{{ b.m.url }}">{{ b.m.title }}</a> ({{ b.region }}){{ ', ' if not loop.last }}{% endfor %}.{% endif %}
+        </p>
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <nav class="region-nav" aria-label="Other grades">
+    {% if prev %}<a href="{{ prev[1] }}">Before: {{ prev[0] }}</a>{% else %}<span></span>{% endif %}
+    {% if next %}<a href="{{ next[1] }}">Next: {{ next[0] }}</a>{% endif %}
+  </nav>
+  <p class="map-basis">How this order was drafted: {% for b, text in bases %}{{ text }}{{ '; ' if not loop.last }}{% endfor %}. It is a suggestion, not a pacing guide. <a href="/map/#about">About the map</a>.</p>
+</div>
+{% endblock %}

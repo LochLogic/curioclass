@@ -1,0 +1,135 @@
+unit,n,title,type,module,reason
+cs-k,6,Step-by-Step Check-In,Review,Step-by-Step,repeats n41 Kindergarten Coder Big Review: same ordering and arrow path
+cs-k,8,Make a Classroom Job Symbol,Diagram,Signs and Changing Values,"vague: drawing symbols, no checkable task; n7 Signs That Talk covers meaning"
+cs-k,14,How the Tower Was Built,Timeline,What the Code Does,repeats n2 Plant a Seed Sequence: ordering pictures of steps
+cs-k,16,Who Goes First? Line-Up Rules,Apply,Fair Rules for Turns,"n18 Change the Rule, Change the Leader teaches fair turns more clearly"
+cs-k,22,Sort and Count Buttons,Practice,Count and Decide,repeats n20 Tally the Toy Box: counting and sorting pictured items
+cs-k,24,Can We Count It?,Organizer,Asking With Data,n26 Number or Word? and n25 cover what data can answer
+cs-k,29,Secret Password Keeper,Practice,Public or Private?,repeats n30 Ask a Grown-Up First: who may know private information
+cs-1,10,People Teach the Robot,Read and respond,What Is AI?,wordy listening story; n9 Fruit Guesser Goofs shows training better
+cs-1,15,"Log Out, Lock Up",Practice,Parts of a Computer,repeats n14 Picture Password Builder: protecting an account
+cs-1,28,Which Rule Shared Turns Better?,Data and graphs,Fair Rules for Turns,repeats n25 Reading Corner Turn Rules: comparing two turn rules
+cs-1,32,Only Asked at Recess,Apply,Asking With Data,repeats n27 Who Is Left Out?: spotting who a plan misses
+cs-1,41,Letter or Text Message?,Organizer,Computing Then and Now,"repeats n39 Ways to Write, Then to Now: change over time with picture cards"
+cs-2,9,Helpful or Confusing Examples?,Organizer,Teach the Machine,repeats n8 It Only Saw Red Apples: bad training examples
+cs-2,11,How Machines Learn From Examples,Read and respond,Teach the Machine,wordy passage; n10 Train a Paper Robot lab teaches it hands-on
+cs-2,15,Think Before You Click,Apply,Input and Output,off-topic wordy stories; n14 Design a Pet Store Computer covers I/O
+cs-2,23,How Was It Built? Step Story,Timeline,What the Code Does,repeats n21 and n22 Comment Your Code: tracing how code was built
+cs-2,28,The Game Maker's Rule,Read and respond,Fair Rules for Turns,wordy reading; n25 and n26 already show how a turn rule changes who wins
+cs-2,32,The Survey Missed the Bus Riders,Apply,Asking With Data,"repeats n29 Number Data, Word Data: who a survey misses"
+cs-3,4,"If It Rains, Then...",Practice,"If This, Then That",n5 Conditional Grid Robot (generated) and n6 cover if-then
+cs-3,12,Set Once or Keeps Changing?,Organizer,Variables in Programs,repeats n10 Variables Are Labeled Boxes: set once or changing values
+cs-3,18,Two Halves Make a Game,Apply,Code as a Team,n16 and n17 cover collaboration; combining pieces needs partner code
+cs-3,20,Hardware and Software Handshake,Diagram,Hardware and Software Together,repeats n19 Hardware or Software?: how the parts work together
+cs-3,25,Pop-Up Problem Cards,Apply,How We Use the Internet,repeats n24 Personal Info Stoplight: what to share online
+cs-3,33,Two Ways to Pick Teams,Apply,Algorithms That Help Some More,repeats n34 Lunch Line Algorithms: comparing rules for fairness
+cs-3,38,"Problem, Invention, Change",Organizer,Computing Inventions and Inventors,repeats n36 Computing Inventions Timeline: problem and change per invention
+cs-3,41,Learning a New Tool at Work,Writing frame,Computing on the Job,"vague: learning a new work app, no checkable output"
+cs-3,43,Where Old Gadgets Go,Read and respond,New Tech: Yes or No?,"wordy reading, off-focus; n42 New Gadget Pros and Cons covers new tech"
+cs-4,3,Flowchart or Steps: Which Is Clearer?,Critique,Plan It Before You Code It,repeats n1 Flowchart a Snack Machine: comparing flowcharts and steps
+cs-4,7,Document My Program,Writing frame,Trace the Code,wordy comment exercise; n9 Code Review Checklist already checks comments
+cs-4,8,Trace the Bug,Critique,Trace the Code,n4 Trace Table Basics and n5 (generated) already teach tracing
+cs-4,11,Driver and Navigator,Read and respond,Code as a Team,wordy reading on roles; n9 Code Review Checklist teaches teamwork hands-on
+cs-4,13,Operating System or App?,Organizer,Hardware and Software Together,repeats n12 Inside the Box: sorting computer system parts
+cs-4,15,Rows and Columns,Practice,Tables and Visualizations,n18 Sort the Book Table (written) already organizes cards into a table
+cs-4,17,Recess Temperature Line Graph,Data and graphs,Tables and Visualizations,repeats n16 Pick the Right Chart: reading a trend graph
+cs-4,22,Clean the Survey Data,Practice,Fair Surveys,thin: no clear task; n20 and n21 already cover fair surveys
+cs-4,28,The Voice Helper That Misheard,Read and respond,Training Data Matters,wordy reading; n27 Lopsided Training Data shows the same bias
+cs-4,30,Wired or Wireless?,Organizer,"Wired, Wireless and Login",n31 School Network Map shows wired and wireless in one drawing
+cs-4,33,Passphrase Builder,Puzzle,"Wired, Wireless and Login",n32 Who Are You? covers login; n34 review already rates passwords
+cs-4,35,Bus Route Algorithms,Apply,Algorithms That Help Some More,repeats n36 Who Waits Longest?: comparing two algorithms
+cs-4,40,Whose Ideas Were Left Out?,Read and respond,Computing Inventions and Inventors,wordy reading; n38 and n39 already cover computing history
+cs-4,42,Help Wanted: Decode the Job Ad,Apply,Computing on the Job,reading task; n43 Roles on an App Team shows jobs more concretely
+cs-4,45,Gadget Energy Use,Data and graphs,New Tech: Yes or No?,off-focus watts table; n44 What Data Does It Collect? covers new tech
+cs-5,7,Debug Log,Log,Remix a Program,n6 Debugging Routine (written) and n33 User Test Notes cover logs
+cs-5,9,Which Version Should We Keep?,Critique,Code as a Team,repeats n10 Version History: comparing versions of a program
+cs-5,15,Will It Rain? Prediction Rule,Apply,Train a Classifier,repeats n12 Classify by Features: writing and testing a decision rule
+cs-5,23,Help Desk Tickets,Apply,Hardware and Software Together,"n21 Input, Process, Output, Storage covers how devices work"
+cs-5,25,Does This Answer Make Sense?,Practice,Fair Surveys,n24 Lunch Survey Workshop and n26 (generated) cover survey design
+cs-5,31,Empathy Map,Organizer,Human-Centered Design,repeats n30 Persona Card: understanding the user
+cs-5,34,Redesign From Feedback,Planner,Human-Centered Design,repeats n33 User Test Notes: turning feedback into fixes
+cs-5,35,How Book Suggestions Work,Read and respond,Algorithms That Help Some More,wordy reading; n36 Grade the Job Algorithm tests fairness hands-on
+cs-5,38,Before and After Computing,Organizer,Computing Inventions and Inventors,repeats n40 Did It Help More Than Hurt?: before and after inventions
+cs-5,42,Scanners on the Mail Route,Read and respond,Computing on the Job,reading task; n43 Weather App Team Bug shows job tasks concretely
+cs-5,44,Life Cycle of a Tablet,Diagram,New Tech: Yes or No?,off-focus life cycle drawing; n45 and n46 cover new tech choices
+cs-6,2,Flowchart to Pseudocode Translator,Practice,Flowcharts and Pseudocode,n1 Flowchart Symbols and n3 Model a Real Algorithm already cover translating
+cs-6,10,Test Cases Table,Practice,Code You Did Not Write,n8 Read Someone Else's Code already traces a stranger's program by hand
+cs-6,13,When Not to Use AI,Read and respond,Choosing AI or Not,"wordy passage; n11 Steps, Rules or Data? teaches choosing AI hands-on"
+cs-6,16,Training Data or Testing Data?,Organizer,Machine Learning Models,n15 Count the Accuracy (generated) covers evaluating; n14 builds the model
+cs-6,19,Robots on the Job,Read and respond,Algorithms and Fairness,wordy reading; n17 Everyday Algorithms Audit covers who is affected
+cs-6,22,Choose the Visualization,Apply,Data Detectives,repeats n21 Spot the Misleading Chart: reading charts critically
+cs-6,26,Who Holds the Data?,Organizer,"Data, Metadata and You",repeats n25 Precision Ladder: who should hold or see data
+cs-6,28,Fix It or Flag It?,Organizer,Cleaning Data Honestly,repeats n27 Dirty Data Detectives and written n29: handling bad data
+cs-6,31,Internet Path Map,Diagram,Packets and the Internet,n30 Packet Postcards teaches packets hands-on; map repeats it
+cs-6,34,Attacks and the CIA Triad,Organizer,Cyber Attacks and Defense,n36 review already sorts attacks by CIA part; n33 teaches the attack
+cs-6,39,Who Is Online?,Data and graphs,Who Gets Connected,repeats n38 Coverage Map Reading: gaps in home internet access
+cs-6,42,Color Contrast Check,Apply,Design for Every User,n40 Accessibility Checklist Audit already covers contrast
+cs-7,2,Count Loop or Condition Loop?,Practice,Flowcharts and Pseudocode,wordy loop rewrite; n1 Nested Loops and n3 cover loops
+cs-7,10,Test Before You Trust,Apply,Code You Did Not Write,n8 Check It Against the Docs already tests AI code against reality
+cs-7,13,Rules Versus Examples,Apply,Choosing AI or Not,repeats n12 Should AI Do This?: choosing a method for a task
+cs-7,15,Features That Matter,Apply,Machine Learning Models,repeats n16 Nearest Neighbor by Hand: choosing what a model uses
+cs-7,18,Jobs Changed by Automation,Data and graphs,Algorithms and Fairness,repeats n19 Stakeholder Map: effects of automation on people
+cs-7,22,Summarize by Category,Data and graphs,Data Detectives,"repeats n20 And, Or Filters: working with a data table"
+cs-7,26,Data Rights for Young People,Read and respond,"Data, Metadata and You",wordy law summary; n24 Choose the Granularity covers data privacy
+cs-7,28,Data Cleaning Log,Log,Cleaning Data Honestly,repeats n29 Duplicate Detective: logging every cleaning change
+cs-7,31,Handshake Protocol,Practice,Packets and the Internet,wordy sequence chart; n30 Lost Packets Simulation teaches resends
+cs-7,33,Attack and Defense Match,Organizer,Cyber Attacks and Defense,repeats n35 Anatomy of a Breach: matching defenses to attacks
+cs-7,36,Spec Sheet Match,Practice,Who Gets Connected,repeats n37 Rural and Urban Access Graph: device needs by user
+cs-7,41,Inclusive Teams Build Better,Read and respond,Design for Every User,wordy case reading; n39 and n40 teach accessibility concretely
+cs-8,3,Design Challenge: Return Sorter,Planner,Flowcharts and Pseudocode,repeats n2 and n5: algorithm design with flowchart and pseudocode
+cs-8,10,Integration Plan,Planner,Code You Did Not Write,repeats n9 Licenses for Shared Code: borrowing code with credit
+cs-8,12,Costs and Benefits of AI Use,Data and graphs,Choosing AI or Not,"n11 Three Answers, One Prompt already weighs AI use"
+cs-8,15,Plan a Better Model,Planner,Machine Learning Models,n16 Model Card already covers limits; n14 audits the gap
+cs-8,19,Automation Impact Report,Apply,Algorithms and Fairness,repeats n17 Algorithmic Grading Debate: effects on affected people
+cs-8,22,Paper Dashboard Design,Planner,Data Detectives,repeats n21 Charts in the News: presenting data honestly
+cs-8,26,Who Should Own the Data?,Writing frame,"Data, Metadata and You",repeats n25 Remove the Names: who controls personal data
+cs-8,27,Limits and Biases Statement,Writing frame,Cleaning Data Honestly,repeats n16 Model Card limits section: stating dataset limits
+cs-8,31,Keep the Network Connected,Puzzle,Packets and the Internet,off-standard graph puzzle; n32 How a Web Page Loads covers internet
+cs-8,35,Social Engineering Scenarios,Apply,Cyber Attacks and Defense,repeats n33 Threat Model a School App: thin scenario decisions
+cs-8,38,Case Study: Library Hotspot Lending,Source analysis,Who Gets Connected,repeats n36 Policy Brief: access gap with a case study
+cs-8,44,Town Hall: Cameras on Main Street,Writing frame,Computing History and Impact,repeats n13 Position Paper: argue a claim with a counterclaim
+cs-9,4,Decompose Into Procedures,Practice,Modular Programs and APIs,n6 Parameters and Returns Trace (written) already covers procedures
+cs-9,9,Where Did the Training Data Come From?,Critique,Building and Evaluating AI,wordy dataset critique; n10 Fact-Check the AI Answer is more concrete
+cs-9,13,Clean the Weather Table,Practice,Simulation and Data Science,thin: cleaning rows by hand; n38 Write a Data Dictionary covers data quality
+cs-9,14,Network Topologies,Diagram,Networks of Networks,repeats n15 and n16: how network parts connect
+cs-9,18,Social Engineering Casebook,Apply,Cybersecurity,repeats n20 Encryption Basics' attack-and-defense idea; wordy cases
+cs-9,21,Algorithmic Bias Case,Read and respond,"Ethics, Law and Data Policy",wordy case; n22 Student Privacy Laws Compared covers ethics
+cs-9,25,The Hype Curve,Data and graphs,Emerging Technology Review,thin: placing technologies on a curve; n24 compares them
+cs-9,29,Deterministic or Probabilistic?,Organizer,Minds and Machines,n31 review also sorts deterministic and probabilistic algorithms
+cs-9,35,Persona and Journey Map,Organizer,"Design, Test and Refine",repeats n34 User Interview Notes to Needs: understanding users
+cs-9,44,Battery Life Data,Data and graphs,Device Limits and Optimization,repeats n42 Know Your Device's Limits: device constraints
+cs-10,2,Sorting Race: Bubble vs Insertion,Data and graphs,Data Structures and Algorithms,n1 Binary Search by Halves and n3 (generated) cover algorithm cost
+cs-10,4,Class Diagram for a Library,Diagram,Modular Programs and APIs,n5 Objects and Methods Trace teaches classes more concretely
+cs-10,9,"Train, Validate, Test",Organizer,Building and Evaluating AI,n8 Precision and Recall (generated) covers evaluation; n10 datasheet covers data
+cs-10,12,"Three Variables, One Plot",Data and graphs,Simulation and Data Science,repeats n11 Rumor Spread Simulation: data from a simulation
+cs-10,15,Network Diagram: Small Office,Diagram,Networks of Networks,repeats n14 Routing Tables: network structure
+cs-10,20,Anatomy of a Phishing Email,Critique,Cybersecurity,n18 Public Key puzzle (generated) and n19 cover attacks and defense
+cs-10,22,Who Owns Code?,Read and respond,"Ethics, Law and Data Policy",wordy law summary; n21 Terms of Service is a real source
+cs-10,25,"Who Helps, Who Is Harmed?",Apply,Emerging Technology Review,repeats n24 Technology Comparison Chart: who benefits or is harmed
+cs-10,30,The Chinese Room Argument,Read and respond,Minds and Machines,wordy reading; n29 Randomized Algorithm Trace teaches the idea
+cs-10,35,User Testing Script,Planner,"Design, Test and Refine",repeats n34 Write a Spec and n36: testing a design
+cs-10,38,Validate the Sign-Up Data,Apply,Data Dictionaries and Validation,repeats n37 Validation Rules: applying rules to data
+cs-10,44,Procedures Save Power,Apply,Device Limits and Optimization,repeats n42 Optimize the Loop: saving work on a small device
+cs-11,5,Interface Contract,Writing frame,Modular Programs and APIs,n6 Docstrings That Help (written) already teaches writing interfaces
+cs-11,9,Feature Engineering,Apply,Building and Evaluating AI,n8 Overfitting Curve and n10 rubric cover evaluating a model
+cs-11,13,Design a Multivariate Chart,Planner,Simulation and Data Science,thin: sketching two charts; n12 Correlation or Causation? is stronger
+cs-11,14,Reading Traceroute Output,Source analysis,Networks of Networks,n16 Anatomy of a Web Request covers reading network output
+cs-11,15,Latency and Bandwidth Budget,Data and graphs,Networks of Networks,repeats n16 and written Networks check: where delay comes from
+cs-11,20,Incident Response Plan,Planner,Cybersecurity,repeats n18 Risk Assessment Matrix: planning for school tech risks
+cs-11,21,Rights Under Data Protection Law,Organizer,"Ethics, Law and Data Policy",n22 Computer Fraud Law Case covers a real law with a source
+cs-11,26,Futures Wheel,Organizer,Emerging Technology Review,repeats n24 Impact Assessment: effects of an emerging technology
+cs-11,30,Game Tree for Tic-Tac-Toe,Diagram,Minds and Machines,niche; n29 Monte Carlo Estimate of Pi and n31 review cover the unit
+cs-11,35,Bug Triage,Organizer,"Design, Test and Refine",n34 Sprint Planning and n36 Usability Test Findings cover the cycle
+cs-11,38,Range and Format Checks,Practice,Data Dictionaries and Validation,n39 Validation Report (written) already covers checks
+cs-11,43,Device Simulation Limits,Apply,Device Limits and Optimization,repeats n42 Time or Space?: device limits trade-offs
+cs-12,5,Refactor the Monolith,Apply,Modular Programs and APIs,repeats n4 Design an API: defining module interfaces
+cs-12,10,Deployment Model Card,Writing frame,Building and Evaluating AI,repeats n9 Red-Team Plan: documenting an AI model's limits
+cs-12,13,Data Science Report,Writing frame,Simulation and Data Science,wordy report; n12 Does the Simulation Match Reality? is more focused
+cs-12,15,How the Internet Scales,Read and respond,Networks of Networks,wordy reading; n14 Design a School Network covers scale concretely
+cs-12,18,Write a Security Policy,Writing frame,Cybersecurity,repeats n21 Draft a School Data Policy: writing policy rules
+cs-12,21,Draft a School Data Policy,Writing frame,"Ethics, Law and Data Policy",repeats n23 Mock Legislation Hearing (written): data policy for schools
+cs-12,26,Peer Review of a Tech Review,Critique,Emerging Technology Review,needs a partner's finished n24 report; hard to run alone
+cs-12,30,Human and Machine Intelligence,Writing frame,Minds and Machines,repeats n29 Probabilistic or Exact?: machine versus human thinking
+cs-12,38,Validation Pipeline Design,Apply,Data Dictionaries and Validation,repeats n37 Data Quality Audit: checking incoming data
+cs-12,40,Team Roles in a Real Project,Read and respond,Computing Teams and Careers,wordy reading; n39 Computing Pathway Plan covers careers
+cs-12,44,Device Capability Diagram,Diagram,Device Limits and Optimization,repeats n42 Embedded Optimization Challenge: device limits

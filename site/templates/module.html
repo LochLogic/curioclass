@@ -36,6 +36,33 @@
   </section>
   {% endif %}
 
+  {% if rcards %}
+  <section class="group">
+    <h2>Research Cards</h2>
+    <p>{% if rc_all %}A first taste of research for young learners: a two-page card on a person, place, thing or animal. Children read, then find facts and write them down.{% else %}Two-page research cards that go with this module. Children read, then find facts and write them down.{% endif %}</p>
+    <ul class="module-list">{% for c in rcards[:6] %}<li><a href="/closet/research-cards/{{ c.id }}/"><b>{{ c.emoji }} {{ c.title }}</b></a></li>{% endfor %}</ul>
+    <p><a class="btn" href="/closet/research-cards/">All research cards</a></p>
+  </section>
+  {% endif %}
+
+  {% if sheets or gens %}
+  <section class="group">
+    <h2>Worksheets</h2>
+    {% if sheets %}
+    <p>{% set ready = sheets | selectattr('built') | list %}{% if ready %}{{ ready | length }} ready to print{% if sheets | length > ready | length %}, {{ sheets | length - ready | length }} more planned{% endif %}{% else %}{{ sheets | length }} planned, not written yet{% endif %}. Each has a student copy and an answer key.</p>
+    <ul class="module-list">
+      {% for s in sheets if s.built %}<li><a href="{{ s.url }}"><b>{{ s.title }}</b></a><span>{{ s.type }} · {{ s.label }}</span></li>{% endfor %}
+    </ul>
+    {% endif %}
+    {% if gens %}
+    <p><b>Make a sheet:</b> a new one with its answer key every time, settings already picked for this module.</p>
+    <ul class="module-list">
+      {% for g in gens %}<li><a href="{{ g.url }}"><b>{{ g.title }}</b></a><span>{{ g.note }}</span></li>{% endfor %}
+    </ul>
+    {% endif %}
+  </section>
+  {% endif %}
+
   {% if chart %}
   <section class="group">
     <h2>Anchor chart</h2>

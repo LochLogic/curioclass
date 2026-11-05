@@ -1,0 +1,525 @@
+key,subject,band,word,verdict,fix_type,proposal,reason
+arts-3-5-caring-for-and-exhibiting-art/preserve,arts,3-5,preserve,ok,,,
+arts-3-5-characters-and-scenes/lines,arts,3-5,lines,ok,,,
+arts-3-5-dance-ideas-from-art-and-words/level,arts,3-5,level,fix,svg,"svg: three stick-figure dancers side by side, one crouched low, one standing, one leaping high, labeled low, middle, high","bars with stars, no dancer"
+arts-3-5-dance-ideas-from-art-and-words/phrase,arts,3-5,phrase,ok,,,
+arts-3-5-famous-artists-and-movements/impressionism,arts,3-5,impressionism,ok,,,
+arts-3-5-famous-artists-and-movements/movement,arts,3-5,movement,fix,svg,svg: three small framed paintings in the same dabbed-dot style in a row under one bracket labeled Impressionism,"one painting of lilies, no group of artists"
+arts-3-5-famous-artists-and-movements/style,arts,3-5,style,fix,svg,"svg: the same simple house drawn three ways in three frames, thick black outlines, small dots, soft blurred color",bright flowers do not show a way of looking
+arts-3-5-form-and-composition/form,arts,3-5,form,ok,,,
+arts-3-5-melody-and-scales/leap,arts,3-5,leap,ok,,,
+arts-3-5-plays-about-our-community/character,arts,3-5,character,ok,,,
+arts-3-5-reading-media/persuade,arts,3-5,persuade,fix,svg,"svg: a speech bubble ""Try it, you will love it!"" with an arrow to a thought bubble ""OK, I will!""","odd box object, no persuading shown"
+arts-3-5-reading-music/staff,arts,3-5,staff,ok,,,
+arts-3-5-stop-motion-animation/set,arts,3-5,set,ok,,,
+arts-3-5-stop-motion-animation/storyboard,arts,3-5,storyboard,fix,svg,"svg: six numbered boxes in two rows, each with a small sketch of a ball rolling a little further left to right","empty boxes, no drawings or plan"
+arts-6-8-animation-basics/frame,arts,6-8,frame,ok,,,
+arts-6-8-animation-basics/timing,arts,6-8,timing,fix,svg,"svg: two ball arcs, the top with 4 dots labeled 4 frames: fast, the bottom with 12 dots labeled 12 frames: slow",dots with no frame count
+arts-6-8-arranging-a-song/dynamics,arts,6-8,dynamics,ok,,,
+arts-6-8-art-history-timeline/impressionism,arts,6-8,Impressionism,ok,,,
+arts-6-8-choreography/canon,arts,6-8,canon,ok,,,
+arts-6-8-choreography/motif,arts,6-8,motif,ok,,,
+arts-6-8-comparing-productions/design,arts,6-8,design,ok,,,
+arts-6-8-comparing-productions/staging,arts,6-8,staging,ok,,,
+arts-6-8-devising-a-scene/blocking,arts,6-8,blocking,ok,,,
+arts-6-8-devising-a-scene/devise,arts,6-8,devise,ok,,,
+arts-6-8-ensemble-skills/intonation,arts,6-8,intonation,fix,svg,"svg: a tuner dial with the needle straight up in a green zone labeled in tune, flat marked on the left and sharp on the right",painted tuner is an unreadable dial on a stripe
+arts-6-8-harmony-and-chords/minor,arts,6-8,minor,ok,,,
+arts-6-8-music-around-the-world/raga,arts,6-8,raga,ok,,,
+arts-6-8-performing-in-different-spaces/notes,arts,6-8,notes,ok,,,
+arts-6-8-principles-of-design/emphasis,arts,6-8,emphasis,ok,,,
+arts-6-8-principles-of-design/proportion,arts,6-8,proportion,ok,,,
+arts-6-8-public-art-and-murals/scale,arts,6-8,scale,ok,,,
+arts-6-8-scripts-and-staging/cue,arts,6-8,cue,fix,svg,"svg: a script page with one line highlighted, an arrow from it to a stage light switching on, labeled cue",a stage light alone does not show a signal
+arts-6-8-scripts-and-staging/stage-manager,arts,6-8,stage manager,ok,,,
+arts-9-12-music-theory/cadence,arts,9-12,cadence,ok,,,
+arts-k-2-art-about-my-life/memory,arts,K-2,memory,ok,,,
+arts-k-2-art-about-my-life/story,arts,K-2,story,ok,,,
+arts-k-2-dances-of-many-places/describe,arts,K-2,describe,ok,,,
+arts-k-2-dancing-a-feeling/ending,arts,K-2,ending,ok,,,
+arts-k-2-drama-in-role/prop,arts,K-2,prop,fix,repaint,"a wooden spoon and a paper crown lying on the floor of a small theater stage, red curtains open behind",a spoon alone does not say play
+arts-k-2-drama-in-role/role,arts,K-2,role,fix,repaint,"a costume rack beside a small stage with a crown, a firefighter hat and a chef hat on hooks",an apron on a hook does not show pretending
+arts-k-2-high-and-low-loud-and-soft/low,arts,K-2,low,ok,,,
+arts-k-2-high-and-low-loud-and-soft/soft,arts,K-2,soft,ok,,,
+arts-k-2-instrument-families/family,arts,K-2,family,ok,,,
+arts-k-2-making-up-songs/rhyme,arts,K-2,rhyme,ok,,,
+arts-k-2-picture-and-sound-stories/story,arts,K-2,story,ok,,,
+arts-k-2-pretend-and-play/prop,arts,K-2,prop,fix,repaint,"a broom leaning on the edge of a small theater stage, red curtains open behind it",a broom by a window does not say play
+arts-k-2-puppets-and-feelings/puppet,arts,K-2,puppet,fix,repaint,"a green sock puppet with button eyes and a red felt tongue, the open cuff of the sock showing at the bottom","reads as a toy dragon, not a puppet"
+arts-k-2-steady-beat-and-rhythm/beat,arts,K-2,beat,ok,,,
+arts-k-2-steady-beat-and-rhythm/short-sound,arts,K-2,short sound,ok,,,
+computer-science-3-5-algorithms-that-help-some-more/compare,computer-science,3-5,compare,fix,svg,"svg: a red circle and a red square side by side, a green bar labeled same: red and an orange bar labeled different: shape","two tiny faint flowcharts, nothing compared"
+computer-science-3-5-computing-on-the-job/software,computer-science,3-5,software,ok,,,
+computer-science-3-5-new-tech-yes-or-no/risk,computer-science,3-5,risk,ok,,,
+computer-science-3-5-plan-it-before-you-code-it/event,computer-science,3-5,event,ok,,,
+computer-science-3-5-plan-it-before-you-code-it/variable,computer-science,3-5,variable,fix,svg,svg: a box with the name tag lives on top holding the number 3,"a box with 0 and no name, the definition says named"
+computer-science-3-5-why-data-varies/vary,computer-science,3-5,vary,ok,,,
+computer-science-3-if-this-then-that/bug,computer-science,3-5,bug,ok,,,
+computer-science-3-if-this-then-that/condition,computer-science,3-5,condition,fix,svg,svg: a diamond reading Is it raining? with a true arrow to an umbrella and a false arrow to a sun,cloud and question mark do not show a true or false check
+computer-science-3-variables-in-programs/value,computer-science,3-5,value,ok,,,
+computer-science-3-variables-in-programs/variable,computer-science,3-5,variable,ok,,,
+computer-science-4-trace-the-code/comment,computer-science,3-5,comment,fix,svg,"svg: three lines of code, the middle one green and starting with # reading # draw the house, a curved arrow jumping over it",the comment line does not stand out from the code
+computer-science-4-trace-the-code/trace,computer-science,3-5,trace,ok,,,
+computer-science-4-trace-the-code/value,computer-science,3-5,value,ok,,,
+computer-science-4-trace-the-code/variable,computer-science,3-5,variable,ok,,,
+computer-science-4-training-data-matters/training-data,computer-science,3-5,training data,fix,svg,"svg: a big pile of photo tiles tagged dog and cat, an arrow into a box labeled model","one dog photo on a blank stack, no teaching shown"
+computer-science-4-wired-wireless-and-login/authorization,computer-science,3-5,authorization,ok,,,
+computer-science-5-human-centered-design/accessible,computer-science,3-5,accessible,fix,svg,"svg: a video player with a play button and a black caption strip of white text lines along the bottom, a CC badge in the corner",the captions the prompt asks for are not drawn
+computer-science-5-remix-a-program/bug,computer-science,3-5,bug,ok,,,
+computer-science-5-remix-a-program/debug,computer-science,3-5,debug,ok,,,
+computer-science-5-remix-a-program/test,computer-science,3-5,test,ok,,,
+computer-science-5-train-a-classifier/confidence,computer-science,3-5,confidence,ok,,,
+computer-science-5-train-a-classifier/test-data,computer-science,3-5,test data,fix,svg,"svg: a small pile of new untagged photo tiles going into a box labeled model, out comes dog? with a check mark","a stack of landscape photos, no checking shown"
+computer-science-6-8-algorithms-and-fairness/algorithmic-bias,computer-science,6-8,algorithmic bias,ok,,,
+computer-science-6-8-choosing-ai-or-not/training-data,computer-science,6-8,training data,ok,,,
+computer-science-6-8-cleaning-data-honestly/limitation,computer-science,6-8,limitation,ok,,,
+computer-science-6-8-code-you-did-not-write/test,computer-science,6-8,test,ok,,,
+computer-science-6-8-computing-history-and-impact/pioneer,computer-science,6-8,pioneer,ok,,,
+computer-science-6-8-data-detectives/dataset,computer-science,6-8,dataset,ok,,,
+computer-science-6-8-data-metadata-and-you/granularity,computer-science,6-8,granularity,ok,,,
+computer-science-6-8-data-metadata-and-you/precision,computer-science,6-8,precision,ok,,,
+computer-science-6-8-machine-learning-models/feature,computer-science,6-8,feature,ok,,,
+computer-science-6-8-machine-learning-models/training-set,computer-science,6-8,training set,ok,,,
+computer-science-6-8-variables-data-types-and-procedures/variable,computer-science,6-8,variable,ok,,,
+computer-science-1-code-a-path/program,computer-science,K-2,program,ok,,,
+computer-science-1-parts-of-a-computer/log-out,computer-science,K-2,log out,ok,,,
+computer-science-1-what-is-ai/data,computer-science,K-2,data,fix,svg,"svg: a computer screen showing a small table of numbers, with a sun row and a cloud row of tally marks beside it",blank photo stack shows no information
+computer-science-1-what-is-ai/mistake,computer-science,K-2,mistake,ok,,,
+computer-science-2-input-and-output/digital-footprint,computer-science,K-2,digital footprint,ok,,,
+computer-science-2-input-and-output/output,computer-science,K-2,output,fix,svg,svg: a computer with arrows going out to a printed page and to a speaker with sound waves,a speaker alone does not show a computer giving back
+computer-science-2-loops-and-events/sprite,computer-science,K-2,sprite,ok,,,
+computer-science-2-teach-the-machine/data,computer-science,K-2,data,ok,,,
+computer-science-2-teach-the-machine/machine-learning,computer-science,K-2,machine learning,ok,,,
+computer-science-2-teach-the-machine/model,computer-science,K-2,model,ok,,,
+computer-science-2-teach-the-machine/train,computer-science,K-2,train,ok,,,
+computer-science-k-2-asking-with-data/data,computer-science,K-2,data,ok,,,
+computer-science-k-2-computing-then-and-now/now,computer-science,K-2,now,ok,,,
+computer-science-k-2-computing-then-and-now/then,computer-science,K-2,then,ok,,,
+computer-science-k-2-fair-rules-for-turns/turn,computer-science,K-2,turn,ok,,,
+computer-science-k-2-signs-and-changing-values/value,computer-science,K-2,value,ok,,,
+computer-science-k-2-using-tech-well/break,computer-science,K-2,break,ok,,,
+computer-science-k-2-using-tech-well/careful,computer-science,K-2,careful,ok,,,
+computer-science-k-2-what-the-code-does/event,computer-science,K-2,event,ok,,,
+computer-science-k-2-what-the-code-does/step,computer-science,K-2,step,fix,svg,"svg: three numbered footprints in a row, 1, 2, 3, the first one bright and the other two pale",a lone arrow does not read as one thing to do
+computer-science-k-count-and-decide/data,computer-science,K-2,data,ok,,,
+computer-science-k-count-and-decide/least,computer-science,K-2,least,ok,,,
+computer-science-k-step-by-step/bug,computer-science,K-2,bug,ok,,,
+cte-6-8-career-clusters/industry,cte,6-8,industry,fix,svg,"svg: three small factory buildings in a row, each with solar panels on its roof, under one bracket labeled solar industry","one rooftop of panels, not a group of businesses"
+cte-6-8-e-bike-buyer/insurance,cte,6-8,insurance,ok,,,
+cte-6-8-economy-checkup/unemployment,cte,6-8,unemployment,ok,,,
+cte-6-8-interests-and-skills/aptitude,cte,6-8,aptitude,ok,,,
+cte-6-8-interests-and-skills/inventory,cte,6-8,inventory,ok,,,
+cte-6-8-interests-and-skills/transferable-skill,cte,6-8,transferable skill,ok,,,
+cte-6-8-snow-season-prices/competition,cte,6-8,competition,ok,,,
+cte-6-8-snow-season-prices/supply,cte,6-8,supply,fix,svg,"svg: a supply graph, price up the side and amount along the bottom, one line rising left to right labeled supply",a rack of shovels does not show amount offered at each price
+cte-6-8-startup-shares/diversification,cte,6-8,diversification,ok,,,
+ela-3-5-comparing-texts-side-by-side/structure,ela,3-5,structure,ok,,,
+ela-3-5-comparing-texts-side-by-side/topic,ela,3-5,topic,ok,,,
+ela-3-5-main-idea-with-text-evidence/main-idea,ela,3-5,main idea,fix,svg,svg: a table top labeled main idea held up by three legs labeled detail,"a bat over a cornfield, unrelated"
+ela-3-5-pictures-panels-and-performances/panel,ela,3-5,panel,ok,,,
+ela-3-5-presenting-clearly/pace,ela,3-5,pace,fix,svg,"svg: a speech bubble above a dial with slow on the left and fast on the right, the needle in the middle",painted metronome is an unreadable teardrop
+ela-3-literal-and-figurative-language/root-word,ela,3-5,root word,ok,,,
+ela-3-literal-and-figurative-language/simile,ela,3-5,simile,fix,svg,"svg: a cheetah icon beside the sentence strip ""as fast as a cheetah"", with as fast as highlighted",a running cheetah shows no comparison words
+ela-3-literal-and-figurative-language/synonym,ela,3-5,synonym,fix,svg,"svg: two word cards, big and large, joined by a green equals sign",two elephants do not show words that mean the same
+ela-3-main-idea-and-key-details/topic,ela,3-5,topic,fix,svg,"svg: a book cover with a bee drawing, an arrow to a tag reading honeybees",a honeycomb alone does not show what a text is about
+ela-3-multisyllable-decoding/base-word,ela,3-5,base word,ok,,,
+ela-3-multisyllable-decoding/irregular-spelling,ela,3-5,irregular spelling,ok,,,
+ela-3-multisyllable-decoding/syllable,ela,3-5,syllable,ok,,,
+ela-3-narrative-writing/problem,ela,3-5,problem,ok,,,
+ela-3-narrative-writing/solution,ela,3-5,solution,ok,,,
+ela-3-notes-and-categories/fact,ela,3-5,fact,fix,svg,"svg: an owl icon beside the sentence strip ""Owls hunt at night."" with a big green check mark labeled true",an owl at night does not say true and checkable
+ela-3-opinion-and-informative-writing/fact,ela,3-5,fact,fix,svg,"svg: an ice cube icon beside the sentence strip ""Water freezes at 32 degrees F."" with a big green check mark labeled true",thermometer and ice do not say true and provable
+ela-3-parts-of-speech/adverb,ela,3-5,adverb,fix,svg,"svg: the sentence The cat ran quickly, with quickly highlighted and an arrow from it to ran","a running cat shows the action, not the adverb"
+ela-3-text-structure-and-search-tools/effect,ela,3-5,effect,ok,,,
+ela-4-firsthand-and-secondhand-accounts/account,ela,3-5,account,ok,,,
+ela-4-greek-and-latin-roots/root,ela,3-5,root,fix,svg,svg: the word transport with port highlighted and the tag port = carry under it,"shows unkindly (kind is a base word), the example teaches the root port"
+ela-4-myths-and-allusions/achilles-heel,ela,3-5,Achilles' heel,ok,,,
+ela-4-myths-and-allusions/hero,ela,3-5,hero,fix,repaint,"people: a Greek hero in a bronze helmet and red cape standing at the prow of a sailing ship, shield on his arm, waves around",a ship with no hero
+ela-4-short-research-projects/research-question,ela,3-5,research question,ok,,,
+ela-4-theme-and-summary/character-trait,ela,3-5,character trait,fix,svg,"svg: a name tag reading Maya with three tags hanging below it: patient, kind, brave",a HELLO tag with a star names no trait
+ela-4-theme-and-summary/key-details,ela,3-5,key details,ok,,,
+ela-4-writing-with-evidence/fact,ela,3-5,fact,fix,svg,"svg: a bee icon beside the sentence strip ""Bees make honey."" with a big green check mark labeled true",a honeycomb does not say proven true
+ela-5-comparing-characters-and-themes/compare,ela,3-5,compare,ok,,,
+ela-5-comparing-characters-and-themes/motivation,ela,3-5,motivation,ok,,,
+ela-5-conjunctions-tense-and-commas/perfect-tense,ela,3-5,perfect tense,fix,svg,"svg: a timeline with a check mark on a past dot before now and the sentence I have finished, with have finished highlighted","a bare timeline does not show has, have or had"
+ela-5-figurative-language/figurative-language,ela,3-5,figurative language,ok,,,
+ela-5-figurative-language/metaphor,ela,3-5,metaphor,fix,text,"example: ""My room is a pigsty"" is a metaphor.","the painting is the pigsty metaphor (a pig in a messy room), the example is a different one"
+ela-5-figurative-language/simile,ela,3-5,simile,fix,svg,"svg: a lightning bolt beside the sentence strip ""fast as lightning"", with as highlighted",a lightning bolt alone shows no comparison
+ela-5-narrative-craft/flashback,ela,3-5,flashback,ok,,,
+ela-5-narrative-craft/pacing,ela,3-5,pacing,fix,svg,"svg: an open book above a dial from slow to fast, the needle turned toward slow","a snail alone reads as slow, not how a story moves"
+ela-5-quoting-and-inferring/implicit,ela,3-5,implicit,ok,,,
+ela-5-reasons-and-evidence/convincing,ela,3-5,convincing,ok,,,
+ela-5-reasons-and-evidence/statistic,ela,3-5,statistic,ok,,,
+ela-6-8-academic-vocabulary-strategies/greek,ela,6-8,Greek,ok,,,
+ela-6-8-analysis-with-evidence-from-nonfiction/informational-text,ela,6-8,informational text,ok,,,
+ela-6-8-commas-dashes-and-ellipses/coordinate-adjectives,ela,6-8,coordinate adjectives,fix,svg,"svg: the phrase long, dusty road with long and dusty in two matching blue blocks, a comma between, both arrows pointing to road","a desert road shows the example, not the grammar"
+ela-6-8-listening-to-speakers-and-discussing/delineate,ela,6-8,delineate,ok,,,
+ela-6-8-listening-to-speakers-and-discussing/interpret,ela,6-8,interpret,ok,,,
+ela-6-8-theme-and-textual-evidence/strongest,ela,6-8,strongest,ok,,,
+ela-6-central-idea-and-summary/develop,ela,6-8,develop,fix,svg,"svg: a staircase of four blocks rising left to right, labeled idea, example, example, conclusion",a bare staircase does not say building an idea in a text
+ela-6-connotation-and-context/denotation,ela,6-8,denotation,fix,svg,svg: a house icon beside a dictionary card reading home: the place where you live,a house alone does not show a dictionary meaning
+ela-6-connotation-and-context/nuance,ela,6-8,nuance,ok,,,
+ela-6-connotation-and-context/tone,ela,6-8,tone,ok,,,
+ela-6-plot-and-character-development/dynamic-character,ela,6-8,dynamic character,ok,,,
+ela-6-point-of-view/first-person,ela,6-8,first person,ok,,,
+ela-6-point-of-view/third-person-limited,ela,6-8,third person limited,ok,,,
+ela-6-point-of-view/unreliable-narrator,ela,6-8,unreliable narrator,ok,,,
+ela-6-pronouns-and-sentence-variety/intensive-pronoun,ela,6-8,intensive pronoun,ok,,,
+ela-6-pronouns-and-sentence-variety/vague-pronoun,ela,6-8,vague pronoun,ok,,,
+ela-6-research-and-citing-sources/plagiarism,ela,6-8,plagiarism,ok,,,
+ela-6-tracing-an-argument/claim,ela,6-8,claim,ok,,,
+ela-6-tracing-an-argument/relevant,ela,6-8,relevant,ok,,,
+ela-7-argument-with-counterclaims/however,ela,6-8,however,ok,,,
+ela-7-argument-with-counterclaims/logical,ela,6-8,logical,ok,,,
+ela-7-comparing-authors/emphasis,ela,6-8,emphasis,ok,,,
+ela-7-evaluating-arguments/irrelevant,ela,6-8,irrelevant,ok,,,
+ela-7-fiction-vs-history/alter,ela,6-8,alter,ok,,,
+ela-7-fiction-vs-history/time-period,ela,6-8,time period,fix,svg,svg: a timeline from 1900 to 2000 with 1930 to 1939 shaded and an old radio icon above the shaded span,an old radio alone does not show a span of history
+ela-7-figurative-language-and-allusions/metaphor,ela,6-8,metaphor,fix,text,"example: ""My room is a pigsty"" is a metaphor.","the painting is the pigsty metaphor, the example is a different one"
+ela-7-informative-writing/precise,ela,6-8,precise,ok,,,
+ela-7-phrases-clauses-and-sentence-types/complex-sentence,ela,6-8,complex sentence,fix,svg,"svg: I stayed in in a big blue block labeled independent, joined to because it rained in a smaller orange block labeled dependent",two blank blocks do not show clauses
+ela-7-setting-plot-and-character-interplay/foreshadowing,ela,6-8,foreshadowing,ok,,,
+ela-7-setting-plot-and-character-interplay/motivation,ela,6-8,motivation,ok,,,
+ela-7-sound-and-form-in-poetry/meter,ela,6-8,meter,ok,,,
+ela-8-argument-and-rebuttal/concede,ela,6-8,concede,ok,,,
+ela-8-argument-and-rebuttal/formal-style,ela,6-8,formal style,fix,svg,"svg: two speech bubbles, a gray one reading gonna and a blue one reading going to, the blue one labeled formal",a blank card with lines does not show serious language
+ela-8-argument-and-rebuttal/logical-fallacy,ela,6-8,logical fallacy,ok,,,
+ela-8-argument-and-rebuttal/persuasive,ela,6-8,persuasive,ok,,,
+ela-8-conflicting-information/conflicting,ela,6-8,conflicting,ok,,,
+ela-8-conflicting-information/fact,ela,6-8,fact,fix,svg,"svg: a bridge icon beside the sentence strip ""The bridge opened in 1937."" with a green check labeled can be proven",a bridge alone does not say provable statement
+ela-8-conflicting-information/interpretation,ela,6-8,interpretation,fix,svg,svg: one bar chart in the middle with two speech bubbles from it reading prices rose fast and prices barely moved,a map with pins does not show explaining what facts mean
+ela-8-conflicting-information/opinion,ela,6-8,opinion,ok,,,
+ela-8-dialogue-and-dramatic-irony/comic-relief,ela,6-8,comic relief,ok,,,
+ela-8-dialogue-and-dramatic-irony/dramatic-irony,ela,6-8,dramatic irony,ok,,,
+ela-8-modern-takes-on-classic-stories/retelling,ela,6-8,retelling,ok,,,
+ela-8-narrative-techniques/flashback,ela,6-8,flashback,ok,,,
+ela-8-puns-irony-and-allusion/analogy,ela,6-8,analogy,ok,,,
+ela-8-puns-irony-and-allusion/pun,ela,6-8,pun,fix,svg,"svg: a loaf of bread and a coin, both with arrows to one word tag dough, labeled bread mix and money",bread and a coin only work if the joke is already known
+ela-8-verbals-and-voice/participle,ela,6-8,participle,fix,svg,"svg: the phrase the broken vase with broken highlighted and an arrow from it to vase, a small cracked vase icon above","a broken vase shows the example, not the verb form"
+ela-8-verbals-and-voice/subjunctive-mood,ela,6-8,subjunctive mood,ok,,,
+ela-1-phonics-blends-and-digraphs/decode,ela,K-2,decode,ok,,,
+ela-1-phonics-blends-and-digraphs/digraph,ela,K-2,digraph,fix,svg,"svg: the word ship with sh joined in one blue tile labeled 1 sound, i and p in their own tiles, a small ship icon beside",a sailing ship shows no letters or sounds
+ela-1-phonics-blends-and-digraphs/long-vowel,ela,K-2,long vowel,fix,svg,"svg: the word cake with the a in red under a long bar mark, a small cake icon beside it",a birthday cake shows no vowel
+ela-1-reading-fluency/accuracy,ela,K-2,accuracy,ok,,,
+ela-1-reading-fluency/expression,ela,K-2,expression,ok,,,
+ela-1-reading-fluency/fluency,ela,K-2,fluency,fix,svg,svg: an open book with a smooth wavy arrow running along its lines and a small dial with the needle in the middle,a plain open book does not show smooth reading
+ela-1-reading-fluency/phrase,ela,K-2,phrase,ok,,,
+ela-1-story-elements-and-lessons/key-detail,ela,K-2,key detail,fix,svg,"svg: a story page with three lines, the middle one starred and highlighted, a small hen icon beside the starred line",a hen alone does not show an important part of a story
+ela-1-text-features/bold,ela,K-2,bold,ok,,,
+ela-1-word-meanings/meaning,ela,K-2,meaning,ok,,,
+ela-1-word-meanings/root-word,ela,K-2,root word,ok,,,
+ela-1-writing-sentences-and-stories/opinion,ela,K-2,opinion,ok,,,
+ela-1-writing-sentences-and-stories/topic,ela,K-2,topic,fix,svg,svg: a page of writing with a shark drawing at the top and an arrow to a tag reading sharks,a shark alone does not show what writing is about
+ela-2-author-s-purpose/inform,ela,K-2,inform,fix,svg,"svg: an open book with a bat picture and fact lines, a speech bubble from it reading Bats sleep upside down.",a hanging bat does not show teaching facts
+ela-2-fables-and-folktales/moral,ela,K-2,moral,ok,,,
+ela-2-long-vowels-and-two-syllable-words/long-vowel,ela,K-2,long vowel,fix,svg,"svg: the word boat with the o in red under a long bar mark, a small boat icon beside it",a boat shows no vowel
+ela-2-long-vowels-and-two-syllable-words/spell,ela,K-2,spell,ok,,,
+ela-2-main-idea-and-connections/effect,ela,K-2,effect,ok,,,
+ela-2-main-idea-and-connections/main-topic,ela,K-2,main topic,fix,svg,svg: a book cover with a frog drawing and an arrow to a tag reading how frogs grow,a frog on a log does not show what a text is about
+ela-2-paragraph-writing/detail,ela,K-2,detail,fix,svg,"svg: a big box reading Dogs are smart with a smaller box under it reading Dogs can learn tricks, the small box highlighted",a dog with a ball does not show a fact that tells more
+ela-2-paragraph-writing/reason,ela,K-2,reason,fix,svg,"svg: a speech bubble reading Dogs are the best pets because they are loyal, with because they are loyal highlighted",a dog at a door does not show why you think something
+ela-2-story-structure-and-point-of-view/ending,ela,K-2,ending,ok,,,
+ela-2-story-structure-and-point-of-view/middle,ela,K-2,middle,ok,,,
+ela-2-story-structure-and-point-of-view/problem,ela,K-2,problem,ok,,,
+ela-2-word-building/compound-word,ela,K-2,compound word,fix,svg,"svg: three word blocks sun + flower = sunflower, a small sun icon over sun and a flower icon over flower",a sunflower shows no word parts
+ela-2-word-building/root-word,ela,K-2,root word,ok,,,
+ela-k-2-adding-details-and-fixing-sentences/period,ela,K-2,period,fix,svg,"svg: the sentence I see a cat. with a big red period at the end, circled",a lone giant dot reads as nothing
+ela-k-2-adding-details-and-fixing-sentences/sentence,ela,K-2,sentence,ok,,,
+ela-k-2-listening-and-asking-questions/key-detail,ela,K-2,key detail,fix,svg,"svg: a story page with three lines, the middle one starred and highlighted, a small honey jar icon beside it",a honey jar alone does not show an important part
+ela-k-2-listening-and-asking-questions/speaker,ela,K-2,speaker,ok,,,
+ela-k-2-new-words-from-read-alouds/meaning,ela,K-2,meaning,fix,svg,svg: the word card tiny with an arrow to a box reading very small and a small mouse icon,an elephant and mice do not show what a word says
+ela-k-2-new-words-from-read-alouds/word,ela,K-2,word,ok,,,
+ela-k-2-poems-and-songs-aloud/rhyme,ela,K-2,rhyme,ok,,,
+ela-k-2-reasons-an-author-gives/reason,ela,K-2,reason,fix,svg,"svg: a speech bubble reading Trees are good because they give shade, with because they give shade highlighted",a tree alone does not show why the author thinks something
+ela-k-2-show-and-tell/complete-sentence,ela,K-2,complete sentence,ok,,,
+ela-k-2-show-and-tell/tell,ela,K-2,tell,ok,,,
+ela-k-all-about-books/cover,ela,K-2,cover,ok,,,
+ela-k-all-about-books/topic,ela,K-2,topic,fix,svg,svg: a book cover with a frog drawing and an arrow to a tag reading frogs,a frog alone does not show what a book is about
+ela-k-draw-tell-and-write/fact,ela,K-2,fact,fix,svg,"svg: a fish icon beside the sentence strip ""Fish live in water."" with a big green check mark labeled true",a fish bowl does not say true
+ela-k-draw-tell-and-write/opinion,ela,K-2,opinion,fix,svg,svg: a dog icon with a thought bubble reading Dogs are the best pets! and a red heart,a happy dog shows no thinking or liking
+ela-k-letter-sounds-and-sight-words/short-vowel,ela,K-2,short vowel,fix,svg,"svg: the word pig with the i in red under a short curved mark, a small pig icon beside it",a pig shows no vowel
+ela-k-letter-sounds-and-sight-words/sight-word,ela,K-2,sight word,ok,,,
+ela-k-print-concepts-and-the-alphabet/space,ela,K-2,space,ok,,,
+ela-k-print-concepts-and-the-alphabet/word,ela,K-2,word,ok,,,
+ela-k-rhymes-and-sounds/rhyme,ela,K-2,rhyme,ok,,,
+ela-k-rhymes-and-sounds/sound,ela,K-2,sound,ok,,,
+ela-k-rhymes-and-sounds/syllable,ela,K-2,syllable,ok,,,
+ela-k-story-time-characters-and-setting/event,ela,K-2,event,ok,,,
+ela-k-talk-it-over/answer,ela,K-2,answer,ok,,,
+ela-k-words-and-sentences/capital,ela,K-2,capital,ok,,,
+eld-3-5-cause-and-effect-language/since,eld,3-5,since,fix,svg,"svg: the sentence Since it rained, the game was canceled. with Since highlighted and a small rain cloud icon above",a wet ball field cannot show a joining word
+eld-3-5-explaining-my-solution/finally,eld,3-5,finally,fix,svg,"svg: three numbered steps 1, 2, 3 in a row, the last one bright with a check mark, the others pale",a lone 3 does not show the very end
+eld-3-5-explaining-my-solution/first,eld,3-5,first,fix,svg,"svg: three numbered steps 1, 2, 3 in a row, the first one bright, the others pale",a lone 1 does not show before all others
+eld-3-5-opinions-with-reasons/persuade,eld,3-5,persuade,fix,svg,"svg: a poster with a recycling sign and an arrow into a blue bin, a speech bubble beside it reading Please recycle!",a recycling sign on a blank wall does not show trying to convince
+eld-3-5-then-and-now-language/past,eld,3-5,past,ok,,,
+eld-3-5-then-and-now-language/present,eld,3-5,present,ok,,,
+eld-6-12-telling-stories-and-experiences/narrate,eld,6-8,narrate,ok,,,
+eld-6-8-idioms-and-everyday-expressions/literal,eld,6-8,literal,ok,,,
+eld-6-8-lab-reports-and-claims/hypothesis,eld,6-8,hypothesis,fix,repaint,"two potted plants side by side, one under a bright yellow sun and one under a dark gray cloud, a big question mark between them","two plants with no sun or shade shown, no test visible"
+eld-6-8-lab-reports-and-claims/reasoning,eld,6-8,reasoning,fix,svg,svg: a box labeled evidence and a box labeled claim joined by a chain link labeled because,two blank boxes and a chain do not show why evidence supports a claim
+eld-k-2-choosing-and-giving-reasons/agree,eld,K-2,agree,ok,,,
+eld-k-2-retelling-stories/then,eld,K-2,then,ok,,,
+health-pe-3-5-bullying-and-upstanders/conflict,health-pe,3-5,conflict,ok,,,
+health-pe-3-5-germs-and-disease-prevention/prevent,health-pe,3-5,prevent,fix,svg,"svg: a soap bar icon, an arrow, then a germ icon inside a red circle with a slash",a bar of soap alone does not show stopping something
+health-pe-3-5-growing-up/hormones,health-pe,3-5,hormones,fix,svg,svg: a simple body outline with a small gland dot in the neck and an envelope traveling a dashed path from it to the arm,an envelope between two dots has no body in it
+health-pe-3-5-juggling-and-practice-habits/juggle,health-pe,3-5,juggle,ok,,,
+health-pe-3-5-the-human-body-systems/organ,health-pe,3-5,organ,fix,svg,"svg: a simple body outline with a real heart shape (with its top vessels) in the chest, labeled heart","a valentine heart, not a body part"
+health-pe-6-12-peer-skill-coaching/critical-element,health-pe,6-8,critical element,ok,,,
+health-pe-6-8-digital-wellness/digital-footprint,health-pe,6-8,digital footprint,ok,,,
+health-pe-6-8-healthy-relationships/consent,health-pe,6-8,consent,fix,svg,"svg: a phone showing a photo of two friends, a speech bubble Can I post this? and a reply bubble Yes! with a green check",a phone camera icon shows no permission
+health-pe-6-8-personal-fitness-plans/fitt,health-pe,6-8,FITT,ok,,,
+health-pe-6-8-personal-fitness-plans/frequency,health-pe,6-8,frequency,ok,,,
+health-pe-6-8-sport-skills-and-rules/invasion-game,health-pe,6-8,invasion game,fix,svg,"svg: a court split by a center line, blue dots with arrows crossing into the orange half toward its goal",a hoop alone does not show entering the other side
+health-pe-6-8-substance-use-prevention/addiction,health-pe,6-8,addiction,ok,,,
+health-pe-6-8-substance-use-prevention/peer-pressure,health-pe,6-8,peer pressure,ok,,,
+health-pe-k-2-cooperative-games/turn,health-pe,K-2,turn,ok,,,
+health-pe-k-2-feelings-and-friends/sorry,health-pe,K-2,sorry,ok,,,
+health-pe-k-2-health-goals-at-home/goal,health-pe,K-2,goal,ok,,,
+health-pe-k-2-health-goals-at-home/habit,health-pe,K-2,habit,fix,svg,"svg: a row of seven day boxes, Mon to Sun, each with an apple icon and a green check",a fruit bowl does not show doing something often
+health-pe-k-2-healthy-habits/habit,health-pe,K-2,habit,fix,svg,"svg: a row of seven day boxes, Mon to Sun, each with a toothbrush icon and a green check",a toothbrush alone does not show again and again
+health-pe-k-2-safety/stranger,health-pe,K-2,stranger,fix,svg,"svg: a gray person outline with a big question mark over the head, a small stop hand beside it",a gate and a stop hand show no person
+library-3-5-giving-credit/plagiarism,library,3-5,plagiarism,ok,,,
+library-3-5-search-like-a-pro/reliable,library,3-5,reliable,fix,svg,svg: a browser window showing a museum building icon with a green check badge,a museum building alone does not say trusted
+library-3-5-windows-and-mirrors-shelf/mirror-book,library,3-5,mirror book,ok,,,
+library-6-8-is-it-reliable/misinformation,library,6-8,misinformation,ok,,,
+library-6-8-is-it-reliable/reliable,library,6-8,reliable,ok,,,
+library-k-2-many-voices-book/author,library,K-2,author,ok,,,
+library-k-2-many-voices-book/class-book,library,K-2,class book,ok,,,
+math-3-area/rectangle,math,3-5,rectangle,ok,,,
+math-3-patterns-and-two-step-problems/estimate,math,3-5,estimate,ok,,,
+math-3-scaled-graphs/key,math,3-5,key,ok,,,
+math-3-time-volume-and-mass/mass,math,3-5,mass,fix,svg,svg: a level balance scale with a paper clip on one pan and a weight labeled 1 g on the other,"a paper clip on a stand, no balance or measure shown"
+math-3-times-tables-fluency/fluency,math,3-5,fluency,fix,svg,"svg: three flash cards 3 x 4 = 12, 6 x 5 = 30, 7 x 2 = 14, each with a green check, a stopwatch beside them",a stopwatch alone does not show knowing facts
+math-4-factors-and-multiples/composite-number,math,3-5,composite number,ok,,,
+math-4-factors-and-multiples/divisible,math,3-5,divisible,ok,,,
+math-4-factors-and-multiples/prime-number,math,3-5,prime number,ok,,,
+math-6-summarizing-data/mean,math,6-8,mean,ok,,,
+math-7-multi-step-equations-and-inequalities/flip-the-sign,math,6-8,flip the sign,ok,,,
+math-7-sampling-and-inference/population,math,6-8,population,ok,,,
+math-7-sampling-and-inference/random-sample,math,6-8,random sample,ok,,,
+math-8-bivariate-data/relative-frequency,math,6-8,relative frequency,ok,,,
+math-8-the-pythagorean-theorem/converse,math,6-8,converse,ok,,,
+math-10-probability-rules/conditional-probability,math,9-12,conditional probability,ok,,,
+math-10-probability-rules/independent-events,math,9-12,independent events,ok,,,
+math-10-proofs-and-constructions/proof,math,9-12,proof,ok,,,
+math-10-proofs-and-constructions/theorem,math,9-12,theorem,ok,,,
+math-10-right-triangle-trigonometry/soh-cah-toa,math,9-12,SOH CAH TOA,ok,,,
+math-11-statistical-inference/margin-of-error,math,9-12,margin of error,ok,,,
+math-11-statistical-inference/observational-study,math,9-12,observational study,ok,,,
+math-12-chi-square-and-regression-inference/degrees-of-freedom,math,9-12,degrees of freedom,fix,svg,"svg: five boxes that must add to 20, four colored ones holding 3, 5, 2 and 6, the last gray one holding 4 labeled forced, then df = 4",bare df = 4 does not show values free to vary
+math-12-confidence-intervals-and-significance-tests/null-hypothesis,math,9-12,null hypothesis,ok,,,
+math-12-confidence-intervals-and-significance-tests/significance-level,math,9-12,significance level,ok,,,
+math-12-probability-and-random-variables/random-variable,math,9-12,random variable,ok,,,
+math-12-sampling-distributions/parameter,math,9-12,parameter,ok,,,
+math-12-sampling-distributions/statistic,math,9-12,statistic,ok,,,
+math-9-data-in-one-and-two-variables/causation,math,9-12,causation,ok,,,
+math-9-data-in-one-and-two-variables/correlation-coefficient,math,9-12,correlation coefficient,fix,svg,"svg: a scatter plot of 12 dots rising tightly left to right with a trend line, labeled r = 0.92",bare r = 0.92 does not show linear correlation
+math-9-function-notation-and-graphs/range,math,9-12,range,fix,svg,"svg: the graph of y = x squared with the y-axis shaded orange from 0 upward, labeled range: y ≥ 0",a shaded axis with no graph does not show output values
+math-9-polynomial-arithmetic/binomial,math,9-12,binomial,ok,,,
+math-9-solving-linear-equations-and-inequalities/identity,math,9-12,identity,fix,svg,"svg: 2(x + 1) = 2x + 2 above a small table for x = 0, 1, 2 where both sides match in every row, each with a green check",a plain number line does not show true for every value
+math-1-adding-tens-and-ones/mental-math,math,K-2,mental math,ok,,,
+math-1-counting-to-120/one-hundred-twenty,math,K-2,one hundred twenty,ok,,,
+math-1-fact-strategies/strategy,math,K-2,strategy,ok,,,
+math-1-measuring-length/unit,math,K-2,unit,ok,,,
+math-1-picture-graphs-and-tallies/data,math,K-2,data,ok,,,
+math-1-picture-graphs-and-tallies/survey,math,K-2,survey,ok,,,
+math-1-the-equal-sign/false,math,K-2,false,ok,,,
+math-2-adding-and-subtracting-to-1000/estimate,math,K-2,estimate,ok,,,
+math-2-fluency-within-20/fluency,math,K-2,fluency,fix,svg,"svg: three flash cards 2 + 3 = 5, 4 + 4 = 8, 6 + 1 = 7, each with a green check, a stopwatch beside them",a stopwatch alone does not show knowing facts
+math-2-fluency-within-20/mental-math,math,K-2,mental math,ok,,,
+math-2-line-plots-and-bar-graphs/data,math,K-2,data,ok,,,
+math-2-odd-even-and-arrays/column,math,K-2,column,ok,,,
+math-2-rulers-and-units/estimate,math,K-2,estimate,ok,,,
+math-2-two-step-word-problems/step,math,K-2,step,fix,svg,"svg: three stair steps numbered 1, 2, 3 rising to a star, step 1 bright and the others pale",a box with 1 does not show part of solving
+math-k-putting-together-and-taking-apart/minus,math,K-2,minus,fix,svg,"svg: 5 − 1 = 4 with the minus sign big and red, five dots below with one crossed out",a lone red dash reads as nothing
+science-3-fossils-and-changing-environments/adapt,science,3-5,adapt,ok,,,
+science-3-life-cycles/adult,science,3-5,adult,ok,,,
+science-3-living-in-groups/protect,science,3-5,protect,ok,,,
+science-3-living-in-groups/survive,science,3-5,survive,fix,repaint,a school of silver fish bunched into one tight ball while a big gray shark swims past them,a school of fish alone does not show staying alive
+science-3-magnets-and-static-electricity/magnet,science,3-5,magnet,ok,,,
+science-3-magnets-and-static-electricity/static-electricity,science,3-5,static electricity,fix,svg,"svg: a balloon covered in minus signs touching a wall covered in plus signs, small zigzag sparks where they meet","a floating balloon, not stuck, no charge shown"
+science-4-energy-and-motion/energy,science,3-5,energy,ok,,,
+science-4-structures-and-senses/external,science,3-5,external,fix,svg,svg: a turtle icon with an arrow to its shell labeled outside the body,a turtle alone does not say outside
+science-4-structures-and-senses/structure,science,3-5,structure,ok,,,
+science-4-waves-and-information/code,science,3-5,code,ok,,,
+science-5-earth-s-spheres/interact,science,3-5,interact,ok,,,
+science-5-gravity/gravity,science,3-5,gravity,ok,,,
+science-5-matter-is-made-of-particles/mass,science,3-5,mass,fix,svg,svg: a balance scale tipped down on the side holding a rock and up on the side holding a feather,two balls with no balance do not show mass
+science-5-matter-is-made-of-particles/matter,science,3-5,matter,ok,,,
+science-6-climate-and-ocean-circulation/latitude,science,6-8,latitude,ok,,,
+science-6-geologic-time/extinction,science,6-8,extinction,fix,repaint,"a dinosaur skeleton half buried in dry sand under a dark orange sky, a bright asteroid streak falling in the distance",a rock in space with no Earth or life does not show dying out
+science-6-geologic-time/index-fossil,science,6-8,index fossil,fix,svg,"svg: three stacked rock layers, the middle layer holding a trilobite outline, a tag on it reading 500 million years","reads as a live shrimp, no rock layer"
+science-7-chemical-reactions/chemical-reaction,science,6-8,chemical reaction,fix,svg,"svg: a shiny gray nail, an arrow, the same nail orange-brown with rust, labeled iron + oxygen → rust",a brown nail alone shows no change into new substances
+science-7-ecosystem-change-and-biodiversity/ecosystem-service,science,6-8,ecosystem service,ok,,,
+science-7-ecosystem-change-and-biodiversity/invasive-species,science,6-8,invasive species,fix,svg,svg: an outline map of the Great Lakes with red dots spreading out from one spot across all five lakes,an unreadable pattern of shells
+science-8-electric-and-magnetic-forces/static-electricity,science,6-8,static electricity,ok,,,
+science-8-evolution-and-natural-selection/adaptation,science,6-8,adaptation,ok,,,
+science-8-evolution-and-natural-selection/natural-selection,science,6-8,natural selection,fix,repaint,sooty black tree bark with a dark moth almost hidden on it and a pale white moth standing out clearly beside it,one dark moth shows no helpful trait winning
+science-8-forces-and-motion/mass,science,6-8,mass,ok,,,
+science-8-reproduction-and-heredity/gene,science,6-8,gene,ok,,,
+science-8-reproduction-and-heredity/mutation,science,6-8,mutation,ok,,,
+science-10-acids-bases-and-solutions/base,science,9-12,base,fix,svg,"svg: a pH scale from 0 to 14 with 8 to 14 shaded blue and labeled base, a soap bar icon at 10",a bar of soap does not show a base
+science-10-stoichiometry-and-the-mole/limiting-reactant,science,9-12,limiting reactant,ok,,,
+science-10-stoichiometry-and-the-mole/mole,science,9-12,mole,ok,,,
+science-10-stoichiometry-and-the-mole/percent-yield,science,9-12,percent yield,ok,,,
+science-11-electricity-and-magnetism/voltage,science,9-12,voltage,ok,,,
+science-11-gravity-and-electrostatics/law-of-universal-gravitation,science,9-12,law of universal gravitation,ok,,,
+science-11-light-and-the-electromagnetic-spectrum/refraction,science,9-12,refraction,fix,svg,"svg: a light ray going from air into water, bending toward a dashed normal line at the surface, labeled air and water",the straw in the painting is not bent
+science-11-momentum-and-collisions/impulse,science,9-12,impulse,fix,svg,"svg: a force-time graph with a tall narrow red spike labeled no airbag and a low wide blue hump labeled airbag, both shaded the same area","reads as a pillow, nothing about force and time"
+science-11-momentum-and-collisions/momentum,science,9-12,momentum,fix,svg,"svg: a big box truck with a long arrow and a small bike with a short arrow, the same speed, labeled p = m × v",a parked truck shows no mass times velocity
+science-11-motion-and-kinematics/acceleration,science,9-12,acceleration,ok,,,
+science-11-motion-and-kinematics/scalar,science,9-12,scalar,ok,,,
+science-11-newton-s-laws/newton-s-first-law,science,9-12,Newton's first law,fix,svg,"svg: a ball rolling along a flat line with equal arrows at even spacing, labeled no net force: same speed, same direction",crossed seat belt straps do not show the law
+science-12-ecosystems-and-biomes/primary-productivity,science,9-12,primary productivity,fix,svg,"svg: a bar chart of energy captured by plants, rain forest tallest, grassland middle, desert shortest",a canopy of leaves does not show a rate
+science-12-pollution-and-solutions/remediation,science,9-12,remediation,ok,,,
+science-12-pollution-and-solutions/smog,science,9-12,smog,ok,,,
+science-12-population-and-resources/birth-rate,science,9-12,birth rate,fix,svg,"svg: a line graph titled births per 1,000 people per year, falling from 40 in 1950 to 15 in 2020",an unlabeled falling line says nothing about births
+science-9-biodiversity-and-human-impact/keystone-species,science,9-12,keystone species,fix,svg,"svg: a chain of three icons, sea otter → sea urchin → kelp, with a red X on the otter and the kelp shown eaten away",a cute otter alone shows no effect on an ecosystem
+science-9-climate-systems/global-warming,science,9-12,global warming,ok,,,
+science-9-dna-and-protein-synthesis/amino-acid,science,9-12,amino acid,fix,svg,"svg: a chain of seven colored beads labeled protein, one bead pulled out above it and labeled amino acid",a bead chain with no one block picked out
+science-9-dna-and-protein-synthesis/translation,science,9-12,translation,ok,,,
+science-9-ecology-and-populations/biomass,science,9-12,biomass,ok,,,
+science-9-ecology-and-populations/density-dependent-factor,science,9-12,density-dependent factor,ok,,,
+science-9-evolution/fitness,science,9-12,fitness,fix,svg,"svg: three rows for three generations of moths, dark moths 2, 4, 8 and pale moths 2, 1, 0, on dark bark","a bright yellow moth on brown bark is not camouflaged, shows nothing about fitness"
+science-9-genetics-and-inheritance/genotype,science,9-12,genotype,ok,,,
+science-9-genetics-and-inheritance/phenotype,science,9-12,phenotype,ok,,,
+science-9-genetics-and-inheritance/recessive,science,9-12,recessive,ok,,,
+science-9-homeostasis/insulin,science,9-12,insulin,ok,,,
+science-9-orbits-and-earth-s-history/half-life,science,9-12,half-life,ok,,,
+science-9-photosynthesis-and-cellular-respiration/enzyme,science,9-12,enzyme,fix,svg,"svg: an enzyme blob with a notch, a starch chain fitting into the notch and leaving split into two pieces, labeled faster",a puzzle piece (the same as relevant) shows no reaction sped up
+science-9-photosynthesis-and-cellular-respiration/fermentation,science,9-12,fermentation,fix,svg,"svg: a yeast cell taking in sugar with O₂ crossed out, giving off CO₂ bubbles and alcohol",a loaf of bread does not show making energy without oxygen
+science-9-photosynthesis-and-cellular-respiration/macromolecule,science,9-12,macromolecule,ok,,,
+science-9-resources-and-sustainability/hazard-map,science,9-12,hazard map,fix,svg,"svg: a simple town map with a river, the land along the river shaded red labeled high flood risk, the hills yellow labeled low risk",wavy color bands with no map
+science-9-resources-and-sustainability/sustainable,science,9-12,sustainable,fix,svg,"svg: a loop of three arrows through a tree, seeds and a young sapling, labeled used and replaced",crop rows alone do not show lasting without using up
+science-9-water-and-earth-materials/specific-heat,science,9-12,specific heat,fix,svg,"svg: two beakers heated on the same flame for 5 minutes, sand at 40 °C and water at 25 °C, a thermometer in each",a beach scene shows nothing about heat
+science-1-light-and-shadows/opaque,science,K-2,opaque,fix,repaint,"a flashlight beam shining at a thick wooden board, the front brightly lit and a dark shadow behind it with no light coming through",a plain door shows no light being blocked
+science-1-sound-and-vibration/pitch,science,K-2,pitch,fix,svg,"svg: a bird icon on the high end and a bear icon on the low end of a tall up-down arrow, labeled high and low","a whistle alone shows one sound, not high or low"
+science-2-heating-and-cooling/irreversible,science,K-2,irreversible,fix,svg,"svg: a raw egg, an arrow to a fried egg, and a backward arrow crossed out in red",a fried egg alone shows no change that cannot go back
+science-2-properties-of-materials/flexible,science,K-2,flexible,fix,repaint,"a green bendy drinking straw bent into a U shape, its ridged neck folded and unbroken",a plain rubber band loop shows no bending
+science-k-pushes-and-pulls/push,science,K-2,push,fix,svg,"svg: a hand outline pressing on the side of a box, a big arrow pointing away from the hand",an empty swing shows no push
+science-k-weather-watch/season,science,K-2,season,ok,,,
+sel-3-5-growth-mindset-and-goals/mistake,sel,3-5,mistake,ok,,,
+sel-3-5-growth-mindset-and-goals/yet,sel,3-5,yet,ok,,,
+sel-6-8-conflict-resolution/win-win,sel,6-8,win-win,ok,,,
+sel-6-8-responsible-decisions/decision,sel,6-8,decision,ok,,,
+sel-6-8-responsible-decisions/values,sel,6-8,values,ok,,,
+sel-k-2-calm-down-strategies/breathe,sel,K-2,breathe,ok,,,
+sel-k-2-calm-down-strategies/calm-down,sel,K-2,calm down,fix,svg,"svg: a red frowning face, an arrow counting 1 2 3 4 5, then a green smiling face",numbered clouds alone do not show feeling peaceful again
+sel-k-2-naming-feelings/scared,sel,K-2,scared,fix,svg,"svg: a face with wide eyes, raised eyebrows and an open mouth, a small lightning bolt beside it",lightning alone has no one feeling scared
+social-studies-3-communities-around-the-world/culture,social-studies,3-5,culture,fix,svg,"svg: four icons around the word culture: a bowl of food, a speech bubble reading hola, a holiday lantern and a drum","instruments alone show music, not a way of life"
+social-studies-3-communities-around-the-world/tradition,social-studies,3-5,tradition,fix,svg,"svg: three calendar pages for 2022, 2023 and 2024, each with the same tamale icon on December 24",a plate of food does not show doing it again over years (and reads as egg rolls)
+social-studies-3-local-history/history,social-studies,3-5,history,ok,,,
+social-studies-3-map-skills-and-regions/legend,social-studies,3-5,legend,ok,,,
+social-studies-3-ripple-street/benefit,social-studies,3-5,benefit,fix,svg,"svg: a bakery icon with an arrow to a smiling face holding bread, a green plus sign above labeled good result",a bread basket alone does not show a good result
+social-studies-3-school-fix-it-meeting/agree,social-studies,3-5,agree,ok,,,
+social-studies-4-barter-bay/deflation,social-studies,3-5,deflation,fix,svg,"svg: a pair of shoes with three price tags over time, $40, $35, $30, and a down arrow","shoes and an arrow, no prices falling over time"
+social-studies-4-barter-bay/unemployment,social-studies,3-5,unemployment,fix,repaint,a closed brick mill with boarded-up windows and a big padlock and chain across its front gate,the mill does not read as closed
+social-studies-4-bike-fund-chances/insurance,social-studies,3-5,insurance,ok,,,
+social-studies-4-human-environment-interaction/depend,social-studies,3-5,depend,ok,,,
+social-studies-4-state-economy-and-resources/industry,social-studies,3-5,industry,fix,svg,"svg: three small farms in a row, each a barn and a field, under one bracket labeled farming industry",one combine does not show a group of businesses
+social-studies-4-state-government/bill,social-studies,3-5,bill,fix,svg,"svg: a paper labeled bill, an arrow to a domed capitol building, an arrow to a paper labeled law",a checked document does not show an idea for a law
+social-studies-4-state-government/executive-branch,social-studies,3-5,executive branch,fix,svg,"svg: a government roof over three columns labeled legislative, executive, judicial, the executive column highlighted",an office desk does not show a branch of government
+social-studies-4-state-government/governor,social-studies,3-5,governor,fix,repaint,"people: a state governor, an adult woman with medium brown skin in a dark suit, signing a document at a wooden desk with a state flag behind her",a pen on paper shows no leader
+social-studies-4-state-history/primary-source,social-studies,3-5,primary source,fix,repaint,"a yellowed, creased handwritten letter with a red wax seal, a quill pen and an inkwell beside it",a bright new envelope does not read as made at the time of an event
+social-studies-4-us-regions-and-states/climate,social-studies,3-5,climate,fix,svg,"svg: a 12-month bar chart of average temperature, blue bars low in winter and orange bars high in summer, labeled Northeast","one snowy barn shows weather, not years of it"
+social-studies-5-colonial-economies/artisan,social-studies,3-5,artisan,fix,repaint,people: an adult silversmith with dark skin in a leather apron tapping a silver cup with a small hammer at a wooden workbench,a cup and hammer show no skilled worker
+social-studies-5-colonial-economies/slavery,social-studies,3-5,slavery,ok,,,
+social-studies-5-exploration-and-colonization/colonist,social-studies,3-5,colonist,fix,repaint,people: an adult colonist man in a 1600s wool coat and wide-brimmed hat building a small wooden house near the coast,a house alone does not show a person in a colony
+social-studies-5-history-article-review/critique,social-studies,3-5,critique,ok,,,
+social-studies-5-indigenous-peoples-of-north-america/tradition,social-studies,3-5,tradition,ok,,,
+social-studies-5-source-scout/fact,social-studies,3-5,fact,fix,svg,"svg: a bridge icon beside the sentence strip ""The bridge opened in 1937."" with a green check labeled can be proven",a bridge alone does not say provable
+social-studies-5-source-scout/reliable,social-studies,3-5,reliable,ok,,,
+social-studies-5-tools-for-change/petition,social-studies,3-5,petition,ok,,,
+social-studies-6-ancient-greece/citizen,social-studies,6-8,citizen,fix,repaint,people: adult Athenian men in white robes raising their hands to vote in an open-air assembly on a stone hillside,an owl coin does not show a member of a state
+social-studies-6-ancient-greece/democracy,social-studies,6-8,democracy,ok,,,
+social-studies-6-ancient-greece/myth,social-studies,6-8,myth,fix,repaint,"people: Zeus, a bearded Greek god in a white robe standing on a cloud and raising a lightning bolt, in the style of a Greek vase painting",a lightning bolt alone shows no story about gods
+social-studies-6-ancient-india-and-china/mandate-of-heaven,social-studies,6-8,Mandate of Heaven,fix,repaint,"people: a Chinese emperor in yellow robes kneeling at an altar on a palace terrace, a beam of light shining down on him from the clouds",a dragon carving does not show power given by heaven
+social-studies-6-ancient-rome/patrician,social-studies,6-8,patrician,fix,repaint,"people: a wealthy Roman patrician, an adult man in a white toga with a purple stripe, standing before a large villa and olive fields",a robe on a stool shows no wealthy landowner
+social-studies-6-mesopotamia-and-egypt/code-of-hammurabi,social-studies,6-8,Code of Hammurabi,ok,,,
+social-studies-6-the-shrinking-lake/scarcity,social-studies,6-8,scarcity,ok,,,
+social-studies-6-world-regions-today/developing-country,social-studies,6-8,developing country,fix,svg,"svg: two income bars, a tall one labeled developed and a shorter one labeled developing with a green up arrow on it",a new school does not show a growing economy
+social-studies-6-world-regions-today/gdp,social-studies,6-8,GDP,fix,svg,"svg: small icons of a car, a loaf of bread and a doctor's bag stacking into one tall bar labeled GDP for 1 year",bars for countries A to E do not show the value of goods and services
+social-studies-7-civilizations-of-the-americas/aztec,social-studies,6-8,Aztec,fix,repaint,"the island city of Tenochtitlan on a blue lake, white temples and a tall stepped pyramid in the center, three long causeways to the shore",an abstract square plan is hard to read as a city
+social-studies-7-historians-disagree/secondary-account,social-studies,6-8,secondary account,ok,,,
+social-studies-7-islamic-civilizations/caliphate,social-studies,6-8,caliphate,fix,repaint,"the round city of Baghdad seen from above, circular walls with four gates and a green-domed palace in the center, a river beside it",an abstract circle does not read as a state or city
+social-studies-7-medieval-africa/griot,social-studies,6-8,griot,fix,repaint,"people: a West African griot, an older man with dark skin and a gray beard in a long patterned robe, playing a kora and singing to a circle of listening villagers","the picture is the instrument only, the griot is missing"
+social-studies-7-medieval-africa/mali,social-studies,6-8,Mali,fix,svg,"svg: an outline map of West Africa with the Mali Empire shaded gold along the Niger River, a gold nugget icon, labeled 1235 to 1600",gold nuggets alone do not show an empire
+social-studies-7-medieval-africa/salt,social-studies,6-8,salt,ok,,,
+social-studies-7-medieval-africa/timbuktu,social-studies,6-8,Timbuktu,fix,repaint,"the mud-brick Djinguereber mosque of Timbuktu, tan walls with wooden beams sticking out, a camel caravan resting beside it",a generic domed mosque with tall minarets does not look like Timbuktu
+social-studies-7-medieval-asia/civil-service-exam,social-studies,6-8,civil service exam,fix,repaint,"people: rows of young men in Chinese robes sitting at small desks in separate wooden exam cells, writing with brushes",a paintbrush alone shows no test
+social-studies-7-medieval-asia/gunpowder,social-studies,6-8,gunpowder,ok,,,
+social-studies-7-medieval-asia/tang-dynasty,social-studies,6-8,Tang dynasty,fix,repaint,"a Tang dynasty glazed pottery horse in amber, green and cream drip glaze, standing on a small base",a cartoon horse does not read as the Tang dynasty
+social-studies-7-medieval-europe/black-death,social-studies,6-8,Black Death,fix,svg,"svg: a map of Europe shaded in three colors for 1347, 1348 and 1350, arrows spreading north from Italy",a tiny world map with a dot does not show the plague spreading
+social-studies-7-medieval-europe/serf,social-studies,6-8,serf,fix,repaint,"people: a medieval serf in a rough brown tunic pushing a wooden plow across a field, a lord's stone castle on the hill behind",a plow alone shows no peasant bound to land
+social-studies-7-panel-of-experts/expert,social-studies,6-8,expert,ok,,,
+social-studies-7-unlabeled-archive/context-clue,social-studies,6-8,context clue,fix,repaint,a faded black-and-white photograph with curled edges showing a 1950s car parked on a street,a bright new car shows no hint about when a source was made
+social-studies-7-unlabeled-archive/intended-audience,social-studies,6-8,intended audience,ok,,,
+social-studies-8-creating-the-constitution/articles-of-confederation,social-studies,6-8,Articles of Confederation,fix,svg,svg: a parchment labeled Articles of Confederation 1781 over a small pale box labeled Congress joined by thin lines to 13 big state boxes,a blank parchment says nothing about this plan
+social-studies-8-evidence-corkboard/evidence,social-studies,6-8,evidence,ok,,,
+social-studies-8-motion-on-the-floor/chair,social-studies,6-8,chair,ok,,,
+social-studies-8-motion-on-the-floor/motion,social-studies,6-8,motion,ok,,,
+social-studies-8-reconstruction/jim-crow-laws,social-studies,6-8,Jim Crow laws,ok,,,
+social-studies-8-reconstruction/reconstruction,social-studies,6-8,Reconstruction,ok,,,
+social-studies-8-reconstruction/thirteenth-amendment,social-studies,6-8,Thirteenth Amendment,ok,,,
+social-studies-8-reform-and-the-industrial-north/immigrant,social-studies,6-8,immigrant,fix,repaint,people: an immigrant family with suitcases and cloth bundles stepping off a steamship onto a crowded 1800s harbor dock,a modern ship in a harbor shows no person moving to a new country
+social-studies-8-reform-and-the-industrial-north/seneca-falls-convention,social-studies,6-8,Seneca Falls Convention,fix,repaint,"people: women in 1848 long dresses and bonnets gathered in a brick chapel, one woman standing at a podium reading from a long paper",an empty chapel shows no meeting
+social-studies-8-shaping-our-week/union,social-studies,6-8,union,fix,repaint,people: a group of factory workers in hard hats standing together with linked arms across a table from a manager in a suit,hard hats on hooks show no workers bargaining
+social-studies-8-slavery-and-sectionalism/fugitive-slave-act,social-studies,6-8,Fugitive Slave Act,fix,svg,svg: a law paper labeled Fugitive Slave Act 1850 beside a U.S. map of 1850 with arrows pointing from the free North back to the South,a blank paper on a fence says nothing about this law
+social-studies-8-slavery-and-sectionalism/underground-railroad,social-studies,6-8,Underground Railroad,fix,repaint,"people: a small group of people walking at night through dark woods toward the North Star, one guide holding a lantern low",a lantern alone does not show a secret escape network
+social-studies-8-the-civil-war/emancipation-proclamation,social-studies,6-8,Emancipation Proclamation,fix,svg,"svg: a printed page headed Emancipation Proclamation, January 1, 1863, beside a map with the Confederate states shaded",a generic document with a seal could be any paper
+social-studies-8-the-civil-war/gettysburg-address,social-studies,6-8,Gettysburg Address,fix,repaint,"people: Abraham Lincoln in a black suit and beard reading a short speech from a wooden platform to a crowd, rows of soldiers' graves on the field behind",a top hat on paper shows no speech
+social-studies-8-the-civil-war/secession,social-studies,6-8,secession,fix,svg,"svg: a map of the U.S. in 1860 with South Carolina shaded red and pulled slightly away from the rest, labeled December 1860",a small square leaving a pale map does not read as a state
+social-studies-8-the-early-republic/political-party,social-studies,6-8,political party,ok,,,
+social-studies-8-voices-on-the-vote/fifteenth-amendment,social-studies,6-8,Fifteenth Amendment,fix,svg,svg: a parchment headed 15th Amendment 1870 beside a ballot box with three hands of different skin tones dropping in ballots,a blank parchment says nothing about voting by race
+social-studies-8-voices-on-the-vote/franchise,social-studies,6-8,franchise,ok,,,
+social-studies-8-westward-expansion/indian-removal-act,social-studies,6-8,Indian Removal Act,ok,,,
+social-studies-12-brain-and-behavior/neuroplasticity,social-studies,9-12,neuroplasticity,ok,,,
+social-studies-9-imperialism/colonialism,social-studies,9-12,colonialism,ok,,,
+social-studies-9-imperialism/sphere-of-influence,social-studies,9-12,sphere of influence,fix,svg,svg: an outline map of China's coast with a red zone around one port labeled British trade and a small British flag icon,an abstract shaded box on a coast does not read as a place
+social-studies-9-revolutions-and-enlightenment/french-revolution,social-studies,9-12,French Revolution,fix,repaint,"people: an armed crowd in 1789 French clothes with red, white and blue cockades storming the stone towers of the Bastille, smoke rising",a fairy-tale castle shows no uprising
+social-studies-9-revolutions-and-enlightenment/haitian-revolution,social-studies,9-12,Haitian Revolution,fix,repaint,"people: Toussaint Louverture, a Black general in a blue uniform and bicorne hat, on horseback leading soldiers on a Caribbean hillside",an island with a palm tree shows no revolt
+social-studies-9-world-war-i/nationalism,social-studies,9-12,nationalism,fix,repaint,"people: a crowd at a parade waving many copies of the same flag, banners filling the street",one plain flag shows no pride or loyalty
+social-studies-9-world-war-i/treaty-of-versailles,social-studies,9-12,Treaty of Versailles,fix,repaint,"people: diplomats in 1919 suits seated at a long table in a mirrored palace hall, one man signing a large treaty document",an empty hall shows no treaty
+social-studies-1-cultures-around-the-world/custom,social-studies,K-2,custom,fix,repaint,people: two adults in Japan bowing politely to each other in greeting in front of a small shop,a flag and an envelope do not show a usual way of doing things
+social-studies-1-cultures-around-the-world/tradition,social-studies,K-2,tradition,ok,,,
+social-studies-1-families-and-communities/family,social-studies,K-2,family,fix,repaint,"people: a family of four, two adults and two children, eating dinner together around a round table and smiling",an empty table shows no people
+social-studies-1-old-objects-as-sources/past,social-studies,K-2,past,ok,,,
+social-studies-1-old-objects-as-sources/source,social-studies,K-2,source,ok,,,
+social-studies-1-teddy-bear-makers/product,social-studies,K-2,product,fix,repaint,a brown teddy bear on a store shelf with a blank price tag hanging from its arm,a teddy bear alone does not show making to sell
+social-studies-1-teddy-bear-makers/skill,social-studies,K-2,skill,ok,,,
+social-studies-1-timelines-and-me/event,social-studies,K-2,event,ok,,,
+social-studies-1-timelines-and-me/history,social-studies,K-2,history,fix,svg,svg: a timeline arrow from a barn icon labeled long ago on the left to a house icon labeled now on the right,an old barn alone does not show what happened in the past
+social-studies-2-community-helpers-and-government/law,social-studies,K-2,law,ok,,,
+social-studies-2-how-do-you-know/fact,social-studies,K-2,fact,fix,svg,"svg: three slide icons in a row numbered 1, 2, 3, with a green check labeled true",three slides alone do not say true and checkable
+social-studies-2-how-do-you-know/know,social-studies,K-2,know,fix,svg,svg: a puddle on a sidewalk with a thought bubble above it showing a rain cloud and a big green check,a puddle alone does not show being sure
+social-studies-2-how-do-you-know/source,social-studies,K-2,source,ok,,,
+social-studies-2-money-saving-and-trade/scarcity,social-studies,K-2,scarcity,ok,,,
+social-studies-2-the-last-carousel-ride/account,social-studies,K-2,account,ok,,,
+social-studies-2-the-last-carousel-ride/remember,social-studies,K-2,remember,fix,svg,svg: a head outline with a thought bubble holding a small birthday cake and a heart,a music box does not show keeping something in mind
+social-studies-k-needs-and-wants/need,social-studies,K-2,need,ok,,,
+social-studies-k-needs-and-wants/want,social-studies,K-2,want,ok,,,
+social-studies-k-rules-and-responsibilities/citizen,social-studies,K-2,citizen,fix,repaint,people: neighbors of different ages and skin tones planting flowers together in front of their small town hall,a star with a heart shows no member of a town
+social-studies-k-rules-and-responsibilities/rule,social-studies,K-2,rule,ok,,,
+social-studies-k-then-and-now/change,social-studies,K-2,change,ok,,,
+social-studies-k-then-and-now/future,social-studies,K-2,future,fix,svg,"svg: three boxes yesterday, today, tomorrow joined by arrows, tomorrow highlighted with a star",an arrow and a star do not show time that has not happened yet
+social-studies-k-then-and-now/now,social-studies,K-2,now,fix,svg,"svg: three boxes long ago, now, later joined by arrows, now highlighted with a clock and a calendar page marked today",a school building does not show this time
+social-studies-k-then-and-now/past,social-studies,K-2,past,ok,,,
+social-studies-k-then-and-now/then,social-studies,K-2,then,ok,,,
+world-languages-6-12-asl-grammar-and-facial-expression/gloss,world-languages,6-8,gloss,ok,,,
+world-languages-6-12-asl-grammar-and-facial-expression/wh-question,world-languages,6-8,wh-question,ok,,,
+world-languages-6-12-asl-grammar-and-facial-expression/yes-no-question,world-languages,6-8,yes/no question,ok,,,
+world-languages-6-12-deaf-culture-and-community/audism,world-languages,6-8,audism,fix,svg,svg: a balance scale tipped down on the side with an ear icon and up on the side with a signing hand icon,a plain tipped scale does not say hearing over Deaf
+world-languages-6-12-deaf-culture-and-community/capital-d-deaf,world-languages,6-8,capital-D Deaf,ok,,,
+world-languages-6-12-deaf-culture-and-community/deaf-culture,world-languages,6-8,Deaf culture,ok,,,
+world-languages-6-12-deaf-culture-and-community/deaf-president-now,world-languages,6-8,Deaf President Now,fix,repaint,"people: a crowd of college students in 1988 marching through an open brick campus gate, hands raised, holding blank protest signs",an empty gate with lanterns shows no protest
+world-languages-6-12-travel-and-directions/block,world-languages,6-8,block,ok,,,
+world-languages-k-12-family-home-and-school/teacher,world-languages,K-2,teacher,ok,,,
+world-languages-k-12-fingerspelling-and-the-manual-alphabet/name-sign,world-languages,K-2,name sign,ok,,,
+world-languages-k-12-food-and-ordering/i-would-like,world-languages,K-2,I would like,fix,svg,"svg: a speech bubble reading I would like soup, please. pointing to a soup bowl icon",a bowl of soup shows no polite words
+world-languages-k-12-greetings-and-introductions-in-asl/deaf,world-languages,K-2,Deaf,ok,,,
+world-languages-k-12-greetings-and-introductions/how-are-you,world-languages,K-2,how are you,fix,svg,"svg: a speech bubble reading How are you? beside three small faces, happy, okay and sad",a question mark bubble does not ask about feelings
+world-languages-k-12-greetings-and-introductions/my-name-is,world-languages,K-2,my name is,ok,,,
+world-languages-k-12-greetings-and-introductions/thank-you,world-languages,K-2,thank you,ok,,,
+world-languages-k-12-numbers-colors-and-time/number,world-languages,K-2,number,fix,svg,svg: an open hand outline with all five fingers spread and a big 5 beside it,a hand alone does not say how many
+world-languages-k-12-school-and-daily-routine/every-day,world-languages,K-2,every day,ok,,,
+world-languages-k-12-the-five-parameters-of-a-sign/parameter,world-languages,K-2,parameter,ok,,,

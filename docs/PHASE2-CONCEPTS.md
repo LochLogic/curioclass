@@ -1,7 +1,10 @@
 # Phase 2: Tool Concepts
 
+Superseded for status by docs/ROADMAP.md. Kept because docs/agents/SPEC.md uses its "Variety", "Content guardrails"
+and "Not a quiz bank" sections.
+
 Status: DRAFT, 2026-10-22. Concepts only, nothing built.
-586 tool concepts, one for every module. Concepts use 21 formats, and 86 shared "families" (engines reused across tools) cover 253 of them.
+586 tool concepts at the time, one for every module. Concepts use 21 formats, and 86 shared "families" (engines reused across tools) cover 253 of them.
 
 Files:
 - `data/concepts/*.txt`: source, one line per tool: `module_id|title|format|family|concept`
@@ -84,8 +87,8 @@ Curio Class is a cabinet of things to explore, not a test bank. Like the Element
 | Unbuilt concepts | Shown as plain "On the bench" placeholder pages. No counters or voting. Hidden from search engines. |
 | Feedback | None yet. Cory is the only user for the near term. |
 
-## Next (Phase 3 planning, not started)
+## Next (Phase 3 planning): closed, see docs/ROADMAP.md
 
-- [ ] Cory reviews the concepts (skim by subject; flag any to rethink)
-- [ ] Pick a pilot set for Phase 3: a handful across grades and formats, built on 2-3 families, plus the two existing tools
-- [ ] Design direction for the site and tools (template is parked; fresh design pass)
+- ~~Cory reviews the concepts (skim by subject; flag any to rethink)~~
+- ~~Pick a pilot set for Phase 3: a handful across grades and formats, built on 2-3 families, plus the two existing tools~~
+- ~~Design direction for the site and tools (template is parked; fresh design pass)~~

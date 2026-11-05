@@ -1,0 +1,21 @@
+{
+  "id": "sight-words",
+  "status": "beta",
+  "hook": "Pick a level from one catalog of over a thousand sight words, then read one quiet word at a time.",
+  "outcome": "Recognize and read grade-appropriate sight words aloud.",
+  "driver": "students",
+  "minutes": "5-10",
+  "modes": [
+    "Explore",
+    "Practice test",
+    "Challenge"
+  ],
+  "grades_label": "Grades K-3",
+  "sources": [
+    "Teacher-supplied Dolch and Fry lists (words-supplied.json), merged into one ten-level catalog in words.json.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-03",
+  "hero": "card"
+}

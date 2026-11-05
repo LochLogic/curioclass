@@ -12,7 +12,6 @@ Grade 6, 7 and 8 Career Exploration, then the high school Career Pathways and Pe
 | 4 | Cluster Explorer Field Notes | Log | Career Clusters | While using the Career Cluster Explorer tool, log 6 jobs from 3 clusters with one task and one tool for each. |
 | 5 | Career Clusters Check | Review | Career Clusters | Match jobs to clusters, explain one cluster's purpose in 2 sentences, and name 2 jobs in a cluster you choose. |
 | 6 | That's Me, Not Me: Interest Inventory | Reflection | Interests and Skills | Rate 20 activities from "not me" to "very me," total scores by cluster, and circle your top 3 clusters. |
-| 7 | Interest or Skill? | Practice | Interests and Skills | Sort 12 statements ("I enjoy drawing," "I can fix a bike chain") into interests and skills and match each skill to a job. |
 | 8 | Career Matchmaker | Apply | Interests and Skills | Read 5 invented student profiles and suggest 2 careers for each, naming the interest and skill behind every match. |
 | 9 | Strength Spotlight | Writing frame | Interests and Skills | Write about 3 strengths with a school or club example for each and a career that would use them. |
 | 10 | Interests and Skills Check | Review | Interests and Skills | Sort skills from interests, match 2 profiles to careers, and explain one match with evidence. |
@@ -24,7 +23,6 @@ Grade 6, 7 and 8 Career Exploration, then the high school Career Pathways and Pe
 | 16 | Who Sets the Price at the Ski Shop? | Read and respond | Snow Season Prices | Read a short story about a ski-rental shop and identify the buyers, sellers, competition and what sets the price. |
 | 17 | Ski Rental Demand Curve | Data and graphs | Snow Season Prices | Graph an invented table of rental prices and customers per day, then describe what happens as the price rises. |
 | 18 | Big Snow, New Rival | Apply | Snow Season Prices | Predict how a big snowfall and a new rival shop would each change rental prices, and explain the cause. |
-| 19 | Help Wanted: Ski Shop Wages | Apply | Snow Season Prices | Decode 4 invented job ads and explain why ski shops raise wages when hotel workers in town are scarce. |
 | 20 | Snow Season Prices Review | Review | Snow Season Prices | Read a demand table, predict 2 market changes, and explain how a wage gets set. |
 | 21 | Working, Looking or Neither? | Practice | Economy Checkup | After a short passage on the labor force, classify 8 invented people as employed, unemployed or not in the labor force. |
 | 22 | Unemployment Peaks Graph | Data and graphs | Economy Checkup | Read a line graph of US unemployment rates, 1995 to 2024, and identify 3 peaks and what was happening then. |
@@ -143,7 +141,6 @@ Grade 6, 7 and 8 Career Exploration, then the high school Career Pathways and Pe
 |---|---|---|---|---|
 | 1 | Four Paths Compared | Organizer | Education and Training Paths | Compare college, apprenticeships, certificates and military service on time, cost, pay while training and outcomes. |
 | 2 | Electrician Apprenticeship Deep Dive | Read and respond | Education and Training Paths | Read a 500-word profile of an electrician apprenticeship and answer questions on hours, pay steps and licensing. |
-| 3 | What Does Each Path Cost? | Apply | Education and Training Paths | Compute the total cost of 4 invented paths, including tuition, fees, books, and wages earned or given up. |
 | 4 | Earnings by Education | Data and graphs | Education and Training Paths | Read Bureau of Labor Statistics data on earnings and unemployment by education level and describe 3 trends. |
 | 5 | Grant, Loan or Work-Study? | Practice | Education and Training Paths | Classify 8 invented financial aid offers as grants, scholarships, work-study or loans and say which must be repaid. |
 | 6 | Two Award Letters | Apply | Education and Training Paths | Compare 2 invented college award letters and compute each school's net cost and total loans. |
@@ -170,14 +167,12 @@ Grade 6, 7 and 8 Career Exploration, then the high school Career Pathways and Pe
 | 27 | Three Concept Sketches | Diagram | Engineering and Design Process | Sketch 3 concepts for a desk organizer, annotate materials and dimensions, and compare them. |
 | 28 | Weighted Decision Matrix | Data and graphs | Engineering and Design Process | Score 3 designs on weighted criteria (cost, strength, ease to build) and select one. |
 | 29 | Prototype Test Record | Lab | Engineering and Design Process | Record 3 rounds of prototype tests: the test, the data, failures, and the changes made. |
-| 30 | Iteration Report | Writing frame | Engineering and Design Process | Write a 1-page report on how test data changed a design across 3 iterations. |
 | 31 | Engineering Careers Map | Organizer | Engineering and Design Process | Compare 6 engineering and technician careers on education, tasks and their role in the design process. |
 | 32 | Engineering and Design Review | Review | Engineering and Design Process | Order design steps, complete a matrix, and propose the next iteration from test data. |
 | 33 | Medical Word Parts | Vocabulary | Healthcare and Human Services Careers | Split 15 medical terms (cardiology, gastritis, bradycardia) into prefix, root and suffix and define each. |
 | 34 | Chart Note Translator | Practice | Healthcare and Human Services Careers | Translate 8 invented patient chart notes into plain language using medical word parts. |
 | 35 | Medical Terms Crossword | Puzzle | Healthcare and Human Services Careers | Solve a crossword with 14 clues built from word parts (inflammation of the stomach, slow heart). |
 | 36 | Healthcare Team Roles | Organizer | Healthcare and Human Services Careers | Compare 8 healthcare roles (nursing assistant, RN, EMT, pharmacy technician) on training, tasks and setting. |
-| 37 | Hospital Shift Tracker | Read and respond | Healthcare and Human Services Careers | Read an invented hospital shift story and track which roles handled each patient need. |
 | 38 | Vital Signs Chart | Data and graphs | Healthcare and Human Services Careers | Read an invented patient's vital signs over 12 hours and identify normal and concerning readings. |
 | 39 | From Assistant to Nurse | Planner | Healthcare and Human Services Careers | Plan a path from nursing assistant to registered nurse with steps, time and invented costs. |
 | 40 | Healthcare Careers Review | Review | Healthcare and Human Services Careers | Decode medical terms, compare roles, match community needs to human services careers, and read a vitals chart. |

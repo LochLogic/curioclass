@@ -13,7 +13,8 @@ import markdown
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA, SITE, TOOLS, DIST = ROOT / 'data', ROOT / 'site', ROOT / 'tools', ROOT / 'dist'
+DATA, SITE, TOOLS = ROOT / 'data', ROOT / 'site', ROOT / 'tools'
+DIST = Path(__import__('os').environ.get('CURIO_DIST') or ROOT / 'dist')  # CURIO_DIST: build somewhere else (tests)
 BASE_URL = 'https://curioclass.org'
 sys.path.insert(0, str(Path(__file__).parent))
 from standards import validate  # noqa: E402
@@ -21,11 +22,15 @@ from bundle_tool import bundle_all  # noqa: E402
 import check_plans  # noqa: E402
 import check_words  # noqa: E402
 import check_games  # noqa: E402
+import check_breaks  # noqa: E402
 import qr  # noqa: E402
 import check_charts  # noqa: E402
 import check_worksheets  # noqa: E402
 import worksheets as ws  # noqa: E402
+import gen_links  # noqa: E402
+import ws_generated  # noqa: E402
 import charts as chart_svg  # noqa: E402
+import teaching_map as tmap  # noqa: E402
 
 bundle_all()  # tools with src.html get their art inlined first
 
@@ -122,6 +127,38 @@ for m in modules.values():
     for code in m['codes']:
         standards[code].extend(by_module[m['module_id']])
 std_framework = {code: validate(code) for code in standards}
+CSS_HEX = dict(re.findall(r'--([a-z]+): (#[0-9a-f]{6});', (ROOT / 'site' / 'assets' / 'curio.css').read_text(encoding='utf-8')))
+
+# The Map (docs/SUPPLY-CLOSET-PLAN.md, Phase F): stops in teaching order per subject-grade region, from data/sequence.csv.
+# Upkeep is one sequence.csv row per new module; a missing row only warns (the module joins the end of its region).
+map_regions, map_warn = tmap.load(modules, GRADES)
+for _w in map_warn:
+    print('Map warning:', _w)
+map_at = {}
+for _k, _stops in map_regions.items():
+    for _s in _stops:
+        _s['ready'] = any(t['built'] for t in by_module[_s['m']['module_id']])
+        map_at[_s['m']['module_id']] = _k
+
+
+def map_url(k):
+    return f'/map/{k[0]}/{k[1]}/'
+
+
+def map_title(k):
+    return f"{grade_label(k[1])} {subjects[k[0]]['short']}"
+
+
+def map_spots(mods):
+    """Where a standard's modules sit on the Map: a small strip per region, its stops filled."""
+    hits, spots = {m['module_id'] for m in mods}, []
+    for k in dict.fromkeys(map_at[m['module_id']] for m in mods):
+        stops = map_regions[k]
+        nums = [s['n'] for s in stops if s['m']['module_id'] in hits]
+        label = f"{map_title(k)}: stop{'s' if len(nums) > 1 else ''} {', '.join(map(str, nums))} of {len(stops)}"
+        spots.append(dict(title=map_title(k), url=map_url(k), label=label,
+                          svg=tmap.strip(stops, hits, CSS_HEX[subjects[k[0]]['color']], label)))
+    return spots
 
 
 def module_groups(mods):
@@ -162,8 +199,19 @@ if DIST.exists():
     shutil.rmtree(DIST)
 shutil.copytree(SITE / 'assets', DIST / 'assets')
 
-render('home.html', '/', built=built, bench_sample=[t for t in bench if t['title'] in
-       ('Bug Hunt', 'Balance the Beam', 'Fed Chair', 'Fair Use Court')], bands=bands)
+# Home shows a small rotating pick, one tool per subject in turn, reshuffled each build (Cory, 2026-11-03).
+_rng = __import__('random').Random(date.today().toordinal())
+_by_subj = {}
+_pool = [t for t in built if t.get('preview')] or built
+for _t in _rng.sample(_pool, len(_pool)):
+    _by_subj.setdefault(_t['module']['subject'], []).append(_t)
+picks = []
+while len(picks) < 8 and any(_by_subj.values()):
+    for _k in list(_by_subj):
+        if _by_subj[_k] and len(picks) < 8:
+            picks.append(_by_subj[_k].pop())
+render('home.html', '/', built=built, bands=bands, picks=picks)
+
 
 def browse_page(path, title, lede, trail, sections, nav_label, fit=(), **extra):
     """Grade, band and subject pages: sticky section nav, modules in two columns, ready tools first.
@@ -187,21 +235,34 @@ def subject_sections(mods):
                  note=s['primary_standards'], mods=ms) for s, ms in module_groups(mods)]
 
 
+RESEARCH = json.loads((DATA / 'research-cards.json').read_text(encoding='utf-8'))
+_rc_dir = SITE / 'assets' / 'research'
+_rc_credits = json.loads((_rc_dir / 'CREDITS.json').read_text(encoding='utf-8')) if (_rc_dir / 'CREDITS.json').exists() else {}
+for _c in RESEARCH['cards']:  # a public-domain photo when one is on file, else the emoji
+    if (_rc_dir / f"{_c['id']}.jpg").exists() and _c['id'] in _rc_credits:
+        _c['photo'] = dict(_rc_credits[_c['id']], src=f"/assets/research/{_c['id']}.jpg")
+# Browse: one page that picks a grade, a subject, or both (replaces the separate Grades and Subjects pages)
+mx = {g: {sid: 0 for sid in subjects} for g in GRADES}
+for m in modules.values():
+    for g in m['grades']:
+        mx[g][m['subject']] += len(by_module[m['module_id']])
+mxb = {bid: {sid: sum(len(by_module[m['module_id']]) for m in modules.values() if m['subject'] == sid and set(m['grades']) & set(b['grade_list']))
+              for sid in subjects} for bid, b in bands.items()}
+render('find.html', '/classrooms/', bands=bands, subjects=subjects, mx=mx, mxb=mxb,
+       subject_total={sid: sum(mx[g][sid] for g in GRADES) for sid in subjects}, grade_total={g: sum(mx[g].values()) for g in GRADES})
 # grades and bands
-render('grades.html', '/grades/', bands=bands, grades=grades)
 for g in GRADES:
     lede = ('Teacher-led on the big screen. ' if grades[g]['band'] == 'k2' else '') + '{count} tools across {n} subjects.'
-    browse_page(f'/grades/{g}/', grade_label(g), lede, [('Grades', '/grades/'), (grade_label(g), None)],
+    browse_page(f'/grades/{g}/', grade_label(g), lede, [('Classrooms', '/classrooms/'), (grade_label(g), None)],
                 subject_sections([m for m in modules.values() if g in m['grades']]), 'Subjects',
                 fit=[g], subtitle='for every subject')
 for bid, b in bands.items():
     browse_page(f'/grades/{BAND_SLUG[bid]}/', b['label'], b['blurb'] + ' {count} tools across {n} subjects.',
-                [('Grades', '/grades/'), (b['label'], None)],
+                [('Classrooms', '/classrooms/'), (b['label'], None)],
                 subject_sections([m for m in modules.values() if set(m['grades']) & set(b['grade_list'])]), 'Subjects',
                 fit=b['grade_list'], subtitle='for every subject', show_grade=True)
 
 # subjects
-render('subjects.html', '/subjects/', counts={s: sum(1 for t in tools if t['module']['subject'] == s) for s in subjects})
 for sid, s in subjects.items():
     by_grade = defaultdict(list)
     for m in modules.values():
@@ -214,7 +275,7 @@ for sid, s in subjects.items():
     used = {m['course_id'] for ms in by_grade.values() for m in ms}
     langs = [(c, courses[c]['title'].split(' (')[0]) for c in courses if c in used] if sid == 'world-languages' else []
     browse_page(f'/subjects/{sid}/', s['label'], s['covers'] + '. Aligned to ' + s['primary_standards'] + '. {count} tools.',
-                [('Subjects', '/subjects/'), (s['label'], None)], sections, 'Grades', subtitle='K-12', color=s['color'],
+                [('Classrooms', '/classrooms/'), (s['label'], None)], sections, 'Grades', subtitle='K-12', color=s['color'],
                 langs=langs if len(langs) > 1 else [])
 
 # play styles and collections
@@ -252,7 +313,8 @@ for code, items in standards.items():
             seen.add(t['tool_id'])
             uniq.append(t)
     render('standard.html', f'/standards/{slug(code)}/', code=code, framework=std_framework[code], items=uniq,
-           mods=sorted(code_modules[code], key=lambda m: GRADES.index(m['grades'][0])), walls=words, index=False)
+           mods=sorted(code_modules[code], key=lambda m: GRADES.index(m['grades'][0])), walls=words, index=False,
+           map_spots=map_spots(code_modules[code]))
 
 # Family Game Night (Phase E): each game links to its modules, and to their built tools as "Loved it at school?"
 games = check_games.load() if CLOSET_LIVE else {}
@@ -265,6 +327,13 @@ for g in games.values():
     g['tools'] = [t for mid in g['module_ids'] for t in by_module[mid] if t['built']]
     for mid in g['module_ids']:
         games_by_module[mid].append(g)
+# Break Box (docs/BREAK-BOX-PLAN.md): projects for a school break, one printed sheet each; a bad sheet stops a closet build
+breaks = check_breaks.load() if CLOSET_LIVE else {}
+_bad = [p for b in breaks.values() for p in check_breaks.problems(b)] + check_breaks.grade_problems(breaks)
+if _bad:
+    sys.exit('; '.join(_bad[:5]) + ' (python scripts/check_breaks.py)')
+for b in breaks.values():
+    b['html'] = {name: markdown.markdown(text) for name, text in b['parts']}
 
 # Posters and Anchor Charts (Phase D): a chart per module, and posters by band; a bad or overfull chart stops the build
 charts = check_charts.load('chart') if CLOSET_LIVE else {}
@@ -273,7 +342,6 @@ for c in list(charts.values()) + list(posters.values()):
     bad = check_charts.problems(c, modules)
     if bad:
         sys.exit('; '.join(bad) + ' (python scripts/check_charts.py)')
-CSS_HEX = dict(re.findall(r'--([a-z]+): (#[0-9a-f]{6});', (ROOT / 'site' / 'assets' / 'curio.css').read_text(encoding='utf-8')))
 
 
 def chart_page(c, color, **ctx):
@@ -321,13 +389,57 @@ def word_check(seed, cards):
         cards[i]['fill_rank'] = pos
 
 
+# Worksheets (docs/WORKSHEETS-PLAN.md): a page per class listing its year of sheets from the concept lists, one data file
+# per class holding its built sheets as HTML fragments, and one viewer page that shows a sheet (#unit/n) and its key.
+ws_units = check_worksheets.units()
+ws_rows = {u: r for f in check_worksheets.FILES for u, r in check_worksheets.rows(f).items()}
+ws_bad = ws.icon_problems() + [p for u in ws.built_units() for p in ws.problems(u)]
+(DIST / 'assets' / 'ws-icons.svg').write_text(ws.sprite(), encoding='utf-8')
+if ws_bad:
+    sys.exit('Worksheets: ' + '; '.join(ws_bad[:5]))
+tool_titles = {t['tool_id']: t['title'] for t in tools}
+mod_by_title = {(m['course_id'], m['title']): m for m in modules.values()}
+ws_built, ws_index = {}, []
+for u in ws.built_units():
+    label, sheets = ws.load(u)
+    data = {}
+    for sh, row in sheets:
+        mod = mod_by_title.get((ws_units[u]['course'], row['module']))
+        frag, _ = ws.build(u, sh, row, label, mod, tool_titles)
+        data[sh['n']] = dict(title=sh['title'], type=row['type'], minutes=sh['minutes'], html=frag)
+        ws_index.append(dict(t=f"Worksheet: {sh['title']}", u=f'/closet/worksheets/sheet/#{u}/{sh["n"]}', g=label, s='Supply Closet',
+                             f='Worksheet', m=row['module'], c=' '.join(mod['codes']) if mod else '', d=row['does'], b=True))
+    ws_built[u] = data
+    out = DIST / 'closet' / 'worksheets' / 'data' / f'{u}.json'
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(dict(unit=u, label=label, url=f'/closet/worksheets/{u}/', order=[r['n'] for r in ws_rows[u]],
+                                  sheets=data), ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+# rows a generator makes (data/closet/worksheets/generated.csv): ready on the class page, link opens the generator preset
+ws_gen = ws_generated.load()
+ws_gen_bad = ws_generated.problems(ws_rows, ws_built)
+if ws_gen_bad:
+    sys.exit('Worksheets: ' + '; '.join(ws_gen_bad[:5]))
+
+# worksheets of a module: the concept rows naming it, in the units of its course, with a link when the sheet is built
+ws_by_module = defaultdict(list)
+for u, rows_ in ws_rows.items():
+    cid = ws_units[u]['course']
+    for row in rows_:
+        mod = mod_by_title.get((cid, row['module']))
+        if mod:
+            g = ws_gen.get(u, {}).get(row['n'])
+            ws_by_module[mod['module_id']].append(dict(row, unit=u, label=ws_units[u]['label'], built=row['n'] in ws_built.get(u, {}) or bool(g), gen=g,
+                                                       url=f'/closet/worksheets/sheet/#{u}/{row["n"]}' if row['n'] in ws_built.get(u, {}) else g['url'] if g else f'/closet/worksheets/{u}/'))
+
 # modules: the hub for everything one module has (tools, then Supply Closet shelves as they ship)
 for m in modules.values():
     mt = by_module[m['module_id']]
     plans = [t for t in mt if t['built'] and t['plan']]
     cards = words.get(m['module_id'], [])
-    render('module.html', m['url'], m=m, items=mt, plans=plans, words=cards, subject=subjects[m['subject']],
+    rcards = [c for c in RESEARCH['cards'] if m['module_id'] in c['modules']] or (RESEARCH['cards'] if m['module_id'] in RESEARCH['for_all'] else [])
+    render('module.html', m['url'], m=m, items=mt, plans=plans, words=cards, subject=subjects[m['subject']], rcards=rcards, rc_all=m['module_id'] in RESEARCH['for_all'],
            games=games_by_module.get(m['module_id'], []), course=courses.get(m['course_id']), chart=charts.get(m['module_id']),
+           sheets=ws_by_module.get(m['module_id'], []) if CLOSET_LIVE else [], gens=gen_links.links(m, bool(cards)) if CLOSET_LIVE else [],
            index=any(t['built'] for t in mt) or bool(cards))
     if m['module_id'] in charts:
         chart_page(charts[m['module_id']], CSS_HEX[subjects[m['subject']]['color']], m=m, subject=subjects[m['subject']],
@@ -353,9 +465,7 @@ for m in modules.values():
 # tools
 render('list.html', '/tools/', title='Ready to use', lede='Every built tool. Each one is a single file that works offline.',
        items=built, crumb=None)
-render('list.html', '/bench/', title='On the bench',
-       lede=f'{len(bench)} tools sketched but not built yet. They move to the shelf one at a time.',
-       items=bench, crumb=None, index=False)
+# The /bench/ list page was retired 2026-11-03 (Cory): sketched tools still show on their module pages.
 for t in tools:
     related = [x for x in tools if x['module']['subject'] == t['module']['subject'] and x is not t
                and set(x['module']['grades']) & set(t['module']['grades'])][:3]
@@ -377,7 +487,8 @@ for t in tools:
                 render('subday.html', t['url'] + 'sub/', index=False, t=t, ex=t['exit'],
                        qr=qr.svg('https://curioclass.org' + t['url'], f'QR code for curioclass.org{t["url"]}'),
                        sections=[(title, mins, markdown.markdown(text)) for title, mins, text in plan['sections']],
-                       band=check_words.band(t['module']['grade']), words=words.get(t['module']['module_id'], []))
+                       band=check_words.band(t['module']['grade']), words=words.get(t['module']['module_id'], []),
+                       gens=gen_links.links(t['module'], bool(words.get(t['module']['module_id']))))
     else:
         render('bench.html', t['url'], t=t, related=related, collection=collection, index=False)
 
@@ -390,8 +501,47 @@ CLOSET = [  # slug, label, what it holds
     ('anchor-charts', 'Posters and Anchor Charts', 'The big idea of each module on one page, finished or fill-in, and posters '
      'that stay up all year. Print on one page or tile them big.'),
     ('game-night', 'Family Game Night', 'Games to play at home with paper, pencils, cards or dice. Nothing to buy.'),
+    ('break-box', 'Break Box', 'Projects for a school break, K to 12: build, make, cook, play or explore for an hour or two. '
+     'One printed sheet each, written for the child, with a note for the grown-up.'),
     ('worksheets', 'Worksheets', 'Printable practice sheets for every class, K-12: 40 to 50 a year per class, each with '
      'an answer key and a teacher page.'),
+    ('printables', 'Printables', 'Everyday paper for the classroom: handwriting and graph paper, graphic organizers, '
+     'number lines, hundreds charts, name plates and certificates.'),
+    ('research-cards', 'Research Cards', 'A first taste of research for grades K to 2: a person, place, thing or animal '
+     'on two printed pages, a short read with facts on the first and a page for the young researcher on the second.'),
+    ('teacher-desk', 'Teacher Desk', 'Helpers for running the room, made for the projector: a timer, classroom sounds, a '
+     'noise meter and a group maker.'),
+]
+# Printables shelf: each item is one page drawn by site/assets/printables.js (data-kind = id). Add a kind there first.
+PRINTABLES = [  # heading, blurb, [(id, title, blurb)]
+    ('Paper', 'Plain paper with the lines your class needs.', [
+        ('handwriting', 'Handwriting Paper', 'Solid top and bottom lines with a dashed middle line, in three sizes for K to grade 2. Add a picture box for draw-and-write.'),
+        ('lined', 'Lined Paper', 'Extra wide, wide or college ruled, with a margin line and a name and date line.'),
+        ('graph', 'Graph Paper', 'Quarter inch, half inch, centimeter or 5 millimeter squares, with darker lines every five if you want them.'),
+        ('dots', 'Dot Paper', 'Square or isometric dot grids for geometry, area, arrays and drawing 3D shapes.'),
+    ]),
+    ('Math and letters', 'Charts and strips for counting, number sense and the alphabet.', [
+        ('numberline', 'Number Lines', 'Pick the start, end and count-by. Show every number, only the ends, or none for students to fill in.'),
+        ('hundreds', 'Hundreds Chart', '1 to 100, 0 to 99 or 1 to 120. Full, partly filled, or blank.'),
+        ('alphabet', 'Alphabet Strips and Cards', 'Desk strips, three to a page, or a full page of letter cards. Uppercase, lowercase or both.'),
+    ]),
+    ('Graphic organizers', 'Thinking on paper, for any subject. English, Spanish or both.', [
+        ('venn', 'Venn Diagram', 'Two or three circles for comparing. Type the labels or leave them blank.'),
+        ('kwl', 'KWL Chart', 'What I know, what I want to know and what I learned, with an optional "how I will find out" column.'),
+        ('storymap', 'Story Map', 'Title, characters, setting, problem, beginning, middle, end and solution.'),
+        ('causeeffect', 'Cause and Effect', 'One cause with three effects, or a chain of four.'),
+        ('mainidea', 'Main Idea and Details', 'A main idea on top with three or four details below.'),
+        ('tchart', 'T-Chart', 'Two columns with your own headings: facts and opinions, before and after, pros and cons.'),
+        ('sequence', 'Sequence Chart', 'First, next, then, last, or six numbered steps, with room to draw.'),
+        ('frayer', 'Word Map (Frayer Model)', 'A word in the middle with definition, characteristics, examples and non-examples.'),
+    ]),
+    ('Classroom', 'For the first day and the good days.', [
+        ('nameplate', 'Name Plates', 'Type your class list for desk plates with the alphabet and a 0 to 20 number line, or folded tent cards.'),
+        ('certificate', 'Certificates', 'An award with your own heading, name, reason and signature line. Print in color or black.'),
+    ]),
+]
+DESK_COMING = [  # planned Teacher Desk pieces (docs/ROADMAP.md, Track 2 item 7)
+    ('Quiz Show Board', 'A projector game board for review games: teams, points and a big reveal for each question.'),
 ]
 # Word Wall: one page per grade span a module is written for (K to 12, and spans like 3-5 or K-12), grouped by subject.
 # The shelf page is a grade picker: a card per band with its grades and its whole-band span, then a card for World Languages.
@@ -481,36 +631,16 @@ for gr in GRADES:
     gs = sorted((g for g in games.values() if g['grade'] == gr), key=lambda g: (list(subjects).index(g['subject']), g['title']))
     if gs:
         game_sections.append(dict(id=f'grade-{gr}', label=grade_label(gr), games=gs))
+# Break Box: one shelf page with a section per grade (sheets in plan order), a print page per sheet and a blank one
+break_sections = [dict(id=f'grade-{gr}', g=gr, label=grade_label(gr),
+                       sheets=sorted((b for b in breaks.values() if b['grade'] == gr), key=lambda b: int(b['order'])))
+                  for gr in GRADES]
+break_sections = [s for s in break_sections if s['sheets']]
+if breaks:
+    counts['break-box'] = f'{len(breaks)} projects and a blank one'
 for g in games.values():
     render('closet/game.html', g['url'], g=g, subject=subjects[g['subject']], subject_es=SUBJECT_ES[g['subject']],
            tools=[t for mid in g['module_ids'] for t in by_module[mid] if t['built']])
-# Worksheets (docs/WORKSHEETS-PLAN.md): a page per class listing its year of sheets from the concept lists, one data file
-# per class holding its built sheets as HTML fragments, and one viewer page that shows a sheet (#unit/n) and its key.
-ws_units = check_worksheets.units()
-ws_rows = {u: r for f in check_worksheets.FILES for u, r in check_worksheets.rows(f).items()}
-ws_bad = ws.icon_problems() + [p for u in ws.built_units() for p in ws.problems(u)]
-(DIST / 'assets' / 'ws-icons.svg').write_text(ws.sprite(), encoding='utf-8')
-if ws_bad:
-    sys.exit('Worksheets: ' + '; '.join(ws_bad[:5]))
-tool_titles = {t['tool_id']: t['title'] for t in tools}
-mod_by_title = {(m['course_id'], m['title']): m for m in modules.values()}
-ws_built, ws_index = {}, []
-for u in ws.built_units():
-    label, sheets = ws.load(u)
-    data = {}
-    for sh, row in sheets:
-        mod = mod_by_title.get((ws_units[u]['course'], row['module']))
-        frag, _ = ws.build(u, sh, row, label, mod, tool_titles)
-        data[sh['n']] = dict(title=sh['title'], type=row['type'], minutes=sh['minutes'], html=frag)
-        ws_index.append(dict(t=f"Worksheet: {sh['title']}", u=f'/closet/worksheets/sheet/#{u}/{sh["n"]}', g=label, s='Supply Closet',
-                             f='Worksheet', m=row['module'], c=' '.join(mod['codes']) if mod else '', d=row['does'], b=True))
-    ws_built[u] = data
-    out = DIST / 'closet' / 'worksheets' / 'data' / f'{u}.json'
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(dict(unit=u, label=label, url=f'/closet/worksheets/{u}/', order=[r['n'] for r in ws_rows[u]],
-                                  sheets=data), ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
-
-
 def ws_grade_key(u):
     g = str(ws_units[u]['grade']).split('-')[0]
     return GRADES.index(g) if g in GRADES else 99
@@ -527,10 +657,31 @@ for u, d in ws_units.items():
     for r in ws_rows[u]:
         if not groups or groups[-1]['module'] != r['module']:
             groups.append(dict(module=r['module'], mod=mod_by_title.get((d['course'], r['module'])), rows=[]))
-        groups[-1]['rows'].append(dict(r, built=r['n'] in ws_built.get(u, {})))
-    render('closet/ws-unit.html', f'/closet/worksheets/{u}/', u=u, d=d, groups=groups, rows=ws_rows[u], ready=len(ws_built.get(u, {})))
+        groups[-1]['rows'].append(dict(r, pos=sum(len(g['rows']) for g in groups) + 1, built=r['n'] in ws_built.get(u, {}), gen=ws_gen.get(u, {}).get(r['n'])))
+    render('closet/ws-unit.html', f'/closet/worksheets/{u}/', u=u, d=d, groups=groups, rows=ws_rows[u], ready=len(ws_built.get(u, {})) + len(ws_gen.get(u, {})))
 render('closet/ws-sheet.html', '/closet/worksheets/sheet/', index=False)
-counts['worksheets'] = f"{sum(len(v) for v in ws_built.values())} ready of {sum(len(v) for v in ws_rows.values()):,} planned"
+# Worksheet Generators (data/closet/generators.json): one page each, drawn by site/assets/gen/<id>.js, plus the word
+# list the vocabulary and puzzle generators read (every Word Wall module with its words and meanings).
+gidx = lambda g: next((GRADES.index(x) for x in expand(g) if x in GRADES), 99)
+GENS = json.loads((ROOT / 'data' / 'closet' / 'generators.json').read_text(encoding='utf-8'))
+if CLOSET_LIVE:
+    render('closet/gens.html', '/closet/worksheets/make/', groups=GENS['groups'], gens=GENS['generators'])
+    for g in GENS['generators']:
+        if not (SITE / 'assets' / 'gen' / f"{g['id']}.js").exists():
+            sys.exit(f"Generators: site/assets/gen/{g['id']}.js is missing")
+        g['data_js'] = (SITE / 'assets' / 'gen' / f"{g['id']}-data.js").exists()   # an optional word or fact bank, loaded first
+        render('closet/gen.html', f"/closet/worksheets/make/{g['id']}/", g=g,
+               more=[m for m in GENS['generators'] if m['group'] == g['group'] and m['id'] != g['id']])
+    gen_words = [dict(id=mid, title=modules[mid]['title'], subject=modules[mid]['subject'], s=subjects[modules[mid]['subject']]['label'],
+                      grade=modules[mid]['grade'], band=check_words.band(modules[mid]['grade']),
+                      words=[[c['word'], c['definition']] for c in cards if c['word'] and c['definition']])
+                 for mid, cards in words.items() if mid in modules]
+    gen_words.sort(key=lambda m: (m['s'], gidx(m['grade']), m['title']))
+    (DIST / 'closet' / 'worksheets' / 'make' / 'words.json').write_text(json.dumps(dict(modules=gen_words), ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+counts['teacher-desk'] = 'Desk Dock and Classroom Music ready'
+counts['research-cards'] = f"{len(RESEARCH['cards'])} cards and a blank one"
+counts['printables'] = f"{sum(len(x[2]) for x in PRINTABLES)} printables"
+counts['worksheets'] = f"{sum(len(v) for v in ws_built.values()) + sum(len(v) for v in ws_gen.values())} ready of {sum(len(v) for v in ws_rows.values()):,} planned"
 render('closet/home.html', '/closet/', shelves=CLOSET, counts=counts)
 for sid, label, what in CLOSET:
     if sid == 'word-wall' and wall:
@@ -541,11 +692,79 @@ for sid, label, what in CLOSET:
         render('closet/anchor-charts.html', '/closet/anchor-charts/', label=label, what=what, sections=chart_sections, modules=modules)
     elif sid == 'worksheets':
         render('closet/worksheets.html', '/closet/worksheets/', label=label, what=what, sections=ws_sections, units=ws_units,
-               rows=ws_rows, built=ws_built)
+               rows=ws_rows, built={u: {**ws_built.get(u, {}), **ws_gen.get(u, {})} for u in ws_units})
+    elif sid == 'printables':
+        render('closet/printables.html', '/closet/printables/', label=label, what=what,
+               groups=[(h, bl, [dict(id=i, title=ti, blurb=b) for i, ti, b in items]) for h, bl, items in PRINTABLES])
+        for h, bl, items in PRINTABLES:
+            for i, ti, b in items:
+                render('closet/printable.html', f'/closet/printables/{i}/', p=dict(id=i, title=ti, blurb=b))
+    elif sid == 'research-cards':
+        kinds = dict(RESEARCH['kinds'])
+        render('closet/research-cards.html', '/closet/research-cards/', label=label, what=what,
+               groups=[(name, sorted((c for c in RESEARCH['cards'] if c['kind'] == k), key=lambda c: c['title'].removeprefix('The ').lower()))
+                       for k, name in sorted(RESEARCH['kinds'], key=lambda kn: kn[1])])  # A to Z, ignoring a leading 'The'
+        for c in RESEARCH['cards'] + [dict(id='my-own', kind='', title='', emoji='', read=[], facts=[], words=[], questions=[])]:
+            render('closet/research-card.html', f"/closet/research-cards/{c['id']}/", c=c, kind=kinds.get(c['kind'], ''))
+    elif sid == 'teacher-desk':
+        render('closet/teacher-desk.html', '/closet/teacher-desk/', label=label, what=what, coming=DESK_COMING)
+        render('closet/desk-dock.html', '/closet/teacher-desk/dock/')
+        render('closet/music.html', '/closet/teacher-desk/music/')
     elif sid == 'game-night' and games:
         render('closet/game-night.html', '/closet/game-night/', label=label, what=what, sections=game_sections)
+    elif sid == 'break-box' and breaks:
+        render('closet/break-box.html', '/closet/break-box/', label=label, what=what, sections=break_sections)
+        for b in breaks.values():
+            render('closet/break.html', b['url'], b=b)
+        render('closet/break.html', '/closet/break-box/my-own-idea/', b=dict(id='my-own-idea', url='/closet/break-box/my-own-idea/'))
     else:
         render('closet/shelf.html', f'/closet/{sid}/', label=label, what=what, groups=[], index=False)
+
+# ---------- the map ----------
+# Drawn here, once the closet shelves are loaded, so each stop's pins show what a teacher can pick up for it.
+map_rows = []
+for sid, subj in subjects.items():
+    keys = [k for k in map_regions if k[0] == sid]
+    lanes, regs = [], []
+    for k in sorted(keys, key=lambda k: (GRADES.index(expand(k[1])[0]), -len(expand(k[1])))):
+        x0, x1 = GRADES.index(expand(k[1])[0]), GRADES.index(expand(k[1])[-1])
+        lane = next((i for i, end in enumerate(lanes) if end < x0), len(lanes))
+        lanes[lane:lane + 1] = [x1]
+        stops = map_regions[k]
+        regs.append(dict(x0=x0, x1=x1, lane=lane, url=map_url(k), title=map_title(k), short=grade_label(k[1]),
+                         ready=sum(s['ready'] for s in stops), total=len(stops)))
+    if regs:
+        map_rows.append((sid, subj['short'], regs))
+for k, stops in map_regions.items():
+    for s in stops:
+        mid = s['m']['module_id']
+        s['tools'] = [t for t in by_module[mid] if t['built']]
+        s['planned'] = len(by_module[mid]) - len(s['tools'])
+        sub = [t for t in s['tools'] if t.get('exit')] if CLOSET_LIVE else []
+        s['closet'] = (([('Word Wall', s['m']['url'] + 'words/')] if words.get(mid) else [])
+                       + ([('Anchor chart', charts[mid]['url'])] if mid in charts else [])
+                       + [(f"Game: {g['title']}", g['url']) for g in games_by_module.get(mid, [])]
+                       + [(f"Sub Day: {t['title']}", t['url'] + 'sub/') for t in sub])
+        s['pins'] = [p for p, on in (('tool', s['tools']), ('words', words.get(mid)), ('chart', mid in charts),
+                                     ('game', games_by_module.get(mid)), ('sub', sub)) if on]
+        s['links'] = [dict(m=b, region=map_title(map_at[b['module_id']])) for b in s['builds_on']]
+render('map.html', '/map/', rows=map_rows, basis=tmap.BASIS,
+       grid=tmap.overview(map_rows, [grade_short(g) for g in GRADES], lambda sid: CSS_HEX[subjects[sid]['color']],
+                          'Every subject and grade, shaded by how many stops have a tool ready'),
+       n_regions=len(map_regions), n_stops=sum(len(v) for v in map_regions.values()),
+       n_ready=sum(s['ready'] for v in map_regions.values() for s in v))
+for sid, _, regs in map_rows:
+    keys = [k for k in map_regions if k[0] == sid]
+    keys.sort(key=lambda k: (GRADES.index(expand(k[1])[0]), -len(expand(k[1]))))
+    for i, k in enumerate(keys):
+        stops, color = map_regions[k], CSS_HEX[subjects[sid]['color']]
+        label = f'{map_title(k)}: {len(stops)} stops in teaching order'
+        render('map-region.html', map_url(k), title=map_title(k), subject=subjects[sid], g=k[1], stops=stops,
+               wide=tmap.trail(stops, color, label), phone=tmap.trail(stops, color, label, phone=True),
+               ready=sum(s['ready'] for s in stops), color=color,
+               bases=[(b, tmap.BASIS[b]) for b in tmap.BASIS if any(s['basis'] == b for s in stops)],
+               prev=(map_title(keys[i - 1]), map_url(keys[i - 1])) if i else None,
+               next=(map_title(keys[i + 1]), map_url(keys[i + 1])) if i + 1 < len(keys) else None)
 
 # ---------- reading room ----------
 # Rows come from data/library/*.csv (reserve rows stay off the site). A story is ready once library/<id>/text.md exists;
@@ -739,6 +958,8 @@ if CLOSET_LIVE:  # Supply Closet items, so "fractions vocabulary" or "photosynth
     index += [{'t': f"Family game: {g['title']}", 'u': g['url'], 'g': grade_label(g['grade']), 's': subjects[g['subject']]['short'],
                'f': 'Game Night', 'm': ', '.join(x['title'] for x in g['mods']), 'c': '', 'd': g['learn'], 'b': True}
               for g in games.values()]
+    index += [{'t': f"Break Box: {b['title']}", 'u': b['url'], 'g': grade_label(b['grade']), 's': 'Supply Closet',
+               'f': 'Break Box', 'm': b['kind'], 'c': '', 'd': b['idea'], 'b': True} for b in breaks.values()]
     index += ws_index
 (DIST / 'search-index.json').write_text(json.dumps(index, separators=(',', ':')), encoding='utf-8')
 render('search.html', '/search/', index=False)
@@ -749,13 +970,17 @@ render('404.html', '/404.html', index=False)
 (DIST / 'sitemap.xml').write_text(
     '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     + ''.join(f'  <url><loc>{BASE_URL}{p}</loc></url>\n' for p in sitemap) + '</urlset>\n', encoding='utf-8')
-# Cloudflare Pages headers. No X-Frame-Options: embedding tools in an LMS is a feature.
+# Cloudflare Pages headers. microphone=(self): the Desk Dock noise meter and Beat Lab ask for it (the browser still
+# asks the person first); other sites framing us cannot. No X-Frame-Options: embedding tools in an LMS is a feature.
 (DIST / '_headers').write_text(
     '/*\n  Link: </sitemap.xml>; rel="sitemap"\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n'
-    '  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()\n'
+    '  Permissions-Policy: camera=(), microphone=(self), geolocation=(), interest-cohort=()\n'
     '/assets/fonts/*\n  Cache-Control: public, max-age=31536000, immutable\n', encoding='utf-8')
 # Renamed or moved pages (data/redirects.csv: old,new) become permanent redirects; Workers static assets read _redirects.
 (DIST / '_redirects').write_text(''.join(f"{r['old']} {r['new']} 301\n" for r in read('redirects.csv')), encoding='utf-8')
 # Content Signals (contentsignals.org): Cory allows search, AI answers and AI training (2026-10-28).
 (DIST / 'robots.txt').write_text(f'User-agent: *\nContent-Signal: search=yes, ai-input=yes, ai-train=yes\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n', encoding='utf-8')
+# Pictures are served from R2 by worker/index.js (the static-asset file limit); keep them out of the asset upload.
+# scripts/sync_media.py uploads the same two patterns. Keep the patterns here, there and in the Worker in step.
+(DIST / '.assetsignore').write_text('.assetsignore\nlibrary/*/art/*.jpg\nmodules/*/words/art/*.webp\n', encoding='utf-8')
 print(f'{pages} pages, {len(built)} built tools, {len(bench)} on the bench, {len(sitemap)} in sitemap -> dist/')

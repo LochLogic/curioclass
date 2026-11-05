@@ -1,8 +1,8 @@
 # Supply Closet: teacher resources (plan)
 
 Status: concepts AGREED by Cory 2026-10-26 (decisions at the bottom). This file is the implementation plan.
-Phase A and Phase C's words (all 586 modules) went LIVE 2026-10-27; deploy builds now use `--library --closet`.
-Phases B, D and E went LIVE 2026-10-27 overnight (status notes under each phase). Only Phase F, The Map, is left.
+Phase A and Phase C's words (all 586 modules at the time; 762 of 797 today) went LIVE 2026-10-27; deploy builds now use `--library --closet`.
+Phases B, D and E went LIVE 2026-10-27 overnight (status notes under each phase). Phase F, The Map, was built 2026-11-03 (status under Phase F).
 
 The Supply Closet is the teacher-resources side of Curio Class: things to print and put up that go with the tools.
 It is organized like a real supply closet, as shelves:
@@ -16,14 +16,15 @@ It is organized like a real supply closet, as shelves:
 | **Break Box** | Screen-free 1-2 hour projects for kids home on school breaks, 30 per grade (docs/BREAK-BOX-PLAN.md) | grade | Draft |
 | **The Map** | A visual map of modules, with tools and closet items as pins, and suggested unit trails | module | F |
 | **Worksheets** | Authored print sheets, 40-50 per class, with keys (docs/WORKSHEETS-PLAN.md) | class | Pilot |
-| Worksheet Generator | Generated practice sheets with answer keys (late roadmap) | module | Late |
+| Worksheet Generator | Generated practice sheets with answer keys; 26 generators live 2026-11-04 at /closet/worksheets/make/ | skill and grade | Test group |
 
 ## What the site already has (checked 2026-10-26)
 
-- **586 modules** in `data/modules.csv`, about 10 per subject and grade (252 subject-grade rows). Each module lists
+- **797 modules** in `data/modules.csv` (586 when this plan was written, with about 10 per subject and grade in 252
+  subject-grade rows). Each module lists
   its standard codes at the **cluster** level (`3.NF.A`, not `3.NF.A.1`): 836 distinct codes across CCSS Math and ELA,
   NGSS, C3, NCAS, CSTA, WIDA, NHES and others.
-- **Tools map to modules** through `data/tools-concepts.csv` (586 concepts, 74 built, 72 with lesson plans).
+- **Tools map to modules** through `data/tools-concepts.csv` (800 concepts, 83 built; 586 concepts and 74 built when this plan was written).
 - **Standards pages exist**: `/standards/` lists codes by framework, `/standards/<code>/` lists the tools for one code.
   The code pages are noindex "until more tools are built", and most of them show only bench tools today.
 - **There are no module pages.** The tool page crumb shows the module title with no link. Every closet shelf is keyed
@@ -353,6 +354,13 @@ words caps per section, no teacher jargon, no em dashes, K-1 games have no readi
 
 ## Phase F: The Map (last)
 
+**Status (2026-11-03): built.** Tucked away for teachers and admins: "Teaching map" in the footer (Browse), not the
+top nav. 94 pages: /map/ plus one page per region (93). `data/sequence.csv` holds a drafted order for all 797 modules
+(math from the IM first-edition unit order, science 6-8 from Appendix K, the rest by the rules in MAP-RESEARCH.md),
+with `builds_on` computed from the standards codes for math, science and ELA. Drawn by `scripts/teaching_map.py`.
+The standards view is a small strip of the region's stops on each /standards/<code>/ page. A module with no row is
+drawn at the end of its region and the build prints a warning. Waiting on Cory: a spot-check of one region per subject.
+
 ### What it shows
 
 - **Regions** are subject and grade pairs (Grade 3 Math). Inside a region, **stops** are its modules, grouped by
@@ -433,7 +441,7 @@ Part 2) every tool page links back to its module's closet items.
 A pass over the four shelves asking "what does a teacher or family still have to do by hand?" Numbers are from the
 2026-10-27 build. Ranked by value for effort; nothing here is started.
 
-**Coverage today.** Word Wall covers all 762 modules (4413 cards). Anchor charts cover 74 modules, Game Night 104
+**Coverage today.** Word Wall covers 762 of 797 modules (4,413 cards). Anchor charts cover 74 modules, Game Night 104
 games, Sub Day 76 packets: all three follow the built tools, so a module without a tool gets words and nothing else.
 1411 cards still print "Draw it" (779 of them in 9-12), waiting for the GPU or for more diagrams.
 
@@ -467,7 +475,76 @@ main roadmap: docs/ROADMAP.md, Track 2.
 
 ---
 
-## Late roadmap: Worksheet Generator (parked 2026-10-26)
+## Generators: the Worksheet Generator (26 live 2026-11-04, /closet/worksheets/make/)
+
+**Reviewed 2026-11-03 (Cory): better than expected; the generators come first for procedural practice from here**
+(docs/ROADMAP.md, Now, item 4; docs/WORKSHEETS-PLAN.md says what that does to the authored lists). Decisions and
+rules from that review:
+
+- **Names in problems** are short, common classroom names a child reads at sight (word-problems.js, fractions.js). A
+  mix is fine; reaching for variety is not the point of a math sheet.
+- **Print length is checked**, not assumed: `python scripts/check_gen_print.py` (after a `--closet` build) opens every
+  generator's real page in headless Chrome, tries each setting alone and the highest item count with every other
+  setting, prints the student copy to PDF and counts pages. The limit is the worksheets' own: kindergarten 1 page,
+  everything else 2. `--quick` tries the defaults and the top count only. Run it before adding a generator to the
+  shelf; `node scripts/check_generators.mjs` still checks the answers.
+- **Found from the module:** every module page lists the generators that fit it, settings filled in
+  (`scripts/gen_links.py`: by subject, strand and grade, at most four, skills first, then the module's Word Wall words,
+  then an organizer with the module as its title), and its Sub Day page links the same. A new generator gets a rule
+  there, or nobody finds it.
+- **Backed rows, done 2026-11-03:** a concept-list row a generator truly makes is listed in
+  `data/closet/worksheets/generated.csv` (unit, n, generator, query, note; `python scripts/ws_generated.py` checks it,
+  the build refuses a bad row). The class page keeps the row's title and place in the year and its link opens the
+  generator preset. `scripts/ws_gen_propose.py` sifts candidates by type and keywords for a reviewer.
+- **What the first sift found:** three reviewers read 746 candidate rows in math, science and social studies against
+  GEN-OPTIONS.md and the generator code and kept 26 (math 14, science 10, social studies 2: about one row in thirty).
+  Almost every planned row names a specific scenario, data set, text, place, criteria list or picture task, so the
+  generators as they stand rarely replace a written sheet. The remaining 14 subject files were not sifted: the rate
+  would be lower still. The gain was on the other side: settings the reviewers wished for, each backing several rows.
+- **Settings built 2026-11-04 (Cory: settings first):** number-ops estimate-first, within-100 at grade 2, a
+  missing-number skill, grade 6 decimal division and multiplication; word-problems grade 4 remainders; fractions
+  mixed numbers with unlike denominators and grade 3 unit-fraction copies; measure-shapes missing side, grid-count
+  area, cylinders-cones-spheres, triangular prism surface area; equations exponents, like terms, expand and factor,
+  no-solution and identity cases; science-calc a second topic on one sheet, wave speed, momentum conservation,
+  circuits; punnett counts to 8; graph-reading a data-set picker with science packs, teacher-typed data, picture-graph
+  key, build-the-graph; organizer typed row labels and column headers, 3- and 4-subject compares, T-chart with cut-out
+  cards; writing-frame persuasive letter and case brief; planner-log design planner and trial/week/day log; timeline
+  year range, custom events, geologic time, civil rights and World War II sets; vocabulary cloze passages; crosswords
+  of 12. Plus a new **coordinate-plane** generator (grades 5-8: plot and name, distance, reflect, shapes,
+  transformations). Every setting and value: docs/agents/GEN-OPTIONS.md, written by `node scripts/gen_options.mjs`.
+  The engine now seeds a sheet from the sheet code and the non-default settings only, so a generator can gain a
+  setting without changing the sheets old links print (a one-time break on 2026-11-04 for links made the day before).
+- **Second sift, same day:** with the new settings, reviewers kept 57 more rows (math 11, science 12, social studies
+  32, ELA 3), 83 in all. Social studies compare charts carry the row's own subjects and criteria through the organizer's
+  typed labels, which is where most of the gain came from. ELA rows almost always name a text, so they stay authored.
+  Still wished for, in rough order of rows unlocked: a reading log with genre, difficulty and strategy columns and a
+  week count; trial logs with typed column headers; a presentation planner and self-check; writing-frame reason
+  count, counterclaim toggle, heading lines on 6-12 informative bodies, a single-scene narrative mode, single-paragraph
+  argument frames; organizer compare without the band's extra column and capped at the typed rows, a three-column sort,
+  separate cause and effect labels; timeline Reconstruction, Road to Revolution and Holocaust sets; graph-reading custom
+  data up to 12 pairs with decimals and teacher-typed questions; coordinate-plane rigid-only transformations and
+  shapes at grade 6; punnett dihybrid to 4 or 6; vocabulary cloze from a typed word list.
+
+- **Ten more generators, 2026-11-04 (Cory: assess, then build 10 at the biggest gaps):** the assessment is
+  docs/agents/WORKSHEET-GAPS.md (all 7,856 unwritten rows classified; about 4,900 need a writer whatever we build). Built
+  from it: **statistics**, **algebra** (grade 8 to precalculus), **finance**, **early-number** (K-2 ten frames, dot
+  cards, blocks, clocks, coins), **grammar-words** (with an English-learner frames mode), **world-language** (Spanish and
+  French; ASL stays with writers), **music-notation**, **code-logic**, **rubric-checklist** and **project-frames**, plus
+  typed columns, more units and 12 entries on planner-log trial logs. A generator may load a word or fact bank from
+  `<id>-data.js` before its own file. gen_links.py has rules for all ten. A strict sift kept 593 rows (rubric-checklist
+  138, project-frames 122, finance 67, statistics 48, algebra 46, grammar-words 44, code-logic 38, early-number 30,
+  music-notation 30, world-language 30), 676 backed in all. The build brief and per-generator target rows are in
+  docs/agents/gap/. Next by the same data: fitness and health calculations, unit reviews mixed from other generators,
+  angles and geometry, calculus and trig, chemistry calculations, drawing drills, citations and library skills.
+
+**Update 2026-11-03: test group built.** Cory asked for 15 full generators covering every area and generator type, live for
+his review before deciding the build-out. They are organized by skill and grade rather than one recipe per module:
+`site/assets/gen/engine.js` (seeded random, ws-* sheet style, student/key switch, a sheet code in the URL) plus one file
+per generator, listed in `data/closet/generators.json`, checked by `node scripts/check_generators.mjs` (thousands of
+sheets each: every answer re-worked, no blanks without answers, same code gives the same sheet). Math (5), science (2),
+data, vocabulary and puzzles from the Word Wall, map skills, timelines, and three layout generators (organizers,
+writing frames, planners/logs/reflections). Next: Cory's review, then decide how far to build out and what it does to
+the authored worksheet backlog (docs/WORKSHEETS-PLAN.md). The design notes below are the earlier parked plan.
 
 Agreed as a concept, held until the shelves above are in place. The design so far, so it is ready when its turn
 comes:
@@ -517,7 +594,7 @@ A Foundation ──> B Sub Day ──> (ships with every new tool from here on; 
 | Phase | Pilot | Measure before scaling |
 |---|---|---|
 | B | Sub Day for 10 tools across bands, then the backfill | print quality on a real printer, minutes per `exit.md`, Cory's send-back rate |
-| C | Grade 3 word wall, all subjects (done; words now cover all 762 modules) | minutes per module for pictures and review, picture reject rate |
+| C | Grade 3 word wall, all subjects (done; words now cover 762 of 797 modules) | minutes per module for pictures and review, picture reject rate |
 | D | Anchor charts for the 72 modules with plans | which layouts cover which subjects, tile print alignment |
 | E | 10 games | play-test notes, how often a game needed a rewrite |
 | F | Grade 3 regions for the four core subjects | does the trail read right to a teacher, phone layout |
@@ -535,7 +612,7 @@ A Foundation ──> B Sub Day ──> (ships with every new tool from here on; 
 ## Decisions (Cory, 2026-10-26)
 
 - Name: **Supply Closet**.
-- Worksheet Generator: agreed as a concept, moved to the late roadmap.
+- Worksheet Generator: agreed as a concept, moved to the late roadmap; a 15-generator test group went live 2026-11-03.
 - Sub Day comes with each new tool. The packet is: cover page, lesson plan, teacher notes, exit ticket sheet, and a
   generic "do the worksheet instead" fallback.
 - Word Wall, Posters and Anchor Charts, and Family Game Night (2-3 per subject per grade): agreed as concepts.
