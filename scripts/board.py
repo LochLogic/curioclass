@@ -6,6 +6,8 @@ r"""The build board: where every tool is in the pipeline, worked out from its fi
 Stages, in order (docs/BUILD-PLAN.md):
   concept   only the catalog line
   spec      tools/<id>/spec.md (spec agent, docs/agents/SPEC.md)
+  codex     built by Codex in S:\CurioClass-codex (codex-report.md there), not pulled into this repo yet; reviewed
+            tools are pulled in and count as built (docs/agents/CODEX.md, "Pulling tools in")
   built     tool.draft.json and src.html (build agent, docs/agents/BUILD.md)
   verified  Refine passed: refine.md whose first line says PASS (docs/agents/REFINE.md), or for tools checked before
             2026-10-27, verify.md (docs/agents/archive/VERIFY.md). The key stays 'verified'; the desk labels it Refine.
@@ -21,6 +23,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 TOOLS = ROOT / 'tools'
+CODEX = ROOT.parent / 'CurioClass-codex' / 'tools'  # Codex's shared checkout (docs/agents/CODEX.md)
 sys.path.insert(0, str(ROOT / 'scripts'))
 from voice import clip_name  # noqa: E402
 
@@ -57,12 +60,14 @@ def row(tid):
         st = 'spec'
     else:
         st = 'concept'
+    if st in ('concept', 'spec') and (CODEX / tid / 'codex-report.md').exists():
+        st = 'codex'
     return {'stage': st, 'art': f'{a}/{an}' if an else '-', 'voice': f'{v}/{vn}' if vn else '-',
             'verify': 'PASS' if 'PASS' in verdict else ('FIX' if verdict else ''), 'plan': 'yes' if (f / 'plan.md').exists() else '',
             'sub': 'yes' if (f / 'exit.md').exists() else ''}
 
 
-ORDER = ['concept', 'spec', 'built', 'verified', 'art', 'voice', 'final', 'live']
+ORDER = ['concept', 'spec', 'codex', 'built', 'verified', 'art', 'voice', 'final', 'live']
 
 
 def main():

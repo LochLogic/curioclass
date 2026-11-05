@@ -35,6 +35,21 @@ message stops new starts. Tools touched in the last 20 minutes and slots whose p
 run beside hand-pasted chats, but it is meant for when nobody is pasting. Stop gently with an empty file
 S:\CurioClass-codex\_runner\STOP. Log: _runner\summary.txt, one events file per session under _runner\<date>\.
 
+## Pulling tools in (2026-11-04)
+
+The Codex checkout holds tools until they are reviewed. A tool with both `codex-report.md` and `codex-review.md`
+moves to main: `git checkout codex/queue -- tools/<id>` in S:\CurioClass, then copy its gitignored `art/raw` and
+`voice/raw` folders by hand, bundle with `CURIO_DRAFT=1` and run the checks. Skip a tool main already has at a later
+stage (main's version wins). The first pull (commit 251925d9) brought in 47 tools.
+
+A tool that is only built stays in the Codex checkout. scripts/board.py shows it in the CODEX column of the Review Desk
+stats board (a concept or spec tool whose `codex-report.md` exists there), so the board counts it without pulling it.
+
+Chrome profile folders under `_scratch` are junk and get deleted (1,226 went on 2026-11-04). The rest of a tool's
+scratch evidence (screenshots, audit output) is kept until the tool ships, then may go.
+
+Merge main into codex/queue after a pull so new builds use current engines.
+
 ## Set up
 
 - Its own worktree and branch off main: `git worktree add S:/CurioClass-codex-<id> -b codex/<id> origin/main`.
