@@ -163,10 +163,13 @@ def free_ports(kind, slot):
     except (OSError, subprocess.SubprocessError):
         return
     pids = {p for p in out.split() if p.isdigit() and int(p) not in (0, 4, os.getpid())}
-    for pid in pids:
-        subprocess.run(['taskkill', '/T', '/F', '/PID', pid], capture_output=True)
+    ended = 0
+    for pid in pids:  # /T can fail on an orphan whose parent is gone (2026-11-05); then kill it alone
+        if subprocess.run(['taskkill', '/T', '/F', '/PID', pid], capture_output=True).returncode == 0 or \
+                subprocess.run(['taskkill', '/F', '/PID', pid], capture_output=True).returncode == 0:
+            ended += 1
     if pids:
-        log(f'freed {kind} slot {slot}: ended {len(pids)} leftover process(es) on its ports')
+        log(f'freed {kind} slot {slot}: ended {ended} of {len(pids)} leftover process(es) on its ports')
 
 
 def codex_exe():
