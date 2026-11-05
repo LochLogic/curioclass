@@ -49,6 +49,8 @@ EARLY = 10 * 60    # a session that ends this fast without its file failed to st
 HUNG = ("That command hung, so I stopped it. Close any Chrome or server you started, note it under Left open in the report, "
         "and carry on with the next step.")
 CARRY = "Your connection dropped. Carry on from where you were and finish the report."
+CUT = ("Your session was cut off and has been restarted. Any Chrome or server you had started is gone, so start fresh ones "
+       "when you need them. Check what is already done in the tool folder, then carry on from where you were and finish the report.")
 LIMIT_WORDS = ('usage limit', 'rate limit', 'rate_limit', 'quota', 'insufficient_quota', 'try again at', 'upgrade to')
 CAPACITY_WORDS = ('at capacity', 'overloaded', 'stream disconnected', 'server_error', 'internal server error')
 
@@ -182,11 +184,27 @@ class Job:
         self.seen, self.grew = 0, time.time()
 
     def start(self):
+        """Start a fresh session, or pick up today's session for this job if an earlier run was cut off mid-way."""
+        prev = Path(f'{self.stem}.jsonl')
+        if prev.exists() and not self.thread:
+            with open(prev, encoding='utf-8', errors='replace') as f:
+                first = f.readline()
+            try:
+                self.thread = json.loads(first).get('thread_id')
+            except ValueError:
+                self.thread = None
+            if self.thread:
+                log(f'pick up {self.kind} {self.t}: an earlier run was cut off; resuming its session')
+                self.resume(CUT)
+                return
         self._launch(['exec', '--sandbox', 'workspace-write', '-C', str(BASE)], self.prompt, '')
 
     def resume(self, prompt):
         self.resumes += 1
-        self._launch(['exec', 'resume', '-c', 'sandbox_mode="workspace-write"', self.thread], prompt, f'-resume{self.resumes}')
+        n = self.resumes
+        while Path(f'{self.stem}-resume{n}.jsonl').exists():
+            n += 1
+        self._launch(['exec', 'resume', '-c', 'sandbox_mode="workspace-write"', self.thread], prompt, f'-resume{n}')
 
     def kill(self):
         if self.proc and self.proc.poll() is None:
