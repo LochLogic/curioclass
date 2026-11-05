@@ -4,7 +4,7 @@ Counts: blockers 0, should fix 0, pivot items 7
 # Pivot: pocket-universe becomes an instrument (owner's decision, Cory, 2026-11-04)
 
 This is not a normal Refine list. Cory decided that Pocket Universe becomes an **instrument**: read docs/VISION.md
-("Instruments: the second shape") and docs/INSTRUMENTS.md ("The look" and "Pivoting the super tools") first. An
+("Instruments: the second shape") and docs/CURIOSITIES.md ("The look" and "Pivoting the super tools") first. An
 instrument is shaped around a real thing, the student drives, and there is no score or finish line. Pocket Universe's
 real thing is a gravity sandbox watched from mission control. The physics, the trails, rewind and the Real Solar
 System stay exactly as honest as they are. What changes is the frame around them.
@@ -22,7 +22,7 @@ apply to the items below; it still applies to anything else.
    No "Goals 0 / 24" anywhere, no sticker slide-in, no chime for a found goal.
 3. **Wonders become the setups book.** The Wonders stay as a book of famous setups to load, break and change
    (the figure eight, a two-sun system, the real Solar System), opened from the Manual or the console.
-4. **The look of mission control** (docs/INSTRUMENTS.md "The look"): the space view fills the screen; telemetry in
+4. **The look of mission control** (docs/CURIOSITIES.md "The look"): the space view fills the screen; telemetry in
    monospace with units (selected body's mass, speed, distance, what it circles, laps); a time dial and scrubber in
    place of the speed pills; orbit readouts with thin rules. The kit frame goes: no header pill row and no
    right-hand pill panel. Controls sit on a console along the edge of the view.

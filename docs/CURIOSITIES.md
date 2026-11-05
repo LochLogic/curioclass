@@ -1,6 +1,6 @@
-# Instruments: concepts for Cory's review
+# Curiosities: concepts for Cory's review
 
-Started 2026-11-04. What an instrument is, the qualities and the short test: docs/VISION.md, "Instruments: the
+Started 2026-11-04. What a curiosity is, the qualities and the short test: docs/VISION.md, "Curiosities: the
 second shape". This file holds the concepts, the look, the super tool pivots and the open choices.
 
 **Status (2026-11-04).** Cory approved the overall concept and the look ("The look" below): both are locked. All
@@ -171,9 +171,9 @@ studio: a transport bar, knobs, lit step pads and channel strips, dense and dark
 instrument: a glowing atom in the middle, monospace readouts, data panels with thin rules, the whole periodic table
 as a working surface. Each one borrows the visual language of the real tool it stands for. That is the rule.
 
-**The rule: each instrument looks like the real instrument it is.** Not a photo of one, but its visual grammar:
+**The rule: each curiosity looks like the real thing it is.** Not a photo of one, but its visual grammar:
 
-| Instrument | Its real grammar |
+| Curiosity | Its real grammar |
 |---|---|
 | Voice Lab | An audio analyser: black glass, a scrolling heat-map ribbon, a level meter, a frequency ruler down the side |
 | Living Earth | A seismograph station: a slowly turning globe, drum traces scratching ink, a time dial, survey labels |
@@ -190,37 +190,37 @@ as a working surface. Each one borrows the visual language of the real tool it s
 
 1. **The object is the stage.** It fills the screen. There is no right-hand pill panel; controls sit where the real
    ones would (knobs on the body, a tray of parts, a toolbelt).
-2. **Real controls.** A small shared set, drawn for instruments: knob, fader, toggle switch, lit pad, dial, needle
+2. **Real controls.** A small shared set, drawn for curiosities: knob, fader, toggle switch, lit pad, dial, needle
    gauge, readout. They turn and click with a small sound (with Sound on), move with a little weight, and each still
    works by keyboard.
-3. **Readouts, not prose.** Live numbers with units in a monospace face, the way instruments speak. Explanations live
-   in a fold-out **Manual**, a drawer every instrument has in the same place, written like a good field guide.
-4. **A maker's plate.** Every instrument carries the same small engraved nameplate in a corner: "Curio Class
-   Instruments · No. 07 · Circuit Bench". It is the family mark, and the numbers make them collectable.
+3. **Readouts, not prose.** Live numbers with units in a monospace face, the way curiosities speak. Explanations live
+   in a fold-out **Manual**, a drawer every curiosity has in the same place, written like a good field guide.
+4. **A maker's plate.** Every curiosity carries the same small engraved nameplate in a corner: "Curio Class
+   Curiosities · No. 07 · Circuit Bench". It is the family mark, and the numbers make them collectable.
 5. **Each picks its own material.** Studio black, lab-glass cyan, blueprint blue, observatory brass, breadboard green,
    cream drafting paper. The palette comes from the real thing, so no two look alike.
 
 **What does not change.** Everything in BASELINE still holds: keyboard play, contrast, reduced motion, the Read voice,
-one offline file, school Chromebook speed. Motion, Sound and Read stay, gathered on the instrument's own power panel
-(styled like the instrument) instead of the header pills.
+one offline file, school Chromebook speed. Motion, Sound and Read stay, gathered on the curiosity's own power panel
+(styled like the curiosity) instead of the header pills.
 
-**On the site.** The Instruments shelf gets its own presentation: dark, like a cabinet of instruments, each one shown
+**On the site.** The Curiosities shelf gets its own presentation: dark, like a cabinet of curiosities, each one shown
 by its nameplate and a short live preview (the atom turning, the ribbon scrolling), not the regular tool card. In a
-module the instrument still sits in the normal list, with its nameplate as the badge.
+module the curiosity still sits in the normal list, with its nameplate as the badge.
 
 **How it gets built.** The shared controls (knob, fader, dial, gauge, readout, nameplate, Manual drawer) become a small
-instruments kit, grown the usual way: from the first three instruments that need it (rule 13). Span and Spire and
+curiosities kit, grown the usual way: from the first three curiosities that need it (rule 13). Span and Spire and
 Pocket Universe, pivoted first, are where it starts.
 
 ## Pivoting the super tools (Cory, 2026-11-04)
 
-Cory asked whether the five super tools (docs/agents/SUPER.md) could pivot into instruments. Most can, because they
+Cory asked whether the five super tools (docs/agents/SUPER.md) could pivot into curiosities. Most can, because they
 already share three of the qualities (the toy comes first, the concept is the mechanic, the model is honest). What
 makes each one a game is its goal ladder, its sticker book, or a fixed order of rooms. The pivot is the same move
 each time: **free play becomes the front door, the goals leave the frame, and the real material moves to the
 centre.** Goals that teach something can stay as an optional book to browse, never a ladder to climb.
 
-| Super tool | Where it stands | The instrument it becomes | Size of the pivot |
+| Super tool | Where it stands | The curiosity it becomes | Size of the pivot |
 |---|---|---|---|
 | Span and Spire | Built and reviewed by Codex (12 Tags with budgets) | **Span and Spire, the engineer's yard.** Build any bridge or tower; choose your own truck, wind and shake; every member glows with its real force and the weakest buckles in slow motion. Budget becomes a dial you can turn on, not a gate. Tags become an optional logbook of tested designs. | Small: a Codex fix round with a pivot brief |
 | Pocket Universe | Built and reviewed by Codex (goals and Wonders) | **Pocket Universe, a gravity sandbox.** Fling, rewind, scrub time; the real Solar System as a load. Goals leave the screen; Wonders stay as a book of famous setups to load and break. | Small: a Codex fix round |
@@ -232,12 +232,34 @@ Each passes the short test once pivoted. Span and Spire is the strongest: a real
 you can just play with, exactly like Circuit Bench. Cory approved pivoting both built ones (2026-11-04); their fix rounds are queued. If a fix round cannot carry the
 whole pivot, the next step is a rebuild of the frame with a revised spec, keeping the engine.
 
+**Pivot results (2026-11-05).** Both fix rounds finished overnight with every pivot item marked fixed (polish.md in
+each tool). Span and Spire now has gauges, a blueprint grid, a truck tray and a material rack; Pocket Universe opens
+on space with a mission-control console and a time dial. Two follow-ups are saved, not queued:
+
+- **Plate wording.** Both plates read "Curio Class Instruments · No. 01/02". They change to "Curio Class Curiosities"
+  in the next fix round for these two (a one-line change each).
+- **A polish boost.** Cory wants these two to get more polish and is thinking it over (2026-11-05). Fold the plate
+  wording into that round when Cory decides; do not queue either before then.
+
+## The name (Cory, 2026-11-05)
+
+These tools are **Curiosities** (one is a curiosity), and the shelf is the Curiosities shelf. "Instruments" was the
+working name until 2026-11-05 and was dropped because it sounds musical. Older notes, refine lists and the two pivoted
+tools' plates still say Instruments; read them as Curiosities.
+
+## Idea: the home page picture becomes the way in (Cory, 2026-11-05; once there are more)
+
+The picture at the top right of the home page (the subject logos) could be re-imagined as the door to the
+Curiosities: a cabinet whose pieces are the curiosities themselves, each one opening its tool. Wait until the shelf
+has enough pieces to fill it (Beat Lab, Elements Inspector, Span and Spire, Pocket Universe and a few of the new
+concepts), then design it with Cory.
+
 ## Open choices for Cory
 
 1. **Which concepts go ahead**, and in what order.
 2. **Where the shelf lives on the site:** its own page under Browse, a band on the home page, or both.
 3. **Where the label lives in the data:** a new column in data/tools-concepts.csv, or a short list
-   (data/instruments.csv: tool_id, anchor, also reaches).
+   (data/curiosities.csv: tool_id, anchor, also reaches).
 4. **Which live tools already pass the short test** and join the shelf now: Beat Lab and Elements Inspector for
    sure, and the rest checked against the test.
 5. **How they are built:** like super tools (one at a time, never in a wave, a third Refine round, a fresh-agent

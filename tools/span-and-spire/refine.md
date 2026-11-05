@@ -4,7 +4,7 @@ Counts: blockers 0, should fix 0, pivot items 7
 # Pivot: span-and-spire becomes an instrument (owner's decision, Cory, 2026-11-04)
 
 This is not a normal Refine list. Cory decided that Span and Spire becomes an **instrument**: read docs/VISION.md
-("Instruments: the second shape") and docs/INSTRUMENTS.md ("The look" and "Pivoting the super tools") first. An
+("Instruments: the second shape") and docs/CURIOSITIES.md ("The look" and "Pivoting the super tools") first. An
 instrument is shaped around a real thing, the student drives, and there is no score or finish line. Span and Spire's
 real thing is an engineer's test yard. The structural model, the buckling, the force colours, the trucks, the wind
 and the shake table are its strength and stay exactly as honest as they are. What changes is the frame around them.
@@ -25,7 +25,7 @@ apply to the items below; it still applies to anything else.
    a logbook button: each entry is a real test the yard has recorded ("Semi crossed, worst beam 64%: margin kept"),
    stamped when it happens. No count badge in the header, no flying stamp, no "0 of 25" anywhere on the main screen.
    Promises (criteria and constraints) live in the logbook too, as a brief the student or teacher can pick up.
-5. **The look of an engineer's test yard** (docs/INSTRUMENTS.md "The look"): blueprint or drafting paper for the
+5. **The look of an engineer's test yard** (docs/CURIOSITIES.md "The look"): blueprint or drafting paper for the
    build surface, members glowing in stress colours with a readable legend, needle gauges for load, worst member and
    sway, monospace readouts with units. The painted landscape can stay behind the yard if it reads as the site, but
    the kit frame goes: no header pill row and no right-hand pill panel. Controls sit where a yard's would: a truck

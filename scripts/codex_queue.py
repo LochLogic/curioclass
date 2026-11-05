@@ -40,7 +40,7 @@ gas-law-lab punnett-predictor misleading-charts phishing-spotter paycheck-decode
 equation-balancer rigid-motion-twins thesis-workshop star-life-story globe-theatre-stage""".split()
 # Added 2026-11-05 (Cory: the token budget has room). circuit-builder and sound-studio stay out: they overlap the
 # Circuit Bench and Voice Lab instruments.
-# cipher-vault held 2026-11-04: Cory is weighing a pivot of the super tools into instruments (docs/INSTRUMENTS.md).
+# cipher-vault held 2026-11-04: Cory is weighing a pivot of the super tools into instruments (docs/CURIOSITIES.md).
 # Refined tools whose fixes Codex makes (Cory, 2026-11-04). The merged list is tools/<id>/refine.md, brought over from main.
 # sight-words left the queue 2026-11-04: it is live on the site, so a Codex review would rework a live tool (Cory).
 FIX = """city-skyline-studio levels-and-pathways first-aid-responder music-history-radio span-and-spire pocket-universe""".split()
