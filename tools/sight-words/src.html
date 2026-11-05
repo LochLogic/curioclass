@@ -27,10 +27,11 @@ button, select {
   min-height:60px; min-width:60px; border:1px solid var(--btn-line); border-radius:7px;
   padding:8px 16px; background:#fffaf0; color:var(--ink); font:600 17px/1.2 'Segoe UI',sans-serif;
 }
-button:hover:not(:disabled) { background:#ebe7da; }
+@media (hover:hover) { button:hover:not(:disabled) { background:#ebe7da; } }
 button:active:not(:disabled) { background:#dce6ec; }
 button:disabled { opacity:.46; cursor:default; }
 button.primary { background:var(--brand); color:#fffaf0; border-color:var(--brand); }
+button.primary:hover:not(:disabled), button.primary:active:not(:disabled) { background:#173d62; border-color:#173d62; color:#fffaf0; }
 button[aria-pressed="true"] { border:2px solid var(--brand); background:var(--brand); color:#fff; }
 button[aria-pressed="true"]:hover { background:#173d62; color:#fff; }
 .utilities button[aria-pressed="true"] { background:transparent; color:var(--brand); border-color:#8b969f; }
@@ -173,6 +174,14 @@ dialog::backdrop { background:#1a304c66; }
   #set-label, #counter { font-size:13px; }
   .ready { gap:18px; }
   #result-score { font-size:25px; }
+}
+@media (max-width:419px) { /* small phones and zoomed-in browsers: title on its own row, nothing wider than the screen */
+  header { grid-template-columns:minmax(0,1fr); }
+  h1 { grid-row:1; grid-column:1; }
+  .utilities { grid-row:2; grid-column:1; }
+  .modes { grid-row:3; grid-column:1; }
+  .modes button, .utilities button { flex:1 1 0; min-width:0; width:auto; }
+  .actions, .actions button, #secondary-actions button { min-width:0; }
 }
 
 /* Polish (Curio Class): rounder, softly lit controls, pie countdown, ring timer */
