@@ -35,7 +35,11 @@ spot-the-ai shadow-measure rules-referee ph-mystery-liquids packaging-challenge 
 keyword-fishing is-the-historian-right input-or-output fire-lookout-triangles fair-dice-investigation
 design-the-study courtroom-statistics code-kitchen zipline-energy water-shapes-earth
 energy-accountant medical-test-paradox data-table-builder personal-essay-studio usage-panel body-thermostat
-algebra-tile-studio""".split()
+algebra-tile-studio
+gas-law-lab punnett-predictor misleading-charts phishing-spotter paycheck-decoder fallacy-field-guide mole-bakery
+equation-balancer rigid-motion-twins thesis-workshop star-life-story globe-theatre-stage""".split()
+# Added 2026-11-05 (Cory: the token budget has room). circuit-builder and sound-studio stay out: they overlap the
+# Circuit Bench and Voice Lab instruments.
 # cipher-vault held 2026-11-04: Cory is weighing a pivot of the super tools into instruments (docs/INSTRUMENTS.md).
 # Refined tools whose fixes Codex makes (Cory, 2026-11-04). The merged list is tools/<id>/refine.md, brought over from main.
 # sight-words left the queue 2026-11-04: it is live on the site, so a Codex review would rework a live tool (Cory).
