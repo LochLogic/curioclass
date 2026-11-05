@@ -39,7 +39,8 @@ algebra-tile-studio""".split()
 # cipher-vault held 2026-11-04: Cory is weighing a pivot of the super tools into instruments (docs/INSTRUMENTS.md).
 # Refined tools whose fixes Codex makes (Cory, 2026-11-04). The merged list is tools/<id>/refine.md, brought over from main.
 # sight-words left the queue 2026-11-04: it is live on the site, so a Codex review would rework a live tool (Cory).
-FIX = """city-skyline-studio levels-and-pathways first-aid-responder music-history-radio""".split()
+FIX = """city-skyline-studio levels-and-pathways first-aid-responder music-history-radio span-and-spire pocket-universe""".split()
+# span-and-spire and pocket-universe: the instruments pivot (Cory, 2026-11-04); their refine.md is a pivot list.
 DANCE = ("Owner's decision: this tool gets painted dancers, not the code figure. Paint them yourself, marked \"people\": true, "
          "with a natural range of dancers. Draw the fewest poses that teach the moves well, and keep the figure easy to swap.")
 NOTES = {  # desk answers the spec does not hold yet (docs/agents/decisions/DESK-ANSWERS.md)

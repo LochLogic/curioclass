@@ -1,4 +1,4 @@
-DRAFT (pivot to an instrument, 2026-11-04; becomes OPEN when Cory approves the look in docs/INSTRUMENTS.md)
+OPEN (pivot to an instrument; Cory approved it and the look, 2026-11-04)
 Counts: blockers 0, should fix 0, pivot items 7
 
 # Pivot: pocket-universe becomes an instrument (owner's decision, Cory, 2026-11-04)
@@ -34,6 +34,12 @@ apply to the items below; it still applies to anything else.
 7. **Keep BASELINE.** Keyboard play, contrast, reduced motion, the Read voice, one offline file, the 60 frames a
    second budget on a school Chromebook, and every size the tool supports now (re-shoot each). Reword any voice line
    that names a removed control or a goal.
+
+## Size of this round
+
+This is a bigger change than a normal fix: the frame of the tool is redrawn around an unchanged engine. Take the
+time a build would. If something cannot be done well in one pass, do the parts you can do well, leave the rest,
+and list it under "Not done" in `polish.md` with what it would need. A half-made look is worse than the old one.
 
 ## Settled calls
 

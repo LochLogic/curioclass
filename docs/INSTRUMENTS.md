@@ -1,7 +1,12 @@
 # Instruments: concepts for Cory's review
 
 Started 2026-11-04. What an instrument is, the qualities and the short test: docs/VISION.md, "Instruments: the
-second shape". This file holds the concepts and the open choices. Nothing here is built or in the queue yet.
+second shape". This file holds the concepts, the look, the super tool pivots and the open choices.
+
+**Status (2026-11-04).** Cory approved the overall concept and the look ("The look" below): both are locked. All
+eight concepts go ahead. Span and Spire and Pocket Universe are pivoting first, through a Codex fix round
+(tools/<id>/refine.md); Cipher Vault is held out of the Codex queue until its spec is revised. None of the new
+concepts has a spec yet.
 
 Each concept names the real thing it is, the first two minutes, where the depth comes from, the real material (with
 its licence status), and where it sits on the map: the anchor module it fills and the other modules it reaches.
@@ -154,7 +159,7 @@ its licence status), and where it sits on the map: the anchor module it fills an
 - **Watch:** Poetry Soundboard (planned studio in the same module) is the neighbour; this may take its card or sit
   beside it.
 
-## The look (proposed 2026-11-04, for Cory)
+## The look (approved by Cory, 2026-11-04)
 
 **What makes the regular tools look familiar.** They share one frame (kit/curio.css): a slate header with the title on
 the left and a row of pills on the right (modes, Motion, Sound, Read), the picture in the middle, a right-hand panel of
@@ -224,8 +229,8 @@ centre.** Goals that teach something can stay as an optional book to browse, nev
 | Living Pond | Spec only | **Living Pond, an ecosystem tank.** Add and remove species, change the seasons and the light, and watch the populations and the graph respond over years. No goals; the winters and the heron are the drama. | Small: a spec revision |
 
 Each passes the short test once pivoted. Span and Spire is the strongest: a real engineer's structural analysis
-you can just play with, exactly like Circuit Bench. Nothing is pivoted yet; the two built ones need Cory's go-ahead
-before a fix round changes them.
+you can just play with, exactly like Circuit Bench. Cory approved pivoting both built ones (2026-11-04); their fix rounds are queued. If a fix round cannot carry the
+whole pivot, the next step is a rebuild of the frame with a revised spec, keeping the engine.
 
 ## Open choices for Cory
 

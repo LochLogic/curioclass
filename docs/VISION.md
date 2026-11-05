@@ -45,7 +45,10 @@ written (of 8,947 planned); Word Walls for 762 of 797 modules; about 700 Reading
 | Supply Closet expansion: worksheets, printables, course cartridges, district pack | Supply Closet; worksheets and a 15-generator test group live; LMS cartridges with the Binder | Worksheets now |
 | Beyond school: test prep, certifications, trades | Beyond School track | Late; ACT/SAT-style practice first, never trademarked names |
 
-## Instruments: the second shape (Cory, 2026-11-04)
+## Instruments: the second shape (Cory, 2026-11-04; approved with the look)
+
+Approved by Cory on 2026-11-04: the idea, the qualities, the short test, one tool with two doors, and the look in
+docs/INSTRUMENTS.md ("The look"). These are standing decisions; change them only with Cory.
 
 Most tools are lessons: shaped around a standard, with a hook, practice, a check and a finish line. That is the
 coverage that makes Curio Class useful every day, and it stays the main build. A few tools are instruments instead:
