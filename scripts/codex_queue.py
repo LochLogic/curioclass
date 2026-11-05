@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parent.parent
 BASE = Path('S:/CurioClass-codex')
 OUT = BASE / '_queue.txt'
 RULE = '=' * 78
-QUEUE = """nonsense-words sight-words image-transformer near-and-far game-day-fuel art-style-match virtual-gallery biome-atlas workplace-scenarios
+QUEUE = """nonsense-words image-transformer near-and-far game-day-fuel art-style-match virtual-gallery biome-atlas workplace-scenarios
 up-the-watershed reserve-designer first-aid-responder data-policy-council act-it-out research-quest
 design-challenge-studio brand-builder speech-coach design-for-a-friend credit-card-builder captain-s-choices
 traffic-light-coder pocket-universe span-and-spire design-fixer art-through-time gallery-critique
@@ -36,6 +36,7 @@ keyword-fishing is-the-historian-right input-or-output fire-lookout-triangles fa
 design-the-study courtroom-statistics code-kitchen zipline-energy water-shapes-earth
 energy-accountant medical-test-paradox data-table-builder""".split()
 # Refined tools whose fixes Codex makes (Cory, 2026-11-04). The merged list is tools/<id>/refine.md, brought over from main.
+# sight-words left the queue 2026-11-04: it is live on the site, so a Codex review would rework a live tool (Cory).
 FIX = """city-skyline-studio levels-and-pathways first-aid-responder music-history-radio""".split()
 DANCE = ("Owner's decision: this tool gets painted dancers, not the code figure. Paint them yourself, marked \"people\": true, "
          "with a natural range of dancers. Draw the fewest poses that teach the moves well, and keep the figure easy to swap.")
