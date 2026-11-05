@@ -45,6 +45,42 @@ written (of 8,947 planned); Word Walls for 762 of 797 modules; about 700 Reading
 | Supply Closet expansion: worksheets, printables, course cartridges, district pack | Supply Closet; worksheets and a 15-generator test group live; LMS cartridges with the Binder | Worksheets now |
 | Beyond school: test prep, certifications, trades | Beyond School track | Late; ACT/SAT-style practice first, never trademarked names |
 
+## Instruments: the second shape (Cory, 2026-11-04)
+
+Most tools are lessons: shaped around a standard, with a hook, practice, a check and a finish line. That is the
+coverage that makes Curio Class useful every day, and it stays the main build. A few tools are instruments instead:
+shaped around a real thing, where the standard is learned as a side effect of using it. Beat Lab (a real music
+studio) and Elements Inspector (a real atom and NIST spectra) are the models and Cory's two favorites. Lessons are
+why teachers come back; instruments are what kids remember.
+
+**The qualities**
+
+1. **The subject is the interface.** The visuals are the content (spectrum lines, waveforms, the pump), not
+   decoration around it. That is why they look stunning without trying.
+2. **Low floor, no ceiling.** Two minutes of poking gets a reaction; a month of use still finds more.
+3. **The learner drives.** No correct path, no score, no finish line. The student asks; the tool answers by showing.
+4. **They respect the kid.** Something an adult would use for fun: made approachable, never dumbed down.
+5. **Real material.** Real data, real physics, real sound. The authenticity is load-bearing.
+
+**The short test** (an instrument passes all four)
+
+- Would a kid open it when no teacher assigned it?
+- Would an adult play with it for fun?
+- Is the real thing (sound, light, data, motion) the interface itself?
+- Does it work with no score and no finish line?
+
+**How it differs from super tools** (docs/agents/SUPER.md). Super tools took Beat Lab as their model and share the
+first three qualities, but they add a goal ladder and a sticker book: a designed toy with a game layer. An instrument
+needs neither. A super tool can also be an instrument when it passes the short test; the label follows the test, not
+the size.
+
+**One tool, two doors.** An instrument is a normal tool on the curriculum map: it fills its anchor module (Beat Lab
+fills arts-9-12-composing-and-producing; Elements Inspector fills science-10-atomic-structure-and-the-periodic-table)
+and lists the other modules it reaches, like any tool. It also appears on an Instruments shelf, which is a view of
+those tools, never a copy. It takes over the anchor's lesson card only when its teacher plan teaches that module's
+standard (Beat Lab's plan.md does); otherwise it is a second card in the module, beside the lesson tool. Concepts
+and open choices: docs/INSTRUMENTS.md.
+
 ## What we will not do
 
 - Accounts, ads, tracking or student analytics, ever.
