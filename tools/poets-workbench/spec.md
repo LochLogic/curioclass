@@ -120,8 +120,13 @@ dictionary hears words; honesty notes; sources and the CMU licence notice. "Thin
   the line best ("ourselves" has two and three syllable forms).
 - Poems: 16 public-domain texts already in the Reading Room, read from library/<id>/text.md (published before 1930):
   golden-sonnet18, golden-tiger, golden-ozymandias, poe-raven, poe-annabel, dickinson-death, dickinson-hope,
-  frost-woods, frost-road, hughes-dream-variations, dunbar-sympathy, mckay-if-we-must, owl-pussycat,
-  longfellow-revere, mccrae-flanders, jabberwocky. Sources and Gutenberg ids: data/library/sources.csv. About 26 KB.
+  frost-woods, frost-road, hughes-dream-variations, dunbar-sympathy, owl-pussycat, longfellow-revere,
+  mccrae-flanders, jabberwocky. Sources and Gutenberg ids: data/library/sources.csv. About 26 KB.
+- The sixteenth poem is William Ernest Henley's "Invictus" (1888, public domain), the shelf's famously powerful and
+  inspiring one (owner's choice, 2026-11-05, in place of a poem that would need a sensitivity review). It is not in
+  the Reading Room: fetch its text from a public-domain source (Henley, A Book of Verses, 1888, on Project Gutenberg or
+  Wikisource), check it word for word against a second source, and bundle it with the others. Four quatrains of
+  iambic tetrameter rhymed ABAB, so it reads cleanly on the workbench.
 - Budget: dictionary about 1.07 MB, poems 26 KB, code about 250 KB. About 1.35 MB, under the 2 MB goal.
 
 ## Honesty notes
@@ -154,5 +159,4 @@ Speak toggle does, with a voice installed on this device (localService true), so
 - Rhyme lists are not sorted by how common a word is (the dictionary has no frequencies). Lean: in a fix round, add
   SCOWL size 50 (en-wl/wordlist; "MIT-like" licence per its README, checked 2026-11-05) as a "common words first" sort;
   it must be staged locally before that round, since builds have no internet.
-- mckay-if-we-must is about racist mob violence (1919). Lean: keep it on the shelf as a sonnet; a fresh review agent
-  checks the shelf (BASELINE rule 5).
+- Settled (Cory, 2026-11-05): no poem on the shelf needs a sensitivity review; "Invictus" takes the sixteenth place.

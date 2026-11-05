@@ -91,6 +91,28 @@ Sources: every dataset and fact gets a named source and licence in the Manual an
 Bundle the data into the one file; the tool makes no network requests. If a dataset in the spec is too large, sample it
 honestly and say so in the Manual ("every quake of magnitude 6 or more since 1970").
 
+## Gathering data (owner's decision, 2026-11-05)
+
+A Curiosity build may go online to gather its real material. This overrides "Do not download anything" in the regular
+brief's Ground rules, for Curiosities only. The finished tool still makes no network requests: everything it uses is
+bundled into the one file.
+
+- Gather only what the spec names, from the sources it names (or its listed fallback). Read the licence at the
+  source before you use anything: public domain, CC0 or CC BY are fine; anything else, use the spec's fallback or
+  leave that piece out and say so.
+- Where a spec says "staged locally", "prep pass", "builds have no internet" or "fetch", do that step yourself at the
+  start of the session.
+- Save raw downloads in `_scratch/<id>/data/`, and write the script that packs them in Scratch too, so the next person
+  can re-run it. Only the packed result goes into `tools/<id>/`.
+- Record each source in the report's "The real material": URL, licence as stated at the source, date fetched, and how
+  it was sampled.
+- Check facts and quoted texts against two independent sources. Drop any piece you cannot confirm rather than guess.
+- Give gathering at most 45 minutes of the session in total, and put a time limit on every download. If a source is
+  down or a step needs software you cannot install (for example pygplates), use the fallback or leave that feature out
+  and list it under Left open. The instrument itself matters more than any one dataset.
+- Never download or run executables, and never install system software. A `pip install` of a pure-Python package
+  into a virtual environment in Scratch is fine.
+
 ## Check your work
 
 As the regular brief's "Check your work", with these changes:

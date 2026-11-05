@@ -160,7 +160,9 @@ current state: the year and visible quake count, then the selected quake or the 
 
 ## Open questions
 - Data preparation needs network and Python (ComCat queries, ETOPO resampling, pygplates for the Merdith rotations).
-  Lean: a prep pass before the Codex session puts the packed files in tools/living-earth/data/ with a prep script.
+  Settled (Cory, 2026-11-05): the build gathers it itself at the start of the session (CODEX-CURIOSITY.md, "Gathering
+  data"), with the prep script in _scratch/living-earth/. If pygplates will not install, leave the continent rewind out
+  and list it under Left open.
 - M5.0 or M5.5 as the floor. Lean: M5.0 if the packed file stays under 700 KB, else M5.5, said in the Manual.
 - Which past quakes Stations may pick. Lean: about 20 well-located M6.5+ quakes spread over every continent,
   chosen for geography, none described by its toll.

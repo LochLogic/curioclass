@@ -159,6 +159,12 @@ Hand it to your partner." / "Cracked. Show the maker how." Read speaks the machi
 8. No score, goal, level, sticker or finish screen anywhere; no timer, no room order, no "you did it".
 9. Short test passed and reported with one frame beside Elements Inspector; console clean, no network, no em dashes.
 
+## Checking the real cases (Cory, 2026-11-05)
+
+The Leeson stone, Gold-Bug, Vicksburg and 1930 Enigma cases were written from memory. At the start of the session,
+gather each from a primary or museum source and a second independent source (CODEX-CURIOSITY.md, "Gathering data"),
+and use the confirmed text. Drop any case that cannot be confirmed or does not decrypt exactly, and say so.
+
 ## Open questions
 - Leeson's stone reads REMEMBER DEATH. Keep it for grades 5 to 12? Lean: keep; it is a real 1794 memento mori.
 - Say plainly that Mary's letters were used at her trial and she was executed in 1587? Lean: yes (BASELINE rule 5).

@@ -158,7 +158,9 @@ tapped.
 
 ## Open questions
 - Finding PD or CC BY micrographs with known scale for every tray item is the biggest risk. Lean: a curation pass
-  before the Codex session writes manifest.json; a tray item with no qualifying image leaves the tray, never painted.
+  is done by the build itself at the start of the session (Cory, 2026-11-05; CODEX-CURIOSITY.md, "Gathering data"):
+  it writes manifest.json with each image's source, licence and scale; a tray item with no qualifying image leaves the
+  tray, never painted.
 - Unstained views made from stained photos. Lean: allowed, said on the slide's Manual page.
 - Dragging in the eyepiece: inverted like the knobs, or map-style. Lean: inverted, the real behaviour.
 - Short video clips for swimming. Lean: no video; sprites keep the file small.
