@@ -241,6 +241,11 @@ _rc_credits = json.loads((_rc_dir / 'CREDITS.json').read_text(encoding='utf-8'))
 for _c in RESEARCH['cards']:  # a public-domain photo when one is on file, else the emoji
     if (_rc_dir / f"{_c['id']}.jpg").exists() and _c['id'] in _rc_credits:
         _c['photo'] = dict(_rc_credits[_c['id']], src=f"/assets/research/{_c['id']}.jpg")
+# Read to me: a recorded voice with word times (scripts/research_voice.py); cards without one use the browser's voice
+_rc_voice = json.loads((DATA / 'research-voice.json').read_text(encoding='utf-8')) if (DATA / 'research-voice.json').exists() else {'cards': {}}
+for _c in RESEARCH['cards']:
+    if _c['id'] in _rc_voice['cards'] and (_rc_dir / 'voice' / f"{_c['id']}.mp3").exists():
+        _c['voice'] = {'src': f"/assets/research/voice/{_c['id']}.mp3", 'blocks': _rc_voice['cards'][_c['id']]['blocks']}
 # Browse: one page that picks a grade, a subject, or both (replaces the separate Grades and Subjects pages)
 mx = {g: {sid: 0 for sid in subjects} for g in GRADES}
 for m in modules.values():

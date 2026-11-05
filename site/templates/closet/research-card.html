@@ -70,12 +70,14 @@ addEventListener('load', () => document.fonts.ready.then(() => document.querySel
 })));
 </script>
 {% if c.title %}
+{% if c.voice %}<script type="application/json" id="rc-voice">{{ c.voice|tojson }}</script>{% endif %}
 <script>
 /* Read to me: reads page 1 aloud (title, reading, quick facts, words to know) and lights up each word as it is said.
-   Uses the browser's own voice; the button stays hidden where there is none. */
+   A card with a recording (scripts/research_voice.py) plays it and lights each word at its measured time; any other
+   card uses the browser's own voice, and the button stays hidden where there is neither. */
 addEventListener('DOMContentLoaded', () => {
   const say = window.speechSynthesis, btn = document.getElementById('rc-say');
-  if (!say || !btn || !window.SpeechSynthesisUtterance) return;
+  if (!btn) return;
   const page = btn.closest('.rc-page');
   const parts = [...page.querySelectorAll('.rc-head h1, .rc-read p, .rc-box h2, .rc-box li, .rc-words div')];
   const blocks = parts.map(el => {
@@ -99,11 +101,23 @@ addEventListener('DOMContentLoaded', () => {
     };
     walk(el);
     let text = '';
-    const starts = words.map(w => { const s = text.length; text += (text ? ' ' : '') + w.textContent; return text.length - w.textContent.length; });
+    const starts = words.map(w => { text += (text ? ' ' : '') + w.textContent; return text.length - w.textContent.length; });
     return {words, text, starts};
   }).filter(b => b.words.length);
-  let run = 0, lit = null, timer = null;
+
+  /* The recording's word times line up with these words only if the card's text is the one that was recorded. */
+  let rec = null;
+  try {
+    const v = JSON.parse(document.getElementById('rc-voice').textContent);
+    if (v.blocks.length === blocks.length && v.blocks.every((b, i) => b[1].length === blocks[i].words.length))
+      rec = {src: v.src, marks: v.blocks.flatMap((b, i) => b[1].map((t, k) => [t, blocks[i].words[k]]))};
+  } catch (e) { rec = null; }
+  const speech = !!(say && window.SpeechSynthesisUtterance);
+  if (!rec && !speech) return;
+
+  let run = 0, lit = null, timer = null, audio = null, frame = 0;
   const light = w => {
+    if (lit === w) return;
     if (lit) lit.classList.remove('rc-on');
     lit = w;
     if (!w) return;
@@ -111,17 +125,41 @@ addEventListener('DOMContentLoaded', () => {
     const r = w.getBoundingClientRect();
     if (r.top < 0 || r.bottom > innerHeight) w.scrollIntoView({block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
   };
-  const pick = () => {
-    const vs = say.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
-    return vs.find(v => v.localService && /en-US/i.test(v.lang)) || vs.find(v => v.localService) || vs[0] || null;
-  };
   const stop = () => {
     run++;
     clearTimeout(timer);
-    say.cancel();
+    cancelAnimationFrame(frame);
+    if (audio) { audio.pause(); audio.currentTime = 0; }
+    if (speech) say.cancel();
     light(null);
     btn.setAttribute('aria-pressed', 'false');
     btn.querySelector('span').textContent = 'Read to me';
+  };
+
+  /* Recorded voice: follow the audio clock, so the light stays with the voice even if playback stalls or skips. */
+  const play = id => {
+    if (!audio) {
+      audio = new Audio(rec.src);
+      audio.preload = 'auto';
+      audio.addEventListener('ended', () => stop());
+    }
+    const tick = () => {
+      if (id !== run) return;
+      const now = audio.currentTime * 1000 + 30;
+      let lo = 0, hi = rec.marks.length - 1, at = -1;
+      while (lo <= hi) { const mid = (lo + hi) >> 1; if (rec.marks[mid][0] <= now) { at = mid; lo = mid + 1; } else hi = mid - 1; }
+      light(at >= 0 ? rec.marks[at][1] : null);
+      frame = requestAnimationFrame(tick);
+    };
+    audio.currentTime = 0;
+    audio.play().then(() => { if (id === run) tick(); else audio.pause(); })
+      .catch(() => { if (id !== run) return; rec = null; if (speech) speak(0, id); else stop(); });
+  };
+
+  /* Browser voice. */
+  const pick = () => {
+    const vs = say.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    return vs.find(v => v.localService && /en-US/i.test(v.lang)) || vs.find(v => v.localService) || vs[0] || null;
   };
   const speak = (i, id) => {
     if (id !== run) return;
@@ -150,15 +188,16 @@ addEventListener('DOMContentLoaded', () => {
     u.onerror = e => { if (id === run && e.error !== 'interrupted' && e.error !== 'canceled') stop(); };
     say.speak(u);
   };
+
   btn.hidden = false;
   btn.onclick = () => {
     if (btn.getAttribute('aria-pressed') === 'true') { stop(); return; }
     stop();
     btn.setAttribute('aria-pressed', 'true');
     btn.querySelector('span').textContent = 'Stop reading';
-    speak(0, run);
+    if (rec) play(run); else speak(0, run);
   };
-  say.getVoices();
+  if (speech) say.getVoices();
   addEventListener('pagehide', stop);
   addEventListener('beforeprint', stop);
 });
