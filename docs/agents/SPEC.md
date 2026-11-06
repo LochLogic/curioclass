@@ -101,6 +101,13 @@ These rules close those gaps. Each names the tool that taught it.
 - **Personal prompts.** When a prompt invites a student to share feelings, family or health, "Who and how" says what
   the teacher does with a serious disclosure (a pass option on screen, follow school procedure) (Puppet Show).
 
+### Spec test result (2026-11-06): the lessons above were read but not applied
+
+Five specs written under these lessons came back from Refine with 1.2 blockers and 12.6 should fix a tool (old
+specs: 0.9 and 9.9), and about half still traced to the spec, mostly checks a child could pass without the skill and
+pre-reader lines heard out of order (docs/agents/MEASURE-FIRST.md). A rule in a list gets read; a table you must fill
+gets done. So "Can it be beaten?" and "Heard in order" are now sections of the spec itself, filled row by row.
+
 ## Write `tools/<tool-id>/spec.md` with exactly these sections
 
 ```
@@ -132,6 +139,16 @@ These rules close those gaps. Each names the tool that taught it.
  text>  (or "none")
 ## Family engine
 <which engine parts it uses and the content it feeds them>  (or "none")
+## Can it be beaten?
+<one row per check, score, meter or verdict: what it asks | every way to pass it without the skill | why each fails.
+ Try at least: guessing, elimination (the options repeat or shrink), the answer's position or size or color, a total
+ or count that only the right option has, the answer already on screen (a strip, chart, highlight, label or counter
+ that shows it before the child answers), doing nothing, mashing, and the common wrong answer. Any way that works is
+ a design change here, not a note.>
+## Heard in order
+<K-2 tools, and any tool where a line must be heard: for each step, the lines in the order they play, which ones the
+ next line or tap waits for, and the next action spoken. A sound inside a sentence is its recorded clip, never a bare
+ letter (a voice reads "t" as "tee"). Feedback for an answer plays before the next question. (Other grades: "none".)>
 ## Sources
 <claims table: claim | source 1 | source 2 | agree? Then the number checks you ran (scores through the wrong
  behaviors too) and their results>

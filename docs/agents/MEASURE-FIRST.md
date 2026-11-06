@@ -55,3 +55,11 @@ for pre-readers (letter names for sounds, feedback after the next question, how-
 tools, four of them K-1 with full voice (more voice items than the mostly older baseline set), and the lenses now
 use a shared audit plus stricter briefs, so part of the rise may be the instrument. Five more (bug-hunt,
 warming-evidence-desk, cocoa-chain, roller-coaster-rounding, the-buyout) are queued for Codex review.
+
+### Decision (Claude integrator, at Cory's "decide now", 2026-11-06)
+
+Keep writing specs: about half of all Refine findings trace to them, so a weaker spec costs more later. Change how the
+lessons reach the spec: SPEC.md now requires two filled sections, "Can it be beaten?" (every check against every
+no-skill path) and "Heard in order" (K-2 line order and waits), because the same two gaps recurred even with the
+rules written down. The five remaining spec-test tools still go through Refine as more data on the old format; the
+next specs use the new sections, and their first five Refines are the check on this change.
