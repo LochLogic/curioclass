@@ -313,4 +313,5 @@ moving the five hot-spell days to 74 moves the mean -2.73, median 0, IQR -6; mov
     on screen that numbers stay on the device; no network requests, no console errors.
 
 ## Open questions
-- [box-plot-builder] A named living athlete (Luka Doncic, 2023-24 with Dallas) is the sports set. Fine, or use a team's points per game instead (less striking: no far-off value)?
+None. Settled by Cory 2026-11-06: keep Luka Doncic's 2023-24 game log as the sports set, and the data-desk engine
+addition (`whiskers: 'range'`) is approved, built with this tool.

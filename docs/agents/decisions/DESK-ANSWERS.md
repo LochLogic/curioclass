@@ -2,6 +2,15 @@
 
 Cory's answers to question cards, and what each still needs. Remove a line once it is applied to the specs.
 
+## 2026-11-06
+
+**Second spec test (estimation-station, which-way-is-down, box-plot-builder, story-graphs, illusion-lab)**
+- box-plot-builder keeps Luka Doncic's 2023-24 game log as its sports set (applied to the spec).
+- box-plot-builder's data-desk engine addition, box plot option `whiskers: 'range'`, is approved; it is built with the
+  tool and goes into docs/families/data-desk.md in the same change.
+- People art in these five: Codex can paint it; Cory has no concerns there.
+- The Codex prompt file needs nothing for these; the queue picks them up as SPEC_TEST_2.
+
 ## 2026-10-30
 
 **People pictures (q-people-images)**
