@@ -45,7 +45,7 @@ equation-balancer rigid-motion-twins thesis-workshop star-life-story globe-theat
 FIX = """city-skyline-studio levels-and-pathways first-aid-responder music-history-radio span-and-spire pocket-universe
 sky-dome living-earth virtual-gallery flipbook-studio puppet-show-feelings moon-base-drama
 circuit-bench voice-lab microscope-bench poets-workbench
-graph-studio compass-and-straightedge cipher-vault molecule-forge""".split()
+graph-studio compass-and-straightedge cipher-vault molecule-forge living-pond""".split()
 # 2026-11-05 evening: Claude Refine (lenses + merge) done in the Codex checkout, then Codex fixes first in the run (Cory).
 # span-and-spire and pocket-universe: the instruments pivot (Cory, 2026-11-04); their refine.md is a pivot list.
 
