@@ -152,6 +152,12 @@ blockers and should fix in round 1, exit rounds to PASS and integrator fixes aga
 - About 14M input tokens to build and 30M a polish round, almost all cached; 37 minutes to build.
 - Its states file and scratch habits are the two things to brief harder.
 
+## What sky-dome round 2 taught (2026-11-06)
+
+- `scripts/drive.py` and the audit start Chrome with `--disable-gpu`, so WebGL runs on a software rasteriser. Sky
+  Dome's round 2 spent a whole fix chasing a 45 ms frame that was 7 ms with the GPU on. For a WebGL tool, judge a
+  60 fps gate on the CPU-side draw time under 4x throttle, or time it in a Chrome started without `--disable-gpu`.
+
 Cory's queue: `scripts/codex_queue.py`. Left out on purpose:
 tools waiting on desk answers, tools needing a kit engine that doesn't exist yet, sensitive or cultural topics, and the
 three super tools with unanswered cards.
