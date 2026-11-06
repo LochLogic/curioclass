@@ -14,7 +14,7 @@ Cory's answers to question cards, and what each still needs. Remove a line once 
 **Third spec batch (vibration-station, skate-park-angles, cooler-challenge, lunch-survey-cleanup, trade-island)**
 - Spec cost: use 200k tokens as the average for a new-format spec and stop measuring it per batch.
 - trade-island: drop the Rana Plaza case card. Redesign the factory-move policy with a less difficult issue (no deaths or disasters); fix lands with the next spec batch.
-- lunch-survey-cleanup's two open questions (made-up survey, blanks moved to grade 6) are not answered yet.
+- lunch-survey-cleanup's two open questions (made-up survey, blanks moved to grade 6): Cory has no issue with either. Both stand as specced.
 
 ## 2026-10-30
 

@@ -137,8 +137,8 @@ between old and new price (cloth plus fish); fishers and home weavers gain the a
 gain jobs x (wage - other work), other work 4 shells in Pell and 2 beads in Wren; treasury t x cloth imports. Jobs:
 Pell catch / 6, Pell home cloth / 3, factory output / 3; Wren catch / 2, Wren home cloth / 2. Reef (of 100): Pell
 100 - 0.1 x catch - 0.05 x factory output if in Pell; Wren 100 - 0.1 x catch - (0.25 Loose, 0.05 Strict) x factory
-output if in Wren. Rights card text: Pell "48-hour weeks, safety inspections, workers may form a union"; Wren Basic
-"60-hour weeks, few safety inspections"; Strong as Pell. Wages card: factory wage and other work on that island.
+output if in Wren. Rights card text: Pell "48-hour weeks, inspectors check wages and hours, workers may form a union";
+Wren Basic "60-hour weeks, few wage and hour checks, unions not recognized"; Strong as Pell. Wages card: factory wage and other work on that island.
 Growth card: the island's total of its rows. When the shell has moved, both Growth cards read "Not added up: a
 currency swing changes what each money is worth, so this model shows each group, not a total."
 **Factory choice:** with "May move", the owners compare profits after each market settles and move only if Wren
@@ -159,9 +159,9 @@ tariff 1 M S S S; shell +20%: no tariff M M M M, tariff 0.5 M M M M, tariff 1 M 
   reef 84). Strong and Strict: stays.
 **Case cards** (two lines each, with a link): Tariff, washers 2018: "The US put tariffs on imported washing machines
 in 2018. Washer prices rose nearly 12%, dryers rose about as much, and about 1,800 jobs were added, at a cost to
-buyers of more than $800,000 a job." (aeaweb.org research highlight). Factory move, Rana Plaza 2013: "On 24 April
-2013 the Rana Plaza garment building near Dhaka, Bangladesh, collapsed and killed more than 1,100 workers. Within
-weeks unions and more than 200 clothing brands signed a binding Accord on Fire and Building Safety." (ILO page).
+buyers of more than $800,000 a job." (aeaweb.org research highlight). Factory move, Cambodia textile deal 1999: "In
+1999 the US raised Cambodia's clothing quota 6% a year, and promised up to 14% more on top if its garment factories
+followed labor law. The ILO sent monitors into the factories and made what they found public." (ILO page).
 Currency, Swiss franc 2015: "On 15 January 2015 Switzerland's central bank dropped the cap of 1.20 francs per euro
 it had held since 2011. The franc jumped, and shares of Swiss exporters fell." (CRS report IN10230).
 **Case check:** For or Against, a policy, 2 to 5 pins including: one from each island, one gain and one loss, one
@@ -258,11 +258,15 @@ replies not yet started.
 | A stronger currency hurts exporters and import-competing producers, helps buyers of imports | OpenStax, Principles of Macroeconomics 3e, ch. 29 | CRS Insight IN10230 (2015), on the franc | yes |
 | Swiss franc: cap 1.20 per euro from Sept 2011 dropped 15 Jan 2015; franc jumped; exporter shares fell | CRS Insight IN10230 | ANSA, "Switzerland scraps franc's cap against euro," 15 Jan 2015 | yes |
 | Washers 2018: prices up nearly 12%, dryers too, about 1,800 jobs, more than $800,000 a job | Flaaen, Hortacsu and Tintelnot, AER 110(7), 2020 (AEA research highlight) | UChicago News, "What washing machines can teach us about the cost of tariffs" (2019) | yes ($815k and $820k both appear, so "more than $800,000") |
-| Rana Plaza: 24 April 2013, more than 1,100 killed; Accord signed within weeks by unions and 200+ brands | Human Rights Watch, 2019 | ILO, "The Rana Plaza Accident and its aftermath" | yes (1,134 and 1,133 both appear, so "more than 1,100") |
+| Cambodia, 1999: US textile deal gave 6% more clothing quota a year plus a bonus of up to 14% a year if factories met labor law | USTR press release, "U.S.-Cambodian Textile Agreement Links Increasing Trade with Improving Workers' Rights," January 2002 (6% normal increase; bonus raised "from 14 to 18 percent" in the renewal; Cambodian labor law and core labor standards) | Cambodia Daily, "US Delay on Garment Quota Irks Minister" (agreement signed January 1999; "automatic 6 percent increase"; "bonus quota of up to 14 percent per year if labor conditions are satisfactory") | yes |
+| The ILO monitored the garment factories under the deal and made its findings public; the program, Better Factories Cambodia, went on after the quotas ended | ILO feature, "New trade regime in textiles and clothing: How Cambodian factories improved their image" (deal laid the foundation in 1999; surprise inspections, results made public; all export factories must register with Better Factories Cambodia) | Maquila Solidarity Network archive, ILO garment sector project (born from the US-Cambodia Textile Agreement; ILO-trained monitors inspect registered factories) | yes (start year differs, 2000 or 2001, so the card names no start year) |
 | Textile dyeing wastewater pollutes rivers and coasts where rules are loose | UNEP, Sustainability and Circularity in the Textile Value Chain (2020) | Kant, "Textile dyeing industry an environmental hazard," Natural Science 4(1), 2012 | yes |
 | Workers displaced by import competition earn less for years after | Autor, Dorn and Hanson, AER 103(6), 2013 | Autor, Dorn, Hanson and Song, QJE 129(4), 2014 | yes |
-Backed twice: 10. Cut: the washers' consumer cost ($1.5 billion and $1.2 billion both appear); a "20% of industrial
-water pollution" textile figure (disputed); the 2022 WTO ruling on the washer tariffs (one source found).
+Backed twice: 11. Cut: the washers' consumer cost ($1.5 billion and $1.2 billion both appear); a "20% of industrial
+water pollution" textile figure (disputed); the 2022 WTO ruling on the washer tariffs (one source found); the year
+ILO monitoring began in Cambodia (2000 and 2001 both appear); the bonus Cambodia was actually granted each year
+(5%, 9% and 14% appear for different years); the claim that it was the first trade deal to tie labor to market
+access (one source found).
 Number checks (Python: isl_final.py, policy.py, tune.py, final.py in the spec agent's session scratchpad folder `ti`,
 not in the repo): every Islands value
 above, including best-alone splits, the reference deals, 181,800 split-and-deal combos per season (both-better
@@ -285,4 +289,4 @@ tariff 1 -10.8 together; contrast ratios as in Look.
 
 ## Open questions
 - Sensitivity review (rule 5 and rule 11): the nine people images and the two invented island cultures (no real
-  culture's dress or buildings), and the Rana Plaza case card's wording.
+  culture's dress or buildings).
