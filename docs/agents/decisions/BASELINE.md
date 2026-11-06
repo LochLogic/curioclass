@@ -53,8 +53,8 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     get Cory's final review on the Review Desk; plate wording ("Instruments" to "Curiosities") and any areas to lift
     are noted there and fixed after it, not before. Expect larger design work back on the first two.
 18. **Curiosities ship together** (2026-11-05). The home page Curiosities entrance is built after every planned
-    Curiosity is fully built. Their voice is one collective Forge effort once all of them reach the voice stage, not
-    one tool at a time.
+    Curiosity is fully built. Their voice goes on the Forge as each one passes its exit check, added to the end of
+    the running Forge queue (Cory, 2026-11-06: recording them all together was a wish, not a hard rule).
 
 ## One module Cory reviews personally
 
