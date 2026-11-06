@@ -11,6 +11,11 @@ Cory's answers to question cards, and what each still needs. Remove a line once 
 - People art in these five: Codex can paint it; Cory has no concerns there.
 - The Codex prompt file needs nothing for these; the queue picks them up as SPEC_TEST_2.
 
+**Third spec batch (vibration-station, skate-park-angles, cooler-challenge, lunch-survey-cleanup, trade-island)**
+- Spec cost: use 200k tokens as the average for a new-format spec and stop measuring it per batch.
+- trade-island: drop the Rana Plaza case card. Redesign the factory-move policy with a less difficult issue (no deaths or disasters); fix lands with the next spec batch.
+- lunch-survey-cleanup's two open questions (made-up survey, blanks moved to grade 6) are not answered yet.
+
 ## 2026-10-30
 
 **People pictures (q-people-images)**

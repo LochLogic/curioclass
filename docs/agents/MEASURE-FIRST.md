@@ -103,3 +103,6 @@ Total about 1.04M, close to the second test's 190k average. Spec check: every se
 lunch-survey-cleanup asks to use a made-up survey (data-desk family rule asks for real data) and moved the blanks from
 the English learners' class to grade 6 paper forms; trade-island carries a Rana Plaza 2013 case card, which needs the
 fresh sensitivity review before build.
+
+**Settled by Cory 2026-11-06:** a new-format spec costs about 200k tokens on average. Use 200k for planning and stop
+measuring per-spec costs on later batches.
