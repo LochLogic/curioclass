@@ -63,3 +63,23 @@ lessons reach the spec: SPEC.md now requires two filled sections, "Can it be bea
 no-skill path) and "Heard in order" (K-2 line order and waits), because the same two gaps recurred even with the
 rules written down. The five remaining spec-test tools still go through Refine as more data on the old format; the
 next specs use the new sections, and their first five Refines are the check on this change.
+
+### Second spec test (new format, 2026-11-06)
+
+The first five specs written with SPEC.md's required "Can it be beaten?" and "Heard in order" sections. They are queued
+for Codex as SPEC_TEST_2 in scripts/codex_queue.py, right after SPEC_TEST. Their Refine counts check the decision above:
+if the two sections work, fewer blockers and should-fix items trace back to the spec.
+
+| Tool | Grade | Subject | Spec tokens | Minutes | Lines |
+|---|---|---|---|---|---|
+| estimation-station | 2 | math | 179,490 | 11.7 | 201 |
+| which-way-is-down | 5 | science | 166,424 | 9.1 | 324 |
+| box-plot-builder | 6 | math | 209,409 | 13.6 | 316 |
+| story-graphs | 8 | math | 207,392 | 15.1 | 204 |
+| illusion-lab | 12 | psychology | 188,594 | 13.4 | 354 |
+| **Average** | | | **190,262** | **12.6** | |
+
+Each spec ran on one Opus agent; all five ran in parallel (about 15 minutes of wall time). The cost sits inside the
+old range (about 140k to 210k tokens), so the two new sections did not make specs dearer. The spec check (overlaps,
+voices, accents, names, both new sections, and a rerun of story-graphs' number checks) found nothing to fix. Three
+specs run over the 300-line guide, mostly because of the two new tables.
