@@ -1,0 +1,17 @@
+{
+  "keep":["#hint"],
+  "states":[
+    {"name":"hung-and-aimed","steps":[{"click":"#shelf-ers36"},{"click":"#plan"},{"key":"Enter"},
+      {"key":"ArrowLeft"},{"click":"#preview"}],
+      "keep":["#plan"],"sizes":["1366x768","680x425","375x812"]},
+    {"name":"cue-recorded","steps":[{"click":"#m-cues"},{"click":"#record"}],
+      "keep":["#record","#board"],"sizes":["1366x768","680x425","375x812"]},
+    {"name":"run-stopped","steps":[{"click":"#m-run"},{"click":"#runScene"},{"wait":1600},{"click":"#stop"}],
+      "keep":["#runCanvas","#graph"],"sizes":["1366x768","680x425","375x812"]},
+    {"name":"turn-editor","steps":[{"click":"#m-run"},{"click":"#editTurns"}],
+      "keep":["#turnDialog"],"sizes":["1366x768","680x425","375x812"]},
+    {"name":"seated-beat","steps":[{"click":"#shelf-fresnel"},{"click":"#plan"},{"key":"Enter"},
+      {"click":"#m-cues"},{"click":"#record"},{"click":"#m-run"},{"click":"#step"}],
+      "keep":["#graph"],"sizes":["1366x768","680x425","375x812"]}
+  ]
+}

@@ -1,0 +1,260 @@
+{
+  "house_style": "Warm painted illustration for a middle-school dance history explorer, layered gouache and colored-pencil texture, cinematic directional light, deep walnut shadows and luminous amber highlights, believable period objects, richly detailed yet readable. No text, letters, numbers, logos.",
+  "assets": [
+    {
+      "name": "hall-1920s-club",
+      "prompt": "An empty 1920s Harlem nightclub with small round tables, a raised bandstand with a piano and a drum kit, palm decorations and warm amber lights. Wide open wooden dance floor in the foreground.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 73,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "hall-savoy",
+      "prompt": "An empty 1930s ballroom a block long with a polished maple floor, two bandstands at one side and soft colored lights. Spacious dance floor, majestic architectural depth, warm light from upper left.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 73,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "hall-palladium",
+      "prompt": "An empty 1950s Manhattan ballroom with a big polished floor, a bandstand with timbales and congas, and a glowing blank marquee panel. Expansive clear foreground floor, amber and teal light.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 73,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "hall-tv-studio",
+      "prompt": "An empty 1950s television studio dance floor with bleachers, a podium with a record player and two big studio cameras. Period cables and overhead lights, clear foreground dance floor.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 73,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "hall-sock-hop",
+      "prompt": "An empty school gym decorated for a 1960 sock hop with crepe paper streamers, a record player on a table and rows of shoes along the wall. Warm evening lights, clear wooden foreground floor.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 73,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "hall-block-party",
+      "prompt": "A Bronx city street and a community room doorway on a summer evening, folding tables, speakers stacked on the sidewalk and a turntable setup. Brick apartments, warm doorway light, clear pavement foreground. Empty scene before the party begins.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 73,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "hall-disco",
+      "prompt": "An empty 1970s disco with a lit checkered floor, a mirror ball and a DJ booth with two turntables. Violet, amber and teal pools of light, atmospheric depth, open foreground dance floor.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 73,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "hall-wedding",
+      "prompt": "An empty wedding reception hall with a wooden dance floor, string lights, round tables with white cloths and a DJ table. Amber light, elegant lived-in detail, wide clear foreground floor.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 73,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "marker-gramophone",
+      "prompt": "Single object, three-quarter view: a 78 rpm black record on a wind-up gramophone with a brass horn. Flat pure green (#00FF00) background, isolated with a clean outline and generous margin. No lettering.",
+      "aspect": "1:1",
+      "width": 150,
+      "cutout": true,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "marker-stand",
+      "prompt": "Single object, three-quarter view: a big band music stand with a blank cream front and dark wooden legs. Flat pure green (#00FF00) background, isolated with a clean outline and generous margin. No lettering.",
+      "aspect": "1:1",
+      "width": 150,
+      "cutout": true,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "marker-timbales",
+      "prompt": "Single object, three-quarter view: a pair of silver timbales on one metal stand with a cowbell. Flat pure green (#00FF00) background, isolated with a clean outline and generous margin. No lettering.",
+      "aspect": "1:1",
+      "width": 150,
+      "cutout": true,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "marker-camera",
+      "prompt": "Single object, three-quarter view: a 1950s television studio camera on a wheeled pedestal. Flat pure green (#00FF00) background, isolated with a clean outline and generous margin. No lettering.",
+      "aspect": "1:1",
+      "width": 150,
+      "cutout": true,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "marker-player",
+      "prompt": "Single object, three-quarter view: a 45 rpm black record on an open portable suitcase record player. Flat pure green (#00FF00) background, isolated with a clean outline and generous margin. No lettering.",
+      "aspect": "1:1",
+      "width": 150,
+      "cutout": true,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "marker-turntables",
+      "prompt": "Single object, three-quarter view: two turntables on a compact wooden DJ table. Flat pure green (#00FF00) background, isolated with a clean outline and generous margin. No lettering.",
+      "aspect": "1:1",
+      "width": 150,
+      "cutout": true,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "marker-ball",
+      "prompt": "Single object, three-quarter view: a hanging silver mirror ball with tiny square mirror tiles. Flat pure green (#00FF00) background, isolated with a clean outline and generous margin. No lettering.",
+      "aspect": "1:1",
+      "width": 150,
+      "cutout": true,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "marker-boombox",
+      "prompt": "Single object, three-quarter view: a silver boombox with two speakers and a cassette compartment. Flat pure green (#00FF00) background, isolated with a clean outline and generous margin. No lettering.",
+      "aspect": "1:1",
+      "width": 150,
+      "cutout": true,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "dancer-avery",
+      "prompt": "Warm painted gouache and colored-pencil dance illustration, realistic friendly adult proportions, walnut shadows, amber light from upper left, no text, numerals, logos or borders. A precise sprite sheet with four equal columns and two equal rows. Each cell has the same full-length person, head and shoes fully visible, same size and baseline, clear empty margin, all on flat pure green (#00FF00). Viewed from behind so anatomical left is image left. Eight poses read row by row: relaxed feet apart; left foot forward weight on left; left foot back weight on left; left side step weight on left; left foot crossed in front weight on left; right knee raised with low forward kick weight on left; hips swivel left while shoulders counter-rotate right and feet pivot left in place; the same counter-rotation with a shallow knee bend. Arms naturally balance the pose. Comfortable modest modern practice clothing, not historical costume. A young adult Black man with dark brown skin, short textured hair, average build, violet short-sleeve shirt, dark navy trousers, pale flat shoes.",
+      "house_style": "Warm gouache and colored-pencil illustration matching the amber-lit halls.",
+      "aspect": "3:2",
+      "width": 1536,
+      "quality": 80,
+      "cutout": "keyed",
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "sheet": {
+        "columns": 4,
+        "rows": 2,
+        "poses": [
+          "stand",
+          "forward",
+          "back",
+          "side",
+          "cross",
+          "kick",
+          "twist",
+          "dip"
+        ]
+      },
+      "revision": "Cold review: replace the last two generic poses with clear high and low counter-rotation for the Twist; preserve the other six cells."
+    },
+    {
+      "name": "dancer-jo",
+      "prompt": "Warm painted gouache and colored-pencil dance illustration, realistic friendly adult proportions, walnut shadows, amber light from upper left, no text, numerals, logos or borders. A precise sprite sheet with four equal columns and two equal rows. Each cell has the same full-length person, head and shoes fully visible, same size and baseline, clear empty margin, all on flat pure green (#00FF00). Viewed from behind so anatomical left is image left. Eight poses read row by row: relaxed feet apart; left foot forward weight on left; left foot back weight on left; left side step weight on left; left foot crossed in front weight on left; left knee raised with low forward kick weight on right; torso gently twisting left feet planted; gentle shallow knee bend feet apart. Arms naturally balance the pose. Comfortable modest modern practice clothing, not historical costume. A middle-aged East Asian woman with light tan skin, short silver-streaked hair, fuller body, amber short-sleeve blouse, dark navy trousers, pale flat shoes, small visible behind-ear hearing aid.",
+      "house_style": "Warm gouache and colored-pencil illustration matching the amber-lit halls.",
+      "aspect": "3:2",
+      "width": 1536,
+      "quality": 80,
+      "cutout": "keyed",
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "sheet": {
+        "columns": 4,
+        "rows": 2,
+        "poses": [
+          "stand",
+          "forward",
+          "back",
+          "side",
+          "cross",
+          "kick",
+          "twist",
+          "dip"
+        ]
+      }
+    },
+    {
+      "name": "dancer-details",
+      "people": true,
+      "cutout": "keyed",
+      "aspect": "3:2",
+      "width": 1536,
+      "quality": 80,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "house_style": "Warm gouache and colored-pencil dance illustration, amber directional light.",
+      "prompt": "Four columns by two rows, equal cells, complete figures at matching scale on pure green. Row one Avery, row two Jo, matching the two character pose sheets. Each row: left foot crossed BEHIND right weight on left; weight supported RIGHT left toes lightly touching out to side; weight supported RIGHT left toes tapping behind; weight supported LEFT, right foot scuffing forward while beginning a quarter turn LEFT. Rear view for first three, side profile facing image left for the fourth. Modern modest practice clothes, natural anatomy, no text or logos.",
+      "sheet": {
+        "columns": 4,
+        "rows": 2,
+        "poses": [
+          "behind",
+          "touch",
+          "back-tap",
+          "turn"
+        ]
+      }
+    },
+    {
+      "name": "dancer-jo-turn-step",
+      "people": true,
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 512,
+      "quality": 80,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "house_style": "Warm gouache and colored-pencil illustration, amber light from upper left, matching Jo in the other pose sheets.",
+      "prompt": "Same middle-aged East Asian woman as dancer-jo, fuller body, short silver-streaked hair, amber blouse, navy trousers and pale flat shoes, small behind-ear hearing aid. Full-length left-facing side profile on pure green, completing a quarter turn LEFT while stepping onto the LEFT foot forward. Left foot flat and bearing weight under the body, right foot a short distance behind with toes lightly on the floor and heel raised, preparing to scuff next. Both feet remain at floor level; this is the grounded step before the scuff. Natural arms, quiet knees, no lettering or props. Clear full-body margins and precise feet."
+    }
+  ]
+}

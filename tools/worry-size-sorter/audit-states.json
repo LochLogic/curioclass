@@ -1,0 +1,283 @@
+{
+  "target": 44,
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "sorted-card",
+      "steps": [
+        {
+          "click": "#worryCard"
+        },
+        {
+          "click": "#basket0"
+        }
+      ],
+      "keep": [
+        "#nextWorry"
+      ]
+    },
+    {
+      "name": "body-clue",
+      "steps": [
+        {
+          "click": "#m-clues"
+        },
+        {
+          "click": "#clue4"
+        }
+      ],
+      "keep": [
+        ".kid-wrap"
+      ]
+    },
+    {
+      "name": "talk-result",
+      "steps": [
+        {
+          "click": "#m-tools"
+        },
+        {
+          "click": "#tool1"
+        },
+        {
+          "click": "#meter4"
+        },
+        {
+          "click": "#reply0"
+        },
+        {
+          "click": "#reply1"
+        },
+        {
+          "click": "#talkDone"
+        },
+        {
+          "click": "#meter2"
+        }
+      ],
+      "keep": [
+        "#meterResult"
+      ]
+    },
+    {
+      "name": "box-away",
+      "steps": [
+        {
+          "click": "#m-tools"
+        },
+        {
+          "click": "#tool3"
+        },
+        {
+          "click": "#meter3"
+        },
+        {
+          "click": "#boxAction"
+        },
+        {
+          "click": "#boxAction"
+        }
+      ],
+      "keep": [
+        "#boxDone"
+      ]
+    },
+    {
+      "name": "breathing-stopped",
+      "steps": [
+        {
+          "click": "#m-tools"
+        },
+        {
+          "click": "#meter3"
+        },
+        {
+          "click": "#startTool"
+        },
+        {
+          "wait": 700
+        },
+        {
+          "click": "#stopTool"
+        }
+      ],
+      "keep": [
+        ".meter"
+      ]
+    },
+    {
+      "name": "source-result",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#worryCard"
+        },
+        {
+          "click": "#basket0"
+        },
+        {
+          "click": "#tryTool"
+        },
+        {
+          "click": "#tool1"
+        },
+        {
+          "click": "#meter4"
+        },
+        {
+          "click": "#reply0"
+        },
+        {
+          "click": "#talkDone"
+        },
+        {
+          "click": "#meter2"
+        }
+      ],
+      "keep": [
+        ".result-actions",
+        ".meter"
+      ]
+    },
+    {
+      "name": "week-chart",
+      "sizes": [
+        "1366x768",
+        "1920x1080"
+      ],
+      "steps": [
+        {
+          "click": "#m-week"
+        },
+        {
+          "click": "#goalTool0"
+        },
+        {
+          "click": "#goalTime0"
+        },
+        {
+          "click": "#goalWho0"
+        },
+        {
+          "click": "#because0"
+        },
+        {
+          "click": "#setGoal"
+        },
+        {
+          "click": "#day0"
+        }
+      ],
+      "keep": [
+        ".chart",
+        ".privacy"
+      ]
+    },
+    {
+      "name": "reflection",
+      "sizes": [
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#m-week"
+        },
+        {
+          "click": "#goalTool0"
+        },
+        {
+          "click": "#goalTime0"
+        },
+        {
+          "click": "#goalWho0"
+        },
+        {
+          "click": "#because0"
+        },
+        {
+          "click": "#setGoal"
+        },
+        {
+          "click": "#finishWeek"
+        },
+        {
+          "click": "#barrier0"
+        }
+      ],
+      "keep": [
+        ".reflection"
+      ]
+    },
+    {
+      "name": "early-stop-rating",
+      "steps": [
+        {
+          "click": "#m-tools"
+        },
+        {
+          "click": "#meter5"
+        },
+        {
+          "click": "#startTool"
+        },
+        {
+          "click": "#stopTool"
+        },
+        {
+          "click": "#meter1"
+        }
+      ],
+      "keep": [
+        "#meterResult"
+      ]
+    },
+    {
+      "name": "early-reflection-phone",
+      "sizes": [
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-week"
+        },
+        {
+          "click": "#goalTool0"
+        },
+        {
+          "click": "#builderNext"
+        },
+        {
+          "click": "#goalTime0"
+        },
+        {
+          "click": "#builderNext"
+        },
+        {
+          "click": "#goalWho0"
+        },
+        {
+          "click": "#builderNext"
+        },
+        {
+          "click": "#because0"
+        },
+        {
+          "click": "#setGoal"
+        },
+        {
+          "click": "#finishWeek"
+        }
+      ],
+      "keep": [
+        ".reflection",
+        ".privacy",
+        "#keepNext"
+      ]
+    }
+  ]
+}

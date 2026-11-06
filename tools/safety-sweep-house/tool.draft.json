@@ -1,0 +1,23 @@
+{
+  "id": "safety-sweep-house",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Search a house. Think it through. Make it safer.",
+  "outcome": "Recognize household and online hazards, compare outcomes, and practice safe actions",
+  "driver": "students or teacher",
+  "minutes": "20-30",
+  "modes": [],
+  "grades_label": "Grades 3-5",
+  "sources": [
+    "CDC Medication Safety and cleaning guidance",
+    "HRSA Poison Help",
+    "USFA fire safety",
+    "AAP HealthyChildren water safety",
+    "CPSC Pool Safely",
+    "FTC kids and gaming guidance",
+    "NHES 2024, SHAPE America",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-05"
+}

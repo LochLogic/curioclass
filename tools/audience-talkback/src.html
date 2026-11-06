@@ -1,0 +1,1476 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Audience Talkback · Curio Class</title>
+<meta name="description" content="Watch one animal theater scene two ways, test four staging choices, and give your own verdict. Grades 3-5. Works offline.">
+<!--
+Audience Talkback, Curio Class. Grades 3-5 theater. TH:Re8 and TH:Re9.
+Original scene, talkback cards and music written for Curio Class.
+NCAS responding standards; NGSS fair tests; theater design sources listed in notes.md and spec.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+One offline file. No automatic network requests. Content CC BY 4.0, code MIT.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper: #1c1820;
+  --panel: #2b2530;
+  --ink: #f1ebe4;
+  --muted: #b8aeb4;
+  --line: #625364;
+  --brand: #ff7a59;
+  --focus: #ffcf5c;
+  --btn: #332b37;
+  --btn-line: #756479;
+  --head-ink: #f1ebe4;
+  --a: #ffcf5c;
+  --b: #7cc6fe;
+}
+body {
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  background: radial-gradient(ellipse at 40% 0, #3d2434, var(--paper) 65%);
+}
+header {
+  padding: 12px 22px;
+  gap: 8px;
+  background: #211a24;
+  border-top: 3px solid var(--brand);
+  border-bottom: 1px solid #615061;
+}
+h1 {
+  font: 700 clamp(22px, 2.8vw, 34px)/1 Georgia, serif;
+  letter-spacing: -.035em;
+}
+h1 small {
+  color: var(--muted);
+  opacity: 1;
+  margin-top: 6px;
+  font-size: 13px;
+  letter-spacing: .02em;
+}
+button {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: linear-gradient(#3c3241, #2b2430);
+  min-height: 44px;
+  padding: 6px 12px;
+  font-weight: 650;
+  transition: background .15s, box-shadow .15s;
+}
+button:hover { border-color: var(--brand); }
+button:active { box-shadow: inset 0 2px 5px #0008; }
+button[aria-pressed="true"] { border-color: var(--brand); box-shadow: inset 0 -3px var(--brand); }
+button.primary { background: var(--brand); color: var(--paper); border-color: #ffad91; }
+.icon-btn { min-height: 44px; font-size: 13px; padding: 0 12px; border-width: 1px; }
+#sound { width: 100px; }
+#motion { width: 104px; }
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 6px 22px;
+  background: transparent;
+  border: 0;
+  color: var(--ink);
+}
+.modes { display: flex; gap: 5px; }
+.modes button { background: transparent; border-color: transparent; }
+.modes button[aria-pressed="true"] { color: var(--brand); background: #392932; }
+.privacy { color: var(--muted); font-size: 11px; margin-left: auto; }
+.clear { font-size: 11px; background: transparent; }
+main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 16px;
+  padding: 0 22px 14px;
+  overflow: hidden;
+  min-height: 0;
+}
+.theater-column { min-width: 0; display: flex; flex-direction: column; align-items: stretch; gap: 6px; }
+.playbill { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 3px 0; }
+.playbill b { font: 600 18px Georgia, serif; }
+.eyebrow { color: var(--brand); text-transform: uppercase; letter-spacing: .13em; font-size: 10px; font-weight: 750; }
+.playbill small { font-size: 11px; color: var(--muted); }
+.stage {
+  flex: none;
+  min-height: 0;
+  width: min(100%, calc((100dvh - 380px) * 1.777778));
+  aspect-ratio: 16 / 9;
+  align-self: center;
+  border: 1px solid #b28768;
+  border-radius: 8px 8px 2px 2px;
+  box-shadow: 0 15px 28px #0008, 0 0 0 4px #3c2830;
+  isolation: isolate;
+  background: #57382f;
+}
+.backdrop { width: 100%; height: 100%; position: absolute; inset: 0; }
+.actor { position: absolute; object-fit: contain; object-position: bottom; filter: drop-shadow(2px 5px 3px #100b1390); }
+#kit { left: 23%; bottom: 14%; width: 23%; height: 52%; transform-origin: 50% 100%; }
+#holloway { left: 60%; bottom: 18%; width: 25%; height: 65%; transform-origin: 50% 100%; }
+#holloway.kneel { left: 57%; bottom: 16%; width: 30%; height: 47%; }
+#bike { left: 39%; bottom: 13%; width: 29%; height: 30%; }
+.foot-shadow { position: absolute; height: 6%; background: #120d2090; border-radius: 50%; filter: blur(4px); }
+.kit-shadow { left: 27%; bottom: 12%; width: 19%; }
+.bear-shadow { left: 60%; bottom: 16%; width: 22%; }
+.light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, #102e7880, #132b4350 49%, #f0b1461a 80%);
+  box-shadow: inset 80px 0 100px #0b183866, inset 0 10px 50px #0005;
+  transition: background .2s, opacity .2s;
+}
+.warm-light { background: linear-gradient(120deg, #fff0ab45, #f4c76e20); opacity: 0; }
+.stage.sunny .light.cool-light { opacity: 0; }
+.stage.sunny .warm-light { opacity: 1; }
+.stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 -8px 12px #1c0d1880, inset 0 0 24px #0005;
+  border-bottom: 5px solid #73423d;
+}
+.dust { position: absolute; width: 3px; height: 3px; background: #ffe7b5a0; border-radius: 50%; animation: drift 8s ease-in-out infinite alternate; }
+@keyframes drift { to { transform: translate(14px, -12px); opacity: .25; } }
+.speaking { animation: breathe .7s ease-in-out 2 alternate; }
+@keyframes breathe { to { transform: rotate(.5deg) translateY(-1px); } }
+.calm .dust, .calm .speaking { animation: none !important; }
+.caption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 58px;
+  padding: 8px 14px;
+  border-radius: 4px;
+  border-left: 3px solid var(--brand);
+  background: #332a36;
+  font-size: 16px;
+  line-height: 1.3;
+}
+.caption .speaker { flex: none; font-size: 10px; color: var(--brand); letter-spacing: .1em; width: 65px; font-weight: 800; }
+.caption p { margin: 0; }
+.transport { display: flex; gap: 8px; }
+.transport > button { flex: 1; text-align: left; }
+.transport small { display: block; font-size: 10px; font-weight: 500; margin-top: 3px; }
+.recipe { display: inline-flex; gap: 3px; margin-left: 7px; }
+.recipe i { font-style: normal; border-radius: 3px; padding: 1px 4px; background: var(--a); color: var(--paper); font-size: 10px; }
+.recipe.b i { background: var(--b); }
+.mixer { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 7px; }
+.switch { display: grid; grid-template-columns: auto 1fr; column-gap: 8px; text-align: left; align-items: center; padding: 8px; }
+.switch .letter {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  background: var(--a);
+  color: var(--paper);
+  height: 34px;
+  width: 34px;
+  border-radius: 7px;
+  font-size: 20px;
+  font-weight: 850;
+}
+.switch[data-version="B"] .letter { background: var(--b); }
+.switch b { font-size: 13px; }
+.switch small { font-size: 10px; color: var(--muted); }
+.lab-controls { display: flex; gap: 6px; }
+.lab-controls #play { flex: 1; }
+.lab-controls button { min-height: 44px; }
+body[data-mode="lab"] .stage { width: min(100%, calc((100dvh - 420px) * 1.777778)); }
+.line-bar { display: grid; grid-template-columns: repeat(10, 1fr); gap: 2px; }
+.line-bar button { border: 0; border-radius: 0; background: transparent; padding: 0; position: relative; font-size: 11px; color: var(--muted); }
+.line-bar button::before { content: ''; position: absolute; top: 6px; left: 12%; right: 12%; height: 3px; background: #756479; }
+.line-bar button[aria-current="true"] { color: var(--brand); background: #3b2934; }
+.line-bar button[aria-current="true"]::before { background: var(--brand); height: 5px; }
+.line-bar button.done::before { background: #cfc1a7; }
+.panel {
+  border: 1px solid #5e4a5c;
+  border-radius: 9px;
+  padding: 16px;
+  gap: 12px;
+  background: linear-gradient(135deg, #352b36, #28212c);
+  box-shadow: 0 8px 20px #0004;
+  display: block;
+}
+.hint { margin: 0 0 14px; min-height: 66px; font-size: 14px; line-height: 1.5; }
+.panel h2, .talk-card h2 { margin: 0 0 8px; font: 600 25px Georgia, serif; }
+.panel h3 { margin: 14px 0 6px; font-size: 14px; }
+.panel p { line-height: 1.45; }
+.muted { color: var(--muted); font-size: 12px; }
+.section-tag { margin: 0 0 5px; color: var(--brand); font-size: 10px; text-transform: uppercase; letter-spacing: .12em; }
+.feeling-row { display: flex; flex-wrap: wrap; gap: 5px; }
+.feeling-row button { flex: 1; padding: 4px 8px; font-size: 12px; }
+.feel-version { margin: 12px 0 8px; }
+.version-tag { display: inline-block; padding: 3px 7px; color: var(--paper); border-radius: 4px; background: var(--a); font-weight: 800; font-size: 12px; }
+.version-tag.b { background: var(--b); }
+.panel .primary { width: 100%; margin-top: 14px; }
+.base { display: flex; align-items: center; gap: 6px; margin: 9px 0; }
+.base b { font-size: 12px; margin-right: auto; }
+.base button { min-width: 44px; padding: 4px 10px; }
+.notebook { display: flex; flex-direction: column; gap: 8px; margin: 10px 0; }
+.note { border-top: 1px solid #7d6472; padding: 9px 0 4px; }
+.note-title { font-weight: 750; font-size: 13px; }
+.note .muted { margin: 4px 0 6px; font-size: 11px; }
+.note.unfair { border-left: 3px solid #a69a9f; padding-left: 8px; }
+.note.unfair .rating { opacity: .7; }
+.rating { display: flex; gap: 3px; }
+.rating button { flex: 1; padding: 5px; font-size: 11px; }
+.results-btn { width: 100%; }
+.empty-notes { border: 1px dashed #806878; border-radius: 7px; padding: 14px; color: #d2bdc6; font: italic 16px/1.5 Georgia, serif; }
+.mini-recipe { font-size: 11px; color: var(--muted); margin: 8px 0; }
+.watch-progress { display: flex; gap: 5px; margin: 12px 0; }
+.watch-progress span { flex: 1; background: #433643; border-radius: 6px; padding: 8px; font-size: 12px; }
+.watch-progress .watched { background: #484332; color: #ffdb86; }
+.talk-card { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .85fr); gap: 16px; min-height: 0; }
+.talk-main, .talk-side { overflow: auto; border: 1px solid #5e4a5c; border-radius: 9px; padding: 18px; background: #2b2530; }
+.criteria-bank { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.criteria-bank button { min-height: 48px; font-size: 12px; text-align: left; padding: 6px 10px; }
+.criteria-table { margin-top: 10px; }
+.criterion { border-top: 1px solid var(--line); margin-top: 8px; padding-top: 8px; }
+.criterion > b { display: block; font-size: 13px; margin-bottom: 6px; }
+.judgment { display: grid; grid-template-columns: 30px 1fr 1fr 1fr; gap: 3px; align-items: center; margin: 4px 0; }
+.judgment span { font-weight: 800; text-align: center; color: var(--a); }
+.judgment[data-version="B"] span { color: var(--b); }
+.judgment button { font-size: 11px; padding: 4px; }
+.verdict { margin-top: 15px; }
+.verdict label { display: block; font-size: 13px; line-height: 1.5; margin: 10px 0 4px; }
+textarea {
+  width: 100%;
+  min-height: 70px;
+  resize: vertical;
+  border: 1px solid #96818d;
+  border-radius: 7px;
+  padding: 10px;
+  color: var(--ink);
+  background: #1f1a23;
+  font: 14px/1.4 'Segoe UI', sans-serif;
+}
+.counter { color: var(--muted); font-size: 10px; text-align: right; }
+.talk-side .stage { width: 100%; margin: 10px auto; }
+.memory { font: italic 15px/1.4 Georgia, serif; padding: 10px 0; color: #e4c7b4; }
+.audience-card { border: 1px solid #796173; border-radius: 7px; padding: 12px; margin: 10px 0; background: #382c39; }
+.seat-tag { display: inline-block; background: #f3debd; color: #30222d; padding: 6px 8px; border-radius: 4px 4px 12px 4px; font-weight: 800; }
+.audience-card b { margin-left: 8px; font-size: 12px; }
+.audience-card p { font-size: 13px; line-height: 1.5; margin: 7px 0 0; }
+.vote { margin-top: 18px; padding-top: 10px; border-top: 1px solid var(--line); }
+.vote h3 { font-size: 14px; }
+.vote-controls { display: flex; gap: 6px; align-items: center; }
+.vote-controls output { font-size: 22px; min-width: 27px; text-align: center; }
+.vote-controls button { min-width: 44px; }
+.vote-controls .reset-vote { margin-left: auto; font-size: 11px; }
+dialog {
+  background: #2b2530;
+  color: var(--ink);
+  border: 1px solid #a28295;
+  border-radius: 12px;
+  box-shadow: 0 25px 90px #000a;
+  width: min(560px, calc(100% - 24px));
+  max-height: 85dvh;
+  padding: 22px;
+}
+dialog::backdrop { background: #0e0a12bb; }
+dialog h2 { font: 600 27px Georgia, serif; margin: 0 0 12px; }
+.dialog-top { display: flex; align-items: start; justify-content: space-between; gap: 10px; }
+.chart { display: grid; gap: 14px; margin: 20px 0; }
+.bar-label { font-size: 13px; margin-bottom: 5px; }
+.result-ticket {
+  margin: 16px 0;
+  padding: 14px 16px;
+  border: 1px solid #b58878;
+  border-left: 5px solid var(--brand);
+  border-radius: 3px 12px 12px 3px;
+  background: linear-gradient(115deg, #58323b, #342831);
+  box-shadow: 0 5px 14px #0004;
+  font: 600 20px/1.35 Georgia, serif;
+}
+.result-ticket:empty { display: none; }
+.bar-track { background: #1c1820; min-height: 36px; position: relative; border-radius: 5px; }
+.bar-fill { position: absolute; height: 100%; background: linear-gradient(90deg, #a53f4b, #ff7a59); border-radius: 5px; min-width: 3px; }
+.bar-words {
+  position: relative;
+  padding: 7px 8px;
+  display: inline-block;
+  margin: 1px;
+  border-radius: 4px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 12px;
+}
+.preview-note { color: var(--muted); font-size: 10px; margin: 0; }
+@media (max-width: 1000px) {
+  main { grid-template-columns: minmax(0, 1fr) 260px; gap: 10px; padding: 0 12px 10px; }
+  header { padding: 7px 12px; }
+  .toolbar { padding: 3px 12px; gap: 8px; }
+  .privacy { font-size: 10px; max-width: 120px; }
+  .panel { padding: 12px; }
+  .switch { column-gap: 5px; padding: 6px; }
+  .switch .letter { height: 27px; width: 25px; font-size: 16px; }
+  .switch b { font-size: 11px; }
+  .switch small { font-size: 10px; }
+  .caption { font-size: 13px; min-height: 54px; padding: 7px 9px; gap: 6px; }
+  .caption .speaker { width: 57px; font-size: 10px; }
+}
+@media (max-height: 650px) and (min-width: 601px) {
+  header { padding: 3px 10px; }
+  h1 { font-size: 21px; }
+  h1 small { display: none; }
+  .icon-btn { font-size: 11px; padding: 0 8px; }
+  #sound { width: 88px; }
+  #motion { width: 92px; }
+  .toolbar { padding: 0 10px; }
+  .modes button { font-size: 12px; padding: 4px 10px; }
+  main { gap: 9px; padding: 0 10px 6px; grid-template-columns: minmax(0, 1fr) 210px; }
+  .playbill { padding: 0; }
+  .playbill b { font-size: 14px; }
+  .playbill small { font-size: 10px; }
+  .stage { width: min(100%, calc((100dvh - 240px) * 1.777778)); }
+  body[data-mode="lab"] .stage { width: min(100%, calc((100dvh - 260px) * 1.777778)); }
+  .playbill { display: none; }
+  .preview-note { display: none; }
+  .line-bar { grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 0; }
+  .line-bar button { min-width: 0; }
+  .theater-column { gap: 3px; }
+  .caption { min-height: 44px; font-size: 11px; }
+  .panel > .caption { display: none; margin-bottom: 8px; }
+  body[data-playing="true"] .panel > .caption { display: flex; }
+  body[data-playing="true"] .panel > #hint { display: none; }
+  .switch { min-height: 44px; padding: 3px; gap: 3px; }
+  .switch .letter { width: 22px; height: 26px; }
+  .switch small { font-size: 10px; }
+  .transport > button { padding: 4px 7px; font-size: 12px; }
+  .recipe { margin-left: 2px; gap: 1px; }
+  .recipe i { font-size: 10px; padding: 1px 2px; }
+  .transport small { font-size: 10px; }
+  .panel { padding: 10px; }
+  .panel h2 { font-size: 20px; }
+  .hint { min-height: 52px; font-size: 12px; margin-bottom: 7px; }
+  #lab-panel > .section-tag { display: none; }
+  #lab-panel h2 { font-size: 16px; margin-bottom: 4px; }
+  body[data-mode="lab"] .hint { min-height: 44px; font-size: 11px; line-height: 1.35; margin-bottom: 5px; }
+  .mini-recipe { margin: 3px 0; }
+  .notebook .note:not(:last-child) { display: none; }
+  .empty-notes { font-size: 13px; padding: 8px; }
+  .notebook { margin: 4px 0; gap: 4px; }
+  #difference { display: none; }
+  .note { padding: 4px 0 2px; }
+  .note-title { font-size: 11px; line-height: 1.25; }
+  .note .muted { font-size: 10px; line-height: 1.25; margin: 3px 0; }
+  .rating button { padding: 3px; font-size: 10px; }
+  .empty-notes { font-size: 12px; padding: 6px; }
+  #lab-panel > .muted { display: none; }
+  .base { margin: 3px 0; }
+  .lab-controls button { font-size: 11px; padding: 4px 9px; }
+  .talk-main, .talk-side { padding: 10px; }
+  .talk-card { gap: 9px; }
+  .talk-card h2 { font-size: 21px; }
+  .talk-side { display: flex; flex-direction: column; gap: 8px; }
+  .talk-side > * { flex-shrink: 0; }
+  .talk-side > .section-tag { order: 0; margin: 0; }
+  .talk-side > .transport { order: 1; }
+  #hear-talkback { order: 2; align-self: flex-start; }
+  #audience-cards { order: 3; }
+  #carried-notes { order: 4; margin: 0; padding: 0; font-size: 11px; line-height: 1.3; }
+  #thumbnail-mount { order: 5; }
+  .talk-side .stage { margin: 0; }
+  #replay-line { order: 6; margin: 0; }
+  .talk-side .vote { order: 7; }
+  .privacy { max-width: none; }
+  body[data-mode="watch"].watched-both main { grid-template-columns: minmax(0, 1fr) 300px; }
+  body[data-mode="watch"].watched-both .line-bar { grid-template-columns: repeat(5, 1fr); }
+  .watched-both #watch-panel > .section-tag,
+  .watched-both #watch-panel > h2,
+  .watched-both #watch-panel > .muted,
+  .watched-both #watch-panel > .watch-progress,
+  .watched-both #feelings > .muted { display: none; }
+  .watched-both .feel-version { margin: 5px 0; }
+  .watched-both .feeling-row { display: grid; grid-template-columns: repeat(5, minmax(44px, 1fr)); gap: 3px; }
+  .watched-both .feeling-row button { font-size: 10px; padding: 2px; }
+  .watched-both #watch-panel h3 { margin: 5px 0; }
+  .watched-both #go-lab { margin-top: 8px; }
+  #results-dialog { padding: 12px; max-height: calc(100dvh - 24px); }
+  #results-dialog h2 { font-size: 22px; margin-bottom: 4px; }
+  #results-dialog > p { margin: 7px 0; font-size: 11px; line-height: 1.3; }
+  #results-dialog .result-ticket { padding: 7px 10px; font-size: 16px; line-height: 1.2; }
+  #results-dialog .chart { gap: 6px; margin: 9px 0; }
+  #results-dialog .bar-label { font-size: 11px; margin-bottom: 3px; }
+  #results-dialog .bar-track { min-height: 24px; }
+  #results-dialog .bar-words { font-size: 10px; padding: 3px 6px; }
+}
+@media (max-width: 600px) {
+  body { overflow: auto; height: auto; min-height: 100dvh; display: block; }
+  header { gap: 4px; padding: 7px 8px; }
+  h1 { width: 100%; font-size: 25px; margin-bottom: 5px; }
+  h1 small { display: none; }
+  .icon-btn { flex: 1; font-size: 12px; }
+  .toolbar { flex-wrap: wrap; gap: 2px; padding: 4px 8px; }
+  .modes { width: 100%; }
+  .modes button { flex: 1; padding: 5px 8px; font-size: 13px; }
+  .privacy { max-width: none; margin-left: 0; flex: 1; font-size: 10px; }
+  .clear { padding: 3px 6px; }
+  main { display: flex; flex-direction: column; padding: 0 9px 16px; gap: 12px; overflow: visible; }
+  .theater-column { gap: 6px; }
+  .stage { width: 100%; }
+  body[data-mode="lab"] .stage { width: 100%; }
+  .playbill b { font-size: 17px; }
+  .playbill small { font-size: 10px; }
+  .mixer { grid-template-columns: 1fr 1fr; }
+  .switch { padding: 5px 10px; min-height: 48px; }
+  .switch .letter { width: 30px; height: 32px; }
+  .switch b { font-size: 13px; }
+  .switch small { font-size: 11px; }
+  .caption { min-height: 62px; font-size: 13px; }
+  .theater-column > .hint {
+    min-height: 48px;
+    margin: 0;
+    padding: 7px 10px;
+    border-left: 3px solid var(--brand);
+    border-radius: 4px;
+    background: var(--panel);
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  .theater-column > .caption { min-height: 54px; }
+  .line-bar { grid-template-columns: repeat(5, 1fr); }
+  .line-bar button { min-height: 44px; }
+  .panel { overflow: visible; padding: 15px; }
+  .hint { min-height: 45px; }
+  .talk-card { display: flex; flex-direction: column; }
+  .talk-main, .talk-side { overflow: visible; padding: 14px; }
+  .criteria-bank { grid-template-columns: 1fr 1fr; }
+  .criteria-bank button { min-height: 62px; }
+  .transport { gap: 5px; }
+  .transport > button { font-size: 13px; padding: 7px; }
+  .recipe { margin-left: 2px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Audience Talkback <small>judging a scene two ways · Curio Class</small></h1>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+</header>
+<header class="toolbar">
+  <nav class="modes" role="group" aria-label="Mode">
+    <button id="m-watch" aria-pressed="true">01 Watch</button>
+    <button id="m-lab" aria-pressed="false">02 Swap lab</button>
+    <button id="m-talkback" aria-pressed="false">03 Talkback</button>
+  </nav>
+  <span class="privacy" id="save-status">Notes stay on this device.</span>
+  <button class="clear" id="clear">Clear my notes</button>
+</header>
+<main>
+  <section class="theater-column" id="theater" aria-label="The theater">
+    <div class="playbill"><b>The Borrowed Bike</b><small id="scene-status">One scene. Two ways.</small></div>
+    <div class="stage" id="stage" role="img" aria-label="An otter returns a broken bicycle to a bear on a painted porch stage.">
+      <img class="backdrop" src="art:stage-porch" alt="">
+      <div class="foot-shadow kit-shadow"></div>
+      <div class="foot-shadow bear-shadow"></div>
+      <img class="actor" id="kit" src="art:kit-a-down" alt="">
+      <img class="actor" id="holloway" src="art:holloway-a-door" alt="">
+      <img class="actor" id="bike" src="art:bike" alt="">
+      <div class="light cool-light"></div>
+      <div class="light warm-light"></div>
+      <i class="dust" style="left:40%;top:35%;animation-delay:-3s"></i>
+      <i class="dust" style="left:54%;top:27%;animation-delay:-5s"></i>
+      <i class="dust" style="left:65%;top:44%;animation-delay:-1s"></i>
+    </div>
+    <div class="caption" id="caption" aria-live="off">
+      <span class="speaker" id="speaker">THE SCENE</span><p id="line-text">Kit borrowed a bike. Now it has a bent wheel.</p>
+    </div>
+    <div class="transport" id="watch-transport">
+      <button id="play-a" class="primary">▶ Play Version A <span class="recipe"><i>A</i><i>A</i><i>A</i><i>A</i></span><small>Timing varies · rainy evening</small></button>
+      <button id="play-b">▶ Play Version B <span class="recipe b"><i>B</i><i>B</i><i>B</i><i>B</i></span><small>Timing varies · sunny morning</small></button>
+    </div>
+    <div class="mixer" id="mixer" role="group" aria-label="Four staging switches" hidden></div>
+    <div class="lab-controls" id="lab-controls" hidden>
+      <button id="play" class="primary">▶ Play</button>
+      <button id="reset-switches">Reset switches</button>
+    </div>
+    <div class="line-bar" id="ticks" role="group" aria-label="Jump to a line"></div>
+    <p class="preview-note" id="audio-status">Voice preview uses this browser. Acted recordings are pending; timing varies.</p>
+  </section>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint"></p>
+    <div id="watch-panel">
+      <p class="section-tag">Take your seat</p>
+      <h2>Same words.<br>Different feeling?</h2>
+      <p class="muted">Watch both versions. Nothing in the story changes.</p>
+      <div class="watch-progress"><span id="seen-a">A · not watched</span><span id="seen-b">B · not watched</span></div>
+      <div id="feelings" hidden>
+        <h3>How did each one feel?</h3>
+        <p class="muted">Pick up to two for each version.</p>
+        <div class="feel-version"><span class="version-tag">A 💧</span></div><div class="feeling-row" id="feel-a"></div>
+        <div class="feel-version"><span class="version-tag b">B ☀</span></div><div class="feeling-row" id="feel-b"></div>
+        <button id="go-lab" class="primary">Go to the lab →</button>
+      </div>
+    </div>
+    <div id="lab-panel" hidden>
+      <p class="section-tag">Your experiment</p>
+      <h2>Lab notebook</h2>
+      <div class="base" role="group" aria-label="Comparison base">
+        <b>Base</b><button id="base-a" aria-pressed="true">A 💧</button><button id="base-b" aria-pressed="false">B ☀</button>
+      </div>
+      <p class="mini-recipe" id="difference">All switches match Base A.</p>
+      <div class="notebook" id="notebook"><div class="empty-notes">Change one switch, then play. Your experiments will land here.</div></div>
+      <button class="results-btn" id="show-results">Show my results ↗</button>
+      <p class="muted">One change makes a fair test. Your feelings have no answer key.</p>
+    </div>
+  </aside>
+  <section class="talk-card" id="talkback" hidden>
+    <div class="talk-main">
+      <p class="section-tag">Your review</p>
+      <h2>Pick three criteria</h2>
+      <p class="muted" id="talk-hint">Pick three things to judge by. Then rate each version.</p>
+      <div class="criteria-bank" id="criteria-bank"></div>
+      <div class="criteria-table" id="criteria-table"></div>
+      <div class="verdict">
+        <h2>Your verdict</h2>
+        <label id="label-verdict-1" for="verdict-1">Version ___ works better for this scene because ___ (a criterion).</label>
+        <textarea id="verdict-1" aria-labelledby="label-verdict-1" maxlength="140" placeholder="Version ... works better because ..."></textarea>
+        <div class="counter" id="count-1">0 / 140</div>
+        <label id="label-verdict-2" for="verdict-2">I think this because in my life ___.</label>
+        <textarea id="verdict-2" aria-labelledby="label-verdict-2" maxlength="140" placeholder="I think this because in my life ..."></textarea>
+        <div class="counter" id="count-2">0 / 140</div>
+      </div>
+    </div>
+    <div class="talk-side">
+      <p class="section-tag">Bring your evidence</p>
+      <p class="memory" id="carried-notes"></p>
+      <div id="thumbnail-mount"></div>
+      <div class="transport"><button id="replay-a">▶ Replay A</button><button id="replay-b">▶ Replay B</button></div>
+      <p class="muted" id="replay-line">Replay a version to check a detail.</p>
+      <button id="hear-talkback" class="primary">Hear the talkback</button>
+      <div id="audience-cards" hidden>
+        <article class="audience-card">
+          <span class="seat-tag">A.R.</span><b>Preferred A</b>
+          <p>My grandma has things from when she was little. If I broke one, I'd talk quiet like Kit in A.</p>
+        </article>
+        <article class="audience-card">
+          <span class="seat-tag">L.M.</span><b>Preferred B</b>
+          <p>When I'm in trouble I talk too fast and laugh, like Kit in B. That felt real to me.</p>
+        </article>
+        <article class="audience-card">
+          <span class="seat-tag">S.T.</span><b>A for the ending, B for the start</b>
+          <p>B was funnier at first, but when she asked if Kit got hurt, I wanted the sad music.</p>
+        </article>
+        <p class="muted">Same scene, three people, three reasons. Each one is right about their own experience.</p>
+      </div>
+      <div class="vote"><h3>Class vote <span class="muted">· teacher extra</span></h3><div class="vote-controls">
+        <button id="vote-a" aria-label="Add a vote for A">A +</button><output id="votes-a">0</output>
+        <button id="vote-b" aria-label="Add a vote for B">B +</button><output id="votes-b">0</output>
+        <button id="reset-vote" class="reset-vote">Reset vote</button>
+      </div></div>
+    </div>
+  </section>
+</main>
+<dialog id="results-dialog" aria-labelledby="results-title">
+  <div class="dialog-top"><h2 id="results-title">What changed it for you?</h2><button id="close-results">Close</button></div>
+  <p class="muted">Only your rated fair tests appear. Longer bars mean more change for you.</p>
+  <p class="result-ticket" id="result-summary"></p>
+  <div class="chart" id="chart"></div>
+  <p class="muted" id="chart-footnote"></p>
+</dialog>
+<dialog id="clear-dialog" aria-labelledby="clear-title">
+  <h2 id="clear-title">Clear your saved notes?</h2>
+  <p>Your feelings, notebook, criteria and verdict will be removed from this device.</p>
+  <div class="transport"><button id="cancel-clear">Keep my notes</button><button id="confirm-clear" class="primary">Clear my notes</button></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const keys = ['costumes', 'lights', 'voices', 'music'];
+  const names = {costumes: 'Costumes', lights: 'Lights', voices: 'Voices', music: 'Music'};
+  const descriptions = {
+    costumes: ['💧 rain gear', '☀ summer clothes'],
+    lights: ['💧 cool blue', '☀ warm light'],
+    voices: ['💧 slow & shaky', '☀ fast & loud'],
+    music: ['💧 soft piano', '☀ bouncy plucks']
+  };
+  const scene = [
+    ['KIT', "(knocks) Mrs. Holloway? It's Kit."],
+    ['HOLLOWAY', 'Kit! Did you bring my bike back?'],
+    ['KIT', 'I did. Sort of.'],
+    ['HOLLOWAY', 'Sort of?'],
+    ['KIT', 'The chain came off on the big hill. And then the wheel... bent.'],
+    ['HOLLOWAY', 'Oh. I rode that bike when I was your age.'],
+    ['KIT', "I'm sorry. I'll fix it. I'll save my allowance. I'll..."],
+    ['HOLLOWAY', '(a pause) Kit. Did you get hurt?'],
+    ['KIT', 'Just my knee.'],
+    ['HOLLOWAY', "Then come in. We'll look at that wheel together."]
+  ];
+  const criteria = [
+    'Can I hear every word?', 'Do the lights match the feeling?', 'Do I believe the characters?',
+    'Does the music help, or get in the way?', 'Do the costumes tell me who they are and where?', 'Does the ending land?'
+  ];
+  const feelings = ['Sad', 'Funny', 'Tense', 'Warm', 'Awkward'];
+  const ratings = ['Not at all', 'A little', 'A lot'];
+  const L = {
+    welcomeWatch: 'Here are two versions of the same scene. Tap Play Version A, then Play Version B.',
+    feelHow: 'How did each one feel? Tap up to two feelings for each version.',
+    welcomeLab: 'Flip one switch, then tap Play. Change one thing at a time, so you know what did it.',
+    rateHow: 'Did that swap change the feeling? Tap A lot, A little or Not at all.',
+    twoThings: 'Two things changed. Which one did it? Try them one at a time.',
+    welcomeTalkback: 'Pick three things to judge by. Then rate each version.',
+    verdictHow: 'Now write your verdict, and one reason from your own life.',
+    talkbackDone: 'Same scene, three people, three reasons. Each one is right about their own experience.',
+    labNext: 'Flip another switch, or tap Show my results to see your fair tests.',
+    playing: 'Listen to the scene. Tap Stop to end it, or tap a numbered tick to replay a line.',
+    labPlaying: 'Flip Costumes, Lights, Voices or Music while the scene plays. Tap Stop when you have enough evidence.',
+    watchNext: 'Tap the other Play Version button to compare the same scene.',
+    feelingsFull: 'You have two feelings selected. Tap one of your selected feelings to replace it.',
+    criterionFull: 'You have three criteria selected. Tap a selected criterion to replace it.',
+    criteriaRate: 'Rate Version A and Version B for each of your three chosen criteria.',
+    notesCleared: 'Your notes are clear. Tap Play Version A to start again.',
+    basePlaying: 'Stop the scene before changing Base. You can still flip the four staging switches.',
+    feelingsNext: 'Tap another feeling, or tap Go to the lab to test one staging choice.',
+    readStop: 'Tap Stop before Read, so the host does not speak over the actors.',
+    observeSwap: 'Tap Play again with one switch changed. Watch the first five lines, then tap Stop and rate the change.',
+    watchFive: 'Play the first five lines before stopping. Tap Play to try your comparison again.',
+    baseReplay: 'That was your base version. Flip one switch, then tap Play to compare its effect.',
+    audienceAR: "A. R. preferred A. My grandma has things from when she was little. If I broke one, I'd talk quiet like Kit in A.",
+    audienceLM: "L. M. preferred B. When I'm in trouble I talk too fast and laugh, like Kit in B. That felt real to me.",
+    audienceST: 'S. T. preferred A for the ending, B for the start. B was funnier at first, but when she asked if Kit got hurt, I wanted the sad music.'
+  };
+  const sceneAudio = "json:scene-audio";
+  const audioClips = "voice:*";
+  const estimated = {A: [2.3, 2.7, 1.4, 1, 4.6, 4, 3.2, 3.1, 1, 4.7], B: [1.6, 1.8, .9, .6, 3.1, 2.7, 2.2, 2, .7, 3.4]};
+  const art = {
+    'kit-a-down': 'art:kit-a-down', 'kit-a-up': 'art:kit-a-up',
+    'kit-b-down': 'art:kit-b-down', 'kit-b-up': 'art:kit-b-up',
+    'holloway-a-door': 'art:holloway-a-door', 'holloway-a-kneel': 'art:holloway-a-kneel',
+    'holloway-b-door': 'art:holloway-b-door', 'holloway-b-kneel': 'art:holloway-b-kneel'
+  };
+  const state = {
+    mode: 'watch', mix: ['A', 'A', 'A', 'A'], base: 'A', playing: false, line: -1,
+    watched: {A: false, B: false}, feelings: {A: [], B: []}, notes: [],
+    selected: [], judgments: {}, verdicts: ['', ''], votes: {A: 0, B: 0}, audience: false
+  };
+  let saved = false;
+  let generation = 0;
+  let lineTimer = null;
+  let guardTimer = null;
+  let clip = null;
+  let speaking = null;
+  let phase = 'idle';
+  let session = null;
+  const playbackLog = [];
+  const switchLog = [];
+  const voiceStats = {starts: []};
+
+  function load() {
+    try {
+      const raw = JSON.parse(localStorage.getItem('audience-talkback') || 'null');
+       if (!raw || ![1, 2].includes(raw.version)) return;
+      for (const v of ['A', 'B']) {
+        state.feelings[v] = Array.isArray(raw.feelings?.[v]) ? raw.feelings[v].filter(f => feelings.includes(f)).slice(0, 2) : [];
+        state.watched[v] = !!raw.watched?.[v];
+      }
+      state.notes = Array.isArray(raw.notes) ? raw.notes.filter(n => n &&
+        ['A', 'B'].includes(n.base) && Array.isArray(n.differences) && n.differences.every(k => keys.includes(k)) &&
+        (n.rating === null || [0, 1, 2].includes(n.rating))).slice(-100).map(n => ({
+          ...n, differences: [...new Set(n.differences)], verified: raw.version === 2 && n.verified === true
+        })) : [];
+      state.selected = Array.isArray(raw.selected) ? [...new Set(raw.selected.filter(i => Number.isInteger(i) && criteria[i]))].slice(0, 3) : [];
+      for (const i of state.selected) {
+        state.judgments[i] = {};
+        for (const v of ['A', 'B']) {
+          const value = raw.judgments?.[i]?.[v];
+          if (['Yes', 'Mostly', 'Not really'].includes(value)) state.judgments[i][v] = value;
+        }
+      }
+      state.verdicts = [0, 1].map(i => typeof raw.verdicts?.[i] === 'string' ? raw.verdicts[i].slice(0, 140) : '');
+    } catch { /* Storage is optional. */ }
+  }
+  function save() {
+    try {
+      localStorage.setItem('audience-talkback', JSON.stringify({
+        version: 2, feelings: state.feelings, watched: state.watched, notes: state.notes,
+        selected: state.selected, judgments: state.judgments, verdicts: state.verdicts
+      }));
+      saved = true;
+      $('save-status').textContent = 'Saved here. Notes never leave this device.';
+    } catch {
+      saved = false;
+      $('save-status').textContent = 'Notes stay in this tab; saving is unavailable.';
+    }
+  }
+  function hint(text) {
+    $('hint').textContent = text;
+    if (state.mode === 'talkback') $('talk-hint').textContent = text;
+  }
+  function howForMode() {
+    if (state.mode === 'watch' && state.watched.A && state.watched.B) return 'feelHow';
+    if (state.mode === 'talkback' && state.selected.length === 3) {
+      return state.selected.every(i => state.judgments[i]?.A && state.judgments[i]?.B) ? 'verdictHow' : 'criteriaRate';
+    }
+    return {watch: 'welcomeWatch', lab: 'welcomeLab', talkback: 'welcomeTalkback'}[state.mode];
+  }
+  const modeWelcome = () => {
+    if (state.playing || document.querySelector('dialog[open]')) return null;
+    const key = howForMode();
+    if (key === 'feelHow' && (state.feelings.A.length || state.feelings.B.length)) return null;
+    if (key === 'welcomeTalkback' && state.selected.length) return null;
+    return [key, {valid: () => !state.playing && !document.querySelector('dialog[open]') && howForMode() === key}];
+  };
+  const V = Curio.voice({
+    lines: L, scope: () => state.mode, welcome: modeWelcome,
+    speaks: '#play-a, #play-b, #play, #replay-a, #replay-b',
+    hint: false, read: () => $('hint').textContent
+  });
+  function how(key, valid = () => true) {
+    hint(L[key]);
+    V.how(key, {valid: () => !state.playing && valid()});
+  }
+  function shortTone() { Curio.tone(420, .045, .025, 'sine'); }
+
+  // Scene playback is separate from host narration. A generation token invalidates old line callbacks.
+  function silenceScene() {
+    clearTimeout(lineTimer);
+    clearTimeout(guardTimer);
+    if (clip) { clip.pause(); clip.onended = null; clip = null; }
+    if (speaking && 'speechSynthesis' in window) speechSynthesis.cancel();
+    speaking = null;
+  }
+  function sceneText(i) { return scene[i][1].replace(/\([^)]*\)\s*/g, ''); }
+  function gapAfter(i, delivery) {
+    return (delivery === 'A' ? .4 : .2) + (i === 6 ? (delivery === 'A' ? 1.2 : .5) : 0);
+  }
+  function runLine(i, restart = false) {
+    const token = ++generation;
+    silenceScene();
+    if (!state.playing) return;
+    if (i >= scene.length) { stopScene(true); return; }
+    state.line = i;
+    phase = 'line';
+    const delivery = state.mix[2];
+    const recipeAtStart = state.mix.join('');
+    const revisionAtStart = session.revision;
+    const began = performance.now();
+    drawStage();
+    drawPlayback();
+    playbackLog.push({event: restart ? 'restart' : 'start', line: i + 1, delivery, t: began});
+    voiceStats.starts.push({line: i + 1, delivery, t: began, recorded: !!sceneAudio[delivery]?.[i]?.src});
+    let ended = false;
+    const finish = () => {
+      if (ended || token !== generation || !state.playing) return;
+      ended = true;
+      clearTimeout(guardTimer);
+      speaking = null;
+      session.completed.add(i);
+      if (session.revision === revisionAtStart && state.mix.join('') === recipeAtStart) {
+        keys.forEach((key, index) => {
+          if (recipeAtStart[index] !== session.base) session.observed.add(key);
+        });
+      }
+      session.elapsed += performance.now() - began;
+      phase = 'gap';
+      playbackLog.push({event: 'end', line: i + 1, delivery, t: performance.now()});
+      if (i === 9) { stopScene(true); return; }
+      const gapDelivery = state.mix[2];
+      lineTimer = setTimeout(() => runLine(i + 1), gapAfter(i, gapDelivery) * 1000);
+    };
+    const recorded = sceneAudio[delivery]?.[i];
+    const captionFallback = () => {
+      if (ended || token !== generation || !state.playing) return;
+      clearTimeout(guardTimer);
+      clearTimeout(lineTimer);
+      if (speaking) {
+        speaking.onend = speaking.onerror = null;
+        speechSynthesis.cancel();
+        speaking = null;
+      }
+      if (clip) {
+        clip.onended = clip.onerror = null;
+        clip.pause();
+        clip = null;
+      }
+      $('audio-status').textContent = 'Speech is unavailable here. Captions keep the scene\'s pace.';
+      const duration = recorded?.duration || estimated[delivery][i];
+      lineTimer = setTimeout(finish, Math.max(0, duration * 1000 - (performance.now() - began)));
+    };
+    if (recorded?.src && Curio.sound) {
+      clip = new Audio(recorded.src);
+      clip.onended = finish;
+      clip.onerror = captionFallback;
+      clip.play().catch(captionFallback);
+      guardTimer = setTimeout(finish, (recorded.duration + 2) * 1000);
+    } else if (Curio.sound && 'speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(sceneText(i));
+      const voices = speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang));
+      const preferred = voices.filter(v => /natural|google|neural/i.test(v.name));
+      const pool = preferred.length ? preferred : voices;
+      utterance.voice = pool[scene[i][0] === 'KIT' ? 0 : Math.min(1, pool.length - 1)] || null;
+      utterance.rate = delivery === 'A' ? .86 : 1.28;
+      utterance.volume = delivery === 'A' ? .78 : 1;
+      utterance.pitch = 1;
+      utterance.onend = finish;
+      utterance.onerror = captionFallback;
+      speaking = utterance;
+      speechSynthesis.speak(utterance);
+      guardTimer = setTimeout(() => {
+        if (token === generation) { speechSynthesis.cancel(); finish(); }
+      }, Math.max(estimated[delivery][i] * 1000 + 1500, sceneText(i).length * 115));
+    } else {
+      lineTimer = setTimeout(finish, (recorded?.duration || estimated[delivery][i]) * 1000);
+    }
+  }
+  function startScene(version = null) {
+    if (state.playing) stopScene(false, false);
+    V.hush();
+    if (version) state.mix = keys.map(() => version);
+    state.playing = true;
+    session = {base: state.base, differences: new Set(), completed: new Set(), observed: new Set(), revision: 0, elapsed: 0,
+      startedMode: state.mode, version, began: performance.now()};
+    collectDifferences();
+    $('read').setAttribute('aria-disabled', 'true');
+    $('read').title = 'Stop the scene to read the hint.';
+    musicStart();
+    drawMix();
+    hint(L[state.mode === 'lab' ? 'labPlaying' : 'playing']);
+    runLine(0);
+  }
+  function stopScene(complete = false, addRow = true) {
+    if (!state.playing) return;
+    const old = session;
+    generation++;
+    silenceScene();
+    state.playing = false;
+    phase = 'idle';
+    musicStop();
+    $('read').removeAttribute('aria-disabled');
+    $('read').title = 'Read the current hint.';
+    if (old?.version && complete && old.completed.size === 10) state.watched[old.version] = true;
+    const enough = old && [0, 1, 2, 3, 4].every(i => old.completed.has(i)) && (complete || state.line >= 4);
+    const observed = old && [...old.differences].every(key => old.observed.has(key));
+    if (old?.startedMode === 'lab' && addRow && enough) {
+      const note = {id: Date.now() + '-' + state.notes.length, base: old.base,
+        differences: keys.filter(k => old.differences.has(k)), rating: null, live: old.live || false,
+        verified: observed};
+      state.notes.push(note);
+      if (state.notes.length > 100) state.notes.shift();
+      drawNotebook();
+      if (!note.differences.length) {
+        how('baseReplay');
+      } else if (!observed) {
+        how('observeSwap', () => note.rating === null);
+      } else if (note.differences.length >= 2) {
+        hint(L.twoThings);
+        V.say('twoThings', {valid: () => !state.playing && note.rating === null});
+      } else {
+        how('rateHow', () => note.rating === null);
+      }
+    } else if (state.mode === 'watch') {
+      const next = state.watched.A && state.watched.B ? 'feelHow' :
+        state.watched.A || state.watched.B ? 'watchNext' : 'welcomeWatch';
+      how(next);
+    } else if (state.mode === 'lab') {
+      how(old?.completed.size ? 'watchFive' : 'welcomeLab');
+    } else {
+      hint(L[howForMode()]);
+    }
+    save();
+    drawPlayback();
+    drawWatch();
+    updateCarried();
+  }
+  function togglePlay() { state.playing ? stopScene() : startScene(); }
+  function collectDifferences() {
+    if (!session || !state.playing) return;
+    keys.forEach((key, i) => { if (state.mix[i] !== session.base) session.differences.add(key); });
+  }
+  function flip(index) {
+    const began = performance.now();
+    state.mix[index] = state.mix[index] === 'A' ? 'B' : 'A';
+    if (state.playing) { session.live = true; session.revision++; collectDifferences(); }
+    drawMix();
+    drawStage();
+    shortTone();
+    if (index === 2 && state.playing) runLine(state.line, true);
+    if (index === 3 && state.playing) musicMix();
+    switchLog.push({element: keys[index], version: state.mix[index], playing: state.playing, ms: performance.now() - began});
+  }
+  function setBase(version) {
+    if (state.playing) { hint(L.basePlaying); return; }
+    state.base = version;
+    state.mix = keys.map(() => version);
+    drawMix();
+    drawStage();
+    shortTone();
+    hint(L.welcomeLab);
+  }
+  function resetSwitches() {
+    const voiceChanged = state.mix[2] !== state.base;
+    state.mix = keys.map(() => state.base);
+    if (state.playing) { collectDifferences(); session.live = true; session.revision++; }
+    drawMix();
+    drawStage();
+    if (state.playing) {
+      musicMix();
+      if (voiceChanged) runLine(state.line, true);
+    }
+    shortTone();
+  }
+
+  // Two original eight-beat loops run on one audio clock. Both buses keep their loop position during a crossfade.
+  let audioContext = null;
+  let musicTimer = null;
+  let buses = null;
+  let musicEpoch = 0;
+  let nextBeat = {A: 0, B: 0};
+  const tunes = {A: [57, 60, 64, 60, 55, 59, 62, 59], B: [60, 64, 67, 72, 67, 64, 62, 67]};
+  function noteSound(midi, at, duration, version) {
+    if (!audioContext || !buses) return;
+    const oscillator = audioContext.createOscillator();
+    const overtone = audioContext.createOscillator();
+    const envelope = audioContext.createGain();
+    const overtoneGain = audioContext.createGain();
+    oscillator.type = 'sine';
+    overtone.type = version === 'A' ? 'sine' : 'triangle';
+    oscillator.frequency.value = 440 * Math.pow(2, (midi - 69) / 12);
+    overtone.frequency.value = oscillator.frequency.value * (version === 'A' ? 2 : 3);
+    overtoneGain.gain.value = version === 'A' ? .22 : .13;
+    oscillator.connect(envelope);
+    overtone.connect(overtoneGain).connect(envelope);
+    envelope.connect(buses[version]);
+    envelope.gain.setValueAtTime(.0001, at);
+    envelope.gain.exponentialRampToValueAtTime(.12, at + .007);
+    envelope.gain.exponentialRampToValueAtTime(.0001, at + duration);
+    oscillator.start(at);
+    overtone.start(at);
+    oscillator.stop(at + duration + .03);
+    overtone.stop(at + duration + .03);
+  }
+  function scheduleMusic() {
+    if (!state.playing || !audioContext || !buses) return;
+    for (const v of ['A', 'B']) {
+      const beat = 60 / (v === 'A' ? 72 : 112);
+      while (musicEpoch + nextBeat[v] * beat < audioContext.currentTime + .15) {
+        const n = nextBeat[v]++;
+        const at = musicEpoch + n * beat;
+        if (at >= audioContext.currentTime) noteSound(tunes[v][n % 8], at, v === 'A' ? .8 : .14, v);
+      }
+    }
+  }
+  function musicStart() {
+    try {
+      audioContext ||= new (window.AudioContext || window.webkitAudioContext)();
+      audioContext.resume();
+      buses = {A: audioContext.createGain(), B: audioContext.createGain()};
+      for (const v of ['A', 'B']) { buses[v].gain.value = 0; buses[v].connect(audioContext.destination); }
+      musicEpoch = audioContext.currentTime + .02;
+      nextBeat = {A: 0, B: 0};
+      musicMix();
+      scheduleMusic();
+      musicTimer = setInterval(scheduleMusic, 40);
+    } catch { /* Silent browsers still play the full scene. */ }
+  }
+  function musicMix() {
+    if (!buses || !audioContext) return;
+    for (const v of ['A', 'B']) {
+      const gain = buses[v].gain;
+      const at = audioContext.currentTime;
+      gain.cancelScheduledValues(at);
+      gain.setValueAtTime(gain.value, at);
+      gain.linearRampToValueAtTime(Curio.sound && state.mix[3] === v ? .5 : 0, at + .15);
+    }
+  }
+  function musicStop() {
+    clearInterval(musicTimer);
+    musicTimer = null;
+    if (buses) {
+      const old = buses;
+      for (const v of ['A', 'B']) {
+        old[v].gain.cancelScheduledValues(audioContext.currentTime);
+        old[v].gain.setTargetAtTime(0, audioContext.currentTime, .02);
+      }
+      setTimeout(() => { for (const v of ['A', 'B']) old[v].disconnect(); }, 120);
+      buses = null;
+    }
+  }
+
+  function drawStage() {
+    const costume = state.mix[0].toLowerCase();
+    const up = state.line >= 7;
+    $('kit').src = art[`kit-${costume}-${up ? 'up' : 'down'}`];
+    $('holloway').src = art[`holloway-${costume}-${up ? 'kneel' : 'door'}`];
+    $('holloway').classList.toggle('kneel', up);
+    $('stage').classList.toggle('sunny', state.mix[1] === 'B');
+    $('holloway').style.visibility = state.line === 0 && state.playing ? 'hidden' : 'visible';
+    $('kit').classList.remove('speaking');
+    $('holloway').classList.remove('speaking');
+    if (state.playing && !Curio.reduce) {
+      const actor = $(scene[state.line]?.[0] === 'KIT' ? 'kit' : 'holloway');
+      void actor.offsetWidth;
+      actor.classList.add('speaking');
+    }
+    $('stage').setAttribute('aria-label', `Porch scene. ${state.mix[0] === 'A' ? 'Rain gear' : 'Summer clothes'}. ` +
+      `${state.mix[1] === 'A' ? 'Cool blue' : 'Warm'} light. ${up ? 'The bear kneels to look at the wheel.' : 'The otter looks down.'}`);
+  }
+  function drawMix() {
+    keys.forEach((key, i) => {
+      const b = $('switch-' + key);
+      b.dataset.version = state.mix[i];
+      b.querySelector('.letter').textContent = state.mix[i];
+      b.querySelector('small').textContent = descriptions[key][state.mix[i] === 'A' ? 0 : 1];
+      b.setAttribute('aria-label', `${names[key]}: ${state.mix[i]}, ${descriptions[key][state.mix[i] === 'A' ? 0 : 1]}. Flip to ${state.mix[i] === 'A' ? 'B' : 'A'}.`);
+      b.setAttribute('aria-pressed', state.mix[i] === 'B');
+    });
+    const different = keys.filter((key, i) => state.mix[i] !== state.base);
+    $('difference').textContent = different.length ?
+      `${different.map(k => names[k]).join(' + ')} changed from Base ${state.base}.` : `All switches match Base ${state.base}.`;
+    for (const v of ['A', 'B']) {
+      $('base-' + v.toLowerCase()).setAttribute('aria-pressed', state.base === v);
+      $('base-' + v.toLowerCase()).setAttribute('aria-disabled', state.playing);
+    }
+    drawPlayback();
+  }
+  function drawPlayback() {
+    document.body.dataset.playing = state.playing;
+    $('play').textContent = state.playing ? '■ Stop' : '▶ Play';
+    for (const v of ['A', 'B']) {
+      const active = state.playing && session?.version === v;
+      const button = $('play-' + v.toLowerCase());
+      button.firstChild.textContent = active ? `■ Stop Version ${v} ` : `▶ Play Version ${v} `;
+      button.setAttribute('aria-pressed', active);
+    }
+    if (state.line >= 0) {
+      $('speaker').textContent = scene[state.line][0];
+      $('line-text').textContent = scene[state.line][1];
+      $('replay-line').textContent = `${scene[state.line][0]}: ${scene[state.line][1]}`;
+    }
+    $('scene-status').textContent = state.playing ? `Line ${state.line + 1} of 10 · ${state.mix.join(' / ')}` : 'One scene. Two ways.';
+    [...$('ticks').children].forEach((b, i) => {
+      b.setAttribute('aria-current', state.line === i);
+      b.classList.toggle('done', session?.completed.has(i) || false);
+    });
+  }
+  function drawWatch() {
+    document.body.classList.toggle('watched-both', state.watched.A && state.watched.B);
+    for (const v of ['A', 'B']) {
+      const span = $('seen-' + v.toLowerCase());
+      span.textContent = `${v} · ${state.watched[v] ? 'watched ✓' : 'not watched'}`;
+      span.classList.toggle('watched', state.watched[v]);
+      [...$('feel-' + v.toLowerCase()).children].forEach(b => b.setAttribute('aria-pressed', state.feelings[v].includes(b.textContent)));
+    }
+    $('feelings').hidden = !(state.watched.A && state.watched.B);
+  }
+  function chooseFeeling(version, feeling) {
+    const list = state.feelings[version];
+    const index = list.indexOf(feeling);
+    if (index >= 0) list.splice(index, 1);
+    else if (list.length < 2) list.push(feeling);
+    else { hint(L.feelingsFull); shortTone(); return; }
+    V.dropQueued();
+    drawWatch();
+    save();
+    shortTone();
+    hint(L.feelingsNext);
+  }
+  function createNote(note, number) {
+    const element = document.createElement('article');
+    element.className = 'note' + (!isFair(note) ? ' unfair' : '');
+    const title = document.createElement('div');
+    title.className = 'note-title';
+    title.textContent = `${number}. ${note.differences.length ? note.differences.map(k => names[k]).join(' + ') : 'Base replay'}`;
+    element.append(title);
+    const detail = document.createElement('p');
+    detail.className = 'muted';
+    const fair = isFair(note);
+    detail.textContent = !note.verified && note.differences.length === 1 ?
+      'Not in results: watch a full line with this change, then try the test again.' :
+      note.differences.length >= 2 ? 'Two things changed. Which one did it? Not a fair test.' :
+      fair ? `One change from Base ${note.base}${note.live ? ' · live swap' : ''}. How much did it change the feeling?` :
+      'No switches changed. Compare with a one-switch test.';
+    element.append(detail);
+    const row = document.createElement('div');
+    row.className = 'rating';
+    for (const value of [2, 1, 0]) {
+      const b = document.createElement('button');
+      b.textContent = ratings[value];
+      b.setAttribute('aria-pressed', note.rating === value);
+      b.setAttribute('aria-label', `Experiment ${number}: ${ratings[value]}`);
+      b.onclick = () => {
+        note.rating = value;
+        [...row.children].forEach(c => c.setAttribute('aria-pressed', c === b));
+        save();
+        shortTone();
+        V.dropQueued();
+        hint(L.labNext);
+        updateCarried();
+      };
+      row.append(b);
+    }
+    element.append(row);
+    return element;
+  }
+  function drawNotebook() {
+    const box = $('notebook');
+    if (!state.notes.length) {
+      box.innerHTML = '<div class="empty-notes">Change one switch, then play. Your experiments will land here.</div>';
+      return;
+    }
+    box.replaceChildren(...state.notes.map((note, i) => createNote(note, i + 1)));
+  }
+  function isFair(note) {
+    return note.verified === true && note.differences.length === 1;
+  }
+  function fairResults() {
+    return keys.map((key, index) => {
+      const rows = state.notes.filter(n => isFair(n) && n.differences[0] === key && n.rating !== null);
+      const score = rows.length ? rows.reduce((sum, n) => sum + n.rating, 0) / rows.length : null;
+      return {key, index, rows, score};
+    }).filter(r => r.score !== null).sort((a, b) => b.score - a.score || a.index - b.index);
+  }
+  function showResults() {
+    if (!state.playing) V.hush();
+    const result = fairResults();
+    const leaders = result.length ? result.filter(r => r.score === result[0].score).map(r => names[r.key]) : [];
+    $('result-summary').textContent = !result.length ? '' : result[0].score === 0 ?
+      'Your finding: none of these swaps changed the feeling for you.' :
+      `${leaders.join(' + ')}: ${leaders.length === 1 ? 'your strongest change' : 'tied for your strongest change'}.`;
+    $('chart').replaceChildren();
+    for (const r of result) {
+      const row = document.createElement('div');
+      const title = document.createElement('div');
+      title.className = 'bar-label';
+      title.textContent = `${names[r.key]} · ${r.rows.length} fair ${r.rows.length === 1 ? 'test' : 'tests'}`;
+      const track = document.createElement('div');
+      track.className = 'bar-track';
+      const fill = document.createElement('div');
+      fill.className = 'bar-fill';
+      fill.style.width = `${r.score * 50}%`;
+      fill.style.minWidth = r.score === 0 ? '0' : '3px';
+      const words = document.createElement('span');
+      words.className = 'bar-words';
+      const same = r.rows.every(n => n.rating === r.rows[0].rating);
+      words.textContent = same ? ratings[r.rows[0].rating] : `Average ${r.score.toFixed(1)} of 2 · mixed ratings`;
+      track.append(fill, words);
+      row.append(title, track);
+      $('chart').append(row);
+    }
+    if (!result.length) $('chart').textContent = 'No rated fair tests yet. Play with one switch changed, then give it a rating.';
+    const excluded = state.notes.filter(n => !isFair(n)).length;
+    $('chart-footnote').textContent = 'A lot = 2, A little = 1, Not at all = 0. Repeated tests are averaged. ' +
+      `${excluded} base, multiple-change or unobserved ${excluded === 1 ? 'replay is' : 'replays are'} left out.`;
+    $('results-dialog').showModal();
+    shortTone();
+  }
+  function chooseCriterion(index) {
+    const found = state.selected.indexOf(index);
+    if (found >= 0) state.selected.splice(found, 1);
+    else if (state.selected.length < 3) state.selected.push(index);
+    else { hint(L.criterionFull); return; }
+    V.dropQueued();
+    drawCriteria();
+    shortTone();
+    save();
+    hint(state.selected.length === 3 ? L.criteriaRate : L.welcomeTalkback);
+  }
+  function drawCriteria() {
+    [...$('criteria-bank').children].forEach((b, i) => b.setAttribute('aria-pressed', state.selected.includes(i)));
+    for (let i = 0; i < criteria.length; i++) $('criterion-' + i).hidden = !state.selected.includes(i);
+    for (const index of state.selected) {
+      for (const v of ['A', 'B']) {
+        [...$(`judge-${index}-${v}`).querySelectorAll('button')].forEach(b =>
+          b.setAttribute('aria-pressed', state.judgments[index]?.[v] === b.textContent));
+      }
+    }
+  }
+  function judge(index, version, value) {
+    state.judgments[index] ||= {};
+    state.judgments[index][version] = value;
+    drawCriteria();
+    save();
+    shortTone();
+    const done = state.selected.length === 3 && state.selected.every(i => state.judgments[i]?.A && state.judgments[i]?.B);
+    if (done) how('verdictHow', () => !state.verdicts.some(Boolean));
+    else hint(L.criteriaRate);
+  }
+  function updateCarried() {
+    const feelingText = ['A', 'B'].map(v => `${v}: ${state.feelings[v].join(' + ') || 'feelings not chosen'}`).join(' · ');
+    const fair = state.notes.filter(n => isFair(n) && n.rating !== null).length;
+    $('carried-notes').textContent = `${feelingText}. Your notebook has ${fair} rated fair ${fair === 1 ? 'test' : 'tests'}.`;
+  }
+  function setMode(mode) {
+    if (!['watch', 'lab', 'talkback'].includes(mode)) return;
+    if (state.mode === mode && document.body.dataset.mode) return;
+    if (state.playing) stopScene(false, true);
+    V.hush();
+    state.mode = mode;
+    if (mode === 'lab') state.mix = keys.map(() => state.base);
+    document.body.dataset.mode = mode;
+    for (const m of ['watch', 'lab', 'talkback']) $('m-' + m).setAttribute('aria-pressed', mode === m);
+    $('theater').hidden = mode === 'talkback';
+    $('panel').hidden = mode === 'talkback';
+    $('watch-panel').hidden = mode !== 'watch';
+    $('lab-panel').hidden = mode !== 'lab';
+    $('watch-transport').hidden = mode !== 'watch';
+    $('mixer').hidden = mode !== 'lab';
+    $('lab-controls').hidden = mode !== 'lab';
+    $('talkback').hidden = mode !== 'talkback';
+    if (mode === 'talkback') {
+      $('thumbnail-mount').append($('stage'));
+      $('stage').classList.add('thumbnail');
+    } else {
+      const before = $('caption').parentElement === $('theater') ? $('caption') : $('watch-transport');
+      $('theater').insertBefore($('stage'), before);
+      $('stage').classList.remove('thumbnail');
+    }
+    const key = howForMode();
+    hint(L[key]);
+    V.welcome();
+    drawMix();
+    drawStage();
+    updateCarried();
+    layoutCaption();
+  }
+
+  function layoutCaption() {
+    const phone = matchMedia('(max-width: 600px)').matches && state.mode !== 'talkback';
+    if (phone) $('theater').insertBefore($('hint'), $('stage'));
+    else $('panel').insertBefore($('hint'), $('watch-panel'));
+    const compact = matchMedia('(max-height: 650px) and (min-width: 601px)').matches;
+    if (compact) $('panel').insertBefore($('caption'), $('hint'));
+    else $('theater').insertBefore($('caption'), $('watch-transport'));
+  }
+  addEventListener('resize', layoutCaption);
+
+  function buildControls() {
+    keys.forEach((key, i) => {
+      const b = document.createElement('button');
+      b.id = 'switch-' + key;
+      b.className = 'switch';
+      b.innerHTML = `<span class="letter">A</span><b>${names[key]}</b><small></small>`;
+      b.title = `Press ${'CLVM'[i]} to flip ${names[key]}`;
+      b.onclick = () => flip(i);
+      $('mixer').append(b);
+    });
+    for (let i = 0; i < 10; i++) {
+      const b = document.createElement('button');
+      b.id = 'line-' + (i + 1);
+      b.textContent = i + 1;
+      b.setAttribute('aria-label', `Jump to line ${i + 1}: ${scene[i][0]}`);
+      b.onclick = () => {
+        if (!state.playing) startScene(state.mode === 'watch' ? state.mix[2] : null);
+        runLine(i, true);
+      };
+      $('ticks').append(b);
+    }
+    for (const v of ['A', 'B']) for (const f of feelings) {
+      const b = document.createElement('button');
+      b.textContent = f;
+      b.setAttribute('aria-pressed', 'false');
+      b.setAttribute('aria-label', `Version ${v}: ${f}`);
+      b.onclick = () => chooseFeeling(v, f);
+      $('feel-' + v.toLowerCase()).append(b);
+    }
+    criteria.forEach((criterion, i) => {
+      const b = document.createElement('button');
+      b.textContent = criterion;
+      b.id = 'criterion-pick-' + i;
+      b.setAttribute('aria-pressed', 'false');
+      b.onclick = () => chooseCriterion(i);
+      $('criteria-bank').append(b);
+      const row = document.createElement('div');
+      row.className = 'criterion';
+      row.id = 'criterion-' + i;
+      row.hidden = true;
+      const title = document.createElement('b');
+      title.textContent = criterion;
+      row.append(title);
+      for (const v of ['A', 'B']) {
+        const group = document.createElement('div');
+        group.className = 'judgment';
+        group.id = `judge-${i}-${v}`;
+        group.dataset.version = v;
+        const label = document.createElement('span');
+        label.textContent = v;
+        group.append(label);
+        for (const value of ['Yes', 'Mostly', 'Not really']) {
+          const rate = document.createElement('button');
+          rate.textContent = value;
+          rate.setAttribute('aria-label', `${criterion} Version ${v}: ${value}`);
+          rate.setAttribute('aria-pressed', 'false');
+          rate.onclick = () => judge(i, v, value);
+          group.append(rate);
+        }
+        row.append(group);
+      }
+      $('criteria-table').append(row);
+    });
+  }
+  for (const mode of ['watch', 'lab', 'talkback']) $('m-' + mode).onclick = () => setMode(mode);
+  for (const v of ['A', 'B']) {
+    $('play-' + v.toLowerCase()).onclick = () => {
+      state.playing && session?.version === v ? stopScene() : startScene(v);
+    };
+    $('base-' + v.toLowerCase()).onclick = () => setBase(v);
+    $('replay-' + v.toLowerCase()).onclick = () => {
+      state.playing && session?.version === v ? stopScene() : startScene(v);
+    };
+    $('vote-' + v.toLowerCase()).onclick = () => {
+      state.votes[v]++;
+      $('votes-' + v.toLowerCase()).textContent = state.votes[v];
+      shortTone();
+    };
+  }
+  $('reset-vote').onclick = () => {
+    state.votes = {A: 0, B: 0};
+    $('votes-a').textContent = '0';
+    $('votes-b').textContent = '0';
+    shortTone();
+  };
+  $('go-lab').onclick = () => setMode('lab');
+  $('play').onclick = togglePlay;
+  $('reset-switches').onclick = resetSwitches;
+  $('show-results').onclick = showResults;
+  $('close-results').onclick = () => $('results-dialog').close();
+  $('hear-talkback').onclick = () => {
+    if (state.playing) stopScene();
+    state.audience = !state.audience;
+    $('audience-cards').hidden = !state.audience;
+    $('hear-talkback').textContent = state.audience ? 'Hide the talkback' : 'Hear the talkback';
+    if (state.audience) {
+      hint(L.talkbackDone);
+      V.say(['audienceAR', 'audienceLM', 'audienceST', 'talkbackDone'], {valid: () => state.audience && !state.playing});
+    } else {
+      V.hush();
+      hint(L[howForMode()]);
+    }
+    shortTone();
+  };
+  for (let i = 0; i < 2; i++) {
+    const field = $('verdict-' + (i + 1));
+    field.oninput = () => {
+      state.verdicts[i] = field.value;
+      $('count-' + (i + 1)).textContent = field.value.length + ' / 140';
+      V.dropQueued();
+      save();
+    };
+  }
+  $('clear').onclick = () => {
+    if (!state.playing) V.hush();
+    $('clear-dialog').showModal();
+  };
+  $('cancel-clear').onclick = () => $('clear-dialog').close();
+  $('confirm-clear').onclick = () => {
+    if (state.playing) stopScene(false, false);
+    V.hush();
+    state.feelings = {A: [], B: []};
+    state.watched = {A: false, B: false};
+    state.notes = [];
+    state.selected = [];
+    state.judgments = {};
+    state.verdicts = ['', ''];
+    state.audience = false;
+    state.votes = {A: 0, B: 0};
+    state.line = -1;
+    state.base = 'A';
+    state.mix = ['A', 'A', 'A', 'A'];
+    session = null;
+    for (let i = 1; i <= 2; i++) { $('verdict-' + i).value = ''; $('count-' + i).textContent = '0 / 140'; }
+    $('audience-cards').hidden = true;
+    $('hear-talkback').textContent = 'Hear the talkback';
+    $('votes-a').textContent = $('votes-b').textContent = '0';
+    try { localStorage.removeItem('audience-talkback'); } catch { /* Optional storage. */ }
+    saved = false;
+    $('save-status').textContent = 'Notes cleared. Nothing leaves this device.';
+    $('clear-dialog').close();
+    $('clear').focus({preventScroll: true});
+    drawWatch();
+    drawNotebook();
+    drawCriteria();
+    setMode('watch');
+    drawStage();
+    drawPlayback();
+    hint(L.notesCleared);
+    $('speaker').textContent = 'THE SCENE';
+    $('line-text').textContent = 'Kit borrowed a bike. Now it has a bent wheel.';
+    shortTone();
+  };
+  addEventListener('keydown', event => {
+    if (event.repeat || event.ctrlKey || event.altKey || event.metaKey || event.target.closest('input, textarea, select')) return;
+    if (document.querySelector('dialog[open]')) return;
+    if (state.mode === 'lab' && event.key === 'Tab') {
+      let next = null;
+      if (!event.shiftKey && event.target === $('reset-switches')) next = $('base-a');
+      if (!event.shiftKey && event.target === $('show-results')) next = $('line-1');
+      if (!event.shiftKey && event.target === $('line-10')) next = $('read');
+      if (event.shiftKey && event.target === $('base-a')) next = $('reset-switches');
+      if (event.shiftKey && event.target === $('line-1')) next = $('show-results');
+      if (event.shiftKey && event.target === $('read')) next = $('line-10');
+      if (next) {
+        event.preventDefault();
+        next.focus({preventScroll: true});
+        next.scrollIntoView({block: 'nearest', inline: 'nearest'});
+      }
+    }
+    const index = 'clvm'.indexOf(event.key.toLowerCase());
+    if (index >= 0 && state.mode === 'lab') { event.preventDefault(); flip(index); }
+    if (event.code === 'Space' && (state.mode === 'lab' || !event.target.closest('button'))) {
+      event.preventDefault();
+      if (state.mode === 'lab') togglePlay();
+      else state.playing ? stopScene() : startScene(state.mix[2]);
+    }
+  });
+  Curio.onSound(() => {
+    musicMix();
+    if (state.playing) {
+      V.hush();
+      runLine(state.line, true);
+    }
+  });
+  Curio.onMotion(() => {
+    if (Curio.reduce) {
+      $('kit').classList.remove('speaking');
+      $('holloway').classList.remove('speaking');
+    }
+  });
+  addEventListener('pagehide', () => { silenceScene(); musicStop(); });
+  load();
+  layoutCaption();
+  buildControls();
+  drawNotebook();
+  drawWatch();
+  drawCriteria();
+  for (let i = 0; i < 2; i++) {
+    $('verdict-' + (i + 1)).value = state.verdicts[i];
+    $('count-' + (i + 1)).textContent = state.verdicts[i].length + ' / 140';
+  }
+  Curio.init({clips: audioClips, rate: .96});
+  for (const version of ['A', 'B']) {
+    const clips = sceneAudio[version];
+    if (clips?.length === 10 && clips.every(c => c.src && c.duration > 0)) {
+      const seconds = clips.reduce((sum, c) => sum + c.duration, 0) + (version === 'A' ? 4.8 : 2.3);
+      $('play-' + version.toLowerCase()).querySelector('small').textContent =
+        `${seconds.toFixed(1)} s · ${version === 'A' ? 'rainy evening' : 'sunny morning'}`;
+    }
+  }
+  const kitRead = $('read').onclick;
+  $('read').onclick = () => {
+    if (state.playing) { hint(L.readStop); return; }
+    kitRead();
+  };
+  setMode('watch');
+  window.__tool = {
+    state, setMode, allLines: V.allLines, vlog: V.log, get vq() { return V.queue; },
+    startScene, stopScene, flip, setBase, resetSwitches, showResults, fairResults,
+    drawNotebook, drawWatch, drawCriteria, chooseFeeling, chooseCriterion, judge, save,
+    runLine, playbackLog, switchLog, voiceStats, scene, criteria, L,
+    get phase() { return phase; }, get session() { return session; }, get saved() { return saved; },
+    get musicState() { return {epoch: musicEpoch, nextBeat: {...nextBeat}, current: audioContext?.currentTime}; }
+  };
+})();
+</script>
+</body>
+</html>

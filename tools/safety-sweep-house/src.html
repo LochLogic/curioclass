@@ -1,0 +1,1255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Safety Sweep House · Curio Class</title>
+<meta name="description" content="Search six painted rooms, compare choices, and perform twelve safety fixes. Grades 3-5. Works offline.">
+<!--
+Safety Sweep House, Curio Class. NHES 2024 S5.5.1-5 and S7.5.1-2.
+Safety sources: CDC, HRSA Poison Help, USFA, NFPA, AAP, CPSC, FTC and NetSmartz. See notes.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0. Code MIT. One offline file. No collection or saved progress.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f6f3ec; --ink:#1b2430; --muted:#545e69; --line:#ddd6c8; --focus:#c2410c;
+  --brand:#1d5c8a; --btn:#174c74; --btn-line:#7aa4c3; --head-ink:#fff; --panel:#fffdf8;
+  --safe:#2e7d32; --risk:#a8321e; --lamp:#ffc85a; --night:#141b2a;
+}
+body {overflow:hidden; min-height:0}
+header {height:64px; padding:6px 16px; flex-wrap:nowrap; gap:8px; box-shadow:0 3px 12px #14223530; z-index:3}
+h1 {font-family:Georgia,serif; font-size:25px}
+h1 small {font-size:12px; letter-spacing:.6px; margin-top:4px}
+.icon-btn {min-height:44px; font-size:13px; padding:0 12px}
+main {grid-template-columns:minmax(0,1fr) minmax(310px,30%); gap:14px; padding:18px; min-height:0}
+.world {display:flex; flex-direction:column; justify-content:center; min-width:0; min-height:0; gap:12px; grid-column:1; grid-row:1}
+.stage {flex:none; width:100%; aspect-ratio:16/9; min-height:0; max-height:calc(100vh - 194px); border-radius:22px;
+  background:#b8c6ca; box-shadow:0 12px 28px #26384b25,0 0 0 5px #fff9; isolation:isolate}
+.backdrop {position:absolute; inset:0; width:100%; height:100%; object-fit:cover; pointer-events:none}
+.stage::after {content:''; position:absolute; inset:0; pointer-events:none; box-shadow:inset 0 0 60px #36251715; z-index:10}
+.room-art {transition:transform .4s ease; transform-origin:var(--origin,50% 50%)}
+.deciding .room-art {transform:scale(1.6); filter:brightness(.78)}
+.scene-top {position:absolute; inset:12px 12px auto; display:flex; align-items:center; justify-content:space-between; z-index:8;
+  pointer-events:none; gap:10px}
+.scene-top>* {pointer-events:auto}
+.plaque {background:#fffdf8f5; padding:9px 14px; border-radius:10px; color:var(--ink); box-shadow:0 3px 8px #0002;
+  font-size:14px; font-weight:750}
+.plaque small {display:block; font-size:11px; font-weight:500; color:var(--muted); margin-top:2px}
+button.b {border:1px solid var(--line); background:var(--panel); color:var(--ink); min-height:44px; padding:8px 14px; border-radius:12px;
+  font-weight:750; box-shadow:0 3px 0 #1b243018}
+button.b.primary {background:var(--brand); color:white; border-color:var(--brand)}
+button.b:active {transform:translateY(2px); box-shadow:none}
+button:focus-visible {outline:3px solid var(--focus); outline-offset:3px; box-shadow:0 0 0 3px white}
+.house-room {position:absolute; border:1px solid #fff5; background:#141b2a9e; border-radius:7px; padding:0;
+  transition:background .7s,box-shadow .7s; min-width:44px; min-height:44px; color:white}
+.house-room:hover,.house-room:focus-visible {background:#141b2a65; box-shadow:inset 0 0 20px #ffc85a80}
+.house-room.lit {background:#ffc85a1a; box-shadow:inset 0 0 32px #ffc85a90}
+.house-room>span {position:absolute; left:6px; bottom:6px; background:#142235ec; border-radius:7px; padding:6px 9px;
+  font-size:clamp(10px,1.15vw,16px); color:white; white-space:nowrap}
+.house-room.lit>span {background:#ffc85a; color:var(--ink)}
+.mini-fixed {position:absolute; top:8%; width:35%; height:45%; object-fit:contain; filter:drop-shadow(0 2px 2px #0005)}
+.porch {position:absolute; left:45%; top:80%; width:12%; height:18%; background:radial-gradient(#ffe9a4cc,#ffc85a00 70%);
+  pointer-events:none; animation:breathe 4s ease-in-out infinite}
+.ambient {position:absolute; left:8%; top:18%; width:3px; height:3px; border-radius:50%; background:#fff9;
+  box-shadow:70px 20px 1px #fff7,140px 70px 2px #fff5,20px 100px 2px #fff8,250px 30px 1px #fff6;
+  animation:dust 9s ease-in-out infinite alternate; pointer-events:none; z-index:2}
+@keyframes dust {to {transform:translate(25px,15px); opacity:.3}}
+.strip {display:grid; grid-template-columns:.7fr repeat(6,1fr); gap:5px}
+.strip button {min-height:54px!important; font-size:12px; padding:5px!important; background:#fff9!important}
+.strip button[aria-current=true] {box-shadow:inset 0 -4px var(--brand)}
+.lamp {display:block; color:#646d75; font-size:18px; margin-bottom:2px}
+.lamp.on {color:#705000; text-shadow:0 0 8px #ffc85a}
+.footer-count {text-align:center; font-size:12px; color:var(--muted); letter-spacing:.6px}
+.rooms-small {display:none}
+.panel {position:relative; grid-column:2; grid-row:1; border:1px solid #d8cfbf; border-top:8px solid #a77b4c; padding:18px; gap:14px; border-radius:16px;
+  background:linear-gradient(110deg,#fffdf8,#f7f0e2); box-shadow:0 7px 20px #3e30101a; overflow:visible; min-height:0}
+.panel::before {content:''; position:absolute; top:-14px; left:36%; width:28%; height:15px; border-radius:5px;
+  background:linear-gradient(#79858e,#c5cbd0,#79858e); box-shadow:0 2px 4px #0003}
+.eyebrow {font-size:11px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--brand); margin:0}
+#hint {margin:0; min-height:64px; font-size:16px; line-height:1.4}
+.steps {display:flex; gap:5px; border-bottom:1px solid var(--line); padding-bottom:12px}
+.step {flex:1; text-align:center; font-size:12px; color:var(--muted); font-weight:700}
+.step i {display:block; margin:0 auto 5px; border:1px solid #b9b3a6; width:25px; height:25px; line-height:24px;
+  border-radius:50%; font-style:normal; background:#eee9dd}
+.step.current {color:var(--brand)}
+.step.current i {background:var(--brand); color:white; border-color:var(--brand)}
+#controls {display:flex; flex-direction:column; gap:10px; min-height:0}
+.situation {font-size:17px; line-height:1.5; margin:0; font-family:Georgia,serif}
+.context-title {font:700 22px Georgia,serif; margin:0 0 5px}
+.paper-note {padding:14px; background:#fffdf8; border:1px solid #e0d5c1; border-radius:10px; font-size:14px; line-height:1.4}
+.paper-note p {margin:0 0 7px}
+.paper-note p:last-child {margin:0}
+.choices {display:flex; flex-direction:column; gap:9px}
+.option {display:grid; grid-template-columns:1fr 46px; min-height:88px; border:1px solid #c9c4b9;
+  border-radius:11px; overflow:hidden; background:#fffdf8; box-shadow:0 3px 0 #0000000b}
+.pick {border:0; background:transparent; text-align:left; padding:10px 12px; font-size:14px; line-height:1.35; min-height:44px}
+.peek {border:0; border-left:1px solid var(--line); background:#edf2f4; min-width:44px; min-height:44px;
+  color:var(--brand); font-size:20px}
+.option.tried {border:2px solid var(--risk)}
+.option.safe {border:2px solid var(--safe)}
+.card-label {display:block; font-size:11px; font-weight:800; margin-bottom:4px; color:var(--brand)}
+.tried .card-label {color:var(--risk)}
+.safe .card-label {color:var(--safe)}
+.hotspot {position:absolute; border:0; background:transparent; padding:0; border-radius:16px; min-width:44px;
+  min-height:44px; touch-action:none; transition:filter .15s; cursor:pointer}
+.hotspot img {width:100%; height:100%; object-fit:contain; pointer-events:none; filter:drop-shadow(0 5px 4px #0003)}
+.hotspot:hover,.hotspot:focus-visible {background:#fff3; outline:3px solid #ffffffb0; filter:drop-shadow(0 0 5px #ffdf89)}
+.hotspot .plaque {display:block; font-size:clamp(10px,1.1vw,14px); line-height:1.4; padding:8px}
+.badge {position:absolute; right:3px; top:3px; border-radius:50%; width:26px; height:26px; background:var(--safe); color:white;
+  border:2px solid white; font-size:16px; display:grid; place-items:center}
+.badge.blue {background:var(--brand)}
+.theo {position:absolute; left:48%; bottom:4%; height:30%; width:19%; object-fit:contain; pointer-events:none;
+  filter:drop-shadow(0 5px 4px #0002)}
+.look-card {position:absolute; left:20%; top:20%; right:10%; padding:18px; border-radius:16px; background:#fffdf8f7;
+  border:3px solid var(--brand); box-shadow:0 10px 30px #0003; z-index:9; font-size:16px; line-height:1.4}
+.look-card h2 {margin:0 0 7px; font:700 22px Georgia,serif}
+.look-card button {margin-top:12px}
+.focus-layout {position:absolute; inset:64px 14px 16px; display:flex; align-items:center; gap:14px; z-index:4}
+.focus-object {position:relative; width:44%; height:100%; display:flex; align-items:center; justify-content:center; min-width:0}
+.focus-object>img {width:100%; max-height:100%; object-fit:contain; filter:drop-shadow(0 8px 8px #0005)}
+.focus-object.full {width:100%}
+.outcomes {display:flex; flex:1; align-items:stretch; gap:6px; min-width:0}
+.outcome {flex:1; min-width:0; padding:12px 9px; border:2px solid var(--risk); border-radius:12px;
+  background:#fffdf8f5; font-size:13px; line-height:1.35; box-shadow:0 6px 15px #0002}
+.outcome.good {border-color:var(--safe)}
+.outcome strong {display:block; color:var(--risk); font-size:12px; margin-bottom:7px}
+.outcome.good strong {color:var(--safe)}
+.outcome p {margin:0}
+.habit {margin-top:12px!important; border-top:1px solid #dbd4c5; padding-top:9px; font-weight:700}
+.stage-message {position:absolute; left:20%; right:10%; bottom:12%; padding:15px; border-radius:12px;
+  background:#fffdf8ed; font-size:17px; line-height:1.35; box-shadow:0 8px 20px #0003}
+.fix-board {position:absolute; inset:65px 20px 18px; z-index:4}
+.fix-scene {position:absolute; inset:0; width:100%; height:100%; object-fit:contain; pointer-events:none;
+  filter:drop-shadow(0 7px 5px #0004); opacity:.97}
+.fix-scene.small {width:40%; left:5%; top:7%}
+.fix-item {position:absolute; left:10%; top:48%; width:24%; height:37%; min-width:44px; min-height:44px;
+  border:2px solid #fff9; border-radius:12px; background:#ffffff18; padding:4px; touch-action:none; cursor:grab; z-index:5}
+.fix-item img {width:100%; height:100%; object-fit:contain; pointer-events:none; filter:drop-shadow(0 5px 4px #0003)}
+.fix-item.selected {outline:4px solid var(--lamp); background:#fff5}
+.target {position:absolute; left:66%; top:12%; width:29%; height:38%; min-width:44px; min-height:44px;
+  border:3px dashed #fff9; border-radius:14px; padding:8px; background:#143c60d9; color:white; font-size:14px;
+  font-weight:700; z-index:4}
+.target.ready {border-color:var(--lamp); box-shadow:0 0 20px #ffc85a88}
+.grownup {display:flex; align-items:center; gap:10px; background:white; border-radius:12px; padding:8px; font-size:14px}
+.grownup img {width:56px; height:56px; object-fit:contain; background:#f3e8d3; border-radius:50%}
+.hold {position:absolute; left:33%; top:16%; width:34%; height:65%; background:radial-gradient(#ffefbc7a,transparent 70%);
+  border:2px solid #fff9; border-radius:30px; touch-action:none; padding:8px; min-width:44px; min-height:44px; z-index:5}
+.hold img {height:85%; width:100%; object-fit:contain; pointer-events:none; filter:drop-shadow(0 6px 5px #0004)}
+.hold span {display:block; background:#fffdf8; border-radius:8px; padding:7px; font-weight:750}
+.hold::after {content:''; position:absolute; left:8%; right:8%; bottom:6%; height:7px; border-radius:10px;
+  background:linear-gradient(90deg,var(--lamp) var(--hold,0%),#0002 var(--hold,0%))}
+.ruler {position:absolute; left:7%; right:7%; top:72%; background:#fcdf9c; height:60px; border-radius:7px;
+  border:2px solid #b08940; display:flex; justify-content:space-between; padding:28px 12px 0; color:#45371c;
+  font-size:13px; box-shadow:0 4px 5px #0003; background-image:repeating-linear-gradient(90deg,#806637 0 1px,transparent 1px 12.5%)}
+.ruler-item {top:25%; left:15%; width:20%; height:40%}
+.fix-board:has(.ruler) .fix-scene.small {left:0; top:20%; width:27%; height:48%}
+.ruler {left:27%; right:14%}
+.ruler-item {width:14%}
+.fix-flight {position:absolute; z-index:12; pointer-events:none; object-fit:contain;
+  filter:drop-shadow(0 6px 5px #0004); animation:fix-flight .5s ease-in-out both}
+@keyframes fix-flight {to {transform:translate(var(--dx),var(--dy)) scale(.8); opacity:0}}
+.ruler-value {position:absolute; left:42%; top:2%; background:#fffdf8; padding:8px 15px; border-radius:20px; font-weight:800}
+.smoke {position:absolute; left:46%; top:15%; color:#e8f2f1; font-size:80px; opacity:.8; animation:smoke 1.5s ease-out both; pointer-events:none}
+.alarm-flash {box-shadow:0 0 40px 15px #88e19d; border-radius:50%}
+.drain-cover {animation:drain 1.5s ease-in forwards}
+.gate-swing {animation:gate-close .7s ease-out forwards; transform-origin:30% 50%}
+@keyframes drain {to {clip-path:inset(90% 0 0 0); opacity:0}}
+@keyframes gate-close {to {transform:perspective(500px) rotateY(75deg); opacity:0}}
+.screen-ui {position:absolute; inset:10% 12%; background:#173c61; border:8px solid #384b5a; border-radius:14px;
+  padding:20px; box-shadow:0 15px 20px #0004; color:white; display:flex; flex-direction:column; justify-content:center; gap:16px}
+.screen-ui h3 {margin:0; font-size:clamp(15px,2vw,24px); color:#ffe08a}
+.screen-ui p {margin:0; font-size:clamp(13px,1.7vw,21px); line-height:1.4}
+.screen-ui .screen-actions {display:flex; justify-content:center; gap:12px}
+.close-popup {position:absolute; top:5px; right:5px; border:2px solid white; border-radius:50%; width:44px; height:44px;
+  color:white; background:#9a2e1d; font-size:22px}
+.chip-grid {display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.person {min-height:65px; display:flex; align-items:center; gap:8px; text-align:left}
+.person img {height:42px; width:42px; object-fit:contain}
+.person[aria-pressed=true] {border:3px solid var(--brand); background:#e7f0f6}
+.person.correct {background:#e4f0df; border:3px solid var(--safe)}
+.person.missed {border:2px dashed var(--safe)}
+.person small {display:block; font-size:11px}
+.safety {position:absolute; inset:10px; background:#fffdf8f7; padding:18px 20px; border-radius:16px;
+  border:2px solid #ddbc73; box-shadow:0 12px 40px #0003; z-index:20; display:flex; flex-direction:column; gap:10px}
+.safety h2 {margin:0; font:700 25px Georgia,serif; color:var(--brand)}
+.habit-list {display:grid; grid-template-columns:1fr 1fr; gap:8px 18px; flex:1; min-height:0}
+.habit-entry {display:flex; align-items:center; gap:8px; font-size:12px; line-height:1.3}
+.habit-entry img {width:36px; height:36px; object-fit:contain; flex:none}
+.emergency {border:1px solid #d9c99f; background:#fcf1d4; border-radius:9px; padding:7px 10px; font-size:13px; font-weight:700}
+.card-buttons {display:flex; gap:8px; flex-wrap:wrap}
+.confirm {position:absolute; inset:25%; background:var(--panel); border:3px solid var(--brand); border-radius:16px;
+  z-index:30; padding:22px; box-shadow:0 10px 40px #0005; display:grid; place-content:center; gap:15px; text-align:center}
+@keyframes breathe {50% {opacity:.55}}
+@keyframes smoke {from {transform:translateY(10px) scale(.7)} to {transform:translateY(-35px) scale(1.2); opacity:0}}
+.calm * {transition:none!important; animation:none!important}
+.calm .smoke {opacity:.7}
+.calm .drain-cover,.calm .gate-swing {display:none}
+@media (max-width:1100px) {
+  main {padding:12px; gap:10px; grid-template-columns:minmax(0,1fr) 310px}
+  .panel {padding:12px; gap:10px}
+  #hint {font-size:14px; min-height:58px}
+  .strip button {font-size:10px}
+  .situation {font-size:15px}
+  .outcome {font-size:11px; padding:8px 6px}
+}
+@media (max-height:650px) and (min-width:600px) {
+  header {height:54px; padding:5px 10px}
+  h1 {font-size:20px} h1 small {font-size:10px; margin-top:2px}
+  .icon-btn {font-size:11px; padding:0 8px}
+  main {grid-template-columns:minmax(0,1fr) 255px; padding:9px; gap:8px}
+  .panel {padding:7px; gap:3px; border-top-width:6px}
+  .eyebrow {font-size:10px; letter-spacing:1px}
+  #hint {font-size:12px; line-height:1.25; min-height:28px}
+  .steps {padding-bottom:1px; gap:2px}
+  .step {font-size:10px}
+  .step i {width:18px; height:18px; line-height:17px; margin-bottom:2px}
+  #controls {gap:6px}
+  .context-title {font-size:17px}
+  .situation {font-size:13px; line-height:1.35}
+  .paper-note {font-size:11px; padding:7px}
+  button.b {font-size:12px; padding:5px 8px}
+  .option {min-height:64px}
+  .pick {padding:4px 6px; font-size:10px; line-height:1.2}
+  .choices {gap:5px}
+  .card-label {font-size:10px; margin-bottom:2px}
+  .world {gap:7px}
+  .stage {border-radius:13px; max-height:calc(100vh - 122px)}
+  .strip {display:none} .rooms-small {display:block}
+  .scene-top {inset:6px 7px auto}
+  .plaque {padding:5px 8px; font-size:11px} .plaque small {font-size:10px}
+  .focus-layout {inset:55px 8px 9px; gap:6px}
+  .focus-object {width:30%}
+  .outcomes {gap:3px}
+  .outcome {font-size:10px; padding:7px 5px; border-radius:8px; line-height:1.3}
+  .outcome strong {font-size:10px}
+  .habit {margin-top:6px!important; padding-top:5px}
+  .stage-message {font-size:12px; padding:10px}
+  .grownup {font-size:11px; padding:5px}
+  .grownup img {width:40px; height:40px}
+  .person {min-height:45px; padding:3px!important; font-size:11px!important; gap:3px}
+  .person img {width:24px; height:32px}
+  .person small {font-size:10px}
+  .chip-grid {gap:4px}
+  .fix-board {inset:55px 8px 9px}
+  .target {font-size:10px; padding:5px}
+  .screen-ui {padding:12px; gap:8px}
+  .screen-ui p {font-size:12px}
+  .safety {position:fixed; inset:64px 10px 12px; padding:14px; gap:8px}
+  .safety h2 {font-size:21px}
+  .habit-list {grid-template-columns:1fr 1fr; gap:6px 14px}
+  .habit-entry {font-size:12px; gap:6px}
+  .habit-entry img {width:30px; height:30px}
+  .emergency {font-size:12px; padding:6px}
+}
+@media (max-width:760px) and (min-height:651px) {
+  body {overflow:auto; display:block}
+  header {height:auto; min-height:96px; flex-wrap:wrap; padding:8px 12px}
+  h1 {width:100%; font-size:23px} h1 small {font-size:11px}
+  .icon-btn {flex:1}
+  main {display:flex; flex-direction:column; padding:12px; gap:12px}
+  .panel {order:0; padding:12px; min-height:220px; gap:8px}
+  .world {order:1; min-height:240px}
+  .stage {max-height:none; border-radius:14px; min-height:235px; aspect-ratio:1.3}
+  .strip {display:none} .rooms-small {display:block}
+  #hint {font-size:14px; min-height:38px}
+  .option {min-height:64px}
+  .pick {font-size:12px}
+  .situation {font-size:14px}
+  .steps {padding-bottom:6px}
+  .outcome {font-size:10px; padding:6px 4px}
+  .focus-layout {inset:60px 7px 10px; gap:5px}
+  .focus-object {width:25%}
+  .outcome strong {font-size:10px}
+  .habit {font-size:10px; margin-top:6px!important; padding-top:6px}
+  .plaque {font-size:11px; padding:6px 8px}
+  .target {font-size:11px}
+  .stage-message {font-size:13px}
+  .safety {position:fixed; inset:112px 10px 12px; width:auto; min-height:0; padding:12px}
+  .stage:has(.safety) {min-height:465px}
+  .safety h2 {font-size:20px}
+  .habit-list {grid-template-columns:1fr}
+  .habit-entry {font-size:11px}
+  .habit-entry img {width:25px; height:25px}
+  .emergency {font-size:11px}
+  .confirm {inset:20% 10%; padding:14px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Safety Sweep House <small>Find it. Think. Choose. Check.</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="b rooms-small" id="rooms-small">⌂ Rooms</button>
+</header>
+<main>
+  <aside class="panel" aria-label="Safety sweep clipboard">
+    <p class="eyebrow" id="where">Your safety sweep</p>
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div class="steps" id="steps" aria-label="Decision steps"></div>
+    <div id="controls"></div>
+  </aside>
+  <section class="world" aria-label="House exploration">
+    <div class="stage" id="stage"></div>
+    <nav class="strip" id="strip" aria-label="Rooms"></nav>
+    <div class="footer-count" id="count">Rooms swept 0 of 6</div>
+  </section>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const DATA = "json:content";
+  const ASSETS = {
+    "house-cutaway": "art:house-cutaway",
+    "room-kitchen": "art:room-kitchen",
+    "room-living": "art:room-living",
+    "room-hallway": "art:room-hallway",
+    "room-bathroom": "art:room-bathroom",
+    "room-gameroom": "art:room-gameroom",
+    "room-backyard": "art:room-backyard",
+    "cleaners-bucket": "art:cleaners-bucket",
+    "cleaners-apart": "art:cleaners-apart",
+    "towel-burner": "art:towel-burner",
+    "towel-hook": "art:towel-hook",
+    "candle-sill": "art:candle-sill",
+    "candle-out": "art:candle-out",
+    "pillbox-table": "art:pillbox-table",
+    "pillbox-gone": "art:pillbox-gone",
+    "alarm-floor": "art:alarm-floor",
+    "alarm-ceiling": "art:alarm-ceiling",
+    "heater-blanket": "art:heater-blanket",
+    "heater-clear": "art:heater-clear",
+    "gummies-open": "art:gummies-open",
+    "cabinet-high": "art:cabinet-high",
+    "tub-full": "art:tub-full",
+    "tub-empty": "art:tub-empty",
+    "screen-glow": "art:screen-glow",
+    "screen-glow-check": "art:screen-glow-check",
+    "gate-propped": "art:gate-propped",
+    "gate-latched": "art:gate-latched",
+    "lighter-table": "art:lighter-table",
+    "lighter-shelf": "art:lighter-shelf",
+    "bucket": "art:bucket",
+    "towel": "art:towel",
+    "blanket": "art:blanket",
+    "plug-chain": "art:plug-chain",
+    "flowerpot": "art:flowerpot",
+    "gummy-bottle": "art:gummy-bottle",
+    "block-bin": "art:block-bin",
+    "pot-back-burner": "art:pot-back-burner",
+    "battery-candle": "art:battery-candle",
+    "escape-map": "art:escape-map",
+    "medicine-cabinet-high": "art:medicine-cabinet-high",
+    "life-jacket-hook": "art:life-jacket-hook",
+    "theo-blocks": "art:theo-blocks",
+    "theo-walk": "art:theo-walk",
+    "chip-dad": "art:chip-dad",
+    "chip-grandma": "art:chip-grandma",
+    "chip-theo": "art:chip-theo"
+  };
+  const L = DATA.lines;
+  const H = DATA.hazards;
+  const ROOMS = DATA.rooms;
+  const people = ['You', 'Theo', 'Grandma June', 'Dad'];
+  const helpRule = 'Medicine, fire, heat or climbing: get a grown-up first. ' +
+    'You may move a cool blanket away from heat without touching the heater. If unsure, get a grown-up.';
+  const icons = ['◉', '◇', '☷', '✓'];
+  const state = {
+    mode: 'explore',
+    room: -1,
+    active: null,
+    look: null,
+    safety: false,
+    page: 0,
+    confirm: false,
+    seenLooks: Array(6).fill(false),
+    progress: H.map(() => fresh()),
+    selected: false
+  };
+
+  function fresh() {
+    return {
+      step: 'stop',
+      think: null,
+      peeks: [],
+      tried: [],
+      last: null,
+      safe: false,
+      told: false,
+      acted: false,
+      blocked: false,
+      reported: false,
+      fixed: false,
+      who: [],
+      distance: 1,
+      reveal: false,
+      done: false
+    };
+  }
+  const progress = () => state.active === null ? null : state.progress[state.active];
+  const hazard = () => state.active === null ? null : H[state.active];
+  const roomDone = r => state.progress[r * 2].done && state.progress[r * 2 + 1].done;
+  const total = () => ROOMS.filter((_, i) => roomDone(i)).length;
+  const esc = t => String(t).replace(/[&<>"']/g, x => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  } [x]));
+  const img = (name, cls = '', alt = '') => `<img class="${cls}" src="${ASSETS[name]}" alt="${esc(alt)}" draggable="false">`;
+  const button = (id, text, cls = '') => `<button class="b ${cls}" id="${id}">${text}</button>`;
+  let hintText = L.house;
+  let holdTimer = null;
+  let holdFrame = null;
+  let heldNode = null;
+  let drag = null;
+  const V = Curio.voice({
+    lines: L,
+    scope: () => state.room + ':' + state.active + ':' + progress()?.step,
+    welcome: () => state.room >= 0 && state.active === null && state.look === null && !state.safety && !state.confirm ? 'welcome' : null,
+    welcomeAfter: true,
+    hint: false,
+    read: () => [hintText, currentText()].filter(Boolean).join(' ')
+  });
+
+  function currentText() {
+    const h = hazard();
+    const p = progress();
+    if (state.confirm) return 'Start the sweep over? Tap Yes to start over, or No to keep your work.';
+    if (state.safety) {
+      const paged = innerWidth < 1000 || innerHeight < 650;
+      const items = paged ? H.slice(state.page * 6, state.page * 6 + 6) : H;
+      return items.map(h => h.habit).join(' ') + ' ' + L.poison;
+    }
+    if (state.look !== null) return 'Looks fine. ' + ROOMS[state.look].why;
+    if (!h) return '';
+    if (p.step === 'stop') return h.situation;
+    if (p.step === 'think') return p.think === null ? 'Get a grown-up first. Or act now, then tell a grown-up.' :
+      (h.adult ? 'Get a grown-up first. ' : 'Act now, then tell a grown-up. ') + helpRule;
+    if (p.step === 'reveal') return reason(h.safer);
+    if (p.step === 'choose' || p.step === 'safe') {
+      return h.options.map((o, i) => o + '. ' + (p.safe || p.peeks.includes(i) || p.tried.includes(i) ? h.outcomes[i] : '')).join(' ') +
+        (p.safe ? ' ' + h.habit : '');
+    }
+    return '';
+  }
+
+  function narrate(key, event = false, opts = {}) {
+    const room = state.room;
+    const active = state.active;
+    const step = progress()?.step;
+    const valid = () => state.room === room && state.active === active && progress()?.step === step;
+    const finishing = [L.roomDone, L.houseDone, L.poison].includes(V.playing);
+    if (event) V.say(key, {
+      now: !finishing && ['safe', 'tried'].includes(key),
+      valid,
+      ...opts,
+      hint: false
+    });
+    else V.how(key, {
+      now: !finishing && !V.heard(key),
+      valid,
+      ...opts,
+      hint: false
+    });
+  }
+
+  function cancelHold() {
+    clearTimeout(holdTimer);
+    cancelAnimationFrame(holdFrame);
+    if (heldNode) heldNode.style.setProperty('--hold', '0%');
+    heldNode = null;
+  }
+
+  function update(focusId) {
+    const prior = document.activeElement?.id;
+    renderPanel();
+    renderStage();
+    renderNav();
+    document.querySelector('.panel').inert = state.confirm || state.safety;
+    $('strip').inert = state.confirm || state.safety;
+    $('rooms-small').inert = state.confirm;
+    [...$('stage').children].forEach(node => {
+      node.inert = state.confirm ? !node.classList.contains('confirm') : state.safety && !node.classList.contains('safety');
+    });
+    $('hint').textContent = hintText;
+    const restore = focusId || prior;
+    if (restore) {
+      const node = $(restore);
+      if (node) node.focus({
+        preventScroll: true
+      });
+      else if (prior)($('controls').querySelector('button') || $('house') || $('rooms-small')).focus({
+        preventScroll: true
+      });
+    }
+  }
+
+  function openRoom(r) {
+    cancelHold();
+    drag = null;
+    if (V.playing === L.roomDone) V.dropQueued();
+    else V.hush();
+    state.room = r;
+    state.look = null;
+    state.active = null;
+    state.safety = false;
+    state.selected = false;
+    const resumable = [r * 2, r * 2 + 1].find(i => !state.progress[i].done && state.progress[i].step !== 'stop');
+    if (resumable !== undefined) state.active = resumable;
+    hintText = state.active === null ? L.roomIn : hintFor();
+    update();
+    if (state.active === null) narrate('roomIn');
+    else speakStep();
+    Curio.tone(440, .06, .025);
+  }
+
+  function house() {
+    cancelHold();
+    drag = null;
+    if (![L.roomDone, L.houseDone, L.poison].includes(V.playing)) V.hush();
+    V.dropQueued();
+    state.room = -1;
+    state.active = null;
+    state.look = null;
+    state.safety = false;
+    state.selected = false;
+    hintText = total() === 6 ? 'Every room is swept. Tap Safety card to revisit your habits.' : L.house;
+    update();
+  }
+
+  function openHazard(id) {
+    if (state.progress[id].done) {
+      hintText = H[id].habit + ' Tap another object or House.';
+      update();
+      return;
+    }
+    V.dropQueued();
+    state.active = id;
+    state.look = null;
+    state.selected = false;
+    hintText = hintFor();
+    update();
+    speakStep();
+    Curio.tone(520, .07, .03);
+  }
+
+  function hintFor() {
+    const p = progress();
+    const h = hazard();
+    if (!p) return state.room === -1 ? L.house : L.roomIn;
+    if (p.step === 'fix') {
+      if (!p.told && h.adult) return 'Tap Tell ' + h.tell + ' first. ' + h.fix;
+      if (p.acted && !p.told) return 'The scene is safer. Now tap Tell ' + h.tell + '.';
+      if (h.action === 'chat' && p.blocked) return 'The player is blocked. Now tap Report.';
+      return h.fix + (h.action === 'move' ? ' Or select the object, then tap its target.' : '');
+    }
+    if (p.step === 'think' && p.think !== null) return 'Read the help rule, then tap Choose.';
+    if (p.step === 'reveal') return 'See who is safer and why. Tap Back to room.';
+    return L[p.step] || L.roomIn;
+  }
+
+  function speakStep() {
+    const p = progress();
+    const keys = {
+      stop: 'stop',
+      think: 'think',
+      choose: 'choose',
+      safe: 'safe',
+      fix: 'fix',
+      who: 'who'
+    };
+    if (keys[p.step]) narrate(keys[p.step], p.step === 'safe');
+  }
+
+  function goStep(step) {
+    const p = progress();
+    if (!p) return;
+    if (step === 'fix' && !p.safe) return;
+    p.step = step;
+    hintText = hintFor();
+    update();
+    speakStep();
+    Curio.tone(480, .05, .025);
+  }
+
+  function renderPanel() {
+    const h = hazard();
+    const p = progress();
+    const stageIndex = !p ? -1 : ['stop', 'think', 'choose', 'safe', 'fix', 'who', 'reveal'].indexOf(p.step);
+    const index = stageIndex <= 1 ? stageIndex : stageIndex <= 3 ? 2 : 3;
+    $('steps').innerHTML = ['Stop', 'Think', 'Choose', 'Check'].map((s, i) =>
+      `<span class="step ${i === index ? 'current' : ''}"><i>${icons[i]}</i>${s}</span>`).join('');
+    $('where').textContent = h ? ROOMS[h.room].name + ' / ' + h.title : state.room < 0 ? 'Your safety sweep' : ROOMS[state.room].name;
+    const c = $('controls');
+    if (state.safety) {
+      c.innerHTML = '<h2 class="context-title">A safer house</h2><p class="situation">Twelve fixes, made by you.</p>' +
+        '<div class="paper-note">Keep these habits. In real life, get a trusted grown-up whenever you need help.</div>';
+      return;
+    }
+    if (!p) {
+      c.innerHTML = state.room < 0 ?
+        '<h2 class="context-title">One room at a time.</h2><p class="situation">Look closely. Some things are risky. Some just look that way.</p>' +
+        '<div class="paper-note">Stop. Think about help. Compare choices. Then make the scene safer.</div>' +
+        (total() === 6 ? button('show-card', 'Safety card', 'primary') : '') :
+        '<h2 class="context-title">Take a closer look.</h2><p class="situation">Tap an object in the room. Find two hazards and decide what to do.</p>' +
+        (roomDone(state.room) ? '<div class="paper-note">✓ Room swept! ' + L.roomDone + '</div>' : '');
+      $('show-card')?.addEventListener('click', () => showSafety());
+      return;
+    }
+    if (p.step === 'stop') {
+      c.innerHTML = `<h2 class="context-title">${h.title}</h2><p class="situation">${esc(h.situation)}</p>` +
+        button('think', 'Think →', 'primary');
+      $('think').onclick = () => goStep('think');
+    } else if (p.step === 'think') {
+      c.innerHTML = '<h2 class="context-title">Grown-up first?</h2>' +
+        (p.think === null ?
+          button('adult', 'Get a grown-up first') + button('act', 'Act now, then tell a grown-up') :
+          `<div class="paper-note"><p><b>${p.think === h.adult ? 'Yes, that fits.' : 'Here, the safer help choice is:'}</b></p>` +
+          `<p>${h.adult ? 'Get a grown-up first.' : 'Act now, then tell a grown-up.'}</p>` +
+          `<p>${helpRule}</p></div>` +
+          button('choose', 'Choose →', 'primary'));
+      for (const id of ['adult', 'act'])
+        if ($(id)) $(id).onclick = () => {
+          p.think = id === 'adult';
+          hintText = hintFor();
+          update('choose');
+          Curio.tone(400, .06, .025);
+        };
+      $('choose')?.addEventListener('click', () => goStep('choose'));
+    } else if (p.step === 'choose' || p.step === 'safe') {
+      c.innerHTML = '<div class="choices">' + h.options.map((o, i) => {
+        const flipped = p.safe || p.peeks.includes(i) || p.tried.includes(i);
+        const tag = p.safe ? i === h.safe ? '✓ Safe' : '△ Risk' : p.tried.includes(i) ? '△ Tried' : 'Choice ' + (i + 1);
+        return `<div class="option ${p.safe && i === h.safe ? 'safe' : p.tried.includes(i) ? 'tried' : ''}">` +
+          `<button class="pick" id="option-${i}" ${p.safe ? 'disabled' : ''}><span class="card-label">${tag}</span>` +
+          `${esc(flipped ? h.outcomes[i] : o)}</button>` +
+          `<button class="peek" id="peek-${i}" aria-label="What could happen? Choice ${i+1}" title="What could happen?">↻</button></div>`;
+      }).join('') + '</div>' + (p.safe ? button('check', 'Check →', 'primary') : '');
+      for (let i = 0; i < 3; i++) {
+        $('option-' + i).onclick = () => pick(i);
+        $('peek-' + i).onclick = () => {
+          p.peeks = p.peeks.includes(i) ? p.peeks.filter(x => x !== i) : [...p.peeks, i];
+          p.last = i;
+          update();
+          Curio.tone(620, .045, .02);
+        };
+      }
+      $('check')?.addEventListener('click', () => goStep('fix'));
+    } else if (p.step === 'fix') {
+      const mayTell = h.adult ? !p.told : p.acted && !p.told;
+      c.innerHTML = `<h2 class="context-title">Make it safer</h2>` +
+        (mayTell ? button('tell', 'Tell ' + h.tell, 'primary') : '') +
+        (p.told ? `<div class="grownup">${img(h.tell === 'Dad' ? 'chip-dad' : 'chip-grandma')}` +
+          `<span><b>${h.tell} is here.</b><br>${h.adult ? 'I’ll handle the grown-up part. Let’s finish safely.' : 'Thanks for telling me.'}</span></div>` :
+          '') +
+        (!h.adult && !p.acted ? '<div class="paper-note">Do the action in the scene. Then tell a grown-up.</div>' : '');
+      $('tell')?.addEventListener('click', () => {
+        p.told = true;
+        if (h.id === 3) p.adultMoved = true;
+        finishIfReady();
+        hintText = hintFor();
+        update();
+        if (p.step === 'who') narrate('who');
+        Curio.tone(580, .08, .03);
+      });
+    } else if (p.step === 'who' || p.step === 'reveal') {
+      const reveal = p.step === 'reveal';
+      c.innerHTML = '<h2 class="context-title">Who is safer now?</h2><div class="chip-grid">' +
+        [...people, 'Everyone'].map((name, i) => {
+          const correct = h.safer === 'Everyone' ? name === 'Everyone' || people.includes(name) : name === h.safer;
+          const selected = p.who.includes(name) || p.who.includes('Everyone');
+          const picture = i === 0 ? '<span aria-hidden="true">◉</span>' : i < 4 ? img(['', 'chip-theo', 'chip-grandma', 'chip-dad'][i]) : '◎';
+          return `<button class="b person ${reveal && correct ? selected ? 'correct' : 'missed' : ''}" id="who-${i}"` +
+            ` aria-pressed="${p.who.includes(name)}" ${reveal ? 'disabled' : ''}>${picture}<span>${name}` +
+            (reveal && correct ? `<small>${selected ? '✓ Safer' : 'also safer'}</small>` : '') + '</span></button>';
+        }).join('') + '</div>' +
+        (reveal ? `<div class="paper-note">${esc(reason(h.safer))}</div>` + button('back-room', 'Back to room →', 'primary') :
+          button('done', 'Done', 'primary'));
+      if (!reveal) {
+        $('done').disabled = p.who.length === 0;
+        for (let i = 0; i < 5; i++) $('who-' + i).onclick = () => {
+          const name = [...people, 'Everyone'][i];
+          p.who = p.who.includes(name) ? p.who.filter(x => x !== name) : [...p.who, name];
+          update();
+          Curio.tone(500, .04, .025);
+        };
+        $('done').onclick = () => {
+          if (!p.who.length || !p.fixed) return;
+          p.step = 'reveal';
+          hintText = hintFor();
+          update('back-room');
+        };
+      } else $('back-room').onclick = complete;
+    }
+  }
+
+  function reason(set) {
+    return set === 'Everyone' ? 'Fire and fumes spread through a whole house.' :
+      set === 'Theo' ? 'Keep medicine out of little kids’ reach. Grown-ups stay with them near water.' :
+      'Your details and your account are yours to protect.';
+  }
+
+  function pick(i) {
+    const p = progress();
+    const h = hazard();
+    if (!p || p.step !== 'choose' || p.think === null) return;
+    p.last = i;
+    if (i === h.safe) {
+      p.safe = true;
+      p.step = 'safe';
+      hintText = L.safe;
+      update('check');
+      narrate('safe', true);
+      Curio.yes();
+    } else {
+      const first = p.tried.length === 0;
+      if (!p.tried.includes(i)) p.tried.push(i);
+          hintText = L.tried;
+      update();
+      if (first) narrate('tried', true);
+      Curio.tone(240, .1, .025);
+    }
+  }
+
+  function sceneTop(title, subtitle) {
+    return `<div class="scene-top">${button('house','⌂ House')}<div class="plaque">${esc(title)}` +
+      (subtitle ? `<small>${esc(subtitle)}</small>` : '') + '</div></div>';
+  }
+
+  function renderStage() {
+    const stage = $('stage');
+    const h = hazard();
+    const p = progress();
+    stage.classList.toggle('deciding', !!p);
+    if (state.room < 0) {
+      stage.innerHTML = img('house-cutaway', 'backdrop') +
+        ROOMS.map((room, i) => {
+          const boxes = [
+            [14, 52, 28, 35],
+            [14, 19, 30, 31],
+            [45, 19, 21, 31],
+            [67, 19, 24, 31],
+            [43, 52, 23, 35],
+            [67, 52, 32, 38]
+          ];
+          const [x, y, w, ht] = boxes[i];
+          const done = roomDone(i);
+          return `<button id="room-${i}" class="house-room ${done ? 'lit' : ''}" style="left:${x}%;top:${y}%;width:${w}%;height:${ht}%"` +
+            ` aria-label="${room.name}${done ? ', swept' : ''}">` +
+            (done ? [i * 2, i * 2 + 1].map((n, j) => `<img class="mini-fixed" style="left:${10+j*43}%" src="${ASSETS[H[n].after]}" alt="">`).join(
+              '') : '') +
+            `<span>${done ? '☀' : '◌'} ${room.name}</span></button>`;
+        }).join('') + (total() === 6 ? '<div class="porch"></div>' : '');
+      for (let i = 0; i < 6; i++) $('room-' + i).onclick = () => openRoom(i);
+    } else {
+      const room = ROOMS[state.room];
+      const doneCount = [state.room * 2, state.room * 2 + 1].filter(i => state.progress[i].done).length;
+      stage.innerHTML = img(room.art, 'backdrop room-art') + sceneTop(room.name, 'Found ' + doneCount + ' of 2');
+      $('house').onclick = house;
+      if (!h) renderRoomObjects();
+      else if (p.step === 'fix') renderFix();
+      else renderFocus();
+      if (state.look !== null) {
+        stage.insertAdjacentHTML('beforeend', '<div class="look-card"><h2>✓ Looks fine</h2>' +
+          esc(room.why) + '<br>' + button('keep-searching', 'Keep searching') + '</div>');
+        $('keep-searching').onclick = () => {
+          state.look = null;
+          hintText = L.roomIn;
+          update();
+        };
+      }
+    }
+    $('stage').insertAdjacentHTML('beforeend', '<span class="ambient" aria-hidden="true"></span>');
+    if (state.safety) renderSafety();
+    if (state.confirm) renderConfirm();
+  }
+
+  function renderRoomObjects() {
+    const r = state.room;
+    const positions = [
+      [
+        [13, 59, 25, 32],
+        [80, 45, 17, 29],
+        [83, 24, 14, 16]
+      ],
+      [
+        [9, 28, 24, 38],
+        [51, 51, 34, 36],
+        [72, 12, 16, 22]
+      ],
+      [
+        [15, 68, 25, 22],
+        [62, 45, 29, 43],
+        [8, 14, 18, 29]
+      ],
+      [
+        [13, 35, 21, 27],
+        [51, 44, 44, 48],
+        [9, 9, 24, 25]
+      ],
+      [
+        [10, 36, 34, 37],
+        [55, 26, 34, 39],
+        [57, 71, 31, 18]
+      ],
+      [
+        [40, 27, 35, 54],
+        [8, 48, 30, 36],
+        [80, 14, 16, 24]
+      ]
+    ];
+    const list = [r * 2, r * 2 + 1];
+    for (let j = 0; j < 3; j++) {
+      let [x, y, w, ht] = positions[r][j];
+      const h = H[list[j]];
+      const done = j < 2 && state.progress[h.id].fixed;
+      if (done && h.id === 1)[x, y, w, ht] = [3, 20, 12, 35];
+      if (done && h.id === 4)[x, y, w, ht] = [47, 2, 13, 17];
+      if (done && h.id === 6)[x, y, w, ht] = [35, 7, 20, 25];
+      if (done && h.id === 11)[x, y, w, ht] = [24, 10, 24, 16];
+      const name = j < 2 ? done ? h.after : h.before : ROOMS[r].look;
+      const label = j < 2 ? h.title : r === 4 ? 'Maya message' : ROOMS[r].look.replaceAll('-', ' ');
+      let content = name ? img(name) : '<span class="plaque">Maya: gg! that was fun</span>';
+      if (r === 4 && j < 2 && !done) {
+        content =
+          `<span class="plaque">${j===0 ? 'CoinKing_77<br>what school do you go to?' : 'YOU WON 10,000 COINS!<br>Type your password to claim.'}</span>`;
+      }
+      $('stage').insertAdjacentHTML('beforeend', `<button id="spot-${j}" class="hotspot" style="left:${x}%;top:${y}%;width:${w}%;height:${ht}%"` +
+        ` aria-label="${label}">${content}` +
+        (done ? '<span class="badge">✓</span>' : j === 2 && state.seenLooks[r] ? '<span class="badge blue">✓</span>' : '') + '</button>');
+      $('spot-' + j).onclick = () => {
+        if (j < 2) openHazard(h.id);
+        else {
+          state.look = r;
+          state.seenLooks[r] = true;
+          hintText = 'Looks fine. ' + ROOMS[r].why + ' Tap Keep searching.';
+          update('keep-searching');
+          narrate('lookalike');
+          Curio.tone(660, .06, .02);
+        }
+      };
+    }
+    if ([1, 3, 5].includes(r)) $('stage').insertAdjacentHTML('beforeend', img(r === 1 ? 'theo-blocks' : 'theo-walk', 'theo'));
+  }
+
+  function renderFocus() {
+    const p = progress();
+    const h = hazard();
+    const showAll = p.safe && ['safe', 'who', 'reveal'].includes(p.step);
+    const showOne = !showAll && p.last !== null;
+    const art = p.fixed ? h.after : h.before;
+    const opts = showAll ? [0, 1, 2] : showOne ? [p.last] : [];
+    $('stage').insertAdjacentHTML('beforeend', `<div class="focus-layout"><div class="focus-object ${opts.length ? '' : 'full'}">` +
+      img(art) + (p.fixed ? '<span class="badge">✓</span>' : '') +
+      (h.id === 8 && !p.fixed ? '<div class="stage-message">CoinKing_77:<br>what school do you go to?<br>I’ll send you free coins</div>' : '') +
+      (h.id === 9 && !p.fixed ? '<div class="stage-message">YOU WON 10,000 COINS!<br>Type your password to claim.</div>' : '') +
+      (p.fixed && h.id === 2 ? '<span class="smoke">〰</span>' : '') +
+      '</div>' + (opts.length ? '<div class="outcomes">' + opts.map(i =>
+        `<article class="outcome ${i===h.safe ? 'good' : ''}"><strong>${i===h.safe ? '✓ Safe result' : '△ What could happen'}</strong>` +
+        `<p>${esc(h.outcomes[i])}</p>${i===h.safe ? `<p class="habit">${esc(h.habit)}</p>` : ''}</article>`).join('') + '</div>' : '') + '</div>');
+  }
+
+  function renderFix() {
+    const p = progress();
+    const h = hazard();
+    const board = document.createElement('div');
+    board.className = 'fix-board';
+    board.id = 'fix-board';
+    $('stage').append(board);
+    const mayAct = !h.adult || p.told;
+      const grownupArt = h.id === 4 && p.told || h.id === 3 && p.told || h.action === 'ruler';
+    const small = !p.acted && (h.action === 'move' || h.action === 'ruler');
+    const baseArt = p.acted || grownupArt || h.id === 0 ? h.after : h.before;
+    board.innerHTML = h.id === 1 && p.told && !p.acted ? '' : img(baseArt, 'fix-scene' + (small ? ' small' : ''));
+    if (h.adult && !p.told) {
+      board.insertAdjacentHTML('beforeend', '<div class="stage-message">A grown-up handles this part. Tap Tell ' + h.tell + '.</div>');
+      return;
+    }
+    if (p.acted) {
+      board.insertAdjacentHTML('beforeend', '<span class="badge" style="right:15%;top:15%">✓</span>');
+      if (h.id === 2) board.insertAdjacentHTML('beforeend', '<span class="smoke">〰</span>');
+      if (h.id === 7) board.insertAdjacentHTML('beforeend', img(h.before, 'fix-scene drain-cover'));
+      if (h.id === 10) board.insertAdjacentHTML('beforeend', img(h.before, 'fix-scene gate-swing'));
+      return;
+    }
+    if (!mayAct) return;
+    if (h.action === 'move' || h.action === 'ruler') {
+      if (h.action === 'ruler') {
+        board.insertAdjacentHTML('beforeend', '<div class="ruler"><span>0 ft</span><span>1 ft</span><span>2 ft</span>' +
+          '<span>3 ft</span><span>4 ft</span></div><output class="ruler-value" id="distance"></output>');
+      } else board.insertAdjacentHTML('beforeend', `<button class="target ${state.selected ? 'ready' : ''}" id="target">${esc(h.target)}</button>`);
+      board.insertAdjacentHTML('beforeend',
+        `<button class="fix-item ${h.action==='ruler' ? 'ruler-item' : ''} ${state.selected ? 'selected' : ''}"` +
+        ` id="object" aria-label="${esc(h.object.replaceAll('-',' '))}, select then use target${h.action==='ruler' ? ' or arrow keys' : ''}">` +
+        img(h.object) + '</button>');
+      if (h.id === 7) $('target').style.top = '0%';
+      if (h.id === 1) {
+        $('target').style.left = '5%';
+        $('target').style.top = '10%';
+        $('object').style.left = '65%';
+      }
+      if (h.id === 3) $('target').style.top = '48%';
+      if (h.id === 3) board.insertAdjacentHTML('beforeend', img('theo-blocks', 'theo'));
+      $('object').onclick = () => {
+        state.selected = !state.selected;
+        $('object').classList.toggle('selected', state.selected);
+        $('target')?.classList.toggle('ready', state.selected);
+        hintText = h.action === 'ruler' ? 'Use arrow keys to move the blanket. Enter checks the distance.' : 'Now tap ' + h.target + '.';
+        $('hint').textContent = hintText;
+        Curio.tone(540, .04, .02);
+      };
+      $('object').onpointerdown = startDrag;
+      $('object').onkeydown = e => {
+        if (h.action !== 'ruler') return;
+        if (['ArrowRight', 'ArrowUp', 'ArrowLeft', 'ArrowDown'].includes(e.key)) {
+          e.preventDefault();
+          p.distance = Math.max(0, Math.min(4, p.distance + (['ArrowRight', 'ArrowUp'].includes(e.key) ? .5 : -.5)));
+          updateRuler();
+        } else if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          checkDistance();
+        }
+      };
+      if ($('target')) $('target').onclick = () => {
+        if (state.selected) actionDone();
+        else {
+          hintText = 'Select the ' + h.object.replaceAll('-', ' ') + ' first, then tap the target.';
+          $('hint').textContent = hintText;
+        }
+      };
+      if (h.action === 'ruler') updateRuler();
+    } else if (h.action === 'hold') {
+      board.innerHTML =
+        `<button class="hold" id="hold-action" aria-label="${h.id===4 ? 'Test alarm, hold 2 seconds' : 'Grandma blows candle out, hold 1 second'}">` +
+        img(h.id === 4 ? 'alarm-ceiling' : 'candle-sill') + `<span>${h.id===4 ? 'Test · hold 2 s' : 'Hold 1 s'}</span></button>`;
+      const node = $('hold-action');
+      node.onpointerdown = e => {
+        e.preventDefault();
+        node.setPointerCapture(e.pointerId);
+        beginHold(node);
+      };
+      node.onpointerup = cancelHold;
+      node.onpointercancel = cancelHold;
+      node.onlostpointercapture = cancelHold;
+      node.onkeydown = e => {
+        if ((e.key === 'Enter' || e.key === ' ') && !e.repeat) {
+          e.preventDefault();
+          beginHold(node);
+        }
+      };
+      node.onkeyup = e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          cancelHold();
+        }
+      };
+      node.onblur = cancelHold;
+    } else if (h.action === 'chat' || h.action === 'close') {
+      board.innerHTML = '<div class="screen-ui">' + (h.action === 'chat' ?
+        '<h3>CoinKing_77</h3><p>what school do you go to?<br>I’ll send you free coins</p><div class="screen-actions">' +
+        button('block', p.blocked ? '✓ Blocked' : 'Block') + button('report', 'Report') + '</div>' :
+        '<h3>YOU WON 10,000 COINS!</h3><p>Type your password to claim.</p>' +
+        '<button class="close-popup" id="close-popup" aria-label="Close pop-up">×</button>') + '</div>';
+      if ($('block')) {
+        $('block').disabled = p.blocked;
+        $('report').disabled = !p.blocked;
+        $('block').onclick = () => {
+          p.blocked = true;
+          hintText = hintFor();
+          update('report');
+          Curio.tone(470, .06, .03);
+        };
+        $('report').onclick = () => {
+          if (p.blocked) {
+            p.reported = true;
+            actionDone();
+          }
+        };
+      }
+      $('close-popup')?.addEventListener('click', actionDone);
+    } else if (h.action === 'tap') {
+      board.innerHTML = `<button class="hold" id="put-away" aria-label="Watch Dad put the lighter away">${img(h.before)}` +
+        '<span>Dad puts it away</span></button>';
+      $('put-away').onclick = actionDone;
+    }
+  }
+
+  function beginHold(node) {
+    if (heldNode) return;
+    const p = progress();
+    const h = hazard();
+    if (!p || p.step !== 'fix' || !p.told) return;
+    const id = state.active;
+    const start = performance.now();
+    heldNode = node;
+    Curio.tone(460, .04, .02);
+    const tick = () => {
+      if (!heldNode) return;
+      node.style.setProperty('--hold', Math.min(100, (performance.now() - start) / h.duration * 100) + '%');
+      holdFrame = requestAnimationFrame(tick);
+    };
+    tick();
+    holdTimer = setTimeout(() => {
+      if (state.active !== id || progress().step !== 'fix' || !heldNode) return;
+      cancelHold();
+      actionDone();
+      if (h.id === 4) {
+        Curio.tone(950, .22, .05);
+        $('stage').classList.add('alarm-flash');
+        setTimeout(() => $('stage').classList.remove('alarm-flash'), 600);
+      }
+    }, h.duration);
+  }
+
+  function startDrag(e) {
+    if (e.button !== 0) return;
+    const node = e.currentTarget;
+    const p = progress();
+    drag = {
+      node,
+      id: state.active,
+      x: e.clientX,
+      y: e.clientY,
+      moved: false,
+      rect: $('fix-board').getBoundingClientRect(),
+      base: p.distance
+    };
+    node.setPointerCapture(e.pointerId);
+    node.onpointermove = ev => {
+      if (!drag) return;
+      const dx = ev.clientX - drag.x;
+      const dy = ev.clientY - drag.y;
+      if (Math.hypot(dx, dy) > 6) drag.moved = true;
+      if (hazard().action === 'ruler') {
+        p.distance = Math.max(0, Math.min(4, drag.base + dx / (drag.rect.width * .59) * 4));
+        updateRuler();
+      } else node.style.transform = `translate(${dx}px,${dy}px)`;
+    };
+    node.onpointerup = ev => {
+      if (!drag) return;
+      const d = drag;
+      drag = null;
+      node.onpointermove = null;
+      if (!d.moved) return;
+      node.onclick = ev => ev.preventDefault();
+      if (hazard().action === 'ruler') checkDistance();
+      else {
+        const r = $('target').getBoundingClientRect();
+        if (ev.clientX >= r.left && ev.clientX <= r.right && ev.clientY >= r.top && ev.clientY <= r.bottom) actionDone();
+        else {
+          node.style.transform = '';
+          hintText = 'Move the object into the marked target, or select it and tap the target.';
+          $('hint').textContent = hintText;
+          setTimeout(() => {
+            if ($('object') === node) node.onclick = () => {
+              state.selected = true;
+              node.classList.add('selected');
+              $('target').classList.add('ready');
+            };
+          }, 0);
+        }
+      }
+    };
+    node.onpointercancel = () => {
+      drag = null;
+      node.style.transform = '';
+    };
+  }
+
+  function updateRuler() {
+    const d = progress().distance;
+    const shown = Math.floor(d * 10) / 10;
+    if ($('distance')) $('distance').textContent = shown + (shown === 1 ? ' foot' : ' feet');
+    // Measure to the blanket's nearest edge, not its center. The ruler spans 59 percent of the board.
+    if ($('object')) $('object').style.left = (27 + d / 4 * 59) + '%';
+  }
+
+  function checkDistance() {
+    if (progress().distance >= 3) actionDone();
+    else {
+      hintText = 'Still too close. Move the blanket to 3 feet or farther, then press Enter.';
+      $('hint').textContent = hintText;
+      Curio.tone(260, .06, .025);
+    }
+  }
+
+  function actionDone() {
+    const p = progress();
+    const h = hazard();
+    if (!p || p.step !== 'fix' || !p.safe || h.adult && !p.told) return;
+    if (h.action === 'chat' && (!p.blocked || !p.reported)) return;
+    if (h.action === 'ruler' && p.distance < 3) return;
+    const from = $('object')?.getBoundingClientRect();
+    const target = $('target')?.getBoundingClientRect();
+    const scene = $('stage').getBoundingClientRect();
+    p.acted = true;
+    state.selected = false;
+    finishIfReady();
+    hintText = hintFor();
+    update();
+    if (!Curio.reduce && from && target) {
+      const flight = document.createElement('img');
+      flight.src = ASSETS[h.object];
+      flight.alt = '';
+      flight.className = 'fix-flight';
+      Object.assign(flight.style, {
+        left: from.left - scene.left + 'px', top: from.top - scene.top + 'px',
+        width: from.width + 'px', height: from.height + 'px'
+      });
+      flight.style.setProperty('--dx', target.left + target.width / 2 - from.left - from.width / 2 + 'px');
+      flight.style.setProperty('--dy', target.top + target.height / 2 - from.top - from.height / 2 + 'px');
+      $('stage').append(flight);
+      flight.addEventListener('animationend', () => flight.remove(), {once: true});
+    }
+    Curio.yes();
+    if (p.step === 'who') narrate('who');
+  }
+
+  function finishIfReady() {
+    const p = progress();
+    if (p.safe && p.acted && p.told) {
+      p.fixed = true;
+      p.step = 'who';
+    }
+  }
+
+  function complete() {
+    const p = progress();
+    if (!p || p.step !== 'reveal' || !p.fixed) return;
+    const r = state.room;
+    p.done = true;
+    state.active = null;
+    hintText = roomDone(r) ? L.roomDone : 'Fix complete. Search for the other hazard, or tap House.';
+    update();
+    Curio.yes();
+    if (total() === 6) showSafety(true);
+    else if (roomDone(r)) narrate('roomDone', true);
+  }
+
+  function renderNav() {
+    $('strip').innerHTML = button('nav-house', '⌂ House') + ROOMS.map((r, i) =>
+      `<button class="b" id="nav-${i}" aria-current="${state.room===i}"><span class="lamp ${roomDone(i) ? 'on' : ''}">` +
+      `${roomDone(i) ? '☀' : '◌'}</span>${r.name}</button>`).join('');
+    $('nav-house').onclick = house;
+    for (let i = 0; i < 6; i++) $('nav-' + i).onclick = () => openRoom(i);
+    $('count').textContent = 'Rooms swept ' + total() + ' of 6';
+  }
+
+  function showSafety(earned = false) {
+    if (total() !== 6) return;
+    state.room = -1;
+    state.active = null;
+    state.safety = true;
+    state.page = 0;
+    hintText = 'Your Safety card is ready. Tap Close to explore, or Sweep again.';
+    update('card-close');
+    if (earned) V.say(['houseDone', ['poison', {
+      kind: 'how',
+      valid: () => state.safety
+    }]], {
+      hint: false
+    });
+    else narrate('poison');
+  }
+
+  function renderSafety() {
+    const paged = innerWidth < 1000 || innerHeight < 650;
+    const items = paged ? H.slice(state.page * 6, state.page * 6 + 6) : H;
+    $('stage').insertAdjacentHTML('beforeend', '<section class="safety" role="dialog" aria-label="Your Safety card">' +
+      '<h2>☀ Your Safety card</h2><div class="habit-list">' + items.map(h =>
+        `<div class="habit-entry">${img(h.after)}<span>${esc(h.habit)}</span></div>`).join('') + '</div>' +
+      '<div class="emergency">Poison Help: 1-800-222-1222<br>(free, any time, in the US)</div>' +
+      '<div class="emergency">Fire: get out, stay out, then call 911 from outside.</div>' +
+      '<div class="card-buttons">' + button('card-close', 'Close') +
+      (paged ? button('card-page', state.page === 0 ? 'Next →' : '← Back') : '') +
+      button('sweep-again', 'Sweep again') + '</div></section>');
+    $('card-close').onclick = () => {
+      state.safety = false;
+      hintText = 'Every room is swept. Tap Safety card to revisit your habits.';
+      update();
+    };
+    $('card-page')?.addEventListener('click', () => {
+      state.page = 1 - state.page;
+      update('card-page');
+    });
+    $('sweep-again').onclick = () => {
+      state.confirm = true;
+      update('reset-no');
+    };
+  }
+
+  function renderConfirm() {
+    $('stage').insertAdjacentHTML('beforeend', '<div class="confirm" role="dialog" aria-modal="true" aria-label="Start the sweep over?">' +
+      '<b>Start the sweep over?</b><div class="card-buttons">' + button('reset-yes', 'Yes') + button('reset-no', 'No') + '</div></div>');
+    $('reset-no').onclick = () => {
+      state.confirm = false;
+      update('sweep-again');
+    };
+    $('reset-yes').onclick = () => {
+      cancelHold();
+      V.hush();
+      state.progress = H.map(() => fresh());
+      state.seenLooks.fill(false);
+      state.room = -1;
+      state.active = null;
+      state.safety = false;
+      state.confirm = false;
+      state.page = 0;
+      state.look = null;
+      hintText = L.house;
+      update('room-0');
+    };
+  }
+  $('rooms-small').onclick = house;
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      cancelHold();
+      if (state.confirm) {
+        state.confirm = false;
+        update('sweep-again');
+      } else if (state.look !== null) {
+        state.look = null;
+        hintText = L.roomIn;
+        update();
+      } else house();
+    }
+    if (e.key === 'Tab' && state.confirm) {
+      e.preventDefault();
+      ($(document.activeElement.id === 'reset-no' ? 'reset-yes' : 'reset-no')).focus({
+        preventScroll: true
+      });
+    }
+  });
+  window.addEventListener('resize', () => {
+    if (state.safety) update();
+  });
+  Curio.onMotion(calm => {
+    if (calm) document.querySelectorAll('.fix-flight').forEach(node => node.remove());
+  });
+  Curio.init({
+    clips: "voice:*",
+    rate: .95,
+    readFallback: () => hintText
+  });
+  window.__tool = {
+    state,
+    allLines: V.allLines,
+    vlog: V.log,
+    get vq() {
+      return V.queue;
+    },
+    setMode: () => house()
+  };
+  update();
+})();
+</script>
+</body>
+</html>

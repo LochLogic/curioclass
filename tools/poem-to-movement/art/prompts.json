@@ -1,0 +1,65 @@
+{
+  "house_style": "Rich, tactile fine-art illustrations for a grade 3 to 5 dance studio. Painterly layered color, subtle paper grain, beautifully composed silhouettes and directional light. Original compositions. No text, lettering, numbers or logos.",
+  "assets": [
+    {
+      "name": "studio-light",
+      "prompt": "Empty contemporary dance rehearsal studio, front view, violet-charcoal plaster wall, large muted violet mirror reflecting soft light, slate gray marley floor. Warm daylight enters from upper left, soft diagonal shafts of dust and subtle floor reflections, rich gouache and pencil surface texture, calm atmospheric depth. Wide central empty space for a code dancer. No barre, furniture, equipment or text. No people, faces or body parts.",
+      "aspect": "16:9",
+      "width": 1120,
+      "quality": 76,
+      "cutout": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "painting-river",
+      "prompt": "A slow wide river at dusk in the style of Japanese woodblock prints, flat bands of indigo blue and peach, a single heron wading in shallow water at the lower left, drifting mist over reeds across the middle right, a low pale moon at upper right, still water with gentle curved ripples across the bottom center. Full-frame landscape, delicate carved lines and textured pigments, a quiet luminous twilight. No people, faces or human body parts.",
+      "aspect": "16:9",
+      "width": 1120,
+      "quality": 78,
+      "cutout": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "painting-storm",
+      "prompt": "A thunderstorm over rolling green hills in the style of Romantic landscape painting. A bright jagged lightning bolt at upper right, trees bending in the wind at lower left, huge dark rolling clouds at upper center, slanting sheets of pouring rain across the right hillside. Dramatic light from the lightning, rich oil-paint impasto and atmospheric depth. Full-frame landscape. No people, faces or human body parts.",
+      "aspect": "16:9",
+      "width": 1120,
+      "quality": 78,
+      "cutout": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "poem-card",
+      "prompt": "A single sheet of soft ivory handmade paper with a deckled edge, blank, lying flat on a pale warm neutral surface, viewed directly from above. Gentle light from upper left, soft natural shadow, subtle cotton fibers and delicate grain. Spacious clean center for a poem to be added in code. Full frame. No people, faces or human body parts.",
+      "aspect": "4:3",
+      "width": 960,
+      "quality": 75,
+      "cutout": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "dancer-cast",
+      "people": true,
+      "cutout": true,
+      "aspect": "16:9",
+      "width": 1536,
+      "quality": 82,
+      "drawn_by": "codex",
+      "prompt": "Three full-length young dance students, each in a relaxed front-facing T pose, arms held straight out horizontally, palms down, legs straight with a clear small gap. One dark-skinned child with short natural curls and a sturdy build; one medium-brown child with a dark braid and a slim build; one light-skinned child with short auburn hair, a soft round build and a below-knee sport prosthesis on the right leg. All wear a coral short-sleeved dance shirt with a small plain circular cream patch, blue-violet comfortable trousers and simple cream dance shoes. Warm hand-painted gouache, pencil grain, soft directional light from upper left, friendly natural faces, anatomically clear limb joints. All three equally confident. A precisely spaced horizontal triptych: each complete child centered in one third, same scale and baseline, generous clear padding between figures and around hands and feet. Flat pure green #00FF00 background, no text, letters, numbers, logos, scenery or shadows. These are source paintings for articulated paper dancers; keep elbows, knees and shoulders easy to locate. Complete heads, hands and feet inside each third.",
+      "use": "Three painted paper dancers, one base pose each, articulated by the shared dance engine.",
+      "despill": true
+    },
+    {
+      "name": "dancer-cast-back",
+      "people": true,
+      "cutout": true,
+      "aspect": "16:9",
+      "width": 1536,
+      "quality": 82,
+      "drawn_by": "codex",
+      "ref": "dancer-cast",
+      "prompt": "The same three painted dance students as dancer-cast, at the same scale, spacing, full-body T pose and baseline, viewed exactly from behind. Preserve their outfits, hair, skin tones, body shapes and right-leg prosthesis. Arms straight out horizontally. Flat pure green background. No text. This is the reverse of the articulated paper-dancer atlas so full turns show backs instead of faces.",
+      "despill": true
+    }
+  ]
+}

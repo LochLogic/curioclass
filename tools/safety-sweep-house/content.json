@@ -1,0 +1,374 @@
+{
+  "hazards": [
+    {
+      "id": 0,
+      "room": 0,
+      "title": "Cleaners",
+      "adult": false,
+      "safe": 1,
+      "safer": "Everyone",
+      "before": "cleaners-bucket",
+      "after": "cleaners-apart",
+      "object": "bucket",
+      "action": "move",
+      "target": "Away from the bottles",
+      "tell": "Dad",
+      "situation": "Your cousin set bleach and a glass cleaner with ammonia next to an empty bucket. 'Let’s mix them to make super cleaner!'",
+      "options": [
+        "Mix a little to test it",
+        "Say no. Keep them closed and apart, then tell a grown-up",
+        "Mix them outside where there is air"
+      ],
+      "outcomes": [
+        "A gas forms that hurts your eyes, nose and lungs. People cough and struggle to breathe.",
+        "No gas forms. The cleaners get used one at a time, as the label says.",
+        "The gas still forms, and you still breathe it."
+      ],
+      "habit": "Never mix cleaners. One at a time.",
+      "fix": "Drag the bucket away from the bottles, then tap Tell Dad."
+    },
+    {
+      "id": 1,
+      "room": 0,
+      "title": "Towel",
+      "adult": true,
+      "safe": 0,
+      "safer": "Everyone",
+      "before": "towel-burner",
+      "after": "towel-hook",
+      "object": "towel",
+      "action": "move",
+      "target": "Cool towel hook",
+      "tell": "Dad",
+      "situation": "Dad stepped out to answer the door. A dish towel hangs right next to a lit burner.",
+      "options": [
+        "Get Dad back to the stove right away",
+        "Wait. It hasn’t caught fire yet",
+        "Turn the burner up so the food is done sooner"
+      ],
+      "outcomes": [
+        "Dad moves the towel and stays with the cooking.",
+        "A towel by a flame can catch fire fast. Fire can spread to the cabinets.",
+        "A bigger flame, still next to the towel."
+      ],
+      "habit": "Things that burn stay away from the stove, and someone stays with the cooking.",
+      "fix": "Tap Tell Dad. When the towel is cool, drag it onto the hook across the kitchen."
+    },
+    {
+      "id": 2,
+      "room": 1,
+      "title": "Candle",
+      "adult": true,
+      "safe": 2,
+      "safer": "Everyone",
+      "before": "candle-sill",
+      "after": "candle-out",
+      "action": "hold",
+      "duration": 1000,
+      "tell": "Grandma June",
+      "situation": "A lit candle sits on the windowsill. The curtain is moving in the breeze, and no one is in the room.",
+      "options": [
+        "Push the curtain behind the candle",
+        "Leave it. Someone lit it on purpose",
+        "Get a grown-up to blow it out"
+      ],
+      "outcomes": [
+        "The curtain can blow back into the flame.",
+        "A candle left alone near cloth can start a fire.",
+        "The flame is out, and no one has to watch it."
+      ],
+      "habit": "Candles stay a foot away from anything that can burn, and go out when you leave the room.",
+      "fix": "Tap Tell Grandma June, then hold the candle for 1 second to watch her blow it out."
+    },
+    {
+      "id": 3,
+      "room": 1,
+      "title": "Pills",
+      "adult": true,
+      "safe": 0,
+      "safer": "Theo",
+      "before": "pillbox-table",
+      "after": "pillbox-gone",
+      "object": "block-bin",
+      "action": "move",
+      "target": "Blocks beside Theo, away from the table",
+      "tell": "Grandma June",
+      "situation": "Grandma June’s pill box is open on the low coffee table. Theo is building blocks right beside it.",
+      "options": [
+        "Tell Grandma June now, and keep Theo busy with his blocks",
+        "Leave it. Theo can’t open pills",
+        "Hide it under the couch cushion"
+      ],
+      "outcomes": [
+        "She puts it up high, out of sight.",
+        "This box is open. Even safety caps are not childproof.",
+        "Theo can still find it. Medicine belongs up high and out of sight."
+      ],
+      "habit": "Medicine lives up high, out of sight.",
+      "fix": "Tap Tell Grandma June, then drag the block bin toward Theo, away from the table."
+    },
+    {
+      "id": 4,
+      "room": 2,
+      "title": "Smoke alarm",
+      "adult": true,
+      "safe": 1,
+      "safer": "Everyone",
+      "before": "alarm-floor",
+      "after": "alarm-ceiling",
+      "action": "hold",
+      "duration": 2000,
+      "tell": "Dad",
+      "situation": "The smoke alarm is on the floor with its battery out. The battery is in a toy car.",
+      "options": [
+        "Keep the battery in the toy. The alarm only chirps anyway",
+        "Tell a grown-up so they put in a fresh battery and test it",
+        "Climb on a chair and stick it back up yourself"
+      ],
+      "outcomes": [
+        "With no battery, the alarm cannot warn anyone about smoke.",
+        "The alarm is back on the ceiling and works.",
+        "You could fall, and no one checks that it works."
+      ],
+      "habit": "A grown-up tests smoke alarms every month with the test button.",
+      "fix": "Tap Tell Dad. Help Dad test it: hold the alarm’s Test button for 2 seconds."
+    },
+    {
+      "id": 5,
+      "room": 2,
+      "title": "Heater",
+      "adult": false,
+      "safe": 2,
+      "safer": "Everyone",
+      "before": "heater-blanket",
+      "after": "heater-clear",
+      "object": "blanket",
+      "action": "ruler",
+      "target": "At least 3 feet from the heater",
+      "tell": "Dad",
+      "situation": "A space heater is running. A blanket is draped over a chair about one foot away.",
+      "options": [
+        "Drape the blanket over the heater to warm it up",
+        "Turn the heater up",
+        "Pull the blanket away, at least 3 feet, then tell a grown-up"
+      ],
+      "outcomes": [
+        "The blanket can catch fire.",
+        "More heat, still close to the blanket.",
+        "Nothing that burns is near the heater."
+      ],
+      "habit": "Keep a 3-foot space around heaters.",
+      "fix": "Drag the blanket at least 3 feet away on the ruler, then tap Tell Dad. Arrow keys move it 6 inches."
+    },
+    {
+      "id": 6,
+      "room": 3,
+      "title": "Gummies",
+      "adult": true,
+      "safe": 2,
+      "safer": "Theo",
+      "before": "gummies-open",
+      "after": "cabinet-high",
+      "object": "gummy-bottle",
+      "action": "move",
+      "target": "High medicine cabinet",
+      "tell": "Dad",
+      "situation": "A bottle of gummy vitamins is open on the counter. They look just like candy.",
+      "options": [
+        "Eat a couple. They’re vitamins",
+        "Leave them. They’re only vitamins",
+        "Tell a grown-up so they go up high, out of sight"
+      ],
+      "outcomes": [
+        "Vitamins are medicine. Only take them when a grown-up gives them.",
+        "Too many can make a child very sick, and Theo could find them.",
+        "The bottle is closed and put away."
+      ],
+      "habit": "Vitamins are medicine too. Up high, out of sight.",
+      "fix": "Tap Tell Dad, then help him drag the closed bottle up to the high cabinet."
+    },
+    {
+      "id": 7,
+      "room": 3,
+      "title": "Tub",
+      "adult": false,
+      "safe": 1,
+      "safer": "Theo",
+      "before": "tub-full",
+      "after": "tub-empty",
+      "object": "plug-chain",
+      "action": "move",
+      "target": "Pull the plug chain up",
+      "tell": "Dad",
+      "situation": "The tub is still full after Theo’s bath, and Theo is heading back toward it.",
+      "options": [
+        "Go get a towel and come right back",
+        "Stay with Theo, pull the plug, and call a grown-up",
+        "Leave it. The water isn’t deep"
+      ],
+      "outcomes": [
+        "A young child can slip under in a few seconds, without a sound.",
+        "The water drains, and Theo is never alone near it.",
+        "A young child can drown in only a few inches of water."
+      ],
+      "habit": "Empty the tub right after a bath, and stay with little kids near water.",
+      "fix": "Stay with Theo. Drag the plug chain up to drain the tub, then tap Tell Dad."
+    },
+    {
+      "id": 8,
+      "room": 4,
+      "title": "Chat",
+      "adult": false,
+      "safe": 0,
+      "safer": "You",
+      "before": "screen-glow",
+      "after": "screen-glow-check",
+      "action": "chat",
+      "tell": "Dad",
+      "situation": "CoinKing_77 asks: “what school do you go to? I’ll send you free coins”. You don’t know this player.",
+      "options": [
+        "Don’t answer. Block and report them, then tell a grown-up",
+        "Tell them your school. It’s just coins",
+        "Ask for the coins first, then decide"
+      ],
+      "outcomes": [
+        "They can’t message you again, and a grown-up knows.",
+        "A stranger now knows where to find you every day.",
+        "You keep talking with someone you don’t know, who wants your details."
+      ],
+      "habit": "Never share your school, address or phone online. Block, report, tell.",
+      "fix": "Tap Block in the chat, then Report, then Tell Dad."
+    },
+    {
+      "id": 9,
+      "room": 4,
+      "title": "Pop-up",
+      "adult": false,
+      "safe": 2,
+      "safer": "You",
+      "before": "screen-glow",
+      "after": "screen-glow-check",
+      "action": "close",
+      "tell": "Dad",
+      "situation": "A pop-up says: “YOU WON 10,000 COINS! Type your password to claim.”",
+      "options": [
+        "Type your password. It’s a prize",
+        "Tap the prize to see if it’s real",
+        "Close it without typing anything, then tell a grown-up"
+      ],
+      "outcomes": [
+        "Someone else can now get into your account.",
+        "Tapping can open a trick page that asks for more.",
+        "Your password stays yours."
+      ],
+      "habit": "A message that asks for your password is a trick. Close it and tell.",
+      "fix": "Tap the pop-up’s X close button, then tap Tell Dad."
+    },
+    {
+      "id": 10,
+      "room": 5,
+      "title": "Gate",
+      "adult": false,
+      "safe": 1,
+      "safer": "Theo",
+      "before": "gate-propped",
+      "after": "gate-latched",
+      "object": "flowerpot",
+      "action": "move",
+      "target": "Patio, clear of the gate",
+      "tell": "Dad",
+      "situation": "The pool gate is propped open with a flowerpot. Theo’s ball is by the pool.",
+      "options": [
+        "Leave it open so everyone can get through",
+        "Move the pot so the gate swings shut and latches, then tell a grown-up",
+        "Run in and get the ball by yourself"
+      ],
+      "outcomes": [
+        "Theo can walk straight to the water.",
+        "The gate is closed and latched.",
+        "Now you are at the pool with no grown-up watching."
+      ],
+      "habit": "Pool gates close and latch by themselves. Never prop them open.",
+      "fix": "Drag the flowerpot off the gate onto the patio, then tap Tell Dad."
+    },
+    {
+      "id": 11,
+      "room": 5,
+      "title": "Lighter",
+      "adult": true,
+      "safe": 0,
+      "safer": "Everyone",
+      "before": "lighter-table",
+      "after": "lighter-shelf",
+      "action": "tap",
+      "tell": "Dad",
+      "situation": "A lighter is on the patio table next to the grill.",
+      "options": [
+        "Don’t touch it. Tell a grown-up so they put it away",
+        "Click it once to see if it works",
+        "Put it in your pocket to hand in later"
+      ],
+      "outcomes": [
+        "The lighter goes up high, where kids can’t reach.",
+        "A flame near the table and grill can start a fire.",
+        "You are carrying a fire tool around."
+      ],
+      "habit": "Matches and lighters are grown-up tools. Don’t touch, tell.",
+      "fix": "Tap Tell Dad. Then tap the lighter to watch Dad put it on the high shelf."
+    }
+  ],
+  "rooms": [
+    {
+      "name": "Kitchen",
+      "art": "room-kitchen",
+      "look": "pot-back-burner",
+      "why": "The handle points to the back, so no one can bump it."
+    },
+    {
+      "name": "Living room",
+      "art": "room-living",
+      "look": "battery-candle",
+      "why": "A battery candle has no flame."
+    },
+    {
+      "name": "Hallway",
+      "art": "room-hallway",
+      "look": "escape-map",
+      "why": "It shows two ways out of every room and the meeting spot outside."
+    },
+    {
+      "name": "Bathroom",
+      "art": "room-bathroom",
+      "look": "medicine-cabinet-high",
+      "why": "Up high and closed."
+    },
+    {
+      "name": "Game room",
+      "art": "room-gameroom",
+      "look": null,
+      "why": "You know Maya in real life, and she isn’t asking for anything."
+    },
+    {
+      "name": "Backyard",
+      "art": "room-backyard",
+      "look": "life-jacket-hook",
+      "why": "Ready for anyone who needs it."
+    }
+  ],
+  "lines": {
+    "welcome": "This is a safety sweep. In every room, look for things that could hurt someone. Tap anything that looks risky.",
+    "house": "Tap a room to start your safety sweep.",
+    "roomIn": "Search the room. Tap anything that looks risky.",
+    "stop": "You found one. Read what is going on, then tap Think.",
+    "think": "Do you need a grown-up first? Tap one of the two buttons.",
+    "choose": "Tap What could happen to peek at any choice. Then tap the safest one.",
+    "tried": "That could go wrong. Read what could happen, then choose again.",
+    "safe": "That’s the safe choice. Now tap Check.",
+    "fix": "Now do the fix. The hint shows what to drag or tap.",
+    "who": "Who is safer now? Tap everyone it helps, then tap Done.",
+    "lookalike": "That one looks fine. Keep searching.",
+    "roomDone": "Room swept! Tap House, then pick another room.",
+    "houseDone": "The whole house is swept and every room is lit. Here is your safety card.",
+    "poison": "Poison Help is one eight hundred, two two two, one two two two. For a fire, get out, stay out, and call nine one one from outside."
+  }
+}

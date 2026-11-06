@@ -1,0 +1,1149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dancers on Tour · Curio Class</title>
+<meta name="description" content="Scout three venues, adapt a six-dancer piece on a live floor plan, and build a warm-up. Grades 6-8 dance. Offline.">
+<!-- Curio Class. DA:Pr4, DA:Pr5, DA:Pr6. Original piece and model rules of thumb.
+Warm-ups and floors: IADMS resources; Behm and Chaouachi, EJAP 111 (2011), 2633-2651.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. Settings stay on this device. No network requests. -->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#121a2b; --panel:#1b2438; --ink:#eef2f8; --muted:#a7b1c4; --line:#46536a;
+  --brand:#a7e34b; --focus:#e4ffad; --btn:#26334b; --btn-line:#53617a; --head-ink:#eef2f8;
+}
+body { height:100dvh; min-height:0; overflow:hidden; }
+header { background:#121a2b; padding:12px 18px; gap:8px; border-bottom:1px solid var(--line); }
+h1 { font-size:25px; letter-spacing:-.6px; }
+h1 small { font-size:12px; color:var(--muted); }
+button { min-height:44px; min-width:44px; border:1px solid var(--line); border-radius:8px;
+  background:#26334b; padding:8px 12px; font-weight:650; }
+button:hover { border-color:var(--brand); }
+button[aria-pressed=true] { background:var(--brand); color:#121a2b; border-color:var(--brand); }
+.seg { border:1px solid var(--line); border-radius:9px; }
+.seg button { border-radius:0; min-height:44px; font-size:14px; padding:0 12px; }
+.seg button[aria-pressed=true] { background:var(--brand); color:#121a2b; }
+.icon-btn { min-height:44px; padding:0 9px; font-size:13px; border-radius:8px; border-width:1px; }
+.utility { display:flex; gap:5px; }
+main { grid-template-columns:minmax(0,1fr) 320px; min-height:0; }
+.panel { grid-column:2; grid-row:1; border-left:1px solid var(--line); padding:14px; gap:12px; }
+.panel > section,.panel > .hint,.panel > .privacy { flex-shrink:0; }
+.stage { grid-column:1; grid-row:1; min-height:0; background:#101725; }
+.panel h2 { margin:0 0 8px; font-size:18px; }
+.eyebrow { color:var(--brand); font-size:11px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; }
+.hint { font-size:14px; line-height:1.4; min-height:60px; margin:0; }
+.primary { background:var(--brand); color:#121a2b; border:0; font-size:17px; font-weight:800; }
+.row { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.controls { display:grid; gap:9px; }
+.controls label { font-size:14px; font-weight:700; }
+input[type=range] { width:100%; height:44px; margin:0; accent-color:var(--brand); cursor:pointer; }
+output { font-variant-numeric:tabular-nums; color:var(--brand); font-weight:800; }
+.fronts { display:grid; grid-template-columns:repeat(4,1fr); gap:4px; }
+.fronts button { font-size:22px; padding:0; }
+.pair { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+#swap { width:100%; font-size:14px; padding:7px; }
+.small { color:var(--muted); font-size:12px; line-height:1.4; margin:0; }
+.notes { margin:8px 0 0; padding:0; list-style:none; display:grid; gap:7px; }
+.notes li { padding-left:23px; position:relative; font-size:13px; line-height:1.35; }
+.notes li::before { content:'○'; position:absolute; left:1px; color:#ffc476; font-weight:900; }
+.notes li.met::before { content:'✓'; color:var(--brand); }
+.notes li.met { color:#d9edbe; }
+.sheet { display:grid; grid-template-columns:64px 1fr; gap:9px; font-size:14px; margin:12px 0; }
+.sheet dt { color:var(--muted); }
+.sheet dd { margin:0; }
+.fact { padding:12px; background:#121a2b; border-left:3px solid var(--brand); border-radius:4px; margin-top:12px; }
+.fact p { margin:0; line-height:1.45; font-size:14px; }
+.swatch { width:100%; height:100px; object-fit:cover; border-radius:7px; margin-top:10px; }
+.privacy { margin-top:auto; padding-top:12px; color:var(--muted); font-size:11px; }
+#scout { height:100%; position:relative; overflow:hidden; }
+#venuePainting { width:100%; height:100%; object-fit:cover; }
+.scene-shade { position:absolute; inset:0; background:linear-gradient(180deg,#07101b80,transparent 35%,#07101bb0); pointer-events:none; }
+.scout-title { position:absolute; top:24px; left:26px; text-shadow:0 2px 8px #000; }
+.scout-title h2 { font-size:36px; margin:5px 0; letter-spacing:-1px; }
+.scout-title p { margin:0; font-size:14px; }
+.hotspot { position:absolute; width:52px; height:52px; border-radius:50%; padding:0; border:2px solid #e5ffbc;
+  color:#121a2b; background:#a7e34bec; box-shadow:0 0 0 8px #a7e34b30,0 6px 20px #0009; font-size:20px; }
+.hotspot::after { content:''; position:absolute; inset:-8px; border:1px solid #d6ff9c88; border-radius:50%; animation:breathe 3s infinite; }
+@keyframes breathe { 50% { transform:scale(1.14); opacity:.25; } }
+.scout-bottom { position:absolute; bottom:22px; left:26px; right:20px; font-size:14px; color:white; }
+.scout-bottom b { color:#e4ffad; }
+#adapt { height:100%; display:grid; grid-template-rows:42px 66px minmax(0,1fr) 54px 30px; padding:12px 16px 4px; gap:6px; }
+.stage-title { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.stage-title h2 { margin:0; font-size:20px; }
+#count { background:#29394c; color:var(--brand); font-size:14px; padding:6px 10px; border-radius:5px; min-width:90px; text-align:center; }
+.lights { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+.light { border:1px solid #607248; border-radius:8px; background:linear-gradient(130deg,#25352d,#192726); padding:8px 12px; }
+.light.amber { border-color:#9b774c; background:linear-gradient(130deg,#42382c,#2d2930); }
+.light span { color:var(--muted); font-size:12px; display:block; }
+.light b { color:var(--brand); display:block; font-size:18px; white-space:nowrap; }
+.light.amber b { color:#ffc476; }
+.plan-space { min-height:0; position:relative; border:1px solid #3d4d62; border-radius:12px; overflow:hidden;
+  background:radial-gradient(ellipse at 32% 20%,#2c3e52,#182537 65%,#111c2c); box-shadow:inset 0 0 50px #0003; }
+#plan { width:100%; height:100%; display:block; }
+#audience { position:absolute; top:10px; right:10px; width:29%; height:53%; border:1px solid #697385;
+  border-radius:8px; overflow:hidden; background:#121a2b; }
+#audience svg { width:100%; height:100%; display:block; }
+.inset-label { position:absolute; top:4px; left:6px; color:#fff; background:#101725d9; font-size:10px; padding:2px 4px; border-radius:3px; }
+#dancerInfo { position:absolute; right:10px; top:calc(53% + 26px); width:28%; font-size:12px; line-height:1.45; color:var(--muted); }
+.phrases { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
+.phrases button { display:flex; align-items:center; justify-content:center; gap:7px; min-width:0; padding:4px 6px; font-size:13px; }
+.phrases .pn { font-size:20px; font-weight:850; }
+.phrases button.failed { border-bottom:4px solid #ffc476; }
+.phrases button:disabled { opacity:.65; cursor:default; }
+.legend { display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:11px; color:var(--muted); }
+#warm { padding:25px; height:100%; display:flex; flex-direction:column; gap:18px; overflow:auto; }
+#warm h2 { margin:5px 0 8px; font-size:30px; letter-spacing:-.8px; }
+.conditions { padding:13px 16px; border:1px solid var(--line); background:#1b2b3c; border-radius:10px; }
+.warmbar { position:relative; min-height:80px; border:1px solid #6a7e4c; border-radius:9px;
+  display:flex; align-items:stretch; padding:5px;
+  background:repeating-linear-gradient(90deg,transparent 0,transparent calc(var(--tick,6.6667%) - 1px),
+    #a7e34b28 calc(var(--tick,6.6667%) - 1px),#a7e34b28 var(--tick,6.6667%)); }
+.target-marker { position:absolute; top:0; bottom:0; border-left:2px solid #ffc476; pointer-events:none; }
+.chunk { min-width:0; padding:10px 5px; margin-right:3px; border-radius:5px; background:linear-gradient(135deg,#bce977,#82b23d);
+  color:#172421; font-weight:800; font-size:12px; overflow-wrap:anywhere; }
+.empty { color:var(--muted); padding:18px 10px; font-size:14px; }
+.block-menu { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; }
+.block-menu button { min-height:77px; text-align:left; padding:12px; border-radius:10px; background:linear-gradient(130deg,#293c4e,#203044); }
+.block-menu button b { display:block; font-size:14px; }
+.block-menu button span { font-size:12px; color:#c8d3df; }
+.block-menu button[aria-pressed=true] { background:#a7e34b; }
+.block-menu button[aria-pressed=true] span { color:#26371c; }
+#warmList { display:grid; gap:6px; }
+#p-warm { display:flex; flex-direction:column; gap:8px; }
+#p-warm h2 { margin:0; }
+.warm-item { display:flex; align-items:center; gap:7px; border:1px solid #4c5e6f; background:#203044; border-radius:8px; padding:4px 7px; }
+.warm-item strong { flex:1; font-size:13px; }
+.warm-item { touch-action:none; }
+.warm-item strong { cursor:grab; user-select:none; }
+.warm-item button { padding:0; font-size:18px; }
+.checks { list-style:none; padding:0; margin:0; display:grid; gap:9px; font-size:14px; line-height:1.4; }
+.checks li { color:#ffc476; }
+.checks li.pass { color:#c4eb98; }
+#riskDetail { padding:10px; background:#121a2b; font-size:12px; line-height:1.5; border-radius:6px; }
+details { border-top:1px solid var(--line); }
+summary { min-height:44px; padding-top:13px; font-size:13px; cursor:pointer; }
+details p { font-size:12px; color:var(--muted); line-height:1.5; }
+.calm .hotspot::after { animation:none; }
+@media (max-width:1150px) {
+  header { padding:7px 10px; gap:6px; }
+  h1 { width:100%; font-size:20px; }
+  h1 small { display:inline; margin-left:12px; font-size:11px; }
+  .utility { margin-left:auto; }
+  main { grid-template-columns:minmax(0,1fr) 280px; }
+  .panel { padding:10px; gap:8px; }
+  .controls { gap:5px; }
+  #adapt { padding:8px; }
+  .light { padding:8px; }
+  .light b { font-size:15px; }
+}
+@media (max-height:650px) and (min-width:601px) {
+  header { padding:3px 7px; gap:4px; }
+  h1 { width:100%; font-size:16px; line-height:1.1; }
+  h1 small { display:inline; font-size:10px; margin-left:8px; }
+  .seg button,.icon-btn { font-size:12px; padding:0 8px; }
+  main { grid-template-columns:minmax(0,1fr) 240px; }
+  .panel { padding:8px; gap:5px; }
+  .hint { font-size:12px; min-height:49px; line-height:1.3; }
+  .controls { gap:0; }
+  .controls .row { min-height:16px; }
+  .controls .front-label { display:none; }
+  .controls button { padding:4px; font-size:12px; }
+  .controls .primary { font-size:15px; }
+  .controls .pair { grid-template-columns:1fr 1fr; }
+  #swap { font-size:12px; padding:4px; }
+  .controls label { font-size:12px; }
+  #adapt { grid-template-rows:24px 51px minmax(0,1fr) 46px 23px; gap:3px; padding:6px; }
+  .stage-title h2 { font-size:14px; }
+  #count { font-size:11px; padding:3px 6px; }
+  .light { padding:5px 6px; }
+  .light span { font-size:10px; }
+  .light b { font-size:12px; }
+  .lights { gap:4px; }
+  .phrases { gap:3px; }
+  .phrases button { font-size:10px; gap:3px; }
+  .phrases .pn { font-size:14px; }
+  .legend { font-size:10px; }
+  #audience { top:5px; right:5px; }
+  #dancerInfo { right:6px; font-size:10px; top:calc(53% + 15px); }
+  .notes { gap:5px; }
+  .notes li { font-size:12px; }
+  .sheet { font-size:12px; gap:6px; margin:5px 0; }
+  .fact { padding:8px; }
+  .fact p { font-size:12px; }
+  .swatch { height:65px; }
+  .scout-title { top:15px; left:18px; }
+  .scout-title h2 { font-size:25px; }
+  .scout-title p,.scout-bottom { font-size:12px; }
+  #warm { padding:8px; gap:5px; }
+  #warm .eyebrow { display:none; }
+  #warm h2 { font-size:18px; margin:0 0 5px; }
+  #warm .small { font-size:10px; line-height:1.2; }
+  .conditions { padding:5px 8px; font-size:11px; line-height:1.2; }
+  .warmbar { min-height:44px; height:44px; flex:none; }
+  .chunk { font-size:10px; padding:4px; }
+  .empty { font-size:11px; padding:9px; }
+  .block-menu { gap:5px; }
+  .block-menu button { min-height:58px; padding:5px; }
+  .block-menu button b { font-size:11px; }
+  .block-menu button span { font-size:10px; }
+  body[data-mode=warm] #hint { min-height:0; font-size:11px; line-height:1.2; }
+  #p-warm { gap:4px; }
+  #p-warm h2 { font-size:14px; }
+  #warmList { gap:2px; }
+  .warm-item { border:0; box-shadow:inset 0 0 0 1px #4c5e6f; padding:0 4px; gap:4px; }
+  .warm-item strong { font-size:12px; }
+}
+@media (max-width:600px) {
+  body { height:auto; min-height:100dvh; overflow:auto; }
+  header { padding:8px; gap:7px; }
+  h1 { width:100%; font-size:22px; }
+  h1 small { display:block; margin:3px 0 0; font-size:11px; }
+  header .seg { flex:1; display:flex; }
+  header .seg button { flex:1; font-size:13px; padding:0 8px; }
+  .utility { width:100%; margin:0; }
+  .utility button { flex:1; }
+  main { display:flex; flex-direction:column; }
+  .stage { flex:none; height:350px; min-height:350px; order:0; }
+  .stage:has(#scout:not([hidden])) { height:300px; min-height:300px; }
+  .stage:has(#warm:not([hidden])) { height:auto; min-height:0; }
+  .panel { overflow:visible; border:0; border-top:1px solid var(--line); padding:15px; order:1; }
+  body[data-mode=scout] #hint { min-height:0; }
+  #p-scout { display:flex; flex-direction:column; gap:10px; }
+  #p-scout.has-fact .fact { order:-2; margin-top:0; }
+  #p-scout.has-fact #toAdapt { order:-1; }
+  #adapt { grid-template-rows:30px 52px minmax(0,1fr) 49px 29px; padding:7px; gap:4px; }
+  .stage-title h2 { font-size:16px; }
+  .lights { gap:3px; }
+  .light { padding:5px; }
+  .light span { font-size:10px; }
+  .light b { font-size:12px; }
+  #count { font-size:11px; min-width:78px; padding:4px; }
+  .phrases button { font-size:10px; padding:3px; gap:3px; }
+  .phrases .pn { font-size:15px; }
+  .legend { font-size:10px; flex-wrap:wrap; gap:1px; }
+  #dancerInfo { font-size:10px; top:calc(53% + 20px); }
+  #audience { top:5px; right:5px; }
+  .inset-label { font-size:10px; left:2px; padding:1px; }
+  .scout-title { left:16px; top:16px; }
+  .scout-title h2 { font-size:29px; }
+  .scout-title p { font-size:12px; }
+  .scout-bottom { left:16px; bottom:15px; font-size:12px; }
+  #warm { padding:15px; gap:10px; }
+  #warm h2 { font-size:24px; }
+  .conditions { padding:9px; font-size:12px; }
+  .block-menu { grid-template-columns:repeat(2,1fr); gap:5px; }
+  .block-menu button { min-height:60px; padding:7px; }
+  .block-menu button b { font-size:12px; }
+  .warmbar { min-height:65px; }
+  .chunk { font-size:10px; padding:6px 2px; }
+  body[data-mode=adapt] .stage { height:350px; min-height:350px; }
+  body[data-mode=adapt] .panel { padding:10px; gap:6px; }
+  body[data-mode=adapt] .hint { min-height:40px; font-size:12px; line-height:1.3; }
+  body[data-mode=adapt] .controls { grid-template-columns:1fr 1fr; gap:4px 7px; }
+  body[data-mode=adapt] .controls > .row:first-child { grid-column:1; grid-row:1; }
+  body[data-mode=adapt] #spread { grid-column:1; grid-row:2; }
+  body[data-mode=adapt] .pair { grid-column:2; grid-row:1 / 3; grid-template-columns:1fr; gap:4px; }
+  body[data-mode=adapt] .front-label { display:none; }
+  body[data-mode=adapt] .fronts { grid-column:1 / 3; grid-row:3; }
+  body[data-mode=adapt] .controls > .row:has(#tempoVal) { grid-column:1; grid-row:4; flex-wrap:wrap; gap:1px; }
+  body[data-mode=adapt] #tempo { grid-column:2; grid-row:4; }
+  body[data-mode=adapt] #swap { grid-column:1 / 3; grid-row:5; }
+  body[data-mode=adapt] .controls label,body[data-mode=adapt] output { font-size:12px; }
+  body[data-mode=warm] #hint { min-height:0; }
+  #warm { height:auto; overflow:visible; padding:8px; gap:4px; }
+  #warm .eyebrow { display:none; }
+  #warm h2 { font-size:20px; margin:0 0 4px; }
+  #warm .conditions { padding:6px; font-size:11px; line-height:1.25; }
+  #warm .small { font-size:11px; line-height:1.3; }
+  #warm .warmbar { min-height:44px; height:44px; flex:none; }
+  #warm .empty { padding:10px; font-size:12px; }
+  #warm .block-menu button { min-height:50px; padding:5px; }
+  #warm .block-menu button span { font-size:11px; }
+  #warmList { grid-template-columns:1fr 1fr; gap:4px; }
+  #warmList:empty { display:none; }
+  .warm-item { min-width:0; gap:2px; padding:0 3px; }
+  .warm-item strong { min-width:0; font-size:11px; line-height:1.2; }
+  .warm-item button { width:44px; flex:none; }
+
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Dancers on Tour <small>Adapting a dance to new spaces</small></h1>
+  <div class="seg" role="group" aria-label="Venue">
+    <button id="v-gym" aria-pressed="true">Gym</button>
+    <button id="v-park" aria-pressed="false">Park</button>
+    <button id="v-theater" aria-pressed="false">Theater</button>
+  </div>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-scout" aria-pressed="true">Scout</button>
+    <button id="m-adapt" aria-pressed="false">Adapt</button>
+    <button id="m-warm" aria-pressed="false">Warm up</button>
+  </div>
+  <div class="utility">
+    <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+    <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+    <button class="icon-btn" id="read">Read</button>
+  </div>
+</header>
+<main>
+  <aside class="panel">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <section id="p-scout">
+      <span class="eyebrow">Venue dossier</span><h2 id="sheetTitle"></h2>
+      <dl class="sheet" id="sheet"></dl>
+      <button class="primary" id="toAdapt" style="width:100%">Go to Adapt →</button>
+      <div class="fact"><p id="hotFact">Tap a numbered ring to investigate.</p>
+        <img class="swatch" id="swatch" alt="This venue's floor surface up close" hidden></div>
+    </section>
+    <section id="p-adapt" hidden>
+      <div class="controls">
+        <div class="row"><label for="spread">Spread <span id="phraseLabel"></span></label><output id="spreadVal"></output></div>
+        <input id="spread" type="range" min="0.5" max="1.5" step="0.05" value="1" aria-label="Spread for current phrase">
+        <div class="pair"><button class="primary" id="run">▶ Run</button><button id="reset">Reset venue</button></div>
+        <label class="front-label">Front <span class="small">Audience is ↓</span></label>
+        <div class="fronts" role="group" aria-label="Which side is the front">
+          <button id="front-0" aria-label="Front toward audience" aria-pressed="true">↓</button>
+          <button id="front-1" aria-label="Front toward right" aria-pressed="false">→</button>
+          <button id="front-2" aria-label="Front toward back" aria-pressed="false">↑</button>
+          <button id="front-3" aria-label="Front toward left" aria-pressed="false">←</button>
+        </div>
+        <div class="row"><label for="tempo">Tempo</label><output id="tempoVal"></output></div>
+        <input id="tempo" type="range" min="85" max="110" step="5" value="100" aria-label="Tempo percent of 112 beats per minute">
+        <button id="swap" aria-pressed="false">Arms and turns · fixed</button>
+      </div>
+      <h2 style="font-size:14px;margin-top:14px">Choreographer's notes</h2><ul class="notes" id="notes"></ul>
+      <details><summary>How the four lights work</summary>
+        <p>Rules of thumb: dancer centers stay 0.75 m inside every edge. Closest dancers need 1.5 m.</p>
+        <p>A nearer dancer blocks a standing dancer within 0.45 m of a seat's sightline, for eyes under 2 m.
+        For low dancers, use 0.8 m and eyes under 1.5 m. Front rotates the formation; seats stay fixed.</p>
+        <p>Safety adds points for the floor, cold, tempo and missing warm-up parts. 0-1 low; 2-3 medium; 4+ high.
+        An incomplete warm-up also stays amber. Open Warm up for the checks and point breakdown.</p>
+        <p>The points describe this model, not injury probability. Warming up cannot fix a hard or slippery floor.
+        Seat icons are compressed; rays use actual meter positions.</p>
+        <p>Some formations retain blocked seats under this model. Compare the tradeoffs; all-green is not guaranteed.</p>
+        <p>Run results and the sprinkler note include the travel between formations. Motion off jumps the picture; it keeps the same path checks.</p>
+      </details>
+    </section>
+    <section id="p-warm" hidden>
+      <div class="row"><h2>Before the run</h2><output id="warmTotal">0 / 15 min</output></div>
+      <div id="warmList"></div><p id="riskDetail"></p><ul class="checks" id="warmChecks"></ul>
+    </section>
+    <p class="privacy" id="saveStatus">Saved on this device only. Nothing leaves it.</p>
+  </aside>
+  <div class="stage" id="stage">
+    <section id="scout" aria-label="Painted venue with scouting rings">
+      <img id="venuePainting" alt=""><div class="scene-shade"></div>
+      <div class="scout-title"><span class="eyebrow">Six Lanterns / tour stop <span id="stopNo">01</span></span>
+        <h2 id="scoutName"></h2><p id="scoutSub"></p></div>
+      <button class="hotspot" id="hot-0" aria-label="Scout the floor">1</button>
+      <button class="hotspot" id="hot-1" aria-label="Scout the audience">2</button>
+      <button class="hotspot" id="hot-2" aria-label="Scout the obstacle">3</button>
+      <button class="hotspot" id="hot-3" aria-label="Scout the light and conditions">4</button>
+      <button class="hotspot" id="hot-4" aria-label="Scout the exits">5</button>
+      <div class="scout-bottom"><b>Same six dancers. A different space.</b><br>Find what must change before the first count.</div>
+    </section>
+    <section id="adapt" hidden>
+      <div class="stage-title"><h2 id="planTitle">Six Lanterns / Gym</h2><span id="count">32 counts</span></div>
+      <div class="lights" id="lights">
+        <div class="light" id="light-fit"><span>Fit</span><b id="fitVal"></b></div>
+        <div class="light" id="light-spacing"><span>Spacing</span><b id="spacingVal"></b></div>
+        <div class="light" id="light-seen"><span>Seen</span><b id="seenVal"></b></div>
+        <div class="light" id="light-safety"><span>Safety</span><b id="safetyVal"></b></div>
+      </div>
+      <div class="plan-space" id="planSpace">
+        <svg id="plan" aria-label="Top-down performing area with six dancers, safe edge and audience seats"></svg>
+        <div id="audience"><svg id="audienceSvg" role="img" aria-label="Six dancers seen from the audience"></svg>
+          <span class="inset-label">Audience view</span></div>
+        <p id="dancerInfo">Tap a dancer for its position and closest neighbor.</p>
+      </div>
+      <div class="phrases" role="group" aria-label="Eight-count phrase">
+        <button id="phrase-0" aria-pressed="true"><span class="pn">1</span><span>Wedge</span></button>
+        <button id="phrase-1" aria-pressed="false"><span class="pn">2</span><span>Window</span></button>
+        <button id="phrase-2" aria-pressed="false"><span class="pn">3</span><span>Circle</span></button>
+        <button id="phrase-3" aria-pressed="false"><span class="pn">4</span><span>Diagonal</span></button>
+      </div>
+      <div class="legend"><span style="color:#a7e34b">┄ Safe edge: 0.75 m</span><span>Rules of thumb · centers in meters</span></div>
+    </section>
+    <section id="warm" hidden>
+      <div><span class="eyebrow">Warm-up builder / Six Lanterns</span><h2>Prepare for this floor.</h2>
+        <div class="conditions" id="conditions"></div></div>
+      <div class="row"><b style="font-size:14px">Your 15-minute plan</b><span class="small" id="barTotal">0 min</span></div>
+      <div class="warmbar" id="warmbar" aria-label="Warm-up timeline"></div>
+      <p class="small">Tap a block to add or remove it. Reorder selected blocks with the arrows or drag them in the list.</p>
+      <div class="block-menu" id="blockMenu"></div><p class="small">Long static holds: save these for the cool-down.</p>
+    </section>
+  </div>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:dance"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  const ART = {
+    gym:'art:venue-gym', park:'art:venue-park', theater:'art:venue-theater',
+    wood:'art:swatch-wood', grass:'art:swatch-grass', marley:'art:swatch-marley'
+  };
+  // Only this atlas table, its cell bounds and audienceRenderer own the painted cast.
+  const PAINTED_POSES = {
+    front:'art:dancer-cast-front', right:'art:dancer-cast-right', back:'art:dancer-cast-back'
+  };
+  const PAINTED_CELLS = "json:painted-dancers";
+  const VENUES = {
+    gym:{name:'Gym',w:14,d:9,temp:20,surface:'Wood over concrete, dusty, little give',swatch:'wood',
+      audience:'Front bleachers, three rows',eyes:[1,1.8,2.6],
+      notes:['Hard floor: swap jumps, or include Feet and calves plus Rehearse key moves.',
+        'Fill the big floor: Window spread at least 1.30.','Keep the Circle low. The top rows look down.'],
+      facts:['Wood over concrete has little give. Dust can make it slippery. Plan carefully for jumps.',
+        'Three bleacher rows have eye heights of 1.0, 1.8 and 2.6 m. The top row can see over standing dancers.',
+        'The hoop pole is at the back left corner, outside your performing area.',
+        'Indoors at 20 degrees Celsius. Tall windows light the gym.',
+        'Keep the way out clear. The hoop pole is outside the marked performing area.'],
+      hot:[[40,65],[8,44],[57,35],[76,21],[85,68]]},
+    park:{name:'Park',w:10,d:7,temp:12,surface:'Grass, uneven and wet with dew',swatch:'grass',
+      audience:'Blankets in a front half circle',eyes:[.8,.8,.8],
+      notes:['Wet grass: tempo 95% or less.','Raise the Circle from floor work to middle level.',
+        'Keep every phrase and travel path at least 0.75 m from the sprinkler.'],
+      facts:['At 9:30 in the morning, dew makes this uneven grass wet. Turns at a fast tempo add risk.',
+        'Blankets put eyes at 0.8 meters. Floor work can disappear behind another dancer.',
+        'A sprinkler head is at x 3, z 2.5 meters. Stay at least 0.75 meters from it.',
+        'It is 12 degrees Celsius. Low eastern sun shines into the audience’s eyes. Allow a longer warm-up.',
+        'This lawn has open edges. Keep routes around the audience and performing area clear.'],
+      hot:[[40,62],[12,74],[75,61],[16,24],[85,36]]},
+    theater:{name:'Theater',w:8,d:6,temp:21,surface:'Sprung floor with vinyl dance surface',swatch:'marley',
+      audience:'Front raked seats, three rows',eyes:[1.2,1.9,2.6],
+      notes:['Use split diagonal, with all six fitting and at least 1.5 m apart.',
+        'Keep the jumps. This floor is built for them.','Use the depth: every phrase seen from all nine seats.'],
+      facts:['A sprung floor with a vinyl dance surface reduces impact compared with the gym floor.',
+        'Raked seats have eyes at 1.2, 1.9 and 2.6 meters. Test the lower rows as well as the top.',
+        'The wings are 1 meter wide on each side, outside the performing area.',
+        'The theater is 21 degrees Celsius. Stage light falls across a dark floor.',
+        'The side wings are outside the area. Leave a clear way on and off stage.'],
+      hot:[[40,58],[17,78],[83,43],[68,22],[8,44]]}
+  };
+  const NAMES = ['Wedge','Window','Circle','Diagonal canon'];
+  const BASE = [
+    [[0,1.5],[-1.5,2.7],[1.5,2.7],[-3,3.9],[3,3.9],[0,4.5]],
+    [[-4.5,2],[-1.5,2],[1.5,2],[4.5,2],[-3,4.5],[3,4.5]],
+    Array.from({length:6},(_,i)=>[3*Math.cos(i*Math.PI/3),4+3*Math.sin(i*Math.PI/3)]),
+    [[-5,1.5],[-3,2.5],[-1,3.5],[1,4.5],[3,5.5],[5,6.5]]
+  ];
+  const SPLIT = [[-3.5,1.5],[-2,2.5],[-.5,3.5],[.5,1.5],[2,2.5],[3.5,3.5]];
+  const BLOCKS = [
+    ['Pulse raiser',4,'Raise the pulse'],['Joint circles',2,'Mobilize the joints'],
+    ['Dynamic stretches',4,'Move through range'],['Feet and calves',2,'Prepare feet for jumps'],
+    ['Rehearse key moves',3,'At half size'],['Long static holds',3,'Save for after the show']
+  ];
+  const L = {
+    welcomeScout:'New space. Tap the rings to scout it before we change anything.',
+    welcomeAdapt:'Move Spread, Front or Tempo to adapt this floor. Tap Window, Circle or Diagonal for Swaps, then press Run.',
+    tooClose:'Too close. Someone will get an elbow.', noteMet:"Good. That note's done.",
+    venueReady:'That works here. On to the next stop.',
+    welcomeWarm:'Build a warm-up for this floor. Tap blocks to add them.',
+    staticHow:'Save long holds for after. Keep it moving before you dance.',
+    afterRun:'Tap an amber phrase to inspect it. Adjust Spread or Swaps, then press Run again.',
+    warmNext:'Tap warm-up blocks to add or remove them. Use the arrows to change their order.',
+    scoutNext:'Tap another ring to scout more, or choose Go to Adapt.',
+    inspect:'Move Spread, Front or Tempo. For Swaps, tap Window, Circle or Diagonal; then press Run.'
+  };
+  for(const [id,v] of Object.entries(VENUES)) {
+    L['scout-'+id]=L.welcomeScout;
+    v.facts.forEach((t,i)=>{L['fact-'+id+'-'+i]=t;});
+  }
+  const defaults=()=>({spread:[1,1,1,1],front:0,tempo:100,swaps:[false,false,false,false],warm:[],runResult:null});
+  const state={venue:'gym',mode:'scout',phrase:0,hotspot:null,selected:null,revision:0,running:false,count:0,
+    data:{gym:defaults(),park:defaults(),theater:defaults()}};
+  const data=()=>state.data[state.venue];
+  const venue=()=>VENUES[state.venue];
+  const noteSaid={gym:new Set(),park:new Set(),theater:new Set()};
+  let clock=null, music=null, floor=null, figures=[], planLayout=null, lastDraw=0, dragBlock=null, lastMetrics=null;
+  let lastPlanPoints=[],lastNoteStatus=null;
+  try {
+    const saved=JSON.parse(localStorage.getItem('curio-dancers-on-tour')||'null');
+    if(saved) for(const id of Object.keys(VENUES)) {
+      const s=saved[id];
+      if(!s||!Array.isArray(s.spread)||s.spread.length!==4) continue;
+      state.data[id]={
+        spread:s.spread.map(n=>Math.round(Math.max(.5,Math.min(1.5,Number(n)||1))*20)/20),
+        front:[0,1,2,3].includes(s.front)?s.front:0,
+        tempo:[85,90,95,100,105,110].includes(s.tempo)?s.tempo:100,
+        swaps:Array.from({length:4},(_,i)=>i>0&&!!s.swaps?.[i]),
+        warm:[...new Set((s.warm||[]).filter(n=>Number.isInteger(n)&&n>=0&&n<6))],runResult:null
+      };
+    }
+  } catch {}
+  const V=Curio.voice({
+    lines:L,scope:()=>state.venue+state.mode,hint:false,read:()=>state.running?[]:$('hint').textContent,
+    welcome:()=> {
+      if(state.running) return null;
+      if(state.mode==='scout') return state.hotspot===null?
+        ['scout-'+state.venue,{valid:()=>state.hotspot===null}]:
+        ['scoutNext',{valid:()=>state.hotspot!==null}];
+      if(state.mode==='adapt') return ['welcomeAdapt',{valid:()=>!state.running}];
+      if(state.mode==='warm') return data().warm.length?
+        ['warmNext',{valid:()=>!state.running&&data().warm.length>0}]:
+        ['welcomeWarm',{valid:()=>!state.running&&!data().warm.length}];
+      return null;
+    }
+  });
+  function save() {
+    try {localStorage.setItem('curio-dancers-on-tour',JSON.stringify(state.data));}
+    catch {$('saveStatus').textContent='Saving unavailable. Choices stay here while this page is open.';}
+  }
+  function hint(t) {$('hint').textContent=t;}
+  function mk(tag,attrs,parent) {
+    const e=document.createElementNS(NS,tag);
+    for(const [k,v] of Object.entries(attrs||{})) e.setAttribute(k,v);
+    if(parent) parent.append(e);
+    return e;
+  }
+  function text(parent,x,y,value,attrs={}) {
+    const e=mk('text',{x,y,fill:'#b6c3d2','font-size':12,'font-family':'Segoe UI, sans-serif',...attrs},parent);
+    e.textContent=value;
+    return e;
+  }
+  function formation(p,id=state.venue) {
+    const d=state.data[id],v=VENUES[id],raw=p===3&&d.swaps[3]?SPLIT:BASE[p];
+    const lo=Math.min(...raw.map(a=>a[1])),hi=Math.max(...raw.map(a=>a[1]));
+    const angle=d.front*Math.PI/2,c=Math.cos(angle),s=Math.sin(angle),sp=d.spread[p];
+    return raw.map(([x,z])=> {
+      const dx=x*sp,dz=(z-(lo+hi)/2)*sp;
+      return {x:dx*c-dz*s,z:v.d/2+dx*s+dz*c};
+    });
+  }
+  function seats(id=state.venue) {
+    const v=VENUES[id];
+    if(id==='park') return Array.from({length:9},(_,i)=> {
+      const a=(-68+i*17)*Math.PI/180;
+      return {x:7*Math.sin(a),z:-1-4*Math.cos(a),eye:.8,label:'B'+(i+1)};
+    });
+    return Array.from({length:9},(_,i)=>({x:[-1,0,1][i%3]*v.w*.31,z:-1.4-Math.floor(i/3)*1.3,
+      eye:v.eyes[Math.floor(i/3)],label:['A','B','C'][Math.floor(i/3)]+(i%3+1)}));
+  }
+  function visibility(points,p,id=state.venue) {
+    const low=p===2&&!state.data[id].swaps[2],threshold=low?.8:.45,eyeLimit=low?1.5:2;
+    return seats(id).map(seat=> {
+      const hidden=[];
+      points.forEach((a,i)=> {
+        if(seat.eye>=eyeLimit) return;
+        const dx=a.x-seat.x,dz=a.z-seat.z,len=Math.hypot(dx,dz);
+        for(let j=0;j<points.length;j++) {
+          if(j===i) continue;
+          const b=points[j],bx=b.x-seat.x,bz=b.z-seat.z,t=(bx*dx+bz*dz)/(len*len);
+          const offset=Math.abs(dx*bz-dz*bx)/len;
+          if(t>0&&t<1&&Math.hypot(bx,bz)<len&&offset<=threshold) {hidden.push(i+1);break;}
+        }
+      });
+      return {...seat,hidden,ok:!hidden.length};
+    });
+  }
+  function safety(id=state.venue) {
+    const d=state.data[id],v=VENUES[id],jumps=!d.swaps[1],total=d.warm.reduce((n,i)=>n+BLOCKS[i][1],0),reasons=[];
+    const add=(n,t)=>{if(n) reasons.push({n,t});};
+    add(jumps?(id==='gym'?2:id==='park'?1:0):0,'Jumps on this floor');
+    add(id==='park'&&d.tempo>95?2:0,'Turns on wet grass above 95%');
+    add(v.temp<15&&total<12?2:0,'Cold without 12 warm-up minutes');
+    add(!d.warm.includes(0)?1:0,'Missing Pulse raiser');
+    add(!d.warm.includes(2)?1:0,'Missing Dynamic stretches');
+    add(jumps&&!d.warm.includes(3)?1:0,'Missing Feet and calves');
+    const at=d.warm.indexOf(5);
+    add(at>=0&&(at===d.warm.length-1||d.warm[at+1]===4)?1:0,'Long holds right before key moves or Run');
+    const required=v.temp<15?12:10;
+    const checks=[d.warm[0]===0,total>=required,d.warm.includes(2),!jumps||d.warm.includes(3),!d.warm.includes(5)];
+    return {points:reasons.reduce((n,r)=>n+r.n,0),reasons,total,jumps,warmOK:checks.every(Boolean)};
+  }
+  function metrics(p,points=formation(p),id=state.venue) {
+    const v=VENUES[id];
+    let closest=Infinity,pair=[0,1];
+    const collisions=[];
+    points.forEach((a,i)=>points.slice(i+1).forEach((b,jj)=> {
+      const j=i+jj+1,d=Math.hypot(a.x-b.x,a.z-b.z);
+      if(d<closest) {closest=d;pair=[i,j];}
+      if(d<1.5-1e-7) collisions.push([i,j]);
+    }));
+    const inside=points.map(a=>Math.abs(a.x)<=v.w/2-.75+1e-7&&a.z>=.75-1e-7&&a.z<=v.d-.75+1e-7);
+    const sight=visibility(points,p,id),risk=safety(id),seen=sight.filter(a=>a.ok).length;
+    return {inside,fit:inside.filter(Boolean).length,closest,pair,collisions,sight,seen,risk,
+      ok:inside.every(Boolean)&&closest>=1.5-1e-7&&seen===9&&risk.points<=1&&risk.warmOK};
+  }
+  function sprinklerClear(id) {
+    const phrases=[0,1,2,3].map(p=>formation(p,id));
+    for(let p=0;p<3;p++) for(let i=0;i<6;i++) {
+      const a=phrases[p][i],b=phrases[p+1][i],dx=b.x-a.x,dz=b.z-a.z;
+      const length=dx*dx+dz*dz;
+      const u=length?Math.max(0,Math.min(1,((3-a.x)*dx+(2.5-a.z)*dz)/length)):0;
+      if(Math.hypot(a.x+u*dx-3,a.z+u*dz-2.5)<.75-1e-7) return false;
+    }
+    return true;
+  }
+  function notes(id=state.venue) {
+    const d=state.data[id];
+    if(id==='gym') return [d.swaps[1]||(d.warm.includes(3)&&d.warm.includes(4)),d.spread[1]>=1.3,!d.swaps[2]];
+    if(id==='park') return [d.tempo<=95,d.swaps[2],sprinklerClear(id)];
+    const m=metrics(3,formation(3,id),id);
+    return [d.swaps[3]&&m.fit===6&&m.closest>=1.5-1e-7,!d.swaps[1],
+      [0,1,2,3].every(p=>metrics(p,formation(p,id),id).seen===9)];
+  }
+  function ready(id=state.venue) {
+    return notes(id).every(Boolean)&&[0,1,2,3].every(p=>metrics(p,formation(p,id),id).ok);
+  }
+  function controls() {
+    const d=data(),p=state.phrase;
+    $('spread').value=d.spread[p];
+    $('spreadVal').textContent=d.spread[p].toFixed(2)+'×';
+    $('phraseLabel').textContent='· '+(p+1);
+    $('tempo').value=d.tempo;
+    $('tempoVal').textContent=d.tempo+'% · '+(112*d.tempo/100).toFixed(1)+' bpm';
+    for(let i=0;i<4;i++) {
+      $('front-'+i).setAttribute('aria-pressed',d.front===i);
+      $('phrase-'+i).setAttribute('aria-pressed',p===i);
+      $('phrase-'+i).disabled=state.running;
+    }
+    const labels=['Arms and turns · fixed','Jumps to relevés','Floor work to middle level','Diagonal to split diagonal'];
+    $('swap').textContent=p===0?labels[0]:(d.swaps[p]?'✓ ':'↔ ')+labels[p];
+    $('swap').setAttribute('aria-pressed',d.swaps[p]);
+    $('swap').disabled=p===0;
+    $('run').textContent=state.running?'■ Stop':'▶ Run';
+  }
+  function lights(m) {
+    const vals={fit:[m.fit===6,m.fit+' of 6'],spacing:[m.closest>=1.5-1e-7,m.closest.toFixed(2)+' m'],
+      seen:[m.seen===9,m.seen+' of 9 seats'],
+      safety:[m.risk.points<=1&&m.risk.warmOK,
+        m.risk.points+' · '+(!m.risk.warmOK&&m.risk.points<=1?'Prep':m.risk.points<=1?'Low':m.risk.points<4?'Medium':'High')]};
+    for(const [key,[ok,val]] of Object.entries(vals)) {
+      $('light-'+key).classList.toggle('amber',!ok);
+      $(key+'Val').textContent=(ok?'✓ ':'! ')+val;
+    }
+    $('light-safety').title=!m.risk.warmOK?'Warm-up incomplete. Open Warm up to fix the amber checks.':
+      m.risk.points>=4?'Stop and fix this first':'Risk points for the whole piece, not injury probability';
+  }
+  function drawNotes() {
+    const checked=notes();
+    lastNoteStatus=checked;
+    $('notes').innerHTML=venue().notes.map((n,i)=>'<li class="'+(checked[i]?'met':'')+'">'+n+'</li>').join('');
+  }
+  const audienceRenderer={
+    paintedPoses:PAINTED_POSES,
+    snapshot() { return figures.map(d=>({x:d.x,z:d.z,facing:d.facing})); },
+    setup() {
+      $('audienceSvg').replaceChildren();
+      floor=Dance.floor($('audienceSvg'),'square',{backdrop:ART[state.venue],dancerFrac:.26});
+      figures=Array.from({length:6},()=> {
+        const g=mk('g',{},floor.layers.actors);
+        const shadow=mk('ellipse',{fill:'#050b12',opacity:.3},g);
+        const sprite=mk('svg',{overflow:'hidden',preserveAspectRatio:'none'},g);
+        const image=mk('image',{width:1086,height:1448},sprite);
+        return {g,shadow,sprite,image,x:0,z:0,facing:0};
+      });
+      this.resize();
+    },
+    resize() {
+      if(!floor) return;
+      const r=$('audience').getBoundingClientRect(),w=Math.max(50,r.width),h=Math.max(50,r.height);
+      $('audienceSvg').setAttribute('viewBox',`0 0 ${w} ${h}`);
+      floor.resize(w,h,{x0:w*.08,x1:w*.92,yBack:h*.36,yFront:h*.94});
+      const poly=floor.layers.floor.querySelector('polygon');
+      if(poly) poly.setAttribute('fill',state.venue==='park'?'#567443':state.venue==='gym'?'#af8c62':'#33383f');
+      floor.layers.floor.querySelectorAll('line').forEach(e=>e.setAttribute('opacity','.2'));
+    },
+    draw(points,p,phase=0) {
+      if(!floor) return;
+      const d=data(),v=venue();
+      points.map((a,i)=>({a,i})).sort((a,b)=>b.a.z-a.a.z).forEach(({a,i})=> {
+        const actor=figures[i];
+        actor.x=50+a.x/v.w*78;
+        actor.z=52-a.z/v.d*43;
+        actor.facing=d.front*90+(p===0&&state.running?Math.floor(phase/2)*90:0);
+        const quarter=((Math.round(actor.facing/90)%4)+4)%4;
+        const facing=quarter===0?'front':quarter===2?'back':'right';
+        const row=p===0?0:p===1?(d.swaps[1]?2:state.running&&Math.floor(phase)%2===0?0:1):
+          p===2?(d.swaps[2]?4:3):4;
+        const cell=PAINTED_CELLS[facing][row][i];
+        const standing=PAINTED_CELLS[facing][0][i][3];
+        const scale=floor.scale(actor.z)*22/standing;
+        const width=cell[2]*scale,height=cell[3]*scale;
+        const pt=floor.map(actor.x,actor.z);
+        const lift=p===1&&row===1?floor.scale(actor.z)*2:0;
+        const sway=p===3&&state.running&&!Curio.reduce?Math.sin((phase-i*.35)*Math.PI)*2:0;
+        actor.g.setAttribute('transform',`translate(${pt.x+sway} ${pt.y})`);
+        actor.shadow.setAttribute('rx',width*.22);
+        actor.shadow.setAttribute('ry',Math.max(1,width*.045));
+        actor.sprite.setAttribute('x',-width/2);
+        actor.sprite.setAttribute('y',-height-lift);
+        actor.sprite.setAttribute('width',width);
+        actor.sprite.setAttribute('height',height);
+        actor.sprite.setAttribute('viewBox',cell.join(' '));
+        actor.image.setAttribute('href',PAINTED_POSES[facing]);
+        actor.sprite.setAttribute('transform',quarter===3?'scale(-1 1)':'');
+        floor.layers.actors.append(actor.g);
+      });
+    }
+  };
+  function drawPlan(points,p,m) {
+    const svg=$('plan'),r=$('planSpace').getBoundingClientRect(),w=r.width,h=r.height,v=venue();
+    if(w<10||h<10) return;
+    lastPlanPoints=points.map(a=>({...a}));
+    svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
+    if(!planLayout||planLayout.w!==w||planLayout.h!==h||planLayout.venue!==state.venue) {
+      const focused=document.activeElement?.id;
+      svg.replaceChildren();
+      const all=[0,1,2,3].flatMap(i=>formation(i));
+      const extentX=Math.max(v.w/2,...all.map(a=>Math.abs(a.x)))+.4;
+      const minZ=Math.min(0,...all.map(a=>a.z))-.3,maxZ=Math.max(v.d,...all.map(a=>a.z))+.3;
+      const usable=w*.72,k=Math.min((usable-28)/(2*extentX),(h-66)/(maxZ-minZ)),cx=usable/2+6;
+      const top=Math.max(25,(h-(maxZ-minZ)*k-35)/2)-minZ*k,left=cx-v.w*k/2;
+      planLayout={w,h,k,cx,top,left,venue:state.venue};
+      const defs=mk('defs',{},svg),gradient=mk('linearGradient',{id:'floor-grad',x1:0,y1:0,x2:1,y2:1},defs);
+      mk('stop',{offset:0,'stop-color':state.venue==='park'?'#385d43':state.venue==='gym'?'#7c654b':'#333f50'},gradient);
+      mk('stop',{offset:1,'stop-color':state.venue==='park'?'#263d35':state.venue==='gym'?'#423c35':'#1e2735'},gradient);
+      const bg=mk('g',{},svg);
+      mk('rect',{x:left-4,y:top-4,width:v.w*k+8,height:v.d*k+8,rx:3,fill:'#0b111b',stroke:'#6f8192'},bg);
+      mk('rect',{x:left,y:top,width:v.w*k,height:v.d*k,fill:'url(#floor-grad)'},bg);
+      mk('image',{href:ART[v.swatch],x:left,y:top,width:v.w*k,height:v.d*k,
+        preserveAspectRatio:'none',opacity:state.venue==='theater'?.35:.22},bg);
+      for(let x=0;x<=v.w;x++) mk('line',{x1:left+x*k,y1:top,x2:left+x*k,y2:top+v.d*k,
+        stroke:'#d2dfd8','stroke-opacity':.1},bg);
+      for(let z=0;z<=v.d;z++) mk('line',{x1:left,y1:top+z*k,x2:left+v.w*k,y2:top+z*k,
+        stroke:'#d2dfd8','stroke-opacity':.1},bg);
+      mk('rect',{x:left+.75*k,y:top+.75*k,width:(v.w-1.5)*k,height:(v.d-1.5)*k,fill:'none',
+        stroke:'#a7e34b','stroke-dasharray':'6 4','stroke-width':1.5},bg);
+      for(const x of [left+.75*k,left+(v.w-.75)*k]) for(const y of [top+.75*k,top+(v.d-.75)*k]) {
+        mk('rect',{x:x-3,y:y-3,width:6,height:6,fill:'#c4ec8a',stroke:'#405b25'},bg);
+      }
+      text(bg,cx,top-11,v.w+' × '+v.d+' m',{'text-anchor':'middle','font-size':w<600?10:13});
+      if(state.venue==='park') {
+        const x=cx+3*k,y=top+(v.d-2.5)*k;
+        mk('circle',{cx:x,cy:y,r:.75*k,fill:'#ff7a6b15',stroke:'#ffae91','stroke-dasharray':'3 3'},bg);
+        mk('circle',{cx:x,cy:y,r:Math.max(4,k*.13),fill:'#d3dbca',stroke:'#172721','stroke-width':2},bg);
+        text(bg,x+7,y-6,'sprinkler',{'font-size':10,fill:'#ffe1b0'});
+      }
+      if(state.venue==='gym') mk('rect',{x:left-10,y:top-9,width:6,height:13,rx:2,fill:'#b0bbc3',stroke:'#e4ebee'},bg);
+      if(state.venue==='theater') for(const x of [left-k,left+v.w*k+2]) {
+        mk('rect',{x,y:top,width:k-2,height:v.d*k,fill:'#090e17',opacity:.7},bg);
+      }
+      mk('g',{id:'seatLayer'},svg);
+      mk('g',{id:'collisionLayer'},svg);
+      const layer=mk('g',{id:'tokenLayer'},svg);
+      for(let i=0;i<6;i++) {
+        const g=mk('g',{id:'dancer-'+i,role:'button',tabindex:0,'aria-label':'Inspect dancer '+(i+1),style:'cursor:pointer'},layer);
+        mk('circle',{r:23,fill:'transparent'},g);
+        mk('ellipse',{cx:2,cy:4,rx:14,ry:12,fill:'#000',opacity:.3,class:'token-shadow'},g);
+        mk('circle',{r:13,fill:'#f2f5fa',stroke:'#bdc6d4','stroke-width':1.5,class:'disc'},g);
+        mk('path',{d:'M -4 10 L 0 16 L 4 10',fill:'#a7e34b',class:'facingMark'},g);
+        text(g,0,5,i+1,{'text-anchor':'middle','font-size':14,fill:'#121a2b','font-weight':850});
+        g.addEventListener('click',e=> {
+          let chosen=i;
+          if(e.detail&&planLayout) {
+            const r=svg.getBoundingClientRect(),l=planLayout;
+            const x=(e.clientX-r.x)*l.w/r.width,y=(e.clientY-r.y)*l.h/r.height;
+            const near=lastPlanPoints.map((a,j)=>({j,d:Math.hypot(x-l.cx-a.x*l.k,y-l.top-(venue().d-a.z)*l.k)}));
+            chosen=near.sort((a,b)=>a.d-b.d)[0].j;
+          }
+          inspectDancer(chosen);
+          $('dancer-'+chosen)?.focus({preventScroll:true});
+        });
+        g.addEventListener('keydown',e=> {
+          if(e.key==='Enter'||e.key===' ') {e.preventDefault();inspectDancer(i);}
+        });
+      }
+      if(focused?.startsWith('dancer-')) $(focused)?.focus({preventScroll:true});
+    }
+    const {k,cx,top,left}=planLayout,pos=a=>[cx+a.x*k,top+(v.d-a.z)*k];
+    $('seatLayer').replaceChildren();
+    m.sight.forEach((a,i)=> {
+      const sx=left+(i%3+.5)*v.w*k/3,sy=top+v.d*k+9+Math.floor(i/3)*8;
+      const g=mk('g',{},$('seatLayer'));
+      mk('rect',{x:sx-4,y:sy,width:8,height:5,rx:1,fill:a.ok?'#a7e34b':'#ffc476'},g);
+      mk('path',{d:`M${sx-5} ${sy+6}v-7h10v7`,fill:'none',stroke:'#7f8ba3','stroke-width':1.2},g);
+      mk('title',{},g).textContent=a.label+': eye '+a.eye+' m; '+(a.ok?'sees all six':'hidden '+a.hidden.join(', '));
+    });
+    $('collisionLayer').replaceChildren();
+    m.collisions.forEach(([i,j])=> {
+      const a=pos(points[i]),b=pos(points[j]);
+      mk('ellipse',{cx:(a[0]+b[0])/2,cy:(a[1]+b[1])/2,rx:Math.max(20,Math.abs(a[0]-b[0])/2+16),
+        ry:Math.max(19,Math.abs(a[1]-b[1])/2+16),fill:'#ff7a6b13',stroke:'#ff7a6b','stroke-width':2},$('collisionLayer'));
+    });
+    if(m.collisions.length) text($('collisionLayer'),cx,top+v.d*k-5,'too close',{'text-anchor':'middle',fill:'#ffb2a8'});
+    points.forEach((a,i)=> {
+      const [x,y]=pos(a),g=$('dancer-'+i);
+      const radius=Math.min(13,Math.max(5.8,m.closest*k*.42)),font=Math.max(10.2,14*radius/13);
+      g.setAttribute('transform',`translate(${x} ${y})`);
+      g.querySelector('.disc').setAttribute('r',radius);
+      g.querySelector('.disc').setAttribute('stroke',!m.inside[i]?'#ff7a6b':state.selected===i?'#a7e34b':'#bdc6d4');
+      g.querySelector('.disc').setAttribute('stroke-width',state.selected===i?4:2);
+      g.querySelector('.token-shadow').setAttribute('rx',radius+1);
+      g.querySelector('.token-shadow').setAttribute('ry',radius*.8);
+      g.querySelector('text').setAttribute('font-size',font);
+      g.querySelector('text').setAttribute('y',font*.35);
+      g.querySelector('.facingMark').setAttribute('transform',`rotate(${-data().front*90}) scale(${radius/13})`);
+    });
+  }
+  function inspectDancer(i) {
+    state.selected=i;
+    const pts=lastPlanPoints.length===6?lastPlanPoints:formation(state.phrase),a=pts[i];
+    const near=pts.map((b,j)=>({j,dist:j===i?Infinity:Math.hypot(a.x-b.x,a.z-b.z)})).sort((a,b)=>a.dist-b.dist)[0];
+    $('dancerInfo').textContent=`Dancer ${i+1}: x ${a.x.toFixed(2)}, z ${a.z.toFixed(2)} m. Closest: ${near.j+1}, ${near.dist.toFixed(2)} m.`;
+    Curio.tone(540,.05,.05);
+    if(!state.running) draw();
+  }
+  function draw(points=formation(state.phrase),phase=0) {
+    if(state.mode!=='adapt') return;
+    const m=metrics(state.phrase,points);
+    lights(m);
+    drawPlan(points,state.phrase,m);
+    audienceRenderer.draw(points,state.phrase,phase);
+    if(state.selected===null) {
+      const seat=m.sight.find(s=>!s.ok);
+      $('dancerInfo').textContent=(m.risk.points>=4?'Stop and fix this first. ':!m.risk.warmOK?'Open Warm up: prep incomplete. ':'')+
+        (seat?'Seat '+seat.label+' loses dancer '+seat.hidden[0]+'. ':'All nine sample seats see all six. ')+
+        'Tap a dancer to inspect spacing.';
+    }
+    lastMetrics=m;
+  }
+  function showScout() {
+    const v=venue();
+    const scene=$('scout').getBoundingClientRect();
+    $('p-scout').classList.toggle('has-fact',state.hotspot!==null);
+    $('venuePainting').src=ART[state.venue];
+    $('venuePainting').alt='Empty '+v.name.toLowerCase()+', painted wide view of the performing space';
+    $('scoutName').textContent=v.name;
+    $('scoutSub').textContent=v.w+' × '+v.d+' m · '+v.temp+' °C · six dancers';
+    $('stopNo').textContent='0'+(Object.keys(VENUES).indexOf(state.venue)+1);
+    $('sheetTitle').textContent=v.name+' / '+v.w+' × '+v.d+' m';
+    $('sheet').innerHTML='<dt>Surface</dt><dd>'+v.surface+'</dd><dt>Audience</dt><dd>'+v.audience+'</dd><dt>Air</dt><dd>'+v.temp+' °C</dd>';
+    for(let i=0;i<5;i++) {
+      $('hot-'+i).style.left=Math.max(8,Math.min(scene.width-60,scene.width*v.hot[i][0]/100))+'px';
+      $('hot-'+i).style.top=Math.max(110,Math.min(Math.max(110,scene.height-125),scene.height*v.hot[i][1]/100))+'px';
+      if(scene.width<600&&state.venue==='theater'&&i===4) $('hot-'+i).style.top='110px';
+      $('hot-'+i).setAttribute('aria-pressed',state.hotspot===i);
+    }
+    $('hotFact').textContent=state.hotspot===null?'Tap a numbered ring to investigate this space.':v.facts[state.hotspot];
+    $('swatch').hidden=state.hotspot!==0;
+    if(state.hotspot===0) $('swatch').src=ART[v.swatch];
+  }
+  function warmChecks() {
+    const d=data(),r=safety(),required=venue().temp<15?12:10;
+    return [[d.warm[0]===0,'Start with Pulse raiser'],[r.total>=required,`At least ${required} minutes for ${venue().temp} °C`],
+      [d.warm.includes(2),'Include Dynamic stretches'],[!r.jumps||d.warm.includes(3),'Feet and calves if the piece jumps'],
+      [!d.warm.includes(5),'Save Long static holds for the cool-down']];
+  }
+  function placeWarmList() {
+    const mobile=matchMedia('(max-width:600px)').matches;
+    const parent=mobile?$('warm'):$('p-warm'),list=$('warmList');
+    if(list.parentElement===parent) return;
+    const focus=document.activeElement?.id;
+    if(mobile) $('blockMenu').after(list); else parent.insertBefore(list,$('riskDetail'));
+    if(focus) $(focus)?.focus({preventScroll:true});
+  }
+  function showWarm() {
+    placeWarmList();
+    const d=data(),v=venue(),r=safety();
+    $('conditions').textContent=v.name+' · '+v.temp+' °C · '+v.surface+'. Piece: arms and turns, '+
+      (r.jumps?'jumps':'relevés')+', '+(d.swaps[2]?'middle level':'floor work')+' and traveling.';
+    $('warmTotal').textContent=r.total+' / 15 min';
+    $('barTotal').textContent=r.total+' min'+(r.total>15?' · '+(r.total-15)+' over plan':'');
+    const short=['Pulse','Joints','Dynamic','Feet','Key moves','Holds'];
+    $('warmbar').innerHTML=d.warm.length?d.warm.map(i=>'<div class="chunk" style="flex:'+BLOCKS[i][1]+'" title="'+BLOCKS[i][0]+'">'+
+      short[i]+'<br>'+BLOCKS[i][1]+' min</div>').join(''):'<span class="empty">Add your first block below.</span>';
+    if(r.total<15&&d.warm.length) {
+      const rest=document.createElement('div');
+      rest.style.flex=15-r.total;
+      $('warmbar').append(rest);
+    }
+    const scale=Math.max(15,r.total);
+    $('warmbar').style.setProperty('--tick',(100/scale)+'%');
+    if(r.total>15) {
+      const marker=document.createElement('div');
+      marker.className='target-marker';
+      marker.style.left=(1500/scale)+'%';
+      marker.title='15-minute planning target';
+      $('warmbar').append(marker);
+    }
+    $('warmChecks').innerHTML=warmChecks().map(([ok,t])=>'<li class="'+(ok?'pass':'')+'">'+(ok?'✓ ':'! ')+t+'</li>').join('');
+    $('riskDetail').textContent='Safety: '+r.points+' point'+(r.points===1?'':'s')+'. '+(r.points>=4?'Stop and fix this first. ':'')+
+      (r.reasons.length?r.reasons.map(a=>a.t+' +'+a.n).join('; '):'No added risk points.');
+    for(let i=0;i<6;i++) $('block-'+i).setAttribute('aria-pressed',d.warm.includes(i));
+    const focus=document.activeElement?.id;
+    $('warmList').innerHTML=d.warm.map((i,n)=>'<div class="warm-item" data-block="'+i+'">'+
+      '<strong>'+(n+1)+'. '+BLOCKS[i][0]+'</strong><button id="up-'+i+'" aria-label="Move '+BLOCKS[i][0]+' earlier">↑</button>'+
+      '<button id="down-'+i+'" aria-label="Move '+BLOCKS[i][0]+' later">↓</button></div>').join('');
+    d.warm.forEach((i,n)=> {
+      $('up-'+i).onclick=()=>reorder(n,-1);
+      $('down-'+i).onclick=()=>reorder(n,1);
+      const row=$('up-'+i).parentElement;
+      row.onpointerdown=e=> {
+        if(e.target.closest('button')) return;
+        dragBlock={id:i,y:e.clientY,moved:false};
+        row.setPointerCapture(e.pointerId);
+      };
+      row.onpointermove=e=> {
+        if(!dragBlock||dragBlock.id!==i) return;
+        if(Math.abs(e.clientY-dragBlock.y)>6) {
+          dragBlock.moved=true;
+          row.style.borderColor='#a7e34b';
+        }
+      };
+      row.onpointerup=e=> {
+        if(!dragBlock) return;
+        const target=document.elementFromPoint(e.clientX,e.clientY)?.closest('.warm-item');
+        const from=d.warm.indexOf(dragBlock.id),to=target?d.warm.indexOf(Number(target.dataset.block)):-1;
+        const moved=dragBlock.moved;
+        dragBlock=null;
+        row.style.borderColor='';
+        if(row.hasPointerCapture(e.pointerId)) row.releasePointerCapture(e.pointerId);
+        if(moved&&from>=0&&to>=0&&from!==to) {
+          d.warm.splice(to,0,d.warm.splice(from,1)[0]);
+          changed();
+        }
+      };
+      row.onpointercancel=()=>{dragBlock=null;row.style.borderColor='';};
+    });
+    if(focus&&/^(up|down)-/.test(focus)) $(focus)?.focus({preventScroll:true});
+  }
+  function reorder(n,delta) {
+    const a=data().warm,to=n+delta;
+    if(to<0||to>=a.length) {Curio.tone(210,.06,.03);return;}
+    [a[n],a[to]]=[a[to],a[n]];
+    changed();
+  }
+  function changed() {
+    const before=lastMetrics,previousNotes=lastNoteStatus,rev=++state.revision;
+    planLayout=null;
+    data().runResult=null;
+    if(!state.running) $('count').textContent='32 counts';
+    if([L.tooClose,L.noteMet,L.venueReady].includes(V.playing)) V.hush(); else V.dropQueued();
+    save();
+    Curio.tone(380+data().spread[state.phrase]*130,.045,.025);
+    controls();
+    drawNotes();
+    if(state.mode==='warm') showWarm();
+    if(state.running) runFrame(clock.pos,true); else draw();
+    hint(state.running?'Run in progress. Change Spread, Tempo or Swaps live. Press Stop to pause the rehearsal.':
+      state.mode==='warm'?L.warmNext:L.inspect);
+    if(state.running) return;
+    const valid=()=>state.revision===rev&&!state.running,m=metrics(state.phrase);
+    if(before&&before.closest>=1.5-1e-7&&m.closest<1.5-1e-7) V.say('tooClose',{valid,now:true});
+    notes().forEach((ok,i)=> {
+      const key='note-'+state.venue+'-'+i;
+      if(ok&&previousNotes&&!previousNotes[i]&&!V.heard(key)) {
+        V.say('noteMet',{key,valid});
+      }
+    });
+    if(ready()) {
+      hint('All four phrases and all three notes work here. Press Run to rehearse, or choose the next venue.');
+      V.say('venueReady',{valid});
+    }
+    const warm=data().warm,at=warm.indexOf(5);
+    if(state.mode==='warm'&&at>=0&&warm[at+1]===4) V.how('staticHow',{valid});
+  }
+  function setMode(m,force=false) {
+    if(!['scout','adapt','warm'].includes(m)) return;
+    if(state.mode===m&&!force) return;
+    stopRun(false);
+    V.hush();
+    state.mode=m;
+    document.body.dataset.mode=m;
+    state.revision=0;
+    for(const id of ['scout','adapt','warm']) {
+      $(id).hidden=id!==m;
+      $('p-'+id).hidden=id!==m;
+      $('m-'+id).setAttribute('aria-pressed',id===m);
+    }
+    if(m==='scout') hint(state.hotspot===null?L.welcomeScout:L.scoutNext);
+    if(m==='adapt') hint(L.welcomeAdapt);
+    if(m==='warm') hint(data().warm.length?L.warmNext:L.welcomeWarm);
+    if(m==='scout') showScout();
+    if(m==='warm') showWarm();
+    if(m==='adapt') {
+      $('planTitle').textContent='Six Lanterns / '+venue().name;
+      $('count').textContent=data().runResult?'Last run complete':'32 counts';
+      controls();
+      drawNotes();
+      planLayout=null;
+      audienceRenderer.setup();
+      draw();
+    }
+    if(!V.welcome()&&m==='warm'&&data().warm.length) V.how('warmNext',{valid:()=>state.mode==='warm'});
+  }
+  function setVenue(id) {
+    if(state.venue===id&&state.mode==='scout') return;
+    stopRun(false);
+    V.hush();
+    state.venue=id;
+    lastNoteStatus=notes(id);
+    state.phrase=0;
+    state.hotspot=null;
+    state.selected=null;
+    lastMetrics=null;
+    $('dancerInfo').textContent='Tap a dancer for its position and closest neighbor.';
+    for(const key of Object.keys(VENUES)) $('v-'+key).setAttribute('aria-pressed',id===key);
+    for(let i=0;i<4;i++) $('phrase-'+i).classList.remove('failed');
+    setMode('scout',true);
+    Curio.tone(470,.08,.04);
+  }
+  function selectPhrase(p) {
+    if(state.running) return;
+    if(V.playing===L.tooClose) V.hush();
+    state.phrase=p;
+    state.selected=null;
+    controls();
+    V.dropQueued();
+    hint(L.inspect);
+    draw();
+    Curio.tone(480+p*80,.055,.04);
+  }
+  const runFailures=new Set();
+  const runIssues={fit:new Set(),spacing:new Set(),seen:new Set()};
+  function runFrame(pos,force=false) {
+    if(!state.running||(performance.now()-lastDraw<30&&!force)) return;
+    lastDraw=performance.now();
+    if(pos<0) {$('count').textContent='Ready '+Math.min(4,Math.floor(pos+5));return;}
+    if(pos>=35) {stopRun(true);return;}
+    const p=Math.min(3,Math.floor(pos/9)),local=pos-p*9;
+    if(state.phrase!==p) {state.phrase=p;controls();}
+    state.count=Math.min(8,Math.floor(local)+1);
+    $('count').textContent=local>8&&p<3?'Travel '+(p+1)+' to '+(p+2):NAMES[p].split(' ')[0]+' '+state.count+'/8';
+    let pts=formation(p);
+    if(local>8&&p<3) {
+      const next=formation(p+1),u=(1-Math.cos(Math.PI*(local-8)))/2;
+      pts=pts.map((a,i)=>({x:a.x+(next[i].x-a.x)*u,z:a.z+(next[i].z-a.z)*u}));
+    }
+    const m=metrics(p,pts);
+    if(m.fit!==6) runIssues.fit.add(p);
+    if(m.closest<1.5-1e-7) runIssues.spacing.add(p);
+    if(m.seen!==9) runIssues.seen.add(p);
+    if(!m.ok) {runFailures.add(p);$('phrase-'+p).classList.add('failed');}
+    draw(Curio.reduce?formation(p):pts,Curio.reduce?Math.floor(local):local);
+  }
+  function startRun() {
+    V.hush();
+    state.running=true;
+    data().runResult=null;
+    state.phrase=0;
+    state.count=0;
+    runFailures.clear();
+    for(const issues of Object.values(runIssues)) issues.clear();
+    for(let i=0;i<4;i++) $('phrase-'+i).classList.remove('failed');
+    $('read').setAttribute('aria-disabled','true');
+    hint('Run in progress. Change Spread, Tempo or Swaps live. Press Stop to pause the rehearsal.');
+    clock=Dance.clock(112*data().tempo/100,{countIn:4});
+    clock.onFrame(pos=>runFrame(pos));
+    clock.onCount(n=>{if(n>0) Curio.tone(n%9===1?1250:850,.025,.018,'sine');});
+    music=Dance.music({len:8,sub:1,vol:.12,parts:{kick:'X...x...',wood:'..x...x.',
+      bass:[48,null,null,55,53,null,55,null],piano:[60,null,67,null,65,null,62,null]}},clock);
+    clock.start();
+    controls();
+    draw();
+  }
+  function stopRun(finished=false) {
+    if(!state.running) return;
+    clock?.stop();
+    music?.stop();
+    state.running=false;
+    $('read').removeAttribute('aria-disabled');
+    controls();
+    $('count').textContent=finished?'Run complete':'Stopped';
+    if(finished) {
+      const failed=[...runFailures];
+      const passed=Object.fromEntries(Object.entries(runIssues).map(([key,set])=>[key,4-set.size]));
+      data().runResult={failed,passed};
+      hint(failed.length?`Run: ${passed.fit}/4 fit, ${passed.spacing}/4 spaced, ${passed.seen}/4 seen. Tap an amber phrase to inspect it.`:
+        'Run complete. All four phrases passed the lights. Check the notes, then choose the next venue.');
+      if(failed.length) V.how('afterRun',{valid:()=>!state.running});
+      save();
+      if(failed.length) Curio.tone(240,.12,.04); else Curio.yes();
+    }
+    if(!finished) hint(L.inspect);
+    draw();
+  }
+  for(const id of Object.keys(VENUES)) $('v-'+id).onclick=()=>setVenue(id);
+  for(const m of ['scout','adapt','warm']) $('m-'+m).onclick=()=>setMode(m);
+  $('toAdapt').onclick=()=> {
+    setMode('adapt');
+    $('spread').focus({preventScroll:true});
+  };
+  for(let i=0;i<5;i++) $('hot-'+i).onclick=()=> {
+    if(state.hotspot!==i&&V.playing) V.hush();
+    state.hotspot=i;
+    showScout();
+    V.dropQueued();
+    hint(L.scoutNext);
+    V.how('fact-'+state.venue+'-'+i,{valid:()=>state.hotspot===i});
+    Curio.tone(500+i*60,.07,.045);
+  };
+  for(let i=0;i<4;i++) {
+    $('phrase-'+i).onclick=()=>selectPhrase(i);
+    $('front-'+i).onclick=()=>{data().front=i;changed();};
+  }
+  $('spread').oninput=()=>{data().spread[state.phrase]=Number($('spread').value);changed();};
+  $('tempo').oninput=()=> {
+    data().tempo=Number($('tempo').value);
+    if(state.running) {
+      const position=clock.pos;
+      clock.pause();
+      clock.setBpm(112*data().tempo/100);
+      clock.seek(position);
+      clock.resume();
+    }
+    changed();
+  };
+  $('swap').onclick=()=>{const p=state.phrase;if(p) {data().swaps[p]=!data().swaps[p];changed();}};
+  $('run').onclick=()=>state.running?stopRun(false):startRun();
+  $('reset').onclick=()=> {
+    stopRun(false);
+    V.hush();
+    state.data[state.venue]=defaults();
+    $('count').textContent='32 counts';
+    state.phrase=0;
+    state.selected=null;
+    state.revision++;
+    noteSaid[state.venue].clear();
+    save();
+    controls();
+    drawNotes();
+    draw();
+    hint(L.inspect);
+    for(let i=0;i<4;i++) $('phrase-'+i).classList.remove('failed');
+  };
+  BLOCKS.forEach(([name,minutes,desc],i)=> {
+    const b=document.createElement('button');
+    b.id='block-'+i;
+    b.setAttribute('aria-pressed','false');
+    b.innerHTML='<b>'+name+'</b><span>'+minutes+' min · '+desc+'</span>';
+    b.onclick=()=> {
+      const a=data().warm,n=a.indexOf(i);
+      if(n>=0) a.splice(n,1); else a.push(i);
+      changed();
+    };
+    $('blockMenu').append(b);
+  });
+  new ResizeObserver(()=> {
+    if(state.mode!=='adapt') return;
+    planLayout=null;
+    audienceRenderer.resize();
+    if(state.running) runFrame(clock.pos,true); else draw();
+  }).observe($('planSpace'));
+  addEventListener('resize',()=>{
+    if(state.mode==='scout') showScout();
+    if(state.mode==='warm') placeWarmList();
+  });
+  Curio.onMotion(()=>{if(state.mode==='adapt') draw();});
+  Curio.init({clips:"voice:*",rate:.92});
+  $('read').addEventListener('click',e=> {
+    if(state.running) {e.preventDefault();e.stopImmediatePropagation();}
+  },true);
+  setMode('scout',true);
+  window.__tool={state,setMode,setVenue,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},
+    formation,metrics,safety,notes,ready,seats,visibility,changed,selectPhrase,startRun,stopRun,draw,
+    get clock(){return clock;},audienceRenderer};
+})();
+
+</script>
+</body>
+</html>

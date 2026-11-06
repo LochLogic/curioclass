@@ -1,0 +1,39 @@
+{
+  "id": "worry-size-sorter",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Size it. Try a tool. Get help.",
+  "outcome": "Size written worries, practice four coping tools, seek adult help, and plan a week of practice.",
+  "driver": "students",
+  "minutes": "15-30",
+  "modes": [
+    "Sort",
+    "Body clues",
+    "Tools",
+    "My week"
+  ],
+  "grades_label": "Grades 3-5",
+  "sources": [
+    "https://kidshealth.org/en/teens/anxiety.html",
+    "https://health.clevelandclinic.org/box-breathing-benefits",
+    "https://www.cdc.gov/children-mental-health/about/about-anxiety-and-depression-in-children.html",
+    "https://www.webmd.com/balance/what-is-box-breathing",
+    "https://www.nimh.nih.gov/health/publications/children-and-mental-health",
+    "https://www.uofmhealth.org/health-library/ta4146",
+    "https://www.healthlinkbc.ca/healthwise/progressive-muscle-relaxation",
+    "https://www.heretohelp.bc.ca/sites/default/files/healthy-thinking-for-younger-children.pdf",
+    "https://www.youngminds.org.uk/parent/blog/how-to-make-a-worry-box-a-guide-for-parents/",
+    "https://www.justonenorfolk.nhs.uk/media/us1bjpvw/worry-box.pdf",
+    "https://childhelp.org/safe-vs-unsafe-secrets-how-to-talk-to-kids-about-the-difference/",
+    "https://www.esafety.gov.au/sites/default/files/2026-09/secrets-and-surprises-sept-2026.pdf",
+    "https://www.advocatesforyouth.org/wp-content/uploads/2023/07/2.5_Seeking-Help_3Rs2023.pdf",
+    "https://www.missingkids.org/netsmartz",
+    "https://www.justice.gov/usao-ri/file/765166/dl",
+    "https://shapeamerica.org/standards/health/new-he-standards/",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "https://www.redcross.org/take-a-class/swimming/swim-lessons/kids-swim-lessons",
+    "https://www.michigan.gov/mde/services/ed-serv/educator-conduct/abuse-neglect"
+  ],
+  "third_party": [],
+  "updated": "2026-11-06"
+}

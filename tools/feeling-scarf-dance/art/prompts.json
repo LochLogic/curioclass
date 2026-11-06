@@ -1,0 +1,49 @@
+{
+  "house_style": "Warm, richly painted gouache and colored-pencil picture-book art for K-2. Luminous morning light from upper left, tactile brushwork, soft edges and clear silhouettes. No text, letters, numbers or logos.",
+  "assets": [
+    {
+      "name": "hilltop",
+      "prompt": "A wide grassy hilltop under a huge open sky with soft clouds, a few wildflowers at the lower corners, gentle morning light. The hilltop is flat and open in the lower third, with an uninterrupted open center for an animated scarf dance. Layered distant hills, delicate grass and glowing cloud edges. Landscape only, no people, faces or body parts.",
+      "aspect": "16:9",
+      "width": 1500,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "silk",
+      "prompt": "Close-up of smooth pale ivory silk fabric with soft flowing folds and pearl sheen, full frame, even light. A subtle painted textile texture intended to be clipped into a narrow animated ribbon and tinted in code. Gentle broad folds with fine woven detail, no objects, people, faces or body parts.",
+      "aspect": "1:1",
+      "width": 384,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "dancers-rig",
+      "prompt": "A production sprite sheet, exactly three columns by two rows, on perfectly flat pure green #00FF00. Each cell contains one complete child, front view in top row and the SAME child back view in bottom row. Children aged 6 to 8 in modest loose grey-violet short-sleeve shirts, charcoal trousers and soft plum shoes. Left column: slender warm brown skin, straight dark chin-length hair. Center: fuller body, deep brown skin, short natural curls. Right: light warm freckled skin, short red hair, visible athletic below-knee prosthesis on anatomical right leg. All stand in the same neutral rigging pose: arms straight out horizontally, hands relaxed, legs slightly apart. Friendly small natural faces. Full body, all fingers and feet entirely within each cell, generous green separation, absolutely no objects or scarf. Matching gouache and colored-pencil texture, morning light from upper left, soft shading, clear edges. Each row reads as the same three children, never six different children. No text, numbers, labels or borders.",
+      "aspect": "3:2",
+      "width": 1800,
+      "quality": 82,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "rig_note": "One articulated pose per child plus reverse view for turning. Engine joints drive the cutout pieces; not an emotion-to-person mapping.",
+      "despill": true,
+      "registration": {
+        "raw_crop": [
+          38,
+          15,
+          1462,
+          992
+        ],
+        "columns": 3,
+        "rows": 2,
+        "cast": "brown skin straight hair; fuller body dark skin curls; freckled red hair prosthetic right lower leg"
+      },
+      "review": "Front and reverse checked; articulated crops checked in review frames. Owner contact sheet in Scratch."
+    }
+  ]
+}

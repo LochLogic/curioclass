@@ -1,0 +1,341 @@
+{
+  "states": [
+    {
+      "name": "room",
+      "steps": [
+        {
+          "click": "#room-0"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#controls"
+      ]
+    },
+    {
+      "name": "stop",
+      "steps": [
+        {
+          "click": "#room-0"
+        },
+        {
+          "click": "#spot-0"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#controls"
+      ]
+    },
+    {
+      "name": "think",
+      "steps": [
+        {
+          "click": "#room-0"
+        },
+        {
+          "click": "#spot-0"
+        },
+        {
+          "click": "#think"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#controls"
+      ]
+    },
+    {
+      "name": "choose",
+      "steps": [
+        {
+          "click": "#room-0"
+        },
+        {
+          "click": "#spot-0"
+        },
+        {
+          "click": "#think"
+        },
+        {
+          "click": "#act"
+        },
+        {
+          "click": "#choose"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#controls"
+      ]
+    },
+    {
+      "name": "safe",
+      "steps": [
+        {
+          "click": "#room-0"
+        },
+        {
+          "click": "#spot-0"
+        },
+        {
+          "click": "#think"
+        },
+        {
+          "click": "#act"
+        },
+        {
+          "click": "#choose"
+        },
+        {
+          "click": "#option-1"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#controls"
+      ]
+    },
+    {
+      "name": "fix",
+      "steps": [
+        {
+          "click": "#room-0"
+        },
+        {
+          "click": "#spot-0"
+        },
+        {
+          "click": "#think"
+        },
+        {
+          "click": "#act"
+        },
+        {
+          "click": "#choose"
+        },
+        {
+          "click": "#option-1"
+        },
+        {
+          "click": "#check"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#controls"
+      ]
+    },
+    {
+      "name": "who",
+      "steps": [
+        {
+          "click": "#room-0"
+        },
+        {
+          "click": "#spot-0"
+        },
+        {
+          "click": "#think"
+        },
+        {
+          "click": "#act"
+        },
+        {
+          "click": "#choose"
+        },
+        {
+          "click": "#option-1"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#object"
+        },
+        {
+          "click": "#target"
+        },
+        {
+          "click": "#tell"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#controls"
+      ]
+    },
+    {
+      "name": "reveal",
+      "steps": [
+        {
+          "click": "#room-0"
+        },
+        {
+          "click": "#spot-0"
+        },
+        {
+          "click": "#think"
+        },
+        {
+          "click": "#act"
+        },
+        {
+          "click": "#choose"
+        },
+        {
+          "click": "#option-1"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#object"
+        },
+        {
+          "click": "#target"
+        },
+        {
+          "click": "#tell"
+        },
+        {
+          "click": "#who-0"
+        },
+        {
+          "click": "#done"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#controls"
+      ]
+    },
+    {
+      "name": "alarm-hold",
+      "steps": [
+        {
+          "click": "#room-2"
+        },
+        {
+          "click": "#spot-0"
+        },
+        {
+          "click": "#think"
+        },
+        {
+          "click": "#adult"
+        },
+        {
+          "click": "#choose"
+        },
+        {
+          "click": "#option-1"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#tell"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#controls"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "heater-ruler",
+      "steps": [
+        {
+          "click": "#room-2"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#think"
+        },
+        {
+          "click": "#act"
+        },
+        {
+          "click": "#choose"
+        },
+        {
+          "click": "#option-2"
+        },
+        {
+          "click": "#check"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#controls"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "chat-controls",
+      "steps": [
+        {
+          "click": "#room-4"
+        },
+        {
+          "click": "#spot-0"
+        },
+        {
+          "click": "#think"
+        },
+        {
+          "click": "#act"
+        },
+        {
+          "click": "#choose"
+        },
+        {
+          "click": "#option-0"
+        },
+        {
+          "click": "#check"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#controls"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "safety-card",
+      "steps": [
+        {
+          "js": "__tool.state.progress.forEach(p=>{p.done=p.fixed=p.safe=p.told=p.acted=true});__tool.setMode();"
+        },
+        {
+          "click": "#show-card"
+        }
+      ],
+      "keep": [
+        ".safety"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

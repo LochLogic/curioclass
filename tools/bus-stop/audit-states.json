@@ -1,0 +1,49 @@
+{
+  "target": 60,
+  "target_reason": "Check kindergarten controls at 60 pixels. The spec explicitly permits 44 pixels only in the 680x425 preview; classify those leads separately.",
+  "keep": ["#hint"],
+  "states": [
+    {
+      "name": "seat-work",
+      "steps": [{"click": "[data-road='park']"}, {"click": "#cup"}],
+      "keep": ["#floor", "#done", "#cup", "#see-again"]
+    },
+    {
+      "name": "sentence-cards",
+      "steps": [{"click": "[data-road='park']"}, {"click": "#cup", "times": 2}, {"click": "#done"}],
+      "keep": ["#cards", "#floor"]
+    },
+    {
+      "name": "split-ten",
+      "steps": [{"click": "#m-split"}, {"click": "#more", "times": 3}, {"click": "#keep"}],
+      "keep": ["#areas", "#ways", "#keep"]
+    },
+    {
+      "name": "split-small",
+      "steps": [{"click": "#m-split"}, {"click": "#fewer", "times": 5}, {"click": "#keep"},
+        {"click": "[data-kid='0']"}, {"click": "#keep"}],
+      "keep": ["#areas", "#ways", "#keep", "#split-equation"]
+    },
+    {
+      "name": "express-reveal",
+      "steps": [{"click": "#m-express"}, {"click": "#show-me"}, {"wait": 1600}],
+      "keep": ["#five", "#number-tiles"]
+    },
+    {
+      "name": "drive-split",
+      "sizes": ["680x425", "1366x768"],
+      "steps": [
+        {"click": "[data-road='park']"}, {"click": "#cup", "times": 2, "gap": 0.2},
+        {"click": "#done"}, {"click": "[data-card='0']"},
+        {"until": "__tool.state.drive.index === 1", "max": 20000},
+        {"click": "#seat-0"}, {"click": "#done"}, {"click": "[data-card='0']"},
+        {"until": "__tool.state.drive.phase === 'fork'", "max": 20000},
+        {"click": "[data-road='0']"}, {"click": "#cup", "times": 3, "gap": 0.2},
+        {"click": "#done"}, {"click": "[data-card='0']"},
+        {"until": "__tool.state.drive.phase === 'split'", "max": 20000},
+        {"click": "#keep"}, {"click": "[data-kid='0']"}, {"click": "#keep"}
+      ],
+      "keep": ["#split-stage", "#areas", "#ways", "#keep", "#drive-on"]
+    }
+  ]
+}

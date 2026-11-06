@@ -1,0 +1,1264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Worry Size Sorter · Curio Class</title>
+<meta name="description" content="Size thirteen written worries, practice four coping tools, and build a private week goal. Grades 3 to 5. Works offline.">
+<!-- Worry Size Sorter, Curio Class. NHES.S1, NHES.S6, NHES.S7. Students, grades 3-5.
+Sources: spec.md and notes.md. Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+One offline file, no network. Content CC BY 4.0, code MIT. Started from kit/starter/src.html. -->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#fdf7ee; --ink:#2a211a; --muted:#6b5b4c; --line:#ecdcc8; --focus:#2f5bd3;
+  --brand:#9a4a1c; --btn:#793914; --btn-line:#d39165; --head-ink:#fff; --panel:#fff;
+  --small:#2f6e4a; --medium:#8a5a00; --big:#2c4f8f;
+}
+body {height:100dvh; min-height:0; overflow:hidden}
+header {gap:8px; padding:10px 16px}
+h1 {font:700 27px Georgia,serif}
+h1 small {font-size:13px; margin-top:5px}
+.seg button,.icon-btn {min-height:44px; padding:0 11px; font-size:14px}
+.seg {border-radius:13px}
+.seg button[aria-pressed=true] {background:#fff0d3; color:#653110}
+main {grid-template-columns:minmax(0,1fr) 380px; overflow:hidden}
+.stage {min-height:0; isolation:isolate; background:#f8eddb}
+.stage::before {content:''; position:absolute; inset:0; background:url('art:ws-bg') center/cover; opacity:.3; z-index:-2}
+.stage::after {content:''; position:absolute; inset:0; pointer-events:none; z-index:-1;
+  background:radial-gradient(ellipse at 28% 0%,#fff9eaa0,transparent 65%),linear-gradient(transparent 70%,#e4cba570);
+  animation:daylight 12s ease-in-out infinite}
+.panel {gap:10px; padding:17px 20px; border-left:2px solid #d5bfa1; background:#fffcf6}
+#hint {margin:0; min-height:62px; font-size:17px; line-height:1.4; padding:10px 12px;
+  border:1px solid var(--line); border-radius:14px; background:#fff4df}
+#panelContent {display:flex; flex-direction:column; gap:10px}
+h2,h3,p {margin:0}
+h2 {font:700 25px/1.2 Georgia,serif}
+h3 {font-size:17px}
+p {line-height:1.42}
+button {min-height:44px}
+.action {min-height:46px; padding:9px 13px; border:1px solid #cdb79a; border-radius:12px;
+  background:linear-gradient(#fffefb,#f4e8d4); font-weight:700; box-shadow:0 3px 0 #bca17d40}
+.action:hover {filter:brightness(.97)}
+.action:active {transform:translateY(2px)}
+.primary {background:linear-gradient(#ad5a28,#904019); color:#fff; border-color:#85401a}
+button[aria-pressed=true].choice,button[aria-pressed=true].reply-btn {outline:3px solid var(--brand); outline-offset:-3px; background:#ffe6b6}
+.action:disabled {opacity:.5; cursor:default}
+.row {display:flex; gap:7px; flex-wrap:wrap}
+.row>* {flex:1}
+.muted {color:var(--muted); font-size:14px}
+.eyebrow {font-size:12px; letter-spacing:.13em; text-transform:uppercase; font-weight:800; color:var(--brand)}
+.note {padding:12px; background:#f4ebdc; border-radius:13px}
+.privacy {font-size:13px; color:#605143; line-height:1.35; padding-top:8px}
+.sort-world {height:100%; display:flex; flex-direction:column; justify-content:space-evenly; align-items:center; padding:12px 24px 20px}
+.card-stack {position:relative; width:min(380px,76%); flex:none}
+.card-stack::before,.card-stack::after {content:''; position:absolute; inset:5px -4px -5px; z-index:-1;
+  background:#fffcf6; border:1px solid #ccb69a; border-radius:19px; transform:rotate(-4deg)}
+.card-stack::after {transform:rotate(3deg); inset:3px -2px -7px}
+.worry-card {display:block; width:100%; padding:8px; background:#fffdf7; border:1px solid #cbb398;
+  border-radius:18px; box-shadow:0 12px 24px #74502b33; touch-action:none; position:relative; transition:transform .25s,box-shadow .25s}
+.worry-card img {display:block; width:100%; height:175px; object-fit:cover; border-radius:12px}
+.card-text {display:block; font:700 22px/1.27 Georgia,serif; padding:13px 8px 9px; min-height:76px}
+.worry-card.picked {transform:translateY(-8px) rotate(-2deg); box-shadow:0 18px 28px #74502b55; outline:3px solid var(--brand)}
+.worry-card.placed {transform:scale(.94); opacity:.85}
+.card-caption {font-size:12px; color:var(--muted); text-align:center; margin-top:10px; min-height:17px}
+.principle {font-size:15px; text-align:center; padding:8px 0}
+.baskets {width:100%; display:flex; gap:10px; align-items:flex-end; justify-content:center}
+.basket {width:31%; max-width:260px; border:2px solid transparent; border-radius:22px;
+  background:transparent; padding:4px 4px 0; transition:background .15s,transform .2s}
+.basket-art {width:100%; height:132px; object-fit:contain; display:block; filter:drop-shadow(0 9px 5px #79573122)}
+.basket:nth-child(1) .basket-art {transform:scale(.7); transform-origin:bottom}
+.basket:nth-child(2) .basket-art {transform:scale(.85); transform-origin:bottom}
+.basket.over {background:#fff0bc; border-color:var(--brand); transform:translateY(-5px)}
+.basket-label {display:block; padding:8px 6px; border-radius:11px; color:#fff; background:var(--basket); box-shadow:0 4px 0 #0002}
+.basket-label b {display:block; font:700 24px Georgia,serif}
+.meaning {display:block; font-size:13px; line-height:1.25; min-height:34px; padding-top:3px}
+.thumbs {display:flex; height:30px; align-items:center; justify-content:center; gap:2px; margin-top:7px}
+.thumbs img {width:23px; min-width:0; flex-shrink:1; height:22px; object-fit:cover; border:1px solid #fff; border-radius:4px}
+.basket-count {font-size:12px; color:var(--muted); font-weight:700; display:block; min-height:17px}
+.ghost {position:fixed; z-index:30; width:190px; pointer-events:none; opacity:.9; transform:rotate(-6deg)}
+.big-panel {border-left:4px solid var(--big); padding:10px 12px; border-radius:8px; background:#eaf0fa; display:grid; gap:9px}
+.big-panel h3 {color:var(--big)}
+.adult-chips {display:flex; flex-wrap:wrap; gap:4px}
+.adult-chips span {font-size:12px; background:#fff; border:1px solid #c5d3e9; border-radius:20px; padding:5px 8px}
+.ways {font-size:13px; line-height:1.5}
+.kid-world {height:100%; display:grid; place-items:center; padding:16px}
+.kid-wrap {position:relative; height:min(560px,calc(100dvh - 130px)); aspect-ratio:.53; max-width:94%}
+.kid-wrap>img {height:100%; width:100%; object-fit:contain; filter:drop-shadow(0 12px 9px #8b62352a)}
+.body-leaders {display:none; position:absolute; inset:0; width:100%; height:100%; pointer-events:none}
+.body-leaders path {fill:none; stroke:#9a4a1c; stroke-width:2; vector-effect:non-scaling-stroke}
+.hotspot {position:absolute; width:48px; height:48px; border:3px solid var(--brand); border-radius:50%;
+  background:#fff9eae6; color:var(--brand); font-weight:800; box-shadow:0 3px 8px #0002}
+.hotspot[aria-pressed=true] {color:#fff; background:var(--brand)}
+#clue0 {left:42%; top:10%} #clue1 {left:31%; top:28%} #clue2 {left:52%; top:32%}
+#clue3 {left:42%; top:43%} #clue4 {left:20%; top:51%}
+.clue-index {display:flex; gap:5px; flex-wrap:wrap}
+.clue-index span {font-size:12px; border-radius:20px; background:#eee2d0; padding:5px 7px}
+details {border:1px solid #c9d5e6; background:#edf2fa; border-radius:12px; padding:10px}
+summary {min-height:44px; cursor:pointer; font-weight:800; color:var(--big); display:flex; align-items:center}
+.tools-world {height:100%; display:flex; flex-direction:column; gap:8px; padding:15px 24px}
+.worry-context {text-align:center; font-size:14px; min-height:22px}
+.tool-tiles {display:grid; grid-template-columns:repeat(4,1fr); gap:8px; flex:none}
+.tool-tile {border:1px solid #c6ad8a; border-radius:14px; background:#fffcf5; font-size:13px; font-weight:750; padding:7px 4px}
+.tool-icon {font-size:24px; display:block}
+.tool-tile[aria-pressed=true] {background:#ffe6bb; border:3px solid var(--brand); padding:5px 2px}
+.tool-picture {flex:1; min-height:0; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative}
+.breath {width:min(420px,75%); max-height:92%; aspect-ratio:1; position:relative}
+.breath svg {display:block; width:100%; height:100%; overflow:visible}
+.breath-label {position:absolute; inset:0; display:grid; place-content:center; text-align:center; pointer-events:none; gap:6px}
+.breath-label strong {font:700 30px Georgia,serif}
+.breath-label b {font-size:68px; line-height:1.1; color:var(--brand)}
+.breath-label small {font-size:14px}
+.breath-label.check-in b {font-size:42px; letter-spacing:.03em}
+.breath-label.check-in small {max-width:210px; margin:auto; line-height:1.4}
+.bubble {padding:15px 20px; border-radius:22px; background:#fffdf8; box-shadow:0 5px 14px #7a5d3522;
+  border:1px solid #d8c5aa; font:700 23px/1.3 Georgia,serif; text-align:center; max-width:90%; z-index:1}
+.cloud {width:320px; height:230px; object-fit:contain; animation:drift 5s ease-in-out infinite; transition:width .6s,height .6s}
+.cloud.mid {width:240px; height:180px}
+.cloud.small {width:150px; height:130px}
+.thought-scene {position:absolute; width:80%; height:70%; object-fit:cover; border-radius:50%; opacity:.18; z-index:-1}
+.reply {max-width:90%; font-size:18px; padding:12px 16px; border-radius:18px 18px 18px 3px; background:#e2eddd;
+  border:1px solid #adc7a3; margin-top:10px}
+.squeeze-kid {height:82%; max-width:90%; object-fit:contain}
+.practice-caption {font:700 22px Georgia,serif; margin:8px 0; text-align:center}
+.progress-track {height:12px; background:#e6d6be; border-radius:20px; overflow:hidden; width:80%; margin:8px auto}
+.progress-track>div {height:100%; width:0; background:var(--brand); border-radius:20px}
+.box-picture {height:100%; width:100%; position:relative; display:flex; align-items:flex-end; justify-content:center; padding-bottom:12px}
+.box-picture img {width:min(480px,90%); max-height:62%; object-fit:contain; filter:drop-shadow(0 12px 9px #77552a33)}
+.slip {position:absolute; top:7%; left:20%; width:60%; padding:22px 15px; background:linear-gradient(135deg,#fffefb,#e8ddc6);
+  border:1px solid #cdbb98; box-shadow:0 7px 12px #0002; font-size:20px; text-align:center; transition:transform .8s,opacity .7s; z-index:2}
+.slip.folded {transform:scale(.45,.5) rotate(8deg)}
+.slip.boxed {transform:translateY(200%) scale(.1); opacity:0}
+.steps {display:flex; gap:6px; align-items:center; font-size:12px; color:var(--muted)}
+.steps span {flex:1; padding:8px 4px; border-bottom:3px solid #e0cfb6; text-align:center}
+.steps .current {color:var(--brand); font-weight:800; border-color:var(--brand)}
+.meter {display:flex; flex-direction:column-reverse; gap:5px; max-width:220px; margin:0 auto; width:100%;
+  border-left:12px solid #e3c8a2; border-radius:16px; padding-left:8px}
+.meter button {min-height:44px; border-radius:9px; border:1px solid #bca788; background:#fff; text-align:left; padding:5px 12px}
+.meter button.chosen {background:#f5d8a9; outline:3px solid var(--brand); font-weight:800}
+.meter b {display:inline-block; width:25px; font-size:20px}
+.talk-answers {display:grid; gap:7px}
+.talk-answers button {text-align:left; font-size:14px}
+.talk-answers small {display:block; color:var(--brand); font-weight:800; margin-bottom:3px}
+select {min-height:44px; width:100%; font:inherit; border-radius:10px; background:#fff; color:var(--ink); padding:6px; border:1px solid #bca788}
+.week-world {height:100%; padding:22px 28px; display:flex; flex-direction:column; gap:14px; justify-content:center}
+.builder {background:#fffdf6e8; border:1px solid #d9c4a4; border-radius:22px; padding:20px; box-shadow:0 12px 20px #8e6b3c20;
+  display:flex; flex-direction:column; gap:14px}
+.builder h2 {font-size:28px}
+.choice-row {display:grid; grid-template-columns:repeat(4,1fr); gap:7px}
+.choice {padding:8px; border:1px solid #cdb798; border-radius:12px; background:#fffaf0; font-size:14px; font-weight:650}
+.choice img {width:100%; height:70px; object-fit:cover; border-radius:8px; display:block; margin-bottom:5px}
+.time-row {grid-template-columns:repeat(3,1fr)}
+.builder label {display:block; font-size:13px; font-weight:800; color:var(--brand); margin-bottom:6px}
+.helps {font-size:11px; display:block; color:var(--small)}
+.goal-card {padding:20px; background:#fffcf4; border:1px solid #d2bd9b; border-radius:18px; box-shadow:0 9px 18px #805a2822}
+.goal-card p {font:700 24px/1.4 Georgia,serif}
+.chart {display:grid; grid-template-columns:repeat(7,1fr); gap:7px; padding:18px 0}
+.day {min-width:0; height:122px; border:1px solid #bba17b; border-radius:14px; background:linear-gradient(#fffefb,#f0e2cb);
+  box-shadow:0 5px 0 #ccb18b; display:flex; flex-direction:column; justify-content:space-around; align-items:center; font-weight:700}
+.day.today {outline:4px solid var(--brand); outline-offset:2px}
+.day .mark {font-size:34px; color:var(--small)}
+.day[aria-pressed=true] {background:#dcead5}
+.day[aria-disabled=true] {background:#efe8dc; color:#6b5b4c}
+.week-count {font:700 25px Georgia,serif; text-align:center}
+.reflection {padding:20px; background:#fffaf0ed; border:1px solid #d1bc9b; border-radius:20px; display:grid; gap:13px}
+.chip-group {display:flex; flex-wrap:wrap; gap:7px}
+.chip-group button {padding:7px 12px; min-height:44px; border:1px solid #bca480; background:#fff; border-radius:18px; font-size:14px}
+.chip-group button[aria-pressed=true] {background:#ffe2ab; outline:3px solid var(--brand); outline-offset:-3px}
+.compact-next {display:none}
+.tool-controls,.result-actions {display:flex; flex-direction:column; gap:7px}
+@keyframes drift {50% {transform:translateY(-8px) rotate(1deg)}}
+@keyframes daylight {50% {opacity:.7}}
+@keyframes settle {0% {transform:translateY(-15px)} 70% {transform:translateY(5px)} 100% {transform:translateY(0)}}
+.settle {animation:settle .6s ease}
+.calm .cloud {animation:none}
+.calm .stage::after {animation:none}
+.calm .worry-card,.calm .slip,.calm .cloud {transition:none}
+@media (max-width:1150px) {
+  header {gap:5px; padding:7px 10px} h1 {font-size:23px}
+  .seg button,.icon-btn {font-size:12px; padding:0 8px}
+  main {grid-template-columns:minmax(0,1fr) 310px}
+  .panel {padding:12px; gap:8px} .sort-world {padding:12px}
+  .worry-card img {height:145px} .card-text {font-size:20px}
+  .builder {padding:14px; gap:10px} .week-world {padding:15px}
+}
+@media (min-width:600px) and (min-height:641px) and (max-height:760px) {
+  .result-actions {display:grid; grid-template-columns:repeat(2,1fr)}
+  .result-actions:has(#backSort) #helps {grid-column:1/-1}
+}
+@media (max-height:640px) and (min-width:600px) {
+  header {padding:5px 9px; gap:5px} h1 {font-size:17px} h1 small {display:none}
+  .seg button {font-size:11px; padding:0 5px}
+  .icon-btn {font-size:11px; padding:0 7px}
+  main {grid-template-columns:minmax(0,1fr) 240px} .panel {padding:8px 4px; gap:6px}
+  #hint {font-size:13px; min-height:50px; padding:7px} #panelContent {gap:7px; font-size:13px}
+  h2 {font-size:20px} h3 {font-size:14px} .muted {font-size:12px} .action {padding:6px 8px; font-size:13px}
+  .sort-world {padding:6px 10px; justify-content:space-around} .card-stack {width:min(290px,80%)}
+  .worry-card {padding:5px; border-radius:12px} .worry-card img {height:85px}
+  .card-text {font-size:16px; padding:7px 5px; min-height:48px} .card-caption {margin-top:6px; font-size:11px}
+  .principle,.meaning {display:none} .basket-art {height:78px} .basket-label {padding:5px}
+  .basket-label b {font-size:19px} .thumbs {height:18px; margin-top:4px} .thumbs img {width:16px; height:15px}
+  .basket-count {font-size:10px; min-height:13px} .big-panel {gap:6px; padding:7px; font-size:12px}
+  .adult-chips span {font-size:10px; padding:3px 5px} .ways {font-size:11px}
+  .tools-world {padding:7px 10px; gap:5px} .worry-context {font-size:11px; min-height:16px}
+  .tool-tile {font-size:10px; padding:3px} .tool-icon {font-size:18px} .tool-name {display:none}
+  .meter {flex-direction:row; border:0; max-width:none; gap:2px; padding:0}
+  .meter button {padding:2px; flex:1; text-align:center; font-size:10px} .meter b {display:block; width:auto; font-size:17px}
+  .steps span {padding:5px 2px; font-size:11px} .breath-label strong {font-size:20px} .breath-label b {font-size:40px}
+  .bubble {font-size:17px; padding:9px 14px} .reply {font-size:14px; padding:7px; margin-top:5px}
+  .cloud {height:130px; width:180px} .cloud.mid {height:95px; width:135px} .cloud.small {height:70px; width:100px}
+  .talk-answers {gap:5px} .talk-answers button {font-size:11px; padding:5px 7px}
+  .practice-caption {font-size:17px; margin:3px} .slip {font-size:15px; padding:12px}
+  .week-world {padding:10px; gap:5px} .builder {padding:12px; gap:8px} .builder h2 {font-size:21px}
+  .builder .build-row {display:none} .builder .build-row.active {display:block}
+  .choice-row {grid-template-columns:repeat(2,1fr)} .choice {font-size:13px; padding:6px}
+  .time-row {grid-template-columns:repeat(3,1fr)} .choice img {height:52px}
+  .compact-next {display:flex; gap:8px} .compact-next button {flex:1}
+  .goal-card {padding:12px} .goal-card p {font-size:17px} .chart {gap:4px; padding:12px 0}
+  .day {height:80px; font-size:12px; border-radius:9px} .day .mark {font-size:24px}
+  .week-count {font-size:20px} .privacy {font-size:11px; padding-top:4px}
+  .reflection {padding:10px; gap:7px} .chip-group {gap:4px} .chip-group button {font-size:11px; padding:5px 7px}
+  .reflection {padding:8px; gap:4px}
+  .reflection .eyebrow {display:none}
+  #nextWorry,#boxDone,.tool-controls,.result-actions {order:-1}
+  .result-actions {display:grid; grid-template-columns:repeat(2,1fr)}
+  .result-actions #helps,.result-actions #anotherTool:last-child {grid-column:auto}
+  .result-actions:has(#backSort) #helps {grid-column:1/-1}
+  .talk-answers~.muted {display:none}
+  .note {padding:7px}
+  .kid-wrap {height:calc(100dvh - 100px)}
+  .body-leaders {display:block}
+  #clue1 {left:10%; top:28%} #clue2 {left:70%; top:34%}
+  #clue3 {left:42%; top:44%} #clue4 {left:0; top:58%}
+}
+@media (max-width:599px) {
+  body {height:100dvh; overflow:auto} header {padding:7px; gap:5px; justify-content:center}
+  h1 {flex:1 0 100%; text-align:center; font-size:23px} h1 small {display:none}
+  .seg {width:100%; display:grid; grid-template-columns:repeat(4,1fr)} .seg button {padding:0 3px; font-size:11px}
+  .icon-btn {flex:1; font-size:12px; padding:0 6px}
+  main {display:flex; flex-direction:column; overflow:visible} .stage {height:350px; flex:none; min-height:0}
+  .panel {overflow:visible; border-left:0; border-top:2px solid #d5bfa1; padding:10px; gap:8px}
+  #hint {min-height:0; font-size:14px} .sort-world {padding:10px; gap:5px} .card-stack {width:250px}
+  .worry-card img {height:100px} .card-text {font-size:17px; min-height:54px; padding:8px 5px}
+  .card-caption {margin-top:4px} .principle,.meaning {display:none} .basket-art {height:65px}
+  .basket-label b {font-size:19px} .basket-label {padding:6px 3px} .thumbs {height:16px; margin:4px 0}
+  .thumbs img {width:13px; height:14px} .basket-count {font-size:10px} .baskets {gap:3px}
+  .tools-world {padding:8px; gap:5px} .tool-tile {font-size:11px; padding:4px 1px}
+  .tool-icon {font-size:20px} .tool-name {display:none} .worry-context {font-size:11px}
+  .meter {max-width:none; flex-direction:row; border:0; gap:4px; padding:0}
+  .meter button {flex:1; padding:3px; text-align:center; font-size:10px} .meter b {display:block; width:auto; font-size:18px}
+  .breath-label strong {font-size:21px} .breath-label b {font-size:40px} .bubble {font-size:17px; padding:10px 12px}
+  .breath {width:180px; max-height:100%}
+  .breath-label.check-in strong {font-size:18px}
+  .breath-label.check-in small {max-width:145px; font-size:12px}
+  .cloud {height:125px; width:180px} .cloud.mid {height:90px; width:130px} .cloud.small {height:65px; width:95px}
+  .reply {font-size:14px; padding:8px; margin-top:4px} .slip {font-size:15px; padding:12px}
+  .week-world {padding:10px; gap:5px} .builder {padding:12px; gap:8px} .builder h2 {font-size:22px}
+  .builder .build-row {display:none} .builder .build-row.active {display:block}
+  .choice-row {grid-template-columns:repeat(2,1fr)} .time-row {grid-template-columns:repeat(3,1fr)} .choice img {height:65px}
+  .compact-next {display:flex; gap:8px} .compact-next button {flex:1}
+  .goal-card {padding:10px} .goal-card p {font-size:16px} .chart {gap:4px; padding:10px 0}
+  .day {height:92px; border-radius:9px; font-size:11px} .day .mark {font-size:24px} .privacy {font-size:11px}
+  .reflection {padding:10px; gap:8px; overflow:auto} .chip-group {gap:4px} .chip-group button {font-size:12px; padding:4px 7px}
+  .week-world:has(.reflection) {justify-content:flex-start}
+  .stage:has(.reflection) {height:395px}
+  .reflection {padding:8px; gap:4px; overflow:visible}
+  .reflection .eyebrow {display:none}
+  .panel:has(#keepNext) #panelContent {display:grid; grid-template-columns:1fr 1fr}
+  .panel:has(#keepNext) h2,.panel:has(#keepNext) #keepNext {grid-column:1/-1}
+  body[data-mode=tools] .stage {height:290px}
+  body[data-mode=clues] .stage {height:290px}
+  #nextWorry,#boxDone,.result-actions {order:-1}
+  .result-actions {display:grid; grid-template-columns:repeat(2,1fr)}
+  .result-actions #helps,.result-actions #anotherTool:last-child {grid-column:auto}
+  .result-actions:has(#backSort) #helps {grid-column:1/-1}
+  .kid-wrap {height:258px; aspect-ratio:.7}
+  .body-leaders {display:block}
+  #clue1 {left:10%; top:28%} #clue2 {left:70%; top:34%}
+  #clue3 {left:42%; top:44%} #clue4 {left:0; top:58%}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Worry Size Sorter <small>Size it. Try a tool. Get help.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-sort" data-mode="sort" aria-pressed="true">🧺 Sort</button>
+    <button id="m-clues" data-mode="clues" aria-pressed="false">💓 Body clues</button>
+    <button id="m-tools" data-mode="tools" aria-pressed="false">🛠 Tools</button>
+    <button id="m-week" data-mode="week" aria-pressed="false">📅 My week</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <section class="stage" id="stage" aria-label="Activity"></section>
+  <aside class="panel" aria-label="Instructions and choices"><p id="hint" role="status"></p><div id="panelContent"></div></aside>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const D = "json:worry-data";
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const art = {
+    'ws-kid-stand':'art:ws-kid-stand','ws-kid-fists':'art:ws-kid-fists','ws-kid-shoulders':'art:ws-kid-shoulders',
+    'ws-kid-toes':'art:ws-kid-toes','ws-kid-loose':'art:ws-kid-loose','ws-basket':'art:ws-basket',
+    'ws-cloud-big':'art:ws-cloud-big','ws-cloud-mid':'art:ws-cloud-mid','ws-cloud-small':'art:ws-cloud-small',
+    'ws-worry-box':'art:ws-worry-box','ws-icon-morning':'art:ws-icon-morning',
+    'ws-icon-afterschool':'art:ws-icon-afterschool','ws-icon-bedtime':'art:ws-icon-bedtime',
+    'ws-card-test':'art:ws-card-test','ws-card-book':'art:ws-card-book','ws-card-podium':'art:ws-card-podium',
+    'ws-card-pool':'art:ws-card-pool','ws-card-bench':'art:ws-card-bench','ws-card-boxes':'art:ws-card-boxes',
+    'ws-card-kitchen':'art:ws-card-kitchen','ws-card-folder':'art:ws-card-folder','ws-card-door':'art:ws-card-door',
+    'ws-card-bedside':'art:ws-card-bedside','ws-card-tablet':'art:ws-card-tablet',
+    'ws-card-bus':'art:ws-card-bus','ws-card-calendar':'art:ws-card-calendar'
+  };
+  const names = ['Box breathing','Talk back','Squeeze and let go','Worry box'];
+  const icons = ['□','☁','✊','▣'];
+  const sizes = ['Small','Medium','Big'];
+  const meanings = ['I can handle it with a tool.','A tool, and talk it over with someone.','Tell a trusted adult. Now.'];
+  const whos = ['A grown-up at home','My teacher','A friend','Me (a note or alarm)'];
+  const times = ['Morning','After school','Bedtime'];
+  const becauseClues = ['fast heart','fast breathing','tight muscles','busy thoughts'];
+  const adults = ['Parent or caregiver','Grandparent','Teacher','School counselor','Coach','Doctor'];
+  const ways = ['I need to tell you something important.','Something is worrying me and I need help.',
+    "Someone told me to keep a secret, and it doesn't feel right."];
+  const tooBig = 'Tell a trusted adult if a worry: lasts for weeks, gets in the way of school, home or play, '
+    + 'keeps you from sleeping, or is about someone being hurt or not safe.';
+  const L = {
+    wSort:'Every worry is real. Its size is how much help it needs. Drag the card into Small, Medium or Big.',
+    sortPremise:'Every worry is real. Its size is about how much help it needs.',
+    wClues:'Worry shows up in your body. Tap a ring on the kid to see where.',
+    wTools:'Pick a tool. First, tap the meter to show how worried your body feels.',
+    wWeek:'Pick a tool for your week plan.',
+    weekTime:'Pick a time of day for your practice.',
+    weekWho:'Pick who helps you remember.',
+    weekBecause:'Pick the body clue this tool helps.',
+    weekNext:'Tap Next to continue your plan.',
+    weekSet:'Tap Set my goal to start your week.',
+    howAfter:'Tap the meter again. How does your body feel now?',
+    big:'This one is Big. Tell a trusted adult. Keep telling until someone helps.',
+    bIn:'Breathe in.',bHold:'Hold.',bOut:'Breathe out.',sqz:'Squeeze your fists.',letgo:'Now let go.',
+    sqzShoulders:'Lift your shoulders.',sqzFeet:'Curl your toes.',
+    meterDown:'Your meter went down. You reported feeling calmer.',meterOther:"That's okay. Try another tool, or talk to someone.",
+    meterCalm:'You started calm. Practicing can help you get ready for a hard day.',
+    meterStopped:'You stopped early. Check how you feel. You can try again, or talk to someone.',
+    goalSet:'Your goal is set. Check off each day you do it.',checked:'Checked. Nice work.',
+    weekEnd:'Your week is done. Tap any reflection chips that fit. Then choose your next week.',
+    weekEarly:'Look at your week so far. Choose what fits, or leave the chips blank. Then choose your next week.',
+    breathDone:'Tap Done to check your meter, or tap One more round.',
+    breathLimit:'Tap Done, then rate your meter again.',
+    squeezeShoulders:'Tap Next part. Pull your shoulders up to your ears, then let go when the picture changes.',
+    squeezeFeet:'Tap Next part. Curl your toes, then let go when the picture changes.',
+    startBreath:'Tap Start. Follow the dot around the square. Stay comfortable; never strain.',
+    startTalk:'Tap a Facts, Plan or Brave reply. Say it out loud, or in your head.',
+    startSqueeze:'Tap Start. Make two tight fists, then let go when the picture changes.',
+    startBox:'Tap Fold it. Then tap Put it in the box.',
+    boxed:'Your worry is in the box. Pick a worry time with a grown-up, 10 minutes, not at bedtime, to open it and talk.',
+    private:'You never have to tell the class. Tell one grown-up you trust.',
+    keepTelling:"If that grown-up doesn't help, keep telling until someone does.",danger:'Danger right now? Call 911.',
+    cardText:D.cards.map(c=>c.text),cardReasons:D.cards.map(c=>c.reason),clueText:D.clues.map(c=>c.text),
+    talkText:Object.values(D.talk).flat(),ways,tooBig
+  };
+  const state = {
+    mode:'sort',order:[],index:0,picked:false,placements:[],last:null,ended:false,
+    tool:0,toolStep:1,before:null,after:null,sourceCard:null,worry:'s1',replies:[],running:false,
+    phase:0,count:4,phaseCount:4,rounds:0,targetRounds:2,squeezePart:0,folded:false,boxed:false,practiceDone:false,
+    clue:null,results:{},tried:[],helpers:[],week:null,builder:{tool:null,when:null,who:null,clue:null},
+    buildRow:0,reflect:false,resetConfirm:false,storageOK:true,reflectionPicks:{help:[],barrier:[]},bigUntil:0
+  };
+  let timer=0;
+  let raf=0;
+  let runToken=0;
+  let ghost=null;
+  let dragStart=null;
+  let suppressClick=false;
+  const V = Curio.voice({
+    lines:L,scope:()=>state.mode+(state.mode==='tools'?state.tool:''),hint:false,
+    speaks:'#worryCard,.basket,.meter button',
+    welcome:()=> {
+      if(state.mode==='sort' && !state.picked && !state.last && !state.ended) return 'wSort';
+      if(state.mode==='clues' && state.clue===null) return 'wClues';
+      if(state.mode==='tools' && state.toolStep===1) return 'wTools';
+      if(state.mode==='week' && !state.week) return 'wWeek';
+      return null;
+    },
+    read:()=>[$('hint').textContent,...readPanel()]
+  });
+  function readPanel() {
+    if(state.mode==='sort') {
+      const c=currentCard();
+      if(state.last?.card.size==='Big') {
+        return [L.sortPremise,state.last.card.text,state.last.card.reason,L.big,...adults,...ways,L.keepTelling,L.danger,L.private];
+      }
+      return c?[L.sortPremise,c.text,...sizes.map((s,i)=>s+'. '+meanings[i]),$('panelContent').innerText]:
+        [L.sortPremise,$('panelContent').innerText];
+    }
+    return [$('panelContent').innerText];
+  }
+  function cue(key,valid=()=>true) {V.say(key,{valid,hint:false,now:true});}
+  function how(key) {V.how(key,{hint:false,now:true});}
+  function hint(text) {$('hint').textContent=text;}
+  function img(name,cls='',alt='') {
+    return `<img src="${art[name]}" class="${cls}" alt="${esc(alt)}" draggable="false">`;
+  }
+  function btn(id,text,primary=false,extra='') {
+    return `<button id="${id}" class="action ${primary?'primary':''}" ${extra}>${text}</button>`;
+  }
+  function bind(id,fn) {
+    const el=$(id);
+    if(el) el.onclick=()=>{Curio.tone(440,.045,.025);fn();};
+  }
+  function preserveRender(fn) {
+    const id=document.activeElement?.id;
+    fn();
+    if(id && $(id) && !$(id).disabled) $(id).focus({preventScroll:true});
+  }
+  function shuffle(a) {
+    const arr=[...a];
+    for(let i=arr.length-1;i>0;i--) {
+      const j=Math.floor(Math.random()*(i+1));
+      [arr[i],arr[j]]=[arr[j],arr[i]];
+    }
+    return arr;
+  }
+  function newSort() {
+    const small=shuffle(D.cards.filter(c=>c.size==='Small'));
+    const medium=shuffle(D.cards.filter(c=>c.size==='Medium'));
+    const easy=shuffle([...small.slice(1),...medium.slice(1)]);
+    const big=shuffle(D.cards.filter(c=>c.size==='Big'));
+    state.order=[small[0],medium[0]];
+    const slots=shuffle([0,1,2,3,4,5,6]).slice(0,5);
+    for(let i=0;i<=easy.length;i++) {
+      if(slots.includes(i)) state.order.push(big.pop());
+      if(i<easy.length) state.order.push(easy[i]);
+    }
+    state.index=0;
+    state.picked=false;
+    state.last=null;
+    state.placements=[];
+    state.ended=false;
+  }
+  function currentCard() {return state.order[state.index];}
+  function stopRun() {
+    runToken++;
+    clearTimeout(timer);
+    cancelAnimationFrame(raf);
+    state.running=false;
+  }
+  function setMode(mode,fromSort=false) {
+    if(state.mode===mode && !fromSort) return;
+    const moveFocus=document.activeElement?.tagName!=='BODY' && !document.activeElement?.closest('header');
+    stopRun();
+    V.hush();
+    removeGhost();
+    state.mode=mode;
+    if(mode==='tools') resetTool();
+    if(mode==='tools' && !fromSort) state.sourceCard=null;
+    if(mode==='week' && state.week && dayIndex(state.week.start)>=7) state.reflect=true;
+    render();
+    if(moveFocus) {
+      const next=mode==='tools'?$('meter3'):mode==='sort'?($('nextWorry')||$('worryCard')||$('makeWeek')):
+        mode==='clues'?$('clue0'):state.week?($('help0')||$('day0')):document.querySelector('.builder .choice');
+      next?.focus({preventScroll:true});
+    }
+    if(mode==='week' && state.reflect && state.week) cue(dayIndex(state.week.start)<7?'weekEarly':'weekEnd');
+    else V.welcome();
+  }
+  function render() {
+    document.body.dataset.mode=state.mode;
+    document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===state.mode));
+    if(state.mode==='sort') renderSort();
+    if(state.mode==='clues') renderClues();
+    if(state.mode==='tools') renderTools();
+    if(state.mode==='week') renderWeek();
+  }
+  function renderSort() {
+    const c=currentCard();
+    const held=state.picked?'Picked up. Tap a basket.':'Tap or drag to pick up';
+    const card=state.ended?'<div class="goal-card"><h2>Every worry has a place.</h2><p>Big worries get help.</p></div>':
+      `<div class="card-stack"><button id="worryCard" class="worry-card ${state.picked?'picked':''} ${state.last?'placed':''}"
+      aria-pressed="${state.picked}" aria-label="${esc(c.text)} Pick up worry card" ${state.last?'aria-disabled="true"':''}>
+      ${img(c.art)}<span class="card-text">${esc(c.text)}</span></button>
+      <p class="card-caption">${state.last?'Sorted. Look at the help beside it.':held}</p></div>`;
+    $('stage').innerHTML=`<div class="sort-world">${card}
+      <p class="principle">${L.sortPremise}</p>
+      <div class="baskets">${sizes.map((s,i)=> {
+        const items=state.placements.filter(p=>p.basket===s);
+        return `<button id="basket${i}" class="basket" style="--basket:var(--${s.toLowerCase()})" aria-label="${s}. ${meanings[i]}">
+          ${img('ws-basket','basket-art')}<span class="basket-label"><b>${s}</b><span class="meaning">${meanings[i]}</span></span>
+          <span class="thumbs">${items.map(p=>img(p.card.art,'',p.card.text)).join('')}</span>
+          <span class="basket-count">${items.length?items.length+' sorted':''}</span></button>`;
+      }).join('')}</div></div>`;
+    sizes.forEach((s,i)=>bind('basket'+i,()=>place(s)));
+    if(c && !state.ended) {
+      bind('worryCard',()=> {
+        if(suppressClick) {suppressClick=false;return;}
+        if(state.last) return;
+        state.picked=!state.picked;
+        preserveRender(renderSort);
+      });
+      $('worryCard').onpointerdown=startDrag;
+    }
+    if(state.ended) {renderSortEnd();return;}
+    if(!state.last) {
+      hint(state.picked?'Picked up. Tap Small, Medium or Big. Or use an arrow key and Enter.':
+        'Drag the card into Small, Medium or Big. Or tap the card, then tap a basket.');
+      $('panelContent').innerHTML=`<p class="eyebrow">How much help?</p><h2>Make room for the worry.</h2>
+        <p>Small and Medium can feel different to different people.</p>
+        <p class="note">Big worries go to a trusted adult, every time.</p>
+        <p class="muted">${state.placements.length} of 13 sorted</p>`;
+      return;
+    }
+    const last=state.last;
+    if(last.card.size==='Big') {
+      hint('Tell one grown-up you trust. Tap Next worry when you are ready.');
+      $('panelContent').innerHTML=`<h2>${last.requested==='Big'?'Yes, this one is Big.':'This one is Big.'}</h2>
+        <p>${esc(last.card.reason)}</p><div class="big-panel"><h3>Big worries go to a trusted adult, every time.</h3>
+        <div class="adult-chips">${adults.map(a=>`<span>${a}</span>`).join('')}</div>
+        <div class="ways"><b>Ways to start</b>${ways.map(w=>`<p>“${esc(w)}”</p>`).join('')}</div>
+        <p>${L.keepTelling}</p><b>${L.danger}</b><p>${L.private}</p></div>
+        ${btn('nextWorry',performance.now()<state.bigUntil?'Listening…':'Next worry ▶',true)}
+        <p class="muted">${state.placements.length} of 13 sorted</p>`;
+    } else {
+      hint('Tap Try a tool on it, or tap Next worry.');
+      const note=last.basket==='Big'?'<p>Telling a trusted adult is never wrong. A coping tool could also help with this worry.</p>':
+        `<p>One way to size it: ${last.card.size}.</p><p class="note"><b>It gets bigger if</b> ${esc(last.card.reason)}</p>`;
+      $('panelContent').innerHTML=`<h2>${last.basket==='Big'?'Telling is never wrong.':'You put it in '+last.basket+'.'}</h2>
+        ${note}${btn('tryTool','Try a tool on it',true)}${btn('nextWorry','Next worry ▶')}
+        <p class="muted">${state.placements.length} of 13 sorted</p>`;
+      bind('tryTool',()=> {
+        state.sourceCard=last.card.id;
+        state.worry=last.card.id;
+        setMode('tools',true);
+      });
+    }
+    bind('nextWorry',nextWorry);
+  }
+  function renderSortEnd() {
+    const count=state.placements.filter(p=>p.basket==='Big').length;
+    const extra=state.placements.filter(p=>p.basket==='Big' && p.card.size!=='Big').length;
+    const note=extra?`You put ${extra} in Big that a tool could also help. Telling is never wrong; a tool can help while you wait.`:
+      !state.tried.length?'Pick one worry and try a tool on it.':'Tools you tried: '+state.tried.map(i=>names[i]).join(', ')+'.';
+    hint('Tap Make my week goal, or tap Sort again.');
+    $('panelContent').innerHTML=`<p class="eyebrow">Your sort</p><h2>You sorted 13 worries.</h2>
+      <p>Big: ${count}. Every Big one goes to a trusted adult.</p><p class="note">${note}</p>
+      ${btn('makeWeek','Make my week goal ▶',true)}${!state.tried.length?btn('endTool','Try a tool'):''}${btn('sortAgain','Sort again')}`;
+    bind('makeWeek',()=>setMode('week'));
+    bind('endTool',()=>setMode('tools'));
+    bind('sortAgain',()=>{V.hush();newSort();renderSort();$('worryCard').focus({preventScroll:true});});
+  }
+  function place(requested) {
+    if(state.ended) return;
+    if(state.last) {finishBigSlide();return;}
+    if(!state.picked) {
+      hint(requested+': '+meanings[sizes.indexOf(requested)]+' Tap the card to pick it up.');
+      return;
+    }
+    const focusID=document.activeElement?.id||'';
+    const card=currentCard();
+    const basket=card.size==='Big'?'Big':requested;
+    state.last={card,basket,requested};
+    state.placements.push(state.last);
+    state.picked=false;
+    V.dropQueued(line=>line.key!=='big');
+    state.bigUntil=card.size==='Big' && Curio.sound?performance.now()+4000:0;
+    renderSort();
+    const target=$('basket'+sizes.indexOf(basket));
+    if(focusID==='worryCard' || focusID.startsWith('basket')) target.focus({preventScroll:true});
+    if(!Curio.reduce) target.classList.add('settle');
+    Curio.tone(card.size==='Big'?330:550,.15,.06);
+    if(card.size==='Big') {
+      const item=state.last;
+      if(requested!=='Big' && !Curio.reduce) {
+        const el=$('worryCard');
+        const a=el.getBoundingClientRect();
+        const b=target.getBoundingClientRect();
+        const x=b.x+b.width/2-a.x-a.width/2;
+        el.animate([{transform:'translate(0,0)'},
+          {transform:`translate(${x}px,${b.y-a.y}px) scale(.2) rotate(8deg)`,opacity:.1}],{duration:600,easing:'ease-in-out'});
+      }
+      Promise.race([V.say('big',{wait:true,hint:false,valid:()=>state.mode==='sort'}),
+        Curio.wait(Curio.sound?4000:0)]).then(()=> {
+        if(state.last===item) {
+          state.bigUntil=0;
+          if($('nextWorry')) $('nextWorry').textContent='Next worry ▶';
+        }
+      });
+    }
+  }
+  function finishBigSlide() {$('worryCard')?.getAnimations().forEach(a=>a.finish());}
+  function nextWorry() {
+    if(!state.last) return;
+    finishBigSlide();
+    if(performance.now()<state.bigUntil) {
+      $('nextWorry').textContent='Listening…';
+      const item=state.last;
+      setTimeout(()=>{if(state.mode==='sort' && state.last===item) nextWorry();},Math.max(1,state.bigUntil-performance.now()));
+      return;
+    }
+    V.dropQueued(line=>line.key!=='big');
+    state.index++;
+    state.last=null;
+    state.picked=false;
+    if(state.index>=state.order.length) state.ended=true;
+    renderSort();
+    ($('worryCard')||$('makeWeek'))?.focus({preventScroll:true});
+  }
+  function inside(e,r) {return e.clientX>=r.left && e.clientX<=r.right && e.clientY>=r.top && e.clientY<=r.bottom;}
+  function removeGhost() {
+    ghost?.remove();
+    ghost=null;
+    dragStart=null;
+    document.querySelectorAll('.over').forEach(e=>e.classList.remove('over'));
+  }
+  function startDrag(e) {
+    if(state.last || e.button!==0) return;
+    removeGhost();
+    dragStart={x:e.clientX,y:e.clientY,id:e.pointerId};
+    const card=e.currentTarget;
+    card.setPointerCapture(e.pointerId);
+    card.onpointermove=ev=> {
+      if(!dragStart) return;
+      if(!ghost && Math.hypot(ev.clientX-dragStart.x,ev.clientY-dragStart.y)>7) {
+        state.picked=true;
+        ghost=card.cloneNode(true);
+        ghost.removeAttribute('id');
+        ghost.className='worry-card ghost';
+        ghost.setAttribute('aria-hidden','true');
+        ghost.tabIndex=-1;
+        document.body.append(ghost);
+        Curio.tone(440,.05,.04);
+      }
+      if(ghost) {
+        ghost.style.left=(ev.clientX-95)+'px';
+        ghost.style.top=(ev.clientY-70)+'px';
+        document.querySelectorAll('.basket').forEach(b=>b.classList.toggle('over',inside(ev,b.getBoundingClientRect())));
+      }
+    };
+    card.onpointerup=ev=> {
+      const dragged=!!ghost;
+      const target=[...document.querySelectorAll('.basket')].find(b=>inside(ev,b.getBoundingClientRect()));
+      if(dragged && !target && !Curio.reduce) {
+        const returning=ghost;
+        const home=card.getBoundingClientRect();
+        dragStart=null;
+        document.querySelectorAll('.over').forEach(b=>b.classList.remove('over'));
+        returning.animate([{opacity:.9},{left:(home.x+home.width/2-95)+'px',top:home.y+'px',
+          transform:'rotate(0deg)',opacity:0}],{duration:300,easing:'ease-out',fill:'forwards'});
+        Curio.wait(300).then(()=>{if(ghost===returning) removeGhost();});
+      } else removeGhost();
+      if(dragged) {
+        suppressClick=true;
+        if(target) place(sizes[Number(target.id.slice(-1))]);
+        else {state.picked=false;renderSort();}
+        setTimeout(()=>{suppressClick=false;},100);
+      }
+    };
+    card.onpointercancel=()=>{removeGhost();state.picked=false;renderSort();};
+  }
+  function renderClues() {
+    $('stage').innerHTML=`<div class="kid-world"><div class="kid-wrap">${img('ws-kid-stand','','A child standing relaxed')}
+      <svg class="body-leaders" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M20 36L45 32 M83 42L59 34 M55 52L50 44 M14 66L38 60"/></svg>
+      ${D.clues.map((c,i)=>`<button class="hotspot" id="clue${i}" aria-pressed="${state.clue===i}"
+        aria-label="${i+1}. ${c.name}">${i+1}</button>`).join('')}</div></div>`;
+    const c=state.clue===null?null:D.clues[state.clue];
+    hint('Tap a numbered ring to open a body clue.');
+    $('panelContent').innerHTML=`<p class="eyebrow">Listen to your body</p><h2>${c?esc(c.name):'Where do you notice worry?'}</h2>
+      <p>${c?esc(c.text):'Worry is your body getting ready for a challenge. Tap a ring to see where it shows up.'}</p>
+      ${c?`<p class="note"><b>Try:</b> ${esc(c.tools)}</p>`:''}
+      <div class="clue-index">${D.clues.map((c,i)=>`<span>${i+1} ${c.name}</span>`).join('')}</div>
+      <details ${innerHeight>640?'open':''}><summary>When is a worry too big to carry?</summary><p>${tooBig}</p></details>`;
+    D.clues.forEach((c,i)=>bind('clue'+i,()=> {
+      state.clue=i;
+      V.hush();
+      preserveRender(renderClues);
+      V.how(c.text,{hint:false,valid:()=>state.clue===i});
+    }));
+  }
+  function resetTool() {
+    state.toolStep=1;
+    state.before=null;
+    state.after=null;
+    state.replies=[];
+    state.folded=false;
+    state.boxed=false;
+    state.rounds=0;
+    state.targetRounds=2;
+    state.phase=0;
+    state.squeezePart=0;
+    state.practiceDone=false;
+  }
+  function chooseTool(i) {
+    if(state.tool===i) return;
+    stopRun();
+    V.hush();
+    state.tool=i;
+    resetTool();
+    preserveRender(renderTools);
+    V.welcome();
+  }
+  function worryCard() {return D.cards.find(c=>c.id===state.worry)||D.cards[0];}
+  function renderTools() {
+    $('stage').innerHTML=`<div class="tools-world"><p class="worry-context">${state.sourceCard?'Your worry: ':''}${esc(worryCard().text)}</p>
+      <div class="tool-tiles" role="group" aria-label="Coping tool">${names.map((n,i)=>
+        `<button class="tool-tile" id="tool${i}" aria-label="${n}" aria-pressed="${state.tool===i}">
+        <span class="tool-icon" aria-hidden="true">${icons[i]}</span><span class="tool-name">${n}</span></button>`).join('')}</div>
+      <div class="tool-picture" id="toolPicture"></div></div>`;
+    names.forEach((n,i)=>bind('tool'+i,()=>chooseTool(i)));
+    renderToolPicture();
+    renderToolPanel();
+  }
+  function renderToolPicture() {
+    const p=$('toolPicture');
+    if(!p) return;
+    if(state.tool===0) {
+      const checkIn=state.toolStep===3 && state.after!==null;
+      p.innerHTML=`<div class="breath"><svg viewBox="0 0 440 440" aria-label="Breathing square">
+        <defs><linearGradient id="squareWash" x2="1" y2="1"><stop stop-color="#fffaf0"/><stop offset="1" stop-color="#edd9b5"/></linearGradient></defs>
+        <rect x="30" y="30" width="380" height="380" rx="32" fill="url(#squareWash)" stroke="#d7bb8d" stroke-width="2"/>
+        <path d="M45 395V45H395V395Z" fill="none" stroke="#bc9464" stroke-width="8" stroke-linejoin="round"/>
+        <path id="activeSide" d="M45 395V45" fill="none" stroke="#9a4a1c" stroke-width="12" stroke-linecap="round"/>
+        <circle id="breathDot" cx="45" cy="395" r="15" fill="#9a4a1c" stroke="#fff5d9" stroke-width="3"/>
+        </svg><div class="breath-label ${checkIn?'check-in':''}"><strong id="phaseLabel">${checkIn?'Your check-in':'Box breathing'}</strong>
+        <b id="breathCount">${checkIn?state.before+' → '+state.after:'□'}</b>
+        <small id="roundLabel">${checkIn?'Before to after. Your own rating.':'Follow the square'}</small></div></div>`;
+    }
+    if(state.tool===1) {
+      const level=state.replies.length===0?'big':state.replies.length===1?'mid':'small';
+      const talk=D.talk[worryCard().id];
+      p.innerHTML=`${img(worryCard().art,'thought-scene')}<div class="bubble">“${esc(talk[0])}”</div>
+        ${img('ws-cloud-'+level,'cloud '+level,'A worry cloud becoming smaller as you talk back')}
+        ${state.replies.length?`<div class="reply">“${esc(talk[state.replies.at(-1)+1])}”</div>`:''}`;
+    }
+    if(state.tool===2) {
+      const pose=state.running && !state.relaxing?['fists','shoulders','toes'][state.squeezePart]:'loose';
+      p.innerHTML=`${img('ws-kid-'+pose,'squeeze-kid','A child demonstrating squeeze and let go')}
+        <p class="practice-caption">${state.running?(state.relaxing?'Let go. Notice loose.':squeezeWords()):'Notice how loose feels after tight.'}</p>`;
+    }
+    if(state.tool===3) {
+      p.innerHTML=`<div class="box-picture">${img('ws-worry-box','','A blue worry box with stars and a slot')}
+        <div class="slip ${state.folded?'folded':''} ${state.boxed?'boxed':''}">${esc(worryCard().text)}</div></div>`;
+    }
+  }
+  function meterHTML() {
+    const labels=['Calm','A little','Some','A lot','Very'];
+    const selected=state.toolStep===1?state.before:state.after;
+    return `<div class="meter" role="group" aria-label="Your own worry rating">${labels.map((l,i)=>
+      `<button id="meter${i+1}" class="${selected===i+1?'chosen':''}" aria-pressed="${selected===i+1}"><b>${i+1}</b>${l}</button>`).join('')}</div>`;
+  }
+  function renderToolPanel() {
+    const step=state.toolStep;
+    let html=`<div class="steps"><span class="${step===1?'current':''}">1 Before</span>
+      <span class="${step===2?'current':''}">2 Tool</span><span class="${step===3?'current':''}">3 After</span></div><h2>${names[state.tool]}</h2>`;
+    if(step===1) {
+      hint('How worried does your body feel right now? Tap a meter step.');
+      html+=`<p class="muted">Picture it's really happening. This is your own rating, not a test.</p>${meterHTML()}`;
+      if(!state.sourceCard && [1,3].includes(state.tool)) {
+        html+=`<label for="worryChoice" class="muted">Choose a written worry</label><select id="worryChoice">${D.cards.filter(c=>c.size!=='Big').map(c=>
+          `<option value="${c.id}" ${state.worry===c.id?'selected':''}>${esc(c.text)}</option>`).join('')}</select>`;
+      }
+    } else if(step===2) {
+      if(state.tool===0) {
+        hint(state.running?'Follow the dot. Tap Stop whenever you want to finish.':state.rounds>=4?L.breathLimit:
+          state.rounds>=2?L.breathDone:'Tap Start, or choose a shorter count if four feels long.');
+        html+=`<p>Stay comfortable. Never strain.</p><p class="note">${state.rounds>=2?'Another round?':'Two rounds, then check your meter.'}</p>
+          <div class="tool-controls"><div class="row">${btn('startTool',state.rounds>=2?'One more round':'Start',true,state.running||state.rounds>=4?'disabled':'')}
+          ${btn('stopTool',state.rounds>=2?'Done':'Stop',false,!state.running&&state.rounds<2?'disabled':'')}</div>
+          ${btn('countToggle','Count of '+state.count,false,`aria-pressed="${state.count===3}"`)}</div>
+          <p class="muted">A count of 3 is shorter, for when 4 feels long.</p>`;
+      }
+      if(state.tool===1) {
+        hint('Tap a Facts, Plan or Brave reply. Say it out loud, or in your head.');
+        html+=`<div class="talk-answers">${D.talk[worryCard().id].slice(1).map((t,i)=>
+          `<button id="reply${i}" class="action reply-btn" aria-pressed="${state.replies.includes(i)}">
+          <small>${['Facts','Plan','Brave'][i]}</small>${esc(t)}</button>`).join('')}</div>
+          <p class="muted">Worry talks less when you talk back.</p>${btn('talkDone','Done',true,!state.replies.length?'disabled':'')}`;
+      }
+      if(state.tool===2) {
+        const label=state.squeezePart?'Next part':'Start';
+        hint(state.running?'Follow the picture. Tap Stop to finish now.':`Tap ${label} to try ${['Hands','Shoulders','Feet'][state.squeezePart]}.`);
+        html+=`<h3>${['Hands','Shoulders','Feet'][state.squeezePart]}</h3><p>${squeezeWords()}</p>
+          <p class="muted">Keep it comfortable. Never squeeze into pain.</p>
+          <div class="progress-track"><div id="squeezeProgress"></div></div><p id="squeezeSeconds" class="muted">5 seconds tight, 10 seconds loose.</p>
+          <div class="row">${btn('startTool',state.squeezePart?'Next part ▶':'Start',true,state.running?'disabled':'')}
+          ${btn('stopTool','Stop',false,!state.running?'disabled':'')}</div>`;
+      }
+      if(state.tool===3) {
+        hint(state.boxed?'Tap Done, then rate your meter again.':state.folded?'Tap Put it in the box.':'Tap Fold it.');
+        html+=!state.boxed?btn('boxAction',state.folded?'Put it in the box':'Fold it',true):
+          `<p class="note">${L.boxed} At home, write it on real paper.</p>${btn('boxDone','Done',true)}`;
+      }
+    } else {
+      hint(state.after===null?L.howAfter:'Tap This one helps me to keep it, or try another tool.');
+      html+=meterHTML();
+      if(state.after!==null) {
+        html+=`${!state.practiceDone?'<p class="muted">You stopped early. This is a check-in, not a finished practice.</p>':''}
+          <p class="note" id="meterResult">${meterResult(state.before,state.after)}</p>
+          <div class="result-actions">${btn('helps',state.helpers.includes(state.tool)?'In My helpers ✓':'This one helps me',true,
+            `aria-pressed="${state.helpers.includes(state.tool)}"`)}${btn('anotherTool','Try another tool')}
+          ${state.sourceCard?btn('backSort','Back to sorting'):''}</div>`;
+      }
+    }
+    if(['m3','m4'].includes(state.worry)) {
+      html+=`<p class="note">It gets bigger if ${esc(worryCard().reason)} Tell a trusted adult.</p>`;
+    }
+    $('panelContent').innerHTML=html;
+    if(step===1 || step===3) for(let n=1;n<=5;n++) bind('meter'+n,()=>rate(n));
+    if($('worryChoice')) $('worryChoice').onchange=e=> {
+      state.worry=e.target.value;
+      Curio.tone(440,.045,.025);
+      V.hush();
+      preserveRender(renderTools);
+    };
+    bind('startTool',()=>state.tool===0?startBreathing():startSqueeze());
+    bind('stopTool',afterTool);
+    bind('countToggle',()=> {
+      state.count=state.count===4?3:4;
+      $('countToggle').textContent='Count of '+state.count;
+      $('countToggle').setAttribute('aria-pressed',state.count===3);
+    });
+    for(let i=0;i<3;i++) bind('reply'+i,()=> {
+      const oldWidth=document.querySelector('.cloud')?.getBoundingClientRect().width||320;
+      if(!state.replies.includes(i)) state.replies.push(i);
+      V.hush();
+      preserveRender(()=>{renderToolPicture();renderToolPanel();});
+      const cloud=document.querySelector('.cloud');
+      if(!Curio.reduce && cloud) {
+        const scale=oldWidth/cloud.getBoundingClientRect().width;
+        cloud.animate([{transform:`scale(${scale})`},{transform:'scale(1)'}],{duration:600,easing:'ease-out'});
+      }
+      cue(D.talk[worryCard().id][i+1],()=>state.toolStep===2);
+    });
+    bind('talkDone',()=>{state.practiceDone=state.replies.length>0;afterTool();});
+    bind('boxAction',()=> {
+      if(!state.folded) state.folded=true;
+      else state.boxed=true;
+      document.querySelector('.slip').classList.toggle('folded',state.folded);
+      document.querySelector('.slip').classList.toggle('boxed',state.boxed);
+      preserveRender(renderToolPanel);
+      if(state.boxed) $('boxDone')?.focus({preventScroll:true});
+      if(state.boxed) cue('boxed',()=>state.toolStep===2);
+    });
+    bind('boxDone',()=>{state.practiceDone=state.boxed;afterTool();});
+    bind('helps',()=> {
+      if(!state.helpers.includes(state.tool)) state.helpers.unshift(state.tool);
+      saveWeek();
+      preserveRender(renderToolPanel);
+    });
+    bind('anotherTool',()=> {
+      stopRun();
+      V.hush();
+      resetTool();
+      renderTools();
+      $('tool'+state.tool).focus({preventScroll:true});
+    });
+    bind('backSort',()=>setMode('sort'));
+  }
+  function rate(n) {
+    if(state.toolStep===1) {
+      state.before=n;
+      state.toolStep=2;
+      V.hush();
+      renderToolPanel();
+      ($('startTool')||$('reply0')||$('boxAction'))?.focus({preventScroll:true});
+      how(['startBreath','startTalk','startSqueeze','startBox'][state.tool]);
+    } else if(state.toolStep===3) {
+      state.after=n;
+      state.results[state.tool]={before:state.before,after:n};
+      if(!state.tried.includes(state.tool)) state.tried.push(state.tool);
+      V.hush();
+      preserveRender(()=>{renderToolPicture();renderToolPanel();});
+      const key=!state.practiceDone?'meterStopped':n===1 && state.before===1?'meterCalm':n<state.before?'meterDown':'meterOther';
+      cue(key,()=>state.toolStep===3);
+    }
+  }
+  function meterResult(b,a) {
+    if(a<b) return `Your meter went from ${b} to ${a}. You reported feeling calmer.`;
+    if(a>b) return 'Your meter went up. That happens. Try a different tool, or talk to someone.';
+    if(b===1) return "You started calm. Practicing when you're calm makes a tool ready for a hard day.";
+    return "Same as before. That's okay. Not every tool works every time. Try another one.";
+  }
+  function afterTool(manual=true) {
+    stopRun();
+    if(manual) V.hush();
+    else V.dropQueued();
+    state.toolStep=3;
+    state.after=null;
+    renderTools();
+    $('meter3').focus({preventScroll:true});
+    how('howAfter');
+  }
+  function startBreathing() {
+    if(state.running || state.rounds>=4) return;
+    state.targetRounds=state.rounds>=2?state.rounds+1:2;
+    state.running=true;
+    state.phase=0;
+    V.hush();
+    renderToolPanel();
+    $('stopTool').focus({preventScroll:true});
+    breathingPhase(++runToken);
+  }
+  function breathingPhase(token) {
+    if(token!==runToken || !state.running) return;
+    const phase=state.phase%4;
+    state.phaseCount=state.count;
+    const duration=state.phaseCount*1000;
+    const serial=state.phase;
+    V.dropQueued();
+    cue(['bIn','bHold','bOut','bHold'][phase],()=>state.running && state.phase===serial);
+    const paths=['M45 395V45','M45 45H395','M395 45V395','M395 395H45'];
+    $('activeSide').setAttribute('d',paths[phase]);
+    $('phaseLabel').textContent=['Breathe in','Hold','Breathe out','Hold'][phase];
+    $('roundLabel').textContent='Round '+(state.rounds+1)+' · count of '+state.phaseCount;
+    const starts=[[45,395],[45,45],[395,45],[395,395]];
+    const ends=[[45,45],[395,45],[395,395],[45,395]];
+    const start=performance.now();
+    function frame(now) {
+      if(token!==runToken || !state.running) return;
+      const f=Curio.reduce?0:Math.min(1,(now-start)/duration);
+      $('breathDot').setAttribute('cx',starts[phase][0]+(ends[phase][0]-starts[phase][0])*f);
+      $('breathDot').setAttribute('cy',starts[phase][1]+(ends[phase][1]-starts[phase][1])*f);
+      $('breathCount').textContent=Math.min(state.phaseCount,Math.floor((now-start)/1000)+1);
+      raf=requestAnimationFrame(frame);
+    }
+    raf=requestAnimationFrame(frame);
+    timer=setTimeout(()=> {
+      cancelAnimationFrame(raf);
+      state.phase++;
+      if(state.phase%4===0) state.rounds++;
+      if(state.rounds>=state.targetRounds) {
+        state.running=false;
+        state.practiceDone=true;
+        V.dropQueued();
+        $('phaseLabel').textContent='Another round?';
+        $('breathCount').textContent='✓';
+        $('roundLabel').textContent=state.rounds+' rounds practiced';
+        preserveRender(renderToolPanel);
+        $('stopTool').focus({preventScroll:true});
+        how(state.rounds>=4?'breathLimit':'breathDone');
+      } else breathingPhase(token);
+    },duration);
+  }
+  function squeezeWords() {
+    return ['Make two tight fists.','Pull your shoulders up to your ears.','Curl your toes tight.'][state.squeezePart];
+  }
+  function startSqueeze() {
+    if(state.running) return;
+    state.running=true;
+    state.relaxing=false;
+    V.hush();
+    renderToolPicture();
+    renderToolPanel();
+    $('stopTool').focus({preventScroll:true});
+    const token=++runToken;
+    squeezePhase(false,5000,token,()=> {
+      state.relaxing=true;
+      renderToolPicture();
+      squeezePhase(true,10000,token,()=> {
+        state.running=false;
+        V.dropQueued();
+        if(state.squeezePart===2) {state.practiceDone=true;afterTool(false);}
+        else {
+          state.squeezePart++;
+          renderToolPicture();
+          renderToolPanel();
+          $('startTool').focus({preventScroll:true});
+          how(state.squeezePart===1?'squeezeShoulders':'squeezeFeet');
+        }
+      });
+    });
+  }
+  function squeezePhase(loose,duration,token,done) {
+    V.dropQueued();
+    cue(loose?'letgo':['sqz','sqzShoulders','sqzFeet'][state.squeezePart],
+      ()=>state.running && state.relaxing===loose);
+    const start=performance.now();
+    function frame(now) {
+      if(token!==runToken || !state.running) return;
+      const f=Math.min(1,(now-start)/duration);
+      if($('squeezeProgress')) $('squeezeProgress').style.width=(100*f)+'%';
+      if($('squeezeSeconds')) {
+        const seconds=Math.max(0,Math.ceil((duration-now+start)/1000));
+        $('squeezeSeconds').textContent=(loose?'Let go: ':'Squeeze: ')+seconds+' '+(seconds===1?'second':'seconds');
+      }
+      raf=requestAnimationFrame(frame);
+    }
+    raf=requestAnimationFrame(frame);
+    timer=setTimeout(()=>{cancelAnimationFrame(raf);if(token===runToken) done();},duration);
+  }
+  function localDate(date=new Date()) {
+    return date.getFullYear()+'-'+String(date.getMonth()+1).padStart(2,'0')+'-'+String(date.getDate()).padStart(2,'0');
+  }
+  function dateNumber(s) {
+    const [y,m,d]=s.split('-').map(Number);
+    return Date.UTC(y,m-1,d)/86400000;
+  }
+  function dayIndex(start,today=localDate()) {return Math.max(0,dateNumber(today)-dateNumber(start));}
+  function dateAt(start,i) {
+    const [y,m,d]=start.split('-').map(Number);
+    return new Date(y,m-1,d+i,12);
+  }
+  function saveWeek() {
+    try {localStorage.setItem('wss-week',JSON.stringify({week:state.week,helpers:state.helpers}));}
+    catch {state.storageOK=false;}
+  }
+  function loadWeek() {
+    try {
+      const raw=localStorage.getItem('wss-week');
+      if(!raw) return;
+      const saved=JSON.parse(raw);
+      state.helpers=Array.isArray(saved.helpers)?saved.helpers.filter(i=>Number.isInteger(i)&&i>=0&&i<4):[];
+      const w=saved.week;
+      if(w && Number.isInteger(w.tool) && w.tool>=0 && w.tool<4 && times.includes(w.when) && whos.includes(w.who)
+        && /^\d{4}-\d{2}-\d{2}$/.test(w.start) && Array.isArray(w.checks) && w.checks.length===7) {
+        state.week={...w,checks:w.checks.map(Boolean)};
+      }
+    } catch {state.storageOK=false;}
+  }
+  function privacy() {
+    return `<p class="privacy">Your goal and check marks stay on this device. They never leave it.${
+      state.storageOK?'':" This browser won't save it."}</p>`;
+  }
+  function because() {
+    const b=state.builder;
+    const r=state.results[b.tool];
+    if(r) return `Because my meter went from ${r.before} to ${r.after} when I tried it.`;
+    return b.clue===null?'':`Because it can help with ${becauseClues[b.clue]}.`;
+  }
+  function goalReady() {
+    const b=state.builder;
+    return b.tool!==null && b.when!==null && b.who!==null && !!because() && !(b.tool===3 && b.when===2);
+  }
+  function renderWeek() {
+    if(state.week && dayIndex(state.week.start)>=7) state.reflect=true;
+    if(state.reflect && state.week) {renderReflection();return;}
+    if(!state.week) {renderBuilder();return;}
+    const w=state.week;
+    const today=dayIndex(w.start);
+    const n=w.checks.filter(Boolean).length;
+    hint('Tap today or a past day to check your practice. Tap it again to uncheck.');
+    $('stage').innerHTML=`<div class="week-world"><p class="eyebrow">One small practice, each day</p>
+      <div class="goal-card"><p>${esc(w.sentence)}</p></div><div class="chart" aria-label="Seven day practice chart">
+      ${w.checks.map((checked,i)=> {
+        const date=dateAt(w.start,i);
+        const weekday=date.toLocaleDateString('en-US',{weekday:'short'});
+        const label=date.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+        return `<button id="day${i}" class="day ${i===today?'today':''}" aria-pressed="${checked}" aria-disabled="${i>today}"
+          aria-label="${label}, ${i>today?'future, locked':checked?'checked':'not checked'}"><span>${weekday}</span>
+          <span class="mark">${i>today?'🔒':checked?'✓':'○'}</span><span>${i===today?'Today':'Day '+(i+1)}</span></button>`;
+      }).join('')}</div><p class="week-count">Done: ${n} of 7</p>${privacy()}</div>`;
+    $('panelContent').innerHTML=`<h2>Make it a habit.</h2><p>A check means you practiced. It does not mean every worry went away.</p>
+      ${btn('practiceNow','Practice now',true)}${btn('finishWeek','Finish my week')}${btn('newGoal','New goal')}
+      ${state.resetConfirm?`<div class="note"><p>Start over? Your check marks will be cleared.</p>
+      ${btn('confirmReset','Yes, start over')}${btn('keepGoal','Keep my goal')}</div>`:''}`;
+    for(let i=0;i<7;i++) bind('day'+i,()=>checkDay(i));
+    bind('practiceNow',()=>{state.tool=w.tool;setMode('tools');});
+    bind('finishWeek',()=> {
+      state.reflect=true;
+      renderWeek();
+      $('help0').focus({preventScroll:true});
+      cue(dayIndex(w.start)<7?'weekEarly':'weekEnd');
+    });
+    bind('newGoal',()=>{state.resetConfirm=true;preserveRender(renderWeek);});
+    bind('confirmReset',()=> {
+      state.week=null;
+      state.resetConfirm=false;
+      state.builder={tool:null,when:null,who:null,clue:null};
+      saveWeek();
+      renderWeek();
+      document.querySelector('.builder .choice')?.focus({preventScroll:true});
+    });
+    bind('keepGoal',()=>{state.resetConfirm=false;renderWeek();$('newGoal').focus({preventScroll:true});});
+  }
+  function renderBuilder() {
+    const b=state.builder;
+    const order=[...state.helpers,...[0,1,2,3].filter(i=>!state.helpers.includes(i))];
+    const compact=innerWidth<600 || (innerHeight<=640 && innerWidth>=600);
+    const nextHints=['Pick a tool, then tap Next.','Pick a time, then tap Next.','Pick a helper, then tap Next.',
+      goalReady()?'Tap Set my goal.':'Pick the body clue this tool helps.'];
+    hint(compact?nextHints[state.buildRow]:goalReady()?'Tap Set my goal.':
+      'Pick a tool, a time, a helper and a body clue if needed.');
+    const row=(i,body)=>`<div class="build-row ${state.buildRow===i?'active':''}">${body}</div>`;
+    const choice=(id,text,on)=>`<button id="${id}" class="choice" aria-pressed="${on}">${text}</button>`;
+    const tools=order.map(i=>choice('goalTool'+i,names[i]+(state.helpers.includes(i)?'<span class="helps">Helps me</span>':''),b.tool===i));
+    const timePics=['ws-icon-morning','ws-icon-afterschool','ws-icon-bedtime'];
+    const timeChoices=times.map((t,i)=> {
+      const blocked=b.tool===3 && i===2;
+      return `<button id="goalTime${i}" class="choice" aria-pressed="${b.when===i}" ${blocked?'disabled':''}>
+        ${img(timePics[i])}${t}${blocked?'<span class="helps">Choose an earlier time</span>':''}</button>`;
+    });
+    const whoChoices=whos.map((w,i)=>choice('goalWho'+i,esc(w),b.who===i));
+    const clueChoices=becauseClues.map((c,i)=>choice('because'+i,c,b.clue===i));
+    $('stage').innerHTML=`<div class="week-world"><div class="builder"><p class="eyebrow">My week</p><h2>A little plan for you.</h2>
+      ${row(0,`<label>Tool</label><div class="choice-row">${tools.join('')}</div>`)}
+      ${row(1,`<label>When</label><div class="choice-row time-row">${timeChoices.join('')}</div>`)}
+      ${row(2,`<label>Who helps me remember</label><div class="choice-row">${whoChoices.join('')}</div>`)}
+      ${row(3,`<label>Because</label>${state.results[b.tool]?`<p class="note">${because()}</p>`:
+        `<p class="muted">Pick the body clue this tool helps.</p><div class="choice-row">${clueChoices.join('')}</div>`}`)}
+      <div class="compact-next">${btn('builderBack','Back',false,state.buildRow===0?'disabled':'')}
+      ${btn('builderNext','Next ▶',true,state.buildRow===3?'disabled':'')}</div></div>${privacy()}</div>`;
+    const summary=(b.tool===null?'Choose a tool.':names[b.tool]+'.')+' '+(b.when===null?'Choose a time.':times[b.when]+'.')
+      +' '+(b.who===null?'Choose a helper.':whos[b.who]+'.');
+    $('panelContent').innerHTML=`<h2>Your week goal</h2><p>${esc(summary)}</p>
+      <p class="note">${because()||'Your reason comes from a meter result or a body clue you pick.'}</p>
+      ${b.tool===3?'<p class="note">Use the worry box earlier in the day. Pick Morning or After school, with time to let worries go before sleep.</p>':''}
+      ${btn('setGoal','Set my goal',true,!goalReady()?'disabled':'')}<p class="muted">You do not need to feel worried to practice.</p>`;
+    for(let i=0;i<4;i++) {
+      bind('goalTool'+i,()=> {
+        b.tool=i;
+        if(i===3 && b.when===2) b.when=null;
+        preserveRender(renderBuilder);
+        builderHow();
+      });
+      bind('goalWho'+i,()=>{b.who=i;preserveRender(renderBuilder);builderHow();});
+      bind('because'+i,()=>{b.clue=i;preserveRender(renderBuilder);builderHow();});
+    }
+    for(let i=0;i<3;i++) bind('goalTime'+i,()=>{b.when=i;preserveRender(renderBuilder);builderHow();});
+    const builderStep=delta=> {
+      state.buildRow=Math.max(0,Math.min(3,state.buildRow+delta));
+      renderBuilder();
+      const next=document.querySelector('.build-row.active button:not(:disabled)')||
+        (!$('setGoal').disabled?$('setGoal'):$('builderBack'));
+      next?.focus({preventScroll:true});
+      builderHow();
+    };
+    bind('builderBack',()=>builderStep(-1));
+    bind('builderNext',()=>builderStep(1));
+    bind('setGoal',setGoal);
+  }
+  function builderKey() {
+    const b=state.builder;
+    const compact=innerWidth<600 || (innerHeight<=640 && innerWidth>=600);
+    let key='wWeek';
+    if(compact) {
+      const selected=[b.tool!==null,b.when!==null,b.who!==null,goalReady()][state.buildRow];
+      key=state.buildRow<3 && selected?'weekNext':['wWeek','weekTime','weekWho',goalReady()?'weekSet':'weekBecause'][state.buildRow];
+    } else {
+      key=b.tool===null?'wWeek':b.when===null?'weekTime':b.who===null?'weekWho':goalReady()?'weekSet':'weekBecause';
+    }
+    return key;
+  }
+  function builderHow() {
+    const key=builderKey();
+    const controls={wWeek:'#goalTool0',weekTime:'#goalTime0',weekWho:'#goalWho0',weekBecause:'#because0',
+      weekNext:'#builderNext',weekSet:'#setGoal'};
+    V.how(key,{hint:false,now:true,needs:controls[key],valid:()=>state.mode==='week' && !state.week && builderKey()===key});
+  }
+  function setGoal() {
+    if(!goalReady()) return;
+    const b=state.builder;
+    const when=times[b.when];
+    const timePhrase=['in the morning','after school','at bedtime'][b.when];
+    const who=whos[b.who];
+    const helper=who==='Me (a note or alarm)'?'A note or alarm helps me remember.':who+' helps me remember.';
+    const sentence=`I will do ${names[b.tool]} ${timePhrase} every day this week. ${helper} ${because()}`;
+    state.week={tool:b.tool,when,who,start:localDate(),checks:Array(7).fill(false),sentence};
+    state.reflect=false;
+    state.reflectionPicks={help:[],barrier:[]};
+    saveWeek();
+    V.hush();
+    renderWeek();
+    $('day0').focus({preventScroll:true});
+    cue('goalSet');
+  }
+  const checkedSpoken=new Set();
+  function checkDay(i) {
+    const w=state.week;
+    if(!w || !Number.isInteger(i) || i<0 || i>6) return;
+    if(i>dayIndex(w.start)) {
+      hint('Come back on '+dateAt(w.start,i).toLocaleDateString('en-US',{weekday:'long'})+' to check this one.');
+      return;
+    }
+    w.checks[i]=!w.checks[i];
+    saveWeek();
+    preserveRender(renderWeek);
+    const key='checked-'+localDate();
+    if(w.checks[i] && !checkedSpoken.has(key)) {checkedSpoken.add(key);cue('checked');}
+  }
+  function weekLine(n) {
+    return n===7?"Every day! That's a habit starting.":n>=4?'Most days. Nice work.':n>=1?'A start. What got in the way?':
+      'The week got away. That happens. Try an easier time of day.';
+  }
+  function renderReflection() {
+    const n=state.week.checks.filter(Boolean).length;
+    const early=dayIndex(state.week.start)<7;
+    const helped=['My helper reminded me','I did it at the same time','It made me feel better','It was quick'];
+    const barriers=['I forgot','I was busy',"I didn't feel worried",'It felt silly','Someone interrupted'];
+    const chips=(group,items)=>`<div class="chip-group">${items.map((s,i)=>`<button id="${group}${i}"
+      aria-pressed="${state.reflectionPicks[group].includes(i)}">${s}</button>`).join('')}</div>`;
+    hint('Tap any chips that fit, or leave them blank. Then choose your next week.');
+    $('stage').innerHTML=`<div class="week-world"><div class="reflection"><p class="eyebrow">Your week, your learning</p>
+      <h2>${early?'So far, you practiced':'You did it'} ${n} of 7 days.</h2>
+      <p>${early?'Your week is still underway. This is a check-in.':weekLine(n)}</p>
+      <h3>What helped, if anything?</h3>${chips('help',helped)}
+      <h3>What got in the way, if anything?</h3>${chips('barrier',barriers)}</div>${privacy()}</div>`;
+    $('panelContent').innerHTML=`<h2>Next week I will</h2>${btn('keepNext','Keep this goal',true)}
+      ${btn('changeTime','Change the time')}${btn('changeTool','Try a different tool')}`;
+    for(const [group,items] of [['help',helped],['barrier',barriers]]) {
+      items.forEach((s,i)=>bind(group+i,()=> {
+        const list=state.reflectionPicks[group];
+        const at=list.indexOf(i);
+        if(at<0) list.push(i);
+        else list.splice(at,1);
+        preserveRender(renderReflection);
+      }));
+    }
+    const next=change=> {
+      const w=state.week;
+      state.builder={tool:change==='tool'?null:w.tool,when:change==='time'?null:times.indexOf(w.when),who:whos.indexOf(w.who),clue:null};
+      state.week=null;
+      state.reflect=false;
+      state.buildRow=change==='time'?1:0;
+      saveWeek();
+      renderWeek();
+      const field=change==='time'?'goalTime0':change==='tool'?'goalTool0':'goalTool'+state.builder.tool;
+      $(field)?.focus({preventScroll:true});
+    };
+    bind('keepNext',()=>next('keep'));
+    bind('changeTime',()=>next('time'));
+    bind('changeTool',()=>next('tool'));
+  }
+  document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{Curio.tone(440,.05,.025);setMode(b.dataset.mode);});
+  addEventListener('keydown',e=> {
+    if(e.altKey || e.ctrlKey || e.metaKey || e.target.tagName==='SELECT') return;
+    if(state.mode==='sort' && state.picked) {
+      if(['1','2','3'].includes(e.key)) {e.preventDefault();place(sizes[Number(e.key)-1]);return;}
+      if(e.key==='Escape') {
+        e.preventDefault();
+        state.picked=false;
+        renderSort();
+        $('worryCard').focus({preventScroll:true});
+        return;
+      }
+      if(e.key.startsWith('Arrow')) {
+        e.preventDefault();
+        const old=Number(document.activeElement.id.slice(-1));
+        const delta=['ArrowLeft','ArrowUp'].includes(e.key)?-1:1;
+        const next=Number.isFinite(old)?(old+delta+3)%3:0;
+        $('basket'+next).focus({preventScroll:true});
+        return;
+      }
+    }
+    if(['1','2','3','4'].includes(e.key)) {
+      e.preventDefault();
+      setMode(['sort','clues','tools','week'][Number(e.key)-1]);
+    }
+  });
+  Curio.init({clips:"voice:*",rate:.95});
+  Curio.onMotion(reduce=> {
+    if(reduce) document.getAnimations().filter(a=>a.effect.getTiming().iterations!==Infinity).forEach(a=>a.finish());
+  });
+  loadWeek();
+  newSort();
+  render();
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},
+    meterResult,dayIndex,weekLine,goalReady,checkDay,newSort,place,rate,afterTool,localDate,render};
+})();
+</script>
+</body>
+</html>

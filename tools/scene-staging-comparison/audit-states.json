@@ -1,0 +1,219 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "playing-with-stamp",
+      "steps": [
+        {
+          "click": "#play-0"
+        },
+        {
+          "click": "#reaction-2"
+        }
+      ],
+      "keep": [
+        "#reactions",
+        "#play-0"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "last-moment",
+      "steps": [
+        {
+          "click": "#next",
+          "times": 9,
+          "gap": 0.15
+        }
+      ],
+      "keep": [
+        "#next",
+        "#previous"
+      ]
+    },
+    {
+      "name": "compare-split",
+      "steps": [
+        {
+          "click": "#reaction-2"
+        },
+        {
+          "click": "#m-compare"
+        },
+        {
+          "click": "#splits"
+        }
+      ],
+      "keep": [
+        "#splits"
+      ]
+    },
+    {
+      "name": "sample-viewers",
+      "steps": [
+        {
+          "click": "#m-compare"
+        },
+        {
+          "click": "#samples"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "layer-positions",
+      "steps": [
+        {
+          "click": "#m-layers"
+        },
+        {
+          "click": "#layer-1"
+        }
+      ],
+      "keep": [
+        "#chips",
+        "#layer-tabs"
+      ]
+    },
+    {
+      "name": "layer-costumes",
+      "steps": [
+        {
+          "click": "#m-layers"
+        },
+        {
+          "click": "#layer-4"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#chips",
+        "#layer-tabs"
+      ]
+    },
+    {
+      "name": "layer-time-chip",
+      "steps": [
+        {
+          "click": "#m-layers"
+        },
+        {
+          "click": "#layer-5"
+        },
+        {
+          "click": "#chip-5"
+        }
+      ],
+      "keep": [
+        "#chips",
+        "#layer-tabs"
+      ]
+    },
+    {
+      "name": "reset-dialog",
+      "steps": [
+        {
+          "click": "#reset"
+        }
+      ],
+      "keep": [
+        "#reset-dialog"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "viewer-production-swap",
+      "steps": [
+        {
+          "click": "#reaction-0",
+          "gap": 0.2
+        },
+        {
+          "click": "#play-1",
+          "gap": 0.2
+        },
+        {
+          "click": "#play-1",
+          "gap": 0.2
+        },
+        {
+          "click": "#reaction-2",
+          "gap": 0.2
+        },
+        {
+          "click": "#viewer-1",
+          "gap": 0.2
+        },
+        {
+          "click": "#reaction-0",
+          "gap": 0.2
+        },
+        {
+          "click": "#play-0",
+          "gap": 0.2
+        },
+        {
+          "click": "#play-0",
+          "gap": 0.2
+        },
+        {
+          "click": "#reaction-2",
+          "gap": 0.2
+        },
+        {
+          "click": "#m-compare",
+          "gap": 0.2
+        },
+        {
+          "click": "#splits",
+          "gap": 0.2
+        }
+      ],
+      "keep": [
+        "#splits"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "opinion-saved",
+      "steps": [
+        {
+          "click": "#reaction-1"
+        },
+        {
+          "click": "#m-compare"
+        },
+        {
+          "js": "document.querySelector('#op-reason').value='The actors almost collided as they entered.';document.querySelector('#op-reason').dispatchEvent(new Event('input'));"
+        },
+        {
+          "click": "#add"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

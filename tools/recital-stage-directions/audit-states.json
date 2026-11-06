@@ -1,0 +1,166 @@
+{
+  "target": 44,
+  "keep": [
+    "#stage",
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "stage-view",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#reverse"
+        }
+      ]
+    },
+    {
+      "name": "map-return",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#m-turn"
+        },
+        {
+          "click": "#m-map"
+        }
+      ]
+    },
+    {
+      "name": "call-check",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#calls"
+        },
+        {
+          "click": "#dancer-0"
+        },
+        {
+          "click": "[data-plan=\"C\"]"
+        },
+        {
+          "click": "#check"
+        }
+      ]
+    },
+    {
+      "name": "recital-evidence",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#m-recital"
+        },
+        {
+          "click": "#watch"
+        },
+        {
+          "wait": 21000
+        },
+        {
+          "click": "#clue-0"
+        },
+        {
+          "click": "#main-idea"
+        }
+      ]
+    },
+    {
+      "name": "turn-active",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#m-turn"
+        },
+        {
+          "click": "#start"
+        },
+        {
+          "wait": 7000
+        }
+      ]
+    },
+    {
+      "name": "compare",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#m-recital"
+        },
+        {
+          "click": "#watch"
+        },
+        {
+          "wait": 21000
+        },
+        {
+          "click": "#clue-0"
+        },
+        {
+          "click": "#clue-2"
+        },
+        {
+          "click": "#clue-4"
+        },
+        {
+          "click": "#clue-6"
+        },
+        {
+          "click": "#main-idea"
+        },
+        {
+          "click": "#idea-1"
+        },
+        {
+          "click": "#piece-1"
+        },
+        {
+          "click": "#watch"
+        },
+        {
+          "wait": 15000
+        },
+        {
+          "click": "#clue-1"
+        },
+        {
+          "click": "#clue-3"
+        },
+        {
+          "click": "#clue-5"
+        },
+        {
+          "click": "#clue-7"
+        },
+        {
+          "click": "#main-idea"
+        },
+        {
+          "click": "#idea-2"
+        },
+        {
+          "click": "#compare"
+        }
+      ],
+      "keep": [
+        "#compare-board",
+        "#hint",
+        "#traits",
+        "#compare-check",
+        "#back-recital"
+      ]
+    }
+  ]
+}

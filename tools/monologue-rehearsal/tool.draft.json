@@ -1,0 +1,23 @@
+{
+  "id": "monologue-rehearsal",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Score a speech, perform it for a partner, and see which choices reached your listener.",
+  "outcome": "Prepare given circumstances, rehearse purposeful tactics, perform for an audience and reflect on listener evidence",
+  "driver": "students",
+  "minutes": "30-45",
+  "modes": ["Choose", "Prepare", "Rehearse", "Perform", "Compare"],
+  "grades_label": "Grades 9-12",
+  "sources": [
+    "NCAS Theatre TH:Pr4, TH:Pr6, TH:Cn10, https://www.nationalartsstandards.org/",
+    "William Shakespeare, Twelfth Night, Project Gutenberg 1526, https://www.gutenberg.org/ebooks/1526",
+    "William Shakespeare, Julius Caesar, Project Gutenberg 1522, https://www.gutenberg.org/ebooks/1522",
+    "William Shakespeare, A Midsummer Night's Dream, Project Gutenberg 1514, https://www.gutenberg.org/ebooks/1514",
+    "Susan Glaspell, Plays, Project Gutenberg 10623, https://www.gutenberg.org/ebooks/10623",
+    "Konstantin Stanislavski, An Actor Prepares (1936), Given Circumstances and Units and Objectives",
+    "Tactic tips and suggested wants written for Curio Class; suggestions, not acting rules",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-05"
+}

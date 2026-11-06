@@ -1,0 +1,521 @@
+{
+  "states": [
+    {
+      "name": "picker",
+      "steps": [
+        {
+          "click": "#add-2"
+        }
+      ],
+      "keep": [
+        "#picker"
+      ]
+    },
+    {
+      "name": "offer-due",
+      "steps": [
+        {
+          "click": "#add-0"
+        },
+        {
+          "click": "#option-1-Ortiz-a"
+        },
+        {
+          "click": "#add-1"
+        },
+        {
+          "click": "#option-2-Dale-a"
+        },
+        {
+          "click": "#add-2"
+        },
+        {
+          "click": "#option-3-Maya-a"
+        }
+      ],
+      "keep": [
+        "#offer"
+      ]
+    },
+    {
+      "name": "offers-list",
+      "steps": [
+        {
+          "click": "#add-0"
+        },
+        {
+          "click": "#option-1-Ortiz-a"
+        },
+        {
+          "click": "#add-1"
+        },
+        {
+          "click": "#option-2-Dale-a"
+        },
+        {
+          "click": "#add-2"
+        },
+        {
+          "click": "#option-3-Maya-a"
+        },
+        {
+          "click": "#pass-offer"
+        },
+        {
+          "click": "#add-3"
+        },
+        {
+          "click": "#option-4-Dale-a"
+        },
+        {
+          "click": "#add-4"
+        },
+        {
+          "click": "#option-5-Maya-a"
+        },
+        {
+          "click": "#add-5"
+        },
+        {
+          "click": "#option-6-Ortiz-a"
+        },
+        {
+          "click": "#pass-offer"
+        },
+        {
+          "click": "#offers"
+        }
+      ],
+      "keep": [
+        "#offer-dialog"
+      ]
+    },
+    {
+      "name": "tighten-built",
+      "steps": [
+        {
+          "click": "#add-0"
+        },
+        {
+          "click": "#option-1-Ortiz-a"
+        },
+        {
+          "click": "#add-1"
+        },
+        {
+          "click": "#option-2-Dale-a"
+        },
+        {
+          "click": "#add-2"
+        },
+        {
+          "click": "#option-3-Maya-a"
+        },
+        {
+          "click": "#pass-offer"
+        },
+        {
+          "click": "#add-3"
+        },
+        {
+          "click": "#option-4-Dale-a"
+        },
+        {
+          "click": "#add-4"
+        },
+        {
+          "click": "#option-5-Maya-a"
+        },
+        {
+          "click": "#add-5"
+        },
+        {
+          "click": "#option-6-Ortiz-a"
+        },
+        {
+          "click": "#pass-offer"
+        },
+        {
+          "click": "#m-tighten"
+        }
+      ],
+      "keep": [
+        "#checks",
+        "#play"
+      ]
+    },
+    {
+      "name": "pause-min",
+      "steps": [
+        {
+          "click": "#add-0"
+        },
+        {
+          "click": "#option-1-Ortiz-a"
+        },
+        {
+          "click": "#add-1"
+        },
+        {
+          "click": "#option-2-Dale-a"
+        },
+        {
+          "click": "#add-2"
+        },
+        {
+          "click": "#option-3-Maya-a"
+        },
+        {
+          "click": "#pass-offer"
+        },
+        {
+          "click": "#add-3"
+        },
+        {
+          "click": "#option-4-Dale-a"
+        },
+        {
+          "click": "#add-4"
+        },
+        {
+          "click": "#option-5-Maya-a"
+        },
+        {
+          "click": "#add-5"
+        },
+        {
+          "click": "#option-6-Ortiz-a"
+        },
+        {
+          "click": "#pass-offer"
+        },
+        {
+          "click": "#m-tighten"
+        },
+        {
+          "click": "#pause-less"
+        }
+      ],
+      "keep": [
+        "#pause-value"
+      ]
+    },
+    {
+      "name": "pause-max",
+      "steps": [
+        {
+          "click": "#add-0"
+        },
+        {
+          "click": "#option-1-Ortiz-a"
+        },
+        {
+          "click": "#add-1"
+        },
+        {
+          "click": "#option-2-Dale-a"
+        },
+        {
+          "click": "#add-2"
+        },
+        {
+          "click": "#option-3-Maya-a"
+        },
+        {
+          "click": "#pass-offer"
+        },
+        {
+          "click": "#add-3"
+        },
+        {
+          "click": "#option-4-Dale-a"
+        },
+        {
+          "click": "#add-4"
+        },
+        {
+          "click": "#option-5-Maya-a"
+        },
+        {
+          "click": "#add-5"
+        },
+        {
+          "click": "#option-6-Ortiz-a"
+        },
+        {
+          "click": "#pass-offer"
+        },
+        {
+          "click": "#m-tighten"
+        },
+        {
+          "click": "#pause-more",
+          "times": 5,
+          "gap": 0.1
+        }
+      ],
+      "keep": [
+        "#pause-value"
+      ]
+    },
+    {
+      "name": "perform-live",
+      "steps": [
+        {
+          "click": "#add-0"
+        },
+        {
+          "click": "#option-1-Ortiz-a"
+        },
+        {
+          "click": "#add-1"
+        },
+        {
+          "click": "#option-2-Dale-a"
+        },
+        {
+          "click": "#add-2"
+        },
+        {
+          "click": "#option-3-Maya-a"
+        },
+        {
+          "click": "#pass-offer"
+        },
+        {
+          "click": "#add-3"
+        },
+        {
+          "click": "#option-4-Dale-a"
+        },
+        {
+          "click": "#add-4"
+        },
+        {
+          "click": "#option-5-Maya-a"
+        },
+        {
+          "click": "#add-5"
+        },
+        {
+          "click": "#option-6-Ortiz-a"
+        },
+        {
+          "click": "#pass-offer"
+        },
+        {
+          "click": "#m-perform"
+        },
+        {
+          "click": "[data-role=all]"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "wait": 800
+        }
+      ],
+      "keep": [
+        "#cue",
+        "#done"
+      ]
+    },
+    {
+      "name": "reset-confirmation",
+      "steps": [
+        {
+          "click": "#reset"
+        }
+      ],
+      "keep": [
+        "#reset-dialog"
+      ]
+    },
+    {
+      "name": "after-live-run",
+      "steps": [
+        {
+          "click": "#add-0"
+        },
+        {
+          "click": "#option-1-Ortiz-a"
+        },
+        {
+          "click": "#add-1"
+        },
+        {
+          "click": "#option-2-Dale-a"
+        },
+        {
+          "click": "#add-2"
+        },
+        {
+          "click": "#option-3-Maya-a"
+        },
+        {
+          "click": "#pass-offer"
+        },
+        {
+          "click": "#add-3"
+        },
+        {
+          "click": "#option-4-Dale-a"
+        },
+        {
+          "click": "#add-4"
+        },
+        {
+          "click": "#option-5-Maya-a"
+        },
+        {
+          "click": "#add-5"
+        },
+        {
+          "click": "#option-6-Ortiz-a"
+        },
+        {
+          "click": "#pass-offer"
+        },
+        {
+          "click": "#m-perform"
+        },
+        {
+          "click": "[data-role=all]"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "until": "__tool.state.waiting",
+          "max": 5000
+        },
+        {
+          "click": "#done"
+        },
+        {
+          "until": "__tool.state.waiting",
+          "max": 5000
+        },
+        {
+          "click": "#done"
+        },
+        {
+          "until": "__tool.state.waiting",
+          "max": 5000
+        },
+        {
+          "click": "#done"
+        },
+        {
+          "until": "__tool.state.waiting",
+          "max": 5000
+        },
+        {
+          "click": "#done"
+        },
+        {
+          "until": "__tool.state.waiting",
+          "max": 5000
+        },
+        {
+          "click": "#done"
+        },
+        {
+          "until": "__tool.state.waiting",
+          "max": 5000
+        },
+        {
+          "click": "#done"
+        },
+        {
+          "until": "!!__tool.state.result",
+          "max": 5000
+        }
+      ],
+      "keep": [
+        "#cue"
+      ]
+    },
+    {
+      "name": "partial-cue-recap",
+      "steps": [
+        {
+          "click": "#add-0"
+        },
+        {
+          "click": "#option-1-Ortiz-a"
+        },
+        {
+          "click": "#add-1"
+        },
+        {
+          "click": "#option-2-Dale-a"
+        },
+        {
+          "click": "#add-2"
+        },
+        {
+          "click": "#option-3-Maya-a"
+        },
+        {
+          "click": "#pass-offer"
+        },
+        {
+          "click": "#add-3"
+        },
+        {
+          "click": "#option-4-Dale-a"
+        },
+        {
+          "click": "#add-4"
+        },
+        {
+          "click": "#option-5-Maya-a"
+        },
+        {
+          "click": "#add-5"
+        },
+        {
+          "click": "#option-6-Ortiz-a"
+        },
+        {
+          "click": "#pass-offer"
+        },
+        {
+          "click": "#m-perform"
+        },
+        {
+          "click": "[data-role=all]"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "wait": 800
+        },
+        {
+          "click": "#card-6-Ortiz-a"
+        },
+        {
+          "until": "__tool.state.waiting",
+          "max": 5000
+        },
+        {
+          "click": "#done"
+        },
+        {
+          "until": "!!__tool.state.result",
+          "max": 5000
+        }
+      ],
+      "keep": [
+        "#cue",
+        "#play"
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "id": "recital-practice-plan",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Practice is a budget you can hear.",
+  "outcome": "Choose repertoire, plan practice, evaluate takes and present a recital.",
+  "driver": "students",
+  "minutes": "30-45",
+  "modes": [
+    "Set",
+    "Rubric",
+    "Practice",
+    "Recital"
+  ],
+  "grades_label": "Grades 9-12",
+  "sources": [
+    "National Core Arts Standards Music: MU:Pr4, MU:Pr5, MU:Pr6, MU:Re9, MU:Cn10",
+    "IMSLP public-domain piano scores: Petzold BWV Anh.114; Bach BWV846; Satie Gymnopedie No.1; Joplin The Entertainer",
+    "Mutopia public-domain original-edition transcriptions, used to cross-check Satie and Joplin",
+    "Night Bus, venues, difficulty values and practice model: original Curio Class teaching material",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-02"
+}

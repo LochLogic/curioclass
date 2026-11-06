@@ -1,0 +1,463 @@
+{
+  "states": [
+    {
+      "name": "three-neighbors",
+      "steps": [
+        {
+          "click": "#problem-0"
+        },
+        {
+          "click": "#neighbor-shell"
+        },
+        {
+          "click": "#neighbor-rufus"
+        },
+        {
+          "click": "#neighbor-gail"
+        }
+      ],
+      "keep": [
+        "#actions",
+        "#street-bubble"
+      ]
+    },
+    {
+      "name": "two-characters",
+      "steps": [
+        {
+          "click": "#problem-0"
+        },
+        {
+          "click": "#neighbor-shell"
+        },
+        {
+          "click": "#neighbor-rufus"
+        },
+        {
+          "click": "#neighbor-gail"
+        },
+        {
+          "click": "#make-play"
+        },
+        {
+          "click": "#add-character"
+        },
+        {
+          "click": "#add-character"
+        },
+        {
+          "click": "#step-Characters"
+        }
+      ],
+      "keep": [
+        "#actions"
+      ]
+    },
+    {
+      "name": "theater-three-props",
+      "steps": [
+        {
+          "click": "#problem-0"
+        },
+        {
+          "click": "#neighbor-shell"
+        },
+        {
+          "click": "#neighbor-rufus"
+        },
+        {
+          "click": "#neighbor-gail"
+        },
+        {
+          "click": "#make-play"
+        },
+        {
+          "click": "#add-character"
+        },
+        {
+          "click": "#add-character"
+        },
+        {
+          "click": "#to-theater"
+        },
+        {
+          "click": "#theater-tab-Props"
+        },
+        {
+          "click": "#add-prop-bench"
+        },
+        {
+          "click": "#add-prop-ball"
+        },
+        {
+          "click": "#add-prop-sign"
+        }
+      ],
+      "keep": [
+        "#actions",
+        "#theater"
+      ]
+    },
+    {
+      "name": "scene-three-fix",
+      "steps": [
+        {
+          "click": "#problem-0"
+        },
+        {
+          "click": "#neighbor-shell"
+        },
+        {
+          "click": "#neighbor-rufus"
+        },
+        {
+          "click": "#neighbor-gail"
+        },
+        {
+          "click": "#make-play"
+        },
+        {
+          "click": "#add-character"
+        },
+        {
+          "click": "#add-character"
+        },
+        {
+          "click": "#blocker"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#to-theater"
+        },
+        {
+          "click": "#to-scenes"
+        },
+        {
+          "click": "#scene-2"
+        },
+        {
+          "click": "#fix"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#help-shell"
+        }
+      ],
+      "keep": [
+        "#actions"
+      ]
+    },
+    {
+      "name": "flat-preview",
+      "steps": [
+        {
+          "click": "#problem-0"
+        },
+        {
+          "click": "#neighbor-shell"
+        },
+        {
+          "click": "#neighbor-rufus"
+        },
+        {
+          "click": "#neighbor-gail"
+        },
+        {
+          "click": "#make-play"
+        },
+        {
+          "click": "#add-character"
+        },
+        {
+          "click": "#add-character"
+        },
+        {
+          "click": "#to-theater"
+        },
+        {
+          "click": "#to-scenes"
+        },
+        {
+          "click": "#check"
+        }
+      ],
+      "keep": [
+        "#actions",
+        "#theater"
+      ]
+    },
+    {
+      "name": "performance-line",
+      "steps": [
+        {
+          "click": "#problem-0"
+        },
+        {
+          "click": "#neighbor-shell"
+        },
+        {
+          "click": "#neighbor-rufus"
+        },
+        {
+          "click": "#neighbor-gail"
+        },
+        {
+          "click": "#make-play"
+        },
+        {
+          "click": "#add-character"
+        },
+        {
+          "click": "#add-character"
+        },
+        {
+          "click": "#blocker"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#to-theater"
+        },
+        {
+          "click": "#to-scenes"
+        },
+        {
+          "click": "#scene-2"
+        },
+        {
+          "click": "#fix"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#help-shell"
+        },
+        {
+          "click": "#perform"
+        },
+        {
+          "click": "#curtain"
+        },
+        {
+          "click": "#next-line"
+        }
+      ],
+      "keep": [
+        "#actions",
+        "#next-line",
+        "#theater"
+      ]
+    },
+    {
+      "name": "closing-bow",
+      "steps": [
+        {
+          "click": "#problem-0"
+        },
+        {
+          "click": "#neighbor-shell"
+        },
+        {
+          "click": "#neighbor-rufus"
+        },
+        {
+          "click": "#neighbor-gail"
+        },
+        {
+          "click": "#make-play"
+        },
+        {
+          "click": "#add-character"
+        },
+        {
+          "click": "#add-character"
+        },
+        {
+          "click": "#blocker"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#to-theater"
+        },
+        {
+          "click": "#to-scenes"
+        },
+        {
+          "click": "#scene-2"
+        },
+        {
+          "click": "#fix"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#help-shell"
+        },
+        {
+          "click": "#perform"
+        },
+        {
+          "click": "#curtain"
+        },
+        {
+          "click": "#next-line"
+        },
+        {
+          "click": "#next-line",
+          "times": 7
+        },
+        {
+          "click": "#bow"
+        }
+      ],
+      "keep": [
+        "#actions"
+      ]
+    },
+    {
+      "name": "new-play-confirm",
+      "steps": [
+        {
+          "click": "#new-play"
+        }
+      ],
+      "keep": [
+        "#confirm-dialog"
+      ]
+    },
+    {
+      "name": "language-family-people",
+      "steps": [
+        {
+          "click": "#problem-2"
+        },
+        {
+          "click": "#neighbor-fern"
+        },
+        {
+          "click": "#neighbor-rufus"
+        },
+        {
+          "click": "#neighbor-bramble"
+        },
+        {
+          "click": "#make-play"
+        },
+        {
+          "click": "#add-neighbor"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#add-character"
+        },
+        {
+          "click": "#add-character"
+        },
+        {
+          "click": "#to-theater"
+        },
+        {
+          "click": "#backdrop-neighbors"
+        },
+        {
+          "click": "#theater-tab-Costumes"
+        },
+        {
+          "click": "#costume-hat"
+        },
+        {
+          "click": "#costume-glasses"
+        }
+      ],
+      "keep": [
+        "#actions",
+        "#theater"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

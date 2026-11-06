@@ -1,0 +1,22 @@
+{
+  "id": "bus-stop",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Drive the bus. Show the riders. Tell the number story.",
+  "outcome": "Model addition and subtraction within ten, record decompositions, make ten and practice facts within five.",
+  "driver": "teacher",
+  "minutes": "8-15",
+  "modes": [
+    "Drive",
+    "Split",
+    "Express"
+  ],
+  "grades_label": "Kindergarten",
+  "sources": [
+    "Common Core State Standards Initiative, K.OA.A.1 to K.OA.A.5",
+    "Common Core Standards Writing Team (2011), Progressions, K-5 Operations and Algebraic Thinking",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-06"
+}

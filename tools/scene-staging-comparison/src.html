@@ -1,0 +1,1163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E">
+<title>Scene Staging Comparison · Curio Class</title>
+<meta name="description" content="Watch two fictional Chekhov productions, stamp live reactions, and support your opinions with staging evidence. Grades 6-8. Offline.">
+<!--
+Curio Class. Grades 6-8 theater, TH:Re7, TH:Re8, TH:Re9, TH:Cn11. Students drive, alone or in pairs.
+Original plain-language retelling of Chekhov's public-domain A Marriage Proposal, 1888 to 1889.
+Productions and sample viewers are fictional. Historical context follows the spec's Britannica sources.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Code MIT, content CC BY 4.0.
+One offline file. Reactions, interpretations and opinions stay on this device.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#17131a; --panel:#221c26; --ink:#f1ebf2; --muted:#b3a8b6; --line:#584c5d;
+  --brand:#f2c14e; --btn:#302736; --btn-line:#77647c; --head-ink:#f1ebf2; --focus:#6fc3ff;
+}
+body {height:100dvh; overflow:hidden; background:radial-gradient(ellipse at 50% 0,#382738,#17131a 65%);}
+header {background:#211923; padding:12px 22px; border-bottom:1px solid #68523a; gap:10px; flex-wrap:nowrap;}
+h1 {font:700 clamp(20px,2.1vw,29px)/1.1 Georgia,serif; letter-spacing:-.025em;}
+h1 small {font:400 12px/1.5 'Segoe UI',sans-serif; letter-spacing:0; color:#cabcce;}
+.seg {border-radius:6px; border-width:1px; flex:none;}
+.seg button {min-height:44px; padding:0 16px; font-size:14px;}
+.seg button[aria-pressed=true] {background:var(--brand); color:#17131a;}
+#sound {width:74px; flex:none;}
+.icon-btn {min-height:44px; padding:0 10px; font-size:12px; border-width:1px; border-radius:6px;}
+button,select,input {font-family:inherit;}
+button {min-width:44px; min-height:44px; border:1px solid #79677f; border-radius:6px; background:#322936;
+  color:var(--ink); padding:6px 12px; font-weight:600;}
+button:hover {border-color:#f2c14e; background:#453646;}
+button:active {transform:translateY(1px);}
+button:disabled {opacity:.45; cursor:default;}
+button[aria-pressed=true],button.gold {background:var(--brand); border-color:var(--brand); color:#17131a;}
+main {grid-template-columns:minmax(0,1fr) 242px; gap:0; height:100%; min-height:0;}
+.panel {padding:16px 13px; border-left:1px solid #6f573f; gap:10px; order:0; grid-column:2; grid-row:1;}
+.hint {font-size:13px; line-height:1.4; margin:0; min-height:74px; flex-shrink:0; color:#f1ebf2;}
+.field-label,.eyebrow {font-size:10px; color:#c5b6c9; text-transform:uppercase; letter-spacing:.12em;}
+.viewer-row {display:flex; gap:5px;}
+.viewer-row button {flex:1; font-size:12px; padding:4px;}
+.transport {display:grid; gap:7px;}
+.transport button {font-size:13px; padding:7px;}
+.step-row {display:grid; grid-template-columns:1fr 1fr; gap:5px;}
+.step-row button {font-size:11px; padding:4px;}
+#moment-label {font:700 18px Georgia,serif; color:var(--brand); margin:2px 0;}
+#status {color:var(--muted); font-size:11px; min-height:33px; line-height:1.4;}
+.panel footer {margin-top:auto; border-top:1px solid #584c5d; padding-top:10px;}
+#save-note {font-size:10px; line-height:1.4; color:var(--muted); margin:8px 0 0;}
+#reset {width:100%;}
+.stage {grid-column:1; grid-row:1; min-height:0; overflow:auto; background:none; padding:15px 19px;
+  display:flex; flex-direction:column; gap:10px;}
+.program {display:flex; align-items:center; justify-content:space-between; gap:12px; flex:none;}
+.program h2 {font:500 clamp(20px,2.2vw,31px)/1.15 Georgia,serif; margin:3px 0;}
+.program .small {font-size:11px; color:var(--muted);}
+.ticket {font:italic 13px Georgia,serif; color:#dac392; border:1px solid #806b43; padding:10px 14px;
+  transform:rotate(2deg); background:linear-gradient(110deg,#2c2526,#403027); box-shadow:0 3px 10px #0007;}
+.frames {display:grid; grid-template-columns:1fr 1fr; gap:14px; flex:1; min-height:210px;}
+.production {min-width:0; display:flex; flex-direction:column; background:#110e13; border:1px solid #69513f;
+  border-radius:8px; overflow:hidden; box-shadow:0 10px 24px #0008; transition:filter .2s,opacity .2s;}
+.production.dim {filter:saturate(.5);}
+.production.dim .set {opacity:.58;}
+.production.playing {border-color:var(--brand); box-shadow:0 0 0 2px #f2c14e33,0 10px 24px #0008;}
+.production-head {display:flex; justify-content:space-between; gap:4px; padding:9px 12px; background:linear-gradient(#392b32,#271e27);}
+.production-head b {font:600 16px Georgia,serif;}
+.production-head span {font-size:10px; color:#d4c6d8; align-self:center; white-space:nowrap;}
+.play-signal {display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--brand); margin-right:4px;}
+.playing .play-signal {animation:lamp 1.4s ease-in-out infinite alternate;}
+@keyframes lamp {to {opacity:.35; box-shadow:0 0 12px #f2c14e;}}
+.set {position:relative; overflow:hidden; min-height:100px; flex:1; isolation:isolate; background:#241d25;}
+.set>img {position:absolute; width:100%; height:100%; object-fit:fill; inset:0;}
+.lighting {position:absolute; inset:0; pointer-events:none; z-index:2; mix-blend-mode:soft-light;
+  background:linear-gradient(110deg,#f0b06040,transparent 70%); transition:opacity 1s;}
+.production[data-p="1"] .lighting {background:#d9eaff22;}
+.production[data-p="0"] .lighting {animation:lamplight 7s ease-in-out infinite alternate;}
+@keyframes lamplight {to {opacity:.72;}}
+.set.faint .lighting {background:#17101bb3; mix-blend-mode:multiply;}
+.set.blackout .lighting {background:#08060bea; mix-blend-mode:multiply;}
+.set.blackout::after {content:''; position:absolute; inset:0; background:#08060b; z-index:8;}
+.floor-shadow {position:absolute; left:5%; right:5%; bottom:4%; height:9%; background:radial-gradient(ellipse,#0008,transparent 70%);}
+.actor {position:absolute; width:15%; height:66%; left:0; top:24%; z-index:3;
+  transform:translate(-50%,0); transition:left var(--travel,1.3s) ease-in-out,top var(--travel,1.3s) ease-in-out,opacity .5s;}
+.production:not(.running) .actor,.production:not(.running) .actor .body {transition:none;}
+.actor svg {width:100%; height:100%; overflow:visible; filter:drop-shadow(3px 5px 3px #0009);}
+.actor .body {transform-origin:50% 80%; transition:transform .7s;}
+.actor-initial {position:absolute; left:80%; top:20%; transform:translateX(-50%); font-size:10px;
+  color:#fff; background:#17131ae6; border:1px solid #b4a2ad; border-radius:50%; width:15px; height:15px;
+  text-align:center; line-height:13px;}
+.actor.sit .body {transform:translateY(13%) scaleY(.76);}
+.actor.lean .body {transform:rotate(-18deg);}
+.actor.slump .body {transform:translateY(15%) rotate(-22deg) scaleY(.78);}
+.actor.lift .body {transform:translateY(-18%) rotate(9deg);}
+.actor.fall .body {transform:translateY(-5%) rotate(82deg);}
+.running .actor.fall .body {animation:pratfall .7s cubic-bezier(.4,0,.8,1) both;}
+@keyframes pratfall {
+  0% {transform:translateY(-12%) rotate(-8deg);}
+  65% {transform:translateY(-5%) rotate(88deg);}
+  82% {transform:translateY(-11%) rotate(77deg);}
+  100% {transform:translateY(-5%) rotate(82deg);}
+}
+.impact {position:absolute; left:25%; bottom:11%; width:27%; height:12%; z-index:4; opacity:0;
+  border-bottom:3px solid #e8cc92; border-radius:50%; transform:scaleX(.4); pointer-events:none;}
+.running .set.farce-faint .impact {animation:impact .55s .4s both;}
+@keyframes impact {20% {opacity:.85;transform:scaleX(1);} 100% {opacity:0;transform:scaleX(1.3);}}
+.calm .impact {animation:none!important;opacity:0;}
+.actor.crawl .body {transform:translateY(27%) rotate(-65deg);}
+.actor.hop .body {animation:hop .45s ease-in-out infinite alternate;}
+.actor.shout .body {animation:shout .45s ease-in-out infinite alternate;}
+.running .actor.dog .body {animation:dogwalk .8s ease-in-out infinite alternate;}
+.actor .heart-arm,.actor .kiss-arm,.actor .leash {display:none;}
+.actor.heart .arms,.actor.kiss .arms {display:none;}
+.actor.heart .heart-arm,.actor.kiss .kiss-arm,.actor.dog .leash {display:block;}
+@keyframes dogwalk {to {transform:translateX(10%) rotate(9deg);}}
+@keyframes hop {to {transform:translateY(-15%) rotate(13deg);}}
+@keyframes shout {to {transform:rotate(8deg);}}
+.actor-labels {position:absolute; left:5px; bottom:3px; right:5px; display:flex; justify-content:space-between; z-index:5;
+  font-size:10px; color:#fff; text-shadow:0 1px 4px #000; background:#100c1577; padding:2px 4px;}
+.caption {min-height:76px; padding:10px 12px; background:#201923; border-top:1px solid #665041; font-size:13px; line-height:1.45;}
+.caption.waiting {color:#cbb8ce; font-style:italic;}
+.progress {height:3px; background:#51424e; flex:none;}
+.progress i {display:block; height:100%; width:0; background:var(--brand); transition:none!important;}
+.reaction-area {flex:none;}
+.reaction-heading {display:flex; justify-content:space-between; color:#d9c9dc; font-size:11px; margin:0 0 6px; min-height:15px;}
+.reactions {display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:7px;}
+.react {min-height:56px; padding:6px 3px; font-size:12px; background:linear-gradient(#403140,#2b232f); border-color:var(--r);}
+.react strong {font:700 20px Georgia,serif; color:var(--r); margin-right:6px;}
+.react.flash {background:var(--r); color:#17131a; box-shadow:0 0 18px #f2c14e44;}
+.react.flash strong {color:#17131a;}
+.strip-wrap {flex:none; padding:9px 10px; background:#211a25; border:1px solid #675442; border-radius:6px;}
+.strip-title {display:flex; align-items:baseline; justify-content:space-between; margin-bottom:5px; font-size:11px; color:#d7c2a1;}
+.strip-title span {color:var(--muted); font-size:10px;}
+.mini-strip {display:grid; grid-template-columns:34px repeat(10,minmax(0,1fr)); gap:3px;}
+.mini-label {font-size:10px; display:flex; align-items:center;}
+.mini-cell {min-height:25px; padding:1px; background:#322838; text-align:center; color:#a99bae; font-size:10px;
+  display:flex; flex-direction:column; justify-content:center; border:1px solid #4d4055; border-radius:3px;}
+.mini-cell.current {border-color:var(--brand);}
+.stamp-icons {font-size:12px; font-weight:bold; white-space:nowrap;}
+.stamp-word {font-size:10px; line-height:11px; min-height:11px; max-width:100%; white-space:nowrap;
+  overflow:hidden; text-overflow:ellipsis; display:block;}
+.phone-switch {display:none;}
+.phone-scroll-note {display:none;}
+#compare {display:flex; flex-direction:column; min-height:0; gap:12px; flex:1;}
+.compare-top {display:flex; align-items:center; justify-content:space-between; gap:8px;}
+.compare-top h2 {font:500 26px Georgia,serif; margin:0;}
+.compare-top p {margin:3px 0 0; font-size:11px; color:var(--muted);}
+.compare-actions {display:flex; gap:5px;}
+.compare-actions button {font-size:12px;}
+.comparison-scroll {overflow:auto; flex:1; min-height:160px; border:1px solid #6b5542; border-radius:7px; background:#211a25;}
+#comparison-grid {display:grid; grid-template-columns:110px repeat(10,minmax(44px,1fr)); min-height:100%;}
+.column-head {padding:5px 0; border:0; border-radius:0; border-bottom:1px solid #6b5542; font:600 16px Georgia,serif;}
+.row-label {padding:8px; font-size:11px; color:#d4c0d5; display:flex; flex-direction:column; justify-content:center; gap:3px;
+  background:#302432; border-bottom:1px solid #655269;}
+.row-label strong {color:#f1ebf2; font-size:12px;}
+.reaction-cell {border:0; border-right:1px solid #544459; border-bottom:1px solid #655269; border-radius:0;
+  min-width:0; min-height:67px; background:#261e2c; padding:4px 3px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;}
+.reaction-cell {overflow-wrap:anywhere;}
+.reaction-cell .stamp {font-size:10px; line-height:1.2;}
+.stamp {color:var(--r);}
+.split-prod {box-shadow:inset 0 3px #f2c14e; background:#443522;}
+.split-view {border-left:3px solid #6fc3ff;}
+.split-prod.split-view {background:repeating-linear-gradient(135deg,#443522 0 10px,#293748 10px 20px);}
+#split-key {font-size:11px; color:#e7d0a4; min-height:16px; flex:none; line-height:1.35;}
+.empty-viewer {font-size:11px; padding:8px; color:#cbb9cf; background:#302432; border:1px solid #655269; border-radius:5px;}
+.sample-notes {display:grid; grid-template-columns:repeat(3,1fr); gap:7px; font-size:11px; line-height:1.4; color:#d4c0d5;}
+.sample-notes p {margin:0; padding:8px; border:1px solid #6b5542; background:#302432; border-radius:5px;}
+.opinion-builder {background:linear-gradient(100deg,#392a37,#29212e); border:1px solid #6b5542; border-radius:7px; padding:11px; flex:none;}
+.opinion-builder h3 {font:500 18px Georgia,serif; color:#f2c14e; margin:0 0 8px;}
+.opinion-fields {display:grid; grid-template-columns:.65fr .75fr 1.1fr 1.2fr; gap:7px;}
+label {font-size:10px; color:#d4c0d5; display:block; min-width:0;}
+select,input {min-height:44px; min-width:44px; width:100%; color:#f1ebf2; background:#1e1723; border:1px solid #84708a;
+  border-radius:5px; font-size:12px; padding:6px; margin-top:3px;}
+.reason-row {display:flex; gap:7px; align-items:end; margin-top:7px;}
+.reason-row label {flex:1;}
+.reason-row button {flex:none;}
+#opinion-rule {font-size:10px; color:var(--muted); margin:5px 0 0;}
+#opinions {display:flex; flex-wrap:wrap; gap:7px; max-height:110px; overflow:auto;}
+.opinion {border:1px solid #756047; border-left:3px solid #f2c14e; background:#302432; padding:10px; flex:1 1 240px;
+  margin:0; font-size:12px; line-height:1.5; overflow-wrap:anywhere;}
+.opinion small {display:block; color:#c8afcd; margin-top:4px;}
+.layer-tabs {display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:5px; flex:none;}
+.layer-tabs button {font-size:11px; padding:5px;}
+#layer-detail {flex:none; min-height:90px; padding:12px; border:1px solid #746045; border-radius:7px; background:#2b222e;}
+.detail-pair {display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px;}
+.detail-pair>div {min-width:0;}
+.detail-pair h3 {font:500 18px Georgia,serif; color:#f2c14e; margin:0 0 5px;}
+.detail-pair p,#layer-detail p {font-size:13px; line-height:1.5; margin:0;}
+.costume-art {width:100%; height:clamp(120px,22vh,250px); object-fit:contain; background:#e5dfda; border-radius:4px; margin:4px 0 8px;}
+.diagram {width:100%; height:160px; background:#211a25; border-radius:4px;}
+.word-line {font:500 17px/1.5 Georgia,serif; padding:8px 0;}
+.layer-stamps {display:flex; gap:8px; font-size:11px; margin-top:8px;}
+.layer-stamps>div {flex:1; border:1px solid #6b5542; border-radius:5px; padding:7px;}
+.chips {display:grid; grid-template-columns:repeat(7,minmax(44px,1fr)); gap:5px;}
+.chips button {font-size:11px; padding:5px 3px;}
+.chips-title {font:500 17px Georgia,serif; margin:2px 0 5px;}
+/* Keep every short choice set above the long staging evidence, at every size. */
+body[data-mode=layers] #layer-response {display:contents;}
+body[data-mode=layers] #layer-tabs {order:-2;}
+body[data-mode=layers] .chips-title,body[data-mode=layers] #chips {order:-1;}
+body[data-mode=layers] .frames {flex:0 0 clamp(195px,32vh,350px);}
+body[data-mode=layers] .actor,body[data-mode=layers] .body {transition:none;}
+body[data-mode=layers] .program {display:none;}
+dialog {max-width:380px; width:calc(100vw - 28px); background:#2c222f; color:var(--ink); padding:24px;
+  border:1px solid #b28e4b; border-radius:10px; box-shadow:0 25px 70px #000b;}
+dialog::backdrop {background:#100a15bb;}
+dialog h2 {font:500 25px Georgia,serif; color:#f2c14e; margin:0 0 12px;}
+dialog p {font-size:14px; line-height:1.5;}
+.dialog-actions {display:flex; gap:8px;}
+.calm .actor,.calm .body,.calm .lighting {transition:none!important; animation:none!important;}
+.calm .play-signal {animation:none!important;}
+@media (min-width:900px) and (min-height:900px) {
+  .stage {padding:24px 28px; gap:16px;}
+  .caption {font-size:16px; min-height:90px;}
+  .mini-cell {min-height:38px;}
+  .mini-label {font-size:12px;}
+}
+@media (max-width:1100px) {
+  header {padding:7px 10px; gap:6px; flex-wrap:wrap;}
+  h1 {flex:1; font-size:22px; min-width:265px;}
+  h1 small {font-size:10px;}
+  .seg button {padding:0 11px; font-size:12px;}
+  .icon-btn {padding:0 7px; font-size:11px;}
+  #sound {width:60px;}
+  main {grid-template-columns:minmax(0,1fr) 185px;}
+  .panel {padding:10px 8px; gap:7px;}
+  .stage {padding:9px; gap:7px;}
+  .program .ticket {display:none;}
+  .program h2 {font-size:23px;}
+  .production-head {padding:7px;}
+  .production-head b {font-size:14px;}
+  .production-head span {font-size:10px;}
+  .caption {font-size:12px; min-height:90px; padding:7px;}
+  .reaction-cell .stamp {font-size:10px;}
+  .opinion-fields {gap:4px;}
+  .layer-tabs {grid-template-columns:repeat(3,1fr);}
+}
+@media (min-width:600px) and (max-width:899px) and (min-height:651px) {
+  .frames {grid-template-columns:1fr; min-height:410px; gap:7px;}
+  body[data-mode=layers] .frames {flex:0 0 410px;}
+  .caption {min-height:58px;}
+  .detail-pair {gap:8px;}
+  .detail-pair p {font-size:12px;}
+}
+@media (max-height:650px) and (min-width:600px) {
+  header {padding:5px 8px; gap:5px;}
+  h1 {font-size:18px; min-width:220px;}
+  h1 small {display:none;}
+  main {grid-template-columns:minmax(0,1fr) 168px;}
+  .panel {gap:5px; padding:7px;}
+  .hint {font-size:11px; line-height:1.25; min-height:44px;}
+  .panel>.field-label {display:none;}
+  #status {font-size:10px; min-height:26px;}
+  #moment-label {font-size:15px;}
+  .field-label {font-size:10px;}
+  .viewer-row button {font-size:10px;}
+  .transport {gap:4px;}
+  .transport button {font-size:11px;}
+  .step-row button {font-size:10px;}
+  .panel footer {padding-top:4px; display:flex; align-items:center; gap:6px;}
+  .panel footer #reset {width:56px; flex:none; padding:4px;}
+  .panel footer #save-note {margin:0; flex:1;}
+  #save-note {margin-top:3px; font-size:10px;}
+  .stage {padding:6px; gap:5px;}
+  .program {display:none;}
+  .frames {min-height:140px; gap:6px;}
+  .production-head {padding:5px; flex-wrap:wrap; gap:1px; min-height:31px;}
+  .production-head b {font-size:12px;}
+  .production-head span {font-size:10px;}
+  .set {min-height:54px;}
+  .caption {font-size:11px; line-height:1.3; min-height:64px; padding:5px;}
+  .reactions {gap:4px;}
+  .react {font-size:10px; min-height:56px;}
+  .react strong {display:block; margin:0; font-size:17px;}
+  .reaction-heading {font-size:10px; margin-bottom:3px;}
+  .strip-wrap {padding:4px;}
+  .strip-title {font-size:10px; margin-bottom:3px;}
+  .strip-title span {display:none;}
+  .mini-cell {min-height:22px; font-size:10px;}
+  .stamp-icons {font-size:10px;}
+  .compare-top h2 {font-size:19px;}
+  .compare-top p {display:none;}
+  .compare-actions button {font-size:10px; padding:4px;}
+  #compare {gap:5px;}
+  #comparison-grid {grid-template-columns:58px repeat(10,minmax(44px,1fr));}
+  .comparison-scroll {min-height:110px;}
+  #sample-notes {order:5;}
+  .opinion-builder {order:3;}
+  #opinions {order:4;}
+  body[data-mode=layers] #layer-tabs {order:-2;}
+  body[data-mode=layers] #layer-response {order:-1;}
+  .reaction-cell {min-height:45px; padding:4px 0;}
+  .row-label {font-size:10px; padding:3px;}
+  .row-label strong {font-size:10px;}
+  .opinion-builder {padding:6px;}
+  .opinion-builder h3 {display:none;}
+  .opinion-fields {grid-template-columns:repeat(4,minmax(0,1fr));}
+  select,input {font-size:10px;}
+  .reason-row {margin-top:4px;}
+  body[data-mode=layers] .frames {flex:0 0 180px;}
+  #layer-detail {padding:7px;}
+  .layer-tabs {gap:3px;}
+  .layer-tabs button {font-size:10px;}
+  .detail-pair h3 {font-size:15px;}
+  .detail-pair p,#layer-detail p {font-size:11px;}
+}
+@media (max-width:599px) {
+  body {overflow:hidden;}
+  header {gap:5px; padding:7px;}
+  h1 {width:100%; flex:1 0 100%; font-size:23px;}
+  h1 small {display:block; font-size:10px;}
+  .seg {flex:1; display:flex;}
+  .seg button {padding:0 7px; flex:1; font-size:11px;}
+  .icon-btn {font-size:10px; padding:0 5px;}
+  #sound {width:44px;}
+  main {display:flex; flex-direction:column; overflow:hidden;}
+  .panel {order:0; flex:none; display:grid; grid-template-columns:1fr 1fr; gap:5px; border:0; padding:7px;}
+  .panel>.field-label,.panel>#status,.panel footer {display:none;}
+  .panel .hint {grid-column:1/-1; min-height:32px; font-size:11px;}
+  .viewer-row {grid-column:1; grid-row:2;}
+  #moment-label {grid-column:2; grid-row:2; font-size:16px; margin:auto;}
+  .transport {grid-column:1/-1; grid-template-columns:1fr 1fr; gap:5px;}
+  .transport button {font-size:11px;}
+  .step-row {display:contents;}
+  .stage {order:1; padding:0 7px 7px; gap:6px; flex:1; min-height:0;}
+  .program {display:none;}
+  .phone-switch {display:flex; gap:5px; flex:none;}
+  .phone-switch button {flex:1; font-size:11px; padding:4px;}
+  .frames {display:flex; min-height:175px; flex:1;}
+  .production {width:100%; flex:none;}
+  .production.phone-hidden {display:none;}
+  .production.dim {filter:none; opacity:1;}
+  .production-head {padding:6px 9px;}
+  .production-head b {font-size:15px;}
+  .set {min-height:95px;}
+  .caption {font-size:12px; min-height:67px; padding:7px;}
+  .reactions {gap:4px;}
+  .react {min-height:56px; font-size:10px; padding:3px 1px;}
+  .react strong {display:block; margin:0; font-size:17px;}
+  .reaction-heading {font-size:10px;}
+  .strip-wrap {padding:5px;}
+  .mini-strip {grid-template-columns:25px repeat(10,minmax(0,1fr)); gap:2px;}
+  .mini-cell {min-height:22px;}
+  .stamp-icons {white-space:normal; font-size:10px;}
+  .strip-title span {display:none;}
+  .mobile-footer {display:flex!important; justify-content:space-between; align-items:center; gap:10px; flex:none;}
+  .mobile-footer p {font-size:10px; color:var(--muted); margin:0;}
+  .mobile-footer button {font-size:11px;}
+  .compare-top {flex-wrap:wrap; gap:5px;}
+  .compare-top h2 {font-size:22px;}
+  .compare-top p {display:none;}
+  .compare-actions {width:100%;}
+  .compare-actions button {flex:1; font-size:11px;}
+  .comparison-scroll {min-height:130px;}
+  .phone-scroll-note {display:block; font-size:10px; color:var(--muted); flex:none;}
+  #comparison-grid {grid-template-columns:85px repeat(10,minmax(58px,1fr));}
+  .opinion-fields {grid-template-columns:1fr 1fr;}
+  .sample-notes {grid-template-columns:1fr;}
+  .opinion-builder {padding:7px;}
+  .opinion-builder h3 {font-size:16px; margin-bottom:4px;}
+  .opinion-fields select {font-size:11px;}
+  .reason-row {margin-top:4px;}
+  #compare {gap:6px; flex:none;}
+  #compare .comparison-scroll {flex:none; height:260px;}
+  #split-key {flex:none;}
+  .layer-tabs {grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px;}
+  .layer-tabs button {font-size:10px;}
+  body[data-mode=layers] .frames {flex:0 0 220px;}
+  .detail-pair {grid-template-columns:1fr; gap:12px;}
+  .detail-pair p,#layer-detail p {font-size:12px;}
+  .layer-stamps {flex-direction:row;}
+  body[data-mode=layers] #layer-tabs {order:-2;}
+  body[data-mode=layers] #layer-response {order:-1;}
+  .costume-art {height:180px;}
+  .chips button {font-size:10px; flex:1 1 28%;}
+  .chips-title {font-size:16px;}
+}
+</style>
+</head>
+<body data-mode="watch">
+<header>
+  <h1>Scene Staging Comparison<small>Why two productions of one scene feel different · Curio Class</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-watch" aria-pressed="true">Watch</button>
+    <button id="m-compare" aria-pressed="false">Compare</button>
+    <button id="m-layers" aria-pressed="false">Layers</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <aside class="panel">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div class="field-label">Whose reactions?</div>
+    <div class="viewer-row" role="group" aria-label="Viewer">
+      <button id="viewer-0" aria-pressed="true">Viewer 1</button>
+      <button id="viewer-1" aria-pressed="false">Viewer 2</button>
+    </div>
+    <div id="moment-label">Moment 1 / 10</div>
+    <div class="transport">
+      <button id="play-0" class="gold">▶ Play Production 1</button>
+      <button id="play-1">▶ Play Production 2</button>
+      <div class="step-row"><button id="previous">‹ Previous moment</button><button id="next">Next moment ›</button></div>
+    </div>
+    <div id="status" aria-live="polite"></div>
+    <footer><button id="reset">Reset</button><p id="save-note">Saved on this device. Never leaves it.</p></footer>
+  </aside>
+  <section class="stage" id="stage" aria-label="Theater and evidence desk">
+    <div class="program" id="program"><div><div class="eyebrow">One scene. Two ways to see it.</div>
+      <h2>A Marriage Proposal</h2><div class="small">After Anton Chekhov · original retelling · two fictional productions</div></div>
+      <div class="ticket">Your reactions are evidence.</div></div>
+    <div class="phone-switch" id="phone-switch" role="group" aria-label="Production to view">
+      <button id="phone-0" aria-pressed="true">P1 · The Parlor</button><button id="phone-1" aria-pressed="false">P2 · Bare Stage</button>
+    </div>
+    <div class="layer-tabs" id="layer-tabs" role="group" aria-label="Staging layer" hidden></div>
+    <div class="frames" id="frames"></div>
+    <div class="reaction-area" id="reaction-area">
+      <div class="reaction-heading"><span id="reaction-target">Viewer 1 · Production 1 · moment 1</span><span id="stamp-status">Tap what you feel.</span></div>
+      <div class="reactions" id="reactions" role="group" aria-label="Stamp a reaction"></div>
+    </div>
+    <div class="strip-wrap" id="watch-strip"><div class="strip-title">YOUR REACTION STRIP <span>Three stamps per moment. A fourth replaces the oldest.</span></div>
+      <div class="mini-strip" id="mini-strip"></div></div>
+    <section id="compare" hidden>
+      <div class="compare-top"><div><h2>Where did you split?</h2><p>Same scene, different responses. Tap any moment to open its layers.</p></div>
+        <div class="compare-actions"><button id="splits" disabled>Show splits</button><button id="samples" aria-pressed="false">Sample viewers</button></div></div>
+      <div id="split-key">Gold top: between productions. Blue edge: between viewers.</div>
+      <div class="phone-scroll-note">Swipe the strip for moments 1 to 10.</div>
+      <div class="comparison-scroll"><div id="comparison-grid" aria-label="Reaction comparison, ten moments"></div></div>
+      <div id="viewer-empty" class="empty-viewer">No stamps for Viewer 2 yet. Pass the laptop and pick Viewer 2.</div>
+      <div id="sample-notes" class="sample-notes" aria-label="Fictional sample viewers, not model answers" hidden></div>
+      <div class="opinion-builder"><h3>Turn a feeling into an opinion.</h3>
+        <div class="opinion-fields">
+          <label>In moment<select id="op-moment"></select></label>
+          <label>Production<select id="op-production"><option value="0">1 · Parlor</option><option value="1">2 · Bare Stage</option></select></label>
+          <label>My reaction<select id="op-feeling"></select></label>
+          <label>Because of its<select id="op-layer"></select></label>
+        </div>
+        <div class="reason-row"><label>My evidence · up to 120 characters<input id="op-reason" maxlength="120"
+          aria-label="My evidence: describe what you saw or heard" placeholder="Name something you saw or heard."></label>
+          <button id="add" class="gold" disabled>Add</button></div>
+        <p id="opinion-rule">Choose a moment with your own stamp and add a reason.</p>
+      </div>
+      <div id="opinions" aria-live="polite"></div>
+    </section>
+    <section id="layer-detail" hidden aria-label="Staging evidence"></section>
+    <section id="layer-response" hidden><div class="layer-stamps" id="layer-stamps"></div>
+      <h3 class="chips-title">What made the difference?</h3><div class="chips" id="chips" role="group" aria-label="Possible reasons for this moment"></div></section>
+    <div class="mobile-footer" id="mobile-footer" hidden><p id="mobile-save">Saved here. Never leaves this device.</p><button id="mobile-reset">Reset</button></div>
+  </section>
+</main>
+<dialog id="reset-dialog" aria-labelledby="reset-title"><h2 id="reset-title">Clear this viewing desk?</h2>
+  <p>Clear both viewers' reactions, layer choices and opinions saved on this device?</p>
+  <div class="dialog-actions"><button id="cancel-reset" autofocus>Keep my work</button><button id="confirm-reset" class="gold">Clear all</button></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+  (() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const safe = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const names = ['The Parlor, 1890','Bare Stage, Today'];
+  const captions = [
+    'Chubukov: "Dressed like that? Are you here to borrow money?" Lomov: "No! I\'ve come to ask... a favor."',
+    'Lomov: "I want to ask for your daughter\'s hand." Chubukov: "At last! I\'ll get her!"',
+    'Lomov: "As you know, my family has long owned the Oxen Meadows..."',
+    'Natalya: "Your meadows? The Oxen Meadows are ours." Lomov: "Ours." Natalya: "Ours!"',
+    'Lomov: "My heart is pounding. My foot\'s gone to sleep."',
+    '[Insults fly. Chubukov takes Natalya\'s side. Lomov leaves.]',
+    'Chubukov: "And he came here to propose to you!" Natalya: "Propose? Bring him back! Bring him back!"',
+    '[They try again, and argue about whose hunting dog is better, Guess or Squeezer.]',
+    'Chubukov: "He\'s dead!" Natalya: "Ivan! Ivan!"',
+    'Chubukov: "Kiss her and be done with it!" [Engaged, they still argue about the dogs.]'
+  ];
+  const pauses = [[2,1.5,2.5,1,1,.5,2,1.5,3,1.5],[.3,.2,.5,0,.2,0,.3,.2,.5,0]];
+  const duration = (p,m) => pauses[p][m] + captions[m].split(/\s+/).length / 2.5 + 1;
+  const titles = ['A nervous arrival','The proposal','Around the subject','Whose meadows?','A pounding heart',
+    'Father takes sides','Bring him back!','Guess or Squeezer?','The faint','Engaged, still arguing'];
+  const staging = [
+    ['Lomov in the doorway; Chubukov by the samovar.','Lomov sits stiffly; Chubukov embraces him, then rushes out.',
+      'Natalya by the window; Lomov on the edge of a chair.','They face each other across the table; rain begins.',
+      'Lomov sinks into a chair, hand on heart.','Chubukov steps between; Lomov exits slowly; the door slams.',
+      'Chubukov reveals the proposal and goes; Natalya sobs alone by the window.',
+      'They sit apart; their dog argument starts quietly and grows.','Lomov faints into the chair. Natalya and Chubukov fear he is dead.',
+      'Lomov wakes. A stiff, formal kiss on the hand; the argument resumes.'],
+    ['Lomov and Chubukov run in from opposite sides and nearly collide.','Chubukov lifts Lomov off his feet, then rushes out.',
+      'Natalya bursts in with a flour sack; Lomov leaps up.','Nose to nose center stage: "Ours!" six times, faster and faster.',
+      'Lomov hops on one foot around a chair.','All three shout at once; Lomov exits by crawling.',
+      'Natalya screams to the audience.','They mime walking dogs on leashes, tangling.','Lomov falls in a full pratfall.',
+      'A quick kiss, then straight back to the dog fight; blackout.']
+  ];
+  const timeCards = [
+    'This fictional production uses slow, detailed realistic acting. It borrows from the Moscow Art Theatre, founded in 1898, '+
+      'which staged Chekhov\'s longer plays. These landowners argue over property and hunting dogs; that can matter to an audience in any era.',
+    'Farce is comedy played fast and big, with physical gags. Playing an old play on a bare stage today shifts the focus to the '+
+      'actors\' bodies and timing. A viewer might find the meadow fight silly, or recognize a serious dispute. Your experience can change your response.'
+  ];
+  const reactions = [
+    {word:'Laughing',icon:'✦',color:'#f2c14e'}, {word:'Leaning in',icon:'↗',color:'#6fc3ff'},
+    {word:'Uneasy',icon:'≈',color:'#ff8a7a'}, {word:'Sorry for them',icon:'♡',color:'#c9a7ff'},
+    {word:'Lost',icon:'?',color:'#b3a8b6'}
+  ];
+  const layerNames = ['Words','Where they stand','Light','Sound','Costume and props','Its time'];
+  const chipNames = ['Light','Sound','Pace','Where they stand','Costume','My own life',"I'm not sure"];
+  const L = {
+    welcomeWatch:'Same scene, two productions. Press Play Production 1, and tap how you feel as it happens.',
+    stampHow:'Tap a reaction button whenever you feel something.',
+    bothDone:'You have reactions for both. Open Compare to look for a difference.',
+    viewer2How:'Viewer 2, press Play and tap your own reactions.',
+    welcomeCompare:'Tap Show splits to find where you reacted differently.',
+    emptyCompare:'Press Watch to record reactions, or explore the fictional Sample viewers.',
+    welcomeLayers:'Tap a layer to see what each production did here.',
+    opinionAdded:'Opinion saved. Check that your detail supports your feeling.'
+  };
+  const storageKey = 'curio-scene-staging-comparison-v1';
+  const fresh = () => ({stamps:[{},{}],chips:[{},{}],opinions:[]});
+  const state = {mode:'watch',viewer:0,production:0,moment:0,playing:false,layer:0,samples:false,showSplits:false,...fresh()};
+  let saveWorks = true;
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
+    if (saved) {
+      for (let v=0;v<2;v++) {
+        for (let p=0;p<2;p++) for (let m=0;m<10;m++) {
+          const value = saved.stamps?.[v]?.[p+'-'+m];
+          if (Array.isArray(value)) state.stamps[v][p+'-'+m] = value.filter(r=>Number.isInteger(r)&&r>=0&&r<5).slice(-3);
+        }
+        for (let m=0;m<10;m++) {
+          const value = saved.chips?.[v]?.[m];
+          if (Array.isArray(value)) state.chips[v][m] = value.filter(r=>chipNames.includes(r));
+        }
+      }
+      state.opinions = (saved.opinions || []).filter(o=>Number.isInteger(o.m)&&o.m>=0&&o.m<10&&
+        Number.isInteger(o.p)&&o.p>=0&&o.p<2&&reactions[o.r]&&chipNames.includes(o.layer)&&typeof o.reason==='string').slice(0,6);
+    }
+  } catch {saveWorks=false;
+  }
+  const stamps = (v,p,m) => state.stamps[v][p+'-'+m] || [];
+  const any = v => Object.values(state.stamps[v]).some(a=>a.length);
+  const both = v => [0,1].every(p=>Array.from({length:10},(_,m)=>stamps(v,p,m)).some(a=>a.length));
+  let layerTouched=false;
+  const V = Curio.voice({lines:L,scope:()=>state.mode,hint:false,read:()=>$('hint').textContent,
+    welcome:()=> {
+      if(state.playing||$('reset-dialog').open) return null;
+      if(state.mode==='compare') return any(state.viewer)?['welcomeCompare',{valid:()=>!state.showSplits&&any(state.viewer)}]:'emptyCompare';
+      if(state.mode==='layers') return ['welcomeLayers',{valid:()=>!layerTouched}];
+      return ['welcomeWatch',{valid:()=>!state.playing}];
+    },
+    speaks:'#play-0,#play-1,#add'});
+  let serial=0, pendingBoth=[], startedAt=0, cueAt=0, raf=0, stampTimer=0, lastTick=-1, soundBus=null, audio=null, doorPlayed=false;
+  const timeline=[];
+  const activeSounds=new Set();
+  const rainSounds=new Set();
+  function save() {
+    try {localStorage.setItem(storageKey,JSON.stringify({stamps:state.stamps,chips:state.chips,opinions:state.opinions}));
+  saveWorks=true;
+  }
+    catch {saveWorks=false;
+  }
+    $('save-note').textContent=saveWorks?'Saved on this device. Never leaves it.':'Saving unavailable. Work lasts for this visit.';
+    $('mobile-save').textContent=saveWorks?'Saved here. Never leaves this device.':'Saving unavailable. Work lasts for this visit.';
+  }
+  function setHint(text) {$('hint').textContent=text;
+  }
+  function hintForMode() {
+    if (state.playing) {
+      const stepName=state.moment===9?'Previous moment':'Next moment';
+      return `Tap a reaction for Viewer ${state.viewer+1}. ${stepName} keeps playing; Stop freezes the scene.`;
+    }
+    if (state.mode==='watch') return both(state.viewer)?'Open Compare to find your splits, or press Play to watch again.':L.welcomeWatch;
+    if (state.mode==='compare') return any(state.viewer)?'Tap Show splits, then a marked moment for Layers. Add an opinion using your own stamp.':
+      L.emptyCompare;
+    return 'Tap a layer, then pick a reason below it. Open Compare to add your opinion.';
+  }
+  function event(key,valid=()=>true) {V.say(key,{key:key+':'+(++serial),valid:()=>!state.playing&&valid(),hint:false});
+  }
+  function flushEvents() {
+    for (const v of pendingBoth.splice(0)) if (v===state.viewer&&both(v)) event('bothDone',()=>state.viewer===v&&both(v));
+  }
+  function audioReady() {
+    if (!audio) {audio=new (window.AudioContext||window.webkitAudioContext)();
+  soundBus=audio.createGain();
+  soundBus.connect(audio.destination);
+  }
+    if (audio.state==='suspended') audio.resume();
+  }
+  function note(frequency,length=.12,volume=.025,type='triangle',slide=0) {
+    if (!Curio.sound||!state.playing) return;
+    audioReady();
+    const o=audio.createOscillator(),g=audio.createGain(),t=audio.currentTime;
+    o.type=type;
+  o.frequency.setValueAtTime(frequency,t);
+    if (slide) o.frequency.exponentialRampToValueAtTime(slide,t+length);
+    g.gain.setValueAtTime(.0001,t);
+  g.gain.exponentialRampToValueAtTime(volume,t+.012);
+    g.gain.exponentialRampToValueAtTime(.0001,t+length);
+    o.connect(g);
+  g.connect(soundBus);
+  activeSounds.add(o);
+  o.onended=()=>activeSounds.delete(o);
+  o.start(t);
+  o.stop(t+length+.02);
+  }
+  function noise(length,volume,low=1600) {
+    if (!Curio.sound||!state.playing) return;
+    audioReady();
+    const count=Math.ceil(audio.sampleRate*length),b=audio.createBuffer(1,count,audio.sampleRate),data=b.getChannelData(0);
+    for(let i=0;i<count;i++) data[i]=(Math.random()*2-1)*(1-i/count);
+    const source=audio.createBufferSource(),g=audio.createGain(),filter=audio.createBiquadFilter();
+    source.buffer=b;
+  filter.type='lowpass';
+  filter.frequency.value=low;
+  g.gain.value=volume;
+    source.connect(filter);
+  filter.connect(g);
+  g.connect(soundBus);
+  activeSounds.add(source);
+  if(length===.65) rainSounds.add(source);
+  source.onended=()=>{activeSounds.delete(source);rainSounds.delete(source);};
+  source.start();
+  }
+  function cue() {
+    const p=state.production,m=state.moment;
+    if (p===0) return;
+    if(m===8) {for(const f of [330,415,494]) note(f,.8,.025,'sawtooth',f*.55);
+  }
+    else if([0,1,4,5,6,9].includes(m)) for(const f of [330,415,494]) note(f,.18,.018,'sawtooth');
+  }
+  function stopAudio() {
+  for(const node of activeSounds) {try {node.stop();} catch {}}
+  activeSounds.clear();
+  rainSounds.clear();
+  if(soundBus&&audio){soundBus.gain.cancelScheduledValues(audio.currentTime);
+  soundBus.gain.setValueAtTime(0,audio.currentTime);
+  }}
+  function enableAudio() {if(soundBus&&audio) soundBus.gain.setValueAtTime(1,audio.currentTime);
+  }
+  function silhouette(p,c) {
+    const fill=p?'#225eaa':'#211a27',edge=p?'#b6d7f3':'#b4a2ad';
+    const torso = p?
+      (c===2?'M24 32 Q40 27 57 33 L63 77 L53 94 L27 94 L20 75 Z':
+        'M30 32 L49 32 L56 76 L50 94 L30 94 L25 76 Z'):
+      c===0?'M33 31 L49 31 L57 65 L51 67 L54 95 L44 83 L40 96 L37 65 L27 69 Z':
+      c===1?'M31 31 L49 31 L57 48 L52 61 L65 99 L16 99 L27 61 L24 48 Z':
+      'M24 31 Q40 24 57 33 L65 73 L56 80 L54 100 L27 100 L24 77 L17 69 Z';
+    const apron=!p&&c===1?'<path d="M34 43 L48 43 L55 86 L27 86 Z" fill="'+(p?'#377dc4':'#b4a8a8')+'" opacity=".9"/>':'';
+    const detail=p?`<path d="M29 33 L34 53 M51 33 L47 53" stroke="#9cc9f2" stroke-width="3"/>
+      <path d="M33 48 L48 48 L50 77 L31 77 Z" fill="#3478b4" stroke="#a7cef2" stroke-width="1"/>
+      <path d="M35 60 L46 60 L45 69 L37 69 Z" fill="#235f98" stroke="#79b5e3"/>
+      <circle cx="34" cy="50" r="1.8" fill="#e9bc66"/><circle cx="47" cy="50" r="1.8" fill="#e9bc66"/>
+      ${c===0?'<path d="M35 33 L46 33 L45 42 L37 42 Z" fill="#e7e4d9"/><path d="M37 35 L41 38 L44 35 L44 40 L41 38 L37 40 Z" fill="#17131a"/>':''}`:
+      c===0?'<path d="M35 33 L41 47 L47 33 L43 55 L38 55 Z" fill="#e1d9d3"/><path d="M38 37 L44 37 L41 42 Z" fill="#1c1420"/>':
+      c===2?'<path d="M33 34 L42 76 L51 34 M28 65 L54 65" stroke="'+edge+'" fill="none" stroke-width="2"/>':'';
+    return `<svg viewBox="0 0 80 120" aria-hidden="true"><defs><linearGradient id="coat-${p}-${c}" x2="1" y2=".3">
+      <stop stop-color="${fill}"/><stop offset=".5" stop-color="${p?'#397bb9':'#44374a'}"/><stop offset="1" stop-color="${fill}"/>
+      </linearGradient></defs><g class="body"><ellipse cx="40" cy="114" rx="28" ry="4" fill="#0006"/>
+      <path d="M30 91 L28 112 L39 112 L42 93 L46 112 L57 112 L51 90" fill="${fill}" stroke="${edge}" stroke-width="1"/>
+      <path d="${torso}" fill="url(#coat-${p}-${c})" stroke="${edge}" stroke-width="1.4"/>
+      <ellipse cx="40" cy="19" rx="${c===2?12:9}" ry="${c===0?13:11}" fill="${fill}" stroke="${edge}" stroke-width="1.4"/>
+      ${apron}${detail}<path class="arms" d="M29 39 L20 59 L30 65 M52 39 L62 58 L52 66" fill="none" stroke="${edge}" stroke-width="4"/>
+      <path class="heart-arm" d="M29 39 L23 59 L44 46 M52 39 L59 60 L51 66" fill="none" stroke="${edge}" stroke-width="4"/>
+      <path class="kiss-arm" d="M29 39 L22 59 M52 39 L65 49 L78 44" fill="none" stroke="${edge}" stroke-width="4"/>
+      <path class="leash" d="M60 59 Q84 51 91 95 Q96 112 105 104" fill="none" stroke="#e6bd78" stroke-width="1.5"/>
+      ${!p&&c===2?'<path d="M64 60 Q72 54 72 65 L71 111" stroke="#c4a273" stroke-width="3" fill="none"/>':''}
+      ${p&&c===1?'<path d="M17 47 Q11 52 16 67 L29 67 L30 52 Z" fill="#d0c7a6" stroke="#85795a"/>':''}
+      <path d="M33 71 L35 87" stroke="${edge}" opacity=".45"/>
+      </g></svg>`;
+  }
+  const positions = [
+    [ [[82,25,''],[35,25,'',0],[63,25,'']], [[48,28,'sit'],[32,25,'',0],[58,27,'lean']],
+      [[53,28,'sit'],[21,25,''],[91,25,'',0]], [[42,28,''],[68,25,''],[91,25,'',0]],
+      [[50,30,'sit heart'],[70,25,''],[91,25,'',0]], [[95,27,''],[68,25,''],[54,27,'']],
+      [[98,25,'',0],[20,25,'lean'],[90,25,'',0]], [[41,29,'sit'],[68,28,'sit'],[86,25,'']],
+      [[49,30,'slump'],[65,26,'lean'],[77,25,'lean']], [[49,28,'lean kiss'],[60,27,'kiss'],[76,25,'']]
+    ],
+    [ [[47,23,'lean'],[20,24,'',0],[61,23,'lean']], [[47,17,'lift'],[22,24,'',0],[59,22,'']],
+      [[52,20,'lift'],[32,23,''],[91,24,'',0]], [[48,24,'shout'],[58,24,'shout'],[91,24,'',0]],
+      [[34,24,'hop'],[66,24,''],[91,24,'',0]], [[94,36,'crawl'],[48,22,'shout'],[62,22,'shout']],
+      [[98,25,'',0],[50,23,'shout'],[91,24,'',0]], [[42,23,'lean dog'],[61,23,'lean dog'],[81,24,'']],
+      [[36,32,'fall'],[58,23,'lean'],[77,24,'lean']], [[49,24,'shout'],[62,24,'shout'],[78,24,'']]
+    ]
+  ];
+  const actors=[];
+  function createFrames() {
+    for(let p=0;p<2;p++) {
+      const node=document.createElement('article');
+  node.className='production';
+  node.dataset.p=p;
+  node.id='production-'+p;
+      node.innerHTML=`<div class="production-head"><b>${p+1} · ${names[p]}</b><span><i class="play-signal"></i>${p?'Fast farce':'Played straight'}</span></div>
+        <div class="set" id="set-${p}"><img src="${p?'art:set-bare-stage':'art:set-parlor-1890'}" alt="${p?
+          'Empty bare stage, two folding chairs, even white light':'Empty Russian country-house parlor, samovar, lamp, tall clock and window'}">
+          <div class="lighting"></div><div class="floor-shadow"></div><div class="impact"></div>
+          <div class="actor-labels"><span>L · Lomov</span><span>N · Natalya</span><span>C · Chubukov</span></div></div>
+        <div class="progress"><i id="progress-${p}"></i></div><div class="caption" id="caption-${p}"></div>`;
+      $('frames').append(node);
+  actors[p]=[];
+      for(let c=0;c<3;c++) {
+        const a=document.createElement('div');
+  a.className='actor';
+  a.innerHTML=silhouette(p,c)+`<span class="actor-initial">${['L','N','C'][c]}</span>`;
+  $('set-'+p).append(a);
+  actors[p].push(a);
+      }
+    }
+  }
+  function updateFrames(enter=false) {
+    for(let p=0;p<2;p++) {
+      const frame=$('production-'+p),set=$('set-'+p),m=state.moment;
+      frame.classList.toggle('playing',state.playing&&state.production===p);
+      frame.classList.toggle('dim',state.mode==='watch'&&state.production!==p);
+      frame.classList.toggle('phone-hidden',state.production!==p);
+      frame.classList.toggle('running',state.playing&&state.production===p);
+      set.classList.toggle('faint',p===0&&m===8);
+      set.classList.toggle('farce-faint',p===1&&m===8);
+      set.classList.remove('blackout');
+      for(let c=0;c<3;c++) {
+        const [x,y,pose,visible=1]=positions[p][m][c],a=actors[p][c];
+        a.style.setProperty('--travel',p?'.35s':'1.5s');
+  a.style.left=x+'%';
+  a.style.top=y+'%';
+  a.style.opacity=visible;
+        a.className='actor '+((state.playing&&state.production===p)||!['hop','shout'].includes(pose)?pose:'');
+      }
+      if(enter&&state.playing&&p===state.production&&m===0&&!Curio.reduce) {
+        actors[p][0].animate([{left:p?'6%':'96%'},{left:positions[p][m][0][0]+'%'}],{duration:p?350:1500});
+        if(p) actors[p][2].animate([{left:'94%'},{left:'61%'}],{duration:350});
+      }
+      $('caption-'+p).classList.remove('waiting');
+      $('caption-'+p).textContent=captions[m];
+      $('progress-'+p).style.width='0%';
+    }
+    updateLabels();
+  }
+  function updateLabels() {
+    $('moment-label').textContent=`Moment ${state.moment+1} / 10`;
+    $('status').textContent=`${state.playing?'Playing':'Stopped'} · ${titles[state.moment]} · ${captions.reduce((sum,_,m)=>sum+duration(state.production,m),0).toFixed(1)} s full production`;
+    $('reaction-target').textContent=`Viewer ${state.viewer+1} · Production ${state.production+1} · moment ${state.moment+1}`;
+    for(let p=0;p<2;p++) {
+      $('play-'+p).textContent=state.playing&&state.production===p?'■ Stop':`▶ Play Production ${p+1}`;
+      $('play-'+p).classList.toggle('gold',state.production===p);
+      $('phone-'+p).setAttribute('aria-pressed',state.production===p);
+    }
+    $('previous').disabled=state.moment===0;
+    $('next').disabled=state.moment===9;
+    $('hint').textContent=hintForMode();
+  }
+  function stop(flush=true) {
+    state.playing=false;
+  cancelAnimationFrame(raf);
+  clearTimeout(stampTimer);
+  stopAudio();
+    for(const cast of actors) for(const actor of cast) {
+      for(const animation of actor.getAnimations({subtree:true})) animation.cancel();
+    }
+    updateFrames();
+    if(flush) flushEvents();
+  }
+  function beginMoment() {
+    if(state.production===0&&state.moment===8) {
+      for(const node of rainSounds) {try {node.stop();} catch {}}
+      rainSounds.clear();
+    }
+    startedAt=performance.now();
+  cueAt=startedAt+pauses[state.production][state.moment]*1000;
+  lastTick=-1;
+  doorPlayed=false;
+    timeline.push({p:state.production,m:state.moment,t:startedAt,duration:duration(state.production,state.moment)});
+    updateFrames(true);
+  updateMini();
+  cue();
+  }
+  function frame(t) {
+    if(!state.playing) return;
+    const p=state.production,m=state.moment,elapsed=(t-startedAt)/1000,wait=pauses[p][m];
+    const caption=$('caption-'+p);
+    // A hop follows the chair's edge; a crawling exit actually clears the stage.
+    if(p===1&&m===4&&!Curio.reduce) actors[p][0].style.left=(27+10*Math.sin(elapsed*2.4))+'%';
+    if(m===5) {
+      actors[p][0].style.opacity=elapsed>(p?1.1:1.6)?0:1;
+    }
+    if(t<cueAt) {caption.textContent=`[${wait.toFixed(1)} s pause] ${staging[p][m]}`;
+  caption.classList.add('waiting');
+  }
+    else {caption.textContent=captions[m];
+  caption.classList.remove('waiting');
+  }
+    if(p===1&&m===3&&t>=cueAt) {
+      const n=Math.min(6,Math.floor((t-cueAt)/Math.max(75,500-(t-cueAt)/8))+1);
+      caption.textContent=captions[m]+' '+Array(n).fill('Ours!').join(' ');
+    }
+    if(p===1&&m===9&&elapsed>duration(p,m)-.6) $('set-1').classList.add('blackout');
+    $('progress-'+p).style.width=Math.min(100,100*elapsed/duration(p,m))+'%';
+    if(p===0&&Math.floor(elapsed*1.25)!==lastTick) {
+      lastTick=Math.floor(elapsed*1.25);
+  note(lastTick%2?1050:850,.035,.012,'sine');
+      if(m>=3&&m!==8) noise(.65,.009,3000);
+    }
+    if(p===0&&m===5&&elapsed>=1.5&&!doorPlayed) {doorPlayed=true;
+  noise(.22,.12,350);
+  }
+    if(elapsed>=duration(p,m)) {
+      if(m===9) {stop();
+  setHint('Scene complete. Play the other production, or open Compare to inspect your reaction strip.');
+  return;
+  }
+      state.moment++;
+  beginMoment();
+    }
+    raf=requestAnimationFrame(frame);
+  }
+  function play(p) {
+    if(state.mode!=='watch') setMode('watch',true);
+    if(state.playing&&state.production===p) {stop();
+  return;
+  }
+    V.hush();
+  stop(false);
+  state.production=p;
+    if(state.moment===9) state.moment=0;
+    state.playing=true;
+  enableAudio();
+  beginMoment();
+  raf=requestAnimationFrame(frame);
+    stampTimer=setTimeout(()=>{
+      if(state.playing&&!Object.values(state.stamps[state.viewer]).some(a=>a.length)) {
+        setHint(L.stampHow);$('stamp-status').textContent=L.stampHow;
+      }
+    },8000);
+  }
+  function step(delta) {
+    const m=Math.max(0,Math.min(9,state.moment+delta));
+    if(m===state.moment) return;
+    state.moment=m;
+  Curio.tone(260+25*m,.035,.02);
+    if(state.playing) {stopAudio();enableAudio();beginMoment();}
+  else updateFrames();
+    if(document.activeElement===$('next')&&state.moment===9) $('previous').focus({preventScroll:true});
+    if(document.activeElement===$('previous')&&state.moment===0) $('next').focus({preventScroll:true});
+    updateMini();
+  if(state.mode==='layers') updateLayers();
+  }
+  function stamp(r) {
+    const v=state.viewer,p=state.production,m=state.moment,hadBoth=both(v),key=p+'-'+m;
+    state.stamps[v][key]=[...stamps(v,p,m),r].slice(-3);
+  save();
+  updateMini();
+    $('stamp-status').textContent=`${reactions[r].word} stamped at ${m+1}.`;
+    const b=$('reaction-'+r);
+  b.classList.remove('flash');
+  void b.offsetWidth;
+  b.classList.add('flash');
+    setTimeout(()=>b.classList.remove('flash'),450);
+  Curio.tone(370+r*55,.065,.025);
+    if(!hadBoth&&both(v)) {
+      if(state.playing) pendingBoth.push(v);
+  else event('bothDone',()=>state.viewer===v&&both(v));
+    }
+  }
+  function updateMini() {
+    const root=$('mini-strip');
+  root.replaceChildren();
+    for(let p=0;p<2;p++) {
+      const label=document.createElement('div');
+  label.className='mini-label';
+  label.textContent='P'+(p+1);
+  root.append(label);
+      for(let m=0;m<10;m++) {
+        const node=document.createElement('div'),rs=stamps(state.viewer,p,m);
+        node.className='mini-cell'+(state.moment===m?' current':'');
+        node.innerHTML=`<span>${m+1}</span><span class="stamp-icons">${rs.map(r=>
+          `<span style="color:${reactions[r].color}">${reactions[r].icon}</span>`).join('')||'·'}</span>
+          <span class="stamp-word" title="${rs.length?reactions[rs[rs.length-1]].word:''}">${rs.length?reactions[rs[rs.length-1]].word:''}</span>`;
+        node.setAttribute('aria-label',`Production ${p+1}, moment ${m+1}: ${rs.map(r=>reactions[r].word).join(', ')||'no reactions'}`);
+        node.title=node.getAttribute('aria-label');
+  root.append(node);
+      }
+    }
+  }
+  const difference = (a,b) => new Set([...a,...b].filter(r=>new Set(a).has(r)!==new Set(b).has(r))).size;
+  function topThree(score) {
+    return Array.from({length:10},(_,m)=>({m,d:score(m)})).sort((a,b)=>b.d-a.d||a.m-b.m).slice(0,3);
+  }
+  function splits() {
+    const shared = (p,m) => stamps(0,p,m).length && stamps(1,p,m).length;
+    const hasShared = [0,1].some(p=>Array.from({length:10},(_,m)=>shared(p,m)).some(Boolean));
+    // Compare the same production before adding differences. A production swap must not cancel.
+    return {
+      productions:topThree(m=>difference(stamps(state.viewer,0,m),stamps(state.viewer,1,m))),
+      viewers:hasShared?topThree(m=>[0,1].reduce((total,p)=>total+
+        (shared(p,m)?difference(stamps(0,p,m),stamps(1,p,m)):0),0)):[]
+    };
+  }
+  const sampleData = [
+    {name:'Vera',about:'Grandparent, grew up in a farming village',rows:[{3:[3],4:[3],5:[3],9:[0]},{3:[2],8:[0],9:[0]}],
+      quote:'People really do fall out over land.'},
+    {name:'Theo',about:'12, never been to a farm',rows:[{2:[4],3:[4],8:[1]},{0:[0],3:[0],4:[0],5:[0],8:[0],9:[0]}]},
+    {name:'Amara',about:'Has a heart condition in her family',rows:[{4:[2],8:[2]},{8:[2]}],quote:"I couldn't laugh at the faint."}
+  ];
+  function openMoment(m) {
+    state.moment=m;
+    setMode('layers');
+    $('layer-'+state.layer).focus({preventScroll:true});
+  }
+  function updateCompare() {
+    const grid=$('comparison-grid'),result=splits();
+  grid.replaceChildren();
+    const corner=document.createElement('div');
+  corner.className='row-label';
+  corner.textContent='MOMENT';
+  grid.append(corner);
+    for(let m=0;m<10;m++) {
+      const b=document.createElement('button');
+  b.className='column-head';
+  b.textContent=m+1;
+  b.title=titles[m];
+      b.setAttribute('aria-label',`Open moment ${m+1}: ${titles[m]}`);
+  b.onclick=()=>openMoment(m);
+  grid.append(b);
+    }
+    const rows=[];
+    for(let v=0;v<2;v++) for(let p=0;p<2;p++) rows.push({name:'Viewer '+(v+1),v,p,rs:m=>stamps(v,p,m)});
+    if(state.samples) for(const s of sampleData) for(let p=0;p<2;p++) rows.push({name:s.name,p,rs:m=>s.rows[p][m]||[],sample:s});
+    for(const row of rows) {
+      const label=document.createElement('div');
+  label.className='row-label';
+      label.innerHTML=`<strong>${safe(row.name)}</strong><span>P${row.p+1} · ${row.p?'Bare stage':'Parlor'}</span>`;
+      if(row.sample) label.title=row.sample.about+(row.sample.quote?' · '+row.sample.quote:'');
+  grid.append(label);
+      for(let m=0;m<10;m++) {
+        const b=document.createElement('button'),rs=row.rs(m);
+  b.className='reaction-cell';
+        if(state.showSplits&&row.v===state.viewer&&result.productions.some(x=>x.m===m&&x.d>0)) b.classList.add('split-prod');
+        if(state.showSplits&&!row.sample&&result.viewers.some(x=>x.m===m&&x.d>0)) b.classList.add('split-view');
+        b.innerHTML=rs.map(r=>`<span class="stamp" style="--r:${reactions[r].color}">${reactions[r].icon} ${reactions[r].word}</span>`).join('')||'·';
+        b.setAttribute('aria-label',`${row.name}, Production ${row.p+1}, moment ${m+1}: ${rs.map(r=>reactions[r].word).join(', ')||'no stamp'}. Open layers.`);
+        b.onclick=()=>{state.production=row.p;
+  openMoment(m);
+  };
+  grid.append(b);
+      }
+    }
+    $('viewer-empty').hidden=any(1);
+    $('splits').disabled=!any(state.viewer);
+    $('samples').setAttribute('aria-pressed',state.samples);
+    $('sample-notes').hidden=!state.samples;
+    $('sample-notes').innerHTML=sampleData.map(s=>`<p><b>${s.name} (fictional)</b> · ${safe(s.about)}${s.quote?'<br>“'+safe(s.quote)+'”':''}</p>`).join('');
+    $('splits').setAttribute('aria-pressed',state.showSplits);
+    if(state.showSplits) {
+      const ranked = list => list.filter(x=>x.d>0).map(x=>x.m+1).join(', ')||'none';
+      $('split-key').textContent=`Gold top: productions ${ranked(result.productions)}. `+
+        `Blue edge: viewers ${ranked(result.viewers)}. Only differences are marked. Blanks are unrecorded.`;
+    } else $('split-key').textContent='Gold top: your productions. Blue edge: same-production viewers. Blanks are unrecorded.';
+    updateOpinion();
+  renderOpinions();
+  }
+  function updateOpinion() {
+    const m=+$('op-moment').value,p=+$('op-production').value;
+    const rs=[...new Set(stamps(state.viewer,p,m))];
+    const current=$('op-feeling').value;
+    $('op-feeling').replaceChildren();
+    if(!rs.length) $('op-feeling').add(new Option('No stamp yet',''));
+    else for(const r of rs) $('op-feeling').add(new Option(reactions[r].word,r));
+    if(rs.includes(+current)&&current!=='') $('op-feeling').value=current;
+    const choices=state.chips[state.viewer][m]||[];
+    for(const option of $('op-layer').options) option.textContent=option.value+(choices.includes(option.value)?' · your pick':'');
+    $('add').disabled=!rs.length||!$('op-reason').value.trim()||state.opinions.length>=6;
+    $('opinion-rule').textContent=state.opinions.length>=6?'Six opinions saved. Reset clears the viewing desk.':
+      rs.length?`Viewer ${state.viewer+1}: use a visible or audible detail. ${state.opinions.length} / 6 opinions saved.`:
+        'This production and moment needs your own stamp. Press Watch to add one.';
+  }
+  function addOpinion() {
+    updateOpinion();
+  if($('add').disabled) return;
+    const m=+$('op-moment').value,p=+$('op-production').value,r=+$('op-feeling').value;
+    state.opinions.push({v:state.viewer,m,p,r,layer:$('op-layer').value,reason:$('op-reason').value.trim().slice(0,120)});
+    save();
+  renderOpinions();
+  $('op-reason').value='';
+  updateOpinion();
+  Curio.tone(440,.06,.018);
+  event('opinionAdded');
+    if(document.activeElement===$('add')) $('op-reason').focus({preventScroll:true});
+  }
+  function renderOpinions() {
+    const responsePhrase=['made me laugh','made me lean in','made me feel uneasy','made me feel sorry for them','made me feel lost'];
+    const reasonPhrase=layer=>layer==='My own life'?'because it connected to my own life':
+      layer==='Where they stand'?'because of where the actors stood':
+      layer==="I'm not sure"?'and I am not sure which layer caused it':'because of its '+safe(layer.toLowerCase());
+    $('opinions').innerHTML=state.opinions.map(o=>`<p class="opinion">In moment ${o.m+1}, Production ${o.p+1}
+      ${responsePhrase[o.r]} ${reasonPhrase(o.layer)}: ${safe(o.reason)}
+      <small>Viewer ${o.v+1} · pinned to their own reaction</small></p>`).join('');
+  }
+  function diagram(p) {
+    const m=state.moment,old=positions[p][Math.max(0,m-1)],now=positions[p][m];
+    return `<svg class="diagram" viewBox="0 0 400 180" role="img" aria-label="Top-down positions. Arrows show movement since the previous moment.">
+      <defs><marker id="arrow-${p}" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="#c9b1cf"/></marker></defs>
+      <rect x="12" y="10" width="376" height="120" rx="4" fill="#362a3c" stroke="#9a83a3"/>
+      <text x="70" y="153" fill="#f1ebf2" text-anchor="middle" font-size="18">L · Lomov</text>
+      <text x="200" y="153" fill="#f1ebf2" text-anchor="middle" font-size="18">N · Natalya</text>
+      <text x="330" y="153" fill="#f1ebf2" text-anchor="middle" font-size="18">C · Chubukov</text>
+      <text x="200" y="176" fill="#c4b2c9" text-anchor="middle" font-size="18">AUDIENCE</text>
+      ${now.map(([x,y,pose,visible=1],c)=>{
+        const ox=old[c][0]*3.5+25,oy=old[c][1]*2+7,nx=x*3.5+25,ny=y*2+7;
+        return visible?`${Math.hypot(nx-ox,ny-oy)>2?`<path d="M${ox} ${oy} L${nx} ${ny}" stroke="#bea5c8" stroke-width="2" marker-end="url(#arrow-${p})"/>`:''}
+          <circle cx="${nx}" cy="${ny}" r="9" fill="${['#f2c14e','#c9a7ff','#6fc3ff'][c]}"/>
+          <text x="${nx}" y="${ny+6}" fill="#17131a" font-size="18" font-weight="700" text-anchor="middle">${['L','N','C'][c]}</text>`:'';
+      }).join('')}</svg>`;
+  }
+  function soundText(p,m) {
+    if(!p) return m===8?'Only the ticking clock. The lamp dims; the room holds its breath.':
+      'Ticking clock underneath.'+(m>=3?' Rain against the window.':'')+(m===5?' A door slam as Lomov leaves.':'');
+    return m===8?'Accordion: a sad downward slide at the pratfall.':
+      [0,1,4,5,6,9].includes(m)?'Accordion: a short, bright sting.'+(m===9?' Then blackout.':''):
+        m===3?'No sting here: the repeated "Ours!" accelerates.':m===7?'No added cue; the dog mime and timing carry the scene.':'No added sound cue.';
+  }
+  function updateLayers() {
+    const m=state.moment,l=state.layer;
+    for(const b of $('layer-tabs').children) b.setAttribute('aria-pressed',+b.dataset.layer===l);
+    if(l===0) $('layer-detail').innerHTML=`<div class="eyebrow">Same words, different timing</div><div class="word-line">${safe(captions[m])}</div>
+      <div class="detail-pair"><p><b>Parlor:</b> ${pauses[0][m].toFixed(1)} s pause before the line.</p>
+      <p><b>Bare stage:</b> ${pauses[1][m].toFixed(1)} s pause before the line.</p></div>`;
+    else $('layer-detail').innerHTML='<div class="detail-pair">'+[0,1].map(p=>{
+      let content='';
+      if(l===1) content=diagram(p)+`<p>${safe(staging[p][m])}</p>`;
+      if(l===2) content=`<p>${p?'Bright, flat, even white light.'+(m===9?' Blackout at the end.':''):
+        'Warm, low light from an oil lamp.'+(m===8?' The lamp dims a step at the faint.':'')}</p>`;
+      if(l===3) content=`<p>${soundText(p,m)}</p><p>Press Play Production ${p+1} to hear this staging from the selected moment.</p>`;
+      if(l===4) content=`<img class="costume-art" src="${p?'art:costume-today':'art:costume-1890'}" alt="${p?
+        'Three matching blue overalls on a rack, tuxedo T-shirt and red accordion':'Tailcoat with gloves, long dress and apron, quilted dressing gown and cane on headless forms'}">
+        <p>${p?'Matching blue overalls for all three. Lomov wears a tuxedo T-shirt as his best coat. Two folding chairs; a flour sack; imaginary dog leashes.':
+          'Lomov: black tailcoat and white gloves. Natalya: work apron over a long dress. Chubukov: dressing gown and cane. Samovar, oil lamp and clock.'}</p>`;
+      if(l===5) content=`<p>${safe(timeCards[p])}</p>`+(p?'':
+        '<p style="margin-top:7px;color:#d4bfd8">Fictional production: its 1890 setting borrows a realistic style associated with the Moscow Art Theatre a decade later.</p>');
+      return `<div><h3>${names[p]}</h3>${content}</div>`;
+    }).join('')+'</div>';
+    $('layer-stamps').innerHTML=[0,1].map(p=>`<div><b>Viewer ${state.viewer+1} · P${p+1} · ${m+1}</b><br>`+
+      (stamps(state.viewer,p,m).map(r=>`<span class="stamp" style="--r:${reactions[r].color}">${reactions[r].icon} ${reactions[r].word}</span>`).join(' · ')||'No stamp here yet.')+'</div>').join('');
+    const choices=state.chips[state.viewer][m]||[];
+    for(const b of $('chips').children) b.setAttribute('aria-pressed',choices.includes(b.textContent));
+  }
+  function setMode(mode,quiet=false) {
+    if(!['watch','compare','layers'].includes(mode)) return;
+    if(state.mode!==mode) {stop(false);
+  V.hush();
+  state.mode=mode;
+  layerTouched=false;
+  }
+    document.body.dataset.mode=mode;
+    for(const m of ['watch','compare','layers']) $('m-'+m).setAttribute('aria-pressed',m===mode);
+    $('frames').hidden=mode==='compare';
+  $('program').hidden=mode!=='watch';
+  $('reaction-area').hidden=mode!=='watch';
+    $('watch-strip').hidden=mode!=='watch';
+  $('compare').hidden=mode!=='compare';
+  $('layer-tabs').hidden=mode!=='layers';
+    $('layer-detail').hidden=mode!=='layers';
+  $('layer-response').hidden=mode!=='layers';
+  $('phone-switch').hidden=mode==='compare';
+    updateFrames();
+  updateMini();
+    if(mode==='compare') {
+      $('op-moment').value=state.moment;
+      $('op-production').value=state.production;
+      updateCompare();
+    }
+    if(mode==='layers') updateLayers();
+    setHint(hintForMode());
+  if(!quiet) {V.welcome();flushEvents();}
+  }
+  function viewer(v) {
+    if(state.viewer!==v) {V.hush();$('op-reason').value='';}
+    state.viewer=v;
+    for(let i=0;i<2;i++) $('viewer-'+i).setAttribute('aria-pressed',i===v);
+    updateLabels();
+  updateMini();
+  if(state.mode==='compare') updateCompare();
+  if(state.mode==='layers') updateLayers();
+    if(v===1&&!state.playing) V.how('viewer2How',{valid:()=>state.viewer===1&&!state.playing,hint:false});
+  }
+  function reset() {
+    stop(false);
+  V.hush();
+  Object.assign(state,fresh());
+  pendingBoth=[];
+  state.moment=0;
+  state.production=0;
+    $('op-reason').value='';
+  state.showSplits=false;
+  state.samples=false;
+  save();
+  $('reset-dialog').close();
+    viewer(0);
+  setMode('watch');
+  }
+  createFrames();
+  for(let r=0;r<reactions.length;r++) {
+    const b=document.createElement('button');
+  b.id='reaction-'+r;
+  b.className='react';
+  b.style.setProperty('--r',reactions[r].color);
+    b.innerHTML=`<strong aria-hidden="true">${reactions[r].icon}</strong>${reactions[r].word}`;
+  b.onclick=()=>stamp(r);
+  $('reactions').append(b);
+  }
+  layerNames.forEach((name,i)=>{
+    const b=document.createElement('button');b.textContent=name;b.dataset.layer=i;b.id='layer-'+i;
+    b.onclick=()=>{layerTouched=true;state.layer=i;updateLayers();setHint(hintForMode());Curio.tone(290+i*35,.04,.018);};$('layer-tabs').append(b);
+  });
+  chipNames.forEach((name,i)=>{
+    const b=document.createElement('button');b.textContent=name;b.id='chip-'+i;
+    b.onclick=()=>{
+      const row=state.chips[state.viewer][state.moment]||[];
+      state.chips[state.viewer][state.moment]=row.includes(name)?row.filter(x=>x!==name):[...row,name];
+      save();updateLayers();Curio.tone(420,.045,.018);
+    };$('chips').append(b);$('op-layer').add(new Option(name,name));
+  });
+  for(let m=0;m<10;m++) $('op-moment').add(new Option(m+1,m));
+  $('op-moment').onchange=updateOpinion;
+  $('op-production').onchange=updateOpinion;
+  $('op-reason').oninput=updateOpinion;
+  $('add').onclick=addOpinion;
+  for(const mode of ['watch','compare','layers']) $('m-'+mode).onclick=()=>setMode(mode);
+  for(let v=0;v<2;v++) $('viewer-'+v).onclick=()=>viewer(v);
+  for(let p=0;p<2;p++) {
+    $('play-'+p).onclick=()=>play(p);
+    $('phone-'+p).onclick=()=>{if(state.playing) play(p);
+  else {state.production=p;
+  updateFrames();
+  }};
+  }
+  $('previous').onclick=()=>step(-1);
+  $('next').onclick=()=>step(1);
+  $('splits').onclick=()=>{state.showSplits=!state.showSplits;
+  updateCompare();
+  setHint(state.showSplits?'Tap a moment number for Layers. Marks show recorded differences.':hintForMode());
+  };
+    $('samples').onclick=()=>{
+      state.samples=!state.samples;
+      updateCompare();
+      setHint(state.samples?'Samples are fictional. Scroll their strips; tap a moment to open Layers.':hintForMode());
+    };
+  for(const id of ['reset','mobile-reset']) $(id).onclick=()=>{stop();
+  V.hush();
+  $('reset-dialog').showModal();
+  };
+  $('cancel-reset').onclick=()=>$('reset-dialog').close();
+  $('confirm-reset').onclick=reset;
+  $('read').addEventListener('click',()=>{if(state.playing) stop();},true);
+  Curio.onSound(on=>{if(!on) stopAudio();else if(state.playing) {enableAudio();cue();}});
+  Curio.onMotion(reduced=>{
+    if(reduced) for(const cast of actors) for(const actor of cast) for(const animation of actor.getAnimations()) animation.cancel();
+    if(state.playing) updateFrames();
+  });
+  Curio.init({clips:"voice:*",rate:.95});
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;
+  },stamps,splits,difference,
+    captions,pauses,duration,positions,staging,sampleData,save,viewer,step,play,stop,stamp,updateCompare,updateLayers,timeline};
+  save();
+  setMode('watch');
+})();
+</script>
+</body>
+</html>

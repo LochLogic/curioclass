@@ -1,0 +1,1161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Three Viewpoints Scene · Curio Class</title>
+<meta name="description" content="Devise, tighten and perform a six-beat scene from three viewpoints. Grades 6-8 theater. Works offline.">
+<!--
+Curio Class. NCAS TH:Cr2, TH:Pr4, TH:Pr6, TH:Cn10. Original fictional characters and dialogue.
+Scene checks are this exercise's rules of thumb. Timing assumption: 2.5 words per second, plus 0.4 s per line.
+Devising: Viola Spolin, Improvisation for the Theater; Keith Johnstone, Impro.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. No network requests. Saves only on this device.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f4f2ee; --ink:#1c2224; --muted:#59615f; --line:#d3d4cb; --brand:#11756f;
+  --btn:#0c615c; --btn-line:#5da49e; --head-ink:#fff; --panel:#fff; --focus:#b4531c;
+}
+body { height:100dvh; overflow:hidden; }
+header { background:#173c3a; padding:12px 20px; gap:10px; border-bottom:3px solid #c2a16d; }
+h1 { font-size:25px; letter-spacing:-.6px; }
+h1 small { font-size:13px; letter-spacing:.2px; color:#d2e1da; opacity:1; margin-top:5px; }
+.seg { border-radius:7px; border:1px solid #658b81; }
+.seg button { min-height:44px; font-size:15px; padding:0 17px; }
+.seg button[aria-pressed="true"] { background:#f4f2ee; color:#134842; }
+.icon-btn { min-height:44px; min-width:44px; border-radius:7px; font-size:13px; padding:0 10px; border-width:1px; }
+header :focus-visible { outline-color:#fff; }
+main { grid-template-columns:minmax(0,1fr) 272px; overflow:hidden; }
+.panel { grid-column:2; grid-row:1; border-left:1px solid #c7c9c0; padding:18px; gap:12px; }
+.eyebrow { font-size:11px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); }
+.panel .eyebrow { color:var(--brand); }
+.hint { font-size:15px; line-height:1.45; min-height:66px; margin:0; }
+.button { border:1px solid #bec4bc; border-radius:6px; background:#fff; min-width:44px; min-height:44px;
+  padding:7px 11px; font-size:14px; font-weight:650; box-shadow:0 2px 0 #0000000b; }
+.button:hover:not(:disabled) { background:#eef5f0; border-color:var(--brand); }
+.button:disabled { opacity:.45; cursor:default; }
+.primary { background:var(--brand); color:#fff; border-color:var(--brand); }
+.primary:hover:not(:disabled) { background:#0c5e59; color:#fff; }
+.play { min-height:52px; font-size:17px; width:100%; }
+.row { display:flex; gap:6px; align-items:center; }
+.row>* { flex:1; }
+.controls { display:grid; gap:8px; }
+.selection { background:#f4f2ee; padding:10px; border:1px solid var(--line); border-radius:7px; }
+.selection p { font-size:13px; line-height:1.35; margin:0 0 8px; }
+.selection .row { flex-wrap:wrap; }
+.selection .button { font-size:12px; padding:5px; flex-basis:44%; }
+#offer { padding:13px; background:#f1eee3; border:1px solid #cfc3a9; border-radius:2px 12px 12px 12px;
+  box-shadow:3px 4px 0 #ece9de; }
+#offer p { font:600 16px/1.4 Georgia,serif; margin:8px 0 12px; }
+#offer .row { flex-wrap:wrap; }
+#offer .button { font-size:12px; padding:5px; }
+.roles { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.roles .button { font-size:12px; }
+.roles [aria-pressed="true"] { background:var(--brand); color:#fff; border-color:var(--brand); }
+.roles .button[aria-pressed="true"]:hover { background:#0c5e59; color:#fff; }
+.stepper { display:grid; grid-template-columns:44px 1fr 44px; align-items:center; gap:5px; }
+.stepper output { text-align:center; font-weight:750; }
+.issue { border-top:1px solid var(--line); padding-top:12px; margin-top:auto; }
+.issue p { font-size:12px; line-height:1.45; margin:7px 0; }
+#save-status { font-size:11px; line-height:1.4; color:var(--muted); margin:0; }
+.stage { grid-column:1; grid-row:1; min-height:0; display:flex; flex-direction:column; padding:16px;
+  background:radial-gradient(ellipse at 20% 10%,#fffaf0,#eeece5 60%); overflow:hidden; gap:12px; }
+.room { position:relative; flex:0 0 180px; overflow:hidden; border-radius:9px;
+  background:#1a1b1a url('art:rehearsal-stage') center 50%/cover; box-shadow:0 6px 14px #18211c22; }
+.room::after { content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(90deg,#0005,transparent 25%,transparent 75%,#0005); }
+.room-label { position:absolute; z-index:2; left:16px; top:13px; color:#eee9dc; font-size:11px; letter-spacing:2px;
+  text-transform:uppercase; text-shadow:0 2px 3px #000; }
+.worklight { position:absolute; width:5px; height:5px; background:#ffdf99; box-shadow:0 0 12px 4px #ffe1a866;
+  border-radius:50%; top:15px; right:18px; animation:breathe 5s ease-in-out infinite alternate; }
+@keyframes breathe { from { opacity:.4; } to { opacity:1; } }
+.calm .worklight { animation:none; opacity:.7; }
+.prop { position:absolute; bottom:13px; width:24%; height:88%; display:flex; flex-direction:column;
+  justify-content:flex-end; align-items:center; z-index:1; }
+.prop[data-prop="Maya"] { left:8%; }
+.prop[data-prop="Ortiz"] { left:38%; }
+.prop[data-prop="Dale"] { left:68%; }
+.prop img { height:calc(100% - 27px); width:100%; object-fit:contain;
+  filter:brightness(.78) drop-shadow(0 6px 3px #0009); transition:filter .3s; }
+.prop.speaking img { filter:brightness(1.16) drop-shadow(0 0 15px #ffdc9299); }
+.tape { background:#e9dfc6; color:#252a27; padding:4px 13px; font-size:12px; font-weight:800;
+  box-shadow:0 2px 3px #0008; transform:rotate(-1deg); white-space:nowrap; }
+.spotlight { position:absolute; left:8%; width:24%; bottom:8px; height:95%; border-radius:50%;
+  background:radial-gradient(ellipse,#ffe3a538,transparent 70%); opacity:0; transition:left .45s,opacity .25s; }
+.spotlight.on { opacity:1; }
+.board-wrap { flex:1; min-height:0; display:flex; flex-direction:column; gap:8px; }
+.section-title { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.section-title h2 { font-size:14px; margin:0; }
+.section-title span { font-size:11px; color:var(--muted); }
+.board { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:8px; flex:1; min-height:0;
+  overflow:auto; padding:2px 2px 5px; grid-auto-rows:minmax(0,1fr); }
+.beat { display:flex; flex-direction:column; min-width:0; min-height:0; background:#e4e2d8; border:1px solid #cbcbbf;
+  border-radius:5px; padding:5px; gap:4px; }
+.beat.current { box-shadow:inset 0 0 0 2px var(--brand); background:#dce8df; }
+.beathead { display:flex; flex-shrink:0; gap:6px; align-items:baseline; border-bottom:1px solid #c7c8bc; padding-bottom:5px; }
+.beathead b { font:700 21px Georgia,serif; color:#626658; }
+.beathead span { font-size:12px; font-weight:750; }
+.cards { display:flex; flex-direction:column; flex:1; min-height:0; overflow:auto; gap:5px; padding:1px; }
+.card { display:block; width:100%; text-align:left; min-height:44px; border:1px solid #d4cfc3;
+  border-left:3px solid var(--role); border-radius:3px; padding:7px; background:linear-gradient(115deg,#fffdfa,#f8f4eb);
+  box-shadow:0 2px 3px #3b35251c; flex-shrink:0; }
+.card[aria-pressed="true"] { outline:2px solid var(--brand); outline-offset:1px; background:#fff; }
+.card.playing { background:#e6f4ed; outline:2px solid var(--brand); }
+.card-name { display:block; font-size:10px; font-weight:800; color:var(--role); margin-bottom:3px; }
+.card-text { text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; font:12px/1.3 Georgia,serif; }
+.add { width:100%; min-height:44px; background:#f6f5ed77; border:1px dashed #a6aa9a;
+  border-radius:3px; font-size:12px; color:#46544b; margin-top:auto; flex-shrink:0; }
+.add:hover { background:#fff; }
+.beat-time { font-size:11px; font-weight:750; text-align:center; color:#586353; margin-top:auto; padding-top:2px; flex-shrink:0; }
+.curve-wrap { flex:0 0 125px; border:1px solid #c8cabe; border-radius:6px; padding:9px 12px; background:#faf9f4;
+  box-shadow:0 2px 4px #00000009; display:flex; flex-direction:column; min-height:0; }
+.curve-top { display:flex; justify-content:space-between; align-items:center; gap:8px; font-size:11px; }
+.curve-top b { text-transform:uppercase; font-size:10px; letter-spacing:1.5px; }
+#total { font-size:16px; font-weight:800; color:var(--brand); }
+#curve { width:100%; min-height:0; flex:1; overflow:visible; }
+.checks { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:7px; }
+.check { padding:9px; border:1px solid #d8c2a6; border-radius:5px; background:#faf3e8; font-size:11px; line-height:1.3; }
+.check b { display:block; color:#965509; margin-bottom:4px; font-size:13px; }
+.check.pass { background:#edf4eb; border-color:#adc4a4; }
+.check.pass b { color:#2f6b37; }
+.rule-label { font-size:10px; color:var(--muted); margin:0; }
+body[data-mode="tighten"] .room { flex-basis:90px; }
+body[data-mode="tighten"] .curve-wrap { order:1; flex:1; min-height:145px; }
+body[data-mode="tighten"] .board-wrap { order:2; flex:0 1 240px; }
+body[data-mode="tighten"] .card-text { -webkit-line-clamp:1; }
+body[data-mode="tighten"] .card { padding:4px; }
+body[data-mode="tighten"] .cards { gap:3px; }
+body[data-mode="tighten"] .beat { gap:3px; }
+body[data-mode="tighten"] .beathead { padding-bottom:3px; }
+body[data-mode="tighten"] .beathead b { font-size:18px; }
+body[data-mode="perform"] .room { flex:0 0 150px; }
+body[data-mode="perform"] .board-wrap { flex:0 1 180px; }
+body[data-mode="perform"] .add,body[data-mode="perform"] .beat-time { display:none; }
+body[data-mode="perform"] .card-text { -webkit-line-clamp:1; }
+body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
+.cue { border-radius:8px; border:1px solid #c4cabf; background:#fffdf8; padding:22px 28px; flex:1; min-height:130px;
+  display:flex; flex-direction:column; justify-content:center; box-shadow:0 5px 12px #332e191a; }
+.cue.live { background:#11756f; color:#fff; border-color:#0e605b; }
+.cue-kicker { font-size:11px; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:10px; }
+.cue blockquote { font:500 clamp(28px,2.4vw,40px)/1.25 Georgia,serif; margin:0; }
+.cue.other blockquote { font-size:23px; }
+.cue-bottom { font-size:12px; margin:13px 0 0; }
+.cue-detail { font:14px/1.4 Georgia,serif; margin:10px 0 0; max-width:75ch; }
+.modal { width:min(1000px,calc(100vw - 28px)); max-height:calc(100dvh - 28px); padding:20px; background:#f4f2ee;
+  color:var(--ink); border:1px solid #9aab9d; border-radius:10px; box-shadow:0 20px 90px #0008; }
+.modal::backdrop { background:#101e1bbb; }
+.modal-top { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:12px; }
+.modal h2 { font-size:21px; margin:0; }
+.picker-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.picker-role { display:flex; flex-direction:column; gap:8px; min-width:0; }
+.picker-role h3 { color:var(--role); font-size:14px; margin:0 0 2px; }
+.option { min-height:100px; text-align:left; background:#fffdf7; border:1px solid #ccc7b8;
+  border-top:3px solid var(--role); border-radius:4px; padding:12px; font:15px/1.4 Georgia,serif;
+  box-shadow:0 3px 4px #342b1214; display:flex; flex-direction:column; justify-content:space-between; gap:9px; }
+.option:hover:not(:disabled) { background:#e9f2ea; border-color:var(--brand); }
+.option:disabled { opacity:.45; cursor:default; }
+.option small { font:700 11px 'Segoe UI',sans-serif; color:var(--muted); }
+.modal-note { font-size:12px; color:var(--muted); margin:13px 0 0; }
+.offer-list { display:grid; gap:8px; }
+.offer-row { background:#fffdf8; padding:12px; border:1px solid var(--line); display:flex; gap:10px; align-items:center; }
+.offer-row p { flex:1; margin:0; font-size:14px; }
+@media (min-width:1700px) {
+  main { grid-template-columns:minmax(0,1fr) 330px; }
+  .room { flex-basis:260px; }
+  .card-text { font-size:15px; -webkit-line-clamp:3; }
+  .card-name { font-size:12px; }
+  .curve-wrap { flex-basis:180px; }
+}
+@media (max-width:1100px) {
+  main { grid-template-columns:minmax(0,1fr) 230px; }
+  header { padding:8px 12px; gap:7px; }
+  h1 { font-size:20px; }
+  h1 small { font-size:11px; }
+  .seg button { padding:0 10px; font-size:13px; }
+  .icon-btn { padding:0 7px; font-size:12px; }
+  .panel { padding:12px; }
+  .stage { padding:11px; gap:8px; }
+  .room { flex-basis:135px; }
+}
+@media (max-width:899px) {
+  .board { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  body[data-mode="tighten"] .board-wrap { flex:0 0 330px; }
+  body[data-mode="tighten"] .add { display:none; }
+  header { flex-wrap:wrap; }
+  h1 { width:100%; font-size:18px; }
+  h1 small { display:none; }
+  .seg { margin-right:auto; }
+  main { grid-template-columns:minmax(0,1fr) 210px; }
+  .beat { padding:5px; gap:4px; }
+  .beathead { padding-bottom:3px; }
+  .beathead b { font-size:15px; }
+  .beathead span { font-size:10px; }
+  .card-text { font-size:11px; -webkit-line-clamp:1; }
+  .checks { gap:3px; }
+  .check { padding:5px; font-size:10px; }
+  .check b { font-size:11px; }
+}
+@media (max-height:650px) and (min-width:561px) {
+  header { padding:4px 9px; flex-wrap:nowrap; gap:6px; }
+  h1 { width:auto; font-size:16px; }
+  h1 small { display:none; }
+  .seg button { font-size:12px; padding:0 9px; }
+  .icon-btn { font-size:11px; padding:0 6px; }
+  .stage { padding:7px; gap:6px; }
+  .room { flex-basis:76px; }
+  .room-label { font-size:10px; left:8px; top:8px; letter-spacing:1px; }
+  .prop { bottom:5px; height:93%; }
+  .tape { font-size:10px; padding:2px 8px; }
+  .prop img { height:calc(100% - 17px); }
+  .section-title h2 { font-size:12px; }
+  .section-title span { font-size:10px; }
+  .board-wrap { gap:3px; }
+  .board { gap:5px; }
+  .card { padding:4px; }
+  .card-name { margin-bottom:1px; }
+  .curve-wrap { flex-basis:75px; padding:5px 8px; }
+  .curve-top { font-size:10px; }
+  #total { font-size:13px; }
+  .panel { padding:9px; gap:5px; }
+  .selection { padding:6px; display:flex; flex-direction:column; gap:6px; }
+  .selection .row { order:-1; }
+  .selection p { margin:0; }
+  .hint { min-height:62px; font-size:12px; }
+  .play { min-height:44px; font-size:15px; }
+  .panel .eyebrow { font-size:10px; }
+  .issue { padding-top:6px; }
+  .issue p { font-size:10px; margin:3px 0; }
+  #offer { padding:8px; }
+  #offer p { font-size:13px; margin:4px 0 6px; }
+  body[data-mode="tighten"] .room { flex-basis:50px; }
+  body[data-mode="tighten"] .curve-wrap { min-height:118px; }
+  body[data-mode="tighten"] .board-wrap { flex-basis:200px; }
+  body[data-mode="tighten"] .check span { display:block; font-size:10px; line-height:1.15; }
+  body[data-mode="perform"] .room { flex-basis:76px; }
+  body[data-mode="perform"] .board-wrap { display:none; }
+  body[data-mode="perform"] .curve-wrap { flex-basis:65px; }
+  .cue { padding:14px; min-height:100px; }
+  .cue blockquote { font-size:25px; }
+  .cue.other blockquote { font-size:20px; }
+  .cue-kicker { margin-bottom:6px; }
+}
+@media (max-width:720px) and (min-width:561px) {
+  h1 { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+  .seg button { padding:0 12px; }
+  main { grid-template-columns:minmax(0,1fr) 195px; }
+  .panel { padding:8px; }
+  .picker-grid { gap:6px; }
+  .modal { padding:12px; }
+  .option { padding:8px; font-size:12px; min-height:86px; }
+}
+@media (max-width:899px) and (max-height:650px) and (min-width:561px) {
+  .room { flex-basis:54px; }
+  .curve-wrap { flex-basis:89px; }
+  .beat { padding:4px; gap:2px; }
+  .beathead { padding-bottom:2px; }
+  .beathead b { font-size:14px; }
+  .beat-time { font-size:10px; padding:0; }
+  .prop { height:95%; bottom:2px; }
+  .room-label { max-width:95px; font-size:10px; letter-spacing:0; }
+  .board { grid-auto-rows:minmax(0,1fr); }
+  .beat { min-height:0; display:grid; grid-template-columns:minmax(0,1fr) 44px;
+    grid-template-rows:44px minmax(0,1fr); }
+  .beathead { grid-column:1; grid-row:1; align-items:center; border:0; }
+  .add { grid-column:2; grid-row:1; height:44px; margin:0; font-size:0; }
+  .add::after { content:'+'; font-size:20px; }
+  .cards { grid-column:1 / -1; grid-row:2; min-height:0; overflow:auto; padding:1px; }
+  .card { flex-shrink:0; }
+  .beat-time { display:none; }
+  .room-label { display:none; }
+}
+@media (max-width:899px) and (max-height:450px) and (min-width:561px) {
+  .room { flex-basis:34px; }
+  .curve-wrap { flex-basis:79px; }
+  .prop { display:flex; flex-direction:row; justify-content:center; gap:3px; }
+  .prop img { height:90%; width:40%; }
+  .tape { padding:3px 5px; }
+  body[data-mode="tighten"] .room { flex-basis:34px; }
+}
+@media (max-width:899px) and (max-height:650px) and (min-width:561px) {
+  body[data-mode="tighten"] .board-wrap { flex:0 0 152px; }
+  body[data-mode="tighten"] .section-title { display:none; }
+  body[data-mode="tighten"] .beat { grid-template-columns:1fr; grid-template-rows:12px minmax(0,1fr); padding:2px; }
+  body[data-mode="tighten"] .beathead { grid-column:1; padding:0; gap:3px; }
+  body[data-mode="tighten"] .beathead b { font-size:11px; }
+  body[data-mode="tighten"] .beathead span { font-size:10px; }
+  body[data-mode="tighten"] .add,body[data-mode="tighten"] .beat-time { display:none; }
+  body[data-mode="tighten"] .cards { grid-column:1; }
+}
+@media (max-width:560px) {
+  body { padding-bottom:66px; }
+  body[data-mode="perform"] { padding-bottom:126px; }
+  #play { position:fixed; left:12px; bottom:12px; width:calc(100% - 24px); z-index:5; box-shadow:0 4px 20px #183e3a55; }
+  body[data-mode="perform"] #perform-controls>.row { position:fixed; left:12px; bottom:66px;
+    width:calc(100% - 24px); z-index:5; background:var(--paper); padding:3px; border-radius:6px; }
+}
+@media (max-width:560px) {
+  body { height:100dvh; min-height:0; overflow:hidden; }
+  header { gap:6px; padding:9px; }
+  h1 { font-size:21px; margin-bottom:3px; }
+  .seg { flex:0 0 100%; width:100%; border-radius:5px; }
+  .seg button { flex:1; }
+  .icon-btn { flex:1; }
+  main { display:flex; flex-direction:column; overflow:auto; min-height:0; scroll-padding:12px; }
+  .panel { order:0; flex:0 0 auto; border-left:0; border-bottom:1px solid var(--line); overflow:visible; padding:12px; gap:8px; }
+  .panel>.eyebrow,.issue { display:none; }
+  .hint { min-height:42px; font-size:13px; }
+  .play { min-height:44px; }
+  .panel-footer { display:flex; gap:8px; align-items:center; }
+  .panel-footer>* { flex:1; }
+  #save-status { font-size:10px; }
+  #offer { padding:10px; }
+  #offer p { font-size:14px; }
+  .stage { order:1; flex:0 0 auto; overflow:visible; padding:10px; }
+  .room { flex-basis:135px; }
+  .board { display:flex; flex-direction:column; overflow:visible; }
+  .board-wrap { flex:none; }
+  .beat { min-height:110px; }
+  .cards { flex:none; overflow:visible; }
+  .beathead span { font-size:13px; }
+  .beathead b { font-size:20px; }
+  .card-text { font-size:14px; -webkit-line-clamp:3; }
+  .card-name { font-size:11px; }
+  .curve-wrap { order:-1; flex:0 0 100px; }
+  body[data-mode="tighten"] .curve-wrap { order:-1; flex-basis:245px; }
+  body[data-mode="tighten"] .board-wrap { flex:auto; }
+  body[data-mode="tighten"] .room { flex-basis:100px; }
+  body[data-mode="perform"] .room { flex-basis:135px; }
+  body[data-mode="perform"] .board-wrap { display:none; }
+  body[data-mode="perform"] .cue { order:-2; flex:auto; min-height:205px; padding:20px; }
+  .cue blockquote { font-size:28px; }
+  .picker-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }
+  .picker-role { gap:6px; }
+  .picker-role h3 { margin-top:8px; }
+  .option { min-height:75px; padding:6px; font-size:12px; line-height:1.3; }
+  .option small { font-size:10px; }
+  .picker-role h3 { font-size:12px; }
+  .modal { padding:12px; }
+  .modal h2 { font-size:18px; }
+  .offer-row { flex-direction:column; align-items:stretch; }
+}
+
+@media (min-width:561px) {
+  .panel { scroll-padding-top:140px; }
+  .hint { position:sticky; top:0; z-index:3; background:#fff; }
+  .play { position:sticky; top:66px; z-index:3; }
+}
+@media (max-height:650px) and (min-width:561px) {
+  .play { top:62px; }
+  .modal-top { margin-bottom:8px; }
+  .modal-note { margin-top:6px; }
+  .picker-role { gap:6px; }
+}
+</style>
+</head>
+<body data-mode="devise">
+<header>
+  <h1>Three Viewpoints Scene <small>Devising a scene from three viewpoints · Curio Class</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-devise" aria-pressed="true">Devise</button>
+    <button id="m-tighten" aria-pressed="false">Tighten</button>
+    <button id="m-perform" aria-pressed="false">Perform</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <aside class="panel">
+    <div class="eyebrow" id="desk-label">01 / The devising desk</div>
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <button class="button primary play" id="play">▶ Play scene</button>
+    <div id="perform-controls" class="controls" hidden>
+      <div class="eyebrow">Your role</div>
+      <div class="roles" id="roles">
+        <button class="button" data-role="Maya" aria-pressed="true">Maya</button>
+        <button class="button" data-role="Ortiz" aria-pressed="false">Mr. Ortiz</button>
+        <button class="button" data-role="Dale" aria-pressed="false">Ms. Dale</button>
+        <button class="button" data-role="all" aria-pressed="false">All three live</button>
+      </div>
+      <div class="row"><button class="button primary" id="done" disabled>Done · Space</button>
+        <button class="button" id="back" disabled>Back one line</button></div>
+    </div>
+    <div id="tighten-controls" class="controls" hidden>
+      <label for="pause-beat" class="eyebrow">Pause before</label>
+      <select id="pause-beat" class="button" aria-label="Beat for pause"></select>
+      <div class="stepper"><button class="button" id="pause-less" aria-label="Shorten pause">−</button>
+        <output id="pause-value">0.5 s</output><button class="button" id="pause-more" aria-label="Lengthen pause">+</button></div>
+    </div>
+    <div id="selection" class="selection" hidden>
+      <p id="selected-text"></p>
+      <div class="row"><button class="button" id="remove">Remove</button><button class="button" id="hear">Hear it</button>
+        <button class="button" id="up">Move up</button><button class="button" id="down">Move down</button></div>
+    </div>
+    <div id="offer" hidden><div class="eyebrow">Jules has an offer</div><p id="offer-text"></p>
+      <div class="row"><button class="button primary" id="yes-and">Yes, and</button>
+        <button class="button" id="pass-offer">Not this one</button></div></div>
+    <button class="button" id="offers">Offers · 0 of 4</button>
+    <div class="panel-footer"><button class="button" id="reset">Reset</button>
+      <p id="save-status">Saved on this device only.</p></div>
+    <div class="issue"><div class="eyebrow">The late bus</div>
+      <p>The 5:00 bus after clubs is being cut. Friday is its last run.</p>
+      <p>Maya needs band. Mr. Ortiz has driven this route for twelve years. Ms. Dale must cut $40,000.</p>
+      <p>A fictional scene. Speak live in Perform. Nothing is recorded.</p></div>
+  </aside>
+  <section class="stage" id="stage" aria-label="Rehearsal stage and beat board">
+    <div class="room" aria-label="An empty rehearsal room with three character props">
+      <span class="room-label">The last late bus / rehearsal</span><div class="worklight" aria-hidden="true"></div>
+      <div class="spotlight" id="spotlight" aria-hidden="true"></div>
+      <div class="prop" data-prop="Maya"><img src="art:prop-maya" alt="Open trumpet case with a brass trumpet"><span class="tape">Maya</span></div>
+      <div class="prop" data-prop="Ortiz"><img src="art:prop-ortiz" alt="Driver's cap and keys on a stool"><span class="tape">Mr. Ortiz</span></div>
+      <div class="prop" data-prop="Dale"><img src="art:prop-dale" alt="Clipboard and lanyard on a chair"><span class="tape">Ms. Dale</span></div>
+    </div>
+    <div class="cue" id="cue" hidden aria-live="polite"><div class="cue-kicker" id="cue-name">Your rehearsal</div>
+      <blockquote id="cue-text">Three people. One late bus.</blockquote><p class="cue-bottom" id="cue-bottom"></p>
+      <p class="cue-detail" id="cue-detail" hidden></p></div>
+    <div class="board-wrap"><div class="section-title"><h2>Six beats. Your scene.</h2><span id="line-count"></span></div>
+      <div class="board" id="board" aria-label="Six beat board"></div></div>
+    <div class="curve-wrap" id="curve-wrap">
+      <div class="curve-top"><b>Tension / 0 to 3</b><span>Planned <output id="total">3.0 s</output></span></div>
+      <div class="checks" id="checks" hidden></div>
+      <svg id="curve" viewBox="0 0 900 100" preserveAspectRatio="none" role="img" aria-label="Tension curve"></svg>
+      <p class="rule-label">Timing estimate: 2.5 words/s + 0.4 s per line, plus pauses.</p>
+      <p class="rule-label" id="rule-label" hidden>A director's rule of thumb for this exercise.</p>
+    </div>
+  </section>
+</main>
+<dialog class="modal" id="picker" aria-labelledby="picker-title">
+  <div class="modal-top"><h2 id="picker-title">Choose a line</h2><button class="button" id="close-picker">Back to board</button></div>
+  <div class="picker-grid" id="picker-grid"></div><p class="modal-note" id="picker-note"></p>
+</dialog>
+<dialog class="modal" id="offer-dialog" aria-labelledby="offers-title">
+  <div class="modal-top"><h2 id="offers-title">Jules's offers</h2><button class="button" id="close-offers">Back to board</button></div>
+  <div class="offer-list" id="offer-list"></div>
+</dialog>
+<dialog class="modal" id="reset-dialog" aria-labelledby="reset-title">
+  <div class="modal-top"><h2 id="reset-title">Clear this rehearsal?</h2></div>
+  <p>This clears your lines, pauses and offers saved on this device.</p>
+  <div class="row"><button class="button" id="cancel-reset">Keep my scene</button><button class="button primary" id="confirm-reset">Clear scene</button></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const DATA = "json:scene-lines";
+  const byId = Object.fromEntries(DATA.map(l => [l.id,l]));
+  const NAMES = {Maya:'Maya',Ortiz:'Mr. Ortiz',Dale:'Ms. Dale'};
+  const COLORS = {Maya:'#b4531c',Ortiz:'#2f5d8a',Dale:'#7a3f86'};
+  const BEATS = ['Setup','The news','What I need','The clash','The turn','After'];
+  const OFFERS = ['3-Ortiz-c','4-Dale-c','2-Maya-c','5-Maya-c'];
+  const L = {
+    welcomeDevise:"I'm Jules. Let's build this scene. Tap an empty slot in a beat and pick a line.",
+    offer1:"What if Mr. Ortiz's own daughter is in band too?",
+    offer2:"What if Ms. Dale rode a late bus herself as a kid?",
+    offer3:"What if Maya says nothing at first? Just silence.",
+    offer4:"What if the turn is Maya finding out it's not just her?",
+    offerPassed:'Okay. Keep going.', offerTaken:"Yes! It's in the picker for that beat.",
+    welcomeTighten:'Now make it land. Watch the curve, and fix the amber lights.',
+    allGreen:'That turn lands. Try it out loud in Perform.',
+    welcomePerform:'Pick your role and press Start. Say your lines out loud, then tap Done.',
+    pickerHow:'Tap a line to place it.',
+    editHow:'Tap Hear it to try this line.',
+    offersHow:'Tap Reopen to try an offer, or Back to board.',
+    offersEmpty:'Keep adding lines to meet Jules. Tap Back to board.',
+    resetHow:'Tap Keep my scene, or Clear scene.',
+    yourLine:'Your line. Say it, then tap Done.', runDone:"That's the scene. Check your time against the plan.",
+    runPartial:'That was part of the scene. Start again for a full run.'
+  };
+  DATA.filter(l => !l.silent).forEach(l => { L[l.id] = l.text; });
+  const EVENT_IDS = new Set(['offer1','offer2','offer3','offer4','offerPassed','offerTaken','allGreen','runDone','runPartial',
+    ...DATA.filter(line => !line.silent).map(line => line.id)]);
+  const fresh = () => ({mode:'devise',board:Array.from({length:6},() => []),pauses:Array(6).fill(.5),
+    offers:Array(4).fill('locked'),placements:0,role:'Maya',selected:null,pauseBeat:4,pickerBeat:null,offerNow:null,
+    playing:false,performing:false,waiting:false,silenceReady:true,cursor:-1,activeRole:null,result:null,revision:0,
+    covered:[],runJumped:false});
+  const state = fresh();
+  $('hint').style.setProperty('scroll-margin-top','12px');
+  const STORAGE = 'curio-three-viewpoints-scene-v1';
+  let storageOK = true;
+  function save() {
+    try {
+      const {board,pauses,offers,placements,role} = state;
+      localStorage.setItem(STORAGE,JSON.stringify({board,pauses,offers,placements,role}));
+    } catch { storageOK = false; }
+    $('save-status').textContent = storageOK ? 'Saved on this device only.' : 'Saving unavailable. Keep this tab open.';
+  }
+  function restore() {
+    try {
+      const d = JSON.parse(localStorage.getItem(STORAGE) || 'null');
+      if (!d) return;
+      const used = new Set();
+      if (Array.isArray(d.board) && d.board.length===6) state.board = d.board.map((ids,b) => {
+        if (!Array.isArray(ids)) return [];
+        return ids.filter(id => {
+          if (!byId[id] || byId[id].beat!==b || used.has(id)) return false;
+          used.add(id);
+          return true;
+        }).slice(0,4);
+      });
+      if (Array.isArray(d.pauses) && d.pauses.length===6) {
+        state.pauses = d.pauses.map(p => Number.isFinite(p) ? Math.max(0,Math.min(3,Math.round(p*2)/2)) : .5);
+      }
+      if (Array.isArray(d.offers) && d.offers.length===4) {
+        state.offers = d.offers.map(o => ['locked','due','taken','passed'].includes(o) ? o : 'locked');
+      }
+      state.placements = Number.isFinite(d.placements) ? Math.max(0,d.placements) : used.size;
+      if (['Maya','Ortiz','Dale','all'].includes(d.role)) state.role = d.role;
+    } catch { storageOK = false; }
+  }
+  restore();
+  const welcomeKey = () => 'welcome'+state.mode[0].toUpperCase()+state.mode.slice(1);
+  const V = Curio.voice({lines:L,scope:() => state.mode,hint:false,read:() => $('hint').textContent,
+    welcome:() => !state.playing && state.pickerBeat===null && !document.querySelector('dialog[open]') &&
+      !(state.mode==='perform' && state.board.some(b => !b.length)) ? [welcomeKey(),{valid:() => !state.playing}] : null,
+    speaks:'.add,.card,.option,#play,#yes-and,#pass-offer',
+    est:text => (DATA.find(l => l.text===text)?.seconds*1000) || 600+62*text.length});
+  const sayLine = (key,options={}) => V.say(key,{...options,kind:EVENT_IDS.has(key)?'event':'how'});
+  // The kit owns speech and queue timing. Route role lines to available browser voices until bank clips exist.
+  let speechRole = null;
+  let hearToken = 0;
+  if ('speechSynthesis' in window) {
+    const kitSpeak = speechSynthesis.speak.bind(speechSynthesis);
+    speechSynthesis.speak = u => {
+      if (speechRole) {
+        const voices = speechSynthesis.getVoices().filter(v => /^en\b/i.test(v.lang));
+        const wanted = {Maya:/jenny|aria|zira|samantha/i,Ortiz:/david|mark|daniel/i,Dale:/hazel|sonia|libby|susan/i};
+        const i = ['Maya','Ortiz','Dale'].indexOf(speechRole);
+        const voice = voices.find(v => wanted[speechRole].test(v.name)) || voices[i % Math.max(1,voices.length)];
+        if (voice) { u.voice = voice; u.lang = voice.lang; }
+        u.pitch = 1;
+        u.rate = speechRole==='Maya' ? 1 : speechRole==='Ortiz' ? .88 : .94;
+      }
+      kitSpeak(u);
+    };
+  }
+  const hint = text => { $('hint').textContent = text; };
+  function defaultHint() {
+    if (state.playing) return;
+    if (state.mode==='devise') hint('Tap + and pick a line. Which viewpoint feels familiar in your community?');
+    if (state.mode==='tighten') hint('Fix the amber checks. Select a beat for Pause before, or tap a card and Cut.');
+    if (state.mode==='perform') hint(state.board.some(b => !b.length) ?
+      'Put at least one line in each beat in Devise.' : L.welcomePerform);
+  }
+  function analyse() {
+    const beats = state.board.map(ids => ids.map(id => byId[id]));
+    const tensions = beats.map(ls => Math.max(0,...ls.map(l => l.tension)));
+    const seconds = beats.map((ls,i) => state.pauses[i]+ls.reduce((n,l) => n+l.seconds,0));
+    const total = seconds.reduce((a,b) => a+b,0);
+    const missing = Object.keys(NAMES).filter(r => !beats.slice(0,4).flat().some(l => l.role===r && l.need));
+    const rising = tensions[1]>=1 && tensions[2]>=tensions[1] && tensions[3]>=tensions[2] && tensions[3]===3;
+    const turn = beats[4].findIndex(l => l.turn);
+    let turnWhy = '';
+    if (turn<0) turnWhy = 'Put a line that changes the situation in beat 5.';
+    else if (beats[4].slice(turn+1).some(l => l.tension===3)) turnWhy = 'Cut or move the tension-3 line after the turn in beat 5.';
+    else if (tensions[5]>1) turnWhy = 'Let beat 6 settle at tension 1 or less.';
+    else if (state.pauses[4]<1 || state.pauses[4]>2) turnWhy = 'Give the turn a breath: set Pause before beat 5 to 1 or 2 seconds.';
+    const long = seconds.findIndex(s => s>15.00001);
+    const empty = beats.map((b,i) => b.length?null:i+1).filter(Boolean);
+    let paceWhy = empty.length ? `Beat ${empty[0]} is empty. Add a line in Devise.` :
+      long>=0 ? `Beat ${long+1} runs ${seconds[long].toFixed(1)} s. Cut it to 15 s or less.` : '';
+    if (!paceWhy && total<30-1e-8) paceWhy = 'Build at least 30 seconds of scene.';
+    if (!paceWhy && total>75+1e-8) paceWhy = 'Cut the scene to 75 seconds or less.';
+    const checks = [
+      {name:'Three sides',pass:!missing.length,why:missing.length?`We never hear what ${NAMES[missing[0]]} needs.`:'Each character has a need.'},
+      {name:'Rising',pass:rising,why:rising?'The clash is the high point.':"The clash isn't the high point yet."},
+      {name:'The turn',pass:!turnWhy,why:turnWhy || 'A breath, a change, an after.'},
+      {name:'Pacing',pass:!paceWhy,why:paceWhy || 'Each beat fits. The scene has room.'}
+    ];
+    return {beats,tensions,seconds,total,checks,empty,allGreen:checks.every(c => c.pass)};
+  }
+  const esc = text => text.replace(/[&<>"']/g,ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const sequence = () => state.board.flatMap(ids => ids.map(id => byId[id]));
+  let boardSignature = '';
+  function renderBoard() {
+    const focus = document.activeElement?.id;
+    const current = state.playing ? sequence()[state.cursor] : null;
+    const signature = JSON.stringify(state.board);
+    if (signature!==boardSignature) $('board').innerHTML = BEATS.map((name,i) => {
+      const cards = state.board[i].map(id => {
+        const l = byId[id];
+        return `<button class="card${current?.id===id?' playing':''}" id="card-${id}" data-card="${id}" `+
+          `style="--role:${COLORS[l.role]}" aria-pressed="${state.selected===id}" title="${esc(l.text)}">`+
+          `<span class="card-name">${NAMES[l.role]} · ${l.seconds.toFixed(1)} s${l.need?' · need':''}${l.turn?' · turn':''}</span>`+
+          `<span class="card-text">${esc(l.silent?'[Silence]':l.text)}</span></button>`;
+      }).join('');
+      return `<section class="beat${current?.beat===i?' current':''}" id="beat-${i}">`+
+        `<div class="beathead"><b>${i+1}</b><span>${name}</span></div><div class="cards">${cards}</div>`+
+        (state.board[i].length<4 ? `<button class="add" id="add-${i}" data-add="${i}" `+
+          `aria-label="Add line to beat ${i+1}, ${name}">+ Add line</button>` : '')+`<div class="beat-time" id="time-${i}"></div></section>`;
+    }).join('');
+    boardSignature = signature;
+    document.querySelectorAll('[data-card]').forEach(button => {
+      button.setAttribute('aria-pressed',button.dataset.card===state.selected);
+      button.classList.toggle('playing',button.dataset.card===current?.id);
+    });
+    BEATS.forEach((name,i) => $(`beat-${i}`).classList.toggle('current',current?.beat===i));
+    if (focus && document.activeElement===document.body) $(focus)?.focus({preventScroll:true});
+    const n = state.board.flat().length;
+    $('line-count').textContent = `${n} ${n===1?'line':'lines'} / ${n?'tap a card to edit':'tap + to begin'}`;
+  }
+  function renderCurve() {
+    const a = analyse();
+    const rulerLabels = state.mode==='tighten' || (innerWidth>560 && innerWidth<900 && innerHeight<=650);
+    $('total').textContent = `${a.total.toFixed(1)} s`;
+    a.seconds.forEach((s,i) => { $(`time-${i}`).textContent = `${s.toFixed(1)} s${state.board[i].length?'':' · empty'}`; });
+    const w = Math.max(100,$('curve').clientWidth);
+    const h = Math.max(25,$('curve').clientHeight);
+    const top = h<65 ? 5 : 16;
+    const bottom = h-17;
+    const x1 = h<65 ? 16 : 35;
+    const x2 = w-16;
+    const atY = t => bottom-t*(bottom-top)/3;
+    $('curve').setAttribute('viewBox',`0 0 ${w} ${h}`);
+    const pts = a.tensions.map((t,i) => [x1+i*(x2-x1)/5,atY(t)]);
+    const path = pts.map((p,i) => `${i?'L':'M'}${p[0]},${p[1]}`).join(' ');
+    $('curve').innerHTML = [0,1,2,3].map(t => `<line x1="${x1}" x2="${x2}" y1="${atY(t)}" y2="${atY(t)}" `+
+      `stroke="#d5d9cd" stroke-dasharray="3 5"/>`+
+      (h>=65 ? `<text x="10" y="${atY(t)+4}" font-size="11" fill="#59615f">${t}</text>` : '')).join('')+
+      `<path d="${path} L${x2},${bottom} L${x1},${bottom} Z" fill="#11756f13"/>`+
+      `<path d="${path}" fill="none" stroke="#11756f" stroke-width="3"/>`+
+      pts.map(([x,y],i) => `<circle cx="${x}" cy="${y}" r="${h<65?3:5}" fill="${state.board[i].length?'#11756f':'#faf9f4'}" `+
+        `stroke="${state.board[i].length?'#11756f':'#a8600a'}" stroke-width="2"/>`+
+        `<text x="${x}" y="${h-2}" text-anchor="${rulerLabels?(i===0?'start':i===5?'end':'middle'):'middle'}" `+
+        `font-size="11" fill="#59615f">`+
+        `${rulerLabels?`${i+1} · ${a.seconds[i].toFixed(1)} s`:i+1}</text>`).join('');
+    $('curve').setAttribute('aria-label',`Tension by beat: ${a.tensions.join(', ')}. Empty beats: ${a.empty.join(', ') || 'none'}.`);
+    $('checks').innerHTML = a.checks.map(c => `<div class="check ${c.pass?'pass':''}" title="${esc(c.why)}">`+
+      `<b>${c.pass?'✓':'!'} ${c.name}</b><span>${esc(c.why)}</span></div>`).join('');
+    $('rule-label').textContent = "A director's rule of thumb for this exercise."+(a.empty.length?` Empty beats: ${a.empty.join(', ')}.`:'');
+  }
+  function renderControls() {
+    $('perform-controls').hidden = state.mode!=='perform';
+    $('tighten-controls').hidden = state.mode!=='tighten';
+    $('play').textContent = state.playing ? '■ Stop' : state.mode==='perform' ? '▶ Start' : '▶ Play scene';
+    $('play').disabled = !state.playing && (state.mode==='perform'?state.board.some(b => !b.length):!state.board.flat().length);
+    $('done').disabled = !state.waiting || !state.silenceReady;
+    $('back').disabled = !state.playing || state.cursor<1;
+    $('pause-value').textContent = `${state.pauses[state.pauseBeat].toFixed(1)} s`;
+    $('pause-less').disabled = state.pauses[state.pauseBeat]===0;
+    $('pause-more').disabled = state.pauses[state.pauseBeat]===3;
+    $('pause-beat').value = state.pauseBeat;
+    $('roles').querySelectorAll('[data-role]').forEach(b => b.setAttribute('aria-pressed',b.dataset.role===state.role));
+    $('offers').textContent = `Offers · ${state.offers.filter(o => o!=='locked').length} of 4`;
+    const l = byId[state.selected];
+    $('selection').hidden = !l || state.mode==='perform';
+    if (l) {
+      const i = state.board[l.beat].indexOf(l.id);
+      $('selected-text').textContent = `${NAMES[l.role]}: ${l.silent?'[Silence]':l.text}`;
+      $('up').disabled = i===0;
+      $('down').disabled = i===state.board[l.beat].length-1;
+      $('remove').textContent = state.mode==='tighten' ? 'Cut' : 'Remove';
+    }
+  }
+  function renderAll() { renderBoard(); renderCurve(); renderControls(); }
+  let lastGreen = analyse().allGreen && !analyse().empty.length;
+  function changed() {
+    const before = lastGreen;
+    state.revision++;
+    state.result = null;
+    renderAll();
+    save();
+    const analysis = analyse();
+    lastGreen = analysis.allGreen && !analysis.empty.length;
+    if (!before && lastGreen && !state.playing) {
+      Curio.yes();
+      const revision = state.revision;
+      sayLine('allGreen',{valid:() => revision===state.revision && !state.playing});
+    }
+  }
+  let runToken = 0;
+  let runStarted = 0;
+  let plannedAtStart = 0;
+  function setSpot(role) {
+    state.activeRole = role;
+    document.querySelectorAll('[data-prop]').forEach(p => p.classList.toggle('speaking',p.dataset.prop===role));
+    $('spotlight').classList.toggle('on',!!role);
+    $('spotlight').style.left = `${8+30*Math.max(0,['Maya','Ortiz','Dale'].indexOf(role))}%`;
+  }
+  function stop(offers=true) {
+    runToken++;
+    hearToken++;
+    state.playing = false;
+    state.performing = false;
+    state.waiting = false;
+    speechRole = null;
+    V.hush();
+    setSpot(null);
+    renderAll();
+    defaultHint();
+    if (state.mode==='perform' && state.cursor>=0) updateCue(sequence()[state.cursor],'Stopped');
+    if (offers) showOffer();
+  }
+  function editFirst() {
+    hearToken++;
+    speechRole = null;
+    if (state.playing) stop(false);
+    else V.hush();
+  }
+  function openPicker(beat) {
+    if (state.playing) stop(false);
+    V.hush();
+    state.pickerBeat = beat;
+    $('picker-title').textContent = `${beat+1}. ${BEATS[beat]} / choose a line`;
+    const full = state.board[beat].length>=4;
+    $('picker-note').textContent = full ? 'This beat is full. Cut a line to add one.' : 'Choose the next voice. Each line can be placed once.';
+    $('picker-grid').innerHTML = Object.keys(NAMES).map(role => {
+      const options = DATA.filter(l => l.beat===beat && l.role===role && (!l.offer || state.offers[l.offer-1]==='taken'));
+      return `<div class="picker-role" style="--role:${COLORS[role]}"><h3>${NAMES[role]}</h3>`+options.map(l => {
+        const used = state.board[beat].includes(l.id);
+        return `<button class="option" id="option-${l.id}" data-option="${l.id}" ${used || full?'disabled':''}>`+
+          `<span>${esc(l.silent?'[Silence]':l.text)}</span><small>${l.seconds.toFixed(1)} s${l.need?' · shows a need':''}`+
+          `${l.turn?' · changes the situation':''}${used?' · placed':''}</small></button>`;
+      }).join('')+'</div>';
+    }).join('');
+    hint(`Pick a line for ${BEATS[beat]}. Each character sees the same issue differently.`);
+    $('picker').showModal();
+    sayLine('pickerHow',{valid:() => state.pickerBeat===beat && $('picker').open,needs:'.option:not(:disabled)'});
+  }
+  function closePicker() {
+    V.hush();
+    const b = state.pickerBeat;
+    state.pickerBeat = null;
+    $('picker').close();
+    defaultHint();
+    $(`add-${b}`)?.focus({preventScroll:true});
+    showOffer();
+  }
+  function place(id,fromOffer=false) {
+    const l = byId[id];
+    if (!l || state.board[l.beat].length>=4 || state.board.flat().includes(id)) return false;
+    if (l.offer && state.offers[l.offer-1]!=='taken') return false;
+    editFirst();
+    state.board[l.beat].push(id);
+    state.selected = id;
+    state.placements++;
+    for (let i=0;i<4;i++) if (state.placements>=(i+1)*3 && state.offers[i]==='locked') state.offers[i]='due';
+    Curio.tone(370+l.tension*90,.16,.035,'triangle');
+    changed();
+    setSpot(l.role);
+    const rev = state.revision;
+    setTimeout(() => { if (!state.playing && rev===state.revision) setSpot(null); },700);
+    hint(`${NAMES[l.role]}'s line is in beat ${l.beat+1}. Tap + to add another, or Play scene to hear it.`);
+    if (!fromOffer) {
+      if ($('picker').open) { $('picker').close(); state.pickerBeat = null; }
+      $(`card-${id}`)?.focus({preventScroll:true});
+      showOffer();
+    }
+    return true;
+  }
+  function selectCard(id) {
+    if (state.playing) {
+      state.selected = id;
+      state.pauseBeat = byId[id].beat;
+      jumpTo(sequence().findIndex(l => l.id===id));
+      return;
+    }
+    if (state.mode==='perform') {
+      defaultHint();
+      V.welcome();
+      Curio.tone(500,.1,.025);
+      return;
+    }
+    V.hush();
+    speechRole = null;
+    hearToken++;
+    state.selected = id;
+    state.pauseBeat = byId[id].beat;
+    renderAll();
+    const moves = [!$('up').disabled?'Move up':null,!$('down').disabled?'Move down':null].filter(Boolean);
+    hint(`Line selected. Use Hear it, ${state.mode==='tighten'?'Cut':'Remove'}${moves.length?', or '+moves.join(' or '):''}.`);
+    sayLine('editHow',{valid:() => state.selected===id && !state.playing && state.mode!=='perform',needs:'#hear'});
+    setSpot(byId[id].role);
+    Curio.tone(280,.1,.025);
+  }
+  function remove() {
+    if (!state.selected) return;
+    editFirst();
+    const l = byId[state.selected];
+    state.board[l.beat] = state.board[l.beat].filter(id => id!==l.id);
+    state.selected = null;
+    changed();
+    Curio.tone(210,.15,.025);
+    hint(state.mode==='tighten' && innerWidth<900 ?
+      `Line cut from beat ${l.beat+1}. Tap Devise, then + in that beat to try a different choice.` :
+      `Line cut from beat ${l.beat+1}. Tap + there to try a different choice.`);
+    const next = state.mode==='tighten' && innerWidth<900 ? $('m-devise') : $(`add-${l.beat}`);
+    next?.focus({preventScroll:true});
+    showOffer();
+  }
+  function move(delta) {
+    if (!state.selected) return;
+    editFirst();
+    const l = byId[state.selected];
+    const ids = state.board[l.beat];
+    const i = ids.indexOf(l.id);
+    if (i+delta<0 || i+delta>=ids.length) return;
+    [ids[i],ids[i+delta]] = [ids[i+delta],ids[i]];
+    changed();
+    hint(`Line moved ${delta<0?'up':'down'} in beat ${l.beat+1}. Play scene to hear the new order.`);
+    if ((delta<0?$('up'):$('down')).disabled) $(`card-${l.id}`)?.focus({preventScroll:true});
+    Curio.tone(delta<0?500:320,.12,.025);
+  }
+  function showOffer(index=null) {
+    if (state.playing || state.mode==='perform' || document.querySelector('dialog[open]')) {
+      $('offer').hidden = true;
+      return;
+    }
+    if (index===null) index = state.offers.findIndex(o => o==='due');
+    state.offerNow = index>=0 ? index : null;
+    $('offer').hidden = state.offerNow===null;
+    if (state.offerNow===null) return;
+    $('offer-text').textContent = L[`offer${index+1}`];
+    sayLine(`offer${index+1}`,{valid:() => state.offerNow===index && !state.playing &&
+      !$('picker').open && !$('offer-dialog').open});
+  }
+  function answerOffer(yes) {
+    const i = state.offerNow;
+    if (i===null) return;
+    editFirst();
+    state.offers[i] = yes ? 'taken' : 'passed';
+    state.offerNow = null;
+    $('offer').hidden = true;
+    const placed = yes && place(OFFERS[i],true);
+    save();
+    renderControls();
+    hint(yes ? (placed ? 'Offer added. Try Play scene to hear what it changes.' :
+      'Offer unlocked. That beat is full. Cut a line, then add the offer from its picker.') : 'Offer set aside. Tap Offers to reopen it, or keep adding lines.');
+    sayLine(yes?'offerTaken':'offerPassed',{valid:() => !state.playing});
+    $('play').focus({preventScroll:true});
+    setTimeout(() => { if (!state.playing) showOffer(); },1800);
+  }
+  function openOffers() {
+    if (state.playing) stop(false);
+    V.hush();
+    $('offer-list').innerHTML = OFFERS.map((id,i) => {
+      const s = state.offers[i];
+      return `<div class="offer-row"><p>${s==='locked'?`Offer ${i+1} arrives after ${(i+1)*3} lines are placed.`:esc(L[`offer${i+1}`])}`+
+        `<br><small>${{locked:'Still to come',due:'Waiting',taken:'Accepted',passed:'Set aside'}[s]}</small></p>`+
+        (s==='due' || s==='passed' ? `<button class="button" data-reopen="${i}">Reopen offer ${i+1}</button>`:'')+'</div>';
+    }).join('');
+    $('offer-dialog').showModal();
+    const key = state.offers.some(o => o==='due' || o==='passed') ? 'offersHow' : 'offersEmpty';
+    hint(L[key]);
+    sayLine(key,{valid:() => $('offer-dialog').open,needs:'#close-offers'});
+  }
+  function changePause(delta) {
+    const b = state.pauseBeat;
+    state.pauses[b] = Math.max(0,Math.min(3,state.pauses[b]+delta));
+    Curio.tone(400+state.pauses[b]*40,.09,.02);
+    changed();
+    hint(`Pause before beat ${b+1}: ${state.pauses[b].toFixed(1)} s. `+
+      (state.playing?'It applies on the next entry to that beat.':'Tap Play scene to feel the timing.'));
+    if ((delta<0?$('pause-less'):$('pause-more')).disabled) $('pause-beat').focus({preventScroll:true});
+  }
+  function updateCue(l,phase='') {
+    $('cue').classList.toggle('live',!!l && state.waiting);
+    $('cue').classList.toggle('other',!!l && !state.waiting);
+    if (!l) {
+      $('cue-detail').hidden = true;
+      $('cue-name').textContent = 'Your rehearsal';
+      $('cue-text').textContent = 'Three people. One late bus.';
+      $('cue-bottom').textContent = state.board.some(b => !b.length) ?
+        'Return to Devise and put at least one line in each beat.' :
+        'Choose your role, then press Start. Speak live; nothing is recorded.';
+      return;
+    }
+    $('cue-name').textContent = `${NAMES[l.role]} / ${state.waiting?'Your line':phase || 'Listen'} / beat ${l.beat+1}`;
+    $('cue-text').textContent = l.silent ? '[Silence]' : l.text;
+    $('cue-detail').hidden = true;
+    $('cue-bottom').textContent = phase==='Stopped' ? 'Stopped. Tap Start for a new run, or choose another role.' :
+      state.waiting ? (l.silent ? (state.silenceReady ? 'Silence held. Tap Done or press Space.' : 'Hold two seconds of silence.') :
+        'Say it aloud. Then tap Done or press Space.') :
+      l.silent ? 'A silent two-second beat.' : phase==='Pause before' ? 'Take the pause before this beat.' :
+      'Your scene partner is speaking.';
+  }
+  function setMode(mode) {
+    if (mode===state.mode) {
+      if (!state.playing) {
+        renderAll();
+        defaultHint();
+        if (state.cursor===-1) updateCue(null);
+        V.welcome();
+      }
+      return;
+    }
+    if (!['devise','tighten','perform'].includes(mode)) return;
+    stop(false);
+    state.mode = mode;
+    document.body.dataset.mode = mode;
+    ['devise','tighten','perform'].forEach(m => $(`m-${m}`).setAttribute('aria-pressed',m===mode));
+    $('desk-label').textContent = {devise:'01 / The devising desk',tighten:'02 / The director’s desk',perform:'03 / On your cue'}[mode];
+    $('cue').hidden = mode!=='perform';
+    $('checks').hidden = mode!=='tighten';
+    $('rule-label').hidden = mode!=='tighten';
+    $('offers').hidden = mode==='perform';
+    state.result = null;
+    updateCue(null);
+    renderAll();
+    defaultHint();
+    if (!(mode==='perform' && state.board.some(b => !b.length))) V.welcome();
+    if (mode!=='perform') showOffer();
+  }
+  async function delay(ms,token) {
+    const until = performance.now()+ms;
+    while (performance.now()<until) {
+      if (token!==runToken || !state.playing) return false;
+      await Curio.wait(Math.min(50,until-performance.now()));
+    }
+    return token===runToken && state.playing;
+  }
+  async function speakCharacter(l,token) {
+    if (l.silent) return delay(2000,token);
+    speechRole = l.role;
+    const started = performance.now();
+    await sayLine(l.id,{hint:false,wait:true,valid:() => token===runToken && state.playing});
+    if (token!==runToken) return false;
+    if (!await delay(Math.max(0,l.seconds*1000-(performance.now()-started)),token)) return false;
+    speechRole = null;
+    return true;
+  }
+  async function runFrom(index,token,skipPause=false) {
+    const lines = sequence();
+    for (let i=index;i<lines.length;i++) {
+      if (token!==runToken || !state.playing) return;
+      state.cursor = i;
+      state.waiting = false;
+      const l = lines[i];
+      const newBeat = i===0 || lines[i-1].beat!==l.beat;
+      setSpot(l.role);
+      renderAll();
+      if (state.performing) updateCue(l,'Pause before');
+      if (newBeat && !(skipPause && i===index)) {
+        const previousBeat = i===0 ? -1 : lines[i-1].beat;
+        for (let b=previousBeat+1;b<=l.beat;b++) {
+          hint(`Beat ${b+1}: ${BEATS[b]}. Pause ${state.pauses[b].toFixed(1)} seconds.`);
+          if (!await delay(state.pauses[b]*1000,token)) return;
+        }
+      }
+      if (token!==runToken) return;
+      if (state.performing && (state.role==='all' || state.role===l.role)) {
+        state.waiting = true;
+        state.silenceReady = !l.silent;
+        updateCue(l);
+        renderControls();
+        hint(l.silent ? `${NAMES[l.role]}: hold two seconds of silence.` :
+          `${NAMES[l.role]}: your line. Say it aloud, then tap Done or press Space.`);
+        Curio.tone(650,.12,.025,'triangle');
+        if (l.silent) {
+          if (!await delay(2000,token)) return;
+          state.silenceReady = true;
+          updateCue(l);
+          hint(`${NAMES[l.role]}: silence held. Tap Done or press Space.`);
+          renderControls();
+        }
+        while (state.waiting) if (!await delay(50,token)) return;
+      } else {
+        if (state.performing) updateCue(l);
+        hint(`${NAMES[l.role]} is speaking. Tap a card to jump, or Stop to end.`);
+        if (!await speakCharacter(l,token)) return;
+      }
+      if (!state.covered.includes(l.id)) state.covered.push(l.id);
+    }
+    if (token===runToken && state.playing) {
+      const lastBeat = lines.at(-1).beat;
+      for (let b=lastBeat+1;b<6;b++) if (!await delay(state.pauses[b]*1000,token)) return;
+      finishRun();
+    }
+  }
+  function start() {
+    if (state.playing) { stop(); return; }
+    if (!sequence().length || (state.mode==='perform' && state.board.some(b => !b.length))) return;
+    V.hush();
+    speechRole = null;
+    state.playing = true;
+    state.performing = state.mode==='perform';
+    state.waiting = false;
+    state.cursor = 0;
+    state.covered = [];
+    state.runJumped = false;
+    state.silenceReady = true;
+    state.result = null;
+    $('offer').hidden = true;
+    state.offerNow = null;
+    runStarted = performance.now();
+    plannedAtStart = analyse().total;
+    const token = ++runToken;
+    renderControls();
+    runFrom(0,token);
+  }
+  function jumpTo(index) {
+    if (!state.playing || index<0) return;
+    state.runJumped = true;
+    V.hush();
+    speechRole = null;
+    state.waiting = false;
+    runFrom(index,++runToken,true);
+    if (document.activeElement?.disabled) $('play').focus({preventScroll:true});
+  }
+  function done() {
+    if (!state.waiting || !state.silenceReady) return;
+    state.waiting = false;
+    $('play').focus({preventScroll:true});
+    renderControls();
+    Curio.tone(440,.09,.02);
+  }
+  function finishRun() {
+    const performing = state.performing;
+    const elapsed = (performance.now()-runStarted)/1000;
+    stop(false);
+    if (performing) {
+      const difference = Math.round(elapsed-plannedAtStart);
+      const lines = sequence();
+      const complete = state.covered.length===lines.length && !state.runJumped;
+      state.result = {elapsed,planned:plannedAtStart,difference,complete,covered:state.covered.length};
+      $('cue').classList.remove('other','live');
+      $('cue-name').textContent = complete ? 'Your scene / full cue run' : 'Your scene / partial or replayed cue run';
+      $('cue-text').textContent = `${elapsed.toFixed(1)} s live. ${plannedAtStart.toFixed(1)} s planned at Start.`;
+      const comparison = difference>0 ? `${difference} s longer than planned.` :
+        difference<0 ? `${Math.abs(difference)} s less than planned.` : 'Right on your plan.';
+      $('cue-bottom').textContent = complete ? `${comparison} Timing only; spoken delivery is not checked.` :
+        `${state.covered.length} of ${lines.length} cues covered, with jumps. Start again to compare a full run.`;
+      const counts = Object.keys(NAMES).map(role => `${NAMES[role]} ${lines.filter(l => l.role===role).length}`).join(' / ');
+      const turn = state.board[4].map(id => byId[id]).find(l => l.turn);
+      $('cue-detail').textContent = `${counts}. `+(turn ? `Your turn: ${NAMES[turn.role]} says, "${turn.text}"` :
+        'Your beat 5 has no change of situation yet. Return to Tighten to revise it.');
+      $('cue-detail').hidden = false;
+      hint(complete ? 'Cue run complete. Try another role, or return to Tighten and revise the timing.' :
+        'Some cues were skipped or replayed. Tap Start for a full run, or Tighten to revise.');
+      sayLine(complete?'runDone':'runPartial',{valid:() => !!state.result && !state.playing});
+    } else {
+      hint('Scene complete. Tap a card to revise it, or switch to Tighten to shape the turn.');
+      showOffer();
+    }
+    $('play').focus({preventScroll:true});
+  }
+  async function hear() {
+    const l = byId[state.selected];
+    if (!l) return;
+    if (state.playing) { jumpTo(sequence().findIndex(line => line.id===l.id)); return; }
+    const token = ++hearToken;
+    V.hush();
+    speechRole = l.role;
+    setSpot(l.role);
+    hint(`Hear ${NAMES[l.role]}'s line. Then use ${state.mode==='tighten'?'Cut':'Remove'}, or select another card.`);
+    if (l.silent) await Curio.wait(2000);
+    else await sayLine(l.id,{hint:false,wait:true,valid:() => state.selected===l.id && !state.playing});
+    if (token===hearToken && !state.playing && state.selected===l.id) { speechRole = null; setSpot(null); }
+  }
+  $('board').onclick = event => {
+    const add = event.target.closest('[data-add]');
+    const card = event.target.closest('[data-card]');
+    if (add) openPicker(Number(add.dataset.add));
+    if (card) selectCard(card.dataset.card);
+  };
+  $('picker-grid').onclick = event => {
+    const b = event.target.closest('[data-option]');
+    if (b) place(b.dataset.option);
+  };
+  $('close-picker').onclick = closePicker;
+  $('picker').addEventListener('cancel',event => { event.preventDefault(); closePicker(); });
+  $('up').onclick = () => move(-1);
+  $('down').onclick = () => move(1);
+  $('remove').onclick = remove;
+  $('hear').onclick = hear;
+  $('yes-and').onclick = () => answerOffer(true);
+  $('pass-offer').onclick = () => answerOffer(false);
+  $('offers').onclick = openOffers;
+  $('close-offers').onclick = () => {
+    V.hush();
+    $('offer-dialog').close();
+    defaultHint();
+    $('offers').focus({preventScroll:true});
+  };
+  $('offer-dialog').addEventListener('cancel',() => { V.hush(); defaultHint(); });
+  $('offer-list').onclick = event => {
+    const b = event.target.closest('[data-reopen]');
+    if (!b) return;
+    V.hush();
+    $('offer-dialog').close();
+    showOffer(Number(b.dataset.reopen));
+    hint('Jules’s offer is open. Tap Yes, and to try it, or Not this one to set it aside.');
+    $('yes-and').focus({preventScroll:true});
+  };
+  $('pause-beat').innerHTML = BEATS.map((b,i) => `<option value="${i}">${i+1}. ${b}</option>`).join('');
+  $('pause-beat').onchange = () => {
+    state.pauseBeat = Number($('pause-beat').value);
+    renderControls();
+    hint(`Use − or + to change the pause before beat ${state.pauseBeat+1}.`);
+  };
+  $('pause-less').onclick = () => changePause(-.5);
+  $('pause-more').onclick = () => changePause(.5);
+  $('roles').onclick = event => {
+    const b = event.target.closest('[data-role]');
+    if (!b) return;
+    if (state.playing) stop(false);
+    state.role = b.dataset.role;
+    state.result = null;
+    updateCue(null);
+    renderControls();
+    save();
+    defaultHint();
+    Curio.tone(500,.1,.025);
+  };
+  $('play').onclick = start;
+  $('done').onclick = done;
+  $('back').onclick = () => jumpTo(Math.max(0,state.cursor-1));
+  document.addEventListener('keydown',e => {
+    if (e.code!=='Space' || !state.waiting || e.repeat || document.querySelector('dialog[open]')) return;
+    if (['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName)) return;
+    e.preventDefault();
+    done();
+  });
+  ['devise','tighten','perform'].forEach(m => { $(`m-${m}`).onclick = () => setMode(m); });
+  $('reset').onclick = () => {
+    stop(false);
+    $('reset-dialog').showModal();
+    hint(L.resetHow);
+    sayLine('resetHow',{valid:() => $('reset-dialog').open,needs:'#cancel-reset'});
+    $('cancel-reset').focus({preventScroll:true});
+  };
+  $('cancel-reset').onclick = () => {
+    V.hush();
+    $('reset-dialog').close();
+    defaultHint();
+    $('reset').focus({preventScroll:true});
+  };
+  $('reset-dialog').addEventListener('cancel',() => { V.hush(); defaultHint(); });
+  $('confirm-reset').onclick = () => {
+    V.hush();
+    const mode = state.mode;
+    Object.assign(state,fresh());
+    state.mode = mode;
+    lastGreen = false;
+    save();
+    $('reset-dialog').close();
+    setMode(mode);
+    $('reset').focus({preventScroll:true});
+  };
+  Curio.init({clips:"voice:*",rate:.96});
+  // Read is narration, so it ends rehearsal before speaking the current instruction.
+  $('read').onclick = () => {
+    if (state.playing) stop(false);
+    speechRole = null;
+    V.read();
+  };
+  window.__tool = {state,setMode,allLines:V.allLines,vlog:V.log,analyse,place,openPicker,selectCard,remove,move,
+    changePause,start,stop,done,jumpTo,sequence,showOffer,answerOffer,save,get vq() { return V.queue; }};
+  $('perform-controls').before($('offer'));
+  renderAll();
+  updateCue(null);
+  defaultHint();
+  showOffer();
+  if (!storageOK) $('save-status').textContent = 'Saving unavailable. Keep this tab open.';
+  new ResizeObserver(renderCurve).observe($('curve'));
+})();
+</script>
+</body>
+</html>

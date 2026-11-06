@@ -1,0 +1,229 @@
+{
+  "states": [
+    {
+      "name": "lab",
+      "steps": [
+        {
+          "click": "#m-lab"
+        }
+      ],
+      "keep": [
+        "#stage",
+        "#mixer",
+        "#play"
+      ]
+    },
+    {
+      "name": "live-mix",
+      "steps": [
+        {
+          "click": "#m-lab"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "click": "#switch-costumes"
+        },
+        {
+          "click": "#switch-lights"
+        },
+        {
+          "click": "#switch-voices"
+        },
+        {
+          "click": "#switch-music"
+        }
+      ],
+      "keep": [
+        "#stage",
+        "#mixer",
+        "#play"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "notebook",
+      "steps": [
+        {
+          "click": "#m-lab"
+        },
+        {
+          "click": "#sound"
+        },
+        {
+          "click": "#switch-lights"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "until": "__tool.state.line >= 5",
+          "max": 25000
+        },
+        {
+          "click": "#play"
+        }
+      ],
+      "keep": [
+        "#mixer",
+        "#show-results"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "talkback-work",
+      "steps": [
+        {
+          "click": "#m-talkback"
+        },
+        {
+          "click": "#criterion-pick-0"
+        },
+        {
+          "click": "#criterion-pick-1"
+        },
+        {
+          "click": "#criterion-pick-2"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "results",
+      "steps": [
+        {
+          "click": "#m-lab"
+        },
+        {
+          "click": "#sound"
+        },
+        {
+          "click": "#switch-lights"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "until": "__tool.state.line >= 5",
+          "max": 25000
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "click": "#notebook .note:last-child .rating button"
+        },
+        {
+          "click": "#show-results"
+        }
+      ],
+      "keep": [
+        "#results-dialog"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "clear-notes",
+      "steps": [
+        {
+          "click": "#clear"
+        }
+      ],
+      "keep": [
+        "#clear-dialog"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "late-switch-excluded",
+      "steps": [
+        {
+          "click": "#m-lab"
+        },
+        {
+          "click": "#sound"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "until": "__tool.state.line >= 5",
+          "max": 25000
+        },
+        {
+          "click": "#switch-lights"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "click": "#notebook .note:last-child .rating button"
+        },
+        {
+          "click": "#show-results"
+        }
+      ],
+      "keep": [
+        "#results-dialog"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "notebook-phone",
+      "steps": [
+        {
+          "click": "#m-lab"
+        },
+        {
+          "click": "#sound"
+        },
+        {
+          "click": "#switch-lights"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "until": "__tool.state.line >= 5",
+          "max": 25000
+        },
+        {
+          "click": "#play"
+        }
+      ],
+      "keep": [
+        "#stage",
+        "#hint",
+        "#mixer",
+        "#play"
+      ],
+      "sizes": [
+        "375x812"
+      ]
+    }
+  ]
+}

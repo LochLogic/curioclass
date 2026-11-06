@@ -1,0 +1,290 @@
+{
+  "house_style": "Soft gouache picture-book illustration, warm light from upper left, gentle colored-pencil textures, rich but calm colors, tactile materials, beautifully finished for ages 8 to 11. All surfaces blank: no text, letters, numbers, logos or watermarks.",
+  "assets": [
+    {
+      "name": "ws-kid-stand",
+      "prompt": "The same 9-year-old kid with short curly dark hair, warm brown skin, mustard yellow hoodie, blue jeans and red sneakers, full body front view, friendly natural proportions. Standing relaxed, arms at sides, calm face. Whole body inside frame, clear space around head and feet. Centered with generous margin on perfectly flat pure green (#00FF00).",
+      "aspect": "3:4",
+      "quality": 76,
+      "cutout": true,
+      "key": "green",
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true,
+      "height": 600
+    },
+    {
+      "name": "ws-kid-fists",
+      "prompt": "The same 9-year-old kid with short curly dark hair, warm brown skin, mustard yellow hoodie, blue jeans and red sneakers, full body front view, friendly natural proportions. Standing, both hands in tight fists at chest height, eyes gently squeezed. Whole body inside frame, clear space around head and feet. Centered with generous margin on perfectly flat pure green (#00FF00).",
+      "aspect": "3:4",
+      "quality": 76,
+      "cutout": true,
+      "key": "green",
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true,
+      "height": 600,
+      "ref": "ws-kid-stand"
+    },
+    {
+      "name": "ws-kid-shoulders",
+      "prompt": "The same 9-year-old kid with short curly dark hair, warm brown skin, mustard yellow hoodie, blue jeans and red sneakers, full body front view, friendly natural proportions. Standing with shoulders pulled up to ears, arms down. Whole body inside frame, clear space around head and feet. Centered with generous margin on perfectly flat pure green (#00FF00).",
+      "aspect": "3:4",
+      "quality": 76,
+      "cutout": true,
+      "key": "green",
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true,
+      "height": 600,
+      "ref": "ws-kid-stand"
+    },
+    {
+      "name": "ws-kid-toes",
+      "prompt": "The same 9-year-old kid with short curly dark hair, warm brown skin, mustard yellow hoodie and blue jeans, full body front view, friendly natural proportions. Sitting comfortably on a low wooden stool, hands relaxed on thighs. Both feet planted with heels down and toes curled under inside fully closed cream socks. Socks clearly cover the entire feet, with fabric gathering over the curled toes. Shoes removed. Show the full stool, head, hands and both socked feet with generous margin. Match the reference child's identity, outfit and soft gouache style. Perfectly flat pure green (#00FF00) background, including every gap between legs and stool. No ground or cast shadow. No text, letters, numbers or logos.",
+      "aspect": "3:4",
+      "quality": 76,
+      "cutout": true,
+      "key": "green",
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true,
+      "height": 600,
+      "holes": true,
+      "redrawn": 2,
+      "ref": "ws-kid-stand",
+      "review_note": "Cold review redraw: fully closed socks with curled toe fabric; identity and all five poses checked."
+    },
+    {
+      "name": "ws-kid-loose",
+      "prompt": "The same 9-year-old kid with short curly dark hair, warm brown skin, mustard yellow hoodie, blue jeans and red sneakers, full body front view, friendly natural proportions. Standing, arms hanging loose, shoulders low, soft smile, eyes half closed. Whole body inside frame, clear space around head and feet. Centered with generous margin on perfectly flat pure green (#00FF00).",
+      "aspect": "3:4",
+      "quality": 76,
+      "cutout": true,
+      "key": "green",
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true,
+      "height": 600,
+      "ref": "ws-kid-stand"
+    },
+    {
+      "name": "ws-basket",
+      "prompt": "A sturdy woven wicker basket with two handles, front view, thick braided rim, golden reeds and fine weave. Centered with generous margin on perfectly flat pure green (#00FF00).",
+      "width": 360,
+      "aspect": "1:1",
+      "quality": 76,
+      "cutout": true,
+      "key": "green",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true
+    },
+    {
+      "name": "ws-cloud-big",
+      "prompt": "A puffy gray storm cloud creature with a worried frown and small stick arms crossed. Centered with generous margin on perfectly flat pure green (#00FF00).",
+      "width": 380,
+      "aspect": "1:1",
+      "quality": 76,
+      "cutout": true,
+      "key": "green",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true
+    },
+    {
+      "name": "ws-cloud-mid",
+      "prompt": "A smaller light gray cloud creature with a doubtful sideways look and relaxed little stick arms. Centered with generous margin on perfectly flat pure green (#00FF00).",
+      "width": 380,
+      "aspect": "1:1",
+      "quality": 76,
+      "cutout": true,
+      "key": "green",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true
+    },
+    {
+      "name": "ws-cloud-small",
+      "prompt": "A tiny pale cloud creature with a sleepy small smile and loose little stick arms. Centered with generous margin on perfectly flat pure green (#00FF00).",
+      "width": 380,
+      "aspect": "1:1",
+      "quality": 76,
+      "cutout": true,
+      "key": "green",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true
+    },
+    {
+      "name": "ws-worry-box",
+      "prompt": "A shoebox covered in blue paper with hand-painted stars and a clear slot cut in the lid, three-quarter front view. Centered with generous margin on perfectly flat pure green (#00FF00).",
+      "width": 480,
+      "aspect": "1:1",
+      "quality": 76,
+      "cutout": true,
+      "key": "green",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true
+    },
+    {
+      "name": "ws-icon-morning",
+      "prompt": "A sunrise over a windowsill with a cereal bowl. A lovely close-up square vignette.",
+      "width": 220,
+      "aspect": "1:1",
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "ws-icon-afterschool",
+      "prompt": "A backpack leaning on a front door with a snack apple. A lovely close-up square vignette.",
+      "width": 220,
+      "aspect": "1:1",
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "ws-icon-bedtime",
+      "prompt": "A bedside lamp glowing beside a pillow and a crescent moon in the window. A lovely close-up square vignette.",
+      "width": 220,
+      "aspect": "1:1",
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "ws-bg",
+      "prompt": "An empty soft sunny classroom corner with a reading rug, cubbies and a plant. Calm blurred atmosphere, open space in the center, no people.",
+      "width": 1300,
+      "aspect": "16:10",
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "ws-card-test",
+      "prompt": "A school desk with a blank paper test and a sharpened pencil. No people. Close view, layered scene, warm light and true small details.",
+      "width": 480,
+      "aspect": "4:3",
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "ws-card-book",
+      "prompt": "A library shelf with one empty gap between colorful books with blank spines. No people. Close view, layered scene, warm light and true small details.",
+      "width": 480,
+      "aspect": "4:3",
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "ws-card-podium",
+      "prompt": "A classroom reading chair with an open picture book on a small stand. No people. Close view, layered scene, warm light and true small details.",
+      "width": 480,
+      "aspect": "4:3",
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "ws-card-pool",
+      "prompt": "Swim goggles and a towel at the edge of a bright indoor pool, shallow steps. No people. Close view, layered scene, warm light and true small details.",
+      "width": 480,
+      "aspect": "4:3",
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "ws-card-bench",
+      "prompt": "An empty playground bench under a tree with a dropped jump rope. No people. Close view, layered scene, warm light and true small details.",
+      "width": 480,
+      "aspect": "4:3",
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "ws-card-boxes",
+      "prompt": "Moving boxes stacked by a front door with a backpack on top. No people. Close view, layered scene, warm light and true small details.",
+      "width": 480,
+      "aspect": "4:3",
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "ws-card-kitchen",
+      "prompt": "A quiet evening kitchen with two coffee mugs left on the table. No people. Close view, layered scene, warm light and true small details.",
+      "width": 480,
+      "aspect": "4:3",
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "ws-card-folder",
+      "prompt": "A school folder on a bed with a blank paper sticking out. No people. Close view, layered scene, warm light and true small details.",
+      "width": 480,
+      "aspect": "4:3",
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "ws-card-door",
+      "prompt": "A closed wooden bedroom door with a soft hallway light underneath. No people. Close view, layered scene, warm light and true small details.",
+      "width": 480,
+      "aspect": "4:3",
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "ws-card-bedside",
+      "prompt": "A bedside table with a glass of water, pill bottles with blank labels and a handmade blank card. No people. Close view, layered scene, warm light and true small details.",
+      "width": 480,
+      "aspect": "4:3",
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "ws-card-tablet",
+      "prompt": "A tablet on a bed showing a blank chat screen. No people. Close view, layered scene, warm light and true small details.",
+      "width": 480,
+      "aspect": "4:3",
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "ws-card-bus",
+      "prompt": "An empty yellow school bus seat seen from the aisle, a backpack on the floor. No people. Close view, layered scene, warm light and true small details.",
+      "width": 480,
+      "aspect": "4:3",
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "ws-card-calendar",
+      "prompt": "A wall calendar with completely blank squares beside a window with rain. No people. Close view, layered scene, warm light and true small details.",
+      "width": 480,
+      "aspect": "4:3",
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    }
+  ]
+}

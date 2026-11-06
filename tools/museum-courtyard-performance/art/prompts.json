@@ -1,0 +1,143 @@
+{
+  "house_style": "Sophisticated architectural gouache painting for a high-school dance production notebook. Pale honey limestone, boxwood green, warm copper sunlight from upper left, cool blue water, restrained rich pigments, fine pencil grain and realistic materials. Clear shapes and dimensional shading. No lettering, numbers, logos or watermarks.",
+  "assets": [
+    {
+      "name": "mcp-hero",
+      "prompt": "Wide painting of an empty museum courtyard at golden hour. Two arcades of pale stone columns flank a generous open limestone floor, a round fountain in the middle, a balcony along the far wall. Foreground paving, middle fountain, distant architectural wall. Evocative warm late sun, long shadows, water glints. No statues or figurative ornament. No people, faces or body parts.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 76,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mcp-stone",
+      "prompt": "Seamless top-down texture of pale limestone paving slabs, soft even light, subtle cream stone grain and slim joints, filling the entire square frame. Texture only, viewed perpendicular to the surface. No people, faces or body parts.",
+      "aspect": "1:1",
+      "width": 640,
+      "quality": 76,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mcp-column",
+      "prompt": "One complete pale limestone column with simple capital and broad plinth, front view, delicate fluting and chiseled edges, warm light from left. Entire column including base in frame. Isolated on flat pure green #00FF00. No people, faces or body parts.",
+      "aspect": "9:16",
+      "width": 240,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "mcp-fountain",
+      "prompt": "Round low stone fountain basin with a single central spout and gently spraying water, front view, blue water, honey limestone lip and masonry joints. Entire fountain in frame. Isolated on flat pure green #00FF00. No people, faces or body parts.",
+      "aspect": "1:1",
+      "width": 440,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "mcp-fountain-still",
+      "prompt": "Round low stone fountain basin with a single central spout, still blue water reflecting warm sunlight, front view, honey limestone lip and masonry joints. Entire fountain in frame. Isolated on flat pure green #00FF00. No people, faces or body parts.",
+      "aspect": "1:1",
+      "width": 440,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true,
+      "holes": true,
+      "redraw_count": 1,
+      "redraw_note": "The first candidate had a spray. Replaced with a calm basin and short dry capped pedestal."
+    },
+    {
+      "name": "mcp-marley",
+      "prompt": "A rolled gray vinyl dance floor with a short unfurled tail and a roll of black dance-floor tape beside it. Three-quarter product view, material grain and curled edge visible. Isolated on flat pure green #00FF00. No people, faces or body parts.",
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "mcp-speaker",
+      "prompt": "One black portable sound speaker on a complete tripod stand, front three-quarter view, mesh grille, handles, three sturdy feet, entire stand in frame. Isolated on flat pure green #00FF00. No people, faces or body parts.",
+      "aspect": "1:1",
+      "width": 320,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "mcp-uplight",
+      "prompt": "Small LED uplight fixture on limestone paving casting a warm amber beam up the base of a pale stone column at dusk. Rich blue shadows, detailed vented metal housing and lens, intimate square painting. Empty architecture only. No people, faces or body parts.",
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mcp-risers",
+      "prompt": "Low folding audience risers with one row of empty simple chairs, three-quarter product view, sturdy metal braces and warm gray platforms, complete object in frame. Isolated on flat pure green #00FF00. No people, faces or body parts.",
+      "aspect": "1:1",
+      "width": 380,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "dancer-ensemble",
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "aspect": "6:5",
+      "width": 1374,
+      "quality": 82,
+      "cutout": "keyed",
+      "holes": true,
+      "despill": true,
+      "prompt": "A precisely aligned sprite atlas, six equal columns and five equal rows, thirty separate whole-body contemporary dancers. The same ensemble of six adults repeats by column: dark brown skin short coiled hair broad man in ochre; East Asian woman short black hair in teal; medium brown skin curvy nonbinary dancer short curls in indigo; light skin older woman silver braid in plum; brown skin slim man black hair in terracotta; light olive skin stocky woman dark tied hair in burgundy. Modest simple rehearsal shirts and loose trousers, bare feet. Row one: walking procession stride, arms comfortably open. Row two: lying extended on one side, low floor roll. Row three: kneeling seated on heels, arms extended. Row four: lateral stepping lunge with an open arm, weaving. Row five: small airborne vertical dance jump with arms raised, soft knees. Full figure including every fingertip and toe, generous pure green margin inside each cell; no overlaps. Every cell uses the same ground baseline and scale; lying figures are much lower than standing figures. Sophisticated architectural gouache, fine pencil grain, natural anatomy, warm upper-left light, restrained pigments. Flat pure green #00FF00 background throughout, no shadows, grid lines, text, lettering, numbers, logos or watermark.",
+      "source_file": "exec-ff271945-4a64-441b-b660-a4562c97f97e.png"
+    },
+    {
+      "name": "dancer-lift",
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "aspect": "3:1",
+      "width": 1200,
+      "quality": 82,
+      "cutout": "keyed",
+      "holes": true,
+      "despill": true,
+      "prompt": "Three equally spaced pairs of adult contemporary dancers in a horizontal sprite strip, three equal square cells. Each pair performs the same low supported partner lift, strong grounded partner with soft knees supporting the other securely around the waist, lifted partner upright just above the floor with arms reaching outward. First pair: broad dark brown skinned man ochre clothes and East Asian woman teal clothes. Second: curvy medium brown nonbinary dancer indigo clothes and older light skinned silver braided woman plum clothes. Third: slim brown skinned man terracotta clothes and stocky olive skinned woman burgundy clothes. Natural respectful adult dancers, modest loose rehearsal clothes and bare feet, complete bodies fully in frame. Architectural gouache painting, fine pencil grain, warm upper-left light matching limestone courtyard paintings. Flat pure green #00FF00 background, generous empty margins between cells; no shadows, grid, lettering, logos.",
+      "source_file": "exec-0436abcc-fe3d-460d-a39c-a848e97cb62c.png"
+    }
+  ]
+}
