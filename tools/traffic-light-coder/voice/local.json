@@ -1,0 +1,18 @@
+{
+  "Welcome to Maple Street. This light follows rules. Every half second it checks them from the top, and the first rule that fits wins.": "qwen3-tts-1.7b-base clone",
+  "Press a walk button on the street and watch which rule lights up.": "qwen3-tts-1.7b-base clone",
+  "Tap a chip in a rule to change it. Press Add rule to write a new one.": "qwen3-tts-1.7b-base clone",
+  "You're the city's new light coder. Each job has a goal. Change the rules, then press Run test.": "qwen3-tts-1.7b-base clone",
+  "Tap a line in the report to see that moment on the street.": "qwen3-tts-1.7b-base clone",
+  "Job one: Press to Cross. Walkers press the button, but the light never changes. Press Add rule and write the rule that starts it. Then press Run test.": "qwen3-tts-1.7b-base clone",
+  "Job two: Don't Skip Yellow. Drivers need a yellow light to stop safely. Fix rule one, and add a rule for yellow. Then press Run test.": "qwen3-tts-1.7b-base clone",
+  "Job three: Let Them Finish. The light turns green too soon. Find the rule that does it and change a chip. Then press Run test.": "qwen3-tts-1.7b-base clone",
+  "Job four: Rush Hour. Walkers press all the time. Give the cars a fair turn too: long greens, and no long reds. Then press Run test.": "qwen3-tts-1.7b-base clone",
+  "Job five: Ambulance! When an ambulance is coming, keep the light green for it. Add a rule, then press Run test.": "qwen3-tts-1.7b-base clone",
+  "Test done. Everything was safe, and every goal is met. Job finished.": "qwen3-tts-1.7b-base clone",
+  "Test done. There were unsafe moments. The report shows which rule caused each one.": "qwen3-tts-1.7b-base clone",
+  "Test done. It was safe, but a goal was missed. Check the report.": "qwen3-tts-1.7b-base clone",
+  "Two rules fit at once, and the higher one won. Try moving a rule.": "qwen3-tts-1.7b-base clone",
+  "That's every job. Maple Street is safe and fair. Nice work, coder.": "qwen3-tts-1.7b-base clone",
+  "Six rules is the most. Change a rule instead.": "qwen3-tts-1.7b-base clone"
+}
