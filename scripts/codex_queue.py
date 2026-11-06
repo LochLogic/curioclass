@@ -43,7 +43,8 @@ equation-balancer rigid-motion-twins thesis-workshop star-life-story globe-theat
 # Refined tools whose fixes Codex makes (Cory, 2026-11-04). The merged list is tools/<id>/refine.md, brought over from main.
 # sight-words left the queue 2026-11-04: it is live on the site, so a Codex review would rework a live tool (Cory).
 FIX = """city-skyline-studio levels-and-pathways first-aid-responder music-history-radio span-and-spire pocket-universe
-sky-dome living-earth virtual-gallery flipbook-studio puppet-show-feelings moon-base-drama""".split()
+sky-dome living-earth virtual-gallery flipbook-studio puppet-show-feelings moon-base-drama
+circuit-bench voice-lab""".split()
 # 2026-11-05 evening: Claude Refine (lenses + merge) done in the Codex checkout, then Codex fixes first in the run (Cory).
 # span-and-spire and pocket-universe: the instruments pivot (Cory, 2026-11-04); their refine.md is a pivot list.
 
