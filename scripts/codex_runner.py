@@ -150,6 +150,29 @@ def port_busy(kind, slot):
     return False
 
 
+_ANCESTORS = set()
+
+
+def ancestors():
+    """This process and every parent up the chain. A socket handle inherited by the launcher can make the runner's own
+    parent (the python shim or cmd) the "owner" of a slot port, and taskkill /T on it ended the runner at 05:13 on
+    2026-11-06 (no log line after "done fix poets-workbench"; three finished jobs went unrecorded)."""
+    if not _ANCESTORS:
+        _ANCESTORS.add(os.getpid())
+        try:
+            rows = subprocess.run(['powershell', '-NoProfile', '-Command',
+                                   'Get-CimInstance Win32_Process | ForEach-Object { "$($_.ProcessId) $($_.ParentProcessId)" }'],
+                                  capture_output=True, text=True, timeout=60).stdout.splitlines()
+            parent = dict(tuple(map(int, r.split())) for r in rows if len(r.split()) == 2)
+            pid = os.getpid()
+            while pid in parent and parent[pid] not in _ANCESTORS and parent[pid] > 4:
+                pid = parent[pid]
+                _ANCESTORS.add(pid)
+        except (OSError, subprocess.SubprocessError, ValueError):
+            pass
+    return _ANCESTORS
+
+
 def free_ports(kind, slot):
     """Kill whatever still listens on a finished job's host and Chrome ports: a session's drive.py server or Chrome can
     outlive it and hold the slot (reviews stalled 05:05 to 10:31 on 2026-11-05)."""
@@ -162,7 +185,7 @@ def free_ports(kind, slot):
         out = subprocess.run(['powershell', '-NoProfile', '-Command', cmd], capture_output=True, text=True, timeout=60).stdout
     except (OSError, subprocess.SubprocessError):
         return
-    pids = {p for p in out.split() if p.isdigit() and int(p) not in (0, 4, os.getpid())}
+    pids = {p for p in out.split() if p.isdigit() and int(p) not in (0, 4) and int(p) not in ancestors()}
     ended = 0
     for pid in pids:  # /T can fail on an orphan whose parent is gone (2026-11-05); then kill it alone
         if subprocess.run(['taskkill', '/T', '/F', '/PID', pid], capture_output=True).returncode == 0 or \
