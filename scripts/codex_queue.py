@@ -42,7 +42,9 @@ equation-balancer rigid-motion-twins thesis-workshop star-life-story globe-theat
 # Circuit Bench and Voice Lab instruments.
 # Refined tools whose fixes Codex makes (Cory, 2026-11-04). The merged list is tools/<id>/refine.md, brought over from main.
 # sight-words left the queue 2026-11-04: it is live on the site, so a Codex review would rework a live tool (Cory).
-FIX = """city-skyline-studio levels-and-pathways first-aid-responder music-history-radio span-and-spire pocket-universe""".split()
+FIX = """city-skyline-studio levels-and-pathways first-aid-responder music-history-radio span-and-spire pocket-universe
+sky-dome living-earth virtual-gallery flipbook-studio puppet-show-feelings moon-base-drama""".split()
+# 2026-11-05 evening: Claude Refine (lenses + merge) done in the Codex checkout, then Codex fixes first in the run (Cory).
 # span-and-spire and pocket-universe: the instruments pivot (Cory, 2026-11-04); their refine.md is a pivot list.
 
 # Curiosities (Cory, 2026-11-05): first in the queue, with their own build and review prompts (CURIO_BUILD, CURIO_REVIEW
@@ -166,6 +168,10 @@ class _Pick(str):
 
 BUILD = _Pick(BUILD, CURIO_BUILD)
 REVIEW = _Pick(REVIEW, CURIO_REVIEW)
+CURIO_FIX = """Fix the Curio Class Curiosity {t} from its Claude Refine. This is a Curiosity, not a lesson tool: read docs/agents/CODEX-CURIOSITY.md first, then docs/agents/CODEX-FIX.md for the process and polish.md report, and the rules in docs/agents/CODEX-BUILD.md that the Curiosity brief names. Where the fix brief or the gate leans on lesson norms (a welcome, a goal, a score, a finish), the Curiosity brief wins: never add a goal, score, level, quiz, finish screen or kit header. Your folder must be S:\\CurioClass-codex; if it is not, say so and stop. Write only in tools/{t}/ and _scratch/{t}/. Make no git commits and do not edit refine.md. Use Chrome ports {c} and host port {h}.
+
+The list is tools/{t}/refine.md. Reproduce each blocker and should fix before you fix it, fix the cause, and prove every fix with a frame or a number at the size the item names. Hold every fact and dataset you touch to a named source and licence; you may go online to gather or re-check material as the Curiosity brief's "Gathering data" says. Mark an item FIXED only when you saw it fixed. Put a time limit on every command. When tools/{t}/polish.md is written, say "Fix done" and stop."""
+FIXP = _Pick(FIXP, CURIO_FIX)
 EXTRA.update({
     'voice-lab': {'title': 'Voice Lab', 'subject': 'science', 'grade': '8'},
     'living-earth': {'title': 'Living Earth', 'subject': 'science', 'grade': '6'},
