@@ -318,6 +318,5 @@ switch.py, capres.py, contrast.py), all on the model above:
 10. Each how line is heard once in five actions in a row; launch lines play when the model reaches the shelf.
 
 ## Open questions
-- Everyone's view ranks Do nothing first (the owner's savings and one shared lab outweigh two years of lost sales),
-  while Buyers' view ranks it last. Recommendation: keep it, with the Williamson note, because the clash is what makes
-  the benefit and cost weighing real; Cory may prefer a longer horizon that tips the total toward competition.
+- Settled (Cory, 2026-11-05): keep the clash as the lesson. Everyone's view ranks Do nothing first and Buyers' view
+  ranks it last, with the short Williamson 1968 note and its critics. Do not lengthen the horizon to remove it.

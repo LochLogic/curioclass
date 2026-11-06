@@ -58,7 +58,13 @@ def curio_ready(t):
     return spec.exists() and '(Curiosity No.' in spec.read_text(encoding='utf-8', errors='replace')[:400]
 
 
-QUEUE = [t for t in CURIO if curio_ready(t)] + [t for t in QUEUE if t not in CURIO]
+# Spec test (Cory, 2026-11-05): ten specs written under SPEC.md's "Lessons from ten full Refines", built right after
+# the Curiosities so their Refine counts can be compared (docs/agents/MEASURE-FIRST.md). The run caps stay as set, so
+# the end of the list waits for the next run.
+SPEC_TEST = """safety-sweep-house worry-size-sorter bus-stop letter-lanterns line-leader-picker bug-hunt
+warming-evidence-desk cocoa-chain roller-coaster-rounding the-buyout""".split()
+QUEUE = ([t for t in CURIO if curio_ready(t)] + SPEC_TEST
+         + [t for t in QUEUE if t not in CURIO and t not in SPEC_TEST])
 DANCE = ("Owner's decision: this tool gets painted dancers, not the code figure. Paint them yourself, marked \"people\": true, "
          "with a natural range of dancers. Draw the fewest poses that teach the moves well, and keep the figure easy to swap.")
 NOTES = {  # desk answers the spec does not hold yet (docs/agents/decisions/DESK-ANSWERS.md)

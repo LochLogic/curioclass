@@ -195,4 +195,5 @@ Number checks (S:/CurioClass-codex-scratch/specs/letter-lanterns/checks.py, path
 10. Start over clears the save; reload resumes mid-path; the privacy line shows in Teacher.
 
 ## Open questions
-- Sound clips: isolated phonemes from a voice model often add "uh" or say the letter name. Does Cory want to record the 31 sounds himself, or accept model takes checked by ear (Done when 9)?
+- Settled (Cory, 2026-11-05): the 31 sound clips come from the voice model, several takes each, checked by ear one sound
+  at a time against Done when 9; any take with an added "uh" or the letter name is re-made, not shipped.
