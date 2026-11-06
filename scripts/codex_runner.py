@@ -30,7 +30,9 @@ _runner\summary.txt (one line per job). The PC is kept awake while it runs. _que
 Change a run while it runs: the runner writes _runner\LIMITS.json at start (how many at once, and the caps per kind) and
 re-reads it every 30 seconds, so editing a number there (say "max_reviews": 15 to 25) takes effect without a restart.
 It also re-reads scripts/codex_queue.py each time, so tools added to QUEUE or FIX there join the run. A bad edit is
-logged and ignored; the last good values stay. Lowering a number never stops a running session.
+logged and ignored; the last good values stay.
+Budget floor: "min_remaining" (default 8, --min-remaining) starts nothing new once the weekly Codex budget is at or below that
+percent left, read from the newest rate_limits in ~/.codex/sessions; running sessions finish (Cory 2026-11-06: never hit 0). Lowering a number never stops a running session.
 """
 import argparse, ctypes, datetime as dt, importlib, json, os, shutil, socket, subprocess, sys, time
 from pathlib import Path
@@ -54,6 +56,31 @@ CUT = ("Your session was cut off and has been restarted. Any Chrome or server yo
        "when you need them. Check what is already done in the tool folder, then carry on from where you were and finish the report.")
 LIMIT_WORDS = ('usage limit', 'rate limit', 'rate_limit', 'quota', 'insufficient_quota', 'try again at', 'upgrade to')
 CAPACITY_WORDS = ('at capacity', 'overloaded', 'stream disconnected', 'server_error', 'internal server error')
+
+
+SESSIONS = Path.home() / '.codex' / 'sessions'
+
+
+def codex_remaining():
+    """Percent of the weekly Codex budget left, from the newest "rate_limits" any Codex session logged (its last 4 MB;
+    rollouts reach 140 MB). None when nothing recent says. Every session, the runner's and the app's, shares one budget."""
+    days = sorted((d for d in SESSIONS.glob('*/*/*') if d.is_dir()), reverse=True)[:3]
+    files = sorted((f for d in days for f in d.glob('rollout-*.jsonl')), key=lambda f: f.stat().st_mtime, reverse=True)
+    for f in files[:6]:
+        try:
+            with open(f, 'rb') as h:
+                h.seek(max(0, f.stat().st_size - 4_000_000))
+                tail = h.read().decode('utf-8', 'replace')
+        except OSError:
+            continue
+        i = tail.rfind('"primary":{"used_percent":')
+        if i >= 0:
+            num = tail[i + 26:i + 40].split(',')[0].split('}')[0]
+            try:
+                return round(100 - float(num), 1)
+            except ValueError:
+                continue
+    return None
 
 
 def now():
@@ -88,7 +115,8 @@ def recently_touched(t):
 
 
 LIMITS = RUN / 'LIMITS.json'
-LIMIT_KEYS = {'builds': 3, 'reviews': 4, 'fixes': 2, 'max_builds': None, 'max_reviews': None, 'max_fixes': None, 'max_jobs': None}
+LIMIT_KEYS = {'builds': 3, 'reviews': 4, 'fixes': 2, 'max_builds': None, 'max_reviews': None, 'max_fixes': None, 'max_jobs': None,
+              'min_remaining': 100}
 # "no_new_after": "YYYY-MM-DD HH:MM" in LIMITS.json: start nothing new after then; running sessions finish (empty = no limit)
 TABLES = {}
 
@@ -314,6 +342,8 @@ def main():
     for k in ('builds', 'reviews', 'fixes'):
         ap.add_argument(f'--max-{k}', type=int, default=0, help=f'stop starting {k} after this many (0 = no limit)')
     ap.add_argument('--max-jobs', type=int, default=0, help='stop starting new jobs after this many (0 = no limit)')
+    ap.add_argument('--min-remaining', type=int, default=8,
+                    help='start nothing new once the weekly Codex budget is at or below this percent left (0 = off); running sessions finish')
     ap.add_argument('--only', nargs='*')
     ap.add_argument('--dry', action='store_true')
     a = ap.parse_args()
@@ -347,6 +377,11 @@ def main():
             cap_of = {'build': a.max_builds, 'review': a.max_reviews, 'fix': a.max_fixes}
             if STOP.exists() and not stop_reason:
                 stop_reason = 'STOP file'
+            if a.min_remaining and not stop_reason and not a.dry:
+                left = codex_remaining()
+                if left is not None and left <= a.min_remaining:
+                    stop_reason = f'Codex budget at {left}% left (floor {a.min_remaining}%)'
+                    log(f'{stop_reason}: no new starts; running sessions finish')
             if a.no_new_after and not stop_reason and now() >= a.no_new_after:
                 stop_reason = f'no new starts after {a.no_new_after}'
                 log(f'{stop_reason}: running sessions finish')
@@ -386,7 +421,8 @@ def main():
                         busy.add(t)
                         started += 1
                         last_start = time.time()
-                        log(f'start {kind} {t} (slot {j.slot})')
+                        left = codex_remaining()
+                        log(f'start {kind} {t} (slot {j.slot})' + (f', Codex budget {left}% left' if left is not None else ''))
             if a.dry:
                 break
             if not running and not waiting:
