@@ -18,3 +18,17 @@ Batch 1 (look and merge only, plus a 20 minute shared audit per tool): 1.36M len
 Batch 2: 1.31M lens tokens for two tools (music-history-radio also needed the sensitivity agent, which FAILED it on
 gamelan's date and how Black musicians are credited). Both blockers are teaching errors a student would carry away
 (a CPR score that rewards pausing; a living tradition dated by when Europeans heard it).
+
+## Spec test (2026-11-05): do the new SPEC.md rules lower Refine counts?
+
+SPEC.md gained "Lessons from ten full Refines" (commit edb985fa). Ten new specs were written under it:
+safety-sweep-house, worry-size-sorter, bus-stop, letter-lanterns, line-leader-picker, bug-hunt,
+warming-evidence-desk, cocoa-chain, roller-coaster-rounding, the-buyout (grades K to 12, seven subjects).
+
+Baseline to beat (round 1 Refine on Codex-built tools from older specs, ten tools): 9 blockers (0.9 per tool),
+99 should fix (9.9 per tool). About half the blockers traced to the spec (unchecked facts, scores rewarding the
+wrong thing, standards half taught).
+
+Measure: build each with Codex (build plus Codex review), run the same Claude Refine (shared audit, three lenses,
+merge), and count blockers and should fix, and how many trace to the spec. Spec cost: about 140k to 210k Claude
+tokens each, 7 to 15 minutes.
