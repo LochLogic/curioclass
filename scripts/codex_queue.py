@@ -72,8 +72,11 @@ warming-evidence-desk cocoa-chain roller-coaster-rounding the-buyout""".split()
 # Second spec test (2026-11-06): the first specs written in the new format (SPEC.md's "Can it be beaten?" and "Heard in
 # order" sections). Their Refines check the 2026-11-06 decision in docs/agents/MEASURE-FIRST.md.
 SPEC_TEST_2 = """estimation-station which-way-is-down box-plot-builder story-graphs illusion-lab""".split()
-QUEUE = ([t for t in CURIO if curio_ready(t)] + SPEC_TEST + SPEC_TEST_2
-         + [t for t in QUEUE if t not in CURIO and t not in SPEC_TEST and t not in SPEC_TEST_2])
+# Third spec batch (2026-11-06), same new format, spec checked like the second.
+SPEC_TEST_3 = """vibration-station skate-park-angles cooler-challenge lunch-survey-cleanup trade-island""".split()
+_SPEC = SPEC_TEST + SPEC_TEST_2 + SPEC_TEST_3
+QUEUE = ([t for t in CURIO if curio_ready(t)] + _SPEC
+         + [t for t in QUEUE if t not in CURIO and t not in _SPEC])
 DANCE = ("Owner's decision: this tool gets painted dancers, not the code figure. Paint them yourself, marked \"people\": true, "
          "with a natural range of dancers. Draw the fewest poses that teach the moves well, and keep the figure easy to swap.")
 NOTES = {  # desk answers the spec does not hold yet (docs/agents/decisions/DESK-ANSWERS.md)

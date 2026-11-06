@@ -83,3 +83,23 @@ Each spec ran on one Opus agent; all five ran in parallel (about 15 minutes of w
 old range (about 140k to 210k tokens), so the two new sections did not make specs dearer. The spec check (overlaps,
 voices, accents, names, both new sections, and a rerun of story-graphs' number checks) found nothing to fix. Three
 specs run over the 300-line guide, mostly because of the two new tables.
+
+### Third spec batch (new format, 2026-11-06)
+
+Five more concept-stage tools specced in the new format, one Opus agent each, mixed bands and four subjects. Queued as
+SPEC_TEST_3 in scripts/codex_queue.py.
+
+| Tool | Grade, subject | Tokens | Minutes |
+|---|---|---|---|
+| vibration-station | 1, science | 190,522 | 11.5 |
+| skate-park-angles | 4, math | 157,477 | 7.8 |
+| cooler-challenge | 6, science | 236,394 | 16.8 |
+| lunch-survey-cleanup | 6-8, computer science | 224,522 | 13.3 |
+| trade-island | 12, social studies | 230,418 | 14.1 |
+| Average | | 207,867 | 12.7 |
+
+Total about 1.04M, close to the second test's 190k average. Spec check: every section present, "Can it be beaten?" and
+"Heard in order" filled, no em dashes, voices and accents all distinct, lengths 198 to 306 lines. Three items for Cory:
+lunch-survey-cleanup asks to use a made-up survey (data-desk family rule asks for real data) and moved the blanks from
+the English learners' class to grade 6 paper forms; trade-island carries a Rana Plaza 2013 case card, which needs the
+fresh sensitivity review before build.
