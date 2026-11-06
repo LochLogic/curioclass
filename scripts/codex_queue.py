@@ -45,14 +45,16 @@ equation-balancer rigid-motion-twins thesis-workshop star-life-story globe-theat
 FIX = """city-skyline-studio levels-and-pathways first-aid-responder music-history-radio span-and-spire pocket-universe
 sky-dome living-earth virtual-gallery flipbook-studio puppet-show-feelings moon-base-drama
 circuit-bench voice-lab microscope-bench poets-workbench
-graph-studio compass-and-straightedge cipher-vault molecule-forge living-pond""".split()
+graph-studio compass-and-straightedge cipher-vault molecule-forge living-pond
+safety-sweep-house""".split()
 # 2026-11-05 evening: Claude Refine (lenses + merge) done in the Codex checkout, then Codex fixes first in the run (Cory).
 # span-and-spire and pocket-universe: the instruments pivot (Cory, 2026-11-04); their refine.md is a pivot list.
 
 # Curiosities (Cory, 2026-11-05): first in the queue, with their own build and review prompts (CURIO_BUILD, CURIO_REVIEW
 # below) so nothing of the lesson-tool brief bleeds in. Each joins the queue only once its spec is in the Curiosity shape.
 CURIO = """voice-lab living-earth sky-dome microscope-bench circuit-bench graph-studio compass-and-straightedge
-poets-workbench cipher-vault molecule-forge living-pond""".split()
+poets-workbench cipher-vault molecule-forge living-pond
+safety-sweep-house""".split()
 
 
 def curio_ready(t):
