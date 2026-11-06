@@ -45,6 +45,16 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     cohort end to end before a new wave, and log repeat problems in the issue ledger.
 15. **Public copy names no companies** (2026-11-03). The ambition in docs/VISION.md (replace paid curriculum) stays
     inside the vision; the site says "a free, complete classroom toolkit".
+16. **The first tap may cut the welcome** (2026-11-05). A tool does not have to let its welcome line finish after the
+    student's first tap; acting at once beats listening. Specs, builds and reviews do not flag a welcome cut short by
+    a tap. What the welcome told the student must still be reachable (the on-screen hint or Read), and a line the
+    tool needs later (a premise, a role) is said again where it is needed, not only in the welcome.
+17. **Curiosities finish on Cory's desk review** (2026-11-05). Span and Spire, Pocket Universe and later Curiosities
+    get Cory's final review on the Review Desk; plate wording ("Instruments" to "Curiosities") and any areas to lift
+    are noted there and fixed after it, not before. Expect larger design work back on the first two.
+18. **Curiosities ship together** (2026-11-05). The home page Curiosities entrance is built after every planned
+    Curiosity is fully built. Their voice is one collective Forge effort once all of them reach the voice stage, not
+    one tool at a time.
 
 ## One module Cory reviews personally
 
