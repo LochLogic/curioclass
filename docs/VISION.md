@@ -62,6 +62,8 @@ why teachers come back; curiosities are what kids remember.
    decoration around it. That is why they look stunning without trying.
 2. **Low floor, no ceiling.** Two minutes of poking gets a reaction; a month of use still finds more.
 3. **The learner drives.** No correct path, no score, no finish line. The student asks; the tool answers by showing.
+   A little game essence is fine when it makes the tool more fun to explore (Cory, 2026-11-06): the test is that it
+   stays purely fun and exploratory, never a ladder to climb or a grade to earn.
 4. **They respect the kid.** Something an adult would use for fun: made approachable, never dumbed down.
 5. **Real material.** Real data, real physics, real sound. The authenticity is load-bearing.
 
@@ -70,7 +72,8 @@ why teachers come back; curiosities are what kids remember.
 - Would a kid open it when no teacher assigned it?
 - Would an adult play with it for fun?
 - Is the real thing (sound, light, data, motion) the interface itself?
-- Does it work with no score and no finish line?
+- Does it work with no score and no finish line? (A light game touch may sit on top if it adds fun; the tool must
+  not need it.)
 
 **How it differs from super tools** (docs/agents/SUPER.md). Super tools took Beat Lab as their model and share the
 first three qualities, but they add a goal ladder and a sticker book: a designed toy with a game layer. A curiosity

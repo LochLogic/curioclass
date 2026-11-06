@@ -149,5 +149,6 @@ When the report is written, say "Build done" and stop.
 
 A cold review of a Curiosity follows `docs/agents/CODEX-REVIEW.md` for its process, fixes and report file, but judges
 the tool against this brief, not the lesson norms. The reviewer never adds a goal, score, level, quiz, finish screen or
-kit header, and removes any that slipped in. Its own question is the short test: if the tool fails one of the four
+kit header, and removes any goal ladder, grade or forced finish that slipped in; a light game touch that adds fun
+and keeps play open may stay (BASELINE rule 19, 2026-11-06). Its own question is the short test: if the tool fails one of the four
 questions, that is a blocker, and the fix is to make the real material more central, not to add a game.

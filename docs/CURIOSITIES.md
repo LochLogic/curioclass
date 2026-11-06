@@ -254,6 +254,36 @@ Curiosities: a cabinet whose pieces are the curiosities themselves, each one ope
 has enough pieces to fill it (Beat Lab, Elements Inspector, Span and Spire, Pocket Universe and a few of the new
 concepts), then design it with Cory.
 
+## Ideas for later (Cory, 2026-11-06; not on the roadmap yet)
+
+Cory's vibe: a Curiosity somewhere between an old trail-journey game and a modern terraforming game. What the two
+share is the material: time (months and years, small choices piling up), a ledger you can feel (supplies, miles,
+oxygen, heat), and a place that changes because of you, with no finish line. Two directions go ahead, to flesh out
+later; both may keep a little game essence (BASELINE rule 19).
+
+### Second Growth (a field station)
+
+A real damaged place recovers over decades and the student stewards it. Candidate sites: the Mount St. Helens
+blast zone from 1980 on (40+ years of published plot surveys), a Dust Bowl farm, a burned forest, a reclaimed mine.
+A time dial in years; plant, leave alone, pull invasives, bring back beavers, change the grazing; soil depth,
+ground cover, species counts and water move on survey plots and a transect. The look: a field station bench with
+quadrat frames, a transect tape, a soil core and a logbook, the landscape painting greening in stages behind it.
+Reaches ecosystems, succession, human impact and data over time. Not like Living Pond (populations in a closed
+tank): this is landscape succession and stewardship over decades.
+
+### Atmosphere Console (a planetary model)
+
+Pick Mars, Venus or early Earth and change greenhouse gases, albedo, water and pressure; temperature and pressure
+respond over centuries with real physics, and the honest answer ("this takes ten thousand years") is part of the
+wonder. Watch the overlap with Pocket Universe's mission-control look, and keep the model honest (a named source for
+every constant, a readout that says what it leaves out).
+
+### Open questions for the fleshing out
+
+1. One real place done deeply, or a few sites (Second Growth) and planets (Atmosphere Console) to choose from?
+2. Can a choice fail (a replanting that dies in drought) with no game-over?
+3. Which light game touches earn their place under rule 19?
+
 ## Open choices for Cory
 
 1. **Which concepts go ahead**, and in what order.

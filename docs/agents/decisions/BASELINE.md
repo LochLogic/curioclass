@@ -55,6 +55,10 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
 18. **Curiosities ship together** (2026-11-05). The home page Curiosities entrance is built after every planned
     Curiosity is fully built. Their voice goes on the Forge as each one passes its exit check, added to the end of
     the running Forge queue (Cory, 2026-11-06: recording them all together was a wish, not a hard rule).
+19. **Curiosities may keep a little game essence** (2026-11-06). Don't be too strict about removing gamification.
+    A Curiosity must stay purely fun and exploratory; a light game touch (a challenge to try, a surprise, a setup to
+    break) is fine when it adds to that. A goal ladder, a grade, a forced finish or a game-over still does not belong.
+    Lenses flag a game element only when it narrows play or turns exploring into scoring.
 
 ## One module Cory reviews personally
 
