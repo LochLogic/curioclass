@@ -76,7 +76,9 @@ SPEC_TEST_2 = """estimation-station which-way-is-down box-plot-builder story-gra
 SPEC_TEST_3 = """vibration-station skate-park-angles cooler-challenge lunch-survey-cleanup trade-island""".split()
 # Fourth spec batch (2026-11-06); trade-island's factory card was also revised (no Rana Plaza).
 SPEC_TEST_4 = """push-the-pumpkin egg-carton-factory scarf-juggling-ladder interest-rate-dial electromagnet-lab""".split()
-_SPEC = SPEC_TEST + SPEC_TEST_2 + SPEC_TEST_3 + SPEC_TEST_4
+# Fifth spec batch (2026-11-07).
+SPEC_TEST_5 = """tap-to-start-puppets paper-plane-assembly-line box-packer front-line leaf-factory""".split()
+_SPEC = SPEC_TEST + SPEC_TEST_2 + SPEC_TEST_3 + SPEC_TEST_4 + SPEC_TEST_5
 QUEUE = ([t for t in CURIO if curio_ready(t)] + _SPEC
          + [t for t in QUEUE if t not in CURIO and t not in _SPEC])
 DANCE = ("Owner's decision: this tool gets painted dancers, not the code figure. Paint them yourself, marked \"people\": true, "
