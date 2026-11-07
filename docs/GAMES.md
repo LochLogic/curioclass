@@ -1,7 +1,12 @@
-# Games: the third shape
+# Recess: the third shape
 
 Cory, 2026-11-07: fully sold. Roadmap Track 9. Research: docs/agents/research/GAMES-RESEARCH.md (25 concepts,
 scores, sources).
+
+**Name: Recess (Cory, 2026-11-07).** **Tone (Cory, 2026-11-07):** a treat from the teacher. When kids are fully done,
+they go to Recess and play. The games stay mentally stimulating with educational undertones, but kids should not
+feel they are still in class. Standards sit underneath, loosely, never so rigidly that the fun is lost. The design
+rules below were written before this and are being reworked with Cory; treat them as a draft.
 
 ## What a Curio Class game is
 
@@ -53,7 +58,7 @@ Runners-up: Dial Lock, Balance Box, Logic Gates. Ruled out: Untangle and plain s
 teach too little curriculum); deck building (draws feel like gambling in class); immune-system tower defense (mostly
 generic tower defense).
 
-## A name for the shelf (open, Cory to pick)
+## A name for the shelf (decided: Recess)
 
 The site already names its places like rooms in a school (Supply Closet, Reading Room) plus the Curiosities cabinet.
 
@@ -68,7 +73,7 @@ The site already names its places like rooms in a school (Supply Closet, Reading
 
 ## Open questions
 
-1. The name.
+1. The design rules under the Recess tone (in discussion with Cory).
 2. Does a game take a standard's lesson card like a tool, or sit only on its shelf (the Curiosities two-doors rule)?
 3. Saved progress without accounts: local only, or a printable "level code" a student can carry between devices?
 4. Untangle: Cory liked it. It could return as a high school graph theory Curiosity rather than a game.

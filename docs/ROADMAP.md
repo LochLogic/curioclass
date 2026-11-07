@@ -265,12 +265,13 @@ Modules past K-12: ACT/SAT-style practice first, then one trade (electrical, plu
 certification prep such as security fundamentals. Titles never use trademarks or branded material; bar exam prep
 comes last and needs expert review.
 
-## Track 9: Games (new 2026-11-07, concept stage)
+## Track 9: Recess, the games shelf (new 2026-11-07, concept stage)
 
-A shelf of real games where the skill is the mechanic: you get better at the game by getting better at the skill
+A treat from the teacher: when kids are fully done, they go to Recess and play. Mentally stimulating games with
+educational undertones that never feel like class. Real games where the thinking is the fun: you get better at the game by getting better at the skill
 (untangle as graph planarity, match-3 as chemical bonding, tower defense as the immune system). Original games only:
 a genre's mechanic is fine, a specific game's name, art or levels never are. Cory is sold on the idea (2026-11-07).
-Next: settle the shelf's name and the first six games from the research pass (docs/GAMES.md,
+Named Recess (2026-11-07). Next: rework the design rules for the Recess tone with Cory, then pick the first games from the research pass (docs/GAMES.md,
 docs/agents/research/GAMES-RESEARCH.md), then spec them like any tool.
 
 ## Track 10: Languages (new 2026-11-07, later stage of site growth)
