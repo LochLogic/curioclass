@@ -70,6 +70,11 @@ Back in under the new rules: **Untangle** (spatial reasoning, graph theory under
 (planning ahead). Runners-up: Dial Lock, Balance Box, Logic Gates. Still out: deck building (draws feel like
 gambling).
 
+For the future (Cory, 2026-11-07): **Go**, **Chess** and **Checkers**. Classic public domain board games, so the
+rules are free to use; the art, boards and puzzles stay our own. Look-ahead planning is the thinking; likely shapes
+are play against the computer at a few levels, pass-and-play on one device, and short puzzles (capture in two, mate
+in one). Not yet specced.
+
 ## Open questions
 
 1. Does a game also appear on a standard's page, or only on the Recess shelf?
