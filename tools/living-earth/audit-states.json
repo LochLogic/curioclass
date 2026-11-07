@@ -1,0 +1,166 @@
+{
+  "target": 44,
+  "keep": [
+    "#play",
+    "#manual",
+    ".maker",
+    ".power"
+  ],
+  "states": [
+    {
+      "name": "selected",
+      "steps": [
+        {
+          "click": "#event-list"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        }
+      ]
+    },
+    {
+      "name": "slice",
+      "steps": [
+        {
+          "click": "#slice-tool"
+        },
+        {
+          "click": "#slice-centre"
+        }
+      ],
+      "keep": [
+        "#slice-read",
+        "#close-panel"
+      ]
+    },
+    {
+      "name": "stations",
+      "steps": [
+        {
+          "click": "#stations-tool"
+        },
+        {
+          "click": "#station-centre",
+          "times": 3
+        },
+        {
+          "click": "#strike"
+        },
+        {
+          "click": "#circles"
+        },
+        {
+          "click": "#reveal"
+        }
+      ],
+      "keep": [
+        "#station-read",
+        "#close-panel",
+        "#strike",
+        "#circles",
+        "#reveal",
+        "#station-channel"
+      ]
+    },
+    {
+      "name": "wave",
+      "steps": [
+        {
+          "click": "#wave-tool"
+        },
+        {
+          "click": "#fire"
+        }
+      ],
+      "keep": [
+        "#wave-read",
+        "#close-panel",
+        "#fire",
+        "#elapsed",
+        "#receiver"
+      ]
+    },
+    {
+      "name": "rewind",
+      "steps": [
+        {
+          "click": "#rewind-tool"
+        },
+        {
+          "click": "#ma"
+        },
+        {
+          "key": "ArrowRight"
+        }
+      ],
+      "keep": [
+        "#ma",
+        "#fossils",
+        "#rocks",
+        "#close-panel"
+      ]
+    },
+    {
+      "name": "pin",
+      "steps": [
+        {
+          "click": "#pin-tool"
+        },
+        {
+          "click": "#pin-centre"
+        }
+      ],
+      "keep": [
+        "#pin-read",
+        "#city-search",
+        "#city-results",
+        "#pin-centre",
+        "#close-panel"
+      ]
+    },
+    {
+      "name": "stations-cleared",
+      "steps": [
+        {
+          "click": "#stations-tool"
+        },
+        {
+          "click": "#station-centre"
+        },
+        {
+          "click": "#strike"
+        },
+        {
+          "click": "#marker-p"
+        },
+        {
+          "click": "#marker-s"
+        },
+        {
+          "click": "#stations-clear"
+        }
+      ],
+      "keep": [
+        "#station-read",
+        "#marker-p-out",
+        "#marker-s-out",
+        "#close-panel"
+      ]
+    },
+    {
+      "name": "manual",
+      "steps": [
+        {
+          "click": "#manual"
+        }
+      ],
+      "keep": [
+        "#manual-title",
+        "#close-manual"
+      ]
+    }
+  ]
+}

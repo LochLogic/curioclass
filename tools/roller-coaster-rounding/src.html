@@ -1,0 +1,1266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Roller Coaster Rounding · Hilltop Park · Curio Class</title>
+<meta name="description" content="Roll downhill to round, trade tickets to add and subtract, and fill trains by tens. Grade 3 math. Works offline.">
+<!--
+Roller Coaster Rounding, Curio Class. Grade 3: 3.NBT.A.1, A.2, A.3.
+Started from kit/starter/src.html. Common Core Grade 3 NBT and Illustrative Mathematics rounding convention.
+Hilltop Park is fictional. Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. No network requests or student storage.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#fbf6ec; --ink:#1e2430; --muted:#566072; --brand:#0d6f7a; --btn:#0a5a63;
+  --btn-line:#64a6a7; --focus:#c2410c; --line:#d9c9a9; --panel:#fffaf0; --head-ink:#fff;
+}
+body { height:100dvh; min-height:0; overflow:hidden; }
+header { padding:10px 18px; gap:8px; border-bottom:5px solid #e2b65c; }
+h1 { font-size:24px; letter-spacing:-.6px; }
+h1 small { font-size:12px; letter-spacing:2px; text-transform:uppercase; margin-top:5px; }
+button, select, input { font:inherit; }
+button { touch-action:manipulation; }
+button:disabled { opacity:.44; cursor:default; }
+.seg button, .icon-btn { min-height:44px; min-width:44px; padding:0 12px; font-size:14px; }
+#sound[aria-pressed="false"] { background:#173b40; color:#fff; box-shadow:inset 0 0 0 2px #fff8; }
+main { grid-template-columns:minmax(0,1fr) 360px; overflow:hidden; }
+.stage { min-height:0; background:#b7d5b2; isolation:isolate; grid-column:1; grid-row:1; }
+.backdrop { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; }
+.stage:after { content:""; position:absolute; inset:0; background:linear-gradient(#fff0 35%,#e8f0ba55); z-index:-1; }
+.park-title { position:absolute; top:20px; left:24px; color:#163e44; text-shadow:0 2px #fff9; }
+.park-title b { display:block; font:900 clamp(26px,3vw,44px) Georgia,serif; }
+.park-title span { font-size:12px; font-weight:800; letter-spacing:3px; text-transform:uppercase; }
+.stage[data-mode="line"] .park-title, .stage[data-mode="trains"] .park-title { display:none; }
+@media (max-width:950px) { .park-title { display:none; } }
+.pennant { position:absolute; top:0; right:12%; width:28px; height:65px; background:#a3262f;
+  clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%); transform-origin:top; animation:breeze 5s ease-in-out infinite; }
+@keyframes breeze { 50% { transform:rotate(5deg); } }
+.calm .pennant { animation:none; }
+#scene { position:absolute; inset:0; }
+#track-svg { width:100%; height:100%; display:block; touch-action:none; }
+.scene-caption { position:absolute; bottom:22px; left:4%; right:4%; text-align:center; pointer-events:none; }
+.result-chip { display:inline-block; border:2px solid #ab9267; border-radius:12px; background:#fffdf5;
+  padding:10px 18px; box-shadow:0 5px 0 #73543626; font-size:18px; font-weight:800; max-width:100%; }
+.result-chip.rule-chip { background:#ffd75e; border-color:#8a651b; }
+.stub { margin:8px auto 0; padding:7px 14px; background:#ffe4ab; border-left:4px dotted #ae6b28;
+  border-right:4px dotted #ae6b28; width:fit-content; max-width:100%; font-size:13px; font-weight:700; }
+.history { display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin-top:8px; }
+.history span { background:#ffffffdc; border-radius:4px; padding:3px 7px; font-size:12px; }
+.panel { padding:12px; gap:9px; background:linear-gradient(100deg,#fffaf0,#f3e6ca);
+  border-left:6px solid #c6a474; box-shadow:inset 5px 0 10px #7b55251a; overflow:hidden; position:relative;
+  grid-column:2; grid-row:1; }
+.hint { margin:0; min-height:64px; font-size:16px; line-height:1.35; }
+.plaque { color:var(--muted); font-size:11px; font-weight:800; letter-spacing:2px; text-transform:uppercase; }
+.value-row { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+#held { font:900 48px/1 Georgia,serif; color:var(--brand); }
+.row { display:flex; gap:6px; align-items:center; }
+.row>* { flex:1; min-width:0; }
+.control { min-height:44px; border:2px solid #b9a583; border-radius:9px; background:linear-gradient(#fffef9,#eee3ca);
+  padding:4px 9px; font-weight:750; font-size:14px; box-shadow:0 2px 0 #8d6c4233; }
+.control:hover:not(:disabled) { border-color:var(--brand); background:#fff; }
+.control[aria-pressed="true"] { border-color:var(--brand); background:#d5ece6; }
+#drop { min-height:54px; width:100%; background:linear-gradient(#148996,#0a5a63); border:2px solid #074b51;
+  color:#fff; font:900 23px Georgia,serif; box-shadow:0 5px #073f45; border-radius:12px; }
+#drop:active { transform:translateY(3px); box-shadow:0 2px #073f45; }
+.mode-panel { display:flex; flex-direction:column; gap:8px; }
+.board { display:flex; justify-content:space-between; background:#18464a; color:#fff6dd; border:3px solid #b69355;
+  padding:7px 9px; font:700 12px Georgia,serif; border-radius:5px; }
+.entry { display:flex; gap:6px; margin-top:auto; align-items:center; }
+#answer { width:100%; min-width:0; height:44px; border:2px solid #a38c69; border-radius:8px;
+  background:#fffef8; padding:4px 10px; font:800 24px Consolas,monospace; color:#17464a; }
+.keys { display:grid; grid-template-columns:repeat(6,1fr); gap:5px; }
+.keys button { min-height:44px; padding:0 2px; border:1px solid #a99370; background:linear-gradient(#fffefb,#e9d8b6);
+  border-radius:7px; font-size:17px; font-weight:800; box-shadow:0 2px #b59a74; }
+.keys .enter { color:#fff; background:var(--btn); font-size:12px; }
+.keys .back { font-size:12px; }
+.keypad-close { display:none; }
+.keys.open .keypad-close { display:block; grid-column:1 / -1; font-size:14px; }
+#keys-toggle { display:none; }
+#reset { width:100%; font-size:12px; min-height:44px; }
+select { width:100%; min-height:44px; border:2px solid #b9a583; border-radius:7px; background:#fffaf0; padding:4px; }
+.step-label { color:var(--brand); font-weight:900; font-size:13px; letter-spacing:1px; }
+.stepper { display:flex; justify-content:space-between; gap:8px; align-items:center; }
+.stepper label { flex:1; font-size:14px; font-weight:800; }
+.stepper button { width:44px; flex:none; }
+.stepper strong { width:28px; text-align:center; font-size:23px; }
+.chain { padding:10px; border:2px dashed #b8975d; border-radius:10px; background:#fff6dc; font-weight:800; text-align:center; }
+.card-strip { position:absolute; top:18px; left:3%; right:3%; background:#fff8e9; border:2px solid #b08c51;
+  border-radius:10px; padding:10px 16px; box-shadow:0 5px #714e2025; }
+.card-strip small { display:block; font-size:12px; color:var(--brand); font-weight:800; text-transform:uppercase; letter-spacing:1px; }
+.card-strip b { font:800 clamp(18px,2.2vw,28px) Georgia,serif; }
+.card-strip p { margin:4px 0 0; font-size:14px; }
+#bin { position:absolute; left:4%; right:4%; top:22%; bottom:27%; display:grid; grid-template-columns:repeat(3,1fr);
+  border:7px solid #a57b46; border-radius:12px; background:#f9ebcb; box-shadow:0 12px 0 #795733,0 20px 20px #31412633; }
+.column { position:relative; border-right:3px solid #c5a16c; min-width:0; background:linear-gradient(90deg,#8b653012,transparent 15%,#fff3); }
+.column:last-child { border:0; }
+.column.active { background:#ffebac; box-shadow:inset 0 0 0 3px #0d6f7a; }
+.col-head { text-align:center; padding:8px 0; font-weight:900; font-size:14px; background:#e4c896; border-bottom:2px solid #bc945e; }
+.pieces { position:absolute; inset:46px 8px 52px; display:flex; align-content:flex-start; flex-wrap:wrap; gap:3px; overflow:hidden; }
+.piece { position:relative; width:calc(25% - 3px); height:28%; max-height:58px; padding:0; border:0; background:transparent; }
+.piece img { width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 2px 1px #75471a30); }
+.piece.carried { outline:2px solid #0d6f7a; background:#c8e7dd88; border-radius:3px; }
+.piece span { position:absolute; inset:0; display:grid; place-items:center; font-size:12px; font-weight:900; color:#29200e; }
+.piece.strip { width:calc(50% - 3px); height:20%; display:flex; align-items:center; gap:0; }
+.piece.strip img { width:10%; height:70%; max-height:26px; object-fit:fill; border-right:1px dotted #a2652a; }
+.ticket-row { display:flex; align-content:flex-start; flex-wrap:wrap; gap:3px; width:100%; min-height:0; }
+.ticket-row + .ticket-row { border-top:2px dotted #bd9859; padding-top:5px; }
+.column .count { position:absolute; bottom:5px; left:0; right:0; text-align:center; font:900 28px Georgia,serif; color:#204b4c; }
+.col-entry { position:absolute; bottom:3px; left:10%; width:80%; min-height:44px; }
+.carry-tag { position:absolute; right:5px; top:38px; padding:3px 6px; background:#c8e7dd; font-size:11px; font-weight:800; border-radius:5px; z-index:1; }
+.ticket-fly { animation:trade .5s ease-out; }
+@keyframes trade { 0% { transform:translateY(20px) scale(.8); opacity:.2; } 60% { transform:translateY(-10px); } }
+.calm .ticket-fly { animation:none; }
+#mini-track { position:absolute; left:3%; right:3%; bottom:6%; height:18%; width:94%; overflow:visible; }
+#round-scene { position:absolute; top:24%; bottom:20%; left:4%; right:4%; }
+#round-scene .round-prompt { font:900 28px Georgia,serif; text-align:center; margin:10px 0; }
+.station-choices { display:flex; justify-content:space-around; align-items:end; height:110px; gap:12px;
+  position:absolute; left:0; right:0; bottom:35px; }
+.station-choice { width:40%; min-height:100px; border:2px solid #6b7549; background:#fff8e9ee; border-radius:12px; padding:8px; }
+.station-choice img { width:100%; height:55px; object-fit:contain; }
+.station-choice b { display:block; font:900 28px Georgia,serif; }
+.round-car { width:120px; height:80px; object-fit:contain; display:block; margin:0 auto; }
+.booth { position:absolute; right:3%; top:22%; width:32%; height:49%; object-fit:contain; opacity:.95; }
+.booth-sum { position:absolute; right:7%; top:55%; width:24%; height:9%; display:grid; place-items:center;
+  color:#fff9e5; text-align:center; font:800 clamp(13px,1.6vw,21px)/1.2 Georgia,serif; }
+.clerk-result { position:absolute; left:7%; top:30%; max-width:60%; background:#fff7dc; border:3px solid #ad8a4e;
+  border-radius:12px; padding:22px; font:900 clamp(24px,3vw,38px) Georgia,serif; }
+.array { position:absolute; left:4%; right:4%; top:19%; bottom:18%; display:grid; gap:4px; align-content:center; }
+.train-row { display:grid; gap:3px; position:relative; align-items:center; border-bottom:3px solid #85684e; padding:0 0 3px; }
+.train-car { position:relative; height:100%; min-height:0; }
+.train-car img { width:100%; height:100%; object-fit:contain; display:block; }
+.train-car b { position:absolute; left:54%; top:62%; transform:translate(-50%,-50%);
+  background:#fff3cf; border:1px solid #b19a6b; border-radius:50%;
+  min-width:16px; text-align:center; font:900 clamp(10px,1.2vw,15px) Georgia,serif; line-height:1.1; }
+.train-car.lead b { left:49%; top:63%; }
+.train-row { background:linear-gradient(0deg,#fff8df88,#fff8df22 70%,transparent); border-radius:5px; }
+.train-car.tenth:after { content:"10 cars = 100"; position:absolute; right:0; bottom:-8px; font-size:11px;
+  line-height:13px; padding:0 3px; font-weight:800; color:#123a3d; border:1px solid #0d6f7a;
+  border-radius:3px; background:#fff8e9; text-align:center; white-space:nowrap; z-index:1; }
+.array-label { position:absolute; bottom:7%; left:4%; right:4%; text-align:center; background:#fff5ddeb; padding:12px;
+  border:2px solid #b59661; border-radius:10px; font:900 clamp(18px,2vw,27px) Georgia,serif; }
+#lap { position:absolute; left:5%; right:5%; bottom:6%; height:80px; pointer-events:none; z-index:4; }
+#lap img { position:absolute; width:130px; height:90px; object-fit:contain; bottom:5px; }
+#lap b { position:absolute; right:0; bottom:0; padding:8px 15px; background:#e6f0c1; border:3px solid #3c6839; border-radius:5px; color:#24492b; }
+svg text { font-family:'Segoe UI',sans-serif; fill:var(--ink); }
+.sr { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+@media (min-width:1500px) { main { grid-template-columns:minmax(0,1fr) 410px; } .panel { gap:12px; padding:18px; } }
+@media (min-width:600px) and (min-height:651px) and (max-height:900px) {
+  .panel { padding:10px; gap:7px; }
+  .mode-panel { gap:5px; }
+  #held { font-size:36px; }
+  .hint { min-height:57px; font-size:15px; }
+  #drop { min-height:48px; }
+  .board { padding:5px 8px; }
+  .scene-caption .result-chip { padding:8px 16px; }
+  .scene-caption .stub { margin-top:5px; padding:5px 12px; }
+  .scene-caption .history { margin-top:5px; }
+  .scene-caption .history span { padding:2px 7px; }
+}
+@media (max-height:650px) and (min-width:600px) {
+  header { padding:4px 8px; gap:5px; flex-wrap:nowrap; border-bottom-width:3px; }
+  h1 { font-size:17px; max-width:180px; } h1 small { display:none; }
+  .seg button,.icon-btn { padding:0 8px; font-size:12px; }
+  main { grid-template-columns:minmax(0,1fr) 275px; }
+  .panel { padding:7px; gap:5px; border-left-width:4px; }
+  .hint { min-height:53px; font-size:13px; line-height:1.3; }
+  .mode-panel { gap:5px; } #held { font-size:24px; } #drop { min-height:44px; font-size:20px; }
+  #held[data-digits="4"] { font-size:20px; }
+  #track-panel { display:grid; grid-template-columns:1fr 1fr;
+    grid-template-areas:"steps steps" "drop tricky" "tracks tracks" "pan pan" "extra extra"; }
+  #track-panel .value-row { position:absolute; top:69px; right:13px; }
+  #track-panel .value-row .plaque { display:none; }
+  #step-row { grid-area:steps; padding-right:61px; }
+  #drop { grid-area:drop; } #tricky { grid-area:tricky; }
+  #track-tabs { grid-area:tracks; } #pan-row { grid-area:pan; } #hundred-extra { grid-area:extra; }
+  .control { padding:2px 5px; font-size:12px; } .plaque { font-size:10px; }
+  .board,.park-title,.history { display:none; }
+  .entry { margin-top:0; } #keys-toggle { display:block; flex:0 0 55px; }
+  .keys { display:none; } .keys.open { display:grid; position:absolute; left:7px; right:7px; bottom:55px;
+    grid-template-columns:repeat(4,1fr); z-index:10; background:#f5e6ca; padding:10px;
+    border:3px solid #8d6c42; box-shadow:0 0 0 100vmax #0004; }
+  #reset { min-height:44px; } .scene-caption { bottom:12px; }
+  .result-chip { font-size:13px; padding:7px 9px; } .stub { font-size:10px; margin-top:5px; padding:4px; }
+  .card-strip { top:8px; padding:6px 10px; } .card-strip b { font-size:18px; } .card-strip p { font-size:11px; }
+  #bin { top:24%; bottom:28%; left:3%; right:3%; border-width:4px; }
+  .col-head { font-size:11px; padding:5px 0; } .pieces { inset:32px 3px 35px; gap:2px; }
+  .column .count { font-size:22px; } .piece span { font-size:10px; }
+  .col-entry { left:4%; width:92%; padding:0; }
+  #round-scene .round-prompt { font-size:20px; }
+  #round-scene { bottom:30%; }
+  .station-choices { position:absolute; bottom:0; left:0; right:0; height:80px; }
+  .round-car { height:50px; width:80px; } .station-choice { min-height:80px; }
+  .station-choice img { height:35px; } .station-choice b { font-size:22px; }
+  .chain { padding:5px; font-size:13px; }
+  .train-car.tenth:after { content:"100"; left:auto; width:23px; bottom:-1px; font-size:10px; line-height:10px; }
+}
+@media (max-width:599px) {
+  header { padding:6px 8px; gap:5px; justify-content:center; }
+  h1 { width:100%; font-size:20px; text-align:center; margin:0; } h1 small { display:none; }
+  .seg button,.icon-btn { padding:0 8px; font-size:12px; }
+  main { grid-template-columns:1fr; grid-template-rows:minmax(230px,48%) minmax(0,1fr); }
+  .panel { padding:7px 10px; gap:5px; border-left:0; border-top:4px solid #c6a474; }
+  .panel { grid-column:1; grid-row:2; }
+  .hint { min-height:39px; font-size:13px; } .mode-panel { gap:4px; }
+  .control { min-height:44px; font-size:12px; padding:2px 5px; }
+  .board,.park-title,.history { display:none; } #held { font-size:25px; }
+  .value-row { position:absolute; top:49px; right:18px; } .value-row .plaque { display:none; }
+  #track-panel { display:grid; grid-template-columns:1fr 1fr; }
+  #track-panel .value-row { grid-column:span 2; }
+  #track-panel .step-row { grid-column:span 2; padding-right:80px; }
+  #held[data-digits="4"] { font-size:22px; }
+  #drop { min-height:44px; font-size:20px; }
+  .keys { display:none; } #keys-toggle { display:block; flex:0 0 58px; }
+  .keys.open { display:grid; position:absolute; left:10px; right:10px; bottom:52px; z-index:10;
+    background:#f5e6ca; padding:10px; border:3px solid #8d6c42; box-shadow:0 0 0 100vmax #0004; }
+  .entry { margin-top:0; } #reset { min-height:44px; }
+  .scene-caption { bottom:8px; } .result-chip { font-size:12px; padding:5px 8px; } .stub { font-size:10px; padding:4px; margin-top:4px; }
+  .card-strip { top:6px; padding:4px 8px; } .card-strip b { font-size:16px; } .card-strip p { display:none; }
+  #bin { top:24%; bottom:25%; border-width:4px; } .col-head { font-size:11px; padding:3px; }
+  .pieces { inset:25px 3px 31px; gap:2px; } .column .count { font-size:20px; }
+  .piece span { font-size:10px; } #round-scene { top:23%; bottom:33%; }
+  .station-choices { position:absolute; bottom:0; left:0; right:0; height:60px; }
+  #round-scene .round-prompt { font-size:18px; margin:0; }
+  .round-car { width:65px; height:40px; } .station-choice { min-height:60px; padding:2px; }
+  .station-choice img { height:28px; } .station-choice b { font-size:20px; }
+  .array { top:24%; bottom:19%; } .array-label { font-size:15px; padding:5px; bottom:4%; }
+  .chain { padding:5px; font-size:13px; } .stepper { min-height:44px; }
+  .train-car.tenth:after { content:"100"; left:auto; width:23px; bottom:-1px; font-size:10px; line-height:10px; }
+}
+@media (max-height:650px), (max-width:599px) {
+  #trains-panel[data-card="true"] .stepper { min-height:26px; }
+  #trains-panel[data-card="true"] .stepper strong { line-height:1.1; }
+  #trains-panel[data-card="true"] .stepper button { display:none; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Roller Coaster Rounding<small>Hilltop Park · Curio Class</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-track" aria-pressed="true">Track</button>
+    <button id="m-line" aria-pressed="false">Line</button>
+    <button id="m-trains" aria-pressed="false">Trains</button>
+  </div>
+  <button id="motion" class="icon-btn" aria-pressed="true">Motion</button>
+  <button id="sound" class="icon-btn" aria-pressed="true">Sound</button>
+  <button id="read" class="icon-btn">Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <img class="backdrop" src="art:park-backdrop" alt="">
+    <div class="park-title"><span>Welcome to</span><b>Hilltop Park</b></div><div class="pennant"></div>
+    <div id="scene"></div>
+    <div id="lap" hidden><img src="art:coaster-car-riders" alt="Smiling riders on their lap"><b>Open</b></div>
+  </div>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <section id="track-panel" class="mode-panel" aria-label="Track controls">
+      <div class="value-row"><span class="plaque">Held number</span><output id="held">47</output></div>
+      <div class="row step-row" id="step-row">
+        <button class="control" id="minus-large">-10</button><button class="control" id="minus-one">-1</button>
+        <button class="control" id="plus-one">+1</button><button class="control" id="plus-large">+10</button>
+      </div>
+      <div class="row" id="hundred-extra" hidden>
+        <button class="control" id="minus-ten">-10</button><button class="control" id="plus-ten">+10</button>
+      </div>
+      <button id="drop">Drop ↓</button>
+      <div class="row" id="track-tabs"><button class="control" id="tens" aria-pressed="true">Tens track</button>
+        <button class="control" id="hundreds" aria-pressed="false">Hundreds track</button></div>
+      <div class="row" id="pan-row"><button class="control" id="back-window">Back 100</button>
+        <button class="control" id="ahead-window">Ahead 100</button></div>
+      <button class="control" id="tricky">Tricky drop</button>
+    </section>
+    <section id="line-panel" class="mode-panel" aria-label="Line controls" hidden>
+      <div id="line-step" class="step-label"></div>
+      <div class="row" id="line-actions">
+        <button class="control" id="bundle" hidden>Bundle 10</button>
+        <button class="control" id="break-ten" hidden>Break strip</button>
+        <button class="control" id="break-hundred" hidden>Break roll</button>
+        <button class="control" id="take" hidden>Take away</button>
+        <button class="control" id="next" hidden>Next column</button>
+      </div>
+      <div class="row" id="judge" hidden><button class="control" id="sense">Makes sense</button>
+        <button class="control" id="far">Far off</button></div>
+      <label class="sr" for="line-picker">Choose a Line card</label><select id="line-picker"></select>
+    </section>
+    <section id="trains-panel" class="mode-panel" aria-label="Train controls" hidden>
+      <div class="stepper"><label>Trains</label><button class="control" id="n-minus" aria-label="Fewer trains">−</button>
+        <strong id="n-count">6</strong><button class="control" id="n-plus" aria-label="More trains">+</button></div>
+      <div class="stepper"><label>Cars per train</label><button class="control" id="c-minus" aria-label="Fewer cars">−</button>
+        <strong id="c-count">4</strong><button class="control" id="c-plus" aria-label="More cars">+</button></div>
+      <div class="chain" id="chain"></div>
+      <div class="row" id="capacity" hidden><button class="control" id="enough">Enough</button>
+        <button class="control" id="not-enough">Not enough</button></div>
+      <label class="sr" for="train-picker">Choose a Train card</label><select id="train-picker"></select>
+    </section>
+    <div class="board" id="board"><span id="roll-count">Rolls 0</span><span id="line-count">Line 0 of 9</span><span id="train-count">Trains 0 of 7</span></div>
+    <div class="entry"><label class="sr" for="answer">Number entry</label><input id="answer" inputmode="numeric" autocomplete="off"
+      aria-label="Number entry" maxlength="4" placeholder="Type a number"><button id="keys-toggle" class="control" aria-expanded="false">Keys</button></div>
+    <div class="keys" id="keypad" aria-label="Number keypad"></div>
+    <button id="reset" class="control">Start over</button>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  const art = {
+    car:'art:coaster-car', lead:'art:coaster-lead-car', station:'art:station-platform',
+    ticket:'art:ticket-single', roll:'art:ticket-roll', booth:'art:ticket-booth'
+  };
+  const L = {
+    wTrack:'Welcome to Hilltop Park! Every station sits in a valley. Tap Drop and watch which way the car rolls.',
+    setNext:'Set a new number with the arrows or the keypad, then tap Drop.',
+    rollLeft:'Downhill to the left. The lower station is nearer.',
+    rollRight:'Downhill to the right. The higher station is nearer.',
+    peak:'Right on the top! It could go either way, so the park rule sends it forward to the bigger number.',
+    stays:'Already at a station. It stays put.',
+    hundreds:'Now one hill for every hundred. Find where the hilltop is.',
+    wLine:'Riders are lining up!',
+    round:'Tap its station.',
+    estimate:'Add the two stations. Type it, then tap Enter.',
+    estimateSubtract:'Subtract the two stations. Type it, then tap Enter.',
+    cols:'Start with the ones. Type how many, then tap Enter.',
+    bundle:'Tap Bundle ten.',
+    break:'Not enough to take away. Tap a bigger piece to break it.',
+    check:'Inside the sensible stretch. The numbers check. The ride is open!',
+    clerk:'Tap Makes sense or Far off.',
+    caught:"Good catch! That's far from the estimate.",
+    sneaky:'Estimates can miss small slips.',
+    slip:'Tap the column that slipped.',
+    wTrains:'Each car holds ten riders. Add trains and cars, and watch the seats count by tens.',
+    tens:'Count the cars. Each car is a ten. Type how many tens, then tap Enter.',
+    seats:'Now type the seats.', trainsDone:'Ten tens make a hundred. All aboard!', again:'Not quite. Count again.',
+    capacity:'Tap Enough or Not enough.',
+    fixSlip:'Type the corrected tens digit, then tap Enter.',
+    chooseTrain:'Choose another Train card, or choose Explore trains.',
+    keypad:'Tap the number keys, then Enter. Tap Close keys to close the keypad.'
+  };
+  const CARDS = [
+    [278,346,1,100,'9:00','Morning riders and noon riders. How many in all?'],
+    [152,239,1,10,'10:00','Two groups join the line. How many riders?'],
+    [346,278,-1,10,'11:00','Riders were in line; some have ridden. How many still wait?'],
+    [503,268,-1,10,'12:00','Tickets in the bin; some were used. How many remain?'],
+    [467,285,1,100,'1:00','Two more groups arrive. How many riders?'],
+    [395,407,1,10,'2:00','Afternoon riders join. How many in all?'],
+    [720,456,-1,100,'3:00','Seats available; some are filled. How many are free?'],
+    [649,251,1,100,'4:00','The last two groups arrive. How many riders?'],
+    [1000,375,-1,10,'5:00','Tickets printed; some were sold. How many remain?']
+  ].map((r,i) => ({a:r[0],b:r[1],op:r[2],p:r[3],time:r[4],story:r[5],id:i}));
+  const CLERKS = [
+    {a:278,b:346,op:1,p:10,claim:514}, {a:503,b:268,op:-1,p:100,claim:365},
+    {a:467,b:285,op:1,p:100,claim:752}, {a:152,b:239,op:1,p:10,claim:381,sneaky:true}
+  ].map((c,i) => ({...c,id:9+i,time:'Clerk '+(i+1),story:'Check the ticket booth arithmetic.'}));
+  const TRAINS = [[6,4],[3,7],[9,8],[5,6],[8,2],[7,4],[6,4]];
+  const tricky = [[45,10],[44,10],[349,100],[350,100],[5,10],[995,10],[250,100],[651,100],[0,10],[1000,10]];
+  const names = ['ones','tens','hundreds'];
+  const unit = (count,i) => count===1?['one','ten','hundred'][i]:names[i];
+  const round = (n,p) => Math.floor((n+p/2)/p)*p;
+  const digits = n => [n%10,Math.floor(n/10)%10,Math.floor(n/100)];
+  const clamp = n => Math.max(0,Math.min(1000,n));
+  const state = {
+    mode:'track', held:47, p:10, window:0, guess:null, drops:[], rolls:0, tricky:-1,
+    result:null, rolling:false, carValue:47, teeter:0, lineId:0, card:null, step:'round', roundIndex:0,
+    rounds:[], col:0, counts:[], taken:false, entered:false, carried:[0,0,0], misses:0,
+    completedLine:new Set(), completedTrains:new Set(), n:6, cars:4, trainId:-1, trainStep:'explore',
+    lap:false, lapProgress:0, generated:0, voiceEvents:{}, wrongs:0
+  };
+  let token = 0;
+  let frame = 0;
+  let nl;
+  let dragValue = null;
+  let keypadHint = '';
+  const keypadHow = L.keypad;
+  function setKeypad(open) {
+    const wasOpen=$('keypad').classList.contains('open');
+    const keypadFocus=$('keypad').contains(document.activeElement)||document.activeElement.id==='keys-toggle';
+    if(open&&!wasOpen) { V.hush(); keypadHint=$('hint').textContent; hint(keypadHow); }
+    $('keypad').classList.toggle('open',open);
+    $('keys-toggle').setAttribute('aria-expanded',open);
+    for(const id of ['track-panel','line-panel','trains-panel','answer','reset','keys-toggle']) $(id).inert=open;
+    $('scene').inert=open;
+    if(open&&!wasOpen) $('key-1').focus({preventScroll:true});
+    if(!open&&wasOpen) {
+      if($('hint').textContent===keypadHow) hint(keypadHint);
+      if(keypadFocus) {
+        const target=$('keys-toggle').getClientRects().length?$('keys-toggle'):$('answer');
+        target.focus({preventScroll:true});
+      }
+    }
+  }
+  function rescueFocus(id,fallback) {
+    if(!id) return;
+    const e=$(id);
+    if(!e||e.disabled||!e.getClientRects().length) {
+      const target=$(fallback);
+      if(target&&!target.disabled&&target.getClientRects().length) target.focus({preventScroll:true});
+    }
+  }
+  function sayHow(key, valid = () => true) {
+    const fits=() => {
+      if(key==='round') return state.mode==='line'&&state.step==='round';
+      if(key==='estimate'||key==='estimateSubtract') return state.mode==='line'&&state.step==='estimate';
+      if(key==='cols') return state.mode==='line'&&state.step==='columns'&&state.col===0&&!state.entered&&state.card.op===1;
+      if(key==='bundle') return state.mode==='line'&&state.step==='columns'&&state.entered&&state.col<2&&state.counts[state.col]>=10;
+      if(key==='break') return state.mode==='line'&&state.step==='columns'&&!state.entered&&!state.taken&&
+        state.counts[state.col]<digits(state.card.b)[state.col];
+      if(key==='tens') return state.mode==='trains'&&state.trainStep==='tens';
+      if(key==='seats') return state.mode==='trains'&&state.trainStep==='seats';
+      if(key==='clerk') return state.mode==='line'&&state.step==='judge';
+      if(key==='capacity') return state.mode==='trains'&&state.trainStep==='capacity';
+      if(key==='fixSlip') return state.mode==='line'&&state.step==='fix-slip';
+      if(key==='slip') return state.mode==='line'&&state.step==='find-slip';
+      if(key==='chooseTrain') return state.mode==='trains'&&state.trainStep==='done';
+      return true;
+    };
+    const needs={bundle:'#bundle',clerk:'#sense',capacity:'#enough',chooseTrain:'#train-picker',slip:'#slip-1'};
+    V.how(key,{hint:false,valid:()=>valid()&&fits(),needs:needs[key]});
+  }
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode+':'+(state.mode==='line'?state.lineId:state.trainId), hint:false,
+    read:() => (state.mode==='track'?(state.p===10?'Tens track. ':'Hundreds track. '):'')+
+      $('hint').textContent + (state.mode==='track'?' Station brakes stop the car in the valley.':''),
+    welcome:() => $('keypad').classList.contains('open')?null:state.mode==='track' ? (!state.result&&!state.rolling ? 'wTrack':null) :
+      state.mode==='line' ? (state.step==='round'?'wLine':null) :
+      state.trainId===-1?'wTrains':state.trainStep==='tens'?'tens':null, speaks:'#drop'
+  });
+  function hint(text, how) {
+    $('hint').textContent = text;
+    if (how) sayHow(how);
+  }
+  function event(key, limit=Infinity) {
+    const count = V.log.filter(e=>e.key===key&&e.as==='spoken').length;
+    if (count>=limit) return;
+    V.say(key,{hint:false});
+  }
+  function stopAction(hush=true) {
+    token++;
+    cancelAnimationFrame(frame);
+    state.rolling=false;
+    state.lap=false;
+    $('lap').hidden=true;
+    if (hush) V.hush();
+  }
+  function svgEl(tag, attrs={}, text='') {
+    const e=document.createElementNS(NS,tag);
+    for (const [k,v] of Object.entries(attrs)) e.setAttribute(k,v);
+    if (text) e.textContent=text;
+    return e;
+  }
+  // Tool-local number-line API. The shared engine named in the spec does not exist yet.
+  function NumberLine(group, opts) {
+    let from=opts.from, to=opts.to;
+    const marks=new Map();
+    const listeners={};
+    const api={
+      x:v => (v-from)/(to-from)*opts.length,
+      value:x => from+x/opts.length*(to-from),
+      zoom:(a,b) => { from=a; to=b; },
+      mark:(v,o={}) => {
+        let e=marks.get(o.id);
+        if (!e) { e=svgEl('g'); group.append(e); if(o.id) marks.set(o.id,e); }
+        e.replaceChildren(svgEl('line',{x1:api.x(v),x2:api.x(v),y1:0,y2:-25,stroke:o.color||'#0d6f7a','stroke-width':3}));
+        if(o.label) e.append(svgEl('text',{x:api.x(v)+5,y:-20,'font-size':13},o.label));
+        return e;
+      },
+      span:(a,b,o={}) => {
+        const e=svgEl('g');
+        e.append(svgEl('line',{x1:api.x(a),x2:api.x(b),y1:o.y||0,y2:o.y||0,stroke:o.color||'#0d6f7a',
+          'stroke-width':o.bold?5:2,'stroke-dasharray':o.dashed?'5 4':''}));
+        if(o.label) e.append(svgEl('text',{x:(api.x(a)+api.x(b))/2,y:(o.y||0)-8,'text-anchor':'middle',
+          'font-size':o.font||14,'font-weight':o.bold?900:600},o.label));
+        group.append(e); return e;
+      },
+      clear:() => { group.replaceChildren(); marks.clear(); },
+      on:(type, fn) => { listeners[type]=fn; },
+      draggable:(e,{onMove,onDrop}) => {
+        e.style.cursor='grab';
+        e.setAttribute('tabindex','0'); e.setAttribute('role','slider');
+        e.setAttribute('aria-label','Held coaster car'); e.setAttribute('aria-valuemin','0'); e.setAttribute('aria-valuemax','1000');
+        e.setAttribute('aria-valuenow',state.held);
+        e.onkeydown=ev => {
+          if(['ArrowLeft','ArrowRight'].includes(ev.key)) { ev.preventDefault(); setHeld(state.held+(ev.key==='ArrowLeft'?-1:1)); }
+        };
+        e.onpointerdown=ev => {
+          ev.preventDefault(); ev.stopPropagation();
+          e.focus({preventScroll:true});
+          const svg=e.ownerSVGElement;
+          stopAction(); dragValue=state.held;
+          const move=ev2 => {
+            const r=$('stage').getBoundingClientRect();
+            dragValue=clamp(Math.round(api.value(ev2.clientX-r.left-opts.offset)/opts.snap)*opts.snap);
+            onMove(dragValue);
+          };
+          const up=() => { window.removeEventListener('pointermove',move); window.removeEventListener('pointerup',up); onDrop(dragValue); };
+          window.addEventListener('pointermove',move); window.addEventListener('pointerup',up,{once:true});
+        };
+      }
+    };
+    if(opts.interactive!==false) group.ownerSVGElement.addEventListener('pointerdown',ev => {
+      if(ev.target.closest('[role="slider"], [data-guess]')) return;
+      const r=group.ownerSVGElement.getBoundingClientRect();
+      if(listeners.tap) listeners.tap(Math.round(api.value(ev.clientX-r.left-opts.offset)/opts.snap)*opts.snap);
+    });
+    return api;
+  }
+  function preserveScene(draw) {
+    const focused=document.activeElement;
+    const id=focused&&focused.id;
+    draw();
+    if(id&&focused!==document.activeElement&&$(id)) $(id).focus({preventScroll:true});
+  }
+  function board() {
+    $('roll-count').textContent='Rolls '+state.rolls;
+    $('line-count').textContent='Line '+state.completedLine.size+' of 9';
+    $('train-count').textContent='Trains '+state.completedTrains.size+' of 7';
+  }
+  function trackGeometry() {
+    const w=$('stage').clientWidth, h=$('stage').clientHeight;
+    const lo=state.held===1000?1000-state.p:Math.floor(state.held/state.p)*state.p;
+    const hi=lo+state.p;
+    const left=Math.max(50,w*.15), width=w-left*2;
+    const top=h<500?h*.20:h*.31;
+    const amp=Math.min(h*(h<500?.19:.27),155), base=top+amp;
+    const y=v => base-(1-Math.cos(2*Math.PI*(v-lo)/state.p))/2*amp;
+    return {w,h,lo,hi,left,width,top,amp,base,y};
+  }
+  function drawTrack() {
+    const g=trackGeometry();
+    const {w,h,lo,hi,left,width,top,amp,base,y}=g;
+    const compactRule=w<600||h<380;
+    const svg=svgEl('svg',{id:'track-svg',viewBox:`0 0 ${w} ${h}`,'aria-label':'Coaster rounding track'});
+    const defs=svgEl('defs');
+    defs.innerHTML='<linearGradient id="rail" x2="0" y2="1">'+
+      '<stop stop-color="#f3776e"/><stop offset=".5" stop-color="#a3262f"/>'+
+      '<stop offset="1" stop-color="#701c26"/></linearGradient>';
+    svg.append(defs);
+    const group=svgEl('g',{transform:`translate(${left} 0)`}); svg.append(group);
+    nl=NumberLine(group,{from:lo,to:hi,length:width,offset:left,snap:state.p===10?1:10});
+    const range=state.p===10?`TENS TRACK · window ${state.window} to ${state.window+100}`:'HUNDREDS TRACK · 0 to 1000';
+    if(!(compactRule&&state.rolling&&state.held%state.p===state.p/2)) {
+      svg.append(svgEl('text',{x:w/2,y:h<380?22:35,'text-anchor':'middle','font-size':h<380?11:13,
+        'font-weight':800,'paint-order':'stroke',stroke:'#fff8e9','stroke-width':2},range));
+    }
+    let d='';
+    for(let j=-20;j<=120;j++) {
+      const v=lo+state.p*j/100;
+      const x=nl.x(v);
+      if(x+left<0||x+left>w) continue;
+      d+=(d?'L':'M')+x.toFixed(2)+' '+y(v).toFixed(2)+' ';
+    }
+    for(let j=0;j<=10;j++) {
+      const v=lo+state.p*j/10, x=nl.x(v);
+      group.append(svgEl('line',{x1:x,x2:x,y1:y(v)+8,y2:base+30,stroke:'#795d42','stroke-width':j%5===0?5:3}));
+      group.append(svgEl('line',{x1:x-4,x2:x+4,y1:base+30,y2:base+30,stroke:'#60462f','stroke-width':3}));
+    }
+    group.append(svgEl('path',{d,fill:'none',stroke:'#542735','stroke-width':12,'stroke-linecap':'round'}));
+    group.append(svgEl('path',{d,fill:'none',stroke:'url(#rail)','stroke-width':7,'stroke-linecap':'round'}));
+    group.append(svgEl('path',{d,fill:'none',stroke:'#ffd4b1','stroke-width':1,transform:'translate(0 -3)'}));
+    const small=h<380;
+    for(let j=1;j<10;j++) {
+      const value=lo+state.p*j/10,x=nl.x(value),ty=y(value);
+      group.append(svgEl('line',{x1:x,x2:x,y1:ty+6,y2:ty+12,stroke:'#542735','stroke-width':2}));
+      group.append(svgEl('text',{x,y:Math.min(ty+26,base-(small?27:40)),'text-anchor':'middle','font-size':small?10:12,
+        'paint-order':'stroke',stroke:'#f7efce','stroke-width':4},String(value)));
+    }
+    for(const v of [lo,hi]) {
+      const x=nl.x(v), sw=Math.min(small?90:150,width*.28), sh=sw*.38;
+      group.append(svgEl('image',{href:art.station,x:x-sw/2,y:base-sh+22,width:sw,height:sh}));
+      const plate=svgEl('rect',{x:x-26,y:base+30,width:52,height:28,rx:5,fill:'#fff6d9',stroke:'#88642e','stroke-width':2});
+      const label=svgEl('text',{x,y:base+50,'text-anchor':'middle','font-size':small?17:21,'font-weight':900},String(v));
+      if(state.result?.target===v) {
+        group.append(svgEl('rect',{x:x-29,y:base+27,width:58,height:34,rx:7,fill:'none',stroke:'#0d6f7a','stroke-width':4}));
+        if(state.result.station) group.append(svgEl('circle',{cx:x,cy:base+44,r:36,fill:'none',stroke:'#0d6f7a','stroke-width':3,
+          'stroke-dasharray':'4 5'}));
+      }
+      const hit=svgEl('g',{'data-guess':v,role:'button',tabindex:0,id:'guess-'+v,'aria-label':'Guess station '+v});
+      hit.append(plate,label);
+      hit.append(svgEl('rect',{x:x-30,y:base+26,width:60,height:44,rx:8,fill:state.guess===v?'#ffd75e66':'transparent',
+        stroke:state.guess===v?'#0d6f7a':'transparent','stroke-width':4}));
+      const guess=() => {
+        stopAction(); state.guess=v; Curio.tone(420,.06,.04); drawTrack();
+        $('guess-'+v).focus({preventScroll:true}); hint(`You guessed ${v}. Tap Drop to test it.`);
+      };
+      hit.onclick=guess;
+      hit.onkeydown=e => { if(e.key==='Enter'||e.key===' ') { e.preventDefault(); guess(); } };
+      group.append(hit);
+    }
+    group.append(svgEl('text',{x:width/2,y:base+54,'text-anchor':'middle','font-size':small?11:13,'font-weight':700},'Your guess?'));
+    const n=state.held, dl=n-lo, dr=hi-n, half=dl===dr;
+    const sy=base+(h<330?65:96);
+    if(n!==lo&&n!==hi) {
+      nl.span(lo,n,{y:sy,color:dl<dr?'#0d6f7a':'#566072',label:`${dl} to ${lo}`,bold:dl<dr,dashed:half,font:small?11:15});
+      nl.span(n,hi,{y:sy,color:dr<dl?'#0d6f7a':'#566072',label:`${dr} to ${hi}`,bold:dr<dl,dashed:half,font:small?11:15});
+    }
+    const v=state.rolling?state.carValue:(state.result?state.result.target:state.held);
+    const cx=nl.x(v), cy=y(v);
+    const cw=Math.min(small?93:165,width*.3), ch=cw*.72;
+    const slope=-amp*Math.PI/state.p*Math.sin(2*Math.PI*(v-lo)/state.p);
+    const angle=state.teeter||Math.atan(slope/(width/state.p))*180/Math.PI;
+    const car=svgEl('g',{id:'held-car',transform:`translate(${cx} ${cy-6}) rotate(${angle})`});
+    car.append(svgEl('image',{href:art.car,x:-cw/2,y:-ch+9,width:cw,height:ch}));
+    car.append(svgEl('rect',{x:-cw/2,y:-ch,width:cw,height:Math.max(ch,44),fill:'transparent'}));
+    nl.draggable(car,{onMove:v => setHeld(v,false),onDrop:v => setHeld(v)});
+    group.append(car);
+    if(!state.rolling&&!state.result) {
+      group.append(svgEl('path',{d:`M${cx-12} ${cy-7}v-16h8 M${cx+12} ${cy-7}v-16h-8`,
+        fill:'none',stroke:'#ab252b','stroke-width':6,'stroke-linecap':'round'}));
+    }
+    if(!compactRule&&((half&&state.rolling)||state.result?.half)) {
+      const rw=Math.min(w*.35,330),ry=Math.max(55,top-80),sx=16-left;
+      const font=rw<260?11:14;
+      const sign=svgEl('g');
+      sign.append(svgEl('rect',{x:sx,y:ry,width:rw,height:70,rx:8,fill:'#ffd75e',stroke:'#8a651b','stroke-width':2}));
+      sign.append(svgEl('text',{x:sx+rw/2,y:ry+19,'text-anchor':'middle','font-size':font+1,'font-weight':900},'Park rule'));
+      sign.append(svgEl('text',{x:sx+rw/2,y:ry+41,'text-anchor':'middle','font-size':font},'On top, it could go either way.'));
+      sign.append(svgEl('text',{x:sx+rw/2,y:ry+60,'text-anchor':'middle','font-size':font},'Roll to the bigger number.'));
+      group.append(sign);
+    }
+    // The close hill stays large; the full ten-hill window locates it on the number line.
+    const overviewLeft=24,overviewWidth=w-48;
+    const overviewY=h<330?base+93:h<380?base+120:h<500?base+125:Math.max(base+125,h*.77);
+    const overviewHeight=h<500?12:20;
+    const overview=svgEl('g',{id:'track-window',transform:`translate(${overviewLeft} ${overviewY})`,
+      'aria-label':state.p===10?'Full tens window':'Full hundreds track'});
+    const from=state.p===10?state.window:0,to=state.p===10?state.window+100:1000;
+    const whole=NumberLine(overview,{from,to,length:overviewWidth,offset:overviewLeft,snap:state.p===10?1:10,interactive:false});
+    overview.append(svgEl('rect',{x:-10,y:-overviewHeight-8,width:overviewWidth+20,height:overviewHeight+32,
+      rx:8,fill:'#fff8e9',opacity:.94,stroke:'#ab9267'}));
+    overview.append(svgEl('rect',{x:whole.x(lo),y:-overviewHeight-5,width:whole.x(hi)-whole.x(lo),
+      height:overviewHeight+20,rx:3,fill:'#d2e8df',stroke:'#0d6f7a','stroke-width':2}));
+    let overviewPath='';
+    for(let j=0;j<=400;j++) {
+      const value=from+(to-from)*j/400;
+      const oy=-(1-Math.cos(2*Math.PI*value/state.p))/2*overviewHeight;
+      overviewPath+=(j?'L':'M')+whole.x(value).toFixed(2)+' '+oy.toFixed(2)+' ';
+    }
+    overview.append(svgEl('path',{d:overviewPath,fill:'none',stroke:'#a3262f','stroke-width':2}));
+    for(let value=from;value<=to;value+=state.p) {
+      overview.append(svgEl('text',{x:whole.x(value),y:15,'text-anchor':'middle','font-size':10},String(value)));
+    }
+    overview.append(svgEl('circle',{cx:whole.x(v),cy:-(1-Math.cos(2*Math.PI*v/state.p))/2*overviewHeight,
+      r:4,fill:'#0d6f7a',stroke:'#fff','stroke-width':1.5}));
+    overview.onpointerdown=e=> {
+      e.preventDefault();e.stopPropagation();
+      const r=svg.getBoundingClientRect();
+      setHeld(clamp(Math.round(whole.value(e.clientX-r.left-overviewLeft)/(state.p===10?1:10))*(state.p===10?1:10)));
+    };
+    svg.append(overview);
+    nl.on('tap',v => setHeld(clamp(v)));
+    $('scene').replaceChildren(svg);
+    const caption=document.createElement('div'); caption.className='scene-caption';
+    const result=state.result;
+    let text='Release the brake. Where will the car go?';
+    if(half&&state.rolling&&compactRule) text='Park rule: it could go either way. Roll to the bigger number.';
+    if(result) text=result.station?`${result.from} is a station. It stays.`:result.half?
+      `${result.from} is halfway. The rule sends it to ${result.target}.`:
+      `${result.from} rolls to ${result.target}. ${result.target} is nearer.`;
+    const chip=document.createElement('div');
+    chip.className='result-chip'+(half&&state.rolling&&compactRule?' rule-chip':'');
+    chip.textContent=text; caption.append(chip);
+    if(result) {
+      const stub=document.createElement('div'); stub.className='stub';
+      stub.textContent=`${result.from}: nearest ten ${round(result.from,10)}, nearest hundred ${round(result.from,100)}`; caption.append(stub);
+      const history=document.createElement('div'); history.className='history';
+      for(const r of state.drops) { const e=document.createElement('span'); e.textContent=`${r.from} → ${r.target}`; history.append(e); }
+      caption.append(history);
+    }
+    $('scene').append(caption);
+  }
+  function trackControls() {
+    const focused=document.activeElement.id;
+    $('held').textContent=state.held;
+    $('held').dataset.digits=String(state.held).length;
+    const step=state.p===10?10:100;
+    $('minus-large').textContent='-'+step; $('plus-large').textContent='+'+step;
+    for(const [id,d] of [['minus-large',-step],['plus-large',step],['minus-one',-1],['plus-one',1],['minus-ten',-10],['plus-ten',10]]) {
+      $(id).disabled=state.held+d<0||state.held+d>1000;
+    }
+    $('hundred-extra').hidden=state.p!==100;
+    $('pan-row').hidden=state.p!==10;
+    $('back-window').disabled=state.window===0;
+    $('ahead-window').disabled=state.window===900;
+    $('tens').setAttribute('aria-pressed',state.p===10);
+    $('hundreds').setAttribute('aria-pressed',state.p===100);
+    rescueFocus(focused,state.held===0?'plus-one':'minus-one');
+  }
+  function setHeld(n,hush=true) {
+    if(!Number.isInteger(n)||n<0||n>1000) { hint('The track ends at 1000. Type a number from 0 to 1000, then Enter.'); return; }
+    stopAction(hush); state.held=n; state.carValue=n; state.result=null; state.guess=null; state.teeter=0;
+    state.window=Math.min(900,Math.floor(n/100)*100);
+    hint(`The car is held at ${n}. Tap Drop to see which way it rolls.`);
+    trackControls(); preserveScene(drawTrack);
+  }
+  function setTrack(p) {
+    stopAction(); state.p=p; state.result=null; state.carValue=state.held; state.guess=null; state.teeter=0;
+    trackControls(); drawTrack();
+    hint(p===100?'Hundreds track. Find the hilltop, then tap Drop.':`The car is held at ${state.held}. Tap Drop.`);
+    if(p===100) sayHow('hundreds',()=>state.p===100&&state.mode==='track');
+  }
+  async function drop() {
+    stopAction(); const t=token;
+    const n=state.held,p=state.p,target=round(n,p),half=n%p===p/2,station=n%p===0;
+    state.result=null; state.rolling=true; state.carValue=n; state.teeter=0;
+    Curio.tone(240,.07,.07,'triangle');
+    hint(half?'On the top, it could go either way. The park rule sends it forward.':
+      station?'Station brakes hold the car in the valley.':'Brake open! Watch the car roll downhill.');
+    if(half) event('peak',2); else if(station) event('stays',1); else event(target<n?'rollLeft':'rollRight',2);
+    drawTrack();
+    const duration=half?2000:1000;
+    const start=performance.now();
+    await new Promise(resolve => {
+      const tick=now => {
+        if(t!==token) { resolve(); return; }
+        const elapsed=now-start, progress=Math.min(1,(elapsed-(half?1000:0))/1000);
+        state.teeter=!Curio.reduce&&half&&elapsed<1000?Math.sin(elapsed/1000*Math.PI*4)*9:0;
+        const q=Math.max(0,progress);
+        state.carValue=Curio.reduce?n:n+(target-n)*(1-Math.cos(q*Math.PI))/2;
+        drawTrack();
+        if(elapsed>=duration) { resolve(); return; }
+        frame=requestAnimationFrame(tick);
+      };
+      frame=requestAnimationFrame(tick);
+    });
+    if(t!==token) return;
+    state.rolling=false; state.teeter=0; state.carValue=target;
+    state.result={from:n,target,half,station}; state.rolls++;
+    state.drops.push({...state.result}); state.drops=state.drops.slice(-6);
+    Curio.yes(); board(); drawTrack();
+    hint(state.guess===null?'Set a new number with the arrows or keypad, then tap Drop.':
+      `You guessed ${state.guess}. It rolled to ${target}. Set a number, then tap Drop.`);
+    sayHow('setNext',()=>state.mode==='track'&&!state.rolling);
+  }
+  function cardEstimate(c) { return round(c.a,c.p)+c.op*round(c.b,c.p); }
+  function equation(c) { return `${c.a} ${c.op===1?'+':'−'} ${c.b}`; }
+  function loadLine(id,speak=true,repeat=false) {
+    stopAction(); state.lineId=id;
+    state.card=id<9?{...CARDS[id]}:id<13?{...CLERKS[id-9]}:repeat&&state.card?state.card:generateCard();
+    state.step='round'; state.roundIndex=0; state.rounds=[]; state.col=0; state.misses=0;
+    state.counts=[]; state.carried=[0,0,0]; state.entered=false; state.taken=false; state.wrongs=0;
+    $('answer').value=''; $('line-picker').value=String(id);
+    updateLine(); hint(`Round ${state.card.a} to the nearest ${state.card.p}. Tap its station.`, speak?'round':null);
+  }
+  function needsRegroup(c) {
+    const a=digits(c.a),b=digits(c.b);
+    return [0,1].some(i => c.op===1?a[i]+b[i]>=10:a[i]<b[i]);
+  }
+  function generateCard() {
+    const index=state.generated++;
+    for(let attempt=0;attempt<10000;attempt++) {
+      const op=index%2===0?1:-1;
+      const a=100+Math.floor(Math.random()*(op===1?800:901));
+      const b=op===1?100+Math.floor(Math.random()*800):100+Math.floor(Math.random()*Math.max(1,a-100));
+      const c={a,b,op,p:index%2===0?10:100,id:13,time:'More riders',story:'A new queue to work out.'};
+      if(a+op*b<0||a+op*b>1000||a<=b&&op===-1) continue;
+      if(index%3!==2&&!needsRegroup(c)) continue;
+      if(Math.abs(a+op*b-cardEstimate(c))<=c.p) return c;
+    }
+    return {...CARDS[0],id:13,time:'More riders'};
+  }
+  function roundChoice(v) {
+    if(state.step!=='round') return;
+    const c=state.card,n=state.roundIndex===0?c.a:c.b,target=round(n,c.p);
+    stopAction(false);
+    if(v!==target) {
+      state.wrongs++; Curio.tone(180,.1,.05);
+      hint(`It rolled to ${target}. Tap ${target}.`);
+      const car=$('round-car');
+      if(car&&!Curio.reduce) car.animate([{transform:'translateX(0)'},{transform:`translateX(${target>n?40:-40}px)`}],{duration:600,fill:'forwards'});
+      return;
+    }
+    const index=state.roundIndex;
+    Curio.yes(); state.rounds.push(target); state.roundIndex++;
+    if(state.roundIndex===2) {
+      state.step='estimate'; updateLine();
+      const operation=c.op===1?`Add ${state.rounds[0]} and ${state.rounds[1]}`:
+        `Subtract ${state.rounds[1]} from ${state.rounds[0]}`;
+      hint(`${n} rounds to ${target}. ${operation}, then type the estimate and tap Enter.`,
+        c.op===1?'estimate':'estimateSubtract');
+    } else {
+      updateLine(); hint(`${n} rounds to ${target}. Now round ${c.b} to the nearest ${c.p}: tap its station.`);
+    }
+    if(!Curio.reduce) {
+      const image=$('round-mini-'+index),label=$('round-label-'+index);
+      const delta=(n-target)/1000*($('stage').clientWidth*.94-40);
+      if(image&&label) {
+        label.textContent=String(n);
+        const frames=[{transform:`translateX(${delta}px)`},{transform:'translateX(0)'}];
+        const animation=image.animate(frames,{duration:650});
+        label.animate(frames,{duration:650});
+        animation.onfinish=()=>{if(label.isConnected)label.textContent=String(target);};
+      }
+    }
+  }
+  function initColumns() {
+    const c=state.card,a=digits(c.a),b=digits(c.b);
+    state.counts=c.op===1?a.map((v,i)=>v+b[i]):a;
+    state.col=0; state.entered=false; state.taken=false; state.step='columns';
+    state.carried=[0,0,0]; state.misses=0; updateLine(); columnHint(true);
+  }
+  function columnHint(first=false) {
+    const c=state.card,i=state.col,count=state.counts[i],need=digits(c.b)[i];
+    if(c.op===-1&&!state.taken) {
+      const msg=count<need?`Only ${count} ${unit(count,i)}. ${i===0&&state.counts[1]===0?'Tap Break roll, then Break strip.':
+        `Tap ${i===0?'Break strip':'Break roll'} to trade.`}`:`Tap Take away to remove ${need} ${unit(need,i)}.`;
+      hint(msg,count<need?'break':null);
+    } else if(!state.entered) {
+      const a=digits(c.a)[i],b=digits(c.b)[i];
+      hint(c.op===1?`${a} ${unit(a,i)} and ${b} ${unit(b,i)}${state.carried[i]?' plus the carried one':''}. Type how many, then Enter.`:
+        `How many ${names[i]} remain? Type it, then Enter.`, first&&c.op===1?'cols':null);
+    } else if(count>=10&&i<2) hint(`${count} ${names[i]} won't fit in one place. Tap Bundle 10.`,'bundle');
+    else hint(i<2?'This column is ready. Tap Next column.':'Type the hundreds count, then Enter.');
+  }
+  function bundle() {
+    if(state.step!=='columns'||!state.entered||state.col>=2) return;
+    const i=state.col;
+    if(state.counts[i]<10) { hint('Bundles need ten. Tap Next column.'); Curio.tone(180,.1,.05); return; }
+    stopAction(false); state.counts[i]-=10; state.counts[i+1]++; state.carried[i+1]++;
+    Curio.tone(580,.12,.06,'triangle'); updateLine();
+    $('col-'+(i+1))?.classList.add('ticket-fly'); columnHint();
+  }
+  function breakPiece(i) {
+    if(state.step!=='columns'||state.card.op!==-1||i<=state.col||i<1||state.entered) return;
+    if(state.counts[i]===0) {
+      hint(i===1&&state.counts[2]>0?'No strips here. Tap Break roll to make ten strips.':
+        'Nothing to break here. Tap Take away when this column is ready.');
+      Curio.tone(180,.1,.05);return;
+    }
+    stopAction(false);
+    const unnecessary=state.counts[state.col]>=digits(state.card.b)[state.col];
+    state.counts[i]--; state.counts[i-1]+=10; Curio.tone(320,.12,.07,'triangle'); updateLine();
+    $('col-'+(i-1))?.classList.add('ticket-fly'); columnHint();
+    if(unnecessary) hint("You didn't need to break that one. Tap Take away when the column is ready.");
+  }
+  function take() {
+    if(state.step!=='columns'||state.card.op!==-1||state.taken) return;
+    const i=state.col,need=digits(state.card.b)[i];
+    if(state.counts[i]<need) { columnHint(); Curio.tone(170,.08,.04); return; }
+    stopAction(false); state.counts[i]-=need; state.taken=true; updateLine(); columnHint(); Curio.tone(390,.08,.05);
+  }
+  function nextColumn() {
+    if(state.step!=='columns'||!state.entered||state.col>=2) return;
+    if(state.counts[state.col]>=10&&state.col<2) { columnHint(); Curio.tone(180,.1,.05); return; }
+    state.col++; state.entered=false; state.taken=false; state.misses=0;
+    updateLine(); columnHint();
+  }
+  async function finishLine() {
+    const c=state.card;
+    const sum=state.counts.reduce((n,v,i)=>n+v*10**i,0);
+    if(sum!==c.a+c.op*c.b) { hint('The ticket pieces need another look. Tap Start over.'); return; }
+    state.step='done';
+    if(c.id<9) state.completedLine.add(c.id);
+    updateLine(); board();
+    const estimate=cardEstimate(c),exact=c.a+c.op*c.b;
+    hint(`${exact} is ${Math.abs(exact-estimate)} from the estimate ${estimate}. The numbers check. Choose another card.`);
+    await lap('check');
+  }
+  function judge(sense) {
+    if(state.step!=='judge') return;
+    const c=state.card,inside=Math.abs(c.claim-cardEstimate(c))<=c.p;
+    stopAction(false);
+    if(sense!==inside) {
+      hint(inside?'It landed inside the stretch. Tap Makes sense.':'Look where it landed: outside the stretch. Tap Far off.');
+      Curio.tone(180,.1,.05);return;
+    }
+    V.hush();
+    Curio.yes();
+    if(!inside) {
+      state.step='caught'; updateLine();
+      hint(`Good catch. ${c.claim} is far from ${cardEstimate(c)}. Choose another card.`); event('caught');
+    } else if(c.sneaky) {
+      state.step='find-slip'; updateLine();
+      hint("An estimate can miss small slips. Tap the clerk's wrong column.");
+      const t=token;
+      V.say('sneaky',{hint:false,wait:true}).then(()=> {
+        if(t===token&&state.mode==='line'&&state.step==='find-slip')sayHow('slip');
+      });
+    } else {
+      state.step='done'; updateLine(); hint('The columns agree. Choose another card.'); lap('check');
+    }
+  }
+  function selectSlip(i) {
+    if(state.step!=='find-slip') return;
+    if(i!==1) { hint('That column agrees. Tap the column that forgot a carried strip.'); Curio.tone(190,.07,.04); return; }
+    if(V.playing===L.sneaky)V.dropQueued();else V.hush();
+    state.step='fix-slip'; updateLine(); hint(L.fixSlip,'fixSlip');
+    $('answer').focus({preventScroll:true});
+  }
+  function renderBin() {
+    const bin=document.createElement('div'); bin.id='bin';
+    const c=state.card;
+    const showEntries=['find-slip','fix-slip'].includes(state.step);
+    for(let i=2;i>=0;i--) {
+      const col=document.createElement('div'); col.id='col-'+i; col.className='column'+(state.step==='columns'&&i===state.col?' active':'');
+      col.innerHTML=`<div class="col-head">${names[i][0].toUpperCase()+names[i].slice(1)}</div>`;
+      if(showEntries) {
+        const b=document.createElement('button'); b.id='slip-'+i; b.className='control col-entry';
+        b.textContent=digits(c.claim)[i]; b.setAttribute('aria-label',names[i]+' column '+digits(c.claim)[i]);
+        b.onclick=()=>selectSlip(i); col.append(b);
+      } else {
+        const pieces=document.createElement('div'); pieces.className='pieces';
+        const count=state.counts[i]||0;
+        const piles=c.op===1&&!state.entered&&i>=state.col?
+          [digits(c.a)[i]+state.carried[i],digits(c.b)[i]]:[count];
+        if(i>state.col&&c.op===-1&&!state.entered) {
+          col.setAttribute('role','button'); col.tabIndex=0;
+          col.setAttribute('aria-label',i===2?'Break one roll into ten strips':'Break one strip into ten singles');
+          col.onclick=()=>breakPiece(i);
+          col.onkeydown=e=> { if(e.key==='Enter'||e.key===' ') {e.preventDefault();breakPiece(i);} };
+        }
+        for(const [pileIndex,pile] of piles.entries()) {
+          const row=document.createElement('div'); row.className='ticket-row';
+          row.style.height=(100/piles.length)+'%';
+          for(let j=0;j<pile;j++) {
+          const piece=document.createElement('div');
+          piece.className='piece'+(i===1?' strip':'');
+          if(c.op===1&&state.carried[i]&&pileIndex===0&&j>=digits(c.a)[i]) piece.classList.add('carried');
+          const rows=Math.ceil(pile/(i===1?2:4));
+          piece.style.height=`calc(${100/rows}% - 3px)`;
+          if(i===1) {
+            for(let k=0;k<10;k++) { const img=document.createElement('img'); img.src=art.ticket; img.alt=''; piece.append(img); }
+          } else { const img=document.createElement('img'); img.src=i===2?art.roll:art.ticket; img.alt=''; piece.append(img); }
+          if(i===2||state.misses>=2) {
+            const label=document.createElement('span'); label.textContent=i===2?'100':String(j+1); piece.append(label);
+          }
+          row.append(piece);
+          }
+          pieces.append(row);
+        }
+        col.append(pieces);
+        if(state.carried[i]) { const tag=document.createElement('span'); tag.className='carry-tag'; tag.textContent='+1 carried'; col.append(tag); }
+        const countEl=document.createElement('div'); countEl.className='count';
+        const unentered=state.step==='columns'&&i>=state.col&&!(i===state.col&&state.entered);
+        countEl.textContent=unentered?'?':String(count);
+        col.append(countEl);
+      }
+      bin.append(col);
+    }
+    return bin;
+  }
+  function miniTrack() {
+    const c=state.card,estimate=cardEstimate(c),p=c.p;
+    const w=$('stage').clientWidth*.94,h=$('stage').clientHeight*.18;
+    const svg=svgEl('svg',{id:'mini-track',viewBox:`0 0 ${w} ${h}`,'aria-label':'Result number line'});
+    const group=svgEl('g',{transform:`translate(20 ${h*.55})`}); svg.append(group);
+    const early=state.step==='round'||state.step==='estimate';
+    const from=early?0:Math.max(0,Math.floor((Math.min(estimate-p,c.claim??estimate)-p)/p)*p);
+    const to=early?1000:Math.min(1100,Math.max(estimate+p,c.claim??estimate)+p);
+    const line=NumberLine(group,{from,to,length:w-40,snap:1,offset:20});
+    const y=0;
+    group.append(svgEl('line',{x1:0,x2:w-40,y1:y,y2:y,stroke:'#a3262f','stroke-width':4}));
+    if(state.step!=='round'&&state.step!=='estimate') {
+      const a=Math.max(0,estimate-p),b=Math.min(1000,estimate+p);
+      group.append(svgEl('rect',{x:line.x(a),y:-18,width:line.x(b)-line.x(a),height:36,fill:'#ffd75e',opacity:.8}));
+      group.append(svgEl('text',{x:(w-40)/2,y:-24,'font-size':h<70?10:13,'text-anchor':'middle','font-weight':800},`Sensible stretch: ${a} to ${b}`));
+      line.mark(estimate,{color:'#8f5a00'});
+    }
+    for(let v=from;v<=to;v+=early?100:p) {
+      group.append(svgEl('line',{x1:line.x(v),x2:line.x(v),y1:12,y2:20,stroke:'#4e5343','stroke-width':2}));
+      group.append(svgEl('text',{x:line.x(v),y:34,'text-anchor':'middle','font-size':11},String(v)));
+    }
+    if(early) {
+      for(const [i,v] of [c.a,c.b].entries()) {
+        const x=line.x(state.rounds[i]??v);
+        group.append(svgEl('image',{id:'round-mini-'+i,href:art.car,x:x-18,y:i===0?-26:-48,width:36,height:28}));
+        group.append(svgEl('text',{id:'round-label-'+i,x,y:i===0?-9:-31,'text-anchor':'middle',
+          'font-size':10,'font-weight':900},String(state.rounds[i]??v)));
+      }
+    }
+    if(['judge','caught','find-slip','fix-slip','done'].includes(state.step)) {
+      const value=state.step==='done'?c.a+c.op*c.b:(c.claim??c.a+c.op*c.b);
+      group.append(svgEl('image',{href:art.car,x:line.x(value)-24,y:-27,width:48,height:38}));
+      group.append(svgEl('text',{x:line.x(value),y:4,'text-anchor':'middle','font-weight':900,'font-size':11},String(value)));
+    }
+    return svg;
+  }
+  function drawLine() {
+    const c=state.card;
+    const content=document.createDocumentFragment();
+    const strip=document.createElement('div'); strip.className='card-strip';
+    const context=c.claim===undefined?'Morning queue':state.step==='done'?'Original clerk claim':'Clerk claim';
+    strip.innerHTML=`<small>${c.time} · ${context} · nearest ${c.p}</small>`+
+      `<b>${equation(c)}${c.claim!==undefined?' = '+c.claim:''}</b><p>${c.story}</p>`;
+    content.append(strip);
+    if(state.step==='round') {
+      const n=state.roundIndex===0?c.a:c.b,lo=Math.floor(n/c.p)*c.p,hi=Math.min(1000,lo+c.p);
+      const div=document.createElement('div'); div.id='round-scene';
+      div.innerHTML=`<p class="round-prompt">${n} → nearest ${c.p}</p><img id="round-car" class="round-car" src="${art.car}" alt="Car waiting to round">`;
+      const choices=document.createElement('div'); choices.className='station-choices';
+      for(const value of [...new Set([lo,hi])]) {
+        const b=document.createElement('button'); b.className='station-choice'; b.id='station-'+value;
+        b.innerHTML=`<img src="${art.station}" alt=""><b>${value}</b>`;
+        b.onclick=()=>roundChoice(value); choices.append(b);
+      }
+      div.append(choices); content.append(div);
+    } else if(['columns','find-slip','fix-slip'].includes(state.step)) content.append(renderBin());
+    else if(c.claim!==undefined) {
+      const booth=document.createElement('img'); booth.className='booth'; booth.src=art.booth; booth.alt='Ticket booth'; content.append(booth);
+      const board=document.createElement('div'); board.className='booth-sum';
+      board.textContent=`${equation(c)} = ${state.step==='done'?c.a+c.op*c.b:c.claim}`; content.append(board);
+      const result=document.createElement('div'); result.className='clerk-result'; result.textContent=
+        state.step==='done'?`${equation(c)} = ${c.a+c.op*c.b}`:`Clerk says ${c.claim}`; content.append(result);
+    } else {
+      const result=document.createElement('div'); result.className='clerk-result';
+      result.textContent=state.step==='estimate'?`${state.rounds[0]} ${c.op===1?'+':'−'} ${state.rounds[1]} = ?`:
+        `${equation(c)} = ${c.a+c.op*c.b}`; content.append(result);
+    }
+    content.append(miniTrack()); $('scene').replaceChildren(content);
+  }
+  function updateLine() {
+    const focused=document.activeElement.id;
+    const s=state.step,c=state.card;
+    const columns=s==='columns',add=c.op===1;
+    $('line-step').textContent=s==='round'?`1 · ROUND ${state.roundIndex+1} OF 2`:s==='estimate'?'2 · ESTIMATE':
+      columns?`3 · EXACT: ${names[state.col].toUpperCase()}`:s==='judge'?'3 · CHECK THE CLERK':s==='done'?'RIDE CHECK ✓':'CHECK THE COLUMNS';
+    $('bundle').hidden=!(columns&&state.entered&&state.col<2&&(add||state.counts[state.col]>=10));
+    $('take').hidden=!(columns&&!add&&!state.taken);
+    $('break-ten').hidden=!(columns&&!add&&state.col===0&&!state.entered);
+    $('break-hundred').hidden=!(columns&&!add&&state.col<2&&!state.entered);
+    $('next').hidden=!(columns&&state.entered&&state.col<2);
+    $('judge').hidden=s!=='judge';
+    preserveScene(drawLine);
+    const fallback=s==='judge'?'sense':s==='round'?$('round-scene').querySelector('button')?.id:'answer';
+    rescueFocus(focused,fallback);
+  }
+  async function lap(line) {
+    const t=token;
+    const status=await V.say(line,{hint:false,wait:true,valid:()=>t===token});
+    if(t!==token||status==='dropped') return;
+    state.lap=true; state.lapProgress=0; $('lap').hidden=false;
+    const img=$('lap').querySelector('img'),start=performance.now();
+    img.hidden=false;
+    const tick=now => {
+      if(t!==token) return;
+      const p=Math.min(1,(now-start)/4000); state.lapProgress=p;
+      img.style.left=Curio.reduce?'0px':`${p*Math.max(0,$('lap').clientWidth-130)}px`;
+      if(p<1) frame=requestAnimationFrame(tick); else { state.lap=false; img.hidden=true; }
+    };
+    frame=requestAnimationFrame(tick);
+  }
+  function loadTrain(id) {
+    stopAction(); state.trainId=id; state.trainStep=id===-1?'explore':'tens';
+    if(id>=0) [state.n,state.cars]=id<7?TRAINS[id]:[2+Math.floor(Math.random()*8),2+Math.floor(Math.random()*8)];
+    $('answer').value=''; $('train-picker').value=String(id); state.wrongs=0;
+    updateTrains(); hint(id===-1?'Tap + or − to build trains. Each car holds ten riders.':L.tens,id===-1?null:'tens');
+  }
+  function trainChange(key,d) {
+    if(state.trainId!==-1) return;
+    stopAction(false);
+    state[key]=Math.max(1,Math.min(9,state[key]+d)); updateTrains();
+    Curio.tone(300+state[key]*35,.07,.04); hint('Build another array with + or −, or choose a Train card.');
+  }
+  function updateTrains() {
+    const focused=document.activeElement.id;
+    const active=state.trainId!==-1,ready=state.trainStep==='done'||!active;
+    $('trains-panel').dataset.card=String(active);
+    $('n-count').textContent=state.n; $('c-count').textContent=state.cars;
+    for(const [id,key,d] of [['n-minus','n',-1],['n-plus','n',1],['c-minus','cars',-1],['c-plus','cars',1]]) {
+      $(id).disabled=active||state[key]+d<1||state[key]+d>9;
+    }
+    const total=state.n*state.cars;
+    const trainsWord=state.n===1?'train':'trains';
+    $('chain').textContent=`${state.n} ${trainsWord} × ${state.cars} ${unit(state.cars,1)} = `+
+      `${ready||state.trainStep!=='tens'?total:'?'} ${unit(total,1)} = ${ready||state.trainStep==='capacity'?total*10:'?'} seats`;
+    $('capacity').hidden=state.trainStep!=='capacity';
+    const frag=document.createDocumentFragment();
+    const strip=document.createElement('div'); strip.className='card-strip';
+    const title=active?(state.trainId>=7?'More trains':'Train '+(state.trainId+1)):'Train yard · explore';
+    strip.innerHTML=`<small>${title}</small><b>${state.n} ${trainsWord} of ${state.cars*10} seats</b>`;
+    if([5,6].includes(state.trainId)) strip.innerHTML+='<p>Will they carry the 278 riders?</p>';
+    frag.append(strip);
+    const array=document.createElement('div'); array.className='array'; array.id='train-array';
+    const ratio=matchMedia('(max-width:599px)').matches ? .53 : matchMedia('(max-height:650px)').matches ? .54 : .59;
+    const rowH=Math.min(85,($('stage').clientHeight*ratio-(state.n-1)*4)/state.n);
+    array.style.gridTemplateRows=`repeat(${state.n},${rowH}px)`;
+    for(let r=0;r<state.n;r++) {
+      const row=document.createElement('div'); row.className='train-row';
+      row.style.gridTemplateColumns=`repeat(${state.cars},minmax(0,1fr))`;
+      for(let c=0;c<state.cars;c++) {
+        const car=document.createElement('div');
+        car.className='train-car'+(c===0?' lead':'')+((r*state.cars+c+1)%10===0?' tenth':'');
+        car.innerHTML=`<img src="${c===0?art.lead:art.car}" alt="Car with ten seats"><b>10</b>`; row.append(car);
+      }
+      array.append(row);
+    }
+    frag.append(array);
+    const label=document.createElement('div'); label.className='array-label';
+    label.textContent=ready?`${total} ${unit(total,1)} = ${total*10} seats`:state.trainStep==='tens'?'Count the cars. How many tens?':
+      state.trainStep==='capacity'?'278 riders are waiting. Enough seats?':`${total} tens = ? seats`;
+    frag.append(label); preserveScene(()=>$('scene').replaceChildren(frag));
+    const opposite={'n-plus':'n-minus','n-minus':'n-plus','c-plus':'c-minus','c-minus':'c-plus'};
+    rescueFocus(focused,active?'train-picker':opposite[focused]);
+  }
+  function finishTrain() {
+    state.trainStep='done'; if(state.trainId<7) state.completedTrains.add(state.trainId);
+    updateTrains(); board();
+    const seats=state.n*state.cars*10;
+    hint([5,6].includes(state.trainId)?seats>=278?`${seats} seats: enough, with ${seats-278} spare. Choose another Train card.`:
+      `${seats} seats: ${278-seats} riders still wait. Choose another Train card.`:'All aboard! Choose another Train card, or explore.');
+    lap('trainsDone');
+  }
+  function capacityChoice(enough) {
+    if(state.trainStep!=='capacity') return;
+    if(enough!==(state.n*state.cars*10>=278)) {
+      hint('Compare the seats with 278 riders. Tap Enough or Not enough.');Curio.tone(180,.1,.05);return;
+    }
+    finishTrain();
+  }
+  function submit() {
+    const text=$('answer').value;
+    if(!/^\d{1,4}$/.test(text)) return;
+    const value=Number(text); $('answer').value='';
+    if(state.mode==='track') { setHeld(value); return; }
+    stopAction(false);
+    if(state.mode==='line') {
+      const c=state.card;
+      if(state.step==='estimate') {
+        if(value!==cardEstimate(c)) {
+          hint(`${c.op===1?'Add':'Subtract'} the stations: ${state.rounds[0]} `+
+            `${c.op===1?'and':'minus'} ${state.rounds[1]}. Type it, then Enter.`);
+          Curio.tone(180,.1,.05);
+          return;
+        }
+        Curio.yes();
+        if(c.claim!==undefined) { state.step='judge'; updateLine(); hint(L.clerk,'clerk'); }
+        else initColumns();
+      } else if(state.step==='columns') {
+        if(c.op===-1&&!state.taken) { columnHint(); return; }
+        if(value!==state.counts[state.col]) {
+          state.misses++; Curio.tone(180,.08,.04); updateLine();
+          hint(`Not quite. Count the ${names[state.col]} again. Type it, then Enter.`); return;
+        }
+        state.entered=true; Curio.yes();
+        if(state.col===2) finishLine(); else { updateLine(); columnHint(); }
+      } else if(state.step==='fix-slip') {
+        if(value!==9) {
+          hint('Count the tens, including the carried strip. Type the corrected tens digit, then Enter.');
+          Curio.tone(180,.1,.05);return;
+        }
+        state.step='done'; updateLine(); hint('391. The carried strip makes nine tens. The columns agree. Choose another card.'); lap('check');
+      }
+    } else if(state.trainId!==-1) {
+      const total=state.n*state.cars;
+      if(state.trainStep==='tens') {
+        if(value===total) { state.trainStep='seats'; updateTrains(); hint(L.seats,'seats'); Curio.yes(); }
+        else trainWrong(value);
+      } else if(state.trainStep==='seats') {
+        if(value===total*10) {
+          if([5,6].includes(state.trainId)) {
+            state.trainStep='capacity'; updateTrains(); hint(`${value} seats for 278 riders. Tap Enough or Not enough.`,'capacity');
+          } else finishTrain();
+        } else trainWrong(value);
+      }
+    } else hint('Choose a Train card in the picker to enter an answer.');
+  }
+  function trainWrong(value) {
+    const total=state.n*state.cars;
+    state.wrongs++;
+    if(state.trainStep==='seats'&&value===total) hint(`That's the cars. Each car is ten seats: ${total} tens is how many? Type seats, then Enter.`);
+    else if(state.trainStep==='seats'&&value===total*100) hint(`Too big. ${total} tens is ${Math.floor(total/10)} ${unit(Math.floor(total/10),2)} `+
+      `and ${total%10} ${unit(total%10,1)}. Type seats, then Enter.`);
+    else if(value===state.n+state.cars*10) hint(`That adds them. ${state.n} equal trains is ${state.n} times. Count the cars, then type it.`);
+    else hint('Count the cars in one train, then the trains. Type your answer, then Enter.');
+    if(state.wrongs<=2) event('again');
+    Curio.tone(180,.08,.04);
+  }
+  function setMode(mode) {
+    stopAction(); state.mode=mode; $('answer').value='';
+    setKeypad(false); $('stage').dataset.mode=mode;
+    for(const m of ['track','line','trains']) {
+      $('m-'+m).setAttribute('aria-pressed',m===mode); $(m+'-panel').hidden=m!==mode;
+    }
+    if(mode==='track') { trackControls(); drawTrack(); hint(`The car is held at ${state.held}. Tap Drop to see which way it rolls.`); }
+    else if(mode==='line') loadLine(state.lineId,false);
+    else {
+      updateTrains();
+      const step=state.trainStep;
+      const key=step==='tens'?'tens':step==='seats'?'seats':step==='capacity'?'capacity':step==='done'?'chooseTrain':null;
+      hint(key?L[key]:'Tap + or − to build trains. Each car holds ten riders.');
+      if(key) sayHow(key);
+    }
+    V.welcome();
+    if(mode==='line') sayHow('round',()=>state.mode==='line'&&state.step==='round');
+  }
+  function reset() {
+    stopAction();
+    if(state.mode==='track') { state.p=10; setHeld(47); }
+    else if(state.mode==='line') loadLine(state.lineId,true,true);
+    else { state.n=6; state.cars=4; loadTrain(-1); }
+  }
+  for(const mode of ['track','line','trains']) $('m-'+mode).onclick=()=>setMode(mode);
+  $('drop').onclick=drop;
+  for(const [id,d] of [['minus-one',-1],['plus-one',1],['minus-ten',-10],['plus-ten',10]]) $(id).onclick=()=>setHeld(clamp(state.held+d));
+  $('minus-large').onclick=()=>setHeld(clamp(state.held-(state.p===10?10:100)));
+  $('plus-large').onclick=()=>setHeld(clamp(state.held+(state.p===10?10:100)));
+  $('tens').onclick=()=>setTrack(10); $('hundreds').onclick=()=>setTrack(100);
+  $('back-window').onclick=()=>setHeld(state.held-100);
+  $('ahead-window').onclick=()=>setHeld(Math.min(1000,state.held+100));
+  $('tricky').onclick=()=> {
+    state.tricky=(state.tricky+1)%tricky.length;
+    const [n,p]=tricky[state.tricky],changed=state.p!==p;
+    state.p=p;setHeld(n);
+    if(changed&&p===100)sayHow('hundreds',()=>state.mode==='track'&&state.p===100);
+  };
+  $('bundle').onclick=bundle; $('break-ten').onclick=()=>breakPiece(1); $('break-hundred').onclick=()=>breakPiece(2);
+  $('take').onclick=take; $('next').onclick=nextColumn; $('sense').onclick=()=>judge(true); $('far').onclick=()=>judge(false);
+  $('n-minus').onclick=()=>trainChange('n',-1); $('n-plus').onclick=()=>trainChange('n',1);
+  $('c-minus').onclick=()=>trainChange('cars',-1); $('c-plus').onclick=()=>trainChange('cars',1);
+  $('enough').onclick=()=>capacityChoice(true); $('not-enough').onclick=()=>capacityChoice(false);
+  $('line-picker').innerHTML=[...CARDS,...CLERKS].map(c=>`<option value="${c.id}">${c.id<9?'Card '+(c.id+1):c.time}</option>`).join('')+
+    '<option value="13">More riders</option>';
+  $('line-picker').onchange=e=>loadLine(Number(e.target.value));
+  $('train-picker').innerHTML='<option value="-1">Explore trains</option>'+TRAINS.map((_,i)=>`<option value="${i}">Train ${i+1}</option>`).join('')+
+    '<option value="7">More trains</option>';
+  $('train-picker').onchange=e=>loadTrain(Number(e.target.value));
+  const keypad=['1','2','3','4','5','6','7','8','9','0','Back','Enter'];
+  for(const key of keypad) {
+    const b=document.createElement('button'); b.textContent=key; b.id='key-'+key.toLowerCase();
+    if(key==='Enter') b.className='enter'; if(key==='Back') b.className='back';
+    b.onclick=()=> {
+      if(key==='Enter') { setKeypad(false); submit(); }
+      else if(key==='Back') $('answer').value=$('answer').value.slice(0,-1);
+      else if($('answer').value.length<4) $('answer').value+=key;
+      Curio.tone(410,.025,.025);
+    };
+    $('keypad').append(b);
+  }
+  const closeKeys=document.createElement('button');
+  closeKeys.id='close-keys'; closeKeys.className='keypad-close'; closeKeys.textContent='Close keys';
+  closeKeys.onclick=()=>setKeypad(false);
+  $('keypad').append(closeKeys);
+  $('answer').oninput=()=> { $('answer').value=$('answer').value.replace(/\D/g,'').slice(0,4); };
+  $('answer').onkeydown=e=> { if(e.key==='Enter') { e.preventDefault(); submit(); } };
+  $('keys-toggle').onclick=()=> {
+    setKeypad(!$('keypad').classList.contains('open'));
+  };
+  $('reset').onclick=reset;
+  document.addEventListener('click',()=> { if(state.lap) stopAction(false); },true);
+  document.addEventListener('keydown',e=> {
+    if(e.key==='Escape') setKeypad(false);
+  });
+  document.querySelector('main').prepend($('panel'));
+  $('pan-row').after($('hundred-extra'));
+  Curio.onSound(on=> { $('sound').textContent='Sound'; $('sound').title=on?'Sound on':'Sound off'; });
+  Curio.init({clips:"voice:*",rate:.95});
+  Curio.onMotion(()=> {
+    if(state.mode==='track') drawTrack();
+    else if(state.mode==='line'&&state.card)preserveScene(drawLine);
+  });
+  new ResizeObserver(()=> {
+    if($('keypad').classList.contains('open')&&!$('keys-toggle').getClientRects().length) setKeypad(false);
+    if(state.mode==='track') drawTrack(); else if(state.mode==='line'&&state.card) drawLine(); else if(state.mode==='trains') updateTrains();
+  }).observe($('stage'));
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,V,round,setHeld,setTrack,loadLine,loadTrain,
+    roundChoice,submit,bundle,breakPiece,take,nextColumn,judge,selectSlip,capacityChoice,drop,generateCard,
+    get cardData(){return CARDS;},get clerkData(){return CLERKS;}};
+  board(); setMode('track');
+})();
+</script>
+</body>
+</html>

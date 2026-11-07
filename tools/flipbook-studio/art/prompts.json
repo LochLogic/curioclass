@@ -1,0 +1,29 @@
+{
+  "house_style": "Painterly realistic editorial illustration for a middle-school animator's workshop. Slate gray-blue painted wood, warm cream paper, vermilion pencil accents, delicate gouache and colored-pencil texture, believable material details. Soft evening light comes from the upper left. All surfaces are blank. No text, letters, numbers or logos.",
+  "assets": [
+    {
+      "name": "fb-desk",
+      "prompt": "An animator's light table seen exactly straight from above. A slate gray-blue painted wooden frame surrounds a large softly glowing frosted white glass panel. The glass is an unobstructed rectangle occupying x=12 to 88 percent and y=10 to 88 percent of the image. A short metal peg bar with three pegs sits along the bottom edge below the glass. Two graphite pencils, a red pencil and delicate curled pencil shavings rest on the far left and right wooden frame, entirely outside the glass. Small screws, worn painted wood edges, subtle wood grain, soft shadows. The middle is luminous blank glass with plenty of room for a digital sheet of paper. Richly detailed, inviting real artist's equipment, soft evening light.",
+      "aspect": "16:10",
+      "width": 1600,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "fb-paper",
+      "prompt": "Extreme close-up of plain warm cream sketchbook paper. Fine natural paper grain fills the whole square frame, softly and evenly lit, almost uniform pale cream near #fbf6ea, with very subtle tiny fibers and delicate tooth. Flat full-frame seamless material texture. This is the paper material itself, viewed close enough that no page edges or other objects are visible.",
+      "aspect": "1:1",
+      "width": 640,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    }
+  ]
+}

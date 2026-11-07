@@ -1,0 +1,259 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "rivals-finished",
+      "steps": [
+        {
+          "click": "#autoplay"
+        },
+        {
+          "until": "__tool.state.runs.Rivals.history.length === 8",
+          "max": 12000
+        }
+      ],
+      "keep": [
+        "#next",
+        "#total-value"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "reset-confirm",
+      "steps": [
+        {
+          "click": "#autoplay"
+        },
+        {
+          "until": "__tool.state.runs.Rivals.history.length === 8",
+          "max": 12000
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#reset-yes",
+        "#reset-no"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "compare-evidence",
+      "steps": [
+        {
+          "click": "#m-compare"
+        },
+        {
+          "click": "#finish-rivals"
+        },
+        {
+          "click": "#finish-buyout"
+        },
+        {
+          "click": "[data-rating='rivals'][data-value='0']"
+        },
+        {
+          "click": "[data-rating='buyout'][data-value='2']"
+        },
+        {
+          "click": "[data-rating='buyers'][data-value='0']"
+        },
+        {
+          "click": "#switch-test"
+        }
+      ],
+      "keep": [
+        "#switch-test",
+        "#switch-result"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "cap-low",
+      "steps": [
+        {
+          "click": "#m-regulator"
+        },
+        {
+          "click": "#remedy-3"
+        },
+        {
+          "click": "#view-buyers"
+        }
+      ],
+      "keep": [
+        "#cap",
+        "#ledger"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "common-everyone",
+      "steps": [
+        {
+          "click": "#m-regulator"
+        },
+        {
+          "click": "#remedy-4"
+        },
+        {
+          "click": "#view-everyone"
+        }
+      ],
+      "keep": [
+        "#view-everyone",
+        "#rank"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "memo-reasons",
+      "steps": [
+        {
+          "click": "#m-regulator"
+        },
+        {
+          "click": "#tab-memo"
+        }
+      ],
+      "keep": [
+        "#reason-chips",
+        "#first-remedy",
+        "#second-remedy"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "memo-fail",
+      "steps": [
+        {
+          "click": "#m-regulator"
+        },
+        {
+          "click": "#tab-memo"
+        },
+        {
+          "click": "[data-memo-step='2']"
+        },
+        {
+          "click": "#check-memo"
+        }
+      ],
+      "keep": [
+        "#check-memo",
+        "#memo-result"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "real-case",
+      "steps": [
+        {
+          "click": "#m-regulator"
+        },
+        {
+          "click": "#remedy-2"
+        },
+        {
+          "click": "#case-toggle"
+        }
+      ],
+      "keep": [
+        "#case-card"
+      ],
+      "sizes": [
+        "680x425"
+      ]
+    },
+    {
+      "name": "shared-launch",
+      "steps": [
+        {
+          "click": "#next",
+          "times": 7,
+          "gap": 2
+        }
+      ],
+      "keep": [
+        "#next",
+        "#main-shelf"
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "memo-letter-padding",
+      "steps": [
+        {
+          "click": "#m-regulator"
+        },
+        {
+          "click": "#tab-memo"
+        },
+        {
+          "click": "[data-memo-step=\"2\"]"
+        },
+        {
+          "js": "const e=document.getElementById(\"memo-text\");e.value=\"a b c d e f g h a b c d\";e.dispatchEvent(new Event(\"input\",{bubbles:true}));"
+        },
+        {
+          "click": "#check-memo"
+        }
+      ],
+      "keep": [
+        "#memo-result",
+        "#check-memo"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "maximum-evidence",
+      "steps": [
+        {
+          "js": "for(const id of ['m-compare','finish-rivals','finish-buyout'])document.getElementById(id).click();for(const [g,v] of [['rivals',1],['buyout',2],['buyers',0]])document.querySelector('[data-rating=\"'+g+'\"][data-value=\"'+v+'\"]').click();document.getElementById('switch-test').click();for(const k of ['price','served','gain'])document.querySelector('[data-measure=\"'+k+'\"]').click();for(const id of ['m-regulator','remedy-1','remedy-4','view-buyers','view-everyone','tab-memo'])document.getElementById(id).click();const e=document.getElementById('first-remedy');e.value='1';e.dispatchEvent(new Event('change',{bubbles:true}));document.querySelector('[data-memo-step=\"1\"]').click();"
+        }
+      ],
+      "keep": [
+        "#evidence-chips"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

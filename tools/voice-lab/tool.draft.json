@@ -1,0 +1,30 @@
+{
+  "id": "voice-lab",
+  "stage": "built",
+  "curiosity": true,
+  "plate": 3,
+  "status": "beta",
+  "hook": "Say ahhh and see the sound.",
+  "outcome": "Inspect real frequency, amplitude, harmonics and vowel resonances with a live sound analyser.",
+  "driver": "students or teacher",
+  "minutes": "Open ended",
+  "modes": [],
+  "grades_label": "Grades 1-12, depth at 8-12",
+  "sources": [
+    "Peterson and Barney (1952), JASA 24:175-184, https://doi.org/10.1121/1.1906875. Nine sets of three vowel-formant averages. Factual numerical values only; no copyrighted prose or graphics reproduced.",
+    "W3C Web Audio specification, https://www.w3.org/TR/webaudio/. AnalyserNode FFT and Blackman window. W3C Software and Document licence (2023), https://www.w3.org/copyright/software-license-2023/. API used, prose not copied.",
+    "de Cheveigne and Kawahara (2002), YIN, https://doi.org/10.1121/1.1458024. Independently implemented algorithm, no third-party code copied.",
+    "Fletcher and Rossing, The Physics of Musical Instruments (1998). Harmonic principles; copyrighted reference, original illustrative synthesis recipes rather than a measured dataset.",
+    "UNSW Music Acoustics, https://phys.unsw.edu.au/music/clarinet/index.html. Clarinet harmonic principles, copyrighted reference; no excerpts or recordings copied.",
+    "Ladefoged and Johnson, A Course in Phonetics. Whisper and formant principles, copyrighted reference; no excerpts reproduced.",
+    "Jongman, Wayland and Wong (2000), JASA 108:1252. Sibilant spectral principle, copyrighted reference; no excerpts reproduced.",
+    "ISO 16:1975, https://www.iso.org/standard/3601.html. A4 = 440 Hz factual reference frequency only; equal-tempered note arithmetic independently implemented. Copyrighted publication, no excerpts reproduced.",
+    "Praat manual, https://praat.org/manual/Sound__To_Formant__burg____.html. LPC, pre-emphasis and speaker-dependent limitations. Copyrighted reference; no software or prose copied.",
+    "Numerical formants corroborated against Iseli, Shue and Alwan (2007), Table I, https://www.ee.ucla.edu/~spapl/paper/Iseli_JASA_07.pdf. Copyright ASA, no open reuse licence claimed. Facts checked only, no figures, prose or recordings bundled. All other papers/books cited above are copyrighted references with no open-content licence claimed; synthesis is original.",
+    "Original synthesized audio and signal-processing code: MIT. Original explanatory Manual: CC BY 4.0. No external audio, images, fonts, libraries or datasets bundled.",
+    "UNSW Music Acoustics: https://www.animations.physics.unsw.edu.au/jw/dB.htm (amplitude and squared-power ratios), https://phys.unsw.edu.au/jw/musFAQ.html (equal temperament and periodicity), https://phys.unsw.edu.au/music/flute/modernC/C4.html (C-foot flute range). Checked 2026-11-06. Copyright UNSW, https://www.unsw.edu.au/copyright-disclaimer. Facts checked only; no recordings, graphics, passages or datasets copied.",
+    "OpenStax, Moebs, Ling and Sanny, University Physics Volume 1 section 17.3, https://openstax.org/books/university-physics-volume-1/pages/17-3-sound-intensity. Checked 2026-11-06: current source labels CC BY-NC-SA 4.0. Independent factual corroboration of squared-pressure intensity only. No source prose, graphics or datasets copied or bundled."
+  ],
+  "third_party": [],
+  "updated": "2026-11-06"
+}

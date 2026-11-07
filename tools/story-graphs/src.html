@@ -1,0 +1,1685 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Story Graphs · Read the shape. Tell the story. · Curio Class</title>
+<meta name="description" content="Match stories to graphs, sketch your own, and interpret linear models. Grade 8 math. Works offline.">
+<!--
+Story Graphs, Curio Class. Students, Grade 8, 8.F.B.4 and 8.F.B.5.
+From kit/starter/src.html. kit:curio and kit:graphing remain unchanged.
+Sources: Common Core Grade 8 Functions; OpenStax Physics 2.3, Calculus 4.1,
+University Physics 3.5, Elementary Algebra 4.5. Invented stories and quantities.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. One offline file, no network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#fdf9f1; --panel:#fff; --ink:#1e2433; --muted:#5a6170; --line:#d5c9b8;
+  --focus:#c2410c; --brand:#5b2a86; --btn:#4a2270; --btn-line:#9374b3; --head-ink:#fff;
+  --gr-1:#1f3a8a; --gr-2:#b45309; --gr-grid:#e7dfd2; --gr-grid-major:#d8cfbf;
+  --gr-axis:#706658; --gr-text:#514b43; --ok:#166534; --wrong:#b42318;
+}
+body { height:100dvh; min-height:0; overflow:hidden; }
+header { padding:10px 18px; gap:8px; border-bottom:3px solid var(--ink); }
+h1 { font-size:28px; letter-spacing:-1px; }
+h1 small { font-size:13px; letter-spacing:0; }
+.seg { border-radius:9px; border-color:#b79acb; }
+.seg button,.icon-btn { min-height:44px; font-size:14px; padding:0 13px; }
+.seg button[aria-pressed=true] { background:#ffdf80; color:#33233e; }
+.icon-btn { border-radius:8px; }
+main { grid-template-columns:minmax(0,1fr) 338px; overflow:hidden; }
+.stage { min-height:0; padding:18px 20px 16px; display:flex; flex-direction:column; gap:12px;
+  background:radial-gradient(#bfae9526 .8px,transparent .8px) 0 0/7px 7px,var(--paper); }
+.stage::before { content:''; width:38px; height:9px; position:absolute; top:7px; left:22px;
+  background:repeating-linear-gradient(90deg,#aba291 0 3px,transparent 3px 12px); opacity:.7; }
+.chapter { display:flex; align-items:baseline; justify-content:space-between; gap:8px; }
+.chapter h2 { margin:0; font:800 23px 'Trebuchet MS',sans-serif; }
+.eyebrow { font-size:11px; font-weight:800; color:var(--brand); letter-spacing:1.1px; text-transform:uppercase; }
+.story-area { display:flex; gap:14px; align-items:center; min-height:0; flex:none; }
+.comic { display:grid; grid-template-columns:repeat(3,1fr); gap:7px; flex:1 1 60%; max-width:650px; }
+.comic figure { margin:0; aspect-ratio:4/3; min-width:0; border:2px solid var(--ink); overflow:hidden;
+  box-shadow:3px 4px 0 #1e243326; transform:rotate(-.4deg); background:#eaddc5; }
+.comic figure:nth-child(2) { transform:rotate(.7deg); }
+.comic img { width:100%; height:100%; object-fit:cover; }
+.story-text { flex:1 1 35%; font-size:16px; line-height:1.45; }
+.story-text p { margin:0 0 8px; padding:2px 4px; border-radius:4px; }
+.story-text p:last-child { margin-bottom:0; }
+.story-text .lit,.compare-row.lit { background:#ffefb7; box-shadow:inset 3px 0 #5b2a86; }
+.story-text [tabindex] { cursor:pointer; }
+.cards { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); grid-template-rows:minmax(0,1fr);
+  gap:12px; flex:1; min-height:0; }
+.graph-card { padding:0; border:2px solid var(--ink); border-radius:5px; background:#fffdf7; position:relative;
+  display:flex; flex-direction:column; box-shadow:4px 5px 0 #1e243323; min-height:44px; overflow:hidden; }
+.graph-card .card-label { text-align:left; padding:7px 10px; font-size:13px; font-weight:800; border-bottom:1px solid var(--line); }
+.graph-card svg { flex:1; width:100%; height:100%; min-height:0; display:block; }
+.graph-card[aria-pressed=true] { outline:4px solid var(--brand); outline-offset:2px; background:#f5eefa; }
+.graph-card .verdict { position:absolute; right:8px; top:6px; font-size:22px; font-weight:900; }
+.readback { font-size:13px; padding:8px 10px; margin:0; border-top:1px solid var(--line); background:#f3ecfa; }
+.readback:empty { display:none; }
+.plane-wrap { flex:1; min-height:0; border:2px solid var(--ink); background:#fffdf8; border-radius:5px;
+  box-shadow:5px 5px 0 #1e24331c; position:relative; overflow:hidden; }
+.plane-wrap svg { width:100%; height:100%; display:block; touch-action:none; }
+.plane-wrap:focus-within { border-color:var(--focus); }
+.piece-dot { cursor:pointer; }
+.piece-dot circle { fill:#fff; stroke:var(--brand); stroke-width:2; }
+.piece-dot[aria-pressed=true] circle { fill:#ffdf80; stroke-width:3; }
+.piece-dot.linked circle { fill:#ffdf80; stroke:var(--focus); stroke-width:4; }
+.piece-dot text { font-size:14px; font-weight:800; fill:var(--ink); text-anchor:middle; dominant-baseline:middle; pointer-events:none; }
+.badge { font-size:12px; fill:var(--ink); font-weight:650; paint-order:stroke; stroke:#fffdf8; stroke-width:5px; }
+.good { color:var(--ok); }
+.bad { color:var(--wrong); }
+.scene-banner { width:55%; max-height:150px; aspect-ratio:4/1; object-fit:cover; border:2px solid var(--ink); border-radius:4px; }
+.tag-step .comic { max-width:440px; }
+.tag-step .comic figure { max-height:105px; }
+.tag-step .story-text { font-size:14px; }
+.compare { flex:none; max-height:210px; overflow:auto; font-size:13px; border:1px solid var(--line); background:#fff; }
+.compare-head,.compare-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:7px 10px; }
+.compare-head { background:#eee5f4; font-weight:800; }
+.compare-row { border-top:1px solid var(--line); }
+.compare-row p { margin:0; line-height:1.35; }
+.compare-count { padding:6px 10px; margin:0; font-weight:700; }
+.panel { padding:18px; gap:12px; border-left:3px solid var(--ink); background:#efe6f5; overflow:hidden; }
+.actions { display:flex; flex-direction:column; gap:8px; order:0; }
+.action-row { display:flex; gap:7px; align-items:center; }
+button.control { min-height:44px; padding:6px 9px; border:2px solid #a894b6; border-radius:7px; background:#fffdf9;
+  font-size:14px; font-weight:750; line-height:1.15; }
+button.control.primary { background:var(--btn); border-color:var(--btn); color:#fff; box-shadow:0 3px 0 #30133f; }
+button:disabled { opacity:.42; cursor:default; }
+button.control[aria-pressed=true] { background:#ffdf80; border-color:var(--brand); }
+.action-row > button { flex:1; }
+.tag-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }
+.tag-grid button { font-size:12px; }
+.tag-icon { display:block; height:15px; font-size:17px; line-height:15px; margin-bottom:3px; }
+.chip-ghost { position:fixed; z-index:100; pointer-events:none; transform:translate(-50%,-50%);
+  min-width:80px; min-height:44px; padding:12px; text-align:center; border:2px solid var(--brand);
+  border-radius:7px; background:#ffdf80; color:var(--ink); box-shadow:4px 4px 0 #1e243344;
+  font-size:13px; font-weight:800; }
+.piece-counter { flex:2; text-align:center; font-size:13px; font-weight:800; white-space:nowrap; }
+.bubble-area { display:flex; align-items:center; gap:10px; }
+.lucia { width:72px; height:91px; object-fit:contain; object-position:top; flex:none; animation:bob 4s ease-in-out infinite; }
+@keyframes bob { 50% { transform:translateY(-3px) rotate(1deg); } }
+.calm .lucia { animation:none; }
+.bubble { margin:0; background:#fff; border:2px solid var(--ink); border-radius:15px 15px 15px 1px;
+  padding:12px; font-size:14px; line-height:1.4; box-shadow:3px 3px 0 #2618341b; min-height:70px; flex:1; }
+.dots { display:flex; gap:5px; flex-wrap:wrap; align-items:center; }
+.dot { border:2px solid #786680; width:21px; height:21px; border-radius:50%; display:grid; place-content:center;
+  background:#fff; color:var(--ink); font-size:12px; font-weight:900; }
+.dot.current { outline:2px solid var(--brand); outline-offset:2px; }
+.dot.matched { color:#fff; background:var(--ok); border-color:var(--ok); }
+.dot.partly,.dot.fixed { background:linear-gradient(90deg,#ffdf80 50%,#fff 50%); }
+.privacy { margin-top:auto; display:flex; align-items:center; gap:8px; }
+.privacy p { font-size:10px; line-height:1.35; margin:0; color:#53475c; }
+.privacy button { flex:none; width:85px; font-size:11px; }
+.hint { font-size:13px; margin:0; line-height:1.4; min-height:54px; padding:9px 11px; background:#fff8e2;
+  border-left:3px solid #b45309; border-radius:2px; }
+.note { margin:0; font-size:13px; padding:8px; border:1px solid #ad94bb; border-radius:5px; background:#fff; line-height:1.35; }
+.note:empty { display:none; }
+.object-art { width:120px; height:120px; object-fit:cover; border:2px solid var(--ink); border-radius:5px; }
+.model-top .story-text { font-size:17px; }
+.representation { flex:1; min-height:0; display:flex; gap:20px; align-items:center; justify-content:center;
+  background:#fffdf8; border:2px solid var(--ink); border-radius:5px; padding:12px; }
+.representation svg { width:100%; height:100%; min-height:100px; }
+.representation.with-graph table { width:180px; flex:none; font-size:16px; }
+.representation.with-graph td,.representation.with-graph th { padding:6px 10px; }
+.representation .model-graph { flex:1; min-width:0; height:100%; align-self:stretch; }
+.meaning-step .representation.with-graph table { width:150px; font-size:12px; }
+.meaning-step .representation.with-graph td,.meaning-step .representation.with-graph th { padding:2px 7px; }
+.rep-text { font:700 22px/1.6 'Trebuchet MS',sans-serif; max-width:620px; text-align:center; }
+.description-board { display:flex; align-items:center; justify-content:center; gap:35px; width:100%; }
+.description-art { width:clamp(180px,23vw,300px); aspect-ratio:1; object-fit:cover; border:3px solid var(--ink);
+  border-radius:6px; box-shadow:8px 8px 0 #5b2a862a; transform:rotate(-1deg); }
+.description-board .rep-text { max-width:380px; }
+.pair { display:inline-block; border:2px solid var(--brand); border-radius:8px; background:#f3ecfa;
+  padding:14px 24px; margin:8px; font-size:30px; }
+table { border-collapse:collapse; width:min(100%,500px); text-align:center; font-size:20px; }
+td,th { border-bottom:1px solid var(--line); padding:7px 25px; }
+th { background:#f3ecfa; font-size:14px; }
+.equation { display:flex; align-items:center; justify-content:center; gap:13px; flex:none; padding:10px;
+  border:2px solid var(--ink); background:#ffefb7; border-radius:5px; font:800 27px 'Trebuchet MS',sans-serif; }
+.number-field { display:flex; flex-direction:column; gap:4px; align-items:center; }
+.number-field input { width:84px; min-height:44px; padding:4px 6px; font:700 23px 'Trebuchet MS',sans-serif;
+  border:2px solid #776280; border-radius:5px; text-align:center; background:#fff; color:var(--ink); }
+.number-field label { font:600 11px 'Segoe UI',sans-serif; }
+.number-field input[aria-invalid=true] { outline:3px solid var(--wrong); }
+.meanings { display:grid; grid-template-columns:1fr 1fr; gap:12px; flex:none; }
+.meaning-col { display:flex; flex-direction:column; gap:6px; min-width:0; }
+.meaning-col h3 { margin:0 0 3px; font-size:14px; }
+.meaning { min-height:44px; text-align:left; border:1.5px solid #a18caa; background:#fff; padding:7px 10px;
+  border-radius:4px; font-size:13px; line-height:1.25; }
+.meaning.locked { cursor:default; }
+.meaning.right { border-color:var(--ok); box-shadow:inset 4px 0 var(--ok); }
+.meaning.wrong { border-color:var(--wrong); text-decoration:line-through; }
+.meaning.right::before { content:'✓ '; color:var(--ok); font-weight:900; }
+.meaning.wrong::before { content:'✕ '; color:var(--wrong); font-weight:900; }
+.meaning-step .representation { flex:none; height:145px; padding:6px; }
+.meaning-step .model-top .object-art { width:65px; height:65px; }
+.meaning-step .model-top .story-text { font-size:13px; }
+.meaning-step .representation table { font-size:12px; width:280px; }
+.meaning-step .representation td,.meaning-step .representation th { padding:2px 10px; }
+.meaning-step .rep-text { font-size:15px; }
+.meaning-step .pair { font-size:18px; padding:7px 16px; }
+.summary { margin:auto; background:#fff; border:3px solid var(--ink); box-shadow:9px 9px 0 #5b2a862a;
+  padding:28px; max-width:650px; width:100%; }
+.summary h2 { font-size:35px; margin:0 0 16px; }
+.summary .dots { margin:20px 0; }
+.summary .control { margin:6px; }
+.summary { display:flex; flex-direction:column; min-height:0; max-height:100%; }
+.summary > p { margin:0 0 12px; }
+.recap-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px;
+  min-height:0; overflow:auto; margin:0 0 12px; }
+.recap-item { display:grid; grid-template-columns:23px minmax(0,1fr); gap:2px 7px;
+  padding:8px; border:1px solid var(--line); border-radius:5px; background:#fdf9f1; }
+.recap-item .dot { grid-row:1/3; align-self:center; }
+.recap-item strong { font-size:12px; line-height:1.2; }
+.recap-item small { font-size:11px; color:var(--muted); }
+.summary-actions { display:flex; flex-wrap:wrap; flex:none; }
+@media (max-height:650px), (max-width:599px) {
+  .summary { padding:10px; }
+  .summary h2 { font-size:22px; margin:0 0 7px; }
+  .summary > p { font-size:12px; margin-bottom:7px; }
+  .recap-grid { gap:4px; margin-bottom:7px; }
+  .recap-item { padding:5px; gap:2px 4px; grid-template-columns:17px minmax(0,1fr); }
+  .recap-item strong,.recap-item small { font-size:10px; }
+  .summary .control { margin:2px; }
+}
+.crosshair { stroke:var(--brand); stroke-width:2; pointer-events:none; }
+dialog { color:var(--ink); background:var(--paper); border:3px solid var(--brand); border-radius:9px;
+  max-width:min(420px,calc(100vw - 30px)); padding:22px; box-shadow:8px 8px 0 #1e243344; }
+dialog::backdrop { background:#1e2433a6; }
+dialog h2 { margin:0; font:800 24px 'Trebuchet MS',sans-serif; }
+dialog p { font-size:15px; line-height:1.45; }
+.empty-note { position:absolute; left:65px; top:48%; right:20px; text-align:center; color:var(--muted); font-size:14px;
+  pointer-events:none; }
+@media (max-height:899px) {
+  .bubble-area { order:1; }
+  .dots { order:2; }
+  .privacy { order:4; }
+  .hint { order:3; }
+}
+@media (max-width:1100px) {
+  main { grid-template-columns:minmax(0,1fr) 284px; }
+  .stage { padding:12px; gap:10px; }
+  .story-area { flex-direction:column; align-items:stretch; gap:8px; }
+  .comic { max-width:none; width:100%; }
+  .comic figure { max-height:120px; }
+  .story-text { font-size:14px; }
+  .story-text p { display:inline; padding:0 3px; }
+  .cards { gap:8px; grid-template-columns:1fr 1fr; grid-template-rows:repeat(2,minmax(0,1fr)); }
+  .panel { padding:12px; gap:9px; }
+  .scene-banner { width:100%; max-height:105px; }
+  .model-top { flex-direction:row; align-items:center; }
+  .object-art { width:90px; height:90px; }
+}
+@media (max-height:650px) and (min-width:600px) {
+  header { padding:5px 10px; flex-wrap:nowrap; gap:5px; }
+  h1 { font-size:19px; }
+  h1 small { display:none; }
+  .seg button,.icon-btn { padding:0 10px; font-size:12px; }
+  main { grid-template-columns:minmax(0,1fr) 240px; }
+  .stage { padding:8px 10px; gap:6px; }
+  .chapter h2 { font-size:17px; }
+  .eyebrow { font-size:10px; }
+  .comic,.scene-banner,.lucia,.object-art { display:none; }
+  .story-text,.model-top .story-text,.tag-step .story-text { font-size:12px; line-height:1.3; }
+  .cards { grid-template-columns:1fr 1fr; grid-template-rows:repeat(2,minmax(0,1fr)); gap:6px; }
+  .graph-card .card-label { padding:3px 6px; font-size:10px; }
+  .graph-card .verdict { top:0; font-size:17px; }
+  .panel { padding:7px 8px; gap:5px; }
+  .actions { gap:5px; }
+  .action-row { gap:5px; }
+  button.control { font-size:11px; padding:4px; }
+  .tag-grid { gap:4px; }
+  .tag-grid button { font-size:10px; }
+  .tag-icon { font-size:13px; height:11px; line-height:11px; }
+  .bubble { min-height:0; font-size:11px; line-height:1.25; padding:6px 8px; }
+  .hint { min-height:39px; padding:5px 7px; font-size:11px; line-height:1.25; }
+  .dot { width:15px; height:15px; font-size:10px; }
+  .dots { gap:4px; }
+  .privacy p { font-size:10px; }
+  .privacy button { width:66px; font-size:10px; }
+  .piece-counter { font-size:11px; }
+  .note { font-size:11px; padding:5px; }
+  .compare { max-height:145px; font-size:10px; }
+  .compare-head,.compare-row { padding:4px 6px; }
+  .readback { font-size:10px; padding:4px; }
+  .representation { padding:4px; }
+  .description-art { display:none; }
+  .rep-text { font-size:16px; }
+  .pair { font-size:23px; padding:6px 12px; }
+  table { font-size:15px; }
+  td,th { padding:3px 12px; }
+  .equation { padding:5px; font-size:22px; gap:6px; }
+  .number-field input { width:64px; font-size:20px; }
+  .number-field label { font-size:10px; }
+  .meaning-step .representation { display:none; }
+  .meaning-step .model-top { display:none; }
+  .meanings { flex:1; min-height:0; overflow:auto; gap:7px; }
+  .meaning-col { gap:4px; }
+  .meaning-col h3 { font-size:11px; }
+  .meaning { font-size:10px; padding:5px; }
+}
+@media (max-width:599px) {
+  header { padding:7px 9px; gap:6px; }
+  h1 { font-size:21px; width:100%; }
+  .seg button { padding:0 10px; font-size:12px; }
+  .icon-btn { padding:0 8px; font-size:11px; }
+  main { grid-template-columns:1fr; grid-template-rows:minmax(220px,1fr) auto; }
+  .stage { padding:8px; gap:6px; }
+  .chapter h2 { font-size:18px; }
+  .comic,.scene-banner,.lucia,.object-art { display:none; }
+  .story-text,.model-top .story-text { font-size:12px; line-height:1.35; }
+  .cards { gap:5px; }
+  .graph-card .card-label { font-size:10px; padding:4px; }
+  .panel { border-left:0; border-top:2px solid var(--ink); padding:7px 9px; gap:6px; }
+  .actions { gap:5px; }
+  .bubble { font-size:11px; padding:6px 8px; min-height:0; }
+  .bubble-area { order:1; }
+  .privacy { order:4; }
+  .hint { order:3; min-height:32px; font-size:11px; padding:5px 7px; }
+  .dots { order:2; }
+  .dot { width:16px; height:16px; font-size:10px; }
+  .privacy p { font-size:10px; }
+  button.control { font-size:12px; }
+  .tag-grid button { font-size:11px; }
+  .tag-icon { display:none; }
+  .compare { max-height:145px; font-size:10px; }
+  .compare-head,.compare-row { padding:4px 6px; }
+  .equation { font-size:23px; padding:5px; gap:8px; }
+  .number-field input { width:65px; font-size:20px; }
+  .representation { padding:5px; }
+  .description-art { display:none; }
+  table { font-size:15px; }
+  td,th { padding:3px 12px; }
+  .rep-text { font-size:15px; }
+  .pair { font-size:24px; margin:3px; padding:6px; }
+  .model-top { flex-direction:row; }
+  .meaning-step .model-top,.meaning-step .representation { display:none; }
+  .meanings { flex:1; overflow:auto; min-height:0; gap:6px; }
+  .meaning-col h3 { font-size:11px; }
+  .meaning { font-size:10px; padding:5px; }
+}
+
+</style>
+</head>
+<body>
+<header>
+  <h1>Story Graphs<small>Read the shape. Tell the story.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-match" aria-pressed="true">Match</button>
+    <button id="m-sketch" aria-pressed="false">Sketch</button>
+    <button id="m-model" aria-pressed="false">Model</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <div class="stage" id="stage" aria-label="Story notebook"></div>
+  <aside class="panel">
+    <div class="actions" id="actions"></div>
+    <div class="bubble-area">
+      <img class="lucia" id="lucia" src="art:lucia-talk" alt="Lucia, your eighth-grade storyteller">
+      <p class="bubble" id="bubble"></p>
+    </div>
+    <div class="dots" id="dots" aria-label="Round marks"></div>
+    <div class="privacy">
+      <p>Your progress is saved on this device only. It never leaves it.</p>
+      <button class="control" id="clear-progress">Clear progress</button>
+    </div>
+    <p class="hint" id="hint" aria-live="polite"></p>
+  </aside>
+</main>
+<dialog id="clear-dialog" aria-labelledby="clear-title">
+  <h2 id="clear-title">Clear this notebook?</h2>
+  <p>Clear all saved marks and bonus stories on this device?</p>
+  <div class="action-row">
+    <button class="control" id="keep-progress">Keep progress</button>
+    <button class="control primary" id="confirm-clear">Clear saved progress</button>
+  </div>
+</dialog>
+<script src="kit:curio"></script>
+<script src="kit:graphing"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const DATA = "json:content";
+  const L = {
+  "wMatch": "Hi, I'm Lucia. Every graph here tells a story. Tap the graph that tells mine. One of them is a trap.",
+  "matchChoose": "Happy with that one? Press Choose this graph.",
+  "pickRight": "Yes, that graph tells it.",
+  "pickWrong": "That's the trap. Read what that graph says, then press Tag the pieces.",
+  "tagHow": "Now tag each piece. Tap Up, Down or Flat, then Straight, Getting steeper or Getting flatter.",
+  "tagCheck": "Every piece has a tag. Press Check.",
+  "tagsRight": "All right.",
+  "tagsWrong": "Some tags are off. Fix the pieces with an X, then press Check again.",
+  "tagsShown": "Tags shown.",
+  "nextHow": "Press Next story when you're ready.",
+  "spareAdded": "I added a bonus story at the end of the set.",
+  "wSketch": "Your turn to draw. Read the story, then tap the grid to place points from left to right.",
+  "bendHow": "To curve a piece, tap its number, then tap Getting steeper or Getting flatter.",
+  "sketchCheck": "When your graph tells the whole story, press Check.",
+  "backInTime": "Time only goes forward. Place the next point to the right.",
+  "sketchRight": "Your graph tells my story. Watch it play back.",
+  "sketchWrong": "Not yet. Compare each line of the story with what your graph says, then fix it and press Check.",
+  "sketchShown": "Here's one graph that works. Yours is faint behind it.",
+  "freeHow": "Free draw. Place points from left to right, and I'll tell the story your graph tells.",
+  "wModel": "A steady story is two numbers: where it starts and how fast it changes. Type them in the boxes, then press Check.",
+  "modelRight": "Both numbers are right. Now tap what each one means in the story.",
+  "modelWrong": "Not yet. Read the note, fix your numbers, then press Check.",
+  "modelShown": "Here's the model. Now tap what each number means.",
+  "meaningRight": "That's what it means.",
+  "meaningWrong": "Not that one. The right meaning has the check.",
+  "setDone": "That's the whole set. Your marks are in the dots."
+};
+  const ART = {
+  "lucia-talk": "art:lucia-talk",
+  "lucia-think": "art:lucia-think",
+  "lucia-cheer": "art:lucia-cheer",
+  "m1-bike": "art:m1-bike",
+  "m1-corner": "art:m1-corner",
+  "m1-race": "art:m1-race",
+  "m2-fill": "art:m2-fill",
+  "m2-hide": "art:m2-hide",
+  "m2-drain": "art:m2-drain",
+  "m3-jar": "art:m3-jar",
+  "m3-gift": "art:m3-gift",
+  "m3-leash": "art:m3-leash",
+  "m4-pour": "art:m4-pour",
+  "m4-full": "art:m4-full",
+  "m4-table": "art:m4-table",
+  "m5-start": "art:m5-start",
+  "m5-run": "art:m5-run",
+  "m5-breath": "art:m5-breath",
+  "m6-ride": "art:m6-ride",
+  "m6-wait": "art:m6-wait",
+  "m6-laundry": "art:m6-laundry",
+  "m7-walk": "art:m7-walk",
+  "m7-sniff": "art:m7-sniff",
+  "m7-rain": "art:m7-rain",
+  "m8-sprout": "art:m8-sprout",
+  "m8-climb": "art:m8-climb",
+  "m8-tall": "art:m8-tall",
+  "m9-highway": "art:m9-highway",
+  "m9-pump": "art:m9-pump",
+  "m9-drive": "art:m9-drive",
+  "k1-hill": "art:k1-hill",
+  "k2-stop": "art:k2-stop",
+  "k3-candle": "art:k3-candle",
+  "k4-ball": "art:k4-ball",
+  "k5-snow": "art:k5-snow",
+  "k6-bottle": "art:k6-bottle",
+  "k7-sled": "art:k7-sled",
+  "r1-pool": "art:r1-pool",
+  "r2-bowling": "art:r2-bowling",
+  "r3-tank": "art:r3-tank",
+  "r4-drone": "art:r4-drone",
+  "r5-bike": "art:r5-bike",
+  "r6-card": "art:r6-card",
+  "r7-swan": "art:r7-swan",
+  "r8-bike": "art:r8-bike",
+  "r9-ferry": "art:r9-ferry"
+};
+  const NS = 'http://www.w3.org/2000/svg';
+  const modes = ['match', 'sketch', 'model'];
+  const shapeNames = {T:'Straight', S:'Getting steeper', L:'Getting flatter'};
+  const arrows = {Up:'↗', Down:'↘', Flat:'→'};
+  const initialCounts = {match:6, sketch:5, model:6};
+  const key = 'curio-story-graphs';
+  const shuffle = values => {
+    const a = [...values];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  };
+  const newRound = () => ({phase:'pick', selected:null, order:shuffle([0,1,2,3]), tags:[], piece:0,
+    tries:0, tagTries:0, points:[], shapes:[], m:'', b:'', checked:null, meanings:[null,null],
+    meaningOrder:[shuffle([0,1,2,3]),shuffle([0,1,2,3])], done:false, mark:null, backSaid:false});
+  const newMode = mode => ({index:0, count:initialCounts[mode], rounds:DATA[mode].map(newRound), summary:false});
+  const state = {mode:'match', match:newMode('match'), sketch:newMode('sketch'), model:newMode('model'),
+    free:false, freeWork:{points:[],shapes:[],piece:0}, playing:false, cross:[0,0], activeRow:-1};
+  try {
+    const saved = JSON.parse(localStorage.getItem(key));
+    if (saved?.version === 1) {
+      modes.forEach(m => { if (saved[m]?.rounds?.length === DATA[m].length) state[m] = saved[m]; });
+    }
+  } catch (_) { /* The session works when storage is blocked. */ }
+  const save = () => {
+    try { localStorage.setItem(key, JSON.stringify({version:1,match:state.match,sketch:state.sketch,model:state.model})); }
+    catch (_) { /* No account or network fallback. */ }
+  };
+  const current = () => state[state.mode];
+  const round = () => current().rounds[current().index];
+  const story = () => DATA[state.mode][current().index];
+  const work = () => state.free ? state.freeWork : round();
+  const scope = () => `${state.mode}:${current().index}:${state.free}`;
+  const V = Curio.voice({lines:L, scope, hint:false,
+    read:() => [$('hint').textContent, $('bubble').textContent],
+    welcome:() => {
+      if($('clear-dialog')?.open) return null;
+      if (current().summary) return null;
+      if (state.mode === 'match' && round().selected === null) return 'wMatch';
+      if (state.mode === 'sketch' && !state.free && !round().points.length) return 'wSketch';
+      if (state.mode === 'model' && !round().m && !round().b) return 'wModel';
+      return null;
+    }
+  });
+  let planes = [];
+  let playbackId = 0;
+  let plot = null;
+  const svg = (tag, attrs, parent) => {
+    const el = document.createElementNS(NS, tag);
+    Object.entries(attrs || {}).forEach(([k,v]) => el.setAttribute(k,v));
+    if (parent) parent.appendChild(el);
+    return el;
+  };
+  function hint(text) { $('hint').textContent = text; }
+  function bubble(text, mood='talk') {
+    $('bubble').textContent = text;
+    $('lucia').src = ART['lucia-' + mood];
+  }
+  function speak(id, how=false, opts={}) {
+    const fn = how ? V.how : V.say;
+    return fn(id, {hint:false, ...opts});
+  }
+  function stopPlayback() {
+    playbackId++;
+    state.playing = false;
+    plot?.clear('playback');
+  }
+  function settle(mark) {
+    const r = round();
+    if (r.mark) return;
+    r.mark = mark;
+    r.done = true;
+    if (mark !== 'Matched' && current().count < DATA[state.mode].length) {
+      current().count++;
+      r.addedSpare=true;
+    }
+    save();
+    updateDots();
+  }
+  function updateDots() {
+    $('dots').replaceChildren();
+    const m = current();
+    for (let i=0; i<m.count; i++) {
+      const d = document.createElement('span');
+      const mark = m.rounds[i].mark;
+      d.className = 'dot ' + (mark || '').toLowerCase() + (i === m.index ? ' current' : '');
+      d.textContent = mark === 'Matched' ? '✓' : mark === 'Shown' ? '–' : mark ? '◐' : '·';
+      d.title = `${DATA[state.mode][i].id}: ${mark || 'Not finished'}`;
+      d.setAttribute('aria-label', d.title);
+      $('dots').append(d);
+    }
+  }
+  function button(id, text, action, {disabled=false, primary=false, pressed, parent=$('actions')}={}) {
+    const b = document.createElement('button');
+    b.id = id;
+    b.className = 'control' + (primary ? ' primary' : '');
+    b.textContent = text;
+    b.disabled = disabled;
+    if (pressed !== undefined) b.setAttribute('aria-pressed', String(pressed));
+    b.onclick = () => { stopPlayback(); Curio.tone(380,.04,.025); action(); };
+    parent.append(b);
+    return b;
+  }
+  function row() {
+    const el = document.createElement('div');
+    el.className = 'action-row';
+    $('actions').append(el);
+    return el;
+  }
+  function makePlane(parent, quantity, opts={}) {
+    const width = Math.max(120, parent.clientWidth);
+    const height = Math.max(90, parent.clientHeight);
+    const s = svg('svg', {viewBox:`0 0 ${width} ${height}`, 'aria-label':`${quantity} against time`}, parent);
+    const left = opts.model ? 55 : opts.zero&&opts.zero!=='0' ? 66 : 39;
+    const top = 27;
+    const bottom=opts.model ? 51 : 25;
+    const g = Plane(s, {x:[0,12], y:[0,8], width:width-left-18, height:height-top-bottom,
+      left, top, grid:1, labels:1, ticks:'edge', xLabel:'',
+      yLabel:'', tickFormat:(v,axis) => axis==='y' && v===0 && opts.zero ? opts.zero :
+        axis==='y' && v===8 && opts.full ? opts.full : '', ...opts});
+    svg('text', {x:left,y:17,fill:'var(--gr-text)','font-size':Math.max(10,Math.min(13,width/18)), 'font-weight':650}, s).textContent = quantity;
+    if(!opts.model) {
+      svg('text',{x:left+g.width/2,y:height-7,fill:'var(--gr-text)','text-anchor':'middle','font-size':12},s).textContent='time';
+    }
+    planes.push(g);
+    return g;
+  }
+  function bezier(a,b,shape,t) {
+    if (shape === 'T' || a[1] === b[1]) return [a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t];
+    const k = shape === 'S' ? .75 : .25;
+    const c = [a[0]+k*(b[0]-a[0]),a[1]+(1-k)*(b[1]-a[1])];
+    return [0,1].map(j => (1-t)**2*a[j]+2*(1-t)*t*c[j]+t*t*b[j]);
+  }
+  function drawGraph(g,p,ss,opts={}) {
+    for (let i=0; i<p.length-1; i++) {
+      g.param(t => bezier(p[i],p[i+1],ss[i] || 'T',t), [0,1], {color:1,width:3.5,samples:70,...opts});
+    }
+  }
+  function direction(a,b) { return b[1]>a[1] ? 'Up' : b[1]<a[1] ? 'Down' : 'Flat'; }
+  function parts(p,ss,merge=false) {
+    const out = [];
+    for (let i=0; i<p.length-1; i++) {
+      const a=p[i], b=p[i+1], d=direction(a,b), s=d==='Flat'?'T':ss[i] || 'T';
+      const slope = (b[1]-a[1])/(b[0]-a[0]);
+      const last = out[out.length-1];
+      if (merge && last && s==='T' && last.s==='T' && slope===last.slope && last.d===d) last.b = b;
+      else out.push({a,b,d,s,slope});
+    }
+    return out;
+  }
+  function readPart(part, context='distance from home', previous) {
+    if (part.b[0] <= part.a[0]) return 'Time runs backward while the amount stays the same.';
+    const up=part.d==='Up', flat=part.d==='Flat';
+    let text;
+    if (/distance from home|morning|Pepper/.test(context)) {
+      text = flat ? part.a[1]===0 ? 'Lucia is at home' : 'Lucia stays in one place' :
+        up ? 'Lucia moves away from home' : 'Lucia heads back toward home';
+    } else if (/candle/.test(context)) text=flat?'The candle stays the same height':up?'The candle gets taller':'The candle gets shorter';
+    else if (/ball/.test(context)) text=flat?'The ball stays at one height':up?'The ball goes up':'The ball comes down';
+    else if (/snow/.test(context)) text=flat?'The snow stays the same depth':up?'The snow gets deeper':'The snow gets shallower';
+    else if (/top of the hill/.test(context)) text=flat?'The sled stays put':up?'The sled moves away from the top':'The sled moves back toward the top';
+    else if (/money|jar/.test(context)) text=flat?'The money stays the same':up?'The money increases':'The money decreases';
+    else if (/plant/.test(context)) text=flat?'The plant stays the same height':up?'The plant gets taller':'The plant gets shorter';
+    else if (/gas/.test(context)) text=flat?'The gas stays the same':up?'The gas in the tank increases':'The gas in the tank decreases';
+    else if (/lobby/.test(context)) text=flat?'The elevator stays on one floor':up?'The elevator goes up':'The elevator goes down';
+    else if (/starting line/.test(context)) text=flat?'Lucia stays in one place':up?'Lucia moves farther from the start':'Lucia moves back toward the start';
+    else text=flat?'The water stays the same':up?'The water goes up':'The water goes down';
+    if (!flat) {
+      text += part.s==='S' ? ', faster and faster' : part.s==='L' ? ', more and more slowly' :
+        /distance/.test(context) ? ' at a steady speed' : ' at a steady rate';
+      if (previous && part.d===previous.d && Math.abs(part.slope)!==Math.abs(previous.slope)) {
+        const faster=Math.abs(part.slope)>Math.abs(previous.slope);
+        if(part.s==='T'&&previous.s==='T') text += faster ? ', faster than the earlier part' : ', slower than the earlier part';
+        else text += ', with a '+(faster?'higher':'lower')+' average '+
+          (/distance/.test(context)?'speed':'rate')+' than the earlier part';
+      }
+      if (part.b[1]===0) {
+        if (/home/.test(context)) text += ', and gets home';
+        else if (/candle/.test(context)) text += ', until it is gone';
+        else if (/ball/.test(context)) text += ', to the ground';
+        else if (/water/.test(context)) text += ', until empty';
+      }
+    }
+    return text + '.';
+  }
+  function reads(pp,ss,context,merge=false) {
+    const ps=parts(pp,ss,merge);
+    return ps.map((p,i)=>{
+      const previous=ps.slice(0,i).findLast(q=>q.d===p.d&&q.d!=='Flat');
+      let text=readPart(p,context,previous);
+      if(i===0) {
+        if(/distance from home/.test(context)) {
+          text=(p.a[1]===0?'Lucia starts at home. ':'Lucia starts away from home. ')+text;
+        } else if(/candle/.test(context)) {
+          text=(p.a[1]===0?'The candle starts with no height left. ':'The candle starts above zero height. ')+text;
+        } else if(/ball/.test(context)) {
+          text=(p.a[1]===0?'The ball starts on the ground. ':'The ball starts above the ground. ')+text;
+        } else if(/snow/.test(context)) {
+          text=(p.a[1]===0?'There is no snow at the start. ':'There is already snow at the start. ')+text;
+        } else if(/bottle/.test(context)) {
+          text=(p.a[1]===8?'The bottle starts full. ':p.a[1]===0?'The bottle starts empty. ':'The bottle starts partly full. ')+text;
+        } else if(/top of the hill/.test(context)) {
+          text=(p.a[1]===0?'The sled starts at the top. ':'The sled starts away from the top. ')+text;
+        }
+      }
+      return text;
+    });
+  }
+  function chapter(label) {
+    const el=document.createElement('div');
+    el.className='chapter';
+    el.innerHTML=`<h2>${story().title}</h2><span class="eyebrow">${label} / ${current().index+1}</span>`;
+    $('stage').append(el);
+  }
+  function storyArea(type) {
+    const r=story();
+    const area=document.createElement('div');
+    area.className='story-area' + (state.mode==='model'?' model-top':'');
+    if (type==='comic') {
+      const comic=document.createElement('div');
+      comic.className='comic';
+      r.art.forEach((name,i)=>{
+        const f=document.createElement('figure');
+        const im=document.createElement('img');
+        im.src=ART[name];
+        im.alt=`${r.title}, scene ${i+1}`;
+        f.append(im);
+        comic.append(f);
+      });
+      area.append(comic);
+    } else {
+      const im=document.createElement('img');
+      im.src=ART[r.art];
+      im.alt=r.title;
+      im.className=type==='scene'?'scene-banner':'object-art';
+      area.append(im);
+    }
+    const text=document.createElement('div');
+    text.className='story-text';
+    r.story.forEach((s,i)=>{
+      const p=document.createElement('p');
+      p.textContent=s;
+      p.dataset.sentence=i;
+      text.append(p);
+    });
+    if (state.mode==='model') {
+      const small=document.createElement('span');
+      small.className='eyebrow';
+      small.textContent='Made-up story';
+      text.append(small);
+    }
+    area.append(text);
+    $('stage').append(area);
+  }
+  function render() {
+    document.querySelectorAll('.chip-ghost').forEach(el=>el.remove());
+    const focusId=document.activeElement?.id;
+    const restoreFocus=()=>{
+      if(!focusId||focusId==='confirm-clear') return;
+      let target=$(focusId);
+      if(!target||target.disabled||target.readOnly||target.getAttribute('aria-disabled')==='true'||!target.getClientRects().length) {
+        if(current().summary) target=$('replay');
+        else if($('next')&&!$('next').disabled) target=$('next');
+        else if(state.mode==='model'&&round().numbersSettled) {
+          target=[...document.querySelectorAll('.meaning')].find(b=>b.getAttribute('aria-disabled')!=='true');
+        } else if(state.mode==='model') target=$('number-m');
+        else if(state.mode==='sketch') target=$('sketch-plane');
+        else if(round().phase==='tag') target=$('tag-piece-'+round().piece);
+        else target=document.querySelector('.graph-card');
+      }
+      target?.focus({preventScroll:true});
+    };
+    planes=[];
+    plot=null;
+    $('stage').replaceChildren();
+    $('actions').replaceChildren();
+    $('stage').className='stage';
+    modes.forEach(m=>$('m-'+m).setAttribute('aria-pressed',String(m===state.mode)));
+    updateDots();
+    if (current().summary) renderSummary();
+    else if (state.mode==='match') renderMatch();
+    else if (state.mode==='sketch') renderSketch();
+    else renderModel();
+    restoreFocus();
+    requestAnimationFrame(()=>{
+      drawPlanes();
+      restoreFocus();
+    });
+  }
+  function drawPlanes() {
+    if (current().summary) return;
+    if (state.mode==='match') drawMatch();
+    else if (state.mode==='sketch') drawSketch();
+    else drawModel();
+  }
+  function setMode(m) {
+    if (!modes.includes(m)) return;
+    stopPlayback();
+    V.hush();
+    state.mode=m;
+    state.free=false;
+    render();
+    V.welcome();
+  }
+  function next() {
+    if (!round().done) return;
+    V.hush();
+    if (current().index+1>=current().count) {
+      current().summary=true;
+      render();
+      speak('setDone');
+    } else {
+      current().index++;
+      state.free=false;
+      render();
+      V.welcome();
+    }
+    save();
+  }
+  function renderSummary() {
+    const ms=current().rounds.slice(0,current().count).map(r=>r.mark);
+    const counts=['Matched','Fixed','Partly','Shown'].filter(k=>ms.includes(k)).map(k=>`${k} ${ms.filter(x=>x===k).length}`);
+    const card=document.createElement('div');
+    card.className='summary';
+    card.innerHTML=`<span class="eyebrow">Your story notebook</span><h2>Every shape has a story.</h2><p>${counts.join(', ')}.</p>`;
+    const recap=document.createElement('div');
+    recap.className='recap-grid';
+    recap.setAttribute('aria-label','Your stories and saved marks');
+    ms.forEach((mark,i)=>{
+      const entry=document.createElement('div');
+      entry.className='recap-item';
+      const dot=document.createElement('span');
+      dot.className='dot '+mark.toLowerCase();
+      dot.setAttribute('aria-hidden','true');
+      dot.textContent=mark==='Matched'?'✓':mark==='Shown'?'–':'◐';
+      const title=document.createElement('strong');
+      title.textContent=DATA[state.mode][i].title;
+      const label=document.createElement('small');
+      label.textContent=mark;
+      entry.append(dot,title,label);
+      recap.append(entry);
+    });
+    card.append(recap);
+    const summaryActions=document.createElement('div');
+    summaryActions.className='summary-actions';
+    card.append(summaryActions);
+    button('replay','Play the set again',()=>{
+      V.hush();
+      state[state.mode]=newMode(state.mode);
+      save();
+      render();
+      V.welcome();
+    },{primary:true,parent:summaryActions});
+    modes.filter(m=>m!==state.mode).forEach(m=>button('go-'+m,m[0].toUpperCase()+m.slice(1),()=>setMode(m),{parent:summaryActions}));
+    $('stage').append(card);
+    bubble('That is the whole set. Your marks are in the dots.','cheer');
+    hint('Press Play the set again, or choose another mode.');
+  }
+  function renderMatch() {
+    const r=round(), s=story();
+    chapter(r.phase==='pick'||r.phase==='wrong'?'Find the shape':'Tag the pieces');
+    storyArea('comic');
+    if (r.phase==='pick'||r.phase==='wrong') {
+      const cards=document.createElement('div');
+      cards.className='cards';
+      s.graphs.forEach(()=>{});
+      r.order.forEach((variant,i)=>{
+        const card=document.createElement('button');
+        card.id='card-'+i;
+        card.className='graph-card';
+        card.setAttribute('aria-pressed',String(r.selected===i));
+        card.setAttribute('aria-label',`Graph ${i+1}`);
+        card.dataset.variant=String(i);
+        card.innerHTML=`<span class="card-label">GRAPH ${i+1}</span><div class="card-plot" style="flex:1;min-height:0;width:100%"></div>`;
+        if (r.phase==='wrong' && (r.selected===i || variant===0)) {
+          const v=document.createElement('span');
+          v.className='verdict '+(variant===0?'good':'bad');
+          v.textContent=variant===0?'✓':'✕';
+          card.append(v);
+        }
+        card.onclick=()=>{
+          stopPlayback();
+          if (r.phase!=='pick') return;
+          r.selected=i;
+          cards.querySelectorAll('button').forEach((c,j)=>c.setAttribute('aria-pressed',String(i===j)));
+          $('choose').disabled=false;
+          Curio.tone(460,.06,.04);
+          hint('Press Choose this graph to lock your pick.');
+          speak('matchChoose',true,{now:!V.heard('matchChoose'),needs:'#choose',valid:()=>round()===r&&r.phase==='pick'});
+          save();
+        };
+        cards.append(card);
+      });
+      $('stage').append(cards);
+      if (r.phase==='wrong') {
+        const g=s.graphs[r.order[r.selected]];
+        const p=document.createElement('p');
+        p.className='readback';
+        p.textContent='This graph says: '+reads(g.p,g.s,s.axis).join(' ');
+        $('stage').append(p);
+        bubble(g.note,'think');
+        hint('Press Tag the pieces to work with the graph that tells the story.');
+        button('choose','Tag the pieces',()=>{
+          V.hush();
+          r.phase='tag';
+          render();
+          speak('tagHow',true,{valid:()=>r.phase==='tag'&&!allTags(),needs:'#tag-Up'});
+          save();
+        },{primary:true});
+      } else {
+        bubble(current().index===0?"Which graph tells my morning? One of them is a trap.":'Which graph tells this story? One of them is a trap.');
+        hint(r.selected===null?'Tap the graph that tells Lucia\'s story.':'Press Choose this graph to lock your pick.');
+        button('choose','Choose this graph',chooseMatch,{primary:true,disabled:r.selected===null});
+      }
+    } else {
+      $('stage').classList.add('tag-step');
+      const plane=document.createElement('div');
+      plane.className='plane-wrap';
+      plane.id='tag-plane';
+      $('stage').append(plane);
+      const actions=row();
+      button('check','Check',checkTags,{primary:true,disabled:!allTags()||r.done,parent:actions});
+      button('next','Next story',next,{disabled:!r.done,parent:actions});
+      const label=document.createElement('div');
+      label.className='piece-counter';
+      label.id='piece-label';
+      label.textContent=`Piece ${r.piece+1} of ${s.graphs[0].s.length}`;
+      $('actions').append(label);
+      const dg=document.createElement('div');
+      dg.className='tag-grid';
+      dg.setAttribute('role','group');
+      dg.setAttribute('aria-label','Direction tags');
+      $('actions').append(dg);
+      ['Up','Down','Flat'].forEach(d=>{
+        const b=button('tag-'+d,d,()=>setTag(d,null),{parent:dg,pressed:r.tags[r.piece]?.d===d,disabled:r.done});
+        b.innerHTML=`<span class="tag-icon" aria-hidden="true">${arrows[d]}</span>${d}`;
+        dragChip(b,d,null);
+      });
+      const sg=document.createElement('div');
+      sg.className='tag-grid';
+      sg.setAttribute('role','group');
+      sg.setAttribute('aria-label','Shape tags');
+      $('actions').append(sg);
+      Object.entries(shapeNames).forEach(([ss,name])=>{
+        const b=button('tag-'+ss,name,()=>setTag(null,ss),{parent:sg,pressed:r.tags[r.piece]?.s===ss,
+          disabled:r.done||r.tags[r.piece]?.d==='Flat'});
+        b.innerHTML=`<span class="tag-icon" aria-hidden="true">${ss==='T'?'╱':ss==='S'?'⤴':'⤵'}</span>${name}`;
+        dragChip(b,null,ss);
+      });
+      if (r.done) {
+        const message=r.mark==='Matched' ? 'The whole story, read in shapes.' : r.tagOK ?
+          'Those tags tell it. Compare the trap with this graph.' : 'Compare the shown tags with the ones you tried.';
+        bubble(message,r.tagOK?'cheer':'think');
+        hint('Focus a sentence or a piece to light up both. Press Next story when ready.');
+        linkSentences();
+      } else {
+        bubble(r.tagTries?'Some pieces have an X. What does that shape really say?':'Every piece has a direction. Curved pieces also change how steep they are.');
+        hint(r.tagTries?'Fix the pieces with an X, then press Check again.':
+          allTags()?'Every piece has a tag. Press Check.':`Piece ${r.piece+1}: tap Up, Down or Flat, then a shape.`);
+      }
+    }
+  }
+  function chooseMatch() {
+    const r=round();
+    if (r.phase!=='pick'||r.selected===null) return;
+    r.pickOK=r.order[r.selected]===0;
+    r.phase=r.pickOK?'tag':'wrong';
+    V.dropQueued();
+    render();
+    if (r.pickOK) {
+      Curio.yes();
+      speak('pickRight',false,{now:true});
+      speak('tagHow',true,{valid:()=>!allTags(),needs:'#tag-Up'});
+    } else speak('pickWrong',false,{now:true});
+    save();
+  }
+  function allTags() {
+    const r=round();
+    return story().graphs[0].s.every((_,i)=>r.tags[i]?.d&&(r.tags[i].d==='Flat'||r.tags[i].s));
+  }
+  function dragChip(b,d,s) {
+    b.draggable=false;
+    b.style.touchAction='none';
+    let start=null;
+    let ghost=null;
+    let moved=false;
+    let suppressUntil=0;
+    const cleanup=()=>{
+      ghost?.remove();
+      ghost=null;
+      start=null;
+    };
+    const originalClick=b.onclick;
+    b.onclick=e=>{
+      if(Date.now()<suppressUntil) {e.preventDefault();return;}
+      originalClick(e);
+    };
+    b.onpointerdown=e=>{
+      if(b.disabled||e.button) return;
+      start=[e.clientX,e.clientY];
+      moved=false;
+      b.setPointerCapture(e.pointerId);
+    };
+    b.onpointermove=e=>{
+      if(!start) return;
+      if(!moved&&Math.hypot(e.clientX-start[0],e.clientY-start[1])<6) return;
+      e.preventDefault();
+      if(!moved) {
+        moved=true;
+        ghost=document.createElement('div');
+        ghost.className='chip-ghost';
+        ghost.textContent=b.textContent;
+        ghost.setAttribute('aria-hidden','true');
+        document.body.append(ghost);
+        Curio.tone(380,.04,.025);
+      }
+      ghost.style.left=e.clientX+'px';
+      ghost.style.top=e.clientY+'px';
+    };
+    b.onpointerup=e=>{
+      if(!start) return;
+      if(moved) {
+        suppressUntil=Date.now()+300;
+        const target=document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-piece-index]');
+        cleanup();
+        if(target&&state.mode==='match'&&!round().done) {
+          Curio.tone(460,.06,.035);
+          setTag(d,s,+target.dataset.pieceIndex);
+        } else hint('Drop the tag onto a numbered piece, or tap a tag to use it.');
+      } else cleanup();
+    };
+    b.onpointercancel=()=>{suppressUntil=Date.now()+300;cleanup();};
+    b.onlostpointercapture=cleanup;
+  }
+  function setTag(d,s,target) {
+    const r=round();
+    if (r.done) return;
+    if (target!==undefined) r.piece=target;
+    const t=r.tags[r.piece]||{d:null,s:null};
+    if (d) t.d=d;
+    if (s&&t.d!=='Flat') t.s=s;
+    if (t.d==='Flat') t.s='T';
+    r.tags[r.piece]=t;
+    if (t.d && t.s) {
+      const next=story().graphs[0].s.findIndex((_,i)=>!r.tags[i]?.d||!r.tags[i]?.s);
+      if (next>=0) r.piece=next;
+    }
+    // Preserve the active palette button until pointerup; replacement occurs in a later task.
+    setTimeout(()=>{
+      render();
+      if (allTags()) speak('tagCheck',true,{needs:'#check',now:true,valid:()=>allTags()&&!r.done});
+    },0);
+    save();
+  }
+  function checkTags() {
+    const r=round(), g=story().graphs[0];
+    if (!allTags()||r.done) return;
+    r.tagTries++;
+    r.tagResults=parts(g.p,g.s).map((p,i)=>r.tags[i].d===p.d&&(p.d==='Flat'||r.tags[i].s===p.s));
+    r.tagOK=r.tagResults.every(Boolean);
+    if (r.tagOK) {
+      Curio.yes();
+      speak('tagsRight',false,{now:true});
+      settle(r.pickOK?'Matched':'Partly');
+    } else if (r.tagTries>=2) {
+      r.oldTags=JSON.parse(JSON.stringify(r.tags));
+      r.tags=parts(g.p,g.s).map(p=>({d:p.d,s:p.s}));
+      speak('tagsShown',false,{now:true});
+      settle(r.pickOK?'Partly':'Shown');
+    } else speak('tagsWrong',false,{now:true});
+    render();
+    if (r.done) {
+      const sequence=[['nextHow',{needs:'#next'}]];
+      if(r.addedSpare) sequence.push('spareAdded');
+      V.how(sequence,{hint:false});
+    }
+    save();
+  }
+  function drawMatch() {
+    const r=round(), s=story();
+    if (r.phase==='pick'||r.phase==='wrong') {
+      document.querySelectorAll('.card-plot').forEach((el,i)=>{
+        el.replaceChildren();
+        const g=makePlane(el,s.axis,{zero:s.zero,full:s.full});
+        const gg=s.graphs[r.order[i]];
+        drawGraph(g,gg.p,gg.s);
+      });
+      return;
+    }
+    const el=$('tag-plane');
+    el.replaceChildren();
+    const g=plot=makePlane(el,s.axis,{zero:s.zero,full:s.full});
+    const gg=s.graphs[0];
+    drawGraph(g,gg.p,gg.s);
+    parts(gg.p,gg.s).forEach((p,i)=>{
+      const mid=bezier(p.a,p.b,p.s,.5);
+      const [x,y]=g.px(...mid);
+      const group=svg('g',{id:'tag-piece-'+i,class:'piece-dot',transform:`translate(${x},${y})`,role:'button',tabindex:0,
+        'aria-label':`Piece ${i+1}`,'aria-pressed':String(r.piece===i)},g.layer('labels'));
+      svg('circle',{r:23},group);
+      group.dataset.pieceIndex=i;
+      svg('text',{},group).textContent=i+1;
+      group.onclick=()=>{stopPlayback();r.piece=i;render();};
+      group.onfocus=()=>{if(r.done)lightRow(i);};
+      group.onkeydown=e=>{
+        if (e.key==='Enter'||e.key===' ') {e.preventDefault();r.piece=i;render();}
+      };
+      group.ondragover=e=>e.preventDefault();
+      group.ondrop=e=>{
+        e.preventDefault();
+        try {
+          const tag=JSON.parse(e.dataTransfer.getData('text/plain'));
+          Curio.tone(460,.06,.035);
+          setTag(tag.d,tag.s,i);
+        } catch (_) {}
+      };
+      if (r.tags[i]?.d) {
+        const t=r.tags[i];
+        const correct=r.oldTags ? true : r.tagResults?.[i];
+        const text=(r.tagResults ? correct?'✓ ':'✕ ':'')+arrows[t.d]+' '+t.d+
+          (t.d==='Flat'?'':' / '+(shapeNames[t.s]||'?'));
+        const preferred=y<65 ? y+45 : y>g.height-65 ? y-38 : y+(i%2 ? 39 : -38);
+        const yy=Math.min(g.height-18,Math.max(16,preferred));
+        const xx=Math.max(0,Math.min(g.width-150,x-55));
+        svg('text',{x:xx,y:yy,class:'badge'},g.layer('labels')).textContent=text;
+        if (r.oldTags && !r.tagResults[i]) {
+          const old=r.oldTags[i];
+          svg('text',{x:xx,y:yy+15,class:'badge','text-decoration':'line-through',
+            style:'stroke:none;fill:var(--muted)'},g.layer('labels')).textContent=
+            '✕ '+old.d+' '+(old.d==='Flat'?'':shapeNames[old.s]);
+        }
+      }
+    });
+  }
+  function linkSentences() {
+    const count=story().graphs[0].s.length;
+    const mapping={M4:[0,0,1],M9:[0,1,1,2]}[story().id];
+    document.querySelectorAll('[data-sentence]').forEach((el,i)=>{
+      const piece=mapping ? mapping[i] : Math.min(i,count-1);
+      el.tabIndex=0;
+      el.dataset.piece=piece;
+      el.textContent=`${piece+1} · ${el.textContent}`;
+      el.onfocus=()=>lightRow(piece);
+      el.onmouseenter=()=>lightRow(piece);
+    });
+  }
+  function lightRow(i) {
+    state.activeRow=i;
+    document.querySelectorAll('[data-sentence],.compare-row').forEach((el,j)=>{
+      const piece=el.dataset.piece!==undefined ? +el.dataset.piece : j;
+      el.classList.toggle('lit',i===piece||i===-2);
+    });
+    document.querySelectorAll('[data-piece-index]').forEach(el=>el.classList.toggle('linked',+el.dataset.pieceIndex===i));
+  }
+  function sketchResult(id,pp,ss) {
+    const ps=parts(pp,ss,true);
+    const expected=DATA.sketch.find(s=>s.id===id);
+    const target=parts(expected.p,expected.s,true);
+    const same=ps.map((p,i)=>!!target[i]&&p.d===target[i].d&&p.s===target[i].s);
+    const first=pp[0]?.[1], end=pp.at(-1)?.[1];
+    const slope=i=>Math.abs(ps[i]?.slope ?? NaN);
+    const valid=pp.length>=2&&pp[0][0]===0&&pp.every((p,i)=>p[0]>=0&&p[0]<=12&&p[1]>=0&&p[1]<=8&&(!i||p[0]>pp[i-1][0]));
+    const rowRules=target.map(()=>true);
+    const require=(i,condition)=>{rowRules[i]=rowRules[i]&&condition;};
+    switch(id) {
+      case 'K1': require(0,first===0); require(1,slope(1)>slope(0)); break;
+      case 'K2':
+        require(0,first===0);
+        require(1,ps[1]?.b[1]===0&&slope(1)>slope(0));
+        require(2,slope(2)>slope(0)&&ps[2]?.b[1]>ps[0]?.b[1]);
+        break;
+      case 'K3': require(0,first>0); require(2,end===0&&slope(0)===slope(2)); break;
+      case 'K4': require(0,first>0); require(1,end===0); break;
+      case 'K5': require(0,first===0); require(1,slope(1)>slope(0)); break;
+      case 'K6': require(0,first===8); require(1,ps[1]?.b[1]===8); require(2,slope(2)<slope(0)); break;
+      case 'K7': require(0,first===0); break;
+    }
+    const extra=rowRules.every(Boolean);
+    const rowOK=same.map((ok,i)=>ok&&!!rowRules[i]);
+    return {pass:valid&&ps.length===target.length&&same.every(Boolean)&&extra,ps,same,extra,rowOK};
+  }
+  function renderSketch() {
+    const r=round(), w=work(), s=story();
+    if (state.free) {
+      const title=document.createElement('div');
+      title.className='chapter';
+      title.innerHTML='<h2>Lucia, anywhere</h2><span class="eyebrow">Free draw</span>';
+      $('stage').append(title);
+    } else chapter('Sketch the story');
+    if (!state.free&&!r.compared) storyArea('scene');
+    else if (state.free||r.compared) renderCompare();
+    const el=document.createElement('div');
+    el.className='plane-wrap';
+    el.id='sketch-plane';
+    el.tabIndex=0;
+    el.setAttribute('role','application');
+    el.setAttribute('aria-label','Sketch grid. Arrow keys move crosshair, Enter places a point, Backspace undoes.');
+    el.onkeydown=e=>{
+      if (e.target!==el) return;
+      const d={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,1],ArrowDown:[0,-1]}[e.key];
+      if (d) {
+        e.preventDefault();
+        stopPlayback();
+        state.cross=state.cross.map((v,i)=>Math.max(0,Math.min(i?8:12,v+d[i])));
+        drawSketch();
+      } else if(e.key==='Enter') {e.preventDefault();addPoint(...state.cross);}
+      else if(e.key==='Backspace') {e.preventDefault();undo();}
+    };
+    $('stage').append(el);
+    const a=row();
+    if (!state.free) {
+      button('sketch-check','Check',checkSketch,{primary:true,parent:a,disabled:w.points.length<2||r.locked});
+      button('next','Next story',next,{parent:a,disabled:!r.done});
+    } else button('return-story','Return to story',toggleFree,{parent:a,primary:true});
+    const pr=row();
+    button('piece-left','◀',()=>{w.piece=Math.max(0,w.piece-1);render();},{parent:pr,disabled:w.piece===0});
+    const lab=document.createElement('span');
+    lab.className='piece-counter';
+    lab.textContent=w.points.length>1?`Piece ${w.piece+1} of ${w.points.length-1}`:'Place two points';
+    pr.append(lab);
+    button('piece-right','▶',()=>{w.piece=Math.min(w.points.length-2,w.piece+1);render();},
+      {parent:pr,disabled:w.points.length<3||w.piece>=w.points.length-2});
+    $('piece-left').setAttribute('aria-label','Previous piece');
+    $('piece-right').setAttribute('aria-label','Next piece');
+    const shapes=document.createElement('div');
+    shapes.className='tag-grid';
+    shapes.setAttribute('role','group');
+    shapes.setAttribute('aria-label','Piece shape');
+    $('actions').append(shapes);
+    const nonflat=w.points[w.piece+1]&&w.points[w.piece][1]!==w.points[w.piece+1][1];
+    Object.entries(shapeNames).forEach(([ss,name])=>button('shape-'+ss,name,()=>{
+      w.shapes[w.piece]=ss;
+      edited();
+      render();
+    },{parent:shapes,disabled:!nonflat,pressed:w.shapes[w.piece]===ss}));
+    const edit=row();
+    button('undo','Undo point',undo,{parent:edit,disabled:!w.points.length});
+    button('clear-graph','Clear graph',()=>{
+      w.points=[];
+      w.shapes=[];
+      w.piece=0;
+      if (!state.free) {
+        r.locked=false;
+        r.compared=false;
+        r.shown=false;
+        r.pass=false;
+        r.changedAfterCheck=false;
+      }
+      render();
+      save();
+    },{parent:edit,disabled:!w.points.length});
+    button('free','Free draw',toggleFree,{parent:edit,pressed:state.free});
+    if (r.locked&&!state.free) button('playback','Play back',playback,{parent:a,disabled:!r.pass&&!r.shown});
+    if (state.free) {
+      bubble('A shape can tell a different story. This page is yours.');
+      hint('Tap points from left to right. Select a piece and bend it, or press Return to story.');
+    } else if (r.locked&&r.changedAfterCheck) {
+      bubble('Your last check is saved. Clear graph starts another sketch.');
+      hint('Press Clear graph to check another sketch, or press Next story.');
+    } else if (r.locked) {
+      bubble(r.pass?'That is your story, in your own shape.':'One graph that works is dashed in blue. Yours stays behind it.',r.pass?'cheer':'think');
+      hint('Press Play back to read the shape, or press Next story.');
+    } else {
+      bubble(['K1','K7'].includes(s.id) ? 'A graph is not a picture of the hill. What is the distance doing?' :
+        'The story tells what changes. Can you make the shape say the same thing?');
+      hint(r.compared?'Compare the X rows. Drag a point or tap a shape, then press Check.':
+        !w.points.length?'Tap the grid to place the first point. It starts at time zero.':w.points.length<2?
+        'Tap to the right for the next point.':'Tap to add a point, or select a piece and bend it. Press Check when the whole story is drawn.');
+    }
+  }
+  function edited() {
+    if (!state.free) {
+      round().compared=false;
+      if(round().locked) round().changedAfterCheck=true;
+    }
+    if (state.free) renderCompare(true);
+    save();
+  }
+  function addPoint(x,y) {
+    stopPlayback();
+    const w=work();
+    x=Math.max(0,Math.min(12,Math.round(x)));
+    y=Math.max(0,Math.min(8,Math.round(y)));
+    if (!w.points.length) x=0;
+    if (w.points.length>=9) {hint('Nine points is the most. Drag or undo a point.');return;}
+    if (w.points.at(-1)?.[0]===12) {hint('The graph reaches the right edge. Drag a point or press Undo point.');return;}
+    if (w.points.length&&x<=w.points.at(-1)[0]) {
+      hint('Time only goes forward. Place the next point to the right.');
+      const target=$('sketch-plane');
+      target.animate([{background:'#fffdf8'},{background:'#f9d8d2'},{background:'#fffdf8'}],{duration:250});
+      const backKey='backInTime:'+scope();
+      if (!w.backSaid&&!V.heard(backKey)) {
+        speak('backInTime',true,{key:backKey,now:true,wait:'detail',
+          valid:()=>state.mode==='sketch'&&work()===w}).then(result=>{
+          if(result.as==='spoken') {w.backSaid=true;save();}
+        });
+      }
+      return;
+    }
+    w.points.push([x,y]);
+    if(w.points.length>1) {w.shapes.push('T');w.piece=w.points.length-2;}
+    Curio.tone(300+y*45,.07,.035);
+    edited();
+    render();
+    const how=[];
+    if(w.points.length>=2&&!state.free&&!V.heard('sketchCheck')) {
+      how.push(['sketchCheck',{needs:'#sketch-check',valid:()=>!round().locked}]);
+    }
+    if(w.points.length>1&&w.points[w.piece][1]!==w.points[w.piece+1][1]) {
+      how.push(['bendHow',{needs:'#shape-S',valid:()=>!$('shape-S')?.disabled}]);
+    }
+    if(how.length) V.how(how,{hint:false});
+  }
+  function undo() {
+    stopPlayback();
+    const w=work();
+    if(!w.points.length) return;
+    w.points.pop();
+    w.shapes.pop();
+    w.piece=Math.max(0,Math.min(w.piece,w.points.length-2));
+    edited();
+    render();
+  }
+  function toggleFree() {
+    V.hush();
+    state.free=!state.free;
+    render();
+    if(state.free) speak('freeHow',true);
+    else V.welcome();
+  }
+  function checkSketch() {
+    const r=round();
+    if(state.free||r.locked||r.points.length<2) return;
+    r.tries++;
+    const result=sketchResult(story().id,r.points,r.shapes);
+    r.compared=true;
+    r.pass=result.pass;
+    if(result.pass) {
+      r.locked=true;
+      Curio.yes();
+      speak('sketchRight',false,{now:true});
+      settle(r.tries===1?'Matched':'Fixed');
+    } else if(r.tries>=2) {
+      r.locked=true;
+      r.shown=true;
+      speak('sketchShown',false,{now:true});
+      settle('Shown');
+    } else speak('sketchWrong',false,{now:true});
+    render();
+    save();
+    if(r.addedSpare) speak('spareAdded',true);
+    if(result.pass) requestAnimationFrame(()=>requestAnimationFrame(playback));
+  }
+  function renderCompare(replace=false) {
+    const existing=$('compare');
+    if(replace&&!existing) return;
+    const box=document.createElement('div');
+    box.id='compare';
+    box.className='compare';
+    const w=work(), s=story();
+    const ps=parts(w.points,w.shapes,true);
+    const rb=reads(w.points,w.shapes,state.free?'distance from home':s.axis,true);
+    if(state.free) {
+      box.innerHTML='<div class="compare-head"><span>Your graph says</span><span>Distance from home</span></div>';
+      rb.forEach(text=>{
+        const p=document.createElement('p');
+        p.className='compare-count';
+        p.textContent=text;
+        box.append(p);
+      });
+    } else {
+      const check=sketchResult(s.id,w.points,w.shapes);
+      box.innerHTML='<div class="compare-head"><span>Story</span><span>Your graph</span></div>';
+      if(ps.length!==s.story.length) {
+        const p=document.createElement('p');
+        p.className='compare-count';
+        p.textContent=`Your graph tells ${ps.length} ${ps.length===1?'part':'parts'}. The story has ${s.story.length}.`;
+        box.append(p);
+      }
+      for(let i=0;i<Math.max(ps.length,s.story.length);i++) {
+        const el=document.createElement('div');
+        el.className='compare-row';
+        const a=document.createElement('p'), b=document.createElement('p');
+        a.textContent=s.story[i]||'No story part here.';
+        const ok=check.rowOK[i]&&ps.length===s.story.length;
+        b.textContent=(ok?'✓ ':'✕ ')+(rb[i]||'No graph part here.');
+        b.className=ok?'good':'bad';
+        el.append(a,b);
+        box.append(el);
+      }
+    }
+    if(replace) existing.replaceWith(box);
+    else $('stage').append(box);
+  }
+  function drawSketch() {
+    const el=$('sketch-plane');
+    if(!el) return;
+    const active=document.activeElement;
+    const pointIndex=active?.getAttribute('data-point');
+    el.replaceChildren();
+    const w=work(), s=story(), r=round();
+    const g=plot=makePlane(el,state.free?'distance from home':s.axis,{zero:state.free?'0':s.zero,full:state.free?null:s.full});
+    const pp=w.points;
+    drawGraph(g,pp,w.shapes,{color:2,id:'work',opacity:r.shown&&!state.free ? .25 : 1});
+    if(r.shown&&!state.free) drawGraph(g,s.p,s.s,{color:1,dashed:true,width:3});
+    g.onClick((x,y)=>addPoint(x,y));
+    if(!pp.length) {
+      const note=document.createElement('div');
+      note.className='empty-note';
+      note.textContent='Tap a starting height. Then build the story, left to right.';
+      el.append(note);
+    }
+    const redrawCurves=()=>{
+      g.clear('work');
+      drawGraph(g,w.points,w.shapes,{color:2,id:'work'});
+      if(state.free) renderCompare(true);
+    };
+    pp.forEach((p,i)=>{
+      const h=g.point(...p,{color:2,r:6,draggable:true,snap:1,step:1,hit:23,
+        lock:i===0?{x:0}:{},range:{x:[i?pp[i-1][0]+1:0,i<pp.length-1?pp[i+1][0]-1:12],y:[0,8]},
+        ariaLabel:`Point ${i+1}, use arrow keys to move`,
+        onMove:(x,y)=>{stopPlayback();w.points[i]=[x,y];redrawCurves();},
+        onDrop:()=>{edited();render();}});
+      h.el.dataset.point=i;
+      h.el.id='sketch-point-'+i;
+      h.el.addEventListener('pointerdown',stopPlayback);
+      h.el.onclick=e=>e.stopPropagation();
+    });
+    const pointPixels=pp.map(p=>g.px(...p));
+    const piecePixels=[];
+    parts(pp,w.shapes).forEach((p,i)=>{
+      const mid=g.px(...bezier(p.a,p.b,p.s,.5));
+      let placed=null;
+      let best=-Infinity;
+      const offsets=[[0,0]];
+      [52,76,100].forEach(d=>{
+        offsets.push([0,-d],[0,d],[-d,0],[d,0],[-d*.75,-d*.75],[d*.75,-d*.75],[-d*.75,d*.75],[d*.75,d*.75]);
+      });
+      for(const [dx,dy] of offsets) {
+        const candidate=[Math.max(0,Math.min(g.width-6,mid[0]+dx)),
+          Math.max(Math.min(24,g.height/2),Math.min(g.height-12,mid[1]+dy))];
+        const clearance=Math.min(...pointPixels.concat(piecePixels).map(q=>Math.hypot(candidate[0]-q[0],candidate[1]-q[1])));
+        if(clearance>best) {best=clearance;placed=candidate;}
+        if(clearance>=48) break;
+      }
+      const [x,y]=placed;
+      piecePixels.push(placed);
+      if(Math.hypot(x-mid[0],y-mid[1])>8) {
+        svg('line',{x1:mid[0],y1:mid[1],x2:x,y2:y,stroke:'#9374b3','stroke-width':1.3,
+          'stroke-dasharray':'2 3','pointer-events':'none'},g.layer('labels'));
+      }
+      const b=svg('g',{id:'sketch-piece-'+i,class:'piece-dot',transform:`translate(${x},${y})`,role:'button',tabindex:0,
+        'aria-label':`Select piece ${i+1}`,'aria-pressed':String(i===w.piece)},g.layer('labels'));
+      svg('circle',{r:23},b);
+      svg('text',{},b).textContent=i+1;
+      b.onclick=e=>{e.stopPropagation();stopPlayback();w.piece=i;render();};
+      b.onkeydown=e=>{if(['Enter',' '].includes(e.key)){e.preventDefault();stopPlayback();w.piece=i;render();}};
+    });
+    const [cx,cy]=g.px(...state.cross);
+    svg('path',{d:`M${cx-7},${cy}h14M${cx},${cy-7}v14`,class:'crosshair'},g.layer('front'));
+    if(pointIndex!==null&&pointIndex!==undefined) {
+      el.querySelector(`[data-point="${pointIndex}"]`)?.focus({preventScroll:true});
+    }
+  }
+  function playback() {
+    stopPlayback();
+    if(state.mode!=='sketch'||state.free||!plot) return;
+    const r=round(), s=story();
+    const pp=r.shown?s.p:r.points, ss=r.shown?s.s:r.shapes;
+    const ps=parts(pp,ss,true);
+    if(!ps.length) return;
+    if(Curio.reduce) {lightRow(-2);return;}
+    state.playing=true;
+    const id=++playbackId;
+    const duration=Math.min(5000,ps.length*1200), begin=performance.now();
+    const dot=plot.point(...pp[0],{color:'var(--brand)',r:8,id:'playback'});
+    const frame=now=>{
+      if(id!==playbackId||!state.playing) return;
+      const t=Math.max(0,Math.min(1,(now-begin)/duration))*ps.length;
+      const i=Math.min(ps.length-1,Math.floor(t));
+      dot.set(...bezier(ps[i].a,ps[i].b,ps[i].s,Math.min(1,t-i)));
+      lightRow(i);
+      if(t<ps.length) requestAnimationFrame(frame);
+      else {state.playing=false;lightRow(-2);}
+    };
+    requestAnimationFrame(frame);
+  }
+  function parseNumber(value) {
+    const s=String(value).trim().replace(/^\$/,'').replaceAll('−','-').replaceAll(',','');
+    if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:\s*\/\s*[+-]?(?:\d+(?:\.\d*)?|\.\d+))?$/.test(s)) return null;
+    const a=s.split('/').map(Number);
+    const n=a.length===2?a[0]/a[1]:a[0];
+    return Number.isFinite(n)?n:null;
+  }
+  const equal=(a,b)=>a!==null&&Math.abs(a-b)<=1e-9*Math.max(1,Math.abs(b));
+  function modelNote(m,b,s) {
+    if(equal(m,s.b)&&equal(b,s.m)) return 'Your two numbers look swapped. Which one is there at the start, before anything changes?';
+    if(m!==0&&Math.sign(m)!==Math.sign(s.m)) return s.m<0?
+      "Your line goes up, but the story's amount goes down.":"Your line goes down, but the story's amount goes up.";
+    if(equal(m,1/s.m)) return 'You divided the change in x by the change in y. Rate of change is change in y over change in x.';
+    if(equal(m,s.m)&&s.p[0][0]!==0&&equal(b,s.p[0][1])) {
+      return 'Your b is the y of the first point, but that point is not at the start. Work back to where x is 0.';
+    }
+    return "Your line misses the story's points. Check each number.";
+  }
+  function renderModel() {
+    const r=round(), s=story();
+    if(r.numbersSettled) $('stage').classList.add('meaning-step');
+    chapter('Build the model');
+    storyArea('object');
+    const rep=document.createElement('div');
+    rep.className='representation';
+    rep.id='representation';
+    $('stage').append(rep);
+    if(!s.kind.startsWith('graph')&&(!r.checked||s.kind==='table')) {
+      if(s.kind==='table') {
+        const table=document.createElement('table');
+        table.innerHTML=`<thead><tr><th>${s.symbols[0]} (${s.symbols[2]})</th><th>${s.symbols[1]} (${s.symbols[3]})</th></tr></thead>`;
+        const body=document.createElement('tbody');
+        s.p.forEach(([x,y])=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${x}</td><td>${y}</td>`;body.append(tr);});
+        table.append(body);
+        rep.append(table);
+      } else if(s.kind==='two points') {
+        rep.innerHTML=`<div class="rep-text"><div>${s.symbols[0]}: ${s.symbols[2]}, ${s.symbols[1]}: ${s.symbols[3]}</div>`+
+          s.p.map(p=>`<span class="pair">(${p.join(', ')})</span>`).join('')+'</div>';
+      } else {
+        const board=document.createElement('div');
+        board.className='description-board';
+        const painting=document.createElement('img');
+        painting.className='description-art';
+        painting.src=ART[s.art];
+        painting.alt='';
+        const text=document.createElement('div');
+        text.className='rep-text';
+        text.innerHTML=`A steady story has a starting amount<br>and a change for each ${s.symbols[2].replace(/s$/,'')}.`;
+        board.append(painting,text);
+        rep.append(board);
+      }
+    }
+    const eq=document.createElement('div');
+    eq.className='equation';
+    eq.id='equation';
+    const symbol=document.createElement('span');
+    symbol.textContent=s.symbols[1]+' =';
+    eq.append(symbol);
+    ['m','b'].forEach((name,i)=>{
+      if(i) {const sign=document.createElement('span');sign.textContent=s.symbols[0]+' +';eq.append(sign);}
+      const field=document.createElement('div');
+      field.className='number-field';
+      const inp=document.createElement('input');
+      inp.type='text';
+      inp.inputMode='decimal';
+      inp.id='number-'+name;
+      inp.value=r[name];
+      inp.maxLength=40;
+      inp.readOnly=!!r.numbersSettled;
+      inp.setAttribute('aria-invalid',String(!!r.invalid?.includes(name)));
+      inp.oninput=()=>{
+        r[name]=inp.value;
+        $('model-check').disabled=!r.m.trim()||!r.b.trim()||!!r.numbersSettled;
+        hint('Type both numbers, then press Check. Fractions such as 3/20 also work.');
+        save();
+      };
+      inp.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();checkModel();}};
+      const label=document.createElement('label');
+      label.htmlFor=inp.id;
+      label.textContent=i?'initial value (b)':'rate of change (m)';
+      inp.setAttribute('aria-label',label.textContent);
+      field.append(inp,label);
+      eq.append(field);
+    });
+    $('stage').append(eq);
+    const a=row();
+    button('model-check','Check',checkModel,{parent:a,primary:true,disabled:!r.m.trim()||!r.b.trim()||!!r.numbersSettled});
+    button('next','Next story',next,{parent:a,disabled:!r.done});
+    const note=document.createElement('p');
+    note.className='note';
+    note.id='model-note';
+    note.textContent=r.note||'';
+    $('actions').append(note);
+    if(r.numbersSettled) renderMeanings();
+    if(r.done) {
+      bubble('Two numbers, and two meanings. That is a model of this story.',r.mark==='Matched'?'cheer':'think');
+      hint('Compare the checked meanings with the story. Press Next story.');
+    } else if(r.numbersSettled) {
+      bubble(r.shown?'The numbers are shown. You can still explain what they mean.':'Now give each number its meaning in this story.');
+      hint('Tap one meaning card for each number. Each choice locks.');
+    } else {
+      bubble('Where does this story start? How fast does the amount change?');
+      hint(!r.m&&!r.b?'Type the rate of change and the initial value in the two boxes, then press Check.':
+        'Type both numbers, then press Check.');
+    }
+  }
+  function checkModel() {
+    const r=round(), s=story();
+    if(r.numbersSettled||!r.m.trim()||!r.b.trim()) return;
+    const m=parseNumber(r.m), b=parseNumber(r.b);
+    r.invalid=['m','b'].filter((_,i)=>[m,b][i]===null);
+    if(r.invalid.length) {
+      r.note='✕ Type a number, like 4, -3.5 or 3/20';
+      render();
+      return;
+    }
+    r.tries++;
+    r.checked={m,b};
+    r.numberOK=equal(m,s.m)&&equal(b,s.b);
+    if(r.numberOK) {
+      r.numbersSettled=true;
+      r.note='✓ Both numbers fit every point.';
+      Curio.yes();
+      speak('modelRight',false,{now:true});
+    } else if(r.tries>=2) {
+      r.numbersSettled=true;
+      r.shown=true;
+      r.m=String(s.m);
+      r.b=String(s.b);
+      r.note='Shown: compare these numbers with the story.';
+      speak('modelShown',false,{now:true});
+    } else {
+      r.note=modelNote(m,b,s);
+      speak('modelWrong',false,{now:true});
+    }
+    render();
+    save();
+  }
+  function drawModel() {
+    const r=round(), s=story(), el=$('representation');
+    if(!el||(!s.kind.startsWith('graph')&&!r.checked)) return;
+    if(getComputedStyle(el).display==='none') return;
+    const givenTable=el.querySelector('table');
+    el.replaceChildren();
+    let graphHost=el;
+    if(givenTable) {
+      el.classList.add('with-graph');
+      el.append(givenTable);
+      graphHost=document.createElement('div');
+      graphHost.className='model-graph';
+      el.append(graphHost);
+    }
+    const xs=s.p.map(p=>p[0]), ys=s.p.map(p=>p[1]);
+    const maxX=s.id==='R4'?10:s.id==='R5'?45:s.id==='R9'?14:Math.max(...xs)*1.12;
+    const maxY=s.id==='R4'?100:s.id==='R5'?8:s.id==='R9'?8:Math.max(...ys,s.b)*1.15;
+    const grid=s.id==='R4'?[1,10]:s.id==='R5'?[5,.5]:s.id==='R9'?[1,1]:[Math.max(1,Math.ceil(maxX/8)),Math.max(1,Math.ceil(maxY/8))];
+    const g=plot=makePlane(graphHost,`${s.symbols[1]} (${s.symbols[3]})`,{model:true,x:[0,maxX],y:[0,maxY],
+      grid,labels:[grid[0]*2,grid[1]*2],tickFormat:v=>Plane.fmt(v),xLabel:`${s.symbols[0]} (${s.symbols[2]})`});
+    const domain=s.id==='R5'?[10,40]:[0,Math.max(...xs)];
+    if(s.kind.startsWith('graph')||r.numbersSettled) {
+      g.segment([domain[0],s.m*domain[0]+s.b],[domain[1],s.m*domain[1]+s.b],{color:1,width:3});
+    }
+    if(r.checked) {
+      g.fn(x=>r.checked.m*x+r.checked.b,{color:2,domain:[0,maxX],width:3,label:'Your checked model'});
+      s.p.forEach(([x,y])=>{
+        const value=r.checked.m*x+r.checked.b;
+        if(equal(value,y)) g.point(x,y,{color:2,shape:'diamond',r:10});
+        else g.segment([x,y],[x,value],{color:'var(--wrong)',width:2});
+      });
+    }
+    s.p.forEach(([x,y])=>g.point(x,y,{color:1,r:5}));
+  }
+  function renderMeanings() {
+    const r=round(), s=story();
+    const box=document.createElement('div');
+    box.className='meanings';
+    box.id='meanings';
+    s.meanings.forEach((cards,col)=>{
+      const c=document.createElement('div');
+      c.className='meaning-col';
+      const h=document.createElement('h3');
+      h.textContent=`What does ${Math.abs(col?s.b:s.m)} mean here?`;
+      c.append(h);
+      r.meaningOrder[col].forEach((index,j)=>{
+        const b=document.createElement('button');
+        b.className='meaning';
+        b.id=`meaning-${col}-${j}`;
+        b.textContent=cards[index];
+        if(r.meanings[col]!==null) {
+          b.classList.add('locked');
+          b.setAttribute('aria-disabled','true');
+          if(index===0) b.classList.add('right');
+          if(index===r.meanings[col]&&index!==0) b.classList.add('wrong');
+        }
+        b.onclick=()=>{
+          stopPlayback();
+          if(r.meanings[col]!==null) return;
+          r.meanings[col]=index;
+          const eventId=index===0 ? 'meaningRight' : 'meaningWrong';
+          if(index===0) Curio.yes();
+          else {r.note=cards[0];Curio.tone(190,.08,.035);}
+          if(col===0) {
+            speak(eventId,false,{now:true,key:eventId+'-m'});
+            if(r.pendingMeaningB) {
+              speak(r.pendingMeaningB,false,{key:r.pendingMeaningB+'-b'});
+              r.pendingMeaningB=null;
+            }
+          } else if(r.meanings[0]!==null) speak(eventId,false,{now:true,key:eventId+'-b'});
+          else r.pendingMeaningB=eventId;
+          if(r.meanings.every(v=>v!==null)) {
+            const both=r.meanings.every(v=>v===0);
+            settle(r.numberOK&&r.tries===1&&both?'Matched':r.shown&&r.meanings.every(v=>v!==0)?'Shown':'Partly');
+            if(r.addedSpare) speak('spareAdded',true);
+          }
+          render();
+          save();
+        };
+        c.append(b);
+      });
+      box.append(c);
+    });
+    $('stage').append(box);
+  }
+  document.addEventListener('keydown',e=>{
+    if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) return;
+    const el=e.target;
+    if(el.tagName!=='BUTTON') return;
+    const group=el.closest('.cards,.tag-grid,.meaning-col,.seg');
+    if(!group) return;
+    const bs=[...group.querySelectorAll('button')].filter(b=>!b.disabled);
+    const i=bs.indexOf(el);
+    if(i<0) return;
+    e.preventDefault();
+    bs[(i+(['ArrowLeft','ArrowUp'].includes(e.key)?-1:1)+bs.length)%bs.length].focus({preventScroll:true});
+  });
+  modes.forEach(m=>$('m-'+m).onclick=()=>setMode(m));
+  $('clear-progress').onclick=()=>{
+    stopPlayback();
+    V.hush();
+    $('clear-dialog').showModal();
+    $('keep-progress').focus({preventScroll:true});
+  };
+  const closeConfirm=()=>{
+    $('clear-dialog').close();
+    $('clear-progress').focus({preventScroll:true});
+  };
+  $('keep-progress').onclick=closeConfirm;
+  $('clear-dialog').addEventListener('cancel',e=>{e.preventDefault();closeConfirm();});
+  $('confirm-clear').onclick=()=>{
+    V.hush();
+    modes.forEach(m=>state[m]=newMode(m));
+    state.free=false;
+    save();
+    render();
+    closeConfirm();
+  };
+  Curio.init({clips:"voice:*",rate:.95});
+  Curio.onMotion(()=>{stopPlayback();if(Curio.reduce)lightRow(-2);});
+  let resizeTimer;
+  new ResizeObserver(()=>{
+    clearTimeout(resizeTimer);
+    resizeTimer=setTimeout(()=>{stopPlayback();planes=[];drawPlanes();},80);
+  }).observe($('stage'));
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},
+    data:DATA,parseNumber,sketchResult,modelNote,parts,reads,bezier,render,addPoint,checkSketch,checkModel,
+    get plot(){return plot;}};
+  render();
+})();
+
+</script>
+</body>
+</html>

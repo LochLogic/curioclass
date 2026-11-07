@@ -1,0 +1,154 @@
+{
+  "house_style": "Consistent premium miniature toy photography for a grade 4 media lesson. Small green plastic lizard toy racer car, four black wheels, orange flame stickers, round yellow eyes, molded scale details and a short curled tail. Crisp materials, directional light, detailed foreground, middle ground and background. Blank surfaces, no text, letters, numbers, logos, people or hands.",
+  "assets": [
+    {
+      "name": "ad-launch",
+      "prompt": "Bright glossy toy commercial. Extreme floor-level close view of the racer on an orange plastic ramp, filling the frame, dramatic violet sunset sky behind it.",
+      "aspect": "16:9",
+      "width": 1100,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool"
+    },
+    {
+      "name": "ad-speed",
+      "prompt": "Bright glossy toy commercial. Racer on a purple plastic track, low camera angle, background blurred with orange and violet speed, toy sharply visible.",
+      "aspect": "16:9",
+      "width": 1100,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool"
+    },
+    {
+      "name": "ad-canyon",
+      "prompt": "Bright glossy toy commercial. Racer airborne between two boxes painted as red rock cliffs, dust and dramatic orange sunlight. Clearly miniature cardboard cliffs, exciting macro framing.",
+      "aspect": "16:9",
+      "width": 1100,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool"
+    },
+    {
+      "name": "ad-crowd",
+      "prompt": "Bright glossy toy commercial. Exactly eight matching racers on a huge orange looping plastic track on a bedroom floor, violet walls, warm side lighting. No spectators.",
+      "aspect": "16:9",
+      "width": 1100,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool"
+    },
+    {
+      "name": "ad-night",
+      "prompt": "Toy commercial in a dark navy room. One racer at table height, eyes glowing yellow, gentle light spilling on the tabletop, dark background. Honest glowing toy eyes.",
+      "aspect": "16:9",
+      "width": 1100,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool"
+    },
+    {
+      "name": "ad-price",
+      "prompt": "Bright glossy toy commercial. Racer on a purple spotlit stand, blank bright orange banner above, ample clear banner space. Lime and purple studio background.",
+      "aspect": "16:9",
+      "width": 1100,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool"
+    },
+    {
+      "name": "plain-launch",
+      "prompt": "Plain soft daylight photo at table height. The same small toy beside its small orange ramp on a white table. A pencil for size comparison. Calm ordinary room.",
+      "aspect": "16:9",
+      "width": 1000,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool"
+    },
+    {
+      "name": "plain-speed",
+      "prompt": "Plain soft daylight photo at table height. The small toy on a single short purple straight track on a white table. Sharp still background, no speed effects.",
+      "aspect": "16:9",
+      "width": 1000,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool"
+    },
+    {
+      "name": "plain-canyon",
+      "prompt": "Plain soft daylight photo at table height. The small toy beside two small cardboard boxes painted as red rocks with a narrow gap. Small orange plastic launch ramp clearly in view, pencil case beside gap. Redraw: white table and a clearly inclined orange wedge ramp reaching the left box top.",
+      "aspect": "16:9",
+      "width": 1000,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool",
+      "redraw": "First ramp read as flat; redrawn with a clear incline."
+    },
+    {
+      "name": "plain-crowd",
+      "prompt": "Plain soft daylight photo at table height. Only one small toy on one short straight purple track piece, on a white table. Ordinary room softly out of focus.",
+      "aspect": "16:9",
+      "width": 1000,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool"
+    },
+    {
+      "name": "lab-table",
+      "prompt": "Plain soft daylight overhead photograph of a white classroom testing table. An empty open cardboard toy box in the upper left corner, one short purple straight toy track in the upper right corner, small folded white cloth near the top edge. Broad clear white tabletop across the central and lower three quarters for the interactive racer, ruler and track drawn over it. Subtle surface grain, upper-left daylight and soft contact shadows. The racer is a separate interactive image, so this background contains table and equipment only. Blank surfaces, no text, letters, numbers, logos, people or hands.",
+      "aspect": "16:9",
+      "width": 1000,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool, cold review redraw",
+      "redraw": "Cold review: remove the static duplicate toy behind the interactive racer and retain a detailed tabletop.",
+      "house_style": "Premium miniature toy-lab tabletop photography for a grade 4 media lesson. White laminated table, cardboard and molded purple plastic, soft upper-left daylight, subtle surface grain and natural contact shadows. Equipment background with a clear central work area for interactive overlays. Blank surfaces; no text, letters, numbers, logos, people or hands."
+    },
+    {
+      "name": "box-contents",
+      "prompt": "Plain soft daylight photo of a cardboard toy box tipped open, exactly one small green lizard racer, one short straight purple track piece, and one colorful sticker sheet spilling out on white table. Blank box flaps, no extra accessories.",
+      "aspect": "4:3",
+      "width": 1000,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool"
+    },
+    {
+      "name": "lab-racer",
+      "aspect": "16:9",
+      "width": 500,
+      "quality": 78,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool",
+      "prompt": "Exact side view of the same small green plastic lizard toy racer car with orange flame stickers, round yellow eyes, four black wheels and short curled tail. Entire toy centered with space around all edges, nose facing right, tail at left. Glossy miniature plastic, real molded details and gentle upper-left light. Flat pure magenta background #FF00FF. No text, letters, numbers, people or logos. This cutout sits above a precise interactive ruler.",
+      "redraw": "Removed generated ruler and tall seat back; only the toy remains.",
+      "despill": true
+    }
+  ]
+}

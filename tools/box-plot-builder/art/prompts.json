@@ -1,0 +1,94 @@
+{
+  "house_style": "Warm painted editorial illustration for a Grade 6 newspaper data desk. Soft gouache and pencil texture, detailed believable materials, soft daylight from upper left, rich natural teal, amber and blue accents. No text, letters, numbers, logos or watermarks.",
+  "assets": [
+    {
+      "name": "sam-ask",
+      "prompt": "A friendly young adult newspaper reporter, medium brown skin, short curly dark hair, round glasses, warm cream rolled-sleeve shirt, teal waistcoat, with blank notepad and pencil raised, curious look. Waist-up, complete head, both arms and notepad fully visible. Alone on perfectly flat pure green #00FF00 background.",
+      "aspect": "3:4",
+      "width": 260,
+      "quality": 78,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "despill": true
+    },
+    {
+      "name": "sam-pleased",
+      "ref": "sam-ask",
+      "prompt": "Same reporter Sam as sam-ask: medium brown skin, short curly dark hair, round glasses, cream rolled-sleeve shirt and teal waistcoat. Smiling and nodding, pencil tapping blank notepad. Waist-up, complete head, both arms and notepad fully visible. Alone on perfectly flat pure green #00FF00 background.",
+      "aspect": "3:4",
+      "width": 260,
+      "quality": 78,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "despill": true
+    },
+    {
+      "name": "sam-puzzled",
+      "ref": "sam-ask",
+      "prompt": "Same reporter Sam as sam-ask: medium brown skin, short curly dark hair, round glasses, cream rolled-sleeve shirt and teal waistcoat. Eyebrows raised, looking thoughtfully at blank notepad, one hand on chin. Waist-up, complete head, both arms and notepad fully visible. Alone on perfectly flat pure green #00FF00 background.",
+      "aspect": "3:4",
+      "width": 260,
+      "quality": 78,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "despill": true
+    },
+    {
+      "name": "newsroom-desk",
+      "prompt": "A sunny small-town newsroom desk with ceramic coffee mug, stacked blank newspapers with completely blank cream pages, brass desk lamp, oak grain, pencil cup, tall window with soft daylight from upper left. Atmospheric editorial painting, inviting working desk, clear central paper area. Empty room, no people.",
+      "aspect": "16:9",
+      "width": 1000,
+      "quality": 74,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "set-sandiego",
+      "prompt": "San Diego bay on a hot clear afternoon, palm trees, calm blue water, distant low waterfront, warm bright sunlight. Rich painted landscape, no people, no signs.",
+      "aspect": "4:3",
+      "width": 440,
+      "quality": 76,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "set-chicago",
+      "prompt": "A Chicago lakefront park in late spring, new green trees, blue Lake Michigan, recognizably Chicago distant skyline, soft daylight. Rich painted landscape, no people, no signs.",
+      "aspect": "4:3",
+      "width": 440,
+      "quality": 76,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "set-miami",
+      "prompt": "A humid Miami beach in midsummer, turquoise Atlantic water, pale sand, palms and towering white cumulus clouds. Rich painted landscape, no people, no signs.",
+      "aspect": "4:3",
+      "width": 440,
+      "quality": 76,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "set-denver",
+      "prompt": "Denver foothills in summer with the Rocky Mountains behind and dry golden grass field, layered blue mountains under soft daylight. Rich painted landscape, no people, no signs.",
+      "aspect": "4:3",
+      "width": 440,
+      "quality": 76,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "set-basketball",
+      "prompt": "An orange basketball resting on a polished hardwood court under arena lights. Detailed pebbled rubber and black seams, warm wood reflections, softly blurred empty arena background. Rich editorial painting, no people, no branding or lettering.",
+      "aspect": "4:3",
+      "width": 440,
+      "quality": 76,
+      "people": false,
+      "drawn_by": "codex"
+    }
+  ]
+}

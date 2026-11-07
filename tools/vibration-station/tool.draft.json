@@ -1,0 +1,26 @@
+{
+  "id": "vibration-station",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Make the shake, stop the sound, and send a message to Sam.",
+  "outcome": "Investigate how vibration and sound cause each other, then build and test sound communication devices.",
+  "driver": "teacher",
+  "minutes": "25-32",
+  "modes": [
+    "Bench",
+    "Find out",
+    "Reach Sam"
+  ],
+  "grades_label": "Grade 1",
+  "updated": "2026-11-07",
+  "sources": [
+    "NGSS 1-PS4-1 and 1-PS4-4, nextgenscience.org",
+    "University of Manchester, Dancing Sprinkles experiment guide",
+    "Exploratorium, Science Explorer: Ear Guitar",
+    "NIDCD, Taking Care of Your Voice",
+    "Science Buddies, Rubber Band Guitar",
+    "OpenStax College Physics 17.3, sound intensity and distance",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": []
+}

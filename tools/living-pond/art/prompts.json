@@ -1,0 +1,24 @@
+{
+  "house_style": "Naturalistic field-guide gouache, crisp species anatomy, soft daylight, gentle pond colours, no people, no lettering.",
+  "assets": [
+    {
+      "name": "pond-specimens",
+      "prompt": "A precisely aligned six by six sprite atlas of pond specimens and material, one isolated subject centred within each equal square cell. Flat pure magenta background. Row 1: spring willow shore; summer willow shore; autumn willow shore; snowy willow shore; pale sand texture; gravel texture. Row 2: mud texture; leaf muck texture; pale ice texture; green cattails; dry cattails; lily pads. Row 3: pondweed stem; algae-covered stone; thin algae stone; floating algae mat; pond snail crawling; tucked pond snail. Row 4: pale silver minnow; dark olive minnow; dragonfly nymph with six legs; nymph with extended jaw; adult dragonfly body; one dragonfly wing. Row 5: painted turtle swimming; painted turtle basking; tucked painted turtle; fallen log; great blue heron standing; great blue heron striking. Row 6: great blue heron flying; earthworm; fungus-covered dead leaf; autumn leaves; blank fish-food shaker; wooden-handled dip net. Each item fits entirely inside its cell with generous magenta spacing. No text, grid lines or shadows outside objects.",
+      "cutout": true,
+      "key": "magenta",
+      "width": 1536,
+      "quality": 82,
+      "drawn_by": "codex",
+      "people": false
+    },
+    {
+      "name": "pond-shores-v2",
+      "prompt": "Naturalistic field-guide gouache. One precisely aligned atlas of four full-width panoramic strips stacked vertically in equal quarter-height rows, continuous edge-to-edge rectangular paintings. Each row depicts exactly the same quiet North American pond far shoreline, a broad calm low bank with groups of distant willows, grass and open soft sky, viewed horizontally across a pond. The bottom edge of each strip is a straight level waterline. Row one spring pale new leaves, row two full green summer foliage, row three warm russet autumn leaves, row four bare winter willows with snow on the bank. Clear crisp silhouettes and soft painted texture, soft daylight, gentle pond colours. The trees are distant and naturally distributed across the entire panorama. No animals, people, words, letters, labels, borders, diagrams, interface, text or logos. All four strips run full width and touch each other at exact quarter-height boundaries. Intended as four seasonal background strips for the study tank, not a scientific data image.",
+      "cutout": false,
+      "width": 1536,
+      "quality": 82,
+      "drawn_by": "codex",
+      "people": false
+    }
+  ]
+}

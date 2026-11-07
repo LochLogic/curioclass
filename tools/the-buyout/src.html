@@ -1,0 +1,1745 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>The Buyout · Same shoppers, fewer rivals · Curio Class</title>
+<meta name="description" content="Run a fictional charger business before and after a buyout. Compare your markets and weigh five remedies. Grade 12 economics. Works offline.">
+<!--
+The Buyout, Curio Class. Grade 12 economics, students drive.
+C3 D2.Eco.4.9-12, D2.Eco.5.9-12, D2.Eco.6.9-12, D2.Eco.7.9-12.
+Derived from kit/starter/src.html. Fictional logit market, not a forecast or legal advice.
+Named factual sources are in notes.md and codex-report.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. One offline file, no network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --brand:#b3a6ff;
+  --brand-ink:#16102e;
+  --teal:#4fd1c5;
+  --coral:#ff8f7a;
+  --gold:#f2c14e;
+  --owner:#8a96a8;
+}
+body { height:100dvh; min-height:0; overflow:hidden; }
+header { padding:8px 18px; gap:10px; flex-wrap:nowrap; }
+h1 { display:flex; align-items:center; gap:10px; font-size:24px; white-space:nowrap; }
+h1 img { width:30px; height:44px; object-fit:contain; filter:drop-shadow(0 2px 4px #0009); }
+h1 small { display:block; font-size:11px; font-weight:400; letter-spacing:.06em; }
+.seg { border-width:1px; border-radius:9px; flex-shrink:0; }
+.seg button,.icon-btn { min-height:44px; padding:0 13px; font-size:14px; }
+.icon-btn { min-width:44px; width:108px; white-space:nowrap; border-width:1px; border-radius:9px; }
+main { grid-template-columns:minmax(0,1fr) minmax(345px,34%); height:100%; overflow:hidden; }
+.stage { min-height:0; background:#10171f; order:0; }
+.panel { order:1; min-height:0; padding:14px 18px; gap:10px; overflow:hidden; }
+button,select,textarea { touch-action:manipulation; }
+button { transition:background .12s, border-color .12s; }
+button:active { filter:brightness(1.15); }
+button:disabled { cursor:default; }
+.btn { font-size:13px; padding:0 8px; min-width:44px; }
+.btn[aria-pressed="true"] { color:var(--brand-ink); }
+.row { display:flex; gap:6px; align-items:center; }
+.row>* { min-width:0; }
+.grow { flex:1; }
+.eyebrow { color:var(--muted); font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+.hint { min-height:66px; font-size:15px; line-height:1.35; padding-left:10px; border-left:2px solid var(--brand); }
+.section-label { margin:0 0 4px; color:var(--muted); font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
+.choices { display:grid; gap:8px; }
+.choice-head { display:flex; align-items:center; justify-content:space-between; font-size:13px; }
+.choice-head output { font:700 26px var(--readout-font); color:var(--brand); }
+.price-row { display:grid; grid-template-columns:44px 1fr 44px; gap:8px; align-items:center; }
+.choice-grid { display:grid; gap:4px; }
+.quality-grid { grid-template-columns:repeat(5,1fr); }
+.research-grid { grid-template-columns:repeat(3,1fr); }
+.choice-grid button { line-height:1.15; padding:3px; }
+.choice-grid small { display:block; font-size:10px; margin-top:3px; }
+.stars { letter-spacing:-1px; font-size:11px; }
+.lab { font-size:12px; display:flex; align-items:center; gap:8px; }
+.lab i { width:7px; height:7px; border-radius:50%; background:var(--teal); box-shadow:0 0 9px #4fd1c588; }
+.lab i { animation:lab-pulse 3s ease-in-out infinite; }
+@keyframes lab-pulse { 50% { opacity:.3; } }
+.meter { height:4px; background:#2b3646; border-radius:4px; overflow:hidden; }
+.meter span { height:100%; display:block; background:var(--brand); }
+.actions { display:grid; grid-template-columns:1.35fr 1fr; gap:7px; }
+.actions button { font-size:14px; }
+.stats { display:grid; grid-template-columns:1fr 1fr; gap:6px; padding:8px 0; border-top:1px solid var(--line); }
+.stat span { display:block; color:var(--muted); font-size:11px; }
+.stat b { display:block; font:600 19px var(--readout-font); }
+.stat b.negative { color:var(--coral); }
+.competition { border-top:1px solid var(--line); padding-top:8px; font-size:12px; }
+.competition .row { justify-content:space-between; }
+.hhi-track { height:8px; position:relative; background:#2b3646; margin:8px 0 4px; }
+.hhi-track span { display:block; height:100%; background:var(--brand); }
+.hhi-track i { position:absolute; top:-3px; bottom:-3px; width:2px; left:18%; background:var(--gold); }
+.micro { font-size:11px; line-height:1.4; color:var(--muted); margin:4px 0; }
+.run-scene { height:100%; display:grid; grid-template-rows:34px minmax(170px,1fr) 112px 132px; }
+.scene-top { display:flex; align-items:center; justify-content:space-between; padding:0 18px; background:#18212b; }
+.scene-top b { color:var(--teal); font-size:12px; letter-spacing:.08em; }
+.scene-top span { font-size:11px; color:var(--muted); }
+.shelf { position:relative; min-height:0; isolation:isolate; overflow:hidden; }
+.shelf-back { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; }
+.shelf:after { content:''; position:absolute; inset:0; background:linear-gradient(#11131a22,#11131a00 35%,#10151a55); z-index:-1; }
+.ownership { position:absolute; top:12px; left:50%; transform:translateX(-50%); white-space:nowrap;
+  padding:7px 16px; background:#22202cef; color:#eadfff; border:1px solid #b3a6ff88; font-size:13px; }
+.products { position:absolute; left:5%; right:5%; top:15%; bottom:9%; display:grid;
+  grid-template-columns:repeat(4,1fr); grid-template-rows:minmax(0,1fr); gap:3%; }
+.product { display:flex; flex-direction:column; align-items:center; position:relative;
+  min-width:0; min-height:0; justify-content:flex-end; }
+.box { object-fit:contain; width:100%; height:0; flex:1; min-height:0; filter:drop-shadow(7px 9px 6px #0008); }
+.product>*:not(.box) { flex-shrink:0; }
+.product-name { color:#fff; font-weight:700; text-shadow:0 1px 4px #000; font-size:15px; }
+.brand-short { display:none; }
+.williamson-short { display:none; }
+.product-spec { color:#fff; text-shadow:0 1px 4px #000; font-size:12px; padding:1px 4px; background:#18202bca; border-radius:3px; }
+.price-tag { width:100%; padding:4px; margin:4px 0; background:#f4f1ea; color:#1a1a1a; text-align:center;
+  border:1px solid #d8d0bf; box-shadow:1px 3px 4px #0006; font:700 24px var(--readout-font); }
+.product-share { width:100%; background:#14202ceb; height:21px; border:1px solid #eee6; position:relative; }
+.product-share i { display:block; height:100%; opacity:.55; transition:width .15s; }
+.product-share b { position:absolute; inset:0; text-align:center; font:600 12px/19px var(--readout-font); color:#fff; }
+.you { position:absolute; z-index:2; top:5px; left:4px; background:var(--brand); color:#16102e; padding:3px 8px; font-size:10px; font-weight:800; }
+.owned .you {
+  left:50%; transform:translateX(-50%); white-space:normal; width:90%; max-width:90%;
+  text-align:center; font-size:10px; padding:2px 1px;
+}
+.walking-past { position:absolute; bottom:2px; left:16px; background:#472b23; color:#ffe1d7; padding:4px 10px; font-size:12px; }
+.lane { position:relative; background:linear-gradient(#35404a,#1b242e 80%); border-top:5px solid #9b8061;
+  box-shadow:inset 0 12px 20px #0004; overflow:hidden; }
+.lane:after { content:''; position:absolute; bottom:12px; left:0; right:0; height:1px; background:#ffffff12; }
+.lane-caption { position:absolute; top:4px; left:16px; right:16px; display:flex; justify-content:space-between;
+  font-size:10px; color:#d1dae3; z-index:2; }
+.shopper { position:absolute; bottom:12px; width:3.7%; height:72%; max-width:34px; transition:left 1.4s ease, opacity .3s; }
+.shopper img { width:100%; height:100%; object-fit:contain; object-position:bottom; filter:drop-shadow(2px 3px 1px #0006); }
+.shopper .cable { position:absolute; top:7px; right:-3px; width:15px; height:15px; background:#f4f1ea; border-radius:50%; padding:2px; }
+.destination { position:absolute; left:8%; right:8%; bottom:2px; display:flex; gap:3px; height:4px; }
+.destination i { display:block; }
+.quarter-strip { padding:10px 18px 2px; background:#10171f; border-top:1px solid var(--line); }
+.chart { width:100%; height:calc(100% - 20px); display:block; overflow:visible; }
+.chart text { fill:var(--muted); font-family:'Segoe UI',sans-serif; font-size:11px; }
+.chart .grid { stroke:#34404b; stroke-width:1; }
+.chart .series { fill:none; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+.chart-head { display:flex; gap:14px; font-size:10px; color:var(--muted); align-items:center; }
+.chart-head .key:before { content:''; display:inline-block; width:15px; height:2px; margin-right:4px; vertical-align:middle; background:currentColor; }
+.chart-head .dashed:before { background:none; border-top:2px dashed currentColor; }
+.chart-head .dotted:before { background:none; border-top:2px dotted currentColor; }
+.chart-head strong { margin-right:auto; color:var(--ink); font-size:11px; }
+.compare-scene { height:100%; padding:12px 16px; display:grid; grid-template-rows:auto 180px minmax(0,1fr) 110px; gap:8px; }
+.compare-head { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.compare-head h2 { font-size:16px; margin:0; }
+.compare-head small { font-size:11px; font-weight:400; color:var(--muted); }
+.mini-pair { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.mini { position:relative; overflow:hidden; background:#403931; border-radius:4px; isolation:isolate; }
+.mini .products { top:3%; bottom:5%; left:4%; right:4%; gap:4%; }
+.mini .box { height:0; }
+.mini .product-name { font-size:10px; }
+.mini .product-spec { font-size:10px; }
+.mini .price-tag { font-size:14px; padding:1px; margin:1px 0; }
+.mini .product-share { height:14px; }
+.mini .product-share b { font-size:10px; line-height:12px; }
+.compare-table { width:100%; border-collapse:collapse; align-self:start; font-size:13px; }
+.compare-table th { color:var(--muted); font-weight:400; text-align:left; width:36%; }
+.compare-table td { width:32%; font-family:var(--readout-font); }
+.compare-table th,.compare-table td { padding:4px 8px; border-bottom:1px solid var(--line); }
+.compare-table .buyer-row { height:44px; cursor:pointer; }
+.buyer-row.marked { background:#b3a6ff22; box-shadow:inset 3px 0 var(--brand); }
+.buyer-row.marked th:before { content:'✓ '; color:var(--brand); }
+.buyer-row[aria-disabled="true"] { cursor:default; }
+.compare-table td:nth-child(2) { color:var(--teal); }
+.compare-table td:nth-child(3) { color:var(--coral); }
+.compare-chart { min-height:0; }
+.ratings { display:grid; gap:9px; }
+.rating-pages { display:none; }
+.policy-short { display:none!important; }
+.ratings label { color:var(--muted); display:block; font-size:12px; margin-bottom:4px; }
+.rating-options { display:grid; grid-template-columns:repeat(3,1fr); gap:4px; }
+.rating-options.buyers { grid-template-columns:1fr 1fr; }
+.feedback { padding:8px; font-size:12px; line-height:1.35; border-left:2px solid var(--gold); background:#202735; min-height:64px; }
+.switch-result { display:grid; grid-template-columns:1fr 1fr; gap:6px; padding:10px; background:#202735; border:1px solid var(--line); }
+.switch-result .assumption { grid-column:1/-1; font-size:10px; line-height:1.1; }
+.switch-result b { display:block; font:700 24px var(--readout-font); }
+.switch-result small { display:block; line-height:1.4; font-size:11px; }
+.switch-flow { display:flex; height:8px; gap:2px; margin:5px 0; overflow:hidden; }
+.switch-flow i { min-width:1px; background:var(--teal); transform-origin:left; }
+.switch-flow i.rival { background:var(--gold); }
+.switch-flow i.without { background:repeating-linear-gradient(135deg,#8a96a8 0 3px,#293541 3px 5px); }
+body:not(.calm) .switch-flow i { animation:switch-arrive .45s ease-out both; }
+@keyframes switch-arrive { from { transform:scaleX(.05); } to { transform:scaleX(1); } }
+.finish-row { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.innovation { font-size:11px; color:var(--muted); margin:0; }
+.regulator-scene { height:100%; padding:12px 16px; display:grid;
+  grid-template-rows:128px 80px 105px minmax(160px,1fr) auto; gap:8px; }
+.remedy-cards { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
+.remedy-card { border:1px solid #556175; border-radius:6px; overflow:hidden; padding:0; background:#202a37; }
+.remedy-card img { width:100%; height:calc(100% - 30px); object-fit:cover; display:block; }
+.remedy-card span { display:flex; height:30px; align-items:center; justify-content:center; font-size:12px; font-weight:600; }
+.remedy-card[aria-pressed="true"] { border:2px solid var(--brand); background:var(--brand); color:var(--brand-ink); }
+.policy-strip { display:grid; grid-template-columns:1fr 1fr; gap:12px; background:#18212b; border:1px solid var(--line); padding:6px; }
+.policy-boxes { display:flex; align-items:end; justify-content:space-around; min-width:0; }
+.policy-product { display:flex; align-items:center; flex-direction:column; min-width:0; }
+.policy-product img { height:42px; max-width:100%; object-fit:contain; }
+.policy-product span { font-size:10px; white-space:nowrap; }
+.policy-product small { font-size:10px; color:var(--gold); }
+.ownership-history { min-width:0; display:grid; grid-template-rows:auto 1fr auto; gap:3px; }
+.owner-bars { display:grid; grid-template-columns:repeat(8,1fr); gap:4px; position:relative; }
+.owner-quarter { display:flex; align-items:stretch; gap:1px; border:1px solid #43404d; }
+.owner-quarter span { min-width:0; background:var(--gold); }
+.owner-ticks { display:flex; justify-content:space-between; color:var(--muted); font-size:10px; }
+.reg-chart { min-height:0; }
+.ledger { width:100%; border-collapse:collapse; font-size:12px; align-self:start; }
+.ledger th,.ledger td { padding:5px 7px; text-align:right; border-bottom:1px solid var(--line); font-variant-numeric:tabular-nums; }
+.ledger th:first-child { text-align:left; font-weight:400; color:var(--muted); }
+.ledger thead th { font-size:10px; color:var(--muted); font-weight:400; }
+.ledger tr.view-row { background:#b3a6ff22; }
+.ledger td:nth-child(3) { color:var(--brand); }
+.case-card { margin:0; border-left:3px solid #bb9765; padding:7px 10px; background:#201f20; font-size:12px; line-height:1.35; }
+.case-card b { color:#e3c6a0; }
+.side-effect { color:var(--muted); margin:5px 0 0; font-size:11px; line-height:1.3; }
+.panel-tabs { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.view-buttons { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.rank { margin:8px 0; padding-left:26px; }
+.rank li { padding:7px 0; font-size:13px; border-bottom:1px solid var(--line); }
+.rank li span { float:right; font-family:var(--readout-font); color:var(--brand); }
+.williamson { font-size:12px; line-height:1.45; padding:10px; background:#25232b; border-left:2px solid var(--gold); }
+.memo-tabs { display:grid; grid-template-columns:repeat(3,1fr); gap:4px; }
+.chip-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.chip { min-height:52px; text-align:left; line-height:1.25; font-size:12px; }
+.chip span { color:inherit; display:block; font-size:10px; opacity:.8; margin-top:3px; }
+.memo-label { color:var(--muted); font-size:12px; display:block; }
+select,textarea { width:100%; min-height:44px; color:var(--ink); background:#101720; border:1px solid var(--btn-line);
+  border-radius:6px; padding:6px; font:inherit; font-size:13px; }
+textarea { min-height:76px; resize:none; }
+.memo-result { font-size:12px; line-height:1.4; margin:0; padding:8px; background:#202735; }
+.memo-result li { margin:4px 0; }
+.memo-status { font-size:12px; color:var(--muted); margin:3px 0; }
+.memo-status:empty { display:none; }
+.hidden-mobile,.compact-only { display:none; }
+.reset-confirm { display:flex; align-items:center; gap:8px; padding:4px; font-size:13px; }
+.calm * { animation:none!important; transition:none!important; }
+@media (min-height:900px) and (min-width:1000px) {
+  .panel { padding:24px; gap:16px; }
+  .hint { min-height:78px; font-size:17px; }
+  .choices { gap:16px; }
+  .run-scene { grid-template-rows:42px minmax(220px,1fr) 150px 180px; }
+  .regulator-scene { grid-template-rows:170px 100px 160px minmax(190px,1fr) auto; gap:14px; }
+  .compare-scene { grid-template-rows:auto 210px minmax(0,1fr) 160px; }
+  .product-name { font-size:20px; }
+  .price-tag { font-size:30px; }
+  .regulator-scene .ledger { font-size:15px; }
+  .ledger th,.ledger td { padding:8px; }
+}
+@media (max-height:700px) and (min-width:601px) {
+  header { padding:4px 8px; gap:6px; }
+  h1 { font-size:18px; gap:4px; }
+  h1 img { width:20px; }
+  h1 small { display:none; }
+  .seg button,.icon-btn { font-size:12px; padding:0 8px; }
+  main { grid-template-columns:minmax(0,1fr) 320px; }
+  .panel { padding:7px 9px; gap:5px; }
+  .hint { min-height:46px; font-size:12px; line-height:1.25; }
+  .eyebrow,.section-label { display:none; }
+  .choices { gap:3px; }
+  .choice-head { font-size:11px; }
+  .choice-head output { font-size:20px; }
+  .choice-grid small { font-size:10px; margin:0; }
+  .btn { font-size:11px; }
+  .lab { font-size:10px; }
+  .stats { grid-template-columns:repeat(4,1fr); gap:3px; padding:4px 0; }
+  .panel:has(#reset-confirm:not([hidden])) .stats { display:none; }
+  .stat b { font-size:12px; }
+  .stat span { font-size:10px; }
+  .competition { padding-top:3px; font-size:10px; }
+  .competition .hhi-track,.competition .micro { display:none; }
+  .run-scene { grid-template-rows:26px minmax(100px,1fr) 76px; }
+  .quarter-strip { display:none; }
+  .product-name { font-size:12px; }
+  .product-spec { font-size:10px; }
+  .price-tag { font-size:18px; padding:2px; }
+  .ownership { top:4px; font-size:10px; padding:3px 8px; }
+  .products { top:12%; left:4%; right:4%; gap:3%; }
+  .you { top:0; left:0; padding:2px 4px; }
+  .compare-scene { padding:6px 8px; grid-template-rows:24px 104px minmax(0,1fr); gap:3px; }
+  .compare-head h2 { font-size:12px; }
+  .compare-chart,.other-row,.innovation { display:none; }
+  .compare-table { font-size:11px; }
+  .compare-table th,.compare-table td { padding:2px 4px; }
+  .mini .brand-long,.mini .stars { display:none; }
+  .mini .brand-short { display:inline; }
+  .mini .product-spec { padding:0; white-space:nowrap; }
+  .ratings { gap:4px; }
+  .rating-pages { display:grid; grid-template-columns:repeat(3,1fr); gap:4px; margin:5px 0; }
+  .ratings>div:not(.rating-active) { display:none; }
+  .ratings label { font-size:10px; margin-bottom:2px; }
+  .feedback { min-height:0; font-size:10px; padding:4px; }
+  .switch-result { padding:5px; row-gap:2px; }
+  #compare-panel:has(#switch-result:not([hidden])) #mark-instruction { font-size:10px; line-height:1.1; margin:2px 0; }
+  .switch-result b { font-size:17px; }
+  .switch-result small { font-size:10px; }
+  .regulator-scene { padding:6px 8px; grid-template-rows:80px 58px minmax(0,1fr) auto; gap:4px; }
+  .remedy-cards { gap:3px; }
+  .remedy-card span { font-size:10px; height:28px; }
+  .remedy-card img { height:calc(100% - 28px); }
+  .policy-strip { gap:5px; padding:3px; }
+  .policy-product img { height:30px; }
+  .policy-product span,.policy-product small { font-size:10px; }
+  .reg-chart { display:none; }
+  .ledger { font-size:10px; }
+  .ledger { line-height:1.1; }
+  .ledger th,.ledger td { padding:1px 3px; }
+  .policy-long,.policy-watts { display:none!important; }
+  .policy-short { display:block!important; }
+  .regulator-scene>div:last-child { display:grid; grid-template-columns:90px 1fr; gap:4px; align-items:center; }
+  .regulator-scene>div:last-child .case-card { grid-column:1/-1; }
+  .regulator-scene>div:last-child .side-effect { margin:0; font-size:10px; }
+  .case-card { display:none; }
+  .case-card.open { display:block; }
+  .case-toggle { min-height:44px; }
+  .compact-only { display:block; }
+  .rank { margin:4px 0; }
+  .rank { display:grid; grid-template-columns:1fr 1fr; gap:0 20px; padding-left:16px; }
+  .rank li { padding:3px 0; font-size:10px; }
+  .williamson { font-size:10px; padding:5px; margin:4px 0; }
+  .williamson-long { display:none; }
+  .williamson-short { display:inline; }
+  #remedies-panel>p.micro:last-child { display:none; }
+  #memo-write.show-result>label,#memo-write.show-result>textarea,#memo-write.show-result>p.micro { display:none; }
+  .chip { min-height:44px; font-size:11px; }
+  body.memo-open .panel-tabs { display:none; }
+  .memo-tabs { grid-template-columns:repeat(4,1fr); }
+  #memo-evidence>p.micro:first-child { display:none; }
+  .chip span { font-size:10px; }
+  .memo-result { font-size:10px; padding:4px; }
+  textarea { min-height:54px; }
+}
+
+@media (min-height:701px) and (max-height:750px) and (min-width:601px) {
+  .compare-scene { grid-template-rows:auto 140px minmax(0,1fr) 90px; }
+  .regulator-scene { grid-template-rows:110px 72px 85px minmax(160px,1fr) auto; }
+  .ledger th,.ledger td { padding:4px 7px; }
+}
+@media (max-width:1100px) {
+  .policy-long,.policy-watts { display:none!important; }
+  .policy-short { display:block!important; }
+}
+@media (max-width:900px) and (min-width:601px) {
+  header { gap:5px; padding:4px 7px; }
+  .icon-btn { width:78px; }
+  #read { width:44px; }
+  h1 { font-size:17px; }
+  h1 img { display:none; }
+  h1 small { display:none; }
+  .seg button,.icon-btn { padding:0 7px; font-size:11px; }
+  .panel { padding:7px 9px; }
+}
+@media (max-width:600px) {
+  body { overflow:auto; height:auto; min-height:100dvh; }
+  header { display:grid; grid-template-columns:1fr repeat(3,auto); gap:5px; padding:5px 8px; }
+  h1 { font-size:18px; }
+  #motion { width:70px; }
+  #sound { width:68px; }
+  #read { width:44px; }
+  h1 img { width:18px; height:32px; }
+  h1 small { display:none; }
+  header .seg { grid-column:1/-1; grid-row:2; display:grid; grid-template-columns:repeat(4,1fr); }
+  .seg button,.icon-btn { min-width:44px; min-height:44px; padding:0 6px; font-size:11px; }
+  main { display:flex; flex-direction:column; height:auto; overflow:visible; }
+  .stage { height:242px; flex-shrink:0; order:0; }
+  body[data-mode="Buyout"] .stage { height:274px; }
+  body[data-mode="Buyout"] #main-shelf .products { top:22%; }
+  .panel { order:1; border-left:0; padding:8px 10px; gap:7px; overflow:visible; }
+  .run-scene { grid-template-rows:24px minmax(100px,1fr) 68px; }
+  .quarter-strip,.eyebrow,.section-label,.competition .micro,.hhi-track { display:none; }
+  .hint { min-height:42px; font-size:12px; }
+  .choices { gap:4px; }
+  .choice-head { font-size:12px; }
+  .choice-head output { font-size:20px; }
+  .stats { grid-template-columns:repeat(4,1fr); padding:4px 0; }
+  .stat b { font-size:13px; }
+  .competition { padding-top:4px; }
+  .product-name { font-size:11px; }
+  .product-spec { font-size:10px; }
+  .price-tag { font-size:16px; padding:1px; margin:2px 0; }
+  .products { top:10%; }
+  .box { height:0; }
+  .you { top:0; left:0; padding:2px 4px; font-size:10px; }
+  .ownership { top:3px; font-size:10px; padding:2px 6px; }
+  .lane-caption { left:8px; right:8px; font-size:10px; }
+  .lab { font-size:10px; }
+  body[data-mode="Compare"] .stage { height:348px; }
+  body[data-mode="Compare"] .hint { min-height:36px; }
+  body[data-mode="Compare"] .switch-result { padding:8px; }
+  body[data-mode="Compare"] .switch-result b { font-size:20px; }
+  body[data-mode="Compare"] .switch-result small { font-size:10px; }
+  body[data-mode="Compare"] .stage { order:1; }
+  body[data-mode="Compare"] .panel { order:0; }
+  .rating-pages { display:grid; grid-template-columns:repeat(3,1fr); gap:4px; margin:5px 0; }
+  .ratings>div:not(.rating-active) { display:none; }
+  .compare-scene { grid-template-rows:22px 80px minmax(0,1fr); padding:6px 8px; gap:4px; }
+  .compare-head h2 { font-size:12px; }
+  .compare-table { font-size:11px; }
+  .compare-table th,.compare-table td { padding:3px; }
+  .mini .brand-long,.mini .stars { display:none; }
+  .mini .brand-short { display:inline; }
+  .mini .product-spec { padding:0; white-space:nowrap; }
+  .other-row,.compare-chart,.innovation { display:none; }
+  .rating-options { gap:4px; }
+  body[data-mode="Regulator"] .stage { height:650px; }
+  body[data-mode="Regulator"].memo-open .stage { display:none; }
+  .regulator-scene { grid-template-rows:94px 72px 90px minmax(130px,1fr) auto; padding:7px; gap:5px; }
+  .remedy-cards { gap:3px; }
+  .remedy-card span { font-size:10px; line-height:1.1; height:30px; }
+  .remedy-card img { height:calc(100% - 30px); }
+  .policy-product img { height:35px; }
+  .policy-product span { font-size:10px; }
+  .policy-long,.policy-watts { display:none!important; }
+  .policy-short { display:block!important; }
+  .policy-strip { gap:5px; padding:4px; }
+  .ledger { font-size:10px; }
+  .ledger th,.ledger td { padding:3px; }
+  .case-card { font-size:10px; padding:5px; }
+  .side-effect { font-size:10px; }
+  body[data-mode="Regulator"] main { flex-direction:column; }
+  body[data-mode="Regulator"] .panel { order:0; }
+  body[data-mode="Regulator"] .stage { order:1; }
+}
+</style>
+</head>
+<body data-mode="Rivals">
+<header>
+  <h1><img src="art:box-ohmly" alt=""><span>The Buyout<small>SAME SHOPPERS. FEWER RIVALS.</small></span></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-rivals" data-mode="Rivals" aria-pressed="true">Rivals</button>
+    <button id="m-buyout" data-mode="Buyout" aria-pressed="false">Buyout</button>
+    <button id="m-compare" data-mode="Compare" aria-pressed="false">Compare</button>
+    <button id="m-regulator" data-mode="Regulator" aria-pressed="false">Regulator</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <aside class="panel" id="panel">
+    <div class="eyebrow" id="desk-label">01 / Your desk</div>
+    <p class="hint" id="hint"></p>
+    <div id="run-panel">
+      <div class="choices">
+        <div class="choice-head"><label for="price">Your price</label><output id="price-value" for="price">$16</output></div>
+        <div class="price-row">
+          <button class="btn" id="price-minus" aria-label="Lower price by one dollar">−</button>
+          <input id="price" type="range" min="10" max="40" step="1" value="16" aria-label="Your price in dollars">
+          <button class="btn" id="price-plus" aria-label="Raise price by one dollar">+</button>
+        </div>
+        <div>
+          <p class="section-label">Quality</p>
+          <div class="choice-grid quality-grid" role="group" aria-label="Quality">
+            <button class="btn" data-quality="0" aria-pressed="false">Flimsy<small>★</small></button>
+            <button class="btn" data-quality="1" aria-pressed="false">Basic<small>★★</small></button>
+            <button class="btn" data-quality="2" aria-pressed="true">Solid<small>★★★</small></button>
+            <button class="btn" data-quality="3" aria-pressed="false">Sturdy<small>★★★★</small></button>
+            <button class="btn" data-quality="4" aria-pressed="false">Premium<small>★★★★★</small></button>
+          </div>
+        </div>
+        <div>
+          <p class="section-label">Research / one lab per owner</p>
+          <div class="choice-grid research-grid" role="group" aria-label="Research">
+            <button class="btn" data-research="0" aria-pressed="false">None<small>$0</small></button>
+            <button class="btn" data-research="1" aria-pressed="true">Steady<small>$30k</small></button>
+            <button class="btn" data-research="2" aria-pressed="false">Fast<small>$60k</small></button>
+          </div>
+        </div>
+        <div class="lab"><i></i><span id="lab-text">Lab: 35 of 100 to the 30 W model</span></div>
+        <div class="meter" aria-hidden="true"><span id="lab-meter"></span></div>
+        <div class="actions">
+          <button class="big-btn" id="next">Next quarter →</button>
+          <button class="btn" id="autoplay">Play to the end</button>
+        </div>
+        <div class="reset-confirm" id="reset-confirm" hidden>Clear this run?
+          <button class="btn" id="reset-yes">Yes</button><button class="btn" id="reset-no">No</button>
+        </div>
+      </div>
+      <div class="stats" aria-live="polite">
+        <div class="stat"><span id="buyers-label">Preview buyers</span><b id="buyers-value">20,752</b></div>
+        <div class="stat"><span>Your share of sales</span><b id="share-value">25.0%</b></div>
+        <div class="stat"><span id="profit-label">Preview profit</span><b id="profit-value"></b></div>
+        <div class="stat"><span>Total profit</span><b id="total-value">$0</b></div>
+      </div>
+      <div class="competition">
+        <div class="row"><b id="seller-value">4 sellers</b><span id="top-value">Top 25%</span><b id="hhi-value">HHI 2,500</b></div>
+        <div class="hhi-track"><span id="hhi-meter"></span><i title="1,800"></i></div>
+        <div class="micro">HHI: squared owner shares. Gold line: 1,800.</div>
+        <p class="micro">100,000 shoppers, each buys at most one; none can move the price.</p>
+        <p class="micro">Teaching model. $60k fixed cost per brand per quarter; research costs extra.
+          Buyout saves $0.50 per charger.</p>
+      </div>
+    </div>
+    <div id="compare-panel" hidden>
+      <div class="finish-row">
+        <button class="btn" id="finish-rivals">Finish Rivals</button>
+        <button class="btn" id="finish-buyout">Finish Buyout</button>
+      </div>
+      <p class="section-label" style="margin-top:10px">Rate the competition</p>
+      <div class="rating-pages" role="group" aria-label="Competition rating groups">
+        <button class="btn" data-rating-page="rivals" aria-pressed="true">Rivals</button>
+        <button class="btn" data-rating-page="buyout" aria-pressed="false">Buyout</button>
+        <button class="btn" data-rating-page="buyers" aria-pressed="false">Buyers</button>
+      </div>
+      <div class="ratings">
+        <div data-rating-group="rivals" class="rating-active"><label>Rivals sellers</label><div class="rating-options" id="rating-rivals"></div></div>
+        <div data-rating-group="buyout"><label>Buyout sellers</label><div class="rating-options" id="rating-buyout"></div></div>
+        <div data-rating-group="buyers"><label>Buyers in both runs</label><div class="rating-options buyers" id="rating-buyers"></div></div>
+      </div>
+      <p class="feedback" id="rating-feedback">Choose a rating for each market and for its buyers.</p>
+      <button class="big-btn" id="switch-test" style="width:100%" disabled>Switch test: $16 → $20</button>
+      <div class="switch-result" id="switch-result" hidden></div>
+      <p class="micro" id="mark-instruction">Play at least 4 quarters in each run, then mark 3 changes for buyers in the table.</p>
+      <p class="innovation">In this model the owner keeps launching and raises prices. Schumpeter (1942) and
+        Arrow (1962) disagreed on monopoly and innovation. A 2021 drug-project study found less development
+        after acquisitions with overlapping products.</p>
+    </div>
+    <div id="regulator-panel" hidden>
+      <div class="panel-tabs" role="group" aria-label="Regulator panel">
+        <button class="btn" id="tab-remedies" aria-pressed="true">Remedies</button>
+        <button class="btn" id="tab-memo" aria-pressed="false">Memo</button>
+      </div>
+      <div id="remedies-panel">
+        <p class="section-label" style="margin-top:12px">Whose outcome matters?</p>
+        <div class="view-buttons" role="group" aria-label="Evaluation view">
+          <button class="btn" id="view-buyers" aria-pressed="false">Buyers' view</button>
+          <button class="btn" id="view-everyone" aria-pressed="false">Everyone's view</button>
+        </div>
+        <div id="cap-control" hidden>
+          <div class="choice-head"><label for="cap">Price cap</label><output id="cap-value">$18</output></div>
+          <input id="cap" type="range" min="16" max="30" step="2" value="18" aria-label="Price cap in dollars">
+        </div>
+        <p class="micro" id="opened-count">Opened: 1 of 5</p>
+        <ol class="rank" id="rank"></ol>
+        <p class="williamson" id="williamson" hidden><span class="williamson-long">Here the owner's savings and one shared lab outweigh lost
+          sales over two years. Williamson (1968) showed this can happen. Critics point to poorly documented
+          savings in Staples, and buyers' real losses.</span><span class="williamson-short">Savings and one lab outweigh lost sales here
+          (Williamson, 1968). Staples warns that savings may not arrive; buyers still lose.</span></p>
+        <p class="micro">Each remedy replays the same two years with a profit-seeking owner.
+          These are model outcomes, not estimates of the real cases.</p>
+      </div>
+      <div id="memo-panel" hidden>
+        <div class="memo-tabs" role="group" aria-label="Memo steps" style="margin:8px 0">
+          <button class="btn compact-only" id="memo-back-remedies">Remedies</button>
+          <button class="btn" data-memo-step="0" aria-pressed="true">1. Reasons</button>
+          <button class="btn" data-memo-step="1" aria-pressed="false">2. Evidence</button>
+          <button class="btn" data-memo-step="2" aria-pressed="false">3. Write</button>
+        </div>
+        <div id="memo-reasons">
+          <p class="micro">Pick 1 or 2 reasons for your first remedy.</p>
+          <div class="chip-grid" id="reason-chips"></div>
+          <div class="row" style="margin-top:8px">
+            <label class="memo-label grow">First remedy<select id="first-remedy" aria-label="First remedy"></select></label>
+            <label class="memo-label grow">Second remedy<select id="second-remedy" aria-label="Second remedy"></select></label>
+          </div>
+          <p class="micro" id="memo-view"></p>
+        </div>
+        <div id="memo-evidence" hidden>
+          <p class="micro">Pick exactly 2 pieces, including a ledger difference for your first remedy.</p>
+          <div class="chip-grid" id="evidence-chips"></div>
+          <p class="micro" id="evidence-count"></p>
+        </div>
+        <div id="memo-write" hidden>
+          <label class="memo-label" for="memo-text">Explain why your first remedy fits your chosen view. At least 12 words.</label>
+          <textarea id="memo-text" aria-label="Your policy explanation" maxlength="1200" placeholder="Connect your remedy, its mechanism, and a benefit or cost."></textarea>
+          <div class="actions" style="margin-top:6px">
+            <button class="big-btn" id="check-memo">Check memo</button>
+            <button class="btn" id="save-memo" disabled>Save on this device</button>
+          </div>
+          <div id="memo-result" class="memo-result" aria-live="polite" hidden></div>
+          <p class="micro">This checks the memo's structure. Discuss whether its argument is convincing.</p>
+        </div>
+        <p class="memo-status" id="memo-status" aria-live="polite"></p>
+        <p class="micro">Your memo stays on this device. Nothing is sent.</p>
+      </div>
+    </div>
+  </aside>
+  <section class="stage" id="stage" aria-label="Market scene">
+    <div id="run-scene" class="run-scene">
+      <div class="scene-top"><b id="run-title">RIVALS / Q1 OF 8</b><span id="preview-label">Prices posted. Your move.</span></div>
+      <div class="shelf" id="main-shelf">
+        <img class="shelf-back" src="art:shelf" alt="Warmly lit wooden and metal store shelves">
+        <div class="ownership" id="ownership" hidden>Ohmly owns all four brands.</div>
+        <div class="products" id="products"></div>
+        <span id="walking-past" class="walking-past" hidden>Buyers are walking past</span>
+      </div>
+      <div class="lane" id="lane" aria-label="Twenty shoppers, each represents five thousand people">
+        <div class="lane-caption"><span id="lane-label">PREVIEW</span><span id="lane-count">Each figure ≈ 5,000 shoppers</span></div>
+        <div id="shoppers"></div>
+        <div class="destination" id="destination"></div>
+      </div>
+      <div class="quarter-strip">
+        <div class="chart-head"><strong>Your two years</strong><span class="key" style="color:var(--brand)">Price</span>
+          <span class="key dotted" style="color:var(--teal)">Share</span><span class="key dashed owner-key" style="color:var(--owner)" hidden>Profit-seeking owner</span></div>
+        <svg class="chart" id="run-chart" role="img" aria-label="Price and share over eight quarters"></svg>
+      </div>
+    </div>
+    <div class="compare-scene" id="compare-scene" hidden>
+      <div class="compare-head"><h2 style="color:var(--teal)">Rivals <small id="compare-rivals-q">Q0 of 8</small></h2>
+        <h2 style="color:var(--coral)">Buyout <small id="compare-buyout-q">Q0 of 8</small></h2></div>
+      <div class="mini-pair"><div class="mini" id="mini-rivals"></div><div class="mini" id="mini-buyout"></div></div>
+      <table class="compare-table" id="compare-table"><tbody></tbody></table>
+      <div class="compare-chart">
+        <div class="chart-head"><strong>Average price paid / quarter</strong><span class="key" style="color:var(--teal)">Rivals</span>
+          <span class="key dotted" style="color:var(--coral)">Buyout</span><span class="key dashed">Profit-seeking owner</span></div>
+        <svg class="chart" id="compare-chart" role="img" aria-label="Average prices by quarter in both runs"></svg>
+      </div>
+    </div>
+    <div class="regulator-scene" id="regulator-scene" hidden>
+      <div class="remedy-cards" id="remedy-cards" role="group" aria-label="Remedies"></div>
+      <div class="policy-strip">
+        <div class="policy-boxes" id="policy-boxes"></div>
+        <div class="ownership-history"><span class="eyebrow" id="policy-path">Owner shares / height: price $0 to $40</span>
+          <div class="owner-bars" id="owner-bars"></div><div class="owner-ticks"><span>Q1</span><span id="policy-event"></span><span>Q8</span></div></div>
+      </div>
+      <div class="reg-chart"><div class="chart-head"><strong id="reg-chart-label">Buyer gain / quarter</strong>
+        <span class="key" style="color:var(--brand)">Chosen remedy</span><span class="key dashed">Do nothing</span></div>
+        <svg class="chart" id="reg-chart" role="img" aria-label="Buyer gain by quarter with and without a remedy"></svg></div>
+      <table class="ledger" id="ledger"><thead><tr><th>Two-year ledger</th><th>Do nothing</th><th id="ledger-chosen">Chosen</th>
+        <th>Difference</th></tr></thead><tbody></tbody></table>
+      <div><button class="btn compact-only case-toggle" id="case-toggle">Real case</button>
+        <p class="case-card" id="case-card"></p><p class="side-effect" id="side-effect"></p></div>
+    </div>
+  </section>
+</main>
+<script src="kit:curio"></script>
+<script>
+// The fictional market. Dollar amounts stay unrounded until display.
+const N = 100000;
+const QUALITY = ['Flimsy', 'Basic', 'Solid', 'Sturdy', 'Premium'];
+const VALUE = [0, 4, 7, 9.5, 11.5];
+const COST = [6, 8, 10, 13, 16];
+const WATTS = [20, 30, 45, 65];
+const RESEARCH = [{name: 'None', cost: 0, points: 0},
+  {name: 'Steady', cost: 30000, points: 35}, {name: 'Fast', cost: 60000, points: 55}];
+const NAMES = ['Ohmly', 'Tidewatt', 'Sparrow', 'Kite', 'Nova', 'Brisk'];
+const REMEDIES = ['Do nothing', 'Block it', 'Break it up', 'Price cap', 'Common charger'];
+const GOV = [0, 500000, 1500000, 400000, 300000];
+let runSerial = 0;
+const clone = object => JSON.parse(JSON.stringify(object));
+
+function firms(merged = false) {
+  return NAMES.slice(0, 4).map(name => ({name, owner: merged ? 'Ohmly' : name,
+    p: 16, q: 2, g: 0, points: 0, cut: merged ? 0.5 : 0}));
+}
+
+function market(fs, labs = {}) {
+  const e = fs.map(f => Math.exp((10 + VALUE[f.q] + 4 * f.g - f.p) / 5));
+  const denominator = 1 + e.reduce((a, b) => a + b, 0);
+  const units = e.map(v => N * v / denominator);
+  const owners = {};
+  fs.forEach((f, i) => {
+    owners[f.owner] ||= {units: 0, profit: 0};
+    owners[f.owner].units += units[i];
+    owners[f.owner].profit += (f.p - COST[f.q] + f.cut) * units[i] - 60000;
+  });
+  Object.keys(labs).forEach(owner => {
+    const own = fs.filter(f => f.owner === owner);
+    if (own.length && own[0].g < 3) owners[owner].profit -= RESEARCH[labs[owner]].cost;
+  });
+  const sold = units.reduce((a, b) => a + b, 0);
+  const shares = units.map(v => 100 * v / sold);
+  const ownerShares = Object.values(owners).map(o => 100 * o.units / sold);
+  return {units, shares, sold, none: N - sold, owners, sellers: ownerShares.length,
+    hhi: ownerShares.reduce((a, b) => a + b * b, 0), top: Math.max(...ownerShares),
+    buyer: N * 5 * Math.log(denominator),
+    avgPrice: fs.reduce((a, f, i) => a + f.p * units[i], 0) / sold,
+    quality: fs.reduce((a, f, i) => a + (f.q + 1) * units[i], 0) / sold,
+    newest: Math.max(...fs.map(f => f.g)),
+    profit: Object.values(owners).reduce((a, o) => a + o.profit, 0), fs: clone(fs)};
+}
+
+function bestReply(fs, owner, cap = 40, qualities = [2]) {
+  const own = fs.filter(f => f.owner === owner);
+  let best = {profit: -Infinity, p: 10, q: qualities[0]};
+  for (const q of qualities) {
+    for (let p = 10; p <= cap; p++) {
+      own.forEach(f => { f.p = p; f.q = q; });
+      const e = fs.map(f => Math.exp((10 + VALUE[f.q] + 4 * f.g - f.p) / 5));
+      const denominator = 1 + e.reduce((a, b) => a + b, 0);
+      const profit = fs.reduce((sum, f, i) => sum + (f.owner === owner ?
+        (f.p - COST[f.q] + f.cut) * N * e[i] / denominator - 60000 : 0), 0);
+      if (profit > best.profit + 1e-7) best = {profit, p, q};
+    }
+  }
+  own.forEach(f => { f.p = best.p; f.q = best.q; });
+}
+
+function research(fs, labs) {
+  Object.entries(labs).forEach(([owner, level]) => {
+    const own = fs.filter(f => f.owner === owner);
+    if (!own.length || own[0].g === 3) return;
+    const points = own[0].points + RESEARCH[level].points;
+    const g = Math.max(own[0].g, Math.min(3, Math.floor(points / 100)));
+    // Progress belongs to the owner's lab. A divested brand retains its model,
+    // but its new lab starts accumulating its own research points.
+    own[0].points = points;
+    own.forEach(f => { f.g = g; });
+  });
+}
+
+function newRun(kind) {
+  return {kind, id: ++runSerial, fs: firms(kind === 'Buyout'), p: 16, q: 2, r: 1, history: [],
+    prepared: true, total: 0, walkWarned: false, noSwitchWarned: false};
+}
+
+function preview(run) {
+  if (run.history.length === 8) return run.history[7];
+  if (!run.prepared && run.kind === 'Rivals') {
+    ['Tidewatt', 'Sparrow', 'Kite'].forEach(owner => bestReply(run.fs, owner));
+  }
+  run.prepared = true;
+  run.fs.filter(f => f.owner === 'Ohmly').forEach(f => { f.p = run.p; f.q = run.q; });
+  const labs = run.kind === 'Rivals' ? {Ohmly: run.r, Tidewatt: 1, Sparrow: 2, Kite: 0} : {Ohmly: run.r};
+  return market(run.fs, labs);
+}
+
+function commit(run) {
+  if (run.history.length === 8) return null;
+  const result = preview(run);
+  run.history.push(result);
+  run.total += result.owners.Ohmly.profit;
+  if (run.history.length < 8) {
+    research(run.fs, run.kind === 'Rivals' ? {Ohmly: run.r, Tidewatt: 1, Sparrow: 2, Kite: 0} : {Ohmly: run.r});
+    run.prepared = false;
+  }
+  return result;
+}
+
+function remedyRun(kind, cap = 18, ownerResearch = 2, rounds = 6) {
+  const fs = firms(kind !== 1);
+  let labs = kind === 1 ? {Ohmly: 1, Tidewatt: 1, Sparrow: 2, Kite: 0} : {Ohmly: ownerResearch};
+  const history = [];
+  for (let quarter = 0; quarter < 8; quarter++) {
+    if (kind === 2 && quarter === 4) {
+      fs[2].owner = fs[3].owner = 'Sparrow';
+      fs.forEach(f => { f.cut = 0.25; });
+      labs = {Ohmly: 1, Sparrow: 1};
+    }
+    if (kind === 4 && quarter === 2) {
+      NAMES.slice(4).forEach(name => {
+        fs.push({name, owner: name, p: 16, q: 2, g: 0, points: 0, cut: 0});
+        labs[name] = 1;
+      });
+    }
+    const owners = [...new Set(fs.map(f => f.owner))].sort();
+    for (let round = 0; round < rounds; round++) {
+      owners.forEach(owner => bestReply(fs, owner, kind === 3 && owner === 'Ohmly' ? cap : 40,
+        kind === 3 && owner === 'Ohmly' ? [0, 1, 2, 3, 4] : [2]));
+    }
+    const result = market(fs, labs);
+    if (kind === 4 && quarter === 0) result.profit -= 300000;
+    history.push(result);
+    research(fs, labs);
+  }
+  const sum = key => history.reduce((a, r) => a + r[key], 0);
+  const buyer = sum('buyer');
+  const profit = sum('profit');
+  return {kind, cap, history, buyer, profit, gov: GOV[kind], everyone: buyer + profit - GOV[kind],
+    sold: sum('sold'), last: history[7], research: ownerResearch};
+}
+
+function optimalRemedy(kind, cap = 18) {
+  if (kind === 1) return remedyRun(kind, cap);
+  return [0, 1, 2].map(level => remedyRun(kind, cap, level)).sort((a, b) => b.profit - a.profit)[0];
+}
+
+function roundedPeople(result) {
+  const fractions = [...result.units, result.none].map(v => v / N * 20);
+  const counts = fractions.map(Math.floor);
+  let left = 20 - counts.reduce((a, b) => a + b, 0);
+  const remainders = fractions.map((v, i) => ({i, r: v - counts[i]})).sort((a, b) => b.r - a.r || a.i - b.i);
+  for (let i = 0; i < left; i++) counts[remainders[i].i]++;
+  return counts;
+}
+
+function runSummary(run) {
+  const history = run.history;
+  if (!history.length) return null;
+  const sum = key => history.reduce((a, r) => a + r[key], 0);
+  return {price: history.reduce((a, r) => a + r.avgPrice * r.sold, 0) / sum('sold'),
+    served: sum('sold'), gain: sum('buyer'), profit: run.total, quality: history.at(-1).quality,
+    model: WATTS[history.at(-1).newest], sellers: history.at(-1).sellers,
+    largest: history.at(-1).top, hhi: history.at(-1).hhi};
+}
+
+function switchExperiment() {
+  const single = firms(false);
+  const a = market(single);
+  single[0].p = 20;
+  const b = market(single);
+  const merged = firms(true);
+  const c = market(merged);
+  merged.forEach(f => { f.p = 20; });
+  const d = market(merged);
+  return {lostR: a.units[0] - b.units[0], rivals: b.sold - b.units[0] - (a.sold - a.units[0]),
+    noneR: a.sold - b.sold, percentR: (1 - b.units[0] / a.units[0]) * 100,
+    percentB: (1 - d.sold / c.sold) * 100, lostB: c.sold - d.sold,
+    profitR: [a.owners.Ohmly.profit, b.owners.Ohmly.profit], profitB: [c.profit, d.profit]};
+}
+
+const $ = id => document.getElementById(id);
+const $$ = selector => [...document.querySelectorAll(selector)];
+const COLORS = ['#b3a6ff', '#4fd1c5', '#f2c14e', '#88d59c', '#bac8d9', '#dcc9b4'];
+const MARKS = ['●', '≈', '▲', '◆', '□', '◇'];
+const ART = {
+  shelf: 'art:shelf', boxes: ['art:box-ohmly', 'art:box-tidewatt', 'art:box-sparrow',
+    'art:box-kite', 'art:box-nova', 'art:box-brisk'],
+  shoppers: ['art:shopper-1', 'art:shopper-2', 'art:shopper-3', 'art:shopper-4', 'art:shopper-5', 'art:shopper-6'],
+  cable: 'art:old-charger', remedies: ['art:remedy-nothing', 'art:remedy-block',
+    'art:remedy-breakup', 'art:remedy-cap', 'art:remedy-standard']
+};
+const L = {
+  hintRivals: 'You run Ohmly (the violet box). Set your price, quality and research, then press Next quarter.',
+  hintBuyout: 'Ohmly owns all four brands. Your choices apply to every box. Set your price, then press Next quarter.',
+  doneRivals: 'Two years done. Open Buyout or Compare. Tap Run again to clear only this run.',
+  doneBuyout: 'Two years done. Open Rivals or Compare. Tap Run again to clear only this run.',
+  hintCompare: 'Rate Rivals sellers, Buyout sellers and the buyers. Tap one button in each group.',
+  finishBoth: 'Tap Finish Rivals and Finish Buyout to fill both runs with their current settings.',
+  finishRivals: 'Tap Finish Rivals to fill that run with its current settings.',
+  finishBuyout: 'Tap Finish Buyout to fill that run with its current settings.',
+  hintRegulator: 'You are the regulator. Ohmly has bought its three rivals. Tap a remedy to replay two years with a profit-seeking owner.',
+  welcomeRivals: 'Four makers sell phone chargers on this shelf, and you run Ohmly, the violet box. Set your price, then press Next quarter to see who buys.',
+  welcomeBuyout: 'Ohmly has bought Tidewatt, Sparrow and Kite. Same shoppers, same two years, but now one price covers every box. Press Next quarter.',
+  welcomeCompare: 'Both runs, side by side. Tap a rating for each group in Rate the competition.',
+  compareSwitch: 'Your ratings are in. Tap Switch test to see where buyers go after a price rise.',
+  compareMark: 'Tap three buyer rows in the comparison table to take their numbers into your memo.',
+  compareReady: 'Three buyer measures are marked. Open Regulator to test remedies and build your memo.',
+  welcomeRegulator: 'You are the regulator now. Tap a remedy to replay the buyout with it, then weigh its benefits and costs.',
+  memoReasons: 'Choose one or two reason chips, then pick different first and second remedies.',
+  memoEvidence: 'Pick two evidence chips. Include a ledger difference for your first remedy.',
+  memoNeedFirst: 'Tap 1. Reasons and choose an opened first remedy. Its ledger will become evidence.',
+  memoWrite: 'Write your explanation, then tap Check memo. The check looks at structure, not the strength of your argument.',
+  memoRevise: 'Use the Fix list. Tap Edit explanation, or open 1. Reasons and 2. Evidence to revise your picks.',
+  memoReady: 'Tap Save on this device to keep this memo, or revise your explanation. Nothing is sent.',
+  memoReadyCompact: 'Tap Save on this device to keep this memo, or Edit explanation to revise it. Nothing is sent.',
+  walkingPast: 'Shoppers are walking to your rivals. Your price or your charger is behind theirs.',
+  noSwitch: 'Shoppers who leave now have no rival to go to. They keep an old charger instead.',
+  runDone: 'Two years are done. Open Compare to set this run beside the other.',
+  switchResult: 'With rivals, a four dollar rise lost half your buyers, most of them to rivals. As the only seller, it lost about one in six, and profit went up.',
+  remedyNothing: 'The buyout goes ahead. Prices climb with every new model.',
+  remedyBlock: 'The deal is blocked. Four sellers keep prices near sixteen dollars.',
+  remedyBreakup: 'A year in court, then two sellers. Prices fall, but not to where four sellers kept them.',
+  remedyCap: 'The cap holds prices down, so the owner builds cheaper chargers to keep its margin.',
+  remedyLoose: 'This cap barely binds, so little changes.',
+  remedyStandard: 'Any maker can now fit the port. Two new makers arrive in the third quarter.',
+  memoOk: 'Your memo holds together. Save it, or try another remedy.',
+  memoFix: 'Some parts need work. The list shows what to fix.'
+};
+for (const name of ['Sparrow', 'Tidewatt', 'Ohmly', 'All']) {
+  for (const watts of [30, 45, 65]) {
+    L[`launch${name}${watts}`] = name === 'All' ? `Your lab ships ${watts} watt chargers for all four brands.` :
+      name === 'Ohmly' ? `Your lab ships a ${watts} watt Ohmly.` : `${name} puts a ${watts} watt charger on the shelf.`;
+  }
+}
+// A shared launch is one fixed announcement, so the last maker is not lost at a two-second tap pace.
+for (let ohmly = 0; ohmly <= 3; ohmly++) {
+  for (let tidewatt = 0; tidewatt <= 3; tidewatt++) {
+    for (let sparrow = 0; sparrow <= 3; sparrow++) {
+      const steps = [ohmly, tidewatt, sparrow];
+      if (steps.filter(Boolean).length < 2) continue;
+      const groups = [1, 2, 3].filter(g => steps.includes(g)).map(g => {
+        const names = ['Ohmly', 'Tidewatt', 'Sparrow'].filter((_, i) => steps[i] === g);
+        const subject = names.length === 3 ? names.slice(0, 2).join(', ') + ' and ' + names[2] : names.join(' and ');
+        return `${subject} ${names.length > 1 ? 'launch' : 'launches'} ${WATTS[g]} watt chargers`;
+      });
+      L[`launchTogether${steps.join('')}`] = groups.join('; ') + '.';
+    }
+  }
+}
+const state = {
+  mode: 'Rivals', runs: {Rivals: newRun('Rivals'), Buyout: newRun('Buyout')}, auto: false,
+  ratings: {rivals: null, buyout: null, buyers: null}, ratingPage: 'rivals', switched: false, marked: new Set(),
+  remedy: 0, cap: 18, opened: new Set([0]), view: null, views: new Set(),
+  panel: 'remedies', memoStep: 0, reasons: new Set(), evidence: new Set(), first: null, second: null,
+  memoText: '', checked: false, memoRevision: 0, showCase: false
+};
+const remedies = REMEDIES.map((_, i) => optimalRemedy(i));
+const caps = new Map([[18, remedies[3]]]);
+let autoTimer = null;
+let walkTimer = null;
+let walkSerial = 0;
+const EVENT_KEYS = new Set(['walkingPast', 'noSwitch', 'runDone', 'switchResult', 'remedyNothing',
+  'remedyBlock', 'remedyBreakup', 'remedyCap', 'remedyLoose', 'remedyStandard', 'memoOk', 'memoFix',
+  ...Object.keys(L).filter(key => key.startsWith('launch'))]);
+const V = Curio.voice({lines: L, scope: () => state.mode, hint: false, read: () => $('hint').textContent,
+  welcome: () => {
+    if (state.mode === 'Rivals' || state.mode === 'Buyout') {
+      const mode = state.mode;
+      return state.runs[mode].history.length ? null : ['welcome' + mode, {valid: () => !state.runs[mode].history.length}];
+    }
+    return 'welcome' + state.mode;
+  }
+});
+
+const fmt = value => Math.round(value).toLocaleString('en-US');
+const money = value => (value < 0 ? '−' : '') + '$' + (Math.abs(value) >= 1000000 ?
+  (Math.abs(value) / 1000000).toFixed(2) + 'M' : Math.abs(value) >= 1000 ?
+  (Math.abs(value) / 1000).toFixed(1) + 'k' : Math.abs(value).toFixed(0));
+const millions = value => (value < 0 ? '−' : '') + '$' + (Math.abs(value) / 1e6).toFixed(2) + 'M';
+const price = value => (value < 0 ? '−' : '') + '$' + Math.abs(value).toFixed(2);
+const escapeHTML = text => String(text).replace(/[&<>"']/g, c =>
+  ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+const setText = (id, text) => { $(id).textContent = text; };
+const activeRun = () => state.runs[state.mode];
+const selectedRemedy = () => state.remedy === 3 ? caps.get(state.cap) : remedies[state.remedy];
+
+function sayEvent(key, options = {}) {
+  if (!EVENT_KEYS.has(key)) throw new Error('Unknown event line ' + key);
+  V.say(key, {hint: false, ...options});
+}
+
+function updateHint() {
+  let hint;
+  if (state.mode === 'Rivals' || state.mode === 'Buyout') {
+    const run = activeRun();
+    hint = L[(run.history.length === 8 ? 'done' : 'hint') + state.mode];
+  } else if (state.mode === 'Compare') {
+    hint = !Object.values(state.ratings).every(v => v !== null) ?
+      L.hintCompare :
+      !state.switched ? L.compareSwitch :
+      Math.min(...Object.values(state.runs).map(r => r.history.length)) < 4 ?
+      Object.values(state.runs).every(r => r.history.length < 8) ? L.finishBoth :
+        state.runs.Rivals.history.length < 8 ? L.finishRivals : L.finishBuyout :
+      state.marked.size === 3 ? L.compareReady : L.compareMark;
+  } else if (state.panel === 'memo') {
+    hint = [L.memoReasons, L.memoEvidence, L.memoWrite][state.memoStep];
+    if (state.memoStep === 1 && memoNeedsFirst()) hint = L.memoNeedFirst;
+    if (state.memoStep === 2 && state.checked) {
+      hint = $('memo-write').classList.contains('show-result') ? L.memoReadyCompact : L.memoReady;
+    } else if (state.memoStep === 2 && $('memo-write').classList.contains('show-result')) {
+      hint = L.memoRevise;
+    }
+  } else {
+    hint = L.hintRegulator;
+  }
+  setText('hint', hint);
+}
+
+function productHTML(f, share, merged = false, mini = false) {
+  const index = NAMES.indexOf(f.name);
+  const label = merged ? 'Owned by Ohmly' : f.name === 'Ohmly' ? 'You' : '';
+  return `<div class="product ${merged ? 'owned' : ''}">
+    ${label && !mini ? `<span class="you">${label}</span>` : ''}
+    <img class="box" src="${ART.boxes[index]}" alt="${f.name} charger box">
+    <span class="product-name" title="${f.name}"><span class="brand-long">${MARKS[index]} ${f.name}</span>
+      <span class="brand-short">${MARKS[index]} ${f.name[0]}</span></span>
+    <span class="product-spec">${WATTS[f.g]} W <span class="stars">${'★'.repeat(f.q + 1)}</span></span>
+    <span class="price-tag">$${f.p}</span>
+    <span class="product-share"><i style="width:${share}%;background:${COLORS[index]}"></i><b>${share.toFixed(1)}%</b></span>
+  </div>`;
+}
+
+function createProducts() {
+  $('products').innerHTML = firms().map(f => productHTML(f, 25)).join('');
+  $('shoppers').innerHTML = Array.from({length: 20}, (_, i) =>
+    `<div class="shopper" style="left:${3 + i * 4.7}%"><img src="${ART.shoppers[i % 6]}" alt="">
+    <img class="cable" src="${ART.cable}" alt="Kept an old charger" hidden></div>`).join('');
+}
+
+function renderShelf(result, merged) {
+  $$('#products .product').forEach((el, i) => {
+    const f = result.fs[i];
+    el.classList.toggle('owned', merged);
+    let tab = el.querySelector('.you');
+    if (merged || i === 0) {
+      if (!tab) {
+        tab = document.createElement('span');
+        tab.className = 'you';
+        el.prepend(tab);
+      }
+      tab.textContent = merged ? 'Owned by Ohmly' : 'You';
+    } else if (tab) tab.remove();
+    el.querySelector('.product-spec').innerHTML = `${WATTS[f.g]} W <span class="stars">${'★'.repeat(f.q + 1)}</span>`;
+    el.querySelector('.price-tag').textContent = '$' + f.p;
+    el.querySelector('.product-share i').style.width = result.shares[i] + '%';
+    el.querySelector('.product-share b').textContent = result.shares[i].toFixed(1) + '%';
+  });
+  $('ownership').hidden = !merged;
+}
+
+function renderLane(result, animate = false) {
+  const counts = roundedPeople(result);
+  let person = 0;
+  const destinations = [];
+  counts.forEach((count, group) => {
+    for (let j = 0; j < count; j++) {
+      const x = 3 + person * 4.7;
+      destinations[(person * 7) % 20] = {group, x};
+      person++;
+    }
+  });
+  const serial = ++walkSerial;
+  const people = $$('#shoppers .shopper');
+  people.forEach((el, i) => {
+    el.querySelector('.cable').hidden = destinations[i].group !== 4;
+    el.style.opacity = destinations[i].group === 4 ? '.58' : '1';
+    if (animate && !Curio.reduce) {
+      el.style.transition = 'none';
+      el.style.left = 3 + i * 4.7 + '%';
+    } else el.style.left = destinations[i].x + '%';
+  });
+  if (animate && !Curio.reduce) {
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (serial !== walkSerial) return;
+      people.forEach((el, i) => {
+        el.style.transition = '';
+        el.style.left = destinations[i].x + '%';
+      });
+    }));
+  }
+  $('destination').innerHTML = counts.map((count, i) =>
+    `<i style="flex:${count};background:${i === 4 ? '#8a96a8' : COLORS[i]}"></i>`).join('');
+  setText('lane-count', `${20 - counts[4]} buy · ${counts[4]} keep an old charger`);
+}
+
+function chart(id, series, options = {}) {
+  const svg = $(id);
+  const width = Math.max(250, svg.clientWidth);
+  const height = Math.max(60, svg.clientHeight);
+  const left = 40;
+  const right = width - (options.rightPercent ? 42 : 13);
+  const top = 16;
+  const bottom = height - 20;
+  const max = options.max || Math.max(1, ...series.flatMap(s => s.values)) * 1.15;
+  const x = i => left + (right - left) * i / 7;
+  const y = v => bottom - (bottom - top) * v / max;
+  let body = [0, .5, 1].map(v => `<line class="grid" x1="${left}" x2="${right}" y1="${y(v * max)}" y2="${y(v * max)}"/>
+    <text x="${left - 7}" y="${y(v * max) + 4}" text-anchor="end">${options.format ? options.format(v * max) : Math.round(v * max)}</text>`).join('');
+  if (options.rightPercent) body += [0, .5, 1].map(v =>
+    `<text x="${right + 6}" y="${y(v * max) + 4}">${v * 100}%</text>`).join('');
+  body += Array.from({length: 8}, (_, i) => `<text x="${x(i)}" y="${height - 3}" text-anchor="middle">Q${i + 1}</text>`).join('');
+  series.forEach(s => {
+    const points = s.values.map((value, i) => `${x(i)},${y(value)}`).join(' ');
+    const dash = s.dash === 'dots' ? '2 4' : s.dash ? '5 5' : '';
+    body += `<polyline class="series" points="${points}" stroke="${s.color}" ${dash ? `stroke-dasharray="${dash}"` : ''}/>`;
+    body += s.values.map((value, i) => `<circle cx="${x(i)}" cy="${y(value)}" r="2.5" fill="${s.color}"/>`).join('');
+  });
+  if (options.cap) body += `<line x1="${left}" x2="${right}" y1="${y(options.cap)}" y2="${y(options.cap)}"
+    stroke="#ff8f7a" stroke-width="2" stroke-dasharray="3 3"/><text x="${right}" y="${y(options.cap) - 4}" text-anchor="end">Cap $${options.cap}</text>`;
+  if (options.launches) {
+    body += options.launches.map(({i, label}) => `<text x="${x(i)}" y="11" text-anchor="middle" fill="#f2c14e">${label}</text>`).join('');
+  }
+  svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+  svg.innerHTML = body;
+}
+
+function renderRunChart(run) {
+  const series = [{values: run.history.map(r => r.fs[0].p), color: '#b3a6ff'},
+    {values: run.history.map(r => r.owners.Ohmly.units / r.sold * 40), color: '#4fd1c5', dash: 'dots'}];
+  const owner = state.mode === 'Buyout' && run.history.length;
+  $$('.owner-key').forEach(el => { el.hidden = !owner; });
+  if (owner) series.push({values: remedies[0].history.map(r => r.avgPrice), color: '#8a96a8', dash: true});
+  const launches = [];
+  run.history.forEach((r, i) => {
+    const previous = run.history[i - 1];
+    if (previous && r.fs.some((f, j) => f.g > previous.fs[j].g)) launches.push({i, label: '↑ launch'});
+  });
+  chart('run-chart', series, {max: 40, format: v => '$' + Math.round(v), launches, rightPercent: true});
+  $('run-chart').setAttribute('aria-label', 'Your price in dollars, and your share from zero to one hundred percent. Launches marked above.');
+}
+
+function renderRun(options = {}) {
+  const run = activeRun();
+  const result = options.result || preview(run);
+  const done = run.history.length === 8;
+  const me = result.owners.Ohmly;
+  renderShelf(result, state.mode === 'Buyout');
+  if (!options.keepLane) renderLane(result, options.animate);
+  setText('run-title', `${state.mode.toUpperCase()} / ${done ? 'TWO YEARS DONE' : 'Q' + (run.history.length + 1) + ' OF 8'}`);
+  $('run-title').style.color = state.mode === 'Rivals' ? 'var(--teal)' : 'var(--coral)';
+  setText('preview-label', options.result ? `Q${run.history.length} booked` : done ? 'Your record is ready to compare.' : 'Prices posted. Your move.');
+  setText('lane-label', options.result ? `Q${run.history.length} · EACH ≈5,000` : done ? 'Q8 FINAL · EACH ≈5,000' : 'PREVIEW · EACH ≈5,000');
+  $('price').value = run.p;
+  ['price', 'price-minus', 'price-plus'].forEach(id => { $(id).disabled = done; });
+  setText('price-value', '$' + run.p);
+  $$('[data-quality]').forEach(el => {
+    el.setAttribute('aria-pressed', +el.dataset.quality === run.q);
+    el.disabled = done;
+  });
+  $$('[data-research]').forEach(el => {
+    el.setAttribute('aria-pressed', +el.dataset.research === run.r);
+    el.disabled = done || result.fs[0].g === 3;
+  });
+  if (document.activeElement.matches('[data-research]:disabled')) $('next').focus({preventScroll: true});
+  const f = run.fs[0];
+  setText('lab-text', f.g === 3 ? '65 W is the top model in this market' :
+    `Lab: ${Math.min(100, f.points % 100 + RESEARCH[run.r].points)} of 100 to the ${WATTS[f.g + 1]} W model`);
+  $('lab-meter').style.width = f.g === 3 ? '100%' : Math.min(100, f.points % 100 + RESEARCH[run.r].points) + '%';
+  setText('next', done ? 'Run again' : 'Next quarter →');
+  setText('autoplay', state.auto ? 'Pause' : 'Play to the end');
+  $('autoplay').disabled = done;
+  if (done && document.activeElement === $('autoplay')) $('next').focus({preventScroll: true});
+  setText('buyers-label', options.result || done ? 'Your buyers' : 'Preview buyers');
+  setText('buyers-value', fmt(me.units));
+  setText('share-value', (me.units / result.sold * 100).toFixed(1) + '%');
+  setText('profit-label', options.result || done ? 'Quarter profit' : 'Preview profit');
+  setText('profit-value', money(me.profit) + (me.profit < 0 ? ' loss' : ''));
+  setText('total-value', money(run.total) + (run.total < 0 ? ' loss' : ''));
+  $('profit-value').classList.toggle('negative', me.profit < 0);
+  $('total-value').classList.toggle('negative', run.total < 0);
+  setText('seller-value', result.sellers + (result.sellers === 1 ? ' seller' : ' sellers'));
+  setText('top-value', 'Top ' + result.top.toFixed(0) + '%');
+  setText('hhi-value', 'HHI ' + fmt(result.hhi));
+  $('hhi-meter').style.width = result.hhi / 100 + '%';
+  $('walking-past').hidden = state.mode !== 'Rivals' || me.units / result.sold >= .1;
+  renderRunChart(run);
+  updateHint();
+}
+
+function choicesChanged() {
+  clearTimeout(walkTimer);
+  renderRun();
+  invalidateMemo();
+  Curio.tone(260 + activeRun().p * 12, .035, .025, 'sine');
+}
+
+function playQuarter() {
+  const run = activeRun();
+  if (run.history.length === 8) {
+    $('reset-confirm').hidden = false;
+    return;
+  }
+  const result = commit(run);
+  clearTimeout(walkTimer);
+  renderRun({result, animate: true});
+  Curio.tone(320, .07, .04, 'sine');
+  const quarter = run.history.length;
+  const previous = run.history[quarter - 2];
+  if (previous) {
+    const launches = state.mode === 'Buyout' ? result.fs[0].g > previous.fs[0].g ? ['All'] : [] :
+      result.fs.filter((f, i) => f.g > previous.fs[i].g).map(f => f.name);
+    const launchKeys = launches.map(name => {
+      const f = name === 'All' ? result.fs[0] : result.fs.find(f => f.name === name);
+      return `launch${name}${WATTS[f.g]}`;
+    });
+    const launchKey = launchKeys.length > 1 ? 'launchTogether' + ['Ohmly', 'Tidewatt', 'Sparrow'].map(name =>
+      launches.includes(name) ? result.fs.find(f => f.name === name).g : 0).join('') : launchKeys[0];
+    if (launchKey) sayEvent(launchKey, {now: true, valid: () => run.history.length === quarter});
+  }
+  if (state.mode === 'Rivals' && result.owners.Ohmly.units / result.sold < .1 && !V.heard('walkingPast-' + run.id)) {
+    sayEvent('walkingPast', {key: 'walkingPast-' + run.id,
+      valid: () => preview(run).owners.Ohmly.units / preview(run).sold < .1});
+  }
+  if (state.mode === 'Buyout' && run.p > 16 && !V.heard('noSwitch-' + run.id)) {
+    sayEvent('noSwitch', {key: 'noSwitch-' + run.id, valid: () => run.history.length === quarter});
+  }
+  if (quarter === 8) {
+    pauseAuto();
+    sayEvent('runDone', {now: true, valid: () => run.history.length === 8});
+  } else {
+    const mode = state.mode;
+    walkTimer = setTimeout(() => {
+      if (state.mode === mode && run.history.length === quarter) renderRun();
+    }, 1450);
+  }
+  invalidateMemo();
+}
+
+function pauseAuto() {
+  clearInterval(autoTimer);
+  autoTimer = null;
+  state.auto = false;
+  if (['Rivals', 'Buyout'].includes(state.mode)) setText('autoplay', 'Play to the end');
+}
+
+function setMode(mode) {
+  if (!['Rivals', 'Buyout', 'Compare', 'Regulator'].includes(mode)) return;
+  if (state.mode === mode) {
+    updateHint();
+    return;
+  }
+  pauseAuto();
+  clearTimeout(walkTimer);
+  V.hush();
+  state.mode = mode;
+  document.body.dataset.mode = mode;
+  document.body.classList.toggle('memo-open', mode === 'Regulator' && state.panel === 'memo');
+  $$('header [data-mode]').forEach(el => el.setAttribute('aria-pressed', el.dataset.mode === mode));
+  const run = mode === 'Rivals' || mode === 'Buyout';
+  $('run-panel').hidden = $('run-scene').hidden = !run;
+  $('compare-panel').hidden = $('compare-scene').hidden = mode !== 'Compare';
+  $('regulator-panel').hidden = $('regulator-scene').hidden = mode !== 'Regulator';
+  $('reset-confirm').hidden = true;
+  setText('desk-label', ({Rivals: '01 / Your desk', Buyout: '02 / One owner', Compare: '03 / The evidence', Regulator: '04 / The decision'})[mode]);
+  if (run) renderRun();
+  if (mode === 'Compare') renderCompare();
+  if (mode === 'Regulator') renderRegulator();
+  updateHint();
+  V.welcome();
+  Curio.tone(390, .045, .025, 'sine');
+}
+
+const MEASURES = [
+  {key: 'price', label: 'Average price', format: price},
+  {key: 'served', label: 'Shoppers served', format: fmt},
+  {key: 'gain', label: 'Buyer gain', format: millions},
+  {key: 'quality', label: 'Quality (latest)', format: v => QUALITY[Math.round(v) - 1]},
+  {key: 'model', label: 'Newest model', format: v => v + ' W'},
+  {key: 'profit', label: 'Your total profit', format: millions},
+  {key: 'sellers', label: 'Sellers', format: fmt},
+  {key: 'largest', label: 'Largest share', format: v => v.toFixed(1) + '%'},
+  {key: 'hhi', label: 'HHI', format: fmt}
+];
+
+function initCompare() {
+  const options = ['Under 1,800', 'Over 1,800', 'One seller, 10,000'];
+  for (const group of ['rivals', 'buyout', 'buyers']) {
+    const labels = group === 'buyers' ? ['Many small buyers', 'A few big buyers'] : options;
+    $('rating-' + group).innerHTML = labels.map((label, i) =>
+      `<button class="btn" data-rating="${group}" data-value="${i}" aria-pressed="false">${label}</button>`).join('');
+  }
+  $('compare-table').querySelector('tbody').innerHTML = MEASURES.map((m, i) =>
+    `<tr data-measure="${m.key}" class="${i < 5 ? 'buyer-row' : 'other-row'}" ${i < 5 ?
+      'role="button" tabindex="-1" aria-pressed="false" aria-disabled="true"' : ''}>
+      <th scope="row">${m.label}</th><td>Not played</td><td>Not played</td></tr>`).join('');
+}
+
+function renderCompare() {
+  const summaries = ['Rivals', 'Buyout'].map(mode => runSummary(state.runs[mode]));
+  const ready = Object.values(state.runs).every(run => run.history.length >= 4);
+  document.querySelector('.finish-row').hidden = Object.values(state.runs).every(run => run.history.length === 8);
+  $('rating-feedback').hidden = state.switched;
+  for (const mode of ['Rivals', 'Buyout']) {
+    const run = state.runs[mode];
+    const result = run.history.at(-1) || preview(run);
+    $('mini-' + mode.toLowerCase()).innerHTML = `<img class="shelf-back" src="${ART.shelf}" alt="">
+      <div class="products">${result.fs.map((f, i) => productHTML(f, result.shares[i], mode === 'Buyout', true)).join('')}</div>`;
+    setText('compare-' + mode.toLowerCase() + '-q', `Q${run.history.length} of 8`);
+    $('finish-' + mode.toLowerCase()).disabled = run.history.length === 8;
+    $('finish-' + mode.toLowerCase()).textContent = run.history.length === 8 ? mode + ' complete' : 'Finish ' + mode;
+    $('finish-' + mode.toLowerCase()).title = 'Finish with these settings';
+  }
+  $$('[data-measure]').forEach((tr, i) => {
+    const measure = MEASURES[i];
+    tr.querySelectorAll('td').forEach((td, j) => {
+      td.textContent = summaries[j] ? measure.format(summaries[j][measure.key]) : 'Not played';
+    });
+    if (i < 5) {
+      tr.classList.toggle('marked', state.marked.has(measure.key));
+      tr.setAttribute('aria-pressed', state.marked.has(measure.key));
+      tr.setAttribute('aria-disabled', !ready);
+      tr.tabIndex = ready ? 0 : -1;
+      tr.setAttribute('aria-label', measure.label + ', ' + [...tr.querySelectorAll('td')].map(td => td.textContent).join(' versus '));
+    }
+  });
+  $$('[data-rating]').forEach(el => el.setAttribute('aria-pressed', state.ratings[el.dataset.rating] === +el.dataset.value));
+  $$('[data-rating-group]').forEach(el => el.classList.toggle('rating-active', el.dataset.ratingGroup === state.ratingPage));
+  $$('[data-rating-page]').forEach(el => {
+    el.setAttribute('aria-pressed', el.dataset.ratingPage === state.ratingPage);
+    const group = el.dataset.ratingPage;
+    el.textContent = group[0].toUpperCase() + group.slice(1) + (state.ratings[group] !== null ? ' ✓' : '');
+  });
+  $('switch-test').disabled = !Object.values(state.ratings).every(v => v !== null);
+  $('switch-result').hidden = !state.switched;
+  if (state.switched) {
+    const s = switchExperiment();
+    $('switch-result').innerHTML = `<span class="assumption">Fixed Solid, 20 W; lab spending $0.</span><div><b style="color:var(--teal)">${s.percentR.toFixed(0)}% leave</b>
+      <div class="switch-flow" role="img" aria-label="Of the original Ohmly buyers: about 51 percent stay, 39 percent switch to rivals, 10 percent go without.">
+        <i style="flex:${1 - s.percentR / 100}"></i><i class="rival" style="flex:${s.rivals / (s.lostR * 100 / s.percentR)}"></i>
+        <i class="without" style="flex:${s.noneR / (s.lostR * 100 / s.percentR)}"></i></div>
+      <small>Rivals: ${fmt(s.rivals)} to rivals; ${fmt(s.noneR)} go without.
+      Profit: ${money(s.profitR[0])} → ${money(s.profitR[1])}.</small></div>
+      <div><b style="color:var(--coral)">${s.percentB.toFixed(0)}% leave</b>
+      <div class="switch-flow" role="img" aria-label="Of the original buyers after the buyout: about 83 percent stay, 17 percent go without. No rival can receive them.">
+        <i style="flex:${1 - s.percentB / 100};background:var(--coral)"></i><i class="without" style="flex:${s.percentB / 100}"></i></div>
+      <small>Buyout: ${fmt(s.lostB)} all go without. Profit: ${money(s.profitB[0])} → ${money(s.profitB[1])}.</small></div>`;
+  }
+  setText('mark-instruction', ready ? `Mark 3 changes for buyers: ${state.marked.size} of 3 selected. These become memo evidence.` :
+    'Play at least 4 quarters in each run, or tap both Finish buttons, to mark 3 buyer rows.');
+  chart('compare-chart', [
+    {values: state.runs.Rivals.history.map(r => r.avgPrice), color: '#4fd1c5'},
+    {values: state.runs.Buyout.history.map(r => r.avgPrice), color: '#ff8f7a', dash: 'dots'},
+    {values: remedies[0].history.map(r => r.avgPrice), color: '#8a96a8', dash: true}
+  ], {max: 40, format: v => '$' + Math.round(v)});
+  updateHint();
+}
+
+function rate(group, value) {
+  state.switched = false;
+  invalidateMemo();
+  state.ratings[group] = value;
+  const correct = value === ({rivals: 1, buyout: 2, buyers: 0})[group];
+  const explanations = {
+    rivals: 'Four equal sellers already make 2,500. The 2023 US merger guidelines call that highly concentrated, yet buyers still have somewhere to go. Both are true.',
+    buyout: 'One seller: 10,000. From four equal owners at 2,500, the rise is 7,500. The 2023 guidelines presume harm above 1,800 with a rise over 100; that presumption can be rebutted.',
+    buyers: '100,000 shoppers each buy at most one charger. No buyer can bargain the price down in either run; what changed is the sellers.'
+  };
+  setText('rating-feedback', (correct ? '' : 'Not quite. ') + explanations[group]);
+  const nextGroup = Object.keys(state.ratings).find(key => state.ratings[key] === null);
+  if (nextGroup) state.ratingPage = nextGroup;
+  renderCompare();
+  if ((innerHeight < 701 || innerWidth < 601) && nextGroup) {
+    document.querySelector(`[data-rating-page="${nextGroup}"]`).focus({preventScroll: true});
+  }
+  if (Object.values(state.ratings).every(v => v !== null)) V.how('compareSwitch', {needs: '#switch-test'});
+  Curio.tone(correct ? 460 : 260, .07, .03, 'sine');
+}
+
+function markMeasure(key) {
+  if (!Object.values(state.runs).every(run => run.history.length >= 4)) return;
+  if (state.marked.has(key)) state.marked.delete(key);
+  else if (state.marked.size < 3) state.marked.add(key);
+  renderCompare();
+  invalidateMemo();
+  if (state.switched && state.marked.size === 3) V.how('compareReady', {
+    valid: () => state.switched && state.marked.size === 3, needs: '#m-regulator'});
+  Curio.tone(410, .04, .03, 'sine');
+}
+
+const CASES = [
+  ['Savings and buyer harm', 'Williamson (1968) showed that cost savings can outweigh lost trades in total welfare. That does not erase the loss to buyers.'],
+  ['Staples and Office Depot (1997)', 'The FTC sued to stop the office superstores merging. A federal judge blocked the deal after evidence of lower prices where both had stores.'],
+  ['Standard Oil (1911) · AT&T (1984)',
+    'Standard Oil was ordered split into more than 30 companies under the Sherman Act of 1890. ' +
+    'AT&T: sued in 1974, agreed in 1982, split off seven regional companies in 1984, keeping long distance.'],
+  ['British Telecom (1984)', 'Littlechild proposed RPI-X in 1983. From 1984, BT’s cap was inflation minus 3 percentage points a year; the regulator watched service quality.'],
+  ['EU common charger', 'Directive (EU) 2022/2380: USB-C for phones and other small devices from 28 December 2024; laptops from 28 April 2026. The standard opens the charging port.']
+];
+const SIDE_EFFECTS = [
+  'Prices rise with each new model; fewer chargers sell than with four rivals.',
+  'The $0.50 savings never happen, and four labs pay for the same research.',
+  'A year of monopoly first; two sellers price lower but not as low as four.',
+  'Prices stay down, so the owner builds cheaper chargers to keep its margin.',
+  'New makers need two quarters to arrive and start a model behind.'
+];
+
+function initRegulator() {
+  $('remedy-cards').innerHTML = REMEDIES.map((name, i) =>
+    `<button class="remedy-card" id="remedy-${i}" data-remedy="${i}" aria-pressed="${i === 0}">
+      <img src="${ART.remedies[i]}" alt=""><span>${name}</span></button>`).join('');
+  const options = '<option value="">Choose a remedy</option>' + REMEDIES.map((name, i) =>
+    `<option value="${i}">${name}</option>`).join('');
+  $('first-remedy').innerHTML = $('second-remedy').innerHTML = options;
+  const reasons = [
+    ['One seller can set the price', 'Market power'], ['A locked port keeps new makers out', 'Barrier to entry'],
+    ['Willing shoppers go without', 'Lost trades'], ['Savings are worth more than the harm', 'Savings']
+  ];
+  $('reason-chips').innerHTML = reasons.map(([label, detail], i) =>
+    `<button class="btn chip" data-reason="${i}" aria-pressed="false">${label}<span>${detail}</span></button>`).join('');
+}
+
+function renderRegulator() {
+  const chosen = selectedRemedy();
+  const baseline = remedies[0];
+  $$('[data-remedy]').forEach(el => el.setAttribute('aria-pressed', +el.dataset.remedy === state.remedy));
+  $('cap-control').hidden = state.remedy !== 3;
+  $('cap').value = state.cap;
+  setText('cap-value', '$' + state.cap);
+  setText('opened-count', `Opened: ${state.opened.size} of 5`);
+  for (const view of ['buyers', 'everyone']) $('view-' + view).setAttribute('aria-pressed', state.view === view);
+  $('williamson').hidden = state.view !== 'everyone';
+  const key = state.view === 'everyone' ? 'everyone' : 'buyer';
+  const ranked = [...state.opened].map(i => i === 3 ? caps.get(state.cap) : remedies[i]).sort((a, b) => b[key] - a[key]);
+  $('rank').innerHTML = state.view ? ranked.map(r => `<li>${REMEDIES[r.kind]}<span>${millions(r[key])}</span></li>`).join('') :
+    '<li>Choose a view to rank opened remedies.</li>';
+  const last = chosen.last;
+  $('policy-boxes').innerHTML = last.fs.map(f => `<div class="policy-product" title="${f.name}: $${f.p}, ${WATTS[f.g]} W">
+    <img src="${ART.boxes[NAMES.indexOf(f.name)]}" alt="${f.name} charger">
+    <span class="policy-long">${f.name} $${f.p}</span>
+    <span class="policy-short">${MARKS[NAMES.indexOf(f.name)]}${f.p}</span>
+    <small>${'★'.repeat(f.q + 1)}<span class="policy-watts"> · ${WATTS[f.g]} W</span></small></div>`).join('');
+  $('owner-bars').innerHTML = chosen.history.map((r, quarter) => `<div class="owner-quarter"
+    style="height:${r.avgPrice / 40 * 100}%;align-self:end"
+    title="Q${quarter + 1}: ${r.sellers} sellers, average price ${price(r.avgPrice)}">
+    ${Object.entries(r.owners).map(([owner, o], i) => `<span style="flex:${o.units};background:${r.sellers === 1 ?
+      '#f2c14e' : COLORS[NAMES.indexOf(owner)]}" ></span>`).join('')}</div>`).join('');
+  if (state.remedy === 3) $('owner-bars').innerHTML +=
+    `<i style="position:absolute;left:0;right:0;top:${(1 - state.cap / 40) * 100}%;height:2px;background:#ff8f7a" title="Cap $${state.cap}"></i>`;
+  if (state.remedy === 3) {
+    $('owner-bars').querySelectorAll('.owner-quarter').forEach((el, i) => {
+      el.style.position = 'relative';
+      el.innerHTML += `<small style="position:absolute;inset:0;text-align:center;color:#16102e;font-size:10px">
+        ${'★'.repeat(Math.round(chosen.history[i].quality))}</small>`;
+    });
+  }
+  setText('policy-event', state.remedy === 2 ? 'Q5 / two owners' : state.remedy === 4 ? 'Q3 / Nova + Brisk' :
+    state.remedy === 3 ? `Cap $${state.cap} · ${QUALITY[last.fs[0].q]} at Q8` : `${last.sellers} ${last.sellers === 1 ? 'owner' : 'owners'} at Q8`);
+  const ledgerRows = [
+    ['Buyer gain', baseline.buyer, chosen.buyer, millions, 'buyer'],
+    ["Owners' profit", baseline.profit, chosen.profit, millions, 'profit'],
+    ['Government cost', baseline.gov, chosen.gov, millions, 'gov'],
+    ["Everyone's total", baseline.everyone, chosen.everyone, millions, 'everyone'],
+    ['Average price (Q8)', baseline.last.avgPrice, last.avgPrice, price],
+    ['Quality (Q8)', baseline.last.quality, last.quality, v => QUALITY[Math.round(v) - 1]],
+    ['Newest model (Q8)', WATTS[baseline.last.newest], WATTS[last.newest], v => v + ' W'],
+    ['Sellers (Q8)', baseline.last.sellers, last.sellers, fmt],
+    ['Shoppers served', baseline.sold, chosen.sold, fmt]
+  ];
+  setText('ledger-chosen', REMEDIES[state.remedy]);
+  $('ledger').querySelector('tbody').innerHTML = ledgerRows.map(([label, a, b, format, k]) => {
+    const difference = label === 'Quality (Q8)' ? (b - a).toFixed(0) + ' stars' :
+      label === 'Newest model (Q8)' ? (b - a) + ' W' : (b - a > 0 ? '+' : '') +
+      (k ? millions(b - a) : label.startsWith('Average') ? price(b - a) : fmt(b - a));
+    const highlight = state.view === 'buyers' && k === 'buyer' || state.view === 'everyone' && k === 'everyone';
+    return `<tr class="${highlight ? 'view-row' : ''}"><th scope="row">${label}</th><td>${format(a)}</td>
+      <td>${format(b)}</td><td>${difference}</td></tr>`;
+  }).join('');
+  const caseCard = CASES[state.remedy];
+  $('case-card').innerHTML = `<b>${caseCard[0]}</b><br>${caseCard[1]}`;
+  setText('side-effect', state.remedy === 3 && state.cap >= 28 ? 'This cap barely binds, so little changes.' :
+    state.remedy === 0 ? `Prices rise with each model; ${fmt(remedies[1].sold - baseline.sold)} fewer chargers sell than with rivals.` :
+    SIDE_EFFECTS[state.remedy]);
+  setText('reg-chart-label', 'Buyer gain / quarter');
+  chart('reg-chart', [
+    {values: chosen.history.map(r => r.buyer / 1e6), color: '#b3a6ff'},
+    {values: baseline.history.map(r => r.buyer / 1e6), color: '#8a96a8', dash: true}
+  ], {max: 1.8, format: v => '$' + v.toFixed(1) + 'M'});
+  $('case-card').classList.toggle('open', state.showCase);
+  setText('case-toggle', state.showCase ? 'Back to ledger' : 'Real case');
+  $('case-toggle').setAttribute('aria-expanded', state.showCase);
+  $('ledger').hidden = state.showCase && innerHeight < 701 && innerWidth > 600;
+  renderMemo();
+}
+
+function chooseRemedy(index) {
+  state.remedy = index;
+  state.opened.add(index);
+  state.showCase = false;
+  if (index === 3 && caps.size === 1) {
+    for (let cap = 16; cap <= 30; cap += 2) if (!caps.has(cap)) caps.set(cap, optimalRemedy(3, cap));
+  }
+  renderRegulator();
+  updateHint();
+  const key = ['remedyNothing', 'remedyBlock', 'remedyBreakup',
+    state.cap >= 28 ? 'remedyLoose' : 'remedyCap', 'remedyStandard'][index];
+  const chosenCap = state.cap;
+  sayEvent(key, {now: true, valid: () => state.remedy === index && (index !== 3 || state.cap === chosenCap)});
+  Curio.tone(300 + index * 65, .1, .04, 'sine');
+  invalidateMemo();
+}
+
+function panelTab(tab) {
+  if (state.panel === tab) {
+    updateHint();
+    return;
+  }
+  V.hush();
+  state.panel = tab;
+  $('remedies-panel').hidden = tab !== 'remedies';
+  $('memo-panel').hidden = tab !== 'memo';
+  $('tab-remedies').setAttribute('aria-pressed', tab === 'remedies');
+  $('tab-memo').setAttribute('aria-pressed', tab === 'memo');
+  document.body.classList.toggle('memo-open', tab === 'memo');
+  renderMemo();
+  updateHint();
+  if (!document.activeElement.getClientRects().length) {
+    const focus = tab === 'memo' ? document.querySelector(`[data-memo-step="${state.memoStep}"]`) : $('tab-remedies');
+    focus.focus({preventScroll: true});
+  }
+  if (tab === 'memo') V.how(state.memoStep === 1 && memoNeedsFirst() ? 'memoNeedFirst' :
+    ['memoReasons', 'memoEvidence', 'memoWrite'][state.memoStep],
+    {valid: () => state.panel === 'memo', needs: '#memo-panel'});
+}
+
+function memoNeedsFirst() {
+  return state.first === null || !state.opened.has(state.first) || !evidenceOptions().length;
+}
+
+function evidenceOptions() {
+  const options = [];
+  if (state.marked.size === 3 && Object.values(state.runs).every(r => r.history.length >= 4)) {
+    for (const key of state.marked) {
+      const measure = MEASURES.find(m => m.key === key);
+      const [a, b] = ['Rivals', 'Buyout'].map(mode => runSummary(state.runs[mode]));
+      options.push({id: 'compare-' + key, label: measure.label,
+        detail: `${measure.format(a[key])} with rivals; ${measure.format(b[key])} after buyout`});
+    }
+  }
+  if (state.switched && Object.values(state.ratings).every(v => v !== null)) {
+    const s = switchExperiment();
+    options.push({id: 'switch-rivals', label: 'Rivals switch test', detail: `${s.percentR.toFixed(0)}% leave; ${fmt(s.rivals)} go to rivals`});
+    options.push({id: 'switch-buyout', label: 'Buyout switch test', detail: `${s.percentB.toFixed(0)}% leave; all go without, profit rises`});
+  }
+  if (state.first !== null && state.opened.has(state.first)) {
+    const r = state.first === 3 ? caps.get(state.cap) : remedies[state.first];
+    for (const [key, label] of [['buyer', 'Buyer gain'], ['profit', "Owners' profit"], ['everyone', "Everyone's total"]]) {
+      options.push({id: `ledger-${state.first}-${state.first === 3 ? state.cap : 0}-${key}`,
+        label: `${REMEDIES[state.first]}: ${label}`, detail: `${millions(r[key])}; ${r[key] - remedies[0][key] > 0 ? '+' : ''}${millions(r[key] - remedies[0][key])} vs Do nothing`});
+    }
+  }
+  return options;
+}
+
+function renderMemo() {
+  $$('[data-memo-step]').forEach(el => el.setAttribute('aria-pressed', +el.dataset.memoStep === state.memoStep));
+  ['memo-reasons', 'memo-evidence', 'memo-write'].forEach((id, i) => { $(id).hidden = i !== state.memoStep; });
+  $$('[data-reason]').forEach(el => el.setAttribute('aria-pressed', state.reasons.has(+el.dataset.reason)));
+  $('first-remedy').value = state.first === null ? '' : state.first;
+  $('second-remedy').value = state.second === null ? '' : state.second;
+  setText('memo-view', state.view ? `Chosen view: ${state.view === 'buyers' ? "Buyers' view" : "Everyone's view"}. Change it in Remedies.` :
+    'Choose a view in Remedies before checking your memo.');
+  const options = evidenceOptions();
+  const available = new Set(options.map(o => o.id));
+  for (const id of state.evidence) if (!available.has(id)) state.evidence.delete(id);
+  const signature = options.map(o => o.id + o.detail).join('|');
+  if ($('evidence-chips').dataset.signature !== signature) {
+    $('evidence-chips').dataset.signature = signature;
+    $('evidence-chips').innerHTML = options.map(o =>
+      `<button class="btn chip" data-evidence="${o.id}" aria-pressed="${state.evidence.has(o.id)}">
+      ${escapeHTML(o.label)}<span>${escapeHTML(o.detail)}</span></button>`).join('');
+  }
+  $$('[data-evidence]').forEach(el => el.setAttribute('aria-pressed', state.evidence.has(el.dataset.evidence)));
+  setText('evidence-count', options.length ? `${state.evidence.size} of 2 picked. Compare rows need 3 marks; Switch results need the Switch test.` :
+    'Open remedies and choose a first remedy to unlock its ledger chips. Compare and Switch test unlock more evidence.');
+}
+
+function invalidateMemo() {
+  state.memoRevision++;
+  state.checked = false;
+  $('save-memo').disabled = true;
+  $('memo-result').hidden = true;
+  $('memo-write').classList.remove('show-result');
+  setText('check-memo', 'Check memo');
+  setText('memo-status', '');
+  updateHint();
+}
+
+function memoChecks() {
+  const fits = [[3], [0, 2], [0, 2], [0, 2], [0, 1]];
+  const words = (state.memoText.trim().match(/[A-Za-z]+(?:['’][A-Za-z]+)?/g) || [])
+    .filter(word => word.length > 1 || /^(a|i)$/i.test(word));
+  const distinct = new Set(words.map(w => w.toLowerCase())).size;
+  const available = new Set(evidenceOptions().map(o => o.id));
+  return [
+    [state.view !== null && state.views.size === 2, "Pick a view and inspect both Buyers' view and Everyone's view."],
+    [[...state.opened].filter(i => i !== 0).length >= 2, 'Open at least 2 remedies besides Do nothing.'],
+    [state.first !== null && state.second !== null && state.first !== state.second &&
+      state.opened.has(state.first) && state.opened.has(state.second), 'Rank two different remedies you have opened.'],
+    [state.reasons.size >= 1 && state.reasons.size <= 2 && state.first !== null &&
+      [...state.reasons].every(r => fits[state.first].includes(r)),
+      state.first === 3 && state.reasons.has(1) ? 'A price cap does not open the port. Pick a reason this remedy acts on, or another remedy.' :
+        'Pick 1 or 2 reasons that your first remedy acts on.'],
+    [state.evidence.size === 2 && [...state.evidence].every(id => available.has(id)) &&
+      [...state.evidence].some(id => id.startsWith(`ledger-${state.first}-`)),
+      'Pick 2 different evidence chips, including a ledger difference for your first remedy.'],
+    [words.length >= 12 && distinct >= 8, 'Write at least 12 words in your own explanation, with at least 8 different words.']
+  ];
+}
+
+function checkMemo() {
+  setText('memo-status', '');
+  if ($('memo-write').classList.contains('show-result')) {
+    invalidateMemo();
+    return;
+  }
+  const checks = memoChecks();
+  state.checked = checks.every(([ok]) => ok);
+  $('memo-result').hidden = false;
+  $('memo-result').innerHTML = checks.map(([ok, text], i) => `<div class="${ok ? 'ok' : 'warn'}">${ok ?
+    '✓ ' + ['View inspected', 'Remedies explored', 'Two remedies ranked', 'Reasons fit', 'Evidence included', 'Explanation length'][i] :
+    'Fix: ' + escapeHTML(text)}</div>`).join('');
+  $('save-memo').disabled = !state.checked;
+  if (innerHeight < 701 || innerWidth < 601) {
+    $('memo-write').classList.add('show-result');
+    setText('check-memo', 'Edit explanation');
+  }
+  updateHint();
+  const revision = state.memoRevision;
+  const passed = state.checked;
+  sayEvent(passed ? 'memoOk' : 'memoFix', {now: true,
+    valid: () => state.panel === 'memo' && state.memoStep === 2 && state.memoRevision === revision && state.checked === passed});
+  Curio.tone(state.checked ? 620 : 220, .12, .04, 'sine');
+}
+
+function saveMemo() {
+  if (!memoChecks().every(([ok]) => ok)) {
+    invalidateMemo();
+    return;
+  }
+  const options = evidenceOptions();
+  const memo = {text: state.memoText, first: state.first, second: state.second, reasons: [...state.reasons],
+    evidence: options.filter(o => state.evidence.has(o.id)), view: state.view, cap: state.cap};
+  try {
+    localStorage.setItem('curio-the-buyout-memo', JSON.stringify(memo));
+    setText('memo-status', 'Saved on this device. Your memo stays here. Nothing is sent.');
+  } catch {
+    setText('memo-status', 'This browser could not save. Your memo is still on this screen. Nothing was sent.');
+  }
+}
+
+function attachEvents() {
+  $$('header [data-mode]').forEach(el => el.addEventListener('click', () => setMode(el.dataset.mode)));
+  $('price').addEventListener('input', e => { activeRun().p = +e.target.value; choicesChanged(); });
+  $('price').addEventListener('keydown', e => {
+    if (e.key !== 'PageUp' && e.key !== 'PageDown') return;
+    e.preventDefault();
+    activeRun().p = Math.max(10, Math.min(40, activeRun().p + (e.key === 'PageUp' ? 5 : -5)));
+    choicesChanged();
+  });
+  for (const [id, delta] of [['price-minus', -1], ['price-plus', 1]]) $(id).addEventListener('click', () => {
+    activeRun().p = Math.max(10, Math.min(40, activeRun().p + delta));
+    choicesChanged();
+  });
+  $$('[data-quality]').forEach(el => el.addEventListener('click', () => { activeRun().q = +el.dataset.quality; choicesChanged(); }));
+  $$('[data-research]').forEach(el => el.addEventListener('click', () => { activeRun().r = +el.dataset.research; choicesChanged(); }));
+  $('next').addEventListener('click', playQuarter);
+  $('autoplay').addEventListener('click', () => {
+    if (state.auto) return pauseAuto();
+    state.auto = true;
+    playQuarter();
+    if (activeRun().history.length < 8) autoTimer = setInterval(playQuarter, 1200);
+  });
+  $('reset-no').addEventListener('click', () => { $('reset-confirm').hidden = true; });
+  $('reset-yes').addEventListener('click', () => {
+    V.hush();
+    state.runs[state.mode] = newRun(state.mode);
+    state.marked.clear();
+    invalidateMemo();
+    $('reset-confirm').hidden = true;
+    renderRun();
+  });
+  for (const mode of ['Rivals', 'Buyout']) $('finish-' + mode.toLowerCase()).addEventListener('click', () => {
+    const run = state.runs[mode];
+    const finishedButton = $('finish-' + mode.toLowerCase());
+    const hadFocus = document.activeElement === finishedButton;
+    while (run.history.length < 8) commit(run);
+    invalidateMemo();
+    renderCompare();
+    if (hadFocus) {
+      const nextControl = innerHeight < 701 || innerWidth < 601 ?
+        document.querySelector(`[data-rating-page="${state.ratingPage}"]`) :
+        document.querySelector(`[data-rating="${mode.toLowerCase()}"]`);
+      nextControl.focus({preventScroll: true});
+    }
+    Curio.tone(420, .1, .04, 'sine');
+  });
+  $$('[data-rating]').forEach(el => el.addEventListener('click', () => rate(el.dataset.rating, +el.dataset.value)));
+  $$('[data-rating-page]').forEach(el => el.addEventListener('click', () => {
+    state.ratingPage = el.dataset.ratingPage;
+    renderCompare();
+    Curio.tone(350, .04, .03, 'sine');
+  }));
+  $$('tr.buyer-row').forEach(el => {
+    el.addEventListener('click', () => markMeasure(el.dataset.measure));
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); markMeasure(el.dataset.measure); }
+    });
+  });
+  $('switch-test').addEventListener('click', () => {
+    if (Object.values(state.ratings).some(v => v === null)) return;
+    state.switched = true;
+    renderCompare();
+    sayEvent('switchResult', {now: true, valid: () => state.switched});
+    const key = state.marked.size === 3 ? 'compareReady' : 'compareMark';
+    V.how(key, {valid: () => state.switched && (state.marked.size === 3) === (key === 'compareReady') &&
+      Object.values(state.runs).every(run => run.history.length >= 4),
+      needs: key === 'compareReady' ? '#m-regulator' : '#compare-table', hint: false});
+    Curio.tone(480, .1, .04, 'sine');
+  });
+  $$('[data-remedy]').forEach(el => el.addEventListener('click', () => chooseRemedy(+el.dataset.remedy)));
+  for (const view of ['buyers', 'everyone']) $('view-' + view).addEventListener('click', () => {
+    state.view = view;
+    state.views.add(view);
+    invalidateMemo();
+    renderRegulator();
+    Curio.tone(470, .05, .03, 'sine');
+  });
+  $('cap').addEventListener('input', e => {
+    state.cap = +e.target.value;
+    if (!caps.has(state.cap)) caps.set(state.cap, optimalRemedy(3, state.cap));
+    invalidateMemo();
+    renderRegulator();
+    Curio.tone(320 + state.cap * 6, .04, .03, 'sine');
+  });
+  $('case-toggle').addEventListener('click', () => {
+    state.showCase = !state.showCase;
+    renderRegulator();
+    setText('case-toggle', state.showCase ? 'Back to ledger' : 'Real case');
+  });
+  $('tab-remedies').addEventListener('click', () => panelTab('remedies'));
+  $('tab-memo').addEventListener('click', () => panelTab('memo'));
+  $('memo-back-remedies').addEventListener('click', () => panelTab('remedies'));
+  $$('[data-memo-step]').forEach(el => el.addEventListener('click', () => {
+    if (state.memoStep === +el.dataset.memoStep) {
+      updateHint();
+      return;
+    }
+    V.hush();
+    state.memoStep = +el.dataset.memoStep;
+    renderMemo();
+    updateHint();
+    V.how(state.memoStep === 1 && memoNeedsFirst() ? 'memoNeedFirst' :
+      ['memoReasons', 'memoEvidence', 'memoWrite'][state.memoStep],
+      {valid: () => state.panel === 'memo' && state.memoStep === +el.dataset.memoStep});
+  }));
+  $$('[data-reason]').forEach(el => el.addEventListener('click', () => {
+    const key = +el.dataset.reason;
+    if (state.reasons.has(key)) state.reasons.delete(key);
+    else if (state.reasons.size < 2) state.reasons.add(key);
+    invalidateMemo();
+    renderMemo();
+    Curio.tone(410, .04, .03, 'sine');
+  }));
+  for (const [id, key] of [['first-remedy', 'first'], ['second-remedy', 'second']]) $(id).addEventListener('change', e => {
+    state[key] = e.target.value === '' ? null : +e.target.value;
+    invalidateMemo();
+    renderMemo();
+  });
+  $('evidence-chips').addEventListener('click', e => {
+    const el = e.target.closest('[data-evidence]');
+    if (!el) return;
+    const key = el.dataset.evidence;
+    if (state.evidence.has(key)) state.evidence.delete(key);
+    else if (state.evidence.size < 2) state.evidence.add(key);
+    invalidateMemo();
+    renderMemo();
+    Curio.tone(510, .04, .03, 'sine');
+  });
+  $('memo-text').addEventListener('input', e => { state.memoText = e.target.value; invalidateMemo(); });
+  $('check-memo').addEventListener('click', checkMemo);
+  $('save-memo').addEventListener('click', saveMemo);
+}
+
+function restoreDraft() {
+  try {
+    const stored = JSON.parse(localStorage.getItem('curio-the-buyout-memo') || 'null');
+    if (stored && typeof stored.text === 'string') {
+      state.memoText = stored.text.slice(0, 1200);
+      $('memo-text').value = state.memoText;
+      for (const key of ['first', 'second']) {
+        if (Number.isInteger(stored[key]) && stored[key] >= 0 && stored[key] < 5) state[key] = stored[key];
+      }
+      if (Array.isArray(stored.reasons)) {
+        state.reasons = new Set(stored.reasons.filter(r => Number.isInteger(r) && r >= 0 && r < 4).slice(0, 2));
+      }
+      if (['buyers', 'everyone'].includes(stored.view)) state.view = stored.view;
+      if ([16, 18, 20, 22, 24, 26, 28, 30].includes(stored.cap)) state.cap = stored.cap;
+      setText('memo-status', 'Saved writing restored. Revisit the evidence before checking a new memo.');
+    }
+  } catch {}
+}
+
+createProducts();
+initCompare();
+initRegulator();
+attachEvents();
+renderRun();
+restoreDraft();
+Curio.init({clips: "voice:*", rate: 1, readFallback: () => $('hint').textContent});
+Curio.onMotion(() => {
+  if (state.mode === 'Rivals' || state.mode === 'Buyout') renderLane(preview(activeRun()));
+});
+let resizeTimer;
+new ResizeObserver(() => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    if (state.mode === 'Rivals' || state.mode === 'Buyout') renderRunChart(activeRun());
+    else if (state.mode === 'Compare') renderCompare();
+    else renderRegulator();
+  }, 80);
+}).observe($('stage'));
+window.__tool = {state, setMode, allLines: V.allLines, vlog: V.log, get vq() { return V.queue; },
+  market, preview, commit, newRun, remedyRun, optimalRemedy, remedies, caps, switchExperiment,
+  roundedPeople, memoChecks, checkMemo, renderMemo, renderRegulator, renderCompare, evidenceOptions,
+  get summary() { return {Rivals: runSummary(state.runs.Rivals), Buyout: runSummary(state.runs.Buyout)}; }};
+// The spec explicitly requests Price focus. This is the sole load-focus exception.
+$('price').focus({preventScroll: true});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,377 @@
+{
+  "house_style": "Natural-history editorial gouache, tactile, cinematic light, real material, no people or lettering",
+  "assets": [
+    {
+      "name": "mf-0",
+      "prompt": "Hydrogen: sun, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-1",
+      "prompt": "Oxygen: air, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-2",
+      "prompt": "Nitrogen: air, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-3",
+      "prompt": "Chlorine: tap, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-4",
+      "prompt": "Hydrogen chloride: stomach, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-5",
+      "prompt": "Water: ocean, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-6",
+      "prompt": "Hydrogen sulfide: egg, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-7",
+      "prompt": "Ammonia: field, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-8",
+      "prompt": "Carbon dioxide: dryice, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-9",
+      "prompt": "Methane: stove, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-10",
+      "prompt": "Hydrogen peroxide: bleach, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-11",
+      "prompt": "Acetylene: torch, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-12",
+      "prompt": "Formic acid: ants, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-13",
+      "prompt": "Silane: wafer, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-14",
+      "prompt": "Hydrazine: thruster, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-15",
+      "prompt": "Methanol: wood, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-16",
+      "prompt": "Ethylene: bananas, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-17",
+      "prompt": "Urea: lab1828, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-18",
+      "prompt": "Ethane: pellets, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-19",
+      "prompt": "Acetic acid: vinegar, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-20",
+      "prompt": "Ethanol: pump, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-21",
+      "prompt": "Dimethyl ether: spray, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-22",
+      "prompt": "Acetone: polish, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-23",
+      "prompt": "Propane: grill, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-24",
+      "prompt": "Transparent disposable BUTANE GAS lighter with thumb striker wheel, gas lever and small flame, on a wooden bench. Mature editorial gouache; no people, text, logos or watermark.",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "redraw": 1,
+      "source": "OpenAI gpt-image edit",
+      "source_file": "S:\\CurioClass-codex\\_scratch\\molecule-forge\\data\\exec-5b7d6901-db07-434b-9fb9-9428228a48a9.png"
+    },
+    {
+      "name": "mf-25",
+      "prompt": "Isobutane: fridge, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-26",
+      "prompt": "Isopropyl alcohol: firstaid, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-27",
+      "prompt": "Glycine: comet, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-28",
+      "prompt": "Victorian piped-gas STREET LAMP on an iron post, gas jets in a glass enclosure, cobbled street at dusk. Mature editorial gouache; no people, text, logos or watermark.",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "redraw": 1,
+      "source": "OpenAI gpt-image edit",
+      "source_file": "S:\\CurioClass-codex\\_scratch\\molecule-forge\\data\\exec-33b82502-c366-4c48-9e64-7313b1da327c.png"
+    },
+    {
+      "name": "mf-29",
+      "prompt": "Vanillin: vanilla, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-30",
+      "prompt": "Aspirin: willow, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-31",
+      "prompt": "Caffeine: coffee, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-32",
+      "prompt": "Salt: salt, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-33",
+      "prompt": "Diamond: diamond, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-34",
+      "prompt": "Graphite: pencil, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-35",
+      "prompt": "Silicon: chip, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-36",
+      "prompt": "Silica: quartz, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-37",
+      "prompt": "Copper: wire, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-38",
+      "prompt": "Sodium metal: sodium, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "mf-39",
+      "prompt": "Bench: bench, real object or place",
+      "width": 420,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    }
+  ],
+  "generation": {
+    "method": "One gpt-image atlas plus two object-specific redraws; forty final paintings",
+    "atlas": "_scratch/molecule-forge/data/generated-atlas.png",
+    "bounds": "_scratch/molecule-forge/atlas-bounds.json",
+    "postprocess": "Exact tile crops with two-pixel inset; System.Drawing resizing; Chrome canvas WebP quality 0.76. art.py --rekey was attempted but NumPy/Pillow were unavailable."
+  }
+}

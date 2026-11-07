@@ -1,0 +1,190 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "finished-and-voted",
+      "steps": [
+        {
+          "click": "#play"
+        },
+        {
+          "until": "!__tool.state.playing",
+          "max": 18000
+        },
+        {
+          "click": "#want-add"
+        },
+        {
+          "click": "#sure-add"
+        }
+      ],
+      "keep": [
+        "#main-tv",
+        "#part-music",
+        "#want-add"
+      ]
+    },
+    {
+      "name": "vote-limit",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#play"
+        },
+        {
+          "until": "!__tool.state.playing",
+          "max": 18000
+        },
+        {
+          "click": "#want-add",
+          "times": 40,
+          "gap": 0.02
+        }
+      ]
+    },
+    {
+      "name": "playing-switch",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#play"
+        },
+        {
+          "click": "#part-pictures"
+        },
+        {
+          "wait": 300
+        }
+      ],
+      "keep": [
+        "#main-tv",
+        "#stop"
+      ]
+    },
+    {
+      "name": "message-picked",
+      "steps": [
+        {
+          "click": "#m-messages"
+        },
+        {
+          "click": "#message-3"
+        }
+      ],
+      "keep": [
+        "#message-cards",
+        "#evidence"
+      ]
+    },
+    {
+      "name": "truth-open",
+      "steps": [
+        {
+          "click": "#m-messages"
+        },
+        {
+          "click": "#truth-2"
+        }
+      ],
+      "keep": [
+        "#truth-dialog"
+      ]
+    },
+    {
+      "name": "street-found",
+      "steps": [
+        {
+          "click": "#m-day"
+        },
+        {
+          "click": "#place-street"
+        },
+        {
+          "click": "#spot-0"
+        }
+      ],
+      "keep": [
+        "#day-scene",
+        "#day-card"
+      ]
+    },
+    {
+      "name": "store-complete",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-day"
+        },
+        {
+          "click": "#place-store"
+        },
+        {
+          "click": "#spot-0"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#spot-2"
+        },
+        {
+          "click": "#spot-3"
+        },
+        {
+          "click": "#spot-4"
+        },
+        {
+          "click": "#spot-5"
+        }
+      ],
+      "keep": [
+        "#day-card",
+        "#counter"
+      ]
+    },
+    {
+      "name": "start-over-dialog",
+      "steps": [
+        {
+          "click": "#reset"
+        }
+      ],
+      "keep": [
+        "#reset-dialog"
+      ]
+    },
+    {
+      "name": "breakfast-photo",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-day"
+        },
+        {
+          "click": "#spot-5"
+        }
+      ],
+      "keep": [
+        "#day-scene",
+        "#day-card"
+      ]
+    }
+  ]
+}

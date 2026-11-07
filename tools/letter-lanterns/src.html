@@ -1,0 +1,1092 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,"><title>Letter Lanterns · Curio Class</title>
+<meta name="description" content="Explore letter sounds, manuscript trails and a lantern village. One offline Curiosity.">
+<!-- Curio Class Letter Lanterns. Original content CC BY 4.0; code MIT. Source details in the Manual. -->
+<style>:root { --ink:#fff4dd; --paper:#14132b; --focus:#7fe3ff; --brand:#f2b23e; color-scheme:dark; }
+* { box-sizing:border-box; }
+html,body { margin:0; height:100%; overflow:hidden; font-family:system-ui,sans-serif; color:var(--ink); background:var(--paper); }
+button,select { font:600 16px system-ui,sans-serif; color:var(--ink); }
+button { cursor:pointer; min-width:60px; min-height:60px; touch-action:manipulation; }
+button:focus-visible,select:focus-visible,svg:focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
+button:disabled { opacity:.5; cursor:default; }
+[hidden] { display:none!important; }
+.wood,select { border:1px solid #c19c62; border-radius:6px; background:linear-gradient(175deg,#514034,#2b2029);
+  box-shadow:inset 0 1px #ffe3a344,0 3px 6px #06051599; padding:8px 15px; }
+.wood:hover { filter:brightness(1.15); }
+.wood[aria-pressed=true] { background:linear-gradient(#ffe1a0,#d99d3a); color:#30200d; }
+#instrument { position:relative; height:100dvh; isolation:isolate; overflow:hidden; }
+.backdrop,.shade { position:absolute; inset:0; z-index:-2; }
+.backdrop { background:url(art:square-night) center / cover; transition:background-position .6s; }
+.street .backdrop,.book .backdrop { background-image:url(art:street-night); background-size:400% 100%; }
+.shade { z-index:-1; background:linear-gradient(#0c0b2299,transparent 35%,#0e0a20bb); pointer-events:none; }
+.nav { position:absolute; left:18px; top:16px; display:flex; gap:6px; z-index:5; }
+.power { position:absolute; right:18px; top:16px; display:flex; gap:5px; z-index:5; padding:5px;
+  background:#211d32ed; border:1px solid #9d855b; border-radius:10px; box-shadow:0 5px 15px #0006; }
+.power button { min-height:60px; width:74px; padding:5px; font-size:13px; border:1px solid #9b825b; border-radius:5px;
+  background:linear-gradient(#49404d,#292331); }
+#hint { position:absolute; top:91px; left:50%; transform:translateX(-50%); margin:0; text-align:center;
+  font-size:18px; padding:8px 15px; background:#17152be8; border-radius:6px; max-width:80%; z-index:3; }
+#play { position:absolute; inset:133px 28px 224px; display:flex; align-items:center; justify-content:center; }
+#string { position:absolute; top:129px; left:20px; right:20px; display:flex; flex-wrap:wrap; gap:0; justify-content:center; z-index:1; }
+#string::before { content:''; position:absolute; inset:0 0 auto; height:9px; border-bottom:2px solid #d1ae77;
+  border-radius:0 0 50% 50%; pointer-events:none; }
+#string .lantern { width:60px; height:80px; flex:0 0 60px; min-width:60px; }
+.street #play { top:max(220px,var(--string-space,220px)); bottom:220px; }
+.lantern { position:relative; padding:0; border:0; background:transparent; display:block; width:200px; aspect-ratio:3/4;
+  min-height:60px; min-width:60px; flex:0 0 auto; isolation:isolate; filter:drop-shadow(0 8px 6px #08031988); }
+.lantern img { width:100%; height:100%; object-fit:contain; position:relative; pointer-events:none; }
+.lantern::before { content:''; position:absolute; inset:12% -4%; border-radius:50%; opacity:0;
+  background:radial-gradient(ellipse,#ffe09688,#ffd17733 50%,transparent 72%); z-index:-1; }
+.lantern[data-lit=true]::before { opacity:1; }
+.lantern[data-lit=false] img { filter:brightness(.72) saturate(.7); }
+.glass { position:absolute; padding:5%; color:#3a1e06; display:flex; align-items:center; justify-content:center;
+  pointer-events:none; left:30%; top:48%; width:41%; height:34%; }
+.glass svg { width:100%; height:100%; overflow:visible; }
+.cart-row { display:flex; gap:35px; align-items:flex-end; justify-content:center; width:100%; height:100%; }
+.cart-row .lantern { width:min(25vw,calc((100dvh - 290px)*.65)); max-height:100%; }
+.lanterns[data-view=cart] #play { bottom:170px; }
+.solo { width:min(340px,calc((100dvh - 330px)*.75)); max-height:100%; }
+.flame-row { display:flex; gap:35px; align-items:center; justify-content:center; }
+.flame-choice { position:relative; width:120px; height:175px; border:0; background:none; padding:22px 8px 8px; }
+.flame-choice::before,.flame-shape { content:''; position:absolute; width:85px; height:85px; top:14px; left:50%;
+  transform:translateX(-50%); background:radial-gradient(#ffe9ab,#ffb45c 70%); border-radius:50%; box-shadow:0 0 24px #ffc36a77; }
+.flame-choice.tall::before { height:140px; top:0; border-radius:70% 15% 50% 50%; background:linear-gradient(#fff8e6,#ffcf80); }
+.flame-choice img { position:relative; height:93px; width:100%; object-fit:contain; }
+.flame-choice span { display:block; position:relative; text-shadow:0 2px 3px #000; }
+.flame-choice[aria-pressed=true] { filter:drop-shadow(0 0 12px #ffdf77); }
+#actions { position:absolute; bottom:151px; left:20px; right:20px; display:flex; justify-content:center; gap:8px; z-index:4; }
+#tray { position:absolute; left:20px; right:20px; bottom:60px; height:83px; display:flex; gap:5px; align-items:center;
+  overflow-x:auto; overflow-y:hidden; padding:6px 12px; background:linear-gradient(#543d38ed,#29202eea);
+  border:1px solid #aa8452; border-radius:8px; box-shadow:inset 0 3px 6px #0007; scrollbar-color:#c29558 #29202e; }
+#tray button { flex:0 0 60px; padding:4px; min-height:60px; border:1px solid #b69564; background:#ffe3a3; color:#3a1e06;
+  border-radius:5px; }
+#tray button[aria-pressed=true] { outline:3px solid #ffe6a7; outline-offset:2px; background:#ffbd55; }
+#tray svg { height:45px; width:52px; display:block; }
+#tray .choice { flex-basis:auto; padding:5px 18px; }
+.footer { position:absolute; bottom:0; left:16px; right:16px; height:60px; display:flex; align-items:center; gap:10px; z-index:5; }
+#manual { min-height:60px; font-size:14px; }
+.plate { background:linear-gradient(160deg,#c2a875,#85724c); border:1px solid #e8cd92; color:#221b12;
+  font:600 12px Georgia,serif; letter-spacing:.03em; padding:9px 18px; border-radius:3px; text-shadow:0 1px #e5ca8c; }
+#teacher { margin-left:auto; min-height:60px; font-size:14px; }
+.hero-shop { position:relative; width:270px; height:340px; flex:0 0 auto; }
+.hero-shop>img { width:100%; height:100%; object-fit:contain; pointer-events:none; }
+.shop-word { position:absolute; top:24%; left:8%; width:84%; height:26%; display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(#ffe9ba,#edce91); border:2px solid #9c713c; border-radius:6px; color:#2b1a0e; }
+.word { display:block; width:100%; height:100%; overflow:visible; }
+.mini-sounds { position:absolute; left:50%; top:-26px; transform:translateX(-50%); display:flex; gap:2px; }
+.mini-sounds .lantern { width:64px; height:85px; }
+.goods-window { position:absolute; width:37%!important; height:28%!important; top:51%; left:9%; }
+.shop-reveal { position:absolute; inset:50% 9% 8%; border:0; background:transparent; padding:0; }
+.shop-reveal:focus-visible { outline-offset:-4px; }
+.shop-reveal span { display:block; color:#ffe3a3; font-size:14px; background:#231d32ed; padding:6px; border:1px solid #c5a36a; }
+.twins-row { display:flex; justify-content:center; gap:65px; }
+.diff .mini-sounds [data-diff=true] { filter:drop-shadow(0 0 10px #ffb837); }
+.diff .mini-sounds [data-diff=true]::before { opacity:1; animation:flicker 1.8s infinite; }
+@keyframes flicker { 50% { opacity:.3; } }
+.word-boards { display:flex; align-items:center; gap:50px; }
+.word-board { position:relative; width:250px; height:260px; border:0; background:none; padding:125px 25px 8px; color:#2b1a0e; }
+.word-board::before { content:''; position:absolute; inset:42% 0 0; background:url(art:banner) center / 100% 100%; }
+.word-board .word { position:relative; height:115px; }
+.board-lantern { position:absolute; top:0; left:50%; transform:translateX(-50%); width:83px; height:110px; }
+.board-lantern img { position:relative; width:100%; height:100%; object-fit:contain; }
+.board-lantern .flame-shape { width:63px; height:63px; top:24px; }
+.board-lantern .flame-shape.tall { height:100px; top:0; border-radius:70% 15% 50% 50%; background:linear-gradient(#fff8e6,#ffcf80); }
+.banner-card { border:0; background:url(art:banner) center / 100% 100% no-repeat; color:#2b1a0e; padding:20px 30px;
+  width:330px; height:180px; }
+.banner-card.large { width:min(80%,470px); height:230px; }
+.street-view { width:100%; height:100%; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; gap:10px; }
+.shops { display:flex; gap:12px; justify-content:center; width:100%; min-height:0; align-items:flex-end; }
+.shop { width:calc((100% - 70px)/6); position:relative; max-width:190px; aspect-ratio:3/4; max-height:100%; }
+.shop>img { width:100%; height:100%; object-fit:contain; }
+.shop .shop-word { height:25%; }
+.shop>button { position:absolute; inset:0; border:0; background:transparent; width:100%; height:100%; }
+.shop.waiting::after { content:'◌'; position:absolute; bottom:12%; right:10%; font-size:24px; color:#ffe3a3; pointer-events:none; }
+.street-banners { display:flex; justify-content:center; gap:12px; }
+.street-banners .banner-card { width:135px; height:85px; padding:12px 18px; }
+.street-edge { position:absolute; top:48%; min-width:60px; width:60px; height:60px; border-radius:50%; z-index:4; }
+#edge-back { left:10px; } #edge-next { right:10px; }
+.street-label { position:absolute; top:90px; left:20px; font:14px monospace; }
+.reading { filter:drop-shadow(0 0 12px #ffdd86); }
+.slate-wrap { width:min(420px,calc(100dvh - 370px)); aspect-ratio:1; position:relative; }
+#slate { width:100%; height:100%; background:linear-gradient(145deg,#2c3948,#15202e); border:9px solid #9a7244;
+  border-radius:9px; box-shadow:0 8px 16px #0007; touch-action:none; }
+.trace-guide { fill:none; stroke:#c3d0db88; stroke-width:14; stroke-linecap:round; stroke-linejoin:round; }
+.trace-whole { fill:none; stroke:#c3d0db33; stroke-width:14; stroke-linecap:round; stroke-linejoin:round; }
+.trace-passed { fill:none; stroke:#f2b23e; stroke-width:14; stroke-linecap:round; stroke-linejoin:round; }
+.trace-ink { fill:none; stroke:#fff3d2; stroke-width:14; stroke-linecap:round; stroke-linejoin:round; }
+.trace-model { fill:none; stroke:#f2b23e99; stroke-width:8; stroke-linecap:round; stroke-linejoin:round; }
+.slate-caption { text-align:center; font:14px monospace; color:#ffedc6; margin-top:4px; }
+.flying { position:absolute; pointer-events:none; z-index:6; width:120px; height:160px; object-fit:contain;
+  animation:fly 1.1s cubic-bezier(.2,.65,.2,1) forwards; }
+@keyframes fly { to { left:var(--fly-x); top:var(--fly-y); width:60px; height:80px; } }
+.fireflies { position:absolute; inset:0; pointer-events:none; z-index:-1; }
+.fireflies i { position:absolute; width:3px; height:3px; background:#ffe3a3; border-radius:50%; box-shadow:0 0 9px #ffc765;
+  animation:drift 7s ease-in-out infinite alternate; }
+@keyframes drift { to { transform:translate(8px,-15px); opacity:.25; } }
+.calm *, .calm *::before { animation:none!important; transition:none!important; }
+.calm .flying { display:none; }
+dialog { width:min(760px,calc(100vw - 24px)); max-height:calc(100dvh - 24px); overflow:auto; border:2px solid #ba9558;
+  border-radius:9px; background:linear-gradient(130deg,#322943,#1b1a3a); color:#fff4dd; padding:20px; }
+dialog::backdrop { background:#09091dcc; }
+.dialog-head { display:flex; align-items:center; justify-content:space-between; gap:15px; position:sticky; top:-20px;
+  background:#29223d; z-index:3; padding:7px 0; }
+.dialog-head h2 { font:700 26px Georgia,serif; margin:0; }
+dialog p,dialog li { line-height:1.55; font-size:16px; }
+dialog a { color:#a8e8ff; }
+.toggle-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(60px,1fr)); gap:8px; margin:12px 0; }
+.toggle-grid button[aria-pressed=true] { background:#ffe3a3; color:#3a1e06; }
+.toggle-grid button { padding:5px; }
+.privacy { font-size:14px; color:#ded0f3; }
+.manual-sources { padding-left:22px; }
+@media (max-width:1100px) {
+  .nav { left:10px; top:10px; } .power { right:10px; top:8px; }
+  .wood { padding:6px 11px; }
+  .shop { width:28%; max-height:100%; }
+  #string { flex-wrap:wrap; }
+  .street #hint { left:auto; right:10px; transform:none; max-width:60%; }
+}
+@media (max-height:560px) and (min-width:541px) {
+  .nav { top:6px; left:8px; } .power { top:5px; right:8px; padding:0; }
+  .nav button { font-size:14px; padding:6px 9px; }
+  .power button { width:62px; font-size:11px; }
+  #hint { top:72px; font-size:14px; padding:5px 10px; max-width:80%; }
+  #play { inset:105px 65px 145px; }
+  .lanterns[data-view=cart] #play { bottom:145px; }
+  .book #play { top:135px; }
+  #actions { bottom:83px; left:8px; right:8px; gap:5px; }
+  #actions button { font-size:13px; padding:4px 8px; }
+  #tray { left:81px; right:81px; bottom:12px; height:68px; padding:3px 8px; }
+  .footer { left:8px; right:8px; top:auto; bottom:16px; height:60px; pointer-events:none; }
+  .footer .plate { display:none; }
+  .footer button { min-height:60px!important; min-width:60px; max-width:64px; font-size:11px!important; padding:3px 4px; pointer-events:auto; }
+  #hint { max-width:calc(100% - 20px); }
+  .cart-row { gap:25px; }
+  .cart-row .lantern { width:min(160px,calc((100dvh - 180px)*.55)); }
+  .solo { width:calc((100dvh - 195px)*.65); }
+  #string { display:none; }
+  .street #play { top:108px; bottom:145px; }
+  .street #hint { left:50%; right:auto; transform:translateX(-50%); }
+  .shop { width:33%; max-width:140px; max-height:100%; }
+  .street-banners .banner-card { width:95px; height:60px; padding:8px 14px; }
+  .street-view { gap:0; }
+  .street-label { display:none; }
+  .hero-shop { width:190px; height:150px; }
+  .mini-sounds { top:-24px; }
+  .mini-sounds .lantern { width:60px; height:68px; }
+  .twins-row { gap:30px; }
+  .twins-row .hero-shop { width:185px; height:150px; }
+  .word-boards { gap:15px; }
+  .word-board { width:180px; height:173px; padding:74px 18px 0; }
+  .word-board .word { height:90px; }
+  .board-lantern { width:64px; height:80px; }
+  .board-lantern .flame-shape { width:45px; height:45px; }
+  .board-lantern .flame-shape.tall { height:73px; }
+  .flame-row { gap:20px; } .flame-choice { width:90px; height:145px; }
+  .flame-choice::before { width:65px; height:65px; }
+  .flame-choice.tall::before { height:105px; }
+  .flame-choice img { height:80px; }
+  .slate-wrap { width:calc(100dvh - 247px); }
+  .slate-caption { font-size:11px; }
+  .banner-card.large { height:155px; width:300px; }
+}
+@media (max-width:540px) {
+  .nav { left:8px; top:8px; right:8px; justify-content:center; }
+  .nav button { flex:1; padding:5px; font-size:15px; }
+  .power { top:76px; left:50%; right:auto; transform:translateX(-50%); padding:3px; }
+  .power button { width:73px; }
+  #hint { top:149px; font-size:15px; width:calc(100% - 20px); max-width:none; }
+  #play { inset:200px 10px 236px; }
+  .lanterns[data-view=cart] #play { bottom:236px; }
+  #actions { bottom:150px; left:8px; right:8px; gap:4px; flex-wrap:wrap; }
+  #actions button { font-size:13px; padding:5px 8px; }
+  #tray { left:8px; right:8px; bottom:65px; }
+  .footer { left:8px; right:8px; gap:6px; height:60px; }
+  .plate { padding:8px; font-size:10px; max-width:170px; line-height:1.4; }
+  #manual,#teacher { padding:5px 7px; min-height:60px; font-size:12px; }
+  #teacher { margin-left:auto; }
+  .cart-row { gap:10px; align-items:center; }
+  .cart-row .lantern { width:min(28vw,170px); }
+  .solo { width:min(230px,calc((100dvh - 420px)*.75)); }
+  #string { display:none; }
+  .street #play { top:203px; bottom:236px; padding:0 48px; }
+  .street #hint { left:50%; right:auto; transform:translateX(-50%); max-width:calc(100% - 20px); }
+  .street-label { display:none; }
+  .shops { gap:6px; } .shop { width:50%; }
+  .street-banners { gap:4px; }
+  .street-banners .banner-card { width:74px; height:63px; padding:10px; }
+  .street-edge { top:45%; padding:2px; }
+  #edge-back { left:3px; } #edge-next { right:3px; }
+  .hero-shop { width:230px; height:260px; }
+  .twins-row { flex-direction:column; gap:40px; align-items:center; }
+  .twins-row .hero-shop { width:195px; height:135px; }
+  .twins-row .mini-sounds { top:-25px; }
+  .twins-row .mini-sounds .lantern { width:60px; height:75px; }
+  .twins-row .shop-reveal { inset:55% 7% 0; }
+  .shop-reveal span { font-size:11px; padding:3px; }
+  .word-boards { gap:8px; }
+  .word-board { width:170px; height:230px; padding:110px 15px 0; }
+  .word-board .word { height:100px; }
+  .flame-row { gap:6px; }
+  .flame-row .solo { width:135px; }
+  .flame-choice { width:92px; height:160px; padding:25px 7px 8px; }
+  .flame-choice img { height:90px; }
+  .slate-wrap { width:min(310px,calc(100dvh - 454px)); }
+  .lanterns[data-view=trace] #play { top:210px; bottom:295px; }
+  .lanterns[data-view=trace] .slate-wrap { width:min(300px,calc(100dvh - 515px)); }
+  #actions.trace-actions { bottom:150px; }
+}
+@media (min-height:561px) and (max-width:800px) and (min-width:541px) {
+  .cart-row .lantern { width:min(27vw,calc((100dvh - 270px)*.52)); }
+  .solo { width:min(350px,calc((100dvh - 280px)*.65)); }
+  #string { display:flex; top:135px; flex-wrap:wrap; }
+  .street #play { top:max(250px,var(--string-space,250px)); }
+}
+/* Fit the objects to their actual work area, including a separate caption line. */
+#hint { width:max-content; }
+.solo { height:min(100%,500px); width:auto; aspect-ratio:3/4; max-height:none; }
+.flame-row { width:100%; height:100%; }
+.flame-row .solo { height:100%; max-height:500px; width:auto; aspect-ratio:3/4; }
+.manual-sources a { display:inline-flex; align-items:center; min-width:60px; min-height:60px;
+  max-width:100%; padding:4px 0; vertical-align:middle; overflow-wrap:anywhere; }
+@media (min-width:801px) and (max-width:1100px) and (max-height:700px) {
+  .street #string { display:none; }
+  .street #play { top:133px; bottom:220px; }
+}
+@media (max-width:1100px) and (min-width:541px) {
+  .street #hint { left:50%; right:auto; transform:translateX(-50%); max-width:calc(100% - 20px); }
+  .street-label { display:none; }
+}
+@media (max-height:560px) and (min-width:541px) {
+  .slate-wrap { width:calc(100dvh - 284px); }
+  .word-boards { height:100%; max-height:173px; }
+  .word-board { height:100%; padding:60px 18px 0; }
+  .word-board .word { height:100%; }
+}
+@media (max-width:540px) {
+  #hint { width:calc(100% - 20px); }
+  .solo { height:min(100%,320px); width:auto; }
+  .flame-row .solo { width:120px; height:160px; }
+  .street #play { padding-left:55px; padding-right:55px; }
+}
+</style></head>
+<body><main id="instrument" class="lanterns" aria-label="Letter Lanterns">
+<div class="backdrop"></div><div class="shade"></div><div class="fireflies" aria-hidden="true"></div>
+<nav class="nav" aria-label="Explore"><button class="wood" id="m-lanterns" aria-pressed="true">Lanterns</button>
+<button class="wood" id="m-street" aria-pressed="false">Street</button>
+<button class="wood" id="m-book" aria-pressed="false">Wordbook</button></nav>
+<div class="power" role="group" aria-label="Village power panel"><button id="motion" aria-pressed="true">Motion</button>
+<button id="sound" aria-pressed="true">Sound</button><button id="read">Read</button></div>
+<p id="hint" aria-live="polite">Tap any lantern. Or choose a letter below.</p>
+<div id="string" aria-label="Lanterns you have touched" hidden></div>
+<div id="street-label" class="street-label" hidden></div><div id="play"></div>
+<button class="wood street-edge" id="edge-back" aria-label="Previous street" hidden>‹</button>
+<button class="wood street-edge" id="edge-next" aria-label="Next street" hidden>›</button>
+<div id="actions" aria-label="Instrument controls"></div>
+<div id="tray" aria-label="Choose any letter"></div>
+<div class="footer"><button class="wood" id="manual">Manual</button>
+<span class="plate">Curio Class Curiosities · Letter Lanterns</span><button class="wood" id="teacher">Settings</button></div>
+</main>
+<dialog id="manual-dialog" aria-labelledby="manual-title"><div class="dialog-head"><h2 id="manual-title">Manual</h2>
+<button class="wood" id="read-manual">Read</button><button class="wood" id="close-manual">Close</button></div><p>Choose a lantern and listen. Trace its big or small letter, compare the two vowel glows,
+or open the Wordbook. Everything is available in any order. No microphone is used.</p>
+<h3>The slate</h3><p>Follow the green dot and arrow. Lift between strokes. Show me draws a stroke.
+Next stroke and Back to lantern are always available. Write it yourself hides the guides;
+if a mark leaves the trail, the whole letter appears over your ink. Nothing is graded.</p>
+<h3>The village</h3><p>Lanterns glow when you tap them, simply to show where you have explored.
+They do not measure reading ability. Shops open when you choose to reveal their windows.
+Tap the small lanterns above signs to hear their sounds. Banners speak as whole words.</p>
+<h3>Sound models</h3><p>Isolated sounds use recordings. Without a recording, you hear an anchor word
+instead of a letter name. This village uses US English examples. A voice cannot check what you say.
+The small flame shows the short vowel; the tall flame shows the long vowel. The long sound is the letter name.
+C and g use their hard sounds here. X uses the last sounds in ox; q is shown with the sound in quail.</p>
+<h3>Things people have found</h3><p>Pan and pin share their outside letters. Cat and cot change in the middle.
+The p and g in pig hang below the line. No and not have different vowel sounds.
+The banner I has bars; the small l is one tall stroke.</p>
+<h3>Keyboard</h3><p>Tab moves between controls; Enter activates them. Scroll the letter tray to choose any letter.
+On the slate, Space starts ink, arrow keys move it, and Space lifts it. Shift makes smaller moves.
+Escape closes a drawer. Motion removes movement without changing sound timing.</p>
+<h3>Privacy</h3><p>Your village is saved on this device only. Nothing leaves it. Settings can hide letters
+and banners, light the whole village, or clear the saved village.</p>
+<h3>Sources and licences</h3><ul class="manual-sources">
+<li>Curio Class Letter Lanterns selection: 26 letters, 24 shop words, ten twin pairs, six vowel pairs,
+ten banners and 52 original geometric letter paths, from the supplied Letter Lanterns brief.
+Original text and geometry: CC BY 4.0. Code: MIT. No commercial handwriting chart is copied.</li>
+<li><a href="https://www.readingrockets.org/topics/spelling-and-word-study/articles/six-syllable-types">Moats and Tolman,
+Six Syllable Types (Reading Rockets)</a> and Louisa Moats, <em>Speech to Print</em>, third edition (2020),
+are references for open and closed vowel patterns. Copyright holders retain their rights; reference only,
+no article text or book tables bundled.</li>
+<li><a href="https://www.readingrockets.org/topics/phonics-and-decoding/articles/alphabetic-principle">Texas Education Agency,
+The Alphabetic Principle (Reading Rockets)</a>: letters represent speech sounds; stop sounds should not acquire an extra vowel.
+Copyright retained by the author and publisher; reference only.</li>
+<li><a href="https://www.thecorestandards.org/ELA-Literacy/RF/K/">Common Core RF.K.3</a> and
+<a href="https://www.thecorestandards.org/ELA-Literacy/L/K/">L.K.1a</a>, NGA Center and CCSSO, 2010.
+CCSS Public License; identifiers used as references, standards text not reproduced.</li>
+<li>Edward Dolch pre-primer and Edward Fry first 100 are the brief's selection references for the ten banners;
+neither full list nor list order is reproduced. These are ordinary English words, selected and arranged by Curio Class.
+No open licence is asserted for Fry's compilation.</li>
+<li><a href="https://media.zaner-bloser.com/handwriting/pdfs/ZB_HW_Manuscript_Practice_Package.pdf">Zaner-Bloser manuscript chart</a>
+and <a href="https://www.lwtears.com/letter-number-formation-charts">Learning Without Tears formation charts</a>:
+copyright retained by their publishers, comparison references only. Stroke conventions differ;
+these geometric paths show one ball-and-stick style, not a test of all handwriting.</li>
+<li>Illustrations generated with OpenAI gpt-image, edited for Curio Class. Existing Curio Class art;
+no external image collection used. Curio Class original content: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</li>
+</ul></dialog>
+<dialog id="teacher-dialog" aria-labelledby="teacher-title"><div class="dialog-head"><h2 id="teacher-title">Your village</h2>
+<button class="wood" id="read-settings">Read</button><button class="wood" id="close-teacher">Close</button></div><p>Letters to show</p><div id="letters" class="toggle-grid"></div>
+<p>Whole-word banners</p><div id="words" class="toggle-grid"></div>
+<button class="wood" id="wake-all">Light all</button><button class="wood" id="reset">Clear village</button>
+<p class="privacy">Your village is saved on this device only. Nothing leaves it.</p>
+<p class="privacy">Glow shows what you have touched. It does not measure reading ability.</p></dialog>
+<dialog id="confirm" aria-labelledby="confirm-title"><h2 id="confirm-title">Clear this village?</h2>
+<p>This clears the village saved on this device.</p><button class="wood" id="cancel-reset">Cancel</button>
+<button class="wood" id="confirm-reset">Clear village</button></dialog>
+<script src="kit:curio"></script><script>(()=>{'use strict';const D="json:lesson";
+  const ART = {
+    awake: {}, sleepy: {}, goods: {}, anchors: {}, shops: [], banner:'art:banner',
+  };
+  // Literal asset tokens are replaced by the bundler, including this generated map.
+    ART.awake.m = 'art:creature-m-awake';
+  ART.sleepy.m = 'art:creature-m-sleepy';
+  ART.awake.s = 'art:creature-s-awake';
+  ART.sleepy.s = 'art:creature-s-sleepy';
+  ART.awake.a = 'art:creature-a-awake';
+  ART.sleepy.a = 'art:creature-a-sleepy';
+  ART.awake.t = 'art:creature-t-awake';
+  ART.sleepy.t = 'art:creature-t-sleepy';
+  ART.awake.p = 'art:creature-p-awake';
+  ART.sleepy.p = 'art:creature-p-sleepy';
+  ART.awake.i = 'art:creature-i-awake';
+  ART.sleepy.i = 'art:creature-i-sleepy';
+  ART.awake.n = 'art:creature-n-awake';
+  ART.sleepy.n = 'art:creature-n-sleepy';
+  ART.awake.c = 'art:creature-c-awake';
+  ART.sleepy.c = 'art:creature-c-sleepy';
+  ART.awake.o = 'art:creature-o-awake';
+  ART.sleepy.o = 'art:creature-o-sleepy';
+  ART.awake.d = 'art:creature-d-awake';
+  ART.sleepy.d = 'art:creature-d-sleepy';
+  ART.awake.g = 'art:creature-g-awake';
+  ART.sleepy.g = 'art:creature-g-sleepy';
+  ART.awake.u = 'art:creature-u-awake';
+  ART.sleepy.u = 'art:creature-u-sleepy';
+  ART.awake.f = 'art:creature-f-awake';
+  ART.sleepy.f = 'art:creature-f-sleepy';
+  ART.awake.b = 'art:creature-b-awake';
+  ART.sleepy.b = 'art:creature-b-sleepy';
+  ART.awake.e = 'art:creature-e-awake';
+  ART.sleepy.e = 'art:creature-e-sleepy';
+  ART.awake.h = 'art:creature-h-awake';
+  ART.sleepy.h = 'art:creature-h-sleepy';
+  ART.awake.r = 'art:creature-r-awake';
+  ART.sleepy.r = 'art:creature-r-sleepy';
+  ART.awake.l = 'art:creature-l-awake';
+  ART.sleepy.l = 'art:creature-l-sleepy';
+  ART.awake.k = 'art:creature-k-awake';
+  ART.sleepy.k = 'art:creature-k-sleepy';
+  ART.awake.j = 'art:creature-j-awake';
+  ART.sleepy.j = 'art:creature-j-sleepy';
+  ART.awake.w = 'art:creature-w-awake';
+  ART.sleepy.w = 'art:creature-w-sleepy';
+  ART.awake.v = 'art:creature-v-awake';
+  ART.sleepy.v = 'art:creature-v-sleepy';
+  ART.awake.y = 'art:creature-y-awake';
+  ART.sleepy.y = 'art:creature-y-sleepy';
+  ART.awake.z = 'art:creature-z-awake';
+  ART.sleepy.z = 'art:creature-z-sleepy';
+  ART.awake.x = 'art:creature-x-awake';
+  ART.sleepy.x = 'art:creature-x-sleepy';
+  ART.awake.q = 'art:creature-q-awake';
+  ART.sleepy.q = 'art:creature-q-sleepy';
+  ART.goods.map = 'art:goods-map';
+  ART.goods.pan = 'art:goods-pan';
+  ART.goods.pin = 'art:goods-pin';
+  ART.goods.cat = 'art:goods-cat';
+  ART.goods.cot = 'art:goods-cot';
+  ART.goods.mop = 'art:goods-mop';
+  ART.goods.pig = 'art:goods-pig';
+  ART.goods.dog = 'art:goods-dog';
+  ART.goods.cup = 'art:goods-cup';
+  ART.goods.pup = 'art:goods-pup';
+  ART.goods.sun = 'art:goods-sun';
+  ART.goods.bug = 'art:goods-bug';
+  ART.goods.bus = 'art:goods-bus';
+  ART.goods.fan = 'art:goods-fan';
+  ART.goods.bed = 'art:goods-bed';
+  ART.goods.hen = 'art:goods-hen';
+  ART.goods.pen = 'art:goods-pen';
+  ART.goods.hat = 'art:goods-hat';
+  ART.goods.log = 'art:goods-log';
+  ART.goods.jet = 'art:goods-jet';
+  ART.goods.web = 'art:goods-web';
+  ART.goods.van = 'art:goods-van';
+  ART.goods.box = 'art:goods-box';
+  ART.goods.fox = 'art:goods-fox';
+  ART.anchors.acorn = 'art:anchor-acorn';
+  ART.anchors.emu = 'art:anchor-emu';
+  ART.anchors.ivy = 'art:anchor-ivy';
+  ART.anchors.ocean = 'art:anchor-ocean';
+  ART.anchors.unicorn = 'art:anchor-unicorn';
+  ART.shops.push({open:'art:shop-1-open',closed:'art:shop-1-closed'});
+  ART.shops.push({open:'art:shop-2-open',closed:'art:shop-2-closed'});
+  ART.shops.push({open:'art:shop-3-open',closed:'art:shop-3-closed'});
+  ART.shops.push({open:'art:shop-4-open',closed:'art:shop-4-closed'});
+  ART.shops.push({open:'art:shop-5-open',closed:'art:shop-5-closed'});
+  ART.shops.push({open:'art:shop-6-open',closed:'art:shop-6-closed'});
+  const distance = (a,b) => Math.hypot(a[0]-b[0],a[1]-b[1]);
+  function resample(points, spacing = .01) {
+    if (points.length < 2) return points;
+    const result = [points[0]];
+    for (let i = 1; i < points.length; i++) {
+      const a = points[i-1];
+      const b = points[i];
+      const n = Math.max(1,Math.ceil(distance(a,b)/spacing));
+      for (let j = 1; j <= n; j++) result.push([a[0]+(b[0]-a[0])*j/n,a[1]+(b[1]-a[1])*j/n]);
+    }
+    return result;
+  }
+  function assessTrace(input, path, free = false) {
+    if (!input.length) return {pass:false,cause:'missStart'};
+    if (path.length === 1) return {pass:input.every(p => distance(p,path[0]) <= .12),cause:'missStart'};
+    const points = resample(input);
+    if (distance(points[0],path[0]) > .16) return {pass:false,cause:'missStart'};
+    if (distance(points.at(-1),path.at(-1)) > .20) return {pass:false,cause:'missEnd'};
+    const coverDistance = free ? .16 : .12;
+    const inkDistance = free ? .18 : .14;
+    const nearest = (p,array) => {
+      let best = Infinity;
+      let index = 0;
+      for (let i = 0; i < array.length; i++) {
+        const d = distance(p,array[i]);
+        if (d < best) { best = d; index = i; }
+      }
+      return {best,index};
+    };
+    const coverage = path.filter(p => nearest(p,points).best <= coverDistance).length/path.length;
+    const mapped = points.map(p => nearest(p,path));
+    const onPath = mapped.filter(x => x.best <= inkDistance).length/mapped.length;
+    // The tolerance corridor alone can accept half of a very short crossbar.
+    // Require ink to visit the far part of the ordered path as well.
+    const progress = Math.max(...mapped.map(x => x.index))/(path.length-1);
+    const middle = mapped.slice(Math.floor(mapped.length*.1),Math.ceil(mapped.length*.9));
+    let forward = 0;
+    let moves = 0;
+    for (let i = 6; i < middle.length; i += 6) {
+      const delta = middle[i].index-middle[i-6].index;
+      if (delta > 0) forward++;
+      moves++;
+    }
+    const direction = moves ? forward/moves : 0;
+    return {pass:coverage >= .8 && onPath >= .75 && direction >= .6 && progress >= .8,
+      cause:'missEnd',coverage,onPath,direction,progress};
+  }
+  const $ = id => document.getElementById(id);
+  const ORDER = [...D.order];
+  const WORDS = D.streets.flat().map(row => row.split(' ')[0]);
+  const BANNERS = 'the a I see my is to you we go'.split(' ');
+  const STORAGE = 'curio-letter-lanterns';
+  const CLIPS = "voice:*";
+  const fresh = () => ({version:2,mode:'lanterns',target:'m',lit:[],opened:[],enabled:[...ORDER],
+    enabledBanners:[...BANNERS],section:'signs',index:0,street:0,page:0,view:'cart',free:false,traceCase:0,stroke:0});
+  const state = fresh();
+  function validSave(s) {
+    return s && s.version === 2 && ['lanterns','street','book'].includes(s.mode)
+      && ORDER.includes(s.target) && ['cart','solo','flames','trace'].includes(s.view)
+      && ['signs','twins','vowels','banners'].includes(s.section)
+      && ['lit','enabled'].every(k => Array.isArray(s[k]) && s[k].every(l => ORDER.includes(l)))
+      && Array.isArray(s.opened) && s.opened.every(w => WORDS.includes(w))
+      && Array.isArray(s.enabledBanners) && s.enabledBanners.every(w => BANNERS.includes(w))
+      && (!s.flameOrder || Array.isArray(s.flameOrder) && s.flameOrder.length===2
+        && new Set(s.flameOrder).size===2 && s.flameOrder.every(x=>['short','long'].includes(x)))
+      && (!s.wordOrder || Array.isArray(s.wordOrder) && s.wordOrder.length===2
+        && new Set(s.wordOrder).size===2 && D.longPairs.some(pair=>s.wordOrder.every(w=>pair.includes(w))))
+      && Number.isInteger(s.index) && s.index >= 0 && s.index < 24
+      && Number.isInteger(s.street) && s.street >= 0 && s.street < 4
+      && Number.isInteger(s.page) && s.page >= 0 && s.page < 3
+      && [0,1].includes(s.traceCase) && Number.isInteger(s.stroke) && s.stroke >= 0 && s.stroke < 4;
+  }
+  try {
+    const raw = JSON.parse(localStorage.getItem(STORAGE));
+    if (validSave(raw)) Object.assign(state,raw);
+    else if (raw?.version === 1 && Array.isArray(raw.lit)) {
+      state.lit = raw.lit.filter(l => ORDER.includes(l));
+      state.opened = (Array.isArray(raw.opened)?raw.opened:[]).filter(w => WORDS.includes(w));
+    }
+  } catch {}
+  let token = 0;
+  let ink = [], lastInk = [], pointer = null, misses = 0, modelVisible = false;
+  let demoFrame = null, keyPoint = null, keyInk = [];
+  let readGeneration = 0, reading = false;
+  let flameSelected = null, diffFound = false;
+  let pendingFly = null;
+  let hintKey = 'start';
+  const sequences = {};
+  const L = {
+    start:'Tap any lantern. Or choose a letter below.',
+    explore:'Tap the lantern to hear it. Or try Trace.',
+    twoGlows:'Tap either flame to hear its vowel sound.',
+    traceCap:'Start at the green dot and follow the arrow. Or tap Back to lantern.',
+    traceSmall:'Trace the small letter. Or tap Back to lantern.',
+    freeTrace:'Draw on the slate. Tap Next stroke, or Back to lantern, whenever you like.',
+    freeMiss:'The whole letter is shown over your ink. Draw again, or tap Back to lantern.',
+    show:'Watch this stroke. You can draw whenever you like.',
+    missStart:'Start at the green dot.', missEnd:'Follow the arrow to the end.',
+    together:"Let's draw this stroke together.",
+    sign:'Tap lanterns to hear sounds. Tap the window to reveal the word.',
+    twins:'Tap lanterns to compare sounds. Tap a window to reveal its word.',
+    long:'Tap either word board to hear the word and its vowel.',
+    banners:'Tap a banner to hear the whole word.',
+    street:'Tap a shop, a banner, or Read the street.',
+    streetLanterns:'Tap a lantern, shop, banner, or Read the street.',
+    emptyStreet:'The street is asleep. Tap Lanterns and choose any letter, or tap a shop to explore its sign.',
+    waiting:'This shop is ready to explore. Tap its window to hear the word.',
+    teacher:'Tap letters and banners to hide or show them. Tap Close to return.',
+    none:'All letters are hidden. Tap Settings to show some.',
+    emptyCatalog:'Tap Settings to show more letters, or tap Lanterns.',
+    privacy:'Your village is saved on this device only. Nothing leaves it.',
+    manual:'Choose a lantern, trace a letter, or open the Wordbook. You can explore in any order.',
+    manualAudio:'Isolated sounds use recordings. Without a recording, you hear an anchor word instead of a letter name.',
+    reset:'Clear this village? Tap Clear village or Cancel.',
+    stop:'Tap a shop, a banner, or Read the street.',
+    readIt:'Read it!', readDone:'Tap another shop or banner, or explore the next street.',
+    soundLead:'Listen to this sound.', says:'It can say', shortLead:'Short sound.', longLead:'Long sound.',
+  };
+  for (const l of ORDER) {
+    L['sound.'+l] = D.lines['sound.'+l];
+    L['letterName.'+l] = l.toUpperCase()+'.';
+    L['anchor.'+l] = l === 'x' ? 'Listen to the last sounds in ox. Ox.'
+      : l === 'q' ? 'Listen to the starting sounds in quail. Quail.'
+      : 'Listen to the first sound in '+D.names[l]+'. '+D.names[l]+'.';
+    L['like.'+l] = 'Like '+D.names[l]+'.';
+    sequences['intro.'+l] = ['letterName.'+l,'says','sound.'+l,'like.'+l];
+  }
+  for (const l of 'aeiou') {
+    L['longSound.'+l] = D.lines['longSound.'+l];
+    L['longAnchor.'+l] = 'Like '+D.anchors[l]+'.';
+    sequences['short.'+l] = ['shortLead','sound.'+l,'like.'+l];
+    sequences['long.'+l] = ['longLead','longSound.'+l,'longAnchor.'+l];
+  }
+  for (const w of new Set([...WORDS,...BANNERS,...D.longPairs.flat()])) L['word.'+w] = w+'.';
+  D.twins.forEach((pair,i) => {
+    const j = [...pair[0]].findIndex((l,k) => l !== pair[1][k]);
+    sequences['twinDiff.'+i] = ['sound.'+pair[0][j],'sound.'+pair[1][j],...pair.map(w=>'word.'+w)];
+  });
+  const V = Curio.voice({lines:L,scope:()=>state.mode,hint:false,read:()=>{
+    if ($('confirm').open) return L.reset;
+    if ($('teacher-dialog').open) return [L.teacher,L.privacy];
+    if ($('manual-dialog').open) return [L.manual,L.manualAudio];
+    return L[hintKey] || $('hint').textContent;
+  },welcome:()=>null,speaks:'.lantern,.flame-choice,.word-board,.banner-card,[data-shop]'});
+  function save() { try { localStorage.setItem(STORAGE,JSON.stringify(state)); } catch {} }
+  function hint(key) { hintKey=key; $('hint').textContent=L[key] || key; }
+  function resolveSequence(key) {
+    if (Array.isArray(key)) return key.flatMap(resolveSequence);
+    if (key.startsWith('intro.') && !CLIPS[L['sound.'+key.split('.')[1]]]) {
+      const l=key.split('.')[1];
+      return ['letterName.'+l,'anchor.'+l];
+    }
+    if (sequences[key]) return sequences[key].flatMap(resolveSequence);
+    // An unrecorded phoneme must never fall through to letter-name TTS.
+    if (key.startsWith('sound.') && !CLIPS[L[key]]) return ['anchor.'+key.split('.')[1]];
+    return [key];
+  }
+  function speak(key,options={}) {
+    const gen=token;
+    return V.say(resolveSequence(key),{hint:false,valid:()=>gen===token,...options});
+  }
+  function how(key) { return speak(key,{kind:'how'}); }
+  function interrupt() {
+    if (reading) { stopReading(); renderActions(); wire(); }
+    V.dropQueued();
+    V.say('stop',{now:true,hint:false,valid:()=>false});
+  }
+  function feedback() { Curio.tone(523,.09,.045); }
+  function shuffle(a) {
+    const result=[...a];
+    for (let i=result.length-1;i>0;i--) {
+      const j=Math.floor(Math.random()*(i+1));
+      [result[i],result[j]]=[result[j],result[i]];
+    }
+    return result;
+  }
+  const pathD = (points,map=p=>p) => points.map((p,i)=>(i?'L':'M')+map(p).join(',')).join(' ')
+    +(points.length===1?' l.001,0':'');
+  function glyph(letter) {
+    const paths=D.paths[letter];
+    const points=paths.flat(),xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);
+    const x=Math.min(...xs)-.09,y=Math.min(...ys)-.09;
+    return `<svg viewBox="${x} ${y} ${Math.max(.3,Math.max(...xs)-x+.09)} ${Math.max(.3,Math.max(...ys)-y+.09)}" aria-hidden="true">`
+      +`<g fill="none" stroke="currentColor" stroke-width=".065" stroke-linecap="round" stroke-linejoin="round">`
+      +paths.map(p=>`<path d="${pathD(p)}"/>`).join('')+'</g></svg>';
+  }
+  function wordGlyph(word) {
+    return `<svg class="word" viewBox="-.08 -.12 ${word.length*.85+.05} 1.75" aria-hidden="true">`
+      +`<g fill="none" stroke="currentColor" stroke-width=".06" stroke-linecap="round" stroke-linejoin="round">`
+      +[...word].map((l,i)=>`<g data-letter="${l}" transform="translate(${i*.85},0)">`
+        +D.paths[l].map(p=>`<path d="${pathD(p)}"/>`).join('')+'</g>').join('')+'</g></svg>';
+  }
+  function lantern(letter,options={}) {
+    const awake=options.awake || state.lit.includes(letter);
+    const pose=awake?'awake':'sleepy';
+    const geometry=D.glass[letter+'-'+pose];
+    const style=Object.entries(geometry).map(([k,v])=>k+':'+v+'%').join(';');
+    return `<button class="lantern ${options.solo?'solo':''}" id="${options.id||'lantern-'+letter}"`
+      +` data-letter="${letter}" data-lit="${!!awake}" aria-label="${letter}, ${D.names[letter]}">`
+      +`<img src="${ART[pose][letter]}" alt=""><span class="glass" style="${style}">${glyph(letter)}</span></button>`;
+  }
+  function enabledLit() { return state.lit.filter(l=>state.enabled.includes(l)); }
+  function wordAllowed(w) { return [...w.toLowerCase()].every(l=>state.enabled.includes(l)); }
+  function light(letter) {
+    if (!state.lit.includes(letter)) {
+      state.lit.push(letter);
+      pendingFly=letter;
+      renderString();
+      flyLantern(letter);
+    }
+  }
+  function selectLetter(letter,announce=true) {
+    stopReading(); token++; interrupt();
+    state.target=letter; state.view='solo'; state.mode='lanterns';
+    light(letter); hint('explore'); render(); save(); feedback();
+    if (announce) speak(['intro.'+letter]);
+  }
+  function flyLantern(letter) {
+    const slot=$('string-'+letter);
+    if (Curio.reduce || !slot || !slot.getClientRects().length) return;
+    const r=slot.getBoundingClientRect();
+    const image=document.createElement('img');
+    image.className='flying'; image.alt=''; image.src=ART.awake[letter];
+    image.style.left=(innerWidth/2-60)+'px'; image.style.top=(innerHeight*.45)+'px';
+    image.style.setProperty('--fly-x',r.x+'px'); image.style.setProperty('--fly-y',r.y+'px');
+    $('instrument').append(image);
+    setTimeout(()=>image.remove(),1150);
+  }
+  function currentLetter() { return state.traceCase?state.target:state.target.toUpperCase(); }
+  function currentPath() { return D.paths[currentLetter()][state.stroke] || D.paths[currentLetter()][0]; }
+  const slatePoint=p=>[100+p[0]*210,43+p[1]*210];
+  function drawSlate() {
+    const el=$('slate'); if (!el) return;
+    const paths=D.paths[currentLetter()];
+    state.stroke=Math.min(state.stroke,paths.length-1);
+    const path=currentPath(),start=slatePoint(path[0]);
+    const lines=[0,.5,1,1.5].map((y,i)=>`<line x1="20" y1="${43+y*210}" x2="400" y2="${43+y*210}"`
+      +` stroke="#b6c2ce77" ${i===1?'stroke-dasharray="7 7"':''}/>`).join('');
+    const full=(!state.free || modelVisible)?paths.map(p=>`<path class="${modelVisible?'trace-model':'trace-whole'}"`
+      +` d="${pathD(p,slatePoint)}"/>`).join(''):'';
+    const passed=paths.slice(0,state.stroke).map(p=>`<path class="trace-passed" d="${pathD(p,slatePoint)}"/>`).join('');
+    const guide=!state.free?`<path class="trace-guide" d="${pathD(path,slatePoint)}"/>`:'';
+    const end=slatePoint(path[Math.min(path.length-1,Math.max(1,Math.floor(path.length*.16)))]);
+    const arrow=!state.free&&path.length>1?`<path d="M${start} L${end}" fill="none" stroke="#fff4dd" stroke-width="3"`
+      +' marker-end="url(#arrow)"/>':'';
+    el.innerHTML='<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6"'
+      +' orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#fff4dd"/></marker></defs>'
+      +lines+full+passed+guide+arrow+`<circle cx="${start[0]}" cy="${start[1]}" r="12" fill="#9df2bb"/>`
+      +`<path id="ink" class="trace-ink" d="${lastInk.length?pathD(lastInk,slatePoint):''}"/>`
+      +'<circle id="trace-cursor" r="6" cx="-20" cy="-20" fill="#9df2bb"/>';
+    $('slate-caption').textContent=currentLetter()+' · stroke '+(state.stroke+1)+' / '+paths.length;
+  }
+  function beginTrace(free=false) {
+    token++; interrupt(); state.view='trace'; state.free=free; state.traceCase=0; state.stroke=0;
+    ink=[]; lastInk=[]; misses=0; modelVisible=false;
+    hint(free?'freeTrace':'traceCap'); render(); how(free?'freeTrace':'traceCap'); save();
+  }
+  function advanceStroke() {
+    state.stroke=(state.stroke+1)%D.paths[currentLetter()].length;
+    ink=[]; lastInk=[]; misses=0; modelVisible=false; keyPoint=null; keyInk=[];
+    drawSlate(); save();
+  }
+  function finishStroke(points) {
+    if (state.view!=='trace') return;
+    lastInk=points; const result=assessTrace(points,currentPath(),state.free);
+    if (result.pass) { feedback(); advanceStroke(); }
+    else {
+      misses++; modelVisible=state.free;
+      hint(state.free?'freeMiss':result.cause); how(state.free?'freeMiss':result.cause);
+      drawSlate();
+      if (!state.free && misses>=3) { how('together'); demonstrate(true); }
+    }
+  }
+  function demonstrate(assist=false) {
+    cancelAnimationFrame(demoFrame); const gen=token,path=currentPath(),start=performance.now();
+    if (!assist) { hint('show'); how('show'); }
+    const run=now=>{
+      if (gen!==token || state.view!=='trace') return;
+      const progress=Math.min(1,(now-start)/1300);
+      if (!Curio.reduce) $('ink')?.setAttribute('d',pathD(path.slice(0,Math.max(1,Math.floor(path.length*progress))),slatePoint));
+      if (progress<1) demoFrame=requestAnimationFrame(run);
+      else if (assist) advanceStroke();
+      else drawSlate();
+    };
+    demoFrame=requestAnimationFrame(run);
+  }
+  function wireSlate() {
+    const slate=$('slate');
+    const point=e=>{const r=slate.getBoundingClientRect();return [((e.clientX-r.x)*420/r.width-100)/210,
+      ((e.clientY-r.y)*420/r.height-43)/210];};
+    slate.onpointerdown=e=>{
+      if (pointer!==null || !e.isPrimary) return;
+      e.preventDefault(); cancelAnimationFrame(demoFrame); pointer=e.pointerId; slate.setPointerCapture(pointer);
+      ink=[point(e)]; lastInk=[]; modelVisible=false; drawSlate();
+    };
+    slate.onpointermove=e=>{
+      if (e.pointerId!==pointer) return;
+      ink.push(point(e)); $('ink').setAttribute('d',pathD(ink,slatePoint));
+    };
+    slate.onpointerup=e=>{
+      if (e.pointerId!==pointer) return;
+      ink.push(point(e)); pointer=null; finishStroke(ink);
+    };
+    slate.onpointercancel=()=>{pointer=null;ink=[];drawSlate();};
+    slate.onkeydown=e=>{
+      if (!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown',' ','Enter'].includes(e.key)) return;
+      e.preventDefault(); if (!keyPoint) keyPoint=[...currentPath()[0]];
+      if (e.key===' ' || e.key==='Enter') {
+        if (!keyInk.length) keyInk=[[...keyPoint]];
+        else { const points=keyInk; keyInk=[]; finishStroke(points); return; }
+      } else {
+        const step=e.shiftKey?.015:.035;
+        keyPoint[0]+=e.key==='ArrowLeft'?-step:e.key==='ArrowRight'?step:0;
+        keyPoint[1]+=e.key==='ArrowUp'?-step:e.key==='ArrowDown'?step:0;
+        if (keyInk.length) keyInk.push([...keyPoint]);
+      }
+      const p=slatePoint(keyPoint); $('trace-cursor').setAttribute('cx',p[0]); $('trace-cursor').setAttribute('cy',p[1]);
+      if (keyInk.length) $('ink').setAttribute('d',pathD(keyInk,slatePoint));
+    };
+  }
+  function shopMarkup(word,index,hero=false,twin=false) {
+    const opened=state.opened.includes(word);
+    const open=twin?opened && state.revealed===word:opened;
+    const sounds=hero?`<div class="mini-sounds">${[...word].map((l,i)=>lantern(l,{awake:true,id:'sound-'+word+'-'+i})
+      .replace(' data-letter=',` data-index="${i}" data-diff="${twin && D.twins[state.index][0][i]!==D.twins[state.index][1][i]}" data-letter=`)).join('')}</div>`:'';
+    const ready=[...word].every(l=>state.lit.includes(l));
+    return `<div class="${hero?'hero-shop':'shop'} ${twin&&diffFound?'diff':''} ${!open&&ready?'waiting':''}" data-shop="${word}">`
+      +`<img src="${ART.shops[index%6][open?'open':'closed']}" alt="">`
+      +`<div class="shop-word">${wordGlyph(word)}</div>${sounds}`
+      +(open?`<img class="goods-window" src="${ART.goods[word]}" alt="">`:'')
+      +(hero?`<button class="shop-reveal" data-reveal="${word}" aria-label="Reveal ${word}">`
+        +(!open?'<span>Open window</span>':'')+'</button>':`<button data-open-sign="${word}" aria-label="Explore ${word} sign"></button>`)
+      +'</div>';
+  }
+  function banner(word,large=false) {
+    return `<button class="banner-card ${large?'large':''}" data-banner="${word}" aria-label="${word} banner">${wordGlyph(word)}</button>`;
+  }
+  function visibleShopCount() { return innerWidth<=800 || innerHeight<=560?2:innerWidth<=1100?3:6; }
+  function streetWords() {
+    const n=visibleShopCount(),page=Math.min(state.page,Math.ceil(6/n)-1);
+    return D.streets[state.street].slice(page*n,page*n+n).map(row=>row.split(' ')[0]).filter(wordAllowed);
+  }
+  function streetBanners() {
+    return BANNERS.filter((w,i)=>Math.floor(i/3)===state.street && state.enabledBanners.includes(w) && wordAllowed(w));
+  }
+  function streetHint() {
+    if (!state.enabled.length) return 'none';
+    if (!streetWords().length && !streetBanners().length) return 'emptyCatalog';
+    const lit=enabledLit().length;
+    if (!lit && !state.opened.some(wordAllowed)) return 'emptyStreet';
+    return lit && $('string').getClientRects().length && getComputedStyle($('string')).display!=='none'?'streetLanterns':'street';
+  }
+  function renderString() {
+    $('string').hidden=state.mode!=='street';
+    $('string').innerHTML=enabledLit().map(l=>lantern(l,{id:'string-'+l})).join('');
+    const columns=Math.max(1,Math.floor((innerWidth-40)/60));
+    $('instrument').style.setProperty('--string-space',(150+Math.ceil(enabledLit().length/columns)*80)+'px');
+    $('string').querySelectorAll('button').forEach(b=>b.onclick=()=>{
+      interrupt(); feedback(); hint('streetLanterns'); speak('intro.'+b.dataset.letter);
+    });
+  }
+  function renderVillage() {
+    $('play').innerHTML='<div class="street-view"><div class="street-banners">'
+      +streetBanners().map(w=>banner(w)).join('')+'</div><div class="shops">'
+      +streetWords().map(w=>shopMarkup(w,WORDS.indexOf(w))).join('')+'</div></div>';
+    const view=$('play').querySelector('.street-view'),cloth=view.querySelector('.street-banners');
+    const maxHeight=view.clientHeight-cloth.offsetHeight-12;
+    view.querySelectorAll('.shop').forEach(el=>{
+      const width=Math.min(el.clientWidth,Math.max(70,maxHeight)*.75);
+      el.style.width=width+'px'; el.style.height=width*4/3+'px';
+    });
+  }
+  function renderWake() {
+    if (!state.enabled.length) { $('play').innerHTML=''; return; }
+    if (state.view==='cart') $('play').innerHTML='<div class="cart-row">'
+      +state.enabled.slice(0,3).map(l=>lantern(l)).join('')+'</div>';
+    else if (state.view==='trace') {
+      $('play').innerHTML='<div class="slate-wrap"><svg id="slate" viewBox="0 0 420 420" tabindex="0" role="application"'
+        +' aria-label="Tracing slate. Space starts ink, arrows draw, Space lifts. Shift makes small moves."></svg>'
+        +'<div id="slate-caption" class="slate-caption"></div></div>';
+      drawSlate(); wireSlate();
+    } else if (state.view==='flames') {
+      const l=state.target;
+      $('play').innerHTML='<div class="flame-row">'+state.flameOrder.map((which,i)=>{
+        const b=`<button class="flame-choice ${which==='long'?'tall':''}" data-flame="${which}"`
+          +` aria-label="${which==='long'?'Tall':'Small'} flame" aria-pressed="${flameSelected===which}">`
+          +`<img src="${which==='long'?ART.anchors[D.anchors[l]]:ART.awake[l]}" alt="">`
+          +`<span>${which==='long'?'Long':'Short'}</span></button>`;
+        return b+(i===0?lantern(l,{awake:true,solo:true}):'');
+      }).join('')+'</div>';
+    } else $('play').innerHTML=lantern(state.target,{awake:true,solo:true});
+  }
+  function renderBook() {
+    const items=catalogList();
+    if (!catalogAllowed(items[state.index%items.length])) {
+      const first=items.findIndex(catalogAllowed);
+      if (first<0) { $('play').innerHTML=''; hint(state.enabled.length?'emptyCatalog':'none'); return; }
+      state.index=first;
+    }
+    const i=state.index;
+    if (state.section==='signs') {
+      const w=WORDS[i%WORDS.length];
+      $('play').innerHTML=wordAllowed(w)?shopMarkup(w,WORDS.indexOf(w),true):'';
+    } else if (state.section==='twins') {
+      const pair=D.twins[i%D.twins.length];
+      $('play').innerHTML='<div class="twins-row">'+pair.filter(wordAllowed)
+        .map(w=>shopMarkup(w,WORDS.indexOf(w),true,true)).join('')+'</div>';
+    } else if (state.section==='vowels') {
+      const pair=D.longPairs[i%D.longPairs.length],v=pair[0].at(-1);
+      const order=state.wordOrder?.every(w=>pair.includes(w))?state.wordOrder:pair;
+      $('play').innerHTML='<div class="word-boards">'+order.filter(wordAllowed).map(w=>{
+        const vowelIndex=[...w].findIndex(l=>'aeiou'.includes(l));
+        const left=((vowelIndex+.5)/w.length*100)+'%';
+        return `<button class="word-board" data-word="${w}" aria-label="${w}">`
+          +`<span class="board-lantern" style="left:${left}"><i class="flame-shape ${w===pair[0]?'tall':''}"></i>`
+          +`<img src="${ART.awake[v]}" alt=""></span>${wordGlyph(w)}</button>`;
+      }).join('')+'</div>';
+      $('play').querySelectorAll('.word-board').forEach(board=>{
+        const word=board.dataset.word;
+        const index=[...word].findIndex(l=>'aeiou'.includes(l));
+        const vowel=board.querySelectorAll('svg.word [data-letter]')[index].getBoundingClientRect();
+        const origin=board.getBoundingClientRect();
+        board.querySelector('.board-lantern').style.left=(vowel.x+vowel.width/2-origin.x)+'px';
+      });
+    } else {
+      const w=BANNERS[i%BANNERS.length];
+      $('play').innerHTML=state.enabledBanners.includes(w)&&wordAllowed(w)?banner(w,true):'';
+    }
+  }
+  function setMode(mode) {
+    if (!['lanterns','street','book'].includes(mode)) return;
+    stopReading(); token++; interrupt(); pointer=null;
+    state.mode=mode; render();
+    if (mode==='street' && pendingFly) { flyLantern(pendingFly); pendingFly=null; }
+    hint(viewHint());
+    save();
+  }
+  function section(section,index=0,announce=true) {
+    token++; interrupt(); state.section=section; state.index=index; state.mode='book'; state.revealed=null; diffFound=false;
+    if (section==='vowels') state.wordOrder=shuffle(D.longPairs[index]);
+    hint({signs:'sign',twins:'twins',vowels:'long',banners:'banners'}[section]);
+    render(); save(); feedback(); if (announce) how(hintKey);
+  }
+  function renderActions() {
+    const focused=document.activeElement?.id;
+    const actions=$('actions'); actions.className='';
+    if (state.mode==='lanterns' && state.enabled.length) {
+      if (state.view==='trace') {
+        actions.className='trace-actions';
+        actions.innerHTML='<button class="wood" id="back-lantern">Back to lantern</button>'
+          +'<button class="wood" id="next">Next stroke</button><button class="wood" id="case">'
+          +(state.traceCase?'Big letter':'Small letter')+'</button>'
+          +(!state.free?'<button class="wood" id="show">Show me</button>':'')
+          +'<button class="wood" id="clear">Clear</button>';
+      } else if (state.view==='cart') actions.innerHTML='';
+      else actions.innerHTML='<button class="wood" id="trace">Trace</button><button class="wood" id="free">Write it yourself</button>'
+        +('aeiou'.includes(state.target)?'<button class="wood" id="flames">Two glows</button>':'');
+    } else if (state.mode==='book') {
+      actions.innerHTML=['signs','twins','vowels','banners'].map(s=>`<button class="wood" id="book-${s}"`
+        +` aria-pressed="${state.section===s}">${{signs:'Signs',twins:'Twins',vowels:'Vowels',banners:'Banners'}[s]}</button>`).join('');
+    } else if (state.mode==='street') {
+      actions.innerHTML=streetWords().length||streetBanners().length
+        ?`<button class="wood" id="read-street">${reading?'Stop':'Read the street'}</button>`:'';
+    } else actions.innerHTML='';
+    if (focused==='read-street') $('read-street')?.focus({preventScroll:true});
+  }
+  function renderTray() {
+    const tray=$('tray');
+    if (state.mode!=='book') {
+      tray.setAttribute('aria-label','Choose any letter');
+      tray.innerHTML=state.enabled.map(l=>`<button data-select-letter="${l}" aria-label="Explore ${l}"`
+        +` aria-pressed="${state.view!=='cart'&&state.target===l}">${glyph(l)}</button>`).join('');
+    } else {
+      const list=catalogList();
+      tray.setAttribute('aria-label','Choose any '+state.section);
+      tray.innerHTML=list.map((value,i)=>catalogAllowed(value)
+        ?`<button class="choice" data-index="${i}" aria-pressed="${state.index===i}">`
+        +(Array.isArray(value)?value.join(' / '):value)+'</button>':'').join('');
+    }
+  }
+  function catalogList() {
+    return state.section==='signs'?WORDS:state.section==='twins'?D.twins:state.section==='vowels'?D.longPairs:BANNERS;
+  }
+  function catalogAllowed(value) {
+    if (!value) return false;
+    if (Array.isArray(value)) return value.every(wordAllowed);
+    return wordAllowed(value) && (state.section!=='banners' || state.enabledBanners.includes(value));
+  }
+  function viewHint() {
+    if (!state.enabled.length) return 'none';
+    if (state.mode==='street') return streetHint();
+    if (state.mode==='book') return catalogList().some(catalogAllowed)
+      ?{signs:'sign',twins:'twins',vowels:'long',banners:'banners'}[state.section]:'emptyCatalog';
+    return state.view==='cart'?'start':state.view==='trace'
+      ?(state.free?'freeTrace':state.traceCase?'traceSmall':'traceCap'):state.view==='flames'?'twoGlows':'explore';
+  }
+  function render() {
+    const active=document.activeElement,id=active?.id;
+    const dataLetter=active?.dataset.selectLetter;
+    const trayIndex=active?.closest('#tray')?active.dataset.index:null;
+    const hadFocus=active && active!==document.body;
+    $('instrument').className=state.mode;
+    $('instrument').dataset.view=state.view;
+    for (const mode of ['lanterns','street','book']) $('m-'+mode).setAttribute('aria-pressed',state.mode===mode);
+    $('edge-back').hidden=$('edge-next').hidden=state.mode!=='street';
+    $('street-label').hidden=state.mode!=='street';
+    $('street-label').textContent='STREET '+(state.street+1)+' / 4';
+    $('instrument').querySelector('.backdrop').style.backgroundPosition=state.mode==='street'?(state.street/3*100)+'% center':'center';
+    renderString();
+    if (state.mode==='street') renderVillage();
+    else if (state.mode==='book') renderBook();
+    else renderWake();
+    renderActions(); renderTray(); wire();
+    if (hadFocus && !active.isConnected) {
+      const replacement=(id && $(id)) || (dataLetter && document.querySelector(`[data-select-letter="${dataLetter}"]`))
+        || (trayIndex!=null && document.querySelector(`#tray [data-index="${trayIndex}"]`))
+        || document.querySelector('#actions button') || $('m-'+state.mode);
+      replacement?.focus({preventScroll:true});
+    }
+  }
+  function wire() {
+    $('tray').querySelectorAll('[data-select-letter]').forEach(b=>b.onclick=()=>selectLetter(b.dataset.selectLetter));
+    $('tray').querySelectorAll('[data-index]').forEach(b=>b.onclick=()=>section(state.section,+b.dataset.index));
+    $('play').querySelectorAll('.lantern').forEach(b=>b.onclick=()=>{
+      if (state.mode==='book') {
+        interrupt(); feedback();
+        if (state.section==='twins' && b.dataset.diff==='true') {
+          diffFound=true;
+          document.querySelectorAll('.hero-shop').forEach(s=>s.classList.add('diff'));
+          speak('twinDiff.'+state.index);
+        } else speak('sound.'+b.dataset.letter);
+      } else if (state.view==='cart') selectLetter(b.dataset.letter);
+      else { interrupt(); feedback(); speak('intro.'+state.target); }
+    });
+    $('play').querySelectorAll('[data-flame]').forEach(b=>b.onclick=()=>{
+      flameSelected=b.dataset.flame; interrupt(); feedback();
+      document.querySelectorAll('[data-flame]').forEach(x=>x.setAttribute('aria-pressed',x===b));
+      speak(b.dataset.flame+'.'+state.target);
+    });
+    $('play').querySelectorAll('[data-open-sign]').forEach(b=>b.onclick=()=>{
+      const w=b.dataset.openSign;
+      section('signs',WORDS.indexOf(w));
+      if ([...w].every(l=>state.lit.includes(l))) how('waiting');
+    });
+    $('play').querySelectorAll('[data-reveal]').forEach(b=>b.onclick=()=>{
+      token++; interrupt(); const w=b.dataset.reveal;
+      if (!state.opened.includes(w)) state.opened.push(w);
+      state.revealed=w; render(); save(); feedback(); speak('word.'+w);
+    });
+    $('play').querySelectorAll('[data-banner]').forEach(b=>b.onclick=()=>{
+      interrupt(); feedback(); speak('word.'+b.dataset.banner);
+    });
+    $('play').querySelectorAll('[data-word]').forEach(b=>b.onclick=()=>{
+      interrupt(); feedback(); const w=b.dataset.word,pair=D.longPairs[state.index],v=pair[0].at(-1);
+      speak(['word.'+w,(w===pair[0]?'long.':'short.')+v]);
+    });
+    const on=(id,fn)=>{if ($(id)) $(id).onclick=fn;};
+    on('trace',()=>beginTrace()); on('free',()=>beginTrace(true));
+    on('back-lantern',()=>selectLetter(state.target,false)); on('next',advanceStroke);
+    on('case',()=>{state.traceCase=1-state.traceCase; state.stroke=0; lastInk=[]; modelVisible=false; drawSlate();
+      hint(state.free?'freeTrace':state.traceCase?'traceSmall':'traceCap'); how(hintKey); save();});
+    on('show',()=>demonstrate()); on('clear',()=>{cancelAnimationFrame(demoFrame);lastInk=[];ink=[];modelVisible=false;drawSlate();});
+    on('flames',()=>{token++;interrupt();state.flameOrder=shuffle(['short','long']);state.view='flames';
+      flameSelected=null;hint('twoGlows');render();save();how('twoGlows');});
+    for (const s of ['signs','twins','vowels','banners']) on('book-'+s,()=>section(s));
+    on('read-street',()=>{if (reading) {stopReading();interrupt();hint('stop');renderActions();wire();} else readStreet();});
+  }
+  function moveStreet(delta) {
+    stopReading(); token++; interrupt();
+    const pages=Math.ceil(6/visibleShopCount());
+    state.page+=delta;
+    if (state.page>=pages) {state.page=0;state.street=(state.street+1)%4;}
+    if (state.page<0) {state.page=pages-1;state.street=(state.street+3)%4;}
+    render(); hint(streetHint()); feedback(); save();
+  }
+  function stopReading() { readGeneration++; reading=false; document.querySelectorAll('.reading').forEach(e=>e.classList.remove('reading')); }
+  async function readStreet() {
+    stopReading(); interrupt(); const gen=readGeneration; reading=true; renderActions(); wire();
+    const items=[...streetWords().map(word=>({kind:'shop',word})),...streetBanners().map(word=>({kind:'banner',word}))];
+    if (!items.length) { stopReading();hint(streetHint());renderActions();wire();return; }
+    for (const item of items) {
+      if (gen!==readGeneration || state.mode!=='street') return;
+      document.querySelectorAll('.reading').forEach(e=>e.classList.remove('reading'));
+      document.querySelector(`[data-${item.kind}="${item.word}"]`)?.classList.add('reading');
+      await speak('readIt',{wait:true}); await Curio.wait(3000);
+      if (gen!==readGeneration || state.mode!=='street') return;
+      await speak('word.'+item.word,{wait:true});
+    }
+    if (gen===readGeneration) {stopReading(); hint('readDone');renderActions();wire();}
+  }
+  function renderTeacher() {
+    $('letters').innerHTML=ORDER.map(l=>`<button class="wood" data-toggle-letter="${l}"`
+      +` aria-pressed="${state.enabled.includes(l)}">${l.toUpperCase()} ${l}</button>`).join('');
+    $('words').innerHTML=BANNERS.map(w=>`<button class="wood" data-toggle-word="${w}"`
+      +` aria-pressed="${state.enabledBanners.includes(w)}">${w}</button>`).join('');
+    $('letters').querySelectorAll('button').forEach(b=>b.onclick=()=>{
+      const l=b.dataset.toggleLetter;
+      state.enabled=state.enabled.includes(l)?state.enabled.filter(x=>x!==l):[...state.enabled,l];
+      b.setAttribute('aria-pressed',state.enabled.includes(l)); feedback(); save();
+    });
+    $('words').querySelectorAll('button').forEach(b=>b.onclick=()=>{
+      const w=b.dataset.toggleWord;
+      state.enabledBanners=state.enabledBanners.includes(w)?state.enabledBanners.filter(x=>x!==w):[...state.enabledBanners,w];
+      b.setAttribute('aria-pressed',state.enabledBanners.includes(w)); feedback(); save();
+    });
+  }
+  for (const mode of ['lanterns','street','book']) $('m-'+mode).onclick=()=>{
+    setMode(mode); if (mode==='book') how(hintKey);
+  };
+  $('edge-back').onclick=()=>moveStreet(-1); $('edge-next').onclick=()=>moveStreet(1);
+  $('teacher').onclick=()=>{stopReading();token++;V.hush();renderTeacher();$('teacher-dialog').showModal();how('teacher');};
+  $('read-settings').onclick=()=>V.read();
+  $('read-manual').onclick=()=>V.read();
+  function closeTeacher() {
+    token++;V.hush();$('teacher-dialog').close();
+    if (!state.enabled.includes(state.target)) {state.target=state.enabled[0]||'m';state.view='cart';}
+    render(); hint(viewHint()); save();
+    $('teacher').focus({preventScroll:true});
+  }
+  $('close-teacher').onclick=closeTeacher;
+  $('teacher-dialog').addEventListener('cancel',e=>{e.preventDefault();closeTeacher();});
+  $('wake-all').onclick=()=>{
+    state.lit=[...state.enabled];state.opened=WORDS.filter(wordAllowed);closeTeacher();setMode('street');feedback();
+  };
+  $('reset').onclick=()=>{$('teacher-dialog').inert=true;$('confirm').showModal();V.hush();speak('reset');};
+  const cancelReset=()=>{$('confirm').close();$('teacher-dialog').inert=false;V.hush();};
+  $('cancel-reset').onclick=cancelReset;
+  $('confirm').addEventListener('cancel',e=>{e.preventDefault();cancelReset();});
+  $('confirm-reset').onclick=()=>{
+    token++;V.hush();stopReading();Object.assign(state,fresh());
+    try {localStorage.removeItem(STORAGE);} catch {}
+    $('confirm').close();$('teacher-dialog').inert=false;$('teacher-dialog').close();
+    hint('start');render();$('m-lanterns').focus({preventScroll:true});
+  };
+  $('manual').onclick=()=>{stopReading();token++;V.hush();$('manual-dialog').showModal();};
+  $('close-manual').onclick=()=>{$('manual-dialog').close();V.hush();};
+  $('manual-dialog').addEventListener('cancel',()=>V.hush());
+  for (let i=0;i<16;i++) {
+    const fly=document.createElement('i');fly.style.left=(6+i*17%91)+'%';fly.style.top=(18+i*29%67)+'%';
+    fly.style.animationDelay=(-i*.71)+'s';document.querySelector('.fireflies').append(fly);
+  }
+  let resizeTimer;
+  addEventListener('resize',()=>{
+    clearTimeout(resizeTimer);
+    resizeTimer=setTimeout(()=>{stopReading();render();if (state.mode==='street') hint(streetHint());},120);
+  });
+  Curio.init({clips:CLIPS,rate:.86,readFallback:()=>$('hint').textContent});
+  if (state.view==='flames' && !state.flameOrder) state.flameOrder=['short','long'];
+  if (state.section==='twins') state.index%=D.twins.length;
+  if (state.section==='vowels') state.index%=D.longPairs.length;
+  if (state.section==='banners') state.index%=BANNERS.length;
+  if (state.view==='trace') state.stroke=Math.min(state.stroke,D.paths[currentLetter()].length-1);
+  render(); hint(viewHint());
+  window.__tool={state,data:D,setMode,render,save,validSave,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},
+    assessTrace,resample,currentPath,slatePoint,wordGlyph,selectLetter,section,beginTrace,resolveSequence,sequences,
+    get reading(){return reading;},get audioReady(){return ORDER.filter(l=>CLIPS[L['sound.'+l]]).length;}};
+})();</script></body></html>

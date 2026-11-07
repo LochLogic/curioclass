@@ -1,0 +1,10 @@
+{
+  "bank": "news-reader",
+  "voice": "Rasalgethi",
+  "style": "Say clearly and steadily, like a radio studio engineer talking through the glass.",
+  "lines": [
+    "Press the mic switch, then say ahhh.",
+    "No mic here. Press a sound pad."
+  ],
+  "dynamic": "Read speaks the current input, detected pitch and note from the displayed spectrum frame, plus the held cursor or an empty-history message. Browser speech fallback; no recorded voice assets."
+}

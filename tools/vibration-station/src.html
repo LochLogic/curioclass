@@ -1,0 +1,4055 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Vibration Station · Make the shake · Curio Class</title>
+<meta name="description" content="Pluck, tap and hum to see sound, keep a picture lab book, and build a cup phone and drum code. Grade 1 science. Works offline.">
+<!--
+Vibration Station, Curio Class. Grade 1 science, teacher driver. 1-PS4-1 and 1-PS4-4.
+Sources: NGSS 1-PS4; Manchester Dancing Sprinkles; Exploratorium Ear Guitar;
+Science Buddies Rubber Band Guitar; NIDCD Taking Care of Your Voice. Detailed source map in notes.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+All science motion and sound are explanatory models. No student information is stored.
+Content CC BY 4.0, code MIT. One offline file, no network requests. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper: #fbf6ee;
+  --ink: #2a2230;
+  --muted: #5f5566;
+  --line: #d9c8b6;
+  --focus: #1d6f7a;
+  --brand: #9b2f6e;
+  --btn: #81265c;
+  --btn-line: #d69bbb;
+  --head-ink: #fff;
+  --panel: #fbf6ee;
+  --gold: #f2b632;
+}
+
+body {
+  overflow: hidden;
+  height: 100dvh;
+  min-height: 0;
+  font-family: 'Trebuchet MS', 'Segoe UI', sans-serif
+}
+
+header {
+  padding: 10px 16px;
+  gap: 9px;
+  box-shadow: 0 3px 12px #44203638;
+  z-index: 5;
+  flex-wrap: nowrap
+}
+
+h1 {
+  font-size: 26px;
+  line-height: 1.05;
+  flex-shrink: 1
+}
+
+h1 small {
+  font-size: 13px;
+  margin-top: 6px;
+  letter-spacing: .05em
+}
+
+.seg {
+  border-radius: 17px;
+  flex-shrink: 0
+}
+
+.seg button,
+.icon-btn {
+  min-height: 60px;
+  padding: 5px 13px;
+  line-height: 1.1
+}
+
+.seg button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px
+}
+
+.icon-btn {
+  border-radius: 15px;
+  padding: 4px 10px;
+  font-size: 14px
+}
+
+.seg button[aria-pressed="true"] {
+  background: var(--gold);
+  color: var(--ink)
+}
+
+main {
+  grid-template-columns: minmax(0, 1fr) 320px;
+  min-height: 0
+}
+
+.stage {
+  min-height: 0;
+  background: #d9b98c;
+  isolation: isolate
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2
+}
+
+.stage:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 65px #70431230;
+  z-index: 4
+}
+
+.panel {
+  position: relative;
+  border-left: 5px solid #b79368;
+  padding: 22px 16px 16px;
+  gap: 12px;
+  overflow: hidden;
+  background: linear-gradient(90deg, #efe5d5 0, #fbf6ee 6%, #fbf6ee 94%, #ecdfcd);
+  box-shadow: inset 0 0 20px #8e624718
+}
+
+.panel:before {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 14px;
+  border-radius: 0 0 9px 9px;
+  background: linear-gradient(#968b7d, #ddd8cb, #968b7d);
+  left: calc(50% - 40px);
+  top: 0;
+  box-shadow: 0 3px 4px #0003
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: .13em;
+  color: var(--brand);
+  text-transform: uppercase;
+  margin: 0
+}
+
+.hint {
+  font-size: 22px;
+  line-height: 1.3;
+  margin: 0;
+  min-height: 116px;
+  flex-shrink: 0
+}
+
+#choices {
+  display: grid;
+  gap: 10px;
+  align-content: start
+}
+
+.choice-row,
+.row {
+  display: flex;
+  gap: 8px
+}
+
+.row>* {
+  flex: 1;
+  min-width: 0
+}
+
+button.card,
+button.action {
+  border: 2px solid #bca58c;
+  border-radius: 15px;
+  background: linear-gradient(#fffefb, #f2e4d1);
+  box-shadow: 0 4px 0 #92725135, inset 0 1px white;
+  min-height: 60px;
+  min-width: 60px;
+  padding: 5px 9px;
+  font-weight: bold;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px
+}
+
+button:hover {
+  filter: brightness(1.04)
+}
+
+button:active {
+  box-shadow: inset 0 2px 7px #58351d40
+}
+
+button.card {
+  flex: 1;
+  flex-direction: column;
+  min-height: 124px;
+  padding: 9px;
+  font-size: 18px;
+  text-align: center
+}
+
+button.card svg {
+  width: 74px;
+  height: 52px;
+  overflow: visible
+}
+
+button img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  pointer-events: none
+}
+
+button.action svg {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0
+}
+
+.icon-btn[aria-pressed="true"] {
+  color: var(--ink);
+  background: #f8e3ed;
+  border-color: #f8e3ed
+}
+
+button.card img {
+  width: 70px;
+  height: 60px
+}
+
+button.gold {
+  background: linear-gradient(#ffd969, var(--gold));
+  color: var(--ink);
+  border-color: #ce941e
+}
+
+button[aria-pressed="true"] {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px #9b2f6e25;
+  background: #f8e3ed
+}
+
+button:disabled {
+  cursor: default;
+  opacity: .5;
+  filter: grayscale(.4)
+}
+
+.privacy {
+  font: 12px/1.35 'Segoe UI', sans-serif;
+  color: var(--muted);
+  margin: 4px 0 0
+}
+
+.privacy-short {
+  display: none
+}
+
+.mic-wrap {
+  margin-top: auto
+}
+
+.mic-wrap .action {
+  width: 100%
+}
+
+.notebook-tag {
+  margin-top: auto;
+  font-size: 15px;
+  padding: 11px;
+  border-top: 2px dashed #c7ac8f;
+  color: var(--muted)
+}
+
+.bench-grid {
+  position: absolute;
+  inset: 8% 2% 3%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 14px
+}
+
+.station {
+  position: relative;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 21px;
+  background: linear-gradient(130deg, #fff7e7e8, #f3dbb8d9);
+  box-shadow: 0 8px 12px #4b2c2630, inset 0 0 0 2px #fff8;
+  border: 2px solid #b68757;
+  overflow: hidden
+}
+
+.station h2 {
+  margin: 0;
+  position: absolute;
+  left: 12px;
+  top: 9px;
+  z-index: 2;
+  font-size: 18px;
+  background: var(--paper);
+  border-radius: 8px;
+  padding: 4px 11px;
+  box-shadow: 0 2px 3px #0002
+}
+
+.apparatus {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  margin-top: 29px;
+  touch-action: none
+}
+
+.apparatus .object {
+  position: absolute;
+  object-fit: contain;
+  filter: drop-shadow(0 7px 4px #51371a35);
+  pointer-events: none
+}
+
+.apparatus canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1
+}
+
+.band .object {
+  left: 10%;
+  top: 1%;
+  width: 80%;
+  height: 97%
+}
+
+.drum .object {
+  left: 19%;
+  top: 7%;
+  width: 62%;
+  height: 87%
+}
+
+.hum .object {
+  left: 23%;
+  top: 0;
+  width: 54%;
+  height: 97%
+}
+
+.pan .object.pan-body {
+  left: 0;
+  top: 5%;
+  width: 42%;
+  height: 88%;
+  transition: left .5s
+}
+
+.pan .object.bowl {
+  left: 56%;
+  top: 15%;
+  width: 42%;
+  height: 78%
+}
+
+.pan.touching .object.pan-body {
+  left: 29%
+}
+
+.pan .object.spoon {
+  left: 4%;
+  top: 5%;
+  width: 25%;
+  height: 22%;
+  transform: rotate(-20deg);
+  z-index: 2
+}
+
+.band-targets {
+  position: absolute;
+  inset: 6% 14% 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 7px
+}
+
+.band-target {
+  position: relative;
+  flex: 1;
+  min-width: 44px;
+  background: transparent;
+  border: 0;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  touch-action: none;
+  padding: 0 0 5px;
+  color: var(--ink)
+}
+
+.band-target span {
+  background: #fff6deed;
+  border: 1px solid #947144;
+  border-radius: 6px;
+  padding: 3px 5px;
+  font-size: 12px;
+  font-weight: bold
+}
+
+.band-target:hover {
+  background: #fff5
+}
+
+.station-controls {
+  display: flex;
+  gap: 5px;
+  padding: 4px 7px 8px;
+  z-index: 3
+}
+
+.station-controls .action {
+  min-width: 0;
+  flex: 1;
+  font-size: 14px;
+  padding: 2px 5px;
+  gap: 4px;
+  min-height: 60px;
+  border-radius: 11px
+}
+
+.station-controls img {
+  width: 32px;
+  height: 34px
+}
+
+.glow {
+  box-shadow: 0 0 0 3px #1d6f7a90, inset 0 0 25px #1d6f7a20
+}
+
+.hand-land {
+  position: absolute;
+  width: 24%;
+  height: 45%;
+  object-fit: contain;
+  left: 48%;
+  top: 15%;
+  z-index: 3;
+  pointer-events: none
+}
+
+.question {
+  position: absolute;
+  top: 12px;
+  left: 3%;
+  width: 94%;
+  min-height: 64px;
+  background: #fbf6eef5;
+  border: 2px solid #b9956b;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 18px;
+  font-size: 23px;
+  font-weight: bold;
+  box-shadow: 0 5px 7px #0002
+}
+
+.question svg {
+  width: 48px;
+  height: 42px;
+  flex-shrink: 0
+}
+
+.find-station {
+  position: absolute;
+  top: 88px;
+  bottom: 116px;
+  left: 12%;
+  width: 76%;
+  border-radius: 24px
+}
+
+.find-station h2 {
+  font-size: 20px
+}
+
+.find-station .apparatus {
+  margin-top: 36px
+}
+
+.find-station .station-controls .action {
+  font-size: 20px;
+  min-height: 64px
+}
+
+.find-station .station-controls img {
+  width: 44px;
+  height: 44px
+}
+
+.book-strip {
+  position: absolute;
+  bottom: 13px;
+  left: 3%;
+  right: 3%;
+  display: flex;
+  justify-content: center;
+  gap: 12px
+}
+
+.book-page {
+  width: 120px;
+  height: 83px;
+  min-width: 60px;
+  border: 2px solid #b9956b;
+  border-radius: 5px 13px 13px 5px;
+  background: linear-gradient(90deg, #ded0b7 0, #fff9e9 9%);
+  box-shadow: 0 5px 6px #0003;
+  padding: 5px;
+  font-weight: bold
+}
+
+.book-page svg {
+  display: block;
+  height: 36px;
+  width: 100%
+}
+
+.book-page.current {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px
+}
+
+.book-page:disabled {
+  opacity: .8
+}
+
+.claims {
+  position: absolute;
+  inset: 5% 4%;
+  background: #fff8e9f5;
+  border: 5px solid #a98258;
+  border-radius: 22px;
+  box-shadow: 0 10px 25px #321f2f44;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px
+}
+
+.claims h2 {
+  margin: 0;
+  font-size: 25px
+}
+
+.claim-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  flex: 1;
+  min-height: 0
+}
+
+.claim-group {
+  background: #f2e6d1;
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px
+}
+
+.claim-group h3 {
+  font-size: 21px;
+  margin: 0 0 7px;
+  color: var(--brand)
+}
+
+.evidence {
+  background: #fffaf0;
+  border-radius: 9px;
+  padding: 7px;
+  font-size: 14px
+}
+
+.evidence .apparatus-memory {
+  float: right;
+  width: 58px;
+  height: 48px;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 2px #56371f35);
+}
+
+.evidence {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid #d8bd94;
+  box-shadow: 0 3px 5px #69412415;
+}
+
+.evidence .pair svg {
+  width: min(100%, 96px);
+  height: clamp(25px, 5vh, 58px);
+}
+
+.next-wait {
+  outline: 3px solid #1d6f7a;
+  outline-offset: 2px;
+}
+
+@media (max-height: 650px), (max-width: 560px) {
+  .evidence .apparatus-memory {
+    width: 28px;
+    height: 22px;
+  }
+
+  .evidence .pair svg {
+    height: 21px;
+    width: 50px;
+  }
+}
+
+.evidence .pair {
+  display: flex;
+  gap: 8px;
+  justify-content: space-around;
+  text-align: center
+}
+
+.evidence svg {
+  display: block;
+  width: 70px;
+  height: 35px;
+  margin: auto
+}
+
+.evidence small {
+  display: block;
+  font-size: 12px;
+  margin-top: 3px
+}
+
+.step-strip {
+  position: absolute;
+  top: 12px;
+  left: 3%;
+  right: 3%;
+  display: flex;
+  gap: 8px;
+  z-index: 3
+}
+
+.step-strip span {
+  flex: 1;
+  background: #fff8e7ed;
+  border: 2px solid #a6865c;
+  border-radius: 10px;
+  padding: 8px 4px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold
+}
+
+.step-strip .current {
+  background: var(--brand);
+  border-color: #fff;
+  color: #fff
+}
+
+.step-strip .done {
+  background: #fff0bd
+}
+
+.sam-world {
+  position: absolute;
+  inset: 0
+}
+
+.sam-person,
+.ben-person {
+  position: absolute;
+  object-fit: contain;
+  object-position: bottom;
+  filter: drop-shadow(2px 9px 3px #1828222c);
+  transition: left .8s, bottom .8s;
+  pointer-events: none
+}
+
+.sam-person {
+  width: 18%;
+  height: 48%;
+  bottom: 16%;
+  left: 71%;
+  z-index: 2
+}
+
+.ben-person {
+  width: 13%;
+  height: 31%;
+  bottom: 21%;
+  left: 43%;
+  z-index: 2
+}
+
+.our-cup {
+  position: absolute;
+  bottom: 3%;
+  left: 1%;
+  width: 24%;
+  height: 32%;
+  object-fit: contain;
+  z-index: 3;
+  pointer-events: none
+}
+
+.sam-cup {
+  position: absolute;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 3;
+  filter: drop-shadow(1px 2px 1px #23341b55);
+}
+
+.test-device {
+  position: absolute;
+  bottom: 4%;
+  left: 2%;
+  width: 27%;
+  height: 35%;
+  object-fit: contain;
+  z-index: 3;
+  pointer-events: none
+}
+
+.neighbor-kids {
+  position: absolute;
+  top: 19%;
+  left: 5%;
+  width: 28%;
+  height: 20%;
+  object-fit: contain;
+  z-index: 2
+}
+
+#string-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none
+}
+
+.world-target {
+  position: absolute;
+  z-index: 3;
+  border: 2px solid #fef8dcaa;
+  border-radius: 13px;
+  background: #fbf6eecf;
+  min-width: 60px;
+  min-height: 60px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 6px;
+  box-shadow: 0 3px 5px #23341b30
+}
+
+#target-sam {
+  bottom: 8%;
+  left: 74%
+}
+
+#target-ben {
+  bottom: 8%;
+  left: 43%
+}
+
+#target-knot {
+  bottom: 49%;
+  left: 76%
+}
+
+.world-label {
+  position: absolute;
+  top: 80px;
+  left: 3%;
+  padding: 7px 14px;
+  background: #fff8e9e8;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 19px;
+  box-shadow: 0 3px 5px #0002
+}
+
+.outcome {
+  position: absolute;
+  bottom: 2%;
+  left: 28%;
+  right: 3%;
+  min-height: 58px;
+  padding: 9px 14px;
+  background: #fbf6eef2;
+  border: 2px solid #b9956b;
+  border-radius: 13px;
+  font-size: 19px;
+  font-weight: bold;
+  z-index: 4
+}
+
+.outcome:empty {
+  display: none
+}
+
+.secret-scene .outcome {
+  bottom: 27%
+}
+
+.outcome svg {
+  height: 30px;
+  width: 45px;
+  vertical-align: middle
+}
+
+.fix-record {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--muted)
+}
+
+.fix-record span {
+  border: 1px solid #b9956b;
+  border-radius: 6px;
+  padding: 5px;
+  background: #fff8e9
+}
+
+.chart {
+  border-collapse: separate;
+  border-spacing: 4px;
+  width: 100%;
+  table-layout: fixed;
+  font-size: 13px
+}
+
+.chart th {
+  font-weight: bold;
+  height: 34px
+}
+
+.chart th:first-child {
+  width: 24%
+}
+
+.chart td {
+  height: 60px;
+  background: #f1e5d3;
+  border: 1px dashed #b49873;
+  border-radius: 7px;
+  text-align: center;
+  font-size: 23px
+}
+
+.chart td svg {
+  width: 42px;
+  height: 36px;
+  vertical-align: middle
+}
+
+.chart .active-row th {
+  color: var(--brand);
+  text-decoration: underline
+}
+
+.chart-select .action {
+  padding: 5px;
+  font-size: 14px
+}
+
+.secret-choices {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  right: 5%;
+  display: flex;
+  gap: 12px;
+  z-index: 4
+}
+
+.secret-choices button {
+  flex: 1;
+  min-height: 80px;
+  font-size: 20px
+}
+
+.code-card {
+  position: absolute;
+  top: 70px;
+  left: 3%;
+  right: 3%;
+  background: #fbf6eef2;
+  border: 3px solid #b9956b;
+  border-radius: 17px;
+  padding: 9px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  z-index: 3;
+  box-shadow: 0 6px 8px #0002
+}
+
+.message-code {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center
+}
+
+.message-code>img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain
+}
+
+.message-code b {
+  font-size: 17px
+}
+
+.dot-tiles {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+  justify-content: center
+}
+
+.dot-tiles button {
+  height: 60px;
+  min-width: 60px;
+  flex: 1;
+  border: 2px solid #b99b78;
+  border-radius: 10px;
+  background: #fffdf7;
+  color: var(--brand);
+  font-weight: bold;
+  padding: 2px;
+  font-size: 17px;
+  letter-spacing: 1px
+}
+
+#message-ask {
+  position: absolute;
+  top: 46%;
+  left: 37%;
+  width: 25%;
+  background: #fff8e9;
+  border: 3px solid var(--brand);
+  border-radius: 18px;
+  text-align: center;
+  padding: 8px;
+  z-index: 3;
+  box-shadow: 0 8px 14px #0002;
+  font-size: 19px;
+  font-weight: bold
+}
+
+#message-ask img {
+  width: 90px;
+  height: 75px;
+  object-fit: contain;
+  display: block;
+  margin: auto
+}
+
+#send-drum {
+  position: absolute;
+  bottom: 6%;
+  left: 2%;
+  width: 29%;
+  height: 43%;
+  z-index: 3;
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  padding: 0;
+  touch-action: manipulation
+}
+
+#send-drum img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 5px #19321f40)
+}
+
+#send-drum span {
+  position: absolute;
+  bottom: 2%;
+  left: 18%;
+  width: 64%;
+  background: #fff8e9e8;
+  padding: 7px;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: bold
+}
+
+.beat-count {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  min-height: 35px;
+  align-items: center;
+  flex-wrap: wrap
+}
+
+.beat-count i {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--brand);
+  border: 2px solid #fff
+}
+
+.end-card {
+  position: absolute;
+  inset: 14% 10%;
+  background: #fff8e9ed;
+  border: 5px solid #b9956b;
+  border-radius: 24px;
+  padding: 24px;
+  z-index: 5;
+  text-align: center;
+  box-shadow: 0 12px 30px #21371d55;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 13px
+}
+
+.end-card h2 {
+  font-size: 33px;
+  margin: 0;
+  color: var(--brand)
+}
+
+.end-card p {
+  font-size: 22px;
+  margin: 0
+}
+
+.end-pictures {
+  display: flex;
+  justify-content: center;
+  gap: 18px
+}
+
+.end-pictures img {
+  width: 20%;
+  height: 100px;
+  object-fit: contain
+}
+
+.idle-spark {
+  position: absolute;
+  top: 2%;
+  right: 3%;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background: #ffe49b;
+  box-shadow: 0 0 15px #fff4c3;
+  animation: spark 3s ease-in-out infinite;
+  pointer-events: none
+}
+
+@keyframes spark {
+  50% {
+    opacity: .35;
+    transform: scale(.6)
+  }
+}
+
+.calm .idle-spark {
+  animation: none !important
+}
+
+.calm .sam-person,
+.calm .ben-person,
+.calm .pan-body {
+  transition: none !important
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap
+}
+
+@media(min-width:561px) and (max-width:850px) and (min-height:651px) {
+  .station-controls .action {
+    flex-direction: column;
+    font-size: 11px;
+    gap: 1px;
+    padding: 2px;
+    min-height: 60px
+  }
+
+  .station-controls img {
+    width: 24px;
+    height: 24px
+  }
+
+  .band-targets {
+    inset: 6% 5% 0
+  }
+
+  .band-target {
+    min-width: 60px
+  }
+}
+
+@media(max-width:1100px) {
+  header {
+    gap: 6px;
+    padding: 7px 9px
+  }
+
+  h1 {
+    font-size: 21px
+  }
+
+  h1 small {
+    font-size: 11px
+  }
+
+  .seg button {
+    padding: 4px 10px;
+    font-size: 14px
+  }
+
+  .icon-btn {
+    font-size: 12px;
+    padding: 4px 7px
+  }
+
+  main {
+    grid-template-columns: minmax(0, 1fr) 270px
+  }
+
+  .panel {
+    padding: 18px 12px 12px
+  }
+
+  .hint {
+    font-size: 20px;
+    min-height: 104px
+  }
+
+  .dot-tiles button {
+    min-width: 44px
+  }
+}
+
+@media(max-height:650px) and (min-width:561px) {
+  header {
+    padding: 5px 8px;
+    gap: 5px
+  }
+
+  h1 {
+    font-size: 19px;
+    max-width: 125px
+  }
+
+  h1 small {
+    display: none
+  }
+
+  .seg button,
+  .icon-btn {
+    min-height: 44px;
+    font-size: 12px;
+    padding: 4px 8px
+  }
+
+  main {
+    grid-template-columns: minmax(0, 1fr) 210px
+  }
+
+  .panel {
+    padding: 15px 9px 7px;
+    gap: 7px
+  }
+
+  .eyebrow {
+    font-size: 10px
+  }
+
+  .hint {
+    font-size: 15px;
+    line-height: 1.25;
+    min-height: 80px
+  }
+
+  button.card,
+  button.action {
+    min-height: 44px;
+    min-width: 44px;
+    font-size: 13px;
+    border-radius: 10px;
+    padding: 4px
+  }
+
+  button.card {
+    min-height: 80px;
+    font-size: 13px;
+    padding: 4px
+  }
+
+  button.card svg {
+    height: 35px;
+    width: 55px
+  }
+
+  button.card img {
+    height: 38px;
+    width: 48px
+  }
+
+  button img {
+    height: 28px;
+    width: 28px
+  }
+
+  #choices {
+    gap: 7px
+  }
+
+  .choice-row,
+  .row {
+    gap: 5px
+  }
+
+  .privacy-full {
+    display: none
+  }
+
+  .privacy-short {
+    display: block
+  }
+
+  .privacy {
+    font-size: 10px
+  }
+
+  .bench-grid {
+    inset: 6px 6px 7px;
+    gap: 7px
+  }
+
+  .station {
+    border-radius: 13px
+  }
+
+  .station h2 {
+    font-size: 12px;
+    top: 4px;
+    left: 5px;
+    padding: 2px 6px
+  }
+
+  .apparatus {
+    margin-top: 20px
+  }
+
+  .station-controls {
+    padding: 2px 3px 4px;
+    gap: 3px
+  }
+
+  .station-controls .action {
+    min-height: 44px;
+    font-size: 10px;
+    gap: 1px;
+    flex-direction: column;
+    padding: 1px
+  }
+
+  .station-controls img {
+    height: 20px;
+    width: 23px
+  }
+
+  .band-target span {
+    font-size: 10px;
+    padding: 1px 2px
+  }
+
+  .question {
+    top: 6px;
+    min-height: 43px;
+    padding: 4px 9px;
+    font-size: 15px;
+    gap: 6px
+  }
+
+  .question svg {
+    width: 32px;
+    height: 30px
+  }
+
+  .find-station {
+    top: 58px;
+    bottom: 57px;
+    left: 7%;
+    width: 86%
+  }
+
+  .find-station h2 {
+    font-size: 13px
+  }
+
+  .find-station .apparatus {
+    margin-top: 23px
+  }
+
+  .find-station .station-controls .action {
+    font-size: 13px;
+    min-height: 44px;
+    flex-direction: row
+  }
+
+  .find-station .station-controls img {
+    width: 26px;
+    height: 27px
+  }
+
+  .book-strip {
+    bottom: 7px;
+    gap: 14px
+  }
+
+  .book-page {
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    font-size: 12px;
+    padding: 2px
+  }
+
+  .book-page svg {
+    height: 23px
+  }
+
+  .page-word {
+    display: none
+  }
+
+  .step-strip {
+    top: 6px;
+    gap: 4px
+  }
+
+  .step-strip span {
+    font-size: 10px;
+    padding: 5px 2px;
+    min-height: 28px
+  }
+
+  .world-label {
+    top: 44px;
+    font-size: 13px;
+    padding: 4px 8px
+  }
+
+  .world-target {
+    min-height: 44px;
+    min-width: 44px;
+    font-size: 12px;
+    padding: 3px
+  }
+
+  .outcome {
+    font-size: 13px;
+    min-height: 40px;
+    padding: 5px 9px
+  }
+
+  .outcome svg {
+    height: 22px;
+    width: 30px
+  }
+
+  .chart {
+    font-size: 10px;
+    border-spacing: 2px
+  }
+
+  .chart th {
+    height: 22px
+  }
+
+  .chart td {
+    height: 44px;
+    font-size: 18px
+  }
+
+  .chart td svg {
+    height: 28px;
+    width: 34px
+  }
+
+  .chart-select .action {
+    font-size: 11px;
+    padding: 3px
+  }
+
+  .notebook-tag {
+    padding: 6px;
+    font-size: 11px
+  }
+
+  .fix-record {
+    font-size: 10px
+  }
+
+  .fix-record span {
+    padding: 3px
+  }
+
+  .code-card {
+    top: 42px;
+    gap: 5px;
+    padding: 5px
+  }
+
+  .message-code {
+    gap: 3px
+  }
+
+  .message-code>img {
+    width: 27px;
+    height: 25px
+  }
+
+  .message-code b {
+    font-size: 12px
+  }
+
+  .dot-tiles {
+    gap: 3px;
+    display: grid;
+    grid-template-columns: 44px 44px;
+    justify-content: center
+  }
+
+  .dot-tiles button {
+    min-width: 44px;
+    height: 44px;
+    font-size: 13px;
+    padding: 1px
+  }
+
+  #message-ask {
+    top: 53%;
+    font-size: 13px;
+    padding: 3px;
+    width: 25%
+  }
+
+  #message-ask img {
+    width: 45px;
+    height: 36px
+  }
+
+  #send-drum {
+    height: 40%;
+    width: 31%;
+    bottom: 1%
+  }
+
+  #send-drum span {
+    font-size: 13px;
+    padding: 4px
+  }
+
+  .secret-choices {
+    gap: 6px
+  }
+
+  .secret-choices button {
+    font-size: 14px;
+    min-height: 60px;
+    flex-direction: column
+  }
+
+  .claims {
+    padding: 10px;
+    gap: 6px;
+    inset: 4% 3%
+  }
+
+  .claims h2 {
+    font-size: 18px
+  }
+
+  .claim-columns {
+    gap: 8px
+  }
+
+  .claim-group {
+    padding: 8px;
+    gap: 4px
+  }
+
+  .claim-group h3 {
+    font-size: 15px;
+    margin-bottom: 2px
+  }
+
+  .evidence {
+    font-size: 10px;
+    padding: 4px
+  }
+
+  .evidence svg {
+    height: 21px;
+    width: 50px
+  }
+
+  .evidence small {
+    font-size: 10px
+  }
+
+  .end-card {
+    padding: 15px;
+    gap: 8px
+  }
+
+  .end-card h2 {
+    font-size: 24px
+  }
+
+  .end-card p {
+    font-size: 15px
+  }
+
+  .end-pictures img {
+    height: 55px
+  }
+
+  .build-panel #choices {
+    grid-template-columns: 1fr 1fr
+  }
+
+  .build-panel #choices>.row {
+    display: contents
+  }
+}
+
+@media(max-width:560px) {
+  body {
+    height: 100dvh
+  }
+
+  header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) repeat(3, auto);
+    padding: 6px;
+    gap: 5px
+  }
+
+  h1 {
+    font-size: 20px;
+    min-width: 0;
+    max-width: none
+  }
+
+  h1 small {
+    display: none
+  }
+
+  .seg {
+    grid-row: 2;
+    grid-column: 1/-1;
+    min-width: 0;
+    border-radius: 13px;
+    display: flex;
+    width: 100%
+  }
+
+  .seg button {
+    flex: 1;
+    min-height: 44px;
+    justify-content: center;
+    font-size: 13px;
+    padding: 5px
+  }
+
+  .icon-btn {
+    min-height: 44px;
+    min-width: 44px;
+    font-size: 11px;
+    padding: 3px 6px
+  }
+
+  main {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(240px, 1fr) auto
+  }
+
+  .panel {
+    padding: 14px 10px 8px;
+    border-left: 0;
+    border-top: 4px solid #b79368;
+    gap: 6px;
+    max-height: 46vh;
+    overflow: hidden
+  }
+
+  .eyebrow {
+    display: none
+  }
+
+  .hint {
+    font-size: 16px;
+    line-height: 1.2;
+    min-height: 38px
+  }
+
+  #choices {
+    gap: 6px
+  }
+
+  .mic-wrap {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 8px;
+    align-items: center
+  }
+
+  .privacy {
+    font-size: 11px
+  }
+
+  .privacy-full {
+    display: none
+  }
+
+  .privacy-short {
+    display: block
+  }
+
+  button.card,
+  button.action {
+    min-height: 44px;
+    min-width: 44px;
+    font-size: 14px;
+    padding: 4px;
+    border-radius: 10px
+  }
+
+  button.card {
+    min-height: 75px;
+    flex-direction: row;
+    font-size: 14px
+  }
+
+  button.card svg {
+    width: 45px;
+    height: 40px
+  }
+
+  button.card img {
+    width: 45px;
+    height: 40px
+  }
+
+  button img {
+    width: 30px;
+    height: 30px
+  }
+
+  .bench-grid {
+    inset: 6px;
+    gap: 6px
+  }
+
+  .station h2 {
+    font-size: 11px;
+    top: 4px;
+    left: 4px;
+    padding: 2px 5px
+  }
+
+  .station {
+    border-radius: 12px
+  }
+
+  .apparatus {
+    margin-top: 20px
+  }
+
+  .station-controls {
+    padding: 2px 3px 4px;
+    gap: 3px
+  }
+
+  .station-controls .action {
+    min-height: 44px;
+    font-size: 10px;
+    flex-direction: column;
+    gap: 1px;
+    padding: 1px;
+    border-radius: 8px
+  }
+
+  .station-controls img {
+    width: 21px;
+    height: 19px
+  }
+
+  .band-targets {
+    inset: 5% 8% 0;
+    gap: 2px
+  }
+
+  .band-target span {
+    font-size: 10px;
+    padding: 1px
+  }
+
+  .question {
+    top: 6px;
+    min-height: 49px;
+    padding: 5px 8px;
+    font-size: 14px;
+    gap: 5px
+  }
+
+  .question svg {
+    width: 30px;
+    height: 30px
+  }
+
+  .find-station {
+    top: 66px;
+    bottom: 56px;
+    left: 6%;
+    width: 88%
+  }
+
+  .find-station h2 {
+    font-size: 13px
+  }
+
+  .find-station .station-controls .action {
+    min-height: 44px;
+    font-size: 12px;
+    flex-direction: row
+  }
+
+  .find-station .station-controls img {
+    width: 25px;
+    height: 25px
+  }
+
+  .find-station .apparatus {
+    margin-top: 24px
+  }
+
+  .book-strip {
+    bottom: 6px;
+    gap: 10px
+  }
+
+  .book-page {
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    font-size: 11px;
+    padding: 2px
+  }
+
+  .book-page svg {
+    height: 22px
+  }
+
+  .page-word {
+    display: none
+  }
+
+  .notebook-tag {
+    padding: 4px;
+    font-size: 12px
+  }
+
+  .step-strip {
+    top: 5px;
+    gap: 3px
+  }
+
+  .step-strip span {
+    font-size: 10px;
+    padding: 5px 1px
+  }
+
+  .world-label {
+    top: 43px;
+    font-size: 12px
+  }
+
+  .world-target {
+    min-width: 44px;
+    min-height: 44px;
+    font-size: 11px;
+    padding: 3px
+  }
+
+  #target-knot {
+    left: 73%
+  }
+
+  .outcome {
+    font-size: 12px;
+    padding: 5px;
+    min-height: 34px;
+    bottom: 2%
+  }
+
+  .outcome svg {
+    height: 20px;
+    width: 27px
+  }
+
+  .chart {
+    font-size: 11px;
+    border-spacing: 3px;
+    margin: 0
+  }
+
+  .chart th {
+    height: 20px
+  }
+
+  .chart td {
+    height: 37px;
+    font-size: 18px
+  }
+
+  .chart td svg {
+    height: 26px;
+    width: 35px
+  }
+
+  .chart-select .action {
+    font-size: 12px
+  }
+
+  .chart-select img {
+    height: 24px;
+    width: 24px
+  }
+
+  .chart-panel #choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px
+  }
+
+  .chart-panel .chart {
+    grid-row: span 3
+  }
+
+  .chart-panel .chart-select {
+    display: flex
+  }
+
+  .chart-panel .row {
+    gap: 4px
+  }
+
+  .chart-panel #next {
+    grid-column: 2
+  }
+
+  .chart-panel .hint {
+    font-size: 14px
+  }
+
+  .chart-panel .mic-wrap {
+    display: none
+  }
+
+  .code-card {
+    top: 41px;
+    gap: 4px;
+    padding: 5px
+  }
+
+  .message-code {
+    gap: 2px
+  }
+
+  .message-code>img {
+    width: 28px;
+    height: 26px
+  }
+
+  .message-code b {
+    font-size: 12px
+  }
+
+  .dot-tiles {
+    display: grid;
+    grid-template-columns: 44px 44px;
+    gap: 3px
+  }
+
+  .dot-tiles button {
+    height: 44px;
+    min-width: 44px;
+    font-size: 13px;
+    padding: 1px
+  }
+
+  #message-ask {
+    top: 55%;
+    font-size: 12px;
+    width: 30%;
+    left: 35%;
+    padding: 4px
+  }
+
+  #message-ask img {
+    width: 40px;
+    height: 33px
+  }
+
+  #send-drum {
+    height: 38%;
+    bottom: 1%;
+    width: 31%
+  }
+
+  #send-drum span {
+    font-size: 13px;
+    padding: 4px
+  }
+
+  .secret-choices {
+    gap: 5px;
+    bottom: 3%
+  }
+
+  .secret-choices button {
+    font-size: 12px;
+    flex-direction: column;
+    min-height: 62px
+  }
+
+  .claims {
+    padding: 10px;
+    gap: 7px;
+    inset: 3%
+  }
+
+  .claims h2 {
+    font-size: 18px
+  }
+
+  .claim-columns {
+    gap: 7px
+  }
+
+  .claim-group {
+    padding: 7px;
+    gap: 4px
+  }
+
+  .claim-group h3 {
+    font-size: 13px;
+    margin-bottom: 3px
+  }
+
+  .evidence {
+    font-size: 10px;
+    padding: 4px
+  }
+
+  .evidence svg {
+    height: 20px;
+    width: 43px
+  }
+
+  .evidence small {
+    font-size: 10px
+  }
+
+  .end-card {
+    inset: 12% 5%;
+    padding: 15px;
+    gap: 10px
+  }
+
+  .end-card h2 {
+    font-size: 23px
+  }
+
+  .end-card p {
+    font-size: 16px
+  }
+
+  .end-pictures img {
+    height: 55px
+  }
+
+  .build-panel #choices {
+    grid-template-columns: 1fr 1fr
+  }
+
+  .build-panel #choices>.row {
+    display: contents
+  }
+}
+
+#target-sam,
+#target-ben {
+  bottom: 13%;
+}
+
+#target-knot {
+  bottom: 68%;
+}
+
+.dot-tiles button[aria-pressed="true"] {
+  background: #9b2f6e;
+  color: #fff;
+  border-color: #681344;
+  box-shadow: 0 0 0 2px #fff, 0 3px 0 #681344;
+}
+
+.dot-tiles button:disabled {
+  opacity: 1;
+  filter: none;
+}
+
+.panel {
+  min-width: 0;
+}
+
+.band .hand-land {
+  left: 28%;
+}
+
+.pan .hand-land {
+  left: 18%;
+  top: 32%;
+  width: 23%;
+  height: 32%;
+}
+
+.world-target svg {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
+
+.chart th:first-child {
+  width: 20%;
+}
+
+@media (max-height: 650px) and (min-width: 561px) {
+  .chart-panel .hint {
+    min-height: 36px;
+    font-size: 14px;
+    line-height: 1.22;
+  }
+
+  .chart-panel #choices {
+    gap: 5px;
+  }
+
+  .chart-select .action {
+    flex-direction: column;
+    gap: 1px;
+    font-size: 10px;
+  }
+
+  .chart-select img {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 560px) {
+  .chart-select .action {
+    flex-direction: column;
+    gap: 1px;
+    font-size: 11px;
+  }
+
+  .chart-select img {
+    width: 18px;
+    height: 18px;
+  }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Vibration Station<small>MAKE THE SHAKE. SEND THE SOUND.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-bench" aria-pressed="true">▤ Bench</button>
+    <button id="m-find" aria-pressed="false">⌕ Find out</button>
+    <button id="m-sam" aria-pressed="false">☎ Reach Sam</button>
+  </div>
+  <button class="icon-btn" id="read">◖ Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">✦ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">♫ Sound</button>
+</header>
+<main>
+  <div class="stage" id="stage" aria-label="Sound science scene"></div>
+  <aside class="panel" id="panel">
+    <p class="eyebrow" id="eyebrow">THE SOUND BENCH</p>
+    <p class="hint" id="hint" aria-live="polite">Tap a rubber band to pluck it.</p>
+    <div id="choices"></div>
+    <div class="mic-wrap" id="mic-wrap">
+      <button class="action" id="mic" aria-pressed="false">♩ Mic off</button>
+      <p class="privacy privacy-full">The microphone only listens. Nothing is recorded or saved, and nothing leaves this device.</p>
+      <p class="privacy privacy-short">Listens only. Nothing saved.</p>
+    </div>
+    <div class="notebook-tag" id="notebook-tag" hidden></div>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const A = {
+    bench: 'art:bench-backdrop',
+    yard: 'art:yard',
+    park: 'art:park',
+    shoebox: 'art:shoebox',
+    drum: 'art:drum-body',
+    tube: 'art:elbow-tube',
+    pan: 'art:pan',
+    spoon: 'art:spoon',
+    bowl: 'art:glass-bowl',
+    mallet: 'art:mallet',
+    rice: 'art:rice',
+    sand: 'art:sand',
+    sticker: 'art:sticker',
+    pinch: 'art:hand-pinch',
+    flat: 'art:hand-flat',
+    handsPaper: 'art:hands-paper',
+    handsCan: 'art:hands-can',
+    paper: 'art:paper-cup',
+    can: 'art:tin-can',
+    pencil: 'art:pencil',
+    bigDrum: 'art:big-drum',
+    lunch: 'art:lunch',
+    play: 'art:play',
+    home: 'art:home',
+    hear: 'art:sam-hear',
+    puzzled: 'art:sam-puzzled',
+    cheer: 'art:sam-cheer',
+    shrug: 'art:sam-shrug',
+    walk: 'art:sam-walk',
+    run: 'art:sam-run',
+    kick: 'art:sam-kick',
+    wave: 'art:sam-wave',
+    ben: 'art:ben-stand',
+    benPinch: 'art:ben-pinch',
+    neighbors: 'art:neighbors'
+  };
+  const Q = [
+    'Will the band shake when it makes a sound?',
+    'If we hold the band still, will the sound keep going?',
+    'When we tap the drum, does it shake?',
+    'Will our hum make the wrap on the tube shake?',
+    "Can the pan's sound make the rice jump, with nothing touching the bowl?"
+  ];
+  const P = [
+    ['It will shake', 'It will stay still'],
+    ['The sound keeps going', 'The sound stops'],
+    ['It shakes', 'It stays still'],
+    ['It will shake', 'It will stay still'],
+    ['The rice will jump', 'The rice will stay still']
+  ];
+  const L = {
+    welcome: "Welcome to Vibration Station! Let's make things shake, and listen. Tap a rubber band to pluck it.",
+    bandSeen: 'See the band shake? The shake makes the sound. Tap Hold still to stop it.',
+    bandStill: 'Still band, no sound!',
+    pitch: 'The fat band makes a lower sound. The thin band makes a higher sound.',
+    drumHow: 'Tap, and the rice jumps! The drum shakes when it makes a sound. Try the mallet.',
+    drumBig: 'A bigger hit makes a bigger shake, and a louder sound.',
+    humHow: 'Put your fingers on your throat and hum. Feel the shake? Our hum makes the wrap shake, and the sprinkles dance.',
+    panHow: 'Bang! Nothing touched the bowl, but the rice jumped. The sound made it shake.',
+    micOn: 'The microphone is on. Everyone hum together, and watch the sprinkles.',
+    micOff: 'The microphone is not working here. Press and hold Hum instead.',
+    benchNext: 'Tap Find out to test it like a scientist.',
+    t1: 'Tap a band to pluck it, and watch.',
+    t2: 'Pluck a band. Then tap Hold still while it rings.',
+    t3plan: "We can't see a drum shake. What can we put on it? Tap rice, sand or the sticker.",
+    t3: 'Now tap the drum with the finger or the mallet.',
+    t4: 'Press and hold Hum, and everyone hum!',
+    t4mic: 'Everyone hum together, now!',
+    t5plan: 'Look. The pan is touching the bowl. Is that a fair test? Tap Move the pan, or tap Bang.',
+    r1: 'The band shook, and we heard it. Shaking makes sound!',
+    r2: 'We held it still, and the sound stopped. No shake, no sound!',
+    r3rice: 'The rice jumped! The drum shakes when it makes a sound.',
+    r3sand: 'The sand jumped! The drum shakes when it makes a sound.',
+    r4: 'Our hum made the wrap shake, and the sprinkles danced. Sound makes things shake!',
+    r5: "Nothing touched the bowl, and the rice jumped. The pan's sound made it shake!",
+    match: 'Just like we thought!',
+    surprise: 'A surprise! Now we know.',
+    r2early: 'Pluck it first. Then tap Hold still while it rings.',
+    r2late: 'The sound already stopped. Pluck again, then tap Hold still fast.',
+    r3sticker: "The sticker is stuck on, so we can't see it jump. Tap rice or sand.",
+    r5touch: "The rice jumped. But the pan was touching the bowl, so the bang could shake it right through the pan. We can't tell! Tap Move the pan.",
+    moved: 'Now nothing touches the bowl. Tap Bang!',
+    nextHow: 'Tap Next.',
+    claims: 'We found out two things. Shaking makes sound. And sound makes things shake!',
+    toSam: 'Tap Reach Sam to use sound to talk far away.',
+    samWelcome: "This is Sam, across the yard. Let's build a cup phone to talk to Sam! Tap Paper cup or Tin can.",
+    cupPaper: 'A paper cup. Its bottom can shake. Tap the pencil.',
+    cupCan: 'A tin can. Its bottom can shake. Tap the pencil.',
+    poked: 'Now tap the string to push it through.',
+    threaded: "Tap the knot, so the string can't slip out.",
+    tied: 'Sam tied his end too. Tap Step back until the string is tight.',
+    tight: 'The string is tight! Tap Talk, and everyone say: Hello, Sam!',
+    stepMax: "That's as far as the string goes.",
+    talkLoose: 'Tie the knot first. Tap the knot.',
+    talkSlack: "Sam can't hear. The string is droopy. Tap Step back.",
+    heard: "Sam heard you! Your voice shook the cup, the cup shook the string, and the string shook Sam's cup.",
+    fixScene: 'Tap Talk, and everyone say: Meet me at the slide!',
+    cantHear: "Sam can't hear! Look at the string. Then tap the thing that needs fixing.",
+    fixSag: 'Yes! The string was droopy. Sam steps back. Now tap Talk.',
+    fixPinch: 'Yes! Ben was holding the string still. Now it can shake. Tap Talk.',
+    fixKnot: "Yes! The string came out of Sam's cup. Sam ties it. Tap Talk.",
+    louder: "Talking louder didn't help.",
+    notBen: "Ben isn't touching the string.",
+    notSam: 'The string is already tight.',
+    notKnot: 'That knot is tied.',
+    lookWiggle: 'Watch the shake go down the string. See where it stops? Tap that.',
+    heardFix: 'Sam heard you!',
+    fixDone: 'You fixed it three times. A cup phone needs a string that is tight and free to shake.',
+    chartHow: 'Where can Sam hear us? Tap a place. Then tap whisper, cup phone or drum.',
+    chartShort: 'Tap Yard or Park, then Whisper, Cup phone or Drum.',
+    whYard: "Sam can't hear a whisper from across the yard.",
+    cupYard: 'Sam hears the cup phone, and only Sam!',
+    drumYard: 'Boom! Sam hears the drum. So does everyone next door.',
+    whPark: "Too far! Sam can't hear a whisper.",
+    cupPark: "Our string isn't long enough to reach across the park.",
+    drumPark: 'Boom! The drum is loud enough to reach Sam across the park.',
+    chartFull: 'Our chart is full. Tap Next.',
+    secretAsk: 'Here is a secret: the treasure is under the slide. Look at our chart. Tap the best way to tell only Sam.',
+    secretCup: 'The cup phone! Only Sam heard the secret.',
+    secretDrum: 'Boom! Oh no, everyone next door heard. Tap another way.',
+    secretWhisper: "Sam can't hear a whisper that far. Tap another way.",
+    codeHow: "Sam is across the park. Our cup phone can't reach. For Lunch, Play and Home, tap one, two, three or four beats to make a drum code.",
+    codeSame: "Two pictures have the same beats. Sam can't tell them apart. Change one.",
+    codeReady: 'Our code is ready.',
+    samEnd: 'Sam got all three! We used sound to talk far away.',
+    humShort: 'Keep holding Hum until the sprinkles dance. Then let go.',
+    choosePlace: 'Tap whisper, cup phone or drum to test this place.',
+    secretNext: 'Tap Next to make a drum code.',
+    endHow: 'Tap Bench to explore again, or tap Find out to open the lab book.'
+  };
+  Q.forEach((q, i) => {
+    const choices = P[i].join(', or ') + '.';
+    L['q' + (i + 1)] = q + ' ' + choices + (i ? ' Tap a picture.' : ' Say your guess, then tap a picture.');
+  });
+  P.forEach((p, i) => p.forEach((t, j) => L[`pred-${i}-${j}`] = 'We think: ' + t + '.'));
+  const messages = ['lunch', 'play', 'home'];
+  const messageWords = ['Lunch is ready', 'Come play ball', 'Time to go home'];
+  const actions = ['runs to lunch', 'kicks the ball', 'walks home'];
+  const countWords = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+  messages.forEach((m, i) => L['ask-' + m] = 'Tell Sam: ' + messageWords[i] + '. Look at our code, then tap the drum.');
+  for (let k = 1; k <= 10; k++) {
+    const unit = k === 1 ? 'beat' : 'beats';
+    L['none-' + k] = `${countWords[k]} ${unit} isn't in our code. Sam shrugs. Look at the code and tap again.`;
+    messages.forEach((m, i) => {
+      L[`right-${k}-${m}`] = `${countWords[k]} ${unit}! Sam ${actions[i]}.`;
+      L[`wrong-${k}-${m}`] =
+        `${countWords[k]} ${unit} means ${messageWords[i]} in our code, so Sam ${actions[i]}. Look at the code and tap again.`;
+    });
+  }
+  L.noneMany = "That many beats isn't in our code. Sam shrugs. Look at the code and tap again.";
+  const state = {
+    mode: 'bench',
+    step: 0,
+    stations: new Set(),
+    bands: new Set(),
+    lastBand: 1,
+    pull: 1,
+    find: {
+      q: 0,
+      phase: 'predict',
+      prediction: null,
+      order: [],
+      material: null,
+      sticker: false,
+      touchTrial: false,
+      gap: false,
+      plucked: false,
+      pages: Array(5).fill(null)
+    },
+    sam: {
+      step: 0,
+      part: 0,
+      cup: 'paper',
+      distance: 4,
+      works: false,
+      scene: 0,
+      fault: null,
+      tested: false,
+      fixed: false,
+      first: null,
+      wiggle: false,
+      records: [],
+      wrongTargets: [],
+      chart: {},
+      place: 'yard',
+      secret: null,
+      secretDone: false,
+      code: [0, 0, 0],
+      locked: false,
+      sends: [],
+      sent: 0,
+      beats: 0,
+      done: false,
+      pose: 'wave',
+      outcome: '',
+      neighbors: false,
+      signal: 0,
+      way: 'phone'
+    },
+    mic: false,
+    micLevel: 0,
+    humHeld: false,
+    humSince: 0,
+    seenMic: false
+  };
+  const active = {
+    band: 0,
+    drum: 0,
+    hum: 0,
+    pan: 0
+  };
+  const amplitudes = {
+    band: 1,
+    drum: 8,
+    hum: 14,
+    pan: 20
+  };
+  let audio, humSource, micStream, analyser, micData, micPending = false;
+  let micEpoch = 0;
+  const micFailuresHeard = new Set();
+  let sendTimer = 0,
+    lastTime = 0,
+    micAbove = 0,
+    heldStamp = 0;
+  const sounding = {};
+  const image = (key, cls = '', alt = '') => `<img class="${cls}" src="${A[key]}" alt="${alt}" draggable="false">`;
+  const icon = (kind = 'shake', yes = true) => {
+    let drawing = '';
+    if (kind === 'investigate') {
+      drawing = '<circle cx="39" cy="28" r="23" fill="#e1f1ed"/><path d="M56 46l23 18M25 18q9-11 19-2"/>' +
+        '<path d="M33 21q0-8 8-8t8 8q0 5-8 9v5m0 7v1"/>';
+    } else if (kind === 'ear') {
+      drawing = '<path d="M39 53c-6-9-14-13-14-25C25 8 54 5 58 24c3 12-7 15-10 25-2 9-12 12-15 3"/>';
+      drawing += yes ? '<path d="M65 17q15 17 0 34M74 9q24 25 0 50"/>' : '<path d="M16 12l57 47M73 12L16 59"/>';
+    } else if (kind === 'phone') {
+      drawing = '<path d="M8 17l19 3-3 31-12-2zM70 20l19-3-4 32-12 2zM25 35h47"/>';
+    } else if (kind === 'string') {
+      drawing = '<path d="M9 37c4-29 51-30 42-2S15 44 30 29s49-9 56 12"/>';
+    } else if (kind === 'knot') {
+      drawing = '<path d="M8 36h24c35-38 46 18 5 6-20-8 2-43 22-20l12 12h20M58 40l9 19"/>';
+    } else if (kind === 'drum') {
+      drawing = '<ellipse cx="48" cy="24" rx="30" ry="11"/><path d="M18 24v30c10 14 50 14 60 0V24M25 33l13 24 15-24 15 25"/>';
+      if (yes) drawing += '<path d="M32 10l2-5m14 6V3m14 9l3-7"/>';
+    } else if (kind === 'tube') {
+      drawing = '<path d="M23 55V37q0-8 10-8h20V14h20v26q0 10-10 10H43v12zM51 15h23"/>';
+      drawing += yes ? '<path d="M55 6V2m10 6V1m9 7l4-5"/>' : '<path d="M57 10h13"/>';
+    } else if (kind === 'bowl') {
+      drawing = '<ellipse cx="48" cy="30" rx="33" ry="9"/><path d="M15 30q6 30 33 30t33-30"/>';
+      drawing += yes ? '<path d="M29 16l3-7m16 7V5m15 10l5-7"/>' : '<path d="M29 26h5m11 1h5m10-1h5"/>';
+    } else if (kind === 'mouth') {
+      drawing = '<path d="M12 35q18-24 36-8 18-16 36 8-18 28-36 20-18 8-36-20zM12 35q36 12 72 0"/>';
+    } else {
+      drawing = '<path d="M13 51h70M22 51V18h52v33"/>';
+      drawing += yes ? '<path d="M30 34l6-10 7 20 8-20 7 20 8-10M10 15l-4-5M85 15l6-5"/>' : '<path d="M28 34h40"/>';
+    }
+    return `<svg viewBox="0 0 96 70" aria-hidden="true"><g fill="none" stroke="#1d6f7a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">${drawing}</g></svg>`;
+  };
+  const questionIcon = (q, yes = true) => icon(['shake', 'ear', 'drum', 'tube', 'bowl'][q], yes);
+  const btn = (id, text, picture = '', cls = 'action', extra = '') =>
+    `<button id="${id}" class="${cls}" ${extra}>${picture}${text}</button>`;
+  // Result feedback remains in this mode's queue when Next changes the scene.
+  // Action-specific how-to lines use validity checks rather than discarding the result queue.
+  const V = Curio.voice({
+    lines: L,
+    scope: () => state.mode,
+    hint: false,
+    read: () => $('hint').textContent + (!$('mic-wrap').hidden ?
+      ' The microphone only listens. Nothing is recorded or saved, and nothing leaves this device.' : ''),
+    welcome: () => state.mode === 'bench' && !state.stations.size ? 'welcome' : state.mode === 'sam' && state.sam.step === 0 && state.sam
+      .part === 0 ? 'samWelcome' : null,
+    speaks: '.band-target,#finger,#mallet,#hum,#bang,#mic,.card,.world-target,#send-drum,.dot-tiles button,.book-page'
+  });
+
+  function hint(text) {
+    $('hint').textContent = L[text] || text;
+  }
+  let eventSerial = 0;
+
+  function say(key, options = {}) {
+    const stamp = ++eventSerial;
+    const needs = {
+      t1: '#band-0',
+      t2: '#hold-band',
+      t3plan: '#plan-rice',
+      t3: '#finger',
+      t4: '#hum',
+      t4mic: '#mic',
+      t5plan: '#move-pan',
+      r2early: '#band-0',
+      r2late: '#band-0',
+      r3sticker: '#plan-rice',
+      r5touch: '#move-pan',
+      moved: '#test-bang',
+      cupPaper: '#part-pencil',
+      cupCan: '#part-pencil',
+      poked: '#part-string',
+      threaded: '#part-knot',
+      tied: '#step-back',
+      tight: '#talk',
+      talkLoose: '#part-knot',
+      talkSlack: '#step-back',
+      fixScene: '#talk',
+      cantHear: '#target-sam',
+      fixSag: '#talk',
+      fixPinch: '#talk',
+      fixKnot: '#talk',
+      lookWiggle: '#target-sam',
+      chartHow: '#place-yard',
+      chartFull: '#next',
+      secretAsk: '#secret-phone',
+      secretNext: '#next',
+      codeHow: '#code-0-1',
+      toSam: '#claims-sam',
+      endHow: '#end-bench'
+    };
+    const validity = k => {
+      if (/^q[1-5]$/.test(k)) {
+        const q = +k.slice(1) - 1;
+        return () => state.find.q === q && state.find.phase !== 'claims';
+      }
+      if (k === 'codeHow') return () => state.sam.step === 4 && !state.sam.locked;
+      if (k === 'lookWiggle') return () => state.sam.step === 1 && !state.sam.fixed && state.sam.wiggle;
+      if (k === 'cantHear') return () => state.sam.step === 1 && !state.sam.fixed;
+      if (k === 'fixScene') return () => state.sam.step === 1 && !state.sam.tested;
+      return undefined;
+    };
+    if (Array.isArray(key)) {
+      return V.say(key.map((k, i) => [k, {
+        key: k + '#' + stamp + '-' + i,
+        needs: needs[k] || [],
+        valid: validity(k)
+      }]), {
+        hint: false,
+        ...options
+      });
+    }
+    return V.say(key, {
+      hint: false,
+      key: key + '#' + stamp,
+      needs: needs[key] || [],
+      valid: validity(key),
+      ...options
+    });
+  }
+
+  function how(key, options = {}) {
+    if (state.mode === 'bench') {
+      const pending = V.queue.filter(line => line.kind === 'how').map(line => line.key);
+      key = [...new Set([...pending, ...[].concat(key)])].filter(k => !V.heard(k));
+      if (!key.length) return false;
+    }
+    return V.how(key, {
+      hint: false,
+      ...options
+    });
+  }
+
+  let pendingNext = null;
+
+  function afterNarration(button, fn) {
+    if (pendingNext) return;
+    const mode = state.mode;
+    pendingNext = button;
+    button.classList.add('next-wait');
+    button.setAttribute('aria-busy', 'true');
+    const advance = () => {
+      if (pendingNext !== button) return;
+      if (state.mode !== mode || !button.isConnected || button.hidden) {
+        pendingNext = null;
+        return;
+      }
+      if (Curio.sound && (V.playing || V.queue.length)) {
+        setTimeout(advance, 60);
+        return;
+      }
+      pendingNext = null;
+      button.classList.remove('next-wait');
+      button.removeAttribute('aria-busy');
+      fn();
+    };
+    advance();
+  }
+
+  function on(id, fn) {
+    const e = $(id);
+    if (e) e.onclick = id === 'next' ? () => afterNarration(e, fn) : fn;
+  }
+
+  function focusControl(id) {
+    $(id)?.focus({
+      preventScroll: true
+    });
+  }
+
+  function preserve(fn, fallback) {
+    const id = document.activeElement?.id;
+    fn();
+    if (id && document.activeElement === document.body) {
+      const e = $(id);
+      focusControl(e && !e.disabled && !e.hidden ? id : fallback);
+    }
+  }
+
+  function shuffle(a) {
+    return a.slice().sort(() => Math.random() - .5);
+  }
+
+  function audioContext() {
+    if (!audio) audio = new(window.AudioContext || window.webkitAudioContext)();
+    if (audio.state === 'suspended') audio.resume();
+    return audio;
+  }
+
+  function stopSound(kind) {
+    const item = sounding[kind];
+    if (!item) return;
+    const t = audio.currentTime;
+    item.gain.gain.cancelScheduledValues(t);
+    item.gain.gain.setTargetAtTime(.0001, t, .01);
+    item.nodes.forEach(n => {
+      try {
+        n.stop(t + .06);
+      } catch (e) {
+        /* already ended */
+      }
+    });
+    delete sounding[kind];
+  }
+
+  function playSound(kind, level = 1, band = 1) {
+    stopSound(kind);
+    if (!Curio.sound || !V.tapped || (kind === 'hum' && state.mic)) return;
+    const ac = audioContext(),
+      t = ac.currentTime;
+    const gain = ac.createGain();
+    const dur = {
+      band: 4,
+      drum: 1.5,
+      pan: 2,
+      hum: 3600
+    } [kind];
+    const volume = {
+      band: .14,
+      drum: .16,
+      pan: .10,
+      hum: .09
+    } [kind] * level;
+    gain.connect(ac.destination);
+    gain.gain.setValueAtTime(.0001, t);
+    gain.gain.exponentialRampToValueAtTime(volume, t + .008);
+    if (kind !== 'hum') gain.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    const nodes = [];
+    const frequencies = kind === 'band' ? [
+      [330, 220, 147][band]
+    ] : kind === 'drum' ? [110] : kind === 'hum' ? [150] : [600, 921, 1400];
+    frequencies.forEach((freq, i) => {
+      const o = ac.createOscillator();
+      o.type = kind === 'hum' ? 'sawtooth' : 'sine';
+      o.frequency.setValueAtTime(freq, t);
+      if (kind === 'drum') o.frequency.exponentialRampToValueAtTime(55, t + .2);
+      if (kind === 'hum') {
+        const filter = ac.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.value = 450;
+        o.connect(filter);
+        filter.connect(gain);
+      } else o.connect(gain);
+      o.start(t);
+      o.stop(t + dur);
+      nodes.push(o);
+    });
+    if (kind === 'drum' || kind === 'pan') {
+      const b = ac.createBuffer(1, ac.sampleRate * .13, ac.sampleRate),
+        d = b.getChannelData(0);
+      for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / d.length) * .4;
+      const n = ac.createBufferSource();
+      n.buffer = b;
+      n.connect(gain);
+      n.start(t);
+      nodes.push(n);
+    }
+    sounding[kind] = {
+      gain,
+      nodes
+    };
+  }
+
+  function silence() {
+    for (const k in active) {
+      active[k] = 0;
+      stopSound(k);
+    }
+    state.humHeld = false;
+    state.humSince = 0;
+  }
+
+  function allowed(kind) {
+    if (state.mode === 'bench') return true;
+    const f = state.find;
+    return state.mode === 'find' && ['test', 'result'].includes(f.phase) && ['band', 'band', 'drum', 'hum', 'pan'][f.q] === kind;
+  }
+
+  function stationMarkup(kind, large = false) {
+    const labels = {
+      band: 'Rubber bands',
+      drum: 'Rice drum',
+      hum: 'Hum tube',
+      pan: 'Pan + bowl'
+    };
+    const pictures = {
+      band: image('shoebox', 'object'),
+      drum: image('drum', 'object'),
+      hum: image('tube', 'object'),
+      pan: image('pan', 'object pan-body') + image('bowl', 'object bowl') + image('spoon', 'object spoon')
+    };
+    const bands = kind === 'band' ? '<div class="band-targets">' + ['Thin', 'Middle', 'Fat'].map((s, i) =>
+      `<button class="band-target" id="band-${i}" aria-label="Pluck ${s.toLowerCase()} band" data-band="${i}"><span>${s}</span></button>`).join(
+      '') + '</div>' : '';
+    let controls = '';
+    if (kind === 'band') controls = btn('hold-band', 'Hold still', image('pinch'));
+    if (kind === 'drum') controls = btn('finger', 'Finger tap', '☝ ') + btn('mallet', 'Mallet', image('mallet')) + btn('hold-drum', 'Hold still',
+      image('flat'));
+    if (kind === 'hum') controls = btn('hum', 'Hold Hum', icon('mouth'), 'action', 'aria-label="Press and hold Hum"');
+    if (kind === 'pan') controls = btn('bang', 'Bang', image('spoon')) + btn('hold-pan', 'Hold still', image('pinch'));
+    return `<section class="station ${kind} ${large?'find-station':''}" id="station-${kind}" aria-label="${labels[kind]}">
+      <h2>${labels[kind]}</h2><div class="apparatus">${pictures[kind]}<canvas data-kind="${kind}"></canvas>${bands}
+      <img class="hand-land" id="hand-${kind}" src="${A[kind==='drum'?'flat':'pinch']}" alt="Hand holding it still" hidden></div>
+      <div class="station-controls">${controls}</div></section>`;
+  }
+
+  function bindStation(kind) {
+    if (kind === 'band') {
+      document.querySelectorAll('[data-band]').forEach(e => {
+        let start = null,
+          pulled = 0,
+          hitBand = +e.dataset.band;
+
+        function bandAt(ev) {
+          const a = e.closest('.apparatus');
+          const r = a.getBoundingClientRect();
+          const img = a.querySelector('.object');
+          const ih = Math.min(r.height * .97, r.width * .8 * img.naturalHeight / img.naturalWidth);
+          const top = r.height * .01 + (r.height * .97 - ih) / 2;
+          const x = ev.clientX - r.left;
+          const y = ev.clientY - r.top;
+          if (y >= top + ih * .12 && y <= top + ih * .46 && Math.abs(x - r.width * .5) <= ih * .13) {
+            return Math.max(0, Math.min(2, Math.round((x - r.width * .5) / (ih * .065)) + 1));
+          }
+          return +e.dataset.band;
+        }
+        e.onpointerdown = ev => {
+          start = ev.clientX;
+          hitBand = bandAt(ev);
+          pulled = 0;
+          e.setPointerCapture(ev.pointerId);
+        };
+        e.onpointermove = ev => {
+          if (start !== null) {
+            pulled = Math.abs(ev.clientX - start);
+            e.style.transform = `translateX(${Math.min(18,pulled/3)}px)`;
+          }
+        };
+        e.onpointerup = ev => {
+          e.style.transform = '';
+          e.dataset.pull = 1 + Math.min(2, Math.floor(pulled / 25));
+          start = null;
+        };
+        e.onpointercancel = () => {
+          start = null;
+          e.style.transform = '';
+        };
+        e.onclick = ev => pluck(ev.detail ? hitBand : +e.dataset.band, ev.detail ? +e.dataset.pull || 1 : 1);
+      });
+      on('hold-band', () => hold('band'));
+    }
+    if (kind === 'drum') {
+      on('finger', () => strike('drum', false));
+      on('mallet', () => strike('drum', true));
+      on('hold-drum', () => hold('drum'));
+    }
+    if (kind === 'pan') {
+      on('bang', () => strike('pan', true));
+      on('hold-pan', () => hold('pan'));
+    }
+    if (kind === 'hum') {
+      const h = $('hum');
+      h.onpointerdown = ev => {
+        h.setPointerCapture(ev.pointerId);
+        startHum();
+      };
+      h.onpointerup = h.onpointercancel = h.onblur = stopHum;
+      h.onkeydown = ev => {
+        if ([' ', 'Enter'].includes(ev.key)) {
+          ev.preventDefault();
+          if (!ev.repeat) startHum();
+        }
+      };
+      h.onkeyup = ev => {
+        if ([' ', 'Enter'].includes(ev.key)) {
+          ev.preventDefault();
+          stopHum();
+        }
+      };
+    }
+  }
+
+  function firstStation(kind) {
+    state.stations.add(kind);
+    if (state.stations.size >= 2) {
+      $('bench-find').hidden = false;
+      how('benchNext', {
+        needs: '#bench-find',
+        valid: () => state.mode === 'bench'
+      });
+    }
+  }
+
+  function pluck(index, pull = 1) {
+    if (!allowed('band')) return;
+    active.band = performance.now() + 4000;
+    state.lastBand = index;
+    state.pull = pull;
+    amplitudes.band = pull;
+    $('hand-band').hidden = true;
+    playSound('band', pull / 2, index);
+    if (state.mode === 'bench') {
+      state.bands.add(index);
+      hint('bandSeen');
+      how('bandSeen');
+      if (state.bands.has(0) && state.bands.has(2)) how('pitch');
+      firstStation('band');
+    } else {
+      state.find.plucked = true;
+      if (state.find.q === 0) completeFind();
+    }
+  }
+
+  function hold(kind) {
+    if (!allowed(kind)) return;
+    const running = active[kind] > performance.now();
+    active[kind] = 0;
+    stopSound(kind);
+    if (running) $('hand-' + kind).hidden = false;
+    if (state.mode === 'find' && state.find.q === 1) {
+      if (!state.find.plucked) {
+        say('r2early');
+        hint('r2early');
+      } else if (!running) {
+        say('r2late');
+        hint('r2late');
+      } else completeFind();
+    } else if (running && state.mode === 'bench' && kind === 'band') {
+      hint('bandStill');
+      how('bandStill');
+    }
+    drawAll(performance.now());
+  }
+
+  function strike(kind, big) {
+    if (!allowed(kind)) return;
+    if (kind === 'pan' && state.mode === 'find' && state.find.gap) {
+      $('station-pan').querySelector('.pan-body').style.transition = 'none';
+    }
+    active[kind] = performance.now() + (kind === 'pan' ? 2000 : 1500);
+    amplitudes[kind] = kind === 'pan' ? 20 : big ? 24 : 8;
+    $('hand-' + kind).hidden = true;
+    playSound(kind, kind === 'drum' ? (big ? 1 : .4) : 1);
+    if (state.mode === 'bench') {
+      const key = kind === 'pan' ? 'panHow' : big ? 'drumBig' : 'drumHow';
+      hint(key);
+      how(key);
+      firstStation(kind);
+    } else if (kind === 'drum') {
+      if (state.find.material === 'sticker') {
+        state.find.sticker = true;
+        state.find.material = null;
+        state.find.phase = 'plan';
+        hint('r3sticker');
+        say('r3sticker');
+        showFindPanel();
+      } else completeFind();
+    } else if (!state.find.gap) {
+      state.find.touchTrial = true;
+      hint('r5touch');
+      say('r5touch');
+    } else completeFind();
+  }
+
+  function startHum() {
+    if (!allowed('hum') || state.humHeld) return;
+    state.humHeld = true;
+    state.humSince = performance.now();
+    heldStamp = state.humSince;
+    active.hum = Infinity;
+    amplitudes.hum = 14;
+    playSound('hum');
+    $('hum')?.setAttribute('aria-pressed', 'true');
+    if (state.mode === 'bench') {
+      hint('humHow');
+      how('humHow');
+      firstStation('hum');
+    }
+  }
+
+  function stopHum() {
+    if (!state.humHeld) return;
+    state.humHeld = false;
+    active.hum = 0;
+    stopSound('hum');
+    $('hum')?.setAttribute('aria-pressed', 'false');
+    if (state.mode === 'find' && state.find.q === 3 && state.find.phase === 'test') {
+      if (performance.now() - heldStamp >= 1000) completeFind();
+      else {
+        hint('humShort');
+        say('humShort');
+      }
+    }
+    drawAll(performance.now());
+  }
+  async function toggleMic() {
+    if (micPending) return;
+    if (state.mic) {
+      turnMicOff();
+      hint('t4');
+      return;
+    }
+    micPending = true;
+    const requestEpoch = ++micEpoch;
+    try {
+      micStream = await navigator.mediaDevices.getUserMedia({
+        audio: true
+      });
+      if (requestEpoch !== micEpoch || $('mic-wrap').hidden) {
+        micStream.getTracks().forEach(track => track.stop());
+        micStream = null;
+        micPending = false;
+        return;
+      }
+      const ac = audioContext();
+      analyser = ac.createAnalyser();
+      analyser.fftSize = 1024;
+      ac.createMediaStreamSource(micStream).connect(analyser);
+      micData = new Float32Array(analyser.fftSize);
+      state.mic = true;
+      stopSound('hum');
+      $('mic').textContent = '♩ Mic on';
+      $('mic').setAttribute('aria-pressed', 'true');
+      hint('micOn');
+      how('micOn');
+    } catch (e) {
+      turnMicOff();
+      hint('micOff');
+      const cause = e?.name || 'unavailable';
+      if (!micFailuresHeard.has(cause)) {
+        micFailuresHeard.add(cause);
+        say('micOff');
+      }
+    }
+    micPending = false;
+  }
+
+  function turnMicOff() {
+    micEpoch++;
+    micStream?.getTracks().forEach(t => t.stop());
+    micStream = null;
+    analyser = null;
+    state.mic = false;
+    state.micLevel = 0;
+    active.hum = 0;
+    $('mic').textContent = '♩ Mic off';
+    $('mic').setAttribute('aria-pressed', 'false');
+  }
+
+  function renderBench() {
+    $('stage').innerHTML = image('bench', 'backdrop') + '<div class="bench-grid">' + ['band', 'drum', 'hum', 'pan'].map(k => stationMarkup(k)).join(
+      '') + '</div><i class="idle-spark"></i>';
+    ['band', 'drum', 'hum', 'pan'].forEach(bindStation);
+    $('choices').innerHTML = btn('bench-find', 'Find out →', '⌕ ', 'action gold', state.stations.size < 2 ? 'hidden' : '');
+    on('bench-find', () => setMode('find'));
+    hint('Tap a rubber band to pluck it.');
+    $('eyebrow').textContent = 'THE SOUND BENCH';
+    $('mic-wrap').hidden = false;
+    $('notebook-tag').hidden = true;
+  }
+
+  function enterQuestion(q) {
+    const f = state.find;
+    pendingNext = null;
+    V.hush();
+    silence();
+    turnMicOff();
+    f.q = q;
+    f.phase = 'predict';
+    f.prediction = null;
+    f.order = shuffle([0, 1]);
+    f.material = null;
+    f.sticker = false;
+    f.touchTrial = false;
+    f.gap = false;
+    f.plucked = false;
+    f.pages[q] = null;
+    renderFind();
+    hint('q' + (q + 1));
+    say('q' + (q + 1));
+  }
+
+  function renderFind() {
+    const f = state.find;
+    if (f.phase === 'claims') {
+      renderClaims();
+      return;
+    }
+    if (!f.order.length) f.order = shuffle([0, 1]);
+    const kind = ['band', 'band', 'drum', 'hum', 'pan'][f.q];
+    $('stage').innerHTML = image('bench', 'backdrop') + `<div class="question">${icon('investigate')}${Q[f.q]}</div>` +
+      stationMarkup(kind, true) + '<div class="book-strip" id="book-strip"></div>';
+    bindStation(kind);
+    updateFindControls();
+    renderBook();
+    showFindPanel();
+    $('eyebrow').textContent = 'OUR LAB BOOK · ' + (f.q + 1) + ' OF 5';
+    $('notebook-tag').hidden = false;
+    $('mic-wrap').hidden = !(f.q === 3 && ['test', 'result'].includes(f.phase));
+  }
+
+  function renderBook() {
+    const f = state.find;
+    $('book-strip').innerHTML = f.pages.map((p, i) => `<button class="book-page ${i===f.q?'current':''}" id="page-${i}"
+      aria-label="${p?'Reopen':'Not finished'} investigation ${i+1}" ${p?'':'disabled'}>${i+1}<span class="page-word"> ${p?'We saw':'Guess + test'}</span>
+      ${p?questionIcon(i,i!==1):''}</button>`).join('');
+    f.pages.forEach((p, i) => {
+      if (p) on('page-' + i, () => {
+        preserve(() => enterQuestion(i), 'prediction-0');
+      });
+    });
+  }
+
+  function updateFindControls() {
+    const f = state.find,
+      k = ['band', 'band', 'drum', 'hum', 'pan'][f.q];
+    const visible = f.phase === 'test' || f.phase === 'result';
+    document.querySelector('.station-controls').hidden = !visible;
+    document.querySelector('.band-targets')?.toggleAttribute('hidden', !visible);
+    $('station-' + k).classList.toggle('touching', k === 'pan' && !f.gap);
+    $('mic-wrap').hidden = !(f.q === 3 && ['test', 'result'].includes(f.phase));
+  }
+
+  function showFindPanel() {
+    const f = state.find;
+    $('notebook-tag').textContent = f.prediction === null ? 'We think… then we test.' :
+      'We thought: ' + P[f.q][f.prediction] + (f.phase === 'result' ? ' · We saw: ' + (f.q === 1 ? 'sound stops' : 'a shake') : '');
+    if (f.phase === 'predict') {
+      $('choices').innerHTML = '<div class="choice-row">' + f.order.map((p, pos) =>
+        btn('prediction-' + pos, P[f.q][p], questionIcon(f.q, p === 0), 'card', `data-prediction="${p}"`)).join('') + '</div>';
+      f.order.forEach((p, pos) => on('prediction-' + pos, () => predict(p)));
+    } else if (f.phase === 'plan') {
+      $('choices').innerHTML = '<div class="row">' + ['rice', 'sand', 'sticker'].map(k => btn('plan-' + k, k[0].toUpperCase() + k.slice(1), image(
+        k), 'card')).join('') + '</div>';
+      ['rice', 'sand', 'sticker'].forEach(k => on('plan-' + k, () => {
+        f.material = k;
+        for (const material of ['rice', 'sand', 'sticker']) {
+          $('plan-' + material).setAttribute('aria-pressed', material === k);
+        }
+        if (pendingNext) {
+          pendingNext.classList.remove('next-wait');
+          pendingNext.removeAttribute('aria-busy');
+          pendingNext = null;
+        }
+        // The choice responds now. Keep its pictures present for the whole plan
+        // explanation, then make the chosen test available without stale speech.
+        afterNarration($('plan-' + k), () => {
+          if (state.mode !== 'find' || f.q !== 2 || f.phase !== 'plan') return;
+          f.phase = 'test';
+          updateFindControls();
+          if (f.material === 'sticker') {
+            strike('drum', false);
+          } else {
+            hint('t3');
+            say('t3');
+            showFindPanel();
+            focusControl('finger');
+          }
+        });
+      }));
+    } else if (f.phase === 'test') {
+      if (f.q === 4) {
+        $('choices').innerHTML = (!f.gap ? btn('move-pan', 'Move the pan →', '↔ ') : '') + btn('test-bang', 'Bang', image('spoon'));
+        on('move-pan', () => {
+          afterNarration($('move-pan'), () => {
+            f.gap = true;
+            updateFindControls();
+            hint('moved');
+            say('moved');
+            showFindPanel();
+            focusControl('test-bang');
+          });
+        });
+        on('test-bang', () => strike('pan', true));
+      } else {
+        $('choices').innerHTML = '<div class="choice-row">' + f.order.map((p, pos) =>
+          btn('locked-' + pos, P[f.q][p], questionIcon(f.q, p === 0), 'card',
+            `disabled aria-pressed="${p===f.prediction}"`)).join('') + '</div>';
+      }
+    } else if (f.phase === 'result') {
+      $('choices').innerHTML = btn('next', 'Next →', '', 'action gold');
+      on('next', () => {
+        if (f.q === 4) {
+          f.phase = 'claims';
+          renderClaims();
+          if (f.phase !== 'claims') return;
+          hint('toSam');
+          say('claims');
+          how('toSam');
+          focusControl('claims-sam');
+        } else {
+          preserve(() => enterQuestion(f.q + 1), 'prediction-0');
+        }
+      });
+    }
+  }
+
+  function predict(p) {
+    const f = state.find;
+    if (f.phase !== 'predict') return;
+    f.prediction = p;
+    f.phase = f.q === 2 ? 'plan' : 'test';
+    const key = f.q === 2 ? 't3plan' : f.q === 4 ? 't5plan' : 't' + (f.q + 1);
+    hint(key);
+    say(['pred-' + f.q + '-' + p, key]);
+    updateFindControls();
+    showFindPanel();
+    const next = f.q === 2 ? 'plan-rice' : f.q === 4 ? 'move-pan' : f.q === 3 ? 'hum' : 'band-0';
+    focusControl(next);
+  }
+
+  function completeFind() {
+    const f = state.find;
+    if (f.phase !== 'test') return;
+    const focusId = document.activeElement?.id;
+    const expected = f.q === 1 ? 1 : 0;
+    f.pages[f.q] = {
+      prediction: f.prediction,
+      material: f.material,
+      sticker: f.sticker,
+      touchTrial: f.touchTrial
+    };
+    f.phase = 'result';
+    const key = f.q === 2 ? 'r3' + f.material : 'r' + (f.q + 1);
+    hint((L[key]) + ' Tap Next.');
+    say([key, f.prediction === expected ? 'match' : 'surprise']);
+    how('nextHow', {
+      needs: '#next',
+      valid: () => f.phase === 'result'
+    });
+    showFindPanel();
+    renderBook();
+    $('mic-wrap').hidden = f.q !== 3;
+    if (focusId && document.activeElement === document.body) focusControl('next');
+  }
+
+  function renderClaims() {
+    const f = state.find;
+    const missing = f.pages.findIndex(page => !page);
+    if (missing !== -1) {
+      enterQuestion(missing);
+      focusControl('prediction-0');
+      return;
+    }
+
+    function evidence(i) {
+      const p = f.pages[i];
+      const apparatus = ['shoebox', 'pinch', 'drum', 'tube', 'bowl'][i];
+      return `<div class="evidence"><b>${image(apparatus,'apparatus-memory')}${i+1}. ${['Band','Hold still','Drum','Hum','Pan + bowl'][i]}</b>
+        <div class="pair"><span>We thought${questionIcon(i,p.prediction===0)}</span>
+        <span>We saw${questionIcon(i,i!==1)}</span></div>
+        ${p.material?`<small>We put on: ${p.material}${p.sticker?' · We tried: sticker':''}</small>`:''}
+        ${p.touchTrial?"<small>Pan touching: we couldn't tell</small>":''}</div>`;
+    }
+    $('stage').innerHTML = image('bench', 'backdrop') + `<section class="claims"><h2>Our discoveries</h2><div class="claim-columns">
+      <div class="claim-group"><h3>Shaking makes sound</h3>${[0,1,2].map(evidence).join('')}</div>
+      <div class="claim-group"><h3>Sound makes things shake</h3>${[3,4].map(evidence).join('')}</div></div></section>`;
+    $('choices').innerHTML = btn('claims-sam', 'Reach Sam →', '☎ ', 'action gold') + btn('claims-bench', 'Bench', '▤ ');
+    on('claims-sam', () => setMode('sam'));
+    on('claims-bench', () => setMode('bench'));
+    $('mic-wrap').hidden = true;
+    $('notebook-tag').hidden = true;
+    $('eyebrow').textContent = 'OUR EVIDENCE';
+  }
+
+  function setMode(mode) {
+    pendingNext = null;
+    V.hush();
+    silence();
+    if (mode === 'sam' || mode === 'find' && (state.find.q !== 3 || state.find.phase !== 'test')) turnMicOff();
+    if (state.mode === 'sam' && state.sam.beats) {
+      clearTimeout(sendTimer);
+      state.sam.beats = 0;
+    }
+    state.mode = mode;
+    state.step = mode === 'sam' ? state.sam.step : 0;
+    ['bench', 'find', 'sam'].forEach(m => $('m-' + m).setAttribute('aria-pressed', m === mode));
+    $('panel').classList.remove('chart-panel');
+    $('panel').classList.remove('build-panel');
+    $('stage').classList.remove('secret-scene');
+    if (mode === 'bench') {
+      renderBench();
+      V.welcome();
+    }
+    if (mode === 'find') {
+      renderFind();
+      const f = state.find;
+      const k = f.phase === 'predict' ? 'q' + (f.q + 1) : f.phase === 'claims' ? 'toSam' : f.phase === 'result' ? 'nextHow' :
+        f.phase === 'plan' ? 't3plan' : f.q === 4 ? 't5plan' : 't' + (f.q + 1);
+      hint(k);
+      say(k);
+    }
+    if (mode === 'sam') {
+      renderSam();
+      samHint(true);
+    }
+  }
+
+  function samHint(speak = false) {
+    const s = state.sam;
+    let k = 'samWelcome';
+    if (s.done) k = 'endHow';
+    else if (s.step === 0) k = s.works ? 'nextHow' : s.part === 0 ? 'samWelcome' : s.part === 1 ? (s.cup === 'paper' ? 'cupPaper' : 'cupCan') :
+      s.part === 2 ? 'poked' : s.part === 3 ? 'threaded' : s.distance < 12 ? 'tied' : 'tight';
+    else if (s.step === 1) k = s.works ? 'nextHow' : s.fixed ? {
+      sag: 'fixSag',
+      pinch: 'fixPinch',
+      knot: 'fixKnot'
+    } [s.fault] : s.tested ? 'cantHear' : 'fixScene';
+    else if (s.step === 2) k = Object.keys(s.chart).length === 6 ? 'chartFull' : 'chartHow';
+    else if (s.step === 3) k = s.secretDone ? 'secretNext' : 'secretAsk';
+    else if (s.step === 4) k = s.locked ? 'ask-' + s.sends[s.sent] : 'codeHow';
+    hint(s.step === 2 && k === 'chartHow' ? 'chartShort' : k);
+    if (speak) {
+      if (k === 'samWelcome') V.welcome() || how(k);
+      else if (k === 'chartHow' || k === 'codeHow') how(k);
+      else say(k);
+    }
+  }
+
+  function samStep(step) {
+    silence();
+    clearTimeout(sendTimer);
+    state.sam.beats = 0;
+    state.sam.step = step;
+    state.step = step;
+    state.sam.pose = 'wave';
+    state.sam.signal = 0;
+    if (step === 3) state.sam.way = null;
+    state.sam.outcome = '';
+    state.sam.neighbors = false;
+    if (step === 1) newFault();
+    renderSam();
+    samHint(true);
+    focusControl(step === 1 ? 'talk' : step === 2 ? 'place-yard' : step === 3 ? 'secret-whisper' : 'code-0-1');
+  }
+
+  function newFault() {
+    const s = state.sam;
+    s.fault = ['sag', 'pinch', 'knot'][Math.floor(Math.random() * 3)];
+    s.tested = false;
+    s.fixed = false;
+    s.first = null;
+    s.wiggle = false;
+    s.wrongTargets = [];
+    s.works = false;
+    s.distance = s.fault === 'sag' ? 7 : 12;
+    s.pose = 'puzzled';
+    s.outcome = '';
+  }
+
+  function renderSam() {
+    const s = state.sam;
+    $('eyebrow').textContent = ['BUILD A CUP PHONE', 'FIND THE STOPPED SHAKE', 'WHERE CAN SAM HEAR?', 'TELL ONLY SAM', 'OUR DRUM CODE'][s.step];
+    $('mic-wrap').hidden = true;
+    $('notebook-tag').hidden = true;
+    $('panel').classList.toggle('chart-panel', s.step === 2 || s.step === 3);
+    $('panel').classList.toggle('build-panel', s.step === 0);
+    $('stage').classList.toggle('secret-scene', s.step === 3);
+    $('stage').innerHTML = `<div class="sam-world">${image(s.step===4||s.place==='park'&&s.step===2?'park':'yard','backdrop')}
+      <div class="step-strip">${['☎ Build','⌕ Fix it','◖ Test','☷ Secret','● Code'].map((t,i) =>
+        `<span class="${i===s.step?'current':i<s.step?'done':''}">${t}</span>`).join('')}</div>
+      <div class="world-label" id="world-label"></div>
+      <svg id="string-layer" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true"></svg>
+      ${image('wave','sam-person','Sam')}${image('paper','sam-cup','Sam’s cup')}${image('ben','ben-person','Ben')}
+      ${image(s.cup==='paper'?'handsPaper':'handsCan','our-cup','Our cup phone')}
+      ${image('bigDrum','test-device','Our drum')}
+      ${image('neighbors','neighbor-kids','Children next door')}
+      ${btn('target-sam','Sam ↔','','world-target')}${btn('target-ben','Ben ☝','','world-target')}
+      ${btn('target-knot','Sam’s knot',icon('knot'),'world-target')}
+      <div class="outcome" id="outcome" aria-live="polite"></div><i class="idle-spark"></i></div>`;
+    if (s.step === 0) {
+      $('choices').innerHTML = '<div class="row">' + btn('cup-paper', 'Paper cup', image('paper')) + btn('cup-can', 'Tin can', image('can')) +
+        '</div>' +
+        '<div class="row">' + btn('part-pencil', 'Pencil', image('pencil')) + btn('part-string', 'String', icon('string')) + '</div>' +
+        btn('part-knot', 'Knot', icon('knot')) + btn('step-back', 'Step back →', '↔ ') + btn('talk', 'Talk', '◉ ') + btn('next', 'Next →', '',
+          'action gold', 'hidden');
+      on('cup-paper', () => buildPart('paper'));
+      on('cup-can', () => buildPart('can'));
+      on('part-pencil', () => buildPart('pencil'));
+      on('part-string', () => buildPart('string'));
+      on('part-knot', () => buildPart('knot'));
+      on('step-back', stepBack);
+      on('talk', talk);
+      on('next', () => samStep(1));
+      on('target-sam', stepBack);
+      bindSamDrag();
+      updateBuild();
+    } else if (s.step === 1) {
+      $('choices').innerHTML = btn('talk', 'Talk', '◉ ') + btn('louder', 'Talk louder', '◖ ') +
+        '<div class="fix-record" id="fix-record"></div>' + btn('next', 'Next →', '', 'action gold', 'hidden');
+      on('talk', talk);
+      on('louder', () => fix('louder'));
+      on('target-sam', () => fix('sag'));
+      on('target-ben', () => fix('pinch'));
+      on('target-knot', () => fix('knot'));
+      $('stage').querySelector('.sam-person').onclick = () => fix('sag');
+      $('stage').querySelector('.ben-person').onclick = () => fix('pinch');
+      on('next', () => {
+        if (!s.works) return;
+        s.scene++;
+        if (s.scene === 3) {
+          samStep(2);
+          return;
+        }
+        newFault();
+        updateSam();
+        $('next').hidden = true;
+        hint('fixScene');
+        say('fixScene');
+        focusControl('talk');
+      });
+    } else if (s.step === 2 || s.step === 3) {
+      const chart =
+        '<table class="chart" aria-label="Where can Sam hear us?"><thead><tr><th></th><th>◌<br>Whisper</th><th>☎<br>Cup phone</th><th>●<br>Drum</th></tr></thead><tbody>' +
+        ['yard', 'park'].map(p => `<tr id="row-${p}"><th>${p==='yard'?'⌂ Yard':'♧ Park'}</th>` + ['whisper', 'phone', 'drum'].map(w =>
+          `<td id="cell-${p}-${w}" aria-label="${p}, ${w}, not tested">?</td>`).join('') + '</tr>').join('') + '</tbody></table>';
+      $('choices').innerHTML = chart;
+      if (s.step === 2) {
+        $('choices').insertAdjacentHTML('beforeend', '<div class="row chart-select">' + btn('place-yard', 'Yard', '⌂ ') + btn('place-park', 'Park',
+            '♧ ') + '</div>' +
+          '<div class="row chart-select">' + btn('test-whisper', 'Whisper', '◌ ') + btn('test-phone', 'Cup phone', image('paper')) + btn(
+            'test-drum', 'Drum', image('bigDrum')) + '</div>' +
+          btn('next', 'Next →', '', 'action gold', Object.keys(s.chart).length < 6 ? 'hidden' : ''));
+        ['yard', 'park'].forEach(p => on('place-' + p, () => {
+          s.place = p;
+          s.pose = 'wave';
+          s.way = null;
+          s.signal = 0;
+          s.neighbors = false;
+          s.outcome = '';
+          updateSam();
+          hint('choosePlace');
+          how('choosePlace');
+        }));
+        ['whisper', 'phone', 'drum'].forEach(w => on('test-' + w, () => chartTest(w)));
+        on('next', () => {
+          if (Object.keys(s.chart).length === 6) samStep(3);
+        });
+      } else {
+        $('stage').insertAdjacentHTML('beforeend', '<div class="secret-choices">' +
+          btn('secret-whisper', 'Whisper', '◌ ') + btn('secret-phone', 'Cup phone', image('paper')) +
+          btn('secret-drum', 'Drum', image('bigDrum')) + '</div>');
+        $('choices').insertAdjacentHTML('beforeend', btn('next', 'Next →', '', 'action gold', s.secretDone ? '' : 'hidden'));
+        ['whisper', 'phone', 'drum'].forEach(w => on('secret-' + w, () => secret(w)));
+        on('next', () => {
+          if (s.secretDone) samStep(4);
+        });
+      }
+    } else if (s.step === 4) renderCode();
+    updateSam();
+    if (s.done) renderSamEnd();
+  }
+
+  function buildPart(part) {
+    const s = state.sam;
+    const required = [
+      ['paper', 'can'],
+      ['pencil'],
+      ['string'],
+      ['knot']
+    ][s.part];
+    if (!required?.includes(part)) return;
+    if (s.part === 0) s.cup = part;
+    s.part++;
+    s.pose = 'hear';
+    s.outcome = '';
+    const key = s.part === 1 ? (s.cup === 'paper' ? 'cupPaper' : 'cupCan') : s.part === 2 ? 'poked' : s.part === 3 ? 'threaded' : 'tied';
+    hint(key);
+    say(key, {now: true});
+    updateBuild();
+    updateSam();
+    focusControl(['', 'part-pencil', 'part-string', 'part-knot', 'step-back'][s.part]);
+  }
+
+  function updateBuild() {
+    const s = state.sam;
+    ['cup-paper', 'cup-can', 'part-pencil', 'part-string', 'part-knot', 'step-back'].forEach((id, i) => {
+      const e = $(id);
+      if (!e) return;
+      const part = i < 2 ? 0 : i - 1;
+      e.disabled = part !== s.part && !(part === 4 && s.part >= 4);
+      e.classList.toggle('gold', part === s.part);
+    });
+    $('next').hidden = !s.works;
+  }
+
+  function stepBack() {
+    const s = state.sam;
+    if (s.step !== 0 || s.part < 4) return;
+    if (s.distance >= 12) {
+      say('stepMax');
+      return;
+    }
+    s.distance = Math.min(12, s.distance + 1);
+    s.pose = 'walk';
+    updateSam();
+    if (s.distance === 12) {
+      hint('tight');
+      say('tight');
+    }
+    const distance = s.distance;
+    setTimeout(() => {
+      if (state.mode === 'sam' && s.step === 0 && s.distance === distance) {
+        s.pose = 'hear';
+        updateSam();
+      }
+    }, 800);
+  }
+
+  function bindSamDrag() {
+    [$('target-sam'), $('stage').querySelector('.sam-person')].forEach(e => {
+      let x = null,
+        last = null;
+      e.style.touchAction = 'none';
+      e.onpointerdown = ev => {
+        x = ev.clientX;
+        last = ev.clientX;
+        e.setPointerCapture(ev.pointerId);
+      };
+      e.onpointermove = ev => {
+        if (x === null) return;
+        const step = Math.max(8, $('stage').clientWidth * .035);
+        if (ev.clientX - last > step) {
+          stepBack();
+          last = ev.clientX;
+        }
+      };
+      e.onpointerup = e.onpointercancel = () => {
+        x = null;
+      };
+    });
+  }
+
+  function talk() {
+    const s = state.sam;
+    s.signal = performance.now() + 1800;
+    if (Curio.sound) Curio.tone(220, .18, .07);
+    if (s.step === 0) {
+      if (s.part < 4) {
+        s.pose = 'puzzled';
+        s.outcome = '✕ Not heard';
+        const k = s.part === 3 ? 'talkLoose' : s.part === 0 ? 'samWelcome' : s.part === 1 ? (s.cup === 'paper' ? 'cupPaper' : 'cupCan') : 'poked';
+        hint(k);
+        if (k === 'samWelcome') how(k);
+        else say(k);
+      } else if (s.distance < 12) {
+        s.pose = 'puzzled';
+        s.outcome = '✕ Not heard';
+        hint('talkSlack');
+        say('talkSlack');
+      } else {
+        s.pose = 'hear';
+        s.works = true;
+        s.outcome = 'Only Sam hears!';
+        hint('Tap Next.');
+        say('heard');
+        how('nextHow');
+        $('next').hidden = false;
+        setTimeout(() => {
+          if (state.mode === 'sam' && s.step === 0 && s.works) {
+            s.pose = 'cheer';
+            updateSam();
+          }
+        }, 1400);
+      }
+    } else if (s.step === 1) {
+      if (!s.fixed) {
+        s.tested = true;
+        s.pose = 'puzzled';
+        s.outcome = '✕ Not heard';
+        hint('cantHear');
+        say('cantHear');
+      } else {
+        s.works = true;
+        s.pose = 'hear';
+        s.outcome = 'Sam heard you!';
+        hint('Tap Next.');
+        say('heardFix');
+        if (!s.records[s.scene]) s.records[s.scene] = {
+          fault: s.fault,
+          found: s.first === s.fault
+        };
+        if (s.scene === 2) say('fixDone');
+        $('next').hidden = false;
+      }
+    }
+    updateSam();
+  }
+
+  function fix(target) {
+    const s = state.sam;
+    if (s.step !== 1 || !s.tested || s.fixed) return;
+    Curio.tone(310, .04, .025, 'triangle');
+    if (s.first === null) s.first = target;
+    if (target === s.fault) {
+      const apply = () => {
+        if (state.mode !== 'sam' || s.step !== 1 || s.fixed) return;
+        s.fixed = true;
+        s.distance = 12;
+        s.pose = 'hear';
+        s.outcome = 'The string is free to shake.';
+        const key = {sag: 'fixSag', pinch: 'fixPinch', knot: 'fixKnot'}[target];
+        hint(key);
+        say(key);
+        updateSam();
+      };
+      const explaining = [L.fixScene, L.cantHear].includes(V.playing) ||
+        V.queue.some(line => [L.fixScene, L.cantHear].includes(line.text));
+      if (explaining && Curio.sound) {
+        const id = {sag: 'target-sam', pinch: 'target-ben', knot: 'target-knot'}[target];
+        afterNarration($(id), apply);
+      } else apply();
+    } else {
+      s.wiggle = true;
+      s.signal = performance.now() + 2500;
+      s.pose = 'puzzled';
+      s.outcome = "Sam's string showed us";
+      if (target === 'louder' || !s.wrongTargets.includes(target)) {
+        s.wrongTargets.push(target);
+        say([target === 'louder' ? 'louder' : {
+          sag: 'notSam',
+          pinch: 'notBen',
+          knot: 'notKnot'
+        } [target], 'lookWiggle']);
+      }
+      hint('lookWiggle');
+    }
+    updateSam();
+  }
+
+  function chartTest(way) {
+    const s = state.sam;
+    if (s.step !== 2) return;
+    s.way = way;
+    s.chart[s.place + '-' + way] = true;
+    s.neighbors = way === 'drum' && s.place === 'yard';
+    const heard = way === 'drum' || way === 'phone' && s.place === 'yard';
+    s.pose = heard ? 'hear' : 'puzzled';
+    s.signal = performance.now() + 1800;
+    s.outcome = way === 'phone' && s.place === 'park' ? 'String ends here. Too far!' : heard ? (s.neighbors ? 'Sam + next door hear!' :
+      'Sam hears!') : '✕ Not heard';
+    const key = {
+      whisper: 'wh',
+      phone: 'cup',
+      drum: 'drum'
+    } [way] + (s.place === 'yard' ? 'Yard' : 'Park');
+    if (way === 'drum') playSound('drum', 1);
+    else if (Curio.sound) Curio.tone(way === 'phone' ? 220 : 350, .12, .03);
+    say(key, {now: true});
+    hint('Tap another place or way.');
+    updateSam();
+    if (Object.keys(s.chart).length === 6) {
+      hint('chartFull');
+      say('chartFull');
+      $('next').hidden = false;
+    }
+  }
+
+  function secret(way) {
+    const s = state.sam;
+    if (s.step !== 3 || pendingNext) return;
+    if (s.secret === null) s.secret = way;
+    afterNarration($('secret-' + way), () => {
+      if (state.mode !== 'sam' || s.step !== 3) return;
+      s.way = way;
+      s.neighbors = way === 'drum';
+      s.pose = way === 'whisper' ? 'puzzled' : 'hear';
+      s.signal = performance.now() + 1800;
+      const key = way === 'phone' ? 'secretCup' : way === 'drum' ? 'secretDrum' : 'secretWhisper';
+      s.outcome = way === 'phone' ? 'Only Sam heard the secret!' : way === 'drum' ? 'Everyone heard the secret!' : '✕ Sam did not hear';
+      if (way === 'drum') playSound('drum', 1);
+      say(key);
+      hint(way === 'phone' ? 'secretNext' : key);
+      if (way === 'phone') {
+        s.secretDone = true;
+        $('next').hidden = false;
+      }
+      updateSam();
+    });
+  }
+
+  function renderCode() {
+    const s = state.sam;
+    $('stage').insertAdjacentHTML('beforeend', '<div class="code-card">' + messages.map((m, i) =>
+      `<div class="message-code">${image(m)}<b>${['Lunch','Play','Home'][i]}</b><div class="dot-tiles">` + [1, 2, 3, 4].map(k => btn(
+        `code-${i}-${k}`, '●'.repeat(k), '', '',
+        `aria-label="${['Lunch','Play','Home'][i]}, ${countWords[k]} beats" aria-pressed="${s.code[i]===k}"`)).join('') +
+      '</div></div>').join('') + '</div><div id="message-ask" hidden></div>' + btn('send-drum', '<span>Tap</span>', image('bigDrum'), '',
+      'hidden'));
+    $('choices').innerHTML = '<div class="beat-count" id="beat-count" aria-label="Your beats"></div>' + btn('next', 'Next →', '', 'action gold',
+      'hidden');
+    messages.forEach((m, i) => [1, 2, 3, 4].forEach(k => on(`code-${i}-${k}`, () => chooseCode(i, k))));
+    on('send-drum', beat);
+    on('next', renderSamEnd);
+    updateCode();
+  }
+
+  function chooseCode(i, k) {
+    const s = state.sam;
+    if (s.locked || s.code[i] === k) return;
+    s.code[i] = k;
+    updateCode();
+    if (s.code.every(Boolean)) {
+      if (new Set(s.code).size !== 3) {
+        hint('codeSame');
+        say('codeSame');
+      } else {
+        s.sends = shuffle(messages);
+        hint('ask-' + s.sends[0]);
+        say(['codeReady', 'ask-' + s.sends[0]]);
+        $('send-drum').hidden = false;
+        $('message-ask').hidden = false;
+        updateCode();
+      }
+    }
+  }
+
+  function updateCode() {
+    const s = state.sam;
+    messages.forEach((m, i) => [1, 2, 3, 4].forEach(k => {
+      const b = $(`code-${i}-${k}`);
+      if (!b) return;
+      b.setAttribute('aria-pressed', s.code[i] === k);
+      b.disabled = s.locked;
+    }));
+    const ready = s.code.every(Boolean) && new Set(s.code).size === 3 && s.sends.length === 3;
+    if ($('send-drum')) $('send-drum').hidden = !ready || s.done;
+    if ($('message-ask')) {
+      $('message-ask').hidden = !ready || s.done;
+      if (ready && !s.done) $('message-ask').innerHTML = image(s.sends[s.sent] || s.sends[0]) + ['Lunch', 'Play', 'Home'][messages.indexOf(s.sends[s
+        .sent] || s.sends[0])];
+    }
+  }
+
+  function beat() {
+    const s = state.sam;
+    if (s.step !== 4 || s.done || !s.code.every(Boolean) || new Set(s.code).size !== 3) return;
+    s.locked = true;
+    s.beats++;
+    s.signal = performance.now() + 1000;
+    playSound('drum', 1);
+    $('beat-count').innerHTML = Array.from({
+      length: Math.min(12, s.beats)
+    }, () => '<i></i>').join('');
+    $('beat-count').setAttribute('aria-label', s.beats + ' beats');
+    updateCode();
+    clearTimeout(sendTimer);
+    sendTimer = setTimeout(finishSend, 1500);
+  }
+
+  function finishSend() {
+    const s = state.sam;
+    if (state.mode !== 'sam' || s.step !== 4 || s.done) return;
+    const count = s.beats;
+    s.beats = 0;
+    const actual = s.code.indexOf(count),
+      target = messages.indexOf(s.sends[s.sent]);
+    if (actual < 0 || count > 4) {
+      s.pose = 'shrug';
+      s.outcome = 'That beat count is not in our code.';
+      say(count <= 10 ? 'none-' + count : 'noneMany');
+      hint('ask-' + s.sends[s.sent]);
+    } else {
+      s.pose = ['run', 'kick', 'walk'][actual];
+      s.outcome = 'Sam ' + actions[actual] + '.';
+      if (actual === target) {
+        say(`right-${count}-${messages[actual]}`);
+        s.sent++;
+        if (s.sent === 3) {
+          s.done = true;
+          say('samEnd');
+          hint('Tap Next.');
+          $('next').hidden = false;
+        } else {
+          say('ask-' + s.sends[s.sent]);
+          hint('ask-' + s.sends[s.sent]);
+        }
+      } else {
+        say(`wrong-${count}-${messages[actual]}`);
+        hint('ask-' + s.sends[s.sent]);
+      }
+    }
+    updateSam();
+    updateCode();
+  }
+
+  function renderSamEnd() {
+    const s = state.sam;
+    if (!s.done) return;
+    const focusId = document.activeElement?.id;
+    const found = s.records.filter(r => r.found).length;
+    $('stage').querySelector('.code-card')?.setAttribute('hidden', '');
+    $('outcome').hidden = true;
+    $('stage').insertAdjacentHTML('beforeend', `<section class="end-card"><h2>Our sound reached Sam!</h2>
+      <div class="end-pictures">${messages.map(m => image(m)).join('')}</div>
+      <p>Three messages. Our own drum code.</p><p>${s.code.map((k,i) => ['Lunch','Play','Home'][i]+': '+'●'.repeat(k)).join(' · ')}</p>
+      <p>We found ${found} ${found===1?'fix':'fixes'} on our first try.</p>
+      <p>${s.secret==='phone'?'Our first secret choice kept it secret.':'We tested a new way to keep a secret.'}</p></section>`);
+    $('choices').innerHTML = btn('end-bench', 'Bench', '▤ ', 'action gold') + btn('end-find', 'Find out', '⌕ ');
+    on('end-bench', () => setMode('bench'));
+    on('end-find', () => setMode('find'));
+    hint('endHow');
+    say('endHow');
+    if (focusId === 'next') focusControl('end-bench');
+  }
+
+  function updateSam() {
+    const s = state.sam;
+    if (!$('string-layer')) return;
+    const world = $('stage').querySelector('.sam-world');
+    world.querySelector('.sam-cup').hidden = true;
+    world.querySelector('.backdrop').src = A[s.step === 4 || s.step === 2 && s.place === 'park' ? 'park' : 'yard'];
+    const sam = world.querySelector('.sam-person');
+    sam.src = A[s.pose] || A.wave;
+    const far = s.step === 4 || s.step === 2 && s.place === 'park';
+    sam.style.height = far ? '25%' : '48%';
+    sam.style.width = far ? '10%' : '18%';
+    sam.style.pointerEvents = s.step === 1 || s.step === 0 && s.part >= 4 ? 'auto' : 'none';
+    sam.style.cursor = s.step === 1 ? 'pointer' : 'grab';
+    world.querySelector('.ben-person').style.pointerEvents = s.step === 1 ? 'auto' : 'none';
+    world.querySelector('.ben-person').style.cursor = 'pointer';
+    sam.style.left = s.step === 0 ? (42 + s.distance * 2.4) + '%' : s.step === 1 && s.fault === 'sag' && !s.fixed ? '57%' : '77%';
+    sam.style.bottom = far ? '30%' : '16%';
+    if (s.step === 4 && ['run', 'walk', 'kick'].includes(s.pose)) sam.style.left = s.pose === 'kick' ? '76%' : '86%';
+    world.querySelector('.ben-person').hidden = s.step !== 1;
+    world.querySelector('.ben-person').src = A[s.fault === 'pinch' && !s.fixed ? 'benPinch' : 'ben'];
+    world.querySelector('.our-cup').hidden = s.step === 4 || s.step === 0 && s.part === 0 || (s.step === 2 || s.step === 3) && s.way !== 'phone';
+    world.querySelector('.test-device').hidden = !((s.step === 2 || s.step === 3) && s.way === 'drum');
+    world.querySelector('.our-cup').src = A[s.cup === 'paper' ? 'handsPaper' : 'handsCan'];
+    world.querySelector('.neighbor-kids').hidden = !s.neighbors;
+    $('target-sam').hidden = !(s.step === 1 || s.step === 0 && s.part >= 4);
+    $('target-ben').hidden = s.step !== 1;
+    $('target-knot').hidden = s.step !== 1;
+    $('target-sam').style.left = s.step === 0 ? (42 + s.distance * 2.4) + '%' : s.fault === 'sag' && !s.fixed ? '57%' : '77%';
+    $('target-knot').style.left = s.fault === 'sag' && !s.fixed ? '57%' : '77%';
+    $('world-label').textContent = s.step === 0 ? 'Build it, then talk.' : s.step === 1 ? `Fix ${s.scene+1} of 3` :
+      s.step === 2 ? (s.place === 'yard' ? 'Across the yard' : 'Across the park') : s.step === 3 ? 'A secret for Sam' : 'Across the park';
+    $('world-label').hidden = s.step === 4;
+    let hearing = null;
+    if (s.outcome && s.step < 2) {
+      if (s.works) hearing = true;
+      else if (s.outcome === '✕ Not heard' || s.step === 1 && s.tested && !s.fixed) hearing = false;
+    } else if (s.outcome && s.step === 2) {
+      hearing = s.way === 'drum' || s.way === 'phone' && s.place === 'yard';
+    } else if (s.outcome && s.step === 3) {
+      hearing = s.way !== 'whisper';
+    }
+    $('outcome').innerHTML = s.outcome ? (hearing === null ? '' : icon('ear', hearing)) + s.outcome : '';
+    if ($('fix-record')) $('fix-record').innerHTML = s.records.map((r, i) =>
+        `<span>${i+1}. ${r.found?'We found it':"Sam's string showed us"}</span>`).join('') +
+      (s.first !== null && !s.records[s.scene] ? `<span>${s.scene+1}. ${s.first===s.fault?'We found it':"Sam's string showed us"}</span>` : '');
+    if (s.step === 2 || s.step === 3) {
+      ['yard', 'park'].forEach(p => {
+        $('row-' + p).classList.toggle('active-row', s.step === 2 && p === s.place);
+        ['whisper', 'phone', 'drum'].forEach(w => {
+          const cell = $(`cell-${p}-${w}`),
+            done = s.chart[p + '-' + w];
+          const heard = w === 'drum' || w === 'phone' && p === 'yard';
+          cell.innerHTML = done ? (w === 'phone' && p === 'park' ? '⌁✕' : icon('ear', heard) + (w === 'drum' && p === 'yard' ? '⁺' : '')) :
+            '?';
+          cell.setAttribute('aria-label', p + ', ' + w + ', ' + (done ? (heard ? 'heard' : 'not heard') : 'not tested'));
+        });
+      });
+      ['yard', 'park'].forEach(p => $('place-' + p)?.setAttribute('aria-pressed', p === s.place));
+    }
+    drawString(performance.now());
+  }
+
+  function drawString(t) {
+    const s = state.sam,
+      svg = $('string-layer');
+    if (!svg) return;
+    if (s.step === 4 || (s.step === 2 || s.step === 3) && s.way !== 'phone') {
+      const loud = s.step === 4 || s.way === 'drum';
+      svg.innerHTML = s.signal > t ? (loud ?
+        '<g fill="none" stroke="#1d6f7a" stroke-width="6" opacity=".8"><path d="M260 360q90 80 0 160M360 300q160 140 0 280M500 260q210 180 0 360"/></g>' :
+        '<path d="M180 460q25 30 0 60m20-75q40 45 0 90" fill="none" stroke="#1d6f7a" stroke-width="5"/>') : '';
+      return;
+    }
+    if (s.step === 0 && s.part < 3) {
+      svg.innerHTML = '';
+      return;
+    }
+    const stageBox = svg.getBoundingClientRect();
+    if (!stageBox.width || !stageBox.height) return;
+    // Object-fit contain leaves real letterboxing in a tall window. Anchor to
+    // the painted figure, including its bottom alignment, rather than to percentages.
+    const painted = (selector, bottom = false) => {
+      const img = $('stage').querySelector(selector);
+      const box = img.getBoundingClientRect();
+      const ratio = (img.naturalWidth || 1) / (img.naturalHeight || 1);
+      const width = Math.min(box.width, box.height * ratio);
+      const height = width / ratio;
+      return {
+        x: (box.left - stageBox.left + (box.width - width) / 2) * 1000 / stageBox.width,
+        y: (box.top - stageBox.top + (box.height - height) * (bottom ? 1 : .5)) * 650 / stageBox.height,
+        w: width * 1000 / stageBox.width,
+        h: height * 650 / stageBox.height
+      };
+    };
+    const ours = painted('.our-cup');
+    const sam = painted('.sam-person', true);
+    const ben = painted('.ben-person', true);
+    const samCup = $('stage').querySelector('.sam-cup');
+    const builtInCup = s.pose === 'hear';
+    const cupX = sam.x + sam.w * (builtInCup ? .14 : s.pose === 'cheer' ? .07 : .17);
+    const cupY = sam.y + sam.h * (builtInCup ? .20 : s.pose === 'cheer' ? .10 : .53);
+    samCup.hidden = builtInCup;
+    samCup.style.left = (cupX - sam.w * .09) / 10 + '%';
+    samCup.style.top = (cupY - sam.h * .06) / 6.5 + '%';
+    samCup.style.width = sam.w * .19 / 10 + '%';
+    samCup.style.height = sam.h * .12 / 6.5 + '%';
+    const x1 = ours.x + ours.w * .52;
+    const y1 = ours.y + ours.h * .48;
+    const x2 = cupX;
+    const y2 = cupY;
+    const slack = s.step === 0 && s.distance < 12 || s.step === 1 && s.fault === 'sag' && !s.fixed;
+    const untied = s.step === 1 && s.fault === 'knot' && !s.fixed;
+    const parkEnd = s.step === 2 && s.place === 'park';
+    const endX = parkEnd ? 440 : x2;
+    const endY = untied ? Math.min(585, sam.y + sam.h) : parkEnd ? 560 : y2;
+    const pinch = s.step === 1 && s.fault === 'pinch' && !s.fixed;
+    const handX = ben.x + ben.w * .70;
+    const handY = ben.y + ben.h * .34;
+    const bendY = Math.min(630, Math.max(y1, endY) + 140);
+    const path = slack || untied ? `M${x1} ${y1}Q${(x1+endX)/2} ${bendY} ${endX} ${endY}` :
+      pinch ? `M${x1} ${y1}L${handX} ${handY}L${endX} ${endY}` : `M${x1} ${y1}L${endX} ${endY}`;
+    let content = `<path d="${path}" fill="none" stroke="#fff9e7" stroke-width="8"/>
+      <path d="${path}" fill="none" stroke="#86502a" stroke-width="3"/>`;
+    content += `<circle cx="${x1}" cy="${y1}" r="9" fill="#e3bc76" stroke="#5f351d" stroke-width="3"/>`;
+    content += `<path d="M${x1-7} ${y1}q7-12 14 0q-7 12-14 0" fill="none" stroke="#5f351d" stroke-width="3"/>`;
+    if (untied || parkEnd) {
+      content += `<path d="M${endX} ${endY}q25 14 31 0q-2-11-16-6q-9 6 3 12m11-9 8 8m-6-12 11 4"
+        fill="none" stroke="#86502a" stroke-width="3" stroke-linecap="round"/>`;
+    } else {
+      content += `<path d="M${endX-8} ${endY}q8-13 16 0q-8 13-16 0" fill="#e3bc76" stroke="#5f351d" stroke-width="3"/>`;
+    }
+    if (s.step === 0 && s.part === 3) content +=
+      '<circle cx="170" cy="490" r="17" fill="none" stroke="#b23a2a" stroke-dasharray="5 4" stroke-width="3"/>';
+    const fault = s.step === 1 && !s.fixed;
+    const limit = fault ? (s.fault === 'pinch' ? .5 : s.fault === 'sag' ? .45 : 1) : 1;
+    const point = progress => {
+      if (pinch) {
+        const p = Math.min(1, progress / .5);
+        return {x: x1 + (handX - x1) * p, y: y1 + (handY - y1) * p};
+      }
+      return {
+        x: x1 + (endX - x1) * progress,
+        y: slack || untied ? (1 - progress) ** 2 * y1 +
+          2 * (1 - progress) * progress * bendY + progress ** 2 * endY : y1 + (endY - y1) * progress
+      };
+    };
+    if (s.signal > t) {
+      const progress = Curio.reduce ? limit : Math.min(limit, ((t % 1800) / 1800) * 1.5);
+      const {x, y} = point(progress);
+      content += `<path d="M${x-20} ${y}q7-17 14 0t14 0t14 0" fill="none" stroke="#1d6f7a" stroke-width="7"/>`;
+    }
+    // A missed first attempt leaves inspectable evidence, including with Motion off.
+    if (s.wiggle && fault) {
+      const {x, y} = point(limit);
+      content += `<circle cx="${x}" cy="${y}" r="27" fill="#fff8" stroke="#b23a2a" stroke-width="5"/>`;
+      content += `<path d="M${x-17} ${y}q6-15 12 0t12 0" fill="none" stroke="#1d6f7a" stroke-width="5"/>`;
+    }
+    svg.dataset.endpoint = JSON.stringify({x: endX, y: endY, cupX, cupY, loose: untied || parkEnd});
+    svg.innerHTML = content;
+  }
+
+  function drawAll(t) {
+    document.querySelectorAll('canvas[data-kind]').forEach(canvas => {
+      const rect = canvas.getBoundingClientRect();
+      const w = Math.max(1, Math.round(rect.width)),
+        h = Math.max(1, Math.round(rect.height));
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
+      }
+      const c = canvas.getContext('2d');
+      c.clearRect(0, 0, w, h);
+      const k = canvas.dataset.kind;
+
+      function paintedBounds(selector) {
+        const img = canvas.parentElement.querySelector(selector),
+          r = img.getBoundingClientRect();
+        const ratio = (img.naturalWidth || 1) / (img.naturalHeight || 1);
+        const iw = Math.min(r.width, r.height * ratio),
+          ih = iw / ratio;
+        return {
+          x: r.left - rect.left + (r.width - iw) / 2,
+          y: r.top - rect.top + (r.height - ih) / 2,
+          w: iw,
+          h: ih
+        };
+      }
+      let anchor = {
+        x: w * .5,
+        y: h * .4
+      };
+      const live = (active[k] > t || k === 'hum' && state.micLevel > .02) &&
+        (state.mode === 'bench' || state.mode === 'find' && ['test', 'result'].includes(state.find.phase));
+      const f = state.find;
+      if (k === 'band') {
+        const obj = canvas.parentElement.querySelector('.object');
+        const ih = Math.min(h * .97, w * .8 * (obj.naturalHeight || 507) / (obj.naturalWidth || 520));
+        const it = h * .01 + (h * .97 - ih) / 2;
+        anchor = {
+          x: w * .5,
+          y: it + ih * .29
+        };
+        [0, 1, 2].forEach(i => {
+          const x = w * .5 + (i - 1) * ih * .065,
+            y0 = it + ih * .12,
+            y1 = it + ih * .46;
+          c.lineCap = 'round';
+          if (live && i === state.lastBand) {
+            c.strokeStyle = '#1d6f7a44';
+            c.lineWidth = 6 * state.pull;
+            c.beginPath();
+            c.moveTo(x, y0);
+            c.bezierCurveTo(x - 6 * state.pull, y0 + h * .3, x + 6 * state.pull, y1 - h * .3, x, y1);
+            c.stroke();
+          }
+          c.strokeStyle = ['#f0ba4e', '#e09264', '#b07150'][i];
+          c.lineWidth = 3 + i * 2;
+          c.beginPath();
+          c.moveTo(x, y0);
+          const shake = live && i === state.lastBand ? (Curio.reduce ? 6 : Math.sin(t * .06) * 6) * state.pull : 0;
+          c.bezierCurveTo(x + shake, y0 + h * .3, x - shake, y1 - h * .3, x, y1);
+          c.stroke();
+          c.strokeStyle = '#fff7b5';
+          c.lineWidth = 1;
+          c.stroke();
+        });
+      } else {
+        const b = paintedBounds(k === 'pan' ? '.bowl' : '.object');
+        const x = b.x + b.w * (k === 'hum' ? .77 : .5);
+        const y = b.y + b.h * (k === 'hum' ? .045 : .16);
+        const rx = b.w * (k === 'hum' ? .19 : .44);
+        const ry = b.h * (k === 'hum' ? .045 : .10);
+        anchor = {
+          x: k === 'pan' ? w * .23 : x,
+          y
+        };
+        c.fillStyle = k === 'drum' ? '#fff2d6' : '#e4f6f070';
+        c.strokeStyle = '#c6aa72';
+        c.lineWidth = 2;
+        c.beginPath();
+        c.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2);
+        c.fill();
+        c.stroke();
+        const material = state.mode === 'find' && f.q === 2 ? (f.material || (f.sticker ? 'sticker' : 'rice')) : 'rice';
+        if (material === 'sticker' && k === 'drum') {
+          c.fillStyle = '#efb12f';
+          c.font = Math.max(15, h * .21) + 'px serif';
+          c.fillText('★', x - 8, y + 8);
+        } else {
+          for (let i = 0; i < 19; i++) {
+            const px = x + Math.sin(i * 7.3) * rx * .8,
+              py = y + Math.cos(i * 4.1) * ry * .6;
+            let jump = live ? (Curio.reduce ? .6 : Math.abs(Math.sin(t * .018 + i * 1.7))) * amplitudes[k] * Math.min(1, h / 230) : 0;
+            c.save();
+            c.translate(px, py - jump);
+            c.rotate(i * 1.2);
+            c.fillStyle = k === 'hum' ? ['#bd5272', '#e8bc32', '#2d8b87'][i % 3] : material === 'sand' ? '#bf8e36' : '#fff8e8';
+            c.strokeStyle = k === 'hum' ? '#7e4747' : '#ad936b';
+            c.lineWidth = .7;
+            c.beginPath();
+            c.ellipse(0, 0, material === 'sand' ? 1.3 : Math.max(2, w * .008), 1.4, 0, 0, Math.PI * 2);
+            c.fill();
+            c.stroke();
+            c.restore();
+          }
+        }
+        if (k === 'pan' && state.mode === 'find' && f.gap) {
+          c.strokeStyle = '#1d6f7a';
+          c.lineWidth = 2;
+          c.setLineDash([5, 4]);
+          c.strokeRect(w * .43, h * .48, w * .12, h * .34);
+          c.setLineDash([]);
+        }
+      }
+      if (live) {
+        c.lineWidth = Math.max(2, w * .008);
+        c.strokeStyle = '#1d6f7a';
+        const cx = anchor.x,
+          cy = anchor.y;
+        for (let i = 0; i < 3; i++) {
+          const r = w * (.14 + i * .065) + (Curio.reduce ? 0 : (t % 700) / 700 * w * .035);
+          c.globalAlpha = 1 - i * .16;
+          c.beginPath();
+          c.arc(cx, cy, r, -.7, .7);
+          c.stroke();
+        }
+        c.globalAlpha = 1;
+      }
+      $('station-' + k)?.classList.toggle('glow', live);
+    });
+  }
+
+  function tick(t) {
+    const dt = Math.min(60, t - lastTime);
+    lastTime = t;
+    if (state.mic && analyser) {
+      analyser.getFloatTimeDomainData(micData);
+      const rms = Math.sqrt(micData.reduce((a, b) => a + b * b, 0) / micData.length);
+      state.micLevel += (rms - state.micLevel) * Math.min(1, dt / 100);
+      if (!allowed('hum')) {
+        state.micLevel = 0;
+        micAbove = 0;
+      } else {
+        if (state.micLevel > .06) micAbove += dt;
+        else micAbove = 0;
+        if (state.mode === 'find' && state.find.q === 3 && micAbove >= 1000 && state.find.phase === 'test') completeFind();
+        if (state.mode === 'bench' && state.micLevel > .06) {
+          how('humHow');
+          firstStation('hum');
+        }
+        amplitudes.hum = state.humHeld ? 14 : state.micLevel < .06 ? 2 : Math.min(20, 6 + (state.micLevel - .06) * 160);
+      }
+    }
+    if (t - lastDraw >= 32) {
+      drawAll(t);
+      if (state.mode === 'sam') drawString(t);
+      lastDraw = t;
+    }
+    requestAnimationFrame(tick);
+  }
+  let lastDraw = 0;
+  Curio.init({
+    clips: "voice:*",
+    rate: .9
+  });
+  Curio.onSound(on => {
+    if (!on)
+      for (const k in sounding) stopSound(k);
+  });
+  Curio.onMotion(() => {
+    drawAll(performance.now());
+    if (state.mode === 'sam') updateSam();
+  });
+  ['bench', 'find', 'sam'].forEach(m => on('m-' + m, () => {
+    if (state.mode !== m) setMode(m);
+  }));
+  on('mic', toggleMic);
+  document.addEventListener('click', event => {
+    const button = event.target.closest('button');
+    if (button?.matches('.action,.card,.world-target,.dot-tiles button') && !button.closest('.station') && !button.disabled) {
+      Curio.tone(460, .035, .018, 'triangle');
+    }
+  });
+  addEventListener('blur', stopHum);
+  addEventListener('pagehide', () => {
+    silence();
+    turnMicOff();
+  });
+  window.__tool = {
+    state,
+    setMode,
+    allLines: V.allLines,
+    vlog: V.log,
+    get vq() {
+      return V.queue;
+    }
+  };
+  renderBench();
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

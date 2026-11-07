@@ -1,0 +1,180 @@
+{
+  "states": [
+    {
+      "name": "solo",
+      "steps": [
+        {
+          "click": "#lantern-m"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#hint",
+        "#trace",
+        "#free"
+      ]
+    },
+    {
+      "name": "vowel-glows",
+      "steps": [
+        {
+          "click": "[data-select-letter=\"a\"]"
+        },
+        {
+          "click": "#flames"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#hint"
+      ]
+    },
+    {
+      "name": "trace",
+      "steps": [
+        {
+          "click": "#lantern-m"
+        },
+        {
+          "click": "#trace"
+        }
+      ],
+      "keep": [
+        "#slate",
+        "#back-lantern",
+        "#next",
+        "#show"
+      ]
+    },
+    {
+      "name": "independent-writing",
+      "steps": [
+        {
+          "click": "#lantern-m"
+        },
+        {
+          "click": "#free"
+        }
+      ],
+      "keep": [
+        "#slate",
+        "#back-lantern",
+        "#next"
+      ]
+    },
+    {
+      "name": "first-shop-sign",
+      "steps": [
+        {
+          "click": "#m-book"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#actions",
+        "#tray"
+      ]
+    },
+    {
+      "name": "twins",
+      "steps": [
+        {
+          "click": "#m-book"
+        },
+        {
+          "click": "#book-twins"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#actions"
+      ]
+    },
+    {
+      "name": "vowel-boards",
+      "steps": [
+        {
+          "click": "#m-book"
+        },
+        {
+          "click": "#book-vowels"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#actions"
+      ]
+    },
+    {
+      "name": "banners",
+      "steps": [
+        {
+          "click": "#m-book"
+        },
+        {
+          "click": "#book-banners"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#actions"
+      ]
+    },
+    {
+      "name": "empty-street",
+      "steps": [
+        {
+          "click": "#m-street"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#read-street",
+        "#hint"
+      ]
+    },
+    {
+      "name": "teacher",
+      "steps": [
+        {
+          "click": "#teacher"
+        }
+      ],
+      "keep": [
+        "#teacher-dialog",
+        "#close-teacher"
+      ]
+    },
+    {
+      "name": "manual",
+      "steps": [
+        {
+          "click": "#manual"
+        }
+      ],
+      "keep": [
+        "#manual-dialog",
+        "#close-manual"
+      ]
+    },
+    {
+      "name": "demo-village",
+      "steps": [
+        {
+          "click": "#teacher"
+        },
+        {
+          "js": "document.getElementById('wake-all').scrollIntoView({block:'center'})"
+        },
+        {
+          "click": "#wake-all"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#read-street",
+        "#hint"
+      ]
+    }
+  ]
+}

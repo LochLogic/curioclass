@@ -1,0 +1,284 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "six-selected",
+      "steps": [
+        {
+          "click": "#m-select"
+        },
+        {
+          "click": "#card-window"
+        },
+        {
+          "click": "#add-work"
+        },
+        {
+          "click": "#card-teapot"
+        },
+        {
+          "click": "#add-work"
+        },
+        {
+          "click": "#card-creek"
+        },
+        {
+          "click": "#add-work"
+        },
+        {
+          "click": "#card-busstop"
+        },
+        {
+          "click": "#add-work"
+        },
+        {
+          "click": "#card-crows"
+        },
+        {
+          "click": "#add-work"
+        },
+        {
+          "click": "#card-laundromat"
+        },
+        {
+          "click": "#add-work"
+        }
+      ],
+      "keep": [
+        "#add-work",
+        "#go-hang"
+      ]
+    },
+    {
+      "name": "hung-and-lit",
+      "steps": [
+        {
+          "click": "#card-creek"
+        },
+        {
+          "click": "#add-work"
+        },
+        {
+          "click": "#go-hang"
+        },
+        {
+          "click": "#hang-on-wall"
+        },
+        {
+          "click": "#light-work"
+        }
+      ],
+      "keep": [
+        "#tray",
+        "#light-work",
+        "#hang-on-wall",
+        "#room",
+        "#center-line",
+        "#order-first",
+        "#order-later",
+        "#return-tray",
+        "#edit-statement"
+      ]
+    },
+    {
+      "name": "label-open",
+      "steps": [
+        {
+          "click": "#card-creek"
+        },
+        {
+          "click": "#add-work"
+        },
+        {
+          "click": "#go-hang"
+        },
+        {
+          "click": "#edit-label"
+        }
+      ],
+      "keep": [
+        "#label-title",
+        "#label-note",
+        "#label-done"
+      ]
+    },
+    {
+      "name": "statement-open",
+      "steps": [
+        {
+          "click": "#m-hang"
+        },
+        {
+          "click": "#edit-statement"
+        }
+      ],
+      "keep": [
+        "#statement-text",
+        "#statement-done"
+      ]
+    },
+    {
+      "name": "walk-stop",
+      "steps": [
+        {
+          "click": "#card-creek"
+        },
+        {
+          "click": "#add-work"
+        },
+        {
+          "click": "#go-hang"
+        },
+        {
+          "click": "#hang-on-wall"
+        },
+        {
+          "click": "#preview-walk"
+        },
+        {
+          "click": "#walk-play"
+        },
+        {
+          "wait": 1200
+        },
+        {
+          "click": "#walk-stop"
+        }
+      ],
+      "keep": [
+        "#room",
+        "#walk-step",
+        "#walk-back",
+        "#walk-stop",
+        "#order-strip"
+      ]
+    },
+    {
+      "name": "clear-confirm",
+      "steps": [
+        {
+          "click": "#m-checklist"
+        },
+        {
+          "click": "#clear-show"
+        }
+      ],
+      "keep": [
+        "#clear-cancel",
+        "#clear-confirm"
+      ]
+    },
+    {
+      "name": "compact-full-workbench",
+      "steps": [
+        {
+          "js": "\nconst T=__tool,S=T.state;\nS.chosen=['window','teapot','laundromat','seeds','rainglass','blockmap'];\nS.positions={};S.lights={};S.labels={};S.show='home';S.theme='home';S.statement='Rituals connect these places.';\nS.chosen.forEach((id,i)=>{S.positions[id]={wall:'back',x:65+i*125};S.lights[id]=true});\nS.star=T.firstSeen();S.selected='window';S.wall='back';T.save();T.setMode('hang');\n"
+        }
+      ],
+      "keep": [
+        "#room",
+        "#tray",
+        "#light-work",
+        "#wall-choice",
+        "#center-line",
+        "#order-first",
+        "#order-later",
+        "#return-tray",
+        "#edit-statement",
+        "#preview-walk"
+      ]
+    },
+    {
+      "name": "door-wall-cutaway",
+      "sizes": [
+        "1366x768",
+        "760x900"
+      ],
+      "steps": [
+        {
+          "js": "\nconst T=__tool,S=T.state;\nS.chosen=['window','teapot'];\nS.positions={window:{wall:'front-left',x:160},teapot:{wall:'front-right',x:160}};\nS.selected='window';S.wall='front-left';T.setMode('hang');\n"
+        }
+      ],
+      "keep": [
+        "#room",
+        "#tray",
+        "#wall-choice",
+        "#hang-on-wall"
+      ]
+    },
+    {
+      "name": "side-first-seen",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "js": "\nconst T=__tool,S=T.state;\nS.chosen=['window','teapot'];\nS.positions={window:{wall:'right',x:50},teapot:{wall:'left',x:550}};\nS.star='window';T.setMode('walk');\n"
+        }
+      ],
+      "keep": [
+        "#room",
+        "#walk-play",
+        "#order-strip"
+      ]
+    },
+    {
+      "name": "legal-left-corner",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "js": "const T=__tool,S=T.state;\nT.stopWalk(); S.chosen=['window','teapot','laundromat','seeds','rainglass','blockmap'];\nS.positions={}; S.lights={}; S.labels={}; S.show='home'; S.theme='home';\nS.statement='Rituals connect these places.'; S.selected='window'; S.wall='back'; S.plan=false;\nS.star='window'; T.setMode('hang');\nS.chosen=['window'];T.render();T.place('window','left',600);S.star=T.firstSeen();T.setMode('walk');"
+        }
+      ],
+      "keep": [
+        "#room",
+        "#walk-play",
+        "#order-strip"
+      ]
+    },
+    {
+      "name": "all-door-wall",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "js": "const T=__tool,S=T.state;\nT.stopWalk(); S.chosen=['window','teapot','laundromat','seeds','rainglass','blockmap'];\nS.positions={}; S.lights={}; S.labels={}; S.show='home'; S.theme='home';\nS.statement='Rituals connect these places.'; S.selected='window'; S.wall='back'; S.plan=false;\nS.star='window'; T.setMode('hang');\nS.chosen.forEach((id,i)=>T.place(id,i<3?'front-left':'front-right',50+(i%3)*110));S.star=T.firstSeen();T.setMode('walk');"
+        }
+      ],
+      "keep": [
+        "#room",
+        "#walk-play",
+        "#order-strip"
+      ]
+    },
+    {
+      "name": "legal-left-corner-stop",
+      "sizes": [
+        "680x425",
+        "1000x625",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "js": "const T=__tool,S=T.state;\nT.stopWalk(); S.chosen=['window','teapot','laundromat','seeds','rainglass','blockmap'];\nS.positions={}; S.lights={}; S.labels={}; S.show='home'; S.theme='home';\nS.statement='Rituals connect these places.'; S.selected='window'; S.wall='back'; S.plan=false;\nS.star='window'; T.setMode('hang');\nS.chosen=['window'];T.render();T.place('window','left',600);S.star=T.firstSeen();T.setMode('walk');"
+        },
+        {
+          "click": "#walk-step"
+        }
+      ],
+      "keep": [
+        "#room",
+        "#walk-wall-label",
+        "#walk-step"
+      ]
+    }
+  ]
+}

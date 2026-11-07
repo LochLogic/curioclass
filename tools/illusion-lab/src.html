@@ -1,0 +1,2656 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Illusion Lab · You are the subject · Curio Class</title>
+<meta name="description" content="Measure your own perception and memory in six psychology experiments. Grade 12. Works offline.">
+<!--
+ILLUSION LAB, Curio Class. Grade 12 psychology, APA.Biological and APA.Cognition.
+Content CC BY 4.0, code MIT. Sources and experimental limits in notes.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Started from kit/starter/src.html. One offline file, no network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --brand:#f28fc4;
+  --brand-ink:#1f0a16;
+  --focus:#f5c9e4;
+  --panel:#181b24;
+  --sec-bg:#1c202b;
+}
+body { height:100dvh; min-height:0; overflow:hidden; grid-template-rows:48px minmax(0,1fr); }
+header { height:48px; padding:0 14px; gap:8px; flex-wrap:nowrap; border-bottom:1px solid #5f3b55; }
+h1 { font-size:20px; white-space:nowrap; letter-spacing:-.5px; }
+h1 span { color:var(--brand); }
+h1 small { display:inline; font-size:12px; margin-left:12px; letter-spacing:.05em; }
+.icon-btn { min-height:44px; border:0; border-radius:5px; padding:0 10px; font-size:13px; }
+#motion { width:92px; }
+#sound { width:82px; }
+#read { width:62px; }
+main { display:grid; grid-template-columns:168px minmax(0,1fr) 320px; grid-template-rows:minmax(0,1fr); min-height:0; }
+nav { background:#11151e; border-right:1px solid var(--line); padding:12px 8px; display:flex; flex-direction:column; gap:5px; }
+nav button { border:1px solid transparent; background:transparent; min-height:48px; text-align:left; padding:5px 8px;
+  display:flex; align-items:center; gap:9px; border-radius:7px; font-size:13px; line-height:1.2; }
+nav button[aria-pressed=true] { border-color:#80576f; background:#342635; color:#ffd2ed; }
+nav button:hover { background:#242532; }
+.nav-icon { width:22px; flex-shrink:0; font:22px Georgia,serif; text-align:center; }
+.nav-label { flex:1; }
+.check { font-size:13px; }
+.nav-foot { margin-top:auto; color:var(--muted); font-size:10px; letter-spacing:.11em; padding:12px 8px; }
+.work { min-width:0; min-height:0; display:grid; grid-template-rows:54px minmax(0,1fr); background:#26262a; }
+.worktop { display:flex; align-items:center; gap:12px; padding:4px 18px; background:#20212a; border-bottom:1px solid #42414b; }
+.worktop h2 { font-size:16px; margin:0 auto 0 0; font-weight:600; }
+.tabs { display:flex; gap:3px; }
+.tabs button { min-height:44px; min-width:44px; padding:0 12px; background:transparent; border:0;
+  border-bottom:2px solid transparent; font-size:13px; }
+.tabs button[aria-selected=true] { border-color:var(--brand); color:var(--brand); }
+button:disabled { cursor:default; opacity:.45; }
+#stage { position:relative; min-height:0; min-width:0; overflow:hidden; background:#26262a; }
+#stage canvas { display:block; width:100%; height:100%; touch-action:none; }
+#stage>canvas { position:absolute; inset:0; }
+.panel { border-left:1px solid #42414b; padding:20px; gap:16px; overflow:auto; }
+.panel-label { font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--brand); margin:0; }
+#controls { display:flex; flex-direction:column; gap:10px; }
+.row { display:flex; gap:8px; }
+.row>* { flex:1; min-width:0; }
+.btn { min-height:44px; border-radius:6px; font-size:14px; }
+.primary { background:var(--brand); border-color:var(--brand); color:var(--brand-ink); font-weight:700; }
+.wide { width:100%; }
+.hint { font-size:15px; min-height:110px; line-height:1.5; color:#d4dae4; padding:12px 0; border-top:1px solid var(--line); }
+#progress { color:var(--muted); font-size:12px; min-height:25px; }
+.dots { display:flex; flex-wrap:wrap; gap:6px; }
+.dots i { width:8px; height:8px; border:1px solid #a6b3c4; border-radius:50%; }
+.dots i.done { background:#d2d8df; }
+.caption { color:var(--muted); font-size:12px; line-height:1.5; margin:0; }
+.privacy { font-size:12px; color:#d4dae4; }
+.compact-privacy { display:none; }
+input[type=text],textarea,select { width:100%; min-height:44px; padding:9px; background:#0e121b; color:var(--ink);
+  border:1px solid #62789a; border-radius:6px; font:inherit; }
+textarea { resize:vertical; min-height:80px; }
+label { font-size:13px; line-height:1.5; }
+.bench { position:absolute; inset:0; background-position:center; background-size:cover; padding:clamp(14px,3vw,45px);
+  display:flex; flex-direction:column; justify-content:center; gap:20px; }
+.bench::before { content:''; position:absolute; inset:0; background:#090d1759; pointer-events:none; }
+.bench>* { position:relative; }
+.bench-intro { text-shadow:0 2px 10px #000; width:max-content; max-width:100%; isolation:isolate; }
+.bench-intro::before { content:''; position:absolute; inset:-5px -8px; background:#11151eeb;
+  border-left:2px solid #f28fc4; border-radius:3px; box-shadow:0 4px 12px #0005; z-index:-1; }
+.eyebrow { color:#ffd1eb; text-transform:uppercase; letter-spacing:.18em; font-size:11px; }
+.bench h2 { font:normal clamp(26px,3.4vw,48px)/1.07 Georgia,serif; margin:12px 0; max-width:530px; }
+.cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.station-card { min-height:145px; border:1px solid #ffffff50; border-radius:9px; text-align:left; padding:14px;
+  background:linear-gradient(140deg,#202431f2,#151820e8); box-shadow:0 7px 20px #0004; position:relative; overflow:hidden; }
+.station-card:hover { border-color:#f28fc4; transform:translateY(-2px); }
+.station-card .thumb { display:block; height:68px; width:100%; margin-bottom:8px; }
+.station-card svg { height:100%; width:100%; }
+.station-card img { width:100%; height:68px; object-fit:contain; }
+.station-card b { font-size:14px; display:block; }
+.station-card small { color:#bfc7d3; font-size:11px; }
+.bench-actions { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.bench-actions .privacy { margin-left:auto; text-shadow:0 2px 4px #000; }
+.idle-light { width:6px; height:6px; background:#f28fc4; display:inline-block; border-radius:50%; margin-right:8px;
+  animation:breathe 4s ease-in-out infinite; box-shadow:0 0 12px #f28fc477; }
+@keyframes breathe { 50% { opacity:.4; } }
+.calm * { animation:none!important; transition:none!important; }
+.reading { height:100%; overflow:auto; padding:clamp(16px,3vw,40px); background:linear-gradient(130deg,#25252c,#202128); }
+.reading h2 { font:normal clamp(24px,3vw,38px) Georgia,serif; margin:8px 0 24px; }
+.reading h3 { color:var(--brand); font-size:15px; margin:24px 0 10px; }
+.reading p { font-size:16px; line-height:1.65; max-width:750px; }
+.reading .source { font-size:12px; color:var(--muted); }
+.reading .callout { border-left:3px solid var(--brand); background:#171923; padding:12px 18px; margin:18px 0; }
+.result-title { font:normal 28px Georgia,serif; margin:0 0 8px; }
+.results { height:100%; overflow:auto; padding:22px; }
+.result-chart { width:100%; height:260px; display:block; }
+.result-chart text { fill:#e8edf3; font-family:'Segoe UI',sans-serif; font-size:13px; }
+.data-table { width:100%; border-collapse:collapse; font-size:13px; line-height:1.4; }
+.data-table th,.data-table td { padding:10px 8px; text-align:left; border-bottom:1px solid #55545e; }
+.data-table th { color:#bac4d3; font-weight:500; }
+.notebook-view { display:flex; flex-direction:column; padding:14px; }
+.notebook-head { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:8px; flex-shrink:0; }
+.reading .notebook-head h2 { margin:0; font-size:28px; }
+.notebook-head .privacy { margin:0; font-size:11px; }
+.notebook-table-wrap { flex:1; min-height:0; overflow:auto; scrollbar-width:thin; }
+.notebook-table-wrap::-webkit-scrollbar { height:4px; width:6px; }
+.notebook-table { width:100%; min-width:820px; border-collapse:collapse; font-size:12px; }
+.notebook-table th { text-align:left; font-size:11px; color:#bac4d3; padding:1px 8px; white-space:nowrap; }
+.notebook-table td { padding:0 8px; border-bottom:1px solid #55545e; white-space:nowrap; }
+.notebook-table small { display:block; color:#bac4d3; font-size:10px; }
+.notebook-table .station-cell { display:flex; align-items:center; gap:8px; min-width:148px; }
+.notebook-table .station-cell .btn { flex:0 0 44px; }
+.notebook-table .btn { min-width:44px; padding:0 8px; }
+.metric { font:32px var(--readout-font); color:var(--brand); margin:12px 0; }
+.result-pair { display:flex; gap:20px; flex-wrap:wrap; }
+.result-pair>div { flex:1; min-width:170px; padding:16px; border:1px solid #55505c; background:#202129; }
+.result-pair>div.invalid { color:#a6b3c4; border-style:dashed; }
+.result-pair>div.invalid .metric { color:#a6b3c4; }
+.chip { min-height:44px; padding:8px 12px; border:1px solid #746176; background:#302735; border-radius:20px; font-size:14px; }
+.chips { display:flex; gap:6px; flex-wrap:wrap; max-height:40%; overflow:auto; }
+.memory-stage { height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:24px; padding:24px; }
+.memory-word { font-size:56px; font-weight:400; letter-spacing:.02em; text-align:center; }
+.memory-card { border-top:1px solid #7b7a82; border-bottom:1px solid #7b7a82; padding:36px 20px; min-width:55%; text-align:center; }
+.memory-stage .caption { max-width:420px; text-align:center; }
+.count-bar { height:3px; background:#c1c5cc; width:100%; transform-origin:left; }
+.flicker-wrap { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; padding:16px; gap:12px; }
+.flicker-notice { font-size:12px; line-height:1.4; color:#d4dae4; margin:0; }
+.picture-box { position:relative; width:100%; aspect-ratio:16/10; max-height:90%; margin:auto; }
+.picture-box canvas { width:100%; height:100%; }
+.picture-box:focus-visible { outline-offset:0; }
+.eye-layout { height:100%; display:flex; flex-direction:column; padding:20px; gap:14px; }
+.path { display:flex; gap:6px; flex-shrink:0; }
+.path button { flex:1; min-width:0; min-height:70px; border:1px solid #777781; border-radius:5px; background:#33343d;
+  font-size:12px; padding:6px 3px; position:relative;
+  background:linear-gradient(145deg,#444650,#2b2c35); box-shadow:inset 0 1px #ffffff18,0 3px 7px #0003; }
+.path-symbol { display:block; width:36px; height:28px; margin:0 auto 4px; color:#d1d6df; }
+.path button.active .path-symbol { color:#ffd0eb; }
+.path button.active { border-color:#f28fc4; background:#514050; }
+.path button.visited::after { content:'✓'; position:absolute; right:3px; bottom:0; color:#e8edf3; font-size:10px; }
+.eye-card { min-height:110px; padding:12px; border-left:2px solid #f28fc4; background:#212129; font-size:14px; line-height:1.5; }
+.eye-chart { flex:1; min-height:120px; position:relative; }
+.eye-chart canvas { width:100%; height:100%; }
+.eye-values { font-size:12px; line-height:1.5; color:#cdd5e0; min-height:36px; }
+#stage>.eye-layout,#stage>.memory-stage,#stage>.reading,#stage>.results { position:absolute; inset:0; height:auto; }
+dialog { color:var(--ink); background:#20232e; border:1px solid #a57998; border-radius:12px; max-width:320px; padding:24px; }
+dialog::backdrop { background:#000b; }
+#toast { position:fixed; left:50%; bottom:16px; transform:translateX(-50%); background:#f0d6e6; color:#21101c;
+  padding:12px 18px; border-radius:6px; font-size:13px; z-index:5; max-width:90vw; pointer-events:none; }
+@media(max-width:1100px) {
+  .path-symbol { display:none; }
+  main { grid-template-columns:48px minmax(0,1fr) 240px; }
+  nav { padding:6px 1px; gap:2px; }
+  nav button { padding:4px 8px; min-height:44px; }
+  .nav-label,.check,.nav-foot { display:none; }
+  .worktop { padding:3px 10px; gap:4px; }
+  .worktop h2 { font-size:14px; }
+  .tabs button { padding:0 8px; font-size:12px; }
+  .panel { padding:14px; gap:10px; }
+  .cards { gap:8px; }
+  .station-card { padding:10px; min-height:120px; }
+  .station-card .thumb,.station-card img { height:52px; }
+  .eye-layout { padding:10px; gap:10px; }
+  .path { flex-wrap:wrap; }
+  .path button { min-width:22%; min-height:44px; }
+}
+@media(max-height:650px) {
+  .panel { padding:10px; gap:8px; }
+  #controls { order:0; gap:6px; }
+  .panel-label { order:-1; }
+  #progress { order:1; }
+  .hint { order:2; min-height:65px; padding:8px 0; font-size:13px; }
+  .panel>.caption { order:3; }
+  .bench { padding:14px 20px; gap:10px; }
+  .bench h2 { font-size:28px; margin:6px 0; }
+  .station-card { min-height:100px; padding:8px; }
+  .station-card .thumb,.station-card img { height:36px; margin-bottom:4px; }
+  .station-card b { font-size:12px; }
+  .eyebrow { font-size:10px; }
+  .work { grid-template-rows:46px minmax(0,1fr); }
+  .eye-card { min-height:65px; font-size:12px; padding:8px; }
+  .eye-layout { padding:8px; gap:6px; }
+  .eye-values { font-size:11px; }
+  .path button { min-height:44px; font-size:10px; }
+  .eye-chart { min-height:80px; }
+  .memory-card { padding:20px; }
+}
+@media(max-width:800px) {
+  main { grid-template-columns:48px minmax(0,1fr) 220px; }
+  h1 small { display:none; }
+  .cards { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .bench h2 { font-size:27px; }
+  .bench { gap:10px; padding:14px; }
+  .station-card { min-height:90px; }
+  .station-card .thumb,.station-card img { height:30px; }
+  .worktop h2 { font-size:12px; }
+  .tabs button { padding:0 5px; }
+  .path { gap:4px; }
+  .reading p { font-size:14px; }
+  .results { padding:14px; }
+  .result-chart { height:230px; }
+}
+@media(max-width:520px) {
+  header { padding:0 4px; gap:1px; }
+  h1 { font-size:16px; }
+  .icon-btn { font-size:11px; padding:0 5px; min-width:44px; }
+  #motion { width:70px; }
+  #sound { width:62px; }
+  #read { width:44px; }
+  main { grid-template-columns:44px minmax(0,1fr) 146px; }
+  nav { padding:4px 0; border-right:0; }
+  nav button { padding:3px 9px; }
+  .work { grid-template-rows:94px minmax(0,1fr); }
+  .worktop { flex-direction:column; align-items:flex-start; padding:5px; gap:0; }
+  .worktop h2 { min-height:30px; font-size:13px; display:flex; align-items:center; }
+  .tabs { width:100%; }
+  .tabs button { flex:1; font-size:10px; }
+  .panel { padding:9px; gap:10px; }
+  .panel-label { font-size:10px; }
+  .btn { font-size:12px; padding:5px; }
+  .row { gap:4px; }
+  .hint { font-size:12px; min-height:110px; }
+  .caption { font-size:11px; }
+  .cards { grid-template-columns:1fr; gap:5px; }
+  .station-card { min-height:70px; padding:8px; }
+  .station-card .thumb { float:right; width:40px; height:35px; margin:0; }
+  .station-card b { font-size:12px; }
+  .bench { padding:8px; justify-content:center; gap:9px; }
+  .bench h2 { font-size:21px; margin:5px 0; }
+  .bench .eyebrow { font-size:10px; letter-spacing:.04em; }
+  .bench-actions { gap:4px; }
+  .bench-actions .btn { width:100%; }
+  .bench-actions .privacy { margin:0; font-size:10px; }
+  .eye-layout { padding:5px; gap:8px; }
+  .path button { min-width:44%; font-size:10px; min-height:44px; }
+  .eye-card { font-size:11px; min-height:150px; padding:6px; }
+  .eye-values { font-size:10px; min-height:80px; }
+  .memory-stage { padding:12px; }
+  .memory-word { font-size:30px; }
+  .memory-card { min-width:100%; padding:25px 5px; }
+  .reading { padding:10px; }
+  .reading h2 { font-size:22px; }
+  .reading p { font-size:13px; }
+  .results { padding:8px; }
+  .result-title { font-size:22px; }
+  .data-table { font-size:11px; }
+  .data-table td,.data-table th { padding:6px 2px; }
+  .notebook-table th:first-child,.notebook-table td:first-child { width:164px; white-space:normal; }
+  .result-pair>div { min-width:100%; padding:8px; }
+  .flicker-wrap { padding:5px; }
+  .flicker-notice { font-size:10px; }
+}
+@media(max-height:650px) and (min-width:521px) {
+  main { grid-template-columns:92px minmax(0,1fr) 220px; }
+  nav { display:grid; grid-template-columns:44px 44px; align-content:start; padding:2px; gap:0; min-height:0; }
+  nav button { width:44px; height:44px; min-height:44px; padding:4px 9px; }
+  .nav-label,.check,.nav-foot { display:none; }
+  .cards { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .station-card { min-height:75px; padding:6px; }
+  .bench h2 { font-size:22px; margin:4px 0; }
+  .bench { padding:8px 12px; gap:6px; justify-content:flex-start; }
+  .bench-actions .privacy,.bench-note { display:none; }
+  .compact-privacy { display:inline; }
+  .panel:has(#pattern) .panel-label,.panel:has(#pattern) #panel-note { display:none; }
+  #controls:has(#pattern),#controls:has(#bridge) { display:grid; grid-template-columns:1fr 1fr; gap:3px; }
+  #controls:has(#pattern)>label:first-child { display:flex; align-items:center; }
+  #prediction,#controls:has(#pattern)>label[for=inhibition],#inhibition,#eye-compare { grid-column:1/-1; }
+  #prediction>.caption { display:none; }
+  #controls:has(#bridge)>label,#reveal-trial,#open-notebook { grid-column:1/-1; }
+  .panel:has(#bridge) #panel-note { display:none; }
+  .eye-layout { padding:6px; }
+  #controls:has(#spotted) { display:grid; grid-template-columns:1fr 1fr; gap:4px; }
+  #controls:has(#spotted)>#kinds,#next-scene { grid-column:1/-1; }
+  #kinds { display:flex; gap:3px; }
+  #kinds>.btn { flex:1; min-width:0; font-size:11px; padding:3px; }
+  .panel:has(#spotted) #panel-note { display:none; }
+  .notebook-view { padding:4px; }
+  .notebook-head { gap:8px; margin-bottom:4px; }
+  .reading .notebook-head h2 { font-size:18px; }
+}
+@media(max-width:1100px) {
+  .results { overflow:auto; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Illusion <span>Lab</span><small>YOU ARE THE SUBJECT</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <nav aria-label="Laboratory stations" id="rail"></nav>
+  <section class="work" aria-label="Experiment workbench">
+    <div class="worktop">
+      <h2 id="station-title">The Bench</h2>
+      <div class="tabs" role="tablist" aria-label="Experiment step" id="tabs">
+        <button id="tab-do" role="tab" aria-selected="true">Do</button>
+        <button id="tab-compare" role="tab" aria-selected="false" disabled>Compare</button>
+        <button id="tab-why" role="tab" aria-selected="false" disabled>Why</button>
+      </div>
+    </div>
+    <div id="stage" class="stage"></div>
+  </section>
+  <aside class="panel" aria-label="Experiment controls">
+    <p class="panel-label" id="panel-label">Field instructions</p>
+    <div id="controls"></div>
+    <p class="hint" id="hint"></p>
+    <div id="progress"></div>
+    <p class="caption" id="panel-note"></p>
+  </aside>
+</main>
+<div id="toast" role="status" hidden></div>
+<dialog id="reset-dialog" aria-labelledby="reset-title">
+  <h2 id="reset-title">Clear every result on this device?</h2>
+  <div class="row"><button class="btn" id="cancel-reset">Cancel</button><button class="btn primary" id="yes-reset">Yes</button></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const ART = {
+    bench: 'art:il-bench',
+    cards: 'art:il-cards',
+    stopwatch: 'art:il-stopwatch',
+    kitchen: 'art:il-kitchen',
+    street: 'art:il-street',
+    pond: 'art:il-pond',
+    classroom: 'art:il-classroom',
+    market: 'art:il-market',
+    harbor: 'art:il-harbor',
+    living: 'art:il-living',
+    kettle: 'art:il-kettle',
+    mailbox: 'art:il-mailbox',
+    boat: 'art:il-boat',
+    plant: 'art:il-plant',
+    oranges: 'art:il-oranges',
+    buoy: 'art:il-buoy',
+    frame: 'art:il-frame'
+  };
+  const STATIONS = {
+    bench: ['⌂', 'Bench'],
+    lines: ['⋈', 'Line Lengths'],
+    shadow: ['▧', 'Shadow Squares'],
+    eye: ['◉', 'Inside the Eye'],
+    change: ['▣', 'Spot the Change'],
+    count: ['◷', 'Count Backward'],
+    words: ['▤', 'Word Lists'],
+    notebook: ['▥', 'Notebook'],
+    eyewitness: ['◎', 'Eyewitness']
+  };
+  const IDS = ['lines', 'shadow', 'eye', 'change', 'count', 'words'];
+  const L = {
+    welcome: 'Welcome to Illusion Lab. Here, you are the subject. Pick a station card, do the task first, then compare your results with the research.',
+    llHow: 'Make the bottom shaft look as long as the top one. Use Longer and Shorter to adjust it.',
+    llDone: 'Done. Your settings are on the chart beside a perfect match.',
+    ssHow: 'Make the swatch match square A. Use Lighter and Darker to adjust it.',
+    ssB: 'Now match square B. Use Lighter and Darker to adjust it.',
+    ssBridge: 'One bar, one gray. A and B were the same all along. Try Hide the scene, then open Why.',
+    eyeHow: 'Tap a stage to follow the signal. Then tap Edge or Middle to predict where neighboring outputs will differ most.',
+    eyeSlide: 'Slide Neighbor inhibition all the way right. Then choose each other Pattern to compare the output.',
+    eyeBands: 'A bright band and a dark band at the edge. The light did not change there. The cells did that.',
+    scHow: 'Press Start to begin the pictures. You can choose Flip by hand to step through them yourself.',
+    scKind: 'Right spot. Tap the kind of change.',
+    scNoGap: 'Last scene, with no gray gap. Watch how fast you find this one.',
+    cbHow: 'Read the three letters. Then tap the next number, counting back by threes, until the box asks for the letters. Press Start.',
+    cbRecall: 'Type the three characters in their original order, then press Submit.',
+    cbNext: 'Press Next trial. Keep the next three characters in mind while counting backward by threes.',
+    wlHow: 'Words will show one at a time. Just read them. Then type every one you remember. Press Start.',
+    wlTest: 'For each word, tap Seen or New. After Seen, tap Picture it or Just know.',
+    wlRecall: 'Type a word and press Enter to add it. Press Done when finished.',
+    wlNext: 'Press Start next list. Read each word, then use Seen or New in the test.',
+    wlTag: 'Tap Picture it if you can picture the word on screen, or Just know if it feels familiar.',
+    ewHow: 'Your own memory result is at the top. Read down to see why it matters in court.',
+    nbHow: 'Your results stay on this device. Scroll across the table, or tap Go to station to run one again.'
+  };
+  const READ_HINTS = [
+    "Pick a station card to start. Line Lengths is a good first one.",
+    "When the shafts look equal, press Lock it in.",
+    "Keep adjusting with Longer or Shorter until the shafts look equal.",
+    "Keep adjusting the swatch with Lighter or Darker.",
+    "When the swatch looks equal, press Lock it in.",
+    "Move Neighbor inhibition. Visit every stage and test all patterns at full inhibition, then press Compare.",
+    "Slide Neighbor inhibition all the way right to test this pattern.",
+    "Tap each stage without a check mark to follow the whole pathway.",
+    "Choose an untested Pattern: Step edge, Patch on dark, or Patch on light. Keep the slider all the way right.",
+    "All three patterns are tested. Press Compare to review the edge and interior signals.",
+    "Press Spotted it first, then tap.",
+    "Loading pictures. All scene pairs load before Start becomes available.",
+    "Tap where the change is. With a keyboard, use the scene crosshair and Enter.",
+    "Right spot. Tap the kind of change.",
+    "Press Next scene to continue.",
+    "Press Flip to compare the pictures. When you see the change, press Spotted it.",
+    "Watch for a change. Press Spotted it, then tap the spot.",
+    "Tap the change. Or move the scene crosshair with arrow keys, then press Enter.",
+    "See both pictures first. Press Flip, then Spotted it.",
+    "See both pictures first, then press Spotted it.",
+    "That location or kind did not match. Press Flip to watch again, then Spotted it.",
+    "That location or kind did not match. Watch again, then press Spotted it.",
+    "Change recorded. Press Next scene.",
+    "Location recorded; the kind needed correction. Compare the frames, then press Next scene.",
+    "Not found. Compare the two frames, then press Next scene.",
+    "Press Start: No gap. Watch how fast you find this one.",
+    "Press Start for the next scene.",
+    "Keep it in your head. Counting starts next.",
+    "Tap the number that is three less. Keep counting until recall opens.",
+    "Type a word and press Enter to add it. Press Done when finished.",
+    "Press Start next list. Read each word, then use Seen or New in the test.",
+    "Tap Picture it if you can picture the word on screen, or Just know if it feels familiar.",
+    "Read each word. The list will finish on its own.",
+    "Compare your settings with the reference. Open Why to see what this experiment can explain.",
+    "Press Bridge to join A and B with one gray. Try Hide the scene, then open Why.",
+    "Read the explanation. Press Compare to return to your own observations, or Notebook to see your complete record.",
+    "Type the three letters, then press Submit. An empty answer is a result too.",
+    "Type the three digits, then press Submit. An empty answer is a result too.",
+    "Bridge hidden. Press Bridge to join A and B, or try Hide the scene."
+  ];
+  const EVENT_LINES = new Set(['llDone']);
+  const HOW = {
+    lines: 'llHow',
+    shadow: 'ssHow',
+    eye: 'eyeHow',
+    change: 'scHow',
+    count: 'cbHow',
+    words: 'wlHow',
+    notebook: 'nbHow',
+    eyewitness: 'ewHow'
+  };
+  const KEY = 'illusion-lab-v1';
+  let db = {};
+  let storageOK = true;
+  try {
+    db = JSON.parse(localStorage.getItem(KEY) || '{}');
+  } catch {
+    storageOK = false;
+  }
+  if (!db || Array.isArray(db) || typeof db !== 'object') db = {};
+  for (const id of IDS) {
+    if (db[id] && (!db[id].first || !db[id].latest || !Number.isFinite(db[id].runs))) delete db[id];
+  }
+  const state = {
+    station: 'bench',
+    mode: 'bench',
+    step: 'do',
+    run: null,
+    measuring: false,
+    generation: 0,
+    records: db
+  };
+  let repeat = null;
+  let toastTimer;
+  let frames = [];
+  let picturesReady = false;
+  const V = Curio.voice({
+    lines: {...L, readHints: READ_HINTS},
+    scope: () => state.station + ':' + state.step,
+    hint: false,
+    read: () => $('hint').textContent,
+    welcome: () => welcomeForState(),
+    speaks: '.station-card, nav button:not(#nav-bench)'
+  });
+  function welcomeForState() {
+    if (state.measuring || state.step !== 'do') return null;
+    const r = state.run;
+    if (state.station === 'bench') return 'welcome';
+    if (state.station === 'shadow') return r.i % 2 ? 'ssB' : 'ssHow';
+    if (state.station === 'eye') {
+      if (!r.prediction) return 'eyeHow';
+      if (!r.k) return 'eyeSlide';
+      return r.pattern === 'step' && r.k >= .3 ? 'eyeBands' : null;
+    }
+    if (state.station === 'change') {
+      if (r.phase === 'ready') return r.i === 6 && !r.noGapReady ? 'scNoGap' : 'scHow';
+      return r.phase === 'kind' ? 'scKind' : null;
+    }
+    if (state.station === 'count' && r.phase !== 'ready') return null;
+    if (state.station === 'words') {
+      if (r.phase === 'ready') return 'wlHow';
+      return r.phase === 'recognize' && !r.answers.length ? 'wlTest' : null;
+    }
+    return HOW[state.station] || null;
+  }
+  const rand = (a, b) => a + Math.random() * (b - a);
+  const shuffle = a => {
+    a = [...a];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  };
+  const mean = a => a.length ? a.reduce((x, y) => x + y, 0) / a.length : null;
+  const fmt = (n, d = 1) => n === null || n === undefined ? 'not measured' : Number(n).toFixed(d);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  } [c]));
+  const button = (id, text, cls = '', disabled = false) =>
+    `<button id="${id}" class="btn ${cls}"${disabled?' disabled':''}>${text}</button>`;
+
+  function toast(text) {
+    clearTimeout(toastTimer);
+    $('toast').textContent = text;
+    $('toast').hidden = false;
+    toastTimer = setTimeout(() => $('toast').hidden = true, 4000);
+  }
+
+  function hint(text) {
+    $('hint').textContent = L[text] || text;
+  }
+
+  function how(key, valid = () => true, needs = [], now = false) {
+    hint(key);
+    V.how(key, {
+      valid: () => !state.measuring && valid(),
+      needs,
+      now
+    });
+  }
+
+  function measurement(on) {
+    state.measuring = on;
+    $('read').disabled = on;
+    $('tab-compare').disabled = on || !result();
+    $('tab-why').disabled = on || !result();
+    if (on) V.hush();
+  }
+
+  function tone() {
+    Curio.tone(440, .035, .035, 'sine');
+  }
+
+  function persist() {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(db));
+    } catch {
+      storageOK = false;
+      toast('Storage is unavailable. Keep this page open to keep your results.');
+    }
+  }
+
+  function result() {
+    if (state.run?.complete) return state.run.result;
+    if (state.run?.started) return null;
+    return db[state.station]?.latest;
+  }
+
+  function finish(data, save = true) {
+    measurement(false);
+    state.run.complete = true;
+    state.run.result = structuredClone(data);
+    if (save) {
+      const old = db[state.station];
+      db[state.station] = {
+        first: old?.first || data,
+        latest: data,
+        runs: (old?.runs || 0) + 1
+      };
+      persist();
+    }
+    state.step = 'compare';
+    V.hush();
+    render();
+    if (state.station === 'lines' && EVENT_LINES.has('llDone')) V.say('llDone', {
+      kind:'event',
+      valid: () => state.step === 'compare'
+    });
+    $('tab-compare').focus({
+      preventScroll: true
+    });
+  }
+
+  function setMode(id) {
+    if (!STATIONS[id]) return;
+    if (state.station === id) return;
+    const origin = document.activeElement;
+    if (state.run && !state.run.complete && state.run.started) {
+      toast('That run was not finished, so it was not saved.');
+    }
+    stopRepeat();
+    V.hush();
+    state.generation++;
+    measurement(false);
+    state.station = state.mode = id;
+    state.step = 'do';
+    state.run = IDS.includes(id) ? newRun(id) : null;
+    render();
+    if (origin && !origin.isConnected) focusControls();
+    if (HOW[id]) how(HOW[id]);
+    else hint('Pick a station card to start. Line Lengths is a good first one.');
+  }
+
+  function focusControls() {
+    const targets = {
+      lines:'longer', shadow:'lighter', eye:'path-0', change:'change-start', count:'count-start', words:'words-start',
+      notebook:'go-lines', eyewitness:$('eyewitness-words') ? 'eyewitness-words' : 'eyewitness-notebook', bench:'card-lines'
+    };
+    const target = $(targets[state.station]);
+    const available = target && !target.disabled ? target : $('nav-' + state.station);
+    if (available) available.focus({preventScroll:true});
+  }
+
+  function newRun(id) {
+    const r = {
+      started: false,
+      complete: false
+    };
+    if (id === 'lines') {
+      r.trials = shuffle([45, 90, 135].flatMap(angle => [{
+        angle,
+        dir: 'in'
+      }, {
+        angle,
+        dir: 'out'
+      }]).concat([{
+        angle: 0,
+        dir: 'plain'
+      }, {
+        angle: 0,
+        dir: 'plain'
+      }]));
+      r.i = 0;
+      r.rows = [];
+      lineTrial(r);
+    }
+    if (id === 'shadow') {
+      r.i = 0;
+      r.rows = [];
+      shadowTrial(r);
+      r.bridge = false;
+      r.hide = false;
+    }
+    if (id === 'eye') Object.assign(r, {
+      visited: [],
+      path: -1,
+      prediction: null,
+      k: 0,
+      pattern: 'step',
+      patterns: []
+    });
+    if (id === 'change') Object.assign(r, {
+      order: shuffle([0, 1, 2, 3, 4, 5]).concat(6),
+      i: 0,
+      rows: [],
+      phase: 'ready',
+      manual: Curio.reduce,
+      alternations: 0,
+      misses: 0,
+      kindMisses: 0,
+      frame: 0,
+      blank: false,
+      practice: !!db.change,
+      noGapReady: false
+    });
+    if (id === 'count') Object.assign(r, {
+      i: 0,
+      delays: [18, ...shuffle([3, 6, 9, 12, 15, 18, 3, 18]), 18],
+      rows: [],
+      phase: 'ready'
+    });
+    if (id === 'words') Object.assign(r, {
+      phase: 'ready',
+      list: 0,
+      word: 0,
+      recall: [],
+      seenTwice: [false, false],
+      answers: [],
+      test: recognition()
+    });
+    return r;
+  }
+
+  function lineTrial(r) {
+    r.reference = rand(260, 340);
+    r.offset = rand(-60, 60);
+    r.length = r.reference * (Math.random() < .5 ? rand(.70, .95) : rand(1.05, 1.30));
+    r.moved = 0;
+    r.limitReplayed = false;
+  }
+
+  function shadowTrial(r) {
+    r.value = Math.round(rand(60, 180));
+    r.moved = 0;
+  }
+
+  function buildRail() {
+    $('rail').innerHTML = Object.entries(STATIONS).map(([id, [icon, name]]) =>
+        `<button id="nav-${id}" title="${name}" aria-label="${name}" aria-pressed="false">
+      <span class="nav-icon" aria-hidden="true">${icon}</span><span class="nav-label">${name}</span>
+      <span class="check" id="check-${id}" aria-hidden="true"></span></button>`).join('') +
+      '<div class="nav-foot">CURIO CLASS<br>PSYCHOLOGY</div>';
+    for (const id in STATIONS) $('nav-' + id).onclick = () => setMode(id);
+  }
+
+  function render() {
+    const focus = document.activeElement?.id;
+    $('station-title').textContent = STATIONS[state.station][1];
+    for (const id in STATIONS) {
+      $('nav-' + id).setAttribute('aria-pressed', id === state.station);
+      $('check-' + id).textContent = db[id] ? '✓' : '';
+    }
+    $('tabs').hidden = !IDS.includes(state.station);
+    for (const step of ['do', 'compare', 'why']) {
+      $('tab-' + step).setAttribute('aria-selected', state.step === step);
+      $('tab-' + step).disabled = step !== 'do' && !result();
+    }
+    $('controls').innerHTML = '';
+    $('progress').textContent = '';
+    $('panel-note').textContent = '';
+    $('panel-label').textContent = state.step === 'do' ? 'Field instructions' : 'Your observation';
+    $('stage').innerHTML = '';
+    if (state.station === 'bench') renderBench();
+    else if (state.station === 'notebook') renderNotebook();
+    else if (state.station === 'eyewitness') renderEyewitness();
+    else if (state.step === 'compare') renderCompare();
+    else if (state.step === 'why') renderWhy();
+    else({
+      lines: renderLines,
+      shadow: renderShadow,
+      eye: renderEye,
+      change: renderChange,
+      count: renderCount,
+      words: renderWords
+    })[state.station]();
+    if (focus && $(focus) && !$(focus).disabled) $(focus).focus({
+      preventScroll: true
+    });
+    requestAnimationFrame(draw);
+  }
+
+  function thumb(id) {
+    if (id === 'count' || id === 'words') return `<img src="${ART[id==='count'?'stopwatch':'cards']}" alt="">`;
+    const inside = {
+      lines: '<path d="M25 25h130m-110-16-20 16 20 16m90-32 20 16-20 16M25 65h130m-150-16 20 16-20 16m170-32-20 16 20 16"/>',
+      shadow: '<rect x="30" y="10" width="50" height="50" fill="#6e6e6e"/><rect x="80" y="10" width="50" height="50" fill="#c8c8c8"/>' +
+        '<rect x="30" y="60" width="50" height="25" fill="#c8c8c8"/><rect x="80" y="60" width="50" height="25" fill="#6e6e6e"/>',
+      eye: '<path d="M15 45Q90-20 165 45Q90 110 15 45Z"/><circle cx="90" cy="45" r="22"/><circle cx="90" cy="45" r="8"/>',
+      change: '<rect x="20" y="8" width="130" height="72" rx="4"/><path d="m25 70 35-30 25 17 26-33 35 46"/>'
+    } [id];
+    return `<svg viewBox="0 0 180 90" aria-hidden="true"><g fill="none" stroke="#ddd6e3" stroke-width="2.5">${inside}</g></svg>`;
+  }
+
+  function renderBench() {
+    $('stage').innerHTML = `<div class="bench" style="background-image:url('${ART.bench}')">
+      <div class="bench-intro"><span class="eyebrow"><i class="idle-light"></i>Perception / Memory</span>
+      <h2>Trust your eyes.<br>Then test them.</h2></div>
+      <div class="cards">${IDS.map(id=>`<button id="card-${id}" class="station-card"><span class="thumb">${thumb(id)}</span>
+        <b>${STATIONS[id][1]}</b><small>about 4 min</small></button>`).join('')}</div>
+      <div class="bench-actions">${button('bench-notebook','Notebook')}${button('bench-eyewitness','Eyewitness')}
+      <span class="privacy">Your results stay on this device.</span></div></div>`;
+    for (const id of IDS) $('card-' + id).onclick = () => setMode(id);
+    $('bench-notebook').onclick = () => setMode('notebook');
+    $('bench-eyewitness').onclick = () => setMode('eyewitness');
+    $('controls').innerHTML = '<p class="caption">THE EXPERIMENT</p><p class="result-title">You are<br>the subject.</p>' +
+      '<p class="caption">Do the task first.<br>Compare your result.<br>Find out why.</p>';
+    hint('Pick a station card to start. Line Lengths is a good first one.');
+    $('panel-note').innerHTML = '<span class="bench-note">Six stations. No rankings. Your own observations beside the research.</span>' +
+      '<span class="compact-privacy">Your results stay on this device.</span>';
+  }
+
+  function canvas(id = 'experiment') {
+    const c = document.createElement('canvas');
+    c.id = id;
+    c.setAttribute('role', 'img');
+    $('stage').append(c);
+    return c;
+  }
+
+  function context(c) {
+    const rect = c.getBoundingClientRect();
+    const w = Math.max(1, rect.width),
+      h = Math.max(1, rect.height),
+      d = devicePixelRatio || 1;
+    c.width = Math.round(w * d);
+    c.height = Math.round(h * d);
+    const x = c.getContext('2d');
+    x.scale(d, d);
+    return {
+      x,
+      w,
+      h
+    };
+  }
+
+  function progress(i, total, numeric = true) {
+    if (numeric) {
+      $('progress').textContent = `Trial ${i + 1} of ${total}`;
+      return;
+    }
+    const dots = Array.from({length:total}, (_, j) => '<i class="' + (j < i ? 'done' : '') + '"></i>').join('');
+    $('progress').innerHTML = `<div class="dots" aria-label="${i} of ${total} trials complete">${dots}</div>`;
+  }
+  function renderLines() {
+    const r = state.run;
+    const c = canvas();
+    c.setAttribute('aria-label','Reference line above; adjustable line below. Use Longer or Shorter, or drag either end.');
+    $('controls').innerHTML = '<div class="row">' + button('shorter', 'Shorter') + button('longer', 'Longer') + '</div>' +
+      button('lock', 'Lock it in', 'primary', r.moved < 3);
+    hold('shorter', () => adjustLine(-1));
+    hold('longer', () => adjustLine(1));
+    $('lock').onclick = lockLine;
+    hint(r.moved < 3 ? L.llHow : 'When the shafts look equal, press Lock it in.');
+    $('panel-note').textContent = 'Judge the shafts, from tip to tip. Arrow keys also adjust. You can drag either end.';
+    progress(r.i, r.trials.length, false);
+    c.onpointerdown = e => {
+      const box = c.getBoundingClientRect(),
+        scale = lineScale(box.width),
+        cx = box.width / 2 + r.offset * scale;
+      const ends = [cx - r.length * scale / 2, cx + r.length * scale / 2];
+      if (Math.abs(e.clientY - box.top - box.height * .66) > 35 || Math.min(...ends.map(x => Math.abs(e.clientX - box.left - x))) > 35) return;
+      c.setPointerCapture(e.pointerId);
+      measurement(true);
+      r.started = true;
+      const move = ev => {
+        const value = Math.abs(ev.clientX - box.left - cx) * 2 / scale;
+        const next = Math.min(r.reference * 1.6, Math.max(r.reference * .5, value));
+        r.moved += Math.abs(next - r.length);
+        r.length = next;
+        $('lock').disabled = r.moved < 3;
+        drawLines();
+      };
+      c.onpointermove = move;
+      c.onpointerup = c.onpointercancel = () => {
+        c.onpointermove = null;
+      };
+      move(e);
+    };
+  }
+
+  function hold(id, fn) {
+    const b = $(id);
+    let pointer = false;
+    b.onpointerdown = e => {
+      if (e.button !== 0) return;
+      pointer = true;
+      b.setPointerCapture(e.pointerId);
+      stopRepeat();
+      fn();
+      repeat = setInterval(fn, 40);
+    };
+    b.onpointerup = b.onpointercancel = () => {
+      stopRepeat();
+      setTimeout(() => pointer = false, 0);
+    };
+    b.onclick = e => {
+      if (!pointer && e.detail === 0) fn();
+    };
+  }
+
+  function stopRepeat() {
+    clearInterval(repeat);
+    repeat = null;
+  }
+  addEventListener('blur', stopRepeat);
+  addEventListener('pointerup', stopRepeat);
+  addEventListener('pointercancel', stopRepeat);
+
+  function adjustLine(delta) {
+    if (state.station !== 'lines' || state.step !== 'do') return;
+    const r = state.run;
+    measurement(true);
+    r.started = true;
+    const next = Math.max(r.reference * .5, Math.min(r.reference * 1.6, r.length + delta));
+    r.moved += Math.abs(next - r.length);
+    r.length = next;
+    $('lock').disabled = r.moved < 3;
+    hint(r.moved < 3 ? 'Keep adjusting with Longer or Shorter until the shafts look equal.' :
+      'When the shafts look equal, press Lock it in.');
+    tone();
+    drawLines();
+  }
+
+  function lockLine() {
+    const r = state.run;
+    if (r.moved < 3) return;
+    stopRepeat();
+    const t = r.trials[r.i];
+    if (r.length <= r.reference * .5 + .01 || r.length >= r.reference * 1.6 - .01) {
+      if (!r.limitReplayed) {
+        r.trials.push({
+          ...t,
+          replay: true
+        });
+        r.limitReplayed = true;
+      }
+      toast('At the limit. This trial will run again.');
+    } else {
+      r.rows.push({
+        ...t,
+        reference: r.reference,
+        set: r.length,
+        illusion: (t.dir === 'out' ? r.reference - r.length : r.length - r.reference) / r.reference * 100
+      });
+    }
+    r.i++;
+    if (r.i === r.trials.length) {
+      if (r.rows.length !== 8) return;
+      finish({
+        rows: r.rows,
+        mean: mean(r.rows.filter(t => t.angle).map(t => t.illusion))
+      });
+    } else {
+      lineTrial(r);
+      render();
+      $('longer').focus({
+        preventScroll: true
+      });
+    }
+    tone();
+  }
+  const lineScale = w => Math.min(1.35, (w - 30) / 790);
+
+  function drawLines() {
+    const c = $('experiment');
+    if (!c) return;
+    const {
+      x,
+      w,
+      h
+    } = context(c), r = state.run, t = r.trials[r.i], s = lineScale(w);
+    x.fillStyle = '#26262a';
+    x.fillRect(0, 0, w, h);
+
+    function figure(length, cx, y, dir) {
+      const a = cx - length * s / 2,
+        b = cx + length * s / 2;
+      x.strokeStyle = '#e6e6e6';
+      x.lineWidth = 3;
+      x.lineCap = 'round';
+      x.beginPath();
+      x.moveTo(a, y);
+      x.lineTo(b, y);
+      if (dir !== 'plain') {
+        const dx = Math.cos(t.angle * Math.PI / 360) * 50 * s,
+          dy = Math.sin(t.angle * Math.PI / 360) * 50 * s;
+        for (const [tip, sign] of [
+            [a, dir === 'in' ? 1 : -1],
+            [b, dir === 'in' ? -1 : 1]
+          ]) {
+          x.moveTo(tip + sign * dx, y - dy);
+          x.lineTo(tip, y);
+          x.lineTo(tip + sign * dx, y + dy);
+        }
+      }
+      x.stroke();
+    }
+    figure(r.reference, w / 2, h * .34, t.dir === 'plain' ? 'plain' : t.dir === 'in' ? 'out' : 'in');
+    figure(r.length, w / 2 + r.offset * s, h * .66, t.dir);
+  }
+
+  function renderShadow() {
+    const r = state.run;
+    canvas().setAttribute('aria-label', 'Checkerboard with square A outside the shadow, square B inside, and a swatch on a plain gray strip.');
+    $('controls').innerHTML = `<div class="row">${button('darker','Darker')}${button('lighter','Lighter')}</div>` +
+      button('lock', 'Lock it in', 'primary', r.moved < 3);
+    hold('darker', () => adjustShadow(-2));
+    hold('lighter', () => adjustShadow(2));
+    $('lock').onclick = lockShadow;
+    hint(r.i % 2 ? L.ssB : L.ssHow);
+    progress(Math.floor(r.i / 2), 2);
+    $('panel-note').textContent = 'Use Up and Down keys, or hold Lighter and Darker. Judge by eye.';
+  }
+
+  function adjustShadow(delta) {
+    const r = state.run;
+    measurement(true);
+    r.started = true;
+    const v = Math.max(0, Math.min(255, r.value + delta));
+    r.moved += Math.abs(v - r.value);
+    r.value = v;
+    $('lock').disabled = r.moved < 3;
+    hint(r.moved < 3 ? 'Keep adjusting the swatch with Lighter or Darker.' : 'When the swatch looks equal, press Lock it in.');
+    tone();
+    drawShadow();
+  }
+
+  function lockShadow() {
+    const r = state.run;
+    if (r.moved < 3) return;
+    stopRepeat();
+    if (r.value === 0 || r.value === 255) {
+      toast('At the limit, run again.');
+      shadowTrial(r);
+      render();
+      $('lighter').focus({
+        preventScroll: true
+      });
+      return;
+    }
+    r.rows.push({
+      trial: Math.floor(r.i / 2) + 1,
+      target: r.i % 2 ? 'B' : 'A',
+      value: r.value,
+      true: r.i < 2 ? 110 : 121
+    });
+    r.i++;
+    measurement(false);
+    if (r.i === 4) finish({
+      rows: r.rows
+    });
+    else {
+      shadowTrial(r);
+      render();
+      $('lighter').focus({
+        preventScroll: true
+      });
+      if (r.i % 2 && !V.heard('ssB')) how('ssB', () => state.run.i % 2 === 1);
+    }
+    tone();
+  }
+
+  function shadowGeometry(w, h) {
+    const boardW = w * .77,
+      boardH = Math.min(h * .65, boardW * .7),
+      ox = w * .04,
+      oy = (h - boardH) / 2;
+    const point = (col, row) => [ox + boardW * (.12 * (1 - row / 6) + col / 8 * (.76 + .24 * row / 6)), oy + row / 6 * boardH];
+    return {
+      point,
+      boardW,
+      boardH,
+      ox,
+      oy
+    };
+  }
+
+  function drawShadow() {
+    const c = $('experiment');
+    if (!c) return;
+    const {
+      x,
+      w,
+      h
+    } = context(c), r = state.run;
+    const trial = state.step === 'do' ? Math.floor(r.i / 2) : +(r.viewTrial || 0);
+    const light = trial ? 220 : 200,
+      dark = trial ? 121 : 110;
+    const g = shadowGeometry(w, h),
+      p = g.point;
+    const center = (col, row) => p(col + .5, row + .5);
+    const A = center(1, 4),
+      B = center(4, 2);
+    const tile = (col, row, color) => {
+      x.beginPath();
+      [p(col, row), p(col + 1, row), p(col + 1, row + 1), p(col, row + 1)].forEach(([xx, yy], i) => i ? x.lineTo(xx, yy) : x.moveTo(xx, yy));
+      x.closePath();
+      x.fillStyle = color;
+      x.fill();
+    };
+    x.fillStyle = '#26262a';
+    x.fillRect(0, 0, w, h);
+    for (let row = 0; row < 6; row++)
+      for (let col = 0; col < 8; col++) {
+        const value = (row + col) % 2 === 0 ? light : dark;
+        tile(col, row, `rgb(${value},${value},${value})`);
+      }
+    x.save();
+    x.beginPath();
+    [p(0, 0), p(8, 0), p(8, 6), p(0, 6)].forEach(([xx, yy], i) => i ? x.lineTo(xx, yy) : x.moveTo(xx, yy));
+    x.closePath();
+    x.clip();
+    x.filter = 'blur(12px)';
+    x.fillStyle = 'rgba(0,0,0,.45)';
+    x.beginPath();
+    x.ellipse(B[0] + g.boardW * .05, B[1] - g.boardH * .1, g.boardW * .23, g.boardH * .55, -.52, 0, Math.PI * 2);
+    x.fill();
+    x.restore();
+    // Exact stimulus interiors are painted after the soft boundary, so both sample pixels are identical.
+    tile(1, 4, `rgb(${dark},${dark},${dark})`);
+    tile(4, 2, `rgb(${dark},${dark},${dark})`);
+    if (!r.hide) {
+      const cx = g.ox + g.boardW * .83,
+        cy = g.oy + g.boardH * .13,
+        radius = g.boardW * .085,
+        ch = g.boardH * .33;
+      const grad = x.createLinearGradient(cx - radius, 0, cx + radius, 0);
+      grad.addColorStop(0, '#617668');
+      grad.addColorStop(.35, '#b2c3ad');
+      grad.addColorStop(1, '#435547');
+      x.fillStyle = '#0004';
+      x.beginPath();
+      x.ellipse(cx + radius * .4, cy + ch, radius * 1.3, radius * .35, 0, 0, 7);
+      x.fill();
+      x.fillStyle = grad;
+      x.fillRect(cx - radius, cy, radius * 2, ch);
+      x.beginPath();
+      x.ellipse(cx, cy + ch, radius, radius * .32, 0, 0, Math.PI);
+      x.fill();
+      x.fillStyle = '#c4d0be';
+      x.beginPath();
+      x.ellipse(cx, cy, radius, radius * .32, 0, 0, 7);
+      x.fill();
+      x.strokeStyle = '#e0e5d655';
+      x.stroke();
+    } else {
+      x.fillStyle = '#808080';
+      x.fillRect(0, 0, w, h);
+      tile(1, 4, `rgb(${dark},${dark},${dark})`);
+      tile(4, 2, `rgb(${dark},${dark},${dark})`);
+    }
+    if (r.bridge) {
+      x.strokeStyle = `rgb(${dark},${dark},${dark})`;
+      x.lineWidth = Math.max(10, g.boardH * .08);
+      x.beginPath();
+      x.moveTo(...A);
+      x.lineTo(...B);
+      x.stroke();
+    }
+    x.fillStyle = trial ? '#000' : '#fff';
+    x.font = `600 ${Math.max(12,Math.min(24,w*.033))}px Segoe UI`;
+    x.textAlign = 'center';
+    x.textBaseline = 'middle';
+    x.fillText('A', ...A);
+    x.fillText('B', ...B);
+    if (state.step === 'do') {
+      const sx = w * .85,
+        sy = h * .38,
+        sw = w * .12,
+        sh = h * .24;
+      x.fillStyle = '#808080';
+      x.fillRect(w * .82, 0, w * .18, h);
+      x.fillStyle = `rgb(${r.value},${r.value},${r.value})`;
+      x.fillRect(sx, sy, sw, sh);
+      x.fillStyle = '#000';
+      x.font = `${Math.max(10,Math.min(15,w*.023))}px Segoe UI`;
+      x.fillText('Swatch', sx + sw / 2, sy + sh + 20);
+    }
+    state.shadowPixels = {
+      A: {
+        x: A[0] + g.boardW * .03,
+        y: A[1] + g.boardH * .02
+      },
+      B: {
+        x: B[0] + g.boardW * .03,
+        y: B[1] + g.boardH * .02
+      },
+      trueGray: dark
+    };
+  }
+  const PATH = [
+    ['Light', 'Light enters through the cornea and lens and lands on the retina.'],
+    ['Rods and cones',
+      'Photoreceptors turn light into electrical signals: transduction. About 92 million rods serve dim light; 4.6 million ' +
+      'cones serve color and detail. Roughly 20 to 1; counts vary.'
+    ],
+    ['Bipolar cells', 'Pass signals on and begin comparing neighbors through the retinal network.'],
+    ['Ganglion cells', 'Their axons bundle into the optic nerve.'],
+    ['Optic nerve', 'Carries the signal out of the eye.'],
+    ['Thalamus', 'A relay station on the path to the visual cortex.'],
+    ['Visual cortex', 'At the back of the brain, in the occipital lobe, where cortical processing of edges and shapes begins.']
+  ];
+  const PATH_SYMBOLS = [
+    '<path d="M3 14h25m-7-6 7 6-7 6M5 4l5 3M5 24l5-3"/>',
+    '<path d="M9 4v10q0 6 4 6t4-6V4M24 4l5 10q0 6-5 6t-5-6Z"/><path d="M13 20v6m11-6v6"/>',
+    '<circle cx="18" cy="14" r="4"/><path d="M18 10V2m0 16v8M12 3l6 4 6-4M12 25l6-4 6 4"/>',
+    '<circle cx="14" cy="14" r="5"/><path d="M19 14h13M3 4l8 7M3 24l8-7m-1-6L4 13m6 4-6-2"/>',
+    '<path d="M4 8q13-4 28 0M4 20q13 4 28 0M7 10l22 8M7 18l22-8M7 14h22"/>',
+    '<ellipse cx="18" cy="14" rx="9" ry="7"/><path d="M2 14h7m18 0h7m-20-3h8m-8 6h8"/>',
+    '<path d="M7 22Q1 14 8 8q2-7 10-4 8-3 10 4 7 6 1 14M18 4v20M10 9l4 4-4 4m16-8-4 4 4 4"/>'
+  ];
+
+  function pathSymbol(i) {
+    return `<svg class="path-symbol" viewBox="0 0 36 28" aria-hidden="true"><g fill="none" stroke="currentColor" ` +
+      `stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${PATH_SYMBOLS[i]}</g></svg>`;
+  }
+
+  function eyeInput(pattern) {
+    return Array.from({
+      length: 24
+    }, (_, i) => pattern === 'step' ? (i < 12 ? .8 : .3) : (i >= 8 && i < 16 ? .5 : pattern === 'dark' ? .2 : .8));
+  }
+
+  function inhibit(input, k) {
+    return input.map((v, i) => v - k * (input[Math.max(0, i - 1)] + input[Math.min(23, i + 1)]) / 2);
+  }
+
+  function renderEye() {
+    const r = state.run;
+    $('stage').innerHTML = `<div class="eye-layout"><div class="path">${PATH.map(([n],i)=>
+      `<button id="path-${i}" class="${r.visited.includes(i)?'visited':''} ${r.path===i?'active':''}">${pathSymbol(i)}${n}</button>`).join('')}</div>
+      <div class="eye-card" id="path-card">Tap Light, then follow each stage along the pathway.</div>
+      <div class="eye-chart"><canvas id="eye-canvas" role="img" aria-label="Receptor inputs and output curve"></canvas></div>
+      <div class="eye-values" id="eye-values"></div></div>`;
+    PATH.forEach(([name, text], i) => $('path-' + i).onclick = () => {
+      r.started = true;
+      r.path = i;
+      $('tab-compare').disabled = !result();
+      $('tab-why').disabled = !result();
+      if (!r.visited.includes(i)) r.visited.push(i);
+      document.querySelectorAll('.path button').forEach((b, j) => {
+        b.classList.toggle('active', j === i);
+        b.classList.toggle('visited', r.visited.includes(j));
+      });
+      $('path-card').innerHTML = `<b>${name}</b><br>${text}`;
+      if (!Curio.reduce) $('path-' + i).animate([{
+        boxShadow: '0 0 0 0 #f28fc4aa'
+      }, {
+        boxShadow: '0 0 0 12px #f28fc400'
+      }], {
+        duration: 500
+      });
+      tone();
+      eyeDone();
+    });
+    if (r.path >= 0) $('path-card').innerHTML = `<b>${PATH[r.path][0]}</b><br>${PATH[r.path][1]}`;
+    $('controls').innerHTML = '<label for="pattern">Pattern</label><select id="pattern"><option value="step">Step edge</option>' +
+      '<option value="dark">Patch on dark</option><option value="light">Patch on light</option></select>' +
+      '<div id="prediction"><p class="caption">Where will neighboring outputs differ most?</p><div class="row">' +
+      button('edge', 'Edge') + button('middle', 'Middle') + '</div></div>' +
+      '<label for="inhibition">Neighbor inhibition <span id="k-value"></span></label>' +
+      `<input type="range" id="inhibition" min="0" max="0.4" step="0.05" value="${r.k}" ${r.prediction?'':'disabled'}>` +
+      button('eye-compare', 'Compare', 'primary', !eyeReady());
+    $('pattern').value = r.pattern;
+    $('pattern').onchange = () => {
+      r.pattern = $('pattern').value;
+      V.hush();
+      tone();
+      drawEye();
+      eyeDone();
+      if (r.prediction && r.pattern === 'step' && r.k >= .3) {
+        how('eyeBands', () => r.pattern === 'step' && r.k >= .3);
+      } else {
+        eyeGuide();
+      }
+    };
+    $('prediction').hidden = !!r.prediction;
+    for (const id of ['edge', 'middle']) $(id).onclick = () => {
+      r.started = true;
+      r.prediction = id;
+      $('prediction').hidden = true;
+      $('inhibition').disabled = false;
+      $('inhibition').focus({preventScroll:true});
+      how('eyeSlide', () => r.k === 0, ['#inhibition'], true);
+      $('panel-note').textContent = id === 'edge' ? 'Prediction recorded. Test it with the slider.' :
+        'Prediction recorded. Compare the edge with the middle.';
+      drawEye();
+      tone();
+    };
+    $('inhibition').oninput = () => {
+      const previousK = r.k;
+      r.k = +$('inhibition').value;
+      if (previousK === 0 || (r.k < .3 && V.playing?.key === 'eyeBands')) V.hush();
+      drawEye();
+      eyeDone();
+      tone();
+      if (r.k >= .3 && r.pattern === 'step') V.how('eyeBands', {
+        valid: () => r.k >= .3 && r.pattern === 'step', hint: false
+      });
+      eyeGuide();
+    };
+    $('eye-compare').onclick = () => {
+      if (eyeReady()) finish({
+        prediction: r.prediction,
+        k: r.k,
+        visited: r.visited,
+        patterns: r.patterns
+      });
+    };
+    hint(r.prediction ? 'Move Neighbor inhibition. Visit every stage and test all patterns at full inhibition, then press Compare.' : L.eyeHow);
+    $('panel-note').textContent = 'A simplified neighbor model, not a complete retina. The gray line is input; the orchid line is output.';
+    drawEye();
+  }
+
+  function eyeReady() {
+    const r = state.run;
+    return r.visited.length === 7 && r.prediction && ['step', 'dark', 'light'].every(p => r.patterns.includes(p));
+  }
+
+  function eyeDone() {
+    const r = state.run;
+    if (r.prediction && r.k === .4 && !r.patterns.includes(r.pattern)) r.patterns.push(r.pattern);
+    if ($('eye-compare')) $('eye-compare').disabled = !eyeReady();
+    $('progress').textContent = `${r.visited.length} of 7 stages visited; ${r.patterns.length} of 3 patterns tested`;
+    eyeGuide();
+  }
+
+  function eyeGuide() {
+    const r = state.run;
+    if (!r.prediction) hint(L.eyeHow);
+    else if (r.k < .4) hint('Slide Neighbor inhibition all the way right to test this pattern.');
+    else if (r.visited.length < 7) hint('Tap each stage without a check mark to follow the whole pathway.');
+    else if (r.patterns.length < 3) hint('Choose an untested Pattern: Step edge, Patch on dark, or Patch on light. Keep the slider all the way right.');
+    else hint('All three patterns are tested. Press Compare to review the edge and interior signals.');
+  }
+
+  function drawEye() {
+    if (!$('eye-canvas')) return;
+    const r = state.run,
+      {
+        x,
+        w,
+        h
+      } = context($('eye-canvas')),
+      input = eyeInput(r.pattern),
+      output = inhibit(input, r.k);
+    x.fillStyle = '#26262a';
+    x.fillRect(0, 0, w, h);
+    const left = 15,
+      right = w - 15,
+      top = 30,
+      bottom = h - 25,
+      dx = (right - left) / 24;
+    input.forEach((v, i) => {
+      const gray = Math.round(v * 255);
+      x.fillStyle = `rgb(${gray},${gray},${gray})`;
+      x.fillRect(left + i * dx, 0, dx - 1, 18);
+    });
+    x.strokeStyle = '#6d6d76';
+    x.lineWidth = 1;
+    x.beginPath();
+    x.moveTo(left, top);
+    x.lineTo(left, bottom);
+    x.lineTo(right, bottom);
+    x.stroke();
+
+    function curve(values, color, dash) {
+      x.strokeStyle = color;
+      x.lineWidth = 2.5;
+      x.setLineDash(dash);
+      x.beginPath();
+      values.forEach((v, i) => {
+        const xx = left + (i + .5) * dx,
+          yy = bottom - v * (bottom - top);
+        i ? x.lineTo(xx, yy) : x.moveTo(xx, yy);
+      });
+      x.stroke();
+      x.setLineDash([]);
+    }
+    curve(input, '#b9bec6', [5, 4]);
+    if (r.prediction) curve(output, '#f28fc4', []);
+    else {
+      x.fillStyle = '#eee';
+      x.font = '14px Segoe UI';
+      x.textAlign = 'center';
+      x.fillText('Predict first', w / 2, h * .65);
+    }
+    if ($('k-value')) $('k-value').textContent = r.prediction ? fmt(r.k, 2) : '';
+    if (r.prediction) {
+      $('eye-values').textContent = r.pattern === 'step' ?
+        `Edge ${fmt(output[11],2)} / ${fmt(output[12],2)}; plateaus ${fmt(output[4],2)} / ${fmt(output[20],2)}` :
+        `Patch edge ${fmt(output[8],2)}; patch interior ${fmt(output[11],2)}. Input stays the same inside the patch.`;
+    } else $('eye-values').textContent = 'Output is hidden until you commit to Edge or Middle.';
+    state.eyeValues = {
+      input,
+      output: r.prediction ? output : null
+    };
+  }
+  const SCENES = [{
+    base: 'kitchen',
+    object: 'kettle',
+    box: [.42, .40, .14, .18],
+    interest: 'central',
+    kind: 0
+  }, {
+    base: 'street',
+    object: 'mailbox',
+    box: [.86, .62, .06, .12],
+    interest: 'marginal',
+    kind: 1
+  }, {
+    base: 'pond',
+    object: 'boat',
+    box: [.40, .55, .20, .12],
+    interest: 'central',
+    kind: 2,
+    shift: [-.12, 0]
+  }, {
+    base: 'classroom',
+    object: 'plant',
+    box: [.08, .22, .06, .09],
+    place: [.08, .26, .06, .09],
+    interest: 'marginal',
+    kind: 1
+  }, {
+    base: 'market',
+    object: 'oranges',
+    box: [.38, .60, .22, .20],
+    interest: 'central',
+    kind: 1
+  }, {
+    base: 'harbor',
+    object: 'buoy',
+    box: [.80, .58, .04, .06],
+    interest: 'marginal',
+    kind: 0
+  }, {
+    base: 'living',
+    object: 'frame',
+    box: [.12, .20, .10, .12],
+    interest: 'marginal',
+    kind: 2,
+    shift: [0, -.08]
+  }];
+
+  function loadImage(src) {
+    return new Promise(resolve => {
+      const im = new Image();
+      im.onload = () => resolve(im);
+      im.onerror = () => resolve(null);
+      im.src = src;
+    });
+  }
+  async function preload() {
+    const names = [...new Set(SCENES.flatMap(s => [s.base, s.object]))];
+    const ims = Object.fromEntries(await Promise.all(names.map(async n => [n, await loadImage(ART[n])])));
+    frames = SCENES.map(s => [0, 1].map(f => {
+      const c = document.createElement('canvas');
+      c.width = 1000;
+      c.height = 625;
+      const x = c.getContext('2d');
+      if (ims[s.base]) x.drawImage(ims[s.base], 0, 0, 1000, 625);
+      if (f === 0) {
+        const pixels = x.getImageData(0, 0, 1000, 625).data;
+        const sums = [0, 0, 0];
+        let count = 0;
+        for (let i = 0; i < pixels.length; i += 256) {
+          sums.forEach((v, j) => sums[j] += pixels[i + j]);
+          count++;
+        }
+        s.average = `rgb(${sums.map(v=>Math.round(v/count)).join(',')})`;
+      }
+      const [bx, by, bw, bh] = s.place || s.box;
+      if (!(s.kind === 1 && f === 1) && ims[s.object]) {
+        x.save();
+        if (s.kind === 0 && f === 1) x.filter = `hue-rotate(${s.object==='buoy'?115:215}deg)`;
+        const shift = s.kind === 2 && f === 1 ? s.shift : [0, 0];
+        x.drawImage(ims[s.object], (bx + shift[0]) * 1000, (by + shift[1]) * 625, bw * 1000, bh * 625);
+        x.restore();
+      }
+      return c;
+    }));
+    picturesReady = true;
+    if (state.station === 'change' && state.step === 'do') render();
+  }
+
+  function renderChange() {
+    const r = state.run;
+    $('stage').innerHTML = '<div class="flicker-wrap"><p class="flicker-notice">This station flashes a gray screen about once a second. ' +
+      'Choose Flip by hand to step through instead.</p><div class="picture-box" id="picture-box" tabindex="0" ' +
+      'role="button" aria-label="Scene. After Spotted it, click the change, or move the crosshair with arrow keys and press Enter.">' +
+      '<canvas id="change-canvas"></canvas></div></div>';
+    $('controls').innerHTML = button('change-start', r.i === 6 ? 'Start: No gap' : 'Start', 'primary',
+        !picturesReady || r.phase !== 'ready' || r.i === 6 && !r.noGapReady) +
+      button('spotted', 'Spotted it', '', r.phase !== 'running') +
+      button('manual', 'Flip by hand') + button('flip', 'Flip', '', !r.manual || r.phase !== 'running') +
+      '<div id="kinds" hidden>' + button('kind-0', '◐ Color', 'wide') + button('kind-1', '⊕ Appeared or vanished', 'wide') +
+      button('kind-2', '↔ Moved', 'wide') + '</div>' + button('next-scene', 'Next scene', '', r.phase !== 'done');
+    $('manual').setAttribute('aria-pressed', r.manual);
+    $('manual').onclick = () => {
+      r.manual = !r.manual;
+      $('manual').setAttribute('aria-pressed', r.manual);
+      tone();
+      $('flip').disabled = !r.manual || r.phase !== 'running';
+      if (r.phase === 'running') {
+        r.nextBeat = performance.now() + 560;
+        r.nextManualAt = Math.max(r.nextManualAt || 0, performance.now() + 560);
+        r.blank = false;
+        drawChange();
+        hint(r.manual ? 'Press Flip to compare the pictures. When you see the change, press Spotted it.' :
+          'Watch for a change. Press Spotted it, then tap the spot.');
+      }
+    };
+    $('change-start').onclick = startChange;
+    $('spotted').onclick = spotted;
+    $('flip').onclick = manualFlip;
+    $('next-scene').onclick = nextScene;
+    [0, 1, 2].forEach(i => $('kind-' + i).onclick = () => pickKind(i));
+    $('picture-box').onclick = e => {
+      if (r.phase !== 'spot') {
+        if (r.phase === 'running') hint('Press Spotted it first, then tap.');
+        return;
+      }
+      const b = $('picture-box').getBoundingClientRect();
+      chooseSpot((e.clientX - b.left) / b.width, (e.clientY - b.top) / b.height);
+    };
+    $('picture-box').onkeydown = e => {
+      if (r.phase !== 'spot') return;
+      r.cross ||= [.5, .5];
+      const delta = e.shiftKey ? .01 : .04;
+      if (e.key === 'ArrowLeft') r.cross[0] -= delta;
+      else if (e.key === 'ArrowRight') r.cross[0] += delta;
+      else if (e.key === 'ArrowUp') r.cross[1] -= delta;
+      else if (e.key === 'ArrowDown') r.cross[1] += delta;
+      else if (e.key === 'Enter') {
+        chooseSpot(...r.cross);
+        e.preventDefault();
+        return;
+      } else return;
+      r.cross = r.cross.map(v => Math.max(0, Math.min(1, v)));
+      e.preventDefault();
+      drawChange();
+    };
+    $('kinds').hidden = r.phase !== 'kind';
+    progress(r.i, 7);
+    hint(picturesReady ? L.scHow : 'Loading pictures. All scene pairs load before Start becomes available.');
+    if (r.phase === 'spot') hint('Tap where the change is. With a keyboard, use the scene crosshair and Enter.');
+    if (r.phase === 'kind') hint('Right spot. Tap the kind of change.');
+    if (r.phase === 'done') hint('Press Next scene to continue.');
+    $('panel-note').textContent = r.practice ? 'Practice run. Familiar scenes are not saved.' :
+      'A correct find needs the location and the kind. Misses resume the clock.';
+    drawChange();
+  }
+
+  function startChange() {
+    const r = state.run;
+    if (!picturesReady || r.phase !== 'ready' || r.i === 6 && !r.noGapReady) return;
+    measurement(true);
+    r.started = true;
+    r.phase = 'running';
+    r.frame = 0;
+    r.blank = false;
+    r.alternations = 0;
+    r.misses = 0;
+    r.kindMisses = 0;
+    r.nextBeat = performance.now() + 560;
+    r.nextManualAt = r.nextBeat;
+    r.startedAt = performance.now();
+    r.cross = null;
+    render();
+    hint(r.manual ? 'Press Flip to compare the pictures. When you see the change, press Spotted it.' :
+      'Watch for a change. Press Spotted it, then tap the spot.');
+    $('spotted').focus({preventScroll:true});
+    tone();
+  }
+
+  function spotted() {
+    const r = state.run;
+    if (r.phase !== 'running') return;
+    if (r.blank) {
+      r.frame = 1 - r.frame;
+      r.alternations++;
+    }
+    r.blank = false;
+    r.phase = 'spot';
+    measurement(false);
+    r.cross = null;
+    render();
+    hint('Tap the change. Or move the scene crosshair with arrow keys, then press Enter.');
+    $('picture-box').focus({
+      preventScroll: true
+    });
+    tone();
+    drawChange();
+  }
+
+  function inSpot(s, x, y) {
+    const boxes = [s.box];
+    if (s.shift) boxes.push([s.box[0] + s.shift[0], s.box[1] + s.shift[1], s.box[2], s.box[3]]);
+    return boxes.some(([bx, by, bw, bh]) => x >= bx - .04 && x <= bx + bw + .04 && y >= by - .04 && y <= by + bh + .04);
+  }
+
+  function chooseSpot(x, y) {
+    const r = state.run;
+    if (r.phase !== 'spot') return;
+    if (r.alternations < 1) {
+      changeMiss();
+      hint(r.manual ? 'See both pictures first. Press Flip, then Spotted it.' : 'See both pictures first, then press Spotted it.');
+      return;
+    }
+    if (inSpot(SCENES[r.order[r.i]], x, y)) {
+      r.phase = 'kind';
+      render();
+      how('scKind', () => r.phase === 'kind', ['#kind-0']);
+      $('kind-0').focus({
+        preventScroll: true
+      });
+      tone();
+    } else changeMiss();
+  }
+
+  function pickKind(kind) {
+    const r = state.run;
+    if (r.phase !== 'kind') return;
+    if (kind === SCENES[r.order[r.i]].kind) endScene(true);
+    else {
+      r.kindMisses++;
+      changeMiss();
+    }
+  }
+
+  function changeMiss() {
+    const r = state.run;
+    r.misses++;
+    if (r.misses >= 3) endScene(false);
+    else {
+      measurement(true);
+      r.phase = 'running';
+      r.nextBeat = performance.now() + 560;
+      r.blank = false;
+      render();
+      hint(r.manual ? 'That location or kind did not match. Press Flip to watch again, then Spotted it.' :
+        'That location or kind did not match. Watch again, then press Spotted it.');
+      tone();
+    }
+  }
+
+  function endScene(found) {
+    const r = state.run,
+      s = SCENES[r.order[r.i]];
+    V.hush();
+    r.phase = 'done';
+    r.blank = false;
+    r.rows.push({
+      scene: s.base,
+      interest: s.interest,
+      alternations: r.alternations,
+      misses: r.misses,
+      found: found && !r.kindMisses,
+      located: found,
+      kindMisses: r.kindMisses,
+      noGap: r.i === 6
+    });
+    measurement(false);
+    render();
+    hint(found && !r.kindMisses ? 'Change recorded. Press Next scene.' :
+      found ? 'Location recorded; the kind needed correction. Compare the frames, then press Next scene.' :
+      'Not found. Compare the two frames, then press Next scene.');
+    $('next-scene').focus({
+      preventScroll: true
+    });
+    tone();
+  }
+  async function nextScene() {
+    const r = state.run;
+    if (r.phase !== 'done') return;
+    if (r.i === 6) {
+      finish({
+        rows: r.rows,
+        practice: r.practice
+      }, !r.practice);
+      return;
+    }
+    r.i++;
+    r.phase = 'ready';
+    r.alternations = 0;
+    r.misses = 0;
+    r.kindMisses = 0;
+    r.frame = 0;
+    r.blank = false;
+    render();
+    if (r.i === 6) {
+      const generation = state.generation;
+      const earliest = performance.now() + 600 + 62 * L.scNoGap.length;
+      hint(L.scNoGap);
+      await V.how('scNoGap', {
+        wait: true,
+        valid: () => state.station === 'change' && r.phase === 'ready'
+      });
+      await Curio.wait(Math.max(0, earliest - performance.now()));
+      while (V.playing?.key === 'scNoGap' || V.queue.some(line => line.key === 'scNoGap')) {
+        if (generation !== state.generation) return;
+        await Curio.wait(100);
+      }
+      if (generation !== state.generation) return;
+      r.noGapReady = true;
+      $('change-start').disabled = false;
+      hint('Press Start: No gap. Watch how fast you find this one.');
+    } else hint('Press Start for the next scene.');
+    $('change-start').focus({
+      preventScroll: true
+    });
+  }
+
+  function manualFlip() {
+    const r = state.run;
+    if (r.phase !== 'running' || !r.manual || r.blank) return;
+    const now = performance.now();
+    if (now < (r.nextManualAt || 0)) return;
+    // Keep manual blank flashes at the same maximum rate as automatic flicker.
+    r.nextManualAt = now + 720;
+    if (r.i === 6) {
+      r.frame = 1 - r.frame;
+      r.alternations++;
+      drawChange();
+      return;
+    }
+    r.blank = true;
+    r.manualUntil = performance.now() + 160;
+    drawChange();
+    tone();
+  }
+
+  function drawChange() {
+    if (!$('change-canvas')) return;
+    const r = state.run,
+      c = $('change-canvas'),
+      {
+        x,
+        w,
+        h
+      } = context(c),
+      id = r.order[r.i];
+    if (!picturesReady) {
+      x.fillStyle = '#26262a';
+      x.fillRect(0, 0, w, h);
+      return;
+    }
+    if (r.phase === 'ready') {
+      x.fillStyle = '#26262a';
+      x.fillRect(0, 0, w, h);
+      x.fillStyle = '#d4dae4';
+      x.textAlign = 'center';
+      x.font = '14px Segoe UI';
+      x.fillText('Press Start', w / 2, h / 2);
+      return;
+    }
+    if (r.phase === 'done' && !r.rows.at(-1).found) {
+      const pictureHeight = h / 2;
+      const top = (h - pictureHeight) / 2;
+      x.fillStyle = '#26262a';
+      x.fillRect(0, 0, w, h);
+      x.drawImage(frames[id][0], 0, top, w / 2, pictureHeight);
+      x.drawImage(frames[id][1], w / 2, top, w / 2, pictureHeight);
+      const s = SCENES[id];
+      x.strokeStyle = '#fff';
+      x.lineWidth = 2;
+      for (let f = 0; f < 2; f++) {
+        const shift = s.kind === 2 && f === 1 ? s.shift : [0, 0];
+        const box = s.place || s.box;
+        x.strokeRect(f * w / 2 + (box[0] + shift[0]) * w / 2,
+          top + (box[1] + shift[1]) * pictureHeight, box[2] * w / 2, box[3] * pictureHeight);
+      }
+      return;
+    }
+    if (r.blank) {
+      x.fillStyle = SCENES[id].average || '#8d8c80';
+      x.fillRect(0, 0, w, h);
+    } else x.drawImage(frames[id][r.frame], 0, 0, w, h);
+    if (r.cross && r.phase === 'spot') {
+      const [cx, cy] = r.cross;
+      x.strokeStyle = '#fff';
+      x.lineWidth = 2;
+      x.beginPath();
+      x.moveTo(cx * w - 12, cy * h);
+      x.lineTo(cx * w + 12, cy * h);
+      x.moveTo(cx * w, cy * h - 12);
+      x.lineTo(cx * w, cy * h + 12);
+      x.stroke();
+    }
+  }
+  const TRIGRAMS = ['TLV', 'PGQ', 'LSK', 'WBG', 'SPH', 'NJC', 'VKD', 'RSF', 'NWH', '582'];
+
+  function renderCount() {
+    const r = state.run;
+    $('stage').innerHTML = '<div class="memory-stage"><div class="memory-card"><div class="memory-word" id="memory-word"></div></div>' +
+      '<p class="caption" id="memory-caption"></p><div class="count-bar" id="count-bar"></div></div>';
+    progress(r.i, 10);
+    if (r.phase === 'ready') {
+      $('memory-word').textContent = r.i === 9 ? 'Digits next' : 'Hold it in mind';
+      $('memory-caption').textContent = 'No writing. Keep it in your head.';
+      $('controls').innerHTML = button('count-start', r.i ? 'Next trial' : 'Start', 'primary');
+      $('count-start').onclick = startCount;
+      hint(r.i ? L.cbNext : L.cbHow);
+    } else if (r.phase === 'show') {
+      $('memory-word').textContent = TRIGRAMS[r.i];
+      $('memory-caption').textContent = r.i === 9 ? 'Remember these digits.' : 'Remember these letters.';
+      hint('Keep it in your head. Counting starts next.');
+    } else if (r.phase === 'counting') {
+      $('memory-word').textContent = r.number;
+      $('memory-caption').textContent = 'Count backward by threes. Tap the next number.';
+      $('controls').innerHTML = r.choices.map((v, i) => button('count-choice-' + i, String(v), 'wide')).join('');
+      r.choices.forEach((v, i) => $('count-choice-' + i).onclick = () => countChoice(v));
+      hint('Tap the number that is three less. Keep counting until recall opens.');
+    } else if (r.phase === 'recall') {
+      $('memory-word').textContent = 'Recall';
+      $('memory-caption').textContent = 'Keep the original order.';
+      $('controls').innerHTML = `<label for="recall">Type the three ${r.i===9?'digits':'letters'}</label>` +
+        `<input id="recall" type="text" aria-label="Type the three ${r.i===9?'digits':'letters'}" maxlength="3"` +
+        ' autocomplete="off" autocorrect="off" spellcheck="false">' +
+        button('submit-recall', 'Submit', 'primary');
+      $('recall').oninput = () => {
+        $('recall').value = $('recall').value.toUpperCase();
+      };
+      $('submit-recall').onclick = submitCount;
+      $('recall').onkeydown = e => {
+        if (e.key === 'Enter') submitCount();
+      };
+      hint(`Type the three ${r.i===9?'digits':'letters'}, then press Submit. An empty answer is a result too.`);
+    }
+    $('panel-note').textContent = 'Counting matters. Low counting accuracy is marked rehearsal possible and excluded from delay averages.';
+  }
+
+  function startCount() {
+    const r = state.run;
+    if (r.phase !== 'ready') return;
+    measurement(true);
+    r.started = true;
+    r.phase = 'show';
+    r.showUntil = performance.now() + 1500;
+    r.correctSteps = 0;
+    r.steps = 0;
+    r.number = Math.floor(rand(300, 1000));
+    render();
+    $('nav-count').focus({preventScroll:true});
+    tone();
+  }
+
+  function countChoices() {
+    const r = state.run;
+    r.choices = shuffle([r.number - 3, r.number - 2, r.number - 4]);
+    r.stepUntil = performance.now() + 3000;
+  }
+
+  function countChoice(value) {
+    const r = state.run;
+    if (r.phase !== 'counting') return;
+    // Each newly displayed step must be inspected. Fast alternating/mashing cannot manufacture counting accuracy.
+    if (performance.now() - r.choiceAt < 250) return;
+    r.steps++;
+    if (value === r.number - 3) r.correctSteps++;
+    r.number = value;
+    countChoices();
+    r.choiceAt = performance.now();
+    render();
+    tone();
+    $('count-choice-0').focus({
+      preventScroll: true
+    });
+  }
+
+  function countRecall() {
+    const r = state.run;
+    if (r.phase !== 'counting') return;
+    r.phase = 'recall';
+    measurement(false);
+    render();
+    how('cbRecall', () => r.phase === 'recall', ['#recall', '#submit-recall']);
+    $('recall').focus({
+      preventScroll: true
+    });
+  }
+
+  function submitCount() {
+    const r = state.run;
+    if (r.phase !== 'recall') return;
+    V.hush();
+    const answer = $('recall').value.trim().toUpperCase();
+    const right = [...TRIGRAMS[r.i]].filter((c, i) => answer[i] === c).length;
+    r.rows.push({
+      trial: r.i + 1,
+      delay: r.delays[r.i],
+      answer,
+      right,
+      all: right === 3,
+      steps: r.steps,
+      correct: r.correctSteps,
+      accuracy: r.steps ? r.correctSteps / r.steps : 0,
+      eligible: r.steps > 0 && r.correctSteps / r.steps >= .7
+    });
+    r.i++;
+    if (r.i === 10) finish({
+      rows: r.rows
+    });
+    else {
+      r.phase = 'ready';
+      render();
+      how('cbNext', () => r.phase === 'ready', ['#count-start']);
+      $('count-start').focus({
+        preventScroll: true
+      });
+    }
+    tone();
+  }
+  const LISTS = [
+    ['snow', 'cold', 'ice', 'sled', 'mittens', 'frost', 'scarf', 'December', 'freezing', 'coat', 'shovel', 'blizzard', 'boots', 'chilly',
+      'snowman'
+    ],
+    ['sand', 'waves', 'shore', 'ocean', 'towel', 'sun', 'surf', 'shells', 'tide', 'swim', 'umbrella', 'salt', 'coast', 'sunscreen', 'seagull']
+  ];
+
+  function recognition() {
+    const a = shuffle(['sand', 'waves', 'towel', 'tide', 'sunscreen', 'seagull', 'pencil', 'garden', 'candle', 'ladder', 'violin']);
+    a.splice(2 + Math.floor(Math.random() * 8), 0, 'beach');
+    return a;
+  }
+  const normalize = s => s.trim().toLowerCase().replace(/s$/, '');
+
+  function renderWords() {
+    const r = state.run;
+    $('stage').innerHTML = '<div class="memory-stage"><div class="memory-card"><div class="memory-word" id="memory-word"></div></div>' +
+      '<p class="caption" id="memory-caption"></p><div class="chips" id="recall-chips"></div><div class="count-bar" id="count-bar"></div></div>';
+    if (r.phase === 'ready') {
+      $('memory-word').textContent = 'Just read.';
+      $('memory-caption').textContent = 'Let each word arrive. Keep the words in your head.';
+      $('controls').innerHTML = button('words-start', 'Start', 'primary');
+      $('words-start').onclick = () => startList(0);
+      hint(L.wlHow);
+    } else if (r.phase === 'list' || r.phase === 'blank') {
+      $('memory-word').textContent = r.phase === 'list' ? LISTS[r.list][r.word] : '';
+      $('memory-caption').textContent = '';
+      $('controls').innerHTML = button('list-restart', 'Start over');
+      $('list-restart').onclick = () => {
+        r.seenTwice[r.list] = true;
+        startList(r.list);
+      };
+    } else if (r.phase === 'recall') {
+      $('memory-word').textContent = 'What stayed?';
+      $('memory-caption').textContent = 'Add every word you remember. Remove a chip to change your answer.';
+      $('controls').innerHTML = '<label for="word-recall">Type a word</label>' +
+        '<input id="word-recall" type="text" aria-label="Type a word" autocomplete="off" autocorrect="off" spellcheck="false">' +
+        button('add-word', 'Add word') + button('recall-done', 'Done', 'primary');
+      $('add-word').onclick = addWord;
+      $('word-recall').onkeydown = e => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          addWord();
+        }
+      };
+      $('recall-done').onclick = doneRecall;
+      drawChips();
+      hint('Type a word and press Enter to add it. Press Done when finished.');
+    } else if (r.phase === 'list2ready') {
+      $('memory-word').textContent = 'A fresh list.';
+      $('memory-caption').textContent = 'Read the next list. Then decide which words appeared.';
+      $('controls').innerHTML = button('second-list', 'Start next list', 'primary');
+      $('second-list').onclick = () => startList(1);
+      hint('Press Start next list. Read each word, then use Seen or New in the test.');
+    } else if (r.phase === 'recognize' || r.phase === 'tag') {
+      $('memory-word').textContent = r.test[r.answers.length];
+      $('memory-caption').textContent = r.phase === 'tag' ? 'How does it feel familiar?' : 'Did this word appear in the second list?';
+      $('controls').innerHTML = r.phase === 'recognize' ? '<div class="row">' + button('seen', 'Seen') + button('new', 'New') + '</div>' :
+        button('picture', 'Picture it', 'wide') + button('know', 'Just know', 'wide') +
+        '<p class="caption">Picture it: I can picture it on the screen.<br>Just know: It feels familiar.</p>';
+      if (r.phase === 'recognize') {
+        $('seen').onclick = () => {
+          r.phase = 'tag';
+          render();
+          $('picture').focus({
+            preventScroll: true
+          });
+          how('wlTag', () => r.phase === 'tag', ['#picture', '#know'], true);
+        };
+        $('new').onclick = () => answerWord(false, null);
+      } else {
+        $('picture').onclick = () => answerWord(true, 'Picture it');
+        $('know').onclick = () => answerWord(true, 'Just know');
+      }
+      hint(r.phase === 'tag' ? 'Tap Picture it if you can picture the word on screen, or Just know if it feels familiar.' : L.wlTest);
+      $('progress').textContent = `Word ${r.answers.length+1} of 12`;
+    }
+  }
+
+  function startList(list) {
+    const r = state.run;
+    measurement(true);
+    r.started = true;
+    r.list = list;
+    r.word = 0;
+    r.phase = 'list';
+    r.wordAt = performance.now();
+    hint('Read each word. The list will finish on its own.');
+    render();
+    $('list-restart').focus({preventScroll:true});
+    tone();
+  }
+
+  function drawChips() {
+    const r = state.run;
+    $('recall-chips').innerHTML = r.recall.map((w, i) => `<button class="chip" id="chip-${i}" aria-label="Remove ${esc(w)}">${esc(w)} ×</button>`)
+      .join('');
+    r.recall.forEach((w, i) => $('chip-' + i).onclick = () => {
+      r.recall.splice(i, 1);
+      drawChips();
+      $('word-recall').focus({
+        preventScroll: true
+      });
+    });
+  }
+
+  function addWord() {
+    const r = state.run,
+      raw = $('word-recall').value.trim().slice(0, 50);
+    if (raw && !r.recall.some(w => normalize(w) === normalize(raw))) r.recall.push(raw);
+    $('word-recall').value = '';
+    drawChips();
+    tone();
+    $('word-recall').focus({
+      preventScroll: true
+    });
+  }
+
+  function doneRecall() {
+    const r = state.run;
+    if (r.phase !== 'recall') return;
+    V.hush();
+    if ($('word-recall').value.trim()) addWord();
+    if (!r.recall.length) toast("Nothing typed. That's a result too.");
+    r.phase = 'list2ready';
+    measurement(false);
+    render();
+    how('wlNext', () => r.phase === 'list2ready', ['#second-list']);
+    $('second-list').focus({
+      preventScroll: true
+    });
+  }
+
+  function answerWord(seen, tag) {
+    const r = state.run;
+    V.hush();
+    const word = r.test[r.answers.length];
+    r.answers.push({
+      word,
+      seen,
+      tag,
+      type: word === 'beach' ? 'lure' : LISTS[1].includes(word) ? 'studied' : 'unrelated'
+    });
+    if (r.answers.length === 12) {
+      finish({
+        recall: r.recall,
+        studied: r.recall.filter(w => LISTS[0].some(s => normalize(s) === normalize(w))).length,
+        lureRecall: r.recall.some(w => normalize(w) === 'winter'),
+        answers: r.answers,
+        seenTwice: r.seenTwice
+      });
+    } else {
+      r.phase = 'recognize';
+      render();
+      $('seen').focus({
+        preventScroll: true
+      });
+    }
+    tone();
+  }
+
+  function tick(now) {
+    const r = state.run;
+    if (r && state.step === 'do') {
+      if (state.station === 'change' && r.phase === 'running') {
+        if (r.manual) {
+          if (r.blank && now >= r.manualUntil) {
+            r.blank = false;
+            r.frame = 1 - r.frame;
+            r.alternations++;
+            drawChange();
+          }
+        } else if (now >= r.nextBeat) {
+          if (r.i === 6) {
+            r.frame = 1 - r.frame;
+            r.alternations++;
+            r.nextBeat = now + 560;
+          } else if (r.blank) {
+            r.blank = false;
+            r.frame = 1 - r.frame;
+            r.alternations++;
+            r.nextBeat = now + 560;
+          } else {
+            r.blank = true;
+            r.nextBeat = now + 160;
+          }
+          drawChange();
+        }
+        if (r.alternations >= 83) endScene(false);
+      }
+      if (state.station === 'count') {
+        if (r.phase === 'show' && now >= r.showUntil) {
+          r.phase = 'counting';
+          r.countEnd = now + r.delays[r.i] * 1000;
+          countChoices();
+          r.choiceAt = now;
+          render();
+          $('count-choice-0').focus({
+            preventScroll: true
+          });
+        }
+        if (r.phase === 'counting') {
+          if (now >= r.countEnd) countRecall();
+          else if (now >= r.stepUntil) {
+            r.steps++;
+            r.number -= 3;
+            countChoices();
+            r.choiceAt = now;
+            render();
+          }
+          if ($('count-bar')) $('count-bar').style.transform = `scaleX(${Math.max(0,(r.countEnd-now)/(r.delays[r.i]*1000))})`;
+        }
+      }
+      if (state.station === 'words') {
+        if (r.phase === 'list' && now - r.wordAt >= 1500) {
+          r.word++;
+          r.wordAt = now;
+          if (r.word === 15) r.phase = 'blank';
+          $('memory-word').textContent = r.phase === 'list' ? LISTS[r.list][r.word] : '';
+        } else if (r.phase === 'blank' && now - r.wordAt >= 1000) {
+          measurement(false);
+          if (r.list === 0) {
+            r.phase = 'recall';
+            r.recallEnd = now + 120000;
+            render();
+            how('wlRecall', () => r.phase === 'recall', ['#word-recall', '#recall-done']);
+            $('word-recall').focus({
+              preventScroll: true
+            });
+          } else {
+            r.phase = 'recognize';
+            render();
+            how('wlTest', () => r.answers.length === 0);
+            $('seen').focus({
+              preventScroll: true
+            });
+          }
+        }
+        if (r.phase === 'recall') {
+          if ($('count-bar')) $('count-bar').style.transform = `scaleX(${Math.max(0,(r.recallEnd-now)/120000)})`;
+          if (now >= r.recallEnd) doneRecall();
+        }
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function svg(body, view = '0 0 700 260', height = null) {
+    const description = body.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    const size = height ? ` style="height:${height}px"` : '';
+    return `<svg class="result-chart"${size} data-layout-width="${plotWidth()}" viewBox="${view}" ` +
+      `role="img" aria-label="${esc(description)}">${body}</svg>`;
+  }
+
+  function plotWidth() {
+    const box = $('results'), style = getComputedStyle(box);
+    return box.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+  }
+
+  function lineChart(data) {
+    const groups = [45, 90, 135, 0],
+      labels = ['45°', '90°', '135°', 'Controls'];
+    const vals = groups.map(g => mean(data.rows.filter(t => t.angle === g).map(t => t.illusion)));
+    const span = Math.max(10, ...vals.map(v => Math.abs(v || 0))) * 1.3;
+    const width = plotWidth();
+    if (width < 600) {
+      const left = Math.min(66, width * .38), right = width - 10, zero = (left + right) / 2;
+      const at = v => zero + v / span * (right - left) / 2;
+      let body = '<text x="4" y="18">Illusion size (%)</text>' +
+        `<line x1="${zero}" x2="${zero}" y1="34" y2="220" stroke="#e8edf3"/>`;
+      groups.forEach((g, i) => {
+        const y = 53 + i * 48, px = at(vals[i]);
+        const labelX = Math.max(left+18,Math.min(right-22,px));
+        body += `<text x="4" y="${y+5}">${labels[i]}</text>` +
+          `<line x1="${left}" x2="${right}" y1="${y}" y2="${y}" stroke="#777780"/>` +
+          `<circle cx="${px}" cy="${y}" r="5" fill="#f28fc4"/>` +
+          `<rect x="${labelX-23}" y="${y-27}" width="46" height="18" fill="#26262a"/>` +
+          `<text x="${labelX}" y="${y-12}" text-anchor="middle">${fmt(vals[i])}%</text>`;
+      });
+      body += '<text x="4" y="244">0: perfect match</text>';
+      return svg(body, `0 0 ${width} 260`, 260);
+    }
+    const y = v => 120 - v / span * 80;
+    let body = '<line x1="75" x2="660" y1="120" y2="120" stroke="#e8edf3"/>' +
+      '<text x="75" y="22">Illusion size (%)</text><text x="445" y="22">0: perfect match</text>';
+    groups.forEach((g, i) => {
+      const xx = 140 + i * 155;
+      body += `<circle cx="${xx}" cy="${y(vals[i])}" r="6" fill="#f28fc4"/><text x="${xx}" y="220" text-anchor="middle">${labels[i]}</text>` +
+        `<text x="${xx}" y="${y(vals[i])-14}" text-anchor="middle">${fmt(vals[i])}%</text>`;
+    });
+    return svg(body);
+  }
+
+  function countChart(data) {
+    const width = plotWidth();
+    if (width < 600) return compactCountChart(data, width);
+    const xx = d => 65 + (d - 3) / 15 * 570,
+      yy = p => 205 - p * 1.65;
+    let b = '<text x="40" y="20">All three in order (%)</text>';
+    [0,50,100].forEach(p => {
+      b += `<text x="50" y="${yy(p)+4}" text-anchor="end">${p}</text>` +
+        `<line x1="65" x2="635" y1="${yy(p)}" y2="${yy(p)}" stroke="#55545e"/>`;
+    });
+    b += `<path d="M${xx(3)} ${yy(80)}L${xx(18)} ${yy(10)}" stroke="#5aa9ff" stroke-dasharray="6 5" fill="none"/>`;
+    for (const [d, p] of [
+        [3, 80],
+        [18, 10]
+      ]) {
+      const x = xx(d),
+        y = yy(p);
+      b += `<path d="M${x} ${y-7}l7 7-7 7-7-7Z" fill="none" stroke="#5aa9ff" stroke-width="2"/>`;
+    }
+    [3, 6, 9, 12, 15, 18].forEach(d => {
+      const rows = data.rows.filter(r => r.trial > 1 && r.trial < 10 && r.delay === d && r.eligible);
+      if (rows.length) b += `<circle cx="${xx(d)}" cy="${yy(mean(rows.map(r=>r.all?100:0)))}" r="6" fill="#f28fc4"/>`;
+      b += `<text x="${xx(d)}" y="230" text-anchor="middle">${d}s</text>`;
+    });
+    for (const [idx, offset, name] of [
+        [0, -18, 'First trial'],
+        [9, 18, 'Switched to digits']
+      ]) {
+      const r = data.rows[idx],
+        x = xx(r.delay) + offset,
+        y = yy(r.all ? 100 : 0);
+      b += `<circle cx="${x}" cy="${y}" r="8" fill="${r.eligible?'#f28fc4':'#26262a'}" stroke="#f28fc4" stroke-width="2"/>` +
+      `<text x="${x}" y="${y+4}" text-anchor="middle" style="font-size:10px;fill:${r.eligible?'#1f0a16':'#f28fc4'}">${idx?10:1}</text>`;
+    }
+    b += '<text x="65" y="258">1: First trial</text><text x="330" y="258">10: Switched to digits</text>' +
+      '<text x="40" y="288">◇ Peterson and Peterson 1959, approximate: 80% at 3s; 10% at 18s</text>';
+    return svg(b, '0 0 720 308');
+  }
+
+  function compactCountChart(data, width) {
+    const at = delay => 30 + (delay - 3) / 15 * (width - 58);
+    const yy = percent => 185 - percent * 1.4;
+    let body = '<text x="4" y="18">All three in order (%)</text>';
+    [0,50,100].forEach(p => {
+      body += `<text x="0" y="${yy(p)+4}" style="font-size:10px">${p}</text>` +
+        `<line x1="25" x2="${width-12}" y1="${yy(p)}" y2="${yy(p)}" stroke="#55545e"/>`;
+    });
+    body += `<path d="M${at(3)} ${yy(80)}L${at(18)} ${yy(10)}" stroke="#5aa9ff" stroke-dasharray="6 5" fill="none"/>`;
+    for (const [delay,p] of [[3,80],[18,10]]) {
+      const x = at(delay), y = yy(p);
+      body += `<path d="M${x} ${y-5}l5 5-5 5-5-5Z" fill="none" stroke="#5aa9ff" stroke-width="2"/>`;
+    }
+    [3,6,9,12,15,18].forEach(delay => {
+      const rows = data.rows.filter(r => r.trial > 1 && r.trial < 10 && r.delay === delay && r.eligible);
+      if (rows.length) body += `<circle cx="${at(delay)}" cy="${yy(mean(rows.map(r=>r.all?100:0)))}" r="5" fill="#f28fc4"/>`;
+      body += `<text x="${at(delay)}" y="206" text-anchor="middle" style="font-size:10px">${delay}s</text>`;
+    });
+    [0,9].forEach((index,i) => {
+      const row = data.rows[index], x = at(row.delay) + (i ? 14 : -14), y = yy(row.all ? 100 : 0);
+      body += `<circle cx="${x}" cy="${y}" r="8" fill="${row.eligible?'#f28fc4':'#26262a'}" stroke="#f28fc4" stroke-width="2"/>` +
+        `<text x="${x}" y="${y+4}" text-anchor="middle" style="font-size:10px;fill:${row.eligible?'#1f0a16':'#f28fc4'}">${index+1}</text>`;
+    });
+    body += '<text x="4" y="232">1: First trial</text><text x="4" y="251">10: Switched to digits</text>' +
+      '<text x="4" y="276" style="font-size:11px">◇ Peterson and Peterson</text>' +
+      '<text x="4" y="292" style="font-size:11px">1959, approximate:</text>' +
+      '<text x="4" y="308" style="font-size:11px">80% at 3s; 10% at 18s</text>';
+    return svg(body, `0 0 ${width} 325`, 325);
+  }
+
+  function renderCompare() {
+    const id = state.station,
+      d = result();
+    $('stage').innerHTML = '<div class="results" id="results"></div>';
+    $('controls').innerHTML = button('open-why', 'Why', 'primary') + button('run-again', 'Run again') + button('open-notebook', 'Notebook');
+    $('open-why').onclick = () => setStep('why');
+    $('run-again').onclick = runAgain;
+    $('open-notebook').onclick = () => setMode('notebook');
+    hint('Compare your settings with the reference. Open Why to see what this experiment can explain.');
+    const el = $('results');
+    if (id === 'lines') {
+      el.innerHTML =
+        '<h2 class="result-title">Your eye, measured.</h2><p class="caption">Positive values follow the illusion’s direction. Controls have no fins.</p>' +
+        lineChart(d) + `<p class="caption">Mean of fin trials: ${fmt(d.mean)}%. No typical percent is claimed.</p>`;
+    }
+    if (id === 'shadow') {
+      el.innerHTML = '<h2 class="result-title">One gray. Two experiences.</h2>' + shadowBars(d) +
+        '<canvas id="experiment" style="height:240px" role="img" aria-label="Reveal checkerboard"></canvas>';
+      $('controls').innerHTML = '<label for="reveal-trial">Reveal trial</label><select id="reveal-trial"><option value="0">Trial 1</option>' +
+        '<option value="1">Trial 2</option></select>' + button('bridge', 'Bridge') + button('hide-scene', 'Hide the scene') + $('controls')
+        .innerHTML;
+      $('reveal-trial').value = String(state.run.viewTrial || 0);
+      $('bridge').setAttribute('aria-pressed', !!state.run.bridge);
+      $('hide-scene').setAttribute('aria-pressed', !!state.run.hide);
+      $('bridge').onclick = () => {
+        state.run.bridge = !state.run.bridge;
+        $('bridge').setAttribute('aria-pressed', state.run.bridge);
+        drawShadow();
+        tone();
+        if (state.run.bridge) how('ssBridge', () => !!state.run.bridge);
+        else {
+          V.hush();
+          hint('Bridge hidden. Press Bridge to join A and B, or try Hide the scene.');
+        }
+      };
+      $('hide-scene').onclick = () => {
+        state.run.hide = !state.run.hide;
+        $('hide-scene').setAttribute('aria-pressed', state.run.hide);
+        drawShadow();
+        tone();
+      };
+      $('reveal-trial').onchange = () => {
+        state.run.viewTrial = +$('reveal-trial').value;
+        drawShadow();
+      };
+      $('open-why').onclick = () => setStep('why');
+      $('run-again').onclick = runAgain;
+      $('open-notebook').onclick = () => setMode('notebook');
+      hint(state.run.bridge ? L.ssBridge : 'Press Bridge to join A and B with one gray. Try Hide the scene, then open Why.');
+    }
+    if (id === 'eye') el.innerHTML = '<h2 class="result-title">An edge is a comparison.</h2><div class="result-pair">' +
+      '<div><p class="caption">STEP EDGE / INHIBITION 0.4</p><div class="metric">0.58 / 0.08</div><p>Edge cells</p></div>' +
+      '<div><p class="caption">PLATEAUS</p><div class="metric">0.48 / 0.18</div><p>Interior cells</p></div></div>' +
+      `<p>You predicted ${esc(d.prediction)}. Neighboring outputs differ most at the edge.</p>` +
+      '<p>Patch interior: 0.30 on both surrounds. Patch edges: 0.36 on dark, 0.24 on light.</p>' +
+      '<p class="caption">Output = input minus inhibition times the average of the two neighbors. This is a simplified model.</p>';
+    if (id === 'change') {
+      const central = mean(d.rows.filter(r => r.interest === 'central' && !r.noGap && uncuedFind(r)).map(r => r.alternations));
+      const marginal = mean(d.rows.filter(r => r.interest === 'marginal' && !r.noGap && uncuedFind(r)).map(r => r.alternations));
+      el.innerHTML = '<h2 class="result-title">Attention takes work.</h2>' +
+        `<p>Central average: ${fmt(central)}. Marginal average: ${fmt(marginal)}.</p>` +
+        '<p class="caption">Averages use uncued finds. Kind corrections, uncertain earlier finds and not-found scenes stay in the table. No-gap trial is separate.</p>' +
+        '<table class="data-table"><thead><tr><th>Scene</th><th>Interest</th><th>Alternations</th><th>Result</th></tr></thead><tbody>' +
+        d.rows.map(r =>
+          `<tr><td>${esc(r.scene)}</td><td>${r.noGap?'No gap':r.interest}</td><td>${r.alternations}</td>` +
+          `<td>${uncuedFind(r)?'Found':r.found?'Located; earlier method':r.located&&r.kindMisses?'Located; kind corrected':'Not found'}; ` +
+          `${r.misses} misses</td></tr>`
+          ).join('') +
+        '</tbody></table>' + (d.practice ? '<p>Practice: not saved to the Notebook.</p>' : '');
+    }
+    if (id === 'count') el.innerHTML = '<h2 class="result-title">Time, rehearsal, interference.</h2>' + countChart(d) +
+      '<p class="caption">Filled dots: at least 70% counting accuracy. Hollow: rehearsal possible. Delay dots exclude hollow trials.</p>' +
+      '<table class="data-table"><tr><th>Trial</th><th>Delay</th><th>Recall</th><th>Counting</th></tr>' +
+      d.rows.map(r => `<tr><td>${r.trial}${r.trial===1?' First':r.trial===10?' Digits':''}</td><td>${r.delay}s</td><td>${r.right} of 3</td>` +
+        `<td>${fmt(r.accuracy*100,0)}% ${r.eligible?'':'○ rehearsal possible'}</td></tr>`).join('') + '</table>';
+    if (id === 'words') {
+      const studied = d.answers.filter(a => a.type === 'studied' && a.seen).length;
+      const unrelated = d.answers.filter(a => a.type === 'unrelated' && a.seen).length;
+      const lure = d.answers.find(a => a.type === 'lure');
+      el.innerHTML = '<h2 class="result-title">A memory can feel real.</h2><div class="result-pair">' +
+        `<div class="${d.seenTwice[0]?'invalid':''}"><p>List 1${d.seenTwice[0]?' · seen twice':''}</p><div class="metric">${d.studied} / 15</div>` +
+        `<p>Studied words recalled.</p><p>Unshown theme word recalled: ${d.lureRecall?'yes':'no'} (winter).</p></div>` +
+        `<div class="${d.seenTwice[1]?'invalid':''}"><p>List 2${d.seenTwice[1]?' · seen twice':''}</p><p>Studied called Seen: ${studied} of 6.</p>` +
+        `<p>Unrelated called Seen: ${unrelated} of 5.</p><p>Lure (beach): ${lure.seen?'Seen, '+lure.tag:'New'}.</p></div></div>` +
+        wordChart() +
+        '<p class="caption">Roediger and McDermott, 1995. Compare loosely: these are original lists, presented visually.</p>';
+    }
+    $('panel-note').textContent = 'This is an observation, not a diagnosis or a ranking.';
+  }
+
+  function shadowBars(d) {
+    const width = plotWidth();
+    if (width < 600) {
+      let body = '<text x="4" y="18">Your A and B matches</text>';
+      for (let trial = 0; trial < 2; trial++) {
+        const A = d.rows[trial*2], B = d.rows[trial*2+1], y = 48 + trial * 108;
+        body += `<text x="4" y="${y}">Trial ${trial+1}: A ${A.value}, B ${B.value}</text>`;
+        for (const [row,value] of [[0,A.value],[1,B.value]]) {
+          body += `<text x="4" y="${y+23+row*22}">${row?'B':'A'}</text>` +
+            `<rect x="22" y="${y+10+row*22}" width="${value/255*(width-30)}" height="17" fill="${row?'#b9b9c4':'#f28fc4'}"/>`;
+        }
+        const reference = 22 + A.true/255*(width-30);
+        body += `<line x1="${reference}" x2="${reference}" y1="${y+6}" y2="${y+53}" stroke="#fff" stroke-width="2"/>` +
+          `<text x="4" y="${y+75}">B minus A: ${B.value-A.value}</text>`;
+      }
+      body += '<text x="4" y="264">White line: true gray.</text>' +
+        '<text x="4" y="283">110, then 121 sRGB steps.</text>';
+      return svg(body, `0 0 ${width} 300`, 300);
+    }
+    let b = '<text x="25" y="25">Your matches (sRGB steps), beside the shared true gray</text>';
+    for (let trial = 0; trial < 2; trial++) {
+      const A = d.rows[trial * 2],
+        B = d.rows[trial * 2 + 1],
+        y = 65 + trial * 95;
+      b += `<text x="25" y="${y}">Trial ${trial+1}</text><rect x="120" y="${y-20}" width="${A.value*1.5}" height="22" fill="#f28fc4"/>` +
+        `<rect x="120" y="${y+8}" width="${B.value*1.5}" height="22" fill="#b9b9c4"/>` +
+        `<line x1="${120+A.true*1.5}" x2="${120+A.true*1.5}" y1="${y-28}" y2="${y+35}" stroke="#fff" stroke-width="2"/>` +
+        `<text x="510" y="${y-3}">A ${A.value} / B ${B.value}</text><text x="510" y="${y+22}">B minus A: ${B.value-A.value}</text>`;
+    }
+    b += '<text x="25" y="245">White line: true gray, 110 then 121. Orchid: your A. Gray: your B.</text>';
+    return svg(b);
+  }
+
+  function compactWordChart(width) {
+    return svg('<text x="4" y="18">Published lure recall</text>' +
+      '<text x="4" y="37">Different, spoken lists</text>' +
+      `<rect x="4" y="55" width="${(width-8)*.4}" height="25" fill="none" stroke="#5aa9ff"/>` +
+      '<text x="4" y="100">40%: 12-word lists</text>' +
+      `<rect x="4" y="120" width="${(width-8)*.55}" height="25" fill="none" stroke="#5aa9ff"/>` +
+      '<text x="4" y="165">55%: longer lists</text>', `0 0 ${width} 185`, 185);
+  }
+
+  function wordChart() {
+    if (plotWidth() < 600) return compactWordChart(plotWidth());
+    return svg('<text x="30" y="35">Published lure recall, different lists and spoken presentation</text>' +
+      '<rect x="30" y="65" width="240" height="35" fill="none" stroke="#5aa9ff"/>' +
+      '<text x="290" y="88">40% · 12-word lists</text>' +
+      '<rect x="30" y="130" width="330" height="35" fill="none" stroke="#5aa9ff"/>' +
+      '<text x="380" y="153">55% · longer lists</text>');
+  }
+  const WHY = {
+    lines: [
+      'The shaft stays. The context bends.',
+      'Franz Müller-Lyer published this figure in 1889. Fins pointing out make a shaft look longer; fins pointing in make it look shorter.',
+      'The illusion is stronger when the fins form a narrower angle. With practice, and especially with feedback, it often ' +
+      'shrinks. That is why you saw no numbers until the end.',
+      'Your control trials show your eye’s own error with no fins. Your eight settings are a small personal sample, not a test of ability.',
+      'In the 1960s, Segall, Campbell and Herskovits measured the illusion in many societies and found its size differed. One ' +
+      'proposed reason: people raised among right-angled buildings learn to read the fins as corners.',
+      'A 2025 review by Amir and Firestone argues the evidence does not show a cultural cause. Researchers still disagree.'
+    ],
+    shadow: [
+      'Vision makes a useful guess.',
+      'A and B are the same gray on your screen. Your eye has two reasons to call B lighter.',
+      'Local contrast: cells compare each spot with its neighbors, and B sits among darker checks.',
+      'Lightness constancy: your brain reads the shadow as less light falling on the floor, so it decides B must be a light check.',
+      'Edward Adelson made the first version of this illusion in 1995. He calls it a success of vision: in a real room, B would be the lighter tile.'
+    ],
+    eye: [
+      'The retina compares neighbors.',
+      'Light reaches rods and cones on the retina. Transduction turns light into electrical signals. Bipolar and ganglion cells' +
+      ' pass signals toward the optic nerve.',
+      'The signal continues through the thalamus to the visual cortex. Rods support dim light; cones support color and detail. ' +
+      'The pathway drawing is simplified.',
+      'Each cell’s signal in this model is turned down by its neighbors: lateral inhibition, first measured by Haldan Keffer ' +
+      'Hartline in the horseshoe crab eye. It makes edges stand out.',
+      'The middle of a large patch has the same output on both surrounds in this model. Inhibition sharpens edges but cannot by' +
+      ' itself make the whole patch look lighter.',
+      'Shadow Squares needs more than the retina: the brain’s guess about the light. The orchid output curve shows a simple ' +
+      'model, not the full circuitry of the eye.'
+    ],
+    change: [
+      'Looking is not the same as attending.',
+      'With a gray blank between the pictures, the flash hides the change’s own motion signal. You must find it by attention, one place at a time.',
+      'Changes to things a scene is about, called central interest, are usually found faster than changes to background things, called marginal interest.',
+      'With no gap, the change can pop out. Compare your final no-gap trial with the blank-separated scenes in your table.',
+      'Attention is needed to see change. Your results depend on these scenes and on practice, so repeated scenes are marked practice and are not saved.'
+    ],
+    count: [
+      'Forgetting has more than one cause.',
+      'Peterson and Peterson (1959) had people count backward to stop rehearsal. Recall fell from about 80% after 3 seconds to ' +
+      'about 10% after 18 seconds. These endpoints show forgetting during counting, not its cause on their own.',
+      'With stronger initial learning in one experiment, Keppel and Underwood (1962) found near-perfect first-trial recall even' +
+      ' after 18 seconds. Earlier letters can crowd out new ones: proactive interference.',
+      'Switching to digits on the last trial gives memory a fresh category. Recall often comes back: release from proactive interference.',
+      'Hermann Ebbinghaus described the long-term forgetting curve in 1885: fast loss at first, then slower. His task and ' +
+      'measure were different from this short-term task.',
+      'Hollow trials may include rehearsal because too few counting steps were correct. These are kept visible but left out of the delay averages.'
+    ],
+    words: [
+      'Retrieval rebuilds.',
+      'Memory can store a list’s meaning, then rebuild it during recall. A related theme word can come along even when it never appeared.',
+      'In Roediger and McDermott’s 1995 study, with lists read aloud, people recalled the never-said word on 40% of lists, and on 55% with longer lists.',
+      'Most who later called that word old said they could remember hearing it. Confidence and the feeling of remembering do not guarantee accuracy.',
+      'Memory involves encoding, storage and retrieval. Retrieval is a rebuild, not a replay. Their lists differ from these, so compare loosely.',
+      'Open Eyewitness to connect this result with research on questions and witness memory. A word-list observation is not a verdict about any witness.'
+    ]
+  };
+  const WHY_SOURCE = {
+    lines: 'Müller-Lyer 1889; Dewar 1967; Brosvic and Finizio 1995; Segall et al. 1963; Amir and Firestone 2025.',
+    shadow: 'Adelson 1995 and 2000. Exact checker grays follow the spec’s sRGB model.',
+    eye: 'OpenStax Psychology 2e, 5.3; Curcio et al. 1990; Hartline, Nobel lecture 1967; Purves, Neuroscience.',
+    change: 'Rensink, Change blindness, in Vision and Attention; O’Regan et al. 1997.',
+    count: 'Peterson and Peterson 1959; Keppel and Underwood 1962; Wickens 1963; Murre and Dros 2015.',
+    words: 'Roediger and McDermott 1995; OpenStax Psychology 2e, 8.1.'
+  };
+
+  function renderWhy() {
+    const a = WHY[state.station];
+    $('stage').innerHTML = `<article class="reading"><span class="eyebrow">The explanation</span><h2>${a[0]}</h2>` +
+      a.slice(1).map((p, i) => `<p${state.station==='lines'&&i>=3?' class="callout"':''}>${p}</p>`).join('') +
+      `<p class="source">${WHY_SOURCE[state.station]}</p></article>`;
+    $('controls').innerHTML = button('back-compare', 'Compare') + button('why-notebook', 'Notebook', 'primary') + button('why-again', 'Run again');
+    $('back-compare').onclick = () => setStep('compare');
+    $('why-notebook').onclick = () => setMode('notebook');
+    $('why-again').onclick = runAgain;
+    hint('Read the explanation. Press Compare to return to your own observations, or Notebook to see your complete record.');
+  }
+
+  function keyNumber(id, d) {
+    if (id === 'lines') return `${fmt(d.mean)}% mean fin illusion`;
+    if (id === 'shadow') return `B minus A: ${d.rows[1].value-d.rows[0].value}, ${d.rows[3].value-d.rows[2].value} steps`;
+    if (id === 'eye') return `Predicted ${d.prediction}; all patterns tested`;
+    if (id === 'change') {
+      const c = mean(d.rows.filter(r => r.interest === 'central' && !r.noGap && uncuedFind(r)).map(r => r.alternations));
+      const m = mean(d.rows.filter(r => r.interest === 'marginal' && !r.noGap && uncuedFind(r)).map(r => r.alternations));
+      const noGap = d.rows.find(row => row.noGap) || d.rows[6];
+      const status = uncuedFind(noGap) ? `${noGap.alternations} alternations` :
+        noGap.located ? 'Located; kind corrected' : noGap.found ? 'Found (earlier method)' : 'Not found';
+      return `Central ${fmt(c)}, marginal ${fmt(m)}; no gap ${status}`;
+    }
+    if (id === 'count') return `${d.rows.filter(r=>r.all).length} of 10 all in order; ${d.rows.filter(r=>!r.eligible).length} hollow`;
+    const lure = d.answers.find(a => a.type === 'lure');
+    return `Lure recalled: ${d.lureRecall?'yes':'no'}; recognized: ${lure.seen?'Seen, '+lure.tag:'New'}`;
+  }
+
+  function uncuedFind(row) {
+    // Earlier records do not distinguish a wrong location from a corrected kind.
+    return row.found && (row.misses === 0 || row.kindMisses === 0);
+  }
+
+  function renderNotebook() {
+    $('stage').innerHTML = '<article class="reading notebook-view"><div class="notebook-head"><h2>Notebook</h2>' +
+      '<p class="privacy">Your results stay on this device.</p></div><div class="notebook-table-wrap">' +
+      '<table class="notebook-table"><thead><tr><th>Station / runs</th><th>First complete run</th><th>Latest complete run</th>' +
+      '<th>Comparison</th></tr></thead><tbody id="notebook-rows"></tbody></table></div></article>';
+    const comparisons = {
+      lines:'0: perfect match', shadow:'Shared gray: 110, then 121', eye:'Step edge at 0.4: 0.58 / 0.08',
+      change:'Central / marginal; no gap separately', count:'Approx. 80% at 3s; 10% at 18s', words:'Published lure recall: 40% / 55%'
+    };
+    $('notebook-rows').innerHTML = IDS.map(id => {
+      const record = db[id];
+      const runs = record ? `${record.runs} complete run${record.runs===1?'':'s'}` : 'No complete run';
+      const first = record ? esc(keyNumber(id, record.first)) : 'Not measured';
+      const latest = record ? esc(keyNumber(id, record.latest)) : 'Not measured';
+      return `<tr><td><div class="station-cell"><button class="btn" id="go-${id}" ` +
+        `aria-label="Go to station: ${STATIONS[id][1]}">Go</button><span>${STATIONS[id][1]}<small>${runs}</small></span></div></td>` +
+        `<td>${first}</td><td>${latest}</td><td title="${esc(WHY_SOURCE[id])}">` +
+        `${record ? comparisons[id] : 'Finish this station first'}</td></tr>`;
+    }).join('');
+    IDS.forEach(id => $('go-' + id).onclick = () => setMode(id));
+    $('controls').innerHTML = button('reset-all', 'Reset all');
+    $('reset-all').onclick = () => $('reset-dialog').showModal();
+    hint(L.nbHow);
+    $('panel-note').textContent = storageOK ? 'First complete and latest runs are kept across reloads.' :
+      'Storage unavailable. Results last only while this page stays open.';
+  }
+
+  function renderEyewitness() {
+    const d = db.words?.latest;
+    $('stage').innerHTML =
+      '<article class="reading"><span class="eyebrow">From the lab to testimony</span><h2>When confidence feels like evidence.</h2>' +
+      `<div class="callout">${d?`<p>Your Word Lists: ${esc(keyNumber('words',d))}.</p>`:
+        '<p>Run Word Lists to see your own result here.</p>'+button('eyewitness-words','Go to Word Lists')}</div>` +
+      '<p>Loftus and Palmer (1974) showed students a film of a car crash. They asked how fast the cars were going when they hit or smashed each other.</p>' +
+      '<p>In one experiment, “smashed” got estimates of about 40 mph; “hit” about 34 mph.</p>' +
+      '<p>In a second experiment, participants returned a week later. Broken-glass reports were 32% in the smashed group and 14% in the hit group. There was no broken glass.</p>' +
+      '<div class="callout"><p>The Innocence Project found mistaken eyewitness identification played a part in 69% of the 375 DNA exonerations it tracked in the United States from 1989 to 2020.</p></div>' +
+      '<p>This is a historical group of DNA exonerations. It is not a percentage of all witnesses or all convictions.</p>' +
+      `<h3>${d?.lureRecall?'Your recall included an unshown word.':'A false word can feel real.'} What should a jury hear before trusting a confident witness?</h3>` +
+      '<p class="source">Loftus and Palmer 1974. Innocence Project, DNA Exonerations in the United States (1989 to 2020).</p></article>';
+    if ($('eyewitness-words')) $('eyewitness-words').onclick = () => setMode('words');
+    $('controls').innerHTML = button('eyewitness-notebook', 'Notebook');
+    $('eyewitness-notebook').onclick = () => setMode('notebook');
+    hint(L.ewHow);
+    $('panel-note').textContent = 'Discuss the evidence and its limits. This station has no score and asks for no personal testimony.';
+  }
+
+  function setStep(step) {
+    if (!IDS.includes(state.station) || step !== 'do' && !result()) return;
+    if (step === 'do' && state.run.complete) {
+      runAgain();
+      return;
+    }
+    if (state.measuring) return;
+    const origin = document.activeElement;
+    V.hush();
+    state.step = step;
+    render();
+    if (origin && !origin.isConnected) $('tab-' + step).focus({preventScroll:true});
+    tone();
+  }
+
+  function runAgain() {
+    V.hush();
+    state.generation++;
+    measurement(false);
+    state.run = newRun(state.station);
+    state.step = 'do';
+    render();
+    focusControls();
+    how(HOW[state.station]);
+  }
+
+  function draw() {
+    if (state.step === 'compare' && $('results')) {
+      const chart = $('results').querySelector('.result-chart');
+      const redraw = {lines:lineChart, shadow:shadowBars, count:countChart, words:wordChart}[state.station];
+      if (chart && redraw && Math.abs(+chart.dataset.layoutWidth - plotWidth()) > .5) {
+        chart.outerHTML = redraw(result());
+      }
+    }
+    if (state.station === 'lines' && state.step === 'do') drawLines();
+    if (state.station === 'shadow' && state.step !== 'why') drawShadow();
+    if (state.station === 'eye' && state.step === 'do') drawEye();
+    if (state.station === 'change' && state.step === 'do') drawChange();
+  }
+  buildRail();
+  for (const step of ['do', 'compare', 'why']) $('tab-' + step).onclick = () => setStep(step);
+  $('cancel-reset').onclick = () => {
+    $('reset-dialog').close();
+    $('reset-all').focus({
+      preventScroll: true
+    });
+  };
+  $('yes-reset').onclick = () => {
+    db = {};
+    state.records = db;
+    persist();
+    $('reset-dialog').close();
+    render();
+    toast('All saved results cleared.');
+    $('reset-all').focus({
+      preventScroll: true
+    });
+  };
+  document.addEventListener('keydown', e => {
+    if (e.target.matches('input,textarea,select') || state.step !== 'do') return;
+    if (state.station === 'lines' && ['ArrowLeft', 'ArrowRight'].includes(e.key)) {
+      e.preventDefault();
+      adjustLine(e.key === 'ArrowLeft' ? -1 : 1);
+    }
+    if (state.station === 'shadow' && ['ArrowUp', 'ArrowDown'].includes(e.key)) {
+      e.preventDefault();
+      adjustShadow(e.key === 'ArrowUp' ? 2 : -2);
+    }
+    if (state.station === 'change' && e.code === 'Space') {
+      e.preventDefault();
+      spotted();
+    }
+  });
+  Curio.init({
+    clips: "voice:*",
+    rate: .96,
+    readFallback: () => $('hint').textContent
+  });
+  Curio.onMotion(reduced => {
+    if (reduced && state.station === 'change' && state.step === 'do') {
+      state.run.manual = true;
+      state.run.blank = false;
+      if ($('manual')) $('manual').setAttribute('aria-pressed', 'true');
+      if ($('flip')) $('flip').disabled = state.run.phase !== 'running';
+      if (state.run.phase === 'running') hint('Press Flip to compare the pictures. When you see the change, press Spotted it.');
+      drawChange();
+    }
+  });
+  // Read must not introduce speech into a measurement even when invoked from the keyboard.
+  $('read').addEventListener('click', e => {
+    if (state.measuring) {
+      e.stopImmediatePropagation();
+      V.hush();
+    }
+  }, true);
+  new ResizeObserver(draw).observe($('stage'));
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && state.measuring && ['count', 'words'].includes(state.station)) {
+      state.generation++;
+      measurement(false);
+      state.run = newRun(state.station);
+      render();
+      toast('The timed run was interrupted. Press Start for a fresh run.');
+    }
+  });
+  window.__tool = {
+    state,
+    setMode,
+    allLines: () => V.allLines(),
+    vlog: V.log,
+    get vq() {
+      return V.queue;
+    },
+    inhibit,
+    eyeInput,
+    SCENES,
+    normalize,
+    get picturesReady() {
+      return picturesReady;
+    }
+  };
+  render();
+  preload();
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

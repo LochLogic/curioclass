@@ -1,0 +1,28 @@
+{
+  "id": "which-way-is-down",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Drop at four schools. Follow every down to one center.",
+  "outcome": "Use evidence to argue that Earth's gravity pulls toward its center.",
+  "driver": "students or teacher",
+  "minutes": "25-40",
+  "grades_label": "Grade 5",
+  "modes": [
+    "Drop",
+    "Globe",
+    "Argue",
+    "Other worlds"
+  ],
+  "sources": [
+    "NGSS 5-PS2-1 clarification statement",
+    "NASA planetary fact sheets and JPL physical parameters",
+    "NOAA National Geodetic Survey plumb-line guidance",
+    "NASA Apollo 15 hammer and feather",
+    "GeoNames city coordinates; the children and schoolyards are illustrations",
+    "Argentina government: Esperanza Base coordinates, families and Escuela Provincial 38",
+    "Natural Earth 110m land, public domain, from repository world-music-map/world.json",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-07"
+}

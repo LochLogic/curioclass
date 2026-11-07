@@ -1,0 +1,227 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "reveal",
+      "steps": [
+        {
+          "click": "#again"
+        },
+        {
+          "wait": 12000
+        },
+        {
+          "click": "#reveal"
+        }
+      ],
+      "keep": [
+        "#reveal-feeling"
+      ]
+    },
+    {
+      "name": "ending-choice",
+      "steps": [
+        {
+          "click": "#next",
+          "times": 5,
+          "gap": 0.2
+        }
+      ],
+      "keep": [
+        "#endings"
+      ]
+    },
+    {
+      "name": "ending-0",
+      "steps": [
+        {
+          "click": "#next",
+          "times": 5,
+          "gap": 0.2
+        },
+        {
+          "click": "#ending-0"
+        }
+      ],
+      "keep": [
+        "#endings",
+        "#scene-line"
+      ]
+    },
+    {
+      "name": "ending-1",
+      "steps": [
+        {
+          "click": "#next",
+          "times": 5,
+          "gap": 0.2
+        },
+        {
+          "click": "#ending-1"
+        },
+        {
+          "wait": 1400
+        }
+      ],
+      "keep": [
+        "#endings",
+        "#scene-line"
+      ]
+    },
+    {
+      "name": "ending-2",
+      "steps": [
+        {
+          "click": "#next",
+          "times": 5,
+          "gap": 0.2
+        },
+        {
+          "click": "#ending-2"
+        }
+      ],
+      "keep": [
+        "#endings",
+        "#scene-line"
+      ]
+    },
+    {
+      "name": "backstage-audience",
+      "steps": [
+        {
+          "click": "#m-backstage"
+        },
+        {
+          "click": "#head-0"
+        },
+        {
+          "click": "#voice-0"
+        },
+        {
+          "click": "#bounce-0"
+        },
+        {
+          "click": "#audience"
+        }
+      ],
+      "keep": [
+        "#head-controls",
+        "#voice-controls",
+        "#bounce-controls",
+        "#audience-card"
+      ]
+    },
+    {
+      "name": "backstage-try",
+      "steps": [
+        {
+          "click": "#m-backstage"
+        },
+        {
+          "click": "#try"
+        }
+      ],
+      "keep": [
+        "#target",
+        "#next-target",
+        "#head-controls",
+        "#voice-controls",
+        "#bounce-controls"
+      ]
+    },
+    {
+      "name": "like-feeling",
+      "steps": [
+        {
+          "click": "#m-likeme"
+        },
+        {
+          "click": "#feel-worried"
+        }
+      ],
+      "keep": [
+        "#life-prompt",
+        "#feel-sad",
+        "#feel-calm",
+        "#feel-proud",
+        "#feel-happy",
+        "#feel-excited",
+        "#feel-worried"
+      ]
+    },
+    {
+      "name": "like-vote",
+      "steps": [
+        {
+          "click": "#m-likeme"
+        },
+        {
+          "click": "#vote"
+        },
+        {
+          "click": "#vote-2"
+        }
+      ],
+      "keep": [
+        "#votes",
+        "#feel-sad",
+        "#feel-calm",
+        "#feel-proud",
+        "#feel-happy",
+        "#feel-excited",
+        "#feel-worried"
+      ]
+    },
+    {
+      "name": "backstage-match",
+      "steps": [
+        {
+          "click": "#m-backstage"
+        },
+        {
+          "click": "#try"
+        },
+        {
+          "click": "#head-0"
+        },
+        {
+          "click": "#voice-0"
+        },
+        {
+          "click": "#bounce-0"
+        }
+      ],
+      "keep": [
+        "#target",
+        "#next-target",
+        "#head-controls",
+        "#voice-controls",
+        "#bounce-controls"
+      ]
+    },
+    {
+      "name": "backstage-big-up",
+      "steps": [
+        {
+          "click": "#m-backstage"
+        },
+        {
+          "click": "#head-2"
+        },
+        {
+          "click": "#voice-2"
+        },
+        {
+          "click": "#bounce-2"
+        }
+      ],
+      "keep": [
+        "#head-controls",
+        "#voice-controls",
+        "#bounce-controls"
+      ]
+    }
+  ]
+}

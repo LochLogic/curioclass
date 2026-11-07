@@ -1,0 +1,95 @@
+{
+  "house_style": "Warm premium children's storybook gouache and colored-pencil illustration, tactile painted surfaces, confident clean silhouettes, soft dimensional shading, sunlight from upper left, teal enamel, warm orange tickets, candy red details. Friendly grade 3 fairground. No text, letters, numbers, logos, watermark or border.",
+  "assets": [
+    {
+      "name": "park-backdrop",
+      "prompt": "Sunny small-town amusement park seen from a grassy hill. Striped red and cream tents, a distant carousel roof, delicate pennant strings, soft summer clouds. Open pale green lawn fills the lower half for an interactive coaster. Rich layered landscape, inviting daytime light. No people.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 75,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "coaster-car",
+      "prompt": "A single teal roller coaster car, strict side view facing right, two rows of empty padded cream seats, visible secure lap bars, two red wheels with silver hubs, blank cream round plate on its side. Detailed enamel highlights, bolts and soft shading. Fully in frame on flat pure green #00FF00 background.",
+      "aspect": "4:3",
+      "width": 320,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true
+    },
+    {
+      "name": "coaster-lead-car",
+      "prompt": "A single detached teal amusement park coaster lead vehicle alone, strict side elevation facing right. Two cream padded seats with lap bars, rounded nose and a brass headlamp, two red wheels, blank cream circular plate on side. Visible wheel bottoms border directly onto the continuous flat pure green #00FF00 background. Empty pure green space surrounds the vehicle on all sides, including under both wheels. Detailed enamel glints and bolts. Entire vehicle centered fully in frame. 4:3.",
+      "aspect": "4:3",
+      "width": 280,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "redraw_note": "Redrawn once: the first generated car included an unwanted rail.",
+      "despill": true
+    },
+    {
+      "name": "coaster-car-riders",
+      "prompt": "Single teal roller coaster car side view facing right, two rows of smiling riders, a dark-skinned adult woman with short curly hair and a light-skinned boy in front, a medium-brown-skinned older man and an East Asian girl behind, natural friendly faces, arms raised, secure lap bars across their laps, red wheels, blank cream round side plate. Whole car and riders fully in frame. Flat pure green #00FF00 background.",
+      "aspect": "4:3",
+      "width": 380,
+      "quality": 80,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "despill": true
+    },
+    {
+      "name": "station-platform",
+      "prompt": "Small wooden amusement park loading platform in strict side elevation. Long low timber deck with visible plank grain and bolts, two slender wooden posts supporting a simple cream and teal striped fabric roof. One broad completely blank cream rectangular signboard hangs centrally between the posts, clear open space around it. Small brass bell hanging at the right. Warm summer sunlight from upper left. Entire object fully in frame, broad horizontal composition, flat pure green #00FF00 background.",
+      "aspect": "4:1",
+      "width": 300,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "redraw_note": "Cold review: replace ornate booth-like platform with a legible timber platform and blank signboard."
+    },
+    {
+      "name": "ticket-single",
+      "prompt": "One orange admission ticket, straight-on horizontal rectangle with scalloped short edges, a single punched hole, blank face, small paper fibers, subtle warm shading, clean shape. Entire ticket fully in frame on flat pure magenta #FF00FF background.",
+      "aspect": "16:9",
+      "width": 100,
+      "quality": 80,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true
+    },
+    {
+      "name": "ticket-roll",
+      "prompt": "Fat roll of orange blank admission tickets on a small silver spindle, clear spiral of layered paper, loose ticket end with scalloped edge, warm shaded orange paper and cream highlights, isolated fully in frame on flat pure magenta #FF00FF background.",
+      "aspect": "1:1",
+      "width": 180,
+      "quality": 80,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true
+    },
+    {
+      "name": "ticket-booth",
+      "prompt": "Charming red and cream striped wooden amusement park ticket booth, front view, scalloped awning, empty service window, large completely blank dark chalkboard on lower front, brass fittings and wood grain, fully in frame on flat pure green #00FF00 background. No people.",
+      "aspect": "3:4",
+      "width": 320,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true
+    }
+  ]
+}

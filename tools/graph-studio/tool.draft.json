@@ -1,0 +1,26 @@
+{
+  "id": "graph-studio",
+  "status": "beta",
+  "stage": "built",
+  "curiosity": true,
+  "plate": 8,
+  "hook": "Put a thought on graph paper.",
+  "outcome": "Explore real functions, measure rates of change and fit curves to measurements.",
+  "driver": "students or teacher",
+  "minutes": "Open ended",
+  "modes": [],
+  "grades_label": "Grades 8-12",
+  "sources": [
+    "Original Curio Class expression parser, adaptive numerical plotter and least-squares routines; MIT licence, copyright 2026 LochLogic (Curio Class), per repository LICENSE. No external library.",
+    "NOAA Global Monitoring Laboratory, Xin Lan and Ralph Keeling (Scripps): co2_annmean_mlo.txt, all 67 annual means 1959-2025, ppm; checked 2026-11-05. Public domain under https://gml.noaa.gov/about/disclaimer.html . Source: https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt",
+    "NASA individual Planetary Fact Sheets: eight rounded J2000 mean semimajor axes in AU and approximate sidereal periods in Earth years; Saturn rounded to 29.45. Checked 2026-11-05. US government data, public domain. https://nssdc.gsfc.nasa.gov/planetary/planetfact.html ; use terms https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "US Census Bureau: 1790-1900 from Statistical Abstract 2012 table 1 (unrevised 1870 count), 1910-2020 from Historical Population Change, resident counts rounded to 0.01 million. Checked 2026-11-05; 1940, 1970 and 1980 corrected against source. Public domain, US government work. https://www2.census.gov/library/publications/2011/compendia/statab/131ed/tables/12s0002.pdf ; https://www.census.gov/data/tables/time-series/dec/popchange-data-text.html",
+    "OpenStax College Algebra 2e chapter 6: reference for exponential functions and e. Current site licence CC BY-NC-SA 4.0, checked 2026-11-05. No textbook text, figures or datasets bundled; mathematical facts independently computed. https://openstax.org/books/college-algebra-2e/pages/6-1-exponential-functions",
+    "Wolfram MathWorld: Rose Curve and Lissajous Curve. Copyright Wolfram Research, reference only, no text or images reproduced. https://mathworld.wolfram.com/RoseCurve.html ; https://mathworld.wolfram.com/LissajousCurve.html",
+    "Independent fact checks, references only: NASA Kepler laws (US government work, public domain), OpenStax polar graphs and limits (current CC BY-NC-SA 4.0, no content copied), Emory Math Center limits and Wisconsin Ingersoll Museum Lissajous (copyright their authors, no content copied). https://science.nasa.gov/solar-system/orbits-and-keplers-laws/ ; https://openstax.org/books/precalculus-2e/pages/8-4-polar-coordinates-graphs ; https://mathcenter.oxford.emory.edu/site/math111/probSetLimits/ ; https://www.physics.wisc.edu/ingersollmuseum/exhibits/waves/lissajous/",
+    "Historical Census coverage: Census Bureau Censuses of American Indians and National Archives Stand Up and Be Counted. US government works, public domain; references checked 2026-11-05. https://www.census.gov/about/history/census-records-family-history/census-records/censuses-of-american-indians.html ; https://www.archives.gov/news/articles/native-americans-census",
+    "Real rational powers: OpenStax College Algebra 2e 1.3, CC BY-NC-SA 4.0, and Wolfram MathWorld Cube Root, copyright Wolfram Research. Reference only, no text or images copied; independently computed real roots. Checked 2026-11-06. https://openstax.org/books/college-algebra-2e/pages/1-3-radicals-and-rational-exponents ; https://mathworld.wolfram.com/CubeRoot.html"
+  ],
+  "third_party": [],
+  "updated": "2026-11-06"
+}

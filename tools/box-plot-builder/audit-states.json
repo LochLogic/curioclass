@@ -1,0 +1,564 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "moved-dot",
+      "steps": [
+        {
+          "drag": "const p=__tool.plot.dots.find(p=>p.i===7),r=document.getElementById('plot').getBoundingClientRect();const to=__tool.plot.scales.x(110);return Array.from({length:25},(_,i)=>[Math.round(r.x+p.x+(to-p.x)*i/24),Math.round(r.y+p.y+(i%3-1))]);"
+        }
+      ],
+      "keep": [
+        "#plot",
+        "#box",
+        "#putback"
+      ]
+    },
+    {
+      "name": "histogram-largest",
+      "steps": [
+        {
+          "click": "#view-hist"
+        },
+        {
+          "click": "#bin-plus",
+          "times": 3
+        }
+      ],
+      "keep": [
+        "#plot",
+        "#bin-controls"
+      ]
+    },
+    {
+      "name": "histogram-smallest",
+      "steps": [
+        {
+          "click": "#view-hist"
+        },
+        {
+          "click": "#bin-minus",
+          "times": 3
+        }
+      ],
+      "keep": [
+        "#plot",
+        "#bin-controls"
+      ]
+    },
+    {
+      "name": "class-entry",
+      "steps": [
+        {
+          "click": "#explore-sets [data-set=\"class\"]"
+        }
+      ],
+      "keep": [
+        "#class-entry"
+      ]
+    },
+    {
+      "name": "facts-chips",
+      "steps": [
+        {
+          "click": "#m-build"
+        },
+        {
+          "click": "#build-answer"
+        },
+        {
+          "js": "(()=>{const e=document.activeElement;e.value=String(Number(e.value||0)+30);e.dispatchEvent(new Event('input',{bubbles:true}));})()"
+        },
+        {
+          "click": "#build-check"
+        }
+      ],
+      "keep": [
+        "#options"
+      ]
+    },
+    {
+      "name": "ordered-cards",
+      "steps": [
+        {
+          "click": "#m-build"
+        },
+        {
+          "click": "#build-answer"
+        },
+        {
+          "js": "(()=>{const e=document.activeElement;e.value=String(Number(e.value||0)+30);e.dispatchEvent(new Event('input',{bubbles:true}));})()"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#options button:first-child"
+        },
+        {
+          "click": "#options button:first-child"
+        },
+        {
+          "click": "#options button:first-child"
+        },
+        {
+          "click": "#lineup"
+        }
+      ],
+      "keep": [
+        "#grid"
+      ]
+    },
+    {
+      "name": "box-help-path",
+      "steps": [
+        {
+          "click": "#m-build"
+        },
+        {
+          "click": "#build-answer"
+        },
+        {
+          "js": "(()=>{const e=document.activeElement;e.value=String(Number(e.value||0)+30);e.dispatchEvent(new Event('input',{bubbles:true}));})()"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#options button:first-child"
+        },
+        {
+          "click": "#options button:first-child"
+        },
+        {
+          "click": "#options button:first-child"
+        },
+        {
+          "click": "#lineup"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        }
+      ],
+      "keep": [
+        "#grid",
+        "#box",
+        "#build-form"
+      ]
+    },
+    {
+      "name": "mean-step",
+      "steps": [
+        {
+          "click": "#m-build"
+        },
+        {
+          "click": "#build-answer"
+        },
+        {
+          "js": "(()=>{const e=document.activeElement;e.value=String(Number(e.value||0)+30);e.dispatchEvent(new Event('input',{bubbles:true}));})()"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#options button:first-child"
+        },
+        {
+          "click": "#options button:first-child"
+        },
+        {
+          "click": "#options button:first-child"
+        },
+        {
+          "click": "#lineup"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#build-answer"
+        },
+        {
+          "js": "(()=>{const e=document.activeElement;e.value=String(Number(e.value||0)+1);e.dispatchEvent(new Event('input',{bubbles:true}));})()"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#build-check"
+        }
+      ],
+      "keep": [
+        "#number-area",
+        "#box"
+      ]
+    },
+    {
+      "name": "mad-step",
+      "steps": [
+        {
+          "click": "#m-build"
+        },
+        {
+          "click": "#build-answer"
+        },
+        {
+          "js": "(()=>{const e=document.activeElement;e.value=String(Number(e.value||0)+30);e.dispatchEvent(new Event('input',{bubbles:true}));})()"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#options button:first-child"
+        },
+        {
+          "click": "#options button:first-child"
+        },
+        {
+          "click": "#options button:first-child"
+        },
+        {
+          "click": "#lineup"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#build-answer"
+        },
+        {
+          "js": "(()=>{const e=document.activeElement;e.value=String(Number(e.value||0)+1);e.dispatchEvent(new Event('input',{bubbles:true}));})()"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#build-answer"
+        },
+        {
+          "js": "(()=>{const e=document.activeElement;e.value=String(Number(e.value||0)+1);e.dispatchEvent(new Event('input',{bubbles:true}));})()"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#build-check"
+        }
+      ],
+      "keep": [
+        "#number-area",
+        "#plot"
+      ]
+    },
+    {
+      "name": "pair-pick",
+      "steps": [
+        {
+          "click": "#m-build"
+        },
+        {
+          "click": "#build-answer"
+        },
+        {
+          "js": "(()=>{const e=document.activeElement;e.value=String(Number(e.value||0)+30);e.dispatchEvent(new Event('input',{bubbles:true}));})()"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#options button:first-child"
+        },
+        {
+          "click": "#options button:first-child"
+        },
+        {
+          "click": "#options button:first-child"
+        },
+        {
+          "click": "#lineup"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#build-answer"
+        },
+        {
+          "js": "(()=>{const e=document.activeElement;e.value=String(Number(e.value||0)+1);e.dispatchEvent(new Event('input',{bubbles:true}));})()"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#build-answer"
+        },
+        {
+          "js": "(()=>{const e=document.activeElement;e.value=String(Number(e.value||0)+1);e.dispatchEvent(new Event('input',{bubbles:true}));})()"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#build-answer"
+        },
+        {
+          "js": "(()=>{const e=document.activeElement;e.value=String(Number(e.value||0)+1);e.dispatchEvent(new Event('input',{bubbles:true}));})()"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#build-check"
+        }
+      ],
+      "keep": [
+        "#options"
+      ]
+    },
+    {
+      "name": "filed-report",
+      "steps": [
+        {
+          "click": "#m-build"
+        },
+        {
+          "click": "#build-answer"
+        },
+        {
+          "js": "(()=>{const e=document.activeElement;e.value=String(Number(e.value||0)+30);e.dispatchEvent(new Event('input',{bubbles:true}));})()"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#options button:first-child"
+        },
+        {
+          "click": "#options button:first-child"
+        },
+        {
+          "click": "#options button:first-child"
+        },
+        {
+          "click": "#lineup"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#grid .value-card:nth-child(12)"
+        },
+        {
+          "click": "#build-answer"
+        },
+        {
+          "js": "(()=>{const e=document.activeElement;e.value=String(Number(e.value||0)+1);e.dispatchEvent(new Event('input',{bubbles:true}));})()"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#build-answer"
+        },
+        {
+          "js": "(()=>{const e=document.activeElement;e.value=String(Number(e.value||0)+1);e.dispatchEvent(new Event('input',{bubbles:true}));})()"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#build-answer"
+        },
+        {
+          "js": "(()=>{const e=document.activeElement;e.value=String(Number(e.value||0)+1);e.dispatchEvent(new Event('input',{bubbles:true}));})()"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#build-check"
+        },
+        {
+          "click": "#options button:first-child"
+        },
+        {
+          "click": "#options button:first-child"
+        },
+        {
+          "click": "#file-report"
+        }
+      ],
+      "keep": [
+        "#report"
+      ]
+    },
+    {
+      "name": "class-sixty-equal",
+      "steps": [
+        {
+          "click": "#explore-sets [data-set='class']"
+        },
+        {
+          "js": "(()=>{const e=document.querySelector('#class-values');e.value=Array(60).fill(4).join(',');e.dispatchEvent(new Event('input',{bubbles:true}));})()"
+        },
+        {
+          "click": "#class-show"
+        }
+      ],
+      "keep": [
+        "#plot",
+        "#class-entry"
+      ]
+    }
+  ]
+}

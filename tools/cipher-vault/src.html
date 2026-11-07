@@ -1,0 +1,2349 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A working codebreaker's bench. Spin, substitute, count, split and test real historical ciphers.">
+<link rel="icon" href="data:,">
+<title>Cipher Workbench · Curio Class</title>
+<!-- Public-domain historical originals, owner-written practice material and factual machine wirings.
+     Full provenance and limitations are in the Manual and tool.draft.json. No remote assets. -->
+<style>
+:root {
+  color-scheme:dark;
+  --bench:#15171c;
+  --panel:#1e2128;
+  --ink:#efe9dc;
+  --muted:#a9a294;
+  --green:#3cc7a2;
+  --amber:#ffc94a;
+  --paper:#efe4cc;
+  --brown:#2a2118;
+  --line:#55554e;
+  font:14px 'Segoe UI',sans-serif;
+}
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bench); color:var(--ink); }
+button,input,textarea,select { font:inherit; }
+button,select,input,textarea { border-radius:2px; }
+button,select {
+  min-height:44px; border:1px solid #777466; color:var(--ink); padding:7px 11px;
+  background:linear-gradient(#32353b,#22252a); box-shadow:0 2px 1px #08090a; cursor:pointer;
+}
+button:hover { border-color:var(--amber); background:#383a3c; }
+button:active { transform:translateY(1px); }
+button[aria-pressed=true] { color:var(--green); border-color:var(--green); box-shadow:inset 0 -3px var(--green); }
+button:disabled { opacity:.6; cursor:default; }
+:focus-visible { outline:3px solid var(--amber); outline-offset:2px; }
+input,textarea { color:var(--ink); background:#111419; border:1px solid #79766b; padding:8px; min-height:44px; }
+input[type=range] { accent-color:var(--green); padding:0; min-width:60px; cursor:ew-resize; }
+input[type=checkbox] { min-height:22px; width:22px; accent-color:var(--green); }
+label { display:inline-flex; align-items:center; gap:6px; }
+small,.muted { color:var(--muted); }
+.mono,output,textarea,input,.label { font-family:Consolas,'Courier New',monospace; }
+.label { font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+.bench {
+  height:100dvh; min-height:360px; display:grid; gap:12px; padding:14px;
+  grid-template-columns:76px minmax(0,1.15fr) minmax(280px,.85fr) 76px;
+  grid-template-rows:112px minmax(0,1fr) 102px 46px;
+  background:radial-gradient(ellipse at 35% 30%,#45402d44,transparent 65%),
+    repeating-linear-gradient(89deg,#ffffff02 0px,#0000 2px,#0000 9px,#00000020 10px),#15171c;
+  box-shadow:inset 0 0 70px #0008;
+}
+.rack { display:flex; flex-direction:column; gap:8px; align-self:center; }
+.rack button { padding:8px 2px; font-size:12px; min-height:54px; position:relative; }
+.rack button::before { content:attr(data-key); display:block; color:var(--muted); font:10px Consolas,monospace; margin-bottom:4px; }
+.machine-rack { grid-column:1; grid-row:2; }
+.tool-rack { grid-column:4; grid-row:2; }
+.input-station { grid-column:1/5; grid-row:1; display:flex; gap:18px; min-width:0; }
+.tape { min-width:0; background:var(--paper); color:var(--brown); box-shadow:0 4px 9px #0009; position:relative; }
+.tape::before,.tape::after {
+  content:''; position:absolute; top:0; bottom:0; width:9px; pointer-events:none;
+  background:radial-gradient(circle,#474032 2px,transparent 2.5px) center 3px / 9px 16px repeat-y; opacity:.7;
+}
+.tape::before { left:3px; }
+.tape::after { right:3px; }
+.input-tape { flex:1; display:flex; flex-direction:column; }
+.tape-head { display:flex; justify-content:space-between; align-items:center; min-height:26px; padding:3px 20px; gap:10px; }
+.tape-head .label { color:#5d513e; }
+.tape textarea {
+  resize:none; display:block; width:100%; flex:1; min-height:0; border:0; background:transparent; color:var(--brown);
+  padding:3px 22px 7px; font-size:19px; line-height:1.4; letter-spacing:.05em;
+}
+.tape-face { padding:4px 22px; overflow:auto; font:19px/1.55 Consolas,monospace; letter-spacing:.06em; overflow-wrap:anywhere; }
+.input-tape .tape-face { flex:1; min-height:0; }
+.input-tape button { min-height:44px; color:var(--brown); background:transparent; border:0; box-shadow:none; padding:1px 4px; font-size:11px; }
+.utility { width:310px; flex:none; display:grid; gap:8px; grid-template-rows:44px 1fr; }
+.file-buttons,.power { display:flex; gap:6px; }
+.file-buttons button { flex:1; background:linear-gradient(#79603b,#55402b); border-color:#9c855d; }
+.power { border:1px solid #494941; padding:5px; background:#1a1c1f; align-items:center; }
+.power button { flex:1; padding:4px; font-size:12px; min-height:44px; }
+.machine { grid-column:2; grid-row:2; min-width:0; min-height:0; position:relative; }
+.machine-page { height:100%; display:flex; flex-direction:column; align-items:center; min-height:0; }
+.machine-page[hidden], [hidden] { display:none !important; }
+.instrument-head { display:flex; align-items:center; justify-content:space-between; width:100%; gap:8px; min-height:29px; }
+.instrument-head h1,.instrument-head h2 { margin:0; font:12px Consolas,monospace; letter-spacing:.17em; font-weight:normal; }
+.instrument-head output { color:var(--amber); font-size:12px; }
+.wheel-wrap { flex:1; min-height:0; width:100%; display:flex; justify-content:center; position:relative; }
+#wheel { max-width:100%; height:100%; touch-action:none; cursor:grab; filter:drop-shadow(0 12px 12px #0009); }
+#wheel:active { cursor:grabbing; }
+#wheel text { font-family:Consolas,monospace; user-select:none; pointer-events:none; }
+.rock { transform-origin:250px 250px; animation:rock .9s ease-in-out 1; }
+@keyframes rock { 0%,100% { transform:rotate(0); } 35% { transform:rotate(5deg); } 70% { transform:rotate(-3deg); } }
+@media(prefers-reduced-motion:reduce) { .rock { animation:none; } }
+.calm .rock { animation:none; }
+.wheel-controls { display:flex; align-items:center; gap:9px; padding:3px 0; flex:none; }
+.wheel-controls button { min-width:44px; }
+.wheel-controls output { min-width:135px; text-align:center; font-size:13px; color:var(--amber); }
+.paper-card {
+  color:var(--brown); background:var(--paper); padding:12px; box-shadow:0 6px 10px #0009;
+  border:1px solid #ac9875; max-width:100%; width:100%; min-height:0; overflow:auto;
+}
+.key-card { flex:1; display:flex; flex-wrap:wrap; align-content:center; justify-content:center; gap:2px; }
+.glyph-key { display:flex; flex-direction:column; align-items:center; color:var(--brown); background:transparent; box-shadow:none; border:0; }
+.glyph-key:hover { background:#d1c09e; }
+.glyph-key.selected { outline:2px solid #2a2118; background:#d3b56a; }
+.glyph-key svg { width:30px; height:30px; }
+.glyph { width:25px; height:25px; display:inline-block; vertical-align:middle; color:currentColor; }
+.symbol-tape-button { color:inherit; background:none; box-shadow:none; border:0; padding:0; min-height:28px; min-width:26px; }
+.symbol-tape-button:hover { background:#b9a67d; }
+.key-entry { display:flex; flex-wrap:wrap; gap:5px; width:100%; align-items:center; flex:none; margin:6px 0; }
+.key-entry input { min-width:0; flex:1; font-size:17px; text-transform:uppercase; }
+.key-entry button { font-size:12px; }
+.letter-strip { display:flex; flex-wrap:wrap; justify-content:center; gap:3px; width:100%; }
+.letter-strip button { min-width:44px; min-height:44px; padding:4px; font:15px Consolas,monospace; }
+.symbols-card { display:flex; flex-wrap:wrap; justify-content:center; flex:1; align-content:center; gap:2px; }
+.symbols-card .glyph-key { min-width:44px; min-height:48px; padding:3px; }
+.symbols-card .glyph-key span { height:16px; color:#76500b; font-weight:bold; }
+.tableau-wrap { flex:1; width:min(100%,500px); padding:8px; min-height:0; display:flex; }
+#tableau { width:100%; height:100%; }
+.note { font:12px/1.4 Consolas,monospace; margin:5px 0; width:100%; }
+.orange { color:var(--amber); }
+.rotor-case {
+  background:linear-gradient(90deg,#432d20,#60432d 4%,#1e1f1e 4.5%,#111414 95.5%,#60432d 96%,#35271e);
+  box-shadow:0 6px 14px #000b,inset 0 0 0 1px #936941; padding:8px 24px; width:100%; flex:1;
+  display:flex; flex-direction:column; min-height:0; gap:6px; overflow:auto;
+}
+.rotor-top { display:flex; gap:10px; justify-content:center; }
+.rotor-unit { display:grid; grid-template-columns:44px 44px 44px; gap:2px; }
+.rotor-unit select { width:136px; grid-column:1/4; font:13px Consolas,monospace; padding:3px; min-height:44px; }
+.rotor-unit input { width:136px; grid-column:1/4; font:13px Consolas,monospace; padding:4px; min-height:44px; }
+.rotor-unit button { padding:2px; font-size:17px; min-height:44px; }
+.rotor-unit output { grid-row:2; grid-column:2; font:bold 27px/1.3 Consolas,monospace; background:var(--paper); color:var(--brown); text-align:center; }
+.rotor-unit button:last-of-type { grid-row:2; grid-column:3; }
+.lamps,.keyboard { display:flex; flex-wrap:wrap; justify-content:center; gap:5px; max-width:460px; align-self:center; }
+.lamp { display:flex; width:26px; height:26px; border-radius:50%; background:#292c2b; align-items:center; justify-content:center;
+  border:1px solid #66665b; color:#c7c7b8; font:17px Consolas,monospace; }
+.lamp.lit { color:#20170a; background:var(--amber); box-shadow:0 0 17px #ffc94a90; border-color:#fff6b8; }
+.keyboard button { border-radius:50%; min-height:44px; min-width:44px; padding:4px; font:16px Consolas,monospace; }
+.rotor-run { display:flex; gap:5px; justify-content:center; flex-wrap:wrap; align-items:center; }
+.rotor-run button { font-size:12px; }
+.pad-strip { font:22px/2 Consolas,monospace; word-break:break-all; flex:1; align-content:center; text-align:center; }
+.pad-strip span { display:inline-block; width:26px; border:1px solid #ac9875; margin:2px; }
+.analyzers { grid-column:3; grid-row:2; min-height:0; overflow:auto; border:1px solid #5b5c52;
+  background:linear-gradient(135deg,#262a2e,#1a1d21); box-shadow:0 3px 15px #0008; padding:12px; }
+.analysis-top { display:flex; justify-content:space-between; align-items:center; gap:5px; border-bottom:1px solid var(--line); padding-bottom:5px; }
+.analysis-top select { min-height:44px; font-size:12px; padding:3px; }
+.tool { border-bottom:1px solid #54554a; padding:10px 0; }
+.tool:last-child { border-bottom:0; }
+.tool h2 { font:12px Consolas,monospace; letter-spacing:.12em; font-weight:normal; margin:0; }
+.tool-heading { display:flex; justify-content:space-between; gap:5px; align-items:center; margin-bottom:6px; }
+.tool-heading button { padding:2px 7px; min-height:44px; min-width:44px; font-size:12px; }
+.chart { width:100%; height:170px; touch-action:none; }
+.chart text { font-family:Consolas,monospace; }
+.readout { font:12px/1.5 Consolas,monospace; color:var(--green); margin:4px 0; }
+.control-line { display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
+.control-line input[type=range] { flex:1; }
+.control-line input[type=text] { width:130px; flex:1; }
+.control-line button { min-height:44px; font-size:12px; }
+.small-chart { height:70px; }
+.columns { display:flex; flex-wrap:wrap; gap:5px; }
+.column { min-width:80px; flex:1; border:1px solid #6d6e62; padding:5px; }
+.column input { width:100%; }
+.column .sample { font:10px/1.4 Consolas,monospace; overflow-wrap:anywhere; max-height:43px; overflow:auto; }
+.column svg { height:45px; width:100%; }
+.factor-row { display:flex; flex-wrap:wrap; gap:4px; }
+.factor-row button { min-width:44px; padding:4px; font:12px/1.5 Consolas,monospace; }
+.repeats-list { font:12px/1.7 Consolas,monospace; max-height:120px; overflow:auto; }
+.crib-tape { display:flex; flex-wrap:wrap; gap:2px; padding:7px 0; }
+.crib-cell { display:flex; flex-direction:column; background:#32372f; padding:4px; min-width:20px; text-align:center; font:13px/1.5 Consolas,monospace; }
+.crib-cell.bad { background:#572c2b; color:#ffd2ba; }
+.drums { display:flex; justify-content:center; gap:20px; height:100px; align-items:center; }
+.drum { width:70px; height:70px; border:7px double #a87659; border-radius:50%; background:repeating-conic-gradient(#a1664c 0deg 3deg,#30201a 4deg 12deg);
+  box-shadow:0 3px 10px #000; display:grid; place-content:center; }
+.drum:nth-child(2) { filter:hue-rotate(100deg); }
+.drum:nth-child(3) { filter:hue-rotate(190deg); }
+.drum::after { content:''; width:22px; height:22px; background:#b4a486; border:4px solid #333; border-radius:50%; }
+.running .drum { animation:spin 1s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+.calm .running .drum { animation:none; }
+.survivors { display:flex; flex-wrap:wrap; gap:4px; max-height:140px; overflow:auto; }
+.survivors button { font:12px Consolas,monospace; min-height:44px; }
+#tool-bombe { display:flex; flex-direction:column; }
+#tool-bombe .tool-heading { order:0; }
+#tool-bombe .control-line:has(#run-bombe) { order:1; }
+#bombe-readout { order:2; }
+#survivors { order:3; }
+#tool-bombe .control-line:has(#all-orders) { order:4; }
+#bombe-drums { order:5; }
+.output-station { grid-column:1/5; grid-row:3; display:flex; gap:12px; min-height:0; }
+.output-tape { flex:1; display:flex; flex-direction:column; }
+#output { flex:1; min-height:0; font-size:19px; white-space:pre-wrap; }
+.transport { display:grid; grid-template-columns:1fr 1fr; gap:5px; width:218px; flex:none; }
+.transport button { font-size:12px; padding:5px; }
+#direction { color:var(--green); }
+.foot { grid-row:4; grid-column:1/5; display:flex; gap:9px; align-items:center; min-width:0; }
+.plate {
+  color:#e3d4ae; background:linear-gradient(120deg,#544c37,#282a27 30%,#464332); font:11px Consolas,monospace;
+  padding:12px 17px; border:1px solid #8d8162; box-shadow:inset 0 0 0 2px #24251f,0 2px 6px #0007;
+  letter-spacing:.03em; position:relative;
+}
+.plate-name { display:block; }
+.plate::before,.plate::after { content:'⊖'; position:absolute; top:11px; color:#b9a97e; font-size:10px; }
+.plate::before { left:4px; }
+.plate::after { right:4px; }
+#status { display:block; margin-top:3px; font:10px Consolas,monospace; color:#d5c7a5; }
+dialog {
+  color:var(--ink); background:#22262b; border:1px solid #a09272; box-shadow:0 12px 60px #000c;
+  padding:20px; max-width:calc(100vw - 20px); max-height:calc(100dvh - 74px); width:650px;
+}
+dialog::backdrop { background:#0008; }
+#drawer { position:fixed; inset:auto auto 61px 14px; margin:0; }
+.drawer-head { display:flex; justify-content:space-between; align-items:center; gap:10px; border-bottom:1px solid var(--line); padding-bottom:10px; }
+.drawer-head h2 { font:22px Georgia,serif; margin:0; color:var(--paper); }
+.drawer-content { font:14px/1.65 'Segoe UI',sans-serif; }
+.drawer-content h3 { font:17px Georgia,serif; color:var(--amber); margin:22px 0 6px; }
+.drawer-content p { margin:9px 0; }
+.drawer-content details { border-bottom:1px solid var(--line); padding:10px 0; }
+.drawer-content summary { cursor:pointer; min-height:32px; font-weight:600; color:var(--paper); }
+.drawer-content a { color:#72dabc; }
+.case-card { background:#d4bd8b; color:var(--brown); padding:14px; margin:12px 0; box-shadow:0 3px 7px #0008; }
+.case-card h3 { color:var(--brown); margin:0; }
+.case-card p { margin:6px 0; }
+.case-card button { margin:6px 6px 0 0; }
+.case-card details { border-color:#827054; }
+.case-card summary { color:var(--brown); }
+.case-card .note { font:12px/1.5 Consolas,monospace; }
+.box-row { display:flex; align-items:center; flex-wrap:wrap; gap:6px; padding:13px; margin:12px 0;
+  border:1px solid #a4824c; background:linear-gradient(115deg,#513a25,#30271f); }
+.box-row strong { flex:1; min-width:130px; }
+.box-row button { min-width:44px; }
+.dialog-actions { display:flex; justify-content:flex-end; gap:10px; margin-top:20px; }
+.seal-form label { display:flex; flex-direction:column; align-items:stretch; }
+#fan-list { font:14px/1.6 Consolas,monospace; }
+.fan-line { padding:6px; border-bottom:1px solid var(--line); cursor:pointer; width:100%; text-align:left; margin:3px 0; }
+.plugboard { display:flex; flex-wrap:wrap; gap:6px; padding:14px 0; }
+.socket { width:44px; min-height:48px; border-radius:50%; border:3px double #999; padding:4px; touch-action:none; }
+.socket.cabled { border-color:var(--green); }
+.socket.chosen { outline:3px solid var(--amber); }
+#plug-wires { display:block; width:100%; height:70px; }
+@media(max-height:650px) and (min-width:601px) {
+  .bench { gap:7px; padding:8px; grid-template-columns:60px minmax(0,1fr) minmax(230px,.9fr) 60px;
+    grid-template-rows:80px minmax(0,1fr) 72px 44px; }
+  .rack { gap:4px; }
+  .rack button { min-height:31px; font-size:11px; }
+  .rack button::before { display:none; }
+  .input-station { gap:8px; }
+  .utility { width:230px; grid-template-rows:35px 1fr; gap:4px; }
+  .utility button { min-height:30px; font-size:10px; padding:3px; }
+  .power { padding:2px; }
+  .tape-head { font-size:10px; min-height:22px; }
+  .tape textarea,#output { font-size:14px; }
+  .transport { width:170px; gap:4px; }
+  .transport button { min-height:30px; font-size:11px; padding:3px; }
+  .analyzers { padding:7px; }
+  .tool { padding:5px 0; }
+  .chart { height:105px; }
+  .plate { padding:10px 13px; font-size:10px; }
+  #status { font-size:10px; max-width:180px; }
+  .rotor-case { padding:5px 12px; }
+  .rotor-unit { grid-template-columns:24px 28px 24px; }
+  .rotor-unit select,.rotor-unit input { width:80px; min-height:28px; font-size:11px; }
+  .rotor-unit button { min-height:26px; font-size:14px; }
+  .rotor-unit output { font-size:23px; }
+  .keyboard button { min-height:28px; min-width:28px; font-size:12px; }
+  .lamp { width:24px; height:24px; font-size:12px; }
+  .rotor-run button { min-height:30px; }
+  .letter-strip button { min-height:26px; min-width:26px; font-size:12px; }
+  .key-entry { margin:3px 0; }
+  .key-entry input,.key-entry button { min-height:30px; }
+  .glyph-key { padding:2px; min-height:35px; min-width:35px; }
+  .glyph-key svg { width:22px; height:22px; }
+}
+@media(max-width:900px) and (min-width:601px) {
+  .bench { grid-template-columns:56px minmax(0,1fr) minmax(210px,.9fr) 56px; gap:7px; padding:8px; }
+  .utility { width:220px; }
+  .utility button { font-size:11px; padding:3px; }
+  .instrument-head h1,.instrument-head h2 { font-size:10px; letter-spacing:.03em; }
+  .wheel-controls { gap:4px; }
+  .wheel-controls output { min-width:90px; font-size:11px; }
+  .wheel-controls button { padding:4px; }
+  .rack button { font-size:10px; }
+  .plate { font-size:10px; max-width:320px; padding:7px 13px; }
+  #status { max-width:140px; }
+  .transport { width:160px; }
+  .rotor-top { gap:3px; }
+  .rotor-case { padding:6px 12px; }
+  .rotor-unit { grid-template-columns:20px 24px 20px; }
+  .rotor-unit select,.rotor-unit input { width:68px; font-size:10px; }
+  .rotor-unit output { font-size:20px; }
+}
+@media(max-width:600px) {
+  .bench { padding:7px; gap:6px; grid-template-columns:minmax(0,1fr);
+    grid-template-rows:113px minmax(195px,1.2fr) 76px minmax(120px,.8fr) 44px 44px 48px; }
+  .input-station { grid-column:1; grid-row:1; flex-direction:column-reverse; gap:5px; }
+  .utility { width:100%; display:flex; gap:5px; height:35px; }
+  .utility .file-buttons { width:130px; gap:4px; }
+  .utility .power { flex:1; gap:3px; padding:2px; }
+  .utility button { min-height:30px; padding:3px 5px; font-size:10px; }
+  .input-tape { min-height:0; }
+  .tape-head { font-size:10px; min-height:22px; }
+  .tape textarea { font-size:14px; }
+  .machine { grid-column:1; grid-row:2; }
+  .machine-rack { grid-column:1; grid-row:5; }
+  .tool-rack { grid-column:1; grid-row:6; }
+  .rack { flex-direction:row; gap:4px; overflow-x:auto; height:44px; align-self:stretch; }
+  .rack button { min-height:40px; flex:1; min-width:48px; padding:4px; font-size:11px; }
+  .rack button::before { display:none; }
+  .analyzers { grid-column:1; grid-row:4; padding:7px; }
+  .chart { height:105px; }
+  .output-station { grid-column:1; grid-row:3; gap:5px; }
+  #output { font-size:15px; }
+  .transport { width:118px; gap:4px; }
+  .transport button { min-height:30px; font-size:10px; padding:3px; }
+  .foot { grid-column:1; grid-row:7; gap:5px; }
+  .plate { font-size:9px; padding:7px 12px; flex:1; }
+  #manual { padding:5px; font-size:11px; }
+  .foot { display:grid; grid-template-columns:48px minmax(0,1fr); grid-template-rows:24px 18px; }
+  #manual { grid-column:1; grid-row:1/3; }
+  .plate { grid-column:2; grid-row:1/3; height:48px; padding:3px 12px; font-size:10px; letter-spacing:0; }
+  #status { position:static; font-size:10px; max-width:none; margin:2px 0 0;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-align:left; color:#dfd3b7; }
+  .instrument-head { min-height:22px; }
+  .instrument-head h1,.instrument-head h2 { font-size:10px; }
+  .wheel-controls { padding:0; gap:5px; }
+  .wheel-controls button { min-height:32px; padding:3px 9px; }
+  .wheel-controls output { font-size:12px; }
+  .key-card,.symbols-card { padding:5px; }
+  .glyph-key { min-width:35px; min-height:35px; padding:2px; font-size:10px; }
+  .glyph-key svg { width:20px; height:20px; }
+  .symbols-card .glyph-key { min-width:35px; min-height:35px; }
+  .symbols-card .glyph-key span { font-size:10px; height:12px; }
+  .letter-strip { gap:2px; }
+  .letter-strip button { min-width:25px; min-height:25px; padding:2px; font-size:12px; }
+  .key-entry input,.key-entry button { min-height:32px; font-size:12px; }
+  .key-entry { margin:3px 0; }
+  .rotor-case { padding:4px 12px; gap:3px; }
+  .rotor-top { gap:8px; }
+  .rotor-unit { grid-template-columns:22px 28px 22px; }
+  .rotor-unit select,.rotor-unit input { width:76px; min-height:24px; font-size:10px; padding:2px; }
+  .rotor-unit button { min-height:22px; padding:0; font-size:13px; }
+  .rotor-unit output { font-size:21px; }
+  .lamps,.keyboard { display:grid; grid-template-columns:repeat(13,minmax(0,1fr)); gap:2px; width:100%; }
+  .lamp { width:auto; height:22px; font-size:12px; }
+  .keyboard button { min-height:26px; min-width:0; padding:2px; font-size:12px; }
+  .rotor-run button { min-height:30px; font-size:11px; padding:4px; }
+  .note { font-size:10px; margin:2px 0; }
+  .tool { padding:5px 0; }
+  .tool-heading { margin:2px 0; }
+  #drawer { left:7px; bottom:61px; }
+  dialog { padding:13px; }
+  .pad-strip { font-size:16px; }
+  .pad-strip span { width:20px; }
+}
+
+/* Review: keep full-size controls in compact instruments, with local reference-card scrolling. */
+.square-lens { display:flex; align-items:center; justify-content:center; gap:12px; width:100%;
+  color:var(--brown); background:var(--paper); border:1px solid #ac9875; padding:5px; flex:none; }
+.square-lens span { display:grid; text-align:center; font:15px Consolas,monospace; }
+.square-lens small { font:10px Consolas,monospace; color:#57472d; }
+.square-lens b { font:bold 24px Consolas,monospace; }
+.square-lens i { font:20px Consolas,monospace; }
+.tableau-wrap { margin-top:5px; display:block; }
+#tableau { width:540px; height:540px; max-width:none; display:block; }
+.drawer-content summary { min-height:44px; display:list-item; padding:9px 0; }
+.symbol-tape-button { min-width:44px; min-height:44px; }
+.control-line:has(input[type=checkbox]) label { min-height:44px; cursor:pointer; }
+input[type=checkbox] { width:44px; min-height:44px; flex:none; }
+.drawer-content a { display:inline-block; min-height:44px; padding:8px 0; }
+.rotor-unit output { min-height:44px; cursor:ns-resize; touch-action:none;
+  background:repeating-linear-gradient(#efe4cc 0 4px,#d9caab 5px,#efe4cc 6px 9px); }
+#tool-counter { display:flex; flex-direction:column; }
+#tool-counter .tool-heading { order:0; }
+#tool-counter .control-line { order:1; }
+#counter-chart { order:2; flex:none; }
+#counter-readout { order:3; }
+#counter-controls { display:flex; gap:5px; align-items:center; min-width:0; }
+#counter-controls button { min-width:44px; min-height:44px; padding:3px; font-size:11px; }
+#counter-controls input { width:100px; min-width:60px; flex:1; }
+#counter-controls output { font-size:11px; }
+@media(max-width:900px),(max-height:650px) {
+  .analysis-top { gap:3px; }
+  .analysis-top label { font-size:12px; gap:0; }
+  .analysis-label { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+  .analysis-top select { font-size:11px; }
+  #counter-controls { flex:1; gap:3px; }
+  #counter-controls input { width:60px; }
+  #counter-chart { height:72px; }
+  #tool-counter .tool-heading { margin:0; }
+  #tool-counter h2 { font-size:10px; }
+}
+@media(max-height:650px) and (min-width:601px) {
+  .bench { grid-template-columns:96px minmax(0,1fr) minmax(190px,.9fr) 96px;
+    grid-template-rows:64px minmax(0,1fr) 66px 44px; gap:3px; padding:4px; }
+  .rack { display:grid; grid-template-columns:1fr 1fr; gap:4px; }
+  .rack button { min-height:44px; padding:2px; font-size:10px; }
+  .utility { display:flex; width:350px; gap:4px; }
+  .file-buttons { width:150px; gap:4px; align-items:center; }
+  .power { flex:1; gap:3px; padding:3px; }
+  .utility { height:48px; }
+  .power { padding:1px; }
+  .input-tape .tape-head { min-height:18px; padding:1px 20px; }
+  .tape textarea,#output { min-height:44px; }
+  .bench:has(#edit-tape:not([hidden])) { grid-template-rows:96px minmax(0,1fr) 66px 44px; }
+  .utility button,.transport button { min-height:44px; font-size:10px; }
+  .transport { display:flex; align-items:center; width:252px; }
+  .transport button { flex:1; min-width:0; padding:2px; }
+  .analyzers { padding:6px; }
+  .instrument-head { min-height:22px; }
+  .wheel-controls button { min-height:44px; }
+  .wheel-controls output { min-width:75px; font-size:10px; }
+  .wheel-controls { gap:3px; }
+  .wheel-controls button { min-width:44px; padding:2px; }
+  #outer-letters text { font-size:34px; }
+  #inner-letters text { font-size:32px; }
+  #hint { font-size:30px; }
+  .plate { height:44px; padding:3px 13px; font-size:10px; }
+}
+@media(max-width:600px) {
+  .bench { grid-template-rows:125px minmax(195px,1.2fr) 94px minmax(110px,.8fr) 44px 44px 48px; }
+  .bench:has(#edit-tape:not([hidden])) { grid-template-rows:149px minmax(173px,1.2fr) 94px minmax(110px,.8fr) 44px 44px 48px; }
+  .utility { height:48px; }
+  .utility button,.transport button,.rack button,.wheel-controls button { min-height:44px; }
+  .utility button { font-size:10px; }
+  .transport { width:118px; }
+  .square-lens { gap:8px; padding:2px; }
+  .square-lens b { font-size:20px; }
+  .square-lens small { font-size:10px; }
+  .rack { overflow-x:visible; }
+  .rack button { min-width:0; }
+}
+@media(max-width:900px),(max-height:650px) {
+  .rotor-unit { grid-template-columns:minmax(0,1fr); flex:1; min-width:0; }
+  .rotor-unit select,.rotor-unit input { width:100%; min-height:44px; grid-column:1; }
+  .rotor-unit output { grid-column:1; min-height:44px; }
+  .rotor-unit button { display:none; }
+  .rotor-unit button,.rotor-run button { min-height:44px; }
+  .rotor-case { padding:4px; flex:none; height:calc(100% - 22px); }
+  .rotor-top { gap:3px; flex:none; width:100%; min-width:0; }
+  .rotor-run { order:-1; position:sticky; top:0; z-index:2; flex:none; background:#171a1b; flex-wrap:nowrap; }
+  .rotor-run button { padding:3px; font-size:10px; }
+  .keyboard { display:flex; flex-wrap:nowrap; width:100%; max-width:none; justify-content:flex-start;
+    overflow-x:auto; flex:none; }
+  .keyboard button { min-width:44px; min-height:44px; flex:none; }
+  .lamps { flex:none; }
+  .glyph-key,.symbols-card .glyph-key { min-width:44px; min-height:44px; flex:none; }
+  .key-card { align-content:flex-start; }
+  .symbols-card { flex:none; height:50px; flex-wrap:nowrap; justify-content:flex-start; overflow-x:auto; }
+  .letter-strip { flex-wrap:nowrap; justify-content:flex-start; overflow-x:auto; flex:none; height:48px; }
+  .letter-strip button { min-width:44px; min-height:44px; flex:none; }
+  .key-entry input,.key-entry button { min-height:44px; }
+  .key-entry { flex-wrap:nowrap; }
+  .square-lens b { font-size:18px; }
+  .square-lens { gap:5px; }
+  .square-lens small { font-size:10px; }
+}
+
+.analysis-top { position:sticky; top:0; z-index:3; background:#24282c; }
+#crib-left,#crib-right { min-width:44px; }
+.rotor-unit output { user-select:none; }
+.plate { min-width:0; overflow:hidden; }
+.plate-name { line-height:11px; }
+#status { max-width:none; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; line-height:12px; }
+#tool-splitter { display:flex; flex-direction:column; }
+#tool-splitter .control-line { order:0; }
+#tool-splitter .tool-heading { order:1; }
+#split-readout { order:2; }
+#split-chart { order:3; flex:none; }
+#columns { order:4; }
+
+/* Refine repairs: the working surface keeps its material and density. */
+.analyzers { padding:0 12px 12px; }
+.analysis-top { margin:0 -12px; padding:8px 12px; background:#24282c; top:0; }
+.event-stamp { font:11px Consolas,monospace; color:#51380c; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+#tape-event:empty,#bombe-event:empty { display:none; }
+#bombe-event { order:2; }
+#status { display:none; }
+.plate { white-space:nowrap; padding:12px 20px; flex:none; max-width:none; }
+.plate::before,.plate::after { top:50%; transform:translateY(-50%); }
+.plate-name { line-height:14px; }
+#hint { font-size:17px; }
+#compact-hint { display:none; }
+.tape-face { scrollbar-width:thin; scrollbar-color:#715c36 #d9caab; }
+.tape:has(.tape-face) { border-bottom:3px solid #b79f73; }
+.tape-face { padding-bottom:10px; }
+#output.paired-tape { display:flex; align-content:flex-start; flex-wrap:wrap; gap:2px; padding-top:2px; }
+.tape-pair { display:inline-flex; flex-direction:column; align-items:center; width:32px; height:58px; flex:none; }
+.tape-pair button { width:32px; min-width:32px; height:32px; min-height:32px; }
+.tape-pair b { font:16px/22px Consolas,monospace; color:#76500b; }
+.tape-pair.space { width:12px; white-space:pre; }
+.tape-pair .glyph { width:26px; height:32px; }
+.pad-strip { display:flex; flex-wrap:wrap; align-content:flex-start; align-items:flex-start; gap:2px; font:16px Consolas,monospace; }
+.pad-strip .pad-column,.pad-strip .pad-labels { display:flex; flex-direction:column; width:22px; margin:0; }
+.pad-column b { height:26px; padding:3px 0; border-bottom:1px solid #ac9875; }
+.pad-strip .pad-labels { width:60px; border:0; }
+.pad-labels span { font-size:10px; height:26px; width:auto; border:0; margin:0; padding:5px 0; }
+.tableau-wrap { position:relative; scrollbar-width:thin; scrollbar-color:#715c36 #d9caab; }
+#tableau { width:100%; height:auto; max-width:540px; margin:auto; }
+.grid-origins { width:100%; display:flex; gap:16px; justify-content:center; flex:none; }
+.grid-origin { width:90px; height:90px; }
+.rotor-unit [data-ring] { grid-column:1/4; grid-row:3; min-height:44px; font:20px Consolas,monospace; }
+.rotor-unit [data-ring]::before { content:'RING '; font-size:10px; }
+#counter-controls output { font-size:10px; white-space:nowrap; }
+@media(max-width:900px),(max-height:650px) {
+  .analyzers { padding:0 6px 6px; }
+  .analysis-top { margin:0 -6px; padding:5px 6px; flex-wrap:wrap; }
+  #counter-controls { flex:1 1 100%; }
+  .rotor-case { display:grid; grid-template-rows:auto auto auto auto; align-content:start; gap:3px; overflow:hidden; }
+  .rotor-top { grid-row:1; }
+  .rotor-unit { display:grid; grid-template-columns:1fr 1fr; gap:2px; }
+  .rotor-unit select { grid-column:1/3; grid-row:1; min-height:26px; height:26px; }
+  .rotor-unit [data-window] { grid-column:1; grid-row:2; min-height:32px; height:32px; font-size:22px; }
+  .rotor-unit [data-ring] { grid-column:2; grid-row:2; min-height:32px; height:32px; font-size:16px; }
+  .rotor-unit [data-ring]::before { content:''; }
+  .lamps { grid-row:2; display:grid; grid-template-columns:repeat(13,1fr); gap:2px; width:100%; }
+  .lamp { width:auto; height:18px; font-size:11px; }
+  .keyboard { grid-row:3; display:grid; grid-template-columns:repeat(13,1fr); gap:2px; width:100%; overflow:visible; }
+  .keyboard button { min-width:0; min-height:26px; height:26px; font-size:11px; padding:0; }
+  .rotor-run { grid-row:4; position:static; display:flex; flex-wrap:nowrap; }
+  .rotor-run button { min-height:30px; padding:2px; font-size:10px; }
+  .grid-origins { gap:5px; }
+  .grid-origin { width:54px; height:54px; }
+}
+@media(max-height:650px) and (min-width:601px) {
+  #hint,#wheel > text:not(#compact-hint) { display:none; }
+  #compact-hint { display:block; font-size:28px; }
+  #wheel:has(#hint:empty) #compact-hint { display:none; }
+  .instrument-head { min-height:18px; }
+  .wheel-controls { padding:0; }
+  .bench:has(#edit-tape:not([hidden])) { grid-template-rows:64px minmax(0,1fr) 88px 44px; }
+  .utility { width:300px; }
+  .plate { font-size:10px; padding:8px 20px; max-width:none; }
+  .tape-head { gap:5px; }
+  #tape-event { max-width:130px; }
+  .bench:has(.paired-tape) .output-tape .tape-head { min-height:20px; }
+  #output.paired-tape { padding-bottom:8px; }
+}
+@media(max-width:600px) {
+  .bench:has(#edit-tape:not([hidden])) { grid-template-rows:125px minmax(195px,1.2fr) 106px minmax(130px,.8fr) 44px 44px 48px; }
+  .bench:has(#machine-symbols[aria-pressed=true]) { grid-template-rows:125px 174px 106px minmax(130px,1fr) 44px 44px 48px; }
+  #hint,#wheel > text:not(#compact-hint) { display:none; }
+  #compact-hint { display:block; font-size:28px; }
+  #wheel:has(#hint:empty) #compact-hint { display:none; }
+  .plate { white-space:normal; font-size:10px; padding:6px 17px; width:100%; }
+  .plate-name { line-height:14px; }
+  .tape-head { padding:2px 18px; gap:3px; flex-wrap:wrap; }
+  .tape-head .event-stamp { max-width:100%; font-size:10px; }
+  #output-meta { font-size:10px; }
+  #edit-tape { min-height:22px; }
+  .rotor-case { height:calc(100% - 22px); }
+}
+
+
+@media(min-width:901px) and (min-height:651px) and (max-height:750px) {
+  .rotor-case { display:grid; grid-template-columns:minmax(0,1fr) auto; grid-template-rows:auto auto 1fr; }
+  .rotor-top { grid-column:1/3; grid-row:1; }
+  .lamps { grid-column:1; grid-row:2; }
+  .lamp { height:20px; }
+  .keyboard { grid-column:1; grid-row:3; }
+  .rotor-run { grid-column:2; grid-row:2/4; flex-direction:column; align-self:center; }
+}
+</style>
+</head>
+<body>
+<main class="bench" aria-label="Cipher Workbench">
+  <section class="input-station">
+    <div class="tape input-tape" id="input-region" data-audit-keep>
+      <div class="tape-head"><label for="input" class="label">Input tape</label><span id="input-count" class="mono">14 LETTERS</span>
+        <button id="edit-tape" hidden>Edit tape</button></div>
+      <textarea id="input" spellcheck="false" aria-label="Input tape, up to 600 letters">WKH GLH LV FDVW</textarea>
+      <div id="input-glyphs" class="tape-face" aria-label="Cipher symbols on input tape" hidden></div>
+    </div>
+    <div class="utility">
+      <div class="file-buttons"><button id="cases" aria-haspopup="dialog">Case file</button><button id="boxes" aria-haspopup="dialog">Boxes <span id="box-count">0</span></button></div>
+      <div class="power" aria-label="Workbench power panel">
+        <button id="motion" aria-pressed="true">Motion</button><button id="sound" aria-pressed="true">Sound</button><button id="read">Read</button>
+      </div>
+    </div>
+  </section>
+  <nav class="rack machine-rack" aria-label="Machine rack">
+    <button data-machine="wheel" id="machine-wheel" data-key="1" aria-pressed="true">Wheel</button>
+    <button data-machine="grid" id="machine-grid" data-key="2" aria-pressed="false">Grid</button>
+    <button data-machine="symbols" id="machine-symbols" data-key="3" aria-pressed="false">Symbols</button>
+    <button data-machine="square" id="machine-square" data-key="4" aria-pressed="false">Square</button>
+    <button data-machine="rotors" id="machine-rotors" data-key="5" aria-pressed="false">Rotors</button>
+    <button data-machine="pad" id="machine-pad" data-key="6" aria-pressed="false">Pad</button>
+  </nav>
+  <section class="machine" aria-label="Working cipher machine" data-audit-keep>
+    <div class="machine-page" data-page="wheel">
+      <div class="instrument-head"><h1>CAESAR / BRASS DISK</h1><output id="wheel-direction">DECODE</output></div>
+      <div class="wheel-wrap">
+        <svg id="wheel" viewBox="0 0 500 500" tabindex="0" role="slider" aria-label="Cipher wheel shift" aria-valuemin="0" aria-valuemax="25" aria-valuenow="0">
+          <defs>
+            <radialGradient id="brass"><stop stop-color="#f2d18a"/><stop offset=".5" stop-color="#b88d43"/><stop offset=".77" stop-color="#e4be72"/><stop offset="1" stop-color="#7b5c2c"/></radialGradient>
+            <radialGradient id="inner-brass"><stop stop-color="#a98648"/><stop offset=".6" stop-color="#d5b06c"/><stop offset="1" stop-color="#9d7639"/></radialGradient>
+            <pattern id="lathe" width="500" height="500" patternUnits="userSpaceOnUse"><g id="lathe-lines"></g></pattern>
+          </defs>
+          <circle cx="250" cy="250" r="240" fill="url(#brass)" stroke="#d8b770" stroke-width="2"/>
+          <circle cx="250" cy="250" r="235" fill="none" stroke="#392e20" stroke-width="2"/>
+          <circle cx="250" cy="250" r="183" fill="none" stroke="#46351f" stroke-width="3"/>
+          <g id="outer-letters"></g>
+          <g id="wheel-rock" class="rock"><g id="inner-ring">
+            <circle cx="250" cy="250" r="178" fill="url(#inner-brass)" stroke="#3e2f1c" stroke-width="2"/>
+            <circle cx="250" cy="250" r="172" fill="none" stroke="#efd49b"/>
+            <circle cx="250" cy="250" r="129" fill="none" stroke="#7b5b30"/>
+            <g id="inner-letters"></g>
+            <circle cx="250" cy="250" r="122" fill="none" stroke="#7b5b30"/>
+            <circle cx="250" cy="250" r="114" fill="none" stroke="#e0b76b"/>
+          </g></g>
+          <text x="250" y="214" text-anchor="middle" fill="#392c19" font-size="12" letter-spacing="4">ALPHABETICAL</text>
+          <text x="250" y="237" text-anchor="middle" fill="#392c19" font-size="18" letter-spacing="4">CIPHER DISK</text>
+          <text x="250" y="274" text-anchor="middle" fill="#392c19" font-size="11" letter-spacing="2">XXVI DIVISIONS</text>
+          <text id="hint" x="250" y="310" text-anchor="middle" fill="#392c19" font-size="13">Drag the inner ring.</text>
+          <text id="compact-hint" x="250" y="288" text-anchor="middle" fill="#392c19" aria-hidden="true"><tspan x="250">Drag the</tspan><tspan x="250" dy="32">inner ring.</tspan></text>
+          <circle cx="250" cy="250" r="7" fill="#4f412b" stroke="#e5c782" stroke-width="2"/>
+          <path d="M242 11L250 28L258 11" fill="#22271f"/>
+        </svg>
+      </div>
+      <div class="wheel-controls"><button id="shift-down" aria-label="Decrease shift">−</button><output id="shift-readout">SHIFT 00 · A to A</output>
+        <button id="shift-up" aria-label="Increase shift">+</button><button id="fan">Fan</button></div>
+    </div>
+    <div class="machine-page" data-page="grid" hidden>
+      <div class="instrument-head"><h2>PIGPEN / KEY CARD</h2><output id="grid-variant">STANDARD</output></div>
+      <div id="grid-card" class="paper-card key-card" aria-label="Pigpen alphabet"></div>
+      <p class="note" id="grid-note">Tap a shape to put it on the tape.</p>
+    </div>
+    <div class="machine-page" data-page="symbols" hidden>
+      <div class="instrument-head"><h2>SYMBOL / SUBSTITUTION</h2><output id="symbol-readout">0 ASSIGNED</output></div>
+      <div id="symbol-card" class="paper-card symbols-card"></div>
+      <div id="letter-strip" class="letter-strip" aria-label="Assign a letter to the selected symbol"></div>
+      <div class="key-entry"><output id="selected-symbol">Pick a glyph</output><button id="clear-symbols">Clear</button><button id="new-symbols">New key</button></div>
+    </div>
+    <div class="machine-page" data-page="square" hidden>
+      <div class="instrument-head"><h2>VIGENERE / TABULA RECTA</h2><output id="square-crossing"></output></div>
+      <div id="square-lens" class="square-lens" aria-label="Current tableau crossing"></div>
+      <div class="paper-card tableau-wrap"><svg id="tableau" viewBox="0 0 540 540" role="img" aria-label="Vigenere square, key rows and plaintext columns"></svg></div>
+      <div class="key-entry"><label for="square-key">KEY</label><input id="square-key" value="RAVEN" maxlength="160" aria-label="Vigenere key, 1 to 40 letters"><output id="square-key-count">5 letters</output></div>
+      <p id="square-note" class="note"></p>
+    </div>
+    <div class="machine-page" data-page="rotors" hidden>
+      <div class="instrument-head"><h2>ENIGMA I / UKW B</h2><output id="rotor-step">STEP 0000</output></div>
+      <div class="rotor-case">
+        <div class="rotor-top" id="rotor-controls"></div>
+        <div class="lamps" id="lamps" aria-label="Lampboard"></div>
+        <div class="keyboard" id="keyboard" aria-label="Rotor keyboard"></div>
+        <div class="rotor-run"><button id="rotor-run">Run tape</button><button id="rotor-back">Set back</button><button id="plugs">Plugboard · 0</button></div>
+      </div>
+    </div>
+    <div class="machine-page" data-page="pad" hidden>
+      <div class="instrument-head"><h2>ADDITIVE / ONE-TIME PAD</h2><output id="pad-length">0 KEY LETTERS</output></div>
+      <div class="paper-card pad-strip" id="pad-strip"></div>
+      <div class="key-entry"><label for="pad-key">KEY</label><input id="pad-key" aria-label="Pad key strip" spellcheck="false"><button id="random-pad">Random key</button></div>
+      <p class="note" id="pad-note"></p>
+    </div>
+  </section>
+  <aside class="analyzers" aria-label="Cryptanalysis instruments">
+    <div class="analysis-top"><label for="tools-read" class="mono"><span class="analysis-label">Tools read</span><select id="tools-read"><option value="auto">Ciphertext</option><option value="input">Input</option><option value="output">Output</option></select></label><div id="counter-controls"><button id="counter-sort" aria-pressed="false" title="Sort counter bars">A-Z</button><input id="ghost" type="range" min="0" max="25" value="0" aria-label="English ghost shift" title="English ghost shift"><output id="ghost-value">00</output></div></div>
+    <section class="tool" id="tool-counter">
+      <div class="tool-heading"><h2>FREQUENCY COUNTER</h2></div>
+      <svg id="counter-chart" class="chart" viewBox="0 0 420 175" role="img" aria-label="Letter counts and English frequency ghost"></svg>
+      <div class="readout" id="counter-readout">LETTERS 12</div>
+    </section>
+    <section class="tool" id="tool-splitter" hidden>
+      <div class="tool-heading"><h2>COLUMN SPLITTER</h2><label for="split-length">Length <input id="split-length" type="number" min="1" max="12" value="5" style="width:60px"></label></div>
+      <svg id="split-chart" class="chart small-chart" viewBox="0 0 420 75" role="img" aria-label="Bumpiness by trial key length"></svg>
+      <div class="readout" id="split-readout"></div><div id="columns" class="columns"></div>
+      <div class="control-line"><output id="key-guess" class="readout"></output><button id="use-key">Use key</button></div>
+    </section>
+    <section class="tool" id="tool-repeats" hidden>
+      <div class="tool-heading"><h2>REPEATED TRIGRAMS</h2></div>
+      <div id="repeat-factors" class="factor-row"></div><div class="readout" id="repeat-readout"></div><div id="repeat-list" class="repeats-list"></div>
+    </section>
+    <section class="tool" id="tool-crib" hidden>
+      <div class="tool-heading"><h2>CRIB SLIDER</h2></div>
+      <div class="control-line"><label for="crib">Guess</label><input id="crib" type="text" value="THE SAME" maxlength="60" aria-label="Crib, up to 20 letters"></div>
+      <div class="control-line"><button id="crib-left" aria-label="Move crib left">←</button><input id="crib-offset" type="range" min="0" max="0" value="0" aria-label="Crib letter offset"><button id="crib-right" aria-label="Move crib right">→</button></div>
+      <div class="crib-tape" id="crib-tape"></div><div class="readout" id="crib-readout"></div>
+    </section>
+    <section class="tool" id="tool-bombe" hidden>
+      <div class="tool-heading"><h2>CRIB SEARCH / BOMBE</h2></div>
+      <div class="drums" id="bombe-drums" aria-hidden="true"><div class="drum"></div><div class="drum"></div><div class="drum"></div></div>
+      <div class="control-line"><label><input type="checkbox" id="all-orders">All six orders</label><label><input type="checkbox" id="all-spots">All crib spots</label></div>
+      <div class="control-line"><button id="run-bombe">Run bombe</button><button id="stop-bombe" hidden>Stop</button></div>
+      <div id="bombe-event" class="readout" role="status"></div><div id="bombe-readout" class="readout" aria-live="polite">Rotors only · plugboard off</div><div id="survivors" class="survivors"></div>
+    </section>
+  </aside>
+  <nav class="rack tool-rack" aria-label="Analysis tool rack">
+    <button id="toggle-counter" data-tool="counter" data-key="C" aria-pressed="true">Counter</button>
+    <button id="toggle-splitter" data-tool="splitter" data-key="S" aria-pressed="false">Splitter</button>
+    <button id="toggle-repeats" data-tool="repeats" data-key="R" aria-pressed="false">Repeats</button>
+    <button id="toggle-crib" data-tool="crib" data-key="K" aria-pressed="false">Crib</button>
+    <button id="toggle-bombe" data-tool="bombe" data-key="B" aria-pressed="false">Bombe</button>
+  </nav>
+  <section class="output-station">
+    <div class="tape output-tape" id="output-region" data-audit-keep>
+      <div class="tape-head"><span class="label">Output tape</span><span id="tape-event" class="event-stamp" role="status"></span><span id="output-meta" class="mono">WHEEL · DECODE</span></div>
+      <div id="output" class="tape-face" tabindex="0" aria-label="Output tape">WKH GLH LV FDVW</div>
+    </div>
+    <div class="transport" aria-label="Tape transport"><button id="direction">Decode ↓</button><button id="swap">Swap ↑</button><button id="seal">Seal a box</button><button id="clear-tape">Clear tape</button></div>
+  </section>
+  <footer class="foot"><button id="manual" aria-haspopup="dialog">Manual</button><div class="plate"><span class="plate-name">Curio Class Curiosities · No. 11 · Cipher Workbench</span><span id="status" role="status">Stays on this device</span></div></footer>
+</main>
+<dialog id="drawer" aria-labelledby="drawer-title"><div class="drawer-head"><h2 id="drawer-title">Manual</h2><button id="close-drawer">Close</button></div><div id="drawer-body" class="drawer-content"></div></dialog>
+<dialog id="confirm" aria-labelledby="confirm-title"><h2 id="confirm-title">Confirm</h2><p id="confirm-text"></p><div class="dialog-actions"><button id="confirm-no">Keep it</button><button id="confirm-yes">Confirm</button></div></dialog>
+<script src="kit:curio"></script>
+<script>
+'use strict';
+const MATERIAL = "json:material";
+const A = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const $ = id => document.getElementById(id);
+const mod = n => (n % 26 + 26) % 26;
+const upperASCII = text => String(text).replace(/[a-z]/g,c => c.toUpperCase());
+const letters = text => upperASCII(text).replace(/[^A-Z]/g,'');
+const esc = text => String(text).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const names = {wheel:'Wheel',grid:'Grid',symbols:'Symbols',square:'Square',rotors:'Rotors',pad:'Pad'};
+const shapeKey = [18,24,14,11,10,7,19,2,6,17,20,1,23,22,9,21,16,4,8,15,25,13,26,3,5,12].map(n => n-1);
+const wiring = ['EKMFLGDQVZNTOWYHXUSPAIBRCJ','AJDKSIRUXBLHWTMCQGZNPYFVOE','BDFHJLCPRTXVZNYEIWGAKMUSQO'];
+const rot = wiring.map(s => [...s].map(c => A.indexOf(c)));
+const inv = rot.map(w => A.split('').map((c,i) => w.indexOf(i)));
+const reflector = [...'YRUHQSLDPXNGOKMIEBFZCWVJAT'].map(c => A.indexOf(c));
+const notches = [16,4,21];
+const orders = [[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]];
+const defaults = {
+  machine:'wheel',decode:true,input:'WKH GLH LV FDVW',shift:0,key:'RAVEN',pad:'',padRandom:false,
+  symbolKey:shapeKey,symbolMap:{},poe:false,selected:0,gridVariant:'standard',
+  positions:[0,0,0],start:[0,0,0],order:[0,1,2],rings:[0,0,0],plugs:[],
+  tools:['counter'],toolsRead:'auto',ghost:0,sorted:false,split:1,splitChosen:false,colGhosts:[],symbolWorkspace:null,
+  crib:'THE SAME',offset:0,allOrders:false,allSpots:false,boxes:[],activeBox:null,caseId:null
+};
+let storageOK = true;
+let stored = null;
+try { stored = JSON.parse(localStorage.getItem('cc-cipher-workbench-v1')); } catch { storageOK = false; }
+const state = structuredClone(defaults);
+if (stored && typeof stored === 'object') {
+  for (const key of Object.keys(defaults)) if (key in stored) state[key] = stored[key];
+}
+if (!names[state.machine]) state.machine = 'wheel';
+if (!Array.isArray(state.boxes)) state.boxes = [];
+state.boxes = state.boxes.slice(0,12);
+const integer = (n,min,max,fallback=min) => Number.isFinite(Number(n)) ?
+  Math.max(min,Math.min(max,Math.round(Number(n)))) : fallback;
+for (const key of ['start','positions','rings']) {
+  state[key] = [0,1,2].map(i => integer(state[key]?.[i],0,25));
+}
+if (!Array.isArray(state.order) || new Set(state.order).size!==3 || state.order.some(n => ![0,1,2].includes(n))) state.order = [0,1,2];
+state.split = integer(state.split,1,12,5);
+state.shift = integer(state.shift,0,25);
+state.ghost = integer(state.ghost,0,25);
+state.offset = integer(state.offset,0,600);
+state.key = letters(state.key).slice(0,40);
+state.pad = letters(state.pad).slice(0,600);
+state.crib = letters(state.crib).slice(0,20);
+state.input = limitTape(String(state.input));
+let output = '';
+let stepCount = 0;
+let lamp = '';
+let sessionTyped = false;
+let rotorDirty = false;
+let saveTimer = null;
+let returnFocus = null;
+let confirmAction = null;
+let bombeToken = 0;
+let bombeRunning = false;
+let lastBombe = null;
+let editGlyphTape = false;
+let analysisSignature = '';
+let outputSignature = '';
+let inputSignature = '';
+let symbolSignature = '';
+const lines = {first:'Drag the inner ring.'};
+
+function isTapeLetter(c) {
+  return /[A-Z]/.test(c) || c.charCodeAt(0)>=0xE000 && c.charCodeAt(0)<0xE100 ||
+    state.poe && Object.values(MATERIAL.poeKey).includes(c);
+}
+function limitTape(text) {
+  let count = 0;
+  let result = '';
+  for (const c of upperASCII(text).slice(0,6000)) {
+    if (isTapeLetter(c)) {
+      if (count >= 600) break;
+      count++;
+    }
+    result += c;
+  }
+  return result;
+}
+function status(text) {
+  $('status').textContent = text;
+  $('status').title = text;
+  const target = /setting|candidate|guess|crib/i.test(text) && state.tools.includes('bombe') ? 'bombe-event' : 'tape-event';
+  $('tape-event').textContent = '';
+  $('bombe-event').textContent = '';
+  $(target).textContent = text;
+  $(target).title = text;
+}
+function save() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    try { localStorage.setItem('cc-cipher-workbench-v1',JSON.stringify(state)); }
+    catch { storageOK = false; status('Storage blocked · plays without saving'); }
+  },150);
+}
+function tone(kind='tick') {
+  const values = {tick:[1800,.035,.018],rotor:[430,.04,.035],seal:[85,.18,.07],box:[660,.15,.04]};
+  Curio.tone(...(values[kind] || values.tick));
+}
+function keyCipher(text,key,decode=false) {
+  key = letters(key);
+  if (!key.length) return upperASCII(text);
+  let index = 0;
+  return upperASCII(text).replace(/[A-Z]/g, c => A[mod(A.indexOf(c)+(decode?-1:1)*A.indexOf(key[index++ % key.length]))]);
+}
+function step(p,order) {
+  const middle = p[1] === notches[order[1]];
+  const right = p[2] === notches[order[2]];
+  if (middle) p[0] = mod(p[0]+1);
+  if (middle || right) p[1] = mod(p[1]+1);
+  p[2] = mod(p[2]+1);
+  return p;
+}
+function rotorLetter(n,p,order,rings,plugMap) {
+  if (plugMap) n = plugMap[n];
+  for (let j=2;j>=0;j--) {
+    const d = p[j]-rings[j];
+    n = mod(rot[order[j]][mod(n+d)]-d);
+  }
+  n = reflector[n];
+  for (let j=0;j<3;j++) {
+    const d = p[j]-rings[j];
+    n = mod(inv[order[j]][mod(n+d)]-d);
+  }
+  return plugMap ? plugMap[n] : n;
+}
+function plugMap(pairs) {
+  const map = [...Array(26).keys()];
+  for (const [a,b] of pairs) { map[a] = b; map[b] = a; }
+  return map;
+}
+function enigma(text,settings={}) {
+  const p = [...(settings.positions || state.start)];
+  const order = settings.order || state.order;
+  const rings = settings.rings || state.rings;
+  const plugs = plugMap(settings.plugs || state.plugs);
+  let count = 0;
+  const textOut = upperASCII(text).replace(/[A-Z]/g,c => {
+    step(p,order);
+    count++;
+    return A[rotorLetter(A.indexOf(c),p,order,rings,plugs)];
+  });
+  return {text:textOut,positions:p,count};
+}
+function gridToken(n) { return String.fromCharCode(0xE000+n); }
+function shapeToken(n) { return String.fromCharCode(0xE040+n); }
+function gridIndex(c) { return c.charCodeAt(0)-0xE000; }
+function shapeIndex(c) { return c.charCodeAt(0)-0xE040; }
+function alphabetForGrid() { return state.gridVariant === 'leeson' ? 'ABCDEFGHIKLMNOPQRSTUVWXYZ' : A; }
+function gridCipher(text,decode) {
+  const alpha = alphabetForGrid();
+  if (!decode) return upperASCII(text).replace(/[A-Z]/g,c => gridToken(alpha.indexOf(c === 'J' && state.gridVariant === 'leeson' ? 'I' : c)));
+  return [...text].map(c => {
+    const n = gridIndex(c);
+    return n>=0 && n<alpha.length ? alpha[n] : c;
+  }).join('');
+}
+function symbolChars() { return state.poe ? Object.values(MATERIAL.poeKey) : [...Array(26).keys()].map(shapeToken); }
+function symbolCipher(text,decode) {
+  if (!decode) {
+    if (state.poe) return [...upperASCII(text)].map(c => MATERIAL.poeKey[c] || c).join('');
+    return upperASCII(text).replace(/[A-Z]/g,c => shapeToken(state.symbolKey[A.indexOf(c)]));
+  }
+  const glyphs = new Set(symbolChars());
+  return [...text].map(c => glyphs.has(c) ? state.symbolMap[c] || '·' : c).join('');
+}
+function cipher(text,decode=state.decode) {
+  if (state.machine === 'wheel') return keyCipher(text,A[state.shift],decode);
+  if (state.machine === 'square') return keyCipher(text,state.key,decode);
+  if (state.machine === 'pad') return keyCipher(text,state.pad,decode);
+  if (state.machine === 'grid') return gridCipher(text,decode);
+  if (state.machine === 'symbols') return symbolCipher(text,decode);
+  return enigma(text).text;
+}
+function readsInput() { return state.toolsRead==='auto' ? state.decode : state.toolsRead==='input'; }
+function analysisText() { return readsInput() ? state.input : output; }
+function countText(text) {
+  const chars = state.machine === 'symbols' && (readsInput() && state.decode || !readsInput() && !state.decode)
+    ? symbolChars() : state.machine === 'grid' && (readsInput() && state.decode || !readsInput() && !state.decode)
+      ? [...alphabetForGrid()].map((c,i) => gridToken(i)) : [...A];
+  const hasGlyphs = [...text].some(c => chars.includes(c) && !/^[A-Z]$/.test(c));
+  const alphabet = !hasGlyphs && /[A-Z]/.test(text) ? [...A] : chars;
+  const tally = new Map();
+  for (const c of text) tally.set(c,(tally.get(c)||0)+1);
+  const counts = alphabet.map(c => tally.get(c)||0);
+  return {chars:alphabet,counts,n:counts.reduce((a,b) => a+b,0)};
+}
+function ic(text) {
+  const s = letters(text);
+  const counts = new Uint16Array(26);
+  for (let i=0;i<s.length;i++) counts[s.charCodeAt(i)-65]++;
+  return s.length<2 ? 0 : 100*counts.reduce((a,n) => a+n*(n-1),0)/(s.length*(s.length-1));
+}
+function splitText(text,len) {
+  const columns = Array.from({length:len},() => '');
+  [...letters(text)].forEach((c,i) => columns[i%len] += c);
+  return columns;
+}
+function bump(text,len) {
+  const clean = letters(text);
+  const counts = Array.from({length:len},() => new Uint16Array(26));
+  const sizes = new Uint16Array(len);
+  for (let i=0;i<clean.length;i++) {
+    counts[i%len][clean.charCodeAt(i)-65]++;
+    sizes[i%len]++;
+  }
+  let sum = 0;
+  for (let j=0;j<len;j++) {
+    if (sizes[j]<2) continue;
+    let pairs = 0;
+    for (const n of counts[j]) pairs += n*(n-1);
+    sum += 100*pairs/(sizes[j]*(sizes[j]-1));
+  }
+  return sum/len;
+}
+function guessShift(text) {
+  const s = letters(text);
+  if (!s.length) return 0;
+  const n = new Uint16Array(26);
+  for (let i=0;i<s.length;i++) n[s.charCodeAt(i)-65]++;
+  let best = 0;
+  let bestValue = Infinity;
+  for (let k=0;k<26;k++) {
+    let value = 0;
+    for (let i=0;i<26;i++) {
+      const expect = MATERIAL.frequencies[i]*s.length/100;
+      value += (n[(i+k)%26]-expect)**2/expect;
+    }
+    if (value < bestValue) { bestValue = value; best = k; }
+  }
+  return best;
+}
+function repeats(text) {
+  const s = letters(text);
+  const seen = new Map();
+  const groups = [];
+  const gaps = [];
+  for (let i=0;i<s.length-2;i++) {
+    const key = s.slice(i,i+3);
+    if (!seen.has(key)) seen.set(key,[]);
+    seen.get(key).push(i);
+  }
+  for (const [key,positions] of seen) if (positions.length>1) {
+    const distances = positions.slice(1).map((p,i) => p-positions[i]);
+    gaps.push(...distances);
+    groups.push({key,positions,distances});
+  }
+  return {groups,gaps};
+}
+function gridShape(n,variant='standard') {
+  let cell = n%9;
+  let dots = n>=9 && n<18 ? 1 : 0;
+  let path = '';
+  if (variant === 'leeson') dots = n<9 ? 1 : n<18 ? 2 : 0;
+  if (variant === 'leeson' || n<18) {
+    const row = Math.floor(cell/3);
+    const col = cell%3;
+    if (row>0) path += 'M5 5H25';
+    if (row<2) path += 'M5 25H25';
+    if (col>0) path += 'M5 5V25';
+    if (col<2) path += 'M25 5V25';
+  } else {
+    const k = (n-18)%4;
+    path = ['M5 5L15 25L25 5','M5 5L25 15L5 25','M25 5L5 15L25 25','M5 25L15 5L25 25'][k];
+    dots = n>=22 ? 1 : 0;
+  }
+  return `<path d="${path}"/>${dots ? `<circle cx="${dots===2?11:15}" cy="15" r="1.8" fill="currentColor" stroke="none"/>` : ''}`+
+    (dots===2 ? '<circle cx="19" cy="15" r="1.8" fill="currentColor" stroke="none"/>' : '');
+}
+function symbolShape(n) {
+  const paths = [
+    '<circle cx="15" cy="15" r="10"/>',
+    '<circle cx="15" cy="15" r="10"/><circle cx="15" cy="15" r="1.5" fill="currentColor"/>',
+    '<circle cx="15" cy="15" r="10"/><path d="M5 15H25"/>',
+    '<path d="M4 10A11 11 0 0 0 26 10"/>',
+    '<path d="M4 20A11 11 0 0 1 26 20"/>',
+    '<path d="M15 4L27 25H3Z"/>',
+    '<path d="M3 5H27L15 26Z"/>',
+    '<path d="M15 4L27 25H3Z"/><circle cx="15" cy="18" r="1.5" fill="currentColor"/>',
+    '<path d="M5 5H25V25H5Z"/>',
+    '<path d="M5 5H25V25H5ZM5 5L25 25M25 5L5 25"/>',
+    '<path d="M15 3L27 15L15 27L3 15Z"/>',
+    '<path d="M15 3L27 15L15 27L3 15Z"/><circle cx="15" cy="15" r="1.5" fill="currentColor"/>',
+    '<path d="M15 3V27M3 15H27"/>','<path d="M5 5L25 25M5 25L25 5"/>',
+    '<path d="M7 25V5H22V14H15"/>','<path d="M4 10H26M4 20H26"/>',
+    '<path d="M2 17Q8 2 15 17T28 17"/>','<path d="M4 7H25L5 22H26"/>',
+    '<path d="M22 4A11 11 0 1 0 22 26Q8 15 22 4Z"/>',
+    '<path d="M8 4A11 11 0 1 1 8 26Q22 15 8 4Z"/>',
+    '<path d="M15 2V28M4 8L26 22M4 22L26 8"/>',
+    '<path d="M15 27V3M5 13L15 3L25 13"/>','<path d="M15 3V27M5 17L15 27L25 17"/>',
+    '<path d="M15 15C0 12 4 2 15 3C26 2 30 12 15 15C0 18 4 28 15 27C26 28 30 18 15 15Z"/>',
+    '<path d="M4 4H26L4 26H26Z"/>','<path d="M15 28V3M5 4V12Q15 22 25 12V4"/>'
+  ];
+  return paths[n] || '';
+}
+function glyphSVG(c,variant=state.gridVariant) {
+  const g = gridIndex(c);
+  const s = shapeIndex(c);
+  let body;
+  if (g>=0 && g<26) body = gridShape(g,variant);
+  else if (s>=0 && s<26) body = symbolShape(s);
+  else if (c === '-') body = '<path d="M6 15H24"/>';
+  else body = `<text x="15" y="23" text-anchor="middle" stroke="none" fill="currentColor" font-size="25">${esc(c)}</text>`;
+  return `<svg class="glyph" viewBox="0 0 30 30" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">${body}</svg>`;
+}
+function tapeHTML(text,interactive=false) {
+  const glyphs = new Set(symbolChars());
+  return [...text].map(c => {
+    const isGlyph = gridIndex(c)>=0 && gridIndex(c)<26 || shapeIndex(c)>=0 && shapeIndex(c)<26 || state.poe && glyphs.has(c);
+    if (!isGlyph) return esc(c);
+    const label = state.poe ? c : gridIndex(c)<26 && gridIndex(c)>=0 ? 'grid '+(gridIndex(c)+1) : 'symbol '+(shapeIndex(c)+1);
+    return interactive ? `<button class="symbol-tape-button" data-glyph="${esc(c)}" aria-label="Select ${esc(label)}">${glyphSVG(c)}</button>` : glyphSVG(c);
+  }).join('');
+}
+function drawWheel() {
+  const ringLetters = (radius,size) => [...A].map((c,i) => {
+    const angle = 2*Math.PI*i/26;
+    const x = 250+radius*Math.sin(angle);
+    const y = 250-radius*Math.cos(angle);
+    return `<g transform="translate(${x},${y}) rotate(${i*360/26})"><text y="7" text-anchor="middle" font-size="${size}" fill="#2d2517">${c}</text><path d="M0 -20V-25" stroke="#4c3920"/></g>`;
+  }).join('');
+  $('outer-letters').innerHTML = ringLetters(208,25);
+  $('inner-letters').innerHTML = ringLetters(151,23);
+}
+function setShift(n) {
+  state.shift = mod(n);
+  $('wheel-rock').classList.remove('rock');
+  $('hint').textContent = '';
+  tone();
+  update();
+}
+function gridOrigins() {
+  const leeson = state.gridVariant==='leeson';
+  const groups = leeson ? [0,9,18] : [0,9,18,22];
+  return '<div class="grid-origins" aria-label="Whole grids that make the pigpen symbols">'+groups.map(start => {
+    const cross = !leeson && start>=18;
+    const size = cross?4:Math.min(9,alphabetForGrid().length-start);
+    let body = cross ? '<path d="M8 8L82 82M8 82L82 8"/>' : '<path d="M30 0V90M60 0V90M0 30H90M0 60H90"/>';
+    const positions = cross?[[45,17],[17,45],[73,45],[45,73]]:Array.from({length:9},(_,i)=>[15+i%3*30,15+Math.floor(i/3)*30]);
+    for(let i=0;i<size;i++) {
+      const [x,y] = positions[i], n=start+i;
+      const char = alphabetForGrid()[n];
+      const dots = leeson ? n<9?'•':n<18?'••':'' : start===9 || start===22?'•':'';
+      body += `<text x="${x}" y="${y}" stroke="none" fill="currentColor" text-anchor="middle" font-size="12">${char}</text>`;
+      if(dots) body += `<text x="${x}" y="${y+10}" stroke="none" fill="currentColor" text-anchor="middle" font-size="9">${dots}</text>`;
+    }
+    return `<svg class="grid-origin" viewBox="0 0 90 90" fill="none" stroke="currentColor" aria-hidden="true">${body}</svg>`;
+  }).join('')+'</div>';
+}
+function renderGrid() {
+  const alphabet = alphabetForGrid();
+  $('grid-card').innerHTML = gridOrigins()+[...alphabet].map((c,i) => `<button class="glyph-key" data-grid="${i}" aria-label="${c}, pigpen symbol ${i+1}">${glyphSVG(gridToken(i))}<span>${c}</span></button>`).join('');
+  $('grid-variant').textContent = state.gridVariant === 'leeson' ? 'LEESON · I/J' : 'STANDARD';
+  $('grid-note').textContent = state.gridVariant === 'leeson' ? 'Leeson variant · three grids · I and J share a cell.' : 'Two grids and two crosses · tap a shape to write it.';
+}
+function renderSymbols() {
+  if (!state.decode && (state.activeBox || ['poe','counting'].includes(state.caseId))) {
+    state.decode = true;
+    writeSymbols();
+  }
+  const focused = document.activeElement?.closest('#symbol-card [data-symbol]')?.dataset.symbol;
+  const chars = symbolChars();
+  const encoderLetter = (c,i) => state.poe ? Object.keys(MATERIAL.poeKey).find(k => MATERIAL.poeKey[k]===c) : A[state.symbolKey.indexOf(i)];
+  $('symbol-card').innerHTML = chars.map((c,i) => {
+    const value = state.decode ? state.symbolMap[c] || 'unassigned' : encoderLetter(c,i);
+    const label = `${state.poe ? c : 'symbol '+(i+1)}, ${value}. Select.`;
+    return `<button class="glyph-key${state.selected===i?' selected':''}" data-symbol="${i}" aria-label="${esc(label)}">${glyphSVG(c)}<span>${value==='unassigned'?'·':value}</span></button>`;
+  }).join('');
+  $('symbol-readout').textContent = state.decode ? Object.keys(state.symbolMap).length+' ASSIGNED' : 'WRITING KEY';
+  $('letter-strip').hidden = !state.decode;
+  $('clear-symbols').hidden = !state.decode;
+  $('selected-symbol').hidden = !state.decode;
+  $('selected-symbol').textContent = state.poe ? 'GLYPH '+chars[state.selected] : 'GLYPH '+String(state.selected+1).padStart(2,'0');
+  symbolSignature = JSON.stringify([state.symbolMap,state.symbolKey,state.decode,state.poe]);
+  if (focused!==undefined) document.querySelector(`[data-symbol="${focused}"]`)?.focus({preventScroll:true});
+}
+function assignSymbol(c) {
+  if (!state.decode) return;
+  const glyph = symbolChars()[state.selected];
+  for (const old of Object.keys(state.symbolMap)) if (state.symbolMap[old]===c) delete state.symbolMap[old];
+  state.symbolMap[glyph] = c;
+  renderSymbols();
+  tone();
+  update();
+}
+function renderTableau() {
+  const key = letters(state.key);
+  const text = letters(state.input);
+  const last = Math.max(0,text.length-1);
+  const row = A.indexOf(key[last%key.length]);
+  const inputCol = A.indexOf(text[last] || 'A');
+  const col = state.decode ? mod(inputCol-Math.max(row,0)) : inputCol;
+  const svg = $('tableau');
+  if (!svg.firstElementChild) {
+    let html = '<rect width="540" height="540" fill="#efe4cc"/>';
+    html += '<rect id="tableau-row" x="20" width="520" height="20" fill="#b89552"/>';
+    html += '<rect id="tableau-col" y="20" width="20" height="520" fill="#a2baa1"/>';
+    html += '<rect id="tableau-cell" width="20" height="20" fill="#765822"/>';
+    for (let r=0;r<27;r++) for (let c=0;c<27;c++) {
+      if (!r && !c) continue;
+      const char = r===0 ? A[c-1] : c===0 ? A[r-1] : A[(r+c-2)%26];
+      html += `<text id="tab-${r}-${c}" x="${c*20+10}" y="${r*20+15}" text-anchor="middle"
+        font-family="Consolas,monospace" font-size="13" fill="#2a2118">${char}</text>`;
+    }
+    svg.innerHTML = html;
+  }
+  const signature = `${row}:${col}:${!!text.length}`;
+  if (svg.dataset.crossing!==signature) {
+    const old = svg.querySelector('[data-chosen]');
+    if (old) { old.setAttribute('fill','#2a2118'); old.removeAttribute('data-chosen'); }
+    $('tableau-row').setAttribute('y',(row+1)*20);
+    $('tableau-row').style.display = row<0 ? 'none' : '';
+    $('tableau-col').setAttribute('x',(col+1)*20);
+    $('tableau-cell').setAttribute('x',(col+1)*20);
+    $('tableau-cell').setAttribute('y',(row+1)*20);
+    $('tableau-cell').style.display = row<0 ? 'none' : '';
+    const chosen = $(`tab-${row+1}-${col+1}`);
+    if (chosen && row>=0) { chosen.setAttribute('fill','#fff5d8'); chosen.dataset.chosen = 'true'; }
+    $('square-crossing').textContent = key.length ? `${A[row]} + ${A[col]} = ${A[mod(row+col)]}` : 'NO KEY';
+    $('square-lens').innerHTML = key.length && text.length ?
+      `<span><small>KEY ROW</small><b>${A[row]}</b></span><i>+</i><span><small>PLAIN COLUMN</small><b>${A[col]}</b></span>
+       <i>=</i><span><small>CIPHER</small><b>${A[mod(row+col)]}</b></span>` : '<span>Type a letter and a key</span>';
+    svg.dataset.crossing = signature;
+  }
+  $('square-key-count').textContent = key.length+(key.length===1?' letter':' letters');
+}
+function renderRotorControls() {
+  $('rotor-controls').innerHTML = [0,1,2].map(j => `<div class="rotor-unit"><select data-order="${j}" aria-label="Rotor ${j+1} order">${[0,1,2].map(k => `<option value="${k}">${['I','II','III'][k]}</option>`).join('')}</select><button data-step="${j}" data-delta="1" aria-label="Rotor ${j+1} up">▲</button><output id="position-${j}" data-window="${j}" tabindex="0" role="spinbutton" aria-valuemin="0" aria-valuemax="25" aria-valuenow="0" aria-label="Rotor ${j+1} window, drag or use Up and Down">A</output><button data-step="${j}" data-delta="-1" aria-label="Rotor ${j+1} down">▼</button><output data-ring="${j}" tabindex="0" role="spinbutton" aria-valuemin="1" aria-valuemax="26" aria-valuenow="1" aria-label="Rotor ${j+1} ring, Up or Down">01</output></div>`).join('');
+  const qwertz = 'QWERTZUIOASDFGHJKPYXCVBNML';
+  $('lamps').innerHTML = [...qwertz].map(c => `<span class="lamp" id="lamp-${c}">${c}</span>`).join('');
+  $('keyboard').innerHTML = [...qwertz].map(c => `<button data-type="${c}" aria-label="Type ${c} on rotor machine">${c}</button>`).join('');
+}
+function syncRotor() {
+  for (let j=0;j<3;j++) {
+    $('position-'+j).textContent = A[state.positions[j]];
+    $('position-'+j).setAttribute('aria-label',`Rotor ${j+1} window, drag or use Up and Down`);
+    $('position-'+j).setAttribute('aria-valuenow',state.positions[j]);
+    $('position-'+j).setAttribute('aria-valuetext',A[state.positions[j]]);
+    document.querySelector(`[data-order="${j}"]`).value = state.order[j];
+    const ring = document.querySelector(`[data-ring="${j}"]`);
+    ring.textContent = String(state.rings[j]+1).padStart(2,'0');
+    ring.setAttribute('aria-valuenow',state.rings[j]+1);
+    ring.setAttribute('aria-valuetext','Ring '+String(state.rings[j]+1).padStart(2,'0'));
+  }
+  $('rotor-step').textContent = 'STEP '+String(stepCount).padStart(4,'0');
+  if (rotorDirty) $('output-meta').textContent = 'ROTORS · PRESS RUN';
+  document.querySelectorAll('.lamp').forEach(el => el.classList.toggle('lit',el.textContent===lamp));
+  $('plugs').textContent = 'Plugboard · '+state.plugs.length;
+}
+function runRotors() {
+  if (state.toolsRead==='output') stopIfSearching();
+  rotorDirty = false;
+  sessionTyped = false;
+  const result = enigma(state.input);
+  output = result.text;
+  state.positions = result.positions;
+  stepCount = result.count;
+  lamp = letters(output).at(-1) || '';
+  update(false);
+  syncRotor();
+  tone('rotor');
+  status('Tape run · '+stepCount+' letters');
+}
+function typeRotor(c) {
+  rotorDirty = false;
+  if (!sessionTyped) {
+    state.input = '';
+    output = '';
+    state.start = [...state.positions];
+    stepCount = 0;
+    sessionTyped = true;
+  }
+  if (letters(state.input).length>=600) { status('600 letters is the limit'); return; }
+  step(state.positions,state.order);
+  lamp = A[rotorLetter(A.indexOf(c),state.positions,state.order,state.rings,plugMap(state.plugs))];
+  state.input += c;
+  output += lamp;
+  stepCount++;
+  update(false);
+  syncRotor();
+  tone('rotor');
+}
+// Each chart retains its printed labels and bar nodes while their measured heights change.
+const barSurfaces = new WeakMap();
+function paintBars(svg,text,offset=0,sorted=false,small=false) {
+  const data = countText(text);
+  const {chars,counts,n} = data;
+  const height = small ? 45 : Math.max(65,svg.clientHeight);
+  const width = small ? 420 : Math.max(180,svg.clientWidth);
+  const baseline = height-(small?23:27);
+  const max = Math.max(1,...counts,...MATERIAL.frequencies.map(p => p*n/100));
+  const scale = (height-(small?28:45))/max;
+  const unit = width/chars.length;
+  const order = chars.map((_,i) => i);
+  if (sorted) order.sort((a,b) => counts[b]-counts[a] || a-b);
+  const signature = JSON.stringify([chars,width,height,small]);
+  let surface = barSurfaces.get(svg);
+  if (!surface || surface.signature!==signature) {
+    svg.setAttribute('viewBox',`0 0 ${width} ${height}`);
+    svg.innerHTML = `<path d="M0 ${baseline}H${width}" stroke="#77766b"/>`+chars.map((c,j) => {
+      const x=j*unit;
+      return `<g><rect x="${x+2}" width="${Math.max(1,unit-4)}" fill="#3cc7a2"><title></title></rect>
+        <rect x="${x+1}" width="${Math.max(1,unit-2)}" fill="none" stroke="#b9b5a0"
+          stroke-width="1.5" stroke-dasharray="3 2"/>
+        <g class="axis-label" transform="translate(${x+unit/2},${baseline+3})"></g>
+        <text text-anchor="middle" font-size="10" fill="#efe9dc"></text></g>`;
+    }).join('');
+    surface = {signature,bars:[...svg.children].slice(1).map(g => ({g,nodes:[...g.children],values:{}}))};
+    barSurfaces.set(svg,surface);
+  }
+  const profile = [...MATERIAL.frequencies].sort((a,b) => b-a);
+  const placed = [];
+  const show = new Set();
+  if (!small) [...order].sort((a,b)=>counts[b]-counts[a]).forEach(i => {
+    if (!counts[i]) return;
+    const x=(order.indexOf(i)+.5)*unit;
+    const y=Math.max(10,baseline-counts[i]*scale-4), half=String(counts[i]).length*3;
+    if (placed.some(p=>Math.abs(p.y-y)<11 && Math.abs(p.x-x)<p.half+half+2)) return;
+    placed.push({x,y,half});show.add(i);
+  });
+  order.forEach((i,j) => {
+    const bar=surface.bars[j], [rect,ghost,label,count]=bar.nodes;
+    const change=(key,value,apply) => {
+      if (bar.values[key]!==value) { bar.values[key]=value;apply(value); }
+    };
+    const h=counts[i]*scale;
+    change('height',h,v=>{rect.setAttribute('y',baseline-v);rect.setAttribute('height',v);});
+    change('title',`${chars[i]}: ${counts[i]}`,v=>rect.firstElementChild.textContent=v);
+    const letter=/^[A-Z]$/.test(chars[i]);
+    const gh=letter?(sorted?profile[j]:MATERIAL.frequencies[mod(i-offset)])*n/100*scale:0;
+    change('ghost',gh,v=>{ghost.setAttribute('y',baseline-v);ghost.setAttribute('height',v);});
+    change('char',chars[i],v=>{
+      label.innerHTML = letter ? `<text y="13" text-anchor="middle" font-size="11" fill="#c9c6b7">${v}</text>` :
+        `<g transform="translate(${-Math.min(18,unit)/2},0)" color="#efe9dc">`+
+        glyphSVG(v).replace('<svg ',`<svg width="${Math.min(18,unit)}" height="20" style="width:${Math.min(18,unit)}px;height:20px" `)+'</g>';
+    });
+    change('count',String(counts[i]),v=>count.textContent=v);
+    change('show',show.has(i),v=>count.style.display=v?'':'none');
+    const half=String(counts[i]).length*3;
+    const x=Math.max(half+1,Math.min(width-half-1,(j+.5)*unit));
+    change('countX',x,v=>count.setAttribute('x',v));
+    change('countY',Math.max(10,baseline-h-4),v=>count.setAttribute('y',v));
+  });
+  return data;
+}
+function renderCounter() {
+  const counts = paintBars($('counter-chart'),analysisText(),state.ghost,state.sorted);
+  const chart = counts;
+  $('counter-chart').setAttribute('aria-label','Counts: '+counts.chars.map((c,i) =>
+    (/^[A-Z]$/.test(c)?c:state.poe?c:'symbol '+(state.machine==='grid'?gridIndex(c)+1:shapeIndex(c)+1))+
+    ' '+counts.counts[i]).join(', ')+'. English ghost shift '+state.ghost);
+  $('counter-readout').textContent = (counts.chars.every(c => /^[A-Z]$/.test(c))?'LETTERS ':'SYMBOLS ')+chart.n+(chart.n<20 ? ' · Too few letters to read the bars.' : '');
+  $('ghost-value').textContent = 'English ghost '+String(state.ghost).padStart(2,'0');
+  $('ghost').setAttribute('aria-valuetext',`Ghost shift ${state.ghost}, A to ${A[state.ghost]}`);
+  $('ghost').value = state.ghost;
+  $('counter-sort').textContent = state.sorted ? 'Sorted' : 'A-Z';
+  $('counter-sort').setAttribute('aria-pressed',state.sorted);
+  $('ghost').disabled = state.sorted || !counts.chars.every(c => /^[A-Z]$/.test(c));
+}
+function renderSplitter(rebuild=true) {
+  const text = analysisText();
+  const cols = splitText(text,state.split);
+  const enough = cols.every(col => col.length>=10);
+  const chosen = state.splitChosen;
+  const values = Array.from({length:12},(v,i) => bump(text,i+1));
+  const max = Math.max(10,...values);
+  $('split-chart').innerHTML = values.map((v,i) => `<rect x="${i*35+5}" y="${50-v*45/max}" width="25" height="${v*45/max}" fill="${i+1===state.split?'#ffc94a':'#3cc7a2'}"/><text x="${i*35+18}" y="69" text-anchor="middle" font-size="11" fill="#efe9dc">${i+1}</text>`).join('');
+  if (rebuild || $('columns').children.length!==state.split) state.colGhosts = cols.map(col => enough && chosen ? guessShift(col) : 0);
+  if ($('columns').children.length!==state.split) {
+    $('columns').innerHTML = cols.map((col,j) => `<div class="column"><div class="label">COLUMN ${j+1}</div>
+      <svg role="img" aria-label="Column ${j+1} letter counts"></svg><div class="sample"></div>
+      <label class="mono">Key <output id="col-value-${j}"></output></label>
+      <input data-col="${j}" type="range" min="0" max="25" aria-label="Column ${j+1} ghost shift"></div>`).join('');
+  }
+  [...$('columns').children].forEach((column,j) => {
+    const svg = column.querySelector('svg'), input=column.querySelector('input');
+    paintBars(svg,cols[j],state.colGhosts[j],false,true);
+    column.querySelector('.sample').textContent = cols[j].slice(0,60);
+    $('col-value-'+j).textContent = A[state.colGhosts[j]];
+    input.value = state.colGhosts[j];
+    input.setAttribute('aria-valuetext',`Column ${j+1} key ${A[state.colGhosts[j]]}`);
+  });
+  $('split-readout').textContent = letters(text).length ? `BUMPINESS ${bump(text,state.split).toFixed(1)} AT LENGTH ${state.split} · IC × 100` : 'No letters';
+  $('key-guess').textContent = !letters(text).length ? 'No letters' : !enough ? 'Too few letters per column' :
+    !chosen ? 'Choose a length to compare columns' : 'KEY GUESS '+state.colGhosts.map(k => A[k]).join('');
+  $('columns').hidden = !enough || !chosen;
+  $('use-key').hidden = !enough || !chosen;
+  $('split-length').value = state.split;
+}
+function renderRepeats() {
+  const focused = document.activeElement?.closest('[data-factor]')?.dataset.factor;
+  const {groups,gaps} = repeats(analysisText());
+  $('repeat-factors').innerHTML = Array.from({length:9},(v,i) => i+2).map(f => `<button data-factor="${f}" aria-label="Factor ${f}, divides ${gaps.filter(g => g%f===0).length} of ${gaps.length} gaps">${f}<br>${gaps.filter(g => g%f===0).length}/${gaps.length}</button>`).join('');
+  const best = Array.from({length:9},(v,i) => i+2).sort((a,b) => gaps.filter(g => g%b===0).length-gaps.filter(g => g%a===0).length)[0];
+  $('repeat-readout').textContent = gaps.length ? `${best} divides ${gaps.filter(g => g%best===0).length} of ${gaps.length} gaps` : 'NO REPEATED TRIGRAMS';
+  $('repeat-list').innerHTML = groups.map(g => `${g.key} · gaps ${g.distances.join(', ')} · at ${g.positions.map(i => i+1).join(', ')}`).join('<br>');
+  if (focused!==undefined) document.querySelector(`[data-factor="${focused}"]`)?.focus({preventScroll:true});
+}
+function renderCrib() {
+  const text = letters(analysisText());
+  const crib = letters(state.crib).slice(0,20);
+  const max = Math.max(0,text.length-crib.length);
+  state.offset = Math.min(max,Math.max(0,state.offset));
+  $('crib-offset').max = max;
+  $('crib-offset').value = state.offset;
+  let bad = false;
+  let implied = '';
+  $('crib-tape').innerHTML = [...crib].map((c,i) => {
+    const other = text[state.offset+i] || '·';
+    const never = state.machine==='rotors' && c===other;
+    bad ||= never;
+    const key = other==='·' ? '·' : A[mod(A.indexOf(other)-A.indexOf(c))];
+    implied += key;
+    return `<span class="crib-cell${never?' bad':''}"><span>${other}</span><span>${c}</span><b>${state.machine==='rotors' ? never?'×':'·' : key}</b></span>`;
+  }).join('');
+  const enough = crib.length>0 && text.length>=crib.length;
+  $('crib-readout').textContent = `OFFSET ${state.offset} · `+(!enough ? 'Guess needs a matching length of letter text' :
+    state.machine==='rotors' ? bad?'never itself here': 'No self-letter collision' : 'IMPLIED KEY '+implied);
+  $('crib-left').disabled = !enough || state.offset===0;
+  $('crib-right').disabled = !enough || state.offset===max;
+  $('crib-offset').disabled = !enough || max===0;
+}
+function renderTools(rebuild=true) {
+  const visible = new Set(state.tools);
+  $('counter-controls').hidden = !visible.has('counter');
+  document.querySelectorAll('[data-tool]').forEach(b => b.setAttribute('aria-pressed',visible.has(b.dataset.tool)));
+  for (const t of ['counter','splitter','repeats','crib','bombe']) $('tool-'+t).hidden = !visible.has(t);
+  $('run-bombe').disabled = state.machine!=='rotors' || state.plugs.length>0 || bombeRunning;
+  const signature = JSON.stringify([analysisText(),state.machine,state.poe,state.gridVariant,state.decode,state.toolsRead,
+    state.tools,state.ghost,state.sorted,state.split,state.splitChosen,state.offset,state.crib]);
+  if (signature===analysisSignature) return;
+  analysisSignature = signature;
+  if (visible.has('counter')) renderCounter();
+  if (visible.has('splitter')) renderSplitter(rebuild);
+  if (visible.has('repeats')) renderRepeats();
+  if (visible.has('crib')) renderCrib();
+  $('run-bombe').disabled = state.machine!=='rotors' || state.plugs.length>0 || bombeRunning;
+  if (!bombeRunning && (state.machine!=='rotors' || state.plugs.length)) $('bombe-readout').textContent = 'Rotors only · plugboard off';
+}
+function checkBox() {
+  if (!state.activeBox) return;
+  const box = state.boxes.find(b => b.id===state.activeBox);
+  if (!box || box.opened || !letters(box.plain).length) return;
+  if (letters(output)===letters(box.plain)) {
+    box.opened = true;
+    status('Box open · '+box.name);
+    tone('box');
+  }
+}
+function update(recompute=true) {
+  $('tools-read').value = state.toolsRead;
+  if (recompute) {
+    rotorDirty = false;
+    if (state.machine==='rotors') {
+      const result = enigma(state.input);
+      output = result.text;
+      state.positions = [...state.start];
+      stepCount = 0;
+      lamp = '';
+    } else output = cipher(state.input);
+  }
+  if ($('input').value!==state.input) $('input').value = state.input;
+  if (document.activeElement!==$('square-key')) $('square-key').value = state.key;
+  if (document.activeElement!==$('pad-key')) $('pad-key').value = state.pad;
+  if (state.machine==='symbols' && JSON.stringify([state.symbolMap,state.symbolKey,state.decode,state.poe])!==symbolSignature) renderSymbols();
+  const glyphInput = !editGlyphTape && [...state.input].some(c => gridIndex(c)>=0 && gridIndex(c)<26 || shapeIndex(c)>=0 && shapeIndex(c)<26) || state.poe && state.decode && !editGlyphTape;
+  $('input').hidden = glyphInput;
+  $('input-glyphs').hidden = !glyphInput;
+  $('edit-tape').hidden = !glyphInput;
+  const inputStyle = state.input+'|'+state.gridVariant+'|'+state.poe;
+  if (glyphInput && inputStyle!==inputSignature) {
+    $('input-glyphs').innerHTML = tapeHTML(state.input,true);
+    inputSignature = inputStyle;
+  }
+  const outputStyle = output+'|'+state.input+'|'+state.gridVariant+'|'+state.poe+'|'+state.machine+'|'+state.decode;
+  if (outputStyle!==outputSignature) {
+    const paired = state.decode && ['symbols','grid'].includes(state.machine);
+    $('output').classList.toggle('paired-tape',paired);
+    $('output').innerHTML = paired ? [...state.input].map((c,i) => {
+      const isGlyph = shapeIndex(c)>=0 && shapeIndex(c)<26 || gridIndex(c)>=0 && gridIndex(c)<26 || state.poe && symbolChars().includes(c);
+      return isGlyph ? `<span class="tape-pair">${tapeHTML(c,state.machine==='symbols')}<b>${esc(output[i]||'·')}</b></span>` :
+        `<span class="tape-pair space"><span>${esc(c)}</span><b>${esc(c)}</b></span>`;
+    }).join('') : tapeHTML(output,state.machine==='symbols' && !state.decode);
+    outputSignature = outputStyle;
+  }
+  $('output').setAttribute('aria-label','Output tape: '+output.replace(/[\uE000-\uE0FF]/g,' symbol '));
+  const n = [...state.input].filter(isTapeLetter).length;
+  const countLabel = n+' LETTERS'+(n>=600?' · LIMIT':'');
+  const countChanged = $('input-count').textContent!==countLabel;
+  $('input-count').textContent = countLabel;
+  $('input-count').title = n>=600 ? '600 letters is the limit' : n+' letters';
+  if (n>=600 && countChanged) status('600 letters is the limit');
+  $('output-meta').textContent = names[state.machine].toUpperCase()+' · '+(state.decode?'DECODE':'ENCODE')+' · ↕ SCROLL';
+  $('direction').textContent = state.decode ? 'Decode ↓' : 'Encode ↓';
+  $('direction').setAttribute('aria-pressed',!state.decode);
+  $('wheel-direction').textContent = state.decode ? 'DECODE' : 'ENCODE';
+  $('shift-readout').textContent = 'SHIFT '+String(state.shift).padStart(2,'0')+' · A to '+A[state.shift];
+  $('wheel').setAttribute('aria-valuenow',state.shift);
+  $('wheel').setAttribute('aria-valuetext',`Shift ${state.shift}, A to ${A[state.shift]}`);
+  $('inner-ring').setAttribute('transform',`rotate(${-state.shift*360/26} 250 250)`);
+  if (state.machine==='square') renderTableau();
+  if (state.machine==='pad') {
+    const input = letters(state.input), result = letters(output);
+    $('pad-strip').innerHTML = '<div class="pad-labels"><span>CIPHER</span><span>KEY</span><span>PLAIN</span></div>'+[...input].map((c,i) =>
+      `<span class="pad-column"><b>${state.decode?c:result[i]||'·'}</b><b>${state.pad[i%state.pad.length]||'·'}</b><b>${state.decode?result[i]||'·':c}</b></span>`).join('');
+    $('pad-length').textContent = state.pad.length+' KEY LETTERS';
+    const repeated = state.pad.length>0 && state.pad.length<letters(state.input).length;
+    $('pad-note').textContent = repeated ? 'A repeated pad is just a Vigenere key.' : state.padRandom ? 'Random key · keep secret · use once.' : state.pad.length ? 'Typed key · randomness is not established.' : 'No key · tape unchanged.';
+    $('pad-note').classList.toggle('orange',repeated);
+  }
+  if (state.machine==='rotors') syncRotor();
+  renderTools();
+  $('box-count').textContent = state.boxes.length;
+  checkBox();
+  save();
+}
+function selectMachine(machine) {
+  if (bombeRunning) stopBombe();
+  if (state.machine!==machine) { voice.hush(); stopIfSearching(); }
+  state.machine = machine;
+  sessionTyped = false;
+  editGlyphTape = false;
+  $('square-key').value = state.key;
+  $('pad-key').value = state.pad;
+  document.querySelectorAll('[data-machine]').forEach(b => b.setAttribute('aria-pressed',b.dataset.machine===machine));
+  document.querySelectorAll('[data-page]').forEach(el => el.hidden = el.dataset.page!==machine);
+  if (machine==='grid') renderGrid();
+  if (machine==='symbols') renderSymbols();
+  tone();
+  update();
+}
+function toggleTool(tool,force=false) {
+  const i = state.tools.indexOf(tool);
+  if (innerWidth<=600) state.tools = i>=0 && !force ? [] : [tool];
+  else if (i>=0 && !force) state.tools.splice(i,1);
+  else if (i<0) state.tools.push(tool);
+  renderTools();
+  if (state.tools.includes(tool)) revealTool(tool);
+  tone();
+  save();
+}
+function revealTool(tool) {
+  const panel = document.querySelector('.analyzers');
+  const section = $('tool-'+tool);
+  const delta = section.getBoundingClientRect().top-panel.getBoundingClientRect().top;
+  panel.scrollTop += delta-panel.querySelector('.analysis-top').offsetHeight-8;
+}
+function drawer(title,html) {
+  returnFocus = document.activeElement;
+  $('drawer-title').textContent = title;
+  $('drawer-body').innerHTML = html;
+  if (!$('drawer').open) $('drawer').showModal();
+  $('close-drawer').focus({preventScroll:true});
+}
+function closeDrawer() {
+  $('drawer').close();
+  if (returnFocus?.isConnected) returnFocus.focus({preventScroll:true});
+}
+function ask(text,action) {
+  confirmAction = action;
+  $('confirm-text').textContent = text;
+  $('confirm').showModal();
+  $('confirm-no').focus({preventScroll:true});
+}
+const CASES = [
+  {id:'caesar',name:'Caesar’s method',date:'Rome · reported by Suetonius',machine:'wheel',
+    note:'THE DIE IS CAST encoded at shift 3. No message in Caesar’s hand survives. This is a reconstruction using his reported method, not an ancient ciphertext.',
+    history:'Suetonius describes D for A in Julius 56 and the Rubicon phrase in Julius 32. The Loeb translation is public domain.'},
+  {id:'leeson',name:'James Leeson’s stone',date:'Trinity Churchyard · 1794',machine:'grid',
+    note:'REMEMBER DEATH, in the stone’s three-grid pigpen variant. I and J share a cell. The bench redraws the inscription; it is not a photograph.',
+    history:'Trinity Church’s burial record confirms the inscription and 1794 date. Charles Hemstreet’s Nooks and Corners of Old New York (1899), a public-domain account, supplies the three-grid key. This memento mori asks the living to remember mortality.'},
+  {id:'poe',name:'The Gold-Bug',date:'Edgar Allan Poe · 1843',machine:'symbols',
+    note:'A fictional treasure instruction, with Poe’s own symbols and all word gaps removed. Count a glyph, select it, then assign a letter. This historical key covers the letters in the printed message; New key returns the full 26-shape alphabet for your own writing.',
+    history:'The whole cryptogram matches Project Gutenberg’s public-domain text character for character. The Poe Society’s 1845 Tales transcription independently confirms the forty-one-degree version. A later revision used twenty-one.'},
+  {id:'vicksburg',name:'Message in a bottle',date:'Vicksburg · 4 July 1863',machine:'square',
+    note:'Ciphertext recomputed from the museum’s transcript and MANCHESTER BLUFF. It is not a transcription of the damaged cipher slip. Slide the crib PEMBERTON.',
+    history:'The American Civil War Museum curator’s article reads “I have sent some caps. I subjoin despatch from Gen. Johnston.” Attribution to Walker is probable, rather than a signature. The bottle was opened in December 2008; its decoded message was publicized in 2010. The Confederacy fought to preserve slavery. The message offered no relief to Pemberton on the day he surrendered.'}
+];
+const SHEETS = [
+  ['counting','Counting sheet','296 letters · original practice text'],
+  ['raven','RAVEN sheet','259 letters · original practice text'],
+  ['weather','Weather report','50 letters · original English practice, not a wartime intercept'],
+  ['pad','Three readings','21 letters · original additive-pad demonstration']
+];
+function showCases() {
+  drawer('Case file',`<p class="muted">Historical originals and bench reconstructions. Open any file.</p>`+
+    CASES.map(c => `<article class="case-card"><h3>${c.name}</h3><div class="note">${c.date}</div><p>${c.note}</p><button data-case="${c.id}">Put on bench</button><details><summary>Case history</summary><p>${c.history}</p></details></article>`).join('')+
+    '<p class="note">1930 manual example omitted: it needs reflector A. This bench has B.</p><h3>Practice sheets</h3>'+
+    SHEETS.map(([id,name,note]) => `<article class="case-card"><h3>${name}</h3><p class="note">${note}</p>${id==='pad'?'':'<p>Ends with PAD and four filler letters. These keep the practice comparisons the same.</p>'}<button data-sheet="${id}">Put on bench</button></article>`).join(''));
+}
+function loadCase(id) {
+  stopIfSearching();
+  state.activeBox = null;
+  state.symbolWorkspace = null;
+  state.caseId = id;
+  state.decode = true;
+  state.poe = id==='poe';
+  state.gridVariant = id==='leeson' ? 'leeson' : 'standard';
+  state.symbolMap = {};
+  state.toolsRead = 'auto';
+  $('tools-read').value = 'auto';
+  const c = CASES.find(c => c.id===id);
+  if (id==='caesar') { state.input = 'WKH GLH LV FDVW'; state.shift = 0; }
+  if (id==='leeson') {
+    const alpha = 'ABCDEFGHIKLMNOPQRSTUVWXYZ';
+    state.input = [...'REMEMBER DEATH'].map(c => c===' '?c:gridToken(alpha.indexOf(c))).join('');
+  }
+  if (id==='poe') state.input = MATERIAL.poeCipher;
+  if (id==='vicksburg') {
+    state.input = keyCipher(MATERIAL.vicksburg,'MANCHESTERBLUFF');
+    state.key = 'A';
+    $('square-key').value = state.key;
+    state.crib = 'PEMBERTON';
+    state.offset = 0;
+    $('crib').value = state.crib;
+    state.tools = ['crib'];
+  }
+  closeDrawer();
+  selectMachine(c.machine);
+  document.querySelector('.analyzers').scrollTop = 0;
+  status(c.name+' · stays on this device');
+}
+function loadSheet(id) {
+  stopIfSearching();
+  state.gridVariant = 'standard';
+  state.symbolWorkspace = null;
+  state.caseId = id;
+  state.activeBox = null;
+  state.decode = true;
+  state.poe = false;
+  state.symbolMap = {};
+  state.toolsRead = 'auto';
+  $('tools-read').value = 'auto';
+  let machine;
+  if (id==='counting') {
+    machine = 'symbols';
+    state.symbolKey = [...shapeKey];
+    state.input = MATERIAL.counting.replace(/[A-Z]/g,c => shapeToken(state.symbolKey[A.indexOf(c)]));
+    state.tools = ['counter'];
+  }
+  if (id==='raven') {
+    machine = 'square';
+    state.input = keyCipher(MATERIAL.raven,'RAVEN');
+    state.key = 'A';
+    $('square-key').value = state.key;
+    state.tools = innerWidth<=600 ? ['splitter'] : ['splitter','repeats','crib'];
+    state.split = 1;
+    state.splitChosen = false;
+    state.crib = 'THE SAME';
+    state.offset = 0;
+  }
+  if (id==='weather') {
+    machine = 'rotors';
+    state.input = MATERIAL.weatherCipher;
+    state.start = [0,0,0];
+    state.positions = [0,0,0];
+    state.order = [0,1,2];
+    state.rings = [0,0,0];
+    state.plugs = [];
+    state.crib = 'WEATHERREPORT';
+    state.offset = 0;
+    state.allSpots = true;
+    state.allOrders = false;
+    state.tools = innerWidth<=600 ? ['bombe'] : ['crib','bombe'];
+  }
+  if (id==='pad') {
+    machine = 'pad';
+    state.input = MATERIAL.padCipher;
+    state.pad = MATERIAL.pads[0][0];
+    state.padRandom = false;
+    state.tools = ['counter'];
+    $('pad-key').value = state.pad;
+  }
+  $('crib').value = state.crib;
+  $('all-orders').checked = state.allOrders;
+  $('all-spots').checked = state.allSpots;
+  closeDrawer();
+  selectMachine(machine);
+  document.querySelector('.analyzers').scrollTop = 0;
+  if (id==='pad') showPadReadings();
+  status('Practice sheet · stays on this device');
+}
+function showPadReadings() {
+  drawer('One cipher · three possible readings',MATERIAL.pads.map(([key,plain]) => `<article class="case-card"><p class="mono">${plain}</p><div class="note">KEY ${key}</div><button data-pad-choice="${key}">Use this key</button></article>`).join('')+'<p>Spaces belong to the ciphertext. Only letters carry the secret. No frequency tool can choose between these keys.</p>');
+}
+function keyCount() {
+  const n = state.machine==='symbols' || state.machine==='grid' ? [...state.input].filter(isTapeLetter).length : letters(state.input).length;
+  if (state.machine==='wheel') return ['26','25 shifts change the letters; one leaves them as they are. Trying every setting is quick.'];
+  if (state.machine==='grid') return ['1','The published grid determines the whole alphabet.'];
+  if (state.machine==='symbols') {
+    const count = state.poe ? '5.60 × 10^23' : '4.03 × 10^26';
+    const scope = state.poe ? '20 symbols each stand for a different letter. ' : '26 symbols each stand for a different letter. ';
+    return [count,scope+(n<50?'Too short to count reliably. Many messages may fit.':n<150?
+      'Counts and word shapes may give clues.':'Long enough to try counts and word shapes; they may still leave several readings.')];
+  }
+  if (state.machine==='square') {
+    if (!state.key.length) return ['1','No key: tape unchanged.'];
+    const len = Math.max(1,state.key.length);
+    return [powerNotation(26,len),len>=n?'A key as long as the message can still leak clues if it uses words.':n/len<10?'Too few letters per column for reliable counting.':n/len<30?'These tools may find clues.':'Split by the key length, then count each column.'];
+  }
+  if (state.machine==='rotors') return ['17,576','Only the three starting letters are hidden. Your partner gets the rotor order, rings and cables. '+
+    (state.plugs.length ? 'Plugboard connected: the bombe cannot search this box.' : 'Plugboard off: the bombe can test all starts. A short guess may fit several.')];
+  if (!state.pad.length) return ['1','No key: tape unchanged.'];
+  const length = Math.min(n,state.pad.length);
+  return [powerNotation(26,length),state.padRandom && state.pad.length>=n?
+    'A secret random key used once can hide the letters completely. Spaces still show word lengths.':
+    state.pad.length<n?'Repeated pad: a Vigenere key. '+length+(length===1?' key letter is counted.':' key letters are counted.'):
+    'Typing a key does not show that it was random or kept secret.'];
+}
+function powerNotation(base,n) {
+  if (n<=3) return String(base**n);
+  const log = n*Math.log10(base);
+  const exponent = Math.floor(log);
+  return (10**(log-exponent)).toFixed(2)+' × 10^'+exponent;
+}
+function showSeal() {
+  if (!letters(state.decode ? output : state.input).length) { status('Type a message before sealing.'); return; }
+  const [count,claim] = keyCount();
+  drawer('Seal a box',`<div class="seal-form"><p>Boxes and tapes stay on this device. Your partner knows the machine. On Rotors, only the starting letters are hidden; on Grid, the whole alphabet is public.</p><label>Made-up nickname<input id="box-name" maxlength="12" value="Untitled" autocomplete="off"></label><p class="readout">KEY COUNT ${esc(count).replace(/10\^(\d+)/g,'10<sup>$1</sup>')}</p><p>${claim}</p><p class="note">Bench estimate, not a real security rating. Saved boxes contain their plaintext and keys in device storage.</p><button id="seal-now">Seal</button></div>`);
+}
+function sealBox() {
+  if (state.boxes.length>=12) { status('12 boxes is the limit · delete one first'); return; }
+  const plain = state.decode ? output : state.input;
+  const settings = {};
+  for (const key of ['shift','key','pad','padRandom','symbolKey','poe','gridVariant','start','order','rings','plugs']) settings[key] = structuredClone(state[key]);
+  const cipherText = cipher(plain,false);
+  const name = $('box-name').value.trim().slice(0,12) || 'Untitled';
+  state.boxes.push({id:crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),name,machine:state.machine,plain,cipher:cipherText,settings,opened:false,peeked:false});
+  const box = state.boxes.at(-1);
+  closeDrawer();
+  openBox(box.id);
+  save();
+  $('box-count').textContent = state.boxes.length;
+  status('Sealed · hand this device to your partner');
+  tone('seal');
+}
+function showBoxes() {
+  drawer('Boxes shelf',`<p>On this device only · ${state.boxes.length} of 12 spaces. Swap seats with a partner.</p>`+
+    (state.boxes.length ? state.boxes.map(b => `<div class="box-row"><strong>${esc(b.name)}<small style="display:block">${names[b.machine]} · ${b.opened ? b.peeked?'open · peeked':'open' : b.peeked?'peeked':'sealed'}</small></strong><button data-box="${b.id}">Open</button><button data-peek="${b.id}">Peek</button><button data-delete="${b.id}">Delete</button></div>`).join('') : '<p>The shelf is empty. Seal a message from the bench.</p>'));
+}
+function openBox(id) {
+  const box = state.boxes.find(b => b.id===id);
+  if (!box) return;
+  state.symbolWorkspace = null;
+  state.activeBox = id;
+  state.caseId = null;
+  state.decode = true;
+  state.input = box.cipher;
+  state.shift = 0;
+  state.key = 'A';
+  state.pad = '';
+  state.padRandom = false;
+  state.start = [0,0,0];
+  state.order = [...box.settings.order];
+  state.rings = [...box.settings.rings];
+  state.plugs = structuredClone(box.settings.plugs);
+  state.poe = box.settings.poe;
+  state.gridVariant = box.settings.gridVariant;
+  state.symbolMap = {};
+  state.symbolKey = [...box.settings.symbolKey];
+  $('square-key').value = state.key;
+  $('pad-key').value = '';
+  closeDrawer();
+  selectMachine(box.machine);
+  status(box.name+' · '+(box.opened?'open':'sealed'));
+}
+function showFan() {
+  drawer('All 26 shifts',`<div id="fan-list">${[...Array(26).keys()].map(k => `<button class="fan-line" data-shift="${k}">${String(k).padStart(2,'0')} · ${esc(keyCipher(state.input,A[k],state.decode))}</button>`).join('')}</div>`);
+}
+function showPlugboard() {
+  drawer('Plugboard',`<p>Connect two sockets by dragging or tapping. Tap a connected socket to remove that cable. Ten cables maximum.</p><div id="plug-cables" class="readout"></div><svg id="plug-wires" viewBox="0 0 520 70" aria-label="Plugboard cable connections"></svg><div class="plugboard">${[...A].map((c,i) => `<button class="socket" data-socket="${i}" aria-label="Socket ${c}">${c}</button>`).join('')}</div><button id="unplug-all">Unplug all</button>`);
+  drawPlugboard();
+}
+let chosenSocket = null;
+let socketDown = null;
+let ignoreSocketClick = false;
+function connectSocket(n) {
+  stopIfSearching();
+  sessionTyped = false;
+  const found = state.plugs.findIndex(pair => pair.includes(n));
+  if (found>=0) { state.plugs.splice(found,1); chosenSocket = null; }
+  else if (chosenSocket===null) chosenSocket = n;
+  else if (chosenSocket===n) chosenSocket = null;
+  else {
+    if (state.plugs.length<10) state.plugs.push([chosenSocket,n]);
+    else status('10 cables is the limit');
+    chosenSocket = null;
+  }
+  drawPlugboard();
+  update();
+}
+function drawPlugboard() {
+  const connected = new Set(state.plugs.flat());
+  document.querySelectorAll('[data-socket]').forEach(b => {
+    const n = Number(b.dataset.socket);
+    const pair = state.plugs.find(p => p.includes(n));
+    b.classList.toggle('cabled',connected.has(n));
+    b.classList.toggle('chosen',chosenSocket===n);
+    b.setAttribute('aria-label','Socket '+A[n]+(pair?', connected to '+A[pair.find(v => v!==n)]:', unconnected'));
+  });
+  if ($('plug-cables')) $('plug-cables').textContent = state.plugs.length ? state.plugs.map(([a,b]) => A[a]+A[b]).join(' · ') : 'NO CABLES';
+  if ($('plug-wires')) $('plug-wires').innerHTML = state.plugs.map(([a,b],i) => `<path d="M${10+a*20} 10Q${10+(a+b)*10} ${40+i%3*10} ${10+b*20} 10" fill="none" stroke="#3cc7a2" stroke-width="2"/><text x="${10+a*20}" y="65" text-anchor="middle" fill="#efe9dc" font-size="12">${A[a]}</text><text x="${10+b*20}" y="65" text-anchor="middle" fill="#efe9dc" font-size="12">${A[b]}</text>`).join('');
+}
+function stopBombe() {
+  const restore = document.activeElement===$('stop-bombe');
+  bombeToken++;
+  bombeRunning = false;
+  $('bombe-drums').classList.remove('running');
+  $('stop-bombe').hidden = true;
+  $('run-bombe').disabled = state.machine!=='rotors' || state.plugs.length>0;
+  $('bombe-readout').textContent = 'SEARCH STOPPED · change crib or settings, then Run';
+  if (restore && !$('run-bombe').disabled) $('run-bombe').focus({preventScroll:true});
+}
+async function runBombe() {
+  if (state.machine!=='rotors' || state.plugs.length || bombeRunning) return;
+  const text = letters(analysisText());
+  const crib = letters(state.crib).slice(0,20);
+  if (!crib.length || text.length<crib.length) { status('Type a crib that fits the tape.'); return; }
+  if (crib.length<4) status('Short guesses leave many settings');
+  const token = ++bombeToken;
+  const focusRun = document.activeElement===$('run-bombe');
+  bombeRunning = true;
+  $('run-bombe').disabled = true;
+  $('stop-bombe').hidden = false;
+  if (focusRun) $('stop-bombe').focus({preventScroll:true});
+  $('bombe-drums').classList.add('running');
+  Curio.tone(100,.4,.018,'sawtooth');
+  $('survivors').replaceChildren();
+  const begun = performance.now();
+  const searchOrders = state.allOrders ? orders : [[...state.order]];
+  const rings = [...state.rings];
+  const rawSpots = state.allSpots ? Array.from({length:text.length-crib.length+1},(v,i) => i) : [state.offset];
+  const spots = rawSpots.filter(offset => [...crib].every((c,i) => c!==text[offset+i]));
+  const survivors = [];
+  let tested = 0;
+  const total = searchOrders.length*17576;
+  const source = [...text].map(c => A.indexOf(c));
+  const target = [...crib].map(c => A.indexOf(c));
+  const nextFrame = () => new Promise(resolve => setTimeout(resolve,0));
+  for (const order of searchOrders) {
+    const next = new Uint16Array(17576);
+    for (let i=0;i<17576;i++) {
+      const p = [Math.floor(i/676),Math.floor(i/26)%26,i%26];
+      step(p,order);
+      next[i] = p[0]*676+p[1]*26+p[2];
+    }
+    const jumps = [next];
+    for (let bit=1;(1<<bit)<=Math.max(1,...spots);bit++) {
+      const prev = jumps[bit-1];
+      const jump = new Uint16Array(17576);
+      for (let n=0;n<17576;n++) jump[n] = prev[prev[n]];
+      jumps.push(jump);
+    }
+    for (let start=0;start<17576;start++) {
+      if (token!==bombeToken) return;
+      for (const offset of spots) {
+        let pos = start;
+        let skip = offset;
+        for (let bit=0;skip;bit++,skip>>=1) if (skip&1) pos = jumps[bit][pos];
+        let fits = true;
+        for (let j=0;j<target.length;j++) {
+          pos = next[pos];
+          const p = [Math.floor(pos/676),Math.floor(pos/26)%26,pos%26];
+          if (rotorLetter(source[offset+j],p,order,rings,null)!==target[j]) { fits = false; break; }
+        }
+        if (fits) survivors.push({start:[Math.floor(start/676),Math.floor(start/26)%26,start%26],order:[...order],offset});
+      }
+      tested++;
+      if (tested%2048===0) {
+        $('bombe-readout').textContent = `TESTED ${tested.toLocaleString('en-US')} / ${total.toLocaleString('en-US')} · ${survivors.length} survivor${survivors.length===1?'':'s'}`;
+        const due = Curio.reduce ? 0 : 1500*tested/total-(performance.now()-begun);
+        if (due>0) await new Promise(resolve => setTimeout(resolve,due));
+        else await nextFrame();
+      }
+    }
+  }
+  if (!Curio.reduce) {
+    const remaining = 1500-(performance.now()-begun);
+    if (remaining>0) await new Promise(resolve => setTimeout(resolve,remaining));
+  }
+  if (token!==bombeToken) return;
+  bombeRunning = false;
+  const restore = document.activeElement===$('stop-bombe');
+  const ms = Math.round(performance.now()-begun);
+  lastBombe = {tested,survivors,ms,spots:spots.length,sourceText:analysisText(),toolsRead:state.toolsRead};
+  $('bombe-drums').classList.remove('running');
+  $('stop-bombe').hidden = true;
+  $('run-bombe').disabled = false;
+  $('bombe-readout').textContent = `TESTED ${tested.toLocaleString('en-US')} · ${survivors.length} survivor${survivors.length===1?'':'s'} · ${spots.length} spots · ${ms} ms`;
+  $('survivors').innerHTML = survivors.slice(0,200).map((s,i) => `<button data-survivor="${i}">${s.order.map(n => ['I','II','III'][n]).join(' ')} · ${s.start.map(n => A[n]).join(' ')} · @${s.offset}</button>`).join('');
+  status(survivors.length===1 ? 'One setting left · tap it, then Run tape' : survivors.length ? 'Candidates remain · compare a longer crib' : 'Nothing fits there · slide the guess');
+  const primary = $('survivors').querySelector('button');
+  if (primary) {
+    const panel = document.querySelector('.analyzers');
+    const delta = primary.getBoundingClientRect().bottom-panel.getBoundingClientRect().bottom+8;
+    if (delta>0) panel.scrollTop += delta;
+    const top = primary.getBoundingClientRect().top-panel.querySelector('.analysis-top').getBoundingClientRect().bottom-8;
+    if (top<0) panel.scrollTop += top;
+  }
+  if (restore || focusRun) (primary || $('run-bombe')).focus({preventScroll:true});
+  if (survivors.length>200) $('survivors').insertAdjacentHTML('beforeend','<p class="note">First 200 listed. Use a longer crib to narrow the search.</p>');
+}
+function showManual() {
+  drawer('Cipher Workbench / Manual',`
+    <h3>At the bench</h3><p>Type a tape and choose a machine. Encode writes secret text; Decode reads it. Swap puts the output back on the input so ciphers can be stacked. Only A to Z count toward the 600-letter limit. Punctuation passes through and keys advance only on letters. The tape holds at most 6,000 marks in total. Letters outside A to Z stay as typed.</p>
+    <details open><summary>Six machines</summary>
+    <p><b>Wheel.</b> Drag the brass inner ring, use its arrow keys or the − and + keys on the bench. SHIFT 03 means A becomes D when encoding. Fan lays out all 26 settings, including the unchanged alphabet.</p>
+    <p><b>Grid.</b> Match a letter with the shape of its grid cell. In Decode, its symbol pad writes symbols. In Encode, type letters. The Leeson case uses three grids with one, two and no dots, and shares I/J; the standard card uses two grids and two crosses. Selecting Wheel and then Grid leaves the current variant; open a normal practice sheet to return to the standard card.</p>
+    <p><b>Symbols.</b> In Decode, tap a glyph, then a letter on the strip or your keyboard. Every copy fills in. Reusing a letter moves it. Clear erases guesses; New key makes a random alphabet for writing your own cipher. The counting sheet is original practice, not Mary’s actual correspondence. Poe’s case uses his published characters.</p>
+    <p><b>Square.</b> Enter one to 40 key letters. Row = key, column = plaintext, crossing = ciphertext. Decode subtracts the key. The highlighted crossing follows the last letter of the tape. A key of A leaves text unchanged.</p>
+    <p><b>Rotors.</b> Press a letter and watch a different lamp light. Three real Enigma I wirings, reflector B, real turnover and double stepping. Select order I, II, III; rings 01; start AAA. AAAAA becomes BDZGO. A key press steps first, then lights a lamp. The first keyboard press starts a fresh tape at the displayed windows. Drag a window up or down, tap to advance, or focus it and use Up/Down (Home/End reach A/Z). Thumbwheels set starting windows; Run tape processes the whole tape from those settings. Set back returns the windows to the Run start without changing the tape. Ring numbers shift the wiring, not the visible notch letters. Plugboard supports up to ten disjoint cables; tap sockets or drag between them.</p>
+    <p><b>Pad.</b> Put a secret key letter beside each message letter. The three rows show cipher, key and plain text. Letter addition works like Vigenere. Random key gives every letter an equal chance. It uses the browser’s secure random-number source (crypto.getRandomValues) and discards uneven leftovers. A short pad repeats and turns its note amber. Perfect secrecy requires a uniformly random secret key, at least as long as the message and never reused. Device storage is not a secure place for real secrets.</p></details>
+    <details><summary>Five breaking tools and their readouts</summary>
+    <p><b>Counter.</b> Bars are actual counts. Dashed grey outlines are an English model scaled to the number of letters; drag the chart or the ghost fader to rotate that model. Sorted puts the tallest bars first, with the sorted English model beside them. The ghost cannot be shifted while sorted. Short texts and unusual prose may not resemble the model. Glyph charts count actual glyphs; each label draws the same symbol as the tape and key card, with no English ghost.</p>
+    <p><b>Splitter.</b> Length 1 to 12 sorts the message into that many columns. Bumpiness: how often two letters picked from a column match. English scores about 6.6, random letters about 3.8; short, repetitive texts score higher. Multiples of the key length spike too; look for the smallest spike, then test its key. The exact readout is the average column index of coincidence, multiplied by 100: sum f(f−1) divided by N(N−1). These are tendencies, not guarantees. Column ghosts suggest a shift that fits the English model; move each fader yourself. The fit uses chi-square. A guess needs at least ten letters in every column and a length you chose. Use key sends the assembled guess to Square and Decode.</p>
+    <p><b>Repeats.</b> Find the same three letters in more than one place. The list shows the gaps between neighboring appearances, including overlaps. A factor’s fraction counts divisible gaps. Tap a factor to send it to Splitter. Positions in this list start at one; the crib offset starts at zero.</p>
+    <p><b>Crib.</b> Type up to 20 guessed letters. Drag its tape or use arrows to slide. The bottom row shows which key letters would make your guess fit. For letter-addition ciphers, this is ciphertext minus the guess. With Rotors, a red × rules out a same-letter alignment, because reflector B has no fixed points.</p>
+    <p><b>Bombe.</b> Try every rotor start against a guessed word. This bench search tests them all; the historical bombe worked differently. It tests 17,576 starts for one order, or 105,456 for all six, at the current rings. All crib spots skips impossible self-letter alignments and tests each remaining placement. TESTED counts start settings; a setting may be tested at several spots. Select a survivor, then Run tape. Stop cancels a search. Short cribs can leave many candidates. The plugboard must be off; Welchman’s diagonal board is not modelled. Change any search input to cancel stale work.</p></details>
+    <details><summary>Boxes and saving</summary><p>Seal saves the readable tape under a made-up nickname. A partner opens its cipher on the same device, changes settings and sees the box open when the output’s letters match. Peek and Delete require confirmation. Twelve boxes fit on the shelf. Boxes, settings and the last tape save locally. Storage blocked still plays; the status line says it cannot save. Nothing leaves this device. Encode on Symbols opens a fresh writing key; Decode restores the saved cipher and guesses. Boxes store plaintext and keys and are a partner activity, not secure storage. No export, account or network is used.</p></details>
+    <details><summary>Key counts and the seal card</summary><p>A key count tells how many settings a partner might need to try. It does not promise safety.</p><p>Wheel: 26 settings, of which 25 change the alphabet. Grid: one published key. Symbols: 26! = 4.03 × 10<sup>26</sup> permutations for the full card; the 20-glyph Poe card has 26!/6! = 5.60 × 10<sup>23</sup> ways to give each of its 20 symbols a different letter. A Vigenere key of length n has 26^n raw strings; repeated strings can describe the same effective key. A sealed rotor box hides only 26 × 26 × 26 = 17,576 starts. Order, rings and cables are given to the partner. The separate bombe can also search all six orders: 105,456 starts, with cables off. A full pad has 26^n possible effective keys for n letters; a repeated short pad counts only its own key letters. An empty key leaves the tape unchanged. The seal card describes what this bench’s tools may reveal, not real security. The 50/150-letter symbol and 10/30-letter column thresholds are heuristics from the owner’s small synthetic sweeps, not universal guarantees. AES-128 has 2^128 keys; these historical machines provide no modern protection.</p></details>
+    <details><summary>Things people have found</summary><p>A Caesar shift slides the frequency bars without changing their sorted heights. ROT13 twice returns the tape.</p><p>A one-letter Vigenere key K is the same as a Caesar shift of ten. ABAB and AB describe the same repeated key.</p><p>The RAVEN sheet has bumpiness 8.8 at length five. Five divides 20 of its 23 consecutive trigram gaps. At letter 54 (offset 53), THE SAME exposes ENRAVEN.</p><p>RAVEN followed by CAT adds into one repeated key of length fifteen. Stacking does not remove the alphabet’s structure.</p><p>The rotor machine never lights the pressed letter. From ADU, three presses show ADV, AEW, BFX: the middle rotor steps on successive presses.</p><p>The same 21-letter pad ciphertext has a key for each of the three readings in its practice sheet. The frequency counter cannot choose which key was used.</p></details>
+    <details><summary>From the historical record</summary>
+    <p>Augustus used the next letter in his cipher. Suetonius, Augustus 88, in the public-domain Loeb translation, reports AA for X rather than wrapping. Older translations give Z; this is a textual difference, not this bench’s 26-letter wheel rule.</p>
+    <p>Pigpen’s published grid reads every message in that variant. In 1883 Kerckhoffs argued that a cipher should remain usable even if an enemy learns its design. Only its key should need secrecy.</p>
+    <p>Al-Kindi’s ninth-century manuscript is the oldest known description of frequency analysis. This attribution follows Al-Kadi’s 1992 study and Broemeling’s study of early statistical inference; “oldest known” leaves room for discoveries.</p>
+    <p>The RAVEN columns show why counting can work again after a repeating-key message is split by its period. Its 8.8 reading is a bench demonstration on original practice text.</p>
+    <p>The Vicksburg case combines the museum’s plaintext with the key MANCHESTER BLUFF stated in the owner’s spec. This reconstruction is labelled; it does not claim an exact transcription of the damaged ciphertext.</p>
+    <p>Enigma never enciphers a letter as itself. Its reflector has no fixed points. The National Museum of Computing and Bletchley Park’s museum account explain how this helped reject crib positions.</p>
+    <p>Venona exploited duplicated Soviet one-time-pad pages used in the 1940s. The NSA and CIA historical accounts describe the duplication. A sound pad’s key must be unique as well as random.</p>
+    <p>In 2023 George Lasry, Norbert Biermann and Satoshi Tomokiyo reported deciphering 57 letters by Mary, Queen of Scots, from 1578 to 1584, misfiled among Italian material at France’s national library. These were separate from the letters used against her at her 1586 trial. She was executed in 1587.</p></details>
+    <details><summary>Case histories and honesty notes</summary>${CASES.map(c => `<p><b>${c.name}.</b> ${c.note} ${c.history}</p>`).join('')}
+    <p>The 1930 German manual ciphertext is omitted because it used reflector A, which this B-only instrument does not implement. No invented historical message replaces it. English practice sheets are labelled as original practice.</p>
+    <p>The real Enigma family had additional rotors and later naval variants. This bench includes I to III and B only. Its search is bounded by the settings actually displayed.</p>
+    <p>The pad hides letter content here; visible spaces and punctuation still reveal structure. AES processes blocks of bits rather than shifting alphabet letters. This frequency counter is not an attack on modern AES.</p></details>
+    <details><summary>Sources and licences</summary>
+    <p>All gathered 5 November 2026. Historical original texts are public domain; contemporary explanatory prose and photographs were not copied. Case histories here are original summaries. No source images are bundled. The original practice sheets and drawn shapes are Curio Class material, CC BY 4.0; instrument code is MIT. Practice prose illustrates ideas: counts and repeated gaps suggest candidates, never guarantee recovery. Padding tails preserve the original comparison texts. Machine wiring, alphabet mappings and percentages are factual values, rather than copied prose or software.</p>
+    <p><a href="https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Suetonius/12Caesars/Julius*.html" target="_blank" rel="noopener">Suetonius, Julius 32 and 56, Loeb translation</a> (public domain), checked against <a href="https://www.gutenberg.org/files/6400/6400-h/6400-h.htm" target="_blank" rel="noopener">Project Gutenberg’s Suetonius</a> (public domain in the USA).</p>
+    <p><a href="https://registers.trinitywallstreet.org/churchyard/history.php?id=350" target="_blank" rel="noopener">Trinity Church, James Leeson record</a> (facts only; site prose not reused); <a href="https://www.gutenberg.org/ebooks/39789" target="_blank" rel="noopener">Charles Hemstreet, Nooks and Corners of Old New York (1899)</a>, public domain in the USA as stated by Gutenberg, original key and inscription, independently checked against the published inscription. The standard pigpen card is a published mathematical mapping.</p>
+    <p><a href="https://www.gutenberg.org/ebooks/2147" target="_blank" rel="noopener">Poe, The Gold-Bug, Gutenberg 2147</a> (public domain in the USA), checked against <a href="https://eapoe.org/works/tales/goldbgb.htm" target="_blank" rel="noopener">Poe Society, 1845 Tales transcription</a>. Only Poe’s original cryptogram and plaintext are bundled, not editorial notes. The cipher’s c is drawn as a short horizontal rule.</p>
+    <p><a href="https://acwm.org/wp-content/uploads/magazine_message_in_a_bottle_article.pdf" target="_blank" rel="noopener">American Civil War Museum, Catherine M. Wright, Message in a Bottle</a>, checked against the Federation of Historical Bottle Collectors’ 2011 article. The 1863 original is public domain. Only the old dispatch text is used; no modern article text or images are bundled.</p>
+    <p><a href="https://www.cryptomuseum.com/crypto/enigma/wiring.htm" target="_blank" rel="noopener">Crypto Museum, Enigma wiring</a>, checked against the University of Amsterdam FEIOG construction and operation description. Factual wirings and notch positions only; no museum software, photographs or prose copied. <a href="https://cryptocellar.org/enigma/e-message-1930.html" target="_blank" rel="noopener">Frode Weierud, 1930 manual example</a> identifies its reflector as A.</p>
+    <p><a href="https://norvig.com/mayzner.html" target="_blank" rel="noopener">Peter Norvig, Mayzner Revisited</a>: 26 factual frequency percentages, not the underlying corpus. A reference model, not a universal law of English. Index of coincidence and chi-square readouts are computed from the tape. The key counts are exact combinatorics, rounded only in the scientific-notation display.</p>
+    <p><a href="https://doi.org/10.1002/j.1538-7305.1949.tb00928.x" target="_blank" rel="noopener">Claude Shannon, Communication Theory of Secrecy Systems (1949)</a>, mathematical perfect-secrecy result, paraphrased. <a href="https://csrc.nist.gov/pubs/fips/197/final" target="_blank" rel="noopener">NIST FIPS 197</a>, AES specification (US government work, public domain).</p></details>
+    <details><summary>History references</summary>
+    <p>Facts paraphrased in original words; no new text or image dataset imported. Public-domain originals: <a href="https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Suetonius/12Caesars/Augustus*.html" target="_blank" rel="noopener">Suetonius, Augustus 88</a>; <a href="https://www.petitcolas.net/kerckhoffs/crypto_militaire_1_b.pdf" target="_blank" rel="noopener">Kerckhoffs, La cryptographie militaire, 1883</a>, second desideratum, with BnF catalogue confirming the edition.</p>
+    <p>Al-Kadi, Origins of Cryptology: The Arab Contributions, Cryptologia 16(2), 1992, and Broemeling, An Account of Early Statistical Inference in Arab Cryptology, 2011, DOI 10.1198/tas.2011.10191. Historical attribution only; no article text copied.</p>
+    <p><a href="https://www.nsa.gov/Portals/70/documents/news-features/declassified-documents/crypto-almanac-50th/VENONA_An_Overview.pdf" target="_blank" rel="noopener">NSA, Venona overview</a>, and the CIA volume Venona: Soviet Espionage and the American Response, 1939-1957 (US government works, public domain).</p>
+    <p>Lasry, Biermann and Tomokiyo, Deciphering Mary Stuart’s Lost Letters from 1578-1584, Cryptologia 47(2), 2023, DOI 10.1080/01611194.2022.2160677. Discovery facts checked against the authors’ institutional account, American Technion Society, and the National Diet Library’s paper notice; no letters, images or article text bundled. Trial and execution checked against the National Library of Scotland’s last-letter record and National Museums Scotland’s chronology.</p>
+    <p>Enigma’s property also checked against <a href="https://www.tnmoc.org/notes-from-the-museum/2018/11/19/the-principle-of-the-enigma" target="_blank" rel="noopener">The National Museum of Computing</a>. Frequency model facts are as given by Norvig; no rights-restricted corpus is included.</p></details>
+    <details><summary>Keyboard and power</summary><p>When a tape or key field has focus, keys type there. Otherwise 1 to 6 select machines; C, S, R, K, B open tools; E switches direction; W swaps tapes; F fans shifts; O opens cases; X opens boxes; M opens this Manual. The wheel takes Left/Right and Home/End. Rotor window buttons take Up/Down. With the symbol key card or assignment strip focused, letter keys assign the selected glyph. On Rotors, letter keys press the machine whenever no text field has focus. Its shortcuts are the number keys and Escape. Swap changes to Undo swap so one press restores the previous input. Escape closes a drawer. All controls are also in the Tab order.</p><p>Motion off removes rocking and spinning. Sound controls synthesized mechanism sounds and the once-only first hint. Read interrupts speech and reads the current machine, setting, first 80 output letters and the open instruments’ main readouts. Recorded gravel-ranger audio is not bundled; the kit uses the device’s English speech voice offline.</p></details>`);
+}
+function readText() {
+  const setting = state.machine==='wheel' ? $('shift-readout').textContent : state.machine==='rotors' ? 'Windows '+state.positions.map(n => A[n]).join(' ') : state.machine==='square' ? 'Key '+state.key : state.machine==='pad' ? state.pad.length+' key letters' : state.machine==='symbols' ? $('symbol-readout').textContent : $('grid-variant').textContent;
+  const instrumentReadout = state.tools.map(t => $(t==='counter'?'counter-readout':t==='splitter'?'split-readout':t==='repeats'?'repeat-readout':t==='crib'?'crib-readout':'bombe-readout').textContent.replace(' · IC × 100','')).join('. ');
+  const pending = rotorDirty && state.machine==='rotors' ? 'Settings changed. Press Run tape. Previous output: ' : 'Output: ';
+  const spokenOutput = output.replace(/[\uE000-\uE0FF]/g,' symbol ').slice(0,80);
+  return `${$('hint').textContent && state.machine==='wheel' ? lines.first+' ' : ''}${names[state.machine]}. ${state.decode?'Decode':'Encode'}. ${setting}. ${pending}${spokenOutput || 'empty tape'}. ${instrumentReadout}`;
+}
+Curio.init({rate:.87,readFallback:readText});
+const voice = Curio.voice({lines,hint:false,read:readText,
+  welcome:() => state.machine==='wheel' && $('hint').textContent && !$('drawer').open ?
+    ['first',lines.first,{valid:() => !!$('hint').textContent}] : null});
+Curio.onMotion(() => {
+  $('motion').textContent = 'Motion';
+  if (Curio.reduce) $('wheel-rock').classList.remove('rock');
+});
+Curio.onSound(() => { $('sound').textContent = 'Sound'; });
+$('motion').textContent = 'Motion';
+$('sound').textContent = 'Sound';
+document.querySelectorAll('[data-machine]').forEach(b => b.onclick = () => selectMachine(b.dataset.machine));
+document.querySelectorAll('[data-tool]').forEach(b => b.onclick = () => toggleTool(b.dataset.tool));
+$('shift-down').onclick = () => setShift(state.shift-1);
+$('shift-up').onclick = () => setShift(state.shift+1);
+$('wheel').addEventListener('keydown',event => {
+  if (!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+  event.preventDefault();
+  setShift(event.key==='Home'?0:event.key==='End'?25:state.shift+(event.key==='ArrowRight'?1:-1));
+});
+let wheelDrag = null;
+function wheelAngle(event) {
+  const rect = $('wheel').getBoundingClientRect();
+  return Math.atan2(event.clientY-rect.y-rect.height/2,event.clientX-rect.x-rect.width/2);
+}
+$('wheel').onpointerdown = event => {
+  $('wheel').setPointerCapture(event.pointerId);
+  $('wheel').focus({preventScroll:true});
+  wheelDrag = {last:wheelAngle(event),amount:0,shift:state.shift};
+};
+$('wheel').onpointermove = event => {
+  if (!wheelDrag) return;
+  const angle = wheelAngle(event);
+  let delta = angle-wheelDrag.last;
+  if (delta>Math.PI) delta -= Math.PI*2;
+  if (delta<-Math.PI) delta += Math.PI*2;
+  wheelDrag.amount += delta;
+  wheelDrag.last = angle;
+  const shift = mod(wheelDrag.shift-Math.round(wheelDrag.amount*26/(Math.PI*2)));
+  if (shift!==state.shift) setShift(shift);
+};
+$('wheel').onpointerup = $('wheel').onpointercancel = () => { wheelDrag = null; };
+$('input').addEventListener('input',() => {
+  stopIfSearching();
+  state.input = limitTape($('input').value);
+  state.activeBox && status('Box settings on this device');
+  update();
+});
+$('edit-tape').onclick = () => {
+  editGlyphTape = true;
+  update();
+  $('input').focus({preventScroll:true});
+};
+function freshSymbolKey() {
+  const key = [...Array(26).keys()];
+  for (let i=25;i>0;i--) {
+    let n;
+    do { n = crypto.getRandomValues(new Uint8Array(1))[0]; } while (n>=256-256%(i+1));
+    const j = n%(i+1);
+    [key[i],key[j]] = [key[j],key[i]];
+  }
+  return key;
+}
+function writeSymbols() {
+  if (state.decode) {
+    state.symbolWorkspace = {};
+    for (const k of ['input','symbolMap','symbolKey','poe','selected','caseId','activeBox','toolsRead'])
+      state.symbolWorkspace[k] = structuredClone(state[k]);
+  }
+  state.input = '';
+  state.symbolMap = {};
+  state.symbolKey = freshSymbolKey();
+  state.poe = false;
+  state.caseId = null;
+  state.activeBox = null;
+  state.decode = false;
+  status('Fresh writing key · Decode returns to your cipher and guesses');
+}
+$('direction').onclick = () => {
+  stopIfSearching();
+  if (state.machine==='symbols' && state.decode) writeSymbols();
+  else if (state.machine==='symbols' && state.symbolWorkspace) {
+    Object.assign(state,state.symbolWorkspace);
+    state.symbolWorkspace = null;
+    state.decode = true;
+    status('Cipher tape and guesses restored');
+  } else state.decode = !state.decode;
+  editGlyphTape = false;
+  if (state.machine==='symbols') renderSymbols();
+  update();
+};
+let swapUndo = null;
+$('swap').onclick = () => {
+  stopIfSearching();
+  if (swapUndo!==null) {
+    state.input = swapUndo;
+    swapUndo = null;
+    $('swap').textContent = 'Swap ↑';
+    update();
+    status('Previous input restored');
+    return;
+  }
+  swapUndo = state.input;
+  $('swap').textContent = 'Undo swap';
+  state.input = limitTape(output);
+  editGlyphTape = false;
+  update();
+  tone();
+};
+$('clear-tape').onclick = () => { stopIfSearching(); state.input = ''; sessionTyped = false; update(); status('Type a message.'); };
+$('square-key').addEventListener('input',() => {
+  const raw = $('square-key').value;
+  state.key = letters(raw).slice(0,40);
+  $('square-note').textContent = /[^A-Za-z]/.test(raw) ? 'Nonletters ignored.' : state.key ? '' : 'No key · tape unchanged.';
+  stopIfSearching();
+  update();
+});
+$('pad-key').addEventListener('input',() => {
+  state.pad = letters($('pad-key').value).slice(0,600);
+  state.padRandom = false;
+  update();
+});
+function randomLetters(n) {
+  let text = '';
+  while (text.length<n) {
+    const bytes = crypto.getRandomValues(new Uint8Array(Math.max(32,n-text.length)));
+    for (const b of bytes) if (b<234 && text.length<n) text += A[b%26];
+  }
+  return text;
+}
+$('random-pad').onclick = () => {
+  state.pad = randomLetters(letters(state.input).length);
+  state.padRandom = true;
+  $('pad-key').value = state.pad;
+  update();
+  tone();
+};
+$('grid-card').onclick = event => {
+  const b = event.target.closest('[data-grid]');
+  if (!b) return;
+  const n = Number(b.dataset.grid);
+  const c = state.decode ? gridToken(n) : alphabetForGrid()[n];
+  state.input = limitTape(state.input+c);
+  update();
+  tone();
+};
+$('symbol-card').onclick = event => {
+  const b = event.target.closest('[data-symbol]');
+  if (!b) return;
+  state.selected = Number(b.dataset.symbol);
+  document.querySelectorAll('[data-symbol]').forEach(el => el.classList.toggle('selected',el===b));
+  $('selected-symbol').textContent = 'GLYPH '+(state.poe?symbolChars()[state.selected]:state.selected+1);
+};
+$('letter-strip').innerHTML = [...A].map(c => `<button data-assign="${c}" aria-label="Assign ${c} to selected glyph">${c}</button>`).join('');
+$('letter-strip').onclick = event => {
+  const b = event.target.closest('[data-assign]');
+  if (b) assignSymbol(b.dataset.assign);
+};
+for (const id of ['input-glyphs','output']) $(id).addEventListener('click',event => {
+  const b = event.target.closest('[data-glyph]');
+  if (!b) return;
+  if (state.machine==='symbols') {
+    state.selected = Math.max(0,symbolChars().indexOf(b.dataset.glyph));
+    renderSymbols();
+  } else if (state.machine==='grid') {
+    document.querySelectorAll('[data-grid]').forEach(el => el.classList.toggle('selected',Number(el.dataset.grid)===gridIndex(b.dataset.glyph)));
+  }
+});
+$('clear-symbols').onclick = () => { state.symbolMap = {}; renderSymbols(); update(); };
+$('new-symbols').onclick = () => { writeSymbols(); renderSymbols(); update(); };
+$('tools-read').onchange = () => { stopIfSearching(); state.toolsRead = $('tools-read').value; renderTools(); save(); };
+$('ghost').oninput = () => { state.ghost = Number($('ghost').value); renderCounter(); save(); };
+$('counter-sort').onclick = () => { state.sorted = !state.sorted; renderCounter(); save(); };
+$('counter-chart').addEventListener('click',event => {
+  if (state.machine!=='symbols') return;
+  const {chars,counts} = countText(analysisText());
+  if (chars.every(c => /^[A-Z]$/.test(c))) return;
+  const indices = chars.map((c,i) => i);
+  if (state.sorted) indices.sort((a,b) => counts[b]-counts[a] || a-b);
+  const point = new DOMPoint(event.clientX,event.clientY).matrixTransform($('counter-chart').getScreenCTM().inverse());
+  const width = $('counter-chart').viewBox.baseVal.width;
+  const index = indices[Math.max(0,Math.min(chars.length-1,Math.floor(point.x*chars.length/width)))];
+  state.selected = Math.max(0,symbolChars().indexOf(chars[index]));
+  renderSymbols();
+  save();
+});
+function dragRange(surface,range,callback) {
+  let drag = null;
+  surface.addEventListener('pointerdown',event => {
+    drag = {x:event.clientX,start:Number(range.value)};
+    surface.setPointerCapture(event.pointerId);
+  });
+  surface.addEventListener('pointermove',event => {
+    if (!drag) return;
+    const width = surface.getBoundingClientRect().width;
+    const max = Number(range.max);
+    range.value = Math.max(0,Math.min(max,drag.start+Math.round((event.clientX-drag.x)*max/width)));
+    callback(Number(range.value));
+  });
+  surface.addEventListener('pointerup',() => { drag = null; });
+  surface.addEventListener('pointercancel',() => { drag = null; });
+}
+dragRange($('counter-chart'),$('ghost'),value => { if (!$('ghost').disabled) { state.ghost = value; renderCounter(); save(); } });
+$('split-length').oninput = () => { state.splitChosen = true; state.split = Math.max(1,Math.min(12,Math.round(Number($('split-length').value))||1)); renderSplitter(); save(); };
+$('columns').oninput = event => {
+  const input = event.target.closest('[data-col]');
+  if (!input) return;
+  const j = Number(input.dataset.col);
+  state.colGhosts[j] = Number(input.value);
+  $('col-value-'+j).textContent = A[state.colGhosts[j]];
+  input.setAttribute('aria-valuetext',`Column ${j+1} key ${A[state.colGhosts[j]]}`);
+  const col = splitText(analysisText(),state.split)[j];
+  paintBars(input.closest('.column').querySelector('svg'),col,state.colGhosts[j],false,true);
+  renderSplitter(false);
+  save();
+};
+$('use-key').onclick = () => {
+  if ($('use-key').hidden) return;
+  state.key = state.colGhosts.map(k => A[k]).join('');
+  state.decode = true;
+  if (!readsInput()) state.input = output;
+  state.toolsRead = 'auto';
+  $('tools-read').value = 'auto';
+  $('square-key').value = state.key;
+  selectMachine('square');
+};
+$('repeat-factors').onclick = event => {
+  const b = event.target.closest('[data-factor]');
+  if (!b) return;
+  state.splitChosen = true;
+  state.split = Number(b.dataset.factor);
+  toggleTool('splitter',true);
+  renderSplitter();
+};
+$('crib').oninput = () => { stopIfSearching(); state.crib = letters($('crib').value).slice(0,20); renderCrib(); save(); };
+$('crib-offset').oninput = () => { stopIfSearching(); state.offset = Number($('crib-offset').value); renderCrib(); save(); };
+$('crib-left').onclick = () => { stopIfSearching(); state.offset--; renderCrib(); save(); };
+$('crib-right').onclick = () => { stopIfSearching(); state.offset++; renderCrib(); save(); };
+dragRange($('crib-tape'),$('crib-offset'),value => { stopIfSearching(); state.offset = value; renderCrib(); save(); });
+function stopIfSearching() {
+  if (bombeRunning) stopBombe();
+  lastBombe = null;
+  $('survivors').replaceChildren();
+  if (state.machine==='rotors' && !state.plugs.length) $('bombe-readout').textContent = 'Settings changed · Run bombe to search';
+}
+$('all-orders').onchange = () => { stopIfSearching(); state.allOrders = $('all-orders').checked; };
+$('all-spots').onchange = () => { stopIfSearching(); state.allSpots = $('all-spots').checked; };
+$('run-bombe').onclick = runBombe;
+$('stop-bombe').onclick = stopBombe;
+$('survivors').onclick = event => {
+  const b = event.target.closest('[data-survivor]');
+  if (!b || !lastBombe) return;
+  const s = lastBombe.survivors[Number(b.dataset.survivor)];
+  if (lastBombe.toolsRead==='output') {
+    state.input = lastBombe.sourceText;
+    state.toolsRead = 'input';
+    $('tools-read').value = 'input';
+    $('input').value = state.input;
+  }
+  rotorDirty = true;
+  sessionTyped = false;
+  state.start = [...s.start];
+  state.positions = [...s.start];
+  state.order = [...s.order];
+  state.offset = s.offset;
+  syncRotor();
+  renderCrib();
+  save();
+  status('Setting loaded · press Run tape');
+};
+function setRotorWindow(j,value) {
+  stopIfSearching();
+  state.positions[j] = mod(value);
+  state.start = [...state.positions];
+  sessionTyped = false;
+  rotorDirty = true;
+  syncRotor();
+  save();
+  tone();
+}
+let windowDrag = null;
+$('rotor-controls').addEventListener('pointerdown',event => {
+  const dial = event.target.closest('[data-window]');
+  if (!dial) return;
+  dial.focus({preventScroll:true});
+  dial.setPointerCapture(event.pointerId);
+  const j = Number(dial.dataset.window);
+  windowDrag = {j,y:event.clientY,start:state.positions[j],moved:false};
+});
+$('rotor-controls').addEventListener('pointermove',event => {
+  if (!windowDrag) return;
+  const amount = Math.round((windowDrag.y-event.clientY)/8);
+  if (amount) windowDrag.moved = true;
+  const value = mod(windowDrag.start+amount);
+  if (value!==state.positions[windowDrag.j]) setRotorWindow(windowDrag.j,value);
+});
+function endWindowDrag() {
+  if (!windowDrag) return;
+  if (!windowDrag.moved) setRotorWindow(windowDrag.j,state.positions[windowDrag.j]+1);
+  windowDrag = null;
+}
+$('rotor-controls').addEventListener('pointerup',endWindowDrag);
+$('rotor-controls').addEventListener('pointercancel',() => { windowDrag = null; });
+$('rotor-controls').addEventListener('keydown',event => {
+  const ring = event.target.closest('[data-ring]');
+  if (ring && ['ArrowUp','ArrowDown','Home','End'].includes(event.key)) {
+    event.preventDefault();
+    const j = Number(ring.dataset.ring);
+    setRing(j,event.key==='Home'?0:event.key==='End'?25:state.rings[j]+(event.key==='ArrowUp'?1:-1));
+    return;
+  }
+  const dial = event.target.closest('[data-window]');
+  if (!dial || !['ArrowUp','ArrowDown','Home','End'].includes(event.key)) return;
+  event.preventDefault();
+  const j = Number(dial.dataset.window);
+  setRotorWindow(j,event.key==='Home'?0:event.key==='End'?25:state.positions[j]+(event.key==='ArrowUp'?1:-1));
+});
+function setRing(j,n) {
+  stopIfSearching();
+  state.rings[j] = mod(n);
+  state.positions = [...state.start];
+  sessionTyped = false;
+  rotorDirty = true;
+  syncRotor();
+  save();
+}
+$('rotor-controls').onclick = event => {
+  const ring = event.target.closest('[data-ring]');
+  if (ring) { setRing(Number(ring.dataset.ring),state.rings[Number(ring.dataset.ring)]+1); return; }
+  const b = event.target.closest('[data-step]');
+  if (!b) return;
+  stopIfSearching();
+  const j = Number(b.dataset.step);
+  state.positions[j] = mod(state.positions[j]+Number(b.dataset.delta));
+  state.start = [...state.positions];
+  sessionTyped = false;
+  rotorDirty = true;
+  syncRotor();
+  save();
+  tone();
+};
+$('rotor-controls').onkeydown = event => {
+  const b = event.target.closest('[data-step]');
+  if (!b || !['ArrowUp','ArrowDown'].includes(event.key)) return;
+  event.preventDefault();
+  stopIfSearching();
+  sessionTyped = false;
+  rotorDirty = true;
+  const j = Number(b.dataset.step);
+  state.positions[j] = mod(state.positions[j]+(event.key==='ArrowUp'?1:-1));
+  state.start = [...state.positions];
+  syncRotor();
+  save();
+};
+$('rotor-controls').onchange = event => {
+  stopIfSearching();
+  const select = event.target.closest('[data-order]');
+  if (select) {
+    const j = Number(select.dataset.order);
+    const n = Number(select.value);
+    const old = state.order.indexOf(n);
+    [state.order[j],state.order[old]] = [state.order[old],state.order[j]];
+  }
+  const ring = event.target.closest('[data-ring]');
+  if (ring) state.rings[Number(ring.dataset.ring)] = Math.max(1,Math.min(26,Math.round(Number(ring.value))||1))-1;
+  state.positions = [...state.start];
+  sessionTyped = false;
+  rotorDirty = true;
+  syncRotor();
+  save();
+};
+$('keyboard').onclick = event => {
+  const b = event.target.closest('[data-type]');
+  if (b) { stopIfSearching(); typeRotor(b.dataset.type); }
+};
+$('rotor-run').onclick = () => { if (bombeRunning) stopBombe(); runRotors(); };
+$('rotor-back').onclick = () => { stopIfSearching(); rotorDirty = true; state.positions = [...state.start]; sessionTyped = false; stepCount = 0; lamp = ''; syncRotor(); save(); };
+$('plugs').onclick = showPlugboard;
+$('manual').onclick = showManual;
+$('cases').onclick = showCases;
+$('boxes').onclick = showBoxes;
+$('seal').onclick = showSeal;
+$('fan').onclick = showFan;
+$('close-drawer').onclick = closeDrawer;
+$('drawer').addEventListener('cancel',() => { if (returnFocus?.isConnected) setTimeout(() => returnFocus.focus({preventScroll:true}),0); });
+$('confirm-no').onclick = () => { $('confirm').close(); confirmAction = null; };
+$('confirm-yes').onclick = () => { const action = confirmAction; $('confirm').close(); confirmAction = null; if (action) action(); };
+$('drawer-body').addEventListener('click',event => {
+  const b = event.target.closest('button');
+  if (!b) return;
+  if (b.dataset.case) loadCase(b.dataset.case);
+  if (b.dataset.sheet) loadSheet(b.dataset.sheet);
+  if (b.dataset.padChoice) { state.pad = b.dataset.padChoice; $('pad-key').value = state.pad; update(); closeDrawer(); }
+  if (b.dataset.shift!==undefined) { setShift(Number(b.dataset.shift)); closeDrawer(); }
+  if (b.id==='seal-now') sealBox();
+  if (b.dataset.box) openBox(b.dataset.box);
+  if (b.dataset.peek) ask('Show this box’s message and key? This is recorded as a peek.',() => {
+    const box = state.boxes.find(x => x.id===b.dataset.peek);
+    box.peeked = true;
+    save();
+    drawer('Peek · '+box.name,`<p class="mono">${esc(box.plain)}</p><pre style="white-space:pre-wrap;overflow-wrap:anywhere">${esc(JSON.stringify(box.settings,null,2))}</pre><button id="back-to-boxes">Back to shelf</button>`);
+  });
+  if (b.dataset.delete) ask('Delete this box from this device?',() => {
+    state.boxes = state.boxes.filter(x => x.id!==b.dataset.delete);
+    if (state.activeBox===b.dataset.delete) state.activeBox = null;
+    $('box-count').textContent = state.boxes.length;
+    save();
+    showBoxes();
+  });
+  if (b.id==='back-to-boxes') showBoxes();
+  if (b.dataset.socket!==undefined) {
+    if (ignoreSocketClick) { ignoreSocketClick = false; return; }
+    connectSocket(Number(b.dataset.socket));
+  }
+  if (b.id==='unplug-all') { state.plugs = []; chosenSocket = null; drawPlugboard(); update(); }
+});
+$('drawer-body').addEventListener('pointerdown',event => {
+  const b = event.target.closest('[data-socket]');
+  if (b) socketDown = {n:Number(b.dataset.socket),x:event.clientX,y:event.clientY};
+});
+$('drawer-body').addEventListener('pointerup',event => {
+  const b = event.target.closest('[data-socket]');
+  if (socketDown && b && Math.hypot(event.clientX-socketDown.x,event.clientY-socketDown.y)>8) {
+    const n = Number(b.dataset.socket);
+    if (socketDown.n!==n) {
+      chosenSocket = socketDown.n;
+      connectSocket(n);
+      ignoreSocketClick = true;
+    }
+  }
+  socketDown = null;
+});
+document.addEventListener('keydown',event => {
+  if (event.ctrlKey || event.metaKey || event.altKey || event.target.closest('input,textarea,select') || $('drawer').open || $('confirm').open) return;
+  if (event.target.closest('button') && ['Enter',' '].includes(event.key)) return;
+  const key = event.key.toLowerCase();
+  if (state.machine==='symbols' && event.target.closest('#symbol-card,#letter-strip') && /^[a-z]$/.test(key)) {
+    event.preventDefault();
+    assignSymbol(key.toUpperCase());
+    return;
+  }
+  if (state.machine==='rotors' && /^[a-z]$/.test(key)) {
+    event.preventDefault();
+    stopIfSearching();
+    typeRotor(key.toUpperCase());
+    return;
+  }
+  if (/^[1-6]$/.test(key)) selectMachine(Object.keys(names)[Number(key)-1]);
+  else if (key==='e') $('direction').click();
+  else if (key==='w') $('swap').click();
+  else if (key==='f') showFan();
+  else if (key==='o') showCases();
+  else if (key==='x') showBoxes();
+  else if (key==='m') showManual();
+  else if ({c:'counter',s:'splitter',r:'repeats',k:'crib',b:'bombe'}[key]) toggleTool({c:'counter',s:'splitter',r:'repeats',k:'crib',b:'bombe'}[key]);
+});
+let lastNarrow = innerWidth<=600;
+addEventListener('resize',() => {
+  const narrow = innerWidth<=600;
+  if (narrow && !lastNarrow && state.tools.length>1) { state.tools = [state.tools.at(-1)]; renderTools(); }
+  lastNarrow = narrow;
+  if (state.tools.includes('counter')) renderCounter();
+});
+drawWheel();
+renderRotorControls();
+$('square-key').value = state.key;
+$('pad-key').value = state.pad;
+$('crib').value = state.crib;
+$('tools-read').value = state.toolsRead;
+$('all-orders').checked = state.allOrders;
+$('all-spots').checked = state.allSpots;
+if (innerWidth<=600 && state.tools.length>1) state.tools = [state.tools.at(-1)];
+selectMachine(state.machine);
+if (!storageOK) status('Storage blocked · plays without saving');
+window.__tool = {
+  state,allLines:() => Object.values(lines),vlog:voice.log,voice,selectMachine,update,loadCase,loadSheet,runBombe,stopBombe,
+  core:{keyCipher,enigma,step,ic,bump,repeats,guessShift,letters,randomLetters},
+  get output() { return output; },get bombe() { return lastBombe; },get searching() { return bombeRunning; },
+  material:MATERIAL,readText,showManual,showCases,showBoxes,showSeal,sealBox,openBox,
+  reset() { Object.assign(state,structuredClone(defaults)); selectMachine('wheel'); }
+};
+</script>
+</body>
+</html>

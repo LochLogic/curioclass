@@ -1,0 +1,115 @@
+{
+  "house_style": "Premium illustrated children's media literacy tool for ages five to eight. Clean confident shapes, tactile painted shading, directional light from upper left, delightful true object details. Animal mascots in the commercial. People only in the breakfast family photograph, shown warmly and without stereotypes. All surfaces completely free of text, letters, numbers, logos and watermarks. The commercial assets use exuberant glossy cartoon rendering; daily life and plain bowl use quiet textured picture book gouache.",
+  "assets": [
+    {
+      "name": "ad-box",
+      "prompt": "Glossy cartoon cereal box in three-quarter view, golden yellow edges, sky blue sides, rainbow swoosh, large completely blank cream front panel for code lettering. Entire box isolated on perfectly flat pure green #00FF00. No shadow on background.",
+      "aspect": "3:4",
+      "width": 420,
+      "quality": 78,
+      "cutout": true,
+      "drawn_by": "codex",
+      "review": "ok",
+      "redraws": 0,
+      "despill": true
+    },
+    {
+      "name": "ad-splash",
+      "prompt": "Glossy cartoon product still life. Only a white ceramic bowl full of colorful cereal rings with a spectacular crown of milk over bright blue. No animals or characters. Wide 16:10.",
+      "aspect": "16:10",
+      "width": 1000,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok",
+      "redraws": 1
+    },
+    {
+      "name": "comet-up",
+      "prompt": "Entire friendly golden cartoon kangaroo mascot in midair, holding a white bowl of colorful cereal, golden star on cream chest, sky blue neckerchief, broad rounded muzzle, long ears, bent legs and long curved tail fully in frame. Glossy polished animated-film cartoon. Isolated on perfectly flat pure green #00FF00, no ground shadow.",
+      "aspect": "1:1",
+      "width": 520,
+      "quality": 78,
+      "cutout": true,
+      "drawn_by": "codex",
+      "review": "ok",
+      "redraws": 0,
+      "despill": true
+    },
+    {
+      "name": "comet-down",
+      "prompt": "Entire friendly golden cartoon kangaroo mascot landing with knees bent, holding a white bowl of colorful cereal, golden star on cream chest, sky blue neckerchief, broad rounded muzzle, long ears and long curved tail fully in frame. Same golden character as comet-up. Glossy polished animated-film cartoon. Isolated on perfectly flat pure green #00FF00, no ground shadow.",
+      "aspect": "1:1",
+      "width": 520,
+      "quality": 78,
+      "cutout": true,
+      "ref": "comet-up",
+      "drawn_by": "codex",
+      "review": "ok",
+      "redraws": 0,
+      "despill": true
+    },
+    {
+      "name": "toy-car",
+      "prompt": "Tiny red plastic toy race car in three-quarter view, rounded friendly streamlined shape, four black plastic wheels, molded seams, cream cockpit, glossy highlights, no driver. Entire toy isolated on perfectly flat pure green #00FF00, no ground shadow.",
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 78,
+      "cutout": true,
+      "drawn_by": "codex",
+      "review": "ok",
+      "redraws": 0,
+      "despill": true
+    },
+    {
+      "name": "ad-table",
+      "prompt": "Glossy cartoon product still life. Only a bowl of colorful rings and spoon on the right half of a golden kitchen table. Empty left half, sunshine from upper left. No animals or characters. Wide 16:10.",
+      "aspect": "16:10",
+      "width": 1000,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok",
+      "redraws": 1
+    },
+    {
+      "name": "plain-bowl",
+      "prompt": "Quiet realistic gouache painting: a plain white bowl of plain brown cereal flakes with milk, on an ordinary pale wooden table. Soft natural morning light from upper left, a calm beige wall, beautiful restrained surface texture. Bowl centered, no decorations or bright objects. Wide 16:10 full-bleed.",
+      "aspect": "16:10",
+      "width": 1000,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok",
+      "redraws": 0
+    },
+    {
+      "name": "day-breakfast",
+      "prompt": "Quiet detailed gouache picture book kitchen seen at child height, wide 16:10. Preserve six clearly separated focal objects and their positions: cereal box with cartoon kangaroo on table lower left; tablet game with blank colorful banner lower center; yogurt cup with cartoon animal lower right; pizza shop magnet upper left on refrigerator; blank school menu upper center; framed photograph upper right showing a smiling family with varied skin tones, two adults and two children in everyday clothes, shoulders together. Keep the existing cream and teal kitchen, sunshine from upper left, tactile painted details. No text, letters, numbers or logos anywhere. The family photo should clearly show people, not scenery.",
+      "aspect": "16:10",
+      "width": 1200,
+      "quality": 78,
+      "drawn_by": "codex",
+      "review": "reviewed: family portrait visible, no stereotypes, six target positions preserved",
+      "redraws": 1,
+      "people": true
+    },
+    {
+      "name": "day-street",
+      "prompt": "Detailed quiet gouache picture book town street at child height, wide 16:10. Six separated clear focal objects: city bus with large blank side poster at lower left; large blank billboard at upper left; T-shirt with blank badge in shop window at upper center; sneaker store with blank sign at upper right; octagonal blank red stop sign at lower center; library with blank story-time poster at lower right. Shoes in sneaker window. Empty street, no people. Warm sunlight upper left, turquoise brick, terracotta rooftops, tactile paint. Distinct large objects with room for code sign lettering.",
+      "aspect": "16:10",
+      "width": 1200,
+      "quality": 78,
+      "drawn_by": "codex",
+      "review": "ok",
+      "redraws": 0
+    },
+    {
+      "name": "day-store",
+      "prompt": "Quiet gouache grocery scene as originally prompted, with a completely blank yellow wet floor stand, without any human pictogram. All surfaces blank for code lettering.",
+      "aspect": "16:10",
+      "width": 1200,
+      "quality": 78,
+      "drawn_by": "codex",
+      "review": "ok",
+      "redraws": 1
+    }
+  ]
+}

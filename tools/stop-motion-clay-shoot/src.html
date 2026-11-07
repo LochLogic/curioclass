@@ -1,0 +1,1276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stop-Motion Clay Shoot · Curio Class</title>
+<meta name="description" content="Find the jumps in a clay film, fix the studio, and shoot a tiny story. Grades 3 to 5 media arts. Works offline.">
+<!--
+Stop-Motion Clay Shoot, Curio Class. Grades 3 to 5 media arts: MA:Cr1, MA:Cr2, MA:Cr3, MA:Pr5, MA:Pr6.
+Pose, photograph, repeat. Control the camera, light and hands between photographs.
+Sources: Aardman Animate It!; Susannah Shaw, Stop Motion: Craft Skills for Model Animation (2008);
+Into Film stop-motion teaching guides. Numerical thresholds are this tool's teaching rules, not industry limits.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Original synthesized music.
+Content CC BY 4.0. Code MIT. One offline file. No camera access or uploads.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f4f1f6; --panel:#e6e0ea; --ink:#2a1d1a; --muted:#615a66; --line:#c5b9ce;
+  --brand:#a63f53; --btn:#8d3043; --btn-line:#d98b9a; --head-ink:#fff; --focus:#244bb8;
+}
+body { overflow:hidden; }
+header { gap:8px; padding:10px 16px; box-shadow:0 3px 0 #612332; z-index:2; }
+h1 { font:800 clamp(18px,2.4vw,29px)/1.1 Georgia,serif; }
+h1 small { font-size:13px; margin-top:4px; }
+header .icon-btn, header .seg button { min-height:44px; font-size:14px; padding:0 12px; }
+header .seg { border-color:#e0a1ae; border-radius:9px; }
+header .seg button[aria-pressed=true] { background:#fff1d6; color:#582b32; }
+button, select, input { min-height:44px; font:700 14px 'Segoe UI',sans-serif; }
+button { min-width:44px; }
+button { border:1px solid #c8b9ce; border-radius:8px; background:#fffcff; padding:6px 11px; }
+button:active { transform:translateY(1px); }
+button[aria-pressed=true] { background:#f9dfc2; border-color:#8d3043; box-shadow:inset 0 0 0 1px #8d3043; }
+button.primary { color:#fff; background:var(--brand); border-color:#8d3043; }
+button:disabled { cursor:default; opacity:.5; }
+select, input { border:1px solid #9e8ba8; border-radius:6px; background:#fff; color:var(--ink); padding:5px 8px; width:100%; }
+label { font-size:13px; font-weight:700; }
+main { grid-template-columns:minmax(0,1fr) 300px; gap:12px; padding:14px; min-height:0; }
+.workbench { display:grid; grid-template-rows:minmax(100px,1fr) auto auto auto; min-width:0; min-height:0; gap:7px; }
+.viewer { position:relative; min-height:0; background:linear-gradient(135deg,#302936,#18151d); border:8px solid #453b49;
+  border-radius:12px; box-shadow:0 5px 0 #c8bbcf,0 12px 25px #291d1a24; overflow:hidden; display:grid; place-items:center; }
+#film { display:block; position:absolute; inset:0; width:100%; height:100%; object-fit:contain; touch-action:none; }
+.viewlabel { position:absolute; left:10px; top:9px; background:#221c25e8; color:#fff; padding:5px 9px;
+  border-radius:4px; font:700 12px monospace; pointer-events:none; }
+.viewlabel i { display:inline-block; width:7px; height:7px; border-radius:50%; margin-right:6px; background:#ed8498;
+  animation:blink 2s infinite; }
+@keyframes blink { 50% { opacity:.4; } }
+.calm .viewlabel i { animation:none; }
+.corner { position:absolute; right:10px; bottom:10px; color:#fff; background:#221c25e8; padding:4px 8px;
+  font:12px monospace; border-radius:4px; pointer-events:none; }
+.fig-hit { position:absolute; width:18%; height:25%; border:2px solid transparent; background:transparent; padding:0;
+  touch-action:none; border-radius:40%; cursor:grab; min-height:44px; min-width:44px; }
+.fig-hit:focus-visible { outline:3px solid #fff; box-shadow:0 0 0 6px #244bb8; }
+.fig-hit[aria-pressed=true] { background:transparent; border:2px dashed #ffffffa0; box-shadow:none; }
+.transport { display:flex; gap:5px; align-items:center; flex-wrap:wrap; }
+.transport button { flex:1 0 auto; }
+#play, #snap { flex:1.3; }
+#speed { width:105px; flex:0 1 105px; }
+.strip { display:flex; overflow-x:auto; overflow-y:hidden; gap:1px; min-height:59px; background:#302b36;
+  padding:5px 4px; border-radius:6px; scrollbar-width:thin; scrollbar-color:#ac9ab5 #302b36; }
+.thumb { flex:0 0 48px; width:48px; height:48px; min-height:48px; border:2px solid #c0b2c7; border-radius:3px;
+  padding:0; color:white; position:relative; background:#63566e; overflow:hidden; }
+.thumb img { width:100%; height:100%; object-fit:cover; opacity:.8; }
+.thumb .number { position:absolute; top:0; left:0; padding:0 3px; font:10px monospace; background:#211b27e8; }
+.thumb .mark { position:absolute; right:0; bottom:0; background:#fff7dd; color:#392433; font:700 12px monospace; padding:1px 2px; }
+.thumb[aria-current=true] { border-color:#ffdb9f; box-shadow:inset 0 0 0 1px #ffdb9f; }
+.strip-empty { color:#e4d8eb; padding:10px; font-size:13px; }
+.under { display:flex; justify-content:space-between; gap:8px; color:var(--muted); font-size:12px; min-height:18px; }
+.cause-legend { font-size:10px; color:var(--muted); min-height:13px; word-spacing:3px; }
+.cause-icon { width:16px; height:16px; display:inline-block; vertical-align:middle; }
+.cards .cause-icon { width:24px; height:24px; }
+.mark .cause-icon { width:13px; height:13px; }
+.panel { padding:12px; gap:9px; border:1px solid #c7b8cf; border-radius:10px; box-shadow:0 4px 0 #c8bbcf;
+  background:linear-gradient(145deg,#f6f2f8,#e6e0ea); overflow:auto; min-height:0; }
+.panel h2 { font:800 21px Georgia,serif; margin:0; }
+.eyebrow { font:800 11px monospace; letter-spacing:1.6px; color:#8d3043; margin:0 0 4px; }
+.hint { margin:0; font-size:15px; line-height:1.35; min-height:64px; border-left:3px solid var(--brand); padding-left:9px; }
+.panel-body { display:flex; flex-direction:column; gap:10px; }
+.panel-body p { font-size:14px; line-height:1.35; margin:0; }
+.row { display:flex; gap:6px; align-items:center; }
+.row>* { flex:1; min-width:0; }
+.stack { display:flex; flex-direction:column; gap:6px; }
+.cards { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.cards button { text-align:left; min-height:69px; font-size:13px; }
+.cards button b { display:block; font-size:21px; margin-bottom:3px; }
+.lesson { background:#fff7e9; padding:9px; border:1px solid #dfc497; border-radius:7px; font-size:13px; line-height:1.4; }
+.progress { display:flex; gap:5px; margin:3px 0; }
+.progress span { flex:1; padding:8px 3px; border:1px dashed #a993b3; border-radius:5px; font-size:12px; text-align:center; }
+.progress span.done { background:#e6efd8; border-style:solid; border-color:#71914e; }
+.privacy { font-size:11px!important; color:var(--muted); margin-top:auto!important; }
+.steps { display:grid; grid-template-columns:repeat(4,1fr); gap:3px; }
+.steps button { padding:4px; font-size:12px; }
+.storyboard { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.beat { border:1px solid #bcaac6; border-radius:7px; background:#fff9ff; padding:6px; }
+.beat .mini { height:45px; position:relative; background:#c6dcb6; border-radius:3px; overflow:hidden; }
+.beat .mini img { width:50px; height:42px; object-fit:contain; position:absolute; bottom:0; }
+.beat select { font-size:11px; padding:3px; margin-top:4px; }
+.beat button { width:100%; font-size:12px; padding:4px; margin-top:3px; }
+.studio-art { width:100%; max-height:145px; object-fit:cover; border-radius:6px; box-shadow:0 2px 0 #c3b3cb; }
+.posebar { display:grid; grid-template-columns:repeat(3,1fr); gap:4px; }
+.posebar button { padding:3px; font-size:11px; }
+.posebar img { height:35px; width:45px; object-fit:contain; display:block; margin:auto; }
+.props { display:grid; grid-template-columns:repeat(4,1fr); gap:3px; }
+.props button { padding:3px; font-size:10px; }
+.props img { display:block; width:32px; height:29px; object-fit:contain; margin:auto; }
+.boards { display:grid; grid-template-columns:repeat(3,1fr); gap:4px; }
+.boards button { padding:2px; }
+.boards img { display:block; height:43px; width:100%; object-fit:contain; }
+.small { font-size:12px!important; color:var(--muted); }
+.check-list { display:flex; flex-direction:column; gap:4px; }
+.check-list button { text-align:left; font-size:12px; }
+dialog { width:min(420px,90vw); color:var(--ink); border:2px solid var(--brand); border-radius:12px; padding:20px; }
+dialog::backdrop { background:#21192799; }
+dialog p { line-height:1.5; }
+.asset-bin { display:none; }
+.scene-controls { display:none; position:absolute; left:8px; right:8px; top:36px; bottom:8px;
+  background:#f4f1f6ed; border:1px solid #b6a3c1; border-radius:7px; padding:6px; }
+@media (max-width:1050px) {
+  main { grid-template-columns:minmax(0,1fr) 250px; gap:8px; padding:9px; }
+  header { padding:6px 10px; gap:6px; }
+  header .seg button, header .icon-btn { padding:0 8px; font-size:12px; }
+  h1 { width:100%; font-size:20px; }
+  h1 small { display:none; }
+}
+@media (max-height:700px) and (min-width:600px) {
+  main { grid-template-columns:minmax(0,1fr) 230px; padding:7px; gap:7px; }
+  header { padding:4px 8px; }
+  h1 { width:auto; font-size:17px; }
+  header .seg button, header .icon-btn { padding:0 6px; font-size:11px; }
+  .panel { padding:8px; gap:6px; }
+  .panel h2 { font-size:18px; }
+  .hint { font-size:12px; min-height:50px; }
+  .workbench { gap:4px; }
+  .transport { gap:3px; }
+  .transport button { padding:2px; font-size:10px; }
+  #play, #snap { flex:1; }
+  #speed { width:64px; min-width:64px; flex-basis:64px; font-size:10px; padding:2px; }
+  .strip { min-height:54px; padding:3px; }
+  .thumb { width:44px; height:44px; min-height:44px; flex-basis:44px; }
+  .under { font-size:10px; }
+  .cards button { min-height:64px; padding:5px; font-size:11px; }
+  .cards button b { font-size:17px; }
+  .panel-body { gap:6px; }
+  .panel-body p { font-size:12px; }
+  .studio-art { max-height:82px; }
+  .beat .mini { height:25px; }
+  body[data-mode=studio] .panel .eyebrow, body[data-mode=premiere] .panel .eyebrow { display:none; }
+  body[data-mode=studio] #start-over, body[data-mode=studio] #plan-next,
+  body[data-mode=studio] #setup-next, body[data-mode=studio] #more-shoot,
+  body[data-mode=premiere] #start-over, body[data-mode=premiere] #back-shoot { display:none; }
+  .studio-art { display:none; }
+  .scene-controls:not(:empty) { display:block; }
+  .scene-controls .storyboard { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); height:100%; }
+  .scene-controls .beat { padding:4px; display:flex; flex-direction:column; justify-content:center; }
+  .scene-controls .beat .mini { height:40px; }
+  .scene-controls .beat select { width:100%; }
+  .scene-controls .beat button { font-size:10px; }
+  .scene-controls .posebar { grid-template-columns:repeat(6,minmax(0,1fr)); }
+  .scene-controls.poses { bottom:auto; top:26px; padding:4px; }
+  .viewlabel { top:5px; padding:3px 6px; font-size:10px; }
+  .scene-controls .posebar button { min-width:44px; }
+  .scene-controls .posebar img { width:35px; height:28px; }
+  body[data-step=shoot] .panel .small { font-size:11px!important; }
+  .check-list { display:grid; grid-template-columns:1fr 1fr; }
+  .check-list p { display:none; }
+  .check-list button { font-size:11px; }
+  body[data-mode=cut] #speed { display:none; }
+}
+@media (max-width:599px) {
+  body { overflow:auto; display:block; min-height:100vh; }
+  header { position:relative; gap:5px; padding:7px 8px; }
+  h1 { width:100%; font-size:21px; }
+  header .seg button { font-size:11px; padding:0 7px; }
+  header .icon-btn { font-size:10px; padding:0 5px; min-width:44px; }
+  header #read { font-size:12px; }
+  main { display:flex; flex-direction:column; padding:8px; gap:8px; }
+  .workbench { grid-template-rows:auto auto auto auto; gap:5px; }
+  .viewer { aspect-ratio:16/9; border-width:5px; }
+  .transport button { font-size:11px; padding:4px 5px; }
+  #speed { flex-basis:85px; width:85px; font-size:11px; }
+  .strip { padding:4px 0; gap:0; min-height:48px; }
+  .thumb { flex-basis:calc(100% / 8); width:calc(100% / 8); min-width:44px; height:44px; min-height:44px; }
+  .under { font-size:10px; }
+  .panel { overflow:visible; padding:10px; }
+  .hint { min-height:43px; font-size:14px; }
+  .panel-body { gap:8px; }
+  .panel .privacy { margin-top:5px!important; }
+  .studio-art { max-height:180px; }
+  .posebar { grid-template-columns:repeat(6,1fr); }
+  .posebar button { font-size:10px; }
+  .posebar img { width:36px; }
+  body[data-step=plan] .scene-controls:not(:empty) { display:block; }
+  .scene-controls .storyboard { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); height:100%; gap:3px; }
+  .scene-controls .beat { padding:3px; }
+  .scene-controls .beat .mini { height:25px; }
+  .scene-controls .beat select { font-size:10px; }
+  .scene-controls .beat button { font-size:10px; }
+}
+header .icon-btn[aria-pressed=true] { background:var(--btn); color:#fff; box-shadow:none; }
+.studio-art { display:none; }
+body[data-mode=studio] #start-over, body[data-mode=studio] #plan-next,
+body[data-mode=studio] #setup-next, body[data-mode=premiere] #back-shoot,
+body[data-mode=premiere] #start-over { display:none; }
+body[data-mode=studio][data-step=plan] #corner { display:none; }
+body[data-mode=premiere] #prev, body[data-mode=premiere] #next, body[data-mode=premiere] #onion,
+body[data-mode=premiere] #finder, body[data-mode=premiere] #speed { display:none; }
+@media (max-width:599px) {
+  .panel { gap:4px; padding:8px; }
+  .panel-body { gap:3px; }
+  .panel h2 { font-size:18px; }
+  .hint { font-size:13px; min-height:36px; }
+  .studio-art, body[data-mode=studio] .panel .eyebrow, body[data-mode=premiere] .panel .eyebrow { display:none; }
+  body[data-mode=studio] #start-over, body[data-mode=studio] #plan-next,
+  body[data-mode=studio] #setup-next, body[data-mode=studio] #more-shoot,
+  body[data-mode=premiere] #start-over, body[data-mode=premiere] #back-shoot { display:none; }
+  .scene-controls.poses:not(:empty) { display:block; bottom:auto; top:30px; padding:4px; }
+  .scene-controls .posebar { grid-template-columns:repeat(6,minmax(0,1fr)); }
+  .scene-controls .posebar button { font-size:10px; padding:2px; }
+  .scene-controls .posebar img { width:30px; height:25px; }
+  .viewlabel { top:5px; padding:3px 6px; font-size:10px; }
+  .scene-controls.poses:not(:empty) { top:26px; }
+}
+.scene-controls .posebar button { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Stop-Motion Clay Shoot <small>Shooting and fixing a stop-motion</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-cut" aria-pressed="true">Rough cut</button>
+    <button id="m-studio" aria-pressed="false">Studio</button>
+    <button id="m-premiere" aria-pressed="false">Premiere</button>
+  </div>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="motion" aria-label="Motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-label="Sound" aria-pressed="true">Sound</button>
+</header>
+<main>
+  <section class="workbench" aria-label="Animation light box">
+    <div class="viewer" id="viewer">
+      <canvas id="film" width="960" height="540" role="img" aria-label="Moss the clay snail on a handmade garden set"></canvas>
+      <span class="viewlabel" id="viewlabel"><i></i> CLUB FILM / TAKE 01</span>
+      <span class="corner" id="corner">01 / 36</span>
+      <button class="fig-hit" id="moss-hit" aria-label="Move Moss. Arrow keys move, Shift moves five units." hidden></button>
+      <button class="fig-hit" id="wren-hit" aria-label="Move Wren. Arrow keys move, Shift moves five units." hidden></button>
+      <div class="scene-controls" id="scene-controls"></div>
+    </div>
+    <div class="transport" aria-label="Film controls">
+      <button id="play" class="primary">▶ Play</button>
+      <button id="stop">■ Stop</button>
+      <button id="prev" aria-label="Previous frame">◀</button>
+      <button id="next" aria-label="Next frame">▶</button>
+      <button id="onion" aria-pressed="true">Onion skin</button>
+      <button id="finder" aria-pressed="false">Jump Finder</button>
+      <select id="speed" aria-label="Speed"><option value="twos">On twos</option><option value="ones">On ones</option></select>
+      <button id="snap" class="primary" hidden>● Snap</button>
+    </div>
+    <div class="strip" id="strip" role="group" aria-label="Frame strip. Arrow keys step one frame."></div>
+    <div><div class="under"><span id="timing">36 frames · 6 seconds on twos</span><span id="saved">Saved only on this device</span></div>
+      <div class="cause-legend">⌁ Camera · ☀ Light · ✋ Hand · ↔ Big move</div></div>
+  </section>
+  <aside class="panel">
+    <div><p class="eyebrow" id="eyebrow">THE EDITING DESK</p><h2 id="panel-title">What made it jump?</h2></div>
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div class="steps" id="studio-steps" hidden>
+      <button id="step-plan">Plan</button><button id="step-setup">Set up</button>
+      <button id="step-shoot">Shoot</button><button id="step-check">Check</button>
+    </div>
+    <div class="panel-body" id="panel-body"></div>
+    <p class="privacy">No camera access. Nothing is uploaded.</p>
+  </aside>
+</main>
+<dialog id="reset-dialog" aria-labelledby="reset-title">
+  <h2 id="reset-title">Start over?</h2><p>This clears the club repairs, your frames, and your studio choices from this device.</p>
+  <div class="row"><button id="cancel-reset">Keep my work</button><button id="confirm-reset" class="primary">Clear and start</button></div>
+</dialog>
+<div class="asset-bin" aria-hidden="true">
+  <img id="art-set-garden" src="art:set-garden" alt=""><img id="art-set-kitchen" src="art:set-kitchen" alt="">
+  <img id="art-moss-stretch" src="art:moss-stretch" alt=""><img id="art-moss-squash" src="art:moss-squash" alt="">
+  <img id="art-moss-peek" src="art:moss-peek" alt=""><img id="art-moss-tuck" src="art:moss-tuck" alt="">
+  <img id="art-wren-stand" src="art:wren-stand" alt=""><img id="art-wren-crouch" src="art:wren-crouch" alt="">
+  <img id="art-wren-hop" src="art:wren-hop" alt=""><img id="art-wren-wings-up" src="art:wren-wings-up" alt="">
+  <img id="art-wren-wings-down" src="art:wren-wings-down" alt=""><img id="art-wren-look-back" src="art:wren-look-back" alt="">
+  <img id="art-strawberry" src="art:strawberry" alt=""><img id="art-flower" src="art:flower" alt="">
+  <img id="art-leaf" src="art:leaf" alt=""><img id="art-pebble" src="art:pebble" alt="">
+  <img id="art-studio-top" src="art:studio-top" alt=""><img id="art-cinema" src="art:cinema" alt="">
+  <img id="art-title-wood" src="art:title-wood" alt=""><img id="art-title-chalk" src="art:title-chalk" alt="">
+  <img id="art-title-scroll" src="art:title-scroll" alt="">
+</div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const clone = value => JSON.parse(JSON.stringify(value));
+  const clamp = (x, lo, hi) => Math.max(lo, Math.min(hi, x));
+  const KEY = 'stop-motion-clay-shoot';
+  const POSES = {moss:['stretch','squash','peek','tuck'], wren:['stand','crouch','hop','wings-up','wings-down','look-back']};
+  const CAUSES = ['camera','light','hand','move'];
+  const ICON = {camera:'⌁', light:'☀', hand:'✋', move:'↔'};
+  const TRIPOD='<svg class="cause-icon" viewBox="0 0 24 24" aria-hidden="true">'+
+    '<rect x="4" y="2" width="16" height="9" rx="2" fill="#4c4354" stroke="#e6e0ea"/>'+
+    '<circle cx="12" cy="6.5" r="2.5" fill="#c5d5e5"/><path d="M12 11V21M12 12L5 22M12 12L19 22" '+
+    'stroke="currentColor" stroke-width="2"/><path d="M6 3H17" stroke="#fff"/></svg>';
+  const icon=cause=>cause==='camera'?TRIPOD:ICON[cause];
+  const NAME = {camera:'The camera got bumped', light:'The light changed', hand:'A hand is in the shot', move:'The move was too big'};
+  const FIX = {camera:'Line it back up', light:'Even out the light', hand:'Reshoot without the hand', move:'Add an in-between'};
+  const WHY = {
+    camera:"Everything moved, even the table. That's the camera.",
+    light:'The brightness changed across the whole picture, without moving.',
+    hand:'That shape at the edge is a hand left in the shot.',
+    move:'A figure crossed a big gap between two pictures.'
+  };
+  const LESSON = {
+    camera:"Tape the tripod's feet down, and don't lean on the table.",
+    light:"Close the blinds and use one lamp, so clouds can't change your light.",
+    hand:'Use the remote, or take your hands back and wait one and a half seconds before you snap.',
+    move:"Move a little at a time. If the figure doesn't overlap its onion skin at all, the move is too big."
+  };
+  const L = {
+    welcomeCut:"Our club's film keeps jumping. Tap Play, then step through it with the arrows.",
+    finderHow:'Turn on Jump Finder. It lights up whatever changed since the last frame.',
+    tagHow:'Find a frame where too much lit up, and tap Something jumped here.',
+    causeWrong:'Look at the Jump Finder. What lit up?',
+    compareAgain:'Step to the frame before, then back. Look at what changed before tagging again.',
+    cleanPair:'Only a small figure move changed here. Step to a different frame and look again.',
+    cutDone:'Clean! Now go make your own. Tap Go to the studio.',
+    welcomeStudio:'Pick a story first. Four beats, start to end.',
+    setupHow:'Set up your studio. Your choices show up later in the Jump Finder.',
+    shootHow:'Move Moss a tiny bit, then tap Snap. Then do it again.',
+    shootWrenHow:'Move Wren a tiny bit, then tap Snap. Then do it again.',
+    checkHow:'Tap Check to see if anything jumped.',
+    checkClean:'Camera, light, hands and figure moves pass. Tap Play to check how your props move.',
+    checkMarks:'Some frames jumped. Tap a mark to see why.',
+    premiereHow:'Choose a title board and music, then tap Premiere to screen your film.',
+    premiere:'Lights down. Here we go.',
+    emptyFilm:'Shoot some frames in Studio first, then come back to Premiere.',
+    halfway:'Move the selected figure between the two ghost images. Tap Keep in-between when both moves are small.',
+    halfwayWrong:'That still leaves a big jump. Move the figure between the two ghosts, then tap Keep in-between.',
+    fixedCamera:LESSON.camera,
+    fixedLight:LESSON.light,
+    fixedHand:LESSON.hand,
+    fixedMove:LESSON.move,
+    rightCamera:WHY.camera,
+    rightLight:WHY.light,
+    rightHand:WHY.hand,
+    rightMove:WHY.move,
+    cap:'The strip holds forty-eight frames. Check your film, or reshoot a frame.',
+    endFilm:'Your film is ready. Change a choice or tap Premiere to screen it again.',
+    propHow:'Drag the prop on the set, or use arrows on its button. Move it a little between snaps, just like the figures.',
+    reshootHow:'The frame is removed. Pose from the previous picture, then tap Snap to replace it.',
+    needPair:'Tap Shoot and capture at least two frames. Then tap Check to compare them.',
+    stillFilm:'Nothing jumped, but nothing moved yet. Tap Shoot, move a figure a little, then tap Snap.'
+  };
+  const STORIES = [
+    {name:'The Strawberry', beats:['Moss crawls toward a strawberry','Wren lands next to it','Both stretch for it','Moss tucks in; Wren takes a peck']},
+    {name:'The Leaf', beats:['A leaf lands on Moss','Moss peeks out','Wren hops over','Wren lifts the leaf off']},
+    {name:'The Race', beats:['Moss and Wren line up','Wren hops ahead and looks back','Moss keeps crawling','Moss wins; Wren finds a flower']}
+  ];
+  function makeFrame(x=20) {
+    return {moss:{x,y:44,pose:0}, wren:{x:68,y:42,pose:0}, bird:true,
+      props:[{type:'strawberry',x:82,y:44}], camera:{x:0,y:0}, light:1, hand:false, set:'garden'};
+  }
+  function initial() {
+    return {mode:'cut', fixed:[], tags:{}, frames:[], choices:{tape:false,lamp:false,remote:false},
+      live:makeFrame(), story:0, beats:[0,1,2,3], step:'plan', title:'A tiny clay adventure', board:'wood',
+      end:'The end', music:'tiptoe', speed:'twos', seed:73521, snapCount:0, cutIndex:0, studioIndex:0,
+      checked:false, attemptLog:[]};
+  }
+  let state = initial();
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY));
+    if (saved && saved.version === 1 && Array.isArray(saved.data.frames) && saved.data.frames.length <= 48) {
+      state = Object.assign(initial(), saved.data);
+      state.fixed = state.fixed.filter(x => CAUSES.includes(x));
+    }
+  } catch {}
+  let playing = false;
+  let onion = true;
+  let playOnion = false;
+  let finder = false;
+  let selected = 'moss';
+  let lastRelease = -Infinity;
+  let pickOpen = false;
+  let retryAt = null;
+  let inspectedAway = false;
+  let between = null;
+  let checkMarks = [];
+  let lastTick = 0;
+  let premierePhase = null;
+  let phaseAt = 0;
+  let drag = null;
+  let reshootAt = null;
+  let musicContext = null;
+  let musicTimer = null;
+  let musicNodes = [];
+  let lastFlash = 0;
+  let artReady = false;
+  const thumbCache = new Map();
+  const canvas = $('film');
+  const ctx = canvas.getContext('2d', {willReadFrequently:true});
+  const currentCanvas = document.createElement('canvas');
+  const previousCanvas = document.createElement('canvas');
+  currentCanvas.width = previousCanvas.width = 800;
+  currentCanvas.height = previousCanvas.height = 450;
+  const cc = currentCanvas.getContext('2d', {willReadFrequently:true});
+  const pc = previousCanvas.getContext('2d', {willReadFrequently:true});
+  const V = Curio.voice({lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
+    welcome:() => {
+      if (state.mode === 'cut' && !playing && state.cutIndex === 0) return ['welcomeCut',{valid:() => !playing && state.cutIndex === 0}];
+      if (state.mode === 'studio' && state.step === 'plan') return ['welcomeStudio',{valid:() => state.step === 'plan'}];
+      if (state.mode === 'premiere' && !playing) return state.frames.length ? 'premiereHow' : 'emptyFilm';
+      return null;
+    }
+  });
+  function save() {
+    try {
+      localStorage.setItem(KEY, JSON.stringify({version:1,data:state}));
+      $('saved').textContent = 'Saved only on this device';
+    } catch { $('saved').textContent = 'Saving unavailable in this browser'; }
+  }
+  function hint(key, speak=false, event=false, valid=() => true) {
+    const text=L[key] || key;
+    $('hint').textContent = text;
+    if (speak) (event ? V.say : V.how)(key, {
+      valid:()=>valid() && $('hint').textContent===text, hint:false, now:true
+    });
+  }
+  function roughFrames() {
+    const frames = [];
+    for (let i=0; i<36; i++) {
+      const f = makeFrame(12+i*1.35+(i>=29 ? 12.65 : 0));
+      f.bird = false;
+      f.moss.pose = i>=33 ? 2 : i%4 === 0 ? 1 : 0;
+      f.camera = i>=8 && !state.fixed.includes('camera') ? {x:3,y:1} : {x:0,y:0};
+      f.light = i===15 && !state.fixed.includes('light') ? 1.22 : 1;
+      f.hand = i===22 && !state.fixed.includes('hand');
+      f.original = i+1;
+      frames.push(f);
+    }
+    if (state.fixed.includes('move') && state.inBetween) {
+      const middle=clone(state.inBetween);
+      if (state.fixed.includes('camera')) middle.camera={x:0,y:0};
+      frames.splice(29,0,middle);
+    }
+    return frames;
+  }
+  function frames() { return state.mode === 'cut' ? roughFrames() : state.frames; }
+  function index() { return state.mode === 'cut' ? state.cutIndex : state.studioIndex; }
+  function setIndex(i) {
+    if (!playing) V.hush();
+    const n = frames().length;
+    const value = clamp(i,0,Math.max(0,n-1));
+    if (state.mode === 'cut') state.cutIndex = value;
+    else state.studioIndex = value;
+    if (retryAt !== null && value !== retryAt) inspectedAway = true;
+    if (retryAt === value && inspectedAway) { retryAt = null; inspectedAway = false; }
+    pickOpen = false;
+    if (state.mode === 'studio' && state.step === 'shoot' && n && !between && !playing) state.live = clone(state.frames[value]);
+    updateStripSelection();
+    draw();
+    if (!playing) renderPanel();
+  }
+  function causes(a,b) {
+    if (!a || !b) return [];
+    const result = [];
+    if (Math.hypot(b.camera.x-a.camera.x,b.camera.y-a.camera.y)>1) result.push('camera');
+    if (Math.abs(b.light/a.light-1)>.08+1e-8) result.push('light');
+    if (b.hand) result.push('hand');
+    if (Math.hypot(b.moss.x-a.moss.x,b.moss.y-a.moss.y)>9+1e-8 ||
+      (a.bird && b.bird && Math.hypot(b.wren.x-a.wren.x,b.wren.y-a.wren.y)>6+1e-8)) result.push('move');
+    return result;
+  }
+  function currentPair() {
+    const all = frames();
+    return [all[index()-1], all[index()]];
+  }
+  function art(name) { return $('art-'+name); }
+  function image(c,name,x,y,w,h) {
+    const img = art(name);
+    if (!img || !img.complete || !img.naturalWidth) return;
+    const ratio = Math.min(w/img.naturalWidth,h/img.naturalHeight);
+    const dw=img.naturalWidth*ratio, dh=img.naturalHeight*ratio;
+    const box={x:x+(w-dw)/2,y:y+h-dh,w:dw,h:dh};
+    c.drawImage(img,box.x,box.y,dw,dh);
+    return box;
+  }
+  function renderFrame(c,f,ghost=false) {
+    const w=c.canvas.width, h=c.canvas.height, u=w/100;
+    c.clearRect(0,0,w,h);
+    if (!ghost) {
+      c.fillStyle='#a5c7ad'; c.fillRect(0,0,w,h);
+      const bg=art('set-'+f.set);
+      if (bg.complete && bg.naturalWidth) c.drawImage(bg,-2*u+f.camera.x*u,-2*u+f.camera.y*u,w+4*u,h+4*u);
+    }
+    c.save();
+    c.translate(f.camera.x*u,f.camera.y*u);
+    for (const p of f.props) image(c,p.type,(p.x-4)*u,(p.y-9)*u,8*u,9*u);
+    image(c,'moss-'+POSES.moss[f.moss.pose],(f.moss.x-9)*u,(f.moss.y-14)*u,18*u,14*u);
+    if (f.bird) image(c,'wren-'+POSES.wren[f.wren.pose],(f.wren.x-6)*u,(f.wren.y-17)*u,12*u,17*u);
+    if (f.hand && !ghost) {
+      c.save(); c.translate(87*u,49*u); c.rotate(-.6); c.fillStyle='#77727d';
+      c.beginPath(); c.roundRect(-1*u,-4*u,10*u,20*u,3*u); c.fill();
+      for (let i=0;i<4;i++) { c.beginPath(); c.roundRect((i*2.3-1)*u,(-9+(i===0||i===3?2:0))*u,2.1*u,12*u,1.1*u); c.fill(); }
+      c.beginPath(); c.ellipse(-2*u,2*u,2.4*u,5*u,-.6,0,7); c.fill(); c.restore();
+    }
+    c.restore();
+    if (!ghost && f.light!==1) {
+      c.fillStyle = f.light>1 ? `rgba(255,255,255,${Math.min(.6,f.light-1)})` : `rgba(0,0,0,${Math.min(.6,1-f.light)})`;
+      c.fillRect(0,0,w,h);
+    }
+  }
+  function drawDifference(a,b,paint=true) {
+    renderFrame(pc,a);
+    renderFrame(cc,b);
+    const aa=pc.getImageData(0,0,800,450), bb=cc.getImageData(0,0,800,450);
+    const d=bb.data;
+    for (let i=0;i<d.length;i+=4) {
+      const diff=Math.max(Math.abs(d[i]-aa.data[i]),Math.abs(d[i+1]-aa.data[i+1]),Math.abs(d[i+2]-aa.data[i+2]));
+      const t=clamp((diff-3)/35,0,1);
+      d[i]=20+162*t; d[i+1]=20+222*t; d[i+2]=20+38*t; d[i+3]=255;
+    }
+    cc.putImageData(bb,0,0);
+    if (paint) ctx.drawImage(currentCanvas,0,0,canvas.width,canvas.height);
+  }
+  function currentFrame() {
+    if (between) return between.work;
+    if (state.mode === 'studio' && state.step === 'shoot' && !playing) return state.live;
+    return frames()[index()] || state.live;
+  }
+  function draw() {
+    const f=currentFrame(), all=frames(), i=index();
+    const differenceVisible=finder && !between && all[i-1] &&
+      !(state.mode==='studio' && (state.step==='setup' || state.step==='shoot'&&!playing));
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    if (state.mode === 'premiere') { drawCinema(); positionHits(); return; }
+    if (state.mode === 'studio' && state.step === 'setup') {
+      ctx.fillStyle='#a8866d'; ctx.fillRect(0,0,canvas.width,canvas.height);
+      const studioBox=image(ctx,'studio-top',0,0,canvas.width,canvas.height);
+      if (studioBox) drawStudioChoices(studioBox);
+    } else if (differenceVisible) {
+      drawDifference(all[i-1],f);
+    } else {
+      renderFrame(cc,f);
+      ctx.drawImage(currentCanvas,0,0,canvas.width,canvas.height);
+      if (between) {
+        for (const neighbor of [between.before,between.after]) {
+          renderFrame(pc,neighbor,true); ctx.globalAlpha=.35;
+          ctx.drawImage(previousCanvas,0,0,canvas.width,canvas.height); ctx.globalAlpha=1;
+        }
+      } else if ((playing?playOnion:onion) && !finder) {
+        const prev=state.mode==='studio' && state.step==='shoot' ? all.at(-1) : all[i-1];
+        if (prev) {
+          renderFrame(pc,prev,true); ctx.globalAlpha=.35;
+          ctx.drawImage(previousCanvas,0,0,canvas.width,canvas.height); ctx.globalAlpha=1;
+        }
+      }
+    }
+    if (performance.now()-lastFlash<100) { ctx.fillStyle='#fff6'; ctx.fillRect(0,0,canvas.width,canvas.height); }
+    $('viewlabel').lastChild.textContent = between ? ' POSE THE MISSING MOMENT' : differenceVisible ? ' JUMP FINDER / CHANGES GLOW' :
+      state.mode==='cut' ? ' CLUB FILM / THE STRAWBERRY' : state.step==='setup' ? ' TABLETOP / SET UP' : ' YOUR STUDIO / '+(f.set==='garden'?'GARDEN':'KITCHEN');
+    $('corner').textContent = all.length ? `${String(i+1).padStart(2,'0')} / ${String(all.length).padStart(2,'0')}` : 'READY FOR FRAME 01';
+    positionHits();
+  }
+  function positionHits() {
+    const editable = between || (state.mode==='studio' && state.step==='shoot' && !playing);
+    const box=$('viewer').getBoundingClientRect();
+    const availableW=$('film').clientWidth, availableH=$('film').clientHeight;
+    const w=Math.min(availableW,availableH*16/9), h=w*9/16;
+    const left=(availableW-w)/2, top=(availableH-h)/2;
+    for (const id of ['moss','wren']) {
+      const hit=$(id+'-hit'), f=currentFrame(), p=f[id];
+      hit.hidden=!editable || Boolean(between && between.figure!==id) || (id==='wren' && !f.bird);
+      if (hit.hidden) continue;
+      const length=id==='moss'?18:12, height=id==='moss'?14:17;
+      hit.style.left=(left+(p.x+f.camera.x-length/2)*w/100)+'px';
+      hit.style.top=(top+(p.y+f.camera.y-height)*h/56.25)+'px';
+      hit.style.width=Math.max(44,length*w/100)+'px';
+      hit.style.height=Math.max(44,height*h/56.25)+'px';
+      hit.setAttribute('aria-pressed',selected===id);
+    }
+    void box;
+  }
+  function drawStudioChoices(box) {
+    const c=ctx, x=box.x, y=box.y, w=box.w, h=box.h;
+    c.save();
+    c.beginPath(); c.rect(x,y,w,h); c.clip();
+    // The window, tape and remote are physical parts of this painted tabletop.
+    c.fillStyle=state.choices.lamp?'#9e9d99':'#b9dbe8';
+    c.fillRect(x+w*.055,y,w*.89,h*.12);
+    if (state.choices.lamp) {
+      for (let row=0;row<6;row++) {
+        const sy=y+row*h*.019;
+        const slat=c.createLinearGradient(0,sy,0,sy+h*.02);
+        slat.addColorStop(0,'#f4eee4'); slat.addColorStop(1,'#817e78');
+        c.fillStyle=slat; c.fillRect(x+w*.055,sy,w*.89,h*.018);
+      }
+      const glow=c.createRadialGradient(x+w*.39,y+h*.44,0,x+w*.39,y+h*.44,w*.24);
+      glow.addColorStop(0,'#ffe3a052'); glow.addColorStop(1,'#ffe3a000');
+      c.fillStyle=glow; c.fillRect(x+w*.15,y+h*.23,w*.56,h*.46);
+    } else {
+      c.fillStyle='#f9f2dd';
+      for (const [cx,cy,r] of [[.34,.05,.025],[.37,.042,.035],[.405,.052,.025]]) {
+        c.beginPath(); c.ellipse(x+w*cx,y+h*cy,w*r,h*r*.7,0,0,Math.PI*2); c.fill();
+      }
+      c.strokeStyle='#d8d0bd'; c.lineWidth=w*.008;
+      c.strokeRect(x+w*.055,y,w*.89,h*.12);
+      c.beginPath(); c.moveTo(x+w*.5,y); c.lineTo(x+w*.5,y+h*.12); c.stroke();
+    }
+    if (state.choices.tape) {
+      for (const [tx,ty,angle] of [[.39,.89,-.35],[.61,.89,.35],[.50,.78,0]]) {
+        c.save(); c.translate(x+w*tx,y+h*ty); c.rotate(angle);
+        c.fillStyle='#ebd5a9'; c.strokeStyle='#ad9367'; c.lineWidth=1;
+        c.beginPath(); c.roundRect(-w*.045,-h*.012,w*.09,h*.025,2); c.fill(); c.stroke();
+        c.strokeStyle='#fff0ca'; c.beginPath(); c.moveTo(-w*.038,-h*.005); c.lineTo(w*.038,-h*.005); c.stroke();
+        c.restore();
+      }
+    }
+    if (state.choices.remote) {
+      c.save(); c.translate(x+w*.81,y+h*.79); c.rotate(-.2);
+      c.shadowColor='#34292180'; c.shadowBlur=8; c.shadowOffsetY=4;
+      const casing=c.createLinearGradient(-w*.035,0,w*.035,0);
+      casing.addColorStop(0,'#63616a'); casing.addColorStop(.4,'#34323b'); casing.addColorStop(1,'#17151b');
+      c.fillStyle=casing; c.beginPath(); c.roundRect(-w*.035,-h*.065,w*.07,h*.13,7); c.fill();
+      c.shadowBlur=0; c.shadowOffsetY=0; c.fillStyle='#d58589';
+      c.beginPath(); c.arc(0,-h*.012,w*.018,0,Math.PI*2); c.fill();
+      c.strokeStyle='#f3c3b7'; c.lineWidth=1; c.stroke();
+      c.fillStyle='#b8d1a0'; c.beginPath(); c.arc(0,-h*.044,w*.004,0,Math.PI*2); c.fill(); c.restore();
+    }
+    c.restore();
+  }
+  function drawCinema() {
+    const w=canvas.width,h=canvas.height;
+    ctx.fillStyle='#21131a'; ctx.fillRect(0,0,w,h);
+    const cinema=art('cinema');
+    if (cinema.complete && cinema.naturalWidth) ctx.drawImage(cinema,0,0,w,h);
+    const x=w*.205,y=h*.13,sw=w*.59,sh=h*.53;
+    ctx.save(); ctx.beginPath(); ctx.rect(x,y,sw,sh); ctx.clip();
+    if (premierePhase==='film') {
+      const frame=state.frames[state.studioIndex]||state.live, before=state.frames[state.studioIndex-1];
+      renderFrame(cc,frame);
+      ctx.drawImage(currentCanvas,x,y,sw,sh);
+    } else {
+      ctx.fillStyle='#ece3d3'; ctx.fillRect(x,y,sw,sh);
+      const board=image(ctx,'title-'+state.board,x+sw*.05,y+sh*.02,sw*.9,sh*.96)||{x,y,w:sw,h:sh};
+      ctx.fillStyle=state.board==='chalk'?'#fff7df':'#452d2a';
+      const text=premierePhase==='end'?state.end:state.title;
+      const maxWidth=board.w*.75;
+      let font=40, lines=[text];
+      const wrap=()=> {
+        if (ctx.measureText(text).width<=maxWidth) return [text];
+        const middle=Math.floor(text.length/2);
+        let split=text.lastIndexOf(' ',middle+5);
+        if (split<middle-6) split=middle;
+        return [text.slice(0,split).trim(),text.slice(split).trim()];
+      };
+      do { ctx.font=`700 ${font}px Georgia`; lines=wrap(); font--; }
+      while (lines.some(line=>ctx.measureText(line).width>maxWidth) && font>=24);
+      ctx.textAlign='center'; ctx.textBaseline='middle';
+      const center=board.y+board.h*(state.board==='chalk'?.44:.49);
+      lines.forEach((line,i)=>ctx.fillText(line,board.x+board.w/2,center+(i-(lines.length-1)/2)*(font+7),maxWidth));
+    }
+    ctx.restore();
+    $('viewlabel').lastChild.textContent=' THE LITTLE CINEMA';
+    $('corner').textContent = premierePhase==='film' ? `FRAME ${state.studioIndex+1}` : playing ? 'NOW SHOWING' : 'YOUR PREMIERE';
+  }
+  function stripMarks(i,f) {
+    if (state.mode==='cut') {
+      const tag=state.tags[f.original];
+      return tag ? ICON[tag] : state.fixed.includes('move') && !f.original ? '✓' : '';
+    }
+    return state.checked ? checkMarks.filter(m=>m.i===i).map(m=>ICON[m.cause]).join('') : '';
+  }
+  function buildStrip() {
+    const strip=$('strip'), scroll=strip.scrollLeft;
+    strip.replaceChildren();
+    const all=frames();
+    if (!all.length) strip.innerHTML='<span class="strip-empty">Your photographs will appear here. Up to 48 frames.</span>';
+    all.forEach((f,i)=> {
+      const button=document.createElement('button'); button.className='thumb'; button.dataset.i=i;
+      button.setAttribute('aria-label',`Frame ${i+1}`);
+      button.setAttribute('aria-current',index()===i);
+      const key=JSON.stringify(f);
+      let thumbnail=thumbCache.get(key);
+      if (!thumbnail) {
+        renderFrame(cc,f); thumbnail=currentCanvas.toDataURL('image/webp',.35);
+        if (artReady) thumbCache.set(key,thumbnail);
+      }
+      if (thumbCache.size>512) thumbCache.clear();
+      const img=document.createElement('img'); img.alt=''; img.src=thumbnail;
+      button.append(img);
+      const n=document.createElement('span'); n.className='number'; n.textContent=i+1; button.append(n);
+      const mark=stripMarks(i,f);
+      if (mark) {
+        const el=document.createElement('span'); el.className='mark'; el.innerHTML=mark.replaceAll('⌁',TRIPOD); button.append(el);
+        const text=state.mode==='cut'?NAME[state.tags[f.original]]:checkMarks.filter(m=>m.i===i).map(m=>NAME[m.cause]).join(', ');
+        button.title=`Frame ${i+1}: ${text||'in-between'}`;
+      }
+      button.onclick=()=> { setIndex(i); save(); if (state.mode==='cut' && finder) hint('tagHow',true); };
+      strip.append(button);
+    });
+    strip.scrollLeft=scroll;
+    updateStripSelection();
+  }
+  function updateStripSelection() {
+    for (const b of $('strip').querySelectorAll('.thumb')) {
+      const active=+b.dataset.i===index(); b.setAttribute('aria-current',active); b.tabIndex=active?0:-1;
+    }
+    const active=$('strip').querySelector('[aria-current=true]');
+    if (active) {
+      const box=active.getBoundingClientRect(), strip=$('strip').getBoundingClientRect();
+      if (box.right>strip.right) $('strip').scrollLeft+=box.right-strip.right;
+      else if (box.left<strip.left) $('strip').scrollLeft-=strip.left-box.left;
+    }
+    const all=frames(), seconds=all.length/(state.speed==='twos'?6:12);
+    const time=Number(seconds.toFixed(2));
+    $('timing').textContent=`${all.length} ${all.length===1?'frame':'frames'} · ${time} ${time===1?'second':'seconds'} `+
+      (state.speed==='twos'?'on twos':'on ones');
+  }
+  function button(id,text,fn,primary=false) {
+    const b=document.createElement('button'); b.id=id; b.textContent=text;
+    if (primary) b.className='primary'; b.onclick=fn; return b;
+  }
+  function resetButton() { return button('start-over','Start over',()=> $('reset-dialog').showModal()); }
+  function renderPanel() {
+    const focused=document.activeElement?.id;
+    const panelHadFocus=$('panel-body').contains(document.activeElement)||$('scene-controls').contains(document.activeElement);
+    const body=$('panel-body');
+    $('scene-controls').replaceChildren();
+    $('scene-controls').className='scene-controls';
+    document.body.dataset.mode=state.mode;
+    document.body.dataset.step=state.step;
+    $('studio-steps').hidden=state.mode!=='studio'||Boolean(between);
+    for (const step of ['plan','setup','shoot','check']) $('step-'+step).setAttribute('aria-pressed',state.step===step);
+    body.replaceChildren();
+    if (between) {
+      $('panel-title').textContent='A moment in the middle';
+      body.innerHTML='<p>Keep the new pose between the two ghosts. Both gaps should be small.</p>';
+      body.append(button('keep-between','Keep in-between',keepBetween,true),button('cancel-between','Back to the film',()=> {
+        between=null; draw(); renderPanel(); hint('tagHow');
+      }));
+    } else if (state.mode==='cut') renderCut(body);
+    else if (state.mode==='studio') renderStudio(body);
+    else renderPremiere(body);
+    if (focused && panelHadFocus) {
+      // Rebuilt controls only regain focus after their own explicit action, never on page load.
+      const replacement=document.getElementById(focused)||body.querySelector('button,select,input');
+      if (replacement) replacement.focus({preventScroll:true});
+    }
+    $('snap').hidden=!(state.mode==='studio' && state.step==='shoot' && !between);
+    $('speed').value=state.speed;
+  }
+  function renderCut(body) {
+    $('eyebrow').textContent='THE EDITING DESK';
+    $('panel-title').textContent=state.fixed.length===4?'A clean club film':'What made it jump?';
+    const progress=document.createElement('div'); progress.className='progress';
+    progress.innerHTML=CAUSES.map((c,i)=>`<span class="${state.fixed.includes(c)?'done':''}">${state.fixed.includes(c)?'✓':'○'} Fix ${i+1}</span>`).join('');
+    body.append(progress);
+    if (state.fixed.length===4) {
+      const lesson=document.createElement('div'); lesson.className='lesson';
+      lesson.textContent='Steady camera. Steady light. Hands out. Small moves. Your four repairs made this film clean.';
+      body.append(lesson,button('to-studio','Go to the studio',()=>setMode('studio'),true),resetButton());
+      return;
+    }
+    const f=frames()[index()], tag=state.tags[f?.original];
+    if (tag && !state.fixed.includes(tag)) {
+      const why=document.createElement('p'); why.textContent=WHY[tag];
+      body.append(why,button('fix-current',FIX[tag],()=>fix(tag),true));
+    } else if (pickOpen) {
+      const cards=document.createElement('div'); cards.className='cards';
+      // Each inspection changes the spatial order, so a fixed tap pattern cannot solve the cut.
+      const offset=(state.attemptLog.length+index())%4;
+      const order=CAUSES.slice(offset).concat(CAUSES.slice(0,offset));
+      for (const cause of order) {
+        const b=button('cause-'+cause,'',()=>tagCause(cause));
+        b.innerHTML=`<b aria-hidden="true">${icon(cause)}</b>${NAME[cause]}`; cards.append(b);
+      }
+      body.append(cards);
+    } else {
+      body.append(button('tag','Something jumped here',()=> {
+        if (retryAt===index()) { hint('compareAgain',true); return; }
+        if (!finder) { finder=true; $('finder').setAttribute('aria-pressed',true); draw(); }
+        pickOpen=true; hint('Pick the cause that fits what lit up.'); renderPanel();
+      },true));
+      const p=document.createElement('p'); p.className='small';
+      p.textContent='Bright means changed. Dark means stayed still. Step with ◀ and ▶, or drag the strip.'; body.append(p);
+    }
+    body.append(resetButton());
+  }
+  function tagCause(cause) {
+    const [a,b]=currentPair(), found=causes(a,b);
+    state.attemptLog.push({frame:index()+1,cause,correct:found.includes(cause)});
+    const attempt=state.attemptLog.length;
+    const currentAttempt=()=>state.attemptLog.length===attempt;
+    if (!found.includes(cause)) {
+      retryAt=index(); inspectedAway=false; pickOpen=false;
+      hint(found.length?'causeWrong':'cleanPair',true,true,currentAttempt);
+      Curio.tone(180,.12,.06,'triangle'); renderPanel(); save(); return;
+    }
+    state.tags[b.original]=cause;
+    pickOpen=false; hint('right'+cause[0].toUpperCase()+cause.slice(1),true,true,currentAttempt);
+    Curio.yes(); buildStrip(); renderPanel(); save();
+  }
+  function fix(cause) {
+    if (cause==='move') { beginBetween(); return; }
+    if (state.mode==='cut') {
+      if (!state.fixed.includes(cause)) state.fixed.push(cause);
+    } else {
+      const i=index(), all=state.frames;
+      if (!all[i] || (!all[i-1] && cause!=='hand')) return;
+      if (cause==='camera') {
+        const dx=all[i].camera.x-all[i-1].camera.x, dy=all[i].camera.y-all[i-1].camera.y;
+        for (let j=i;j<all.length;j++) { all[j].camera.x-=dx; all[j].camera.y-=dy; }
+        state.live.camera=clone(all.at(-1).camera);
+      }
+      if (cause==='light') all[i].light=all[i-1].light;
+      if (cause==='hand') all[i].hand=false;
+      scan();
+    }
+    const key='fixed'+cause[0].toUpperCase()+cause.slice(1);
+    hint(key,true);
+    if (state.mode==='cut' && state.fixed.length===4) hint('cutDone',true,true);
+    Curio.yes(); buildStrip(); draw(); renderPanel(); save();
+  }
+  function beginBetween() {
+    const [a,b]=currentPair();
+    if (!a || !b || (state.mode==='studio' && state.frames.length>=48)) { hint('cap',true); return; }
+    const figure=Math.hypot(b.moss.x-a.moss.x,b.moss.y-a.moss.y)>9?'moss':'wren';
+    between={before:clone(a),after:clone(b),work:clone(a),at:index(),figure};
+    selected=figure; stop(); hint('halfway',true); renderPanel(); draw();
+  }
+  function keepBetween() {
+    if (!between) return;
+    const {before,after,work,figure}=between;
+    const threshold=figure==='moss'?9:6;
+    const midpoint={x:(before[figure].x+after[figure].x)/2,y:(before[figure].y+after[figure].y)/2};
+    const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+    if (distance(work[figure],midpoint)>1.1 || distance(before[figure],work[figure])>threshold ||
+        distance(work[figure],after[figure])>threshold) { hint('halfwayWrong',true,true); Curio.tone(160,.12,.06); return; }
+    work.hand=false; delete work.original;
+    if (state.mode==='cut') {
+      state.inBetween=clone(work);
+      if (!state.fixed.includes('move')) state.fixed.push('move');
+    } else { state.frames.splice(between.at,0,clone(work)); scan(); }
+    between=null; Curio.yes();
+    const complete=state.fixed.length===4&&state.mode==='cut';
+    hint(complete?'cutDone':'fixedMove',true,complete);
+    buildStrip(); renderPanel(); draw(); save();
+  }
+  function selectStory(n) {
+    V.hush();
+    state.story=n; state.beats=[0,1,2,3];
+    if (!state.frames.length) {
+      state.live=makeFrame();
+      if (n===1) state.live.props=[{type:'leaf',x:24,y:35}];
+      if (n===2) state.live.props=[{type:'flower',x:82,y:44}];
+    }
+    renderPanel(); draw(); save(); hint('Tap the beat cards to change their order, then tap Set up.');
+  }
+  function studioStep(step) {
+    V.hush(); stop(); state.step=step; between=null;
+    if (step==='shoot' && state.frames.length) state.live=clone(state.frames.at(-1));
+    if (step==='check') check();
+    else {
+      hint(step==='plan'?'welcomeStudio':step==='setup'?'setupHow':'shootHow',true,false,
+        ()=>state.step===step && (step!=='shoot'||!state.frames.length));
+      renderPanel(); draw();
+    }
+    save();
+  }
+  function compactScene() { return innerWidth<600 || innerWidth>=600 && innerHeight<=700; }
+  function renderStudio(body) {
+    $('eyebrow').textContent='YOUR ANIMATION STUDIO';
+    $('panel-title').textContent=({plan:'Four beats, one story',setup:'Build your studio',shoot:'A little, then a click',check:'Look between frames'})[state.step];
+    if (state.step==='plan') {
+      const label=document.createElement('label'); label.textContent='Story'; label.htmlFor='story'; body.append(label);
+      const select=document.createElement('select'); select.id='story';
+      STORIES.forEach((s,i)=>select.add(new Option(s.name,i))); select.value=state.story;
+      select.onchange=()=>selectStory(+select.value); body.append(select);
+      const board=document.createElement('div'); board.className='storyboard';
+      state.beats.forEach((beat,i)=> {
+        const card=document.createElement('div'); card.className='beat';
+        const a=POSES.moss[(beat+(state.story===1?2:0))%4], b=POSES.wren[(beat*2)%6];
+        card.innerHTML=`<div class="mini"><img src="${art('moss-'+a).src}" alt="Moss ${a}" style="left:${beat*7}%">`+
+          `<img src="${art('wren-'+b).src}" alt="Wren ${b}" style="right:${beat*5}%"></div>`;
+        const list=document.createElement('select'); list.id='beat-'+i; list.setAttribute('aria-label',`Beat ${i+1}`);
+        STORIES[state.story].beats.forEach((text,j)=>list.add(new Option(`${i+1}. ${text}`,j)));
+        list.value=beat; list.onchange=()=> { state.beats[i]=+list.value; save(); renderPanel(); };
+        card.append(list,button('beat-swap-'+i,i===3?'Swap with first':'Swap with next',()=> {
+          const next=(i+1)%4; [state.beats[i],state.beats[next]]=[state.beats[next],state.beats[i]]; save(); renderPanel();
+        }));
+        board.append(card);
+      });
+      if (compactScene()) $('scene-controls').append(board);
+      else body.append(board);
+      body.append(button('plan-next','Set up',()=>studioStep('setup'),true));
+    } else if (state.step==='setup') {
+      const img=document.createElement('img'); img.src=art('studio-top').src; img.alt='Tabletop studio with tripod, lamp, blinds and tape';
+      img.className='studio-art'; body.append(img);
+      for (const [key,off,on] of [['tape','Tape the tripod down: off','Tape the tripod down: on'],
+        ['lamp','Light: Window','Light: Lamp, blinds closed'],['remote','Remote shutter: off','Remote shutter: on']]) {
+        const b=button('choice-'+key,state.choices[key]?on:off,()=> {
+          state.choices[key]=!state.choices[key]; b.textContent=state.choices[key]?on:off;
+          b.setAttribute('aria-pressed',state.choices[key]); save(); draw(); Curio.tone(380,.05,.03);
+          hint('Tap Shoot when your studio is ready.');
+        });
+        b.setAttribute('aria-pressed',state.choices[key]); body.append(b);
+      }
+      const set=document.createElement('select'); set.id='set'; set.setAttribute('aria-label','Tabletop set');
+      set.add(new Option('Garden set','garden')); set.add(new Option('Kitchen set','kitchen')); set.value=state.live.set;
+      set.onchange=()=> {
+        state.live.set=set.value;
+        for (const frame of state.frames) frame.set=set.value;
+        buildStrip(); draw(); save();
+      };
+      body.append(set,button('setup-next','Shoot',()=>studioStep('shoot'),true));
+    } else if (state.step==='shoot') {
+      const row=document.createElement('div'); row.className='row';
+      for (const id of ['moss','wren']) {
+        const b=button('select-'+id,id==='moss'?'Moss':'Wren',()=> {
+          if (selected===id) return;
+          selected=id; renderPanel(); positionHits();
+          if (!state.frames.length) hint(id==='wren'?'shootWrenHow':'shootHow',true,false,()=>selected===id&&!state.frames.length);
+        });
+        b.setAttribute('aria-pressed',selected===id); row.append(b);
+      }
+      body.append(row);
+      const poses=document.createElement('div'); poses.className='posebar';
+      POSES[selected].forEach((pose,i)=> {
+        const b=button('pose-'+i,'',()=> {
+          state.live[selected].pose=i; lastRelease=performance.now();
+          for (const p of document.querySelectorAll('.posebar button')) p.setAttribute('aria-pressed',p.id==='pose-'+i);
+          draw(); save(); Curio.tone(330+i*50,.045,.03);
+        });
+        b.innerHTML=`<img src="${art(selected+'-'+pose).src}" alt="">${i+1}. ${pose.replaceAll('-',' ')}`;
+        b.title=pose.replaceAll('-',' ');
+        b.setAttribute('aria-pressed',state.live[selected].pose===i); poses.append(b);
+      });
+      if (compactScene()) {
+        $('scene-controls').classList.add('poses'); $('scene-controls').append(poses);
+      } else body.append(poses);
+      const props=document.createElement('div'); props.className='props';
+      for (const type of ['strawberry','flower','pebble','leaf']) {
+        const b=button('prop-'+type,'',()=> {
+          const existing=state.live.props.find(p=>p.type===type);
+          if (existing) state.live.props=state.live.props.filter(p=>p!==existing);
+          else state.live.props.push({type,x:50,y:44});
+          lastRelease=performance.now(); draw(); save(); b.setAttribute('aria-pressed',!existing); hint('propHow',true);
+        });
+        b.innerHTML=`<img src="${art(type).src}" alt="">${type}`;
+        b.setAttribute('aria-pressed',state.live.props.some(p=>p.type===type)); props.append(b);
+      }
+      body.append(props);
+      const keyboard=document.createElement('p'); keyboard.className='small';
+      keyboard.textContent='Drag a figure. Arrows: 1 step, Shift: 5. Keys 1 to 6: pose. Space: Snap.';
+      body.append(keyboard,button('shoot-check','Check',()=>studioStep('check'),true));
+    } else {
+      if (!state.frames.length) body.append(button('empty-shoot','Shoot your first frame',()=>studioStep('shoot'),true));
+      else {
+        const list=document.createElement('div'); list.className='check-list';
+        const marks=checkMarks.filter(m=>m.i===index());
+        for (const mark of marks) {
+          const p=document.createElement('p'); p.textContent=`${ICON[mark.cause]} ${NAME[mark.cause]}`;
+          list.append(p,button('fix-'+mark.cause,ICON[mark.cause]+' '+FIX[mark.cause],()=>fix(mark.cause),true));
+        }
+        if (!marks.length) {
+          const p=document.createElement('p');
+          p.textContent=state.frames.length<2?'One photograph has no pair to compare. Shoot another frame.':
+            checkMarks.length?'Tap a marked thumbnail below the film.':hasAction()?
+              'Checks cover camera, light, hands and figure spacing. Watch your props during Play.':L.stillFilm;
+          list.append(p);
+        }
+        body.append(list,button('reshoot','Reshoot this frame',reshoot),button('more-shoot','Keep shooting',()=>studioStep('shoot')),
+          button('to-premiere','Go to Premiere',()=>setMode('premiere'),true));
+      }
+    }
+    body.append(resetButton());
+  }
+  function random() { state.seed=(Math.imul(state.seed,1664525)+1013904223)>>>0; return state.seed/4294967296; }
+  function snap() {
+    if (state.mode!=='studio' || state.step!=='shoot' || between) return;
+    if (state.frames.length>=48) { hint('cap',true); return; }
+    const f=clone(state.live);
+    const prev=reshootAt!==null?state.frames[reshootAt-1]:state.frames.at(-1);
+    f.camera=clone(prev?.camera||{x:0,y:0});
+    if (!state.choices.tape && random()<1/8) { f.camera.x+=3; f.camera.y+=1; }
+    const wander=(random()*2-1)*.12;
+    f.light=state.choices.lamp?1:clamp((prev?.light||1)*(1+wander),.65,1.35);
+    f.hand=!state.choices.remote && performance.now()-lastRelease<1500;
+    f.snap=state.snapCount++;
+    if (reshootAt!==null) { state.frames.splice(reshootAt,0,f); state.studioIndex=reshootAt; reshootAt=null; }
+    else { state.frames.push(f); state.studioIndex=state.frames.length-1; }
+    state.live=clone(f); state.live.hand=false;
+    state.checked=false; checkMarks=[];
+    lastFlash=performance.now(); Curio.tone(720,.025,.07,'triangle'); setTimeout(()=>Curio.tone(350,.04,.04),25);
+    buildStrip(); draw(); setTimeout(draw,110); save();
+    if (state.frames.length>=12) hint('checkHow',!V.heard('checkHow'),false,()=>state.step==='shoot'&&!state.checked);
+    else hint('Move a little, change a pose, then tap Snap again.');
+  }
+  function scan() {
+    checkMarks=[];
+    if (state.frames[0]?.hand) checkMarks.push({i:0,cause:'hand'});
+    for (let i=1;i<state.frames.length;i++) for (const cause of causes(state.frames[i-1],state.frames[i])) checkMarks.push({i,cause});
+    state.checked=true;
+  }
+  function check() {
+    state.step='check';
+    scan(); finder=true; $('finder').setAttribute('aria-pressed',true);
+    if (checkMarks.length) state.studioIndex=checkMarks[0].i;
+    const key=state.frames.length<2?'needPair':checkMarks.length?'checkMarks':hasAction()?'checkClean':'stillFilm';
+    const count=state.frames.length, marked=Boolean(checkMarks.length);
+    hint(key,true,state.frames.length>=2,()=>state.checked&&state.step==='check'&&state.frames.length===count&&
+      Boolean(checkMarks.length)===marked);
+    renderPanel(); buildStrip(); draw(); save();
+  }
+  function hasAction() {
+    return state.frames.some((frame,i)=> {
+      const before=state.frames[i-1];
+      if (!before) return false;
+      const props=frame=>frame.props.map(p=>[p.type,p.x,p.y]).sort((a,b)=>a[0].localeCompare(b[0]));
+      return ['moss','wren'].some(key=>(key!=='wren'||before.bird&&frame.bird)&&
+        ['x','y','pose'].some(part=>before[key][part]!==frame[key][part])) ||
+        JSON.stringify(props(before))!==JSON.stringify(props(frame));
+    });
+  }
+  function reshoot() {
+    const i=index();
+    if (!state.frames[i]) return;
+    const old=state.frames[i]; state.frames.splice(i,1);
+    state.live=clone(state.frames[Math.max(0,i-1)]||old); state.live.hand=false;
+    reshootAt=i; state.step='shoot'; state.studioIndex=Math.max(0,i-1); state.checked=false;
+    hint('reshootHow',true); buildStrip(); renderPanel(); draw(); save();
+  }
+  function renderPremiere(body) {
+    $('eyebrow').textContent='THE LITTLE CINEMA'; $('panel-title').textContent='Give your film a name';
+    if (!state.frames.length) {
+      body.innerHTML='<p>Your cinema is waiting for a film. Make your first photographs in Studio.</p>';
+      body.append(button('premiere-studio','Go to Studio',()=>setMode('studio'),true),resetButton()); return;
+    }
+    const label=document.createElement('label'); label.htmlFor='film-title'; label.textContent='Your title';
+    const title=document.createElement('input'); title.id='film-title'; title.maxLength=48; title.value=state.title;
+    title.oninput=()=> { state.title=title.value; draw(); save(); }; body.append(label,title);
+    const boards=document.createElement('div'); boards.className='boards';
+    for (const type of ['wood','chalk','scroll']) {
+      const b=button('board-'+type,'',()=> {
+        state.board=type;
+        for (const board of ['wood','chalk','scroll']) $('board-'+board).setAttribute('aria-pressed',board===type);
+        draw(); save();
+      });
+      b.setAttribute('aria-label',type+' title board'); b.setAttribute('aria-pressed',state.board===type);
+      b.innerHTML=`<img src="${art('title-'+type).src}" alt="">`; boards.append(b);
+    }
+    body.append(boards);
+    const music=document.createElement('select'); music.id='music'; music.setAttribute('aria-label','Premiere music');
+    for (const [key,text] of [['tiptoe','Tiptoe · pizzicato'],['adventure','Adventure · march'],['silly','Silly · kazoo and tuba'],['none','No music']]) {
+      music.add(new Option(text,key));
+    }
+    music.value=state.music;
+    music.onchange=()=> { state.music=music.value; if (playing) startMusic(); save(); }; body.append(music);
+    const end=document.createElement('select'); end.id='end-card'; end.setAttribute('aria-label','End card');
+    for (const text of ['The end','Thanks for watching!','Made one little move at a time']) end.add(new Option(text,text));
+    end.value=state.end; end.onchange=()=> { state.end=end.value; draw(); save(); }; body.append(end);
+    body.append(button('premiere-go','Premiere',startPremiere,true),button('back-shoot','Back to Studio',()=>setMode('studio')),resetButton());
+  }
+  function play() {
+    if (state.mode==='premiere') { startPremiere(); return; }
+    if (!frames().length) { hint('emptyFilm',true); return; }
+    V.hush();
+    if (index()>=frames().length-1) setIndex(0);
+    playing=true; playOnion=false; $('onion').setAttribute('aria-pressed',false);
+    lastTick=performance.now(); $('play').setAttribute('aria-pressed',true);
+    draw();
+  }
+  function stop() {
+    if (playing) V.hush();
+    playing=false; premierePhase=null; stopMusic(); $('play').setAttribute('aria-pressed',false);
+    $('onion').setAttribute('aria-pressed',onion); draw();
+  }
+  function startPremiere() {
+    if (!state.frames.length) { hint('emptyFilm',true); return; }
+    V.hush(); stop(); playing=true; playOnion=false; $('onion').setAttribute('aria-pressed',false);
+    premierePhase='title'; phaseAt=performance.now(); lastTick=phaseAt; state.studioIndex=0;
+    hint('premiere',true,true,()=>playing&&state.mode==='premiere'); startMusic(); draw();
+  }
+  function stopMusic() {
+    clearInterval(musicTimer); musicTimer=null;
+    for (const node of musicNodes) { try { node.stop(); } catch {} }
+    musicNodes=[];
+  }
+  function startMusic() {
+    stopMusic();
+    if (!Curio.sound || state.music==='none' || !playing) return;
+    try { musicContext ||= new AudioContext(); musicContext.resume(); } catch { return; }
+    let beat=0;
+    const tunes={tiptoe:[60,64,67,64,62,65,69,65],adventure:[48,55,60,64,53,60,65,67],silly:[48,60,55,62,46,58,53,65]};
+    const type=state.music;
+    const tick=()=> {
+      if (!playing || !Curio.sound) { stopMusic(); return; }
+      const midi=tunes[type][beat%8], now=musicContext.currentTime;
+      const osc=musicContext.createOscillator(), gain=musicContext.createGain();
+      osc.type=type==='silly'?(beat%2?'sawtooth':'triangle'):type==='adventure'?'square':'triangle';
+      osc.frequency.value=440*Math.pow(2,(midi-69)/12);
+      gain.gain.setValueAtTime(0,now); gain.gain.linearRampToValueAtTime(type==='adventure'?.025:.055,now+.015);
+      gain.gain.exponentialRampToValueAtTime(.001,now+(type==='tiptoe'?.16:.25));
+      osc.connect(gain); gain.connect(musicContext.destination); osc.start(now); osc.stop(now+.28);
+      musicNodes.push(osc); if (musicNodes.length>32) musicNodes.shift(); beat++;
+    };
+    tick(); musicTimer=setInterval(tick,type==='adventure'?260:type==='silly'?240:300);
+  }
+  function animate(now) {
+    if (playing) {
+      const interval=state.speed==='twos'?1000/6:1000/12;
+      if (state.mode==='premiere') {
+        if (premierePhase==='title' && now-phaseAt>=1800) { premierePhase='film'; phaseAt=now; lastTick=now; draw(); }
+        else if (premierePhase==='end' && now-phaseAt>=1800) { stop(); hint('endFilm',true,true); save(); }
+      }
+      if ((state.mode!=='premiere'||premierePhase==='film') && now-lastTick>=interval) {
+        lastTick+=interval;
+        const all=frames();
+        if (index()<all.length-1) {
+          if (state.mode==='cut') state.cutIndex++; else state.studioIndex++;
+          updateStripSelection(); draw();
+        } else if (state.mode==='premiere') { premierePhase='end'; phaseAt=now; draw(); }
+        else {
+          stop(); save();
+          if (state.mode==='cut') hint(state.fixed.length===4?'cutDone':'finderHow',true,state.fixed.length===4,
+            ()=>!playing && (state.fixed.length===4 || !finder));
+        }
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+  function setMode(mode) {
+    V.hush(); stop(); state.mode=mode; between=null; pickOpen=false; retryAt=null; reshootAt=null;
+    for (const m of ['cut','studio','premiere']) $('m-'+m).setAttribute('aria-pressed',m===mode);
+    if (mode==='cut') hint(state.fixed.length===4?'cutDone':'welcomeCut');
+    else if (mode==='studio') hint(state.step==='plan'?'welcomeStudio':state.step==='setup'?'setupHow':state.step==='shoot'?'shootHow':'checkHow');
+    else hint(state.frames.length?'premiereHow':'emptyFilm');
+    if (mode==='studio' && state.checked) scan();
+    renderPanel(); buildStrip(); draw(); save(); V.welcome();
+  }
+  function moveFigure(id,dx,dy) {
+    if (between && between.figure!==id) return;
+    const f=between?between.work:state.live;
+    f[id].x=clamp(Math.round(f[id].x+dx),id==='moss'?9:6,id==='moss'?91:94);
+    f[id].y=clamp(Math.round(f[id].y+dy),25,51);
+    selected=id; draw();
+  }
+  function unitPoint(e) {
+    const r=canvas.getBoundingClientRect(), w=Math.min(r.width,r.height*16/9), h=w*9/16;
+    return {x:(e.clientX-r.left-(r.width-w)/2)/w*100,y:(e.clientY-r.top-(r.height-h)/2)/h*56.25};
+  }
+  function down(e,id) {
+    if (!(between || state.mode==='studio' && state.step==='shoot' && !playing)) return;
+    if (between && between.figure!==id) return;
+    const point=unitPoint(e); selected=id;
+    drag={id,point,origin:clone((between?between.work:state.live)[id])};
+    e.currentTarget.setPointerCapture(e.pointerId); Curio.tone(300,.04,.02); positionHits();
+  }
+  for (const id of ['moss','wren']) {
+    const hit=$(id+'-hit');
+    hit.onpointerdown=e=>down(e,id);
+    hit.onpointermove=e=> {
+      if (!drag || drag.id!==id) return;
+      const p=unitPoint(e), f=between?between.work:state.live;
+      f[id].x=drag.origin.x; f[id].y=drag.origin.y;
+      moveFigure(id,p.x-drag.point.x,p.y-drag.point.y);
+    };
+    hit.onpointerup=hit.onpointercancel=()=> { if (drag) { drag=null; lastRelease=performance.now(); save(); } };
+    hit.onfocus=()=> { selected=id; positionHits(); };
+  }
+  canvas.onpointerdown=e=> {
+    if (!(state.mode==='studio'&&state.step==='shoot'&&!playing)) return;
+    const p=unitPoint(e), prop=state.live.props.find(q=>Math.hypot(q.x-p.x,q.y-p.y)<6);
+    if (prop) { drag={prop,point:p,origin:clone(prop)}; canvas.setPointerCapture(e.pointerId); }
+  };
+  canvas.onpointermove=e=> {
+    if (!drag?.prop) return;
+    const p=unitPoint(e); drag.prop.x=clamp(Math.round(drag.origin.x+p.x-drag.point.x),4,96);
+    drag.prop.y=clamp(Math.round(drag.origin.y+p.y-drag.point.y),25,51); draw();
+  };
+  canvas.onpointerup=canvas.onpointercancel=()=> { if (drag?.prop) { drag=null; lastRelease=performance.now(); save(); } };
+  $('strip').onpointerdown=e=> {
+    if (e.pointerType==='touch') return;
+    const x=e.clientX, start=$('strip').scrollLeft, initialIndex=index();
+    const move=ev=> {
+      if (Math.abs(ev.clientX-x)>5) {
+        $('strip').scrollLeft=start-(ev.clientX-x);
+        setIndex(initialIndex+Math.round((x-ev.clientX)/45));
+      }
+    };
+    const up=()=> { removeEventListener('pointermove',move); removeEventListener('pointerup',up); save(); };
+    addEventListener('pointermove',move); addEventListener('pointerup',up,{once:true});
+  };
+  addEventListener('keydown',e=> {
+    if (e.target.closest('input,select,textarea,dialog') || e.ctrlKey || e.metaKey || e.altKey) return;
+    const editable=between || state.mode==='studio'&&state.step==='shoot'&&!playing;
+    if (editable && !between && e.target.id?.startsWith('prop-') && e.key.startsWith('Arrow')) {
+      const prop=state.live.props.find(p=>'prop-'+p.type===e.target.id);
+      if (prop) {
+        const d=e.shiftKey?5:1;
+        prop.x=clamp(prop.x+(e.key==='ArrowRight'?d:e.key==='ArrowLeft'?-d:0),4,96);
+        prop.y=clamp(prop.y+(e.key==='ArrowDown'?d:e.key==='ArrowUp'?-d:0),25,51);
+        lastRelease=performance.now(); draw(); save(); e.preventDefault(); return;
+      }
+    }
+    if (editable && e.target.classList?.contains('fig-hit') && e.key.startsWith('Arrow')) {
+      const d=e.shiftKey?5:1;
+      moveFigure(selected,e.key==='ArrowRight'?d:e.key==='ArrowLeft'?-d:0,e.key==='ArrowDown'?d:e.key==='ArrowUp'?-d:0);
+      lastRelease=performance.now(); save(); e.preventDefault(); return;
+    }
+    if (editable && /^[1-6]$/.test(e.key) && !between) {
+      const pose=+e.key-1;
+      if (pose<POSES[selected].length) { state.live[selected].pose=pose; lastRelease=performance.now(); renderPanel(); draw(); save(); }
+      e.preventDefault();
+    } else if (e.code==='Space' && state.mode==='studio' && state.step==='shoot' &&
+      (!e.target.closest('button') || e.target.classList.contains('fig-hit'))) {
+      snap(); e.preventDefault();
+    } else if (e.key===','||e.key==='.'||(!editable && (e.key==='ArrowLeft'||e.key==='ArrowRight'))) {
+      setIndex(index()+(e.key===','||e.key==='ArrowLeft'?-1:1)); save(); e.preventDefault();
+    }
+  });
+  $('play').onclick=play; $('stop').onclick=stop;
+  for (const step of ['plan','setup','shoot','check']) $('step-'+step).onclick=()=> {
+    if (state.step!==step || step==='check') studioStep(step);
+  };
+  $('prev').onclick=()=> { setIndex(index()-1); save(); };
+  $('next').onclick=()=> { setIndex(index()+1); save(); };
+  $('snap').onclick=snap;
+  $('onion').onclick=()=> {
+    if (playing) playOnion=!playOnion;
+    else onion=!onion;
+    $('onion').setAttribute('aria-pressed',playing?playOnion:onion); draw();
+  };
+  $('finder').onclick=()=> {
+    finder=!finder; $('finder').setAttribute('aria-pressed',finder); draw();
+    if (finder && state.mode==='cut') hint('tagHow',true,false,()=>finder&&!Object.keys(state.tags).length);
+  };
+  $('speed').onchange=()=> { state.speed=$('speed').value; updateStripSelection(); save(); };
+  for (const m of ['cut','studio','premiere']) $('m-'+m).onclick=()=>setMode(m);
+  $('cancel-reset').onclick=()=> $('reset-dialog').close();
+  $('confirm-reset').onclick=()=> {
+    V.hush(); stop(); Object.assign(state,initial());
+    delete state.inBetween; checkMarks=[]; between=null; retryAt=null; reshootAt=null; lastRelease=-Infinity;
+    $('reset-dialog').close(); setMode('cut');
+  };
+  Curio.onSound(on=> { if (!on) stopMusic(); else if (playing&&state.mode==='premiere') startMusic(); });
+  Curio.onMotion(()=>draw());
+  document.querySelector('.cause-legend').innerHTML=CAUSES.map(cause=>icon(cause)+' '+
+    ({camera:'Camera',light:'Light',hand:'Hand',move:'Big move'})[cause]).join(' · ');
+  Curio.init({clips:"voice:*",rate:.95});
+  let wasCompact=compactScene();
+  new ResizeObserver(()=> {
+    const compact=compactScene();
+    if (compact!==wasCompact) { wasCompact=compact; renderPanel(); }
+    draw();
+  }).observe($('viewer'));
+  const assets=[...document.querySelectorAll('.asset-bin img')];
+  const assetsLoaded=()=> {
+    if (!artReady && assets.every(img=>img.complete && img.naturalWidth)) {
+      artReady=true; thumbCache.clear(); buildStrip();
+    }
+    draw();
+  };
+  for (const img of assets) img.onload=assetsLoaded;
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},
+    causes,roughFrames,snap,check,scan,studioStep,setIndex,fix,keepBetween,moveFigure,tagCause,
+    get marks(){return checkMarks;},get playing(){return playing;},get between(){return between;},
+    get current(){return currentFrame();},draw,save,play,stop,startPremiere};
+  setMode(state.mode);
+  assetsLoaded();
+  requestAnimationFrame(animate);
+})();
+</script>
+</body>
+</html>

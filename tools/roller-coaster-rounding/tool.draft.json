@@ -1,0 +1,19 @@
+{
+  "id": "roller-coaster-rounding",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Release the brake and feel why rounding rolls downhill.",
+  "outcome": "Round whole numbers to tens and hundreds, regroup to add and subtract within 1000, and multiply tens.",
+  "driver": "students or teacher",
+  "minutes": "20-30",
+  "modes": ["Track", "Line", "Trains"],
+  "grades_label": "Grade 3",
+  "sources": [
+    "Common Core State Standards, Grade 3 Number and Operations in Base Ten, 3.NBT.A.1 to A.3",
+    "Illustrative Mathematics Grade 3, Unit 3, Lesson 15: rounding and the halfway convention",
+    "Utah Core Guide, Grade 3 Number and Operations in Base Ten",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-06"
+}

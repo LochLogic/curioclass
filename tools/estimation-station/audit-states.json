@@ -1,0 +1,126 @@
+{
+  "target": 44,
+  "reason": "The spec explicitly permits 44 px controls in the compact preview. Laptop targets are separately checked at 60 px.",
+  "keep": [
+    "#hint",
+    "#check",
+    "#rack"
+  ],
+  "states": [
+    {
+      "name": "rack-open",
+      "steps": [
+        {
+          "click": "#key-5"
+        },
+        {
+          "click": "#check"
+        }
+      ],
+      "keep": [
+        "#card"
+      ]
+    },
+    {
+      "name": "measuring",
+      "steps": [
+        {
+          "js": "const t=__tool, s=t.state, $=id=>document.getElementById(id);\nconst enter=n=>{for(const d of String(n))$('key-'+d).click();$('check').click();};\nconst fixture=(kind='pencil')=>{\n  $('new-run').click();\n  let item;\n  if(kind==='ribbon')item={kind:'ribbon',name:'two ribbons',orientation:'lying',unit:'inches',a:35,b:19,L:35,fill:.7};\n  else if(kind==='slip') {\n    const story=t.DATA.slips[12];\n    item={...story,kind:'slip',storyKind:story.kind,name:'order slip',L:story.answer};\n  } else item={...t.DATA.items.find(i=>i.asset===kind),L:kind==='pencil'?7:kind==='mailbox-post'?130:1,fill:.7};\n  s.jobs[1]=item;s.step='result';$('next').click();\n  if(kind==='slip')return;\n  if(kind!=='ribbon')enter(item.L);\n  $('tool-'+t.bestTools()[0]).click();\n  for(let i=0;i<8 && s.offset<0;i++)$('right').click();\n};\nfixture();"
+        }
+      ],
+      "keep": [
+        "#board",
+        "#left",
+        "#right"
+      ]
+    },
+    {
+      "name": "yard-new-tool-after-reveal",
+      "steps": [
+        {
+          "click": "#m-yard"
+        },
+        {
+          "click": "#show-me"
+        },
+        {
+          "click": "#tool-yard"
+        }
+      ],
+      "keep": [
+        "#yard-items",
+        "#show-me"
+      ]
+    },
+    {
+      "name": "order-placed",
+      "steps": [
+        {
+          "js": "const t=__tool, s=t.state, $=id=>document.getElementById(id);\nconst enter=n=>{for(const d of String(n))$('key-'+d).click();$('check').click();};\nconst fixture=(kind='pencil')=>{\n  $('new-run').click();\n  let item;\n  if(kind==='ribbon')item={kind:'ribbon',name:'two ribbons',orientation:'lying',unit:'inches',a:35,b:19,L:35,fill:.7};\n  else if(kind==='slip') {\n    const story=t.DATA.slips[12];\n    item={...story,kind:'slip',storyKind:story.kind,name:'order slip',L:story.answer};\n  } else item={...t.DATA.items.find(i=>i.asset===kind),L:kind==='pencil'?7:kind==='mailbox-post'?130:1,fill:.7};\n  s.jobs[1]=item;s.step='result';$('next').click();\n  if(kind==='slip')return;\n  if(kind!=='ribbon')enter(item.L);\n  $('tool-'+t.bestTools()[0]).click();\n  for(let i=0;i<8 && s.offset<0;i++)$('right').click();\n};\nfixture('slip');"
+        },
+        {
+          "click": "#place-zero"
+        }
+      ],
+      "keep": [
+        "#slip",
+        "#place-zero",
+        "#place-end"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812 (iframe host)"
+      ]
+    },
+    {
+      "name": "ribbon-result",
+      "steps": [
+        {
+          "js": "const t=__tool, s=t.state, $=id=>document.getElementById(id);\nconst enter=n=>{for(const d of String(n))$('key-'+d).click();$('check').click();};\nconst fixture=(kind='pencil')=>{\n  $('new-run').click();\n  let item;\n  if(kind==='ribbon')item={kind:'ribbon',name:'two ribbons',orientation:'lying',unit:'inches',a:35,b:19,L:35,fill:.7};\n  else if(kind==='slip') {\n    const story=t.DATA.slips[12];\n    item={...story,kind:'slip',storyKind:story.kind,name:'order slip',L:story.answer};\n  } else item={...t.DATA.items.find(i=>i.asset===kind),L:kind==='pencil'?7:kind==='mailbox-post'?130:1,fill:.7};\n  s.jobs[1]=item;s.step='result';$('next').click();\n  if(kind==='slip')return;\n  if(kind!=='ribbon')enter(item.L);\n  $('tool-'+t.bestTools()[0]).click();\n  for(let i=0;i<8 && s.offset<0;i++)$('right').click();\n};\nfixture('ribbon');enter(35);enter(19);enter(16);"
+        }
+      ],
+      "keep": [
+        "#board",
+        "#next"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "delivered",
+      "steps": [
+        {
+          "js": "document.querySelector('#new-run').click();\nfor(let guard=0;guard<100 && __tool.state.step!=='end';guard++) {\n  const s=__tool.state,item=s.item;\n  const click=id=>document.getElementById(id).click();\n  const number=n=>{for(const d of String(n))click('key-'+d);click('check');};\n  if(s.step==='result')click('next');\n  else if(s.step==='guess')number(item.L);\n  else if(s.step==='guess2')number(item.secondL);\n  else if(s.step==='tool')click('tool-'+__tool.bestTools()[0]);\n  else if(['measure','red','blue','difference'].includes(s.step)) {\n    if(item.orientation==='curvy' && !s.traced) {\n      for(let k=0;k<20;k++)window.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowRight'}));\n    }\n    for(let k=0;k<8 && s.offset<-.14;k++)click('right');\n    for(let k=0;k<8 && !document.getElementById('mark').hidden;k++)click('mark');\n    number(s.step==='blue'?item.b:s.step==='difference'?item.a-item.b:item.L);\n  } else if(s.step==='place')click('place-'+(item.storyKind==='join'?'end':'zero'));\n  else if(s.step==='slip')number(item.answer);\n}\n"
+        }
+      ],
+      "keep": [
+        "#summary",
+        "#new-run"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812 (iframe host)"
+      ]
+    },
+    {
+      "name": "two-unit-result",
+      "steps": [
+        {
+          "js": "const t=__tool, s=t.state, $=id=>document.getElementById(id);\nconst enter=n=>{for(const d of String(n))$('key-'+d).click();$('check').click();};\nconst fixture=(kind='pencil')=>{\n  $('new-run').click();\n  let item;\n  if(kind==='ribbon')item={kind:'ribbon',name:'two ribbons',orientation:'lying',unit:'inches',a:35,b:19,L:35,fill:.7};\n  else if(kind==='slip') {\n    const story=t.DATA.slips[12];\n    item={...story,kind:'slip',storyKind:story.kind,name:'order slip',L:story.answer};\n  } else item={...t.DATA.items.find(i=>i.asset===kind),L:kind==='pencil'?7:kind==='mailbox-post'?130:1,fill:.7};\n  s.jobs[1]=item;s.step='result';$('next').click();\n  if(kind==='slip')return;\n  if(kind!=='ribbon')enter(item.L);\n  $('tool-'+t.bestTools()[0]).click();\n  for(let i=0;i<8 && s.offset<0;i++)$('right').click();\n};\n\n$('new-run').click();\ns.jobs[1]={...t.DATA.items.find(x=>x.asset==='door'),L:2,unit:'meters',bigL:2,bigUnit:'meters',\n  smallL:200,smallUnit:'centimeters',secondL:200,secondUnit:'centimeters',fill:.7};\ns.step='result';$('next').click();enter(999);$('tool-meter').click();$('mark').click();enter(2);enter(200);enter(200);\n"
+        }
+      ],
+      "keep": [
+        "#card",
+        "#next"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1674 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Flipbook Studio · Timing and spacing · Curio Class</title>
+<meta name="description" content="Draw an editable flipbook, see onion skins, and change timing while it plays. Grades 6-8 media arts. Works offline.">
+<!--
+Flipbook Studio, Curio Class. Students drive. NCAS Media Arts MA:Cr2.1.6-8, MA:Cr3.1.6-8, MA:Pr5.1.6-8.
+Timing and spacing: Richard Williams, The Animator's Survival Kit (2001); Thomas and Johnston,
+The Illusion of Life (1981), chapter 3. Starter content is original. One offline file, no network requests.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Content CC BY 4.0; code MIT.
+The book stays on this device only. Blink preserves the explicitly specified 8-frame opening hold.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#fbf6ea; --ink:#2b2622; --muted:#6b6258; --line:#d7ccbb; --focus:#a52a13;
+  --brand:#c8341a; --btn:#343944; --btn-line:#777a80; --head-ink:#fbf6ea; --panel:#f7f0e2;
+}
+body { height:100dvh; min-height:0; overflow:hidden; grid-template-rows:auto minmax(0,1fr) auto; }
+button,select { min-width:44px; min-height:44px; }
+button { transition:background .12s,box-shadow .12s; }
+button:hover { filter:brightness(.96); }
+button:disabled { opacity:.42; cursor:default; }
+header { background:#292e37; padding:10px 18px; gap:9px; flex-wrap:nowrap; border-bottom:3px solid #c8341a; }
+h1 { font:700 clamp(22px,2.3vw,32px)/1.05 Georgia,serif; letter-spacing:-.6px; }
+h1 small { color:#eee1cb; font-size:12px; margin-top:5px; letter-spacing:.3px; }
+.seg { border:1px solid #656a73; border-radius:8px; }
+.seg button { min-height:44px; padding:0 17px; font-size:14px; background:#343944; }
+.seg button[aria-pressed=true] { background:var(--paper); color:var(--brand); box-shadow:inset 0 -4px var(--brand); }
+.icon-btn { min-height:44px; border-radius:6px; border:1px solid #656a73; padding:0 11px; font-size:13px; }
+#sound { width:84px; flex:0 0 84px; }
+header :focus-visible { outline-color:#f8d177; }
+main { grid-template-columns:minmax(0,1fr) 292px; overflow:hidden; }
+.panel { grid-column:2; grid-row:1; padding:16px; border-left:1px solid #bcb09f; gap:12px; overflow:auto;
+  background:linear-gradient(110deg,#fffaf0,#f0e6d6); box-shadow:inset 6px 0 15px #4c382010; }
+.panel-top { display:flex; justify-content:space-between; align-items:center; }
+.eyebrow { font-size:11px; font-weight:800; letter-spacing:1.8px; text-transform:uppercase; color:var(--muted); }
+.book-name { margin:4px 0 0; font:italic 23px Georgia,serif; }
+.peg { width:8px; height:8px; background:radial-gradient(circle at 30% 25%,#fff,#8b8c8e 40%,#333 85%);
+  border-radius:50%; box-shadow:0 1px 1px #0004; }
+.control-group { display:flex; flex-direction:column; gap:7px; }
+.row { display:flex; gap:6px; align-items:center; }
+.row > * { flex:1; min-width:0; }
+.row .fixed { flex:0 0 44px; }
+.btn,select { border:1px solid #bcad98; border-radius:6px; background:#fffaf0; color:var(--ink);
+  font:600 13px 'Segoe UI',sans-serif; padding:0 9px; box-shadow:0 2px 0 #b5a79244; }
+.btn[aria-pressed=true] { color:#fff; background:#4b4c4d; border-color:#4b4c4d; }
+.btn.primary { background:var(--brand); color:#fff; border-color:#9d2a15; font-size:16px; font-weight:800;
+  box-shadow:0 3px 0 #8c2818; }
+.btn.quiet { background:transparent; box-shadow:none; }
+.btn.danger { color:#a22c19; }
+select { width:100%; font-weight:500; }
+label { display:flex; flex-direction:column; gap:4px; font-size:11px; color:var(--muted); }
+.divider { border-top:1px solid var(--line); padding-top:10px; }
+.transport { margin-top:auto; display:flex; flex-direction:column; gap:7px; }
+.loop-row { display:flex; gap:6px; }
+.loop-row .btn { flex:1; }
+.status-tag { font-size:11px; color:var(--muted); line-height:1.4; margin:0; }
+.onion-key { display:flex; gap:10px; font-size:11px; }
+.before,.after { color:var(--muted); display:flex; align-items:center; gap:4px; }
+.before::before,.after::before { content:''; width:12px; height:2px; background:#2f6fd6; }
+.after::before { background:none; height:0; border-bottom:2px dashed #2e9e5b; }
+.workbench { grid-column:1; grid-row:1; display:grid; grid-template-rows:minmax(0,1fr) auto; min-width:0; min-height:0; }
+.stage { min-height:0; background:#3a3f4a; }
+.table-art { position:absolute; inset:0; background:url(art:fb-desk) center/cover; }
+.glass-light { position:absolute; inset:12% 15% 16%; background:radial-gradient(ellipse,#fff8 0%,#fff0 65%);
+  animation:breath 7s ease-in-out infinite alternate; pointer-events:none; }
+@keyframes breath { to { opacity:.35; } }
+.calm .glass-light { animation:none; }
+#page { position:absolute; background:#fbf6ea; box-shadow:1px 2px 0 #c4bba9,3px 5px 0 #d4caba,
+  4px 7px 0 #beb5a5,10px 16px 22px #161c2b55; border-radius:1px; }
+#page::before { content:''; position:absolute; inset:0; background:url(art:fb-paper) repeat; background-size:420px;
+  opacity:.26; pointer-events:none; }
+#paper { position:absolute; width:100%; height:100%; inset:0; touch-action:none; cursor:crosshair; }
+#page.erasing #paper { cursor:cell; }
+body[data-playing=true] #paper { cursor:not-allowed; }
+#curl { position:absolute; right:0; bottom:0; width:4.5%; aspect-ratio:1; pointer-events:none;
+  background:linear-gradient(135deg,#eee5d3 40%,#fffaf0 47%,#bfb8aa 51%,#f8f0df 70%);
+  clip-path:polygon(100% 0,100% 100%,0 100%); filter:drop-shadow(-1px -2px 2px #0003); }
+#page.flipping #curl { animation:curl .13s ease-out; }
+@keyframes curl { from { width:18%; } to { width:4.5%; } }
+.page-caption { position:absolute; top:13px; left:16px; display:flex; gap:10px; align-items:center;
+  padding:6px 10px; background:#292e37e8; color:var(--paper); font-size:11px; letter-spacing:1px; border-radius:3px;
+  pointer-events:none; }
+.chart-key { display:none; letter-spacing:0; }
+body[data-mode=time] .chart-key { display:inline; }
+.page-caption { max-width:calc(100% - 24px); flex-wrap:wrap; }
+.lamp { width:6px; height:6px; border-radius:50%; background:#f6ce7b; box-shadow:0 0 8px #ffe3a6; }
+#empty { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  pointer-events:none; color:var(--muted); text-align:center; }
+#empty strong { font:italic clamp(17px,2.1vw,30px) Georgia,serif; margin-top:8px; }
+#empty span { font-size:12px; margin-top:9px; }
+.pencil-mark { width:50px; height:50px; color:#c8341a; }
+.timeline { background:linear-gradient(#f9f2e6,#e6d9c6); border-top:1px solid #bdac93; min-width:0; }
+.strip-top { height:31px; padding:0 12px; display:flex; align-items:center; justify-content:space-between; gap:6px; }
+#readout { font-size:12px; font-weight:600; white-space:nowrap; }
+.strip-label { font-size:10px; color:var(--muted); letter-spacing:1px; text-transform:uppercase; }
+#film { display:flex; gap:9px; overflow-x:auto; overflow-y:hidden; height:99px; padding:3px 12px 8px;
+  scroll-behavior:auto; scrollbar-width:thin; scrollbar-color:#aa9781 #e6d9c6; }
+.tile { flex:0 0 auto; display:flex; gap:5px; align-items:center; padding:4px 6px;
+  border:1px solid #c5b59c; border-radius:5px; background:#fdf7eb; box-shadow:0 2px 3px #48391c1a; }
+.tile.selected { border:2px solid var(--brand); padding:3px 5px; background:#fffaf2; }
+.tile.dragging { opacity:.5; }
+.thumb { position:relative; display:block; padding:0; border:1px solid #d9ccba; background:#fffdfa;
+  width:76px; height:63px; flex-shrink:0; touch-action:none; }
+.thumb canvas { display:block; width:74px; height:55px; }
+.page-num { position:absolute; left:3px; top:2px; font-size:10px; line-height:13px; background:#fff9;
+  color:#6b6258; padding:0 2px; }
+.hold-col { width:calc(var(--cells,6) * 15px); display:flex; flex-direction:column; gap:3px; align-items:flex-start; }
+.hold-caption { font-size:11px; color:var(--muted); }
+.hold { position:relative; border:0; width:calc(var(--cells,6) * 15px); height:44px; border-radius:3px; padding:0;
+  background:repeating-linear-gradient(90deg,#e0d5c3 0 13px,#f8f0e2 13px 15px); touch-action:none; }
+.hold-fill { position:absolute; left:0; top:10px; bottom:10px; width:calc(var(--hold) * 15px);
+  border-radius:2px; background:repeating-linear-gradient(90deg,#c8341a 0 13px,#a72b16 13px 15px); }
+.handle { position:absolute; left:calc(var(--hold) * 15px - 5px); top:5px; width:10px; bottom:5px;
+  background:linear-gradient(90deg,#8d2b1b,#ed765e,#a22c16); border:1px solid #8d2b1b; border-radius:2px;
+  box-shadow:0 1px 2px #0003; }
+.handle::after { content:'⋮'; color:#fff; position:absolute; top:4px; left:1px; font-size:18px; }
+body[data-mode=time] #film { height:clamp(135px,25vh,228px); align-items:stretch; }
+body[data-mode=time] .tile { flex-direction:column; justify-content:center; }
+body[data-mode=time] .thumb { width:100px; height:77px; }
+body[data-mode=time] .thumb canvas { width:98px; height:73px; }
+body[data-mode=time] .hold-col { gap:0; }
+body[data-mode=flip] .page-caption { opacity:.7; }
+body[data-mode=flip] #film { height:55px; gap:5px; }
+body[data-mode=flip] .tile { padding:3px; border-radius:3px; }
+body[data-mode=flip] .tile.selected { padding:2px; }
+body[data-mode=flip] .thumb { width:44px; height:44px; background:transparent; }
+body[data-mode=flip] .thumb canvas,body[data-mode=flip] .hold-col { display:none; }
+body[data-mode=flip] .page-num { inset:0; display:grid; place-items:center; font-size:12px; background:none; }
+.tile.playing .thumb::after { content:''; position:absolute; bottom:2px; left:8px; right:8px; height:3px;
+  background:var(--brand); }
+#chart-static { position:absolute; bottom:8px; left:5%; right:5%; margin:0; padding:5px 7px;
+  background:#fbf6eaed; color:var(--muted); font-size:clamp(10px,1vw,14px); line-height:1.35; pointer-events:none; }
+.foot { display:flex; align-items:center; gap:12px; padding:7px 16px; background:#292e37; color:var(--paper);
+  min-height:48px; border-top:1px solid #555860; }
+#hint { flex:1; font-size:13px; line-height:1.35; min-height:34px; margin:0; display:flex; align-items:center; }
+.privacy { font-size:10px; color:#d3c9b9; max-width:142px; line-height:1.4; }
+#save-status { color:#f5d6a3; }
+dialog { background:#fbf6ea; color:var(--ink); border:1px solid #bdac95; border-radius:9px; width:min(92vw,550px);
+  max-height:90dvh; padding:23px; box-shadow:0 20px 90px #0008; }
+dialog::backdrop { background:#171c24a6; }
+dialog h2 { font:700 28px Georgia,serif; margin:0 0 6px; }
+dialog p { font-size:14px; line-height:1.5; }
+.dialog-head { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.starter-list { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:18px; }
+.starter { min-height:150px; text-align:left; background:linear-gradient(#fffdf6,#f0e4cf); padding:12px;
+  border:1px solid #d0bfa5; border-radius:5px; }
+.starter svg { width:100%; height:65px; }
+.starter strong { display:block; font:700 18px Georgia,serif; margin:7px 0; }
+.starter small { color:var(--muted); font-size:12px; }
+.why-note { border-left:3px solid var(--brand); padding-left:12px; margin:18px 0; }
+.try-card { border:1px solid var(--line); padding:11px; border-radius:5px; margin:9px 0; font-size:14px; }
+.hold-number { min-width:50px; text-align:center; font:700 16px Georgia,serif; }
+#quick-undo { display:none; }
+.mobile-tools { gap:6px; }
+@media (min-width:1500px) {
+  #hint,#readout { font-size:clamp(14px,.84vw,18px); }
+}
+#print-area { display:none; }
+@media (max-height:850px) {
+  header { padding:7px 12px; }
+  .panel { padding:12px; gap:9px; }
+  .book-name { font-size:20px; }
+  .control-group { gap:6px; }
+  #film { height:91px; }
+}
+@media (max-height:650px) and (min-width:601px) {
+  main { grid-template-columns:minmax(0,1fr) 230px; }
+  header { padding:4px 10px; gap:6px; }
+  h1 { font-size:20px; } h1 small { display:none; }
+  .seg button { padding:0 12px; }
+  .icon-btn { padding:0 8px; }
+  .panel { padding:8px; gap:6px; }
+  .panel-top,.panel .eyebrow,.onion-key,.status-tag { display:none; }
+  .control-group { gap:4px; }
+  .control-group > .secondary { display:none; }
+  .mobile-tools { display:flex!important; }
+  #quick-undo { display:block; }
+  .divider { padding-top:5px; }
+  .row label { font-size:10px; gap:0; }
+  .btn,select { font-size:12px; padding:0 5px; }
+  .transport { margin-top:0; }
+  .foot { min-height:43px; padding:4px 10px; }
+  #hint { font-size:12px; min-height:32px; }
+  #film { height:83px; }
+  .strip-top { height:25px; }
+  body[data-mode=time] #film { height:127px; }
+  body[data-mode=time] .thumb { width:76px; height:58px; }
+  body[data-mode=time] .thumb canvas { width:74px; height:55px; }
+  .strip-label { display:none; }
+  .page-caption { top:7px; left:8px; font-size:10px; padding:4px 6px; }
+  #mobile-content { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  #mobile-content .row { margin-top:0!important; }
+  #mobile-content .divider { grid-column:1/-1; }
+  dialog { padding:16px; }
+  dialog h2 { font-size:24px; }
+  .starter-list { margin-top:10px; gap:8px; }
+  .starter { min-height:100px; padding:8px; }
+  .starter svg { height:40px; }
+  .starter strong { font-size:16px; margin:4px 0; }
+  .starter small { font-size:11px; }
+}
+@media (min-height:651px) and (max-height:760px) and (min-width:601px) {
+  .panel-top,.status-tag { display:none; }
+  .panel { padding:10px; gap:7px; }
+}
+dialog .desktop-tool { display:flex!important; }
+dialog .row { margin-top:9px; }
+@media (max-width:1050px) {
+  h1 small { max-width:260px; }
+  .privacy { display:block; font-size:10px; max-width:130px; line-height:1.2; }
+  .footer-brand { display:none; }
+  .privacy br { display:none; }
+  #save-status { font-size:10px; }
+}
+/* Paper and hold changes answer the hand without changing the book's clock. */
+body:not(.calm) .hold-fill { transition:width .12s ease-out; }
+body:not(.calm) .handle { transition:left .12s ease-out; }
+#page.paper-settle { animation:paper-settle .2s ease-out; }
+@keyframes paper-settle {
+  from { transform:translateY(-4px); }
+  to { transform:translateY(0); }
+}
+.calm #page.paper-settle { animation:none; }
+.chart-note { font-size:12px; line-height:1.4; color:var(--muted); margin:0; }
+.foot { flex-wrap:wrap; }
+#save-warning { flex:1 0 100%; margin:0; font-size:12px; line-height:1.4; color:#ffe2a6; }
+@media (max-width:800px) {
+  h1 small { display:none; } h1 { font-size:23px; }
+  .icon-btn { padding:0 7px; font-size:12px; }
+  .seg button { padding:0 12px; }
+}
+@media (max-width:600px) {
+  header { flex-wrap:wrap; padding:7px 9px; gap:6px; }
+  h1 { width:100%; font-size:25px; margin-bottom:3px; }
+  .seg { flex:1; display:flex; }
+  .seg button { flex:1; padding:0 10px; }
+  .icon-btn { padding:0 7px; font-size:11px; }
+  #sound { width:72px; flex-basis:72px; }
+  main { display:flex; flex-direction:column; }
+  .panel { order:1; flex:0 0 auto; overflow:visible; padding:6px; border:0; display:block; }
+  .workbench { order:0; flex:1; min-height:0; display:contents; }
+  .stage { flex:1; order:0; }
+  .timeline { order:2; }
+  .panel-top,.panel .eyebrow,.onion-key,.status-tag,.drawer-secondary,.panel .divider { display:none; }
+  .control-group { flex-direction:row; gap:5px; }
+  .control-group > .row { flex:1; }
+  .control-group > .row.secondary { display:none; }
+  .panel .chart-note { display:none; }
+  .btn { padding:0 7px; font-size:12px; }
+  .transport { margin:0; }
+  .mobile-tools { display:flex!important; gap:5px; }
+  #quick-undo { display:block; }
+  .desktop-tool { display:none!important; }
+  .transport .loop-row { display:none; }
+  .transport #play { min-width:70px; }
+  .mobile-bar { display:flex; gap:5px; align-items:center; }
+  .mobile-bar > .control-group { flex:1; }
+  .mobile-bar > .transport { flex:0 0 72px; }
+  #film { height:86px; padding-left:7px; }
+  #readout { font-size:11px; }
+  .strip-label { display:none; }
+  body[data-mode=time] #film { height:143px; }
+  .foot { padding:6px 10px; min-height:52px; flex-direction:column; flex-wrap:nowrap; align-items:stretch; gap:2px; }
+  #save-warning { flex:none; width:100%; }
+  #hint { flex:none; font-size:12px; min-height:32px; }
+  .privacy { max-width:none; text-align:right; }
+  .page-caption { top:8px; left:8px; font-size:10px; }
+  #empty span { font-size:10px; }
+  .pencil-mark { width:30px; height:30px; }
+}
+@media print {
+  @page { size:letter portrait; margin:10mm; }
+  html,body { height:auto; display:block; background:white; color:#000; overflow:visible; }
+  header,main,.foot,dialog { display:none!important; }
+  #print-area { display:block; }
+  .print-sheet { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:repeat(4,58mm);
+    break-after:page; gap:0; }
+  .print-sheet:last-child { break-after:auto; }
+  .print-card { position:relative; border:1px dashed #777; padding:4mm 3mm 4mm 12mm; break-inside:avoid; }
+  .print-card::before { content:'STAPLE'; position:absolute; top:4mm; bottom:4mm; left:3mm; width:6mm;
+    border-right:1px dotted black; font:8px sans-serif; writing-mode:vertical-rl; padding-top:4mm; }
+  .print-card svg { width:100%; height:100%; }
+  .print-number { position:absolute; bottom:1mm; right:3mm; font:10px sans-serif; }
+}
+</style>
+</head>
+<body data-mode="draw">
+<header>
+  <h1>Flipbook Studio<small>Frames, timing and spacing in animation</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-draw" aria-pressed="true">Draw</button>
+    <button id="m-time" aria-pressed="false">Time</button>
+    <button id="m-flip" aria-pressed="false">Flip</button>
+  </div>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+</header>
+<main>
+  <aside class="panel" aria-label="Animation controls">
+    <div class="panel-top">
+    <div>
+    <span class="eyebrow">The animator's desk</span>
+    <p class="book-name" id="book-name">Your flipbook</p>
+    </div>
+    <i class="peg">
+    </i>
+    </div>
+    <div class="mobile-bar">
+      <div class="control-group" id="draw-controls">
+        <div class="eyebrow">Make a mark</div>
+        <div class="row desktop-tool">
+          <button class="btn" id="pencil" aria-pressed="true">✎ Pencil</button>
+          <button class="btn" id="eraser" aria-pressed="false">▱ Eraser</button>
+        </div>
+        <div class="row secondary">
+          <label>Stroke size<select id="size">
+          <option value="3">Fine</option>
+          <option value="6" selected>Medium</option>
+          <option value="12">Bold</option>
+          </select>
+          </label>
+          <label>Pencil color<select id="color">
+          <option value="#2b2622">Graphite</option>
+          <option value="#3b3da8">Blue pencil</option>
+          <option value="#c8341a">Red</option>
+          <option value="#17191e">Ink</option>
+          </select>
+          </label>
+        </div>
+        <div class="row secondary">
+          <button class="btn" id="onion" aria-pressed="true">Onion skin</button>
+          <label>Onion steps<select id="onion-steps"><option value="1">Onion: 1</option><option value="2">Onion: 2</option></select></label>
+        </div>
+        <div class="onion-key"><span class="before">← Before: solid</span><span class="after">After: dashed →</span></div>
+        <div class="row">
+        <button class="btn" id="new-page" title="Insert a blank page after this drawing">+ New page</button>
+        <button class="btn" id="copy-page">Copy page</button>
+        </div>
+        <div class="row secondary"><button class="btn" id="undo">↶ Undo</button><button class="btn" id="redo">↷ Redo</button></div>
+        <div class="row secondary"><button class="btn danger" id="delete-page">Delete page</button><button class="btn" id="clear-page">Clear page</button></div>
+        <div class="mobile-tools" hidden><button class="btn" id="tools-open" aria-label="Pencil, eraser and page tools">✎ Tools</button>
+          <button class="btn" id="quick-undo">↶ Undo</button></div>
+      </div>
+      <div class="control-group" id="time-controls" hidden>
+        <div class="eyebrow">Frames per second</div>
+        <div class="row desktop-tool" id="fps-buttons">
+          <button class="btn" data-fps="6">6</button><button class="btn" data-fps="8">8</button>
+          <button class="btn" data-fps="12" aria-pressed="true">12</button><button class="btn" data-fps="24">24</button>
+        </div>
+        <div class="row"><button class="btn fixed" id="hold-minus" aria-label="Hold one frame less">−</button>
+          <output class="hold-number" id="hold-number">×1</output><button class="btn fixed" id="hold-plus" aria-label="Hold one frame more">+</button></div>
+        <div class="eyebrow divider">Timing presets</div>
+        <div class="row secondary"><button class="btn" id="ones">On ones</button><button class="btn" id="twos">On twos</button></div>
+        <div class="row secondary"><button class="btn" id="ease">Ease the ends</button><button class="btn" id="key-hold">Hold the key</button></div>
+        <div class="row secondary">
+        <button class="btn" id="chart" aria-pressed="true">Spacing chart</button>
+        <button class="btn" id="why">Why / Try this</button>
+        </div>
+        <p class="chart-note secondary">Dots show positions, not time. Compare gaps with equal holds.</p>
+        <div class="mobile-tools" hidden><button class="btn" id="timing-open">Timing</button></div>
+      </div>
+      <div class="control-group" id="flip-controls" hidden>
+        <div class="eyebrow">Watch your drawings come alive</div>
+        <div class="row"><button class="btn" id="back">← Back</button><button class="btn" id="step">Step →</button></div>
+        <div class="row secondary"><button class="btn" id="ping" aria-pressed="false">Ping-pong</button></div>
+        <div class="row secondary"><button class="btn" id="print">Print pages</button></div>
+        <p class="status-tag">Hold a drawing longer in Time. The drawing stays exactly the same.</p>
+        <div class="mobile-tools" hidden><button class="btn" id="flip-open">Options</button></div>
+      </div>
+      <div class="transport">
+        <button class="btn primary" id="play">▶ Play</button>
+        <div class="loop-row"><button class="btn" id="loop" aria-pressed="true">↻ Loop</button></div>
+      </div>
+    </div>
+    <div class="row divider drawer-secondary"><button class="btn" id="starters">Starters</button><button class="btn quiet" id="new-book">New book</button></div>
+    <p class="status-tag">Saved on this device. Your drawings never leave it.</p>
+  </aside>
+  <div class="workbench">
+    <div class="stage" id="stage">
+      <div class="table-art" aria-hidden="true"></div><div class="glass-light" aria-hidden="true"></div>
+      <div id="page" data-audit-keep>
+        <canvas id="paper" aria-label="Drawing page. Draw with a mouse or touch. Arrow keys Left and Right step pages."></canvas>
+        <p id="chart-static" hidden>These drawings do not travel: the change is in shape, so timing does all the work.</p>
+        <div id="empty">
+        <svg class="pencil-mark" viewBox="0 0 60 60" aria-hidden="true">
+        <path d="M12 45 42 8 51 16 20 51 10 53Z" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="m36 15 9 8M12 45l8 6M13 53q12 5 23-2" fill="none" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <strong>A little mark. A little motion.</strong>
+        <span>Draw here, or open a starter book.</span>
+        </div>
+        <div id="curl" aria-hidden="true"></div>
+      </div>
+      <div class="page-caption"><i class="lamp"></i><span id="page-caption">DRAWING 01 / 01</span>
+        <span class="chart-key">Positions only. Compare equal holds.</span></div>
+    </div>
+    <section class="timeline" aria-label="Frame strip">
+      <div class="strip-top"><output id="readout"></output><span class="strip-label" id="strip-label">Drawings → holds</span></div>
+      <div id="film" aria-label="Drawings and hold handles"></div>
+    </section>
+  </div>
+</main>
+<footer class="foot">
+  <p id="hint"></p>
+  <div class="privacy"><span class="footer-brand">Curio Class</span><br>
+    <span id="save-status">Saved here. Never leaves this device.</span>
+  </div>
+  <p id="save-warning" role="status" hidden></p>
+</footer>
+<dialog id="library" aria-labelledby="library-title">
+  <div class="dialog-head"><h2 id="library-title">A small stack of possibilities.</h2><button class="btn" data-close>Close</button></div>
+  <p>Keep the drawings. Change the timing. See what changes.</p>
+  <div class="starter-list">
+    <button class="starter" data-starter="real">
+    <svg viewBox="0 0 180 65" aria-hidden="true">
+    <path d="M7 57H174M15 9Q67 9 85 52T164 9" fill="none" stroke="#b9a994" stroke-dasharray="3 4"/>
+    <circle cx="15" cy="9" r="7" fill="none" stroke="#2b2622" stroke-width="2"/>
+    <ellipse cx="85" cy="53" rx="11" ry="6" fill="#c8341a"/>
+    <circle cx="164" cy="9" r="7" fill="none" stroke="#2b2622" stroke-width="2"/>
+    </svg>
+    <strong>Real bounce</strong>
+    <small>12 drawings · bunch, rush, squash</small>
+    </button>
+    <button class="starter" data-starter="even">
+    <svg viewBox="0 0 180 65" aria-hidden="true">
+    <path d="M7 57H174M15 9 85 49 164 9" fill="none" stroke="#b9a994" stroke-dasharray="3 4"/>
+    <g fill="none" stroke="#2b2622" stroke-width="2">
+    <circle cx="15" cy="9" r="7"/>
+    <circle cx="50" cy="29" r="7"/>
+    <circle cx="85" cy="49" r="7"/>
+    <circle cx="124" cy="29" r="7"/>
+    <circle cx="164" cy="9" r="7"/>
+    </g>
+    </svg>
+    <strong>Even bounce</strong>
+    <small>12 drawings · a mechanical rhythm</small>
+    </button>
+    <button class="starter" data-starter="blink">
+    <svg viewBox="0 0 180 65" aria-hidden="true">
+    <g fill="none" stroke="#2b2622" stroke-width="2">
+    <ellipse cx="90" cy="33" rx="30" ry="29"/>
+    <ellipse cx="79" cy="28" rx="3" ry="6"/>
+    <ellipse cx="101" cy="28" rx="3" ry="6"/>
+    <path d="M80 44q10 5 20 0"/>
+    </g>
+    </svg>
+    <strong>Blink</strong>
+    <small>4 drawings · calm or startled?</small>
+    </button>
+    <button class="starter" data-starter="blank">
+    <svg viewBox="0 0 180 65" aria-hidden="true">
+    <path d="M59 4h62v53H59z" fill="#fffaf0" stroke="#c5b59d"/>
+    <path d="m111 47 10-1-1 11" fill="#e6d9c3"/>
+    </svg>
+    <strong>Blank book</strong>
+    <small>One page · your next idea</small>
+    </button>
+  </div>
+</dialog>
+<dialog id="confirm" aria-labelledby="confirm-title">
+<h2 id="confirm-title">Replace this book?</h2>
+<p id="confirm-text">
+</p>
+<div class="row">
+<button class="btn" id="cancel">Keep it</button>
+<button class="btn primary" id="confirm-yes">Continue</button>
+</div>
+</dialog>
+<dialog id="why-dialog" aria-labelledby="why-title">
+  <div class="dialog-head"><h2 id="why-title">Timing gives it character.</h2><button class="btn" data-close>Close</button></div>
+  <p class="why-note">Film commonly runs at 24 frames per second. At that rate, animating on twos holds each drawing for 2 frames:
+    12 drawings make a second. At 12 per second, this book on ones already looks like film on twos.
+    To see film's twos, tap 24, then On twos.</p>
+  <p class="why-note">Shooting on ones (a new drawing every frame) looks smoother and is used for fast action; twos are half the drawings and still
+    look smooth for most motion.</p>
+  <p class="why-note">Slow in and slow out: real things speed up and slow down gradually, so animators bunch drawings near the ends of a move and
+    spread them in the middle. Compare spacing with equal holds; a longer hold adds time without moving a dot.</p>
+  <p class="why-note">Timing (how many frames) and spacing (how far apart the drawings are) are what make a thing feel heavy or light. The same
+    drawings can feel very different.</p>
+  <p class="why-note">Key drawings mark where a move starts, turns and ends. Plan these first, then draw the steps between them.</p>
+  <h3>Try this</h3>
+  <p class="try-card">Make the Real bounce feel like a bowling ball: tap On twos, then give the top drawings 1 frame and the floor drawings 4.</p>
+  <p class="try-card">Make the Even bounce feel alive without redrawing: use only the hold handles.</p>
+  <p class="try-card">Make the Blink look surprised.</p>
+  <p class="try-card">Draw a 6-page walk of a dot across the page with even spacing, then fix its spacing so it starts slow and stops slow.</p>
+  <p class="try-card">Plan a jump: draw the start, the top and the landing first (your keys), then add the drawings in between with onion skin,
+    closer together near the top.</p>
+</dialog>
+<dialog id="mobile-dialog" aria-label="More animation tools">
+<div class="dialog-head">
+<h2 id="mobile-title">Tools</h2>
+<button class="btn" data-close>Close</button>
+</div>
+<div id="mobile-content">
+</div>
+</dialog>
+<div id="print-area" aria-hidden="true"></div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const copy = data => JSON.parse(JSON.stringify(data));
+  const KEY = 'flipbook-studio-book';
+  const W = 960;
+  const H = 720;
+  let uid = 0;
+  const makePage = (strokes = [], hold = 1) => ({id:++uid, strokes, hold, undo:[], redo:[]});
+  const state = {
+    mode:'draw', pages:[makePage()], index:0, selected:0, fps:12, tool:'pencil', size:6, color:'#2b2622',
+    onion:true, onionSteps:1, chart:true, loop:true, ping:false, playing:false, frame:0, direction:1,
+    revision:0, title:'Your flipbook', storageFailed:false, drawTouched:false, timeTouched:false, flipTouched:false, printing:false
+  };
+  const L = {
+    welcomeDraw:'Draw on the page. Then tap New page or Copy page and change it a little.',
+    onionHow:'The blue ghost is the page before. Draw the next step a little further on.',
+    eraserHow:'Drag Eraser over a stroke to remove the whole stroke.',
+    welcomeTime:'Drag a hold handle under a drawing to keep it on screen longer. Then press Play.',
+    spacingHow:'With equal holds, close dots mean slow. Far apart means fast.',
+    welcomeFlip:'Press Play to flip the book. Then try Ping-pong.',
+    welcomeFlipCompact:'Press Play to flip the book. Open Options to try Ping-pong.',
+    starterBounce:'Here is a bouncing ball. Press Play, then load the other bounce from Starters and compare.',
+    starterBlink:'Here is a blink. Tap Time, then drag the hold handles and press Play.',
+    holdChanged:'Same drawings, new timing. Watch how it feels now.',
+    printed:'Print the pages, cut on the lines and staple the left edge.',
+    tooBig:'This book is too big to save here. It still works until you close the page.'
+  };
+  const eventLines = new Set(['starterBounce','starterBlink','holdChanged','printed','tooBig']);
+  const welcomeKey = () => state.mode==='flip' && $('flip-open').getClientRects().length
+    ? 'welcomeFlipCompact' : 'welcome' + state.mode[0].toUpperCase() + state.mode.slice(1);
+  const welcomeValid = mode => !state.playing && !document.querySelector('dialog[open]') && !state[mode + 'Touched'] &&
+    (mode==='draw' ? state.pages.length<48 && state.tool==='pencil' : state.pages.some(p => p.strokes.length));
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode, hint:false,
+    speaks:'#play, #starters, #new-book, #why, #tools-open, #timing-open, #flip-open, '+
+      '#new-page, #copy-page, #delete-page, #clear-page, #print',
+    read:() => (state.storageFailed ? L.tooBig+' ' : '')+$('hint').textContent,
+    welcome:() => [welcomeKey(), {valid:() => welcomeValid(state.mode)}]
+  });
+  const hint = text => { $('hint').textContent = text; };
+  const page = () => state.pages[state.index];
+  const selectedPage = () => state.pages[state.selected];
+  const total = () => state.pages.reduce((sum,p) => sum + p.hold,0);
+  const tick = () => Curio.tone(740,.018,.025,'triangle');
+  const feedback = () => Curio.tone(380,.025,.025,'sine');
+  const updateHint = () => {
+    if (state.playing) {
+      hint(state.mode==='draw' ? 'Tap Stop to draw.' : state.mode==='time' ?
+        'Drag a hold handle or tap a preset to change the feel. Tap Stop to pause.' :
+        'Drag a hold handle or tap Time to change the feel. Tap Stop to pause.');
+    }
+    else if (state.mode === 'draw') {
+      if (state.tool==='eraser') { hint(L.eraserHow); return; }
+      if (state.pages.length>=48) {
+        hint('Draw or erase on this page. Tap Flip, then Play to watch all 48 drawings.');
+        return;
+      }
+      const ghost = state.onion && state.index>0 && state.pages[state.index-1].strokes.length;
+      hint(ghost ? 'Draw the next step over the blue ghost. Tap Copy page, or tap Flip and Play.' : L.welcomeDraw);
+    }
+    else if (!state.pages.some(p => p.strokes.length)) {
+      hint('Draw on the page in Draw, or tap Starters for a ready-made book.');
+    }
+    else if (state.mode === 'time') hint(L.welcomeTime);
+    else {
+      const options = $('flip-open').getClientRects().length>0;
+      hint(options ? L.welcomeFlipCompact : L.welcomeFlip);
+    }
+  };
+
+  let saveTimer = null;
+  function save() {
+    clearTimeout(saveTimer);
+    saveTimer = null;
+    try {
+      const book = {pages:state.pages.map(p => ({strokes:p.strokes,hold:p.hold})), fps:state.fps, title:state.title};
+      localStorage.setItem(KEY, JSON.stringify(book));
+      const recovered=state.storageFailed;
+      state.storageFailed = false;
+      $('save-warning').hidden = true;
+      $('save-status').textContent = 'Saved here. Never leaves this device.';
+      if (recovered) {
+        if (V.playing===L.tooBig) V.hush();
+        updateHint();
+      }
+    } catch {
+      const firstFailure = !state.storageFailed;
+      state.storageFailed = true;
+      $('save-warning').textContent = L.tooBig;
+      $('save-warning').hidden = false;
+      $('save-status').textContent = 'Book cannot save here';
+      hint(L.tooBig);
+      if (firstFailure) V.say('tooBig', {valid:() => state.storageFailed && !state.playing});
+    }
+  }
+  function scheduleSave() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      if (stripHolding) scheduleSave();
+      else save();
+    },180);
+  }
+  window.addEventListener('pagehide',() => { if (saveTimer!==null) save(); });
+  function loadSaved() {
+    try {
+      const book = JSON.parse(localStorage.getItem(KEY));
+      if (!book || !Array.isArray(book.pages) || !book.pages.length || book.pages.length > 48) return;
+      const colors = ['#2b2622','#2f6fd6','#3b3da8','#c8341a','#17191e'];
+      const valid = book.pages.every(p => [1,2,3,4,5,6,8].includes(p.hold) &&
+        Array.isArray(p.strokes) && p.strokes.length <= 400 && p.strokes.every(s =>
+          colors.includes(s.color) && [3,6,12].includes(s.width) && Array.isArray(s.points) && s.points.length &&
+          s.points.every(pt => Array.isArray(pt) && pt.length === 2 && pt.every(Number.isFinite) &&
+            pt[0] >= 0 && pt[0] <= W && pt[1] >= 0 && pt[1] <= H)));
+      if (!valid || ![6,8,12,24].includes(book.fps)) return;
+      state.pages = book.pages.map(p => makePage(p.strokes.map(s => ({...s,
+        points:s.points.map(pt => pt.map(n => Math.round(n*10)/10))})),p.hold));
+      state.fps = book.fps;
+      state.title = typeof book.title === 'string' ? book.title.slice(0,40) : 'Your flipbook';
+    } catch { /* A malformed or unavailable saved book leaves a usable blank page. */ }
+  }
+  function remember() {
+    const p = page();
+    p.undo.push(copy(p.strokes));
+    if (p.undo.length > 50) p.undo.shift();
+    p.redo = [];
+  }
+  function changed(structure = false, artwork = true, deferSave = false) {
+    state.revision++;
+    if (structure) buildStrip();
+    else if (artwork) paintThumb(page());
+    render(false);
+    if (deferSave) scheduleSave();
+    else save();
+  }
+
+  const canvas = $('paper');
+  const ctx = canvas.getContext('2d');
+  let chartLabelCache = {key:'',labels:[]};
+  let pen = null;
+  let drawingPointer = null;
+  const hitContext = document.createElement('canvas').getContext('2d');
+  let modeReady = false;
+  let stripHolding = false;
+  let erasing = false;
+  let erased = false;
+  let pendingConfirm = null;
+  const dialogReturn = new WeakMap();
+  let nextAt = 0;
+  let lastShownAt = 0;
+  let playedFrames = 0;
+  let raf = null;
+  const transitions = [];
+
+  function svgPath(points) {
+    let path = `M ${points[0][0]},${points[0][1]}`;
+    if (points.length === 1) {
+      return path+` L ${points[0][0]+.1},${points[0][1]+.1}`;
+    }
+    for (let i=1;i<points.length-1;i++) {
+      path += ` Q ${points[i][0]},${points[i][1]} ${(points[i][0]+points[i+1][0])/2},${(points[i][1]+points[i+1][1])/2}`;
+    }
+    const last = points[points.length-1];
+    return path+` L ${last[0]},${last[1]}`;
+  }
+  const paths = new WeakMap();
+  function pathFor(points) {
+    const cached = paths.get(points);
+    if (cached?.length===points.length) return cached.path;
+    const path = new Path2D(svgPath(points));
+    paths.set(points,{length:points.length,path});
+    return path;
+  }
+  function strokesOn(context,strokes,color = null,alpha = 1,dash = []) {
+    context.save();
+    context.globalAlpha = alpha;
+    context.lineCap = 'round';
+    context.lineJoin = 'round';
+    context.setLineDash(dash);
+    for (const stroke of strokes) {
+      context.lineWidth = stroke.width;
+      context.strokeStyle = color || stroke.color;
+      context.stroke(pathFor(stroke.points));
+    }
+    context.restore();
+  }
+  const centers = new WeakMap();
+  function center(p) {
+    if (!p.strokes.length) return null;
+    const cached = centers.get(p);
+    if (cached?.strokes===p.strokes && cached.count===p.strokes.length) return cached.center;
+    let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+    for (const s of p.strokes) for (const [x,y] of s.points) {
+      x0 = Math.min(x0,x-s.width/2);
+      x1 = Math.max(x1,x+s.width/2);
+      y0 = Math.min(y0,y-s.width/2);
+      y1 = Math.max(y1,y+s.width/2);
+    }
+    const point = [(x0+x1)/2,(y0+y1)/2];
+    centers.set(p,{strokes:p.strokes,count:p.strokes.length,center:point});
+    return point;
+  }
+  const stationary = () => {
+    const points = state.pages.map(center).filter(Boolean);
+    return points.length>1 && points.every(c => Math.hypot(c[0]-points[0][0],c[1]-points[0][1])<.1);
+  };
+  function drawChart() {
+    ctx.save();
+    let previous = null;
+    ctx.strokeStyle = '#c8341a';
+    ctx.fillStyle = '#c8341a';
+    ctx.lineWidth = 3;
+    if (stationary()) {
+      const c = state.pages.map(center).find(Boolean);
+      ctx.beginPath();
+      ctx.arc(...c,8,0,Math.PI*2);
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = '#fbf6ea';
+      ctx.stroke();
+      ctx.fill();
+      chartLabelCache = {key:'stationary',labels:[]};
+      ctx.restore();
+      return;
+    }
+    const positions = [];
+    // Draw the path first, so later segments cannot cross over a number label.
+    state.pages.forEach((p,i) => {
+      const c = center(p);
+      if (!c) { previous = null; return; }
+      if (previous) {
+        ctx.beginPath();
+        ctx.moveTo(...previous);
+        ctx.lineTo(...c);
+        ctx.stroke();
+      }
+      ctx.beginPath();
+      ctx.arc(c[0],c[1],i === state.index ? 9 : 6,0,Math.PI*2);
+      ctx.strokeStyle = '#fbf6ea';
+      ctx.lineWidth = 4;
+      ctx.stroke();
+      ctx.fill();
+      ctx.strokeStyle = '#c8341a';
+      ctx.lineWidth = 3;
+      positions.push({center:c,number:String(i+1)});
+      previous = c;
+    });
+    const font = Math.max(25,10*W/$('page').clientWidth);
+    ctx.font = `bold ${font}px sans-serif`;
+    const cacheKey = canvas.width+':'+state.revision;
+    const labels = cacheKey===chartLabelCache.key ? chartLabelCache.labels : [];
+    if (cacheKey!==chartLabelCache.key) for (const dot of positions) {
+      const [x,y] = dot.center;
+      const width = ctx.measureText(dot.number).width;
+      let placed = null;
+      // Expanding grid rings keep coincident and crossing dots individually numbered.
+      for (let ring=0;ring<24 && !placed;ring++) {
+        const candidates = [];
+        for (let dy=-ring;dy<=ring;dy++) for (let dx=-ring;dx<=ring;dx++) {
+          if (Math.max(Math.abs(dx),Math.abs(dy))!==ring) continue;
+          candidates.push([x+12+dx*font*1.6,y-13+dy*font*1.5]);
+        }
+        candidates.sort((a,b) => Math.hypot(a[0]-x,a[1]-y)-Math.hypot(b[0]-x,b[1]-y));
+        for (const [tx,ty] of candidates) {
+          const box = {x:tx,y:ty-font,w:width,h:font*1.15};
+          if (box.x<8 || box.y<8 || box.x+box.w>W-8 || box.y+box.h>H-8) continue;
+          const collision = labels.some(l => box.x<l.x+l.w+7 && box.x+box.w+7>l.x &&
+            box.y<l.y+l.h+7 && box.y+box.h+7>l.y);
+          if (!collision) { placed={...box,tx,ty,dot}; break; }
+        }
+      }
+      if (placed) labels.push(placed);
+    }
+    chartLabelCache = {key:cacheKey,labels};
+    ctx.lineWidth = 1.4;
+    ctx.strokeStyle = '#6b6258';
+    ctx.globalAlpha = .45;
+    for (const label of labels) {
+      const c = label.dot.center;
+      if (Math.hypot(label.tx-c[0],label.ty-c[1])<font*2) continue;
+      ctx.beginPath();
+      ctx.moveTo(...c);
+      ctx.lineTo(label.tx+label.w/2,label.ty-font*.4);
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+    ctx.lineWidth = Math.max(7,font*.22);
+    ctx.strokeStyle = '#fbf6ea';
+    for (const label of labels) {
+      ctx.strokeText(label.dot.number,label.tx,label.ty);
+      ctx.fillText(label.dot.number,label.tx,label.ty);
+    }
+    ctx.restore();
+  }
+  function drawPage() {
+    ctx.setTransform(canvas.width/W,0,0,canvas.height/H,0,0);
+    ctx.clearRect(0,0,W,H);
+    if (state.mode === 'draw' && state.onion && !state.playing) {
+      for (let step=state.onionSteps;step>=1;step--) {
+        if (state.index-step >= 0) strokesOn(ctx,state.pages[state.index-step].strokes,'#2f6fd6',step===1?.35:.18);
+        if (state.index+step < state.pages.length) {
+          strokesOn(ctx,state.pages[state.index+step].strokes,'#2e9e5b',step===1?.35:.18,[12,10]);
+        }
+      }
+    }
+    strokesOn(ctx,page().strokes);
+    if (pen) strokesOn(ctx,[pen]);
+    if (state.mode === 'time' && state.chart) drawChart();
+    $('chart-static').hidden = !(state.mode==='time' && state.chart && stationary());
+    $('empty').hidden = !!page().strokes.length || state.playing || state.mode !== 'draw' || state.pages.length > 1 || !!pen;
+    $('page').classList.toggle('erasing',state.tool==='eraser');
+  }
+  function layout() {
+    const r = $('stage').getBoundingClientRect();
+    // The measured painting's clear glass is x=13.3%-86.8%, y=10.6%-87.6%.
+    const scale = Math.max(r.width/1600,r.height/1001);
+    const iw = 1600*scale, ih = 1001*scale;
+    const ix = (r.width-iw)/2, iy = (r.height-ih)/2;
+    const left = Math.max(12,ix+iw*.151);
+    const right = Math.min(r.width-12,ix+iw*.85);
+    const top = Math.max(20,iy+ih*.127);
+    const bottom = Math.min(r.height-16,iy+ih*.853);
+    const pw = Math.max(24,Math.min(right-left,(bottom-top)*4/3));
+    const ph = pw*3/4;
+    Object.assign($('page').style,{width:pw+'px',height:ph+'px',left:(left+right-pw)/2+'px',top:(top+bottom-ph)/2+'px'});
+    const dpr = Math.min(2,devicePixelRatio || 1);
+    canvas.width = Math.round(pw*dpr);
+    canvas.height = Math.round(ph*dpr);
+    drawPage();
+    ensureSelected();
+  }
+  function paintThumb(p) {
+    const thumb = $('thumb-'+p.id);
+    if (!thumb) return;
+    const c = thumb.getContext('2d');
+    c.setTransform(thumb.width/W,0,0,thumb.height/H,0,0);
+    c.clearRect(0,0,W,H);
+    strokesOn(c,p.strokes);
+  }
+  function ensureSelected() {
+    if (stripHolding) return;
+    const tile = $('tile-'+page().id);
+    const film = $('film');
+    const l = tile.offsetLeft-film.offsetLeft;
+    if (l < film.scrollLeft) film.scrollLeft = l-10;
+    else if (l+tile.offsetWidth > film.scrollLeft+film.clientWidth) film.scrollLeft = l+tile.offsetWidth-film.clientWidth+10;
+  }
+  function render(paint=false) {
+    $('book-name').textContent = state.title;
+    const count = state.pages.length;
+    const frames = total();
+    $('readout').textContent = `${count} ${count===1?'drawing':'drawings'}, ${frames} ${frames===1?'frame':'frames'}, `+
+      `${(frames/state.fps).toFixed(1)} seconds at ${state.fps} per second`;
+    $('page-caption').textContent = `DRAWING ${String(state.index+1).padStart(2,'0')} / ${String(state.pages.length).padStart(2,'0')}`;
+    $('hold-number').textContent = `Drawing ${state.selected+1}: ×${selectedPage().hold}`;
+    $('hold-minus').setAttribute('aria-label',selectedPage().hold===8 ?
+      'Use a six-frame hold instead of the starter hold' : 'Hold one frame less');
+    $('hold-plus').setAttribute('aria-disabled',selectedPage().hold>=6);
+    document.body.dataset.playing = state.playing;
+    $('play').textContent = state.playing ? '■ Stop' : '▶ Play';
+    $('play').setAttribute('aria-pressed',state.playing);
+    $('onion').setAttribute('aria-pressed',state.onion);
+    $('chart').setAttribute('aria-pressed',state.chart);
+    $('loop').setAttribute('aria-pressed',state.loop);
+    $('ping').setAttribute('aria-pressed',state.ping);
+    $('pencil').setAttribute('aria-pressed',state.tool==='pencil');
+    $('eraser').setAttribute('aria-pressed',state.tool==='eraser');
+    for (const b of document.querySelectorAll('[data-fps]')) b.setAttribute('aria-pressed',+b.dataset.fps===state.fps);
+    // Keep controls in place and preserve focus, including at history and book limits.
+    for (const [id,inactive] of [['undo',!page().undo.length],['quick-undo',!page().undo.length],['redo',!page().redo.length],
+      ['new-page',state.pages.length>=48],['copy-page',state.pages.length>=48]]) {
+      $(id).setAttribute('aria-disabled',inactive);
+    }
+    state.pages.forEach((p,i) => {
+      const tile = $('tile-'+p.id);
+      tile.classList.toggle('selected',i===state.selected);
+      tile.classList.toggle('playing',state.playing && i===state.index);
+      tile.querySelector('.thumb').setAttribute('aria-current',i===state.selected?'true':'false');
+      tile.querySelector('.page-num').textContent = String(i+1).padStart(2,'0');
+      tile.querySelector('.hold-caption').textContent = '×'+p.hold+(p.hold===1?' frame':' frames')+
+        (p.hold===8?' · starter':'');
+      const hold = tile.querySelector('.hold');
+      hold.style.setProperty('--hold',p.hold);
+      hold.setAttribute('aria-valuenow',p.hold);
+      hold.setAttribute('aria-valuemax',p.hold===8?8:6);
+      const unit = p.hold===1?'frame':'frames';
+      hold.setAttribute('aria-label',`Drawing ${i+1} hold, ${p.hold} ${unit}. `+
+        (p.hold===8?'Starter hold; editing uses one to six frames.':'Drag or use minus and plus.'));
+      tile.querySelector('.thumb').setAttribute('aria-label',`Drawing ${i+1}, hold ${p.hold} ${unit}`);
+      if (paint) paintThumb(p);
+    });
+    drawPage();
+  }
+  function buildStrip() {
+    const active = document.activeElement;
+    const focusedId = active?.closest('.tile')?.dataset.id;
+    const wasHold = active?.classList.contains('hold');
+    $('film').replaceChildren();
+    for (const p of state.pages) {
+      const tile = document.createElement('div');
+      tile.className = 'tile';
+      tile.id = 'tile-'+p.id;
+      tile.dataset.id = p.id;
+      // Keep the exceptional starter's track stable during a captured hold drag.
+      tile.style.setProperty('--cells',Math.max(6,p.hold));
+      tile.innerHTML = `
+        <button class="thumb">
+          <canvas id="thumb-${p.id}" width="192" height="144"></canvas><span class="page-num"></span>
+        </button>
+        <div class="hold-col">
+          <span class="hold-caption"></span>
+          <div class="hold" tabindex="0" role="slider" aria-valuemin="1">
+            <span class="hold-fill"></span><span class="handle"></span>
+          </div>
+        </div>`;
+      const thumb = tile.querySelector('.thumb');
+      let dragStart = null;
+      let moved = false;
+      thumb.addEventListener('pointerdown',e => {
+        if (e.button !== 0) return;
+        dragStart = [e.clientX,e.clientY];
+        moved = false;
+        thumb.setPointerCapture(e.pointerId);
+      });
+      thumb.addEventListener('pointermove',e => {
+        if (!dragStart) return;
+        moved ||= Math.hypot(e.clientX-dragStart[0],e.clientY-dragStart[1])>8;
+        tile.classList.toggle('dragging',moved);
+        if (moved) {
+          const f = $('film').getBoundingClientRect();
+          if (e.clientX > f.right-25) $('film').scrollLeft += 12;
+          if (e.clientX < f.left+25) $('film').scrollLeft -= 12;
+        }
+      });
+      thumb.addEventListener('pointerup',e => {
+        if (!dragStart) return;
+        dragStart = null;
+        tile.classList.remove('dragging');
+        if (moved) {
+          const others = [...$('film').children];
+          const nearest = others.reduce((best,t) => {
+            const r = t.getBoundingClientRect();
+            const d = Math.abs(e.clientX-r.left-r.width/2);
+            return !best || d<best.d ? {t,d} : best;
+          },null);
+          reorder(state.pages.indexOf(p),state.pages.findIndex(q => q.id===+nearest.t.dataset.id));
+        }
+      });
+      thumb.addEventListener('pointercancel',() => { dragStart=null; moved=false; tile.classList.remove('dragging'); });
+      thumb.onclick = () => { if (!moved) select(state.pages.indexOf(p)); };
+      thumb.onkeydown = e => {
+        if (e.altKey && ['ArrowLeft','ArrowRight'].includes(e.key)) {
+          e.preventDefault();
+          const i = state.pages.indexOf(p);
+          reorder(i,Math.max(0,Math.min(state.pages.length-1,i+(e.key==='ArrowRight'?1:-1))));
+        }
+      };
+      const hold = tile.querySelector('.hold');
+      let holding = false;
+      let holdingChanged = false;
+      const dragHold = (e,trackTap=false) => {
+        const r = hold.getBoundingClientRect();
+        const cell = (e.clientX-r.left)/15;
+        const n = Math.max(1,Math.min(6,trackTap ? Math.ceil(cell) : Math.round(cell)));
+        const old = p.hold;
+        changeHold(n,state.pages.indexOf(p),false);
+        holdingChanged ||= old!==p.hold;
+      };
+      hold.addEventListener('pointerdown',e => {
+        if (e.button !== 0 || stripHolding) return;
+        e.preventDefault();
+        holding = true;
+        stripHolding = true;
+        holdingChanged = false;
+        hold.focus({preventScroll:true});
+        hold.setPointerCapture(e.pointerId);
+        dragHold(e,!e.target.closest('.handle'));
+      });
+      hold.addEventListener('pointermove',e => { if (holding) dragHold(e); });
+      const finishHold = () => {
+        if (!holding) return;
+        if (holding && holdingChanged) announceTiming();
+        holding=false;
+        stripHolding=false;
+        if (saveTimer!==null) save();
+        ensureSelected();
+      };
+      hold.addEventListener('pointerup',finishHold);
+      hold.addEventListener('pointercancel',finishHold);
+      hold.onkeydown = e => {
+        if (['ArrowLeft','ArrowRight','Home','End'].includes(e.key)) {
+          e.preventDefault();
+          const n = e.key==='Home'?1:e.key==='End'?6:p.hold+(e.key==='ArrowRight'?1:-1);
+          changeHold(n,state.pages.indexOf(p));
+        }
+      };
+      $('film').append(tile);
+      paintThumb(p);
+    }
+    if (focusedId && state.pages.some(p => p.id===+focusedId)) {
+      $('tile-'+focusedId).querySelector(wasHold?'.hold':'.thumb').focus({preventScroll:true});
+    }
+  }
+  function select(i,makeSound=true) {
+    if (i<0 || i>=state.pages.length) return;
+    finishStroke();
+    state.index = i;
+    state.selected = i;
+    state.frame = 0;
+    if (state.playing) rebase();
+    render(false);
+    ensureSelected();
+    updateHint();
+    if (makeSound) feedback();
+  }
+  function reorder(from,to) {
+    if (from===to || from<0 || to<0) return;
+    finishStroke();
+    const active = document.activeElement;
+    const shownId = page().id;
+    const selectedId = selectedPage().id;
+    const [p] = state.pages.splice(from,1);
+    state.pages.splice(to,0,p);
+    state.index = state.pages.findIndex(q => q.id===shownId);
+    state.selected = state.pages.findIndex(q => q.id===selectedId);
+    for (const drawing of state.pages) $('film').append($('tile-'+drawing.id));
+    if (active?.closest('.tile')) active.focus({preventScroll:true});
+    changed(false,false);
+    ensureSelected();
+    feedback();
+    hint('Pages reordered. Tap Play to watch the new order. Alt + Left or Right also reorders a focused thumbnail.');
+  }
+
+  function ellipse(cx,cy,rx,ry,width=6,color='#2b2622') {
+    const points = [];
+    for (let i=0;i<=64;i++) {
+      const a = i/64*Math.PI*2;
+      points.push([cx+Math.cos(a)*rx,cy+Math.sin(a)*ry].map(n => Math.round(n*10)/10));
+    }
+    return {points,width,color};
+  }
+  const line = (points,width=6,color='#2b2622') => ({points,width,color});
+  function starter(name,make=makePage) {
+    if (name==='blank') return [make()];
+    if (name==='blink') {
+      return [1,.45,0,.45].map((open,i) => {
+        const strokes = [ellipse(480,350,180,225),line([[420,455],[450,464],[480,468],[510,464],[540,455]])];
+        for (const x of [415,545]) {
+          if (open) {
+            strokes.push(ellipse(x,325,28,42*open));
+            strokes.push(line([[x,325-13*open],[x,325+13*open]],12));
+          } else strokes.push(line([[x-28,325],[x,331],[x+28,325]]));
+        }
+        return make(strokes,i===0?8:1);
+      });
+    }
+    return Array.from({length:12},(_,i) => {
+      const x = 80+70*i;
+      const y = 620-480*(name==='real'?Math.abs(Math.cos(Math.PI*i/6)):Math.abs(1-(i%6)/3));
+      const squash = name==='real' && (i===3 || i===9);
+      return make([ellipse(x,squash?632:y,squash?52:40,squash?28:40)]);
+    });
+  }
+  function paintStarterArt() {
+    for (const button of document.querySelectorAll('[data-starter]')) {
+      const name=button.dataset.starter;
+      const book=starter(name,(strokes=[],hold=1) => ({strokes,hold}));
+      let drawing='';
+      if (name==='real' || name==='even') {
+        const dots=book.map(p => center(p));
+        const mapped=dots.map(([x,y]) => [12+(x-80)*.2,9+(y-140)*.085]);
+        drawing=`<path d="M8 56H174" stroke="#b4a38b" stroke-dasharray="2 3"/>
+          <path d="M${mapped.map(p => p.join(',')).join('L')}" fill="none" stroke="#c5b39a" stroke-width="1.1"/>`;
+        drawing+=mapped.map(([x,y],i) => {
+          const squash=name==='real' && (i===3 || i===9);
+          return `<ellipse cx="${x}" cy="${y}" rx="${squash?6.1:4.6}" ry="${squash?2.9:4.6}"
+            fill="${squash?'#c8341a':'#fff9ed'}" stroke="${squash?'#a82b15':'#51463b'}" stroke-width="1.4"/>`;
+        }).join('');
+      } else if (name==='blink') {
+        drawing=[0,1,2].map((i) => {
+          const x=8+i*57;
+          const paths=book[i].strokes.map(s => `<path d="${svgPath(s.points)}" fill="none"
+            stroke="${s.color}" stroke-width="${s.width}" stroke-linecap="round"/>`).join('');
+          return `<rect x="${x+2}" y="6" width="49" height="53" rx="1" fill="#b6a38b" opacity=".22"/>
+            <rect x="${x}" y="4" width="49" height="53" rx="1" fill="#fff9ed" stroke="#d5c5ab"/>
+            <g transform="translate(${x-10} 4) scale(.073)">${paths}</g>`;
+        }).join('');
+      } else {
+        drawing=`<path d="M60 9h63v48H60z" fill="#c8baa3" opacity=".5"/>
+          <path d="M57 6h63v48H57z" fill="#f2e7d4" stroke="#cbbb9e"/>
+          <path d="M54 3h63v48H54z" fill="#fffaf0" stroke="#cbbb9e"/>
+          <path d="m107 41 10-1-1 11" fill="#e3d5bd"/>
+          <path d="m129 52 16-38 4 2-16 38-5 4z" fill="#c8341a" stroke="#8c3c25"/>
+          <path d="m129 52 4 2-5 4z" fill="#ddc4a1"/>`;
+      }
+      button.querySelector('svg').innerHTML=`<defs><linearGradient id="card-${name}" x2="0" y2="1">
+        <stop stop-color="#fffdf5"/><stop offset="1" stop-color="#e9dcc3"/></linearGradient></defs>
+        <rect x="1" y="1" width="178" height="63" rx="3" fill="url(#card-${name})" stroke="#d9c9ae"/>
+        <path d="M5 61H175" stroke="#fffaf0" stroke-width="2"/>${drawing}`;
+    }
+  }
+  function loadStarter(name) {
+    if ($('mobile-dialog').open) closeDialog($('mobile-dialog'));
+    stop(false);
+    state.pages = starter(name);
+    state.index = 0;
+    state.selected = 0;
+    state.fps = 12;
+    state.frame = 0;
+    state.title = {real:'Real bounce',even:'Even bounce',blink:'Blink',blank:'Your flipbook'}[name];
+    state.drawTouched = false;
+    changed(true);
+    ensureSelected();
+    const rev = state.revision;
+    if (name!=='blank') {
+      hint(name==='blink'?L.starterBlink:L.starterBounce);
+      V.say(name==='blink'?'starterBlink':'starterBounce',{valid:() => state.revision===rev && !state.playing});
+    } else updateHint();
+    if (state.mode==='time' && state.chart && state.pages.filter(p => center(p)).length>=3 && !V.heard('spacingHow')) {
+      V.how('spacingHow',{valid:() => state.mode==='time' && !state.playing && state.chart});
+    }
+    feedback();
+  }
+  function ask(title,text,action) {
+    pendingConfirm = action;
+    $('confirm-title').textContent = title;
+    $('confirm-text').textContent = text;
+    openDialog('confirm');
+  }
+  function openDialog(id) {
+    finishStroke();
+    if (state.playing) { stop(false); updateHint(); }
+    V.hush();
+    dialogReturn.set($(id),document.activeElement);
+    $(id).showModal();
+  }
+  function closeDialog(dialog) {
+    const returnFocus = dialogReturn.get(dialog);
+    const revision=state.revision;
+    dialog.close();
+    if (returnFocus?.isConnected) returnFocus.focus({preventScroll:true});
+    queueMicrotask(() => {
+      if (state.revision!==revision || document.querySelector('dialog[open]') || state.playing) return;
+      updateHint();
+      V.welcome();
+      if (state.mode==='draw' && state.tool==='eraser') {
+        V.how('eraserHow',{valid:() => state.mode==='draw' && state.tool==='eraser' &&
+          !state.playing && !document.querySelector('dialog[open]')});
+      }
+    });
+  }
+  function insertPage(clone=false) {
+    finishStroke();
+    if (state.pages.length>=48) { hint('This book has 48 drawings. Delete a page to make room.'); return; }
+    stop(false);
+    state.drawTouched = true;
+    const newPage = makePage(clone?copy(page().strokes):[],clone?Math.min(6,page().hold):1);
+    state.pages.splice(state.index+1,0,newPage);
+    state.index++;
+    state.selected = state.index;
+    state.frame=0;
+    changed(true);
+    ensureSelected();
+    if (!Curio.reduce) {
+      $('page').classList.remove('paper-settle');
+      void $('page').offsetWidth;
+      $('page').classList.add('paper-settle');
+    }
+    const id = newPage.id;
+    state.drawTouchedOnNew = false;
+    if (state.pages[state.index-1].strokes.length && state.onion) {
+      hint(L.onionHow);
+      V.how('onionHow',{valid:() => page().id===id && !state.playing && !state.drawTouchedOnNew && state.onion});
+    } else updateHint();
+    feedback();
+  }
+  function removePage() {
+    stop(false);
+    if (state.pages.length===1) {
+      remember();
+      page().strokes=[];
+      page().hold=1;
+    } else {
+      state.pages.splice(state.index,1);
+      state.index=Math.min(state.index,state.pages.length-1);
+    }
+    state.selected = state.index;
+    state.frame=0;
+    changed(true);
+    ensureSelected();
+    feedback();
+    updateHint();
+  }
+  function announceTiming() {
+    if (!state.playing) return;
+    const rev = state.revision;
+    V.say('holdChanged',{now:true,valid:() => state.playing && state.revision===rev});
+  }
+  function changeHold(n,i=state.selected,announce=true) {
+    const p = state.pages[i];
+    if (!p) return;
+    if (p.hold===8 && n>=8) {
+      feedback();
+      hint('This starter holds eight frames. Drag its handle or tap minus to use the one-to-six-frame editor.');
+      return;
+    }
+    const wasStarter=p.hold===8;
+    n = Math.max(1,Math.min(6,Math.round(n)));
+    state.selected = i;
+    if (!state.playing) state.index = i;
+    if (p.hold===n) {
+      render(false);
+      if (announce) {
+        feedback();
+        hint(`This hold is already ${n} ${n===1?'frame':'frames'}. Tap Play to see its timing.`);
+      }
+      return;
+    }
+    const isShown = i===state.index;
+    p.hold = n;
+    state.timeTouched = true;
+    if (!state.playing) state.index = i;
+    if (state.playing && isShown) rebase();
+    changed(false,false,stripHolding);
+    feedback();
+    if (state.playing) {
+      if (announce) announceTiming();
+      hint(L.holdChanged+' Tap Stop to pause.');
+    } else hint(wasStarter ? 'Starter hold edited. New holds use one to six frames. Tap Play to compare.' :
+      'Same drawings, new timing. Tap Play to see the difference.');
+  }
+  function preset(kind) {
+    const n = state.pages.length;
+    const before = state.pages.map(p => p.hold).join(',');
+    const explain = () => {
+      if (kind==='twos' && state.fps<=12) {
+        hint(`On twos at ${state.fps} per second: ${state.fps/2} new drawings a second. Tap 24 to see film's twos.`);
+      }
+      if (kind==='ease') {
+        hint('Ease the ends slowed the first and last drawings of the book. For a bounce, hold each top drawing longer by hand.');
+      }
+    };
+    state.pages.forEach((p,i) => {
+      if (kind==='ones') p.hold=1;
+      if (kind==='twos') p.hold=2;
+      if (kind==='ease') p.hold=Math.max(1,3-Math.min(i,n-1-i));
+      if (kind==='key' && i===state.selected) p.hold=6;
+    });
+    if (before===state.pages.map(p => p.hold).join(',')) {
+      feedback();
+      hint('These holds already match. Drag a hold handle, or tap another preset.');
+      explain();
+      return;
+    }
+    state.timeTouched = true;
+    if (state.playing) rebase();
+    changed(false,false);
+    feedback();
+    hint('Timing changed. Tap Play to watch, or drag a hold handle to refine it.');
+    if (state.playing) {
+      announceTiming();
+      hint(L.holdChanged+' Tap Stop to pause.');
+    }
+    explain();
+  }
+  function setFps(n) {
+    if (state.fps===n) {
+      feedback();
+      hint(`Already at ${n} frames per second. Drag a hold handle, or tap another frame rate.`);
+      return;
+    }
+    state.fps = n;
+    if (state.playing) rebase();
+    changed(false,false);
+    feedback();
+    hint(state.playing ? 'New frame rate, same drawings. Tap Stop to pause.' :
+      `Now ${n} frames per second. Tap Play to compare, or drag a hold handle.`);
+  }
+  function rebase() {
+    // Preserve the current drawing and frame, applying new timing immediately.
+    state.frame = Math.min(state.frame,page().hold-1);
+    nextAt = performance.now()+1000/state.fps;
+  }
+  function showNewDrawing() {
+    const before = state.index;
+    if (state.ping && state.pages.length>1) {
+      let next = state.index+state.direction;
+      if (next>=state.pages.length || next<0) {
+        if (!state.loop && next<0) { stop(); return false; }
+        state.direction *= -1;
+        next = state.index+state.direction;
+      }
+      state.index=next;
+    } else if (state.index+1<state.pages.length) state.index++;
+    else if (state.loop) state.index=0;
+    else { stop(); return false; }
+    if (before!==state.index || state.pages.length===1) {
+      lastShownAt = performance.now();
+      transitions.push({at:lastShownAt,index:state.index,frame:playedFrames});
+      if (transitions.length>500) transitions.shift();
+      tick();
+      if (state.mode==='flip' && !Curio.reduce && state.fps!==24) {
+        $('page').classList.remove('flipping');
+        void $('page').offsetWidth;
+        $('page').classList.add('flipping');
+      }
+    }
+    return true;
+  }
+  function advanceFrame() {
+    playedFrames++;
+    state.frame++;
+    if (state.frame>=page().hold) {
+      state.frame=0;
+      return showNewDrawing();
+    }
+    return true;
+  }
+  function clock(now) {
+    if (!state.playing) return;
+    let changedDrawing = false;
+    let steps = 0;
+    while (now>=nextAt && state.playing && steps<1200) {
+      const previous = state.index;
+      advanceFrame();
+      changedDrawing ||= previous!==state.index;
+      nextAt += 1000/state.fps;
+      steps++;
+    }
+    if (changedDrawing) { render(false); ensureSelected(); }
+    raf = state.playing ? requestAnimationFrame(clock) : null;
+  }
+  function play() {
+    if (state.playing) { stop(); return; }
+    finishStroke();
+    state.playing = true;
+    state.timeTouched = state.mode==='time' || state.timeTouched;
+    state.flipTouched = state.mode==='flip' || state.flipTouched;
+    state.frame = 0;
+    state.direction = 1;
+    V.hush();
+    rebase();
+    tick();
+    render();
+    updateHint();
+    raf = requestAnimationFrame(clock);
+  }
+  function stop(speak=true) {
+    if (state.playing) state.selected=state.index;
+    if (raf) cancelAnimationFrame(raf);
+    raf = null;
+    state.playing = false;
+    $('page').classList.remove('flipping');
+    V.hush();
+    render();
+    if (speak) {
+      updateHint();
+      V.welcome();
+      if (state.mode==='time' && state.chart && state.pages.filter(p => center(p)).length>=3 && !V.heard('spacingHow')) {
+        V.how('spacingHow',{valid:() => state.mode==='time' && !state.playing && state.chart});
+      }
+    }
+  }
+  function stepFrame(back=false) {
+    stop(false);
+    if (back) {
+      if (state.frame>0) state.frame--;
+      else {
+        state.index=(state.index-1+state.pages.length)%state.pages.length;
+        state.frame=page().hold-1;
+      }
+    } else {
+      state.frame++;
+      if (state.frame>=page().hold) {
+        state.frame=0;
+        state.index=(state.index+1)%state.pages.length;
+        tick();
+      }
+    }
+    state.selected=state.index;
+    render();
+    ensureSelected();
+    hint(`Drawing ${state.index+1}, frame ${state.frame+1} of its ${page().hold}-frame hold. Tap Step or Back, or Play.`);
+  }
+  function setMode(mode) {
+    if (!['draw','time','flip'].includes(mode)) return;
+    if (modeReady && state.mode===mode) {
+      updateHint();
+      V.welcome();
+      return;
+    }
+    modeReady=true;
+    finishStroke();
+    V.hush();
+    state.mode=mode;
+    document.body.dataset.mode=mode;
+    for (const m of ['draw','time','flip']) {
+      $('m-'+m).setAttribute('aria-pressed',m===mode);
+      $(m+'-controls').hidden=m!==mode;
+    }
+    updateHint();
+    V.welcome();
+    render();
+    requestAnimationFrame(layout);
+    if (mode==='time' && state.chart && state.pages.filter(p => center(p)).length>=3) {
+      V.how('spacingHow',{valid:() => state.mode==='time' && !state.playing && state.chart});
+    }
+  }
+
+  const position = e => {
+    const r = canvas.getBoundingClientRect();
+    return [Math.max(0,Math.min(W,(e.clientX-r.left)/r.width*W)),Math.max(0,Math.min(H,(e.clientY-r.top)/r.height*H))]
+      .map(n => Math.round(n*10)/10);
+  };
+  function eraseAt(point) {
+    const before = page().strokes.length;
+    hitContext.lineCap='round';
+    hitContext.lineJoin='round';
+    const remaining=page().strokes.filter(s => {
+      hitContext.lineWidth=s.width+30;
+      return !hitContext.isPointInStroke(pathFor(s.points),point[0],point[1]);
+    });
+    if (before!==remaining.length) {
+      if (!erased) remember();
+      erased=true;
+      page().strokes=remaining;
+      drawPage();
+      paintThumb(page());
+    }
+  }
+  canvas.addEventListener('pointerdown',e => {
+    if (e.button!==0 || e.isPrimary===false || drawingPointer!==null || state.mode!=='draw' || state.playing) return;
+    e.preventDefault();
+    if (state.tool!=='eraser' && page().strokes.length>=400) {
+      hint('This page has 400 strokes. Erase a stroke or tap New page.');
+      return;
+    }
+    drawingPointer=e.pointerId;
+    canvas.setPointerCapture(e.pointerId);
+    state.drawTouched=true;
+    state.drawTouchedOnNew=true;
+    V.dropQueued(it => ['welcomeDraw','onionHow'].includes(it.key));
+    if (state.tool==='eraser') {
+      erasing=true;
+      erased=false;
+      eraseAt(position(e));
+    } else {
+      remember();
+      pen={points:[position(e)],width:state.size,color:state.color};
+    }
+    drawPage();
+    feedback();
+  });
+  canvas.addEventListener('pointermove',e => {
+    if (e.pointerId!==drawingPointer) return;
+    if (erasing) eraseAt(position(e));
+    if (!pen) return;
+    const events=e.getCoalescedEvents?.();
+    for (const event of events?.length ? events : [e]) {
+      const p=position(event), last=pen.points[pen.points.length-1];
+      if (Math.hypot(p[0]-last[0],p[1]-last[1])>.8) pen.points.push(p);
+    }
+    drawPage();
+  });
+  function finishStroke() {
+    if (!pen && !erasing) return;
+    const edited = !!pen || erased;
+    if (pen) { page().strokes.push(pen); pen=null; }
+    erasing=false;
+    erased=false;
+    const pointer=drawingPointer;
+    drawingPointer=null;
+    if (pointer!==null && canvas.hasPointerCapture(pointer)) canvas.releasePointerCapture(pointer);
+    if (edited) changed();
+    updateHint();
+  }
+  for (const type of ['pointerup','pointercancel','lostpointercapture']) canvas.addEventListener(type,e => {
+    if (e.pointerId===drawingPointer) finishStroke();
+  });
+  function history(redo=false) {
+    finishStroke();
+    state.drawTouched=true;
+    const p=page(), from=redo?p.redo:p.undo, to=redo?p.undo:p.redo;
+    if (!from.length) { hint(redo?'No drawing changes to redo. Draw on the page.':'No drawing changes to undo. Draw on the page.'); return; }
+    to.push(copy(p.strokes));
+    p.strokes=from.pop();
+    changed();
+    feedback();
+  }
+  function makePrint() {
+    const NS='http://www.w3.org/2000/svg';
+    $('print-area').replaceChildren();
+    let sheet=null;
+    let number=0;
+    for (const p of state.pages) for (let repeat=0;repeat<p.hold;repeat++) {
+      if (number%8===0) {
+        sheet=document.createElement('section');
+        sheet.className='print-sheet';
+        $('print-area').append(sheet);
+      }
+      const card=document.createElement('div');
+      card.className='print-card';
+      const svg=document.createElementNS(NS,'svg');
+      svg.setAttribute('viewBox','0 0 960 720');
+      for (const s of p.strokes) {
+        const path=document.createElementNS(NS,'path');
+        path.setAttribute('d',svgPath(s.points));
+        path.setAttribute('fill','none');
+        path.setAttribute('stroke','#000');
+        path.setAttribute('stroke-width',s.width);
+        path.setAttribute('stroke-linecap','round');
+        path.setAttribute('stroke-linejoin','round');
+        svg.append(path);
+      }
+      card.append(svg);
+      const label=document.createElement('span');
+      label.className='print-number';
+      label.textContent=String(++number);
+      card.append(label);
+      sheet.append(card);
+    }
+    return number;
+  }
+  function finishPrint() {
+    if (!state.printing) return;
+    state.printing=false;
+  }
+  window.addEventListener('afterprint',finishPrint);
+  async function printBook() {
+    if (state.printing) return;
+    stop(false);
+    makePrint();
+    state.printing=true;
+    hint(L.printed);
+    if (Curio.sound) {
+      const outcome = await V.say('printed',{wait:true,valid:() => state.printing});
+      if (outcome==='dropped') { finishPrint(); return; }
+    } else V.say('printed',{valid:() => state.printing});
+    try { window.print(); }
+    finally { finishPrint(); }
+  }
+  const mobileMoves=[];
+  function mobilePanel(kind) {
+    const content=$('mobile-content');
+    $('mobile-title').textContent=kind==='draw'?'Pencils & pages':kind==='time'?'Timing tools':'Flip options';
+    const controls=$(kind+'-controls');
+    const selected=[...controls.children].filter(el => el.classList.contains('secondary') || el.classList.contains('desktop-tool'));
+    for (const el of selected) {
+      const marker=document.createComment('mobile return');
+      el.before(marker);
+      mobileMoves.push([marker,el]);
+      content.append(el);
+      el.style.display='flex';
+      el.style.marginTop='10px';
+    }
+    const common=$('starters').parentElement;
+    const marker=document.createComment('mobile return');
+    common.before(marker);
+    mobileMoves.push([marker,common]);
+    content.append(common);
+    common.style.display='flex';
+    common.style.marginTop='12px';
+    if (kind==='flip') {
+      const loop=$('loop').parentElement;
+      const mark=document.createComment('mobile return');
+      loop.before(mark);
+      mobileMoves.push([mark,loop]);
+      content.append(loop);
+    }
+    openDialog('mobile-dialog');
+  }
+  $('mobile-dialog').addEventListener('close',() => {
+    for (const [marker,el] of mobileMoves) {
+      marker.replaceWith(el);
+      el.style.removeProperty('display');
+      el.style.removeProperty('margin-top');
+    }
+    mobileMoves.length=0;
+  });
+  for (const mode of ['draw','time','flip']) $('m-'+mode).onclick=() => { feedback(); setMode(mode); };
+  $('pencil').onclick=() => { state.tool='pencil'; render(); updateHint(); V.welcome(); feedback(); };
+  $('eraser').onclick=() => {
+    state.tool='eraser';
+    render();
+    hint(L.eraserHow);
+    if (!document.querySelector('dialog[open]')) {
+      V.how('eraserHow',{valid:() => state.mode==='draw' && state.tool==='eraser' &&
+        !state.playing && !document.querySelector('dialog[open]')});
+    }
+    feedback();
+  };
+  $('size').onchange=e => { state.size=+e.target.value; feedback(); };
+  $('color').onchange=e => { state.color=e.target.value; feedback(); };
+  $('onion').onclick=() => { state.onion=!state.onion; render(); updateHint(); feedback(); };
+  $('onion-steps').onchange=e => { state.onionSteps=+e.target.value; render(); };
+  $('new-page').onclick=() => insertPage();
+  $('copy-page').onclick=() => insertPage(true);
+  $('undo').onclick=() => history();
+  $('quick-undo').onclick=() => history();
+  $('redo').onclick=() => history(true);
+  $('clear-page').onclick=() => {
+    state.drawTouched=true;
+    if (!page().strokes.length) { hint('The page is blank. Draw a mark, or tap Starters.'); return; }
+    ask('Clear this page?','Your other drawings stay. Undo can restore this page.',() => { remember(); page().strokes=[]; changed(); feedback(); });
+  };
+  $('delete-page').onclick=() => {
+    state.drawTouched=true;
+    if (page().strokes.length) ask('Delete this drawing?','This removes its strokes and its hold from the book.',removePage);
+    else removePage();
+  };
+  $('starters').onclick=() => openDialog('library');
+  $('new-book').onclick=() => ask('Start a new book?','This replaces the book saved on this device.',() => loadStarter('blank'));
+  for (const b of document.querySelectorAll('[data-starter]')) b.onclick=() => {
+    closeDialog($('library'));
+    const name=b.dataset.starter;
+    if (state.pages.some(p => p.strokes.length)) ask('Replace this book?','The starter replaces your saved drawings on this device.',() => loadStarter(name));
+    else loadStarter(name);
+  };
+  $('confirm-yes').onclick=() => { const action=pendingConfirm; pendingConfirm=null; closeDialog($('confirm')); action?.(); };
+  $('cancel').onclick=() => { pendingConfirm=null; closeDialog($('confirm')); };
+  for (const b of document.querySelectorAll('[data-close]')) b.onclick=() => closeDialog(b.closest('dialog'));
+  $('hold-minus').onclick=() => changeHold(selectedPage().hold-1);
+  $('hold-plus').onclick=() => changeHold(selectedPage().hold+1);
+  for (const b of document.querySelectorAll('[data-fps]')) b.onclick=() => setFps(+b.dataset.fps);
+  for (const id of ['ones','twos','ease']) $(id).onclick=() => preset(id);
+  $('key-hold').onclick=() => preset('key');
+  $('chart').onclick=() => { state.chart=!state.chart; render(); feedback(); };
+  $('why').onclick=() => openDialog('why-dialog');
+  $('play').onclick=play;
+  $('loop').onclick=() => { state.loop=!state.loop; render(); feedback(); };
+  $('ping').onclick=() => { state.ping=!state.ping; state.direction=1; render(); feedback(); };
+  $('step').onclick=() => stepFrame();
+  $('back').onclick=() => stepFrame(true);
+  $('print').onclick=printBook;
+  $('tools-open').onclick=() => mobilePanel('draw');
+  $('timing-open').onclick=() => mobilePanel('time');
+  $('flip-open').onclick=() => mobilePanel('flip');
+  document.addEventListener('keydown',e => {
+    if (e.target.closest('dialog') || e.target.matches('select,input,textarea') || e.altKey) return;
+    if (e.key==='ArrowLeft' || e.key==='ArrowRight') {
+      if (e.target.classList.contains('hold')) return;
+      e.preventDefault();
+      select(Math.max(0,Math.min(state.pages.length-1,state.index+(e.key==='ArrowRight'?1:-1))));
+      if (e.target.closest('.tile')) $('tile-'+page().id).querySelector('.thumb').focus({preventScroll:true});
+    }
+    if (['-','+','='].includes(e.key) && e.target.closest('.tile')) {
+      e.preventDefault();
+      const tile=e.target.closest('.tile');
+      const i=state.pages.findIndex(p => p.id===+tile.dataset.id);
+      changeHold(state.pages[i].hold+(e.key==='-'?-1:1),i);
+    }
+  });
+  $('page').addEventListener('animationend',e => {
+    if (e.animationName==='paper-settle') $('page').classList.remove('paper-settle');
+  });
+  Curio.onMotion(() => { $('page').classList.remove('flipping','paper-settle'); });
+  loadSaved();
+  paintStarterArt();
+  buildStrip();
+  Curio.init({clips:"voice:*",rate:.95,readFallback:() => $('hint').textContent});
+  new ResizeObserver(layout).observe($('stage'));
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},eventLines,
+    loadStarter,starter,changeHold,preset,setFps,play,stop,stepFrame,center,total,render,save,makePrint,
+    get transitions(){return transitions;},get playedFrames(){return playedFrames;},get nextAt(){return nextAt;},
+    get lastShownAt(){return lastShownAt;},get chartLabels(){return chartLabelCache.labels;},reorder,insertPage,history};
+  setMode('draw');
+})();
+</script>
+</body>
+</html>

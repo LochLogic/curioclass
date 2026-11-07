@@ -1,0 +1,24 @@
+{
+  "id": "illusion-lab",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Trust your eyes. Then test them.",
+  "outcome": "Measure perception and memory, then explain how context, attention and reconstruction shape experience.",
+  "driver": "students",
+  "minutes": "30-45",
+  "modes": [
+    "Line Lengths",
+    "Shadow Squares",
+    "Inside the Eye",
+    "Spot the Change",
+    "Count Backward",
+    "Word Lists"
+  ],
+  "grades_label": "Grade 12",
+  "sources": [
+    "Sources and experimental limits in notes.md.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-07"
+}

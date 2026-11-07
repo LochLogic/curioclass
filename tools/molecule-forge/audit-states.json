@@ -1,0 +1,156 @@
+{
+  "keep": [
+    "#readout",
+    "#controls",
+    "#tray"
+  ],
+  "states": [
+    {
+      "name": "graphite-seed-order",
+      "steps": [
+        {
+          "click": "#toggle"
+        },
+        {
+          "click": "#atom-C",
+          "times": 2,
+          "gap": 0.2
+        },
+        {
+          "click": "#bond-buttons button"
+        }
+      ],
+      "keep": [
+        "#bond-buttons",
+        "#readout"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "salt-fracture",
+      "steps": [
+        {
+          "click": "#toggle"
+        },
+        {
+          "click": "#atom-Na"
+        },
+        {
+          "click": "#atom-Cl"
+        },
+        {
+          "click": "#grow"
+        },
+        {
+          "click": "#push"
+        },
+        {
+          "click": "#cut"
+        }
+      ],
+      "keep": [
+        "#readout",
+        "#atom-selector"
+      ]
+    },
+    {
+      "name": "water",
+      "steps": [
+        {
+          "click": "#atom-H",
+          "times": 2,
+          "gap": 0.3
+        }
+      ],
+      "keep": [
+        "#readout"
+      ]
+    },
+    {
+      "name": "salt",
+      "steps": [
+        {
+          "click": "#toggle"
+        },
+        {
+          "click": "#atom-Na"
+        },
+        {
+          "click": "#atom-Cl"
+        },
+        {
+          "click": "#grow"
+        },
+        {
+          "wait": 100
+        },
+        {
+          "click": "#cut"
+        }
+      ],
+      "keep": [
+        "#readout"
+      ]
+    },
+    {
+      "name": "guide",
+      "steps": [
+        {
+          "click": "#guide"
+        }
+      ],
+      "keep": [
+        "#guide-drawer"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "manual",
+      "steps": [
+        {
+          "click": "#manual"
+        }
+      ],
+      "keep": [
+        "#manual-drawer"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "preserved-specimen",
+      "steps": [
+        {
+          "click": "#toggle"
+        },
+        {
+          "click": "#atom-C"
+        },
+        {
+          "click": "#grow"
+        },
+        {
+          "click": "#atom-H"
+        }
+      ],
+      "keep": [
+        "#readout",
+        "#undo"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

@@ -9,8 +9,8 @@ continents. Living Earth puts all five on one globe, driven by the real USGS cat
 
 ## Map
 - Anchor: science-6-plate-tectonics (MS-ESS2-3).
-- Also reaches: science-4-earth-s-features-on-maps, science-8-natural-hazards-and-human-impact,
-  science-9-orbits-and-earth-s-history.
+- Also reaches: science-4-earth-s-features-on-maps, science-8-natural-hazards-and-human-impact.
+  (science-9-orbits-and-earth-s-history dropped 2026-11-06, BASELINE rule 2: no sea-floor age layer teaches it.)
 - Grade band: grades 4 to 12.
 - Teacher plan: would teach MS-ESS2-3 in full (fossils, rock belts and continental shapes in Rewind, sea-floor ridges
   and trenches in the relief, plate motion in Pin), so it can take the module's lesson card if its plan.md does.

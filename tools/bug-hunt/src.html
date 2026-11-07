@@ -1,0 +1,2832 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Be a bird, hunt camouflaged moths, and use your own evidence to explain natural selection. Grade 8 science. Works offline."
+    />
+    <title>Bug Hunt · Curio Class</title>
+    <link rel="icon" href="data:," />
+    <!--
+Bug Hunt, Curio Class. Grade 8 science, MS-LS4-4 and MS-LS4-6. Students drive.
+Sources: van't Hof et al. Nature (2016); Cook and Saccheri, Heredity (2013);
+Cook et al. Biology Letters (2012); Grant et al. Journal of Heredity (1996); UK Clean Air Act 1956.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0; code MIT. Offline, no network requests. Model assumptions in notes.md.
+-->
+    <link rel="stylesheet" href="kit:curio">
+    <style>
+      :root {
+        --paper: #f3efe4;
+        --panel: #fff;
+        --ink: #1f2a24;
+        --muted: #55615a;
+        --line: #d3cbb8;
+        --focus: #9a3d12;
+        --brand: #8b4a6a;
+        --btn: #753853;
+        --btn-line: #d1a5bc;
+        --head-ink: #fff;
+      }
+      body {
+        overflow: hidden;
+      }
+      header {
+        background: var(--paper);
+        color: var(--ink);
+        border-bottom: 1px solid var(--line);
+        padding: 12px 22px;
+        gap: 10px;
+      }
+      h1 {
+        font:
+          700 30px Georgia,
+          serif;
+        letter-spacing: -1px;
+      }
+      h1 small {
+        font:
+          11px "Segoe UI",
+          sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 2.4px;
+        margin-top: 4px;
+        color: var(--muted);
+      }
+      .seg {
+        border: 1px solid var(--line);
+        border-radius: 5px;
+      }
+      .seg button {
+        color: var(--ink);
+        background: #e8e2d4;
+        min-height: 44px;
+        font-size: 14px;
+        padding: 0 18px;
+      }
+      .seg button[aria-pressed="true"] {
+        background: var(--brand);
+        color: #fff;
+      }
+      .icon-btn {
+        color: var(--ink);
+        background: #fff8;
+        border: 1px solid var(--line);
+        min-height: 44px;
+        padding: 0 12px;
+        font-size: 13px;
+      }
+      main {
+        grid-template-columns: minmax(0, 1fr) 400px;
+        padding: 14px;
+        gap: 14px;
+        min-height: 0;
+      }
+      .stage {
+        min-height: 0;
+        border: 1px solid #998f79;
+        border-radius: 5px;
+        box-shadow: 0 5px 18px #362c1c24;
+      }
+      .panel {
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        padding: 14px;
+        gap: 7px;
+        overflow: auto;
+        background: linear-gradient(90deg, #ede7da 0, #fff 13px, #fff);
+        box-shadow: 0 3px 10px #362c1c0a;
+      }
+      .panel h2 {
+        font:
+          26px/1.1 Georgia,
+          serif;
+        margin: 0;
+      }
+      .eyebrow {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 7px;
+      }
+      .subline {
+        font-size: 13px;
+        color: var(--muted);
+        margin: 5px 0 0;
+      }
+      button {
+        min-height: 44px;
+        min-width: 44px;
+        border: 1px solid #b7ac97;
+        border-radius: 4px;
+        padding: 7px 12px;
+        background: linear-gradient(#fff, #eee8da);
+        font-weight: 600;
+        box-shadow: 0 1px 1px #35241512;
+      }
+      button:active {
+        box-shadow: inset 0 2px 4px #0002;
+      }
+      button:disabled {
+        opacity: 0.55;
+        cursor: default;
+      }
+      .primary {
+        background: var(--brand);
+        border-color: var(--brand);
+        color: white;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .row > button {
+        flex: 1;
+      }
+      .stats {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        border-block: 1px solid var(--line);
+        padding: 4px 0;
+      }
+      .stats strong {
+        font:
+          32px Georgia,
+          serif;
+      }
+      .stats small {
+        font-size: 11px;
+        display: block;
+        color: var(--muted);
+      }
+      #compact-gen {
+        display: none;
+      }
+      #timer {
+        width: 52px;
+        height: 52px;
+        margin-left: auto;
+      }
+      .chartbox {
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 4px;
+        min-width: 0;
+      }
+      .chartbox h3 {
+        font:
+          600 12px "Segoe UI",
+          sans-serif;
+        margin: 2px 0 0;
+      }
+      canvas.graph {
+        width: 100%;
+        height: 126px;
+        display: block;
+      }
+      #line {
+        height: 116px;
+      }
+      .graph-tabs {
+        display: none;
+      }
+      .hint {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.4;
+        min-height: 57px;
+        padding: 8px 10px;
+        background: #f4efe5;
+        border-left: 3px solid var(--brand);
+      }
+      .tip {
+        font-size: 12px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 4px 2px;
+        background: transparent;
+      }
+      .limits {
+        font-size: 11px;
+        line-height: 1.35;
+        margin: 0;
+        color: var(--muted);
+      }
+      #hunt-scene {
+        position: absolute;
+        inset: 0;
+      }
+      #bark {
+        display: block;
+        width: 100%;
+        height: 100%;
+        cursor: crosshair;
+        touch-action: none;
+      }
+      #bark:focus-visible {
+        outline: 4px solid var(--focus);
+        outline-offset: -5px;
+      }
+      .field-label {
+        position: absolute;
+        left: 18px;
+        top: 18px;
+        background: #f3efe4ed;
+        border: 1px solid #b0a690;
+        padding: 10px 16px;
+        pointer-events: none;
+        box-shadow: 0 3px 8px #0002;
+      }
+      .field-label strong {
+        font:
+          23px Georgia,
+          serif;
+        display: block;
+      }
+      .field-label span {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1.8px;
+      }
+      #beat-label {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        background: #f3efe4f2;
+        border: 1px solid #a99e87;
+        padding: 10px 15px;
+        max-width: 65%;
+        font-size: 14px;
+        pointer-events: none;
+      }
+      #pause-cover {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        background: #e8e2d44d;
+      }
+      #beat-label strong {
+        display: block;
+        font: 20px Georgia, serif;
+        margin-bottom: 4px;
+      }
+      #beat-label span {
+        display: block;
+        font-size: 12px;
+      }
+      #pause-cover button {
+        padding: 15px 30px;
+        font:
+          24px Georgia,
+          serif;
+      }
+      #stage.paused #bark {
+        filter: blur(18px);
+      }
+      .overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: #1f2a248c;
+        z-index: 5;
+      }
+      .story-card {
+        width: min(690px, 100%);
+        max-height: 100%;
+        overflow: auto;
+        background: var(--paper);
+        border: 5px solid #fff8;
+        box-shadow: 0 10px 60px #0005;
+        border-radius: 3px;
+      }
+      .story-card img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+      }
+      .story-copy {
+        padding: 18px 24px;
+      }
+      .story-copy h2 {
+        font:
+          30px Georgia,
+          serif;
+        margin: 0 0 8px;
+      }
+      .story-copy p {
+        font-size: 17px;
+        line-height: 1.45;
+        margin: 0 0 15px;
+      }
+      .story-copy button {
+        min-width: 130px;
+      }
+      #end-graph {
+        width: 100%;
+        height: 210px;
+      }
+      #run-scene {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-template-rows: minmax(100px, 45%) minmax(0, 1fr);
+      }
+      #sample {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      #run-plot {
+        background: #fffdf7;
+        position: relative;
+        padding: 12px;
+        min-height: 0;
+      }
+      #run-line {
+        width: 100%;
+        height: 100%;
+        display: block;
+        touch-action: none;
+      }
+      #run-bars {
+        display: none;
+      }
+      #prediction {
+        position: absolute;
+        right: 18px;
+        top: 10px;
+        font-size: 12px;
+        background: #f3efe4e8;
+        padding: 5px 8px;
+      }
+      #run-controls {
+        display: grid;
+        gap: 7px;
+      }
+      .slider-label {
+        font-size: 13px;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+      }
+      input[type="range"] {
+        width: 100%;
+        height: 44px;
+        accent-color: var(--brand);
+        margin: 0;
+      }
+      .ticks {
+        display: flex;
+        justify-content: space-between;
+        font-size: 10px;
+        margin-top: -5px;
+        color: var(--muted);
+      }
+      .toggle {
+        text-align: left;
+        font-size: 13px;
+      }
+      .toggle[aria-pressed="true"]::before {
+        content: "● ";
+        color: var(--brand);
+      }
+      .toggle[aria-pressed="false"]::before {
+        content: "○ ";
+      }
+      #explain-scene {
+        position: absolute;
+        inset: 0;
+        padding: 25px;
+        overflow: auto;
+        background: #f9f6ed;
+        background-image: linear-gradient(90deg, #b8955a0a 1px, transparent 1px);
+        background-size: 6px 6px;
+      }
+      #explain-scene h2 {
+        font:
+          29px Georgia,
+          serif;
+        margin: 0 0 8px;
+      }
+      #cards {
+        display: grid;
+        gap: 12px;
+        margin-top: 20px;
+      }
+      .answer {
+        position: relative;
+        text-align: left;
+        padding: 22px 22px 22px 55px;
+        font:
+          18px/1.4 Georgia,
+          serif;
+        min-height: 105px;
+        border: 1px solid #b9ad96;
+        background: linear-gradient(110deg, #fffdf8, #eee7d8);
+        box-shadow: 2px 4px 0 #d6cbbb;
+      }
+      .answer::before {
+        content: attr(data-letter);
+        position: absolute;
+        left: 18px;
+        top: 25px;
+        color: var(--brand);
+        font:
+          italic 26px Georgia,
+          serif;
+      }
+      .answer.refused {
+        border-left: 5px solid #9a3d12;
+      }
+      #feedback {
+        min-height: 60px;
+        font-size: 15px;
+        line-height: 1.4;
+        color: #773514;
+        margin-top: 18px;
+      }
+      .sentence {
+        padding: 9px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .sentence .row {
+        justify-content: space-between;
+        margin-bottom: 5px;
+      }
+      .sentence label {
+        font:
+          21px Georgia,
+          serif;
+      }
+      .sentence button {
+        flex: 0 0 auto;
+        font-size: 12px;
+      }
+      textarea {
+        resize: vertical;
+        display: block;
+        width: 100%;
+        min-height: 78px;
+        max-height: 130px;
+        font:
+          15px/1.5 "Segoe UI",
+          sans-serif;
+        padding: 8px 10px;
+        border: 1px solid #b0a58e;
+        border-radius: 3px;
+        background: #fffdf8;
+        color: var(--ink);
+      }
+      .privacy {
+        font-size: 12px;
+        color: var(--muted);
+        margin: 8px 0;
+      }
+      #page-controls {
+        display: none;
+      }
+      #mini-evidence {
+        width: 100%;
+        height: 230px;
+      }
+      #evidence-label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      #story-scene {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        background: #ded7c5;
+      }
+      #story-art {
+        width: 100%;
+        flex: 1;
+        min-height: 0;
+        object-fit: cover;
+      }
+      #story-caption {
+        background: #243128;
+        color: #f3efe4;
+        padding: 14px 22px;
+        font:
+          22px Georgia,
+          serif;
+      }
+      #timeline {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 5px;
+        padding: 12px;
+        background: var(--paper);
+      }
+      #timeline button {
+        padding: 4px;
+        font-size: 12px;
+      }
+      #timeline button[aria-pressed="true"] {
+        color: #fff;
+        background: var(--brand);
+        border-color: var(--brand);
+      }
+      #story-text {
+        font:
+          19px/1.55 Georgia,
+          serif;
+        margin: 5px 0 10px;
+      }
+      #historic {
+        width: 100%;
+        height: 170px;
+      }
+      #your-history {
+        width: 100%;
+        height: 150px;
+      }
+      #gene {
+        position: absolute;
+        top: 22px;
+        right: 22px;
+        background: #f3efe4ee;
+        border: 1px solid #b0a58e;
+        padding: 15px;
+      }
+      #gene span {
+        display: inline-block;
+        width: 13px;
+        height: 35px;
+        background: #9caa91;
+        margin: 2px;
+      }
+      #gene span:nth-child(5) {
+        background: var(--brand);
+        height: 49px;
+      }
+      .mode-only {
+        display: none;
+      }
+      body[data-mode="hunt"] .hunt-only,
+      body[data-mode="run"] .run-only,
+      body[data-mode="explain"] .explain-only,
+      body[data-mode="story"] .story-only {
+        display: block;
+      }
+      body[data-mode="hunt"] #hunt-scene,
+      body[data-mode="run"] #run-scene {
+        display: block;
+      }
+      body[data-mode="run"] #run-scene {
+        display: grid;
+      }
+      body[data-mode="story"] #story-scene {
+        display: flex;
+      }
+      body[data-mode="run"] .panel {
+        gap: 7px;
+        padding: 14px;
+      }
+      body[data-mode="run"] #run-controls {
+        display: grid;
+      }
+      body[data-mode="run"] #line-box {
+        display: none;
+      }
+      body[data-mode="hunt"] .panel > .hunt-only .eyebrow {
+        display: none;
+      }
+      body[data-mode="run"] canvas.graph {
+        height: 145px;
+      }
+      body[data-mode="explain"] .panel {
+        justify-content: center;
+      }
+      body[data-mode="story"] .panel {
+        justify-content: center;
+      }
+      .calm *,
+      .calm *::before,
+      .calm *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      @media (min-width: 1500px) {
+        main {
+          grid-template-columns: minmax(0, 1fr) 440px;
+          padding: 22px;
+          gap: 22px;
+        }
+        canvas.graph {
+          height: 180px;
+        }
+        #line {
+          height: 170px;
+        }
+      }
+      @media (max-height: 680px) and (min-width: 601px), (max-width: 1050px) and (min-width: 601px) {
+        header {
+          padding: 5px 10px;
+          gap: 6px;
+        }
+        h1 {
+          font-size: 23px;
+        }
+        h1 small {
+          display: none;
+        }
+        .seg button {
+          padding: 0 9px;
+          font-size: 12px;
+        }
+        .icon-btn {
+          padding: 0 8px;
+          font-size: 12px;
+        }
+        main {
+          grid-template-columns: minmax(0, 1fr) 36%;
+          padding: 8px;
+          gap: 8px;
+        }
+        .panel {
+          padding: 10px;
+          gap: 7px;
+        }
+        .panel h2 {
+          font-size: 19px;
+        }
+        .eyebrow {
+          display: none;
+        }
+        .subline {
+          font-size: 11px;
+        }
+        .stats {
+          padding: 3px 0;
+          gap: 9px;
+        }
+        .stats strong {
+          font-size: 23px;
+        }
+        #timer {
+          width: 44px;
+          height: 44px;
+        }
+        #field-record {
+          display: none !important;
+        }
+        #compact-gen {
+          display: block;
+          font-size: 11px;
+          max-width: 65px;
+        }
+        .stats small {
+          display: none;
+        }
+        .stats strong {
+          font-size: 19px;
+        }
+        .graph-tabs {
+          display: flex;
+        }
+        .graph-tabs button {
+          padding: 4px;
+          font-size: 12px;
+        }
+        .chartbox h3 {
+          font-size: 11px;
+        }
+        canvas.graph,
+        #line {
+          height: 105px;
+        }
+        body[data-chart="bars"] #line-box,
+        body[data-chart="line"] #bars-box {
+          display: none;
+        }
+        .hint {
+          font-size: 12px;
+          min-height: 65px;
+          padding: 7px;
+        }
+        #hint {
+          position: fixed;
+          z-index: 3;
+          left: 17px;
+          bottom: 17px;
+          width: calc((100vw - 24px) * 0.64 - 18px);
+          min-height: 52px;
+          margin: 0;
+          background: #f3efe4f5;
+          box-shadow: 0 1px 5px #0002;
+        }
+        body[data-mode="explain"] #hint,
+        body[data-mode="story"] #hint {
+          position: static;
+          width: auto;
+          min-height: 52px;
+          box-shadow: none;
+        }
+        .panel #tip,
+        #restart {
+          display: none;
+        }
+        #run-controls {
+          gap: 4px;
+        }
+        body[data-mode="run"] .panel {
+          padding: 8px;
+          gap: 4px;
+        }
+        body[data-mode="run"] canvas.graph {
+          height: 100px;
+        }
+        .toggle {
+          font-size: 11px;
+          padding: 5px;
+        }
+        .limits {
+          font-size: 10px;
+        }
+        #run-controls .row {
+          gap: 4px;
+        }
+        #run-controls .row button {
+          font-size: 11px;
+          padding: 5px;
+        }
+        .run-extra {
+          display: none;
+        }
+        #run-scene {
+          grid-template-rows: 120px minmax(0, 1fr);
+        }
+        #run-plot {
+          padding-bottom: 78px;
+        }
+        body[data-mode="run"] #bars-box {
+          position: fixed;
+          left: 17px;
+          top: 197px;
+          bottom: 83px;
+          width: calc((100vw - 24px) * 0.64 - 18px);
+          background: #fffdf7;
+          z-index: 2;
+          padding: 10px;
+        }
+        body[data-mode="run"] #bars {
+          height: calc(100% - 22px);
+        }
+        body[data-mode="run"] #line-box {
+          display: none;
+        }
+        #explain-scene {
+          padding: 15px;
+        }
+        #explain-scene h2 {
+          font-size: 22px;
+        }
+        .answer {
+          padding: 13px 12px 13px 42px;
+          font-size: 14px;
+          min-height: 75px;
+        }
+        .answer::before {
+          left: 12px;
+          top: 14px;
+          font-size: 21px;
+        }
+        #cards {
+          gap: 8px;
+          margin-top: 10px;
+        }
+        #feedback {
+          margin-top: 10px;
+          font-size: 12px;
+          min-height: 44px;
+        }
+        #sentence-fields .sentence {
+          display: none;
+        }
+        #sentence-fields .sentence.current {
+          display: block;
+        }
+        #page-controls {
+          display: flex;
+        }
+        #mini-evidence,
+        #evidence-label {
+          display: none;
+        }
+        .sentence label {
+          font-size: 20px;
+        }
+        textarea {
+          min-height: 110px;
+        }
+        #story-text {
+          font-size: 15px;
+        }
+        #timeline {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 4px;
+          padding: 5px;
+        }
+        #story-caption {
+          font-size: 17px;
+          padding: 9px;
+        }
+        #historic {
+          height: 130px;
+        }
+        .story-copy {
+          padding: 10px 15px;
+        }
+        .story-copy p {
+          font-size: 13px;
+        }
+        .story-copy h2 {
+          font-size: 22px;
+        }
+        .overlay {
+          padding: 12px;
+        }
+        .story-card img {
+          max-height: 160px;
+        }
+        #end-graph {
+          height: 120px;
+        }
+      }
+      @media (max-width: 600px) {
+        body {
+          overflow: auto;
+        }
+        header {
+          padding: 7px;
+          gap: 6px;
+        }
+        h1 {
+          width: 100%;
+          font-size: 24px;
+        }
+        h1 small {
+          display: none;
+        }
+        .seg {
+          width: 100%;
+          order: 2;
+        }
+        .seg button {
+          flex: 1;
+          font-size: 13px;
+          padding: 0 8px;
+        }
+        .icon-btn {
+          padding: 0 9px;
+        }
+        header h1 {
+          width: auto;
+          flex: 1;
+        }
+        main {
+          display: flex;
+          flex-direction: column;
+          padding: 7px;
+          gap: 8px;
+        }
+        .stage {
+          height: 350px;
+          min-height: 350px;
+          flex: none;
+        }
+        body[data-mode="hunt"] .stage {
+          height: 310px;
+          min-height: 310px;
+        }
+        .panel {
+          padding: 12px;
+          gap: 8px;
+          overflow: visible;
+        }
+        body[data-mode="hunt"].overlay-open .stage {
+          height: 350px;
+          min-height: 350px;
+        }
+        .field-label {
+          top: 8px;
+          left: 8px;
+          padding: 6px 10px;
+        }
+        .field-label strong {
+          font-size: 18px;
+        }
+        .field-label span {
+          font-size: 10px;
+        }
+        .hint {
+          min-height: 60px;
+        }
+        .stats {
+          padding: 4px;
+        }
+        .panel h2 {
+          font-size: 22px;
+        }
+        .stats strong {
+          font-size: 25px;
+        }
+        #timer {
+          width: 44px;
+          height: 44px;
+        }
+        #field-record {
+          display: none !important;
+        }
+        #compact-gen {
+          display: block;
+          font-size: 13px;
+          width: 75px;
+        }
+        body[data-mode="hunt"] #hint {
+          order: -2;
+        }
+        body[data-mode="run"] #hint,
+        body[data-mode="story"] #hint {
+          order: -2;
+        }
+        body[data-mode="hunt"] #hunt-stats {
+          order: -1;
+        }
+        body[data-mode="hunt"] #hunt-actions {
+          order: 0;
+        }
+        body[data-mode="hunt"] #chart-tabs {
+          order: 1;
+        }
+        body[data-mode="hunt"] #bars-box,
+        body[data-mode="hunt"] #line-box {
+          order: 2;
+        }
+        body[data-mode="hunt"] #tip {
+          order: 3;
+        }
+        .eyebrow {
+          display: none;
+        }
+        .graph-tabs {
+          display: flex;
+        }
+        canvas.graph,
+        #line {
+          height: 100px;
+        }
+        body[data-chart="bars"] #line-box,
+        body[data-chart="line"] #bars-box {
+          display: none;
+        }
+        body[data-mode="run"] .stage {
+          height: 280px;
+          min-height: 280px;
+        }
+        body[data-mode="run"] #bars-box {
+          display: none !important;
+        }
+        body[data-mode="run"][data-chart="bars"] #run-bars {
+          display: block;
+          position: absolute;
+          inset: 12px;
+          width: calc(100% - 24px);
+          height: calc(100% - 24px);
+        }
+        body[data-mode="run"][data-chart="bars"] #run-line {
+          visibility: hidden;
+        }
+        #run-scene {
+          grid-template-rows: 100px 1fr;
+        }
+        #run-controls {
+          grid-template-columns: 1fr 1fr;
+        }
+        #bark-control {
+          grid-column: 1/-1;
+        }
+        #run-controls > .row {
+          grid-column: 1/-1;
+        }
+        #run-controls .run-extra {
+          display: block;
+        }
+        #explain-scene {
+          padding: 12px;
+        }
+        #explain-scene h2 {
+          font-size: 22px;
+        }
+        .answer {
+          min-height: 64px;
+          font-size: 14px;
+          padding: 11px 10px 11px 38px;
+        }
+        .answer::before {
+          left: 10px;
+          top: 15px;
+          font-size: 22px;
+        }
+        #cards {
+          gap: 7px;
+          margin-top: 8px;
+        }
+        #feedback {
+          font-size: 12px;
+          min-height: 35px;
+          margin-top: 10px;
+        }
+        #sentence-fields .sentence {
+          display: none;
+        }
+        #sentence-fields .sentence.current {
+          display: block;
+        }
+        #page-controls {
+          display: flex;
+        }
+        #mini-evidence {
+          height: 130px;
+        }
+        .sentence label {
+          font-size: 18px;
+        }
+        textarea {
+          min-height: 100px;
+        }
+        #timeline {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 4px;
+          padding: 5px;
+        }
+        #story-caption {
+          padding: 8px 12px;
+          font-size: 18px;
+        }
+        #story-text {
+          font-size: 17px;
+        }
+        .overlay {
+          padding: 10px;
+        }
+        .story-copy {
+          padding: 10px;
+        }
+        .story-copy p {
+          font-size: 13px;
+        }
+        .story-copy h2 {
+          font-size: 23px;
+        }
+        .story-card img {
+          max-height: 145px;
+        }
+        #end-graph {
+          height: 120px;
+        }
+        #beat-label {
+          bottom: 10px;
+          right: 10px;
+          font-size: 12px;
+          padding: 7px;
+        }
+      }
+
+      /* Keep text changes in the shared controls from moving their neighbours. */
+      #motion { width: 100px; }
+      #sound { width: 88px; }
+      #read { width: 58px; }
+      #compact-end-limits { display: none; }
+      @media (max-width: 1050px), (max-height: 680px) {
+        #motion { width: 88px; }
+        #sound { width: 72px; }
+        #read { width: 50px; }
+        body.overlay-open #hint {
+          position: static;
+          width: auto;
+          min-height: 52px;
+          box-shadow: none;
+        }
+        body.overlay-open #chart-tabs,
+        body.overlay-open #bars-box,
+        body.overlay-open #line-box,
+        body.overlay-open #hunt-actions { display: none !important; }
+        body.overlay-open #compact-end-limits { display: block; font-size: 11px; order: -1; }
+        .end-card #end-limits { display: none; }
+        .end-card .story-copy { padding: 10px; }
+        .end-card .story-copy h2 { font-size: 20px; margin-bottom: 6px; }
+        .end-card #card-text { font-size: 12.5px; line-height: 1.4; margin-bottom: 7px; }
+        .end-card #end-graph { height: 125px; }
+        #end-actions button { min-width: 44px; padding: 6px; font-size: 12px; }
+      }
+      @media (max-width: 600px) {
+        #motion { width: 88px; }
+        #sound { width: 72px; }
+        #read { width: 50px; }
+      }
+      @media (max-height: 780px) and (min-width: 1051px) {
+        #explain-scene { padding: 18px; }
+        .sentence { padding: 6px 0; }
+        textarea {
+          height: 74px;
+          min-height: 74px;
+          padding: 6px 9px;
+          font-size: 14px;
+          line-height: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body data-mode="hunt" data-chart="bars">
+    <header>
+      <h1>
+        Bug Hunt
+        <small>A field notebook of natural selection</small>
+      </h1>
+      <div class="seg" role="group" aria-label="Mode">
+        <button id="m-hunt" aria-pressed="true">Hunt</button>
+        <button id="m-run" aria-pressed="false">Run</button>
+        <button id="m-explain" aria-pressed="false">Explain</button>
+        <button id="m-story" aria-pressed="false">Real story</button>
+      </div>
+      <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+      <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+      <button class="icon-btn" id="read">Read</button>
+    </header>
+    <main>
+      <section class="stage" id="stage" aria-label="Moth field">
+        <div id="hunt-scene" class="mode-only hunt-only">
+          <canvas
+            id="bark"
+            tabindex="0"
+            role="application"
+            aria-label="Hunt with arrow keys. Shift makes smaller steps. Space pecks. P pauses."
+          ></canvas>
+          <div class="field-label">
+            <span>You are the bird</span>
+            <strong id="field-bark">Lichen woodland</strong>
+          </div>
+          <div id="beat-label" hidden></div>
+          <div id="pause-cover" hidden><button id="resume" class="primary">Resume hunt</button></div>
+          <div id="hunt-overlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="card-title" hidden>
+            <div class="story-card">
+              <img id="card-art" alt="" />
+              <div class="story-copy">
+                <p class="eyebrow" id="card-kicker"></p>
+                <h2 id="card-title"></h2>
+                <p id="card-text"></p>
+                <canvas id="end-graph" hidden></canvas>
+                <p class="limits" id="end-limits" hidden></p>
+                <div class="row" id="card-actions"><button id="continue" class="primary">Continue</button></div>
+                <div class="row" id="end-actions" hidden>
+                  <button id="end-explain" class="primary">Explain</button>
+                  <button id="end-run">Run</button>
+                  <button id="again">Hunt again</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="run-scene" class="mode-only run-only">
+          <canvas id="sample" aria-label="Forty moths showing a sample of the population of two hundred"></canvas>
+          <div id="run-plot">
+            <canvas id="run-line" aria-label="Percent dark form by generation"></canvas>
+            <canvas id="run-bars" aria-label="Wing darkness histogram"></canvas>
+            <div id="prediction" hidden></div>
+          </div>
+        </div>
+        <div id="explain-scene" class="mode-only explain-only">
+          <p class="eyebrow">Your evidence, your explanation</p>
+          <h2>What changed on the tree?</h2>
+          <div id="sorter">
+            <div id="cards"></div>
+            <p id="feedback" aria-live="polite"></p>
+          </div>
+          <div id="writing" hidden>
+            <div id="sentence-fields"></div>
+            <div class="row" id="page-controls">
+              <button id="back">Back</button>
+              <span id="page-num">1 / 3</span>
+              <button id="next">Next</button>
+            </div>
+            <p class="privacy">Saved on this device only. It never leaves it.</p>
+            <div class="row">
+              <button id="copy" class="primary">Copy</button>
+              <span id="copy-status" role="status"></span>
+            </div>
+          </div>
+        </div>
+        <div id="story-scene" class="mode-only story-only">
+          <img id="story-art" alt="" />
+          <div id="gene" hidden aria-label="A jumping piece of DNA inserted in cortex">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div id="story-caption"></div>
+          <nav id="timeline" aria-label="Peppered moth timeline"></nav>
+        </div>
+      </section>
+      <aside class="panel">
+        <div class="mode-only hunt-only" id="field-record">
+          <p class="eyebrow">Field record / 30 moths</p>
+          <h2 id="gen-title">Generation 1 of 14</h2>
+          <p class="subline" id="bark-name">Lichen, darkness 20</p>
+        </div>
+        <div class="stats mode-only hunt-only" id="hunt-stats" style="display: flex">
+          <span id="compact-gen">Generation 1 / 14</span>
+          <div>
+            <strong id="eaten">0 / 15</strong>
+            <small>moths eaten this round</small>
+          </div>
+          <svg id="timer" viewBox="0 0 60 60" aria-label="25 seconds remaining">
+            <circle cx="30" cy="30" r="26" fill="none" stroke="#e7dfcf" stroke-width="3" />
+            <circle id="timer-ring" cx="30" cy="30" r="26" fill="none" stroke="#8b4a6a" stroke-width="3" transform="rotate(-90 30 30)" />
+            <text id="time-text" x="30" y="36" text-anchor="middle" fill="#1f2a24" font-size="19" font-family="Georgia">25</text>
+          </svg>
+        </div>
+        <div class="mode-only run-only">
+          <p class="eyebrow">Computer birds / 200 moths</p>
+          <h2 id="run-title">Generation 0</h2>
+        </div>
+        <div class="graph-tabs row" id="chart-tabs">
+          <button id="bars-tab" aria-pressed="true">Bars</button>
+          <button id="line-tab" aria-pressed="false">Line</button>
+        </div>
+        <div class="chartbox" id="bars-box">
+          <h3>Wing darkness · moths born this generation</h3>
+          <canvas class="graph" id="bars"></canvas>
+        </div>
+        <div class="chartbox hunt-only mode-only" id="line-box">
+          <h3>Dark form · percent by generation</h3>
+          <canvas class="graph" id="line"></canvas>
+        </div>
+        <div class="mode-only hunt-only" id="hunt-actions">
+          <div class="row">
+            <button id="pause" class="primary">Pause</button>
+            <button id="restart">Restart hunt</button>
+          </div>
+        </div>
+        <div id="run-controls" class="mode-only run-only">
+          <div id="bark-control">
+            <label class="slider-label" for="bark-slider">
+              Bark darkness
+              <span id="slider-value">20</span>
+            </label>
+            <input id="bark-slider" type="range" min="0" max="100" value="20" step="1" />
+            <div class="ticks">
+              <span>Lichen 20</span>
+              <span>Clearing 50</span>
+              <span>Soot 85</span>
+            </div>
+          </div>
+          <div class="row">
+            <button id="birds" class="toggle" aria-pressed="true">Birds on</button>
+            <button id="mutation" class="toggle" aria-pressed="true">New dark copies on</button>
+          </div>
+          <div class="row">
+            <button id="play" class="primary">Play</button>
+            <button id="step">Step</button>
+            <button id="history">History</button>
+          </div>
+          <div class="row">
+            <button id="speed" class="run-extra">Speed 1x</button>
+            <button id="predict" class="toggle run-extra" aria-pressed="false">Predict off</button>
+            <button id="reset-run">Reset</button>
+          </div>
+        </div>
+        <div class="mode-only explain-only">
+          <p class="eyebrow">Population evidence</p>
+          <h2>Your field record</h2>
+          <p id="evidence-label"></p>
+          <canvas id="mini-evidence"></canvas>
+        </div>
+        <div class="mode-only story-only">
+          <p class="eyebrow" id="story-year"></p>
+          <p id="story-text"></p>
+          <canvas
+            id="historic"
+            aria-label="Dark peppered moths near Manchester: rare in 1848, about 98 percent by the 1890s. Falling since the 1960s to 1970s. Not measured every year here."
+          ></canvas>
+          <canvas id="your-history" hidden></canvas>
+        </div>
+        <p class="limits" id="compact-end-limits" hidden></p>
+        <p class="hint" id="hint"></p>
+        <p class="tip hunt-only mode-only" id="tip"></p>
+        <p class="limits run-only mode-only" id="run-limits"></p>
+      </aside>
+    </main>
+    <script src="kit:curio"></script>
+    <script id="model-code">
+      const Model = (() => {
+        const clip = (x) => Math.max(0, Math.min(1, x));
+        function random(seed) {
+          let a = seed >>> 0;
+          return () => {
+            a += 0x6d2b79f5;
+            let t = a;
+            t = Math.imul(t ^ (t >>> 15), t | 1);
+            t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+            return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+          };
+        }
+        const normal = (r) => Math.sqrt(-2 * Math.log(Math.max(1e-10, r()))) * Math.cos(2 * Math.PI * r());
+        const pale = (r) => ({ a: 0, b: 0, s: clip(0.42 + 0.15 * normal(r)) });
+        const dark = (m) => m.a + m.b > 0;
+        const darkness = (m) => (dark(m) ? 78 + 20 * m.s : 5 + 40 * m.s);
+        function initial(n, r) {
+          const pop = Array.from({ length: n }, () => pale(r));
+          if (n === 30) pop[29] = { a: 1, b: 0, s: 0.6 };
+          return pop;
+        }
+        function shuffled(items, r) {
+          const out = items.slice();
+          for (let i = out.length - 1; i > 0; i--) {
+            const j = Math.floor(r() * (i + 1));
+            [out[i], out[j]] = [out[j], out[i]];
+          }
+          return out;
+        }
+        function breed(survivors, n, r, generation, mutation = true) {
+          const order = shuffled(survivors, r);
+          const forced = { 2: 8, 3: 4, 4: 19, 5: 10, 7: 22, 10: 13 };
+          const young = [];
+          for (let i = 0; i < (n === 200 ? 196 : 30); i++) {
+            const a = order[i % order.length];
+            const b = survivors[Math.floor(r() * survivors.length)];
+            let ga = r() < 0.5 ? a.a : a.b;
+            let gb = r() < 0.5 ? b.a : b.b;
+            if (n === 200 && mutation) {
+              if (!ga && r() < 1 / 500) ga = 1;
+              if (!gb && r() < 1 / 500) gb = 1;
+            }
+            if (n === 30 && i + 1 === forced[generation]) ga = 1;
+            young.push({ a: ga, b: gb, s: clip((a.s + b.s) / 2 + 0.08 * normal(r)) });
+          }
+          if (n === 30) young[29] = pale(r);
+          else for (let i = 0; i < 4; i++) young.push({ ...pale(r), a: r() < 0.1 ? 1 : 0 });
+          return young;
+        }
+        function predation(pop, count, bark, r, base = 0.2) {
+          const left = pop.slice();
+          const eaten = [];
+          for (let i = 0; i < count; i++) {
+            const weights = left.map((m) => base + ((darkness(m) - bark) / 100) ** 2);
+            let draw = r() * weights.reduce((a, b) => a + b, 0);
+            let index = weights.length - 1;
+            for (let j = 0; j < weights.length; j++) {
+              draw -= weights[j];
+              if (draw <= 0) {
+                index = j;
+                break;
+              }
+            }
+            eaten.push(left.splice(index, 1)[0]);
+          }
+          return { left, eaten };
+        }
+        function snapshot(pop, gen, bark, round = null) {
+          const bins = Array(10).fill(0);
+          for (const m of pop) bins[Math.min(9, Math.floor(darkness(m) / 10))]++;
+          const d = pop.filter(dark).length;
+          return {
+            gen,
+            bark,
+            n: pop.length,
+            dark: d,
+            percent: (d / pop.length) * 100,
+            bins,
+            min: Math.round(Math.min(...pop.map(darkness))),
+            max: Math.round(Math.max(...pop.map(darkness))),
+            round,
+          };
+        }
+        const huntBark = (g) => (g >= 3 && g <= 8 ? 85 : 20);
+        const historyBark = (g) => (g <= 5 || g > 30 ? 20 : 85);
+        return { random, normal, pale, dark, darkness, initial, shuffled, breed, predation, snapshot, huntBark, historyBark };
+      })();
+    </script>
+    <script>
+      (() => {
+        const $ = (id) => document.getElementById(id);
+        const modes = ["hunt", "run", "explain", "story"];
+        const limits =
+          "Game numbers. Real birds eat a smaller share, so in England the change took decades, not a few rounds. " +
+          "Real dark copies were far rarer: one change, around 1819.";
+        const tips = [
+          "A moth near the bark marker on the histogram is hard to see.",
+          "Nobody chose the parents. The moths you missed did the breeding.",
+          "One dark copy makes a dark moth, so pale copies can hide inside dark moths.",
+          "With Birds off, no moths are eaten. Incoming moths and new dark copies can still change the mix.",
+        ];
+        const stops = [
+          [
+            "Before 1819",
+            "wood",
+            "Peppered moths rest on tree bark by day. Most were pale with dark speckles, hard to see on bark covered in pale lichen.",
+          ],
+          [
+            "About 1819",
+            "wood",
+            "Moth DNA dates the change that makes the dark form to around 1819: a jumping piece of DNA landed in a gene called cortex. One dark copy makes a dark moth.",
+          ],
+          ["1848", "mill", "A collector in Manchester caught the first recorded dark peppered moth."],
+          [
+            "1890s",
+            "mill",
+            "Coal smoke darkened the bark with soot, and pollution killed many pale lichens. By the end of the 1800s, about 98 in 100 peppered moths near Manchester were dark.",
+          ],
+          [
+            "1950s",
+            "branch",
+            "Bernard Kettlewell released moths in polluted woods near Birmingham and clean woods in Dorset. Birds took more of whichever form stood out.",
+          ],
+          [
+            "1956",
+            "clean",
+            "Britain's Clean Air Act made towns cut smoke. From the 1960s and 1970s on, the dark form fell steadily. Dark moths in Michigan, USA, rose and fell the same way.",
+          ],
+          [
+            "Debate",
+            "clean",
+            "Scientists agree that less soot mattered. How much returning lichen mattered is still argued: in Michigan the dark form fell even where lichen had not come back.",
+          ],
+          [
+            "2001 to 2007",
+            "branch",
+            "Michael Majerus watched 4,864 released moths in Cambridge. Birds ate more of the dark ones, enough to explain why the dark form is fading.",
+          ],
+        ];
+        const answers = [
+          [
+            "a",
+            "Each moth darkened its own wings to match the sooty bark.",
+            "No moth changed. Every moth kept its darkness for life; look at your bars: the new dark moths were born dark.",
+          ],
+          [
+            "b",
+            "Some moths were already darker. Birds found fewer of them on soot, so more of them bred and passed on their color.",
+            "That's natural selection: variation, survival, inheritance.",
+          ],
+          [
+            "c",
+            "Soot stained the moths, and the stain passed to their young.",
+            "A stain isn't in the genes, so it can't pass to young. Only gene copies pass on.",
+          ],
+        ];
+        const L = {
+          welcomeHunt: "You're a hungry bird. Tap a moth to start eating. Up to fifteen before the time runs out.",
+          miss: "That was bark. A miss spooks you for a second, so look before you peck.",
+          breed: "The moths you missed are the parents. Their young get their colors. Watch the bars.",
+          nextGen: "Tap a moth to start the next generation.",
+          sootCard: "Years pass. Coal smoke coats the trees in soot, and the pale lichen dies off. The bark turns dark.",
+          cleanCard: "Clean air laws cut the smoke. Rain washes the soot off, and lichen starts to grow back.",
+          noneEaten: "No moths eaten, so every moth bred. Nothing chose.",
+          welcomeRun: "Run lets birds hunt for you. Set the bark with the slider, then press Play and watch the line.",
+          runPlaying: "Watch the line and the bark band. Press Pause to stop, or move Bark to change the next generation.",
+          history: "History plays clean bark, then soot, then clean air again.",
+          historyTaken: "History paused. You took the bark.",
+          welcomeExplain: "Tap the card that fits your graph.",
+          cardRight: answers[1][2],
+          cardWrongA: answers[0][2],
+          cardWrongC: answers[2][2],
+          chips: "Tap Use my numbers in each box, then make each sentence your own.",
+          writeEvidence: "That's natural selection: variation, survival, inheritance. Tap Use my numbers in each box, then make each sentence your own.",
+          welcomeStory: "Tap a year on the timeline to see what really happened to England's peppered moths.",
+          noData: "Use Hunt or Run in the header to collect evidence. Then come back here to write.",
+          paused: "Tap Resume hunt to keep hunting. The clock is paused.",
+          predict:
+            "Before Play, drag the pin along the graph to predict the first generation with at least half dark. Arrow keys move it too.",
+          predictLine: "Tap Line to place your prediction pin before pressing Play.",
+          end: "Tap Explain to say what happened, or Run to watch two hundred moths.",
+          ...Object.fromEntries(stops.map((s, i) => ["stop" + (i + 1), s[2]])),
+        };
+        const state = {
+          mode: "hunt",
+          chart: "bars",
+          stop: 0,
+          page: 0,
+          selected: false,
+          wrong: new Set(),
+          saved: ["", "", ""],
+          seed: 64327,
+          h: null,
+          r: null,
+          pin: 15,
+          predict: false,
+          pinLocked: false,
+        };
+        let huntRng;
+        let runRng;
+        let frame = 0;
+        let lastTick = performance.now();
+        let dirty = true;
+        let runClock = 0;
+        let locations = [];
+        let cross = { x: 0.5, y: 0.5, visible: false };
+        let puff = null;
+        let pose = "watch";
+        let poseUntil = 0;
+        let cardToken = 0;
+        let lastAnswer = null;
+        let previousBark = 20;
+        let barkFade = 0;
+        const imgs = {};
+        const art = {
+          "bh-bark-lichen": "art:bh-bark-lichen",
+          "bh-bark-clearing": "art:bh-bark-clearing",
+          "bh-bark-soot": "art:bh-bark-soot",
+          "bh-moth-typica": "art:bh-moth-typica",
+          "bh-moth-carbonaria": "art:bh-moth-carbonaria",
+          "bh-bird-watch": "art:bh-bird-watch",
+          "bh-bird-peck": "art:bh-bird-peck",
+          "bh-bird-full": "art:bh-bird-full",
+          "bh-story-wood": "art:bh-story-wood",
+          "bh-story-mill": "art:bh-story-mill",
+          "bh-story-clean": "art:bh-story-clean",
+          "bh-story-branch": "art:bh-story-branch",
+        };
+        const ready = Promise.all(
+          Object.entries(art).map(
+            ([key, url]) =>
+              new Promise((resolve) => {
+                const im = new Image();
+                im.onload = () => {
+                  imgs[key] = im;
+                  dirty = true;
+                  resolve();
+                };
+                im.onerror = () => {
+                  console.error("Art did not load: " + key);
+                  resolve();
+                };
+                im.src = url;
+              }),
+          ),
+        );
+        const V = Curio.voice({
+          lines: L,
+          scope: () => state.mode,
+          hint: false,
+          read: () => $("hint").textContent,
+          welcome: () => {
+            if (state.mode === "hunt") {
+              if (state.h.paused && !state.h.card && !state.h.done) return ["paused"];
+              return !state.h.started && !state.h.card && !state.h.done ? ["welcomeHunt"] : null;
+            }
+            if (state.mode === "run") return !state.r.gen ? ["welcomeRun"] : null;
+            if (state.mode === "explain") return !state.selected ? ["welcomeExplain"] : null;
+            return state.mode === "story" ? ["welcomeStory"] : null;
+          },
+          speaks: "#bark, #play, #step, #history, .answer, #timeline button",
+        });
+        const how = (key, opts = {}) => V.how(key, { ...opts, hint: false });
+        const event = (key, opts = {}) => V.say(key, { ...opts, hint: false });
+        function interruptFeedback() {
+          V.dropQueued();
+          // The queue's playing getter excludes Read, which retains priority.
+          if (V.playing) V.hush();
+        }
+        function prepareRunAction() {
+          if (V.playing === L.welcomeRun || (state.predict && !state.pinLocked)) interruptFeedback();
+          else V.dropQueued((item) => ["welcomeRun", "predict", "predictLine"].includes(item.key));
+        }
+        const nameBark = (n) => (n < 35 ? "Lichen" : n < 68 ? "Clearing" : "Soot");
+        const hint = (text) => {
+          $("hint").textContent = text;
+        };
+        function refreshHint() {
+          if (state.mode === "hunt") {
+            const h = state.h;
+            if (h.card) hint(h.cardReady ? "Read the card, then tap Continue." : L[h.card]);
+            else if (h.done) hint(L.end);
+            else if (h.paused) hint(L.paused);
+            else if (h.breeding) hint("The survivors breed. Tap the bark to finish this beat and hunt the next generation.");
+            else if (!h.started && h.gen > 1) hint("Tap a moth to start generation " + h.gen + ".");
+            else hint("Hunt. You are a hungry bird. Tap a moth to start eating. Up to 15 before the time runs out.");
+          } else if (state.mode === "run") {
+            hint(
+              state.r.gen >= 120
+                ? "Reset to run again."
+                : state.r.taken
+                  ? `History paused: you took the bark. Set Bark or press ${state.r.playing ? "Pause" : "Play"} to control your run.`
+                  : state.predict && !state.pinLocked
+                    ? state.chart === "bars" && innerWidth <= 600 ? L.predictLine : L.predict
+                    : state.r.playing
+                      ? L.runPlaying
+                      : "Run. Set the bark with the slider, then press Play. Or press History.",
+            );
+          } else if (state.mode === "explain") {
+            hint(state.selected ? (evidence() ? L.chips : L.noData) : "Explain. Tap the card that fits your graph.");
+          } else hint("Real story. Tap a year on the timeline.");
+        }
+        function resetHunt() {
+          V.hush();
+          cardToken++;
+          huntRng = Model.random(state.seed);
+          const pop = Model.initial(30, huntRng);
+          state.h = {
+            gen: 1,
+            pop,
+            eaten: [],
+            started: false,
+            paused: false,
+            seconds: 25,
+            frozen: 0,
+            breeding: 0,
+            pending: null,
+            card: null,
+            cardReady: false,
+            done: false,
+            history: [Model.snapshot(pop, 1, 20)],
+            rounds: [],
+          };
+          pose = "watch";
+          locations = [];
+          $("hunt-overlay").hidden = true;
+          cross.visible = false;
+          refreshHint();
+          update();
+        }
+        function resetRun(seed = null) {
+          // A fresh trial cannot reveal a later prediction by replaying an identical run.
+          if (seed === null) seed = (Date.now() ^ Math.floor(Math.random() * 4294967296)) >>> 0;
+          runRng = Model.random(seed);
+          const pop = Model.initial(200, runRng);
+          state.r = {
+            gen: 0,
+            pop,
+            bark: 20,
+            birds: true,
+            mutation: true,
+            playing: false,
+            historyPlaying: false,
+            taken: false,
+            speed: 1,
+            records: [Model.snapshot(pop, 0, 20)],
+            firstHalf: null,
+            rounds: [],
+          };
+          state.pinLocked = false;
+          state.pin = 15;
+          runClock = 0;
+          updateRunControls();
+        }
+        function setMode(m) {
+          if (!modes.includes(m)) return;
+          if (state.mode === "hunt" && m !== "hunt") state.h.paused = true;
+          if (m !== "run") state.r.playing = false;
+          V.hush();
+          state.mode = m;
+          state.chart = m === "run" ? "line" : "bars";
+          document.body.dataset.chart = state.chart;
+          $("bars-tab").setAttribute("aria-pressed", state.chart === "bars");
+          $("line-tab").setAttribute("aria-pressed", state.chart === "line");
+          document.body.dataset.mode = m;
+          for (const k of modes) $("m-" + k).setAttribute("aria-pressed", k === m);
+          if (m === "explain") {
+            lastAnswer = null;
+            state.wrong.clear();
+            document.querySelectorAll(".answer").forEach((el) => el.classList.remove("refused"));
+            $("feedback").textContent = "";
+            updateEvidence();
+          }
+          if (m === "story") showStop(state.stop, false);
+          if (m === "hunt" && state.h.card && !state.h.cardReady) speakCard();
+          refreshHint();
+          V.welcome();
+          update();
+        }
+        function setCanvas(el) {
+          const r = el.getBoundingClientRect();
+          const dpr = Math.min(2, devicePixelRatio || 1);
+          const w = Math.max(1, Math.round(r.width));
+          const h = Math.max(1, Math.round(r.height));
+          if (el.width !== Math.round(w * dpr) || el.height !== Math.round(h * dpr)) {
+            el.width = Math.round(w * dpr);
+            el.height = Math.round(h * dpr);
+          }
+          const ctx = el.getContext("2d");
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          ctx.clearRect(0, 0, w, h);
+          return { ctx, w, h };
+        }
+        const lightGray = (d) => {
+          const L = 100 - d;
+          const y = L > 8 ? ((L + 16) / 116) ** 3 : L / 903.3;
+          return 255 * (y <= 0.0031308 ? 12.92 * y : 1.055 * y ** (1 / 2.4) - 0.055);
+        };
+        const gray = (d) => {
+          const x = Math.round(lightGray(d));
+          return `rgb(${x},${x},${x})`;
+        };
+        function cover(c, im, x, y, w, h) {
+          if (!im) return;
+          const scale = Math.max(w / im.width, h / im.height);
+          const iw = w / scale;
+          const ih = h / scale;
+          c.drawImage(im, (im.width - iw) / 2, (im.height - ih) / 2, iw, ih, x, y, w, h);
+        }
+        function paintBark(c, w, h, d) {
+          c.fillStyle = gray(d);
+          c.fillRect(0, 0, w, h);
+          const a = d <= 50 ? "lichen" : "clearing";
+          const b = d <= 50 ? "clearing" : "soot";
+          const t = d <= 50 ? Math.max(0, (d - 20) / 30) : Math.min(1, (d - 50) / 35);
+          cover(c, imgs["bh-bark-" + a], 0, 0, w, h);
+          c.globalAlpha = t;
+          cover(c, imgs["bh-bark-" + b], 0, 0, w, h);
+          c.globalAlpha = 1;
+          // Beyond the calibrated end textures, preserve their relief while moving to the slider's lightness.
+          if (d < 20 || d > 85) {
+            c.globalAlpha = d < 20 ? (20 - d) / 20 : (d - 85) / 15;
+            c.fillStyle = d < 20 ? "#fff" : "#000";
+            c.fillRect(0, 0, w, h);
+            c.globalAlpha = 1;
+          }
+        }
+        const mothCache = new Map();
+        function mothImage(m) {
+          const d = Model.darkness(m);
+          const key = (Model.dark(m) ? "d" : "p") + Math.round(d * 10);
+          if (mothCache.has(key)) return mothCache.get(key);
+          const im = imgs["bh-moth-" + (Model.dark(m) ? "carbonaria" : "typica")];
+          if (!im) return null;
+          const cv = document.createElement("canvas");
+          cv.width = im.width;
+          cv.height = im.height;
+          const c = cv.getContext("2d", { willReadFrequently: true });
+          c.drawImage(im, 0, 0);
+          const data = c.getImageData(0, 0, cv.width, cv.height);
+          let sum = 0;
+          let weight = 0;
+          const values = [];
+          const linear = (n) => (n <= 0.04045 ? n / 12.92 : ((n + 0.055) / 1.055) ** 2.4);
+          for (let i = 0; i < data.data.length; i += 4) {
+            const a = data.data[i + 3] / 255;
+            const y =
+              0.2126 * linear(data.data[i] / 255) + 0.7152 * linear(data.data[i + 1] / 255) + 0.0722 * linear(data.data[i + 2] / 255);
+            const value = 255 * (y <= 0.0031308 ? y * 12.92 : 1.055 * y ** (1 / 2.4) - 0.055);
+            values.push(value);
+            sum += a * value;
+            weight += a;
+          }
+          const current = sum / weight;
+          const target = lightGray(d);
+          for (let i = 0; i < data.data.length; i += 4) {
+            const old = values[i / 4];
+            const value = target < current ? (old * target) / current : 255 - ((255 - old) * (255 - target)) / (255 - current);
+            const v = Math.round(value);
+            data.data[i] = v;
+            data.data[i + 1] = v;
+            data.data[i + 2] = v;
+          }
+          c.putImageData(data, 0, 0);
+          mothCache.set(key, cv);
+          return cv;
+        }
+        function drawMoth(c, m, x, y, size, angle = 0, alpha = 1) {
+          const im = mothImage(m);
+          if (!im) return;
+          c.save();
+          c.translate(x, y);
+          c.rotate(angle);
+          c.globalAlpha = alpha;
+          c.drawImage(im, -size / 2, (-size * im.height) / im.width / 2, size, (size * im.height) / im.width);
+          c.restore();
+        }
+        function placeMoths(w, h) {
+          const rand = Model.random(state.seed + state.h.gen * 7919);
+          const birdSize = Math.min(130, w * 0.25, h * 0.32);
+          const size = Math.min(54, Math.max(34, w / 16));
+          const compact = innerWidth > 600 && (innerWidth <= 1050 || innerHeight <= 680);
+          const floor = compact ? 85 : 0;
+          const spacing = Math.min(70, Math.sqrt((w * (h - 50 - floor)) / 38));
+          const points = [];
+          for (let i = 0; i < 30; i++) {
+            let best = null;
+            let bestDistance = -1;
+            for (let j = 0; j < 450; j++) {
+              const x = 30 + rand() * (w - 60);
+              const y = 74 + rand() * (h - 104 - floor);
+              if (x < birdSize + 24 && y > h - birdSize - 15 - floor) continue;
+              if (x < Math.min(360, w * 0.7) && y < 115) continue;
+              const dist = points.length ? Math.min(...points.map((p) => Math.hypot(x - p.x, y - p.y))) : Infinity;
+              if (dist > bestDistance) {
+                best = { x, y, angle: ((rand() - 0.5) * Math.PI) / 3.6 };
+                bestDistance = dist;
+              }
+              if (dist >= spacing) break;
+            }
+            points.push({ ...best, size });
+          }
+          return points;
+        }
+        let lastLayout = "";
+        function drawHunt(now) {
+          const { ctx: c, w, h } = setCanvas($("bark"));
+          const bh = state.h;
+          const bark = Model.huntBark(bh.gen);
+          paintBark(c, w, h, bark);
+          if (barkFade && now - barkFade < 1500 && !Curio.reduce) {
+            c.globalAlpha = 1 - (now - barkFade) / 1500;
+            const temp = document.createElement("canvas");
+            temp.width = w;
+            temp.height = h;
+            paintBark(temp.getContext("2d"), w, h, previousBark);
+            c.drawImage(temp, 0, 0);
+            c.globalAlpha = 1;
+          }
+          const layout = w + "," + h + "," + bh.gen;
+          if (lastLayout !== layout || !locations.length) {
+            locations = placeMoths(w, h);
+            lastLayout = layout;
+          }
+          if (!bh.paused) {
+            bh.pop.forEach((m, i) => {
+              if (bh.eaten.includes(i)) return;
+              const p = locations[i];
+              const pulse =
+                bh.breeding && !Curio.reduce
+                  ? 0.84 + 0.16 * Math.sin((now - bh.breeding) / 210)
+                  : bh.bornAt && !Curio.reduce
+                    ? Math.min(1, (now - bh.bornAt) / 650)
+                    : 1;
+              drawMoth(c, m, p.x, p.y, p.size, p.angle, pulse);
+            });
+          }
+          const birdSize = Math.min(130, w * 0.25, h * 0.32);
+          const bird = imgs["bh-bird-" + pose];
+          const compact = innerWidth > 600 && (innerWidth <= 1050 || innerHeight <= 680);
+          if (bird) {
+            c.save();
+            c.translate(10 + birdSize / 2, h - birdSize / 2 - 7 - (compact ? 70 : 0));
+            if (now < bh.frozen) c.rotate(-0.12);
+            c.drawImage(bird, -birdSize / 2, -birdSize / 2, birdSize, (birdSize * bird.height) / bird.width);
+            c.restore();
+          }
+          if (cross.visible) {
+            const x = cross.x * w;
+            const y = cross.y * h;
+            c.strokeStyle = "#fff";
+            c.lineWidth = 3;
+            c.beginPath();
+            c.arc(x, y, 15, 0, Math.PI * 2);
+            c.stroke();
+            c.strokeStyle = "#9a3d12";
+            c.lineWidth = 2;
+            c.beginPath();
+            c.arc(x, y, 13, 0, Math.PI * 2);
+            c.moveTo(x - 20, y);
+            c.lineTo(x + 20, y);
+            c.moveTo(x, y - 20);
+            c.lineTo(x, y + 20);
+            c.stroke();
+          }
+          if (puff && now - puff.t < 420) {
+            const t = Curio.reduce ? 0.35 : (now - puff.t) / 420;
+            c.globalAlpha = 1 - t;
+            for (let j = 0; j < 7; j++) {
+              c.save();
+              c.translate(puff.x + Math.cos(j) * t * 35, puff.y + Math.sin(j) * t * 28);
+              c.rotate(j);
+              c.fillStyle = puff.hit ? "#e8dfcc" : "#4c3c32";
+              c.beginPath();
+              c.ellipse(0, 0, 2, 6, 0, 0, Math.PI * 2);
+              c.fill();
+              c.restore();
+            }
+            c.globalAlpha = 1;
+          }
+        }
+        function text(c, s, x, y, size = 11, color = "#55615a", align = "left") {
+          c.font = size + "px Segoe UI, sans-serif";
+          c.fillStyle = color;
+          c.textAlign = align;
+          c.fillText(s, x, y);
+        }
+        function bars(el, record) {
+          const { ctx: c, w, h } = setCanvas(el);
+          const left = 20;
+          const right = w - 12;
+          const bottom = h - 35;
+          const max = Math.max(5, ...record.bins);
+          const step = (right - left) / 10;
+          c.strokeStyle = "#c9c0ae";
+          c.beginPath();
+          c.moveTo(left, bottom);
+          c.lineTo(right, bottom);
+          c.stroke();
+          record.bins.forEach((n, i) => {
+            const previous = state.mode === "hunt" && state.h.history.length > 1 ? state.h.history.at(-2).bins[i] : n;
+            const blend =
+              state.mode === "hunt" && state.h.bornAt && !Curio.reduce ? Math.min(1, (performance.now() - state.h.bornAt) / 650) : 1;
+            const height = ((bottom - 24) * (previous + (n - previous) * blend)) / max;
+            c.fillStyle = gray(i * 10 + 5);
+            c.fillRect(left + i * step + 2, bottom - height, step - 4, height);
+            c.strokeStyle = "#8b8477";
+            if (n) c.strokeRect(left + i * step + 2, bottom - height, step - 4, height);
+            text(c, n, left + (i + 0.5) * step, bottom - height - 4, 11, "#1f2a24", "center");
+          });
+          text(c, "0", left, bottom + 15, 10);
+          text(c, "Wing darkness", w / 2, h - 2, 10, "#55615a", "center");
+          text(c, "100", right, bottom + 15, 10, "#55615a", "right");
+          const bx = left + ((right - left) * record.bark) / 100;
+          c.fillStyle = "#8b4a6a";
+          c.beginPath();
+          c.moveTo(bx, bottom + 1);
+          c.lineTo(bx - 5, bottom + 9);
+          c.lineTo(bx + 5, bottom + 9);
+          c.fill();
+          text(c, "bark", Math.max(34, Math.min(w - 28, bx)), bottom + 23, 10, "#753853", "center");
+          el.setAttribute(
+            "aria-label",
+            `Histogram, generation ${record.gen}. ${record.n} moths. Bins: ${record.bins.join(", ")}. Bark ${record.bark}.`,
+          );
+        }
+        function lineGraph(el, records, options = {}) {
+          const { ctx: c, w, h } = setCanvas(el);
+          const left = w > 500 ? 48 : 30;
+          const right = w - 15;
+          const top = options.large ? 35 : 15;
+          const bottom = h - 40;
+          const run = options.run;
+          const xmax = run ? (records.length > 61 ? 120 : 60) : 14;
+          const xmin = run ? 0 : 1;
+          const X = (g) => left + ((right - left) * (g - xmin)) / (xmax - xmin);
+          const Y = (p) => bottom - ((bottom - top) * p) / 100;
+          for (const n of [0, 50, 100]) {
+            c.strokeStyle = "#ddd7ca";
+            c.setLineDash(n === 50 ? [3, 4] : []);
+            c.beginPath();
+            c.moveTo(left, Y(n));
+            c.lineTo(right, Y(n));
+            c.stroke();
+            text(c, n + "", left - 6, Y(n) + 4, 10, "#55615a", "right");
+          }
+          c.setLineDash([]);
+          if (options.large) text(c, options.title || "Dark form (%)", left, 16, 12, "#1f2a24");
+          const bw = (right - left) / (xmax - xmin + 1);
+          records.forEach((r) => {
+            c.fillStyle = gray(r.bark);
+            c.fillRect(X(r.gen) - bw / 2, bottom + 6, bw + 1, 12);
+          });
+          const stretches = [];
+          for (const r of records) {
+            const last = stretches[stretches.length - 1];
+            if (last && last.bark === r.bark) last.end = r.gen;
+            else stretches.push({ start: r.gen, end: r.gen, bark: r.bark });
+          }
+          stretches.forEach((s) => {
+            if ((s.end - s.start + 1) * bw > 36)
+              text(
+                c,
+                nameBark(s.bark).toLowerCase(),
+                (X(s.start) + X(s.end)) / 2,
+                bottom + 15,
+                10,
+                s.bark > 60 ? "#fff" : "#1f2a24",
+                "center",
+              );
+          });
+          c.strokeStyle = "#8b4a6a";
+          c.lineWidth = 3;
+          c.beginPath();
+          records.forEach((r, i) => (i ? c.lineTo(X(r.gen), Y(r.percent)) : c.moveTo(X(r.gen), Y(r.percent))));
+          c.stroke();
+          for (const r of records) {
+            c.fillStyle = "#8b4a6a";
+            c.beginPath();
+            c.arc(X(r.gen), Y(r.percent), run ? 2 : 3, 0, Math.PI * 2);
+            c.fill();
+          }
+          const last = records[records.length - 1];
+          text(
+            c,
+            Math.round(last.percent * 10) / 10 + "%",
+            Math.min(right - 15, Math.max(left + 20, X(last.gen))),
+            Math.max(top + 12, Y(last.percent) - 10),
+            12,
+            "#753853",
+            "center",
+          );
+          for (let g = xmin; g <= xmax; g += run ? 10 : 3) text(c, g + "", X(g), h - 7, 10, "#55615a", "center");
+          text(c, "generation", right, top - 5, 10, "#55615a", "right");
+          if (run && state.predict) {
+            const px = X(state.pin);
+            c.strokeStyle = "#9a3d12";
+            c.setLineDash([4, 4]);
+            c.beginPath();
+            c.moveTo(px, top);
+            c.lineTo(px, bottom + 20);
+            c.stroke();
+            c.setLineDash([]);
+            c.fillStyle = "#9a3d12";
+            c.beginPath();
+            c.arc(px, bottom + 19, 7, 0, Math.PI * 2);
+            c.fill();
+            text(c, "you", px + 10, top + 12, 11, "#9a3d12");
+          }
+          el.setAttribute(
+            "aria-label",
+            "Dark form by generation. " + records.map((r) => r.gen + ": " + Math.round(r.percent * 10) / 10 + " percent").join("; "),
+          );
+          return { left, right, top, bottom, xmax, xmin, w, h };
+        }
+        function update() {
+          const h = state.h;
+          document.body.classList.toggle("overlay-open", state.mode === "hunt" && (h.card || h.done));
+          $("compact-end-limits").hidden = state.mode !== "hunt" || !h.done;
+          $("line-box").classList.toggle("run-only", state.mode === "run");
+          document.querySelectorAll(".mode-only").forEach((el) => {
+            el.hidden = !el.classList.contains(state.mode + "-only");
+          });
+          $("gen-title").textContent = "Generation " + h.gen + " of 14";
+          $("compact-gen").textContent = "Generation " + h.gen + " / 14";
+          $("bark-name").textContent = nameBark(Model.huntBark(h.gen)) + ", darkness " + Model.huntBark(h.gen);
+          $("field-bark").textContent = h.gen >= 3 && h.gen <= 8 ? "Soot-darkened woodland" : "Lichen woodland";
+          $("eaten").textContent = h.eaten.length + " / 15";
+          $("time-text").textContent = Math.ceil(h.seconds);
+          $("timer").setAttribute("aria-label", Math.ceil(h.seconds) + " seconds remaining");
+          $("timer-ring").setAttribute("stroke-dasharray", (h.seconds / 25) * 163.36 + " 163.36");
+          $("pause").textContent = h.paused ? "Resume" : "Pause";
+          $("pause").disabled = !!h.card || h.done;
+          $("pause-cover").hidden = !h.paused || !!h.card || h.done;
+          $("stage").classList.toggle("paused", state.mode === "hunt" && h.paused && !h.card && !h.done);
+          $("tip").textContent = tips[(h.gen - 1) % tips.length];
+          $("hunt-stats").style.display = state.mode === "hunt" ? "flex" : "none";
+          $("bars-box").hidden = !["hunt", "run"].includes(state.mode);
+          $("chart-tabs").hidden = !["hunt", "run"].includes(state.mode);
+          updateRunControls();
+          dirty = true;
+        }
+        function updateRunControls() {
+          const r = state.r;
+          if (!r) return;
+          $("bark-slider").value = r.bark;
+          $("slider-value").textContent = r.bark;
+          $("birds").textContent = "Birds " + (r.birds ? "on" : "off");
+          $("birds").setAttribute("aria-pressed", r.birds);
+          $("mutation").textContent = "New dark copies " + (r.mutation ? "on" : "off");
+          $("mutation").setAttribute("aria-pressed", r.mutation);
+          $("play").textContent = r.playing ? "Pause" : "Play";
+          $("play").disabled = r.gen >= 120;
+          $("step").disabled = r.gen >= 120;
+          $("speed").textContent = "Speed " + r.speed + "x";
+          $("predict").setAttribute("aria-pressed", state.predict);
+          $("predict").textContent = "Predict " + (state.predict ? "on" : "off");
+          $("run-title").textContent = "Generation " + r.gen + (r.historyPlaying ? " / History" : "");
+          $("prediction").hidden = !state.predict;
+          $("prediction").textContent = "you: " + state.pin + ", run: " + (r.firstHalf ?? (r.gen ? "not yet" : "?"));
+          $("run-line").tabIndex = state.predict ? 0 : -1;
+        }
+        function setPaused(value) {
+          const h = state.h;
+          if (h.card || h.done) return;
+          if (h.paused !== value) interruptFeedback();
+          h.paused = value;
+          refreshHint();
+          update();
+          if (value) how("paused", { valid: () => h.paused && !h.card && !h.done, needs: "#resume" });
+          else if (!h.started && h.gen > 1) how("nextGen", { valid: () => !h.paused && !h.started });
+        }
+        function peck(x, y) {
+          const h = state.h;
+          const now = performance.now();
+          if (state.mode !== "hunt" || h.card || h.done || h.paused) return;
+          if (h.breeding) finishBreeding(true);
+          if (h.card || h.done || h.paused) return;
+          if (now < h.frozen) return;
+          if (!h.started) {
+            h.started = true;
+            if (V.playing === L.welcomeHunt) interruptFeedback();
+            else V.dropQueued();
+            lastTick = now;
+          }
+          const index = locations.findIndex(
+            (p, i) =>
+              !h.eaten.includes(i) && Math.abs(x - p.x) <= Math.max(22, p.size * 0.46) && Math.abs(y - p.y) <= Math.max(22, p.size * 0.3),
+          );
+          const hit = index >= 0;
+          puff = { x, y, t: now, hit };
+          pose = "peck";
+          poseUntil = now + 300;
+          if (hit) {
+            h.eaten.push(index);
+            Curio.tone(1650, 0.055, 0.06, "sine");
+            if (h.eaten.length >= 15) endRound();
+          } else {
+            h.frozen = now + 1000;
+            poseUntil = now + 1000;
+            Curio.tone(140, 0.12, 0.07, "triangle");
+            how("miss", { valid: () => performance.now() < h.frozen + 2000 });
+          }
+          $("bark").style.cursor = hit ? "crosshair" : "not-allowed";
+          refreshHint();
+          update();
+        }
+        function endRound() {
+          const h = state.h;
+          if (h.breeding || h.done) return;
+          const eaten = h.eaten.map((i) => h.pop[i]);
+          const round = {
+            gen: h.gen,
+            bark: Model.huntBark(h.gen),
+            pale: eaten.filter((m) => !Model.dark(m)).length,
+            dark: eaten.filter(Model.dark).length,
+            total: eaten.length,
+          };
+          h.rounds.push(round);
+          h.history[h.history.length - 1].round = round;
+          h.started = false;
+          pose = "full";
+          poseUntil = performance.now() + 2500;
+          if (!eaten.length) event("noneEaten", { valid: () => !h.started });
+          if (h.gen === 14) {
+            showEnd();
+            return;
+          }
+          const survivors = h.pop.filter((m, i) => !h.eaten.includes(i));
+          h.pending = Model.breed(survivors, 30, huntRng, h.gen + 1);
+          h.breeding = performance.now();
+          $("beat-label").hidden = false;
+          const darkParents = survivors.filter(Model.dark).length;
+          const paleParents = survivors.length - darkParents;
+          $("beat-label").replaceChildren();
+          const heading = document.createElement("strong");
+          heading.textContent = `${survivors.length} survivors → 30 young`;
+          const detail = document.createElement("span");
+          detail.textContent = `Parents: ${paleParents} pale, ${darkParents} dark. No moth changes color.`;
+          $("beat-label").append(heading, detail);
+          how("breed", { valid: () => !!h.breeding });
+          refreshHint();
+          if (Curio.reduce) finishBreeding();
+          update();
+        }
+        function finishBreeding(immediate = false) {
+          const h = state.h;
+          if (!h.breeding) return;
+          h.breeding = 0;
+          h.bornAt = immediate || Curio.reduce ? 0 : performance.now();
+          h.gen++;
+          h.pop = h.pending;
+          h.pending = null;
+          h.eaten = [];
+          h.seconds = 25;
+          h.frozen = 0;
+          h.history.push(Model.snapshot(h.pop, h.gen, Model.huntBark(h.gen)));
+          locations = [];
+          $("beat-label").hidden = true;
+          pose = "watch";
+          if (h.gen === 3 || h.gen === 9) showCard(h.gen === 3 ? "sootCard" : "cleanCard");
+          else {
+            refreshHint();
+            how("nextGen", { valid: () => !h.paused && !h.started && !h.card && !h.done });
+          }
+          update();
+          drawHunt(performance.now());
+        }
+        function showCard(key) {
+          const h = state.h;
+          $("hunt-overlay").querySelector(".story-card").classList.remove("end-card");
+          h.card = key;
+          h.cardReady = false;
+          $("card-art").src = art["bh-story-" + (key === "sootCard" ? "mill" : "clean")];
+          $("card-art").alt =
+            key === "sootCard" ? "Smoky English mill town and dark tree trunks" : "Clear air over the town, with green trees";
+          $("card-art").hidden = false;
+          $("card-title").textContent = key === "sootCard" ? "The woodland changes." : "Clean air returns.";
+          $("card-kicker").textContent = "Before generation " + h.gen;
+          $("card-text").textContent = L[key];
+          $("end-graph").hidden = true;
+          $("end-limits").hidden = true;
+          $("card-actions").hidden = false;
+          $("end-actions").hidden = true;
+          $("continue").textContent = "Listening…";
+          $("continue").setAttribute("aria-disabled", "true");
+          $("hunt-overlay").hidden = false;
+          refreshHint();
+          speakCard();
+          $("continue").focus({ preventScroll: true });
+        }
+        async function speakCard() {
+          const key = state.h.card;
+          const token = ++cardToken;
+          const result = await event(key, { wait: true, valid: () => state.h.card === key, hold: 20000 });
+          if (token !== cardToken || state.mode !== "hunt" || state.h.card !== key) return;
+          if (result === "dropped") {
+            speakCard();
+            return;
+          }
+          const entry = [...V.log].reverse().find((e) => e.key === key);
+          if (entry?.as === "spoken" && entry.cut) {
+            speakCard();
+            return;
+          }
+          state.h.cardReady = true;
+          refreshHint();
+          $("continue").textContent = "Continue";
+          $("continue").setAttribute("aria-disabled", "false");
+        }
+        function continueCard() {
+          const h = state.h;
+          if (!h.cardReady) return;
+          previousBark = h.gen === 3 ? 20 : 85;
+          barkFade = performance.now();
+          h.card = null;
+          cardToken++;
+          $("hunt-overlay").hidden = true;
+          $("bark").focus({ preventScroll: true });
+          refreshHint();
+          how("nextGen", { valid: () => !h.paused && !h.started });
+          update();
+        }
+        function endText() {
+          const records = state.h.history;
+          const soot = records.filter((r) => r.gen >= 3 && r.gen <= 8);
+          const peak = Math.max(...soot.map((r) => r.dark));
+          const end = records[records.length - 1].dark;
+          const first = records[0].dark;
+          if (peak < 15)
+            return `Your dark moths only reached ${peak} of 30 on soot this time. Chance matters in a small population. Try Run to see 200 moths.`;
+          // Never claim a fall when this student's own record did not fall.
+          const direction = end < peak ? "then down to" : "then reached";
+          return (
+            `Your dark moths went from ${first} of 30 to ${peak} of 30 on soot, ${direction} ${end} on clean bark. ` +
+            "No moth changed color. The population did."
+          );
+        }
+        function showEnd() {
+          const h = state.h;
+          $("hunt-overlay").querySelector(".story-card").classList.add("end-card");
+          h.done = true;
+          h.started = false;
+          $("card-art").hidden = true;
+          $("card-title").textContent = "Your fourteen generations.";
+          $("card-kicker").textContent = "Your fourteen generations";
+          $("card-text").textContent = endText();
+          $("card-actions").hidden = true;
+          $("end-actions").hidden = false;
+          $("end-graph").hidden = false;
+          $("end-limits").hidden = false;
+          $("hunt-overlay").hidden = false;
+          refreshHint();
+          event(endText() + " Tap Explain to say what happened.", { key: "huntEnd", valid: () => h.done });
+          $("end-explain").focus({ preventScroll: true });
+          update();
+        }
+        function runStep() {
+          const r = state.r;
+          if (r.gen >= 120) return;
+          state.pinLocked = true;
+          const gen = r.gen + 1;
+          if (r.historyPlaying) r.bark = Model.historyBark(gen);
+          const selected = r.birds ? Model.predation(r.pop, 100, r.bark, runRng) : { left: r.pop, eaten: [] };
+          const round = {
+            gen: r.gen,
+            bark: r.bark,
+            pale: selected.eaten.filter((m) => !Model.dark(m)).length,
+            dark: selected.eaten.filter(Model.dark).length,
+            total: selected.eaten.length,
+          };
+          r.records[r.records.length - 1].round = round;
+          r.rounds.push(round);
+          r.pop = Model.breed(selected.left, 200, runRng, gen, r.mutation);
+          r.gen = gen;
+          r.records.push(Model.snapshot(r.pop, gen, r.bark));
+          if (r.firstHalf === null && r.records[r.records.length - 1].percent >= 50) r.firstHalf = gen;
+          if (r.gen >= 120 || (r.historyPlaying && r.gen >= 55)) {
+            r.playing = false;
+            r.historyPlaying = false;
+          }
+          refreshHint();
+          update();
+        }
+        function history() {
+          prepareRunAction();
+          const pin = state.pin;
+          const settings = {birds: state.r.birds, mutation: state.r.mutation, speed: state.r.speed};
+          resetRun();
+          Object.assign(state.r, settings);
+          state.pin = pin;
+          state.pinLocked = true;
+          state.r.historyPlaying = true;
+          state.r.playing = true;
+          refreshHint();
+          how("history", { valid: () => state.r.historyPlaying });
+          Curio.tone(600, 0.08, 0.04);
+          update();
+        }
+        function drawRun() {
+          const { ctx: c, w, h } = setCanvas($("sample"));
+          const r = state.r;
+          paintBark(c, w, h, r.bark);
+          const totalDark = r.pop.filter(Model.dark).length;
+          const sampleDark = Math.round(totalDark / 5);
+          const light = r.pop.filter((m) => !Model.dark(m));
+          const dark = r.pop.filter(Model.dark);
+          const order = Model.shuffled(
+            Array.from({ length: 40 }, (_, i) => i < sampleDark),
+            Model.random(1107),
+          );
+          order.forEach((d, i) => {
+            const pool = d ? dark : light;
+            if (!pool.length) return;
+            const m = pool[i % pool.length];
+            const x = (((i % 10) + 0.5) * w) / 10;
+            const rowHeight = Math.max(1, h - 40) / 4;
+            const y = 40 + (Math.floor(i / 10) + 0.5) * rowHeight;
+            drawMoth(c, m, x, y, Math.min(51, w / 13, rowHeight * 0.95), ((((i * 37) % 50) - 25) * Math.PI) / 180);
+          });
+          c.fillStyle = "#f3efe4ee";
+          c.fillRect(10, 8, Math.min(330, w - 20), 28);
+          text(c, `40-moth sample · ${nameBark(r.bark).toLowerCase()} bark · darkness ${r.bark}`, 20, 27, 12, "#1f2a24");
+          lineGraph($("run-line"), r.records, { large: true, run: true });
+          if ($("run-bars").offsetWidth) bars($("run-bars"), { ...r.records.at(-1), bark: r.bark });
+        }
+        function evidence() {
+          if (state.h.rounds.length) return { records: state.h.history, rounds: state.h.rounds, n: 30, label: "Hunt" };
+          if (state.r.gen) return { records: state.r.records, rounds: state.r.rounds, n: 200, label: "Run" };
+          return null;
+        }
+        function evidenceText(index) {
+          const e = evidence();
+          if (!e) return "";
+          const first = e.records[0];
+          if (index === 0)
+            return `In generation ${first.gen}, wing darkness ran from ${first.min} to ${first.max}, and ${first.dark} of ${e.n} moths were the dark form.`;
+          const sootRounds = e.rounds.filter((r) => r.bark >= 68);
+          const rounds = sootRounds.length ? sootRounds : e.rounds;
+          const best = rounds.reduce((a, b) => (b.total > a.total ? b : a));
+          if (index === 1)
+            return (
+              `In generation ${best.gen}, on ${nameBark(best.bark).toLowerCase()} bark, ` +
+              `${e.label === "Hunt" ? "I" : "the birds"} ate ${best.pale} pale moths and ${best.dark} dark ones.`
+            );
+          const start = e.records.find((r) => r.gen === 3) || first;
+          const after = e.records.filter((r) => r.gen >= start.gen && (r.bark >= 68 || !sootRounds.length));
+          const peak = (after.length ? after : e.records).reduce((a, b) => (b.dark > a.dark ? b : a));
+          return (
+            `The dark form went from ${start.dark} of ${e.n} in generation ${start.gen} to ${peak.dark} of ${e.n} in generation ${peak.gen}, ` +
+            "because young inherit gene copies from their parents."
+          );
+        }
+        function updateEvidence() {
+          const e = evidence();
+          $("evidence-label").textContent = e
+            ? `${e.label} · ${e.n} moths · your latest record`
+            : "Play Hunt or Run first to collect evidence.";
+          for (let i = 0; i < 3; i++) {
+            $("chip-" + i).disabled = !e;
+            $("chip-" + i).textContent = e ? "Use my numbers" : "Play Hunt or Run first";
+          }
+          dirty = true;
+        }
+        function chooseCard(id, button) {
+          const answer = answers.find((a) => a[0] === id);
+          // Retapping the same refused card leaves its once-per-visit explanation playing.
+          if (lastAnswer !== id) interruptFeedback();
+          lastAnswer = id;
+          if (id !== "b") {
+            button.classList.add("refused");
+            $("feedback").textContent = answer[2];
+            Curio.tone(190, 0.1, 0.045);
+            if (!state.wrong.has(id)) event(id === "a" ? "cardWrongA" : "cardWrongC", { valid: () => !state.selected });
+            state.wrong.add(id);
+            return;
+          }
+          state.selected = true;
+          $("sorter").hidden = true;
+          $("writing").hidden = false;
+          Curio.yes();
+          refreshHint();
+          if (evidence()) {
+            how("writeEvidence", { valid: () => state.selected, needs: "#chip-" + state.page });
+          } else {
+            event("cardRight", { valid: () => state.selected });
+            how("noData");
+          }
+          updateEvidence();
+          const first = evidence() ? $("chip-" + state.page) : $("sentence-text-" + state.page);
+          first.focus({preventScroll: true});
+          dirty = true;
+        }
+        function saveText() {
+          try {
+            localStorage.setItem("bug-hunt-explain", JSON.stringify(state.saved));
+          } catch {}
+        }
+        function showPage(index) {
+          state.page = Math.max(0, Math.min(2, index));
+          for (let i = 0; i < 3; i++) $("sentence-" + i).classList.toggle("current", state.page === i);
+          $("page-num").textContent = state.page + 1 + " / 3";
+          $("back").disabled = state.page === 0;
+          $("next").disabled = state.page === 2;
+        }
+        function showStop(index, speak = true) {
+          if (speak) interruptFeedback();
+          state.stop = index;
+          const stop = stops[index];
+          $("story-art").src = art["bh-story-" + stop[1]];
+          $("story-art").alt = {
+            wood: "Pale lichen-covered oaks in an English woodland",
+            mill: "Coal smoke over an English mill town",
+            clean: "The town under clear skies with lichen returning",
+            branch: "Pale and dark peppered moths beneath a garden branch",
+          }[stop[1]];
+          $("story-caption").textContent =
+            stop[0] +
+            " · " +
+            [
+              "Before the dark form",
+              "A change in DNA",
+              "The first record",
+              "Smoke changes the odds",
+              "Testing the birds",
+              "Cleaner air",
+              "A question still debated",
+              "Watching natural selection",
+            ][index];
+          $("story-year").textContent = stop[0];
+          $("story-text").textContent = stop[2];
+          $("gene").hidden = index !== 1;
+          $("your-history").hidden = index !== 7 || !state.h.rounds.length;
+          for (let i = 0; i < 8; i++) $("stop-" + i).setAttribute("aria-pressed", i === index);
+          if (speak) event("stop" + (index + 1), { valid: () => state.stop === index });
+          Curio.tone(460 + index * 25, 0.06, 0.025);
+          dirty = true;
+        }
+        function historicChart() {
+          const { ctx: c, w, h } = setCanvas($("historic"));
+          text(c, "Dark peppered moths near Manchester", 4, 15, 12, "#1f2a24");
+          const bottom = h - 45;
+          const top = 35;
+          const x1 = 55;
+          const x2 = w - 60;
+          c.strokeStyle = "#c9c0ae";
+          c.beginPath();
+          c.moveTo(30, top);
+          c.lineTo(30, bottom);
+          c.lineTo(w - 15, bottom);
+          c.stroke();
+          text(c, "100%", 27, top + 2, 10, "#55615a", "right");
+          text(c, "0", 27, bottom + 3, 10, "#55615a", "right");
+          c.fillStyle = "#8b4a6a";
+          c.beginPath();
+          c.arc(x1, bottom - 3, 4, 0, Math.PI * 2);
+          c.fill();
+          c.beginPath();
+          c.arc(x2, top + 2, 4, 0, Math.PI * 2);
+          c.fill();
+          text(c, "rare", x1, bottom - 12, 11, "#753853", "center");
+          text(c, "about 98%", x2, top - 10, 11, "#753853", "center");
+          text(c, "1848", x1, bottom + 17, 11, "#55615a", "center");
+          text(c, "1890s", x2, bottom + 17, 11, "#55615a", "center");
+          text(c, "↓ falling since the 1960s to 1970s", w / 2, h - 12, 11, "#753853", "center");
+          text(c, "not measured every year here", w / 2, h - 1, 10, "#55615a", "center");
+        }
+        function draw(now) {
+          if (state.mode === "hunt") {
+            drawHunt(now);
+            bars($("bars"), state.h.history[state.h.history.length - 1]);
+            lineGraph($("line"), state.h.history);
+            if (state.h.done) lineGraph($("end-graph"), state.h.history, { large: true });
+          } else if (state.mode === "run") {
+            drawRun();
+            const rec = { ...state.r.records[state.r.records.length - 1], bark: state.r.bark };
+            bars($("bars"), rec);
+            lineGraph($("line"), state.r.records, { run: true });
+          } else if (state.mode === "explain") {
+            const e = evidence();
+            if (e) lineGraph($("mini-evidence"), e.records, { run: e.n === 200, large: true });
+          } else {
+            historicChart();
+            if (state.stop === 7 && state.h.rounds.length) {
+              lineGraph($("your-history"), state.h.history, { large: true, title: "Your 14 generations" });
+            }
+          }
+        }
+        function tick(now) {
+          const dt = Math.max(0, now - lastTick);
+          lastTick = now;
+          const h = state.h;
+          if (state.mode === "hunt" && !h.paused && !h.card && !h.done) {
+            if (h.started) {
+              h.seconds = Math.max(0, h.seconds - dt / 1000);
+              if (h.seconds <= 0) endRound();
+              update();
+            }
+            if (h.breeding && now - h.breeding >= 2500) finishBreeding();
+          }
+          if (pose !== "watch" && now >= poseUntil) {
+            pose = "watch";
+            dirty = true;
+            $("bark").style.cursor = "crosshair";
+          }
+          if (state.mode === "run" && state.r.playing) {
+            runClock += dt;
+            if (runClock >= 1000 / (3 * state.r.speed)) {
+              runClock = 0;
+              runStep();
+            }
+          }
+          if (
+            dirty ||
+            (puff && now - puff.t < 450) ||
+            h.breeding ||
+            (h.bornAt && now - h.bornAt < 700) ||
+            (barkFade && now - barkFade < 1550)
+          ) {
+            draw(now);
+            dirty = false;
+          }
+          frame = requestAnimationFrame(tick);
+        }
+        for (const m of modes) $("m-" + m).onclick = () => setMode(m);
+        $("pause").onclick = () => setPaused(!state.h.paused);
+        $("resume").onclick = () => setPaused(false);
+        $("restart").onclick = resetHunt;
+        $("again").onclick = resetHunt;
+        $("continue").onclick = continueCard;
+        $("end-explain").onclick = () => setMode("explain");
+        $("end-run").onclick = () => setMode("run");
+        $("bark").addEventListener("pointerdown", (e) => {
+          if (e.button !== 0) return;
+          const r = $("bark").getBoundingClientRect();
+          cross.visible = false;
+          peck(e.clientX - r.left, e.clientY - r.top);
+        });
+        $("bark").addEventListener("keydown", (e) => {
+          const r = $("bark").getBoundingClientRect();
+          const distance = e.shiftKey ? 10 : 40;
+          if (e.key.startsWith("Arrow")) {
+            e.preventDefault();
+            cross.visible = true;
+            if (e.key === "ArrowLeft") cross.x -= distance / r.width;
+            if (e.key === "ArrowRight") cross.x += distance / r.width;
+            if (e.key === "ArrowUp") cross.y -= distance / r.height;
+            if (e.key === "ArrowDown") cross.y += distance / r.height;
+            cross.x = Math.max(0, Math.min(1, cross.x));
+            cross.y = Math.max(0, Math.min(1, cross.y));
+            dirty = true;
+          }
+          if (e.key === " " || e.key === "Enter") {
+            e.preventDefault();
+            peck(cross.x * r.width, cross.y * r.height);
+          }
+        });
+        addEventListener("keydown", (e) => {
+          if (e.key.toLowerCase() === "p" && !["TEXTAREA", "INPUT"].includes(e.target.tagName) && state.mode === "hunt") {
+            e.preventDefault();
+            setPaused(!state.h.paused);
+          }
+          if (e.key === "Tab" && !$("hunt-overlay").hidden && $("hunt-overlay").contains(document.activeElement)) {
+            const list = [...$("hunt-overlay").querySelectorAll("button")].filter((b) => b.offsetParent && !b.disabled);
+            const index = list.indexOf(document.activeElement);
+            if ((e.shiftKey && index <= 0) || (!e.shiftKey && index === list.length - 1)) {
+              e.preventDefault();
+              list[e.shiftKey ? list.length - 1 : 0].focus({ preventScroll: true });
+            }
+          }
+        });
+        addEventListener("blur", () => {
+          if (state.mode === "hunt") setPaused(true);
+          state.r.playing = false;
+          update();
+        });
+        document.addEventListener("visibilitychange", () => {
+          if (document.hidden) {
+            if (state.mode === "hunt") setPaused(true);
+            state.r.playing = false;
+          }
+        });
+        function setChart(kind) {
+          state.chart = kind;
+          document.body.dataset.chart = kind;
+          $("bars-tab").setAttribute("aria-pressed", kind === "bars");
+          $("line-tab").setAttribute("aria-pressed", kind === "line");
+          refreshHint();
+          dirty = true;
+        }
+        for (const kind of ["bars", "line"]) {
+          $(kind + "-tab").onclick = () => {
+            const placingPin = state.mode === "run" && state.predict && !state.pinLocked && innerWidth <= 600;
+            if (placingPin) interruptFeedback();
+            setChart(kind);
+            if (placingPin) {
+              how(kind === "bars" ? "predictLine" : "predict", {
+                needs: kind === "bars" ? "#line-tab" : "#run-line",
+                valid: () => state.predict && !state.pinLocked && state.chart === kind,
+              });
+            }
+          };
+        }
+        $("play").onclick = () => {
+          prepareRunAction();
+          state.r.playing = !state.r.playing;
+          state.pinLocked = true;
+          runClock = 0;
+          Curio.tone(580, 0.07, 0.04);
+          refreshHint();
+          update();
+        };
+        $("step").onclick = () => {
+          prepareRunAction();
+          runStep();
+          Curio.tone(620, 0.05, 0.025);
+        };
+        $("history").onclick = history;
+        $("reset-run").onclick = () => {
+          V.hush();
+          resetRun();
+          refreshHint();
+          update();
+        };
+        $("birds").onclick = () => {
+          state.r.birds = !state.r.birds;
+          update();
+        };
+        $("mutation").onclick = () => {
+          state.r.mutation = !state.r.mutation;
+          update();
+        };
+        $("speed").onclick = () => {
+          state.r.speed = state.r.speed === 1 ? 2 : 1;
+          update();
+        };
+        $("bark-slider").oninput = (e) => {
+          const r = state.r;
+          if (r.historyPlaying) {
+            r.historyPlaying = false;
+            r.taken = true;
+            event("historyTaken");
+          }
+          r.bark = +e.target.value;
+          // The current band cell records a change immediately; the next selection uses the same setting.
+          r.records[r.records.length - 1].bark = r.bark;
+          refreshHint();
+          update();
+        };
+        $("predict").onclick = () => {
+          interruptFeedback();
+          state.predict = !state.predict;
+          if (state.predict) setChart("line");
+          refreshHint();
+          if (state.predict && !state.pinLocked) {
+            how("predict", { needs: "#run-line", valid: () => state.predict && !state.pinLocked });
+          }
+          update();
+        };
+        function movePin(e) {
+          if (!state.predict || state.pinLocked) return;
+          const box = $("run-line").getBoundingClientRect();
+          const left = box.width > 500 ? 48 : 30;
+          state.pin = Math.max(0, Math.min(60, Math.round(((e.clientX - box.left - left) / (box.width - left - 15)) * 60)));
+          update();
+        }
+        $("run-line").onpointerdown = (e) => {
+          if (!state.predict || state.pinLocked) return;
+          $("run-line").setPointerCapture(e.pointerId);
+          movePin(e);
+        };
+        $("run-line").onpointermove = (e) => {
+          if (e.buttons) movePin(e);
+        };
+        $("run-line").onkeydown = (e) => {
+          if (!state.predict || state.pinLocked || !["ArrowLeft", "ArrowRight"].includes(e.key)) return;
+          e.preventDefault();
+          state.pin = Math.max(0, Math.min(60, state.pin + (e.key === "ArrowRight" ? 1 : -1)));
+          update();
+        };
+        Model.shuffled(answers, Model.random(Date.now())).forEach((a, i) => {
+          const b = document.createElement("button");
+          b.className = "answer";
+          b.dataset.letter = String.fromCharCode(65 + i);
+          b.textContent = a[1];
+          b.onclick = () => chooseCard(a[0], b);
+          $("cards").append(b);
+        });
+        try {
+          const saved = JSON.parse(localStorage.getItem("bug-hunt-explain"));
+          if (Array.isArray(saved) && saved.length === 3) state.saved = saved.map((s) => (typeof s === "string" ? s.slice(0, 4000) : ""));
+        } catch {}
+        ["Variation", "Survival", "Inheritance"].forEach((label, i) => {
+          const row = document.createElement("div");
+          row.id = "sentence-" + i;
+          row.className = "sentence" + (i === 0 ? " current" : "");
+          row.innerHTML =
+            `<div class="row"><label for="sentence-text-${i}">${label}</label><button id="chip-${i}">Use my numbers</button></div>` +
+            `<textarea id="sentence-text-${i}" rows="3" maxlength="4000"></textarea>`;
+          $("sentence-fields").append(row);
+          const field = $("sentence-text-" + i);
+          field.setAttribute("aria-label", label);
+          field.value = state.saved[i];
+          field.oninput = () => {
+            state.saved[i] = field.value;
+            saveText();
+            V.dropQueued((it) => it.key === "cardRight");
+          };
+          $("chip-" + i).onclick = () => {
+            if (!evidence()) return;
+            V.dropQueued((it) => it.key === "cardRight" || it.key === "chips");
+            field.value = evidenceText(i);
+            state.saved[i] = field.value;
+            saveText();
+            field.focus({ preventScroll: true });
+            Curio.tone(750, 0.05, 0.035);
+          };
+        });
+        $("back").onclick = () => showPage(state.page - 1);
+        $("next").onclick = () => showPage(state.page + 1);
+        $("copy").onclick = async () => {
+          const value = state.saved.join("\n\n");
+          try {
+            await navigator.clipboard.writeText(value);
+            $("copy-status").textContent = "Copied";
+          } catch {
+            const field = $("sentence-text-" + state.page);
+            field.focus({ preventScroll: true });
+            field.select();
+            $("copy-status").textContent = "Select each sentence and copy with Ctrl+C.";
+          }
+        };
+        stops.forEach((s, i) => {
+          const b = document.createElement("button");
+          b.id = "stop-" + i;
+          b.textContent = s[0];
+          b.setAttribute("aria-pressed", i === 0);
+          b.onclick = () => showStop(i);
+          $("timeline").append(b);
+        });
+        $("run-limits").textContent = limits;
+        $("end-limits").textContent = limits;
+        $("compact-end-limits").textContent = limits;
+        Curio.init({ clips: "voice:*", rate: 1 });
+        Curio.onMotion(() => {
+          if (state.h?.breeding && Curio.reduce) finishBreeding();
+          dirty = true;
+        });
+        new ResizeObserver(() => {
+          dirty = true;
+        }).observe($("stage"));
+        addEventListener("resize", () => {
+          dirty = true;
+        });
+        resetRun();
+        resetHunt();
+        showPage(0);
+        updateEvidence();
+        refreshHint();
+        ready.then(() => {
+          dirty = true;
+        });
+        frame = requestAnimationFrame(tick);
+        window.__tool = {
+          state,
+          setMode,
+          allLines: V.allLines,
+          vlog: V.log,
+          get vq() {
+            return V.queue;
+          },
+          ready,
+          model: Model,
+          resetHunt,
+          resetRun,
+          runStep,
+          endRound,
+          finishBreeding,
+          continueCard,
+          evidenceText,
+          history,
+          get locations() {
+            return locations;
+          },
+          peck,
+          draw: () => draw(performance.now()),
+          endText,
+          mothImage,
+        };
+      })();
+    </script>
+  </body>
+</html>

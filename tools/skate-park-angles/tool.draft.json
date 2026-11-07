@@ -1,0 +1,22 @@
+{
+  "id": "skate-park-angles",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Build a turn. Build a park.",
+  "outcome": "Measure, build and combine angles in degrees, then plot jump heights and calculate with eighths.",
+  "driver": "students or teacher",
+  "minutes": "20-40",
+  "modes": ["Park", "Spin Deck", "Ramp Shop", "Jump Log"],
+  "grades_label": "Grade 4",
+  "sources": [
+    "Common Core State Standards Mathematics: 4.MD.4, 4.MD.5, 4.MD.6, 4.MD.7",
+    "Math is Fun: Using a Protractor",
+    "X Games: Tricktionary",
+    "Guinness World Records: First 900 on a skateboard",
+    "OpenStax University Physics Volume 1, section 4.3",
+    "Original fictional crew and jump data for Curio Class",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-07"
+}

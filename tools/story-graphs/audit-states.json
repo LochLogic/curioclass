@@ -1,0 +1,185 @@
+{
+  "target": 44,
+  "keep": [
+    "#hint",
+    "#actions"
+  ],
+  "states": [
+    {
+      "name": "clear-confirmation",
+      "steps": [
+        {
+          "click": "#clear-progress"
+        }
+      ],
+      "keep": [
+        "#clear-dialog"
+      ]
+    },
+    {
+      "name": "locked-match-pick",
+      "steps": [
+        {
+          "js": "const r=__tool.state.match.rounds[0];document.getElementById('card-'+r.order.indexOf(3)).dataset.auditPick='1';"
+        },
+        {
+          "click": "[data-audit-pick]"
+        },
+        {
+          "click": "#choose"
+        }
+      ],
+      "keep": [
+        "#stage",
+        "#hint"
+      ]
+    },
+    {
+      "name": "sketch-first-piece",
+      "steps": [
+        {
+          "click": "#m-sketch"
+        },
+        {
+          "click": "#sketch-plane"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "Enter"
+        }
+      ],
+      "keep": [
+        "#sketch-plane",
+        "#sketch-check",
+        "#shape-S"
+      ]
+    },
+    {
+      "name": "free-draw",
+      "steps": [
+        {
+          "click": "#m-sketch"
+        },
+        {
+          "click": "#free"
+        }
+      ],
+      "keep": [
+        "#sketch-plane",
+        "#return-story",
+        "#compare"
+      ]
+    },
+    {
+      "name": "model-wrong-numbers",
+      "steps": [
+        {
+          "click": "#m-model"
+        },
+        {
+          "click": "#number-m"
+        },
+        {
+          "js": "document.activeElement.value='1'; document.activeElement.dispatchEvent(new Event('input',{bubbles:true}));"
+        },
+        {
+          "click": "#number-b"
+        },
+        {
+          "js": "document.activeElement.value='1'; document.activeElement.dispatchEvent(new Event('input',{bubbles:true}));"
+        },
+        {
+          "click": "#model-check"
+        }
+      ],
+      "keep": [
+        "#equation",
+        "#model-check",
+        "#representation"
+      ]
+    },
+    {
+      "name": "model-shown-meanings",
+      "steps": [
+        {
+          "click": "#m-model"
+        },
+        {
+          "click": "#number-m"
+        },
+        {
+          "js": "document.activeElement.value='1'; document.activeElement.dispatchEvent(new Event('input',{bubbles:true}));"
+        },
+        {
+          "click": "#number-b"
+        },
+        {
+          "js": "document.activeElement.value='1'; document.activeElement.dispatchEvent(new Event('input',{bubbles:true}));"
+        },
+        {
+          "click": "#model-check"
+        },
+        {
+          "click": "#model-check"
+        }
+      ],
+      "keep": [
+        "#equation",
+        "#meanings",
+        "#hint"
+      ]
+    },
+    {
+      "name": "sketch-comparison",
+      "steps": [
+        {
+          "click": "#m-sketch"
+        },
+        {
+          "click": "#sketch-plane"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#sketch-check"
+        }
+      ],
+      "keep": [
+        "#sketch-plane",
+        "#compare",
+        "#hint"
+      ]
+    },
+    {
+      "name": "match-tag-pieces",
+      "steps": [
+        {
+          "js": "const r=__tool.state.match.rounds[0];document.getElementById('card-'+r.order.indexOf(0)).dataset.auditPick='1';"
+        },
+        {
+          "click": "[data-audit-pick]"
+        },
+        {
+          "click": "#choose"
+        }
+      ],
+      "keep": [
+        "#tag-plane",
+        "#actions",
+        "#hint"
+      ]
+    }
+  ]
+}

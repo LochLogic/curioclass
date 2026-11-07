@@ -1,0 +1,158 @@
+{
+  "target": 44,
+  "target_reason": "The Sky Dome spec requires 60 px main time, date, year and Play controls; secondary controls use the 44 px baseline. Main sizes are separately measured in the review.",
+  "states": [
+    {
+      "name": "running",
+      "steps": [
+        {
+          "click": "#play"
+        },
+        {
+          "click": "#trails"
+        },
+        {
+          "click": "#lines"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#time-wheel",
+        "#date-wheel"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "manual",
+      "steps": [
+        {
+          "click": "#manual"
+        }
+      ],
+      "keep": [
+        "#close-manual"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "star-readout",
+      "steps": [
+        {
+          "js": "__tool.selectObject(2491);"
+        }
+      ],
+      "keep": [
+        "#close-object"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "southern-sky",
+      "steps": [
+        {
+          "js": "const city=document.getElementById('city'); city.value='South Pole'; city.dispatchEvent(new Event('change')); __tool.setTime(Date.UTC(2026,5,21)); __tool.draw();"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#time-wheel",
+        "#date-wheel"
+      ],
+      "sizes": [
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "ancient-pole",
+      "steps": [
+        {
+          "js": "__tool.setTime(-150464649600000); __tool.selectObject(5291);"
+        }
+      ],
+      "keep": [
+        "#close-object"
+      ],
+      "sizes": [
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "phone-place",
+      "steps": [
+        {
+          "click": "#place"
+        }
+      ],
+      "keep": [
+        "#latitude",
+        "#longitude",
+        "#close-place"
+      ],
+      "sizes": [
+        "375x812"
+      ]
+    },
+    {
+      "name": "deep-readout",
+      "steps": [
+        {
+          "js": "__tool.selectObject('M31');"
+        }
+      ],
+      "keep": [
+        "#close-object"
+      ],
+      "sizes": [
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "sun-readout",
+      "steps": [
+        {
+          "js": "__tool.setTime(Date.UTC(2026,5,21,19));__tool.selectObject('Sun');"
+        }
+      ],
+      "keep": [
+        "#close-object"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "sydney-lines",
+      "steps": [
+        {
+          "js": "const c=document.getElementById('city');c.value='Sydney · Australia';c.dispatchEvent(new Event('change'));__tool.setTime(Date.UTC(2026,4,1,10));Object.assign(__tool.state,{lines:true,daylight:false});__tool.draw();"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#time-wheel",
+        "#date-wheel"
+      ],
+      "sizes": [
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

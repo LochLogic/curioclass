@@ -1,0 +1,264 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "crew-checked",
+      "steps": [
+        {
+          "click": "#job-0"
+        }
+      ],
+      "keep": [
+        "#jobs",
+        "#ada",
+        "#radio",
+        "#controls"
+      ]
+    },
+    {
+      "name": "batteries",
+      "steps": [
+        {
+          "click": "#job-0"
+        },
+        {
+          "click": "#m-mission"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        }
+      ],
+      "keep": [
+        "#choices",
+        "#ada",
+        "#radio",
+        "#controls"
+      ]
+    },
+    {
+      "name": "water-result",
+      "steps": [
+        {
+          "click": "#job-0"
+        },
+        {
+          "click": "#m-mission"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        },
+        {
+          "click": "[data-choice='0']"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "[data-choice='1']"
+        }
+      ],
+      "keep": [
+        "#choices",
+        "#meters",
+        "#controls"
+      ]
+    },
+    {
+      "name": "rewind-open",
+      "steps": [
+        {
+          "click": "#job-0"
+        },
+        {
+          "click": "#m-mission"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        },
+        {
+          "click": "#rewind"
+        }
+      ],
+      "keep": [
+        "#map-dialog"
+      ]
+    },
+    {
+      "name": "night",
+      "steps": [
+        {
+          "click": "#job-0"
+        },
+        {
+          "click": "#m-mission"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        },
+        {
+          "click": "[data-choice='0']"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "[data-choice='0']"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        },
+        {
+          "click": "[data-choice='0']"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        }
+      ],
+      "keep": [
+        "#radio",
+        "#meters",
+        "#ada",
+        "#controls"
+      ]
+    },
+    {
+      "name": "card-hidden",
+      "steps": [
+        {
+          "click": "#job-0"
+        },
+        {
+          "click": "#m-mission"
+        },
+        {
+          "click": "#card"
+        }
+      ],
+      "keep": [
+        "#radio",
+        "#controls"
+      ]
+    },
+    {
+      "name": "choice-committed",
+      "steps": [
+        {
+          "click": "#job-0"
+        },
+        {
+          "click": "#m-mission"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        },
+        {
+          "click": "[data-choice='1']"
+        },
+        {
+          "click": "[data-choice='0']"
+        }
+      ],
+      "keep": [
+        "#choices",
+        "#hint",
+        "#controls"
+      ]
+    },
+    {
+      "name": "warmth-options",
+      "steps": [
+        {
+          "click": "#job-0"
+        },
+        {
+          "click": "#start"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        },
+        {
+          "click": "[data-choice='0']"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "[data-choice='0']"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        }
+      ],
+      "keep": [
+        "#choices",
+        "#ada",
+        "#radio",
+        "#controls"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "warmth-revision",
+      "steps": [
+        {
+          "click": "#job-0"
+        },
+        {
+          "click": "#start"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        },
+        {
+          "click": "[data-choice='0']"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "[data-choice='0']"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        },
+        {
+          "click": "[data-choice='0']"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        },
+        {
+          "click": "#rewind"
+        },
+        {
+          "click": "#rewind-6"
+        }
+      ],
+      "keep": [
+        "#choices",
+        "#ada",
+        "#radio",
+        "#controls"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    }
+  ]
+}

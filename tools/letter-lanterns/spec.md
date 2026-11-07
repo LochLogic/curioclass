@@ -111,7 +111,7 @@ STROKES. Slate units: x 0 to 1 per letter, y 0 top line, .5 midline, 1 baseline,
 Night village. Panel and header `--panel #1B1A3A`, `--paper #14132B` stage edge, `--ink #FFF4DD`, `--muted #C9C2E8`, accent `--brand #F2B23E` (lantern amber; neighbors: calm-corner green #2f7a62, sight-words blue #234d77), `--focus #7FE3FF`. Lantern glass `#FFE3A3` with letter ink `#3A1E06`; short flame `#FFB45C`, long flame `#FFF8E6`; sign boards `#F3DDB0` with ink `#2B1A0E`. Letters on glass and signs in a school print face drawn as ball-and-stick (single-story a and g), code text over blank painted surfaces. Ratios (computed): ink on panel 15.3, brand on panel 8.9, button ink on brand 8.9, letter on glass 12.3, muted on panel 9.8, letter on long flame 15.8, on short flame 8.7, sign ink 12.6, focus ring on night 12.4. Glow levels shown by halo size and 1 to 3 stars, never color alone.
 
 ## Art
-All local FLUX, `people: false` throughout. Paper-lantern creatures: soft storybook painting, warm night light, transparent background.
+Generated with gpt-image (as prompts.json records), `people: false` throughout. Paper-lantern creatures: soft storybook painting, warm night light, transparent background.
 - creature-<letter>-awake (26): a round paper lantern shaped like a friendly <creature> with open bright eyes and a small smile, a blank smooth cream glass panel on its belly, hanging hook on top, warm inner glow; 3:4; cutout yes; Wake cart, string, Village. Creatures as in Content (ant, octopus, ox and others drawn whole and cute).
 - creature-<letter>-sleepy (26): the same lantern creature with eyes gently closed, dim and cool, blank cream glass panel, tiny curl of sleep; 3:4; cutout yes; asleep state. Generate from the awake image so they match.
 - anchor-acorn, anchor-emu, anchor-ivy, anchor-ocean, anchor-unicorn: a single <thing> in soft storybook painting, warm light; 1:1; cutout yes; tall-flame pictures (ocean: a small round window of waves).
@@ -123,7 +123,7 @@ All local FLUX, `people: false` throughout. Paper-lantern creatures: soft storyb
 Placement: cart lanterns stand whole above the cart edge; string lanterns hang whole below the rope; shops sit whole on the street baseline with 8 px gaps; no cutout is clipped at any size. 96 images, each used.
 
 ## Voice
-Bank voice **warm-teacher** ("like a kind kindergarten teacher talking to the whole class"); neighbors' built voices are Sulafat and Aoede. Every fixed line is spoken (K-2). Sound clips (the Sound column) are recorded as clean isolated sounds: stops crisp with no added "uh", held sounds about 0.8 s.
+Bank voice **playful-friend** (Laomedeia; changed at Refine 2026-11-06 because warm-teacher is the voice of calm-corner and sight-words, and no K tool uses playful-friend). Every fixed line is spoken (K-2). Sound clips (the Sound column) are recorded as clean isolated sounds: stops crisp with no added "uh", held sounds about 0.8 s.
 | id | kind | when | stale when | text |
 |---|---|---|---|---|
 | welcome | how | first tap on Wake the village | a lantern was tapped | Welcome to the lantern village. The lanterns are asleep. Let's wake them up! |

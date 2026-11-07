@@ -1,0 +1,427 @@
+{
+  "states": [
+    {
+      "name": "landed",
+      "steps": [
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 700
+        }
+      ],
+      "keep": [
+        "#mark",
+        "#drop",
+        "#hint"
+      ]
+    },
+    {
+      "name": "mark-miss",
+      "steps": [
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 700
+        },
+        {
+          "click": "#mark"
+        },
+        {
+          "click": "#record"
+        }
+      ],
+      "keep": [
+        "#record",
+        "#left",
+        "#right",
+        "#hint"
+      ]
+    },
+    {
+      "name": "eight-kids",
+      "steps": [
+        {
+          "click": "#m-globe"
+        },
+        {
+          "click": "#xray"
+        },
+        {
+          "click": "#extend"
+        },
+        {
+          "click": "#scene",
+          "times": 8,
+          "gap": 0.15
+        }
+      ],
+      "keep": [
+        "#clearKids",
+        "#resetView",
+        "#hint"
+      ]
+    },
+    {
+      "name": "argue-evidence",
+      "steps": [
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 700
+        },
+        {
+          "click": "#mark"
+        },
+        {
+          "drag": "const a=__tool.geometry.arrow,g=__tool.geometry.globe,b=document.querySelector(\"canvas\").getBoundingClientRect();return Array.from({length:13},(_,i)=>[b.x+a.end.x+(g.x-a.end.x)*i/12,b.y+a.end.y+(g.y-a.end.y)*i/12]);"
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#place-1"
+        },
+        {
+          "wait": 1300
+        },
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 700
+        },
+        {
+          "click": "#mark"
+        },
+        {
+          "drag": "const a=__tool.geometry.arrow,g=__tool.geometry.globe,b=document.querySelector(\"canvas\").getBoundingClientRect();return Array.from({length:13},(_,i)=>[b.x+a.end.x+(g.x-a.end.x)*i/12,b.y+a.end.y+(g.y-a.end.y)*i/12]);"
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#place-2"
+        },
+        {
+          "wait": 1300
+        },
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 700
+        },
+        {
+          "click": "#mark"
+        },
+        {
+          "drag": "const a=__tool.geometry.arrow,g=__tool.geometry.globe,b=document.querySelector(\"canvas\").getBoundingClientRect();return Array.from({length:13},(_,i)=>[b.x+a.end.x+(g.x-a.end.x)*i/12,b.y+a.end.y+(g.y-a.end.y)*i/12]);"
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#m-argue"
+        },
+        {
+          "click": "#evidence-p0"
+        },
+        {
+          "click": "#evidence-p1"
+        },
+        {
+          "click": "#evidence-p2"
+        },
+        {
+          "js": "[...document.querySelectorAll(\"#claims button\")].find(b=>b.textContent.startsWith(\"Gravity pulls things toward Earth\")).focus({preventScroll:true});"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#check"
+        }
+      ],
+      "keep": [
+        "#check",
+        "#test",
+        "#hint"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "test-place",
+      "steps": [
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 700
+        },
+        {
+          "click": "#mark"
+        },
+        {
+          "drag": "const a=__tool.geometry.arrow,g=__tool.geometry.globe,b=document.querySelector(\"canvas\").getBoundingClientRect();return Array.from({length:13},(_,i)=>[b.x+a.end.x+(g.x-a.end.x)*i/12,b.y+a.end.y+(g.y-a.end.y)*i/12]);"
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#place-1"
+        },
+        {
+          "wait": 1300
+        },
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 700
+        },
+        {
+          "click": "#mark"
+        },
+        {
+          "drag": "const a=__tool.geometry.arrow,g=__tool.geometry.globe,b=document.querySelector(\"canvas\").getBoundingClientRect();return Array.from({length:13},(_,i)=>[b.x+a.end.x+(g.x-a.end.x)*i/12,b.y+a.end.y+(g.y-a.end.y)*i/12]);"
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#place-2"
+        },
+        {
+          "wait": 1300
+        },
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 700
+        },
+        {
+          "click": "#mark"
+        },
+        {
+          "drag": "const a=__tool.geometry.arrow,g=__tool.geometry.globe,b=document.querySelector(\"canvas\").getBoundingClientRect();return Array.from({length:13},(_,i)=>[b.x+a.end.x+(g.x-a.end.x)*i/12,b.y+a.end.y+(g.y-a.end.y)*i/12]);"
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#m-argue"
+        },
+        {
+          "click": "#evidence-p0"
+        },
+        {
+          "click": "#evidence-p1"
+        },
+        {
+          "click": "#evidence-p2"
+        },
+        {
+          "js": "[...document.querySelectorAll(\"#claims button\")].find(b=>b.textContent.startsWith(\"Gravity pulls things toward Earth\")).focus({preventScroll:true});"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#test"
+        }
+      ],
+      "keep": [
+        "#predict",
+        "#testLeft",
+        "#testRight",
+        "#hint"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "worlds-landed",
+      "steps": [
+        {
+          "click": "#m-worlds"
+        },
+        {
+          "click": "#slowWorlds"
+        },
+        {
+          "click": "#dropAll"
+        },
+        {
+          "wait": 1500
+        }
+      ],
+      "keep": [
+        "#dropAll",
+        "#hint"
+      ]
+    },
+    {
+      "name": "clear-overlay",
+      "steps": [
+        {
+          "click": "#startOver"
+        }
+      ],
+      "keep": [
+        "#clear",
+        "#keep"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "vacuum-tube-falling",
+      "steps": [
+        {
+          "click": "#obj-feather-tube"
+        },
+        {
+          "click": "#slow"
+        },
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 1800
+        }
+      ],
+      "keep": [
+        "#drop",
+        "#hint"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "all-six-evidence-cards",
+      "steps": [
+        {
+          "click": "#obj-feather-tube"
+        },
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 700
+        },
+        {
+          "click": "#mark"
+        },
+        {
+          "drag": "const a=__tool.geometry.arrow,g=__tool.geometry.globe,b=document.querySelector(\"canvas\").getBoundingClientRect();return Array.from({length:13},(_,i)=>[b.x+a.end.x+(g.x-a.end.x)*i/12,b.y+a.end.y+(g.y-a.end.y)*i/12]);"
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#place-1"
+        },
+        {
+          "wait": 1300
+        },
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 700
+        },
+        {
+          "click": "#mark"
+        },
+        {
+          "drag": "const a=__tool.geometry.arrow,g=__tool.geometry.globe,b=document.querySelector(\"canvas\").getBoundingClientRect();return Array.from({length:13},(_,i)=>[b.x+a.end.x+(g.x-a.end.x)*i/12,b.y+a.end.y+(g.y-a.end.y)*i/12]);"
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#place-2"
+        },
+        {
+          "wait": 1300
+        },
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 700
+        },
+        {
+          "click": "#mark"
+        },
+        {
+          "drag": "const a=__tool.geometry.arrow,g=__tool.geometry.globe,b=document.querySelector(\"canvas\").getBoundingClientRect();return Array.from({length:13},(_,i)=>[b.x+a.end.x+(g.x-a.end.x)*i/12,b.y+a.end.y+(g.y-a.end.y)*i/12]);"
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#m-argue"
+        },
+        {
+          "click": "#evidence-p0"
+        },
+        {
+          "click": "#evidence-p1"
+        },
+        {
+          "click": "#evidence-p2"
+        },
+        {
+          "js": "[...document.querySelectorAll(\"#claims button\")].find(b=>b.textContent.startsWith(\"Gravity pulls things toward Earth\")).focus({preventScroll:true});"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#m-worlds"
+        },
+        {
+          "click": "#dropAll"
+        },
+        {
+          "click": "#m-argue"
+        }
+      ],
+      "keep": [
+        "#check",
+        "#test",
+        "#hint",
+        "#evidence"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

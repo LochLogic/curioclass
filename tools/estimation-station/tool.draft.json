@@ -1,0 +1,25 @@
+{
+  "id": "estimation-station",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Guess it. Measure it. Load your train.",
+  "outcome": "Estimate and measure lengths, choose useful tools, compare units and solve length stories.",
+  "driver": "teacher",
+  "minutes": "12-18",
+  "modes": [
+    "Freight",
+    "Yard"
+  ],
+  "grades_label": "Grade 2",
+  "sources": [
+    "NIST Handbook 44, Appendix C, Units of length",
+    "NIST Special Publication 811, Appendix B",
+    "BIPM SI Brochure, prefixes",
+    "NIST Special Publication 330",
+    "Common Core Mathematics, Grade 2, Measurement and Data, 2.MD.1 through 2.MD.6",
+    "Common Core Standards Writing Team, Progressions: Geometric Measurement K-5 (2012)",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-06"
+}

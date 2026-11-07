@@ -1,0 +1,169 @@
+{
+  "keep": [
+    "#input-region",
+    ".machine",
+    "#output-region",
+    "#manual"
+  ],
+  "states": [
+    {
+      "name": "wheel-three",
+      "steps": [
+        {
+          "click": "#shift-up",
+          "times": 3,
+          "gap": 0.15
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "symbols",
+      "steps": [
+        {
+          "click": "#machine-symbols"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "square",
+      "steps": [
+        {
+          "click": "#machine-square"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "rotors",
+      "steps": [
+        {
+          "click": "#machine-rotors"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "pad",
+      "steps": [
+        {
+          "click": "#machine-pad"
+        },
+        {
+          "click": "#random-pad"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "three-tools",
+      "steps": [
+        {
+          "click": "#toggle-splitter"
+        },
+        {
+          "click": "#toggle-repeats"
+        }
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425"
+      ]
+    },
+    {
+      "name": "grid",
+      "steps": [
+        {
+          "click": "#machine-grid"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "raven-material",
+      "steps": [
+        {
+          "click": "#cases"
+        },
+        {
+          "click": "[data-sheet=raven]"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "weather-search",
+      "steps": [
+        {
+          "click": "#cases"
+        },
+        {
+          "click": "[data-sheet=weather]"
+        },
+        {
+          "click": "#toggle-bombe"
+        },
+        {
+          "click": "#toggle-bombe"
+        },
+        {
+          "click": "#run-bombe"
+        },
+        {
+          "wait": 1800
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "manual",
+      "steps": [
+        {
+          "click": "#manual"
+        }
+      ],
+      "keep": [
+        "#drawer-title",
+        "#close-drawer"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

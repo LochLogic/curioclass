@@ -1,0 +1,759 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "plain-view",
+      "steps": [
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-low"
+        },
+        {
+          "click": "#plain"
+        }
+      ],
+      "keep": [
+        "#tv",
+        "#tricks"
+      ]
+    },
+    {
+      "name": "lab-time",
+      "steps": [
+        {
+          "click": "#m-lab"
+        },
+        {
+          "click": "#test-time"
+        },
+        {
+          "click": "#race-go"
+        },
+        {
+          "wait": 1700
+        },
+        {
+          "click": "#race-stop"
+        }
+      ],
+      "keep": [
+        "#test-tabs",
+        "#result"
+      ]
+    },
+    {
+      "name": "lab-jump",
+      "steps": [
+        {
+          "click": "#m-lab"
+        },
+        {
+          "click": "#test-jump"
+        },
+        {
+          "click": "#jump-box"
+        },
+        {
+          "wait": 1250
+        },
+        {
+          "click": "#jump-extra"
+        },
+        {
+          "wait": 1250
+        }
+      ],
+      "keep": [
+        "#test-tabs",
+        "#result"
+      ]
+    },
+    {
+      "name": "box-open",
+      "steps": [
+        {
+          "click": "#m-lab"
+        },
+        {
+          "click": "#test-box"
+        },
+        {
+          "click": "#open-box"
+        }
+      ],
+      "keep": [
+        "#result"
+      ]
+    },
+    {
+      "name": "case-board",
+      "steps": [
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-low"
+        },
+        {
+          "click": "#global-board"
+        }
+      ],
+      "keep": [
+        "#claim-dialog"
+      ]
+    },
+    {
+      "name": "verdict-message",
+      "steps": [
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-low"
+        },
+        {
+          "click": "#shot-1"
+        },
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-speed"
+        },
+        {
+          "click": "#m-verdict"
+        },
+        {
+          "click": "#belief-1"
+        },
+        {
+          "click": "#support-0"
+        },
+        {
+          "click": "#support-1"
+        },
+        {
+          "click": "#check-intent"
+        },
+        {
+          "click": "#v-message"
+        }
+      ],
+      "keep": [
+        "#verdict-tabs"
+      ]
+    },
+    {
+      "name": "verdict-ratings",
+      "steps": [
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-low"
+        },
+        {
+          "click": "#shot-1"
+        },
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-speed"
+        },
+        {
+          "click": "#m-verdict"
+        },
+        {
+          "click": "#belief-1"
+        },
+        {
+          "click": "#support-0"
+        },
+        {
+          "click": "#support-1"
+        },
+        {
+          "click": "#check-intent"
+        },
+        {
+          "click": "#v-ratings"
+        },
+        {
+          "click": "#appeal-5"
+        },
+        {
+          "click": "#fair-2"
+        }
+      ],
+      "keep": [
+        "#verdict-tabs"
+      ]
+    },
+    {
+      "name": "verdict-rules",
+      "steps": [
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-low"
+        },
+        {
+          "click": "#shot-1"
+        },
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-speed"
+        },
+        {
+          "click": "#m-verdict"
+        },
+        {
+          "click": "#belief-1"
+        },
+        {
+          "click": "#support-0"
+        },
+        {
+          "click": "#support-1"
+        },
+        {
+          "click": "#check-intent"
+        },
+        {
+          "click": "#v-rules"
+        },
+        {
+          "click": "#rule-0"
+        },
+        {
+          "click": "#check-rules"
+        }
+      ],
+      "keep": [
+        "#verdict-tabs"
+      ]
+    },
+    {
+      "name": "verdict-cost",
+      "steps": [
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-low"
+        },
+        {
+          "click": "#shot-1"
+        },
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-speed"
+        },
+        {
+          "click": "#m-verdict"
+        },
+        {
+          "click": "#belief-1"
+        },
+        {
+          "click": "#support-0"
+        },
+        {
+          "click": "#support-1"
+        },
+        {
+          "click": "#check-intent"
+        },
+        {
+          "click": "#v-cost"
+        }
+      ],
+      "keep": [
+        "#verdict-tabs"
+      ]
+    },
+    {
+      "name": "lab-measure",
+      "steps": [
+        {
+          "click": "#m-lab"
+        },
+        {
+          "click": "#test-measure"
+        }
+      ],
+      "keep": [
+        "#lab-stage",
+        "#test-tabs",
+        "#measure-check",
+        "#result"
+      ]
+    },
+    {
+      "name": "wrong-stamp-retest",
+      "steps": [
+        {
+          "click": "#shot-4"
+        },
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-music"
+        },
+        {
+          "click": "#m-lab"
+        },
+        {
+          "click": "#test-lights"
+        },
+        {
+          "click": "#lights"
+        },
+        {
+          "click": "#mark-stretched"
+        }
+      ],
+      "keep": [
+        "#result",
+        "#lights",
+        "#mark-holds",
+        "#mark-stretched",
+        "#mark-box"
+      ]
+    },
+    {
+      "name": "verdict-evidence-full",
+      "steps": [
+        {
+          "click": "#shot-0"
+        },
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-low"
+        },
+        {
+          "click": "#shot-1"
+        },
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-speed"
+        },
+        {
+          "click": "#shot-2"
+        },
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-close"
+        },
+        {
+          "click": "#shot-3"
+        },
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-crowd"
+        },
+        {
+          "click": "#shot-4"
+        },
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-music"
+        },
+        {
+          "click": "#shot-5"
+        },
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-print"
+        },
+        {
+          "click": "#m-lab"
+        },
+        {
+          "click": "#test-measure"
+        },
+        {
+          "drag": "const a=document.querySelector(\"#ruler\").getBoundingClientRect(); const b=document.querySelector(\"#align-target\").getBoundingClientRect(); const x=a.x+a.width/2,y=a.y+a.height/2; return Array.from({length:25},(_,i)=>[x+(b.x-a.x)*i/24,y+(b.y-a.y)*i/24]);"
+        },
+        {
+          "click": "#measure-check"
+        },
+        {
+          "click": "#mark-stretched"
+        },
+        {
+          "click": "#test-time"
+        },
+        {
+          "click": "#race-go"
+        },
+        {
+          "until": "Number(document.querySelector(\"#stopwatch\").textContent)>=1.5",
+          "max": 4000
+        },
+        {
+          "click": "#race-stop"
+        },
+        {
+          "click": "#mark-stretched"
+        },
+        {
+          "click": "#test-jump"
+        },
+        {
+          "click": "#jump-box",
+          "wait": 1200
+        },
+        {
+          "click": "#jump-extra",
+          "wait": 1200
+        },
+        {
+          "click": "#mark-box"
+        },
+        {
+          "click": "#test-lights"
+        },
+        {
+          "click": "#lights"
+        },
+        {
+          "click": "#mark-holds"
+        },
+        {
+          "click": "#test-box"
+        },
+        {
+          "click": "#open-box"
+        },
+        {
+          "click": "#mark-box"
+        },
+        {
+          "click": "#mark-other"
+        },
+        {
+          "click": "#mark-stretched"
+        },
+        {
+          "click": "#m-verdict"
+        },
+        {
+          "click": "#belief-1"
+        },
+        {
+          "click": "#support-0"
+        },
+        {
+          "click": "#support-1"
+        },
+        {
+          "click": "#check-intent"
+        },
+        {
+          "click": "#v-ratings"
+        },
+        {
+          "click": "#appeal-4"
+        },
+        {
+          "click": "#fair-2"
+        },
+        {
+          "click": "#appeal-chip-0"
+        },
+        {
+          "click": "#appeal-chip-1"
+        },
+        {
+          "click": "#appeal-chip-2"
+        },
+        {
+          "click": "#appeal-chip-3"
+        },
+        {
+          "click": "#appeal-chip-4"
+        },
+        {
+          "click": "#appeal-chip-5"
+        },
+        {
+          "click": "#fair-chip-0"
+        },
+        {
+          "click": "#fair-chip-1"
+        },
+        {
+          "click": "#fair-chip-2"
+        },
+        {
+          "click": "#fair-chip-3"
+        },
+        {
+          "click": "#fair-chip-4"
+        },
+        {
+          "click": "#fair-chip-5"
+        }
+      ],
+      "keep": [
+        "#verdict-tabs",
+        "#appeal-rating",
+        "#fair-rating",
+        "#appeal-chips",
+        "#fair-chips"
+      ]
+    },
+    {
+      "name": "case-closed-full",
+      "steps": [
+        {
+          "click": "#shot-0"
+        },
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-low"
+        },
+        {
+          "click": "#shot-1"
+        },
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-speed"
+        },
+        {
+          "click": "#shot-2"
+        },
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-close"
+        },
+        {
+          "click": "#shot-3"
+        },
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-crowd"
+        },
+        {
+          "click": "#shot-4"
+        },
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-music"
+        },
+        {
+          "click": "#shot-5"
+        },
+        {
+          "click": "#tv"
+        },
+        {
+          "click": "#trick-print"
+        },
+        {
+          "click": "#m-lab"
+        },
+        {
+          "click": "#test-measure"
+        },
+        {
+          "drag": "const a=document.querySelector(\"#ruler\").getBoundingClientRect(); const b=document.querySelector(\"#align-target\").getBoundingClientRect(); const x=a.x+a.width/2,y=a.y+a.height/2; return Array.from({length:25},(_,i)=>[x+(b.x-a.x)*i/24,y+(b.y-a.y)*i/24]);"
+        },
+        {
+          "click": "#measure-check"
+        },
+        {
+          "click": "#mark-stretched"
+        },
+        {
+          "click": "#test-time"
+        },
+        {
+          "click": "#race-go"
+        },
+        {
+          "until": "Number(document.querySelector(\"#stopwatch\").textContent)>=1.5",
+          "max": 4000
+        },
+        {
+          "click": "#race-stop"
+        },
+        {
+          "click": "#mark-stretched"
+        },
+        {
+          "click": "#test-jump"
+        },
+        {
+          "click": "#jump-box",
+          "wait": 1200
+        },
+        {
+          "click": "#jump-extra",
+          "wait": 1200
+        },
+        {
+          "click": "#mark-box"
+        },
+        {
+          "click": "#test-lights"
+        },
+        {
+          "click": "#lights"
+        },
+        {
+          "click": "#mark-holds"
+        },
+        {
+          "click": "#test-box"
+        },
+        {
+          "click": "#open-box"
+        },
+        {
+          "click": "#mark-box"
+        },
+        {
+          "click": "#mark-other"
+        },
+        {
+          "click": "#mark-stretched"
+        },
+        {
+          "click": "#m-verdict"
+        },
+        {
+          "click": "#belief-1"
+        },
+        {
+          "click": "#support-0"
+        },
+        {
+          "click": "#support-1"
+        },
+        {
+          "click": "#check-intent"
+        },
+        {
+          "click": "#v-ratings"
+        },
+        {
+          "click": "#appeal-4"
+        },
+        {
+          "click": "#fair-2"
+        },
+        {
+          "click": "#appeal-chip-0"
+        },
+        {
+          "click": "#appeal-chip-1"
+        },
+        {
+          "click": "#appeal-chip-2"
+        },
+        {
+          "click": "#appeal-chip-3"
+        },
+        {
+          "click": "#appeal-chip-4"
+        },
+        {
+          "click": "#appeal-chip-5"
+        },
+        {
+          "click": "#fair-chip-0"
+        },
+        {
+          "click": "#fair-chip-1"
+        },
+        {
+          "click": "#fair-chip-2"
+        },
+        {
+          "click": "#fair-chip-3"
+        },
+        {
+          "click": "#fair-chip-4"
+        },
+        {
+          "click": "#fair-chip-5"
+        },
+        {
+          "click": "#v-rules"
+        },
+        {
+          "click": "#rule-0"
+        },
+        {
+          "click": "#rule-1"
+        },
+        {
+          "click": "#rule-2"
+        },
+        {
+          "click": "#rule-3"
+        },
+        {
+          "click": "#check-rules"
+        },
+        {
+          "click": "#v-cost"
+        },
+        {
+          "js": "const cost=document.querySelector(\"#cost\");cost.value=\"65.46\";cost.dispatchEvent(new Event(\"input\",{bubbles:true}));"
+        },
+        {
+          "click": "#check-cost"
+        },
+        {
+          "click": "#close-case"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#closed-stamp",
+        ".detective",
+        "#verdict-tabs"
+      ]
+    }
+  ]
+}

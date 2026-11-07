@@ -1,0 +1,1798 @@
+{
+  "match": [
+    {
+      "id": "M1",
+      "title": "My morning",
+      "axis": "distance from home",
+      "story": [
+        "I biked toward school at a steady speed.",
+        "At the corner I stopped and waited for Maya.",
+        "Then the first bell rang, so I raced the rest of the way."
+      ],
+      "graphs": [
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              5.0,
+              3.0
+            ],
+            [
+              7.0,
+              3.0
+            ],
+            [
+              10.0,
+              8.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T"
+          ],
+          "note": ""
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              5.0
+            ],
+            [
+              5.0,
+              5.0
+            ],
+            [
+              10.0,
+              8.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T"
+          ],
+          "note": "Steeper means faster. This one is fastest at the start, but I raced at the end."
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              5.0,
+              3.0
+            ],
+            [
+              7.0,
+              1.0
+            ],
+            [
+              10.0,
+              8.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T"
+          ],
+          "note": "Here the second part goes down, back toward home. I just waited."
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              6.0,
+              3.0
+            ],
+            [
+              4.0,
+              3.0
+            ],
+            [
+              10.0,
+              8.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T"
+          ],
+          "note": "Here the second part runs backward in time. Time only moves forward."
+        }
+      ],
+      "zero": null,
+      "full": null,
+      "art": [
+        "m1-bike",
+        "m1-corner",
+        "m1-race"
+      ]
+    },
+    {
+      "id": "M2",
+      "title": "Bath for Pepper",
+      "axis": "water depth",
+      "story": [
+        "I filled the tub at a steady rate to give Pepper a bath.",
+        "I turned off the tap and went to find her, but she was hiding under my bed.",
+        "So I pulled the plug.",
+        "The tub drained faster than it filled, all the way to empty."
+      ],
+      "graphs": [
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              6.0,
+              6.0
+            ],
+            [
+              9.0,
+              6.0
+            ],
+            [
+              12.0,
+              0.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T"
+          ],
+          "note": ""
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              6.0
+            ],
+            [
+              6.0,
+              6.0
+            ],
+            [
+              12.0,
+              0.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T"
+          ],
+          "note": "This one drains more slowly than it fills."
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              6.0,
+              6.0
+            ],
+            [
+              9.0,
+              6.0
+            ],
+            [
+              12.0,
+              2.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T"
+          ],
+          "note": "This one stops before the tub is empty."
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              6.0,
+              6.0
+            ],
+            [
+              9.0,
+              8.0
+            ],
+            [
+              12.0,
+              0.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T"
+          ],
+          "note": "Here the water keeps rising while I look for Pepper, but I turned the tap off."
+        }
+      ],
+      "zero": "empty",
+      "full": null,
+      "art": [
+        "m2-fill",
+        "m2-hide",
+        "m2-drain"
+      ]
+    },
+    {
+      "id": "M3",
+      "title": "Present money",
+      "axis": "money in my jar",
+      "story": [
+        "I put the same amount in my jar every week.",
+        "Then, over one week, I spent some of it on a birthday present for my abuela.",
+        "After that I started a dog-walking job, so I saved a bigger amount, the same every week."
+      ],
+      "graphs": [
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              5.0,
+              4.0
+            ],
+            [
+              6.0,
+              2.0
+            ],
+            [
+              10.0,
+              8.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T"
+          ],
+          "note": ""
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              6.0
+            ],
+            [
+              5.0,
+              4.0
+            ],
+            [
+              10.0,
+              8.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T"
+          ],
+          "note": "Here I save faster before the present than after. My job made me save more."
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              5.0,
+              4.0
+            ],
+            [
+              7.0,
+              4.0
+            ],
+            [
+              10.0,
+              8.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T"
+          ],
+          "note": "Here the money stays the same that week, but I spent some."
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              5.0,
+              4.0
+            ],
+            [
+              6.0,
+              2.0
+            ],
+            [
+              10.0,
+              8.0
+            ]
+          ],
+          "s": [
+            "S",
+            "T",
+            "T"
+          ],
+          "note": "Here the first part curves up: more every week. I saved the same amount each week."
+        }
+      ],
+      "zero": null,
+      "full": null,
+      "art": [
+        "m3-jar",
+        "m3-gift",
+        "m3-leash"
+      ]
+    },
+    {
+      "id": "M4",
+      "title": "The vase",
+      "axis": "water height in the vase",
+      "story": [
+        "I poured water into a vase at a steady rate.",
+        "The vase is wide at the bottom and narrow at the top, so the water rose slowly at first, then faster and faster.",
+        "When it was full, I stopped pouring."
+      ],
+      "graphs": [
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              8.0,
+              7.0
+            ],
+            [
+              12.0,
+              7.0
+            ]
+          ],
+          "s": [
+            "S",
+            "T"
+          ],
+          "note": ""
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              8.0,
+              7.0
+            ],
+            [
+              12.0,
+              7.0
+            ]
+          ],
+          "s": [
+            "L",
+            "T"
+          ],
+          "note": "This one rises fast, then slower. That's a vase that is wide at the top."
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              8.0,
+              7.0
+            ],
+            [
+              12.0,
+              7.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T"
+          ],
+          "note": "This one rises at one steady rate. That's a vase with straight sides."
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              8.0,
+              5.0
+            ],
+            [
+              12.0,
+              7.0
+            ]
+          ],
+          "s": [
+            "S",
+            "T"
+          ],
+          "note": "Here the water keeps rising after I stopped pouring."
+        }
+      ],
+      "zero": null,
+      "full": null,
+      "art": [
+        "m4-pour",
+        "m4-full",
+        "m4-table"
+      ]
+    },
+    {
+      "id": "M5",
+      "title": "Track tryout",
+      "axis": "distance from the starting line",
+      "story": [
+        "At the 100 meter tryout I sped up from the starting line.",
+        "Then I ran at my top speed.",
+        "After the finish line I slowed down until I stopped.",
+        "Then I stood there catching my breath."
+      ],
+      "graphs": [
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              2.0,
+              1.0
+            ],
+            [
+              6.0,
+              7.0
+            ],
+            [
+              8.0,
+              8.0
+            ],
+            [
+              12.0,
+              8.0
+            ]
+          ],
+          "s": [
+            "S",
+            "T",
+            "L",
+            "T"
+          ],
+          "note": ""
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              2.0,
+              1.0
+            ],
+            [
+              6.0,
+              7.0
+            ],
+            [
+              8.0,
+              8.0
+            ],
+            [
+              12.0,
+              8.0
+            ]
+          ],
+          "s": [
+            "L",
+            "T",
+            "L",
+            "T"
+          ],
+          "note": "This one starts fast and slows down. From a standing start, I had to speed up."
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              2.0,
+              1.0
+            ],
+            [
+              6.0,
+              7.0
+            ],
+            [
+              8.0,
+              8.0
+            ],
+            [
+              12.0,
+              6.0
+            ]
+          ],
+          "s": [
+            "S",
+            "T",
+            "L",
+            "T"
+          ],
+          "note": "Here I walk back toward the start at the end. I stood still."
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              2.0,
+              1.0
+            ],
+            [
+              6.0,
+              7.0
+            ],
+            [
+              8.0,
+              8.0
+            ],
+            [
+              12.0,
+              8.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T",
+            "T"
+          ],
+          "note": "Here I stop all at once at the finish. I slowed down bit by bit."
+        }
+      ],
+      "zero": null,
+      "full": null,
+      "art": [
+        "m5-start",
+        "m5-run",
+        "m5-breath"
+      ]
+    },
+    {
+      "id": "M6",
+      "title": "Up to Grandpa's",
+      "axis": "height above the lobby",
+      "story": [
+        "Grandpa and I rode the elevator up from the lobby at a steady speed.",
+        "The doors opened on his floor, and we waited for his neighbor.",
+        "Then we all rode down, part of the way, to the laundry floor.",
+        "We got out there."
+      ],
+      "graphs": [
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              6.0
+            ],
+            [
+              6.0,
+              6.0
+            ],
+            [
+              8.0,
+              3.0
+            ],
+            [
+              12.0,
+              3.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T",
+            "T"
+          ],
+          "note": ""
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              6.0
+            ],
+            [
+              6.0,
+              6.0
+            ],
+            [
+              10.0,
+              0.0
+            ],
+            [
+              12.0,
+              0.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T",
+            "T"
+          ],
+          "note": "This one goes all the way down to the lobby."
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              6.0
+            ],
+            [
+              6.0,
+              5.0
+            ],
+            [
+              8.0,
+              3.0
+            ],
+            [
+              12.0,
+              3.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T",
+            "T"
+          ],
+          "note": "Here we drift down while we wait. We stayed on his floor."
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              6.0
+            ],
+            [
+              6.0,
+              6.0
+            ],
+            [
+              8.0,
+              8.0
+            ],
+            [
+              12.0,
+              8.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T",
+            "T"
+          ],
+          "note": "Here the elevator goes up again after the wait."
+        }
+      ],
+      "zero": "lobby",
+      "full": null,
+      "art": [
+        "m6-ride",
+        "m6-wait",
+        "m6-laundry"
+      ]
+    },
+    {
+      "id": "M7",
+      "title": "Walking Pepper",
+      "axis": "distance from home",
+      "story": [
+        "I walked Pepper away from home at a steady pace.",
+        "She stopped to sniff a fire hydrant for a while.",
+        "Then it started to rain, so we walked home, a little faster than before."
+      ],
+      "graphs": [
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              5.0,
+              4.0
+            ],
+            [
+              7.0,
+              4.0
+            ],
+            [
+              10.0,
+              0.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T"
+          ],
+          "note": ""
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              4.0
+            ],
+            [
+              5.0,
+              4.0
+            ],
+            [
+              10.0,
+              0.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T"
+          ],
+          "note": "Here we walk home more slowly than we left."
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              5.0,
+              4.0
+            ],
+            [
+              7.0,
+              4.0
+            ],
+            [
+              10.0,
+              1.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T"
+          ],
+          "note": "Here we never get home."
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              5.0,
+              4.0
+            ],
+            [
+              7.0,
+              4.0
+            ],
+            [
+              10.0,
+              8.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T"
+          ],
+          "note": "Here we keep walking away from home after the sniff."
+        }
+      ],
+      "zero": null,
+      "full": null,
+      "art": [
+        "m7-walk",
+        "m7-sniff",
+        "m7-rain"
+      ]
+    },
+    {
+      "id": "M8",
+      "title": "Bean plant",
+      "axis": "height of my plant",
+      "story": [
+        "My bean plant grew slowly at first, then faster and faster.",
+        "Later its growth slowed down, little by little.",
+        "In the end it stopped getting taller."
+      ],
+      "graphs": [
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              3.0
+            ],
+            [
+              8.0,
+              7.0
+            ],
+            [
+              12.0,
+              7.0
+            ]
+          ],
+          "s": [
+            "S",
+            "L",
+            "T"
+          ],
+          "note": ""
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              3.0
+            ],
+            [
+              8.0,
+              7.0
+            ],
+            [
+              12.0,
+              7.0
+            ]
+          ],
+          "s": [
+            "L",
+            "S",
+            "T"
+          ],
+          "note": "This one grows fast first, then faster still at the end of the growing."
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              3.0
+            ],
+            [
+              8.0,
+              7.0
+            ],
+            [
+              12.0,
+              5.0
+            ]
+          ],
+          "s": [
+            "S",
+            "L",
+            "T"
+          ],
+          "note": "Here my plant gets shorter at the end."
+        },
+        {
+          "p": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              3.0
+            ],
+            [
+              8.0,
+              7.0
+            ],
+            [
+              12.0,
+              7.0
+            ]
+          ],
+          "s": [
+            "S",
+            "S",
+            "T"
+          ],
+          "note": "Here it never slows down. It stops growing all at once."
+        }
+      ],
+      "zero": null,
+      "full": null,
+      "art": [
+        "m8-sprout",
+        "m8-climb",
+        "m8-tall"
+      ]
+    },
+    {
+      "id": "M9",
+      "title": "Road trip",
+      "axis": "gas in the tank",
+      "story": [
+        "We started our road trip with a full tank, and the car used gas at a steady rate.",
+        "We stopped and filled the tank back to full.",
+        "That only took a few minutes.",
+        "Then we drove on, using gas at the same rate as before."
+      ],
+      "graphs": [
+        {
+          "p": [
+            [
+              0.0,
+              8.0
+            ],
+            [
+              5.0,
+              4.0
+            ],
+            [
+              6.0,
+              8.0
+            ],
+            [
+              11.0,
+              4.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T"
+          ],
+          "note": ""
+        },
+        {
+          "p": [
+            [
+              0.0,
+              8.0
+            ],
+            [
+              5.0,
+              4.0
+            ],
+            [
+              6.0,
+              8.0
+            ],
+            [
+              11.0,
+              2.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T"
+          ],
+          "note": "Here the car uses gas faster after the stop."
+        },
+        {
+          "p": [
+            [
+              0.0,
+              8.0
+            ],
+            [
+              5.0,
+              4.0
+            ],
+            [
+              6.0,
+              6.0
+            ],
+            [
+              11.0,
+              2.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T"
+          ],
+          "note": "Here we don't fill the tank all the way."
+        },
+        {
+          "p": [
+            [
+              0.0,
+              8.0
+            ],
+            [
+              5.0,
+              4.0
+            ],
+            [
+              6.0,
+              4.0
+            ],
+            [
+              11.0,
+              0.0
+            ]
+          ],
+          "s": [
+            "T",
+            "T",
+            "T"
+          ],
+          "note": "Here the gas stays the same at the stop, but we filled up."
+        }
+      ],
+      "zero": "empty",
+      "full": "full",
+      "art": [
+        "m9-highway",
+        "m9-pump",
+        "m9-drive"
+      ]
+    }
+  ],
+  "sketch": [
+    {
+      "id": "K1",
+      "title": "Over the hill",
+      "axis": "distance from home",
+      "story": [
+        "I left home and biked up a long, steep hill at a slow, steady speed.",
+        "At the top I didn't stop. I coasted down the other side, faster and faster."
+      ],
+      "p": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          6.0,
+          2.0
+        ],
+        [
+          10.0,
+          8.0
+        ]
+      ],
+      "s": [
+        "T",
+        "S"
+      ],
+      "zero": "0",
+      "full": null,
+      "art": "k1-hill"
+    },
+    {
+      "id": "K2",
+      "title": "Forgot my lunch",
+      "axis": "distance from home",
+      "story": [
+        "I left home and walked toward the bus stop at a steady pace.",
+        "Halfway there I remembered my lunch, so I ran straight home.",
+        "I grabbed it at the door and ran all the way to the bus stop.",
+        "Then I stood at the stop and waited for the bus."
+      ],
+      "p": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          4.0,
+          3.0
+        ],
+        [
+          6.0,
+          0.0
+        ],
+        [
+          10.0,
+          6.0
+        ],
+        [
+          12.0,
+          6.0
+        ]
+      ],
+      "s": [
+        "T",
+        "T",
+        "T",
+        "T"
+      ],
+      "zero": "0",
+      "full": null,
+      "art": "k2-stop"
+    },
+    {
+      "id": "K3",
+      "title": "Dinner candle",
+      "axis": "height of the candle",
+      "story": [
+        "At dinner the candle burned down at a steady rate.",
+        "We blew it out during dessert.",
+        "Later we lit it again, and it burned at the same rate until it was all gone."
+      ],
+      "p": [
+        [
+          0.0,
+          8.0
+        ],
+        [
+          2.0,
+          6.0
+        ],
+        [
+          6.0,
+          6.0
+        ],
+        [
+          12.0,
+          0.0
+        ]
+      ],
+      "s": [
+        "T",
+        "T",
+        "T"
+      ],
+      "zero": "gone",
+      "full": null,
+      "art": "k3-candle"
+    },
+    {
+      "id": "K4",
+      "title": "Toss",
+      "axis": "height of the ball above the ground",
+      "story": [
+        "I tossed a ball straight up from my hand. It rose, slowing down, until it stopped for an instant at the top.",
+        "Then it fell, faster and faster, past my hand and down to the ground."
+      ],
+      "p": [
+        [
+          0.0,
+          2.0
+        ],
+        [
+          4.0,
+          8.0
+        ],
+        [
+          9.0,
+          0.0
+        ]
+      ],
+      "s": [
+        "L",
+        "S"
+      ],
+      "zero": "ground",
+      "full": null,
+      "art": "k4-ball"
+    },
+    {
+      "id": "K5",
+      "title": "Snow day",
+      "axis": "depth of the snow",
+      "story": [
+        "At first there was no snow on the ground. Light snow fell, and the depth grew at a slow, steady rate.",
+        "Then the storm got heavier, and the depth grew faster, at a new steady rate.",
+        "Then the snow stopped, and the depth stayed the same all night."
+      ],
+      "p": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          5.0,
+          2.0
+        ],
+        [
+          8.0,
+          7.0
+        ],
+        [
+          12.0,
+          7.0
+        ]
+      ],
+      "s": [
+        "T",
+        "T",
+        "T"
+      ],
+      "zero": "0",
+      "full": null,
+      "art": "k5-snow"
+    },
+    {
+      "id": "K6",
+      "title": "Water bottle",
+      "axis": "water in my bottle",
+      "story": [
+        "At practice I started with a full bottle and drank at a steady rate.",
+        "At the fountain I filled it back to the top.",
+        "After that I only took small sips, so it went down at a slower steady rate."
+      ],
+      "p": [
+        [
+          0.0,
+          8.0
+        ],
+        [
+          3.0,
+          2.0
+        ],
+        [
+          4.0,
+          8.0
+        ],
+        [
+          12.0,
+          4.0
+        ]
+      ],
+      "s": [
+        "T",
+        "T",
+        "T"
+      ],
+      "zero": "empty",
+      "full": "full",
+      "art": "k6-bottle"
+    },
+    {
+      "id": "K7",
+      "title": "Sled run",
+      "axis": "distance from the top of the hill",
+      "story": [
+        "I started at the top of the hill and sledded down, faster and faster.",
+        "At the bottom I slid across the flat field, slowing down until I stopped.",
+        "Then I sat there and laughed."
+      ],
+      "p": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          5.0,
+          5.0
+        ],
+        [
+          9.0,
+          8.0
+        ],
+        [
+          12.0,
+          8.0
+        ]
+      ],
+      "s": [
+        "S",
+        "L",
+        "T"
+      ],
+      "zero": "0",
+      "full": null,
+      "art": "k7-sled"
+    }
+  ],
+  "model": [
+    {
+      "id": "R1",
+      "title": "Pool",
+      "kind": "description",
+      "story": [
+        "The pool already has 200 gallons of water in it when Lucia turns on the hose. The hose adds 50 gallons every minute. The pool holds 1,500 gallons when it is full."
+      ],
+      "m": 50,
+      "b": 200,
+      "p": [
+        [
+          0,
+          200
+        ],
+        [
+          10,
+          700
+        ],
+        [
+          26,
+          1500
+        ]
+      ],
+      "symbols": [
+        "t",
+        "g",
+        "minutes",
+        "gallons"
+      ],
+      "meanings": [
+        [
+          "The pool gains 50 gallons each minute.",
+          "The pool had 50 gallons when the hose went on.",
+          "The pool is full after 50 minutes.",
+          "Each gallon takes 50 minutes to pour."
+        ],
+        [
+          "The pool had 200 gallons when the hose went on.",
+          "The hose adds 200 gallons each minute.",
+          "The pool is full after 200 minutes.",
+          "At the start, the pool still needed 200 gallons to be full."
+        ]
+      ],
+      "art": "r1-pool"
+    },
+    {
+      "id": "R2",
+      "title": "Bowling",
+      "kind": "two points",
+      "story": [
+        "Bowling costs the same for each game, plus a one-time shoe rental. Lucia paid $25 for 5 games. Her friend paid $13 for 2 games."
+      ],
+      "m": 4,
+      "b": 5,
+      "p": [
+        [
+          5,
+          25
+        ],
+        [
+          2,
+          13
+        ]
+      ],
+      "symbols": [
+        "n",
+        "c",
+        "games",
+        "dollars"
+      ],
+      "meanings": [
+        [
+          "Each game costs $4.",
+          "Shoe rental costs $4.",
+          "Each dollar pays for 4 games.",
+          "Lucia bowled 4 games."
+        ],
+        [
+          "Shoe rental costs $5, paid once before any games.",
+          "Each game costs $5.",
+          "Lucia bowled 5 games.",
+          "Before any games, Lucia had $5 to spend."
+        ]
+      ],
+      "art": "r2-bowling"
+    },
+    {
+      "id": "R3",
+      "title": "Tank",
+      "kind": "table",
+      "story": [
+        "A water tank drains at a steady rate. Lucia reads the gauge a few times."
+      ],
+      "m": -3,
+      "b": 90,
+      "p": [
+        [
+          2,
+          84
+        ],
+        [
+          5,
+          75
+        ],
+        [
+          9,
+          63
+        ],
+        [
+          12,
+          54
+        ]
+      ],
+      "symbols": [
+        "t",
+        "w",
+        "minutes",
+        "gallons"
+      ],
+      "meanings": [
+        [
+          "The tank loses 3 gallons each minute.",
+          "The tank gains 3 gallons each minute.",
+          "At the start the tank held 3 gallons.",
+          "Each gallon takes 3 minutes to drain."
+        ],
+        [
+          "The tank held 90 gallons when it started draining.",
+          "The tank loses 90 gallons each minute.",
+          "The tank is empty after 90 minutes.",
+          "At the first gauge reading the tank held 90 gallons."
+        ]
+      ],
+      "art": "r3-tank"
+    },
+    {
+      "id": "R4",
+      "title": "Drone",
+      "kind": "graph",
+      "story": [
+        "A delivery drone takes off from a rooftop and climbs at a steady rate."
+      ],
+      "m": 6,
+      "b": 20,
+      "p": [
+        [
+          0,
+          20
+        ],
+        [
+          5,
+          50
+        ],
+        [
+          10,
+          80
+        ]
+      ],
+      "symbols": [
+        "t",
+        "h",
+        "seconds",
+        "meters"
+      ],
+      "meanings": [
+        [
+          "The drone climbs 6 meters each second.",
+          "The rooftop is 6 meters high.",
+          "The drone climbs 1 meter every 6 seconds.",
+          "The drone flies for 6 seconds."
+        ],
+        [
+          "The drone started 20 meters up, on the rooftop.",
+          "The drone climbs 20 meters each second.",
+          "The drone flies for 20 seconds.",
+          "At the start the drone climbed 20 meters in the first second."
+        ]
+      ],
+      "art": "r4-drone"
+    },
+    {
+      "id": "R5",
+      "title": "Bike share",
+      "kind": "graph",
+      "story": [
+        "A bike-share ride costs a fee to unlock the bike, plus a steady price for each minute. The graph shows rides from 10 to 40 minutes."
+      ],
+      "m": 0.15,
+      "b": 1,
+      "p": [
+        [
+          10,
+          2.5
+        ],
+        [
+          20,
+          4
+        ],
+        [
+          30,
+          5.5
+        ],
+        [
+          40,
+          7
+        ]
+      ],
+      "symbols": [
+        "t",
+        "c",
+        "minutes",
+        "dollars"
+      ],
+      "meanings": [
+        [
+          "Each minute of riding adds $0.15.",
+          "Unlocking the bike costs $0.15.",
+          "Each dollar buys 0.15 minutes of riding.",
+          "The whole ride costs $0.15."
+        ],
+        [
+          "Unlocking the bike costs $1, before any riding.",
+          "Each minute costs $1.",
+          "The first 10 minutes cost $1 in all.",
+          "At the start of the graph, a 10 minute ride costs $1."
+        ]
+      ],
+      "art": "r5-bike"
+    },
+    {
+      "id": "R6",
+      "title": "Gift card",
+      "kind": "two points",
+      "story": [
+        "Lucia's gift card loses the same amount for each smoothie she buys. After 3 smoothies it had $29.50 left. After 7 smoothies it had $15.50 left."
+      ],
+      "m": -3.5,
+      "b": 40,
+      "p": [
+        [
+          3,
+          29.5
+        ],
+        [
+          7,
+          15.5
+        ]
+      ],
+      "symbols": [
+        "s",
+        "d",
+        "smoothies",
+        "dollars"
+      ],
+      "meanings": [
+        [
+          "Each smoothie takes $3.50 off the card.",
+          "Each smoothie adds $3.50 to the card.",
+          "At the start the card held $3.50.",
+          "The card runs out after 3.5 smoothies."
+        ],
+        [
+          "The card held $40 before any smoothies.",
+          "Each smoothie costs $40.",
+          "The card runs out after 40 smoothies.",
+          "At the start, the card could buy 40 smoothies."
+        ]
+      ],
+      "art": "r6-card"
+    },
+    {
+      "id": "R7",
+      "title": "Ice swan",
+      "kind": "description",
+      "story": [
+        "An ice swan for a party weighs 60 kilograms when it is set out. It melts at a steady 1.5 kilograms an hour. The party lasts 5 hours."
+      ],
+      "m": -1.5,
+      "b": 60,
+      "p": [
+        [
+          0,
+          60
+        ],
+        [
+          5,
+          52.5
+        ],
+        [
+          40,
+          0
+        ]
+      ],
+      "symbols": [
+        "h",
+        "w",
+        "hours",
+        "kilograms"
+      ],
+      "meanings": [
+        [
+          "The swan loses 1.5 kilograms each hour.",
+          "The swan gains 1.5 kilograms each hour.",
+          "At the start the swan weighed 1.5 kilograms.",
+          "The swan is gone after 1.5 hours."
+        ],
+        [
+          "The swan weighed 60 kilograms when it was set out.",
+          "The swan loses 60 kilograms each hour.",
+          "The swan is gone after 60 hours.",
+          "At the start of the party, the swan had 60 hours left."
+        ]
+      ],
+      "art": "r7-swan"
+    },
+    {
+      "id": "R8",
+      "title": "Bike fund",
+      "kind": "table",
+      "story": [
+        "Lucia saves the same amount every week for a new bike, on top of what she already had."
+      ],
+      "m": 9,
+      "b": 34,
+      "p": [
+        [
+          3,
+          61
+        ],
+        [
+          4,
+          70
+        ],
+        [
+          8,
+          106
+        ],
+        [
+          10,
+          124
+        ]
+      ],
+      "symbols": [
+        "w",
+        "d",
+        "weeks",
+        "dollars"
+      ],
+      "meanings": [
+        [
+          "Lucia saves $9 each week.",
+          "Lucia had $9 to start.",
+          "Each dollar takes 9 weeks to save.",
+          "Lucia saves for 9 weeks."
+        ],
+        [
+          "Lucia had $34 before her weekly saving began.",
+          "Lucia saves $34 each week.",
+          "At the start of week 3, Lucia had $34.",
+          "The bike costs $34."
+        ]
+      ],
+      "art": "r8-bike"
+    },
+    {
+      "id": "R9",
+      "title": "Ferry",
+      "kind": "graph",
+      "story": [
+        "A ferry heads in to the dock at a steady speed."
+      ],
+      "m": -0.5,
+      "b": 6,
+      "p": [
+        [
+          0,
+          6
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          8,
+          2
+        ],
+        [
+          12,
+          0
+        ]
+      ],
+      "symbols": [
+        "t",
+        "d",
+        "minutes",
+        "kilometers from dock"
+      ],
+      "meanings": [
+        [
+          "The ferry gets 0.5 kilometers closer to the dock each minute.",
+          "The ferry gets 0.5 kilometers farther from the dock each minute.",
+          "At the start the ferry was 0.5 kilometers out.",
+          "The ferry docks after 0.5 minutes."
+        ],
+        [
+          "The ferry was 6 kilometers from the dock when the graph starts.",
+          "The ferry moves 6 kilometers each minute.",
+          "The ferry docks after 6 minutes.",
+          "At the start the ferry had 6 minutes to go."
+        ]
+      ],
+      "art": "r9-ferry"
+    }
+  ]
+}

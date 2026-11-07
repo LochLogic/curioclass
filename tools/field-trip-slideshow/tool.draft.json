@@ -1,0 +1,30 @@
+{
+  "id": "field-trip-slideshow",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Four crews turn an aquarium trip into a show for families.",
+  "outcome": "Choose clear pictures, balance music under speech, match true captions, and prepare a presentation room.",
+  "driver": "teacher",
+  "minutes": "25-35",
+  "modes": [
+    "Camera",
+    "Sound",
+    "Speaker",
+    "Room",
+    "Show"
+  ],
+  "grades_label": "Grades K-2",
+  "sources": [
+    "National Core Arts Standards: Media Arts MA:Pr5, MA:Pr6, MA:Cn10, grades K-2",
+    "NOAA Ocean Service: What are jellyfish made of?",
+    "Monterey Bay Aquarium: Giant Pacific octopus and African penguin",
+    "NOAA Fisheries: Green Turtle",
+    "Florida Museum of Natural History: Shark teeth",
+    "Smithsonian Ocean: Seahorses",
+    "Armstrong (2016), BBC R&D White Paper WHP 324. Relative music levels are a classroom simplification.",
+    "Projection contrast uses (white + ambient) / (black + ambient), with illustrative ambient values.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-06"
+}

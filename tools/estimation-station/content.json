@@ -1,0 +1,719 @@
+{
+  "items": [
+    {
+      "asset": "paperclip",
+      "name": "paperclip",
+      "kind": "inch",
+      "unit": "inches",
+      "lo": 1,
+      "hi": 2,
+      "orientation": "lying"
+    },
+    {
+      "asset": "toy-car",
+      "name": "toy car",
+      "kind": "inch",
+      "unit": "inches",
+      "lo": 2,
+      "hi": 4,
+      "orientation": "lying"
+    },
+    {
+      "asset": "crayon",
+      "name": "crayon",
+      "kind": "inch",
+      "unit": "inches",
+      "lo": 3,
+      "hi": 4,
+      "orientation": "lying"
+    },
+    {
+      "asset": "pencil",
+      "name": "pencil",
+      "kind": "inch",
+      "unit": "inches",
+      "lo": 4,
+      "hi": 7,
+      "orientation": "lying"
+    },
+    {
+      "asset": "spoon",
+      "name": "spoon",
+      "kind": "inch",
+      "unit": "inches",
+      "lo": 5,
+      "hi": 7,
+      "orientation": "lying"
+    },
+    {
+      "asset": "comb",
+      "name": "comb",
+      "kind": "inch",
+      "unit": "inches",
+      "lo": 5,
+      "hi": 8,
+      "orientation": "lying"
+    },
+    {
+      "asset": "paintbrush",
+      "name": "paintbrush",
+      "kind": "inch",
+      "unit": "inches",
+      "lo": 7,
+      "hi": 9,
+      "orientation": "lying"
+    },
+    {
+      "asset": "picture-book",
+      "name": "picture book",
+      "kind": "inch",
+      "unit": "inches",
+      "lo": 9,
+      "hi": 11,
+      "orientation": "lying"
+    },
+    {
+      "asset": "keyboard",
+      "name": "keyboard",
+      "kind": "inch",
+      "unit": "inches",
+      "lo": 11,
+      "hi": 12,
+      "orientation": "lying"
+    },
+    {
+      "asset": "bead",
+      "name": "bead",
+      "kind": "cm",
+      "unit": "centimeters",
+      "lo": 1,
+      "hi": 2,
+      "orientation": "lying"
+    },
+    {
+      "asset": "eraser",
+      "name": "eraser",
+      "kind": "cm",
+      "unit": "centimeters",
+      "lo": 4,
+      "hi": 7,
+      "orientation": "lying"
+    },
+    {
+      "asset": "leaf",
+      "name": "leaf",
+      "kind": "cm",
+      "unit": "centimeters",
+      "lo": 6,
+      "hi": 12,
+      "orientation": "lying"
+    },
+    {
+      "asset": "chalk",
+      "name": "chalk",
+      "kind": "cm",
+      "unit": "centimeters",
+      "lo": 7,
+      "hi": 9,
+      "orientation": "lying"
+    },
+    {
+      "asset": "glue-stick",
+      "name": "glue stick",
+      "kind": "cm",
+      "unit": "centimeters",
+      "lo": 9,
+      "hi": 12,
+      "orientation": "lying"
+    },
+    {
+      "asset": "scissors",
+      "name": "scissors",
+      "kind": "cm",
+      "unit": "centimeters",
+      "lo": 13,
+      "hi": 18,
+      "orientation": "lying"
+    },
+    {
+      "asset": "feather",
+      "name": "feather",
+      "kind": "cm",
+      "unit": "centimeters",
+      "lo": 15,
+      "hi": 25,
+      "orientation": "lying"
+    },
+    {
+      "asset": "banana",
+      "name": "banana",
+      "kind": "cm",
+      "unit": "centimeters",
+      "lo": 16,
+      "hi": 22,
+      "orientation": "lying"
+    },
+    {
+      "asset": "notebook",
+      "name": "notebook",
+      "kind": "cm",
+      "unit": "centimeters",
+      "lo": 25,
+      "hi": 29,
+      "orientation": "lying"
+    },
+    {
+      "asset": "snake-head",
+      "name": "toy snake",
+      "kind": "curvy",
+      "unit": "inches",
+      "lo": 20,
+      "hi": 34,
+      "orientation": "curvy"
+    },
+    {
+      "asset": "shoelace-weave",
+      "name": "shoelace",
+      "kind": "curvy",
+      "unit": "inches",
+      "lo": 27,
+      "hi": 45,
+      "orientation": "curvy"
+    },
+    {
+      "asset": "rope-handle",
+      "name": "jump rope",
+      "kind": "curvy",
+      "unit": "inches",
+      "lo": 40,
+      "hi": 58,
+      "orientation": "curvy"
+    },
+    {
+      "asset": "bead",
+      "name": "bead necklace",
+      "kind": "curvy",
+      "unit": "centimeters",
+      "lo": 40,
+      "hi": 70,
+      "orientation": "curvy"
+    },
+    {
+      "asset": "shoelace-weave",
+      "name": "ribbon",
+      "kind": "curvy",
+      "unit": "centimeters",
+      "lo": 60,
+      "hi": 140,
+      "orientation": "curvy"
+    },
+    {
+      "asset": "hose-nozzle",
+      "name": "garden hose",
+      "kind": "curvy",
+      "unit": "centimeters",
+      "lo": 110,
+      "hi": 150,
+      "orientation": "curvy"
+    },
+    {
+      "asset": "suitcase",
+      "name": "suitcase",
+      "kind": "standing",
+      "unit": "inches",
+      "lo": 18,
+      "hi": 30,
+      "orientation": "standing"
+    },
+    {
+      "asset": "small-table",
+      "name": "small table",
+      "kind": "standing",
+      "unit": "inches",
+      "lo": 24,
+      "hi": 30,
+      "orientation": "standing"
+    },
+    {
+      "asset": "chair",
+      "name": "chair",
+      "kind": "standing",
+      "unit": "inches",
+      "lo": 30,
+      "hi": 34,
+      "orientation": "standing"
+    },
+    {
+      "asset": "broom",
+      "name": "broom",
+      "kind": "standing",
+      "unit": "inches",
+      "lo": 48,
+      "hi": 58,
+      "orientation": "standing"
+    },
+    {
+      "asset": "crate-stack",
+      "name": "crate stack",
+      "kind": "standing",
+      "unit": "centimeters",
+      "lo": 40,
+      "hi": 95,
+      "orientation": "standing"
+    },
+    {
+      "asset": "lamp",
+      "name": "lamp",
+      "kind": "standing",
+      "unit": "centimeters",
+      "lo": 45,
+      "hi": 80,
+      "orientation": "standing"
+    },
+    {
+      "asset": "sunflower",
+      "name": "sunflower in a pot",
+      "kind": "standing",
+      "unit": "centimeters",
+      "lo": 60,
+      "hi": 99,
+      "orientation": "standing"
+    },
+    {
+      "asset": "mailbox-post",
+      "name": "mailbox post",
+      "kind": "standing",
+      "unit": "centimeters",
+      "lo": 100,
+      "hi": 130,
+      "orientation": "standing"
+    },
+    {
+      "asset": "rug",
+      "name": "rug",
+      "kind": "two",
+      "unit": "feet",
+      "lengths": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "orientation": "lying"
+    },
+    {
+      "asset": "bench",
+      "name": "bench",
+      "kind": "two",
+      "unit": "feet",
+      "lengths": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "orientation": "lying"
+    },
+    {
+      "asset": "door",
+      "name": "door",
+      "kind": "two",
+      "unit": "meters",
+      "lengths": [
+        2
+      ],
+      "orientation": "standing"
+    },
+    {
+      "asset": "ladder",
+      "name": "ladder",
+      "kind": "two",
+      "unit": "meters",
+      "lengths": [
+        1,
+        2,
+        3
+      ],
+      "orientation": "standing"
+    }
+  ],
+  "slips": [
+    {
+      "kind": "join",
+      "a": 25,
+      "b": 38,
+      "unit": "inches",
+      "text": "Mia's ribbon is 25 inches. Leo's is 38 inches. They tie them end to end. How long is the new ribbon?",
+      "A": "ribbon",
+      "B": "ribbon",
+      "answer": 63
+    },
+    {
+      "kind": "join",
+      "a": 47,
+      "b": 36,
+      "unit": "centimeters",
+      "text": "A green rope is 47 centimeters and a red rope is 36 centimeters. They tie them together. How long is the rope now?",
+      "A": "green rope",
+      "B": "red rope",
+      "answer": 83
+    },
+    {
+      "kind": "join",
+      "a": 19,
+      "b": 44,
+      "unit": "inches",
+      "text": "A train track piece is 19 inches. Ben adds a 44 inch piece. How long is the track?",
+      "A": "track",
+      "B": "track",
+      "answer": 63
+    },
+    {
+      "kind": "join",
+      "a": 58,
+      "b": 29,
+      "unit": "centimeters",
+      "text": "A paper chain is 58 centimeters. Ana adds 29 centimeters more. How long is it now?",
+      "A": "chain",
+      "B": "chain",
+      "answer": 87
+    },
+    {
+      "kind": "join",
+      "a": 36,
+      "b": 36,
+      "unit": "inches",
+      "text": "Two scarves are 36 inches each. Sewn end to end, how long are they?",
+      "A": "scarf",
+      "B": "scarf",
+      "answer": 72
+    },
+    {
+      "kind": "join",
+      "a": 27,
+      "b": 45,
+      "unit": "centimeters",
+      "text": "A fence board is 27 centimeters. Another is 45 centimeters. Laid end to end, how long?",
+      "A": "board",
+      "B": "board",
+      "answer": 72
+    },
+    {
+      "kind": "take",
+      "a": 80,
+      "b": 25,
+      "unit": "centimeters",
+      "text": "A rope is 80 centimeters. Gus cuts off 25 centimeters. How long is the rope now?",
+      "A": "rope",
+      "B": "cut piece",
+      "answer": 55
+    },
+    {
+      "kind": "take",
+      "a": 64,
+      "b": 18,
+      "unit": "inches",
+      "text": "A garden hose is 64 inches. Mr. Hollis cuts off 18 inches. How long is it now?",
+      "A": "hose",
+      "B": "cut piece",
+      "answer": 46
+    },
+    {
+      "kind": "take",
+      "a": 91,
+      "b": 46,
+      "unit": "centimeters",
+      "text": "A ribbon is 91 centimeters. Sam uses 46 centimeters for a bow. How much is left?",
+      "A": "ribbon",
+      "B": "bow piece",
+      "answer": 45
+    },
+    {
+      "kind": "compare",
+      "a": 52,
+      "b": 34,
+      "unit": "inches",
+      "text": "The rope is 52 inches. The toy snake is 34 inches. How much longer is the rope?",
+      "A": "rope",
+      "B": "toy snake",
+      "answer": 18
+    },
+    {
+      "kind": "compare",
+      "a": 75,
+      "b": 48,
+      "unit": "centimeters",
+      "text": "A scarf is 75 centimeters. A belt is 48 centimeters. How much longer is the scarf?",
+      "A": "scarf",
+      "B": "belt",
+      "answer": 27
+    },
+    {
+      "kind": "compare",
+      "a": 61,
+      "b": 27,
+      "unit": "inches",
+      "text": "A bench is 61 inches. A suitcase is 27 inches. How much longer is the bench?",
+      "A": "bench",
+      "B": "suitcase",
+      "answer": 34
+    },
+    {
+      "kind": "missing",
+      "a": 45,
+      "b": 70,
+      "unit": "centimeters",
+      "text": "Ana has 45 centimeters of ribbon. She needs 70 centimeters for a bow. How much more does she need?",
+      "A": "ribbon",
+      "B": "needed length",
+      "answer": 25
+    },
+    {
+      "kind": "missing",
+      "a": 38,
+      "b": 60,
+      "unit": "inches",
+      "text": "Leo's tower is 38 inches tall. He wants it 60 inches tall. How many more inches?",
+      "A": "tower",
+      "B": "needed height",
+      "answer": 22
+    },
+    {
+      "kind": "missing",
+      "a": 29,
+      "b": 83,
+      "unit": "centimeters",
+      "text": "A chain is 29 centimeters. It must reach 83 centimeters. How much more chain is needed?",
+      "A": "chain",
+      "B": "needed length",
+      "answer": 54
+    }
+  ],
+  "ribbons": [
+    {
+      "a": 29,
+      "b": 17,
+      "unit": "inches"
+    },
+    {
+      "a": 33,
+      "b": 24,
+      "unit": "inches"
+    },
+    {
+      "a": 35,
+      "b": 19,
+      "unit": "inches"
+    },
+    {
+      "a": 86,
+      "b": 58,
+      "unit": "centimeters"
+    },
+    {
+      "a": 72,
+      "b": 45,
+      "unit": "centimeters"
+    },
+    {
+      "a": 94,
+      "b": 67,
+      "unit": "centimeters"
+    }
+  ],
+  "imageSizes": {
+    "banana": [
+      650,
+      201
+    ],
+    "bead": [
+      650,
+      231
+    ],
+    "bench": [
+      650,
+      284
+    ],
+    "braided-rope": [
+      400,
+      133
+    ],
+    "broom": [
+      500,
+      1343
+    ],
+    "chair": [
+      500,
+      928
+    ],
+    "chalk": [
+      650,
+      82
+    ],
+    "comb": [
+      650,
+      144
+    ],
+    "crate-stack": [
+      500,
+      1049
+    ],
+    "crayon": [
+      650,
+      77
+    ],
+    "door": [
+      650,
+      1160
+    ],
+    "engine": [
+      520,
+      202
+    ],
+    "eraser": [
+      650,
+      206
+    ],
+    "feather": [
+      650,
+      142
+    ],
+    "freight-car": [
+      460,
+      151
+    ],
+    "glue-stick": [
+      650,
+      142
+    ],
+    "green-hose": [
+      400,
+      133
+    ],
+    "hose-nozzle": [
+      220,
+      218
+    ],
+    "keyboard": [
+      650,
+      190
+    ],
+    "ladder": [
+      650,
+      1208
+    ],
+    "lamp": [
+      500,
+      1327
+    ],
+    "leaf": [
+      650,
+      291
+    ],
+    "mailbox-post": [
+      500,
+      1617
+    ],
+    "mr-hollis-cheer": [
+      300,
+      305
+    ],
+    "mr-hollis-point": [
+      300,
+      309
+    ],
+    "mr-hollis": [
+      300,
+      308
+    ],
+    "notebook": [
+      650,
+      438
+    ],
+    "paintbrush": [
+      650,
+      70
+    ],
+    "paperclip": [
+      650,
+      148
+    ],
+    "pencil": [
+      650,
+      53
+    ],
+    "picture-book": [
+      650,
+      395
+    ],
+    "platform-floor": [
+      1000,
+      563
+    ],
+    "rope-handle": [
+      220,
+      780
+    ],
+    "rug": [
+      650,
+      235
+    ],
+    "scissors": [
+      650,
+      236
+    ],
+    "shoelace-weave": [
+      400,
+      133
+    ],
+    "small-table": [
+      500,
+      418
+    ],
+    "snake-head": [
+      220,
+      144
+    ],
+    "spoon": [
+      650,
+      138
+    ],
+    "station-platform": [
+      1280,
+      720
+    ],
+    "suitcase": [
+      500,
+      581
+    ],
+    "sunflower": [
+      500,
+      1212
+    ],
+    "tabletop": [
+      1100,
+      367
+    ],
+    "toy-car": [
+      650,
+      290
+    ]
+  },
+  "imageTips": {
+    "snake-head": {
+      "left": 0.5902777777777778,
+      "right": 0.5659722222222222
+    },
+    "rope-handle": {
+      "left": 0.12628205128205128,
+      "right": 0.12564102564102564
+    },
+    "hose-nozzle": {
+      "left": 0.1743119266055046,
+      "right": 0.6399082568807339
+    }
+  }
+}

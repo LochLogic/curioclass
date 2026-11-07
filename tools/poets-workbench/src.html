@@ -1,0 +1,1260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<meta name="description" content="An offline poet's desk with live scansion, a real rhyming dictionary and sixteen public-domain poems.">
+<title>Poet's Workbench · Curio Class</title>
+<!-- CMU Pronouncing Dictionary: BSD-style licence, full notice in Manual. Poems: public domain, sources in Manual. -->
+<style>
+:root{--page:#fbfaf5;--ink:#22201c;--red:#b3261e;--quiet:#6b6258;--wood:#3b2a1e;--line:78px;font-family:"Courier New",monospace;color:var(--ink)}
+*{box-sizing:border-box} [hidden]{display:none!important}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{background:repeating-linear-gradient(1deg,#ffffff03 0 1px,transparent 1px 7px),
+ repeating-linear-gradient(89deg,#24160f40 0 2px,transparent 2px 83px),linear-gradient(110deg,#493425,#2b1e16 70%,#463021)}
+button,select,input,textarea{font:inherit;color:inherit}button,select{cursor:pointer}
+button{min-height:44px;min-width:44px;border-radius:3px;border:1px solid #8d8475;background:linear-gradient(#f0eadc,#d7cdbb);
+ box-shadow:inset 0 1px #fff9,0 2px 2px #0003;padding:7px 10px;font-weight:bold;font-size:12px}
+button:hover{filter:brightness(1.06)}button:active{transform:translateY(1px);box-shadow:inset 0 1px 4px #0004}
+ button[aria-pressed=true],button[role=tab][aria-selected=true]{background:#513a2b;color:#fff5df;border-color:#ccab78;box-shadow:inset 0 2px 4px #0008}
+button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{
+ outline:3px solid #1f4e9a;outline-offset:3px}
+select{height:44px;max-width:100%;border:1px solid #8d8475;background:#f0eadc;border-radius:2px;padding:4px;font-size:12px}
+.desk{height:100%;display:grid;grid-template-rows:64px minmax(0,1fr) 62px}
+.desk-top{display:flex;align-items:center;justify-content:space-between;padding:8px 20px;gap:12px}
+.desk-tools,.power{display:flex;gap:6px;align-items:center}
+.power{padding:5px 7px;background:linear-gradient(#786b57,#a79b83,#786d59);border:1px solid #c4b79c;border-radius:4px;
+ box-shadow:0 3px 8px #0008;position:relative}
+.power:before,.power:after{content:'⊖';color:#39332a;font-size:10px;position:absolute;top:2px;left:2px}
+.power:after{left:auto;right:2px}.power button{background:linear-gradient(#332e28,#171512);color:#f2ecdc;border-color:#0f0d0b;
+ box-shadow:inset 0 1px #ffffff35,0 1px #e8dcc880;font-size:11px;min-width:65px;padding:4px 8px}
+.power button[aria-pressed=true]{border-bottom:3px solid #e6bf7a}
+.work{display:grid;grid-template-columns:180px minmax(0,1fr) 110px;gap:18px;min-height:0;padding:10px 22px 0}
+ .drawer-open .work{grid-template-columns:180px minmax(0,1fr) 110px;gap:18px}
+.shelf{min-height:0;display:flex;flex-direction:column;padding-top:50px;grid-column:1;grid-row:1}
+.shelf-label{color:#e9d8bb;font-size:11px;letter-spacing:3px;padding:0 0 13px 4px}
+.books{overflow:auto;min-height:0;padding:0 7px 10px 0;scrollbar-color:#b79b73 #302015;scrollbar-width:thin}
+.book{display:block;width:100%;min-height:46px;margin-bottom:5px;text-align:left;color:#fff1d6;
+ border:1px solid #b79b7360;border-left:5px double #c9b28c;background:linear-gradient(90deg,#253d3a,#3d5550 20%,#253d3a);
+ box-shadow:0 3px 3px #0005,inset 0 1px #fff2;padding:6px 9px;font-weight:normal;font-size:11px;line-height:1.25}
+.book:nth-child(4n+2){background:linear-gradient(90deg,#51312f,#754945 20%,#51312f)}
+.book:nth-child(4n+3){background:linear-gradient(90deg,#363648,#515167 20%,#363648)}
+.book:nth-child(4n){background:linear-gradient(90deg,#5b4728,#77633f 20%,#5b4728)}
+.book b{display:block;color:#fff5df;font-size:12px;margin-bottom:3px}.book small{font-size:10px}
+.paper-assembly{min-width:0;min-height:0;max-width:850px;width:100%;justify-self:center;display:flex;flex-direction:column;grid-column:2;grid-row:1;
+ filter:drop-shadow(8px 9px 7px #0006)}
+.bail{flex:none;background:linear-gradient(#e0dbd0 0%,#a79f91 4%,#ddd6c8 8%,#eee9de 72%,#a69f92 76%,#d8d3c8 82%,#777368 91%,#eee8db 94%);
+ border:1px solid #766e62;border-radius:7px 7px 0 0;padding:10px 15px 16px;box-shadow:inset 1px 1px #fff8}
+.instrument-label{display:flex;align-items:center;justify-content:space-between;font-size:10px;letter-spacing:2px;margin:0 0 8px;color:#39352e}
+.instrument-label b{font-size:12px;letter-spacing:2px}.instrument-label span{letter-spacing:0}
+.paper-tabs{display:flex;gap:3px;margin-bottom:9px}.paper-tabs button{flex:1;min-height:44px;font-size:11px;padding:5px 3px;
+ border-radius:6px 6px 0 0;background:var(--page);border-bottom:0;box-shadow:0 1px 3px #0003}
+.paper-tabs button[aria-pressed=true]{color:var(--red);background:#fffef9;box-shadow:inset 0 3px var(--red)}
+#paper-select{display:none}.controls{display:flex;align-items:center;gap:7px}.controls label{font-size:10px;letter-spacing:1px}
+.meter-control{display:flex;flex-direction:column;gap:2px}.meter-control select{height:44px;width:115px}
+.controls button{font-size:11px;padding:4px 7px}.play{background:linear-gradient(#6d3b35,#49251f);color:#fff4df;border-color:#3d221a}
+.tempo{margin-left:auto;display:flex;align-items:center;gap:7px;min-width:130px;flex:1;max-width:205px}
+.knob{width:44px;height:44px;border:3px double #746e60;border-radius:50%;background:radial-gradient(circle at 35% 30%,#6b6358,#28241f 70%);
+ flex:none;position:relative;box-shadow:0 2px 3px #0005;transform:rotate(var(--angle,-20deg))}
+.knob:after{content:'';position:absolute;width:2px;height:13px;background:#fff0cd;left:18px;top:3px}
+.knob{cursor:ns-resize;touch-action:none}
+.tempo input{width:100%;height:44px;accent-color:#6f332c;margin:0}.tempo span{font-size:11px;white-space:nowrap}
+.tempo .range-wrap{flex:1;min-width:48px;display:flex;flex-direction:column}.ruler{height:12px;margin:5px 1px 0;
+ background:repeating-linear-gradient(90deg,#70685b 0 1px,transparent 1px 10px);mask-image:linear-gradient(#000,transparent)}
+.page{background:var(--page);min-height:0;flex:1;position:relative;display:flex;flex-direction:column;
+ border:1px solid #c7bead;border-top:0;box-shadow:inset 20px 0 35px #ded4bf20,inset -3px 0 5px #9e8b6520}
+.page:after{content:'';position:absolute;right:0;bottom:0;width:27px;height:23px;background:linear-gradient(135deg,#d6cdbb,#fcfaf2 46%,#ded7c5 50%);
+ clip-path:polygon(100% 0,100% 100%,0 100%);pointer-events:none}
+.readout{flex:none;border-bottom:1px solid #d9d2c3;padding:12px 22px 10px;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:11px;color:#575045}
+#scheme{color:#1f4e9a;letter-spacing:3px;overflow-wrap:anywhere;max-height:32px;overflow:auto}.source-line{font-size:10px;letter-spacing:.5px;color:#6b6258;
+ padding:14px 62px 0;min-height:31px}
+.writing{flex:1;min-height:0;position:relative;overflow:hidden;margin-top:0}
+#mirror,#editor{font:18px/var(--line) "Courier New",monospace;letter-spacing:0;tab-size:4;
+ padding:0 48px 16px 64px;margin:0;width:100%;border:0;white-space:pre-wrap;overflow-wrap:break-word;word-break:normal}
+ #mirror{position:absolute;left:0;top:0;z-index:2;pointer-events:none;color:var(--ink);min-height:100%;transform:translateY(var(--scroll,0px))}
+#editor{position:absolute;inset:0;background:transparent;color:transparent;caret-color:#22201c;resize:none;
+ overflow:auto;scrollbar-width:thin;scrollbar-color:#b7ad9c transparent;outline-offset:-4px;-webkit-text-fill-color:transparent}
+#editor::selection{background:#caa16b55}#editor:focus-visible{outline:2px solid #1f4e9a;outline-offset:-3px}
+.verse{position:relative;min-height:var(--line);white-space:pre-wrap;overflow-wrap:break-word}
+.word{position:relative;display:inline-block;white-space:pre-wrap;overflow-wrap:anywhere;max-width:100%;vertical-align:top}
+.word.unknown{ text-decoration:underline dotted #6b6258;text-underline-offset:5px}
+.word.ending{text-decoration:underline;text-decoration-color:var(--rhyme);text-underline-offset:6px}
+ .word.allit:before{content:'';position:absolute;left:0;top:calc(var(--line)/2 - 11px);width:.65em;height:20px;
+  border-left:2px dotted #575045;border-top:2px solid #575045;pointer-events:none}
+ .word.asson{background-image:linear-gradient(var(--sound-wash),var(--sound-wash));background-position:0 50%;
+  background-size:100% 22px;background-repeat:no-repeat}
+ .word.asson:after{content:attr(data-vowel-mark);position:absolute;left:0;top:calc(var(--line)/2 + 8px);
+  font:10px/12px "Courier New",monospace;color:var(--sound-ink);pointer-events:none}
+ .word.internal .word-text{border:1px dashed #575045;border-radius:9px;padding:1px 0}
+ .word-text{pointer-events:none}
+.word.selected{background:#d9caa9}
+ .proof{position:absolute;top:0;left:0;width:100%;height:27px;line-height:27px;display:flex;justify-content:space-around;
+ color:var(--red);pointer-events:auto;z-index:3}
+.proof button{background:none;border:0;box-shadow:none;color:inherit;padding:0;min-height:27px;min-width:0;
+ flex:1;font:bold 19px/27px "Courier New",monospace;border-radius:0}
+.proof button.free{color:#6b6258}.proof button.forced{color:#1f4e9a}.proof button.beating{background:#e4b69f;border-radius:2px}
+.count,.rhyme-letter{position:absolute;top:0;font-size:13px;font-weight:bold;white-space:nowrap;line-height:var(--line)}
+ .count{right:calc(100% + 18px);color:#6b6258}.rhyme-letter{left:calc(100% + 15px);color:var(--rhyme)}
+.rhyme-letter.guessed{text-decoration:underline dotted;text-underline-offset:5px}
+.meter-note{position:absolute;left:0;bottom:2px;font:10px/14px "Courier New",monospace;color:#6b6258;white-space:nowrap}
+ .lens-pattern{color:#7a3b34;letter-spacing:2px;margin-left:8px}.guide{position:absolute;right:calc(100% + 18px);top:0;
+ font:10px/14px "Courier New",monospace;color:#6b6258;white-space:nowrap}
+#hint{position:absolute;left:64px;top:calc(var(--line) + 27px);color:#6b6258;font-size:13px;pointer-events:none}
+ #hint.recalled{top:auto!important;bottom:8px;left:auto;right:12px;background:var(--page);padding:4px 6px}
+.edge{display:flex;flex-direction:column;justify-content:center;align-items:center;grid-column:3;grid-row:1}.edge button{writing-mode:vertical-rl;
+ min-height:155px;min-width:44px;background:#a88e65;color:#20170f;border-color:#23170e;letter-spacing:3px}
+.drawer-open .edge{visibility:hidden}
+.desk-foot{display:flex;align-items:center;gap:9px;padding:8px 20px;color:#decbac}
+.plate{border:1px solid #b8a17a;box-shadow:inset 0 0 0 2px #3b3327,0 3px 5px #0006;background:linear-gradient(100deg,#b3a68a,#d0bea0,#a49579);
+ color:#29241c;border-radius:2px;padding:10px 15px;font-size:10px;text-shadow:0 1px #ffffff75;letter-spacing:.2px}
+#manual{background:#493827;color:#f4e4c7;border-color:#9b805b}.desk-foot .foot-note{margin-left:auto;font-size:10px;color:#e4cfad;text-align:right}
+.drawer{position:fixed;right:0;top:84px;bottom:72px;width:334px;background:repeating-linear-gradient(0deg,#ffffff06 0 1px,transparent 1px 8px),#5a3f2b;
+ padding:14px 13px 18px;border:1px solid #997752;box-shadow:-7px 8px 15px #0007;z-index:10;display:flex;flex-direction:column;
+ animation:drawer-in .22s ease-out}.drawer:after{content:'';position:absolute;bottom:4px;left:40%;right:40%;height:5px;border-radius:3px;background:#251b13}
+.index-card{background:#f2ecdc;flex:1;min-height:0;padding:14px;display:flex;flex-direction:column;border:1px solid #c8b48f;box-shadow:0 3px 5px #0006}
+.drawer-top{display:flex;align-items:center;justify-content:space-between;gap:5px}.drawer-top h2{font-size:25px;margin:0;overflow-wrap:anywhere}
+.drawer-top button{box-shadow:none;background:none;border:0;font-size:20px}
+#phones{font-size:12px;line-height:1.6;border-bottom:1px solid #b3261e80;padding:7px 0;overflow-wrap:anywhere;color:#43382f}
+.drawer-tabs{display:flex;gap:3px;margin:10px 0}.drawer-tabs button{flex:1;font-size:10px;padding:3px;min-height:44px;box-shadow:none}
+#rhyme-count{font-size:11px;color:#625246;margin:0 0 10px;line-height:1.5}
+#rhymes{overflow:auto;min-height:0;flex:1;scrollbar-width:thin}.rhyme-group{font-size:10px;letter-spacing:1px;border-bottom:1px solid #baaa8d;padding:9px 0 4px}
+.rhyme-words{display:flex;flex-wrap:wrap;gap:3px}.rhyme-words button{font-size:12px;min-height:44px;padding:4px 7px;box-shadow:none;
+ border:1px solid #c7b99f;background:#faf6eb;font-weight:normal}
+.drawer-note{font-size:10px;line-height:1.6;padding-top:10px}.drawer-note button{min-height:44px;font-size:10px;padding:3px 7px;box-shadow:none}
+.drawer-note small{font-size:10px}
+.mobile-shelf{display:none}dialog{position:fixed;inset:auto auto 72px 20px;width:min(650px,calc(100% - 40px));max-height:calc(100% - 100px);
+ border:1px solid #9a805b;padding:0;background:#f2ecdc;color:#22201c;box-shadow:0 12px 50px #0008;border-radius:3px}
+dialog::backdrop{background:#1e160f65}.dialog-head{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;
+ border-bottom:1px solid #bcae92;background:#e2d7c1}.dialog-head h2{margin:0;font-size:20px}.dialog-body{padding:12px 22px 22px;overflow:auto;max-height:calc(100dvh - 190px)}
+.dialog-body h3{font-size:15px;margin:25px 0 8px}.dialog-body p,.dialog-body li{font-size:13px;line-height:1.65}
+.dialog-body details{border-bottom:1px solid #c9bda5}.dialog-body summary{padding:15px 0;cursor:pointer;font-size:13px;font-weight:bold;min-height:44px}
+.dialog-body a{color:#1f4e9a;overflow-wrap:anywhere;display:inline-block;min-height:44px;max-width:100%;padding:11px 2px;vertical-align:middle}
+.dialog-body pre{white-space:pre-wrap;font-size:10px;line-height:1.5}
+.draft-row{display:flex;align-items:center;gap:8px;margin:12px 0;border-bottom:1px solid #bcae92;padding-bottom:12px}
+ .draft-row span{flex:1;min-width:0;font-size:12px;overflow-wrap:anywhere}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.calm *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+ @keyframes drawer-in{from{transform:translateX(100%)}to{transform:translateX(0)}}
+ @keyframes proof-drop{from{transform:translateY(-7px);opacity:0}to{transform:translateY(0);opacity:1}}
+ .proof.new-mark{animation:proof-drop .16s ease-out}
+ .rhyme-rare summary{font-size:12px;min-height:44px;padding:14px 0;cursor:pointer}
+ .guide{line-height:var(--line);font-size:11px;position:static;margin-left:3px}
+ .count .guide{display:block;position:absolute;right:0;top:calc(var(--line)/2 + 10px);font-size:10px;line-height:14px}
+ .rhyme-guide{display:block;font-size:10px;line-height:14px;position:absolute;top:calc(var(--line)/2 + 10px)}
+ #poem-meter,#repeat-count{font-size:10px}
+@media(min-width:1600px){.work{grid-template-columns:220px minmax(0,1fr) 220px;padding:15px 60px 0}.shelf{max-width:210px}
+  .drawer-open .work{grid-template-columns:220px minmax(0,1fr) 220px}.paper-assembly{max-width:930px}:root{--line:86px}#mirror,#editor{font-size:20px}}
+@media(max-width:1150px){.work,.drawer-open .work{grid-template-columns:minmax(0,1fr);padding:5px 16px 0;gap:0}
+ .shelf,.edge{display:none}.mobile-shelf{display:inline-block}.paper-assembly{max-width:850px;grid-column:1}.desk-top{padding:6px 16px}}
+ @media(min-width:481px) and (max-width:1150px){.drawer-open .work{grid-template-columns:minmax(0,1fr);gap:0}}
+@media(max-width:760px){.desk{grid-template-rows:60px minmax(0,1fr) 65px}.desk-top{padding:5px 10px;gap:5px}
+ .desk-tools{gap:4px}.desk-tools button{font-size:10px;padding:4px 7px}.power{gap:3px;padding:3px}.power button{min-width:53px;font-size:10px;padding:3px}
+ .work,.drawer-open .work{padding:0 9px}.bail{padding:8px 10px 13px}.controls{gap:5px}.tempo{min-width:110px;max-width:160px}
+ .instrument-label{letter-spacing:1px}.instrument-label b{font-size:11px}.desk-foot{padding:5px 10px;gap:7px}.plate{padding:8px;font-size:10px}
+ .foot-note{display:none}.readout{padding:9px 18px;gap:5px 12px}.source-line{padding-left:48px}.desk-tools #print{display:none}
+ #mirror,#editor{font-size:16px;padding-left:48px;padding-right:35px}.count{right:calc(100% + 14px)}.rhyme-letter{left:calc(100% + 11px)}
+ #hint{left:48px}.drawer{top:65px;bottom:70px;width:320px}.knob{width:44px;height:44px}.knob:after{left:18px;top:3px}
+ :root{--line:74px}.meter-note{font-size:10px}}
+@media(max-width:480px){.desk{grid-template-rows:58px minmax(0,1fr) 65px}.desk-tools button{padding:4px 6px}
+ .power button{min-width:47px;font-size:10px}.power{gap:2px}.desk-top{padding:5px 7px}.work,.drawer-open .work{padding:0 5px}
+ .bail{padding:7px 8px 12px}.instrument-label{margin-bottom:6px}.instrument-label span{display:none}
+ .paper-tabs{display:none}#paper-select{display:block;width:100%;margin-bottom:6px;height:44px}
+ .controls{flex-wrap:wrap;gap:5px}.meter-control{flex:1;min-width:105px}.meter-control label{display:none}.meter-control select{height:44px;width:100%}
+ .tempo{max-width:none;min-width:100px;flex:1}.knob{display:none}.controls button{padding:4px 6px;min-width:48px}
+ #speak{order:5}.tempo span{font-size:10px}.ruler{margin-top:1px;height:8px}.readout{padding:8px 11px;font-size:10px;gap:4px 12px}
+ .source-line{padding:11px 32px 0;line-height:1.5;min-height:39px;font-size:10px}.page{min-height:0}
+ #mirror,#editor{font-size:15px;padding-left:32px;padding-right:25px;padding-bottom:16px}
+ .count{right:calc(100% + 9px);font-size:11px}.rhyme-letter{left:calc(100% + 7px);font-size:11px}.guide{right:calc(100% + 9px)}
+ .meter-note{font-size:10px}.lens-pattern{display:none}#hint{left:32px;font-size:12px}
+ .desk-foot{padding:4px 7px;gap:5px}.plate{font-size:10px;padding:7px;line-height:1.6;max-width:calc(100% - 76px)}
+  #manual{font-size:11px;padding:4px 7px;min-width:68px}.drawer{top:auto;bottom:65px;height:40vh;width:100%;border-radius:6px 6px 0 0}
+  .drawer-open #editor,.drawer-open #mirror{padding-bottom:calc(40vh + 16px)}
+ .drawer-top h2{font-size:20px}.index-card{padding:9px 12px}#phones{padding:3px 0}.drawer-tabs{margin:5px 0}
+  .drawer-top h2{max-width:calc(100% - 156px)}
+  .drawer-note{padding-top:5px}.drawer-note small,.drawer-note br{display:none}
+  .drawer-note button{position:absolute;top:23px;right:76px;font-size:10px;border:1px solid #8d8475;
+   background:linear-gradient(#f0eadc,#d7cdbb)}
+  dialog{left:5px;bottom:65px;width:calc(100% - 10px);max-height:calc(100% - 70px)}
+ .dialog-body{padding:8px 14px 18px}.dialog-head{padding:8px 14px}.draft-row{flex-wrap:wrap}.draft-row span{flex-basis:100%}}
+@media(max-height:530px) and (min-width:481px){.desk{grid-template-rows:53px minmax(0,1fr) 49px}.desk-top{padding:3px 12px}
+ .bail{padding:5px 10px 10px}.instrument-label,.ruler{display:none}.paper-tabs{margin-bottom:4px}.paper-tabs button{min-height:44px}
+ .controls button{min-height:44px}.meter-control label{display:none}.meter-control select{height:44px}.readout{padding:6px 14px}
+ .source-line{padding-top:5px;min-height:21px}.desk-foot{padding:3px 12px}.plate{padding:6px 9px}
+  :root{--line:66px}.drawer{top:53px;bottom:49px;padding:7px}.index-card{padding:8px}
+  .drawer-top h2{font-size:20px}#phones{padding:2px 0;font-size:11px;line-height:1.3}
+  .drawer-tabs{margin:4px 0}#rhyme-count{margin-bottom:2px;font-size:10px;line-height:1.3}
+  .drawer-note{padding-top:3px}.drawer-note small{display:none}.rhyme-group{padding:3px 0}
+  .draft-slots{display:grid;grid-template-columns:1fr 1fr;gap:5px 12px}
+  .draft-row{margin:2px 0;padding-bottom:4px;min-width:0;gap:5px}
+  .draft-row span{min-width:0;font-size:10px;overflow-wrap:anywhere}
+  .draft-row button{padding:4px 6px;font-size:10px}
+  .dialog-body:has(.draft-slots){padding-top:4px;padding-bottom:8px}
+  .dialog-body:has(.draft-slots)>p{font-size:11px;line-height:1.4;margin:5px 0}
+  .dialog-body:has(.draft-slots)>#save-note:empty{display:none}
+  .shelf{padding-top:0}.tempo .knob{width:44px;height:44px}.knob:after{left:18px;top:3px}}
+@media print{html,body{height:auto;overflow:visible;background:white}.desk{display:block}.desk-top,.shelf,.edge,.bail,.desk-foot,.drawer,dialog,#editor,#hint{display:none!important}
+ .work,.drawer-open .work{display:block;padding:0}.paper-assembly{max-width:none;filter:none}.page{display:block;border:0;overflow:visible}
+ .writing{overflow:visible;margin:0!important}.source-line{display:block!important}#mirror{position:static;transform:none;padding-bottom:0;width:100%!important}
+ .verse{break-inside:avoid}.proof button{color:#b3261e!important}.word{print-color-adjust:exact}.meter-note{display:block}}
+</style>
+</head>
+<body>
+<main class="desk">
+ <div class="desk-top">
+  <div class="desk-tools" aria-label="Desk tools">
+   <button id="shelf-button" class="mobile-shelf" aria-haspopup="dialog">Shelf</button>
+   <button id="drafts" aria-haspopup="dialog">Drafts</button>
+    <button id="print">Print</button>
+  </div>
+  <div class="power" role="group" aria-label="Power panel">
+   <button id="motion" aria-pressed="true">Motion</button>
+   <button id="sound" aria-pressed="true">Sound</button>
+   <button id="read">Read</button>
+  </div>
+ </div>
+ <div class="work">
+  <section class="paper-assembly" aria-label="Typewriter page">
+   <div class="bail">
+    <div class="instrument-label"><b>POET'S WORKBENCH</b><span>PRONUNCIATION / PROOF</span></div>
+    <div class="paper-tabs" role="group" aria-label="Paper guides">
+     <button data-paper="plain" aria-pressed="true">Plain</button><button data-paper="haiku" aria-pressed="false">Haiku</button>
+     <button data-paper="limerick" aria-pressed="false">Limerick</button><button data-paper="common" aria-pressed="false">Common</button>
+     <button data-paper="sonnet" aria-pressed="false">Sonnet</button>
+    </div>
+    <select id="paper-select" aria-label="Paper guides"><option value="plain">Plain paper</option><option value="haiku">Haiku paper · 5, 7, 5</option>
+     <option value="limerick">Limerick paper · AABBA</option><option value="common">Common meter · 8, 6, 8, 6</option>
+     <option value="sonnet">Sonnet paper · 14 lines</option></select>
+    <div class="controls">
+     <div class="meter-control"><label for="lens">METER LENS</label><select id="lens" aria-label="Meter lens">
+      <option value="auto">Auto</option><option value="iamb">Iamb · x /</option><option value="trochee">Trochee · / x</option>
+      <option value="anapest">Anapest · x x /</option><option value="dactyl">Dactyl · / x x</option></select></div>
+     <button id="sounds" aria-pressed="false" title="Mark repeated first consonants and stressed vowels">Sounds</button>
+      <button id="stress" title="Change the stress or pronunciation of the word at the caret. Alt F.">Stress</button>
+     <button id="play" class="play" aria-pressed="false" title="Play the caret's line; hold Shift for the poem">▶ Play</button>
+     <button id="speak" aria-pressed="false" hidden title="Speak the line with a voice on this device">Speak</button>
+      <label class="tempo" for="tempo"><i class="knob" aria-hidden="true"></i><span class="range-wrap">
+      <span id="tempo-value">100 BPM</span><input id="tempo" type="range" min="60" max="160" step="5" value="100" aria-label="Beat tempo" aria-valuetext="100 beats per minute">
+     </span></label>
+    </div>
+    <div class="ruler" aria-hidden="true"></div>
+   </div>
+   <div class="page">
+     <div class="readout" aria-label="Poem readouts"><span id="totals">1 line · 8 words · 8 syllables</span><span id="scheme">A</span>
+      <span id="poem-meter"></span><span id="repeat-count" hidden></span></div>
+    <div class="source-line" id="provenance">FROST / Stopping by Woods / editable copy</div>
+    <div class="writing" id="writing">
+     <div id="mirror" aria-hidden="true"></div>
+     <textarea id="editor" aria-label="Poem text. Alt R opens rhymes at the caret. Alt F changes stress or pronunciation."
+      spellcheck="false" autocapitalize="off" autocomplete="off" wrap="soft">Whose woods these are I think I know.
+</textarea>
+     <span id="hint">Type a line.</span>
+    </div>
+   </div>
+  </section>
+  <div class="edge"><button id="rhyme-handle" aria-expanded="false" title="Open rhymes for the word at the caret">RHYMES ↗</button></div>
+  <aside class="shelf" aria-label="Poem shelf"><div class="shelf-label">THE SHELF / 16</div><div id="books" class="books"></div></aside>
+ </div>
+ <div class="desk-foot"><div class="plate">Curio Class Curiosities · No. 10 · Poet's Workbench</div>
+  <button id="manual" aria-haspopup="dialog">Manual</button>
+  <span class="foot-note" id="desk-status">Alt R · rhymes &nbsp; Alt F · stress<br><span id="dictionary-status">Opening dictionary…</span></span>
+ </div>
+</main>
+<aside id="rhyme-drawer" class="drawer" aria-label="Rhyming dictionary" hidden>
+ <div class="index-card">
+  <div class="drawer-top"><h2 id="rhyme-word">know</h2><button id="close-rhymes" aria-label="Close rhyme drawer">×</button></div>
+  <div id="phones"></div>
+  <div class="drawer-tabs" role="tablist" aria-label="Rhyme kind">
+    <button data-rhyme="perfect" role="tab" aria-selected="true">Perfect</button>
+    <button data-rhyme="vowel" role="tab" aria-selected="false">Same vowel</button>
+    <button data-rhyme="ending" role="tab" aria-selected="false">Same ending</button>
+  </div>
+  <p id="rhyme-count"></p><div id="rhymes" role="tabpanel" aria-label="Rhymes grouped by syllables"></div>
+    <div class="drawer-note"><button id="insert-kind" aria-pressed="false">Replace word</button> <small>Arrows · Enter · Esc</small><br>Common words first. Names included.</div>
+ </div>
+</aside>
+<dialog id="book-dialog"><div class="dialog-head"><h2 id="dialog-title">Manual</h2>
+ <button id="close-dialog" aria-label="Close drawer">×</button></div><div id="dialog-body" class="dialog-body"></div></dialog>
+<div id="live" class="sr" role="status" aria-live="polite" aria-atomic="true"></div>
+<script src="kit:curio"></script>
+<script>
+'use strict';
+const MATERIAL = "json:material";
+const CLIPS = "voice:*";
+const $ = id => document.getElementById(id);
+const editor = $('editor');
+const mirror = $('mirror');
+const L = {hint:'Type a line.'};
+const state = {paper:'plain',lens:'auto',sounds:false,playing:false,tempo:100,drawer:false,rhymeKind:'perfect',
+  replace:false,line:1,word:null,source:'FROST / Stopping by Woods / editable copy',ready:false,speak:false};
+const COLORS = ['#1f4e9a','#2d6a3e','#7a3482','#7d5200','#0f6b6b','#a33b20'];
+const FEET = {iamb:[0,1],trochee:[1,0],anapest:[0,0,1],dactyl:[1,0,0]};
+const NAMES = {iamb:'iambic',trochee:'trochaic',anapest:'anapestic',dactyl:'dactylic'};
+const LENGTHS = ['','monometer','dimeter','trimeter','tetrameter','pentameter','hexameter','heptameter','octameter'];
+const FUNCTIONS = new Set(('a an the this that these those i me my mine myself we us our ours ourselves you your yours yourself yourselves '
+ +'he him his himself she her hers herself it its itself they them their theirs themselves who whom whose which what '
+ +'am is are was were be been being do does did have has had having will would shall should can could may might must '
+ +'to of in on at by for from with without about above across after against along among around before behind below beneath '
+ +'beside between beyond down during except inside into like near off onto out outside over past since through throughout '
+ +'till toward towards under underneath until up upon within and but or nor so yet as if than because although though '
+ +'while when where how why not no yes all any both each either enough every few many more most much neither other '
+ +'several some such only very too also just even ever never here there then now else thus hence once twice o oh').split(' '));
+const dictionary = new Map();
+const indexes = {perfect:new Map(),vowel:new Map(),ending:new Map()};
+const commonRank = new Map();
+MATERIAL.common.groups.forEach((words,rank)=>words.split(' ').forEach(word=>commonRank.set(word,rank)));
+const phoneChars = new Map([...MATERIAL.alphabet].map((c,i)=>[c,MATERIAL.symbols[i]]));
+const overrides = new Map();
+const scanCache = new Map();
+ const lineCache = new Map();
+ const verseMarkup = new WeakMap();
+ let preferredFoot = 'iamb';
+ let endingChoices = new Map();
+ let hintRequested = false;
+ let insertionRange = null;
+let analysis = [];
+let currentText = '';
+let renderTimer = 0;
+let audio = null;
+let activeNodes = [];
+let playTimers = [];
+let beatRun = null;
+let localVoices = [];
+let announceTimer = 0;
+let dialogReturn = null;
+let firstAction = false;
+let rhymeResults = [];
+let rhymeShown = 0;
+const V = Curio.voice({lines:L,hint:false,read:()=>L.hint,welcome:()=>CLIPS[L.hint] ? 'hint' : null});
+Curio.init({clips:CLIPS,readFallback:()=>L.hint});
+function announce(text) {
+ clearTimeout(announceTimer);
+ announceTimer = setTimeout(()=>$('live').textContent=text,180);
+}
+function esc(text) {
+ return String(text).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function normal(word) { return word.toLowerCase().replace(/[’‘]/g,"'"); }
+function decode(encoded) { return [...encoded].map(c=>phoneChars.get(c)); }
+function pronunciation(phones) {
+ const vowels = phones.filter(p=>/\d$/.test(p));
+ let start = -1;
+ for(let i=0;i<phones.length;i++) if(/[12]$/.test(phones[i])) start=i;
+  const stressed=start>=0;
+  if(!stressed) start=phones.findIndex(p=>/\d$/.test(p));
+  const tail = phones.slice(Math.max(0,start)).map(p=>p.replace(/\d/g,''));
+  // CMU uses both spellings of the NEAR vowel. Keep original phones in the drawer.
+  for(let i=0;i<tail.length-1;i++)if(tail[i]==='IY'&&tail[i+1]==='R')tail[i]='IH';
+ const finalVowel=phones.reduce((last,p,i)=>/\d$/.test(p)?i:last,-1);
+  return {phones,stress:vowels.map(p=>/[12]$/.test(p)?1:0),flexible:vowels.map(p=>/2$/.test(p)),
+   perfect:stressed?tail.join(' '):'',vowel:tail[0]||'',
+  ending:phones.slice(finalVowel+1).join(' '),
+  first:phones.find(p=>! /\d$/.test(p)) || ''};
+}
+function variants(word) {
+ const key=normal(word);
+ if(scanCache.has(key)) return scanCache.get(key);
+ const found=dictionary.get(key);
+ let result;
+ if(found) result=found.map(encoded=>pronunciation(decode(encoded)));
+  else if(key.includes('-')&&key.split('-').every(part=>dictionary.has(part))) {
+   const parts=key.split('-').map(part=>variants(part));
+   result=[pronunciation(parts.flatMap(part=>part[0].phones))];
+   result[0].derived=true;
+  } else if(key.endsWith("'s")&&dictionary.has(key.slice(0,-2))) {
+   result=variants(key.slice(0,-2)).map(p=>{
+    const last=p.phones.at(-1),suffix=['S','Z','SH','ZH','CH','JH'].includes(last)?['IH0','Z']:
+     ['P','T','K','F','TH'].includes(last)?['S']:['Z'];
+    return {...pronunciation([...p.phones,...suffix]),derived:true};
+   });
+  } else if(key.endsWith("'d")) {
+   const stem=key.slice(0,-2);
+   const base=stem.endsWith('mm')?stem.slice(0,-1):stem;
+   const forms=dictionary.has(stem+'ed')?variants(stem+'ed'):
+    dictionary.has(stem+'e'+'d')?variants(stem+'e'+'d'):null;
+   const un=base.startsWith('un')&&dictionary.has(base.slice(2));
+   if(forms)result=forms.map(p=>({...pronunciation(p.phones.at(-2)?.match(/^(IH|AH)0$/)?
+    [...p.phones.slice(0,-2),'D']:p.phones),derived:true}));
+   else if(dictionary.has(base)||un)result=variants(un?base.slice(2):base).map(p=>{
+    const suffix=['P','K','F','S','SH','CH','TH'].includes(p.phones.at(-1))?'T':'D';
+    return {...pronunciation([...(un?['AH0','N']:[]),...p.phones,suffix]),derived:true};
+   });
+  } else if(key.startsWith('un')&&key.endsWith('able')&&dictionary.has(key.slice(2,-4))) {
+   result=variants(key.slice(2,-4)).map(p=>({...pronunciation(['AH0','N',...p.phones,'AH0','B','AH0','L']),derived:true}));
+  }
+  if(!result) {
+  const spelling=key.replace(/[^a-z]/g,'');
+  let syllableSpelling=/[^aeiou]le$/.test(spelling)?spelling:spelling.replace(/e$/,'');
+  if(/[^csxz]es$/.test(syllableSpelling))syllableSpelling=syllableSpelling.replace(/es$/,'s');
+  const groups=(syllableSpelling.match(/[aeiouy]+/g)||[]).length;
+  const count=Math.max(1,groups);
+  const suffix=(spelling.match(/[aeiouy][^aeiouy]*$/)||[spelling])[0];
+  result=[{phones:[],stress:Array.from({length:count},(_,i)=>i===0?1:0),perfect:'~'+suffix,
+   vowel:'~'+(suffix.match(/[aeiouy]+/)||[''])[0],ending:'~'+suffix.replace(/[aeiouy]/g,''),first:spelling[0],unknown:true}];
+ }
+ scanCache.set(key,result);
+ return result;
+}
+function tokenise(line,lineIndex) {
+ const matches=[...line.matchAll(/[A-Za-zÀ-ÿ]+(?:['’][A-Za-zÀ-ÿ]+)*(?:-[A-Za-zÀ-ÿ]+)*/g)];
+ return matches.map((m,index)=>({text:m[0],word:normal(m[0]),start:m.index,end:m.index+m[0].length,index,line:lineIndex,
+  variants:variants(m[0]),key:lineIndex+':'+index+':'+normal(m[0])}));
+}
+  function scanLine(text,lineIndex) {
+  const choicesKey=[...overrides].filter(([key])=>key.startsWith(lineIndex+':'));
+  const cacheKey=JSON.stringify([text,lineIndex,state.lens,preferredFoot,choicesKey,endingChoices.get(lineIndex)]);
+  if(lineCache.has(cacheKey))return lineCache.get(cacheKey);
+ const tokens=tokenise(text,lineIndex);
+ if(!tokens.length) return {text,tokens,marks:[],count:0,matches:0,meter:'',foot:'iamb',offset:0};
+ let best=null;
+ const feet=state.lens==='auto'?Object.keys(FEET):[state.lens];
+ for(const foot of feet) {
+  const pattern=FEET[foot];
+  for(let offset=0;offset<pattern.length;offset++) {
+   let paths=[{cost:offset*.08,position:0,node:null}];
+   for(const token of tokens) {
+    const next=new Map();
+    const forced=overrides.get(token.key);
+     const chosenVariant=Number.isInteger(forced?.variant)&&forced.variant>=0&&forced.variant<token.variants.length?forced.variant:undefined;
+      const endVariant=token.index===tokens.length-1?endingChoices.get(lineIndex):undefined;
+      const selectedVariant=chosenVariant??endVariant;
+      let candidates=token.variants.map((p,i)=>({p,i})).filter(v=>selectedVariant===undefined||v.i===selectedVariant);
+    // A narrow grammatical hint for the spec's noun/verb example; every sound still comes from CMU.
+    if(token.word==='record'&&forced?.variant===undefined) {
+     const previous=tokens[token.index-1]?.word;
+     const noun=['a','an','the','my','your','our','their','his','her'].includes(previous);
+     const verb=['to','will','would','shall','should','can','could','may','might','must'].includes(previous);
+     if(noun||verb)candidates=candidates.filter(v=>v.p.stress[0]===(noun?1:0));
+    }
+    for(const path of paths) for(const {p,i} of candidates) {
+     let cost=path.cost;
+     const marks=p.stress.map((value,j)=>{
+      const expected=pattern[(path.position+j+offset)%pattern.length];
+       const free=(p.stress.length===1 && FUNCTIONS.has(token.word)||p.flexible?.[j]) && forced?.stress===undefined;
+      const actual=forced?.stress??(free?expected:value);
+      if(actual!==expected) cost+=p.stress.length===1?.65:1;
+      return {value:actual,free,forced:forced?.stress!==undefined,expected};
+     });
+     const position=path.position+marks.length;
+     const nextPath={cost,position,node:{prev:path.node,choice:{variant:i,pron:p,marks}}};
+     const key=position%pattern.length;
+     if(!next.has(key)||next.get(key).cost>cost) next.set(key,nextPath);
+    }
+    paths=[...next.values()];
+   }
+   for(const path of paths) {
+    const cost=path.cost/Math.max(path.position,1)+Math.abs(path.position/pattern.length-Math.round(path.position/pattern.length))*.015;
+     const tie=best&&Math.abs(cost-best.cost)<.00001;
+     if(!best||cost<best.cost-.00001||tie&&foot===preferredFoot&&best.foot!==preferredFoot)best={...path,cost,foot,offset};
+   }
+  }
+ }
+ const choices=[];
+ for(let node=best.node;node;node=node.prev)choices.push(node.choice);
+ choices.reverse();
+ tokens.forEach((token,i)=>Object.assign(token,choices[i]));
+ const marks=tokens.flatMap(t=>t.marks);
+  const width=FEET[best.foot].length;
+  const extra=best.foot==='iamb'&&best.offset===0&&marks.length%width===1&&marks.length>2;
+  const feetCount=extra?Math.floor(marks.length/width):Math.ceil((marks.length+best.offset)/width);
+  const lengthName=LENGTHS[feetCount]||feetCount+' feet';
+  const missing=feetCount*width-marks.length-best.offset;
+  const parts=[];
+  if(best.offset)parts.push(best.offset===1?'missing its first syllable':'missing its first '+best.offset+' syllables');
+  if(missing>0)parts.push(missing===1?'last syllable dropped':'last '+missing+' syllables dropped');
+  const meter=marks.length===1?'single syllable':NAMES[best.foot]+' '+lengthName+
+   (extra?' + 1 extra syllable':parts.length?', '+parts.join(', '):'');
+  const fixed=marks.filter(m=>!m.free);
+  const result={text,tokens,marks,count:marks.length,matches:fixed.filter(m=>m.value===m.expected).length,
+   fixed:fixed.length,free:marks.length-fixed.length,meter,foot:best.foot,offset:best.offset,cost:best.cost};
+  if(lineCache.size>1800)lineCache.clear();
+  lineCache.set(cacheKey,result);
+  return result;
+}
+function poemAnalysis(text) {
+  const texts=text.split('\n');
+  // An alternate line-ending reading may join a nearby rhyme. Explicit choices always win.
+  const ends=texts.map((line,i)=>{
+   const words=[...line.matchAll(/[A-Za-zÀ-ÿ]+(?:['’][A-Za-zÀ-ÿ]+)*(?:-[A-Za-zÀ-ÿ]+)*/g)];
+   return words.length?variants(words.at(-1)[0]):[];
+  });
+  endingChoices=new Map();
+  ends.forEach((forms,i)=>{
+   if(forms.length<2)return;
+   const scores=forms.map(p=>p.perfect?ends.reduce((score,other,j)=>score+
+    (j!==i&&Math.abs(i-j)<=5&&other.some(q=>q.perfect===p.perfect)?1:0),0):0);
+   const max=Math.max(...scores);
+   if(max>0&&scores.filter(s=>s===max).length===1)endingChoices.set(i,scores.indexOf(max));
+  });
+  preferredFoot='iamb';
+  let lines=texts.map((line,i)=>scanLine(line,i));
+  if(state.lens==='auto') {
+   const counts=Object.fromEntries(Object.keys(FEET).map(foot=>[foot,0]));
+   lines.filter(l=>l.count>1).forEach(l=>counts[l.foot]++);
+   const dominant=Object.keys(FEET).sort((a,b)=>counts[b]-counts[a])[0];
+   if(dominant!==preferredFoot){preferredFoot=dominant;lines=texts.map((line,i)=>scanLine(line,i));}
+  }
+ const families=new Map();
+ const familyProns=[];
+ for(const line of lines) {
+  const last=line.tokens.at(-1);
+  if(!last) continue;
+  const keys=[last.pron.perfect];
+  let family=keys.map(k=>families.get(k)).find(v=>v!==undefined);
+  if(family===undefined) family=familyProns.length;
+  familyProns[family]=true;
+  keys.forEach(k=>families.set(k,family));
+  line.family=family;
+  line.letter=family<26?String.fromCharCode(65+family):String.fromCharCode(65+Math.floor(family/26)-1)+String.fromCharCode(65+family%26);
+  line.color=COLORS[family%COLORS.length];
+  line.guessed=last.pron.unknown;
+ }
+ return lines;
+}
+function guideFor(lineIndex) {
+ if(state.paper==='haiku') return [5,7,5][lineIndex%3];
+ if(state.paper==='common') return [8,6,8,6][lineIndex%4];
+ if(state.paper==='limerick') return ['A','A','B','B','A'][lineIndex%5];
+ if(state.paper==='sonnet') return 'ABABCDCDEFEFGG'[lineIndex%14];
+ return '';
+}
+function caretLine() {return editor.value.slice(0,editor.selectionStart).split('\n').length-1;}
+function currentToken() {
+ const position=editor.selectionStart;
+ let start=0;
+ for(const line of analysis) {
+  if(position<=start+line.text.length) {
+   const local=position-start;
+   return line.tokens.find(t=>local>=t.start&&local<=t.end)||line.tokens.at(-1)||null;
+  }
+  start+=line.text.length+1;
+ }
+ return analysis.at(-1)?.tokens.at(-1)||null;
+}
+function render() {
+ clearTimeout(renderTimer);
+ currentText=editor.value.replace(/\r/g,'');
+ const texts=currentText.split('\n');
+ const caret=caretLine();
+ const changed=currentText!==render.lastText;
+ const old=analysis;
+ analysis=poemAnalysis(currentText);
+ const validKeys=new Set(analysis.flatMap(line=>line.tokens.map(token=>token.key)));
+ for(const key of overrides.keys())if(!validKeys.has(key))overrides.delete(key);
+ render.lastText=currentText;
+  const fragments=[];
+ let total=0,wordCount=0;
+ const schemes=[];
+  let stanza=[];
+  const spaced=analysis.some(line=>line.letter?.length>1);
+  const soundSymbols=['○','◇','△','□','●','◆','▲','■','⊕','⊗','◉','◎','◊','▧','▤'];
+  const vowelPalette=['#1f4e9a','#7a3482','#7d5200','#0f6b6b','#a33b20','#2d6a3e','#3f4696','#854655',
+   '#665b11','#14667c','#8c382c','#52558b','#68508b','#486323','#765035'];
+  const vowelNames=['AA','AE','AH','AO','AW','AY','EH','ER','EY','IH','IY','OW','OY','UH','UW'];
+  let consonantRepeats=0,vowelRepeats=0;
+  let written=0,stanzaLine=0;
+ for(let li=0;li<analysis.length;li++) {
+  const line=analysis[li];
+  total+=line.count;
+  wordCount+=line.tokens.length;
+   if(line.letter) stanza.push(line.letter);
+   else if(stanza.length){schemes.push(stanza.join(spaced?'·':''));stanza=[];}
+   const guide=line.count?guideFor(['haiku','limerick'].includes(state.paper)?stanzaLine:written):'';
+   if(line.count){written++;stanzaLine++;}else stanzaLine=0;
+   const showNote=line.count&&(li===caret||state.lens!=='auto'||(!firstAction&&li===0));
+   const signature=JSON.stringify([line.letter,line.color,showNote,state.sounds,guide,state.ready]);
+   const cached=verseMarkup.get(line);
+   if(cached?.signature===signature) {
+    fragments.push(cached.html);consonantRepeats+=cached.consonants;vowelRepeats+=cached.vowels;continue;
+   }
+  let content='';
+  let cursor=0;
+   const firstCounts=new Map(),vowelCounts=new Map(),rhymeCounts=new Map();
+  if(state.sounds) line.tokens.forEach(t=>{
+    if(FUNCTIONS.has(t.word))return;
+   if(!t.pron.unknown && t.pron.first && !/\d$/.test(t.pron.phones[0])) firstCounts.set(t.pron.first,(firstCounts.get(t.pron.first)||0)+1);
+   t.strongVowels=t.pron.phones.filter(p=>/\d$/.test(p)).filter((p,i)=>t.marks[i]?.value).map(p=>p.replace(/\d/g,''));
+   if(!t.pron.unknown)for(const vowel of t.strongVowels)vowelCounts.set(vowel,(vowelCounts.get(vowel)||0)+1);
+    if(t.pron.perfect&&!t.pron.unknown)rhymeCounts.set(t.pron.perfect,(rhymeCounts.get(t.pron.perfect)||0)+1);
+  });
+   const consonants=[...firstCounts.values()].filter(n=>n>1).length;
+   const vowels=[...vowelCounts.values()].filter(n=>n>1).length;
+   consonantRepeats+=consonants;vowelRepeats+=vowels;
+  for(const token of line.tokens) {
+   content+=esc(line.text.slice(cursor,token.start));
+   const classes=['word'];
+   if(token.pron.unknown) classes.push('unknown');
+   if(token===line.tokens.at(-1)) classes.push('ending');
+    const repeated=state.sounds&&!FUNCTIONS.has(token.word);
+    if(repeated&&firstCounts.get(token.pron.first)>1&&!/\d$/.test(token.pron.phones[0]||''))classes.push('allit');
+    const repeatedVowels=repeated?(token.strongVowels||[]).filter(vowel=>vowelCounts.get(vowel)>1):[];
+    if(repeatedVowels.length)classes.push('asson');
+    if(repeated&&rhymeCounts.get(token.pron.perfect)>1)classes.push('internal');
+    const vi=Math.max(0,vowelNames.indexOf(repeatedVowels[0]));
+    const ink=vowelPalette[vi%vowelPalette.length];
+    const symbols=repeatedVowels.map(v=>soundSymbols[vowelNames.indexOf(v)]).join('');
+   const marks=token.marks.map((m,si)=>`<button tabindex="-1" data-proof="${li}:${token.index}:${si}" class="${m.free?'free ':''}${m.forced?'forced':''}"
+    title="${esc(token.text)}: ${m.value?'stressed':'unstressed'}. Tap to change pronunciation or stress.">${m.value?'/':'x'}</button>`).join('');
+    const previous=old[li]?.tokens[token.index];
+    const finished=changed&&/[\s.,!?;:]/.test(line.text.slice(token.end,token.end+1))&&
+     (previous?.text!==token.text||!/[\s.,!?;:]/.test(old[li]?.text.slice(previous.end,previous.end+1)||''));
+    content+=`<span class="${classes.join(' ')}" data-word="${li}:${token.index}" data-vowel-mark="${symbols}"`
+     +` style="--rhyme:${line.color};--sound-ink:${ink};--sound-wash:${ink}20">`
+     +`<span class="proof${finished?' new-mark':''}">${marks}</span><span class="word-text">${esc(token.text)}</span></span>`;
+   cursor=token.end;
+  }
+  content+=esc(line.text.slice(cursor));
+   const note=showNote?
+    `<span class="meter-note">${esc(line.meter)} · ${line.matches} of ${line.fixed} · ${line.free} free`
+     +`<span class="lens-pattern">${FEET[line.foot].map(v=>v?'/':'x').join(' ')} →</span></span>`:'';
+   const numeric=typeof guide==='number';
+   const html=`<div class="verse" data-line="${li}" style="--rhyme:${line.color||COLORS[0]}">`
+    +`<span class="count">${line.count||''}${numeric?`<span class="guide"> / ${guide}</span>`:''}</span>${content||'\u200b'}${note}`
+    +`<span class="rhyme-letter ${line.guessed?'guessed':''}">${line.letter||''}`
+    +`${guide&&!numeric?`<span class="guide rhyme-guide">${guide}</span>`:''}</span></div>`;
+   fragments.push(html);
+   verseMarkup.set(line,{signature,html,consonants,vowels});
+ }
+  if(stanza.length)schemes.push(stanza.join(spaced?'·':''));
+  // Keep unchanged verse nodes, including their proof marks, while typing.
+  fragments.forEach((html,i)=>{
+   const existing=mirror.children[i];
+   if(existing?.verseHTML===html)return;
+   const template=document.createElement('template');template.innerHTML=html;
+   const node=template.content.firstElementChild;node.verseHTML=html;
+   if(existing)existing.replaceWith(node);else mirror.append(node);
+ });
+  while(mirror.children.length>fragments.length)mirror.lastElementChild.remove();
+ const lineCount=analysis.filter(l=>l.tokens.length).length;
+  $('totals').textContent=`${lineCount} ${lineCount===1?'line':'lines'} · ${wordCount} ${wordCount===1?'word':'words'} · ${total} ${total===1?'syllable':'syllables'}`;
+ $('scheme').textContent=schemes.join(' ');
+  const meters=new Map();
+  analysis.filter(l=>l.count>1).forEach(l=>meters.set(l.meter,(meters.get(l.meter)||0)+1));
+  $('poem-meter').textContent=meters.size?'mostly '+[...meters].sort((a,b)=>b[1]-a[1])[0][0]:'';
+  $('repeat-count').hidden=!state.sounds;
+  $('repeat-count').textContent=`repeats: ${consonantRepeats} consonant, ${vowelRepeats} vowel`;
+ $('provenance').textContent=state.source;
+  const selected=currentToken();
+  $('stress').disabled=!selected;
+  $('stress').setAttribute('aria-label',selected?
+   `Stress for ${selected.text}: ${selected.marks.map(m=>m.value?'strong':'weak').join(', ')}. Change pronunciation or stress.`:
+   'Stress. Type a word first.');
+  $('hint').hidden=firstAction&&!!currentText.trim()&&!hintRequested;
+  $('hint').classList.toggle('recalled',hintRequested&&!!currentText.trim());
+ syncScroll();
+ positionHint();
+ state.line=caret;
+  if(changed&&analysis[caret]) {
+   const count=analysis[caret].count;
+   announce(`Line ${caret+1}: ${count} ${count===1?'syllable':'syllables'}. ${analysis[caret].meter}. ${lineCount} ${lineCount===1?'line':'lines'}.`);
+  }
+}
+function syncScroll() {
+ mirror.style.width=editor.clientWidth+'px';
+ mirror.style.setProperty('--scroll',-editor.scrollTop+'px');
+}
+function positionHint() {
+ const first=mirror.firstElementChild;
+  if(first)$('hint').style.top=(hintRequested||!editor.value.trim()?30:first.offsetHeight+27-editor.scrollTop)+'px';
+}
+ function markAction() {firstAction=true;hintRequested=false;$('hint').hidden=!!editor.value.trim();}
+function edited() {
+ markAction();
+ stopPlay();
+  if(state.drawer)closeRhymes(false);
+  state.source='YOUR PAGE / not saved';
+ if(/\s$/.test(editor.value.slice(0,editor.selectionStart))) clack();
+ clearTimeout(renderTimer);
+ renderTimer=setTimeout(render,60);
+}
+function setPaper(paper) {
+ if(!['plain','haiku','limerick','common','sonnet'].includes(paper)) return;
+ state.paper=paper;
+ document.querySelectorAll('[data-paper]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.paper===paper));
+ $('paper-select').value=paper;
+ render();
+ announce(paper+' paper. Faint guides only.');
+}
+function chooseWord(token,focus=false) {
+ if(!token) token=analysis[0]?.tokens.at(-1);
+  if(!token) {hintRequested=true;render();announce(L.hint);return;}
+ state.word={line:token.line,index:token.index,start:token.start,end:token.end,word:token.word,text:token.text};
+  insertionRange=insertionRange||[editor.selectionStart,editor.selectionEnd];
+ state.drawer=true;
+ $('rhyme-handle').setAttribute('aria-expanded',true);
+ $('rhyme-drawer').hidden=false;
+ document.body.classList.add('drawer-open');
+ renderRhymes();
+ requestAnimationFrame(()=>{
+  const word=mirror.querySelector(`[data-word="${token.line}:${token.index}"]`);
+  if(!word)return;
+   const r=word.getBoundingClientRect(),area=$('writing').getBoundingClientRect();
+   const drawer=$('rhyme-drawer');
+   if(innerWidth>480) {
+    drawer.style.left=r.x+r.width/2>innerWidth/2?'0px':'auto';
+    drawer.style.right=drawer.style.left==='0px'?'auto':'0px';
+   } else {drawer.style.left='0px';drawer.style.right='0px';}
+   const bottom=innerWidth<=480?Math.min(area.bottom,drawer.getBoundingClientRect().top):area.bottom;
+   if(r.bottom>bottom)editor.scrollTop+=r.bottom-bottom+4;
+  else if(r.top<area.top)editor.scrollTop-=area.top-r.top;
+  syncScroll();
+ });
+ if(focus) document.querySelector('[data-rhyme="'+state.rhymeKind+'"]').focus({preventScroll:true});
+ markAction();
+}
+function closeRhymes(focus=true) {
+ state.drawer=false;
+ $('rhyme-handle').setAttribute('aria-expanded',false);
+ $('rhyme-drawer').hidden=true;
+ document.body.classList.remove('drawer-open');
+  insertionRange=null;
+  if(focus)editor.focus({preventScroll:true});
+ syncScroll();
+}
+function selectedToken() {
+ const w=state.word;
+ return w?analysis[w.line]?.tokens[w.index]:null;
+}
+function rhymeList(kind,token) {
+ const p=token.pron;
+ if(p.unknown) return [];
+ const result=new Map();
+ const key=p[kind];
+ if(!key) return [];
+ for(const item of indexes[kind].get(key)||[]) {
+  const [word,count,perfect,vowel]=item;
+   if(word===token.word)continue;
+  if(kind!=='perfect'&&perfect===p.perfect) continue;
+  if(kind==='ending'&&vowel===p.vowel) continue;
+  const current=result.get(word);
+  if(current===undefined||count<current) result.set(word,count);
+ }
+   return [...result].sort((a,b)=>Number(!commonRank.has(a[0]))-Number(!commonRank.has(b[0]))||a[1]-b[1]
+    ||(commonRank.get(a[0])??99)-(commonRank.get(b[0])??99)||a[0].localeCompare(b[0]));
+}
+function renderRhymes() {
+ const token=selectedToken();
+ if(!token) return;
+ const p=token.pron;
+ $('rhyme-word').textContent=token.text;
+ const perfect=rhymeList('perfect',token);
+ $('phones').textContent=(p.unknown?'Spelling estimate':p.phones.join(' '))+' · '+token.marks.length+' syllable'+(token.marks.length===1?'':'s')
+   +' · '+token.marks.map(m=>m.value?'/':'x').join(' ')+' · pronunciation '+(token.variant+1)+' of '+token.variants.length;
+ const list=rhymeList(state.rhymeKind,token);
+ $('rhyme-count').textContent=state.ready?`${perfect.length} perfect rhymes · ${list.length} in this drawer`:'Indexing dictionary…';
+ document.querySelectorAll('[data-rhyme]').forEach(b=>{
+  const active=b.dataset.rhyme===state.rhymeKind;
+   b.setAttribute('aria-selected',active);
+ });
+ rhymeResults=list;
+ rhymeShown=0;
+  $('rhymes').innerHTML='<div id="common-rhymes"></div><details class="rhyme-rare"><summary>Names and rare words</summary>'
+   +'<div id="rare-rhymes"></div></details>';
+ appendRhymes();
+ if(!list.length) $('rhymes').innerHTML=`<p style="font-size:12px;line-height:1.7">${p.unknown?'Not in the dictionary. Dotted marks are spelling estimates.':
+  state.rhymeKind==='perfect'?'No perfect rhymes here. Open Same vowel or Same ending.':'No words with this sound in this drawer.'}</p>`;
+ $('rhymes').scrollTop=0;
+ announce(`${token.text}. ${perfect.length} perfect rhymes. ${list.length} ${state.rhymeKind} entries.`);
+}
+function appendRhymes() {
+ $('more-rhymes')?.remove();
+ const next=rhymeResults.slice(rhymeShown,rhymeShown+150);
+  for(const common of [true,false]) {
+   let last=-1,html='';
+   const subset=next.filter(([word])=>commonRank.has(word)===common);
+   for(const [word,count] of subset) {
+    if(last!==count) {
+     if(last!==-1)html+='</div>';
+     html+=`<div class="rhyme-group">${count} SYLLABLE${count===1?'':'S'}</div><div class="rhyme-words">`;
+     last=count;
+    }
+    html+=`<button data-insert="${esc(word)}" tabindex="${rhymeShown===0&&word===next[0]?.[0]?0:-1}">${esc(word)}</button>`;
+   }
+   if(last!==-1)html+='</div>';
+   $(common?'common-rhymes':'rare-rhymes').insertAdjacentHTML('beforeend',html);
+  }
+ rhymeShown+=next.length;
+  if(rhymeShown<rhymeResults.length) {
+   const commonLeft=rhymeResults.slice(rhymeShown).some(([word])=>commonRank.has(word));
+   $(commonLeft?'common-rhymes':'rare-rhymes').insertAdjacentHTML('beforeend',
+    `<button id="more-rhymes">More words · ${rhymeShown} / ${rhymeResults.length}</button>`);
+  }
+  document.querySelector('.rhyme-rare').hidden=!rhymeResults.some(([word])=>!commonRank.has(word));
+}
+function insertRhyme(word) {
+ const token=selectedToken();
+ if(!token) return;
+ const lineStart=analysis.slice(0,token.line).reduce((n,l)=>n+l.text.length+1,0);
+  const start=state.replace?lineStart+token.start:(insertionRange?.[0]??editor.selectionStart);
+  const end=state.replace?lineStart+token.end:(insertionRange?.[1]??editor.selectionEnd);
+  const before=editor.value[start-1]||'',after=editor.value[end]||'';
+  const inserted=state.replace?word:(/\w/.test(before)?' ':'')+word+(/\w/.test(after)?' ':'');
+  editor.setRangeText(inserted,start,end,'end');
+ closeRhymes();
+ edited();
+ render();
+}
+function flip(token) {
+ if(!token) return;
+ stopPlay();
+  if(token.marks.length===1&&token.variants.length>1) {
+   const forced=overrides.get(token.key);
+   const phase=forced?.phase??token.variant;
+   const next=(phase+1)%(token.variants.length*2);
+   overrides.set(token.key,{variant:next%token.variants.length,phase:next,
+    ...(next>=token.variants.length?{stress:0}:{})});
+  }
+  else if(token.marks.length===1) overrides.set(token.key,{stress:1-token.marks[0].value});
+ else overrides.set(token.key,{variant:(token.variant+1)%token.variants.length});
+ render();
+ if(state.drawer) renderRhymes();
+ const newToken=analysis[token.line].tokens[token.index];
+ announce(`${newToken.text}: ${newToken.marks.map(m=>m.value?'strong':'weak').join(', ')}. Pronunciation ${newToken.variant+1} of ${newToken.variants.length}.`);
+ markAction();
+}
+function stopPlay() {
+ state.playing=false;
+  beatRun=null;
+ playTimers.forEach(clearTimeout);playTimers=[];
+ activeNodes.forEach(n=>{try{n.stop();}catch{}});activeNodes=[];
+ if('speechSynthesis' in window) speechSynthesis.cancel();
+ document.querySelectorAll('.beating').forEach(el=>el.classList.remove('beating'));
+ $('play').textContent='▶ Play';$('play').setAttribute('aria-pressed',false);
+}
+function audioContext() {
+ if(!audio) audio=new (window.AudioContext||window.webkitAudioContext)();
+ if(audio.state==='suspended') audio.resume();
+ return audio;
+}
+function woodblock(strong,time) {
+ if(!Curio.sound) return;
+ const ctx=audioContext();
+ const osc=ctx.createOscillator(),gain=ctx.createGain();
+ osc.type='triangle';osc.frequency.setValueAtTime(strong?860:650,time);
+ osc.frequency.exponentialRampToValueAtTime(strong?410:340,time+.045);
+ gain.gain.setValueAtTime(strong?.22:.065,time);gain.gain.exponentialRampToValueAtTime(.0001,time+.07);
+ osc.connect(gain).connect(ctx.destination);osc.start(time);osc.stop(time+.08);activeNodes.push(osc);
+  osc.onended=()=>{activeNodes=activeNodes.filter(node=>node!==osc);};
+}
+function clack() {
+ if(!Curio.sound) return;
+ const ctx=audioContext();woodblock(false,ctx.currentTime);
+}
+function play(poem=false) {
+ if(state.playing){stopPlay();return;}
+ render();
+  let li=caretLine();
+  if(!analysis[li]?.count) {
+   while(li>0&&!analysis[li]?.count)li--;
+   if(!analysis[li]?.count)li=analysis.findIndex(line=>line.count);
+  }
+ const lines=poem?analysis:analysis.slice(li,li+1);
+ const marks=lines.flatMap(line=>line.tokens.flatMap(token=>token.marks.map((mark,si)=>({mark,token,si}))));
+  if(!marks.length){hintRequested=true;render();announce(L.hint);return;}
+ state.playing=true;
+ $('play').textContent='■ Stop';$('play').setAttribute('aria-pressed',true);
+  beatRun={marks,index:0,last:performance.now()};
+  tapBeat();
+ if(state.speak&&localVoices.length&&Curio.sound) {
+  const utterance=new SpeechSynthesisUtterance(lines.map(l=>l.text).join('\n'));
+  utterance.voice=localVoices[0];utterance.lang=localVoices[0].lang;
+  speechSynthesis.speak(utterance);
+ }
+}
+function tapBeat() {
+  if(!state.playing||!beatRun)return;
+  const run=beatRun;
+  if(run.index>=run.marks.length){stopPlay();return;}
+  const {mark,token,si}=run.marks[run.index++];
+  run.last=performance.now();
+  if(Curio.sound)woodblock(mark.value,audioContext().currentTime);
+  document.querySelectorAll('.beating').forEach(el=>el.classList.remove('beating'));
+  const el=document.querySelector(`[data-proof="${token.line}:${token.index}:${si}"]`);
+  if(el)el.classList.add('beating');
+  announce(`Beat ${run.index}: ${mark.value?'strong':'weak'}`);
+  scheduleBeat();
+}
+function scheduleBeat() {
+  playTimers.forEach(clearTimeout);
+  playTimers=[];
+  if(!state.playing||!beatRun)return;
+  const remaining=Math.max(0,60000/state.tempo-(performance.now()-beatRun.last));
+  playTimers.push(setTimeout(tapBeat,remaining));
+}
+function voicesChanged() {
+ if(!('speechSynthesis' in window))return;
+ localVoices=speechSynthesis.getVoices().filter(v=>v.localService&&/^en\b/i.test(v.lang));
+ $('speak').hidden=!localVoices.length;
+}
+function loadPoem(id) {
+ const poem=MATERIAL.poems.find(p=>p.id===id);
+ if(!poem)return;
+ stopPlay();overrides.clear();
+ editor.value=poem.text+'\n';editor.setSelectionRange(0,0);editor.scrollTop=0;
+ state.source=poem.author.toUpperCase()+' / '+poem.title+' / editable copy';
+  closeRhymes(false);
+ markAction();render();
+ if($('book-dialog').open)closeDialog();
+ editor.focus({preventScroll:true});
+ announce(poem.title+'. Editable copy on the page.');
+}
+function openDialog(title,html) {
+ if(!$('book-dialog').open)dialogReturn=document.activeElement;
+ $('dialog-title').textContent=title;$('dialog-body').innerHTML=html;
+ $('book-dialog').showModal();$('close-dialog').focus({preventScroll:true});
+}
+function closeDialog() {
+ $('book-dialog').close();
+ if(dialogReturn?.isConnected)dialogReturn.focus({preventScroll:true});
+}
+function bookHTML(poem) {
+ return `<button class="book" data-poem="${poem.id}" title="${esc(poem.title)} by ${esc(poem.author)}"><b>${esc(poem.title)}</b><small>${esc(poem.author)}</small></button>`;
+}
+function readDrafts() {
+  try{
+   const saved=JSON.parse(localStorage.getItem('poets-workbench-drafts')||'[]');
+   if(!Array.isArray(saved))return [null,null,null,null];
+   return Array.from({length:4},(_,i)=>{
+    const draft=saved[i];
+    if(!draft||typeof draft.text!=='string')return null;
+    const paper=['plain','haiku','limerick','common','sonnet'].includes(draft.paper)?draft.paper:'plain';
+    const lens=['auto',...Object.keys(FEET)].includes(draft.lens)?draft.lens:'auto';
+    const choices=Array.isArray(draft.overrides)?draft.overrides.filter(entry=>
+     Array.isArray(entry)&&typeof entry[0]==='string'&&entry[1]&&typeof entry[1]==='object'&&
+     (entry[1].stress===0||entry[1].stress===1||Number.isInteger(entry[1].variant)&&entry[1].variant>=0))
+      .map(([key,value])=>[key,{
+       ...(value.stress===0||value.stress===1?{stress:value.stress}:{}),
+       ...(Number.isInteger(value.variant)&&value.variant>=0?{variant:value.variant}:{}),
+       ...(Number.isInteger(value.phase)&&value.phase>=0?{phase:value.phase}:{})
+      }]):[];
+     return {text:draft.text,paper,lens,overrides:choices};
+   });
+  }
+ catch{return [null,null,null,null];}
+}
+function showDrafts() {
+ const drafts=readDrafts();
+  openDialog('Drafts',`<p>Your drafts stay on this device. Saving replaces that slot.</p>`+
+   '<div class="draft-slots">'+
+  drafts.map((d,i)=>`<div class="draft-row"><span><b>${i+1}.</b> ${d?esc(d.text.split('\n').find(s=>s.trim())?.slice(0,50)||'Blank page'):'Empty slot'}</span>
+   <button data-save="${i}">Save ${i+1}</button><button data-load="${i}" ${d?'':'disabled'}>Load ${i+1}</button></div>`).join('')+
+   '</div><button id="print-draft">Print page with marks</button><p id="save-note" role="status"></p>');
+}
+function saveDraft(slot) {
+ const drafts=readDrafts();
+ drafts[slot]={text:editor.value,paper:state.paper,lens:state.lens,overrides:[...overrides],saved:new Date().toISOString()};
+ try{
+  localStorage.setItem('poets-workbench-drafts',JSON.stringify(drafts));
+  showDrafts();$('save-note').textContent='Saved in slot '+(slot+1)+'.';
+  document.querySelector('[data-save="'+slot+'"]').focus({preventScroll:true});
+ }catch{ $('save-note').textContent='Storage is unavailable. This page is still here; use Print to keep a paper copy.';}
+}
+function loadDraft(slot) {
+ const draft=readDrafts()[slot];
+ if(!draft)return;
+  stopPlay();closeRhymes(false);editor.value=draft.text;editor.setSelectionRange(0,0);editor.scrollTop=0;
+ overrides.clear();(draft.overrides||[]).forEach(([k,v])=>overrides.set(k,v));
+ state.lens=draft.lens||'auto';$('lens').value=state.lens;state.source='YOUR DRAFT / slot '+(slot+1)+' / this device';
+ setPaper(draft.paper||'plain');closeDialog();editor.focus({preventScroll:true});markAction();render();
+}
+function showManual() {
+ openDialog('Manual',`
+ <details open><summary>The page and the proof</summary><p>Type or paste a poem. The left margin counts syllables; the right margin gives end rhymes the same letter.
+ A blank line separates stanzas. Tap a word for rhymes, or put the caret in it and press Alt R. The page is plain text.</p>
+  <p><b>/</b> is stressed; <b>x</b> is unstressed. Grey marks can follow the beat: little words like the, and secondary stresses.
+   Tap a mark, use the full-size Stress key at the caret, or press Alt F. A word with several readings cycles through those readings.
+   For a one-syllable word, the cycle then gives each reading a weak beat before starting again.
+ Blue marks are your choices. Marks sit above written words; their position within the spelling is an estimate.</p></details>
+  <details><summary>Meter, paper and repeated sounds</summary><p>The meter name is the closest repeating pattern. The readout counts fixed beats that match;
+  it lists flexible beats separately, for example 6 of 6 · 2 free. These are observations of sound.
+ Iamb: x /. Trochee: / x. Anapest: x x /. Dactyl: / x x. Four feet make tetrameter; five make pentameter.
+  The lens tries each pattern from different starting beats. A line may start late or drop its final syllable.
+  In Auto, tied patterns favour the poem's most common foot. The top strip shows the most frequent meter name.
+  A different name on one line can show a variation. Poets vary the pattern on purpose.</p>
+ <p>Paper adds faint guides: haiku 5, 7, 5; limerick AABBA; common meter 8, 6, 8, 6; sonnet 14 lines with ABAB CDCD EFEF GG.
+ These are guides for writing, with no check. Keys 1 to 5 change paper when you are outside the editor. Japanese haiku's on are sound units,
+ rather than English syllables, so English 5, 7, 5 is only a writing convention.</p>
+  <p>Sounds puts a dotted bracket at repeated first consonants (alliteration).
+  Repeated stressed vowels (assonance) get a colour and a little shape below the word; the same vowel gets the same shape.
+  A dashed oval marks words that rhyme inside a line, like dreary and weary. Little function words like the are left out.
+  The strip counts repeated consonant and vowel groups in each line. It also shows zero when there are none.
+  Sounds follow pronunciation, not spelling.</p></details>
+ <details><summary>The rhyme drawer</summary><p>Perfect: sounds from the last stressed vowel to the end, ignoring primary versus secondary stress.
+ Same vowel: that vowel with a different ending. Same ending: the final consonants with a different stressed vowel.
+   The last two drawers show slant rhymes. Common words come first, grouped by syllables. Open Names and rare words for the rest, also grouped by syllables.
+   SCOWL's smaller word lists come first within each group, then alphabetical order. This helps browsing; it is not a count of how often people use a word.
+   Ordinary names stay. Classroom exclusions are removed before the dictionary is packed.</p>
+  <p>Arrows move between words. Enter inserts at the caret you had before opening the drawer.
+  Turn Replace word on when you want to replace the selected word.
+ Escape closes the drawer. A dotted word or rhyme letter is a spelling estimate for a word absent from the dictionary.
+  Those words can share estimated rhyme letters, but have no dictionary rhyme lists.
+  A pronunciation with no stressed vowel is left out of Perfect.</p>
+  <p>The drawer shows the dictionary's sound symbols. A vowel's digit means 1 main stress, 2 secondary stress, 0 no stress.
+  For example, record can start R EH1 or R IH0. Pronunciation 2 of 3 means the second of three dictionary readings.</p>
+  <table aria-label="CMU vowel symbols"><thead><tr><th>Sound</th><th>Example</th><th>Sound</th><th>Example</th></tr></thead><tbody>
+  <tr><td>AA</td><td>father</td><td>AE</td><td>cat</td></tr><tr><td>AH</td><td>cup</td><td>AO</td><td>law</td></tr>
+  <tr><td>AW</td><td>how</td><td>AY</td><td>my</td></tr><tr><td>EH</td><td>bed</td><td>ER</td><td>bird</td></tr>
+  <tr><td>EY</td><td>day</td><td>IH</td><td>sit</td></tr><tr><td>IY</td><td>tea</td><td>OW</td><td>go</td></tr>
+  <tr><td>OY</td><td>boy</td><td>UH</td><td>book</td></tr><tr><td>UW</td><td>blue</td><td></td><td></td></tr>
+  </tbody></table></details>
+  <details><summary>Sound, voice, saving and keyboard</summary><p>Play taps the caret's line on a synthesised woodblock.
+  On an empty line, it finds the nearest line above with words. Shift Play taps the poem.
+  Strong syllables are louder; the knob changes 60 to 160 beats per minute, including during playback. Stop, editing or Sound off stops the sound.
+  Motion off removes the falling proof marks and drawer motion. It keeps beat highlights so a silent room can see the rhythm.</p>
+ <p>Speak appears only if an English voice installed on this device is available. With Speak on, Play also reads your line through that local voice.
+ Your text is never sent to a service. Read uses only the fixed recorded hint, never your words.
+  Read also shows Type a line on the page and announces that hint to a screen reader.</p>
+ <p>Drafts has four local slots. Nothing is stored until you press Save. Browser storage may be disabled or cleared.
+ Print includes the proof marks. Tab reaches the desk controls and editor; Alt R and Alt F work within the editor.
+ Escape closes a drawer. Paper shortcuts never intercept typed numbers.</p></details>
+  <details><summary>How the dictionary hears</summary><p>CMU gives one American English pronunciation set. Your accent may differ.
+  ${MATERIAL.words.toLocaleString('en-US')} entries remain after classroom exclusions and entries with digits or periods are removed.
+  Main stresses stay strong. Secondary stresses can follow the meter and appear grey, as in Cory's last syllable.
+  Little one-syllable words can follow the nearest pattern.
+  Content words lean strong. Alternate pronunciations fit the closest pattern; a line-end reading that rhymes with a nearby end word is preferred.
+ Record has a narrow grammatical hint: after an article or possessive it favours the noun, and after an auxiliary or to it favours the verb.
+ Other grammatical context is not inferred. Use Alt F to choose a pronunciation yourself. A woodblock tap is a rhythm, rather than a performed reading.</p>
+  <p>Known hyphenated parts are joined. Possessive 's and old 'd endings use the base word's sounds with an estimated ending.
+  Some un- and -able words can also be built from known parts. These are estimates of word building, not new dictionary entries.
+  Other unknown words use vowel groups and a final silent-e estimate; brillig still gets dots. Punctuation is silent.</p>
+  <p>Rhyme keys ignore stress digits and treat IY R and IH R as the same NEAR vowel, so here and near rhyme.
+  The drawer still prints the original CMU sounds. Other pre-R vowels stay distinct because accents differ.
+  Pronunciation references: <a href="https://dictionary.cambridge.org/pronunciation/english/here" target="_blank" rel="noreferrer">Cambridge: here</a>
+  and <a href="https://www.merriam-webster.com/assets/mw/static/pdf/help/guide-to-pronunciation.pdf" target="_blank" rel="noreferrer">Merriam-Webster pronunciation guide</a>.
+  These are references only; their wording and audio are not copied.</p></details>
+ <details><summary>Things people have found</summary><p>Orange and month have zero perfect rhymes in this filtered CMU dictionary.
+ Try their Same vowel drawers. Record has three pronunciations; two put the strong beat second and one puts it first.</p>
+  <p>Frost's rhyme scheme is AABA BBCB CCDC DDDD. Its final two lines repeat.
+  One reading: the repeated promise to keep going can sound more insistent the second time.
+ The rhyme letters follow the pronunciation currently chosen for a word; a different reading can change them.
+ Dickinson's first stanza here counts 8, 6, 8, 6; the two-syllable pronunciation of ourselves fits that count.
+ Jabberwocky's brillig, slithy and toves need estimates when absent from this dictionary.</p>
+ <p>In The Rape of the Lock, Pope pairs obey with tea and away with tea. Modern CMU tea has IY, while obey and away have EY.
+ Historical writing can keep evidence of pronunciations that differ from this dictionary.</p>
+  <p>The short line In Flanders fields returns the voice to the burial place after longer lines. One reading: its shorter beat makes that return linger.</p>
+  <p>Poe describes The Raven as trochaic in The Philosophy of Composition. His description includes eight-foot lines,
+  shortened lines and a shorter refrain. Each stanza ends with the more sound, often Nevermore.
+  One reading: the short repeated answer closes down the speaker's hopes. A repeated foot need not make every line the same length.</p>
+ <p>Sonnet 18 conventionally uses ABAB CDCD EFEF GG. Modern CMU puts temperate and date apart as perfect rhymes;
+  they can meet in Same ending. Its last rhyming pair turns from summer and time to the poem itself keeping someone alive.
+  One reading: that final pair makes a compact promise. Today's dictionary is one lens on older verse.</p>
+ <p>The page is a proof you can disagree with. A near match can be the most interesting sound in a line.</p></details>
+ <details><summary>Sources and licences</summary><p>Carnegie Mellon University Pronouncing Dictionary, staged cmudict.dict, fetched 5 November 2026.
+ BSD-style licence. ${MATERIAL.pronunciations.toLocaleString('en-US')} pronunciations after filtering. Full words and pronunciation data are bundled, rather than a small sample.</p>
+ <p><a href="https://github.com/cmusphinx/cmudict" target="_blank" rel="noreferrer">CMU Pronouncing Dictionary</a> ·
+ <a href="https://github.com/cmusphinx/cmudict/blob/master/LICENSE" target="_blank" rel="noreferrer">Original licence</a>.
+ Scansion and rhyme rules follow the tool's published spec; meter terminology is described in the
+ <a href="https://www.poetryfoundation.org/education/glossary/meter" target="_blank" rel="noreferrer">Poetry Foundation glossary</a>.
+ Haiku distinction: <a href="https://hsa-haiku.org/hsa-definitions.html" target="_blank" rel="noreferrer">Haiku Society of America definitions</a>.
+ <a href="https://poetry.harvard.edu/guide-prosody" target="_blank" rel="noreferrer">Harvard's guide to prosody</a> compares meter and performed stress.</p>
+ <p>Shelf texts are public domain in the United States. Typography normalises long dashes to commas and curly apostrophes to straight ones.
+ Dickinson uses the 1890 edition, which differs from modern editions. Invictus was checked word for word against the Academy of American Poets.</p>
+ <p>Literary notes: Pope, <a href="https://www.gutenberg.org/ebooks/9800" target="_blank" rel="noreferrer">The Rape of the Lock</a>,
+ checked against the 1714 text on Wikisource; Poe,
+ <a href="https://www.gutenberg.org/ebooks/55749" target="_blank" rel="noreferrer">The Philosophy of Composition</a>,
+ checked against Wikisource. Both original literary works are public domain in the United States.</p>
+ <ul>${MATERIAL.poems.map(p=>`<li>${esc(p.author)}, <a href="${p.source}" target="_blank" rel="noreferrer">${esc(p.title)}</a>. ${p.license}.</li>`).join('')}</ul>
+  <p>Common-word ordering: <a href="https://github.com/en-wl/wordlist/tree/rel-2020.12.07/scowl" target="_blank" rel="noreferrer">SCOWL 2020.12.07</a>,
+   English and American word lists through size 50, fetched 5 November 2026. Only classroom-filtered lowercase entries also in CMU are bundled
+   (${MATERIAL.common.groups.reduce((n,g)=>n+g.split(' ').filter(Boolean).length,0).toLocaleString('en-US')} words).
+   MIT-like permission notice and component terms follow. Filtering is Curio Class editorial policy (CC0); the pack-time exclusion list is not in this page.</p>
+  <pre>${esc(MATERIAL.notice)}</pre><pre>${esc(MATERIAL.common.copyright)}</pre></details>`);
+}
+async function loadDictionary() {
+ const start=performance.now();
+ try {
+  const binary=Uint8Array.from(atob(MATERIAL.gzip),c=>c.charCodeAt(0));
+  const stream=new Blob([binary]).stream().pipeThrough(new DecompressionStream('gzip'));
+  const packed=await new Response(stream).text();
+  const lines=packed.split('\n');
+  let i=0;
+  await new Promise(resolve=>{
+   function chunk() {
+    const deadline=performance.now()+9;
+    while(i<lines.length&&performance.now()<deadline) {
+     const line=lines[i++];
+     const space=line.indexOf(' ');
+     const word=line.slice(0,space);
+     const forms=line.slice(space+1).split('|');
+     dictionary.set(word,forms);
+     for(const form of forms) {
+      const p=pronunciation(decode(form));
+      const item=[word,p.stress.length,p.perfect,p.vowel];
+      for(const kind of Object.keys(indexes)) {
+       const key=p[kind];
+       if(!key)continue;
+       if(!indexes[kind].has(key))indexes[kind].set(key,[]);
+       indexes[kind].get(key).push(item);
+      }
+     }
+    }
+    if(i<lines.length)setTimeout(chunk,0);else resolve();
+   }
+   chunk();
+  });
+   state.ready=true;state.loadMs=Math.round(performance.now()-start);scanCache.clear();lineCache.clear();
+  $('dictionary-status').textContent=MATERIAL.words.toLocaleString('en-US')+' words / dictionary ready';
+  render();if(state.drawer)renderRhymes();
+ } catch(error) {
+  $('dictionary-status').textContent='Dictionary unavailable / spelling estimates';
+  state.loadError=String(error);announce('Dictionary unavailable. Dotted words show spelling estimates.');
+ }
+}
+// The first proof is available while the full dictionary is unpacked and indexed.
+const warm={whose:['HH','UW1','Z'],woods:['W','UH1','D','Z'],these:['DH','IY1','Z'],are:['AA1','R'],
+ i:['AY1'],think:['TH','IH1','NG','K'],know:['N','OW1']};
+const reversePhones=new Map([...phoneChars].map(([c,p])=>[p,c]));
+for(const [word,phones] of Object.entries(warm))dictionary.set(word,[phones.map(p=>reversePhones.get(p)).join('')]);
+editor.addEventListener('input',edited);
+editor.addEventListener('scroll',syncScroll);
+editor.addEventListener('keyup',()=>{if(caretLine()!==state.line)render();});
+ editor.addEventListener('pointerdown',()=>{insertionRange=[editor.selectionStart,editor.selectionEnd];});
+ editor.addEventListener('click',()=>{
+ render();
+ if(editor.selectionStart!==editor.selectionEnd)return;
+ const token=currentToken();
+ const pos=editor.selectionStart;
+ const before=editor.value.slice(0,pos);
+ const char=editor.value[pos]||editor.value[pos-1];
+  if(token&&/[a-z]/i.test(char)&&before.split('\n').at(-1).length<=analysis[caretLine()].text.length)chooseWord(token);
+  else insertionRange=null;
+});
+mirror.addEventListener('pointerdown',event=>{if(event.target.closest('[data-proof]'))event.preventDefault();});
+mirror.addEventListener('click',event=>{
+ const button=event.target.closest('[data-proof]');
+ if(!button)return;
+ const [li,wi]=button.dataset.proof.split(':').map(Number);
+ const token=analysis[li].tokens[wi];
+ let offset=analysis.slice(0,li).reduce((n,l)=>n+l.text.length+1,0)+token.start;
+ editor.setSelectionRange(offset,offset);flip(token);
+});
+document.querySelectorAll('[data-paper]').forEach(b=>b.onclick=()=>setPaper(b.dataset.paper));
+$('paper-select').onchange=event=>setPaper(event.target.value);
+$('lens').onchange=event=>{state.lens=event.target.value;render();announce('Meter lens '+state.lens);};
+$('sounds').onclick=()=>{state.sounds=!state.sounds;$('sounds').setAttribute('aria-pressed',state.sounds);render();};
+$('stress').onclick=()=>flip(currentToken());
+$('play').onclick=event=>play(event.shiftKey);
+$('tempo').oninput=()=>{
+ state.tempo=+$('tempo').value;$('tempo-value').textContent=state.tempo+' BPM';
+ $('tempo').setAttribute('aria-valuetext',state.tempo+' beats per minute');
+ document.querySelector('.knob').style.setProperty('--angle',((state.tempo-60)/100*260-130)+'deg');
+ document.querySelector('.knob').setAttribute('aria-valuenow',state.tempo);
+ document.querySelector('.knob').setAttribute('aria-valuetext',state.tempo+' beats per minute');
+  if(state.playing)scheduleBeat();
+};
+const tempoKnob=document.querySelector('.knob');
+function turnTempo(value) {
+ $('tempo').value=Math.max(60,Math.min(160,Math.round(value/5)*5));
+ $('tempo').dispatchEvent(new Event('input'));
+}
+tempoKnob.onkeydown=event=>{
+ if(!['ArrowUp','ArrowRight','ArrowDown','ArrowLeft','Home','End'].includes(event.key))return;
+ event.preventDefault();
+ const value=event.key==='Home'?60:event.key==='End'?160:
+  state.tempo+(['ArrowUp','ArrowRight'].includes(event.key)?5:-5);
+ turnTempo(value);
+};
+tempoKnob.onpointerdown=event=>{
+ event.preventDefault();
+ const x=event.clientX,y=event.clientY,start=state.tempo;
+ tempoKnob.setPointerCapture(event.pointerId);
+ tempoKnob.onpointermove=move=>turnTempo(start+2*(move.clientX-x+y-move.clientY));
+ const release=()=>{tempoKnob.onpointermove=null;tempoKnob.onpointerup=null;tempoKnob.onpointercancel=null;};
+ tempoKnob.onpointerup=release;tempoKnob.onpointercancel=release;
+};
+$('speak').onclick=()=>{state.speak=!state.speak;$('speak').setAttribute('aria-pressed',state.speak);};
+$('close-rhymes').onclick=closeRhymes;
+$('rhyme-handle').onclick=()=>state.drawer?closeRhymes():chooseWord(currentToken()||analysis[0]?.tokens.at(-1),true);
+document.querySelectorAll('[data-rhyme]').forEach(b=>b.onclick=()=>{state.rhymeKind=b.dataset.rhyme;renderRhymes();});
+$('rhymes').onclick=event=>{
+ if(event.target.id==='more-rhymes') {
+  const oldCount=rhymeShown;appendRhymes();
+  $('rhymes').querySelectorAll('[data-insert]')[oldCount]?.focus({preventScroll:true});
+  return;
+ }
+ const b=event.target.closest('[data-insert]');if(b)insertRhyme(b.dataset.insert);
+};
+$('rhymes').onkeydown=event=>{
+  const buttons=[...$('rhymes').querySelectorAll('[data-insert]')].filter(b=>b.getClientRects().length);
+ let index=buttons.indexOf(document.activeElement);
+ if(['ArrowDown','ArrowRight','ArrowUp','ArrowLeft'].includes(event.key)) {
+  event.preventDefault();index+=['ArrowDown','ArrowRight'].includes(event.key)?1:-1;
+  const next=buttons[(index+buttons.length)%buttons.length];
+  if(next){buttons.forEach(b=>b.tabIndex=-1);next.tabIndex=0;next.focus({preventScroll:true});}
+  document.activeElement.scrollIntoView({block:'nearest'});
+ }
+};
+document.querySelector('.drawer-tabs').addEventListener('keydown',event=>{
+ if(event.key==='ArrowDown'){$('rhymes').querySelector('button')?.focus({preventScroll:true});event.preventDefault();}
+ if(['ArrowLeft','ArrowRight'].includes(event.key)){
+  const kinds=['perfect','vowel','ending'];const index=kinds.indexOf(state.rhymeKind);
+  state.rhymeKind=kinds[(index+(event.key==='ArrowRight'?1:2))%3];renderRhymes();
+  document.querySelector('[data-rhyme="'+state.rhymeKind+'"]').focus({preventScroll:true});event.preventDefault();
+ }
+});
+$('insert-kind').onclick=()=>{state.replace=!state.replace;$('insert-kind').setAttribute('aria-pressed',state.replace);};
+$('books').innerHTML=MATERIAL.poems.map(bookHTML).join('');
+$('books').querySelectorAll('button').forEach((b,i)=>b.tabIndex=i===0?0:-1);
+$('books').onkeydown=event=>{
+ const buttons=[...$('books').querySelectorAll('button')];
+ const index=buttons.indexOf(document.activeElement);
+ if(!['ArrowDown','ArrowUp','Home','End'].includes(event.key))return;
+ event.preventDefault();
+ const nextIndex=event.key==='Home'?0:event.key==='End'?buttons.length-1:
+  (index+(event.key==='ArrowDown'?1:buttons.length-1))%buttons.length;
+ buttons.forEach((b,i)=>b.tabIndex=i===nextIndex?0:-1);
+ buttons[nextIndex].focus({preventScroll:true});buttons[nextIndex].scrollIntoView({block:'nearest'});
+};
+$('books').onclick=event=>{const b=event.target.closest('[data-poem]');if(b)loadPoem(b.dataset.poem);};
+$('shelf-button').onclick=()=>openDialog('The shelf',MATERIAL.poems.map(bookHTML).join(''));
+$('manual').onclick=showManual;$('drafts').onclick=showDrafts;
+$('print').onclick=()=>{render();window.print();};
+$('close-dialog').onclick=closeDialog;
+$('book-dialog').addEventListener('cancel',event=>{event.preventDefault();closeDialog();});
+$('dialog-body').onclick=event=>{
+ const poem=event.target.closest('[data-poem]');if(poem)loadPoem(poem.dataset.poem);
+ const save=event.target.closest('[data-save]');if(save)saveDraft(+save.dataset.save);
+ const load=event.target.closest('[data-load]');if(load)loadDraft(+load.dataset.load);
+ if(event.target.id==='print-draft'){closeDialog();render();window.print();}
+};
+document.addEventListener('keydown',event=>{
+  if($('book-dialog').open)return;
+  if(event.altKey&&event.code==='KeyR') {event.preventDefault();chooseWord(currentToken(),true);}
+  if(event.altKey&&event.code==='KeyF') {event.preventDefault();flip(currentToken());}
+ if(event.key==='Escape'&&state.drawer&&!$('book-dialog').open){event.preventDefault();closeRhymes();}
+ if(!event.altKey&&!event.ctrlKey&&!event.metaKey&&/^[1-5]$/.test(event.key)&&!event.target.matches('textarea,input,select')&&!$('book-dialog').open){
+  setPaper(['plain','haiku','limerick','common','sonnet'][+event.key-1]);
+ }
+});
+function syncPower() {
+ document.body.classList.toggle('calm',Curio.reduce);
+ $('motion').textContent='Motion';$('motion').setAttribute('aria-pressed',!Curio.reduce);
+ $('motion').setAttribute('aria-label','Motion '+(Curio.reduce?'off':'on'));
+ $('sound').textContent='Sound';$('sound').setAttribute('aria-label','Sound '+(Curio.sound?'on':'off'));
+}
+Curio.onMotion(syncPower);Curio.onSound(()=>{syncPower();if(!Curio.sound)stopPlay();});syncPower();
+$('read').onclick=()=>{
+  hintRequested=true;
+  render();
+  $('read').title=L.hint;
+ if(CLIPS[L.hint])V.read();
+ else {
+  V.hush();
+   announce(L.hint);
+ }
+};
+voicesChanged();
+if('speechSynthesis' in window)speechSynthesis.addEventListener('voiceschanged',voicesChanged);
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stopPlay();});
+window.addEventListener('pagehide',stopPlay);
+new ResizeObserver(()=>{syncScroll();positionHint();}).observe($('writing'));
+editor.setSelectionRange(editor.value.length,editor.value.length);
+render();
+editor.focus({preventScroll:true});
+loadDictionary();
+window.__tool={state,allLines:()=>V.allLines(),vlog:V.log,render,analyse:poemAnalysis,loadPoem,setPaper,chooseWord,
+ currentToken,flip,play,stopPlay,rhymeList,variants,dictionary,analysis:()=>analysis,
+ setText(text){overrides.clear();editor.value=text;editor.setSelectionRange(text.length,text.length);edited();render();},
+ get localVoices(){return localVoices;}};
+</script>
+</body>
+</html>

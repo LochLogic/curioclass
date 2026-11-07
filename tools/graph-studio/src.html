@@ -1,0 +1,2047 @@
+<!doctype html>
+<!-- Curio Class Graph Studio. Original parser and plotter. Data: NOAA GML, NASA and US Census Bureau, public domain. -->
+<!--
+MIT License
+
+Copyright (c) 2026 LochLogic (Curio Class)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<meta name="description" content="An offline mathematical pen plotter with equation tape, measurements and curve fitting.">
+<title>Graph Studio · Curio Class</title>
+<style>
+:root {
+  color-scheme: light;
+  --paper: #f4f1e4;
+  --tape: #fbf8ee;
+  --ink: #292d29;
+  --metal: #3c4743;
+  --brass: #b08d57;
+  font-family: ui-monospace, Consolas, monospace;
+  color: var(--ink);
+  background: var(--paper);
+}
+* { box-sizing: border-box; }
+html { height: 100%; overflow: hidden; }
+body { margin: 0; width: 100vw; height: 100dvh; overflow: hidden; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button, select, input { min-height: 44px; }
+button {
+  border: 1px solid #9a9d8d;
+  border-radius: 2px;
+  padding: 6px 11px;
+  background: linear-gradient(#fffdf4, #e6e2d4);
+  box-shadow: 0 1px 1px #0002;
+  cursor: pointer;
+}
+button:hover { background: #fffdf8; }
+button:active { box-shadow: inset 0 1px 3px #0004; }
+button[aria-pressed="true"] { background: #d5e1cc; border-color: #466747; box-shadow: inset 0 -3px #446945; }
+button:disabled { opacity: .55; cursor: default; }
+:focus-visible { outline: 3px solid #1f4e9a; outline-offset: 2px; }
+input, textarea, select { background: #fffdf6; border: 1px solid #8a8e80; border-radius: 0; padding: 6px; min-width: 0; }
+input[type="range"] { accent-color: #4d674a; padding: 0; width: 100%; cursor: ew-resize; }
+[hidden] { display: none !important; }
+.sr { position: absolute; top: 0; left: 0; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+#instrument { display: grid; grid-template-columns: 302px minmax(0, 1fr); height: 100%; }
+#tape {
+  grid-column: 1; grid-row: 1; min-height: 0;
+  display: flex; flex-direction: column;
+  background: var(--tape); box-shadow: 3px 0 12px #343c3626;
+  border-right: 1px solid #b6b8a7; padding-bottom: 64px;
+}
+.tape-head { padding: 18px 18px 12px; border-bottom: 1px solid #c2c6b6; }
+.wordmark { font: 600 25px Georgia, serif; letter-spacing: -.7px; margin: 0 0 6px; }
+.engrave { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
+.tape-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 10px 12px; border-bottom: 1px solid #ced0bf; }
+#equations { overflow: auto; min-height: 0; flex: 1; padding-bottom: 30px; overscroll-behavior: contain; }
+.line { border-bottom: 1px dashed #b7bcaa; padding: 12px 12px 11px 17px; position: relative; }
+.line.active { background: #e9ebdb; }
+.line::before { content: ''; position: absolute; left: 7px; top: 18px; bottom: 18px; border-left: 3px solid var(--pen); }
+.line-top { display: grid; grid-template-columns: 23px minmax(0, 1fr) 44px; gap: 3px; align-items: center;
+  position: sticky; top: 0; z-index: 2; background: var(--tape); }
+.line.active .line-top { background: #e9ebdb; }
+.line-id { font-size: 11px; color: var(--pen); font-weight: bold; }
+.equation { border: 0; border-bottom: 1px solid #bec4b3; background: transparent; width: 100%; font-size: 16px; padding: 4px 2px; }
+.equation::selection { background: #e1c68b; color: #1b1b1b; }
+.line-top button { padding: 0; width: 44px; background: transparent; border: 0; box-shadow: none; }
+.line-info { font-size: 11px; line-height: 1.6; overflow-wrap: anywhere; padding: 2px 0 2px 26px; }
+.line-info.error { color: #972c24; }
+.scrubbers { display: flex; gap: 5px; flex-wrap: wrap; padding-left: 26px; }
+.number { min-width: 44px; padding: 2px 8px; border: 0; background: #e6e0cb; box-shadow: none; cursor: ns-resize; touch-action: none; }
+.number.first { background: #e1c68b; box-shadow: inset 0 -2px #927039; }
+.ruler { margin-top: 8px; padding: 4px 3px; border-top: 1px solid #b9b4a0; }
+.ruler-top { display: grid; grid-template-columns: 20px minmax(0,1fr) 44px; align-items: center; gap: 3px; }
+.ruler-name { font-size: 18px; font-style: italic; }
+.ruler-value { text-align: right; font-size: 13px; }
+.ruler-track {
+  padding: 0 5px;
+  background: repeating-linear-gradient(90deg, #757b6866 0 1px, transparent 1px 10%), #e4dfc9;
+  border: 1px solid #a7a38f;
+}
+.ruler input[type="range"] { background: transparent; border: 0; }
+.ruler input[type="range"] { appearance: none; -webkit-appearance: none; height: 44px; }
+.ruler input[type="range"]::-webkit-slider-runnable-track { height: 4px; background: #8d9c80; }
+.ruler input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 19px; height: 42px; margin-top: -19px; border: 1px solid #526448;
+  border-radius: 0; background: linear-gradient(90deg,#fffff066 44%,#354c31 45% 55%,#fffff066 56%);
+  box-shadow: 1px 1px 2px #24321c33;
+}
+.ruler input[type="range"]::-moz-range-track { height: 4px; background: #8d9c80; }
+.ruler input[type="range"]::-moz-range-thumb {
+  width: 19px; height: 42px; border: 1px solid #526448; border-radius: 0;
+  background: linear-gradient(90deg,#fffff066 44%,#354c31 45% 55%,#fffff066 56%);
+}
+.endcaps { display: grid; grid-template-columns: repeat(3,1fr); gap: 4px; margin-top: 4px; font-size: 10px; }
+.endcaps input { width: 100%; font-size: 11px; }
+.endcaps label { display: grid; gap: 3px; }
+.tape-foot { padding: 8px 12px; background: #e3e1d0; border-top: 1px solid #b5baa6; }
+#add { width: 100%; text-align: left; }
+#paper { position: relative; grid-column: 2; min-width: 0; min-height: 0; overflow: hidden; }
+#plot { position: absolute; inset: 75px 0 82px; width: 100%; height: calc(100% - 157px); touch-action: none; cursor: crosshair; }
+#plot:focus-visible { outline-offset: -4px; }
+#rail {
+  position: absolute; height: 75px; inset: 0 0 auto; padding: 13px 18px; z-index: 3;
+  background: linear-gradient(#858d83, #d3d7cb 17%, #8c948a 22%, #4b5951 26%, #788679 34%, #c7ccc0 41%, #cbd0c5 70%, #a0a99c);
+  border-bottom: 6px solid #495b4e;
+  box-shadow: 0 4px 8px #34463733;
+}
+#rail-label { color: #1b2c20; font-size: 10px; letter-spacing: 2px; position: absolute; left: 17px; top: 46px; }
+#carriage {
+  position: absolute; left: 40%; top: 5px; width: 40px; height: 65px;
+  background: linear-gradient(90deg,#69756b,#e4e5d6 38%,#919c8d 45%,#b8c2b0 84%,#5e6d61);
+  border: 1px solid #435347; border-radius: 3px; box-shadow: 2px 3px 5px #0005; pointer-events: none;
+}
+#carriage::after { content: ''; position: absolute; background: #292e29; height: 29px; width: 8px; left: 16px; bottom: -9px; border-radius: 0 0 5px 5px; }
+#carriage::before { content: '08'; position: absolute; font-size: 10px; top: 10px; left: 11px; }
+#power { position: absolute; z-index: 4; right: 10px; top: 7px; display: flex; gap: 5px; padding: 4px; background: #34463b; border: 1px solid #e1e2c6; }
+#power button { min-width: 70px; background: #26392e; border-color: #8d9d89; color: #fffbea; font-size: 11px; }
+#power button::before { content: ''; display: inline-block; width: 6px; height: 6px; margin-right: 6px; background: #a2b993; border-radius: 50%; }
+#power button[aria-pressed="false"]::before { background: #766e58; }
+#power button[aria-pressed="true"] { box-shadow: inset 0 -3px #b2c996; }
+#hint { position: absolute; top: 94px; left: 28px; padding: 9px 12px; border-left: 2px solid #a8894d;
+  background: #f8f3dfef; font-size: 12px; pointer-events: none; }
+#measure { position: absolute; inset: 0; pointer-events: none; }
+.tag {
+  display: block; position: absolute; width: max-content; max-width: min(370px, calc(100% - 20px));
+  padding: 8px 10px; background: #e8d8b0f5; border: 1px solid #9d854b; font-size: 12px; line-height: 1.6;
+}
+#paper-controls {
+  position: absolute; bottom: 31px; left: 16px; right: 16px;
+  display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+}
+#paper-controls button { font-size: 11px; min-width: 44px; padding: 6px 8px; }
+#paper-controls .spacer { flex: 1; }
+#coordinate { position: absolute; bottom: 7px; right: 18px; font-size: 11px; }
+#sampling { position: absolute; bottom: 9px; left: 18px; font-size: 10px; max-width: 55%; }
+#sampling[data-warning="true"] { display: block; top: 104px; bottom: auto; left: 10px; max-width: calc(100% - 20px);
+  padding: 6px; background: #f4f1e4ef; border-left: 2px solid #7a4a1e; }
+#family { position: fixed; z-index: 6; bottom: 0; left: 0; width: 302px; background: #3e4b40; color: #f6efd7; padding: 8px 10px; }
+#family-inner { display: flex; gap: 8px; align-items: center; }
+#manual-open { background: #d4ceb6; border-color: #92937a; color: var(--ink); font-size: 11px; padding: 5px 9px; }
+.plate { border: 1px solid #9a9d7c; padding: 7px 8px; box-shadow: inset 0 0 0 2px #444c39; font-size: 10px; line-height: 1.5; }
+.plate span { display: block; }
+dialog {
+  z-index: 8;
+  position: fixed; margin: 0; left: 12px; top: auto; bottom: 72px;
+  width: min(610px, calc(100vw - 24px)); max-height: calc(100dvh - 155px);
+  border: 1px solid #65745f; background: var(--tape); box-shadow: 4px 7px 30px #16271d55; padding: 0;
+  color: var(--ink);
+}
+dialog::backdrop { background: #26352435; }
+.drawer-head { display: flex; gap: 10px; align-items: center; justify-content: space-between;
+  padding: 12px 16px; background: #e4e4d3; border-bottom: 1px solid #a3ab97; }
+.drawer-head h2 { font: 23px Georgia, serif; margin: 0; }
+.drawer-body { padding: 15px 18px; overflow: auto; max-height: calc(100dvh - 232px); font: 14px/1.6 system-ui, sans-serif; }
+#data { left: 0; width: 302px; bottom: 68px; }
+#data .drawer-head { padding: 8px; }
+#data .drawer-head h2 { font-size: 19px; }
+#fit-summary { display: block; margin-top: 3px; font: 11px ui-monospace, monospace; }
+#data .drawer-body { padding: 10px; max-height: calc(100dvh - 216px); }
+#data .form-row label { min-width: 0; flex: 1; }
+#data .form-row button { flex: 0 0 auto; font-size: 11px; padding: 4px 7px; }
+#fit-view { max-width: 95px; }
+#load-data { min-width: 44px; }
+#data summary { min-height: 44px; padding: 10px 0; cursor: pointer; }
+#data-input { height: 120px; }
+.drawer-body h3 { font: 600 16px Georgia, serif; margin: 17px 0 8px; }
+.drawer-body p { margin: 8px 0; }
+.drawer-body code { display: inline-block; white-space: nowrap; max-width: 100%;
+  background: #e6e7d8; padding: 1px 4px; }
+.drawer-body ul { padding-left: 20px; }
+.drawer-body a { display: inline-block; min-width: 44px; min-height: 44px; padding: 10px 4px; color: #1f4e9a; }
+.form-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: end; margin-bottom: 10px; }
+.form-row label { display: grid; gap: 3px; flex: 1; font: 11px ui-monospace,monospace; min-width: 80px; }
+#data-input { width: 100%; height: 180px; font-size: 12px; line-height: 1.5; resize: vertical; }
+#fit-result { display: block; font: 12px/1.8 ui-monospace,monospace; white-space: pre-wrap; overflow-wrap: anywhere;
+  background: #e6e7d7; padding: 10px; margin-top: 10px; }
+#data-status { display: block; }
+table { border-collapse: collapse; width: 100%; font: 12px/1.7 ui-monospace,monospace; }
+td, th { border-bottom: 1px solid #c7ccba; text-align: right; padding: 6px 12px; }
+.setup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.slot { display: grid; grid-template-columns: 1fr 85px 85px; gap: 6px; align-items: center; margin: 8px 0; font: 12px ui-monospace,monospace; }
+#table[open] {
+  display: flex; flex-direction: column; left: 314px; top: 87px; bottom: auto;
+  width: min(490px, calc(100vw - 326px)); height: calc(100dvh - 181px); max-height: none;
+}
+#table .drawer-head { gap: 5px; padding: 8px; flex-wrap: wrap; }
+#table .drawer-head h2 { font-size: 18px; flex: 1; }
+#table .drawer-head button { min-width: 44px; padding: 4px 7px; font-size: 11px; }
+#table .drawer-body { display: flex; flex-direction: column; min-height: 0; flex: 1; max-height: none; padding: 8px; }
+#table .form-row { flex-wrap: nowrap; flex: 0 0 auto; gap: 5px; margin-bottom: 6px; }
+#table .form-row label { min-width: 0; }
+#table .table-scroll { overflow: auto; min-height: 0; flex: 1; }
+#table th { position: sticky; top: 0; background: var(--tape); }
+#table td, #table th { padding: 4px 8px; }
+@media (min-width: 1280px) {
+  .engrave, .endcaps, #sampling, #rail-label { font-size: 11px; }
+  .line-info, .line-id { font-size: 12px; }
+  .endcaps input { font-size: 12px; }
+}
+@media (min-width: 601px) and (max-width: 1000px) { #rail-label { display: none; } }
+#notebook-status, #data-status, #slider-status { font: 12px/1.5 ui-monospace,monospace; }
+@media (max-height: 540px) and (min-width: 601px) {
+  #instrument { grid-template-columns: 244px minmax(0,1fr); }
+  #family { width: 244px; }
+  .tape-head { padding: 8px 12px; }
+  .tape-head .engrave { display: none; }
+  .wordmark { font-size: 21px; }
+  .engrave { letter-spacing: 1px; }
+  .tape-actions { display: flex; padding: 5px 8px; gap: 3px; }
+  .tape-actions button { flex: 1; min-width: 0; width: 0; padding: 2px; font-size: 10px; }
+  .line { display: grid; grid-template-columns: minmax(0,1fr) auto; padding: 5px 7px 8px 11px; }
+  .line-top { grid-column: 1 / -1; }
+  .line-info { grid-column: 1; grid-row: 2; align-self: center; }
+  .scrubbers { grid-column: 2; grid-row: 2; padding-left: 0; }
+  .ruler { grid-column: 1 / -1; display: grid; grid-template-columns: 20px minmax(0,1fr) 44px; gap: 3px; }
+  .ruler-top { display: contents; }
+  .ruler-name { grid-column: 1; grid-row: 1; }
+  .ruler-value { grid-column: 2; grid-row: 1; }
+  .ruler-top button { grid-column: 3; grid-row: 1 / 3; align-self: center; }
+  .ruler-track { grid-column: 1 / 3; grid-row: 2; }
+  .endcaps { grid-column: 1 / -1; grid-row: 3; }
+  .line-top { grid-template-columns: 18px minmax(0,1fr) 44px; }
+  .equation { font-size: 14px; }
+  #paper-controls { gap: 2px; left: 5px; right: 5px; bottom: 29px; }
+  #paper-controls button { font-size: 10px; padding: 4px; }
+  #plot { bottom: 127px; height: calc(100% - 202px); }
+  #sampling { display: none; }
+  .plate { padding: 5px; font-size: 10px; }
+  #rail-label { display: none; }
+  #hint { top: 86px; left: 12px; font-size: 11px; }
+  #data-input { height: 52px; }
+  #data { width: 244px; }
+  #table[open] { left: 252px; width: calc(100vw - 260px); height: calc(100dvh - 163px); }
+  #table .drawer-head h2 { font-size: 15px; }
+}
+@media (min-width: 601px) and (max-width: 960px) {
+  #plot { bottom: 127px; height: calc(100% - 202px); }
+}
+@media (max-width: 600px) {
+  #instrument { grid-template-columns: 1fr; grid-template-rows: 59% 41%; }
+  #paper { grid-column: 1; grid-row: 1; border-bottom: 4px solid #60705b; }
+  #tape { grid-column: 1; grid-row: 2; padding-bottom: 66px; border-right: 0; }
+  .tape-head { display: none; }
+  .tape-actions { padding: 4px 8px; display: flex; gap: 4px; }
+  .tape-actions button { flex: 1; font-size: 11px; padding: 3px 6px; }
+  .line { padding: 4px 10px 6px 15px; }
+  #equations { padding-bottom: 5px; }
+  .line-info { padding: 0 0 0 26px; }
+  .tape-foot { position: absolute; right: 6px; bottom: 7px; z-index: 7; background: transparent; padding: 0; border: 0; }
+  #add { width: 44px; overflow: hidden; font-size: 0; }
+  #add::after { content: '+'; font-size: 23px; }
+  #family { width: 100%; padding-right: 56px; }
+  #plot { top: 62px; bottom: 124px; height: calc(100% - 186px); }
+  #rail { height: 62px; padding: 0; }
+  #rail-label { display: none; }
+  #carriage { height: 51px; }
+  #power { top: 3px; right: 6px; padding: 3px; }
+  #power button { min-width: 67px; padding: 4px 7px; }
+  #paper-controls { bottom: 28px; left: 7px; right: 7px; gap: 3px; }
+  #paper-controls button { font-size: 10px; padding: 4px 6px; }
+  #paper-controls .spacer { display: none; }
+  #coordinate { font-size: 10px; right: 8px; }
+  #sampling { max-width: 45%; font-size: 10px; left: 8px; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis; line-height: 12px; }
+  #sampling[data-warning="true"] { white-space: normal; overflow: visible; }
+  #sampling[data-warning="true"] { top: 91px; max-width: calc(100% - 20px); }
+  #hint { top: 71px; left: 12px; font-size: 11px; padding: 7px; }
+  .tag { font-size: 10px; padding: 5px; }
+  dialog { left: 6px; bottom: 68px; width: calc(100vw - 12px); max-height: calc(100dvh - 143px); }
+  .drawer-body { max-height: calc(100dvh - 213px); padding: 10px 12px; }
+  #data { left: 0; width: 100%; max-height: calc(41dvh - 68px); }
+  #data .drawer-body { max-height: calc(41dvh - 132px); }
+  #table[open] { left: 6px; width: calc(100vw - 12px); top: auto; bottom: calc(41dvh + 8px);
+    height: min(330px, calc(59dvh - 78px)); }
+}
+</style>
+</head>
+<body>
+<main id="instrument" aria-label="Graph Studio pen plotter">
+  <aside id="tape" aria-label="Equation tape">
+    <div class="tape-head"><h1 class="wordmark">Graph Studio</h1><div class="engrave">Pen plotter / mathematical works</div></div>
+    <nav class="tape-actions" aria-label="Plotter drawers">
+      <button id="data-open">Data</button><button id="table-open">Table</button><button id="notebook-open">Setups · Notebook</button>
+      <button id="range-open">Axes</button>
+    </nav>
+    <div id="equations"></div>
+    <div class="tape-foot"><button id="add" aria-label="Add equation">+ Add equation</button></div>
+  </aside>
+  <section id="paper" aria-label="Engineering paper">
+    <canvas id="plot" tabindex="0" role="application"
+      aria-label="Graph paper. Drag to pan. T traces, P pins, G tangent, K key points. Plus and minus zoom, zero resets."></canvas>
+    <div id="rail" aria-hidden="true"><span id="rail-label">Precision plotting / No. 08</span><div id="carriage"></div></div>
+    <div id="power" aria-label="Plotter power panel">
+      <button id="motion" aria-pressed="true">Motion</button><button id="sound" aria-pressed="true">Sound</button><button id="read">Read</button>
+    </div>
+    <div id="hint">Drag the 2 up or down.</div>
+    <div id="measure"><output id="trace-tag" class="tag" hidden></output><output id="pin-tag" class="tag" hidden></output></div>
+    <nav id="paper-controls" aria-label="Paper and measurement controls">
+      <button id="zoom-in" aria-label="Zoom in">+</button><button id="zoom-out" aria-label="Zoom out">−</button>
+      <button id="home" aria-label="Reset axes to minus ten to ten" title="Reset both axes to minus ten through ten">0</button>
+      <button id="square" aria-pressed="false">Square</button><button id="log-x" aria-pressed="false">log x</button>
+      <button id="log-y" aria-pressed="false">log y</button><button id="angle" aria-pressed="false">RAD</button>
+      <span class="spacer"></span>
+      <button id="trace" aria-pressed="false">Trace</button><button id="pin">Pin</button>
+      <button id="tangent" aria-pressed="false">Tangent</button><button id="keypoints" aria-pressed="false">Key points</button>
+    </nav>
+    <output id="coordinate"></output><output id="sampling">in x · out y · unitless</output>
+  </section>
+</main>
+<footer id="family"><div id="family-inner">
+  <button id="manual-open">Manual</button>
+  <div class="plate" aria-label="Curio Class Curiosities · No. 08 · Graph Studio">
+    <span>Curio Class Curiosities</span><span>· No. 08 · Graph Studio</span>
+  </div>
+</div></footer>
+<div id="live" class="sr" aria-live="polite" aria-atomic="true"></div>
+<dialog id="manual" aria-labelledby="manual-title">
+  <div class="drawer-head"><h2 id="manual-title">The plotter manual</h2><button data-close="manual">Close</button></div>
+  <div class="drawer-body">
+    <h3>Put a thought on paper</h3>
+    <p>Type on the equation tape. Enter adds a line; Delete on an empty line removes it. There are eight pens.
+      The little number tabs under an equation are part of its tape: drag vertically, scroll, or use Up and Down.
+      A decimal changes by its last digit; Shift changes ten times as much, and Alt gives finer drag or scroll adjustments.</p>
+    <p><code>y = x^2</code>, <code>y = 2x + 1</code>, <code>x = 3</code>, <code>f(x) = x^2 - 3x</code>, then <code>f(4)</code>.
+      Functions f and g can call each other; circular definitions are left undefined. Type <code>y = a(x-b)^2 + k</code> to make three rulers.</p>
+    <p>Operators: + − * / ^. Multiplication can be implicit: 2x, 3(x+1), xy. Powers bind before a leading minus.
+      Constants: pi, π, e. Functions: sqrt, abs, sin, cos, tan, asin, acos, atan, ln (natural log), log (base ten), exp, floor, round.
+      Trigonometry uses the RAD/DEG switch; it applies to inverse functions too.
+      Round takes the nearest integer, with exact halves going away from zero.</p>
+    <p><code>r = sin(4t)</code> is polar. <code>(cos(3t), sin(2t))</code> or <code>x = cos(3t), y = sin(2t)</code>
+      is parametric. Both use t from 0 to 2pi radians (0 to 360 in degrees), adjustable in Axes.
+      <code>(2, 3)</code> is a point: drag it, or select its line and use Alt with the arrow keys on paper.</p>
+    <h3>The rulers and paper</h3>
+    <p>A free letter gets a ruler just below its first line. Its end caps set minimum, maximum and step.
+      Arrows step; Page Up and Page Down take ten steps. Play sweeps back and forth. Motion off parks all moving rulers.
+      Drag the paper to pan, scroll or pinch to zoom. + and − zoom; 0 restores both axes to −10 through 10.
+      Square gives equal physical distances per axis unit (per decade on log axes).
+      log x and log y use base ten and show positive coordinates only.</p>
+    <h3>Measure, without guessing</h3>
+    <p>Tap an equation-tape curve or press T to trace. Left and Right move the trace; Up and Down change pens. The brass tag gives
+      the parameter and both coordinates to four significant figures. For ordinary y curves, the parameter is x.
+      P drops a pin; drag it along its curve. Two pins on the same curve give Δy/Δx, the average rate of change.
+      Pins snap together when dragged onto each other; when Δx is zero the rate is undefined.
+      Escape clears the pins. G shows the numerical tangent.</p>
+    <p>K marks numerically found zeros, turning points, the y intercept and intersections of visible equation-tape y curves.
+      A numbered cross matches its pen on the tape; an × with two pen numbers is an intersection.
+      Open circles mark sampled holes with a finite limiting value. A pole is a break, never a joining stroke.</p>
+    <p>Table prints values for the chosen line, with your own start and step. It lists t for polar and parametric ink,
+      y for a vertical equation, and x for an ordinary equation. Previous and Next move through the table.</p>
+    <h3>Measurements in, curves out</h3>
+    <p>Data accepts two columns separated by a tab, comma or space, at most 1,000 pairs. An optional first header row is ignored.
+      Non-numeric rows are reported. A line and a quadratic use ordinary least squares, with centered, scaled x for stability.
+      Exponential fits log(y) against x; power fits log(y) against log(x). Those fits require positive values in the logged columns.
+      Rescale columns larger than 1e100 before fitting.</p>
+    <p>R² measures the share of variation described by the fitted curve. For exponential and power it is measured in log space,
+      so it is not directly comparable to an ordinary-space R². Constant data have undefined R². Coefficients have four
+      significant figures in the readout; plotting keeps full precision. A fit is a description, not a prediction or a cause.</p>
+    <p>The Notebook has six setups and four save slots. Equations, rulers, data and paper settings stay on this device;
+      they never leave it. Private browsing or clearing browser storage can remove them. No account, upload or recording.</p>
+    <h3>Honesty notes</h3>
+    <p>A literal fraction exponent p/q, reduced to an odd denominator, uses the real root for negative bases:
+      x^(1/3) and x^(2/3) work on both sides of zero. Decimal exponents keep the usual real-power domain.</p>
+    <p>This is a real numerical plotter, not symbolic algebra. It accepts explicit equations, points, polar and parametric
+      forms; inequalities and general implicit equations are outside this build. Real-number arithmetic uses double precision.
+      Very large values overflow; undefined values are left blank.</p>
+    <p>Every curve starts with at least one sample per paper pixel and is refined where it bends. Very fast wiggles can alias;
+      a warning is shown for detectable high-frequency trigonometric inputs. No finite sampler can detect every hidden oscillation
+      or hole. Key points and intersections are numerical candidates, typically about six significant figures for well-scaled curves;
+      repeated roots and closely spaced features can be missed. The tangent is a symmetric numerical derivative, checked on both sides.
+      At corners and jumps it may be undefined. No physical units are inferred from equations.</p>
+    <h3>Things people have found</h3>
+    <p>On the positive x axis, 2^x and x^10 cross near 1.078 and 58.77. There is also a negative crossing near −0.9371.
+      Eventually the exponential outgrows the polynomial.</p>
+    <p>The planets have a power-fit exponent near 1.500 for orbital period against distance. A log-log plot makes that
+      relation nearly a straight line. Squaring period and cubing distance is Kepler's third law.</p>
+    <p>The bundled Mauna Loa annual CO₂ means bend upward; the Data drawer computes line and quadratic R² directly from those values.</p>
+    <p>The US population from 1790 to 1860 grew roughly three percent per year. A later span tells a different story.</p>
+    <p>For positive integer n, a polar rose sin(nt) has n petals when n is odd and 2n when n is even.
+      In radians, sin(x)/x has a hole at (0, 1); in degrees its limiting height is pi/180.
+      (1 + 1/n)^n approaches e as n grows; set the ruler n's maximum to 1000 to watch it approach.
+      cos(3t), sin(2t) makes the 3:2 Lissajous figure.</p>
+    <h3>Sources and permissions</h3>
+    <p>NOAA Global Monitoring Laboratory,
+      <a href="https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt" target="_blank" rel="noreferrer">Mauna Loa annual CO₂ means</a>,
+      1959–2025, ppm; all 67 annual means, checked against the source on 5 November 2026.
+      US government work, public domain; credited to NOAA GML, Xin Lan and Ralph Keeling (Scripps).
+      The 1958–April 1974 record originated with C. David Keeling at Scripps. Annual means may be revised.
+      December 2022–July 2023 observations came from Maunakea during the Mauna Loa interruption.</p>
+    <p>NASA, <a href="https://nssdc.gsfc.nasa.gov/planetary/factsheet/" target="_blank" rel="noreferrer">Planetary Fact Sheet</a>:
+      eight rounded J2000 mean semimajor axes (AU) and approximate sidereal periods (Earth years),
+      from the individual planet sheets, checked 5 November 2026. They are not instantaneous distances.
+      Saturn's period is rounded to 29.45 years. US government data, public domain.</p>
+    <p>US Census Bureau,
+      <a href="https://www.census.gov/data/tables/time-series/dec/popchange-data-text.html" target="_blank" rel="noreferrer">decennial population counts</a>,
+      1910–2020 resident counts, rounded to 0.01 million, checked 5 November 2026.
+      Earlier values: <a href="https://www2.census.gov/library/publications/2011/compendia/statab/131ed/tables/12s0002.pdf"
+        target="_blank" rel="noreferrer">Statistical Abstract 2012, table 1</a>, using its unrevised 1870 count.
+      US government data, public domain. Boundaries and who was counted changed; early censuses excluded many Indigenous people.
+      This is a historical count series, not a fixed-boundary comparison of everyone living here.</p>
+    <p>Count coverage: US Census Bureau,
+      <a href="https://www.census.gov/about/history/census-records-family-history/census-records/censuses-of-american-indians.html"
+        target="_blank" rel="noreferrer">Censuses of American Indians</a>; US government work, public domain.</p>
+    <p>OpenStax,
+      <a href="https://openstax.org/books/college-algebra-2e/pages/6-introduction-to-exponential-and-logarithmic-functions"
+        target="_blank" rel="noreferrer">College Algebra 2e, chapter 6</a>,
+      exponential growth and the limit defining e. Current site licence: CC BY-NC-SA 4.0 (checked 5 November 2026).
+      Reference only: no textbook text, figures or datasets are bundled. Mathematical facts are independently computed.
+      Wolfram MathWorld,
+      <a href="https://mathworld.wolfram.com/RoseCurve.html" target="_blank" rel="noreferrer">Rose Curve</a> and
+      <a href="https://mathworld.wolfram.com/LissajousCurve.html" target="_blank" rel="noreferrer">Lissajous Curve</a>,
+      mathematical facts paraphrased; pages copyright Wolfram Research, no text or images reproduced.
+      Parser, drawings and numerical routines are original Curio Class code, MIT licence, copyright 2026 LochLogic (Curio Class).
+      All data are bundled; the instrument makes no network requests.</p>
+    <p>Further fact checks (references only, no content copied):
+      <a href="https://openstax.org/books/college-algebra-2e/pages/1-3-radicals-and-rational-exponents"
+        target="_blank" rel="noreferrer">OpenStax: rational exponents</a> (CC BY-NC-SA 4.0),
+      <a href="https://mathworld.wolfram.com/CubeRoot.html" target="_blank" rel="noreferrer">MathWorld: real cube roots</a>
+      (copyright Wolfram Research). Real-root conventions checked 6 November 2026; no source text or figures copied.
+      <a href="https://science.nasa.gov/solar-system/orbits-and-keplers-laws/" target="_blank" rel="noreferrer">NASA: Kepler's laws</a>
+      (public domain),
+      <a href="https://openstax.org/books/precalculus-2e/pages/8-4-polar-coordinates-graphs" target="_blank" rel="noreferrer">OpenStax: polar graphs</a>
+      (CC BY-NC-SA 4.0),
+      <a href="https://mathcenter.oxford.emory.edu/site/math111/probSetLimits/" target="_blank" rel="noreferrer">Emory: the sinc limit</a>,
+      <a href="https://www.physics.wisc.edu/ingersollmuseum/exhibits/waves/lissajous/" target="_blank" rel="noreferrer">Wisconsin: Lissajous curves</a>
+      (copyright their authors).</p>
+  </div>
+</dialog>
+<dialog id="data" aria-labelledby="data-title">
+  <div class="drawer-head"><h2 id="data-title">Measurements<output id="fit-summary" hidden></output></h2>
+    <button data-close="data">Close</button></div>
+  <div class="drawer-body">
+    <div class="form-row"><label>Bundled measurements<select id="dataset"><option value="custom">Your two columns</option>
+      <option value="co2">Mauna Loa · year / ppm</option><option value="planets">Planets · AU / Earth years</option>
+      <option value="population">US population · year / millions</option></select></label><button id="load-data">Load</button></div>
+    <div class="form-row">
+      <label>Curve fit<select id="fit"><option value="none">None</option><option value="line">Line</option>
+      <option value="quadratic">Quadratic</option><option value="exponential">Exponential</option><option value="power">Power</option></select></label>
+      <button id="fit-view">Fit paper to data</button></div>
+    <output id="data-status" aria-live="polite"></output><output id="fit-result" aria-live="polite">No measurements loaded.</output>
+    <details id="columns"><summary>Two columns · paste or inspect</summary>
+      <label for="data-input">x, y · two columns</label>
+      <textarea id="data-input" spellcheck="false" aria-label="Two columns of measurements"></textarea>
+      <button id="apply-data">Plot data</button>
+    </details>
+  </div>
+</dialog>
+<dialog id="table" aria-labelledby="table-title">
+  <div class="drawer-head"><h2 id="table-title">Values from the ink</h2>
+    <button id="table-prev">Previous</button><button id="table-next">Next</button><button data-close="table">Close</button></div>
+  <div class="drawer-body">
+    <div class="form-row"><label>Pen<select id="table-line"></select></label>
+      <label>Start<input id="table-start" type="number" value="-5" step="any"></label>
+      <label>Step<input id="table-step" type="number" value="1" step="any"></label></div>
+    <div class="table-scroll"><table><thead><tr id="table-head"><th id="table-parameter">x</th><th>y</th></tr></thead>
+      <tbody id="table-values"></tbody></table></div>
+  </div>
+</dialog>
+<dialog id="notebook" aria-labelledby="notebook-title">
+  <div class="drawer-head"><h2 id="notebook-title">Plotter notebook</h2><button data-close="notebook">Close</button></div>
+  <div class="drawer-body">
+    <h3>Setups</h3><div class="setup-grid">
+      <button data-setup="rose">Rose curves</button><button data-setup="race">The 2^x race</button>
+      <button data-setup="parabola">Parabola family</button><button data-setup="lissajous">Lissajous</button>
+      <button data-setup="co2">Mauna Loa</button><button data-setup="planets">Planets</button>
+    </div>
+    <h3>Four pages on this device</h3><p>Saved here only. Nothing leaves this device. Save replaces that page.</p>
+    <div id="slots"></div><output id="notebook-status" aria-live="polite"></output>
+  </div>
+</dialog>
+<dialog id="range" aria-labelledby="range-title">
+  <div class="drawer-head"><h2 id="range-title">Travel limits</h2><button data-close="range">Close</button></div>
+  <div class="drawer-body">
+    <div class="form-row"><label>x minimum<input id="xmin" type="number" step="any"></label>
+      <label>x maximum<input id="xmax" type="number" step="any"></label></div>
+    <div class="form-row"><label>y minimum<input id="ymin" type="number" step="any"></label>
+      <label>y maximum<input id="ymax" type="number" step="any"></label></div>
+    <div class="form-row"><label>t minimum<input id="tmin" type="number" step="any" value="0"></label>
+      <label>t maximum<input id="tmax" type="number" step="any" value="6.283185307179586"></label></div>
+    <button id="apply-range">Set travel</button><output id="range-status" aria-live="polite"></output>
+  </div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const INKS = ['#1b1b1b', '#b8322a', '#1f4e9a', '#2d6a3e', '#5b3a8c', '#7a4a1e', '#116466', '#a4480a'];
+const HINT = 'Drag the 2 up or down.';
+const TAU = 2 * Math.PI;
+const scientific = text => text.replace(/e\+?(-?\d+)/i, '×10^$1');
+const fmt = n => Number.isFinite(n) ? (n===0 ? '0.000' : scientific(n.toPrecision(4))) : 'undefined';
+const safe = s => String(s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
+const co2 = [315.98,316.91,317.64,318.45,318.99,319.62,320.04,321.37,322.18,323.05,324.62,325.68,326.32,327.46,
+  329.68,330.19,331.13,332.03,333.84,335.41,336.84,338.76,340.12,341.48,343.15,344.87,346.35,347.61,349.31,351.69,
+  353.20,354.45,355.70,356.54,357.21,358.96,360.97,362.74,363.88,366.84,368.54,369.71,371.32,373.45,375.98,377.70,
+  379.98,382.09,384.02,385.83,387.64,390.10,391.85,394.06,396.74,398.81,401.01,404.41,406.76,408.72,411.65,414.21,
+  416.41,418.53,421.08,424.61,427.35];
+const population = [3.93,5.31,7.24,9.64,12.87,17.07,23.19,31.44,38.56,50.19,62.98,76.21,92.23,106.02,
+  123.20,132.17,151.33,179.32,203.21,226.55,248.71,281.42,308.75,331.45];
+const DATA = {
+  co2: co2.map((v, i) => [1959 + i, v]),
+  planets: [[.387,.241],[.723,.615],[1,1],[1.524,1.881],[5.203,11.86],[9.537,29.45],[19.19,84.01],[30.07,164.8]],
+  population: population.map((v, i) => [1790 + 10 * i, v])
+};
+const state = {
+  lines: [{text: 'y = x^2'}], active: 0, vars: {},
+  view: {xmin: -10, xmax: 10, ymin: -10, ymax: 10}, logX: false, logY: false, square: false, degrees: false,
+  tmin: 0, tmax: TAU, tracing: false, traceT: 1, pins: [], tangent: false, keys: false,
+  data: [], dataset: 'custom', fitType: 'none', fitted: null, tables: {}, hint: true
+};
+let compiled = [], definitions = {}, dirty = true, frame = 0, penStart = performance.now(), lastTime = 0;
+let paths = [], fitPath = [], features = [], holes = [], width = 1, height = 1, ratio = 1, samples = 0;
+let inkPaths = [], fitInk = [];
+let opening = true, pointer = null, lastAnnounce = 0;
+let tapeHeld=false,tapeRefreshPending=false,rulerMemory={};
+let featureKey = '', pendingFeatureKey = '', featureTimer = 0;
+let scrubHeld = false;
+const canvas = $('plot');
+const ctx = canvas.getContext('2d');
+const base = document.createElement('canvas');
+const bctx = base.getContext('2d');
+
+// A bounded Pratt parser. Typed expressions never enter JavaScript evaluation.
+const builtinNames = ['sqrt','floor','round','asin','acos','atan','sin','cos','tan','abs','exp','log','ln'];
+function tokenize(text) {
+  if (text.length > 500) throw Error('Keep a line within 500 characters.');
+  if (text.includes('|')) throw Error('Use abs(x) for absolute value.');
+  text = text.replace(/π/g, 'pi').replace(/²/g, '^2').replace(/³/g, '^3').replace(/[−–]/g, '-');
+  const tokens = [];
+  let i = 0;
+  while (i < text.length) {
+    if (/\s/.test(text[i])) { i++; continue; }
+    const rest = text.slice(i);
+    const num = rest.match(/^(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?/);
+    if (num) { tokens.push({kind: 'num', value: Number(num[0])}); i += num[0].length; }
+    else {
+      const name = [...builtinNames, 'pi'].find(n => rest.startsWith(n));
+      if (name) { tokens.push({kind: 'id', value: name}); i += name.length; }
+      else if (/[a-z]/.test(text[i])) tokens.push({kind: 'id', value: text[i++]});
+      else if ('+-*/^(),'.includes(text[i])) tokens.push({kind: text[i++], value: null});
+      else throw Error('Use numbers, letters and the listed mathematical operators.');
+    }
+    if (tokens.length > 220) throw Error('This line has too many parts.');
+  }
+  tokens.push({kind: 'end'});
+  return tokens;
+}
+function parse(text) {
+  const tokens = tokenize(text);
+  let i = 0, depth = 0;
+  function expr(min = 0) {
+    if (++depth > 40) throw Error('This expression nests too deeply.');
+    let token = tokens[i++], left;
+    if (token.kind === 'num') left = {op: 'n', v: token.value};
+    else if (token.kind === '-' || token.kind === '+') left = {op: token.kind === '-' ? 'neg' : 'pos', a: expr(25)};
+    else if (token.kind === '(') {
+      left = expr();
+      if (tokens[i++].kind !== ')') throw Error('Close the parenthesis.');
+    } else if (token.kind === 'id') {
+      if ([...builtinNames, 'f', 'g'].includes(token.value) && tokens[i].kind === '(') {
+        i++;
+        left = {op: 'call', name: token.value, a: expr()};
+        if (tokens[i++].kind !== ')') throw Error('Close the function parenthesis.');
+      } else {
+        if(builtinNames.includes(token.value)) throw Error(`Add parentheses after ${token.value}.`);
+        left={op:'v',name:token.value};
+      }
+    } else throw Error('Add an expression here.');
+    for (;;) {
+      const next = tokens[i];
+      const implicit = ['num','id','('].includes(next.kind);
+      const op = implicit ? '*' : next.kind;
+      const power = ({'+': 10, '-': 10, '*': 20, '/': 20, '^': 30})[op];
+      if (!power || power < min) break;
+      if (!implicit) i++;
+      left = {op, a: left, b: expr(op === '^' ? power : power + 1)};
+      if (op === '^') left.fraction = literalFraction(left.b);
+    }
+    depth--;
+    return left;
+  }
+  const ast = expr();
+  if (tokens[i].kind !== 'end') throw Error('Check the expression after the closing parenthesis.');
+  return ast;
+}
+function literalFraction(ast) {
+  const integer = node => node?.op === 'n' && Number.isSafeInteger(node.v) ? node.v :
+    node?.op === 'neg' ? -integer(node.a) : node?.op === 'pos' ? integer(node.a) : NaN;
+  const sign = ast?.op === 'neg' ? -1 : 1;
+  const fraction = ['neg','pos'].includes(ast?.op) ? ast.a : ast;
+  if (fraction?.op !== '/') return null;
+  let p = sign * integer(fraction.a), q = integer(fraction.b);
+  if (!Number.isSafeInteger(p) || !Number.isSafeInteger(q) || q === 0) return null;
+  if (q < 0) { p = -p; q = -q; }
+  let a = Math.abs(p), b = q;
+  while (b) { const remainder = a % b; a = b; b = remainder; }
+  return {p: p / a, q: q / a};
+}
+function evaluate(ast, env = {}, calls = 0, depth = 0, fuel = {left: 1600}) {
+  if (!ast || depth > 80 || calls > 12 || --fuel.left < 0) return NaN;
+  const go = a => evaluate(a, env, calls, depth + 1, fuel);
+  if (ast.op === 'n') return ast.v;
+  if (ast.op === 'v') {
+    if (ast.name === 'pi') return Math.PI;
+    if (ast.name === 'e') return Math.E;
+    return env[ast.name] ?? state.vars[ast.name]?.value ?? NaN;
+  }
+  if (ast.op === 'neg') return -go(ast.a);
+  if (ast.op === 'pos') return go(ast.a);
+  const a = go(ast.a);
+  if (ast.op === 'call') {
+    const name = ast.name;
+    if (name === 'f' || name === 'g') return evaluate(definitions[name], {...env, x: a}, calls + 1, depth + 1, fuel);
+    const angle = state.degrees ? Math.PI / 180 : 1;
+    if (['sin','cos','tan'].includes(name)) {
+      if (name === 'tan' && Math.abs(Math.cos(a * angle)) < 1e-12) return NaN;
+      return Math[name](a * angle);
+    }
+    if (['asin','acos','atan'].includes(name)) return Math[name](a) / angle;
+    if (name === 'ln') return Math.log(a);
+    if (name === 'log') return Math.log10(a);
+    if (name === 'round') return Math.sign(a)*Math.floor(Math.abs(a)+.5);
+    return Math[name](a);
+  }
+  const b = go(ast.b);
+  if (ast.op === '+') return a + b;
+  if (ast.op === '-') return a - b;
+  if (ast.op === '*') return a * b;
+  if (ast.op === '/') return b === 0 ? NaN : a / b;
+  if (ast.op === '^') {
+    if (a === 0 && b === 0) return NaN;
+    if (a < 0) {
+      const fraction = ast.fraction;
+      if (fraction && fraction.q % 2 === 1) return (Math.abs(fraction.p) % 2 ? -1 : 1) * Math.pow(-a, b);
+    }
+    return Math.pow(a,b);
+  }
+  return NaN;
+}
+function splitPair(text) {
+  let nesting = 0;
+  for (let i = 0; i < text.length; i++) {
+    if (text[i] === '(') nesting++;
+    if (text[i] === ')') nesting--;
+    if (text[i] === ',' && nesting === 0) return [text.slice(0,i), text.slice(i+1)];
+  }
+  return null;
+}
+function letters(ast, into) {
+  if (!ast) return;
+  if (ast.op === 'v' && !['x','y','pi','e'].includes(ast.name)) into.add(ast.name);
+  letters(ast.a, into);
+  letters(ast.b, into);
+}
+function hasVariable(ast, name) {
+  return !!ast && ((ast.op === 'v' && ast.name === name) || hasVariable(ast.a, name) || hasVariable(ast.b, name));
+}
+function curveLetters(c) {
+  const found=new Set();
+  letters(c.ast,found);letters(c.second,found);
+  if(['polar','param'].includes(c.type)) found.delete('t');
+  return found;
+}
+function compileLine(text) {
+  text = text.trim();
+  if (!text) return {type: 'empty'};
+  let match = text.match(/^([fg])\s*\(\s*x\s*\)\s*=\s*(.*)$/);
+  if (match) return {type: 'y', name: match[1], ast: parse(match[2])};
+  let pair = splitPair(text);
+  if (pair && /^x\s*=/.test(pair[0]) && /^\s*y\s*=/.test(pair[1])) {
+    return {type: 'param', ast: parse(pair[0].replace(/^x\s*=/,'')), second: parse(pair[1].replace(/^\s*y\s*=/,''))};
+  }
+  if (text.startsWith('(') && text.endsWith(')')) pair = splitPair(text.slice(1,-1));
+  if (pair) {
+    const a = parse(pair[0]), b = parse(pair[1]);
+    return {type: hasVariable(a, 't') || hasVariable(b, 't') ? 'param' : 'point', ast: a, second: b};
+  }
+  match = text.match(/^([yxr])\s*=\s*(.*)$/);
+  if (match) return {type: match[1] === 'r' ? 'polar' : match[1], ast: parse(match[2])};
+  if (/=|[<>]/.test(text)) throw Error('Use y =, x =, f(x) =, r = or a parametric pair.');
+  return {type: hasVariable(parse(text), 'x') ? 'y' : 'value', ast: parse(text)};
+}
+function compileAll() {
+  definitions = {};
+  compiled = state.lines.map((line, index) => {
+    try { return {...compileLine(line.text), index}; }
+    catch (e) { return {type: 'error', error: e.message, index}; }
+  });
+  compiled.forEach(c => { if (c.name) definitions[c.name] = c.ast; });
+  const calls=(ast,names=new Set())=>{
+    if(!ast) return names;
+    if(ast.op==='call'&&['f','g'].includes(ast.name)) names.add(ast.name);
+    calls(ast.a,names);calls(ast.b,names);return names;
+  };
+  const recursive=(name,seen=new Set())=>{
+    if(seen.has(name)) return true;
+    const next=new Set([...seen,name]);
+    return [...calls(definitions[name])].some(other=>definitions[other]&&recursive(other,next));
+  };
+  for(const name of Object.keys(definitions)) if(recursive(name)) {
+    delete definitions[name];
+    for(const c of compiled) if(c.name===name) {c.type='error';c.error='Recursive definitions have no plotted value.';}
+  }
+  const found = new Set();
+  compiled.forEach(c=>{for(const name of curveLetters(c)) found.add(name);});
+  for (const name of found) {
+    if (!state.vars[name]) state.vars[name] = rulerMemory[name]?
+      {...rulerMemory[name],play:false}:{value: 1, min: -10, max: 10, step: .1, play: false, direction: 1};
+  }
+  for (const name of Object.keys(state.vars)) if (!found.has(name)) {
+    rulerMemory[name]={...state.vars[name],play:false};delete state.vars[name];
+  }
+  if (!state.square && !state.logX && !state.logY &&
+    state.view.xmin === -10 && state.view.xmax === 10 && state.view.ymin === -10 && state.view.ymax === 10 &&
+    compiled.some(c => ['polar','param'].includes(c.type))) {
+    state.square = true;
+    syncControls();
+    resize();
+  }
+  dirty = true;
+  requestDraw();
+}
+function coordinates(c, t) {
+  if (c.type === 'point') return [evaluate(c.ast), evaluate(c.second)];
+  if (c.type === 'param') return [evaluate(c.ast, {t}), evaluate(c.second, {t})];
+  if (c.type === 'polar') {
+    const r = evaluate(c.ast, {t}), angle = state.degrees ? t * Math.PI / 180 : t;
+    return [r * Math.cos(angle), r * Math.sin(angle)];
+  }
+  if (c.type === 'x') return [evaluate(c.ast, {y: t}), t];
+  return [t, evaluate(c.ast, {x: t})];
+}
+let announcementTimer = 0;
+function announce(text, force = false) {
+  clearTimeout(announcementTimer);
+  const publish = () => { $('live').textContent = text; lastAnnounce = performance.now(); };
+  if (force || performance.now() - lastAnnounce > 350) publish();
+  else announcementTimer = setTimeout(publish, 360);
+}
+function dismissHint() {
+  if(state.hint&&V.playing===HINT) V.hush('hint action');
+  state.hint=false;$('hint').hidden=true;
+}
+function changed(rebuild = true, ink = false) {
+  dismissHint();
+  if (!ink) {opening=false;stopScratch();}
+  compileAll();
+  if (rebuild) renderTape(); else updateLineReadouts();
+  updateMeasurements();
+  if (ink) startInk();
+}
+function numericTokens(text) {
+  return [...text.matchAll(/(?:\d+\.?\d*|\.\d+)(?:[eE][+−-]?\d+)?/g)].map(match=>{
+    match.end=match.index+match[0].length;match[0]=match[0].replace(/−/g,'-');
+    const prefix=text.slice(0,match.index),sign=prefix.match(/([+−-])\s*$/);
+    if(sign) {
+      const before=prefix.slice(0,sign.index).trimEnd();
+      if(!before || /[=,(+\-*/^−]$/.test(before)) {
+        const signed=[sign[1].replace('−','-')+match[0]];
+        signed.index=sign.index;signed.end=match.end;return signed;
+      }
+    }
+    return match;
+  });
+}
+function numberStep(text) {
+  const [mantissa, exponent = '0'] = text.toLowerCase().split('e');
+  return Math.pow(10, Number(exponent) - (mantissa.split('.')[1]?.length || 0));
+}
+function renderTape() {
+  if(tapeHeld) {tapeRefreshPending=true;return;}
+  const activeEl = document.activeElement;
+  const focusId = $('equations').contains(activeEl) ? activeEl.id : '';
+  const selection = activeEl.selectionStart;
+  const scroll = $('equations').scrollTop;
+  const assigned = new Set();
+  $('equations').innerHTML = state.lines.map((line, i) => {
+    const c=compiled[i],used=curveLetters(c);
+    const rulers = [...used].filter(name => { if (assigned.has(name)) return false; assigned.add(name); return true; });
+    const nums = numericTokens(line.text);
+    return `<section class="line ${i === state.active ? 'active' : ''}" style="--pen:${INKS[i]}" data-line="${i}">
+      <div class="line-top"><span class="line-id">${String(i+1).padStart(2,'0')}</span>
+      <input id="equation-${i}" class="equation" aria-label="Equation ${i+1}" spellcheck="false" autocomplete="off"
+        maxlength="500" value="${safe(line.text)}"><button data-remove="${i}" aria-label="Remove equation ${i+1}">×</button></div>
+      <output id="line-info-${i}" class="line-info"></output>
+      <div class="scrubbers">${nums.map((m,j) => `<button id="number-${i}-${j}" class="number ${state.hint ? 'first' : ''}"
+        data-number="${i},${j}" title="Drag vertically; Alt for tenths; Shift for ten steps"
+        aria-label="Scrub ${safe(m[0])} in equation ${i+1}; Alt for tenths">${safe(m[0])} ↕</button>`).join('')}</div>
+      ${rulers.map(name => rulerHTML(name)).join('')}
+    </section>`;
+  }).join('');
+  $('add').disabled = state.lines.length >= 8;
+  updateLineReadouts();
+  $('equations').scrollTop = scroll;
+  if (focusId && $(focusId)) {
+    $(focusId).focus({preventScroll: true});
+    if (typeof selection === 'number' && $(focusId).type === 'text') $(focusId).setSelectionRange(selection, selection);
+  }
+}
+addEventListener('pointerdown',()=>{tapeHeld=true;},{capture:true});
+for(const event of ['pointerup','pointercancel']) addEventListener(event,()=>{
+  tapeHeld=false;
+  setTimeout(()=>{if(tapeRefreshPending){tapeRefreshPending=false;renderTape();}},0);
+},{capture:true});
+function rulerHTML(name) {
+  const v = state.vars[name];
+  return `<div class="ruler" data-var="${name}"><div class="ruler-top"><span class="ruler-name">${name}</span>
+    <output id="value-${name}" class="ruler-value">${name} = ${fmt(v.value)}</output>
+    <button id="play-${name}" data-play="${name}" aria-label="Animate ${name}" aria-pressed="${v.play}">${v.play ? 'Ⅱ' : '▷'}</button></div>
+    <div class="ruler-track"><input id="slider-${name}" data-slider="${name}" type="range" min="${v.min}" max="${v.max}"
+      step="${v.step}" value="${v.value}" aria-label="${name}" aria-valuetext="${fmt(v.value)}"></div>
+    <div class="endcaps">${['min','max','step'].map(k => `<label>${k}<input id="${name}-${k}" data-end="${name},${k}"
+      aria-label="${name} ${k}" type="number" step="any" value="${v[k]}"></label>`).join('')}</div></div>`;
+}
+function updateLineReadouts() {
+  compiled.forEach((c, i) => {
+    const out = $(`line-info-${i}`);
+    if (!out) return;
+    out.classList.toggle('error', c.type === 'error');
+    if (c.type === 'value') out.textContent = `${state.lines[i].text.trim()} = ${fmt(evaluate(c.ast))}`;
+    else if (c.type === 'error') out.textContent = c.error;
+    else out.textContent = ({y: c.name ? `in x · out ${c.name}(x)` : 'in x · out y', x: 'in y · out x', polar: 'polar · in t · out r',
+      param: 'parametric · in t · out x, y', point: 'point · drag on paper', empty: 'Ready for ink'})[c.type];
+  });
+}
+function refreshScrubbers(i) {
+  const strip=document.querySelector(`[data-line="${i}"] .scrubbers`);
+  if(!strip) return;
+  strip.innerHTML=numericTokens(state.lines[i].text).map((match,j)=>
+    `<button id="number-${i}-${j}" class="number" data-number="${i},${j}"
+      title="Drag vertically; Alt for tenths; Shift for ten steps"
+      aria-label="Scrub ${safe(match[0])} in equation ${i+1}; Alt for tenths">${safe(match[0])} ↕</button>`).join('');
+}
+function reconcileRulers() {
+  const assigned=new Set();
+  compiled.forEach((c,i)=>{
+    const line=document.querySelector(`[data-line="${i}"]`),used=curveLetters(c);
+    if(!line) return;
+    const names=[...used].filter(name=>{
+      if(assigned.has(name)) return false;
+      assigned.add(name);return true;
+    });
+    const existing=[...line.querySelectorAll('.ruler')].map(el=>el.dataset.var);
+    if(names.join()!==existing.join()) {
+      line.querySelectorAll('.ruler').forEach(el=>el.remove());
+      line.insertAdjacentHTML('beforeend',names.map(rulerHTML).join(''));
+    }
+  });
+}
+function setActive(i) {
+  state.active = clamp(i, 0, state.lines.length - 1);
+  document.querySelectorAll('.line').forEach((el, n) => el.classList.toggle('active', n === state.active));
+  dirty = true; requestDraw(); updateMeasurements();
+}
+function addLine() {
+  if (state.lines.length >= 8) return;
+  const next=state.lines.length;
+  state.lines.push({text: ''});state.active=next;
+  changed();
+  setActive(next);
+  $(`equation-${next}`).focus({preventScroll: true});
+  $(`equation-${next}`).closest('.line').scrollIntoView({block: 'nearest'});
+}
+function removeLine(i) {
+  if (state.lines.length === 1) state.lines[0].text = '';
+  else state.lines.splice(i,1);
+  state.active = Math.min(state.active, state.lines.length-1); state.pins = [];
+  changed();
+  $(`equation-${state.active}`).focus({preventScroll: true});
+}
+$('equations').addEventListener('focusin', e => {
+  const line = e.target.closest('[data-line]');
+  if (line) setActive(+line.dataset.line);
+});
+$('equations').addEventListener('input', e => {
+  if (e.target.classList.contains('equation')) {
+    const i = +e.target.closest('[data-line]').dataset.line;
+    state.lines[i].text = e.target.value;
+    changed(false, true);
+    reconcileRulers();refreshScrubbers(i);
+  }
+  if (e.target.dataset.slider) {
+    const name = e.target.dataset.slider, v = state.vars[name];
+    v.value = +e.target.value;
+    v.sweep=v.value;opening=false;stopScratch();
+    $(`value-${name}`).textContent = `${name} = ${fmt(v.value)}`;
+    e.target.setAttribute('aria-valuetext', fmt(v.value));
+    dismissHint(); dirty = true; requestDraw(); updateLineReadouts(); updateMeasurements();
+    announce(`${name} ${fmt(v.value)}`);
+  }
+});
+$('equations').addEventListener('change', e => {
+  if (e.target.dataset.end) {
+    const [name, key] = e.target.dataset.end.split(','), v = state.vars[name], value = +e.target.value;
+    if (!e.target.value.trim() || !Number.isFinite(value) || Math.abs(value)>1e100 || (key === 'step' && value <= 0) || (key === 'min' && value >= v.max) ||
+      (key === 'max' && value <= v.min)) {
+      announce('Ruler bounds must increase; step must be positive.',true);e.target.value=v[key];return;
+    }
+    v[key]=value;
+    const slider=$(`slider-${name}`);
+    slider.min=v.min;slider.max=v.max;slider.step=v.step;slider.value=clamp(v.value,v.min,v.max);
+    v.value=+slider.value;slider.setAttribute('aria-valuetext',fmt(v.value));
+    $(`value-${name}`).textContent=`${name} = ${fmt(v.value)}`;
+    changed(false);announce(`${name} ${key} ${value}`,true);
+  }
+});
+$('equations').addEventListener('click', e => {
+  const remove = e.target.closest('[data-remove]');
+  if (remove) removeLine(+remove.dataset.remove);
+  const play = e.target.closest('[data-play]');
+  if (play) {
+    const v = state.vars[play.dataset.play];
+    if (Curio.reduce) { announce('Motion is off. Turn Motion on to sweep a ruler.', true); return; }
+    v.play = !v.play;v.sweep=v.value;opening=false;stopScratch();
+    play.textContent = v.play ? 'Ⅱ' : '▷'; play.setAttribute('aria-pressed', v.play);
+    dismissHint(); announce(`${play.dataset.play} ${v.play ? 'moving' : 'parked'}`,true); requestDraw();
+  }
+});
+function scrub(button, amount, original) {
+  const [i,j] = button.dataset.number.split(',').map(Number);
+  const text = original ?? state.lines[i].text, token = numericTokens(text)[j];
+  if (!token) return;
+  const unit=numberStep(token[0]);
+  if(!Number.isFinite(unit)||unit===0) {announce('This number is beyond the ruler resolution.',true);return;}
+  const n=Number(token[0])+amount*unit;
+  if (!Number.isFinite(n) || Math.abs(n) > 1e100) return;
+  const [mantissa,exponent]=token[0].toLowerCase().split('e');
+  const decimals=(mantissa.split('.')[1]?.length||0)+(Number.isInteger(amount)?0:1);
+  const replacement=exponent!==undefined?
+    `${(n/Math.pow(10,Number(exponent))).toFixed(Math.min(decimals,100))}e${exponent}`:
+    decimals<=100?n.toFixed(decimals):n.toPrecision(16);
+  state.lines[i].text = text.slice(0,token.index) + replacement + text.slice(token.end);
+  $(`equation-${i}`).value = state.lines[i].text;
+  button.textContent = `${replacement} ↕`;
+  button.setAttribute('aria-label', `Scrub ${replacement} in equation ${i+1}; Alt for tenths`);
+  changed(false); announce(`Equation ${i+1}, number ${n}`);
+  highlightNumber(button);
+}
+function highlightNumber(button) {
+  const [i,j] = button.dataset.number.split(',').map(Number), token = numericTokens(state.lines[i].text)[j];
+  if (!token) return;
+  // Native input selection keeps the highlight aligned through horizontal input scrolling.
+  const input = $(`equation-${i}`);
+  input.setSelectionRange(token.index, token.end);
+  const wasFocused = document.activeElement === input;
+  if (!wasFocused) {
+    const measure = document.createElement('canvas').getContext('2d');
+    measure.font = getComputedStyle(input).font;
+    const x = measure.measureText(input.value.slice(0, token.end)).width;
+    input.scrollLeft = Math.max(0, x - input.clientWidth + 18);
+  }
+  input.classList.add('number-highlight');
+  input.style.backgroundImage = 'linear-gradient(#e1c68b,#e1c68b)';
+  const measure = document.createElement('canvas').getContext('2d');
+  measure.font = getComputedStyle(input).font;
+  const left = measure.measureText(input.value.slice(0,token.index)).width - input.scrollLeft + 2;
+  input.style.backgroundPosition = `${left}px center`;
+  input.style.backgroundSize = `${measure.measureText(input.value.slice(token.index,token.end)).width}px 1.3em`;
+  input.style.backgroundRepeat = 'no-repeat';
+}
+function clearNumberHighlight() {
+  if (scrubHeld) return;
+  document.querySelectorAll('.number-highlight').forEach(input => {
+    input.classList.remove('number-highlight');
+    input.style.backgroundImage = '';
+  });
+  if (document.activeElement?.dataset.number) highlightNumber(document.activeElement);
+}
+for (const event of ['pointerover','focusin']) $('equations').addEventListener(event, e => {
+  const button = e.target.closest('[data-number]');
+  if (button) highlightNumber(button);
+});
+for (const event of ['pointerout','focusout']) $('equations').addEventListener(event, e => {
+  if (e.target.closest('[data-number]')) clearNumberHighlight();
+});
+$('equations').addEventListener('pointerdown', e => {
+  const b = e.target.closest('[data-number]');
+  if (!b) return;
+  e.preventDefault(); b.focus({preventScroll: true});
+  const text = state.lines[+b.dataset.number.split(',')[0]].text, start = e.clientY;
+  scrubHeld = true;
+  let moved = false;
+  highlightNumber(b);
+  b.setPointerCapture(e.pointerId);
+  const move = ev => {
+    if (Math.abs(start - ev.clientY) < 3) return;
+    moved = true;
+    scrub(b, Math.round((start - ev.clientY) / 12) * (ev.shiftKey ? 10 : ev.altKey ? .1 : 1), text);
+  };
+  const end = () => {
+    scrubHeld = false;
+    b.removeEventListener('pointermove',move);
+    b.removeEventListener('pointerup',end);
+    b.removeEventListener('pointercancel',end);
+    // Leave a tap's target in place until click has reached the voice controller.
+    if (moved) setTimeout(() => { renderTape(); }, 0);
+    Curio.tone(160,.045,.009,'triangle');
+  };
+  b.addEventListener('pointermove',move); b.addEventListener('pointerup',end,{once:true});
+  b.addEventListener('pointercancel',end,{once:true});
+});
+$('equations').addEventListener('wheel', e => {
+  const b = e.target.closest('[data-number]');
+  if (!b) return;
+  e.preventDefault(); scrub(b,(e.deltaY < 0 ? 1 : -1) * (e.shiftKey ? 10 : e.altKey ? .1 : 1));
+}, {passive:false});
+$('equations').addEventListener('keydown', e => {
+  if (e.target.classList.contains('equation')) {
+    if (e.key === 'Enter') { e.preventDefault(); addLine(); }
+    if (e.key === 'Delete' && !e.target.value) { e.preventDefault(); removeLine(state.active); }
+  }
+  if (e.target.dataset.number && ['ArrowUp','ArrowDown'].includes(e.key)) {
+    e.preventDefault(); scrub(e.target,(e.key === 'ArrowUp' ? 1 : -1) * (e.shiftKey ? 10 : e.altKey ? .1 : 1));
+  }
+  if (e.target.dataset.slider && ['PageUp','PageDown'].includes(e.key)) {
+    e.preventDefault();
+    const v = state.vars[e.target.dataset.slider];
+    e.target.value = clamp(v.value + (e.key === 'PageUp' ? 10 : -10) * v.step,v.min,v.max);
+    e.target.dispatchEvent(new Event('input',{bubbles:true}));
+  }
+});
+$('add').onclick = addLine;
+
+// Paper transforms operate in linear or base-ten axis coordinates.
+function tx(x) { return state.logX ? Math.log10(x) : x; }
+function ty(y) { return state.logY ? Math.log10(y) : y; }
+function ix(x) { return state.logX ? Math.pow(10,x) : x; }
+function iy(y) { return state.logY ? Math.pow(10,y) : y; }
+function project(x,y) {
+  const v = state.view;
+  return [(tx(x) - tx(v.xmin)) / (tx(v.xmax) - tx(v.xmin)) * width,
+    height - (ty(y) - ty(v.ymin)) / (ty(v.ymax) - ty(v.ymin)) * height];
+}
+function unproject(x,y) {
+  const v = state.view;
+  return [ix(tx(v.xmin) + x / width * (tx(v.xmax)-tx(v.xmin))),
+    iy(ty(v.ymin) + (1-y/height) * (ty(v.ymax)-ty(v.ymin)))];
+}
+function finitePoint(p) { return p.every(Number.isFinite) && (!state.logX || p[0] > 0) && (!state.logY || p[1] > 0); }
+function requestDraw() { if (!frame) frame = requestAnimationFrame(draw); }
+function tickStep(span, count) {
+  const raw = span / count, decade = Math.pow(10, Math.floor(Math.log10(raw))), fraction = raw / decade;
+  return (fraction <= 1 ? 1 : fraction <= 2 ? 2 : fraction <= 5 ? 5 : 10) * decade;
+}
+function dataUnits() {
+  if (!state.data.length) return {x: 'x', y: 'y', xTitle: 'x', yTitle: 'y'};
+  return ({
+    co2: {x: 'year', y: 'ppm', xTitle: 'year', yTitle: 'ppm'},
+    planets: {x: 'AU', y: 'Earth years', xTitle: 'distance (AU)', yTitle: 'period (Earth years)'},
+    population: {x: 'year', y: 'millions', xTitle: 'year', yTitle: 'population (millions)'}
+  })[state.dataset] || {x: 'x', y: 'y', xTitle: 'x', yTitle: 'y'};
+}
+function pointReadout(p) {
+  const units = dataUnits();
+  return `${units.x} ${fmt(p[0])} · ${units.y === 'y' ? 'y ' : ''}${fmt(p[1])}${units.y === 'y' ? '' : ` ${units.y}`}`;
+}
+function paperFont() { return innerWidth >= 1280 ? 12 : 11; }
+function drawPaper() {
+  bctx.setTransform(ratio,0,0,ratio,0,0);
+  bctx.fillStyle = '#f4f1e4'; bctx.fillRect(0,0,width,height);
+  const v = state.view;
+  bctx.font = `${paperFont()}px Consolas, monospace`;
+  function grid(axis) {
+    const log = axis === 'x' ? state.logX : state.logY;
+    const lo = axis === 'x' ? v.xmin : v.ymin, hi = axis === 'x' ? v.xmax : v.ymax;
+    const span = hi-lo, size = axis === 'x' ? width : height;
+    const step = log ? 1 : tickStep(span, Math.max(4,Math.min(8,size/100)));
+    const begin = log ? Math.ceil(Math.log10(lo)) : Math.ceil(lo / step);
+    const end = log ? Math.floor(Math.log10(hi)) : Math.floor(hi / step);
+    for (let j = begin-1; j <= end+1 && j-begin < 150; j++) {
+      const value = log ? Math.pow(10,j) : j * step;
+      const pos = axis === 'x' ? project(value,v.ymin)[0] : project(v.xmin,value)[1];
+      if (pos >= 0 && pos <= size) {
+        bctx.strokeStyle = Math.abs(value) < step/10 && !log ? '#4a4a44' : '#a9c3a0';
+        bctx.lineWidth = Math.abs(value) < step/10 && !log ? 1.4 : .8;
+        bctx.beginPath();
+        if (axis === 'x') { bctx.moveTo(pos,0); bctx.lineTo(pos,height); }
+        else { bctx.moveTo(0,pos); bctx.lineTo(width,pos); }
+        bctx.stroke(); bctx.fillStyle = '#4a4a44';
+        const label = Math.abs(value) < step/1e6 ? '0' : Math.abs(value)>=1e5 || Math.abs(value)<.001 ?
+          scientific(value.toExponential(2)) : Number(value.toPrecision(4)).toString();
+        if (axis === 'x') {
+          const yy = clamp(project(v.xmin,state.logY ? 1 : 0)[1],16,height-11);
+          bctx.fillText(label,clamp(pos+5,3,width-label.length*7-3),yy+12 > height ? yy-5 : yy+12);
+        } else {
+          const xx = clamp(project(state.logX ? 1 : 0,v.ymin)[0],4,width-65);
+          bctx.fillText(label,xx+5,clamp(pos-5,12,height-4));
+        }
+      }
+      for (let m = 1; m < (log ? 9 : 5); m++) {
+        const minor = log ? value*(m+1) : value + m*step/5;
+        const p = axis === 'x' ? project(minor,v.ymin)[0] : project(v.xmin,minor)[1];
+        if (p < 0 || p > size) continue;
+        bctx.strokeStyle = '#d5e2cf'; bctx.lineWidth = .6; bctx.beginPath();
+        if (axis === 'x') { bctx.moveTo(p,0); bctx.lineTo(p,height); }
+        else { bctx.moveTo(0,p); bctx.lineTo(width,p); }
+        bctx.stroke();
+      }
+    }
+  }
+  grid('x'); grid('y');
+  const units = dataUnits();
+  const title = (text, x, y) => {
+    const w = bctx.measureText(text).width;
+    bctx.fillStyle = '#f4f1e4ee'; bctx.fillRect(x-2,y-12,w+4,16);
+    bctx.fillStyle = '#4a4a44'; bctx.fillText(text,x,y);
+  };
+  const xTitle = `${units.xTitle}${state.logX ? ' · log scale' : ''}`;
+  title(xTitle,Math.max(6,width-bctx.measureText(xTitle).width-10),height-7);
+  title(`${units.yTitle}${state.logY ? ' · log scale' : ''}`,8,16);
+}
+function curveDomain(c) {
+  if (['param','polar'].includes(c.type)) return [state.tmin,state.tmax];
+  if (c.type === 'x') return [state.view.ymin,state.view.ymax];
+  return [state.view.xmin,state.view.xmax];
+}
+function sampleCurve(c) {
+  if (!['y','x','param','polar','point'].includes(c.type)) return [];
+  if (c.type === 'point') {samples++;return [project(...coordinates(c,0))];}
+  const [lo,hi] = curveDomain(c), count = Math.ceil(Math.max(width,height,400));
+  const log = c.type === 'y' ? state.logX : c.type === 'x' ? state.logY : false;
+  const from = log ? Math.log10(lo) : lo, to = log ? Math.log10(hi) : hi;
+  const parameter = u => log ? Math.pow(10,u) : u;
+  let segmentSamples=0;
+  const at = u => {
+    samples++;segmentSamples++;
+    const real = coordinates(c,parameter(u));
+    return finitePoint(real) ? project(...real) : [NaN,NaN];
+  };
+  const result = [];
+  function refine(a,b,pa,pb,depth) {
+    const mid = (a+b)/2, pm = at(mid);
+    if (!pa.every(Number.isFinite) || !pb.every(Number.isFinite) || !pm.every(Number.isFinite)) {
+      result.push(null);
+      if (pb.every(Number.isFinite)) result.push(pb);
+      return;
+    }
+    const deviation = Math.hypot(pm[0]-(pa[0]+pb[0])/2,pm[1]-(pa[1]+pb[1])/2);
+    const jump = Math.hypot(pb[0]-pa[0],pb[1]-pa[1]);
+    if ((deviation > .7 || jump > height*.6) && depth < 5 && segmentSamples < 24) {
+      refine(a,mid,pa,pm,depth+1); refine(mid,b,pm,pb,depth+1);
+    } else if (deviation > 3 || jump > Math.max(width,height)*2) result.push(null,pb);
+    else result.push(pb);
+  }
+  let last = at(from); result.push(last.every(Number.isFinite) ? last : null);
+  for (let i = 1; i <= count; i++) {
+    segmentSamples=0;
+    const a = from+(i-1)/count*(to-from), b = from+i/count*(to-from), next = at(b);
+    refine(a,b,last,next,0); last = next;
+  }
+  return result;
+}
+function strokePoints(context, points, color, penWidth = 2, fraction = 1) {
+  context.strokeStyle = color; context.lineWidth = penWidth; context.lineJoin = 'round'; context.lineCap = 'round';
+  context.beginPath();
+  let moving = true;
+  const end = Math.ceil(points.length*fraction);
+  for (let i = 0; i < end; i++) {
+    const p = points[i];
+    if (!p || !p.every(Number.isFinite) || Math.abs(p[0]) > 1e7 || Math.abs(p[1]) > 1e7) { moving = true; continue; }
+    if (moving) context.moveTo(...p); else context.lineTo(...p);
+    moving = false;
+  }
+  context.stroke();
+}
+function bisect(fn,a,b) {
+  let fa = fn(a);
+  for (let i = 0; i < 60; i++) {
+    const m = (a+b)/2, fm = fn(m);
+    if (!Number.isFinite(fm)) return NaN;
+    if (fa===0 || fm===0 || Math.sign(fa)!==Math.sign(fm)) b=m; else {a=m;fa=fm;}
+  }
+  const root = (a+b)/2;
+  return Math.abs(fn(root)) < 1e-6 ? root : NaN;
+}
+function roots(fn,lo,hi,count=2000) {
+  const found = [];
+  let a = lo, fa = fn(a);
+  const add = r => { if (Number.isFinite(r) && !found.some(v => Math.abs(v-r) < (hi-lo)*1e-7)) found.push(r); };
+  for (let i = 1; i <= count; i++) {
+    const b = lo+(hi-lo)*i/count, fb = fn(b);
+    if (Number.isFinite(fa) && fa===0 && fb!==0 && Number.isFinite(fb)) add(a);
+    if (Number.isFinite(fa) && Number.isFinite(fb) && fa!==0 && fb!==0 && Math.sign(fa)!==Math.sign(fb)) add(bisect(fn,a,b));
+    a = b; fa = fb;
+  }
+  return found.slice(0,60);
+}
+function derivative(c,x) {
+  const h = Math.max(1e-5,Math.abs(x)*1e-5), a = coordinates(c,x-h), b = coordinates(c,x+h), p = coordinates(c,x);
+  if (![...a,...b,...p].every(Number.isFinite)) return NaN;
+  const left = (p[1]-a[1])/(p[0]-a[0]), right = (b[1]-p[1])/(b[0]-p[0]);
+  if (!Number.isFinite(left) || !Number.isFinite(right) || Math.abs(left-right) > .02*Math.max(1,Math.abs(left),Math.abs(right))) return NaN;
+  return (b[1]-a[1])/(b[0]-a[0]);
+}
+function findFeatures() {
+  features = []; holes = [];
+  const ys = compiled.filter(c => c.type === 'y'), v = state.view;
+  for (const c of ys) {
+    const fn = x => evaluate(c.ast,{x});
+    // Integer and literal probes find common removable holes without inventing a symbolic simplifier.
+    const probes = new Set([0,...numericTokens(state.lines[c.index].text).map(m => +m[0])]);
+    for (const x of probes) {
+      if (x < v.xmin || x > v.xmax || Number.isFinite(fn(x))) continue;
+      const epsilon = Math.max(1,Math.abs(x))*1e-7;
+      const pairs = [1,.5,.25,.125].map(scale=>[fn(x-epsilon*scale),fn(x+epsilon*scale)]);
+      if(!pairs.flat().every(Number.isFinite)) continue;
+      const tolerance = 1e-12 * Math.max(1e-300,...pairs.flat().map(Math.abs));
+      const means=pairs.map(p=>(p[0]+p[1])/2), gaps=pairs.map(p=>Math.abs(p[0]-p[1]));
+      const converging=pairs.slice(1).every((p,i)=>gaps[i+1]<=.6*gaps[i]+tolerance) &&
+        Math.abs(means[3]-means[2])<=.6*Math.abs(means[2]-means[1])+tolerance &&
+        Math.abs(means[2]-means[1])<=.6*Math.abs(means[1]-means[0])+tolerance;
+      if (converging && Math.abs(means[3]) < 1e10) {
+        holes.push({x,y:means[3],index:c.index});
+      }
+    }
+    if (!state.keys) continue;
+    const zeroTolerance = Math.max(1e-12, Math.min(1e-6, (v.ymax-v.ymin) * 1e-10));
+    const zeros = roots(fn,v.xmin,v.xmax);
+    for (const x of zeros) features.push({x,y:0,label:`${c.index+1} zero`});
+    if (v.xmin <= 0 && v.xmax >= 0 && Number.isFinite(fn(0))) features.push({x:0,y:fn(0),label:`${c.index+1} intercept`});
+    for (const x of roots(x => derivative(c,x),v.xmin,v.xmax,900)) {
+      if (Math.abs(derivative(c,x+(v.xmax-v.xmin)*1e-4)) > 1e-7) {
+        const y = Math.abs(fn(x)) <= zeroTolerance ? 0 : fn(x);
+        features.push({x,y,label:`${c.index+1} turn`});
+        if (y === 0 && !zeros.some(z => Math.abs(z-x) < (v.xmax-v.xmin)*1e-7)) {
+          features.push({x,y:0,label:`${c.index+1} zero`});
+        }
+      }
+    }
+  }
+  if (!state.keys) return;
+  const a = ys.find(c => c.index === state.active);
+  if (!a) return;
+  for (const b of ys) {
+    if (a === b) continue;
+    const diff = x => {
+      const av = evaluate(a.ast,{x}), bv = evaluate(b.ast,{x});
+      return (av-bv)/Math.max(1,Math.abs(av),Math.abs(bv));
+    };
+    for (const x of roots(diff,v.xmin,v.xmax,3500)) features.push({x,y:evaluate(a.ast,{x}),label:`× ${a.index+1}/${b.index+1}`});
+  }
+}
+function featureSignature() {
+  return JSON.stringify([state.lines, state.view, state.active, state.keys, state.degrees, state.logX, state.logY,
+    width, height, Object.entries(state.vars).map(([name,v]) => [name,v.value])]);
+}
+function refreshFeatures() {
+  const signature = featureSignature();
+  if (signature === featureKey) return;
+  const moving = Object.values(state.vars).some(v => v.play) && !Curio.reduce;
+  if (featureTimer && (moving || pendingFeatureKey === signature)) return;
+  clearTimeout(featureTimer);
+  pendingFeatureKey = signature;
+  if (!moving) { features = []; holes = []; }
+  featureTimer = setTimeout(() => {
+    featureTimer = 0;
+    findFeatures();
+    featureKey = featureSignature();
+    pendingFeatureKey = '';
+    dirty = true;
+    requestDraw();
+  }, moving ? 250 : 120);
+}
+function drawMark(context,p,label,hole=false,color='#3a4236',labelBoxes=null) {
+  if (!p.every(Number.isFinite) || p[0]<0 || p[0]>width || p[1]<0 || p[1]>height) return;
+  context.beginPath(); context.arc(p[0],p[1],hole?5:3.5,0,TAU);
+  context.fillStyle = hole ? '#f4f1e4' : color; context.fill(); context.strokeStyle = color; context.lineWidth=1.5; context.stroke();
+  if (label) {
+    context.font=`${paperFont()}px Consolas, monospace`;
+    const tw=context.measureText(label).width,xx=clamp(p[0]+9,3,Math.max(3,width-tw-6));
+    // Leave a full line above the bottom ticks and axis title.
+    let yy=clamp(p[1]-12,32,height-32);
+    if(labelBoxes) {
+      let attempts=0;
+      while(labelBoxes.some(b=>xx<b.x+b.w&&xx+tw>b.x&&yy-11<b.y+15&&yy>b.y)&&attempts++<16) {
+        yy=yy>55?yy-20:Math.min(height-32,yy+40);
+      }
+      if(attempts>=16) return;
+      labelBoxes.push({x:xx,y:yy-11,w:tw});
+    }
+    context.fillStyle='#f4f1e4ee'; context.fillRect(xx-2,yy-11,tw+4,15); context.fillStyle=color; context.fillText(label,xx,yy);
+  }
+}
+function rebuildPaper() {
+  samples=0; drawPaper();
+  paths=compiled.map(c => sampleCurve(c));
+  inkPaths=paths.map(visibleInk);
+  if (!opening || Curio.reduce) paths.forEach((p,i) => {
+    if (compiled[i].type === 'point') drawMark(bctx,p[0],`${i+1} (${coordinates(compiled[i],0).map(fmt).join(', ')})`,false,INKS[i]);
+    else strokePoints(bctx,p,INKS[i],i===state.active?2.3:1.8);
+  });
+  if (!opening || Curio.reduce) drawPenNumbers(bctx);
+  if (state.data.length) {
+    for (const p of state.data) {
+      if (!finitePoint(p)) continue;
+      const [x,y]=project(...p);
+      if (x<0 || x>width || y<0 || y>height) continue;
+      bctx.strokeStyle='#7a4a1e'; bctx.lineWidth=1.5; bctx.strokeRect(x-3,y-3,6,6);
+    }
+  }
+  // The fit is sampled independently, with full-precision coefficients.
+  fitPath=[];
+  if (state.fitted) {
+    const pts=[];
+    for(let p=0;p<=width;p++) {
+      samples++;
+      const x=unproject(p,0)[0], y=state.fitted.fn(x);
+      pts.push(finitePoint([x,y])?project(x,y):null);
+    }
+    fitPath=pts;
+    if(!opening || Curio.reduce) strokePoints(bctx,pts,'#7a4a1e',2);
+  }
+  fitInk=visibleInk(fitPath);
+  refreshFeatures();
+  for (const h of holes) drawMark(bctx,project(h.x,h.y),'',true,INKS[h.index]);
+  const occupied=[],labelBoxes=[];
+  const ordered=[...features].sort((a,b)=>Number(b.label.startsWith('×'))-Number(a.label.startsWith('×')) ||
+    Number(b.label.includes('zero'))-Number(a.label.includes('zero')));
+  for (const f of ordered) {
+    const p=project(f.x,f.y);
+    const near=occupied.some(q => Math.hypot(p[0]-q[0],p[1]-q[1])<2);
+    drawMark(bctx,p,near?'':`${f.label} (${fmt(f.x)}, ${fmt(f.y)})`,false,'#3a4236',labelBoxes);
+    if(p.every(Number.isFinite)) occupied.push(p);
+  }
+  const frequency = compiled.some(c=>{
+    const [lo,hi]=curveDomain(c), variable=['polar','param'].includes(c.type)?'t':c.type==='x'?'y':'x';
+    const inspect=ast=>{
+      if(!ast) return false;
+      if(ast.op==='call'&&['sin','cos','tan'].includes(ast.name)) {
+        const phase=[0,.25,.5,.75,1].map(f=>evaluate(ast.a,{[variable]:lo+(hi-lo)*f}));
+        const speed=Math.max(...phase.slice(1).map((p,i)=>Math.abs(p-phase[i])*4));
+        if(speed*(state.degrees?Math.PI/180:1)>Math.max(width,height)*2) return true;
+      }
+      return inspect(ast.a)||inspect(ast.b);
+    };
+    return inspect(c.ast)||inspect(c.second);
+  });
+  $('sampling').dataset.warning=String(frequency);
+  const units = dataUnits();
+  const sampleReadout=`${samples.toLocaleString()} samples · in ${units.x} · out ${units.y}${state.data.length ? '' : ' · unitless'}`;
+  $('sampling').title=frequency?'Sampling limit · fast wiggles may alias':sampleReadout;
+  $('sampling').textContent=frequency?'Sampling limit · fast wiggles may alias':innerWidth<=600?
+    `${samples.toLocaleString()} samples · ${units.x} → ${units.y}`:sampleReadout;
+  if($('table').open) {updateTableChoices();renderTable();}
+  dirty=false;
+}
+function draw(time) {
+  frame=0;
+  const delta=Math.min(.05,(time-lastTime)/1000 || 0); lastTime=time;
+  let playing=false;
+  if (!Curio.reduce) for (const [name,v] of Object.entries(state.vars)) {
+    if (!v.play) continue;
+    playing=true;
+    v.sweep ??= v.value;
+    v.sweep += delta*(v.max-v.min)/8*v.direction;
+    if(v.sweep>=v.max) {v.sweep=v.max;v.direction=-1;}
+    if(v.sweep<=v.min) {v.sweep=v.min;v.direction=1;}
+    const coarse = v.step >= .5 || v.step / (v.max-v.min) >= 1/40;
+    const lastStep = Math.floor((v.max-v.min)/v.step + 1e-10);
+    v.value = coarse ? v.min + clamp(Math.round((v.sweep-v.min)/v.step),0,lastStep)*v.step : v.sweep;
+    v.value = Number(v.value.toPrecision(14));
+    const slider=$(`slider-${name}`);
+    if(slider) {slider.value=v.value;slider.setAttribute('aria-valuetext',fmt(v.value));$(`value-${name}`).textContent=`${name} = ${fmt(v.value)}`;}
+    dirty=true;
+  }
+  if (dirty) rebuildPaper();
+  ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,width,height);ctx.drawImage(base,0,0,base.width,base.height,0,0,width,height);
+  if (opening && !Curio.reduce) {
+    const fraction=clamp((time-penStart)/1200,0,1);
+    inkPaths.forEach((p,i)=>strokePoints(ctx,p,INKS[i],2.3,fraction));
+    strokePoints(ctx,fitInk,'#7a4a1e',2,fraction);
+    const ink = inkPaths[state.active]?.length ? inkPaths[state.active] : inkPaths.find(p => p.length) || fitInk;
+    const p=ink?.[Math.max(0,Math.ceil(ink.length*fraction)-1)];
+    if(p) positionCarriage(p[0]);
+    if(fraction>=1) {opening=false;dirty=true;stopScratch();parkCarriage();} else requestDraw();
+  }
+  if (opening && Curio.reduce) { opening=false;stopScratch();parkCarriage(); }
+  drawMeasurements();
+  if (playing) {updateLineReadouts();updateMeasurements();requestDraw();}
+}
+function visibleInk(points) {
+  const visible=p=>p && p.every(Number.isFinite) && p[0]>=-8 && p[0]<=width+8 && p[1]>=-8 && p[1]<=height+8;
+  const first=points.findIndex(visible);
+  if(first<0) return [];
+  let last=points.length-1;
+  while(last>first && !visible(points[last])) last--;
+  return points.slice(Math.max(0,first-1),Math.min(points.length,last+2));
+}
+function drawPenNumbers(context) {
+  const occupied = [];
+  paths.forEach((path,i) => {
+    if (compiled[i]?.type === 'point') return;
+    const point = [...path].reverse().find(p => p && p.every(Number.isFinite) &&
+      p[0] >= 16 && p[0] <= width-26 && p[1] >= 25 && p[1] <= height-35);
+    if (!point) return;
+    let x=point[0]+7, y=point[1]-7;
+    while (occupied.some(p => Math.abs(p[0]-x)<18 && Math.abs(p[1]-y)<18)) y-=18;
+    y=clamp(y,28,height-32);
+    occupied.push([x,y]);
+    context.font=`bold ${paperFont()}px Consolas, monospace`;
+    context.fillStyle='#f4f1e4ee';context.fillRect(x-3,y-12,17,17);
+    context.fillStyle=INKS[i];context.fillText(String(i+1),x,y);
+  });
+}
+function positionCarriage(x) {
+  const panelLeft=$('power').offsetLeft, carriage=$('carriage');
+  carriage.style.left=`${clamp(x,8,Math.max(8,panelLeft-carriage.offsetWidth-10))}px`;
+}
+function parkCarriage() { positionCarriage($('power').offsetLeft-58); }
+let audioReady=false, scratchNode=null, scratchGain=null;
+const scratchStats={starts:0,stops:0};
+for (const event of ['pointerdown','keydown']) addEventListener(event,e=>{
+  if(e.isTrusted) audioReady=true;
+},{capture:true});
+function stopScratch() {
+  if(scratchNode) {
+    try {scratchNode.stop();} catch {}
+    scratchNode.disconnect();scratchGain.disconnect();
+    scratchNode=null;scratchGain=null;scratchStats.stops++;
+  }
+}
+function penScratch() {
+  stopScratch();
+  if(!audioReady || !Curio.sound || Curio.reduce) return;
+  try {
+    const audio=Curio.audio(), duration=1.2, count=Math.ceil(audio.sampleRate*duration);
+    const buffer=audio.createBuffer(1,count,audio.sampleRate), channel=buffer.getChannelData(0);
+    let seed=8041, last=0;
+    for(let i=0;i<count;i++) {
+      seed=(seed*16807)%2147483647;
+      const next=seed/1073741823.5-1;
+      channel[i]=(next-last)*.35;last=next;
+    }
+    scratchNode=audio.createBufferSource();scratchNode.buffer=buffer;
+    scratchGain=audio.createGain();
+    const now=audio.currentTime;
+    scratchGain.gain.setValueAtTime(0,now);
+    scratchGain.gain.linearRampToValueAtTime(.009,now+.035);
+    scratchGain.gain.setValueAtTime(.009,now+1.12);
+    scratchGain.gain.linearRampToValueAtTime(0,now+duration);
+    scratchNode.connect(scratchGain).connect(audio.destination);
+    scratchNode.start();scratchStats.starts++;
+  } catch {stopScratch();}
+}
+function startInk() {
+  const hasInk=compiled.some(c=>['y','x','param','polar','point'].includes(c.type)) || !!state.fitted;
+  opening=!Curio.reduce && hasInk;
+  penStart=performance.now();
+  if(opening) penScratch();else {stopScratch();parkCarriage();}
+  dirty=true;requestDraw();
+}
+function resize() {
+  const r=canvas.getBoundingClientRect();width=Math.max(1,r.width);height=Math.max(1,r.height);ratio=Math.min(2,devicePixelRatio||1);
+  canvas.width=base.width=Math.round(width*ratio);canvas.height=base.height=Math.round(height*ratio);
+  if(state.square) {
+    const v=state.view,center=(ty(v.ymin)+ty(v.ymax))/2,span=(tx(v.xmax)-tx(v.xmin))*height/width;
+    const lo=iy(center-span/2),hi=iy(center+span/2);
+    if(validView({...v,ymin:lo,ymax:hi})) {v.ymin=lo;v.ymax=hi;}
+  }
+  dirty=true;requestDraw();updateMeasurements();
+  if (!opening && !state.tracing) parkCarriage();
+}
+new ResizeObserver(resize).observe(canvas);
+
+function updateMeasurements() {
+  const c=compiled[state.active];
+  const tag=$('trace-tag'); tag.hidden=!state.tracing || !c || !['y','x','point','param','polar'].includes(c.type);
+  if(!tag.hidden) {
+    const p=coordinates(c,state.traceT), param=['param','polar'].includes(c.type)?'t':c.type==='x'?'y':'x';
+    const parameter=['param','polar'].includes(c.type)?`${param} ${fmt(state.traceT)} | `:'';
+    tag.textContent=`Pen ${state.active+1} · ${parameter}${c.name ?
+      `${c.name}(${fmt(p[0])}) = ${fmt(p[1])}` : pointReadout(p)}`;
+    if(state.tangent) tag.textContent+=` | slope ${fmt(derivative(c,state.traceT))}`;
+    positionCarriage(project(...p)[0]);
+    positionTag(tag,project(...p));
+  }
+  const pinTag=$('pin-tag');pinTag.hidden=state.pins.length===0;
+  if(state.pins.length) {
+    const pp=state.pins.map(pin=>coordinates(compiled[pin.line],pin.t));
+    pinTag.textContent=pp.map((p,i)=>`${i?'B':'A'} (${fmt(p[0])}, ${fmt(p[1])})`).join(' · ');
+    if(pp.length===2) {
+      const dx=pp[1][0]-pp[0][0],dy=pp[1][1]-pp[0][1];
+      pinTag.textContent+=` | Δy/Δx = ${dx===0?'undefined':fmt(dy/dx)} · average rate of change`;
+    }
+    const ppScreen=pp.map(p=>project(...p));
+    positionTag(pinTag,ppScreen.length===2?[(ppScreen[0][0]+ppScreen[1][0])/2,(ppScreen[0][1]+ppScreen[1][1])/2]:ppScreen[0],true);
+    if(!tag.hidden) {
+      const a=tag.getBoundingClientRect(),b=pinTag.getBoundingClientRect();
+      if(a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top) {
+        const below=tag.offsetTop+tag.offsetHeight+8;
+        pinTag.style.top=`${below+pinTag.offsetHeight<canvas.offsetTop+height?below:
+          Math.max(canvas.offsetTop+8,tag.offsetTop-pinTag.offsetHeight-8)}px`;
+      }
+    }
+  }
+}
+function positionTag(tag,point,lower=false) {
+  if(!point.every(Number.isFinite)) {tag.style.left='10px';tag.style.top='90px';return;}
+  const tagWidth=tag.offsetWidth||300,tagHeight=tag.offsetHeight||60;
+  tag.style.left=`${clamp(point[0]+12,10,Math.max(10,width-tagWidth-10))}px`;
+  tag.style.top=`${canvas.offsetTop+clamp(point[1]+(lower?24:-tagHeight-12),8,Math.max(8,height-tagHeight-8))}px`;
+}
+function drawMeasurements() {
+  const c=compiled[state.active];
+  if (state.tracing && c && ['y','x','point','param','polar'].includes(c.type)) {
+    const p=coordinates(c,state.traceT), screen=project(...p);
+    drawMark(ctx,screen,'',true,INKS[state.active]);
+    if(state.tangent && finitePoint(p)) {
+      const slope=derivative(c,state.traceT), span=(state.view.xmax-state.view.xmin)*.15;
+      if(Number.isFinite(slope)) {
+        ctx.setLineDash([5,4]);strokePoints(ctx,[project(p[0]-span,p[1]-span*slope),project(p[0]+span,p[1]+span*slope)],'#6b633c',1.5);ctx.setLineDash([]);
+      }
+    }
+  }
+  state.pins.forEach((pin,i)=>drawMark(ctx,project(...coordinates(compiled[pin.line],pin.t)),i?'B':'A',true));
+  if(state.pins.length===2) {
+    ctx.setLineDash([7,4]);strokePoints(ctx,state.pins.map(pin=>project(...coordinates(compiled[pin.line],pin.t))),'#675530',1.4);ctx.setLineDash([]);
+  }
+}
+function traceAt(x,y,select=true) {
+  let best={distance:Infinity};
+  const candidates=select?compiled:compiled.filter(c=>c.index===state.active);
+  for(const c of candidates) {
+    if(!['y','x','point','param','polar'].includes(c.type)) continue;
+    let t;
+    if(c.type==='y') t=unproject(x,y)[0];
+    else if(c.type==='x') t=unproject(x,y)[1];
+    else if(c.type==='point') t=0;
+    else {
+      let closest=Infinity;
+      for(let j=0;j<=900;j++) {
+        const q=state.tmin+j/900*(state.tmax-state.tmin),p=project(...coordinates(c,q));
+        const distance=Math.hypot(p[0]-x,p[1]-y);
+        if(distance<closest) {closest=distance;t=q;}
+      }
+    }
+    const p=project(...coordinates(c,t)),distance=Math.hypot(p[0]-x,p[1]-y);
+    if(distance<best.distance) best={distance,t,line:c.index};
+  }
+  return best;
+}
+function setTracing(value) {
+  if(value&&!['y','x','point','param','polar'].includes(compiled[state.active]?.type)) {
+    const first=compiled.find(c=>['y','x','point','param','polar'].includes(c.type));
+    if(!first) {announce('There is no equation curve to trace.',true);return;}
+    setActive(first.index);
+  }
+  state.tracing=value;$('trace').setAttribute('aria-pressed',value);dismissHint();updateMeasurements();requestDraw();
+  announce(value?'Trace pen on. Left and right move; up and down change pens.':'Trace pen parked.',true);
+}
+function dropPin() {
+  const c=compiled[state.active];
+  if(!c || !['y','x','param','polar','point'].includes(c.type) || !coordinates(c,state.traceT).every(Number.isFinite)) {
+    announce('Select ink with a finite trace point first.',true);return;
+  }
+  if(state.pins.length>=2 || state.pins[0]?.line!==state.active) state.pins=[];
+  state.pins.push({line:state.active,t:state.traceT});setTracing(true);updateMeasurements();requestDraw();
+  announce($('pin-tag').textContent,true);
+}
+function zoom(factor,cx=width/2,cy=height/2) {
+  const v=state.view, anchor=unproject(cx,cy);
+  const ax=tx(anchor[0]),ay=ty(anchor[1]);
+  const xmin=ax+(tx(v.xmin)-ax)*factor,xmax=ax+(tx(v.xmax)-ax)*factor;
+  const ymin=ay+(ty(v.ymin)-ay)*factor,ymax=ay+(ty(v.ymax)-ay)*factor;
+  if(xmax-xmin<1e-10 || ymax-ymin<1e-10 || xmax-xmin>1e18 || ymax-ymin>1e18) return;
+  const next={xmin:ix(xmin),xmax:ix(xmax),ymin:iy(ymin),ymax:iy(ymax)};
+  if(!validView(next) || (state.logX && (xmin<-100||xmax>100)) ||
+    (state.logY&&(ymin<-100||ymax>100))) return;
+  state.view=next;dirty=true;dismissHint();requestDraw();announce(`x from ${fmt(next.xmin)} to ${fmt(next.xmax)}`);
+}
+const touches=new Map();let pinchDistance=0;
+canvas.addEventListener('pointerdown', e=>{
+  canvas.focus({preventScroll:true});canvas.setPointerCapture(e.pointerId);dismissHint();
+  const r=canvas.getBoundingClientRect(),x=e.clientX-r.x,y=e.clientY-r.y;
+  touches.set(e.pointerId,[x,y]);
+  if(touches.size===2) {const p=[...touches.values()];pinchDistance=Math.hypot(p[1][0]-p[0][0],p[1][1]-p[0][1]);pointer=null;return;}
+  const hitPin=state.pins.findIndex(pin=>Math.hypot(...project(...coordinates(compiled[pin.line],pin.t)).map((v,i)=>v-[x,y][i]))<16);
+  const near=traceAt(x,y);
+  pointer={x,y,lastX:x,lastY:y,view:{...state.view},moved:false,pin:hitPin,
+    tracing:state.tracing&&near.distance<25,point:near.distance<18&&compiled[near.line]?.type==='point'?near.line:-1};
+});
+canvas.addEventListener('pointermove', e=>{
+  const r=canvas.getBoundingClientRect(),x=e.clientX-r.x,y=e.clientY-r.y;
+  const p=unproject(x,y);$('coordinate').textContent=pointReadout(p);
+  if(touches.has(e.pointerId)) touches.set(e.pointerId,[x,y]);
+  if(touches.size===2) {
+    const q=[...touches.values()],distance=Math.hypot(q[1][0]-q[0][0],q[1][1]-q[0][1]);
+    if(pinchDistance>0 && distance>0) zoom(pinchDistance/distance,(q[0][0]+q[1][0])/2,(q[0][1]+q[1][1])/2);
+    pinchDistance=distance;return;
+  }
+  if(!pointer) return;
+  const dx=x-pointer.lastX,dy=y-pointer.lastY;
+  if(Math.hypot(x-pointer.x,y-pointer.y)>3) pointer.moved=true;
+  if(pointer.pin>=0) {
+    const pin=state.pins[pointer.pin];setActive(pin.line);const near=traceAt(x,y,false);if(Number.isFinite(near.t)) pin.t=near.t;
+    const other=state.pins.find((p,i)=>i!==pointer.pin&&p.line===pin.line);
+    if(other) {
+      const q=project(...coordinates(compiled[other.line],other.t));
+      if(Math.hypot(q[0]-x,q[1]-y)<=6) pin.t=other.t;
+    }
+    state.traceT=pin.t;updateMeasurements();requestDraw();
+  } else if(pointer.point>=0) {
+    state.lines[pointer.point].text=`(${Number(p[0].toPrecision(6))}, ${Number(p[1].toPrecision(6))})`;
+    $(`equation-${pointer.point}`).value=state.lines[pointer.point].text;compileAll();
+  } else if(pointer.tracing || (state.tracing && e.buttons===1 && e.shiftKey)) {
+    const near=traceAt(x,y,false);if(Number.isFinite(near.t)) state.traceT=near.t;updateMeasurements();requestDraw();
+  } else {
+    const v=state.view,sx=(tx(v.xmax)-tx(v.xmin))*dx/width,sy=(ty(v.ymax)-ty(v.ymin))*dy/height;
+    const next={xmin:ix(tx(v.xmin)-sx),xmax:ix(tx(v.xmax)-sx),ymin:iy(ty(v.ymin)+sy),ymax:iy(ty(v.ymax)+sy)};
+    if(validView(next)) {state.view=next;dirty=true;requestDraw();}
+    else announce('Travel limit. Reset with zero or set new bounds.');
+  }
+  pointer.lastX=x;pointer.lastY=y;
+});
+function pointerEnd(e) {
+  touches.delete(e.pointerId);
+  if(pointer && !pointer.moved) {
+    const r=canvas.getBoundingClientRect(),hit=traceAt(e.clientX-r.x,e.clientY-r.y);
+    if(hit.distance<35) {setActive(hit.line);state.traceT=hit.t;setTracing(true);announce($('trace-tag').textContent,true);}
+  }
+  if(pointer?.point>=0) renderTape();
+  pointer=null;
+}
+canvas.addEventListener('pointerup',pointerEnd);canvas.addEventListener('pointercancel',pointerEnd);
+canvas.addEventListener('wheel', e=>{
+  e.preventDefault();const r=canvas.getBoundingClientRect();zoom(Math.exp(clamp(e.deltaY,-300,300)*.0015),e.clientX-r.x,e.clientY-r.y);
+},{passive:false});
+function handlePaperKey(e) {
+  if(e.key==='+' || e.key==='=') {e.preventDefault();zoom(.8);}
+  if(e.key==='-') {e.preventDefault();zoom(1.25);}
+  if(e.key==='0') resetView();
+  if(e.key.toLowerCase()==='t') setTracing(!state.tracing);
+  if(e.key.toLowerCase()==='p') dropPin();
+  if(e.key.toLowerCase()==='g') $('tangent').click();
+  if(e.key.toLowerCase()==='k') $('keypoints').click();
+  if(e.key==='Escape') {state.pins=[];updateMeasurements();requestDraw();announce('Pins cleared.',true);}
+  const c=compiled[state.active];
+  if(!e.key.startsWith('Arrow') || !c) return;
+  e.preventDefault();
+  if(c.type==='point' && e.altKey) {
+    const p=coordinates(c,0),step=(state.view.xmax-state.view.xmin)/100;
+    p[e.key==='ArrowLeft'||e.key==='ArrowRight'?0:1]+=(e.key==='ArrowLeft'||e.key==='ArrowDown'?-1:1)*step;
+    state.lines[state.active].text=`(${p.map(v=>Number(v.toPrecision(8))).join(', ')})`;changed();announce(`Point ${p.map(fmt).join(', ')}`,true);return;
+  }
+  if(e.key==='ArrowUp'||e.key==='ArrowDown') {
+    const list=compiled.filter(c=>['y','x','polar','param','point'].includes(c.type)).map(c=>c.index);
+    const n=list.indexOf(state.active),i=(n+(e.key==='ArrowUp'?1:-1)+list.length)%list.length;
+    if(list.length) setActive(list[i]);
+  } else {
+    const [lo,hi]=curveDomain(c);state.traceT+=(e.key==='ArrowRight'?1:-1)*(hi-lo)/(e.shiftKey?50:500);
+  }
+  state.tracing=true;$('trace').setAttribute('aria-pressed',true);updateMeasurements();requestDraw();announce($('trace-tag').textContent,true);
+}
+canvas.addEventListener('keydown',handlePaperKey);
+addEventListener('keydown',e=>{
+  if(e.target===canvas || e.target.closest('input,textarea,select,[contenteditable=true]') || document.querySelector('dialog[open]')) return;
+  if(['t','p','g','k','0','+','=','-','Escape'].includes(e.key.toLowerCase()) || e.key==='Escape') {
+    handlePaperKey(e);canvas.focus({preventScroll:true});
+  }
+});
+function resetView() {
+  dismissHint();
+  state.view={xmin:-10,xmax:10,ymin:-10,ymax:10};state.logX=false;state.logY=false;state.square=false;
+  syncControls();dirty=true;requestDraw();announce('Paper reset. Both axes minus ten to ten.',true);
+}
+$('zoom-in').onclick=()=>zoom(.8);$('zoom-out').onclick=()=>zoom(1.25);$('home').onclick=resetView;
+function toggle(id,key) {
+  $(id).onclick=()=>{
+    dismissHint();state[key]=!state[key];$(id).setAttribute('aria-pressed',state[key]);
+    if(key==='degrees') {
+      $('angle').textContent=state.degrees?'DEG':'RAD';
+      if(state.tmin===0 && (state.tmax===TAU||state.tmax===360)) state.tmax=state.degrees?360:TAU;
+    }
+    if(key==='logX'||key==='logY') {
+      const axis=key==='logX'?'x':'y';
+      if(state[key] && state.view[axis+'min']<=0) {state.view[axis+'min']=.1;state.view[axis+'max']=100;}
+    }
+    if(key==='square'||((key==='logX'||key==='logY')&&state.square)) resize();
+    if(key==='tangent'&&state.tangent&&!state.tracing) setTracing(true);
+    dirty=true;requestDraw();updateLineReadouts();updateMeasurements();
+    if(key==='degrees' && state.fitted) computeFit();
+    const names={square:'Square grid',logX:'Log scale on x',logY:'Log scale on y',tangent:'Tangent',keys:'Key points'};
+    const message=key==='degrees' ? (state.degrees?'Degrees':'Radians') : key==='logX'||key==='logY' ?
+      `${state[key]?'Log':'Linear'} scale on ${key==='logX'?'x':'y'}` : `${names[key]} ${state[key]?'on':'off'}`;
+    announce(message,true);
+  };
+}
+toggle('square','square');toggle('log-x','logX');toggle('log-y','logY');toggle('angle','degrees');
+toggle('tangent','tangent');toggle('keypoints','keys');
+$('trace').onclick=()=>setTracing(!state.tracing);$('pin').onclick=dropPin;
+function syncControls() {
+  const pairs=[['square','square'],['log-x','logX'],['log-y','logY'],['angle','degrees'],
+    ['tangent','tangent'],['keypoints','keys'],['trace','tracing']];
+  for(const [id,key] of pairs) {
+    $(id).setAttribute('aria-pressed',state[key]);
+  }
+  $('angle').textContent=state.degrees?'DEG':'RAD';
+}
+
+// Stable small least-squares systems: x is centered and scaled before fitting.
+function solve(matrix, vector) {
+  const n=vector.length,a=matrix.map((r,i)=>[...r,vector[i]]);
+  for(let j=0;j<n;j++) {
+    let pivot=j;for(let k=j+1;k<n;k++) if(Math.abs(a[k][j])>Math.abs(a[pivot][j])) pivot=k;
+    [a[j],a[pivot]]=[a[pivot],a[j]];
+    if(Math.abs(a[j][j])<1e-12) throw Error('Distinct x values are needed for this fit.');
+    const d=a[j][j];for(let k=j;k<=n;k++) a[j][k]/=d;
+    for(let i=0;i<n;i++) if(i!==j) {const m=a[i][j];for(let k=j;k<=n;k++) a[i][k]-=m*a[j][k];}
+  }
+  return a.map(r=>r[n]);
+}
+function fitData(data,type) {
+  if(type==='none') return null;
+  if(data.some(p=>p.some(v=>!Number.isFinite(v)||Math.abs(v)>1e100))) {
+    throw Error('Rescale measurements to magnitudes no greater than 1e100.');
+  }
+  const degree=type==='quadratic'?2:1;
+  if(data.length<degree+1) throw Error(`At least ${degree+1} measurements are needed.`);
+  const transformed=data.map(([x,y])=>{
+    if((type==='power'&&(x<=0||y<=0))||(type==='exponential'&&y<=0)) throw Error('Logged columns require positive measurements.');
+    return [type==='power'?Math.log(x):x,['power','exponential'].includes(type)?Math.log(y):y];
+  });
+  const origin=transformed.reduce((s,p)=>s+p[0],0)/data.length;
+  const scale=Math.max(...transformed.map(p=>Math.abs(p[0]-origin)))||1;
+  const rows=transformed.map(([x,y])=>({z:(x-origin)/scale,y}));
+  const sums=Array.from({length:degree*2+1},(_,k)=>rows.reduce((s,p)=>s+p.z**k,0));
+  const mat=Array.from({length:degree+1},(_,i)=>Array.from({length:degree+1},(_,j)=>sums[i+j]));
+  const rhs=Array.from({length:degree+1},(_,k)=>rows.reduce((s,p)=>s+p.y*p.z**k,0));
+  const coeff=solve(mat,rhs);
+  const predict=x=>coeff.reduce((s,c,i)=>s+c*((x-origin)/scale)**i,0);
+  const mean=transformed.reduce((s,p)=>s+p[1],0)/data.length;
+  const total=transformed.reduce((s,p)=>s+(p[1]-mean)**2,0),residual=transformed.reduce((s,p)=>s+(p[1]-predict(p[0]))**2,0);
+  const r2=total>0?1-residual/total:NaN;
+  let equation,fn;
+  if(type==='power') {
+    const exponent=coeff[1]/scale, a=Math.exp(coeff[0]-exponent*origin);
+    equation=Number.isFinite(a)&&a>0?`y = ${fmt(a)} x^${fmt(exponent)}`:
+      `y = exp(${fmt(coeff[0])} + ${fmt(exponent)} (ln(x) − ${fmt(origin)}))`;
+    fn=x=>x>0?Math.exp(predict(Math.log(x))):NaN;
+  } else if(type==='exponential') {
+    const rate=coeff[1]/scale;
+    equation=`y = exp(${fmt(coeff[0])} + ${fmt(rate)} (x − ${fmt(origin)}))`;fn=x=>Math.exp(predict(x));
+  } else {
+    const a=coeff[0],b=coeff[1]/scale,c=degree===2?coeff[2]/scale**2:0;
+    equation=`y = ${fmt(a)} + ${fmt(b)} (x − ${fmt(origin)})${degree===2?` + ${fmt(c)} (x − ${fmt(origin)})^2`:''}`;
+    fn=predict;
+  }
+  return {fn,equation,r2,n:data.length,space:['power','exponential'].includes(type)?'log space':'ordinary space',coeff,origin,scale};
+}
+function computeFit() {
+  try {
+    state.fitted=fitData(state.data,state.fitType);
+    if(state.fitted) {
+      const f=state.fitted,rSquared=Number.isFinite(f.r2)?f.r2.toFixed(4):'undefined';
+      const units=dataUnits(), per=units.x==='x'?'x step':units.x;
+      const rate=state.fitType==='exponential'?Math.exp(f.coeff[1]/f.scale):f.coeff[1]/f.scale;
+      const rateText=state.fitType==='exponential'?`\n× ${fmt(rate)} per ${per}, ${((rate-1)*100).toFixed(1)} percent`:
+        state.fitType==='line'?`\nSlope ${fmt(rate)} ${units.y==='y'?'y units':units.y} per ${per}`:'';
+      const space=f.space==='log space'?"log space, not comparable with a line's":f.space;
+      $('fit-result').textContent=`R² = ${rSquared} · n = ${f.n} · ${space}\n${f.equation}${rateText}`;
+    } else $('fit-result').textContent=`${state.data.length} points · no fit`;
+  } catch(e) {state.fitted=null;$('fit-result').textContent=e.message;}
+  $('fit-summary').hidden=!state.fitted;
+  $('fit-summary').textContent=state.fitted?`R² = ${Number.isFinite(state.fitted.r2)?state.fitted.r2.toFixed(4):'undefined'}${
+    state.fitted.space==='log space'?" (log space, not comparable with a line's)":''}`:'';
+  dirty=true;requestDraw();
+}
+function fitView() {
+  const data=state.data.filter(p=>finitePoint(p));if(!data.length) {announce('Load positive data for the selected axis scales.',true);return;}
+  let xs=data.map(p=>tx(p[0])),ys=data.map(p=>ty(p[1]));
+  const xlo=Math.min(...xs),xhi=Math.max(...xs),ylo=Math.min(...ys),yhi=Math.max(...ys);
+  const dx=(xhi-xlo)*.08||1,dy=(yhi-ylo)*.12||1;
+  const next={xmin:ix(xlo-dx),xmax:ix(xhi+dx),ymin:iy(ylo-dy),ymax:iy(yhi+dy)};
+  if(!validView(next)) {announce('Rescale these columns before fitting the paper. Previous travel kept.',true);return;}
+  state.view=next;
+  state.square=false;syncControls();dirty=true;requestDraw();
+}
+function loadDataset(name, ink = true) {
+  if(!DATA[name]) return;
+  state.dataset=name;state.data=DATA[name].map(p=>[...p]);$('dataset').value=name;
+  $('data-input').value=state.data.map(p=>p.join('\t')).join('\n');
+  const caption=name==='co2'?'NOAA GML · year / ppm':name==='planets'?'NASA · AU / Earth years':'US Census Bureau · year / millions';
+  $('data-status').textContent=`${state.data.length} points · ${caption}`;
+  computeFit();fitView();
+  if(ink) startInk();
+}
+$('load-data').onclick=()=>{
+  dismissHint();
+  if($('dataset').value==='custom') {
+    $('columns').open=true;$('data-status').textContent='Paste two columns, then press Plot data.';
+    $('data-input').focus({preventScroll:true});$('data-input').scrollIntoView({block:'nearest'});
+  }
+  else loadDataset($('dataset').value);
+};
+$('apply-data').onclick=()=>{
+  const rows=$('data-input').value.trim().split(/\r?\n/).filter(s=>s.trim()),data=[];
+  if(rows.length>1001) {$('data-status').textContent='Use at most 1,000 pairs.';return;}
+  for(let i=0;i<rows.length;i++) {
+    const parts=rows[i].trim().split(/[\s,;]+/),p=parts.map(Number);
+    if(i===0 && parts.length===2 && p.every(v=>!Number.isFinite(v))) continue;
+    if(p.length!==2||!p.every(Number.isFinite)) {$('data-status').textContent=`Row ${i+1} needs exactly two finite numbers. Previous data kept.`;return;}
+    if(p.some(v=>Math.abs(v)>1e100)) {$('data-status').textContent=`Rescale row ${i+1} to magnitudes no greater than 1e100.`;return;}
+    data.push(p);
+    if(data.length>1000) {$('data-status').textContent='Use at most 1,000 pairs. Previous data kept.';return;}
+  }
+  if(!$('data-input').value.trim()) data.length=0;
+  state.data=data;state.dataset='custom';$('dataset').value='custom';
+  $('data-status').textContent=`${data.length} points · stored on this device only`;computeFit();if(data.length) fitView();
+};
+$('fit').onchange=()=>{state.fitType=$('fit').value;computeFit();startInk();};$('fit-view').onclick=fitView;
+function renderTable() {
+  const key=$('table-line').value,isFit=key==='fit',c=isFit?{type:'y'}:compiled[+key];
+  if(!c) {$('table-values').innerHTML='<tr><td colspan="3">No curve selected.</td></tr>';return;}
+  const start=Number($('table-start').value),step=Number($('table-step').value);
+  if(!$('table-start').value||!$('table-step').value||!Number.isFinite(start)||!Number.isFinite(step)||step===0) {
+    $('table-values').innerHTML='<tr><td colspan="3">Use a finite start and a nonzero step.</td></tr>';return;
+  }
+  state.tables??={};state.tables[key]={start,step};
+  const parameter=['param','polar'].includes(c.type), units=isFit?dataUnits():{x:'x',y:'y'};
+  const headings=parameter?['t','x','y']:c.type==='x'?['y','x']:[units.x,c.name?`${c.name}(x)`:units.y];
+  $('table-head').innerHTML=headings.map((h,i)=>`<th${i===0?' id="table-parameter"':''}>${safe(h)}</th>`).join('');
+  $('table-values').innerHTML=Array.from({length:41},(_,i)=>{
+    const t=start+i*step,p=isFit?[t,state.fitted?.fn(t)??NaN]:
+      ['y','x','param','polar','point'].includes(c.type)?coordinates(c,t):[t,evaluate(c.ast,{x:t})];
+    const values=parameter?[t,...p]:c.type==='x'?[t,p[0]]:p;
+    return `<tr>${values.map(value=>`<td>${fmt(value)}</td>`).join('')}</tr>`;
+  }).join('');
+}
+function chooseTableLine() {
+  const key=$('table-line').value;
+  const saved=state.tables?.[key]||{start:key==='fit'&&state.data.length?state.data[0][0]:-5,step:1};
+  $('table-start').value=saved.start;$('table-step').value=saved.step;renderTable();
+}
+$('table-line').onchange=chooseTableLine;
+function updateTableChoices() {
+  const selected=$('table-line').value;
+  $('table-line').innerHTML=state.lines.map((l,i)=>`<option value="${i}">Pen ${i+1} · ${safe(l.text)}</option>`).join('');
+  if(state.fitted) $('table-line').insertAdjacentHTML('beforeend','<option value="fit">Fitted curve</option>');
+  $('table-line').value=selected==='fit'&&state.fitted?selected:compiled[+selected]?selected:String(state.active);
+}
+for(const id of ['table-start','table-step']) $(id).onchange=renderTable;
+for(const [id,direction] of [['table-prev',-1],['table-next',1]]) $(id).onclick=()=>{
+  $('table-start').value=Number($('table-start').value)+direction*40*Number($('table-step').value);renderTable();
+};
+function openDrawer(id) {
+  V.hush();
+  document.querySelectorAll('dialog[open]').forEach(drawer=>drawer.close());
+  if(id==='range') {for(const [key,value]of Object.entries(state.view)) $(key).value=value;$('tmin').value=state.tmin;$('tmax').value=state.tmax;}
+  if(id==='table') {
+    updateTableChoices();
+    $('table-line').value=state.fitted&&!['y','x','point','param','polar'].includes(compiled[state.active]?.type)?'fit':state.active;
+    chooseTableLine();
+  }
+  if(id==='notebook') renderSlots();
+  $(id).show();
+}
+for(const id of ['manual','data','table','notebook','range']) $(id+'-open').onclick=()=>openDrawer(id);
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>{V.hush();$(b.dataset.close).close();});
+document.querySelectorAll('dialog').forEach(drawer=>drawer.addEventListener('close',()=>{
+  if(!document.querySelector('dialog[open]')) $(drawer.id+'-open').focus({preventScroll:true});
+}));
+addEventListener('keydown',e=>{
+  const drawer=document.querySelector('dialog[open]');
+  if(e.key==='Escape'&&drawer) {e.preventDefault();e.stopImmediatePropagation();V.hush();drawer.close();}
+},{capture:true});
+function validView(v) {
+  const values=Object.values(v);
+  return values.every(n=>Number.isFinite(n)&&Math.abs(n)<=1e100&&(n===0||Math.abs(n)>=1e-100)) &&
+    v.xmax>v.xmin && v.ymax>v.ymin && (!state.logX||v.xmin>0) && (!state.logY||v.ymin>0);
+}
+$('apply-range').onclick=()=>{
+  const v=Object.fromEntries(['xmin','xmax','ymin','ymax'].map(k=>[k,Number($(k).value)]));
+  const tmin=Number($('tmin').value),tmax=Number($('tmax').value);
+  if(!['xmin','xmax','ymin','ymax','tmin','tmax'].every(k=>$(k).value.trim()) || !validView(v) ||
+    ![tmin,tmax].every(n=>Number.isFinite(n)&&Math.abs(n)<=1e100) || tmax<=tmin) {
+    $('range-status').textContent='Enter increasing bounds. Log axes need positive bounds. Rescale nonzero axis limits outside 1e-100 to 1e100.';return;
+  }
+  V.hush();state.view=v;state.tmin=tmin;state.tmax=tmax;state.square=false;syncControls();dirty=true;requestDraw();$('range').close();
+  announce('Travel limits set.',true);
+};
+function setup(name) {
+  V.hush();
+  state.lines=[];state.vars={};rulerMemory={};state.data=[];state.dataset='custom';state.fitType='none';state.fitted=null;
+  state.active=0;state.pins=[];state.tables={};state.tracing=false;state.keys=false;
+  state.tangent=false;state.degrees=false;state.tmin=0;state.tmax=TAU;
+  resetView();
+  const equations={rose:['r = sin(a t)'],race:['y = 2^x','y = x^10'],parabola:['y = a(x-b)^2 + k'],
+    lissajous:['(cos(a t), sin(b t))'],co2:[''],planets:['']}[name];
+  state.lines=equations.map(text=>({text}));compileAll();
+  if(name==='rose') {state.vars.a.value=4;state.vars.a.step=1;}
+  if(name==='lissajous') {state.vars.a.value=3;state.vars.b.value=2;state.vars.a.step=state.vars.b.step=1;}
+  if(name==='rose'||name==='lissajous') {
+    state.square=true;
+    const x=1.5*Math.max(1,width/height),y=1.5*Math.max(1,height/width);
+    state.view={xmin:-x,xmax:x,ymin:-y,ymax:y};
+  }
+  if(name==='parabola') {state.vars.b.value=0;state.vars.k.value=0;}
+  if(name==='race') {state.keys=true;state.view={xmin:-2,xmax:65,ymin:-.5,ymax:6e18};}
+  if(name==='co2'||name==='planets') {
+    state.fitType=name==='co2'?'quadratic':'power';
+    if(name==='planets') {state.logX=true;state.logY=true;}
+    loadDataset(name,false);
+  } else {
+    $('dataset').value='custom';$('data-input').value='';$('data-status').textContent='No measurements loaded.';
+    computeFit();
+  }
+  $('fit').value=state.fitType;syncControls();changed(true,true);
+  if($('notebook').open) $('notebook').close();
+}
+document.querySelectorAll('[data-setup]').forEach(b=>b.onclick=()=>setup(b.dataset.setup));
+function snapshot() {
+  const {fitted,...rest}=state;
+  return JSON.parse(JSON.stringify({...rest,vars:Object.fromEntries(Object.entries(state.vars).map(([k,v])=>[k,{...v,play:false}]))}));
+}
+function restore(saved) {
+  if(!saved || !Array.isArray(saved.lines)||saved.lines.length<1||saved.lines.length>8 ||
+    !saved.lines.every(l=>typeof l.text==='string'&&l.text.length<=500) ||
+    !saved.view || !Object.values(saved.view).every(Number.isFinite)||saved.view.xmin>=saved.view.xmax||saved.view.ymin>=saved.view.ymax) {
+    throw Error('That page cannot be read.');
+  }
+  for(const [k,v]of Object.entries(saved.vars||{})) {
+    if(!/^[a-z]$/.test(k)||![v.min,v.max,v.step,v.value].every(Number.isFinite)||v.min>=v.max||v.step<=0) throw Error('A saved ruler is unreadable.');
+    v.play=false;v.value=clamp(v.value,v.min,v.max);
+  }
+  if((saved.logX&&saved.view.xmin<=0)||(saved.logY&&saved.view.ymin<=0)) throw Error('A saved log axis is unreadable.');
+  V.hush();
+  Object.assign(state,saved,{fitted:null,pins:[],hint:false});
+  state.active=clamp(state.active||0,0,state.lines.length-1);
+  if(!Array.isArray(state.data)||state.data.length>1000||!state.data.every(p=>p.length===2&&p.every(Number.isFinite))) state.data=[];
+  compileAll();renderTape();syncControls();computeFit();
+  $('data-input').value=state.data.map(p=>p.join('\t')).join('\n');$('fit').value=state.fitType;
+  $('dataset').value=state.dataset;
+  $('data-status').textContent=`${state.data.length} points · ${state.dataset==='co2'?'NOAA GML · year / ppm':
+    state.dataset==='planets'?'NASA · AU / Earth years':state.dataset==='population'?'US Census Bureau · year / millions':'stored on this device only'}`;
+  dirty=true;requestDraw();
+  startInk();
+}
+function renderSlots() {
+  $('slots').innerHTML=Array.from({length:4},(_,i)=>{
+    let label='Blank';try {const saved=JSON.parse(localStorage.getItem(`graph-studio-page-${i}`));if(saved) label=saved.lines[0].text||'Measurements';}catch{}
+    return `<div class="slot"><span title="${safe(label)}">Page ${i+1} · ${safe(label.slice(0,25))}</span>
+      <button data-save="${i}">Save</button><button data-load="${i}">Load</button></div>`;
+  }).join('');
+}
+$('slots').onclick=e=>{
+  try {
+    if(e.target.dataset.save!==undefined) {
+      const i=+e.target.dataset.save;localStorage.setItem(`graph-studio-page-${i}`,JSON.stringify(snapshot()));
+      $('notebook-status').textContent=`Page ${i+1} saved on this device.`;renderSlots();
+      document.querySelector(`[data-save="${i}"]`).focus({preventScroll:true});
+    }
+    if(e.target.dataset.load!==undefined) {
+      const saved=JSON.parse(localStorage.getItem(`graph-studio-page-${e.target.dataset.load}`));
+      if(!saved) throw Error('That page is blank.');
+      restore(saved);$('notebook').close();dismissHint();announce('Page loaded from this device.',true);
+    }
+  } catch(error) {$('notebook-status').textContent=`${error.message} Browser storage may be unavailable.`;}
+};
+
+function spokenEquation(text) {
+  const names={sin:'sine',cos:'cosine',tan:'tangent',asin:'inverse sine',acos:'inverse cosine',atan:'inverse tangent',
+    sqrt:'square root',ln:'natural log',log:'log base ten',exp:'e to the power',abs:'absolute value',floor:'floor',round:'round'};
+  return text.replace(/\b(asin|acos|atan|sqrt|floor|round|sin|cos|tan|abs|exp|log|ln)\s*\(/g,(_,name)=>`${names[name]} (`)
+    .replace(/\b([fg])\s*\(/g,'$1 of (').replace(/\bpi\b|π/g,'pi')
+    .replace(/\^2(?![\d.eE])/g,' squared ').replace(/\^3(?![\d.eE])/g,' cubed ').replace(/\^/g,' to the power ')
+    .replace(/=/g,' equals ').replace(/\*/g,' times ').replace(/\//g,' divided by ').replace(/-/g,' minus ').replace(/\+/g,' plus ')
+    .replace(/\s+/g,' ').trim();
+}
+function spokenNumber(n) {
+  if (!Number.isFinite(n)) return 'undefined';
+  return Number(n.toPrecision(4)).toString().replace(/e\+?(-?\d+)/i,' times ten to the power $1');
+}
+function readText() {
+  const dialog=document.querySelector('dialog[open]');
+  if(dialog?.id==='data') {
+    const measurement=state.dataset==='co2'?'NOAA annual carbon dioxide, year and parts per million':
+      state.dataset==='planets'?'NASA planets, astronomical units and Earth years':
+      state.dataset==='population'?'US Census population, year and millions':'Your measurements';
+    const f=state.fitted;
+    return `${measurement}. ${state.data.length} pairs. ${f?
+      `${state.fitType} fit. R squared ${Number.isFinite(f.r2)?f.r2.toFixed(4):'undefined'}, ${f.space}.`:
+      'No fitted curve.'} Choose Curve fit to change the ink.`;
+  }
+  if(dialog?.id==='manual') {
+    const body=dialog.querySelector('.drawer-body'), bounds=body.getBoundingClientRect();
+    const visible=[...body.children].filter(el=>{
+      const r=el.getBoundingClientRect();return r.bottom>bounds.top&&r.top<bounds.bottom;
+    }).map(el=>el.innerText.trim()).filter(Boolean);
+    return `The plotter manual. ${visible.join(' ').slice(0,1400)}`;
+  }
+  if(dialog) return `${dialog.querySelector('h2').textContent}. ${dialog.querySelector('.drawer-body').innerText.slice(0,1400)}`;
+  const c=compiled[state.active];
+  const p=state.tracing&&c&&['y','x','param','polar','point'].includes(c.type)?coordinates(c,state.traceT):null;
+  return [state.hint?HINT:'Type an equation, drag a number tab, or move a ruler.',spokenEquation(state.lines[state.active].text),
+    c?.type==='value'?`equals ${fmt(evaluate(c.ast))}.`:'',
+    p?`At x equals ${spokenNumber(p[0])}, y equals ${spokenNumber(p[1])}.`:'',c?.error||'',state.pins.length?$('pin-tag').textContent:''].filter(Boolean);
+}
+const V=Curio.voice({lines:{hint:HINT},hint:false,read:readText,welcome:()=>state.hint?'hint':null});
+Curio.init({clips:"voice:*",rate:.9});
+function powerLabels() {$('motion').textContent='Motion';$('sound').textContent='Sound';}
+Curio.onMotion(reduce=>{
+  powerLabels();
+  if(reduce) {opening=false;stopScratch();parkCarriage();for(const v of Object.values(state.vars)) v.play=false;renderTape();}
+  dirty=true;requestDraw();announce(`Motion ${reduce?'off':'on'}`,true);
+});
+Curio.onSound(()=>{powerLabels();if(!Curio.sound) stopScratch();});
+addEventListener('click',e=>{
+  const button=e.target.closest('button');
+  if(button && !['read','sound','motion'].includes(button.id) && !button.dataset.number) dismissHint();
+  if(button && !['read','sound'].includes(button.id) && !button.dataset.number) Curio.tone(135,.035,.008,'triangle');
+});
+powerLabels();
+if(Curio.reduce) opening=false;
+try {
+  const hash=decodeURIComponent(location.hash.slice(1));
+  if(hash && hash.length<=500) {state.lines=[{text:hash}];state.hint=false;$('hint').hidden=true;opening=false;}
+}catch{}
+compileAll();renderTape();syncControls();resize();
+window.__tool={state,allLines:V.allLines,vlog:V.log,parse,evaluate,compileAll,compileLine,coordinates,fitData,setup,restore,snapshot,
+  changed,dropPin,setTracing,traceAt,renderTable,requestDraw,project,unproject,derivative,roots,findFeatures,openDrawer,
+  get compiled(){return compiled;},get features(){return features;},get holes(){return holes;},get samples(){return samples;}};
+</script>
+</body>
+</html>

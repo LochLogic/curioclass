@@ -1,0 +1,2218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Virtual Gallery · Curio Class</title>
+<meta name="description"
+  content="Curate a student portfolio, hang a gallery, and walk your exhibition through a visitor's eyes. Grades 9-12 visual arts. Works offline.">
+<!--
+Virtual Gallery, Curio Class. Based on kit/starter/src.html. Content CC BY 4.0, code MIT.
+NCAS VA:Pr4, VA:Pr5, VA:Pr6. Smithsonian Guidelines for Accessible Exhibition Design, sections II and III.
+Jordan Reyes, the portfolio and room are fictional. Curating practices are not accessibility laws.
+Portfolio includes supplied art and OpenAI gpt-image redraws; textures generated with OpenAI gpt-image, edited for Curio Class.
+One offline file. Images and text never leave this device. No recordings made in this build.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --brand:#b8e07a;
+  --brand-ink:#1c1203;
+  --paper:#0d1219;
+  --wall-art:url('art:vg-wall');
+  --floor-art:url('art:vg-floor');
+}
+body {grid-template-rows:70px minmax(0,1fr) 48px;overflow:hidden;min-height:0}
+header {padding:10px 22px;gap:16px;border-bottom:1px solid #34402f;flex-wrap:nowrap}
+h1 {font-size:24px;letter-spacing:-.7px;white-space:nowrap}
+h1 small {font-size:12px;letter-spacing:.02em;margin-top:5px}
+.wordmark {color:var(--brand)}
+.seg {border:1px solid #3a4654;border-radius:8px;flex-shrink:0}
+.seg button {min-height:44px;min-width:44px;padding:0 18px;font-size:14px;font-weight:600}
+.seg button span {opacity:.65;margin-right:7px;font:11px Consolas,monospace}
+.icon-btn {min-height:44px;min-width:44px;border-radius:6px;padding:0 12px;font-size:12px;border-width:1px}
+.utilities {display:flex;gap:6px}
+button {touch-action:manipulation}
+button:active:not(:disabled) {filter:brightness(1.18)}
+button:disabled {cursor:not-allowed;opacity:.45}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible {outline:3px solid var(--focus);outline-offset:2px}
+.btn {font-size:12px;border-radius:5px;min-height:44px;padding:0 10px}
+.primary {background:var(--brand);color:var(--brand-ink);border-color:var(--brand);font-weight:750}
+.eyebrow {font:600 10px/1.3 Consolas,monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--brand)}
+main {display:block;min-height:0;overflow:hidden}
+#view {height:100%;min-height:0}
+.workspace {height:100%;display:grid;grid-template-columns:minmax(0,1fr) 280px;min-height:0}
+.panel {border-left:1px solid #303a43;padding:18px;gap:12px;min-height:0;overflow:hidden}
+.panel h2 {font:500 26px/1.1 Georgia,serif;margin:0;color:#f0f0e6}
+.panel h3 {font-size:13px;margin:0;color:var(--ink)}
+.muted {color:var(--muted);font-size:12px;line-height:1.5}
+.panel p {margin:0}
+.panel-scroll {min-height:0;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:3px}
+.panel-footer {margin-top:auto;display:grid;gap:7px;flex-shrink:0}
+.pair {display:grid;grid-template-columns:1fr 1fr;gap:6px}
+footer {display:flex;align-items:center;gap:16px;border-top:1px solid #293341;background:#10161f;padding:4px 20px}
+#hint {font-size:12px;line-height:1.35;margin:0;flex:1;min-width:0}
+.save-note {font:10px/1.3 Consolas,monospace;color:#9eada8;max-width:210px;flex-shrink:0}
+.save-note::before {content:'●';color:var(--brand);margin-right:7px}
+.portfolio {min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr);background:radial-gradient(ellipse at 20% 0,#29332955,transparent 60%),#10161c}
+.brief {display:flex;align-items:center;justify-content:space-between;gap:16px;padding:19px 22px;border-bottom:1px solid #2e393c}
+.brief h2 {font:400 29px/1.1 Georgia,serif;margin:2px 0 6px}
+.brief p {margin:0;font-size:12px;color:#b8c3c4;line-height:1.45}
+.brief-controls {display:flex;gap:7px;align-items:center;flex-wrap:wrap;justify-content:flex-end;max-width:360px}
+select,input,textarea {background:#0d131b;border:1px solid #627184;border-radius:4px;color:var(--ink);font:inherit}
+select,input {min-height:44px;padding:0 8px;min-width:0}
+textarea {width:100%;padding:8px;line-height:1.5;resize:vertical;min-height:66px}
+label {font-size:12px;display:block;color:#d4dfde}
+label>input,label>textarea,label>select {width:100%;margin-top:5px}
+.gallery-grid {overflow:auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px 19px;padding:24px;
+  align-content:start;grid-auto-rows:max-content;align-items:start}
+.art-card {padding:0;text-align:left;border:0;background:transparent;min-width:0;position:relative;min-height:190px}
+.art-card .picture {height:165px;background:#e5e0d5;display:flex;align-items:center;justify-content:center;padding:10px;position:relative;
+  box-shadow:0 6px 15px #0004,inset 0 0 0 1px #ffffff17;overflow:hidden}
+.picture img {width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 2px 2px #0002)}
+.art-card .caption {display:block;font-size:12px;font-weight:600;line-height:1.35;margin-top:9px;color:#dce4e0}
+.art-card .medium {font-size:10px;color:#9aa9ac;display:block;margin-top:3px;line-height:1.4}
+.art-card:hover .picture {box-shadow:0 0 0 2px #c6dbb5,0 8px 20px #0005}
+.art-card.active .picture {box-shadow:0 0 0 3px var(--brand),0 9px 20px #0004}
+.chosen-mark {position:absolute;top:8px;right:8px;background:var(--brand);color:#192211;min-width:24px;height:24px;border-radius:50%;
+  display:grid;place-items:center;font-size:13px;font-weight:700;box-shadow:0 2px 5px #0005}
+.detail-art {flex:1;min-height:120px;background:#e8e3d8;padding:18px;display:flex;align-items:center;justify-content:center;position:relative;
+  box-shadow:0 9px 26px #0005,inset 0 0 0 1px #fff4}
+.detail-art img {height:100%;width:100%;object-fit:contain;max-height:320px;filter:drop-shadow(0 4px 3px #0003)}
+.tags {display:flex;gap:4px;flex-wrap:wrap}
+.tag {font-size:10px;letter-spacing:.03em;padding:3px 7px;border-radius:2px;border:1px solid #425043;color:#c1d6b0}
+.tag.match {background:#b8e07a1a;color:var(--brand);border-color:#78954f}
+.selection-count {font:12px Consolas,monospace;color:var(--brand);line-height:1.5}
+.privacy {font-size:10px;line-height:1.4;color:#b4c0c7}
+.hang-main {display:grid;grid-template-rows:minmax(0,1fr) 104px;min-height:0;background:#171e21}
+.hang-main {grid-column:1;grid-row:1}
+.hang-panel {grid-column:2;grid-row:1}
+.room-stage {position:relative;min-height:0;overflow:hidden;background:radial-gradient(ellipse at 45% 35%,#4e5551,#1c2528 80%);
+  perspective-origin:50% 50%;isolation:isolate;touch-action:none;user-select:none}
+.room-stage::after {content:'';position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 80px #0003}
+.room-label {position:absolute;left:20px;top:17px;z-index:6;pointer-events:none;background:#152026df;
+  padding:8px 12px;border-left:2px solid var(--brand)}
+.room-label h2 {font:400 27px Georgia,serif;margin:4px 0;color:#fff9ed}
+.room-label p {font-size:11px;color:#d2d4c8;margin:5px 0}
+.room-tools {position:absolute;right:15px;top:15px;z-index:7;display:flex;gap:5px}
+.room-tools .btn {background:#10191ee8}
+.room-tools .btn[aria-pressed="true"] {background:var(--brand);color:var(--brand-ink)}
+.world {position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;pointer-events:none}
+.wall,.floor,.ceiling {position:absolute;transform-origin:0 0;transform-style:preserve-3d;pointer-events:auto;backface-visibility:hidden}
+.wall {height:320px;background-image:linear-gradient(110deg,#ffffff21,#64554118),var(--wall-art);background-color:#f2efe9;
+  background-size:auto,300px 300px;box-shadow:inset 0 -8px 14px #49403720;transform-style:flat}
+.wall-back {width:800px;left:-400px;top:-320px;transform:translateZ(-600px)}
+.wall-left {width:600px;left:-400px;top:-320px;transform:rotateY(90deg)}
+.wall-right {width:600px;left:400px;top:-320px;transform:translateZ(-600px) rotateY(-90deg)}
+.wall-front-left {width:340px;left:-60px;top:-320px;transform:rotateY(180deg)}
+.wall-front-right {width:340px;left:400px;top:-320px;transform:rotateY(180deg)}
+.floor {width:800px;height:600px;left:-400px;top:0;transform:translateZ(-600px) rotateX(90deg);background-color:#b98a5a;
+  background-image:linear-gradient(0deg,#62482626,#dcb58b16),var(--floor-art);background-size:auto,280px 280px;
+  box-shadow:0 0 45px #0005,inset 0 0 60px #26170f55}
+.ceiling {width:800px;height:600px;left:-400px;top:-320px;transform:translateZ(-600px) rotateX(90deg);background:#e6e2da;opacity:.08;pointer-events:none}
+.skirting {position:absolute;bottom:0;left:0;right:0;height:9px;background:linear-gradient(#d0c9bb,#958d7c);box-shadow:0 -1px #fff6}
+.center-line {position:absolute;left:0;right:0;border-top:1px dashed #6d776c70;pointer-events:none}
+.center-line span {position:absolute;left:8px;top:-15px;color:#41473f;background:#f2efe9c9;font:10px Consolas,monospace}
+.seated-band {position:absolute;left:0;right:0;top:190px;height:21px;background:#8fae7b16;pointer-events:none}
+.spot {position:absolute;pointer-events:none;top:0;width:190px;height:280px;
+  background:radial-gradient(ellipse at 50% 45%,#fffdf0c9,transparent 65%)}
+.frame {position:absolute;padding:5px;border:3px solid #59412d;background:#f7f3e8;cursor:grab;touch-action:none;
+  box-shadow:2px 5px 5px #0005,inset 0 0 2px #352516;transform:translateZ(1px);color:#2b2a28}
+.frame img {display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.frame.unlit {background:#b1ac9e;border-color:#322b23}
+.frame.unlit img {filter:brightness(.59)}
+.frame.selected {outline:2px solid #9bc366;outline-offset:3px}
+.frame.bowl {padding:0;border:0;background:transparent;box-shadow:none}
+.frame.bowl img {object-fit:contain;object-position:center bottom;width:60%;height:82%;position:absolute;left:20%;bottom:3px;margin:0}
+.frame.bowl::after {content:'';position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(#baa17b,#715136);
+  box-shadow:2px 3px 4px #0006}
+.wall-label {overflow:hidden;max-height:180px;position:absolute;width:46px;min-height:18px;
+  font:3px/1.4 'Segoe UI',sans-serif;background:#fff;color:#2b2a28;padding:3px;
+  box-shadow:0 .3px 1px #0003;pointer-events:none;transform:translateY(-50%) translateZ(1px);overflow-wrap:anywhere}
+.wall-label strong {font-weight:700;font-size:3.4px}
+.gap-ruler {display:none;position:absolute;height:8px;border-top:1px solid #596451;
+  border-left:1px solid #596451;border-right:1px solid #596451;pointer-events:none}
+.gap-ruler span {position:absolute;left:50%;top:2px;transform:translateX(-50%);white-space:nowrap;
+  background:#f2efe9;color:#2b2a28;font:10px Consolas,monospace;padding:1px 2px}
+.dragging-frames .gap-ruler {display:block}
+.intro-panel {position:absolute;left:20px;top:130px;width:100px;background:#fff;padding:7px;color:#2b2a28;font:4px/1.5 'Segoe UI',sans-serif;
+  box-shadow:1px 2px 4px #0003}
+.intro-panel strong {font:8px Georgia,serif;display:block;margin-bottom:4px}
+.door-light {position:absolute;width:120px;height:160px;left:-60px;top:0;transform:rotateX(90deg);transform-origin:0 0;
+  background:linear-gradient(#fff3cc88,transparent);pointer-events:none}
+.room-status {position:absolute;left:18px;bottom:14px;right:18px;font:11px/1.4 Consolas,monospace;color:#d9e3d4;z-index:5;pointer-events:none}
+.breath {width:5px;height:5px;display:inline-block;background:var(--brand);border-radius:50%;margin-right:7px;animation:breathe 3s ease-in-out infinite}
+@keyframes breathe {50% {opacity:.35;box-shadow:0 0 9px var(--brand)}}
+body.calm .breath {animation:none}
+.tray-wrap {padding:9px 16px 10px;border-top:1px solid #41433b;background:linear-gradient(#252b2d,#1b2225);min-height:0}
+.tray-caption {display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;font:10px Consolas,monospace;color:#aeb9b0}
+.tray {display:grid;grid-template-columns:repeat(8,minmax(44px,1fr));gap:7px;min-height:58px;touch-action:none;user-select:none}
+.tray-item {min-width:0;height:62px;border:1px solid #586057;border-radius:3px;padding:4px;background:#141c1d;position:relative;touch-action:none}
+.tray-item img {height:40px;width:100%;object-fit:contain;pointer-events:none}
+.tray-item small {display:block;font:10px Consolas,monospace;color:#bfc8bb;text-align:left;white-space:nowrap}
+.tray-item.selected {border-color:var(--brand);box-shadow:0 0 0 1px var(--brand)}
+.tray-item.hung::after {content:'✓';position:absolute;right:2px;bottom:0;color:var(--brand);font-size:11px}
+.tray-empty {grid-column:1/-1;align-self:center;font-size:12px;color:#aeb9b0}
+.control-title {font:500 22px Georgia,serif!important;line-height:1.2!important}
+.control-strip {display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.control-strip {grid-template-columns:repeat(3,minmax(0,1fr))}
+.control-strip .btn {padding:0 5px;font-size:11px}
+.field-block {padding-top:10px;border-top:1px solid #35404a}
+.field-block .muted {font-size:10px;margin-top:4px}
+.inline {display:flex;gap:7px;align-items:center}
+.inline>* {min-width:0}
+.wall-picker {width:100%;font-size:12px}
+.height-read {display:flex;justify-content:space-between;font:11px Consolas,monospace;color:#cdd7ca}
+.height-read output {color:var(--brand)}
+.plan-wrap {position:absolute;inset:70px 15px 40px;display:none;align-items:center;justify-content:center}
+.plan-wrap.active {display:flex}
+.room-stage:has(.plan-wrap.active) .room-label {top:6px;padding:2px 8px}
+.room-stage:has(.plan-wrap.active) .room-label .eyebrow,
+.room-stage:has(.plan-wrap.active) .room-label p {display:none}
+.room-stage:has(.plan-wrap.active) .room-label h2 {font-size:16px;margin:2px 0}
+.room-stage:has(.plan-wrap.active) .room-status {bottom:0;font-size:10px}
+.plan-svg {width:100%;height:100%;max-width:100%;overflow:visible;touch-action:none}
+.plan-svg text {font-family:Consolas,monospace;pointer-events:none}
+.mini-plan {height:175px;flex-shrink:0;position:relative;border:1px solid #485346;background:#eee9dc;border-radius:4px;margin-bottom:6px}
+.mini-plan .plan-svg {display:block}
+.drag-ghost {position:fixed;z-index:2000;width:90px;height:100px;background:#eee7d7;padding:5px;box-shadow:0 10px 20px #0008;
+  pointer-events:none;transform:translate(-50%,-50%) rotate(-4deg)}
+.drag-ghost img {width:100%;height:100%;object-fit:contain}
+.walk-main {height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto 90px;background:#191f21}
+.walk-main .room-stage {background:#ede9e0}
+.walk-main .room-label h2,.walk-main .room-label p {color:#2b2a28}
+.walk-main .room-label {background:#f7f3e7e8;padding:9px 14px;border-left:3px solid #668b43;top:14px;left:18px;max-width:65%}
+.walk-main .room-label h2 {font-size:22px}
+.walk-main .room-status {color:#2b2a28;background:#ffffffe0;left:18px;right:auto;padding:6px 10px}
+.walk-transport {display:flex;align-items:center;gap:7px;padding:10px 18px;background:#141d23;border-top:1px solid #41503c}
+.walk-transport .btn {font-size:12px}
+.walk-transport .timing {margin-left:auto;font:11px Consolas,monospace;color:#b5c6b3}
+.order-strip {display:flex;gap:6px;align-items:stretch;justify-content:center;padding:8px 18px;min-height:0;overflow:auto}
+.order-item {min-height:64px;min-width:44px;max-width:130px;flex:1;display:grid;grid-template-columns:40px minmax(0,1fr);gap:7px;
+  align-items:center;text-align:left;padding:5px;border:1px solid #536052;background:#20292a;border-radius:3px;font-size:11px;position:relative}
+.order-item img {width:40px;height:48px;object-fit:contain}
+.order-item.current {border-color:var(--brand);box-shadow:0 0 0 1px var(--brand)}
+.order-item {overflow:hidden}
+.order-strip>p {grid-column:1/-1;width:100%;text-align:center}
+.order-title {overflow-wrap:anywhere;min-width:0;display:-webkit-box;-webkit-box-orient:vertical;
+  -webkit-line-clamp:2;overflow:hidden}
+.order-item small {display:block;font:10px Consolas,monospace;color:var(--brand);margin-top:3px}
+.jump-mark {width:27px;align-self:center;font:10px Consolas,monospace;color:#ffd5a2;text-align:center;flex-shrink:0}
+.visitor-label {position:absolute;right:24px;bottom:20px;width:290px;max-width:42%;background:#fffdf5;color:#2b2a28;padding:19px 22px;
+  border:1px solid #b9b19d;box-shadow:0 7px 22px #0002;z-index:5}
+.visitor-label h3 {font:400 23px/1.2 Georgia,serif;margin:0 0 8px}
+.visitor-label h3 {display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.visitor-label p {font-size:13px;line-height:1.5;margin:5px 0}
+.visitor-label small {font-size:11px;color:#5b6056}
+.walk-art {position:absolute;left:0;top:0;transform-origin:0 0;pointer-events:none;z-index:3;
+  background:#f7f3e8;border-style:solid;border-color:#59412d;box-shadow:2px 5px 9px #0005}
+.walk-art img {display:block;width:100%;height:100%;object-fit:contain}
+.walk-art.bowl {background:transparent;border:0!important;box-shadow:none;padding:0!important}
+.walk-art.bowl img {width:60%;height:82%;position:absolute;left:20%;bottom:13.6364%;margin:0;
+  object-fit:contain;object-position:center bottom}
+.walk-art.bowl::after {content:'';position:absolute;left:0;right:0;bottom:0;height:13.6364%;background:linear-gradient(#bca27c,#715136)}
+.sharp-label {border:0;background:#fff;color:#2b2a28;font:52px/1.4 'Segoe UI',sans-serif;overflow:hidden}
+.sharp-label strong {font-size:59px}
+.walk-room .center-line,.walk-room .seated-band {display:none}
+.cone-note {position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);width:190px;height:160px;z-index:4;
+  background:linear-gradient(#b8e07a00,#b8e07a66);clip-path:polygon(0 0,100% 0,50% 100%);pointer-events:none}
+.checklist {height:100%;overflow:auto;padding:25px 22px;background:radial-gradient(ellipse at 50% 0,#31402b44,transparent 60%),#11181f}
+.check-inner {max-width:940px;margin:auto;height:100%;display:flex;flex-direction:column;min-height:0}
+.check-inner>.ready {margin:0 0 12px;flex-shrink:0}
+.check-inner>p.muted {margin:0;font-size:10px;flex-shrink:0}
+.check-head {display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:18px;flex-shrink:0}
+.check-head h2 {font:400 33px Georgia,serif;margin:5px 0}
+.checks {display:grid;grid-template-columns:1fr;gap:7px;flex:1;min-height:0;overflow:auto;
+  grid-auto-rows:max-content;align-content:start;padding:2px 0}
+.check-row {display:grid;grid-template-columns:35px minmax(0,1fr) 100px;gap:14px;align-items:center;
+  border:1px solid #39483e;background:#1a2427;padding:10px 16px}
+.check-icon {font:24px Georgia,serif;color:var(--brand)}
+.check-row.fail .check-icon {color:#ffbaaa}
+.check-row h3 {font-size:14px;margin:0 0 3px;line-height:1.3}
+.check-row p {font-size:12px;line-height:1.4;margin:0;color:#b8c4c3}
+.check-row details {font-size:11px;color:#bdc9bb;margin-top:5px}
+.check-row summary {cursor:pointer;min-height:44px;display:flex;align-items:center;text-decoration:underline;text-underline-offset:3px}
+.check-bottom {display:flex;align-items:center;gap:8px;margin:8px 0;flex-shrink:0;
+  padding:8px 0;background:#11181ff5;border-top:1px solid #53604b}
+.ready {color:var(--brand);font:400 21px Georgia,serif}
+.warning {color:#ffd4a4;font-size:12px;line-height:1.5}
+dialog {background:#19232c;color:var(--ink);border:1px solid #748467;border-radius:6px;padding:22px;width:520px;max-width:calc(100vw - 28px);max-height:85vh}
+dialog::backdrop {background:#060c12c9}
+dialog h2 {font:400 27px Georgia,serif;margin:0 0 12px}
+dialog .pair {margin-top:14px}
+dialog p {font-size:13px;line-height:1.5}
+.word-count {font:11px Consolas,monospace;color:#b8c7b1;margin:5px 0 12px}
+.word-count.invalid {color:#ffbaaa}
+#statement-text {min-height:170px}
+#print-sheet {display:none}
+.sr-only {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media (min-width:1650px) {
+  .workspace {grid-template-columns:minmax(0,1fr) 340px}
+  .gallery-grid {grid-template-columns:repeat(5,minmax(0,1fr));gap:27px;padding:32px}
+  .art-card .picture {height:235px}
+  .panel {padding:24px;gap:17px}
+  .detail-art img {max-height:510px}
+}
+@media (max-width:1100px) {
+  header {gap:9px;padding:7px 12px}
+  h1 {font-size:20px}
+  h1 small {font-size:10px}
+  .seg button {padding:0 10px;font-size:12px}
+  .icon-btn {font-size:11px;padding:0 7px}
+  .workspace {grid-template-columns:minmax(0,1fr) 240px}
+  .panel {padding:12px;gap:9px}
+  .gallery-grid {grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;padding:18px}
+  .art-card .picture {height:145px}
+  .brief {padding:13px 17px;gap:10px}
+  .brief h2 {font-size:23px}
+  .brief-controls {max-width:200px}
+  .brief-controls select {width:100%}
+  .order-item {display:block;text-align:center;font-size:10px}
+  .order-item img {width:35px;height:38px;float:left;margin-right:5px}
+}
+@media (max-height:650px) and (min-width:600px) {
+  body {grid-template-rows:58px minmax(0,1fr) 44px}
+  h1 {font-size:19px}
+  h1 small {display:none}
+  header {padding:5px 10px;gap:7px}
+  .seg button {padding:0 10px;font-size:12px}
+  .seg button span {display:none}
+  .icon-btn {padding:0 7px;font-size:11px}
+  .panel {padding:9px;gap:6px}
+  .panel h2 {font-size:20px}
+  .detail-art {min-height:50px;padding:7px}
+  .detail-art img {max-height:155px}
+  .panel .muted {font-size:10px}
+  .gallery-grid {padding:12px;gap:12px;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .art-card {min-height:145px}
+  .art-card .picture {height:112px;padding:7px}
+  .brief {padding:8px 12px}
+  .brief h2 {font-size:21px;margin-bottom:4px}
+  .brief p {font-size:10px;max-width:260px}
+  .brief .eyebrow {display:none}
+  .panel-footer {gap:5px}
+  .panel-footer .privacy {display:none}
+  .panel-footer .pair {gap:4px}
+  .detail-meta .eyebrow,.detail-meta .tags {display:none}
+  .selection-count {font-size:11px}
+  .hang-main {grid-template-rows:minmax(0,1fr) 90px}
+  .tray-wrap {padding:6px 10px}
+  .tray {gap:4px}
+  .tray-item {height:58px}
+  .tray-item img {height:35px}
+  .hang-panel {overflow:hidden}
+  .hang-panel .control-strip {grid-template-columns:1fr 1fr 1fr}
+  .hang-panel .panel-scroll {overflow:auto;flex:1;min-height:0}
+  .hang-panel .panel-footer {position:static;background:var(--panel);padding-top:5px;flex-shrink:0}
+  .field-block {padding-top:6px}
+  .room-label {left:12px;top:10px}
+  .room-label h2 {font-size:21px}
+  .room-tools {right:10px;top:8px}
+  .room-stage:has(.plan-wrap.active) .room-label {top:6px}
+  .room-stage:has(.plan-wrap.active) .room-label .eyebrow,
+  .room-stage:has(.plan-wrap.active) .room-label p {display:none}
+  .room-stage:has(.plan-wrap.active) .room-label h2 {font-size:16px}
+  .plan-wrap {inset:25px 4px 32px}
+  .walk-main {grid-template-rows:minmax(0,1fr) auto 75px}
+  .walk-transport {padding:5px 10px;gap:5px}
+  .walk-transport .btn {font-size:11px;padding:0 8px}
+  .walk-transport .timing {font-size:10px}
+  .visitor-label {padding:10px 14px;bottom:12px;right:15px;width:230px}
+  .visitor-label h3 {font-size:18px}
+  .visitor-label p {font-size:11px}
+  .visitor-label small {font-size:10px}
+  .checklist {padding:14px 18px}
+  .check-head {margin-bottom:10px}
+  .check-head h2 {font-size:26px}
+}
+@media (max-height:500px) {
+  dialog {padding:12px}
+  dialog h2 {font-size:22px;margin-bottom:8px}
+  #label-dialog>p:not(.word-count),#statement-dialog>p:not(.word-count) {display:none}
+  #label-note,#statement-text {min-height:50px;height:50px}
+  dialog .word-count {margin:4px 0;font-size:11px}
+  dialog .pair {margin-top:6px}
+}
+@media (max-width:760px) and (min-width:600px) {
+  .workspace {grid-template-columns:minmax(0,1fr) 210px}
+  .utilities {gap:3px}
+  .icon-btn {font-size:10px;padding:0 6px}
+  .seg button {font-size:11px;padding:0 9px}
+  .seg button span {display:none}
+  h1 {font-size:18px}
+  .brief-controls {max-width:150px}
+  .gallery-grid {grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:12px}
+  .art-card .picture {height:112px}
+  .room-label h2 {font-size:19px}
+  .tray-wrap {padding-left:6px;padding-right:6px}
+  .tray {gap:3px}
+}
+@media (max-width:599px) {
+  body {grid-template-rows:106px minmax(0,1fr) 53px}
+  header {display:grid;grid-template-columns:1fr auto;padding:5px 10px;gap:4px}
+  h1 {font-size:21px}
+  h1 small {display:none}
+  .utilities {grid-column:2;grid-row:1;gap:4px}
+  .utilities .icon-btn {font-size:10px;padding:0 7px}
+  .seg {grid-column:1/-1;display:flex;width:100%;border-radius:4px}
+  .seg button {flex:1;padding:0 4px;font-size:12px}
+  .seg button span {display:none}
+  .workspace {grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) 169px}
+  .portfolio {grid-template-rows:auto minmax(0,1fr)}
+  .brief {padding:10px 12px;gap:9px}
+  .brief h2 {font-size:22px}
+  .brief p {font-size:10px}
+  .brief .eyebrow {font-size:10px}
+  .brief-controls {width:132px;flex-shrink:0}
+  .gallery-grid {grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:12px}
+  .art-card {min-height:145px}
+  .art-card .picture {height:112px;padding:7px}
+  .art-card .caption {font-size:10px}
+  .art-card .medium {display:none}
+  .panel {padding:9px 12px;border-top:1px solid #536347;border-left:0;display:grid;grid-template-columns:90px 1fr;gap:6px 12px;position:relative}
+  .detail-art {grid-column:1;grid-row:1/4;min-height:90px;max-height:118px;padding:6px}
+  .detail-art img {max-height:110px}
+  .detail-meta {grid-column:2;min-height:0;overflow:hidden}
+  .detail-meta h2 {font-size:19px}
+  .detail-meta .eyebrow,.detail-meta .tags,.detail-meta .muted {display:none}
+  .panel-footer {display:grid;grid-template-columns:1fr;gap:4px;grid-column:2;grid-row:2/4}
+  .panel-footer .privacy {display:none}
+  .selection-count {font-size:11px}
+  #add-own {position:absolute;left:12px;bottom:8px;width:90px;font-size:10px}
+  .hang-workspace {grid-template-rows:minmax(0,1fr) 270px}
+  .hang-main {grid-template-rows:minmax(0,1fr) 143px}
+  .tray-wrap {padding:7px 10px}
+  .tray {grid-template-columns:repeat(4,minmax(44px,1fr));gap:4px}
+  .tray-item {height:53px}
+  .tray-item img {height:31px}
+  .room-label {top:9px;left:12px}
+  .room-label h2 {font-size:20px}
+  .room-label .eyebrow {font-size:10px}
+  .room-tools {top:7px;right:10px}
+  .room-status {bottom:8px;left:12px;font-size:10px;right:10px}
+  .plan-wrap {inset:53px 10px 28px}
+  .room-stage:has(.plan-wrap.active) .room-label p {display:none}
+  .hang-panel {display:flex;gap:5px;overflow:hidden;padding:8px 12px}
+  .hang-panel .panel-scroll {overflow:auto;flex:1;min-height:0;display:block;padding:0}
+  .hang-panel .control-title {font-size:18px!important}
+  .hang-panel .eyebrow {display:none}
+  .hang-panel .control-strip {grid-template-columns:repeat(3,1fr)}
+  .hang-panel .field-block {padding-top:5px;margin-top:5px}
+  .hang-panel .mini-plan {display:none}
+  .hang-panel .height-read {margin-top:4px}
+  .hang-panel .panel-footer {display:block;margin:0;position:static;background:var(--panel);padding-top:5px;flex-shrink:0}
+  .hang-panel .panel-footer .btn {width:100%}
+  .walk-main {grid-template-rows:minmax(0,1fr) auto 120px}
+  .walk-transport {display:grid;grid-template-columns:repeat(4,1fr);padding:7px 10px;gap:5px}
+  #walk-play {grid-column:span 2}
+  #direction {grid-column:span 2;font-size:10px}
+  .walk-transport .timing {font-size:10px;margin:0;grid-column:span 2;text-align:right}
+  .order-strip {padding:8px 10px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;overflow:hidden}
+  .order-item {min-height:48px;font-size:9px;padding:3px}
+  .order-item img {width:25px;height:31px}
+  .order-item .order-title {display:none}
+  .jump-mark {display:none}
+  .order-item.has-jump::after {content:'jump';color:#ffd5a2;font-size:10px;position:absolute;right:2px;bottom:2px}
+  .visitor-label {max-width:none;width:auto;left:12px;right:12px;bottom:13px;padding:10px 13px}
+  .visitor-label h3 {font-size:20px;margin-bottom:3px}
+  .visitor-label p {font-size:11px;line-height:1.35;margin:3px 0}
+  .walk-main .room-label {left:12px;top:10px;max-width:92%;padding:7px 10px}
+  .walk-main .room-label h2 {font-size:18px}
+  .walk-main .room-label p {font-size:10px}
+  .walk-main .room-status {bottom:auto;top:100px;font-size:10px}
+  footer {padding:5px 11px;gap:10px}
+  #hint {font-size:11px}
+  .save-note {max-width:90px;font-size:10px}
+  .checklist {padding:16px 12px}
+  .check-head {align-items:flex-start}
+  .check-head h2 {font-size:27px}
+  .check-head .selection-count {max-width:80px;text-align:right}
+  .check-row {grid-template-columns:22px minmax(0,1fr) 70px;gap:8px;padding:9px}
+  .check-row .btn {font-size:10px;padding:0 6px}
+  .check-row h3 {font-size:13px}
+  .check-row p {font-size:11px}
+}
+/* Keep the complete compact workbench in view, without shrinking its 44 px targets. */
+.problem-focus {outline:3px solid #f5d08a;outline-offset:2px}
+.hang-panel:focus-within .problem-focus:not(:focus) {outline:none}
+.walk-main .room-label .eyebrow {color:#456226}
+.brief h2,.detail-meta h2,.room-label h2,.control-title {overflow-wrap:anywhere}
+.brief h2,.detail-meta h2,.room-label h2,.control-title {display:-webkit-box;-webkit-box-orient:vertical;
+  -webkit-line-clamp:2;overflow:hidden}
+.room-label {max-width:calc(100% - 95px)}
+.visitor-label {overflow-wrap:anywhere;overflow:auto;max-height:calc(100% - 28px)}
+.check-row p,.ready,#print-sheet {overflow-wrap:anywhere}
+@media (max-height:650px) and (min-width:600px), (max-width:599px) {
+  .hang-panel {padding:6px;gap:4px;display:flex;overflow:hidden}
+  .hang-panel .eyebrow,.hang-panel .muted,.placement-controls>label {display:none}
+  .hang-panel .control-title {font-size:16px!important;line-height:22px!important;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0}
+  .hang-panel .control-strip {gap:4px;flex-shrink:0}
+  .hang-panel .btn {font-size:10px;padding:0 3px;min-width:0;min-height:44px;line-height:1.15}
+  .hang-panel .panel-scroll {display:contents}
+  .hang-panel .mini-plan {display:block;height:120px;margin:0}
+  .hang-panel .field-block {padding:0;margin:0;border:0;gap:4px;flex-shrink:0}
+  .placement-controls {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));position:relative}
+  .placement-controls>.pair {display:contents}
+  .placement-controls .wall-picker {font-size:10px;padding:0 2px;grid-column:1;grid-row:1}
+  .placement-controls .height-read {position:absolute;left:2px;right:2px;bottom:31px;
+    font-size:10px;pointer-events:none;z-index:1;margin:0}
+  .placement-controls input[type=range] {grid-column:1/-1;grid-row:2;min-height:44px;margin:0;padding-top:12px}
+  .order-controls {display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .order-controls>.pair {display:contents}
+  #return-tray {margin:0!important}
+  .hang-panel .panel-footer {margin:0;padding:0;display:block}
+  .hang-panel .panel-footer .pair {gap:4px}
+  .hang-panel .panel-footer .btn {width:auto}
+}
+@media (max-width:599px) {
+  .hang-workspace {grid-template-rows:minmax(0,1fr) 278px}
+  .hang-panel {grid-column:1;grid-row:2}
+  .visitor-label {max-height:calc(100% - 135px)}
+  .walk-main .room-label {max-height:105px;overflow:hidden}
+  .walk-main .room-status {top:120px}
+}
+@media (max-height:650px) and (min-width:600px) {
+  .walk-main .room-label {max-width:calc(100% - 280px)}
+}
+@media (min-width:600px) and (min-height:651px) and (max-height:900px) {
+  .hang-panel:has(.mini-plan) {padding:10px;gap:5px}
+  .hang-panel:has(.mini-plan) .eyebrow,.hang-panel:has(.mini-plan) .muted,
+  .hang-panel:has(.mini-plan) .placement-controls>label {display:none}
+  .hang-panel:has(.mini-plan) .control-title {font-size:18px!important;line-height:22px!important;flex-shrink:0}
+  .hang-panel:has(.mini-plan) .control-strip {flex-shrink:0}
+  .hang-panel:has(.mini-plan) .panel-scroll {display:contents}
+  .hang-panel:has(.mini-plan) .field-block {padding:0;margin:0;border:0;gap:4px;flex-shrink:0}
+  .hang-panel:has(.mini-plan) .placement-controls {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));position:relative}
+  .hang-panel:has(.mini-plan) .placement-controls>.pair {display:contents}
+  .hang-panel:has(.mini-plan) .wall-picker {font-size:10px;padding:0 2px;grid-column:1;grid-row:1}
+  .hang-panel:has(.mini-plan) .height-read {position:absolute;left:2px;right:2px;bottom:31px;
+    font-size:10px;pointer-events:none;z-index:1;margin:0}
+  .hang-panel:has(.mini-plan) input[type=range] {grid-column:1/-1;grid-row:2;min-height:44px;margin:0;padding-top:12px}
+  .hang-panel:has(.mini-plan) .order-controls {display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .hang-panel:has(.mini-plan) .order-controls>.pair {display:contents}
+  .hang-panel:has(.mini-plan) #return-tray {margin:0!important}
+  .hang-panel:has(.mini-plan) .panel-footer {margin-top:auto;padding:0;display:block}
+  .hang-panel:has(.mini-plan) .btn {font-size:10px;padding:0 3px;min-width:0;min-height:44px;line-height:1.15}
+}
+@media print {
+  html,body {height:auto;display:block;overflow:visible;background:white;color:#111}
+  body>*:not(#print-sheet) {display:none!important}
+  #print-sheet {display:block;padding:20px;font:12px/1.5 'Segoe UI',sans-serif;color:#111}
+  #print-sheet h1 {color:#111;font:32px Georgia,serif}
+  #print-sheet svg {width:100%;height:270px}
+  .print-label {break-inside:avoid;border-top:1px solid #999;padding:12px 0;display:flex;gap:18px}
+  .print-label img {width:80px;height:80px;object-fit:contain}
+  .print-label h2 {font-size:17px;margin:0}
+}
+
+/* The door wall unfolds below the room, keeping its inward-facing pictures visible. */
+.hang-main .room-stage:not(:has(.plan-wrap.active)) .world {top:41%}
+.hang-main .wall-front-left,.hang-main .wall-front-right {visibility:hidden}
+.door-elevation {position:absolute;left:12px;right:12px;bottom:25px;height:28%;min-height:104px;
+  z-index:4;border-top:1px solid #82755e;background:#182021e8;overflow:hidden}
+.elevation-caption {position:absolute;left:8px;top:4px;font:10px Consolas,monospace;color:#e0dccb;z-index:2}
+.door-elevation-inner {position:absolute;left:50%;top:21px;width:800px;height:180px;display:flex;transform-origin:50% 0}
+.elevation-wall {width:340px;height:180px;position:relative;background:#f2efe9 var(--wall-art);flex-shrink:0}
+.elevation-wall>.frame,.elevation-wall>.wall-label,.elevation-wall>.intro-panel {translate:0 -80px}
+.elevation-door {width:120px;height:180px;background:linear-gradient(90deg,#b7a78c,#eddfbd,#ad9c83);
+  border:12px solid #65533e;border-bottom:0;display:grid;place-content:center;text-align:center;color:#493b29;
+  font:24px/1.5 Consolas,monospace;flex-shrink:0}
+.room-stage:has(.plan-wrap.active) .door-elevation {display:none}
+.frame.first-seen {outline:4px double #36571d;outline-offset:6px;box-shadow:0 0 0 10px #f5ffdc,2px 5px 5px #0005}
+.door-cone {position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.walk-room .wall-label,.walk-room .wall-label strong {color:transparent;text-shadow:none}
+/* Keep frames as separate 3D surfaces; flattening a near-door wall clips its far-end artwork in Chrome. */
+.walk-room .wall-left {transform-style:preserve-3d}
+.walk-room [data-squeezed="true"] {visibility:hidden!important}
+.walk-room .sharp-label {position:absolute;z-index:3;padding:9px;font:clamp(10px,1vw,13px)/1.4 'Segoe UI',sans-serif;
+  height:auto;max-height:calc(100% - 16px);overflow:auto;box-shadow:1px 3px 8px #0002;overflow-wrap:break-word}
+.walk-room .sharp-label strong {font-size:1.1em}
+.walk-main {grid-template-rows:minmax(0,1fr) auto auto 90px}
+.walk-main>.room-stage {grid-row:1}
+.walk-main>#visitor-label {grid-row:2}
+.walk-main>.walk-transport {grid-row:3}
+.walk-main>.order-strip {grid-row:4}
+#visitor-label.visitor-label {position:static;width:auto;max-width:none;max-height:110px;overflow:auto;margin:0;
+  background:#fffdf5;color:#2b2a28;padding:0 18px;border:0;box-shadow:none;font-size:12px}
+#visitor-label[hidden] {display:none}
+#visitor-label summary {cursor:pointer;min-height:44px;display:flex;align-items:center;gap:8px;font-size:12px}
+#visitor-label summary::before {content:'▸';color:#456226}
+#visitor-label[open] summary::before {content:'▾'}
+#visitor-label p {margin:0 0 7px}
+.walk-main .room-label {max-width:45%;padding:5px 9px}
+.walk-main .room-label h2 {font-size:19px;margin:2px 0}
+.walk-main .room-label .eyebrow {display:none}
+.order-title {overflow-wrap:normal;word-break:normal}
+.order-title small {display:inline;margin:0;font-size:10px}
+.order-item {grid-template-rows:1fr}
+@media (min-width:600px) and (max-width:800px) {
+  .order-item {display:flex;flex-direction:column;justify-content:center;gap:1px;padding:2px}
+  .order-item img {width:100%;height:27px;float:none;margin:0}
+  .order-title {width:100%;font-size:10px;line-height:12px}
+  .walk-transport .timing {display:none}
+}
+.tray-item small {white-space:normal;font-size:10px;line-height:12px}
+.card-size {display:block;font-size:10px;color:#c0cac3;margin:3px 0}
+.art-card .tags {margin-top:5px}
+.art-card .tag {padding:2px 5px}
+.checklist {padding:14px 18px}
+.check-inner {max-width:1200px}
+.check-head {margin-bottom:10px}
+.checks {grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;align-content:start}
+.check-row {grid-template-columns:22px minmax(0,1fr) auto;gap:8px;padding:6px 8px;min-height:64px}
+.check-row h3 {font-size:12px}
+.check-row p {font-size:11px;line-height:1.3;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.check-actions {display:flex;gap:4px}
+.check-actions .btn {min-width:44px;padding:0 6px;font-size:11px}
+.check-bottom {padding:4px 0;margin:6px 0}
+@media (min-width:600px) and (max-height:650px) {
+  .walk-main {grid-template-rows:minmax(0,1fr) auto auto 75px}
+  .walk-main .room-label {top:5px;left:8px;padding:3px 7px;max-width:34%}
+  .walk-main .room-label h2 {font-size:14px}
+  .walk-main .room-label p {font-size:10px;margin:1px 0}
+  .walk-main .room-status {bottom:3px;left:6px;padding:2px 5px;font-size:10px}
+  #direction {font-size:10px;padding:0 6px}
+  .walk-transport .timing {font-size:10px}
+  .checklist {padding:6px 8px}
+  .check-head {margin-bottom:4px}
+  .check-head .eyebrow,.check-inner>p.muted {display:none}
+  .check-head h2 {font-size:20px;margin:1px 0}
+  .check-head .selection-count {font-size:10px}
+  .checks {gap:4px}
+  .check-row {padding:3px 5px;gap:5px;min-height:54px;grid-template-columns:16px minmax(0,1fr) auto}
+  .check-row h3 {font-size:11px;margin-bottom:2px}
+  .check-row h3 span {display:none}
+  .check-row p {font-size:10px;-webkit-line-clamp:2}
+  .check-icon {font-size:18px}
+  .check-actions .btn {font-size:10px;padding:0 4px}
+  .check-bottom {margin:4px 0 0;padding:0}
+}
+@media (max-width:599px) {
+  .checks {grid-template-columns:1fr}
+  .check-row {grid-template-columns:18px minmax(0,1fr) auto}
+  .check-row h3 span {display:none}
+  .walk-main {grid-template-rows:minmax(0,1fr) auto auto 120px}
+  .walk-main .room-label {max-width:85%;top:5px;padding:3px 6px}
+  .walk-main .room-label h2 {font-size:14px}
+  .walk-main .room-status {top:auto;bottom:5px}
+  #visitor-label.visitor-label {padding:0 10px;max-height:95px}
+  .art-card .medium {display:block;font-size:10px}
+  .card-size {font-size:10px}
+  .art-card .tag {font-size:10px}
+}
+
+</style>
+</head>
+<body>
+<header>
+  <h1>Virtual <span class="wordmark">Gallery</span><small>Curating and presenting a portfolio · Curio Class</small></h1>
+  <nav class="seg" aria-label="Mode">
+    <button id="m-select" aria-pressed="true"><span>01</span>Select</button>
+    <button id="m-hang" aria-pressed="false"><span>02</span>Hang</button>
+    <button id="m-walk" aria-pressed="false"><span>03</span>Walk</button>
+    <button id="m-checklist" aria-pressed="false"><span>04</span>Checklist</button>
+  </nav>
+  <div class="utilities">
+    <button class="icon-btn" id="read">Read</button>
+    <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+    <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  </div>
+</header>
+<main><div id="view"></div></main>
+<footer>
+  <p class="hint" id="hint" aria-live="polite"></p>
+  <span class="save-note" id="save-status">Saved only on this device</span>
+</footer>
+<dialog id="label-dialog" aria-labelledby="label-heading">
+  <h2 id="label-heading">Write the wall label</h2>
+  <label>Title<input id="label-title" maxlength="150"></label>
+  <label>One-line note<textarea id="label-note" aria-label="One-line note" aria-describedby="label-count"
+    maxlength="1500" rows="3"></textarea></label>
+  <p class="word-count" id="label-count"></p>
+  <p class="muted">The label center hangs at 137 cm (54 in), for seated and standing visitors.</p>
+  <div class="pair"><button class="btn primary" id="label-done">Done</button><button class="btn" id="label-close">Close</button></div>
+</dialog>
+<dialog id="statement-dialog" aria-labelledby="statement-heading">
+  <h2 id="statement-heading">At the door</h2>
+  <p>Tell visitors what connects these works. Your statement hangs beside the entrance.</p>
+  <label>Show title<input id="statement-title" maxlength="120"></label>
+  <label>Artist statement<textarea id="statement-text" aria-label="Artist statement" aria-describedby="statement-count"
+    maxlength="5000" rows="7"></textarea></label>
+  <p class="word-count" id="statement-count"></p>
+  <div class="pair"><button class="btn primary" id="statement-done">Done</button><button class="btn" id="statement-close">Close</button></div>
+</dialog>
+<dialog id="own-dialog" aria-labelledby="own-heading">
+  <h2 id="own-heading">Your own work</h2>
+  <p>Your own pictures stay on this computer and disappear when you close the page.</p>
+  <div id="own-editor"></div>
+  <label>Choose images (up to 12)<input type="file" id="own-files" accept="image/*" multiple></label>
+  <p id="own-message" class="warning" aria-live="polite"></p>
+  <div class="pair"><button class="btn primary" id="own-close">Back to portfolio</button></div>
+</dialog>
+<dialog id="clear-dialog" aria-labelledby="clear-heading">
+  <h2 id="clear-heading">Clear this show?</h2>
+  <p>This empties the saved selection, hang, labels and statement on this device.</p>
+  <div class="pair"><button class="btn" id="clear-cancel">Keep show</button><button class="btn primary" id="clear-confirm">Clear show</button></div>
+</dialog>
+<dialog id="why-dialog" aria-labelledby="why-heading"><h2 id="why-heading"></h2>
+  <p id="why-current"></p><p id="why-text"></p><button class="btn" id="why-close">Back to checklist</button></dialog>
+<div id="print-sheet"></div>
+<div id="announce" class="sr-only"></div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
+  const words = text => String(text).trim().split(/\s+/).filter(Boolean).length;
+  const sentences = text => String(text).split(/[.!?]+/).map(s => words(s)).filter(Boolean);
+  const written = text => /[\p{L}\p{N}]/u.test(String(text));
+  const endSentence = text => /[.!?]$/.test(text) ? text : text+'.';
+  const TAGS = ['home','water','city','growing','night'];
+  const PORTFOLIO = [
+    ['window','Kitchen Window, 7 a.m.','watercolor on paper',30,40,2025,['home']],
+    ['teapot','The Blue Teapot','colored pencil on paper',28,36,2024,['home']],
+    ['creek','Creek After Rain','acrylic on canvas',46,61,2025,['water','growing']],
+    ['busstop','Bus Stop, 10 p.m.','oil pastel on paper',30,45,2025,['city','night']],
+    ['crows','Crows on the Wire','linocut print, black ink',23,30,2024,['city']],
+    ['laundromat','Laundromat','ink and wash',36,48,2025,['city','home']],
+    ['tidepool','Tide Pool','collage of painted papers',40,40,2024,['water']],
+    ['seeds','Seed Packets','gouache on paper',25,33,2025,['growing','home']],
+    ['bowl','Wave Bowl','glazed stoneware',18,18,2025,['water']],
+    ['fireescape','Fire Escape Garden','digital photograph',40,50,2025,['city','growing']],
+    ['rainglass','Rain on the Window','digital photograph',40,50,2024,['water','home']],
+    ['blockmap','Map of My Block','mixed-media collage',50,50,2025,['home','city']],
+    ['tomatoes','Tomato Plants in August','charcoal on paper',45,60,2024,['growing']],
+    ['nightpool','Night Pool','acrylic on canvas',50,70,2025,['water','night']]
+  ].map(([id,title,medium,w,h,year,tags]) => ({id,title,medium,w,h,year,tags}));
+  const ART = {
+    window:'art:window',teapot:'art:teapot',creek:'art:creek',busstop:'art:busstop',crows:'art:crows',
+    laundromat:'art:laundromat',tidepool:'art:tidepool',seeds:'art:seeds',bowl:'art:bowl',
+    fireescape:'art:fireescape',rainglass:'art:rainglass',blockmap:'art:blockmap',tomatoes:'art:tomatoes',nightpool:'art:nightpool'
+  };
+  const WALLS = [
+    {id:'back',name:'Back wall',length:800},
+    {id:'right',name:'Right wall',length:600},
+    {id:'front-right',name:'Door, right',length:340},
+    {id:'front-left',name:'Door, left',length:340},
+    {id:'left',name:'Left wall',length:600}
+  ];
+  const WALL_MAP = Object.fromEntries(WALLS.map(w => [w.id,w]));
+  const L = {
+    welcomeSelect:'Read the brief, then tap a work and tap Add to show. Star the one you most want seen.',
+    welcomeHang:'Drag a work from the tray onto a wall.',
+    lightHow:'Tap the hung work, then tap Light and fill in its Label.',
+    welcomeWalk:'Tap Walk the show.',
+    jump:'Here the story jumps. Nothing ties these two together.',
+    welcomeChecklist:'Here is what the juror will check. Tap Show me on anything not ticked.',
+    allTicked:'Every measured check is ticked. Review the meaning of your show before opening.',
+    walkComplete:'Walk complete. Tap Checklist to refine your show.',
+    labelHow:'Write a title and a note of up to twenty-five words. Tap Done to return to the gallery.',
+    statementHow:'Tell visitors what connects the works. Write up to one hundred words, then tap Done.',
+    themeGrowing:"Only four works carry that theme, and the show needs five. That's worth knowing before you start.",
+    themeNight:"Only two works carry that theme, and the show needs five. That's worth knowing before you start.",
+    selectMore:'Tap another work to compare it. When you have six to eight, tap Hang. Star the one you most want seen.',
+    emptyHang:'The tray is empty. Tap Select and add works to the show.',
+    hangMore:'Drag another work onto a wall, or select a work and tap Hang on wall.',
+    inspect:'Tap a work in the tray to select it. Use the wall selector, Light, and Label to refine the hang.',
+    noWalk:'Tap Select to choose a work, then tap Hang and hang it on a wall before walking.',
+    needHang:'Tap Hang and place a chosen work on a wall before walking.',
+    continueWalk:'Tap Step to visit the next work, or tap Back to revisit the previous one.',
+    checklistReady:'Tap Print show to keep your exhibition sheet, or tap Hang to try a different arrangement.',
+    ownDropped:'Your own pictures were not saved, so they left the show.',
+    themeOwn:'This portfolio has fewer than five works for that theme. Add relevant work or choose another theme.',
+    firstCustom:'Compare the work named First seen with your starred anchor.'
+  };
+  for (const work of PORTFOLIO) L['first-'+work.id] = `From the door, a visitor sees ${work.title} first.`;
+  const fresh = () => ({mode:'select',chosen:[],star:null,positions:{},lights:{},labels:{},
+    lines:Object.fromEntries(WALLS.map(w => [w.id,145])),statement:'',show:'home',theme:'home',
+    showTitle:"Where I'm From",selected:'creek',wall:'back',plan:false,ccw:false,stop:-1,playing:false});
+  const state = fresh();
+  const own = [];
+  let ownDropped = false;
+  let camera = null;
+  let walkToken = 0;
+  let walkMoving = false;
+  let betweenStops = false;
+  let drag = null;
+  let lastFirst = null;
+  let wasReady = false;
+  let resizeTimer = 0;
+  let dialogOrigin = null;
+  let saveBlocked = false;
+  const portfolio = () => [...PORTFOLIO,...own];
+  const workById = id => portfolio().find(w => w.id === id);
+  const imageFor = id => ART[id] || own.find(w => w.id === id)?.image || '';
+  const selected = () => workById(state.selected) || PORTFOLIO[2];
+  const titleFor = id => state.labels[id]?.title ?? workById(id)?.title ?? '';
+  const noteFor = id => state.labels[id]?.note || '';
+  const frameSize = id => {
+    const w = workById(id);
+    return id === 'bowl' ? {w:30,h:22} : {w:w.w+16,h:w.h+16};
+  };
+  const hung = () => state.chosen.filter(id => state.positions[id]);
+  const walkOrder = () => hung();
+  const jumps = ids => ids.slice(1).map((id,i) => !workById(id).tags.some(t => workById(ids[i]).tags.includes(t)));
+  const theme = () => state.show === 'custom' ? state.theme : state.show;
+  const showName = () => state.showTitle.trim() || 'Untitled show';
+  const image = (id, alt='', className='') => `<img src="${imageFor(id)}" alt="${esc(alt)}" class="${className}" draggable="false">`;
+  const tagsHTML = work => work.tags.map(t => `<span class="tag ${t === theme() ? 'match' : ''}">${t}</span>`).join('');
+  const sizeText = work => work.id === 'bowl' ? '18 cm across · shelf object' :
+    `${work.own ? 'Preview print: ' : ''}${work.w} × ${work.h} cm`;
+
+  function restore() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('virtual-gallery-show') || 'null');
+      if (!saved || !Array.isArray(saved.chosen)) return;
+      const ids = PORTFOLIO.map(w => w.id);
+      ownDropped = saved.chosen.some(id => !ids.includes(id));
+      state.chosen = [...new Set(saved.chosen.filter(id => ids.includes(id)))].slice(0,8);
+      state.star = state.chosen.includes(saved.star) ? saved.star : null;
+      state.statement = typeof saved.statement === 'string' ? saved.statement.slice(0,5000) : '';
+      state.show = ['home','water','custom'].includes(saved.show) ? saved.show : 'home';
+      state.theme = TAGS.includes(saved.theme) ? saved.theme : 'home';
+      state.showTitle = typeof saved.showTitle === 'string' ? saved.showTitle.slice(0,120) : "Where I'm From";
+      for (const wall of WALLS) state.lines[wall.id] = clamp(Number(saved.lines?.[wall.id]) || 145,120,170);
+      for (const id of state.chosen) {
+        const p = saved.positions?.[id];
+        if (p && WALL_MAP[p.wall]) {
+          const half = frameSize(id).w/2;
+          state.positions[id] = {wall:p.wall,x:clamp(Number(p.x) || half,half,WALL_MAP[p.wall].length-half)};
+        }
+        state.lights[id] = !!saved.lights?.[id];
+        if (saved.labels?.[id]) state.labels[id] = {
+          title:String(saved.labels[id].title ?? workById(id).title).slice(0,150),note:String(saved.labels[id].note || '').slice(0,1500)
+        };
+      }
+      state.selected = state.chosen[0] || 'creek';
+      state.mode = state.chosen.length ? 'hang' : 'select';
+    } catch { saveBlocked = true; }
+  }
+  function save() {
+    try {
+      const fields = ['chosen','star','positions','lines','lights','labels','statement','show','theme','showTitle'];
+      localStorage.setItem('virtual-gallery-show',JSON.stringify(Object.fromEntries(fields.map(k => [k,state[k]]))));
+      $('save-status').textContent = 'Saved only on this device';
+    } catch {
+      saveBlocked = true;
+      $('save-status').textContent = 'This visit only: storage unavailable';
+    }
+  }
+  function setHint(text) {
+    if ($('hint').textContent !== text) $('hint').textContent = text;
+  }
+  const welcomeKey = () => {
+    if (state.mode === 'select') return state.chosen.length ? 'selectMore' : 'welcomeSelect';
+    if (state.mode === 'hang') return !state.chosen.length ? 'emptyHang' :
+      state.positions[state.selected] ? 'inspect' : 'welcomeHang';
+    if (state.mode === 'walk') return !hung().length ? (state.chosen.length ? 'needHang' : 'noWalk') :
+      state.playing || state.stop >= 0 ? 'continueWalk' : 'welcomeWalk';
+    return checks().every(c => c.pass) ? 'checklistReady' : 'welcomeChecklist';
+  };
+  const V = Curio.voice({lines:L,scope:() => state.mode,hint:false,read:() => $('hint').textContent,
+    welcome:() => [welcomeKey(),{valid:() => !state.playing}],speaks:'#walk-play'});
+  function nextHint(speak=false) {
+    const key = welcomeKey();
+    setHint(L[key]);
+    if (speak) V.how(key,{valid:() => key === welcomeKey()});
+  }
+  function feedback(message, good=false) {
+    setHint(message);
+    if (good) Curio.yes();
+    else Curio.tone(440,.06,.035,'sine');
+  }
+  function worldPoint(wall,x,height=145) {
+    if (wall === 'back') return [x-400,-height,-600];
+    if (wall === 'left') return [-400,-height,-x];
+    if (wall === 'right') return [400,-height,-600+x];
+    if (wall === 'front-left') return [x-400,-height,0];
+    return [60+x,-height,0];
+  }
+  function firstSeen() {
+    // The inward-facing door wall is behind a visitor looking straight into the room.
+    const candidates = hung().filter(id => !state.positions[id].wall.startsWith('front')).map(id => {
+      const p = state.positions[id];
+      const s = frameSize(id);
+      const a = worldPoint(p.wall,p.x-s.w/2);
+      const b = worldPoint(p.wall,p.x+s.w/2);
+      const eyeGap = Math.max(0,Math.abs(state.lines[p.wall]-160)-s.h/2);
+      const dx = b[0]-a[0];
+      const depth = -a[2];
+      const dd = a[2]-b[2];
+      const factor = dx*depth-a[0]*dd;
+      const samples = [0,1];
+      if (Math.abs(dx*factor) > 1e-9) samples.push(clamp((eyeGap*eyeGap*dd/factor-a[0])/dx,0,1));
+      const angle = Math.min(...samples.map(t => Math.atan2(Math.hypot(a[0]+dx*t,eyeGap),Math.max(0,depth+dd*t))));
+      return {id,angle,area:s.w*s.h};
+    });
+    candidates.sort((a,b) => Math.abs(a.angle-b.angle) < 1e-9 ? b.area-a.area : a.angle-b.angle);
+    return candidates[0]?.id || null;
+  }
+  function gapsOn(wall) {
+    const ids = hung().filter(id => state.positions[id].wall === wall).sort((a,b) => state.positions[a].x-state.positions[b].x);
+    const gaps = ids.slice(1).map((id,i) => state.positions[id].x-frameSize(id).w/2-state.positions[ids[i]].x-frameSize(ids[i]).w/2);
+    const mean = gaps.length ? gaps.reduce((a,b) => a+b,0)/gaps.length : 0;
+    const spread = gaps.length > 1 ? (Math.max(...gaps)-Math.min(...gaps))/Math.max(.0001,mean) : 0;
+    return {ids,gaps,mean,spread,pass:gaps.every(g => g >= 30-1e-7) && spread <= .15+1e-9};
+  }
+  function pathCrosses() {
+    const points = walkOrder().map(id => {
+      const p = state.positions[id];
+      const q = worldPoint(p.wall,p.x);
+      return [q[0],q[2]];
+    });
+    const cross = (a,b,c) => (b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
+    for (let i=0;i<points.length-1;i++) {
+      for (let j=i+2;j<points.length-1;j++) {
+        const [a,b,c,d] = [points[i],points[i+1],points[j],points[j+1]];
+        if (cross(a,b,c)*cross(a,b,d) < 0 && cross(c,d,a)*cross(c,d,b) < 0) return true;
+      }
+    }
+    return false;
+  }
+  function checks() {
+    const ids = hung();
+    const first = firstSeen();
+    const themed = ids.filter(id => workById(id).tags.includes(theme())).length;
+    const usedWalls = WALLS.filter(w => ids.some(id => state.positions[id].wall === w.id));
+    const heights = usedWalls.map(w => state.lines[w.id]);
+    const badGaps = usedWalls.map(w => ({wall:w,...gapsOn(w.id)})).filter(w => !w.pass);
+    const lit = ids.filter(id => state.lights[id]).length;
+    const badLabels = state.chosen.filter(id => !written(titleFor(id)) || words(noteFor(id)) > 25);
+    const missingNotes = state.chosen.filter(id => !written(noteFor(id))).length;
+    const sentenceMax = Math.max(0,...sentences(state.statement));
+    const jumpCount = jumps(ids).filter(Boolean).length;
+    const available = portfolio().filter(w => w.tags.includes(theme())).length;
+    return [
+      {key:'selection',name:'Selection',pass:state.chosen.length >= 6 && state.chosen.length <= 8 && ids.length === state.chosen.length,
+        text:`${state.chosen.length} of 6 to 8 chosen · ${ids.length} hung.`,why:'Choose deliberately, then present every selected work.'},
+      {key:'theme',name:'Theme',pass:themed >= 5,
+        text:`${themed} hung ${themed === 1 ? 'work carries' : 'works carry'} “${theme()}”; at least 5 needed.`+
+        (available < 5 ? ` This portfolio has only ${available}; it cannot support this theme yet.` : ''),
+        why:'Five works must carry the chosen theme. Other works can join on another strength.'},
+      {key:'anchor',name:'Anchor',pass:!!state.star && state.star === first,
+        text:state.star ? `Starred: ${titleFor(state.star)}${/[.!?]$/.test(titleFor(state.star)) ? '' : '.'} `+
+          (first ? `First seen: ${endSentence(titleFor(first))}` : 'No work is in view from the door.') :
+          'Star the work you most want seen.',
+        why:'First seen is the frame edge nearest straight ahead from the door. Door-wall works are behind the visitor. '+
+          'Ties go to the larger frame. Common practice, not a law.'},
+      {key:'line',name:'Line',pass:heights.length > 0 && Math.max(...heights)-Math.min(...heights) <= 3,
+        text:heights.length ? `Wall center lines: ${[...new Set(heights)].join(' and ')} cm.` : 'No works on a wall yet.',
+        why:'Centers snap to each wall line; wall lines may vary by at most 3 cm. '+
+          'The tool uses 145 cm as a starting height for standing visitors, not a rule from the Smithsonian guide. '+
+          'The guide hangs small items lower so seated visitors can see them. Common practice, not a law.'},
+      {key:'spacing',name:'Spacing',pass:ids.length > 0 && !badGaps.length,
+        text:badGaps.length ? badGaps.map(w => `${w.wall.name}: ${w.gaps.map(g => Math.round(g)).join(', ')} cm gaps; `+
+          `${(w.spread*100).toFixed(1)}% spread.`).join(' ')
+          : ids.length ? 'Every gap is at least 30 cm; each wall’s spread is at most 15% of its mean.' : 'Hang works to compare their frame-edge gaps.',
+        why:'Spread = (largest gap minus smallest gap) divided by mean gap. Common practice, not a law.'},
+      {key:'light',name:'Light',pass:ids.length > 0 && lit === ids.length,text:`${lit} of ${ids.length} hung works lit.`,
+        why:'Light gives each work a fair chance to be seen. Common practice, not a law.'},
+      {key:'labels',name:'Labels',pass:state.chosen.length > 0 && !badLabels.length,
+        text:(missingNotes ? `Warning: ${missingNotes} ${missingNotes === 1 ? 'label has' : 'labels have'} no note yet. ` : '')+
+          (badLabels.length ? `${badLabels.length} labels need a title or a note of 25 words or fewer.` :
+          'Every selected work has a title; notes are 25 words or fewer.'),
+        why:'Labels hang with their center at 137 cm (54 in). The comfortable label band is about 122 to 168 cm (48 to 66 in).'},
+      {key:'statement',name:'Statement',pass:written(state.statement) && words(state.statement) <= 100 && sentenceMax <= 25,
+        text:`${words(state.statement)} of 100 words · longest sentence ${sentenceMax} of 25.`+
+          (!written(state.statement) ? ' Write a connection between the works.' : ' Format checked; review the meaning yourself.'),
+        why:'Short sentences make exhibition text easier to read. Write your connection, rather than describing every picture.'},
+      {key:'flow',name:'Flow',pass:ids.length > 0 && jumpCount <= 1,
+        text:`${jumpCount} ${jumpCount === 1 ? 'jump' : 'jumps'} in tray order (1 allowed).`+(pathCrosses() ? ' Your path crosses itself (warning).' : ''),
+        why:'A jump separates neighbors with no shared theme tag. Common practice, not a law. A crossing path is a warning, not a fail.'}
+    ];
+  }
+  function checkReady() {
+    const ready = checks().every(c => c.pass);
+    if (ready && !wasReady) {
+      Curio.yes();
+      V.say('allTicked',{valid:() => checks().every(c => c.pass)});
+    }
+    wasReady = ready;
+  }
+  function persistChange(message,render=true) {
+    save();
+    if (render) renderMode();
+    if (message) feedback(message);
+    checkReady();
+  }
+  function setMode(mode,narrate=true) {
+    if (!['select','hang','walk','checklist'].includes(mode)) return;
+    const focusId = document.activeElement?.id;
+    stopWalk();
+    V.hush();
+    state.mode = mode;
+    if (mode === 'hang' && state.chosen.length && !state.chosen.includes(state.selected)) {
+      state.selected = state.chosen[0];
+      state.wall = state.positions[state.selected]?.wall || state.wall;
+    }
+    state.stop = -1;
+    betweenStops = false;
+    camera = null;
+    for (const m of ['select','hang','walk','checklist']) $('m-'+m).setAttribute('aria-pressed',String(m === mode));
+    renderMode();
+    nextHint();
+    if (narrate) V.welcome();
+    if (mode === 'walk') announceFirst();
+    if (focusId && !$(focusId)) $('m-'+mode).focus({preventScroll:true});
+  }
+  function renderMode() {
+    if (state.mode === 'select') renderSelect();
+    if (state.mode === 'hang') renderHang();
+    if (state.mode === 'walk') renderWalk();
+    if (state.mode === 'checklist') renderChecklist();
+    requestAnimationFrame(drawRoom);
+  }
+  function renderSelect() {
+    $('view').innerHTML = `<div class="workspace"><section class="portfolio" aria-label="Portfolio">
+      <div class="brief"><div><span class="eyebrow">The exhibition brief</span><h2>${esc(showName())}</h2>
+        <p>${state.show === 'home' ? 'Where are you from? Pick 6 to 8 works that answer it.' : state.show === 'water' ?
+          'The spring show’s theme is water. Pick 6 to 8 works.' : 'Pick a theme tag and 6 to 8 works that tell your story.'}</p></div>
+        <div class="brief-controls"><select id="show-choice" aria-label="Show brief">
+          <option value="home">Where I'm From</option><option value="water">Water</option><option value="custom">Your theme</option></select>
+          ${state.show === 'custom' ? `<select id="theme-choice" aria-label="Theme tag">
+            ${TAGS.map(t => `<option>${t}</option>`).join('')}</select>` : ''}</div></div>
+      <div class="gallery-grid" id="portfolio-grid">${portfolio().map(work => `<button class="art-card ${work.id === state.selected ? 'active' : ''}"
+        id="card-${work.id}" data-work="${work.id}" tabindex="${work.id === state.selected ? '0' : '-1'}"
+        aria-label="View ${esc(work.title)}" aria-pressed="${work.id === state.selected}">
+        <span class="picture">${image(work.id)}${state.chosen.includes(work.id) ?
+          `<span class="chosen-mark">${state.star === work.id ? '★' : '✓'}</span>` : ''}</span>
+        <span class="caption">${esc(work.title)}</span><span class="medium">${esc(work.medium)} · ${work.year || 'your work'}</span>
+        <span class="card-size">${sizeText(work)}</span><span class="tags">${tagsHTML(work)}</span></button>`).join('')}</div>
+      </section><aside class="panel" id="detail-panel"></aside></div>`;
+    $('show-choice').value = state.show;
+    $('show-choice').onchange = event => {
+      V.hush();
+      state.show = event.target.value;
+      state.showTitle = state.show === 'home' ? "Where I'm From" : state.show === 'water' ? 'Water' : 'Your theme';
+      persistChange(null);
+      nextHint();
+      $('show-choice').focus({preventScroll:true});
+      maybeThemeShort();
+    };
+    if ($('theme-choice')) {
+      $('theme-choice').value = state.theme;
+      $('theme-choice').onchange = event => {
+        V.hush();
+        state.theme = event.target.value;
+        save();
+        document.querySelectorAll('.art-card').forEach(card => {
+          card.querySelector('.tags').innerHTML = tagsHTML(workById(card.dataset.work));
+        });
+        renderDetail();
+        maybeThemeShort();
+        checkReady();
+      };
+    }
+    $('portfolio-grid').onclick = event => {
+      const card = event.target.closest('[data-work]');
+      if (!card) return;
+      state.selected = card.dataset.work;
+      for (const c of document.querySelectorAll('.art-card')) {
+        c.classList.toggle('active',c === card);
+        c.setAttribute('aria-pressed',String(c === card));
+        c.tabIndex = c === card ? 0 : -1;
+      }
+      renderDetail();
+      feedback(`${endSentence(selected().title)} Tap ${state.chosen.includes(state.selected) ? 'Remove' : 'Add to show'}, or compare another work.`);
+    };
+    $('portfolio-grid').onkeydown = event => {
+      if (!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)) return;
+      const cards = [...document.querySelectorAll('.art-card')];
+      const index = cards.indexOf(event.target);
+      if (index < 0) return;
+      event.preventDefault();
+      const columns = getComputedStyle($('portfolio-grid')).gridTemplateColumns.split(' ').length;
+      const delta = event.key === 'ArrowLeft' ? -1 : event.key === 'ArrowRight' ? 1 : event.key === 'ArrowUp' ? -columns : columns;
+      const card = cards[clamp(index+delta,0,cards.length-1)];
+      card.click();
+      card.focus({preventScroll:true});
+      card.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});
+    };
+    renderDetail();
+  }
+  function renderDetail() {
+    const work = selected();
+    const chosen = state.chosen.includes(work.id);
+    $('detail-panel').innerHTML = `<div class="detail-art">${image(work.id,work.title)}</div>
+      <div class="detail-meta"><span class="eyebrow">${work.own ? 'Your portfolio' : 'Jordan Reyes · fictional student'}</span>
+        <h2 title="${esc(work.title)}">${esc(work.title)}</h2><p class="muted">${esc(work.medium)}<br>${sizeText(work)} · ${work.year || ''}</p>
+        <div class="tags">${tagsHTML(work)}</div></div>
+      <div class="panel-footer"><div class="selection-count">${state.chosen.length} of 6 to 8 chosen</div>
+        <div class="pair"><button class="btn primary" id="add-work">${chosen ? 'Remove' : 'Add to show'}</button>
+          <button class="btn" id="star-work" ${!chosen ? 'disabled' : ''} aria-pressed="${state.star === work.id}">
+            ${state.star === work.id ? '★ Anchor' : '☆ Star'}</button></div>
+        <button class="btn" id="go-hang">Hang the show →</button>
+        <button class="btn" id="add-own">Add your own</button>
+        <p class="privacy">Your own pictures stay on this computer and disappear when you close the page.</p>
+      </div>`;
+    $('add-work').onclick = () => toggleChosen(work.id);
+    $('star-work').onclick = () => {
+      state.star = state.star === work.id ? null : work.id;
+      save();
+      $('star-work').setAttribute('aria-pressed',String(state.star === work.id));
+      $('star-work').textContent = state.star === work.id ? '★ Anchor' : '☆ Star';
+      updateCards();
+      feedback(state.star ? `${work.title} is your anchor. Place it where visitors see it first.` : 'Anchor removed. Star another chosen work.');
+      checkReady();
+    };
+    $('go-hang').onclick = () => setMode('hang');
+    $('add-own').textContent = work.own ? 'Title & tags' : 'Add your own';
+    $('add-own').onclick = () => {
+      $('own-editor').innerHTML = work.own ? `<label>Your work’s title<input id="own-title" value="${esc(work.title)}" maxlength="150"></label>
+        <div class="tags" style="margin:10px 0">${TAGS.map(t =>
+          `<button class="btn" data-tag="${t}" aria-pressed="${work.tags.includes(t)}">${t}</button>`).join('')}</div>` : '';
+      if (work.own) {
+        $('own-title').oninput = event => {
+          work.title = event.target.value;
+          if (state.labels[work.id]) state.labels[work.id].title = work.title;
+          $('card-'+work.id).querySelector('.caption').textContent = work.title;
+          document.querySelector('.detail-meta h2').textContent = work.title;
+          save();
+        };
+        $('own-editor').querySelectorAll('[data-tag]').forEach(button => button.onclick = () => {
+          const tag = button.dataset.tag;
+          work.tags = work.tags.includes(tag) ? work.tags.filter(t => t !== tag) : [...work.tags,tag];
+          button.setAttribute('aria-pressed',String(work.tags.includes(tag)));
+          $('card-'+work.id).querySelector('.tags').innerHTML = tagsHTML(work);
+          save();
+          feedback(`${tag} ${work.tags.includes(tag) ? 'added' : 'removed'}.`);
+          checkReady();
+        });
+      }
+      openDialog('own-dialog');
+    };
+  }
+  function updateCards() {
+    document.querySelectorAll('.art-card').forEach(card => {
+      const id = card.dataset.work;
+      card.querySelector('.chosen-mark')?.remove();
+      if (state.chosen.includes(id)) {
+        const badge = document.createElement('span');
+        badge.className = 'chosen-mark';
+        badge.textContent = state.star === id ? '★' : '✓';
+        card.querySelector('.picture').append(badge);
+      }
+    });
+  }
+  function toggleChosen(id) {
+    const button = $('add-work');
+    if (state.chosen.includes(id)) {
+      state.chosen = state.chosen.filter(x => x !== id);
+      delete state.positions[id];
+      if (state.star === id) state.star = null;
+    } else {
+      if (state.chosen.length >= 8) return feedback('Eight works is the limit. Remove a work to make room for another.');
+      state.chosen.push(id);
+    }
+    save();
+    const chosen = state.chosen.includes(id);
+    button.textContent = chosen ? 'Remove' : 'Add to show';
+    $('star-work').disabled = !chosen;
+    $('star-work').setAttribute('aria-pressed',String(state.star === id));
+    $('star-work').textContent = state.star === id ? '★ Anchor' : '☆ Star';
+    document.querySelector('.selection-count').textContent = `${state.chosen.length} of 6 to 8 chosen`;
+    updateCards();
+    feedback(`${chosen ? 'Added' : 'Removed'} ${workById(id).title}. ${state.chosen.length} of 6 to 8 chosen.`,chosen);
+    V.how('selectMore',{needs:'#go-hang',valid:() => state.chosen.length > 0});
+    checkReady();
+  }
+  function maybeThemeShort() {
+    nextHint();
+    if (state.show !== 'custom' || !['growing','night'].includes(state.theme)) return;
+    const tag = state.theme;
+    const count = portfolio().filter(w => w.tags.includes(tag)).length;
+    if (count >= 5) return;
+    const text = `Only ${count} works carry that theme, and the show needs five. That's worth knowing before you start.`;
+    setHint(text);
+    const spoken = count === 4 ? L.themeGrowing : count === 2 ? L.themeNight : L.themeOwn;
+    V.say(spoken,{key:'themeShort',valid:() => state.show === 'custom' && state.theme === tag});
+  }
+
+  function roomHTML(isWalk=false) {
+    const ownCount = state.chosen.filter(id => workById(id)?.own).length;
+    const authors = ownCount === state.chosen.length && ownCount ? 'Your own work · for this visit only' :
+      ownCount ? 'Jordan Reyes portfolio + your own work' : 'A show by Jordan Reyes';
+    return `<div class="room-stage ${isWalk ? 'walk-room' : ''}" id="room" aria-label="${isWalk ? 'Visitor view, 160 cm eye height' : 'Gallery room'}">
+      <div class="room-label"><span class="eyebrow">${isWalk ? 'Through a visitor’s eyes · 160 cm' : 'The hang · 8 × 6 × 3.2 m'}</span>
+        <h2>${esc(showName())}</h2><p id="scene-subtitle">${isWalk ? 'At the door' : authors}</p></div>
+      ${!isWalk ? '<div class="room-tools"><button class="btn" id="plan-toggle" aria-pressed="false">Plan</button></div>' : ''}
+      <div class="world" id="world" aria-hidden="true"><div class="floor"></div><div class="ceiling"></div><div class="door-light"></div>
+      ${WALLS.map(wall => `<div class="wall wall-${wall.id}" data-wall="${wall.id}">
+        <div class="seated-band"></div><div class="center-line" style="top:${320-state.lines[wall.id]}px">
+          <span>${state.lines[wall.id]} cm · ${(state.lines[wall.id]/2.54).toFixed(1)} in</span></div>
+        <div class="skirting"></div>${wallArt(wall.id,isWalk)}</div>`).join('')}</div>
+      <div class="plan-wrap" id="main-plan">${planSVG(false)}</div>
+      <div class="room-status" id="room-status"></div>
+      ${!isWalk ? doorElevation() : ''}</div>`;
+  }
+  function doorElevation() {
+    return `<div class="door-elevation" id="door-elevation"><span class="elevation-caption">DOOR WALL · unfolded toward you</span>
+      <div class="door-elevation-inner" id="door-elevation-inner">
+      <div class="elevation-wall" data-elevation-wall="front-left">${wallArt('front-left',false,true)}</div>
+      <div class="elevation-door">DOOR<br>1.2 m</div>
+      <div class="elevation-wall" data-elevation-wall="front-right">${wallArt('front-right',false,true)}</div></div></div>`;
+  }
+  function wallArt(wall,isWalk=false,elevation=false) {
+    const reversed = wall.startsWith('front') && !elevation;
+    const length = WALL_MAP[wall].length;
+    let html = '';
+    for (const id of hung().filter(id => state.positions[id].wall === wall)) {
+      const s = frameSize(id);
+      const p = state.positions[id];
+      const center = reversed ? length-p.x : p.x;
+      const top = 320-state.lines[wall]-s.h/2;
+      const nextEdge = hung().filter(k => k !== id && state.positions[k].wall === wall).map(k => {
+        const q = state.positions[k];
+        const c = reversed ? length-q.x : q.x;
+        return c-frameSize(k).w/2;
+      }).filter(edge => edge >= center+s.w/2).sort((a,b) => a-b)[0] ?? length;
+      const labelWidth = clamp(nextEdge-center-s.w/2-10,0,46);
+      if (state.lights[id]) html += `<div class="spot" style="left:${center-95}px"></div>`;
+      html += `<div class="frame ${id === 'bowl' ? 'bowl' : ''} ${!state.lights[id] ? 'unlit' : ''} ${state.selected === id && !isWalk ? 'selected' : ''}"
+        data-frame="${id}" role="img" aria-label="${esc(titleFor(id))}, ${state.lights[id] ? 'lit' : 'unlit'}"
+        style="width:${s.w}px;height:${s.h}px;left:${center-s.w/2}px;top:${top}px">${image(id)}</div>
+        <div class="wall-label" data-wall-label="${id}" data-squeezed="${labelWidth < 12}"
+          style="left:${center+s.w/2+5}px;top:${320-137}px;width:${labelWidth}px;${labelWidth < 12 ? 'visibility:hidden' : ''}">
+          <strong>${esc(titleFor(id))}</strong><br>
+          ${workById(id).own ? '' : 'Jordan Reyes · '}${workById(id).year || ''}<br>${esc(noteFor(id))}</div>`;
+    }
+    if (wall === 'front-left' && state.statement.trim()) {
+      html += `<div class="intro-panel"><strong>${esc(showName())}</strong>${esc(state.statement)}</div>`;
+    }
+    if (!isWalk) {
+      const frames = hung().filter(id => state.positions[id].wall === wall).map(id => ({
+        center:reversed ? length-state.positions[id].x : state.positions[id].x,size:frameSize(id)
+      })).sort((a,b) => a.center-b.center);
+      frames.slice(1).forEach((frame,i) => {
+        const before = frames[i];
+        const left = before.center+before.size.w/2;
+        const gap = frame.center-frame.size.w/2-left;
+        const top = 320-state.lines[wall]+Math.max(before.size.h,frame.size.h)/2+12;
+        html += `<div class="gap-ruler" style="left:${left}px;top:${top}px;width:${gap}px">
+          <span>${Math.round(gap)} cm</span></div>`;
+      });
+    }
+    return html;
+  }
+  function renderHang() {
+    $('view').innerHTML = `<div class="workspace hang-workspace"><aside class="panel hang-panel" id="hang-panel"></aside>
+      <section class="hang-main">${roomHTML()}
+      <div class="tray-wrap" id="tray-drop"><div class="tray-caption"><span>TRAY / WALK ORDER</span><span>Drag to hang · drag here to return</span></div>
+        <div class="tray" id="tray">${trayHTML()}</div></div></section></div>`;
+    $('plan-toggle').onclick = () => {
+      state.plan = !state.plan;
+      drawRoom();
+      renderHangTools();
+      $('plan-toggle').setAttribute('aria-pressed',String(state.plan));
+      feedback(state.plan ? 'Plan open in the panel. Drag a tick along a wall, or choose a work and tap Hang on wall.' :
+        'Plan closed. Drag a work from the tray onto a wall.');
+    };
+    $('tray').onclick = event => {
+      const item = event.target.closest('[data-tray]');
+      if (item && !drag?.moved) chooseHung(item.dataset.tray,false);
+    };
+    renderHangTools();
+    updateRoomStatus();
+  }
+  function trayHTML() {
+    if (!state.chosen.length) return '<span class="tray-empty">Choose works in Select to start hanging.</span>';
+    return state.chosen.map((id,i) => `<button id="tray-${id}" class="tray-item ${state.selected === id ? 'selected' : ''} ${state.positions[id] ? 'hung' : ''}"
+      data-tray="${id}" aria-label="Select or drag ${esc(titleFor(id))}, ${state.positions[id] ? 'hung' : 'in tray'}" aria-pressed="${state.selected === id}">
+      ${image(id)}<small>${i+1}${state.star === id ? '★' : ''} ${state.positions[id] ? 'hung' : 'tray'}</small></button>`).join('');
+  }
+  function chooseHung(id,speak=true) {
+    state.selected = id;
+    if (state.positions[id]) state.wall = state.positions[id].wall;
+    document.querySelectorAll('.tray-item').forEach(item => {
+      item.classList.toggle('selected',item.dataset.tray === id);
+      item.setAttribute('aria-pressed',String(item.dataset.tray === id));
+    });
+    document.querySelectorAll('[data-frame]').forEach(frame => frame.classList.toggle('selected',frame.dataset.frame === id));
+    renderHangTools();
+    updateRoomStatus();
+    if (speak) feedback(`${titleFor(id)} selected. Use arrow keys to move 5 cm; hold Shift for 25 cm.`);
+  }
+  function renderHangTools() {
+    const work = selected();
+    if (!state.chosen.length) {
+      $('hang-panel').innerHTML = `<span class="eyebrow">Curator’s workbench</span><h2>The tray is empty</h2>
+        <p class="muted">Tap Select and add works to the show.</p><button class="btn primary" id="empty-select">Select works</button>
+        <div class="panel-footer"><button class="btn" id="edit-statement">Statement</button></div>`;
+      $('empty-select').onclick = () => setMode('select');
+      $('edit-statement').onclick = openStatement;
+      return;
+    }
+    const chosen = state.chosen.includes(work.id);
+    const p = state.positions[work.id];
+    const wall = state.wall;
+    const g = gapsOn(wall);
+    $('hang-panel').innerHTML = `<span class="eyebrow">Curator’s workbench</span><h2 class="control-title" title="${esc(work.title)}">${esc(work.title)}</h2>
+      <div class="control-strip"><button class="btn" id="light-work" aria-pressed="${!!state.lights[work.id]}" ${!p ? 'disabled' : ''}>
+        ${state.lights[work.id] ? '● Light on' : '○ Light off'}</button><button class="btn" id="edit-label" ${!chosen ? 'disabled' : ''}>Label</button>
+        <button class="btn" id="hang-star" ${!chosen ? 'disabled' : ''} aria-pressed="${state.star === work.id}">
+          ${state.star === work.id ? '★ Anchor' : '☆ Star'}</button></div>
+      <div class="panel-scroll">
+        ${state.plan && !compactPlan() ? `<div class="mini-plan">${planSVG(true)}</div>` : ''}
+        <div class="field-block placement-controls"><label for="wall-choice">Wall</label>
+        <select class="wall-picker" id="wall-choice" aria-label="Wall">${WALLS.map(w =>
+          `<option value="${w.id}">${({back:'Back',left:'Left',right:'Right','front-left':'Door L','front-right':'Door R'})[w.id]}</option>`
+          ).join('')}</select>
+        <div class="pair"><button class="btn primary" id="hang-on-wall" ${!chosen ? 'disabled' : ''}>Hang on wall</button>
+          <button class="btn" id="auto-space">Auto space</button></div>
+        <div class="height-read"><span>Center line</span>
+          <output id="line-output">${state.lines[wall]} cm · ${(state.lines[wall]/2.54).toFixed(1)} in</output></div>
+        <input type="range" id="center-line" min="120" max="170" step="1" value="${state.lines[wall]}" aria-label="Wall center line, centimeters"
+          aria-valuetext="${state.lines[wall]} cm, ${(state.lines[wall]/2.54).toFixed(1)} in">
+        <p class="muted">Faint wall band: wheelchair user's eye level, 109 to 130 cm. Labels stay at 137 cm.</p></div>
+        <div class="field-block order-controls"><div class="pair"><button class="btn" id="order-first" ${!chosen ? 'disabled' : ''}>Bring to front</button>
+          <button class="btn" id="order-later" ${!chosen ? 'disabled' : ''}>Move later</button></div>
+          <button class="btn" id="return-tray" ${!p ? 'disabled' : ''} style="width:100%;margin-top:6px">Remove from wall</button>
+          <p class="muted">Arrow keys: 5 cm · Shift: 25 cm · Delete: return to tray</p></div>
+        <p class="muted" id="gap-readout">${g.gaps.length ? `Frame-edge gaps: ${g.gaps.map(n => Math.round(n)).join(', ')} cm.` :
+          'Hang two works on a wall to compare gaps.'}</p></div>
+      <div class="panel-footer"><div class="pair"><button class="btn" id="edit-statement">Statement</button>
+        <button class="btn primary" id="preview-walk">Walk →</button></div></div>`;
+    $('wall-choice').value = wall;
+    $('wall-choice').title = WALL_MAP[wall].name+' · '+WALL_MAP[wall].length+' cm';
+    $('wall-choice').setAttribute('aria-label','Wall: '+WALL_MAP[wall].name);
+    $('wall-choice').onchange = event => {
+      state.wall = event.target.value;
+      renderHangTools();
+      $('wall-choice').focus({preventScroll:true});
+      feedback(`${WALL_MAP[state.wall].name} selected. Tap Hang on wall to place the selected work there.`);
+    };
+    $('hang-on-wall').onclick = () => place(work.id,state.wall,WALL_MAP[state.wall].length/2);
+    $('auto-space').onclick = () => autoSpace(state.wall);
+    $('light-work').onclick = () => {
+      V.dropQueued(it => it.key === 'lightHow');
+      state.lights[work.id] = !state.lights[work.id];
+      const button = $('light-work');
+      button.setAttribute('aria-pressed',String(state.lights[work.id]));
+      button.textContent = state.lights[work.id] ? '● Light on' : '○ Light off';
+      refreshGeometry();
+      persistChange(`${work.title} is ${state.lights[work.id] ? 'lit' : 'unlit'}.`,false);
+    };
+    $('edit-label').onclick = () => openLabel(work.id);
+    $('hang-star').onclick = () => {
+      state.star = state.star === work.id ? null : work.id;
+      $('hang-star').setAttribute('aria-pressed',String(state.star === work.id));
+      $('hang-star').textContent = state.star === work.id ? '★ Anchor' : '☆ Star';
+      save();
+      updateRoomStatus();
+      feedback(state.star ? `${work.title} is the anchor. Walk to see whether it is first seen.` : 'Anchor removed.');
+      checkReady();
+    };
+    $('center-line').oninput = event => {
+      state.lines[state.wall] = Number(event.target.value);
+      event.target.setAttribute('aria-valuetext',`${event.target.value} cm, ${(event.target.value/2.54).toFixed(1)} in`);
+      $('line-output').textContent = `${event.target.value} cm · ${(event.target.value/2.54).toFixed(1)} in`;
+      refreshGeometry();
+      save();
+      checkReady();
+    };
+    $('order-first').onclick = () => reorder(work.id,0);
+    $('order-later').onclick = () => reorder(work.id,Math.min(state.chosen.length-1,state.chosen.indexOf(work.id)+1));
+    $('return-tray').onclick = () => returnTray(work.id);
+    $('edit-statement').onclick = openStatement;
+    $('preview-walk').onclick = () => setMode('walk');
+  }
+  function refreshGeometry() {
+    document.querySelectorAll('.wall[data-wall]').forEach(wall => {
+      const id = wall.dataset.wall;
+      wall.innerHTML = `<div class="seated-band"></div><div class="center-line" style="top:${320-state.lines[id]}px">
+        <span>${state.lines[id]} cm · ${(state.lines[id]/2.54).toFixed(1)} in</span></div><div class="skirting"></div>${wallArt(id,state.mode === 'walk')}`;
+    });
+    if ($('main-plan')) $('main-plan').innerHTML = planSVG(false);
+    const mini = document.querySelector('.mini-plan');
+    if (mini) mini.innerHTML = planSVG(true);
+    if ($('tray')) {
+      state.chosen.forEach((id,i) => {
+        const item = $('tray-'+id);
+        if (!item) return;
+        item.classList.toggle('hung',!!state.positions[id]);
+        item.classList.toggle('selected',state.selected === id);
+        item.setAttribute('aria-pressed',String(state.selected === id));
+        item.querySelector('small').textContent = `${i+1}${state.star === id ? '★' : ''} ${state.positions[id] ? 'hung' : 'tray'}`;
+      });
+    }
+    if ($('door-elevation')) $('door-elevation').outerHTML = doorElevation();
+    drawRoom();
+    updateRoomStatus();
+  }
+  function place(id,wall,x,options={}) {
+    if (!state.chosen.includes(id) || !WALL_MAP[wall]) return false;
+    const previous = structuredClone(state.positions);
+    state.positions[id] = {wall,x};
+    const ids = hung().filter(k => state.positions[k].wall === wall).sort((a,b) => state.positions[a].x-state.positions[b].x);
+    if (ids.reduce((sum,k) => sum+frameSize(k).w,0) > WALL_MAP[wall].length) {
+      state.positions = previous;
+      feedback('Those frames cannot fit on this wall. Choose another wall.');
+      return false;
+    }
+    let edge = 0;
+    for (const k of ids) {
+      const half = frameSize(k).w/2;
+      state.positions[k].x = Math.max(half+edge,clamp(state.positions[k].x,half,WALL_MAP[wall].length-half));
+      edge = state.positions[k].x+half;
+    }
+    edge = WALL_MAP[wall].length;
+    for (const k of [...ids].reverse()) {
+      const half = frameSize(k).w/2;
+      state.positions[k].x = Math.min(state.positions[k].x,edge-half);
+      edge = state.positions[k].x-half;
+    }
+    state.selected = id;
+    state.wall = wall;
+    refreshGeometry();
+    if (!options.keepControls && !document.activeElement?.closest('#hang-panel')) renderHangTools();
+    else updateHangControls();
+    save();
+    const work = workById(id);
+    feedback(`${work.title} · ${WALL_MAP[wall].name} · ${Math.round(state.positions[id].x)} cm along wall.`);
+    if (!V.heard('lightHow')) V.how('lightHow',{needs:['#light-work','#edit-label'],valid:() => state.selected === id && !!state.positions[id]});
+    else if (!V.heard('hangMore')) V.how('hangMore',{needs:'#hang-on-wall',valid:() => state.mode === 'hang'});
+    checkReady();
+    return true;
+  }
+  function updateHangControls() {
+    const id = state.selected;
+    const isHung = !!state.positions[id];
+    const light = $('light-work');
+    if (!light) return;
+    light.disabled = !isHung;
+    light.setAttribute('aria-pressed',String(!!state.lights[id]));
+    light.textContent = state.lights[id] ? '● Light on' : '○ Light off';
+    $('return-tray').disabled = !isHung;
+    $('wall-choice').value = state.wall;
+    $('wall-choice').title = WALL_MAP[state.wall].name+' · '+WALL_MAP[state.wall].length+' cm';
+    $('wall-choice').setAttribute('aria-label','Wall: '+WALL_MAP[state.wall].name);
+    $('center-line').value = state.lines[state.wall];
+    $('center-line').setAttribute('aria-valuetext',`${state.lines[state.wall]} cm, ${(state.lines[state.wall]/2.54).toFixed(1)} in`);
+    $('line-output').textContent = `${state.lines[state.wall]} cm · ${(state.lines[state.wall]/2.54).toFixed(1)} in`;
+  }
+  function autoSpace(wall) {
+    const ids = gapsOn(wall).ids;
+    if (!ids.length) return feedback(state.chosen.length ? 'This wall is empty. Tap Hang on wall to place the selected work here.' :
+      'This wall is empty. Tap Select to choose works for the show first.');
+    const widths = ids.map(id => frameSize(id).w);
+    const gap = (WALL_MAP[wall].length-widths.reduce((a,b) => a+b,0))/(ids.length+1);
+    let edge = gap;
+    ids.forEach((id,i) => {
+      state.positions[id].x = edge+widths[i]/2;
+      edge += widths[i]+gap;
+    });
+    refreshGeometry();
+    save();
+    const adequate = gapsOn(wall).pass;
+    feedback(`${WALL_MAP[wall].name}: equal ${gap.toFixed(1)} cm gaps. `+
+      (adequate ? 'Check whether they leave enough breathing room.' :
+        'Below the 30 cm minimum. Move some works to another wall.'),adequate);
+    checkReady();
+  }
+  function returnTray(id) {
+    delete state.positions[id];
+    refreshGeometry();
+    renderHangTools();
+    save();
+    feedback(`${titleFor(id)} returned to the tray. Drag it onto a different wall.`);
+    const target = $('tray-'+id);
+    if (target) target.focus({preventScroll:true});
+    checkReady();
+  }
+  function reorder(id,index) {
+    const origin = document.activeElement?.id;
+    state.chosen = state.chosen.filter(k => k !== id);
+    state.chosen.splice(index,0,id);
+    if ($('tray')) {
+      const tray = $('tray');
+      state.chosen.forEach(k => tray.append($('tray-'+k)));
+    }
+    refreshGeometry();
+    save();
+    feedback(`${titleFor(id)} is work ${index+1} in the walk order.`);
+    if (origin && $(origin)) $(origin).focus({preventScroll:true});
+    checkReady();
+  }
+
+  const compactPlan = () => innerWidth < 600 || innerWidth <= 800 && innerHeight <= 500;
+  function planXY(wall,x) {
+    const point = worldPoint(wall,x);
+    return [100+(point[0]+400)*.75,90+(point[2]+600)*.75];
+  }
+  function planSVG(mini=false,print=false) {
+    const planFont = mini ? 36 : 30;
+    const order = walkOrder();
+    const route = [[400,520],...order.map(id => {
+      const p = state.positions[id];
+      const a = planXY(p.wall,p.x);
+      if (p.wall === 'back') a[1] += 35;
+      if (p.wall === 'left') a[0] += 35;
+      if (p.wall === 'right') a[0] -= 35;
+      if (p.wall.startsWith('front')) a[1] -= 35;
+      return a;
+    })];
+    const line = print ? '#555' : '#748964';
+    let svg = `<svg class="plan-svg" viewBox="${mini ? '0 0 800 620' : '70 60 660 520'}" role="img"
+      aria-label="Gallery plan, five wall segments and visitor path" data-plan="true">
+      <defs><pattern id="plan-floor-${print ? 'print' : mini ? 'mini' : 'main'}" width="80" height="80" patternUnits="userSpaceOnUse">
+        <image href="art:vg-floor" width="80" height="80" opacity=".27"/></pattern></defs>
+      <rect x="100" y="90" width="600" height="450" fill="${print ? '#fff' : '#e9e2d2'}"/>
+      <rect x="100" y="90" width="600" height="450" fill="${print ? 'none' : `url(#plan-floor-${print ? 'print' : mini ? 'mini' : 'main'})`}"/>
+      <path d="M100 540V90H700V540H445M355 540H100" fill="none" stroke="${print ? '#222' : '#d1cebb'}" stroke-width="13"/>
+      <path d="M355 540V450Q435 450 445 540" fill="none" stroke="#807b6c" stroke-width="2" stroke-dasharray="5 5"/>
+      <path d="M400 520L290 90H510Z" fill="${print ? '#888' : '#729d4a'}" opacity=".08"/>
+      <polyline points="${route.map(p => p.join(',')).join(' ')}" fill="none" stroke="${line}" stroke-width="2.5" stroke-dasharray="7 6"/>
+      <circle cx="400" cy="520" r="8" fill="${print ? '#222' : '#35452b'}"/>
+      <text x="400" y="585" text-anchor="middle" fill="${print || mini ? '#111' : '#ced5c5'}" font-size="${planFont}">DOOR · 1.2 m</text>
+      <text x="400" y="53" text-anchor="middle" fill="${print || mini ? '#111' : '#d3ddcc'}" font-size="${planFont}">BACK WALL · 8 m</text>
+      <text x="60" y="325" transform="rotate(-90 60 325)" text-anchor="middle"
+        fill="${print || mini ? '#111' : '#d3ddcc'}" font-size="${planFont}">LEFT · 6 m</text>
+      <text x="745" y="325" transform="rotate(90 745 325)" text-anchor="middle"
+        fill="${print || mini ? '#111' : '#d3ddcc'}" font-size="${planFont}">RIGHT · 6 m</text>`;
+    for (const id of hung()) {
+      const p = state.positions[id];
+      const [x,y] = planXY(p.wall,p.x);
+      const width = frameSize(id).w*.75;
+      const vertical = ['left','right'].includes(p.wall);
+      const selectedFrame = id === state.selected && !print;
+      svg += `<g data-plan-work="${id}"><title>${esc(titleFor(id))}</title>
+        <rect x="${x-(vertical ? 5 : width/2)}" y="${y-(vertical ? width/2 : 5)}" width="${vertical ? 10 : width}" height="${vertical ? width : 10}"
+          fill="${print ? '#222' : selectedFrame ? '#59783d' : '#483f34'}" stroke="${print ? '#222' : '#f8f2d8'}" stroke-width="2"/>
+        <text x="${x+(p.wall === 'left' ? 22 : p.wall === 'right' ? -22 : 0)}" y="${y+(p.wall === 'back' ? 29 : p.wall.startsWith('front') ? -18 : 6)}"
+          text-anchor="middle" fill="${print ? '#111' : '#283322'}" font-size="${planFont}" font-weight="bold">
+          ${state.chosen.indexOf(id)+1}${state.star === id ? '★' : ''}</text></g>`;
+    }
+    return svg+'</svg>';
+  }
+  const sub = (a,b) => a.map((v,i) => v-b[i]);
+  const dot = (a,b) => a.reduce((sum,v,i) => sum+v*b[i],0);
+  const cross3 = (a,b) => [a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+  const norm = a => { const n = Math.hypot(...a); return a.map(v => v/Math.max(n,1e-9)); };
+  function cameraBasis(cam) {
+    const forward = norm(sub(cam.target,cam.eye));
+    const right = norm(cross3(forward,[0,1,0]));
+    const down = cross3(right,forward);
+    return {forward,right,down};
+  }
+  function setCamera(cam) {
+    const room = $('room');
+    const world = $('world');
+    if (!room || !world) return;
+    const {forward:f,right:r,down:d} = cameraBasis(cam);
+    const e = cam.eye;
+    const matrix = [r[0],d[0],-f[0],0,r[1],d[1],-f[1],0,r[2],d[2],-f[2],0,-dot(r,e),-dot(d,e),dot(f,e),1];
+    const atDoor = state.mode === 'walk' && state.stop < 0 && !betweenStops;
+    const focal = state.mode === 'walk' ? (atDoor ? doorFocal(room) : Math.max(300,room.clientWidth*.82)) :
+      Math.min(room.clientWidth*1.05,room.clientHeight*1.6);
+    room.style.perspective = focal+'px';
+    world.style.transform = `translateZ(${focal}px) matrix3d(${matrix.join(',')})`;
+    camera = cam;
+  }
+  function project(point,cam=camera) {
+    const room = $('room');
+    const {forward,right,down} = cameraBasis(cam);
+    const rel = sub(point,cam.eye);
+    const depth = dot(rel,forward);
+    const focal = parseFloat(room.style.perspective);
+    if (depth <= 1) return null;
+    return [room.clientWidth/2+dot(rel,right)*focal/depth,room.clientHeight/2+dot(rel,down)*focal/depth];
+  }
+  function homography(sourceWidth,sourceHeight,points) {
+    const source = [[0,0],[sourceWidth,0],[sourceWidth,sourceHeight],[0,sourceHeight]];
+    const rows = [];
+    source.forEach(([x,y],i) => {
+      const [u,v] = points[i];
+      rows.push([x,y,1,0,0,0,-u*x,-u*y,u]);
+      rows.push([0,0,0,x,y,1,-v*x,-v*y,v]);
+    });
+    for (let column=0;column<8;column++) {
+      let pivot = column;
+      for (let row=column+1;row<8;row++) if (Math.abs(rows[row][column]) > Math.abs(rows[pivot][column])) pivot=row;
+      [rows[column],rows[pivot]] = [rows[pivot],rows[column]];
+      const divisor = rows[column][column];
+      if (Math.abs(divisor) < 1e-12) return null;
+      for (let j=column;j<9;j++) rows[column][j] /= divisor;
+      for (let row=0;row<8;row++) {
+        if (row === column) continue;
+        const factor = rows[row][column];
+        for (let j=column;j<9;j++) rows[row][j] -= factor*rows[column][j];
+      }
+    }
+    const h = rows.map(row => row[8]);
+    return [h[0],h[3],0,h[6],h[1],h[4],0,h[7],0,0,1,0,h[2],h[5],0,1];
+  }
+  function resetWallLabels() {
+    document.querySelectorAll('[data-wall-label]').forEach(label => {
+      label.style.visibility = label.dataset.squeezed === 'true' ? 'hidden' : '';
+    });
+  }
+  function drawWalkArt() {
+    $('walk-art')?.remove();
+    $('walk-wall-label')?.remove();
+    resetWallLabels();
+    if (state.mode !== 'walk' || walkMoving || betweenStops || state.stop < 0) return;
+    const id = walkOrder()[state.stop];
+    if (!id) return;
+    const p = state.positions[id];
+    const size = frameSize(id);
+    const line = state.lines[p.wall];
+    const corners = [
+      worldPoint(p.wall,p.x-size.w/2,line+size.h/2),worldPoint(p.wall,p.x+size.w/2,line+size.h/2),
+      worldPoint(p.wall,p.x+size.w/2,line-size.h/2),worldPoint(p.wall,p.x-size.w/2,line-size.h/2)
+    ].map(point => project(point));
+    if (corners.some(point => !point)) return;
+    if (p.wall.startsWith('front')) [corners[0],corners[1],corners[2],corners[3]] = [corners[1],corners[0],corners[3],corners[2]];
+    const width = 800;
+    const height = width*size.h/size.w;
+    const matrix = homography(width,height,corners);
+    if (!matrix) return;
+    const art = document.createElement('div');
+    art.className = 'walk-art'+(id === 'bowl' ? ' bowl' : '');
+    art.id = 'walk-art';
+    art.style.width = width+'px';
+    art.style.height = height+'px';
+    art.style.borderWidth = width*3/size.w+'px';
+    art.style.padding = width*5/size.w+'px';
+    art.style.transform = `matrix3d(${matrix.join(',')})`;
+    if (!state.lights[id]) art.style.filter = 'brightness(.59)';
+    art.innerHTML = image(id,titleFor(id));
+    $('room').append(art);
+    const original = document.querySelector(`[data-wall-label="${id}"]`);
+    // A squeezed physical card stays hidden, but the readable stop label still needs to appear.
+    const labelCenter = project(worldPoint(p.wall,p.x,137));
+    if (!labelCenter) return;
+    const label = document.createElement('div');
+    label.id = 'walk-wall-label';
+    label.className = 'sharp-label';
+    const room = $('room');
+    const artRight = Math.max(...corners.map(q => q[0]));
+    const artLeft = Math.min(...corners.map(q => q[0]));
+    const rightRoom = room.clientWidth-artRight-22;
+    const leftRoom = artLeft-22;
+    const onRight = rightRoom >= leftRoom;
+    const displayWidth = Math.min(230,Math.max(100,(onRight ? rightRoom : leftRoom)));
+    label.style.width = displayWidth+'px';
+    label.style.left = (onRight ? artRight+10 : artLeft-displayWidth-10)+'px';
+    label.innerHTML = `<strong>${esc(titleFor(id))}</strong><br>
+      ${workById(id).own ? '' : 'Jordan Reyes · '}${workById(id).year || ''}<br>${esc(noteFor(id))}`;
+    $('room').append(label);
+    const centerY = labelCenter[1];
+    label.style.top = clamp(centerY-label.offsetHeight/2,8,Math.max(8,room.clientHeight-label.offsetHeight-8))+'px';
+    if (original) original.style.visibility='hidden';
+  }
+  function doorFocal(room) {
+    const id = firstSeen();
+    if (!id) return room.clientWidth*.58;
+    const p = state.positions[id];
+    const size = frameSize(id);
+    const ends = [-1,1].map(sign => worldPoint(p.wall,p.x+sign*size.w/2));
+    const ratio = Math.max(...ends.map(q => Math.abs(q[0])/Math.max(1,12-q[2])));
+    return Math.min(room.clientWidth*.58,room.clientWidth*.43/Math.max(.01,ratio));
+  }
+  function overviewCamera() { return {eye:[0,-360,390],target:[0,-160,-390]}; }
+  function doorCamera() { return {eye:[0,-160,12],target:[0,-160,-600]}; }
+  function stopCamera(index) {
+    const id = walkOrder()[index];
+    if (!id) return doorCamera();
+    const p = state.positions[id];
+    const target = worldPoint(p.wall,p.x,state.lines[p.wall]);
+    const eye = [...target];
+    eye[1] = -160;
+    const room = $('room');
+    const focal = Math.max(300,(room?.clientWidth || innerWidth)*.82);
+    const distance = Math.max(180,frameSize(id).h*focal/Math.max(100,(room?.clientHeight || 500)*.72));
+    if (p.wall === 'back') eye[2] += distance;
+    if (p.wall === 'left') eye[0] += distance;
+    if (p.wall === 'right') eye[0] -= distance;
+    if (p.wall.startsWith('front')) eye[2] -= distance;
+    return {eye,target};
+  }
+  function drawRoom() {
+    if (!$('room')) return;
+    const plan = state.mode === 'hang' && compactPlan();
+    $('world').style.display = plan ? 'none' : 'block';
+    $('main-plan')?.classList.toggle('active',plan);
+    if ($('plan-toggle')) {
+      $('plan-toggle').setAttribute('aria-pressed',String(plan || state.plan));
+      $('plan-toggle').disabled = plan;
+      $('plan-toggle').title = plan ? 'This compact layout uses the plan automatically.' : 'Show the plan beside the room';
+    }
+    if (!plan) setCamera(state.mode === 'walk' ? camera || (state.stop < 0 ? doorCamera() : stopCamera(state.stop)) : overviewCamera());
+    if (state.mode === 'hang' && !plan) {
+      const elevation = $('door-elevation');
+      const inner = $('door-elevation-inner');
+      const scale = Math.min((elevation.clientWidth-16)/800,(elevation.clientHeight-24)/180);
+      inner.style.transform = `translateX(-50%) scale(${scale})`;
+    }
+    if (state.mode === 'walk') {drawWalkArt();drawFirstSeen();}
+    updateRoomStatus();
+  }
+  function drawFirstSeen() {
+    $('door-cone')?.remove();
+    document.querySelectorAll('.first-seen').forEach(e => e.classList.remove('first-seen'));
+    if (state.mode !== 'walk' || state.stop >= 0 || betweenStops || state.playing) return;
+    const id = firstSeen();
+    if (!id) return;
+    document.querySelector(`[data-frame="${id}"]`)?.classList.add('first-seen');
+    const p = state.positions[id];
+    const size = frameSize(id);
+    const points = [project([0,0,-35]),...[-1,1].map(sign => project(worldPoint(p.wall,p.x+sign*size.w/2,0)))];
+    if (points.some(q => !q)) return;
+    $('room').insertAdjacentHTML('beforeend',`<svg class="door-cone" id="door-cone" aria-hidden="true"
+      viewBox="0 0 ${$('room').clientWidth} ${$('room').clientHeight}">
+      <polygon points="${points.map(q => q.join(',')).join(' ')}" fill="#688d32" opacity=".17"/></svg>`);
+  }
+  function updateRoomStatus() {
+    if (!$('room-status')) return;
+    const readout = $('gap-readout');
+    if (readout) {
+      const wallGaps = gapsOn(state.wall).gaps;
+      readout.textContent = wallGaps.length ? `Frame-edge gaps: ${wallGaps.map(n => Math.round(n)).join(', ')} cm.` :
+        'Hang two works on a wall to compare gaps.';
+    }
+    const first = firstSeen();
+    if (state.mode === 'walk') {
+      $('room-status').textContent = betweenStops ? 'Between works · tap Step or Back to choose a stop' :
+        state.stop < 0 ? (first ? `First seen: ${titleFor(first)}` : 'No work is in view from the door') :
+        `Stop ${state.stop+1} of ${walkOrder().length} · ${state.playing ? 'visitor viewing' : 'paused here'}`;
+    } else {
+      const p = state.positions[state.selected];
+      const g = p ? gapsOn(p.wall) : null;
+      $('room-status').innerHTML = `<span class="breath"></span>${hung().length}/${state.chosen.length} hung · ${
+        p ? `gaps ${g.gaps.length ? g.gaps.map(n => Math.round(n)).join(' / ')+' cm' : 'not yet paired'}` : 'select a work, then drag or tap Hang on wall'}`;
+    }
+    if (state.mode === 'walk' && !state.playing && !betweenStops && state.stop < 0 && first !== lastFirst) announceFirst();
+  }
+  function announceFirst() {
+    const id = firstSeen();
+    lastFirst = id;
+    if (!id || state.mode !== 'walk') return;
+    const text = workById(id).own || titleFor(id) !== workById(id).title ? L.firstCustom : L['first-'+id];
+    V.say(text,{key:'firstSeen',valid:() => state.mode === 'walk' && !state.playing && !betweenStops && state.stop < 0 && firstSeen() === id});
+  }
+
+  function renderWalk() {
+    const order = walkOrder();
+    const markers = jumps(order);
+    $('view').innerHTML = `<section class="walk-main">${roomHTML(true)}
+      <details id="visitor-label" hidden></details>
+      <div class="walk-transport"><button class="btn primary" id="walk-play" ${!order.length ? 'disabled' : ''}>▶ Walk the show</button>
+        <button class="btn" id="walk-back" ${!order.length ? 'disabled' : ''}>Back</button>
+        <button class="btn" id="walk-step" ${!order.length ? 'disabled' : ''}>Step</button>
+        <button class="btn" id="walk-stop" ${!order.length ? 'disabled' : ''}>Stop</button>
+        <button class="btn" id="direction" aria-pressed="${state.ccw}">${state.ccw ? 'Route: counterclockwise' : 'Route: clockwise'}</button>
+        <span class="timing">${order.length} ${order.length === 1 ? 'stop' : 'stops'} · about ${order.length*3} s${
+          markers.some(Boolean) ? ' + jump lines' : ''}</span></div>
+      <div class="order-strip" id="order-strip">${order.length ? order.map((id,i) => `${i && markers[i-1] ? '<span class="jump-mark">↯<br>jump</span>' : ''}
+        <button class="order-item ${state.stop === i ? 'current' : ''} ${i && markers[i-1] ? 'has-jump' : ''}" data-stop="${i}"
+          aria-label="Visit stop ${i+1}, ${esc(titleFor(id))}${i && markers[i-1] ? ', story jump' : ''}">
+          ${image(id)}<span class="order-title"><small>${i+1}${state.star === id ? ' ★' : ''}</small> ${esc(titleFor(id))}</span></button>`).join('') :
+        state.chosen.length ? '<p class="muted">Your works are in the tray. Tap Hang to place them on a wall.</p>' :
+        '<p class="muted">Your gallery is empty. Choose works in Select, then hang them in Hang.</p>'}</div></section>`;
+    $('walk-play').onclick = playWalk;
+    $('walk-back').onclick = () => goStop(Math.max(-1,state.stop-1));
+    $('walk-step').onclick = () => goStop(Math.min(walkOrder().length-1,state.stop+1));
+    $('walk-stop').onclick = () => {
+      stopWalk();
+      feedback('Visitor stopped here. Tap Step, Back, or a work in the order strip.');
+      updateWalkView();
+    };
+    $('direction').onclick = () => {
+      stopWalk();
+      state.ccw = !state.ccw;
+      state.stop = -1;
+      betweenStops = false;
+      camera = doorCamera();
+      $('direction').setAttribute('aria-pressed',String(state.ccw));
+      $('direction').textContent = state.ccw ? 'Route: counterclockwise' : 'Route: clockwise';
+      updateWalkView();
+      if (walkOrder().length) playWalk();
+    };
+    $('order-strip').onclick = event => {
+      const button = event.target.closest('[data-stop]');
+      if (button) goStop(Number(button.dataset.stop));
+    };
+    updateWalkView();
+  }
+  function stopWalk() {
+    state.playing = false;
+    walkMoving = false;
+    walkToken++;
+  }
+  function updateWalkView() {
+    if (state.mode !== 'walk' || !$('visitor-label')) return;
+    const id = betweenStops ? null : walkOrder()[state.stop];
+    $('scene-subtitle').textContent = betweenStops ? 'Stopped between works' : id ?
+      `Stop ${state.stop+1} · ${state.playing ? 'viewing' : 'paused'}` :
+      firstSeen() ? 'At the door · outlined frame is first seen' : 'At the door · place work on a back or side wall';
+    $('visitor-label').hidden = betweenStops || !id;
+    $('visitor-label').className = id ? 'visitor-label' : '';
+    $('visitor-label').innerHTML = id ? `<summary>${esc(titleFor(id) || 'Untitled')} · ${words(noteFor(id))} words · Label details</summary>
+      <div><small>${workById(id).own ? '' : 'Jordan Reyes · '}${esc(workById(id).medium)} · ${workById(id).year || ''}</small>
+      <p>${esc(noteFor(id))}</p><small>Label center 137 cm (54 in)</small></div>` : '';
+    document.querySelectorAll('[data-stop]').forEach(button => {
+      const current = Number(button.dataset.stop) === state.stop;
+      button.classList.toggle('current',current);
+      button.setAttribute('aria-current',current ? 'step' : 'false');
+    });
+    $('walk-play').setAttribute('aria-pressed',String(state.playing));
+    updateRoomStatus();
+    drawRoom();
+  }
+  function sayJump(index) {
+    if (index < 1 || !jumps(walkOrder())[index-1]) return Promise.resolve();
+    const at = index;
+    const spoken = V.say('jump',{wait:true,valid:() => state.mode === 'walk' && state.stop === at});
+    setHint(L.jump+' Tap Step to continue, or Hang to change the order.');
+    return spoken;
+  }
+  function goStop(index) {
+    stopWalk();
+    V.hush();
+    state.stop = index;
+    betweenStops = false;
+    camera = index < 0 ? doorCamera() : stopCamera(index);
+    updateWalkView();
+    nextHint();
+    sayJump(index);
+    Curio.tone(330,.05,.03,'sine');
+  }
+  async function travelTo(index,token) {
+    const start = camera || doorCamera();
+    const finish = stopCamera(index);
+    const began = performance.now();
+    walkMoving = true;
+    betweenStops = true;
+    V.hush();
+    $('visitor-label').hidden = true;
+    $('scene-subtitle').textContent = 'Moving to stop '+(index+1);
+    document.querySelector('.cone-note')?.remove();
+    if (!Curio.reduce) {
+      $('walk-art')?.remove();
+      $('walk-wall-label')?.remove();
+      resetWallLabels();
+    }
+    return new Promise(resolve => {
+      function frame(now) {
+        if (token !== walkToken || !state.playing || state.mode !== 'walk') return resolve(false);
+        const t = clamp((now-began)/1000,0,1);
+        const k = t*t*(3-2*t);
+        if (!Curio.reduce) {
+          const eye = routeEye(start.eye,finish.eye,k,state.ccw);
+          const target = start.target.map((v,i) => v+(finish.target[i]-v)*k);
+          setCamera({eye,target});
+        } else if (t >= 1) setCamera(finish);
+        if (t >= 1) {walkMoving=false;betweenStops=false;return resolve(true);}
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    });
+  }
+  function routeEye(start,finish,t,ccw) {
+    const corners = [[-220,-420],[220,-420],[220,-180],[-220,-180]];
+    const lengths = [440,240,440,240];
+    const total = 1360;
+    function nearest(point) {
+      let best = {distance:Infinity,at:0,point:null};
+      let offset = 0;
+      corners.forEach((a,i) => {
+        const b = corners[(i+1)%4];
+        const dx = b[0]-a[0];
+        const dz = b[1]-a[1];
+        const k = clamp(((point[0]-a[0])*dx+(point[2]-a[1])*dz)/(dx*dx+dz*dz),0,1);
+        const q = [a[0]+dx*k,a[1]+dz*k];
+        const distance = Math.hypot(point[0]-q[0],point[2]-q[1]);
+        if (distance < best.distance) best={distance,at:offset+k*lengths[i],point:[q[0],-160,q[1]]};
+        offset += lengths[i];
+      });
+      return best;
+    }
+    const a = nearest(start);
+    const b = nearest(finish);
+    if (t < .12) return start.map((v,i) => v+(a.point[i]-v)*t/.12);
+    if (t > .88) return b.point.map((v,i) => v+(finish[i]-v)*(t-.88)/.12);
+    const distance = ccw ? -((a.at-b.at+total)%total) : (b.at-a.at+total)%total;
+    let at = ((a.at+distance*(t-.12)/.76)%total+total)%total;
+    for (let i=0;i<4;i++) {
+      if (at <= lengths[i]) {
+        const q = corners[i];
+        const r = corners[(i+1)%4];
+        return [q[0]+(r[0]-q[0])*at/lengths[i],-160,q[1]+(r[1]-q[1])*at/lengths[i]];
+      }
+      at -= lengths[i];
+    }
+    return finish;
+  }
+  async function playWalk() {
+    stopWalk();
+    V.hush();
+    if (!walkOrder().length) return;
+    state.stop = -1;
+    betweenStops = false;
+    camera = doorCamera();
+    state.playing = true;
+    const token = walkToken;
+    updateWalkView();
+    setHint('The visitor follows your tray order. Tap Stop, Step, Back, or a work to take control.');
+    for (let i=0;i<walkOrder().length;i++) {
+      if (token !== walkToken || !state.playing) return;
+      const reached = await travelTo(i,token);
+      if (!reached || token !== walkToken) return;
+      state.stop = i;
+      updateWalkView();
+      setHint('The visitor follows your tray order. Tap Stop, Step, Back, or a work to take control.');
+      const jumpLine = sayJump(i);
+      Curio.tone(300+i*25,.06,.025,'sine');
+      await Promise.all([Curio.wait(2000),jumpLine]);
+    }
+    if (token !== walkToken) return;
+    state.playing = false;
+    updateWalkView();
+    const count = walkOrder().length;
+    const jumpCount = jumps(walkOrder()).filter(Boolean).length;
+    const first = firstSeen();
+    const comparison = first && first === state.star ? 'First seen was your starred work' :
+      `First seen was ${first ? titleFor(first) : 'nothing'}; you starred ${state.star ? titleFor(state.star) : 'no work'}`;
+    const recap = `${count} works · ${jumpCount} story ${jumpCount === 1 ? 'jump' : 'jumps'}`;
+    $('scene-subtitle').textContent = 'Your walk complete · '+recap+' · '+comparison;
+    feedback(`${endSentence(recap)} ${endSentence(comparison)} Tap Checklist to refine your show.`,true);
+    V.say('walkComplete',{valid:() => state.mode === 'walk' && !state.playing && state.stop === count-1});
+  }
+
+  function renderChecklist() {
+    const list = checks();
+    $('view').innerHTML = `<section class="checklist"><div class="check-inner"><div class="check-head"><div>
+      <span class="eyebrow">Before opening night</span><h2>The juror’s checklist</h2></div>
+      <span class="selection-count">${list.filter(c => c.pass).length} of 9 met<br>${state.chosen.length} works selected</span></div>
+      ${list.every(c => c.pass) ? `<p class="ready">${esc(showName())} meets all nine measured checks. Review its meaning before opening.</p>` : ''}
+      <div class="checks">${list.map(c => `<article class="check-row ${c.pass ? 'pass' : 'fail'}">
+        <span class="check-icon" aria-hidden="true">${c.pass ? '✓' : '×'}</span>
+        <div class="check-text"><h3>${c.name}<span> · ${c.pass ? 'Meets check' : 'Needs attention'}</span></h3><p>${esc(c.text)}</p></div>
+        <div class="check-actions"><button class="btn" data-why="${c.key}" aria-label="Why: ${c.name}">Why</button>
+        <button class="btn" data-check="${c.key}">Show me</button></div></article>`).join('')}</div>
+      <div class="check-bottom"><button class="btn primary" id="print-show">Print show</button><button class="btn" id="clear-show">Clear show</button></div>
+      <p class="muted">Your statement and labels stay on this device. The checklist supports a curatorial decision; it does not replace one.</p>
+      </div></section>`;
+    document.querySelectorAll('[data-check]').forEach(button => button.onclick = () => showProblem(button.dataset.check));
+    document.querySelectorAll('[data-why]').forEach(button => button.onclick = () => {
+      const check = checks().find(c => c.key === button.dataset.why);
+      $('why-heading').textContent = check.name;
+      $('why-current').textContent = check.text;
+      $('why-text').textContent = check.why;
+      openDialog('why-dialog');
+    });
+    $('print-show').onclick = printShow;
+    $('clear-show').onclick = () => openDialog('clear-dialog');
+  }
+  function showProblem(key) {
+    const list = checks();
+    let id = state.selected;
+    if (key === 'selection') id = state.chosen.find(k => !state.positions[k]) || state.chosen[0];
+    if (key === 'theme') id = hung().find(k => !workById(k).tags.includes(theme())) || state.chosen[0];
+    if (key === 'anchor') id = state.star || firstSeen();
+    if (key === 'light') id = hung().find(k => !state.lights[k]) || state.chosen[0];
+    if (key === 'labels') id = state.chosen.find(k => !written(titleFor(k)) || words(noteFor(k)) > 25 || !written(noteFor(k))) || state.chosen[0];
+    if (key === 'line') {
+      const used = WALLS.filter(w => hung().some(k => state.positions[k].wall === w.id));
+      const wall = used.sort((a,b) => state.lines[b.id]-state.lines[a.id])[0];
+      id = wall ? hung().find(k => state.positions[k].wall === wall.id) : state.chosen[0];
+    }
+    if (key === 'spacing') {
+      const wall = WALLS.find(w => !gapsOn(w.id).pass);
+      id = wall ? gapsOn(wall.id).ids[0] : state.chosen[0];
+    }
+    if (key === 'flow') {
+      const index = jumps(walkOrder()).findIndex(Boolean);
+      id = walkOrder()[index+1] || state.chosen[0];
+    }
+    if (id) state.selected = id;
+    if (state.positions[id]) state.wall = state.positions[id].wall;
+    setMode('hang',false);
+    const result = list.find(c => c.key === key);
+    setHint(result.text+' '+(key === 'statement' ? 'Tap Statement to edit.' : key === 'selection' || key === 'theme' ? 'Tap Select to revise the selection.' :
+      key === 'labels' ? 'Tap Label to edit.' : key === 'spacing' ? 'Tap Auto space, or drag frames apart.' : key === 'light' ? 'Tap Light.' :
+      key === 'flow' ? 'Tap Bring to front or Move later to change the walk order.' :
+      key === 'anchor' ? 'The frame edge closest to straight ahead from the door is first seen. Move your anchor there.' :
+        'Move the selected work or adjust its wall.'));
+    const target = key === 'statement' ? 'edit-statement' : key === 'labels' ? 'edit-label' : key === 'light' ? 'light-work' :
+      key === 'spacing' ? 'auto-space' : key === 'line' ? 'center-line' : 'wall-choice';
+    if (!hung().length && !['selection','theme','labels','statement'].includes(key)) {
+      setHint(L.emptyHang);
+      $('m-select').focus({preventScroll:true});
+      return;
+    }
+    $(target)?.focus({preventScroll:true});
+    $(target)?.classList.add('problem-focus');
+  }
+  function openDialog(id) {
+    V.hush();
+    dialogOrigin = document.activeElement?.id;
+    $(id).showModal();
+  }
+  function closeDialog(id) {
+    V.hush();
+    $(id).close();
+    if (dialogOrigin && $(dialogOrigin)) $(dialogOrigin).focus({preventScroll:true});
+  }
+  function updateTextCounts() {
+    const labelCount = words($('label-note').value);
+    $('label-count').textContent = `${labelCount} of 25 words`;
+    $('label-count').classList.toggle('invalid',labelCount > 25);
+    const statement = $('statement-text').value;
+    const longest = Math.max(0,...sentences(statement));
+    $('statement-count').textContent = `${words(statement)} of 100 words · longest sentence ${longest} of 25`;
+    $('statement-count').classList.toggle('invalid',words(statement) > 100 || longest > 25);
+  }
+  function openLabel(id) {
+    state.selected = id;
+    $('label-title').value = titleFor(id);
+    $('label-note').value = noteFor(id);
+    updateTextCounts();
+    openDialog('label-dialog');
+    V.dropQueued(it => it.key === 'lightHow');
+    setHint(L.labelHow);
+    V.how('labelHow',{valid:() => $('label-dialog').open,needs:'#label-done'});
+  }
+  function openStatement() {
+    $('statement-title').value = state.showTitle;
+    $('statement-text').value = state.statement;
+    updateTextCounts();
+    openDialog('statement-dialog');
+    setHint(L.statementHow);
+    V.how('statementHow',{valid:() => $('statement-dialog').open,needs:'#statement-done'});
+  }
+  function printShow() {
+    $('print-sheet').innerHTML = `<h1>${esc(showName())}</h1><p>Virtual Gallery · Curio Class${
+      state.chosen.some(id => !workById(id).own) ? ' · Jordan Reyes is a fictional student.' : ''}</p>
+      <p>${esc(state.statement)}</p>${planSVG(false,true)}${state.chosen.map((id,i) => `<div class="print-label">${image(id)}<div>
+      <h2>${i+1}. ${esc(titleFor(id))}${id === state.star ? ' ★' : ''}</h2>
+      <p>${workById(id).own ? '' : 'Jordan Reyes · '}${esc(workById(id).medium)} ·
+        ${sizeText(workById(id))} · ${workById(id).year || ''}</p>
+      <p>${esc(noteFor(id))}</p></div></div>`).join('')}`;
+    window.print();
+  }
+
+  function planHit(event,svg) {
+    const point = new DOMPoint(event.clientX,event.clientY).matrixTransform(svg.getScreenCTM().inverse());
+    const x = point.x;
+    const y = point.y;
+    const candidates = [
+      {wall:'back',distance:Math.abs(y-90),t:(x-100)/.75},
+      {wall:'left',distance:Math.abs(x-100),t:(540-y)/.75},
+      {wall:'right',distance:Math.abs(x-700),t:(y-90)/.75}
+    ];
+    if (x <= 355) candidates.push({wall:'front-left',distance:Math.abs(y-540),t:(x-100)/.75});
+    if (x >= 445) candidates.push({wall:'front-right',distance:Math.abs(y-540),t:(x-445)/.75});
+    candidates.sort((a,b) => a.distance-b.distance);
+    const hit = candidates[0];
+    return hit.distance < 100 && hit.t >= -30 && hit.t <= WALL_MAP[hit.wall].length+30 ? hit : null;
+  }
+  function pointOnWall(event,wall) {
+    const elevation = document.elementFromPoint(event.clientX,event.clientY)?.closest('[data-elevation-wall]');
+    if (elevation) {
+      const box = elevation.getBoundingClientRect();
+      return clamp((event.clientX-box.left)/box.width*340,0,340);
+    }
+    const room = $('room');
+    if (!room || !camera) return null;
+    const rect = room.getBoundingClientRect();
+    const focal = parseFloat(room.style.perspective);
+    const {forward,right,down} = cameraBasis(camera);
+    const sx = (event.clientX-rect.left-rect.width/2)/focal;
+    const sy = (event.clientY-rect.top-rect.height/2)/focal;
+    const ray = forward.map((v,i) => v+right[i]*sx+down[i]*sy);
+    const axis = ['left','right'].includes(wall) ? 0 : 2;
+    const coordinate = wall === 'left' ? -400 : wall === 'right' ? 400 : wall === 'back' ? -600 : 0;
+    const distance = (coordinate-camera.eye[axis])/ray[axis];
+    const point = camera.eye.map((v,i) => v+ray[i]*distance);
+    if (wall === 'back') return point[0]+400;
+    if (wall === 'left') return -point[2];
+    if (wall === 'right') return point[2]+600;
+    if (wall === 'front-left') return point[0]+400;
+    return point[0]-60;
+  }
+  $('view').addEventListener('pointerdown',event => {
+    if (state.mode !== 'hang' || event.button !== 0) return;
+    const tray = event.target.closest('[data-tray]');
+    const frame = event.target.closest('[data-frame]');
+    const planWork = event.target.closest('[data-plan-work]');
+    const id = tray?.dataset.tray || frame?.dataset.frame || planWork?.dataset.planWork;
+    if (!id) return;
+    drag = {id,startX:event.clientX,startY:event.clientY,moved:false,fromTray:!!tray,pointer:event.pointerId};
+    $('view').setPointerCapture(event.pointerId);
+    Curio.tone(350,.035,.02,'sine');
+  });
+  $('view').addEventListener('pointermove',event => {
+    if (!drag) return;
+    if (!drag.moved && Math.hypot(event.clientX-drag.startX,event.clientY-drag.startY) > 5) {
+      drag.moved = true;
+      document.body.classList.add('dragging-frames');
+      const ghost = document.createElement('div');
+      ghost.className = 'drag-ghost';
+      ghost.id = 'drag-ghost';
+      ghost.innerHTML = image(drag.id);
+      document.body.append(ghost);
+    }
+    const ghost = $('drag-ghost');
+    if (ghost) { ghost.style.left=event.clientX+'px'; ghost.style.top=event.clientY+'px'; }
+    if (drag.moved) {
+      const target = document.elementFromPoint(event.clientX,event.clientY);
+      const wall = target?.closest('[data-wall]')?.dataset.wall || target?.closest('[data-elevation-wall]')?.dataset.elevationWall;
+      const svg = target?.closest('[data-plan]');
+      const hit = svg ? planHit(event,svg) : wall ? {wall,t:pointOnWall(event,wall)} : null;
+      const dropKey = hit ? hit.wall+':'+Math.round(hit.t) : '';
+      if (hit && dropKey !== drag.lastDrop) {
+        drag.lastDrop = dropKey;
+        const g = gapsOn(hit.wall);
+        setHint(`${WALL_MAP[hit.wall].name}: drop at ${Math.round(hit.t)} cm. Current frame-edge gaps: `+
+          `${g.gaps.length ? g.gaps.map(n => Math.round(n)).join(', ')+' cm' : 'none yet'}.`);
+      }
+    }
+  });
+  $('view').addEventListener('pointerup',event => {
+    if (!drag) return;
+    const ended = drag;
+    drag = null;
+    document.body.classList.remove('dragging-frames');
+    $('drag-ghost')?.remove();
+    if ($('view').hasPointerCapture(event.pointerId)) $('view').releasePointerCapture(event.pointerId);
+    const target = document.elementFromPoint(event.clientX,event.clientY);
+    if (!ended.moved) {
+      chooseHung(ended.id);
+      return;
+    }
+    const tray = target?.closest('[data-tray]');
+    if (target?.closest('#tray-drop')) {
+      if (ended.fromTray && tray && tray.dataset.tray !== ended.id) reorder(ended.id,state.chosen.indexOf(tray.dataset.tray));
+      else returnTray(ended.id);
+      return;
+    }
+    const svg = target?.closest('[data-plan]');
+    const wall = target?.closest('[data-wall]')?.dataset.wall || target?.closest('[data-elevation-wall]')?.dataset.elevationWall;
+    const hit = svg ? planHit(event,svg) : wall ? {wall,t:pointOnWall(event,wall)} : null;
+    if (hit) place(ended.id,hit.wall,hit.t);
+    else feedback('Drop onto a wall line, or back into the tray.');
+  });
+  $('view').addEventListener('pointercancel',() => {
+    drag=null;
+    document.body.classList.remove('dragging-frames');
+    $('drag-ghost')?.remove();
+  });
+  addEventListener('keydown',event => {
+    if (state.mode !== 'hang' || event.target.matches('input,textarea,select') || event.target.closest('dialog')) return;
+    if (!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Delete','Enter'].includes(event.key)) return;
+    const focusedTray = event.target.closest('[data-tray]');
+    const id = focusedTray?.dataset.tray || state.selected;
+    if (focusedTray && id !== state.selected) chooseHung(id,false);
+    if (!state.chosen.includes(id)) return;
+    const p = state.positions[id];
+    if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)) {
+      event.preventDefault();
+      if (!p) return feedback('Tap Hang on wall, or press Enter on a tray work, to hang it first.');
+      const step = (event.shiftKey ? 25 : 5)*(['ArrowLeft','ArrowDown'].includes(event.key) ? -1 : 1);
+      place(id,p.wall,p.x+step,{keepControls:true});
+    }
+    if (event.key === 'Delete' && p) {event.preventDefault();returnTray(id);}
+    if (event.key === 'Enter' && focusedTray && !p) {
+      event.preventDefault();
+      place(event.target.closest('[data-tray]').dataset.tray,state.wall,WALL_MAP[state.wall].length/2,{keepControls:true});
+    }
+  });
+  $('label-title').oninput = $('label-note').oninput = () => {
+    state.labels[state.selected] = {title:$('label-title').value,note:$('label-note').value};
+    updateTextCounts();
+    save();
+    refreshGeometry();
+    checkReady();
+  };
+  $('statement-text').oninput = () => {
+    state.statement = $('statement-text').value;
+    updateTextCounts();
+    save();
+    refreshGeometry();
+    checkReady();
+  };
+  $('statement-title').oninput = event => {
+    state.showTitle = event.target.value;
+    const heading = document.querySelector('.room-label h2');
+    if (heading) heading.textContent = showName();
+    save();
+  };
+  for (const id of ['label-done','label-close']) $(id).onclick = () => {closeDialog('label-dialog');nextHint();};
+  for (const id of ['statement-done','statement-close']) $(id).onclick = () => {closeDialog('statement-dialog');nextHint();};
+  $('own-close').onclick = () => closeDialog('own-dialog');
+  $('clear-cancel').onclick = () => closeDialog('clear-dialog');
+  $('why-close').onclick = () => closeDialog('why-dialog');
+  for (const id of ['label-dialog','statement-dialog','own-dialog','clear-dialog','why-dialog']) {
+    $(id).addEventListener('cancel',event => {
+      event.preventDefault();
+      closeDialog(id);
+      nextHint();
+    });
+  }
+  $('clear-confirm').onclick = () => {
+    closeDialog('clear-dialog');
+    stopWalk();
+    Object.assign(state,fresh());
+    try { localStorage.removeItem('virtual-gallery-show'); } catch { saveBlocked=true; }
+    setMode('select');
+    feedback('Show cleared. Tap a work to start a new selection.');
+    $('m-select').focus({preventScroll:true});
+  };
+  $('own-files').onchange = async event => {
+    const files = [...event.target.files];
+    const remaining = Math.max(0,12-own.length);
+    const usable = files.filter(f => f.type.startsWith('image/')).slice(0,remaining);
+    let failed = files.length-usable.length;
+    for (const file of usable) {
+      const url = URL.createObjectURL(file);
+      try {
+        const img = new Image();
+        img.src = url;
+        await img.decode();
+        const scale = Math.min(1,1000/Math.max(img.width,img.height));
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.max(1,Math.round(img.width*scale));
+        canvas.height = Math.max(1,Math.round(img.height*scale));
+        canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
+        const id = 'own-'+Date.now()+'-'+own.length;
+        const printScale = 40/Math.max(img.width,img.height);
+        own.push({id,title:'Your work '+(own.length+1),medium:'your image',
+          w:Math.max(1,Math.round(img.width*printScale)),h:Math.max(1,Math.round(img.height*printScale)),
+          tags:[],year:'',own:true,image:canvas.toDataURL('image/webp',.82)});
+      } catch { failed++; }
+      finally { URL.revokeObjectURL(url); }
+    }
+    $('own-message').textContent = `${own.length} own ${own.length === 1 ? 'picture' : 'pictures'} in this visit.`+
+      (failed ? ' Some files could not be added; use an image file and stay within 12.' :
+        ' Tap Back to portfolio, then open your picture to set its title and tags.');
+    event.target.value = '';
+    renderSelect();
+  };
+  for (const mode of ['select','hang','walk','checklist']) {
+    $('m-'+mode).onclick = () => {
+      if (mode !== state.mode) setMode(mode);
+    };
+  }
+  addEventListener('resize',() => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(drawRoom,50);
+  });
+  Curio.onMotion(() => { if (state.mode === 'walk' && !state.playing) drawRoom(); });
+  restore();
+  Curio.init({clips:"voice:*",rate:.9,readFallback:() => $('hint').textContent});
+  window.__tool = {state,setMode,allLines:V.allLines,vlog:V.log,portfolio:PORTFOLIO,assets:ART,own,checks,words,sentences,
+    firstSeen,gapsOn,place,autoSpace,returnTray,reorder,walkOrder,playWalk,stopWalk,goStop,worldPoint,frameSize,
+    save,restore,render:renderMode,plan:planSVG,pathCrosses,get vq() {return V.queue;}};
+  setMode(state.mode);
+  if (ownDropped) {setHint(L.ownDropped+' Tap Select to add them again.');$('announce').textContent=L.ownDropped;}
+  if (saveBlocked) $('save-status').textContent='This visit only: storage unavailable';
+})();
+</script>
+</body>
+</html>

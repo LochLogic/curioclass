@@ -1,0 +1,31 @@
+{
+  "id": "circuit-bench",
+  "stage": "built",
+  "status": "beta",
+  "curiosity": true,
+  "plate": 7,
+  "standards": ["MS-PS2-3", "MS-PS2-5", "4-PS3-2", "4-PS3-4"],
+  "standards_scope": {
+    "MS-PS2-5": "In part: magnetic field half only. The electric half rests on the module's lesson tool.",
+    "touches_not_claimed": ["3-PS2-3", "3-PS2-4", "HS-PS2-5"],
+    "authority": "spec.md Map, integrator call 2026-11-06, BASELINE rule 2"
+  },
+  "hook": "Fit two wires. Watch a filament warm. Follow the current wherever your circuit takes it.",
+  "outcome": "Explore electric circuits and magnetic fields with a breadboard, real circuit models and a working multimeter.",
+  "driver": "students or teacher",
+  "minutes": "2-60",
+  "modes": [],
+  "grades_label": "Grades 3-12 · tuned for grade 8",
+  "sources": [
+    "OpenStax College Physics 2e, chapters 20-23. CC BY-NC-SA 4.0. Facts only; no text or assets copied. https://openstax.org/books/college-physics-2e/pages/21-introduction-to-circuits-and-dc-instruments",
+    "OpenStax University Physics Volume 2, sections 12.1, 12.2, 12.4, 12.6: Biot-Savart, right-hand rule, dipole moment, finite-solenoid field. Current online licence CC BY-NC-SA 4.0, rechecked 2026-11-06. Facts only; no text or assets copied. https://openstax.org/books/university-physics-volume-2/pages/12-4-magnetic-field-of-a-current-loop",
+    "Georgia State University HyperPhysics, Diode. Copyright Georgia State University. Directional-conduction facts only, no assets copied. http://hyperphysics.phy-astr.gsu.edu/hbase/Solids/diode.html",
+    "Vishay, Standard Decade Resistance Values, document 31001. Copyright Vishay. E12 facts only, no document or graphics copied. https://www.vishay.com/docs/31001/dectable.pdf",
+    "NOAA / BGS World Magnetic Model. Public US government information, geomagnetic-field context only, no model dataset bundled. https://www.ncei.noaa.gov/products/world-magnetic-model",
+    "Encyclopaedia Britannica, Hans Christian Orsted: 1820 attribution, copyright Encyclopaedia Britannica, facts only; no text or assets copied. https://www.britannica.com/biography/Hans-Christian-Orsted",
+    "US Consumer Product Safety Commission, Batteries: battery heat and burn hazards. Public US government information; facts only, no text or assets copied. https://www.cpsc.gov/Regulations-Laws--Standards/Voluntary-Standards/Topics/Batteries",
+    "Component constants and a fixed 20 microtesla northward field: declared Curio Class design assumptions. Original code MIT; original text and drawn graphics CC BY 4.0."
+  ],
+  "third_party": [],
+  "updated": "2026-11-06"
+}

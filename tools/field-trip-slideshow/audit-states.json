@@ -1,0 +1,218 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "sound-completed",
+      "steps": [
+        {"click":"#m-sound"},
+        {"click":"#softer","times":2},
+        {"click":"#test"},
+        {"wait":6500}
+      ],
+      "sizes":["680x425","1366x768","375x812"],
+      "keep":["#badges","#hint","#sound-picture","#sound-actions"]
+    },
+    {
+      "name":"speaker-correct-feedback",
+      "steps":[
+        {"click":"#m-speaker"},
+        {"click":"#sentence-3"},
+        {"click":"#picture-3"}
+      ],
+      "sizes":["680x425","1366x768","375x812"],
+      "keep":["#badges","#hint","#sentence-cards","#speaker-grid"]
+    },
+    {
+      "name": "closer-problem",
+      "steps": [
+        {
+          "click": "#take-0"
+        }
+      ],
+      "keep": [
+        "#badges",
+        "#hint",
+        "#close-photo",
+        "#use-take",
+        "#back-takes"
+      ]
+    },
+    {
+      "name": "music-soft-limit",
+      "steps": [
+        {
+          "click": "#m-sound"
+        },
+        {
+          "click": "#softer",
+          "times": 4
+        }
+      ],
+      "keep": [
+        "#badges",
+        "#hint",
+        "#test",
+        "#softer",
+        "#louder"
+      ]
+    },
+    {
+      "name": "sentence-picked",
+      "steps": [
+        {
+          "click": "#m-speaker"
+        },
+        {
+          "click": "#sentence-2"
+        }
+      ],
+      "keep": [
+        "#badges",
+        "#hint",
+        "#sentence-cards",
+        "#speaker-grid"
+      ]
+    },
+    {
+      "name": "practiced",
+      "steps": [
+        {
+          "click": "#m-speaker"
+        },
+        {
+          "click": "#sentence-3"
+        },
+        {
+          "click": "#picture-3"
+        },
+        {
+          "click": "#sentence-0"
+        },
+        {
+          "click": "#picture-0"
+        },
+        {
+          "click": "#sentence-4"
+        },
+        {
+          "click": "#picture-4"
+        },
+        {
+          "click": "#sentence-1"
+        },
+        {
+          "click": "#picture-1"
+        },
+        {
+          "click": "#sentence-5"
+        },
+        {
+          "click": "#picture-5"
+        },
+        {
+          "click": "#sentence-2"
+        },
+        {
+          "click": "#picture-2"
+        },
+        {
+          "click": "#practiced"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#badges",
+        "#hint",
+        "#practice",
+        "#speaker-grid"
+      ]
+    },
+    {
+      "name": "room-ready",
+      "steps": [
+        {
+          "click": "#m-room"
+        },
+        {
+          "click": "#room-lights"
+        },
+        {
+          "click": "#room-screen"
+        },
+        {
+          "click": "#room-chairs"
+        },
+        {
+          "click": "#room-spot"
+        },
+        {
+          "click": "#room-volume"
+        }
+      ],
+      "keep": [
+        "#badges",
+        "#hint",
+        "#room-stage",
+        "#room-controls"
+      ]
+    },
+    {
+      "name": "rehearsal",
+      "steps": [
+        {
+          "click": "#m-show"
+        },
+        {
+          "click": "#rehearse"
+        }
+      ],
+      "keep": [
+        "#rehearsal-dialog"
+      ]
+    },
+    {
+      "name": "reset-confirmation",
+      "steps": [
+        {
+          "click": "#m-show"
+        },
+        {
+          "click": "#new-show"
+        }
+      ],
+      "keep": [
+        "#reset-dialog"
+      ]
+    },
+    {
+      "name": "show-ended",
+      "steps": [
+        {
+          "click": "#m-show"
+        },
+        {
+          "click": "#present"
+        },
+        {
+          "click": "#show-next",
+          "times": 7
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#badges",
+        "#hint",
+        "#show-title",
+        "#show-bar"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1574 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Line Leader Picker · Curio Class</title>
+<meta name="description" content="An open turn-rule workbench. Run twenty pretend school days and inspect who gets a turn. Works offline.">
+<!--
+Line Leader Picker, Curio Class. Teacher-led K-2 computer science.
+CSTA 2026: EK-ALG-IM-03, E1-ALG-IM-03, E2-ALG-IM-03. See spec.md and notes.md.
+Pretend animal class, twenty-day month. Rule outcomes are computed, not judgements about fairness.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. One offline file, no network requests or student storage.
+-->
+
+<style>
+* {box-sizing:border-box}
+[hidden] {display:none!important}
+html,body {margin:0; height:100%}
+body {display:grid; grid-template-rows:auto minmax(0,1fr); color:var(--ink); font-family:'Segoe UI',sans-serif}
+main {display:grid; min-height:0}
+button {font:inherit; color:inherit; cursor:pointer}
+:focus-visible {outline:4px solid var(--focus); outline-offset:2px}
+.power-panel {display:flex; align-items:center; justify-content:space-between; background:repeating-linear-gradient(2deg,#b88a50 0 3px,#c1945a 4px 20px);
+  border-bottom:3px solid #795126; color:#2a2320}
+.workstations {display:flex; gap:5px; margin-right:auto}
+.workstations button,.power-panel>.icon-btn {border:2px solid #735331; border-radius:5px;
+  background:linear-gradient(#fff8dc,#e4cd97); box-shadow:inset 0 1px #fff,0 2px 1px #5c391a60; font-weight:800}
+.workstations button[aria-pressed=true] {background:linear-gradient(#e3edce,#bacd99); border-color:#1d6b3a; box-shadow:inset 0 -4px #1d6b3a}
+.manual-dock {display:flex; gap:8px; align-items:center; min-width:0}
+#manual {min-width:60px; min-height:60px; border:2px solid #735331; border-radius:5px; background:#e8d4a7; font-weight:800}
+.maker-plate {font:11px/1.3 Consolas,monospace; text-shadow:0 1px #fff8; color:#49391f;
+  padding:5px 10px; border:2px ridge #bfab78; background:linear-gradient(115deg,#ded1a5,#baaa78,#e0d3ad); box-shadow:1px 2px 2px #66431d50}
+#manualDrawer {position:fixed; left:8px; bottom:75px; width:min(540px,calc(100% - 16px)); max-height:calc(100dvh - 90px);
+  overflow:auto; z-index:30; background:#fbf6ea; border:5px solid #98703b; border-radius:8px; padding:12px 18px 18px; box-shadow:0 8px 30px #3a210960}
+#manualDrawer h2 {margin:0 70px 10px 0; font-size:22px}
+#manualDrawer h3 {font-size:15px; margin:15px 0 5px}
+#manualDrawer p,#manualDrawer li {font-size:14px; line-height:1.4}
+#manualDrawer a {color:#1746a0}
+.count {font-family:Consolas,monospace!important}
+.check {position:relative}
+.check h2 {padding-right:24px}
+.fact-mark {position:absolute; right:3px; top:3px; background:#fff9e9; border:2px solid #735331;
+  border-radius:50%; min-width:24px; height:24px; display:grid; place-items:center; font:bold 20px/1 sans-serif; z-index:3}
+.verdict button[aria-pressed=true] {outline:4px solid #1f4fbf; outline-offset:1px; box-shadow:inset 0 0 0 3px #fff,0 4px 0 #33291e; transform:translateY(-2px)}
+.rule-pick.rule-evidence {border:4px double #1f4fbf; background:#fff1bd}
+.rule-pick.rule-evidence svg,.rule-pick.rule-evidence img {outline:2px solid #1f4fbf; outline-offset:1px; border-radius:3px}
+.bed-mark {position:absolute; top:25px; right:1px; z-index:3; width:26px; height:21px; object-fit:contain; background:#fff8e8; border:1px solid #735331; border-radius:3px}
+.close-word {font-size:13px}
+@media(max-width:1365px) {.close-word {display:none}}
+
+:root {
+  --paper:#fbf6ea; --ink:#2a2320; --muted:#6b5d52; --brand:#1d6b3a; --focus:#1f4fbf;
+  --line:#c7b99d; --btn:#16532d; --btn-line:#82a68c; --head-ink:#fff; --panel:#fbf6ea;
+}
+body {height:100dvh; overflow:hidden; background:var(--paper)}
+.power-panel {padding:4px 14px; gap:8px; flex-wrap:nowrap; z-index:5; box-shadow:0 3px 8px #402c1a40}
+h1 {font-size:24px; white-space:nowrap}
+h1 small {font-size:12px; letter-spacing:.08em; text-transform:uppercase}
+.workstations {border-radius:14px; flex:none}
+.workstations button {min-height:60px; display:flex; align-items:center; gap:5px; padding:0 12px; font-size:15px}
+.workstations b {font-size:22px}
+.icon-btn {min-height:44px; padding:0 10px; font-size:13px}
+main {grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) 198px 64px; overflow:hidden}
+button {touch-action:manipulation}
+button:disabled,button[aria-disabled="true"] {cursor:default; opacity:.42}
+.classroom {grid-row:1; grid-column:1; position:relative; min-height:0; background:#ecd2a0 url('art:classroom-wall') left center / cover no-repeat;
+  display:grid; grid-template-rows:70px minmax(0,1fr); padding:5px 18px 8px; overflow:hidden}
+.classroom::after {content:''; pointer-events:none; position:absolute; inset:0; background:linear-gradient(120deg,#ffefa52b,transparent 40%)}
+.topstrip {position:relative; z-index:1; display:flex; gap:12px; align-items:center; min-height:0}
+.leader-spot {height:65px; width:140px; flex:none; display:flex; align-items:center; gap:6px; background:#fff6dfde;
+  border:2px solid #9c6e35; border-radius:12px; padding:3px 7px; box-shadow:0 3px 0 #553b1729}
+.leader-spot img {height:60px; width:42px; object-fit:contain}
+.leader-spot b {font-size:12px}
+.leader-spot strong {display:block; font-size:16px}
+.door-dots {display:flex; gap:2px; margin-top:4px; max-width:72px; flex-wrap:wrap}
+.door-dots i {width:5px; height:5px; border:1px solid #483b2c; border-radius:50%; background:#d9c58d}
+.door-dots i:first-child {background:var(--brand)}
+.calendar {display:grid; grid-template-columns:repeat(4,1fr); gap:7px; flex:1; align-self:stretch; padding-bottom:3px}
+.week {display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); grid-template-rows:16px 1fr; gap:3px}
+.week label {grid-column:1/-1; font-size:11px; font-weight:800; color:#33291e; text-align:center; background:#fff9e8e8; border-radius:5px}
+.day {position:relative; background:#fff9e8e8; border:1px solid #ac8e62; border-radius:5px; overflow:hidden; min-width:0}
+.day span {position:absolute; top:1px; left:3px; font-size:11px; z-index:1; font-weight:700}
+.day img {width:100%; height:100%; max-height:40px; object-fit:cover; object-position:50% 14%}
+.day.today {outline:3px solid var(--brand)}
+.daychip {background:#fff8e8; padding:6px 12px; border:2px solid #82643b; border-radius:8px; font-weight:800; display:none}
+.jar-scene {display:flex; align-items:end; height:65px}
+.jar-scene img {height:64px; width:45px; object-fit:contain}
+.jar-scene .tray {height:35px; width:50px}
+.slip {position:absolute; top:2px; left:4px; border:1px solid #84683e; background:#fffcf3; padding:3px 8px;
+  transform:rotate(-7deg); z-index:4; box-shadow:1px 3px 4px #0003; font-size:13px; font-weight:800}
+.board-shell {position:relative; min-height:0; z-index:1; display:flex; flex-direction:column; padding:6px 10px 0;
+  border:7px solid #9a602b; border-radius:11px; background:linear-gradient(#fbf6eaf5,#f9eacde6);
+  box-shadow:inset 0 0 9px #ae854968,0 3px 6px #3c260a55}
+.board-head {display:flex; justify-content:space-between; align-items:center; height:25px; flex:none; font-size:12px; font-weight:800; padding:0 5px}
+.board-head b {font-size:17px; font-family:'Trebuchet MS',sans-serif}
+.before-key {color:#1f4fbf; border-bottom:2px dashed #1f4fbf}
+.chart {display:grid; grid-template-columns:repeat(20,minmax(0,1fr)); min-height:0; flex:1; gap:1px}
+.friend-col {min-width:0; display:grid; grid-template-rows:27px minmax(0,1fr) 88px; position:relative; border-right:1px dashed #b49b715c}
+.count {font:900 24px/1 'Trebuchet MS',sans-serif; text-align:center; align-self:center; position:relative; z-index:2}
+.before-count {font-size:11px; color:#1f4fbf; margin-right:3px; border-bottom:1px dashed #1f4fbf}
+.stack {position:relative; margin:2px 4px 0; min-height:0; border-bottom:2px solid #ab8d53; background:linear-gradient(transparent,#ecd6aa60)}
+.star {position:absolute; width:47%; max-width:25px; height:10%; overflow:visible; filter:drop-shadow(1px 1px 0 #a86c1859)}
+.star.now {fill:#f2b705; stroke:#765214; stroke-width:1.1}
+.star.before {fill:transparent; stroke:#1f4fbf; stroke-width:1.6; stroke-dasharray:3 2; filter:none}
+.zero .stack {border:2px dashed #b8441f; border-radius:50% 50% 7px 7px; background:#ffe5d84d}
+.evidence-high .count {background:#f2b705; border:2px solid #735315; border-radius:50%; width:36px; justify-self:center}
+.friend {position:relative; border:0; padding:0; margin:0; min-width:60px; min-height:60px; width:100%; height:88px;
+  background:transparent; display:flex; flex-direction:column; align-items:center; justify-content:end; border-radius:10px}
+.friend img {height:69px; width:100%; max-width:62px; object-fit:contain; filter:drop-shadow(0 2px 1px #79502040)}
+.friend span {font-size:11px; line-height:17px; font-weight:800; background:#fff9e4; border-radius:4px; padding:0 2px}
+.friend:hover {background:#ffe59d80}
+.friend.selected {background:#fff3c2; outline:3px solid var(--brand); outline-offset:-3px}
+.friend-col.just .now:last-child {animation:sticker .28s ease-out}
+@keyframes sticker {from {transform:scale(2.7) rotate(-25deg); opacity:.2} to {transform:scale(1); opacity:1}}
+.leader-spot.arrive img {animation:arrive .24s ease-out}
+@keyframes arrive {from {transform:translateX(50px); opacity:.4} to {transform:translateX(0); opacity:1}}
+.fly-star {position:fixed; pointer-events:none; z-index:20; width:30px; height:30px;
+  animation:fly-star var(--flight,.25s) ease-in both; filter:drop-shadow(1px 3px 2px #73501855)}
+.fly-star svg {width:100%; height:100%; fill:#f2b705; stroke:#765214; stroke-width:1.1}
+@keyframes fly-star {from {transform:translate(0,0) rotate(-25deg) scale(1.3)} to {transform:translate(var(--dx),var(--dy)) rotate(15deg) scale(.55)}}
+.calm .fly-star {display:none; animation:none}
+.bottom {grid-row:2; grid-column:1; display:grid; grid-template-columns:190px minmax(400px,1fr) 285px; gap:12px; padding:8px 18px;
+  background:repeating-linear-gradient(2deg,#b88a50 0px,#b88a50 3px,#b58951 4px,#c1945a 20px);
+  border-top:5px solid #795126; box-shadow:inset 0 3px 4px #ffefbd70; position:relative; z-index:2}
+.machine-art {position:relative; align-self:stretch; min-height:0; display:flex; align-items:center}
+.machine-art>img {width:100%; max-height:175px; object-fit:contain; filter:drop-shadow(0 6px 3px #4d2b1d55)}
+.machine-preview {position:absolute; left:9%; top:42%; width:52%; height:26%;
+  display:flex; align-items:center; justify-content:center; gap:2px; pointer-events:none}
+.machine-preview svg,.machine-preview img {width:48%; height:100%; object-fit:contain}
+.machine-preview.insert {animation:insert-card .35s ease-out both}
+@keyframes insert-card {from {transform:translateY(-25px); opacity:0} to {transform:translateY(0); opacity:1}}
+.calm .machine-preview.insert {animation:none}
+.lamps {position:absolute; left:24%; right:24%; top:28%; display:flex; justify-content:space-between; pointer-events:none}
+.lamps i {width:12px; height:12px; border-radius:50%; background:#fff2a9; box-shadow:0 0 8px #f6cd77; animation:breathe 3s ease-in-out infinite}
+@keyframes breathe {50% {opacity:.45}}
+.rulecard {position:relative; background:linear-gradient(100deg,#fffdf3,#f7edce); border:2px solid #9f7846; border-radius:9px;
+  padding:6px 10px; box-shadow:2px 4px 0 #6741204a; display:grid; grid-template-columns:1fr 1fr; gap:8px; min-width:0}
+.job {grid-column:1/-1; font-size:13px; font-weight:800; margin:0; text-align:center}
+.slot {border:2px dashed #bea275; border-radius:8px; padding:3px; display:grid; grid-template-rows:18px 1fr; min-width:0; position:relative}
+.slot h2 {font:800 12px/1.2 'Segoe UI',sans-serif; margin:0; color:#6b4e25}
+.choices {display:grid; grid-template-columns:1fr 1fr; gap:5px; min-height:0}
+.tile {border:2px solid #ad9b77; background:#fffcf4; border-radius:8px; padding:3px; min-height:60px; min-width:60px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; font-size:12px; font-weight:800; line-height:1.12}
+.tile svg,.tile img {height:48px; width:75px; max-width:100%; object-fit:contain}
+.tile[aria-pressed=true] {border:3px solid var(--brand); background:#e8f2d9; box-shadow:0 0 0 2px #bdd78e}
+.tile.glow {outline:4px solid #e3b118; outline-offset:1px}
+.slot.active {border-style:solid; border-color:#b27604; background:#ffe784; box-shadow:0 0 14px #ffda55}
+.unknown {display:flex; align-items:center; justify-content:center; font-size:34px; color:#8b795c}
+.stamp {position:absolute; left:50%; top:3px; background:#fff8e2; color:var(--brand); border:3px double var(--brand);
+  transform:translateX(-50%) rotate(-3deg); padding:0 8px; font-size:12px; font-weight:900; white-space:nowrap; pointer-events:none; z-index:3}
+.rulecard.stamped .job {visibility:hidden}
+.runcontrols {display:grid; grid-template-columns:1fr 1fr; gap:8px; align-content:center}
+.runcontrols button,.verdict button,.summary-btn,.new-fair {min-height:60px; min-width:60px; border:2px solid #735331; border-radius:12px;
+  background:linear-gradient(#fffdf3,#f3dfb8); box-shadow:0 3px 0 #5f3f2266; font-size:15px; font-weight:800; padding:5px 8px}
+.runcontrols button b {font-size:23px; display:inline-block; margin-right:5px}
+.runcontrols #run {background:linear-gradient(#2b7b46,#1d6b3a); color:white; border-color:#18532e}
+.hintbar {grid-row:3; grid-column:1; display:flex; align-items:center; gap:10px; padding:6px 20px; background:#fff9e9; border-top:2px solid #c0a879; z-index:3}
+.hint {margin:0; font-size:16px; line-height:1.3; font-weight:600; flex:1}
+.hint-icon {width:31px; height:31px; border-radius:50%; background:#1d6b3a; color:white; font-size:21px; font-weight:900; display:grid; place-items:center; flex:none}
+.rule-picks {display:grid; grid-template-columns:repeat(4,minmax(0,1fr)) 170px; gap:8px; width:100%; height:65px}
+.rule-pick {display:flex; align-items:center; justify-content:center; gap:5px; min-width:60px; min-height:60px; background:#fffbeb; border:2px solid #a68c59;
+  border-radius:8px; font-size:12px; font-weight:800; padding:3px}
+.rule-pick strong {font-size:22px; color:var(--brand)}
+.rule-pick svg,.rule-pick img {width:32px; height:40px; object-fit:contain}
+.rule-pick[aria-pressed=true] {outline:3px solid var(--brand); outline-offset:-3px; background:#edf5df}
+.sick-toggle {position:relative; font-size:11px; line-height:1.1}
+.sick-state {position:absolute; right:2px; top:2px; background:#fff9e8; border:1px solid #92703f;
+  border-radius:3px; padding:0 3px; font:800 10px/12px "Segoe UI",sans-serif}
+.sick-toggle img {width:55px; height:48px}
+.sick-toggle[aria-pressed=true] {background:#ffebc2; outline:3px solid #b8441f}
+.fairband {grid-column:1/-1; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)) 215px; gap:12px; min-height:0}
+.check {background:#fff9e9; border:2px solid #9b7748; border-radius:12px; padding:5px 10px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px}
+.check h2 {font-size:14px; margin:0; text-align:center; min-height:34px; max-width:260px}
+.check .question-picture {height:32px; font-size:27px; line-height:1}
+.thumbs {display:flex; gap:8px}
+.thumbs button {min-width:60px; min-height:60px; border:2px solid #987f55; border-radius:10px; background:#fffef7; font-size:29px; padding:0 6px}
+.thumbs button[aria-pressed=true] {outline:3px solid #1f4fbf; outline-offset:-3px; background:#e3eaf9}
+.check .evidence {font-weight:800; font-size:12px; min-height:16px}
+.verdict {display:grid; grid-template-columns:1fr 1fr; gap:6px; align-content:center}
+.verdict button {font-size:13px}
+.verdict #fair {background:#1d6b3a; color:#fff}
+.verdict #notFair {background:#b8441f; color:#fff}
+.summary-btn {grid-column:auto}
+.new-fair {grid-column:auto}
+.overlay {position:absolute; z-index:10; left:50%; top:25px; transform:translateX(-50%); width:min(530px,92%);
+  background:#fff9e9; border:5px solid #98703b; border-radius:16px; padding:12px 15px; box-shadow:0 8px 30px #3a210960}
+.overlay h2 {font-size:23px; margin:0 60px 8px 0}
+#summaryOverlay h2 {min-height:60px; margin-right:70px}
+.close {position:absolute; right:4px; top:4px; width:60px; height:60px; border:0; background:transparent; border-radius:10px; font-size:25px}
+.overlay table {border-collapse:collapse; width:100%; font-size:13px}
+.overlay th,.overlay td {padding:5px 6px; text-align:center; border-bottom:1px solid #cbb798}
+.overlay th:first-child,.overlay td:first-child {text-align:left}
+.summary-note {font-size:12px; margin:5px 0}
+.calm .lamps i {animation:none}
+.calm .friend-col.just .now:last-child,.calm .leader-spot.arrive img {animation:none}
+.calm * {scroll-behavior:auto!important}
+@media (min-width:1600px) {
+  main {grid-template-rows:minmax(0,1fr) 220px 72px}
+  .classroom {padding:10px 35px 15px; grid-template-rows:85px minmax(0,1fr)}
+  .bottom {grid-template-columns:240px minmax(400px,1fr) 330px; padding:12px 35px}
+  .tile svg,.tile img {height:70px}
+  .friend-col {grid-template-rows:34px minmax(0,1fr) 112px}
+  .friend {height:112px}
+  .friend img {height:90px; max-width:85px}
+  .friend span {font-size:14px}
+  .count {font-size:30px}
+  .hint {font-size:19px}
+}
+@media (max-width:1250px) {
+  h1 {font-size:20px}
+  .workstations button {padding:0 8px; font-size:13px}
+  .power-panel {gap:5px; padding-left:8px; padding-right:8px}
+  .icon-btn {width:44px; padding:0; font-size:0}
+  .icon-btn::first-letter {font-size:19px}
+}
+/* Short previews get their own real-pixel layout, with the rule desk beside the chart. */
+@media (max-height:650px) and (min-width:600px) {
+  .power-panel {padding-top:2px; padding-bottom:2px}
+  main {grid-template-columns:minmax(0,1fr) 260px; grid-template-rows:minmax(0,1fr) 48px}
+  .classroom {grid-column:1; grid-row:1; grid-template-rows:32px minmax(0,1fr); padding:3px 7px 5px}
+  .bottom {grid-column:2; grid-row:1; display:flex; flex-direction:column; gap:5px; padding:5px; border-top:0; border-left:4px solid #795126}
+  .hintbar {grid-column:1/-1; grid-row:2; padding:4px 10px}
+  .hint {font-size:13px}
+  .machine-art {display:none}
+  .rulecard {padding:4px; gap:4px; flex:1; min-height:0}
+  .job {font-size:11px}
+  .slot {padding:2px; grid-template-rows:15px 1fr}
+  .choices {grid-template-columns:1fr; gap:4px}
+  .tile {font-size:10px; padding:1px; min-height:60px; flex-direction:row}
+  .tile span {display:none}
+  .tile svg,.tile img {height:44px; width:57px}
+  .runcontrols {gap:5px; flex:none}
+  .runcontrols button {font-size:0; height:60px}
+  .runcontrols button b {font-size:24px; margin:0}
+  .calendar {display:none}
+  .daychip {display:block; font-size:13px; padding:5px}
+  .leader-spot {height:32px; width:130px; padding:0 6px}
+  .leader-spot img {height:30px; width:28px}
+  .leader-spot b {font-size:10px}
+  .leader-spot strong {font-size:12px; display:inline}
+  .door-dots {display:none}
+  .jar-scene {height:36px}
+  .jar-scene img {height:35px; width:24px}
+  .jar-scene .tray {width:28px; height:23px}
+  .board-shell {padding:2px 3px 0; border-width:4px}
+  .board-head {height:18px; font-size:10px; padding:0 1px}
+  .board-head b {font-size:12px}
+  .chart {grid-template-columns:repeat(5,minmax(0,1fr)); grid-template-rows:repeat(4,minmax(0,1fr)); gap:2px}
+  .friend-col {grid-template-rows:16px 1fr; grid-template-columns:18px minmax(0,1fr); border-bottom:1px solid #b9a47e}
+  .count {grid-column:1; grid-row:1; font-size:15px; align-self:center}
+  .before-count {font-size:10px; margin:0; position:absolute; left:0; top:15px}
+  .stack {grid-column:1; grid-row:2; margin:0; width:17px; border-bottom:0}
+  .star {width:8px; max-width:none; height:10%}
+  .friend {grid-column:2; grid-row:1/-1; height:100%; min-width:60px; min-height:60px; justify-content:center}
+  .friend img {height:calc(100% - 12px); max-height:58px; width:100%; max-width:55px}
+  .friend span {font-size:10px; line-height:12px}
+  .evidence-high .count {width:20px; border-width:1px}
+  .rule-picks {height:60px; align-self:start; grid-template-columns:repeat(4,1fr) 65px; gap:4px}
+  .rule-pick {min-height:60px; align-self:start; height:60px; padding:1px; font-size:0; gap:0}
+  .rule-pick strong {font-size:18px}
+  .rule-pick svg,.rule-pick img {width:15px; height:28px}
+  .sick-toggle img {width:35px}
+  .rule-name {display:none}
+  body[data-mode=fair] .classroom {grid-template-rows:64px minmax(0,1fr)}
+  .fairband {display:flex; flex-direction:column; gap:4px; height:100%}
+  .check {padding:2px 3px; display:grid; grid-template-columns:1fr 126px; grid-template-rows:32px 1fr; gap:0; min-height:68px}
+  .check h2 {font-size:10px; line-height:1; min-height:0; grid-column:1; grid-row:1}
+  .check .question-picture {font-size:22px; height:25px; grid-column:1; grid-row:2}
+  .thumbs {grid-column:2; grid-row:1/-1; gap:4px}
+  .thumbs button {font-size:25px}
+  .check .evidence {display:none}
+  .verdict {grid-template-columns:repeat(4,1fr); gap:3px; margin-top:auto}
+  .verdict button {font-size:0; padding:0; min-height:60px}
+  .verdict button::first-letter {font-size:22px}
+  #notFair::after {content:"×"; font-size:16px; margin-left:2px}
+  .summary-btn,.new-fair {grid-column:auto}
+  .overlay {top:3px; padding:6px 10px; width:95%}
+  .overlay h2 {font-size:17px; min-height:40px; margin-bottom:3px}
+  .overlay table {font-size:10px}
+  .overlay th,.overlay td {padding:2px}
+  .summary-note {font-size:10px}
+}
+@media (max-height:650px) and (min-width:930px) {
+  .chart {grid-template-columns:repeat(10,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(0,1fr))}
+  .friend-col {grid-template-columns:1fr; grid-template-rows:20px minmax(0,1fr) 60px}
+  .count {grid-row:1; grid-column:1; font-size:19px}
+  .stack {grid-row:2; grid-column:1; width:auto; margin:0 10px}
+  .star {width:45%; max-width:15px}
+  .friend {grid-row:3; grid-column:1}
+  .friend img {height:45px}
+  .before-count {position:static; margin-right:3px}
+}
+@media (max-height:650px) and (min-width:600px) and (max-width:929px) {
+  body[data-mode=fair] .classroom {padding:0; grid-template-rows:60px minmax(0,1fr)}
+  body[data-mode=fair] .board-head {display:none}
+  body[data-mode=fair] .board-shell {border-width:3px; padding:0}
+  body[data-mode=fair] .chart {gap:0}
+}
+@media (max-height:650px) and (min-width:600px) {
+}
+@media (max-width:800px) {
+  h1 {font-size:16px}
+  h1 small {display:none}
+  .workstations button {width:60px; padding:0 3px; justify-content:center}
+  .mode-text {display:none}
+  .workstations b {font-size:23px}
+}
+@media (max-width:599px), (min-height:651px) and (max-width:1250px) {
+  .chart {grid-template-columns:repeat(10,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(0,1fr))}
+  .friend-col {grid-template-rows:22px minmax(0,1fr) 70px}
+  .friend {height:70px}
+  .friend img {height:54px}
+  .count {font-size:20px}
+  .bottom {grid-template-columns:minmax(0,1fr) 220px; gap:8px; padding:6px 10px}
+  .machine-art {display:none}
+  .tile svg,.tile img {height:36px}
+  .tile {font-size:11px}
+  .fairband {grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px}
+  .verdict {grid-column:1/-1; grid-template-columns:repeat(4,1fr)}
+  .summary-btn,.new-fair {grid-column:auto}
+  .check {padding:3px}
+  .check h2 {font-size:12px}
+  .check .question-picture {height:22px; font-size:22px}
+  .check .evidence {font-size:10px}
+  .thumbs {gap:3px}
+  body[data-mode=fair] main {grid-template-rows:minmax(0,1fr) 240px 64px}
+  .rule-picks {grid-template-columns:repeat(4,1fr) 110px}
+  .rule-name {display:none}
+}
+@media (min-height:651px) and (min-width:600px) and (max-width:1250px) {
+  .sick-toggle {display:grid; grid-template-columns:42px minmax(0,1fr); grid-template-rows:14px 1fr; column-gap:2px}
+  .sick-toggle img {grid-column:1; grid-row:1/-1; width:42px; height:46px; align-self:center}
+  .sick-toggle>span {grid-column:2; grid-row:2; font-size:10px; line-height:1.05; align-self:center}
+  .sick-toggle .sick-state {position:static; grid-column:2; grid-row:1; justify-self:end; align-self:start}
+}
+@media (max-width:599px) {
+  .power-panel {flex-wrap:wrap; justify-content:end; padding:3px 6px; gap:3px; min-height:116px}
+  h1 {font-size:19px; margin-right:auto; width:calc(100% - 145px); order:0}
+  .icon-btn {order:1}
+  .workstations {order:2; width:100%; display:grid; grid-template-columns:repeat(3,1fr)}
+  .workstations button {width:100%; min-height:60px; gap:4px}
+  .workstations .mode-text {display:block; font-size:11px; max-width:62px}
+  .workstations b {font-size:20px}
+  main {grid-template-rows:minmax(305px,1fr) 260px 70px}
+  .classroom {grid-template-rows:38px minmax(0,1fr); padding:3px 6px}
+  .calendar {display:none}
+  .daychip {display:block; font-size:12px; padding:4px}
+  .leader-spot {height:36px; width:130px; padding:0 5px}
+  .leader-spot img {height:35px; width:30px}
+  .leader-spot b {font-size:10px}
+  .leader-spot strong {font-size:12px}
+  .door-dots {display:none}
+  .topstrip {gap:5px}
+  .jar-scene,.jar-scene img {height:35px}
+  .jar-scene img {width:23px}
+  .jar-scene .tray {width:25px; height:20px}
+  .board-shell {border-width:4px; padding:1px 3px 0}
+  .board-head {height:19px; font-size:10px}
+  .board-head b {font-size:12px}
+  .chart {grid-template-columns:repeat(5,minmax(0,1fr)); grid-template-rows:repeat(4,minmax(0,1fr))}
+  .friend-col {grid-template-rows:17px 1fr; grid-template-columns:16px minmax(0,1fr); min-height:60px}
+  .count {grid-column:1; grid-row:1; font-size:15px}
+  .stack {grid-column:1; grid-row:2; margin:0; width:15px; border-bottom:0}
+  .star {width:7px; max-width:none; height:10%}
+  .friend {grid-column:1/-1; grid-row:1/-1; height:100%; min-width:60px; padding-left:14px; justify-content:center}
+  .friend img {height:calc(100% - 13px); max-height:51px; max-width:44px}
+  .friend span {font-size:10px; line-height:12px}
+  .before-count {font-size:10px; position:absolute; top:16px; left:0}
+  .evidence-high .count {width:18px; font-size:14px; border-width:1px; justify-self:start}
+  .bottom {grid-template-columns:minmax(0,1fr) 100px; gap:5px; padding:4px 6px}
+  .rulecard {padding:3px; gap:4px}
+  .job {font-size:10px}
+  .slot {padding:2px; grid-template-rows:16px 1fr}
+  .slot h2 {font-size:10px}
+  .choices {grid-template-columns:1fr; gap:4px}
+  .tile {min-height:60px; font-size:10px; padding:1px}
+  .tile svg,.tile img {height:28px; width:50px}
+  .runcontrols {gap:4px; grid-template-columns:1fr}
+  .runcontrols button {min-width:60px; min-height:60px; padding:1px; font-size:0; border-radius:9px}
+  .runcontrols button b {font-size:21px; margin:0}
+  .hintbar {padding:4px 9px; gap:7px}
+  .hint {font-size:12px}
+  .hint-icon {width:25px; height:25px; font-size:17px}
+  .rule-picks {height:62px; grid-template-columns:repeat(4,1fr) 74px; gap:3px}
+  .rule-pick {padding:1px; gap:0; flex-wrap:wrap; font-size:0; min-height:60px}
+  .rule-pick strong {font-size:17px; width:100%}
+  .rule-pick svg,.rule-pick img {width:22px; height:29px}
+  .sick-toggle img {width:46px; height:38px}
+  .sick-toggle span {display:none}
+  body[data-mode=fair] .classroom {grid-template-rows:64px minmax(0,1fr)}
+  body[data-mode=fair] main {grid-template-rows:minmax(345px,1fr) 280px 70px}
+  .fairband {display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-rows:1fr 64px}
+  .check {gap:0; padding:2px}
+  .check h2 {font-size:10px; line-height:1.05; min-height:24px}
+  .thumbs {gap:1px; flex-direction:column}
+  .thumbs button {min-width:60px; min-height:60px; padding:0; font-size:24px}
+  .check .question-picture {font-size:20px; height:20px}
+  .check .evidence {font-size:10px; min-height:16px; text-align:center}
+  .verdict {grid-column:1/-1; display:grid; grid-template-columns:repeat(4,1fr); gap:3px}
+  .verdict button {font-size:10px; padding:1px; min-height:60px}
+  .overlay {padding:8px; top:3px}
+  .overlay h2 {font-size:17px; min-height:45px}
+  .overlay table {font-size:10px}
+  .overlay th,.overlay td {padding:3px}
+  #summaryOverlay th,#summaryOverlay td {padding:2px 3px; line-height:1.1}
+  #summaryOverlay h2 {min-height:54px; margin-bottom:2px}
+  #summaryOverlay .summary-note {line-height:1.05; margin:3px 0}
+  #summaryOverlay .sick-label {font-size:0}
+  #summaryOverlay .sick-label::after {content:' 🛏'; font-size:12px}
+  .summary-note {font-size:10px}
+}
+
+/* Native wooden switches; the classroom remains the whole working surface. */
+.power-panel {padding:3px 10px; gap:5px}
+.power-panel .workstations {border:0; border-radius:0; overflow:visible}
+.power-panel .workstations button {min-height:60px; display:flex; align-items:center; gap:5px; padding:0 12px; font-size:14px}
+.power-panel .workstations b {font-size:22px}
+.power-panel>.icon-btn {min-height:60px; padding:0 8px; min-width:60px; font-size:12px}
+.jar-scene {position:relative}
+.slip {font-size:12px; transform:rotate(-7deg); top:2px; left:3px}
+.hintbar {gap:12px}
+.hint {font-weight:500}
+@media(min-width:1600px) {
+  .rule-pick {font-size:18px}
+  .check h2 {font-size:20px; max-width:400px}
+  .check .evidence {font-size:17px}
+  .verdict button {font-size:19px}
+}
+@media(max-width:1250px) {.maker-plate {max-width:180px; font-size:10px}}
+@media(max-width:800px) {
+  .power-panel .workstations button {padding:0 6px; min-width:60px}
+  .power-panel .workstations .mode-text {display:none}
+  .power-panel>.icon-btn {font-size:0; padding:0; width:60px}
+  .power-panel>.icon-btn::first-letter {font-size:20px}
+}
+@media(max-height:650px) and (min-width:600px) {
+  .power-panel {padding-top:0; padding-bottom:0}
+  main {grid-template-columns:minmax(0,1fr) 236px; grid-template-rows:minmax(0,1fr) 64px}
+  .hintbar {padding:0 7px; gap:6px}
+  #manual {min-height:60px; font-size:11px}
+  .maker-plate {font-size:10px; padding:2px 5px; max-width:170px}
+  .hint {font-size:11px}
+  .check .fact-mark {right:auto; left:3px; top:37px}
+  .check h2 {padding-right:0; font-size:10px}
+  .check .question-picture {align-self:end}
+  .bed-mark {top:0; right:0; width:21px; height:17px}
+}
+@media(max-height:650px) and (min-width:600px) and (max-width:929px) {
+  .bottom {z-index:6}
+  .power-panel .workstations button {width:60px; min-width:60px; padding:0; justify-content:center}
+  .power-panel .workstations .mode-text {display:none}
+  .verdict {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .summary-btn,.new-fair {position:fixed; top:0; height:60px; width:60px; z-index:6}
+  .summary-btn {left:calc(50% - 63px)}
+  .new-fair {left:calc(50% + 3px)}
+  .runcontrols {position:fixed; top:0; left:calc(50% - 130px); width:255px;
+    grid-template-columns:repeat(4,60px); gap:5px; z-index:6}
+}
+@media(max-width:599px) {
+  .power-panel {min-height:66px; flex-wrap:nowrap; padding:3px 0; gap:0}
+  .power-panel .workstations {width:auto; display:flex; order:0; gap:2px}
+  .power-panel .workstations button {width:60px; min-width:60px; padding:0; justify-content:center}
+  .power-panel>.icon-btn {order:0; width:60px; min-width:60px}
+  .hintbar {padding:2px 6px; gap:6px; align-items:center}
+  main {grid-template-rows:minmax(305px,1fr) 260px 90px}
+  body[data-mode=fair] main {grid-template-rows:minmax(345px,1fr) 280px 90px}
+  .manual-dock {flex-direction:row; gap:3px; align-items:center; width:176px; flex:none}
+  #manual {min-height:60px; font-size:11px}
+  .maker-plate {font-size:10px; padding:3px; width:110px}
+  .hint {font-size:11px}
+  .bed-mark {top:0; width:21px; height:17px}
+}
+@media(max-width:599px), (max-height:650px) {
+  .friend-col {display:block; position:relative}
+  .count {position:absolute; top:0; left:0; height:18px; font-size:15px; min-width:18px}
+  .before-count {position:static; margin-right:2px; font-size:10px}
+  .friend {position:absolute; inset:0; min-width:60px; min-height:60px; height:100%; padding:0 0 0 24px;
+    justify-content:center; flex-direction:column; align-items:center}
+  .friend img {width:100%; height:calc(100% - 13px); max-height:55px; max-width:48px; margin:0; object-fit:contain}
+  .friend span {font-size:10px; line-height:12px; padding:0 1px; max-width:100%}
+  .stack {position:absolute; top:20px; bottom:1px; left:1px; right:auto; margin:0; width:24px; border:0; pointer-events:none; z-index:2;
+    display:grid; grid-template-columns:repeat(var(--star-cols,5),12px); grid-auto-rows:12px; gap:0; align-content:end; justify-content:center}
+  .stack .star {position:static; width:12px; height:12px; max-width:none; grid-column:var(--sx); grid-row:var(--sy); filter:none}
+  .zero .stack {border-radius:8px; border-width:2px}
+  .evidence-high .count {width:auto; font-size:15px; border-radius:5px; min-width:20px; height:20px; z-index:4}
+  .dense .stack {right:1px; width:auto}
+  .dense .friend {padding:0; justify-content:start; flex-direction:row; align-items:start}
+  .dense .friend img {width:21px; height:20px; margin-left:20px}
+  .dense .friend span {font-size:10px; line-height:16px; max-width:calc(100% - 39px); overflow:hidden}
+  .tight-stars .stack {top:0}
+  .tight-stars .friend img {width:16px; height:16px; margin-left:30px}
+  .tight-stars .friend span {display:none}
+  .tight-stars .count {background:#fbf6ea; z-index:4}
+}
+
+/* Audit geometry repairs */
+.bed-mark {pointer-events:none}
+#manualDrawer h2 {min-height:60px; margin-bottom:0}
+@media(max-height:650px) and (min-width:930px) {
+  main {grid-template-columns:minmax(0,1fr) 264px}
+}
+@media(min-height:651px) and (min-width:600px) and (max-width:1250px) {
+  .check .fact-mark {top:44px; right:4px}
+}
+@media(max-width:599px) {
+  .check .fact-mark {top:42px; right:3px}
+}
+@media(min-width:1600px) {
+  .sick-toggle {display:grid; grid-template-columns:55px minmax(0,1fr); grid-template-rows:14px 1fr; column-gap:2px}
+  .sick-toggle img {grid-column:1; grid-row:1/-1; width:55px; height:48px; align-self:center}
+  .sick-toggle>span {grid-column:2; grid-row:2; font-size:12px; line-height:1.1; align-self:center}
+  .sick-toggle .sick-state {position:static; grid-column:2; grid-row:1; justify-self:end; align-self:start}
+}
+/* Fact marks belong to the diagram row, whose height contains the full mark.
+   They therefore follow wrapped headings instead of covering their last line. */
+.check h2 {padding-right:0}
+.check .question-picture {display:flex; justify-content:center; align-items:center; gap:5px; min-height:28px}
+.check .fact-mark {position:static; flex:none; top:auto; right:auto; left:auto; bottom:auto}
+@media(max-height:650px) and (min-width:600px) {
+  main {grid-template-columns:minmax(0,1fr) 264px}
+  .check .question-picture {height:28px; font-size:18px}
+}
+@media(max-width:599px) {
+  body[data-mode=fair] main {grid-template-rows:minmax(345px,1fr) 292px 90px}
+  .check .question-picture {height:28px}
+}
+</style>
+</head>
+<body data-mode="make">
+<nav class="power-panel" aria-label="Turn Machine power and workstations">
+  <div class="workstations" role="group" aria-label="Workbench">
+    <button id="m-make" aria-pressed="true" title="Make a Rule"><b aria-hidden="true">✎</b><span class="mode-text">Make a Rule</span></button>
+    <button id="m-change" aria-pressed="false" title="Change a Step"><b aria-hidden="true">⇄</b><span class="mode-text">Change a Step</span></button>
+    <button id="m-fair" aria-pressed="false" title="Is It Fair?"><b aria-hidden="true">⚖</b><span class="mode-text">Is It Fair?</span></button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" aria-label="Motion on or off" title="Motion on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true" aria-label="Sound on or off" title="Sound on or off">🔔 Sound</button>
+  <button class="icon-btn" id="read" aria-label="Read the current hint" title="Read the current hint">🔊 Read</button>
+</nav>
+<main>
+  <section class="bottom" aria-label="Turn Machine controls">
+    <div class="machine-art" id="machineArt">
+<img src="art:turn-machine" alt="Wooden Turn Machine">
+<div class="machine-preview" id="machinePreview" aria-hidden="true">
+</div>
+<div class="lamps">
+<i>
+</i>
+<i>
+</i>
+</div>
+</div>
+    <div class="rulecard" id="rulecard">
+      <p class="job">🚪⚑ Our job: pick a line leader every day</p>
+      <div class="slot" id="slot1">
+<h2>1. Pick a leader</h2>
+<div class="choices" id="choices1">
+</div>
+</div>
+      <div class="slot" id="slot2">
+<h2>2. After a turn</h2>
+<div class="choices" id="choices2">
+</div>
+</div>
+      <div class="stamp" id="stamp" hidden>Made by our class</div>
+    </div>
+    <div class="runcontrols" id="runcontrols">
+      <button id="run" title="Run the month" aria-label="Run" disabled>
+<b aria-hidden="true">▶</b>
+<span>Run</span>
+</button>
+      <button id="one" title="One day" aria-label="One day" disabled>
+<b aria-hidden="true">▹│</b>
+<span>One day</span>
+</button>
+      <button id="end" title="To the end" aria-label="To the end" disabled>
+<b aria-hidden="true">⏩</b>
+<span>To the end</span>
+</button>
+      <button id="new" title="New month" aria-label="New month" disabled>
+<b aria-hidden="true">↻</b>
+<span>New month</span>
+</button>
+    </div>
+    <div class="fairband" id="fairband" hidden>
+</div>
+  </section>
+  <section class="classroom" aria-label="Our classroom sticker chart">
+    <div class="topstrip" id="topstrip">
+      <div class="leader-spot" id="leaderSpot">
+<img id="leader" alt="">
+<div>
+<b>⚑ Leader</b>
+<strong id="leaderName">?</strong>
+<div class="door-dots" id="dots">
+</div>
+</div>
+</div>
+      <div class="daychip" id="daychip">Day 0 of 20</div>
+      <div class="calendar" id="calendar" aria-label="Four weeks of five school days">
+</div>
+      <div class="jar-scene" id="jarScene" hidden>
+<div class="slip" id="slip" hidden></div>
+<img id="jar" alt="Name jar">
+<img class="tray" id="tray" alt="Done tray" src="art:done-tray">
+</div>
+      <div class="rule-picks" id="rulePicks" hidden>
+</div>
+    </div>
+    <div class="board-shell" id="board">
+      <div class="board-head">
+<b>Our turns</b>
+<span id="boardStatus">20 school days</span>
+<span id="beforeKey" class="before-key" hidden>▱ Before</span>
+</div>
+      <div id="chart" class="chart" aria-label="Twenty friends and their turn counts">
+</div>
+      <section class="overlay" id="summaryOverlay" role="dialog" aria-label="Our chart summary" hidden>
+        <button class="close" id="closeSummary" aria-label="Close our chart">× <span class="close-word">Close</span></button>
+        <h2>Our chart</h2>
+        <table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Same chance?</th>
+<th>Left out?</th>
+<th><span aria-hidden="true">★★ │ ◌</span><br>Led more, one none?</th>
+<th>Our call</th>
+</tr>
+</thead>
+<tbody id="summaryBody">
+</tbody>
+</table>
+<p class="summary-note">✓ Yes · × No · ? Not tried. 🛏 Bee home sick on day 2. Your fair call belongs to you.</p>
+      </section>
+    </div>
+  </section>
+  <footer class="hintbar">
+<div class="manual-dock"><button id="manual" aria-expanded="false" aria-controls="manualDrawer">Manual</button>
+<span class="maker-plate">Curio Class Curiosities · Line Leader Picker</span></div>
+<p class="hint" id="hint" aria-live="polite">
+</p>
+</footer>
+</main>
+<aside id="manualDrawer" role="dialog" aria-modal="true" aria-label="Line Leader Picker manual" hidden>
+  <button class="close" id="closeManual" aria-label="Close Manual">×</button>
+  <h2>Manual</h2>
+  <h3>The Turn Machine</h3>
+  <p>Choose two pictures and run 20 pretend school days. People choose the rule; the machine follows its two steps.
+  Tap a friend for a count readout. Read speaks the current readout. Motion and Sound are on the wooden power panel.</p>
+  <h3>Four rules</h3>
+  <p>A keeps the first friend at the front. B moves the leader to the back. C draws from all 20 names each day and puts the name back.
+  D leaves drawn names out until the jar is empty. The line starts in ABC order.</p>
+  <p>Bee's switch makes her absent on day 2 only. Under B her turn passes. In either jar rule, draw from the friends present that day.
+  Under D Bee's name stays in the jar until she leads.</p>
+  <h3>Reading the evidence</h3>
+  <p>The blue dashed stars are Before; gold stars count turns in this month. A ring marks a friend with no turns.
+  The three evidence cards are optional: use them in any order, or make a Fair / Not fair call without them.
+  Yes and No record what you noticed, then show the rule or chart fact. The fact mark describes the data; it does not grade your answer.</p>
+  <p>Same chance refers to the rule with everyone present: A no; B, C and D yes. With a sick day, attendance can change an outcome.
+  A blue mark on a rule card points to its steps. The last evidence card marks the tallest count and the empty columns.
+  Our chart keeps the latest call for each rule and attendance setting for this page load. No personal information is saved.</p>
+  <h3>Things people have found</h3>
+  <p>A name can have the same chance each day and still get no turn in a particular month.
+  Moving the front friend to the back changes the whole pattern. A day away can matter under one rule and leave another outcome unchanged.</p>
+  <h3>Sources and honesty</h3>
+  <p>This is an authored simulation, not a dataset about real children. Curio Class, <cite>Line Leader Picker</cite>,
+  spec.md rule definitions and fictional class: CC BY 4.0. The bundled rule interpreter: MIT.
+  Counts, rings and labels are calculated from the actual simulated days, never from an expected average.</p>
+  <p>Illustrations generated with OpenAI gpt-image, edited for Curio Class; supplied as part of Curio Class content, CC BY 4.0.
+  Jar paintings are schematic; the chart records the exact turns.
+  No external data, quoted standards text, recordings, network requests or saved student work are used.</p>
+</aside>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const names = 'Ant Bee Cat Duck Elephant Fox Goat Hippo Iguana Koala Lion Mouse Owl Pig Rabbit Sheep Turtle Wolf Yak Zebra'.split(' ');
+  const ART = /* ASSET_MAP */ {
+    "classroom-wall": "art:classroom-wall",
+    "ant-happy": "art:ant-happy",
+    "ant-waiting": "art:ant-waiting",
+    "bee-happy": "art:bee-happy",
+    "bee-waiting": "art:bee-waiting",
+    "cat-happy": "art:cat-happy",
+    "cat-waiting": "art:cat-waiting",
+    "duck-happy": "art:duck-happy",
+    "duck-waiting": "art:duck-waiting",
+    "elephant-happy": "art:elephant-happy",
+    "elephant-waiting": "art:elephant-waiting",
+    "fox-happy": "art:fox-happy",
+    "fox-waiting": "art:fox-waiting",
+    "goat-happy": "art:goat-happy",
+    "goat-waiting": "art:goat-waiting",
+    "hippo-happy": "art:hippo-happy",
+    "hippo-waiting": "art:hippo-waiting",
+    "iguana-happy": "art:iguana-happy",
+    "iguana-waiting": "art:iguana-waiting",
+    "koala-happy": "art:koala-happy",
+    "koala-waiting": "art:koala-waiting",
+    "lion-happy": "art:lion-happy",
+    "lion-waiting": "art:lion-waiting",
+    "mouse-happy": "art:mouse-happy",
+    "mouse-waiting": "art:mouse-waiting",
+    "owl-happy": "art:owl-happy",
+    "owl-waiting": "art:owl-waiting",
+    "pig-happy": "art:pig-happy",
+    "pig-waiting": "art:pig-waiting",
+    "rabbit-happy": "art:rabbit-happy",
+    "rabbit-waiting": "art:rabbit-waiting",
+    "sheep-happy": "art:sheep-happy",
+    "sheep-waiting": "art:sheep-waiting",
+    "turtle-happy": "art:turtle-happy",
+    "turtle-waiting": "art:turtle-waiting",
+    "wolf-happy": "art:wolf-happy",
+    "wolf-waiting": "art:wolf-waiting",
+    "yak-happy": "art:yak-happy",
+    "yak-waiting": "art:yak-waiting",
+    "zebra-happy": "art:zebra-happy",
+    "zebra-waiting": "art:zebra-waiting",
+    "bee-sick": "art:bee-sick",
+    "turn-machine": "art:turn-machine",
+    "jar-full": "art:jar-full",
+    "jar-half": "art:jar-half",
+    "jar-empty": "art:jar-empty",
+    "done-tray": "art:done-tray"
+};
+  const L = /* LINE_TABLE */ {
+    "wMake": "Tap two pictures, then Run.",
+    "step2": "Step 2 says what happens after a turn. Tap a picture for step 2.",
+    "runReady": "Tap Run to play our month.",
+    "machine": "The Turn Machine does just what our card says.",
+    "another": "Make a new rule. Tap a picture in step 1 or step 2.",
+    "tapFriend": "Tap a friend to hear how many turns they had.",
+    "wChange": "Last month, first in line stayed at the front. Change one step, then tap Run.",
+    "chRun": "Tap Run for the new month.",
+    "chWhich": "The changed steps are marked. Tap a step to look at Before and now.",
+    "wFair": "Let's check four rules. Tap a rule card to see its month.",
+    "fChecks": "Look at the chart. Tap yes or no for each question.",
+    "fVerdict": "Is this rule fair? Tap Fair or Not fair. Then tell a friend why.",
+    "fNext": "Tell a friend why. Tap another rule card, or turn on Bee's sick day.",
+    "fSame": "The same chance is not the same as a turn for everyone.",
+    "fBeeB": "When all are here, this rule gives everyone a turn. Bee was away on day two, so her turn passed.",
+    "fBeeD": "A name stays in the jar until that friend leads. Bee got one turn this month.",
+    "fSummary": "Here are all four rules. Which one would you pick for our class? Tap the X to go back to the rule cards.",
+    "tile0": "First in line leads.",
+    "tile1": "Draw a name from the jar.",
+    "tile2": "The leader stays at the front.",
+    "tile3": "The leader goes to the back of the line.",
+    "tile4": "The name goes back in the jar.",
+    "tile5": "The name stays out of the jar.",
+    "monthDone": "The month is done.",
+    "everyone": "Everyone got one turn.",
+    "zeroOne": "One friend never got a turn.",
+    "never": "never led this month.",
+    "notYet": "has not led yet.",
+    "left": "That friend waited all month and never led. Being left out feels sad.",
+    "lots": "That is a lot of turns!",
+    "beeSick": "Bee was home sick on day two.",
+    "chCompare": "One step changed, and the whole month changed.",
+    "chYes": "This changed step changes who gets a turn. Look at Before and now.",
+    "chSame": "That step stayed the same. Look for the step you changed.",
+    "q1A": "Only the friend at the front can lead. The others never get a chance.",
+    "q1B": "Every friend comes to the front in turn, so everyone has the same chance.",
+    "q1C": "Every name is in the jar every day, so everyone has the same chance.",
+    "q1CSick": "Each present friend has the same chance. Bee was away on day two.",
+    "q1D": "Every name gets drawn once before any name goes back.",
+    "q3Yes": "One friend led more than once while a friend got none.",
+    "q3No": "No one led more than once while a friend got none.",
+    "fair": "You said fair.",
+    "notFair": "You said not fair.",
+    "q0": "Same chance for every friend? Tap the check mark for yes, or the cross for no.",
+    "q1": "Was any friend left out? Tap the check mark for yes, or the cross for no.",
+    "q2": "Did someone lead more than once while a friend got none? Tap the check mark for yes, or the cross for no.",
+    "name0": "Ant.",
+    "name1": "Bee.",
+    "name2": "Cat.",
+    "name3": "Duck.",
+    "name4": "Elephant.",
+    "name5": "Fox.",
+    "name6": "Goat.",
+    "name7": "Hippo.",
+    "name8": "Iguana.",
+    "name9": "Koala.",
+    "name10": "Lion.",
+    "name11": "Mouse.",
+    "name12": "Owl.",
+    "name13": "Pig.",
+    "name14": "Rabbit.",
+    "name15": "Sheep.",
+    "name16": "Turtle.",
+    "name17": "Wolf.",
+    "name18": "Yak.",
+    "name19": "Zebra.",
+    "count1": "led one time.",
+    "count2": "led two times.",
+    "most2": "led the most: two times.",
+    "tie2": "Some friends led two times each.",
+    "zero2": "Two friends never got a turn.",
+    "count3": "led three times.",
+    "most3": "led the most: three times.",
+    "tie3": "Some friends led three times each.",
+    "zero3": "Three friends never got a turn.",
+    "count4": "led four times.",
+    "most4": "led the most: four times.",
+    "tie4": "Some friends led four times each.",
+    "zero4": "Four friends never got a turn.",
+    "count5": "led five times.",
+    "most5": "led the most: five times.",
+    "tie5": "Some friends led five times each.",
+    "zero5": "Five friends never got a turn.",
+    "count6": "led six times.",
+    "most6": "led the most: six times.",
+    "tie6": "Some friends led six times each.",
+    "zero6": "Six friends never got a turn.",
+    "count7": "led seven times.",
+    "most7": "led the most: seven times.",
+    "tie7": "Some friends led seven times each.",
+    "zero7": "Seven friends never got a turn.",
+    "count8": "led eight times.",
+    "most8": "led the most: eight times.",
+    "tie8": "Some friends led eight times each.",
+    "zero8": "Eight friends never got a turn.",
+    "count9": "led nine times.",
+    "most9": "led the most: nine times.",
+    "tie9": "Some friends led nine times each.",
+    "zero9": "Nine friends never got a turn.",
+    "count10": "led ten times.",
+    "most10": "led the most: ten times.",
+    "tie10": "Some friends led ten times each.",
+    "zero10": "Ten friends never got a turn.",
+    "count11": "led eleven times.",
+    "most11": "led the most: eleven times.",
+    "zero11": "Eleven friends never got a turn.",
+    "count12": "led twelve times.",
+    "most12": "led the most: twelve times.",
+    "zero12": "Twelve friends never got a turn.",
+    "count13": "led thirteen times.",
+    "most13": "led the most: thirteen times.",
+    "zero13": "Thirteen friends never got a turn.",
+    "count14": "led fourteen times.",
+    "most14": "led the most: fourteen times.",
+    "zero14": "Fourteen friends never got a turn.",
+    "count15": "led fifteen times.",
+    "most15": "led the most: fifteen times.",
+    "zero15": "Fifteen friends never got a turn.",
+    "count16": "led sixteen times.",
+    "most16": "led the most: sixteen times.",
+    "zero16": "Sixteen friends never got a turn.",
+    "count17": "led seventeen times.",
+    "most17": "led the most: seventeen times.",
+    "zero17": "Seventeen friends never got a turn.",
+    "count18": "led eighteen times.",
+    "most18": "led the most: eighteen times.",
+    "zero18": "Eighteen friends never got a turn.",
+    "count19": "led nineteen times.",
+    "most19": "led the most: nineteen times.",
+    "zero19": "Nineteen friends never got a turn.",
+    "count20": "led twenty times.",
+    "most20": "led the most: twenty times.",
+    "ruleA": "First in line leads. The leader stays at the front.",
+    "ruleB": "First in line leads. The leader goes to the back of the line.",
+    "ruleC": "Draw a name from the jar. The name goes back in the jar.",
+    "ruleD": "Draw a name from the jar. The name stays out of the jar.",
+    "sickOn": "Bee is home sick on day two.",
+    "sickOff": "Bee is at school every day.",
+    "chCompareBoth": "Two steps changed, and the whole month changed.",
+    "playing": "Tap Pause, One day, or To the end.",
+    "paused": "Tap Run, One day, or To the end.",
+    "monthEveryone": "Everyone got one turn. Tap a friend to hear their turns.",
+    "fSummaryEmpty": "Check a rule card first. Its row fills in here. Tap the X to go back to the rule cards.",
+    "lookRule": "Think about the rule, not this month's stickers.",
+    "leftFeeling": "Being left out feels sad.",
+    "chUnchanged": "That step is the same. Tap the other picture to change it."
+};
+  for (let n=1;n<=19;n++) {
+    L['monthZero'+n]=`${n} ${n===1?'friend never led.':'friends never led.'} Tap a friend to hear their turns.`;
+  }
+  const RULES = {A:[0,0], B:[0,1], C:[1,0], D:[1,1]};
+  const labels = ['First in line','Draw a name','Stays at the front','Goes to the back','Name goes back in','Name stays out'];
+  const ruleOf = s => s.step1 === null || s.step2 === null ? null : Object.keys(RULES).find(k => RULES[k][0] === s.step1 && RULES[k][1] === s.step2);
+  const fresh = () => ({step1:null, step2:null, counts:Array(20).fill(0), days:[], line:names.map((_,i) => i),
+    jar:names.map((_,i) => i), before:null, beforeRule:null, changed:[], running:false, busy:false, resultBusy:false,
+    done:false, needsFinish:false, feedback:0, leader:null, sick:false, checks:[null,null,null], verdict:null, evidence:-1, stamp:false, which:false, glow:0, hint:'wMake'});
+  const state = {mode:'make', modes:{make:fresh(),change:fresh(),fair:fresh()}, summary:false, summaries:{}};
+  let generation = 0;
+  let friendSerial = 0;
+  const stickerTimers = new Map();
+  let random = Math.random;
+  const S = () => state.modes[state.mode];
+  const hint = text => { $('hint').textContent = L[text] || text; S().hint = text; readParts=[]; };
+  let readParts=[];
+  const V = Curio.voice({lines:L, scope:() => state.mode, hint:false,
+    read:() => readParts.length ? readParts : $('hint').textContent, welcome:() => null});
+  const texts = keys => [].concat(keys).map(k => Array.isArray(k) ? L[k[0]] : L[k] || k);
+  const event = (keys,opts={}) => {
+    readParts=texts(keys);
+    return opts.wait ? Promise.resolve('silent') : true;
+  };
+  const how = (key,opts={}) => {
+    hint(key);
+    if (!readParts.length) readParts=texts(key);
+    return true;
+  };
+  function seed(n) {
+    let a=n>>>0;
+    random=() => {
+      a += 0x6d2b79f5;
+      let t = Math.imul(a ^ a >>> 15, a | 1);
+      t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  const img = (name,cls='') => `<img class="${cls}" src="${ART[name]}" alt="">`;
+  const star = (n,before=false) => {
+    const left = n < 10 ? 2 : 51;
+    return `<svg class="star ${before ? 'before' : 'now'}" data-n="${n}" style="left:${left}%;bottom:${n%10*9}%" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 1 3.3 6.7 7.4 1.1-5.4 5.2 1.3 7.4-6.6-3.5-6.6 3.5 1.3-7.4L1.3 8.8l7.4-1.1Z"/></svg>`;
+  };
+  function icon(i) {
+    if (i===1) return img('jar-full');
+    const dots = '<circle cx="18" cy="26" r="7" fill="#d89d23"/><circle cx="42" cy="26" r="6" fill="#8db48c"/><circle cx="65" cy="26" r="6" fill="#8db48c"/>';
+    const arrow = i===3 ? '<path d="M18 38v13h55V36m-6 7 6-7 7 7"/>' : '<path d="M17 13C-1 0 2 46 17 39m-5-4 6 4-6 5"/>';
+    if (i<4) return `<svg viewBox="0 0 92 62" aria-hidden="true"><g stroke="#36593d" stroke-width="3" fill="none">${dots}${i===0?'<circle cx="18" cy="26" r="12"/>':arrow}<path d="M82 9v37m0-37h9v37"/></g></svg>`;
+    return `<svg viewBox="0 0 92 62" aria-hidden="true"><path d="M8 20h36v36H8z" fill="#dbeee8" stroke="#395b54" stroke-width="3"/><path d="m36 3 19 8-8 16-19-8z" fill="#fffbec" stroke="#765b35" stroke-width="2"/><path d="M${i===4?'58 9q-3 18-28 26m7-10-7 10 12 0':'53 14q22 8 19 30m-7-8 7 8 8-8'}" fill="none" stroke="#1d6b3a" stroke-width="4"/><path d="M59 48h29v8H59z" fill="#b58447" stroke="#765b35" stroke-width="2"/></svg>`;
+  }
+  function initScene() {
+    $('chart').innerHTML=names.map((name,i) => `
+      <div class="friend-col" id="col-${i}">${i===1?'<img class="bed-mark" id="beeBed" src="'+ART['bee-sick']+'" alt="Bee is home sick on day 2" hidden>':''}
+        <div class="count" id="count-${i}">0</div>
+        <div class="stack" id="stack-${i}"></div>
+        <button class="friend" id="friend-${i}" aria-label="${name}, has not led yet">
+          <img alt="" id="face-${i}"><span>${name}</span>
+        </button>
+      </div>`).join('');
+
+    $('calendar').innerHTML=Array.from({length:4},(_,week) => {
+      const days=Array.from({length:5},(_,day) => `
+        <div class="day" id="day-${week*5+day}"><span>${week*5+day+1}</span></div>`).join('');
+      return `<div class="week"><label>Week ${week+1}</label>${days}</div>`;
+    }).join('');
+    $('choices1').innerHTML=[0,1].map(i=>tile(i,1)).join('');
+    $('choices2').innerHTML='<div class="unknown">?</div>';
+    const ruleCards=Object.entries(RULES).map(([key,steps]) => {
+      const first=steps[0];
+      const second=(first?4:2)+steps[1];
+      const description=`Rule ${key}: ${labels[first]}, ${labels[second]}`;
+      return `<button class="rule-pick" id="rule-${key}" title="${description}"
+          aria-label="${description}" aria-pressed="false">
+        <strong>${key}</strong>${icon(first)}${icon(second)}
+        <span class="rule-name">${labels[first]}<br>${labels[second]}</span>
+      </button>`;
+    }).join('');
+    const sickButton=`<button class="rule-pick sick-toggle" id="sick" aria-pressed="false"
+        aria-label="Bee is home sick on day 2" title="Bee is home sick on day 2">
+      ${img('bee-sick')}<span>Bee is home sick<br>on day 2</span>
+      <em class="sick-state" id="sickState">Off</em>
+    </button>`;
+    $('rulePicks').innerHTML=ruleCards+sickButton;
+    const questions=[
+      'Same chance for every friend?',
+      'Was any friend left out?',
+      'Did someone lead more than once while a friend got none?'
+    ];
+    const pictures=['● ● ● ●','● ● ◌ ●','★ ★ │ ◌'];
+    const checks=questions.map((question,i) => `
+      <section class="check" id="check-${i}">
+        <h2>${question}</h2>
+        <div class="question-picture"><span class="diagram" aria-hidden="true">${pictures[i]}</span><span class="fact-mark" id="fact-${i}" role="img" hidden></span></div>
+        <div class="thumbs">
+          <button id="q${i}-yes" aria-label="Yes: ${question}" title="Yes" aria-pressed="false">✓</button>
+          <button id="q${i}-no" aria-label="No: ${question}" title="No" aria-pressed="false">×</button>
+        </div>
+        <div class="evidence" id="evidence-${i}"></div>
+      </section>`).join('');
+    $('fairband').innerHTML=checks+`
+      <div class="verdict">
+        <button id="fair" title="Fair" disabled>👍 Fair</button>
+        <button id="notFair" title="Not fair" disabled>👎 × Not fair</button>
+        <button class="summary-btn" id="summary" title="Our chart">▦ Our chart</button>
+        <button class="new-fair" id="newFair" title="New month" disabled>↻ New month</button>
+      </div>`;
+    names.forEach((_,i)=>$('friend-'+i).onclick=()=>friendTap(i));
+    document.querySelectorAll('.tile').forEach(button=> {
+      button.onclick=()=>choose(+button.dataset.step,+button.dataset.value);
+    });
+    Object.keys(RULES).forEach(key=>$('rule-'+key).onclick=()=>fairRule(key));
+    $('sick').onclick=()=> {
+      const s=S();
+      s.sick=!s.sick;
+      const sick=s.sick;
+      Curio.tone(400,.08,.04);
+      if(ruleOf(s)) fairRule(ruleOf(s));
+      else {
+        render();
+        how('wFair');
+      }
+      event(sick?'sickOn':'sickOff',{now:true,key:'sick-change',valid:()=>s.sick===sick});
+    };
+    for(let i=0;i<3;i++) {
+      for(const yes of [true,false]) $('q'+i+'-'+(yes?'yes':'no')).onclick=()=>check(i,yes);
+    }
+    $('fair').onclick=()=>verdict(true);
+    $('notFair').onclick=()=>verdict(false);
+    $('summary').onclick=()=> {
+      state.summary=true;
+      renderSummary();
+      $('summaryOverlay').hidden=false;
+      $('chart').inert=true;
+      $('closeSummary').focus({preventScroll:true});
+      how(Object.values(state.summaries).filter(row=>row.verdict!==null).length>=2?'fSummary':'fSummaryEmpty');
+      Curio.tone(540,.08,.04);
+    };
+    $('closeSummary').onclick=()=>closeOverlay('summary');
+    $('newFair').onclick=()=> {
+      if(ruleOf(S())) fairRule(ruleOf(S()));
+    };
+  }
+  function tile(i,step) {
+    return `<button class="tile" id="tile-${i}" data-step="${step}" data-value="${step===1?i:i%2}"
+        title="${labels[i]}" aria-label="${labels[i]}" aria-pressed="false">
+      ${icon(i)}<span>${labels[i]}</span>
+    </button>`;
+  }
+  function controls() {
+    const s=S(), ready=ruleOf(s)!==null;
+    for (const id of ['run','one','end','new']) {
+      const button=$(id);
+      button.disabled=!ready;
+      const waiting=s.resultBusy && id!=='new';
+      const atEnd=s.done && (id==='one' || id==='end');
+      button.setAttribute('aria-disabled',ready && (waiting || atEnd));
+    }
+    $('run').innerHTML=`<b aria-hidden="true">${s.running?'Ⅱ':'▶'}</b><span>${s.running?'Pause':'Run'}</span>`;
+    $('run').setAttribute('aria-label',s.running?'Pause':'Run');
+    $('run').title=s.running?'Pause':'Run';
+    document.querySelectorAll('#choices1 .tile').forEach(b => b.setAttribute('aria-pressed',s.step1===+b.dataset.value));
+    document.querySelectorAll('#choices2 .tile').forEach(b => {
+      b.setAttribute('aria-pressed',s.step2===+b.dataset.value);
+      b.classList.toggle('glow',s.glow===2 && s.step2===+b.dataset.value);
+    });
+    document.querySelectorAll('#choices1 .tile').forEach(b => b.classList.toggle('glow',s.glow===1 && s.step1===+b.dataset.value));
+    $('stamp').hidden=!s.stamp;
+    $('rulecard').classList.toggle('stamped',s.stamp);
+    const preview=$('machinePreview');
+    const previewKey=ready?`${s.step1}${s.step2}`:'';
+    if(preview.dataset.rule!==previewKey) {
+      preview.dataset.rule=previewKey;
+      preview.innerHTML=ready?icon(s.step1)+icon((s.step1?4:2)+s.step2):'';
+    }
+  }
+  function syncStep2() {
+    const s=S();
+    const type=s.step1===null?'empty':String(s.step1);
+    if ($('choices2').dataset.type!==type) {
+      $('choices2').dataset.type=type;
+      $('choices2').innerHTML=s.step1===null?'<div class="unknown">?</div>':[0,1].map(i=>tile((s.step1?4:2)+i,2)).join('');
+      document.querySelectorAll('#choices2 .tile').forEach(b => b.onclick=() => choose(2,+b.dataset.value));
+    }
+  }
+  function render() {
+    const s=S(), fair=state.mode==='fair';
+    document.body.dataset.mode=state.mode;
+    for (const m of ['make','change','fair']) $('m-'+m).setAttribute('aria-pressed',state.mode===m);
+    for (const id of ['leaderSpot','calendar','daychip']) $(id).hidden=fair;
+    $('rulePicks').hidden=!fair;
+    $('rulecard').hidden=fair;
+    $('machineArt').hidden=fair;
+    $('runcontrols').hidden=fair;
+    $('fairband').hidden=!fair;
+    $('beforeKey').hidden=!s.before;
+    $('daychip').textContent=`Day ${s.days.length} of 20`;
+    $('boardStatus').textContent=s.done?'Month is done':s.running?`Day ${s.days.length} of 20`:'20 school days';
+    if (s.leader!==null) {
+      $('leader').src=ART[names[s.leader].toLowerCase()+'-happy'];
+      $('leader').hidden=false;
+      $('leaderName').textContent=names[s.leader];
+    } else {
+      $('leader').hidden=true;
+      $('leaderName').textContent='?';
+    }
+    $('dots').innerHTML=s.line.map(i=>`<i title="${names[i]}"></i>`).join('');
+    $('jarScene').hidden=fair || s.step1!==1;
+    $('jar').src=ART[s.step2===0 || s.jar.length>12?'jar-full':s.jar.length>4?'jar-half':'jar-empty'];
+    $('tray').hidden=s.step2!==1;
+    for (let i=0;i<20;i++) {
+      const n=s.counts[i], before=s.before?.[i];
+      $('col-'+i).classList.toggle('dense',Math.max(n,before||0)>6);
+      $('count-'+i).innerHTML=`${before!==undefined?`<span class="before-count">${before}</span>`:''}${n}`;
+      const stack=$('stack-'+i);
+      const stackKey=`${before??''}/${n}`;
+      if(stack.dataset.counts!==stackKey) {
+        stack.dataset.counts=stackKey;
+        stack.innerHTML=Array.from({length:before||0},(_,k)=>star(k,true)).join('')+Array.from({length:n},(_,k)=>star(k)).join('');
+      }
+      const zero=s.done && n===0;
+      $('col-'+i).classList.toggle('zero',zero);
+      $('col-'+i).classList.toggle('evidence-high',s.evidence===2 && n===Math.max(...s.counts) && n>1);
+      $('face-'+i).src=ART[names[i].toLowerCase()+'-'+(zero?'waiting':'happy')];
+      $('friend-'+i).setAttribute('aria-label',`${names[i]}, ${n===0?(s.done?'never led this month':'has not led yet'):`led ${n} ${n===1?'time':'times'}`}`);
+      const cell=$('day-'+i);
+      cell.classList.toggle('today',i===s.days.length-1);
+      cell.innerHTML=`<span>${i+1}</span>${s.days[i]!==undefined?img(names[s.days[i]].toLowerCase()+'-happy'):''}`;
+    }
+    $('beeBed').hidden=!s.sick;
+    $('summaryOverlay').hidden=!state.summary || !fair;
+    $('chart').inert=state.summary && fair;
+    syncStep2();
+    controls();
+    if (fair) renderChecks();
+    layoutStars();
+  }
+  function stop(hush=false) {
+    generation++;
+    friendSerial++;
+    const s=S();
+    s.running=false;
+    s.busy=false;
+    s.resultBusy=false;
+    $('slot1').classList.remove('active');
+    $('slot2').classList.remove('active');
+    $('slip').hidden=true;
+    document.querySelectorAll('.just,.arrive').forEach(el=>el.classList.remove('just','arrive'));
+    document.querySelectorAll('.fly-star').forEach(el=>el.remove());
+    if (hush) V.hush();
+  }
+  function clearMonth() {
+    const s=S();
+    s.counts=Array(20).fill(0);
+    s.days=[];
+    s.line=names.map((_,i)=>i);
+    s.jar=names.map((_,i)=>i);
+    s.done=false;
+    s.needsFinish=false;
+    s.feedback++;
+    s.beeMissedTurn=false;
+    s.leader=null;
+    s.checks=[null,null,null];
+    s.verdict=null;
+    s.evidence=-1;
+    s.which=false;
+    s.glow=0;
+  }
+  function choose(step,value) {
+    const s=S();
+    if (state.mode==='fair') return;
+    if (s.which) {
+      const changed=s.changed.includes(step);
+      s.which=false;
+      if (changed) {s.glow=step; Curio.tone(520,.08,.035); hint('another');}
+      else {hint('chWhich'); Curio.tone(230,.09,.035);}
+      event(changed?'chYes':'chSame');
+      controls();
+      return;
+    }
+    if (s['step'+step]===value) {
+      const key='tile'+(step===1?value:(s.step1?4:2)+value);
+      event(key);
+      if(state.mode==='change') readParts.push(L.chUnchanged);
+      if(state.mode==='change') $('hint').textContent=L.chUnchanged;
+      Curio.tone(step===1?430:570,.09,.045);
+      return;
+    }
+    const old=[s.step1,s.step2];
+    const counts=[...s.counts];
+    stop(s.resultBusy);
+    V.dropQueued();
+    if (state.mode==='change' && s.done && s.days.length===20) {
+      s.before=counts;
+      s.beforeRule=old;
+    }
+    if (step===1 && s.step1!==value) s.step2=null;
+    s['step'+step]=value;
+    if (s.beforeRule) {
+      s.changed=[];
+      if(s.step1!==s.beforeRule[0]) s.changed.push(1);
+      const beforeSecond=(s.beforeRule[0]?4:2)+s.beforeRule[1];
+      const nowSecond=s.step2===null?null:(s.step1?4:2)+s.step2;
+      if(nowSecond!==null && nowSecond!==beforeSecond) s.changed.push(2);
+    }
+    s.stamp=false;
+    clearMonth();
+    render();
+    Curio.tone(step===1?430:570,.09,.045);
+    const tileKey='tile'+(step===1?value:(s.step1?4:2)+value);
+    const next=s.step2===null?'step2':state.mode==='change' && s.changed.length?'chRun':'runReady';
+    hint(next);
+    event([tileKey,next]);
+  }
+
+  function drawDay() {
+    const s=S(), day=s.days.length, rule=ruleOf(s);
+    let leader;
+    if (rule==='A') leader=s.line.find(i=>!(s.sick && day===1 && i===1));
+    if (rule==='B') {
+      leader=s.line.shift();
+      s.line.push(leader);
+      if (s.sick && day===1 && leader===1) {s.beeMissedTurn=true; leader=s.line.shift(); s.line.push(leader);}
+    }
+    if (rule==='C' || rule==='D') {
+      const pool=s.jar.filter(i=>!(s.sick && day===1 && i===1));
+      const draw=random();
+      if (s.sick && day===1 && s.jar[Math.floor(draw*s.jar.length)]===1) s.beeMissedTurn=true;
+      leader=pool[Math.floor(draw*pool.length)];
+      if (rule==='D') s.jar.splice(s.jar.indexOf(leader),1);
+    }
+    s.leader=leader;
+    s.days.push(leader);
+    s.counts[leader]++;
+    return leader;
+  }
+  function popSticker(i) {
+    const column=$('col-'+i);
+    clearTimeout(stickerTimers.get(i));
+    column.classList.remove('just');
+    if(Curio.reduce) return;
+    void column.offsetWidth;
+    column.classList.add('just');
+    stickerTimers.set(i,setTimeout(()=>column.classList.remove('just'),300));
+  }
+  async function day() {
+    const s=S();
+    if (s.busy || s.done || !ruleOf(s)) return;
+    const token=generation;
+    s.busy=true;
+    const duration=state.mode==='make' && !s.days.length?1200:450;
+    $('slot1').classList.add('active');
+    const leader=drawDay();
+    $('leaderName').textContent=names[leader];
+    $('leader').hidden=false;
+    $('leader').src=ART[names[leader].toLowerCase()+'-happy'];
+    $('leaderSpot').classList.remove('arrive');
+    if (!Curio.reduce) {void $('leaderSpot').offsetWidth; $('leaderSpot').classList.add('arrive');}
+    if (s.step1===1) {$('slip').textContent=names[leader]; $('slip').hidden=false;}
+    Curio.tone(430+leader*12,.055,.025);
+    await Curio.wait(duration*.45);
+    if (generation!==token) return;
+    $('slot1').classList.remove('active');
+    $('slot2').classList.add('active');
+    render();
+    popSticker(leader);
+    if (!Curio.reduce) {
+      const from=$('leaderSpot').getBoundingClientRect();
+      const to=$('stack-'+leader).getBoundingClientRect();
+      const flying=document.createElement('div');
+      flying.className='fly-star';
+      flying.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 1 3.3 6.7 7.4 1.1-5.4 5.2 1.3 7.4-6.6-3.5-6.6 3.5 1.3-7.4L1.3 8.8l7.4-1.1Z"/></svg>';
+      flying.style.left=from.left+from.width/2+'px';
+      flying.style.top=from.top+'px';
+      flying.style.setProperty('--dx',to.left-from.left-from.width/2+'px');
+      flying.style.setProperty('--dy',to.bottom-from.top-22+'px');
+      flying.style.setProperty('--flight',duration*.55+'ms');
+      document.body.append(flying);
+      setTimeout(()=>flying.remove(),duration*.55+50);
+    }
+    await Curio.wait(duration*.55);
+    if (generation!==token) return;
+    $('slot2').classList.remove('active');
+    $('col-'+leader).classList.remove('just');
+    $('slip').hidden=true;
+    s.busy=false;
+    if (s.days.length===20) await finish();
+  }
+  async function run() {
+    const s=S();
+    if (!ruleOf(s) || s.resultBusy) return;
+    if(s.running) {
+      s.running=false;
+      controls();
+      how('runReady',{needs:'#run'});
+      return;
+    }
+    if (s.done) {stop(true); clearMonth();}
+    s.running=true;
+    hint('playing');
+    controls();
+    if(!s.days.length && !Curio.reduce) {
+      const preview=$('machinePreview');
+      preview.classList.remove('insert');
+      void preview.offsetWidth;
+      preview.classList.add('insert');
+    }
+    if(!V.heard('machine')) {
+      readParts=texts('machine');
+    } else {
+      V.dropQueued(line=>line.kind==='how' && ['runReady','chRun'].includes(line.key));
+    }
+    const token=generation;
+    while (s.running && generation===token && !s.done) {
+      if (s.busy) {await Curio.wait(20); continue;}
+      await day();
+    }
+    controls();
+  }
+  async function one() {
+    const s=S();
+    const token=generation;
+    if (!ruleOf(s) || s.resultBusy) return;
+    s.running=false;
+    controls();
+    if(!s.done) hint('paused');
+    while(s.busy) await Curio.wait(20);
+    if (s.done || token!==generation) return;
+    await day();
+  }
+  async function toEnd() {
+    if (!ruleOf(S()) || S().done || S().resultBusy) return;
+    stop();
+    while (S().days.length<20) drawDay();
+    render();
+    Curio.yes();
+    await finish();
+  }
+  function resultParts() {
+    const s=S(), max=Math.max(...s.counts), zeros=s.counts.filter(n=>n===0).length;
+    const parts=['monthDone'];
+    if (max===1) return [...parts,'everyone'];
+    if (s.counts.filter(n=>n===max).length===1) parts.push('name'+s.counts.indexOf(max),'most'+max);
+    else parts.push('tie'+max);
+    if (zeros) parts.push(zeros===1?'zeroOne':'zero'+zeros);
+    return parts;
+  }
+  async function finish() {
+    const s=S(), token=generation;
+    s.done=true;
+    s.needsFinish=true;
+    s.running=false;
+    s.resultBusy=true;
+    render();
+    const zeros=s.counts.filter(n=>!n).length;
+    hint(zeros?'monthZero'+zeros:'monthEveryone');
+    await event(resultParts(),{wait:true});
+    if (generation!==token) return;
+    s.resultBusy=false;
+    s.needsFinish=false;
+    controls();
+    if (state.mode==='fair') renderChecks();
+    if (state.mode==='change' && s.before && s.changed.length) {
+      s.which=true;
+      s.glow=s.changed[0];
+      hint('chWhich');
+      event([s.changed.length===1?'chCompare':'chCompareBoth','chWhich']);
+      controls();
+    } else if (state.mode==='fair') {
+      hint('fChecks');
+      event(resultParts());
+    } else {
+      s.stamp=true;
+      $('stamp').hidden=false;
+    }
+  }
+
+  function friendTap(i) {
+    const s=S(), n=s.counts[i];
+    const serial=++friendSerial, token=generation;
+    V.dropQueued(x=>x.key?.startsWith('friend'));
+    document.querySelectorAll('.friend').forEach(b=>b.classList.remove('selected'));
+    $('friend-'+i).classList.add('selected');
+    const parts=['name'+i,n?'count'+n:s.done?'never':'notYet'];
+    if (s.done && !n) {
+      if (s.sick && i===1 && s.beeMissedTurn) parts.push('beeSick');
+      parts.push('left');
+    }
+    if(n>=3) parts.push('lots');
+    const keyed=parts.map((part,index)=>[part,{key:'friend-'+index}]);
+    hint(parts.map(k=>L[k]).join(' '));
+    event(parts);
+    Curio.tone(460+i*9,.06,.025);
+  }
+  function closeOverlay() {
+    state.summary=false;
+    $('chart').inert=false;
+    $('summaryOverlay').hidden=true;
+    how('fNext');
+    $('summary').focus({preventScroll:true});
+  }
+  async function fairRule(rule) {
+    stop(true);
+    state.summary=false;
+    const s=S();
+    [s.step1,s.step2]=RULES[rule];
+    clearMonth();
+    const token=generation;
+    s.running=true;
+    hint('fChecks');
+    render();
+    event('rule'+rule);
+    while(s.days.length<20 && generation===token) {
+      const i=drawDay();
+      render();
+      popSticker(i);
+      Curio.tone(480+i*9,.04,.018);
+      if (!Curio.reduce) await Curio.wait(75);
+    }
+    if(generation===token) await finish();
+  }
+  function evidence() {
+    const s=S(), zeros=s.counts.filter(n=>!n).length;
+    return [ruleOf(s)!=='A',zeros>0,zeros>0 && Math.max(...s.counts)>1];
+  }
+  function renderChecks() {
+    const s=S(), facts=evidence();
+    Object.keys(RULES).forEach(k=>$('rule-'+k).setAttribute('aria-pressed',ruleOf(s)===k));
+    $('sick').setAttribute('aria-pressed',s.sick);
+    $('sickState').textContent=s.sick?'On':'Off';
+    Object.keys(RULES).forEach(k=>$('rule-'+k).classList.toggle('rule-evidence',s.evidence===0 && ruleOf(s)===k));
+    for(let i=0;i<3;i++) {
+      const open=s.done && !s.resultBusy;
+      for(const yes of [true,false]) {
+        const b=$('q'+i+'-'+(yes?'yes':'no'));
+        b.disabled=!open;
+        b.setAttribute('aria-pressed',s.checks[i]===yes);
+      }
+      $('evidence-'+i).textContent=s.checks[i]===null?'':`${facts[i]?'✓ Yes':'× No'}${i===1?`: ${s.counts.filter(n=>!n).length} left out`:''}`;
+      const mark=$('fact-'+i);
+      mark.hidden=s.checks[i]===null;
+      mark.textContent=facts[i]?'✓':'×';
+      mark.setAttribute('aria-label','Evidence: '+(facts[i]?'yes':'no'));
+
+    }
+    $('fair').disabled=$('notFair').disabled=!s.done;
+    $('newFair').disabled=s.step1!==1;
+    $('newFair').hidden=s.step1!==1;
+    $('fair').setAttribute('aria-pressed',s.verdict===true);
+    $('notFair').setAttribute('aria-pressed',s.verdict===false);
+  }
+  function check(i,answer) {
+    const s=S();
+    if(!s.done || s.resultBusy) return;
+    s.checks[i]=answer;
+    s.evidence=i;
+    const facts=evidence(), rule=ruleOf(s), zeros=s.counts.filter(n=>!n).length;
+    const chanceLine=s.sick?({B:'fBeeB',C:'q1CSick',D:'fBeeD'}[rule] || 'q1'+rule):'q1'+rule;
+    const detail=i===0?[chanceLine]:i===1?(zeros?[zeros===1?'zeroOne':'zero'+zeros,'leftFeeling']:['everyone']):[facts[2]?'q3Yes':'q3No'];
+    if(i===0 && answer!==facts[0]) detail.unshift('lookRule');
+    if(i===1 && rule==='C' && zeros) detail.push('fSame');
+    // Evidence is a readout, never a marked quiz answer or a gate to another action.
+    $('hint').textContent=detail.map(k=>L[k]).join(' ');
+    s.hint='fChecks';
+    event(detail);
+    recordSummary();
+    render();
+    Curio.tone(510,.075,.035);
+  }
+  function verdict(fair) {
+    const s=S();
+    if(!s.done) return;
+    s.verdict=fair;
+    how('fNext');
+    event([fair?'fair':'notFair','fNext']);
+    recordSummary();
+    renderChecks();
+    Curio.tone(620,.08,.035);
+  }
+  function recordSummary() {
+    const s=S();
+    const key=ruleOf(s)+(s.sick?'-sick':'');
+    const prior=state.summaries[key];
+    if(!prior && s.checks.every(n=>n===null) && s.verdict===null) return;
+    state.summaries[key]={
+      facts:evidence().map((fact,i)=>s.checks[i]===null?null:fact),
+      verdict:s.verdict===null?(prior?.verdict??null):s.verdict,
+      counts:[...s.counts]
+    };
+  }
+  function renderSummary() {
+    const sickUsed=Object.keys(state.summaries).some(k=>k.includes('sick'));
+    const keys=[...Object.keys(RULES),...(sickUsed?Object.keys(RULES).map(k=>k+'-sick'):[])];
+    $('summaryBody').innerHTML=keys.map(k=>{
+      const d=state.summaries[k];
+      const sick=k.includes('sick')?'<span class="sick-label" title="Bee is home sick on day 2"> · Bee sick</span>':'';
+      const facts=[0,1,2].map(i=>`<td>${d?.facts[i]===null || !d?'?':(d.facts[i]?'✓ Yes':'× No')}</td>`).join('');
+      const call=d?.verdict===true?'👍 Fair':d?.verdict===false?'👎 × Not fair':'';
+      return `<tr><td><b>${k[0]}</b>${sick}</td>${facts}<td>${call}</td></tr>`;
+    }).join('');
+  }
+  function setMode(m) {
+    if(!state.modes[m]) return;
+    stop(true);
+    state.mode=m;
+    state.summary=false;
+    const s=S();
+    if(m==='change' && s.step1===null) {
+      s.step1=0;
+      s.step2=0;
+      while(s.days.length<20) drawDay();
+      s.done=true;
+      s.hint='wChange';
+    }
+    if(m==='fair' && s.step1===null) s.hint='wFair';
+    render();
+    if(s.needsFinish) {finish(); return;}
+    if(s.which) hint('chWhich');
+    else if(m!=='fair' && !s.done && ruleOf(s)) hint('paused');
+    else hint(s.hint);
+    readParts=texts(s.hint);
+    Curio.tone(440,.06,.025);
+  }
+  function layoutStars() {
+    document.querySelectorAll('.stack').forEach(stack=>{
+      const cols=Math.max(1,Math.floor(stack.clientWidth/12));
+      const tight=stack.parentElement.classList.contains('dense') && stack.parentElement.clientHeight<68;
+      stack.parentElement.classList.toggle('tight-stars',tight);
+      stack.style.setProperty('--star-cols',cols);
+      stack.querySelectorAll('.star').forEach(star=>{
+        const n=+star.dataset.n+(tight?4:0);
+        star.style.setProperty('--sx',n%cols+1);
+        star.style.setProperty('--sy',Math.floor(n/cols)+1);
+      });
+    });
+  }
+  new ResizeObserver(layoutStars).observe($('chart'));
+  initScene();
+  for(const m of ['make','change','fair']) $('m-'+m).onclick=()=>setMode(m);
+  $('run').onclick=run;
+  $('one').onclick=one;
+  $('end').onclick=toEnd;
+  $('new').onclick=()=>{if(!ruleOf(S()))return; stop(true); clearMonth(); render(); run();};
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape') {
+      if(!$('manualDrawer').hidden) closeManual();
+      else if(state.summary) closeOverlay('summary');
+    }
+  });
+  const closeManual=()=>{
+    $('manualDrawer').hidden=true;
+    document.querySelector('main').inert=false;
+    document.querySelector('.power-panel').inert=false;
+    $('manual').setAttribute('aria-expanded','false');
+    $('manual').focus({preventScroll:true});
+  };
+  $('manual').onclick=()=>{
+    const open=$('manualDrawer').hidden;
+    if(!open) {closeManual(); return;}
+    $('manualDrawer').hidden=false;
+    document.querySelector('main').inert=true;
+    document.querySelector('.power-panel').inert=true;
+    $('manual').setAttribute('aria-expanded',open);
+    if(open) $('closeManual').focus({preventScroll:true});
+  };
+  $('closeManual').onclick=closeManual;
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Tab' && !$('manualDrawer').hidden) {
+      e.preventDefault();
+      $('closeManual').focus({preventScroll:true});
+    }
+  });
+  Curio.init({clips:"voice:*",rate:.92});
+  Curio.onMotion(()=>{
+    if(Curio.reduce) {
+      document.querySelectorAll('.just,.arrive').forEach(el=>el.classList.remove('just','arrive'));
+      document.querySelectorAll('.fly-star').forEach(el=>el.remove());
+    }
+  });
+  render();
+  hint('wMake');
+  let hinted=false;
+  const firstHint=e=>{
+    if(hinted) return;
+    hinted=true;
+    if(state.mode==='make' && S().step1===null && e.target.closest('button')?.id!=='read') {
+      V.how('wMake',{hint:false});
+    }
+  };
+  addEventListener('pointerdown',firstHint,{once:true});
+  addEventListener('keydown',firstHint,{once:true});
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},seed,
+    get current(){return S();},evidence,ruleOf,drawDay,stop};
+})();
+</script>
+</body>
+</html>

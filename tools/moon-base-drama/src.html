@@ -1,0 +1,1019 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moon Base Drama · Curio Class</title>
+<meta name="description" content="Become Commander Ada's crew. Speak in role, use moon facts, and rewind your choices to help a lunar greenhouse.">
+<!--
+Moon Base Drama, Curio Class. Teacher-led K-2 theatre: TH:Cr3, TH:Re9, TH:Cn11.
+Moon facts from NASA; solar energy from US Department of Energy. See notes.md and spec.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0. Code MIT. One offline file. No story storage.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f2f3f5; --ink:#1a1f26; --muted:#555d68; --line:#a7b0ba;
+  --focus:#ffcf45; --brand:#3a4a5c; --btn:#29394b; --btn-line:#8190a1;
+  --head-ink:#fff; --panel:#e9edf1; --amber:#f2b632;
+}
+body { overflow:hidden; width:100%; grid-template-rows:76px minmax(0,1fr); }
+button { min-width:60px; min-height:60px; touch-action:manipulation; }
+button:disabled { cursor:default; opacity:.5; }
+header { padding:7px 18px; gap:9px; flex-wrap:nowrap; border-bottom:3px solid #162331; }
+h1 { font-size:clamp(18px,2.2vw,29px); letter-spacing:-.04em; }
+h1 small { font-size:13px; letter-spacing:.02em; margin-top:5px; }
+.seg button, .icon-btn { min-height:60px; font-size:15px; padding:0 15px; }
+.seg { border-radius:16px; }
+.seg button[aria-pressed="true"] { background:#f2b632; color:#28200e; }
+main { display:flex; flex-direction:column; min-height:0; min-width:0; width:100%; }
+.map-strip { height:42px; flex:none; background:#1c2a39; color:#e3e9f0; display:flex;
+  align-items:center; justify-content:center; gap:0; padding:0 18px; overflow:hidden; }
+.map-node { display:flex; align-items:center; gap:6px; font-size:12px; white-space:nowrap; }
+.map-node::after { content:''; width:clamp(12px,3vw,50px); height:2px; background:#8293a6; margin:0 8px; }
+.map-node:last-child::after { display:none; }
+.map-dot { width:24px; height:24px; border:2px solid #a9b7c6; border-radius:50%; display:grid; place-items:center; }
+.map-node.choice-node .map-dot { border-radius:5px; transform:rotate(45deg); }
+.map-dot span { transform:rotate(0); }
+.choice-node .map-dot span { transform:rotate(-45deg); }
+.map-node.current .map-dot { background:#f2b632; color:#1a1f26; border-color:#ffe7ab; box-shadow:0 0 12px #f2b63266; }
+.map-node.future { opacity:.35; }
+.map-dot.old-icon { opacity:.35; }
+.choice-icon svg, .map-options svg { display:block; width:40px; height:40px; margin:auto; }
+.map-dot svg { display:block; width:15px; height:15px; }
+.map-dot span { display:grid; place-items:center; }
+.stage { flex:1; min-height:0; isolation:isolate; background:#182736; }
+.backdrop { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.scene-shade { position:absolute; inset:0; background:linear-gradient(0deg,#091421aa,transparent 45%,#06132144); }
+.crew-title { position:absolute; top:22px; left:4%; color:#fff; text-shadow:0 2px 4px #102030;
+  margin:0; font-size:clamp(18px,2.5vw,30px); }
+.crew-title small { display:block; font:500 16px 'Segoe UI',sans-serif; margin-top:3px; }
+.jobs { position:absolute; left:4%; top:85px; bottom:122px; width:62%; display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(0,1fr)); gap:18px; }
+.job { position:relative; border:2px solid #b6c6d6; border-radius:24px; padding:7px;
+  background:linear-gradient(145deg,#f7faf5ee,#d7e1e7ee); box-shadow:0 5px 0 #172b3b99, inset 0 0 0 4px #fff5;
+  font-weight:800; font-size:clamp(14px,1.7vw,22px); display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:3px; }
+.job::before { content:''; position:absolute; inset:8px; border:1px dashed #9aabb9; border-radius:17px; pointer-events:none; }
+.job img { height:calc(100% - 37px); max-height:135px; max-width:90%; object-fit:contain;
+  filter:drop-shadow(0 5px 3px #1d344d33); transition:transform .25s; }
+.job[aria-pressed="true"] { border:4px solid #f2b632; background:linear-gradient(145deg,#fff7dbf5,#e7e5d3f5); }
+.job[aria-pressed="true"] img { transform:translateY(-5px) scale(1.05) rotate(-5deg); }
+.job .check { position:absolute; top:8px; right:9px; width:26px; height:26px; display:none;
+  border-radius:50%; background:#31475a; color:#fff; font-size:19px; }
+.job[aria-pressed="true"] .check { display:block; }
+.ada { position:absolute; top:28px; right:3%; width:28%; max-width:390px; background:#fff8e6;
+  border:3px solid #b4935d; border-radius:9px 9px 17px 17px; padding:23px 20px 18px;
+  box-shadow:0 8px 0 #17212b66, inset 0 0 0 5px #f3e8cd; transform:rotate(1deg); }
+.ada::before { content:''; position:absolute; width:80px; height:16px; border:3px solid #8c98a1;
+  background:linear-gradient(#d3dce1,#7b8b98); border-radius:6px; top:-9px; left:calc(50% - 40px); }
+.ada h2 { font-size:14px; letter-spacing:.08em; text-transform:uppercase; color:#6c5737; margin:0 0 9px; }
+.ada p { margin:0; font-size:clamp(18px,2vw,27px); font-weight:650; line-height:1.35; }
+.radio { position:absolute; left:3%; bottom:18px; width:63%; min-height:88px; display:flex; gap:14px;
+  align-items:center; padding:12px 18px; background:linear-gradient(150deg,#263b4df5,#102332fa);
+  border:2px solid #8197a8; border-radius:18px; color:#fff; box-shadow:0 5px 0 #07121baa,inset 0 0 0 4px #ffffff09; }
+.speaker { width:62px; height:62px; flex:none; border:5px solid #11202d; border-radius:50%;
+  background:repeating-linear-gradient(0deg,#152938 0 3px,#4a6070 3px 5px); box-shadow:0 0 0 2px #748c9d; }
+.radio.on .speaker { box-shadow:0 0 0 3px #f2b632,0 0 22px #f2b632aa; }
+.radio-text { flex:1; min-width:0; }
+.radio-label { color:#f9cb6b; font-size:11px; font-weight:800; letter-spacing:.12em; display:flex; gap:7px; align-items:center; }
+.signal { display:inline-block; width:7px; height:7px; background:#b9c5ce; border-radius:50%; }
+.radio.on .signal { background:#ffcf55; }
+.caption { margin:5px 0 0; font-size:clamp(13px,1.5vw,19px); line-height:1.3; }
+.idle-beacon { position:absolute; left:18px; top:18px; width:8px; height:8px; border-radius:50%;
+  background:#ffc04c; box-shadow:0 0 12px #ffbf4b; animation:breathe 3s ease-in-out infinite; }
+@keyframes breathe { 50% { opacity:.35; } }
+.meters { position:absolute; top:22px; left:3%; display:flex; gap:10px; padding:10px 14px;
+  color:#fff; background:#142839ed; border:2px solid #8396a5; border-radius:16px; }
+.meter { min-width:75px; }
+.meter-label { font-size:15px; font-weight:700; }
+.dots { display:flex; gap:6px; margin-top:7px; }
+.dot { width:16px; height:16px; border-radius:50%; border:2px solid #c2cfda; background:#182937; transition:background .4s,box-shadow .4s; }
+.dot.full { background:#f2b632; border-color:#ffe4a8; box-shadow:0 0 9px #f2b63288; }
+.choices { position:absolute; left:3%; width:63%; bottom:calc(var(--radio-height,88px) + 32px);
+  display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.choice { border:3px solid #e1e9ef; border-radius:18px; padding:14px; background:linear-gradient(#f7f9f8,#dce5e9);
+  box-shadow:0 6px 0 #14283b99; font-weight:800; font-size:clamp(17px,2vw,27px); line-height:1.2; }
+.choice .choice-icon { display:block; font-size:32px; margin-bottom:7px; }
+.choice[aria-pressed="true"] { border-color:#f2b632; outline:3px solid #fff; outline-offset:2px; background:#fff2cb; }
+.choice[aria-pressed="false"].other { opacity:.78; }
+.beat-tag { position:absolute; left:3%; top:115px; background:#f3f6f0e8; border:2px solid #b3c2cb;
+  border-radius:12px; padding:8px 14px; font-weight:800; font-size:17px; z-index:1; }
+.rover { position:absolute; width:28%; max-width:430px; left:auto; right:3%; bottom:145px;
+  filter:drop-shadow(0 9px 4px #0008); }
+.rover-vehicle { display:block; width:100%; }
+.rover-cargo { position:absolute; width:27%; left:23%; top:10%; transform:rotate(-8deg); }
+.rover.late .rover-cargo { width:17%; left:28%; top:21%; }
+.rover.drive { animation:drive-in 1.4s ease-out both; }
+@keyframes drive-in { from { transform:translateX(115%); } to { transform:translateX(0); } }
+.ice { position:absolute; width:22%; max-width:270px; left:27%; top:30%; filter:drop-shadow(0 7px 7px #1119); }
+.ice.float { animation:float-ice 4s ease-in-out infinite; }
+@keyframes float-ice { 50% { transform:translateY(-13px) rotate(3deg); } }
+.night { position:absolute; inset:0; background:#020b23; opacity:0; pointer-events:none; transition:opacity .4s; }
+.night.active { opacity:.64; }
+.grow-lamps { position:absolute; inset:0; pointer-events:none; opacity:0; }
+.grow-lamps.active { opacity:1; }
+.lamp-glow { position:absolute; top:8%; width:24%; height:80%; background:radial-gradient(ellipse,#ffde8366,transparent 67%); }
+.leaf-layer { position:absolute; width:42%; height:43%; bottom:72px; left:16%; overflow:visible; }
+.leaves { transform-origin:300px 300px; transition:transform .4s; }
+.leaf-layer.droopy .leaves { display:none; }
+.wilted-leaves { display:none; }
+.leaf-layer.droopy .wilted-leaves { display:block; }
+.leaf-layer.cold-only .wilted-leaves { filter:hue-rotate(65deg) saturate(.6); }
+.chill { position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse,transparent 30%,#73baf3bb);
+  opacity:0; }
+.chill svg { width:100%; height:100%; }
+@media (min-height:641px) and (min-width:600px) {
+  .jobs { top:100px; }
+  .job { gap:15px; }
+}
+.response-object { position:absolute; left:18%; top:27%; width:28%; height:35%; overflow:visible;
+  filter:drop-shadow(0 8px 8px #0007); pointer-events:none; }
+.energy-flow { stroke-dasharray:12 14; animation:charge .6s linear infinite; }
+@keyframes charge { to { stroke-dashoffset:-52; } }
+.battery-cell { transition:fill .4s; }
+.warm-rings { animation:warmth 2s ease-out infinite; transform-origin:center; }
+@keyframes warmth { 50% { opacity:.3; } }
+.controls { flex:none; padding:9px 15px 12px; background:linear-gradient(#e4e9ed,#c5cfd7);
+  border-top:3px solid #899aa8; display:flex; gap:10px; align-items:center; box-shadow:inset 0 2px 0 #fff; }
+.controls button { border:2px solid #8d9eac; border-radius:13px; background:#f6f8f9; padding:0 17px;
+  font-size:17px; font-weight:750; box-shadow:0 3px 0 #6e7e8b; }
+.controls button.gold { background:linear-gradient(#ffd66a,#f2b632); color:#2e250f; border-color:#b48a29; }
+.controls .hint { flex:1; font-size:14px; margin:0; line-height:1.3; min-height:36px; color:#263747; }
+.controls #start { margin-left:auto; }
+.map-dialog { width:min(790px,94vw); max-height:95vh; padding:24px; color:var(--ink); background:#edf1f3;
+  border:4px solid #73869a; border-radius:24px; box-shadow:0 25px 90px #0009; }
+.map-dialog::backdrop { background:#071523b8; }
+.map-dialog h2 { margin:0 0 6px; font-size:27px; }
+.map-dialog p { margin:5px 0 18px; font-size:17px; }
+.map-options { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.map-options button { min-height:110px; border:2px solid #9aabb9; background:#fffaf0; border-radius:16px; font-size:18px; font-weight:750; }
+.map-options button span { display:block; font-size:30px; padding-bottom:7px; }
+.dialog-actions { display:flex; gap:10px; margin-top:20px; }
+.dialog-actions button { flex:1; border:2px solid #8d9eac; border-radius:12px; background:#fff; font-weight:700; }
+.calm *, .calm *::before { animation:none!important; transition:none!important; }
+@media (max-width:1050px) {
+  header { padding:6px 10px; gap:6px; }
+  h1 { font-size:20px; }
+  h1 small { display:none; }
+  .seg button,.icon-btn { padding:0 9px; font-size:13px; }
+  .controls { gap:7px; padding:7px 9px 10px; }
+  .controls button { padding:0 10px; font-size:14px; }
+  .controls .hint { font-size:12px; }
+  .jobs { gap:12px; }
+  .ada { padding:20px 13px 14px; }
+  .ada p { font-size:19px; }
+}
+@media (min-width:600px) and (max-width:900px) {
+  .map-node .node-label { display:none; }
+  .map-node.current .node-label { display:inline; }
+  .map-node::after { width:20px; margin:0 8px; }
+}
+@media (max-height:640px) and (min-width:600px) {
+  body { grid-template-rows:72px minmax(0,1fr); }
+  .map-strip { height:30px; }
+  .map-node { font-size:10px; gap:3px; }
+  .map-dot { width:18px; height:18px; }
+  .crew-title { top:9px; font-size:18px; }
+  .crew-title small { display:none; }
+  .jobs { top:39px; bottom:85px; gap:8px; }
+  .job { border-radius:14px; padding:4px; font-size:13px; }
+  .job img { height:calc(100% - 20px); max-height:90px; }
+  .job::before { inset:4px; border-radius:9px; }
+  .job .check { top:3px; right:3px; width:19px; height:19px; font-size:14px; }
+  .ada { top:15px; width:29%; padding:16px 11px 12px; right:2%; }
+  .ada h2 { font-size:10px; margin-bottom:5px; }
+  .ada p { font-size:14px; line-height:1.28; }
+  .radio { bottom:9px; left:2%; width:65%; min-height:65px; padding:7px 10px; gap:9px; }
+  .speaker { width:37px; height:37px; border-width:3px; }
+  .radio-label { font-size:10px; }
+  .caption { font-size:11px; margin-top:3px; }
+  .meters { top:10px; padding:7px 10px; gap:8px; }
+  .meter { min-width:63px; }
+  .meter-label { font-size:12px; }
+  .dots { margin-top:4px; }
+  .dot { width:12px; height:12px; }
+  .beat-tag { top:72px; font-size:13px; padding:4px 9px; }
+  .stage.choosing .beat-tag { display:none; }
+  .choices { left:2%; width:65%; bottom:calc(var(--radio-height,65px) + 18px); gap:9px; }
+  .choice { padding:7px 9px; font-size:15px; display:flex; align-items:center; justify-content:center; gap:7px; }
+  .choice .choice-icon { font-size:23px; margin:0; }
+  .choice-icon svg { width:27px; height:27px; flex:none; }
+  .rover { bottom:90px; width:26%; left:auto; right:3%; }
+  .ice { top:25%; width:18%; }
+  .leaf-layer { bottom:70px; }
+  .response-object { left:43%; top:3%; width:21%; height:31%; }
+  .controls { padding-top:5px; padding-bottom:8px; }
+  .controls .hint { display:block; position:fixed; right:2%; bottom:92px; width:29%; min-height:50px;
+    padding:7px 8px; background:#fff8e6f0; border:1px solid #b4935d; border-radius:8px;
+    color:#1a1f26; font-size:11px; line-height:1.3; z-index:3; }
+  .controls button { flex:1; padding:0 7px; font-size:13px; }
+}
+@media (max-width:599px) {
+  body { grid-template-rows:136px minmax(0,1fr); }
+  header { display:grid; grid-template-columns:1fr 1fr 1fr; grid-template-rows:60px 60px; padding:5px; gap:4px; }
+  h1 { grid-column:1; font-size:17px; letter-spacing:-.05em; }
+  .seg { grid-column:2/4; justify-self:stretch; }
+  .seg button { flex:1; font-size:14px; }
+  .icon-btn { font-size:13px; padding:0 6px; }
+  .map-strip { height:34px; padding:0 6px; }
+  .map-node { gap:0; }
+  .map-node .node-label { display:none; }
+  .map-node::after { width:13px; margin:0 4px; }
+  .map-dot { width:20px; height:20px; font-size:11px; }
+  .crew-title { top:12px; left:4%; font-size:19px; }
+  .crew-title small { display:none; }
+  .jobs { width:92%; top:48px; bottom:197px; gap:8px; }
+  .job { font-size:12px; padding:4px; border-radius:14px; }
+  .job img { height:calc(100% - 32px); max-height:75px; }
+  .job::before { inset:4px; border-radius:9px; }
+  .job .check { top:3px; right:3px; width:20px; height:20px; font-size:14px; }
+  .ada { right:4%; top:auto; bottom:calc(var(--radio-height,92px) + 23px); width:92%; padding:13px 12px 9px; transform:none; }
+  .ada::before { height:11px; top:-7px; }
+  .ada h2 { font-size:10px; margin-bottom:4px; }
+  .ada p { font-size:14px; line-height:1.3; }
+  .radio { bottom:9px; left:4%; width:92%; min-height:83px; padding:9px 10px; gap:9px; }
+  .speaker { width:32px; height:32px; border-width:3px; }
+  .radio-label { font-size:10px; }
+  .caption { font-size:12px; margin-top:4px; }
+  .meters { top:10px; left:4%; gap:12px; padding:8px 12px; }
+  .meter { min-width:65px; }
+  .meter-label { font-size:12px; }
+  .dot { width:12px; height:12px; }
+  .beat-tag { top:78px; left:4%; font-size:13px; padding:5px 9px; }
+  .choices { left:4%; width:92%; bottom:calc(var(--radio-height,92px) + var(--card-height,92px) + 45px); gap:9px; }
+  .choice { padding:7px 8px; font-size:15px; min-height:76px; }
+  .choice .choice-icon { font-size:23px; margin-bottom:3px; }
+  .choice-icon svg { width:27px; height:27px; }
+  .ada.revising p { font-size:12px; }
+  .controls { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); padding:6px 8px 9px; gap:6px; }
+  .controls button { padding:0 4px; font-size:12px; }
+  .controls .hint { display:flex; align-items:center; grid-column:3; grid-row:2;
+    min-height:60px; font-size:11px; line-height:1.2; color:#263747; }
+  .controls.crew-controls { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .controls.crew-controls .hint { grid-column:1; grid-row:1; }
+  .rover { left:auto; right:5%; width:40%; top:75px; bottom:auto; }
+  .ice { width:30%; left:20%; top:25%; }
+  .leaf-layer { bottom:calc(var(--radio-height,92px) + var(--card-height,92px) + 34px); width:84%; left:8%; height:36%; }
+  .response-object { left:44%; top:82px; width:48%; height:76px; }
+  .map-dialog { padding:17px; }
+  .map-dialog h2 { font-size:22px; }
+  .map-options { gap:6px; }
+  .map-options button { font-size:14px; }
+}
+@media (min-width:600px) and (max-width:800px) and (max-height:640px) {
+  .rover { top:82px; bottom:auto; width:22.5%; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Moon Base Drama<small>Commander Ada needs a crew</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-crew" aria-pressed="true">✦ Crew</button>
+    <button id="m-mission" aria-pressed="false">🚀 Mission</button>
+  </div>
+  <button class="icon-btn" id="read">🔊 Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<main>
+  <div class="map-strip" id="map-strip" role="list" aria-label="Your story path" hidden></div>
+  <div class="stage" id="stage">
+    <img class="backdrop" id="backdrop" alt="">
+    <div class="scene-shade"></div>
+    <div class="night" id="night"></div>
+    <div class="chill" id="chill" aria-hidden="true">
+      <svg viewBox="0 0 1200 600" preserveAspectRatio="none">
+        <g fill="none" stroke="#d8f3ff" stroke-width="3" opacity=".8">
+          <path d="M0 430L140 290M45 385L12 320M45 385L110 418M88 342L60 280M88 342L150 367
+            M1200 430L1060 290M1155 385L1188 320M1155 385L1090 418M1112 342L1140 280M1112 342L1050 367
+            M0 110L160 110M60 110L95 70M60 110L95 150M1200 110L1040 110M1140 110L1105 70M1140 110L1105 150"/>
+          <path d="M300 0L300 90M300 45L265 20M300 45L335 20M900 0L900 90M900 45L865 20M900 45L935 20"/>
+        </g>
+      </svg>
+    </div>
+    <div class="grow-lamps" id="grow-lamps" aria-hidden="true">
+      <svg viewBox="0 0 1280 801" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+        <defs>
+          <radialGradient id="lamp-light"><stop stop-color="#ffe4a8" stop-opacity=".6"/>
+            <stop offset="1" stop-color="#f2b632" stop-opacity="0"/></radialGradient>
+        </defs>
+        <g class="lamp-beam"><ellipse cx="580" cy="370" rx="210" ry="340" fill="url(#lamp-light)"/>
+          <ellipse cx="580" cy="184" rx="107" ry="14" fill="#ffe6a0"/></g>
+        <g class="lamp-beam"><ellipse cx="110" cy="410" rx="190" ry="340" fill="url(#lamp-light)"/>
+          <ellipse cx="110" cy="218" rx="87" ry="10" fill="#ffe6a0"/></g>
+        <g class="lamp-beam"><ellipse cx="1210" cy="430" rx="190" ry="340" fill="url(#lamp-light)"/>
+          <ellipse cx="1210" cy="229" rx="83" ry="10" fill="#ffe6a0"/></g>
+        <ellipse class="lamp-dark" cx="110" cy="218" rx="88" ry="12" fill="#172333"/>
+        <ellipse class="lamp-dark" cx="1210" cy="229" rx="84" ry="12" fill="#172333"/>
+      </svg>
+    </div>
+    <div class="idle-beacon" aria-hidden="true"></div>
+    <h2 class="crew-title" id="crew-title">Welcome to Moon Base Luna<small>Choose a job. Mime your prop.</small></h2>
+    <div class="jobs" id="jobs" aria-label="Crew jobs"></div>
+    <div class="meters" id="meters" aria-label="Greenhouse meters" hidden></div>
+    <div class="beat-tag" id="beat-tag" hidden></div>
+    <div class="rover" id="rover" hidden>
+      <img class="rover-vehicle" id="rover-vehicle" alt="A six-wheeled lunar rover">
+      <img class="rover-cargo" id="rover-cargo" alt="Collected ice in the rover's bed" hidden>
+    </div>
+    <img class="ice" id="ice" alt="A block of lunar ice" hidden>
+    <svg class="response-object" id="response-object" viewBox="0 0 300 160" aria-hidden="true" hidden>
+      <defs>
+        <linearGradient id="metal" x2="0" y2="1"><stop stop-color="#d6e3e6"/>
+          <stop offset=".5" stop-color="#8299a8"/><stop offset="1" stop-color="#3b5365"/></linearGradient>
+      </defs>
+      <g id="battery-picture" hidden>
+        <path d="M30 65H75" stroke="#f2b632" stroke-width="9" class="energy-flow" id="charge-path"/>
+        <rect x="77" y="26" width="191" height="107" rx="17" fill="url(#metal)" stroke="#e9f1f5" stroke-width="5"/>
+        <rect x="269" y="59" width="17" height="40" rx="4" fill="#d1dce2"/>
+        <rect x="89" y="39" width="166" height="80" rx="9" fill="#1b2c3a"/>
+        <g stroke="#d8e4e9" stroke-width="2">
+          <rect class="battery-cell" x="100" y="49" width="40" height="60" rx="4"/>
+          <rect class="battery-cell" x="151" y="49" width="40" height="60" rx="4"/>
+          <rect class="battery-cell" x="202" y="49" width="40" height="60" rx="4"/>
+        </g>
+        <path d="M38 12L21 39H40L29 61L62 30H43L55 12Z" fill="#ffe3a1"/>
+      </g>
+      <g id="warm-picture" hidden>
+        <path d="M63 125V75A87 66 0 0 1 237 75V125Z" fill="#314f61" stroke="#dce9ec" stroke-width="5"/>
+        <path d="M64 93Q145 49 237 93V125H63Z" fill="#e4b85a" stroke="#fff0c5" stroke-width="4"/>
+        <path d="M73 96L93 122M106 82L137 125M149 79L177 125M191 83L218 125" stroke="#9b7438" stroke-width="4"/>
+        <g class="warm-rings" fill="none" stroke="#ffda78" stroke-width="5" stroke-linecap="round">
+          <path d="M113 61Q95 46 111 30M150 56Q133 40 150 20M185 61Q168 46 183 30"/>
+        </g>
+      </g>
+      <g id="air-picture" hidden fill="none" stroke="#bcd9f2" stroke-width="7" stroke-linecap="round">
+        <path d="M40 50H211L194 34M211 50L194 67M65 92H249L230 75M249 92L230 109"/>
+        <circle cx="150" cy="80" r="68" stroke="#f2b632" stroke-width="8"/>
+        <path d="M104 126L197 33" stroke="#f2b632" stroke-width="9"/>
+      </g>
+    </svg>
+    <svg class="leaf-layer" id="leaf-layer" viewBox="0 0 600 400" aria-hidden="true" hidden>
+      <defs>
+        <clipPath id="leaf-clip"><rect width="600" height="300"/></clipPath>
+        <clipPath id="tray-clip"><rect y="300" width="600" height="100"/></clipPath>
+        <linearGradient id="wilt-leaf" x2="1" y2="1">
+          <stop stop-color="#b8ad46"/><stop offset=".5" stop-color="#d4b659"/><stop offset="1" stop-color="#786f31"/>
+        </linearGradient>
+        <g id="hanging-plant">
+          <path d="M0 305Q-8 245 7 173Q18 131 46 155L60 193" fill="none" stroke="#766d35" stroke-width="7"/>
+          <g fill="url(#wilt-leaf)" stroke="#766d35" stroke-width="2">
+            <path d="M10 180Q-69 151 -52 231Q-20 257 10 180Z"/>
+            <path d="M17 215Q86 191 70 276Q30 287 17 215Z"/>
+            <path d="M1 255Q-56 226 -44 296Q-15 315 1 255Z"/>
+            <path d="M46 155Q98 157 70 221Q43 215 46 155Z"/>
+          </g>
+          <path d="M10 180L-48 226M17 215L66 269M1 255L-40 291M46 155L68 211"
+            fill="none" stroke="#e8ce7a" stroke-width="2"/>
+          <ellipse cx="30" cy="281" rx="13" ry="16" fill="#bc6e3f"/>
+          <path d="M25 265L30 259L36 266" fill="none" stroke="#77773b" stroke-width="3"/>
+        </g>
+      </defs>
+      <g class="leaves"><image id="painted-leaves" width="600" height="400" clip-path="url(#leaf-clip)" preserveAspectRatio="none"/></g>
+      <g class="wilted-leaves">
+        <use href="#hanging-plant" x="118"/><use href="#hanging-plant" x="285" transform="translate(570 0) scale(-1 1)"/>
+        <use href="#hanging-plant" x="450"/>
+      </g>
+      <image id="painted-tray" width="600" height="400" clip-path="url(#tray-clip)" preserveAspectRatio="none"/>
+    </svg>
+    <div class="choices" id="choices" hidden>
+      <button class="choice" id="choice-a" aria-pressed="false"><span class="choice-icon" aria-hidden="true"></span><span class="choice-word"></span></button>
+      <button class="choice" id="choice-b" aria-pressed="false"><span class="choice-icon" aria-hidden="true"></span><span class="choice-word"></span></button>
+    </div>
+    <aside class="ada" id="ada">
+      <h2>📋 Ada's card · say in role</h2>
+      <p id="ada-line"></p>
+    </aside>
+    <div class="radio" id="radio" role="status" aria-live="polite">
+      <div class="speaker" aria-hidden="true"></div>
+      <div class="radio-text"><div class="radio-label"><i class="signal"></i>MISSION CONTROL</div><p class="caption" id="caption"></p></div>
+    </div>
+  </div>
+  <nav class="controls crew-controls" id="controls" aria-label="Mission controls">
+    <p class="hint" id="hint">Tap a job badge. Show the crew your prop.</p>
+    <button id="back" hidden>◀ Back</button>
+    <button id="again" hidden>◉ Radio again</button>
+    <button id="card" aria-pressed="true">📋 Ada's card</button>
+    <button id="rewind" hidden>↶ Rewind</button>
+    <button class="gold" id="next" hidden>▶ Next</button>
+    <button class="gold" id="start" disabled>🚀 Start mission</button>
+  </nav>
+</main>
+<dialog class="map-dialog" id="map-dialog" aria-labelledby="map-title">
+  <h2 id="map-title">↶ Change our story</h2>
+  <p id="map-instruction">Tap a past choice. Say a different line and watch what changes.</p>
+  <div class="map-options" id="map-options"></div>
+  <div class="dialog-actions">
+    <button id="map-read">🔊 Read map</button>
+    <button id="close-map">↩ Back to the story</button>
+    <button id="new-mission">🚀 New mission</button>
+  </div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const show = (id,visible) => $(id).toggleAttribute('hidden',!visible);
+  const ART = {
+    base:'art:base', greenhouse:'art:greenhouse', solar:'art:surface-solar', crater:'art:ice-crater', airlock:'art:airlock',
+    rover:'art:rover', ice:'art:ice-block', can:'art:watering-can', wrench:'art:wrench', key:'art:rover-key',
+    medic:'art:first-aid', scientist:'art:science-kit', radio:'art:headset', planter:'art:greenhouse-planter'
+  };
+  const JOBS = [
+    ['Plant Keeper','can','Plant Keeper, you water the greenhouse plants. Show me your watering can.'],
+    ['Engineer','wrench','Engineer, you fix the machines. Show me your wrench.'],
+    ['Rover Driver','key','Rover Driver, you drive the moon buggy. Turn the key and steer!'],
+    ['Medic','medic','Medic, you keep the crew healthy. Open your first aid kit.'],
+    ['Scientist','scientist','Scientist, you study moon rocks and ice. Hold up your magnifier.'],
+    ['Radio Operator','radio','Radio Operator, you talk to Earth. Put on your headset.']
+  ];
+  // One drawing per meaning, shared by the buttons and both story maps.
+  const ICONS = {
+    battery:'<circle cx="12" cy="12" r="6" fill="#f2b632"/><path d="M12 2V0M2 12H0M4 4L2 2M20 4L22 2"/>' +
+      '<rect x="13" y="23" width="29" height="20" rx="3" fill="#76959d"/><path d="M21 23V20H34V23"/>' +
+      '<path d="M19 28V38M26 28V38M33 28V38" stroke="#ffe69a" stroke-width="4"/>',
+    moon:'<path d="M33 5C12 1 2 24 16 38C25 47 39 41 43 31C20 39 16 14 33 5Z" fill="#b7c8d9"/>',
+    ice:'<path d="M6 12L26 4L43 14V36L22 44L6 33Z" fill="#7ed1ed"/><path d="M6 12L22 23L43 14M22 23V44"/>' +
+      '<path d="M13 16L17 19M29 28L36 25M12 27L17 31" stroke="#f0fcff"/>',
+    wave:'<path d="M3 17Q9 8 15 17T27 17T39 17M3 28Q9 19 15 28T27 28T39 28M3 39Q9 30 15 39T27 39T39 39" ' +
+      'fill="none" stroke="#227d9f" stroke-width="4"/>',
+    blanket:'<path d="M5 13L33 5L43 32L15 43L5 36Z" fill="#db9a55"/><path d="M5 13L15 35L43 25M15 35V43"/>' +
+      '<path d="M13 14L20 29M22 11L29 26M31 9L36 22M9 23L37 14" stroke="#ffe1a1"/>',
+    door:'<path d="M7 43V5H39V43" fill="#94a7b8"/><path d="M12 9L32 15V43H12Z" fill="#e5edf2"/>' +
+      '<circle cx="27" cy="30" r="2" fill="#f2b632"/><path d="M2 43H46"/>'
+  };
+  function icon(key) {
+    return '<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" ' +
+      'stroke="#263b4d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' + ICONS[key] + '</svg>';
+  }
+  const BEATS = [
+    null,
+    {name:'Long night', art:'base', icon:'☾',
+      radio:'Moon Base Luna, this is Mission Control. On the Moon, daylight lasts about two weeks, ' +
+        'and the night lasts about two weeks too. The long night begins soon.',
+      ada:'Crew! When the Sun goes down, our greenhouse gets no sunlight for two whole weeks. What do our plants need?'},
+    {name:'Greenhouse', art:'greenhouse', icon:'🌱',
+      radio:'Your plants need light, water, warmth and air. Right now, every meter is low.',
+      ada:'We have three jobs before dark. Ready, crew?'},
+    {name:'Batteries', art:'solar', icon:'⚡', choice:0,
+      radio:'Our solar panels make power only while the Sun shines.', ada:'How do we keep the plant lamps on all night?',
+      choices:[['battery','Fill the batteries now!',
+        'Good thinking. The Sun is shining now, so the panels can fill the batteries.',2],
+      ['moon','Wait until dark','Mission Control here. Remember: no Sun at night means no solar power. Your batteries are low.',0]]},
+    {name:'Water', art:'crater', icon:'💧', choice:1,
+      radio:'Your water tank is low. Scientists found ice hiding in dark craters near the Moon\'s south pole.', ada:'Where can we get water?',
+      choices:[['ice','Ice in the dark crater','Great. Rover Driver, steer to the crater. Scientist, find the ice!',2],
+      ['wave','A river','Mission Control here. Our maps show no rivers on the Moon. We found ice in the dark crater late, so our tank is still low.',1]]},
+    {name:'Lift the ice', art:'crater', icon:'🧊',
+      radio:'The ice block is heavy. But on the Moon, things weigh only about one sixth as much as on Earth.',
+      ada:'Who can carry it? Show me how you lift it on the Moon!'},
+    {name:'Warmth', art:'airlock', icon:'☀', choice:2,
+      radio:'Moon nights are colder than a home freezer, and there is no air to breathe outside the base.', ada:'How do we keep the plants warm?',
+      choices:[['blanket','Wrap the greenhouse in a blanket','Yes! A thick blanket keeps the warmth in.',2],
+      ['door','Open the doors for air','Careful! There is no air outside. Opening the doors would let our air out. Engineer, shut them fast!',0]]},
+    {name:'Brush off', art:'airlock', icon:'✧',
+      radio:'Moon dust is sharp and sticky. Brush off your suits before you go inside.',
+      ada:'Medic, check the crew. Everyone, brush off the dust!'},
+    {name:'Night arrives', art:'greenhouse', icon:'☾', ada:'Crew, which choice made the biggest difference? Tell me why.'}
+  ];
+  const L = {
+    welcome:'Mission Control to Moon Base Luna. Teacher, you are Commander Ada. Tap a job badge for each crew member.',
+    premise:'Mission Control to Moon Base Luna. Teacher, you are Commander Ada. The class is your moon base crew.',
+    crewHint:'Tap a job badge. Show the crew your prop.',
+    ready:'When the crew is ready, tap Start mission.',
+    choose:'Commander, read your card. When the crew answers, tap their choice.',
+    next:'When the crew is done, tap Next.',
+    old:'The old story fades. Tap a choice to make a new one.',
+    map:'Tap a past choice in the story map to rewind.',
+    mapEmpty:'No past choice is ready to rewind. Tap Back to the story.',
+    reflect:'Tell Ada which choice helped. Tap New mission, or Rewind to try another way.',
+    locked:'Tap Rewind to try a different crew line.',
+    endFull:'Mission Control to Moon Base Luna. The long night is here, and your greenhouse is glowing. Great work, crew!',
+    endTwo:'The long night is here. The greenhouse is OK, but one part is low. Can you rewind and fix it?',
+    endLow:'The long night is here, and the plants are droopy. Rewind and make a different choice!',
+    rewind3:'Rewinding to the batteries. What will you say this time?',
+    rewind4:'Rewinding to the water. What will you say this time?',
+    rewind6:'Rewinding to the warmth. What will you say this time?'
+  };
+  JOBS.forEach((j,i) => L['job' + i] = j[2]);
+  BEATS.forEach((b,i) => {
+    if (!b) return;
+    if (b.radio) L['beat' + i] = b.radio;
+    if (b.choices) {
+      b.choices.forEach((c,j) => L['result' + i + j] = c[2]);
+      [0,1].forEach(order => {
+        const words = [0,1].map(j => b.choices[j ^ order][1].replace(/[!.]$/,''));
+        L['options' + i + order] = 'Crew, you could say: ' + words[0] + '. Or: ' + words[1] + '.';
+        L['choiceBeat' + i + order] = b.radio + ' ' + L['options' + i + order];
+      });
+    }
+  });
+  L.missionIntro = L.premise + ' ' + L.beat1;
+  L.readCrewEmpty = L.welcome + ' ' + L.crewHint;
+  L.readCrewReady = L.premise + ' ' + L.ready;
+  [3,4,6].forEach(beat => [0,1].forEach(order => {
+    L['rewindChoice' + beat + order] = L['rewind' + beat] + ' ' + L['choiceBeat' + beat + order];
+  }));
+  // Put a step's first instruction inside its transmission, ahead of the story line.
+  // A fast Next or choice can cut a long message, but cannot strand a separate how-to behind it.
+  const guided = {};
+  function guide(howKey,eventKey,after=false) {
+    const key = howKey + '_' + eventKey;
+    L[key] = after ? L[eventKey] + ' ' + L[howKey] : L[howKey] + ' ' + L[eventKey];
+    guided[key] = howKey;
+    return key;
+  }
+  JOBS.forEach((_,i) => guide('ready','job' + i));
+  BEATS.forEach((b,i) => {
+    if (!b || i < 2 || i === 8) return;
+    guide(b.choices ? 'choose' : 'next','beat' + i);
+    if (b.choices) {
+      [0,1].forEach(order => guide('choose','choiceBeat' + i + order));
+      [0,1].forEach(order => guide('old','rewindChoice' + i + order));
+      b.choices.forEach((_,j) => guide('next','result' + i + j));
+      guide('old','rewind' + i);
+    }
+  });
+  ['endFull','endTwo','endLow'].forEach(key => guide('reflect',key,true));
+  const heardHow = key => V.heard(key) || Object.keys(guided).some(k => guided[k] === key && V.heard(k));
+  const choiceOrder = () => Object.fromEntries([3,4,6].map(beat => [beat,Math.random() < .5 ? 0 : 1]));
+  const state = {mode:'crew', beat:1, jobs:[], choices:{}, oldChoices:{}, order:choiceOrder(),
+    visited:1, card:true, caption:L.welcome, map:false, revisionPrompt:false, rewoundBeat:null};
+  let revision = 0;
+  let noise = null;
+  let activeRead = null;
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode + ':' + state.beat,
+    welcome:() => V.heard('welcome') || V.heard('premise') || V.heard('missionIntro') ? null :
+      state.jobs.length ? 'premise' : ['welcome', {valid:() => !state.jobs.length}],
+    speaks:'.job, #start, #next, #back, .choice, .map-options button',
+    hint:false, read:readText
+  });
+  function meterValues() {
+    const values = [1,1,1];
+    [3,4,6].forEach((b,i) => {
+      if (b <= state.beat && state.choices[b] !== undefined) values[i] += BEATS[b].choices[state.choices[b]][3];
+    });
+    return values;
+  }
+  function endingKey() {
+    const full = meterValues().filter(n => n === 3).length;
+    return full === 3 ? 'endFull' : full === 2 ? 'endTwo' : 'endLow';
+  }
+  function missionLine() {
+    if (state.beat === 8) return L[endingKey()];
+    const selected = state.choices[state.beat];
+    return selected === undefined ? L[beatKey()] : BEATS[state.beat].choices[selected][2];
+  }
+  function beatKey() {
+    return BEATS[state.beat].choices && state.choices[state.beat] === undefined ?
+      'choiceBeat' + state.beat + state.order[state.beat] : 'beat' + state.beat;
+  }
+  function readText() {
+    if (state.map) return hintText();
+    if (state.mode === 'mission') return missionLine();
+    return state.jobs.length ? L.readCrewReady : L.readCrewEmpty;
+  }
+  function stop() {
+    revision++;
+    activeRead = null;
+    V.hush();
+    if (noise) {
+      try { noise.stop(); } catch {}
+      noise = null;
+    }
+    $('radio').classList.remove('on');
+  }
+  function crackle() {
+    if (!Curio.sound || !V.tapped) return;
+    const ctx = Curio.audio();
+    if (!ctx) return;
+    const length = Math.floor(ctx.sampleRate * .2);
+    const buffer = ctx.createBuffer(1,length,ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i=0; i<length; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / length);
+    const source = ctx.createBufferSource();
+    const filter = ctx.createBiquadFilter();
+    const gain = ctx.createGain();
+    filter.type = 'bandpass';
+    filter.frequency.value = 1800;
+    filter.Q.value = .7;
+    gain.gain.value = .035;
+    source.buffer = buffer;
+    source.connect(filter).connect(gain).connect(ctx.destination);
+    source.start();
+    noise = source;
+  }
+  function speak(key,howKey) {
+    if (howKey && !heardHow(howKey)) key = howKey + '_' + key;
+    state.caption = L[key] || key;
+    $('caption').textContent = state.caption;
+    crackle();
+    const rev = revision;
+    V.say(key,{valid:() => rev === revision});
+  }
+  function hintText() {
+    if (state.map) return [3,4,6].some(canRewind) ? L.map : L.mapEmpty;
+    if (state.mode === 'crew') return state.jobs.length ? L.ready : L.crewHint;
+    if (state.beat === 8) return L.reflect;
+    if (state.revisionPrompt) return L.locked;
+    const b = BEATS[state.beat];
+    return b.choices && state.choices[state.beat] === undefined ? L.choose : L.next;
+  }
+  function instructionKey() {
+    if (state.mode === 'crew') return state.jobs.length ? 'ready' : null;
+    if (state.beat === 8) return 'reflect';
+    if (state.beat === 1) return null;
+    return BEATS[state.beat].choices && state.choices[state.beat] === undefined ? 'choose' : 'next';
+  }
+  function how() {
+    $('hint').textContent = hintText();
+    const rev = revision;
+    const valid = () => rev === revision;
+    const pending = key => V.queue.some(item => guided[item.key] === key);
+    if (state.mode === 'crew' && state.jobs.length) {
+      if (!heardHow('ready') && !pending('ready')) V.how('ready',{valid,needs:'#start'});
+    } else if (state.mode === 'mission' && state.beat > 1 && state.beat < 8) {
+      const choosing = BEATS[state.beat].choices && state.choices[state.beat] === undefined;
+      const key = choosing ? 'choose' : 'next';
+      if (!heardHow(key) && !pending(key)) V.how(key,{valid,needs:choosing ? '#choice-a' : '#next'});
+    }
+  }
+  JOBS.forEach((j,i) => {
+    const button = document.createElement('button');
+    button.className = 'job';
+    button.id = 'job-' + i;
+    button.setAttribute('aria-pressed','false');
+    button.innerHTML = '<img alt=""><span class="job-word"></span><span class="check" aria-hidden="true">✓</span>';
+    button.querySelector('img').src = ART[j[1]];
+    button.querySelector('.job-word').textContent = j[0];
+    button.onclick = () => {
+      stop();
+      if (!state.jobs.includes(i)) state.jobs.push(i);
+      render();
+      Curio.tone(480 + i * 60,.09,.04);
+      speak('job' + i,'ready');
+      how();
+    };
+    $('jobs').append(button);
+  });
+  const mapNodes = BEATS.slice(1).map((b,i) => {
+    const node = document.createElement('div');
+    node.className = 'map-node' + (b.choices ? ' choice-node' : '');
+    node.setAttribute('role','listitem');
+    node.innerHTML = '<span class="map-dot" aria-hidden="true"><span></span></span><span class="node-label"></span>';
+    node.querySelector('.node-label').textContent = b.name;
+    $('map-strip').append(node);
+    return node;
+  });
+  const meterEls = ['💡 Light','💧 Water','☀ Warm'].map(label => {
+    const meter = document.createElement('div');
+    meter.className = 'meter';
+    meter.innerHTML = '<div class="meter-label"></div><div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>';
+    meter.querySelector('.meter-label').textContent = label;
+    $('meters').append(meter);
+    return meter;
+  });
+  const rewindButtons = [3,4,6].map(b => {
+    const button = document.createElement('button');
+    button.id = 'rewind-' + b;
+    button.innerHTML = '<span aria-hidden="true"></span>' + BEATS[b].name;
+    button.onclick = () => {
+      closeMap(false);
+      goBeat(b,true);
+    };
+    $('map-options').append(button);
+    return button;
+  });
+  $('rover-vehicle').src = ART.rover;
+  $('rover-cargo').src = ART.ice;
+  $('ice').src = ART.ice;
+  $('painted-leaves').setAttribute('href',ART.planter);
+  $('painted-tray').setAttribute('href',ART.planter);
+  const REACTIONS = {
+    3:['Good plan, Engineer! Store that sunshine.','Hmm. Should we rewind and try again?'],
+    4:['Great work, Rover Driver! Bring it home.','Our tank is still low. Shall we rewind and find more ice?'],
+    6:['That keeps our warmth in. Well done, crew!','Engineer, shut those doors! Shall we rewind?']
+  };
+  function canRewind(beat) {
+    return beat <= state.visited && (beat < state.beat || state.choices[beat] !== undefined);
+  }
+  function render() {
+    const crew = state.mode === 'crew';
+    const b = BEATS[state.beat];
+    const choice = state.choices[state.beat];
+    const choosing = !crew && b.choices;
+    $('stage').classList.toggle('choosing',Boolean(choosing));
+    const values = meterValues();
+    $('backdrop').src = ART[crew ? 'base' : b.art];
+    $('jobs').hidden = !crew;
+    $('crew-title').hidden = !crew;
+    $('meters').hidden = crew || state.beat === 1;
+    $('beat-tag').hidden = crew;
+    $('beat-tag').textContent = state.beat + ' / 8 · ' + b.name;
+    $('map-strip').hidden = crew;
+    $('controls').classList.toggle('crew-controls',crew);
+    ['back','again','rewind','next'].forEach(id => $(id).hidden = crew);
+    $('start').hidden = !crew;
+    $('start').disabled = !state.jobs.length;
+    $('next').disabled = Boolean(choosing && choice === undefined);
+    $('next').textContent = state.beat === 8 ? '🚀 New mission' : '▶ Next';
+    $('ada').hidden = !state.card;
+    $('card').setAttribute('aria-pressed',String(state.card));
+    let cardLine = crew ? 'Welcome to Moon Base Luna, crew! Tell me your job. Show me what you brought.' :
+      choice !== undefined ? REACTIONS[state.beat][choice] : b.ada;
+    const revising = !crew && state.rewoundBeat === state.beat && choice === undefined;
+    if (revising) cardLine += ' Say the new line in your own words. What will you tell me?';
+    $('ada').classList.toggle('revising',revising);
+    $('ada-line').textContent = cardLine;
+    JOBS.forEach((_,i) => $('job-' + i).setAttribute('aria-pressed',String(state.jobs.includes(i))));
+    ['crew','mission'].forEach(m => $('m-' + m).setAttribute('aria-pressed',String(state.mode === m)));
+    $('choices').hidden = !choosing;
+    if (choosing) [0,1].forEach(i => {
+      const button = $(i ? 'choice-b' : 'choice-a');
+      const value = i ^ state.order[state.beat];
+      button.dataset.choice = value;
+      button.querySelector('.choice-icon').innerHTML = icon(b.choices[value][0]);
+      button.querySelector('.choice-word').textContent = b.choices[value][1];
+      button.setAttribute('aria-pressed',String(choice === value));
+      button.classList.toggle('other',choice !== undefined && choice !== value);
+    });
+    meterEls.forEach((el,i) => {
+      el.setAttribute('aria-label',['Light','Water','Warm'][i] + ': ' + values[i] + ' of 3');
+      el.querySelectorAll('.dot').forEach((dot,j) => dot.classList.toggle('full',j < values[i]));
+    });
+    mapNodes.forEach((node,i) => {
+      const n = i + 1;
+      node.classList.toggle('current',n === state.beat);
+      node.classList.toggle('future',n > state.beat);
+      const chosen = state.choices[n] ?? state.oldChoices[n];
+      node.querySelector('.map-dot').classList.toggle('old-icon',state.choices[n] === undefined && chosen !== undefined);
+      node.querySelector('.map-dot span').innerHTML = chosen === undefined ? String(n) : icon(BEATS[n].choices[chosen][0]);
+      const status = n > state.beat ? 'future or old story' :
+        chosen !== undefined && state.choices[n] === undefined ? 'old choice, choose again' :
+        n === state.beat ? 'current' : 'visited';
+      node.setAttribute('aria-label',BEATS[n].name +
+        (chosen === undefined ? '' : ': ' + BEATS[n].choices[chosen][1]) + ', ' + status);
+    });
+    rewindButtons.forEach((button,i) => {
+      const n = [3,4,6][i];
+      button.disabled = !canRewind(n);
+      const chosen = state.choices[n] ?? state.oldChoices[n];
+      button.querySelector('span').innerHTML = chosen === undefined ? String(n) : icon(BEATS[n].choices[chosen][0]);
+      button.setAttribute('aria-label','Rewind to ' + BEATS[n].name +
+        (chosen === undefined ? '' : ': ' + BEATS[n].choices[chosen][1]));
+    });
+    $('map-instruction').textContent = [3,4,6].some(canRewind) ?
+      'Tap a past choice. Say a different line and watch what changes.' : L.mapEmpty;
+    const night = !crew && state.beat === 8;
+    $('night').classList.toggle('active',night);
+    $('night').style.opacity = night ? String(.28 + (3 - values[0]) * .21) : '0';
+    $('backdrop').style.filter = night ?
+      'brightness(' + (.9 - (3 - values[0]) * .17) + ') saturate(' +
+      ((.25 + values[0] * .2) * (values[1] < 3 ? .22 : 1)) + ')' +
+      (values[1] < 3 ? ' sepia(.45)' : '') : '';
+    $('chill').style.opacity = night && values[2] < 3 ? '.8' : '0';
+    $('grow-lamps').classList.toggle('active',night);
+    document.querySelectorAll('.lamp-beam').forEach((el,i) => el.toggleAttribute('hidden',i >= values[0]));
+    document.querySelectorAll('.lamp-dark').forEach((el,i) => el.toggleAttribute('hidden',i + 1 < values[0]));
+    show('leaf-layer',night);
+    $('leaf-layer').classList.toggle('droopy',values[1] < 3 || values[2] < 3);
+    $('leaf-layer').classList.toggle('cold-only',values[1] === 3 && values[2] < 3);
+    $('leaf-layer').style.filter = night ?
+      'brightness(' + (.65 + values[0] * .13) + ') saturate(' + (.25 + values[0] * .2) + ')' : '';
+    $('rover').hidden = crew || state.beat !== 4;
+    $('rover-cargo').hidden = crew || state.beat !== 4 || choice === undefined;
+    $('rover').classList.toggle('late',state.beat === 4 && choice === 1);
+    $('ice').hidden = crew || state.beat !== 5;
+    $('ice').classList.toggle('float',!crew && state.beat === 5);
+    const response = !crew && choice !== undefined && [3,6].includes(state.beat);
+    show('response-object',response);
+    show('battery-picture',state.beat === 3);
+    show('warm-picture',state.beat === 6 && choice === 0);
+    show('air-picture',state.beat === 6 && choice === 1);
+    show('charge-path',choice === 0);
+    document.querySelectorAll('.battery-cell').forEach((el,i) => el.setAttribute('fill',i < values[0] ? '#f2b632' : '#273b4a'));
+    $('caption').textContent = state.caption;
+    $('hint').textContent = hintText();
+  }
+  function setMode(mode) {
+    if (mode === 'mission' && !state.jobs.length) {
+      stop();
+      $('hint').textContent = L.crewHint;
+      V.how('crewHint',{needs:'#job-0'});
+      $('job-0').focus({preventScroll:true});
+      return;
+    }
+    const fromStart = document.activeElement === $('start');
+    const fromMissionBar = ['back','again','rewind','next'].some(id => document.activeElement === $(id));
+    stop();
+    state.revisionPrompt = false;
+    state.mode = mode;
+    state.caption = mode === 'crew' ? (state.jobs.length ? L.premise : L.welcome) : missionLine();
+    render();
+    if (fromStart && mode === 'mission') $('next').focus({preventScroll:true});
+    if (fromMissionBar && mode === 'crew') $('m-crew').focus({preventScroll:true});
+    if (mode === 'crew') V.welcome();
+    else speak(state.beat === 8 ? endingKey() : state.beat === 1 &&
+      !V.heard('welcome') && !V.heard('premise') && !V.heard('missionIntro') ? 'missionIntro' :
+      state.choices[state.beat] === undefined ? beatKey() :
+      'result' + state.beat + state.choices[state.beat],instructionKey());
+    how();
+  }
+  function invalidateFrom(beat) {
+    state.visited = beat;
+    Object.keys(state.choices).forEach(key => {
+      if (+key >= beat) {
+        state.oldChoices[key] = state.choices[key];
+        delete state.choices[key];
+      }
+    });
+  }
+  function goBeat(beat,rewound=false) {
+    if (rewound && !canRewind(beat)) return;
+    stop();
+    state.revisionPrompt = false;
+    const choiceFocused = $('choices').contains(document.activeElement);
+    const previous = state.beat;
+    state.rewoundBeat = rewound || beat < previous ? beat : null;
+    if (beat < previous || rewound) invalidateFrom(beat);
+    state.beat = beat;
+    state.visited = Math.max(state.visited,beat);
+    render();
+    if (choiceFocused && !BEATS[beat].choices) $('next').focus({preventScroll:true});
+    if ($('next').disabled && document.activeElement === $('next')) $('choice-a').focus({preventScroll:true});
+    if (rewound) $('choice-a').focus({preventScroll:true});
+    $('rover').classList.remove('drive');
+    speak(rewound ? 'rewindChoice' + beat + state.order[beat] : beat === 8 ? endingKey() : beatKey(),
+      rewound ? 'old' : instructionKey());
+    if (!rewound) how();
+    $('hint').textContent = hintText();
+  }
+  function choose(value) {
+    if (state.mode !== 'mission' || !BEATS[state.beat].choices) return;
+    stop();
+    const beat = state.beat;
+    if (state.choices[beat] !== undefined && state.choices[beat] !== value) {
+      state.revisionPrompt = true;
+      $('hint').textContent = L.locked;
+      V.how('locked',{needs:'#rewind'});
+      Curio.tone(230,.1,.04);
+      return;
+    }
+    state.revisionPrompt = false;
+    state.rewoundBeat = null;
+    invalidateFrom(beat);
+    state.choices[beat] = value;
+    // A new branch replaces every later choice. Ghost nodes remain until that beat is visited again.
+    Object.keys(state.oldChoices).forEach(key => { if (+key === beat) delete state.oldChoices[key]; });
+    render();
+    Curio.tone(value ? 230 : 650,.1,.04);
+    if (beat === 4) {
+      $('rover').classList.remove('drive');
+      void $('rover').offsetWidth;
+      $('rover').classList.add('drive');
+    }
+    speak('result' + beat + value,'next');
+    how();
+  }
+  function next() {
+    if (state.mode !== 'mission' || $('next').disabled) return;
+    if (state.beat === 8) newMission();
+    else goBeat(state.beat + 1);
+  }
+  function back() {
+    if (state.mode !== 'mission') return;
+    if (state.beat === 1) setMode('crew');
+    else goBeat(state.beat - 1);
+  }
+  function openMap() {
+    stop();
+    state.map = true;
+    render();
+    $('map-dialog').showModal();
+    const firstChoice = rewindButtons.find(b => !b.disabled);
+    V.how(firstChoice ? 'map' : 'mapEmpty',{needs:firstChoice ? '#' + firstChoice.id : '#close-map'});
+  }
+  function closeMap(restore=true) {
+    stop();
+    state.map = false;
+    $('map-dialog').close();
+    $('hint').textContent = hintText();
+    if (restore) $('rewind').focus({preventScroll:true});
+  }
+  function newMission() {
+    if (state.map) closeMap(false);
+    stop();
+    state.mode = 'mission';
+    state.beat = 1;
+    state.choices = {};
+    state.oldChoices = {};
+    state.order = choiceOrder();
+    state.revisionPrompt = false;
+    state.rewoundBeat = null;
+    state.visited = 1;
+    render();
+    $('next').focus({preventScroll:true});
+    speak('beat1');
+    how();
+  }
+  $('m-crew').onclick = () => setMode('crew');
+  $('m-mission').onclick = () => setMode('mission');
+  $('start').onclick = () => setMode('mission');
+  $('next').onclick = next;
+  $('back').onclick = back;
+  $('choice-a').onclick = () => choose(Number($('choice-a').dataset.choice));
+  $('choice-b').onclick = () => choose(Number($('choice-b').dataset.choice));
+  $('again').onclick = () => {
+    stop();
+    speak(state.beat === 8 ? endingKey() : state.choices[state.beat] === undefined ? beatKey() :
+      'result' + state.beat + state.choices[state.beat]);
+  };
+  $('card').onclick = () => {
+    stop();
+    state.card = !state.card;
+    render();
+    Curio.tone(420,.06,.025);
+  };
+  $('rewind').onclick = openMap;
+  $('close-map').onclick = () => closeMap();
+  $('map-read').onclick = () => V.read();
+  $('new-mission').onclick = newMission;
+  $('map-dialog').addEventListener('cancel',e => {
+    e.preventDefault();
+    closeMap();
+  });
+  document.addEventListener('keydown',e => {
+    if (state.map || e.altKey || e.ctrlKey || e.metaKey) return;
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      next();
+    }
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      back();
+    }
+    if (e.key.toLowerCase() === 'r' && state.mode === 'mission') {
+      e.preventDefault();
+      openMap();
+    }
+    if (e.key.toLowerCase() === 'a') {
+      e.preventDefault();
+      $('card').click();
+    }
+  });
+  document.addEventListener('pointerdown',e => {
+    if (e.target.closest('button')) stop();
+  },true);
+  Curio.init({clips:"voice:*",rate:.9});
+  // The kit exposes event playback, but not Read's completion. Keep this small Read adapter
+  // on kit playback so both recorded audio and browser speech clear the lamp on completion.
+  function readRadio() {
+    stop();
+    const text = readText();
+    const rev = revision;
+    activeRead = text;
+    state.caption = text;
+    V.log.push({t:Math.round(performance.now()),key:'read',kind:'read',text,as:'read'});
+    crackle();
+    Curio.say(text,true).finally(() => { if (revision === rev) activeRead = null; });
+  }
+  $('read').onclick = readRadio;
+  $('map-read').onclick = readRadio;
+  const motionClick = $('motion').onclick;
+  $('motion').onclick = () => {
+    stop();
+    motionClick();
+  };
+  // Event playback and the Read adapter both follow the kit, including recorded audio.
+  function radioState() {
+    const playing = V.playing || activeRead;
+    $('radio').classList.toggle('on',playing);
+    let caption = playing || state.caption;
+    // Compact choice screens already show the how-to in the hint and rewind request on Ada's card.
+    // Keep the complete fact and both options in the radio without repeating those two instructions there.
+    if (innerWidth >= 600 && innerHeight <= 640 && state.mode === 'mission' &&
+      BEATS[state.beat].choices && state.choices[state.beat] === undefined && !state.map &&
+      caption.includes(BEATS[state.beat].radio)) caption = missionLine();
+    if ($('caption').textContent !== caption) $('caption').textContent = caption;
+    requestAnimationFrame(radioState);
+  }
+  requestAnimationFrame(radioState);
+  const layoutPanels = () => {
+    $('stage').style.setProperty('--radio-height',$('radio').getBoundingClientRect().height + 'px');
+    $('stage').style.setProperty('--card-height',$('ada').hidden ? '0px' : $('ada').getBoundingClientRect().height + 'px');
+  };
+  const panelObserver = new ResizeObserver(layoutPanels);
+  panelObserver.observe($('radio'));
+  panelObserver.observe($('ada'));
+  window.__tool = {state,setMode,allLines:V.allLines,vlog:V.log,get vq() { return V.queue; },
+    meterValues,endingKey,goBeat,choose,next,back,newMission};
+  render();
+})();
+</script>
+</body>
+</html>

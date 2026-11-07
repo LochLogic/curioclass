@@ -1,0 +1,154 @@
+{
+  "house_style": "Warm painted children's science-book illustration, soft gouache and colored-pencil texture, rich lunar slate, cream, blue Earth and amber light. Clear shapes, detailed materials, gentle directional lighting, layered foreground, middle ground and background. No people, faces or body parts. No text, letters, numbers or logos.",
+  "assets": [
+    {
+      "name": "base",
+      "prompt": "Inside a cozy round moon base control room, a big round window showing grey lunar surface and blue Earth in black sky, consoles with blank screens, warm amber practical lamps, curved metal ribs and rivets. Leave the center open for job badges.",
+      "aspect": "16:10",
+      "width": 1280,
+      "quality": 72,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "greenhouse",
+      "prompt": "Inside a moon base greenhouse dome, rows of leafy green plants and tomatoes in trays under round grow lamps, grey lunar surface outside glass, warm soft light. Clear view of central planting trays, broad dome ribs, blank equipment.",
+      "aspect": "16:10",
+      "width": 1280,
+      "quality": 72,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "surface-solar",
+      "prompt": "Grey lunar surface with rows of blue solar panels in bright sunlight, long black shadows, small moon base dome in the distance, black sky with blue Earth. Cratered foreground, directional low sunlight, space for a game overlay.",
+      "aspect": "16:10",
+      "width": 1280,
+      "quality": 72,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "ice-crater",
+      "prompt": "Deep polar lunar crater with warm low sunlight grazing only the rim and foreground ledge. Entire floor and lower walls in permanent blue-black shadow. Three patchy rough pale blue ice deposits on the shadowed floor and lower walls, visible by dim reflected Earthlight, much darker than the sunlit rock. Sunlit rocks are ice-free. Black sky and blue Earth, empty foreground ledge for an overlaid rover. Preserve detailed layered grey lunar rock, warm gouache and colored-pencil science-book style. No people, text, letters, numbers or logos.",
+      "aspect": "16:10",
+      "width": 1280,
+      "quality": 72,
+      "drawn_by": "codex",
+      "review_redraw": "2026-11-05: shadowed polar ice; built-in image tool; one targeted revision after redraw"
+    },
+    {
+      "name": "airlock",
+      "prompt": "Moon base airlock room with two white space suits hanging visibly empty on wall hooks, a dust brush on a hook, round closed hatch door, warm side light, detailed seams, seals and blank control panels. Equipment only, no people or body parts.",
+      "aspect": "16:10",
+      "width": 1280,
+      "quality": 72,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "rover",
+      "prompt": "Small six-wheeled moon buggy with flat bed and antenna, side view facing right, chunky knobby wheels, silver chassis and amber lamps. Isolated on flat pure #00FF00 background, no cast shadow, generous clear margin.",
+      "aspect": "16:9",
+      "width": 580,
+      "quality": 78,
+      "cutout": true,
+      "key": "green",
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "ice-block",
+      "prompt": "Big rough block of clear pale blue ice, irregular faceted edges, glinting crystalline texture. Isolated on flat pure #00FF00 background, no cast shadow, generous clear margin.",
+      "aspect": "1:1",
+      "width": 320,
+      "quality": 78,
+      "cutout": true,
+      "key": "green",
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "watering-can",
+      "prompt": "Green watering can, rounded metal body, arched handle and sprinkler rose, worn paint with soft highlights. Isolated on flat pure #FF00FF background, no cast shadow, generous clear margin.",
+      "aspect": "1:1",
+      "width": 320,
+      "quality": 78,
+      "cutout": true,
+      "key": "magenta",
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "wrench",
+      "prompt": "Silver open-ended wrench, chunky simple shape, brushed metal shading, entire object visible. Isolated on flat pure #00FF00 background, no cast shadow, generous clear margin.",
+      "aspect": "1:1",
+      "width": 320,
+      "quality": 78,
+      "cutout": true,
+      "key": "green",
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "rover-key",
+      "prompt": "Chunky silver rover key on a metal ring with a round blue moon tag, engraved moon crescent without writing. Isolated on flat pure #00FF00 background, no cast shadow, generous clear margin.",
+      "aspect": "1:1",
+      "width": 320,
+      "quality": 78,
+      "cutout": true,
+      "key": "green",
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "first-aid",
+      "prompt": "White first aid kit with a simple red cross, rounded case, dark handle, clasps and gentle shading. Isolated on flat pure #00FF00 background, no cast shadow, generous clear margin.",
+      "aspect": "1:1",
+      "width": 320,
+      "quality": 78,
+      "cutout": true,
+      "key": "green",
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "science-kit",
+      "prompt": "Magnifying glass beside a small cloth rock bag with a few grey moon rocks, brass rim and blue handle. Isolated on flat pure #00FF00 background, no cast shadow, generous clear margin.",
+      "aspect": "1:1",
+      "width": 320,
+      "quality": 78,
+      "cutout": true,
+      "key": "green",
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "headset",
+      "prompt": "Pair of radio headphones with a microphone, padded slate ear cups, silver band and amber trim. Isolated on flat pure #00FF00 background, no cast shadow, generous clear margin.",
+      "aspect": "1:1",
+      "width": 320,
+      "quality": 78,
+      "cutout": true,
+      "key": "green",
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "greenhouse-planter",
+      "prompt": "A low wide metal greenhouse growing tray with four lush leafy green young plants and a few red tomatoes. Entire tray and leaves visible, straight-on slight top view. Tray occupies bottom quarter, leaves upper three quarters. Warm amber light from upper left, screws, brushed metal rim, dark soil, detailed gouache leaves. Isolated on flat pure magenta #FF00FF, no cast shadow, generous margin.",
+      "aspect": "16:10",
+      "width": 650,
+      "quality": 76,
+      "cutout": true,
+      "key": "magenta",
+      "holes": true,
+      "despill": true,
+      "drawn_by": "codex"
+    }
+  ]
+}

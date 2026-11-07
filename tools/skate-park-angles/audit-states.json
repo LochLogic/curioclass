@@ -1,0 +1,290 @@
+{
+  "keep": [
+    "#canvas"
+  ],
+  "states": [
+    {
+      "name": "spin-jobs",
+      "steps": [
+        {
+          "click": "#jobs"
+        }
+      ],
+      "keep": [
+        "#answer",
+        "#check"
+      ]
+    },
+    {
+      "name": "stacked-spin",
+      "steps": [
+        {
+          "click": "#canvas"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "click": "#add"
+        },
+        {
+          "key": "Tab"
+        }
+      ]
+    },
+    {
+      "name": "ramp-measure",
+      "steps": [
+        {
+          "click": "#m-ramp"
+        },
+        {
+          "click": "#jobs"
+        }
+      ],
+      "keep": [
+        "#answer",
+        "#check",
+        "#proBody"
+      ]
+    },
+    {
+      "name": "ramp-sketch",
+      "steps": [
+        {
+          "click": "#m-ramp"
+        },
+        {
+          "click": "#jobs"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "800x500",
+        "1000x625"
+      ],
+      "keep": [
+        "#lip",
+        "#check"
+      ]
+    },
+    {
+      "name": "ramp-sketch-wide",
+      "steps": [
+        {
+          "click": "#m-ramp"
+        },
+        {
+          "click": "#jobs"
+        },
+        {
+          "click": "[data-page='3']"
+        }
+      ],
+      "sizes": [
+        "1280x720",
+        "1366x768",
+        "1920x1080",
+        "760x900",
+        "375x812"
+      ],
+      "keep": [
+        "#lip",
+        "#check"
+      ]
+    },
+    {
+      "name": "jump-peak",
+      "steps": [
+        {
+          "click": "#m-log"
+        },
+        {
+          "wait": 1400
+        }
+      ]
+    },
+    {
+      "name": "big-overlay",
+      "steps": [
+        {
+          "click": "#m-log"
+        },
+        {
+          "click": "[data-session='2']"
+        },
+        {
+          "click": "#overlay"
+        },
+        {
+          "wait": 1400
+        }
+      ]
+    },
+    {
+      "name": "ride-stopped",
+      "steps": [
+        {
+          "click": "#m-park"
+        },
+        {
+          "click": "#ride"
+        },
+        {
+          "wait": 300
+        },
+        {
+          "click": "#stop"
+        }
+      ],
+      "keep": [
+        "#ride",
+        "#stop"
+      ]
+    },
+    {
+      "name": "jump-questions",
+      "steps": [
+        {
+          "js": "const t=__tool,s=t.state;s.logs[0]={order:t.DATA[0].slice(),dots:t.DATA[0].map((height,jump)=>({height,jump,skater:jump%4,helped:false})),q:0,qMisses:0,helped:false};"
+        },
+        {
+          "click": "#m-log"
+        }
+      ],
+      "keep": [
+        "#answer",
+        "#check",
+        "#sceneHint"
+      ]
+    },
+    {
+      "name": "maximum-turn",
+      "steps": [
+        {
+          "click": "#canvas"
+        },
+        {
+          "js": "__tool.state.spins=[900];__tool.draw();"
+        }
+      ],
+      "keep": [
+        "#readout",
+        "#go",
+        "#add"
+      ]
+    },
+    {
+      "name": "complete-park",
+      "steps": [
+        {
+          "js": "const s=__tool.state;for(const m of ['spin','ramp','log'])for(let i=0;i<({spin:6,ramp:5,log:3}[m]);i++){s.done[m+'-'+i]=true;s.helped[m+'-'+i]=i===0;if(m==='ramp')s.ramps[i]=20+i*3;}"
+        },
+        {
+          "click": "#m-park"
+        }
+      ],
+      "keep": [
+        "#ride",
+        "#stop"
+      ]
+    },
+    {
+      "name": "narrow-tick-selection",
+      "sizes": [
+        "680x425",
+        "800x500",
+        "760x900",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-log"
+        },
+        {
+          "until": "__tool.state.plotReady",
+          "max": 5000
+        },
+        {
+          "click": "#tickRight",
+          "times": 4,
+          "gap": 0.2
+        }
+      ],
+      "keep": [
+        "#tickLeft",
+        "#plotPlace",
+        "#tickRight",
+        "#jumpCount"
+      ]
+    },
+    {
+      "name": "stacked-laps",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#canvas"
+        },
+        {
+          "js": "__tool.state.spins=[300,300,300];__tool.draw();"
+        }
+      ],
+      "keep": [
+        "#readout"
+      ]
+    },
+    {
+      "name": "interrupted-measure",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#m-ramp"
+        },
+        {
+          "click": "#jobs"
+        },
+        {
+          "click": "#sound"
+        },
+        {
+          "click": "#key-1"
+        },
+        {
+          "click": "#key-6"
+        },
+        {
+          "click": "#key-0"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#proBody"
+        },
+        {
+          "wait": 6500
+        }
+      ],
+      "keep": [
+        "#check",
+        "#proBody"
+      ]
+    }
+  ]
+}

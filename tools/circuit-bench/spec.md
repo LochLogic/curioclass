@@ -7,9 +7,11 @@ use exactly this setup to try a circuit before soldering it. Every part here obe
 Kirchhoff's laws by nodal analysis), so the meter never lies and nothing is scripted.
 
 ## Map
-- Anchor: science-8-electric-and-magnetic-forces (MS-PS2-3, MS-PS2-5). Also reaches:
-  science-3-magnets-and-static-electricity, science-11-electricity-and-magnetism, science-4-energy-conversion-devices
-  (the concept's "grade 4 energy": 4-PS3-2, 4-PS3-4). Grade band 3 to 12, tuned for grade 8.
+- Anchor: science-8-electric-and-magnetic-forces (MS-PS2-3; MS-PS2-5 in part, magnetic field half only, the electric
+  half rests on the module's lesson tool). Also reaches: science-4-energy-conversion-devices (4-PS3-2, 4-PS3-4).
+  Touches (not claimed): science-3-magnets-and-static-electricity (3-PS2-3, 3-PS2-4: no static electricity or
+  magnet-to-magnet force here) and science-11-electricity-and-magnetism (HS-PS2-5: current makes a field, no
+  generator). Integrator call 2026-11-06, BASELINE rule 2. Grade band 3 to 12, tuned for grade 8.
 - tools/circuit-builder/spec.md (a paused grade 11 lesson spec) lends only its solver approach and checked physics.
 - Teacher plan: yes, a plan could teach MS-PS2-3 well (the coil's field changes with current and turns, read on the
   compass and the field readout) and MS-PS2-5 in part. No plan.md in this build, so it is a second card in the module.

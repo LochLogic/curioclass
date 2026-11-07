@@ -1,0 +1,6 @@
+{
+  "voice": "gravel-ranger",
+  "style": "Say warmly with a gravelly voice, like an old codebreaker. Device speech fallback; no audio recorded.",
+  "lines": ["Drag the inner ring."],
+  "dynamic": "Read: current machine and setting, first 80 output characters, and visible analysis readouts. Automatic event narration omitted under CODEX-CURIOSITY.md."
+}

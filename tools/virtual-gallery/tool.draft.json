@@ -1,0 +1,26 @@
+{
+  "id": "virtual-gallery",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Hang your show, then discover what a visitor sees first.",
+  "outcome": "Select, arrange and interpret a portfolio through an exhibition, its labels and its artist statement.",
+  "driver": "students",
+  "minutes": "25-45",
+  "modes": [
+    "Select",
+    "Hang",
+    "Walk",
+    "Checklist"
+  ],
+  "grades_label": "Grades 9-12",
+  "sources": [
+    "National Core Arts Standards, Visual Arts VA:Pr4, VA:Pr5, VA:Pr6: https://www.nationalartsstandards.org/",
+    "Smithsonian Guidelines for Accessible Exhibition Design, sections II and III: https://www.sifacilities.si.edu/sites/default/files/Files/Accessibility/accessible-exhibition-design1.pdf",
+    "College Board AP Art and Design Course and Exam Description (2020): https://apcentral.collegeboard.org/courses/ap-art-and-design",
+    "Jordan Reyes, the portfolio, and the room are fictional.",
+    "Existing portfolio illustrations supplied with the project; see art/prompts.json for individual provenance.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-04"
+}

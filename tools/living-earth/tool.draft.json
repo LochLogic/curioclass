@@ -1,0 +1,38 @@
+{
+  "id": "living-earth",
+  "status": "beta",
+  "stage": "built",
+  "curiosity": true,
+  "plate": 4,
+  "hook": "Spin a globe of real earthquakes and watch the plate margins emerge.",
+  "outcome": "Explore earthquake depth, plate geography, model seismic waves and reconstructed continents.",
+  "driver": "students or teacher",
+  "minutes": "open-ended",
+  "modes": [],
+  "grades_label": "Grades 4-12",
+  "sources": [
+    "USGS ANSS Comprehensive Catalog (ComCat), 26230 earthquake events M5.5+ from 1970-01-01 through 2025-12-31. Retrieved 2026-11-05. US public domain. https://earthquake.usgs.gov/fdsnws/event/1/ ; policy https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits . Dates rounded to UTC days, coordinates 0.01 degree, depths 0.1 km, magnitude 0.1; negative depths clamped to zero.",
+    "NOAA NCEI (2022), ETOPO 2022, DOI 10.25921/fd45-gt74. CC0 1.0 as stated in NOAA metadata. Retrieved 2026-11-05. 60 arc-second ice-surface product, sampled at 10 arc-minute intervals to a shaded 2048x1024 WebP and at 0.5 degree intervals to a metre-rounded int16 grid. https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ngdc.mgg.dem:etopo_2022/html",
+    "Made with Natural Earth, 50m coastline and 1251 populated places. Public domain. Retrieved 2026-11-05. Coasts thinned approximately 0.1 degree, coordinates rounded 0.01 degree; cities 0.001 degree. https://www.naturalearthdata.com/about/terms-of-use/",
+    "NOAA NCEI Global Volcano Locations Database, 1609 locations retrieved from NOAA HazEL 2026-11-05, CC0 1.0 on data.gov. Compiled by NOAA from Smithsonian Volcanoes of the World. No direct GVP download. https://catalog.data.gov/dataset/global-volcano-locations-database ; https://www.ngdc.noaa.gov/hazel/hazard-service/api/v1/volcanolocs",
+    "Andrew Merdith et al. (2021), Extending Full-Plate Tectonic Models into Deep Time, model v1.1b. CC BY 4.0, verified in Zenodo API metadata. Retrieved 2026-11-05. https://doi.org/10.5281/zenodo.4485738 . Modified: finite-rotation circuit resolution, 5 Ma quaternion sampling, thinned reconstructed fragments and simplified present topology resolution. 44 resolved polygons; missing small topology regions explicitly unknown. Speed is the model 0-5 Ma average after area-weighted removal of shared global rotation on a 5 degree grid (99.81 percent resolved coverage), not GPS. Relative opening or closing uses the difference of adjacent plate angular velocities at the nearest edge. The original README excludes Pacific hotspot-track analysis.",
+    "Dziewonski and Anderson (1981), PREM, https://doi.org/10.1016/0031-9201(81)90046-7 ; Kennett and Engdahl (1991), iasp91, https://doi.org/10.1111/j.1365-246X.1991.tb06724.x . Published physical numerical facts. TauP numerical service used to calculate bundled PREM paths and iasp91 arrival times; https://www.seis.sc.edu/webtaup/ . Retrieved 2026-11-05. No TauP or ObsPy software is included. Paths rounded 0.01 degree, 0.1 km, 0.1 s; times sampled each degree.",
+    "Kious and Tilling (1996), USGS This Dynamic Earth, public domain. Fossil regions hand redrawn as schematic broad extents after https://pubs.usgs.gov/gip/dynamic/continents.html ; mountain traces after https://pubs.usgs.gov/gip/dynamic/historical.html . Fossil facts corroborated with Freie Universitat Berlin https://www.geo.fu-berlin.de/en/v/geolearning/gondwana/evidences/flora_and_fauna/index.html . No third-party figure copied into the tool.",
+    "USGS Shadow Zone, public domain, https://www.usgs.gov/media/images/shadowzonegif ; factual corroboration IRIS Seismic Waves Viewer https://www.iris.edu/hq/inclass/software-web-app/seismic_waves_viewer . Textbook S edge about 104 degrees. The displayed bundled iasp91 direct-branch edges are S 99 degrees, P 98 to 140 degrees. Diffracted and converted waves omitted.",
+    "Manual field-note numerical facts, original paraphrases only: Tonga depth from USGS https://www.usgs.gov/faqs/what-depth-do-earthquakes-occur-what-significance-depth and IRIS source-studies report; 81 percent historical estimate from USGS https://www.usgs.gov/faqs/where-do-earthquakes-occur and FEMA CERT Hazard Annexes. US government publications public domain; no IRIS media reproduced.",
+    "M9.5 Chile on 1960-05-22: USGS https://pubs.usgs.gov/of/2010/1152/of2010-1152.pdf and NOAA https://www.ncei.noaa.gov/news/day-1960-chilean-earthquake-and-tsunami . Public-domain government factual records.",
+    "Inge Lehmann, 1936 inner-core inference: University of Copenhagen https://nbi.ku.dk/english/www/inge/lehmann/ and American Physical Society https://www.aps.org/apsnews/2023/08/seismologist-lehmann-earth-inner-core . Historical facts only, no text or figures copied.",
+    "Plate spreading of a few cm/year, comparable to fingernail growth: USGS This Dynamic Earth https://pubs.usgs.gov/gip/dynamic/understanding.html and University of Malta research account https://www.um.edu.mt/library/oar/bitstream/123456789/123491/1/THINK36-Mantle.pdf . Numerical fact only; no copyrighted text or media copied.",
+    "Hawaiian chain older to northwest: USGS HVO https://www.usgs.gov/observatories/hvo/evolution-hawaiian-volcanoes and NOAA https://oceanservice.noaa.gov/facts/hawaii.html . Public-domain government factual explanations. Mountain connection corroborated with NPS https://www.nps.gov/subjects/fossils/supercontinent-pangea.htm ."
+  ],
+  "third_party": [],
+  "updated": "2026-11-05",
+  "data_coverage": "Every ComCat earthquake M5.5+ in 1970-2025, 26230 events, fetched 2026-11-05; the specified size fallback.",
+  "release_blockers": [],
+  "limitations": [
+    "Some small present-day topology regions cannot be resolved from the model archive and return unknown; simplified joins and approximately 0.1-degree geometry limit edge precision.",
+    "Rewind shows crustal fragments with continuous usable sampled rotations, not a reconstruction of ancient shorelines or seafloor.",
+    "Station traces are synthetic surface-focus iasp91 traces, not recordings. Cutaway paths use PREM. Only the documented branches are included.",
+    "Physical touch hardware and a real school Chromebook require follow-up verification."
+  ]
+}

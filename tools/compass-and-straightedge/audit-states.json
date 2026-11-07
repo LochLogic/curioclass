@@ -1,0 +1,203 @@
+{
+  "target": 44,
+  "keep": [],
+  "states": [
+    {
+      "name": "book",
+      "steps": [
+        {
+          "click": "#book"
+        }
+      ],
+      "keep": [
+        "#bookpage",
+        "#nextstep"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "manual",
+      "steps": [
+        {
+          "click": "#manual"
+        }
+      ],
+      "keep": [
+        "#manualTitle"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "paper",
+      "steps": [
+        {
+          "click": "#paperMenu"
+        }
+      ],
+      "keep": [
+        "#paperTitle"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "circles",
+      "steps": [
+        {
+          "js": "const t=__tool,p=t.state.points;t.createObject('circle',p[0].id,p[1].id);t.createObject('circle',p[1].id,p[0].id);"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        ".toolbelt",
+        ".power",
+        ".lower"
+      ]
+    },
+    {
+      "name": "book-long",
+      "steps": [
+        {
+          "click": "#book"
+        },
+        {
+          "js": "const s=document.querySelector(\"#bookpage\");s.value=6;s.dispatchEvent(new Event(\"change\"));"
+        }
+      ],
+      "keep": [
+        "#bookpage",
+        "#nextstep",
+        "#backpaper"
+      ],
+      "sizes": [
+        "375x812",
+        "680x425"
+      ]
+    },
+    {
+      "name": "requested-book-stroke",
+      "steps": [
+        {
+          "click": "#book"
+        },
+        {
+          "click": "#nextstep"
+        },
+        {
+          "click": "#nextstep"
+        }
+      ],
+      "keep": [
+        "#figure",
+        "#nextstep",
+        "#backpaper"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "blank-paper",
+      "steps": [
+        {
+          "click": "#paperMenu"
+        },
+        {
+          "click": "[data-new=blank]"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        ".toolbelt",
+        ".power",
+        ".lower"
+      ]
+    },
+    {
+      "name": "infinite-line-min-zoom",
+      "steps": [
+        {
+          "js": "const t=__tool;t.newSheet('blank');t.freePoint({x:0,y:0});t.freePoint({x:2e-9,y:0});\n        t.state.extend=true;t.createObject('line',t.state.points[0].id,t.state.points[1].id);\n        t.state.view.scale=1e-4;t.render();const line=document.querySelector('#sheet line');\n        if(!line||+line.getAttribute('x2')<300)throw Error('Infinite line missing at minimum zoom');"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "book-i2-lettered",
+      "steps": [
+        {
+          "click": "#book"
+        },
+        {
+          "js": "const e=document.querySelector('#bookpage');e.value=1;e.dispatchEvent(new Event('change'));"
+        },
+        {
+          "click": "#nextstep",
+          "times": 7,
+          "gap": 0.1
+        }
+      ],
+      "keep": [
+        "#figure",
+        "#nextstep",
+        "#backpaper"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "book-golden-division-lettered",
+      "steps": [
+        {
+          "click": "#book"
+        },
+        {
+          "js": "const e=document.querySelector('#bookpage');e.value=11;e.dispatchEvent(new Event('change'));"
+        },
+        {
+          "click": "#nextstep",
+          "times": 8,
+          "gap": 0.1
+        }
+      ],
+      "keep": [
+        "#figure",
+        "#nextstep",
+        "#backpaper"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

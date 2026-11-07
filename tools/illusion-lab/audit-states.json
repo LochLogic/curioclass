@@ -1,0 +1,735 @@
+{
+  "states": [
+    {
+      "name": "lines-adjusted",
+      "steps": [
+        {
+          "click": "#card-lines"
+        },
+        {
+          "click": "#longer",
+          "times": 4
+        }
+      ],
+      "keep": [
+        "#controls",
+        "#hint",
+        "#experiment"
+      ]
+    },
+    {
+      "name": "eye-predicted",
+      "steps": [
+        {
+          "click": "#card-eye"
+        },
+        {
+          "click": "#path-0"
+        },
+        {
+          "click": "#edge"
+        }
+      ],
+      "keep": [
+        "#controls",
+        "#hint"
+      ]
+    },
+    {
+      "name": "shadow-adjusted",
+      "steps": [
+        {
+          "click": "#card-shadow"
+        },
+        {
+          "click": "#lighter",
+          "times": 4
+        }
+      ],
+      "keep": [
+        "#controls",
+        "#experiment"
+      ]
+    },
+    {
+      "name": "change-frozen",
+      "steps": [
+        {
+          "click": "#card-change"
+        },
+        {
+          "click": "#change-start"
+        },
+        {
+          "wait": 800
+        },
+        {
+          "click": "#spotted"
+        }
+      ],
+      "keep": [
+        "#controls",
+        "#picture-box"
+      ]
+    },
+    {
+      "name": "count-recall",
+      "steps": [
+        {
+          "click": "#card-count"
+        },
+        {
+          "click": "#count-start"
+        },
+        {
+          "wait": 19700
+        }
+      ],
+      "keep": [
+        "#controls",
+        "#memory-word"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "word-list",
+      "steps": [
+        {
+          "click": "#card-words"
+        },
+        {
+          "click": "#words-start"
+        }
+      ],
+      "keep": [
+        "#memory-word",
+        "#controls"
+      ]
+    },
+    {
+      "name": "reset-confirm",
+      "steps": [
+        {
+          "click": "#bench-notebook"
+        },
+        {
+          "click": "#reset-all"
+        }
+      ],
+      "keep": [
+        "#reset-dialog"
+      ]
+    },
+    {
+      "name": "shadow-entry",
+      "steps": [
+        {
+          "click": "#card-shadow"
+        }
+      ],
+      "keep": [
+        "#controls",
+        "#hint"
+      ]
+    },
+    {
+      "name": "eye-entry",
+      "steps": [
+        {
+          "click": "#card-eye"
+        }
+      ],
+      "keep": [
+        "#controls",
+        "#hint"
+      ]
+    },
+    {
+      "name": "change-entry",
+      "steps": [
+        {
+          "click": "#card-change"
+        }
+      ],
+      "keep": [
+        "#controls",
+        "#hint"
+      ]
+    },
+    {
+      "name": "count-entry",
+      "steps": [
+        {
+          "click": "#card-count"
+        }
+      ],
+      "keep": [
+        "#controls",
+        "#hint"
+      ]
+    },
+    {
+      "name": "words-entry",
+      "steps": [
+        {
+          "click": "#card-words"
+        }
+      ],
+      "keep": [
+        "#controls",
+        "#hint"
+      ]
+    },
+    {
+      "name": "notebook-entry",
+      "steps": [
+        {
+          "click": "#bench-notebook"
+        }
+      ],
+      "keep": [
+        "#controls",
+        "#hint"
+      ]
+    },
+    {
+      "name": "eyewitness-entry",
+      "steps": [
+        {
+          "click": "#bench-eyewitness"
+        }
+      ],
+      "keep": [
+        "#controls",
+        "#hint"
+      ]
+    },
+    {
+      "name": "line-compare",
+      "steps": [
+        {
+          "click": "#card-lines"
+        },
+        {
+          "click": "#longer",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#lock"
+        },
+        {
+          "click": "#longer",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#lock"
+        },
+        {
+          "click": "#longer",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#lock"
+        },
+        {
+          "click": "#longer",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#lock"
+        },
+        {
+          "click": "#longer",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#lock"
+        },
+        {
+          "click": "#longer",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#lock"
+        },
+        {
+          "click": "#longer",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#lock"
+        },
+        {
+          "click": "#longer",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#lock"
+        }
+      ],
+      "keep": [
+        "#controls",
+        "#results"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "line-why",
+      "steps": [
+        {
+          "click": "#card-lines"
+        },
+        {
+          "click": "#longer",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#lock"
+        },
+        {
+          "click": "#longer",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#lock"
+        },
+        {
+          "click": "#longer",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#lock"
+        },
+        {
+          "click": "#longer",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#lock"
+        },
+        {
+          "click": "#longer",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#lock"
+        },
+        {
+          "click": "#longer",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#lock"
+        },
+        {
+          "click": "#longer",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#lock"
+        },
+        {
+          "click": "#longer",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#lock"
+        },
+        {
+          "click": "#open-why"
+        }
+      ],
+      "keep": [
+        "#controls"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "shadow-compare",
+      "steps": [
+        {
+          "click": "#card-shadow"
+        },
+        {
+          "click": "#lighter",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#lock"
+        },
+        {
+          "click": "#lighter",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#lock"
+        },
+        {
+          "click": "#lighter",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#lock"
+        },
+        {
+          "click": "#lighter",
+          "times": 4,
+          "gap": 0.15
+        },
+        {
+          "click": "#lock"
+        },
+        {
+          "click": "#bridge"
+        },
+        {
+          "click": "#hide-scene"
+        }
+      ],
+      "keep": [
+        "#controls"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "eye-compare",
+      "steps": [
+        {
+          "click": "#card-eye"
+        },
+        {
+          "click": "#path-0"
+        },
+        {
+          "click": "#path-1"
+        },
+        {
+          "click": "#path-2"
+        },
+        {
+          "click": "#path-3"
+        },
+        {
+          "click": "#path-4"
+        },
+        {
+          "click": "#path-5"
+        },
+        {
+          "click": "#path-6"
+        },
+        {
+          "click": "#edge"
+        },
+        {
+          "js": "document.querySelector('#inhibition').value='0.4';document.querySelector('#inhibition').dispatchEvent(new Event('input'));"
+        },
+        {
+          "js": "document.querySelector('#pattern').value='dark';document.querySelector('#pattern').dispatchEvent(new Event('change'));"
+        },
+        {
+          "js": "document.querySelector('#pattern').value='light';document.querySelector('#pattern').dispatchEvent(new Event('change'));"
+        },
+        {
+          "click": "#eye-compare"
+        }
+      ],
+      "keep": [
+        "#controls"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "count-compare",
+      "steps": [
+        {
+          "click": "#card-count"
+        },
+        {
+          "click": "#count-start"
+        },
+        {
+          "until": "__tool.state.run.phase==='recall'",
+          "max": 21000
+        },
+        {
+          "click": "#submit-recall"
+        },
+        {
+          "click": "#count-start"
+        },
+        {
+          "until": "__tool.state.run.phase==='recall'",
+          "max": 21000
+        },
+        {
+          "click": "#submit-recall"
+        },
+        {
+          "click": "#count-start"
+        },
+        {
+          "until": "__tool.state.run.phase==='recall'",
+          "max": 21000
+        },
+        {
+          "click": "#submit-recall"
+        },
+        {
+          "click": "#count-start"
+        },
+        {
+          "until": "__tool.state.run.phase==='recall'",
+          "max": 21000
+        },
+        {
+          "click": "#submit-recall"
+        },
+        {
+          "click": "#count-start"
+        },
+        {
+          "until": "__tool.state.run.phase==='recall'",
+          "max": 21000
+        },
+        {
+          "click": "#submit-recall"
+        },
+        {
+          "click": "#count-start"
+        },
+        {
+          "until": "__tool.state.run.phase==='recall'",
+          "max": 21000
+        },
+        {
+          "click": "#submit-recall"
+        },
+        {
+          "click": "#count-start"
+        },
+        {
+          "until": "__tool.state.run.phase==='recall'",
+          "max": 21000
+        },
+        {
+          "click": "#submit-recall"
+        },
+        {
+          "click": "#count-start"
+        },
+        {
+          "until": "__tool.state.run.phase==='recall'",
+          "max": 21000
+        },
+        {
+          "click": "#submit-recall"
+        },
+        {
+          "click": "#count-start"
+        },
+        {
+          "until": "__tool.state.run.phase==='recall'",
+          "max": 21000
+        },
+        {
+          "click": "#submit-recall"
+        },
+        {
+          "click": "#count-start"
+        },
+        {
+          "until": "__tool.state.run.phase==='recall'",
+          "max": 21000
+        },
+        {
+          "click": "#submit-recall"
+        }
+      ],
+      "keep": [
+        "#controls"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "words-compare",
+      "steps": [
+        {
+          "click": "#card-words"
+        },
+        {
+          "click": "#words-start"
+        },
+        {
+          "until": "__tool.state.run.phase==='recall'",
+          "max": 27000
+        },
+        {
+          "click": "#recall-done"
+        },
+        {
+          "click": "#second-list"
+        },
+        {
+          "until": "__tool.state.run.phase==='recognize'",
+          "max": 27000
+        },
+        {
+          "click": "#new"
+        },
+        {
+          "click": "#new"
+        },
+        {
+          "click": "#new"
+        },
+        {
+          "click": "#new"
+        },
+        {
+          "click": "#new"
+        },
+        {
+          "click": "#new"
+        },
+        {
+          "click": "#new"
+        },
+        {
+          "click": "#new"
+        },
+        {
+          "click": "#new"
+        },
+        {
+          "click": "#new"
+        },
+        {
+          "click": "#new"
+        },
+        {
+          "click": "#new"
+        }
+      ],
+      "keep": [
+        "#controls"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "eye-pattern-guide",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#card-eye"
+        },
+        {
+          "click": "#path-0"
+        },
+        {
+          "click": "#path-1"
+        },
+        {
+          "click": "#path-2"
+        },
+        {
+          "click": "#path-3"
+        },
+        {
+          "click": "#path-4"
+        },
+        {
+          "click": "#path-5"
+        },
+        {
+          "click": "#path-6"
+        },
+        {
+          "click": "#middle"
+        },
+        {
+          "js": "document.getElementById('inhibition').value=.4;document.getElementById('inhibition').dispatchEvent(new Event('input'));"
+        }
+      ],
+      "keep": [
+        "#controls",
+        "#hint",
+        "#eye-values"
+      ]
+    },
+    {
+      "name": "word-recall-instructions",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#card-words"
+        },
+        {
+          "click": "#words-start"
+        },
+        {
+          "until": "__tool.state.run.phase==='recall'",
+          "max": 27000
+        }
+      ],
+      "keep": [
+        "#controls",
+        "#hint"
+      ]
+    }
+  ]
+}

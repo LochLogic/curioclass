@@ -1,0 +1,28 @@
+{
+  "id": "letter-lanterns",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Explore a village made of letters and sounds.",
+  "outcome": "Explore letter sounds, trace forms and compare words.",
+  "driver": "teacher",
+  "minutes": "10-20",
+  "modes": [
+    "Lanterns",
+    "Street",
+    "Wordbook"
+  ],
+  "grades_label": "Kindergarten",
+  "sources": [
+    "Curio Class Letter Lanterns original selection and geometric paths; CC BY 4.0; code MIT; 26 letters, 24 shop words, 10 twin pairs, 6 vowel pairs, 10 banners, 52 paths; supplied brief",
+    "Reading Rockets: The Alphabetic Principle; Six Syllable Types; Copyright retained; references only; no copied text or datasets; https://www.readingrockets.org/topics/spelling-and-word-study/articles/six-syllable-types",
+    "Louisa Moats, Speech to Print, third edition (2020); Copyright 2020 Brookes; reference only; https://products.brookespublishing.com/Speech-to-Print-P1167.aspx",
+    "NGA Center and CCSSO, RF.K.3 and L.K.1a (2010); CCSS Public License; references only, standards text not bundled; https://www.thecorestandards.org/public-license/",
+    "Dolch pre-primer and Fry first 100; Reference only; no open licence asserted for Fry; no full list reproduced; Ten ordinary English banners selected in supplied brief, original Curio Class arrangement",
+    "Zaner-Bloser manuscript and Learning Without Tears formation charts; Copyright retained; reference only; charts not copied; https://www.lwtears.com/letter-number-formation-charts",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class; Existing Curio Class original art; content CC BY 4.0"
+  ],
+  "third_party": [],
+  "updated": "2026-11-06",
+  "curiosity": true,
+  "plate": null
+}

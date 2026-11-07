@@ -1,0 +1,32 @@
+{
+  "id": "the-buyout",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Same shoppers. Four rivals. Then one owner. What changes?",
+  "outcome": "Compare market concentration and weigh the benefits and costs of merger remedies.",
+  "driver": "students",
+  "minutes": "30-45",
+  "modes": [
+    "Rivals",
+    "Buyout",
+    "Compare",
+    "Regulator"
+  ],
+  "grades_label": "Grade 12",
+  "sources": [
+    "DOJ and FTC, Merger Guidelines (2023), section 2.1; DOJ, Herfindahl-Hirschman Index",
+    "FTC v. Staples, 970 F. Supp. 1066 (1997)",
+    "Standard Oil Co. of New Jersey v. United States, 221 U.S. 1 (1911)",
+    "United States v. AT&T, 552 F. Supp. 131 (1982); Federal Judicial Center, The Breakup of Ma Bell",
+    "Stephen Littlechild, Incentive Regulation (Cambridge EPRG, 2024)",
+    "European Commission, The EU common charger; Directive (EU) 2022/2380",
+    "Schumpeter (1942); Arrow (1962); Gilbert, Looking for Mr. Schumpeter (2006)",
+    "Cunningham, Ederer and Ma, Killer Acquisitions, Journal of Political Economy 129(3), 2021",
+    "Williamson, Economies as an Antitrust Defense (1968); OECD, The Standard for Merger Review (2011)",
+    "Fictional market equations and parameters from the tool specification",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Oftel, Report of the Director General of Telecommunications for 1986, price and service-quality monitoring"
+  ],
+  "third_party": [],
+  "updated": "2026-11-06"
+}

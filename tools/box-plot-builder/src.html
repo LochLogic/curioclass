@@ -1,0 +1,1536 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Box Plot Builder · What's a typical day? · Curio Class</title>
+<meta name="description" content="Drag real weather and basketball data, build a box plot by hand, and choose a fair headline. Grade 6 math. Works offline.">
+<!--
+Box Plot Builder, Curio Class. Grade 6 math, 6.SP.4 and 6.SP.5a-d.
+Started from kit/starter/src.html. NOAA NCEI GHCN-Daily airport daily highs, 2024;
+NWS CF6SAN, CF6ORD, CF6MIA, CF6DEN; Basketball-Reference and ESPN Luka Doncic 2023-24 game logs.
+School quartiles and range whiskers: Illustrative Mathematics Grade 6 Unit 8, Lessons 15-16.
+MAD: IM Lessons 11-12. Choosing measures: IM Lessons 14,18 and OpenStax Statistics 2e 2.6.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+One offline file. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f5f1e8; --ink:#1e2229; --muted:#5a5f68; --line:#c5bca9;
+  --focus:#1f5fd1; --brand:#0d6670; --btn:#fbf8f1; --btn-line:#767b84;
+  --head-ink:#1e2229; --panel:#fff; --dd-1:#2d4a7a; --dd-ring:#b06f00;
+  --dd-text:#1e2229; --dd-axis:#767b84; --dd-grid:#b5b0a655; --dd-bg-solid:#fbf8f1;
+  --rust:#b23c17; --ok:#1d7a3c; --warn:#a3261b;
+}
+body { height:100dvh; min-height:0; overflow:hidden; }
+header { background:#e9e3d6; padding:10px 18px; gap:8px; border-bottom:3px double #6d6a61; }
+h1 { font:700 clamp(20px,2.4vw,30px)/1 Georgia,serif; letter-spacing:-.7px; }
+h1 small { font:13px/1.6 'Segoe UI',sans-serif; letter-spacing:.1px; }
+.seg { border-radius:5px; border:1px solid #767b84; }
+.seg button,.icon-btn { min-height:44px; min-width:44px; font-size:14px; padding:0 12px; border-radius:4px; }
+.seg button[aria-pressed="true"] { background:var(--brand); color:white; }
+.icon-btn { border-width:1px; }
+main { grid-template-columns:minmax(0,66fr) minmax(290px,34fr); min-height:0; }
+.panel { grid-column:2; grid-row:1; padding:12px; gap:10px; min-width:0; border-left:1px solid #b6ac99; }
+.stage { grid-column:1; grid-row:1; min-height:0; background:#dfd3ba; padding:18px; }
+.stage::before { content:''; position:absolute; inset:0; pointer-events:none;
+  background:repeating-linear-gradient(97deg,#b0936720 0 1px,transparent 1px 9px); }
+.sheet { height:100%; position:relative; display:flex; flex-direction:column; min-height:0;
+  background:#fbf8f1; border:1px solid #bdb29e; box-shadow:2px 6px 18px #49382025; }
+.mast { display:flex; align-items:center; justify-content:space-between; margin:12px 18px 0;
+  padding-bottom:7px; border-bottom:4px double var(--ink); gap:8px; }
+.mast strong { font:800 20px/1 Georgia,serif; letter-spacing:2px; }
+.mast span { font-size:11px; letter-spacing:1px; text-transform:uppercase; }
+.scene-heading { position:relative; min-height:154px; padding:22px 20px; overflow:hidden; border-bottom:1px solid var(--line); }
+.scene-heading img { position:absolute; width:44%; height:100%; object-fit:cover; right:0; top:0; }
+.scene-heading::after { content:''; position:absolute; inset:0;
+  background:linear-gradient(90deg,#fbf8f1 46%,#fbf8f100 82%); pointer-events:none; }
+.scene-heading .title-copy { position:relative; z-index:1; max-width:68%; }
+.class-card svg { display:block; width:100%; max-width:140px; height:60px; margin:auto; }
+.scene-heading h2 { text-shadow:0 1px 2px #fbf8f1,0 0 6px #fbf8f1,0 0 12px #fbf8f1; }
+body.headline .scene-heading::after { background:linear-gradient(90deg,#fbf8f1 52%,#fbf8f1ed 83%,#fbf8f160); }
+.eyebrow { color:var(--brand); font-size:11px; font-weight:800; letter-spacing:1.4px; text-transform:uppercase; }
+h2 { font:700 clamp(22px,2.7vw,36px)/1.04 Georgia,serif; margin:7px 0; }
+.subtitle { font-size:13px; color:var(--muted); margin:7px 0 0; }
+#work { display:flex; flex-direction:column; flex:1; min-height:0; padding:8px 14px; position:relative; }
+#plot-wrap { flex:1; position:relative; min-height:80px; }
+#plot,#box,#head-svg { display:block; width:100%; height:100%; }
+#plot { overflow:visible; }
+#box-wrap { height:84px; flex:none; }
+.plot-footer { display:flex; justify-content:space-between; color:var(--muted); font-size:11px; padding:4px 6px; gap:8px; }
+.stamp { display:inline-flex; align-items:center; gap:5px; font-size:10px; letter-spacing:1px; font-weight:800; }
+.stamp::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--brand); animation:ink 4s ease-in-out infinite; }
+@keyframes ink { 50% { opacity:.3; } }
+.calm .stamp::before { animation:none; }
+.sam-strip { display:flex; min-height:106px; align-items:center; gap:10px; padding:5px 9px;
+  border:1px solid #c5bca9; background:linear-gradient(#ffffffd9,#ffffffed),url(art:newsroom-desk) center/cover; }
+.sam-strip img { width:76px; height:96px; object-fit:contain; flex:none; filter:drop-shadow(2px 3px 1px #5b44212c); }
+#hint { margin:0; font-size:14px; line-height:1.35; min-height:76px; display:flex; align-items:center; }
+.section-label { margin:0 0 6px; font-size:11px; font-weight:800; letter-spacing:1px; text-transform:uppercase; color:var(--muted); }
+.set-cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }
+button.set { position:relative; min-width:0; padding:0; background:#fbf8f1; border:1px solid #a69b87; border-radius:3px; overflow:hidden; }
+.set img { display:block; width:100%; height:61px; object-fit:cover; }
+.set span { display:block; padding:5px 3px; font-size:11px; font-weight:650; line-height:1.18; }
+.set[aria-pressed="true"] { outline:3px solid var(--brand); outline-offset:-3px; }
+.set[aria-pressed="true"] span::before { content:'● '; }
+.set.class-card { background:repeating-linear-gradient(#fbf8f1 0 15px,#c5bca950 16px 17px); min-height:86px; }
+.class-card b { font:italic 28px Georgia,serif; color:var(--brand); display:block; }
+.row { display:flex; gap:6px; align-items:center; }
+.row > * { flex:1; min-width:0; }
+.btn { min-height:44px; padding:6px 10px; border:1px solid #767b84; border-radius:4px;
+  background:#fbf8f1; font-weight:650; font-size:13px; }
+.btn:hover { background:#eee7d8; }
+.btn[aria-pressed="true"],.btn.primary { background:var(--brand); border-color:var(--brand); color:#fff; }
+.btn:disabled,.btn[aria-disabled="true"] { opacity:.55; cursor:default; }
+.readouts { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.tile { background:#fbf8f1; border:1px solid #c5bca9; padding:7px 9px; }
+.tile label { display:block; font-size:11px; color:var(--muted); }
+.tile b { font:700 21px Georgia,serif; display:block; margin-top:2px; font-variant-numeric:tabular-nums; }
+.tile:first-child b { color:var(--rust); }
+.tile:nth-child(2) b { color:var(--brand); }
+.explore-controls { display:flex; flex-direction:column; gap:10px; }
+.privacy { font-size:11px; line-height:1.3; color:var(--muted); margin:5px 0; }
+textarea,input { font:inherit; border:1px solid #767b84; border-radius:3px; background:white; padding:7px; color:var(--ink); }
+input { min-height:44px; min-width:0; width:100%; }
+textarea { min-height:58px; width:100%; resize:vertical; }
+label.field { display:block; font-size:13px; font-weight:650; margin:6px 0; }
+.class-inputs { margin-top:7px; }
+#class-message { font-size:12px; color:var(--warn); }
+.build-picker { display:grid; grid-template-columns:repeat(3,1fr); gap:5px; }
+.build-picker .btn { font-size:12px; padding:4px; }
+.steps { display:grid; grid-template-columns:repeat(5,1fr); margin:8px 0; border-bottom:2px solid #c5bca9; }
+.steps span { padding:5px 0; text-align:center; font-size:11px; border-bottom:3px solid transparent; }
+.steps span.now { color:var(--brand); border-color:var(--brand); font-weight:800; }
+.data-card { font:12px/1.45 ui-monospace,Consolas,monospace; background:#f0ebdf; border-left:3px solid #a1947c; padding:9px; margin:8px 0; }
+.data-card p { margin:0; }
+.number-form { display:flex; gap:6px; align-items:center; margin:7px 0; }
+.number-form input { flex:1; width:70px; }
+.number-form .btn { flex:none; }
+.number-label { display:block; font-size:14px; font-weight:700; }
+.feedback { margin:8px 0; padding:8px 10px; border-left:3px solid var(--brand); background:#e6f0ec; font-size:13px; line-height:1.3; }
+.feedback:empty { display:none; }
+.feedback.miss { color:var(--warn); border-color:var(--warn); background:#fbefe6; }
+.options { display:grid; gap:6px; }
+.options .btn { text-align:left; font-size:13px; font-weight:500; }
+.options .btn.right { border:2px solid var(--ok); background:#e6f0e9; color:var(--ink); }
+.options .btn.wrong { border:2px solid var(--warn); background:#fbece7; }
+.choice-title { margin:8px 0 6px; font:700 19px Georgia,serif; }
+.record-line { font-size:11px; color:var(--muted); margin:6px 0; }
+#grid { display:grid; grid-template-columns:repeat(10,minmax(0,64px)); justify-content:center; gap:5px;
+  outline-offset:3px; flex:none; position:relative; margin:6px 0; cursor:pointer; touch-action:manipulation; }
+.value-card { position:relative; height:44px; min-width:0; display:flex; justify-content:center; align-items:center;
+  font:700 18px Georgia,serif; background:linear-gradient(115deg,#fffef9,#f1e9d9); border:1px solid #ada08a;
+  box-shadow:0 2px 2px #4b39201a; border-radius:2px; user-select:none; }
+.value-card::after { content:''; position:absolute; right:3px; top:3px; width:5px; height:5px;
+  border-top:1px solid #b5a68c; border-right:1px solid #b5a68c; }
+.value-card.lower { border-bottom:3px solid var(--brand); }
+.value-card.upper { border-bottom:3px double var(--rust); }
+.value-card.middle { background:#e2dfd6; border-style:dashed; }
+.value-card.picked { background:#d9eee6; border:2px solid var(--brand); }
+.value-card.shown { background:#f7e6c3; border:2px dashed #986106; }
+.value-card.cursor { outline:3px solid var(--focus); outline-offset:-3px; }
+.value-card.fly { animation:lineup .5s ease-out both; }
+@keyframes lineup { from { transform:translate(var(--fx,0),var(--fy,-90px)); opacity:.3; } }
+.box-tick { animation:tick .25s ease-out both; }
+@keyframes tick { from { transform:translateY(-18px); opacity:0; } }
+.box-draw { stroke-dasharray:1000; animation:draw .4s ease-out both; }
+@keyframes draw { from { stroke-dashoffset:1000; } to { stroke-dashoffset:0; } }
+.distance { stroke:var(--rust); stroke-width:1.2; opacity:.38; stroke-dasharray:1200; animation:draw .85s ease-out both; }
+.anim-end * { animation:none!important; transition:none!important; }
+.calm .value-card,.calm .box-tick,.calm .box-draw,.calm .distance { animation:none; }
+#grid-note { font-size:12px; margin:2px 0; color:var(--muted); text-align:center; }
+body.build .scene-heading { min-height:92px; padding:12px 18px; }
+body.build h2 { font-size:26px; }
+body.build #plot-wrap { flex:1; min-height:65px; }
+body.build.has-grid #plot-wrap { max-height:125px; }
+body.build.mad-step #plot-wrap { max-height:none; min-height:130px; }
+.report-card { position:absolute; inset:14px; z-index:3; background:#fbf8f1; padding:20px;
+  border:6px double #716c61; box-shadow:0 5px 20px #42351d40; overflow:auto; }
+.report-card h3 { font:700 26px Georgia,serif; margin:4px 0 8px; }
+.report-card p { font:15px/1.35 Georgia,serif; margin:8px 0; }
+.report-fields { display:grid; grid-template-columns:1fr 1fr; gap:5px 14px; }
+.report-fields div { border-top:1px solid #c5bca9; padding:3px 0; font-size:12px; line-height:1.25; }
+.report-fields small { display:block; color:var(--muted); font-size:10px; margin-top:0; line-height:1.2; }
+.report-card .byline { font:11px 'Segoe UI',sans-serif; color:var(--brand); letter-spacing:1px; }
+.report-card img { float:right; width:94px; height:120px; object-fit:contain; }
+#headline-work { display:flex; flex-direction:column; flex:1; min-height:0; }
+#head-svg { flex:1; min-height:0; }
+#front-page { margin:0 16px 12px; border-top:3px double var(--ink); padding-top:7px; font:700 20px/1.15 Georgia,serif; }
+#front-page small { display:block; font:12px/1.4 'Segoe UI',sans-serif; margin-top:6px; }
+body.headline .scene-heading { min-height:122px; }
+body.headline h2 { font-size:28px; }
+body.headline .title-copy { max-width:88%; }
+.header-icon { font-size:18px; padding-right:3px; }
+@media (max-height:680px) and (min-width:600px) {
+  header { padding:4px 8px; gap:5px; flex-wrap:nowrap; }
+  h1 { font-size:20px; white-space:nowrap; }
+  h1 small { display:none; }
+  .seg button,.icon-btn { padding:0 8px; font-size:12px; }
+  .stage { padding:8px; }
+  .panel { padding:7px; gap:6px; }
+  .sam-strip { min-height:62px; padding:4px 7px; }
+  .sam-strip img { display:none; }
+  #hint { min-height:52px; font-size:12px; line-height:1.3; }
+  .set img,.class-card b { display:none; }
+  .set span { padding:5px 2px; font-size:11px; }
+  button.set,.set.class-card { min-height:44px; }
+  .explore-controls { gap:6px; }
+  .section-label { margin-bottom:4px; font-size:10px; }
+  .tile { padding:4px 6px; }
+  .tile b { font-size:17px; }
+  .tile label { font-size:10px; }
+  .scene-heading { min-height:76px; height:76px; flex:none; padding:8px 12px; }
+  .scene-heading .subtitle { display:none; }
+  h2 { font-size:24px; margin:4px 0; }
+  .mast { margin:7px 10px 0; padding-bottom:5px; }
+  .mast strong { font-size:15px; }
+  .mast span { font-size:10px; }
+  #work { padding:4px 7px; }
+  #box-wrap { height:60px; }
+  .plot-footer { font-size:10px; }
+  .data-card { padding:6px; font-size:11px; margin:5px 0; line-height:1.3; }
+  .steps { margin:4px 0; }
+  .steps span { font-size:10px; padding:3px 0; }
+  .choice-title { font-size:16px; margin:4px 0; }
+  .options { gap:4px; }
+  .options .btn { padding:4px 6px; font-size:11px; }
+  .feedback { font-size:11px; padding:5px 6px; margin:5px 0; }
+  .record-line { font-size:10px; }
+  body.build .scene-heading { min-height:66px; padding:6px 10px; }
+  body.build h2 { font-size:21px; }
+  body.build .subtitle { display:none; }
+  body.build.has-grid #plot-wrap { max-height:65px; min-height:55px; }
+  #grid { gap:3px; margin:3px 0; }
+  .value-card { height:32px; font-size:14px; }
+  body.build #box-wrap { height:54px; }
+  body.build.has-grid .mast { display:none; }
+  body.build.has-grid .scene-heading { min-height:26px; height:26px; padding:4px 8px; }
+  body.build.has-grid .scene-heading img,body.build.has-grid .eyebrow { display:none; }
+  body.build.has-grid .scene-heading .title-copy { max-width:100%; }
+  body.build.has-grid h2 { font-size:16px; line-height:18px; margin:0; white-space:nowrap; }
+  body.build.has-grid #plot-wrap { max-height:55px; min-height:55px; }
+  body.build.has-grid .value-card { height:clamp(24px,calc((100dvh - 260px)/7),44px); font-size:12px; }
+  body.build.has-grid #grid { gap:2px; margin:2px 0; }
+  body.build.has-grid #grid-note { font-size:10px; line-height:12px; margin:1px 0; }
+  body.build.has-grid #box-wrap { height:42px; }
+  body.build.has-grid .plot-footer { font-size:10px; line-height:12px; padding:2px 5px; }
+  body.build.has-grid .plot-footer .stamp { display:none; }
+  body.headline .scene-heading { min-height:95px; padding:8px 12px; }
+  body.headline h2 { font-size:22px; }
+  .report-card { padding:10px; inset:6px; }
+  .report-card h3 { font-size:21px; margin:3px 0; }
+  .report-card p { font-size:13px; margin:7px 0; }
+  .report-card img { height:70px; width:60px; }
+  .report-fields { gap:2px 10px; }
+  .report-fields div { font-size:11px; padding:2px 0; }
+}
+@media (max-width:900px) and (min-width:600px) {
+  main { grid-template-columns:minmax(0,61fr) minmax(245px,39fr); }
+  h1 { font-size:18px; }
+  .header-icon { display:none; }
+  .seg button,.icon-btn { padding:0 6px; font-size:12px; }
+  header { gap:4px; padding:4px 7px; }
+  .mast span { display:none; }
+  .scene-heading .title-copy { max-width:80%; }
+}
+@media (max-width:599px) {
+  body { overflow:auto; height:auto; min-height:100dvh; }
+  header { display:grid; grid-template-columns:repeat(3,1fr); padding:7px; gap:5px; }
+  h1 { grid-column:1/-1; font-size:24px; text-align:center; }
+  .seg { grid-column:1/-1; display:flex; }
+  .seg button { flex:1; }
+  main { display:flex; flex-direction:column; }
+  .panel { order:1; padding:8px; border:0; overflow:visible; gap:7px; }
+  .sam-strip { min-height:54px; padding:3px 6px; }
+  .sam-strip img { display:none; }
+  #hint { font-size:12px; min-height:46px; }
+  .stage { order:0; padding:8px; height:300px; min-height:300px; }
+  body.histogram .stage { height:265px; min-height:265px; }
+  .set img,.class-card b { display:none; }
+  button.set,.set.class-card { min-height:44px; }
+  .set span { font-size:12px; }
+  .explore-controls { display:grid; grid-template-columns:1fr auto; gap:6px; }
+  .explore-controls > .sets,.explore-controls > #class-entry { grid-column:1/-1; }
+  .explore-controls > .row { grid-column:1/-1; }
+  .readouts { grid-template-columns:repeat(4,1fr); }
+  .readout-section { grid-column:1/-1; }
+  .tile { padding:4px; }
+  .tile b { font-size:15px; }
+  .tile label { font-size:10px; }
+  #putback { grid-column:1/-1; }
+  .mast { display:none; }
+  .mast strong { font-size:15px; }
+  .mast span { display:none; }
+  .scene-heading { min-height:50px; height:50px; flex:none; padding:6px 8px; }
+  .scene-heading .eyebrow,.scene-heading .subtitle { display:none; }
+  h2 { font-size:20px; margin:2px 0; }
+  #work { padding:4px; }
+  #box-wrap { height:50px; }
+  .plot-footer { font-size:10px; }
+  body.build .stage { height:200px; min-height:200px; }
+  body.build.has-grid .stage { height:410px; min-height:410px; }
+  .value-card { height:28px; font-size:13px; }
+  #grid { gap:3px; }
+  body.build .scene-heading { min-height:26px; height:26px; padding:4px 8px; }
+  body.build h2 { font-size:16px; line-height:18px; margin:0; white-space:nowrap; }
+  body.build .scene-heading .title-copy { max-width:100%; }
+  body.build .scene-heading img { display:none; }
+  body.build .subtitle { display:none; }
+  body.headline .stage { height:320px; min-height:320px; }
+  body.headline .scene-heading { min-height:72px; height:72px; padding:7px; }
+  body.headline h2 { font-size:19px; }
+  .report-card { inset:6px; padding:10px; }
+}
+@media (max-height:540px) and (min-width:600px) {
+  body:not(.build):not(.headline) .mast { display:none; }
+  body:not(.build):not(.headline) .scene-heading { height:52px; min-height:52px; padding:5px 8px; }
+  body:not(.build):not(.headline) h2 { font-size:20px; margin:2px 0; }
+  body:not(.build):not(.headline) .eyebrow { font-size:10px; }
+  body:not(.build):not(.headline) .panel { padding:6px; gap:4px; }
+  body:not(.build):not(.headline) .sam-strip { min-height:50px; padding:4px 6px; }
+  body:not(.build):not(.headline) #hint { min-height:40px; font-size:11px; }
+  body:not(.build):not(.headline) .readout-section {
+    position:fixed; left:16px; bottom:12px; width:calc(61vw - 32px); z-index:2;
+  }
+  body:not(.build):not(.headline) .readouts { grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; }
+  body:not(.build):not(.headline) .tile label { min-height:24px; }
+  body:not(.build):not(.headline) .tile b { font-size:16px; }
+  body:not(.build):not(.headline) .plot-footer { padding-bottom:76px; }
+  body:not(.build):not(.headline) .explore-controls { gap:4px; }
+}
+@media (min-height:681px) and (max-height:850px) and (min-width:600px) {
+  body.build.long-grid .mast { display:none; }
+  body.build.long-grid .scene-heading { min-height:42px; height:42px; padding:7px 12px; }
+  body.build.long-grid .eyebrow,body.build.long-grid .subtitle { display:none; }
+  body.build.long-grid h2 { font-size:22px; margin:0; }
+  body.build.long-grid #plot-wrap { max-height:75px; min-height:55px; }
+  body.build.long-grid #box-wrap { height:70px; }
+}
+@media (min-width:600px) {
+  .class-input .sam-strip { min-height:62px; }
+  .class-input .set img,.class-input .class-card b { display:none; }
+  .class-input .sam-strip img { width:44px; height:56px; }
+  .class-input #hint { min-height:48px; }
+  .class-input .set { min-height:44px; }
+  .class-input .panel,.class-input .explore-controls { gap:6px; }
+  .class-input #class-entry { display:grid; grid-template-columns:auto minmax(0,1fr) auto auto; gap:4px; }
+  .class-input #class-entry>label,.class-input #class-values,.class-input .privacy,.class-input #class-message { grid-column:1/-1; }
+  .class-input #class-entry>.row { display:contents; }
+  .class-input #class-values { height:44px; min-height:44px; }
+  .class-input #class-entry p { margin:2px 0; }
+  .class-input .readouts { grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .class-input .tile { padding:5px; }
+  .class-input .tile b { font-size:16px; line-height:1.2; overflow-wrap:anywhere; }
+  .class-input .tile label { min-height:24px; }
+}
+@media (min-width:1100px) and (min-height:740px) {
+  .class-input .set img,.class-input .class-card b { display:block; }
+}
+@media (max-width:599px) {
+  body.build.has-grid .stage { height:calc(236px + var(--grid-rows,3)*28px); min-height:calc(236px + var(--grid-rows,3)*28px); }
+  body.build.mad-step #grid,body.build.mad-step #grid-note,
+  body.build.pick-step #grid,body.build.pick-step #grid-note { display:none; }
+  body.build.mad-step .stage { height:250px; min-height:250px; }
+  body.build.pick-step .stage { height:200px; min-height:200px; }
+  body.build.report-filed .stage { height:calc(100dvh - 150px); min-height:540px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Box Plot Builder <small>What's a typical day?</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-explore" aria-pressed="true"><span class="header-icon" aria-hidden="true">⠿</span>Explore</button>
+    <button id="m-build" aria-pressed="false"><span class="header-icon" aria-hidden="true">⊞</span>Build</button>
+    <button id="m-headline" aria-pressed="false"><span class="header-icon" aria-hidden="true">▤</span>Headline</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <aside class="panel" id="panel">
+    <div class="sam-strip">
+      <img id="sam" src="art:sam-ask" alt="Sam, your newspaper reporter">
+      <p class="hint" id="hint" aria-live="polite"></p>
+    </div>
+    <section id="explore-controls" class="explore-controls" aria-label="Explore controls">
+      <div class="sets">
+        <p class="section-label">Choose a real story</p>
+        <div id="explore-sets" class="set-cards"></div>
+      </div>
+      <div id="class-entry" hidden>
+        <label class="field" for="class-values">Type up to 60 numbers, separated by spaces or commas</label>
+        <textarea id="class-values" aria-label="Our class numbers"></textarea>
+        <div class="row"><label class="field" for="class-unit">Unit</label><input id="class-unit" maxlength="12" aria-label="Unit, up to 12 characters"></div>
+        <div class="row class-inputs"><button id="class-show" class="btn primary">Show</button><button id="class-clear" class="btn">Clear</button></div>
+        <p class="privacy">These numbers stay on this device. Nothing is sent anywhere.</p>
+        <p id="class-message" role="status"></p>
+      </div>
+      <div class="row"><button class="btn" id="view-dot" aria-pressed="true">Dot plot</button><button class="btn" id="view-hist" aria-pressed="false">Histogram</button></div>
+      <div class="row" id="bin-controls" hidden><button class="btn" id="bin-minus">Bins −</button><span id="bin-width"></span><button class="btn" id="bin-plus">Bins +</button></div>
+      <div class="readout-section"><p class="section-label">Since the real data</p>
+        <div class="readouts">
+          <div class="tile"><label>Mean moved</label><b id="diff-mean">0 °F</b></div>
+          <div class="tile"><label>Median moved</label><b id="diff-median">0 °F</b></div>
+          <div class="tile"><label>IQR changed</label><b id="diff-iqr">0 °F</b></div>
+          <div class="tile"><label>MAD changed</label><b id="diff-mad">0 °F</b></div>
+        </div>
+      </div>
+      <button class="btn" id="putback" disabled>↶ Put back</button>
+    </section>
+    <section id="build-controls" aria-label="Build controls" hidden>
+      <div id="build-sets" class="build-picker"></div>
+      <div class="steps" id="steps"><span>1 Facts</span><span>2 Box</span><span>3 Mean</span><span>4 MAD</span><span>5 Pick</span></div>
+      <div id="data-card" class="data-card"></div>
+      <div id="number-area">
+        <label id="number-label" class="number-label" for="build-answer">How many values?</label>
+        <p id="calculation" class="record-line"></p>
+        <form id="build-form" class="number-form"><input id="build-answer" type="number" step="any" inputmode="decimal" autocomplete="off"><button class="btn primary" id="build-check" disabled>Check</button></form>
+      </div>
+      <button class="btn primary" id="lineup" hidden>Line up</button>
+      <div id="build-choices" hidden><h3 class="choice-title" id="choice-title"></h3><div class="options" id="options"></div></div>
+      <p class="feedback" id="build-feedback" role="status"></p>
+      <button class="btn primary" id="file-report" hidden>File the report</button>
+      <button class="btn" id="start-over">Start over</button>
+      <p class="record-line">Start over keeps tries and Sam's help marks for this session.</p>
+    </section>
+    <section id="headline-controls" aria-label="Headline controls" hidden>
+      <div id="head-iqrs">
+        <p class="choice-title">Read the two boxes</p>
+        <label class="field" for="miami-iqr">Miami IQR (°F)</label><input id="miami-iqr" type="number" inputmode="decimal">
+        <label class="field" for="denver-iqr">Denver IQR (°F)</label><input id="denver-iqr" type="number" inputmode="decimal">
+        <button class="btn primary" id="head-check" disabled>Check</button>
+      </div>
+      <div id="head-options" class="options" hidden></div>
+      <p id="head-feedback" class="feedback" role="status"></p>
+    </section>
+  </aside>
+  <section class="stage" id="stage" aria-label="Newsroom data desk">
+    <div class="sheet" id="scene">
+      <div class="mast"><strong>THE DATA DESK</strong><span>Curio Class · Field notes</span></div>
+      <div class="scene-heading">
+        <img id="scene-photo" src="art:set-sandiego" alt="Painted San Diego bay">
+        <div class="title-copy"><div class="eyebrow" id="eyebrow">Weather file · September 2024</div>
+          <h2 id="scene-title">What's typical<br>in San Diego?</h2><p class="subtitle" id="scene-subtitle">One dot. One real day. A different story?</p></div>
+      </div>
+      <div id="work">
+        <div id="plot-wrap"><svg id="plot" aria-label="Daily highs dot plot"></svg></div>
+        <p id="grid-note" hidden></p><div id="grid" tabindex="0" role="application" aria-label="Ordered cards. Arrows move; Enter picks." hidden></div>
+        <div id="box-wrap"><svg id="box" aria-label="Box plot with whiskers to the minimum and maximum"></svg></div>
+        <article id="report" class="report-card" tabindex="0" aria-label="Your filed data report" hidden></article>
+      </div>
+      <div id="headline-work" hidden><svg id="head-svg" aria-label="Miami and Denver July dot plots and box plots"></svg><div id="front-page" hidden></div></div>
+      <div class="plot-footer"><span id="source-label">NOAA NCEI · Airport daily highs · °F</span><span class="stamp">WORKING COPY</span></div>
+    </div>
+  </section>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:data-desk"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  const F = DataDesk.fmt;
+  const pictures = {
+    ask:'art:sam-ask', pleased:'art:sam-pleased', puzzled:'art:sam-puzzled', desk:'art:newsroom-desk',
+    sandiego:'art:set-sandiego', chicago:'art:set-chicago', miami:'art:set-miami',
+    denver:'art:set-denver', luka:'art:set-basketball'
+  };
+  const datasets = {
+    sandiego:{name:'San Diego',short:'San Diego · Sept',period:'September 2024',unit:'°F',station:'SAN DIEGO INTERNATIONAL AIRPORT, CA US',
+      dates:'2024-09-01 to 2024-09-30',values:[75,78,81,82,89,86,90,94,93,83,74,75,75,76,72,74,73,73,74,74,74,75,74,74,72,73,72,71,72,73]},
+    chicago:{name:'Chicago',short:'Chicago · May',period:'May 2024',unit:'°F',station:'CHICAGO OHARE INTERNATIONAL AIRPORT, IL US',
+      dates:'2024-05-01 to 2024-05-31',values:[75,81,69,81,64,70,75,79,63,67,70,83,81,62,67,75,81,85,76,86,89,80,81,77,76,73,74,72,70,70,79]},
+    miami:{name:'Miami',short:'Miami · July',period:'July 2024',unit:'°F',
+      values:[88,92,91,92,93,91,93,92,92,92,91,90,91,92,89,91,92,92,93,92,93,90,92,92,91,92,93,93,93,92,92]},
+    denver:{name:'Denver',short:'Denver · July',period:'July 2024',unit:'°F',
+      values:[89,88,93,83,81,91,78,83,90,93,98,102,99,101,98,90,89,92,93,87,79,84,89,95,97,93,95,96,99,100,97]},
+    luka:{name:'Luka Dončić',short:'Luka · 2023-24',period:'2023-24 regular season',unit:'points',
+      values:[33,49,35,18,34,23,29,31,44,30,16,26,35,25,30,30,41,36,40,32,35,33,39,40,38,28,39,50,39,39,19,41,34,31,33,33,34,73,28,45,40,19,35,39,32,26,27,41,33,45,30,37,38,39,35,39,27,21,37,18,34,29,28,26,47,30,25,37,39,29]},
+    class:{name:'Our class',short:'Our class',period:'On this device',unit:'units',example:true,values:[2,3,3,4,5]}
+  };
+  const L = {
+    wExplore:"Sam's question: what's a typical day? Drag any dot along the line, and watch which marker moves, the Mean or the Median.",
+    wExploreGame:"Sam's question: what's a typical game? Drag any dot along the line, and watch which marker moves, the Mean or the Median.",
+    wExploreClass:"Sam's question: what's a typical value? Drag any dot along the line, and watch which marker moves, the Mean or the Median.",
+    meanMoved:"The mean chased that dot. The median didn't move at all.",
+    medianMoved:'Now the median moved too. That dot crossed over the middle.',
+    histo:'Same data, counted in bins. Tap Bins plus or Bins minus to change the width. Tap Dot plot to drag again.',
+    wBuild:'Sam needs facts first. Read the data card, type how many values there are, then tap Check.',
+    facts:'Now say what was measured. Tap one answer in each row. Each row gets one try.',
+    lineUp:'Tap Line up. The values will sort from smallest to largest.',
+    midOdd:'Tap the middle card. It has as many cards before it as after it.',
+    midEven:'This set has an even count, so two cards share the middle. Tap both of them.',
+    quart:'Now the halves. Tap the middle card of the lower half, then the middle card of the upper half.',
+    ends:'Last, tap the smallest card and the largest card. The whiskers reach them.',
+    iqr:'Your box runs from Q1 to Q3. Type the IQR, the width of the box, then tap Check.',
+    mean:'Share the total out evenly. Divide it by the number of values, type the mean, then tap Check.',
+    mad:'Each line is one distance from the mean. The MAD is the average distance. Type it, then tap Check.',
+    pick:'Sam can print one center and one spread. Tap the pair that fits, then tap the reason.',
+    file:'Tap File the report to print your findings.',
+    right:'Right.', missTry:'Not yet. Read the note, then try once more.',
+    shown:"Here's how Sam worked it out.", fixed:'Sam fixed that one. Read why.',
+    filed:'Report filed. The check marks show what you found yourself.',
+    wHeadline:"Sam's headline says the two Julys were the same. Read both box plots, type each city's IQR, then tap Check.",
+    denverOnly:"Miami's IQR is recorded. Type Denver's IQR, then tap Check.",
+    miamiOnly:"Denver's IQR is recorded. Type Miami's IQR, then tap Check.",
+    pickHead:'Now tap the headline that tells the whole story. You get one pick.',
+    headRight:"That's the story. Same mean, very different spreads.",
+    headWrong:'The editor flagged that one. Read why, under it.'
+  };
+  const reasonOptions = ['Lopsided: a long tail on one side','Roughly balanced, no far-off values','One value far from the rest'];
+  const headlineOptions = [
+    "Same 91.7 °F average high, but Denver's July swung far more than Miami's",
+    'Miami and Denver had the same July, with a 91.7 °F average high each',
+    "Same 91.7 °F average high, but Miami's July swung far more than Denver's",
+    "Denver's July was hotter than Miami's, judging by the average high"
+  ];
+  const headlineReasons = [
+    'Right: IQR 1 °F against 9 °F, range 5 °F against 24 °F.',
+    "The mean matches, but the spreads don't. Readers would expect Denver to feel like Miami.",
+    "Check the boxes: Miami's is the narrow one.",
+    'Both averages are 91.7 °F, so neither is hotter by that measure.'
+  ];
+  const pairs = ['Median and IQR','Mean and MAD'];
+  const fields = ['n','measured','how','units','median','q1','q3','min','max','iqr','mean','mad','pair','reason'];
+  const cardFields = ['median','q1','q3','min','max'];
+  const shuffle = a => {
+    const b = a.slice();
+    for (let i = b.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [b[i],b[j]] = [b[j],b[i]];
+    }
+    return b;
+  };
+  function freshBuild() {
+    return {step:1,fields:{},attempts:{},values:{},lineup:false,card:0,partial:[],cursor:0,feedback:'',miss:false,filed:false,
+      orders:{measured:shuffle([0,1,2,3]),how:shuffle([0,1,2,3]),units:shuffle([0,1,2,3]),pair:shuffle([0,1]),reason:shuffle([0,1,2])}};
+  }
+  const state = {mode:'explore',set:'sandiego',exploreSet:'sandiego',buildSet:'sandiego',view:'dot',bin:2,
+    values:datasets.sandiego.values.slice(),builds:{sandiego:freshBuild(),chicago:freshBuild(),luka:freshBuild()},
+    help:{sandiego:{},chicago:{},luka:{}},
+    head:{fields:{},attempts:{},values:{},pick:null,order:shuffle([0,1,2,3]),feedback:''}};
+  let table = null;
+  let plot = null;
+  let charts = [];
+  let currentGridSet = '';
+  let gridBuilt = false;
+  let activeEpoch = 0;
+  let resizeFrame = 0;
+  let lastHintKey = '';
+  let distanceStart = 0;
+  let distanceFrame = 0;
+  let eventSerial = 0;
+  const B = () => state.builds[state.buildSet];
+  const D = () => datasets[state.set];
+  const baseStats = id => DataDesk.stats(datasets[id].values);
+  const buildStats = () => baseStats(state.buildSet);
+  const V = Curio.voice({
+    lines:L,scope:() => state.mode + ':' + state.set,hint:false,read:() => $('hint').textContent,
+    welcome:() => {
+      if (state.mode === 'explore' && state.view==='dot' && !moved()) return exploreWelcome();
+      if (state.mode === 'build' && !B().fields.n) return 'wBuild';
+      if (state.mode === 'headline' && !state.head.fields.miami && !state.head.fields.denver) return 'wHeadline';
+      return null;
+    }
+  });
+  function mk(tag,attrs,parent,text) {
+    const el = document.createElementNS(NS,tag);
+    for (const [k,v] of Object.entries(attrs || {})) el.setAttribute(k,String(v));
+    if (text != null) el.textContent = text;
+    if (parent) parent.appendChild(el);
+    return el;
+  }
+  function setHint(text,key,voice=true) {
+    $('hint').textContent = text;
+    lastHintKey = key || '';
+    if (key && voice) {
+      const events=['right','missTry','shown','fixed','filed','headRight','headWrong'].map(k => L[k]);
+      if (V.playing && !events.includes(V.playing) && !V.heard(key)) V.hush();
+      const speak = () => V.how(key,{valid:() => lastHintKey === key});
+      if (key==='mad' && !Curio.reduce) setTimeout(() => { if (lastHintKey===key) speak(); },850);
+      else speak();
+    }
+  }
+  function feedback(text,miss=false) {
+    if (state.mode === 'build') { B().feedback = text;
+    B().miss = miss;
+    }
+    const el = $(state.mode === 'headline' ? 'head-feedback' : 'build-feedback');
+    el.textContent = text;
+    el.classList.toggle('miss',miss);
+    $('sam').src = pictures[miss ? 'puzzled' : 'pleased'];
+  }
+  function result(key) {
+    // A how-to for the previous step must give way as soon as the student acts.
+    // Keep result speech whole, including the two separate Headline checks.
+    const eventLines = ['right','missTry','shown','fixed','filed','headRight','headWrong'].map(k => L[k]);
+    if (V.playing && !eventLines.includes(V.playing)) V.hush();
+    V.dropQueued(it => it.kind === 'how');
+    V.say(key,{hint:false,key:key+':'+(++eventSerial)});
+    Curio.tone(key === 'right' ? 620 : 240,.075,.035,'sine');
+  }
+  function endAnimation() { $('scene').classList.add('anim-end');
+  }
+  function animateAgain() { $('scene').classList.remove('anim-end');
+  }
+  document.addEventListener('pointerdown',endAnimation,true);
+  document.addEventListener('keydown',endAnimation,true);
+  function stopDrag() { window.dispatchEvent(new Event('pointercancel'));
+  }
+  function axis() {
+    if (state.set === 'class') {
+      const s = baseStats('class');
+      const pad = (s.max - s.min || Math.max(Math.abs(s.max),2)) / 2;
+      const n = DataDesk.nice(s.min-pad,s.max+pad,6);
+      return [n.lo,n.hi];
+    }
+    return state.set === 'luka' ? [0,90] : [60,110];
+  }
+  function axisFactor() {
+    if(state.set!=='class') return 1;
+    const size=Math.max(...axis().map(Math.abs));
+    return size>=1000000?1000000:size>=1000?1000:1;
+  }
+  const axisFormat=v=>F(v/axisFactor());
+  function getTable(vals=state.mode === 'explore' ? state.values : D().values) {
+    const key = state.set === 'luka' ? 'pts' : 'high';
+    const label=state.set==='class'?'Our class values':state.set==='luka'?'Points per game':'Daily high';
+    return DataTable(vals.map(v => ({[key]:v})),{columns:{[key]:{label,unit:D().unit}}});
+  }
+  function moved() {
+    return state.values.some((v,i) => v !== datasets[state.exploreSet].values[i]);
+  }
+  // The shared engine currently has 1.5-IQR whiskers. Keep its boxes and axes, replacing only range endpoints locally.
+  function rangeBox(target,t,options) {
+    const ch = Chart(target,t,{...options,type:'box',marks:[]});
+    const mg = ch.el.querySelector('.dd-marks');
+    const st = t.stats(options.x);
+    [...mg.querySelectorAll(':scope > line')].slice(0,4).forEach(el => el.remove());
+    mg.querySelectorAll(':scope > circle,:scope > path').forEach(el => el.remove());
+    const r = mg.querySelector('rect');
+    if (r) {
+      const y = +r.getAttribute('y') + +r.getAttribute('height') / 2;
+      const h = +r.getAttribute('height');
+      const X = ch.scales.x;
+      const col = options.series === 2 ? 'var(--rust)' : 'var(--brand)';
+      r.setAttribute('fill',col);
+      r.setAttribute('stroke',col);
+      for (const [a,b] of [[st.min,st.q1],[st.q3,st.max]]) {
+        mk('line',{x1:X(a),x2:X(b),y1:y,y2:y,stroke:col,'stroke-width':2},mg);
+      }
+      for (const v of [st.min,st.max]) mk('line',{x1:X(v),x2:X(v),y1:y-h/3,y2:y+h/3,stroke:col,'stroke-width':2},mg);
+      ch.el.querySelector('desc').textContent = 'Box plot: whiskers reach minimum and maximum. Read the five marks against the axis.';
+      mg.setAttribute('aria-label','Box plot with whiskers to the minimum and maximum');
+    }
+    return ch;
+  }
+  function clearCharts() {
+    stopDrag();
+    activeEpoch++;
+    charts.forEach(ch => ch.destroy());
+    charts = [];
+    $('plot').textContent = '';
+    $('box').textContent = '';
+    $('head-svg').textContent = '';
+    plot = null;
+  }
+  function updateDiffs() {
+    if (state.mode !== 'explore' || !table) return;
+    const key = state.set === 'luka' ? 'pts' : 'high';
+    const s = table.stats(key), orig = baseStats(state.set);
+    for (const k of ['mean','median','iqr','mad']) {
+      const v = Math.round((s[k] - orig[k]) * 100) / 100;
+      $('diff-'+k).textContent = (v > 0 ? '+' : '') + F(v) + ' ' + D().unit;
+    }
+    $('putback').disabled = !moved();
+    if (state.view==='dot') fitDots(plot);
+    drawMarkers();
+  }
+  function drawMarkers() {
+    if (!plot || !plot.scales) return;
+    stripCounts();
+    $('plot').querySelector('#custom-marks')?.remove();
+    const g = mk('g',{id:'custom-marks','pointer-events':'none'},$('plot'));
+    const {x:X,frame:f} = plot.scales;
+    const key = state.set === 'luka' ? 'pts' : 'high';
+    const st = table.stats(key), orig = baseStats(state.set);
+    const inExplore = state.mode === 'explore';
+    if (!inExplore && B().step !== 4) return;
+    const marks = inExplore ? ['mean','median'] : ['mean'];
+    for (const [i,k] of marks.entries()) {
+      const x = X(st[k]), start = X(orig[k]);
+      const flagX = Math.max(36,Math.min($('plot').clientWidth-36,x));
+      const color = k === 'mean' ? '#b23c17' : '#0d6670';
+      const y = 20 + i * 27;
+      if (inExplore && moved()) {
+        mk('line',{x1:start,x2:start,y1:58,y2:f.y0,stroke:color,opacity:.25,'stroke-dasharray':'2 4'},g);
+        mk('text',{x:start+3,y:68+i*13,fill:color,'font-size':10},g,'start');
+        if (Math.abs(x-start) > .5) {
+          mk('line',{x1:start,x2:x,y1:56+i*8,y2:56+i*8,stroke:color,'stroke-width':1.5},g);
+          mk('path',{d:`M${x+(x>start?-5:5)} ${52+i*8}L${x} ${56+i*8}L${x+(x>start?-5:5)} ${60+i*8}`,fill:'none',stroke:color},g);
+        }
+      }
+      mk('line',{x1:x,x2:x,y1:y+10,y2:f.y0,stroke:color,'stroke-width':2,'stroke-dasharray':k==='mean'?'6 4':''},g);
+      if (k === 'mean') mk('path',{d:`M${flagX-35} ${y}L${flagX-28} ${y-10}H${flagX+28}L${flagX+35} ${y}L${flagX+28} ${y+10}H${flagX-28}Z`,fill:color},g);
+      else mk('rect',{x:flagX-33,y:y-10,width:66,height:20,fill:color},g);
+      mk('text',{x:flagX,y:y+4,'text-anchor':'middle',fill:'white','font-size':12,'font-weight':700},g,k==='mean'?'Mean':'Median');
+    }
+    if (state.mode === 'build' && B().step === 4) {
+      const lines = mk('g',{},g);
+      for (const p of plot.dots || []) mk('line',{x1:p.x,x2:X(st.mean),y1:p.y,y2:p.y,class:'distance'},lines);
+    }
+    // A moved dot remains hollow with a visible ring, even when another dot is selected.
+    if (inExplore && state.view === 'dot') {
+      for (const p of plot.dots || []) {
+        if (state.values[p.i] === D().values[p.i]) continue;
+        const dot = plot.el.querySelector(`.dd-marks [data-i="${p.i}"]`);
+        if (dot) { dot.setAttribute('fill','#fbf8f1');
+        dot.setAttribute('stroke','#b06f00');
+        dot.setAttribute('stroke-width','2');
+        }
+      }
+    }
+  }
+  function stripCounts() {
+    for(const el of $('plot').querySelectorAll('desc,[aria-label]')) {
+      const attr=el.hasAttribute('aria-label');
+      const text=attr?el.getAttribute('aria-label'):el.textContent;
+      const clean=text.replace(/\b\d+\s+values\b/g,'values');
+      if(clean!==text) {
+        if(attr) el.setAttribute('aria-label',clean);
+        else el.textContent=clean;
+      }
+    }
+  }
+  function fitDots(ch) {
+    if (!ch.dots?.length) return;
+    const f=ch.scales.frame;
+    const rows=Math.max(...ch.dots.map(p=>p.k))+1;
+    const step=Math.min(ch.scales.r*2+1.5,Math.max(1,f.y0-f.y1-3)/rows);
+    const radius=Math.min(ch.scales.r,step*.42);
+    for (const p of ch.dots) {
+      p.y=f.y0-radius-2-p.k*step;
+      const el=ch.el.querySelector(`.dd-marks [data-i="${p.i}"]`);
+      if (el?.tagName==='circle') {
+        el.setAttribute('cy',p.y);
+        el.setAttribute('r',radius);
+        let ring=el.nextElementSibling;
+        while (ring?.tagName==='circle' && !ring.hasAttribute('data-i')) {
+          ring.setAttribute('cy',p.y);
+          ring.setAttribute('r',radius+(ring.getAttribute('stroke')?.includes('--focus')?5:3));
+          ring=ring.nextElementSibling;
+        }
+      }
+    }
+  }
+  function drawStage() {
+    clearCharts();
+    if (state.mode === 'headline') { drawHeadline();
+    return;
+    }
+    const w = Math.max(200,$('plot-wrap').clientWidth);
+    const compact = innerWidth>=600 && innerHeight<=540;
+    const h = Math.max(state.mode==='explore'?(compact?105:130):55,$('plot-wrap').clientHeight);
+    const key = state.set === 'luka' ? 'pts' : 'high';
+    const inExplore = state.mode === 'explore';
+    const hist = inExplore && state.view === 'histogram';
+    table = getTable();
+    const epoch = activeEpoch;
+    const originalSet = state.set;
+    const rawSet = table.set;
+    table.set = (i,k,v) => {
+      if (!inExplore || state.mode !== 'explore' || epoch !== activeEpoch || state.set !== originalSet || state.view !== 'dot') return;
+      const [lo,hi] = axis();
+      rawSet(i,k,Math.max(lo,Math.min(hi,Math.round(v))));
+    };
+    // Histograms include the fixed axis's right endpoint in their last bin.
+    // Keep the canonical table exact for statistics, markers and the box plot.
+    const hi=axis()[1];
+    const chartTable=hist?getTable(state.values.map(v=>v===hi?hi-Math.max(1e-9,(hi-axis()[0])*1e-9):v)):table;
+    plot = Chart($('plot'),chartTable,{type:hist?'histogram':'dot',x:key,width:w,height:h,xDomain:axis(),font:w<430?10:12,
+      margin:{l:28,r:22,t:inExplore?(hist||compact?64:82):8,b:24},xLabel:'',xFormat:axisFormat,pointSize:7,live:true,
+      bins:hist?{width:state.bin,start:state.set==='luka'?0:state.set==='class'?axis()[0]:60}:null,
+      animate:Curio.reduce?0:300,point:(r,i) => ({ring:inExplore&&state.values[i]!==D().values[i]?'#b06f00':null})});
+    if (!hist) fitDots(plot);
+    charts.push(plot);
+    if (inExplore && !hist) {
+      plot.drag(true).onPoint(() => {
+        fitDots(plot);
+        drawMarkers();
+        Curio.tone(390,.035,.015);
+      });
+      // The chart redraws after its keyboard point callback. Fit that finished
+      // redraw too, including its selected-point ring and the tool's markers.
+      const keyboardPlot=plot;
+      plot.el.addEventListener('keydown',() => {
+        if (plot!==keyboardPlot) return;
+        fitDots(keyboardPlot);
+        drawMarkers();
+      });
+      table.on('change',() => {
+        state.values = table.rows.map(r => r[key]);
+        updateDiffs();
+        drawExploreBox();
+        const s = table.stats(key), orig = baseStats(state.set);
+        if (s.median !== orig.median) setHint(L.medianMoved+' Drag another dot, or tap Put back.','medianMoved');
+        else if (Math.abs(s.mean-orig.mean)>=.25) setHint(L.meanMoved+' Drag another dot, or tap Put back.','meanMoved');
+        else {
+          if (['meanMoved','medianMoved'].includes(lastHintKey)) V.hush();
+          exploreHint();
+        }
+      });
+    }
+    if (inExplore) { updateDiffs();
+    drawExploreBox();
+    }
+    else {
+      drawBuildBox();
+      drawMarkers();
+      if (B().step===4) animateDistances();
+    }
+  }
+  function animateDistances() {
+    cancelAnimationFrame(distanceFrame);
+    const epoch=activeEpoch, started=performance.now(), total=buildStats().mad*buildStats().n;
+    const tick=now => {
+      if (state.mode!=='build'||B().step!==4||epoch!==activeEpoch) return;
+      const p=Curio.reduce?1:Math.min(1,(now-started)/850);
+      $('calculation').textContent=`Distances so far: ${F(total*p,1)} ${D().unit}. Divide by the number of values.`;
+      if(p<1) distanceFrame=requestAnimationFrame(tick);
+    };
+    distanceFrame=requestAnimationFrame(tick);
+  }
+  function drawExploreBox() {
+    if (state.mode !== 'explore') return;
+    $('box').textContent = '';
+    const ch = rangeBox($('box'),table,{x:state.set==='luka'?'pts':'high',width:$('box-wrap').clientWidth,
+      height:$('box-wrap').clientHeight,xDomain:axis(),font:11,margin:{l:28,r:22,t:3,b:22},
+      xLabel:'',xFormat:axisFormat,live:false});
+  }
+  function drawBuildBox() {
+    $('box').textContent = '';
+    const b = B(), s = buildStats(), w = $('box-wrap').clientWidth, h = $('box-wrap').clientHeight;
+    if (!b.lineup) return;
+    const [lo,hi] = axis(), X = v => 28 + (v-lo)/(hi-lo)*(w-50);
+    const svg = $('box');
+    svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
+    const y = h*.55;
+    if (cardFields.every(f => b.fields[f])) {
+      const ch = rangeBox(svg,getTable(D().values),{x:state.set==='luka'?'pts':'high',width:w,height:h,
+        xDomain:axis(),font:10,margin:{l:28,r:22,t:19,b:18},xLabel:''});
+      charts.push(ch);
+      ch.el.querySelector('.dd-marks').classList.add('box-draw');
+    } else mk('line',{x1:28,x2:w-22,y1:y,y2:y,stroke:'#aaa08d'},svg);
+    const labels = {min:'Min',q1:'Q1',median:'Median',q3:'Q3',max:'Max'};
+    const visible = ['min','q1','median','q3','max'].filter(f => b.fields[f]);
+    const positions = visible.map(f => X(s[f]));
+    // Keep text apart while fine leaders retain each statistic's exact position.
+    const labelXs = positions.slice();
+    const gap = Math.min(44,(w-40)/Math.max(1,visible.length-1));
+    for (let i=1;i<labelXs.length;i++) labelXs[i]=Math.max(labelXs[i],labelXs[i-1]+gap);
+    if (labelXs.length && labelXs.at(-1)>w-22) labelXs[labelXs.length-1]=w-22;
+    for (let i=labelXs.length-2;i>=0;i--) labelXs[i]=Math.min(labelXs[i],labelXs[i+1]-gap);
+    for (const [i,f] of visible.entries()) {
+      if (!b.fields[f]) continue;
+      const x = X(s[f]);
+      const g = mk('g',{class:'box-tick'},svg);
+      mk('line',{x1:x,x2:x,y1:y-9,y2:y+9,stroke:'#0d6670','stroke-width':2},g);
+      if (Math.abs(labelXs[i]-x)>1) mk('path',{d:`M${labelXs[i]} 15L${x} ${Math.max(17,y-10)}`,
+        fill:'none',stroke:'#0d6670','stroke-width':.7,opacity:.65},g);
+      mk('text',{x:labelXs[i],y:12,'text-anchor':'middle',fill:'#0d6670','font-size':10,'font-weight':700},g,labels[f]);
+    }
+  }
+  function updateSceneHeading() {
+    const d = D();
+    $('scene-photo').src = pictures[state.set] || pictures.desk;
+    $('scene-photo').alt = state.set === 'luka' ? 'Painted basketball on a hardwood court' : 'Painted '+d.name+' scene';
+    $('eyebrow').textContent = (state.set==='class'?'Class file':state.set==='luka'?'Sports file':'Weather file')+' · '+d.period;
+    $('scene-title').textContent = state.mode === 'build' ? d.name+': build the story' :
+      state.set==='luka'?"What's typical for Luka Dončić?":"What's typical in "+d.name+'?';
+    $('scene-subtitle').textContent = state.set==='class'?'One dot. One value. A different story?':
+      state.set==='luka'?'One dot. One real game. A different story?':'One dot. One real day. A different story?';
+    $('source-label').textContent = state.set==='luka'?'Basketball-Reference · Regular-season points':
+      state.set==='class'?(axisFactor()>1?'Our class · Axis × '+F(axisFactor(),0)+' '+d.unit:
+        'Our class · Numbers stay on this device'):'NOAA NCEI · Airport daily highs · °F';
+  }
+  function refreshClasses() {
+    document.body.classList.toggle('build',state.mode==='build');
+    document.body.classList.toggle('headline',state.mode==='headline');
+    document.body.classList.toggle('has-grid',state.mode==='build'&&B().lineup&&!B().filed);
+    document.body.classList.toggle('long-grid',state.mode==='build'&&B().lineup&&!B().filed&&D().values.length>40);
+    document.body.classList.toggle('mad-step',state.mode==='build'&&B().step===4);
+    document.body.classList.toggle('pick-step',state.mode==='build'&&B().step===5);
+    document.body.classList.toggle('report-filed',state.mode==='build'&&B().filed);
+    document.body.classList.toggle('class-input',state.mode==='explore'&&state.set==='class');
+    document.body.style.setProperty('--grid-rows',Math.ceil(D().values.length/10));
+    document.body.classList.toggle('histogram',state.mode==='explore'&&state.view==='histogram');
+  }
+  function setMode(mode) {
+    if (!['explore','build','headline'].includes(mode)) return;
+    V.hush();
+    stopDrag();
+    endAnimation();
+    state.mode = mode;
+    state.set = mode==='explore'?state.exploreSet:state.buildSet;
+    for (const m of ['explore','build','headline']) {
+      $('m-'+m).setAttribute('aria-pressed',m===mode);
+      $(m+'-controls').hidden = m!==mode;
+    }
+    $('work').hidden = mode==='headline';
+    $('headline-work').hidden = mode!=='headline';
+    $('sam').src = pictures[mode==='headline'?'puzzled':'ask'];
+    refreshClasses();
+    updateSceneHeading();
+    if (mode==='explore') {
+      $('grid').hidden = true;
+      $('grid-note').hidden = true;
+      $('box-wrap').hidden = false;
+      $('report').hidden = true;
+      updateBins();
+      exploreHint();
+    } else if (mode==='build') renderBuild();
+    else {
+      $('head-options').textContent='';
+      state.head.order = shuffle([0,1,2,3]);
+      $('scene-title').textContent = 'Miami and Denver had the same July: average high 91.7 °F.';
+      $('eyebrow').textContent = "Sam's draft headline · July 2024";
+      $('scene-subtitle').textContent = 'Is that the whole story?';
+      $('scene-photo').src = pictures.desk;
+      $('scene-photo').alt = 'Painted newsroom desk';
+      $('source-label').textContent = 'NOAA NCEI · Airport daily highs · July 2024';
+      renderHeadlineControls();
+    }
+    drawStage();
+    V.welcome();
+  }
+  function exploreHint() {
+    if (state.view==='histogram') setHint('Same data, counted in bins. Tap Bins + or Bins − to change the width. Tap Dot plot to drag a dot.','histo');
+    else {
+      const topic=state.set==='luka'?'game':state.set==='class'?'value':'day';
+      setHint(`What's a typical ${topic} here? Drag any dot along the line and watch the Mean and Median markers.`,exploreWelcome(),false);
+    }
+  }
+  function exploreWelcome() {
+    return state.set==='luka'?'wExploreGame':state.set==='class'?'wExploreClass':'wExplore';
+  }
+  function setSet(id) {
+    if (!datasets[id] || state.mode==='headline') return;
+    if (state.mode==='build' && !['sandiego','chicago','luka'].includes(id)) return;
+    V.hush();
+    stopDrag();
+    state.set = id;
+    if (state.mode==='explore') {
+      state.exploreSet = id;
+      state.values = datasets[id].values.slice();
+      state.bin = id==='class'?binWidths()[1]:id==='luka'?5:2;
+      $('class-entry').hidden = id!=='class';
+      if(id==='class'&&D().example) $('class-message').textContent='A small example is shown until you tap Show.';
+      document.querySelectorAll('#explore-sets .set').forEach(el => el.setAttribute('aria-pressed',el.dataset.set===id));
+      updateBins();
+      exploreHint();
+      $('hint').textContent += state.set==='class'?' All dots are back at this set.':' All dots are back at the real data.';
+    } else { state.buildSet=id;
+    currentGridSet='';
+    renderBuild();
+    }
+    updateSceneHeading();
+    refreshClasses();
+    drawStage();
+    V.welcome();
+  }
+  function putBack() {
+    if (state.mode!=='explore') return;
+    stopDrag();
+    endAnimation();
+    V.hush();
+    state.values = D().values.slice();
+    drawStage();
+    exploreHint();
+    Curio.tone(330,.06,.025);
+  }
+  function drag(i,value) {
+    if (state.mode!=='explore' || state.view!=='dot' || !Number.isFinite(value) || i<0 || i>=state.values.length) return;
+    table.set(i,state.set==='luka'?'pts':'high',value);
+  }
+  function fieldNow() {
+    const b = B();
+    if (b.step===1) return !b.fields.n?'n':['measured','how','units'].find(f => !b.fields[f]);
+    if (b.step===2) return !b.lineup?'lineup':b.card<5?cardFields[b.card]:'iqr';
+    if (b.step===3) return 'mean';
+    if (b.step===4) return 'mad';
+    return !b.fields.pair?'pair':!b.fields.reason?'reason':'file';
+  }
+  function chipOptions(row) {
+    const sports = state.set==='luka';
+    if (row==='pair') return pairs;
+    if (row==='reason') return reasonOptions;
+    if (row==='units') return sports?['points','minutes','games','shots']:
+      ['degrees Fahrenheit','degrees Celsius','inches of rainfall','miles per hour'];
+    if (row==='measured') return sports?['Points he scored in each game','Points his team scored in each game',
+      'Minutes he played in each game','Shots he took in each game']:
+      ['The highest temperature each day','The temperature at noon each day','The average temperature each day','The lowest temperature each day'];
+    return sports?["Kept in each game's official box score",'A survey of fans after each game',
+      'Guessed from a basketball video game','Counted from one highlight video']:
+      ['A weather station at the airport','A survey of people in the city',"A weather app's forecast for the day",'A count of sunny hours each day'];
+  }
+  function rightChip(row) {
+    if (row==='pair') return state.set==='chicago'?1:0;
+    if (row==='reason') return {sandiego:0,chicago:1,luka:2}[state.set];
+    return 0;
+  }
+  function dataCard() {
+    if (state.set==='luka') return 'Player: Luka Dončić, Dallas Mavericks.<br>Column: PTS. Season: 2023-24 regular season.<br>Team games: 82. Did not play: 12.<br>Source: Basketball-Reference.com game log.';
+    return 'Station: '+D().station+'.<br>Element: TMAX. Unit: °F.<br>Dates: '+D().dates+'.<br>Source: NOAA NCEI, GHCN-Daily.';
+  }
+  function buildHint(voice=true) {
+    const f = fieldNow(), b=B(), n=buildStats().n;
+    const keys = {n:'wBuild',measured:'facts',how:'facts',units:'facts',lineup:'lineUp',
+      median:n%2?'midOdd':'midEven',q1:'quart',q3:'quart',min:'ends',max:'ends',iqr:'iqr',mean:'mean',mad:'mad',pair:'pick',reason:'pick',file:'file'};
+    let text = L[keys[f]] || 'Tap File the report to print your findings, or choose another set.';
+    if (f==='q3') text = 'Tap the middle card of the upper half.';
+    if (f==='max') text = 'Tap the largest card. The last whisker reaches it.';
+    if (f==='median' && b.partial.length) text = 'Tap the other middle card. Both middle cards are needed.';
+    if (b.filed) text = 'Your report shows what you found and what Sam showed. Choose another set, or tap Explore to test it.';
+    setHint(text,keys[f],voice&&!b.filed);
+  }
+  function targetPositions(field) {
+    const n = buildStats().n;
+    const med = (a,b) => (b-a+1)%2?[(a+b)/2]:[(a+b-1)/2,(a+b+1)/2];
+    if (field==='median') return med(1,n);
+    if (field==='q1') return med(1,Math.floor(n/2));
+    if (field==='q3') return med(Math.floor(n/2)+1+(n%2),n);
+    return [field==='min'?1:n];
+  }
+  function makeGrid() {
+    const b=B();
+    if (currentGridSet===state.set && gridBuilt) { updateGrid();
+    return;
+    }
+    $('grid').textContent='';
+    const s = D().values.slice().sort((a,c) => a-c);
+    s.forEach((v,i) => {
+      const el=document.createElement('div');
+      el.className='value-card'; el.dataset.pos=i+1; el.textContent=v;
+      $('grid').appendChild(el);
+    });
+    currentGridSet=state.set;
+    gridBuilt=true;
+    updateGrid();
+  }
+  function updateGrid() {
+    const b=B(), n=buildStats().n;
+    [...$('grid').children].forEach((el,i) => {
+      const pos=i+1;
+      el.className='value-card';
+      if (b.fields.median) el.classList.add(pos<=Math.floor(n/2)?'lower':pos>Math.ceil(n/2)?'upper':'middle');
+      for (const f of cardFields) {
+        if (b.fields[f] && targetPositions(f).includes(pos)) el.classList.add(b.fields[f]==='found'?'picked':'shown');
+      }
+      if (b.partial.includes(pos)) el.classList.add('picked');
+      if (document.activeElement===$('grid') && b.cursor===i) el.classList.add('cursor');
+    });
+    const f=fieldNow();
+    const v = D().values.slice().sort((a,c)=>a-c)[b.cursor];
+    $('grid').setAttribute('aria-label',`Ordered cards. Card ${b.cursor+1}, value ${v}. Arrows move; Enter picks. Find ${f}.`);
+    $('grid-note').textContent = b.fields.median ? 'Lower half: solid teal edge · Upper half: double rust edge' : 'Smallest first · Arrows move · Enter picks';
+  }
+  function renderBuild() {
+    const b=B(), f=fieldNow(), st=buildStats();
+    refreshClasses();
+    document.querySelectorAll('#build-sets button').forEach(el => el.setAttribute('aria-pressed',el.dataset.set===state.set));
+    [...$('steps').children].forEach((el,i) => el.classList.toggle('now',i===b.step-1));
+    $('data-card').hidden = f!=='n';
+    $('data-card').innerHTML=dataCard();
+    const typed=['n','iqr','mean','mad'].includes(f);
+    $('number-area').hidden=!typed||b.filed;
+    $('lineup').hidden=f!=='lineup'||b.filed;
+    $('grid').hidden=!b.lineup||b.filed;
+    $('grid-note').hidden=$('grid').hidden;
+    $('box-wrap').hidden=!b.lineup;
+    $('report').hidden=!b.filed;
+    if (b.lineup) makeGrid();
+    $('build-feedback').textContent=b.feedback;
+    $('build-feedback').classList.toggle('miss',b.miss);
+    $('file-report').hidden=f!=='file'||b.filed;
+    if (typed) {
+      $('build-answer').value='';
+      $('build-check').disabled=true;
+      $('build-answer').id = 'build-answer';
+      $('number-label').textContent = {n:'How many values?',iqr:'Type the IQR',mean:'Type the mean, to the tenths place',mad:'Type the MAD, to the tenths place'}[f];
+      $('calculation').textContent=f==='mean'?`The ${st.n} ${state.set==='luka'?'game scores':'highs'} add up to ${F(st.sum,0)} ${D().unit}.`:
+        f==='mad'?`Distances so far: ${F(st.mad*st.n,1)} ${D().unit}. Divide by the number of values.`:'';
+      if (f==='mad') distanceStart=performance.now();
+    }
+    const choice=['measured','how','units','pair','reason'].includes(f);
+    $('build-choices').hidden=!choice||b.filed;
+    if (choice) {
+      $('choice-title').textContent={measured:'What was measured?',how:'How was it measured?',units:'Which units?',pair:'Pick a center and spread',reason:'Which shape fits?'}[f];
+      $('options').textContent='';
+      b.orders[f].forEach((k,j) => {
+        const el=document.createElement('button'); el.className='btn'; el.textContent=chipOptions(f)[k];
+        el.dataset.choice=j;
+        el.onclick=() => pickBuild(f,k);
+        $('options').appendChild(el);
+      });
+    }
+    if (b.filed) renderReport();
+    buildHint();
+  }
+  function fieldAnswer(field) {
+    const s=buildStats();
+    return s[field];
+  }
+  function credit(field,right,assisted) {
+    const history=state.help[state.buildSet];
+    if(!right) history[field]=assisted;
+    return history[field]||'found';
+  }
+  function working(field) {
+    const s=buildStats(), u=D().unit;
+    if (field==='n') return state.set==='luka'?'82 − 12 = 70 games.':state.set==='sandiego'?'September 1 through September 30: 30 days.':'May 1 through May 31: 31 days.';
+    if (field==='iqr') return `${F(s.q3)} − ${F(s.q1)} = ${F(s.iqr)} ${u}. IQR is Q3 minus Q1.`;
+    const total=field==='mean'?s.sum:s.mad*s.n;
+    return `${F(total,field==='mean'?0:1)} ÷ ${s.n} = ${F(s[field])}, about ${F(s[field],1)} ${u}.`;
+  }
+  function numericMiss(field,value) {
+    if (field==='n') return state.set==='luka'?'Count only games he played. Subtract games missed from team games.':'Count both dates, from the first day through the last day of this month.';
+    if (field==='iqr') return 'IQR is Q3 minus Q1. The range uses the two whisker ends.';
+    if (field==='mean') return Math.abs(value-fieldAnswer(field))<.15?'Close: round to the tenths place.':'Divide the total by the number of values, not one fewer.';
+    return 'MAD is the sum of distances divided by the number of values. Use all the values.';
+  }
+  function typeBuild(field,value) {
+    if (state.mode!=='build' || fieldNow()!==field || !['n','iqr','mean','mad'].includes(field) || B().filed) return false;
+    if (String(value).trim()==='' || !Number.isFinite(Number(value))) return false;
+    value=Number(value);
+    const b=B(), answer=fieldAnswer(field), tol=['mean','mad'].includes(field)?.05:0;
+    const right=Math.abs(value-answer)<=tol+1e-9;
+    b.attempts[field]=(b.attempts[field]||0)+1;
+    if (!right && b.attempts[field]<2) {
+      feedback(numericMiss(field,value),true);
+      result('missTry');
+      buildHint(false);
+      return false;
+    }
+    b.fields[field]=credit(field,right,'Sam showed');
+    b.values[field]=right?value:answer;
+    const label=b.fields[field]==='found'?'✓ Found. ':right?'Correct; Sam helped earlier. ':'Sam showed: ';
+    const message=label+working(field);
+    result(right?'right':'shown');
+    if (field==='iqr') b.step=3;
+    if (field==='mean') b.step=4;
+    if (field==='mad') b.step=5;
+    b.feedback=message;
+    b.miss=!right;
+    animateAgain();
+    renderBuild();
+    drawStage();
+    focusNext();
+    return right;
+  }
+  function focusNext() {
+    const f=fieldNow();
+    const el=['median','q1','q3','min','max'].includes(f)?$('grid'):
+      ['n','iqr','mean','mad'].includes(f)?$('build-answer'):f==='lineup'?$('lineup'):
+      f==='file'?$('file-report'):$('options').querySelector('button');
+    if (el) el.focus({preventScroll:true});
+  }
+  function pickBuild(row,k) {
+    if (state.mode!=='build' || fieldNow()!==row || B().fields[row] || !Number.isInteger(k) || k<0 || k>=chipOptions(row).length) return;
+    const b=B(), right=k===rightChip(row);
+    b.fields[row]=credit(row,right,'Sam fixed');
+    b.values[row]=rightChip(row);
+    const chosen=chipOptions(row)[k], correct=chipOptions(row)[rightChip(row)];
+    let text=b.fields[row]==='found'?'✓ Found: '+correct+'.':
+      right?'Correct; Sam helped earlier: '+correct+'.':'Sam fixed: '+correct+'. Your pick: '+chosen+'.';
+    // The shape is assessed next. Do not teach its answer before that choice.
+    if (row==='reason') text+=' '+{
+      sandiego:'The hot spell pulls the mean up to 77.4 °F, but 21 of 30 days were cooler than that. The median, 74 °F, is a typical day.',
+      chicago:'Balanced data: mean 75.2 and median 75 agree, and the mean uses every day.',
+      luka:'One 73-point night is far from the rest. Here it moves the mean only a little, because there are 70 games; try dragging it in Explore.'
+    }[state.set];
+    if (row==='units') b.step=2;
+    result(right?'right':'fixed');
+    b.feedback=text;
+    b.miss=!right;
+    renderBuild();
+    drawStage();
+    focusNext();
+  }
+  function lineUp() {
+    if (state.mode!=='build'||fieldNow()!=='lineup') return;
+    const b=B();
+    b.lineup=true;
+    b.feedback='';
+    animateAgain();
+    renderBuild();
+    drawStage();
+    const dots=plot.dots||[];
+    [...$('grid').children].forEach((el,i) => {
+      const p=dots[i%dots.length];
+      const r=el.getBoundingClientRect(), pr=$('plot').getBoundingClientRect();
+      el.style.setProperty('--fx',`${pr.left+(p?.x||0)-r.left}px`);
+      el.style.setProperty('--fy',`${pr.top+(p?.y||0)-r.top}px`);
+      el.classList.add('fly');
+    });
+    Curio.tone(470,.09,.03);
+    $('grid').focus({preventScroll:true});
+  }
+  function tapCard(pos) {
+    const f=fieldNow();
+    if (state.mode!=='build'||!B().lineup||!cardFields.includes(f)||!Number.isInteger(pos)||pos<1||pos>buildStats().n) return;
+    const b=B(), targets=targetPositions(f);
+    if (b.partial.includes(pos)) return;
+    const right=targets.includes(pos);
+    if (!right) b.attempts[f]=(b.attempts[f]||0)+1;
+    if (!right && b.attempts[f]<2) {
+      const s=D().values.slice().sort((a,c)=>a-c);
+      const same=targets.some(p => s[p-1]===s[pos-1]);
+      feedback(same?'Same number, but count: the middle has as many cards before it as after it.':
+        `That's card ${pos}. Count in from both ends.`,true);
+      result('missTry');
+      return;
+    }
+    if (right) {
+      b.partial.push(pos);
+      result('right');
+      if (b.partial.length<targets.length) { updateGrid();
+      buildHint(false);
+      return;
+      }
+    } else result('shown');
+    b.fields[f]=credit(f,right,'Sam showed');
+    b.values[f]=fieldAnswer(f);
+    b.partial=[];
+    b.card++;
+    const label=b.fields[f]==='found'?'✓ Found: ':right?'Correct; Sam helped earlier: ':'Sam showed: ';
+    b.feedback=label+{median:'Median',q1:'Q1',q3:'Q3',min:'Min',max:'Max'}[f]+` is ${F(fieldAnswer(f))}.`;
+    if (f==='median'&&targets.length===2) b.feedback+=` Both are ${F(fieldAnswer(f))}; if they differed, use halfway between.`;
+    b.miss=!right;
+    animateAgain();
+    renderBuild();
+    drawStage();
+    if (fieldNow()==='iqr') $('build-answer').focus({preventScroll:true});
+  }
+  function renderReport() {
+    const b=B(), s=buildStats(), found=fields.filter(f=>b.fields[f]==='found').length;
+    const report=$('report');
+    report.textContent='';
+    const img=document.createElement('img');
+    img.src=pictures.pleased;
+    img.alt='Sam smiling with the finished notes';
+    report.appendChild(img);
+    const by=document.createElement('div');
+    by.className='byline';
+    by.textContent='THE DATA DESK · REPORT FILED';
+    report.appendChild(by);
+    const h=document.createElement('h3');
+    h.textContent=D().name+', '+D().period;
+    report.appendChild(h);
+    const p=document.createElement('p');
+    const center=state.set==='chicago'?`Mean ${F(s.mean,1)}, MAD ${F(s.mad,1)}`:
+      `Median ${F(s.median)}, IQR ${F(s.iqr)}`;
+    const method=state.set==='luka'?"recorded in each game's official box score":'measured by a weather station at the airport';
+    p.textContent=`${chipOptions('measured')[0]}, ${method}, in ${chipOptions('units')[0]}, on ${s.n} ${state.set==='luka'?'games':'days'}. Typical: ${center} ${D().unit}.`;
+    report.appendChild(p);
+    const count=document.createElement('p');
+    count.textContent=`You found ${found} of 14 on your own.`;
+    report.appendChild(count);
+    const list=document.createElement('div');
+    list.className='report-fields';
+    for (const f of fields) {
+      const el=document.createElement('div');
+      const name={n:'Observations',measured:'Measured',how:'Method',units:'Units',min:'Min',q1:'Q1',median:'Median',q3:'Q3',max:'Max',iqr:'IQR',mean:'Mean',mad:'MAD',pair:'Pair',reason:'Shape'}[f];
+      const val=['measured','how','units','pair','reason'].includes(f)?chipOptions(f)[rightChip(f)]:F(b.values[f]);
+      el.textContent=name+': '+val;
+      const mark=document.createElement('small');
+      mark.textContent=b.fields[f]==='found'?'✓ found':b.fields[f];
+      el.appendChild(mark);
+      list.appendChild(el);
+    }
+    report.appendChild(list);
+  }
+  function fileReport() {
+    if (state.mode!=='build'||fieldNow()!=='file'||B().filed) return;
+    B().filed=true;
+    result('filed');
+    Curio.yes();
+    renderBuild();
+    drawStage();
+    $('report').focus({preventScroll:true});
+  }
+  function drawHeadline() {
+    const svg=$('head-svg'), w=svg.clientWidth, h=svg.clientHeight;
+    if (!w||!h) return;
+    svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
+    const band=h/2;
+    for (const [i,id] of ['miami','denver'].entries()) {
+      const group=mk('g',{transform:`translate(0 ${i*band})`},svg);
+      const gdot=mk('g',{},group), gbox=mk('g',{transform:`translate(0 ${band*.54})`},group);
+      const t=DataTable(datasets[id].values.map(v=>({high:v})),{columns:{high:{label:'Daily high',unit:'°F'}}});
+      const dot=Chart(gdot,t,{type:'dot',x:'high',width:w,height:band*.54,xDomain:[75,105],font:10,
+        margin:{l:42,r:25,t:24,b:2},pointSize:4,xLabel:''});
+      const box=rangeBox(gbox,t,{x:'high',width:w,height:band*.46,xDomain:[75,105],font:11,
+        margin:{l:42,r:25,t:3,b:21},xLabel:'',series:i+1});
+      charts.push(dot,box);
+      if (w<500) {
+        const step=Math.min(7,Math.max(2,(dot.scales.frame.y0-25)/15));
+        for(const p of dot.dots) {
+          const el=dot.el.querySelector(`[data-i="${p.i}"]`);
+          if(el) { el.setAttribute('cy',dot.scales.frame.y0-3-p.k*step);
+          el.setAttribute('r',Math.min(3,step*.42));
+          }
+        }
+      }
+      mk('text',{x:14,y:17,fill:'#1e2229','font-size':13,'font-weight':700},group,datasets[id].name);
+      for (let v=75;v<=105;v++) {
+        const x=box.scales.x(v), y=box.scales.frame.y0;
+        mk('line',{x1:x,x2:x,y1:y,y2:y+4,stroke:'#767b84'},gbox);
+      }
+    }
+  }
+  function renderHeadlineControls() {
+    const h=state.head, done=h.fields.miami&&h.fields.denver;
+    $('head-iqrs').hidden=!!done;
+    $('head-options').hidden=!done;
+    for (const city of ['miami','denver']) {
+      $(city+'-iqr').readOnly=!!h.fields[city];
+      if (h.fields[city]) $(city+'-iqr').value=h.values[city];
+    }
+    $('head-feedback').textContent=h.feedback;
+    if (done) {
+      const buttons=[...$('head-options').children];
+      h.order.forEach((k,j) => {
+        const el=buttons[j]||document.createElement('button');
+        el.className='btn'; el.textContent=headlineOptions[k]; el.dataset.headline=j;
+        if (h.pick!==null) {
+          el.setAttribute('aria-disabled','true');
+          if (k===0) { el.classList.add('right'); el.textContent='✓ '+el.textContent; }
+          else if (k===h.pick) { el.classList.add('wrong'); el.textContent='Sam fixed: '+el.textContent; }
+        }
+        el.onclick=()=>pickHeadline(k);
+        if (!el.parentNode) $('head-options').appendChild(el);
+      });
+    }
+    $('front-page').hidden=h.pick!==0;
+    if (h.pick===0) {
+      $('front-page').textContent=headlineOptions[0];
+      const small=document.createElement('small');
+      small.textContent='Miami: IQR 1 °F, range 5 °F. Denver: IQR 9 °F, range 24 °F.';
+      $('front-page').appendChild(small);
+    }
+    const key=done?'pickHead':h.fields.miami?'denverOnly':h.fields.denver?'miamiOnly':'wHeadline';
+    setHint(h.pick!==null?'The editor has filed a verdict. Read the note, or tap Explore to test another story.':L[key],key,h.pick===null);
+    updateHeadCheck();
+  }
+  function updateHeadCheck() {
+    $('head-check').disabled=['miami','denver'].some(c=>!state.head.fields[c]&&$(c+'-iqr').value.trim()==='');
+  }
+  function typeHeadline(city,value,render=true) {
+    const h=state.head;
+    if (state.mode!=='headline'||!['miami','denver'].includes(city)||h.fields[city]||String(value).trim()===''||!Number.isFinite(Number(value))) return;
+    const right=Number(value)===baseStats(city).iqr;
+    h.attempts[city]=(h.attempts[city]||0)+1;
+    if (right||h.attempts[city]>=2) {
+      h.fields[city]=right?'found':'Sam showed';
+      h.values[city]=baseStats(city).iqr;
+      h.feedback+=(h.feedback?' ':'')+(right?'✓ '+datasets[city].name+' found. ':datasets[city].name+': Sam showed. ');
+      if (!right) h.feedback+=`${baseStats(city).q3} − ${baseStats(city).q1} = ${baseStats(city).iqr} °F. `;
+      result(right?'right':'shown');
+    } else { h.feedback=datasets[city].name+': IQR is Q3 minus Q1, not the range. Try once more.';
+    result('missTry');
+    }
+    if (render) { renderHeadlineControls();
+    drawStage();
+    }
+  }
+  function pickHeadline(k) {
+    const h=state.head;
+    if (state.mode!=='headline'||!h.fields.miami||!h.fields.denver||h.pick!==null||!Number.isInteger(k)||k<0||k>3) return;
+    h.pick=k;
+    h.feedback=headlineReasons[k];
+    result(k===0?'headRight':'headWrong');
+    renderHeadlineControls();
+    drawStage();
+  }
+  for (const [id,d] of Object.entries(datasets)) {
+    const el=document.createElement('button');
+    el.className='set';
+    el.dataset.set=id;
+    el.setAttribute('aria-pressed',id==='sandiego');
+    if (id!=='class') { const img=document.createElement('img');
+    img.src=pictures[id];
+    img.alt='';
+    el.appendChild(img);
+    }
+    else { el.classList.add('class-card');
+    const b=document.createElement('b');
+    b.innerHTML=`<svg viewBox="0 0 140 60" width="140" height="60" aria-hidden="true">
+      <defs><linearGradient id="notebook-paper" x2="1" y2="1"><stop stop-color="#fffef8"/>
+      <stop offset="1" stop-color="#ddcdae"/></linearGradient></defs>
+      <ellipse cx="71" cy="53" rx="43" ry="4" fill="#44351d" opacity=".15"/>
+      <path d="M36 6L100 9L97 52L32 49Z" fill="#99764c" stroke="#725b3d"/>
+      <path d="M38 4L102 7L99 49L34 46Z" fill="url(#notebook-paper)" stroke="#b5a68c"/>
+      <path d="M45 14L94 16M44 23L93 25M43 32L92 34M42 41L91 43" stroke="#a4b7b5"/>
+      <path d="M49 4L46 47" stroke="#b23c17" opacity=".55"/>
+      <path d="M103 13L109 16L85 49L80 53L81 46Z" fill="#c58b26" stroke="#805a20"/>
+      <path d="M80 53L82 47L85 49Z" fill="#273b40"/>
+      <path d="M105 15L83 46" stroke="#f5d078"/>
+      <path d="M56 37L56 32M64 37L64 28M72 37L72 20M80 37L80 29" stroke="#0d6670" stroke-width="3"/>
+    </svg>`;
+    el.appendChild(b);
+    }
+    const label=document.createElement('span');
+    label.textContent=d.short;
+    el.appendChild(label);
+    el.onclick=()=>setSet(id);
+    $('explore-sets').appendChild(el);
+    if (['sandiego','chicago','luka'].includes(id)) {
+      const btn=document.createElement('button');
+      btn.className='btn';
+      btn.dataset.set=id;
+      btn.textContent=id==='luka'?'Luka':d.name;
+      btn.onclick=()=>setSet(id);
+      $('build-sets').appendChild(btn);
+    }
+  }
+  for (const m of ['explore','build','headline']) $('m-'+m).onclick=()=>setMode(m);
+  $('putback').onclick=putBack;
+  function setView(view) {
+    stopDrag();
+    state.view=view;
+    refreshClasses();
+    $('view-dot').setAttribute('aria-pressed',view==='dot');
+    $('view-hist').setAttribute('aria-pressed',view==='histogram');
+    $('bin-controls').hidden=view!=='histogram';
+    updateBins();
+    exploreHint();
+    drawStage();
+    Curio.tone(420,.06,.02);
+  }
+  $('view-dot').onclick=()=>setView('dot');
+  $('view-hist').onclick=()=>setView('histogram');
+  function binWidths() {
+    if(state.set==='class') {
+      const [lo,hi]=axis();
+      return [24,12,6,3].map(n=>(hi-lo)/n);
+    }
+    return state.set==='luka'?[2,5,10]:[1,2,5,10];
+  }
+  function updateBins() {
+    const widths=binWidths();
+    $('bin-width').textContent=F(state.bin)+' '+D().unit;
+    $('bin-minus').setAttribute('aria-disabled',state.bin===widths[0]);
+    $('bin-plus').setAttribute('aria-disabled',state.bin===widths.at(-1));
+  }
+  function changeBins(dir) {
+    const widths=binWidths();
+    state.bin=widths[Math.max(0,Math.min(widths.length-1,widths.indexOf(state.bin)+dir))];
+    updateBins();
+    drawStage();
+    Curio.tone(400+state.bin*15,.05,.02);
+  }
+  $('bin-minus').onclick=()=>changeBins(-1);
+  $('bin-plus').onclick=()=>changeBins(1);
+  $('build-answer').oninput=()=>{ $('build-check').disabled=$('build-answer').value.trim()==='';
+  };
+  $('build-form').onsubmit=e=>{e.preventDefault();
+  typeBuild(fieldNow(),$('build-answer').value);
+  };
+  $('lineup').onclick=lineUp;
+  $('file-report').onclick=fileReport;
+  $('start-over').onclick=()=>{V.hush();
+  const attempts=state.builds[state.set].attempts;
+  state.builds[state.set]=freshBuild();
+  state.builds[state.set].attempts=attempts;
+  currentGridSet='';
+  renderBuild();
+  drawStage();
+  };
+  $('grid').onclick=e=> {
+    endAnimation();
+    const el=e.target.closest('.value-card');
+    if(el) tapCard(+el.dataset.pos);
+  };
+  $('grid').onkeydown=e=> {
+    const d={ArrowLeft:-1,ArrowRight:1,ArrowUp:-10,ArrowDown:10}[e.key];
+    if (d) {e.preventDefault();
+    B().cursor=Math.max(0,Math.min(buildStats().n-1,B().cursor+d));
+    updateGrid();
+    }
+    else if (e.key==='Enter'||e.key===' ') {e.preventDefault();
+    tapCard(B().cursor+1);
+    }
+  };
+  $('grid').onfocus=updateGrid;
+  $('grid').onblur=()=>updateGrid();
+  $('plot').addEventListener('keydown',stripCounts);
+  $('head-check').onclick=()=> {
+    if ($('head-check').disabled) return;
+    state.head.feedback='';
+    for(const city of ['miami','denver']) typeHeadline(city,$(city+'-iqr').value,false);
+    renderHeadlineControls();
+    drawStage();
+    if (state.head.fields.miami&&state.head.fields.denver) $('head-options').querySelector('button')?.focus({preventScroll:true});
+  };
+  for(const city of ['miami','denver']) $(city+'-iqr').oninput=updateHeadCheck;
+  function showClass() {
+    const tokens=$('class-values').value.trim().split(/[\s,]+/).filter(Boolean);
+    const vals=tokens.map(Number);
+    if (!vals.length||vals.length>60||vals.some(v=>!Number.isFinite(v)||Math.abs(v)>1000000)) {
+      $('class-message').textContent='Use 1 to 60 finite numbers, each between −1,000,000 and 1,000,000.';
+      return;
+    }
+    datasets.class.values=vals;
+    datasets.class.unit=$('class-unit').value.trim()||'units';
+    datasets.class.example=false;
+    try {localStorage.setItem('curio-bpb-class',JSON.stringify({values:vals,unit:datasets.class.unit}));
+    } catch {}
+    $('class-message').textContent='Shown on this device.';
+    setSet('class');
+  }
+  $('class-show').onclick=showClass;
+  $('class-clear').onclick=()=> {
+    try {localStorage.removeItem('curio-bpb-class');
+    } catch {}
+    $('class-values').value='';
+    $('class-unit').value='';
+    datasets.class.values=[2,3,3,4,5];
+    datasets.class.unit='units';
+    datasets.class.example=true;
+    setSet('class');
+    $('class-message').textContent='Saved numbers cleared. A small example is shown.';
+  };
+  try {
+    const saved=JSON.parse(localStorage.getItem('curio-bpb-class'));
+    if (saved&&Array.isArray(saved.values)&&saved.values.length>0&&saved.values.length<=60&&saved.values.every(Number.isFinite)) {
+      datasets.class.values=saved.values;
+      datasets.class.unit=String(saved.unit||'units').slice(0,12);
+      datasets.class.example=false;
+      $('class-values').value=saved.values.join(', ');
+      $('class-unit').value=datasets.class.unit;
+    }
+  } catch {}
+  const observer=new ResizeObserver(()=> {
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame=requestAnimationFrame(()=>{endAnimation();drawStage();});
+  });
+  observer.observe($('stage'));
+  Curio.onMotion(()=>{endAnimation();drawStage();});
+  Curio.init({clips:"voice:*",rate:.96});
+  window.__tool={state,setMode,setSet,drag,putBack,
+    build:{get step(){return B().step;
+    },tap:tapCard,type:typeBuild,pick:pickBuild},
+    headline:{type:typeHeadline,pick:pickHeadline},stats:()=>state.mode==='headline'?null:
+      DataDesk.stats(state.mode==='explore'?state.values:D().values),allLines:()=>V.allLines(),vlog:V.log,
+    get plot(){return plot;
+    },get vq(){return V.queue;
+    }};
+  setMode('explore');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "id":"bug-hunt",
+  "stage":"built",
+  "status":"beta",
+  "hook":"Be the bird. The moths you miss become the next generation.",
+  "outcome":"Use population graphs and evidence to explain inherited variation, survival and natural selection.",
+  "driver":"students",
+  "minutes":"20-30",
+  "modes":["Hunt","Run","Explain","Real story"],
+  "grades_label":"Grade 8",
+  "sources":[
+    "van't Hof et al. Nature 534, 102-105 (2016), doi:10.1038/nature17951",
+    "Cook and Saccheri. Heredity 110, 207-212 (2013), doi:10.1038/hdy.2012.92",
+    "Cook et al. Biology Letters 8, 609-612 (2012), doi:10.1098/rsbl.2011.1136",
+    "Grant, Owen and Clarke. Journal of Heredity 87, 351-357 (1996)",
+    "Clean Air Act 1956, chapter 52, legislation.gov.uk",
+    "University of Liverpool, Jumping gene took peppered moths to the dark side (2016-06-01)",
+    "ASU Ask A Biologist, Peppered Moths: Natural Selection",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party":[],
+  "updated":"2026-11-06"
+}
