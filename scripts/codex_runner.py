@@ -219,8 +219,44 @@ def free_ports(kind, slot):
         if subprocess.run(['taskkill', '/T', '/F', '/PID', pid], capture_output=True).returncode == 0 or \
                 subprocess.run(['taskkill', '/F', '/PID', pid], capture_output=True).returncode == 0:
             ended += 1
-    if pids:
-        log(f'freed {kind} slot {slot}: ended {ended} of {len(pids)} leftover process(es) on its ports')
+    # one session can start drive.py on the same host port several times, and Windows lets each copy bind it while
+    # the port lookup above names only one; the rest kept slots looking busy all night (2026-11-07). Match by command.
+    extra = {pid for pid, _ in drive_servers(h)} - {int(p) for p in pids}
+    for pid in extra:
+        if subprocess.run(['taskkill', '/F', '/PID', str(pid)], capture_output=True).returncode == 0:
+            ended += 1
+    if pids or extra:
+        log(f'freed {kind} slot {slot}: ended {ended} of {len(pids) + len(extra)} leftover process(es) on its ports')
+
+
+def drive_servers(host=None):
+    """(pid, tool) for every drive.py server running, or only those on one host port."""
+    cmd = ("Get-CimInstance Win32_Process -Filter \"Name='python.exe'\" | Where-Object CommandLine -match 'drive[.]py' |"
+           " Select-Object ProcessId,CommandLine | ConvertTo-Json -Compress")
+    try:
+        out = subprocess.run(['powershell', '-NoProfile', '-Command', cmd], capture_output=True, text=True, timeout=60).stdout
+        rows = json.loads(out) if out.strip() else []
+    except (OSError, subprocess.SubprocessError, ValueError):
+        return []
+    found = []
+    for r in rows if isinstance(rows, list) else [rows]:
+        words = [w.strip('"') for w in (r.get('CommandLine') or '').split()]
+        try:
+            tool, port = words[words.index('scripts/drive.py') + 1], int(words[words.index('--host') + 1])
+        except (ValueError, IndexError):
+            continue
+        if host is None or port == host:
+            found.append((r['ProcessId'], tool))
+    return found
+
+
+def reap_orphans(kind, slot, busy):
+    """A slot none of our jobs holds but whose ports are taken: free it when every holder is a drive.py server for a tool
+    nobody is working on (not running here, untouched for 20 minutes). A hand-pasted chat's server stays."""
+    c, h = TABLES[kind][0][slot]
+    servers = drive_servers(h)
+    if servers and all(t not in busy and not recently_touched(t) for _, t in servers):
+        free_ports(kind, slot)
 
 
 def codex_exe():
@@ -360,6 +396,7 @@ def main():
         write_limits(a)
     seen = {}
     running, tried, started, stop_reason, last_start = [], set(), 0, None, 0.0
+    reaped = 0.0  # last orphan sweep
     ours, noted = set(), set()  # tools this run just finished (their fresh files are ours); waits already logged
     count = {'build': 0, 'review': 0, 'fix': 0}
     keep_awake(True)
@@ -389,10 +426,17 @@ def main():
             waiting = False
             if not stop_reason and not (a.max_jobs and started >= a.max_jobs):
                 busy = {j.t for j in running}
+                sweep = not a.dry and time.time() - reaped > 300
+                if sweep:
+                    reaped = time.time()
                 for kind, cap, slots, tools in (('fix', a.fixes, 'AB', fixq), ('review', a.reviews, 'ABCD', queue),
                                                 ('build', a.builds, 'ABC', queue)):
-                    free = [s for s in slots[:cap] if s not in {j.slot for j in running if j.kind == kind}
-                            and (a.dry or not port_busy(kind, s))]
+                    mine = {j.slot for j in running if j.kind == kind}
+                    if sweep:  # leftovers that outlived their job (2026-11-07)
+                        for s in slots[:cap]:
+                            if s not in mine and port_busy(kind, s):
+                                reap_orphans(kind, s, busy)
+                    free = [s for s in slots[:cap] if s not in mine and (a.dry or not port_busy(kind, s))]
                     for t in tools:
                         if not free or (a.max_jobs and started >= a.max_jobs) or (cap_of[kind] and count[kind] >= cap_of[kind]):
                             break
