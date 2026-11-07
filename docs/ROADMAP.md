@@ -271,7 +271,7 @@ A treat from the teacher: when kids are fully done, they go to Recess and play. 
 educational undertones that never feel like class. Real games where the thinking is the fun: you get better at the game by getting better at the skill
 (untangle as graph planarity, match-3 as chemical bonding, tower defense as the immune system). Original games only:
 a genre's mechanic is fine, a specific game's name, art or levels never are. Cory is sold on the idea (2026-11-07).
-Named Recess (2026-11-07). Next: rework the design rules for the Recess tone with Cory, then pick the first games from the research pass (docs/GAMES.md,
+Named Recess, rules set (2026-11-07): open to all, grade bands shown not enforced, best scores saved on the device with arcade-style initials, no class on the screen. Next: Recess's look, then pick the first games from the research pass (docs/GAMES.md,
 docs/agents/research/GAMES-RESEARCH.md), then spec them like any tool.
 
 ## Track 10: Languages (new 2026-11-07, later stage of site growth)
