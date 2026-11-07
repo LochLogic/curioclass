@@ -197,7 +197,8 @@ def render(template, path, index=True, **ctx):
 
 if DIST.exists():
     shutil.rmtree(DIST)
-shutil.copytree(SITE / 'assets', DIST / 'assets')
+ABOUT = 'about-plain'  # temporary (2026-11-07): no family photo or names; set back to 'about' to restore both
+shutil.copytree(SITE / 'assets', DIST / 'assets', ignore=None if ABOUT == 'about' else shutil.ignore_patterns('cory.webp'))
 
 # Home shows a small rotating pick, one tool per subject in turn, reshuffled each build (Cory, 2026-11-03).
 _rng = __import__('random').Random(date.today().toordinal())
@@ -968,7 +969,6 @@ if CLOSET_LIVE:  # Supply Closet items, so "fractions vocabulary" or "photosynth
     index += ws_index
 (DIST / 'search-index.json').write_text(json.dumps(index, separators=(',', ':')), encoding='utf-8')
 render('search.html', '/search/', index=False)
-ABOUT = 'about-plain'  # temporary (2026-11-07): no family photo or names; set back to 'about' to restore
 render(f'pages/{ABOUT}.html', '/about/')
 for name in ['teachers', 'privacy', 'accessibility', 'license']:
     render(f'pages/{name}.html', f'/{name}/')
