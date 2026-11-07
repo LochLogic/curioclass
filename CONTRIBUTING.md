@@ -41,6 +41,21 @@ consistent and safe.
 - **Code:** fixes and scoped builds that Cory has agreed to first. Please open an issue and wait for a yes before
   building something new.
 
+## Building a tool from a spec
+
+This is where AI-assisted builders help most. Curio Class writes the spec and does the final check; you do
+everything in between, with your own tools and our guides.
+
+1. **Ask for a spec.** Open an issue saying you would like to build one. Cory assigns a tool whose spec is ready
+   (`tools/<id>/spec.md`), so two people never build the same thing.
+2. **Build it** to the spec, following [docs/TOOL-CONTRACT.md](docs/TOOL-CONTRACT.md) and the build brief in
+   [docs/agents/CODEX-BUILD.md](docs/agents/CODEX-BUILD.md). Any AI assistant is fine.
+3. **Review and fix it yourself** using [docs/agents/CODEX-REVIEW.md](docs/agents/CODEX-REVIEW.md) and
+   [docs/agents/CODEX-FIX.md](docs/agents/CODEX-FIX.md), until the review finds nothing that blocks.
+4. **Run the checks:** `python scripts/check_safety.py` and `python scripts/check_tools.py` must pass for your tool.
+5. **Open a pull request** with the tool folder, your review notes and the name of the AI tools you used. Curio
+   Class then does the final check. A tool that comes back needing work returns to you with notes.
+
 ## How to send something
 
 1. **Open an issue first** for anything bigger than a typo: an idea, a bug, a review of a tool. Say which tool

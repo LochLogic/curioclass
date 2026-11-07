@@ -968,7 +968,9 @@ if CLOSET_LIVE:  # Supply Closet items, so "fractions vocabulary" or "photosynth
     index += ws_index
 (DIST / 'search-index.json').write_text(json.dumps(index, separators=(',', ':')), encoding='utf-8')
 render('search.html', '/search/', index=False)
-for name in ['about', 'teachers', 'privacy', 'accessibility', 'license']:
+ABOUT = 'about-plain'  # temporary (2026-11-07): no family photo or names; set back to 'about' to restore
+render(f'pages/{ABOUT}.html', '/about/')
+for name in ['teachers', 'privacy', 'accessibility', 'license']:
     render(f'pages/{name}.html', f'/{name}/')
 render('404.html', '/404.html', index=False)
 
