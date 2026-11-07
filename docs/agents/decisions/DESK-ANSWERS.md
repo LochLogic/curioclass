@@ -17,7 +17,7 @@ Cory's answers to question cards, and what each still needs. Remove a line once 
 - lunch-survey-cleanup's two open questions (made-up survey, blanks moved to grade 6): Cory has no issue with either. Both stand as specced.
 
 **Fifth spec batch (tap-to-start-puppets, paper-plane-assembly-line, box-packer, front-line, leaf-factory), 2026-11-07**
-- front-line: open, not answered yet. Should a later round add one real-data day (archived hourly station readings, for example a spring cold front across Kansas from the Iowa Environmental Mesonet)? The spec ships with model days only.
+- front-line: yes to one real-data day (archived hourly station readings, for example a spring cold front across Kansas from the Iowa Environmental Mesonet), added in a later round after the exit check. This build ships with model days only (applied to the spec).
 
 ## 2026-10-30
 

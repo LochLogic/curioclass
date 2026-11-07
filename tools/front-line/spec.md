@@ -319,7 +319,7 @@ marks 9:30 am, 1:00 pm, 4:30 pm; line 34.3 km/h crossing at 11:30 pm; ten days 1
 10. 680x425: each step's main buttons are visible; folded items reachable by tap.
 11. Voice: a five-action run speaks each how line at most once; no line names a disabled control.
 
-## Open questions
-- A fifth "real day" built from archived hourly station data (for example a spring cold front across Kansas from the
-  Iowa Environmental Mesonet ASOS archive) would add real material (BASELINE rule 9) but means picking an event and
-  five real stations. Worth a later round?
+## Later round (decided)
+- Cory, 2026-11-07: yes to a fifth "real day" built from archived hourly station data (for example a spring cold front
+  across Kansas from the Iowa Environmental Mesonet ASOS archive, BASELINE rule 9). It is added in a later round, after
+  the tool passes its exit check; this build ships with model days only.
