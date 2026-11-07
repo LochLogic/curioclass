@@ -197,7 +197,7 @@ def render(template, path, index=True, **ctx):
 
 if DIST.exists():
     shutil.rmtree(DIST)
-ABOUT = 'about-plain'  # temporary (2026-11-07): no family photo or names; set back to 'about' to restore both
+ABOUT = 'about-plain'  # temporary (2026-11-07): no family photo or names. To restore: copy drafts/private/about-original/about.html to site/templates/pages/ and cory.webp to site/assets/, then set this to 'about'
 shutil.copytree(SITE / 'assets', DIST / 'assets', ignore=None if ABOUT == 'about' else shutil.ignore_patterns('cory.webp'))
 
 # Home shows a small rotating pick, one tool per subject in turn, reshuffled each build (Cory, 2026-11-03).
