@@ -1,0 +1,20 @@
+# Kid-safety scan on every pull request: no outside servers, no tracking, no code built from strings.
+# The scan is scripts/check_safety.py (standard library only). Read-only: this workflow can change nothing.
+name: safety
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/check_safety.py

@@ -11,3 +11,5 @@
 - Why might scientists arrange the table in rows and columns at all?
 
 There's nothing to score here. Let students click around first, then bring the class together.
+
+Safety: the bundled three.js library contains fetch and XMLHttpRequest loaders; this tool never calls them, and everything it shows is built inside the page. Nothing leaves the device.

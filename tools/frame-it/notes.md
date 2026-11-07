@@ -32,3 +32,5 @@
 - **Save photo** downloads a PNG to this device. Nothing is uploaded.
 - Assignment stars are saved on this device.
 - The light studio needs WebGL, which almost every school browser has.
+
+Safety: the bundled three.js library contains fetch and XMLHttpRequest loaders; this tool never calls them, and everything it shows is built inside the page. Nothing leaves the device.
