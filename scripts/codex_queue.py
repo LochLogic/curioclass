@@ -83,7 +83,9 @@ QUEUE = ([t for t in CURIO if curio_ready(t)] + _SPEC
          + [t for t in QUEUE if t not in CURIO and t not in _SPEC])
 # Specs reserved for an outside helper (drafts/paste-ready/helper-process.txt), tool id -> GitHub handle. Codex skips
 # these. Remove the line to hand a tool back to Codex.
-HELPERS = {}
+HELPERS = {
+    'correlation-guessing-game': 'abi (Abinanthan, from Artcraft Discord; GitHub handle pending), 2026-11-08',
+}
 QUEUE = [t for t in QUEUE if t not in HELPERS]
 DANCE = ("Owner's decision: this tool gets painted dancers, not the code figure. Paint them yourself, marked \"people\": true, "
          "with a natural range of dancers. Draw the fewest poses that teach the moves well, and keep the figure easy to swap.")
