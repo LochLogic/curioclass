@@ -25,7 +25,10 @@ their old names so nothing breaks.
 | 7 | Claude | **Finish check**: the finished tool, with its art and voice (REFINE.md, "Final look") | final.md |
 | 8 | Cory | **Sign-off**, on the Desk (the Review Desk) | the Desk |
 
-The Desk is where Cory signs off and answers question cards. A tool that fails a check goes back to Fix.
+The Desk is where Cory signs off and answers question cards. A tool that fails a check goes back to Fix. Before Build come
+**Idea** (the catalog line) and **Spec**; the board (`scripts/board.py`) and the Desk's stats count each tool under the last
+step it has finished, in this same order, so the columns read Idea, Spec, Build, Self-check, Refine, Fix, Exit check, Art
+and voice, Finish check, Your sign-off, Live.
 
 ## The pipeline for one tool
 

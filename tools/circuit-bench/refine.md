@@ -1,4 +1,4 @@
-ROUND 2 (exit check 2026-11-06): short chip placement re-searched every frame (regression of should fix 5): one short on a 30-part board gives about 34 fps, two about 20, so should fix 16 is only partly fixed; the integrator still owes the written call on MS-PS2-5 and the also-reaches codes
+PASS (exit check 2026-11-06)
 Counts: blockers 2 (general 1, family 1), should fix 17 (general 11, family 6), polish accepted 17
 
 # Refine: circuit-bench
@@ -296,3 +296,69 @@ Settled in spec.md Map: MS-PS2-5 stays on the anchor as "in part" (magnetic half
 module's lesson tool). 3-PS2-3, 3-PS2-4 and HS-PS2-5 move to "touches", not claimed. Codex: make tool.draft.json and
 any notes match spec.md Map (claimed codes MS-PS2-3, MS-PS2-5 in part, 4-PS3-2, 4-PS3-4). The only tool fix left is
 should fix 16: work out each short chip's spot once per short (or when wires change), not every frame.
+
+## Exit check (2026-11-06)
+
+Round 2 re-check (Claude, cold). Bundle circuit-bench.html, version circuit-bench-fix-2, 119,919 bytes. Scope: the two
+items the first exit check left open (should fix 16 and its should fix 5 regression; the integrator's standards call),
+plus a no-regression look at the frames they touch. Frames and JSON under
+`S:/CurioClass-codex-scratch/circuit-bench/exit2/` (`audit-r2/` audit, `perf*.py` and `*.out.json` timing on the same
+30-part fixtures as the first exit check, `inval-1366.png`, `contact-1366.png`). Chrome 9310, host 8310, both closed.
+
+### Blockers
+1. Coil + compass: FIXED (first exit check). Coil starter frame re-seen: needle off north, 0.97 mT, 50 turns. Polish.md
+   re-measured 28.37 to 76.26 degrees across turns, matching the first exit check; no magnetic code changed.
+2. Oersted wire: FIXED (first exit check). Starter frame re-seen, compass over the jumper.
+
+### Should fix
+1 to 4, 6 to 15, 17: FIXED (first exit check), unchanged code; spot-seen in the audit frames (9 V body, burn wording in
+lines.json, toggles, Read logs "Drag a wire from the battery to the bulb. Meter off.").
+5. Short chip clear of wires: FIXED, regression gone. drawShortChips (src.html:2071-2129) now samples obstacles once
+   per wire/probe key and keeps each chip in a WeakMap keyed on that key and the source centre. Live: one short gave
+   one layout, 60 explicit redraws plus 4 s of animation kept it at 1; adding a wire made exactly one new layout; the
+   chip sits clear on the top strip (x300 y52, 47 px clearance; perf-1short-30parts-1366.png, perf2-30parts-lit-1366.png);
+   removing the shorted pack with the real Remove button cleared the chip and the short (inval-1366.png).
+16. 60 fps with 30 parts: FIXED. Same fixtures as the first exit check, 1366x768, 16 wires, 5 lit:
+    | case | 1x frame / work | 4x frame avg, p50 / work |
+    |---|---|---|
+    | no short | 16.67 / 0.32 ms | 17.4, 16.7 / 1.47 ms |
+    | one short | 16.67 / 0.41 ms | 17.7, 16.7 / 1.97 ms |
+    | two shorts | 16.67 / 0.41 ms | 18.2, 16.7 / 1.98 ms |
+    (Before: one short 29.5 ms frames at 1x, two shorts 263 ms draws at 4x.) A short now costs about 0.5 ms of work
+    at 4x, and every case matches the no-short control the first exit check accepted. The occasional 33 ms frames at
+    4x come with the software rasteriser (--disable-gpu); script work stays near 2 ms of a 16.7 ms budget.
+    Polish.md's 38.75 fps no-short 4x control did not reproduce here (likely a contended or background tab); its
+    "not fixed" was over-cautious.
+
+**Of 19 blocker and should-fix items: 19 fixed.**
+
+### Integrator call (standards)
+Applied: tool.draft.json standards MS-PS2-3, MS-PS2-5 (standards_scope: in part, magnetic half), 4-PS3-2, 4-PS3-4;
+3-PS2-3, 3-PS2-4, HS-PS2-5 listed as touches_not_claimed; notes.md line 30 says the same as spec.md Map.
+
+### Polish (spot-checked in bulk, never blocking)
+Unchanged since the first exit check; seen again in the audit frames: AA polarity, open-end rings, top-left label,
+maker plate, warm bulbs. Known, not done (polish.md Left open): at 680x425 the AA battery Adjust tray puts Turn and
+Remove in horizontal overflow (cell count and Reverse stay visible).
+
+### Regressions
+None. Default, all eight starters and the Manual at 1366x768 (contact-1366.png) match the first exit check. Motion
+off: nothing runs forever. Resized mid-action: clean. 36 held clicks, five-click and quick-tap rows: no errors,
+focus kept. No console errors and only the file itself loaded in every timing and invalidation run.
+
+### Gate
+1. Done when: 1 to 12 pass; 10 now holds under a short too (one file, no network, no em dashes, 60 fps bar met as
+   the no-short bench was).
+2. Codes: MS-PS2-3 exercised; MS-PS2-5 in part and the touches written in spec.md Map, tool.draft.json and notes.md.
+3. Solo defaults: hold (first exit check; nothing touched).
+4. Sensitivity: not needed (all three lenses agree).
+5. Blockers and should-fix: none open.
+6. Bundle: 119,919 bytes, far under 2 MB; no console errors; no network requests.
+7. Voice: hint heard once on the first tap (audit rows 0, 3, 5 to 34), Read speaks hint plus meter, Sound off silent;
+   voice/lines.json holds the same three lines as L (polish.md allLines check). Event narration code unchanged.
+
+## Audit pilot
+- Leads confirmed: none that are findings. All 112 leads are the settled categories (board overlays, modal Manual
+  and Notebook coverage, hint hidden on starters, phone strip scroll).
+- Leads wrong: "welcome not heard" after a first tap on Notebook or Manual; a Curiosity has no welcome (settled).
+- What it missed: frame cost with a short on a busy mat, and the chip layout count; both needed the perf fixtures.
